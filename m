@@ -1,127 +1,98 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <rajakumar.g@hotmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9CD6AE00CDD; Fri, 26 Apr 2019 07:30:01 -0700 (PDT)
+	id D8114E00D11; Fri, 26 Apr 2019 17:28:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
+	HTML_MESSAGE, 
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+	provider *      (rajakumar.g[at]hotmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.182 listed in list.dnswl.org]
+	*      [40.92.11.99 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
+	but no 'Received:'
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com
-	[209.85.210.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFFCDE00CC9
-	for <yocto@yoctoproject.org>; Fri, 26 Apr 2019 07:30:00 -0700 (PDT)
-Received: by mail-pf1-f182.google.com with SMTP id j11so1799365pff.13
-	for <yocto@yoctoproject.org>; Fri, 26 Apr 2019 07:30:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language;
-	bh=4YhGBr15t9M2FMnHBkkAwXGaRaRJLy+//hnymsEMAjI=;
-	b=acKnXHnB1KGO5tCnSuHsFz1e75pIc/dc+n1nLSTwKJkpHlGmyiPq61MwswTKNjR+Ut
-	33hykC0oB3GJL/YBd3MtJvyPA8KlomVDd5knrRNmM8TrTYK5AnyzLleFWsg/sHu5y5DI
-	vmKvQqq9ZhoN0Gn99DhkC5UhECQ3ByC4J/OB93a1nlg+4p3Kwl6wf7FO7pKW3AMEUDyS
-	OsBLDMI1U8v9Qa7hhdtufTFiX29CISY0hHguAXBbIfPV3WaD10MDdxTyBVcu8Qz0RZm9
-	1yme5/zr5icIw2EEZM8ifx2BwunT1+5JM0hz/dhikBgYJ8mAHzFT3sDopYNy6Y3KT/Q1
-	hovw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-language;
-	bh=4YhGBr15t9M2FMnHBkkAwXGaRaRJLy+//hnymsEMAjI=;
-	b=eiRYImrVOsn1EbOTVLzfGmqHIAdbTftuUGad0l9tkIbaum3FCqd2FbpRtgqadltOW4
-	lUvHN3/6kdwkZxUrCmrIQuTrnyd70FXmQtprGZskPdLrAjSvSxzfj/02A7P5Og5sxJwt
-	jXGlrps5zvlY4Nkp71p+qPWl85NqHruaML1keYulJGe86zxxaqO5apyuIuOpJkeQTLzb
-	d0T3TzhTK4TXo6uItavZ6VJM0SCxjhnGj38bPfKXnX+foK342VMFXnpoQzsnIaFbYPI6
-	07ebluiVfNWcEUVDUMJSTKd2M5y0qA0cDSzCyJP8LUHeZJ6Hy3EawPRns77Fmrx3Ywji
-	Ecug==
-X-Gm-Message-State: APjAAAVRiMfVe7ztGuOdD2ryHUUiUm59EjlQo5rm+zw6Qva+7zksiNWk
-	CD8jN4guFd8vfJrUDOivZdc=
-X-Google-Smtp-Source: APXvYqymseJInwdvgMLixm0AcQjvjM5o8O5r1qjb70YSRx2QuU+5ezwj0smLyUvor9KcH1C16JZYfg==
-X-Received: by 2002:a65:6294:: with SMTP id f20mr43391155pgv.415.1556289000234;
-	Fri, 26 Apr 2019 07:30:00 -0700 (PDT)
-Received: from ?IPv6:2601:202:4180:c33:4107:c4f1:f56d:2679?
-	([2601:202:4180:c33:4107:c4f1:f56d:2679])
-	by smtp.gmail.com with ESMTPSA id
-	u62sm42085697pfa.124.2019.04.26.07.29.58
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 26 Apr 2019 07:29:59 -0700 (PDT)
-To: "Jain, Sangeeta" <sangeeta.jain@intel.com>,
-	"'yocto@yoctoproject.org'" <yocto@yoctoproject.org>,
-	"Eggleton, Paul" <paul.eggleton@intel.com>,
-	"'richard.purdie@linuxfoundation.org'"
-	<richard.purdie@linuxfoundation.org>, 
-	'Michael Halstead' <mhalstead@linuxfoundation.org>,
-	"Erway, Tracey M" <tracey.m.erway@intel.com>,
-	"'sjolley.yp.pm@gmail.com'" <sjolley.yp.pm@gmail.com>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-References: <015AB11D45F2C442929CB2765DAE738634DDE72D@PGSMSX110.gar.corp.intel.com>
-From: akuster808 <akuster808@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
-	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
-	8CS2NxU=
-Message-ID: <6fe6873c-a35c-65e6-507b-1244610e7e3f@gmail.com>
-Date: Fri, 26 Apr 2019 07:29:58 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.6.1
+X-Greylist: delayed 46918 seconds by postgrey-1.32 at yocto-www;
+	Fri, 26 Apr 2019 17:28:44 PDT
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com
+	(mail-oln040092011099.outbound.protection.outlook.com [40.92.11.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D194CE00CD6
+	for <yocto@yoctoproject.org>; Fri, 26 Apr 2019 17:28:44 -0700 (PDT)
+Received: from CO1NAM04HT230.eop-NAM04.prod.protection.outlook.com
+	(2a01:111:e400:7e4d::468) by
+	BN3NAM04HT229.eop-NAM04.prod.protection.outlook.com
+	(2a01:111:e400:7e4e::316) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1835.13;
+	Fri, 26 Apr 2019 19:57:06 +0000
+Received: from BN3NAM04HT230.eop-NAM04.prod.protection.outlook.com
+	(2a01:111:e400:7e4e::331) by
+	CO1NAM04HT230.eop-NAM04.prod.protection.outlook.com
+	(2a01:111:e400:7e4d::468) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1792.25;
+	Fri, 26 Apr 2019 14:34:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
+	s=selector1;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=Zn/oETKAGzfUY+j6rblKOI/QEIRP/pCxo07X9FhEflI=;
+	b=rA/ptopM13Z/tjz9M2lFPLXqKz/90YKCw3B3MwE32Js0Wwan3rV7paT8tnbXPUWFXkWs9h3BJdDUBKnVgl2e1xf/sk17UFfskQNQEpNh/1vIMS53KmRuVFQ5aMOasGECHjQR2LThrzxS73x/MKaX2viDi/CGF+4NRyO8BgEysvUEZlg/mJAQKNHc5crnG7DQcaJ7K4Jpm9zqlfI1/eZqHKOq+roCcpl5dgFOBhiXRJVeKJc4/mhpIudQnMprbZGkFSrRNysDBBosbAEXMGTI+LB3Dvh4HQGswdeYDE6sAsXuaU/ElaI/vKmB60ZkgMyK+i1mdEO1RuLMdn3OZoSc4A==
+Received: from BN3NAM04FT052.eop-NAM04.prod.protection.outlook.com
+	(10.152.92.57) by BN3NAM04HT230.eop-NAM04.prod.protection.outlook.com
+	(10.152.93.75) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1835.13;
+	Fri, 26 Apr 2019 11:11:01 +0000
+Received: from DM6PR04MB5562.namprd04.prod.outlook.com (10.152.92.57) by
+	BN3NAM04FT052.mail.protection.outlook.com (10.152.92.241) with
+	Microsoft SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+	15.20.1835.13 via Frontend Transport; Fri, 26 Apr 2019 11:11:01 +0000
+Received: from DM6PR04MB5562.namprd04.prod.outlook.com
+	([fe80::c82:153c:a9ea:b938]) by DM6PR04MB5562.namprd04.prod.outlook.com
+	([fe80::c82:153c:a9ea:b938%3]) with mapi id 15.20.1813.017;
+	Fri, 26 Apr 2019 11:11:01 +0000
+From: raja.g kumar <rajakumar.g@hotmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto System Requirement for developing OS
+Thread-Index: AQHU/CBf2aWhJpuQz0a/zdAovL7tIg==
+Date: Fri, 26 Apr 2019 11:11:00 +0000
+Message-ID: <DM6PR04MB55626373DDB86D5E8B65596FFE3E0@DM6PR04MB5562.namprd04.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:E2B5026A5976F506C5508DA823CB862177C8BA2431A1739785DC2D1DB2FB8226;
+	UpperCasedChecksum:FC4415265E2E84A37A218CA773EB64629C4277AE51A28FEDF92CB2362AE66EF4;
+	SizeAsReceived:6531; Count:40
+x-tmn: [IkdiqG4FOoHSeRuvEPENIjgSGFLDPeuF]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 40
+x-eopattributedmessage: 0
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031323274)(2017031324274)(2017031322404)(1601125500)(1603101475)(1701031045);
+	SRVR:BN3NAM04HT230; 
+X-MS-TrafficTypeDiagnostic: BN3NAM04HT230:|BN3NAM04HT230:|CO1NAM04HT230:|CO1NAM04HT230:|BN3NAM04HT229:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-message-info: 9l0EjtS9LIn6GP07yGNo9bPzoEwV+C0YAvw3hKjDKKBBzuw/GlOCWhV9Szi5hWtBp5AVlJ7W+gErpJgEzbC18Z5LOiaBLP+VyZ0igz42PgLf89EzB4GHAnC7iupvNxgzNJKsVYP54F1nGo60z1BY6/u/d4eGYOJomK8ygaN4lV4ytpKOGd6H//3/laINMMc7
 MIME-Version: 1.0
-In-Reply-To: <015AB11D45F2C442929CB2765DAE738634DDE72D@PGSMSX110.gar.corp.intel.com>
-Subject: Re: [OE-core] QA cycle report for 2.7 RC2
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a052e64-06f4-4496-9a25-08d6ca37dda5
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Apr 2019 11:11:00.9062 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3NAM04HT230
+X-OriginatorOrg: hotmail.com
+Subject: Yocto System Requirement for developing OS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -133,472 +104,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Apr 2019 14:30:01 -0000
-Content-Type: multipart/alternative;
-	boundary="------------BCD7BA7A0A436D6EF0927943"
+X-List-Received-Date: Sat, 27 Apr 2019 00:28:46 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_DM6PR04MB55626373DDB86D5E8B65596FFE3E0DM6PR04MB5562namp_"
 
---------------BCD7BA7A0A436D6EF0927943
-Content-Type: text/plain; charset=windows-1252
+--_000_DM6PR04MB55626373DDB86D5E8B65596FFE3E0DM6PR04MB5562namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Sangeeta,
+Hi
+Can I know the RAM ,Disk space and processor requirement for developing the=
+ os with yocto for IoT ?
+
+Please suggest and it would be greatly helpful.
+
+Regards
+Rajakumar G
+
+Get Outlook for Android<https://aka.ms/ghei36>
 
 
-On 4/25/19 11:27 PM, Jain, Sangeeta wrote:
->
-> =A0
->
-> QA cycle reportfor 2.7 RC2:
->
-> =A0
->
->  1. No high milestone defects.=A0
->  2. Test results are available at following location:
->
-> =B7=A0=A0=A0=A0=A0=A0=A0 For results of all automated tests, please ref=
-er to results
-> at public AB [1].
->
-> =B7=A0=A0=A0=A0=A0=A0=A0 For other test results, refer to attachment [2=
-].
->
-> =B7=A0=A0=A0=A0=A0=A0=A0 For test report for test cases run by Intel an=
-d WR team,
-> refer attachment [3]
->
-Since "compliance-test.compliance-test.LSB_subset_test_suite" was run,
-can you share the changes made to /opt/lsb-test/session file?
-
-||
-
-Can I get clarification on how
-"compliance-test.compliance-test.stress_test_-_ltp_-Beaglebone" was run?
-
-Regards,
-Armin
->
-> =B7=A0=A0=A0=A0=A0=A0=A0 For full test report, refer attachment [4]
->
->  3. No new defects are found in this cycle.
->  4. No existing issues observed in this release
->  5. No ptests are failing in this release which were passing in
->     previous release. No timeout issues.
->
-> =A0
->
-> QA Hint: One failure was observed on public AB:
->
-> =A0
->
-> testseries | result_id : qemuppc |
-> oeselftest_centos-7_qemuppc_20190414221329
->
-> runqemu.QemuTest.test_qemu_can_shutdown
->
-> =A0
->
-> No bug filed for this issue, as it appears to be an intermittent
-> failure and worked on rc1 test run.
->
-> =A0
->
-> =3D=3D=3D=3D=3D=3D=3D Links=3D=3D=3D=3D=3D=3D=3D=3D
->
-> =A0
->
-> *Link to testresults:*
->
-> =A0
->
-> [1] - https://autobuilder.yocto.io/pub/releases/yocto-2.7.rc2/testresul=
-ts/
->
-> =A0
->
-> [2] - 2.7_RC2_results_merged.zip
->
-> =A0
->
-> [3] - 2.7_ rc2_intel_wr_merged_report
->
-> =A0
->
-> [4] =96 2.7 _rc2_full_report
->
-> =A0
->
-> Thanks & Regards,
->
-> Sangeeta Jain
->
-> =A0
->
->
-
-
---------------BCD7BA7A0A436D6EF0927943
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
+--_000_DM6PR04MB55626373DDB86D5E8B65596FFE3E0DM6PR04MB5562namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html;
-      charset=windows-1252">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    Sangeeta,<br>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 4/25/19 11:27 PM, Jain, Sangeeta
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:015AB11D45F2C442929CB2765DAE738634DDE72D@PGSMSX110.gar.corp.intel.com">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=windows-1252">
-      <meta name="Generator" content="Microsoft Word 15 (filtered
-        medium)">
-      <style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0cm;
-	mso-margin-bottom-alt:auto;
-	margin-left:0cm;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:366490912;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1418230706 1141440527 1141440537 1141440539 1141440527 1141440537 1141440539 1141440527 1141440537 1141440539;}
-@list l0:level1
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l0:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l0:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l1
-	{mso-list-id:981421318;
-	mso-list-type:hybrid;
-	mso-list-template-ids:1690970774 1141440513 1141440537 1141440539 1141440527 1141440537 1141440539 1141440527 1141440537 1141440539;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l1:level3
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l1:level4
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l1:level5
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l1:level6
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l1:level7
-	{mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l1:level8
-	{mso-level-number-format:alpha-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-@list l1:level9
-	{mso-level-number-format:roman-lower;
-	mso-level-tab-stop:none;
-	mso-level-number-position:right;
-	text-indent:-9.0pt;}
-@list l2
-	{mso-list-id:1041327440;
-	mso-list-template-ids:-636176784;}
-@list l3
-	{mso-list-id:1937203185;
-	mso-list-template-ids:-1141324152;}
-@list l3:level1
-	{mso-level-start-at:3;
-	mso-level-tab-stop:36.0pt;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext="edit" spidmax="1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext="edit">
-<o:idmap v:ext="edit" data="1" />
-</o:shapelayout></xml><![endif]-->
-      <div class="WordSection1">
-        <p class="MsoNormal"><o:p> </o:p></p>
-        <p class="MsoNormal"><span style="mso-fareast-language:EN-MY"
-            lang="EN-US">QA cycle report<span style="color:black"> for
-              2.</span>7 RC2:<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="color:black;mso-fareast-language:EN-MY" lang="EN-US"> <o:p></o:p></span></p>
-        <ol style="margin-top:0cm" start="1" type="1">
-          <li class="MsoNormal" style="color:black;mso-list:l0 level1
-            lfo3"><span style="mso-fareast-language:EN-MY" lang="EN-US">No
-              high milestone defects. 
-              <o:p></o:p></span></li>
-          <li class="MsoNormal" style="color:black;mso-list:l0 level1
-            lfo3"><span
-              style="color:windowtext;mso-fareast-language:EN-MY"
-              lang="EN-US">Test results are available at following
-              location:</span><span style="mso-fareast-language:EN-MY"
-              lang="EN-US"><o:p></o:p></span></li>
-        </ol>
-        <p class="MsoNormal"
-          style="margin-left:72.0pt;text-indent:-18.0pt;mso-list:l1
-          level1 lfo5">
-          <!--[if !supportLists]--><span
-            style="font-family:Symbol;mso-fareast-language:EN-MY"><span
-              style="mso-list:Ignore">·<span style="font:7.0pt
-                &quot;Times New Roman&quot;">       
-              </span></span></span><!--[endif]--><span
-            style="mso-fareast-language:EN-MY">For results of all
-            automated tests, please refer to results at public AB [1].<o:p></o:p></span></p>
-        <p class="MsoNormal"
-          style="margin-left:72.0pt;text-indent:-18.0pt;mso-list:l1
-          level1 lfo5">
-          <!--[if !supportLists]--><span
-            style="font-family:Symbol;mso-fareast-language:EN-MY"><span
-              style="mso-list:Ignore">·<span style="font:7.0pt
-                &quot;Times New Roman&quot;">       
-              </span></span></span><!--[endif]--><span
-            style="mso-fareast-language:EN-MY">For other test results,
-            refer to attachment [2].<o:p></o:p></span></p>
-        <p class="MsoNormal"
-          style="margin-left:72.0pt;text-indent:-18.0pt;mso-list:l1
-          level1 lfo5">
-          <!--[if !supportLists]--><span
-            style="font-family:Symbol;color:black;mso-fareast-language:EN-MY"
-            lang="EN-US"><span style="mso-list:Ignore">·<span
-                style="font:7.0pt &quot;Times New Roman&quot;">       
-              </span></span></span><!--[endif]--><span
-            style="mso-fareast-language:EN-MY">For test report for test
-            cases run by Intel and WR team, refer attachment [3]</span></p>
-      </div>
-    </blockquote>
-    Since "compliance-test.compliance-test.LSB_subset_test_suite" was
-    run, can you share the changes made to /opt/lsb-test/session file?<br>
-    <pre><code>
-</code></pre>
-    Can I get clarification on how
-    "compliance-test.compliance-test.stress_test_-_ltp_-Beaglebone" was
-    run? <br>
-    <br>
-    Regards,<br>
-    Armin<br>
-    <blockquote type="cite"
-cite="mid:015AB11D45F2C442929CB2765DAE738634DDE72D@PGSMSX110.gar.corp.intel.com">
-      <div class="WordSection1">
-        <p class="MsoNormal"
-          style="margin-left:72.0pt;text-indent:-18.0pt;mso-list:l1
-          level1 lfo5"><span
-            style="color:black;mso-fareast-language:EN-MY" lang="EN-US"><o:p></o:p></span></p>
-        <p class="MsoNormal"
-          style="margin-left:72.0pt;text-indent:-18.0pt;mso-list:l1
-          level1 lfo5">
-          <!--[if !supportLists]--><span
-            style="font-family:Symbol;color:black;mso-fareast-language:EN-MY"
-            lang="EN-US"><span style="mso-list:Ignore">·<span
-                style="font:7.0pt &quot;Times New Roman&quot;">       
-              </span></span></span><!--[endif]--><span
-            style="mso-fareast-language:EN-MY">For full test report,
-            refer attachment [4]</span><span
-            style="color:black;mso-fareast-language:EN-MY" lang="EN-US"><o:p></o:p></span></p>
-        <ol style="margin-top:0cm" start="3" type="1">
-          <li class="MsoNormal" style="color:black;mso-list:l0 level1
-            lfo3"><span
-              style="color:windowtext;mso-fareast-language:EN-MY"
-              lang="EN-US">No new defects are found in this cycle.</span><span
-              style="mso-fareast-language:EN-MY" lang="EN-US"><o:p></o:p></span></li>
-          <li class="MsoNormal" style="color:black;mso-list:l0 level1
-            lfo3"><span
-              style="color:windowtext;mso-fareast-language:EN-MY"
-              lang="EN-US">No e</span><span
-              style="mso-fareast-language:EN-MY" lang="EN-US">xisting
-              issues observed in this release</span><span
-              style="color:windowtext;mso-fareast-language:EN-MY"
-              lang="EN-US">
-            </span><span style="mso-fareast-language:EN-MY" lang="EN-US"><o:p></o:p></span></li>
-          <li class="MsoNormal" style="color:black;mso-list:l0 level1
-            lfo3"><span style="mso-fareast-language:EN-MY" lang="EN-US">No
-              p</span><span
-              style="color:windowtext;mso-fareast-language:EN-MY"
-              lang="EN-US">tests are failing in this release which were
-              passing in previous release. No timeout issues.</span><span
-              style="mso-fareast-language:EN-MY" lang="EN-US"><o:p></o:p></span></li>
-        </ol>
-        <p class="MsoNormal" style="margin-left:36.0pt"><span
-            style="color:black;mso-fareast-language:EN-MY" lang="EN-US"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-            style="color:black;mso-fareast-language:EN-MY" lang="EN-US">QA
-            Hint: One failure was observed on public AB:<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="color:black;mso-fareast-language:EN-MY" lang="EN-US"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-            style="color:black;mso-fareast-language:EN-MY" lang="EN-US">testseries
-            | result_id : qemuppc |
-            oeselftest_centos-7_qemuppc_20190414221329<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="color:black;mso-fareast-language:EN-MY" lang="EN-US">runqemu.QemuTest.test_qemu_can_shutdown<o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="color:black;mso-fareast-language:EN-MY" lang="EN-US"><o:p> </o:p></span></p>
-        <p class="MsoPlainText"><span
-style="font-family:&quot;Calibri&quot;,sans-serif;color:black;mso-fareast-language:EN-MY"
-            lang="EN-US">No bug filed for this issue, as
-          </span><span
-            style="font-family:&quot;Calibri&quot;,sans-serif">it
-            appears to be an intermittent failure and worked on rc1 test
-            run.</span><span
-style="font-family:&quot;Calibri&quot;,sans-serif;color:black;mso-fareast-language:EN-MY"
-            lang="EN-US"><o:p></o:p></span></p>
-        <p class="MsoNormal"><span
-            style="color:black;mso-fareast-language:EN-MY" lang="EN-US"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span
-            style="color:black;mso-fareast-language:EN-MY" lang="EN-US">=======
-          </span><span style="mso-fareast-language:EN-MY" lang="EN-US">Links<span
-              style="color:black"> ========<o:p></o:p></span></span></p>
-        <p class="MsoNormal"><span
-            style="color:black;mso-fareast-language:EN-MY" lang="EN-US"> <o:p></o:p></span></p>
-        <p class="MsoNormal"><b><span style="mso-fareast-language:EN-MY"
-              lang="EN-US">Link to testresults:<o:p></o:p></span></b></p>
-        <p class="MsoNormal"><span style="mso-fareast-language:EN-MY"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="mso-fareast-language:EN-MY">[1]
-            - </span><span style="color:#0070C0"><a
-href="https://autobuilder.yocto.io/pub/releases/yocto-2.7.rc2/testresults/"
-              moz-do-not-send="true"><span style="color:#0070C0">https://autobuilder.yocto.io/pub/releases/yocto-2.7.rc2/testresults/</span></a></span><o:p></o:p></p>
-        <p class="MsoNormal"><span style="mso-fareast-language:EN-MY"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="mso-fareast-language:EN-MY">[2]
-            - 2.7_RC2_results_merged.zip<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="mso-fareast-language:EN-MY"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="mso-fareast-language:EN-MY">[3]
-            - 2.7_ rc2_intel_wr_merged_report<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="mso-fareast-language:EN-MY"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="mso-fareast-language:EN-MY">[4]
-            – 2.7 _rc2_full_report<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="mso-fareast-language:EN-MY"><o:p> </o:p></span></p>
-        <p class="MsoNormal"><span style="mso-fareast-language:EN-MY"
-            lang="EN-US">Thanks &amp; Regards,<o:p></o:p></span></p>
-        <p class="MsoNormal"><span style="mso-fareast-language:EN-MY"
-            lang="EN-US">Sangeeta Jain<o:p></o:p></span></p>
-        <p class="MsoNormal"><o:p> </o:p></p>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-    </blockquote>
-    <br>
-  </body>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+Hi <br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+Can I know the RAM ,Disk space and processor requirement for developing the=
+ os with yocto for IoT ?<br>
+<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+Please suggest and it would be greatly helpful.<br>
+<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+Regards <br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+Rajakumar G<br>
+<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+Get <a href=3D"https://aka.ms/ghei36">Outlook for Android</a></div>
+<br>
+</div>
+</body>
 </html>
 
---------------BCD7BA7A0A436D6EF0927943--
+--_000_DM6PR04MB55626373DDB86D5E8B65596FFE3E0DM6PR04MB5562namp_--
