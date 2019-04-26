@@ -1,60 +1,71 @@
-Return-Path: <richard.weinberger@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 41AEDE00CE8; Fri, 26 Apr 2019 06:26:58 -0700 (PDT)
+	id E9835E00CF4; Fri, 26 Apr 2019 06:43:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (richard.weinberger[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.50 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.54 listed in list.dnswl.org]
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com
-	[209.85.221.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8293E0043B
-	for <yocto@yoctoproject.org>; Fri, 26 Apr 2019 06:26:57 -0700 (PDT)
-Received: by mail-wr1-f54.google.com with SMTP id f7so4481078wrs.2
-	for <yocto@yoctoproject.org>; Fri, 26 Apr 2019 06:26:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=3UPrrnb7NJbyOGXnCIBlKvzTtEOcr+18noO9UyQxTxw=;
-	b=K214Vk6rMBd5lJr7jPeUuYiz82dfhHLwzdqq+flLnsQdFcfgY0xIJTZr6MMHxqvSnf
-	MPRrYCYtD3k8uFJK4EiEN9FPmr9UxIDWD3vmwWZ8N2yxoGveg3FPsrKtAkEO1Sz2O5Zm
-	MkrfdMlGIBUUCCZS6hKgnbSGvThaC8HnjhWLTZqdFMLaDzHAWFPiuKaHOD7rGpP1I2br
-	U5yIBa8HOQqget9521vqcV0gNDx25sORT3MAFAK7lFLdfNyiAuO02dXq5KvlObfpouSA
-	DRWkexEQwInK70RL14xzjzdk8Qwae6OZVpg978v3CGrIkN24Sw9pTrbgC5Fx0+6uCY3j
-	+/cg==
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
+	[209.85.221.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58BD1E00CE5
+	for <yocto@yoctoproject.org>; Fri, 26 Apr 2019 06:43:10 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id r6so4550929wrm.4
+	for <yocto@yoctoproject.org>; Fri, 26 Apr 2019 06:43:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=message-id:subject:from:to:cc:date:in-reply-to:references
+	:user-agent:mime-version:content-transfer-encoding;
+	bh=1o88k+6SAQdU8vLGqUvDWyk6QMcDTBax5LIM6y9IIC0=;
+	b=PUzymX0v19bBvcOFzXz+m6McUX5SaXGLxMNoELK3XqFGIdwOxmdsfIylauFimNnhXI
+	b2WszzDdlRQQacE8Yl9dFWPp3bK9WnmT7I46Xo0QxspDRNUTN3u1ExjQjNQ31xg92TYz
+	nTR3hXKOHPdmimK+rt08skgfZ1ad1fAYCw4SQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=3UPrrnb7NJbyOGXnCIBlKvzTtEOcr+18noO9UyQxTxw=;
-	b=tZQpwwe9cOvYPyUmfIgoMvuxL8uQ+/6VuqhkU/tKZXhlYhQc56EHw5h2L+5zsOQ8fP
-	XJNSaL5JfrFvkGHzaKjP2UShKMu1BUCPMsZHM0QiO0/uSBWVCEuzNqS/1WLrg+v+Gy8W
-	nfi7F6GKVy41wBHT9W5QAuUHm77e48flwvttXF+PcZimwx9v8FtOeXwK/iTWqRjVZeOV
-	c2s22BsXktB5sEP73DFsygyHVYAwOG08sdB8r/Tu2uIGEhUPJVCD7ADHEJuy5P6wTqAx
-	R0686BpUtT4DILkjsqZG4edauPZ/7EPLnVmCtMyQDyVHlCmv6M8wilbdEdfnxC5v9S8U
-	nxNA==
-X-Gm-Message-State: APjAAAVh5Dgt4jRkYsEg7LbTVufOG3UYAgUkYcho3pyv/1lovxC2hbiw
-	ycOsBVI5bqNGHuO6iAB0kyBM4OeA0sPaCM76ZysnvB52
-X-Google-Smtp-Source: APXvYqykIbJR8x9Z2C525ioyLosC9ocq6fWXvUYVa57FCcE4PdNMUb+9j+LmmUCCw3C0u6qAsxv+J1PdCkZbCS06n0w=
-X-Received: by 2002:adf:dbc1:: with SMTP id e1mr13714618wrj.203.1556285216676; 
-	Fri, 26 Apr 2019 06:26:56 -0700 (PDT)
+	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	:references:user-agent:mime-version:content-transfer-encoding;
+	bh=1o88k+6SAQdU8vLGqUvDWyk6QMcDTBax5LIM6y9IIC0=;
+	b=bRi7OIlDVEvH5PS8U0wd8B+Hj+nHrMw+CRDPy91YlkmJiZ2Xe1IVWAK+A2Ks0uEtnO
+	YS2/sowcTVzd4YL5csmZiwcgsMuOPjZTeaH1Rj8ZWZQmM54uJg6IQX6ddWxQUA/Ilh92
+	5LEStTRa6k3SOmn3MZfoO8xJ9DyMu3sxlyoE0bHwMvvTpTV9F1HFJDCylBbSRI/7o1rr
+	9nJQj3EepyfH4oS0HbDcFsy2fCenqrHdc3YPhmuthfcQOAoaw01mqK5Fn+yJ6u1yKG4c
+	1/SUmUk/7/VjrK7RbjJlYbt8RGJmGT1H9BKC/jMlOdKKh31844OJufFvug7fOUjHABLg
+	Vwzw==
+X-Gm-Message-State: APjAAAUlgD56GW08st60cJx8Ux8n2B1WmfwXPjDQbuJiFkB2C89EEBGw
+	thui85XAeGYrBoz+OVOct6miGQ==
+X-Google-Smtp-Source: APXvYqx+Hy6+Tuh66t8V9TpJmuEkwcZ3TTWoxxLh9C2etRuS0zpnQeOC/pkLeRdqbthDFBnomKFSiA==
+X-Received: by 2002:a5d:400e:: with SMTP id n14mr24490414wrp.317.1556286189381;
+	Fri, 26 Apr 2019 06:43:09 -0700 (PDT)
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+	by smtp.gmail.com with ESMTPSA id
+	c63sm9337001wma.29.2019.04.26.06.43.08
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Fri, 26 Apr 2019 06:43:08 -0700 (PDT)
+Message-ID: <9c11e5fa0dd254f99ee1f20d0ab0bfdea0aaad6d.camel@linuxfoundation.org>
+From: richard.purdie@linuxfoundation.org
+To: "Jain, Sangeeta" <sangeeta.jain@intel.com>, "'yocto@yoctoproject.org'"
+	<yocto@yoctoproject.org>, "Eggleton, Paul" <paul.eggleton@intel.com>, 
+	'Michael Halstead' <mhalstead@linuxfoundation.org>, "Erway, Tracey M"
+	<tracey.m.erway@intel.com>,  "'sjolley.yp.pm@gmail.com'"
+	<sjolley.yp.pm@gmail.com>, "openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Date: Fri, 26 Apr 2019 14:43:07 +0100
+In-Reply-To: <015AB11D45F2C442929CB2765DAE738634DDE72D@PGSMSX110.gar.corp.intel.com>
+References: <015AB11D45F2C442929CB2765DAE738634DDE72D@PGSMSX110.gar.corp.intel.com>
+User-Agent: Evolution 3.32.1-2 
 MIME-Version: 1.0
-From: Richard Weinberger <richard.weinberger@gmail.com>
-Date: Fri, 26 Apr 2019 15:26:45 +0200
-Message-ID: <CAFLxGvxbeZvadxguGoGHZSzeF2EnZ9EkR0aLVOh4FnyNi6VGmw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Disabling sshd is harder than it should be
+Subject: Re: QA cycle report for 2.7 RC2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,30 +77,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Apr 2019 13:26:58 -0000
+X-List-Received-Date: Fri, 26 Apr 2019 13:43:11 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-My thud based system installs openssh-sshd but I want to have sshd
-disabled by default.
-So I checked the docs how to disabled a systemd service by default and
-found SYSTEMD_AUTO_ENABLE, perfect.
+On Fri, 2019-04-26 at 06:27 +0000, Jain, Sangeeta wrote:
+>  
+> QA cycle report for 2.7 RC2:
+>  
+> No high milestone defects. 
+> Test results are available at following location:
+> ·        For results of all automated tests, please refer to results
+> at public AB [1].
+> ·        For other test results, refer to attachment [2].
+> ·        For test report for test cases run by Intel and WR team,
+> refer attachment [3]
+> ·        For full test report, refer attachment [4]
+> No new defects are found in this cycle.
+> No existing issues observed in this release
+> No ptests are failing in this release which were passing in previous
+> release. No timeout issues.
+>  
+> QA Hint: One failure was observed on public AB:
+>  
+> testseries | result_id : qemuppc | oeselftest_centos-
+> 7_qemuppc_20190414221329
+> runqemu.QemuTest.test_qemu_can_shutdown
+>  
+> No bug filed for this issue, as it appears to be an intermittent
+> failure and worked on rc1 test run.
 
-After I put that into my bbappend file I figured that sshd is still
-enabled by default.
-With one difference, it was no longer present as sshd.socket, but as
-sshd.service.
-This seemed odd and after another hour I realized that now sshd is
-stared as good old sysvinist script. Hmm.
+Thanks for the testing!
 
-To finally disable sshd by default I had to disable it via systemd
-_and_ sysvinit.
-Is this really the expected way? :-(
+FWIW it should have and does have a bug:
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=13309
+also, 
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=12991
+is still present in the release according to that bug.
 
-For reference, this is my bbappend file which works:
-SYSTEMD_AUTO_ENABLE = "disable"
-INITSCRIPT_PARAMS_${PN}-sshd = "remove"
+I've asked the TSC for a go/nogo decision on the release.
 
--- 
-Thanks,
-//richard
+Cheers,
+
+Richard
+
+
+
+
 
