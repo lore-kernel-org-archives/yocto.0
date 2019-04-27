@@ -1,98 +1,65 @@
-Return-Path: <rajakumar.g@hotmail.com>
+Return-Path: <chuckwolber@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D8114E00D11; Fri, 26 Apr 2019 17:28:46 -0700 (PDT)
+	id 68CDFE00D1E; Fri, 26 Apr 2019 20:29:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FORGED_HOTMAIL_RCVD2, FREEMAIL_FROM,
-	HTML_MESSAGE, 
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (rajakumar.g[at]hotmail.com)
+	provider *      (chuckwolber[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [40.92.11.99 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address,
-	but no 'Received:'
+	*      [209.85.217.66 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 46918 seconds by postgrey-1.32 at yocto-www;
-	Fri, 26 Apr 2019 17:28:44 PDT
-Received: from NAM04-SN1-obe.outbound.protection.outlook.com
-	(mail-oln040092011099.outbound.protection.outlook.com [40.92.11.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D194CE00CD6
-	for <yocto@yoctoproject.org>; Fri, 26 Apr 2019 17:28:44 -0700 (PDT)
-Received: from CO1NAM04HT230.eop-NAM04.prod.protection.outlook.com
-	(2a01:111:e400:7e4d::468) by
-	BN3NAM04HT229.eop-NAM04.prod.protection.outlook.com
-	(2a01:111:e400:7e4e::316) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1835.13;
-	Fri, 26 Apr 2019 19:57:06 +0000
-Received: from BN3NAM04HT230.eop-NAM04.prod.protection.outlook.com
-	(2a01:111:e400:7e4e::331) by
-	CO1NAM04HT230.eop-NAM04.prod.protection.outlook.com
-	(2a01:111:e400:7e4d::468) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1792.25;
-	Fri, 26 Apr 2019 14:34:59 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
-	s=selector1;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=Zn/oETKAGzfUY+j6rblKOI/QEIRP/pCxo07X9FhEflI=;
-	b=rA/ptopM13Z/tjz9M2lFPLXqKz/90YKCw3B3MwE32Js0Wwan3rV7paT8tnbXPUWFXkWs9h3BJdDUBKnVgl2e1xf/sk17UFfskQNQEpNh/1vIMS53KmRuVFQ5aMOasGECHjQR2LThrzxS73x/MKaX2viDi/CGF+4NRyO8BgEysvUEZlg/mJAQKNHc5crnG7DQcaJ7K4Jpm9zqlfI1/eZqHKOq+roCcpl5dgFOBhiXRJVeKJc4/mhpIudQnMprbZGkFSrRNysDBBosbAEXMGTI+LB3Dvh4HQGswdeYDE6sAsXuaU/ElaI/vKmB60ZkgMyK+i1mdEO1RuLMdn3OZoSc4A==
-Received: from BN3NAM04FT052.eop-NAM04.prod.protection.outlook.com
-	(10.152.92.57) by BN3NAM04HT230.eop-NAM04.prod.protection.outlook.com
-	(10.152.93.75) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1835.13;
-	Fri, 26 Apr 2019 11:11:01 +0000
-Received: from DM6PR04MB5562.namprd04.prod.outlook.com (10.152.92.57) by
-	BN3NAM04FT052.mail.protection.outlook.com (10.152.92.241) with
-	Microsoft SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
-	15.20.1835.13 via Frontend Transport; Fri, 26 Apr 2019 11:11:01 +0000
-Received: from DM6PR04MB5562.namprd04.prod.outlook.com
-	([fe80::c82:153c:a9ea:b938]) by DM6PR04MB5562.namprd04.prod.outlook.com
-	([fe80::c82:153c:a9ea:b938%3]) with mapi id 15.20.1813.017;
-	Fri, 26 Apr 2019 11:11:01 +0000
-From: raja.g kumar <rajakumar.g@hotmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto System Requirement for developing OS
-Thread-Index: AQHU/CBf2aWhJpuQz0a/zdAovL7tIg==
-Date: Fri, 26 Apr 2019 11:11:00 +0000
-Message-ID: <DM6PR04MB55626373DDB86D5E8B65596FFE3E0@DM6PR04MB5562.namprd04.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: OriginalChecksum:E2B5026A5976F506C5508DA823CB862177C8BA2431A1739785DC2D1DB2FB8226;
-	UpperCasedChecksum:FC4415265E2E84A37A218CA773EB64629C4277AE51A28FEDF92CB2362AE66EF4;
-	SizeAsReceived:6531; Count:40
-x-tmn: [IkdiqG4FOoHSeRuvEPENIjgSGFLDPeuF]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 40
-x-eopattributedmessage: 0
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031323274)(2017031324274)(2017031322404)(1601125500)(1603101475)(1701031045);
-	SRVR:BN3NAM04HT230; 
-X-MS-TrafficTypeDiagnostic: BN3NAM04HT230:|BN3NAM04HT230:|CO1NAM04HT230:|CO1NAM04HT230:|BN3NAM04HT229:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-message-info: 9l0EjtS9LIn6GP07yGNo9bPzoEwV+C0YAvw3hKjDKKBBzuw/GlOCWhV9Szi5hWtBp5AVlJ7W+gErpJgEzbC18Z5LOiaBLP+VyZ0igz42PgLf89EzB4GHAnC7iupvNxgzNJKsVYP54F1nGo60z1BY6/u/d4eGYOJomK8ygaN4lV4ytpKOGd6H//3/laINMMc7
+Received: from mail-vs1-f66.google.com (mail-vs1-f66.google.com
+	[209.85.217.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0825E00D11
+	for <yocto@yoctoproject.org>; Fri, 26 Apr 2019 20:29:28 -0700 (PDT)
+Received: by mail-vs1-f66.google.com with SMTP id n17so3093722vsr.1
+	for <yocto@yoctoproject.org>; Fri, 26 Apr 2019 20:29:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=hhsRGxvpdxod+v/p9aRkxblSQlX5o73Q+3bwLwI0MFc=;
+	b=aC17cOcTHV2Px1TfxPMawreka9DDJgPY38DTJFN/q515zzJpqTuBZ1k5uYEsHjbbyx
+	vonu+aVdBP4uftbA8OY/n095jody9gQPFTsKZ3+EMc83D3W9Qqy2dCgUK1yrO5Bd3JwV
+	XjRveEDsTDJnJMZllefMRGaLHMbiX7DF3u+KniKUfRJ86kagFH7EuBP4jiCjDX33SwtI
+	oTkc3INNt4oPOFHFLiPOOvFpOmm6zMsgqg1D7DRo2dE7bjb76x7+gGT24IFD6E/Fl472
+	oTLOvB8YHdan8/gJsBXTSUfXWIdZ1orOXWhfr9KmAwuMRouVGArTLNgfTtoUtf4FlAft
+	admw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=hhsRGxvpdxod+v/p9aRkxblSQlX5o73Q+3bwLwI0MFc=;
+	b=LUHkABOgvVakc8XUepmyWvJkmJnj+TO8iRoC5fE7BbSvmw5RaX5bijdIzJsaFkHC6z
+	xCgiVsUOBSgxZ56JA8KbzuDDEDrXTkDEUsGYRI7fu7irRfP74LCNPH5punw1t5Y0uUfq
+	tjK+PmSmUoNESkZ7oXYwmqV7vXHYeIpt/KhVT3m0p1tZ07bfLCph1STs6cYLuvQQXrR/
+	dV4y7GTMSm6lNDl4RUeFY1i3Bvmf5CuxDSP9KWH/RmoIXoLYwTogktODFrLHaqhojJI+
+	mlpJljuXUzd7KA/a5IIc46aZFUqYLSPkCe1KIB/Zz+u5W+lLuMP72dYngtJFf4AqhZtx
+	ZJ2Q==
+X-Gm-Message-State: APjAAAWQRerhaxJGRgUJqgfhiU4erjgeMxvbZV/hMsh4540KD+txESyv
+	7GIjABb6uiuYZVx0lqsr17cowYR7CvyQ4S20JKE=
+X-Google-Smtp-Source: APXvYqywaVvSkdWVC+xASYWbZk5x1QafekA5ktJywcsPc+VOsOnoFphAymA3JL0JLvXBTikcnQ+WVd/8VAtzU0Qk3lI=
+X-Received: by 2002:a67:e88b:: with SMTP id x11mr113522vsn.95.1556335767852;
+	Fri, 26 Apr 2019 20:29:27 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5a052e64-06f4-4496-9a25-08d6ca37dda5
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Apr 2019 11:11:00.9062 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN3NAM04HT230
-X-OriginatorOrg: hotmail.com
-Subject: Yocto System Requirement for developing OS
+References: <DM6PR04MB55626373DDB86D5E8B65596FFE3E0@DM6PR04MB5562.namprd04.prod.outlook.com>
+In-Reply-To: <DM6PR04MB55626373DDB86D5E8B65596FFE3E0@DM6PR04MB5562.namprd04.prod.outlook.com>
+From: Chuck Wolber <chuckwolber@gmail.com>
+Date: Fri, 26 Apr 2019 20:29:16 -0700
+Message-ID: <CAB=6tBSJY-xDoFsz8gawrDYFkUOAzLyFAS1t9L6t4dnqnHW=Bg@mail.gmail.com>
+To: "raja.g kumar" <rajakumar.g@hotmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto System Requirement for developing OS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -104,69 +71,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 27 Apr 2019 00:28:46 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_DM6PR04MB55626373DDB86D5E8B65596FFE3E0DM6PR04MB5562namp_"
+X-List-Received-Date: Sat, 27 Apr 2019 03:29:29 -0000
+Content-Type: multipart/alternative; boundary="000000000000981a2805877aa8a0"
 
---_000_DM6PR04MB55626373DDB86D5E8B65596FFE3E0DM6PR04MB5562namp_
-Content-Type: text/plain; charset="us-ascii"
+--000000000000981a2805877aa8a0
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi
-Can I know the RAM ,Disk space and processor requirement for developing the=
- os with yocto for IoT ?
+It depends on a lot of factors. But for actually building yocto images... I
+find that 1.5 gigs of RAM per CPU seems to be about right on the virtual
+machines we use to build images.
 
-Please suggest and it would be greatly helpful.
+..Ch:W..
 
-Regards
-Rajakumar G
+On Fri, Apr 26, 2019 at 17:29 raja.g kumar <rajakumar.g@hotmail.com> wrote:
 
-Get Outlook for Android<https://aka.ms/ghei36>
-
-
---_000_DM6PR04MB55626373DDB86D5E8B65596FFE3E0DM6PR04MB5562namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> Hi
+> Can I know the RAM ,Disk space and processor requirement for developing
+> the os with yocto for IoT ?
 >
-</head>
-<body>
-<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
-ly: sans-serif; font-size: 11pt; color: black; ">
+> Please suggest and it would be greatly helpful.
+>
+> Regards
+> Rajakumar G
+>
+> Get Outlook for Android <https://aka.ms/ghei36>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+--=20
+=E2=80=9CI would challenge anyone here to think of a question upon which we=
+ once
+had a scientific answer, however inadequate, but for which now the best
+answer is a religious one."  -Sam Harris
+
+--000000000000981a2805877aa8a0
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><div dir=3D"auto">It depends on a lot of factors. But for actually bui=
+lding yocto images... I find that 1.5 gigs of RAM per CPU seems to be about=
+ right on the virtual machines we use to build images.</div></div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">..Ch:W..</div><div><br><div class=3D"=
+gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Apr 26, 2019 at =
+17:29 raja.g kumar &lt;<a href=3D"mailto:rajakumar.g@hotmail.com">rajakumar=
+.g@hotmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
+yle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+
+
+
+<div>
+<div dir=3D"auto" style=3D"direction:ltr;margin:0;padding:0;font-family:san=
+s-serif;font-size:11pt;color:black">
 Hi <br>
 </div>
-<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
-ly: sans-serif; font-size: 11pt; color: black; ">
+<div dir=3D"auto" style=3D"direction:ltr;margin:0;padding:0;font-family:san=
+s-serif;font-size:11pt;color:black">
 Can I know the RAM ,Disk space and processor requirement for developing the=
  os with yocto for IoT ?<br>
 <br>
 </div>
-<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
-ly: sans-serif; font-size: 11pt; color: black; ">
+<div dir=3D"auto" style=3D"direction:ltr;margin:0;padding:0;font-family:san=
+s-serif;font-size:11pt;color:black">
 Please suggest and it would be greatly helpful.<br>
 <br>
 </div>
-<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
-ly: sans-serif; font-size: 11pt; color: black; ">
+<div dir=3D"auto" style=3D"direction:ltr;margin:0;padding:0;font-family:san=
+s-serif;font-size:11pt;color:black">
 Regards <br>
 </div>
-<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
-ly: sans-serif; font-size: 11pt; color: black; ">
+<div dir=3D"auto" style=3D"direction:ltr;margin:0;padding:0;font-family:san=
+s-serif;font-size:11pt;color:black">
 Rajakumar G<br>
 <br>
 </div>
-<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
-ly: sans-serif; font-size: 11pt; color: black; ">
-<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
-ly: sans-serif; font-size: 11pt; color: black; ">
-Get <a href=3D"https://aka.ms/ghei36">Outlook for Android</a></div>
+<div dir=3D"auto" style=3D"direction:ltr;margin:0;padding:0;font-family:san=
+s-serif;font-size:11pt;color:black">
+<div dir=3D"auto" style=3D"direction:ltr;margin:0;padding:0;font-family:san=
+s-serif;font-size:11pt;color:black">
+Get <a href=3D"https://aka.ms/ghei36" target=3D"_blank">Outlook for Android=
+</a></div></div></div><div><div dir=3D"auto" style=3D"direction:ltr;margin:=
+0;padding:0;font-family:sans-serif;font-size:11pt;color:black">
 <br>
 </div>
-</body>
-</html>
+</div>
 
---_000_DM6PR04MB55626373DDB86D5E8B65596FFE3E0DM6PR04MB5562namp_--
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" =
+data-smartmail=3D"gmail_signature"><div dir=3D"ltr">=E2=80=9CI would challe=
+nge anyone here to think of a question upon which we once had a scientific=
+=C2=A0answer, however inadequate, but for which now the best answer is a re=
+ligious one.&quot;=C2=A0 -Sam Harris</div></div>
+
+--000000000000981a2805877aa8a0--
