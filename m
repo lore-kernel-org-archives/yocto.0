@@ -1,39 +1,36 @@
-Return-Path: <andreea.volosincu@windriver.com>
+Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96E7BE00C93; Mon, 29 Apr 2019 14:59:21 -0700 (PDT)
+	id E40D9E00CC9; Mon, 29 Apr 2019 23:56:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
 	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F55EE00C44
-	for <yocto@yoctoproject.org>; Mon, 29 Apr 2019 14:59:20 -0700 (PDT)
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 265FDE00C93
+	for <yocto@yoctoproject.org>; Mon, 29 Apr 2019 23:56:29 -0700 (PDT)
 Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x3TLxHbP012954
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x3U6uT2h018041
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 29 Apr 2019 14:59:17 -0700 (PDT)
-Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.163]) by
-	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.03.0439.000;
-	Mon, 29 Apr 2019 14:59:05 -0700
-From: "Volosincu, Andreea S" <andreea.volosincu@windriver.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Tomorrow - Live Coding with Yocto Project
-Thread-Index: AdT+1pRw1F2hhgidTjyzXp+hm2nthA==
-Date: Mon, 29 Apr 2019 21:59:04 +0000
-Message-ID: <A084970538D2234B96D99D06FA9D974FC37872C3@ALA-MBD.corp.ad.wrs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.11.208.98]
+	for <yocto@yoctoproject.org>; Mon, 29 Apr 2019 23:56:29 -0700 (PDT)
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.439.0; Mon, 29 Apr 2019 23:56:28 -0700
+From: <changqing.li@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 30 Apr 2019 14:56:26 +0800
+Message-ID: <1556607386-98960-2-git-send-email-changqing.li@windriver.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1556607386-98960-1-git-send-email-changqing.li@windriver.com>
+References: <b36da33b-df9e-2991-5444-cd45a4c3e2d1@windriver.com>
+	<1556607386-98960-1-git-send-email-changqing.li@windriver.com>
 MIME-Version: 1.0
-Subject: Tomorrow - Live Coding with Yocto Project
+Subject: [update-rc.d][PATCH V3] update-rc.d: support enable/disable options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,112 +42,144 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Apr 2019 21:59:21 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_A084970538D2234B96D99D06FA9D974FC37872C3ALAMBDcorpadwrs_"
+X-List-Received-Date: Tue, 30 Apr 2019 06:56:31 -0000
+Content-Type: text/plain
 
---_000_A084970538D2234B96D99D06FA9D974FC37872C3ALAMBDcorpadwrs_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+From: Changqing Li <changqing.li@windriver.com>
 
-Happening tomorrow @5 PM CET - Join us for a download to first build live t=
-utorial.
+Add support of enable/disable options, refer
+https://manpages.debian.org/wheezy/sysv-rc/update-rc.d.8.en.html
 
-When: April 30, 2019, 5:00 PM CET
-Where: Yocto Project Twitch channel - https://www.twitch.tv/yocto_project
+With support of these options, the usr can never change an existing
+configuration even after upgrading a package. The program will only
+install links if none are present, otherwise, it will keep
+the previous configuration.
 
-Add it to your calendar -  https://calendar.google.com/calendar/ical/d7umm3=
-pdhorsnnjbe1cvbgfhlk%40group.calendar.google.com/public/basic.ics
+preinst in update-rc.d.bbclass will delete all the links under
+rcrunlevel.d, this behavior now conflicts with enable/disable
+options. so remove preinst from the update-rc.d.bbclass
 
-See you soon!
-Yocto Project Advocacy Team
+[Yocto 12955]
 
---_000_A084970538D2234B96D99D06FA9D974FC37872C3ALAMBDcorpadwrs_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Changqing Li <changqing.li@windriver.com>
+---
+ update-rc.d | 81 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 81 insertions(+)
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:"Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.5zk7
-	{mso-style-name:_5zk7;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;background:white">Ha=
-ppening tomorrow @5 PM CET &#8211; Join us for a download to first build li=
-ve tutorial.
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;background:white"><o=
-:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal">When: April 30, 2019, 5:00 PM CET<o:p></o:p></p>
-<p class=3D"MsoNormal">Where: Yocto Project Twitch channel - <a href=3D"htt=
-ps://www.twitch.tv/yocto_project">
-<span style=3D"color:windowtext">https://www.twitch.tv/yocto_project</span>=
-</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Add it to your calendar &#8211;&nbsp; <a href=3D"htt=
-ps://calendar.google.com/calendar/ical/d7umm3pdhorsnnjbe1cvbgfhlk%40group.c=
-alendar.google.com/public/basic.ics">
-https://calendar.google.com/calendar/ical/d7umm3pdhorsnnjbe1cvbgfhlk%40grou=
-p.calendar.google.com/public/basic.ics</a>
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">See you soon!<o:p></o:p></p>
-<p class=3D"MsoNormal">Yocto Project Advocacy Team<o:p></o:p></p>
-</div>
-</body>
-</html>
+diff --git a/update-rc.d b/update-rc.d
+index e07cf85..a7fb7bc 100644
+--- a/update-rc.d
++++ b/update-rc.d
+@@ -27,6 +27,7 @@ usage()
+ usage: update-rc.d [-n] [-f] [-r <root>] <basename> remove
+        update-rc.d [-n] [-r <root>] [-s] <basename> defaults [NN | sNN kNN]
+        update-rc.d [-n] [-r <root>] [-s] <basename> start|stop NN runlvl [runlvl] [...] .
++       update-rc.d [-n] [-r <root>] [-s] <basename> enable|disable [S|2|3|4|5]
+ 		-n: not really
+ 		-f: force
+ 		-v: verbose
+@@ -101,6 +102,53 @@ makelinks()
+ 	done
+ }
+ 
++# function to disable/enable init script link of one run level
++# $1 should be K/S, means to disable/enable
++# $2 means which run level to disable/enable 
++renamelink()
++{
++	local oldstartstop newstartstop lev oldnn newnn
++	if [ "x$1" = "xS" ]; then
++		oldstartstop="K"
++		newstartstop="S"
++	else
++		oldstartstop="S"
++		newstartstop="K"
++	fi
++
++	lev=$2
++	# modifies existing runlevel links for the script /etc/init.d/name by renaming start links to stop link
++        # or stop link to start link with a sequence number equal to the difference of 100 minus the original sequence number.
++	if ls ${etcd}${lev}.d/${oldstartstop}*${bn} >/dev/null 2>&1; then
++		oldnn=`basename ${etcd}${lev}.d/${oldstartstop}*${bn}|cut -c2-3`
++		newnn=$[100-$oldnn]
++		[ $verbose -eq 1 ] && echo "rename ${etcd}${lev}.d/${oldstartstop}${oldnn}${bn} -> ${etcd}${lev}.d/${newstartstop}${newnn}${bn}"
++		if [ $notreally -eq 0 ];then
++			mv ${etcd}${lev}.d/${oldstartstop}${oldnn}${bn} ${etcd}${lev}.d/${newstartstop}${newnn}${bn}
++		fi
++		if [ $dostart -eq 1 ] && [ $newstartstop = "S" ] && [ $lev = $RUNLEVEL ]; then
++			$fn start || true
++		fi
++	fi
++
++}
++
++# function to disable/enable init script link
++# $1 should be K/S, means to disable/enable
++# $2 run level [S|2|3|4|5], optional, If no start runlevel is 
++# specified after the disable or enable keywords 
++# the script will attempt to modify links in all start runlevels
++renamelinks()
++{
++	if [ $# -eq 2 ]; then
++		renamelink $1 $2
++	else
++		for i in 2 3 4 5 S; do
++			renamelink $1 $i
++		done
++	fi
++}
++
+ while [ $# -gt 0 ]; do
+ 	case $1 in
+ 		-n)	notreally=1
+@@ -221,6 +269,13 @@ case $1 in
+ 		;;
+ 
+ 	start | stop)
++		if [ $# -lt 4 ]
++		then
++			echo "Not enough arguments"
++			usage
++			exit 1
++		fi
++
+ 		while [ $# -gt 0 ]; do
+ 			if [ $1 = "start" ]; then
+ 				letter=S
+@@ -251,6 +306,32 @@ case $1 in
+ 		makelinks
+ 		;;
+ 
++	enable | disable)
++		if [ $1 = "enable" ]; then
++			letter=S
++		elif [ $1 = "disable" ]; then
++			letter=K
++		else
++			usage
++			exit 1
++		fi
++		shift
++		# 
++		if [ $# -gt 0 ]
++		then
++			case $1 in
++				S|2|3|4|5)
++					renamelinks $letter $1
++					;;
++				*)
++					usage
++					exit 1
++					;;
++			esac
++		else
++			renamelinks $letter
++		fi
++		;;
+ 	*)
+ 		usage
+ 		exit 1
+-- 
+2.7.4
 
---_000_A084970538D2234B96D99D06FA9D974FC37872C3ALAMBDcorpadwrs_--
+
