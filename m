@@ -1,6 +1,6 @@
 Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E40D9E00CC9; Mon, 29 Apr 2019 23:56:30 -0700 (PDT)
+	id 7BC3AE00CAA; Mon, 29 Apr 2019 23:56:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,27 +10,26 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
 	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 265FDE00C93
-	for <yocto@yoctoproject.org>; Mon, 29 Apr 2019 23:56:29 -0700 (PDT)
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADDCBE00CAA
+	for <yocto@yoctoproject.org>; Mon, 29 Apr 2019 23:56:30 -0700 (PDT)
 Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x3U6uT2h018041
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x3U6uSRp025920
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 29 Apr 2019 23:56:29 -0700 (PDT)
+	for <yocto@yoctoproject.org>; Mon, 29 Apr 2019 23:56:28 -0700 (PDT)
 Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
 	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.439.0; Mon, 29 Apr 2019 23:56:28 -0700
+	14.3.439.0; Mon, 29 Apr 2019 23:56:27 -0700
 From: <changqing.li@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Tue, 30 Apr 2019 14:56:26 +0800
-Message-ID: <1556607386-98960-2-git-send-email-changqing.li@windriver.com>
+Date: Tue, 30 Apr 2019 14:56:25 +0800
+Message-ID: <1556607386-98960-1-git-send-email-changqing.li@windriver.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1556607386-98960-1-git-send-email-changqing.li@windriver.com>
+In-Reply-To: <b36da33b-df9e-2991-5444-cd45a4c3e2d1@windriver.com>
 References: <b36da33b-df9e-2991-5444-cd45a4c3e2d1@windriver.com>
-	<1556607386-98960-1-git-send-email-changqing.li@windriver.com>
 MIME-Version: 1.0
-Subject: [update-rc.d][PATCH V3] update-rc.d: support enable/disable options
+Subject: [PATCH V3] update-rc.d: support enable/disable options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,143 +41,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Apr 2019 06:56:31 -0000
+X-List-Received-Date: Tue, 30 Apr 2019 06:56:32 -0000
 Content-Type: text/plain
 
 From: Changqing Li <changqing.li@windriver.com>
 
-Add support of enable/disable options, refer
-https://manpages.debian.org/wheezy/sysv-rc/update-rc.d.8.en.html
+* update-rc.d has added support of enable/disable options, which are
+  expected to keep the previous configuration even after upgrade the packages.
+  With support for these options, it will only create start/stop link
+  when there are none, or it will keep the previous configuration.
 
-With support of these options, the usr can never change an existing
-configuration even after upgrading a package. The program will only
-install links if none are present, otherwise, it will keep
-the previous configuration.
+  Our preinst uses "-f remove" to remove any links under the /etc/rcrunlevel.d
+  which is conflicting behavior with disable/enable options, so remove it.
 
-preinst in update-rc.d.bbclass will delete all the links under
-rcrunlevel.d, this behavior now conflicts with enable/disable
-options. so remove preinst from the update-rc.d.bbclass
+  For example, if a user disabled one service before upgrade,
+  then after upgrade the service could be started. This happens because during preinst,
+  all links have been deleted, then postinst may create the link to start service.
 
-[Yocto 12955]
+  With this change, we remove preinst and therefore keep the previous links
+  so that after upgrade, if a link existed for the package, then the postinst
+  will not create new start/stop links.
+
+* remove '-f' for postinst. Previously, the keepalived recipe used 'remove'
+  during postinst, so we needed the -f, but now the keepalived recipe has fixed
+  this problem, so it's safe to remove '-f'.
+
+[Yocto #12955]
 
 Signed-off-by: Changqing Li <changqing.li@windriver.com>
 ---
- update-rc.d | 81 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 81 insertions(+)
+ documentation/ref-manual/ref-variables.xml |  2 +-
+ meta/classes/update-rc.d.bbclass           | 28 ++++------------------------
+ 2 files changed, 5 insertions(+), 25 deletions(-)
 
-diff --git a/update-rc.d b/update-rc.d
-index e07cf85..a7fb7bc 100644
---- a/update-rc.d
-+++ b/update-rc.d
-@@ -27,6 +27,7 @@ usage()
- usage: update-rc.d [-n] [-f] [-r <root>] <basename> remove
-        update-rc.d [-n] [-r <root>] [-s] <basename> defaults [NN | sNN kNN]
-        update-rc.d [-n] [-r <root>] [-s] <basename> start|stop NN runlvl [runlvl] [...] .
-+       update-rc.d [-n] [-r <root>] [-s] <basename> enable|disable [S|2|3|4|5]
- 		-n: not really
- 		-f: force
- 		-v: verbose
-@@ -101,6 +102,53 @@ makelinks()
- 	done
- }
+diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
+index 536bd15..8fc48c3 100644
+--- a/documentation/ref-manual/ref-variables.xml
++++ b/documentation/ref-manual/ref-variables.xml
+@@ -7243,7 +7243,7 @@
+                     to the <filename>update-rc.d</filename> command.
+                     For more information on valid parameters, please see the
+                     <filename>update-rc.d</filename> manual page at
+-                    <ulink url='http://www.tin.org/bin/man.cgi?section=8&amp;topic=update-rc.d'></ulink>.
++                    <ulink url='https://manpages.debian.org/wheezy/sysv-rc/update-rc.d.8.en.html'></ulink>.
+                 </para>
+             </glossdef>
+         </glossentry>
+diff --git a/meta/classes/update-rc.d.bbclass b/meta/classes/update-rc.d.bbclass
+index 265c4be..1366fee 100644
+--- a/meta/classes/update-rc.d.bbclass
++++ b/meta/classes/update-rc.d.bbclass
+@@ -20,28 +20,14 @@ def use_updatercd(d):
+         return '[ -n "$D" -o ! -d /run/systemd/system ]'
+     return 'true'
  
-+# function to disable/enable init script link of one run level
-+# $1 should be K/S, means to disable/enable
-+# $2 means which run level to disable/enable 
-+renamelink()
-+{
-+	local oldstartstop newstartstop lev oldnn newnn
-+	if [ "x$1" = "xS" ]; then
-+		oldstartstop="K"
-+		newstartstop="S"
-+	else
-+		oldstartstop="S"
-+		newstartstop="K"
-+	fi
-+
-+	lev=$2
-+	# modifies existing runlevel links for the script /etc/init.d/name by renaming start links to stop link
-+        # or stop link to start link with a sequence number equal to the difference of 100 minus the original sequence number.
-+	if ls ${etcd}${lev}.d/${oldstartstop}*${bn} >/dev/null 2>&1; then
-+		oldnn=`basename ${etcd}${lev}.d/${oldstartstop}*${bn}|cut -c2-3`
-+		newnn=$[100-$oldnn]
-+		[ $verbose -eq 1 ] && echo "rename ${etcd}${lev}.d/${oldstartstop}${oldnn}${bn} -> ${etcd}${lev}.d/${newstartstop}${newnn}${bn}"
-+		if [ $notreally -eq 0 ];then
-+			mv ${etcd}${lev}.d/${oldstartstop}${oldnn}${bn} ${etcd}${lev}.d/${newstartstop}${newnn}${bn}
-+		fi
-+		if [ $dostart -eq 1 ] && [ $newstartstop = "S" ] && [ $lev = $RUNLEVEL ]; then
-+			$fn start || true
-+		fi
-+	fi
-+
-+}
-+
-+# function to disable/enable init script link
-+# $1 should be K/S, means to disable/enable
-+# $2 run level [S|2|3|4|5], optional, If no start runlevel is 
-+# specified after the disable or enable keywords 
-+# the script will attempt to modify links in all start runlevels
-+renamelinks()
-+{
-+	if [ $# -eq 2 ]; then
-+		renamelink $1 $2
-+	else
-+		for i in 2 3 4 5 S; do
-+			renamelink $1 $i
-+		done
-+	fi
-+}
-+
- while [ $# -gt 0 ]; do
- 	case $1 in
- 		-n)	notreally=1
-@@ -221,6 +269,13 @@ case $1 in
- 		;;
+-updatercd_preinst() {
+-if ${@use_updatercd(d)} && [ -z "$D" -a -f "${INIT_D_DIR}/${INITSCRIPT_NAME}" ]; then
+-	${INIT_D_DIR}/${INITSCRIPT_NAME} stop || :
+-fi
+-if ${@use_updatercd(d)} && type update-rc.d >/dev/null 2>/dev/null; then
+-	if [ -n "$D" ]; then
+-		OPT="-f -r $D"
+-	else
+-		OPT="-f"
+-	fi
+-	update-rc.d $OPT ${INITSCRIPT_NAME} remove
+-fi
+-}
+-
+ PACKAGE_WRITE_DEPS += "update-rc.d-native"
  
- 	start | stop)
-+		if [ $# -lt 4 ]
-+		then
-+			echo "Not enough arguments"
-+			usage
-+			exit 1
-+		fi
-+
- 		while [ $# -gt 0 ]; do
- 			if [ $1 = "start" ]; then
- 				letter=S
-@@ -251,6 +306,32 @@ case $1 in
- 		makelinks
- 		;;
+ updatercd_postinst() {
+ if ${@use_updatercd(d)} && type update-rc.d >/dev/null 2>/dev/null; then
+ 	if [ -n "$D" ]; then
+-		OPT="-f -r $D"
++		OPT="-r $D"
+ 	else
+-		OPT="-f -s"
++		OPT="-s"
+ 	fi
+ 	update-rc.d $OPT ${INITSCRIPT_NAME} ${INITSCRIPT_PARAMS}
+ fi
+@@ -79,7 +65,7 @@ python __anonymous() {
+ PACKAGESPLITFUNCS_prepend = "${@bb.utils.contains('DISTRO_FEATURES', 'sysvinit', 'populate_packages_updatercd ', '', d)}"
+ PACKAGESPLITFUNCS_remove_class-nativesdk = "populate_packages_updatercd "
  
-+	enable | disable)
-+		if [ $1 = "enable" ]; then
-+			letter=S
-+		elif [ $1 = "disable" ]; then
-+			letter=K
-+		else
-+			usage
-+			exit 1
-+		fi
-+		shift
-+		# 
-+		if [ $# -gt 0 ]
-+		then
-+			case $1 in
-+				S|2|3|4|5)
-+					renamelinks $letter $1
-+					;;
-+				*)
-+					usage
-+					exit 1
-+					;;
-+			esac
-+		else
-+			renamelinks $letter
-+		fi
-+		;;
- 	*)
- 		usage
- 		exit 1
+-populate_packages_updatercd[vardeps] += "updatercd_prerm updatercd_postrm updatercd_preinst updatercd_postinst"
++populate_packages_updatercd[vardeps] += "updatercd_prerm updatercd_postrm updatercd_postinst"
+ populate_packages_updatercd[vardepsexclude] += "OVERRIDES"
+ 
+ python populate_packages_updatercd () {
+@@ -95,7 +81,7 @@ python populate_packages_updatercd () {
+             d.appendVar('RDEPENDS_' + pkg, ' %sinitd-functions' % (mlprefix))
+ 
+     def update_rcd_package(pkg):
+-        bb.debug(1, 'adding update-rc.d calls to preinst/postinst/prerm/postrm for %s' % pkg)
++        bb.debug(1, 'adding update-rc.d calls to postinst/prerm/postrm for %s' % pkg)
+ 
+         localdata = bb.data.createCopy(d)
+         overrides = localdata.getVar("OVERRIDES")
+@@ -103,12 +89,6 @@ python populate_packages_updatercd () {
+ 
+         update_rcd_auto_depend(pkg)
+ 
+-        preinst = d.getVar('pkg_preinst_%s' % pkg)
+-        if not preinst:
+-            preinst = '#!/bin/sh\n'
+-        preinst += localdata.getVar('updatercd_preinst')
+-        d.setVar('pkg_preinst_%s' % pkg, preinst)
+-
+         postinst = d.getVar('pkg_postinst_%s' % pkg)
+         if not postinst:
+             postinst = '#!/bin/sh\n'
 -- 
 2.7.4
 
