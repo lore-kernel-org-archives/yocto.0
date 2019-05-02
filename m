@@ -1,69 +1,50 @@
-Return-Path: <gizero@gmail.com>
+Return-Path: <simon.zeni@posteo.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F18BFE00CBC; Fri,  3 May 2019 06:52:20 -0700 (PDT)
+	id E6FF9E00D3A; Thu,  2 May 2019 11:21:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (gizero[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.193 listed in list.dnswl.org]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [185.67.36.65 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f193.google.com (mail-it1-f193.google.com
-	[209.85.166.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5BEFE00C14
-	for <yocto@yoctoproject.org>; Fri,  3 May 2019 06:52:19 -0700 (PDT)
-Received: by mail-it1-f193.google.com with SMTP id a190so9182573ite.4
-	for <yocto@yoctoproject.org>; Fri, 03 May 2019 06:52:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=tUlSnhW5CnJzZTY+ZynQnjC3V5IKIuBFIQ689qfvJVg=;
-	b=KuWWGIPtNrKPHIgXDauREqV6xD7iq3rei0eRN6VxMWrRwpADBUIULuTFfkCsEe5r2n
-	twlcKfmuDcrVuCWdZliaKvBNUjD/SW80NzwU1DlWIPGtaShwkbokz/gNRO/kNwG3tbQn
-	Uvt0O9+SRDJH38BfOrrJpi6lDq4u2jatjmqI7caFJ+vrAQ3MenAP2o7HrNiidT6+A+/g
-	qg52e8J3TD7dCl656WzLcfoQT8wf4TP96NyhXj03dOHMwGxzHastZ80RNXK3R3fVJR22
-	KcAgG/Gkck2a8iYg9naVCUWy60IOG95U19loQ1yhNb7ER0Khozb6Lm+EMmQ1eGbkfc1B
-	sQZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=tUlSnhW5CnJzZTY+ZynQnjC3V5IKIuBFIQ689qfvJVg=;
-	b=gskS7h2KmdF2PL97AMEBqdP4yFETJirYkGDxpvm5DpL4iCKdeCclQRu8oTausA7P2n
-	Z0jw4c0k8h00CnmfpNJ7Tb+iE0ulf9/QNWQgWVddzvYMPGJhNxtm4lGLoFw9SJsDZqAp
-	pOFBUiSUtM+GNB+RX7Y58y9QTkG91iWulplVRT6SepTW9/KgZCS4RGb+Y/uwj+8Fdyn5
-	jm9/vBMHtg+CXUn69viIHSF2xw6RzTA0A+0MeCgmVa/e3uemTmbFa7EXjaOAjmg7NMLE
-	8TyY5sl1iGvAtFyYB7vsjswoDjz7BFjerMdxz+TVjd5XqnxkcJCeo00ldv5hKroySUu9
-	U3NQ==
-X-Gm-Message-State: APjAAAUy5W7NUVnjNCyeUV2L/QWN9T8bYKdGqxD3dpZ8mLzunCf+apmd
-	LYwiLwLhgkfq3dC9oKhiRcYbyB+ye+QP79g3AiA=
-X-Google-Smtp-Source: APXvYqzQ+PJRPnQewpKGOqLY8ZgAHvW3Pwq74GWJtTZecblEn+ELLGe+F+NyKRrHOCM1e94Eid/HmBWG3c9+yH/SLKU=
-X-Received: by 2002:a02:c88d:: with SMTP id m13mr6641817jao.63.1556891539101; 
-	Fri, 03 May 2019 06:52:19 -0700 (PDT)
+X-Greylist: delayed 472 seconds by postgrey-1.32 at yocto-www;
+	Thu, 02 May 2019 11:21:05 PDT
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7758E00798
+	for <yocto@yoctoproject.org>; Thu,  2 May 2019 11:21:05 -0700 (PDT)
+Received: from submission (posteo.de [89.146.220.130]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id 5F731160069
+	for <yocto@yoctoproject.org>; Thu,  2 May 2019 20:13:11 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1556820791; bh=D3PV/2hiqO+Uo8jshCdpLEq5v5Es6ElixmKWQSo4LNo=;
+	h=Date:From:To:Subject:From;
+	b=ldap7mUb4lJm4WKAui498LeR139Qfo6ZIQF9f+um3FlUkFnyI+bsPTrfF0B2+GtlC
+	aYLT5sVO6E9lxn1iCnfNj7TUNWl4KHQUadcbTRjH1Wsxyh0jKefWZ2ZWYa9gqgoKkc
+	MkeACPNKFzBiTWn/QWp1pJSdW4op7L4Ckf+bX4eRWMTA1+ji54uAciWqaKjuUljksI
+	Hd23wlWu56Jve/4xHqWmJd4EpGgEamtrLFignJ0t8HZ/lZEC5G8jpY6RVgZJJvU/uS
+	o65tiHGs4DBGV92yd8Ho/UCuVovkmRxz/S8GV+eBFduEFqJ7EOHr091bSmi57oU9Xe
+	+W8rCsTFVT22Q==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 44w3KK1wYwz6tmb
+	for <yocto@yoctoproject.org>; Thu,  2 May 2019 20:13:09 +0200 (CEST)
 MIME-Version: 1.0
-References: <alpine.LFD.2.21.1905020916480.10974@localhost.localdomain>
-	<6e58005a-83b4-a7dc-d5dd-c1533fc29ad8@mvista.com>
-	<CAFNP8OvYmJf=mxESY4G_Yx=x9=vQWLtwKVJu3GkzLMcb92socQ@mail.gmail.com>
-	<4dec56c4-3876-b96c-9b31-a1e4d726f78b@mvista.com>
-	<CAFNP8Ou5PB396Ln0mnZP86tyKDv8nMgDL7p=HxpUpEVBW5-hUA@mail.gmail.com>
-	<alpine.LFD.2.21.1905030649530.6705@localhost.localdomain>
-In-Reply-To: <alpine.LFD.2.21.1905030649530.6705@localhost.localdomain>
-From: Andrea Galbusera <gizero@gmail.com>
-Date: Fri, 3 May 2019 15:52:07 +0200
-Message-ID: <CAC+thW1zpk4uALurMZnsqScCeeg_PdzpwMs=LKE2XX-Qs-KcnA@mail.gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [PATCH] bsp-guide: replace meta-intel with meta-xilinx as container layer
+Date: Thu, 02 May 2019 20:13:08 +0200
+From: simon.zeni@posteo.net
+To: yocto@yoctoproject.org
+Message-ID: <645a9d2248fa78d976b88c8fb3e93a31@posteo.net>
+X-Sender: simon.zeni@posteo.net
+User-Agent: Posteo Webmail
+X-Mailman-Approved-At: Fri, 03 May 2019 09:15:29 -0700
+Subject: Dependencies with third party binaries
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,75 +56,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 May 2019 13:52:21 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 02 May 2019 18:21:07 -0000
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, May 3, 2019 at 12:56 PM Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->
-> On Thu, 2 May 2019, Scott Rifenbark wrote:
->
-> > Great, thanks!
-> >
-> > On Thu, May 2, 2019 at 11:21 AM akuster <akuster@mvista.com> wrote:
-> >
-> >
-> >       On 5/2/19 10:45 AM, Scott Rifenbark wrote:
-> >       The term "Container Layer" was put in the ref-manual by me to describe a
-> >       "meta-*" layer that had other "meta-*" layers (see
-> >       https://www.yoctoproject.org/docs/2.7/ref-manual/ref-manual.html#term-container-layer
-> >       and the term "Container Layer").  Maybe this was never a good term?  I don't
-> >       know.  Nobody has said anything about that term for many releases.
-> >
-> > The problem Robert points out needs to be fixed in the BSP manual as "meta-intel" is
-> > not longer qualifying by my definition.  I can fix that.
-> >
-> > Is "Container Layer" ok as I have defined it?
-> >
-> > in those terms above, yes its fine.
->
->   the more i think about it, the more i'm nervous about the phrase
-> "container layer", as it suggests a "layer" of some kind in the
-> context of OE. the one distinction i think worth making is that a "BSP
-> layer" is a layer expressly designed to support identified target
-> systems (eg., meta-xilinx-bsp), while a non-BSP layer simply packages
-> functionality (recipes, classes) -- a good example is
-> meta-virtualization.
->
->   in either case, the trivial property of an OE layer is something
-> that can be specified in a bblayers.conf file. so i'm not sure *how*
-> you would describe, for example, meta-openembedded.
+Hi,
 
-Maybe just as a "metadata collection repo"? IMHO from a OE
-perspective, a "layer" is a metadata set which provides its own
-layer.conf file (which, as you say, means you can add it to your
-project's bblayers.conf). Bundling more than one layer within the same
-git repository (or whatever archive format use to distribute them)
-does not qualify this metadata collection as anything otherwise
-meaningful for bitbake. That said, meta-openembedded is definitely the
-most evident example of such a "concept". I agree the term "container
-layer" can be either confused with a OE layer, which technically is
-not, or something having to do with containers (as I suspect from
-Armin's reply), which is completely unrelated to. Maybe rewording a
-little bit the manual here could reduce potential confusion to new
-users. Moreover whatever term we choose to explain this concept, we
-should make clear that it is orthogonal to any other layer
-classification by content (i.e. BSP, distro, ...).
+I'm currently working on repackaging the 2016 Intel compiler and I am 
+stuck at the dependency resolution.
 
->   i'm sure i'm overthinking this.
->
-> rday
->
-> --
->
-> ========================================================================
-> Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                          http://crashcourse.ca
->
-> Twitter:                                       http://twitter.com/rpjday
-> LinkedIn:                               http://ca.linkedin.com/in/rpjday
-> ========================================================================--
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+I am basing my recipe on the AUR PKGBUILD [1], which extracts the RPMs 
+from the parallel-studio-xe [2] archive and extracts the content of the 
+RPMs to get the binaries. I already have the RPMs extracted from the 
+tarball and stored in a git repo. Not the ideal solution, but good 
+enough for now.
+
+The `bitbake` command for the recipe is passing after disabling a couple 
+of QA errors (too much for my taste), but the recipe for the 
+`core-image` fails at the dependency
+resolution. From what I understand, all of the binaries inside of the 
+`FILES_${PN}` are checked, and one (or more) fails at the dependency 
+check with the following message :
+
+```
+Error:
+  Problem: conflicting requests
+   - nothing provides ld-linux-k1om.so.2()(64bit) needed by 
+icc-2016+1-r0.corei7_64
+```
+
+This shared library seems to be Intel related but I cannot find it in 
+all of the RPMs contained in the initial tarball. It is also not needed 
+to run the compiler, I was able to execute the `icc` and `icpc` (the c++ 
+compiler) binaries from the devshell.
+
+I know this is wrong and against every yocto principles, but is there a 
+way to skip the dependenciey resolution for a specific recipe ? Or is 
+there a recipe made by Intel that I missed ?
+I'm also open to any suggestions on how to tackle this task.
+
+Here's my recipe so far :
+
+```
+LICENSE = "CLOSED"
+LIC_FILES_CHKSUM = ""
+
+DEPENDS += "libarchive-native"
+
+SRC_URI = # omitted
+
+PV = "2016-1"
+SRCREV = "${AUTOREV}"
+
+S = "${WORKDIR}/git"
+
+extract_rpms() {
+	for rpm_file in ${S}/$1; do
+		bsdtar -xf ${rpm_file} -C $2
+	done
+}
+
+# Skip the unwanted steps
+do_configure[noexec] = "1"
+do_compile[noexec] = "1"
+
+do_install () {
+	extract_rpms 'intel-icc*.rpm' ${D}
+	extract_rpms 'intel-comp*.rpm' ${D}
+	extract_rpms 'intel-ccomp*.rpm' ${D}
+	extract_rpms 'intel-openmp*.rpm' ${D}
+}
+
+do_package_qa[noexec] = "1"
+
+ALLOW_EMPTY_${PN} = "1"
+
+FILES_SOLIBSDEV = ""
+FILES_${PN} += "/opt/intel/*"
+
+INSANE_SKIP_${PN} += "already-stripped ldflags arch staticdev file-rdeps 
+build-deps"
+
+INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+INHIBIT_PACKAGE_STRIP = "1"
+
+```
+
+Thanks,
+
+Simon Zeni
+
+[1]: 
+https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=intel-parallel-studio-xe&id=d4e2871a3bf698c3a5f58ee2201df53fe7f5dce7
+[2]: 
+http://registrationcenter-download.intel.com/akdlm/irc_nas/8365/parallel_studio_xe_2016_update1.tgz
 
