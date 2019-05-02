@@ -1,68 +1,63 @@
-Return-Path: <Lukasz.Zemla@woodward.com>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 805ADE00D3A; Thu,  2 May 2019 13:09:54 -0700 (PDT)
+	id 23DD7E00D3A; Thu,  2 May 2019 13:17:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	https://www.dnswl.org/, no *      trust
-	*      [204.27.169.35 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.169 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from Mail4.woodward.com (mail4.woodward.com [204.27.169.35])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BF25E00BAA
-	for <yocto@yoctoproject.org>; Thu,  2 May 2019 13:09:53 -0700 (PDT)
-Received: from pps.filterd (COIL-PMSGA1.woodward.com [127.0.0.1])
-	by COIL-PMSGA1.woodward.com (8.16.0.27/8.16.0.27) with SMTP id
-	x42K6isF010826
-	for <yocto@yoctoproject.org>; Thu, 2 May 2019 15:09:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=woodward.com;
-	h=from : to : date :
-	subject : message-id : content-type : content-transfer-encoding :
-	mime-version; s=20190114Woodward;
-	bh=Mg9iUgn9CeW4+UrqrfcreOXA0GmLf3ooDbzibrkQIV4=;
-	b=FSB5tTWXSEeEUz5n65QdlKcUHLR8AYDt28zDIvrroXrLUtmDWw9OHGSx0msTMDug897s
-	3cS1xwuL38Pwfol9X3oXbZkEqg08YjNm1+gxBvY16F5AnGjcLz06bjXhTbuJYViJtyrw
-	X8zzfk7rR7Ai99PGzqny95PcUaFFAtSSi5qf9sxxAqxzeyrYzuLCzY8qTgrlSM04MHEo
-	wXr7+TgtBW2sJr3GcZf2nOjcqduJiX/eJ7CbsjUD2ywgEbhvU2DpDmb9ZUuJjDvQkqDA
-	3zLZClbtg4QQYE5IF2rLFoT9oCypFmasHi7cPuyjw2EunSB69AE1nUw6/+ormwZ1x/E1
-	qw== 
-Received: from coil-exmb1.woodward.com ([10.51.100.64])
-	by COIL-PMSGA1.woodward.com with ESMTP id 2s878080f3-15
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT)
-	for <yocto@yoctoproject.org>; Thu, 02 May 2019 15:09:53 -0500
-Received: from KempHC1.woodward.com (10.25.100.51) by COIL-ExMb1.woodward.com
-	(10.51.100.64) with Microsoft SMTP Server (TLS) id 15.0.1473.3;
-	Thu, 2 May 2019 15:08:09 -0500
-Received: from KempMail2.woodward.com ([169.254.2.201]) by
-	KempHC1.woodward.com ([172.20.1.103]) with mapi;
-	Thu, 2 May 2019 22:08:07 +0200
-From: Lukasz Zemla <Lukasz.Zemla@woodward.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Date: Thu, 2 May 2019 22:08:05 +0200
-Thread-Topic: [yocto] System service
-Thread-Index: AdUBIre0F3PDfqTHS0CuWZm8zQGYmQ==
-Message-ID: <CE2E43470FE5444A811B580382FE5EDF55CB10235D@KEMPMAIL2.woodward.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com
+	[209.85.208.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B103FE00D32
+	for <yocto@yoctoproject.org>; Thu,  2 May 2019 13:17:20 -0700 (PDT)
+Received: by mail-lj1-f169.google.com with SMTP id f23so3424753ljc.0
+	for <yocto@yoctoproject.org>; Thu, 02 May 2019 13:17:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=J6Og8w3mplZFzUhUvfcGzUei/McllR+XAiX+r5Z1Nm0=;
+	b=HAm7kD1trU9mZiNG0EXIAV2mpIGZQK8kVcfwEtcs5tnKkjVFIfqfoIlM8qHiw00acW
+	2X9MXz+6R+vGfkE5A5jimhnZph6JixoU8bB5BO5Egzu9GWPA3JRuoauHTRKR2EXTC5Ne
+	4OhcPuvpYavCNkMKhauvOotKzPaMhStf6ehd+PGFMWp2ue44JWuWYfPKwnOYqGhmY3lg
+	2GX1FZfdj0kwp6+W2SjXtTxT5MbcUDupVJbwqRgxjPgAkl97JrNYucedzeSPE6JNbg6U
+	vNaWcycL/h9cYRUP3gSU882BEPSuqa0VpOnjb27EbPrbWpY7nft0/s+Cz/qdvO2z1bXZ
+	L3fQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=J6Og8w3mplZFzUhUvfcGzUei/McllR+XAiX+r5Z1Nm0=;
+	b=QDVhlf1qwiMUqzmUEAQWRVQk+LMeiuSMCuPvG/3lobTPhkPvESGm3GVvxFI3+8Sdp9
+	73xNvM2vj3nmxxQHUMWYsldRjaqU1YU64BXV0Jvs9IIXDhEP8+zo7V+F9xn7OuVfL8j9
+	L+iG2cpJu0xdmdaIiNbwEIjHXc0hVqqY0Hnlr5BBsPGWrL2mrLT5ZeqksuJmKkmNnJLD
+	FEYW9dpm4y6vVjTkot95U+nvYRQAEUJF7L5YAtn8KAbH1tAr+cCiarYBCrQFFoAg3tMd
+	S+N/Hhmby0LLk5bmDOpsF2VOHEjPRjfdH5iJnnku/P8i4nqX6dz6ZrKy+6wjst/NoXQ5
+	PGLw==
+X-Gm-Message-State: APjAAAUiru4EwKsgFPn+qvWMMOwXtzYqGKEAhn8TiiY+eS8j9/iHnxji
+	2bYZRZHa0i8wf1ZBbglJnycYFWcvJOL2JKwf4VSeFw==
+X-Google-Smtp-Source: APXvYqyUIhlJy7ZEX127aa0I6uWLBTLqj4tor4xD/gBLKZzw7lLLvPGnHx/C4sjBe6R4xfXcJ2wpf6wdiRANJJpX/HE=
+X-Received: by 2002:a2e:9216:: with SMTP id k22mr3022031ljg.179.1556828239727; 
+	Thu, 02 May 2019 13:17:19 -0700 (PDT)
 MIME-Version: 1.0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
-	priorityscore=1501
-	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
-	clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
-	mlxlogscore=533 adultscore=0 classifier=spam adjust=0 reason=mlx
-	scancount=1 engine=8.0.1-1810050000 definitions=main-1905020126
-Subject: Re: System service
+References: <94d26c09-1eea-ba34-67a7-f2d233edbe7b@ibeeto.com>
+In-Reply-To: <94d26c09-1eea-ba34-67a7-f2d233edbe7b@ibeeto.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Thu, 2 May 2019 22:17:08 +0200
+Message-ID: <CAP71WjzboC4Vv26+a-4QkC-uKmyTACa3piPEwicm_xBSFpavEQ@mail.gmail.com>
+To: Rudolf J Streif <rudolf.streif@ibeeto.com>, 
+	"Volosincu, Andreea S" <andreea.volosincu@windriver.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: Yocto Project @ ELC NA 2019
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,19 +69,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 May 2019 20:09:54 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 02 May 2019 20:17:22 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-T24gVGh1cnNkYXksIE1heSAwMiwgMjAxOSA4OjE1IFBNLCBIZW5yaWsgTGluZGJsb20gd3JvdGU6
-DQo+Pj4gRklMRVNfJHtQTn0gKz0gIiR7c3lzdGVtZF91bml0ZGlyfSINCj4NCj4gVGhpcyBsaW5l
-IGlzIHJlZHVuZGFudCwgQUZBSUssIHNpbmNlIHN5c3RlbWQuYmJjbGFzcyB3aWxsIGhhbmRsZSAN
-Cj4gcGFja2FnaW5nIGZvciB5b3UsIGFzc3VtaW5nIHlvdSBpbnN0YWxsIHRoZSBzZXJ2aWNlIGZp
-bGVzIHRoYXQgeW91IA0KPiBhZHZlcnRpc2UgaW4gU1lTVEVNRF9TRVJWSUNFXyR7UE59LiBIb3dl
-dmVyLCBhcyBJJ20gd3JpdGluZyB0aGlzIGZyb20gDQo+IG1lbW9yeSwgSSByZWNvbW1lbmQgeW91
-IHNraW0gdGhyb3VnaCB0aGUgY2xhc3MgZGVmaW5pdGlvbiBhbmQgY2hlY2sgDQo+IGZvciBmdXJ0
-aGVyIGRldGFpbHMgdGhlcmUuDQoNCkkgY29uZmlybSAtIHRoaXMgbGluZSBpcyBub3QgcmVxdWly
-ZWQgKGF0IGxlYXN0IGF0IFlvY3RvIDIuNikuDQoNCkJlc3QgcmVnYXJkcywNCkx1a2FzeiBaZW1s
-YQ0K
+hi Rudolf,
+
++Andreea (Yocto Advocacy)
+
+we are definitely planning to be at ELC, with a similar setup as with
+past ELC : booth, demo, DevDay and BoF, well, at least !
+
+cheers
+nico
+
+On Thu, May 2, 2019 at 9:31 PM Rudolf J Streif <rudolf.streif@ibeeto.com> wrote:
+>
+> I apologize if I missed any communication on this mailing list but what
+> are the plans for a presence of YP at ELC NA in August in San Diego this
+> year?
+>
+> Unfortunately, I missed the deadline for submitting a speaking proposal
+> ("Yocto Project DevOps with Gitlab, Docker and AWS") for ELC. However,
+> if YP is planning on a presence at ELC I'd be happy to support it as I,
+> conveniently, live in San Diego. If there is a YP exhibition I might be
+> able to bring my little hobby project, an electric gokart with YP-based
+> instrument cluster (it's a full-size kart with 13 kW AC motor and a
+> LiFePo battery pack producing up to 25 kW peak power output going up to
+> 45 mph (electronically limited)).
+>
+> Cheers,
+> Rudi
+>
+> --
+> -----
+> Rudolf J Streif
+> CEO/CTO ibeeto
+> +1.855.442.3396 x700
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
