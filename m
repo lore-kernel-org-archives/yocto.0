@@ -1,68 +1,70 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ACB7FE00D1E; Thu,  2 May 2019 06:19:14 -0700 (PDT)
+	id D0CBFE00D2A; Thu,  2 May 2019 07:24:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_FAIL autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	https://www.dnswl.org/, no *      trust
-	*      [199.212.143.9 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 SPF_HELO_FAIL SPF: HELO does not match SPF record (fail)
-	*      [SPF failed: Please see http://www.openspf.org/Why?s=helo;
-	id=emtekalloys.com; ip=199.212.143.9;
-	r=yocto-www.yoctoproject.org]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.49 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
-Received: from emtekalloys.com (cpanel4.indieserve.net [199.212.143.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DA05E00CDF
-	for <yocto@yoctoproject.org>; Thu,  2 May 2019 06:19:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=crashcourse.ca; s=default;
-	h=Content-Type:MIME-Version:Message-ID:Subject:
-	cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=WKI2MW3K92f9Mwnkw7lR0LAiTKu28160OWfs8Na75uU=;
-	b=yHBmb6DON1cCEiSIMfIwLqz2yU
-	fIQQ5jTU6oVktk76WjK6cb3BfNVXD9q/S5W0SU65XdXjFePzG7IPjkK86/z32K1y0chW4EcLofpsf
-	avLgPHK5nqgz9sMR/BlUBgIBxjkb6/LTb3XqCG1zJA4cwulsnlgdo0gtVwRW/BpEG68y3qMsMCpJ4
-	v2DO9rYsREhkxCNBRS3J0vIJCNRfNMcrIyUhDLijnq0A+MLZmEbNKoNui3Q/enAhNgeI5bS5JybxY
-	ltC/ZcKcM/cojT2mrtJDIvXlkvOwdictTrj08bpnkvZrQXfCHyh+FbWzOshfUeU3HxiMc1HE5SSxR
-	XyY03Ehw==;
-Received: from [72.142.126.219] (port=44616 helo=localhost.localdomain)
-	by cpanel4.indieserve.net with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.91)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1hMBcF-00074W-GP; Thu, 02 May 2019 09:19:12 -0400
-Date: Thu, 2 May 2019 09:19:10 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.21.1905020916480.10974@localhost.localdomain>
-User-Agent: Alpine 2.21 (LFD 202 2017-01-01)
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com
+	[209.85.221.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1007E00C1E
+	for <yocto@lists.yoctoproject.org>;
+	Thu,  2 May 2019 07:24:00 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id a9so3647612wrp.6
+	for <yocto@lists.yoctoproject.org>;
+	Thu, 02 May 2019 07:24:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=message-id:subject:from:to:date:user-agent:mime-version
+	:content-transfer-encoding;
+	bh=ZmdXqO2ZglbfHqV09TtohWKT3aYOgD64DqKZgBbvvns=;
+	b=QVGEyDqSpd+6kjp+RwYdZwuyELoYBfetACYrVvKnTC4OSKFMG87/F0ESqI14DCaDkZ
+	35DiVa3BCux+XFGEhrBAzUzGaTLO2dN/zEejRwV+F4Df57+6rhDdW6BawgxqtiAL6Jj3
+	B69TMakjsuRQpcyHQ8GTn0UtE/fodwZakjtR4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:message-id:subject:from:to:date:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=ZmdXqO2ZglbfHqV09TtohWKT3aYOgD64DqKZgBbvvns=;
+	b=SVIweK7Zm7PslRAafdSnFWhaL3NtC1k2k6Gw69k+JVQnPRSgtn4BQnj6+VvJMojN8e
+	h4NTv+SrSCWtZVfQ6YLRLet03CnLOXZmUqr9erh6TpK0O34i81TWF+SS71dCbK5bEkgq
+	VSMTCWp9uwpsYThwb182FpFpq17JxY0mYcjyVI/GE5J5jjZLfHU96Xd2fBmw6M7zyl/L
+	R7FqLx7xYC50yMWJBpBOXMOhXRzufeKMd85qdYutFLQZgN0uCLcQ3HQgiKrftjyz0fEu
+	S+OZdGlENOBxUwM+uaucu/28AC2cCGsga2OA7zcNFs9gEl6BwnGVzGq2TZy2G5lWIGuD
+	WpCw==
+X-Gm-Message-State: APjAAAV3qqb1ZgifvXmldcWQipfro8sWCvlzdEQ5ltfOe8OfoY15mlpi
+	RC/u2tf8K5iK1bR0IYlErfT+RIOlH4w=
+X-Google-Smtp-Source: APXvYqzB9grO5PcMTRcq89MW15BIo6ewId++FrCA+dbLaWeJOxt3D7fXDqST6os9F3RvPGpHS14zKg==
+X-Received: by 2002:a05:6000:10cc:: with SMTP id
+	b12mr3226418wrx.182.1556807039989; 
+	Thu, 02 May 2019 07:23:59 -0700 (PDT)
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+	by smtp.gmail.com with ESMTPSA id
+	c18sm25131320wrb.16.2019.05.02.07.23.58
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Thu, 02 May 2019 07:23:59 -0700 (PDT)
+Message-ID: <9d66b2dc947c7368a84285b8c1fb3ef30fdc5220.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: openembedded-architecture
+	<openembedded-architecture@lists.openembedded.org>, openembedded-core
+	<openembedded-core@lists.openembedded.org>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+Date: Thu, 02 May 2019 15:23:58 +0100
+User-Agent: Evolution 3.32.1-2 
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-0.2
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel4.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel4.indieserve.net: authenticated_id:
-	rpjday+crashcourse.ca/only user confirmed/virtual account not
-	confirmed
-X-Authenticated-Sender: cpanel4.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: [PATCH] bsp-guide: replace meta-intel with meta-xilinx as container layer
+Subject: Newcomer bugs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,54 +76,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 May 2019 13:19:14 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Thu, 02 May 2019 14:24:02 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-As meta-intel is no longer a container layer, use meta-xilinx as
-an example instead.
+Apologies for cross posting but I wanted a wider audience to see this.
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+The triage team is starting to try and collect up and classify bugs
+which a newcomer to the project would be able to work on in a way which
+means people can find them. They're being listed on the triage page
+under the appropriate heading:
 
----
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
 
-diff --git a/documentation/bsp-guide/bsp.xml b/documentation/bsp-guide/bsp.xml
-index 0bb0b68ab..a53ff6bce 100644
---- a/documentation/bsp-guide/bsp.xml
-+++ b/documentation/bsp-guide/bsp.xml
-@@ -146,18 +146,15 @@
+The idea is these bugs should be straight forward for a person to help
+work on who doesn't have deep experience with the project.
 
-     <para>
-         Some layers function as a layer to hold other BSP layers.
--        These layers are knows as
-+        These layers are known as
-         "<ulink url='&YOCTO_DOCS_REF_URL;#term-container-layer'>container layers</ulink>".
-         An example of this type of layer is the
--        <filename>meta-intel</filename> layer.
--        This layer contains BSP layers for the Intel-core2-32
--        <trademark class='registered'>Intel</trademark> Common Core
--        (Intel-core2-32) and the Intel-corei7-64
--        <trademark class='registered'>Intel</trademark> Common Core
--        (Intel-corei7-64).
--        the <filename>meta-intel</filename> layer also contains
--        the <filename>common/</filename> directory, which contains
--        common content across those layers.
-+        <filename>meta-xilinx</filename> layer.
-+        This container layer contains some basic top-level information,
-+        as well as three actual Xilinx-related BSP layers,
-+        <filename>meta-xilinx-bsp</filename>,
-+        <filename>meta-xilinx-contrib</filename>, and
-+        <filename>meta-xilinx-standalone</filename>.
-     </para>
+If anyone can help, please take ownership of the bug and send patches!
 
-     <para>
+If anyone needs help/advice there are people on irc who can likely do
+so, or some of the more experienced contributors will likely be happy
+to help too.
 
--- 
+Also, if there are people interested in helping mentor newcomers and
+help develop newcomer suited bugs, please talk to me about it as we
+could definitely do with help there. 
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                         http://crashcourse.ca
+Other roles where we could do with particular help are toaster
+development, website improvements/maintenance, QA framework
+documentation/development + testcases and our CI testing along with the
+usual other things but these are not really suited to newcomers.
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Cheers,
+
+Richard
+
 
