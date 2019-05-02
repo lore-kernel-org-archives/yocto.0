@@ -1,6 +1,6 @@
-Return-Path: <tfroehlich@archsys.io>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BAAC1E00D35; Thu,  2 May 2019 10:28:22 -0700 (PDT)
+	id C492FE00D35; Thu,  2 May 2019 10:29:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,52 +10,106 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.181 listed in list.dnswl.org]
+	*      [209.85.210.182 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com
-	[209.85.160.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E7D5E00D32
-	for <yocto@yoctoproject.org>; Thu,  2 May 2019 10:28:21 -0700 (PDT)
-Received: by mail-qt1-f181.google.com with SMTP id g4so3434836qtq.10
-	for <yocto@yoctoproject.org>; Thu, 02 May 2019 10:28:21 -0700 (PDT)
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com
+	[209.85.210.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65EA8E00AD5
+	for <yocto@yoctoproject.org>; Thu,  2 May 2019 10:29:30 -0700 (PDT)
+Received: by mail-pf1-f182.google.com with SMTP id e24so1445459pfi.12
+	for <yocto@yoctoproject.org>; Thu, 02 May 2019 10:29:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=archsys-io.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=ed4ThFMhijIETAWUHQ5E0QmRoPHBvEl5qblcn0GUopA=;
-	b=TheQe7blSJkH0SXNtgU1DiEW1LJ3eVu+SK11a/9nOZ0FUyZrG5BfCY3g5G5hwF7RY6
-	hIay7KTWvTRhyyf9gDl2Zr04ucN8B5RvdPjxqvoO0bShxerwP3kWfJw3eiN6kM7BDPzg
-	CZHfzlqNc9MCmbNPcEBV/yXSlJRt/T9DgfsNj6SAQ4IbqJ1Un4JFd4l/kCMsARhoVrku
-	RtSW8l6s5EmmaZBQFHHhuxRSMT4f+w3O0cyo53YbnsvYH5INQlBil5yzbC1tzxIrKjk7
-	TQu/c9cRAfA/SUH47nMyo42cXRFp5brdpMLipZz6ioNIcgYss3deDZzDTcYVAdnJ5OKo
-	MIZg==
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=IMAROdSPCOeujheGYFStz8uC/UaXAFnjCbyxhclevFc=;
+	b=K1SGzk3oRz/feeD0k1Gbag23JKn+Uajs8/9wLc9M6wSVkcE9lUfz7RSLn2lMVNgsLl
+	HOduO5X5BRi/9SvsZR+nAKuNmH9X/KxNyvMjR5nUXdWU7joo3xuxw1VsNmuPoUuammQM
+	CpmuEvfrecbWArUD9X5KHCRBDhAx6M7YzLepMvtO5H23CNx79oXt7KHf4KwsJw/PNnbr
+	8pXkDD8YBLqjSJWzTqHYVy/WudCG1uegRR+dtvd4yAnU26MBA1rx8qjK52PBAFMtAc11
+	cLSMbhvPfyld7dcMRpPl5W2e6oLCUZo1w/6LtcPsNqf2O+ThlyW3XuXTd2mXa7VHQ5iA
+	FavA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=ed4ThFMhijIETAWUHQ5E0QmRoPHBvEl5qblcn0GUopA=;
-	b=PHWhCYglJLhE3vU95p1PPj4KMYJQ1L+m1PHyAfUhWQamqau+NqpJqKJh88X7TGC1Tg
-	ltx5ltzwWh9qBVlRw4GnATrGT36qGnO64mkh27UZoYX+Wcao11sUHRlkc1pAoseXoCSJ
-	MzHWd3TZ5FgnP620WVE3S59xw2T6zRIf+kwo6+PSnjbxTIvbdYG2kHjW8Bi5uOl5k+4e
-	O68+9sTmGJJa/oU6T8EazwHYg2ydWiz7VzYp/F5pmHtTmqyK5EdXOGQbTb0+zCFi6sIC
-	Wy1RnA/mZq4W+/yFYZKW9f5tWgSNYTwYk0JgHDDg1MiKd/2h/VKvnLYOW1JMGRFKL7gA
-	4scQ==
-X-Gm-Message-State: APjAAAUMRZgGVNGys+mgpcL2nFHSsJvxpgRIsQJ3xFb2SpP5cFkTNndq
-	iX0/9yk4XyphsVc15YX4vhM7DZpolN1BUsWD7ORHTA==
-X-Google-Smtp-Source: APXvYqzs5b5jvROR+Xhp/+1MjF2sDut7uMNxOeBwYOmXoN4pCIpiY8tC1yBBl5x6rszm+7NAnGxX3Sk+x+AJ88R3buo=
-X-Received: by 2002:ac8:fd5:: with SMTP id f21mr2005237qtk.163.1556818100855; 
-	Thu, 02 May 2019 10:28:20 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-language;
+	bh=IMAROdSPCOeujheGYFStz8uC/UaXAFnjCbyxhclevFc=;
+	b=ify0Javxh5LYtH5epmK3XcM8hHAv60xNln3T2mKzFMykeB3Wknm0MEP2vpHJAvjksp
+	y61Nn/OHLISrOl50lCswruRFfmkaasH7JX5W82qXTkjkBGCwxVLdO29dWl2P6f7hnNVP
+	vQO1NUUVWEb5batf2N4hnY5+DMfEA7Kpxe7Vvi8iFYpcnziUjcgHbEzGyhhA8hc28nWK
+	NmbZfgTJieVdIcnY8OmFLzKJ82jVfGZAevYLCk/Loy7n8eZ4fN/K2Kt/uSANpLGGmatG
+	Glg969Vnu6MjXUXDH5VPQOqw7v0FlJcr/kMw+GSTrbpwwCFVLZ6hG9KzQt8iwf9SQ6bk
+	185g==
+X-Gm-Message-State: APjAAAURHJbj9z0+UjQ8cJtziQKGI0MDy1I2n0r0Gp1LJ8KrhV0CQtkX
+	CHwIanYSqVyt/fKzmeghWRlZOs2Mu/4=
+X-Google-Smtp-Source: APXvYqzbCtRflOZI/OHlpB1icXjBvXwE4j/vDo3lpheLr9BT/LpI+XFTUUaHyAU4HOn3EYda+jWPWg==
+X-Received: by 2002:a63:d343:: with SMTP id u3mr5238596pgi.285.1556818169446; 
+	Thu, 02 May 2019 10:29:29 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:c33:7403:feaf:ea56:abf7?
+	([2601:202:4180:c33:7403:feaf:ea56:abf7])
+	by smtp.gmail.com with ESMTPSA id
+	j22sm30502235pfi.139.2019.05.02.10.29.27
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 02 May 2019 10:29:28 -0700 (PDT)
+To: "Searles, Dan" <Dan.Searles@garmin.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <5122f19558d1476b894fb666ddf6e615@garmin.com>
+From: akuster <akuster@mvista.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
+	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
+	8CS2NxU=
+Message-ID: <8b358cbb-cc77-853b-e7eb-33d52ec6a306@mvista.com>
+Date: Thu, 2 May 2019 10:29:26 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <CAA=hcWS8L-dByznaDUALrZ2_Qt_Q0mXJ6uuGoEyQ=EoC2HiHUA@mail.gmail.com>
-In-Reply-To: <CAA=hcWS8L-dByznaDUALrZ2_Qt_Q0mXJ6uuGoEyQ=EoC2HiHUA@mail.gmail.com>
-From: Timothy Froehlich <tfroehlich@archsys.io>
-Date: Thu, 2 May 2019 10:28:10 -0700
-Message-ID: <CAHSUxjR=gitPU=663Df+3=wZ2gqU1vDbt1viKmLCrA7Q9MWxUA@mail.gmail.com>
-To: JH <jupiter.hce@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: System service
+In-Reply-To: <5122f19558d1476b894fb666ddf6e615@garmin.com>
+Subject: Re: mailman not found
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,198 +121,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 May 2019 17:28:22 -0000
-Content-Type: multipart/alternative; boundary="000000000000e1bb240587eaf5d3"
+X-List-Received-Date: Thu, 02 May 2019 17:29:32 -0000
+Content-Type: multipart/alternative;
+	boundary="------------2B85D366E973505FA435E2C4"
+Content-Language: en-US
 
---000000000000e1bb240587eaf5d3
-Content-Type: text/plain; charset="UTF-8"
+--------------2B85D366E973505FA435E2C4
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-Looks like it's dropping the service in ${sysconfdir}/init.d which resolves
-to /etc/init.d. I'm not sure that systemd won't look into init.d for
-services. The standard place to put them is ${D}/${systemd_system_unitdir},
-which resolves to /lib/systemd/system.
 
-Also, check the "SYSTEMD_AUTO_ENABLE_pn-ofono" variable for that recipe.
-The systemd class sets it to "enable" by default, but something else could
-be overriding it and setting it to "disable".  Alternatively, confirm that
-the service isn't actually starting up and failing. It may be that you're
-restarting it once the system is fully booted and everything ofono needs is
-now ready.
 
-On Thu, May 2, 2019 at 7:55 AM JH <jupiter.hce@gmail.com> wrote:
+On 5/2/19 5:43 AM, Searles, Dan wrote:
+>
+> I got this response to my recent email:
+>
+>  
+>
+> Your message to mailman@yoctoproject.org couldn't be delivered.
+>
 
-> Hi,
+What mailing list did you send it to originally ?
+
+- armin
 >
-> The official ofono.inc recipe defines SYSTEMD_SERVICE_${PN} =
-> "ofono.service", but when I built the image, the system service does
-> not start ofono daemon automatically, I have to run the ofono daemon
-> manually. What I could be missing here? Here is the ofono recipes,
-> sorry if I need to ask ofono mailing list.
+> mailman wasn't found at yoctoproject.org.
 >
-> $ cat ofono.inc
-> HOMEPAGE = "http://www.ofono.org"
-> SUMMARY  = "open source telephony"
-> DESCRIPTION = "oFono is a stack for mobile telephony devices on Linux.
-> oFono supports speaking to telephony devices through specific drivers,
-> or with generic AT commands."
-> LICENSE  = "GPLv2"
-> LIC_FILES_CHKSUM = "file://COPYING;md5=eb723b61539feef013de476e68b5c50a \
+>  
 >
->
-> file://src/ofono.h;beginline=1;endline=20;md5=3ce17d5978ef3445def265b98899c2ee"
->
-> inherit autotools pkgconfig update-rc.d systemd bluetooth
-> gobject-introspection-data
->
-> DEPENDS  = "dbus glib-2.0 udev mobile-broadband-provider-info"
->
-> INITSCRIPT_NAME = "ofono"
-> INITSCRIPT_PARAMS = "defaults 22"
->
-> PACKAGECONFIG ??= "\
->     ${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)} \
->     ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', 'bluez', '', d)} \
->     "
-> PACKAGECONFIG[systemd] =
-> "--with-systemdunitdir=${systemd_unitdir}/system/,--with-systemdunitdir="
-> PACKAGECONFIG[bluez] = "--enable-bluetooth, --disable-bluetooth, ${BLUEZ}"
->
-> EXTRA_OECONF += "--enable-test"
->
-> SYSTEMD_SERVICE_${PN} = "ofono.service"
->
-> do_install_append() {
->   install -d ${D}${sysconfdir}/init.d/
->   install -m 0755 ${WORKDIR}/ofono ${D}${sysconfdir}/init.d/ofono
-> }
->
-> PACKAGES =+ "${PN}-tests"
->
-> RDEPENDS_${PN} += "dbus"
-> RRECOMMENDS_${PN} += "kernel-module-tun mobile-broadband-provider-info"
->
-> FILES_${PN} += "${systemd_unitdir}"
-> FILES_${PN}-tests = "${libdir}/${BPN}/test"
-> RDEPENDS_${PN}-tests = "python3 python3-dbus"
-> RDEPENDS_${PN}-tests += "${@bb.utils.contains('GI_DATA_ENABLED',
-> 'True', 'python3-pygobject', '', d)}"
->
-> Thank you.
->
-> - jupiter
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 >
 
 
--- 
-Tim Froehlich
-Embedded Linux Engineer
-tfroehlich@archsys.io
-215-218-8955
+--------------2B85D366E973505FA435E2C4
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
---000000000000e1bb240587eaf5d3
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <br>
+    <br>
+    <div class="moz-cite-prefix">On 5/2/19 5:43 AM, Searles, Dan wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:5122f19558d1476b894fb666ddf6e615@garmin.com">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+.MsoPapDefault
+	{mso-style-type:export-only;
+	margin-left:.25in;
+	text-indent:-.25in;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal">I got this response to my recent email:<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">Your message to <a class="moz-txt-link-abbreviated" href="mailto:mailman@yoctoproject.org">mailman@yoctoproject.org</a>
+          couldn't be delivered.</p>
+      </div>
+    </blockquote>
+    <br>
+    What mailing list did you send it to originally ?<br>
+    <br>
+    - armin<br>
+    <blockquote type="cite"
+      cite="mid:5122f19558d1476b894fb666ddf6e615@garmin.com">
+      <div class="WordSection1">
+        <p class="MsoNormal"><o:p></o:p></p>
+        <p class="MsoNormal"><o:p></o:p></p>
+        <p class="MsoNormal">mailman wasn't found at yoctoproject.org.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div>Looks like it&#39;s dropping the ser=
-vice in ${sysconfdir}/init.d which resolves to /etc/init.d. I&#39;m not sur=
-e that systemd won&#39;t look into init.d for services. The standard place =
-to put them is=C2=A0${D}/${systemd_system_unitdir}, which resolves to /lib/=
-systemd/system.=C2=A0</div><div><br></div><div dir=3D"ltr">Also, check the =
-&quot;SYSTEMD_AUTO_ENABLE_pn-ofono&quot; variable for that recipe. The syst=
-emd class sets it to &quot;enable&quot; by default, but something else coul=
-d be overriding it and setting it to &quot;disable&quot;.=C2=A0 Alternative=
-ly, confirm that the service isn&#39;t actually starting up and failing. It=
- may be that you&#39;re restarting it once the system is fully booted and e=
-verything ofono needs is now ready.</div></div></div><br><div class=3D"gmai=
-l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 2, 2019 at 7:55 =
-AM JH &lt;<a href=3D"mailto:jupiter.hce@gmail.com">jupiter.hce@gmail.com</a=
->&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi,=
-<br>
-<br>
-The official ofono.inc recipe defines SYSTEMD_SERVICE_${PN} =3D<br>
-&quot;ofono.service&quot;, but when I built the image, the system service d=
-oes<br>
-not start ofono daemon automatically, I have to run the ofono daemon<br>
-manually. What I could be missing here? Here is the ofono recipes,<br>
-sorry if I need to ask ofono mailing list.<br>
-<br>
-$ cat ofono.inc<br>
-HOMEPAGE =3D &quot;<a href=3D"http://www.ofono.org" rel=3D"noreferrer" targ=
-et=3D"_blank">http://www.ofono.org</a>&quot;<br>
-SUMMARY=C2=A0 =3D &quot;open source telephony&quot;<br>
-DESCRIPTION =3D &quot;oFono is a stack for mobile telephony devices on Linu=
-x.<br>
-oFono supports speaking to telephony devices through specific drivers,<br>
-or with generic AT commands.&quot;<br>
-LICENSE=C2=A0 =3D &quot;GPLv2&quot;<br>
-LIC_FILES_CHKSUM =3D &quot;file://COPYING;md5=3Deb723b61539feef013de476e68b=
-5c50a \<br>
-<br>
-file://src/ofono.h;beginline=3D1;endline=3D20;md5=3D3ce17d5978ef3445def265b=
-98899c2ee&quot;<br>
-<br>
-inherit autotools pkgconfig update-rc.d systemd bluetooth<br>
-gobject-introspection-data<br>
-<br>
-DEPENDS=C2=A0 =3D &quot;dbus glib-2.0 udev mobile-broadband-provider-info&q=
-uot;<br>
-<br>
-INITSCRIPT_NAME =3D &quot;ofono&quot;<br>
-INITSCRIPT_PARAMS =3D &quot;defaults 22&quot;<br>
-<br>
-PACKAGECONFIG ??=3D &quot;\<br>
-=C2=A0 =C2=A0 ${@bb.utils.filter(&#39;DISTRO_FEATURES&#39;, &#39;systemd&#3=
-9;, d)} \<br>
-=C2=A0 =C2=A0 ${@bb.utils.contains(&#39;DISTRO_FEATURES&#39;, &#39;bluetoot=
-h&#39;, &#39;bluez&#39;, &#39;&#39;, d)} \<br>
-=C2=A0 =C2=A0 &quot;<br>
-PACKAGECONFIG[systemd] =3D<br>
-&quot;--with-systemdunitdir=3D${systemd_unitdir}/system/,--with-systemdunit=
-dir=3D&quot;<br>
-PACKAGECONFIG[bluez] =3D &quot;--enable-bluetooth, --disable-bluetooth, ${B=
-LUEZ}&quot;<br>
-<br>
-EXTRA_OECONF +=3D &quot;--enable-test&quot;<br>
-<br>
-SYSTEMD_SERVICE_${PN} =3D &quot;ofono.service&quot;<br>
-<br>
-do_install_append() {<br>
-=C2=A0 install -d ${D}${sysconfdir}/init.d/<br>
-=C2=A0 install -m 0755 ${WORKDIR}/ofono ${D}${sysconfdir}/init.d/ofono<br>
-}<br>
-<br>
-PACKAGES =3D+ &quot;${PN}-tests&quot;<br>
-<br>
-RDEPENDS_${PN} +=3D &quot;dbus&quot;<br>
-RRECOMMENDS_${PN} +=3D &quot;kernel-module-tun mobile-broadband-provider-in=
-fo&quot;<br>
-<br>
-FILES_${PN} +=3D &quot;${systemd_unitdir}&quot;<br>
-FILES_${PN}-tests =3D &quot;${libdir}/${BPN}/test&quot;<br>
-RDEPENDS_${PN}-tests =3D &quot;python3 python3-dbus&quot;<br>
-RDEPENDS_${PN}-tests +=3D &quot;${@bb.utils.contains(&#39;GI_DATA_ENABLED&#=
-39;,<br>
-&#39;True&#39;, &#39;python3-pygobject&#39;, &#39;&#39;, d)}&quot;<br>
-<br>
-Thank you.<br>
-<br>
-- jupiter<br>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr">Tim Froehlich<div>Embedded Linu=
-x Engineer</div><div><a href=3D"mailto:tfroehlich@archsys.io" target=3D"_bl=
-ank">tfroehlich@archsys.io</a></div><div>215-218-8955</div></div></div>
-
---000000000000e1bb240587eaf5d3--
+--------------2B85D366E973505FA435E2C4--
