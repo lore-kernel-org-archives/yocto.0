@@ -1,74 +1,47 @@
-Return-Path: <rudolf.streif@ibeeto.com>
+Return-Path: <simon.zeni@posteo.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 70FEAE00D3F; Thu,  2 May 2019 14:45:03 -0700 (PDT)
+	id F0495E00D3F; Thu,  2 May 2019 15:14:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.179 listed in list.dnswl.org]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [185.67.36.65 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com
-	[209.85.210.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB917E00C37
-	for <yocto@yoctoproject.org>; Thu,  2 May 2019 14:45:02 -0700 (PDT)
-Received: by mail-pf1-f179.google.com with SMTP id y13so1768773pfm.11
-	for <yocto@yoctoproject.org>; Thu, 02 May 2019 14:45:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
-	h=subject:to:cc:references:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-transfer-encoding:content-language;
-	bh=fu+qXAo5k5K8Oar5lqMYFzPJncJYJx57Jl0gw231xow=;
-	b=XKJKuJzj7rah9d81CKqGPvfdfRmyjQL/hnYuU0tBd8TnEfNAy+9BK6mP62tHMgu2jg
-	76q/HyI3AkRSildbh7oi1y19b8qwWKbSILKwTStmHzrlAmQOF+tfAXQlH39U3JAhEVMY
-	Gz2/BMdwffjY8py2SwLFouTH6Pu8apOgFL3RliQIn+2lQeRnae4n5aDFUev+U/GeLR3g
-	EL8jWXsmOMYrfyqHDgHcpFBTkLhrRDyjoHJoTxOtJcyTPa0CwGRB3h8uRQU459AdH5xe
-	S0HT4amrTsQfAUh5n+XMzpY8wsSeLDScvwWyMasNfUcbwr4e3qb8Vrch7HaSUqesFaMb
-	oTHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=fu+qXAo5k5K8Oar5lqMYFzPJncJYJx57Jl0gw231xow=;
-	b=Ar9DMSA+5M8B+T8Apm0OPC5XtL0UYGSMx6VsVC6yKlu5XdIz/e05d40UcBhFA4fzpG
-	X76M2Pq4W8hheZQoAdSQJDLi6NixcIwO7OW4yBT4gJQ45qvGcTXg2/lxSuuNdWK2TY4q
-	TWx92x7dzyaLTSDfoRHQ44JJlM4UBxvgzCu1PIuKayNX+vPWEwxNVcLJVzEHPMaHpdWQ
-	mH0lgeQl6tG+aA7zi/0cZIwlhaDgaoXznP4W7ze7kP8HB2lbhmzfxiFmxdhQfuDkhEx0
-	Iq4bC2md5wnnMPqtah30T0EsB8GxSKLj30uZRCCDGEBDGi6nv11GODXO5GOktK1DNgYI
-	4Yyg==
-X-Gm-Message-State: APjAAAX6CqZB9X7mWW07eNKILr5X9lzMY+y/SobN/Fw6wrhzsnG/zMGI
-	Jydq5NoYZgnGEWYlUdNbGsQbZb/hVQw=
-X-Google-Smtp-Source: APXvYqxovGsY8twOV2fCPJKJdSAl8mBCpIi4URm8vcjBee2xsy7uM4UlW1pgl8Jw3dsHSZ4nm+Q8cw==
-X-Received: by 2002:a63:4721:: with SMTP id u33mr6277648pga.199.1556833501432; 
-	Thu, 02 May 2019 14:45:01 -0700 (PDT)
-Received: from rjs-zotac.ibeeto.com (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
-	by smtp.gmail.com with ESMTPSA id
-	q80sm193427pfa.66.2019.05.02.14.44.59
-	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Thu, 02 May 2019 14:45:00 -0700 (PDT)
-To: "Volosincu, Andreea S" <andreea.volosincu@windriver.com>,
-	Nicolas Dechesne <nicolas.dechesne@linaro.org>
-References: <94d26c09-1eea-ba34-67a7-f2d233edbe7b@ibeeto.com>
-	<CAP71WjzboC4Vv26+a-4QkC-uKmyTACa3piPEwicm_xBSFpavEQ@mail.gmail.com>
-	<A084970538D2234B96D99D06FA9D974FC378B045@ALA-MBD.corp.ad.wrs.com>
-	<6a527b20-d69c-8285-7fc3-e4b130a94a5e@ibeeto.com>
-	<A084970538D2234B96D99D06FA9D974FC378B0BC@ALA-MBD.corp.ad.wrs.com>
-From: Rudolf J Streif <rudolf.streif@ibeeto.com>
-Message-ID: <bc2eca6f-53ec-0b94-f817-b9c437fa5761@ibeeto.com>
-Date: Thu, 2 May 2019 14:44:59 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.5.1
+Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A27C6E00754
+	for <yocto@yoctoproject.org>; Thu,  2 May 2019 15:14:20 -0700 (PDT)
+Received: from submission (posteo.de [89.146.220.130]) 
+	by mout01.posteo.de (Postfix) with ESMTPS id AD64716005F
+	for <yocto@yoctoproject.org>; Fri,  3 May 2019 00:14:18 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
+	t=1556835258; bh=WISPqx/krdbrLNgq+8hnYoYJeJS/LbIYzyZwxFoqiDE=;
+	h=Date:From:To:Subject:From;
+	b=gQVY2ue9iLnXTbQ8jLbYP256p0hhWF8JL4ZvRrcwWzoviaYb4scf10muWLxEL0rS1
+	qiUapLfK18JJnd2/5cnimksA8JiFMCD1khqGs3+EXrvF6gAzbFJib8Dv4MhGf2Tr1p
+	z/abY0rlsqNvr8ubZITdg6VZIn7mJZeTylqYxP0aHya8JnoAG/rc3h4PAVcQBrarKX
+	pa7gF7z7e1rk5ab/5dMef4xhsOk4K4YtgEQC4E/Ka8KkRFJxnV7VWSX3iY1y//DHi4
+	cPvQqMcIyBI+yndXD2c9y8q64KL5wuH00P82Zz5eFk4Z/PhEZh8e67qVZJ9ulZlS25
+	5U8vPV0rSSOTQ==
+Received: from customer (localhost [127.0.0.1])
+	by submission (posteo.de) with ESMTPSA id 44w8gZ2Vxxz6tm7
+	for <yocto@yoctoproject.org>; Fri,  3 May 2019 00:14:18 +0200 (CEST)
 MIME-Version: 1.0
-In-Reply-To: <A084970538D2234B96D99D06FA9D974FC378B0BC@ALA-MBD.corp.ad.wrs.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Yocto Project @ ELC NA 2019
+Date: Fri, 03 May 2019 00:14:18 +0200
+From: simon.zeni@posteo.net
+To: Yocto <yocto@yoctoproject.org>
+Message-ID: <c84b72da1abc1ea12f9e5e86d4d08758@posteo.net>
+X-Sender: simon.zeni@posteo.net
+User-Agent: Posteo Webmail
+Subject: Dependencies with third party binaries
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,108 +53,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 May 2019 21:45:03 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Thu, 02 May 2019 22:14:22 -0000
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Language: en-US
 
-Hi Andrea,
+Hi,
 
-Great. I can bring some wooden blocks to prop up the rear-end. People 
-could sit in it and spin the wheels.
+I'm currently working on repackaging the 2016 Intel compiler and I am 
+stuck at the dependency resolution.
 
-:rjs
+I am basing my recipe on the AUR PKGBUILD [1], which extracts the RPMs 
+from the parallel-studio-xe [2] archive and extracts the content of the 
+RPMs to get the binaries. I already have the RPMs extracted from the 
+tarball and stored in a git repo. Not the ideal solution, but good 
+enough for now.
 
-On 5/2/19 2:39 PM, Volosincu, Andreea S wrote:
-> Hi Rudi,
->
-> That's awesome! I will check with LF events to see if there are any issues with showing that or restrictions with how people engage with it during the show.
-> Definitely in favor of showing the whole gokart.
->
-> Thanks!
-> Andreea
->
-> -----Original Message-----
-> From: Rudolf J Streif [mailto:rudolf.streif@ibeeto.com]
-> Sent: Thursday, May 2, 2019 2:36 PM
-> To: Volosincu, Andreea S <andreea.volosincu@windriver.com>; Nicolas Dechesne <nicolas.dechesne@linaro.org>
-> Cc: Yocto list discussion <yocto@yoctoproject.org>
-> Subject: Re: [yocto] Yocto Project @ ELC NA 2019
->
-> Hi Andrea,
->
-> I was intending to bring the whole gokart. It's more fun to see the speedometer go up when you push down on the pedal and the regen to kick in when letting go etc. Everybody has seen hundreds of instrument cluster demos (at least when you work for the automotive industry). It might be a crowd catcher too (at least that's what I figured when I was at CES this year; a booth with a vehicle had many spectators :).
->
-> Please see early picture (without cluster) attached.
->
-> :rjs
->
-> On 5/2/19 2:17 PM, Volosincu, Andreea S wrote:
->> Hi Rudi,
->>
->> That sounds super interesting. We do have a 6'x6' exhibit booth on the show floor, and a DevDay on Tuesday, August 20.
->>
->> Are you planning to show just the instrument cluster, or the whole gokart? If the gokart, I would just need to check with LF and see if we are allowed to have that on the show floor. It's certainly a new thing we haven't tried or had before.
->>
->> Thanks!
->> Andreea
->>
->> -----Original Message-----
->> From: Nicolas Dechesne [mailto:nicolas.dechesne@linaro.org]
->> Sent: Thursday, May 2, 2019 1:17 PM
->> To: Rudolf J Streif <rudolf.streif@ibeeto.com>; Volosincu, Andreea S
->> <andreea.volosincu@windriver.com>
->> Cc: Yocto list discussion <yocto@yoctoproject.org>
->> Subject: Re: [yocto] Yocto Project @ ELC NA 2019
->>
->> hi Rudolf,
->>
->> +Andreea (Yocto Advocacy)
->>
->> we are definitely planning to be at ELC, with a similar setup as with past ELC : booth, demo, DevDay and BoF, well, at least !
->>
->> cheers
->> nico
->>
->> On Thu, May 2, 2019 at 9:31 PM Rudolf J Streif <rudolf.streif@ibeeto.com> wrote:
->>> I apologize if I missed any communication on this mailing list but
->>> what are the plans for a presence of YP at ELC NA in August in San
->>> Diego this year?
->>>
->>> Unfortunately, I missed the deadline for submitting a speaking
->>> proposal ("Yocto Project DevOps with Gitlab, Docker and AWS") for ELC.
->>> However, if YP is planning on a presence at ELC I'd be happy to
->>> support it as I, conveniently, live in San Diego. If there is a YP
->>> exhibition I might be able to bring my little hobby project, an
->>> electric gokart with YP-based instrument cluster (it's a full-size
->>> kart with 13 kW AC motor and a LiFePo battery pack producing up to 25
->>> kW peak power output going up to
->>> 45 mph (electronically limited)).
->>>
->>> Cheers,
->>> Rudi
->>>
->>> --
->>> -----
->>> Rudolf J Streif
->>> CEO/CTO ibeeto
->>> +1.855.442.3396 x700
->>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
-> --
-> -----
-> Rudolf J Streif
-> CEO/CTO ibeeto
-> +1.855.442.3396 x700
->
--- 
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3396 x700
+The `bitbake` command for the recipe is passing after disabling a couple 
+of QA errors (too much for my taste), but the recipe for the 
+`core-image` fails at the dependency
+resolution. From what I understand, all of the binaries inside of the 
+`FILES_${PN}` are checked, and one (or more) fails at the dependency 
+check with the following message :
 
+```
+Error:
+  Problem: conflicting requests
+   - nothing provides ld-linux-k1om.so.2()(64bit) needed by 
+icc-2016+1-r0.corei7_64
+```
+
+This shared library seems to be Intel related but I cannot find it in 
+all of the RPMs contained in the initial tarball. It is also not needed 
+to run the compiler, I was able to execute the `icc` and `icpc` (the c++ 
+compiler) binaries from the devshell.
+
+I know this is wrong and against every yocto principles, but is there a 
+way to skip the dependenciey resolution for a specific recipe ? Or is 
+there a recipe made by Intel that I missed ?
+I'm also open to any suggestions on how to tackle this task.
+
+Here's my recipe so far :
+
+```
+LICENSE = "CLOSED"
+LIC_FILES_CHKSUM = ""
+
+DEPENDS += "libarchive-native"
+
+SRC_URI = # omitted
+
+PV = "2016-1"
+SRCREV = "${AUTOREV}"
+
+S = "${WORKDIR}/git"
+
+extract_rpms() {
+for rpm_file in ${S}/$1; do
+	bsdtar -xf ${rpm_file} -C $2
+done
+}
+
+# Skip the unwanted steps
+do_configure[noexec] = "1"
+do_compile[noexec] = "1"
+
+do_install () {
+extract_rpms 'intel-icc*.rpm' ${D}
+extract_rpms 'intel-comp*.rpm' ${D}
+extract_rpms 'intel-ccomp*.rpm' ${D}
+extract_rpms 'intel-openmp*.rpm' ${D}
+}
+
+do_package_qa[noexec] = "1"
+
+ALLOW_EMPTY_${PN} = "1"
+
+FILES_SOLIBSDEV = ""
+FILES_${PN} += "/opt/intel/*"
+
+INSANE_SKIP_${PN} += "already-stripped ldflags arch staticdev file-rdeps 
+build-deps"
+
+INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+INHIBIT_PACKAGE_STRIP = "1"
+
+```
+
+Thanks,
+
+Simon Zeni
+
+[1]: 
+https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=intel-parallel-studio-xe&id=d4e2871a3bf698c3a5f58ee2201df53fe7f5dce7
+[2]: 
+http://registrationcenter-download.intel.com/akdlm/irc_nas/8365/parallel_studio_xe_2016_update1.tgz
 
