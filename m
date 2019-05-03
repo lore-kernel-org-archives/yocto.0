@@ -1,67 +1,66 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 29604E0091A; Fri,  3 May 2019 09:27:10 -0700 (PDT)
+	id 7EE41E00BAA; Fri,  3 May 2019 09:46:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.193 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*      [199.212.143.9 listed in list.dnswl.org]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com
-	[209.85.214.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76CDFE0091A
-	for <yocto@yoctoproject.org>; Fri,  3 May 2019 09:27:09 -0700 (PDT)
-Received: by mail-pl1-f193.google.com with SMTP id bi2so2913292plb.13
-	for <yocto@yoctoproject.org>; Fri, 03 May 2019 09:27:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=Bg3T8D7gpqc+L3Gbt5k2vcDWpjeEmtKozUpyc29NA+U=;
-	b=BEe3i4wfYSD19G/IKQBMkrxejggpjDMs3AYtGTPBV6DwP+ZWQKDJbxw0VG3ZGuYUEU
-	ZmrsxQNyGCb/yiu9KtRRwltqM3Oda1os4l0jElxEIN7Ap5pzbhKebl4s94zIjkQUDqCl
-	2N3QcRgEF1HLee0UaZWNe70TVC4rcd7js3h6CUbgmJ51svHSaYpVEqNcocOwBnRveDdR
-	4BYuKZ2b9JZZlBAwvZQYALwcfT3QdDbLMbZgvk8/kEM9aF9pof/AcXsdGyl+1XCb1qfE
-	K/X7ZvA7xlPIzuxMsLGV8Hr5KWaCzYkL4VqtxRGyhHMzJdlcol4WI0ch3O5mSG/myScN
-	ZDEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=Bg3T8D7gpqc+L3Gbt5k2vcDWpjeEmtKozUpyc29NA+U=;
-	b=nbBxmKw65/X8IESOu2HcyqemLvELzxdN5g2SiHcnrl1TAj0Ac2nZ0UcEGb4XkrraCT
-	wF4eDpzPFd6hXY+nmu7Kne3Kf91t4tVJMDtppQUqBNyz+v1d4JPTjAJSHjULuSKaFjrd
-	WM0o5tqGyBwdnKE6Wa4z09hW8YL3aRbUxMNhJr116JK8y8nM0QEgEiWbUTX0hZpOWE1k
-	E4GJRJWKE/qFi+WyeFgOc3JYmWmclLxjYzd0zwr/UPUDTZlykxToPGuvNGqIFm2+AVIl
-	BHJMle4FA7gPa/Ut4efMugCSYuKLApLW5uN6LeSNOqPAg4haBRCTLfNIFiOAZkGaAg+j
-	Rg8Q==
-X-Gm-Message-State: APjAAAXsj68Szx/5MdF59JkcVBawgCWkyNxdJAHmzjltXU8JQqlz0qv5
-	mzoLRH4aMwScea5RGQmLbZBaPiPr
-X-Google-Smtp-Source: APXvYqylQ9qwXbU8LFREHNoK056FeHaTWAlY22Mrt7P0s5jP8wkJ03/xBM7Fw1O2NDEUUAKngomR1w==
-X-Received: by 2002:a17:902:9a92:: with SMTP id
-	w18mr11685116plp.88.1556900828336; 
-	Fri, 03 May 2019 09:27:08 -0700 (PDT)
-Received: from akuster-ThinkPad-T460s.mvista.com
-	([2601:202:4180:c33:b9b3:5f13:7709:822d])
-	by smtp.gmail.com with ESMTPSA id
-	g128sm3680369pfb.131.2019.05.03.09.27.07 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 03 May 2019 09:27:07 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Fri,  3 May 2019 09:27:06 -0700
-Message-Id: <1556900826-3187-1-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 2.7.4
-Subject: [meta-cgl][PATCH] cfg files: update do to 4.19 changes
+	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
+Received: from somersetfoodbank.org (cpanel4.indieserve.net [199.212.143.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB8A9E00950
+	for <yocto@yoctoproject.org>; Fri,  3 May 2019 09:46:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=crashcourse.ca; s=default; h=Content-Type:MIME-Version:References:
+	Message-ID:In-Reply-To:Subject:cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=hOocGqSC74FLHT2nQGnl/KiPWapZtoZ6qDc2dbMB+tQ=;
+	b=vP8nAS0TZEmY7rgwL13dWuV8J
+	RI6MDHaIhUKWWwtnvGmyuLWTAdM3b+5K5AIl1T4VdWceMpj65LxDGkpu2GKVxyShpD3Ba8xKCt8db
+	zOi3WC6RDzP+IxJnmeTax3EoquoS3f8Mz3LnbWvN3IEY44unUGbNY+FHMypG+Y8YUVv8XgJrCkAFe
+	MybL/ms0l0YOstOhlhArI8Aofbypj+lmxmDVV56YJAuhmZMeS0HFdweM4Oda2VBvjBV5fgwUcyTsh
+	dcvxiwj/M7S3sjLmKuQHLVZ3Vy0y8cnJoYtl6RDWlhGLfjCgER5V0fSBDMhdyzOES7mtT/J5CzxZg
+	4p1Ob7dvQ==;
+Received: from [72.142.126.219] (port=40644 helo=localhost.localdomain)
+	by cpanel4.indieserve.net with esmtpsa
+	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.91)
+	(envelope-from <rpjday@crashcourse.ca>)
+	id 1hMbJx-0004RK-6r; Fri, 03 May 2019 12:46:04 -0400
+Date: Fri, 3 May 2019 12:46:00 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+In-Reply-To: <6caac371fa9de14a173320c36dc5405f68aae199.camel@linuxfoundation.org>
+Message-ID: <alpine.LFD.2.21.1905031244280.2859@localhost.localdomain>
+References: <alpine.LFD.2.21.1904250752050.457@localhost.localdomain>
+	<6caac371fa9de14a173320c36dc5405f68aae199.camel@linuxfoundation.org>
+User-Agent: Alpine 2.21 (LFD 202 2017-01-01)
+MIME-Version: 1.0
+X-OutGoing-Spam-Status: No, score=-0.2
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel4.indieserve.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel4.indieserve.net: authenticated_id:
+	rpjday+crashcourse.ca/only user confirmed/virtual account not
+	confirmed
+X-Authenticated-Sender: cpanel4.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: ASSUME_PROVIDED, cmake-native and why cmake is subsequently not found?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,85 +72,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 May 2019 16:27:10 -0000
+X-List-Received-Date: Fri, 03 May 2019 16:46:07 -0000
+Content-Type: text/plain; charset=US-ASCII
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- meta-cgl-common/recipes-kernel/linux/files/cfg/00004-kgdb.cfg           | 1 -
- meta-cgl-common/recipes-kernel/linux/files/cfg/00005-quota.cfg          | 2 --
- meta-cgl-common/recipes-kernel/linux/files/cfg/00009-filesystem-acl.cfg | 1 -
- meta-cgl-common/recipes-kernel/linux/files/cfg/00014-selinux.cfg        | 2 --
- meta-cgl-common/recipes-kernel/linux/files/cfg/00018-ipsec.cfg          | 1 -
- meta-cgl-common/recipes-kernel/linux/files/cfg/00026-lm-sensors.cfg     | 1 -
- 6 files changed, 8 deletions(-)
+On Thu, 25 Apr 2019, Richard Purdie wrote:
 
-diff --git a/meta-cgl-common/recipes-kernel/linux/files/cfg/00004-kgdb.cfg b/meta-cgl-common/recipes-kernel/linux/files/cfg/00004-kgdb.cfg
-index f23cfe3..ebaf5f3 100644
---- a/meta-cgl-common/recipes-kernel/linux/files/cfg/00004-kgdb.cfg
-+++ b/meta-cgl-common/recipes-kernel/linux/files/cfg/00004-kgdb.cfg
-@@ -1,6 +1,5 @@
- #depends
- CONFIG_DEBUG_KERNEL=y
--CONFIG_EXPERIMENTAL=y
- 
- #configs
- CONFIG_KGDB=y
-diff --git a/meta-cgl-common/recipes-kernel/linux/files/cfg/00005-quota.cfg b/meta-cgl-common/recipes-kernel/linux/files/cfg/00005-quota.cfg
-index 6d212ca..6839c29 100644
---- a/meta-cgl-common/recipes-kernel/linux/files/cfg/00005-quota.cfg
-+++ b/meta-cgl-common/recipes-kernel/linux/files/cfg/00005-quota.cfg
-@@ -2,5 +2,3 @@ CONFIG_QUOTA=y
- CONFIG_QUOTA_DEBUG=y
- CONFIG_QUOTA_NETLINK_INTERFACE=y
- CONFIG_QUOTA_TREE=y
--CONFIG_QUOTA_CTL=y
--CONFIG_QUOTA_CTL_COMPAT=y
-diff --git a/meta-cgl-common/recipes-kernel/linux/files/cfg/00009-filesystem-acl.cfg b/meta-cgl-common/recipes-kernel/linux/files/cfg/00009-filesystem-acl.cfg
-index 7293fe1..4ddfefd 100644
---- a/meta-cgl-common/recipes-kernel/linux/files/cfg/00009-filesystem-acl.cfg
-+++ b/meta-cgl-common/recipes-kernel/linux/files/cfg/00009-filesystem-acl.cfg
-@@ -1,4 +1,3 @@
- CONFIG_EXT4_FS_POSIX_ACL=y
- CONFIG_FS_POSIX_ACL=y
--CONFIG_GENERIC_ACL=y
- CONFIG_TMPFS_POSIX_ACL=y
-diff --git a/meta-cgl-common/recipes-kernel/linux/files/cfg/00014-selinux.cfg b/meta-cgl-common/recipes-kernel/linux/files/cfg/00014-selinux.cfg
-index ce7d61d..1efd63e 100644
---- a/meta-cgl-common/recipes-kernel/linux/files/cfg/00014-selinux.cfg
-+++ b/meta-cgl-common/recipes-kernel/linux/files/cfg/00014-selinux.cfg
-@@ -9,8 +9,6 @@ CONFIG_SECURITY_SELINUX=y
- CONFIG_SECURITY_NETWORK_XFRM=y
- CONFIG_NETWORK_SECMARK=y
- CONFIG_EXT2_FS_XATTR=y
--CONFIG_EXT3_FS_XATTR=y
--CONFIG_EXT4_FS_XATTR=y
- CONFIG_REISERFS_FS_XATTR=y
- CONFIG_JFFS2_FS_XATTR=y
- CONFIG_EXT2_FS_SECURITY=y
-diff --git a/meta-cgl-common/recipes-kernel/linux/files/cfg/00018-ipsec.cfg b/meta-cgl-common/recipes-kernel/linux/files/cfg/00018-ipsec.cfg
-index d6103ad..d1a1d2e 100644
---- a/meta-cgl-common/recipes-kernel/linux/files/cfg/00018-ipsec.cfg
-+++ b/meta-cgl-common/recipes-kernel/linux/files/cfg/00018-ipsec.cfg
-@@ -1,6 +1,5 @@
- CONFIG_NET=y
- CONFIG_NET_KEY=y
--CONFIG_NET_AH=y
- CONFIG_INET_ESP=y
- CONFIG_XFRM_USER=y
- CONFIG_CRYPTO=y
-diff --git a/meta-cgl-common/recipes-kernel/linux/files/cfg/00026-lm-sensors.cfg b/meta-cgl-common/recipes-kernel/linux/files/cfg/00026-lm-sensors.cfg
-index 71c4cad..c588180 100644
---- a/meta-cgl-common/recipes-kernel/linux/files/cfg/00026-lm-sensors.cfg
-+++ b/meta-cgl-common/recipes-kernel/linux/files/cfg/00026-lm-sensors.cfg
-@@ -66,7 +66,6 @@ CONFIG_SENSORS_GL518SM=m
- CONFIG_SENSORS_GL520SM=m
- CONFIG_SENSORS_GPIO_FAN=m
- CONFIG_SENSORS_HIH6130=m
--CONFIG_SENSORS_HTU21=m
- CONFIG_SENSORS_IBMAEM=m
- CONFIG_SENSORS_IBMPEX=m
- CONFIG_SENSORS_JC42=m
+> On Thu, 2019-04-25 at 08:05 -0400, Robert P. J. Day wrote:
+
+> > /home/rpjday/oe/builds/zedboard/tmp/work/x86_64-linux/cmake-
+> > native/3.12.2-r0/build/Bootstrap.cmk/cmake:
+> > /home/rpjday/oe/builds/zedboard/tmp/sysroots-uninative/x86_64-
+> > linux/usr/lib/libstdc++.so.6:
+> > version `GLIBCXX_3.4.26' not found (required by
+> > /home/rpjday/oe/builds/zedboard/tmp/work/x86_64-linux/cmake-
+> > native/3.12.2-r0/build/Bootstrap.cmk/cmake)
+> > > ---------------------------------------------
+> > > Error when bootstrapping CMake:
+> > > Problem while running initial CMake
+> > > ---------------------------------------------
+>
+> This probably means that your system c library is newer than the one
+> in uninative and things aren't working because of that. Either try:
+>
+> http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=5f6156b32c9d17bdb06d67199373433b0e470cc7
+
+  that patch is already in thud branch of poky i'm using ...
+
+> or turning off uninative.
+
+  yes, that seems to have solved things for now:
+
+    INHERIT_remove = "uninative"
+
+moving on to the next head-scratcher ...
+
+rday
+
 -- 
-2.7.4
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                         http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
