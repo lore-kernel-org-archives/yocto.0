@@ -1,66 +1,40 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <andreea.volosincu@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CC6B0E00D08; Fri,  3 May 2019 10:24:00 -0700 (PDT)
+	id F3886E00C1E; Fri,  3 May 2019 11:01:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	https://www.dnswl.org/, no *      trust
-	*      [199.212.143.9 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
-Received: from somersetfoodbank.org (cpanel4.indieserve.net [199.212.143.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49D8DE00C1E
-	for <yocto@yoctoproject.org>; Fri,  3 May 2019 10:24:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=crashcourse.ca; s=default; h=Content-Type:MIME-Version:References:
-	Message-ID:In-Reply-To:Subject:cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=EFatgoIj8LuoXeCqYZy4Z2he3EZlh3sEUUUgzCJd0b4=;
-	b=GSkcgOHyzgc6SQeT55twvs19j
-	4QpDh9n0A2JLW5Xe5c+3+vfLHJ0aC6zrM/ApuGnT1RXj5WoYpnh5Z8MtrXRW1AyZdi9XBrPIMVBQ5
-	sL65hFSkFmyVbO2GX+9dO5xNCYAFBwL/mND4aGXBdlwFMpE06JLpf7+hR3r8NG2l3/zOP00O7lzDj
-	FRHJEo1b8H+/h/3p+UzEjtlqnNQEdwVET3/bvgS+XJDHtHl9J5gzDVniF1wI0hQMqhV8zox8KwOPM
-	jsyW5Yx/CbKgNbUURd9mWoXFuVJ40gzqgEwpHzF7rJEveCvKg3N3LwZb41BOqN9biFqGVFrFPskMY
-	sU3vq6gqQ==;
-Received: from [72.142.126.219] (port=41652 helo=localhost.localdomain)
-	by cpanel4.indieserve.net with esmtpsa
-	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.91)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1hMbuf-0004l3-Cw; Fri, 03 May 2019 13:23:58 -0400
-Date: Fri, 3 May 2019 13:23:55 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: "Westermann, Oliver" <Oliver.Westermann@cognex.com>
-In-Reply-To: <alpine.LFD.2.21.1905031250300.4226@localhost.localdomain>
-Message-ID: <alpine.LFD.2.21.1905031321120.7995@localhost.localdomain>
-References: <BN6PR06MB3138577A7F834F2A120297A286350@BN6PR06MB3138.namprd06.prod.outlook.com>
-	<alpine.LFD.2.21.1905031250300.4226@localhost.localdomain>
-User-Agent: Alpine 2.21 (LFD 202 2017-01-01)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42088E00994;
+	Fri,  3 May 2019 11:01:10 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x43I18wS008753
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 3 May 2019 11:01:08 -0700 (PDT)
+Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.163]) by
+	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.03.0439.000;
+	Fri, 3 May 2019 11:01:07 -0700
+From: "Volosincu, Andreea S" <andreea.volosincu@windriver.com>
+To: "yocto-advocacy@yoctoproject.org" <yocto-advocacy@yoctoproject.org>,
+	"Yocto list discussion" <yocto@yoctoproject.org>
+Thread-Topic: Yocto Project Upcoming Conferences and Developer Days
+Thread-Index: AdUB2gyrV9aTV59tQK+aSs1XKKkcmg==
+Date: Fri, 3 May 2019 18:01:07 +0000
+Message-ID: <A084970538D2234B96D99D06FA9D974FC378C228@ALA-MBD.corp.ad.wrs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [147.11.208.98]
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-0.2
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel4.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel4.indieserve.net: authenticated_id:
-	rpjday+crashcourse.ca/only user confirmed/virtual account not
-	confirmed
-X-Authenticated-Sender: cpanel4.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Defining group of machines
+Subject: Yocto Project Upcoming Conferences and Developer Days
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,72 +46,192 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 May 2019 17:24:00 -0000
-Content-Type: multipart/mixed; boundary="8323328-260825297-1556904238=:7995"
+X-List-Received-Date: Fri, 03 May 2019 18:01:12 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_A084970538D2234B96D99D06FA9D974FC378C228ALAMBDcorpadwrs_"
 
---8323328-260825297-1556904238=:7995
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+--_000_A084970538D2234B96D99D06FA9D974FC378C228ALAMBDcorpadwrs_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 3 May 2019, Robert P. J. Day wrote:
+Greetings,
 
-> On Fri, 3 May 2019, Westermann, Oliver wrote:
+Yocto Project is pleased to announce the plans for the upcoming Embedded Li=
+nux Conferences in NA and Europe.
+
+Here is a snapshot of our schedule:
+
+ELC NA - Wednesday, August 21 - 23, 2019, Hilton San Diego Bayfront, San Di=
+ego, CA
+                   Yocto Project is a sponsor. We'll see you on the show fl=
+oor
+
+ELC NA Dev Day - Tuesday, August 20, 2019 - 8:00AM - 6:00PM
+Set-up: 1 Meeting Room - Classroom Seating ( 60 people)
+Level: Intermediate - Advanced. Participants will receive beginner material=
+ (videos and presentations) as pre-requisites
+Includes: Morning Break, Buffet Lunch, Beer & Wine Reception with light app=
+etizers
+
+ELCE - Monday, October 28 -30, 2019, Lyon Convention Centre, Lyon, France
+              Yocto Project is a sponsor. We'll see you on the show floor
+
+ELCE Yocto Project Summit - Dates & Times:
+Thursday, October 31, 2019 - 8:00AM - 6:00PM
+               November 1, 2019 - 8:00 am - 6:00PM
+Set-up:
+Day 1: 1 Meeting Room - Theater Seating for 100 for Yocto Project talks
+Day 2: 2 Meeting Rooms - Mixed Classroom/Theater seating for 60 & Classroom=
+ seating for 40 (for maintainers and users)
+Includes:
+Morning Break for 2 days
+Buffet Lunch for 2 days
+Beer & Wine Reception with light appetizers for 1 day
+The goal for the second day of the summit is to build and bring the communi=
+ty together. We are interested to hear your opinions and ideas on how that =
+day and those rooms should be used for. Please send your ideas to Andreea V=
+olosincu and Philip Balister.
+
+We will call out an Advocacy meeting in a couple of weeks to go over plans =
+and vote on the ideas for the second day of the summit.
+
+Thanks!
+Andreea
+Yocto Project Advocacy Lead
+
+--_000_A084970538D2234B96D99D06FA9D974FC378C228ALAMBDcorpadwrs_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> > We’ve a product group with different devices, each having their
-> > machine-conf, eg
-> >
-> > Device_a
-> >
-> > Device_a_mini
-> >
-> > Device_b
-> >
-> > Device_b_mini <- Upcoming
-> >
-> > Device_c <- Upcoming
-> >
-> > Since device_a and device_a_mini share a lot of code, for them we
-> > use one of the machine overrides, describing the processor family,
-> > so I use RDEPENDS_${PN}_append_device_a if I just need it for
-> > device_a and RDEPENDS_${PN}_append_am57x for device_a and
-> > device_a_mini.
-> >
-> > Now I’m in the situation that device_c will use the same CPU as
-> > device b, so I need something like a “group” of devices for family
-> > b.
-> >
-> > How can I define a MACHINE_GROUP_device_b_group = “device_b
-> > device_b_mini” so I can do
-> >
-> > RDEPENDS_${PN}_append_device_b_group or
-> > do_install_append_device_b_group()?
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Greetings,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Yocto Project is pleased to announce the plans for t=
+he upcoming Embedded Linux Conferences in NA and Europe.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Here is a snapshot of our schedule:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">ELC NA &#8211; Wednesday, August 21 - 23, 2019, Hilt=
+on San Diego Bayfront, San Diego, CA<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Yocto Project is a spon=
+sor. We&#8217;ll see you on the show floor<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">ELC NA Dev Day &#8211; Tuesday, August 20, 2019 - 8:=
+00AM - 6:00PM<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"text-indent:.5in">Set-up: 1 Meeting Room - =
+Classroom Seating ( 60 people)<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"text-indent:.5in">Level: Intermediate &#821=
+1; Advanced. Participants will receive beginner material (videos and presen=
+tations) as pre-requisites<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"text-indent:.5in">Includes: Morning Break, =
+Buffet Lunch, Beer &amp; Wine Reception with light appetizers<o:p></o:p></p=
 >
->   i know i did this once upon a time using the MACHINEOVERRIDES
-> variable to "insert" a machine family into the sequence of machine
-> definitions. as long as there is (i believe) a strictly hierarchical
-> grouping of machines you want to define, i'm pretty sure
-> MACHINEOVERRIDES is what you want.
->
->   let me see if i can find where i did that once.
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">ELCE &#8211; Monday, October 28 -30, 2019, Lyon Conv=
+ention Centre, Lyon, France<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; Yocto Project is a sponsor. We&#8217;ll see you =
+on the show floor<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">ELCE Yocto Project Summit &#8211; Dates &amp; Times:=
+ <o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"text-indent:.5in">Thursday, October 31, 201=
+9 - 8:00AM - 6:00PM
+<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; November 1, 2019 - 8:00 am - 6:00PM<o:p></=
+o:p></p>
+<p class=3D"MsoNormal" style=3D"text-indent:.5in">Set-up: <o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"text-indent:.5in">Day 1: 1 Meeting Room - T=
+heater Seating for 100 for Yocto Project talks<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"text-indent:.5in">Day 2: 2 Meeting Rooms - =
+Mixed Classroom/Theater seating for 60 &amp; Classroom seating for 40 (for =
+maintainers and users)<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"text-indent:.5in">Includes:<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"text-indent:.5in">Morning Break for 2 days<=
+o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"text-indent:.5in">Buffet Lunch for 2 days<o=
+:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"text-indent:.5in">Beer &amp; Wine Reception=
+ with light appetizers for 1 day<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+<p class=3D"MsoNormal">The goal for the second day of the summit is to buil=
+d and bring the community together. We are interested to hear your opinions=
+ and ideas on how that day and those rooms should be used for. Please send =
+your ideas to Andreea Volosincu and
+ Philip Balister.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">We will call out an Advocacy meeting in a couple of =
+weeks to go over plans and vote on the ideas for the second day of the summ=
+it.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks!<o:p></o:p></p>
+<p class=3D"MsoNormal">Andreea<o:p></o:p></p>
+<p class=3D"MsoNormal">Yocto Project Advocacy Lead<o:p></o:p></p>
+</div>
+</body>
+</html>
 
-  yeah, i'm pretty sure you want MACHINEOVERRIDES:
-
-https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-MACHINEOVERRIDES
-
-which has a nice example of how to invent a new "machine" category
-(qemuall) that subsumes a number of actual qemu machines. is that what
-you were after?
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                         http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
---8323328-260825297-1556904238=:7995--
+--_000_A084970538D2234B96D99D06FA9D974FC378C228ALAMBDcorpadwrs_--
