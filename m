@@ -1,48 +1,47 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7EE41E00BAA; Fri,  3 May 2019 09:46:07 -0700 (PDT)
+	id 8FADAE00BE2; Fri,  3 May 2019 09:53:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
 	DKIM_SIGNED,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	https://www.dnswl.org/, no *      trust
 	*      [199.212.143.9 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
 Received: from somersetfoodbank.org (cpanel4.indieserve.net [199.212.143.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB8A9E00950
-	for <yocto@yoctoproject.org>; Fri,  3 May 2019 09:46:06 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E42AE00AD5
+	for <yocto@yoctoproject.org>; Fri,  3 May 2019 09:53:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
 	d=crashcourse.ca; s=default; h=Content-Type:MIME-Version:References:
 	Message-ID:In-Reply-To:Subject:cc:To:From:Date:Sender:Reply-To:
 	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
 	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
 	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=hOocGqSC74FLHT2nQGnl/KiPWapZtoZ6qDc2dbMB+tQ=;
-	b=vP8nAS0TZEmY7rgwL13dWuV8J
-	RI6MDHaIhUKWWwtnvGmyuLWTAdM3b+5K5AIl1T4VdWceMpj65LxDGkpu2GKVxyShpD3Ba8xKCt8db
-	zOi3WC6RDzP+IxJnmeTax3EoquoS3f8Mz3LnbWvN3IEY44unUGbNY+FHMypG+Y8YUVv8XgJrCkAFe
-	MybL/ms0l0YOstOhlhArI8Aofbypj+lmxmDVV56YJAuhmZMeS0HFdweM4Oda2VBvjBV5fgwUcyTsh
-	dcvxiwj/M7S3sjLmKuQHLVZ3Vy0y8cnJoYtl6RDWlhGLfjCgER5V0fSBDMhdyzOES7mtT/J5CzxZg
-	4p1Ob7dvQ==;
-Received: from [72.142.126.219] (port=40644 helo=localhost.localdomain)
+	bh=644UoAKfUFrubFWdpL1mTaPzuqVcS4D3NFCDInP8pS8=;
+	b=c+4LHwRTSFjmrQqyzGqugZwfH
+	58Qi5tcQrMXDD5PwY8cgRxG/BPhU+CnmMmIpVR0t0enE7okJ79IEgCALr1uwtcroCfS/tpAiw5FrS
+	0XESEn67XQf/GKiG1KxVCSXESVESLD6x0UuwD0C6bJNY2edu+i3isQLixZNQyX6jfegxUS17HVaH0
+	k80CBEmz9NTiXxXvTcC0m6AVlaBGaACRxBhueDOjcn2KX4FkhqieQ7uGSw81RRzolwBdsoSh9EL7q
+	p88FeN2Fgk8kGkfBUu5fiy4f09o/4UbX0hId+UWNNMbG1VijlRWw5HitqMPSQxbcNL2/tpACErHBX
+	ocN9VUq/A==;
+Received: from [72.142.126.219] (port=40794 helo=localhost.localdomain)
 	by cpanel4.indieserve.net with esmtpsa
 	(TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256) (Exim 4.91)
 	(envelope-from <rpjday@crashcourse.ca>)
-	id 1hMbJx-0004RK-6r; Fri, 03 May 2019 12:46:04 -0400
-Date: Fri, 3 May 2019 12:46:00 -0400 (EDT)
+	id 1hMbQp-0006DT-CU; Fri, 03 May 2019 12:53:08 -0400
+Date: Fri, 3 May 2019 12:53:05 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@localhost.localdomain
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-In-Reply-To: <6caac371fa9de14a173320c36dc5405f68aae199.camel@linuxfoundation.org>
-Message-ID: <alpine.LFD.2.21.1905031244280.2859@localhost.localdomain>
-References: <alpine.LFD.2.21.1904250752050.457@localhost.localdomain>
-	<6caac371fa9de14a173320c36dc5405f68aae199.camel@linuxfoundation.org>
+To: "Westermann, Oliver" <Oliver.Westermann@cognex.com>
+In-Reply-To: <BN6PR06MB3138577A7F834F2A120297A286350@BN6PR06MB3138.namprd06.prod.outlook.com>
+Message-ID: <alpine.LFD.2.21.1905031250300.4226@localhost.localdomain>
+References: <BN6PR06MB3138577A7F834F2A120297A286350@BN6PR06MB3138.namprd06.prod.outlook.com>
 User-Agent: Alpine 2.21 (LFD 202 2017-01-01)
 MIME-Version: 1.0
 X-OutGoing-Spam-Status: No, score=-0.2
@@ -59,8 +58,8 @@ X-Authenticated-Sender: cpanel4.indieserve.net: rpjday@crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: ASSUME_PROVIDED, cmake-native and why cmake is subsequently not found?
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Defining group of machines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,39 +71,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 May 2019 16:46:07 -0000
-Content-Type: text/plain; charset=US-ASCII
+X-List-Received-Date: Fri, 03 May 2019 16:53:10 -0000
+Content-Type: multipart/mixed; boundary="8323328-1148760532-1556902388=:4226"
 
-On Thu, 25 Apr 2019, Richard Purdie wrote:
+--8323328-1148760532-1556902388=:4226
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 
-> On Thu, 2019-04-25 at 08:05 -0400, Robert P. J. Day wrote:
+On Fri, 3 May 2019, Westermann, Oliver wrote:
 
-> > /home/rpjday/oe/builds/zedboard/tmp/work/x86_64-linux/cmake-
-> > native/3.12.2-r0/build/Bootstrap.cmk/cmake:
-> > /home/rpjday/oe/builds/zedboard/tmp/sysroots-uninative/x86_64-
-> > linux/usr/lib/libstdc++.so.6:
-> > version `GLIBCXX_3.4.26' not found (required by
-> > /home/rpjday/oe/builds/zedboard/tmp/work/x86_64-linux/cmake-
-> > native/3.12.2-r0/build/Bootstrap.cmk/cmake)
-> > > ---------------------------------------------
-> > > Error when bootstrapping CMake:
-> > > Problem while running initial CMake
-> > > ---------------------------------------------
+> We’ve a product group with different devices, each having their
+> machine-conf, eg
 >
-> This probably means that your system c library is newer than the one
-> in uninative and things aren't working because of that. Either try:
+> Device_a
 >
-> http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=5f6156b32c9d17bdb06d67199373433b0e470cc7
+> Device_a_mini
+>
+> Device_b
+>
+> Device_b_mini <- Upcoming
+>
+> Device_c <- Upcoming
+>
+> Since device_a and device_a_mini share a lot of code, for them we
+> use one of the machine overrides, describing the processor family,
+> so I use RDEPENDS_${PN}_append_device_a if I just need it for
+> device_a and RDEPENDS_${PN}_append_am57x for device_a and
+> device_a_mini.
+>
+> Now I’m in the situation that device_c will use the same CPU as
+> device b, so I need something like a “group” of devices for family
+> b.
+>
+> How can I define a MACHINE_GROUP_device_b_group = “device_b
+> device_b_mini” so I can do
+>
+> RDEPENDS_${PN}_append_device_b_group or
+> do_install_append_device_b_group()?
 
-  that patch is already in thud branch of poky i'm using ...
+  i know i did this once upon a time using the MACHINEOVERRIDES
+variable to "insert" a machine family into the sequence of machine
+definitions. as long as there is (i believe) a strictly hierarchical
+grouping of machines you want to define, i'm pretty sure
+MACHINEOVERRIDES is what you want.
 
-> or turning off uninative.
-
-  yes, that seems to have solved things for now:
-
-    INHERIT_remove = "uninative"
-
-moving on to the next head-scratcher ...
+  let me see if i can find where i did that once.
 
 rday
 
@@ -118,3 +129,4 @@ Twitter:                                       http://twitter.com/rpjday
 LinkedIn:                               http://ca.linkedin.com/in/rpjday
 ========================================================================
 
+--8323328-1148760532-1556902388=:4226--
