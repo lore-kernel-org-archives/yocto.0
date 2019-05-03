@@ -1,53 +1,67 @@
-Return-Path: <simon.zeni@posteo.net>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5686AE00D4A; Thu,  2 May 2019 16:38:10 -0700 (PDT)
+	id 1F1E8E00D4A; Thu,  2 May 2019 18:32:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [185.67.36.65 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.195 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mout01.posteo.de (mout01.posteo.de [185.67.36.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D03F6E00D33
-	for <yocto@yoctoproject.org>; Thu,  2 May 2019 16:38:08 -0700 (PDT)
-Received: from submission (posteo.de [89.146.220.130]) 
-	by mout01.posteo.de (Postfix) with ESMTPS id CD63116005D
-	for <yocto@yoctoproject.org>; Fri,  3 May 2019 01:38:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.net; s=2017;
-	t=1556840286; bh=T6HYj77Csr72VREvfk0+krirEb3x2WgooBeixzaCe9Y=;
-	h=Date:From:To:Cc:Subject:From;
-	b=It9wnPHkxTPiVka+X10Q7X8mWHhC4ch0LYeSQUVwwnbfdi0OXxruBcEYuT9kF4OfU
-	iDyDGY+04LHeHGjfERIAz4yoxSFS2jjeq++k58JANY+hFo9y6OXVgXi5ugwqLWi4az
-	uVSIcfPXrzG66CldhZut2FHWbi9qn9J8q//Z9quFhcL/eWsE/4MIDmBiYyNaAiobd4
-	wWjVkddooVs6OP7BqLfEkMcwBSNXmEeudzr5Nb5u03ztr/gbF/2nUvsQbu+vtT0psC
-	bt5Fzuysf1dlA5L8NLyMVMWit5XrGyRnnL/SBAj4fHD6jZ0/iolaV1oMJ0UhyMAw/b
-	azhFeqrMOJJ4w==
-Received: from customer (localhost [127.0.0.1])
-	by submission (posteo.de) with ESMTPSA id 44wBXG3LmLz6tm8;
-	Fri,  3 May 2019 01:38:06 +0200 (CEST)
-MIME-Version: 1.0
-Date: Fri, 03 May 2019 01:38:06 +0200
-From: simon.zeni@posteo.net
-To: "Burton, Ross" <ross.burton@intel.com>
-In-Reply-To: <CAJTo0LZjXghuNNJxXOODiWJ7psAS0+SuivP34rb2Vqjy-iz5zQ@mail.gmail.com>
-References: <c84b72da1abc1ea12f9e5e86d4d08758@posteo.net>
-	<CAJTo0LanumnXADZM5nsf8pkZxn7dRd8rFbFTovnxcf+=tHabbg@mail.gmail.com>
-	<0b69463845463a6776c00441492f4bc0@posteo.net>
-	<CAJTo0LZjXghuNNJxXOODiWJ7psAS0+SuivP34rb2Vqjy-iz5zQ@mail.gmail.com>
-Message-ID: <9424930d1749a4ee0eabb0b54e5bd39c@posteo.net>
-X-Sender: simon.zeni@posteo.net
-User-Agent: Posteo Webmail
-Cc: Yocto <yocto@yoctoproject.org>
-Subject: Re: Dependencies with third party binaries
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com
+	[209.85.214.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B618E00754
+	for <yocto@yoctoproject.org>; Thu,  2 May 2019 18:32:48 -0700 (PDT)
+Received: by mail-pl1-f195.google.com with SMTP id e92so1881981plb.6
+	for <yocto@yoctoproject.org>; Thu, 02 May 2019 18:32:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id;
+	bh=V0AEVmQO41j3KXi1mtFFAV75UeN9nBCrfghfoUn9qek=;
+	b=j1mBayjwJbMj9HkH3nvQ6UUUaegEx0ZR2JaLm2SDX/cNBEM+9FDP289e3EpwwZk8Q+
+	QPveAgeHo/jMFXAaM87LfcefmqbJwzQCExHMOpGk9p2F8K0QoTuOKfyheXu7EJ3+shFv
+	qIQyM6xSGvWkhlrW1V4qo1R/cExaO4DO6Zes4Y0f3bHv9OkPYzuFTm6CVRYQQwflZmxh
+	pbUhsMZ1J1hzyKEzn8P18E5sBdsH2wvW6iuXj0PbC3pmG3knsgfhsrMt7opLpkrGckYD
+	r+j42UDIqFNrmZ8/9T5EGHlPaK/jJUVTF4QSVVO1MXlL0bg0XyZiGEgsVCNINeMNSud3
+	PajA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=V0AEVmQO41j3KXi1mtFFAV75UeN9nBCrfghfoUn9qek=;
+	b=fwYUWKPVBygeNg09st+fKsasf4ZlcKZxii2NVIk7RVXGAlyKYjE6u9gcKE8DeP+I2X
+	smowbZYLKMhFtJku/aYRpgNRNTVxc0ESVyt2vujksYbkYo/QhrZzj3WawfUnjOXXLTCc
+	kecEEPMVRDh7yH2423mCNcTay35MjdwtgcQD7bFP3QNlIlayu25441mfQkPs4v5pdx1n
+	Y7YDXbThKNAuGE9cbh1AUGOpXwQeO6B4fxbQS3RG+ypmTkxOcQkSWoZWdF4ETom0lU9p
+	mLnWZkBD3Ez8yKTKQwYymeQEr+QkhsRU7QVjATd6fnADFhXyfwEiurHP+gAeyc1A06oR
+	R1EQ==
+X-Gm-Message-State: APjAAAXklg4g7cO6XKjKwFsS3jsfNeo2zAQDjnbAAsS39uU0uiHRI0k1
+	X8WzBV/Cmd56jCCmUTE8jvr33FoM
+X-Google-Smtp-Source: APXvYqzXrFTIwXMyvYWh8/yeic7u79AwBCB4e3VmZoIpoh6LlTcNmsju4BlqfnVDVYlrAwlup9JeRg==
+X-Received: by 2002:a17:902:bd88:: with SMTP id
+	q8mr7150091pls.287.1556847168045; 
+	Thu, 02 May 2019 18:32:48 -0700 (PDT)
+Received: from akuster-ThinkPad-T460s.mvista.com
+	([2601:202:4180:c33:7403:feaf:ea56:abf7])
+	by smtp.gmail.com with ESMTPSA id b13sm521699pfd.12.2019.05.02.18.32.47
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 02 May 2019 18:32:47 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu,  2 May 2019 18:32:44 -0700
+Message-Id: <1556847166-24262-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [meta-cgl][PATCH 1/3] cluster: fix SRC_URI and depends
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,133 +73,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 02 May 2019 23:38:10 -0000
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 03 May 2019 01:32:49 -0000
 
-Yes, the image will be deployed on the CI to build our software. I 
-managed to just drop the files at some place, but it requires user input 
-to install the compiler.
+corosync 1.x have removed from meta-cgl, and use corosync under meta-networking.
 
-Simon
+corosync 2.x can replace corosync 1.x + openais (in meta-cgl),
+so remove depend on openais
 
-On 03.05.2019 01:19, Burton, Ross wrote:
-> Do you mean you want to build packages to run icc on the target?
-> 
-> On Thu, 2 May 2019 at 23:46, <simon.zeni@posteo.net> wrote:
->> 
->> The layer that comes with the Intel system studio only contains the
->> runtime libraries, not the compiler itself.
->> 
->> Simon
->> 
->> On 03.05.2019 00:15, Burton, Ross wrote:
->> > Why don't you use the layer that comes with the Intel compiler?
->> >
->> > Ross
->> >
->> > On Thu, 2 May 2019 at 23:15, <simon.zeni@posteo.net> wrote:
->> >>
->> >> Hi,
->> >>
->> >> I'm currently working on repackaging the 2016 Intel compiler and I am
->> >> stuck at the dependency resolution.
->> >>
->> >> I am basing my recipe on the AUR PKGBUILD [1], which extracts the RPMs
->> >> from the parallel-studio-xe [2] archive and extracts the content of
->> >> the
->> >> RPMs to get the binaries. I already have the RPMs extracted from the
->> >> tarball and stored in a git repo. Not the ideal solution, but good
->> >> enough for now.
->> >>
->> >> The `bitbake` command for the recipe is passing after disabling a
->> >> couple
->> >> of QA errors (too much for my taste), but the recipe for the
->> >> `core-image` fails at the dependency
->> >> resolution. From what I understand, all of the binaries inside of the
->> >> `FILES_${PN}` are checked, and one (or more) fails at the dependency
->> >> check with the following message :
->> >>
->> >> ```
->> >> Error:
->> >>   Problem: conflicting requests
->> >>    - nothing provides ld-linux-k1om.so.2()(64bit) needed by
->> >> icc-2016+1-r0.corei7_64
->> >> ```
->> >>
->> >> This shared library seems to be Intel related but I cannot find it in
->> >> all of the RPMs contained in the initial tarball. It is also not
->> >> needed
->> >> to run the compiler, I was able to execute the `icc` and `icpc` (the
->> >> c++
->> >> compiler) binaries from the devshell.
->> >>
->> >> I know this is wrong and against every yocto principles, but is there
->> >> a
->> >> way to skip the dependenciey resolution for a specific recipe ? Or is
->> >> there a recipe made by Intel that I missed ?
->> >> I'm also open to any suggestions on how to tackle this task.
->> >>
->> >> Here's my recipe so far :
->> >>
->> >> ```
->> >> LICENSE = "CLOSED"
->> >> LIC_FILES_CHKSUM = ""
->> >>
->> >> DEPENDS += "libarchive-native"
->> >>
->> >> SRC_URI = # omitted
->> >>
->> >> PV = "2016-1"
->> >> SRCREV = "${AUTOREV}"
->> >>
->> >> S = "${WORKDIR}/git"
->> >>
->> >> extract_rpms() {
->> >> for rpm_file in ${S}/$1; do
->> >>         bsdtar -xf ${rpm_file} -C $2
->> >> done
->> >> }
->> >>
->> >> # Skip the unwanted steps
->> >> do_configure[noexec] = "1"
->> >> do_compile[noexec] = "1"
->> >>
->> >> do_install () {
->> >> extract_rpms 'intel-icc*.rpm' ${D}
->> >> extract_rpms 'intel-comp*.rpm' ${D}
->> >> extract_rpms 'intel-ccomp*.rpm' ${D}
->> >> extract_rpms 'intel-openmp*.rpm' ${D}
->> >> }
->> >>
->> >> do_package_qa[noexec] = "1"
->> >>
->> >> ALLOW_EMPTY_${PN} = "1"
->> >>
->> >> FILES_SOLIBSDEV = ""
->> >> FILES_${PN} += "/opt/intel/*"
->> >>
->> >> INSANE_SKIP_${PN} += "already-stripped ldflags arch staticdev
->> >> file-rdeps
->> >> build-deps"
->> >>
->> >> INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
->> >> INHIBIT_PACKAGE_STRIP = "1"
->> >>
->> >> ```
->> >>
->> >> Thanks,
->> >>
->> >> Simon Zeni
->> >>
->> >> [1]:
->> >> https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=intel-parallel-studio-xe&id=d4e2871a3bf698c3a5f58ee2201df53fe7f5dce7
->> >> [2]:
->> >> http://registrationcenter-download.intel.com/akdlm/irc_nas/8365/parallel_studio_xe_2016_update1.tgz
->> >> --
->> >> _______________________________________________
->> >> yocto mailing list
->> >> yocto@yoctoproject.org
->> >> https://lists.yoctoproject.org/listinfo/yocto
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb b/meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb
+index 1c6e353..34076d3 100644
+--- a/meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb
++++ b/meta-cgl-common/recipes-cgl/cluster/cluster_3.2.0.bb
+@@ -3,7 +3,7 @@ DESCRIPTION = "Red Hat Cluster"
+ SECTION = "libs"
+ HOMEPAGE = "https://fedorahosted.org/cluster/wiki/HomePage"
+ 
+-SRC_URI = "https://fedorahosted.org/releases/c/l/cluster/${BP}.tar.xz \
++SRC_URI = "https://releases.pagure.org/linux-cluster/cluster/${BP}.tar.xz \
+            file://0001-Fix-the-kernel-source-patch.patch"
+ 
+ 
+@@ -15,7 +15,7 @@ LIC_FILES_CHKSUM = "file://doc/README.licence;md5=ee8ae43af5ea09f12ca7f7a649764c
+ 
+ PR = "r1"
+ 
+-DEPENDS = "corosync dbus openldap openais libxml2 ncurses perl zlib"
++DEPENDS = "corosync dbus openldap libxml2 ncurses perl zlib"
+ 
+ FILES_${PN} += "/lib/udev/rules.d/51-dlm.rules \
+     ${localstatedir}/run "
+-- 
+2.7.4
+
 
