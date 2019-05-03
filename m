@@ -1,63 +1,70 @@
-Return-Path: <akuster@mvista.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DA80BE00BE2; Fri,  3 May 2019 10:07:35 -0700 (PDT)
+	id A0E0AE00BE2; Fri,  3 May 2019 10:18:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.171 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com
-	[209.85.210.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67B9AE00798
-	for <yocto@yoctoproject.org>; Fri,  3 May 2019 10:07:11 -0700 (PDT)
-Received: by mail-pf1-f171.google.com with SMTP id u17so3178249pfn.7
-	for <yocto@yoctoproject.org>; Fri, 03 May 2019 10:07:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mvista-com.20150623.gappssmtp.com; s=20150623;
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.177 listed in list.dnswl.org]
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com
+	[209.85.215.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C385E00AD5
+	for <yocto@yoctoproject.org>; Fri,  3 May 2019 10:18:47 -0700 (PDT)
+Received: by mail-pg1-f177.google.com with SMTP id 85so3021616pgc.3
+	for <yocto@yoctoproject.org>; Fri, 03 May 2019 10:18:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=to:from:subject:openpgp:autocrypt:message-id:date:user-agent
 	:mime-version:content-transfer-encoding:content-language;
-	bh=7kZfNpX6zd2cfiqBwIKnT/8mo3eI62zAOF7FUOWG/do=;
-	b=iZ50ZNU5+jy/C88wHZCzqj2O1RYu3TGKZp3iW0/U0N+ssEAIN9hCLK1RIQbdecJdgz
-	DGCl+Aercsp0B97NBKnY6lTfMVuz2fVMQFmDV5IsI9KzRmJCSdtJdw9ptuu2Sja/0Uta
-	Sj5fRJxPzOTUDAxs8YlgZt0WXysDxwWz9WCcAhXDuHY4sNprmSJ3+cunurbGq7TVbAE8
-	pXzeDaAjviKIYsV8Gp/4Ob0Sl5yi6Sk3nBpehGXLmwEc4nDsDqUba10dJyFvQk0pBhcM
-	c1oS0enNRZ+tweapffdVbO8vOV8sMv5AuoWBjUj1gjqX4/rKqPY46f02rgdd/0MiTMS5
-	tcjA==
+	bh=/zkBMMt5Gt9B4PEqjDvYLNG0yGxNhbokci4Hvv6JL1s=;
+	b=Qakopx7ZZ5arZGsXophhSCnfpJxDQZIAv8JNTKGhoKy1HYzHlF03EyXXtkjdofd9AI
+	L5/4BOFCuurATdRnGEiak8fa2nrc9UsbotSDtM0imP0Ehra73k+jh0Zgh8079u5gwPhS
+	Dd8pYkgmFlV6CZQxicSXASGajbjqsD1WKGwOo4cGMUoZQLJU8FBWzvNuR69CT7JJ3WGt
+	7u+17o0qshH3AQ1SgKAjgZRDnmeH44owdyscyem8E6XkN9MDlwf1r2qiehb3wci5MXD1
+	ZO8CyW1gJ9wFCnwj9uaBv/41Qor5bE6KQIyvHX9JZIf6CeujwTgeZ7hJAGrWrfU+Rw8+
+	KPfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:to:from:subject:openpgp:autocrypt:message-id
 	:date:user-agent:mime-version:content-transfer-encoding
 	:content-language;
-	bh=7kZfNpX6zd2cfiqBwIKnT/8mo3eI62zAOF7FUOWG/do=;
-	b=DzAzj62rYu8Qz1SePdiEJ7C4UKqeIbHjRbeEDiYJihKHZKKN3/IfITRLVgp4nDq0yQ
-	EM0k21nMMX7d57FDl+IBg5AIIHQD2HYegO837kLOQi+csuN1OaOgHfWS/3P188lgbXjH
-	xED2uGVO4nXPXd1qGsIIB3G2wRZYyVYarzxd9WetkQ1ld2pW/+HMNJviaKFQHvp4rX7A
-	aKZnrrhFBDJ6p28H5LnjlAMAX0jWNfBx71MBN9OSj9S+dopq1455Z9pUeYbkShXAP0Gz
-	BsylOnjjS4HqH4ohDjo9QBLj1CUZWivGVmmCfNlPikRUrdvkxQQ0qrEsnqKhEhzdrTrK
-	enYA==
-X-Gm-Message-State: APjAAAXadNlC4ZvA7Vpr76/a3HpndhC8Kn2EbF4EnMhuYw6q1B9xGt+J
-	QwIgaV6wwZ0L1zasgDJhCfvsd1WOvLY=
-X-Google-Smtp-Source: APXvYqyIW41g06NMmMTP5nSMMiEHw1iQzyQYM1cLoj5lMTciKrzR38Mv4R/jcaRTlUg3FgzmblcSeQ==
-X-Received: by 2002:a62:460a:: with SMTP id t10mr10788973pfa.3.1556903230472; 
-	Fri, 03 May 2019 10:07:10 -0700 (PDT)
+	bh=/zkBMMt5Gt9B4PEqjDvYLNG0yGxNhbokci4Hvv6JL1s=;
+	b=l+nNEyzEQ4/CySH+/oYHAnSKK5CKlFaR2Jy0Z1M2E4xquMnu8oFoLUvnxpyrNP4jpe
+	Nttciot7l2/lxP0Ejw6WB41WYVA0VnWy6eickeZ7TwFTKsaiK/1gurXkOoIQfQK/zpvo
+	JlQBpMEDZN94ok9uUeNMLbg9AYGhWFzKBuwy+GB4juhfvbW80QK82Hmujr7hNmMBuzig
+	o2MSXyzjunpenNcuwc97WTG5pd9AK7+HTZL02kLSW6Ck/LR0mCs8IX0NSLPLJHlLlbr4
+	/R0YUAzloOYsfPEoa3vPnDgT/T4prUTgjDgSF6b0ADu86crbZNi7v31yrnhhGZ1lUgNb
+	uuXQ==
+X-Gm-Message-State: APjAAAU7NX1/QIj3t7T3HyAeZs2H+YTGrEupe+K68ph9jZAGDF/FsEmK
+	Fga9nYvz883rRyd435/wnueQxL18
+X-Google-Smtp-Source: APXvYqweX5HVusbdlLBFCpolNPcaGxkTx3nm70CwcvbYfR2MGRSr+yYOTnba1nbpvaAha5cGvQKPsQ==
+X-Received: by 2002:a63:3d4c:: with SMTP id k73mr11842770pga.154.1556903926805;
+	Fri, 03 May 2019 10:18:46 -0700 (PDT)
 Received: from ?IPv6:2601:202:4180:c33:b9b3:5f13:7709:822d?
 	([2601:202:4180:c33:b9b3:5f13:7709:822d])
-	by smtp.gmail.com with ESMTPSA id f2sm3667714pgc.30.2019.05.03.10.07.09
-	for <yocto@yoctoproject.org>
+	by smtp.gmail.com with ESMTPSA id
+	q144sm3188358pgq.76.2019.05.03.10.18.45
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 03 May 2019 10:07:09 -0700 (PDT)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: akuster <akuster@mvista.com>
+	Fri, 03 May 2019 10:18:46 -0700 (PDT)
+To: Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>,
+	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: akuster808 <akuster808@gmail.com>
 Openpgp: preference=signencrypt
-Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
 	mQINBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
 	Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
 	mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
@@ -100,12 +107,12 @@ Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <2efcd2c0-0e25-24aa-3be8-1261afe72846@mvista.com>
-Date: Fri, 3 May 2019 10:07:08 -0700
+Message-ID: <e86cf937-5734-fc36-cd94-fad9b0155059@gmail.com>
+Date: Fri, 3 May 2019 10:18:44 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.6.1
 MIME-Version: 1.0
-Subject: meta-cge
+Subject: patchwork
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -117,15 +124,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 May 2019 17:07:35 -0000
+X-List-Received-Date: Fri, 03 May 2019 17:18:48 -0000
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 Content-Language: en-US
 
-Hello meta-cgl maintainers,
+Hello OE folk,
 
-Any plans on branching for "warrior"?
+My apologies for cross posting.
 
-regards,
+Who is the Admin for Patchwork?
+
+I would like additional privileges to manage the "Yocto Project Layers"
+queue.
+
+Also, I would like additional=C2=A0 privileges to add new branches for an=
+y
+oe, meta-oe queues & yp layers.
+
+kind regards,
 Armin
+
 
