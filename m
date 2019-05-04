@@ -1,63 +1,38 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Randy.MacLeod@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 09629E00AD5; Fri,  3 May 2019 16:36:52 -0700 (PDT)
+	id 7B787E00A0C; Fri,  3 May 2019 18:42:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.178 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com
-	[209.85.160.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8146DE009E7
-	for <yocto@yoctoproject.org>; Fri,  3 May 2019 16:36:51 -0700 (PDT)
-Received: by mail-qt1-f178.google.com with SMTP id e2so7050145qtb.4
-	for <yocto@yoctoproject.org>; Fri, 03 May 2019 16:36:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=G8VHz4Ap+UmA028gaioOLuqoQV7NYN9QS+hCxkHOxZk=;
-	b=Fy/svGZoChjt288Tk7pqN7XNs9uUPfVA77dA5Ks3QHNQyfNO7d1xSrMWzi7+956cg9
-	21UzIAAvSDyhsBxqKdDb8Bm71YgsRG8zUMdQhkGXxmWmHYukGtFwfYP+B1CpjMuZA0wH
-	K9bjkbWncOYq/yHbw4hZaaDO1I/y/XhKMz9XOHpZ5ZTQQ+TzJ/i8ZGMPvWbG1NyvXfBM
-	721gZwhBWWhE932/UBh+32hitDc5JRm/JBZfYUd1tAnHxtvO8E+hRbp2ja0bGjdK+UKK
-	rGdg04r0++d46B5WHxzEDFXW08POyosYMzzNUdsPDbf3x5tI0Zg1idOD+rx/Wcifotu7
-	IbtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=G8VHz4Ap+UmA028gaioOLuqoQV7NYN9QS+hCxkHOxZk=;
-	b=PN9sziRZxsrXO0fnEPHVpmcoBjKYmGOfAOoBf4ZqM7IVOKRrfPJoZwX5EUR1EBA6p+
-	rsB+gP/e/YH3spTqOBrcHEMf3BSKqxDAEXa+49Zk07TFZOBMbwXfJQ6Kra/8nGcD7RN5
-	Pwq6nqlVDzMfu5A3Hu5n91LBNGIfC6wUQFN4TcrotJUgIA9U+NaB0uwTrHbwsiTCt2qd
-	KmoiiPRPGtHx0yIZ+bvinGxGf7JnwuCST6VjKw3ppdfL91z5QXujF7Cwjks73Kgd2gby
-	Tu3QOQf3XjT/eHs/MPfZkNnb8QJUAGenewOtxE4DZEEfMKqc+yjRWxQnEmThwbYdZ8rM
-	A7Kg==
-X-Gm-Message-State: APjAAAUNhr28E3Y0oWZT3W4RvBOxA0cH3v/o2me/U2ASX5YbN/UAMHyh
-	qZAM3MNCYLjVcHhLM0jl8p553uP9htQNtBIVn0c=
-X-Google-Smtp-Source: APXvYqzkkG7JydajtQjcZRHMU0HePLmlQrdfvCEE79YFN5FtdPqOjHJjJ3ji2dzc3jnnoU2QebXG8n8x/prRzhKmf0s=
-X-Received: by 2002:ac8:2963:: with SMTP id z32mr10967134qtz.236.1556926610659;
-	Fri, 03 May 2019 16:36:50 -0700 (PDT)
-MIME-Version: 1.0
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10881E009A0
+	for <yocto@yoctoproject.org>; Fri,  3 May 2019 18:42:01 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x441fOM9015746
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 3 May 2019 18:41:34 -0700
+Received: from [172.25.44.4] (172.25.44.4) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.439.0;
+	Fri, 3 May 2019 18:41:13 -0700
+To: Khem Raj <raj.khem@gmail.com>, Emily S <easmith5555@gmail.com>
 References: <CAAV2bM2O7ve9ZvhqjFtcUysaKbKZxYqRV8idqg03Mp2-v+RFMQ@mail.gmail.com>
-In-Reply-To: <CAAV2bM2O7ve9ZvhqjFtcUysaKbKZxYqRV8idqg03Mp2-v+RFMQ@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 3 May 2019 16:36:22 -0700
-Message-ID: <CAMKF1squhLTh7nQahUuwb9mweGTB35vqu6OrKOfFVf9eCARWcQ@mail.gmail.com>
-To: Emily S <easmith5555@gmail.com>
+	<CAMKF1squhLTh7nQahUuwb9mweGTB35vqu6OrKOfFVf9eCARWcQ@mail.gmail.com>
+From: Randy MacLeod <randy.macleod@windriver.com>
+Message-ID: <513502f9-202e-f548-d4ef-493041207ef0@windriver.com>
+Date: Fri, 3 May 2019 21:41:12 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <CAMKF1squhLTh7nQahUuwb9mweGTB35vqu6OrKOfFVf9eCARWcQ@mail.gmail.com>
+X-Originating-IP: [172.25.44.4]
 Cc: Yocto List <yocto@yoctoproject.org>
 Subject: Re: Incorporating Xilinx DNNDK into Yocto
 X-BeenThere: yocto@yoctoproject.org
@@ -71,33 +46,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 May 2019 23:36:52 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 04 May 2019 01:42:02 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 
-On Fri, May 3, 2019 at 2:09 PM Emily S <easmith5555@gmail.com> wrote:
->
-> Hi all -
->
-> Xilinx has the Deep Neural Network Development Kit (DNNDK) that they just=
- released the source code for in the last month or so. They have the code w=
-ritten nicely in the form of yocto recipes but it doesn't appear to be an a=
-ctual layer: https://github.com/Xilinx/Edge-AI-Platform-Tutorials/tree/mast=
-er/docs/DPU-Integration/reference-files/files . Is there a possibility of c=
-reating a layer for it? Or should I look into other options, like adding it=
- as a submodule to my custom layer meta-l1calo: https://github.com/kratsg/m=
-eta-l1calo?
->
-> Or if anyone has additional options, suggestions are appreciated!
+On 5/3/19 7:36 PM, Khem Raj wrote:
+> On Fri, May 3, 2019 at 2:09 PM Emily S <easmith5555@gmail.com> wrote:
+>>
+>> Hi all -
+>>
+>> Xilinx has the Deep Neural Network Development Kit (DNNDK) that they just released the source code for in the last month or so. They have the code written nicely in the form of yocto recipes but it doesn't appear to be an actual layer: https://github.com/Xilinx/Edge-AI-Platform-Tutorials/tree/master/docs/DPU-Integration/reference-files/files . Is there a possibility of creating a layer for it? Or should I look into other options, like adding it as a submodule to my custom layer meta-l1calo: https://github.com/kratsg/meta-l1calo?
+>>
+>> Or if anyone has additional options, suggestions are appreciated!
+> 
+> I think we need meta-ai
 
-I think we need meta-ai
+or add to:
+    https://github.com/nnsuite/meta-neural-network
+
+Is most of the code Xilinx HW specific?
+If so then a general layer may not be appropriate.
+
+../Randy
+
+> 
+> 
+>> Thanks for the help!
+>> Emily
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
 
-> Thanks for the help!
-> Emily
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+-- 
+# Randy MacLeod
+# Wind River Linux
 
