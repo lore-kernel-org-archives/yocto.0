@@ -1,40 +1,62 @@
-Return-Path: <Changqing.Li@windriver.com>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E7791E00CF4; Sun,  5 May 2019 00:05:22 -0700 (PDT)
+	id 6BDFAE00CF4; Sun,  5 May 2019 05:03:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2EFD2E00CF4
-	for <yocto@yoctoproject.org>; Sun,  5 May 2019 00:05:21 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x4575K4l027508
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 5 May 2019 00:05:20 -0700 (PDT)
-Received: from [128.224.162.228] (128.224.162.228) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.439.0;
-	Sun, 5 May 2019 00:05:19 -0700
-To: Joshua Watt <jpewhacker@gmail.com>, <yocto@yoctoproject.org>
-References: <CAJTo0LYJUjRiOV7hLTicNhwYqnqzHHAF52nXvAWj0x1hHSPdGg@mail.gmail.com>
-	<1547718545-238633-1-git-send-email-changqing.li@windriver.com>
-	<1547718545-238633-2-git-send-email-changqing.li@windriver.com>
-	<3f77d5c6f2d3be211c92b9fdfa3fa36ecf490aa1.camel@gmail.com>
-From: Changqing Li <changqing.li@windriver.com>
-Message-ID: <19f3cd57-aecd-282f-b6ac-827f85573a23@windriver.com>
-Date: Sun, 5 May 2019 15:05:16 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.2.1
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jupiter.hce[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.54 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com
+	[209.85.166.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2446E00BAA
+	for <yocto@yoctoproject.org>; Sun,  5 May 2019 05:03:13 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id c24so8814134iom.9
+	for <yocto@yoctoproject.org>; Sun, 05 May 2019 05:03:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=0ipb5w+vhWw4T6W/+cIt4jyx46HYbP6tgaz4Mtzmuoo=;
+	b=o2eCdremIYo2oPUq9pYfVgNiWz0Gsvq7ZlYQB0Rz4WKYtsguy0seEg5+ODJcxQV5Zs
+	EMNpSFrI70Opt0Ae/xGPygmbDAwat/9fOXKEOCPkiNQpdwPtJN6BFkTgjtjXTezPvpCD
+	EaJbiWDyWbPPfldK93+WFpppHrK1Gi9IZ9cyZDB1OUfVux9USZ+bWYWx241wx6qM06Iy
+	/Aj0dNxeWNz/9ReHV1bN1ZAPqDtseXDqDbm/emmoO32/RpSZaTkzG8RLeDrHe7dtfTcP
+	W0oi0EJ0R11/ZdhDfXBUkkynxnYgR6cK2Lx/qlR+oU0/TKanbEfozKQFW369tXiA2L7X
+	stgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=0ipb5w+vhWw4T6W/+cIt4jyx46HYbP6tgaz4Mtzmuoo=;
+	b=Sll54sTEHXz+3KXtSspXjsqtOi9q2QwwLHYn+zZJzVVyw/7o4P3bm8nN37JQa8FF7s
+	AD+suGMx/La6vRByk+ra2d6dx6esQdpgmuNnnofOJeWuL2X2+3cx4itJcdB+dBgV5g21
+	4xuyZZaQq+4rqNJMxJIN23u0Eu5w4QbXjtx1cJcUjNGOYEV0OlvsYOPVJLAuTv+KEg7g
+	wHsXSgM2g2E47RzW8Y3IlTGJ+Tr4VO+zVnRVBhc8DEONQjzr5LCmRBsHlUl/gVDoIknQ
+	sAA95WU9V4uSo+qGFcmhYCDBwufjtDC3k7act59D30Vx5P25ugi1YShIF+Q1TLSqXxA9
+	kgqw==
+X-Gm-Message-State: APjAAAU3q21m//k8fzExUU1rGMX8cvlGwx3Nq3s33JPkMx9ursX27xbL
+	du5OtfQRihRoyXCClKXaMHpm69DfFjarp/UQCTKdReC8
+X-Google-Smtp-Source: APXvYqyuuqla18j9X/PplNwdltgv2NjNYy92K1vOcizfJEGWuS0gKcNl7omRUza5nmSmmpe+K1NTCTyD/caYMgN9m3o=
+X-Received: by 2002:a5e:8f41:: with SMTP id x1mr7043793iop.159.1557057793270; 
+	Sun, 05 May 2019 05:03:13 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <3f77d5c6f2d3be211c92b9fdfa3fa36ecf490aa1.camel@gmail.com>
-X-Originating-IP: [128.224.162.228]
-Subject: Re: [meta-mingw][PATCH V2] testsdk: enhance extract sdk part
+Received: by 2002:ac0:9c06:0:0:0:0:0 with HTTP;
+	Sun, 5 May 2019 05:03:12 -0700 (PDT)
+From: JH <jupiter.hce@gmail.com>
+Date: Sun, 5 May 2019 22:03:12 +1000
+Message-ID: <CAA=hcWR21J-UDPXOSrMjMDXfx8f_NbCB4YA_7-UBVzZ-9Ea45w@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: How to define and build device tree in Yocto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,86 +68,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 05 May 2019 07:05:22 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Sun, 05 May 2019 12:03:14 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Hi, Joshua
+Hi,
 
-OE-core patch have merge to master: 
-https://git.openembedded.org/openembedded-core/commit/?id=57a33048a89a422cfdc986d3489c67b2d297e1e7
+I think the device tree blob is build from device tree source, but I
+could not find any dts files in recipe source directory, there are
+many dts files in build directory and there are dtb in build
+directory.
 
-please help to merge this patch, thanks.
+If I have a device tree source, where I should put it and how to
+define the recipe to built it?
 
-On 1/21/19 10:47 PM, Joshua Watt wrote:
-> Just FYI, I haven't forgot about this patch. I want to wait until the
-> dependent OE-core patch is at least in the master-next branch before I
-> apply this to the MinGW master-next branch. If you want to give me a
-> ping when the OE-core patch shows up in master-next, it would be very
-> helpful.
->
-> Thanks
->
-> On Thu, 2019-01-17 at 17:49 +0800, changqing.li@windriver.com wrote:
->> From: Changqing Li <changqing.li@windriver.com>
->>
->> Current sdk type is tar.xz, but for mingw sdk, since we
->> have symlink under the sdk folder, 7zip which used to
->> extract tar.xz cannot handle it, refer 7zip upstream bug:
->> https://sourceforge.net/p/sevenzip/discussion/45797/thread/c71d6b96/
->> so oe-core have add support of change SDK type to .zip, so correct
->> the extract function.
->>
->> Signed-off-by: Changqing Li <changqing.li@windriver.com>
->> ---
->>   lib/oeqa/sdkmingw/testsdk.py | 11 +++++++++--
->>   1 file changed, 9 insertions(+), 2 deletions(-)
->>
->> diff --git a/lib/oeqa/sdkmingw/testsdk.py
->> b/lib/oeqa/sdkmingw/testsdk.py
->> index 85fe3c6..173cfd9 100644
->> --- a/lib/oeqa/sdkmingw/testsdk.py
->> +++ b/lib/oeqa/sdkmingw/testsdk.py
->> @@ -12,7 +12,7 @@ class TestSDKMinGW(TestSDK):
->>           """
->>           Get the name of the SDK file
->>           """
->> -        return
->> d.expand("${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.tar.xz")
->> +        return
->> d.expand("${SDK_DEPLOY}/${TOOLCHAIN_OUTPUTNAME}.${SDK_ARCHIVE_TYPE}")
->>   
->>       def extract_sdk(self, tcname, sdk_dir, d):
->>           """
->> @@ -23,7 +23,14 @@ class TestSDKMinGW(TestSDK):
->>           try:
->>               # TODO: It would be nice to try and extract the SDK in
->> Wine to make
->>               # sure it is well formed
->> -            subprocess.check_output(['tar', '-xf', tcname, '-C',
->> sdk_dir])
->> +
->> +            # TODO: Extract SDK according to SDK_ARCHIVE_TYPE, need
->> to change if
->> +            # oe-core support other types.
->> +            if d.getVar("SDK_ARCHIVE_TYPE") == "zip":
->> +                subprocess.check_output(['unzip', '-d', sdk_dir,
->> tcname])
->> +            else:
->> +                subprocess.check_output(['tar', '-xf', tcname, '-C',
->> sdk_dir])
->> +
->>           except subprocess.CalledProcessError as e:
->>               bb.fatal("Couldn't install the SDK:\n%s" %
->> e.output.decode("utf-8"))
->>   
->> -- 
->> 2.7.4
->>
--- 
-BRs
+Thank you.
 
-Sandy(Li Changqing)
+Kind regards,
 
+- jupiter
 
