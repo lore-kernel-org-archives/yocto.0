@@ -1,62 +1,65 @@
-Return-Path: <gruntblue@gmail.com>
+Return-Path: <GWilson@sakuraus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3EF60E00A84; Mon,  6 May 2019 09:27:49 -0700 (PDT)
+	id 87F48E00A96; Mon,  6 May 2019 10:20:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (gruntblue[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.52 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com
-	[209.85.217.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95586E00A62
-	for <yocto@yoctoproject.org>; Mon,  6 May 2019 09:27:48 -0700 (PDT)
-Received: by mail-vs1-f52.google.com with SMTP id r10so3195724vsi.10
-	for <yocto@yoctoproject.org>; Mon, 06 May 2019 09:27:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=l+uu1eJ3ly1WDpIgyQh5j3dLOQstXG5jzta5dlCyTAs=;
-	b=rhbZVEKz2bpMRqa0axbtl5VOKRkHleyeCy97cfDPEJdsVoCDEIB9o+mEkVIjCCOyuE
-	wXwTjhPPLAzKDgNx4A7OP+nkqqIvsBq5nDBXQuA+LbfYzqi/L2hHWmiWx9pmSxrMCngk
-	ZgpDtFMVMUMhzPIVxVP+exmCt8/JyxHzRu0dD76xo7Ml4oMTXioflU12UtaUFJ+VvhgT
-	wa5LEJCcyG+Spfc3P/xMDOuQrJjh87k6//gpmGIWoiOuWgDRES8qcaiFsN+q+VHYxemJ
-	dMpt9yjdd+qGE3yutHIRnnRBOkVfEohHD7trHsgkIG+8qcExoPVs3VaAEi88DSqalhPK
-	zC2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=l+uu1eJ3ly1WDpIgyQh5j3dLOQstXG5jzta5dlCyTAs=;
-	b=iV9x77e+BI3GlKjKdcYNlDJRw5iOf5Z+zcmL6ND8DEje4KfORIzSr9UmmW8j1uXQb6
-	6BetGE7dWZz1dTmuXjQLF4J4BP2ZEdZ91Wx/y3RN2ylupWr4I71+cc4GeONwVdwhsONJ
-	F38vpIccrgbmVRX+a1+cZYqE5Wanp7P528f7dcsgapXAZzv0MEakYA5aqNLis09Oiie/
-	PSphmQy/KtP+dysNo+rcl/okV2P4r9ogndyBFkf4v1h2Iw5I7zkczRE8NzTiP9qmcNDU
-	yX8STW74QZEGVQsfH7eoOSY0VSsseOvVoI7ZRsktsTXViDMld/Yaqo0kXIpCsI8sqiEy
-	Le+A==
-X-Gm-Message-State: APjAAAWhlkFGbqTn8ePKG/YFHCl0No+YzjaWwqQTBIVBJp7NHgYWoLg1
-	2XLGISxX7Bo18fJEVodNb5htz+QNHsu6vx2S2+4OGw==
-X-Google-Smtp-Source: APXvYqwZZKDUGcQQUQ0SfPxtswrruafPeKMMERDSrEl58l0/r9VAvpyNQ3qzEZls1wokKYKtgEiQdprjWRsLV/Rv9IU=
-X-Received: by 2002:a67:ca8f:: with SMTP id a15mr10632942vsl.22.1557160067653; 
-	Mon, 06 May 2019 09:27:47 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [209.222.82.36 listed in list.dnswl.org]
+X-Greylist: delayed 907 seconds by postgrey-1.32 at yocto-www;
+	Mon, 06 May 2019 10:20:46 PDT
+Received: from 13pmail.ess.barracuda.com (13pmail.ess.barracuda.com
+	[209.222.82.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 46608E00798;
+	Mon,  6 May 2019 10:20:46 -0700 (PDT)
+Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
+	mx7.us-east-2a.ess.aws.cudaops.com (version=TLSv1.2
+	cipher=AES256-SHA256 bits=256 verify=NO);
+	Mon, 06 May 2019 17:20:44 +0000
+Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
+	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
+	Mon, 6 May 2019 10:05:34 -0700
+Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
+	([::1]) with mapi id 15.01.0669.032; Mon, 6 May 2019 10:05:34 -0700
+From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+To: akuster <akuster@mvista.com>, Joshua Watt <jpewhacker@gmail.com>,
+	"Volosincu, Andreea S" <andreea.volosincu@windriver.com>,
+	"yocto-advocacy@yoctoproject.org" <yocto-advocacy@yoctoproject.org>, "Yocto
+	list discussion" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Yocto Project Upcoming Conferences and Developer Days
+Thread-Index: AdUB2gyrV9aTV59tQK+aSs1XKKkcmgCffKuAAAKcK4AADUIEoA==
+Date: Mon, 6 May 2019 17:05:34 +0000
+Message-ID: <ddb9170ea64d49388ae8d96ebf2bda52@sakuraus.com>
+References: <A084970538D2234B96D99D06FA9D974FC378C228@ALA-MBD.corp.ad.wrs.com>
+	<d3d8ec8b59dcad7640cdee673405ae5c0979f11b.camel@gmail.com>
+	<b612267d-31b2-1a91-274c-6d04ae275cf5@mvista.com>
+In-Reply-To: <b612267d-31b2-1a91-274c-6d04ae275cf5@mvista.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.5.3]
 MIME-Version: 1.0
-Received: by 2002:a9f:3001:0:0:0:0:0 with HTTP;
-	Mon, 6 May 2019 09:27:47 -0700 (PDT)
-From: Eric Grunt <gruntblue@gmail.com>
-Date: Mon, 6 May 2019 23:27:47 +0700
-Message-ID: <CADB9fJHnTXxW78EqNNfeoh2GHM4fqETzC_wo1U58KBRDDJ5TmA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: yocto sumo - upgrading gcc from 7.3 to 8.3 fails - C compiler cannot create executables
+X-BESS-ID: 1557163244-893012-19034-54715-1
+X-BESS-VER: 2019.1_20190503.2222
+X-BESS-Apparent-Source-IP: 12.26.104.5
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2,
+	rules version 3.2.2.212918 [from 
+	cloudscan42.us-east-2b.ess.aws.cudaops.com]
+	Rule breakdown below
+	pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
+	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status: 1
+Subject: Re: Yocto Project Upcoming Conferences and Developer Days
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,77 +71,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 May 2019 16:27:49 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 06 May 2019 17:20:48 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi,
-
-I tried to upgrade gcc from 7.3 to 8.3 by copying
-gcc directory from https://github.com/openembedded/openembedded-core.git
-(openembedded-core/meta/recipes-devtools/gcc)
-to meta-custom-layer/recipes-gcc,
-replacing requires to recipes-devtools/gcc/*inc in all bb files in there,
-eg
-require recipes-devtools/gcc/gcc-${PV}.inc/require becomes
-require gcc-${PV}.inc,
-
-changing gcc and sdk Version in local.conf to 8.%
-
-GCCVERSION = "8.%"
-SDKGCCVERSION = "8.%"
-
-and by removing gcc-initial dependency from glibc.
-
-diff --git a/sources/poky/meta/recipes-core/glibc/glibc-initial.inc
-b/sources/poky/meta/recipes-core/glibc/glibc-initial.inc
-index b86e2fb..4df63ae 100644
---- a/sources/poky/meta/recipes-core/glibc/glibc-initial.inc
-+++ b/sources/poky/meta/recipes-core/glibc/glibc-initial.inc
-@@ -1,4 +1,4 @@
--DEPENDS = "linux-libc-headers virtual/${TARGET_PREFIX}gcc-initial
-libgcc-initial"
-+DEPENDS = "linux-libc-headers virtual/${TARGET_PREFIX}gcc libgcc-initial"
- PROVIDES = "virtual/${TARGET_PREFIX}libc-initial"
-
- PACKAGES = ""
-diff --git a/sources/poky/meta/recipes-core/glibc/glibc.inc
-b/sources/poky/meta/recipes-core/glibc/glibc.inc
-index ce1222b..69b15ec 100644
---- a/sources/poky/meta/recipes-core/glibc/glibc.inc
-+++ b/sources/poky/meta/recipes-core/glibc/glibc.inc
-@@ -32,7 +32,7 @@ siteconfig_do_siteconfig_gencache_prepend = " \
- "
-
- # nptl needs unwind support in gcc, which can't be built without glibc.
--DEPENDS = "virtual/${TARGET_PREFIX}gcc-initial libgcc-initial
-linux-libc-headers virtual/${TARGET_PREFIX}libc-initial"
-+DEPENDS = "virtual/${TARGET_PREFIX}gcc libgcc-initial
-linux-libc-headers virtual/${TARGET_PREFIX}libc-initial"
- # nptl needs libgcc but dlopens it, so our shlibs code doesn't detect this
- #RDEPENDS_${PN} += "${@['','libgcc']['nptl' in '${GLIBC_ADDONS}']}"
-
-
-After that, bitbake core-image-minimal fails at do_populate_sysroot
-step for glibc_2.27:
-
-| DEBUG: Executing shell function do_siteconfig_gencache
-| configure: WARNING: unrecognized options: --disable-silent-rules,
---disable-dependency-tracking, --with-libtool-sysroot
-| configure: creating cache glibc_cache
-| checking for arm-poky-linux-gnueabi-gcc...
-arm-poky-linux-gnueabi-gcc  -march=armv7ve -marm -mfpu=neon
--mfloat-abi=hard -mcpu=cortex-a7
---sysroot=/home/yocto/sigma/yocto-sumo/build/tmp_dev/work/cortexa7hf-neon-poky-linux-gnueabi/glibc/2.27-r0/recipe-sysroot
-| checking whether the C compiler works... no
-| configure: error: in
-`/home/yocto/sigma/yocto-sumo/build/tmp_dev/work/cortexa7hf-neon-poky-linux-gnueabi/glibc/2.27-r0/site_config_imx6ul-var-dart':
-| configure: error: C compiler cannot create executables
-| See `config.log' for more details
-| WARNING: exit code 77 from a shell command.
-| DEBUG: Python function siteconfig_do_siteconfig finished
-| DEBUG: Python function do_siteconfig finished
-| DEBUG: Python function sstate_task_postfunc finished
-| ERROR: Function failed: do_siteconfig_gencache
-
-Do I have to perform something additional to be able to use gcc 8.3?
+SSBqdXN0IHZpc2l0ZWQgdGhlIEVtYmVkZGVkIExpbnV4IENvbmZlcmVuY2Ugc2l0ZSBhbmQgdGhl
+IERldiBkYXkgb24gdGhlIDIwdGggaXMgbm90IGxpc3RlZCwgZG9lcyBhbnlvbmUga25vdyBob3cg
+dG8gZ2V0IG1vcmUgaW5mb3JtYXRpb24gb24gaXQuIEknbSB2ZXJ5IGludGVyZXN0ZWQgaW4gYXR0
+ZW5kaW5nIGFsb25nIHdpdGggb25lIG9mIG15IGNvd29ya2Vycy4NClJlZ2FyZHMsDQpHcmVnIFdp
+bHNvbi1MaW5kYmVyZ8KgIA0KUHJpbmNpcGFsIEZpcm13YXJlIEVuZ2luZWVyIHwgU2FrdXJhIEZp
+bmV0ZWsgVVNBLCBJbmMuwqAgDQrCoA0KDQpGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVj
+dC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmddIE9uIEJlaGFsZiBP
+ZiBha3VzdGVyDQpTZW50OiBNb25kYXksIE1heSAwNiwgMjAxOSAwOToyMiBBTQ0KVG86IEpvc2h1
+YSBXYXR0IDxqcGV3aGFja2VyQGdtYWlsLmNvbT47IFZvbG9zaW5jdSwgQW5kcmVlYSBTIDxhbmRy
+ZWVhLnZvbG9zaW5jdUB3aW5kcml2ZXIuY29tPjsgeW9jdG8tYWR2b2NhY3lAeW9jdG9wcm9qZWN0
+Lm9yZzsgWW9jdG8gbGlzdCBkaXNjdXNzaW9uIDx5b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KU3Vi
+amVjdDogUmU6IFt5b2N0b10gWW9jdG8gUHJvamVjdCBVcGNvbWluZyBDb25mZXJlbmNlcyBhbmQg
+RGV2ZWxvcGVyIERheXMNCg0KDQpPbiA1LzYvMTkgODowNiBBTSwgSm9zaHVhIFdhdHQgd3JvdGU6
+DQpPbiBGcmksIDIwMTktMDUtMDMgYXQgMTg6MDEgKzAwMDAsIFZvbG9zaW5jdSwgQW5kcmVlYSBT
+IHdyb3RlOg0KR3JlZXRpbmdzLA0KwqANCllvY3RvIFByb2plY3QgaXMgcGxlYXNlZCB0byBhbm5v
+dW5jZSB0aGUgcGxhbnMgZm9yIHRoZSB1cGNvbWluZyBFbWJlZGRlZCBMaW51eCBDb25mZXJlbmNl
+cyBpbiBOQSBhbmQgRXVyb3BlLg0KwqANCkhlcmUgaXMgYSBzbmFwc2hvdCBvZiBvdXIgc2NoZWR1
+bGU6DQrCoA0KRUxDIE5BIOKAkyBXZWRuZXNkYXksIEF1Z3VzdCAyMSAtIDIzLCAyMDE5LCBIaWx0
+b24gU2FuIERpZWdvIEJheWZyb250LCBTYW4gRGllZ28sIENBDQrCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgIMKgwqDCoCBZb2N0byBQcm9qZWN0IGlzIGEgc3BvbnNvci4gV2XigJlsbCBzZWUg
+eW91IG9uIHRoZSBzaG93IGZsb29yDQrCoA0KRUxDIE5BIERldiBEYXkg4oCTIFR1ZXNkYXksIEF1
+Z3VzdCAyMCwgMjAxOSAtIDg6MDBBTSAtIDY6MDBQTQ0KICAgICAgIFNldC11cDogMSBNZWV0aW5n
+IFJvb20gLSBDbGFzc3Jvb20gU2VhdGluZyAoIDYwIHBlb3BsZSkNCiAgICAgICBMZXZlbDogSW50
+ZXJtZWRpYXRlIOKAkyBBZHZhbmNlZC4gUGFydGljaXBhbnRzIHdpbGwgcmVjZWl2ZSBiZWdpbm5l
+ciBtYXRlcmlhbCAodmlkZW9zIGFuZCBwcmVzZW50YXRpb25zKSBhcyBwcmUtcmVxdWlzaXRlcw0K
+ICAgICAgIEluY2x1ZGVzOiBNb3JuaW5nIEJyZWFrLCBCdWZmZXQgTHVuY2gsIEJlZXIgJiBXaW5l
+IFJlY2VwdGlvbiB3aXRoIGxpZ2h0IGFwcGV0aXplcnMNCg0KSXMgdGhlcmUgYW55IHJlZ2lzdHJh
+dGlvbiBjb3N0IGZvciB0aGlzIGV2ZW50LCBhbmQgaG93IGRvZXMgb25lIHJlZ2lzdGVyPw0KRm9y
+IHRoZSB0cmFpbmluZyBwb3J0aW9uIHRoZXJlIG5vcm1hbGx5IGhhcyBiZWVuLiBJIGFtIHN1cmUg
+dGhlIGRldGFpbHMgd2lsbCBiZSBwcm92aWRlZCBvbmNlIHRoaW5ncyBhcmUgc2V0dXAuDQoNCi0g
+YXJtaW4NCg0KDQrCoA0KRUxDRSDigJMgTW9uZGF5LCBPY3RvYmVyIDI4IC0zMCwgMjAxOSwgTHlv
+biBDb252ZW50aW9uIENlbnRyZSwgTHlvbiwgRnJhbmNlDQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoCBZb2N0byBQcm9qZWN0IGlzIGEgc3BvbnNvci4gV2XigJlsbCBzZWUgeW91IG9uIHRoZSBz
+aG93IGZsb29yDQrCoA0KRUxDRSBZb2N0byBQcm9qZWN0IFN1bW1pdCDigJMgRGF0ZXMgJiBUaW1l
+czogDQogICAgICAgVGh1cnNkYXksIE9jdG9iZXIgMzEsIDIwMTkgLSA4OjAwQU0gLSA2OjAwUE0g
+DQrCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIE5vdmVtYmVyIDEsIDIwMTkgLSA4OjAwIGFt
+IC0gNjowMFBNDQogICAgICAgU2V0LXVwOiANCiAgICAgICBEYXkgMTogMSBNZWV0aW5nIFJvb20g
+LSBUaGVhdGVyIFNlYXRpbmcgZm9yIDEwMCBmb3IgWW9jdG8gUHJvamVjdCB0YWxrcw0KICAgICAg
+IERheSAyOiAyIE1lZXRpbmcgUm9vbXMgLSBNaXhlZCBDbGFzc3Jvb20vVGhlYXRlciBzZWF0aW5n
+IGZvciA2MCAmIENsYXNzcm9vbSBzZWF0aW5nIGZvciA0MCAoZm9yIG1haW50YWluZXJzIGFuZCB1
+c2VycykNCiAgICAgICBJbmNsdWRlczoNCiAgICAgICBNb3JuaW5nIEJyZWFrIGZvciAyIGRheXMN
+CiAgICAgICBCdWZmZXQgTHVuY2ggZm9yIDIgZGF5cw0KICAgICAgIEJlZXIgJiBXaW5lIFJlY2Vw
+dGlvbiB3aXRoIGxpZ2h0IGFwcGV0aXplcnMgZm9yIDEgZGF5DQpUaGUgZ29hbCBmb3IgdGhlIHNl
+Y29uZCBkYXkgb2YgdGhlIHN1bW1pdCBpcyB0byBidWlsZCBhbmQgYnJpbmcgdGhlIGNvbW11bml0
+eSB0b2dldGhlci4gV2UgYXJlIGludGVyZXN0ZWQgdG8gaGVhciB5b3VyIG9waW5pb25zIGFuZCBp
+ZGVhcyBvbiBob3cgdGhhdCBkYXkgYW5kIHRob3NlIHJvb21zIHNob3VsZCBiZSB1c2VkIGZvci4g
+UGxlYXNlIHNlbmQgeW91ciBpZGVhcyB0byBBbmRyZWVhIFZvbG9zaW5jdSBhbmQgUGhpbGlwIEJh
+bGlzdGVyLg0KwqANCldlIHdpbGwgY2FsbCBvdXQgYW4gQWR2b2NhY3kgbWVldGluZyBpbiBhIGNv
+dXBsZSBvZiB3ZWVrcyB0byBnbyBvdmVyIHBsYW5zIGFuZCB2b3RlIG9uIHRoZSBpZGVhcyBmb3Ig
+dGhlIHNlY29uZCBkYXkgb2YgdGhlIHN1bW1pdC4NCsKgDQpUaGFua3MhDQpBbmRyZWVhDQpZb2N0
+byBQcm9qZWN0IEFkdm9jYWN5IExlYWQNCi0tIA0KSm9zaHVhIFdhdHQgPEpQRVdoYWNrZXJAZ21h
+aWwuY29tPg0KDQoNCg0K
 
