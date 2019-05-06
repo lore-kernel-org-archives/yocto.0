@@ -1,6 +1,6 @@
 Return-Path: <gabbla.malist@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E2CD4E00D38; Mon,  6 May 2019 04:27:29 -0700 (PDT)
+	id AEB7EE00D3F; Mon,  6 May 2019 04:32:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,55 +13,60 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (gabbla.malist[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.66 listed in list.dnswl.org]
+	*      [209.85.167.53 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
-	[209.85.167.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84232E00BAF
-	for <yocto@yoctoproject.org>; Mon,  6 May 2019 04:27:28 -0700 (PDT)
-Received: by mail-lf1-f66.google.com with SMTP id j11so8873949lfm.0
-	for <yocto@yoctoproject.org>; Mon, 06 May 2019 04:27:28 -0700 (PDT)
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com
+	[209.85.167.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3F21E00D36
+	for <yocto@yoctoproject.org>; Mon,  6 May 2019 04:32:36 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id k18so8852734lfj.13
+	for <yocto@yoctoproject.org>; Mon, 06 May 2019 04:32:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=WJ7tiBoFrK5gh4ZUSWexycM17iK2CuTb5GGhdq4enzw=;
-	b=J/yRoXSjyJiq0mr4BjVNfUloSMKhFryeowVWaEeW6UU1+z9A4HQxjVeVE1k1FpEF1O
-	g/1/s3z3ItonAGQIgRVru6sOC5tIgTZtyL5u150p/FM1r/xIlq0HkcoTVUHz7YGnroSi
-	Gw3OlWjXYEebwzC3qFFPu8C9/cookft/1vAWBBxx3od2eRwu+l4AOvbPyBV2vehudykN
-	+xVuStm3I31ohKcUXrxub2y/3m5HNSrqvCFHSePTMbqgwcEzt6n8u7IGlDX6MeVxsLc6
-	cHOEzQxrdahfz76j4XUCr/1E/yZPs90/8aUvEY1PDDPViHpKv6+IiyY5ABkptIwG7j7q
-	oPHQ==
+	:cc; bh=lPyY6d2RqEPGp3CIPTFAYgKBypVlT/xcfCDMpUX0O+M=;
+	b=myUU8swCX6F1SycAAWESxced6XL+vkM82vr+s3zl4MWcTbnKIlubb6ETQo0E1Afhw0
+	jIN73VoWl21Qxxg2ykLFYoinrX39ZuQiaKQMOe7fl/U+N2hBkXNxlF4LGr+nUC6yPINO
+	xv+Bcpon4kDNyODGth0TpQSQTkikRPSP696Ys2EbhDmruxYerRvV0MQ8oJDJ/g1ddEQ0
+	icNE11mQbKBL0KM7SKmmDdl+UBUwX6RFqrpxQKMwE8uhHDWKGV2cb9hPv1NChVfMjC6m
+	f1Gd4+VOagxnc72aiKQoVc9Uw8I3cEjuZESr3MJykO10zzMGOscKTRbL9wrxQZrT5seb
+	2BXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=WJ7tiBoFrK5gh4ZUSWexycM17iK2CuTb5GGhdq4enzw=;
-	b=SHBEVkX4NYel+V6ePV0+MLIA8E8AkbI8tFF9hesIUSiEn3gOq0cNRvx7PthvMn+z0U
-	toMTfgWDs2rNfTpIwbizU9kxiwLKzzfxF6/wbbFS4bwXD82D//G+CL3ZYJQ3Zt6tMlEy
-	5GATcm3hQOONWae70SWA+2aXVUi0vRPuEWKblyntaNqxiGH3dzR56drAaBrnhp4DNazC
-	49nK2WVakaTN2n89e7OfBSH5CNwtUkUI9oJv4fsgGViF9M+YAQSfUwdjnHNQPPn4UInG
-	PsCQcOo3MO+8jVKmck7s4e7fgvf/0qsLaFSenHuK5umdqCgalbqalEHsEaWTMQ3bKzQi
-	up8A==
-X-Gm-Message-State: APjAAAU/BYCrDvpC0LJZHEoAZR+a4si3/XRIzAekhIjdt99l+KO/g85C
-	QcyF30eu1L/z7Y3B/KXBttWbvLs/taQmIqXbv28=
-X-Google-Smtp-Source: APXvYqxTH+HaiFn4RDc0qoQc4aKnAtdW5Y3toCVODtGKtiSJWCByCdpHk7yN1cARma2xN4Kc7ISoO+gd+ApZxDNSVX4=
-X-Received: by 2002:a19:7014:: with SMTP id h20mr13240908lfc.158.1557142047638;
-	Mon, 06 May 2019 04:27:27 -0700 (PDT)
+	bh=lPyY6d2RqEPGp3CIPTFAYgKBypVlT/xcfCDMpUX0O+M=;
+	b=FUgNPAAvgsiryN0PdsgWF/MeWiOmQimPI32VYVISASZfodBDap6jGKsvm+6qHyl0pz
+	jmeHiLWrkt8AeqkXymIj7iZmFLGH9GUNeSYB1Wtbdz2McwAvv9piW4zwN4yU3U/KZ/1a
+	feLS0sItt2E0YoWrzivyDAIBBPVoUr9P3xs8cqpa9OUX8/ZaOTrPTbmVPatd9qIIcVlP
+	EtGO0dY7TNI9JiraUpDXN16ZymeSMDQTVqt1Bq3T4ox+viBuVOBopRbv+rLjhwyLAKAA
+	9o/rxq8i4ihDpYngtkkmfwUFvpA2BMNHa2CI9qBo6yhxp9l43YaaO29XusjDeDD8RmeI
+	TMuw==
+X-Gm-Message-State: APjAAAVwO5P5zfv/KYTwfWin4SrcYEE8AvQOXFcPMBtv+xxaN1l2LHwo
+	q5QYCdeBJnIqixHbk3k/nTUs1u6xOpIjsQah/rOPTURU
+X-Google-Smtp-Source: APXvYqz90y3rMAN3EGi1UzSV0naEAxwl9aLVDCnk/I7SV7MZK0ZK0xUEyYoKqDSFVa8Ki/04189moP2zXE2Y0/emMnM=
+X-Received: by 2002:a19:cd91:: with SMTP id d139mr3800417lfg.156.1557142355730;
+	Mon, 06 May 2019 04:32:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAA=hcWR21J-UDPXOSrMjMDXfx8f_NbCB4YA_7-UBVzZ-9Ea45w@mail.gmail.com>
-	<CAAx3WaBz81Zza1UeK4QhpkDFkXq6zYTRbi_-xKNWaY0mHoHPRw@mail.gmail.com>
-	<CAA=hcWS_V5xujb-Emgzd+ok1dfpiC+RjMFHvxOvOYcwa5tz5=g@mail.gmail.com>
-In-Reply-To: <CAA=hcWS_V5xujb-Emgzd+ok1dfpiC+RjMFHvxOvOYcwa5tz5=g@mail.gmail.com>
+References: <CAAx3WaA0NR=cdGJdPHrkSuENKT7m60GW=pcjCjAHpgwEFPMHwg@mail.gmail.com>
+	<A2A9E37E9C946847B2258F923F7CFE42047B38BE@GOEMAIL-Server2.goerlitz.int>
+	<6rh8ceu2rn.fsf@pengutronix.de>
+	<CAAx3WaDQKbNg0tXZd07s8i_5PTDVctuOcScDMDbXFMmotjoJpw@mail.gmail.com>
+	<CAAx3WaCL2XBSarSVpDN+KdwwYoUDEd3cLT1MfecFWriUB=OT-Q@mail.gmail.com>
+	<6rbm0vbl2s.fsf@pengutronix.de>
+	<CAAx3WaA+KFX67Pzapkc67PTges-SbhRpooRyUxcvDxtzgqOWvQ@mail.gmail.com>
+	<6rk1f884ex.fsf@pengutronix.de>
+In-Reply-To: <6rk1f884ex.fsf@pengutronix.de>
 From: Gabriele Zampieri <gabbla.malist@gmail.com>
-Date: Mon, 6 May 2019 13:27:16 +0200
-Message-ID: <CAAx3WaC+CdyVSyCsV00_s7U1wdfm-8s51mGwLbMEcQbTzd8Zhg@mail.gmail.com>
-To: JH <jupiter.hce@gmail.com>
+Date: Mon, 6 May 2019 13:32:24 +0200
+Message-ID: <CAAx3WaCYnDrECr-vqSwrrQqw-gBe-nbFkaWR-rsJLjT_ZDiZJw@mail.gmail.com>
+To: =?UTF-8?Q?Ulrich_=C3=96lmann?= <u.oelmann@pengutronix.de>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: How to define and build device tree in Yocto?
+Subject: Re: Multiple ubifs partition
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,223 +78,599 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 May 2019 11:27:30 -0000
-Content-Type: multipart/alternative; boundary="0000000000009d4ea50588366263"
+X-List-Received-Date: Mon, 06 May 2019 11:32:38 -0000
+Content-Type: multipart/alternative; boundary="000000000000fa642d05883674f3"
 
---0000000000009d4ea50588366263
+--000000000000fa642d05883674f3
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Ulrich,
 
-> but there is no imx6ull-14x14-evk.dts
+thank you very much for your explanation. The provided genimage.config
+looks similar to mine, so I guess it is ok. I will try when I come back to
+the office. The point I missed was that I need to call: bitbake
+your-customized-ubi and not bitbake my-custom-image, right?
 
-it is located in arch/arm/boot/dts/imx6ull-14x14-evk.dts and it is compiled
-(among others dts) while building virtual/kernel task.
-
-Setting KERNEL_DEVICETREE =  "imx6ull-14x14-evk.dtb" simply tells to
-bitbake to put a copy of imx6ull-14x14-evk.dtb inside your image deploy
-directory. You can dig through meta/classes/kernel-devicetree.bbclass to
-see how KERNEL_DEVICETREE is used.
-
-If you do not need to modify the dts, you will find all the image related
-stuff in poky/build/tmp/deploy/images/<MACHINE>/<IMAGE>.
-
-If you need to patch the dts (or any other kernel related file):
-
-- Clone you kernel source tree locally
-- Checkout the correct branch
-- Do your edits, then commit
-- Get a patch with the customization through git format-patch (or any other
-way)
-
-Now, in your meta layer:
-- create recipes-kernel/linux/<your-kernel-provider>.bbappend file
-- create recipes-kernel/linux/files/<MACHINE>/ directory
-
-Then:
-- Copy your patch in recipes-kernel/linux/files/<MACHINE>
-- Edit the bbappend file with:
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:" # Add files to the search
-paths
-SRC_URI_append_<MACHINE> = " file://0001-your-commit-message.patch"
-
-bitbake will apply the patch after the kernel unpack automatically, then
-build the tree with the patch(es) applied.
-
-You can also add a completely new dts via patch, then add it to
-KERNEL_DEVICETREE.
-
-Best regards,
+Thank you again,
 Gabriele
 
-Il giorno lun 6 mag 2019 alle ore 09:36 JH <jupiter.hce@gmail.com> ha
-scritto:
 
-> Thanks Gabriele,
+Il giorno ven 3 mag 2019 alle ore 07:59 Ulrich =C3=96lmann <
+u.oelmann@pengutronix.de> ha scritto:
+
+> Hi Gabriele,
 >
-> Yes, I have already added KERNEL_DEVICETREE =  "imx6ull-14x14-evk.dtb"
-> to generate an image running on imx6 EVK. What I don't understand is
-> how that imx6ull-14x14-evk.dtb was compiled? I thought all dtb are
-> compiled from dts files, but there is no imx6ull-14x14-evk.dts, the
-> imx6ullevk.conf defined the EVK but there is no detail in that file.
+> On Thu, May 02 2019 at 13:25 +0200, Gabriele Zampieri <
+> gabbla.malist@gmail.com> wrote:
+> > ok, I guess I miss-understand how that class works. I thought that I
+> > had to add the customization on my own image recipe.
+> > So the correct way is to write a 'customization recipe' and install
+> > via IMAGE_INSTALL? Can you provide an example?
 >
-> My second question is my new hardware based on imx6ull MCU now has a
-> dts file, since I could not see any samples how is the dtb compiled
-> from a dts file, I have no idea where to put the dts file, how to link
-> that dts file to generate a dtb file in recipe. Appreciate more
-> clarification.
+> use your custom image recipe as before to just produce your root-
+> filesystem which results in a (compressed) tar-file in ${DEPLOY_DIR_
+> IMAGE}. It will be referenced from the genimage recipe without any file
+> extension via GENIMAGE_ROOTFS_IMAGE. Now your UBI-recipe (e.g. 'your-
+> customized-ubi.bb') could look like
 >
-> Thank you.
+>     inherit genimage
+>     LICENSE =3D "MIT"
+>     LIC_FILES_CHKSUM =3D
+> "file://${COREBASE}/meta/files/common-licenses/MIT;md5=3D0835ade698e0bcf8=
+506ecda2f7b4f302"
 >
-> - jh
+>     SRC_URI +=3D "file://genimage.config"
 >
-> On 5/6/19, Gabriele Zampieri <gabbla.malist@gmail.com> wrote:
-> > Hi,
-> >
-> > The easiest way is to add them via patches. You can write a recipe that
-> > patch the Linux tree and put it in your meta layer (usually in
-> > meta-xxx/recipes-kernel/linux). Then you need to tell Yocto to export the
-> > dtb via KERNEL_DEVICETREE variable (
-> >
-> https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-KERNEL_DEVICETREE
-> ).
-> > I usually put this variable in my machine configuration.
-> >
+>     # to not confuse the flashable UBI-image ('ubi')
+>     # with the UBI-filesystems ('ubifs') it contains
+>     GENIMAGE_IMAGE_SUFFIX =3D "ubi"
+>
+>     # the name of the root-filesystem genimage should use
+>     GENIMAGE_ROOTFS_IMAGE =3D "your-customized-rootfs"
+>
+> with the accompanying 'genimage.config' for example as follows
+>
+>     #
+>     # Manufacturer ID: 0x2c, Chip ID: 0xda
+>     # -> Micron MT29F2G08ABAEAWP
+>     # 256 MiB, SLC
+>     #
+>     flash nand {
+>         pebsize =3D 131072
+>         lebsize =3D 126976
+>         numpebs =3D 2044
+>         minimum-io-unit-size =3D 2048
+>         sub-page-size =3D 2048
+>     }
+>
+>     image @IMAGE@ {
+>         flashtype =3D "nand"
+>         ubi {
+>         }
+>
+>         partition rootfs {
+>                 image =3D rootfs.ubifs
+>                 size =3D 64MiB
+>         }
+>
+>         partition opt {
+>                 image =3D opt.ubifs
+>                 size =3D 32MiB
+>         }
+>
+>         partition data {
+>                 image =3D data.ubifs
+>                 autoresize =3D true
+>         }
+>     }
+>
+>     image rootfs.ubifs {
+>         flashtype =3D "nand"
+>         ubifs {
+>                 extraargs =3D "-x lzo"
+>                 max-size =3D 64MiB
+>         }
+>         mountpoint =3D "/"
+>     }
+>
+>     image opt.ubifs {
+>         flashtype =3D "nand"
+>         ubifs {
+>                 extraargs =3D "-x lzo"
+>                 max-size =3D 32MiB
+>         }
+>         mountpoint =3D "/opt"
+>     }
+>
+>     image data.ubifs {
+>         flashtype =3D "nand"
+>         ubifs {
+>                 extraargs =3D "-x lzo"
+>                 max-size =3D 192MiB
+>         }
+>         mountpoint =3D "/data"
+>     }
+>
+> In a UBI-image almost all UBI-volumes need to have a fixed size and only
+> one is allowed to use the autoresize mechanism which blows it up to use
+> the remaining space when it is UBI-attached for the first time. Distinct
+> from that is the UBI-filesystem's max-size parameter which prescribes
+> the maximum size of an UBI-volume that shall be addressable by this
+> filesystem. This means that if you would re-use 'data.ubifs' in a volume
+> that has been autoresized to e.g. 1024MiB the filesystem would not be
+> able to make use of it.
+>
+> I neither tested the recipe nor the genimage.config, so please give some
+> feedback.
+>
+> Best regards
+> Ulrich
+>
+>
+> > Thanks,
 > > Gabriele
 > >
-> > Il giorno dom 5 mag 2019 alle ore 14:04 JH <jupiter.hce@gmail.com> ha
-> > scritto:
+> > Il giorno mer 24 apr 2019 alle ore 15:15 Ulrich =C3=96lmann <
+> > u.oelmann@pengutronix.de> ha scritto:
 > >
-> >> Hi,
+> >> Hi Gabriele,
 > >>
-> >> I think the device tree blob is build from device tree source, but I
-> >> could not find any dts files in recipe source directory, there are
-> >> many dts files in build directory and there are dtb in build
-> >> directory.
+> >> On Wed, Apr 24 2019 at 14:06 +0200, Gabriele Zampieri <
+> >> gabbla.malist@gmail.com> wrote:
+> >> > I'm now testing genimage via meta-ptx in my Yocto workflow, but I
+> found a
+> >> > problem: I cannot set a SRC_URI in my custom image recipe (that
+> inherit
+> >> > from core-image which in turn inherit from image) because do_fetch a=
+nd
+> >> > do_unpack tasks have noexec set to 1. If I specify the SRC_URI with =
+my
+> >> > genimage.config, bitbake exits, complaining about LIC_FILE_CHECKSUM
+> (that
+> >> > is correctly specified). If I hack image.bbclass and comment out
+> >> >
+> >> > #do_fetch[noexec] =3D "1"
+> >> >
+> >> >
+> >> > #do_unpack[noexec] =3D "1"
+> >> >
+> >> > The process start correctly. Is there a way to avoid touching
+> >> image.bbclass
+> >> > and install my configuration from the image recipe?
+> >> >
+> >> > Thanks,
+> >> > Gabriele
 > >>
-> >> If I have a device tree source, where I should put it and how to
-> >> define the recipe to built it?
+> >> you need one or more recipe(s) that construct(s) your filesystem(s) an=
+d
+> >> a separate one that makes a flashable image out of that (see the
+> >> introductory documentation in 'genimage.bbclass'). In the former you
+> >> inherit 'core-image' and only in the latter which inherits 'genimage'
+> >> you have to set the SRC_URI to point to your 'genimage.config'.
 > >>
-> >> Thank you.
+> >> Best regards
+> >> Ulrich
 > >>
-> >> Kind regards,
 > >>
-> >> - jupiter
+> >> > Il giorno mer 13 mar 2019 alle ore 16:14 Gabriele Zampieri <
+> >> > gabbla.malist@gmail.com> ha scritto:
+> >> >
+> >> >> Hi all,
+> >> >>
+> >> >> thank you very much for the suggestion, I will check genimage and
+> test
+> >> it.
+> >> >>
+> >> >> Gabriele
+> >> >>
+> >> >> Il giorno gio 7 mar 2019 alle ore 16:23 Ulrich =C3=96lmann <
+> >> >> u.oelmann@pengutronix.de> ha scritto:
+> >> >>
+> >> >>> Hi there,
+> >> >>>
+> >> >>> On Thu, Mar 07 2019 at 15:11 +0100, Stelling2 Carsten <
+> >> >>> Carsten.Stelling2@goerlitz.com> wrote:
+> >> >>> > Have you seen https://github.com/pengutronix/genimage?
+> >> >>>
+> >> >>> you can find it included within
+> >> https://github.com/pengutronix/meta-ptx
+> >> >>> with an accompanying genimage.bbclass.
+> >> >>>
+> >> >>> Best regards
+> >> >>> Ulrich
+> >> >>>
+> >> >>> > Regards,
+> >> >>> >
+> >> >>> > Carsten
+> >> >>> >
+> >> >>> > Von: yocto-bounces@yoctoproject.org [mailto:
+> >> >>> yocto-bounces@yoctoproject.org] Im Auftrag von Gabriele Zampieri
+> >> >>> > Gesendet: Montag, 4. M=C3=A4rz 2019 12:17
+> >> >>> > An: yocto@yoctoproject.org
+> >> >>> > Betreff: [yocto] Multiple ubifs partition
+> >> >>> >
+> >> >>> > Hi all,
+> >> >>> >
+> >> >>> > I'm trying to build a distribution that has multiple partitions.
+> The
+> >> >>> desiderata is something like:
+> >> >>> >
+> >> >>> > - rootfs.ubifs mounted on /
+> >> >>> > - data.ubifs mounted on /data
+> >> >>> > - opt.ubifs mounted on /opt
+> >> >>> >
+> >> >>> > I was wondering if there is a standard way to achieve the goal. =
+I
+> see
+> >> >>> that there is a tool called wic, but it does not seems to support
+> >> ubifs. I
+> >> >>> could post process the tarball image and doing stuff with my
+> scripts,
+> >> but
+> >> >>> I'd prefer doing this in a single bitbake run. Can you suggest
+> >> something?
+> >> >>> >
+> >> >>> > Thanks,
+> >> >>> > Gabriele
+> >> >>>
+> >> >>>
+> >> >>> --
+> >> >>> Pengutronix e.K.                           | Ulrich =C3=96lmann
+> >>    |
+> >> >>> Industrial Linux Solutions                 |
+> >> http://www.pengutronix.de/
+> >> >>> |
+> >> >>> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone:
+> +49-5121-206917-0
+> >>   |
+> >> >>> Amtsgericht Hildesheim, HRA 2686           | Fax:
+> >>  +49-5121-206917-5555 |
+> >> >>>
+> >> >>
+> >>
+> >>
 > >> --
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org
-> >> https://lists.yoctoproject.org/listinfo/yocto
+> >> Pengutronix e.K.                           | Ulrich =C3=96lmann
+>  |
+> >> Industrial Linux Solutions                 | http://www.pengutronix.de=
+/
+> |
+> >> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0
+>   |
+> >> Amtsgericht Hildesheim, HRA 2686           | Fax:
+>  +49-5121-206917-5555 |
 > >>
-> >
+>
+>
+> --
+> Pengutronix e.K.                           | Ulrich =C3=96lmann          =
+     |
+> Industrial Linux Solutions                 | http://www.pengutronix.de/  =
+|
+> Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    =
+|
+> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 =
+|
 >
 
---0000000000009d4ea50588366263
+--000000000000fa642d05883674f3
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
-r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>Hi,</div><div><br></div><d=
-iv>&gt;  but there is no imx6ull-14x14-evk.dts</div><div><br></div><div>it =
-is located in arch/arm/boot/dts/imx6ull-14x14-evk.dts and it is compiled (a=
-mong others dts) while building virtual/kernel task.</div><div><br></div><d=
-iv>Setting KERNEL_DEVICETREE =3D=C2=A0 &quot;imx6ull-14x14-evk.dtb&quot; si=
-mply tells to bitbake to put a copy of imx6ull-14x14-evk.dtb inside your im=
-age deploy directory. You can dig through meta/classes/kernel-devicetree.bb=
-class to see how KERNEL_DEVICETREE is used. <br></div><div><br></div><div>I=
-f you do not need to modify the dts, you will find all the image related st=
-uff in poky/build/tmp/deploy/images/&lt;MACHINE&gt;/&lt;IMAGE&gt;. <br></di=
-v><div><br></div><div>If you need to patch the dts (or any other kernel rel=
-ated file):<br></div><div><br></div><div>- Clone you kernel source tree loc=
-ally <br></div><div>- Checkout the correct branch</div><div>- Do your edits=
-, then commit</div><div>- Get a patch with the customization through git fo=
-rmat-patch (or any other way)<br></div><div><br></div><div>Now, in your met=
-a layer:<br></div><div>- create recipes-kernel/linux/&lt;your-kernel-provid=
-er&gt;.bbappend file<br></div><div>- create recipes-kernel/linux/files/&lt;=
-MACHINE&gt;/ directory</div><div><br></div><div>Then: <br></div><div>- Copy=
- your patch in recipes-kernel/linux/files/&lt;MACHINE&gt;</div><div>- Edit =
-the bbappend file with:</div><div>FILESEXTRAPATHS_prepend :=3D &quot;${THIS=
-DIR}/files:&quot; # Add files to the search paths</div><div>SRC_URI_append_=
-&lt;MACHINE&gt; =3D &quot; file://0001-your-commit-message.patch&quot;</div=
-><div><br></div><div>bitbake will apply the patch after the kernel unpack a=
-utomatically, then build the tree with the patch(es) applied.<br> </div><di=
-v><br></div><div>You can also add a completely new dts via patch, then add =
-it to=C2=A0 KERNEL_DEVICETREE.</div><div><br></div><div>Best regards,</div>=
-<div>Gabriele<br></div></div></div></div></div></div></div></div><br><div c=
-lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Il giorno lun 6 =
-mag 2019 alle ore 09:36 JH &lt;<a href=3D"mailto:jupiter.hce@gmail.com">jup=
-iter.hce@gmail.com</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail_=
-quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
-204);padding-left:1ex">Thanks Gabriele,<br>
+<div dir=3D"ltr"><div>Hi Ulrich,</div><div><br></div><div>thank you very mu=
+ch for your explanation. The provided genimage.config looks similar to mine=
+, so I guess it is ok. I will try when I come back to the office. The point=
+ I missed was that I need to call: bitbake your-customized-ubi and not bitb=
+ake my-custom-image, right?</div><div><br></div><div>Thank you again, <br><=
+/div><div>Gabriele<br></div><div><br></div></div><br><div class=3D"gmail_qu=
+ote"><div dir=3D"ltr" class=3D"gmail_attr">Il giorno ven 3 mag 2019 alle or=
+e 07:59 Ulrich =C3=96lmann &lt;<a href=3D"mailto:u.oelmann@pengutronix.de">=
+u.oelmann@pengutronix.de</a>&gt; ha scritto:<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex">Hi Gabriele,<br>
 <br>
-Yes, I have already added KERNEL_DEVICETREE =3D=C2=A0 &quot;imx6ull-14x14-e=
-vk.dtb&quot;<br>
-to generate an image running on imx6 EVK. What I don&#39;t understand is<br=
+On Thu, May 02 2019 at 13:25 +0200, Gabriele Zampieri &lt;<a href=3D"mailto=
+:gabbla.malist@gmail.com" target=3D"_blank">gabbla.malist@gmail.com</a>&gt;=
+ wrote:<br>
+&gt; ok, I guess I miss-understand how that class works. I thought that I<b=
+r>
+&gt; had to add the customization on my own image recipe.<br>
+&gt; So the correct way is to write a &#39;customization recipe&#39; and in=
+stall<br>
+&gt; via IMAGE_INSTALL? Can you provide an example?<br>
+<br>
+use your custom image recipe as before to just produce your root-<br>
+filesystem which results in a (compressed) tar-file in ${DEPLOY_DIR_<br>
+IMAGE}. It will be referenced from the genimage recipe without any file<br>
+extension via GENIMAGE_ROOTFS_IMAGE. Now your UBI-recipe (e.g. &#39;your-<b=
+r>
+<a href=3D"http://customized-ubi.bb" rel=3D"noreferrer" target=3D"_blank">c=
+ustomized-ubi.bb</a>&#39;) could look like<br>
+<br>
+=C2=A0 =C2=A0 inherit genimage<br>
+=C2=A0 =C2=A0 LICENSE =3D &quot;MIT&quot;<br>
+=C2=A0 =C2=A0 LIC_FILES_CHKSUM =3D &quot;file://${COREBASE}/meta/files/comm=
+on-licenses/MIT;md5=3D0835ade698e0bcf8506ecda2f7b4f302&quot;<br>
+<br>
+=C2=A0 =C2=A0 SRC_URI +=3D &quot;file://genimage.config&quot;<br>
+<br>
+=C2=A0 =C2=A0 # to not confuse the flashable UBI-image (&#39;ubi&#39;)<br>
+=C2=A0 =C2=A0 # with the UBI-filesystems (&#39;ubifs&#39;) it contains<br>
+=C2=A0 =C2=A0 GENIMAGE_IMAGE_SUFFIX =3D &quot;ubi&quot;<br>
+<br>
+=C2=A0 =C2=A0 # the name of the root-filesystem genimage should use<br>
+=C2=A0 =C2=A0 GENIMAGE_ROOTFS_IMAGE =3D &quot;your-customized-rootfs&quot;<=
+br>
+<br>
+with the accompanying &#39;genimage.config&#39; for example as follows<br>
+<br>
+=C2=A0 =C2=A0 #<br>
+=C2=A0 =C2=A0 # Manufacturer ID: 0x2c, Chip ID: 0xda<br>
+=C2=A0 =C2=A0 # -&gt; Micron MT29F2G08ABAEAWP<br>
+=C2=A0 =C2=A0 # 256 MiB, SLC<br>
+=C2=A0 =C2=A0 #<br>
+=C2=A0 =C2=A0 flash nand {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 pebsize =3D 131072<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 lebsize =3D 126976<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 numpebs =3D 2044<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 minimum-io-unit-size =3D 2048<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 sub-page-size =3D 2048<br>
+=C2=A0 =C2=A0 }<br>
+<br>
+=C2=A0 =C2=A0 image @IMAGE@ {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 flashtype =3D &quot;nand&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ubi {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 partition rootfs {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 image =3D rootfs.ub=
+ifs<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 size =3D 64MiB<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 partition opt {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 image =3D opt.ubifs=
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 size =3D 32MiB<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 partition data {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 image =3D data.ubif=
+s<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 autoresize =3D true=
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+=C2=A0 =C2=A0 }<br>
+<br>
+=C2=A0 =C2=A0 image rootfs.ubifs {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 flashtype =3D &quot;nand&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ubifs {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 extraargs =3D &quot=
+;-x lzo&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 max-size =3D 64MiB<=
+br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 mountpoint =3D &quot;/&quot;<br>
+=C2=A0 =C2=A0 }<br>
+<br>
+=C2=A0 =C2=A0 image opt.ubifs {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 flashtype =3D &quot;nand&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ubifs {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 extraargs =3D &quot=
+;-x lzo&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 max-size =3D 32MiB<=
+br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 mountpoint =3D &quot;/opt&quot;<br>
+=C2=A0 =C2=A0 }<br>
+<br>
+=C2=A0 =C2=A0 image data.ubifs {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 flashtype =3D &quot;nand&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 ubifs {<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 extraargs =3D &quot=
+;-x lzo&quot;<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 max-size =3D 192MiB=
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 }<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 mountpoint =3D &quot;/data&quot;<br>
+=C2=A0 =C2=A0 }<br>
+<br>
+In a UBI-image almost all UBI-volumes need to have a fixed size and only<br=
 >
-how that imx6ull-14x14-evk.dtb was compiled? I thought all dtb are<br>
-compiled from dts files, but there is no imx6ull-14x14-evk.dts, the<br>
-imx6ullevk.conf defined the EVK but there is no detail in that file.<br>
+one is allowed to use the autoresize mechanism which blows it up to use<br>
+the remaining space when it is UBI-attached for the first time. Distinct<br=
+>
+from that is the UBI-filesystem&#39;s max-size parameter which prescribes<b=
+r>
+the maximum size of an UBI-volume that shall be addressable by this<br>
+filesystem. This means that if you would re-use &#39;data.ubifs&#39; in a v=
+olume<br>
+that has been autoresized to e.g. 1024MiB the filesystem would not be<br>
+able to make use of it.<br>
 <br>
-My second question is my new hardware based on imx6ull MCU now has a<br>
-dts file, since I could not see any samples how is the dtb compiled<br>
-from a dts file, I have no idea where to put the dts file, how to link<br>
-that dts file to generate a dtb file in recipe. Appreciate more<br>
-clarification.<br>
+I neither tested the recipe nor the genimage.config, so please give some<br=
+>
+feedback.<br>
 <br>
-Thank you.<br>
+Best regards<br>
+Ulrich<br>
 <br>
-- jh<br>
 <br>
-On 5/6/19, Gabriele Zampieri &lt;<a href=3D"mailto:gabbla.malist@gmail.com"=
- target=3D"_blank">gabbla.malist@gmail.com</a>&gt; wrote:<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; The easiest way is to add them via patches. You can write a recipe tha=
-t<br>
-&gt; patch the Linux tree and put it in your meta layer (usually in<br>
-&gt; meta-xxx/recipes-kernel/linux). Then you need to tell Yocto to export =
-the<br>
-&gt; dtb via KERNEL_DEVICETREE variable (<br>
-&gt; <a href=3D"https://www.yoctoproject.org/docs/latest/mega-manual/mega-m=
-anual.html#var-KERNEL_DEVICETREE" rel=3D"noreferrer" target=3D"_blank">http=
-s://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-KERNE=
-L_DEVICETREE</a>).<br>
-&gt; I usually put this variable in my machine configuration.<br>
-&gt;<br>
+&gt; Thanks,<br>
 &gt; Gabriele<br>
 &gt;<br>
-&gt; Il giorno dom 5 mag 2019 alle ore 14:04 JH &lt;<a href=3D"mailto:jupit=
-er.hce@gmail.com" target=3D"_blank">jupiter.hce@gmail.com</a>&gt; ha<br>
-&gt; scritto:<br>
+&gt; Il giorno mer 24 apr 2019 alle ore 15:15 Ulrich =C3=96lmann &lt;<br>
+&gt; <a href=3D"mailto:u.oelmann@pengutronix.de" target=3D"_blank">u.oelman=
+n@pengutronix.de</a>&gt; ha scritto:<br>
 &gt;<br>
-&gt;&gt; Hi,<br>
+&gt;&gt; Hi Gabriele,<br>
 &gt;&gt;<br>
-&gt;&gt; I think the device tree blob is build from device tree source, but=
- I<br>
-&gt;&gt; could not find any dts files in recipe source directory, there are=
+&gt;&gt; On Wed, Apr 24 2019 at 14:06 +0200, Gabriele Zampieri &lt;<br>
+&gt;&gt; <a href=3D"mailto:gabbla.malist@gmail.com" target=3D"_blank">gabbl=
+a.malist@gmail.com</a>&gt; wrote:<br>
+&gt;&gt; &gt; I&#39;m now testing genimage via meta-ptx in my Yocto workflo=
+w, but I found a<br>
+&gt;&gt; &gt; problem: I cannot set a SRC_URI in my custom image recipe (th=
+at inherit<br>
+&gt;&gt; &gt; from core-image which in turn inherit from image) because do_=
+fetch and<br>
+&gt;&gt; &gt; do_unpack tasks have noexec set to 1. If I specify the SRC_UR=
+I with my<br>
+&gt;&gt; &gt; genimage.config, bitbake exits, complaining about LIC_FILE_CH=
+ECKSUM (that<br>
+&gt;&gt; &gt; is correctly specified). If I hack image.bbclass and comment =
+out<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; #do_fetch[noexec] =3D &quot;1&quot;<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; #do_unpack[noexec] =3D &quot;1&quot;<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; The process start correctly. Is there a way to avoid touching=
 <br>
-&gt;&gt; many dts files in build directory and there are dtb in build<br>
-&gt;&gt; directory.<br>
+&gt;&gt; image.bbclass<br>
+&gt;&gt; &gt; and install my configuration from the image recipe?<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt; Thanks,<br>
+&gt;&gt; &gt; Gabriele<br>
 &gt;&gt;<br>
-&gt;&gt; If I have a device tree source, where I should put it and how to<b=
+&gt;&gt; you need one or more recipe(s) that construct(s) your filesystem(s=
+) and<br>
+&gt;&gt; a separate one that makes a flashable image out of that (see the<b=
 r>
-&gt;&gt; define the recipe to built it?<br>
+&gt;&gt; introductory documentation in &#39;genimage.bbclass&#39;). In the =
+former you<br>
+&gt;&gt; inherit &#39;core-image&#39; and only in the latter which inherits=
+ &#39;genimage&#39;<br>
+&gt;&gt; you have to set the SRC_URI to point to your &#39;genimage.config&=
+#39;.<br>
 &gt;&gt;<br>
-&gt;&gt; Thank you.<br>
+&gt;&gt; Best regards<br>
+&gt;&gt; Ulrich<br>
 &gt;&gt;<br>
-&gt;&gt; Kind regards,<br>
 &gt;&gt;<br>
-&gt;&gt; - jupiter<br>
+&gt;&gt; &gt; Il giorno mer 13 mar 2019 alle ore 16:14 Gabriele Zampieri &l=
+t;<br>
+&gt;&gt; &gt; <a href=3D"mailto:gabbla.malist@gmail.com" target=3D"_blank">=
+gabbla.malist@gmail.com</a>&gt; ha scritto:<br>
+&gt;&gt; &gt;<br>
+&gt;&gt; &gt;&gt; Hi all,<br>
+&gt;&gt; &gt;&gt;<br>
+&gt;&gt; &gt;&gt; thank you very much for the suggestion, I will check geni=
+mage and test<br>
+&gt;&gt; it.<br>
+&gt;&gt; &gt;&gt;<br>
+&gt;&gt; &gt;&gt; Gabriele<br>
+&gt;&gt; &gt;&gt;<br>
+&gt;&gt; &gt;&gt; Il giorno gio 7 mar 2019 alle ore 16:23 Ulrich =C3=96lman=
+n &lt;<br>
+&gt;&gt; &gt;&gt; <a href=3D"mailto:u.oelmann@pengutronix.de" target=3D"_bl=
+ank">u.oelmann@pengutronix.de</a>&gt; ha scritto:<br>
+&gt;&gt; &gt;&gt;<br>
+&gt;&gt; &gt;&gt;&gt; Hi there,<br>
+&gt;&gt; &gt;&gt;&gt;<br>
+&gt;&gt; &gt;&gt;&gt; On Thu, Mar 07 2019 at 15:11 +0100, Stelling2 Carsten=
+ &lt;<br>
+&gt;&gt; &gt;&gt;&gt; <a href=3D"mailto:Carsten.Stelling2@goerlitz.com" tar=
+get=3D"_blank">Carsten.Stelling2@goerlitz.com</a>&gt; wrote:<br>
+&gt;&gt; &gt;&gt;&gt; &gt; Have you seen <a href=3D"https://github.com/peng=
+utronix/genimage" rel=3D"noreferrer" target=3D"_blank">https://github.com/p=
+engutronix/genimage</a>?<br>
+&gt;&gt; &gt;&gt;&gt;<br>
+&gt;&gt; &gt;&gt;&gt; you can find it included within<br>
+&gt;&gt; <a href=3D"https://github.com/pengutronix/meta-ptx" rel=3D"norefer=
+rer" target=3D"_blank">https://github.com/pengutronix/meta-ptx</a><br>
+&gt;&gt; &gt;&gt;&gt; with an accompanying genimage.bbclass.<br>
+&gt;&gt; &gt;&gt;&gt;<br>
+&gt;&gt; &gt;&gt;&gt; Best regards<br>
+&gt;&gt; &gt;&gt;&gt; Ulrich<br>
+&gt;&gt; &gt;&gt;&gt;<br>
+&gt;&gt; &gt;&gt;&gt; &gt; Regards,<br>
+&gt;&gt; &gt;&gt;&gt; &gt;<br>
+&gt;&gt; &gt;&gt;&gt; &gt; Carsten<br>
+&gt;&gt; &gt;&gt;&gt; &gt;<br>
+&gt;&gt; &gt;&gt;&gt; &gt; Von: <a href=3D"mailto:yocto-bounces@yoctoprojec=
+t.org" target=3D"_blank">yocto-bounces@yoctoproject.org</a> [mailto:<br>
+&gt;&gt; &gt;&gt;&gt; <a href=3D"mailto:yocto-bounces@yoctoproject.org" tar=
+get=3D"_blank">yocto-bounces@yoctoproject.org</a>] Im Auftrag von Gabriele =
+Zampieri<br>
+&gt;&gt; &gt;&gt;&gt; &gt; Gesendet: Montag, 4. M=C3=A4rz 2019 12:17<br>
+&gt;&gt; &gt;&gt;&gt; &gt; An: <a href=3D"mailto:yocto@yoctoproject.org" ta=
+rget=3D"_blank">yocto@yoctoproject.org</a><br>
+&gt;&gt; &gt;&gt;&gt; &gt; Betreff: [yocto] Multiple ubifs partition<br>
+&gt;&gt; &gt;&gt;&gt; &gt;<br>
+&gt;&gt; &gt;&gt;&gt; &gt; Hi all,<br>
+&gt;&gt; &gt;&gt;&gt; &gt;<br>
+&gt;&gt; &gt;&gt;&gt; &gt; I&#39;m trying to build a distribution that has =
+multiple partitions. The<br>
+&gt;&gt; &gt;&gt;&gt; desiderata is something like:<br>
+&gt;&gt; &gt;&gt;&gt; &gt;<br>
+&gt;&gt; &gt;&gt;&gt; &gt; - rootfs.ubifs mounted on /<br>
+&gt;&gt; &gt;&gt;&gt; &gt; - data.ubifs mounted on /data<br>
+&gt;&gt; &gt;&gt;&gt; &gt; - opt.ubifs mounted on /opt<br>
+&gt;&gt; &gt;&gt;&gt; &gt;<br>
+&gt;&gt; &gt;&gt;&gt; &gt; I was wondering if there is a standard way to ac=
+hieve the goal. I see<br>
+&gt;&gt; &gt;&gt;&gt; that there is a tool called wic, but it does not seem=
+s to support<br>
+&gt;&gt; ubifs. I<br>
+&gt;&gt; &gt;&gt;&gt; could post process the tarball image and doing stuff =
+with my scripts,<br>
+&gt;&gt; but<br>
+&gt;&gt; &gt;&gt;&gt; I&#39;d prefer doing this in a single bitbake run. Ca=
+n you suggest<br>
+&gt;&gt; something?<br>
+&gt;&gt; &gt;&gt;&gt; &gt;<br>
+&gt;&gt; &gt;&gt;&gt; &gt; Thanks,<br>
+&gt;&gt; &gt;&gt;&gt; &gt; Gabriele<br>
+&gt;&gt; &gt;&gt;&gt;<br>
+&gt;&gt; &gt;&gt;&gt;<br>
+&gt;&gt; &gt;&gt;&gt; --<br>
+&gt;&gt; &gt;&gt;&gt; Pengutronix e.K.=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| Ulrich =C3=
+=96lmann<br>
+&gt;&gt;=C2=A0 =C2=A0 |<br>
+&gt;&gt; &gt;&gt;&gt; Industrial Linux Solutions=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|<br>
+&gt;&gt; <a href=3D"http://www.pengutronix.de/" rel=3D"noreferrer" target=
+=3D"_blank">http://www.pengutronix.de/</a><br>
+&gt;&gt; &gt;&gt;&gt; |<br>
+&gt;&gt; &gt;&gt;&gt; Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +=
+49-5121-206917-0<br>
+&gt;&gt;=C2=A0 =C2=A0|<br>
+&gt;&gt; &gt;&gt;&gt; Amtsgericht Hildesheim, HRA 2686=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0| Fax:<br>
+&gt;&gt;=C2=A0 +49-5121-206917-5555 |<br>
+&gt;&gt; &gt;&gt;&gt;<br>
+&gt;&gt; &gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
 &gt;&gt; --<br>
-&gt;&gt; _______________________________________________<br>
-&gt;&gt; yocto mailing list<br>
-&gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@=
-yoctoproject.org</a><br>
-&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"n=
-oreferrer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto<=
-/a><br>
+&gt;&gt; Pengutronix e.K.=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| Ulrich =C3=96lmann=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|<br>
+&gt;&gt; Industrial Linux Solutions=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0| <a href=3D"http://www.pengutronix.de/" rel=3D"nor=
+eferrer" target=3D"_blank">http://www.pengutronix.de/</a>=C2=A0 |<br>
+&gt;&gt; Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-20691=
+7-0=C2=A0 =C2=A0 |<br>
+&gt;&gt; Amtsgericht Hildesheim, HRA 2686=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0| Fax:=C2=A0 =C2=A0+49-5121-206917-5555 |<br>
 &gt;&gt;<br>
-&gt;<br>
+<br>
+<br>
+--<br>
+Pengutronix e.K.=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| Ulrich =C3=96lmann=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|<br>
+Industrial Linux Solutions=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0| <a href=3D"http://www.pengutronix.de/" rel=3D"noreferrer" ta=
+rget=3D"_blank">http://www.pengutronix.de/</a>=C2=A0 |<br>
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0=C2=A0=
+ =C2=A0 |<br>
+Amtsgericht Hildesheim, HRA 2686=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| =
+Fax:=C2=A0 =C2=A0+49-5121-206917-5555 |<br>
 </blockquote></div>
 
---0000000000009d4ea50588366263--
+--000000000000fa642d05883674f3--
