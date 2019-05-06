@@ -1,61 +1,57 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6C03FE00BAA; Mon,  6 May 2019 11:20:04 -0700 (PDT)
+	id B4EC5E00DAF; Mon,  6 May 2019 11:20:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.169 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-it1-f169.google.com (mail-it1-f169.google.com
-	[209.85.166.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E815E00AD5
-	for <yocto@yoctoproject.org>; Mon,  6 May 2019 11:20:03 -0700 (PDT)
-Received: by mail-it1-f169.google.com with SMTP id s3so9707747itk.1
-	for <yocto@yoctoproject.org>; Mon, 06 May 2019 11:20:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=Rd7TGQXL5v77lMxrW+yRyFzcieNn+kMJy4dLXN8lId0=;
-	b=s0jz7wRvnv+ubsLGbzO+z6HSdlSPxFGJ9EY2bpYoIaAt7qBCdrQa8O/JKbabwJu+q5
-	NRd5T99mTIMdlBj2CZWPSoq/2Gq+VewHsWlVFMiWaRCjiVQxc3bYssSyv4qYnQfDMm+U
-	CmDZVWqiJaCS+9zWoEFctflkS/w+BtF3Op6CDwJO0GLdgls1mSuxLUfPQlqq0Rts0XK5
-	X99mIccMddM9FStbA3uTDlwgWuffTY10R6ySMc9UbFcvkbzZi9oIMyJnZYVSe2bmchx/
-	khst6xGKvqCBm/yWPH4NZi9hh9Y5l6ApwcEdGOd2m0wbKxMnQ8GEuAm0awdEvkwbqnmR
-	j7eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=Rd7TGQXL5v77lMxrW+yRyFzcieNn+kMJy4dLXN8lId0=;
-	b=MDBuPerqFfk+wd9Fj6nDuLkaBYVoNE2IlI7qqikFHWViqMC5S7xgPSDFhsRoeFvyU5
-	3vA0XEe/akhY+e5h2JTqSteSdP1Xrs9UFoQ++uZ/7Kn+mD1OlHv61RSMm5AwLCCfe0nd
-	Uw6v2uarxdouMb3JE5TMnYMluUJkVkM63pNcJFZ33WHej80nZ0tJCkmVMmK9FPqz5SKU
-	gw3jYKgzefsQ994rF0QeAawJT6Mws9iTdWJ3pIQ0WhbVo/YSqZjR2nLE0ohktmsvacH4
-	rNmc0p/hU3gXlNpGyHEOX94RV/17e4+XMWM3PFAt8T+Syp40s7MMS+oXyGq4JdWWnDwf
-	0aqg==
-X-Gm-Message-State: APjAAAWzYYe1J2pFwliwKjJnQwBrJBd6ZhW6OITANCveI9ZUmWx2VQXc
-	o5qfVuA66Ih1H09Z9JPynzryMMFh8OrWrxxQILL6GOGI
-X-Google-Smtp-Source: APXvYqw8DMU/wWc7cNNjzdN5O+tQ37Lt8fkW6ZTAwSZ2lgZHp4Ji4qGOXju/l3fDAxCCyoUW72Astu9poWI6Y9xWo8o=
-X-Received: by 2002:a05:660c:111:: with SMTP id
-	w17mr358644itj.62.1557166802820; 
-	Mon, 06 May 2019 11:20:02 -0700 (PDT)
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BF48E00BAA
+	for <yocto@yoctoproject.org>; Mon,  6 May 2019 11:20:20 -0700 (PDT)
+Received: (qmail 29773 invoked by uid 1003); 6 May 2019 18:20:24 -0000
+Received: from unknown (HELO ?192.168.11.100?)
+	(philip@opensdr.com@73.152.143.112)
+	by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
+	6 May 2019 18:20:24 -0000
+To: Nitesh Guinde <nitesh.guinde@gec.ac.in>, yocto@yoctoproject.org
+References: <CAP1p9H7fSm_VBGWvy7J91YVUyrp_=ph=h=zEGY_zBKFKvvy02Q@mail.gmail.com>
+From: Philip Balister <philip@balister.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
+	xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+	HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+	rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+	2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+	fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+	AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
+	CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
+	nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
+	3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
+	YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
+	3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
+	yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
+	gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
+	GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
+	uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
+	LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
+	gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
+	WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
+	1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
+	ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
+	icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
+	ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
+	6eUfr0u7CwnEyqiQ
+Message-ID: <4536aaa5-77d4-24d8-8d2a-254407572bdd@balister.org>
+Date: Mon, 6 May 2019 14:20:17 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+	Thunderbird/52.5.2
 MIME-Version: 1.0
-References: <CADB9fJHnTXxW78EqNNfeoh2GHM4fqETzC_wo1U58KBRDDJ5TmA@mail.gmail.com>
-In-Reply-To: <CADB9fJHnTXxW78EqNNfeoh2GHM4fqETzC_wo1U58KBRDDJ5TmA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 6 May 2019 19:19:51 +0100
-Message-ID: <CAJTo0LaDGS9xL1MX6CiNObhtAToerSXkuPCVJo8thqfw=dKiTA@mail.gmail.com>
-To: Eric Grunt <gruntblue@gmail.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: yocto sumo - upgrading gcc from 7.3 to 8.3 fails - C compiler cannot create executables
+In-Reply-To: <CAP1p9H7fSm_VBGWvy7J91YVUyrp_=ph=h=zEGY_zBKFKvvy02Q@mail.gmail.com>
+Subject: Re: xilinx Zynq zedboard gnuradio
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,14 +63,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 May 2019 18:20:04 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 06 May 2019 18:20:26 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 7bit
 
-On Mon, 6 May 2019 at 17:28, Eric Grunt <gruntblue@gmail.com> wrote:
-> | configure: error: C compiler cannot create executables
-> | See `config.log' for more details
+On 05/06/2019 05:11 AM, Nitesh Guinde wrote:
+> The following links were used to bitbake the image
+> 
+> https://github.com/balister/oe-gnuradio-manifest
+> 
+> https://wiki.gnuradio.org/index.php/Zynq
 
-I suggest reading config.log for more details.
+Note the line saying this page is obsolete. That page is around to
+document gnuradio and zynq accelerators from several years ago.
+Unfortunately, no one has carried on that work, at least publicly.
 
-Ross
+https://github.com/balister/sdr-build
+
+is what I work with now for assembling images, but I haven't done
+anything with the zc702 lately. Things should basically still though. In
+meta-sdr master, the gnuradio recipe builds from teh master branch, this
+is where I've been making sure the code builds and sometimes managing
+runtime testing, although usually on a Beagle X15.
+
+Philip
+
+
+> 
+> On Mon, May 6, 2019 at 2:40 PM Nitesh Guinde <nitesh.guinde@gec.ac.in>
+> wrote:
+> 
+>> Hi Philip,
+>>
+>> I am trying to port gnuradio onto zedboard. I used the following link
+>> https://github.com/balister/oe-gnuradio-manifest
+>>
+>> and build the images folder for zedboard-zynq7.
+>>  Then I copied uImage, boot.bin dtb and uenv.txt onto the sd card boot
+>> partition
+>>
+>> untarred the gnradio-dev-image-zedboard-zynq7.tar.gz onto the rootfs
+>> partition..
+>>
+>> However the card doesnt boot.
+>>
+>> Just wanted to find out if the process given in the following links are
+>> fine or any other tweaking is needed.
+>>
+>>
+>> Thanks,
+>> Nitesh B. Guinde
+>>
+> 
+> 
+> 
 
