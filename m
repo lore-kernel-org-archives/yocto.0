@@ -1,76 +1,67 @@
-Return-Path: <prvs=1029a96a03=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <gabbla.malist@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 70DF4E00D3A; Mon,  6 May 2019 03:58:53 -0700 (PDT)
+	id E2CD4E00D38; Mon,  6 May 2019 04:27:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (gabbla.malist[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [85.215.255.50 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.167.66 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
-	[85.215.255.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88978E00C14;
-	Mon,  6 May 2019 03:58:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1557140329;
-	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
-	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-	bh=5NeZGkWnt/wlLIVZnvrbjKoYMZrk/KhgD3q9drPva04=;
-	b=Mq5rpdO78r9YRvsp7TXi14pUnOh3RbH7B5QVN9PgyPCSmbxTYlaPDTfLdEvK9jCzYG
-	8aj0U/sDdFTg6HXMY+E6qW8in2H/XlrDjeQVaYq2nxU4wJm3ywI+2MoGHLKRfC0pHgJC
-	vLupMLpU4oRHS7TLrMFBeJSvTar7j06eZMFd6t1/Iw2sSxVscc3xX6eVjRRXYsi/bMXu
-	dG8GzAKt/WNDr651m06/IuKRtE0QdOSLkfg1FwC546AB1O4uPz+PrI8zPRawvLTXV9ch
-	op3YjLlmEBKza5Pz499tcDTln0IB3ch8oNU11W/wBeP3NOW3F0nvfPq1MuEHkiIWm9zH
-	uUTA==
-X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/Kpz6b/avroGOv0c9sak1tqOWjLU3UFhR6"
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de by smtp.strato.de (RZmta 44.18 AUTH)
-	with ESMTPSA id Q0b788v46AtjWU9
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Mon, 6 May 2019 12:55:45 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1557140148; x=1557744948;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
-	Subject:Message-ID:References:MIME-Version:Content-Type:
-	Content-Disposition:Content-Transfer-Encoding:In-Reply-To:
-	User-Agent; bh=5NeZGkWnt/wlLIVZnvrbjKoYMZrk/KhgD3q9drPva04=; b=d
-	g+1oBUJdQqKcO71SvuG17lBFUInHfWc2bcYymg7+f6Qk80+scNdLb5+lDTDtp39X
-	Mz6ZnPGYR+flJGd+I3IhZdmt+qmA6gvc3Jc3Cu4uCyix8wbR3FigX7tmVMWx/6R2
-	t314Oku37m0ROg3nzMFw4c4Z1joe1WsTTt4v/xNGoM=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v18.5.3) with ESMTPSA id
-	md50000163770.msg; Mon, 06 May 2019 12:55:47 +0200
-X-MDRemoteIP: 178.27.67.144
-X-MDHelo: jholzmayr.localdomain
-X-MDArrival-Date: Mon, 06 May 2019 12:55:47 +0200
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=1029a96a03=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
-Date: Mon, 6 May 2019 12:55:42 +0200
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-To: Behan Webster <behanw@converseincode.com>
-Message-ID: <20190506105542.sou43f5lhkqfxlmy@jholzmayr.localdomain>
-References: <A084970538D2234B96D99D06FA9D974FC378C228@ALA-MBD.corp.ad.wrs.com>
-	<954A193F-DC16-4429-BAAD-EE78327C048E@converseincode.com>
+Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
+	[209.85.167.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84232E00BAF
+	for <yocto@yoctoproject.org>; Mon,  6 May 2019 04:27:28 -0700 (PDT)
+Received: by mail-lf1-f66.google.com with SMTP id j11so8873949lfm.0
+	for <yocto@yoctoproject.org>; Mon, 06 May 2019 04:27:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=WJ7tiBoFrK5gh4ZUSWexycM17iK2CuTb5GGhdq4enzw=;
+	b=J/yRoXSjyJiq0mr4BjVNfUloSMKhFryeowVWaEeW6UU1+z9A4HQxjVeVE1k1FpEF1O
+	g/1/s3z3ItonAGQIgRVru6sOC5tIgTZtyL5u150p/FM1r/xIlq0HkcoTVUHz7YGnroSi
+	Gw3OlWjXYEebwzC3qFFPu8C9/cookft/1vAWBBxx3od2eRwu+l4AOvbPyBV2vehudykN
+	+xVuStm3I31ohKcUXrxub2y/3m5HNSrqvCFHSePTMbqgwcEzt6n8u7IGlDX6MeVxsLc6
+	cHOEzQxrdahfz76j4XUCr/1E/yZPs90/8aUvEY1PDDPViHpKv6+IiyY5ABkptIwG7j7q
+	oPHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=WJ7tiBoFrK5gh4ZUSWexycM17iK2CuTb5GGhdq4enzw=;
+	b=SHBEVkX4NYel+V6ePV0+MLIA8E8AkbI8tFF9hesIUSiEn3gOq0cNRvx7PthvMn+z0U
+	toMTfgWDs2rNfTpIwbizU9kxiwLKzzfxF6/wbbFS4bwXD82D//G+CL3ZYJQ3Zt6tMlEy
+	5GATcm3hQOONWae70SWA+2aXVUi0vRPuEWKblyntaNqxiGH3dzR56drAaBrnhp4DNazC
+	49nK2WVakaTN2n89e7OfBSH5CNwtUkUI9oJv4fsgGViF9M+YAQSfUwdjnHNQPPn4UInG
+	PsCQcOo3MO+8jVKmck7s4e7fgvf/0qsLaFSenHuK5umdqCgalbqalEHsEaWTMQ3bKzQi
+	up8A==
+X-Gm-Message-State: APjAAAU/BYCrDvpC0LJZHEoAZR+a4si3/XRIzAekhIjdt99l+KO/g85C
+	QcyF30eu1L/z7Y3B/KXBttWbvLs/taQmIqXbv28=
+X-Google-Smtp-Source: APXvYqxTH+HaiFn4RDc0qoQc4aKnAtdW5Y3toCVODtGKtiSJWCByCdpHk7yN1cARma2xN4Kc7ISoO+gd+ApZxDNSVX4=
+X-Received: by 2002:a19:7014:: with SMTP id h20mr13240908lfc.158.1557142047638;
+	Mon, 06 May 2019 04:27:27 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <954A193F-DC16-4429-BAAD-EE78327C048E@converseincode.com>
-User-Agent: NeoMutt/20180716
-Cc: Yocto list discussion <yocto@yoctoproject.org>,
-	"yocto-advocacy@yoctoproject.org" <yocto-advocacy@yoctoproject.org>
-Subject: Re: [Yocto-Advocacy] Yocto Project Upcoming Conferences and Developer Days
+References: <CAA=hcWR21J-UDPXOSrMjMDXfx8f_NbCB4YA_7-UBVzZ-9Ea45w@mail.gmail.com>
+	<CAAx3WaBz81Zza1UeK4QhpkDFkXq6zYTRbi_-xKNWaY0mHoHPRw@mail.gmail.com>
+	<CAA=hcWS_V5xujb-Emgzd+ok1dfpiC+RjMFHvxOvOYcwa5tz5=g@mail.gmail.com>
+In-Reply-To: <CAA=hcWS_V5xujb-Emgzd+ok1dfpiC+RjMFHvxOvOYcwa5tz5=g@mail.gmail.com>
+From: Gabriele Zampieri <gabbla.malist@gmail.com>
+Date: Mon, 6 May 2019 13:27:16 +0200
+Message-ID: <CAAx3WaC+CdyVSyCsV00_s7U1wdfm-8s51mGwLbMEcQbTzd8Zhg@mail.gmail.com>
+To: JH <jupiter.hce@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: How to define and build device tree in Yocto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,112 +73,223 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 May 2019 10:58:53 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 06 May 2019 11:27:30 -0000
+Content-Type: multipart/alternative; boundary="0000000000009d4ea50588366263"
 
-Howdy!
+--0000000000009d4ea50588366263
+Content-Type: text/plain; charset="UTF-8"
 
-On Sun, May 05, 2019 at 05:07:30PM -0700, Behan Webster wrote:
-> If community building is the plan please don’t exclude OpenEmbedded from the name nor the material (in other words, acknowledging which parts are from OpenEmbedded). Part of the community building aspect is going to have to be acknowledging that Yocto Project is an umbrella project made up of other projects, and then celebrating those projects.
-> 
-> The original idea I put forward was to have a joint OpenEmbedded/Yocto project 2-day event to replace the separate ypdd and OEDEM, not merely a larger Yocto project event.
-> 
-> I am personally already seeing a negative reaction to these plans from others, which is IMHO sadly contributing to destroying community instead of building it.
-> 
-> I, personally, would like nothing more than a simpler way to describe the whole thing. However as it stands we essentially have 2 camps that continue to separate instead of coming together. Let’s try and fix that bit first.
+Hi,
 
-Completely agreed. I've personally never understood the (until now,
-mostly) friendly mutual heckling, but its a thing we have to cope with
-and sort out. The sooner, the better.
- 
-> And I surely hope that things other than beer and wine are made available. There are actually a lot of attendees who don’t drink from what I can tell, which was made extremely evident to me in Edinburgh where the non alcoholic options kept on running out and how much alcohol was left at the end of the night. Wine and beer isn’t a draw for everyone anymore.
+> but there is no imx6ull-14x14-evk.dts
 
-Another point I'm just stepping up to fully support. We can run out of
-booze - its better if we don't but hey, we absolutely must not run out
-of water and coffee.
+it is located in arch/arm/boot/dts/imx6ull-14x14-evk.dts and it is compiled
+(among others dts) while building virtual/kernel task.
 
-Greetz
+Setting KERNEL_DEVICETREE =  "imx6ull-14x14-evk.dtb" simply tells to
+bitbake to put a copy of imx6ull-14x14-evk.dtb inside your image deploy
+directory. You can dig through meta/classes/kernel-devicetree.bbclass to
+see how KERNEL_DEVICETREE is used.
 
-PS: Yes, its actually *ME* writing that.
+If you do not need to modify the dts, you will find all the image related
+stuff in poky/build/tmp/deploy/images/<MACHINE>/<IMAGE>.
 
-> 
-> Thanks,
-> 
-> Behan
-> 
-> Sent from my Mobile Computer which is also a phone
-> 
-> > On May 3, 2019, at 11:01 AM, Volosincu, Andreea S <andreea.volosincu@windriver.com> wrote:
-> > 
-> > Greetings,
-> >  
-> > Yocto Project is pleased to announce the plans for the upcoming Embedded Linux Conferences in NA and Europe.
-> >  
-> > Here is a snapshot of our schedule:
-> >  
-> > ELC NA – Wednesday, August 21 - 23, 2019, Hilton San Diego Bayfront, San Diego, CA
-> >                    Yocto Project is a sponsor. We’ll see you on the show floor
-> >  
-> > ELC NA Dev Day – Tuesday, August 20, 2019 - 8:00AM - 6:00PM
-> > Set-up: 1 Meeting Room - Classroom Seating ( 60 people)
-> > Level: Intermediate – Advanced. Participants will receive beginner material (videos and presentations) as pre-requisites
-> > Includes: Morning Break, Buffet Lunch, Beer & Wine Reception with light appetizers
-> >  
-> > ELCE – Monday, October 28 -30, 2019, Lyon Convention Centre, Lyon, France
-> >               Yocto Project is a sponsor. We’ll see you on the show floor
-> >  
-> > ELCE Yocto Project Summit – Dates & Times:
-> > Thursday, October 31, 2019 - 8:00AM - 6:00PM
-> >                November 1, 2019 - 8:00 am - 6:00PM
-> > Set-up:
-> > Day 1: 1 Meeting Room - Theater Seating for 100 for Yocto Project talks
-> > Day 2: 2 Meeting Rooms - Mixed Classroom/Theater seating for 60 & Classroom seating for 40 (for maintainers and users)
-> > Includes:
-> > Morning Break for 2 days
-> > Buffet Lunch for 2 days
-> > Beer & Wine Reception with light appetizers for 1 day
-> > The goal for the second day of the summit is to build and bring the community together. We are interested to hear your opinions and ideas on how that day and those rooms should be used for. Please send your ideas to Andreea Volosincu and Philip Balister.
-> >  
-> > We will call out an Advocacy meeting in a couple of weeks to go over plans and vote on the ideas for the second day of the summit.
-> >  
-> > Thanks!
-> > Andreea
-> > Yocto Project Advocacy Lead
-> > -- 
-> > _______________________________________________
-> > yocto-advocacy mailing list
-> > yocto-advocacy@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto-advocacy
+If you need to patch the dts (or any other kernel related file):
 
-> -- 
-> _______________________________________________
-> yocto-advocacy mailing list
-> yocto-advocacy@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto-advocacy
+- Clone you kernel source tree locally
+- Checkout the correct branch
+- Do your edits, then commit
+- Get a patch with the customization through git format-patch (or any other
+way)
 
+Now, in your meta layer:
+- create recipes-kernel/linux/<your-kernel-provider>.bbappend file
+- create recipes-kernel/linux/files/<MACHINE>/ directory
 
--- 
-———————————————
-Josef Holzmayr
-Software Developer Embedded Systems
+Then:
+- Copy your patch in recipes-kernel/linux/files/<MACHINE>
+- Edit the bbappend file with:
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:" # Add files to the search
+paths
+SRC_URI_append_<MACHINE> = " file://0001-your-commit-message.patch"
 
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
+bitbake will apply the patch after the kernel unpack automatically, then
+build the tree with the patch(es) applied.
 
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548 
+You can also add a completely new dts via patch, then add it to
+KERNEL_DEVICETREE.
 
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
+Best regards,
+Gabriele
 
+Il giorno lun 6 mag 2019 alle ore 09:36 JH <jupiter.hce@gmail.com> ha
+scritto:
 
+> Thanks Gabriele,
+>
+> Yes, I have already added KERNEL_DEVICETREE =  "imx6ull-14x14-evk.dtb"
+> to generate an image running on imx6 EVK. What I don't understand is
+> how that imx6ull-14x14-evk.dtb was compiled? I thought all dtb are
+> compiled from dts files, but there is no imx6ull-14x14-evk.dts, the
+> imx6ullevk.conf defined the EVK but there is no detail in that file.
+>
+> My second question is my new hardware based on imx6ull MCU now has a
+> dts file, since I could not see any samples how is the dtb compiled
+> from a dts file, I have no idea where to put the dts file, how to link
+> that dts file to generate a dtb file in recipe. Appreciate more
+> clarification.
+>
+> Thank you.
+>
+> - jh
+>
+> On 5/6/19, Gabriele Zampieri <gabbla.malist@gmail.com> wrote:
+> > Hi,
+> >
+> > The easiest way is to add them via patches. You can write a recipe that
+> > patch the Linux tree and put it in your meta layer (usually in
+> > meta-xxx/recipes-kernel/linux). Then you need to tell Yocto to export the
+> > dtb via KERNEL_DEVICETREE variable (
+> >
+> https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-KERNEL_DEVICETREE
+> ).
+> > I usually put this variable in my machine configuration.
+> >
+> > Gabriele
+> >
+> > Il giorno dom 5 mag 2019 alle ore 14:04 JH <jupiter.hce@gmail.com> ha
+> > scritto:
+> >
+> >> Hi,
+> >>
+> >> I think the device tree blob is build from device tree source, but I
+> >> could not find any dts files in recipe source directory, there are
+> >> many dts files in build directory and there are dtb in build
+> >> directory.
+> >>
+> >> If I have a device tree source, where I should put it and how to
+> >> define the recipe to built it?
+> >>
+> >> Thank you.
+> >>
+> >> Kind regards,
+> >>
+> >> - jupiter
+> >> --
+> >> _______________________________________________
+> >> yocto mailing list
+> >> yocto@yoctoproject.org
+> >> https://lists.yoctoproject.org/listinfo/yocto
+> >>
+> >
+>
+
+--0000000000009d4ea50588366263
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>Hi,</div><div><br></div><d=
+iv>&gt;  but there is no imx6ull-14x14-evk.dts</div><div><br></div><div>it =
+is located in arch/arm/boot/dts/imx6ull-14x14-evk.dts and it is compiled (a=
+mong others dts) while building virtual/kernel task.</div><div><br></div><d=
+iv>Setting KERNEL_DEVICETREE =3D=C2=A0 &quot;imx6ull-14x14-evk.dtb&quot; si=
+mply tells to bitbake to put a copy of imx6ull-14x14-evk.dtb inside your im=
+age deploy directory. You can dig through meta/classes/kernel-devicetree.bb=
+class to see how KERNEL_DEVICETREE is used. <br></div><div><br></div><div>I=
+f you do not need to modify the dts, you will find all the image related st=
+uff in poky/build/tmp/deploy/images/&lt;MACHINE&gt;/&lt;IMAGE&gt;. <br></di=
+v><div><br></div><div>If you need to patch the dts (or any other kernel rel=
+ated file):<br></div><div><br></div><div>- Clone you kernel source tree loc=
+ally <br></div><div>- Checkout the correct branch</div><div>- Do your edits=
+, then commit</div><div>- Get a patch with the customization through git fo=
+rmat-patch (or any other way)<br></div><div><br></div><div>Now, in your met=
+a layer:<br></div><div>- create recipes-kernel/linux/&lt;your-kernel-provid=
+er&gt;.bbappend file<br></div><div>- create recipes-kernel/linux/files/&lt;=
+MACHINE&gt;/ directory</div><div><br></div><div>Then: <br></div><div>- Copy=
+ your patch in recipes-kernel/linux/files/&lt;MACHINE&gt;</div><div>- Edit =
+the bbappend file with:</div><div>FILESEXTRAPATHS_prepend :=3D &quot;${THIS=
+DIR}/files:&quot; # Add files to the search paths</div><div>SRC_URI_append_=
+&lt;MACHINE&gt; =3D &quot; file://0001-your-commit-message.patch&quot;</div=
+><div><br></div><div>bitbake will apply the patch after the kernel unpack a=
+utomatically, then build the tree with the patch(es) applied.<br> </div><di=
+v><br></div><div>You can also add a completely new dts via patch, then add =
+it to=C2=A0 KERNEL_DEVICETREE.</div><div><br></div><div>Best regards,</div>=
+<div>Gabriele<br></div></div></div></div></div></div></div></div><br><div c=
+lass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Il giorno lun 6 =
+mag 2019 alle ore 09:36 JH &lt;<a href=3D"mailto:jupiter.hce@gmail.com">jup=
+iter.hce@gmail.com</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex">Thanks Gabriele,<br>
+<br>
+Yes, I have already added KERNEL_DEVICETREE =3D=C2=A0 &quot;imx6ull-14x14-e=
+vk.dtb&quot;<br>
+to generate an image running on imx6 EVK. What I don&#39;t understand is<br=
+>
+how that imx6ull-14x14-evk.dtb was compiled? I thought all dtb are<br>
+compiled from dts files, but there is no imx6ull-14x14-evk.dts, the<br>
+imx6ullevk.conf defined the EVK but there is no detail in that file.<br>
+<br>
+My second question is my new hardware based on imx6ull MCU now has a<br>
+dts file, since I could not see any samples how is the dtb compiled<br>
+from a dts file, I have no idea where to put the dts file, how to link<br>
+that dts file to generate a dtb file in recipe. Appreciate more<br>
+clarification.<br>
+<br>
+Thank you.<br>
+<br>
+- jh<br>
+<br>
+On 5/6/19, Gabriele Zampieri &lt;<a href=3D"mailto:gabbla.malist@gmail.com"=
+ target=3D"_blank">gabbla.malist@gmail.com</a>&gt; wrote:<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; The easiest way is to add them via patches. You can write a recipe tha=
+t<br>
+&gt; patch the Linux tree and put it in your meta layer (usually in<br>
+&gt; meta-xxx/recipes-kernel/linux). Then you need to tell Yocto to export =
+the<br>
+&gt; dtb via KERNEL_DEVICETREE variable (<br>
+&gt; <a href=3D"https://www.yoctoproject.org/docs/latest/mega-manual/mega-m=
+anual.html#var-KERNEL_DEVICETREE" rel=3D"noreferrer" target=3D"_blank">http=
+s://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-KERNE=
+L_DEVICETREE</a>).<br>
+&gt; I usually put this variable in my machine configuration.<br>
+&gt;<br>
+&gt; Gabriele<br>
+&gt;<br>
+&gt; Il giorno dom 5 mag 2019 alle ore 14:04 JH &lt;<a href=3D"mailto:jupit=
+er.hce@gmail.com" target=3D"_blank">jupiter.hce@gmail.com</a>&gt; ha<br>
+&gt; scritto:<br>
+&gt;<br>
+&gt;&gt; Hi,<br>
+&gt;&gt;<br>
+&gt;&gt; I think the device tree blob is build from device tree source, but=
+ I<br>
+&gt;&gt; could not find any dts files in recipe source directory, there are=
+<br>
+&gt;&gt; many dts files in build directory and there are dtb in build<br>
+&gt;&gt; directory.<br>
+&gt;&gt;<br>
+&gt;&gt; If I have a device tree source, where I should put it and how to<b=
+r>
+&gt;&gt; define the recipe to built it?<br>
+&gt;&gt;<br>
+&gt;&gt; Thank you.<br>
+&gt;&gt;<br>
+&gt;&gt; Kind regards,<br>
+&gt;&gt;<br>
+&gt;&gt; - jupiter<br>
+&gt;&gt; --<br>
+&gt;&gt; _______________________________________________<br>
+&gt;&gt; yocto mailing list<br>
+&gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@=
+yoctoproject.org</a><br>
+&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"n=
+oreferrer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto<=
+/a><br>
+&gt;&gt;<br>
+&gt;<br>
+</blockquote></div>
+
+--0000000000009d4ea50588366263--
