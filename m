@@ -1,64 +1,82 @@
-Return-Path: <Moritz.Porst@gmx.de>
+Return-Path: <prvs=1029a96a03=holzmayr@rsi-elektrotechnik.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0FF44E00BAF; Mon,  6 May 2019 03:21:35 -0700 (PDT)
+	id 0F41CE00D3A; Mon,  6 May 2019 03:48:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, FREEMAIL_FROM, HTML_MESSAGE, MIME_HTML_ONLY,
-	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS
+	autolearn=unavailable version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (moritz.porst[at]gmx.de)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [212.227.15.15 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [85.215.255.52 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 303 seconds by postgrey-1.32 at yocto-www;
-	Mon, 06 May 2019 03:21:33 PDT
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8239DE00BAF
-	for <yocto@yoctoproject.org>; Mon,  6 May 2019 03:21:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=badeba3b8450; t=1557138092;
-	bh=TrSi9HkabN0GKeuNNwmQdnDJ5MlTkVNYjb/DvE3pIlA=;
-	h=X-UI-Sender-Class:From:To:Subject:Date;
-	b=ceAGNS8/ruja2Tr2CgR35YrvUJ0scLjVgQjwXUED4khPRkSeRivjJNlTO5H2x4I3K
-	JXrfESxGynGhI2XIcLgwaH65o3yvS0fcKXR2oK3MNxq1uxqYbw5fkaCanmXJOCF4Bt
-	/7Y35I6mzodF0yNmticDe197Y12yT/lKvBaMMWRw=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [80.152.229.14] ([80.152.229.14]) by web-mail.gmx.net
-	(3c-app-gmx-bs72.server.lan [172.19.170.208]) (via HTTP);
-	Mon, 6 May 2019 12:16:29 +0200
+X-Greylist: delayed 179 seconds by postgrey-1.32 at yocto-www;
+	Mon, 06 May 2019 03:48:07 PDT
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
+	[85.215.255.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D01EDE00D36
+	for <yocto@yoctoproject.org>; Mon,  6 May 2019 03:48:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1557139686;
+	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
+	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
+	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+	bh=xQVDcqrEfSSCG6QKXMXuLgPIA2RqY/rnvNqc6JqTBGc=;
+	b=FeEMlWzBpA9T8ErHLMjl7B7IwQxLOwPcok1j7AbMdOEbOc7XSEuyuLt8kewrSNXbYC
+	+FyqroeDO5QNtxjNaCUwatN+GfbZqp3gIYU/d2Fw74/d1HYJSzqlbrK11ZzTPlVJLTp4
+	1zsI32i7HK0bj9ipvtq7O3MjPDUUTssubHwS+BvMohscvzmSCvZuIkUuTJ2Vdw/IFybo
+	mLATbVoJZ/KQMFu7evupc2cFiEUheyyOgQkSwsZu2Ubvi2oj24kKRzySYoXHEg2z4c6/
+	ctqZ5tsNPQNqQsnuswUbgMy87zhHNjJ+DeCoYa0krckprWJvG9rgn0r15pF6BWVoivEx
+	hwfw==
+X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/Kpz6b/avroGOv0c9sak1tqOWjLU3UFhR6"
+X-RZG-CLASS-ID: mo00
+Received: from mail.rsi-elektrotechnik.de by smtp.strato.de (RZmta 44.18 AUTH)
+	with ESMTPSA id Q0b788v46Aj5WQZ
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
+	with 384 ECDH bits, eq. 7680 bits RSA))
+	(Client did not present a certificate);
+	Mon, 6 May 2019 12:45:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
+	d=rsi-elektrotechnik.de; s=MDaemon; t=1557139504; x=1557744304;
+	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
+	Subject:Message-ID:References:MIME-Version:Content-Type:
+	Content-Disposition:Content-Transfer-Encoding:In-Reply-To:
+	User-Agent; bh=xQVDcqrEfSSCG6QKXMXuLgPIA2RqY/rnvNqc6JqTBGc=; b=Y
+	h4F4NWS2HGrK8aMEglsz16CGeqk/uramDS/C2GrXq3WV2GE6OmlGhVaTZMAnAi/h
+	HNNmmun2+WYg6sba3+8HKjeFeGnszey2oz6KzKd/7eCBXjlJtU4XIiTrJSr26Jyt
+	/kqHiBb3MNhJnijtasuR/ec2b877Wv8MV6iXoSq8F4=
+Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v18.5.3) with ESMTPSA id
+	md50000163762.msg; Mon, 06 May 2019 12:45:03 +0200
+X-MDRemoteIP: 178.27.67.144
+X-MDHelo: jholzmayr.localdomain
+X-MDArrival-Date: Mon, 06 May 2019 12:45:03 +0200
+X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
+X-Return-Path: prvs=1029a96a03=holzmayr@rsi-elektrotechnik.de
+X-Envelope-From: holzmayr@rsi-elektrotechnik.de
+X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
+Date: Mon, 6 May 2019 12:45:02 +0200
+From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
+To: Behan Webster <behanw@converseincode.com>
+Message-ID: <20190506104502.e4tvj5w4i4og4ski@jholzmayr.localdomain>
+References: <A084970538D2234B96D99D06FA9D974FC378C228@ALA-MBD.corp.ad.wrs.com>
+	<96fa4aec-9557-9d7f-bff3-82f8db56e9cd@mvista.com>
+	<A084970538D2234B96D99D06FA9D974FC378C879@ALA-MBD.corp.ad.wrs.com>
+	<0980DABF-86C8-4A9D-8687-B9C27EE2FF61@converseincode.com>
+	<A084970538D2234B96D99D06FA9D974FC378DD57@ALA-MBD.corp.ad.wrs.com>
+	<2D39B7E1-DC52-42A6-8332-50ED49F77722@converseincode.com>
 MIME-Version: 1.0
-Message-ID: <trinity-87956540-aa5a-45e0-9337-9a78d3c39eed-1557137789667@3c-app-gmx-bs72>
-From: "Moritz Porst" <Moritz.Porst@gmx.de>
-To: yocto@yoctoproject.org
-Date: Mon, 6 May 2019 12:16:29 +0200
-Importance: normal
-Sensitivity: Normal
-X-Priority: 3
-X-Provags-ID: V03:K1:1wdPdVslY2PhwkFW3YjXG7/L7LQHHmdPFpLHxAHVSgm1uuQyoT3OlgdmVszD5dBq7sgf1
-	mB6+sI+oUACj2Q6d7Df5erqBaVJu6Eu6gjxn79G3TTgzLqXFL/N4Hqnj0p/YOo2jHx9ECsFZe6As
-	tAsmidNB+uMB+iZ5Vzr6Xd7GoY7yYKlLWSwSYFnr8BRVonpuvTRpSawg0Lw8EVYmb8i0XpoORDhg
-	G+1jkGtSZnaihR6nywd1eKqsj+IrkLGA6ax3xGxBPrbP0bdhuRfp2drmb4M7N4IztppFG09IdFIP
-	wI=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:DTlaXsXFeC4=:TQYBxoOJ233Ysjzh+N3JIa
-	YHOC39LsLcS4a44dyFYkpDVYJMueUEfk/obIQi8prNx+MAATpVt8+bdDnfQVYMfxLDd5FPG2H
-	Gei/eeXmYWT95syBrs625i7+CWMXeZR5L6JAYek4yn2TIbhTgOlF8thwNVNPiHsI7Dpz/Wskk
-	WzIU6MD08rPO4zhYCga+C61IlaPb4h/EFvKadA8vj1EF7bXnPBLQUxk4snRCcjw/uyE+KqjhF
-	cCP2arTXX8guGWTTY8tApFgaS8xleI/4ZDaDTaKeWIlqX5TtrwBPIl7AlMcvdK/vPHEzxd+P3
-	xBUT114rjJ/Bsts+Cxkri0lW5HI52hDYzmoVA0QxXtnvyBAwdvBoYkW9ixz06vdr3iTcwX0wT
-	e9QMFvAWD7pWdKUKu7EJjlzcA415f7U0SC8UKeqEFxoDMqC1F+iJHZz2M22N7/Yqdc5k4qRxN
-	gmweIhZ1BSIQn8W7euwCq9cOWDva+oBY3rZKfgemagQwgl7SoI/RVF71SFkkF+N6nESUppEjy
-	cLOYhi9xjFzVRaJQlzR3EA0yQ/myVNf15IOfTrLwsdzpnajNj72w36vb5Grxg+x7s9aqpNskA
-	Jpi0okVkZsUHMdRy8xK8nJQGw3RY/bPrTS5lN6f/A2xJIl3Ux3wAL/Ag==
-Subject: gdb remote debugging not working correctly
+In-Reply-To: <2D39B7E1-DC52-42A6-8332-50ED49F77722@converseincode.com>
+User-Agent: NeoMutt/20180716
+Cc: Yocto list discussion <yocto@yoctoproject.org>,
+	"yocto-advocacy@yoctoproject.org" <yocto-advocacy@yoctoproject.org>
+Subject: Re: [Yocto-Advocacy] Yocto Project Upcoming Conferences and Developer Days
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,67 +88,153 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 May 2019 10:21:35 -0000
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Mon, 06 May 2019 10:48:09 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>Hello everyone,</div>
+I'd actually word it a little bit differently:
 
-<div>I am having trouble to remote debug using gdb (v 8.2.0) with QTCreator (4.8.0).</div>
+If there is only *ONE* attendee who did not properly do the homework, it
+will have a massive impact an the rest of the group. And that somebody
+will show up unpreparedly is absolutely certain in my opinion.
 
-<div>My remote target features QT 5.12.0. I configured it like the following ( only relevant configurations ) :</div>
+As someone who actually got started through the YPDD beginner track (and
+also often recommends it to new beginners), my opinion is clearly that
+we either should have it, be it only for a handful of attendees, or
+offer a *real* replacement, with face to face training. My experience is
+that this personal thing in the very beginning is an absolutely
+essential part of many YP/OE careers.
 
-<div>---</div>
+Greetz
 
-<div>inherit populate_sdk_qt5 # QT5 in SDK<br/>
-&nbsp;</div>
+On Sun, May 05, 2019 at 04:46:12PM -0700, Behan Webster wrote:
+> Just for the record, speaking as a professional trainer, and someone who makes material available before classes in the hopes that people will do “pre-class homework”, almost nobody even glances through any material sent before class. And many people claim to have never received it (for various reasons, but often because it ends up ignored or in spam).
+> 
+> Essentially I wouldn’t count on anyone actually looking at anything before arriving, because statistically nobody does.
+> 
+> Behan
+> 
+> Sent from my Mobile Computer which is also a phone
+> 
+> > On May 5, 2019, at 2:45 PM, Volosincu, Andreea S <andreea.volosincu@windriver.com> wrote:
+> > 
+> > That’s correct. We’ll provide previous beginner material as pre-class homework.
+> >  
+> > Andreea
+> >  
+> > From: Behan Webster [mailto:behanw@converseincode.com] 
+> > Sent: Saturday, May 4, 2019 4:30 AM
+> > To: Volosincu, Andreea S <andreea.volosincu@windriver.com>
+> > Cc: akuster <akuster@mvista.com>; yocto-advocacy@yoctoproject.org; Yocto list discussion <yocto@yoctoproject.org>
+> > Subject: Re: [Yocto-Advocacy] Yocto Project Upcoming Conferences and Developer Days
+> >  
+> > So does this mean there won’t be a beginner class at all?
+> >  
+> > Behan
+> > 
+> > Sent from my Mobile Computer which is also a phone
+> > 
+> > On May 3, 2019, at 6:01 PM, Volosincu, Andreea S <andreea.volosincu@windriver.com> wrote:
+> > 
+> > Hi Armin,
+> >  
+> > Thanks for letting us know. The security summit overlaps with a lot of things, including the first ELC day.
+> >  
+> > Hopefully we can make it work by fine-tuning the agenda in such a way that you attend just the portion of the day that is interesting to you, or you are presenting.
+> >  
+> > Let’s talk more during the advocacy call.
+> >  
+> > Thanks!
+> > Andreea
+> >  
+> > From: akuster [mailto:akuster@mvista.com] 
+> > Sent: Friday, May 3, 2019 11:07 AM
+> > To: Volosincu, Andreea S <andreea.volosincu@windriver.com>; yocto-advocacy@yoctoproject.org; Yocto list discussion <yocto@yoctoproject.org>
+> > Subject: Re: [Yocto-Advocacy] Yocto Project Upcoming Conferences and Developer Days
+> >  
+> >  
+> > 
+> > On 5/3/19 11:01 AM, Volosincu, Andreea S wrote:
+> > Greetings,
+> >  
+> > Yocto Project is pleased to announce the plans for the upcoming Embedded Linux Conferences in NA and Europe.
+> >  
+> > Here is a snapshot of our schedule:
+> >  
+> > ELC NA – Wednesday, August 21 - 23, 2019, Hilton San Diego Bayfront, San Diego, CA
+> >                    Yocto Project is a sponsor. We’ll see you on the show floor
+> >  
+> > ELC NA Dev Day – Tuesday, August 20, 2019 - 8:00AM - 6:00PM
+> > Set-up: 1 Meeting Room - Classroom Seating ( 60 people)
+> > Level: Intermediate – Advanced. Participants will receive beginner material (videos and presentations) as pre-requisites
+> > Includes: Morning Break, Buffet Lunch, Beer & Wine Reception with light appetizers
+> > So beer is a prerequisite for Intermediate level?
+> > 
+> > This is a conflict with Linux Security summit unless someone can convince me to be part of the training?
+> > 
+> > - armin
+> > 
+> > 
+> > 
+> >  
+> > ELCE – Monday, October 28 -30, 2019, Lyon Convention Centre, Lyon, France
+> >               Yocto Project is a sponsor. We’ll see you on the show floor
+> >  
+> > ELCE Yocto Project Summit – Dates & Times:
+> > Thursday, October 31, 2019 - 8:00AM - 6:00PM
+> >                November 1, 2019 - 8:00 am - 6:00PM
+> > Set-up:
+> > Day 1: 1 Meeting Room - Theater Seating for 100 for Yocto Project talks
+> > Day 2: 2 Meeting Rooms - Mixed Classroom/Theater seating for 60 & Classroom seating for 40 (for maintainers and users)
+> > Includes:
+> > Morning Break for 2 days
+> > Buffet Lunch for 2 days
+> > Beer & Wine Reception with light appetizers for 1 day
+> > The goal for the second day of the summit is to build and bring the community together. We are interested to hear your opinions and ideas on how that day and those rooms should be used for. Please send your ideas to Andreea Volosincu and Philip Balister.
+> >  
+> > We will call out an Advocacy meeting in a couple of weeks to go over plans and vote on the ideas for the second day of the summit.
+> >  
+> > Thanks!
+> > Andreea
+> > Yocto Project Advocacy Lead
+> > 
+> > 
+> > 
+> >  
+> > -- 
+> > _______________________________________________
+> > yocto-advocacy mailing list
+> > yocto-advocacy@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto-advocacy
 
-<div>IMAGE_INSTALL_append = &quot; gdbserver&quot;</div>
+> -- 
+> _______________________________________________
+> yocto-advocacy mailing list
+> yocto-advocacy@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto-advocacy
 
-<div>IMAGE_FEATURES_append = &quot; dev-pkgs dbg-pkgs&quot; # dbg-pkgs for debug-libraries. Not sure if the dev-pkgs is really required, but it should not do any harm (except for bloat the image)</div>
 
-<div>---</div>
+-- 
+———————————————
+Josef Holzmayr
+Software Developer Embedded Systems
 
-<div>Now from my build/development machine I start the QT example &quot;boxes&quot;. Executing in debug configuration &gt;locally&lt; it takes around 5 seconds to hit the first breakpoint (at the very beginning of main). On a breakpoint after the widget was created I can expand the widget variable which contains 8 objects. I can further expand (e.g.) [QWidget] which again contains several objects like [QObject].</div>
+Tel: +49 8444 9204-48
+Fax: +49 8444 9204-50
 
-<div>Executing the debug configuration &gt;remote&lt; only takes around 1 second until first breakpoint. Expanding &quot;widget&quot; shows it is empty. No objects at all and the &quot;expand arrow&quot; is gone. When trying to step out of the actual main using f11 (&quot;step into&quot;) I receive a SIGSEGV.</div>
+R-S-I Elektrotechnik GmbH & Co. KG
+Woelkestrasse 11
+D-85301 Schweitenkirchen
+www.rsi-elektrotechnik.de
+———————————————
+Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+Ust-IdNr: DE 128592548 
 
-<div>&nbsp;</div>
+_____________________________________________________________
+Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+USt-IdNr.: DE 128592548
 
-<div>What I tried but didn&#39;t work:</div>
-
-<div>- build the SDK again (because I had an older version)</div>
-
-<div>- check versions: gdbserver on remote target (8.2.0); gdb on development machine (8.2.0)</div>
-
-<div>- tried system gdb (7.11.1) which shows the exact same behaviour.</div>
-
-<div>&nbsp;</div>
-
-<div>In remote debugging I am however able to use breakpoints, step through MY code (not code coming from 3rd party libraries -&gt; SIGSEGV) and expanding variables that do not come from 3rd party variables (like argv).</div>
-
-<div>I am not sure on how to proceed from here. It might be that I do something wrong but it could also be that this is an actual bug in gdb (?).</div>
-
-<div>&nbsp;</div>
-
-<div>Any advice is appreciated ! System information below.</div>
-
-<div>&nbsp;</div>
-
-<div>Best regards</div>
-
-<div>Moritz</div>
-
-<div>&nbsp;</div>
-
-<div>System information:</div>
-
-<div>Target uses a modified intel-corei7-64 machine and modified poky distribution. I removed following distro features:</div>
-
-<div>DISTRO_FEATURES_remove = &quot;bluetooth alsa wifi 3g wayland vulkan pulseaudio bluez5&quot;</div>
-
-<div>Dev machine runs an ubuntu 16.04.</div>
-
-<div>&nbsp;</div>
-
-<div>&nbsp;</div></div></body></html>
 
