@@ -1,46 +1,101 @@
-Return-Path: <abuse@basmevissen.nl>
+Return-Path: <Oliver.Westermann@cognex.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 85114E00D68; Mon,  6 May 2019 08:46:31 -0700 (PDT)
+	id 80721E00D11; Mon,  6 May 2019 00:15:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from hosting.emcodev.net (hosting.emcodev.net [178.18.92.162])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FA6AE00C78
-	for <yocto@yoctoproject.org>; Mon,  6 May 2019 08:46:29 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by hosting.emcodev.net (Postfix) with ESMTP id D28E1212003;
-	Mon,  6 May 2019 17:46:28 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at hosting.emcodev.net
-Received: from hosting.emcodev.net ([127.0.0.1])
-	by localhost (hosting.emcodev.net [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id Wu6V-49fUCIz; Mon,  6 May 2019 17:46:23 +0200 (CEST)
-Received: from localhost.localdomain (unknown [62.140.137.93])
-	(Authenticated sender: bas@emcodev.nl)
-	by hosting.emcodev.net (Postfix) with ESMTPSA id 0E6D5212001;
-	Mon,  6 May 2019 17:46:23 +0200 (CEST)
-From: Bas Mevissen <abuse@basmevissen.nl>
-To: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>,
-	Behan Webster <behanw@converseincode.com>
-References: <A084970538D2234B96D99D06FA9D974FC378C228@ALA-MBD.corp.ad.wrs.com>
-	<96fa4aec-9557-9d7f-bff3-82f8db56e9cd@mvista.com>
-	<A084970538D2234B96D99D06FA9D974FC378C879@ALA-MBD.corp.ad.wrs.com>
-	<0980DABF-86C8-4A9D-8687-B9C27EE2FF61@converseincode.com>
-	<A084970538D2234B96D99D06FA9D974FC378DD57@ALA-MBD.corp.ad.wrs.com>
-	<2D39B7E1-DC52-42A6-8332-50ED49F77722@converseincode.com>
-	<20190506104502.e4tvj5w4i4og4ski@jholzmayr.localdomain>
-Message-ID: <b82ee205-6211-c75f-cad6-c2f61102f547@basmevissen.nl>
-Date: Mon, 6 May 2019 17:46:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.6.1
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [148.163.159.122 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+X-Greylist: delayed 1340 seconds by postgrey-1.32 at yocto-www;
+	Mon, 06 May 2019 00:15:44 PDT
+Received: from mx0a-001ccc01.pphosted.com (mx0b-001ccc01.pphosted.com
+	[148.163.159.122])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DE0EE00BAA
+	for <yocto@yoctoproject.org>; Mon,  6 May 2019 00:15:44 -0700 (PDT)
+Received: from pps.filterd (m0088347.ppops.net [127.0.0.1])
+	by mx0b-001ccc01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id
+	x466pwxh027375; Mon, 6 May 2019 02:52:37 -0400
+Received: from nam02-sn1-obe.outbound.protection.outlook.com
+	(mail-sn1nam02lp2052.outbound.protection.outlook.com [104.47.36.52])
+	by mx0b-001ccc01.pphosted.com with ESMTP id 2s960jja1u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+	Mon, 06 May 2019 02:52:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=cognexcorporation.onmicrosoft.com; s=selector1-cognex-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=ZZL+ZDMHs8MrZf8Q9otY4iL+0Fd5AiTjpzcrzIR9fzs=;
+	b=IaXBNKzz+YWQt8doOuBW0l5uoHQHpBTCb+gQlQdLzbjwDz2Fo4xiqyoh1MngDR/yeZ/nQMFx/2xafe8AS+lyzthp5eS3+k7atjuXtt71Yvax2diCUOCLqNZWJ8UluxuU/RHKjzw7w9pqCSmYQvw14zGOtmShmzwXzVsV4N3loXI=
+Received: from BN6PR06MB3138.namprd06.prod.outlook.com (10.174.95.141) by
+	BN6PR06MB2369.namprd06.prod.outlook.com (10.168.255.18) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.1856.11; Mon, 6 May 2019 06:52:35 +0000
+Received: from BN6PR06MB3138.namprd06.prod.outlook.com
+	([fe80::44e0:3aff:af6e:e4d2]) by
+	BN6PR06MB3138.namprd06.prod.outlook.com
+	([fe80::44e0:3aff:af6e:e4d2%4]) with mapi id 15.20.1856.012;
+	Mon, 6 May 2019 06:52:35 +0000
+From: "Westermann, Oliver" <Oliver.Westermann@cognex.com>
+To: =?utf-8?B?TG/Dr2MgRG9tYWlnbsOp?= <tech@domaigne.com>, "Robert P. J. Day"
+	<rpjday@crashcourse.ca>
+Thread-Topic: [yocto] Defining group of machines
+Thread-Index: AdUBkYo0qt9t5lh9TkadMEnzXu0KlwAPyMeAAAETrIAAMo6OgABOLFAA
+Date: Mon, 6 May 2019 06:52:34 +0000
+Message-ID: <BN6PR06MB31384523EF29901779F95C9C86300@BN6PR06MB3138.namprd06.prod.outlook.com>
+References: <BN6PR06MB3138577A7F834F2A120297A286350@BN6PR06MB3138.namprd06.prod.outlook.com>
+	<alpine.LFD.2.21.1905031250300.4226@localhost.localdomain>
+	<alpine.LFD.2.21.1905031321120.7995@localhost.localdomain>
+	<1404879235.516464.1556991091636@ox.hosteurope.de>
+In-Reply-To: <1404879235.516464.1556991091636@ox.hosteurope.de>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [212.117.79.11]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 10fb4320-312d-4b2d-7210-08d6d1ef6b82
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(2017052603328)(7193020);
+	SRVR:BN6PR06MB2369; 
+x-ms-traffictypediagnostic: BN6PR06MB2369:
+x-microsoft-antispam-prvs: <BN6PR06MB2369ACB5B2E3B0E2AFF9A4B286300@BN6PR06MB2369.namprd06.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3968;
+x-forefront-prvs: 0029F17A3F
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(39850400004)(396003)(136003)(366004)(346002)(376002)(199004)(189003)(81156014)(71190400001)(316002)(71200400001)(476003)(110136005)(446003)(11346002)(86362001)(99286004)(76176011)(7696005)(7736002)(8676002)(53936002)(81166006)(9686003)(305945005)(186003)(68736007)(26005)(55016002)(102836004)(6506007)(72206003)(558084003)(6436002)(66066001)(6116002)(3846002)(486006)(33656002)(74316002)(66476007)(73956011)(4326008)(52536014)(25786009)(76116006)(256004)(14454004)(478600001)(2906002)(66556008)(8936002)(66446008)(64756008)(66946007)(5660300002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6PR06MB2369;
+	H:BN6PR06MB3138.namprd06.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: cognex.com does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 9Y1+0UCMz0H0M8V+J5iiPuqmWCX+G9ABcrhwKG2MjPZbSjdeyew897/OvPsOziY210OZB/siu2sZSeP3TtKNjcVgQQ/8xodaz5kjEGyIgtZOUWYegrMLzuWO005VNjN6Xe0R0wTXaUKJS/R6T0czIu22pClYuWRjMLIPUE+2Rqrdzr2PFaNO5RhiRRQPlQBapBaKh6Qv9NxaDxy1A7SFdXTVc7U66plmG0IAc1D7JanxnezraOUcFspqONtDjVjP181RjwX93USAhm/kRR+w5zT1+Lk38EgFUSH7NKVvYNpe1rCgXmjNe1UubyLNGY/IhuCDMQUEMzm83nGP31bMV6QQ6KaHhvckYybu2Q2Ge6UAcT4T6dS8LM1i0UuAgC07l1w+R+dGn9mH8JNc1s8xrGYoik7cxFCHhimUBvsgL2A=
 MIME-Version: 1.0
-In-Reply-To: <20190506104502.e4tvj5w4i4og4ski@jholzmayr.localdomain>
-Cc: Yocto list discussion <yocto@yoctoproject.org>,
-	"yocto-advocacy@yoctoproject.org" <yocto-advocacy@yoctoproject.org>
-Subject: Re: [Yocto-Advocacy] Yocto Project Upcoming Conferences and Developer Days
+X-OriginatorOrg: cognex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 10fb4320-312d-4b2d-7210-08d6d1ef6b82
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 May 2019 06:52:34.8145 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c12007a4-882b-4381-b05a-b783431570c7
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR06MB2369
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+	definitions=2019-05-06_05:, , signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+	priorityscore=1501
+	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+	clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+	mlxlogscore=672 adultscore=0 classifier=spam adjust=0 reason=mlx
+	scancount=1 engine=8.0.1-1810050000 definitions=main-1905060059
+X-Mailman-Approved-At: Mon, 06 May 2019 08:58:58 -0700
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Defining group of machines
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,179 +107,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 May 2019 15:46:31 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: nl-NL
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 06 May 2019 07:15:45 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 5/6/19 12:45 PM, Josef Holzmayr wrote:
-> I'd actually word it a little bit differently:
->=20
-> If there is only *ONE* attendee who did not properly do the homework, i=
-t
-> will have a massive impact an the rest of the group. And that somebody
-> will show up unpreparedly is absolutely certain in my opinion.
->=20
-
-With sufficient trainers, one can continue for most and provide some=20
-assistance to the one falling behind.
-
-> As someone who actually got started through the YPDD beginner track (an=
-d
-> also often recommends it to new beginners), my opinion is clearly that
-> we either should have it, be it only for a handful of attendees, or
-> offer a *real* replacement, with face to face training. My experience i=
-s
-> that this personal thing in the very beginning is an absolutely
-> essential part of many YP/OE careers.
->=20
-
-I agree. That is how I started, next to a compressed Linux Foundation=20
-Yocto training that was offered just before the event then.
-
-So it might be wise to ask LF or get something organised. It would=20
-mostly require a room and a sponsor for some small devkit.
-
-
-> Greetz
->=20
-> On Sun, May 05, 2019 at 04:46:12PM -0700, Behan Webster wrote:
->> Just for the record, speaking as a professional trainer, and someone w=
-ho makes material available before classes in the hopes that people will =
-do =E2=80=9Cpre-class homework=E2=80=9D, almost nobody even glances throu=
-gh any material sent before class. And many people claim to have never re=
-ceived it (for various reasons, but often because it ends up ignored or i=
-n spam).
->>
->> Essentially I wouldn=E2=80=99t count on anyone actually looking at any=
-thing before arriving, because statistically nobody does.
->>
->> Behan
->>
->> Sent from my Mobile Computer which is also a phone
->>
->>> On May 5, 2019, at 2:45 PM, Volosincu, Andreea S <andreea.volosincu@w=
-indriver.com> wrote:
->>>
->>> That=E2=80=99s correct. We=E2=80=99ll provide previous beginner mater=
-ial as pre-class homework.
->>>  =20
->>> Andreea
->>>  =20
->>> From: Behan Webster [mailto:behanw@converseincode.com]
->>> Sent: Saturday, May 4, 2019 4:30 AM
->>> To: Volosincu, Andreea S <andreea.volosincu@windriver.com>
->>> Cc: akuster <akuster@mvista.com>; yocto-advocacy@yoctoproject.org; Yo=
-cto list discussion <yocto@yoctoproject.org>
->>> Subject: Re: [Yocto-Advocacy] Yocto Project Upcoming Conferences and =
-Developer Days
->>>  =20
->>> So does this mean there won=E2=80=99t be a beginner class at all?
->>>  =20
->>> Behan
->>>
->>> Sent from my Mobile Computer which is also a phone
->>>
->>> On May 3, 2019, at 6:01 PM, Volosincu, Andreea S <andreea.volosincu@w=
-indriver.com> wrote:
->>>
->>> Hi Armin,
->>>  =20
->>> Thanks for letting us know. The security summit overlaps with a lot o=
-f things, including the first ELC day.
->>>  =20
->>> Hopefully we can make it work by fine-tuning the agenda in such a way=
- that you attend just the portion of the day that is interesting to you, =
-or you are presenting.
->>>  =20
->>> Let=E2=80=99s talk more during the advocacy call.
->>>  =20
->>> Thanks!
->>> Andreea
->>>  =20
->>> From: akuster [mailto:akuster@mvista.com]
->>> Sent: Friday, May 3, 2019 11:07 AM
->>> To: Volosincu, Andreea S <andreea.volosincu@windriver.com>; yocto-adv=
-ocacy@yoctoproject.org; Yocto list discussion <yocto@yoctoproject.org>
->>> Subject: Re: [Yocto-Advocacy] Yocto Project Upcoming Conferences and =
-Developer Days
->>>  =20
->>>  =20
->>>
->>> On 5/3/19 11:01 AM, Volosincu, Andreea S wrote:
->>> Greetings,
->>>  =20
->>> Yocto Project is pleased to announce the plans for the upcoming Embed=
-ded Linux Conferences in NA and Europe.
->>>  =20
->>> Here is a snapshot of our schedule:
->>>  =20
->>> ELC NA =E2=80=93 Wednesday, August 21 - 23, 2019, Hilton San Diego Ba=
-yfront, San Diego, CA
->>>                     Yocto Project is a sponsor. We=E2=80=99ll see you=
- on the show floor
->>>  =20
->>> ELC NA Dev Day =E2=80=93 Tuesday, August 20, 2019 - 8:00AM - 6:00PM
->>> Set-up: 1 Meeting Room - Classroom Seating ( 60 people)
->>> Level: Intermediate =E2=80=93 Advanced. Participants will receive beg=
-inner material (videos and presentations) as pre-requisites
->>> Includes: Morning Break, Buffet Lunch, Beer & Wine Reception with lig=
-ht appetizers
->>> So beer is a prerequisite for Intermediate level?
->>>
->>> This is a conflict with Linux Security summit unless someone can conv=
-ince me to be part of the training?
->>>
->>> - armin
->>>
->>>
->>>
->>>  =20
->>> ELCE =E2=80=93 Monday, October 28 -30, 2019, Lyon Convention Centre, =
-Lyon, France
->>>                Yocto Project is a sponsor. We=E2=80=99ll see you on t=
-he show floor
->>>  =20
->>> ELCE Yocto Project Summit =E2=80=93 Dates & Times:
->>> Thursday, October 31, 2019 - 8:00AM - 6:00PM
->>>                 November 1, 2019 - 8:00 am - 6:00PM
->>> Set-up:
->>> Day 1: 1 Meeting Room - Theater Seating for 100 for Yocto Project tal=
-ks
->>> Day 2: 2 Meeting Rooms - Mixed Classroom/Theater seating for 60 & Cla=
-ssroom seating for 40 (for maintainers and users)
->>> Includes:
->>> Morning Break for 2 days
->>> Buffet Lunch for 2 days
->>> Beer & Wine Reception with light appetizers for 1 day
->>> The goal for the second day of the summit is to build and bring the c=
-ommunity together. We are interested to hear your opinions and ideas on h=
-ow that day and those rooms should be used for. Please send your ideas to=
- Andreea Volosincu and Philip Balister.
->>>  =20
->>> We will call out an Advocacy meeting in a couple of weeks to go over =
-plans and vote on the ideas for the second day of the summit.
->>>  =20
->>> Thanks!
->>> Andreea
->>> Yocto Project Advocacy Lead
->>>
->>>
->>>
->>>  =20
->>> --=20
->>> _______________________________________________
->>> yocto-advocacy mailing list
->>> yocto-advocacy@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto-advocacy
->=20
->> --=20
->> _______________________________________________
->> yocto-advocacy mailing list
->> yocto-advocacy@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto-advocacy
->=20
->=20
-
-Bas.
+PiA+IGlzIHRoYXQgd2hhdCB5b3Ugd2VyZSBhZnRlcj8NCj4gb3ZlcnJpZGUgaXMgdGhlIGZpcnN0
+IHRoaW5nIHRoYXQgY3Jvc3NlZCBteSBtaW5kLi4uICAgDQoNClRoYW5rcyBib3RoIG9mIHlvdSwg
+YW4gYWRkaXRpb25hbCBtYWNoaW5lIG92ZXJyaWRlIHdhcyBleGFjdGx5IHdoYXQgd2UgbmVlZGVk
+Lg0KDQpCZXN0IHJlZ2FyZHMsIE9sbGkNCg==
 
