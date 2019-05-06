@@ -1,78 +1,72 @@
 Return-Path: <prvs=1029a96a03=holzmayr@rsi-elektrotechnik.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0F41CE00D3A; Mon,  6 May 2019 03:48:09 -0700 (PDT)
+	id 70DF4E00D3A; Mon,  6 May 2019 03:58:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS
-	autolearn=unavailable version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [85.215.255.52 listed in list.dnswl.org]
+	*      [85.215.255.50 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 179 seconds by postgrey-1.32 at yocto-www;
-	Mon, 06 May 2019 03:48:07 PDT
 Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
-	[85.215.255.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D01EDE00D36
-	for <yocto@yoctoproject.org>; Mon,  6 May 2019 03:48:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1557139686;
+	[85.215.255.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88978E00C14;
+	Mon,  6 May 2019 03:58:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1557140329;
 	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
 	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
 	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-	bh=xQVDcqrEfSSCG6QKXMXuLgPIA2RqY/rnvNqc6JqTBGc=;
-	b=FeEMlWzBpA9T8ErHLMjl7B7IwQxLOwPcok1j7AbMdOEbOc7XSEuyuLt8kewrSNXbYC
-	+FyqroeDO5QNtxjNaCUwatN+GfbZqp3gIYU/d2Fw74/d1HYJSzqlbrK11ZzTPlVJLTp4
-	1zsI32i7HK0bj9ipvtq7O3MjPDUUTssubHwS+BvMohscvzmSCvZuIkUuTJ2Vdw/IFybo
-	mLATbVoJZ/KQMFu7evupc2cFiEUheyyOgQkSwsZu2Ubvi2oj24kKRzySYoXHEg2z4c6/
-	ctqZ5tsNPQNqQsnuswUbgMy87zhHNjJ+DeCoYa0krckprWJvG9rgn0r15pF6BWVoivEx
-	hwfw==
+	bh=5NeZGkWnt/wlLIVZnvrbjKoYMZrk/KhgD3q9drPva04=;
+	b=Mq5rpdO78r9YRvsp7TXi14pUnOh3RbH7B5QVN9PgyPCSmbxTYlaPDTfLdEvK9jCzYG
+	8aj0U/sDdFTg6HXMY+E6qW8in2H/XlrDjeQVaYq2nxU4wJm3ywI+2MoGHLKRfC0pHgJC
+	vLupMLpU4oRHS7TLrMFBeJSvTar7j06eZMFd6t1/Iw2sSxVscc3xX6eVjRRXYsi/bMXu
+	dG8GzAKt/WNDr651m06/IuKRtE0QdOSLkfg1FwC546AB1O4uPz+PrI8zPRawvLTXV9ch
+	op3YjLlmEBKza5Pz499tcDTln0IB3ch8oNU11W/wBeP3NOW3F0nvfPq1MuEHkiIWm9zH
+	uUTA==
 X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/Kpz6b/avroGOv0c9sak1tqOWjLU3UFhR6"
 X-RZG-CLASS-ID: mo00
 Received: from mail.rsi-elektrotechnik.de by smtp.strato.de (RZmta 44.18 AUTH)
-	with ESMTPSA id Q0b788v46Aj5WQZ
+	with ESMTPSA id Q0b788v46AtjWU9
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
 	with 384 ECDH bits, eq. 7680 bits RSA))
 	(Client did not present a certificate);
-	Mon, 6 May 2019 12:45:05 +0200 (CEST)
+	Mon, 6 May 2019 12:55:45 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1557139504; x=1557744304;
+	d=rsi-elektrotechnik.de; s=MDaemon; t=1557140148; x=1557744948;
 	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
 	Subject:Message-ID:References:MIME-Version:Content-Type:
 	Content-Disposition:Content-Transfer-Encoding:In-Reply-To:
-	User-Agent; bh=xQVDcqrEfSSCG6QKXMXuLgPIA2RqY/rnvNqc6JqTBGc=; b=Y
-	h4F4NWS2HGrK8aMEglsz16CGeqk/uramDS/C2GrXq3WV2GE6OmlGhVaTZMAnAi/h
-	HNNmmun2+WYg6sba3+8HKjeFeGnszey2oz6KzKd/7eCBXjlJtU4XIiTrJSr26Jyt
-	/kqHiBb3MNhJnijtasuR/ec2b877Wv8MV6iXoSq8F4=
+	User-Agent; bh=5NeZGkWnt/wlLIVZnvrbjKoYMZrk/KhgD3q9drPva04=; b=d
+	g+1oBUJdQqKcO71SvuG17lBFUInHfWc2bcYymg7+f6Qk80+scNdLb5+lDTDtp39X
+	Mz6ZnPGYR+flJGd+I3IhZdmt+qmA6gvc3Jc3Cu4uCyix8wbR3FigX7tmVMWx/6R2
+	t314Oku37m0ROg3nzMFw4c4Z1joe1WsTTt4v/xNGoM=
 Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v18.5.3) with ESMTPSA id
-	md50000163762.msg; Mon, 06 May 2019 12:45:03 +0200
+	md50000163770.msg; Mon, 06 May 2019 12:55:47 +0200
 X-MDRemoteIP: 178.27.67.144
 X-MDHelo: jholzmayr.localdomain
-X-MDArrival-Date: Mon, 06 May 2019 12:45:03 +0200
+X-MDArrival-Date: Mon, 06 May 2019 12:55:47 +0200
 X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
 X-Return-Path: prvs=1029a96a03=holzmayr@rsi-elektrotechnik.de
 X-Envelope-From: holzmayr@rsi-elektrotechnik.de
 X-CAV-Result: skipped - holzmayr@rsi-elektrotechnik.de is in exclusion list
-Date: Mon, 6 May 2019 12:45:02 +0200
+Date: Mon, 6 May 2019 12:55:42 +0200
 From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
 To: Behan Webster <behanw@converseincode.com>
-Message-ID: <20190506104502.e4tvj5w4i4og4ski@jholzmayr.localdomain>
+Message-ID: <20190506105542.sou43f5lhkqfxlmy@jholzmayr.localdomain>
 References: <A084970538D2234B96D99D06FA9D974FC378C228@ALA-MBD.corp.ad.wrs.com>
-	<96fa4aec-9557-9d7f-bff3-82f8db56e9cd@mvista.com>
-	<A084970538D2234B96D99D06FA9D974FC378C879@ALA-MBD.corp.ad.wrs.com>
-	<0980DABF-86C8-4A9D-8687-B9C27EE2FF61@converseincode.com>
-	<A084970538D2234B96D99D06FA9D974FC378DD57@ALA-MBD.corp.ad.wrs.com>
-	<2D39B7E1-DC52-42A6-8332-50ED49F77722@converseincode.com>
+	<954A193F-DC16-4429-BAAD-EE78327C048E@converseincode.com>
 MIME-Version: 1.0
-In-Reply-To: <2D39B7E1-DC52-42A6-8332-50ED49F77722@converseincode.com>
+In-Reply-To: <954A193F-DC16-4429-BAAD-EE78327C048E@converseincode.com>
 User-Agent: NeoMutt/20180716
 Cc: Yocto list discussion <yocto@yoctoproject.org>,
 	"yocto-advocacy@yoctoproject.org" <yocto-advocacy@yoctoproject.org>
@@ -88,74 +82,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 May 2019 10:48:09 -0000
+X-List-Received-Date: Mon, 06 May 2019 10:58:53 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 
-I'd actually word it a little bit differently:
+Howdy!
 
-If there is only *ONE* attendee who did not properly do the homework, it
-will have a massive impact an the rest of the group. And that somebody
-will show up unpreparedly is absolutely certain in my opinion.
+On Sun, May 05, 2019 at 05:07:30PM -0700, Behan Webster wrote:
+> If community building is the plan please don’t exclude OpenEmbedded from the name nor the material (in other words, acknowledging which parts are from OpenEmbedded). Part of the community building aspect is going to have to be acknowledging that Yocto Project is an umbrella project made up of other projects, and then celebrating those projects.
+> 
+> The original idea I put forward was to have a joint OpenEmbedded/Yocto project 2-day event to replace the separate ypdd and OEDEM, not merely a larger Yocto project event.
+> 
+> I am personally already seeing a negative reaction to these plans from others, which is IMHO sadly contributing to destroying community instead of building it.
+> 
+> I, personally, would like nothing more than a simpler way to describe the whole thing. However as it stands we essentially have 2 camps that continue to separate instead of coming together. Let’s try and fix that bit first.
 
-As someone who actually got started through the YPDD beginner track (and
-also often recommends it to new beginners), my opinion is clearly that
-we either should have it, be it only for a handful of attendees, or
-offer a *real* replacement, with face to face training. My experience is
-that this personal thing in the very beginning is an absolutely
-essential part of many YP/OE careers.
+Completely agreed. I've personally never understood the (until now,
+mostly) friendly mutual heckling, but its a thing we have to cope with
+and sort out. The sooner, the better.
+ 
+> And I surely hope that things other than beer and wine are made available. There are actually a lot of attendees who don’t drink from what I can tell, which was made extremely evident to me in Edinburgh where the non alcoholic options kept on running out and how much alcohol was left at the end of the night. Wine and beer isn’t a draw for everyone anymore.
+
+Another point I'm just stepping up to fully support. We can run out of
+booze - its better if we don't but hey, we absolutely must not run out
+of water and coffee.
 
 Greetz
 
-On Sun, May 05, 2019 at 04:46:12PM -0700, Behan Webster wrote:
-> Just for the record, speaking as a professional trainer, and someone who makes material available before classes in the hopes that people will do “pre-class homework”, almost nobody even glances through any material sent before class. And many people claim to have never received it (for various reasons, but often because it ends up ignored or in spam).
+PS: Yes, its actually *ME* writing that.
+
 > 
-> Essentially I wouldn’t count on anyone actually looking at anything before arriving, because statistically nobody does.
+> Thanks,
 > 
 > Behan
 > 
 > Sent from my Mobile Computer which is also a phone
 > 
-> > On May 5, 2019, at 2:45 PM, Volosincu, Andreea S <andreea.volosincu@windriver.com> wrote:
+> > On May 3, 2019, at 11:01 AM, Volosincu, Andreea S <andreea.volosincu@windriver.com> wrote:
 > > 
-> > That’s correct. We’ll provide previous beginner material as pre-class homework.
-> >  
-> > Andreea
-> >  
-> > From: Behan Webster [mailto:behanw@converseincode.com] 
-> > Sent: Saturday, May 4, 2019 4:30 AM
-> > To: Volosincu, Andreea S <andreea.volosincu@windriver.com>
-> > Cc: akuster <akuster@mvista.com>; yocto-advocacy@yoctoproject.org; Yocto list discussion <yocto@yoctoproject.org>
-> > Subject: Re: [Yocto-Advocacy] Yocto Project Upcoming Conferences and Developer Days
-> >  
-> > So does this mean there won’t be a beginner class at all?
-> >  
-> > Behan
-> > 
-> > Sent from my Mobile Computer which is also a phone
-> > 
-> > On May 3, 2019, at 6:01 PM, Volosincu, Andreea S <andreea.volosincu@windriver.com> wrote:
-> > 
-> > Hi Armin,
-> >  
-> > Thanks for letting us know. The security summit overlaps with a lot of things, including the first ELC day.
-> >  
-> > Hopefully we can make it work by fine-tuning the agenda in such a way that you attend just the portion of the day that is interesting to you, or you are presenting.
-> >  
-> > Let’s talk more during the advocacy call.
-> >  
-> > Thanks!
-> > Andreea
-> >  
-> > From: akuster [mailto:akuster@mvista.com] 
-> > Sent: Friday, May 3, 2019 11:07 AM
-> > To: Volosincu, Andreea S <andreea.volosincu@windriver.com>; yocto-advocacy@yoctoproject.org; Yocto list discussion <yocto@yoctoproject.org>
-> > Subject: Re: [Yocto-Advocacy] Yocto Project Upcoming Conferences and Developer Days
-> >  
-> >  
-> > 
-> > On 5/3/19 11:01 AM, Volosincu, Andreea S wrote:
 > > Greetings,
 > >  
 > > Yocto Project is pleased to announce the plans for the upcoming Embedded Linux Conferences in NA and Europe.
@@ -169,14 +134,6 @@ On Sun, May 05, 2019 at 04:46:12PM -0700, Behan Webster wrote:
 > > Set-up: 1 Meeting Room - Classroom Seating ( 60 people)
 > > Level: Intermediate – Advanced. Participants will receive beginner material (videos and presentations) as pre-requisites
 > > Includes: Morning Break, Buffet Lunch, Beer & Wine Reception with light appetizers
-> > So beer is a prerequisite for Intermediate level?
-> > 
-> > This is a conflict with Linux Security summit unless someone can convince me to be part of the training?
-> > 
-> > - armin
-> > 
-> > 
-> > 
 > >  
 > > ELCE – Monday, October 28 -30, 2019, Lyon Convention Centre, Lyon, France
 > >               Yocto Project is a sponsor. We’ll see you on the show floor
@@ -198,10 +155,6 @@ On Sun, May 05, 2019 at 04:46:12PM -0700, Behan Webster wrote:
 > > Thanks!
 > > Andreea
 > > Yocto Project Advocacy Lead
-> > 
-> > 
-> > 
-> >  
 > > -- 
 > > _______________________________________________
 > > yocto-advocacy mailing list
