@@ -1,64 +1,114 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DBDA5E00D40; Tue,  7 May 2019 07:43:05 -0700 (PDT)
+	id E0703E00C49; Tue,  7 May 2019 07:52:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.51 listed in list.dnswl.org]
+	*      [209.85.215.180 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
-	[209.85.221.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B866E00BAA
-	for <yocto@yoctoproject.org>; Tue,  7 May 2019 07:43:04 -0700 (PDT)
-Received: by mail-wr1-f51.google.com with SMTP id v10so10458492wrt.6
-	for <yocto@yoctoproject.org>; Tue, 07 May 2019 07:43:04 -0700 (PDT)
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com
+	[209.85.215.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7A5FE00B1B
+	for <yocto@yoctoproject.org>; Tue,  7 May 2019 07:52:45 -0700 (PDT)
+Received: by mail-pg1-f180.google.com with SMTP id e6so8438439pgc.4
+	for <yocto@yoctoproject.org>; Tue, 07 May 2019 07:52:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:date:user-agent:mime-version;
-	bh=J/QsZOtbOYS13mD6dEhE7vf9PyHuczouDBJQj71Uw3Y=;
-	b=ZGCAmEhocc51zkItE0vDtZ02Hi31Hi9J5zF4D5pJNe9XdiKydatUaLzvVuR8I9vm/G
-	FqJfdQ6KTmKGocHB6rF7AWPoZoImEzlD5Nizi+q0AlMh8s3Zzoht5efKlrLt8qIVXTn3
-	p5o83098zPi144BJi2xNAxwices9Caji/vfQ8=
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=8db88lt8eqEAdYMVvxtxlGNwg1mjVwPLnNVEVPrG4mY=;
+	b=cWkYVUoW7jbw3xt3Y4XsohvxGVY5pWmtqE+3abUL2wBY/xKncgkomGXK1es0umKinP
+	jJJ5W8Cng0NwuG8/y6Guw6MbfltUjsyh09KD0+eh1Ywb0GlnK1MA4jrZmFApEKguEfOF
+	5yHqBBSFP8M1+pERD4cQufBKa8PnItWRveq35BQteHNHFJshUZZGlo91YHNVyRtM7szq
+	VXD2ylGdq27pxHi4IkoO9SZ0HBNuPSjswRCu5wYrGUK4By29oV/uNmgWIha+3EHF7UiK
+	iW7euCz6wmT5DTAbJutuRyo3noNiO4EehockJzAFcKGWPi/j1cw2LLax0vl/qivzDl6T
+	iu8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:date:user-agent
-	:mime-version;
-	bh=J/QsZOtbOYS13mD6dEhE7vf9PyHuczouDBJQj71Uw3Y=;
-	b=a1sappweVZPbbGPolzLnveGSPd0BePMt4Flm05Rw7JrwByJ6GQgjpwe2s4obMtQ1OR
-	h4fkVCbv9eIA4BTiwi6n9VyQwtS53bUiwxk3aRHJopoXjLz0FbabNoyFjnHCt0TcLlHk
-	BbkCP9ovEtADq6eBi4mCWoKhBtMicKNWLt4x+Or2GEtqN0mB+rpUK2divRK0DZrf9gKA
-	zmWrpbKhCELmIeTXo50x/z6GICX5k8LyZrpoydG7gAJsLiFrBnSkRomAofelL7Hkcfu/
-	ExeEZ+ZhoJP5H9MMUjInCBTfxF9NbLqss3XJn+GlNV4AT0fwAyYK3bPf9oAQGXd+SIZ6
-	jYDw==
-X-Gm-Message-State: APjAAAWSOsmScSC8zP9LNh7/lwJTyzxoGSJ6Ee/KKEGRuk3PT4WllSNF
-	tzzUKKENqyerKViPwpNsz2AQg7Mi1kg=
-X-Google-Smtp-Source: APXvYqxHO/4bAZkPs+xdEwYIa9bGeUOHg9OWZB4GW1hiZ/NV476NjLg4qyOo7o7IwfLFPTEgu6kVUQ==
-X-Received: by 2002:a5d:4445:: with SMTP id x5mr10285187wrr.120.1557240182952; 
-	Tue, 07 May 2019 07:43:02 -0700 (PDT)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	b184sm19821663wmh.17.2019.05.07.07.43.01
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Tue, 07 May 2019 07:43:02 -0700 (PDT)
-Message-ID: <bc464027bd8df4d402b4cc476f856a5276e09c74.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
-Date: Tue, 07 May 2019 15:43:00 +0100
-User-Agent: Evolution 3.32.1-2 
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-language;
+	bh=8db88lt8eqEAdYMVvxtxlGNwg1mjVwPLnNVEVPrG4mY=;
+	b=LBRhwn+GuDssZ7MyMHnQDIakUv0ZtNBcmv6duLpu6TyyIHXcTgOnskwtRV7yVZZE0W
+	/VEEOq8nj0RkvEnk3ltx9X9OiPmLESmQEd795OGN9ooJoJPMaW5hea7VURWGwwZcltMn
+	7ClAiWtUaHlxjjuyK4QkClWXjkthX84rFaoKFgXcyysaVgVB1upJuVV3hDRDd10cMjy9
+	jdmE2O2jZyryuLZj8+s07b3qZgRAh/dB1lq761CCKCrlgYoA2IuJa4gvzZQf3Jyw2c0Z
+	gjCEFx91dlkCvee2S1IlFsEvwTUU3+F1ngmhKCNCbQX28JWvdq7StVaJQMNhg+1zNcmp
+	vz2Q==
+X-Gm-Message-State: APjAAAWVA8jn323Y7DpMo7Svp9DZVUCILfxXabuLnomUu/pyXd7cG1aq
+	w4loC/pMZF6mPV2t9+1Ugf8R5Q==
+X-Google-Smtp-Source: APXvYqzMm008M0nTPiflRf7vuTD5TSR1sA7CArTa4UPKBJ00MwLDw2j+wPgx8BxA3dOiIL9nHapaQA==
+X-Received: by 2002:a63:1cf:: with SMTP id 198mr31774938pgb.155.1557240764852; 
+	Tue, 07 May 2019 07:52:44 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:c33:8476:cc3a:1f1b:599b?
+	([2601:202:4180:c33:8476:cc3a:1f1b:599b])
+	by smtp.gmail.com with ESMTPSA id j35sm273134pgj.60.2019.05.07.07.52.42
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 07 May 2019 07:52:43 -0700 (PDT)
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+	yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
+References: <bc464027bd8df4d402b4cc476f856a5276e09c74.camel@linuxfoundation.org>
+From: akuster <akuster@mvista.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
+	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
+	8CS2NxU=
+Message-ID: <94d9dcaa-b5f1-7344-008c-731ad9ec22fe@mvista.com>
+Date: Tue, 7 May 2019 07:52:41 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.6.1
 MIME-Version: 1.0
-Subject: [OE-core] Yocto Project Status WW19'19
+In-Reply-To: <bc464027bd8df4d402b4cc476f856a5276e09c74.camel@linuxfoundation.org>
+Subject: Re: [OE-core] Yocto Project Status WW19'19
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,373 +120,599 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 May 2019 14:43:05 -0000
-Content-Type: multipart/alternative; boundary="=-OmSsQp0P6FMHP0iD37VK"
+X-List-Received-Date: Tue, 07 May 2019 14:52:53 -0000
+Content-Type: multipart/alternative;
+	boundary="------------D08AF33F552ABE12E92BF98E"
+Content-Language: en-US
 
---=-OmSsQp0P6FMHP0iD37VK
-Content-Type: text/plain; charset="UTF-8"
+--------------D08AF33F552ABE12E92BF98E
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
-Current Dev Position: YP 2.8 M1
-Next Deadline: YP 2.8 Milestone 1 Target May ??, 2019
 
-SWAT Team Rotation:
- * SWAT lead is currently: Anuj
- * SWAT team rotation: Anuj -> Ross on May. 10, 2019
- * SWAT team rotation: Ross -> Amanda on May. 17, 2019
- * https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
 
-Next Team Meetings:
- * YP 2.8 Planning meeting Tuesday May 7th at 8am PDT (
-https://zoom.us/j/990892712) 
- * Bug Triage meeting Thursday May 9th at 7:30am PDT (
-https://zoom.us/j/454367603)
+On 5/7/19 7:43 AM, Richard Purdie wrote:
+>
+> Current Dev Position: YP 2.8 M1
+>
+> Next Deadline: YP 2.8 Milestone 1 Target May ??, 2019
+>
+>
+> SWAT Team Rotation:
+>
+>  *
+>
+>     SWAT lead is currently: Anuj
+>
+>  *
+>
+>     SWAT team rotation: Anuj -> Ross on May. 10, 2019
+>
+>  *
+>
+>     SWAT team rotation: Ross -> Amanda on May. 17, 2019
+>
+>  *
+>
+>     https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+>
+>
+> Next Team Meetings:
+>
+>  *
+>
+>     YP 2.8 Planning meeting Tuesday May 7th at 8am PDT
+>     (https://zoom.us/j/990892712) <https://zoom.us/j/990892712>
+>
+>  *
+>
+>     Bug Triage meeting Thursday May 9th at 7:30am PDT
+>     (https://zoom.us/j/454367603)
+>
+>
+> Key Status/Updates:
+>
+>  *
+>
+>     Stephen is going to be unavailable for several weeks, please refer
+>     any queries to Richard
+>
+>  *
+>
+>     YP 2.7 was released
+>
+>  *
+>
+>     The 2.8 planning discussions are starting and there is a google
+>     doc summarising the discussions so far:
+>     https://docs.google.com/document/d/1CNEKA4d0eT6-e0hnS2pwi7xdZ5_t6smpZO2HbaJGXbU/
+>
+> If people are planning to work on specific things in 2.8 please let us
+> know so we can incorporate this into our plans. If you’re interested
+> in working on anything in the document, please also let us know or
+> talk with us in one of the planning meetings.
+>
+>  *
+>
+>     At this point we believe we’ve made our final release for the sumo
+>     (2.5) series
+>
+Sumo is moving to community support status, wiki updated.
+https://wiki.yoctoproject.org/wiki/Stable_branch_maintenance#Stable_branch_maintainers
 
-Key Status/Updates:
- * Stephen is going to be unavailable for several weeks, please refer
-any queries to Richard
- * YP 2.7 was released
- * The 2.8 planning discussions are starting and there is a google doc
-summarising the discussions so far: 
-https://docs.google.com/document/d/1CNEKA4d0eT6-e0hnS2pwi7xdZ5_t6smpZO2HbaJGXbU/
-If people are planning to work on specific things in 2.8 please let us
-know so we can incorporate this into our plans. If you’re interested in
-working on anything in the document, please also let us know or talk
-with us in one of the planning meetings.
- * At this point we believe we’ve made our final release for the sumo
-(2.5) series
- * The project is planning to adopt SPDX license headers in its source
-code where practical, bitbake has had these merged as a first step.
- * We have a new “newcomer” bug category which are bugs suited to
-someone new to the project. These can be seen here: 
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
+>  *
+>
+>     The project is planning to adopt SPDX license headers in its
+>     source code where practical, bitbake has had these merged as a
+>     first step.
+>
+>  *
+>
+>     We have a new “newcomer” bug category which are bugs suited to
+>     someone new to the project. These can be seen here:
+>     https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
+>
+>
+> Planned Releases for YP 2.8:
+>
+>  *
+>
+>     TBA
+>
+>
+> Planned upcoming dot releases:
+>
+>  *
+>
+>     YP 2.6.3 (Thud) is in planning
+>
+>  *
+>
+>     YP 2.7.1 (Warrior) is in planning
+>
+>
+> Tracking Metrics:
+>
+>  *
+>
+>     WDD 2602 (last week
+>     2593)(https://wiki.yoctoproject.org/charts/combo.html)
+>
+>  *
+>
+>     Poky Patch Metrics  
+>
+>      o
+>
+>         Total patches found: 1558 (last week 1565)
+>
+>      o
+>
+>         Patches in the Pending State: 655 (42%) [last week 655 (42%)]
+>
+>
+> Key Status Links for YP:
+>
+> https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.7_Status
+>
+> https://wiki.yoctoproject.org/wiki/Yocto_2.7_Schedule
+>
+> https://wiki.yoctoproject.org/wiki/Yocto_2.7_Features
+>
+>
+> The Status reports are now stored on the wiki at:
+> https://wiki.yoctoproject.org/wiki/Weekly_Status
+>
+>
+> [If anyone has suggestions for other information you’d like to see on
+> this weekly status update, let us know!]
+>
+>
 
-Planned Releases for YP 2.8:
- * TBA
 
-Planned upcoming dot releases:
- * YP 2.6.3 (Thud) is in planning
- * YP 2.7.1 (Warrior) is in planning
+--------------D08AF33F552ABE12E92BF98E
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
 
-Tracking Metrics:
- * WDD 2602 (last week 2593) (
-https://wiki.yoctoproject.org/charts/combo.html)
- * Poky Patch Metrics  
-    * Total patches found: 1558 (last week 1565)
-    * Patches in the Pending State: 655 (42%) [last week 655 (42%)]
+PGh0bWw+CiAgPGhlYWQ+CiAgICA8bWV0YSBodHRwLWVxdWl2PSJDb250ZW50LVR5cGUiIGNv
+bnRlbnQ9InRleHQvaHRtbDsgY2hhcnNldD1VVEYtOCI+CiAgPC9oZWFkPgogIDxib2R5IHRl
+eHQ9IiMwMDAwMDAiIGJnY29sb3I9IiNGRkZGRkYiPgogICAgPGJyPgogICAgPGJyPgogICAg
+PGRpdiBjbGFzcz0ibW96LWNpdGUtcHJlZml4Ij5PbiA1LzcvMTkgNzo0MyBBTSwgUmljaGFy
+ZCBQdXJkaWUKICAgICAgd3JvdGU6PGJyPgogICAgPC9kaXY+CiAgICA8YmxvY2txdW90ZSB0
+eXBlPSJjaXRlIgpjaXRlPSJtaWQ6YmM0NjQwMjdiZDhkZjRkNDAyYjRjYzQ3NmY4NTZhNTI3
+NmUwOWM3NC5jYW1lbEBsaW51eGZvdW5kYXRpb24ub3JnIj4KICAgICAgPG1ldGEgaHR0cC1l
+cXVpdj0iY29udGVudC10eXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNoYXJzZXQ9VVRGLTgi
+PgogICAgICA8cCBkaXI9Imx0ciIKICAgICAgICBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODtt
+YXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9tOjBwdDsiCiAgICAgICAgaWQ9ImRvY3MtaW50
+ZXJuYWwtZ3VpZC0yZGIxMTM3Yi03ZmZmLTM4ZjEtZWQ3NS04NDBhNmQ5Y2UyYmQiPjxzcGFu
+IHN0eWxlPSJmb250LXNpemU6IDExcHQ7IGZvbnQtZmFtaWx5OiBBcmlhbDsgYmFja2dyb3Vu
+ZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsg
+Zm9udC12YXJpYW50LWVhc3QtYXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBvc2l0aW9u
+OiBub3JtYWw7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6IHByZS13
+cmFwOyI+Q3VycmVudCBEZXYgUG9zaXRpb246IFlQIDIuOCBNMTwvc3Bhbj48L3A+CiAgICAg
+IDxwIGRpcj0ibHRyIgogICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10
+b3A6MHB0O21hcmdpbi1ib3R0b206MHB0OyI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTogMTFw
+dDsgZm9udC1mYW1pbHk6IEFyaWFsOyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDsg
+Zm9udC12YXJpYW50LWxpZ2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQtZWFzdC1hc2lh
+bjogbm9ybWFsOyBmb250LXZhcmlhbnQtcG9zaXRpb246IG5vcm1hbDsgdmVydGljYWwtYWxp
+Z246IGJhc2VsaW5lOyB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7Ij5OZXh0IERlYWRsaW5lOiBZ
+UCAyLjggTWlsZXN0b25lIDEgVGFyZ2V0IE1heSA/PywgMjAxOTwvc3Bhbj48L3A+CiAgICAg
+IDxicj4KICAgICAgPHAgZGlyPSJsdHIiCiAgICAgICAgc3R5bGU9ImxpbmUtaGVpZ2h0OjEu
+Mzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQ7Ij48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOiAxMXB0OyBmb250LWZhbWlseTogQXJpYWw7IGJhY2tncm91bmQtY29sb3I6IHRy
+YW5zcGFyZW50OyBmb250LXZhcmlhbnQtbGlnYXR1cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFu
+dC1lYXN0LWFzaWFuOiBub3JtYWw7IGZvbnQtdmFyaWFudC1wb3NpdGlvbjogbm9ybWFsOyB2
+ZXJ0aWNhbC1hbGlnbjogYmFzZWxpbmU7IHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsiPlNXQVQg
+VGVhbSBSb3RhdGlvbjo8L3NwYW4+PC9wPgogICAgICA8dWwgc3R5bGU9Im1hcmdpbi10b3A6
+MHB0O21hcmdpbi1ib3R0b206MHB0OyI+CiAgICAgICAgPGxpIGRpcj0ibHRyIiBzdHlsZT0i
+bGlzdC1zdHlsZS10eXBlOiBkaXNjOyBmb250LXNpemU6IDExcHQ7IGZvbnQtZmFtaWx5OiBB
+cmlhbDsgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZvbnQtdmFyaWFudC1saWdh
+dHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWVhc3QtYXNpYW46IG5vcm1hbDsgZm9udC12
+YXJpYW50LXBvc2l0aW9uOiBub3JtYWw7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTsgd2hp
+dGUtc3BhY2U6IHByZTsiPjxwIGRpcj0ibHRyIiBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODtt
+YXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9tOjBwdDsiPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6IDExcHQ7IGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OyBmb250LXZhcmlhbnQt
+bGlnYXR1cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOiBub3JtYWw7IGZv
+bnQtdmFyaWFudC1wb3NpdGlvbjogbm9ybWFsOyB2ZXJ0aWNhbC1hbGlnbjogYmFzZWxpbmU7
+IHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsiPlNXQVQgbGVhZCBpcyBjdXJyZW50bHk6IEFudWo8
+L3NwYW4+PC9wPjwvbGk+CiAgICAgICAgPGxpIGRpcj0ibHRyIiBzdHlsZT0ibGlzdC1zdHls
+ZS10eXBlOiBkaXNjOyBmb250LXNpemU6IDExcHQ7IGZvbnQtZmFtaWx5OiBBcmlhbDsgYmFj
+a2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5v
+cm1hbDsgZm9udC12YXJpYW50LWVhc3QtYXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBv
+c2l0aW9uOiBub3JtYWw7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6
+IHByZTsiPjxwIGRpcj0ibHRyIiBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9w
+OjBwdDttYXJnaW4tYm90dG9tOjBwdDsiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6IDExcHQ7
+IGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OyBmb250LXZhcmlhbnQtbGlnYXR1cmVz
+OiBub3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOiBub3JtYWw7IGZvbnQtdmFyaWFu
+dC1wb3NpdGlvbjogbm9ybWFsOyB2ZXJ0aWNhbC1hbGlnbjogYmFzZWxpbmU7IHdoaXRlLXNw
+YWNlOiBwcmUtd3JhcDsiPlNXQVQgdGVhbSByb3RhdGlvbjogQW51aiAtJmd0OyBSb3NzIG9u
+IE1heS4gMTAsIDIwMTk8L3NwYW4+PC9wPjwvbGk+CiAgICAgICAgPGxpIGRpcj0ibHRyIiBz
+dHlsZT0ibGlzdC1zdHlsZS10eXBlOiBkaXNjOyBmb250LXNpemU6IDExcHQ7IGZvbnQtZmFt
+aWx5OiBBcmlhbDsgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZvbnQtdmFyaWFu
+dC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWVhc3QtYXNpYW46IG5vcm1hbDsg
+Zm9udC12YXJpYW50LXBvc2l0aW9uOiBub3JtYWw7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGlu
+ZTsgd2hpdGUtc3BhY2U6IHByZTsiPjxwIGRpcj0ibHRyIiBzdHlsZT0ibGluZS1oZWlnaHQ6
+MS4zODttYXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9tOjBwdDsiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6IDExcHQ7IGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OyBmb250LXZh
+cmlhbnQtbGlnYXR1cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOiBub3Jt
+YWw7IGZvbnQtdmFyaWFudC1wb3NpdGlvbjogbm9ybWFsOyB2ZXJ0aWNhbC1hbGlnbjogYmFz
+ZWxpbmU7IHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsiPlNXQVQgdGVhbSByb3RhdGlvbjogUm9z
+cyAtJmd0OyBBbWFuZGEgb24gTWF5LiAxNywgMjAxOTwvc3Bhbj48L3A+PC9saT4KICAgICAg
+ICA8bGkgZGlyPSJsdHIiIHN0eWxlPSJsaXN0LXN0eWxlLXR5cGU6IGRpc2M7IGZvbnQtc2l6
+ZTogMTFwdDsgZm9udC1mYW1pbHk6IENvbnNvbGFzOyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFu
+c3BhcmVudDsgZm9udC12YXJpYW50LWxpZ2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQt
+ZWFzdC1hc2lhbjogbm9ybWFsOyBmb250LXZhcmlhbnQtcG9zaXRpb246IG5vcm1hbDsgdmVy
+dGljYWwtYWxpZ246IGJhc2VsaW5lOyB3aGl0ZS1zcGFjZTogcHJlOyI+PHAgZGlyPSJsdHIi
+IHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206
+MHB0OyI+PGEgaHJlZj0iaHR0cHM6Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9Zb2N0
+b19CdWlsZF9GYWlsdXJlX1N3YXRfVGVhbSIgc3R5bGU9InRleHQtZGVjb3JhdGlvbjpub25l
+OyIgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxMXB0
+OyBjb2xvcjogcmdiKDE3LCA4NSwgMjA0KTsgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJl
+bnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWVhc3Qt
+YXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBvc2l0aW9uOiBub3JtYWw7IHRleHQtZGVj
+b3JhdGlvbjogdW5kZXJsaW5lOyB0ZXh0LWRlY29yYXRpb24tc2tpcDogbm9uZTsgdmVydGlj
+YWwtYWxpZ246IGJhc2VsaW5lOyB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7Ij5odHRwczovL3dp
+a2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1lvY3RvX0J1aWxkX0ZhaWx1cmVfU3dhdF9UZWFt
+PC9zcGFuPjwvYT48L3A+PC9saT4KICAgICAgPC91bD4KICAgICAgPGJyPgogICAgICA8cCBk
+aXI9Imx0ciIKICAgICAgICBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBw
+dDttYXJnaW4tYm90dG9tOjBwdDsiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6IDExcHQ7IGZv
+bnQtZmFtaWx5OiBBcmlhbDsgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZvbnQt
+dmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWVhc3QtYXNpYW46IG5v
+cm1hbDsgZm9udC12YXJpYW50LXBvc2l0aW9uOiBub3JtYWw7IHZlcnRpY2FsLWFsaWduOiBi
+YXNlbGluZTsgd2hpdGUtc3BhY2U6IHByZS13cmFwOyI+TmV4dCBUZWFtIE1lZXRpbmdzOjwv
+c3Bhbj48L3A+CiAgICAgIDx1bCBzdHlsZT0ibWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRv
+bTowcHQ7Ij4KICAgICAgICA8bGkgZGlyPSJsdHIiIHN0eWxlPSJsaXN0LXN0eWxlLXR5cGU6
+IGRpc2M7IGZvbnQtc2l6ZTogMTFwdDsgZm9udC1mYW1pbHk6IEFyaWFsOyBiYWNrZ3JvdW5k
+LWNvbG9yOiB0cmFuc3BhcmVudDsgZm9udC12YXJpYW50LWxpZ2F0dXJlczogbm9ybWFsOyBm
+b250LXZhcmlhbnQtZWFzdC1hc2lhbjogbm9ybWFsOyBmb250LXZhcmlhbnQtcG9zaXRpb246
+IG5vcm1hbDsgdmVydGljYWwtYWxpZ246IGJhc2VsaW5lOyB3aGl0ZS1zcGFjZTogcHJlOyI+
+PHAgZGlyPSJsdHIiIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21h
+cmdpbi1ib3R0b206MHB0OyI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTogMTFwdDsgYmFja2dy
+b3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1h
+bDsgZm9udC12YXJpYW50LWVhc3QtYXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBvc2l0
+aW9uOiBub3JtYWw7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6IHBy
+ZS13cmFwOyI+WVAgMi44IFBsYW5uaW5nIG1lZXRpbmcgVHVlc2RheSBNYXkgN3RoIGF0IDhh
+bSBQRFQgKDwvc3Bhbj48YSBocmVmPSJodHRwczovL3pvb20udXMvai85OTA4OTI3MTIiIHN0
+eWxlPSJ0ZXh0LWRlY29yYXRpb246bm9uZTsiIG1vei1kby1ub3Qtc2VuZD0idHJ1ZSI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZTogMTFwdDsgY29sb3I6IHJnYigxNywgODUsIDIwNCk7IGJh
+Y2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OyBmb250LXZhcmlhbnQtbGlnYXR1cmVzOiBu
+b3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOiBub3JtYWw7IGZvbnQtdmFyaWFudC1w
+b3NpdGlvbjogbm9ybWFsOyB0ZXh0LWRlY29yYXRpb246IHVuZGVybGluZTsgdGV4dC1kZWNv
+cmF0aW9uLXNraXA6IG5vbmU7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3Bh
+Y2U6IHByZS13cmFwOyI+aHR0cHM6Ly96b29tLnVzL2ovOTkwODkyNzEyKTwvc3Bhbj48L2E+
+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTogMTFwdDsgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNw
+YXJlbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWVh
+c3QtYXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBvc2l0aW9uOiBub3JtYWw7IHZlcnRp
+Y2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6IHByZS13cmFwOyI+IDwvc3Bhbj48
+L3A+PC9saT4KICAgICAgICA8bGkgZGlyPSJsdHIiIHN0eWxlPSJsaXN0LXN0eWxlLXR5cGU6
+IGRpc2M7IGZvbnQtc2l6ZTogMTFwdDsgZm9udC1mYW1pbHk6IEFyaWFsOyBiYWNrZ3JvdW5k
+LWNvbG9yOiB0cmFuc3BhcmVudDsgZm9udC12YXJpYW50LWxpZ2F0dXJlczogbm9ybWFsOyBm
+b250LXZhcmlhbnQtZWFzdC1hc2lhbjogbm9ybWFsOyBmb250LXZhcmlhbnQtcG9zaXRpb246
+IG5vcm1hbDsgdmVydGljYWwtYWxpZ246IGJhc2VsaW5lOyB3aGl0ZS1zcGFjZTogcHJlOyI+
+PHAgZGlyPSJsdHIiIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21h
+cmdpbi1ib3R0b206MHB0OyI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTogMTFwdDsgYmFja2dy
+b3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1h
+bDsgZm9udC12YXJpYW50LWVhc3QtYXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBvc2l0
+aW9uOiBub3JtYWw7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6IHBy
+ZS13cmFwOyI+QnVnIFRyaWFnZSBtZWV0aW5nIFRodXJzZGF5IE1heSA5dGggYXQgNzozMGFt
+IFBEVCAoPC9zcGFuPjxhIGhyZWY9Imh0dHBzOi8vem9vbS51cy9qLzQ1NDM2NzYwMyIgc3R5
+bGU9InRleHQtZGVjb3JhdGlvbjpub25lOyIgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOiAxMHB0OyBjb2xvcjogcmdiKDE3LCA4NSwgMjA0KTsgYmFj
+a2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5v
+cm1hbDsgZm9udC12YXJpYW50LWVhc3QtYXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBv
+c2l0aW9uOiBub3JtYWw7IHRleHQtZGVjb3JhdGlvbjogdW5kZXJsaW5lOyB0ZXh0LWRlY29y
+YXRpb24tc2tpcDogbm9uZTsgdmVydGljYWwtYWxpZ246IGJhc2VsaW5lOyB3aGl0ZS1zcGFj
+ZTogcHJlLXdyYXA7Ij5odHRwczovL3pvb20udXMvai80NTQzNjc2MDM8L3NwYW4+PC9hPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6IDExcHQ7IGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFy
+ZW50OyBmb250LXZhcmlhbnQtbGlnYXR1cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0
+LWFzaWFuOiBub3JtYWw7IGZvbnQtdmFyaWFudC1wb3NpdGlvbjogbm9ybWFsOyB2ZXJ0aWNh
+bC1hbGlnbjogYmFzZWxpbmU7IHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsiPik8L3NwYW4+PC9w
+PjwvbGk+CiAgICAgIDwvdWw+CiAgICAgIDxicj4KICAgICAgPHAgZGlyPSJsdHIiCiAgICAg
+ICAgc3R5bGU9ImxpbmUtaGVpZ2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRv
+bTowcHQ7Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxMXB0OyBmb250LWZhbWlseTogQXJp
+YWw7IGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OyBmb250LXZhcmlhbnQtbGlnYXR1
+cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOiBub3JtYWw7IGZvbnQtdmFy
+aWFudC1wb3NpdGlvbjogbm9ybWFsOyB2ZXJ0aWNhbC1hbGlnbjogYmFzZWxpbmU7IHdoaXRl
+LXNwYWNlOiBwcmUtd3JhcDsiPktleSBTdGF0dXMvVXBkYXRlczo8L3NwYW4+PC9wPgogICAg
+ICA8dWwgc3R5bGU9Im1hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0OyI+CiAgICAg
+ICAgPGxpIGRpcj0ibHRyIiBzdHlsZT0ibGlzdC1zdHlsZS10eXBlOiBkaXNjOyBmb250LXNp
+emU6IDExcHQ7IGZvbnQtZmFtaWx5OiBBcmlhbDsgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNw
+YXJlbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWVh
+c3QtYXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBvc2l0aW9uOiBub3JtYWw7IHZlcnRp
+Y2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6IHByZTsiPjxwIGRpcj0ibHRyIiBz
+dHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9tOjBw
+dDsiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6IDExcHQ7IGJhY2tncm91bmQtY29sb3I6IHRy
+YW5zcGFyZW50OyBmb250LXZhcmlhbnQtbGlnYXR1cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFu
+dC1lYXN0LWFzaWFuOiBub3JtYWw7IGZvbnQtdmFyaWFudC1wb3NpdGlvbjogbm9ybWFsOyB2
+ZXJ0aWNhbC1hbGlnbjogYmFzZWxpbmU7IHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsiPlN0ZXBo
+ZW4gaXMgZ29pbmcgdG8gYmUgdW5hdmFpbGFibGUgZm9yIHNldmVyYWwgd2Vla3MsIHBsZWFz
+ZSByZWZlciBhbnkgcXVlcmllcyB0byBSaWNoYXJkPC9zcGFuPjwvcD48L2xpPgogICAgICAg
+IDxsaSBkaXI9Imx0ciIgc3R5bGU9Imxpc3Qtc3R5bGUtdHlwZTogZGlzYzsgZm9udC1zaXpl
+OiAxMXB0OyBmb250LWZhbWlseTogQXJpYWw7IGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFy
+ZW50OyBmb250LXZhcmlhbnQtbGlnYXR1cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0
+LWFzaWFuOiBub3JtYWw7IGZvbnQtdmFyaWFudC1wb3NpdGlvbjogbm9ybWFsOyB2ZXJ0aWNh
+bC1hbGlnbjogYmFzZWxpbmU7IHdoaXRlLXNwYWNlOiBwcmU7Ij48cCBkaXI9Imx0ciIgc3R5
+bGU9ImxpbmUtaGVpZ2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQ7
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxMXB0OyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFu
+c3BhcmVudDsgZm9udC12YXJpYW50LWxpZ2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQt
+ZWFzdC1hc2lhbjogbm9ybWFsOyBmb250LXZhcmlhbnQtcG9zaXRpb246IG5vcm1hbDsgdmVy
+dGljYWwtYWxpZ246IGJhc2VsaW5lOyB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7Ij5ZUCAyLjcg
+d2FzIHJlbGVhc2VkPC9zcGFuPjwvcD48L2xpPgogICAgICAgIDxsaSBkaXI9Imx0ciIgc3R5
+bGU9Imxpc3Qtc3R5bGUtdHlwZTogZGlzYzsgZm9udC1zaXplOiAxMXB0OyBmb250LWZhbWls
+eTogQXJpYWw7IGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OyBmb250LXZhcmlhbnQt
+bGlnYXR1cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOiBub3JtYWw7IGZv
+bnQtdmFyaWFudC1wb3NpdGlvbjogbm9ybWFsOyB2ZXJ0aWNhbC1hbGlnbjogYmFzZWxpbmU7
+IHdoaXRlLXNwYWNlOiBwcmU7Ij48cCBkaXI9Imx0ciIgc3R5bGU9ImxpbmUtaGVpZ2h0OjEu
+Mzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQ7Ij48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOiAxMXB0OyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDsgZm9udC12YXJp
+YW50LWxpZ2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQtZWFzdC1hc2lhbjogbm9ybWFs
+OyBmb250LXZhcmlhbnQtcG9zaXRpb246IG5vcm1hbDsgdmVydGljYWwtYWxpZ246IGJhc2Vs
+aW5lOyB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7Ij5UaGUgMi44IHBsYW5uaW5nIGRpc2N1c3Np
+b25zIGFyZSBzdGFydGluZyBhbmQgdGhlcmUgaXMgYSBnb29nbGUgZG9jIHN1bW1hcmlzaW5n
+IHRoZSBkaXNjdXNzaW9ucyBzbyBmYXI6IDwvc3Bhbj48YSBocmVmPSJodHRwczovL2RvY3Mu
+Z29vZ2xlLmNvbS9kb2N1bWVudC9kLzFDTkVLQTRkMGVUNi1lMGhuUzJwd2k3eGRaNV90NnNt
+cFpPMkhiYUpHWGJVLyIgc3R5bGU9InRleHQtZGVjb3JhdGlvbjpub25lOyIgbW96LWRvLW5v
+dC1zZW5kPSJ0cnVlIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxMXB0OyBjb2xvcjogcmdi
+KDE3LCA4NSwgMjA0KTsgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZvbnQtdmFy
+aWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWVhc3QtYXNpYW46IG5vcm1h
+bDsgZm9udC12YXJpYW50LXBvc2l0aW9uOiBub3JtYWw7IHRleHQtZGVjb3JhdGlvbjogdW5k
+ZXJsaW5lOyB0ZXh0LWRlY29yYXRpb24tc2tpcDogbm9uZTsgdmVydGljYWwtYWxpZ246IGJh
+c2VsaW5lOyB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7Ij5odHRwczovL2RvY3MuZ29vZ2xlLmNv
+bS9kb2N1bWVudC9kLzFDTkVLQTRkMGVUNi1lMGhuUzJwd2k3eGRaNV90NnNtcFpPMkhiYUpH
+WGJVLzwvc3Bhbj48L2E+PC9wPjwvbGk+CiAgICAgIDwvdWw+CiAgICAgIDxwIGRpcj0ibHRy
+IgogICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21hcmdp
+bi1ib3R0b206MHB0O21hcmdpbi1sZWZ0OgogICAgICAgIDM2cHQ7Ij48c3BhbiBzdHlsZT0i
+Zm9udC1zaXplOiAxMXB0OyBmb250LWZhbWlseTogQXJpYWw7IGJhY2tncm91bmQtY29sb3I6
+IHRyYW5zcGFyZW50OyBmb250LXZhcmlhbnQtbGlnYXR1cmVzOiBub3JtYWw7IGZvbnQtdmFy
+aWFudC1lYXN0LWFzaWFuOiBub3JtYWw7IGZvbnQtdmFyaWFudC1wb3NpdGlvbjogbm9ybWFs
+OyB2ZXJ0aWNhbC1hbGlnbjogYmFzZWxpbmU7IHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsiPklm
+IHBlb3BsZSBhcmUgcGxhbm5pbmcgdG8gd29yayBvbiBzcGVjaWZpYyB0aGluZ3MgaW4gMi44
+IHBsZWFzZSBsZXQgdXMga25vdyBzbyB3ZSBjYW4gaW5jb3Jwb3JhdGUgdGhpcyBpbnRvIG91
+ciBwbGFucy4gSWYgeW914oCZcmUgaW50ZXJlc3RlZCBpbiB3b3JraW5nIG9uIGFueXRoaW5n
+IGluIHRoZSBkb2N1bWVudCwgcGxlYXNlIGFsc28gbGV0IHVzIGtub3cgb3IgdGFsayB3aXRo
+IHVzIGluIG9uZSBvZiB0aGUgcGxhbm5pbmcgbWVldGluZ3MuPC9zcGFuPjwvcD4KICAgICAg
+PHVsIHN0eWxlPSJtYXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9tOjBwdDsiPgogICAgICAg
+IDxsaSBkaXI9Imx0ciIgc3R5bGU9Imxpc3Qtc3R5bGUtdHlwZTogZGlzYzsgZm9udC1zaXpl
+OiAxMXB0OyBmb250LWZhbWlseTogQXJpYWw7IGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFy
+ZW50OyBmb250LXZhcmlhbnQtbGlnYXR1cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0
+LWFzaWFuOiBub3JtYWw7IGZvbnQtdmFyaWFudC1wb3NpdGlvbjogbm9ybWFsOyB2ZXJ0aWNh
+bC1hbGlnbjogYmFzZWxpbmU7IHdoaXRlLXNwYWNlOiBwcmU7Ij48cCBkaXI9Imx0ciIgc3R5
+bGU9ImxpbmUtaGVpZ2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQ7
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxMXB0OyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFu
+c3BhcmVudDsgZm9udC12YXJpYW50LWxpZ2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQt
+ZWFzdC1hc2lhbjogbm9ybWFsOyBmb250LXZhcmlhbnQtcG9zaXRpb246IG5vcm1hbDsgdmVy
+dGljYWwtYWxpZ246IGJhc2VsaW5lOyB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7Ij5BdCB0aGlz
+IHBvaW50IHdlIGJlbGlldmUgd2XigJl2ZSBtYWRlIG91ciBmaW5hbCByZWxlYXNlIGZvciB0
+aGUgc3VtbyAoMi41KSBzZXJpZXM8L3NwYW4+PC9wPjwvbGk+CiAgICAgIDwvdWw+CiAgICA8
+L2Jsb2NrcXVvdGU+CiAgICBTdW1vIGlzIG1vdmluZyB0byBjb21tdW5pdHkgc3VwcG9ydCBz
+dGF0dXMsIHdpa2kgdXBkYXRlZC48YnI+CjxhIGNsYXNzPSJtb3otdHh0LWxpbmstZnJlZXRl
+eHQiIGhyZWY9Imh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvU3RhYmxlX2Jy
+YW5jaF9tYWludGVuYW5jZSNTdGFibGVfYnJhbmNoX21haW50YWluZXJzIj5odHRwczovL3dp
+a2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1N0YWJsZV9icmFuY2hfbWFpbnRlbmFuY2UjU3Rh
+YmxlX2JyYW5jaF9tYWludGFpbmVyczwvYT48YnI+CiAgICA8YnI+CiAgICA8YmxvY2txdW90
+ZSB0eXBlPSJjaXRlIgpjaXRlPSJtaWQ6YmM0NjQwMjdiZDhkZjRkNDAyYjRjYzQ3NmY4NTZh
+NTI3NmUwOWM3NC5jYW1lbEBsaW51eGZvdW5kYXRpb24ub3JnIj4KICAgICAgPHVsIHN0eWxl
+PSJtYXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9tOjBwdDsiPgogICAgICAgIDxsaSBkaXI9
+Imx0ciIgc3R5bGU9Imxpc3Qtc3R5bGUtdHlwZTogZGlzYzsgZm9udC1zaXplOiAxMXB0OyBm
+b250LWZhbWlseTogQXJpYWw7IGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OyBmb250
+LXZhcmlhbnQtbGlnYXR1cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOiBu
+b3JtYWw7IGZvbnQtdmFyaWFudC1wb3NpdGlvbjogbm9ybWFsOyB2ZXJ0aWNhbC1hbGlnbjog
+YmFzZWxpbmU7IHdoaXRlLXNwYWNlOiBwcmU7Ij48cCBkaXI9Imx0ciIgc3R5bGU9ImxpbmUt
+aGVpZ2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQ7Ij48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOiAxMXB0OyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDsg
+Zm9udC12YXJpYW50LWxpZ2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQtZWFzdC1hc2lh
+bjogbm9ybWFsOyBmb250LXZhcmlhbnQtcG9zaXRpb246IG5vcm1hbDsgdmVydGljYWwtYWxp
+Z246IGJhc2VsaW5lOyB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7Ij5UaGUgcHJvamVjdCBpcyBw
+bGFubmluZyB0byBhZG9wdCBTUERYIGxpY2Vuc2UgaGVhZGVycyBpbiBpdHMgc291cmNlIGNv
+ZGUgd2hlcmUgcHJhY3RpY2FsLCBiaXRiYWtlIGhhcyBoYWQgdGhlc2UgbWVyZ2VkIGFzIGEg
+Zmlyc3Qgc3RlcC48L3NwYW4+PC9wPjwvbGk+CiAgICAgICAgPGxpIGRpcj0ibHRyIiBzdHls
+ZT0ibGlzdC1zdHlsZS10eXBlOiBkaXNjOyBmb250LXNpemU6IDExcHQ7IGZvbnQtZmFtaWx5
+OiBBcmlhbDsgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZvbnQtdmFyaWFudC1s
+aWdhdHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWVhc3QtYXNpYW46IG5vcm1hbDsgZm9u
+dC12YXJpYW50LXBvc2l0aW9uOiBub3JtYWw7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTsg
+d2hpdGUtc3BhY2U6IHByZTsiPjxwIGRpcj0ibHRyIiBzdHlsZT0ibGluZS1oZWlnaHQ6MS4z
+ODttYXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9tOjBwdDsiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6IDExcHQ7IGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OyBmb250LXZhcmlh
+bnQtbGlnYXR1cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOiBub3JtYWw7
+IGZvbnQtdmFyaWFudC1wb3NpdGlvbjogbm9ybWFsOyB2ZXJ0aWNhbC1hbGlnbjogYmFzZWxp
+bmU7IHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsiPldlIGhhdmUgYSBuZXcg4oCcbmV3Y29tZXLi
+gJ0gYnVnIGNhdGVnb3J5IHdoaWNoIGFyZSBidWdzIHN1aXRlZCB0byBzb21lb25lIG5ldyB0
+byB0aGUgcHJvamVjdC4gVGhlc2UgY2FuIGJlIHNlZW4gaGVyZTogPC9zcGFuPjxhIGhyZWY9
+Imh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvQnVnX1RyaWFnZSNOZXdjb21l
+cl9CdWdzIiBzdHlsZT0idGV4dC1kZWNvcmF0aW9uOm5vbmU7IiBtb3otZG8tbm90LXNlbmQ9
+InRydWUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6IDExcHQ7IGNvbG9yOiByZ2IoMTcsIDg1
+LCAyMDQpOyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDsgZm9udC12YXJpYW50LWxp
+Z2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQtZWFzdC1hc2lhbjogbm9ybWFsOyBmb250
+LXZhcmlhbnQtcG9zaXRpb246IG5vcm1hbDsgdGV4dC1kZWNvcmF0aW9uOiB1bmRlcmxpbmU7
+IHRleHQtZGVjb3JhdGlvbi1za2lwOiBub25lOyB2ZXJ0aWNhbC1hbGlnbjogYmFzZWxpbmU7
+IHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsiPmh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3Jn
+L3dpa2kvQnVnX1RyaWFnZSNOZXdjb21lcl9CdWdzPC9zcGFuPjwvYT48L3A+PC9saT4KICAg
+ICAgPC91bD4KICAgICAgPGJyPgogICAgICA8cCBkaXI9Imx0ciIKICAgICAgICBzdHlsZT0i
+bGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9tOjBwdDsiPjxz
+cGFuIHN0eWxlPSJmb250LXNpemU6IDExcHQ7IGZvbnQtZmFtaWx5OiBBcmlhbDsgYmFja2dy
+b3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1h
+bDsgZm9udC12YXJpYW50LWVhc3QtYXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBvc2l0
+aW9uOiBub3JtYWw7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6IHBy
+ZS13cmFwOyI+UGxhbm5lZCBSZWxlYXNlcyBmb3IgWVAgMi44Ojwvc3Bhbj48L3A+CiAgICAg
+IDx1bCBzdHlsZT0ibWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQ7Ij4KICAgICAg
+ICA8bGkgZGlyPSJsdHIiIHN0eWxlPSJsaXN0LXN0eWxlLXR5cGU6IGRpc2M7IGZvbnQtc2l6
+ZTogMTFwdDsgZm9udC1mYW1pbHk6IEFyaWFsOyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3Bh
+cmVudDsgZm9udC12YXJpYW50LWxpZ2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQtZWFz
+dC1hc2lhbjogbm9ybWFsOyBmb250LXZhcmlhbnQtcG9zaXRpb246IG5vcm1hbDsgdmVydGlj
+YWwtYWxpZ246IGJhc2VsaW5lOyB3aGl0ZS1zcGFjZTogcHJlOyI+PHAgZGlyPSJsdHIiIHN0
+eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0
+OyI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTogMTFwdDsgYmFja2dyb3VuZC1jb2xvcjogdHJh
+bnNwYXJlbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50
+LWVhc3QtYXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBvc2l0aW9uOiBub3JtYWw7IHZl
+cnRpY2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6IHByZS13cmFwOyI+VEJBPC9z
+cGFuPjwvcD48L2xpPgogICAgICA8L3VsPgogICAgICA8YnI+CiAgICAgIDxwIGRpcj0ibHRy
+IgogICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21hcmdp
+bi1ib3R0b206MHB0OyI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTogMTFwdDsgZm9udC1mYW1p
+bHk6IEFyaWFsOyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDsgZm9udC12YXJpYW50
+LWxpZ2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQtZWFzdC1hc2lhbjogbm9ybWFsOyBm
+b250LXZhcmlhbnQtcG9zaXRpb246IG5vcm1hbDsgdmVydGljYWwtYWxpZ246IGJhc2VsaW5l
+OyB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7Ij5QbGFubmVkIHVwY29taW5nIGRvdCByZWxlYXNl
+czo8L3NwYW4+PC9wPgogICAgICA8dWwgc3R5bGU9Im1hcmdpbi10b3A6MHB0O21hcmdpbi1i
+b3R0b206MHB0OyI+CiAgICAgICAgPGxpIGRpcj0ibHRyIiBzdHlsZT0ibGlzdC1zdHlsZS10
+eXBlOiBkaXNjOyBmb250LXNpemU6IDExcHQ7IGZvbnQtZmFtaWx5OiBBcmlhbDsgYmFja2dy
+b3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1h
+bDsgZm9udC12YXJpYW50LWVhc3QtYXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBvc2l0
+aW9uOiBub3JtYWw7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6IHBy
+ZTsiPjxwIGRpcj0ibHRyIiBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBw
+dDttYXJnaW4tYm90dG9tOjBwdDsiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6IDExcHQ7IGJh
+Y2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OyBmb250LXZhcmlhbnQtbGlnYXR1cmVzOiBu
+b3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOiBub3JtYWw7IGZvbnQtdmFyaWFudC1w
+b3NpdGlvbjogbm9ybWFsOyB2ZXJ0aWNhbC1hbGlnbjogYmFzZWxpbmU7IHdoaXRlLXNwYWNl
+OiBwcmUtd3JhcDsiPllQIDIuNi4zIChUaHVkKSBpcyBpbiBwbGFubmluZzwvc3Bhbj48L3A+
+PC9saT4KICAgICAgICA8bGkgZGlyPSJsdHIiIHN0eWxlPSJsaXN0LXN0eWxlLXR5cGU6IGRp
+c2M7IGZvbnQtc2l6ZTogMTFwdDsgZm9udC1mYW1pbHk6IEFyaWFsOyBiYWNrZ3JvdW5kLWNv
+bG9yOiB0cmFuc3BhcmVudDsgZm9udC12YXJpYW50LWxpZ2F0dXJlczogbm9ybWFsOyBmb250
+LXZhcmlhbnQtZWFzdC1hc2lhbjogbm9ybWFsOyBmb250LXZhcmlhbnQtcG9zaXRpb246IG5v
+cm1hbDsgdmVydGljYWwtYWxpZ246IGJhc2VsaW5lOyB3aGl0ZS1zcGFjZTogcHJlOyI+PHAg
+ZGlyPSJsdHIiIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21hcmdp
+bi1ib3R0b206MHB0OyI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTogMTFwdDsgYmFja2dyb3Vu
+ZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsg
+Zm9udC12YXJpYW50LWVhc3QtYXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBvc2l0aW9u
+OiBub3JtYWw7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6IHByZS13
+cmFwOyI+WVAgMi43LjEgKFdhcnJpb3IpIGlzIGluIHBsYW5uaW5nPC9zcGFuPjwvcD48L2xp
+PgogICAgICA8L3VsPgogICAgICA8YnI+CiAgICAgIDxwIGRpcj0ibHRyIgogICAgICAgIHN0
+eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0
+OyI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTogMTFwdDsgZm9udC1mYW1pbHk6IEFyaWFsOyBi
+YWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDsgZm9udC12YXJpYW50LWxpZ2F0dXJlczog
+bm9ybWFsOyBmb250LXZhcmlhbnQtZWFzdC1hc2lhbjogbm9ybWFsOyBmb250LXZhcmlhbnQt
+cG9zaXRpb246IG5vcm1hbDsgdmVydGljYWwtYWxpZ246IGJhc2VsaW5lOyB3aGl0ZS1zcGFj
+ZTogcHJlLXdyYXA7Ij5UcmFja2luZyBNZXRyaWNzOjwvc3Bhbj48L3A+CiAgICAgIDx1bCBz
+dHlsZT0ibWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQ7Ij4KICAgICAgICA8bGkg
+ZGlyPSJsdHIiIHN0eWxlPSJsaXN0LXN0eWxlLXR5cGU6IGRpc2M7IGZvbnQtc2l6ZTogMTFw
+dDsgZm9udC1mYW1pbHk6IEFyaWFsOyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDsg
+Zm9udC12YXJpYW50LWxpZ2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQtZWFzdC1hc2lh
+bjogbm9ybWFsOyBmb250LXZhcmlhbnQtcG9zaXRpb246IG5vcm1hbDsgdmVydGljYWwtYWxp
+Z246IGJhc2VsaW5lOyB3aGl0ZS1zcGFjZTogcHJlOyI+PHAgZGlyPSJsdHIiIHN0eWxlPSJs
+aW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21hcmdpbi1ib3R0b206MHB0OyI+PHNw
+YW4gc3R5bGU9ImZvbnQtc2l6ZTogMTFwdDsgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJl
+bnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWVhc3Qt
+YXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBvc2l0aW9uOiBub3JtYWw7IHZlcnRpY2Fs
+LWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6IHByZS13cmFwOyI+V0REIDI2MDIgKGxh
+c3Qgd2VlayAyNTkzKTwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxMXB0OyBmb250
+LWZhbWlseTogQ29uc29sYXM7IGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OyBmb250
+LXZhcmlhbnQtbGlnYXR1cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOiBu
+b3JtYWw7IGZvbnQtdmFyaWFudC1wb3NpdGlvbjogbm9ybWFsOyB2ZXJ0aWNhbC1hbGlnbjog
+YmFzZWxpbmU7IHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsiPiAoPC9zcGFuPjxhIGhyZWY9Imh0
+dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL2NoYXJ0cy9jb21iby5odG1sIiBzdHlsZT0i
+dGV4dC1kZWNvcmF0aW9uOm5vbmU7IiBtb3otZG8tbm90LXNlbmQ9InRydWUiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6IDExcHQ7IGNvbG9yOiByZ2IoMTcsIDg1LCAyMDQpOyBiYWNrZ3Jv
+dW5kLWNvbG9yOiB0cmFuc3BhcmVudDsgZm9udC12YXJpYW50LWxpZ2F0dXJlczogbm9ybWFs
+OyBmb250LXZhcmlhbnQtZWFzdC1hc2lhbjogbm9ybWFsOyBmb250LXZhcmlhbnQtcG9zaXRp
+b246IG5vcm1hbDsgdGV4dC1kZWNvcmF0aW9uOiB1bmRlcmxpbmU7IHRleHQtZGVjb3JhdGlv
+bi1za2lwOiBub25lOyB2ZXJ0aWNhbC1hbGlnbjogYmFzZWxpbmU7IHdoaXRlLXNwYWNlOiBw
+cmUtd3JhcDsiPmh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL2NoYXJ0cy9jb21iby5o
+dG1sPC9zcGFuPjwvYT48c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxMXB0OyBmb250LWZhbWls
+eTogQ29uc29sYXM7IGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OyBmb250LXZhcmlh
+bnQtbGlnYXR1cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOiBub3JtYWw7
+IGZvbnQtdmFyaWFudC1wb3NpdGlvbjogbm9ybWFsOyB2ZXJ0aWNhbC1hbGlnbjogYmFzZWxp
+bmU7IHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsiPik8L3NwYW4+PC9wPjwvbGk+CiAgICAgICAg
+PGxpIGRpcj0ibHRyIiBzdHlsZT0ibGlzdC1zdHlsZS10eXBlOiBkaXNjOyBmb250LXNpemU6
+IDExcHQ7IGZvbnQtZmFtaWx5OiBDb25zb2xhczsgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNw
+YXJlbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWVh
+c3QtYXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBvc2l0aW9uOiBub3JtYWw7IHZlcnRp
+Y2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6IHByZTsiPjxwIGRpcj0ibHRyIiBz
+dHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9tOjBw
+dDsiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6IDExcHQ7IGZvbnQtZmFtaWx5OiBBcmlhbDsg
+YmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6
+IG5vcm1hbDsgZm9udC12YXJpYW50LWVhc3QtYXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50
+LXBvc2l0aW9uOiBub3JtYWw7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3Bh
+Y2U6IHByZS13cmFwOyI+UG9reSBQYXRjaCBNZXRyaWNzIMKgPC9zcGFuPjwvcD48L2xpPgog
+ICAgICAgIDx1bCBzdHlsZT0ibWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQ7Ij4K
+ICAgICAgICAgIDxsaSBkaXI9Imx0ciIgc3R5bGU9Imxpc3Qtc3R5bGUtdHlwZTogY2lyY2xl
+OyBmb250LXNpemU6IDExcHQ7IGZvbnQtZmFtaWx5OiBBcmlhbDsgYmFja2dyb3VuZC1jb2xv
+cjogdHJhbnNwYXJlbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12
+YXJpYW50LWVhc3QtYXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBvc2l0aW9uOiBub3Jt
+YWw7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6IHByZTsiPjxwIGRp
+cj0ibHRyIiBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBwdDttYXJnaW4t
+Ym90dG9tOjBwdDsiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6IDExcHQ7IGJhY2tncm91bmQt
+Y29sb3I6IHRyYW5zcGFyZW50OyBmb250LXZhcmlhbnQtbGlnYXR1cmVzOiBub3JtYWw7IGZv
+bnQtdmFyaWFudC1lYXN0LWFzaWFuOiBub3JtYWw7IGZvbnQtdmFyaWFudC1wb3NpdGlvbjog
+bm9ybWFsOyB2ZXJ0aWNhbC1hbGlnbjogYmFzZWxpbmU7IHdoaXRlLXNwYWNlOiBwcmUtd3Jh
+cDsiPlRvdGFsIHBhdGNoZXMgZm91bmQ6IDE1NTggKGxhc3Qgd2VlayAxNTY1KTwvc3Bhbj48
+L3A+PC9saT4KICAgICAgICAgIDxsaSBkaXI9Imx0ciIgc3R5bGU9Imxpc3Qtc3R5bGUtdHlw
+ZTogY2lyY2xlOyBmb250LXNpemU6IDExcHQ7IGZvbnQtZmFtaWx5OiBDb25zb2xhczsgYmFj
+a2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZvbnQtdmFyaWFudC1saWdhdHVyZXM6IG5v
+cm1hbDsgZm9udC12YXJpYW50LWVhc3QtYXNpYW46IG5vcm1hbDsgZm9udC12YXJpYW50LXBv
+c2l0aW9uOiBub3JtYWw7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6
+IHByZTsiPjxwIGRpcj0ibHRyIiBzdHlsZT0ibGluZS1oZWlnaHQ6MS4zODttYXJnaW4tdG9w
+OjBwdDttYXJnaW4tYm90dG9tOjBwdDsiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6IDExcHQ7
+IGZvbnQtZmFtaWx5OiBBcmlhbDsgYmFja2dyb3VuZC1jb2xvcjogdHJhbnNwYXJlbnQ7IGZv
+bnQtdmFyaWFudC1saWdhdHVyZXM6IG5vcm1hbDsgZm9udC12YXJpYW50LWVhc3QtYXNpYW46
+IG5vcm1hbDsgZm9udC12YXJpYW50LXBvc2l0aW9uOiBub3JtYWw7IHZlcnRpY2FsLWFsaWdu
+OiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6IHByZS13cmFwOyI+UGF0Y2hlcyBpbiB0aGUgUGVu
+ZGluZyBTdGF0ZTogNjU1ICg0MiUpIFtsYXN0IHdlZWsgNjU1ICg0MiUpXTwvc3Bhbj48L3A+
+PC9saT4KICAgICAgICA8L3VsPgogICAgICA8L3VsPgogICAgICA8YnI+CiAgICAgIDxwIGRp
+cj0ibHRyIgogICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0
+O21hcmdpbi1ib3R0b206MHB0OyI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZTogMTFwdDsgZm9u
+dC1mYW1pbHk6IEFyaWFsOyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDsgZm9udC12
+YXJpYW50LWxpZ2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQtZWFzdC1hc2lhbjogbm9y
+bWFsOyBmb250LXZhcmlhbnQtcG9zaXRpb246IG5vcm1hbDsgdmVydGljYWwtYWxpZ246IGJh
+c2VsaW5lOyB3aGl0ZS1zcGFjZTogcHJlLXdyYXA7Ij5LZXkgU3RhdHVzIExpbmtzIGZvciBZ
+UDo8L3NwYW4+PC9wPgogICAgICA8cCBkaXI9Imx0ciIKICAgICAgICBzdHlsZT0ibGluZS1o
+ZWlnaHQ6MS4zODttYXJnaW4tdG9wOjBwdDttYXJnaW4tYm90dG9tOjBwdDsiPjxhCiAgICAg
+ICAgICBocmVmPSJodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1lvY3RvX1By
+b2plY3RfdjIuN19TdGF0dXMiCiAgICAgICAgICBzdHlsZT0idGV4dC1kZWNvcmF0aW9uOm5v
+bmU7IiBtb3otZG8tbm90LXNlbmQ9InRydWUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6IDEx
+cHQ7IGZvbnQtZmFtaWx5OiBDb25zb2xhczsgY29sb3I6IHJnYigxNywgODUsIDIwNCk7IGJh
+Y2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OyBmb250LXZhcmlhbnQtbGlnYXR1cmVzOiBu
+b3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOiBub3JtYWw7IGZvbnQtdmFyaWFudC1w
+b3NpdGlvbjogbm9ybWFsOyB0ZXh0LWRlY29yYXRpb246IHVuZGVybGluZTsgdGV4dC1kZWNv
+cmF0aW9uLXNraXA6IG5vbmU7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3Bh
+Y2U6IHByZS13cmFwOyI+aHR0cHM6Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9Zb2N0
+b19Qcm9qZWN0X3YyLjdfU3RhdHVzPC9zcGFuPjwvYT48L3A+CiAgICAgIDxwIGRpcj0ibHRy
+IgogICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6MHB0O21hcmdp
+bi1ib3R0b206MHB0OyI+PGEKICAgICAgICAgIGhyZWY9Imh0dHBzOi8vd2lraS55b2N0b3By
+b2plY3Qub3JnL3dpa2kvWW9jdG9fMi43X1NjaGVkdWxlIgogICAgICAgICAgc3R5bGU9InRl
+eHQtZGVjb3JhdGlvbjpub25lOyIgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOiAxMXB0OyBmb250LWZhbWlseTogQ29uc29sYXM7IGNvbG9yOiByZ2Io
+MTcsIDg1LCAyMDQpOyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDsgZm9udC12YXJp
+YW50LWxpZ2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQtZWFzdC1hc2lhbjogbm9ybWFs
+OyBmb250LXZhcmlhbnQtcG9zaXRpb246IG5vcm1hbDsgdGV4dC1kZWNvcmF0aW9uOiB1bmRl
+cmxpbmU7IHRleHQtZGVjb3JhdGlvbi1za2lwOiBub25lOyB2ZXJ0aWNhbC1hbGlnbjogYmFz
+ZWxpbmU7IHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsiPmh0dHBzOi8vd2lraS55b2N0b3Byb2pl
+Y3Qub3JnL3dpa2kvWW9jdG9fMi43X1NjaGVkdWxlPC9zcGFuPjwvYT48L3A+CiAgICAgIDxw
+IGRpcj0ibHRyIgogICAgICAgIHN0eWxlPSJsaW5lLWhlaWdodDoxLjM4O21hcmdpbi10b3A6
+MHB0O21hcmdpbi1ib3R0b206MHB0OyI+PGEKICAgICAgICAgIGhyZWY9Imh0dHBzOi8vd2lr
+aS55b2N0b3Byb2plY3Qub3JnL3dpa2kvWW9jdG9fMi43X0ZlYXR1cmVzIgogICAgICAgICAg
+c3R5bGU9InRleHQtZGVjb3JhdGlvbjpub25lOyIgbW96LWRvLW5vdC1zZW5kPSJ0cnVlIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxMXB0OyBmb250LWZhbWlseTogQ29uc29sYXM7IGNv
+bG9yOiByZ2IoMTcsIDg1LCAyMDQpOyBiYWNrZ3JvdW5kLWNvbG9yOiB0cmFuc3BhcmVudDsg
+Zm9udC12YXJpYW50LWxpZ2F0dXJlczogbm9ybWFsOyBmb250LXZhcmlhbnQtZWFzdC1hc2lh
+bjogbm9ybWFsOyBmb250LXZhcmlhbnQtcG9zaXRpb246IG5vcm1hbDsgdGV4dC1kZWNvcmF0
+aW9uOiB1bmRlcmxpbmU7IHRleHQtZGVjb3JhdGlvbi1za2lwOiBub25lOyB2ZXJ0aWNhbC1h
+bGlnbjogYmFzZWxpbmU7IHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsiPmh0dHBzOi8vd2lraS55
+b2N0b3Byb2plY3Qub3JnL3dpa2kvWW9jdG9fMi43X0ZlYXR1cmVzPC9zcGFuPjwvYT48L3A+
+CiAgICAgIDxicj4KICAgICAgPHAgZGlyPSJsdHIiCiAgICAgICAgc3R5bGU9ImxpbmUtaGVp
+Z2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJvdHRvbTowcHQ7Ij48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOiAxMXB0OyBmb250LWZhbWlseTogQXJpYWw7IGJhY2tncm91bmQtY29s
+b3I6IHRyYW5zcGFyZW50OyBmb250LXZhcmlhbnQtbGlnYXR1cmVzOiBub3JtYWw7IGZvbnQt
+dmFyaWFudC1lYXN0LWFzaWFuOiBub3JtYWw7IGZvbnQtdmFyaWFudC1wb3NpdGlvbjogbm9y
+bWFsOyB2ZXJ0aWNhbC1hbGlnbjogYmFzZWxpbmU7IHdoaXRlLXNwYWNlOiBwcmUtd3JhcDsi
+PlRoZSBTdGF0dXMgcmVwb3J0cyBhcmUgbm93IHN0b3JlZCBvbiB0aGUgd2lraSBhdDogPC9z
+cGFuPjxhCiAgICAgICAgICBocmVmPSJodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93
+aWtpL1dlZWtseV9TdGF0dXMiCiAgICAgICAgICBzdHlsZT0idGV4dC1kZWNvcmF0aW9uOm5v
+bmU7IiBtb3otZG8tbm90LXNlbmQ9InRydWUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6IDEx
+cHQ7IGZvbnQtZmFtaWx5OiBBcmlhbDsgY29sb3I6IHJnYigxNywgODUsIDIwNCk7IGJhY2tn
+cm91bmQtY29sb3I6IHRyYW5zcGFyZW50OyBmb250LXZhcmlhbnQtbGlnYXR1cmVzOiBub3Jt
+YWw7IGZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOiBub3JtYWw7IGZvbnQtdmFyaWFudC1wb3Np
+dGlvbjogbm9ybWFsOyB0ZXh0LWRlY29yYXRpb246IHVuZGVybGluZTsgdGV4dC1kZWNvcmF0
+aW9uLXNraXA6IG5vbmU7IHZlcnRpY2FsLWFsaWduOiBiYXNlbGluZTsgd2hpdGUtc3BhY2U6
+IHByZS13cmFwOyI+aHR0cHM6Ly93aWtpLnlvY3RvcHJvamVjdC5vcmcvd2lraS9XZWVrbHlf
+U3RhdHVzPC9zcGFuPjwvYT48L3A+CiAgICAgIDxicj4KICAgICAgPHAgZGlyPSJsdHIiCiAg
+ICAgICAgc3R5bGU9ImxpbmUtaGVpZ2h0OjEuMzg7bWFyZ2luLXRvcDowcHQ7bWFyZ2luLWJv
+dHRvbTowcHQ7Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOiAxMXB0OyBmb250LWZhbWlseTog
+QXJpYWw7IGJhY2tncm91bmQtY29sb3I6IHRyYW5zcGFyZW50OyBmb250LXZhcmlhbnQtbGln
+YXR1cmVzOiBub3JtYWw7IGZvbnQtdmFyaWFudC1lYXN0LWFzaWFuOiBub3JtYWw7IGZvbnQt
+dmFyaWFudC1wb3NpdGlvbjogbm9ybWFsOyB2ZXJ0aWNhbC1hbGlnbjogYmFzZWxpbmU7IHdo
+aXRlLXNwYWNlOiBwcmUtd3JhcDsiPltJZiBhbnlvbmUgaGFzIHN1Z2dlc3Rpb25zIGZvciBv
+dGhlciBpbmZvcm1hdGlvbiB5b3XigJlkIGxpa2UgdG8gc2VlIG9uIHRoaXMgd2Vla2x5IHN0
+YXR1cyB1cGRhdGUsIGxldCB1cyBrbm93IV08L3NwYW4+PC9wPgogICAgICA8YnI+CiAgICAg
+IDxmaWVsZHNldCBjbGFzcz0ibWltZUF0dGFjaG1lbnRIZWFkZXIiPjwvZmllbGRzZXQ+CiAg
+ICA8L2Jsb2NrcXVvdGU+CiAgICA8YnI+CiAgPC9ib2R5Pgo8L2h0bWw+Cg==
 
-Key Status Links for YP:
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.7_Status
-https://wiki.yoctoproject.org/wiki/Yocto_2.7_Schedule
-https://wiki.yoctoproject.org/wiki/Yocto_2.7_Features
-
-The Status reports are now stored on the wiki at: 
-https://wiki.yoctoproject.org/wiki/Weekly_Status
-
-[If anyone has suggestions for other information you’d like to see on
-this weekly status update, let us know!]
-
---=-OmSsQp0P6FMHP0iD37VK
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html dir=3D"ltr"><head></head><body style=3D"text-align:left; direction:lt=
-r;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0=
-pt;" id=3D"docs-internal-guid-2db1137b-7fff-38f1-ed75-840a6d9ce2bd"><span s=
-tyle=3D"font-size: 11pt; font-family: Arial; background-color: transparent;=
- font-variant-ligatures: normal; font-variant-east-asian: normal; font-vari=
-ant-position: normal; vertical-align: baseline; white-space: pre-wrap;">Cur=
-rent Dev Position: YP 2.8 M1</span></p><p dir=3D"ltr" style=3D"line-height:=
-1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 11pt; fon=
-t-family: Arial; background-color: transparent; font-variant-ligatures: nor=
-mal; font-variant-east-asian: normal; font-variant-position: normal; vertic=
-al-align: baseline; white-space: pre-wrap;">Next Deadline: YP 2.8 Milestone=
- 1 Target May ??, 2019</span></p><br><p dir=3D"ltr" style=3D"line-height:1.=
-38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 11pt; font-=
-family: Arial; background-color: transparent; font-variant-ligatures: norma=
-l; font-variant-east-asian: normal; font-variant-position: normal; vertical=
--align: baseline; white-space: pre-wrap;">SWAT Team Rotation:</span></p><ul=
- style=3D"margin-top:0pt;margin-bottom:0pt;"><li dir=3D"ltr" style=3D"list-=
-style-type: disc; font-size: 11pt; font-family: Arial; background-color: tr=
-ansparent; font-variant-ligatures: normal; font-variant-east-asian: normal;=
- font-variant-position: normal; vertical-align: baseline; white-space: pre;=
-"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt=
-;"><span style=3D"font-size: 11pt; background-color: transparent; font-vari=
-ant-ligatures: normal; font-variant-east-asian: normal; font-variant-positi=
-on: normal; vertical-align: baseline; white-space: pre-wrap;">SWAT lead is =
-currently: Anuj</span></p></li><li dir=3D"ltr" style=3D"list-style-type: di=
-sc; font-size: 11pt; font-family: Arial; background-color: transparent; fon=
-t-variant-ligatures: normal; font-variant-east-asian: normal; font-variant-=
-position: normal; vertical-align: baseline; white-space: pre;"><p dir=3D"lt=
-r" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=
-=3D"font-size: 11pt; background-color: transparent; font-variant-ligatures:=
- normal; font-variant-east-asian: normal; font-variant-position: normal; ve=
-rtical-align: baseline; white-space: pre-wrap;">SWAT team rotation: Anuj -&=
-gt; Ross on May. 10, 2019</span></p></li><li dir=3D"ltr" style=3D"list-styl=
-e-type: disc; font-size: 11pt; font-family: Arial; background-color: transp=
-arent; font-variant-ligatures: normal; font-variant-east-asian: normal; fon=
-t-variant-position: normal; vertical-align: baseline; white-space: pre;"><p=
- dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><=
-span style=3D"font-size: 11pt; background-color: transparent; font-variant-=
-ligatures: normal; font-variant-east-asian: normal; font-variant-position: =
-normal; vertical-align: baseline; white-space: pre-wrap;">SWAT team rotatio=
-n: Ross -&gt; Amanda on May. 17, 2019</span></p></li><li dir=3D"ltr" style=
-=3D"list-style-type: disc; font-size: 11pt; font-family: Consolas; backgrou=
-nd-color: transparent; font-variant-ligatures: normal; font-variant-east-as=
-ian: normal; font-variant-position: normal; vertical-align: baseline; white=
--space: pre;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margi=
-n-bottom:0pt;"><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Build_Fa=
-ilure_Swat_Team" style=3D"text-decoration:none;"><span style=3D"font-size: =
-11pt; color: rgb(17, 85, 204); background-color: transparent; font-variant-=
-ligatures: normal; font-variant-east-asian: normal; font-variant-position: =
-normal; text-decoration: underline; text-decoration-skip: none; vertical-al=
-ign: baseline; white-space: pre-wrap;">https://wiki.yoctoproject.org/wiki/Y=
-octo_Build_Failure_Swat_Team</span></a></p></li></ul><br><p dir=3D"ltr" sty=
-le=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"fo=
-nt-size: 11pt; font-family: Arial; background-color: transparent; font-vari=
-ant-ligatures: normal; font-variant-east-asian: normal; font-variant-positi=
-on: normal; vertical-align: baseline; white-space: pre-wrap;">Next Team Mee=
-tings:</span></p><ul style=3D"margin-top:0pt;margin-bottom:0pt;"><li dir=3D=
-"ltr" style=3D"list-style-type: disc; font-size: 11pt; font-family: Arial; =
-background-color: transparent; font-variant-ligatures: normal; font-variant=
--east-asian: normal; font-variant-position: normal; vertical-align: baselin=
-e; white-space: pre;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0=
-pt;margin-bottom:0pt;"><span style=3D"font-size: 11pt; background-color: tr=
-ansparent; font-variant-ligatures: normal; font-variant-east-asian: normal;=
- font-variant-position: normal; vertical-align: baseline; white-space: pre-=
-wrap;">YP 2.8 Planning meeting Tuesday May 7th at 8am PDT (</span><a href=
-=3D"https://zoom.us/j/990892712" style=3D"text-decoration:none;"><span styl=
-e=3D"font-size: 11pt; color: rgb(17, 85, 204); background-color: transparen=
-t; font-variant-ligatures: normal; font-variant-east-asian: normal; font-va=
-riant-position: normal; text-decoration: underline; text-decoration-skip: n=
-one; vertical-align: baseline; white-space: pre-wrap;">https://zoom.us/j/99=
-0892712)</span></a><span style=3D"font-size: 11pt; background-color: transp=
-arent; font-variant-ligatures: normal; font-variant-east-asian: normal; fon=
-t-variant-position: normal; vertical-align: baseline; white-space: pre-wrap=
-;"> </span></p></li><li dir=3D"ltr" style=3D"list-style-type: disc; font-si=
-ze: 11pt; font-family: Arial; background-color: transparent; font-variant-l=
-igatures: normal; font-variant-east-asian: normal; font-variant-position: n=
-ormal; vertical-align: baseline; white-space: pre;"><p dir=3D"ltr" style=3D=
-"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-si=
-ze: 11pt; background-color: transparent; font-variant-ligatures: normal; fo=
-nt-variant-east-asian: normal; font-variant-position: normal; vertical-alig=
-n: baseline; white-space: pre-wrap;">Bug Triage meeting Thursday May 9th at=
- 7:30am PDT (</span><a href=3D"https://zoom.us/j/454367603" style=3D"text-d=
-ecoration:none;"><span style=3D"font-size: 10pt; color: rgb(17, 85, 204); b=
-ackground-color: transparent; font-variant-ligatures: normal; font-variant-=
-east-asian: normal; font-variant-position: normal; text-decoration: underli=
-ne; text-decoration-skip: none; vertical-align: baseline; white-space: pre-=
-wrap;">https://zoom.us/j/454367603</span></a><span style=3D"font-size: 11pt=
-; background-color: transparent; font-variant-ligatures: normal; font-varia=
-nt-east-asian: normal; font-variant-position: normal; vertical-align: basel=
-ine; white-space: pre-wrap;">)</span></p></li></ul><br><p dir=3D"ltr" style=
-=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font=
--size: 11pt; font-family: Arial; background-color: transparent; font-varian=
-t-ligatures: normal; font-variant-east-asian: normal; font-variant-position=
-: normal; vertical-align: baseline; white-space: pre-wrap;">Key Status/Upda=
-tes:</span></p><ul style=3D"margin-top:0pt;margin-bottom:0pt;"><li dir=3D"l=
-tr" style=3D"list-style-type: disc; font-size: 11pt; font-family: Arial; ba=
-ckground-color: transparent; font-variant-ligatures: normal; font-variant-e=
-ast-asian: normal; font-variant-position: normal; vertical-align: baseline;=
- white-space: pre;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt=
-;margin-bottom:0pt;"><span style=3D"font-size: 11pt; background-color: tran=
-sparent; font-variant-ligatures: normal; font-variant-east-asian: normal; f=
-ont-variant-position: normal; vertical-align: baseline; white-space: pre-wr=
-ap;">Stephen is going to be unavailable for several weeks, please refer any=
- queries to Richard</span></p></li><li dir=3D"ltr" style=3D"list-style-type=
-: disc; font-size: 11pt; font-family: Arial; background-color: transparent;=
- font-variant-ligatures: normal; font-variant-east-asian: normal; font-vari=
-ant-position: normal; vertical-align: baseline; white-space: pre;"><p dir=
-=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span=
- style=3D"font-size: 11pt; background-color: transparent; font-variant-liga=
-tures: normal; font-variant-east-asian: normal; font-variant-position: norm=
-al; vertical-align: baseline; white-space: pre-wrap;">YP 2.7 was released</=
-span></p></li><li dir=3D"ltr" style=3D"list-style-type: disc; font-size: 11=
-pt; font-family: Arial; background-color: transparent; font-variant-ligatur=
-es: normal; font-variant-east-asian: normal; font-variant-position: normal;=
- vertical-align: baseline; white-space: pre;"><p dir=3D"ltr" style=3D"line-=
-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 11=
-pt; background-color: transparent; font-variant-ligatures: normal; font-var=
-iant-east-asian: normal; font-variant-position: normal; vertical-align: bas=
-eline; white-space: pre-wrap;">The 2.8 planning discussions are starting an=
-d there is a google doc summarising the discussions so far: </span><a href=
-=3D"https://docs.google.com/document/d/1CNEKA4d0eT6-e0hnS2pwi7xdZ5_t6smpZO2=
-HbaJGXbU/" style=3D"text-decoration:none;"><span style=3D"font-size: 11pt; =
-color: rgb(17, 85, 204); background-color: transparent; font-variant-ligatu=
-res: normal; font-variant-east-asian: normal; font-variant-position: normal=
-; text-decoration: underline; text-decoration-skip: none; vertical-align: b=
-aseline; white-space: pre-wrap;">https://docs.google.com/document/d/1CNEKA4=
-d0eT6-e0hnS2pwi7xdZ5_t6smpZO2HbaJGXbU/</span></a></p></li></ul><p dir=3D"lt=
-r" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;margin-left: =
-36pt;"><span style=3D"font-size: 11pt; font-family: Arial; background-color=
-: transparent; font-variant-ligatures: normal; font-variant-east-asian: nor=
-mal; font-variant-position: normal; vertical-align: baseline; white-space: =
-pre-wrap;">If people are planning to work on specific things in 2.8 please =
-let us know so we can incorporate this into our plans. If you=E2=80=99re in=
-terested in working on anything in the document, please also let us know or=
- talk with us in one of the planning meetings.</span></p><ul style=3D"margi=
-n-top:0pt;margin-bottom:0pt;"><li dir=3D"ltr" style=3D"list-style-type: dis=
-c; font-size: 11pt; font-family: Arial; background-color: transparent; font=
--variant-ligatures: normal; font-variant-east-asian: normal; font-variant-p=
-osition: normal; vertical-align: baseline; white-space: pre;"><p dir=3D"ltr=
-" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=
-=3D"font-size: 11pt; background-color: transparent; font-variant-ligatures:=
- normal; font-variant-east-asian: normal; font-variant-position: normal; ve=
-rtical-align: baseline; white-space: pre-wrap;">At this point we believe we=
-=E2=80=99ve made our final release for the sumo (2.5) series</span></p></li=
-><li dir=3D"ltr" style=3D"list-style-type: disc; font-size: 11pt; font-fami=
-ly: Arial; background-color: transparent; font-variant-ligatures: normal; f=
-ont-variant-east-asian: normal; font-variant-position: normal; vertical-ali=
-gn: baseline; white-space: pre;"><p dir=3D"ltr" style=3D"line-height:1.38;m=
-argin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 11pt; backgroun=
-d-color: transparent; font-variant-ligatures: normal; font-variant-east-asi=
-an: normal; font-variant-position: normal; vertical-align: baseline; white-=
-space: pre-wrap;">The project is planning to adopt SPDX license headers in =
-its source code where practical, bitbake has had these merged as a first st=
-ep.</span></p></li><li dir=3D"ltr" style=3D"list-style-type: disc; font-siz=
-e: 11pt; font-family: Arial; background-color: transparent; font-variant-li=
-gatures: normal; font-variant-east-asian: normal; font-variant-position: no=
-rmal; vertical-align: baseline; white-space: pre;"><p dir=3D"ltr" style=3D"=
-line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-siz=
-e: 11pt; background-color: transparent; font-variant-ligatures: normal; fon=
-t-variant-east-asian: normal; font-variant-position: normal; vertical-align=
-: baseline; white-space: pre-wrap;">We have a new =E2=80=9Cnewcomer=E2=80=
-=9D bug category which are bugs suited to someone new to the project. These=
- can be seen here: </span><a href=3D"https://wiki.yoctoproject.org/wiki/Bug=
-_Triage#Newcomer_Bugs" style=3D"text-decoration:none;"><span style=3D"font-=
-size: 11pt; color: rgb(17, 85, 204); background-color: transparent; font-va=
-riant-ligatures: normal; font-variant-east-asian: normal; font-variant-posi=
-tion: normal; text-decoration: underline; text-decoration-skip: none; verti=
-cal-align: baseline; white-space: pre-wrap;">https://wiki.yoctoproject.org/=
-wiki/Bug_Triage#Newcomer_Bugs</span></a></p></li></ul><br><p dir=3D"ltr" st=
-yle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"f=
-ont-size: 11pt; font-family: Arial; background-color: transparent; font-var=
-iant-ligatures: normal; font-variant-east-asian: normal; font-variant-posit=
-ion: normal; vertical-align: baseline; white-space: pre-wrap;">Planned Rele=
-ases for YP 2.8:</span></p><ul style=3D"margin-top:0pt;margin-bottom:0pt;">=
-<li dir=3D"ltr" style=3D"list-style-type: disc; font-size: 11pt; font-famil=
-y: Arial; background-color: transparent; font-variant-ligatures: normal; fo=
-nt-variant-east-asian: normal; font-variant-position: normal; vertical-alig=
-n: baseline; white-space: pre;"><p dir=3D"ltr" style=3D"line-height:1.38;ma=
-rgin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 11pt; background=
--color: transparent; font-variant-ligatures: normal; font-variant-east-asia=
-n: normal; font-variant-position: normal; vertical-align: baseline; white-s=
-pace: pre-wrap;">TBA</span></p></li></ul><br><p dir=3D"ltr" style=3D"line-h=
-eight:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 11p=
-t; font-family: Arial; background-color: transparent; font-variant-ligature=
-s: normal; font-variant-east-asian: normal; font-variant-position: normal; =
-vertical-align: baseline; white-space: pre-wrap;">Planned upcoming dot rele=
-ases:</span></p><ul style=3D"margin-top:0pt;margin-bottom:0pt;"><li dir=3D"=
-ltr" style=3D"list-style-type: disc; font-size: 11pt; font-family: Arial; b=
-ackground-color: transparent; font-variant-ligatures: normal; font-variant-=
-east-asian: normal; font-variant-position: normal; vertical-align: baseline=
-; white-space: pre;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0p=
-t;margin-bottom:0pt;"><span style=3D"font-size: 11pt; background-color: tra=
-nsparent; font-variant-ligatures: normal; font-variant-east-asian: normal; =
-font-variant-position: normal; vertical-align: baseline; white-space: pre-w=
-rap;">YP 2.6.3 (Thud) is in planning</span></p></li><li dir=3D"ltr" style=
-=3D"list-style-type: disc; font-size: 11pt; font-family: Arial; background-=
-color: transparent; font-variant-ligatures: normal; font-variant-east-asian=
-: normal; font-variant-position: normal; vertical-align: baseline; white-sp=
-ace: pre;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-b=
-ottom:0pt;"><span style=3D"font-size: 11pt; background-color: transparent; =
-font-variant-ligatures: normal; font-variant-east-asian: normal; font-varia=
-nt-position: normal; vertical-align: baseline; white-space: pre-wrap;">YP 2=
-.7.1 (Warrior) is in planning</span></p></li></ul><br><p dir=3D"ltr" style=
-=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font=
--size: 11pt; font-family: Arial; background-color: transparent; font-varian=
-t-ligatures: normal; font-variant-east-asian: normal; font-variant-position=
-: normal; vertical-align: baseline; white-space: pre-wrap;">Tracking Metric=
-s:</span></p><ul style=3D"margin-top:0pt;margin-bottom:0pt;"><li dir=3D"ltr=
-" style=3D"list-style-type: disc; font-size: 11pt; font-family: Arial; back=
-ground-color: transparent; font-variant-ligatures: normal; font-variant-eas=
-t-asian: normal; font-variant-position: normal; vertical-align: baseline; w=
-hite-space: pre;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
-argin-bottom:0pt;"><span style=3D"font-size: 11pt; background-color: transp=
-arent; font-variant-ligatures: normal; font-variant-east-asian: normal; fon=
-t-variant-position: normal; vertical-align: baseline; white-space: pre-wrap=
-;">WDD 2602 (last week 2593)</span><span style=3D"font-size: 11pt; font-fam=
-ily: Consolas; background-color: transparent; font-variant-ligatures: norma=
-l; font-variant-east-asian: normal; font-variant-position: normal; vertical=
--align: baseline; white-space: pre-wrap;"> (</span><a href=3D"https://wiki.=
-yoctoproject.org/charts/combo.html" style=3D"text-decoration:none;"><span s=
-tyle=3D"font-size: 11pt; color: rgb(17, 85, 204); background-color: transpa=
-rent; font-variant-ligatures: normal; font-variant-east-asian: normal; font=
--variant-position: normal; text-decoration: underline; text-decoration-skip=
-: none; vertical-align: baseline; white-space: pre-wrap;">https://wiki.yoct=
-oproject.org/charts/combo.html</span></a><span style=3D"font-size: 11pt; fo=
-nt-family: Consolas; background-color: transparent; font-variant-ligatures:=
- normal; font-variant-east-asian: normal; font-variant-position: normal; ve=
-rtical-align: baseline; white-space: pre-wrap;">)</span></p></li><li dir=3D=
-"ltr" style=3D"list-style-type: disc; font-size: 11pt; font-family: Consola=
-s; background-color: transparent; font-variant-ligatures: normal; font-vari=
-ant-east-asian: normal; font-variant-position: normal; vertical-align: base=
-line; white-space: pre;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-to=
-p:0pt;margin-bottom:0pt;"><span style=3D"font-size: 11pt; font-family: Aria=
-l; background-color: transparent; font-variant-ligatures: normal; font-vari=
-ant-east-asian: normal; font-variant-position: normal; vertical-align: base=
-line; white-space: pre-wrap;">Poky Patch Metrics &nbsp;</span></p></li><ul =
-style=3D"margin-top:0pt;margin-bottom:0pt;"><li dir=3D"ltr" style=3D"list-s=
-tyle-type: circle; font-size: 11pt; font-family: Arial; background-color: t=
-ransparent; font-variant-ligatures: normal; font-variant-east-asian: normal=
-; font-variant-position: normal; vertical-align: baseline; white-space: pre=
-;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0p=
-t;"><span style=3D"font-size: 11pt; background-color: transparent; font-var=
-iant-ligatures: normal; font-variant-east-asian: normal; font-variant-posit=
-ion: normal; vertical-align: baseline; white-space: pre-wrap;">Total patche=
-s found: 1558 (last week 1565)</span></p></li><li dir=3D"ltr" style=3D"list=
--style-type: circle; font-size: 11pt; font-family: Consolas; background-col=
-or: transparent; font-variant-ligatures: normal; font-variant-east-asian: n=
-ormal; font-variant-position: normal; vertical-align: baseline; white-space=
-: pre;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bott=
-om:0pt;"><span style=3D"font-size: 11pt; font-family: Arial; background-col=
-or: transparent; font-variant-ligatures: normal; font-variant-east-asian: n=
-ormal; font-variant-position: normal; vertical-align: baseline; white-space=
-: pre-wrap;">Patches in the Pending State: 655 (42%) [last week 655 (42%)]<=
-/span></p></li></ul></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margi=
-n-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 11pt; font-family: =
-Arial; background-color: transparent; font-variant-ligatures: normal; font-=
-variant-east-asian: normal; font-variant-position: normal; vertical-align: =
-baseline; white-space: pre-wrap;">Key Status Links for YP:</span></p><p dir=
-=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><a hr=
-ef=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.7_Status" style=
-=3D"text-decoration:none;"><span style=3D"font-size: 11pt; font-family: Con=
-solas; color: rgb(17, 85, 204); background-color: transparent; font-variant=
--ligatures: normal; font-variant-east-asian: normal; font-variant-position:=
- normal; text-decoration: underline; text-decoration-skip: none; vertical-a=
-lign: baseline; white-space: pre-wrap;">https://wiki.yoctoproject.org/wiki/=
-Yocto_Project_v2.7_Status</span></a></p><p dir=3D"ltr" style=3D"line-height=
-:1.38;margin-top:0pt;margin-bottom:0pt;"><a href=3D"https://wiki.yoctoproje=
-ct.org/wiki/Yocto_2.7_Schedule" style=3D"text-decoration:none;"><span style=
-=3D"font-size: 11pt; font-family: Consolas; color: rgb(17, 85, 204); backgr=
-ound-color: transparent; font-variant-ligatures: normal; font-variant-east-=
-asian: normal; font-variant-position: normal; text-decoration: underline; t=
-ext-decoration-skip: none; vertical-align: baseline; white-space: pre-wrap;=
-">https://wiki.yoctoproject.org/wiki/Yocto_2.7_Schedule</span></a></p><p di=
-r=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><a h=
-ref=3D"https://wiki.yoctoproject.org/wiki/Yocto_2.7_Features" style=3D"text=
--decoration:none;"><span style=3D"font-size: 11pt; font-family: Consolas; c=
-olor: rgb(17, 85, 204); background-color: transparent; font-variant-ligatur=
-es: normal; font-variant-east-asian: normal; font-variant-position: normal;=
- text-decoration: underline; text-decoration-skip: none; vertical-align: ba=
-seline; white-space: pre-wrap;">https://wiki.yoctoproject.org/wiki/Yocto_2.=
-7_Features</span></a></p><br><p dir=3D"ltr" style=3D"line-height:1.38;margi=
-n-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 11pt; font-family: =
-Arial; background-color: transparent; font-variant-ligatures: normal; font-=
-variant-east-asian: normal; font-variant-position: normal; vertical-align: =
-baseline; white-space: pre-wrap;">The Status reports are now stored on the =
-wiki at: </span><a href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status=
-" style=3D"text-decoration:none;"><span style=3D"font-size: 11pt; font-fami=
-ly: Arial; color: rgb(17, 85, 204); background-color: transparent; font-var=
-iant-ligatures: normal; font-variant-east-asian: normal; font-variant-posit=
-ion: normal; text-decoration: underline; text-decoration-skip: none; vertic=
-al-align: baseline; white-space: pre-wrap;">https://wiki.yoctoproject.org/w=
-iki/Weekly_Status</span></a></p><br><p dir=3D"ltr" style=3D"line-height:1.3=
-8;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size: 11pt; font-f=
-amily: Arial; background-color: transparent; font-variant-ligatures: normal=
-; font-variant-east-asian: normal; font-variant-position: normal; vertical-=
-align: baseline; white-space: pre-wrap;">[If anyone has suggestions for oth=
-er information you=E2=80=99d like to see on this weekly status update, let =
-us know!]</span></p></body></html>
-
---=-OmSsQp0P6FMHP0iD37VK--
+--------------D08AF33F552ABE12E92BF98E--
