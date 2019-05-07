@@ -1,57 +1,67 @@
-Return-Path: <philip@balister.org>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B4EC5E00DAF; Mon,  6 May 2019 11:20:26 -0700 (PDT)
+	id 7672EE00C37; Mon,  6 May 2019 17:13:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
-	[216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BF48E00BAA
-	for <yocto@yoctoproject.org>; Mon,  6 May 2019 11:20:20 -0700 (PDT)
-Received: (qmail 29773 invoked by uid 1003); 6 May 2019 18:20:24 -0000
-Received: from unknown (HELO ?192.168.11.100?)
-	(philip@opensdr.com@73.152.143.112)
-	by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
-	6 May 2019 18:20:24 -0000
-To: Nitesh Guinde <nitesh.guinde@gec.ac.in>, yocto@yoctoproject.org
-References: <CAP1p9H7fSm_VBGWvy7J91YVUyrp_=ph=h=zEGY_zBKFKvvy02Q@mail.gmail.com>
-From: Philip Balister <philip@balister.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
-	xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
-	HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
-	rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
-	2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
-	fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
-	AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
-	CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
-	nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
-	3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
-	YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
-	3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
-	yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
-	gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
-	GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
-	uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
-	LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
-	gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
-	WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
-	1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
-	ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
-	icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
-	ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
-	6eUfr0u7CwnEyqiQ
-Message-ID: <4536aaa5-77d4-24d8-8d2a-254407572bdd@balister.org>
-Date: Mon, 6 May 2019 14:20:17 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.2
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jupiter.hce[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.194 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-it1-f194.google.com (mail-it1-f194.google.com
+	[209.85.166.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1F93E00950
+	for <yocto@yoctoproject.org>; Mon,  6 May 2019 17:13:24 -0700 (PDT)
+Received: by mail-it1-f194.google.com with SMTP id q65so22020441itg.2
+	for <yocto@yoctoproject.org>; Mon, 06 May 2019 17:13:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=kdhaLVjTRdpZEYX+7cKPgljC4YJwO3WTI9bik6q7/OY=;
+	b=eev+2OuVdR7UHWyp0VzzFTzfZYWN5aeV0WaVOI6Xm3SCALemL1soFS1ZLj7IvAfvmM
+	j14rveSuo6WAvrZolE0TmsE/SKxsU1pOJYD9Lr4/xtAcCa6TGkASuTWOkDYIpIhkWYaM
+	K1QSgZEzr8eX2jvELF0mRppNPm9khW6gEvRi6HdAcn0iU1m18AD1V8T6px+hvDuI5uRy
+	ywrBaVL9TfBW259tc0jKCdsJOa/2sCWlqldsxczvr7zOaOs0mUdCkYmv9oD6VbFsm6pf
+	xKXQb6CcrdiYIphSybXq9EYs+XTIiJ6Rz1REX1NlUsBIsGZiRQeHaKFijw+ZjSlozHY5
+	UeBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=kdhaLVjTRdpZEYX+7cKPgljC4YJwO3WTI9bik6q7/OY=;
+	b=o2MSHTNMNd5UHoes4e407WtqLnzkkrcK6dFiqd1KbnsOSDxro2k3hEMIKYmCn7drQ/
+	nrEOoLnZLF5P0W8eN1ltdxIGpmhwn/YwbQIMNHtYsC33yqJ4V78i3ZVv0fPeLX5InIDl
+	5JJkZZmuHebm146FVYQVgiHINzTxqKQMeBMiBih/Zk058mUFyLaOjOVMSvLIBwdqqwgL
+	q+IuVAoPiV4JhrsI8jNprw0kRUTPP/sx+Up/DOXF8+/UXfiLwf7v0ovlm6PmBza/p0r9
+	IOJp2XUvwvxCN7Ng3YfOCZ8kjk/RJmng9csHBbzDpHd7Ku/Uq6DzT7fXxfVpdbvK7rkR
+	fCyA==
+X-Gm-Message-State: APjAAAWiNQW+odfiwaRwudMF5HXXMScHvVgie4Hw8DvpJYMzHXLOjQMg
+	ammn0wW9kzA8Cub5fjPdKqvPasREvzvaiMeThDReJfg+
+X-Google-Smtp-Source: APXvYqyBly92eaq+UTvsGevIMlgw94N/wyf1EhlpX3OGLpxRkmqvynt9YJyAwOJmFWAbCV5NDj1OGTRypagfh2wMudQ=
+X-Received: by 2002:a24:2c8a:: with SMTP id i132mr9640868iti.130.1557188004300;
+	Mon, 06 May 2019 17:13:24 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAP1p9H7fSm_VBGWvy7J91YVUyrp_=ph=h=zEGY_zBKFKvvy02Q@mail.gmail.com>
-Subject: Re: xilinx Zynq zedboard gnuradio
+Received: by 2002:ac0:9c06:0:0:0:0:0 with HTTP;
+	Mon, 6 May 2019 17:13:23 -0700 (PDT)
+In-Reply-To: <008fb84a-45f1-3574-5c5a-ca22c9abaea1@basmevissen.nl>
+References: <CAA=hcWR21J-UDPXOSrMjMDXfx8f_NbCB4YA_7-UBVzZ-9Ea45w@mail.gmail.com>
+	<008fb84a-45f1-3574-5c5a-ca22c9abaea1@basmevissen.nl>
+From: JH <jupiter.hce@gmail.com>
+Date: Tue, 7 May 2019 10:13:23 +1000
+Message-ID: <CAA=hcWQ40ZCRwSnvxpqTGkBR24TwL6MsqvsqpruoFFaut+MjeA@mail.gmail.com>
+To: Bas Mevissen <abuse@basmevissen.nl>
+Cc: yocto@yoctoproject.org
+Subject: Re: How to define and build device tree in Yocto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,59 +73,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 May 2019 18:20:26 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-MW
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 07 May 2019 00:13:25 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On 05/06/2019 05:11 AM, Nitesh Guinde wrote:
-> The following links were used to bitbake the image
-> 
-> https://github.com/balister/oe-gnuradio-manifest
-> 
-> https://wiki.gnuradio.org/index.php/Zynq
+Hi Bas and Gabriele,
 
-Note the line saying this page is obsolete. That page is around to
-document gnuradio and zynq accelerators from several years ago.
-Unfortunately, no one has carried on that work, at least publicly.
+Thank you so much for you advice.
 
-https://github.com/balister/sdr-build
+> My usual way of doing it is as follows:
+>
+> I usually don't need to make large modifications to the kernel source,
+> so I don't need to clone the kernel, but use the default kernel for the
+> SoC with some patches.
 
-is what I work with now for assembling images, but I haven't done
-anything with the zc702 lately. Things should basically still though. In
-meta-sdr master, the gnuradio recipe builds from teh master branch, this
-is where I've been making sure the code builds and sometimes managing
-runtime testing, although usually on a Beagle X15.
+So do I.
 
-Philip
+> I use a platform support layer and add a .bbappend file for the (arm)
+> kernel to add a custom dts and .config files, together with some small
+> patches:
+>
+> *** File meta-<platform>/recipes-kernel/linux/linux-<version>_%.bbappend:
+>
+> THISAPPENDFILESDIR := "${THISDIR}/files"
+> FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+>
+> require linux-set-custom-defconfig.inc
+> require linux-add-custom-dts.inc
+>
+> # The first patch simply appends my custom DTS to the list of DTD files
+> in the Makefile
+> SRC_URI += \
+>          "file://add-custom-dts.patch \
+>           file://some_other.patch \
+>           file://another_driver_patch.patch \
+>          "
+>
+> *** File meta-<platform>/recipes-kernel/linux/linux-add-custom-dts.inc
+>
+> do_add_platform_dts() {
+> 	cp -f "${THISAPPENDFILESDIR}/custom.dts" \
+>              "${WORKDIR}/git/arch/arm/boot/dts"
+> }
 
+That is exactly I am looking for the proper location of the dts files,
+thank you so much.
 
-> 
-> On Mon, May 6, 2019 at 2:40 PM Nitesh Guinde <nitesh.guinde@gec.ac.in>
-> wrote:
-> 
->> Hi Philip,
->>
->> I am trying to port gnuradio onto zedboard. I used the following link
->> https://github.com/balister/oe-gnuradio-manifest
->>
->> and build the images folder for zedboard-zynq7.
->>  Then I copied uImage, boot.bin dtb and uenv.txt onto the sd card boot
->> partition
->>
->> untarred the gnradio-dev-image-zedboard-zynq7.tar.gz onto the rootfs
->> partition..
->>
->> However the card doesnt boot.
->>
->> Just wanted to find out if the process given in the following links are
->> fine or any other tweaking is needed.
->>
->>
->> Thanks,
->> Nitesh B. Guinde
->>
-> 
-> 
-> 
+> addtask add_platform_dts before do_preconfigure after do_patch
+>
+> *** File
+> meta-<platform>/recipes-kernel/linux/linux-set-custom-defconfig.inc
+>
+> do_set_custom_defconfig() {
+>          cp -f "${THISAPPENDFILESDIR}/defconfig" "${WORKDIR}/defconfig"
+> }
+>
+> addtask set_custom_defconfig before do_preconfigure after do_patch
+
+Good advice, I missed that one, how did you do the defconfig usually?
+Compile it in kernel source like using following command?
+
+make ARCH=arm imx_v6_v7_defconfig
+
+> It is maybe a bit complex, but it saves cloning the kernel for the sake
+> of just adding a single DTS with defconfig and a few patches.
+
+That is procedure I was looking for.
+
+> Hope this helps,
+
+Great helps, thank you so much.
+
+- jupiter
+
+> Bas.
+>
 
