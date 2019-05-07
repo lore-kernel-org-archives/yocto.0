@@ -1,57 +1,65 @@
-Return-Path: <philip@balister.org>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23A3FE00D45; Tue,  7 May 2019 11:55:44 -0700 (PDT)
+	id 2A335E00D43; Tue,  7 May 2019 12:04:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBFA4E00D3D
-	for <yocto@yoctoproject.org>; Tue,  7 May 2019 11:55:41 -0700 (PDT)
-Received: (qmail 15652 invoked by uid 1003); 7 May 2019 18:55:40 -0000
-Received: from unknown (HELO ?192.168.11.100?)
-	(philip@opensdr.com@73.152.143.112)
-	by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
-	7 May 2019 18:55:40 -0000
-To: Alexandre Freire da Silva Osorio <alexandre.osorio@eldorado.org.br>,
-	Yocto-mailing-list <yocto@yoctoproject.org>
-References: <855a6df966d04a059e1c33dc54b317ff@serv031.corp.eldorado.org.br>
-From: Philip Balister <philip@balister.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
-	xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
-	HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
-	rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
-	2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
-	fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
-	AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
-	CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
-	nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
-	3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
-	YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
-	3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
-	yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
-	gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
-	GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
-	uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
-	LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
-	gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
-	WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
-	1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
-	ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
-	icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
-	ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
-	6eUfr0u7CwnEyqiQ
-Message-ID: <05822835-d0f2-04c6-06d4-f98f5987585a@balister.org>
-Date: Tue, 7 May 2019 14:55:40 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.2
-MIME-Version: 1.0
-In-Reply-To: <855a6df966d04a059e1c33dc54b317ff@serv031.corp.eldorado.org.br>
-Subject: Re: Yocto for Enclustra Mars
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.194 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
+	[209.85.210.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8C91E00C49
+	for <yocto@yoctoproject.org>; Tue,  7 May 2019 12:04:52 -0700 (PDT)
+Received: by mail-pf1-f194.google.com with SMTP id l132so4179143pfc.8
+	for <yocto@yoctoproject.org>; Tue, 07 May 2019 12:04:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id;
+	bh=cYUqFLQSTreu03J/LRUBd3UJgq4UBSSbOoeM32SrQp4=;
+	b=sko94tJJm9/oUrweNmIY4wXSUBwpRjAxJck7Gc2tLUiU0tYiCO43OTZWfW84Yn1oQc
+	m2118Jet34wMAPoLQz/mpMomF8THCNlM36HvW/rSXMyIaN694cTiLZAhdzBhmHSDMmh+
+	OIghyrCJsTot6FfslZkYW8oHznpHhP1vdFMROOP5IoOFFfFXAk31rK9ktIMrAWTG1jqZ
+	roitecGDxUM8yW41bH0EsLHrsw5ODhhe3IoGciYuNkoqHl+D/opYfpyfCEoBVaKapjeq
+	cfeSamZdIlApteIc6G99zYPbiyGJgpbEo9vpIo4zEe6DTIVUMFp5FWR3KautKT3AzWrU
+	ijCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=cYUqFLQSTreu03J/LRUBd3UJgq4UBSSbOoeM32SrQp4=;
+	b=FXUaSjTORGrwfBm6V7gFontO7T9sH57CrfNpKx5tyXuerxzpJvRjFSlob3d95Nsgsq
+	lNqVKPC8w7G0NrSIUYd5RUNW76WKEDtm1JSThz4dCIbdTN33CFNxFNjFtNQ7KUqASrW5
+	tzetjNY+V8gvJ3wZYqs1tAHww5KnB5s8BbWku+ib3zgyaHu9ZqXd+waMx1L1OlpQhXJC
+	SMM/N9LxVYrRZYwfYG2JKrzEWYUB1F38XnCDTPnGVMIil1rHvIHRgqCweEx3l/g2f6r0
+	PoJLazYRp3lJ87Fm9NiEEiaKcQ57y1fg0ZM6UHa0ZYMoGvTdO7LcG2yjTPzsVjEOi2aw
+	NayQ==
+X-Gm-Message-State: APjAAAVhk/adShXbDhBKllEGTZxZaiQZUEY0hCSdkBSUfErbltD5sg3X
+	KVlc7t0Xm2u8zu6O5NKNCDL+7I28
+X-Google-Smtp-Source: APXvYqzs3oLYvmSd3kNmnaIFhna+kBmyFcfbUzEjskNd4E6rtkVv0o5mKg0r5o4HdMkwRp/oBKIvEw==
+X-Received: by 2002:a65:4489:: with SMTP id l9mr40417512pgq.1.1557255892147;
+	Tue, 07 May 2019 12:04:52 -0700 (PDT)
+Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
+	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
+	x30sm1395161pgl.76.2019.05.07.12.04.51 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 07 May 2019 12:04:51 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Tue,  7 May 2019 12:04:49 -0700
+Message-Id: <20190507190450.19229-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-security][PATCH 1/2] smack: move patch to smack dir
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,23 +71,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 May 2019 18:55:44 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-MW
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 07 May 2019 19:04:53 -0000
 
-On 05/07/2019 01:20 PM, Alexandre Freire da Silva Osorio wrote:
-> Hi,
-> 
-> Does anyone use Yocto to generate images for Enclustra`s Mars ZX2 board, tha embeds one Zilinx Zynq SoC? If so, is there a layer available anywhere?
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-mac/smack/{files => smack}/run-ptest                      | 0
+ .../smack/{files => smack}/smack_generator_make_fixup.patch       | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ rename recipes-mac/smack/{files => smack}/run-ptest (100%)
+ rename recipes-mac/smack/{files => smack}/smack_generator_make_fixup.patch (100%)
 
-Maybe start from https://github.com/Xilinx/meta-xilinx
+diff --git a/recipes-mac/smack/files/run-ptest b/recipes-mac/smack/smack/run-ptest
+similarity index 100%
+rename from recipes-mac/smack/files/run-ptest
+rename to recipes-mac/smack/smack/run-ptest
+diff --git a/recipes-mac/smack/files/smack_generator_make_fixup.patch b/recipes-mac/smack/smack/smack_generator_make_fixup.patch
+similarity index 100%
+rename from recipes-mac/smack/files/smack_generator_make_fixup.patch
+rename to recipes-mac/smack/smack/smack_generator_make_fixup.patch
+-- 
+2.17.1
 
-Philip
-
-> 
-> Thanks.
-> 
-> Alexandre
-> 
 
