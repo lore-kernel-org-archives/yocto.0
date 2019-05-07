@@ -1,46 +1,61 @@
-Return-Path: <abuse@basmevissen.nl>
+Return-Path: <dhanush.ks@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D9D4BE00D00; Tue,  7 May 2019 02:47:14 -0700 (PDT)
+	id 7DEE1E00D11; Tue,  7 May 2019 04:28:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from hosting.emcodev.net (hosting.emcodev.net [178.18.92.162])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF25BE00C37;
-	Tue,  7 May 2019 02:47:13 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by hosting.emcodev.net (Postfix) with ESMTP id 8FB93212003;
-	Tue,  7 May 2019 11:47:12 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at hosting.emcodev.net
-Received: from hosting.emcodev.net ([127.0.0.1])
-	by localhost (hosting.emcodev.net [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id enQjsBObggpD; Tue,  7 May 2019 11:47:09 +0200 (CEST)
-Received: from emcodev.nl (localhost [127.0.0.1])
-	by hosting.emcodev.net (Postfix) with ESMTP id 4BF79212001;
-	Tue,  7 May 2019 11:47:09 +0200 (CEST)
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (dhanush.ks[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.172 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com
+	[209.85.222.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5511DE00BAA
+	for <yocto@yoctoproject.org>; Tue,  7 May 2019 04:28:15 -0700 (PDT)
+Received: by mail-qk1-f172.google.com with SMTP id z128so7255505qkb.6
+	for <yocto@yoctoproject.org>; Tue, 07 May 2019 04:28:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=kNYL6iP/EV+/yLIsRzbqcJaPIl6OWRq6d+FIH5Gzna4=;
+	b=E1LHc48DXihi5JS9MLViMEllW21dWE/XYhbK5IwWJUBA40xUj20sbSZbpthfFlpMWG
+	AqfNPy91CIBsBb31yNDALiHJ0wAcZ3s5ZlISa5TGvB3M4zjFRvkAlfc38z+XwB2J1spa
+	D0Svuy79bd+do6Aoy6TVlEXtK6DkIDvJPdS57LaW1gnqPzCL9Si2rjXhsoxGSC0ZV7xj
+	GOU8j54kDGYkWbQO4xX6H7tGNiFcEiUdX0ELQrHFN/N6tw79VGLqcIwxVo55smKvljFM
+	jqYD/VibGLmvzn5BRUCW39gf7Td4RM14DwKQSpXP2xnIqGHd68StVm2mDoSys8DLkypB
+	6m0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=kNYL6iP/EV+/yLIsRzbqcJaPIl6OWRq6d+FIH5Gzna4=;
+	b=VoiTe+VikooANxz4EbGFrAZx5kC8YW1NDBFY1XrwByUC+tKDuQ4A59vVgNDmWSwweH
+	dPcgJt2a600zt5oJjs4NHSjl3I9NHijZVlHMOs537vNF0wJPRhy9+f3ZbP9rXYJBBp3r
+	lBhfJ4lXURKfTZ5kpFU+xx8PaDfpk4FtZt/ISEZFbYcOBc0r4YarbqaM5I4iWcZSrT85
+	2BkrgWl4Zzwzc9z9+jxDbFDMeoW0tnypBEiCnHfkMo1TdA3+ImJaUgqBrw3/CrWBjF1z
+	Qgsv/FVc1UcYLuHXTofKEBco6BEfhlcgjKjdM8Yjguc0wGbqZllnsHqEIVYgDzkG4uwP
+	/raQ==
+X-Gm-Message-State: APjAAAXh0/rEUxZZVTprX/BevFF+KX5T6Z/2VEJmsRRQ57fADCPaySGS
+	w8JIrqs2bcoC7SXqrNREkWmVUXJQn35cdchcfd0qPWVHRs8=
+X-Google-Smtp-Source: APXvYqxx2Msq8ibN1ScvOV354b2j9r1zDC8AWMqWYZs+QHvMW3P1S6WewaJ9bO35p4zes4b28un9qOLnlEp1UYTQJVk=
+X-Received: by 2002:ae9:e60b:: with SMTP id z11mr24973641qkf.80.1557228494260; 
+	Tue, 07 May 2019 04:28:14 -0700 (PDT)
 MIME-Version: 1.0
-Date: Tue, 07 May 2019 11:47:08 +0200
-From: Bas Mevissen <abuse@basmevissen.nl>
-To: Behan Webster <behanw@converseincode.com>
-In-Reply-To: <E403FC4D-C557-4637-B3A1-D2C895621DB6@converseincode.com>
-References: <A084970538D2234B96D99D06FA9D974FC378C228@ALA-MBD.corp.ad.wrs.com>
-	<96fa4aec-9557-9d7f-bff3-82f8db56e9cd@mvista.com>
-	<A084970538D2234B96D99D06FA9D974FC378C879@ALA-MBD.corp.ad.wrs.com>
-	<0980DABF-86C8-4A9D-8687-B9C27EE2FF61@converseincode.com>
-	<A084970538D2234B96D99D06FA9D974FC378DD57@ALA-MBD.corp.ad.wrs.com>
-	<2D39B7E1-DC52-42A6-8332-50ED49F77722@converseincode.com>
-	<20190506104502.e4tvj5w4i4og4ski@jholzmayr.localdomain>
-	<c3cbc64b-f7ea-f2d3-32ae-7a94b8693713@emcodev.nl>
-	<E403FC4D-C557-4637-B3A1-D2C895621DB6@converseincode.com>
-Message-ID: <713dbad763c226b6c44d691e764f7ef8@basmevissen.nl>
-X-Sender: abuse@basmevissen.nl
-User-Agent: Roundcube Webmail/1.3.7
-Cc: Yocto list discussion <yocto@yoctoproject.org>,
-	yocto-advocacy@yoctoproject.org
-Subject: Re: [Yocto-Advocacy] Yocto Project Upcoming Conferences and Developer Days
+From: "Dhanush K.S" <dhanush.ks@gmail.com>
+Date: Tue, 7 May 2019 13:28:02 +0200
+Message-ID: <CAKPYHZ75L7oLWfctFTJdK0RF7zWziMwqbmiT3mDUJ_TPiwohYg@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: bb-matrix.sh Script not working as expected
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,51 +67,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 May 2019 09:47:14 -0000
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 07 May 2019 11:28:16 -0000
+Content-Type: multipart/alternative; boundary="0000000000003c12f305884a8345"
 
-On 2019-05-07 07:20, Behan Webster wrote:
+--0000000000003c12f305884a8345
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> > On May 6, 2019, at 8:36 AM, Bas Mevissen <bas@emcodev.nl> wrote:
-> > On 5/6/19 12:45 PM, Josef Holzmayr wrote:
-> > I'd actually word it a little bit differently:
-> > If there is only *ONE* attendee who did not properly do the homework, it
-> > will have a massive impact an the rest of the group. And that somebody
-> > will show up unpreparedly is absolutely certain in my opinion.
-> > With sufficient trainers, one can continue for most and provide some assistance to the one falling behind.
+Hello,
 
-> Usually more than one. And this is generally very disruptive to the 
-> class as a whole.
+I'm trying to evaluate the performance of my builds and following the wiki
+link https://wiki.yoctoproject.org/wiki/Build_Performance to determine the
+accurate BB and PM values for my builds.
 
-> >> As someone who actually got started through the YPDD beginner track (and
-> >> also often recommends it to new beginners), my opinion is clearly that
-> >> we either should have it, be it only for a handful of attendees, or
-> >> offer a *real* replacement, with face to face training. My experience is
-> >> that this personal thing in the very beginning is an absolutely
-> >> essential part of many YP/OE careers.
-> >
-> > I agree. That is how I started, next to a compressed Linux Foundation Yocto training that was offered just before the event then.
+I have set "INHERIT +=3D "buildstats"" in my local.conf and disabled
+"BB_NUMBER_THREADS" & "PARALLEL_MAKE" during the execution of the build and
+the script.
 
-> Yes. By me and my colleagues who train for the Linux Foundation.
+Executing the script bb-matrix.sh from the BUILDDIR with the command ".
+../poky-sumo-19.0.0/scripts/contrib/bb-perf/bb-matrix.sh ." deletes the
+TMPDIR entirely and then complains 'cp: cannot stat =E2=80=98tmp/buildstats=
+=E2=80=99: No
+such file or directory' for each iteration of BB and PM values.
 
-> > So it might be wise to ask LF or get something organised. It would mostly require a room and a sponsor for some small devkit.
+I don't understand where I am going wrong and how do I go about generating
+the dat file and in turn plotting the graph to determine the performance of
+the build?
 
-> We've run the beginner track for the last few years. The discussion is 
-> precisely that the YP event is proposing to not run the beginner track 
-> this year at all.
-> 
+Thanks!
 
-But why? There appears to be a constant demand.
+Dhanush
 
-> We're happy to do it again if given the space.
+--0000000000003c12f305884a8345
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Yes, both for LF and YP it are off-the-shelf trainings that do not 
-require much preperation.
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:georgia,=
+serif"><div class=3D"gmail_default">Hello,</div><div class=3D"gmail_default=
+"><br></div><div class=3D"gmail_default">I&#39;m trying to evaluate the per=
+formance of my builds and following the wiki link=C2=A0<a href=3D"https://w=
+iki.yoctoproject.org/wiki/Build_Performance" target=3D"_blank" style=3D"fon=
+t-family:Arial,Helvetica,sans-serif">https://wiki.yoctoproject.org/wiki/Bui=
+ld_Performance</a>=C2=A0to determine the accurate BB and PM values for my b=
+uilds.=C2=A0</div><div class=3D"gmail_default"><br></div><div class=3D"gmai=
+l_default">I have set &quot;INHERIT +=3D &quot;buildstats&quot;&quot; in my=
+ local.conf and disabled &quot;BB_NUMBER_THREADS&quot; &amp; &quot;PARALLEL=
+_MAKE&quot; during the execution of the build and the script.</div><div cla=
+ss=3D"gmail_default"><br></div><div class=3D"gmail_default">Executing the s=
+cript bb-matrix.sh from the BUILDDIR with the command &quot;. ../poky-sumo-=
+19.0.0/scripts/contrib/bb-perf/bb-matrix.sh .&quot; deletes the TMPDIR enti=
+rely and then complains &#39;cp: cannot stat =E2=80=98tmp/buildstats=E2=80=
+=99: No such file or directory&#39; for each iteration of BB and PM values.=
+</div><div class=3D"gmail_default"><br></div><div class=3D"gmail_default">I=
+ don&#39;t understand where I am going wrong and how do I go about generati=
+ng the dat file and in turn plotting the graph to determine the performance=
+ of the build?</div><div class=3D"gmail_default"><br></div><div class=3D"gm=
+ail_default">Thanks!</div><div class=3D"gmail_default"><br></div></div><div=
+><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signatu=
+re"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><font face=3D"g=
+eorgia, serif" color=3D"#666666">Dhanush</font></div></div></div></div></di=
+v></div></div>
 
-> Behan
-
-
--- Bas.
-
+--0000000000003c12f305884a8345--
