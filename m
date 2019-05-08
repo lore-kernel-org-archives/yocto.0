@@ -1,98 +1,65 @@
-Return-Path: <Karthik.B@irco.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DC7DDE00D4C; Wed,  8 May 2019 08:25:31 -0700 (PDT)
+	id 4EB5CE00D4C; Wed,  8 May 2019 08:31:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, MIME_HTML_MOSTLY,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [148.163.153.43 listed in list.dnswl.org]
-	*  0.4 MIME_HTML_MOSTLY BODY: Multipart message mostly text/html MIME
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.178 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 4267 seconds by postgrey-1.32 at yocto-www;
-	Wed, 08 May 2019 08:25:29 PDT
-Received: from mx0b-00240e01.pphosted.com (mx0b-00240e01.pphosted.com
-	[148.163.153.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 727B9E00D3D
-	for <yocto@yoctoproject.org>; Wed,  8 May 2019 08:25:29 -0700 (PDT)
-Received: from pps.filterd (m0114532.ppops.net [127.0.0.1])
-	by mx0b-00240e01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id
-	x48E9uPe024177
-	for <yocto@yoctoproject.org>; Wed, 8 May 2019 10:14:21 -0400
-Received: from nam02-cy1-obe.outbound.protection.outlook.com
-	(mail-cys01nam02lp2053.outbound.protection.outlook.com
-	[104.47.37.53])
-	by mx0b-00240e01.pphosted.com with ESMTP id 2sbybh8fkf-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT)
-	for <yocto@yoctoproject.org>; Wed, 08 May 2019 10:14:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=irco.onmicrosoft.com; 
-	s=selector1-irco-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=wsBt4nZGRHfssIqqNMtMIqdvzeE+WE0UNBXxgw7fmsc=;
-	b=l+yEYjBj/g1c4LztoPEGu6bTIWlpPepHEUsA3m+8Q2KbPUqtMwhJ8iqm0DdenR6dUn4djfhrdKEZ7sRj2N9IkXW8wFBuFfOSZezpL391bZpMaE7FItytyVMLvnSZTbeOwGJQLO3tizf/qHqWBHTta9K3BqVEvnZSYGMAfiHUjKs=
-Received: from CY4P154MB0057.NAMP154.PROD.OUTLOOK.COM (52.135.24.88) by
-	CY4P154MB0058.NAMP154.PROD.OUTLOOK.COM (52.135.24.89) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1856.12; Wed, 8 May 2019 14:14:08 +0000
-Received: from CY4P154MB0057.NAMP154.PROD.OUTLOOK.COM
-	([fe80::541:11b0:a0b2:c2a2]) by CY4P154MB0057.NAMP154.PROD.OUTLOOK.COM
-	([fe80::541:11b0:a0b2:c2a2%6]) with mapi id 15.20.1856.012;
-	Wed, 8 May 2019 14:14:08 +0000
-From: "B, Karthik" <Karthik.B@irco.com>
-To: "Yocto mailing list (yocto@yoctoproject.org)" <yocto@yoctoproject.org>
-Thread-Index: AdUFqEmizH6gE1QXRZONapiqw9YChw==
-Date: Wed, 8 May 2019 14:14:08 +0000
-Message-ID: <CY4P154MB0057D587659E836903D8089D88320@CY4P154MB0057.NAMP154.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [125.17.130.45]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ad9727ab-d9ea-4787-ca71-08d6d3bf6fe8
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(4618075)(2017052603328)(7193020);
-	SRVR:CY4P154MB0058; 
-x-ms-traffictypediagnostic: CY4P154MB0058:
-x-ms-exchange-purlcount: 2
-x-microsoft-antispam-prvs: <CY4P154MB0058B979F91EADB652422C3488320@CY4P154MB0058.NAMP154.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:813;
-x-forefront-prvs: 0031A0FFAF
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(366004)(376002)(346002)(39860400002)(396003)(136003)(189003)(199004)(99286004)(25786009)(8936002)(7736002)(476003)(52536014)(9686003)(33656002)(6306002)(54896002)(81166006)(81156014)(66066001)(14454004)(55016002)(486006)(5406001)(68736007)(53936002)(71190400001)(71200400001)(316002)(66446008)(256004)(86362001)(6506007)(72206003)(1240700005)(74316002)(7696005)(76116006)(66556008)(6436002)(555874004)(5416005)(2906002)(25636003)(558084003)(6916009)(64756008)(26005)(186003)(73956011)(3846002)(102836004)(5660300002)(66946007)(66476007)(478600001)(6116002)(790700001)(338634005)(558944008);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:CY4P154MB0058;
-	H:CY4P154MB0057.NAMP154.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: irco.com does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: WI+2PB+ROtKjROdZvpiL9M9rf+3QZ8ySy0NOVdYWS4kZGDyAqO6FFZpgi46i/osYGNiFQuVIpEZzkt64SSigwCXJnTSRQGr+X+hu7+cipvv8GNcHzqGUIJ8/7Z8PT5B/+3gaEZ70M3YoiT9bH5q7LJetSsGQO50Niu3a9jvghzoNS0OzbfrjAp4/nqNhVHjmsd3Os24skfLSlUli18bnYYMOytxP7JcuSsmjEGaWsd33ZNBEHU4WjRj7vV5gv8kmv1MniOaegy2PpKxjCFS8OYUFgAUsnf/9Uq1jrFWoCJs=
-MIME-Version: 1.0
-X-OriginatorOrg: irco.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad9727ab-d9ea-4787-ca71-08d6d3bf6fe8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 May 2019 14:14:08.8314 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: abf9983b-ca77-4f20-9633-ca9c5a847041
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4P154MB0058
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
-	definitions=2019-05-08_08:, , signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
-	priorityscore=1501
-	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
-	clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
-	mlxlogscore=356 adultscore=0 classifier=spam adjust=0 reason=mlx
-	scancount=1 engine=8.0.1-1810050000 definitions=main-1905080089
-Subject: (No subject)
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
+	[209.85.210.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76EBBE00D3D
+	for <yocto@yoctoproject.org>; Wed,  8 May 2019 08:31:08 -0700 (PDT)
+Received: by mail-pf1-f178.google.com with SMTP id c6so5474007pfa.10
+	for <yocto@yoctoproject.org>; Wed, 08 May 2019 08:31:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id;
+	bh=LCl6geRIPbzaaqi2pB1ekgeMhKNmO7nmkOSHEnPy+jM=;
+	b=t8PumS8RLAh7A6B6z+UmK1HyJ47Me857crx2K9xF9DcFGZ7ayN5CmO566xYU6SPFJA
+	lQtwmzGINXsZGrAcnsSyk5WO9e/RgCwLkjJcOSeFIT1wusv/+pZtEHvZM7QZ3/DI1RMq
+	DMYXKnn4wlhzvCqh2bOgdbdjU2Oj/2iRK0jxUldVaevpLejQVSOi7Eg+QGtNEIwMbWd6
+	Lg4VGJZnYQvSdauKimaVwoPZ87Su4eB5m3joqMLG2sJmvB1xDqjiLdM6aDTj9pRfrJGr
+	gjI/NCH2HTj4nkG80s7TM9GgBIJ8pzILHKIfrthFjKYSuUm+oR987+Mvr1BBMXscaeC1
+	Tg6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=LCl6geRIPbzaaqi2pB1ekgeMhKNmO7nmkOSHEnPy+jM=;
+	b=g/Owl6ac7O8u6JZrKjX6dsw8G5tVv1mFZlsUiFYonStY9UQHofneBabfKmBZ/OSjRi
+	fGSzEL29mMWQNiVZqFmdEH+QFpOvdeJzl5MFtU3JRHHa8JPO4tI9/hBw9Jvs6dOwspdP
+	YimmKcdfPmJ1Q+veYbP4smW4+Hh0Ek4a/IC8b7O2P2Wu7jPNMZEcbXUiQ2jyqAnPVN+x
+	c3qVnLMWUbte2VyqVDTMPnljS1bhreSgQU3YFI/+SiITiVZx6paEpnvUGgoRb8uVKbAb
+	CmByFA82TGS+8m82MZfdX07R324fJxTZqHUgYJmwZd5eZEoHI1WFDvZN2kjwJVB/6Hix
+	jngg==
+X-Gm-Message-State: APjAAAVRWZgcDiMe0c42/VoiOFegz5JSR8XRfEpIwMw4grJAL0f9Nm5v
+	mKf77czcDXQL0GEfDoNDvQufYctE
+X-Google-Smtp-Source: APXvYqxUr3BhZqY+TduWxmQ2Otyi/HAnlHvpwPtguHiDoZns77a50q49/U0GXhjoK54vkPXoqR7I+A==
+X-Received: by 2002:a63:d615:: with SMTP id q21mr28202321pgg.401.1557329467326;
+	Wed, 08 May 2019 08:31:07 -0700 (PDT)
+Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
+	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
+	c17sm21529687pfn.173.2019.05.08.08.31.06 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 08 May 2019 08:31:06 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Wed,  8 May 2019 08:31:05 -0700
+Message-Id: <20190508153105.945-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-security][PATCH] samhain: add more tests and fix ret checks
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -104,75 +71,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 May 2019 15:25:32 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CY4P154MB0057D587659E836903D8089D88320CY4P154MB0057NAMP_"
+X-List-Received-Date: Wed, 08 May 2019 15:31:09 -0000
 
---_000_CY4P154MB0057D587659E836903D8089D88320CY4P154MB0057NAMP_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ lib/oeqa/runtime/cases/samhain.py | 31 +++++++++++++++++++++++++++----
+ 1 file changed, 27 insertions(+), 4 deletions(-)
 
-STOP
+diff --git a/lib/oeqa/runtime/cases/samhain.py b/lib/oeqa/runtime/cases/samhain.py
+index e4bae7b..5043a38 100644
+--- a/lib/oeqa/runtime/cases/samhain.py
++++ b/lib/oeqa/runtime/cases/samhain.py
+@@ -1,6 +1,7 @@
+ # Copyright (C) 2019 Armin Kuster <akuster808@gmail.com>
+ #
+ import re
++import os
+ 
+ from oeqa.runtime.case import OERuntimeTestCase
+ from oeqa.core.decorator.depends import OETestDepends
+@@ -11,10 +12,32 @@ class SamhainTest(OERuntimeTestCase):
+ 
+     @OEHasPackage(['samhain-standalone'])
+     @OETestDepends(['ssh.SSHTest.test_ssh'])
+-    def test_samhain_standalone_help(self):
++    def test_samhain_help(self):
++        machine = self.td.get('MACHINE', '')
++        status, output = self.target.run('echo "127.0.0.1 %s.localdomain  %s" >> /etc/hosts' % (machine, machine))
++        msg = ("samhain can't append hosts. "
++               'Status and output:%s and %s' % (status, output))
++        self.assertEqual(status, 0, msg = msg)
++
+         status, output = self.target.run('samhain --help')
+-        match = re.search('Please report bugs to support@la-samhna.de.', output)
++        msg = ('samhain command does not work as expected. '
++               'Status and output:%s and %s' % (status, output))
++        self.assertEqual(status, 0, msg = msg)
++
++    @OETestDepends(['samhain.SamhainTest.test_samhain_help'])
++    def test_samhain_init_db(self):
++        status, output = self.target.run('samhain -t init')
++        match = re.search('FAILED: 0 ', output)
++        if not match:
++            msg = ('samhain database init had an unexpected failure. '
++               'Status and output:%s and %s' % (status, output))
++            self.assertEqual(status, 0, msg = msg)
++
++    @OETestDepends(['samhain.SamhainTest.test_samhain_init_db'])
++    def test_samhain_db_check(self):
++        status, output = self.target.run('samhain -t check')
++        match = re.search('FAILED: 0 ', output)
+         if not match:
+-            msg = ('samhain-standalone command does not work as expected. '
++            msg = ('samhain errors found in db. '
+                'Status and output:%s and %s' % (status, output))
+-            self.assertEqual(status, 1, msg = msg)
++            self.assertEqual(status, 0, msg = msg)
+-- 
+2.17.1
 
---_000_CY4P154MB0057D587659E836903D8089D88320CY4P154MB0057NAMP_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">STOP<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_CY4P154MB0057D587659E836903D8089D88320CY4P154MB0057NAMP_--
