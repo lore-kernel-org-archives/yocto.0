@@ -1,6 +1,6 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9F3C4E00D54; Wed,  8 May 2019 06:36:58 -0700 (PDT)
+	id 51B31E00D3D; Wed,  8 May 2019 06:45:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,54 +10,56 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
+	provider *      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.51 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.178 listed in list.dnswl.org]
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
-	[209.85.222.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36B67E00D4A
-	for <yocto@yoctoproject.org>; Wed,  8 May 2019 06:36:58 -0700 (PDT)
-Received: by mail-qk1-f178.google.com with SMTP id a64so245531qkg.5
-	for <yocto@yoctoproject.org>; Wed, 08 May 2019 06:36:58 -0700 (PDT)
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com
+	[209.85.210.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB37DE00D4F
+	for <yocto@yoctoproject.org>; Wed,  8 May 2019 06:45:12 -0700 (PDT)
+Received: by mail-ot1-f51.google.com with SMTP id i8so8628560oth.10
+	for <yocto@yoctoproject.org>; Wed, 08 May 2019 06:45:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=LGWTrJh6w+ATqpLXylLj4DjLGua+tJEVd/hJBDGWFrE=;
-	b=VE9uyCE+VAubDblx2MvcJNois+0l3hbkG3pammxfIgIh5kV32XVJBJWPexfThS7w0+
-	N5O0XBsF01tLraR1sME6nB5cLxUmDYlQFwJjeFoFiv6p5IEhXTu/+wkMuS3/W7nT9ol0
-	U+De31IodBRrm3ORqz+NqpPkYlzCUV3cLF6IbzFdPWS0Enmi9mxannZNG/pZIXzPnZnM
-	Ko4m+aW1hKCOd0Lmn3f5Ipm8ILWl9uO9vTNumxWHiNJ7ctGVSp3H9C9d4Npn6kmPXK1F
-	G47Tl6KCSfxwzZs9NN8OQACU1WrzF8V5bjG0YdcYYEnlJlJO927r4aXURfyRC8uNpr/X
-	XLog==
+	:cc; bh=Uh4DCtE6l3KnYLqMsERH8E9gnH2Q/TdwrOTqae1spPg=;
+	b=LV3sAm+KohsP/qjQxfJYHT1SvRcvlo5eIQaDgltGqDG8lEXc3pJ6IyzWkkJ3m+qHFw
+	XjBvzm4GNvI7KIqmOCuLSB6yWa5Rmdxyj1BgXMcLOG4v5icq2qYZs0MWhA++UUh+yZRo
+	Xgds0Rb9DTUIM7IdbJmRJj1+chCimmByy2bE/5NYwhvgVkB7dAz5giBqTc7smPhsaztB
+	nCEUjXkEN1HzQgmk4pROGWDYfkOPM26TodL/4+L+CR8P7SL9eVh5OZeXcUugdyuhbiBF
+	plzenguoqnQA7PQPr7nsJoFwK5ZPoTsMjm27taLhLSpOGnX8DMxHS+BLlCZf5eygHNrj
+	LGKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=LGWTrJh6w+ATqpLXylLj4DjLGua+tJEVd/hJBDGWFrE=;
-	b=Yml5cWz3THCA9YjBtqVLeH7OLvB9gqDQAoR5MoCUYzGI5S0X7IVOR1JOKb3VkcE4Xc
-	gPuyQVWHPndQZ1RdXUSZLKPkUyzk1AgWEeoE0lTTi9pbfh1TrRQz+WPz538qcWv3kL/5
-	JAhN3gGlgfrGzb3zeGc5QvMxmvPsj4XvCIfu/3ziHH8bioYRYtbJZFCvBMeR5wolD4/h
-	P8ghRy+f3+QfkUSd0ejSpCg0t/i2fylr0nSmBCTJgbPxZszDRqSNppI7RXtJM8PF6RoC
-	aoGMRIKow8817C3Z+LTDkOlZi7bUyO3JxOewFqTU9JkfoDAcGyRdJPtuIud0vJLT7yq1
-	Fx8w==
-X-Gm-Message-State: APjAAAW7l/L1rKIkrLsT1iMxg0CZw4WS/zaraACcpV7opumCrq9BF3jc
-	Q/wvKY9O+yxqlRPjnclxPLwY3k2+0T84GMxX0fY=
-X-Google-Smtp-Source: APXvYqyRvTvCrlpYQkyM1B05MMa6wL0PlIGMa8GVr8AAIlWc7PDD38nLgaN1AjCPqMDnfuDt6jrJWI7ZjbdILlhzN4k=
-X-Received: by 2002:ae9:ef45:: with SMTP id d66mr18896057qkg.313.1557322617590;
-	Wed, 08 May 2019 06:36:57 -0700 (PDT)
+	bh=Uh4DCtE6l3KnYLqMsERH8E9gnH2Q/TdwrOTqae1spPg=;
+	b=Ynf09rzpiWChvAS82eWp5mbuXuPcoZUk1SlbrvuNe6YouHz2HFtrz8d+XUFx05N56W
+	TLQ1eXM6KqxgSTc56V96do/HJU6n01ZQhJiPWb8wFmXnuAtP1laQIGTgk7e1v2p9jOdb
+	pGS9eRFTmVgoxzeuIYL2G2YRdS4VkQnH+x311Mem7IC7HMtqoVY68pkZtaiviJ7HGNx/
+	/vs8z9Gb4Gus4nNyYf5UdG5MfuMe/ZiRbMqowbJfm0tkcqKDmnMbb4Itcm22/pPZbxoW
+	SZFEWnAj7Jh6rjs3H65d34cU++yiXaqY3xCJkwH0Wzq0XxT9ODaKlSV5QOOVT4NR3NST
+	wLBQ==
+X-Gm-Message-State: APjAAAX0MXF0ebqesg/+Ltda0bxRkNV8LOBwtrwUHncHRjSeSQ3ILd07
+	7aOfNqmcxeqJJTviXnUzsGLxrOTGFacjy0Q0kII=
+X-Google-Smtp-Source: APXvYqz10ETjfF9OOzGZsNooUy7+wkB2oOH/0+0BZxvVjq5lQr2yYvoH6Nmsmbf4OPEeQ7cW8pYMcQpBZYhUpkLjy1s=
+X-Received: by 2002:a05:6830:140d:: with SMTP id
+	v13mr4322700otp.293.1557323112442; 
+	Wed, 08 May 2019 06:45:12 -0700 (PDT)
 MIME-Version: 1.0
 References: <trinity-ee79f97b-ae6e-4e44-bef7-07fa5c0e3085-1557313560088@3c-app-gmx-bs06>
-In-Reply-To: <trinity-ee79f97b-ae6e-4e44-bef7-07fa5c0e3085-1557313560088@3c-app-gmx-bs06>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Wed, 8 May 2019 15:36:46 +0200
-Message-ID: <CAGAf8Lz3xo8CKAQ_g5MVjaD5_5_4ytsFRiQPEn+-aH=ckFJ-6A@mail.gmail.com>
-To: Arno Steffens <star@gmx.li>
-Cc: Yocto Project <yocto@yoctoproject.org>
+	<CAGAf8Lz3xo8CKAQ_g5MVjaD5_5_4ytsFRiQPEn+-aH=ckFJ-6A@mail.gmail.com>
+In-Reply-To: <CAGAf8Lz3xo8CKAQ_g5MVjaD5_5_4ytsFRiQPEn+-aH=ckFJ-6A@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 8 May 2019 15:45:00 +0200
+Message-ID: <CANNYZj-4T2HRRcyZNWZON54onS-XoFjeXpN5mRmBJ_egik+eyQ@mail.gmail.com>
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Cc: Arno Steffens <star@gmx.li>, Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Eclipse (plugin, settings)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -70,28 +72,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 May 2019 13:36:58 -0000
+X-List-Received-Date: Wed, 08 May 2019 13:45:14 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-https://marc.info/?l=openembedded-core&m=155482339222316&w=2
+Nevertheless, you are welcome to resurrect the plugin, if you are
+willing to do the maintenance work. Yocto is what you make it.
 
-(do not shoot the messenger, thank you)
+Alex
 
-Zoran
-_______
-
-On Wed, May 8, 2019 at 1:11 PM Arno Steffens <star@gmx.li> wrote:
+On Wed, 8 May 2019 at 15:37, Zoran Stojsavljevic
+<zoran.stojsavljevic@gmail.com> wrote:
 >
-> I want to use Eclipse as IDE for coding/debugging.
-> What do I have to set to get the proper compiler prefixes and pathes, libs and includes ?
-> Or any way to combine the environment setup with start of eclipse?
+> https://marc.info/?l=openembedded-core&m=155482339222316&w=2
 >
-> I have seen there was a Eclipse plugin, but not for newer versions as 2019.03.
+> (do not shoot the messenger, thank you)
 >
-> Here (https://www.yoctoproject.org/software-item/eclipse-ide-plug-in/) is referenced to the eSDK manual, but no word about eclipse in it. Til now I just use SDK.
+> Zoran
+> _______
 >
-> Thanks
-> Arno
+> On Wed, May 8, 2019 at 1:11 PM Arno Steffens <star@gmx.li> wrote:
+> >
+> > I want to use Eclipse as IDE for coding/debugging.
+> > What do I have to set to get the proper compiler prefixes and pathes, libs and includes ?
+> > Or any way to combine the environment setup with start of eclipse?
+> >
+> > I have seen there was a Eclipse plugin, but not for newer versions as 2019.03.
+> >
+> > Here (https://www.yoctoproject.org/software-item/eclipse-ide-plug-in/) is referenced to the eSDK manual, but no word about eclipse in it. Til now I just use SDK.
+> >
+> > Thanks
+> > Arno
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
 > --
 > _______________________________________________
 > yocto mailing list
