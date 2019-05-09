@@ -1,6 +1,6 @@
 Return-Path: <aaron@assonance.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AE8A7E00D6F; Thu,  9 May 2019 13:16:05 -0700 (PDT)
+	id 3E8F4E00D73; Thu,  9 May 2019 13:48:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,48 +10,51 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.52 listed in list.dnswl.org]
+	*      [209.85.167.177 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com
-	[209.85.210.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B04B9E00AD5
-	for <yocto@yoctoproject.org>; Thu,  9 May 2019 13:16:04 -0700 (PDT)
-Received: by mail-ot1-f52.google.com with SMTP id c3so3532976otr.3
-	for <yocto@yoctoproject.org>; Thu, 09 May 2019 13:16:04 -0700 (PDT)
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com
+	[209.85.167.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04F96E00D6B
+	for <yocto@yoctoproject.org>; Thu,  9 May 2019 13:48:46 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id k9so2958703oig.9
+	for <yocto@yoctoproject.org>; Thu, 09 May 2019 13:48:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=assonance-org.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=Ic7oAv3oT+cwd/yUPrRaknLRY5IRCeT/QuzZUblBBTI=;
-	b=M23S6dt587mBvt02w4757h0K1/YSb0gfXPKlfaYF3KUpMtJy9O7HzarhrwfNgf8c5J
-	Of7gvRc+emXwh5mSMc7b60zvIxkdwPHWKdX5t8RYh7tQCfoHLNe6QVwP8/+1NBtd+DW+
-	8ANFigoolYKE32ww8aPwSw6q+FX+X2ef3BEo4sKwfgtW/9y8/6HACzc5yM/LTvN3dyhZ
-	Pj/zXMsfV9CofAQi2OYZSB38QpubWlXueKyRa9c0ucat7tvjcJsWe11uJ26zvFUNfL9f
-	WlKjh1xVvsjQCEfz2IP3iJdxvWvA3U/vzhcS1nROBytTXi6nfWLAGsLwMqrOAdfHQBXT
-	HW+Q==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
+	bh=aT3CCIRRd20iiuZ0NJ6rHcnW82ozw1l3yGHewwb8dGg=;
+	b=1bbAJvP32TifkggbZ6AEhdFmrvlflvXtnBY/g4QpgbgWCQFvdKX/0lsr1GoMALTvkY
+	zFbL0PZbJ6eqrq/BB7lBqnk7e2qA3Iugu11nvZTvWMiADi3j3wBOnDLH5u+hPhz+sLc2
+	kFgS8eA6FxecG5lT17i6CNm7swUlD/AzFCiODDymmbdfhJ8GGnREMl1STWQ7thoRj1sv
+	9lb9NbWqf3SdozzSaQ6AGjBqNDDGKBw+uLLfQZNO9+zItjxVbLAH3PQJNDVsGg1o/BTF
+	v6CX6mDEjxmstL4lpX6jJJptUQnoKyhs43GusVFFK7Jj0c4lajIn0AMP6gHJcyWMzQ/D
+	oD5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=Ic7oAv3oT+cwd/yUPrRaknLRY5IRCeT/QuzZUblBBTI=;
-	b=LCb+4+n2vLzEy7bRAv9KLMaP5iefA3dGoszNDm7KjBVCDDe0xUrUIRvbgaPF76u8vd
-	4QmYumQv0GvLn2BP3WspmrBgZXmND1ZKH3/5gXdfAb6rGTmAkye2fAzNBnWXCYgTRejH
-	xHXLtI38oYJzF+y8PkO7kzuGu7V1thu2hd2CasPM6hnO3K7u9qN30QQKseYskLDksiFN
-	G8+bI70aiTlCYvX1/a1RhUrpYMNwaqaQbTUYS42q92gQ7iHsfIv12JV9PogGcM57a/mL
-	5SU2Ka0HURIvB+rv+nDNDnXXYEe4E71Q4G05im9oT3VaHcYZt+D6BMdR3OROyb+EsScz
-	kL8A==
-X-Gm-Message-State: APjAAAWP4KuoemPR5VLuzaAHpASZO7qFc+eWLCH452V+UBD+TsKBo0RL
-	hmu9RL9wOx1/iWiUsAUWRHrSc2VakfhG4VeovTRDXUAx4gA=
-X-Google-Smtp-Source: APXvYqw6zwdCbC7ccJNT8mgO2Q9onakq76sGEtx8XfKOv6LvWarrtWkA4cCRt6yEea8iALPd34jYQozcDwdW6aYzcOs=
-X-Received: by 2002:a9d:eb7:: with SMTP id 52mr3863654otj.185.1557432963590;
-	Thu, 09 May 2019 13:16:03 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to;
+	bh=aT3CCIRRd20iiuZ0NJ6rHcnW82ozw1l3yGHewwb8dGg=;
+	b=fdTEknblxmqvn2PavI4S0REJBUwp5ISwWZ7x57/evh40hIxia2s3zZvs9gMzKxp5nz
+	+4vWOYh/z1wEtNfxzC7E5I5iXgQEQDWM5m7/5DtenhXUJ8/rTc5YQuzfAkOSU76T/Hgt
+	50aaKYgcTyvJkXOKZDhFfV2Oi2kpW7bWQwX80jLY+zd3jSnq9alHj/QbKmg+xwWPUw1Q
+	qjJzRe+iLu6Qy0NT3JYYxm9mOCz95S9jkp+TqLtYMJiD5nDXhfQdZazVkDnKyFJVNtLi
+	wPw9s1Q9Lx4wTTc1+HeIW0daX4taxQ0+IJZ4eFUxxShbRFL3EFyxRjUAkXZ3SyPbjiEN
+	nEgw==
+X-Gm-Message-State: APjAAAWklCx4v3Ij0egnhry9azC9g9xXcyuqlF9Tyj2pAzRrVduRjGeJ
+	Har3ZNVZX8/CRvjzUpcmZOb0hzisGNI/mwP6bZCFDg2C
+X-Google-Smtp-Source: APXvYqwe1FQZu00IY5J2B1R3PtFwKor/dUFsichE2W/NFIys9gyGFnjFTaDHsTM5slImPL/0vyeSeXIPEnDSME68x+Y=
+X-Received: by 2002:aca:3f84:: with SMTP id m126mr2664746oia.164.1557434925820;
+	Thu, 09 May 2019 13:48:45 -0700 (PDT)
 MIME-Version: 1.0
+References: <CAFSZm+j8cBQ6SxD=VsuUWc1+JCvGe6asJpCgjhe=Bp+r5XPLPw@mail.gmail.com>
+In-Reply-To: <CAFSZm+j8cBQ6SxD=VsuUWc1+JCvGe6asJpCgjhe=Bp+r5XPLPw@mail.gmail.com>
 From: Aaron Cohen <aaron@assonance.org>
-Date: Thu, 9 May 2019 16:15:53 -0400
-Message-ID: <CAFSZm+j8cBQ6SxD=VsuUWc1+JCvGe6asJpCgjhe=Bp+r5XPLPw@mail.gmail.com>
+Date: Thu, 9 May 2019 16:48:35 -0400
+Message-ID: <CAFSZm+jm1dh6JZwXgxRiTpXutRNJD3+BxzxzLAP3O6YYHcV_hw@mail.gmail.com>
 To: yocto@yoctoproject.org
-Subject: python-numpy RDEPENDS not honored?
+Subject: Re: python-numpy RDEPENDS not honored?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,133 +66,173 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2019 20:16:05 -0000
-Content-Type: multipart/alternative; boundary="0000000000008e899905887a1ee2"
+X-List-Received-Date: Thu, 09 May 2019 20:48:48 -0000
+Content-Type: multipart/alternative; boundary="00000000000083c42f05887a9348"
 
---0000000000008e899905887a1ee2
+--00000000000083c42f05887a9348
 Content-Type: text/plain; charset="UTF-8"
 
-python-numpy is being installed on my image as a dependency of one of my
-packages.
+I think the problem is in the python-numpy_1.14.5.bb recipe.
 
-However, none of python-numpy's RDEPENDS are currently being included on
-the image.
+It does: RDEPENDS_${PN}_class-target_append = ...
 
-When I run bitbake -e python-numpy > numpy.txt, I see that for some reason,
-the RDEPENDS is being overridden to a nearly empty value:
+where it seems to need to be: RDEPENDS_${PN}_append_class-target = ...
 
-# $RDEPENDS_python-numpy [5 operations]
-> #   append
-> /home/joel-cohen/code/juevos/poky/meta/classes/distutils-base.bbclass:2
-> #     "${@['', '${PYTHON_PN}-core']['${CLASSOVERRIDE}' == 'class-target']}"
-> #   set
-> /home/joel-cohen/code/juevos/poky/meta/recipes-devtools/python-numpy/python-numpy.inc:112
-> #     "${PYTHON_PN}-unittest                   ${PYTHON_PN}-difflib
->            ${PYTHON_PN}-pprint                   ${PYTHON_PN}-pickle
->            ${PYTHON_PN}-shell                   ${PYTHON_PN}-nose
->          ${PYTHON_PN}-doctest                   ${PYTHON_PN}-datetime
->              ${PYTHON_PN}-distutils                   ${PYTHON_PN}-misc
->                ${PYTHON_PN}-mmap                   ${PYTHON_PN}-netclient
->                  ${PYTHON_PN}-numbers                   ${PYTHON_PN}-pydoc
->                  ${PYTHON_PN}-pkgutil                   ${PYTHON_PN}-email
->                  ${PYTHON_PN}-compression
->  ${PYTHON_PN}-ctypes                   ${PYTHON_PN}-threading "
-> #   rename from RDEPENDS_${PN} data.py:117 [expandKeys]
-> #     "${PYTHON_PN}-unittest                   ${PYTHON_PN}-difflib
->            ${PYTHON_PN}-pprint                   ${PYTHON_PN}-pickle
->            ${PYTHON_PN}-shell                   ${PYTHON_PN}-nose
->          ${PYTHON_PN}-doctest                   ${PYTHON_PN}-datetime
->              ${PYTHON_PN}-distutils                   ${PYTHON_PN}-misc
->                ${PYTHON_PN}-mmap                   ${PYTHON_PN}-netclient
->                  ${PYTHON_PN}-numbers                   ${PYTHON_PN}-pydoc
->                  ${PYTHON_PN}-pkgutil                   ${PYTHON_PN}-email
->                  ${PYTHON_PN}-compression
->  ${PYTHON_PN}-ctypes                   ${PYTHON_PN}-threading "
-> #   override[class-native]:set
-> /home/joel-cohen/code/juevos/poky/meta/recipes-devtools/python-numpy/python-numpy.inc:114
-> #     ""
-> #   override[class-native]:rename from RDEPENDS_${PN}_class-native
-> data_smart.py:644 [renameVar]
-> #     ""
-> # pre-expansion value:
-> #   "     ${PYTHON_PN}-subprocess "
-> RDEPENDS_python-numpy="     python-subprocess "
+Note the position of the word append.
+
+If someone wanted to point me in the right direction, I could try to make a
+qa task that would discover this sort of error if it seems feasible?
+
+--Aaron
 
 
+On Thu, May 9, 2019 at 4:15 PM Aaron Cohen <aaron@assonance.org> wrote:
 
-Anyone have any ideas for why this recipe doesn't seem to be behaving
-correctly?
+> python-numpy is being installed on my image as a dependency of one of my
+> packages.
+>
+> However, none of python-numpy's RDEPENDS are currently being included on
+> the image.
+>
+> When I run bitbake -e python-numpy > numpy.txt, I see that for some
+> reason, the RDEPENDS is being overridden to a nearly empty value:
+>
+> # $RDEPENDS_python-numpy [5 operations]
+>> #   append
+>> /home/joel-cohen/code/juevos/poky/meta/classes/distutils-base.bbclass:2
+>> #     "${@['', '${PYTHON_PN}-core']['${CLASSOVERRIDE}' ==
+>> 'class-target']}"
+>> #   set
+>> /home/joel-cohen/code/juevos/poky/meta/recipes-devtools/python-numpy/python-numpy.inc:112
+>> #     "${PYTHON_PN}-unittest                   ${PYTHON_PN}-difflib
+>>              ${PYTHON_PN}-pprint                   ${PYTHON_PN}-pickle
+>>              ${PYTHON_PN}-shell                   ${PYTHON_PN}-nose
+>>            ${PYTHON_PN}-doctest                   ${PYTHON_PN}-datetime
+>>                ${PYTHON_PN}-distutils                   ${PYTHON_PN}-misc
+>>                  ${PYTHON_PN}-mmap
+>>  ${PYTHON_PN}-netclient                   ${PYTHON_PN}-numbers
+>>      ${PYTHON_PN}-pydoc                   ${PYTHON_PN}-pkgutil
+>>      ${PYTHON_PN}-email                   ${PYTHON_PN}-compression
+>>          ${PYTHON_PN}-ctypes                   ${PYTHON_PN}-threading "
+>> #   rename from RDEPENDS_${PN} data.py:117 [expandKeys]
+>> #     "${PYTHON_PN}-unittest                   ${PYTHON_PN}-difflib
+>>              ${PYTHON_PN}-pprint                   ${PYTHON_PN}-pickle
+>>              ${PYTHON_PN}-shell                   ${PYTHON_PN}-nose
+>>            ${PYTHON_PN}-doctest                   ${PYTHON_PN}-datetime
+>>                ${PYTHON_PN}-distutils                   ${PYTHON_PN}-misc
+>>                  ${PYTHON_PN}-mmap
+>>  ${PYTHON_PN}-netclient                   ${PYTHON_PN}-numbers
+>>      ${PYTHON_PN}-pydoc                   ${PYTHON_PN}-pkgutil
+>>      ${PYTHON_PN}-email                   ${PYTHON_PN}-compression
+>>          ${PYTHON_PN}-ctypes                   ${PYTHON_PN}-threading "
+>> #   override[class-native]:set
+>> /home/joel-cohen/code/juevos/poky/meta/recipes-devtools/python-numpy/python-numpy.inc:114
+>> #     ""
+>> #   override[class-native]:rename from RDEPENDS_${PN}_class-native
+>> data_smart.py:644 [renameVar]
+>> #     ""
+>> # pre-expansion value:
+>> #   "     ${PYTHON_PN}-subprocess "
+>> RDEPENDS_python-numpy="     python-subprocess "
+>
+>
+>
+> Anyone have any ideas for why this recipe doesn't seem to be behaving
+> correctly?
+>
+> I'm using poky 2.6 at the moment.
+>
+> Thanks for any help,
+> Aaron
+>
 
-I'm using poky 2.6 at the moment.
-
-Thanks for any help,
-Aaron
-
---0000000000008e899905887a1ee2
+--00000000000083c42f05887a9348
 Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: quoted-printable
 
-PGRpdiBkaXI9Imx0ciI+PGRpdiBkaXI9Imx0ciI+cHl0aG9uLW51bXB5IGlzIGJlaW5nIGluc3Rh
-bGxlZCBvbiBteSBpbWFnZSBhcyBhIGRlcGVuZGVuY3kgb2Ygb25lIG9mIG15IHBhY2thZ2VzLjxk
-aXY+PGJyPjwvZGl2PjxkaXY+SG93ZXZlciwgbm9uZSBvZiBweXRob24tbnVtcHkmIzM5O3MgUkRF
-UEVORFMgYXJlIGN1cnJlbnRseSBiZWluZyBpbmNsdWRlZCBvbiB0aGUgaW1hZ2UuPC9kaXY+PGRp
-dj48YnI+PC9kaXY+PGRpdj5XaGVuIEkgcnVuIGJpdGJha2UgLWUgcHl0aG9uLW51bXB5ICZndDsg
-bnVtcHkudHh0LCBJIHNlZSB0aGF0IGZvciBzb21lIHJlYXNvbiwgdGhlIFJERVBFTkRTIGlzIGJl
-aW5nIG92ZXJyaWRkZW4gdG8gYSBuZWFybHkgZW1wdHkgdmFsdWU6PC9kaXY+PGRpdj48YnI+PC9k
-aXY+PGRpdj48YmxvY2txdW90ZSBjbGFzcz0iZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJnaW46MHB4
-IDBweCAwcHggMC44ZXg7Ym9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJnYigyMDQsMjA0LDIwNCk7cGFk
-ZGluZy1sZWZ0OjFleCI+IyAkUkRFUEVORFNfcHl0aG9uLW51bXB5IFs1IG9wZXJhdGlvbnNdPGJy
-PiPCoCDCoGFwcGVuZCAvaG9tZS9qb2VsLWNvaGVuL2NvZGUvanVldm9zL3Bva3kvbWV0YS9jbGFz
-c2VzL2Rpc3R1dGlscy1iYXNlLmJiY2xhc3M6Mjxicj4jwqAgwqAgwqAmcXVvdDske0BbJiMzOTsm
-IzM5OywgJiMzOTske1BZVEhPTl9QTn0tY29yZSYjMzk7XVsmIzM5OyR7Q0xBU1NPVkVSUklERX0m
-IzM5OyA9PSAmIzM5O2NsYXNzLXRhcmdldCYjMzk7XX0mcXVvdDs8YnI+I8KgIMKgc2V0IC9ob21l
-L2pvZWwtY29oZW4vY29kZS9qdWV2b3MvcG9reS9tZXRhL3JlY2lwZXMtZGV2dG9vbHMvcHl0aG9u
-LW51bXB5L3B5dGhvbi1udW1weS5pbmM6MTEyPGJyPiPCoCDCoCDCoCZxdW90OyR7UFlUSE9OX1BO
-fS11bml0dGVzdMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59LWRpZmZs
-aWLCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1wcHJpbnTCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1waWNrbGXCoCDCoCDCoCDCoCDCoCDC
-oCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1zaGVsbMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgJHtQWVRIT05fUE59LW5vc2XCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9O
-X1BOfS1kb2N0ZXN0wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAke1BZVEhPTl9QTn0tZGF0
-ZXRpbWXCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1kaXN0dXRpbHPC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1taXNjwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAke1BZVEhPTl9QTn0tbW1hcMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgJHtQWVRIT05fUE59LW5ldGNsaWVudMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-JHtQWVRIT05fUE59LW51bWJlcnPCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9O
-X1BOfS1weWRvY8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59LXBrZ3V0
-aWzCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1lbWFpbMKgIMKgIMKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59LWNvbXByZXNzaW9uwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAke1BZVEhPTl9QTn0tY3R5cGVzwqAgwqAgwqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAke1BZVEhPTl9QTn0tdGhyZWFkaW5nICZxdW90Ozxicj4jwqAgwqByZW5hbWUgZnJv
-bSBSREVQRU5EU18ke1BOfSBkYXRhLnB5OjExNyBbZXhwYW5kS2V5c108YnI+I8KgIMKgIMKgJnF1
-b3Q7JHtQWVRIT05fUE59LXVuaXR0ZXN0wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAke1BZ
-VEhPTl9QTn0tZGlmZmxpYsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59
-LXBwcmludMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59LXBpY2tsZcKg
-IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59LXNoZWxswqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAke1BZVEhPTl9QTn0tbm9zZcKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgJHtQWVRIT05fUE59LWRvY3Rlc3TCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7
-UFlUSE9OX1BOfS1kYXRldGltZcKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05f
-UE59LWRpc3R1dGlsc8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59LW1p
-c2PCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1tbWFwwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAgwqAgwqAke1BZVEhPTl9QTn0tbmV0Y2xpZW50wqAgwqAgwqAgwqAgwqAg
-wqAgwqAgwqAgwqAgwqAke1BZVEhPTl9QTn0tbnVtYmVyc8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
-IMKgIMKgJHtQWVRIT05fUE59LXB5ZG9jwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAke1BZ
-VEhPTl9QTn0tcGtndXRpbMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59
-LWVtYWlswqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAke1BZVEhPTl9QTn0tY29tcHJlc3Np
-b27CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1jdHlwZXPCoCDCoCDC
-oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS10aHJlYWRpbmcgJnF1b3Q7PGJyPiPC
-oCDCoG92ZXJyaWRlW2NsYXNzLW5hdGl2ZV06c2V0IC9ob21lL2pvZWwtY29oZW4vY29kZS9qdWV2
-b3MvcG9reS9tZXRhL3JlY2lwZXMtZGV2dG9vbHMvcHl0aG9uLW51bXB5L3B5dGhvbi1udW1weS5p
-bmM6MTE0PGJyPiPCoCDCoCDCoCZxdW90OyZxdW90Ozxicj4jwqAgwqBvdmVycmlkZVtjbGFzcy1u
-YXRpdmVdOnJlbmFtZSBmcm9tIFJERVBFTkRTXyR7UE59X2NsYXNzLW5hdGl2ZSBkYXRhX3NtYXJ0
-LnB5OjY0NCBbcmVuYW1lVmFyXTxicj4jwqAgwqAgwqAmcXVvdDsmcXVvdDs8YnI+IyBwcmUtZXhw
-YW5zaW9uIHZhbHVlOjxicj4jwqAgwqAmcXVvdDvCoCDCoCDCoCR7UFlUSE9OX1BOfS1zdWJwcm9j
-ZXNzICZxdW90Ozxicj5SREVQRU5EU19weXRob24tbnVtcHk9JnF1b3Q7wqAgwqAgwqBweXRob24t
-c3VicHJvY2VzcyAmcXVvdDs8L2Jsb2NrcXVvdGU+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj48
-YnI+PC9kaXY+PGRpdj5BbnlvbmUgaGF2ZSBhbnkgaWRlYXMgZm9yIHdoeSB0aGlzIHJlY2lwZSBk
-b2VzbiYjMzk7dCBzZWVtIHRvIGJlIGJlaGF2aW5nIGNvcnJlY3RseT88L2Rpdj48ZGl2Pjxicj48
-L2Rpdj48ZGl2PkkmIzM5O20gdXNpbmcgcG9reSAyLjYgYXQgdGhlIG1vbWVudC48L2Rpdj48ZGl2
-Pjxicj48L2Rpdj48ZGl2PlRoYW5rcyBmb3IgYW55IGhlbHAsPC9kaXY+PGRpdj5BYXJvbjwvZGl2
-PjwvZGl2PjwvZGl2Pg0K
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr">I think the problem is in the=C2=A0<a href=3D"ht=
+tp://python-numpy_1.14.5.bb" target=3D"_blank">python-numpy_1.14.5.bb</a> r=
+ecipe.</div><div dir=3D"ltr"><br></div><div>It does:=C2=A0RDEPENDS_${PN}_cl=
+ass-target_append =3D ...</div><div><br></div><div>where it seems to need t=
+o be:=C2=A0RDEPENDS_${PN}_append_class-target =3D ...</div><div><br></div><=
+div>Note the position of the word append.</div><div><br></div><div>If someo=
+ne wanted to point me in the right direction, I could try to make a qa task=
+ that would discover this sort of error if it seems feasible?</div><div><br=
+></div><div>--Aaron</div><div><br></div></div></div></div></div></div><br><=
+div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May=
+ 9, 2019 at 4:15 PM Aaron Cohen &lt;<a href=3D"mailto:aaron@assonance.org" =
+target=3D"_blank">aaron@assonance.org</a>&gt; wrote:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">pyth=
+on-numpy is being installed on my image as a dependency of one of my packag=
+es.<div><br></div><div>However, none of python-numpy&#39;s RDEPENDS are cur=
+rently being included on the image.</div><div><br></div><div>When I run bit=
+bake -e python-numpy &gt; numpy.txt, I see that for some reason, the RDEPEN=
+DS is being overridden to a nearly empty value:</div><div><br></div><div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex"># $RDEPENDS_python-numpy [5=
+ operations]<br>#=C2=A0 =C2=A0append /home/joel-cohen/code/juevos/poky/meta=
+/classes/distutils-base.bbclass:2<br>#=C2=A0 =C2=A0 =C2=A0&quot;${@[&#39;&#=
+39;, &#39;${PYTHON_PN}-core&#39;][&#39;${CLASSOVERRIDE}&#39; =3D=3D &#39;cl=
+ass-target&#39;]}&quot;<br>#=C2=A0 =C2=A0set /home/joel-cohen/code/juevos/p=
+oky/meta/recipes-devtools/python-numpy/python-numpy.inc:112<br>#=C2=A0 =C2=
+=A0 =C2=A0&quot;${PYTHON_PN}-unittest=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-difflib=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-pprint=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-pic=
+kle=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${P=
+YTHON_PN}-shell=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0${PYTHON_PN}-nose=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-doctest=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-datetime=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-distutils=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTH=
+ON_PN}-misc=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0${PYTHON_PN}-mmap=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0${PYTHON_PN}-netclient=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-numbers=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-pydoc=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-=
+pkgutil=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0${PYTHON_PN}-email=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0${PYTHON_PN}-compression=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-ctypes=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-threading &quo=
+t;<br>#=C2=A0 =C2=A0rename from RDEPENDS_${PN} data.py:117 [expandKeys]<br>=
+#=C2=A0 =C2=A0 =C2=A0&quot;${PYTHON_PN}-unittest=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-difflib=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-pprint=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTH=
+ON_PN}-pickle=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0${PYTHON_PN}-shell=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-nose=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-doctest=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-datetime=C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-=
+distutils=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0${PYTHON_PN}-misc=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0${PYTHON_PN}-mmap=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-netclient=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-numbers=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-pyd=
+oc=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PY=
+THON_PN}-pkgutil=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0${PYTHON_PN}-email=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-compression=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-ctypes=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-threadi=
+ng &quot;<br>#=C2=A0 =C2=A0override[class-native]:set /home/joel-cohen/code=
+/juevos/poky/meta/recipes-devtools/python-numpy/python-numpy.inc:114<br>#=
+=C2=A0 =C2=A0 =C2=A0&quot;&quot;<br>#=C2=A0 =C2=A0override[class-native]:re=
+name from RDEPENDS_${PN}_class-native data_smart.py:644 [renameVar]<br>#=C2=
+=A0 =C2=A0 =C2=A0&quot;&quot;<br># pre-expansion value:<br>#=C2=A0 =C2=A0&q=
+uot;=C2=A0 =C2=A0 =C2=A0${PYTHON_PN}-subprocess &quot;<br>RDEPENDS_python-n=
+umpy=3D&quot;=C2=A0 =C2=A0 =C2=A0python-subprocess &quot;</blockquote></div=
+><div><br></div><div><br></div><div>Anyone have any ideas for why this reci=
+pe doesn&#39;t seem to be behaving correctly?</div><div><br></div><div>I&#3=
+9;m using poky 2.6 at the moment.</div><div><br></div><div>Thanks for any h=
+elp,</div><div>Aaron</div></div></div>
+</blockquote></div>
 
---0000000000008e899905887a1ee2--
+--00000000000083c42f05887a9348--
