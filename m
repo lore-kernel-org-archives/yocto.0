@@ -1,82 +1,66 @@
-Return-Path: <rudolf.streif@ibeeto.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4014E00D5F; Thu,  9 May 2019 08:38:54 -0700 (PDT)
+	id AFF9AE00D6F; Thu,  9 May 2019 09:30:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=unavailable version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.195 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.222.196 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com
-	[209.85.210.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5860FE00963
-	for <yocto@yoctoproject.org>; Thu,  9 May 2019 08:38:53 -0700 (PDT)
-Received: by mail-pf1-f195.google.com with SMTP id s11so1504320pfm.12
-	for <yocto@yoctoproject.org>; Thu, 09 May 2019 08:38:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
-	h=subject:to:cc:references:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-language;
-	bh=u0TWwCiGYNx5sfNpkWU4UNBNGnEwb2ArI23hBHfHbcQ=;
-	b=CSv1nrudIau5p+8FvXihAGDjkyYWWyhjbhX5b9eYxMpnB4ovp15WQTg/0aoDvvTNDA
-	EUma1QWhC92L/gx3nFLzf0Bw0LJewF8cK9P+AyD+KulLUK0wbM3GImdoGeNUzB60z75S
-	3+IMhVO/T1KUj84xluaOdm92bgI0F/Bd24WBtQjNqsAI03EStWJpUvgHWeH4qtPb6KlU
-	tk+lMfKMtfkdo76bY2iALqELSEihF7t+zKaziARxD+/U5Y/Bw7reDfSxSIL0HxSqX32J
-	nDesKYbdyc8v48Ph0HbdDDGLh7BVb4s2zS5cuGeqd95oSVCz6gnp4mZNKmrm8QJTClG1
-	L9HQ==
+Received: from mail-qk1-f196.google.com (mail-qk1-f196.google.com
+	[209.85.222.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCD4AE00D5F
+	for <yocto@yoctoproject.org>; Thu,  9 May 2019 09:30:57 -0700 (PDT)
+Received: by mail-qk1-f196.google.com with SMTP id c15so1847872qkl.2
+	for <yocto@yoctoproject.org>; Thu, 09 May 2019 09:30:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=7LAIUCi4545sKdsyTmNFn37vcYhXdJzegywEVfhs9YA=;
+	b=d633PenupJZC7qz2qz8As9RyqU9SxZqAQN9RA7/SgG9O7xBC7JN++lPcwHOjpxOBZJ
+	VpmWs35Rhk9QE0/zp7mu8STHrjI3YirtZ7zNrsmqM7LewSg4f1vv5igv8hYWSS2sg+0U
+	rGIbF0Vj5mu8pS/VGoFHRxAg1iHboHazD3caHBqXvfAKAaYQproX/L0OIk45crp/uUDl
+	zJZM8lppETSqKc251pdZ8EAPU9qPFGMickREEveBHnJPiG3vAR1S2hM5r5A58dWCPgPf
+	Cgz0ysR6r5zvj4/h9wbj7tHzZ9SlaU8WZs5tfUMr0OE884mX9ByEEbYnjGEoeX42ef2q
+	CuIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language;
-	bh=u0TWwCiGYNx5sfNpkWU4UNBNGnEwb2ArI23hBHfHbcQ=;
-	b=KSdKokPqdW+mY9C8RstMwQk2LwJVDcVl0AmR6xz6KLuIueXeGN6O9avE+iGubYnJ3U
-	hwNX1DMKdZZEa4NT3LMnKx3zkquxbsUyQM4nNlkFuwJbUQMdL3RJ+OqXf2+m07Mbs5/w
-	0G4dw0mCIIpSBgyYst66HnBVyto8cQEhkNwS5cdlljPFYPfbZ9TBEgonclcVglLs4twk
-	rSbSDN1vkWyLXVjXwl+aT84b+N7CsvyIU/HfNzKOEJahhsYdh+D/MlYxJsfmy3Wl0nul
-	hzNJ6A5plZlTSU8M7oNUVLnSRM1wGePv/ClpPzzz/Dv/LrqN5/Bm9oV89tueAXtSbPnT
-	sYIg==
-X-Gm-Message-State: APjAAAXyf3NlfZ+bwIq594XyhD1qCzRstA325avWfPKFaMEyZaVAr/UT
-	/NKMiPR34/+1GhH/fvAUYvAIbQ==
-X-Google-Smtp-Source: APXvYqxkZOe4ZuElIy7H6W2l4ZghBfiSorpcB1xpUFu0L2MP5JF1HjKjfelZakEDdnVBhD2OtyklVg==
-X-Received: by 2002:a65:4489:: with SMTP id l9mr6254138pgq.1.1557416332487;
-	Thu, 09 May 2019 08:38:52 -0700 (PDT)
-Received: from rjs-zotac.ibeeto.com (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
-	by smtp.gmail.com with ESMTPSA id
-	d15sm8210996pgf.22.2019.05.09.08.38.51
-	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Thu, 09 May 2019 08:38:51 -0700 (PDT)
-To: Behan Webster <behanw@converseincode.com>,
-	Bas Mevissen <abuse@basmevissen.nl>
-References: <A084970538D2234B96D99D06FA9D974FC378C228@ALA-MBD.corp.ad.wrs.com>
-	<96fa4aec-9557-9d7f-bff3-82f8db56e9cd@mvista.com>
-	<A084970538D2234B96D99D06FA9D974FC378C879@ALA-MBD.corp.ad.wrs.com>
-	<0980DABF-86C8-4A9D-8687-B9C27EE2FF61@converseincode.com>
-	<A084970538D2234B96D99D06FA9D974FC378DD57@ALA-MBD.corp.ad.wrs.com>
-	<2D39B7E1-DC52-42A6-8332-50ED49F77722@converseincode.com>
-	<20190506104502.e4tvj5w4i4og4ski@jholzmayr.localdomain>
-	<c3cbc64b-f7ea-f2d3-32ae-7a94b8693713@emcodev.nl>
-	<E403FC4D-C557-4637-B3A1-D2C895621DB6@converseincode.com>
-	<713dbad763c226b6c44d691e764f7ef8@basmevissen.nl>
-	<AA5F57FC-49BF-4B9F-ABD2-ADA83C48442A@converseincode.com>
-From: Rudolf J Streif <rudolf.streif@ibeeto.com>
-Message-ID: <e0bc55f6-eb24-9391-e47d-f2072638ffd9@ibeeto.com>
-Date: Thu, 9 May 2019 08:38:50 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.5.1
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=7LAIUCi4545sKdsyTmNFn37vcYhXdJzegywEVfhs9YA=;
+	b=rFnd96fBy2LfjabST6OG2b0sk7EvhQM+y2Gx3Wqux97pe4R2v0kJ2ZhE+A95nYFYNH
+	bZs/GvXVz5BCoWDsaIQQ5uw+qYZ9ZzFCKi/tYteZ1h0rhWK93OTdrM3c9qxJ3DDRJLPl
+	3gfFTRKfVuNcGt2jvQwEux4seR4q4xNVAJVfA9rDc2xc4TYJ5xoJAYlBa9ofp3X8Way9
+	tGaEGatITcX+/q8WbX55fNE8dejOPNYmcRY8Gb4YInSAbplXs/PUVATFB6mf0hIZJThs
+	dq4ceNOEbQC1lYSaWsXGCB2eVxgdMxN1rV9h+MJaEMx/a0Dhu7XCKOpqZtIdIQQLeVs9
+	Z7tQ==
+X-Gm-Message-State: APjAAAUBONNNFCLLDI6AjZz7rTyC/O5Og4IQk8u/BjxNvkHbiUqnpNLX
+	+tUarzEFVqvXI+5xtiUX3u29Gs43VsP4IqXE8Y0=
+X-Google-Smtp-Source: APXvYqzWFr0c3VEbNAf5GEZa3SW0v559Qc040WAEg5SVI7MeuENRi3HvOmnok5E5r55fE66ctXVBpHfDpDAnq/vCYx0=
+X-Received: by 2002:ae9:ef45:: with SMTP id d66mr4258589qkg.313.1557419457070; 
+	Thu, 09 May 2019 09:30:57 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <AA5F57FC-49BF-4B9F-ABD2-ADA83C48442A@converseincode.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>,
-	yocto-advocacy@yoctoproject.org
-Subject: Re: [Yocto-Advocacy] Yocto Project Upcoming Conferences and Developer Days
+References: <20190509115933.23465-1-kexin.hao@windriver.com>
+	<CADkTA4Ocyat40N4Fcgf3d95WT27fDnPMppiFWvPuFKj5ATOw4g@mail.gmail.com>
+In-Reply-To: <CADkTA4Ocyat40N4Fcgf3d95WT27fDnPMppiFWvPuFKj5ATOw4g@mail.gmail.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Thu, 9 May 2019 18:30:45 +0200
+Message-ID: <CAGAf8LzL9W7gX4gfadTbcsrMDwE4_S3cmn629FeJWheJuniEfA@mail.gmail.com>
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH] meta-yocto-bsp: Bump to the latest stable kernel for all the BSP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -88,446 +72,167 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2019 15:38:54 -0000
-Content-Type: multipart/alternative;
-	boundary="------------46CB8CABD1269B6B0D56CBD6"
-Content-Language: en-US
+X-List-Received-Date: Thu, 09 May 2019 16:30:58 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---------------46CB8CABD1269B6B0D56CBD6
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From yesterday... Latest stable release of:
+https://github.com/jumpnow/meta-bbb
 
-Chiming in here
+My GitHub for BBB (BeagleBone Black):
+https://github.com/ZoranStojsavljevic/bbb-yocto
 
-On 5/7/19 11:18 AM, Behan Webster wrote:
->> On May 7, 2019, at 2:47 AM, Bas Mevissen <abuse@basmevissen.nl 
->> <mailto:abuse@basmevissen.nl>> wrote:
->>
->> On 2019-05-07 07:20, Behan Webster wrote:
->>
->>> > On May 6, 2019, at 8:36 AM, Bas Mevissen <bas@emcodev.nl 
->>> <mailto:bas@emcodev.nl>> wrote:
->>> > On 5/6/19 12:45 PM, Josef Holzmayr wrote:
->>> > I'd actually word it a little bit differently:
->>> > If there is only *ONE* attendee who did not properly do the 
->>> homework, it
->>> > will have a massive impact an the rest of the group. And that somebody
->>> > will show up unpreparedly is absolutely certain in my opinion.
->>> > With sufficient trainers, one can continue for most and provide 
->>> some assistance to the one falling behind.
->>
->>> Usually more than one. And this is generally very disruptive to the 
->>> class as a whole.
->>
-There are always people who are prepared to the T and others who just 
-casually stroll into the class. We all know that as we all went through 
-various stages of schooling. :) No matter what you do, there always will 
-be a glitch. I tried it all from course preparation instructions, shell 
-scripts setting up systems, USB sticks and network drives with downloads 
-and shared state cache, virtual machine images, build systems set up in 
-the cloud, you name it. If it is not somebody who is unprepared it is a 
-technical issue: lack of disk space, network connectivity, corporate 
-computers that do not allow USB sticks,... Instructors just have to deal 
-with it.
->>> >> As someone who actually got started through the YPDD beginner 
->>> track (and
->>> >> also often recommends it to new beginners), my opinion is clearly 
->>> that
->>> >> we either should have it, be it only for a handful of attendees, or
->>> >> offer a *real* replacement, with face to face training. My 
->>> experience is
->>> >> that this personal thing in the very beginning is an absolutely
->>> >> essential part of many YP/OE careers.
->>> >
->>> > I agree. That is how I started, next to a compressed Linux 
->>> Foundation Yocto training that was offered just before the event then.
->>
->>> Yes. By me and my colleagues who train for the Linux Foundation.
->>
->>> > So it might be wise to ask LF or get something organised. It would 
->>> mostly require a room and a sponsor for some small devkit.
->>
->>> We've run the beginner track for the last few years. The discussion 
->>> is precisely that the YP event is proposing to not run the beginner 
->>> track this year at all.
->>
->> But why? There appears to be a constant demand.
+Both worked out for my bash script (adopted for my needs -> sticks and
+ropes) and KAS tool!
+https://github.com/ZoranStojsavljevic/bbb-yocto/tree/master/bbb-releases/bb=
+b-warrior
+
+Kernel 5.0.13 (please, look into/upon the traces):
+https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-releases/bb=
+b-warrior/target-bbb-platform-traces.txt
+
+Thank you,
+Zoran
+_______
+
+On Thu, May 9, 2019 at 2:53 PM Bruce Ashfield <bruce.ashfield@gmail.com> wr=
+ote:
 >
-> An excellent question. I agree with you. I don’t have an answer 
-> however. Not my decision.
 >
-I certainly would advocate to have the beginner track. It's a good way 
-of getting people interested, and eventually excited, for the Yocto 
-Project. Conferences and dev days are an opportunity to do advertising 
-and to grow the community. We cannot do that just by catering to people 
-who are already using YP. We need new folks as we are already running 
-into issues where things have to be dropped because there is nobody who 
-is maintaining it.
-
-
->>> We're happy to do it again if given the space.
+>
+> On Thu, May 9, 2019 at 8:10 AM Kevin Hao <kexin.hao@windriver.com> wrote:
 >>
->> Yes, both for LF and YP it are off-the-shelf trainings that do not 
->> require much preperation.
+>> Boot test for all these boards.
+>>
 >
-> Speaking as a course maintainer for LF, keeping the YP course updated 
-> is actually a tremendous amount of work (I’m the co-maintainer for the 
-> LF YP course).
+> I do have more -stable updates coming, and you are seeing some queued 5.0=
+.x changes that I haven't sent yet (since I'm hung up on resolving a 4.19 c=
+onflict for one of the SoC branches), but yes, the changes here are good an=
+d I'll be bumping the qemu boards in the next day or so.
 >
-> However, the beginner slides tend not to need more than a few hours of 
-> updates every 6 months (which again is something I do).
+> Bruce
 >
-> Either may appear off-the-shelf, but they aren’t from my perspective. ;)
-
-I can wholeheartedly second that. I developed the original YP class of 
-the LF and taught it many times and have since developed my own class 
-material teaching classes. While the basic concept of course remains the 
-same it is the little details that change. With every new version of the 
-YP a course maintainer has to go through every single exercise and 
-example in the course material and try it out again to see if it still 
-works. And quite frankly, sometimes it is rather silly things that have 
-changed and break something.
-
-In particular for a beginner class lasting one day only, every single 
-disruption sets the class back and there is no opportunity to recover 
-from it. The day is already packed just to cover the core concepts.
-
-Cheers,
-Rudi
-
-
 >
-> Thanks,
+>>
+>> Signed-off-by: Kevin Hao <kexin.hao@windriver.com>
+>> ---
+>>  .../recipes-kernel/linux/linux-yocto_4.19.bbappend   | 20 ++++++++++---=
+-------
+>>  .../recipes-kernel/linux/linux-yocto_5.0.bbappend    | 20 ++++++++++---=
+-------
+>>  2 files changed, 20 insertions(+), 20 deletions(-)
+>>
+>> diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bbappe=
+nd b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bbappend
+>> index 6025230c7306..ec269d905c4b 100644
+>> --- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bbappend
+>> +++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bbappend
+>> @@ -8,11 +8,11 @@ KMACHINE_genericx86 ?=3D "common-pc"
+>>  KMACHINE_genericx86-64 ?=3D "common-pc-64"
+>>  KMACHINE_beaglebone-yocto ?=3D "beaglebone"
+>>
+>> -SRCREV_machine_genericx86    ?=3D "11e0e616ed095bb8012e1b4a231254c9656a=
+0193"
+>> -SRCREV_machine_genericx86-64 ?=3D "11e0e616ed095bb8012e1b4a231254c9656a=
+0193"
+>> -SRCREV_machine_edgerouter ?=3D "eebb51300a07804a020ec468b5f8c5bf720198d=
+9"
+>> -SRCREV_machine_beaglebone-yocto ?=3D "eebb51300a07804a020ec468b5f8c5bf7=
+20198d9"
+>> -SRCREV_machine_mpc8315e-rdb ?=3D "8b60f968823256f5d2889c4520d70299ca214=
+11b"
+>> +SRCREV_machine_genericx86    ?=3D "5664dc14399edcaad210bbeb6343d84561fb=
+3ea8"
+>> +SRCREV_machine_genericx86-64 ?=3D "5664dc14399edcaad210bbeb6343d84561fb=
+3ea8"
+>> +SRCREV_machine_edgerouter ?=3D "5664dc14399edcaad210bbeb6343d84561fb3ea=
+8"
+>> +SRCREV_machine_beaglebone-yocto ?=3D "5664dc14399edcaad210bbeb6343d8456=
+1fb3ea8"
+>> +SRCREV_machine_mpc8315e-rdb ?=3D "d419f4ca6ba4b097b8ad710a93b89510f5b29=
+98c"
+>>
+>>  COMPATIBLE_MACHINE_genericx86 =3D "genericx86"
+>>  COMPATIBLE_MACHINE_genericx86-64 =3D "genericx86-64"
+>> @@ -20,8 +20,8 @@ COMPATIBLE_MACHINE_edgerouter =3D "edgerouter"
+>>  COMPATIBLE_MACHINE_beaglebone-yocto =3D "beaglebone-yocto"
+>>  COMPATIBLE_MACHINE_mpc8315e-rdb =3D "mpc8315e-rdb"
+>>
+>> -LINUX_VERSION_genericx86 =3D "4.19.19"
+>> -LINUX_VERSION_genericx86-64 =3D "4.19.19"
+>> -LINUX_VERSION_edgerouter =3D "4.19.14"
+>> -LINUX_VERSION_beaglebone-yocto =3D "4.19.14"
+>> -LINUX_VERSION_mpc8315e-rdb =3D "4.19.14"
+>> +LINUX_VERSION_genericx86 =3D "4.19.34"
+>> +LINUX_VERSION_genericx86-64 =3D "4.19.34"
+>> +LINUX_VERSION_edgerouter =3D "4.19.34"
+>> +LINUX_VERSION_beaglebone-yocto =3D "4.19.34"
+>> +LINUX_VERSION_mpc8315e-rdb =3D "4.19.34"
+>> diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbappen=
+d b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbappend
+>> index 5cf6e1f0649e..d7cf1216f45d 100644
+>> --- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbappend
+>> +++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbappend
+>> @@ -8,11 +8,11 @@ KMACHINE_genericx86 ?=3D "common-pc"
+>>  KMACHINE_genericx86-64 ?=3D "common-pc-64"
+>>  KMACHINE_beaglebone-yocto ?=3D "beaglebone"
+>>
+>> -SRCREV_machine_genericx86    ?=3D "3df4aae6074e94e794e27fe7f17451d9353c=
+df3d"
+>> -SRCREV_machine_genericx86-64 ?=3D "3df4aae6074e94e794e27fe7f17451d9353c=
+df3d"
+>> -SRCREV_machine_edgerouter ?=3D "3df4aae6074e94e794e27fe7f17451d9353cdf3=
+d"
+>> -SRCREV_machine_beaglebone-yocto ?=3D "3df4aae6074e94e794e27fe7f17451d93=
+53cdf3d"
+>> -SRCREV_machine_mpc8315e-rdb ?=3D "8b62af7f252af10588276802c4c6d7c502e87=
+5be"
+>> +SRCREV_machine_genericx86    ?=3D "f990fd0ce123aa6035042efad09b2ddc3e7d=
+48f4"
+>> +SRCREV_machine_genericx86-64 ?=3D "f990fd0ce123aa6035042efad09b2ddc3e7d=
+48f4"
+>> +SRCREV_machine_edgerouter ?=3D "f990fd0ce123aa6035042efad09b2ddc3e7d48f=
+4"
+>> +SRCREV_machine_beaglebone-yocto ?=3D "f990fd0ce123aa6035042efad09b2ddc3=
+e7d48f4"
+>> +SRCREV_machine_mpc8315e-rdb ?=3D "670ce7e9db627d0c2067cfdb571ddc1f11781=
+8d8"
+>>
+>>  COMPATIBLE_MACHINE_genericx86 =3D "genericx86"
+>>  COMPATIBLE_MACHINE_genericx86-64 =3D "genericx86-64"
+>> @@ -20,8 +20,8 @@ COMPATIBLE_MACHINE_edgerouter =3D "edgerouter"
+>>  COMPATIBLE_MACHINE_beaglebone-yocto =3D "beaglebone-yocto"
+>>  COMPATIBLE_MACHINE_mpc8315e-rdb =3D "mpc8315e-rdb"
+>>
+>> -LINUX_VERSION_genericx86 =3D "5.0.3"
+>> -LINUX_VERSION_genericx86-64 =3D "5.0.3"
+>> -LINUX_VERSION_edgerouter =3D "5.0.3"
+>> -LINUX_VERSION_beaglebone-yocto =3D "5.0.3"
+>> -LINUX_VERSION_mpc8315e-rdb =3D "5.0.3"
+>> +LINUX_VERSION_genericx86 =3D "5.0.13"
+>> +LINUX_VERSION_genericx86-64 =3D "5.0.13"
+>> +LINUX_VERSION_edgerouter =3D "5.0.13"
+>> +LINUX_VERSION_beaglebone-yocto =3D "5.0.13"
+>> +LINUX_VERSION_mpc8315e-rdb =3D "5.0.13"
+>> --
+>> 2.14.4
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 >
-> Behan
 >
--- 
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3396 x700
+>
+> --
+> - Thou shalt not follow the NULL pointer, for chaos and madness await the=
+e at its end
+> - "Use the force Harry" - Gandalf, Star Trek II
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-
---------------46CB8CABD1269B6B0D56CBD6
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Chiming in here<br>
-    </p>
-    <div class="moz-cite-prefix">On 5/7/19 11:18 AM, Behan Webster
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:AA5F57FC-49BF-4B9F-ABD2-ADA83C48442A@converseincode.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <div>
-        <blockquote type="cite" class="">
-          <div class="">On May 7, 2019, at 2:47 AM, Bas Mevissen &lt;<a
-              href="mailto:abuse@basmevissen.nl" class=""
-              moz-do-not-send="true">abuse@basmevissen.nl</a>&gt; wrote:</div>
-          <br class="Apple-interchange-newline">
-          <div class=""><span style="caret-color: rgb(0, 0, 0);
-              font-family: Helvetica; font-size: 12px; font-style:
-              normal; font-variant-caps: normal; font-weight: normal;
-              letter-spacing: normal; text-align: start; text-indent:
-              0px; text-transform: none; white-space: normal;
-              word-spacing: 0px; -webkit-text-stroke-width: 0px;
-              text-decoration: none; float: none; display: inline
-              !important;" class="">On 2019-05-07 07:20, Behan Webster
-              wrote:</span><br style="caret-color: rgb(0, 0, 0);
-              font-family: Helvetica; font-size: 12px; font-style:
-              normal; font-variant-caps: normal; font-weight: normal;
-              letter-spacing: normal; text-align: start; text-indent:
-              0px; text-transform: none; white-space: normal;
-              word-spacing: 0px; -webkit-text-stroke-width: 0px;
-              text-decoration: none;" class="">
-            <br style="caret-color: rgb(0, 0, 0); font-family:
-              Helvetica; font-size: 12px; font-style: normal;
-              font-variant-caps: normal; font-weight: normal;
-              letter-spacing: normal; text-align: start; text-indent:
-              0px; text-transform: none; white-space: normal;
-              word-spacing: 0px; -webkit-text-stroke-width: 0px;
-              text-decoration: none;" class="">
-            <blockquote type="cite" style="font-family: Helvetica;
-              font-size: 12px; font-style: normal; font-variant-caps:
-              normal; font-weight: normal; letter-spacing: normal;
-              orphans: auto; text-align: start; text-indent: 0px;
-              text-transform: none; white-space: normal; widows: auto;
-              word-spacing: 0px; -webkit-text-size-adjust: auto;
-              -webkit-text-stroke-width: 0px; text-decoration: none;"
-              class="">&gt; On May 6, 2019, at 8:36 AM, Bas Mevissen
-              &lt;<a href="mailto:bas@emcodev.nl" class=""
-                moz-do-not-send="true">bas@emcodev.nl</a>&gt; wrote:<br
-                class="">
-              &gt; On 5/6/19 12:45 PM, Josef Holzmayr wrote:<br class="">
-              &gt; I'd actually word it a little bit differently:<br
-                class="">
-              &gt; If there is only *ONE* attendee who did not properly
-              do the homework, it<br class="">
-              &gt; will have a massive impact an the rest of the group.
-              And that somebody<br class="">
-              &gt; will show up unpreparedly is absolutely certain in my
-              opinion.<br class="">
-              &gt; With sufficient trainers, one can continue for most
-              and provide some assistance to the one falling behind.<br
-                class="">
-            </blockquote>
-            <br style="caret-color: rgb(0, 0, 0); font-family:
-              Helvetica; font-size: 12px; font-style: normal;
-              font-variant-caps: normal; font-weight: normal;
-              letter-spacing: normal; text-align: start; text-indent:
-              0px; text-transform: none; white-space: normal;
-              word-spacing: 0px; -webkit-text-stroke-width: 0px;
-              text-decoration: none;" class="">
-            <blockquote type="cite" style="font-family: Helvetica;
-              font-size: 12px; font-style: normal; font-variant-caps:
-              normal; font-weight: normal; letter-spacing: normal;
-              orphans: auto; text-align: start; text-indent: 0px;
-              text-transform: none; white-space: normal; widows: auto;
-              word-spacing: 0px; -webkit-text-size-adjust: auto;
-              -webkit-text-stroke-width: 0px; text-decoration: none;"
-              class="">Usually more than one. And this is generally very
-              disruptive to the class as a whole.<br class="">
-            </blockquote>
-            <br style="caret-color: rgb(0, 0, 0); font-family:
-              Helvetica; font-size: 12px; font-style: normal;
-              font-variant-caps: normal; font-weight: normal;
-              letter-spacing: normal; text-align: start; text-indent:
-              0px; text-transform: none; white-space: normal;
-              word-spacing: 0px; -webkit-text-stroke-width: 0px;
-              text-decoration: none;" class="">
-          </div>
-        </blockquote>
-      </div>
-    </blockquote>
-    There are always people who are prepared to the T and others who
-    just casually stroll into the class. We all know that as we all went
-    through various stages of schooling. :) No matter what you do, there
-    always will be a glitch. I tried it all from course preparation
-    instructions, shell scripts setting up systems, USB sticks and
-    network drives with downloads and shared state cache, virtual
-    machine images, build systems set up in the cloud, you name it. If
-    it is not somebody who is unprepared it is a technical issue: lack
-    of disk space, network connectivity, corporate computers that do not
-    allow USB sticks,... Instructors just have to deal with it.<br>
-    <blockquote type="cite"
-      cite="mid:AA5F57FC-49BF-4B9F-ABD2-ADA83C48442A@converseincode.com">
-      <div>
-        <blockquote type="cite" class="">
-          <div class="">
-            <blockquote type="cite" style="font-family: Helvetica;
-              font-size: 12px; font-style: normal; font-variant-caps:
-              normal; font-weight: normal; letter-spacing: normal;
-              orphans: auto; text-align: start; text-indent: 0px;
-              text-transform: none; white-space: normal; widows: auto;
-              word-spacing: 0px; -webkit-text-size-adjust: auto;
-              -webkit-text-stroke-width: 0px; text-decoration: none;"
-              class="">&gt;&gt; As someone who actually got started
-              through the YPDD beginner track (and<br class="">
-              &gt;&gt; also often recommends it to new beginners), my
-              opinion is clearly that<br class="">
-              &gt;&gt; we either should have it, be it only for a
-              handful of attendees, or<br class="">
-              &gt;&gt; offer a *real* replacement, with face to face
-              training. My experience is<br class="">
-              &gt;&gt; that this personal thing in the very beginning is
-              an absolutely<br class="">
-              &gt;&gt; essential part of many YP/OE careers.<br class="">
-              &gt;<br class="">
-              &gt; I agree. That is how I started, next to a compressed
-              Linux Foundation Yocto training that was offered just
-              before the event then.<br class="">
-            </blockquote>
-            <br style="caret-color: rgb(0, 0, 0); font-family:
-              Helvetica; font-size: 12px; font-style: normal;
-              font-variant-caps: normal; font-weight: normal;
-              letter-spacing: normal; text-align: start; text-indent:
-              0px; text-transform: none; white-space: normal;
-              word-spacing: 0px; -webkit-text-stroke-width: 0px;
-              text-decoration: none;" class="">
-            <blockquote type="cite" style="font-family: Helvetica;
-              font-size: 12px; font-style: normal; font-variant-caps:
-              normal; font-weight: normal; letter-spacing: normal;
-              orphans: auto; text-align: start; text-indent: 0px;
-              text-transform: none; white-space: normal; widows: auto;
-              word-spacing: 0px; -webkit-text-size-adjust: auto;
-              -webkit-text-stroke-width: 0px; text-decoration: none;"
-              class="">Yes. By me and my colleagues who train for the
-              Linux Foundation.<br class="">
-            </blockquote>
-            <br style="caret-color: rgb(0, 0, 0); font-family:
-              Helvetica; font-size: 12px; font-style: normal;
-              font-variant-caps: normal; font-weight: normal;
-              letter-spacing: normal; text-align: start; text-indent:
-              0px; text-transform: none; white-space: normal;
-              word-spacing: 0px; -webkit-text-stroke-width: 0px;
-              text-decoration: none;" class="">
-            <blockquote type="cite" style="font-family: Helvetica;
-              font-size: 12px; font-style: normal; font-variant-caps:
-              normal; font-weight: normal; letter-spacing: normal;
-              orphans: auto; text-align: start; text-indent: 0px;
-              text-transform: none; white-space: normal; widows: auto;
-              word-spacing: 0px; -webkit-text-size-adjust: auto;
-              -webkit-text-stroke-width: 0px; text-decoration: none;"
-              class="">&gt; So it might be wise to ask LF or get
-              something organised. It would mostly require a room and a
-              sponsor for some small devkit.<br class="">
-            </blockquote>
-            <br style="caret-color: rgb(0, 0, 0); font-family:
-              Helvetica; font-size: 12px; font-style: normal;
-              font-variant-caps: normal; font-weight: normal;
-              letter-spacing: normal; text-align: start; text-indent:
-              0px; text-transform: none; white-space: normal;
-              word-spacing: 0px; -webkit-text-stroke-width: 0px;
-              text-decoration: none;" class="">
-            <blockquote type="cite" style="font-family: Helvetica;
-              font-size: 12px; font-style: normal; font-variant-caps:
-              normal; font-weight: normal; letter-spacing: normal;
-              orphans: auto; text-align: start; text-indent: 0px;
-              text-transform: none; white-space: normal; widows: auto;
-              word-spacing: 0px; -webkit-text-size-adjust: auto;
-              -webkit-text-stroke-width: 0px; text-decoration: none;"
-              class="">We've run the beginner track for the last few
-              years. The discussion is precisely that the YP event is
-              proposing to not run the beginner track this year at all.<br
-                class="">
-            </blockquote>
-            <br style="caret-color: rgb(0, 0, 0); font-family:
-              Helvetica; font-size: 12px; font-style: normal;
-              font-variant-caps: normal; font-weight: normal;
-              letter-spacing: normal; text-align: start; text-indent:
-              0px; text-transform: none; white-space: normal;
-              word-spacing: 0px; -webkit-text-stroke-width: 0px;
-              text-decoration: none;" class="">
-            <span style="caret-color: rgb(0, 0, 0); font-family:
-              Helvetica; font-size: 12px; font-style: normal;
-              font-variant-caps: normal; font-weight: normal;
-              letter-spacing: normal; text-align: start; text-indent:
-              0px; text-transform: none; white-space: normal;
-              word-spacing: 0px; -webkit-text-stroke-width: 0px;
-              text-decoration: none; float: none; display: inline
-              !important;" class="">But why? There appears to be a
-              constant demand.</span><br style="caret-color: rgb(0, 0,
-              0); font-family: Helvetica; font-size: 12px; font-style:
-              normal; font-variant-caps: normal; font-weight: normal;
-              letter-spacing: normal; text-align: start; text-indent:
-              0px; text-transform: none; white-space: normal;
-              word-spacing: 0px; -webkit-text-stroke-width: 0px;
-              text-decoration: none;" class="">
-          </div>
-        </blockquote>
-        <div><br class="">
-        </div>
-        <div>An excellent question. I agree with you. I don’t have an
-          answer however. Not my decision.</div>
-        <br class="">
-      </div>
-    </blockquote>
-    <p>I certainly would advocate to have the beginner track. It's a
-      good way of getting people interested, and eventually excited, for
-      the Yocto Project. Conferences and dev days are an opportunity to
-      do advertising and to grow the community. We cannot do that just
-      by catering to people who are already using YP. We need new folks
-      as we are already running into issues where things have to be
-      dropped because there is nobody who is maintaining it.<br>
-    </p>
-    <p><br>
-    </p>
-    <blockquote type="cite"
-      cite="mid:AA5F57FC-49BF-4B9F-ABD2-ADA83C48442A@converseincode.com">
-      <div>
-        <blockquote type="cite" class="">
-          <div class="">
-            <blockquote type="cite" style="font-family: Helvetica;
-              font-size: 12px; font-style: normal; font-variant-caps:
-              normal; font-weight: normal; letter-spacing: normal;
-              orphans: auto; text-align: start; text-indent: 0px;
-              text-transform: none; white-space: normal; widows: auto;
-              word-spacing: 0px; -webkit-text-size-adjust: auto;
-              -webkit-text-stroke-width: 0px; text-decoration: none;"
-              class="">We're happy to do it again if given the space.<br
-                class="">
-            </blockquote>
-            <br style="caret-color: rgb(0, 0, 0); font-family:
-              Helvetica; font-size: 12px; font-style: normal;
-              font-variant-caps: normal; font-weight: normal;
-              letter-spacing: normal; text-align: start; text-indent:
-              0px; text-transform: none; white-space: normal;
-              word-spacing: 0px; -webkit-text-stroke-width: 0px;
-              text-decoration: none;" class="">
-            <span style="caret-color: rgb(0, 0, 0); font-family:
-              Helvetica; font-size: 12px; font-style: normal;
-              font-variant-caps: normal; font-weight: normal;
-              letter-spacing: normal; text-align: start; text-indent:
-              0px; text-transform: none; white-space: normal;
-              word-spacing: 0px; -webkit-text-stroke-width: 0px;
-              text-decoration: none; float: none; display: inline
-              !important;" class="">Yes, both for LF and YP it are
-              off-the-shelf trainings that do not require much
-              preperation.</span><br style="caret-color: rgb(0, 0, 0);
-              font-family: Helvetica; font-size: 12px; font-style:
-              normal; font-variant-caps: normal; font-weight: normal;
-              letter-spacing: normal; text-align: start; text-indent:
-              0px; text-transform: none; white-space: normal;
-              word-spacing: 0px; -webkit-text-stroke-width: 0px;
-              text-decoration: none;" class="">
-          </div>
-        </blockquote>
-      </div>
-      <br class="">
-      <div class="">Speaking as a course maintainer for LF, keeping the
-        YP course updated is actually a tremendous amount of work (I’m
-        the co-maintainer for the LF YP course).</div>
-      <div class=""><br class="">
-      </div>
-      <div class="">However, the beginner slides tend not to need more
-        than a few hours of updates every 6 months (which again is
-        something I do).</div>
-      <div class=""><br class="">
-      </div>
-      <div class="">Either may appear off-the-shelf, but they aren’t
-        from my perspective. ;)</div>
-    </blockquote>
-    <p>I can wholeheartedly second that. I developed the original YP
-      class of the LF and taught it many times and have since developed
-      my own class material teaching classes. While the basic concept of
-      course remains the same it is the little details that change. With
-      every new version of the YP a course maintainer has to go through
-      every single exercise and example in the course material and try
-      it out again to see if it still works. And quite frankly,
-      sometimes it is rather silly things that have changed and break
-      something.</p>
-    <p>In particular for a beginner class lasting one day only, every
-      single disruption sets the class back and there is no opportunity
-      to recover from it. The day is already packed just to cover the
-      core concepts.</p>
-    <p>Cheers,<br>
-      Rudi<br>
-    </p>
-    <p><br>
-    </p>
-    <blockquote type="cite"
-      cite="mid:AA5F57FC-49BF-4B9F-ABD2-ADA83C48442A@converseincode.com">
-      <div class=""><br class="">
-      </div>
-      <div class="">Thanks,</div>
-      <div class=""><br class="">
-      </div>
-      <div class="">Behan</div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-    </blockquote>
-    <pre class="moz-signature" cols="72">-- 
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3396 x700</pre>
-  </body>
-</html>
-
---------------46CB8CABD1269B6B0D56CBD6--
