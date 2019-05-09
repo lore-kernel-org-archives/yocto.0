@@ -1,69 +1,34 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <Kexin.Hao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7D216E00D32; Thu,  9 May 2019 02:57:50 -0700 (PDT)
+	id B3CF5E00CC9; Thu,  9 May 2019 05:09:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_IMAGE_ONLY_32,
-	HTML_MESSAGE, 
-	RCVD_IN_DNSWL_NONE,T_REMOTE_IMAGE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	https://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (alex.kanavin[at]gmail.com)
-	* 0.0 HTML_IMAGE_ONLY_32 BODY: HTML: images with 2800-3200 bytes of
-	words *  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.41 listed in list.dnswl.org]
-	*  0.0 T_REMOTE_IMAGE Message contains an external image
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com
-	[209.85.210.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABCC1E00CC9
-	for <yocto@yoctoproject.org>; Thu,  9 May 2019 02:57:32 -0700 (PDT)
-Received: by mail-ot1-f41.google.com with SMTP id w6so1723647otl.7
-	for <yocto@yoctoproject.org>; Thu, 09 May 2019 02:57:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=8p9CUPWdomsiahFFRNc3TTC+OKZG7ggjEnnNZtBpPYE=;
-	b=eP5K0SWOy6fQE1DyBh+anL5MQVipMe98LLIppyyfcUAteOGB0mdyTncQ7f4bKjK29b
-	Okxjgr6GQNezg0bepBYFsdWbIUGnyntHFCWLWhPBClcjZZ3pdHudWfBUIjR9HrGGbx26
-	d7BJB4bPWDEzx5lnJq4LsaQwo8ftX4mXhpY38hrSu8qReB5Wvk5PSrKdySWg+4YZL0Yp
-	9VuzwRFdKJw8yskYY9EIrsrio4uu76WIdqMyxtb8zHkJ1HFPltBXZQUT+sf96RPrISpG
-	uJyXHuGp8FwCSelxv5GPe/r4Xlzwh9r1qODFzdGftmM7o4pwq3wWyhfLo94P2qMtCWLb
-	1i7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=8p9CUPWdomsiahFFRNc3TTC+OKZG7ggjEnnNZtBpPYE=;
-	b=N6VV88dp/c9T2nYW9BE0nHRu5prRFx/prVeuMvGtQcOHKUdyTiEaWLH+u9KAOm8PGP
-	GkrBpFYR9JA/mu6bqBp1uKJEv0j3X2clryAaIQtg5G9d550C/LPJSGiJrg68c+l00WUv
-	uAQyUj8cbWR88AZQx6vHNghf0OmHelmTBoxHoV0fET9vGJIcdeNwTL8L9bmHgrsYbEPO
-	uIIilpnrFGtgTI0cm+JuUKkMBwlwC8XqvDqMau0i83yWcaG8Cr1enlBWzVqFGy+gfuxH
-	nqeUsOzLBz+xIp/J1hxfpP57tzRaTkylQJFo9x41VGgWNRhmdciFh8ih+HpaMNj11aYd
-	RD7Q==
-X-Gm-Message-State: APjAAAXnNsnGNlD7l5jEt3r+jt4WhjSQxStg1V3sGut1oOE3Jb4dgeld
-	7IdF5S9Op/MCdASGfzyERCpCq6RRTx8DFA41OD8HOw==
-X-Google-Smtp-Source: APXvYqwYmTlTe24UAz0GCUmyB8qj1K7ds3QVtr6GlNSah6C/6imKd/2CxBAyC7VgfnG92Dp8aOd+2sQ/l3drkjLWt7A=
-X-Received: by 2002:a05:6830:1647:: with SMTP id
-	h7mr1899818otr.360.1557395852197; 
-	Thu, 09 May 2019 02:57:32 -0700 (PDT)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05D7AE00963
+	for <yocto@yoctoproject.org>; Thu,  9 May 2019 05:09:39 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x49C9JWw009467
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 9 May 2019 05:09:29 -0700
+Received: from pek-lpggp6.wrs.com (128.224.153.40) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.439.0;
+	Thu, 9 May 2019 05:09:08 -0700
+From: Kevin Hao <kexin.hao@windriver.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Date: Thu, 9 May 2019 19:59:33 +0800
+Message-ID: <20190509115933.23465-1-kexin.hao@windriver.com>
+X-Mailer: git-send-email 2.14.4
 MIME-Version: 1.0
-References: <AM0PR10MB2658E98F7B370BD2FAEE187EC3330@AM0PR10MB2658.EURPRD10.PROD.OUTLOOK.COM>
-In-Reply-To: <AM0PR10MB2658E98F7B370BD2FAEE187EC3330@AM0PR10MB2658.EURPRD10.PROD.OUTLOOK.COM>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Thu, 9 May 2019 11:57:20 +0200
-Message-ID: <CANNYZj8xt+8-f5iC4akR-BpYZFTa4F-ehZHGQYrh3OApK8Wvjw@mail.gmail.com>
-To: Fabian Knapp <knapp@ambibox.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Multiple MACHINEs and DISTROs: When to use own build dir, SSTATE_DIR, DL_DIR ?
+Subject: [PATCH] meta-yocto-bsp: Bump to the latest stable kernel for all the BSP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,132 +40,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2019 09:57:50 -0000
-Content-Type: multipart/alternative; boundary="0000000000008b84530588717a3a"
+X-List-Received-Date: Thu, 09 May 2019 12:09:40 -0000
+Content-Type: text/plain
 
---0000000000008b84530588717a3a
-Content-Type: text/plain; charset="UTF-8"
+Boot test for all these boards.
 
-SSTATE_DIR and DL_DIR can (and should) be shared between all builds.
+Signed-off-by: Kevin Hao <kexin.hao@windriver.com>
+---
+ .../recipes-kernel/linux/linux-yocto_4.19.bbappend   | 20 ++++++++++----------
+ .../recipes-kernel/linux/linux-yocto_5.0.bbappend    | 20 ++++++++++----------
+ 2 files changed, 20 insertions(+), 20 deletions(-)
 
-Each MACHINE/DISTRO combination works best with it's own build_dir.
+diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bbappend
+index 6025230c7306..ec269d905c4b 100644
+--- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bbappend
++++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bbappend
+@@ -8,11 +8,11 @@ KMACHINE_genericx86 ?= "common-pc"
+ KMACHINE_genericx86-64 ?= "common-pc-64"
+ KMACHINE_beaglebone-yocto ?= "beaglebone"
+ 
+-SRCREV_machine_genericx86    ?= "11e0e616ed095bb8012e1b4a231254c9656a0193"
+-SRCREV_machine_genericx86-64 ?= "11e0e616ed095bb8012e1b4a231254c9656a0193"
+-SRCREV_machine_edgerouter ?= "eebb51300a07804a020ec468b5f8c5bf720198d9"
+-SRCREV_machine_beaglebone-yocto ?= "eebb51300a07804a020ec468b5f8c5bf720198d9"
+-SRCREV_machine_mpc8315e-rdb ?= "8b60f968823256f5d2889c4520d70299ca21411b"
++SRCREV_machine_genericx86    ?= "5664dc14399edcaad210bbeb6343d84561fb3ea8"
++SRCREV_machine_genericx86-64 ?= "5664dc14399edcaad210bbeb6343d84561fb3ea8"
++SRCREV_machine_edgerouter ?= "5664dc14399edcaad210bbeb6343d84561fb3ea8"
++SRCREV_machine_beaglebone-yocto ?= "5664dc14399edcaad210bbeb6343d84561fb3ea8"
++SRCREV_machine_mpc8315e-rdb ?= "d419f4ca6ba4b097b8ad710a93b89510f5b2998c"
+ 
+ COMPATIBLE_MACHINE_genericx86 = "genericx86"
+ COMPATIBLE_MACHINE_genericx86-64 = "genericx86-64"
+@@ -20,8 +20,8 @@ COMPATIBLE_MACHINE_edgerouter = "edgerouter"
+ COMPATIBLE_MACHINE_beaglebone-yocto = "beaglebone-yocto"
+ COMPATIBLE_MACHINE_mpc8315e-rdb = "mpc8315e-rdb"
+ 
+-LINUX_VERSION_genericx86 = "4.19.19"
+-LINUX_VERSION_genericx86-64 = "4.19.19"
+-LINUX_VERSION_edgerouter = "4.19.14"
+-LINUX_VERSION_beaglebone-yocto = "4.19.14"
+-LINUX_VERSION_mpc8315e-rdb = "4.19.14"
++LINUX_VERSION_genericx86 = "4.19.34"
++LINUX_VERSION_genericx86-64 = "4.19.34"
++LINUX_VERSION_edgerouter = "4.19.34"
++LINUX_VERSION_beaglebone-yocto = "4.19.34"
++LINUX_VERSION_mpc8315e-rdb = "4.19.34"
+diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbappend
+index 5cf6e1f0649e..d7cf1216f45d 100644
+--- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbappend
++++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbappend
+@@ -8,11 +8,11 @@ KMACHINE_genericx86 ?= "common-pc"
+ KMACHINE_genericx86-64 ?= "common-pc-64"
+ KMACHINE_beaglebone-yocto ?= "beaglebone"
+ 
+-SRCREV_machine_genericx86    ?= "3df4aae6074e94e794e27fe7f17451d9353cdf3d"
+-SRCREV_machine_genericx86-64 ?= "3df4aae6074e94e794e27fe7f17451d9353cdf3d"
+-SRCREV_machine_edgerouter ?= "3df4aae6074e94e794e27fe7f17451d9353cdf3d"
+-SRCREV_machine_beaglebone-yocto ?= "3df4aae6074e94e794e27fe7f17451d9353cdf3d"
+-SRCREV_machine_mpc8315e-rdb ?= "8b62af7f252af10588276802c4c6d7c502e875be"
++SRCREV_machine_genericx86    ?= "f990fd0ce123aa6035042efad09b2ddc3e7d48f4"
++SRCREV_machine_genericx86-64 ?= "f990fd0ce123aa6035042efad09b2ddc3e7d48f4"
++SRCREV_machine_edgerouter ?= "f990fd0ce123aa6035042efad09b2ddc3e7d48f4"
++SRCREV_machine_beaglebone-yocto ?= "f990fd0ce123aa6035042efad09b2ddc3e7d48f4"
++SRCREV_machine_mpc8315e-rdb ?= "670ce7e9db627d0c2067cfdb571ddc1f117818d8"
+ 
+ COMPATIBLE_MACHINE_genericx86 = "genericx86"
+ COMPATIBLE_MACHINE_genericx86-64 = "genericx86-64"
+@@ -20,8 +20,8 @@ COMPATIBLE_MACHINE_edgerouter = "edgerouter"
+ COMPATIBLE_MACHINE_beaglebone-yocto = "beaglebone-yocto"
+ COMPATIBLE_MACHINE_mpc8315e-rdb = "mpc8315e-rdb"
+ 
+-LINUX_VERSION_genericx86 = "5.0.3"
+-LINUX_VERSION_genericx86-64 = "5.0.3"
+-LINUX_VERSION_edgerouter = "5.0.3"
+-LINUX_VERSION_beaglebone-yocto = "5.0.3"
+-LINUX_VERSION_mpc8315e-rdb = "5.0.3"
++LINUX_VERSION_genericx86 = "5.0.13"
++LINUX_VERSION_genericx86-64 = "5.0.13"
++LINUX_VERSION_edgerouter = "5.0.13"
++LINUX_VERSION_beaglebone-yocto = "5.0.13"
++LINUX_VERSION_mpc8315e-rdb = "5.0.13"
+-- 
+2.14.4
 
-Alex
 
-On Thu, 9 May 2019 at 11:47, Fabian Knapp <knapp@ambibox.de> wrote:
-
->
-> Hello,
->
-> we have multiple MACHINEs and DISTROs and Im wondering for which
-> combinations I have to setup a dedicated build dir, SSTATE_DIR and DL_DIR.
->
-> Information in the form of:
->
-> Each (change of) MACHINE needs its dedicated SSTATE_DIR and build dir but
-> can share DL_DIR.
->
-> would be very helpful for me.
->
-> Thank you in advance.
->
-> Fabian
->
-> [image: Visit us at EES Europe] <http://www.thesmartere.de>
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---0000000000008b84530588717a3a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>SSTATE_DIR and DL_DIR can (and should) be shared betw=
-een all builds.</div><div><br></div><div>Each MACHINE/DISTRO combination wo=
-rks best with it&#39;s own build_dir.</div><div><br></div><div>Alex<br></di=
-v></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
-">On Thu, 9 May 2019 at 11:47, Fabian Knapp &lt;<a href=3D"mailto:knapp@amb=
-ibox.de">knapp@ambibox.de</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
-4,204);padding-left:1ex">
-
-
-
-
-<div dir=3D"ltr">
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Hello,<br>
-<br>
-we have multiple MACHINEs and DISTROs and Im wondering for which combinatio=
-ns I have to setup a dedicated build dir, SSTATE_DIR and DL_DIR.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Information in the form of:<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Each (change of) MACHINE needs its dedicated SSTATE_DIR and build dir but c=
-an share DL_DIR.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-would be very helpful for me.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Thank you in advance.</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt=
-;color:rgb(0,0,0)">
-Fabian<br>
-</div>
-<div id=3D"gmail-m_-8225400485179223689Signature">
-<div id=3D"gmail-m_-8225400485179223689divtagdefaultwrapper" dir=3D"ltr" st=
-yle=3D"font-size:12pt;color:rgb(0,0,0);font-family:Calibri,Arial,Helvetica,=
-sans-serif">
-</div>
-</div>
-<br>
-<a href=3D"http://www.thesmartere.de" target=3D"_blank"><img src=3D"https:/=
-/ambibox.de/downloads/TSEE2019_Banner_AmbiboxGmbH_de_1.jpg" alt=3D"Visit us=
- at EES Europe" width=3D"500"></a>
-</div>
-
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
-
---0000000000008b84530588717a3a--
