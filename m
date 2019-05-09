@@ -1,69 +1,57 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <aaron@assonance.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EA18DE00D6F; Thu,  9 May 2019 12:41:05 -0700 (PDT)
+	id AE8A7E00D6F; Thu,  9 May 2019 13:16:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.193 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.210.52 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f193.google.com (mail-qt1-f193.google.com
-	[209.85.160.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 011C9E00D46
-	for <yocto@yoctoproject.org>; Thu,  9 May 2019 12:41:04 -0700 (PDT)
-Received: by mail-qt1-f193.google.com with SMTP id t1so3893542qtc.12
-	for <yocto@yoctoproject.org>; Thu, 09 May 2019 12:41:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=DCRDu+o8avErJasjuaEtA+rNkrlAa4Mx3+Q5BzBR+pk=;
-	b=AD0czAntipxIRAlh6H0NgKzgwiuj0mrAVkD3pePgP0jxsprIiMIm3W4WQHpx00mlOT
-	Fzu2TTUJRLBDUwHpPaf5UVE3uafqFdSbra2ry6qEwVMSj3cCRdG58IYArzh1iDUfJv6o
-	Cd/xo7ZvTXe3kpr2FaIgkuaiVGMvh4IRAPFWPQLlOW20ZQ4iuxb1LAuxnsQ1sECcBqoJ
-	lHW2IaLfHKmum50VN86F2l58LXGidRYhmbwZ/CgwK6EG0Hq2fECbzjcsLP76n6PvmY0K
-	a40zkUWgXqeXwHobdh9zy+yd8PIXduuyZshuZdkKrNJswRLHPp6PWdbt7dGJD8KMPL+L
-	ZAhA==
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com
+	[209.85.210.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B04B9E00AD5
+	for <yocto@yoctoproject.org>; Thu,  9 May 2019 13:16:04 -0700 (PDT)
+Received: by mail-ot1-f52.google.com with SMTP id c3so3532976otr.3
+	for <yocto@yoctoproject.org>; Thu, 09 May 2019 13:16:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=assonance-org.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Ic7oAv3oT+cwd/yUPrRaknLRY5IRCeT/QuzZUblBBTI=;
+	b=M23S6dt587mBvt02w4757h0K1/YSb0gfXPKlfaYF3KUpMtJy9O7HzarhrwfNgf8c5J
+	Of7gvRc+emXwh5mSMc7b60zvIxkdwPHWKdX5t8RYh7tQCfoHLNe6QVwP8/+1NBtd+DW+
+	8ANFigoolYKE32ww8aPwSw6q+FX+X2ef3BEo4sKwfgtW/9y8/6HACzc5yM/LTvN3dyhZ
+	Pj/zXMsfV9CofAQi2OYZSB38QpubWlXueKyRa9c0ucat7tvjcJsWe11uJ26zvFUNfL9f
+	WlKjh1xVvsjQCEfz2IP3iJdxvWvA3U/vzhcS1nROBytTXi6nfWLAGsLwMqrOAdfHQBXT
+	HW+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=DCRDu+o8avErJasjuaEtA+rNkrlAa4Mx3+Q5BzBR+pk=;
-	b=Al0L5y5xmWfnYd6iCrU+Zhyfk1+qlan6y8q07LWrJuouRKnN+PpQt/DbXE4O1hpYB7
-	3/qahcWwe/nyIqDd8Ii+ZiJes20zS4czJQVmLfj3Jc63rBRnKfLXjqPAiVzzi2nt2jGX
-	UBuPWweGP3+cVFaCQppJnf4JYAeG/1lS9KVrNu3Qb9C3Ypjv4EjpbscYogkp2EfJg/Pr
-	oIfI+8Dx08H6qhxshoG3O5eJHEdTfBCdYeisZ6B8Z6JQrgu8IAnaE0vttNhZkJySpFNX
-	hG+2zWZckjegsSFhw2TK6qCRoRNqFLfSTYyH5Q+FqIYssSNhfiK+mn0HCMDFDmnVyxL8
-	Todg==
-X-Gm-Message-State: APjAAAUzce+nlcGx6SMf03I4Zhh1bkWSKiNj8gUxw3ylAKDTv0dH3c3+
-	OemUHFDXv1fbLJFpqT1qBiBBnxhikSn41aFOUgo=
-X-Google-Smtp-Source: APXvYqybmNV3WGrq+DYnVJ2Pv48VFwzPOA1bDhzOmsVZcqz0En+EZnayjTvhXZPngTJOokifmlHKH50F9YiQxUrMZ3E=
-X-Received: by 2002:a05:6214:24a:: with SMTP id
-	k10mr5265495qvt.121.1557430864237; 
-	Thu, 09 May 2019 12:41:04 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Ic7oAv3oT+cwd/yUPrRaknLRY5IRCeT/QuzZUblBBTI=;
+	b=LCb+4+n2vLzEy7bRAv9KLMaP5iefA3dGoszNDm7KjBVCDDe0xUrUIRvbgaPF76u8vd
+	4QmYumQv0GvLn2BP3WspmrBgZXmND1ZKH3/5gXdfAb6rGTmAkye2fAzNBnWXCYgTRejH
+	xHXLtI38oYJzF+y8PkO7kzuGu7V1thu2hd2CasPM6hnO3K7u9qN30QQKseYskLDksiFN
+	G8+bI70aiTlCYvX1/a1RhUrpYMNwaqaQbTUYS42q92gQ7iHsfIv12JV9PogGcM57a/mL
+	5SU2Ka0HURIvB+rv+nDNDnXXYEe4E71Q4G05im9oT3VaHcYZt+D6BMdR3OROyb+EsScz
+	kL8A==
+X-Gm-Message-State: APjAAAWP4KuoemPR5VLuzaAHpASZO7qFc+eWLCH452V+UBD+TsKBo0RL
+	hmu9RL9wOx1/iWiUsAUWRHrSc2VakfhG4VeovTRDXUAx4gA=
+X-Google-Smtp-Source: APXvYqw6zwdCbC7ccJNT8mgO2Q9onakq76sGEtx8XfKOv6LvWarrtWkA4cCRt6yEea8iALPd34jYQozcDwdW6aYzcOs=
+X-Received: by 2002:a9d:eb7:: with SMTP id 52mr3863654otj.185.1557432963590;
+	Thu, 09 May 2019 13:16:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190509115933.23465-1-kexin.hao@windriver.com>
-	<CADkTA4Ocyat40N4Fcgf3d95WT27fDnPMppiFWvPuFKj5ATOw4g@mail.gmail.com>
-	<CAGAf8LzL9W7gX4gfadTbcsrMDwE4_S3cmn629FeJWheJuniEfA@mail.gmail.com>
-	<CADkTA4MnWTA6omqQ5Hu9zED9zWf4i_HMj24ydCgaYgN7VZv80Q@mail.gmail.com>
-In-Reply-To: <CADkTA4MnWTA6omqQ5Hu9zED9zWf4i_HMj24ydCgaYgN7VZv80Q@mail.gmail.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Thu, 9 May 2019 21:40:52 +0200
-Message-ID: <CAGAf8LwX8_e4pVbzD72eACyAdS1bHz5y-b78KWrKZ1N4pBe5mA@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [PATCH] meta-yocto-bsp: Bump to the latest stable kernel for all the BSP
+From: Aaron Cohen <aaron@assonance.org>
+Date: Thu, 9 May 2019 16:15:53 -0400
+Message-ID: <CAFSZm+j8cBQ6SxD=VsuUWc1+JCvGe6asJpCgjhe=Bp+r5XPLPw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: python-numpy RDEPENDS not honored?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,202 +63,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 May 2019 19:41:06 -0000
+X-List-Received-Date: Thu, 09 May 2019 20:16:05 -0000
+Content-Type: multipart/alternative; boundary="0000000000008e899905887a1ee2"
+
+--0000000000008e899905887a1ee2
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-There is always around, lurking, the replacement crew... Please, do
-not forget about that!
+python-numpy is being installed on my image as a dependency of one of my
+packages.
 
-And the replacement crew is always ahead... ;-)
+However, none of python-numpy's RDEPENDS are currently being included on
+the image.
 
-Zoran
-_______
+When I run bitbake -e python-numpy > numpy.txt, I see that for some reason,
+the RDEPENDS is being overridden to a nearly empty value:
 
-On Thu, May 9, 2019 at 9:32 PM Bruce Ashfield <bruce.ashfield@gmail.com> wr=
-ote:
->
->
->
-> On Thu, May 9, 2019 at 12:30 PM Zoran Stojsavljevic <zoran.stojsavljevic@=
-gmail.com> wrote:
->>
->> From yesterday... Latest stable release of:
->> https://github.com/jumpnow/meta-bbb
->>
->> My GitHub for BBB (BeagleBone Black):
->> https://github.com/ZoranStojsavljevic/bbb-yocto
->>
->> Both worked out for my bash script (adopted for my needs -> sticks and
->> ropes) and KAS tool!
->> https://github.com/ZoranStojsavljevic/bbb-yocto/tree/master/bbb-releases=
-/bbb-warrior
->>
->> Kernel 5.0.13 (please, look into/upon the traces):
->> https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-releases=
-/bbb-warrior/target-bbb-platform-traces.txt
->>
->
-> While interesting .. it really isn't relevant in this context. But thanks=
- for sharing anyway!
->
-> Cheers,
->
-> Bruce
->
->
->>
->> Thank you,
->> Zoran
->> _______
->>
->> On Thu, May 9, 2019 at 2:53 PM Bruce Ashfield <bruce.ashfield@gmail.com>=
- wrote:
->> >
->> >
->> >
->> > On Thu, May 9, 2019 at 8:10 AM Kevin Hao <kexin.hao@windriver.com> wro=
-te:
->> >>
->> >> Boot test for all these boards.
->> >>
->> >
->> > I do have more -stable updates coming, and you are seeing some queued =
-5.0.x changes that I haven't sent yet (since I'm hung up on resolving a 4.1=
-9 conflict for one of the SoC branches), but yes, the changes here are good=
- and I'll be bumping the qemu boards in the next day or so.
->> >
->> > Bruce
->> >
->> >
->> >>
->> >> Signed-off-by: Kevin Hao <kexin.hao@windriver.com>
->> >> ---
->> >>  .../recipes-kernel/linux/linux-yocto_4.19.bbappend   | 20 ++++++++++=
-----------
->> >>  .../recipes-kernel/linux/linux-yocto_5.0.bbappend    | 20 ++++++++++=
-----------
->> >>  2 files changed, 20 insertions(+), 20 deletions(-)
->> >>
->> >> diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bba=
-ppend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bbappend
->> >> index 6025230c7306..ec269d905c4b 100644
->> >> --- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bbappend
->> >> +++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bbappend
->> >> @@ -8,11 +8,11 @@ KMACHINE_genericx86 ?=3D "common-pc"
->> >>  KMACHINE_genericx86-64 ?=3D "common-pc-64"
->> >>  KMACHINE_beaglebone-yocto ?=3D "beaglebone"
->> >>
->> >> -SRCREV_machine_genericx86    ?=3D "11e0e616ed095bb8012e1b4a231254c96=
-56a0193"
->> >> -SRCREV_machine_genericx86-64 ?=3D "11e0e616ed095bb8012e1b4a231254c96=
-56a0193"
->> >> -SRCREV_machine_edgerouter ?=3D "eebb51300a07804a020ec468b5f8c5bf7201=
-98d9"
->> >> -SRCREV_machine_beaglebone-yocto ?=3D "eebb51300a07804a020ec468b5f8c5=
-bf720198d9"
->> >> -SRCREV_machine_mpc8315e-rdb ?=3D "8b60f968823256f5d2889c4520d70299ca=
-21411b"
->> >> +SRCREV_machine_genericx86    ?=3D "5664dc14399edcaad210bbeb6343d8456=
-1fb3ea8"
->> >> +SRCREV_machine_genericx86-64 ?=3D "5664dc14399edcaad210bbeb6343d8456=
-1fb3ea8"
->> >> +SRCREV_machine_edgerouter ?=3D "5664dc14399edcaad210bbeb6343d84561fb=
-3ea8"
->> >> +SRCREV_machine_beaglebone-yocto ?=3D "5664dc14399edcaad210bbeb6343d8=
-4561fb3ea8"
->> >> +SRCREV_machine_mpc8315e-rdb ?=3D "d419f4ca6ba4b097b8ad710a93b89510f5=
-b2998c"
->> >>
->> >>  COMPATIBLE_MACHINE_genericx86 =3D "genericx86"
->> >>  COMPATIBLE_MACHINE_genericx86-64 =3D "genericx86-64"
->> >> @@ -20,8 +20,8 @@ COMPATIBLE_MACHINE_edgerouter =3D "edgerouter"
->> >>  COMPATIBLE_MACHINE_beaglebone-yocto =3D "beaglebone-yocto"
->> >>  COMPATIBLE_MACHINE_mpc8315e-rdb =3D "mpc8315e-rdb"
->> >>
->> >> -LINUX_VERSION_genericx86 =3D "4.19.19"
->> >> -LINUX_VERSION_genericx86-64 =3D "4.19.19"
->> >> -LINUX_VERSION_edgerouter =3D "4.19.14"
->> >> -LINUX_VERSION_beaglebone-yocto =3D "4.19.14"
->> >> -LINUX_VERSION_mpc8315e-rdb =3D "4.19.14"
->> >> +LINUX_VERSION_genericx86 =3D "4.19.34"
->> >> +LINUX_VERSION_genericx86-64 =3D "4.19.34"
->> >> +LINUX_VERSION_edgerouter =3D "4.19.34"
->> >> +LINUX_VERSION_beaglebone-yocto =3D "4.19.34"
->> >> +LINUX_VERSION_mpc8315e-rdb =3D "4.19.34"
->> >> diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbap=
-pend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbappend
->> >> index 5cf6e1f0649e..d7cf1216f45d 100644
->> >> --- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbappend
->> >> +++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.0.bbappend
->> >> @@ -8,11 +8,11 @@ KMACHINE_genericx86 ?=3D "common-pc"
->> >>  KMACHINE_genericx86-64 ?=3D "common-pc-64"
->> >>  KMACHINE_beaglebone-yocto ?=3D "beaglebone"
->> >>
->> >> -SRCREV_machine_genericx86    ?=3D "3df4aae6074e94e794e27fe7f17451d93=
-53cdf3d"
->> >> -SRCREV_machine_genericx86-64 ?=3D "3df4aae6074e94e794e27fe7f17451d93=
-53cdf3d"
->> >> -SRCREV_machine_edgerouter ?=3D "3df4aae6074e94e794e27fe7f17451d9353c=
-df3d"
->> >> -SRCREV_machine_beaglebone-yocto ?=3D "3df4aae6074e94e794e27fe7f17451=
-d9353cdf3d"
->> >> -SRCREV_machine_mpc8315e-rdb ?=3D "8b62af7f252af10588276802c4c6d7c502=
-e875be"
->> >> +SRCREV_machine_genericx86    ?=3D "f990fd0ce123aa6035042efad09b2ddc3=
-e7d48f4"
->> >> +SRCREV_machine_genericx86-64 ?=3D "f990fd0ce123aa6035042efad09b2ddc3=
-e7d48f4"
->> >> +SRCREV_machine_edgerouter ?=3D "f990fd0ce123aa6035042efad09b2ddc3e7d=
-48f4"
->> >> +SRCREV_machine_beaglebone-yocto ?=3D "f990fd0ce123aa6035042efad09b2d=
-dc3e7d48f4"
->> >> +SRCREV_machine_mpc8315e-rdb ?=3D "670ce7e9db627d0c2067cfdb571ddc1f11=
-7818d8"
->> >>
->> >>  COMPATIBLE_MACHINE_genericx86 =3D "genericx86"
->> >>  COMPATIBLE_MACHINE_genericx86-64 =3D "genericx86-64"
->> >> @@ -20,8 +20,8 @@ COMPATIBLE_MACHINE_edgerouter =3D "edgerouter"
->> >>  COMPATIBLE_MACHINE_beaglebone-yocto =3D "beaglebone-yocto"
->> >>  COMPATIBLE_MACHINE_mpc8315e-rdb =3D "mpc8315e-rdb"
->> >>
->> >> -LINUX_VERSION_genericx86 =3D "5.0.3"
->> >> -LINUX_VERSION_genericx86-64 =3D "5.0.3"
->> >> -LINUX_VERSION_edgerouter =3D "5.0.3"
->> >> -LINUX_VERSION_beaglebone-yocto =3D "5.0.3"
->> >> -LINUX_VERSION_mpc8315e-rdb =3D "5.0.3"
->> >> +LINUX_VERSION_genericx86 =3D "5.0.13"
->> >> +LINUX_VERSION_genericx86-64 =3D "5.0.13"
->> >> +LINUX_VERSION_edgerouter =3D "5.0.13"
->> >> +LINUX_VERSION_beaglebone-yocto =3D "5.0.13"
->> >> +LINUX_VERSION_mpc8315e-rdb =3D "5.0.13"
->> >> --
->> >> 2.14.4
->> >>
->> >> --
->> >> _______________________________________________
->> >> yocto mailing list
->> >> yocto@yoctoproject.org
->> >> https://lists.yoctoproject.org/listinfo/yocto
->> >
->> >
->> >
->> > --
->> > - Thou shalt not follow the NULL pointer, for chaos and madness await =
-thee at its end
->> > - "Use the force Harry" - Gandalf, Star Trek II
->> >
->> > --
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
->
->
->
-> --
-> - Thou shalt not follow the NULL pointer, for chaos and madness await the=
-e at its end
-> - "Use the force Harry" - Gandalf, Star Trek II
->
+# $RDEPENDS_python-numpy [5 operations]
+> #   append
+> /home/joel-cohen/code/juevos/poky/meta/classes/distutils-base.bbclass:2
+> #     "${@['', '${PYTHON_PN}-core']['${CLASSOVERRIDE}' == 'class-target']}"
+> #   set
+> /home/joel-cohen/code/juevos/poky/meta/recipes-devtools/python-numpy/python-numpy.inc:112
+> #     "${PYTHON_PN}-unittest                   ${PYTHON_PN}-difflib
+>            ${PYTHON_PN}-pprint                   ${PYTHON_PN}-pickle
+>            ${PYTHON_PN}-shell                   ${PYTHON_PN}-nose
+>          ${PYTHON_PN}-doctest                   ${PYTHON_PN}-datetime
+>              ${PYTHON_PN}-distutils                   ${PYTHON_PN}-misc
+>                ${PYTHON_PN}-mmap                   ${PYTHON_PN}-netclient
+>                  ${PYTHON_PN}-numbers                   ${PYTHON_PN}-pydoc
+>                  ${PYTHON_PN}-pkgutil                   ${PYTHON_PN}-email
+>                  ${PYTHON_PN}-compression
+>  ${PYTHON_PN}-ctypes                   ${PYTHON_PN}-threading "
+> #   rename from RDEPENDS_${PN} data.py:117 [expandKeys]
+> #     "${PYTHON_PN}-unittest                   ${PYTHON_PN}-difflib
+>            ${PYTHON_PN}-pprint                   ${PYTHON_PN}-pickle
+>            ${PYTHON_PN}-shell                   ${PYTHON_PN}-nose
+>          ${PYTHON_PN}-doctest                   ${PYTHON_PN}-datetime
+>              ${PYTHON_PN}-distutils                   ${PYTHON_PN}-misc
+>                ${PYTHON_PN}-mmap                   ${PYTHON_PN}-netclient
+>                  ${PYTHON_PN}-numbers                   ${PYTHON_PN}-pydoc
+>                  ${PYTHON_PN}-pkgutil                   ${PYTHON_PN}-email
+>                  ${PYTHON_PN}-compression
+>  ${PYTHON_PN}-ctypes                   ${PYTHON_PN}-threading "
+> #   override[class-native]:set
+> /home/joel-cohen/code/juevos/poky/meta/recipes-devtools/python-numpy/python-numpy.inc:114
+> #     ""
+> #   override[class-native]:rename from RDEPENDS_${PN}_class-native
+> data_smart.py:644 [renameVar]
+> #     ""
+> # pre-expansion value:
+> #   "     ${PYTHON_PN}-subprocess "
+> RDEPENDS_python-numpy="     python-subprocess "
 
+
+
+Anyone have any ideas for why this recipe doesn't seem to be behaving
+correctly?
+
+I'm using poky 2.6 at the moment.
+
+Thanks for any help,
+Aaron
+
+--0000000000008e899905887a1ee2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: base64
+
+PGRpdiBkaXI9Imx0ciI+PGRpdiBkaXI9Imx0ciI+cHl0aG9uLW51bXB5IGlzIGJlaW5nIGluc3Rh
+bGxlZCBvbiBteSBpbWFnZSBhcyBhIGRlcGVuZGVuY3kgb2Ygb25lIG9mIG15IHBhY2thZ2VzLjxk
+aXY+PGJyPjwvZGl2PjxkaXY+SG93ZXZlciwgbm9uZSBvZiBweXRob24tbnVtcHkmIzM5O3MgUkRF
+UEVORFMgYXJlIGN1cnJlbnRseSBiZWluZyBpbmNsdWRlZCBvbiB0aGUgaW1hZ2UuPC9kaXY+PGRp
+dj48YnI+PC9kaXY+PGRpdj5XaGVuIEkgcnVuIGJpdGJha2UgLWUgcHl0aG9uLW51bXB5ICZndDsg
+bnVtcHkudHh0LCBJIHNlZSB0aGF0IGZvciBzb21lIHJlYXNvbiwgdGhlIFJERVBFTkRTIGlzIGJl
+aW5nIG92ZXJyaWRkZW4gdG8gYSBuZWFybHkgZW1wdHkgdmFsdWU6PC9kaXY+PGRpdj48YnI+PC9k
+aXY+PGRpdj48YmxvY2txdW90ZSBjbGFzcz0iZ21haWxfcXVvdGUiIHN0eWxlPSJtYXJnaW46MHB4
+IDBweCAwcHggMC44ZXg7Ym9yZGVyLWxlZnQ6MXB4IHNvbGlkIHJnYigyMDQsMjA0LDIwNCk7cGFk
+ZGluZy1sZWZ0OjFleCI+IyAkUkRFUEVORFNfcHl0aG9uLW51bXB5IFs1IG9wZXJhdGlvbnNdPGJy
+PiPCoCDCoGFwcGVuZCAvaG9tZS9qb2VsLWNvaGVuL2NvZGUvanVldm9zL3Bva3kvbWV0YS9jbGFz
+c2VzL2Rpc3R1dGlscy1iYXNlLmJiY2xhc3M6Mjxicj4jwqAgwqAgwqAmcXVvdDske0BbJiMzOTsm
+IzM5OywgJiMzOTske1BZVEhPTl9QTn0tY29yZSYjMzk7XVsmIzM5OyR7Q0xBU1NPVkVSUklERX0m
+IzM5OyA9PSAmIzM5O2NsYXNzLXRhcmdldCYjMzk7XX0mcXVvdDs8YnI+I8KgIMKgc2V0IC9ob21l
+L2pvZWwtY29oZW4vY29kZS9qdWV2b3MvcG9reS9tZXRhL3JlY2lwZXMtZGV2dG9vbHMvcHl0aG9u
+LW51bXB5L3B5dGhvbi1udW1weS5pbmM6MTEyPGJyPiPCoCDCoCDCoCZxdW90OyR7UFlUSE9OX1BO
+fS11bml0dGVzdMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59LWRpZmZs
+aWLCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1wcHJpbnTCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1waWNrbGXCoCDCoCDCoCDCoCDCoCDC
+oCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1zaGVsbMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgJHtQWVRIT05fUE59LW5vc2XCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9O
+X1BOfS1kb2N0ZXN0wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAke1BZVEhPTl9QTn0tZGF0
+ZXRpbWXCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1kaXN0dXRpbHPC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1taXNjwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAke1BZVEhPTl9QTn0tbW1hcMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgJHtQWVRIT05fUE59LW5ldGNsaWVudMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+JHtQWVRIT05fUE59LW51bWJlcnPCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9O
+X1BOfS1weWRvY8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59LXBrZ3V0
+aWzCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1lbWFpbMKgIMKgIMKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59LWNvbXByZXNzaW9uwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAke1BZVEhPTl9QTn0tY3R5cGVzwqAgwqAgwqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAke1BZVEhPTl9QTn0tdGhyZWFkaW5nICZxdW90Ozxicj4jwqAgwqByZW5hbWUgZnJv
+bSBSREVQRU5EU18ke1BOfSBkYXRhLnB5OjExNyBbZXhwYW5kS2V5c108YnI+I8KgIMKgIMKgJnF1
+b3Q7JHtQWVRIT05fUE59LXVuaXR0ZXN0wqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAke1BZ
+VEhPTl9QTn0tZGlmZmxpYsKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59
+LXBwcmludMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59LXBpY2tsZcKg
+IMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59LXNoZWxswqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAke1BZVEhPTl9QTn0tbm9zZcKgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgJHtQWVRIT05fUE59LWRvY3Rlc3TCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7
+UFlUSE9OX1BOfS1kYXRldGltZcKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05f
+UE59LWRpc3R1dGlsc8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59LW1p
+c2PCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1tbWFwwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAgwqAgwqAke1BZVEhPTl9QTn0tbmV0Y2xpZW50wqAgwqAgwqAgwqAgwqAg
+wqAgwqAgwqAgwqAgwqAke1BZVEhPTl9QTn0tbnVtYmVyc8KgIMKgIMKgIMKgIMKgIMKgIMKgIMKg
+IMKgIMKgJHtQWVRIT05fUE59LXB5ZG9jwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAke1BZ
+VEhPTl9QTn0tcGtndXRpbMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgIMKgJHtQWVRIT05fUE59
+LWVtYWlswqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAgwqAke1BZVEhPTl9QTn0tY29tcHJlc3Np
+b27CoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS1jdHlwZXPCoCDCoCDC
+oCDCoCDCoCDCoCDCoCDCoCDCoCDCoCR7UFlUSE9OX1BOfS10aHJlYWRpbmcgJnF1b3Q7PGJyPiPC
+oCDCoG92ZXJyaWRlW2NsYXNzLW5hdGl2ZV06c2V0IC9ob21lL2pvZWwtY29oZW4vY29kZS9qdWV2
+b3MvcG9reS9tZXRhL3JlY2lwZXMtZGV2dG9vbHMvcHl0aG9uLW51bXB5L3B5dGhvbi1udW1weS5p
+bmM6MTE0PGJyPiPCoCDCoCDCoCZxdW90OyZxdW90Ozxicj4jwqAgwqBvdmVycmlkZVtjbGFzcy1u
+YXRpdmVdOnJlbmFtZSBmcm9tIFJERVBFTkRTXyR7UE59X2NsYXNzLW5hdGl2ZSBkYXRhX3NtYXJ0
+LnB5OjY0NCBbcmVuYW1lVmFyXTxicj4jwqAgwqAgwqAmcXVvdDsmcXVvdDs8YnI+IyBwcmUtZXhw
+YW5zaW9uIHZhbHVlOjxicj4jwqAgwqAmcXVvdDvCoCDCoCDCoCR7UFlUSE9OX1BOfS1zdWJwcm9j
+ZXNzICZxdW90Ozxicj5SREVQRU5EU19weXRob24tbnVtcHk9JnF1b3Q7wqAgwqAgwqBweXRob24t
+c3VicHJvY2VzcyAmcXVvdDs8L2Jsb2NrcXVvdGU+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj48
+YnI+PC9kaXY+PGRpdj5BbnlvbmUgaGF2ZSBhbnkgaWRlYXMgZm9yIHdoeSB0aGlzIHJlY2lwZSBk
+b2VzbiYjMzk7dCBzZWVtIHRvIGJlIGJlaGF2aW5nIGNvcnJlY3RseT88L2Rpdj48ZGl2Pjxicj48
+L2Rpdj48ZGl2PkkmIzM5O20gdXNpbmcgcG9reSAyLjYgYXQgdGhlIG1vbWVudC48L2Rpdj48ZGl2
+Pjxicj48L2Rpdj48ZGl2PlRoYW5rcyBmb3IgYW55IGhlbHAsPC9kaXY+PGRpdj5BYXJvbjwvZGl2
+PjwvZGl2PjwvZGl2Pg0K
+
+--0000000000008e899905887a1ee2--
