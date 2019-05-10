@@ -1,68 +1,40 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <andreea.volosincu@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CE9DFE00D4F; Thu,  9 May 2019 20:10:00 -0700 (PDT)
+	id E2A1BE00D4F; Thu,  9 May 2019 21:59:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.195 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com
-	[209.85.210.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BF72E00D46
-	for <yocto@yoctoproject.org>; Thu,  9 May 2019 20:10:00 -0700 (PDT)
-Received: by mail-pf1-f195.google.com with SMTP id y11so2373922pfm.13
-	for <yocto@yoctoproject.org>; Thu, 09 May 2019 20:10:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=Faeeop9fgsjg3TleAqLGsrlpXX636xZaxxhSEoj7eQU=;
-	b=oA2UZ8apQFX9bAXzYyhJ54d+D+fRRHRq6uup/74ykfMjfHiM8nRpYNVIlQqP+Ir6OZ
-	QkYdpXm6E1GfBwlWwtHvpqlE0TY3BO8+mRmEzZLaW/t4L/LaO9MT86VVrMwCgObY7H98
-	m8TPso8in/kHWQX4Jtd+kYRQkLcLwnQoYEM6eCvqO23P3EgMkkQQKK6qW4BAPVpisQ68
-	cdxiDoBYYNURocwZBPzg41BJ+SuPhnJ5AlVET0ejnWseSd6rEV9vu+YT2ZZAtoMRTEYV
-	mIGV/3CcK4PrzaPQ44p+AoF1XCC6cfMYta7ujcKB4L5LSeqOP1v42VRHTWKENqHnDkkB
-	eNOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-	:references;
-	bh=Faeeop9fgsjg3TleAqLGsrlpXX636xZaxxhSEoj7eQU=;
-	b=mWvasLWyh6TxYh0C6MAghl9wnt0mH3InJ4BH7lz4qeD4gYS4GpBTyPeRbxUolPlQcG
-	6c95+DJShq/MI1vLJsU9L8nNVqtVQTGnH6SZ2c7dVfuwc4NdjaDPbTTUTTNVzfxTBvAS
-	yRaM2kWXFDZDuhitNpYl8eyaPkyVg1LGGrz1SO6h8nBT01Gw/IB1OnLIz5hmKaPWT/vR
-	InwStldmuCR40MK84F/b3X7FoeqJA8byWa2N5890WzwZpljyoCtiWOPMuAyjHOySfaZd
-	9OCwpNfHddn/1T81gGI557UM2onNEeCQmpF/fy8azrVq1MHyrAYJmDStDWrknPxnm2CV
-	5DZw==
-X-Gm-Message-State: APjAAAUxqJtNozA4xyPr865VAm13LZModG2E56pwuWY02+sAeXDbzndi
-	eYTvoLcJbktJZ5C16dGcWFCrfLrP
-X-Google-Smtp-Source: APXvYqxuduUNRtbV2PMUOb3pVDYYfHa6SHwTpavN5z6A/PhJ+oCwo1DLA8wggtI6PaUb56O6kmxHxg==
-X-Received: by 2002:aa7:820c:: with SMTP id k12mr10565923pfi.177.1557457799706;
-	Thu, 09 May 2019 20:09:59 -0700 (PDT)
-Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
-	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	z66sm5180456pfz.83.2019.05.09.20.09.59 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 09 May 2019 20:09:59 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu,  9 May 2019 20:09:57 -0700
-Message-Id: <20190510030957.26040-2-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190510030957.26040-1-akuster808@gmail.com>
-References: <20190510030957.26040-1-akuster808@gmail.com>
-Subject: [meta-security][PATCH 2/2] smack: kernel fragment update
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 507FAE00CB9
+	for <yocto@yoctoproject.org>; Thu,  9 May 2019 21:59:00 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x4A4wxp3007690
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 9 May 2019 21:58:59 -0700 (PDT)
+Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.163]) by
+	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.03.0439.000;
+	Thu, 9 May 2019 21:58:59 -0700
+From: "Volosincu, Andreea S" <andreea.volosincu@windriver.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Thread-Topic: =?Windows-1252?Q?Join_Us_=96_May_13th,
+	_2019_=96_Live_Coding_with_Yocto_Pr?= =?Windows-1252?Q?oject?=
+Thread-Index: AdUG7PlFmFaXJASuRQmKt7BKDtkbhA==
+Date: Fri, 10 May 2019 04:58:59 +0000
+Message-ID: <A084970538D2234B96D99D06FA9D974FC3799AF2@ALA-MBD.corp.ad.wrs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [147.11.117.68]
+MIME-Version: 1.0
+Subject: =?UTF-8?B?Sm9pbiBVcyDigJMgTWF5IDEzdGgsIDIwMTkg4oCTIExpdmUgQ29kaW5nIHdpdGggWW9jdG8gUHJvamVjdA==?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,32 +46,138 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 May 2019 03:10:00 -0000
+X-List-Received-Date: Fri, 10 May 2019 04:59:01 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_A084970538D2234B96D99D06FA9D974FC3799AF2ALAMBDcorpadwrs_"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-kernel/linux/linux-yocto-5.0/smack.cfg | 11 +++++------
- 1 file changed, 5 insertions(+), 6 deletions(-)
+--_000_A084970538D2234B96D99D06FA9D974FC3799AF2ALAMBDcorpadwrs_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/recipes-kernel/linux/linux-yocto-5.0/smack.cfg b/recipes-kernel/linux/linux-yocto-5.0/smack.cfg
-index 62f465a..0d5fc64 100644
---- a/recipes-kernel/linux/linux-yocto-5.0/smack.cfg
-+++ b/recipes-kernel/linux/linux-yocto-5.0/smack.cfg
-@@ -1,8 +1,7 @@
--CONFIG_IP_NF_SECURITY=m
--CONFIG_IP6_NF_SECURITY=m
--CONFIG_EXT2_FS_SECURITY=y
--CONFIG_EXT3_FS_SECURITY=y
--CONFIG_EXT4_FS_SECURITY=y
--CONFIG_SECURITY=y
-+CONFIG_NETLABEL=y
-+CONFIG_SECURITY_NETWORK=y
-+# CONFIG_SECURITY_NETWORK_XFRM is not set
- CONFIG_SECURITY_SMACK=y
-+CONFIG_SECURITY_SMACK_BRINGUP=y
-+CONFIG_SECURITY_SMACK_APPEND_SIGNALS=y
- CONFIG_TMPFS_XATTR=y
--- 
-2.17.1
+Hello Everybody,
 
+The next live coding session is approaching quickly.
 
+When: May 13th, 2019, 5:00 PM CET
+Where: Yocto Project Twitch channel - https://www.twitch.tv/yocto_project
+What: Yocto Project developer, Josef Holzmayr, will show you how to create =
+a simple layer, derive a customized image and go through a devtool example
+
+Live Coding with Yocto Project is a live streaming series for Linux develop=
+ers who want to learn how to build Linux distros quickly and easily using t=
+he Yocto Project tools. The show is hosted by Yocto Project developers. We =
+talk, explore devtools and write code along the way.
+
+Add it to your calendar =96 https://calendar.google.com/calendar/ical/d7umm=
+3pdhorsnnjbe1cvbgfhlk%40group.calendar.google.com/public/basic.ics
+
+See you soon!
+Yocto Project Advocacy Team
+
+--_000_A084970538D2234B96D99D06FA9D974FC3799AF2ALAMBDcorpadwrs_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:8.0pt;
+	margin-left:0in;
+	line-height:106%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+Hello Everybody,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+<o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+The next live coding session is approaching quickly.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+<o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+When: May 13th, 2019, 5:00 PM CET<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+Where: Yocto Project Twitch channel - https://www.twitch.tv/yocto_project<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+What: Yocto Project developer, Josef Holzmayr, will show you how to create =
+a simple layer, derive a customized image and go through a devtool example<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+<o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+Live Coding with Yocto Project is a live streaming series for Linux develop=
+ers who want to learn how to build Linux distros quickly and easily using t=
+he Yocto Project tools. The show is hosted by
+ Yocto Project developers. We talk, explore devtools and write code along t=
+he way.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+<o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+Add it to your calendar =96&nbsp;https://calendar.google.com/calendar/ical/=
+d7umm3pdhorsnnjbe1cvbgfhlk%40group.calendar.google.com/public/basic.ics<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+<o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+See you soon!<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Courier New&quot;">=
+Yocto Project Advocacy Team</span><o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_A084970538D2234B96D99D06FA9D974FC3799AF2ALAMBDcorpadwrs_--
