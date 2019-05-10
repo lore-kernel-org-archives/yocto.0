@@ -1,61 +1,67 @@
-Return-Path: <mhalstead@linuxfoundation.org>
+Return-Path: <madhukanthk@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EBCA4E00D53; Fri, 10 May 2019 16:21:12 -0700 (PDT)
+	id E9A97E00D53; Fri, 10 May 2019 16:53:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (madhukanthk[at]yahoo.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.42 listed in list.dnswl.org]
+	*      [74.6.135.125 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com
-	[209.85.210.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78655E00D4C
-	for <yocto@yoctoproject.org>; Fri, 10 May 2019 16:21:12 -0700 (PDT)
-Received: by mail-ot1-f42.google.com with SMTP id v17so6995310otp.13
-	for <yocto@yoctoproject.org>; Fri, 10 May 2019 16:21:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=tbi0PMNepoT1H6n0y/CBxYcGNgzxoKLApPMoWkID8jo=;
-	b=Cs+Xa1gPcwT7rRfiFPb2bKJL/6ZtFfQ6m3f0H1JmQhqZ8P/y/jJ4uCDw4DAXokPAD9
-	sb5z3cLSFRD+sfHeIUOZUzPn3QvE4svwe4lvpBmven1OfGImezZ+oz20+obw6b8pTeUi
-	Ajg/3Ce9EXlmvYQZEq+dl0Fu3ts2y7UCLvD1k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=tbi0PMNepoT1H6n0y/CBxYcGNgzxoKLApPMoWkID8jo=;
-	b=WWPJO599hM6fZ3sGu9QwvgTjGpYnJ3AuuNfHmfytbOoL3V6dCEo5mqMRIytz7RHw8b
-	WqQ33/2ZnqwLTxPnUdTwYHGXAkH562VPcVTWT9XMd6W5drO+f4XgHfm9eO8Mc3Km2IUC
-	ksPBqHPI6ObovJJYLsu1kQp1uJrlhHUx26XsswKZP4vI2xoTuWOew0l1+ftPW9wyMqiF
-	zo520n795a3UAgUcbqpBhg0nsM3I6GLKO4QaywQpVFNr5w1Sno50Umbhr5XRnp+0pjUX
-	6uSXmmIJR5rdi+ZwsRINTm7EKCUg5u4hKsd045BvM5BCHqIRxszH/Sz6ypnBt39PvV8h
-	EmYA==
-X-Gm-Message-State: APjAAAVsIdn4RFx7ySemDuD7IV23kWeISU44IpJjk3ocNbdh5VcdNS6n
-	mBBJy2Epk/u/nTeXBLv6t21ItWXEoSsvOvCY0aB91OkQL8w=
-X-Google-Smtp-Source: APXvYqy8vwiQVBlFjgOxRoOrNjFJKdoTJ1xRV25RyS3LgJWug54hKtr76PmOJU+3lJDvNagi9zCw4IZiHJFTGNSzzME=
-X-Received: by 2002:a9d:62c7:: with SMTP id z7mr4688446otk.12.1557530471291;
-	Fri, 10 May 2019 16:21:11 -0700 (PDT)
+Received: from sonic310-15.consmr.mail.bf2.yahoo.com
+	(sonic310-15.consmr.mail.bf2.yahoo.com [74.6.135.125])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AA45E00A7D
+	for <yocto@yoctoproject.org>; Fri, 10 May 2019 16:53:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1557532427; bh=6vqhMaBMeIJnXP2VIaexi2fKbvZ1w2MUE9ZRD1HhQWU=;
+	h=Date:From:Reply-To:To:Subject:References:From:Subject;
+	b=QofwEwJykRaOVoi+B9HXnzQ0+hddRhqOPrmqMaR0o4p1WcE5gSXbXpNgFbWZiaooe0fJNkl8G1XU2nLwpsookIKo3fPbcG0f4Uecj/AEfiG45bvWl53pjPgAchlaqFSh8nMmfLd82E2dVCFGuLpl6nMFdGbaO/j9VOVYPf8J1na1Sy4Rjam19iycYsQiG2ZNPGr0mbwDAxQ/IGBA98dftcepWisQMMkg1ZeA+fpCYepQJ65wJ8dsjClW7V2enjKcvDEXu+hy0odCVWbIhEcAE5ZRLZX02P2nDVrl4pDx0uib+S3eqk91HgZUoTePGPmwQAYkA1NQGx5Zv1irPmFW8Q==
+X-YMail-OSG: elVcuNQVM1maF7k61nhKNFBENRovYzTZ8ERROpv3mASPIznfiHffCd9d8k_Vuch
+	sqnK4i2ojslQ6z07BYsyo5Ji_FrvWBv7L_ypaVWkCzN4zIWmabzdSKeR5Jb4HnIZIgm219SS5NLz
+	XexiTr343nnuHcZ7SoTkOLAwXER_YHEssOlo7MXoO2gx8VOJL8SOhfM4aX7WrAVEGoyQ39FEWRgG
+	DEYWVCD3b2pOu_r2Ek0nHiMpeeGV.w3Qx1AXWR4CpXQDfjenqyMM6EhClzxlaIGEvrim8DjyRjD9
+	0iB.bDA6x2NNfHzq5B1pexfcAd4DnDEOlhvvNBJIWUHxdWoCMXUL2hP3Qp5MV1BcguQhq5sHfIGP
+	qpqFjJ4mQXXBI8.6ONNU.ZXppnP_WvsX5C19.N3G7WrOwXpPyma_opBSqal70Qs0hMcf3RL7VAbK
+	NuWShCN0DeR96Me3tsDlzkdWJHBBO9LGX0htw_Rf0tSlKPxc3ZSZg.BEinuWu5KrFoxRGsUEGFGc
+	IEGsC9mHW.D1rZUPZQ_rZyB.UHymPHNk6fsMeGyz9_gvPq8atrgfY_h_tDk9j8kP8M.Xb6hmmXr9
+	JKvi1DNx9b7xsi1IR8dIa935z_1GZgMRWjhu9Slkv7QX9Ku4JLe1UqIIhatQk10bIuEKtfPxJUq7
+	zsDnwL5PeWfne1V.7k0jso_zmGr9qJvUs85tV6JMYi7sgBE3YeXVJ1_pLTa41e6hHKWLS2WHf_LT
+	8JiaLaFKMNhbyQmMIJLmQQFXhersbW_OSV5EPdqMXu8aElpgNJW_rfe5tO1AZjbrFgZ8TdULyaPm
+	.06SpF0t7yz7H42xQpEHL0Sw0_CQXxqcLmiHQc4hpEN5aDTKyyODwg3igNCWuY0hbliXHYc5bUzG
+	9kslTfGC2yaRdjfFdlwObJnZ7eUB.m.uT8fBoxUTvqcAMFsBlgXbxDc0XSlU9AKZIo2ZUiHrL3S5
+	2FVv.77X_2F77JQfS5DEoHJvsf7evAyuXE3V.s5ap52f.1VIWWOt16vatc88Jnm8AN2EDfoIE5HV
+	EZQSswPj3vX1To9._Kx.cdPCp9y.mGlddJo2iloYQpQjdUtAssJ1Z_j9eEbMZZkcULQ8gmTaKv0G
+	aEna3IHzGAJAXZ_h8YnulaApaZNEmfOHZEPZHIgUnZY0mUm7EnSo.FL3454buu36fEGbTD5iV9gs
+	EBlK7QlAmecSHfSa1JA--
+Received: from sonic.gate.mail.ne1.yahoo.com by
+	sonic310.consmr.mail.bf2.yahoo.com with HTTP;
+	Fri, 10 May 2019 23:53:47 +0000
+Date: Fri, 10 May 2019 23:53:46 +0000 (UTC)
+From: Madhu Krishnamurthy <madhukanthk@yahoo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <230317904.2732545.1557532426303@mail.yahoo.com>
 MIME-Version: 1.0
-From: Michael Halstead <mhalstead@linuxfoundation.org>
-Date: Fri, 10 May 2019 16:21:00 -0700
-Message-ID: <CADfgfoZ4HF74sG1NXVOFcUQNBYWPBo8NW=K5G_7sfAiSBiDO=g@mail.gmail.com>
-To: Yocto Project Discussion <yocto@yoctoproject.org>,
-	yocto-infrastructure@yoctoproject.org
-Subject: Upcoming network outage: Fri, May 17 starting 10PM PDT (Sat, 5:00Z)
+References: <230317904.2732545.1557532426303.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.13583 YahooMailNeo Mozilla/5.0 (Windows NT 6.1; Win64;
+	x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131
+	Safari/537.36
+Subject: How do I include all packages under a layer ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Madhu Krishnamurthy <madhukanthk@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -64,46 +70,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 May 2019 23:21:13 -0000
-Content-Type: multipart/alternative; boundary="00000000000077f382058890d2b5"
+X-List-Received-Date: Fri, 10 May 2019 23:53:49 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2732544_194884010.1557532426302"
 
---00000000000077f382058890d2b5
-Content-Type: text/plain; charset="UTF-8"
-
-What: 30-minute network outage to Portland-hosted services
-When: Fri, May 17, between 10PM-3AM PDT (Sat, 05:00-10:00 UTC)
-Why : Network equipment replacement by our service provider
-
-Services Impacted:  autobuilder.yoctoproject.org, downloads.yoctoproject.org,
-sstate.yoctoproject.org
-
-Our Portland hosting provider needs to replace some of their main
-network equipment, which will require rerunning some cables. They are
-asking us to prepare for up to a 30-minute network outage between the
-hours listed above in order to complete this work.
-
--- 
-Michael Halstead
-Linux Foundation / SysAdmin
-
---00000000000077f382058890d2b5
-Content-Type: text/html; charset="UTF-8"
+------=_Part_2732544_194884010.1557532426302
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
-r=3D"ltr"><div>What: 30-minute network outage to Portland-hosted services</=
-div><div>When: Fri, May 17, between 10PM-3AM PDT (Sat, 05:00-10:00 UTC)</di=
-v><div>Why : Network equipment replacement by our service provider</div><di=
-v><br></div><div>Services Impacted:=C2=A0=C2=A0<a href=3D"http://autobuilde=
-r.yoctoproject.org">autobuilder.yoctoproject.org</a>, <a href=3D"http://dow=
-nloads.yoctoproject.org">downloads.yoctoproject.org</a>, <a href=3D"http://=
-sstate.yoctoproject.org">sstate.yoctoproject.org</a></div><div><br></div><d=
-iv><div>Our Portland hosting provider needs to replace some of their main=
-=C2=A0</div><div>network equipment, which will require rerunning some cable=
-s. They are=C2=A0</div><div>asking us to prepare for up to a 30-minute netw=
-ork outage between the=C2=A0</div><div>hours listed above in order to compl=
-ete this work.</div></div><div><br></div><div>--=C2=A0</div><div>Michael Ha=
-lstead</div><div><div>Linux Foundation / SysAdmin</div></div><div><br></div=
-></div></div></div></div></div>
+HelloI want to add packages to my image using the local.conf file.=C2=A0For=
+ exampleIMAGE_INSTALLED_append +=3D " dmidecode i2c-tools"
+Do I have to specify every package or is there a way I can add all packages=
+ inside a layer?For example, how do I add all packages from inside poky/met=
+a to my image?=C2=A0Or at least how do I add all packages under poky/meta/r=
+ecipes-devtools ?
+thanksMadhu=C2=A0
 
---00000000000077f382058890d2b5--
+------=_Part_2732544_194884010.1557532426302
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div style=3D"color:#000; background-color:#fff; f=
+ont-family:Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font=
+-size:16px"><div id=3D"yui_3_16_0_ym19_1_1557526187761_10101">Hello</div><d=
+iv id=3D"yui_3_16_0_ym19_1_1557526187761_10101">I want to add packages to m=
+y image using the local.conf file.&nbsp;</div><div id=3D"yui_3_16_0_ym19_1_=
+1557526187761_10101">For example</div><div id=3D"yui_3_16_0_ym19_1_15575261=
+87761_10101" dir=3D"ltr">IMAGE_INSTALLED_append +=3D " dmidecode i2c-tools"=
+</div><div id=3D"yui_3_16_0_ym19_1_1557526187761_10101" dir=3D"ltr"><br></d=
+iv><div id=3D"yui_3_16_0_ym19_1_1557526187761_10101" dir=3D"ltr">Do I have =
+to specify every package or is there a way I can add all packages inside a =
+layer?</div><div id=3D"yui_3_16_0_ym19_1_1557526187761_10101">For example, =
+how do I add all packages from inside poky/meta to my image?&nbsp;</div><di=
+v id=3D"yui_3_16_0_ym19_1_1557526187761_10101">Or at least how do I add all=
+ packages under poky/meta/recipes-devtools ?</div><div id=3D"yui_3_16_0_ym1=
+9_1_1557526187761_10101"><br></div><div id=3D"yui_3_16_0_ym19_1_15575261877=
+61_10101">thanks</div><div id=3D"yui_3_16_0_ym19_1_1557526187761_10101">Mad=
+hu</div><div id=3D"yui_3_16_0_ym19_1_1557526187761_10101">&nbsp;</div></div=
+></body></html>
+
+------=_Part_2732544_194884010.1557532426302--
