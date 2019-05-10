@@ -1,68 +1,81 @@
-Return-Path: <Lukasz.Zemla@woodward.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 240F7E00C78; Fri, 10 May 2019 08:33:00 -0700 (PDT)
+	id EFD37E00B58; Fri, 10 May 2019 09:53:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [204.27.169.35 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from Mail4.woodward.com (mail4.woodward.com [204.27.169.35])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48FDBE00963
-	for <yocto@yoctoproject.org>; Fri, 10 May 2019 08:32:59 -0700 (PDT)
-Received: from pps.filterd (COIL-PMSGA1.woodward.com [127.0.0.1])
-	by COIL-PMSGA1.woodward.com (8.16.0.27/8.16.0.27) with SMTP id
-	x4AFPPfT030162; Fri, 10 May 2019 10:32:57 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=woodward.com;
-	h=from : to : cc :
-	date : subject : message-id : content-transfer-encoding : mime-version
-	: content-type; s=20190114Woodward;
-	bh=SBvKmYZx2Mw69Rfh1RhQbTVFihZnPLvCbjlwuImI900=;
-	b=vtolS3wlNShPOM9w/vbOsbNnof2IEoG7gsS1Txuj9SA9anm/cCnmOqEH+oIpKs6n4nLR
-	2Q41U4Yw+nYzCriHKQIQcMSdiHZ0gF/qWCkQbSpiLZ0ANAqmqXFHTzzN0/6yrlzT/xXt
-	RCOiKmRem9uxY6j8G1/e5/zj1JWMTgFWBvHjv033ZMkviIYXxh0j7VshHFnT05TOGBcu
-	8OfZ0ZjaHViD5fmMACdCh/zOQmLTqEKaCWA9gJTgO86UY/HmfQpr8arCNkz9idcBAZ+b
-	tWRuE6WsvaTupa3wiijxuNiNkcjNvclw3R1sIoAZxL3VY/D0HEkJ4c/UNsq2nPiCM6GY
-	Ig== 
-Received: from rkfdhc1.woodward.com ([10.1.100.158])
-	by COIL-PMSGA1.woodward.com with ESMTP id 2sdbtb81gd-11
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=NOT);
-	Fri, 10 May 2019 10:32:57 -0500
-Received: from KempHC2.woodward.com (10.25.100.52) by RKFDHC1.woodward.com
-	(10.1.100.158) with Microsoft SMTP Server (TLS) id 8.3.485.1;
-	Fri, 10 May 2019 10:32:19 -0500
-Received: from KempMail2.woodward.com ([169.254.2.201]) by
-	KempHC2.woodward.com ([172.20.1.2]) with mapi; Fri, 10 May 2019 17:32:18
-	+0200
-From: Lukasz Zemla <Lukasz.Zemla@woodward.com>
-To: JH <jupiter.hce@gmail.com>
-Date: Fri, 10 May 2019 17:32:17 +0200
-Thread-Topic: [yocto] Yocto image systemd debugging
-Thread-Index: AdUHRYwd1BRRQ6RCTByLwoNUSv9DHQ==
-Message-ID: <CE2E43470FE5444A811B580382FE5EDF55CB317A74@KEMPMAIL2.woodward.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.194 listed in list.dnswl.org]
+Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com
+	[209.85.214.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96621E00A62;
+	Fri, 10 May 2019 09:53:45 -0700 (PDT)
+Received: by mail-pl1-f194.google.com with SMTP id w7so3116828plz.1;
+	Fri, 10 May 2019 09:53:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:cc:references:from:organization:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language
+	:content-transfer-encoding;
+	bh=lPTeRnyhKhl8NxRR1SibyN8wWT/sk7nPHvfC3a9DYt8=;
+	b=R/Y9fGeLkmNjd6JCPj56pyJLCmd/URpBbe+fQbP82LQQwymldg/YCU9+JZzl8wD92x
+	MqcFE8wgNxgD0OT3LHDaQATvhSIkHH9hHTOW4YRHwQ04mFaKTT0clL4Bv/VFlj/tZIde
+	KIA7Gs840N7UsID2biFlxwzCcyJ7yOfchpwEvJCZk8m4LnOQWTQJur6vOSHNQIxTKXBX
+	PeAY0PjdwaY4sLH8RoDfqVoykw4ZqlwvrJwNumVKT7G9+AtuRWRiZPi7qysuhNPH4GaE
+	7p+YQDTXv6J0Ihqr/RcXBSH6vDcgrk7pkjoI4wWvS9gu5qVHBx7KOumQBMNjNTitdGb5
+	BjIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:cc:references:from:organization
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-language:content-transfer-encoding;
+	bh=lPTeRnyhKhl8NxRR1SibyN8wWT/sk7nPHvfC3a9DYt8=;
+	b=FxZIHkvfAZMYc2uzDf5lReqcBpR/1rHikFmJ0LS/SAMpor0sSaZjU2Hk2sxPgruaCq
+	bR13sk+wzlULZxW8DIgWUIsOe9QC3xi365Oi4nWU/nH1zLhpZ2BuJLxXE2JlXe4frb1D
+	5HX/Xk7RUWQHB8nfRfNjm6P7e0GnUL0O/bxbK6Vc/Czv00JKYUpWXJi974k9sOyfTGbI
+	knVSiUDSd3l4E1s2U3zklvhoWkTqP4+KAPNqyfOoqw40UR0tUySLp1KYV4Ah6Yx7pdkx
+	oL9yck3dtbxHy/TO9PEtUZAisVtU01obQtn+bgRSpLPZd1nD0hWxg0iY6O4HjclXKdwU
+	W8NA==
+X-Gm-Message-State: APjAAAXfthZsCvBOKgoAslWIh+JIE9aQelAj01FdrLf/CmwrKqLqEdJF
+	MpC+mZrIIjU0TO1wnW/hdo7MWkMKNlk=
+X-Google-Smtp-Source: APXvYqznYjR7GdXwb1WzKK0aH8NtTFiimBACE2A2vzRZy4EggW76VSXnj+OCUphuXv4MKa7oxBZD/g==
+X-Received: by 2002:a17:902:446:: with SMTP id
+	64mr14212784ple.322.1557507224399; 
+	Fri, 10 May 2019 09:53:44 -0700 (PDT)
+Received: from hermes.local ([2601:646:8500:6bc6:6095:8839:3497:2f69])
+	by smtp.gmail.com with ESMTPSA id
+	d15sm18499718pfm.186.2019.05.10.09.53.43
+	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+	Fri, 10 May 2019 09:53:43 -0700 (PDT)
+To: AshishKumar Mishra <ashish.emailaddress@gmail.com>,
+	"Mittal, Anuj" <anuj.mittal@intel.com>
+References: <CAOe0dAUYH83APXjXi8FiT3492zi0EVcsT4MfT69LJO+nJ5er8w@mail.gmail.com>
+	<4823d30b2edfc0eea9fcdec81f68e6e8f113f015.camel@intel.com>
+	<CAOe0dAVUf0hJDze4mRbNp-wGCpKMJs-5FQP7rTwiUmopwBQcdw@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <4a8c7bbf-e0e9-dd0b-af5f-ed3ff6df5562@gmail.com>
+Date: Fri, 10 May 2019 09:53:42 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:67.0)
+	Gecko/20100101 Thunderbird/67.0
 MIME-Version: 1.0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
-	priorityscore=1501
-	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
-	clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
-	mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
-	scancount=1 engine=8.0.1-1810050000 definitions=main-1905100106
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Yocto image systemd debugging
+In-Reply-To: <CAOe0dAVUf0hJDze4mRbNp-wGCpKMJs-5FQP7rTwiUmopwBQcdw@mail.gmail.com>
+Cc: "yocto-bsp@yoctoproject.org" <yocto-bsp@yoctoproject.org>,
+	"linux-yocto@yoctoproject.org" <linux-yocto@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Timestamp error between zImage & uname-a [ Yocto-2.6.1 + Qemux86 ]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,33 +87,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 May 2019 15:33:00 -0000
+X-List-Received-Date: Fri, 10 May 2019 16:53:46 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-T24gRnJpZGF5LCBNYXkgMTAsIDIwMTkgMTA6MDkgQU0sIEpIIHdyb3RlOg0KPiA+IFdoYXQgZG8g
-eW91IG1lYW4gYnkgZGVidWc/DQo+ID4gSW4gbW9zdCBjYXNlcyAnc3lzdGVtY3RsIHN0YXR1cyA8
-c2VydmljZT4nLCAnc3lzdGVtY3RsIC0tZmFpbGVkJywgDQo+ID4gc3lzdGVtLWFuYWx5emUgYW5k
-IGpvdXJuYWxjdGwgYXJlIGVmZmljaWVudC4gU29tZXRpbWVzIEkgc2V0IA0KPiA+ICdTdGFuZGFy
-ZE91dHB1dD1qb3VybmFsK2NvbnNvbGUnDQo+ID4gaW4gc2VydmljZSBmaWxlIHRvIGp1c3Qgc2Vl
-IG91dHB1dCBkdXJpbmcgYm9vdGluZy4NCj4gDQo+IFRoZXJlIGlzIGFuIG9mb25vLnNlcnZpY2Ug
-d2hpY2ggZmFpbGVkIGJ5IHN5c3RlbWQgc2VydmljZSwgYnV0IHRoZXJlIHdlcmUgDQo+IG5vIHBy
-b2JsZW1zIGlmIEkgc3RhcnQgaXQgbWFudWFsbHksIHRoZSBzeXN0ZW1jdGwgc3RhdHVzIDxzZXJ2
-aWNlPicsIA0KPiAnc3lzdGVtY3RsIC0tZmFpbGVkJyB0b2xkIG1lIGl0IGZhaWxlZCBidXQgZGlk
-IG5vdCB0ZWxsIG1lIHdoeSBpdCB3YXMgZmFpbGVkIA0KPiBhbmQgd2hhdCB3YXMgdGhlIGNhdXNl
-LiBIZW5jZSBJIGFza2VkIGhvdyB0byBkZWJ1ZyBpdCwgSSBndWVzcyB5b3VyIGFkdmljZSANCj4g
-aXMgdG8gY2hhbmdlIGZvbGxvd2luZyBvZm9uby5zZXJ2aWNlIFN0YW5kYXJkRXJyb3I9J2pvdXJu
-YWwrY29uc29sZScsIGNvcnJlY3Q/DQo+IA0KPiBjYXQgL2xpYi9zeXN0ZW1kL3N5c3RlbS9vZm9u
-by5zZXJ2aWNlDQo+IFtVbml0XQ0KPiBEZXNjcmlwdGlvbj1UZWxlcGhvbnkgc2VydmljZQ0KPiBB
-ZnRlcj1zeXNsb2cudGFyZ2V0DQo+IA0KPiBbU2VydmljZV0NCj4gVHlwZT1kYnVzDQo+IEJ1c05h
-bWU9b3JnLm9mb25vDQo+IEV4ZWNTdGFydD0vdXNyL3NiaW4vb2Zvbm9kIC1uDQo+IFN0YW5kYXJk
-RXJyb3I9bnVsbA0KPiANCj4gW0luc3RhbGxdDQo+IFdhbnRlZEJ5PW11bHRpLXVzZXIudGFyZ2V0
-DQo+IA0KDQpZZXMsIHBsZWFzZSBzZXQ6DQpTdGFuZGFyZEVycm9yPWpvdXJuYWwrY29uc29sZQ0K
-DQpCZXN0IHJlZ2FyZHMsDQpMdWthc3ogWmVtbGENCgoqKioKVGhlIGluZm9ybWF0aW9uIGluIHRo
-aXMgZW1haWwgaXMgY29uZmlkZW50aWFsIGFuZCBpbnRlbmRlZCBzb2xlbHkgZm9yIHRoZSBpbmRp
-dmlkdWFsIG9yIGVudGl0eSB0byB3aG9tIGl0IGlzIGFkZHJlc3NlZC7CoMKgSWYgeW91IGhhdmUg
-cmVjZWl2ZWQgdGhpcyBlbWFpbCBpbiBlcnJvciBwbGVhc2Ugbm90aWZ5IHRoZSBzZW5kZXIgYnkg
-cmV0dXJuIGUtbWFpbCwgZGVsZXRlIHRoaXMgZW1haWwsIGFuZCByZWZyYWluIGZyb20gYW55IGRp
-c2Nsb3N1cmUgb3IgYWN0aW9uIGJhc2VkIG9uIHRoZSBpbmZvcm1hdGlvbi4KKioqCg==
+
+
+On 5/10/19 12:10 AM, AshishKumar Mishra wrote:
+> HI Anuj ,
+> 
+> I was building minimal image using $ bitbake core-image-minimal haven't 
+> tried full-cmdline.
+> 
+> Not able to track why kernel "uname" has older  timestamp rather than 
+> the one from build/deploy/image
+> as seen by "ls -al <build/deploy/image>
+> 
+> Am i missing any command or sequence here
+> 
+> 
+
+uname will show the time when it was built, which might be different 
+time then the one when it was copied over to deploy.
 
