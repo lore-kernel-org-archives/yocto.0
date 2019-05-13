@@ -1,64 +1,61 @@
-Return-Path: <star@gmx.li>
+Return-Path: <gabbla.malist@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C85ADE00D4E; Mon, 13 May 2019 05:21:19 -0700 (PDT)
+	id 0B245E00D52; Mon, 13 May 2019 06:06:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (star[at]gmx.li)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [212.227.17.20 listed in list.dnswl.org]
+	provider *      (gabbla.malist[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.172 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 416FEE009A0
-	for <yocto@yoctoproject.org>; Mon, 13 May 2019 05:21:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=badeba3b8450; t=1557750076;
-	bh=OwESbQli76piqMuXFE9pciR5xNeArYrNfFHduz7/WZE=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=WvJFhfxdDOIDOLWxTmwzEUuV8//i/Fhmw8gxsNOrJVDJuHLgOPJsRyC5F+L2S/rtL
-	Wj26DbJF362qyRjrNaEG8mIK2Mipew1CerijVeN3g5wR2lIFgNP0i3uBMTmhI5JD49
-	5eMP56kBAua+HiwySKlEQpW2GAePS7gGWTePYuhw=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [62.225.157.196] ([62.225.157.196]) by web-mail.gmx.net
-	(3c-app-gmx-bs34.server.lan [172.19.170.86]) (via HTTP);
-	Mon, 13 May 2019 14:21:16 +0200
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com
+	[209.85.208.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F07F0E00D3F
+	for <yocto@yoctoproject.org>; Mon, 13 May 2019 06:06:45 -0700 (PDT)
+Received: by mail-lj1-f172.google.com with SMTP id 188so10868252ljf.9
+	for <yocto@yoctoproject.org>; Mon, 13 May 2019 06:06:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Mq0ypOe+RyLfK3iPJU2FdTcW5wIcQsqTpsoNs5WT72M=;
+	b=DV8YVKFhYQMZZaMXs/QMxmneDAlZGvas12yLmpHIhTCgrHEe3VvfTCDLZI9UDO0rJf
+	qtINgBwvg3nLx6DKIy8UwwkFwkRjPpiyQ/ePbDsZ8iBadh2X+dHD98cBnP90GpjwcS47
+	UGrmjHUArDK8LmigDEKe9ps8xqxSI39MNNwNpI/p297TB2DQgsvNUanAQjvj1JI5ah6A
+	2+2SvTcyNt0k0E/tlXrzNzQciiJdlQ0UAsF0cfG8rOHd0BJxSN0gSeoKsn8WbPsF2+a2
+	PCWZODxAB0wmFLHlIgzCFyQjdzLh0Bx+JRxapTiQMwGP63YiQehfPjTFb45Dv2sGPSFB
+	e34w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Mq0ypOe+RyLfK3iPJU2FdTcW5wIcQsqTpsoNs5WT72M=;
+	b=FP4duWPlI+VELEsWTDIHj0XacHu8h5k2R2LkLnEeLmqmHvSZ9JFtyjNXY0Q4rfAIwF
+	OHmcMLtemDTHp4ImZiylFMWsx63GHJ9uqGM7JZv+ZpzMMXu2T7lMTxFks3D4l2AOjE6y
+	+6QyXQbSI5FV7VHsk5nS33an4o5Vvaj3ZhtAx1/y/Dw6xy1CgKr3cm6Cz4GnERV9kUIa
+	A35nVx0idQcVjEfvMCCX57YdrmS7Fnf0tZTobJcQ3rPP9Ofu90KRU5yLZe+YCg5/Zjao
+	mbDqzLA1Eh8khwMjlRO/VAZwb7usPHwYLS1mCQQsXtkj8U56gfGaAM53nPCCpjc6E+Tx
+	D22A==
+X-Gm-Message-State: APjAAAXaOGGeysO47s4O1bTHSmSQkNrs3P9fOYqrWqr/9QiZNGLAEqzg
+	MI0Ao+BkUIKAQnZQIJfxR3hcjsvy33JlvMmtnaRvMXBJ
+X-Google-Smtp-Source: APXvYqziz3WafDZ+xO2oCZrL31hVbZTTmIMZJUC9ngNLVCsvZ3SsobIUQmAxf8qZJDU0jYOjNUDgqAoAP3mpsdPM7Lc=
+X-Received: by 2002:a2e:28d:: with SMTP id y13mr13275681lje.177.1557752804640; 
+	Mon, 13 May 2019 06:06:44 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <trinity-29bc066c-27fc-4f9d-b23b-7a34235e7c28-1557750076202@3c-app-gmx-bs34>
-From: star@gmx.li
-To: Mikko.Rapeli@bmw.de
-Date: Mon, 13 May 2019 14:21:16 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20190513114549.GL3459@hiutale>
-References: <trinity-386cbe71-496d-4846-b7f6-5a3c5b4b7170-1557745665241@3c-app-gmx-bs34>
-	<20190513114549.GL3459@hiutale>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:xuizK8d7lk8SvSIDf/WM0SjLbztOaJG7Q5PqTr72408heXiq7VZygfZobM72RKC68Qvdf
-	AOK+hQQdCwTlMjrm0XAwhxkNlRMzmF404+xrj1L0af5jzXxfKn/a3bF10T/YqdH23cSd4Cjh6F7e
-	kah+FuP82/w+C11R4EGwDOVcUvwTs12QyA7ZE3Z0VXnkCi9lV1OF0q5+u1WnV6D4for4oPerVl1O
-	BClg9WQs3Rl8zVD5/u0EADnR06C8emXoOn4eU2+vSireCYEO01fz4ZDXZt72UQQYOfdI9BNqCsnV
-	js=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:lSdQyVpNtyA=:0tyMh4RK6NKqz5bYBwCZeB
-	fEIsmQymqagHVnh3S8NG4bP3ifegzToDcIpwIxNsKRTkeH6cXO3ba7xm54Dn95PTKPXUSUhPr
-	evbju7t6UxPXX6Wli19qtbBRent1ugLMkm9lIipoZBtwVjKpeO6bUeqRTc9tt45qY86qptBeC
-	mMgyKqlYY0F6vlcPjtCkMteRNpSPg00ooMp7J9CNhie6VUm/fd+B70O4gUdpnpLyY23KIYtZh
-	DYa4mfVDC0EwANFw2pfRHV8GbhizgW/fdtjc48oqbSRcs4BrENS9mBbLNsW967Wf4jDFuDwu+
-	cb64wPCJ8n9pYpBAc0UIdu3/YWwJocTpHrawfe8AEa5X0J199hsGIaG2+BNUhzkr+s1JqGkPU
-	TOx+xleGK4ihkllsnoO8wZVbvWL1WcuZnbXcnBMJG+/9bq8fvx2wMv1tdSc+I4mfFdT67rHxf
-	xkrKGUpTBHCSZNkkza5pmcDBivHucya/wFXJAfZ1Ks2lYPd2dBZKCmlh4wVViGSxYKrYSxxtm
-	fCccLBiY+c4y4r2QtrX456dxAvlL80dbYwtLR2r5zubOKNtRiiWoIWlO3opWDtDhVKSOOG16s
-	Bohs3UbvBouJL/ho5LTwj8YvrsQ/fXCpwS55WvlfMA/WRHH3o/iaF5KA==
-Cc: yocto@yoctoproject.org
-Subject: Re: long time for starting sshd (wait for crng init done ?)
+From: Gabriele Zampieri <gabbla.malist@gmail.com>
+Date: Mon, 13 May 2019 15:06:33 +0200
+Message-ID: <CAAx3WaDU_dtaZqAhkZV6caizdZ+ebBOcRyJdCDwyP97fpLcYbg@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Using a native tool from another recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,72 +67,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 May 2019 12:21:19 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 13 May 2019 13:06:47 -0000
+Content-Type: multipart/alternative; boundary="0000000000009190900588c496d1"
+
+--0000000000009190900588c496d1
+Content-Type: text/plain; charset="UTF-8"
+
+Hi all,
+
+I need to add a couple of tools to my build system (build2 and odb). The
+second one depends on the first. Following a snippet of the build2 recipe:
+--------------------------------------------------------------------------------------------
+DEPENDS = "openssl-native"
+SRC_URI = "https://download.build2.org/${PV}/build2-toolchain-${PV}.tar.gz"
+SRC_URI[sha256sum] =
+"42a254c46b59109b764afade0d50819b3d793a9167f46759fc6aa9d6d8a6ff37"
+
+S = "${WORKDIR}/build2-toolchain-${PV}"
+
+# build.sh located inside the tarball cannot be used to configure, compile
+and
+# install in different steps. This task is misleading, but I didn't find any
+# other way to make it works
+do_compile_prepend() {
+    ./build.sh --timeout 600 --sudo false \
+        --make ${MAKE} ${PARALLEL_MAKE} \
+        --trust yes \
+        --install-dir ${prefix} g++
+}
+
+FILES_${PN}_append_class-nativesdk = " ${SDKPATHNATIVE}"
+FILES_${PN} = "${D}${prefix}/*"
+
+BBCLASSEXTEND = "native nativesdk"
+--------------------------------------------------------------------------------------------
+
+Then the odb-compiler recipe
+
+--------------------------------------------------------------------------------------------
+SECTION = "devtools"
+DEPENDS = "build2-native"
+CONFIG_NAME = "odb-gcc-X"
+do_configure() {
+    cd ${B}
+    bpkg create -d ${CONFIG_NAME} cc    \
+        config.cxx=g++                  \
+        config.cc.coptions=-O3          \
+        config.bin.rpath=/usr/lib       \
+        config.install.root=/usr        \
+        config.install.sudo=false
+
+}
+BBCLASSEXTEND = "native nativesdk"
+--------------------------------------------------------------------------------------------
+
+When I try to build odb-compiler, bitbake complete the build2-native
+recipe, but fails on do_configure due to 'bpkg command not found'.
+
+Are my recipes correct?
+
+Thanks,
+Gabriele
+
+--0000000000009190900588c496d1
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div>Hi all,</div><div><br></div><div>I need to add a couple of t=
+ools to my build system (build2 and odb). The second one depends on the fir=
+st. Following a snippet of the build2 recipe:</div><div>-------------------=
+-------------------------------------------------------------------------</=
+div><div>DEPENDS =3D &quot;openssl-native&quot;<br>SRC_URI =3D &quot;<a hre=
+f=3D"https://download.build2.org/$%7BPV%7D/build2-toolchain-$%7BPV%7D.tar.g=
+z" target=3D"_blank">https://download.build2.org/${PV}/build2-toolchain-${P=
+V}.tar.gz</a>&quot;<br>SRC_URI[sha256sum] =3D &quot;42a254c46b59109b764afad=
+e0d50819b3d793a9167f46759fc6aa9d6d8a6ff37&quot;<br></div><div><br>S =3D &qu=
+ot;${WORKDIR}/build2-toolchain-${PV}&quot;<br><br># build.sh located inside=
+ the tarball cannot be used to configure, compile and<br># install in diffe=
+rent steps. This task is misleading, but I didn&#39;t find any<br># other w=
+ay to make it works<br>do_compile_prepend() {<br>=C2=A0=C2=A0=C2=A0 ./build=
+.sh --timeout 600 --sudo false \<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 --make ${MAKE} ${PARALLEL_MAKE} \<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 --trust yes \<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --ins=
+tall-dir ${prefix} g++<br>}<br><br>FILES_${PN}_append_class-nativesdk =3D &=
+quot; ${SDKPATHNATIVE}&quot;<br>FILES_${PN} =3D &quot;${D}${prefix}/*&quot;=
+<br><br>BBCLASSEXTEND =3D &quot;native nativesdk&quot;</div><div>----------=
+---------------------------------------------------------------------------=
+-------</div><div><br></div><div>Then the odb-compiler recipe</div><div><br=
+></div><div>---------------------------------------------------------------=
+-----------------------------</div><div>SECTION =3D &quot;devtools&quot;<br=
+>DEPENDS =3D &quot;build2-native&quot;<br>CONFIG_NAME =3D &quot;odb-gcc-X&q=
+uot;<br>do_configure() {<br>=C2=A0=C2=A0=C2=A0 cd ${B}<br>=C2=A0=C2=A0=C2=
+=A0 bpkg create -d ${CONFIG_NAME} cc=C2=A0=C2=A0=C2=A0 \<br>=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 config.cxx=3Dg++=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \<=
+br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 config.cc.coptions=3D-O3=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \<br>=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 config.bin.rpath=3D/usr/lib=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 \<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 config.inst=
+all.root=3D/usr=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \<br>=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 config.install.sudo=3Dfalse<br><br>}</div><d=
+iv>BBCLASSEXTEND =3D &quot;native nativesdk&quot;<br>----------------------=
+----------------------------------------------------------------------</div=
+><div><br></div><div>When I try to build odb-compiler, bitbake complete the=
+ build2-native recipe, but fails on do_configure due to &#39;bpkg command n=
+ot found&#39;. <br></div><div><br></div><div>Are my recipes correct?</div><=
+div><br></div><div>Thanks,</div><div>Gabriele<br></div></div></div></div></=
+div></div>
 
-
-> Gesendet: Montag, 13. Mai 2019 um 13:45 Uhr
-> Von: Mikko.Rapeli@bmw.de
-> An: star@gmx.li
-> Cc: yocto@yoctoproject.org
-> Betreff: Re: [yocto] long time for starting sshd (wait for crng init don=
-e ?)
->
-> Hi,
->
-> On Mon, May 13, 2019 at 01:07:45PM +0200, star@gmx.li wrote:
-> > >From yocto 2.5 to 2.7 I noticed a change in booting. The kernel stops=
- for around 85 seconds.
-> > It seems to me that starting sshd takes time until crng init is done.
-> > In 2.5 it doesn't wait for that. How can I avoid that?
-> > Maybe I have to add that I use a recipe that adds keys as rootfs is us=
-ually r/o.
->
-> Depends on your HW platform, kernel version etc, but one possible soluti=
-on
-> is installing rng-tools binary package which starts rngd at boot.
->
-> See http://lists.openembedded.org/pipermail/openembedded-core/2019-May/2=
-82021.html
->
-> -Mikko
-
-With that in fact to boot time decreases. It stop for a 10..20s after "fai=
-led to init entropy", but this is far less than w/o it.
-Nevertheless, I didn't have stops at all in 2.5, as cnrg init finished onl=
-y after booting (login message) and boot time is important.
-
-run-parts: /etc/network/if-pre-up.d/nfsroot: exit status 1
-Starting random number generator daemon
-Initalizing available sources
-
-Failed to init entropy source hwrng
-
-Enabling JITTER rng support
-
-Initalizing entropy source jitter
-
-.
-random: crng init done
-Starting OpenBSD Secure Shell server: sshd
-
-
->
-> > Another think I have observed (which is not clear to me): I don't get =
-a message from system message bus anymore. ???
-> >
-> > Instead of it udevd complains about "specific group 'kvm' unknown. Loo=
-king into source there are  mentioned:
-> > # The static_node is required on s390x and ppc (they are using MODULE_=
-ALIAS)
-> > So, can I safely ignore that (use ARM).
-> >
-> >
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-
+--0000000000009190900588c496d1--
