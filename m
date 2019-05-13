@@ -1,6 +1,6 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <matthias.schoepfer@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 03283E00D53; Mon, 13 May 2019 09:25:39 -0700 (PDT)
+	id E3471E00D12; Mon, 13 May 2019 09:53:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,56 +10,61 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (alex.kanavin[at]gmail.com)
+	provider *      (matthias.schoepfer[at]googlemail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.66 listed in list.dnswl.org]
+	*      [209.85.221.44 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com
-	[209.85.221.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BD41E00D12
-	for <yocto@yoctoproject.org>; Mon, 13 May 2019 09:25:38 -0700 (PDT)
-Received: by mail-wr1-f66.google.com with SMTP id c5so15969382wrs.11
-	for <yocto@yoctoproject.org>; Mon, 13 May 2019 09:25:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=rjvF1a/jFtbwwOgtIeKwLfFlHOFWAYOU3DK4KTHmnws=;
-	b=E9iHJDeISzmv4vG7cgouQVYZu2aG1k8uXz3VloLJ8Dbgi1RjzrLq1S271h1gBlvXBq
-	P7gyi1KXIiYVj+oSer/q3UzsSKbZZWDXjZonXFQD3LC0KyBC9KW9ANH6A0oH44R5bkDX
-	OWM1hUa3H99nPUiEtp10XYsSQ0AfAnOtirGjQsHqusXXgxc8h1C9Y/gwD6ue2xm9OX2F
-	LmY/Uyvu1vMiPTNT06aqcG1sjZW0eKhVewFQ0ZI0ulrnMl5DKXEbKJOr8ZYMM4LYlAKC
-	apUTS5B5+Zw3bYV769R2Xsdbt6mo66kzIG1HkqQCLxzY++PsmOrM4sAHA9432f+KD4cz
-	LxQQ==
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+	[209.85.221.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEA9AE00B8F
+	for <yocto@yoctoproject.org>; Mon, 13 May 2019 09:53:02 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id c5so16062179wrs.11
+	for <yocto@yoctoproject.org>; Mon, 13 May 2019 09:53:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20161025;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding:content-language;
+	bh=zc5T36lX8Ix59aML5kReAH6VprHcHLU3Z9kq7JUCLF8=;
+	b=AkYmMrghOocPZPYXLyZvDFdwbh3BZVtnZPMj5U33/EqMlJPH/SxfA+G04nOsY66gO8
+	Jj4QMoQgAmCpjR5bGb032LXaTjDSVaolZAR0dkPmdqXWCR+GNN7hWHIZuNNUib92nDpt
+	9eNlZbtXe/Crdpt8XG9fkvvc/jqyJNRS81eKso1Q2o6dNyikSPzXa10JWybsVB7VwUMM
+	RykQW7ZRWgfGA0HvMg1glxkimOE1Fc1TOtthYggCDv7uFIJ91n3y3J8KvasiAo6pCc/C
+	kK1FFSJknewbgjappS6MCrfWI1UT1urHrPBYgJDu4kq1EZMg3IrYXHHLgF6aSEz8R/Ok
+	qr4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=rjvF1a/jFtbwwOgtIeKwLfFlHOFWAYOU3DK4KTHmnws=;
-	b=U0MUUXNx8r0i5DAQfWebr3P7x9S1btM8K9V5TjDUwdGGwQ1cs58qMdrbqLMTh2bG+3
-	YxwmopqEexnrpC5l411F1mM+kfkDhj+r18iAo533eMf5ldAle+1J+3YOw+4y7cc+SqdB
-	e/y/EWFFBaPPw1Vn+ULLBmFUUF/r4EL2l+n83CWADhVwjNQqrBUA21lEFv+dWbGgmcRZ
-	hMA9UQbOLCdcNViJOsr1VjC9BZ2Qh63zt5tDVmAhGzgd9xE8M0FBjMHQ4VPAk3CK+2wu
-	hEdMnk3KaJ12kkjnRnXhZJ35NcLo529nrLlsvzYvnOZjeIPYJCzE8/wuvUljNuan9dDE
-	HdoQ==
-X-Gm-Message-State: APjAAAU/oIakHNO9J4B0uS7XjwtDsYH5ybxSjK3vKV56P+hwbqiwo634
-	QJxMrSnm7EV5hwkqsKHOCArW6NdB
-X-Google-Smtp-Source: APXvYqyUrgumnFyWHu5FZ691froXMai9ta5rPW9v+OQph5s1BC0FjCI7e9ogum97RRe7eMk/0QXsOg==
-X-Received: by 2002:adf:e845:: with SMTP id d5mr19936083wrn.154.1557764737464; 
-	Mon, 13 May 2019 09:25:37 -0700 (PDT)
-Received: from alexander-box.luxoft.com ([62.96.135.139])
-	by smtp.gmail.com with ESMTPSA id w13sm315683wmk.0.2019.05.13.09.25.36
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 13 May 2019 09:25:36 -0700 (PDT)
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-To: yocto@yoctoproject.org,
-	ajlennon@dynamicdevices.co.uk
-Date: Mon, 13 May 2019 18:25:31 +0200
-Message-Id: <20190513162531.45297-1-alex.kanavin@gmail.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [meta-mono][PATCH] mono-5.xx: fix an issue with too long paths in doltlibtool
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding:content-language;
+	bh=zc5T36lX8Ix59aML5kReAH6VprHcHLU3Z9kq7JUCLF8=;
+	b=YX7+s0OB2aNNp0LURkWEFamcB642KvWZIipx2f9L7/Zn9nxld2/afB+3boV4xwFxiU
+	ZF6AUmiAAxUV0cLkOlZbynNfNKMs6EZa9inpWgamL19SscVlqbUOL6Yz1RzsLhSlLx03
+	3O/eMjNRSj0oORZcngIPIx9dSZybcrDvU00kvSLBiNm1eAADhJbLRY5vrGGDIYrf3RBw
+	HC7UDvC+ymxxD2ho+0PwaR8AErUPlKUUqzkkmXJo09hJ4seoL0OYRhqO1AzfRAVlKUZx
+	URD0MbaGGonD1HcD3L1PjGhzOdwJg6xvjI8R2r37xtbrOWq9l3O7IkFTgEltVJ6gPtib
+	waaA==
+X-Gm-Message-State: APjAAAXrLyXF2lyM8AOeKFfhAOvTUDHZ+h9Xhco1a/l7Q4pXO8WS1V7i
+	DxdnBDUFsKlW6PhD68J5q+zfLKZ/
+X-Google-Smtp-Source: APXvYqysVoWWih/3QuWNUaVJ5jjC9EjtmKYjW94aDpKxySrnwl1thVb0Nx5CXGsoFz4jWk6AwzjiLg==
+X-Received: by 2002:a5d:5506:: with SMTP id b6mr15628662wrv.221.1557766381543; 
+	Mon, 13 May 2019 09:53:01 -0700 (PDT)
+Received: from [172.16.100.14] ([213.168.66.146])
+	by smtp.gmail.com with ESMTPSA id
+	j10sm45284964wrb.0.2019.05.13.09.52.59 for <yocto@yoctoproject.org>
+	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+	Mon, 13 May 2019 09:53:00 -0700 (PDT)
+To: yocto@yoctoproject.org
+From: Matthias Schoepfer <matthias.schoepfer@googlemail.com>
+Message-ID: <7b3a42c2-1bc2-e739-5ff8-77e27b053c9c@googlemail.com>
+Date: Mon, 13 May 2019 18:52:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.6.1
+MIME-Version: 1.0
+Subject: Debugging dev-deps
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,29 +76,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 May 2019 16:25:39 -0000
+X-List-Received-Date: Mon, 13 May 2019 16:53:04 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-When build directory is deeply nested, the shebang limit of 127
-characters is hit, which leads to doltlibtool failing to execute.
+Hi!
 
-Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
----
- recipes-mono/mono/mono-5.xx.inc | 4 ++++
- 1 file changed, 4 insertions(+)
+I am trying to write a recipe for a rather tricky component (that has 
+plugins and stuff). Anyhow, I cannot get bitbake not to complain that 
+<PACKAGENAME> rdepends on <PACKAGENAME>-dev. And if I INSANE_SKIP it, 
+the -dev package will get installed. But I cannot figure out which file 
+is responsible. I tried to ldd all installed files in <PACKAGENAME>, but 
+could not get any results. Any hints on how to debug this further?!
 
-diff --git a/recipes-mono/mono/mono-5.xx.inc b/recipes-mono/mono/mono-5.xx.inc
-index c36374c..dec2475 100644
---- a/recipes-mono/mono/mono-5.xx.inc
-+++ b/recipes-mono/mono/mono-5.xx.inc
-@@ -102,3 +102,7 @@ RDEPENDS_${PN} =+ "bash"
- 
- # Workaround for observed race in `make install`
- PARALLEL_MAKEINST=""
-+
-+# Otherwise the full path to bash is written to the first line of doltlibtool script
-+# which causes build failures with deeply nested build directories
-+CACHED_CONFIGUREVARS += "ac_cv_path_DOLT_BASH='/usr/bin/env bash'"
--- 
-2.17.1
+Thanks and regards,
+
+   Matthias
 
 
