@@ -1,68 +1,66 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F4055E00D4E; Mon, 13 May 2019 00:27:58 -0700 (PDT)
+	id 1BB42E00D63; Mon, 13 May 2019 00:33:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.177 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com
-	[209.85.160.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0302BE00B8F
-	for <yocto@yoctoproject.org>; Mon, 13 May 2019 00:27:54 -0700 (PDT)
-Received: by mail-qt1-f177.google.com with SMTP id y42so13566754qtk.6
-	for <yocto@yoctoproject.org>; Mon, 13 May 2019 00:27:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=e8EIPZmKLHj1qDcjPCVeS8IIEgWTjHVksp4eq7JySD8=;
-	b=WqavwMa9JsrymR/PdZTv9DtIjbcGecNSKovKw0/xxvFrjm5WYJ5a+OSH9PdO8v6zWx
-	Oyk9TwEFeadns4yrBBLyaepqPyCmRzS4pIhjX4apEZsLX9xnSNGvU7Qvd/ySg7Pcg/J1
-	/znjAYGN52bjgACe+K8wlZU7dl1L5t84w8S2xnQZUkFPpn9WReXIAW9Xo+XT8GYbTsSB
-	QK7WkrXW7IGWix0soAaF1SlVGLAjUIRf4kAjUjGLMVGcwpCaTyYhYVpHZsqvFseUOIQ4
-	f5KHc2YjdANbX2A+QlclrXZ51kYtja5meQMgKFsLu8xlxrUr5mZq4QJVOIRtdjh9zESW
-	scjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=e8EIPZmKLHj1qDcjPCVeS8IIEgWTjHVksp4eq7JySD8=;
-	b=joa5Oj74UQPdlE/JLYh0XnQWtWzYk6Fnvllvo/mplGG0OFUwGgS/MruQdFA1ouS/yg
-	qEiVWgN1gukZVtsFR5+oLC3z+yxfWmg0aOL0KGALUeSvsIAcmx+77F+pePHWV/BJOvcG
-	vlnMYdFKbDDFLlRz7D5XVEFd8mPEmyTP9M4JbRIoQLqU/44Dzcbg77J6DDwHXD0FiUl+
-	gku4DnYDKikevIcfRW/y6DO0XjGYh1rW1rNTGXWVS+bE4398bQhdWjXULu6A3ZkvZJEo
-	V4YXZf7v9BqR+klN7w1XhJPl2STy4YXej3daN08dEPMUDsp95nt/hVG3Pa1bBWhJrwfh
-	DlqQ==
-X-Gm-Message-State: APjAAAXWzAzNtXarGBWVbw7FpuzMfCfyl83Y5oQBU2dc63KaQb3xQ7hs
-	9sEb7uUIU0ovzk/r0RafBun5rZpchugUG1wIT2s=
-X-Google-Smtp-Source: APXvYqyChjjIc78nPMhliZrgjnC97VSTMV5AgrMyb+W3Y7el83RHEiqhTBgMbCSQ/PegekdckksvrTRzu175eV+VmJE=
-X-Received: by 2002:a0c:8a6c:: with SMTP id 41mr19582793qvu.236.1557732474252; 
-	Mon, 13 May 2019 00:27:54 -0700 (PDT)
-MIME-Version: 1.0
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8736DE00D48
+	for <yocto@yoctoproject.org>; Mon, 13 May 2019 00:33:56 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x4D7WmcA007847
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 13 May 2019 00:33:08 -0700
+Received: from soho-mhatle-m.local (147.11.117.151) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.439.0;
+	Mon, 13 May 2019 00:32:50 -0700
+To: akuster808 <akuster808@gmail.com>, Patches and discussions about the
+	oe-core layer <openembedded-core@lists.openembedded.org>,
+	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 References: <e86cf937-5734-fc36-cd94-fad9b0155059@gmail.com>
 	<65432636-c595-ed39-28f3-efb7a0d565da@gmail.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
+	mQENBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
+	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
+	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
+	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
+	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
+	AAG0JU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT6JATcEEwEIACEFAlYK
+	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
+	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
+	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
+	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
+	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
+	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrrkBDQRWCsRYAQgAwK3FuHCE+HW3YWdH
+	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
+	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
+	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
+	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
+	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABiQEfBBgBCAAJBQJWCsRYAhsMAAoJ
+	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
+	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
+	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
+	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
+	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
+Organization: Wind River Systems
+Message-ID: <bf12fd00-e786-25dc-4b10-056ce5adffb4@windriver.com>
+Date: Mon, 13 May 2019 10:32:48 +0300
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
+	Gecko/20100101 Thunderbird/60.6.1
+MIME-Version: 1.0
 In-Reply-To: <65432636-c595-ed39-28f3-efb7a0d565da@gmail.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Mon, 13 May 2019 09:27:43 +0200
-Message-ID: <CAGAf8LwxT3dKLdwzLzpa8p4DzEP5COA9iro6F_11AYtkpVrwzg@mail.gmail.com>
-To: akuster808 <akuster808@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: patchwork
+Subject: Re: [OE-core] patchwork
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,43 +72,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 May 2019 07:27:59 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 13 May 2019 07:33:57 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-Off Topic @: The same chaos as with German Govt. (KVR and Finanzamt).
-
-Zoran
-_______
-
-On Sun, May 12, 2019 at 8:05 PM akuster808 <akuster808@gmail.com> wrote:
->
+On 5/12/19 9:04 PM, akuster808 wrote:
 > ok, so no Admins. This is unexceptionable.
->
+> 
 > OE TSC and Board, I believe its your time to get involved.
->
+
+I've not used patchwork before, do you know who originally configured it?  Was
+it Paul Eggleton, or Richard, or?  If I have an idea who was originally
+responsible, I'm pretty sure we can figure out a handoff plan to someone else.
+
+--Mark
+
 > regards,
 > Armin
->
+> 
 > On 5/3/19 10:18 AM, akuster808 wrote:
-> > Hello OE folk,
-> >
-> > My apologies for cross posting.
-> >
-> > Who is the Admin for Patchwork?
-> >
-> > I would like additional privileges to manage the "Yocto Project Layers"
-> > queue.
-> >
-> > Also, I would like additional  privileges to add new branches for any
-> > oe, meta-oe queues & yp layers.
-> >
-> > kind regards,
-> > Armin
-> >
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>> Hello OE folk,
+>>
+>> My apologies for cross posting.
+>>
+>> Who is the Admin for Patchwork?
+>>
+>> I would like additional privileges to manage the "Yocto Project Layers"
+>> queue.
+>>
+>> Also, I would like additional  privileges to add new branches for any
+>> oe, meta-oe queues & yp layers.
+>>
+>> kind regards,
+>> Armin
+>>
+> 
+
 
