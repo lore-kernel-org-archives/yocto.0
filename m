@@ -1,61 +1,68 @@
-Return-Path: <gabbla.malist@gmail.com>
+Return-Path: <sebastian.brand@axis.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0B245E00D52; Mon, 13 May 2019 06:06:47 -0700 (PDT)
+	id 70E3FE00DB1; Mon, 13 May 2019 06:07:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (gabbla.malist[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.172 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com
-	[209.85.208.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F07F0E00D3F
-	for <yocto@yoctoproject.org>; Mon, 13 May 2019 06:06:45 -0700 (PDT)
-Received: by mail-lj1-f172.google.com with SMTP id 188so10868252ljf.9
-	for <yocto@yoctoproject.org>; Mon, 13 May 2019 06:06:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=Mq0ypOe+RyLfK3iPJU2FdTcW5wIcQsqTpsoNs5WT72M=;
-	b=DV8YVKFhYQMZZaMXs/QMxmneDAlZGvas12yLmpHIhTCgrHEe3VvfTCDLZI9UDO0rJf
-	qtINgBwvg3nLx6DKIy8UwwkFwkRjPpiyQ/ePbDsZ8iBadh2X+dHD98cBnP90GpjwcS47
-	UGrmjHUArDK8LmigDEKe9ps8xqxSI39MNNwNpI/p297TB2DQgsvNUanAQjvj1JI5ah6A
-	2+2SvTcyNt0k0E/tlXrzNzQciiJdlQ0UAsF0cfG8rOHd0BJxSN0gSeoKsn8WbPsF2+a2
-	PCWZODxAB0wmFLHlIgzCFyQjdzLh0Bx+JRxapTiQMwGP63YiQehfPjTFb45Dv2sGPSFB
-	e34w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=Mq0ypOe+RyLfK3iPJU2FdTcW5wIcQsqTpsoNs5WT72M=;
-	b=FP4duWPlI+VELEsWTDIHj0XacHu8h5k2R2LkLnEeLmqmHvSZ9JFtyjNXY0Q4rfAIwF
-	OHmcMLtemDTHp4ImZiylFMWsx63GHJ9uqGM7JZv+ZpzMMXu2T7lMTxFks3D4l2AOjE6y
-	+6QyXQbSI5FV7VHsk5nS33an4o5Vvaj3ZhtAx1/y/Dw6xy1CgKr3cm6Cz4GnERV9kUIa
-	A35nVx0idQcVjEfvMCCX57YdrmS7Fnf0tZTobJcQ3rPP9Ofu90KRU5yLZe+YCg5/Zjao
-	mbDqzLA1Eh8khwMjlRO/VAZwb7usPHwYLS1mCQQsXtkj8U56gfGaAM53nPCCpjc6E+Tx
-	D22A==
-X-Gm-Message-State: APjAAAXaOGGeysO47s4O1bTHSmSQkNrs3P9fOYqrWqr/9QiZNGLAEqzg
-	MI0Ao+BkUIKAQnZQIJfxR3hcjsvy33JlvMmtnaRvMXBJ
-X-Google-Smtp-Source: APXvYqziz3WafDZ+xO2oCZrL31hVbZTTmIMZJUC9ngNLVCsvZ3SsobIUQmAxf8qZJDU0jYOjNUDgqAoAP3mpsdPM7Lc=
-X-Received: by 2002:a2e:28d:: with SMTP id y13mr13275681lje.177.1557752804640; 
-	Mon, 13 May 2019 06:06:44 -0700 (PDT)
+	*      [195.60.68.11 listed in list.dnswl.org]
+Received: from bastet.se.axis.com (bastet.se.axis.com [195.60.68.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B14C5E00D52
+	for <yocto@yoctoproject.org>; Mon, 13 May 2019 06:07:27 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by bastet.se.axis.com (Postfix) with ESMTP id 5E75018415;
+	Mon, 13 May 2019 15:07:26 +0200 (CEST)
+X-Axis-User: NO
+X-Axis-NonUser: YES
+X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
+Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
+	by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
+	port 10024)
+	with LMTP id BT0dHQayeN28; Mon, 13 May 2019 15:07:25 +0200 (CEST)
+Received: from boulder02.se.axis.com (boulder02.se.axis.com [10.0.8.16])
+	by bastet.se.axis.com (Postfix) with ESMTPS id 6C79318409;
+	Mon, 13 May 2019 15:07:25 +0200 (CEST)
+Received: from boulder02.se.axis.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 422C01A06D;
+	Mon, 13 May 2019 15:07:25 +0200 (CEST)
+Received: from boulder02.se.axis.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 363A11A069;
+	Mon, 13 May 2019 15:07:25 +0200 (CEST)
+Received: from seth.se.axis.com (unknown [10.0.2.172])
+	by boulder02.se.axis.com (Postfix) with ESMTP;
+	Mon, 13 May 2019 15:07:25 +0200 (CEST)
+Received: from XBOX03.axis.com (xbox03.axis.com [10.0.5.17])
+	by seth.se.axis.com (Postfix) with ESMTP id 29D98FDA;
+	Mon, 13 May 2019 15:07:25 +0200 (CEST)
+Received: from XBOX04.axis.com (10.0.5.18) by XBOX03.axis.com (10.0.5.17) with
+	Microsoft SMTP Server (TLS) id 15.0.1365.1;
+	Mon, 13 May 2019 15:07:24 +0200
+Received: from XBOX04.axis.com ([fe80::210a:724b:68cb:a917]) by
+	XBOX04.axis.com ([fe80::210a:724b:68cb:a917%22]) with mapi id
+	15.00.1365.000; Mon, 13 May 2019 15:07:24 +0200
+From: Sebastian Brand <sebastian.brand@axis.com>
+To: Mike Looijmans <mike.looijmans@topic.nl>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] File synchronization on ubifs/xfs
+Thread-Index: AQHU84YucEUJJZbSQUuVV9NOFu4bWqZpGdyAgAAXSps=
+Date: Mon, 13 May 2019 13:07:24 +0000
+Message-ID: <1557752844487.57923@axis.com>
+References: <1555331491145.40864@axis.com>,
+	<58aae8f8-9061-c28f-702d-36981abff1f2@topic.nl>
+In-Reply-To: <58aae8f8-9061-c28f-702d-36981abff1f2@topic.nl>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.0.5.60]
 MIME-Version: 1.0
-From: Gabriele Zampieri <gabbla.malist@gmail.com>
-Date: Mon, 13 May 2019 15:06:33 +0200
-Message-ID: <CAAx3WaDU_dtaZqAhkZV6caizdZ+ebBOcRyJdCDwyP97fpLcYbg@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Using a native tool from another recipe
+X-TM-AS-GCONF: 00
+Subject: Re: File synchronization on ubifs/xfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,113 +74,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 May 2019 13:06:47 -0000
-Content-Type: multipart/alternative; boundary="0000000000009190900588c496d1"
-
---0000000000009190900588c496d1
-Content-Type: text/plain; charset="UTF-8"
-
-Hi all,
-
-I need to add a couple of tools to my build system (build2 and odb). The
-second one depends on the first. Following a snippet of the build2 recipe:
---------------------------------------------------------------------------------------------
-DEPENDS = "openssl-native"
-SRC_URI = "https://download.build2.org/${PV}/build2-toolchain-${PV}.tar.gz"
-SRC_URI[sha256sum] =
-"42a254c46b59109b764afade0d50819b3d793a9167f46759fc6aa9d6d8a6ff37"
-
-S = "${WORKDIR}/build2-toolchain-${PV}"
-
-# build.sh located inside the tarball cannot be used to configure, compile
-and
-# install in different steps. This task is misleading, but I didn't find any
-# other way to make it works
-do_compile_prepend() {
-    ./build.sh --timeout 600 --sudo false \
-        --make ${MAKE} ${PARALLEL_MAKE} \
-        --trust yes \
-        --install-dir ${prefix} g++
-}
-
-FILES_${PN}_append_class-nativesdk = " ${SDKPATHNATIVE}"
-FILES_${PN} = "${D}${prefix}/*"
-
-BBCLASSEXTEND = "native nativesdk"
---------------------------------------------------------------------------------------------
-
-Then the odb-compiler recipe
-
---------------------------------------------------------------------------------------------
-SECTION = "devtools"
-DEPENDS = "build2-native"
-CONFIG_NAME = "odb-gcc-X"
-do_configure() {
-    cd ${B}
-    bpkg create -d ${CONFIG_NAME} cc    \
-        config.cxx=g++                  \
-        config.cc.coptions=-O3          \
-        config.bin.rpath=/usr/lib       \
-        config.install.root=/usr        \
-        config.install.sudo=false
-
-}
-BBCLASSEXTEND = "native nativesdk"
---------------------------------------------------------------------------------------------
-
-When I try to build odb-compiler, bitbake complete the build2-native
-recipe, but fails on do_configure due to 'bpkg command not found'.
-
-Are my recipes correct?
-
-Thanks,
-Gabriele
-
---0000000000009190900588c496d1
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Mon, 13 May 2019 13:07:35 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
-r=3D"ltr"><div>Hi all,</div><div><br></div><div>I need to add a couple of t=
-ools to my build system (build2 and odb). The second one depends on the fir=
-st. Following a snippet of the build2 recipe:</div><div>-------------------=
--------------------------------------------------------------------------</=
-div><div>DEPENDS =3D &quot;openssl-native&quot;<br>SRC_URI =3D &quot;<a hre=
-f=3D"https://download.build2.org/$%7BPV%7D/build2-toolchain-$%7BPV%7D.tar.g=
-z" target=3D"_blank">https://download.build2.org/${PV}/build2-toolchain-${P=
-V}.tar.gz</a>&quot;<br>SRC_URI[sha256sum] =3D &quot;42a254c46b59109b764afad=
-e0d50819b3d793a9167f46759fc6aa9d6d8a6ff37&quot;<br></div><div><br>S =3D &qu=
-ot;${WORKDIR}/build2-toolchain-${PV}&quot;<br><br># build.sh located inside=
- the tarball cannot be used to configure, compile and<br># install in diffe=
-rent steps. This task is misleading, but I didn&#39;t find any<br># other w=
-ay to make it works<br>do_compile_prepend() {<br>=C2=A0=C2=A0=C2=A0 ./build=
-.sh --timeout 600 --sudo false \<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 --make ${MAKE} ${PARALLEL_MAKE} \<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 --trust yes \<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --ins=
-tall-dir ${prefix} g++<br>}<br><br>FILES_${PN}_append_class-nativesdk =3D &=
-quot; ${SDKPATHNATIVE}&quot;<br>FILES_${PN} =3D &quot;${D}${prefix}/*&quot;=
-<br><br>BBCLASSEXTEND =3D &quot;native nativesdk&quot;</div><div>----------=
----------------------------------------------------------------------------=
--------</div><div><br></div><div>Then the odb-compiler recipe</div><div><br=
-></div><div>---------------------------------------------------------------=
------------------------------</div><div>SECTION =3D &quot;devtools&quot;<br=
->DEPENDS =3D &quot;build2-native&quot;<br>CONFIG_NAME =3D &quot;odb-gcc-X&q=
-uot;<br>do_configure() {<br>=C2=A0=C2=A0=C2=A0 cd ${B}<br>=C2=A0=C2=A0=C2=
-=A0 bpkg create -d ${CONFIG_NAME} cc=C2=A0=C2=A0=C2=A0 \<br>=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 config.cxx=3Dg++=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \<=
-br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 config.cc.coptions=3D-O3=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \<br>=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 config.bin.rpath=3D/usr/lib=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 \<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 config.inst=
-all.root=3D/usr=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 \<br>=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 config.install.sudo=3Dfalse<br><br>}</div><d=
-iv>BBCLASSEXTEND =3D &quot;native nativesdk&quot;<br>----------------------=
-----------------------------------------------------------------------</div=
-><div><br></div><div>When I try to build odb-compiler, bitbake complete the=
- build2-native recipe, but fails on do_configure due to &#39;bpkg command n=
-ot found&#39;. <br></div><div><br></div><div>Are my recipes correct?</div><=
-div><br></div><div>Thanks,</div><div>Gabriele<br></div></div></div></div></=
-div></div>
+> An application like "sed" does a rename after write, but that's totally=
+=0A=
+> unrelated to your issue. Sed does that because it cannot write to the fil=
+e=0A=
+> it's also reading from.=0A=
+=0A=
+It might be the reason behind the rename, but you can also argue that=0A=
+it is expected that a program that edits a file either leaves it as it was=
+=0A=
+or changed, but not empty, if the system crashes. (But you can also argue t=
+hat=0A=
+a power fail is undefined behavior.)=0A=
+=0A=
+> If someone were to patch sed to insert an "fsync"=0A=
+> before the rename, people would get very very angry at that person for ma=
+king=0A=
+> their build servers horrendously slow and draining their laptop batteries=
+ or=0A=
+> something to that effect.=0A=
+=0A=
+On ext3 (with mode data=3Dordered) it would indeed make the systems horrend=
+ously=0A=
+slow. But on other file systems the impact should be much more reasonable.=
+=0A=
+=0A=
+> In the sed case, the proper thing to do is to direct sed's output to anot=
+her=0A=
+> file and then take care of syncing and renaming yourself.=0A=
+=0A=
+That would be the preferable solution. If sed was not already heavily used =
+to=0A=
+update configuration files, and if many developers didn't "know" that sed -=
+i=0A=
+can be used for power-fail safe file updates.=0A=
+=0A=
+=0A=
+The reason why I though that it might be interesting for other people using=
+=0A=
+Yocto is that this is a problem for many file systems that are used in=0A=
+embedded systems. And it becomes a problem as soon as there is someone=0A=
+that thinks that "sed -i" is safe on their system, since it is safe on ext4=
+.=0A=
+And for me it was more reasonable to implement a busybox feature than the=
+=0A=
+alternative solutions.=0A=
+=0A=
+=0A=
+Cheers,=0A=
+Sebastian=0A=
+________________________________________=0A=
+From: Mike Looijmans <mike.looijmans@topic.nl>=0A=
+Sent: Monday, May 13, 2019 1:39 PM=0A=
+To: Sebastian Brand; yocto@yoctoproject.org=0A=
+Subject: Re: [yocto] File synchronization on ubifs/xfs=0A=
+=0A=
+An application like "sed" does a rename after write, but that's totally=0A=
+unrelated to your issue. Sed does that because it cannot write to the file=
+=0A=
+it's also reading from. If someone were to patch sed to insert an "fsync"=
+=0A=
+before the rename, people would get very very angry at that person for maki=
+ng=0A=
+their build servers horrendously slow and draining their laptop batteries o=
+r=0A=
+something to that effect.=0A=
+=0A=
+When they tell you to fix "the application", they mean YOUR application, no=
+t=0A=
+all the programs in the world that happen to call rename.=0A=
+=0A=
+In the sed case, the proper thing to do is to direct sed's output to anothe=
+r=0A=
+file and then take care of syncing and renaming yourself.=0A=
+=0A=
+=0A=
+=0A=
+On 15-04-19 14:31, Sebastian Brand wrote:=0A=
+> Hi all,=0A=
+>=0A=
+> I stumbled into an file synchronization problem, and I am curious if ther=
+e are more people using  Yocto and ubifs/xfs/similar that have an interest =
+of "fsync before rename"?=0A=
+>=0A=
+> When trying to atomically update a file a common flow is "create copy, ed=
+it copy, rename copy->original", but this does for some file systems not gu=
+arantee that the file is not empty after a power fail. A more correct flow =
+is "create copy, edit copy, fsync copy, rename copy->original", at least ac=
+cording to file system developers. This has been discussed a lot and the ge=
+neral status seems to be that many file system developers think that applic=
+ations that does not fsync before rename are broken, and many application d=
+evelopers think that fsync is implied at rename and this needs to be fixed =
+in the file systems. (I am (trying to) not picking a side, and just trying =
+to solve my problems :) )=0A=
+>=0A=
+> Since some file systems common in embedded systems (UBIFS, XFS) does not =
+implement automatic fsync before rename, this becomes a bit of a problem if=
+ applications in Yocto does not sync "correctly". One of these applications=
+ is sed (in-place edit), and I am currently working on a patch to add fsync=
+ before rename (as a feature). Busybox are not interested in the feature (a=
+s they are of the opinion that this should be solved in the file system), b=
+ut I am curious if there is any interest in these kind of features in Yocto=
+?=0A=
+>=0A=
+> Regards,=0A=
+> Sebastian=0A=
+>=0A=
+=0A=
 
---0000000000009190900588c496d1--
