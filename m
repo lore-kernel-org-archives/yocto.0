@@ -1,63 +1,73 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <ashish.emailaddress@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 57A71E00D6A; Mon, 13 May 2019 08:14:35 -0700 (PDT)
+	id 28788E00D12; Mon, 13 May 2019 08:29:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (ashish.emailaddress[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.175 listed in list.dnswl.org]
+	*      [209.85.166.193 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com
-	[209.85.208.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10D21E00D12
-	for <yocto@yoctoproject.org>; Mon, 13 May 2019 08:14:33 -0700 (PDT)
-Received: by mail-lj1-f175.google.com with SMTP id 188so11314323ljf.9
-	for <yocto@yoctoproject.org>; Mon, 13 May 2019 08:14:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+Received: from mail-it1-f193.google.com (mail-it1-f193.google.com
+	[209.85.166.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90AD3E0096F;
+	Mon, 13 May 2019 08:29:32 -0700 (PDT)
+Received: by mail-it1-f193.google.com with SMTP id s3so20975516itk.1;
+	Mon, 13 May 2019 08:29:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=l9qhVVJ12v7R5yfNbFRowkTve1Kg8sqvo4vKQ85JHLQ=;
-	b=xXZdAPTD4QUPBaj1CCsaeg/ZJLkZhXiTdWL3C3zE1sAWWK/5R79xQLWEoBXXnS64ip
-	MiQlajIScLmYCKGgrVeXNxD3VoGjEIx+hSuCp5nlvQcFyyBf8Ay1TTOSXCOXFLuDotZV
-	9PFh8+B5ptXOgMbqZTMXCpszCVHkRDOgAueXqEtfPPllKm2ulzr+YQHWpkoCHpuNGptk
-	5az45j1ki8vZcNMpQTfun3UvX4/UcxY4kGTta7tSWsBCi5UG4z7TwqTof+52gHHmNM/a
-	9yr3Aj+pWU5gPLwvbWQUKSdcLVesavNn/KBuvzEKzn2dSPyKsb2NXHw/QCXfzLv/HoqY
-	bmgw==
+	:cc; bh=ntoCN6frwKH0fkFV1OislitCjZqXw9dqr1CYy9ACQ3s=;
+	b=QNSNWfoxSLffl26hC5SvSlL/jmnlrPi37bZbtRWJLoVzBbD8KcT/F8SbvuVxIUhtPq
+	anovVayPFkIb+6+OkgSH8Wv/FwukybOc9/lFQ+EBPaLlIJbLgohOZYqED0VJw6w0gfF4
+	TxpGEOmgUQCtEj784OyYsmzh3TLpnr565YDaa8FyjmrdPHa006oiqUvyxgYeV3piOgYy
+	qP9SD+aY8Fob8vdZzA+j0exGU3fxDYwYRUCmkXtXoKU9yy6LpfmjNCfIMDirSP64Pkfh
+	ApoAv8jKqNQwUrRA+gDePtZpCkOQGEoj9kJMAPJ3UGeBVguPDyU2r/s3uAIZ+GRsGEZQ
+	CDCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=l9qhVVJ12v7R5yfNbFRowkTve1Kg8sqvo4vKQ85JHLQ=;
-	b=XWEvPca4YfnzaZff/bCcvhbch7jWq0wr5jh5rj8dRSIdnuHCzns5PupehITLisInMI
-	VySha0hRl3ukccED8cSLMnpbXaCWw9SqwJ0YhRveBIwjDgisKp+Hy1V2EejLuL/FhavI
-	nQAnK2eDUMxDlviDldb7MPAZG403TUYQbKv82dePMRhdT/ajM0yzW9uMSlU7zf42SwKQ
-	sYxaUHCNn4RjiowRFcCCWIHi8fmyp5jcGWhhPxPYIa+WP0CVi2uehFjPcti0gfLsw330
-	FwWVsvuITR5Wh0NwpDmEuE3T3xis3wxTjP5dvV242feU6BcQZTRvd7BsOOXi8wwPBuLO
-	CGRA==
-X-Gm-Message-State: APjAAAXWEVWYCoRCnbgvvH+DSydLUYBfwmyzTr8hVdNUITYq6NLNtG/Z
-	EDT+y6lbFSEEAao4U86Q81v88yWRi9CMickKrWTARA==
-X-Google-Smtp-Source: APXvYqwYAE3l6RMXc1Z8SShx2it55f66J81mY8Xtkjedyj6A+NKsA4ybMT53jYa7TkD4+5xdaqapTnwqxXNjgPL5vds=
-X-Received: by 2002:a2e:2b58:: with SMTP id q85mr14134198lje.179.1557760472828;
-	Mon, 13 May 2019 08:14:32 -0700 (PDT)
+	:message-id:subject:to:cc;
+	bh=ntoCN6frwKH0fkFV1OislitCjZqXw9dqr1CYy9ACQ3s=;
+	b=OU1FE0Wk0kxbcIPH+ydjzW2JZjZsFldeKBn8Y1wSQNRUCLewGXpayTCvNI6cC0eWUT
+	+SBtwyQZUEUpEP8PUaHFmkA23YMhO2xY2Vh7FujpF4WZEs+/XEzZsSzo407EXDokwk6R
+	70D7/DasHk50h9chb3FNs4MxlY+NHIB3QGINLNWUE3LYP3do5FoIKqEv3SON8OoZhLoj
+	viDNveoHxUs+8pjf8SfhVzcwHKUrPqesOH6meiKXtbt+zsf4nPfx3zpOyIBVDKZWbuxl
+	tAT5WPXN4ej1qtqrbRobnxhu2rF4m2PDtXzsAjCJt039hyVg0zUh1tf2pkrJXVBNlY78
+	2/qQ==
+X-Gm-Message-State: APjAAAUoFMGUgmgpZV0LzsJX0PacdyDzy/wBrKhQCyMwITP91C1jKckJ
+	mmGiB/K5bf8F/5Jrk5xcf+1Khc0W+xBv7IudhoA=
+X-Google-Smtp-Source: APXvYqzCk81sVyTz/Q0CkdLC1NOSC6gU9OkhP/rlZpxtREro072L/jln9yHl9fbOFxixRof2QjxPQ+SSGs157e9V3ZQ=
+X-Received: by 2002:a05:660c:443:: with SMTP id
+	d3mr19296808itl.147.1557761372061; 
+	Mon, 13 May 2019 08:29:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <A084970538D2234B96D99D06FA9D974FC3799AF2@ALA-MBD.corp.ad.wrs.com>
-In-Reply-To: <A084970538D2234B96D99D06FA9D974FC3799AF2@ALA-MBD.corp.ad.wrs.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Mon, 13 May 2019 17:14:20 +0200
-Message-ID: <CAP71Wjyk__P5hKjoUvCWS2X-S+BPmdcgqTHdT_2PbRw++_4Q3w@mail.gmail.com>
-To: "Volosincu, Andreea S" <andreea.volosincu@windriver.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: =?UTF-8?B?UmU6IEpvaW4gVXMg4oCTIE1heSAxM3RoLCAyMDE5IOKAkyBMaXZlIENvZGluZyB3aXRoIFlvY3RvIFByb2plY3Q=?=
+References: <CAOe0dAUYH83APXjXi8FiT3492zi0EVcsT4MfT69LJO+nJ5er8w@mail.gmail.com>
+	<4823d30b2edfc0eea9fcdec81f68e6e8f113f015.camel@intel.com>
+	<CAOe0dAVUf0hJDze4mRbNp-wGCpKMJs-5FQP7rTwiUmopwBQcdw@mail.gmail.com>
+	<4a8c7bbf-e0e9-dd0b-af5f-ed3ff6df5562@gmail.com>
+	<CAOe0dAXhkzhQZO2zOPtM4s5pO-t9VFOPsWt_h-5P+4rT=Hzhog@mail.gmail.com>
+	<CANp-EDYmzPbafstpL60UtjtiznDtv02ZvTxH5Mnarr4c6NTQcg@mail.gmail.com>
+In-Reply-To: <CANp-EDYmzPbafstpL60UtjtiznDtv02ZvTxH5Mnarr4c6NTQcg@mail.gmail.com>
+From: AshishKumar Mishra <ashish.emailaddress@gmail.com>
+Date: Mon, 13 May 2019 20:59:20 +0530
+Message-ID: <CAOe0dAX-_ZCbo-pveYi2MOC9ytO1ejkAqQGcjzCr1_Hpz=+8nQ@mail.gmail.com>
+To: Ralph Siemsen <ralph.siemsen@linaro.org>
+Cc: yocto-bsp@yoctoproject.org,
+	"linux-yocto@yoctoproject.org" <linux-yocto@yoctoproject.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Timestamp error between zImage & uname-a [ Yocto-2.6.1 + Qemux86 ]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,60 +79,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 13 May 2019 15:14:35 -0000
+X-List-Received-Date: Mon, 13 May 2019 15:29:33 -0000
+Content-Type: multipart/alternative; boundary="0000000000003a09560588c69552"
+
+--0000000000003a09560588c69552
 Content-Type: text/plain; charset="UTF-8"
+
+Thanks Ralph for informative reply .
+Will check once again after deleting the file you suggested .
+
+Ashish
+
+
+On Mon, May 13, 2019, 7:05 PM Ralph Siemsen <ralph.siemsen@linaro.org>
+wrote:
+
+> Hi Ashish,
+>
+> On Mon, May 13, 2019 at 5:57 AM AshishKumar Mishra <
+> ashish.emailaddress@gmail.com> wrote:
+>
+>> So , time shown by "uname -a" is retains older value even though
+>> i had compiled the linux multiple times .
+>>
+>
+> This is normal behaviour, even when building the kernel directly (eg. not
+> using Yocto). It is a bit surprising at first, but it all comes down to
+> dependencies in the Makefile for the kernel.
+>
+> The version string displayed by "uname -a" comes from init/version.c in
+> the kernel source tree. Specifically the symbol UTS_VERSION, which is
+> defined in include/generated/compile.h. This file is produced when you
+> first build, and remains thereafter, unless you do "make clean" or
+> equivalent.
+>
+> Currently , only way i am able to bypass this behavior is to do bitbake -c
+>> cleanall linux-yocto
+>> before every compilation.
+>>
+>
+> You can delete the include/generated/compile.h file in your kernel build
+> directory. Upon rebuild of kernel, the file will be re-created with the
+> current date/time.
+>
+> Regards
+> Ralph
+>
+
+--0000000000003a09560588c69552
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Dear all,
+<div dir=3D"auto"><div><br></div><div dir=3D"auto"><br></div><div dir=3D"au=
+to">Thanks Ralph for informative reply .</div><div dir=3D"auto">Will check =
+once again after deleting the file you suggested .</div><div dir=3D"auto"><=
+br></div><div dir=3D"auto">Ashish=C2=A0</div><div dir=3D"auto"><br><br><div=
+ class=3D"gmail_quote" dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_attr">O=
+n Mon, May 13, 2019, 7:05 PM Ralph Siemsen &lt;<a href=3D"mailto:ralph.siem=
+sen@linaro.org">ralph.siemsen@linaro.org</a>&gt; wrote:<br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
+id;padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div>Hi Ashish,</div=
+><div><br></div></div><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Mon, May 13, 2019 at 5:57 AM AshishKumar Mishra &lt;<a href=
+=3D"mailto:ashish.emailaddress@gmail.com" target=3D"_blank" rel=3D"noreferr=
+er">ashish.emailaddress@gmail.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">So , tim=
+e shown by &quot;uname -a&quot; is retains older value even though <br>i ha=
+d compiled the linux multiple times .<br></div></div></blockquote><div><br>=
+</div><div>This is normal behaviour, even when building the kernel directly=
+ (eg. not using Yocto). It is a bit surprising at first, but it all comes d=
+own to dependencies in the Makefile for the kernel.</div><div><br></div><di=
+v>The version string displayed by &quot;uname -a&quot; comes from init/vers=
+ion.c in the kernel source tree. Specifically the symbol UTS_VERSION, which=
+ is defined in include/generated/compile.h. This file is produced when you =
+first build, and remains thereafter, unless you do &quot;make clean&quot; o=
+r equivalent.</div><div><br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Currently , only way i am able=
+ to bypass this behavior is to do bitbake -c cleanall linux-yocto <br></div=
+><div dir=3D"ltr">before every compilation.<br></div></div></blockquote><di=
+v><br></div><div>You can delete the include/generated/compile.h file in you=
+r kernel build directory. Upon rebuild of kernel, the file will be re-creat=
+ed with the current date/time.</div><div><br></div><div>Regards</div><div>R=
+alph<br></div></div></div>
+</blockquote></div></div></div>
 
-CORRECTION: the next Twitch session will take place *tomorrow* on May
-14th, not May 13th. We are sorry about the inconvenience , we had a
-glitch in the date! The time and content of the session remain
-unchanged.
-
-cheers
-nico
-
-On Fri, May 10, 2019 at 6:59 AM Volosincu, Andreea S
-<andreea.volosincu@windriver.com> wrote:
->
-> Hello Everybody,
->
->
->
-> The next live coding session is approaching quickly.
->
->
->
-> When: May 13th, 2019, 5:00 PM CET
->
-> Where: Yocto Project Twitch channel - https://www.twitch.tv/yocto_project
->
-> What: Yocto Project developer, Josef Holzmayr, will show you how to creat=
-e a simple layer, derive a customized image and go through a devtool exampl=
-e
->
->
->
-> Live Coding with Yocto Project is a live streaming series for Linux devel=
-opers who want to learn how to build Linux distros quickly and easily using=
- the Yocto Project tools. The show is hosted by Yocto Project developers. W=
-e talk, explore devtools and write code along the way.
->
->
->
-> Add it to your calendar =E2=80=93 https://calendar.google.com/calendar/ic=
-al/d7umm3pdhorsnnjbe1cvbgfhlk%40group.calendar.google.com/public/basic.ics
->
->
->
-> See you soon!
->
-> Yocto Project Advocacy Team
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+--0000000000003a09560588c69552--
