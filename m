@@ -1,74 +1,75 @@
-Return-Path: <matthias.schoepfer@googlemail.com>
+Return-Path: <daniel.ammann@bytesatwork.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B430FE00D53; Tue, 14 May 2019 05:56:32 -0700 (PDT)
+	id A3B3DE00D4A; Tue, 14 May 2019 07:47:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (matthias.schoepfer[at]googlemail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.50 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
-	[209.85.128.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AD68E00D42
-	for <yocto@yoctoproject.org>; Tue, 14 May 2019 05:56:31 -0700 (PDT)
-Received: by mail-wm1-f50.google.com with SMTP id i3so2765074wml.4
-	for <yocto@yoctoproject.org>; Tue, 14 May 2019 05:56:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20161025;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding:content-language;
-	bh=FaSVaSwYFlrcGulGhUWGOf9I6Y0KOLQ0J71cV0aK+kw=;
-	b=aAYN7jDyk8ek7rt7dKUrKaLiWWoV685GR81AK/bLuxF9asqDHw1txtk7LrqLsluFzK
-	drGnKSverqVA6SLOB1HwbiZp5T+H88NUgAIQw84QoDwwsp03MQEuWpoic/TKk32OMtP0
-	FkR7dAK4vojWEGTKK49umT1COsPQk3yf6Xd8RCsG5Xd9NL2Lxzur7Osk/3oToeIbHmsG
-	U/zBh0OZVhZBHlBrhUrlFX0dUvUOdYtTxfPPkXQkI0GsjsDbtpBCpwWw5PIFfPoTkaJD
-	BMgeQrPRyHNt17hq5jblhz7NFcISGAJkacs7zsUHP+4/giVjVVveQkaXi23Abl4X/+Hb
-	vUXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=FaSVaSwYFlrcGulGhUWGOf9I6Y0KOLQ0J71cV0aK+kw=;
-	b=WAR/zFaOqXTvbzSCwzwRZ6ksjjQ7ZIZBWl2MWlqdkx+p407jB3JkAFWDi5hujGU+CP
-	6Uy9XJ0iRwRXhF6Ho3ybBFIOJ9v+c31nYzjX5MveQmT3T2fNjpLtrUYuxW+Q3HOQswoc
-	pNeubUESKEsgB1NjcnLZhxgYCxugwZmnRkhvqdNmHpqxDkrEmQSFlmOtVgpnFFVmpTbN
-	NosqeGnQkMVtFIAc1Hs8b6QWmtkakwil01r7bKjizuRswl/SUdtSFXQDs6DQuOvCkGgL
-	Q0s3ezjcKrbXHxfuvK5q1xav/3FJg7DkNv5P0SsCs8XGSTj+s0wrp1ESqDFC0iguF9gA
-	LaNg==
-X-Gm-Message-State: APjAAAV/z0CdR7zh22GmQdTz+cISJlmPuou1XWjW3eUfibMVW4X+Y7Jx
-	K2NwLHLJnmAz0Cvu4d6tHGH1Nmcw
-X-Google-Smtp-Source: APXvYqy1h9pz5W2QR3cGP1y/a+3hbEAL23TF88yFJ8T0F5v4TU/ROfSUB3JhkclwNhKvTGJ8Td+mzQ==
-X-Received: by 2002:a1c:ed12:: with SMTP id l18mr20533558wmh.13.1557838590334; 
-	Tue, 14 May 2019 05:56:30 -0700 (PDT)
-Received: from [172.16.100.14] ([213.168.66.146])
-	by smtp.gmail.com with ESMTPSA id f7sm1697951wmc.26.2019.05.14.05.56.28
-	for <yocto@yoctoproject.org>
-	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Tue, 14 May 2019 05:56:29 -0700 (PDT)
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+Received: from bytesatwork.ch (bytesatwork.ch [91.135.72.15])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 682B1E00CF4
+	for <yocto@yoctoproject.org>; Tue, 14 May 2019 07:47:46 -0700 (PDT)
+Received: from [192.168.2.42] (162.40.150.83.ftth.as8758.net [83.150.40.162])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128
+	bits)) (No client certificate requested)
+	(Authenticated sender: daniel)
+	by bytesatwork.ch (Postfix) with ESMTPSA id A1B83101C024B
+	for <yocto@yoctoproject.org>; Tue, 14 May 2019 16:47:43 +0200 (CEST)
 To: Yocto-mailing-list <yocto@yoctoproject.org>
-References: <7b3a42c2-1bc2-e739-5ff8-77e27b053c9c@googlemail.com>
-	<CAJTo0LaMbbd4NZdZH-3M-H_OO7HMmSHo3fu4zdtjhRvAXQGF0Q@mail.gmail.com>
-From: Matthias Schoepfer <matthias.schoepfer@googlemail.com>
-Message-ID: <3165dea5-d464-b287-a7c7-e5d53a543cfe@googlemail.com>
-Date: Tue, 14 May 2019 14:56:28 +0200
+From: Daniel Ammann <daniel.ammann@bytesatwork.ch>
+Openpgp: preference=signencrypt
+Autocrypt: addr=daniel.ammann@bytesatwork.ch; prefer-encrypt=mutual; keydata=
+	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
+	cZ+2nBA=
+Message-ID: <64a7f3f9-d9ba-000e-d735-a05f065bc2b6@bytesatwork.ch>
+Date: Tue, 14 May 2019 16:47:44 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0LaMbbd4NZdZH-3M-H_OO7HMmSHo3fu4zdtjhRvAXQGF0Q@mail.gmail.com>
-Subject: Re: Debugging dev-deps
+Subject: /etc/limits with openssh
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,38 +81,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 May 2019 12:56:32 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 14 May 2019 14:47:47 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Hi Ross,
+Hi
 
-thanks for the hints, funnily enough it was .so symlinks that where in 
--dev and caused the dev-deps...
+I am trying to restrict non-privileged users from using up too many resources.
+I added "* U100" to /etc/limits. If the user logs in using the serial console,
+it works. If the user logs in using openssh, the limits are not applied. How do
+I make this work for ssh login?
 
-Regards,
+I am using beaglebone-yocto with core-image-base with added sshd. This is yocto
+2.6.
 
-     Matthias
+Thanks
 
-On 5/13/19 7:55 PM, Burton, Ross wrote:
-> On Mon, 13 May 2019 at 09:54, Matthias Schoepfer
-> <matthias.schoepfer@googlemail.com> wrote:
->> I am trying to write a recipe for a rather tricky component (that has
->> plugins and stuff). Anyhow, I cannot get bitbake not to complain that
->> <PACKAGENAME> rdepends on <PACKAGENAME>-dev. And if I INSANE_SKIP it,
->> the -dev package will get installed. But I cannot figure out which file
->> is responsible. I tried to ldd all installed files in <PACKAGENAME>, but
->> could not get any results. Any hints on how to debug this further?!
-> The problem is probably that the plugins are being shipped as
-> /usr/lib/libpluginfoo.so, and so have the same names as development
-> library symlinks which get packaged into PN-dev automatically.
-> Alternatively unversioned libraries will also have the same issue.
->
-> Look at what files go into what package (using oe-pkgdata-util), and
-> ensure that PN-dev only contains headers and the link-time symlinks.
-> For example libfoo.so -> libfoo.so.1, libfoo.so should be in PN-dev
-> and libfoo.so.1 should be in PN.
->
-> Ross
+Daniel
 
