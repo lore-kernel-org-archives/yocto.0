@@ -1,68 +1,71 @@
-Return-Path: <GWilson@sakuraus.com>
+Return-Path: <bruce.ashfield@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 032C5E00DD2; Wed, 15 May 2019 13:53:30 -0700 (PDT)
+	id 00E74E00D36; Wed, 15 May 2019 15:04:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	https://www.dnswl.org/, low *      trust
-	*      [209.222.82.36 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,LOTS_OF_MONEY,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.181 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (bruce.ashfield[at]gmail.com)
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from 13pmail.ess.barracuda.com (13pmail.ess.barracuda.com
-	[209.222.82.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4866E00D36
-	for <yocto@yoctoproject.org>; Wed, 15 May 2019 13:53:27 -0700 (PDT)
-Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
-	mx1.us-east-2a.ess.aws.cudaops.com (version=TLSv1.2
-	cipher=AES256-SHA256 bits=256 verify=NO);
-	Wed, 15 May 2019 20:53:25 +0000
-Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
-	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
-	Wed, 15 May 2019 13:53:16 -0700
-Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
-	([::1]) with mapi id 15.01.0669.032; Wed, 15 May 2019 13:53:16 -0700
-From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-To: Rudolf J Streif <rudolf.streif@ibeeto.com>, Yocto list discussion
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] problem adding a user
-Thread-Index: AdUKtI8UMCSaJnTQT92qAk6aHgoNcgAxtVKA//+VNhqAAIDUAP//it/KgACHQwD//5XyzoAAeniAgAB1FWA=
-Date: Wed, 15 May 2019 20:53:16 +0000
-Message-ID: <b38f6ac29beb40c4bb457c09a14cc78d@sakuraus.com>
-References: <2086bca8f57442acac5ba11c3d2712f1@sakuraus.com>
-	<3d82053c-8db7-15af-34b8-18657749e026@ibeeto.com>
-	<59388987f9de418abb8598790a3d3e7f@sakuraus.com>
-	<04dbfa63-d5a5-1aff-9d4a-87cbd9f44b5c@ibeeto.com>
-	<20cf7cd05ce54a439d05109439572db8@sakuraus.com>
-	<2503a68b-2283-cac8-1e5d-11d0885598a7@ibeeto.com>
-	<1d6f238b62354df8a92873769755990b@sakuraus.com>
-	<fd8f34de-c8e6-c503-a932-9bdf2efdbaed@ibeeto.com>
-In-Reply-To: <fd8f34de-c8e6-c503-a932-9bdf2efdbaed@ibeeto.com>
-Accept-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.5.3]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid *  0.0 LOTS_OF_MONEY Huge... sums of money
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
+	[209.85.208.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51BEBE00CE5
+	for <yocto@yoctoproject.org>; Wed, 15 May 2019 15:04:32 -0700 (PDT)
+Received: by mail-lj1-f181.google.com with SMTP id h19so1222999ljj.4
+	for <yocto@yoctoproject.org>; Wed, 15 May 2019 15:04:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=vqtrqhICj1Xg8E8rTkYNJMs/zZSsuE9045bzCHf9dyQ=;
+	b=CtdgT62IviUo29U8KIoRIeRCNT+S4j9R+GkC+B6APR2kLZkn3ZgKuzKHa7acphVbTv
+	VhKGW0n0eu9hutjBBdRM30mqSzSDiwNYgmQckDCx3dQTswHSHYrm7ekCjc1RmPU0NbAE
+	xo6szkGqegktydoLFuAT91ayComBUqnKUXK2Cm5+fjN30jG4KlQmZ4PrZWlshh7TuQyz
+	BlFazf1XUTSFMso0psbtsp1Z9dmytm+MHebCQG4eo6aHA1CDQGgIkb8ePuDxedh2jb1P
+	KjXUL4qsSsXY+M26Q+E3v8WMO2S4UBVUP02E0yS1Qhra6WstXrYvHnfxriaaLbKC+sEH
+	mjUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=vqtrqhICj1Xg8E8rTkYNJMs/zZSsuE9045bzCHf9dyQ=;
+	b=dV72AE2CzDVj+sMsMoJVY/IvopVYoYXT3r+R4YJaCmoQaqV36GgJW8WWYimzeXS0U1
+	Fq+1ZxH9PiUYmwXUxBIqAyerrOUSVAVpFIEnNct5vQ6b5QhN5+vGypGZUA5nIVLZT6Pt
+	5lo4g+moGiwVp8AJKTfDfVVfJP0reLIvL+KEs3vO2uHKTapUKRPS9gHcTsFmx3bqDWSM
+	3eKOwyed5cc1kahnD2LYyB7yByXsXvgkszTY97qIyB703IXW5cRb1nfvHjsm3wK3VD97
+	66DJMNRHol/3+388CZZuC1BQ+cGfZoahg9QQPvriCbGqEQpctJX3EGspsNQsYkz5V8N0
+	zY7w==
+X-Gm-Message-State: APjAAAUtmTDb6oBnu+d39sBwVlkxurmQ9oosEPUi1/QLGn28+mt+01E+
+	sVfeboaNmNf6Pu3EcUVCSVwOASAwLQqV53LrBJI=
+X-Google-Smtp-Source: APXvYqxGmv2MHUkVCWWQBmXWEXBFnyc80lC+gPax80V63HvPZ3G3L8uFiTBFW5NNErxpNof+WRzRcVssQMBptn6/mIg=
+X-Received: by 2002:a2e:2b58:: with SMTP id q85mr22106190lje.179.1557957871121;
+	Wed, 15 May 2019 15:04:31 -0700 (PDT)
 MIME-Version: 1.0
-X-BESS-ID: 1557953591-893000-22925-40244-2
-X-BESS-VER: 2019.3_20190514.1944
-X-BESS-Apparent-Source-IP: 12.26.104.5
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2,
-	rules version 3.2.2.213344 [from 
-	cloudscan26.us-east-2b.ess.aws.cudaops.com]
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in message 
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-Subject: Re: problem adding a user
+References: <CAGAf8LxJyLUqa+kOv7+Zs0zbXBD3JjR4yEsqHTi4rDx805826A@mail.gmail.com>
+	<903d2bf0-2711-b734-d844-ef032fb67d58@2net.co.uk>
+	<CAGAf8LyRa0AXf-097GAoJa=jUY3pK8fWxCaDXGReu+GqVJOi4A@mail.gmail.com>
+	<CADkTA4MQc=OYaTqTwoGv0mzLcQ3a6R911_UjCuCpRCootgtiwA@mail.gmail.com>
+	<CAGAf8LwwfKq4kXE5=bf_1+Aa8aqOG+8NrL31Mii2TfLhXyLXKA@mail.gmail.com>
+	<CADkTA4OYJs71BPbeM3+gz1+heAQw4L5zJ4U77emrywG5bzz-HQ@mail.gmail.com>
+	<CAGAf8Lxcs7sigNHZxrOj1HUfn0x12=4o3bh85Ku-E=w=1iGGFg@mail.gmail.com>
+In-Reply-To: <CAGAf8Lxcs7sigNHZxrOj1HUfn0x12=4o3bh85Ku-E=w=1iGGFg@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+Date: Wed, 15 May 2019 18:04:19 -0400
+Message-ID: <CADkTA4NXu3qt+88TA_mjaDDaZooadX6_H=Z_mMsfi7Op0gFB6Q@mail.gmail.com>
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Building Out-of-Tree Modules on the BBB Target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,1088 +77,786 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 May 2019 20:53:30 -0000
-X-Groupsio-MsgNum: 45195
-Content-Language: en-US
-Content-Type: multipart/related;
-	boundary="_006_b38f6ac29beb40c4bb457c09a14cc78dsakurauscom_";
-	type="multipart/alternative"
+X-List-Received-Date: Wed, 15 May 2019 22:04:35 -0000
+Content-Type: multipart/alternative; boundary="0000000000007bb9530588f45598"
 
---_006_b38f6ac29beb40c4bb457c09a14cc78dsakurauscom_
-Content-Type: multipart/alternative;
-	boundary="_000_b38f6ac29beb40c4bb457c09a14cc78dsakurauscom_"
+--0000000000007bb9530588f45598
+Content-Type: text/plain; charset="UTF-8"
 
---_000_b38f6ac29beb40c4bb457c09a14cc78dsakurauscom_
-Content-Type: text/plain; charset="us-ascii"
+On Wed, May 15, 2019 at 4:09 PM Zoran Stojsavljevic <
+zoran.stojsavljevic@gmail.com> wrote:
+
+> > The core-image-kernel-dev image is how I do all my on target
+> > testing when I introduce a new reference kernel for a release.
+>
+> Maybe you are correct. Maybe I should use/add in my local.conf the
+> following:
+>
+> KERNEL_DEV_TOOLS ?= "packagegroup-core-tools-profile
+> packagegroup-core-buildessential kernel-devsrc"
+> KERNEL_DEV_MODULE ?= "kernel-modules"
+> CORE_IMAGE_EXTRA_INSTALL += "${KERNEL_DEV_MODULE} \
+>                              ${KERNEL_DEV_TOOLS} \
+>                              systemtap \
+>                             "
+> I need to try these... Maybe this addendum will solve the $1 mio USD
+> problem?!
+>
+> > And IIRC the autobuilders are using a sato based image (Richard
+> > could confirm more easily that I could what image type the
+> > autobuilders are using for hello-world on target module tests).
+>
+> I am just advertising something more simple. To have mandatory
+> /lib/modules/`uname -r` directory. And introduce few more packages, as
+> Fedora distro, for example, has: kernel-headers (assuming YOCTO
+> rootfs, the following will be installed: /usr/src/kernel/`uname
+> -r`/<header file directory structures>. This also makes addition of
+> /lib/modules/`uname -r`/build file (which is soft link to
+> usr/src/kernel/`uname -r`).
+
+
+These have all been discussed off an on over the past 5 years. I can't get
+at bugzilla right now, but all the details are logged in cases. A survey of
+all the distros, their kernel package, etc, were all looked at. We had to
+balance the traditional packaging with some new concepts and landed with
+what we have now.
+
+
+
+> Or kernel-devel package. Then, the whole current kernel source code
+> will be introduced, and also support for it.
+>
+
+There's a case for this one as well, I'll probably have it done for the
+fall release. But our devsrc used to pretty much be the full source it has
+now been pruned down to something more manageable.  There are definitely
+some cases for having the full source on the target again, and it will be a
+separate package, just not the minimal one to build out of tree modules,
+etc.
+
+
+
+
+>
+> SDK building with such a support is good/cool. But sometimes, before
+> introducing SDK, some tests should be done on target. NO need to
+> optionally include built-in layer hello-world driver example. Since I
+> (or you name the person) have own test drivers, which will be imported
+> out of tree, externally, to the target test bed!
+>
+>
+I never use the SDK myself, so you are not alone in not going to it first.
+Hopefully I'll get some new patches out in the coming month before summer
+holidays really kick in.
+
+Bruce
+
+
+
+> Just thinking loud...
+>
+> Zoran
+> _______
+>
+> On Wed, May 15, 2019 at 4:25 PM Bruce Ashfield <bruce.ashfield@gmail.com>
+> wrote:
+> >
+> >
+> >
+> > On Wed, May 15, 2019 at 3:44 AM Zoran Stojsavljevic <
+> zoran.stojsavljevic@gmail.com> wrote:
+> >>
+> >> > That's correct. That command only adds the kernel source and
+> >> > build infrastructure to the SDK, not to your target image. You'd still
+> >> > need to arrange to have the kernel-devsrc package installed on the
+> >> > target image if you want it on the board's rootfs. How you arrange
+> >> > to have the package installed to the image varies with the image
+> >> > (since they all don't have the same image install variables, etc).
+> >>
+> >> And here is a $1,000,000 USD question? How to do it on Poky (as
+> >> example of what you have stated in RED)? ;-)
+> >>
+> >> In other words: how to arrange it on Poky (as a Referent example)?
+> >
+> >
+> > The core-image-kernel-dev image is how I do all my on target testing
+> when I introduce a new reference kernel for a release. And IIRC the
+> autobuilders are using a sato based image (Richard could confirm more
+> easily that I could what image type the autobuilders are using for
+> hello-world on target module tests).
+> >
+> > Bruce
+> >
+> >
+> >>
+> >>
+> >> Thank you,
+> >> Zoran
+> >> _______
+> >>
+> >>
+> >> On Wed, May 15, 2019 at 7:41 AM Bruce Ashfield <
+> bruce.ashfield@gmail.com> wrote:
+> >>>
+> >>>
+> >>>
+> >>> On Tue, May 14, 2019 at 1:30 PM Zoran Stojsavljevic <
+> zoran.stojsavljevic@gmail.com> wrote:
+> >>>>
+> >>>> Hello Chris, Bruce,
+> >>>>
+> >>>> I have some additional data to share with you both, since I have tried
+> >>>> something. And here is my take on the things!
+> >>>>
+> >>>> > 1. Build using a bb recipe.
+> >>>> > Take a look at meta-skeleton/recipes-kernel/hello-mod for an
+> example.
+> >>>> > You just need to add meta-skeleton to your bblayers.conf and then
+> >>>> >  bitbake hello-mod
+> >>>>
+> >>>> I looked into this example, and, yes, it is classic kernel module
+> >>>> definition out of the tree. With some outdated data, all cool, the
+> >>>> YOCTO designer should take care himself to fix these data, if using
+> >>>> this stuff.
+> >>>>
+> >>>> But this is NOT mandatory, since I can add out of the tree module NOT
+> >>>> actually using built-in module. I just use .../tmp/deploy/images/bbb/*
+> >>>> generated stuff, since I have automated scripts which are bringing all
+> >>>> these on my BBB target. Then I tftp my source code module to the
+> >>>> target.
+> >>>>
+> >>>> > 2. Build from the SDK:
+> >>>> > First, add the kernel source to the SDK by adding this to
+> conf/local.conf
+> >>>> >  TOOLCHAIN_TARGET_TASK_append = " kernel-devsrc"
+> >>>>
+> >>>> YES, this is THE command which should generate
+> >>>> /usr/src/kernel(s)/`uname -r` or similar... But adding it to
+> >>>> local.conf and after deleting kernel, then regenerating bitbake -k
+> >>>> core-image-minimal does not bring this path into the rootfs image!?
+> >>>
+> >>>
+> >>> That's correct. That command only adds the kernel source and build
+> infrastructure to the SDK, not to your target image. You'd still need to
+> arrange to have the kernel-devsrc package installed on the target image if
+> you want it on the board's rootfs. How you arrange to have the package
+> installed to the image varies with the image (since they all don't have the
+> same image install variables, etc).
+> >>>
+> >>>
+> >>>>
+> >>>>
+> >>>> I did it actually using meta-bbb, and using poky referent distro as
+> >>>> two additional layers to the more complex bbb image!
+> >>>> https://github.com/jumpnow/meta-bbb.git
+> >>>>
+> >>>> The (KAS - you can figure out out of it local.conf) script I am using
+> >>>> to build such a BBB image is here:
+> >>>>
+> https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-releases/bbb-warrior/kas-bbb-warrior.yml
+> >>>>
+> >>>> I did not try it with BBB reference poky only! Maybe I should try it
+> >>>> as only referent poky? What do you think?
+> >>>>
+> >>>> Does in this case is SDK build really mandatory??? Should NOT be!
+> >>>>
+> >>>
+> >>> You only do the SDK steps if you want to support building out of tree
+> modules in an SDK install. So it is not mandatory for on target module
+> builds.
+> >>>
+> >>> Bruce
+> >>>
+> >>>
+> >>>>
+> >>>> > Once the SDK is installed, generate the kernel headers:
+> >>>> >  sudo -i
+> >>>> >  .
+> /opt/poky/2.6.2/environment-setup-cortexa8hf-neon-poky-linux-gnueabi
+> >>>> >  cd /opt/poky/2.6.2/sysroots/cortexa8hf-neon-poky-linux-gnueabi
+> >>>> >  cd /usr/src/kernel
+> >>>> >  make oldconfig scripts
+> >>>> >  exit
+> >>>>
+> >>>> This is in nutshell the same what I did (a bit different) for Embedded
+> >>>> Debian. This is already on the target BBB, NOT while building YOCTO
+> >>>> BBB image!
+> >>>>
+> >>>> > Finally, build your module using a Makefile like this
+> >>>> >  obj-m := hello-mod.o
+> >>>> >  all:
+> >>>> >        make -C $(SDKTARGETSYSROOT)/usr/src/kernel M=$(shell pwd)
+> >>>>
+> >>>> As said before: bringing my own module into the target BBB (I have my
+> >>>> own examples, and I build them on the target with the almost the same
+> >>>> Makefiles)
+> >>>>
+> >>>> Zoran
+> >>>> _______
+> >>>>
+> >>>> On Sun, May 12, 2019 at 3:15 PM Chris Simmonds <chris@2net.co.uk>
+> wrote:
+> >>>> >
+> >>>> > Hi Zoran,
+> >>>> >
+> >>>> > There are two ways to do this
+> >>>> >
+> >>>> > 1. Build using a bb recipe.
+> >>>> > Take a look at meta-skeleton/recipes-kernel/hello-mod for an
+> example.
+> >>>> > You just need to add meta-skeleton to your bblaysers.conf and then
+> >>>> >   bitbake hello-mod
+> >>>> >
+> >>>> >
+> >>>> > 2. Build from the SDK:
+> >>>> > First, add the kernel source to the SDK by adding this to
+> conf/local/conf
+> >>>> >   TOOLCHAIN_TARGET_TASK_append = " kernel-devsrc"
+> >>>> >
+> >>>> > Then build the SDK
+> >>>> >   bitbake -c populate_sdk [your image recipe]
+> >>>> >
+> >>>> > Once the SDK is installed, generate the kernel headers:
+> >>>> >   sudo -i
+> >>>> >   .
+> /opt/poky/2.6.2/environment-setup-cortexa8hf-neon-poky-linux-gnueabi
+> >>>> >   cd /opt/poky/2.6.2/sysroots/cortexa8hf-neon-poky-linux-gnueabi
+> >>>> >   cd /usr/src/kernel
+> >>>> >   make oldconfig scripts
+> >>>> >   exit
+> >>>> >
+> >>>> > Finally, build your module using a Makefile like this
+> >>>> >
+> >>>> >   obj-m := hello-mod.o
+> >>>> >   all:
+> >>>> >         make -C $(SDKTARGETSYSROOT)/usr/src/kernel M=$(shell pwd)
+> >>>> >
+> >>>> >
+> >>>> > HTH,
+> >>>> > Chris
+> >>>> >
+> >>>> > On 12/05/2019 11:53, Zoran Stojsavljevic wrote:
+> >>>> > > Hello to the YOCTO community,
+> >>>> > >
+> >>>> > > I am using (to build the target for Beagle Bone Black) the
+> following script:
+> >>>> > > https://github.com/ZoranStojsavljevic/bbb-yocto
+> >>>> > >
+> https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-yocto.sh
+> >>>> > >
+> >>>> > > The latest kernel I am using from the following repo:
+> >>>> > > https://github.com/jumpnow/meta-bbb
+> >>>> > >
+> >>>> > > Is kernel 5.0.14 .
+> >>>> > >
+> >>>> > > Here is the snippet of the boot traces:
+> >>>> > > Starting kernel ...
+> >>>> > >
+> >>>> > > [    0.000000] Booting Linux on physical CPU 0x0
+> >>>> > > [    0.000000] Linux version 5.0.14-jumpnow (oe-user@oe-host)
+> (gcc
+> >>>> > > version 8.3.0 (GCC)) #1 Fri May 10 13:12:33 UTC 2019
+> >>>> > > [    0.000000] CPU: ARMv7 Processor [413fc082] revision 2
+> (ARMv7), cr=10c5387d
+> >>>> > > [    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT
+> aliasing
+> >>>> > > instruction cache
+> >>>> > > [    0.000000] OF: fdt: Machine model: TI AM335x BeagleBone Black
+> >>>> > > [    0.000000] Memory policy: Data cache writeback
+> >>>> > > [    0.000000] cma: Reserved 16 MiB at 0x9f000000
+> >>>> > > [    0.000000] CPU: All CPU(s) started in SVC mode.
+> >>>> > > [    0.000000] AM335X ES2.1 (sgx neon)
+> >>>> > > [    0.000000] random: get_random_bytes called from
+> >>>> > > start_kernel+0xa4/0x460 with crng_init=0
+> >>>> > > [    0.000000] Built 1 zonelists, mobility grouping on.  Total
+> pages: 130048
+> >>>> > > [    0.000000] Kernel command line: console=ttyO0,115200n8
+> >>>> > > root=/dev/ram0 ip=dhcp
+> >>>> > >
+> >>>> > > According to the documentation, the following:
+> >>>> > > 2.10.1. Building Out-of-Tree Modules on the Target
+> >>>> > >
+> https://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html
+> >>>> > >
+> >>>> > > I tried to find /usr/src/kernels/5.0.14... Directory, since I see
+> >>>> > > from the build that kernel-dev and kernel-devsrc are included:
+> >>>> > > [user@fedora29-ssd bbb-yocto]$ bitbake -s | grep kernel
+> >>>> > > core-image-kernel-dev                                 :1.0-r0
+> >>>> > > kernel-devsrc                                         :1.0-r0
+> >>>> > > kernel-selftest                                       :1.0-r0
+> >>>> > >
+> >>>> > > THE PROBLEM: But I could not find ob BBB target /usr/src/kernels
+> >>>> > > directory at all!?
+> >>>> > >
+> >>>> > > Two questions here?
+> >>>> > > [1] Do you have any advice on this problem (what I am missing
+> here)?
+> >>>> > > [2] Alternative to [1]: how I can use cross compiler from
+> >>>> > > .../build/tmp to build Out-of-Tree Module for the BBB target on
+> the
+> >>>> > > host?
+> >>>> > >
+> >>>> > > Thank you,
+> >>>> > > Zoran
+> >>>> > > _______
+> >>>> > >
+> >>>> >
+> >>>> >
+> >>>> > --
+> >>>> > Chris Simmonds, trainer and consultant at 2net
+> >>>> > http://www.2net.co.uk
+> >>>> > Author of "Mastering Embedded Linux Programming"
+> >>>
+> >>>
+> >>>
+> >>> --
+> >>> - Thou shalt not follow the NULL pointer, for chaos and madness await
+> thee at its end
+> >>> - "Use the force Harry" - Gandalf, Star Trek II
+> >>>
+> >
+> >
+> > --
+> > - Thou shalt not follow the NULL pointer, for chaos and madness await
+> thee at its end
+> > - "Use the force Harry" - Gandalf, Star Trek II
+> >
+>
+
+
+-- 
+- Thou shalt not follow the NULL pointer, for chaos and madness await thee
+at its end
+- "Use the force Harry" - Gandalf, Star Trek II
+
+--0000000000007bb9530588f45598
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Thank you very much, that got me back on the right path.
-Maybe I'll see you at the Yocto day at the Embedded Linux Conference.
-Regards,
-
-
-Greg Wilson-Lindberg
-
-Principal Firmware Engineer | Sakura Finetek USA, Inc.
-
-
-
-1750 W 214th Street | Torrance, CA 90501 | U.S.A.
-
-T: +1 310 783 5075
-
-F: +1 310 618 6902 | E: gwilson@sakuraus.com<mailto:gwilson@sakuraus.com>
-
-www.sakuraus.com<http://www.sakuraus.com>
-
-
-
-[cid:image002.png@01D35D7D.179A7510]
-
-[cid:image003.png@01D35D7D.179A7510]
-
-
-________________________________
-
-Confidentiality Notice: This e-mail transmission may contain confidential o=
-r legally privileged information that is intended only for the individual o=
-r entity named in the e-mail address. If you are not the intended recipient=
-, you are hereby notified that any disclosure, copying, distribution, or re=
-liance upon the contents of this e-mail is strictly prohibited. If you have=
- received this e-mail transmission in error, please reply to the sender, so=
- that Sakura Finetek USA, Inc. can arrange for proper delivery, and then pl=
-ease delete the message from your inbox. Thank you.
-
-
-
-From: Rudolf J Streif [mailto:rudolf.streif@ibeeto.com]
-Sent: Wednesday, May 15, 2019 01:30 PM
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>; Yocto list discussion <yoc=
-to@yoctoproject.org>
-Subject: Re: [yocto] problem adding a user
-
-
-Instead of
-
-
-
-useradd -p `openssl passwd test` sakura
-
-
-
-which attempts to add the user and set the password which fails if the user=
- already exists, use
-
-
-
-usermod -p `openssl passwd test` sakura
-
-
-
-which sets the user's password.
-
-
-
-:rjs
-
-
-On 5/15/19 1:18 PM, Greg Wilson-Lindberg wrote:
-
-Ok, I had been using the useradd class in a couple of other recipes to allo=
-w me to copy files to the sakura user directory and another location, but o=
-wned by sakura. That seems to have been what was causing the problem.
-
-
-
-I had been using the extrausers class in my top level image recipe.
-
-So now how do I get all of this to work together? Do I need to put everythi=
-ng that touches the sakura user in the same recipe? It seems that I need to=
- use only one of the useradd or extrausers classes?
-
-Greg
-________________________________
-From: Rudolf J Streif <rudolf.streif@ibeeto.com><mailto:rudolf.streif@ibeet=
-o.com>
-Sent: Wednesday, May 15, 2019 12:31 PM
-To: Greg Wilson-Lindberg; Yocto list discussion
-Subject: Re: [yocto] problem adding a user
-
-
-The ! for the password in /etc/shadow indicates that the account is disable=
-d:
-
-sakura:!:18031:0:99999:7:::
-
-
-
-Either there is something wrong with the password generation or it gets dis=
-abled by something else. Maybe it's worth trying with a plain image without=
- Boot2Qt or anything else.
-
-
-
-:rjs
-
-
-
-
-On 5/15/19 11:46 AM, Greg Wilson-Lindberg wrote:
-
-Hi Rudolf,
-
-1st, yes I inherit extrausers. Attached are the passwd & shadow files.
-
-
-
-It shouldn't make any difference, but I'm building this for an RPi3 using t=
-he Qt Boot2Qt version of the Yocto environment, distro 2.5.3.
-
-
-Greg
-________________________________
-From: Rudolf J Streif <rudolf.streif@ibeeto.com><mailto:rudolf.streif@ibeet=
-o.com>
-Sent: Wednesday, May 15, 2019 11:26 AM
-To: Greg Wilson-Lindberg; Yocto list discussion
-Subject: Re: [yocto] problem adding a user
-
-
-Hi Greg,
-
-
-
-> I've also tried both the back-quote and the single-quote, no difference.
-
-
-
-Help me to understand this. the back-quotes are the right ones. If you use =
-the single ones your password in the /etc/shadow ends up being 'openssl pas=
-swd test' (without the quotes), unless the build fails because of a parsing=
- error (I have not tried it). Silly question, you did inherit extrausers cl=
-ass?
-
-
-
-Can you post your /etc/passwd and /etc/shadow
-
-
-
-I am surprised that this does not work with your setup. I have been doing t=
-his a gazillion times always with success.
-
-
-
-:rjs
-
-
-
-
-
-
-On 5/15/19 11:03 AM, Greg Wilson-Lindberg wrote:
-
-Hi Rudolf,
-
-Thanks for the reply, and the information on how openssl works.
-
-
-
-I'm trying to create a user with the same group name so the code that I'm u=
-sing reduces to:
-
-EXTRA_USERS_PARAMS =3D "\
-
-    useradd -p `openssl passwd test` sakura; \
-
-    usermod -a -G sudo ${SAKURA_USER}; \
-
-    "
-I also, as you can see, removed the macros to eliminate as much confusion a=
-s possible.
-
-
-
-I still can't login in using the password 'test'.
-
-
-
-I've also tried both the back-quote and the single-quote, no difference.
-
-Regards,
-
-
-
-Greg
-
-________________________________
-From: Rudolf J Streif <rudolf.streif@ibeeto.com><mailto:rudolf.streif@ibeet=
-o.com>
-Sent: Wednesday, May 15, 2019 10:07:47 AM
-To: Greg Wilson-Lindberg; Yocto list discussion
-Subject: Re: [yocto] problem adding a user
-
-Hi Greg,
-
-Well, I suppose I wrote the book you are referring to...
-
-
-Using
-
-useradd -p PASSWORD USER
-
-takes the password hash for PASSWORD hence the use of openssl in:
-
-useadd -p `openssl passwd PASSWORD` USER
-
-openssl password creates the password hash using the original crypt hash
-algorithm if no other options are specified. e.g.
-
-$ openssl passwd hello
-6hEsTksgRkeiI
-
-With this the first two characters of the output is the salt and the
-rest is the password hash. If you want openssl to create the same result
-again:
-
-$ openssl passwd -salt "6h" hello
-6hEsTksgRkeiI
-
-You can use newer algorithms like MD5 based BSD password algorithm 1:
-
-$ openssl passwd -1 hello
-$1$4Mu8Fcs.$eIKgPP7RCYrb3lFZjhADA1
-
-$1 : password algorithm 1
-$4Mu8Fcs. : salt
-$eIKgPP7RCYrb3lFZjhADA1 : password hash
-
-
-If you log into the system you have to use the clear password. The
-system reads the salt, creates the password hash and compares the results.
-
-
-:rjs
-
-
-On 5/14/19 5:34 PM, Greg Wilson-Lindberg wrote:
-> I'm trying to use the example in "Embedded Linux Systems with the Yocto P=
-roject" to add a user to my Yocto build. In the book the sample code:
->
->     useradd -p `openssl passwd ${DEV_PASSWORD}` developer; \
->
-> uses openssl to generate the encrypted password string to pass to useradd=
-. I have never been able to get this to work. When I run the openssl
-> command on the cmd line I get a different value every time, this seems wr=
-ong, How can the password code compare against it if every encode
-> produces a different value?
->
-> I am getting the user added to the system, the home directory shows up an=
-d the user is in the passwd and group files. I just can't login to the
-> account.
->
-> I've obviously got something confused, any help would be appreciated.
->
-> Greg Wilson-Lindberg
->
-
---
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3396 x700
-
---
-
------
-
-Rudolf J Streif
-
-CEO/CTO ibeeto
-
-+1.855.442.3396 x700
-
---
-
------
-
-Rudolf J Streif
-
-CEO/CTO ibeeto
-
-+1.855.442.3396 x700
-
---
-
------
-
-Rudolf J Streif
-
-CEO/CTO ibeeto
-
-+1.855.442.3396 x700
-
---_000_b38f6ac29beb40c4bb457c09a14cc78dsakurauscom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
-o\:* {behavior:url(#default#VML);}
-w\:* {behavior:url(#default#VML);}
-.shape {behavior:url(#default#VML);}
-</style><![endif]--><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	color:black;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p
-	{mso-style-priority:99;
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;
-	color:black;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML Preformatted Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";
-	color:black;}
-span.HTMLPreformattedChar
-	{mso-style-name:"HTML Preformatted Char";
-	mso-style-priority:99;
-	mso-style-link:"HTML Preformatted";
-	font-family:Consolas;
-	color:black;}
-span.EmailStyle20
-	{mso-style-type:personal-reply;
-	font-family:"Arial",sans-serif;
-	color:black;
-	font-weight:normal;
-	font-style:normal;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body bgcolor=3D"white" lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif;color:black">Thank you very much, that got me back on =
-the right path.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif;color:black">Maybe I'll see you at the Yocto day at th=
-e Embedded Linux Conference.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif;color:black">Regards,<o:p></o:p></span></p>
-<div>
-<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
-=3D"0" align=3D"left" width=3D"97%" style=3D"width:97.66%;margin-top:-1.75p=
-t;margin-bottom:-1.75pt">
-<tbody>
-<tr>
-<td style=3D"padding:0in 0in 0in 0in">
-<p class=3D"MsoNormal" style=3D"line-height:105%;mso-element:frame;mso-elem=
-ent-frame-hspace:2.25pt;mso-element-frame-vspace:.5pt;mso-element-wrap:arou=
-nd;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:colu=
-mn;mso-height-rule:exactly">
-<img width=3D"36" height=3D"7" id=3D"Picture_x0020_1" src=3D"cid:image001.p=
-ng@01D50B22.E4566B00" alt=3D"cid:image001.png@01D35D7D.179A7510"><o:p></o:p=
-></p>
-</td>
-</tr>
-<tr>
-<td style=3D"padding:0in 0in 0in 0in">
-<p class=3D"MsoNormal" style=3D"line-height:105%;mso-element:frame;mso-elem=
-ent-frame-hspace:2.25pt;mso-element-frame-vspace:.5pt;mso-element-wrap:arou=
-nd;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:colu=
-mn;mso-height-rule:exactly">
-<b><span style=3D"font-size:11.0pt;line-height:105%;font-family:&quot;Arial=
-&quot;,sans-serif;color:#0089D1">Greg Wilson-Lindberg&nbsp;
-<o:p></o:p></span></b></p>
-</td>
-</tr>
-<tr>
-<td style=3D"padding:0in 0in 0in 0in">
-<p class=3D"MsoNormal" style=3D"line-height:105%;mso-element:frame;mso-elem=
-ent-frame-hspace:2.25pt;mso-element-frame-vspace:.5pt;mso-element-wrap:arou=
-nd;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:colu=
-mn;mso-height-rule:exactly">
-<b><span style=3D"font-size:11.0pt;line-height:105%;font-family:&quot;Arial=
-&quot;,sans-serif;color:#58595B">Principal Firmware Engineer | Sakura Finet=
-ek USA, Inc.&nbsp;
-<o:p></o:p></span></b></p>
-</td>
-</tr>
-<tr>
-<td style=3D"padding:0in 0in 0in 0in">
-<p class=3D"MsoNormal" style=3D"line-height:105%;mso-element:frame;mso-elem=
-ent-frame-hspace:2.25pt;mso-element-frame-vspace:.5pt;mso-element-wrap:arou=
-nd;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:colu=
-mn;mso-height-rule:exactly">
-<b><span style=3D"font-size:10.5pt;line-height:105%;font-family:&quot;Arial=
-&quot;,sans-serif;color:#58595B">&nbsp;<o:p></o:p></span></b></p>
-</td>
-</tr>
-<tr>
-<td style=3D"padding:0in 0in 0in 0in">
-<p class=3D"MsoNormal" style=3D"line-height:105%;mso-element:frame;mso-elem=
-ent-frame-hspace:2.25pt;mso-element-frame-vspace:.5pt;mso-element-wrap:arou=
-nd;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:colu=
-mn;mso-height-rule:exactly">
-<span style=3D"font-size:10.0pt;line-height:105%;font-family:&quot;Arial&qu=
-ot;,sans-serif;color:#58595B">1750 W 214<sup>th</sup> Street | Torrance, CA=
- 90501 | U.S.A.&nbsp;
-<o:p></o:p></span></p>
-</td>
-</tr>
-<tr>
-<td style=3D"padding:0in 0in 0in 0in">
-<p class=3D"MsoNormal" style=3D"line-height:105%;mso-element:frame;mso-elem=
-ent-frame-hspace:2.25pt;mso-element-frame-vspace:.5pt;mso-element-wrap:arou=
-nd;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:colu=
-mn;mso-height-rule:exactly">
-<span lang=3D"DE" style=3D"font-size:10.0pt;line-height:105%;font-family:&q=
-uot;Arial&quot;,sans-serif;color:#58595B">T: &#43;1 310 783 5075&nbsp;
-<o:p></o:p></span></p>
-</td>
-</tr>
-<tr>
-<td style=3D"padding:0in 0in 0in 0in">
-<p class=3D"MsoNormal" style=3D"line-height:105%;mso-element:frame;mso-elem=
-ent-frame-hspace:2.25pt;mso-element-frame-vspace:.5pt;mso-element-wrap:arou=
-nd;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:colu=
-mn;mso-height-rule:exactly">
-<span lang=3D"DE" style=3D"font-size:10.0pt;line-height:105%;font-family:&q=
-uot;Arial&quot;,sans-serif;color:#58595B">F: &#43;1 310 618 6902 | E:&nbsp;=
-</span><span lang=3D"DE" style=3D"font-size:11.0pt;line-height:105%;font-fa=
-mily:&quot;Calibri&quot;,sans-serif;color:black"><a href=3D"mailto:gwilson@=
-sakuraus.com"><span style=3D"color:#0563C1">gwilson</span><span style=3D"fo=
-nt-size:10.0pt;line-height:105%;font-family:&quot;Arial&quot;,sans-serif;co=
-lor:#0563C1">@sakuraus.com</span></a></span><span lang=3D"DE" style=3D"font=
--size:10.0pt;line-height:105%;font-family:&quot;Arial&quot;,sans-serif;colo=
-r:#58595B">&nbsp;&nbsp;
- &nbsp;&nbsp; <o:p></o:p></span></p>
-</td>
-</tr>
-<tr>
-<td style=3D"padding:0in 0in 0in 0in">
-<p class=3D"MsoNormal" style=3D"line-height:105%;mso-element:frame;mso-elem=
-ent-frame-hspace:2.25pt;mso-element-frame-vspace:.5pt;mso-element-wrap:arou=
-nd;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:colu=
-mn;mso-height-rule:exactly">
-<span style=3D"font-size:11.0pt;line-height:105%;font-family:&quot;Calibri&=
-quot;,sans-serif;color:black"><a href=3D"http://www.sakuraus.com"><span sty=
-le=3D"font-size:10.0pt;line-height:105%;font-family:&quot;Arial&quot;,sans-=
-serif;color:#0089D1;text-decoration:none">www.sakuraus.com</span></a></span=
-><span style=3D"font-size:10.0pt;line-height:105%;font-family:&quot;Arial&q=
-uot;,sans-serif;color:#0089D1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;
-<o:p></o:p></span></p>
-</td>
-</tr>
-<tr>
-<td style=3D"padding:0in 0in 0in 0in">
-<p class=3D"MsoNormal" style=3D"line-height:105%;mso-element:frame;mso-elem=
-ent-frame-hspace:2.25pt;mso-element-frame-vspace:.5pt;mso-element-wrap:arou=
-nd;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:colu=
-mn;mso-height-rule:exactly">
-<span style=3D"font-size:9.0pt;line-height:105%;font-family:&quot;Arial&quo=
-t;,sans-serif;color:#58595B">&nbsp;<o:p></o:p></span></p>
-</td>
-</tr>
-<tr>
-<td style=3D"padding:0in 0in 0in 0in">
-<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
-=3D"0" align=3D"left" width=3D"100%" style=3D"width:100.0%;margin-bottom:5.=
-75pt">
-<tbody>
-<tr>
-<td valign=3D"bottom" style=3D"padding:0in 0in 0in 0in">
-<p class=3D"MsoNormal" style=3D"line-height:105%;mso-element:frame;mso-elem=
-ent-frame-hspace:2.25pt;mso-element-frame-vspace:.5pt;mso-element-wrap:arou=
-nd;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:colu=
-mn;mso-height-rule:exactly">
-<img border=3D"0" width=3D"188" height=3D"12" id=3D"Picture_x0020_2" src=3D=
-"cid:image002.png@01D50B22.E4566B00" alt=3D"cid:image002.png@01D35D7D.179A7=
-510"><o:p></o:p></p>
-</td>
-<td width=3D"80" valign=3D"bottom" style=3D"width:60.0pt;padding:0in 0in 0i=
-n 0in">
-<p class=3D"MsoNormal" align=3D"right" style=3D"text-align:right;line-heigh=
-t:105%;mso-element:frame;mso-element-frame-hspace:2.25pt;mso-element-frame-=
-vspace:.5pt;mso-element-wrap:around;mso-element-anchor-vertical:paragraph;m=
-so-element-anchor-horizontal:column;mso-height-rule:exactly">
-<img border=3D"0" width=3D"66" height=3D"64" id=3D"Picture_x0020_3" src=3D"=
-cid:image003.png@01D50B22.E4566B00" alt=3D"cid:image003.png@01D35D7D.179A75=
-10"><o:p></o:p></p>
-</td>
-</tr>
-</tbody>
-</table>
-</td>
-</tr>
-<tr>
-<td style=3D"padding:0in 0in 0in 0in">
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;line-h=
-eight:105%;mso-element:frame;mso-element-frame-hspace:2.25pt;mso-element-fr=
-ame-vspace:.5pt;mso-element-wrap:around;mso-element-anchor-vertical:paragra=
-ph;mso-element-anchor-horizontal:column;mso-height-rule:exactly">
-<hr size=3D"2" width=3D"100%" align=3D"center">
-</div>
-</td>
-</tr>
-<tr>
-<td style=3D"padding:0in 0in 0in 0in">
-<p class=3D"MsoNormal" style=3D"line-height:105%;mso-element:frame;mso-elem=
-ent-frame-hspace:2.25pt;mso-element-frame-vspace:.5pt;mso-element-wrap:arou=
-nd;mso-element-anchor-vertical:paragraph;mso-element-anchor-horizontal:colu=
-mn;mso-height-rule:exactly">
-<span style=3D"font-size:7.0pt;line-height:105%;font-family:&quot;Arial&quo=
-t;,sans-serif;color:#58595B">Confidentiality Notice: This e-mail transmissi=
-on may contain confidential or legally privileged information that is inten=
-ded only for the individual or entity named
- in the e-mail address. If you are not the intended recipient, you are here=
-by notified that any disclosure, copying, distribution, or reliance upon th=
-e contents of this e-mail is strictly prohibited. If you have received this=
- e-mail transmission in error, please
- reply to the sender, so that Sakura Finetek USA, Inc. can arrange for prop=
-er delivery, and then please delete the message from your inbox. Thank you.=
-</span><span style=3D"font-size:7.0pt;line-height:105%;font-family:&quot;Ar=
-ial&quot;,sans-serif;color:#58595B"><o:p></o:p></span></p>
-</td>
-</tr>
-</tbody>
-</table>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,sans-serif;color:black"><o:p>&nbsp;</o:p></span></p>
-</div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif;color:black"><o:p>&nbsp;</o:p></span></p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt">
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,sans-serif;color:windowtext">From:</span></b><span style=3D"=
-font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:windowtex=
-t"> Rudolf J Streif [mailto:rudolf.streif@ibeeto.com]
-<br>
-<b>Sent:</b> Wednesday, May 15, 2019 01:30 PM<br>
-<b>To:</b> Greg Wilson-Lindberg &lt;GWilson@sakuraus.com&gt;; Yocto list di=
-scussion &lt;yocto@yoctoproject.org&gt;<br>
-<b>Subject:</b> Re: [yocto] problem adding a user<o:p></o:p></span></p>
-</div>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p>Instead of<o:p></o:p></p>
-<p><o:p>&nbsp;</o:p></p>
-<p>useradd -p `openssl passwd test` sakura<o:p></o:p></p>
-<p><o:p>&nbsp;</o:p></p>
-<p>which attempts to add the user and set the password which fails if the u=
-ser already exists, use<o:p></o:p></p>
-<p><o:p>&nbsp;</o:p></p>
-<p>usermod -p `openssl passwd test` sakura<o:p></o:p></p>
-<p><o:p>&nbsp;</o:p></p>
-<p>which sets the user's password.<o:p></o:p></p>
-<p><o:p>&nbsp;</o:p></p>
-<p>:rjs<o:p></o:p></p>
-<p><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal">On 5/15/19 1:18 PM, Greg Wilson-Lindberg wrote:<o:p>=
-</o:p></p>
-</div>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<div id=3D"divtagdefaultwrapper">
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">Ok, I had bee=
-n using the useradd class in a couple of other recipes to allow me to copy =
-files to the sakura user directory and another location, but owned by sakur=
-a. That seems to have been what was causing
- the problem.<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">I had been us=
-ing the extrausers class in my top&nbsp;level image recipe.<o:p></o:p></spa=
-n></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><br>
-So now how do I get all of this to work together? Do I need to put everythi=
-ng that touches the sakura user in the same recipe? It seems that I need to=
- use only one of the useradd or extrausers classes?<o:p></o:p></span></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,sans-=
-serif"><o:p>&nbsp;</o:p></span></p>
-</div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-f=
-amily:&quot;Calibri&quot;,sans-serif">Greg<o:p></o:p></span></p>
-<div>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span=
- style=3D"font-family:&quot;Calibri&quot;,sans-serif">
-<hr size=3D"2" width=3D"98%" align=3D"center">
-</span></div>
-<div id=3D"divRplyFwdMsg">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,sans-serif">From:</span></b><span style=3D"font-size:11.0pt;=
-font-family:&quot;Calibri&quot;,sans-serif"> Rudolf J Streif
-<a href=3D"mailto:rudolf.streif@ibeeto.com">&lt;rudolf.streif@ibeeto.com&gt=
-;</a><br>
-<b>Sent:</b> Wednesday, May 15, 2019 12:31 PM<br>
-<b>To:</b> Greg Wilson-Lindberg; Yocto list discussion<br>
-<b>Subject:</b> Re: [yocto] problem adding a user</span><span style=3D"font=
--family:&quot;Calibri&quot;,sans-serif">
-<o:p></o:p></span></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,sans-=
-serif">&nbsp;<o:p></o:p></span></p>
-</div>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">The ! for the=
- password in /etc/shadow indicates that the account is disabled:<o:p></o:p>=
-</span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">sakura:!:1803=
-1:0:99999:7:::<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">Either there =
-is something wrong with the password generation or it gets disabled by some=
-thing else. Maybe it's worth trying with a plain image without Boot2Qt or a=
-nything else.<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">:rjs<o:p></o:=
-p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,sans-=
-serif">On 5/15/19 11:46 AM, Greg Wilson-Lindberg wrote:<o:p></o:p></span></=
-p>
-</div>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<div id=3D"divtagdefaultwrapper">
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">Hi Rudolf,<o:=
-p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">1st, yes I in=
-herit extrausers. Attached are the passwd &amp; shadow files.<o:p></o:p></s=
-pan></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">It shouldn't =
-make any difference, but I'm building this for an RPi3 using the Qt Boot2Qt=
- version of the Yocto environment, distro 2.5.3.<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-f=
-amily:&quot;Calibri&quot;,sans-serif">Greg<o:p></o:p></span></p>
-<div>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span=
- style=3D"font-family:&quot;Calibri&quot;,sans-serif">
-<hr size=3D"2" width=3D"98%" align=3D"center">
-</span></div>
-<div id=3D"divRplyFwdMsg">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,sans-serif">From:</span></b><span style=3D"font-size:11.0pt;=
-font-family:&quot;Calibri&quot;,sans-serif"> Rudolf J Streif
-<a href=3D"mailto:rudolf.streif@ibeeto.com">&lt;rudolf.streif@ibeeto.com&gt=
-;</a><br>
-<b>Sent:</b> Wednesday, May 15, 2019 11:26 AM<br>
-<b>To:</b> Greg Wilson-Lindberg; Yocto list discussion<br>
-<b>Subject:</b> Re: [yocto] problem adding a user</span><span style=3D"font=
--family:&quot;Calibri&quot;,sans-serif">
-<o:p></o:p></span></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,sans-=
-serif">&nbsp;<o:p></o:p></span></p>
-</div>
-</div>
-<div>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">Hi Greg,<o:p>=
-</o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">&gt; I've als=
-o tried both the back-quote and the single-quote, no difference.<o:p></o:p>=
-</span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">Help me to un=
-derstand this. the back-quotes are the right ones. If you use the single on=
-es your password in the /etc/shadow ends up being 'openssl passwd test' (wi=
-thout the quotes), unless the build fails because
- of a parsing error (I have not tried it). Silly question, you did inherit =
-extrausers class?<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">Can you post =
-your /etc/passwd and /etc/shadow<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">I am surprise=
-d that this does not work with your setup. I have been doing this a gazilli=
-on times always with success.<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">:rjs<o:p></o:=
-p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,sans-=
-serif">On 5/15/19 11:03 AM, Greg Wilson-Lindberg wrote:<o:p></o:p></span></=
-p>
-</div>
-<blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
-<div>
-<div id=3D"x_divtagdefaultwrapper">
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">Hi Rudolf,<o:=
-p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">Thanks for th=
-e reply, and the information on how openssl works.<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">I'm trying to=
- create a user with the same group name so the code that I'm using reduces =
-to:<o:p></o:p></span></p>
-<div>
-<pre style=3D"background:white">EXTRA_USERS_PARAMS =3D &quot;\<o:p></o:p></=
-pre>
-<pre style=3D"background:white">&nbsp;&nbsp;&nbsp; useradd -p `openssl pass=
-wd test` sakura; \<o:p></o:p></pre>
-<pre style=3D"background:white">&nbsp;&nbsp;&nbsp; usermod -a -G sudo ${SAK=
-URA_USER}; \<o:p></o:p></pre>
-<pre style=3D"background:white">&nbsp;&nbsp;&nbsp; &quot;<o:p></o:p></pre>
-</div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,sans-=
-serif">I also, as you can see, removed the macros to eliminate as much conf=
-usion as possible.
-<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">I still can't=
- login in using the&nbsp;password&nbsp;'test'.<o:p></o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">I've also tri=
-ed both the back-quote and the single-quote, no difference.<o:p></o:p></spa=
-n></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">Regards,<o:p>=
-</o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif"><o:p>&nbsp;</=
-o:p></span></p>
-<p><span style=3D"font-family:&quot;Calibri&quot;,sans-serif">Greg<o:p></o:=
-p></span></p>
-</div>
-<div class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span=
- style=3D"font-family:&quot;Calibri&quot;,sans-serif">
-<hr size=3D"2" width=3D"98%" align=3D"center">
-</span></div>
-<div id=3D"x_divRplyFwdMsg">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
-;Calibri&quot;,sans-serif">From:</span></b><span style=3D"font-size:11.0pt;=
-font-family:&quot;Calibri&quot;,sans-serif"> Rudolf J Streif
-<a href=3D"mailto:rudolf.streif@ibeeto.com">&lt;rudolf.streif@ibeeto.com&gt=
-;</a><br>
-<b>Sent:</b> Wednesday, May 15, 2019 10:07:47 AM<br>
-<b>To:</b> Greg Wilson-Lindberg; Yocto list discussion<br>
-<b>Subject:</b> Re: [yocto] problem adding a user</span><span style=3D"font=
--family:&quot;Calibri&quot;,sans-serif">
-<o:p></o:p></span></p>
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Calibri&quot;,sans-=
-serif">&nbsp;<o:p></o:p></span></p>
-</div>
-</div>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Calibri&quot;,sans-serif">Hi Greg,<br>
-<br>
-Well, I suppose I wrote the book you are referring to...<br>
-<br>
-<br>
-Using<br>
-<br>
-useradd -p PASSWORD USER<br>
-<br>
-takes the password hash for PASSWORD hence the use of openssl in:<br>
-<br>
-useadd -p `openssl passwd PASSWORD` USER<br>
-<br>
-openssl password creates the password hash using the original crypt hash <b=
+<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
+t-size:small"><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Wed, May 15, 2019 at 4:09 PM Zoran Stojsavljevic=
+ &lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com">zoran.stojsavljevic@g=
+mail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
+ft:1ex">&gt; The core-image-kernel-dev image is how I do all my on target<b=
 r>
-algorithm if no other options are specified. e.g.<br>
+&gt; testing when I introduce a new reference kernel for a release.<br>
 <br>
-$ openssl passwd hello<br>
-6hEsTksgRkeiI<br>
+Maybe you are correct. Maybe I should use/add in my local.conf the followin=
+g:<br>
 <br>
-With this the first two characters of the output is the salt and the <br>
-rest is the password hash. If you want openssl to create the same result <b=
+KERNEL_DEV_TOOLS ?=3D &quot;packagegroup-core-tools-profile<br>
+packagegroup-core-buildessential kernel-devsrc&quot;<br>
+KERNEL_DEV_MODULE ?=3D &quot;kernel-modules&quot;<br>
+CORE_IMAGE_EXTRA_INSTALL +=3D &quot;${KERNEL_DEV_MODULE} \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0${KERNEL_DEV_TOOLS} \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0systemtap \<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 &quot;<br>
+I need to try these... Maybe this addendum will solve the $1 mio USD proble=
+m?!<br>
+<br>
+&gt; And IIRC the autobuilders are using a sato based image (Richard<br>
+&gt; could confirm more easily that I could what image type the<br>
+&gt; autobuilders are using for hello-world on target module tests).<br>
+<br>
+I am just advertising something more simple. To have mandatory<br>
+/lib/modules/`uname -r` directory. And introduce few more packages, as<br>
+Fedora distro, for example, has: kernel-headers (assuming YOCTO<br>
+rootfs, the following will be installed: /usr/src/kernel/`uname<br>
+-r`/&lt;header file directory structures&gt;. This also makes addition of<b=
 r>
-again:<br>
+/lib/modules/`uname -r`/build file (which is soft link to<br>
+usr/src/kernel/`uname -r`).=C2=A0</blockquote><div><br></div><div><div clas=
+s=3D"gmail_default" style=3D"font-size:small">These have all been discussed=
+ off an on over the past 5 years. I can&#39;t get at bugzilla right now, bu=
+t all the details are logged in cases. A survey of all the distros, their k=
+ernel package, etc, were all looked at. We had to balance the traditional p=
+ackaging with some new concepts and landed with what we have now.=C2=A0=C2=
+=A0</div><br></div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex">
+Or kernel-devel package. Then, the whole current kernel source code<br>
+will be introduced, and also support for it.<br></blockquote><div><br></div=
+><div><div class=3D"gmail_default" style=3D"font-size:small">There&#39;s a =
+case for this one as well, I&#39;ll probably have it done for the fall rele=
+ase. But our devsrc used to pretty much be the full source it has now been =
+pruned down to something more manageable.=C2=A0 There are definitely some c=
+ases for having the full source on the target again, and it will be a separ=
+ate package, just not the minimal one to build out of tree modules, etc.</d=
+iv><div class=3D"gmail_default" style=3D"font-size:small"><br></div><br></d=
+iv><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
+px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
 <br>
-$ openssl passwd -salt &quot;6h&quot; hello<br>
-6hEsTksgRkeiI<br>
+SDK building with such a support is good/cool. But sometimes, before<br>
+introducing SDK, some tests should be done on target. NO need to<br>
+optionally include built-in layer hello-world driver example. Since I<br>
+(or you name the person) have own test drivers, which will be imported<br>
+out of tree, externally, to the target test bed!<br>
+<br></blockquote><div><br></div><div><div class=3D"gmail_default" style=3D"=
+font-size:small">I never use the SDK myself, so you are not alone in not go=
+ing to it first. Hopefully I&#39;ll get some new patches out in the coming =
+month before summer holidays really kick in.</div><div class=3D"gmail_defau=
+lt" style=3D"font-size:small"><br></div><div class=3D"gmail_default" style=
+=3D"font-size:small">Bruce</div><br></div><div>=C2=A0</div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex">
+Just thinking loud...<br>
 <br>
-You can use newer algorithms like MD5 based BSD password algorithm 1:<br>
+Zoran<br>
+_______<br>
 <br>
-$ openssl passwd -1 hello<br>
-$1$4Mu8Fcs.$eIKgPP7RCYrb3lFZjhADA1<br>
+On Wed, May 15, 2019 at 4:25 PM Bruce Ashfield &lt;<a href=3D"mailto:bruce.=
+ashfield@gmail.com" target=3D"_blank">bruce.ashfield@gmail.com</a>&gt; wrot=
+e:<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; On Wed, May 15, 2019 at 3:44 AM Zoran Stojsavljevic &lt;<a href=3D"mai=
+lto:zoran.stojsavljevic@gmail.com" target=3D"_blank">zoran.stojsavljevic@gm=
+ail.com</a>&gt; wrote:<br>
+&gt;&gt;<br>
+&gt;&gt; &gt; That&#39;s correct. That command only adds the kernel source =
+and<br>
+&gt;&gt; &gt; build infrastructure to the SDK, not to your target image. Yo=
+u&#39;d still<br>
+&gt;&gt; &gt; need to arrange to have the kernel-devsrc package installed o=
+n the<br>
+&gt;&gt; &gt; target image if you want it on the board&#39;s rootfs. How yo=
+u arrange<br>
+&gt;&gt; &gt; to have the package installed to the image varies with the im=
+age<br>
+&gt;&gt; &gt; (since they all don&#39;t have the same image install variabl=
+es, etc).<br>
+&gt;&gt;<br>
+&gt;&gt; And here is a $1,000,000 USD question? How to do it on Poky (as<br=
+>
+&gt;&gt; example of what you have stated in RED)? ;-)<br>
+&gt;&gt;<br>
+&gt;&gt; In other words: how to arrange it on Poky (as a Referent example)?=
 <br>
-$1 : password algorithm 1<br>
-$4Mu8Fcs. : salt<br>
-$eIKgPP7RCYrb3lFZjhADA1 : password hash<br>
-<br>
-<br>
-If you log into the system you have to use the clear password. The <br>
-system reads the salt, creates the password hash and compares the results.<=
+&gt;<br>
+&gt;<br>
+&gt; The core-image-kernel-dev image is how I do all my on target testing w=
+hen I introduce a new reference kernel for a release. And IIRC the autobuil=
+ders are using a sato based image (Richard could confirm more easily that I=
+ could what image type the autobuilders are using for hello-world on target=
+ module tests).<br>
+&gt;<br>
+&gt; Bruce<br>
+&gt;<br>
+&gt;<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; Thank you,<br>
+&gt;&gt; Zoran<br>
+&gt;&gt; _______<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; On Wed, May 15, 2019 at 7:41 AM Bruce Ashfield &lt;<a href=3D"mail=
+to:bruce.ashfield@gmail.com" target=3D"_blank">bruce.ashfield@gmail.com</a>=
+&gt; wrote:<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; On Tue, May 14, 2019 at 1:30 PM Zoran Stojsavljevic &lt;<a hre=
+f=3D"mailto:zoran.stojsavljevic@gmail.com" target=3D"_blank">zoran.stojsavl=
+jevic@gmail.com</a>&gt; wrote:<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; Hello Chris, Bruce,<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; I have some additional data to share with you both, since =
+I have tried<br>
+&gt;&gt;&gt;&gt; something. And here is my take on the things!<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; &gt; 1. Build using a bb recipe.<br>
+&gt;&gt;&gt;&gt; &gt; Take a look at meta-skeleton/recipes-kernel/hello-mod=
+ for an example.<br>
+&gt;&gt;&gt;&gt; &gt; You just need to add meta-skeleton to your bblayers.c=
+onf and then<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 bitbake hello-mod<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; I looked into this example, and, yes, it is classic kernel=
+ module<br>
+&gt;&gt;&gt;&gt; definition out of the tree. With some outdated data, all c=
+ool, the<br>
+&gt;&gt;&gt;&gt; YOCTO designer should take care himself to fix these data,=
+ if using<br>
+&gt;&gt;&gt;&gt; this stuff.<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; But this is NOT mandatory, since I can add out of the tree=
+ module NOT<br>
+&gt;&gt;&gt;&gt; actually using built-in module. I just use .../tmp/deploy/=
+images/bbb/*<br>
+&gt;&gt;&gt;&gt; generated stuff, since I have automated scripts which are =
+bringing all<br>
+&gt;&gt;&gt;&gt; these on my BBB target. Then I tftp my source code module =
+to the<br>
+&gt;&gt;&gt;&gt; target.<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; &gt; 2. Build from the SDK:<br>
+&gt;&gt;&gt;&gt; &gt; First, add the kernel source to the SDK by adding thi=
+s to conf/local.conf<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 TOOLCHAIN_TARGET_TASK_append =3D &quot; kernel-=
+devsrc&quot;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; YES, this is THE command which should generate<br>
+&gt;&gt;&gt;&gt; /usr/src/kernel(s)/`uname -r` or similar... But adding it =
+to<br>
+&gt;&gt;&gt;&gt; local.conf and after deleting kernel, then regenerating bi=
+tbake -k<br>
+&gt;&gt;&gt;&gt; core-image-minimal does not bring this path into the rootf=
+s image!?<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; That&#39;s correct. That command only adds the kernel source a=
+nd build infrastructure to the SDK, not to your target image. You&#39;d sti=
+ll need to arrange to have the kernel-devsrc package installed on the targe=
+t image if you want it on the board&#39;s rootfs. How you arrange to have t=
+he package installed to the image varies with the image (since they all don=
+&#39;t have the same image install variables, etc).<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; I did it actually using meta-bbb, and using poky referent =
+distro as<br>
+&gt;&gt;&gt;&gt; two additional layers to the more complex bbb image!<br>
+&gt;&gt;&gt;&gt; <a href=3D"https://github.com/jumpnow/meta-bbb.git" rel=3D=
+"noreferrer" target=3D"_blank">https://github.com/jumpnow/meta-bbb.git</a><=
 br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; The (KAS - you can figure out out of it local.conf) script=
+ I am using<br>
+&gt;&gt;&gt;&gt; to build such a BBB image is here:<br>
+&gt;&gt;&gt;&gt; <a href=3D"https://github.com/ZoranStojsavljevic/bbb-yocto=
+/blob/master/bbb-releases/bbb-warrior/kas-bbb-warrior.yml" rel=3D"noreferre=
+r" target=3D"_blank">https://github.com/ZoranStojsavljevic/bbb-yocto/blob/m=
+aster/bbb-releases/bbb-warrior/kas-bbb-warrior.yml</a><br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; I did not try it with BBB reference poky only! Maybe I sho=
+uld try it<br>
+&gt;&gt;&gt;&gt; as only referent poky? What do you think?<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; Does in this case is SDK build really mandatory??? Should =
+NOT be!<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; You only do the SDK steps if you want to support building out =
+of tree modules in an SDK install. So it is not mandatory for on target mod=
+ule builds.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Bruce<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; &gt; Once the SDK is installed, generate the kernel header=
+s:<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 sudo -i<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 . /opt/poky/2.6.2/environment-setup-cortexa8hf-=
+neon-poky-linux-gnueabi<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 cd /opt/poky/2.6.2/sysroots/cortexa8hf-neon-pok=
+y-linux-gnueabi<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 cd /usr/src/kernel<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 make oldconfig scripts<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 exit<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; This is in nutshell the same what I did (a bit different) =
+for Embedded<br>
+&gt;&gt;&gt;&gt; Debian. This is already on the target BBB, NOT while build=
+ing YOCTO<br>
+&gt;&gt;&gt;&gt; BBB image!<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; &gt; Finally, build your module using a Makefile like this=
 <br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 obj-m :=3D hello-mod.o<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 all:<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 make -C $(SDKTARGETSYSROOT=
+)/usr/src/kernel M=3D$(shell pwd)<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; As said before: bringing my own module into the target BBB=
+ (I have my<br>
+&gt;&gt;&gt;&gt; own examples, and I build them on the target with the almo=
+st the same<br>
+&gt;&gt;&gt;&gt; Makefiles)<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; Zoran<br>
+&gt;&gt;&gt;&gt; _______<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; On Sun, May 12, 2019 at 3:15 PM Chris Simmonds &lt;<a href=
+=3D"mailto:chris@2net.co.uk" target=3D"_blank">chris@2net.co.uk</a>&gt; wro=
+te:<br>
+&gt;&gt;&gt;&gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; Hi Zoran,<br>
+&gt;&gt;&gt;&gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; There are two ways to do this<br>
+&gt;&gt;&gt;&gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; 1. Build using a bb recipe.<br>
+&gt;&gt;&gt;&gt; &gt; Take a look at meta-skeleton/recipes-kernel/hello-mod=
+ for an example.<br>
+&gt;&gt;&gt;&gt; &gt; You just need to add meta-skeleton to your bblaysers.=
+conf and then<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 =C2=A0bitbake hello-mod<br>
+&gt;&gt;&gt;&gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; 2. Build from the SDK:<br>
+&gt;&gt;&gt;&gt; &gt; First, add the kernel source to the SDK by adding thi=
+s to conf/local/conf<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 =C2=A0TOOLCHAIN_TARGET_TASK_append =3D &quot; k=
+ernel-devsrc&quot;<br>
+&gt;&gt;&gt;&gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; Then build the SDK<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 =C2=A0bitbake -c populate_sdk [your image recip=
+e]<br>
+&gt;&gt;&gt;&gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; Once the SDK is installed, generate the kernel header=
+s:<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 =C2=A0sudo -i<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 =C2=A0. /opt/poky/2.6.2/environment-setup-corte=
+xa8hf-neon-poky-linux-gnueabi<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 =C2=A0cd /opt/poky/2.6.2/sysroots/cortexa8hf-ne=
+on-poky-linux-gnueabi<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 =C2=A0cd /usr/src/kernel<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 =C2=A0make oldconfig scripts<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 =C2=A0exit<br>
+&gt;&gt;&gt;&gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; Finally, build your module using a Makefile like this=
 <br>
-:rjs<br>
+&gt;&gt;&gt;&gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 =C2=A0obj-m :=3D hello-mod.o<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 =C2=A0all:<br>
+&gt;&gt;&gt;&gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0make -C $(SDKTARGETS=
+YSROOT)/usr/src/kernel M=3D$(shell pwd)<br>
+&gt;&gt;&gt;&gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; HTH,<br>
+&gt;&gt;&gt;&gt; &gt; Chris<br>
+&gt;&gt;&gt;&gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; On 12/05/2019 11:53, Zoran Stojsavljevic wrote:<br>
+&gt;&gt;&gt;&gt; &gt; &gt; Hello to the YOCTO community,<br>
+&gt;&gt;&gt;&gt; &gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; &gt; I am using (to build the target for Beagle Bone =
+Black) the following script:<br>
+&gt;&gt;&gt;&gt; &gt; &gt; <a href=3D"https://github.com/ZoranStojsavljevic=
+/bbb-yocto" rel=3D"noreferrer" target=3D"_blank">https://github.com/ZoranSt=
+ojsavljevic/bbb-yocto</a><br>
+&gt;&gt;&gt;&gt; &gt; &gt; <a href=3D"https://github.com/ZoranStojsavljevic=
+/bbb-yocto/blob/master/bbb-yocto.sh" rel=3D"noreferrer" target=3D"_blank">h=
+ttps://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-yocto.sh</a>=
 <br>
+&gt;&gt;&gt;&gt; &gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; &gt; The latest kernel I am using from the following =
+repo:<br>
+&gt;&gt;&gt;&gt; &gt; &gt; <a href=3D"https://github.com/jumpnow/meta-bbb" =
+rel=3D"noreferrer" target=3D"_blank">https://github.com/jumpnow/meta-bbb</a=
+><br>
+&gt;&gt;&gt;&gt; &gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; &gt; Is kernel 5.0.14 .<br>
+&gt;&gt;&gt;&gt; &gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; &gt; Here is the snippet of the boot traces:<br>
+&gt;&gt;&gt;&gt; &gt; &gt; Starting kernel ...<br>
+&gt;&gt;&gt;&gt; &gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; &gt; [=C2=A0 =C2=A0 0.000000] Booting Linux on physic=
+al CPU 0x0<br>
+&gt;&gt;&gt;&gt; &gt; &gt; [=C2=A0 =C2=A0 0.000000] Linux version 5.0.14-ju=
+mpnow (oe-user@oe-host) (gcc<br>
+&gt;&gt;&gt;&gt; &gt; &gt; version 8.3.0 (GCC)) #1 Fri May 10 13:12:33 UTC =
+2019<br>
+&gt;&gt;&gt;&gt; &gt; &gt; [=C2=A0 =C2=A0 0.000000] CPU: ARMv7 Processor [4=
+13fc082] revision 2 (ARMv7), cr=3D10c5387d<br>
+&gt;&gt;&gt;&gt; &gt; &gt; [=C2=A0 =C2=A0 0.000000] CPU: PIPT / VIPT nonali=
+asing data cache, VIPT aliasing<br>
+&gt;&gt;&gt;&gt; &gt; &gt; instruction cache<br>
+&gt;&gt;&gt;&gt; &gt; &gt; [=C2=A0 =C2=A0 0.000000] OF: fdt: Machine model:=
+ TI AM335x BeagleBone Black<br>
+&gt;&gt;&gt;&gt; &gt; &gt; [=C2=A0 =C2=A0 0.000000] Memory policy: Data cac=
+he writeback<br>
+&gt;&gt;&gt;&gt; &gt; &gt; [=C2=A0 =C2=A0 0.000000] cma: Reserved 16 MiB at=
+ 0x9f000000<br>
+&gt;&gt;&gt;&gt; &gt; &gt; [=C2=A0 =C2=A0 0.000000] CPU: All CPU(s) started=
+ in SVC mode.<br>
+&gt;&gt;&gt;&gt; &gt; &gt; [=C2=A0 =C2=A0 0.000000] AM335X ES2.1 (sgx neon)=
 <br>
-On 5/14/19 5:34 PM, Greg Wilson-Lindberg wrote:<br>
-&gt; I'm trying to use the example in &quot;Embedded Linux Systems with the=
- Yocto Project&quot; to add a user to my Yocto build. In the book the sampl=
-e code:<br>
-&gt;<br>
-&gt;&nbsp;&nbsp;&nbsp;&nbsp; useradd -p `openssl passwd ${DEV_PASSWORD}` de=
-veloper; \<br>
-&gt;<br>
-&gt; uses openssl to generate the encrypted password string to pass to user=
-add. I have never been able to get this to work. When I run the openssl<br>
-&gt; command on the cmd line I get a different value every time, this seems=
- wrong, How can the password code compare against it if every encode<br>
-&gt; produces a different value?<br>
-&gt;<br>
-&gt; I am getting the user added to the system, the home directory shows up=
- and the user is in the passwd and group files. I just can't login to the<b=
+&gt;&gt;&gt;&gt; &gt; &gt; [=C2=A0 =C2=A0 0.000000] random: get_random_byte=
+s called from<br>
+&gt;&gt;&gt;&gt; &gt; &gt; start_kernel+0xa4/0x460 with crng_init=3D0<br>
+&gt;&gt;&gt;&gt; &gt; &gt; [=C2=A0 =C2=A0 0.000000] Built 1 zonelists, mobi=
+lity grouping on.=C2=A0 Total pages: 130048<br>
+&gt;&gt;&gt;&gt; &gt; &gt; [=C2=A0 =C2=A0 0.000000] Kernel command line: co=
+nsole=3DttyO0,115200n8<br>
+&gt;&gt;&gt;&gt; &gt; &gt; root=3D/dev/ram0 ip=3Ddhcp<br>
+&gt;&gt;&gt;&gt; &gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; &gt; According to the documentation, the following:<b=
 r>
-&gt; account.<br>
+&gt;&gt;&gt;&gt; &gt; &gt; 2.10.1. Building Out-of-Tree Modules on the Targ=
+et<br>
+&gt;&gt;&gt;&gt; &gt; &gt; <a href=3D"https://www.yoctoproject.org/docs/lat=
+est/kernel-dev/kernel-dev.html" rel=3D"noreferrer" target=3D"_blank">https:=
+//www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html</a><br>
+&gt;&gt;&gt;&gt; &gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; &gt; I tried to find /usr/src/kernels/<a href=3D"http=
+://5.0.14." rel=3D"noreferrer" target=3D"_blank">5.0.14.</a>.. Directory, s=
+ince I see<br>
+&gt;&gt;&gt;&gt; &gt; &gt; from the build that kernel-dev and kernel-devsrc=
+ are included:<br>
+&gt;&gt;&gt;&gt; &gt; &gt; [user@fedora29-ssd bbb-yocto]$ bitbake -s | grep=
+ kernel<br>
+&gt;&gt;&gt;&gt; &gt; &gt; core-image-kernel-dev=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0:1.0-r0<br>
+&gt;&gt;&gt;&gt; &gt; &gt; kernel-devsrc=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0:1.0-r0<br>
+&gt;&gt;&gt;&gt; &gt; &gt; kernel-selftest=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0:1.0-r0<br>
+&gt;&gt;&gt;&gt; &gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; &gt; THE PROBLEM: But I could not find ob BBB target =
+/usr/src/kernels<br>
+&gt;&gt;&gt;&gt; &gt; &gt; directory at all!?<br>
+&gt;&gt;&gt;&gt; &gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; &gt; Two questions here?<br>
+&gt;&gt;&gt;&gt; &gt; &gt; [1] Do you have any advice on this problem (what=
+ I am missing here)?<br>
+&gt;&gt;&gt;&gt; &gt; &gt; [2] Alternative to [1]: how I can use cross comp=
+iler from<br>
+&gt;&gt;&gt;&gt; &gt; &gt; .../build/tmp to build Out-of-Tree Module for th=
+e BBB target on the<br>
+&gt;&gt;&gt;&gt; &gt; &gt; host?<br>
+&gt;&gt;&gt;&gt; &gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; &gt; Thank you,<br>
+&gt;&gt;&gt;&gt; &gt; &gt; Zoran<br>
+&gt;&gt;&gt;&gt; &gt; &gt; _______<br>
+&gt;&gt;&gt;&gt; &gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt;<br>
+&gt;&gt;&gt;&gt; &gt; --<br>
+&gt;&gt;&gt;&gt; &gt; Chris Simmonds, trainer and consultant at 2net<br>
+&gt;&gt;&gt;&gt; &gt; <a href=3D"http://www.2net.co.uk" rel=3D"noreferrer" =
+target=3D"_blank">http://www.2net.co.uk</a><br>
+&gt;&gt;&gt;&gt; &gt; Author of &quot;Mastering Embedded Linux Programming&=
+quot;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; --<br>
+&gt;&gt;&gt; - Thou shalt not follow the NULL pointer, for chaos and madnes=
+s await thee at its end<br>
+&gt;&gt;&gt; - &quot;Use the force Harry&quot; - Gandalf, Star Trek II<br>
+&gt;&gt;&gt;<br>
 &gt;<br>
-&gt; I've obviously got something confused, any help would be appreciated.<=
-br>
 &gt;<br>
-&gt; Greg Wilson-Lindberg<br>
-&gt;&nbsp;&nbsp; <br>
-<br>
--- <br>
------<br>
-Rudolf J Streif<br>
-CEO/CTO ibeeto<br>
-&#43;1.855.442.3396 x700<o:p></o:p></span></p>
-</div>
-</blockquote>
-<pre>-- <o:p></o:p></pre>
-<pre>-----<o:p></o:p></pre>
-<pre>Rudolf J Streif<o:p></o:p></pre>
-<pre>CEO/CTO ibeeto<o:p></o:p></pre>
-<pre>&#43;1.855.442.3396 x700<o:p></o:p></pre>
-</div>
-</div>
-</div>
-</blockquote>
-<pre>-- <o:p></o:p></pre>
-<pre>-----<o:p></o:p></pre>
-<pre>Rudolf J Streif<o:p></o:p></pre>
-<pre>CEO/CTO ibeeto<o:p></o:p></pre>
-<pre>&#43;1.855.442.3396 x700<o:p></o:p></pre>
-</div>
-</div>
-</div>
-</blockquote>
-<pre>-- <o:p></o:p></pre>
-<pre>-----<o:p></o:p></pre>
-<pre>Rudolf J Streif<o:p></o:p></pre>
-<pre>CEO/CTO ibeeto<o:p></o:p></pre>
-<pre>&#43;1.855.442.3396 x700<o:p></o:p></pre>
-</div>
-</div>
-</body>
-</html>
+&gt; --<br>
+&gt; - Thou shalt not follow the NULL pointer, for chaos and madness await =
+thee at its end<br>
+&gt; - &quot;Use the force Harry&quot; - Gandalf, Star Trek II<br>
+&gt;<br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature">- Thou shalt not follow the NULL pointer, for ch=
+aos and madness await thee at its end<br>- &quot;Use the force Harry&quot; =
+- Gandalf, Star Trek II<br><br></div></div>
 
---_000_b38f6ac29beb40c4bb457c09a14cc78dsakurauscom_--
-
---_006_b38f6ac29beb40c4bb457c09a14cc78dsakurauscom_
-Content-Type: image/png; name="image001.png"
-Content-Description: image001.png
-Content-Disposition: inline; filename="image001.png"; size=949;
-	creation-date="Wed, 15 May 2019 20:53:14 GMT";
-	modification-date="Wed, 15 May 2019 20:53:14 GMT"
-Content-ID: <image001.png@01D50B22.E4566B00>
-Content-Transfer-Encoding: base64
-
-iVBORw0KGgoAAAANSUhEUgAAACQAAAAHCAYAAABgOO8AAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
-bWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
-bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
-eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1
-OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
-dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
-dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEu
-MC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVz
-b3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1N
-OkRvY3VtZW50SUQ9InhtcC5kaWQ6MzVGQUUxQUI3NTA4MTFFNzkxQjVGODM1RkYyQThFQkQiIHht
-cE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzVGQUUxQUE3NTA4MTFFNzkxQjVGODM1RkYyQThFQkQi
-IHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgTWFjaW50b3NoIj4gPHht
-cE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MUVBMEU0OEM0Q0YzMTFF
-NzkwRTZGNDNENDJEOEY5RTEiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MUVBMEU0OEQ0Q0Yz
-MTFFNzkwRTZGNDNENDJEOEY5RTEiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94
-OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5STp/zAAAAJUlEQVR42mK8LW39n2EQASaGQQYG
-nYMY////PxpCow6iBAAEGACEIQU6y9MNmAAAAABJRU5ErkJggg==
-
---_006_b38f6ac29beb40c4bb457c09a14cc78dsakurauscom_
-Content-Type: image/png; name="image002.png"
-Content-Description: image002.png
-Content-Disposition: inline; filename="image002.png"; size=1916;
-	creation-date="Wed, 15 May 2019 20:53:15 GMT";
-	modification-date="Wed, 15 May 2019 20:53:15 GMT"
-Content-ID: <image002.png@01D50B22.E4566B00>
-Content-Transfer-Encoding: base64
-
-iVBORw0KGgoAAAANSUhEUgAAALwAAAAMCAYAAADYg9feAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
-bWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
-bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
-eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1
-Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
-dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
-dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAv
-IiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RS
-ZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpD
-cmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiIHhtcE1NOklu
-c3RhbmNlSUQ9InhtcC5paWQ6MUVBMEU0ODg0Q0YzMTFFNzkwRTZGNDNENDJEOEY5RTEiIHhtcE1N
-OkRvY3VtZW50SUQ9InhtcC5kaWQ6MUVBMEU0ODk0Q0YzMTFFNzkwRTZGNDNENDJEOEY5RTEiPiA8
-eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGMjVCRjk3RjRDRjIx
-MUU3OTBFNkY0M0Q0MkQ4RjlFMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGMjVCRjk4MDRD
-RjIxMUU3OTBFNkY0M0Q0MkQ4RjlFMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8
-L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PjV7eI0AAAPqSURBVHja7FnLkZtAEJ1VbQLs
-2b6wBweA7/aBDUGEACGgEKQQIAQRAhwcgLnbB83FdxGCPKhe1z7PDgNoWa/sUld1iYH5vH7d09Og
-ux8fvqiFZW10a/QR7ZPRxGilrkuuCRdz1l/vjd4tNHc/b/4Oti5h06iPPv36NmvC1RsYGhgNqb0x
-qtX1yTXhYs40sC0lfbDvjDbvaFPwynkWEwn4HliNHfXdaEyL9TvzCN3S2APa8iyGFrQ7FRm9xhoy
-5kDrnPBcOdqC7QhsPN9pYEyEvieMdZEWjtjCmPeYq7Ac4eLmaPXbYw5l2V4QB0OcScAO8Z/j92Q9
-4z4yRzzBn7llv0hNa4l9wUybFO7ZvvfZqCbwrX5+/Lo1ejR6wHWN64L67Pv7KzKolyejHYGtQX6C
-rJPSQiECIjPaYkyLbCJzKYyJADjGdYJMVnh2cmBhkzG1Z+cHFGQtYSgcfQXXkC2KMHd4xmOGuKks
-Z8bIrjn6bKAxxtucRegngZBj7czBf07z5YRNEWeKMvyYP/s5SsfJF9NaGZUrU21i/9i+99lob7oX
-2E0QC4YM99fE+Qs/3BPIBEA1AKxB4GfcF8ApHbk7ODiAAR2RNXSEJugXDgSiTXQI0jT04MhAvuM0
-m3gs2rawZLRxZPMOcSNOC6EB5q0RTCX1d3GWWpuypBqWg5wxS6aNCI+ia41nU/y5G+GHcXQzbcoc
-vh+zUVGidGHvpTS1fIVMLhj6dmraf/hhRYHB5HCQMIGdddxeIt2MvlzX8u8YhgT4a5Q20cL1aejh
-psE1ZxqNZ5w59cR1tLVG8Eouff70zdc6cMy1qbvAxjHsTgxmA9h+aM09vXIEUYRA6RzBFf6FF73A
-QWAwsAGGxkc4FR6x04uFMeoRbqSsWdNJpx39pySHYCH+9Sv9GVjX+kKbLrHRh901XtHpElPiUfeU
-gbY4WnI6hqXW2mGi1HPkucqRZoYz1vhNLcCCQbBpqz5LrQzeoV9IJcrSm7QZ4aaid42S7qXkpHyA
-Mxa2Wc3kfy7mKZ83JdhzsmuuTWqmjeFILIYoXTS9EyjifM9l6T2VAAWc1NDLzhPd144ar3McVUJs
-v9CD5yjrrBq5wJiKDHRhe6J1SjxrBsak1surD0Pnueca4+NGjtOW+m8QLFuqfWMHZ5n16ZTfKcoB
-/sdKkm6mP11SAbskww1tgDk22ev4bJTN0HqwBxQ7HdYNrfdIbcqZczl09wZ/PN3k/5MTAq65Qmzn
-r2gS0CbTn7/emPYD2v1Hjsq0N5zhb3KTf1XOJa0J7IzaFb7ORFQSnWV14+smEySxvpBck2Tq+f+Z
-vXr+pzpCeyfZv5ffAgwAvCfP5+7+KRkAAAAASUVORK5CYII=
-
---_006_b38f6ac29beb40c4bb457c09a14cc78dsakurauscom_
-Content-Type: image/png; name="image003.png"
-Content-Description: image003.png
-Content-Disposition: inline; filename="image003.png"; size=3012;
-	creation-date="Wed, 15 May 2019 20:53:15 GMT";
-	modification-date="Wed, 15 May 2019 20:53:15 GMT"
-Content-ID: <image003.png@01D50B22.E4566B00>
-Content-Transfer-Encoding: base64
-
-iVBORw0KGgoAAAANSUhEUgAAAEIAAABDCAYAAAAoCNNNAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ
-bWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdp
-bj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6
-eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1
-OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJo
-dHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlw
-dGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEu
-MC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVz
-b3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1N
-OkRvY3VtZW50SUQ9InhtcC5kaWQ6MEY0Q0M1RkE3NTA3MTFFNzkxQjVGODM1RkYyQThFQkQiIHht
-cE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MEY0Q0M1Rjk3NTA3MTFFNzkxQjVGODM1RkYyQThFQkQi
-IHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKE1hY2ludG9zaCkiPiA8
-eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGMjVCRjk3RDRDRjIx
-MUU3OTBFNkY0M0Q0MkQ4RjlFMSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGMjVCRjk3RTRD
-RjIxMUU3OTBFNkY0M0Q0MkQ4RjlFMSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8
-L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PrnG8fYAAAgySURBVHja7FsLlA5VHL8fu2RZ
-hHC0m0fyKK3k2epYS6cISY9TXqUSUSoh2VORR7VeeR5JFFFHJ1oJ0WtPakkPy1IebbGiUtisYmX7
-+v99vznN3p35ZubOfGN9x/+c3/l2Zu6dufOb//2/7t3AroQU4aOUJ3xGmEtYYnA9lTCD0JVwyI8B
-NT6Qefa3jPBXHie0ISwmZBBq4nwcyPmEkER43udx+UpERcIo3XFPwk7CSMI2wlDdtX6EBtFKRF9C
-delcDcIUQkPpfFnC4Gglor/D9r2jkYgqhGSHfRIJTaKNiPaKz0qONiKSFPs1izYi6ir2uzTaiKip
-2K9atBFRVrFfbLQRcVqx35/RRsQRxX6/RxsR+xT7/egXETE+PSdHsd82h+3jdWE8a2GBF0SwobqL
-0IFwJVzZxYQzhKOE/YQdhCzCR4RjYe61mRAkBBy81L+Ez8NcL4e0vQsCr6YgQi8FSOw41x6jSgS/
-8FRCLYNrzPoVhBuQWnPb9YT5hPfx0nph4rYQ2jogIsvEWCYQHiMMQNJmpSHt7BjrcDaCX2adA83q
-RngP0+BmgzYrHKr5Mum4MjLVXKTuNRzca71bY7lGYV5fhX4rpMFyMeYfB25zqe64E6bhSEwJp/KB
-WyI+hNqryG2EbEJLHB8mLLLZl8t1J/D3kxhHogsXvNUtEX+7cH1arrARX5RlEuGURZ+DhGkwrHMI
-6S7dfL6daRTuAbXgDRq6dJ0VYECvJxwgPG3R/kFY+xcID3vgutmof024RoWI1ujcwaM4gsnIgIZM
-J7xt0i4dBvpOwmgP45jLCJsI9zshogvUOcHjoKo6DCbLA4Tt0vWN0BZuNzsCQd1FhIWIjWwRsQXB
-UiSkM2E4DGFXuEKWPYReMMxTTGIXL2Qt4R27RBzFgHMjNJiJKNQcQkTIniQFIXELwn0Reu4GTLki
-JzbiZxGqM34ZgQGxvRivc6k8TX7FcVqESJhH6A4v6Nhr/AZjOdmMRZdTpLxB8aa1x8/5BVNuqFUw
-Z+WfT8N6t7ITptoQjiFmEpoTCqVrRYhKR3lgo3h6jyU0grfyrB6RDW9yLWGBRaZpJHtAaF0kaWaF
-mr+Q6DWANs53UJw5Cdd7LzzeeF10aikBxdVwVuM2MHZJeEFO0ePwMvmISHPgFr9CElcG7dshUJuA
-vCIeX5C/5HdI2zW7EUAZgEP1+vAocZjv/Jyf8JxsG1FrCdFWw1ULM0UIUDbZaBuLzJQXfW8RxSva
-mYg6eaqMkPrtQGT7Jojceb6W6ioRniLkEVYTBoqSZX0t7DVa92iGabQFhF13PhLB/nov8oXaYdpp
-BFglRSko1LxqUIUqlUTw3H0DuURtG+2r6OyAHeGYY5tQX0L0hYhLRKjG2M9Bn3idHbEr9aEdnUoj
-ERoJLRSiTKFQdaqIqlOn0kREBQyqkWL1iOUPhb6sRavgWksFEfMQaKnIPulXxTNlQEPOKRG3I5JT
-lWz85ri4B1egXjyXRFRE3uBGNuL3ECJEVRni1pO4IWKYcLeRIwfBliZrXNyLQ/7nzgURsYj63Mhb
-FsdOpadwsTdTlYjuwl057bQoucaR5dJWcFB2j99E9HL59V5D4UcWt1uPb/WbiM4uBnsizHxeLkLL
-CKqShHKAY1FJwzmHqONisM+IUAnNSLhmMRgZZ1nF6dEc2eqNIlQpL0SNJF2EWRVX0YjLXZDAa5iz
-LNp8K6xXw6xyEW3LgpbM8TLiaK+nRmXFAXJa3keENoBYSbowXw2ThYuyXOXi5UQuCRZBG3iaVUdG
-nCcs9nqqTI11YDqANJrvwfXFcPsfDkJN7eYUPEX6I4/pYZGWLzJxpfVEaG2mEAQFIhVQ8WDz8XLv
-CvPKM7vEZOF8wYjn8x2i5IYRTQrDkM/B2U0iVAP9QoRW1ef4kYYHUZCRZTFIyHMRb/RHFCsXZlcL
-832YZ2B0t6NEwKtnW/0qzOiJ+F6Eyv8DhIOSehiS+Ws2E8XXKJbZ6JcJrbHc5+nl9kKehzOQSGXY
-NIpOJBeBXBIIXuflzb3eZzlcRF5Y3Z/w+qZ+/5dfqRVNI+KQUusrPccRAZ70aRyVEAMUGKTY8Zhq
-xyM1ANaI2TBoe2BZNeTCKg8z6BeH2CAIjAtjsBhVdedG4Bx7BK26xfurjukKNXq5Gte26xKroAmY
-yJ2ILGWpBZK1toPkLzEEwcYjoviyWheglcFNRyDf4ASJ65W8gv2KsP7vXd5Vl4Yvy4tAG1x8RP4Q
-+t0vHHzxkiIXc/safJyx0DrOY3jddgJqIAWysayL5ETgIn+dlQb+tzbidmaVd8A9Cj89SZjvduHQ
-ui3qBUwWr4Vmu9TmHwyKQ7kIz6tK55tAA04hSFuAgGsMPsxZIhYiVB1l8sBvJK0YB1uyHC/DTPeG
-ms8yCVzmSp4l24NpnSAREasrzGRJbafA1sxCTjIa+cjw3YkdX258IDMvBhHYQ8gbquhyiKZQHV6O
-r4ZwldVuIG7OCc3r+PuI+H/rYKrBoHvADvAAlmDQy6TESdO2GFF8t2+dMFnwSwbnPyZ8qjtOQUWN
-paFuzPmoXfD6bN8YGJgy+NL7pSKHPmRlmQxmd+Nl6unUlLPSjkh4VkmD41UwXv7nvQ+8kLsURjAN
-3mAvphobNN4bsQP9yumKQLuke/L+rrslG7EA7QdhqvJHnabLeSrrsmc2vrzC3oe0YmYM1GaQieU/
-DAaP40t3wzxLNSiusAGdCrLWCuM9S0tA9kpoh2bYDsNoPwsNbCklV5sNgigexz7pHBvv9sgvBO7d
-EvdPNgj3p2Lc0wPBYPBCNHUhsrxARAn5T4ABABN91iIZbeEsAAAAAElFTkSuQmCC
-
---_006_b38f6ac29beb40c4bb457c09a14cc78dsakurauscom_--
+--0000000000007bb9530588f45598--
