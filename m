@@ -1,67 +1,69 @@
-Return-Path: <philipp@peloton-tech.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ED7E1E00D9E; Mon, 13 May 2019 17:23:06 -0700 (PDT)
+	id BEBEEE00D73; Wed, 15 May 2019 03:57:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (martin.jansa[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.194 listed in list.dnswl.org]
+	*      [209.85.128.67 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com
-	[209.85.214.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6161CE00D53
-	for <yocto@yoctoproject.org>; Mon, 13 May 2019 17:23:06 -0700 (PDT)
-Received: by mail-pl1-f194.google.com with SMTP id p15so7284364pll.4
-	for <yocto@yoctoproject.org>; Mon, 13 May 2019 17:23:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=peloton-tech-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=m8aPX1UbNvezmT4i0uHHWW3I8AfEzziXfPQElr2hSF0=;
-	b=u6ktGarU2PNI5+VkSaVWQKSQ2wPgIrf5edMMqMPDh6hXErLJgctnPxiOWs6TtppGwc
-	7GJMpa8cairLcjmPhrmQEawK7LSDk1Nuwc+YMd6GuPF0GXhFI58xfKAEqv9JYiz2P6kA
-	FBr33X6Zm/UDmXf+KyyLU4eKhxsYgMbpZb4GWdrw0MKbKET0/GXbhKPVIVOjK/ibyaDX
-	nvjUJZh2909qyJqjhYP6Fbez70/IVtd2sSzNghNsCyMlpGlWrypPS0FGQBcMLS9oLJa0
-	yEZf/G2QuuASIQ/GzK8jHGcUkq7iQQlGWS2auyxViXyycXSRdeypOQ429al0tqSupxc4
-	+mKA==
+Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com
+	[209.85.128.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D977E0049C
+	for <yocto@lists.yoctoproject.org>;
+	Wed, 15 May 2019 03:57:04 -0700 (PDT)
+Received: by mail-wm1-f67.google.com with SMTP id 198so2165477wme.3
+	for <yocto@lists.yoctoproject.org>;
+	Wed, 15 May 2019 03:57:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=FIBZfm6lpecuYlOQLoYFzeoVlcrk3wF+j6pYdPC7lC4=;
+	b=pgXOe7BCQxf2fBawFWSPhNObE95Asq1IWXo/JrvwOx0/Ti+MsaQBhXChcoF/Req7Ry
+	Km5unZoL+kRanUyvsE6pQm/INb55wtWjvonv/PafbqXkv9Y4jcXXmWNO96Skk8Pdn6h2
+	ga9j4yrlnM7FIeFTn+qOZYHBiniYpylqKRTqb1n4siDtyDBYhi39E92UKKLPgX5ir8WS
+	MO2BDp4IPjKOAzT1wrKnm7X5KMHYrh0Jy0aKfabVWwpDQ9t/NoCTEKKlQnD6O6vNeija
+	EDKSKj/dIDtPAGJWuGc8jKfOUAU5lq1ZOOqBbMt/IXonDVcAn4PgnfSruwsxzsteq8hv
+	TLSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references;
-	bh=m8aPX1UbNvezmT4i0uHHWW3I8AfEzziXfPQElr2hSF0=;
-	b=B3XhQnqlfL/5p3LXDjL7cDpbXSo8DpQjLJaVZBh2NdguKE/Q3tlWwlQ5ZNasU4QFhT
-	HWbogN00oJfsl44bm/ftRwNIipx0Qg/i/VOUVcVBj0P0kF0FqfuDfk9l/PkODxVkglzJ
-	owCg86SIqh7S0leAwexoEfneuFEtukE/Qzt77R6aE/HFe0jRoKyIonNoBrLlQR0RohkL
-	OiYcBcAx2nXruCGAlYKbqxsN1K12SbY3F2Mdk7L6NLFsgvlvSeuJvi8U2MqxdLCltTzk
-	300mxy+ewwK2P1n72N1U3Rg+1cVAxXRXAOVyjhkqu+MzIo77Mz6c72o40k/tC2nQ4qK9
-	eoVg==
-X-Gm-Message-State: APjAAAW0pKH8t9sinL4C1fLBIIrnO2mPwKQM3+woAbo+33DNd1c6ZRG+
-	Rr+qJHWg/s+LPni1FXQ+A8ONINoQ5P4=
-X-Google-Smtp-Source: APXvYqy1xROsczlGBQNSrMzikkPWg4map/2naO5h/CZOXdm9phoP/C91hzGoI3VSubj1bDhwBGKiLg==
-X-Received: by 2002:a17:902:a415:: with SMTP id
-	p21mr20903674plq.286.1557793385679; 
-	Mon, 13 May 2019 17:23:05 -0700 (PDT)
-Received: from dev-builder.peloton-tech.net ([12.1.72.210])
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=FIBZfm6lpecuYlOQLoYFzeoVlcrk3wF+j6pYdPC7lC4=;
+	b=th3+k6PZpG9g7AkOF2kpyhP1GLn6jx14myGpMhpREdJv2OsgRon+dYrBwYbMp6G6Of
+	l+Htwk0PXei9IA27rABiezE6HzA326l1AE5W+BHcvv5NDd9DIw01nnQN40EHjef1EcNf
+	CbdkYdEShxB+RButXQ4VfQPyZwOUU8BXBk1EJmqvzwtTAM+vqZ6bTXmtPRtypj1jYUnG
+	gn72g3GpXf8RNHEeFMTHXP3h7uk/YVvyyOi9yTTwJHF9/kZFRcg4X7uszf2JqZVg7Oka
+	nedp4ZzT62n33vNWbf0wyVBO4XxlROoAmip7oqbqc/tYUsXfmTMbq4b4gsU8KePOEgt5
+	LvuQ==
+X-Gm-Message-State: APjAAAXJqJiXQIoq6FYja3idm17ltQtePzUlRUbviJzDFJL2vKwvfyZa
+	err5V+DTSFCs00toyiNCidcmVYFw
+X-Google-Smtp-Source: APXvYqytOZpj/rSa0CZfngNYEkRtUEj+P44rsSBW465KJ8oqF+4s/oID9VQ1AVcWkm540loBMZq0Zw==
+X-Received: by 2002:a1c:2d45:: with SMTP id t66mr22495839wmt.106.1557917823053;
+	Wed, 15 May 2019 03:57:03 -0700 (PDT)
+Received: from localhost (ip-217-030-068-212.aim-net.cz. [217.30.68.212])
 	by smtp.gmail.com with ESMTPSA id
-	c189sm37885966pfg.46.2019.05.13.17.23.04
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 13 May 2019 17:23:05 -0700 (PDT)
-From: Philipp Schrader <philipp@peloton-tech.com>
-To: yocto@yoctoproject.org
-Date: Mon, 13 May 2019 17:23:00 -0700
-Message-Id: <1557793380-10881-2-git-send-email-philipp@peloton-tech.com>
-X-Mailer: git-send-email 2.1.4
-In-Reply-To: <1557793380-10881-1-git-send-email-philipp@peloton-tech.com>
-References: <1557793380-10881-1-git-send-email-philipp@peloton-tech.com>
+	v184sm2366095wma.6.2019.05.15.03.57.02
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Wed, 15 May 2019 03:57:02 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+To: yocto@lists.yoctoproject.org
+Date: Wed, 15 May 2019 10:57:00 +0000
+Message-Id: <20190515105700.22802-1-Martin.Jansa@gmail.com>
+X-Mailer: git-send-email 2.17.1
 X-Mailman-Approved-At: Thu, 16 May 2019 01:10:21 -0700
-Cc: Philipp Schrader <philipp@peloton-tech.com>
-Subject: [psplash][PATCH 2/2] Add config option to disable fifo
+Subject: [meta-gplv2][warrior][master][PATCH] licenses: restore Elfutils-Exception from oe-core
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,94 +75,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 May 2019 00:23:07 -0000
+X-List-Received-Date: Wed, 15 May 2019 10:57:05 -0000
 
-I have a use case where I want psplash to write its image to the frame
-buffer without supporting a progress bar. That means a single write
-into the framebuffer. Then it's done.
+* it's still used by:
+  recipes-devtools/elfutils/elfutils_0.148.bb:LICENSE = "(GPL-2+ & Elfutils-Exception)"
+* was removed in oe-core with:
+  http://git.openembedded.org/openembedded-core/commit/?id=88188807a6ac9bab738a69f6b4caba9ed092d78f
+* causing:
+  do_rootfs: The license listed Elfutils-Exception was not in the licenses collected for recipe elfutils
 
-This patch adds a PSPLASH_ENABLE_CLIENT config option which defaults
-to 1 (i.e. true). This keeps the default behaviour the same before and
-after this patch. If a user decides to toggle the option then psplash
-will not create a fifo in /tmp to listen for messages from
-psplash-write. Since psplash won't ever get messages from the client
-there is no point in displaying a progress bar either.  The effect is
-that psplash will write the image to the framebuffer without a
-progress bar and then exit.
-
-Signed-off-by: Philipp Schrader <philipp@peloton-tech.com>
+Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
 ---
- psplash-config.h | 5 +++++
- psplash.c        | 8 ++++++++
- 2 files changed, 13 insertions(+)
+ conf/layer.conf             |  2 ++
+ licenses/Elfutils-Exception | 12 ++++++++++++
+ 2 files changed, 14 insertions(+)
+ create mode 100644 licenses/Elfutils-Exception
 
-diff --git a/psplash-config.h b/psplash-config.h
-index 82bb76d..ce8645f 100644
---- a/psplash-config.h
-+++ b/psplash-config.h
-@@ -31,4 +31,9 @@
- /* Position of the image split from top edge, denominator of fraction */
- #define PSPLASH_IMG_SPLIT_DENOMINATOR 6
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 59f6a89..44c6712 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -15,3 +15,5 @@ LAYERVERSION_gplv2 = "1"
+ LAYERDEPENDS_gplv2 = "core"
  
-+/* A flag to determine whether psplash listens to psplash-write client.
-+ * If disabled, psplash will exit when it's done writing the image into the
-+ * framebuffer. The progress bar is also disabled. */
-+#define PSPLASH_ENABLE_CLIENT 1
+ LAYERSERIES_COMPAT_gplv2 = "warrior"
 +
- #endif
-diff --git a/psplash.c b/psplash.c
-index 166db73..64121eb 100644
---- a/psplash.c
-+++ b/psplash.c
-@@ -256,6 +256,7 @@ main (int argc, char** argv)
- 
-   chdir(tmpdir);
- 
-+#if PSPLASH_ENABLE_CLIENT
-   if (mkfifo(PSPLASH_FIFO, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP))
-     {
-       if (errno!=EEXIST) 
-@@ -272,6 +273,7 @@ main (int argc, char** argv)
-       perror("pipe open");
-       exit(-2);
-     }
-+#endif
- 
-   if (!disable_console_switch)
-     psplash_console_switch ();
-@@ -301,6 +303,7 @@ main (int argc, char** argv)
- 			 POKY_IMG_ROWSTRIDE,
- 			 POKY_IMG_RLE_PIXEL_DATA);
- 
-+#if PSPLASH_ENABLE_CLIENT
-   /* Draw progress bar border */
-   psplash_fb_draw_image (fb, 
- 			 (fb->width  - BAR_IMG_WIDTH)/2, 
-@@ -312,18 +315,23 @@ main (int argc, char** argv)
- 			 BAR_IMG_RLE_PIXEL_DATA);
- 
-   psplash_draw_progress (fb, 0);
-+#endif
- 
- #ifdef PSPLASH_STARTUP_MSG
-   psplash_draw_msg (fb, PSPLASH_STARTUP_MSG);
- #endif
- 
-+#if PSPLASH_ENABLE_CLIENT
-   psplash_main (fb, pipe_fd, 0);
- 
- 
-   psplash_fb_destroy (fb);
-+#endif
- 
-  fb_fail:
-+#if PSPLASH_ENABLE_CLIENT
-   unlink(PSPLASH_FIFO);
-+#endif
- 
-   if (!disable_console_switch)
-     psplash_console_reset ();
++LICENSE_PATH += "${LAYERDIR}/licenses"
+diff --git a/licenses/Elfutils-Exception b/licenses/Elfutils-Exception
+new file mode 100644
+index 0000000..627d769
+--- /dev/null
++++ b/licenses/Elfutils-Exception
+@@ -0,0 +1,12 @@
++   This file describes the limits of the Exception under which you are allowed
++   to distribute Non-GPL Code in linked combination with Red Hat elfutils.
++   For the full text of the license, please see one of the header files
++   included with the source distribution or the file COPYING found in the
++   top level directory of the source.
++
++   The Approved Interfaces are the functions declared in the files:
++
++   libelf.h
++   libdw.h
++   libdwfl.h
++
 -- 
-2.1.4
+2.17.1
 
 
