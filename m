@@ -1,70 +1,70 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <rudolf.streif@ibeeto.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D8B04E00D5F; Wed, 15 May 2019 07:25:23 -0700 (PDT)
+	id ECEADE00DE0; Wed, 15 May 2019 10:07:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,LOTS_OF_MONEY,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (bruce.ashfield[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.171 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.214.180 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid *  0.0 LOTS_OF_MONEY Huge... sums of money
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com
-	[209.85.208.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F75CE00D36
-	for <yocto@yoctoproject.org>; Wed, 15 May 2019 07:25:21 -0700 (PDT)
-Received: by mail-lj1-f171.google.com with SMTP id 14so1252325ljj.5
-	for <yocto@yoctoproject.org>; Wed, 15 May 2019 07:25:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=oHWjVWMTXBDBBK3TJn1rNsPIrL55QRtXgvBv/a+X+SE=;
-	b=ZXfDsTOqP4FbA4+5AR9dnCIpylSM+c1UBZMEm8l6OrXzoXrOFJCD+iuKJzOSXkKRbN
-	phbs/ohIspb8lQHNgSLzo5k4QwGXDJNL/lTtKXgY+uOi1zWYBOq8jr2+PHqcKYjORiJJ
-	KPEJiiaQikYyjzla0Xvm5aBTtTbkZiKzRuXJrjWPPTrK/mJXgCmW4A2i4G8CPk6LALHc
-	gwS06OLkzGCtCSUQnH46lE9R9v70Huy7t7gsCMhPpiOtfLT9NNgiad9sH0YA/TTN2iDA
-	F6dweZm2laoS9FA0LB3njKzyhtimIPG+KRRH6dwwcQqKYd3w9BYPs1d+sjhtk1wq1Ekm
-	nObg==
+	*      valid
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com
+	[209.85.214.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B041E00DD2
+	for <yocto@yoctoproject.org>; Wed, 15 May 2019 10:07:50 -0700 (PDT)
+Received: by mail-pl1-f180.google.com with SMTP id x15so165175pln.9
+	for <yocto@yoctoproject.org>; Wed, 15 May 2019 10:07:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding:content-language;
+	bh=kAu21LDXj0UCYo1vNllaVCEk27Gjzj6RUJ/NcC78Kks=;
+	b=EOtNA7FqxWBsnlmz9rgdU618LzHQkJoL3Wj6/CwroIKppFKPFVPDbEQUd7qONbj2dy
+	XtPs4difgFSSPcL+who07h9IHaflXl3QR/kbupJkHS4wMYcpzNkkz/w6Fs3tLnvkKUm/
+	BcMlDo6Fy/t3wEtKn7FORNtrQai1FHc+IlcTKZePKHUWJ7h+e0G8PleOzxAa2xJ0cOLE
+	bZ6P0bszJsGpert+25eso9MVsGT0Ux0RqJoNJyOEGlJny+P8U8lcIeCP4Aj3fXfGLQYE
+	2GOP1phLUt4CoLByRsqVxymqZkOgxDG2zzVVjGJmce1xcLGpk+FmuCbVBBVVclmMpTc2
+	L7sQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=oHWjVWMTXBDBBK3TJn1rNsPIrL55QRtXgvBv/a+X+SE=;
-	b=q7kFyq1JwT2ACuh1ZJerNNJVQlXNavq5sktFywteAp0PhDl5mpGDKoTywViB+00VCl
-	Xnp63qq/FeU7Qgh31S+IHqAGc9uwt8QTvSAbGg1QPtX3N7/qIyFVsGnat+wGSuZvAQ5D
-	yGDojDYTp5qWYQp/rEmd7CW/uCgIZVQKBcykFx5kibPFBZhvRxlYGSq8maKlErNGdGt6
-	esgoBSqL+UJBywvSypF3RSU8QYTZ/LYr9CObioPOOi9TZn8+VsjHtx44qlXutdm4LW2J
-	0jA+KAmZVcwLukdqhGBqom9D24cgcxtosC4zF/QKYfWUajtCuxk0ZOWLI1GpM15euGv+
-	DZeQ==
-X-Gm-Message-State: APjAAAUD3PnG3Hp84YkjSjRq8Kq+5Sh0syM4t/r/GVenxEMBGji0dOXP
-	4C9Oal+0N225BBPmx0v9HwTHNEpwLQ8iGCdZjdo=
-X-Google-Smtp-Source: APXvYqwEnLxVIdBVqIzcqszVYD+zuka9bkjEOaFls+rJqrsooFxAfYUoMyVG2gg3tVxUOynidZ3JmB0QBsz8CVH0+QQ=
-X-Received: by 2002:a2e:2b58:: with SMTP id q85mr20801377lje.179.1557930320324;
-	Wed, 15 May 2019 07:25:20 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=kAu21LDXj0UCYo1vNllaVCEk27Gjzj6RUJ/NcC78Kks=;
+	b=dBK1gpi/mSpPv8zjCPTLIsLsD5Cz3OBOtCNhVCIcnEwpBJomvWWwDANDxFgIvBIZh9
+	+KV6Kny5DBe40HeupzxPYRSUdtqWd9aJhxErxzdtAbCDYnvVZhhTvDCDkIHr6jxBu9PU
+	dKUqiwev6Wkxeig6Ps0GydJb6En6LzEgPupG/IxSfeX70/TedJSqEXouZlNv6fSXLTVs
+	RqGOIVOwZNp1IIFf74cKWRINXzGMpJ3hK+xqfjG8LwoDgQlWnbKykToD9bh8hoTLWHPg
+	T7RRS0DNVIQ1TDeWnbVArnDvdAPcYBcPY74mKWVa2cymWY8mHdQbOZOcqmmFuiTguoir
+	ZYyw==
+X-Gm-Message-State: APjAAAXImjMVo3T/NgWy9qk2MN3QTyAyj66gqxJzdnLeOaxx6pnSswvL
+	xWM2LGOEtpqR3M+mpmyFpT+TDu7sgOU=
+X-Google-Smtp-Source: APXvYqz4CostGdMkinUusoweNC6Bjdj9s1kwLpgh7aU8ViTe7dkmYIxWQqOPWMyxA4bSw6+7iMBTlA==
+X-Received: by 2002:a17:902:be15:: with SMTP id
+	r21mr45485850pls.340.1557940069985; 
+	Wed, 15 May 2019 10:07:49 -0700 (PDT)
+Received: from rjs-zotac.ibeeto.com (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
+	by smtp.gmail.com with ESMTPSA id
+	z125sm4496272pfb.75.2019.05.15.10.07.48
+	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+	Wed, 15 May 2019 10:07:48 -0700 (PDT)
+To: Greg Wilson-Lindberg <GWilson@sakuraus.com>,
+	Yocto list discussion <yocto@yoctoproject.org>
+References: <2086bca8f57442acac5ba11c3d2712f1@sakuraus.com>
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Message-ID: <3d82053c-8db7-15af-34b8-18657749e026@ibeeto.com>
+Date: Wed, 15 May 2019 10:07:47 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.5.1
 MIME-Version: 1.0
-References: <CAGAf8LxJyLUqa+kOv7+Zs0zbXBD3JjR4yEsqHTi4rDx805826A@mail.gmail.com>
-	<903d2bf0-2711-b734-d844-ef032fb67d58@2net.co.uk>
-	<CAGAf8LyRa0AXf-097GAoJa=jUY3pK8fWxCaDXGReu+GqVJOi4A@mail.gmail.com>
-	<CADkTA4MQc=OYaTqTwoGv0mzLcQ3a6R911_UjCuCpRCootgtiwA@mail.gmail.com>
-	<CAGAf8LwwfKq4kXE5=bf_1+Aa8aqOG+8NrL31Mii2TfLhXyLXKA@mail.gmail.com>
-In-Reply-To: <CAGAf8LwwfKq4kXE5=bf_1+Aa8aqOG+8NrL31Mii2TfLhXyLXKA@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Wed, 15 May 2019 10:25:10 -0400
-Message-ID: <CADkTA4OYJs71BPbeM3+gz1+heAQw4L5zJ4U77emrywG5bzz-HQ@mail.gmail.com>
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Building Out-of-Tree Modules on the BBB Target
+In-Reply-To: <2086bca8f57442acac5ba11c3d2712f1@sakuraus.com>
+Subject: Re: problem adding a user
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,536 +76,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 May 2019 14:25:23 -0000
-Content-Type: multipart/alternative; boundary="00000000000053f6d20588edeb67"
+X-List-Received-Date: Wed, 15 May 2019 17:07:52 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
---00000000000053f6d20588edeb67
-Content-Type: text/plain; charset="UTF-8"
+Hi Greg,
 
-On Wed, May 15, 2019 at 3:44 AM Zoran Stojsavljevic <
-zoran.stojsavljevic@gmail.com> wrote:
+Well, I suppose I wrote the book you are referring to...
 
-> > That's correct. That command only adds the kernel source and
-> > build infrastructure to the SDK, not to your target image. *You'd still*
-> *> need to arrange to have the kernel-devsrc package installed on the*
-> *> target image if you want it on the board's rootfs.* How you arrange
-> > to have the package installed to the image varies with the image
-> > (since they all don't have the same image install variables, etc).
+
+Using
+
+useradd -p PASSWORD USER
+
+takes the password hash for PASSWORD hence the use of openssl in:
+
+useadd -p `openssl passwd PASSWORD` USER
+
+openssl password creates the password hash using the original crypt hash 
+algorithm if no other options are specified. e.g.
+
+$ openssl passwd hello
+6hEsTksgRkeiI
+
+With this the first two characters of the output is the salt and the 
+rest is the password hash. If you want openssl to create the same result 
+again:
+
+$ openssl passwd -salt "6h" hello
+6hEsTksgRkeiI
+
+You can use newer algorithms like MD5 based BSD password algorithm 1:
+
+$ openssl passwd -1 hello
+$1$4Mu8Fcs.$eIKgPP7RCYrb3lFZjhADA1
+
+$1 : password algorithm 1
+$4Mu8Fcs. : salt
+$eIKgPP7RCYrb3lFZjhADA1 : password hash
+
+
+If you log into the system you have to use the clear password. The 
+system reads the salt, creates the password hash and compares the results.
+
+
+:rjs
+
+
+On 5/14/19 5:34 PM, Greg Wilson-Lindberg wrote:
+> I'm trying to use the example in "Embedded Linux Systems with the Yocto Project" to add a user to my Yocto build. In the book the sample code:
 >
-> And here is a $1,000,000 USD question? How to do it on Poky (as
-> example of what you have stated in RED)? ;-)
+>     useradd -p `openssl passwd ${DEV_PASSWORD}` developer; \
 >
-> In other words: how to arrange it on Poky (as a Referent example)?
+> uses openssl to generate the encrypted password string to pass to useradd. I have never been able to get this to work. When I run the openssl
+> command on the cmd line I get a different value every time, this seems wrong, How can the password code compare against it if every encode
+> produces a different value?
 >
-
-The core-image-kernel-dev image is how I do all my on target testing when I
-introduce a new reference kernel for a release. And IIRC the autobuilders
-are using a sato based image (Richard could confirm more easily that I
-could what image type the autobuilders are using for hello-world on target
-module tests).
-
-Bruce
-
-
-
+> I am getting the user added to the system, the home directory shows up and the user is in the passwd and group files. I just can't login to the
+> account.
 >
-> Thank you,
-> Zoran
-> _______
+> I've obviously got something confused, any help would be appreciated.
 >
->
-> On Wed, May 15, 2019 at 7:41 AM Bruce Ashfield <bruce.ashfield@gmail.com>
-> wrote:
->
->>
->>
->> On Tue, May 14, 2019 at 1:30 PM Zoran Stojsavljevic <
->> zoran.stojsavljevic@gmail.com> wrote:
->>
->>> Hello Chris, Bruce,
->>>
->>> I have some additional data to share with you both, since I have tried
->>> something. And here is my take on the things!
->>>
->>> > 1. Build using a bb recipe.
->>> > Take a look at meta-skeleton/recipes-kernel/hello-mod for an example.
->>> > You just need to add meta-skeleton to your bblayers.conf and then
->>> >  bitbake hello-mod
->>>
->>> I looked into this example, and, yes, it is classic kernel module
->>> definition out of the tree. With some outdated data, all cool, the
->>> YOCTO designer should take care himself to fix these data, if using
->>> this stuff.
->>>
->>> But this is NOT mandatory, since I can add out of the tree module NOT
->>> actually using built-in module. I just use .../tmp/deploy/images/bbb/*
->>> generated stuff, since I have automated scripts which are bringing all
->>> these on my BBB target. Then I tftp my source code module to the
->>> target.
->>>
->>> > 2. Build from the SDK:
->>> > First, add the kernel source to the SDK by adding this to
->>> conf/local.conf
->>> >  TOOLCHAIN_TARGET_TASK_append = " kernel-devsrc"
->>>
->>> YES, this is THE command which should generate
->>> /usr/src/kernel(s)/`uname -r` or similar... But adding it to
->>> local.conf and after deleting kernel, then regenerating bitbake -k
->>> core-image-minimal does not bring this path into the rootfs image!?
->>>
->>
->> That's correct. That command only adds the kernel source and build
->> infrastructure to the SDK, not to your target image. You'd still need to
->> arrange to have the kernel-devsrc package installed on the target image if
->> you want it on the board's rootfs. How you arrange to have the package
->> installed to the image varies with the image (since they all don't have the
->> same image install variables, etc).
->>
->>
->>
->>>
->>> I did it actually using meta-bbb, and using poky referent distro as
->>> two additional layers to the more complex bbb image!
->>> https://github.com/jumpnow/meta-bbb.git
->>>
->>> The (KAS - you can figure out out of it local.conf) script I am using
->>> to build such a BBB image is here:
->>>
->>> https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-releases/bbb-warrior/kas-bbb-warrior.yml
->>>
->>> I did not try it with BBB reference poky only! Maybe I should try it
->>> as only referent poky? What do you think?
->>>
->>> Does in this case is SDK build really mandatory??? Should NOT be!
->>>
->>>
->> You only do the SDK steps if you want to support building out of tree
->> modules in an SDK install. So it is not mandatory for on target module
->> builds.
->>
->> Bruce
->>
->>
->>
->>> > Once the SDK is installed, generate the kernel headers:
->>> >  sudo -i
->>> >  . /opt/poky/2.6.2/environment-setup-cortexa8hf-neon-poky-linux-gnueabi
->>> >  cd /opt/poky/2.6.2/sysroots/cortexa8hf-neon-poky-linux-gnueabi
->>> >  cd /usr/src/kernel
->>> >  make oldconfig scripts
->>> >  exit
->>>
->>> This is in nutshell the same what I did (a bit different) for Embedded
->>> Debian. This is already on the target BBB, NOT while building YOCTO
->>> BBB image!
->>>
->>> > Finally, build your module using a Makefile like this
->>> >  obj-m := hello-mod.o
->>> >  all:
->>> >        make -C $(SDKTARGETSYSROOT)/usr/src/kernel M=$(shell pwd)
->>>
->>> As said before: bringing my own module into the target BBB (I have my
->>> own examples, and I build them on the target with the almost the same
->>> Makefiles)
->>>
->>> Zoran
->>> _______
->>>
->>> On Sun, May 12, 2019 at 3:15 PM Chris Simmonds <chris@2net.co.uk> wrote:
->>> >
->>> > Hi Zoran,
->>> >
->>> > There are two ways to do this
->>> >
->>> > 1. Build using a bb recipe.
->>> > Take a look at meta-skeleton/recipes-kernel/hello-mod for an example.
->>> > You just need to add meta-skeleton to your bblaysers.conf and then
->>> >   bitbake hello-mod
->>> >
->>> >
->>> > 2. Build from the SDK:
->>> > First, add the kernel source to the SDK by adding this to
->>> conf/local/conf
->>> >   TOOLCHAIN_TARGET_TASK_append = " kernel-devsrc"
->>> >
->>> > Then build the SDK
->>> >   bitbake -c populate_sdk [your image recipe]
->>> >
->>> > Once the SDK is installed, generate the kernel headers:
->>> >   sudo -i
->>> >   .
->>> /opt/poky/2.6.2/environment-setup-cortexa8hf-neon-poky-linux-gnueabi
->>> >   cd /opt/poky/2.6.2/sysroots/cortexa8hf-neon-poky-linux-gnueabi
->>> >   cd /usr/src/kernel
->>> >   make oldconfig scripts
->>> >   exit
->>> >
->>> > Finally, build your module using a Makefile like this
->>> >
->>> >   obj-m := hello-mod.o
->>> >   all:
->>> >         make -C $(SDKTARGETSYSROOT)/usr/src/kernel M=$(shell pwd)
->>> >
->>> >
->>> > HTH,
->>> > Chris
->>> >
->>> > On 12/05/2019 11:53, Zoran Stojsavljevic wrote:
->>> > > Hello to the YOCTO community,
->>> > >
->>> > > I am using (to build the target for Beagle Bone Black) the following
->>> script:
->>> > > https://github.com/ZoranStojsavljevic/bbb-yocto
->>> > >
->>> https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-yocto.sh
->>> > >
->>> > > The latest kernel I am using from the following repo:
->>> > > https://github.com/jumpnow/meta-bbb
->>> > >
->>> > > Is kernel 5.0.14 .
->>> > >
->>> > > Here is the snippet of the boot traces:
->>> > > Starting kernel ...
->>> > >
->>> > > [    0.000000] Booting Linux on physical CPU 0x0
->>> > > [    0.000000] Linux version 5.0.14-jumpnow (oe-user@oe-host) (gcc
->>> > > version 8.3.0 (GCC)) #1 Fri May 10 13:12:33 UTC 2019
->>> > > [    0.000000] CPU: ARMv7 Processor [413fc082] revision 2 (ARMv7),
->>> cr=10c5387d
->>> > > [    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing
->>> > > instruction cache
->>> > > [    0.000000] OF: fdt: Machine model: TI AM335x BeagleBone Black
->>> > > [    0.000000] Memory policy: Data cache writeback
->>> > > [    0.000000] cma: Reserved 16 MiB at 0x9f000000
->>> > > [    0.000000] CPU: All CPU(s) started in SVC mode.
->>> > > [    0.000000] AM335X ES2.1 (sgx neon)
->>> > > [    0.000000] random: get_random_bytes called from
->>> > > start_kernel+0xa4/0x460 with crng_init=0
->>> > > [    0.000000] Built 1 zonelists, mobility grouping on.  Total
->>> pages: 130048
->>> > > [    0.000000] Kernel command line: console=ttyO0,115200n8
->>> > > root=/dev/ram0 ip=dhcp
->>> > >
->>> > > According to the documentation, the following:
->>> > > 2.10.1. Building Out-of-Tree Modules on the Target
->>> > > https://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html
->>> > >
->>> > > I tried to find /usr/src/kernels/5.0.14... Directory, since I see
->>> > > from the build that kernel-dev and kernel-devsrc are included:
->>> > > [user@fedora29-ssd bbb-yocto]$ bitbake -s | grep kernel
->>> > > core-image-kernel-dev                                 :1.0-r0
->>> > > kernel-devsrc                                         :1.0-r0
->>> > > kernel-selftest                                       :1.0-r0
->>> > >
->>> > > THE PROBLEM: But I could not find ob BBB target /usr/src/kernels
->>> > > directory at all!?
->>> > >
->>> > > Two questions here?
->>> > > [1] Do you have any advice on this problem (what I am missing here)?
->>> > > [2] Alternative to [1]: how I can use cross compiler from
->>> > > .../build/tmp to build Out-of-Tree Module for the BBB target on the
->>> > > host?
->>> > >
->>> > > Thank you,
->>> > > Zoran
->>> > > _______
->>> > >
->>> >
->>> >
->>> > --
->>> > Chris Simmonds, trainer and consultant at 2net
->>> > http://www.2net.co.uk
->>> > Author of "Mastering Embedded Linux Programming"
->>>
->>
->>
->> --
->> - Thou shalt not follow the NULL pointer, for chaos and madness await
->> thee at its end
->> - "Use the force Harry" - Gandalf, Star Trek II
->>
->>
+> Greg Wilson-Lindberg
+>   
 
 -- 
-- Thou shalt not follow the NULL pointer, for chaos and madness await thee
-at its end
-- "Use the force Harry" - Gandalf, Star Trek II
+-----
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3396 x700
 
---00000000000053f6d20588edeb67
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
-t-size:small"><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Wed, May 15, 2019 at 3:44 AM Zoran Stojsavljevic=
- &lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com">zoran.stojsavljevic@g=
-mail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex"><div dir=3D"ltr"><div>&gt; That&#39;s correct. That command only ad=
-ds the kernel source and</div><div>&gt; build infrastructure to the SDK, no=
-t to your target image. <span style=3D"color:rgb(255,0,0)"><i><b>You&#39;d =
-still</b></i></span></div><div><span style=3D"color:rgb(255,0,0)"><i><b>&gt=
-; need to arrange to have the kernel-devsrc package installed on the</b></i=
-></span></div><div><span style=3D"color:rgb(255,0,0)"><i><b>&gt; target ima=
-ge if you want it on the board&#39;s rootfs.</b></i></span> How you arrange=
-</div><div>&gt; to have the package installed to the image varies with the =
-image</div><div>&gt; (since they all don&#39;t have the same image install =
-variables, etc).</div><div><br></div><div>And here is a $1,000,000 USD ques=
-tion? How to do it on Poky (as</div><div>example of what you have stated in=
- RED)? ;-)</div><div><br></div><div>In other words: how to arrange it on Po=
-ky (as a Referent example)?<br></div></div></blockquote><div><br></div><div=
-><div class=3D"gmail_default" style=3D"font-size:small">The core-image-kern=
-el-dev image is how I do all my on target testing when I introduce a new re=
-ference kernel for a release. And IIRC the autobuilders are using a sato ba=
-sed image (Richard could confirm more easily that I could what image type t=
-he autobuilders are using for hello-world on target module tests).</div><di=
-v class=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D=
-"gmail_default" style=3D"font-size:small">Bruce</div><br></div><div>=C2=A0<=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><di=
-v></div><div><br></div><div>Thank you,</div><div>Zoran</div><div>_______<br=
-></div></div><br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"g=
-mail_attr">On Wed, May 15, 2019 at 7:41 AM Bruce Ashfield &lt;<a href=3D"ma=
-ilto:bruce.ashfield@gmail.com" target=3D"_blank">bruce.ashfield@gmail.com</=
-a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
-x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
-iv dir=3D"ltr"><div dir=3D"ltr"><div style=3D"font-size:small"><br></div></=
-div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
- Tue, May 14, 2019 at 1:30 PM Zoran Stojsavljevic &lt;<a href=3D"mailto:zor=
-an.stojsavljevic@gmail.com" target=3D"_blank">zoran.stojsavljevic@gmail.com=
-</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
-0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-Hello Chris, Bruce,<br>
-<br>
-I have some additional data to share with you both, since I have tried<br>
-something. And here is my take on the things!<br>
-<br>
-&gt; 1. Build using a bb recipe.<br>
-&gt; Take a look at meta-skeleton/recipes-kernel/hello-mod for an example.<=
-br>
-&gt; You just need to add meta-skeleton to your bblayers.conf and then<br>
-&gt;=C2=A0 bitbake hello-mod<br>
-<br>
-I looked into this example, and, yes, it is classic kernel module<br>
-definition out of the tree. With some outdated data, all cool, the<br>
-YOCTO designer should take care himself to fix these data, if using<br>
-this stuff.<br>
-<br>
-But this is NOT mandatory, since I can add out of the tree module NOT<br>
-actually using built-in module. I just use .../tmp/deploy/images/bbb/*<br>
-generated stuff, since I have automated scripts which are bringing all<br>
-these on my BBB target. Then I tftp my source code module to the<br>
-target.<br>
-<br>
-&gt; 2. Build from the SDK:<br>
-&gt; First, add the kernel source to the SDK by adding this to conf/local.c=
-onf<br>
-&gt;=C2=A0 TOOLCHAIN_TARGET_TASK_append =3D &quot; kernel-devsrc&quot;<br>
-<br>
-YES, this is THE command which should generate<br>
-/usr/src/kernel(s)/`uname -r` or similar... But adding it to<br>
-local.conf and after deleting kernel, then regenerating bitbake -k<br>
-core-image-minimal does not bring this path into the rootfs image!?<br></bl=
-ockquote><div><br></div><div><div style=3D"font-size:small">That&#39;s corr=
-ect. That command only adds the kernel source and build infrastructure to t=
-he SDK, not to your target image. You&#39;d still need to arrange to have t=
-he kernel-devsrc package installed on the target image if you want it on th=
-e board&#39;s rootfs. How you arrange to have the package installed to the =
-image varies with the image (since they all don&#39;t have the same image i=
-nstall variables, etc).</div><br></div><div>=C2=A0</div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">
-<br>
-I did it actually using meta-bbb, and using poky referent distro as<br>
-two additional layers to the more complex bbb image!<br>
-<a href=3D"https://github.com/jumpnow/meta-bbb.git" rel=3D"noreferrer" targ=
-et=3D"_blank">https://github.com/jumpnow/meta-bbb.git</a><br>
-<br>
-The (KAS - you can figure out out of it local.conf) script I am using<br>
-to build such a BBB image is here:<br>
-<a href=3D"https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-=
-releases/bbb-warrior/kas-bbb-warrior.yml" rel=3D"noreferrer" target=3D"_bla=
-nk">https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-release=
-s/bbb-warrior/kas-bbb-warrior.yml</a><br>
-<br>
-I did not try it with BBB reference poky only! Maybe I should try it<br>
-as only referent poky? What do you think?<br>
-<br>
-Does in this case is SDK build really mandatory??? Should NOT be!<br>
-<br></blockquote><div><br></div><div><div style=3D"font-size:small">You onl=
-y do the SDK steps if you want to support building out of tree modules in a=
-n SDK install. So it is not mandatory for on target module builds.</div><br=
-></div><div><div style=3D"font-size:small">Bruce</div><br></div><div>=C2=A0=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left:1px solid rgb(204,204,204);padding-left:1ex">
-&gt; Once the SDK is installed, generate the kernel headers:<br>
-&gt;=C2=A0 sudo -i<br>
-&gt;=C2=A0 . /opt/poky/2.6.2/environment-setup-cortexa8hf-neon-poky-linux-g=
-nueabi<br>
-&gt;=C2=A0 cd /opt/poky/2.6.2/sysroots/cortexa8hf-neon-poky-linux-gnueabi<b=
-r>
-&gt;=C2=A0 cd /usr/src/kernel<br>
-&gt;=C2=A0 make oldconfig scripts<br>
-&gt;=C2=A0 exit<br>
-<br>
-This is in nutshell the same what I did (a bit different) for Embedded<br>
-Debian. This is already on the target BBB, NOT while building YOCTO<br>
-BBB image!<br>
-<br>
-&gt; Finally, build your module using a Makefile like this<br>
-&gt;=C2=A0 obj-m :=3D hello-mod.o<br>
-&gt;=C2=A0 all:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 make -C $(SDKTARGETSYSROOT)/usr/src/kernel =
-M=3D$(shell pwd)<br>
-<br>
-As said before: bringing my own module into the target BBB (I have my<br>
-own examples, and I build them on the target with the almost the same<br>
-Makefiles)<br>
-<br>
-Zoran<br>
-_______<br>
-<br>
-On Sun, May 12, 2019 at 3:15 PM Chris Simmonds &lt;<a href=3D"mailto:chris@=
-2net.co.uk" target=3D"_blank">chris@2net.co.uk</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hi Zoran,<br>
-&gt;<br>
-&gt; There are two ways to do this<br>
-&gt;<br>
-&gt; 1. Build using a bb recipe.<br>
-&gt; Take a look at meta-skeleton/recipes-kernel/hello-mod for an example.<=
-br>
-&gt; You just need to add meta-skeleton to your bblaysers.conf and then<br>
-&gt;=C2=A0 =C2=A0bitbake hello-mod<br>
-&gt;<br>
-&gt;<br>
-&gt; 2. Build from the SDK:<br>
-&gt; First, add the kernel source to the SDK by adding this to conf/local/c=
-onf<br>
-&gt;=C2=A0 =C2=A0TOOLCHAIN_TARGET_TASK_append =3D &quot; kernel-devsrc&quot=
-;<br>
-&gt;<br>
-&gt; Then build the SDK<br>
-&gt;=C2=A0 =C2=A0bitbake -c populate_sdk [your image recipe]<br>
-&gt;<br>
-&gt; Once the SDK is installed, generate the kernel headers:<br>
-&gt;=C2=A0 =C2=A0sudo -i<br>
-&gt;=C2=A0 =C2=A0. /opt/poky/2.6.2/environment-setup-cortexa8hf-neon-poky-l=
-inux-gnueabi<br>
-&gt;=C2=A0 =C2=A0cd /opt/poky/2.6.2/sysroots/cortexa8hf-neon-poky-linux-gnu=
-eabi<br>
-&gt;=C2=A0 =C2=A0cd /usr/src/kernel<br>
-&gt;=C2=A0 =C2=A0make oldconfig scripts<br>
-&gt;=C2=A0 =C2=A0exit<br>
-&gt;<br>
-&gt; Finally, build your module using a Makefile like this<br>
-&gt;<br>
-&gt;=C2=A0 =C2=A0obj-m :=3D hello-mod.o<br>
-&gt;=C2=A0 =C2=A0all:<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0make -C $(SDKTARGETSYSROOT)/usr/src/k=
-ernel M=3D$(shell pwd)<br>
-&gt;<br>
-&gt;<br>
-&gt; HTH,<br>
-&gt; Chris<br>
-&gt;<br>
-&gt; On 12/05/2019 11:53, Zoran Stojsavljevic wrote:<br>
-&gt; &gt; Hello to the YOCTO community,<br>
-&gt; &gt;<br>
-&gt; &gt; I am using (to build the target for Beagle Bone Black) the follow=
-ing script:<br>
-&gt; &gt; <a href=3D"https://github.com/ZoranStojsavljevic/bbb-yocto" rel=
-=3D"noreferrer" target=3D"_blank">https://github.com/ZoranStojsavljevic/bbb=
--yocto</a><br>
-&gt; &gt; <a href=3D"https://github.com/ZoranStojsavljevic/bbb-yocto/blob/m=
-aster/bbb-yocto.sh" rel=3D"noreferrer" target=3D"_blank">https://github.com=
-/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-yocto.sh</a><br>
-&gt; &gt;<br>
-&gt; &gt; The latest kernel I am using from the following repo:<br>
-&gt; &gt; <a href=3D"https://github.com/jumpnow/meta-bbb" rel=3D"noreferrer=
-" target=3D"_blank">https://github.com/jumpnow/meta-bbb</a><br>
-&gt; &gt;<br>
-&gt; &gt; Is kernel 5.0.14 .<br>
-&gt; &gt;<br>
-&gt; &gt; Here is the snippet of the boot traces:<br>
-&gt; &gt; Starting kernel ...<br>
-&gt; &gt;<br>
-&gt; &gt; [=C2=A0 =C2=A0 0.000000] Booting Linux on physical CPU 0x0<br>
-&gt; &gt; [=C2=A0 =C2=A0 0.000000] Linux version 5.0.14-jumpnow (oe-user@oe=
--host) (gcc<br>
-&gt; &gt; version 8.3.0 (GCC)) #1 Fri May 10 13:12:33 UTC 2019<br>
-&gt; &gt; [=C2=A0 =C2=A0 0.000000] CPU: ARMv7 Processor [413fc082] revision=
- 2 (ARMv7), cr=3D10c5387d<br>
-&gt; &gt; [=C2=A0 =C2=A0 0.000000] CPU: PIPT / VIPT nonaliasing data cache,=
- VIPT aliasing<br>
-&gt; &gt; instruction cache<br>
-&gt; &gt; [=C2=A0 =C2=A0 0.000000] OF: fdt: Machine model: TI AM335x Beagle=
-Bone Black<br>
-&gt; &gt; [=C2=A0 =C2=A0 0.000000] Memory policy: Data cache writeback<br>
-&gt; &gt; [=C2=A0 =C2=A0 0.000000] cma: Reserved 16 MiB at 0x9f000000<br>
-&gt; &gt; [=C2=A0 =C2=A0 0.000000] CPU: All CPU(s) started in SVC mode.<br>
-&gt; &gt; [=C2=A0 =C2=A0 0.000000] AM335X ES2.1 (sgx neon)<br>
-&gt; &gt; [=C2=A0 =C2=A0 0.000000] random: get_random_bytes called from<br>
-&gt; &gt; start_kernel+0xa4/0x460 with crng_init=3D0<br>
-&gt; &gt; [=C2=A0 =C2=A0 0.000000] Built 1 zonelists, mobility grouping on.=
-=C2=A0 Total pages: 130048<br>
-&gt; &gt; [=C2=A0 =C2=A0 0.000000] Kernel command line: console=3DttyO0,115=
-200n8<br>
-&gt; &gt; root=3D/dev/ram0 ip=3Ddhcp<br>
-&gt; &gt;<br>
-&gt; &gt; According to the documentation, the following:<br>
-&gt; &gt; 2.10.1. Building Out-of-Tree Modules on the Target<br>
-&gt; &gt; <a href=3D"https://www.yoctoproject.org/docs/latest/kernel-dev/ke=
-rnel-dev.html" rel=3D"noreferrer" target=3D"_blank">https://www.yoctoprojec=
-t.org/docs/latest/kernel-dev/kernel-dev.html</a><br>
-&gt; &gt;<br>
-&gt; &gt; I tried to find /usr/src/kernels/<a href=3D"http://5.0.14." rel=
-=3D"noreferrer" target=3D"_blank">5.0.14.</a>.. Directory, since I see<br>
-&gt; &gt; from the build that kernel-dev and kernel-devsrc are included:<br=
->
-&gt; &gt; [user@fedora29-ssd bbb-yocto]$ bitbake -s | grep kernel<br>
-&gt; &gt; core-image-kernel-dev=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0:1.0-r0<br>
-&gt; &gt; kernel-devsrc=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0:1.0-r0<br>
-&gt; &gt; kernel-selftest=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0:1.0-r0<br>
-&gt; &gt;<br>
-&gt; &gt; THE PROBLEM: But I could not find ob BBB target /usr/src/kernels<=
-br>
-&gt; &gt; directory at all!?<br>
-&gt; &gt;<br>
-&gt; &gt; Two questions here?<br>
-&gt; &gt; [1] Do you have any advice on this problem (what I am missing her=
-e)?<br>
-&gt; &gt; [2] Alternative to [1]: how I can use cross compiler from<br>
-&gt; &gt; .../build/tmp to build Out-of-Tree Module for the BBB target on t=
-he<br>
-&gt; &gt; host?<br>
-&gt; &gt;<br>
-&gt; &gt; Thank you,<br>
-&gt; &gt; Zoran<br>
-&gt; &gt; _______<br>
-&gt; &gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; --<br>
-&gt; Chris Simmonds, trainer and consultant at 2net<br>
-&gt; <a href=3D"http://www.2net.co.uk" rel=3D"noreferrer" target=3D"_blank"=
->http://www.2net.co.uk</a><br>
-&gt; Author of &quot;Mastering Embedded Linux Programming&quot;<br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail-m_1272052630966217014gmail-m_-2349781468301996299gmail_sign=
-ature">- Thou shalt not follow the NULL pointer, for chaos and madness awai=
-t thee at its end<br>- &quot;Use the force Harry&quot; - Gandalf, Star Trek=
- II<br><br></div></div>
-</blockquote></div>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature">- Thou shalt not follow the NULL pointer, for ch=
-aos and madness await thee at its end<br>- &quot;Use the force Harry&quot; =
-- Gandalf, Star Trek II<br><br></div></div>
-
---00000000000053f6d20588edeb67--
