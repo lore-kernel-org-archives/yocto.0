@@ -1,70 +1,66 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <GWilson@sakuraus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7DF75E00CB3; Wed, 15 May 2019 13:09:48 -0700 (PDT)
+	id 3F545E00DD2; Wed, 15 May 2019 13:18:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, LOTS_OF_MONEY,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.172 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid *  0.0 LOTS_OF_MONEY Huge... sums of money
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com
-	[209.85.222.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0477E00CB3
-	for <yocto@yoctoproject.org>; Wed, 15 May 2019 13:09:45 -0700 (PDT)
-Received: by mail-qk1-f172.google.com with SMTP id c15so851496qkl.2
-	for <yocto@yoctoproject.org>; Wed, 15 May 2019 13:09:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=OfIt7AFcICNh/W70L0keapLikrUwBTOOBEvIwvzKZWg=;
-	b=mL/OUciMBotLq1IQVi44u0q6WwkmYRhfz7eFqWw9TP+Joi3Io3QJgHq3+0g9g7IsHK
-	v6gnAuxrN0br2IzIctNyiPpFr4biVYywQyMZYflq0LiP0/9U3PyPp45yC31C4J6xTzUX
-	fDGtOUPrznZV9B3nbximBrhD71Q+FQuliZStZe+3+rWOxt7+wrXfRfYysdrJp2p88NsJ
-	oRyOuCoo/Cn2/fuxbKsK0cFqmt9E1v+lb++av3QZb3xSt/2QBYmIkMxKFRUETjiKz4Kn
-	i7oNe67QMaT7FebpjftF4eYqa8syVgcKsoLuv2x6N3eY4zk6MpsmfONjPA0zRovL7lW0
-	KdJA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=OfIt7AFcICNh/W70L0keapLikrUwBTOOBEvIwvzKZWg=;
-	b=hpN+DIy0GJxzky12F5UNrgpFpIHN0Rd9QlrNRQNns4h68qIr6CTAglOfsna/FjpamR
-	h90tapTv09xGhwkxdtnlDXdOpAfNVA7yE32Yi78Wg584gjTOazeHep2S90dzPofDtGSl
-	vuJznfKngfaXXRjrPiEaD5wj7a0qFIBgRcdkqgSjod8mdIxWcsbsoXstOgV/PCOsi7R/
-	u0RfffyZBoQ3BqjKMA3OqIgOhwTsF1Z9LBgIEWaSTghhBzXUxGxBUdbgowqM9tNqfkep
-	/JJPkBpbnB8o+KT8N9/oWq+nf+YdmBVEshPhmEqPuj/j1rGSGPS+HBNTs1JW7qpTPjqQ
-	cf3Q==
-X-Gm-Message-State: APjAAAWS/dSFZEZF2xW8NDSZEWPhN/oAAS3VHaUrJdRDM9RCrHqBn/qp
-	/CtZJd/CyGeupA5cRMKXMlJD7xy2ZYfcQZ0/N+w=
-X-Google-Smtp-Source: APXvYqxBVW6wWrnfyEompS2NWta/jwVBVYjAQDq2Rx2b+OYWtVkWfq91tpFZ339IxkgIhsU5mdOJx71MwcwttZBcbUY=
-X-Received: by 2002:a37:790:: with SMTP id 138mr15175287qkh.267.1557950985023; 
-	Wed, 15 May 2019 13:09:45 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [209.222.82.36 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from 13pmail.ess.barracuda.com (13pmail.ess.barracuda.com
+	[209.222.82.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62D48E00D36
+	for <yocto@yoctoproject.org>; Wed, 15 May 2019 13:18:50 -0700 (PDT)
+Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
+	mx3.us-east-2a.ess.aws.cudaops.com (version=TLSv1.2
+	cipher=AES256-SHA256 bits=256 verify=NO);
+	Wed, 15 May 2019 20:18:48 +0000
+Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
+	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
+	Wed, 15 May 2019 13:18:47 -0700
+Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
+	([::1]) with mapi id 15.01.0669.032; Wed, 15 May 2019 13:18:47 -0700
+From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+To: Rudolf J Streif <rudolf.streif@ibeeto.com>, Yocto list discussion
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] problem adding a user
+Thread-Index: AdUKtI8UMCSaJnTQT92qAk6aHgoNcgAxtVKA//+VNhqAAIDUAP//it/KgACHQwD//5Xyzg==
+Date: Wed, 15 May 2019 20:18:47 +0000
+Message-ID: <1d6f238b62354df8a92873769755990b@sakuraus.com>
+References: <2086bca8f57442acac5ba11c3d2712f1@sakuraus.com>
+	<3d82053c-8db7-15af-34b8-18657749e026@ibeeto.com>
+	<59388987f9de418abb8598790a3d3e7f@sakuraus.com>
+	<04dbfa63-d5a5-1aff-9d4a-87cbd9f44b5c@ibeeto.com>
+	<20cf7cd05ce54a439d05109439572db8@sakuraus.com>,
+	<2503a68b-2283-cac8-1e5d-11d0885598a7@ibeeto.com>
+In-Reply-To: <2503a68b-2283-cac8-1e5d-11d0885598a7@ibeeto.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.5.239]
 MIME-Version: 1.0
-References: <CAGAf8LxJyLUqa+kOv7+Zs0zbXBD3JjR4yEsqHTi4rDx805826A@mail.gmail.com>
-	<903d2bf0-2711-b734-d844-ef032fb67d58@2net.co.uk>
-	<CAGAf8LyRa0AXf-097GAoJa=jUY3pK8fWxCaDXGReu+GqVJOi4A@mail.gmail.com>
-	<CADkTA4MQc=OYaTqTwoGv0mzLcQ3a6R911_UjCuCpRCootgtiwA@mail.gmail.com>
-	<CAGAf8LwwfKq4kXE5=bf_1+Aa8aqOG+8NrL31Mii2TfLhXyLXKA@mail.gmail.com>
-	<CADkTA4OYJs71BPbeM3+gz1+heAQw4L5zJ4U77emrywG5bzz-HQ@mail.gmail.com>
-In-Reply-To: <CADkTA4OYJs71BPbeM3+gz1+heAQw4L5zJ4U77emrywG5bzz-HQ@mail.gmail.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Wed, 15 May 2019 22:09:33 +0200
-Message-ID: <CAGAf8Lxcs7sigNHZxrOj1HUfn0x12=4o3bh85Ku-E=w=1iGGFg@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Building Out-of-Tree Modules on the BBB Target
+X-BESS-ID: 1557951528-893004-9380-38927-1
+X-BESS-VER: 2019.1_20190514.2102
+X-BESS-Apparent-Source-IP: 12.26.104.5
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2,
+	rules version 3.2.2.213344 [from 
+	cloudscan36.us-east-2a.ess.aws.cudaops.com]
+	Rule breakdown below
+	pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message 
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
+	KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status: 1
+Subject: Re: problem adding a user
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,312 +72,480 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 May 2019 20:09:48 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 15 May 2019 20:18:52 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_1d6f238b62354df8a92873769755990bsakurauscom_"
+
+--_000_1d6f238b62354df8a92873769755990bsakurauscom_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-> The core-image-kernel-dev image is how I do all my on target
-> testing when I introduce a new reference kernel for a release.
+Ok, I had been using the useradd class in a couple of other recipes to allo=
+w me to copy files to the sakura user directory and another location, but o=
+wned by sakura. That seems to have been what was causing the problem.
 
-Maybe you are correct. Maybe I should use/add in my local.conf the followin=
-g:
 
-KERNEL_DEV_TOOLS ?=3D "packagegroup-core-tools-profile
-packagegroup-core-buildessential kernel-devsrc"
-KERNEL_DEV_MODULE ?=3D "kernel-modules"
-CORE_IMAGE_EXTRA_INSTALL +=3D "${KERNEL_DEV_MODULE} \
-                             ${KERNEL_DEV_TOOLS} \
-                             systemtap \
-                            "
-I need to try these... Maybe this addendum will solve the $1 mio USD proble=
-m?!
+I had been using the extrausers class in my top level image recipe.
 
-> And IIRC the autobuilders are using a sato based image (Richard
-> could confirm more easily that I could what image type the
-> autobuilders are using for hello-world on target module tests).
+So now how do I get all of this to work together? Do I need to put everythi=
+ng that touches the sakura user in the same recipe? It seems that I need to=
+ use only one of the useradd or extrausers classes?
 
-I am just advertising something more simple. To have mandatory
-/lib/modules/`uname -r` directory. And introduce few more packages, as
-Fedora distro, for example, has: kernel-headers (assuming YOCTO
-rootfs, the following will be installed: /usr/src/kernel/`uname
--r`/<header file directory structures>. This also makes addition of
-/lib/modules/`uname -r`/build file (which is soft link to
-usr/src/kernel/`uname -r`).
+Greg
 
-Or kernel-devel package. Then, the whole current kernel source code
-will be introduced, and also support for it.
+________________________________
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Sent: Wednesday, May 15, 2019 12:31 PM
+To: Greg Wilson-Lindberg; Yocto list discussion
+Subject: Re: [yocto] problem adding a user
 
-SDK building with such a support is good/cool. But sometimes, before
-introducing SDK, some tests should be done on target. NO need to
-optionally include built-in layer hello-world driver example. Since I
-(or you name the person) have own test drivers, which will be imported
-out of tree, externally, to the target test bed!
 
-Just thinking loud...
+The ! for the password in /etc/shadow indicates that the account is disable=
+d:
 
-Zoran
-_______
+sakura:!:18031:0:99999:7:::
 
-On Wed, May 15, 2019 at 4:25 PM Bruce Ashfield <bruce.ashfield@gmail.com> w=
-rote:
+
+Either there is something wrong with the password generation or it gets dis=
+abled by something else. Maybe it's worth trying with a plain image without=
+ Boot2Qt or anything else.
+
+
+:rjs
+
+
+
+On 5/15/19 11:46 AM, Greg Wilson-Lindberg wrote:
+
+Hi Rudolf,
+
+1st, yes I inherit extrausers. Attached are the passwd & shadow files.
+
+
+It shouldn't make any difference, but I'm building this for an RPi3 using t=
+he Qt Boot2Qt version of the Yocto environment, distro 2.5.3.
+
+
+Greg
+
+________________________________
+From: Rudolf J Streif <rudolf.streif@ibeeto.com><mailto:rudolf.streif@ibeet=
+o.com>
+Sent: Wednesday, May 15, 2019 11:26 AM
+To: Greg Wilson-Lindberg; Yocto list discussion
+Subject: Re: [yocto] problem adding a user
+
+
+Hi Greg,
+
+
+> I've also tried both the back-quote and the single-quote, no difference.
+
+
+Help me to understand this. the back-quotes are the right ones. If you use =
+the single ones your password in the /etc/shadow ends up being 'openssl pas=
+swd test' (without the quotes), unless the build fails because of a parsing=
+ error (I have not tried it). Silly question, you did inherit extrausers cl=
+ass?
+
+
+Can you post your /etc/passwd and /etc/shadow
+
+
+I am surprised that this does not work with your setup. I have been doing t=
+his a gazillion times always with success.
+
+
+:rjs
+
+
+
+
+On 5/15/19 11:03 AM, Greg Wilson-Lindberg wrote:
+
+Hi Rudolf,
+
+Thanks for the reply, and the information on how openssl works.
+
+
+I'm trying to create a user with the same group name so the code that I'm u=
+sing reduces to:
+
+EXTRA_USERS_PARAMS =3D "\
+    useradd -p `openssl passwd test` sakura; \
+    usermod -a -G sudo ${SAKURA_USER}; \
+    "
+
+
+I also, as you can see, removed the macros to eliminate as much confusion a=
+s possible.
+
+
+I still can't login in using the password 'test'.
+
+
+I've also tried both the back-quote and the single-quote, no difference.
+
+Regards,
+
+
+Greg
+
+________________________________
+From: Rudolf J Streif <rudolf.streif@ibeeto.com><mailto:rudolf.streif@ibeet=
+o.com>
+Sent: Wednesday, May 15, 2019 10:07:47 AM
+To: Greg Wilson-Lindberg; Yocto list discussion
+Subject: Re: [yocto] problem adding a user
+
+Hi Greg,
+
+Well, I suppose I wrote the book you are referring to...
+
+
+Using
+
+useradd -p PASSWORD USER
+
+takes the password hash for PASSWORD hence the use of openssl in:
+
+useadd -p `openssl passwd PASSWORD` USER
+
+openssl password creates the password hash using the original crypt hash
+algorithm if no other options are specified. e.g.
+
+$ openssl passwd hello
+6hEsTksgRkeiI
+
+With this the first two characters of the output is the salt and the
+rest is the password hash. If you want openssl to create the same result
+again:
+
+$ openssl passwd -salt "6h" hello
+6hEsTksgRkeiI
+
+You can use newer algorithms like MD5 based BSD password algorithm 1:
+
+$ openssl passwd -1 hello
+$1$4Mu8Fcs.$eIKgPP7RCYrb3lFZjhADA1
+
+$1 : password algorithm 1
+$4Mu8Fcs. : salt
+$eIKgPP7RCYrb3lFZjhADA1 : password hash
+
+
+If you log into the system you have to use the clear password. The
+system reads the salt, creates the password hash and compares the results.
+
+
+:rjs
+
+
+On 5/14/19 5:34 PM, Greg Wilson-Lindberg wrote:
+> I'm trying to use the example in "Embedded Linux Systems with the Yocto P=
+roject" to add a user to my Yocto build. In the book the sample code:
 >
+>     useradd -p `openssl passwd ${DEV_PASSWORD}` developer; \
 >
+> uses openssl to generate the encrypted password string to pass to useradd=
+. I have never been able to get this to work. When I run the openssl
+> command on the cmd line I get a different value every time, this seems wr=
+ong, How can the password code compare against it if every encode
+> produces a different value?
 >
-> On Wed, May 15, 2019 at 3:44 AM Zoran Stojsavljevic <zoran.stojsavljevic@=
-gmail.com> wrote:
->>
->> > That's correct. That command only adds the kernel source and
->> > build infrastructure to the SDK, not to your target image. You'd still
->> > need to arrange to have the kernel-devsrc package installed on the
->> > target image if you want it on the board's rootfs. How you arrange
->> > to have the package installed to the image varies with the image
->> > (since they all don't have the same image install variables, etc).
->>
->> And here is a $1,000,000 USD question? How to do it on Poky (as
->> example of what you have stated in RED)? ;-)
->>
->> In other words: how to arrange it on Poky (as a Referent example)?
+> I am getting the user added to the system, the home directory shows up an=
+d the user is in the passwd and group files. I just can't login to the
+> account.
 >
+> I've obviously got something confused, any help would be appreciated.
 >
-> The core-image-kernel-dev image is how I do all my on target testing when=
- I introduce a new reference kernel for a release. And IIRC the autobuilder=
-s are using a sato based image (Richard could confirm more easily that I co=
-uld what image type the autobuilders are using for hello-world on target mo=
-dule tests).
->
-> Bruce
->
->
->>
->>
->> Thank you,
->> Zoran
->> _______
->>
->>
->> On Wed, May 15, 2019 at 7:41 AM Bruce Ashfield <bruce.ashfield@gmail.com=
-> wrote:
->>>
->>>
->>>
->>> On Tue, May 14, 2019 at 1:30 PM Zoran Stojsavljevic <zoran.stojsavljevi=
-c@gmail.com> wrote:
->>>>
->>>> Hello Chris, Bruce,
->>>>
->>>> I have some additional data to share with you both, since I have tried
->>>> something. And here is my take on the things!
->>>>
->>>> > 1. Build using a bb recipe.
->>>> > Take a look at meta-skeleton/recipes-kernel/hello-mod for an example=
-.
->>>> > You just need to add meta-skeleton to your bblayers.conf and then
->>>> >  bitbake hello-mod
->>>>
->>>> I looked into this example, and, yes, it is classic kernel module
->>>> definition out of the tree. With some outdated data, all cool, the
->>>> YOCTO designer should take care himself to fix these data, if using
->>>> this stuff.
->>>>
->>>> But this is NOT mandatory, since I can add out of the tree module NOT
->>>> actually using built-in module. I just use .../tmp/deploy/images/bbb/*
->>>> generated stuff, since I have automated scripts which are bringing all
->>>> these on my BBB target. Then I tftp my source code module to the
->>>> target.
->>>>
->>>> > 2. Build from the SDK:
->>>> > First, add the kernel source to the SDK by adding this to conf/local=
-.conf
->>>> >  TOOLCHAIN_TARGET_TASK_append =3D " kernel-devsrc"
->>>>
->>>> YES, this is THE command which should generate
->>>> /usr/src/kernel(s)/`uname -r` or similar... But adding it to
->>>> local.conf and after deleting kernel, then regenerating bitbake -k
->>>> core-image-minimal does not bring this path into the rootfs image!?
->>>
->>>
->>> That's correct. That command only adds the kernel source and build infr=
-astructure to the SDK, not to your target image. You'd still need to arrang=
-e to have the kernel-devsrc package installed on the target image if you wa=
-nt it on the board's rootfs. How you arrange to have the package installed =
-to the image varies with the image (since they all don't have the same imag=
-e install variables, etc).
->>>
->>>
->>>>
->>>>
->>>> I did it actually using meta-bbb, and using poky referent distro as
->>>> two additional layers to the more complex bbb image!
->>>> https://github.com/jumpnow/meta-bbb.git
->>>>
->>>> The (KAS - you can figure out out of it local.conf) script I am using
->>>> to build such a BBB image is here:
->>>> https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-releas=
-es/bbb-warrior/kas-bbb-warrior.yml
->>>>
->>>> I did not try it with BBB reference poky only! Maybe I should try it
->>>> as only referent poky? What do you think?
->>>>
->>>> Does in this case is SDK build really mandatory??? Should NOT be!
->>>>
->>>
->>> You only do the SDK steps if you want to support building out of tree m=
-odules in an SDK install. So it is not mandatory for on target module build=
-s.
->>>
->>> Bruce
->>>
->>>
->>>>
->>>> > Once the SDK is installed, generate the kernel headers:
->>>> >  sudo -i
->>>> >  . /opt/poky/2.6.2/environment-setup-cortexa8hf-neon-poky-linux-gnue=
-abi
->>>> >  cd /opt/poky/2.6.2/sysroots/cortexa8hf-neon-poky-linux-gnueabi
->>>> >  cd /usr/src/kernel
->>>> >  make oldconfig scripts
->>>> >  exit
->>>>
->>>> This is in nutshell the same what I did (a bit different) for Embedded
->>>> Debian. This is already on the target BBB, NOT while building YOCTO
->>>> BBB image!
->>>>
->>>> > Finally, build your module using a Makefile like this
->>>> >  obj-m :=3D hello-mod.o
->>>> >  all:
->>>> >        make -C $(SDKTARGETSYSROOT)/usr/src/kernel M=3D$(shell pwd)
->>>>
->>>> As said before: bringing my own module into the target BBB (I have my
->>>> own examples, and I build them on the target with the almost the same
->>>> Makefiles)
->>>>
->>>> Zoran
->>>> _______
->>>>
->>>> On Sun, May 12, 2019 at 3:15 PM Chris Simmonds <chris@2net.co.uk> wrot=
-e:
->>>> >
->>>> > Hi Zoran,
->>>> >
->>>> > There are two ways to do this
->>>> >
->>>> > 1. Build using a bb recipe.
->>>> > Take a look at meta-skeleton/recipes-kernel/hello-mod for an example=
-.
->>>> > You just need to add meta-skeleton to your bblaysers.conf and then
->>>> >   bitbake hello-mod
->>>> >
->>>> >
->>>> > 2. Build from the SDK:
->>>> > First, add the kernel source to the SDK by adding this to conf/local=
-/conf
->>>> >   TOOLCHAIN_TARGET_TASK_append =3D " kernel-devsrc"
->>>> >
->>>> > Then build the SDK
->>>> >   bitbake -c populate_sdk [your image recipe]
->>>> >
->>>> > Once the SDK is installed, generate the kernel headers:
->>>> >   sudo -i
->>>> >   . /opt/poky/2.6.2/environment-setup-cortexa8hf-neon-poky-linux-gnu=
-eabi
->>>> >   cd /opt/poky/2.6.2/sysroots/cortexa8hf-neon-poky-linux-gnueabi
->>>> >   cd /usr/src/kernel
->>>> >   make oldconfig scripts
->>>> >   exit
->>>> >
->>>> > Finally, build your module using a Makefile like this
->>>> >
->>>> >   obj-m :=3D hello-mod.o
->>>> >   all:
->>>> >         make -C $(SDKTARGETSYSROOT)/usr/src/kernel M=3D$(shell pwd)
->>>> >
->>>> >
->>>> > HTH,
->>>> > Chris
->>>> >
->>>> > On 12/05/2019 11:53, Zoran Stojsavljevic wrote:
->>>> > > Hello to the YOCTO community,
->>>> > >
->>>> > > I am using (to build the target for Beagle Bone Black) the followi=
-ng script:
->>>> > > https://github.com/ZoranStojsavljevic/bbb-yocto
->>>> > > https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-yo=
-cto.sh
->>>> > >
->>>> > > The latest kernel I am using from the following repo:
->>>> > > https://github.com/jumpnow/meta-bbb
->>>> > >
->>>> > > Is kernel 5.0.14 .
->>>> > >
->>>> > > Here is the snippet of the boot traces:
->>>> > > Starting kernel ...
->>>> > >
->>>> > > [    0.000000] Booting Linux on physical CPU 0x0
->>>> > > [    0.000000] Linux version 5.0.14-jumpnow (oe-user@oe-host) (gcc
->>>> > > version 8.3.0 (GCC)) #1 Fri May 10 13:12:33 UTC 2019
->>>> > > [    0.000000] CPU: ARMv7 Processor [413fc082] revision 2 (ARMv7),=
- cr=3D10c5387d
->>>> > > [    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT alias=
-ing
->>>> > > instruction cache
->>>> > > [    0.000000] OF: fdt: Machine model: TI AM335x BeagleBone Black
->>>> > > [    0.000000] Memory policy: Data cache writeback
->>>> > > [    0.000000] cma: Reserved 16 MiB at 0x9f000000
->>>> > > [    0.000000] CPU: All CPU(s) started in SVC mode.
->>>> > > [    0.000000] AM335X ES2.1 (sgx neon)
->>>> > > [    0.000000] random: get_random_bytes called from
->>>> > > start_kernel+0xa4/0x460 with crng_init=3D0
->>>> > > [    0.000000] Built 1 zonelists, mobility grouping on.  Total pag=
-es: 130048
->>>> > > [    0.000000] Kernel command line: console=3DttyO0,115200n8
->>>> > > root=3D/dev/ram0 ip=3Ddhcp
->>>> > >
->>>> > > According to the documentation, the following:
->>>> > > 2.10.1. Building Out-of-Tree Modules on the Target
->>>> > > https://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.htm=
-l
->>>> > >
->>>> > > I tried to find /usr/src/kernels/5.0.14... Directory, since I see
->>>> > > from the build that kernel-dev and kernel-devsrc are included:
->>>> > > [user@fedora29-ssd bbb-yocto]$ bitbake -s | grep kernel
->>>> > > core-image-kernel-dev                                 :1.0-r0
->>>> > > kernel-devsrc                                         :1.0-r0
->>>> > > kernel-selftest                                       :1.0-r0
->>>> > >
->>>> > > THE PROBLEM: But I could not find ob BBB target /usr/src/kernels
->>>> > > directory at all!?
->>>> > >
->>>> > > Two questions here?
->>>> > > [1] Do you have any advice on this problem (what I am missing here=
-)?
->>>> > > [2] Alternative to [1]: how I can use cross compiler from
->>>> > > .../build/tmp to build Out-of-Tree Module for the BBB target on th=
-e
->>>> > > host?
->>>> > >
->>>> > > Thank you,
->>>> > > Zoran
->>>> > > _______
->>>> > >
->>>> >
->>>> >
->>>> > --
->>>> > Chris Simmonds, trainer and consultant at 2net
->>>> > http://www.2net.co.uk
->>>> > Author of "Mastering Embedded Linux Programming"
->>>
->>>
->>>
->>> --
->>> - Thou shalt not follow the NULL pointer, for chaos and madness await t=
-hee at its end
->>> - "Use the force Harry" - Gandalf, Star Trek II
->>>
->
->
-> --
-> - Thou shalt not follow the NULL pointer, for chaos and madness await the=
-e at its end
-> - "Use the force Harry" - Gandalf, Star Trek II
+> Greg Wilson-Lindberg
 >
 
+--
+-----
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3396 x700
+
+
+--
+-----
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3396 x700
+
+--
+-----
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3396 x700
+
+--_000_1d6f238b62354df8a92873769755990bsakurauscom_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"><!-- P {margin-top:0;margi=
+n-bottom:0;} --></style>
+</head>
+<body dir=3D"ltr">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt;color:#000000;font=
+-family:Calibri,Arial,Helvetica,sans-serif;">
+<p>Ok, I had been using the useradd class in a couple of other recipes to a=
+llow me to copy files to the sakura user directory and another location, bu=
+t owned by sakura. That seems to have been what was causing the problem.</p=
+>
+<p><br>
+</p>
+<p>I had been using the extrausers class in my top&nbsp;level image recipe.=
+</p>
+<p style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size: =
+16px;"><br class=3D"Apple-interchange-newline">
+So now how do I get all of this to work together? Do I need to put everythi=
+ng that touches the sakura user in the same recipe? It seems that I need to=
+ use only one of the useradd or extrausers classes?</p>
+<div><br>
+</div>
+Greg<br>
+<br>
+<div style=3D"color: rgb(0, 0, 0);">
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
+lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Rudolf J Streif &lt;r=
+udolf.streif@ibeeto.com&gt;<br>
+<b>Sent:</b> Wednesday, May 15, 2019 12:31 PM<br>
+<b>To:</b> Greg Wilson-Lindberg; Yocto list discussion<br>
+<b>Subject:</b> Re: [yocto] problem adding a user</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<p>The ! for the password in /etc/shadow indicates that the account is disa=
+bled:</p>
+<p>sakura:!:18031:0:99999:7:::<br>
+</p>
+<p><br>
+</p>
+<p>Either there is something wrong with the password generation or it gets =
+disabled by something else. Maybe it's worth trying with a plain image with=
+out Boot2Qt or anything else.</p>
+<p><br>
+</p>
+<p>:rjs<br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+<div class=3D"moz-cite-prefix">On 5/15/19 11:46 AM, Greg Wilson-Lindberg wr=
+ote:<br>
+</div>
+<blockquote type=3D"cite">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt; color:#000000; fo=
+nt-family:Calibri,Arial,Helvetica,sans-serif">
+<p>Hi Rudolf,</p>
+<p>1st, yes I inherit extrausers. Attached are the passwd &amp; shadow file=
+s.</p>
+<p><br>
+</p>
+<p>It shouldn't make any difference, but I'm building this for an RPi3 usin=
+g the Qt Boot2Qt version of the Yocto environment, distro 2.5.3.</p>
+<p><br>
+</p>
+Greg<br>
+<br>
+<div style=3D"color:rgb(0,0,0)">
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
+lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Rudolf J Streif
+<a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:rudolf.streif@ibeeto.com"=
+>&lt;rudolf.streif@ibeeto.com&gt;</a><br>
+<b>Sent:</b> Wednesday, May 15, 2019 11:26 AM<br>
+<b>To:</b> Greg Wilson-Lindberg; Yocto list discussion<br>
+<b>Subject:</b> Re: [yocto] problem adding a user</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<p>Hi Greg,</p>
+<p><br>
+</p>
+<p>&gt; I've also tried both the back-quote and the single-quote, no differ=
+ence.</p>
+<p><br>
+</p>
+<p>Help me to understand this. the back-quotes are the right ones. If you u=
+se the single ones your password in the /etc/shadow ends up being 'openssl =
+passwd test' (without the quotes), unless the build fails because of a pars=
+ing error (I have not tried it).
+ Silly question, you did inherit extrausers class?</p>
+<p><br>
+</p>
+<p>Can you post your /etc/passwd and /etc/shadow</p>
+<p><br>
+</p>
+<p>I am surprised that this does not work with your setup. I have been doin=
+g this a gazillion times always with success.</p>
+<p><br>
+</p>
+<p>:rjs<br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+<p><br>
+</p>
+<div class=3D"moz-cite-prefix">On 5/15/19 11:03 AM, Greg Wilson-Lindberg wr=
+ote:<br>
+</div>
+<blockquote type=3D"cite">
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<meta content=3D"text/html; charset=3DUTF-8">
+<div dir=3D"ltr">
+<div id=3D"x_divtagdefaultwrapper" style=3D"font-size:12pt; color:#000000; =
+font-family:Calibri,Arial,Helvetica,sans-serif">
+<p>Hi Rudolf,</p>
+<p>Thanks for the reply, and the information on how openssl works.</p>
+<p><br>
+</p>
+<p>I'm trying to create a user with the same group name so the code that I'=
+m using reduces to:</p>
+<div style=3D"color:#000000; background-color:#ffffff; font-style:normal; f=
+ont-weight:normal; text-decoration:none">
+<pre>EXTRA_USERS_PARAMS =3D &quot;\=0A=
+    useradd -p `openssl passwd test` sakura; \=0A=
+    usermod -a -G sudo ${SAKURA_USER}; \=0A=
+    &quot;=0A=
+</pre>
+</div>
+I also, as you can see, removed the macros to eliminate as much confusion a=
+s possible.
+<p><br>
+</p>
+<p>I still can't login in using the&nbsp;password<span style=3D"">&nbsp;'te=
+st'</span>.</p>
+<p><br>
+</p>
+<p>I've also tried both the back-quote and the single-quote, no difference.=
+</p>
+<p>Regards,</p>
+<p><br>
+</p>
+<p>Greg</p>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"x_divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" =
+color=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Rudolf J Streif
+<a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:rudolf.streif@ibeeto.com"=
+>&lt;rudolf.streif@ibeeto.com&gt;</a><br>
+<b>Sent:</b> Wednesday, May 15, 2019 10:07:47 AM<br>
+<b>To:</b> Greg Wilson-Lindberg; Yocto list discussion<br>
+<b>Subject:</b> Re: [yocto] problem adding a user</font>
+<div>&nbsp;</div>
+</div>
+</div>
+<font size=3D"2"><span style=3D"font-size:10pt">
+<div class=3D"PlainText">Hi Greg,<br>
+<br>
+Well, I suppose I wrote the book you are referring to...<br>
+<br>
+<br>
+Using<br>
+<br>
+useradd -p PASSWORD USER<br>
+<br>
+takes the password hash for PASSWORD hence the use of openssl in:<br>
+<br>
+useadd -p `openssl passwd PASSWORD` USER<br>
+<br>
+openssl password creates the password hash using the original crypt hash <b=
+r>
+algorithm if no other options are specified. e.g.<br>
+<br>
+$ openssl passwd hello<br>
+6hEsTksgRkeiI<br>
+<br>
+With this the first two characters of the output is the salt and the <br>
+rest is the password hash. If you want openssl to create the same result <b=
+r>
+again:<br>
+<br>
+$ openssl passwd -salt &quot;6h&quot; hello<br>
+6hEsTksgRkeiI<br>
+<br>
+You can use newer algorithms like MD5 based BSD password algorithm 1:<br>
+<br>
+$ openssl passwd -1 hello<br>
+$1$4Mu8Fcs.$eIKgPP7RCYrb3lFZjhADA1<br>
+<br>
+$1 : password algorithm 1<br>
+$4Mu8Fcs. : salt<br>
+$eIKgPP7RCYrb3lFZjhADA1 : password hash<br>
+<br>
+<br>
+If you log into the system you have to use the clear password. The <br>
+system reads the salt, creates the password hash and compares the results.<=
+br>
+<br>
+<br>
+:rjs<br>
+<br>
+<br>
+On 5/14/19 5:34 PM, Greg Wilson-Lindberg wrote:<br>
+&gt; I'm trying to use the example in &quot;Embedded Linux Systems with the=
+ Yocto Project&quot; to add a user to my Yocto build. In the book the sampl=
+e code:<br>
+&gt;<br>
+&gt;&nbsp;&nbsp;&nbsp;&nbsp; useradd -p `openssl passwd ${DEV_PASSWORD}` de=
+veloper; \<br>
+&gt;<br>
+&gt; uses openssl to generate the encrypted password string to pass to user=
+add. I have never been able to get this to work. When I run the openssl<br>
+&gt; command on the cmd line I get a different value every time, this seems=
+ wrong, How can the password code compare against it if every encode<br>
+&gt; produces a different value?<br>
+&gt;<br>
+&gt; I am getting the user added to the system, the home directory shows up=
+ and the user is in the passwd and group files. I just can't login to the<b=
+r>
+&gt; account.<br>
+&gt;<br>
+&gt; I've obviously got something confused, any help would be appreciated.<=
+br>
+&gt;<br>
+&gt; Greg Wilson-Lindberg<br>
+&gt;&nbsp;&nbsp; <br>
+<br>
+-- <br>
+-----<br>
+Rudolf J Streif<br>
+CEO/CTO ibeeto<br>
+&#43;1.855.442.3396 x700<br>
+<br>
+</div>
+</span></font></blockquote>
+<pre class=3D"moz-signature" cols=3D"72">-- =0A=
+-----=0A=
+Rudolf J Streif=0A=
+CEO/CTO ibeeto=0A=
+&#43;1.855.442.3396 x700</pre>
+</div>
+</div>
+</div>
+</blockquote>
+<pre class=3D"moz-signature" cols=3D"72">-- =0A=
+-----=0A=
+Rudolf J Streif=0A=
+CEO/CTO ibeeto=0A=
+&#43;1.855.442.3396 x700</pre>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_1d6f238b62354df8a92873769755990bsakurauscom_--
