@@ -1,68 +1,70 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <rudolf.streif@ibeeto.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AF161E00B3E; Thu, 16 May 2019 09:16:45 -0700 (PDT)
+	id 3A190E00B3E; Thu, 16 May 2019 09:22:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.182 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.50 listed in list.dnswl.org]
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
-	[209.85.221.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 755E9E00942
-	for <yocto@yoctoproject.org>; Thu, 16 May 2019 09:16:44 -0700 (PDT)
-Received: by mail-wr1-f50.google.com with SMTP id e15so4072852wrs.4
-	for <yocto@yoctoproject.org>; Thu, 16 May 2019 09:16:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.ro; s=google;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-transfer-encoding:content-language;
-	bh=n+zEkMm0TmZKo4yVZOYQ286HvM8jI/8UowBbHFdltSM=;
-	b=PsBC75Mnh8mBVJ5SW4bB5YdY74IumeejWOBmMFBeS6b68wY9RFtbvTfp9NYQctG6CD
-	BsVPlnH4nnr4ozcxVBeTs/jVkUwXbsObQLs+OX/ySUSR3YqIQhCagKM4P4XdoXMHkfJ5
-	P1vdhNWuLVJYZYfd4ZDpfsiZmZr1cC8lxXTW/v4R8lVHxGfrqnajJFwcEWFjMZVDgYxL
-	W+nkAZhgyDwF29TjRFdMA+R6f4fZu7bZtDchzMdvOoH5hJhYyKyhFcHcMVEH9V/5goJb
-	aQ5YKDQMOE+U5OcatgbXbHzW0siz5d7e7xbfW7Vx4bHvps7V6BVTuSEVPLrNe7Ja1uL8
-	FOkQ==
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com
+	[209.85.210.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC5C2E00ADB
+	for <yocto@yoctoproject.org>; Thu, 16 May 2019 09:22:22 -0700 (PDT)
+Received: by mail-pf1-f182.google.com with SMTP id n19so2118513pfa.1
+	for <yocto@yoctoproject.org>; Thu, 16 May 2019 09:22:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding:content-language;
+	bh=B+qyayoOsWtDDzhSTDhijSIK2QVELJGbY90TNJ9jQ+U=;
+	b=LnJ19/085L/6gJNxwOoOb7ITqOBw+BvVWxpWsfO0jAqyYzH4viuHtBwqgX8jMLekUR
+	gJ5jlSQ5GcI/TfwCibcJfyNcQmZmX5VX2VlmOGpndLNkUpibPMp4zg+TvP5za9A22dhq
+	recwQx3tDwf9Vt1b8miQUqsBfWcbvXGvU44ELa7G0X/oB0J9hK02Vi8WyH9vXyRdAHoc
+	VSSTjHbza4xca3K5FoZWTUf8RJItAsWoJSVMbPO+wmk/l+QM/yEHee6Ydy4yUS1kcZtn
+	hyiSNKyrZ6Dtw0jqPCHPZF2+oO3eNBSQxb0HLvlx7I4R5qCLH5Lvr5v7HskXVGNvRHhT
+	2l4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-transfer-encoding:content-language;
-	bh=n+zEkMm0TmZKo4yVZOYQ286HvM8jI/8UowBbHFdltSM=;
-	b=F7P89FsJcXrHME0OrHQjbQhlltrRDJ/u7uF4MmMCDO/5YhH/+hi5CnMttK/pNBn+oM
-	3E6FCgFwdSg9K9Y5UvT0RtcajPsa/PNSqFwAgTgXd6zORl0TNSqjiOx3Tx9NpAZcTbrP
-	NridAYmUetEzvBknkJuxM69eQFUnP5E9na0KhMeh0t/IC81bDWw4aUb7MTCKI3bbqXVZ
-	fyTyKTTRX6Vd53Zbgs9lJ8U2dHNn7ueObl8zErJ5c/vZ7w3kJ07hRrWmn+PZPQuw1V18
-	pROtkZ9AdI3K976FOGPZKC86c2fUdxh/NMht/mQxIUgLizETYi3T3rd/gkCwMrW1ETgj
-	6gLw==
-X-Gm-Message-State: APjAAAVDcBnmVxnCGNtdhQ2WSBer80PqZLukxWuS+wU+05W9Ml57918l
-	qbCKfW3csUTMKJI4ZnaLEQYROdSc3TA=
-X-Google-Smtp-Source: APXvYqw5TJ5T2thCt4HEPB2ifzv6BK8DGhbv7DA1epCyRgSpJ8zUWawq3h9CDTnv8V0mcBVVd9e+Pw==
-X-Received: by 2002:a5d:6710:: with SMTP id o16mr2291402wru.173.1558023403171; 
-	Thu, 16 May 2019 09:16:43 -0700 (PDT)
-Received: from [10.100.100.101] (host90-152-4-101.ipv4.regusnet.com.
-	[90.152.4.101])
-	by smtp.gmail.com with ESMTPSA id o4sm7461887wmo.20.2019.05.16.09.16.42
-	for <yocto@yoctoproject.org>
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=B+qyayoOsWtDDzhSTDhijSIK2QVELJGbY90TNJ9jQ+U=;
+	b=FITNTjyPP+Q1qbObl/0dKg4ihoMPHo6o/spW/u9Kcbqg/R0hWME3cCJ1JZG455pPt2
+	jT0gfaN2jchqyqoGVAGiGFzR6MsZfNrruHY9s1FOAGH/Geb31+CEeRtut8CnzNX4iOCx
+	1q9K43neVBcB1cBUqYyVIEiSIdWe14p3naDF629SoMTgbPApO9ThVY8qhR2SXIvJiVib
+	UN8mrSv73Tp0Xkt1gjRpUmv/0FC5nBM3fEoxMOaPulJ7CIJKgHkJjBH9T5cldrTULLEf
+	TMLF8TGDCTCX95UuNPpPXsrKSEVK9CZ4rBGUJgbQEIYhzhwIPY9yJLn4HLiNwrSxucQU
+	eWYg==
+X-Gm-Message-State: APjAAAWVyTkSG5US21l1X4bBH+8qRLoTHGuwiXNUCk940tftMQhz3XRT
+	XuDqmYLdxV1CNmlHKDEMZ1e/NQ0oi28=
+X-Google-Smtp-Source: APXvYqxZQgx7sfXPBM6GWlB79Tg6iSxODly6EFcIlxSYaeRRdq7VWGPFVA9OCZrLBUNFF4pLYcp9xw==
+X-Received: by 2002:a62:75c6:: with SMTP id q189mr53981437pfc.98.1558023740308;
+	Thu, 16 May 2019 09:22:20 -0700 (PDT)
+Received: from rjs-zotac.ibeeto.com (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
+	by smtp.gmail.com with ESMTPSA id
+	s77sm13086670pfa.63.2019.05.16.09.22.18
 	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Thu, 16 May 2019 09:16:42 -0700 (PDT)
-To: Yocto discussion list <yocto@yoctoproject.org>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Message-ID: <aa294a6f-14ce-f581-546b-56ffb6e9e1bc@gherzan.ro>
-Date: Thu, 16 May 2019 17:16:41 +0100
+	Thu, 16 May 2019 09:22:19 -0700 (PDT)
+To: Andrei Gherzan <andrei@gherzan.ro>,
+	Yocto list discussion <yocto@yoctoproject.org>
+References: <db5fdd69-f031-1932-27bb-6ed1a6f60f4c@ibeeto.com>
+	<7e5c2228-c67e-bf65-fc80-0352b90502ec@gherzan.ro>
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Message-ID: <855e8141-0ff1-24bf-3e24-37ac66c3279f@ibeeto.com>
+Date: Thu, 16 May 2019 09:22:17 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.6.1
+	Thunderbird/60.5.1
 MIME-Version: 1.0
-Subject: I'm currently finishing my masters thesis and I really need a bit of help from you if possible. I have a questionnaire which I need to get some feedback about and filled by people who are deeply involved in Yocto project. Do you think you can sacrifice 10 minutes for this? Thanks in advance. Find the form here: https://docs.google.com/forms/d/e/1FAIpQLSePIfr83Eb3fgylNDJalSxS0xu_Fr7rirz2TT5wWlEqwHwTFg/viewform, , Regards,
+In-Reply-To: <7e5c2228-c67e-bf65-fc80-0352b90502ec@gherzan.ro>
+Subject: Re: [meta-raspberrypi] RPi 7" Touch Display
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,26 +76,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 May 2019 16:16:45 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Thu, 16 May 2019 16:22:23 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-Hi guys,
+Thank you, Andrei. Much appreciated.
 
-I'm currently finishing my masters thesis and I really need a bit of
-help if possible. The project is entitled "Empowering git repositories
-with visualization tools to aid awareness of dependencies in open
-source" and I have a questionnaire which I need to get some feedback on
-and filled by people who are involved in Yocto project. If don't mind
-and can sacrifice 10 minutes for this, please find the form here:
-https://docs.google.com/forms/d/e/1FAIpQLSePIfr83Eb3fgylNDJalSxS0xu_Fr7rirz2TT5wWlEqwHwTFg/viewform
-. If interested, I can come back and validate the results after one week.
+https://pastebin.com/bHUHaRkL
 
-Thanks in advance,
+It's the config.txt that is packaged with the image.
 
--- 
-Andrei Gherzan
-gpg: rsa4096/D4D94F67AD0E9640 | t: @agherzan
+:rjs
 
+On 5/16/19 9:01 AM, Andrei Gherzan wrote:
+> HI,
+>
+> On 16/05/2019 16.31, Rudolf J Streif wrote:
+>> I am trying to use the "official" RPi 7" touch display
+>> (https://www.raspberrypi.org/products/raspberry-pi-touch-display/)
+>> with meta-raspberrypi (most recent from master). However, I cannot get
+>> it to work. As a matter of fact the display does not even show the GPU
+>> rainbow screen making me think that the GPU firmware packaged with
+>> meta-raspberrypi does not support the DSI display. It works just fine
+>> with the latest Raspbian release (screen and touch).
+>>
+>> I searched the web up and down but could not find anything. Maybe
+>> somebody has an idea? Wrong firmware (maybe cannot be distributed
+>> because of licensing...)?
+> Sadly we don't actively test display and other related toys so they
+> might be broken. Even so, I would be surprised if the DSI port doesn't
+> work. What is you final config.txt (pastebin it please)?
+>
 
