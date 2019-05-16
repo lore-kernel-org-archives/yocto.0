@@ -1,62 +1,66 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <rudolf.streif@ibeeto.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0D8D5E00994; Thu, 16 May 2019 04:44:27 -0700 (PDT)
+	id 6F931E00B43; Thu, 16 May 2019 08:31:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jupiter.hce[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.176 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.174 listed in list.dnswl.org]
-Received: from mail-it1-f174.google.com (mail-it1-f174.google.com
-	[209.85.166.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B35CEE0096F
-	for <yocto@yoctoproject.org>; Thu, 16 May 2019 04:44:25 -0700 (PDT)
-Received: by mail-it1-f174.google.com with SMTP id m140so5674651itg.2
-	for <yocto@yoctoproject.org>; Thu, 16 May 2019 04:44:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=7a0xb9WD8vdMk2fO0Iymr2lc/LNHi3+EsZzrZb5LJ6Q=;
-	b=olhtA+GH5hG1hm8+cJSWryCI8hqWvmG0FkH79U+Xfy/FB20H5S8RYY7NmthSrJq0Wm
-	oNL2FvzGPf2/jcvNvzCvsdfBGroU1LXoS8D/aDRuFuZ44zJxI8aIY5HHmJSFHLYOp6NN
-	Vleg3cb3IsUgcUpmlsl6rEww9k0Pp/EAnibj23Qigt5h6vCiVGMgUcnQA3moR4l2P2jj
-	jcCDfUvxuFyfDRV/SReqt/f81LB11Z3gP87+uvs8kKV6BIefCdubfF1xjjEVVF5RBbEz
-	D7f6n5XqdoIeMgL0gbYzpuk7/y9GbhBYK/AJ7BGqDTP1DBlUNtLTvcYePgL+I57+lYiX
-	ddGw==
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com
+	[209.85.214.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBA27E00B1B
+	for <yocto@yoctoproject.org>; Thu, 16 May 2019 08:31:54 -0700 (PDT)
+Received: by mail-pl1-f176.google.com with SMTP id y3so1826332plp.0
+	for <yocto@yoctoproject.org>; Thu, 16 May 2019 08:31:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding:content-language;
+	bh=YOpqq3n823FMicFUaE5UfzxS11dDrUpDO5wwH9yVBOw=;
+	b=I8DCRJxqVLMLe0x1q3hJAOS6xYb04azYzUGaFJvWZCE0Qj253pGWLDhaL7a4ejg1HZ
+	I5xi/VtWdxmjW36IaNHmSDQariQhMLGPiWsXYkC4GstYmimx6MAfwkmCDGYC5AM+yBJ9
+	5JXHySS0o6rtnVhUsBBrG+X5mC352rt8icQiTRgB5JTrlG7uQ5j+hXnA7eXJDdwnMOJg
+	TQa8cJwF1sWl0r9AVJmvl1QHvh3C7q/sIZQUjOsapTtWRs/oVhwswNGAtTPnze7mG+Dd
+	vHNwE3Brzh4BMZHQ1ZdEHrR+Q2JDGfTD60dUrO5WwP8KMcv7pyUI/3IwLVe/kjRdvash
+	Qeqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=7a0xb9WD8vdMk2fO0Iymr2lc/LNHi3+EsZzrZb5LJ6Q=;
-	b=BzD663daLpZFcGfhuMRMibPpZgXhmVHkGpft1PCxQJqxzYqupVs6GpWgyxAEVu/zPA
-	v5Q+qDbJ6OUa4LqXAgCMtCPkDMhm08qk8nflgpRjpRyWmqpxfxa+Q4Pr4B1HsXKPVMkI
-	cFxuNqeHk5tJSwnBwZJrrWeItugQpywMKTMHRKbnmkuwsPbznftxUIGx16in4R2ImfKl
-	1s2PrXaK7qPnsU/Mpw2/XJuLiPzqaqJv9g9OZDTAdaMAC3FXm7NnRNkHi8v7xjd1+ppG
-	SZCe1HbZ0MA5pP+ExiDxixnmPctPdQsNuGwXxejlGqSPzb2/woQApXNd8A9Uy9RBS1uq
-	/YCA==
-X-Gm-Message-State: APjAAAVCY2Co0eVG/py+uy5GN3pQR2WEEwXvO0BHqyx/rNd6AS58od32
-	KbDWeX3pV2MxbbIXgDFwgpoP9+CH2fUMsv3phj7TAexN
-X-Google-Smtp-Source: APXvYqz8KeWkJZ0czKLby7bhU06tIji01ZToUOKtD3CGe+9eYGggrANRimCO0ZOA20SsThNRdZOyz9I1lrOTpDQQLrE=
-X-Received: by 2002:a24:3342:: with SMTP id k63mr11547815itk.130.1558007064986;
-	Thu, 16 May 2019 04:44:24 -0700 (PDT)
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding:content-language;
+	bh=YOpqq3n823FMicFUaE5UfzxS11dDrUpDO5wwH9yVBOw=;
+	b=UaZ7q74I1WrxpwHPXQ7nfIz4K7XKU6H48Jv8+8ckG9jsCh3KAY+VOjSoy/4UYKUgkh
+	nx37v8uhTjNmaXH9HBTlOaMxs2pIsM4TB/3e0RWHZWobp9terT7nebiMtRtxPg9sXSRA
+	aVivHkZewUbiNI/m/N6OS0T2dwNwgG83SFJH68RK3aGkEQto7IjUxFh0pyUQfjSvy+iZ
+	r/swLIyzlSmQH22EF3ldm9Xmi08mvXnmrXDGB+Nuz7WQXwymatuxPi+2bsgquPEKSyBg
+	mdrawzeEI9miTjk0N39MtiXdXHNR9iaNtNsGc6OmVzB67u91S9/78Drm+JtIVod+G8tl
+	8+rw==
+X-Gm-Message-State: APjAAAWZ0qZbsZUKBjDkxwKD4ZBuU0jtnysfb8vlI+1Yeehk4YLBujHe
+	OrLktJKCKgFWDn8NKC/Gi2ASwLfohu4=
+X-Google-Smtp-Source: APXvYqy7g72BalGXO//3lNZUf+xSkc6+R5hblQTk4rjshx607H7M508lNXbgixlmTeXMnU5RGPRG9A==
+X-Received: by 2002:a17:902:294a:: with SMTP id
+	g68mr25329787plb.169.1558020713597; 
+	Thu, 16 May 2019 08:31:53 -0700 (PDT)
+Received: from rjs-zotac.ibeeto.com (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
+	by smtp.gmail.com with ESMTPSA id
+	x18sm9274400pfj.17.2019.05.16.08.31.50 for <yocto@yoctoproject.org>
+	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+	Thu, 16 May 2019 08:31:51 -0700 (PDT)
+To: Yocto list discussion <yocto@yoctoproject.org>
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Message-ID: <db5fdd69-f031-1932-27bb-6ed1a6f60f4c@ibeeto.com>
+Date: Thu, 16 May 2019 08:31:50 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.5.1
 MIME-Version: 1.0
-Received: by 2002:ac0:a507:0:0:0:0:0 with HTTP; Thu, 16 May 2019 04:44:24
-	-0700 (PDT)
-From: JH <jupiter.hce@gmail.com>
-Date: Thu, 16 May 2019 21:44:24 +1000
-Message-ID: <CAA=hcWSyDHVjj7HCDJUWQ8iodS9-THnKT6m4oz8vr4ihFPa4ag@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Support NAND Flash
+Subject: [meta-raspberrypi] RPi 7" Touch Display
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,15 +72,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 May 2019 11:44:27 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 16 May 2019 15:31:55 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Hi,
+I am trying to use the "official" RPi 7" touch display 
+(https://www.raspberrypi.org/products/raspberry-pi-touch-display/) with 
+meta-raspberrypi (most recent from master). However, I cannot get it to 
+work. As a matter of fact the display does not even show the GPU rainbow 
+screen making me think that the GPU firmware packaged with 
+meta-raspberrypi does not support the DSI display. It works just fine 
+with the latest Raspbian release (screen and touch).
 
-Anyone used NAND Flash PARALLEL 48TSOP? Which (defconfig) kernel
-device driver needs be enabled to support it?
+I searched the web up and down but could not find anything. Maybe 
+somebody has an idea? Wrong firmware (maybe cannot be distributed 
+because of licensing...)?
 
-Thank you.
+Thanks,
 
-- jupiter
+Rudi
+
 
