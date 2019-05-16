@@ -1,6 +1,6 @@
-Return-Path: <davis.roman84@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C0569E00D59; Wed, 15 May 2019 20:52:37 -0700 (PDT)
+	id CB348E00D5F; Wed, 15 May 2019 22:10:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,54 +10,57 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (davis.roman84[at]gmail.com)
+	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.170 listed in list.dnswl.org]
+	*      [209.85.210.194 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com
-	[209.85.208.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 695B6E008E3
-	for <yocto@yoctoproject.org>; Wed, 15 May 2019 20:52:36 -0700 (PDT)
-Received: by mail-lj1-f170.google.com with SMTP id z5so1691058lji.10
-	for <yocto@yoctoproject.org>; Wed, 15 May 2019 20:52:35 -0700 (PDT)
+Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
+	[209.85.210.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1FB6E00CE5
+	for <yocto@yoctoproject.org>; Wed, 15 May 2019 22:10:14 -0700 (PDT)
+Received: by mail-pf1-f194.google.com with SMTP id n19so1195307pfa.1
+	for <yocto@yoctoproject.org>; Wed, 15 May 2019 22:10:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=yigi72QkbOLTtXiDgEo87x4kzrlfSTNfa7Gc9ZMP4A0=;
-	b=CEiRzD7SZuu3hHmzHGl4pSAemb0ljsG+8TfCSWThZxZ6/846zOfpUViwgjYEZW6u0g
-	xPcmrQHC14L+7ShJTfbbG54OWFB2HtOSf5apKveNBLuHdanI28U8EqkI6iqvGlXr+gYg
-	qTLzzAIAddSIjXBsqUpHfPlV5EdpiTvTjjzD/bAMEgMnnEFrtm2DNH1n7n4yX5SufcI8
-	wvusl6Z1q8f/UIsUAAsk42Cf8EZ2cCbpWcfiofNYVmPwp4a86ogFrwQ7pVNINATLov+0
-	TMOETM6RHszUY6li8BNoogTZD09GQvm7+uyhB8C7F6NpnfkdD6sHOmC2J8lHLSMTIryY
-	yj6A==
+	h=from:to:subject:date:message-id;
+	bh=YYJIv0S3s3WnMOAcsQtR0LoLpGQWjW7B/NXT4bG9MW4=;
+	b=IcbSCdi7GyfRqeHd8tfWERyo8BZ4LwzWcuDFe7FvjJTbrFZE6/LAjm3zL3DKxRzm58
+	lu/V+h+ceL3vm2fsOC/MRv2/i+gqzIQwke5l03jL+d0WhsDmGkXpq4nGdMADo1dIr4e2
+	flCjvwTz8Db/bzweMHs/nkAiifyGPwsgejai3xBUgpf5XjoxTgk8Mees1PBn9aaNQ1OJ
+	kVu+zaZNJEy6mFHQQ5uPWwi6vEuPmv79o2MoC98t0iOlthMCGmq/1VVq5J4E+utDsISC
+	Tx81NaOF8M6j/fK/4adMDs6njI/gou/16hGEStU02OHo5yeBTSk5HqieE2uDCryr60Wb
+	/uYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=yigi72QkbOLTtXiDgEo87x4kzrlfSTNfa7Gc9ZMP4A0=;
-	b=GcJkaTrsoqCFhQSxgAzcGaZ3bwM/C6fYSrV2/eXLcLSwLgSQ98Re/lNwzwIM8OMqAy
-	Yl/ZFZ5L6qcdm5GL5cc/j4v4C9NmZiF3BxI1d5B1P3SYyroBq4nsaP3oex7szCkvoO1W
-	55jTdmBFyqIuKhXbxx3lPDi7N4MD/PTq5AJGa0jn762JHBLj+MkTli7EdML8W3HCTPau
-	iijpC2PEyvmpMPw73TSkjCBAMzy3BsQ/rh4s9v49Xi/QNSSCXfeSqFu+fH4T7TH5GpVc
-	oJIxOOkdHE1Nc0o7BYfHbz4j8PY/zxqk18Rl7MrC2rEnFdpW5fT1mCNGO05XE1K80zNE
-	1Ydg==
-X-Gm-Message-State: APjAAAUblBz/2PHOzg9ZCnFWxrKEteWUoLFYFhF24j1X5PDZdZCJp473
-	iHmyEJHjP4XqRVlJW7wYfaCEF8FMnDv4dYBCWBz1OcqI
-X-Google-Smtp-Source: APXvYqx96vE02v90APl4DI94IO4q39XcYpL48dLEywF2yera6CkevC1WILKs8mtkc8imcDrCr6uAsYvjqBr2UGEnW/U=
-X-Received: by 2002:a2e:6384:: with SMTP id s4mr22741046lje.63.1557978754667; 
-	Wed, 15 May 2019 20:52:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <CACfi_Z3ZAOH1MQ7QY0AHKVaNdsFV_uooYJF4xbB4nYuOS8fy7Q@mail.gmail.com>
-In-Reply-To: <CACfi_Z3ZAOH1MQ7QY0AHKVaNdsFV_uooYJF4xbB4nYuOS8fy7Q@mail.gmail.com>
-From: Davis Roman <davis.roman84@gmail.com>
-Date: Wed, 15 May 2019 23:52:23 -0400
-Message-ID: <CACfi_Z1sxSdH_p3oAE1_Ntwz7UZpzkE0JpLv_mhRyVgVhxm4GQ@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Upgrading to Sumo triggered issue with python3 autopackaging - "ERROR: Nothing RPROVIDES 'python3-signal'"
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=YYJIv0S3s3WnMOAcsQtR0LoLpGQWjW7B/NXT4bG9MW4=;
+	b=TzHiKOOQLFfeGDGsMv+fEcs3OrlSWp5xuzkX2qye38+6/PlgVUTeEfqkPaNNjpetah
+	Ha0Pm9S+htJs6b/7As0/SvEdQpEtRa3V2SUGyiiJaSuLC5b7r3O66MccREU3/yUMs41c
+	tFRoGjUBnxnGVXAws80u29wZNrprT1SFuBeGH33TVYPddxHtpyifw18+L3CvLpdEJ3N2
+	7iSY0jO3ZRekHVr9cyCsUBrFZiuBrxV7Y0z/8LAagSrRkooMQM4Y1Tka3s18RV2jhnDT
+	5o++RMziLe7FQkpWLRTeOXrH7mUULqrOV86QGZhC2CTpgd8u3pM6tYiakU40LncnMcgl
+	dQKw==
+X-Gm-Message-State: APjAAAXCQM2vWe/Hc9keMEJ7aCCnVzfdialFAnO+8c2/Z5meU1V5DMWk
+	ReFcWd3hWoBT1W79k3CRcNJsF1G7
+X-Google-Smtp-Source: APXvYqwQQ4zksGlTp/OAvUflbFtzlWX6L0glg3Lfj5mRtNczuzvAkIgs2pYqUVQ6+Xct06l+P6X9JQ==
+X-Received: by 2002:a63:f315:: with SMTP id l21mr47945740pgh.417.1557983413381;
+	Wed, 15 May 2019 22:10:13 -0700 (PDT)
+Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
+	[67.181.203.136])
+	by smtp.gmail.com with ESMTPSA id l65sm7081342pfb.7.2019.05.15.22.10.11
+	for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 15 May 2019 22:10:12 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Wed, 15 May 2019 22:10:10 -0700
+Message-Id: <20190516051010.20053-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-security][PATCH] checksec: update to 1.11.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,116 +72,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 May 2019 03:52:37 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 16 May 2019 05:10:15 -0000
 
-Hi,
+* checksec.sh: Updated to 1.11.1
+* checksec.sh: resolved issues with readelf
+* checksec.sh: Added docker images for testing
+* checksec.sh: Added armhf and aarch64 libc locations
+* checksec.sh: Replace FS_COUNT with fgrep
+* checksec.sh: Fixed symbols count in csv
+* checksec.sh: Fixed RW-RPATH and RW-RUNPATH
+* checksec.sh: Added stack canaries generated by intel compiler
+* checksec.sh: Mute stat errors for non-existent directories
+* checksec.sh: Removed invalid json structures and duplicate kernel checks
+* checksec.sh: fixed spaces in -d option
+* checksec.sh: Added stack-protector-string check
+* checksec.sh: Add arm64 specific kernel checks
+* checksec.sh: Add REFCOUNT_FULL to kernel tests
+* checksec.sh: Remove OSX support
 
-Upon further inspection, I found a previous commit that appears to
-have a bit more information:
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../checksec/{checksec_1.11.bb => checksec_1.11.1.bb}           | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ rename recipes-security/checksec/{checksec_1.11.bb => checksec_1.11.1.bb} (91%)
 
-python: Restructure python packaging and replace it with autopackaging
-(http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=8d94b9db221d1def42f091b991903faa2d1651ce)
+diff --git a/recipes-security/checksec/checksec_1.11.bb b/recipes-security/checksec/checksec_1.11.1.bb
+similarity index 91%
+rename from recipes-security/checksec/checksec_1.11.bb
+rename to recipes-security/checksec/checksec_1.11.1.bb
+index 59a67bd..835dffc 100644
+--- a/recipes-security/checksec/checksec_1.11.bb
++++ b/recipes-security/checksec/checksec_1.11.1.bb
+@@ -6,7 +6,7 @@ HOMEPAGE="https://github.com/slimm609/checksec.sh"
+ 
+ LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=93fddcca19f6c897871f9b5f9a035f4a"
+ 
+-SRCREV = "a57e03c4f62dbaca0ec949bbc58491fb0c461447"
++SRCREV = "3c15cb89641c700096fdec0c1904a0cf9b83c5e2"
+ SRC_URI = "git://github.com/slimm609/checksec.sh"
+ 
+ S = "${WORKDIR}/git"
+-- 
+2.17.1
 
-
-The following text appears helpful:
-
-
-How to add a new package:
- - If a user wants to add a new package all that has to be done is
-   modify the python2-manifest.json file, and add the required file(s)
-   to the FILES list, the script should handle all the rest.
-   Real example:
-   We want to add a web browser package, including the file webbrowser.py
-   which at the moment is on python-misc.
-   "webbrowser": {
-       "files": ["${libdir}/python2.7/lib-dynload/webbrowser.py"],
-       "rdepends": [],
-       "summary": "Python Web Browser support"}
-
- Run bitbake python -c create_manifest and the resulting manifest
- should  be completed after a few seconds, showing something like:
-   "webbrowser": {
-      "files": ["${libdir}/python2.7/webbrowser.py"],
-      "rdepends": ["core","fcntl","io","pickle","shell","subprocess"],
-      "summary": "Python Web Browser support"}
-
-
-So I add a section to my python3-manifest.json for the signal library
-that I'm looking for:
-
-    "signal": {
-        "files": [
-            "${libdir}/python3.5/lib-dynload/signal.py"
-        ],
-        "rdepends": [
-        ],
-        "summary": "Python signal library"
-    }
-
-
-I then re-run bitbake python -c create_manifest like the instructions
-state however my python3-manifest.json is sadly unmodified and bitbake
-still indicates that nothing rprovides 'python3-signal'
-
-Any ideas would be greatly appreciated.
-
-Thank you
-
-Davis
-
-
-
-
-
-On Wed, May 15, 2019 at 11:28 PM Davis Roman <davis.roman84@gmail.com> wrote:
->
-> Hello,
->
-> I upgraded to Sumo(2.5) and now bitbake is complaining that nothing
-> rprovides python3-signal.
->
-> ERROR: Nothing RPROVIDES 'python3-signal' (but
-> /home/worker/building/sources/meta-bluetooth/recipes-bluetooth/bluetooth-app/bluetooth-app.bb
-> RDEPENDS on or otherwise requires it)
->
-> After some searching I found that this is related to the restructuring
-> of python3 packaging in Sumo
-> (http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=b6777878ff03c3e956386020a19d11c875c835ae)
->
-> So according to the instructions in the above commit, I'm supposed to
-> first create a manifest file using:
->
-> $ bitbake python -c create_manifest
->
-> and then the json file appears to get created:
->
-> build/tmp/work/armv7ahf-neon-poky-linux-gnueabi/python3/3.5.5-r1.0/python3-manifest.json
->
-> After a quick inspection of the created python3-manifest.json, I see
-> that signal.py already appears on the list.
->
->     "core": {
->         "cached": [
->             ...
->             "${libdir}/python3.5/__pycache__/signal.*.pyc",
->             ...
->         ],
->         "files": [
->              ...
->             "${libdir}/python3.5/signal.py",
->              ...
->         ],
->         "rdepends": [],
->         "summary": "Python interpreter and core modules"
->     },
->
-> Assuming that nothing else needs to be done, I then proceed to again
-> bitbake my application but unfortunately the original error persists.
->
-> What am I missing?
->
-> Thank you,
->
-> Davis Roman
 
