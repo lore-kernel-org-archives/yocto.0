@@ -1,6 +1,6 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34A3BE00B58; Thu, 16 May 2019 09:01:11 -0700 (PDT)
+	id AF161E00B3E; Thu, 16 May 2019 09:16:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,63 +9,60 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.47 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
-	[209.85.128.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E3C0E00B3E
-	for <yocto@yoctoproject.org>; Thu, 16 May 2019 09:01:10 -0700 (PDT)
-Received: by mail-wm1-f47.google.com with SMTP id h11so4007079wmb.5
-	for <yocto@yoctoproject.org>; Thu, 16 May 2019 09:01:10 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.50 listed in list.dnswl.org]
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
+	[209.85.221.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 755E9E00942
+	for <yocto@yoctoproject.org>; Thu, 16 May 2019 09:16:44 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id e15so4072852wrs.4
+	for <yocto@yoctoproject.org>; Thu, 16 May 2019 09:16:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.ro; s=google;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding:content-language;
-	bh=iNSkE9RcxBZTeuovKI3mxXpy4VygApczSFK2NsS52xA=;
-	b=kH7fdU1lpMaccK+BfQP75M98pQtMzVhwhY+oeey8mDbpTHIPdxZBOIv/o8IJ56qLyC
-	QKhrB+NnyMTF/DWj4gBq3C44FMFkjDOiH7LP15TtzCXgAAdQ224d4fZrgbSTqR2DAjzx
-	bOSAQ3MGFVXz7yjIBl/MGA9wqXa3K3dZmn97Wyr9ehqIXaU8P6fmKPwAR8ELdzcXJPl/
-	qKKI2J86WW0nsLoj7BfqMNdDx8A8G4cLHpO9BQFm9ttmll6Sam1pdUtuWA3kf/HeO+zp
-	ZSB82CexaWMfRWgFZQB7xMZsBI+3RNLp0qpJcrJiOxex0Mpp7mPDG1+cZCmNJrkmZ77S
-	hr1g==
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding:content-language;
+	bh=n+zEkMm0TmZKo4yVZOYQ286HvM8jI/8UowBbHFdltSM=;
+	b=PsBC75Mnh8mBVJ5SW4bB5YdY74IumeejWOBmMFBeS6b68wY9RFtbvTfp9NYQctG6CD
+	BsVPlnH4nnr4ozcxVBeTs/jVkUwXbsObQLs+OX/ySUSR3YqIQhCagKM4P4XdoXMHkfJ5
+	P1vdhNWuLVJYZYfd4ZDpfsiZmZr1cC8lxXTW/v4R8lVHxGfrqnajJFwcEWFjMZVDgYxL
+	W+nkAZhgyDwF29TjRFdMA+R6f4fZu7bZtDchzMdvOoH5hJhYyKyhFcHcMVEH9V/5goJb
+	aQ5YKDQMOE+U5OcatgbXbHzW0siz5d7e7xbfW7Vx4bHvps7V6BVTuSEVPLrNe7Ja1uL8
+	FOkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=iNSkE9RcxBZTeuovKI3mxXpy4VygApczSFK2NsS52xA=;
-	b=i5tB1rD74SqLheKpVa9DxoiXCbyrM0FqX3RWTqEbmEX7JftrDz4xF5xwpTACv6UCo/
-	E6YdALf1WijCfcizT9rTCaw2GWEPbwWKAdsyQeR3iihS+A4spZfKJI3nCCBlYdf+in85
-	ZVQIdJycIPFalQ7sUtHMGW4+g1bKtLzzo8UmwQk+FL9Uki1yBqV0uPF3oXhRgFZAePmE
-	8CMcI8zbjuIoMXWCl6CKrdOEehboVUDqgXuwR/gXsIhgCfpJElpUB7ff8nMUSLfILzmO
-	DDP2yToVBvL6Lglpg+PIN3nHELsBR2ZtxszHPflD6L4z0HVsFR9X7/OTczEZmCjRUNdZ
-	BVqQ==
-X-Gm-Message-State: APjAAAWjl1mfOGSy4YQzRPB2egb/d33oPsQshKpLcaeTOQmT3DiM3UUH
-	VLz8Qn5CVJwfE4nz9Nsh5htkJgJVstA=
-X-Google-Smtp-Source: APXvYqy5HzZ3lx+8AmqJYfZHmbisaCqYOES+uajCMX0EOxmRq0GQOFmQdOYHwN1FC4w7R8v+MaJRTw==
-X-Received: by 2002:a1c:254:: with SMTP id 81mr6032788wmc.151.1558022469355;
-	Thu, 16 May 2019 09:01:09 -0700 (PDT)
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding:content-language;
+	bh=n+zEkMm0TmZKo4yVZOYQ286HvM8jI/8UowBbHFdltSM=;
+	b=F7P89FsJcXrHME0OrHQjbQhlltrRDJ/u7uF4MmMCDO/5YhH/+hi5CnMttK/pNBn+oM
+	3E6FCgFwdSg9K9Y5UvT0RtcajPsa/PNSqFwAgTgXd6zORl0TNSqjiOx3Tx9NpAZcTbrP
+	NridAYmUetEzvBknkJuxM69eQFUnP5E9na0KhMeh0t/IC81bDWw4aUb7MTCKI3bbqXVZ
+	fyTyKTTRX6Vd53Zbgs9lJ8U2dHNn7ueObl8zErJ5c/vZ7w3kJ07hRrWmn+PZPQuw1V18
+	pROtkZ9AdI3K976FOGPZKC86c2fUdxh/NMht/mQxIUgLizETYi3T3rd/gkCwMrW1ETgj
+	6gLw==
+X-Gm-Message-State: APjAAAVDcBnmVxnCGNtdhQ2WSBer80PqZLukxWuS+wU+05W9Ml57918l
+	qbCKfW3csUTMKJI4ZnaLEQYROdSc3TA=
+X-Google-Smtp-Source: APXvYqw5TJ5T2thCt4HEPB2ifzv6BK8DGhbv7DA1epCyRgSpJ8zUWawq3h9CDTnv8V0mcBVVd9e+Pw==
+X-Received: by 2002:a5d:6710:: with SMTP id o16mr2291402wru.173.1558023403171; 
+	Thu, 16 May 2019 09:16:43 -0700 (PDT)
 Received: from [10.100.100.101] (host90-152-4-101.ipv4.regusnet.com.
-	[90.152.4.101]) by smtp.gmail.com with ESMTPSA id
-	p14sm5118272wrt.53.2019.05.16.09.01.08
+	[90.152.4.101])
+	by smtp.gmail.com with ESMTPSA id o4sm7461887wmo.20.2019.05.16.09.16.42
+	for <yocto@yoctoproject.org>
 	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Thu, 16 May 2019 09:01:08 -0700 (PDT)
-To: Rudolf J Streif <rudolf.streif@ibeeto.com>,
-	Yocto list discussion <yocto@yoctoproject.org>
-References: <db5fdd69-f031-1932-27bb-6ed1a6f60f4c@ibeeto.com>
+	Thu, 16 May 2019 09:16:42 -0700 (PDT)
+To: Yocto discussion list <yocto@yoctoproject.org>
 From: Andrei Gherzan <andrei@gherzan.ro>
-Message-ID: <7e5c2228-c67e-bf65-fc80-0352b90502ec@gherzan.ro>
-Date: Thu, 16 May 2019 17:01:07 +0100
+Message-ID: <aa294a6f-14ce-f581-546b-56ffb6e9e1bc@gherzan.ro>
+Date: Thu, 16 May 2019 17:16:41 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <db5fdd69-f031-1932-27bb-6ed1a6f60f4c@ibeeto.com>
-Subject: Re: [meta-raspberrypi] RPi 7" Touch Display
+Subject: I'm currently finishing my masters thesis and I really need a bit of help from you if possible. I have a questionnaire which I need to get some feedback about and filled by people who are deeply involved in Yocto project. Do you think you can sacrifice 10 minutes for this? Thanks in advance. Find the form here: https://docs.google.com/forms/d/e/1FAIpQLSePIfr83Eb3fgylNDJalSxS0xu_Fr7rirz2TT5wWlEqwHwTFg/viewform, , Regards,
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,28 +74,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 May 2019 16:01:11 -0000
+X-List-Received-Date: Thu, 16 May 2019 16:16:45 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-HI,
+Hi guys,
 
-On 16/05/2019 16.31, Rudolf J Streif wrote:
-> I am trying to use the "official" RPi 7" touch display
-> (https://www.raspberrypi.org/products/raspberry-pi-touch-display/)
-> with meta-raspberrypi (most recent from master). However, I cannot get
-> it to work. As a matter of fact the display does not even show the GPU
-> rainbow screen making me think that the GPU firmware packaged with
-> meta-raspberrypi does not support the DSI display. It works just fine
-> with the latest Raspbian release (screen and touch).
->
-> I searched the web up and down but could not find anything. Maybe
-> somebody has an idea? Wrong firmware (maybe cannot be distributed
-> because of licensing...)?
-Sadly we don't actively test display and other related toys so they
-might be broken. Even so, I would be surprised if the DSI port doesn't
-work. What is you final config.txt (pastebin it please)?
+I'm currently finishing my masters thesis and I really need a bit of
+help if possible. The project is entitled "Empowering git repositories
+with visualization tools to aid awareness of dependencies in open
+source" and I have a questionnaire which I need to get some feedback on
+and filled by people who are involved in Yocto project. If don't mind
+and can sacrifice 10 minutes for this, please find the form here:
+https://docs.google.com/forms/d/e/1FAIpQLSePIfr83Eb3fgylNDJalSxS0xu_Fr7rirz2TT5wWlEqwHwTFg/viewform
+. If interested, I can come back and validate the results after one week.
+
+Thanks in advance,
 
 -- 
 Andrei Gherzan
