@@ -1,66 +1,48 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <bunk@stusta.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CB348E00D5F; Wed, 15 May 2019 22:10:15 -0700 (PDT)
+	id DC540E00D74; Thu, 16 May 2019 01:02:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	https://www.dnswl.org/, low *      trust
+	*      [141.84.69.5 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.194 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
-	[209.85.210.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1FB6E00CE5
-	for <yocto@yoctoproject.org>; Wed, 15 May 2019 22:10:14 -0700 (PDT)
-Received: by mail-pf1-f194.google.com with SMTP id n19so1195307pfa.1
-	for <yocto@yoctoproject.org>; Wed, 15 May 2019 22:10:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=YYJIv0S3s3WnMOAcsQtR0LoLpGQWjW7B/NXT4bG9MW4=;
-	b=IcbSCdi7GyfRqeHd8tfWERyo8BZ4LwzWcuDFe7FvjJTbrFZE6/LAjm3zL3DKxRzm58
-	lu/V+h+ceL3vm2fsOC/MRv2/i+gqzIQwke5l03jL+d0WhsDmGkXpq4nGdMADo1dIr4e2
-	flCjvwTz8Db/bzweMHs/nkAiifyGPwsgejai3xBUgpf5XjoxTgk8Mees1PBn9aaNQ1OJ
-	kVu+zaZNJEy6mFHQQ5uPWwi6vEuPmv79o2MoC98t0iOlthMCGmq/1VVq5J4E+utDsISC
-	Tx81NaOF8M6j/fK/4adMDs6njI/gou/16hGEStU02OHo5yeBTSk5HqieE2uDCryr60Wb
-	/uYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=YYJIv0S3s3WnMOAcsQtR0LoLpGQWjW7B/NXT4bG9MW4=;
-	b=TzHiKOOQLFfeGDGsMv+fEcs3OrlSWp5xuzkX2qye38+6/PlgVUTeEfqkPaNNjpetah
-	Ha0Pm9S+htJs6b/7As0/SvEdQpEtRa3V2SUGyiiJaSuLC5b7r3O66MccREU3/yUMs41c
-	tFRoGjUBnxnGVXAws80u29wZNrprT1SFuBeGH33TVYPddxHtpyifw18+L3CvLpdEJ3N2
-	7iSY0jO3ZRekHVr9cyCsUBrFZiuBrxV7Y0z/8LAagSrRkooMQM4Y1Tka3s18RV2jhnDT
-	5o++RMziLe7FQkpWLRTeOXrH7mUULqrOV86QGZhC2CTpgd8u3pM6tYiakU40LncnMcgl
-	dQKw==
-X-Gm-Message-State: APjAAAXCQM2vWe/Hc9keMEJ7aCCnVzfdialFAnO+8c2/Z5meU1V5DMWk
-	ReFcWd3hWoBT1W79k3CRcNJsF1G7
-X-Google-Smtp-Source: APXvYqwQQ4zksGlTp/OAvUflbFtzlWX6L0glg3Lfj5mRtNczuzvAkIgs2pYqUVQ6+Xct06l+P6X9JQ==
-X-Received: by 2002:a63:f315:: with SMTP id l21mr47945740pgh.417.1557983413381;
-	Wed, 15 May 2019 22:10:13 -0700 (PDT)
-Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
-	[67.181.203.136])
-	by smtp.gmail.com with ESMTPSA id l65sm7081342pfb.7.2019.05.15.22.10.11
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 15 May 2019 22:10:12 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
+Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26CA1E00D59
+	for <yocto@yoctoproject.org>; Thu, 16 May 2019 01:02:29 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 454P6D0Scwz1n;
+	Thu, 16 May 2019 10:02:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
+	s=default; t=1557993748;
+	bh=IRwpx79aAnqSEkE1oAhl8ItpX8ANzkB16NRscskgFKM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=GnoOhUDMgLnFLsYFTzxQaBWzcK2kQ2yHnl1k5YfQIcd7KmwEW1wJr30sapPTkxoQa
+	JMcFlN0MKbeF1bQ4TNk9Bxja9rkBJ3rfb/qO9rI6h5naRO9fPXsX98Dp/XP5L8OajJ
+	ES6HUfW7z+JN22UP/TzkUTtTsw+HEmn2YlbheIO7A32QZCihMtfYX8OdLBukv8sKWn
+	fCAmuTFd42W8RPZhMblbxJwXuACgW/MRIBXYYpHoOpN+Ma79fuZzTkLACTNdXO8uEz
+	Loe+A+k9mRBFeSoxeZZIMI/dxrlzcuAE5YfNxijpmwALxekouiSWE/yiUIYmdt5weu
+	QXxbNg4CGVA+SQGsSA0g/r3d1M8scu7n6j/caFGSuLszKIZt95E82F4zx5l0nxIevw
+	v3/xGzNf12pfW8z2aRwi+q0J54jhErosdCbgxViCXlxHcIgDnvVDg9N8IAo7JkDKKR
+	oUxn9QrAE3Vo+fT/xe+3mU4T3Ly2eTuDxenW9vtLATQYDHPxaODQKM7aTq8fp1z2vF
+	RKmWnQpgy47iY2tnj6Y5/Kow0TKFIRsqfKHdxBctpQXbHeyWB6D5zgWa2chyXZp82c
+	F9O5tD7ugUdDpLmiiZQPShAZ6xM3swM1HSs+WfOdNg/Uc41JegtC6/KSfk81HLtRB6
+	0elbFnXxFfK9u83vOl31Zu1U=
+From: Adrian Bunk <bunk@stusta.de>
 To: yocto@yoctoproject.org
-Date: Wed, 15 May 2019 22:10:10 -0700
-Message-Id: <20190516051010.20053-1-akuster808@gmail.com>
+Date: Thu, 16 May 2019 11:02:27 +0300
+Message-Id: <20190516080227.32265-1-bunk@stusta.de>
 X-Mailer: git-send-email 2.17.1
-Subject: [meta-security][PATCH] checksec: update to 1.11.1
+Subject: [yocto-docs][PATCH] ref-features.xml: Remove documentation for the removed irda feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,46 +54,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 May 2019 05:10:15 -0000
+X-List-Received-Date: Thu, 16 May 2019 08:02:30 -0000
 
-* checksec.sh: Updated to 1.11.1
-* checksec.sh: resolved issues with readelf
-* checksec.sh: Added docker images for testing
-* checksec.sh: Added armhf and aarch64 libc locations
-* checksec.sh: Replace FS_COUNT with fgrep
-* checksec.sh: Fixed symbols count in csv
-* checksec.sh: Fixed RW-RPATH and RW-RUNPATH
-* checksec.sh: Added stack canaries generated by intel compiler
-* checksec.sh: Mute stat errors for non-existent directories
-* checksec.sh: Removed invalid json structures and duplicate kernel checks
-* checksec.sh: fixed spaces in -d option
-* checksec.sh: Added stack-protector-string check
-* checksec.sh: Add arm64 specific kernel checks
-* checksec.sh: Add REFCOUNT_FULL to kernel tests
-* checksec.sh: Remove OSX support
+IrDA support was removed in upstream kernel 4.17,
+and irda-utils as well as the feature are now also removed.
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+Signed-off-by: Adrian Bunk <bunk@stusta.de>
 ---
- .../checksec/{checksec_1.11.bb => checksec_1.11.1.bb}           | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- rename recipes-security/checksec/{checksec_1.11.bb => checksec_1.11.1.bb} (91%)
+ documentation/ref-manual/ref-features.xml | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/recipes-security/checksec/checksec_1.11.bb b/recipes-security/checksec/checksec_1.11.1.bb
-similarity index 91%
-rename from recipes-security/checksec/checksec_1.11.bb
-rename to recipes-security/checksec/checksec_1.11.1.bb
-index 59a67bd..835dffc 100644
---- a/recipes-security/checksec/checksec_1.11.bb
-+++ b/recipes-security/checksec/checksec_1.11.1.bb
-@@ -6,7 +6,7 @@ HOMEPAGE="https://github.com/slimm609/checksec.sh"
- 
- LIC_FILES_CHKSUM = "file://LICENSE.txt;md5=93fddcca19f6c897871f9b5f9a035f4a"
- 
--SRCREV = "a57e03c4f62dbaca0ec949bbc58491fb0c461447"
-+SRCREV = "3c15cb89641c700096fdec0c1904a0cf9b83c5e2"
- SRC_URI = "git://github.com/slimm609/checksec.sh"
- 
- S = "${WORKDIR}/git"
+diff --git a/documentation/ref-manual/ref-features.xml b/documentation/ref-manual/ref-features.xml
+index 7a3555d0b9..b057d2d040 100644
+--- a/documentation/ref-manual/ref-features.xml
++++ b/documentation/ref-manual/ref-features.xml
+@@ -76,8 +76,6 @@
+                     </para></listitem>
+                 <listitem><para><emphasis>ext2:</emphasis> Hardware HDD or Microdrive
+                     </para></listitem>
+-                <listitem><para><emphasis>irda:</emphasis> Hardware has IrDA support
+-                    </para></listitem>
+                 <listitem><para><emphasis>keyboard:</emphasis> Hardware has a keyboard
+                     </para></listitem>
+                 <listitem><para><emphasis>pcbios:</emphasis> Support for booting through BIOS
+@@ -190,8 +188,6 @@
+                     support.</para></listitem>
+                 <listitem><para><emphasis>ipv6:</emphasis> Include IPv6 support.
+                     </para></listitem>
+-                <listitem><para><emphasis>irda:</emphasis> Include IrDA support.
+-                    </para></listitem>
+                 <listitem><para><emphasis>keyboard:</emphasis> Include keyboard
+                     support (e.g. keymaps will be loaded during boot).
+                     </para></listitem>
 -- 
 2.17.1
 
