@@ -1,78 +1,74 @@
-Return-Path: <paul@betafive.co.uk>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 239FEE00B3E; Thu, 16 May 2019 08:39:50 -0700 (PDT)
+	id 9103CE00B3E; Thu, 16 May 2019 08:53:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [66.111.4.28 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.44 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com
-	[66.111.4.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E4F9E008E3
-	for <yocto@yoctoproject.org>; Thu, 16 May 2019 08:39:49 -0700 (PDT)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailout.nyi.internal (Postfix) with ESMTP id C1EEA25A86;
-	Thu, 16 May 2019 11:39:48 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-	by compute1.internal (MEProxy); Thu, 16 May 2019 11:39:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=betafive.co.uk;
-	h=mime-version:message-id:in-reply-to:references:date:from:to
-	:subject:content-type; s=fm1; bh=JL+MPonTeobqsuo8e7hnzxwm/NYFeBT
-	FRSvG0WRNI+s=; b=FndlBVDJezhqsdtMUkPaoiWlEtPBF4tJbU+Uesb9+NDxHYT
-	7MwH22XIJU8a/uZg0aQ0Iyfo3FuCItzzD8iMakpotkvXiHhYnEVcP2HlZab1JOJB
-	k+qUD9yQ5yDyrdwPLtcnPDx4aMZB24CA0qoicfP9VUjnPURyZxZ4kocJYYgkL8rK
-	TPmeVEWAWMfn47pkN+CRIcrpQNcbWqzb1LHUZLTGGhBYaD7vvVXraaVVNccO+Rj5
-	aVKPBgrmfdyE+3+HMAupPMNL5WSZmkf/42mTRjcjwSIp5gacg8nMtuuqCDkIhzCS
-	fsDHoD8XhvDuJBviIjcyRsMqmBakk/evwmTc2Mg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=JL+MPo
-	nTeobqsuo8e7hnzxwm/NYFeBTFRSvG0WRNI+s=; b=NDsluKDLli/uZfcRzl39JB
-	fI23iL+ipDjHvqehp+1XhK5s1AG7Ca75oTn5L22KDdWvz2ZFF+SMLwLi1yxo71eV
-	yzABb3arxoq2nSYBbebxGcltuOH/rocznnkqxm93fFneTEPRNCZkf+mjVgrTabZA
-	Mvmd5OZEqR4YJGCBtYL1wcJIhJP1/GlInuai3dKh10v4KB3b9e+0QmHbi5g4ictw
-	8Qo3JGvjSjp6kDwycLKdrtFJsl/p7sYon/r2o4NJxCQIMW7s9fgGWh0jPpousqEy
-	QQeJCmaoRWUVkLZ9WSSjtDSuSrCx3wKldozld9fZInGqTGYmrXyfALF0VKSNg+1g
-	==
-X-ME-Sender: <xms:RITdXMUs8cSGQ3Ntjmul9zNEkojay9qW32VqWLgrUpjlJtKulUrE-A>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddruddttddgkeekucetufdoteggodetrfdotf
-	fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-	uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-	cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdfrrghu
-	lhcuuegrrhhkvghrfdcuoehprghulhessggvthgrfhhivhgvrdgtohdruhhkqeenucffoh
-	hmrghinheprhgrshhpsggvrhhrhihpihdrohhrghdpghhithhhuhgsrdgtohhmnecurfgr
-	rhgrmhepmhgrihhlfhhrohhmpehprghulhessggvthgrfhhivhgvrdgtohdruhhknecuve
-	hluhhsthgvrhfuihiivgeptd
-X-ME-Proxy: <xmx:RITdXEbiOexxXOWcBS4SUpCrVsol7rEk76uQ9HTVsQW2Z6jWnXcf8Q>
-	<xmx:RITdXJebxTQXz_4yvl_NrdPNYWzVdlh0N67ARNTMG4u2YPSDYUwuZg>
-	<xmx:RITdXO1E-9aMRnqzGg7y8z17-M6zqnQ9tGA0LIDsGmjEhgspwQq82w>
-	<xmx:RITdXBS9qiSoFgVXYyuscSlChwWxKTpjWQ3vovJ1lvD0sCv80osjPA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 197557C882; Thu, 16 May 2019 11:39:48 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.6-549-ge400f56-fmstable-20190516v3
-Mime-Version: 1.0
-Message-Id: <b5e1d2d9-15cd-4872-ac8a-b578f2a9ae70@www.fastmail.com>
-In-Reply-To: <db5fdd69-f031-1932-27bb-6ed1a6f60f4c@ibeeto.com>
-References: <db5fdd69-f031-1932-27bb-6ed1a6f60f4c@ibeeto.com>
-Date: Thu, 16 May 2019 16:39:47 +0100
-From: "Paul Barker" <paul@betafive.co.uk>
-To: "Rudolf J Streif" <rudolf.streif@ibeeto.com>,
-	"Yocto discussion list" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] RPi 7" Touch Display
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+	[209.85.221.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1AB8E00ADB
+	for <yocto@yoctoproject.org>; Thu, 16 May 2019 08:53:52 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id l2so3964025wrb.9
+	for <yocto@yoctoproject.org>; Thu, 16 May 2019 08:53:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.ro; s=google;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding:content-language;
+	bh=SXShMfrXrWMr0LOPVU2NvZOyoPT3iFtUIRedzZcfuZg=;
+	b=NI5xqD7SGrIDZZ5MtQd1TjSCPAUXo9dsVrgljcCQ7fMG0Naz2+wo6giNaValDmMeQh
+	FUVJ9Sgyv10Y8YYro/tVpRKUcGGvYu8SpSqAlYB4/qynNjaUFalBDLVOCR5r+JNhqVZt
+	k/tXTHXd0PPqcGIss9BmOYOb6NnhwX8+ZI8pfzDDi5HiIMk6Fw/yf4MDWeIewt3dnLOp
+	Hb6bheozU1mEylbte7l6ugyJti6Tv686+lcPTOyhczeTv+uJlxg8s6TanShaWV6Z9qY6
+	ifU7842S4B+7DFnk9BXVAQsAzEDp024tj0ys+xVxdblw2775sIE3uW4DXWmmxhDGqjy7
+	I9Dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=SXShMfrXrWMr0LOPVU2NvZOyoPT3iFtUIRedzZcfuZg=;
+	b=YC4gqaYipLZAiVWxMzXouw/RjH9YshFy5GkBlgE1/EjJjnKgyQRvlmK2/O0ffNMQfI
+	6lSrTwFFnf80Qu0+9vxdTj5qYqZcsL3tVYvs5/eJnTn6JoMfFY05dVSwE2VGs/RuCQox
+	zmG0VbYd4mN0c5wIGFaoB4yRcjImSbAvCuEEY0m1qlkLvefXq6bIobTQvglWDU8Gw4ST
+	uHQFQW6Bp+tpkj5MEByUFNKpzTSg2PrVGJu2l3Sz2Rx8B9mmu5f562NdR6VZLutdxnOM
+	G8XtJixozDV7IRnfIWSFUAUI+5ma3rVvZuMR1yuw/LcRHj0z4TGplfubKWMDF/cXKSTo
+	oKGA==
+X-Gm-Message-State: APjAAAVx7dytSZHlzuiOedD0DvJ3xrbTFuDxjH6zznv70HkP46TKm9E6
+	4rMbijWhAdiz+4pRE1PpHeuMXIlMDiY=
+X-Google-Smtp-Source: APXvYqy4skcbz3MEqM4Wx/qfbNvamWcEr2IkPy9mMugZ4MAImQFUKj+kGYFIUoIk8rFW8gqIFcInvA==
+X-Received: by 2002:a5d:6a81:: with SMTP id s1mr31170698wru.85.1558022031656; 
+	Thu, 16 May 2019 08:53:51 -0700 (PDT)
+Received: from [10.100.100.101] (host90-152-4-101.ipv4.regusnet.com.
+	[90.152.4.101])
+	by smtp.gmail.com with ESMTPSA id 22sm5625329wmg.44.2019.05.16.08.53.50
+	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+	Thu, 16 May 2019 08:53:51 -0700 (PDT)
+To: Jean-Christian de Rivaz <jean-christian.derivaz@innodelec.ch>,
+	Paul Barker <paul@betafive.co.uk>,
+	Yocto discussion list <yocto@yoctoproject.org>
+References: <17b6446a-7ca5-5bb0-2c3d-0d482ac226d5@innodelec.ch>
+	<1b045887-43ce-44c6-a5c1-0fd85944cd93@www.fastmail.com>
+	<7448c585-90cc-35bb-c20f-ce5bf1879de4@innodelec.ch>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Message-ID: <488795da-6201-60e2-8618-ceeac78542e1@gherzan.ro>
+Date: Thu, 16 May 2019 16:53:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.6.1
+MIME-Version: 1.0
+In-Reply-To: <7448c585-90cc-35bb-c20f-ce5bf1879de4@innodelec.ch>
+Subject: Re: linux-raspberrypi_4.19.bb unknown commit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -84,28 +80,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 May 2019 15:39:50 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 16 May 2019 15:53:53 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-On Thu, 16 May 2019, at 16:33, Rudolf J Streif wrote:
-> I am trying to use the "official" RPi 7" touch display 
-> (https://www.raspberrypi.org/products/raspberry-pi-touch-display/) with 
-> meta-raspberrypi (most recent from master). However, I cannot get it to 
-> work. As a matter of fact the display does not even show the GPU rainbow 
-> screen making me think that the GPU firmware packaged with 
-> meta-raspberrypi does not support the DSI display. It works just fine 
-> with the latest Raspbian release (screen and touch).
-> 
-> I searched the web up and down but could not find anything. Maybe 
-> somebody has an idea? Wrong firmware (maybe cannot be distributed 
-> because of licensing...)?
 
-I'd recommend looking at https://github.com/agherzan/meta-raspberrypi/blob/master/docs/extra-build-config.md to see if there's some extra option you need to enable. If there's nothing documented there then raise an issue on the GitHub repository.
-
-Cheers,
+On 12/05/2019 16.04, Jean-Christian de Rivaz wrote:
+> Le 11.05.19 à 21:46, Paul Barker a écrit :
+>> On Sat, 11 May 2019, at 20:44, Jean-Christian de Rivaz wrote:
+>>> Hi,
+>>>
+>>> I try to use the Linux 4.19 for the RaspberryPi from the
+>>> meta-raspberrypi recipe linux-raspberrypi_4.19.bb but the commit
+>>> ab8652c03fa081b27de7e28a74c2536cb2aa3e5b from his SRCREV don't exists
+>>> into the repository github.com/raspberrypi/linux branch rpi-4.19.y . I
+>>> searched that commit on a few others branches but failed to find it.
+>>> Have anyone tested that recipe ?
+>> The upstream rpi-4.19.y branch is still unstable and they enjoy rebasing commits. The breaks the commit references used in our recipes.
+>>
+>> For now I recommend sticking to the 4.14.y kernels for Raspberry Pi.
+>>
+> Too bad, I need Linux >= 4.19 to enable cgroup2 memory.oom_group to
+> properly kill and restart xserver-nodm with chromium in kiosk mode
+> displaying videos all the days long. There a bug somewhere in
+> chromium/ffmpeg/gpu that eat all the available memory, and I don't have
+> time and money  to dig in that complexity and patch acceptance marathon.
+Feel free to complain upstream:
+https://github.com/raspberrypi/linux/issues/2931
 
 -- 
-Paul Barker
-Managing Director & Principal Engineer
-Beta Five Ltd
+Andrei Gherzan
+gpg: rsa4096/D4D94F67AD0E9640 | t: @agherzan
+
 
