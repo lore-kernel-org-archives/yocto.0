@@ -1,71 +1,65 @@
-Return-Path: <prvs=10404ea304=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 574F5E00BAF; Fri, 17 May 2019 02:24:36 -0700 (PDT)
+	id EB591E00CAA; Fri, 17 May 2019 07:32:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kanavin[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [85.215.255.53 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.128.51 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de
-	[85.215.255.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A33F5E00B8F
-	for <yocto@yoctoproject.org>; Fri, 17 May 2019 02:24:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1558085071;
-	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
-	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-	bh=Sbl+xH3GhObsekSqwfc4vK3C6dKdVMlcwaUQ6rDFfxI=;
-	b=HZUJa5yP31AOKEjolyD5XQ5swVlBcI3WtW7+R2/h2hkYUZGSs8Ur2Krzt4Oz1UAU1D
-	5tKoKT+H/WAL8Xt97T8LByZFfZsiV7fT9fhrKbIrM4GrsshKEGWM1o04FHAzvnnp8Fyn
-	cqyhRtKYC+Gxvvg6jSvmEo+8kED2Ic6FWFoRlbvjBzKrWmPm5ID6wsXfaEB+ro9eWwFd
-	br/mQ6EnjNieBQDSmcJVdorh9rIauCPBgW6HRwDViBRsz0I5SlCm87ib5CfCsa/a+LDp
-	AwUE8izEl5f7WV1kDxMGi4tvPMsyWraHPlWrkFFhKwghna0BTvDnqB+ptTJZn5zvzJOc
-	Swzg==
-X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/KqCOd+ZZzzoK8epFp9XQIUl6aPGQL"
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de by smtp.strato.de (RZmta 44.18 AUTH)
-	with ESMTPSA id Q0b788v4H9OVEci
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Fri, 17 May 2019 11:24:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1558085073; x=1558689873;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
-	Subject:Message-ID:References:MIME-Version:Content-Type:
-	Content-Disposition:Content-Transfer-Encoding:In-Reply-To:
-	User-Agent; bh=Sbl+xH3GhObsekSqwfc4vK3C6dKdVMlcwaUQ6rDFfxI=; b=F
-	zfy398mbAa2rM+/YJyLwJomw0foVACC0iHRZ+jlKN/CnSwrYhCW/okN4pkPsr2GX
-	LvBM4/vlLF0XXDl40kBafOYbzcytXs4H/502H0cKqlABylU1LqK5RPwMcVfQjb9L
-	f1Gv5RXX+E+T1fx7IzqPxe8gDuXim/6i4eSpd0epkY=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v19.0.1) with ESMTPSA id
-	md50000167475.msg; Fri, 17 May 2019 11:24:32 +0200
-X-MDArrival-Date: Fri, 17 May 2019 11:24:32 +0200
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=10404ea304=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-Date: Fri, 17 May 2019 11:24:28 +0200
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-To: Gaurav Kalra <gvkalra@gmail.com>
-Message-ID: <20190517092428.b2ryukhkjh63nepp@jholzmayr.localdomain>
-References: <CAD5qJ_svyizBB4c0zRDL5W0dkEAs0+KDRVvhAGS3GW-V0kGsag@mail.gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <CAD5qJ_svyizBB4c0zRDL5W0dkEAs0+KDRVvhAGS3GW-V0kGsag@mail.gmail.com>
-User-Agent: NeoMutt/20180716
-Cc: yocto@yoctoproject.org
-Subject: Re: do_rootfs failed (not sure why)
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
+	[209.85.128.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 504BAE00C7D
+	for <yocto@yoctoproject.org>; Fri, 17 May 2019 07:32:04 -0700 (PDT)
+Received: by mail-wm1-f51.google.com with SMTP id 15so2925327wmg.5
+	for <yocto@yoctoproject.org>; Fri, 17 May 2019 07:32:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=yQfG69hUPsENjar2Y7VyVGN6p/28abWh52kufGHyAnw=;
+	b=XQxwZTgAeESFcG4CB7iWV3K8rYT17+1MxUkeAQl5rtAczN97u0fwl8SoWZLflXTTaA
+	7EGZbdf0S7KVtsjKoJTQCyEX/dzzUO6J1jdjEq4u4SiyJEj4DQZGM/d8jaN2TvWcdXNS
+	2j1OmyPq7FOJSLucRpzZTBVh50wvbFM/UBb3XJH1Wf/8yVq3XCYpHgDf71XiKdgYS/6P
+	UXk6uxH55asG0G0VxLS+55nvr0Cw3jxruHLhjUT59wz2lf1z8HsN4rYR1EgoQQnXRQSB
+	wJcJ96gHvAewD3I6r40txJ4kZZtGmL8sXbI3/sJ9O2rUTuIYhfCNyqA0bWjTpFYKYn0d
+	qwPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=yQfG69hUPsENjar2Y7VyVGN6p/28abWh52kufGHyAnw=;
+	b=R1BHUFmpNaQGGLDhFplBaWxE1c5+3FuxvB+2gD3g//FJY4oYln/KZL3zIEXXS5szJR
+	T2wzx/so/atkKlZvR2E2qqFyo+Remdpa0+BMN/hZQF1Sh4OpsWg/rYYB11Y861bDkSWr
+	ortmu/o/4NSn2O34g3RVZTwjWyT7yruBjqS2mE1nqKsWlaYGaOe1da0fIQ5vfCxuBM9P
+	dQod/7SgCUPZ/aeqv2NfVapoJ24WX70sqJAszituyvoEu5bLchXKwaN/Q5NfGh0alVjA
+	V0wC0B3tsMaCy3oLm/NirsIJF2qynIZEs6S7vQ3LsesrpTx0eryBT/R8BgkYQ4/ZQ3a7
+	GQ3g==
+X-Gm-Message-State: APjAAAVu00SfmW3PXMeU2xbBNw6n1lBgpdmPxfSUBg87rLiNhnn9EZsq
+	y4GHcEUdGXQZMmno/iaXdDjWJyhA
+X-Google-Smtp-Source: APXvYqzOyZtztXdxYqL71k50w/t76ykfFvHSAXuInzXbtDjLe935UgdaGsh2zF3Je/OomYL0KFHP4w==
+X-Received: by 2002:a1c:385:: with SMTP id 127mr2469885wmd.109.1558103523299; 
+	Fri, 17 May 2019 07:32:03 -0700 (PDT)
+Received: from alexander-box.luxoft.com ([62.96.135.139])
+	by smtp.gmail.com with ESMTPSA id
+	x187sm10803606wmb.33.2019.05.17.07.32.01
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 17 May 2019 07:32:01 -0700 (PDT)
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+To: yocto@yoctoproject.org
+Date: Fri, 17 May 2019 16:31:54 +0200
+Message-Id: <20190517143154.116727-1-alex.kanavin@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [PATCH][AUH] steps.py: set up AUH workdir before calling bitbake to get env
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,121 +71,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 May 2019 09:24:36 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 17 May 2019 14:32:05 -0000
 
-Hi Gaurav,
+Otherwise, if bitbake fails, there will be tracebacks later on.
 
-On Fri, May 17, 2019 at 03:42:02PM +0900, Gaurav Kalra wrote:
-> Hi,
-> 
-> I am new in the Yocto world and have started learning the concepts recently.
-> A big thanks to the broadcasts on twitch and numerous youtube videos.
+Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+---
+ modules/steps.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-As the broadcaster on Twitch, thanks for letting us know. It is much
-appreciated!
-
-> What I am doing: Modifying boot2qt (
-> https://codereview.qt-project.org/gitweb?p=yocto/meta-boot2qt.git;a=shortlog;h=refs/heads/thud)
-> as my blueprint for raspberry-pi.
-> 
-> Mostly:
-> 1. Modifying the configuration of packages (e.g., systemd conf files)
-> 2. Adding new recipes
-> 3. Keeping Qt updated
-> 
-> "Sometimes", I face this strange error in do_rootfs(), while
-> installing binutils-lic package inside the image.
-> 
-> [...]
-> ERROR: seesv-embedded-qt5-image-1.0-r0 do_rootfs: Unable to install
-> packages. Command
-> '/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/recipe-sysroot-native/usr/bin/opkg
-
-I'm not sure if it applies here, but I have encountered problems with
-long pathes. Especially the leading part with the UUID *might* be
-problematic. Have you tried in a location closer to root?
-
-Greetz
-Josef
-
-> --volatile-cache -f
-> /media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/opkg.conf
-> -t
-> /media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/temp/ipktemp/
-> -o
-> /media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/rootfs
->  --force_postinstall --prefer-arch-to-version   install opkg
-> packagegroup-b2qt-embedded-base packagegroup-b2qt-embedded-gstreamer
-> packagegroup-b2qt-embedded-tools packagegroup-b2qt-qt5-modules
-> packagegroup-base-extended packagegroup-core-boot
-> packagegroup-core-ssh-dropbear packagegroup-core-tools-debug
-> packagegroup-core-tools-profile run-postinsts' returned -11:
-> [...]
-> Installing openssh-lic (7.8p1+git) on root
-> Downloading
-> file:/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/oe-rootfs-repo/cortexa7t2hf-neon-vfpv4/openssh-lic_7.8p1+git-r0_cortexa7t2hf-neon-vfpv4.ipk.
-> Installing binutils-lic (2.31) on root
-> Downloading
-> file:/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/oe-roo
-> ERROR: seesv-embedded-qt5-image-1.0-r0 do_rootfs: Function failed: do_rootfs
-> ERROR: Logfile of failure stored in:
-> /media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/temp/log.do_rootfs.21682
-> ERROR: Task
-> (/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/sources/meta-seesv/meta-seesv-distro/recipes-qt/images/seesv-embedded-qt5-image.bb:do_rootfs)
-> failed with exit code '1'
-> [...]
-> 
-> Notice:
-> In the log "Downloading
-> file:/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/oe-roo",
-> bitbake didn't finish writing the whole path to the console. (I don't know
-> why)
-> 
-> I have tried "bitbake -c cleansstate binutils" and rebuilding the image
-> (again same error)
-> 
-> Previously when I faced this error, I deleted everything and started from
-> scratch (compiling everything) - it worked!
-> But it takes too long, so this time I thought it's best to discuss in the
-> mailing list.
-> 
-> Any ideas of what could be the reason?
-> 
-> PS: I am open to share any logs you'd like to have.
-> 
-> --
-> Gaurav Kalra
-
-> -- 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
+diff --git a/modules/steps.py b/modules/steps.py
+index 2eb4499..87d7584 100644
+--- a/modules/steps.py
++++ b/modules/steps.py
+@@ -34,9 +34,9 @@ from errors import *
+ from buildhistory import BuildHistory
+ 
+ def load_env(devtool, bb, git, opts, pkg_ctx):
+-    pkg_ctx['env'] = bb.env(pkg_ctx['PN'])
+     pkg_ctx['workdir'] = os.path.join(pkg_ctx['base_dir'], pkg_ctx['PN'])
+     os.mkdir(pkg_ctx['workdir'])
++    pkg_ctx['env'] = bb.env(pkg_ctx['PN'])
+     pkg_ctx['recipe_dir'] = os.path.dirname(pkg_ctx['env']['FILE'])
+ 
+     if pkg_ctx['env']['PV'] == pkg_ctx['NPV']:
 -- 
-———————————————
-Josef Holzmayr
-Software Developer Embedded Systems
-
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
-
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548 
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
+2.17.1
 
 
