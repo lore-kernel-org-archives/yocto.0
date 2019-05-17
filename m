@@ -1,72 +1,62 @@
-Return-Path: <rudolf.streif@ibeeto.com>
+Return-Path: <gvkalra@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1A36E00B3E; Thu, 16 May 2019 10:33:58 -0700 (PDT)
+	id 31FE3E00BAA; Thu, 16 May 2019 23:42:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (gvkalra[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.173 listed in list.dnswl.org]
+	*      [209.85.210.174 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com
-	[209.85.214.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8581BE008F2
-	for <yocto@yoctoproject.org>; Thu, 16 May 2019 10:33:56 -0700 (PDT)
-Received: by mail-pl1-f173.google.com with SMTP id f12so1956422plt.8
-	for <yocto@yoctoproject.org>; Thu, 16 May 2019 10:33:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-transfer-encoding:content-language;
-	bh=T5v4T3AFCQVkazQ7PEGrhSGEO6AtNNDqvOML7btgk4U=;
-	b=GD0lUkWn3eQ/qIyRZI813qZft5ZNk4bi0d6RQ7MgZLpNHhP9twVIbShIstDqyo4OXa
-	wbZJljaWjwPX/d35JV3BUklcFDpAQhpdJbNZ5cMab3YUzFqHjL6NWyKAHc9Mrf7komeW
-	ALC8rB1nmDwJMCA3L/BsaseKK+HXJAiBuWCoxpU0lGjT1RNlJF89k+vdb6A5XJ6qYw3M
-	QoDC7sK5h8f15AHJp+IerOw+gkV1ygu3t8EZyfSImbNp5yKwrSk89F7sVsu0+Az4uZP3
-	swVLmpY/TRwHvAlWgoStL2T8teXFOUZVRue4wYIVXHmoD9vHTMSijuf4N0qVJUdQz47j
-	ivNA==
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com
+	[209.85.210.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D35AE00B58
+	for <yocto@yoctoproject.org>; Thu, 16 May 2019 23:42:41 -0700 (PDT)
+Received: by mail-pf1-f174.google.com with SMTP id n19so3196216pfa.1
+	for <yocto@yoctoproject.org>; Thu, 16 May 2019 23:42:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=f5CP05G23729ZzAn6sWIipQa1YYipzrod26V3EBLC/E=;
+	b=LZR3BeeotMYiD3lmHq/q8BbiNPsPCfEkwMjGT2KPRMYySOs5yxkSCECdbsdyt1GdTO
+	aU34OVSMEwKzuHgoVhxjeUS9tLCV0Zywjr7MLEEYZu/xCHH8BnlLcQTG4lQTcXDM+rXs
+	xFSUGSAyGh43D+FcRmlPw+oZTVrgWnrPxlwRPj/1NobdckPQocyRpCMTCs/QtXpDrpHy
+	nYOKKMuP2GQVelIXfqtcb662UNjHN9bzGGpvaIe5OShKG8JXXx4ZGGrLWZWrIpMDVGGV
+	7oe4UoYXRVY6450anmYjvMP6pbUSZU2FczPHINiSQzbWe0sovQlKbM8qlf268fG9qNl0
+	pITw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=T5v4T3AFCQVkazQ7PEGrhSGEO6AtNNDqvOML7btgk4U=;
-	b=IKlzSQQ86jbOGPFq3dfwUd2Qqe699OWRJo1B7S1zH9RBPu5F0Kifj8wl7AYaxmVU1z
-	SUQyt6EoI3zqqCUBWL/gBhht7AHglaUHEcSV10MfrTPBI/7j/AY/kl6lUpHZGr5dtWJp
-	EcENde1Nbw//RVoC/5UTeTO4C+pDe1JLOIcaTigg5G8VWeW3+i+gwqNOHf+MSk6RMrcW
-	a3xDp2mh1glUg7ZhyvlpRyNk8wgr2rzwn2EaWtkX2LZzYIw35r3s3xnniVO39NIt0oHL
-	RVXMZPA9YAcZBDwi9NRuxkyz2rbCYWedlnBpUsnj9OZ+beV4F1e4XUn8/1gWW28/pCiT
-	6EsA==
-X-Gm-Message-State: APjAAAVt8FDuoux6yZEXrsq7mFwlV+FwWlcCSIMMPBALHG0Roei7D9Lx
-	Se70CCO8Ah1kL7Fy2qBamglQvMyfbpU=
-X-Google-Smtp-Source: APXvYqzyesrdITMtKh4P/QBBbpNlzF7KrT/tCN8Fq+wwfeRwGVo0fedzSMF92MK6UnQvaboyTUCFMg==
-X-Received: by 2002:a17:902:184:: with SMTP id b4mr25346941plb.2.1558028035270;
-	Thu, 16 May 2019 10:33:55 -0700 (PDT)
-Received: from rjs-zotac.ibeeto.com (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
-	by smtp.gmail.com with ESMTPSA id
-	e5sm7989303pgh.35.2019.05.16.10.33.53
-	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Thu, 16 May 2019 10:33:54 -0700 (PDT)
-To: Andrei Gherzan <andrei@gherzan.ro>, Paul Barker <paul@betafive.co.uk>,
-	Yocto discussion list <yocto@yoctoproject.org>
-References: <db5fdd69-f031-1932-27bb-6ed1a6f60f4c@ibeeto.com>
-	<b5e1d2d9-15cd-4872-ac8a-b578f2a9ae70@www.fastmail.com>
-	<16605f9d-2158-451c-592e-1c40aab160d5@ibeeto.com>
-	<37a421a4-3786-66ba-60ce-208f7b89c71e@gherzan.ro>
-From: Rudolf J Streif <rudolf.streif@ibeeto.com>
-Message-ID: <09f13d52-4fc1-6720-bceb-683f0b336b6b@ibeeto.com>
-Date: Thu, 16 May 2019 10:33:52 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.5.1
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=f5CP05G23729ZzAn6sWIipQa1YYipzrod26V3EBLC/E=;
+	b=O+zU3uFUTaxdPruaq5WhOIYUVbqyde3GzLBfnnhA0Fb1pb+zFM//vWCHan5qeIFuC6
+	2JReBMuGa2X4zn4fuVLK1uU+ebENSkYZE+yEC2gVRWBDn20Gbm1BpWhFqS4CTJTTVEFk
+	DtIlFE8NVhPR8K4vQOEypQaD5glVw5k+tDVv04KZLDKuABeNgZnctnphbamrKDZg++dP
+	5nBLsoLjWzp7KJDiB+Zb3sgvfo/MMU5iCKj2fwSS7ybHxmG8BZnLkM5+0JVplNvoz1Bw
+	K4waphg2PBYYIdfH7xjrSEbuJdmrZDKSx9Zf+XafsSta+oOvu+rkbxuaLfiSDm9oHrqa
+	LSJQ==
+X-Gm-Message-State: APjAAAXXZbgI74yQbDBAkNUa6iiP2s1uyRINRACRgeSK+bsSV2+rExHd
+	ku6N/4lEwxyEg8CJiS1SNiPgbmO2VX4XVaEGPSQpzb27EdM=
+X-Google-Smtp-Source: APXvYqwQ6eZrEF5mVVCdbZG4GEua2tv9Wk8p3JvCMddLAP/VjZ4cmve670nwDIlEYrFwW8LLwNBPYZeZI7ecCFLvmvo=
+X-Received: by 2002:a62:3085:: with SMTP id
+	w127mr36485464pfw.170.1558075359948; 
+	Thu, 16 May 2019 23:42:39 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <37a421a4-3786-66ba-60ce-208f7b89c71e@gherzan.ro>
-Subject: Re: [meta-raspberrypi] RPi 7" Touch Display
+From: Gaurav Kalra <gvkalra@gmail.com>
+Date: Fri, 17 May 2019 15:42:02 +0900
+Message-ID: <CAD5qJ_svyizBB4c0zRDL5W0dkEAs0+KDRVvhAGS3GW-V0kGsag@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: do_rootfs failed (not sure why)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,26 +68,141 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 May 2019 17:33:58 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Fri, 17 May 2019 06:42:42 -0000
+Content-Type: multipart/alternative; boundary="0000000000005cf58005890fb021"
 
-No, unfortunately not. HDMI works just fine but no video on the touch 
-display.
+--0000000000005cf58005890fb021
+Content-Type: text/plain; charset="UTF-8"
 
-On 5/16/19 9:46 AM, Andrei Gherzan wrote:
-> Hi,
->
-> On 16/05/2019 17.24, Rudolf J Streif wrote:
->> Thank you, Paul. I did read Andrei's excellent documentation and
->> enabled I2C and SPI etc.
-> And it didn't work?
->
--- 
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3396 x700
+Hi,
 
+I am new in the Yocto world and have started learning the concepts recently.
+A big thanks to the broadcasts on twitch and numerous youtube videos.
 
+What I am doing: Modifying boot2qt (
+https://codereview.qt-project.org/gitweb?p=yocto/meta-boot2qt.git;a=shortlog;h=refs/heads/thud)
+as my blueprint for raspberry-pi.
+
+Mostly:
+1. Modifying the configuration of packages (e.g., systemd conf files)
+2. Adding new recipes
+3. Keeping Qt updated
+
+"Sometimes", I face this strange error in do_rootfs(), while
+installing binutils-lic package inside the image.
+
+[...]
+ERROR: seesv-embedded-qt5-image-1.0-r0 do_rootfs: Unable to install
+packages. Command
+'/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/recipe-sysroot-native/usr/bin/opkg
+--volatile-cache -f
+/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/opkg.conf
+-t
+/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/temp/ipktemp/
+-o
+/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/rootfs
+ --force_postinstall --prefer-arch-to-version   install opkg
+packagegroup-b2qt-embedded-base packagegroup-b2qt-embedded-gstreamer
+packagegroup-b2qt-embedded-tools packagegroup-b2qt-qt5-modules
+packagegroup-base-extended packagegroup-core-boot
+packagegroup-core-ssh-dropbear packagegroup-core-tools-debug
+packagegroup-core-tools-profile run-postinsts' returned -11:
+[...]
+Installing openssh-lic (7.8p1+git) on root
+Downloading
+file:/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/oe-rootfs-repo/cortexa7t2hf-neon-vfpv4/openssh-lic_7.8p1+git-r0_cortexa7t2hf-neon-vfpv4.ipk.
+Installing binutils-lic (2.31) on root
+Downloading
+file:/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/oe-roo
+ERROR: seesv-embedded-qt5-image-1.0-r0 do_rootfs: Function failed: do_rootfs
+ERROR: Logfile of failure stored in:
+/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/temp/log.do_rootfs.21682
+ERROR: Task
+(/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/sources/meta-seesv/meta-seesv-distro/recipes-qt/images/seesv-embedded-qt5-image.bb:do_rootfs)
+failed with exit code '1'
+[...]
+
+Notice:
+In the log "Downloading
+file:/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/oe-roo",
+bitbake didn't finish writing the whole path to the console. (I don't know
+why)
+
+I have tried "bitbake -c cleansstate binutils" and rebuilding the image
+(again same error)
+
+Previously when I faced this error, I deleted everything and started from
+scratch (compiling everything) - it worked!
+But it takes too long, so this time I thought it's best to discuss in the
+mailing list.
+
+Any ideas of what could be the reason?
+
+PS: I am open to share any logs you'd like to have.
+
+--
+Gaurav Kalra
+
+--0000000000005cf58005890fb021
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I am new in the Yocto world and hav=
+e started learning the concepts recently.</div><div>A big thanks to the bro=
+adcasts on twitch and numerous youtube videos.</div><div><br></div><div>Wha=
+t I am doing: Modifying boot2qt (<a href=3D"https://codereview.qt-project.o=
+rg/gitweb?p=3Dyocto/meta-boot2qt.git;a=3Dshortlog;h=3Drefs/heads/thud">http=
+s://codereview.qt-project.org/gitweb?p=3Dyocto/meta-boot2qt.git;a=3Dshortlo=
+g;h=3Drefs/heads/thud</a>) as my blueprint for raspberry-pi.</div><div><br>=
+</div><div>Mostly:</div><div>1. Modifying the configuration of packages (e.=
+g., systemd conf files)</div><div>2. Adding new recipes</div><div>3. Keepin=
+g Qt updated</div><div><br></div><div>&quot;Sometimes&quot;, I face this st=
+range error in do_rootfs(), while installing=C2=A0binutils-lic package insi=
+de the image.</div><div><br></div><div>[...]<br></div><div>ERROR: seesv-emb=
+edded-qt5-image-1.0-r0 do_rootfs: Unable to install packages. Command &#39;=
+/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-rasp=
+berrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/=
+1.0-r0/recipe-sysroot-native/usr/bin/opkg --volatile-cache -f /media/gvkalr=
+a/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/=
+work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/opkg.c=
+onf -t /media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/bui=
+ld-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5=
+-image/1.0-r0/temp/ipktemp/ -o /media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b=
+494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gn=
+ueabi/seesv-embedded-qt5-image/1.0-r0/rootfs =C2=A0--force_postinstall --pr=
+efer-arch-to-version =C2=A0 install opkg packagegroup-b2qt-embedded-base pa=
+ckagegroup-b2qt-embedded-gstreamer packagegroup-b2qt-embedded-tools package=
+group-b2qt-qt5-modules packagegroup-base-extended packagegroup-core-boot pa=
+ckagegroup-core-ssh-dropbear packagegroup-core-tools-debug packagegroup-cor=
+e-tools-profile run-postinsts&#39; returned -11:<br></div><div>[...]<br></d=
+iv><div>Installing openssh-lic (7.8p1+git) on root<br></div><div>Downloadin=
+g file:/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/bui=
+ld-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5=
+-image/1.0-r0/oe-rootfs-repo/cortexa7t2hf-neon-vfpv4/openssh-lic_7.8p1+git-=
+r0_cortexa7t2hf-neon-vfpv4.ipk.<br>Installing binutils-lic (2.31) on root<b=
+r>Downloading file:/media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/sees=
+v-distro/build-raspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-=
+embedded-qt5-image/1.0-r0/oe-roo<br>ERROR: seesv-embedded-qt5-image-1.0-r0 =
+do_rootfs: Function failed: do_rootfs<br>ERROR: Logfile of failure stored i=
+n: /media/gvkalra/66bef40b-d84f-4ad0-ada6-a025b494ca5d/seesv-distro/build-r=
+aspberrypi3/tmp/work/raspberrypi3-poky-linux-gnueabi/seesv-embedded-qt5-ima=
+ge/1.0-r0/temp/log.do_rootfs.21682<br>ERROR: Task (/media/gvkalra/66bef40b-=
+d84f-4ad0-ada6-a025b494ca5d/seesv-distro/sources/meta-seesv/meta-seesv-dist=
+ro/recipes-qt/images/seesv-embedded-qt5-image.bb:do_rootfs) failed with exi=
+t code &#39;1&#39;<br></div><div>[...]<br></div><div><br></div><div>Notice:=
+</div><div>In the log &quot;Downloading file:/media/gvkalra/66bef40b-d84f-4=
+ad0-ada6-a025b494ca5d/seesv-distro/build-raspberrypi3/tmp/work/raspberrypi3=
+-poky-linux-gnueabi/seesv-embedded-qt5-image/1.0-r0/oe-roo&quot;,</div><div=
+>bitbake didn&#39;t finish writing the whole path to the console. (I don&#3=
+9;t know why)</div><div><br></div><div>I have tried &quot;bitbake -c cleans=
+state binutils&quot; and rebuilding the image (again same error)</div><div>=
+<br></div><div>Previously when I faced this error, I deleted everything and=
+ started from scratch (compiling everything) - it worked!</div><div>But it =
+takes too long, so this time I thought it&#39;s best to discuss in the mail=
+ing list.</div><div><br></div><div>Any ideas of what could be the reason?</=
+div><div><br></div><div>PS: I am open to share any logs you&#39;d like to h=
+ave.<br></div><div><br></div><div><div><div dir=3D"ltr" class=3D"gmail_sign=
+ature" data-smartmail=3D"gmail_signature">--<br>Gaurav Kalra</div></div></d=
+iv></div>
+
+--0000000000005cf58005890fb021--
