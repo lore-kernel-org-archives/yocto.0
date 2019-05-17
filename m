@@ -1,6 +1,6 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB591E00CAA; Fri, 17 May 2019 07:32:04 -0700 (PDT)
+	id EC5DAE00C93; Fri, 17 May 2019 09:46:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,56 +10,56 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (alex.kanavin[at]gmail.com)
+	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.51 listed in list.dnswl.org]
+	*      [209.85.215.195 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
-	[209.85.128.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 504BAE00C7D
-	for <yocto@yoctoproject.org>; Fri, 17 May 2019 07:32:04 -0700 (PDT)
-Received: by mail-wm1-f51.google.com with SMTP id 15so2925327wmg.5
-	for <yocto@yoctoproject.org>; Fri, 17 May 2019 07:32:04 -0700 (PDT)
+Received: from mail-pg1-f195.google.com (mail-pg1-f195.google.com
+	[209.85.215.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB774E00C46
+	for <yocto@yoctoproject.org>; Fri, 17 May 2019 09:46:06 -0700 (PDT)
+Received: by mail-pg1-f195.google.com with SMTP id t22so3542796pgi.10
+	for <yocto@yoctoproject.org>; Fri, 17 May 2019 09:46:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id;
-	bh=yQfG69hUPsENjar2Y7VyVGN6p/28abWh52kufGHyAnw=;
-	b=XQxwZTgAeESFcG4CB7iWV3K8rYT17+1MxUkeAQl5rtAczN97u0fwl8SoWZLflXTTaA
-	7EGZbdf0S7KVtsjKoJTQCyEX/dzzUO6J1jdjEq4u4SiyJEj4DQZGM/d8jaN2TvWcdXNS
-	2j1OmyPq7FOJSLucRpzZTBVh50wvbFM/UBb3XJH1Wf/8yVq3XCYpHgDf71XiKdgYS/6P
-	UXk6uxH55asG0G0VxLS+55nvr0Cw3jxruHLhjUT59wz2lf1z8HsN4rYR1EgoQQnXRQSB
-	wJcJ96gHvAewD3I6r40txJ4kZZtGmL8sXbI3/sJ9O2rUTuIYhfCNyqA0bWjTpFYKYn0d
-	qwPA==
+	h=from:to:subject:date:message-id;
+	bh=wCCbK+Zzm01OFTEpnKCr6G9zhK6Q6Fk8W00tTneq5Xw=;
+	b=e8gflrLqGIWtUYlcBqMzNhuiBrrPB0wePGphFJ44wju67Jorww7+f30gT+G+jjSgl9
+	+LCsstNly7MNp6keRMy5Qp0aBrq3Ucy0hpqoqnHYfT3Gb3YP88yY3S8SmVAqWx+0ka/e
+	6Qd25ebxhScVKbl9CyMZPMaxPXF7IoVBPJx29gyMDJCIW3fS3WQ1NmNWzyx9aLn8Wv+M
+	WNptLAowE8y/VWAHESBPjo42nf6hnska4zNNckFmV1fge9qQ8ST2NIdhf7iq8usIIaOu
+	Z/HGxrojqbFDWfNtpzNLXSX218UMsuqiD+NQiD9by8vZO0N3DXMo9tqUiJt/7qqnFaKy
+	MQ+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=yQfG69hUPsENjar2Y7VyVGN6p/28abWh52kufGHyAnw=;
-	b=R1BHUFmpNaQGGLDhFplBaWxE1c5+3FuxvB+2gD3g//FJY4oYln/KZL3zIEXXS5szJR
-	T2wzx/so/atkKlZvR2E2qqFyo+Remdpa0+BMN/hZQF1Sh4OpsWg/rYYB11Y861bDkSWr
-	ortmu/o/4NSn2O34g3RVZTwjWyT7yruBjqS2mE1nqKsWlaYGaOe1da0fIQ5vfCxuBM9P
-	dQod/7SgCUPZ/aeqv2NfVapoJ24WX70sqJAszituyvoEu5bLchXKwaN/Q5NfGh0alVjA
-	V0wC0B3tsMaCy3oLm/NirsIJF2qynIZEs6S7vQ3LsesrpTx0eryBT/R8BgkYQ4/ZQ3a7
-	GQ3g==
-X-Gm-Message-State: APjAAAVu00SfmW3PXMeU2xbBNw6n1lBgpdmPxfSUBg87rLiNhnn9EZsq
-	y4GHcEUdGXQZMmno/iaXdDjWJyhA
-X-Google-Smtp-Source: APXvYqzOyZtztXdxYqL71k50w/t76ykfFvHSAXuInzXbtDjLe935UgdaGsh2zF3Je/OomYL0KFHP4w==
-X-Received: by 2002:a1c:385:: with SMTP id 127mr2469885wmd.109.1558103523299; 
-	Fri, 17 May 2019 07:32:03 -0700 (PDT)
-Received: from alexander-box.luxoft.com ([62.96.135.139])
-	by smtp.gmail.com with ESMTPSA id
-	x187sm10803606wmb.33.2019.05.17.07.32.01
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=wCCbK+Zzm01OFTEpnKCr6G9zhK6Q6Fk8W00tTneq5Xw=;
+	b=G0qqMAtL6sgV24puJdkUHZVHveKb/oaDWj8DfInvGHc/6P8aoSaASGD9pm6qjsme2k
+	D+xGbK8F+xM50iY7qpYRl0ICGvKg3tk4cc4+yb9AAOEy1tL2uQguzKiL37SRunOt0tb3
+	g9i+QOFwv52xiECEVpByMlY0+TsCroF7V4zhnL9/IgetUXV5+GHOq29mdBaVTF2qjEmz
+	48XpSNCOZ1h+3uicWPqTTVd2tUNzydXTO7V9Dq8M1ySzTPtFGsOZPNueonmp+7pzf5yN
+	PB9JZrzxfGUXbNO8VxSri0uAX04s5CmhMbit1KH/nKXpiisr4GQYJgW5lTdAGUokRaOw
+	3uJw==
+X-Gm-Message-State: APjAAAV6LrHWyCTJecc3VnxpiJJl6ojz+1OotS2gZKoCU3VG9YqqScAr
+	9UV9HAJxjAAfKnXXDC4UhCkIwLh6
+X-Google-Smtp-Source: APXvYqzpsyLs1kZIeBi95vsqGVljurmvgdxNsmqKXws/Qi4rcZnnbM79dCudwjM3wSplcGHIoGnsug==
+X-Received: by 2002:a65:41c7:: with SMTP id b7mr33625989pgq.165.1558111565951; 
+	Fri, 17 May 2019 09:46:05 -0700 (PDT)
+Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
+	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
+	s19sm8799604pfh.176.2019.05.17.09.46.04 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 17 May 2019 07:32:01 -0700 (PDT)
-From: Alexander Kanavin <alex.kanavin@gmail.com>
+	Fri, 17 May 2019 09:46:05 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Fri, 17 May 2019 16:31:54 +0200
-Message-Id: <20190517143154.116727-1-alex.kanavin@gmail.com>
+Date: Fri, 17 May 2019 09:46:03 -0700
+Message-Id: <20190517164603.13885-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
-Subject: [PATCH][AUH] steps.py: set up AUH workdir before calling bitbake to get env
+Subject: [meta-security][PATCH] keyutils: fix library install path
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,30 +71,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 May 2019 14:32:05 -0000
+X-List-Received-Date: Fri, 17 May 2019 16:46:08 -0000
 
-Otherwise, if bitbake fails, there will be tracebacks later on.
-
-Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- modules/steps.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../files/fix_library_install_path.patch      | 28 +++++++++++++++++++
+ recipes-security/keyutils/keyutils_1.6.bb     |  1 +
+ 2 files changed, 29 insertions(+)
+ create mode 100644 recipes-security/keyutils/files/fix_library_install_path.patch
 
-diff --git a/modules/steps.py b/modules/steps.py
-index 2eb4499..87d7584 100644
---- a/modules/steps.py
-+++ b/modules/steps.py
-@@ -34,9 +34,9 @@ from errors import *
- from buildhistory import BuildHistory
+diff --git a/recipes-security/keyutils/files/fix_library_install_path.patch b/recipes-security/keyutils/files/fix_library_install_path.patch
+new file mode 100644
+index 0000000..938fe2e
+--- /dev/null
++++ b/recipes-security/keyutils/files/fix_library_install_path.patch
+@@ -0,0 +1,28 @@
++From b0355cc205543ffd33752874295139d57c4fbc3e Mon Sep 17 00:00:00 2001
++From: Wenzong Fan <wenzong.fan@windriver.com>
++Date: Tue, 26 Sep 2017 07:59:51 +0000
++Subject: [PATCH] Subject: [PATCH] keyutils: use relative path for link
++
++The absolute path of the symlink will be invalid
++when populated in sysroot, so use relative path instead.
++
++Upstream-Status: Pending
++
++Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
++Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
++{rebased for 1.6]
++Signed-off-by: Armin Kuster <akuster808@gmail.com>
++
++Index: keyutils-1.6/Makefile
++===================================================================
++--- keyutils-1.6.orig/Makefile
+++++ keyutils-1.6/Makefile
++@@ -184,7 +184,7 @@ ifeq ($(NO_SOLIB),0)
++ 	$(INSTALL) -D $(LIBNAME) $(DESTDIR)$(LIBDIR)/$(LIBNAME)
++ 	$(LNS) $(LIBNAME) $(DESTDIR)$(LIBDIR)/$(SONAME)
++ 	mkdir -p $(DESTDIR)$(USRLIBDIR)
++-	$(LNS) $(LIBDIR)/$(SONAME) $(DESTDIR)$(USRLIBDIR)/$(DEVELLIB)
+++	$(LNS) $(SONAME) $(DESTDIR)$(USRLIBDIR)/$(DEVELLIB)
++ 	sed \
++ 	-e 's,@VERSION\@,$(VERSION),g' \
++ 	-e 's,@prefix\@,$(PREFIX),g' \
+diff --git a/recipes-security/keyutils/keyutils_1.6.bb b/recipes-security/keyutils/keyutils_1.6.bb
+index c961fa2..2968a24 100644
+--- a/recipes-security/keyutils/keyutils_1.6.bb
++++ b/recipes-security/keyutils/keyutils_1.6.bb
+@@ -19,6 +19,7 @@ SRC_URI = "http://people.redhat.com/dhowells/keyutils/${BP}.tar.bz2 \
+            file://keyutils-test-fix-output-format.patch \
+            file://keyutils-fix-error-report-by-adding-default-message.patch \
+            file://run-ptest \
++           file://fix_library_install_path.patch \
+            "
  
- def load_env(devtool, bb, git, opts, pkg_ctx):
--    pkg_ctx['env'] = bb.env(pkg_ctx['PN'])
-     pkg_ctx['workdir'] = os.path.join(pkg_ctx['base_dir'], pkg_ctx['PN'])
-     os.mkdir(pkg_ctx['workdir'])
-+    pkg_ctx['env'] = bb.env(pkg_ctx['PN'])
-     pkg_ctx['recipe_dir'] = os.path.dirname(pkg_ctx['env']['FILE'])
- 
-     if pkg_ctx['env']['PV'] == pkg_ctx['NPV']:
+ SRC_URI[md5sum] = "191987b0ab46bb5b50efd70a6e6ce808"
 -- 
 2.17.1
 
