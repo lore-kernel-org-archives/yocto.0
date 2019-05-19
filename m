@@ -1,66 +1,73 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <rudolf.streif@ibeeto.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D2D74E00CD2; Sun, 19 May 2019 09:57:26 -0700 (PDT)
+	id 0AC53E00CD2; Sun, 19 May 2019 13:26:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.195 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.210.179 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com
-	[209.85.210.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4486E00798
-	for <yocto@yoctoproject.org>; Sun, 19 May 2019 09:57:25 -0700 (PDT)
-Received: by mail-pf1-f195.google.com with SMTP id v80so6040193pfa.3
-	for <yocto@yoctoproject.org>; Sun, 19 May 2019 09:57:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=jFLtZmtxid9Ng+uT+7pLvP7aMsQ2YXxk+bBevtHLa4o=;
-	b=JAT6mEqc4srSDqI1OdM9UJPReNwkcu6b3AeLJtwv0q5JxhADZB0MbAwqOqyeIvKNxy
-	upmLM0kqraDZNmG3Vktx9oaPkUyLHCJNJ20mLBnhEs3naGjBmzBRFHx6t5eQvTPZmJcO
-	esY/6F2RnCO+E5qQLP9o5MYvJcYfrhGTtuT+NA0TJOIrTKIkMVQ+wyhEDTfNbAwLkzUV
-	26leaDdA5/+akBPI5m376ok8ZNjQKnce2vl9WkiGDN1FbZhuqfcAyO3MoQH4+kk0KaCa
-	QXWGxEouaDORZaBqw1xn++PE5ahjXLbGvR1EylvkCsr+CJ31CUMzMAiPIBPga9837JAT
-	6KZw==
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com
+	[209.85.210.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9EEAE0053F
+	for <yocto@yoctoproject.org>; Sun, 19 May 2019 13:26:51 -0700 (PDT)
+Received: by mail-pf1-f179.google.com with SMTP id b76so6165403pfb.5
+	for <yocto@yoctoproject.org>; Sun, 19 May 2019 13:26:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language;
+	bh=hU4imhy4Yf86UlEJSKbLL+2/yAUUjsvh9qgkagtAacw=;
+	b=pPfw/zsCqvaWKpkVKhfMdFFQwbJoEXBKmiPE6W/V3fm/VzNQ14I1johamtSeK3nRF8
+	OAY6XNl47w9/HVYECiY4/wHrqVG056SWA+a4jV0oYIJOvL+kbWHvlyQM8CKrlD6YWfSr
+	+yc6l15vWcDqkU4QKsgKyHr5pk6ztak79/oHdumofiNFoFErqCwqslQa0caWU2AiuMHV
+	7LIJS/t/8+SQt/zkigh7zw8y3fgSqOcwNUsh84leo2SjtsTDUZSHH9UaXN/8vRIO1XXC
+	iiz5WHD/HT9lFhGac//QHUUOeiJu3kxGjHBF8fwF9v8NKbYjxPUxYGEQ1ASdGGXLDCY9
+	bRtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=jFLtZmtxid9Ng+uT+7pLvP7aMsQ2YXxk+bBevtHLa4o=;
-	b=dIncQLn9g4KXFKi75EMq22o16EpVa7oBP0Zn2QpEkqmd6nm/lIYL3d5NFXU3ENQY/I
-	a1KeVpueHBLwFCJ6vI1S/tBbQLzGxPoZ1SXkh4n9UNWwY/znYmlHCtw0Fb6fB1R2UmJD
-	eDLhXCdLDArSt4tm5tmzH8n76rqlns2H5FO8npeq7jH3j764stvDtUvI1W+Az2iOGXYj
-	IkQnS0Hj0i6JXvltR6Qlt02ZYQ13oz9uc+3y4K1cnzYXOQv0HudEfHgiadUL0bEgeSGO
-	wXKAjY2752TL1YqI92yvipUPOSYYh/AbpAn3l1ZpVSqIilwpU21A1UBvSQuACK9+BLNK
-	vw4w==
-X-Gm-Message-State: APjAAAWB71LI31hkR2K6UXFeddCdKAyGz29Gg7xysmUmlihJA7R2lPJT
-	cHfqpSrHCq+sZPjeCMgVv3z2F+Jf
-X-Google-Smtp-Source: APXvYqw5yIjLpbCsA+Y8TNDwRy1a/Dhv7sPBaihwtvq3bkFsVaTGRLvqL3BTU6twjZo3OmP0mNNo5g==
-X-Received: by 2002:a62:81c1:: with SMTP id
-	t184mr74504394pfd.221.1558285044793; 
-	Sun, 19 May 2019 09:57:24 -0700 (PDT)
-Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
-	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	f186sm19827917pfb.5.2019.05.19.09.57.23 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 19 May 2019 09:57:24 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sun, 19 May 2019 09:57:22 -0700
-Message-Id: <20190519165722.10363-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [meta-security][v2][PATCH] keyutils: fix library install path
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=hU4imhy4Yf86UlEJSKbLL+2/yAUUjsvh9qgkagtAacw=;
+	b=t3/OAQtdVG71OsmUdnYYzOPWO8aduwJgby0LTTC3a4vLl1nplCbGPFf4tZyX0uWfxQ
+	8UerSUrMXDy0u9dePYEPBQovuUEilwrD5+Rb5uZgCSqI1+Jsi0S1fWqDuv1WuQlQY3b6
+	nG8a57k4A85qYIQuZYuh0h6lSYQeTgFXyC9N2qL8HfHkrhwALEt/JJGz4ZHhCPuY6+OA
+	aVBTlK+u+xdax9zG1IR8BAjRlmCHNMdhPUZNeOltc2QIN9CSQ/5Lrg3jALjqP6IWGgla
+	Pc36j08okES7F7jZ7vcZ9qgu/E4pClliTCqxCGxpCFmOLikGFiumIwyEK4+DxhFOLRan
+	5GDg==
+X-Gm-Message-State: APjAAAUlfd9irFnJ4FqMIJXh71ZaYYsU9XF311OhNdKwFTnVLeAA/Riz
+	S1q64WhoSrx4qfoIcgoMGyTk2FG8CiY=
+X-Google-Smtp-Source: APXvYqzpzad1wL1018AsNC89g5Zq9Wt93pN+95c9i+oUhwYn2th5SZIptppE9aiPVsXBrHbx9xg59w==
+X-Received: by 2002:aa7:95bb:: with SMTP id a27mr64734869pfk.30.1558297610396; 
+	Sun, 19 May 2019 13:26:50 -0700 (PDT)
+Received: from rjs-zotac.ibeeto.com (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
+	by smtp.gmail.com with ESMTPSA id
+	p14sm20001974pfa.112.2019.05.19.13.26.48
+	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+	Sun, 19 May 2019 13:26:49 -0700 (PDT)
+To: Khem Raj <raj.khem@gmail.com>
+References: <db5fdd69-f031-1932-27bb-6ed1a6f60f4c@ibeeto.com>
+	<7e5c2228-c67e-bf65-fc80-0352b90502ec@gherzan.ro>
+	<245b0a59-8a82-59e1-f35e-a0de8aa01d37@gmail.com>
+	<CAPxNcnd0OQ4BS6xrm6vcR8UmAjGxsbksD7XMiU4GKDKKASXJzg@mail.gmail.com>
+	<CAMKF1srf=vjP+PEgk6LHOib4oaxHx1OZUd_OFTqoyCeqUwdmSA@mail.gmail.com>
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Message-ID: <c4076978-6043-1989-449f-7c1c184b13cf@ibeeto.com>
+Date: Sun, 19 May 2019 13:26:47 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.5.1
+MIME-Version: 1.0
+In-Reply-To: <CAMKF1srf=vjP+PEgk6LHOib4oaxHx1OZUd_OFTqoyCeqUwdmSA@mail.gmail.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] RPi 7" Touch Display
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,104 +79,243 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 19 May 2019 16:57:26 -0000
+X-List-Received-Date: Sun, 19 May 2019 20:26:54 -0000
+Content-Type: multipart/alternative;
+	boundary="------------9837F666CDE157515D88FAA2"
+Content-Language: en-US
 
-[v2]
-fix multilib support
-Als add native support
+--------------9837F666CDE157515D88FAA2
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- .../files/fix_library_install_path.patch      | 28 +++++++++++++++++++
- recipes-security/keyutils/keyutils_1.6.bb     | 14 ++++++----
- 2 files changed, 36 insertions(+), 6 deletions(-)
- create mode 100644 recipes-security/keyutils/files/fix_library_install_path.patch
+I tried to build for 32 bit with:
 
-diff --git a/recipes-security/keyutils/files/fix_library_install_path.patch b/recipes-security/keyutils/files/fix_library_install_path.patch
-new file mode 100644
-index 0000000..938fe2e
---- /dev/null
-+++ b/recipes-security/keyutils/files/fix_library_install_path.patch
-@@ -0,0 +1,28 @@
-+From b0355cc205543ffd33752874295139d57c4fbc3e Mon Sep 17 00:00:00 2001
-+From: Wenzong Fan <wenzong.fan@windriver.com>
-+Date: Tue, 26 Sep 2017 07:59:51 +0000
-+Subject: [PATCH] Subject: [PATCH] keyutils: use relative path for link
-+
-+The absolute path of the symlink will be invalid
-+when populated in sysroot, so use relative path instead.
-+
-+Upstream-Status: Pending
-+
-+Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
-+Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
-+{rebased for 1.6]
-+Signed-off-by: Armin Kuster <akuster808@gmail.com>
-+
-+Index: keyutils-1.6/Makefile
-+===================================================================
-+--- keyutils-1.6.orig/Makefile
-++++ keyutils-1.6/Makefile
-+@@ -184,7 +184,7 @@ ifeq ($(NO_SOLIB),0)
-+ 	$(INSTALL) -D $(LIBNAME) $(DESTDIR)$(LIBDIR)/$(LIBNAME)
-+ 	$(LNS) $(LIBNAME) $(DESTDIR)$(LIBDIR)/$(SONAME)
-+ 	mkdir -p $(DESTDIR)$(USRLIBDIR)
-+-	$(LNS) $(LIBDIR)/$(SONAME) $(DESTDIR)$(USRLIBDIR)/$(DEVELLIB)
-++	$(LNS) $(SONAME) $(DESTDIR)$(USRLIBDIR)/$(DEVELLIB)
-+ 	sed \
-+ 	-e 's,@VERSION\@,$(VERSION),g' \
-+ 	-e 's,@prefix\@,$(PREFIX),g' \
-diff --git a/recipes-security/keyutils/keyutils_1.6.bb b/recipes-security/keyutils/keyutils_1.6.bb
-index c961fa2..4d3a96f 100644
---- a/recipes-security/keyutils/keyutils_1.6.bb
-+++ b/recipes-security/keyutils/keyutils_1.6.bb
-@@ -12,13 +12,13 @@ LICENSE = "LGPLv2.1+ & GPLv2.0+"
- LIC_FILES_CHKSUM = "file://LICENCE.GPL;md5=5f6e72824f5da505c1f4a7197f004b45 \
-                     file://LICENCE.LGPL;md5=7d1cacaa3ea752b72ea5e525df54a21f"
- 
--
--inherit siteinfo ptest
-+inherit siteinfo autotools-brokensep ptest
- 
- SRC_URI = "http://people.redhat.com/dhowells/keyutils/${BP}.tar.bz2 \
-            file://keyutils-test-fix-output-format.patch \
-            file://keyutils-fix-error-report-by-adding-default-message.patch \
-            file://run-ptest \
-+           file://fix_library_install_path.patch \
-            "
- 
- SRC_URI[md5sum] = "191987b0ab46bb5b50efd70a6e6ce808"
-@@ -28,14 +28,15 @@ EXTRA_OEMAKE = "'CFLAGS=${CFLAGS} -Wall' \
-     NO_ARLIB=1 \
-     BINDIR=${base_bindir} \
-     SBINDIR=${base_sbindir} \
--    LIBDIR=${base_libdir} \
--    USRLIBDIR=${base_libdir} \
-+    LIBDIR=${libdir} \
-+    USRLIBDIR=${libdir} \
-+    INCLUDEDIR=${includedir} \
-     BUILDFOR=${SITEINFO_BITS}-bit \
-     NO_GLIBC_KEYERR=1 \
-     "
- 
- do_install () {
--    install -d ${D}/${nonarch_base_libdir}/pkgconfig
-+    install -d ${D}/${libdir}/pkgconfig
-     oe_runmake DESTDIR=${D} install
- }
- 
-@@ -44,8 +45,9 @@ do_install_ptest () {
-     sed -i -e 's/OSDIST=Unknown/OSDIST=${DISTRO}/' ${D}${PTEST_PATH}/tests/prepare.inc.sh
- }
- 
--FILES_${PN}-dev += "${nonarch_base_libdir}/pkgconfig/libkeyutils.pc"
- 
- RDEPENDS_${PN}-ptest += "lsb"
- RDEPENDS_${PN}-ptest_append_libc-glibc = " glibc-utils"
- RDEPENDS_${PN}-ptest_append_libc-musl = " musl-utils"
-+
-+BBCLASSEXTEND = "native nativesdk"
+Build Configuration:
+BB_VERSION           = "1.43.0"
+BUILD_SYS            = "x86_64-linux"
+NATIVELSBSTRING      = "universal"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE              = "raspberrypi3"
+DISTRO               = "poky"
+DISTRO_VERSION       = "2.7+snapshot-20190519"
+TUNE_FEATURES        = "arm vfp cortexa7 neon vfpv4 thumb 
+callconvention-hard"
+TARGET_FPU           = "hard"
+meta
+meta-poky
+meta-yocto-bsp       = "master:ff472ffbb0d143de8187d84dbbf18453318f303f"
+meta-raspberrypi     = "master:7059c374512f1c1c0df9ecab0703d11438bdf78b"
+meta-oe
+meta-multimedia
+meta-networking
+meta-python          = "master:1ecd8b43645883cd4fa652826e93137c942dd82c"
+
+However, mesa-gl; now fails compiling:
+
+ld: src/gbm/cd6bfad@@gbm@sha/main_backend.c.o: in function 
+`_gbm_create_device':
+| 
+/usr/src/debug/mesa-gl/2_19.0.3-r0/build/../mesa-19.0.3/src/gbm/main/backend.c:104: 
+undefined reference to `gbm_dri_backend'
+
+I have not encountered that before when building for raspberrypi3 before.
+
+:rjs
+
+On 5/19/19 9:11 AM, Khem Raj wrote:
+>
+>
+> On Sat, May 18, 2019 at 11:02 PM Rudolf Streif 
+> <rudolf.streif@ibeeto.com <mailto:rudolf.streif@ibeeto.com>> wrote:
+>
+>     Thanks, Khem. 64 bit, raspberrypi3-64 machine with vc4graphics.
+>
+>
+> Please try 32bit we only have hdmi tested in 64bit this far
+>
+>
+>
+>     On Sat, May 18, 2019, 22:13 Khem Raj <raj.khem@gmail.com
+>     <mailto:raj.khem@gmail.com>> wrote:
+>
+>
+>
+>         On 5/16/19 9:01 AM, Andrei Gherzan wrote:
+>         > HI,
+>         >
+>         > On 16/05/2019 16.31, Rudolf J Streif wrote:
+>         >> I am trying to use the "official" RPi 7" touch display
+>         >>
+>         (https://www.raspberrypi.org/products/raspberry-pi-touch-display/)
+>         >> with meta-raspberrypi (most recent from master). However, I
+>         cannot get
+>         >> it to work. As a matter of fact the display does not even
+>         show the GPU
+>         >> rainbow screen making me think that the GPU firmware
+>         packaged with
+>         >> meta-raspberrypi does not support the DSI display. It works
+>         just fine
+>         >> with the latest Raspbian release (screen and touch).
+>         >>
+>         >> I searched the web up and down but could not find anything.
+>         Maybe
+>         >> somebody has an idea? Wrong firmware (maybe cannot be
+>         distributed
+>         >> because of licensing...)?
+>         > Sadly we don't actively test display and other related toys
+>         so they
+>         > might be broken. Even so, I would be surprised if the DSI
+>         port doesn't
+>         > work. What is you final config.txt (pastebin it please)?
+>         >
+>
+>         are you building 64bit or 32bit images ?
+>         are you using vc4grpahics or userland graphics ?
+>
 -- 
-2.17.1
+-----
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3396 x700
 
 
+--------------9837F666CDE157515D88FAA2
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p>I tried to build for 32 bit with:</p>
+    <p>Build Configuration:<br>
+      BB_VERSION           = "1.43.0"<br>
+      BUILD_SYS            = "x86_64-linux"<br>
+      NATIVELSBSTRING      = "universal"<br>
+      TARGET_SYS           = "arm-poky-linux-gnueabi"<br>
+      MACHINE              = "raspberrypi3"<br>
+      DISTRO               = "poky"<br>
+      DISTRO_VERSION       = "2.7+snapshot-20190519"<br>
+      TUNE_FEATURES        = "arm vfp cortexa7 neon vfpv4 thumb
+      callconvention-hard"<br>
+      TARGET_FPU           = "hard"<br>
+      meta                 <br>
+      meta-poky            <br>
+      meta-yocto-bsp       =
+      "master:ff472ffbb0d143de8187d84dbbf18453318f303f"<br>
+      meta-raspberrypi     =
+      "master:7059c374512f1c1c0df9ecab0703d11438bdf78b"<br>
+      meta-oe              <br>
+      meta-multimedia      <br>
+      meta-networking      <br>
+      meta-python          =
+      "master:1ecd8b43645883cd4fa652826e93137c942dd82c"<br>
+    </p>
+    <p>However, mesa-gl; now fails compiling:</p>
+    <p>ld: <a class="moz-txt-link-abbreviated" href="mailto:src/gbm/cd6bfad@@gbm@sha/main_backend.c.o">src/gbm/cd6bfad@@gbm@sha/main_backend.c.o</a>: in function
+      `_gbm_create_device':<br>
+      |
+/usr/src/debug/mesa-gl/2_19.0.3-r0/build/../mesa-19.0.3/src/gbm/main/backend.c:104:
+      undefined reference to `gbm_dri_backend'<br>
+    </p>
+    <p>I have not encountered that before when building for raspberrypi3
+      before.</p>
+    <p>:rjs<br>
+    </p>
+    <div class="moz-cite-prefix">On 5/19/19 9:11 AM, Khem Raj wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAMKF1srf=vjP+PEgk6LHOib4oaxHx1OZUd_OFTqoyCeqUwdmSA@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div><br>
+      </div>
+      <div><br>
+        <div class="gmail_quote">
+          <div dir="ltr" class="gmail_attr">On Sat, May 18, 2019 at
+            11:02 PM Rudolf Streif &lt;<a
+              href="mailto:rudolf.streif@ibeeto.com"
+              moz-do-not-send="true">rudolf.streif@ibeeto.com</a>&gt;
+            wrote:<br>
+          </div>
+          <blockquote class="gmail_quote" style="margin:0 0 0
+            .8ex;border-left:1px #ccc solid;padding-left:1ex">
+            <div dir="auto">
+              <div>Thanks, Khem. 64 bit, raspberrypi3-64 machine with
+                vc4graphics. </div>
+            </div>
+          </blockquote>
+          <div dir="auto"><br>
+          </div>
+          <div dir="auto">Please try 32bit we only have hdmi tested in
+            64bit this far </div>
+          <div dir="auto"><br>
+          </div>
+          <blockquote class="gmail_quote" style="margin:0 0 0
+            .8ex;border-left:1px #ccc solid;padding-left:1ex">
+            <div dir="auto">
+              <div><br>
+                <br>
+                <div class="gmail_quote">
+                  <div dir="ltr" class="gmail_attr">On Sat, May 18,
+                    2019, 22:13 Khem Raj &lt;<a
+                      href="mailto:raj.khem@gmail.com" target="_blank"
+                      moz-do-not-send="true">raj.khem@gmail.com</a>&gt;
+                    wrote:<br>
+                  </div>
+                  <blockquote class="gmail_quote" style="margin:0 0 0
+                    .8ex;border-left:1px #ccc solid;padding-left:1ex"><br>
+                    <br>
+                    On 5/16/19 9:01 AM, Andrei Gherzan wrote:<br>
+                    &gt; HI,<br>
+                    &gt; <br>
+                    &gt; On 16/05/2019 16.31, Rudolf J Streif wrote:<br>
+                    &gt;&gt; I am trying to use the "official" RPi 7"
+                    touch display<br>
+                    &gt;&gt; (<a
+                      href="https://www.raspberrypi.org/products/raspberry-pi-touch-display/"
+                      rel="noreferrer noreferrer" target="_blank"
+                      moz-do-not-send="true">https://www.raspberrypi.org/products/raspberry-pi-touch-display/</a>)<br>
+                    &gt;&gt; with meta-raspberrypi (most recent from
+                    master). However, I cannot get<br>
+                    &gt;&gt; it to work. As a matter of fact the display
+                    does not even show the GPU<br>
+                    &gt;&gt; rainbow screen making me think that the GPU
+                    firmware packaged with<br>
+                    &gt;&gt; meta-raspberrypi does not support the DSI
+                    display. It works just fine<br>
+                    &gt;&gt; with the latest Raspbian release (screen
+                    and touch).<br>
+                    &gt;&gt;<br>
+                    &gt;&gt; I searched the web up and down but could
+                    not find anything. Maybe<br>
+                    &gt;&gt; somebody has an idea? Wrong firmware (maybe
+                    cannot be distributed<br>
+                    &gt;&gt; because of licensing...)?<br>
+                    &gt; Sadly we don't actively test display and other
+                    related toys so they<br>
+                    &gt; might be broken. Even so, I would be surprised
+                    if the DSI port doesn't<br>
+                    &gt; work. What is you final config.txt (pastebin it
+                    please)?<br>
+                    &gt; <br>
+                    <br>
+                    are you building 64bit or 32bit images ?<br>
+                    are you using vc4grpahics or userland graphics ?<br>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+    </blockquote>
+    <pre class="moz-signature" cols="72">-- 
+-----
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3396 x700</pre>
+  </body>
+</html>
+
+--------------9837F666CDE157515D88FAA2--
