@@ -1,37 +1,62 @@
-Return-Path: <Yi.Zhao@windriver.com>
+Return-Path: <ms.priyanshu.sharma@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E1F9BE00D39; Sun, 19 May 2019 21:42:36 -0700 (PDT)
+	id 0BD2CE00D33; Sun, 19 May 2019 22:00:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E840CE00D98
-	for <yocto@yoctoproject.org>; Sun, 19 May 2019 21:42:33 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x4K4fuai021803
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 19 May 2019 21:42:06 -0700
-Received: from localhost (128.224.162.136) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.439.0;
-	Sun, 19 May 2019 21:41:45 -0700
-From: Yi Zhao <yi.zhao@windriver.com>
-To: <yocto@yoctoproject.org>, <Joe_MacDonald@mentor.com>
-Date: Mon, 20 May 2019 12:41:38 +0800
-Message-ID: <1558327299-10731-2-git-send-email-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1558327299-10731-1-git-send-email-yi.zhao@windriver.com>
-References: <1558327299-10731-1-git-send-email-yi.zhao@windriver.com>
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (ms.priyanshu.sharma[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.173 listed in list.dnswl.org]
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com
+	[209.85.167.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 046D4E00798
+	for <yocto@yoctoproject.org>; Sun, 19 May 2019 22:00:01 -0700 (PDT)
+Received: by mail-oi1-f173.google.com with SMTP id u199so9017218oie.5
+	for <yocto@yoctoproject.org>; Sun, 19 May 2019 22:00:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=+jyBee6NfLAm4qmPHXMLZjGZe7PrxbralEHAQtn/ClE=;
+	b=jmxtoAhNEvc7EPBT/K+j6bBw8e1+Y6buTb/qT8y7Jql82Ehl22oxWYCQ2NUGa0W0HQ
+	SPLB2O70DwoRXHLq766H5fVNZBHpqR7yuwXclxF/FL8neYcrGPKD9BXBxDVE7m0Vhc6U
+	29jVfwEA5b4mJOQvi3iN7ofRzZzOFo3pl+hph1sPaVYZOKXHf1nyYcUiTc3YsyP7H79L
+	DmSWD6ZGmao64hlEk67/O693V2k1y5zdGYiCV9dRetWnui+AeNr+pWFMYs71E8Pjl2RU
+	WghSD+sm/fLM/1oZ0bA34RHyLJz9PGiNM8k+a7DAHZOTVgZu4VwtGlUZxT8o8r+y08XR
+	TEww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=+jyBee6NfLAm4qmPHXMLZjGZe7PrxbralEHAQtn/ClE=;
+	b=ZBjQXsU6MRbpld8nWFyA5MUWLKfjcpScnAAe6zwicKVJb2VPc6MB9UDKwaQ7TI6LeY
+	l2rTOj/tLsSX7nIkrBOSDty8PEL5Z9ly5wSzGleOhKroSRTeRx3o0kfcjEAtF0T/9EAS
+	/EmB/f+Jt6enebhMgqXqsVfE605JFK74PRqBRxVCpNXCspcLHpnMo8TJ3VPWQ5PKkHEc
+	SrQ2EqTeWw88LV+HpvQGvC+0GDOnYCBFbG7eBMKU98DdO+LfYich4B3X9xdB4+1Covs9
+	w7s4TKgln99sZP7LEEdn3gwUEDPKs50ho9XWCjd0kb4969hVzQRS+Ab6LOREpOKw6VRf
+	cKCA==
+X-Gm-Message-State: APjAAAWLy4M4pBvU05hkee4+VxdfNaznyz+MFBVyIIrhdf0D/I9YHHHx
+	zMbYlfhUnu4LhfufKsjHFGYATfbfamHwmou+z0ykVg==
+X-Google-Smtp-Source: APXvYqzBdnD27kL0ZhpsTUradZtKFn4SvOg6H6TN5quMGlkrLbmx5CdiATtu+q+nArNgWu8UNVa2nb6552M6nEDTCWQ=
+X-Received: by 2002:aca:5d86:: with SMTP id
+	r128mr21529602oib.135.1558328400017; 
+	Sun, 19 May 2019 22:00:00 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [128.224.162.136]
-Subject: [meta-selinux][PATCH 2/3] findutils: drop obsolete patch
+From: Priyanshu Sharma <ms.priyanshu.sharma@gmail.com>
+Date: Mon, 20 May 2019 10:29:49 +0530
+Message-ID: <CAA_f9ePTA7pC=akY88ANENV0Tw=hXJ12rQwoB7xPnS_7VZwHOw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: extensible SDK build failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,521 +68,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 May 2019 04:42:36 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 20 May 2019 05:00:03 -0000
+Content-Type: multipart/alternative; boundary="000000000000b9fe6205894a9aee"
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- .../findutils-4.2.31/findutils-selinux.patch       | 499 ---------------------
- 1 file changed, 499 deletions(-)
- delete mode 100644 recipes-extended/findutils/findutils-4.2.31/findutils-selinux.patch
+--000000000000b9fe6205894a9aee
+Content-Type: text/plain; charset="UTF-8"
 
-diff --git a/recipes-extended/findutils/findutils-4.2.31/findutils-selinux.patch b/recipes-extended/findutils/findutils-4.2.31/findutils-selinux.patch
-deleted file mode 100644
-index 73a9747..0000000
---- a/recipes-extended/findutils/findutils-4.2.31/findutils-selinux.patch
-+++ /dev/null
-@@ -1,499 +0,0 @@
--From: Xin Ouyang <Xin.Ouyang@windriver.com>
--Date: Thu, 21 Jun 2012 17:01:39 +0800
--Subject: [PATCH] findutils: support selinux.
--
--Upstream-Status: Inappropriate [configuration]
--
--Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com>
-----
-- configure.in     |   10 +++++
-- doc/find.texi    |   12 +++++++
-- find/Makefile.am |    2 +-
-- find/defs.h      |   15 ++++++++-
-- find/find.1      |    4 ++
-- find/find.c      |   97 +++++++++++++++++++++++++++++++++++++++++++++++++++++-
-- find/parser.c    |   50 ++++++++++++++++++++++++++--
-- find/pred.c      |   53 +++++++++++++++++++++++++++++
-- find/util.c      |    3 ++
-- 9 files changed, 240 insertions(+), 6 deletions(-)
--
--diff --git a/configure.in b/configure.in
--index 6a20f15..00dd7f8 100644
----- a/configure.in
--+++ b/configure.in
--@@ -101,6 +101,16 @@ dnl C library, try -lsun.
-- AC_CHECK_FUNC(getpwnam, [],
-- [AC_CHECK_LIB(sun, getpwnam)])
-- 
--+AC_ARG_WITH([selinux],
--+           AS_HELP_STRING([--without-selinux], [disable SELinux support]),
--+           [:],
--+[AC_CHECK_LIB([selinux], [is_selinux_enabled],
--+             [with_selinux=yes], [with_selinux=no])])
--+if test x$with_selinux != xno; then
--+   AC_DEFINE([WITH_SELINUX], [1], [Define to support SELinux])
--+   AC_SUBST([LIBSELINUX], [-lselinux])
--+fi
--+
-- dnl Checks for header files.
-- AC_HEADER_STDC
-- dnl Assume unistd.h is present - coreutils does too.
--diff --git a/doc/find.texi b/doc/find.texi
--index 5b5f0cf..e1ad433 100644
----- a/doc/find.texi
--+++ b/doc/find.texi
--@@ -1091,6 +1091,14 @@ will probably be made in early 2006.
-- 
-- @end deffn
-- 
--+@deffn Test -context pattern
--+True if file's SELinux context matches the pattern @var{pattern}.
--+The pattern uses shell glob matching.
--+
--+This predicate is supported only on @code{find} versions compiled with
--+SELinux support and only when SELinux is enabled.
--+@end deffn
--+
-- @node Contents
-- @section Contents
-- 
--@@ -1599,6 +1607,10 @@ semantics, you will see a difference between the mode as printed by
-- @item %M
-- File's permissions (in symbolic form, as for @code{ls}).  This
-- directive is supported in findutils 4.2.5 and later.
--+
--+@item %Z
--+File's SELinux context, or empty string if the file has no SELinux context
--+or this version of find does not support SELinux.
-- @end table
-- 
-- @node Size Directives
--diff --git a/find/Makefile.am b/find/Makefile.am
--index 8e71a32..405955a 100644
----- a/find/Makefile.am
--+++ b/find/Makefile.am
--@@ -6,7 +6,7 @@ bin_PROGRAMS = find
-- find_SOURCES = find.c fstype.c parser.c pred.c tree.c util.c version.c
-- EXTRA_DIST = defs.h $(man_MANS)
-- INCLUDES = -I../gnulib/lib -I$(top_srcdir)/lib -I$(top_srcdir)/gnulib/lib -I../intl -DLOCALEDIR=\"$(localedir)\"
---LDADD = ../lib/libfind.a ../gnulib/lib/libgnulib.a @INTLLIBS@
--+LDADD = ../lib/libfind.a ../gnulib/lib/libgnulib.a @INTLLIBS@ @LIBSELINUX@
-- man_MANS = find.1
-- SUBDIRS = testsuite
-- 
--diff --git a/find/defs.h b/find/defs.h
--index 9369c9a..8a8cf28 100644
----- a/find/defs.h
--+++ b/find/defs.h
--@@ -131,6 +131,10 @@ int get_statinfo PARAMS((const char *pathname, const char *name, struct stat *p)
-- #define MODE_RWX	(S_IXUSR | S_IXGRP | S_IXOTH | MODE_RW)
-- #define MODE_ALL	(S_ISUID | S_ISGID | S_ISVTX | MODE_RWX)
-- 
--+#ifdef WITH_SELINUX
--+#include <selinux/selinux.h>
--+#endif
--+
-- #if 1
-- #include <stdbool.h>
-- typedef bool boolean;
--@@ -320,6 +324,9 @@ struct predicate
--     struct dir_id   fileid;	/* samefile */
--     mode_t type;		/* type */
--     FILE *stream;		/* ls fls fprint0 */
--+#ifdef WITH_SELINUX
--+    security_context_t scontext; /* scontext */
--+#endif
--     struct format_val printf_vec; /* printf fprintf fprint  */
--   } args;
-- 
--@@ -481,7 +488,9 @@ boolean pred_uid PARAMS((char *pathname, struct stat *stat_buf, struct predicate
-- boolean pred_used PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
-- boolean pred_user PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
-- boolean pred_xtype PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
---
--+#ifdef WITH_SELINUX
--+boolean pred_context PARAMS((char *pathname, struct stat *stat_buf, struct predicate *pred_ptr));
--+#endif
-- 
-- 
-- int launch PARAMS((const struct buildcmd_control *ctl,
--@@ -570,6 +579,10 @@ struct options
--    * can be changed with the positional option, -regextype.
--    */
--   int regex_options;
--+
--+#ifdef WITH_SELINUX
--+  int (*x_getfilecon) ();
--+#endif
-- };
-- extern struct options options;
-- 
--diff --git a/find/find.1 b/find/find.1
--index 9be362f..2753d47 100644
----- a/find/find.1
--+++ b/find/find.1
--@@ -487,6 +487,8 @@ links: if the \-H or \-P option was specified, true if the file is a
-- link to a file of type \fIc\fR; if the \-L option has been given, true
-- if \fIc\fR is `l'.  In other words, for symbolic links, \-xtype checks
-- the type of the file that \-type does not check.
--+.IP "\-context \fIpattern\fR"
--+(SELinux only) Security context of the file matches glob \fIpattern\fR.
-- 
-- .SS ACTIONS
-- .IP "\-delete\fR"
--@@ -789,6 +791,8 @@ File's numeric user ID.
-- File's type (like in ls \-l), U=unknown type (shouldn't happen)
-- .IP %Y
-- File's type (like %y), plus follow symlinks: L=loop, N=nonexistent
--+.IP %Z
--+(SELinux only) file's security context
-- .PP
-- A `%' character followed by any other character is discarded, but the
-- other character is printed (don't rely on this, as further format
--diff --git a/find/find.c b/find/find.c
--index df28db6..6b3a2de 100644
----- a/find/find.c
--+++ b/find/find.c
--@@ -245,6 +245,92 @@ optionp_stat(const char *name, struct stat *p)
--   return lstat(name, p);
-- }
-- 
--+#ifdef WITH_SELINUX
--+static int
--+fallback_getfilecon(const char *name, security_context_t *p, int prev_rv)
--+{
--+  /* Our original getfilecon() call failed.  Perhaps we can't follow a
--+   * symbolic link.  If that might be the problem, lgetfilecon() the link.
--+   * Otherwise, admit defeat.
--+   */
--+  switch (errno)
--+    {
--+    case ENOENT:
--+    case ENOTDIR:
--+#ifdef DEBUG_STAT
--+      fprintf(stderr, "fallback_getfilecon(): getfilecon(%s) failed; falling back on lgetfilecon()\n", name);
--+#endif
--+      return lgetfilecon(name, p);
--+
--+    case EACCES:
--+    case EIO:
--+    case ELOOP:
--+    case ENAMETOOLONG:
--+#ifdef EOVERFLOW
--+    case EOVERFLOW:	    /* EOVERFLOW is not #defined on UNICOS. */
--+#endif
--+    default:
--+      return prev_rv;	       
--+    }
--+}
--+
--+/* optionh_getfilecon() implements the getfilecon operation when the
--+ * -H option is in effect.
--+ *
--+ * If the item to be examined is a command-line argument, we follow
--+ * symbolic links.  If the getfilecon() call fails on the command-line
--+ * item, we fall back on the properties of the symbolic link.
--+ *
--+ * If the item to be examined is not a command-line argument, we
--+ * examine the link itself.
--+ */
--+int
--+optionh_getfilecon(const char *name, security_context_t *p)
--+{
--+  if (0 == state.curdepth)
--+    {
--+      /* This file is from the command line; deference the link (if it
--+       * is a link).
--+       */
--+      int rv = getfilecon(name, p);
--+      if (0 == rv)
--+       return 0;		/* success */
--+      else
--+       return fallback_getfilecon(name, p, rv);
--+    }
--+  else
--+    {
--+      /* Not a file on the command line; do not derefernce the link.
--+       */
--+      return lgetfilecon(name, p);
--+    }
--+}
--+
--+/* optionl_getfilecon() implements the getfilecon operation when the
--+ * -L option is in effect.  That option makes us examine the thing the
--+ * symbolic link points to, not the symbolic link itself.
--+ */
--+int
--+optionl_getfilecon(const char *name, security_context_t *p)
--+{
--+  int rv = getfilecon(name, p);
--+  if (0 == rv)
--+    return 0;			/* normal case. */
--+  else
--+    return fallback_getfilecon(name, p, rv);
--+}
--+
--+/* optionp_getfilecon() implements the stat operation when the -P
--+ * option is in effect (this is also the default).  That option makes
--+ * us examine the symbolic link itself, not the thing it points to.
--+ */
--+int
--+optionp_getfilecon(const char *name, security_context_t *p)
--+{
--+  return lgetfilecon(name, p);
--+}
--+#endif /* WITH_SELINUX */
--+
-- #ifdef DEBUG_STAT
-- static uintmax_t stat_count = 0u;
-- 
--@@ -272,11 +358,17 @@ set_follow_state(enum SymlinkOption opt)
--     {
--     case SYMLINK_ALWAYS_DEREF:  /* -L */
--       options.xstat = optionl_stat;
--+#ifdef WITH_SELINUX
--+      options.x_getfilecon = optionl_getfilecon;
--+#endif
--       options.no_leaf_check = true;
--       break;
--       
--     case SYMLINK_NEVER_DEREF:	/* -P (default) */
--       options.xstat = optionp_stat;
--+#ifdef WITH_SELINUX
--+      options.x_getfilecon = optionp_getfilecon;
--+#endif
--       /* Can't turn no_leaf_check off because the user might have specified 
--        * -noleaf anyway
--        */
--@@ -284,6 +376,9 @@ set_follow_state(enum SymlinkOption opt)
--       
--     case SYMLINK_DEREF_ARGSONLY: /* -H */
--       options.xstat = optionh_stat;
--+#ifdef WITH_SELINUX
--+      options.x_getfilecon = optionh_getfilecon;
--+#endif
--       options.no_leaf_check = true;
--     }
-- 
--@@ -1807,7 +1902,7 @@ complete_pending_execs(struct predicate *p)
-- static void
-- process_dir (char *pathname, char *name, int pathlen, struct stat *statp, char *parent)
-- {
---  int subdirs_left;		/* Number of unexamined subdirs in PATHNAME. */
--+  int subdirs_left = 0;		/* Number of unexamined subdirs in PATHNAME. */
--   boolean subdirs_unreliable;	/* if true, cannot use dir link count as subdir limif (if false, it may STILL be unreliable) */
--   int idx;			/* Which entry are we on? */
--   struct stat stat_buf;
--diff --git a/find/parser.c b/find/parser.c
--index fcdb98a..e67e09f 100644
----- a/find/parser.c
--+++ b/find/parser.c
--@@ -48,6 +48,10 @@
-- /* We need <unistd.h> for isatty(). */
-- #include <unistd.h> 
-- 
--+#ifdef WITH_SELINUX
--+#include <selinux/selinux.h>
--+#endif
--+
-- #if ENABLE_NLS
-- # include <libintl.h>
-- # define _(Text) gettext (Text)
--@@ -148,7 +152,9 @@ static boolean parse_noignore_race PARAMS((const struct parser_table*, char *arg
-- static boolean parse_warn          PARAMS((const struct parser_table*, char *argv[], int *arg_ptr));
-- static boolean parse_xtype         PARAMS((const struct parser_table*, char *argv[], int *arg_ptr));
-- static boolean parse_quit          PARAMS((const struct parser_table*, char *argv[], int *arg_ptr));
---
--+#ifdef WITH_SELINUX
--+static boolean parse_context       PARAMS((const struct parser_table*, char *argv[], int *arg_ptr));
--+#endif
-- 
-- 
-- boolean parse_print             PARAMS((const struct parser_table*, char *argv[], int *arg_ptr));
--@@ -216,6 +222,9 @@ static struct parser_table const parse_table[] =
--   PARSE_TEST       ("cmin",                  cmin),	     /* GNU */
--   PARSE_TEST       ("cnewer",                cnewer),	     /* GNU */
--   PARSE_TEST       ("ctime",                 ctime),
--+#ifdef WITH_SELINUX
--+  PARSE_TEST       ("context",               context),	     /* GNU */
--+#endif
--   PARSE_POSOPT     ("daystart",              daystart),	     /* GNU */
--   PARSE_ACTION     ("delete",                delete), /* GNU, Mac OS, FreeBSD */
--   PARSE_OPTION     ("d",                     d), /* Mac OS X, FreeBSD, NetBSD, OpenBSD, but deprecated  in favour of -depth */
--@@ -801,8 +810,12 @@ tests (N can be +N or -N or N): -amin N -anewer FILE -atime N -cmin N\n\
--   puts (_("\
--       -nouser -nogroup -path PATTERN -perm [+-]MODE -regex PATTERN\n\
--       -wholename PATTERN -size N[bcwkMG] -true -type [bcdpflsD] -uid N\n\
---      -used N -user NAME -xtype [bcdpfls]\n"));
--+      -used N -user NAME -xtype [bcdpfls]"));
--+#ifdef WITH_SELINUX
--   puts (_("\
--+      -context CONTEXT\n"));
--+#endif
--+  puts (_("\n\
-- actions: -delete -print0 -printf FORMAT -fprintf FILE FORMAT -print \n\
--       -fprint0 FILE -fprint FILE -ls -fls FILE -prune -quit\n\
--       -exec COMMAND ; -exec COMMAND {} + -ok COMMAND ;\n\
--@@ -1718,6 +1731,10 @@ parse_version (const struct parser_table* entry, char **argv, int *arg_ptr)
--   printf("LEAF_OPTIMISATION ");
--   ++features;
-- #endif
--+#if defined(WITH_SELINUX)
--+  printf("SELINUX ");
--+  ++features;
--+#endif
--   if (0 == features)
--     {
--       /* For the moment, leave this as English in case someone wants
--@@ -1729,6 +1746,32 @@ parse_version (const struct parser_table* entry, char **argv, int *arg_ptr)
--   exit (0);
-- }
-- 
--+#ifdef WITH_SELINUX
--+static boolean
--+parse_context (const struct parser_table* entry, char **argv, int *arg_ptr)
--+{
--+  struct predicate *our_pred;
--+
--+  if ((argv == NULL) || (argv[*arg_ptr] == NULL))
--+    return false;
--+
--+  if (is_selinux_enabled() <= 0)
--+    {
--+      error (1, 0, _("invalid predicate -context: SELinux is not enabled."));
--+      return false;
--+    }
--+  our_pred = insert_primary (entry);
--+  our_pred->need_stat = false;
--+#ifdef DEBUG
--+  our_pred->p_name = find_pred_name (pred_context);
--+#endif /*DEBUG*/
--+  our_pred->args.scontext = argv[*arg_ptr];
--+
--+  (*arg_ptr)++;
--+  return true;
--+}
--+#endif /* WITH_SELINUX */
--+
-- static boolean
-- parse_xdev (const struct parser_table* entry, char **argv, int *arg_ptr)
-- {
--@@ -1971,7 +2014,7 @@ insert_fprintf (FILE *fp, const struct parser_table *entry, PRED_FUNC func, char
-- 	  if (*scan2 == '.')
-- 	    for (scan2++; ISDIGIT (*scan2); scan2++)
-- 	      /* Do nothing. */ ;
---	  if (strchr ("abcdDfFgGhHiklmMnpPstuUyY", *scan2))
--+	  if (strchr ("abcdDfFgGhHiklmMnpPstuUyYZ", *scan2))
-- 	    {
-- 	      segmentp = make_segment (segmentp, format, scan2 - format,
-- 				       (int) *scan2);
--@@ -2046,6 +2089,7 @@ make_segment (struct segment **segment, char *format, int len, int kind)
--     case 'u':			/* user name */
--     case 'y':			/* file type */
--     case 'Y':			/* symlink pointed file type */
--+    case 'Z':			/* SELinux security context */
--       fprintf_stat_needed = true;
--       /* FALLTHROUGH */
--     case 'f':			/* basename of path */
--diff --git a/find/pred.c b/find/pred.c
--index 9ec10a4..1da49dc 100644
----- a/find/pred.c
--+++ b/find/pred.c
--@@ -38,6 +38,10 @@
-- #include "buildcmd.h"
-- #include "yesno.h"
-- 
--+#ifdef WITH_SELINUX
--+#include <selinux/selinux.h>
--+#endif /*WITH_SELINUX*/
--+
-- #if ENABLE_NLS
-- # include <libintl.h>
-- # define _(Text) gettext (Text)
--@@ -217,6 +221,9 @@ struct pred_assoc pred_table[] =
--   {pred_used, "used    "},
--   {pred_user, "user    "},
--   {pred_xtype, "xtype   "},
--+#ifdef WITH_SELINUX
--+  {pred_context, "context"},
--+#endif /*WITH_SELINUX*/
--   {0, "none    "}
-- };
-- 
--@@ -905,6 +912,27 @@ pred_fprintf (char *pathname, struct stat *stat_buf, struct predicate *pred_ptr)
-- 		     mode_to_filetype(stat_buf->st_mode & S_IFMT));
-- 	  }
-- 	  break;
--+	case 'Z':               /* SELinux security context */
--+#ifdef WITH_SELINUX
--+	  {
--+	    security_context_t scontext;
--+	    int rv;
--+	    rv = (*options.x_getfilecon) (state.rel_pathname, &scontext);
--+
--+	    if (rv < 0)
--+	      {
--+		fprintf (stderr, "getfilecon(%s): %s", pathname,
--+			 strerror(errno));
--+		fflush (stderr);
--+	      }
--+	    else
--+	      {
--+		fprintf (fp, segment->text, scontext);
--+		freecon (scontext);
--+	      }
--+	  }
--+#endif /* WITH_SELINUX */
--+	  break;
-- 	}
--     }
--   return true;
--@@ -1497,6 +1525,31 @@ pred_xtype (char *pathname, struct stat *stat_buf, struct predicate *pred_ptr)
--    */
--   return (pred_type (pathname, &sbuf, pred_ptr));
-- }
--+
--+#ifdef WITH_SELINUX
--+
--+boolean
--+pred_context (char *pathname, struct stat *stat_buf,
--+	      struct predicate *pred_ptr)
--+{
--+  int rv;
--+  security_context_t scontext;
--+
--+  rv = (*options.x_getfilecon) (state.rel_pathname, &scontext);
--+
--+  if (rv < 0)
--+    {
--+      fprintf (stderr, "getfilecon(%s): %s\n", pathname, strerror(errno));
--+      fflush (stderr);
--+      return false;
--+    }
--+
--+  rv = (fnmatch (pred_ptr->args.scontext, scontext, 0) == 0);
--+  freecon (scontext);
--+  return rv;
--+}
--+
--+#endif /*WITH_SELINUX*/
-- 
-- /*  1) fork to get a child; parent remembers the child pid
--     2) child execs the command requested
--diff --git a/find/util.c b/find/util.c
--index 97c8687..77bdfa8 100644
----- a/find/util.c
--+++ b/find/util.c
--@@ -78,6 +78,9 @@ get_new_pred (const struct parser_table *entry)
--   last_pred->need_stat = true;
--   last_pred->need_type = true;
--   last_pred->args.str = NULL;
--+#ifdef WITH_SELINUX
--+  last_pred->args.scontext = NULL;
--+#endif
--   last_pred->pred_next = NULL;
--   last_pred->pred_left = NULL;
--   last_pred->pred_right = NULL;
---- 
--1.7.5.4
--
--- 
-2.7.4
+Hi Russell,
 
+I'm also hitting the same "unexpected" errors for my linux-yocto-xxx.bb
+recipe/tasks while building extensible SDK for my platform. How did it work
+for you?
 
+Warm Regards,
+Priyanshu Sharma
+
+--000000000000b9fe6205894a9aee
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Russell,<div><br></div><div>I&#39;m also hitting the sa=
+me &quot;unexpected&quot; errors for my <a href=3D"http://linux-yocto-xxx.b=
+b">linux-yocto-xxx.bb</a> recipe/tasks while building extensible SDK for my=
+ platform. How did it work for you?</div><div><br></div><div>Warm Regards,<=
+/div><div>Priyanshu Sharma</div></div>
+
+--000000000000b9fe6205894a9aee--
