@@ -1,74 +1,61 @@
-Return-Path: <rudolf.streif@ibeeto.com>
+Return-Path: <marek.belisko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 51BA1E00D52; Mon, 20 May 2019 18:21:26 -0700 (PDT)
+	id EC1BFE00D60; Mon, 20 May 2019 23:09:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (marek.belisko[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.175 listed in list.dnswl.org]
+	*      [209.85.221.51 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
-	[209.85.214.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E459E00B58
-	for <yocto@yoctoproject.org>; Mon, 20 May 2019 18:21:25 -0700 (PDT)
-Received: by mail-pl1-f175.google.com with SMTP id a5so7525568pls.12
-	for <yocto@yoctoproject.org>; Mon, 20 May 2019 18:21:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
-	h=subject:to:cc:references:from:message-id:date:user-agent
-	:mime-version:in-reply-to:content-language;
-	bh=RXvc/YnntLwqiusnku0dyijSy4Jz/JPTjKLSWBHyNzU=;
-	b=AXGbNvCvu5+vPeyEJH9FUAFKzJT+U3PMmLoD8emQnv7moYjDjwEJVQl8q+s7agohyb
-	AkgqIBWMHemCiJe5OfHSb4t/QmmVe+VYi9xvyLdsXM8kpGg95/RXx4EEKd1I/4RPowTA
-	AAgyXXXKjDajjotW+DQRpFscAuLJ7TPr/CiHdV0IRVplIWIJMYqD6S52YtTWeggYrMs8
-	Pb9d8WeLsqAe/rYM+lxs2Um6BHo2CHw0844TenCXBwmjlFk/5gBcGvk1ZBG/YqJScAG1
-	on6AfL6arQrl/iWd1AFBCvLhNR80Vab/lll0oTuko/R699tBbQ2mV0ebGHAwevvcFH6H
-	Id8Q==
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
+	[209.85.221.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA434E00D32
+	for <yocto@yoctoproject.org>; Mon, 20 May 2019 23:09:52 -0700 (PDT)
+Received: by mail-wr1-f51.google.com with SMTP id r4so17012938wro.10
+	for <yocto@yoctoproject.org>; Mon, 20 May 2019 23:09:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=L618j8nptSC7wmFoGS8e45CYJanp6ew8B5o9dGIb4iY=;
+	b=aB038SGx15gE/kI08Iwl/TWO/k135suucTuFe6kU5/PODHlUYp5C8SM9OqkmyM8bCK
+	AP4yIDHLigpmE0HTQ/LVNI9tKQiswDsHvykIrCKXQUhvCTHiBnQ/VTi5s5wWBs5U2Hgs
+	7hjAaqsvockL6Yq6PrnERXlndm0fzwnDB0xOL/uGL2adeazyRAuei1DwtnJZFjQsiLd7
+	AaMhStO6kZUWN9mQdUYKgPOiAuqq95GMiwuAEMHC9/Guj/fkUKUI2RVnh1Q/SP47x+Wm
+	mAzyh4ijBvYBT4NiTnjopUjf5ew1OwVH6FetnGdVB0ehU7laVNjUPxj9a/6boPEL//Hv
+	/BXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language;
-	bh=RXvc/YnntLwqiusnku0dyijSy4Jz/JPTjKLSWBHyNzU=;
-	b=auJ91ubBeEDA5bGr4HRKt+ISDgWPlYGz5v/FNppfcHqxI1a9we2XbFf1+ktCws2eGv
-	AYOtk1zY1q5LfxGBmD9DJx+SN2GOZVF+Y7uB1b5iC4jWYaVKKHWye/N/YebmzzWr87dE
-	7NHC2JKO4I3K37HLFBR8/8Ifo4hliuhiySy5UQvUcIgmOJ45gvrtH7q7GEwM5Xjz+NVX
-	/JSFXE39Jkuk9nlCahopVj0SnJcFXbtsH3lPGxXQzHDLLJs3kB50tUeKknBRwlAQFFGL
-	LzFEFnDbmHfrL0GOXDoET4QPDzjfJszpUQx+HF6ru9bF67CS77hH5lMfjT5FIIe8kva7
-	yXkw==
-X-Gm-Message-State: APjAAAX8PA3VCpGCjV9+h26wMM/bXO1Om2l2FWaafmB1UG0WsXAW882g
-	OgYIQA8jNO631zZ8qayJ2XeghzcYdvw=
-X-Google-Smtp-Source: APXvYqwXMFeGKwIFKMGSEvmHoQp+r6A8u5ivvcjeXIDTLCgTx32I2GybTda8SeOHntmyEuCTflekkw==
-X-Received: by 2002:a17:902:5983:: with SMTP id
-	p3mr77087882pli.224.1558401684061; 
-	Mon, 20 May 2019 18:21:24 -0700 (PDT)
-Received: from rjs-zotac.ibeeto.com (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
-	by smtp.gmail.com with ESMTPSA id
-	j2sm18693222pfb.157.2019.05.20.18.21.22
-	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Mon, 20 May 2019 18:21:22 -0700 (PDT)
-To: Khem Raj <raj.khem@gmail.com>
-References: <db5fdd69-f031-1932-27bb-6ed1a6f60f4c@ibeeto.com>
-	<7e5c2228-c67e-bf65-fc80-0352b90502ec@gherzan.ro>
-	<245b0a59-8a82-59e1-f35e-a0de8aa01d37@gmail.com>
-	<CAPxNcnd0OQ4BS6xrm6vcR8UmAjGxsbksD7XMiU4GKDKKASXJzg@mail.gmail.com>
-	<CAMKF1srf=vjP+PEgk6LHOib4oaxHx1OZUd_OFTqoyCeqUwdmSA@mail.gmail.com>
-From: Rudolf J Streif <rudolf.streif@ibeeto.com>
-Message-ID: <45335724-c00c-47c8-7269-a7b7b516fd13@ibeeto.com>
-Date: Mon, 20 May 2019 18:21:21 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.5.1
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=L618j8nptSC7wmFoGS8e45CYJanp6ew8B5o9dGIb4iY=;
+	b=Cc9+VUVlQrTnuAKhFRCVqBB5A904Dcsoxf1TtzRgwMpmBN/ROmmxwgp71ISruoGlT1
+	UNk3nO1vIQAUfYXdkn8DpDGGaBPwjoqo4kQe7nhngtEHd5cV+xxAMGk0WmMvC3PE2XMd
+	q5I7AxsOuT9E5yyHQbW7N9A9cTXzWZujW7mtJ+jF3th/UxGt47gWkxJfCu9Qgp7P7YUU
+	JEWTBcLkYJTR8yCHkVGXXTSDUJdImhn3v07dZMP/E0ZHYGaLG1sZkMp7uXFe9x32GgpA
+	+v6pw30xXxZhQ02xm2/vR5j212HwgKCNIT9lfTzyzdtXqgsUJod/a8gzvjNDjgjNkmdu
+	DxUw==
+X-Gm-Message-State: APjAAAV6Y/q0ORcFDxb0dAVy1WDN1h8opWSbNBF5qdwkaNHW6iMu0Hmz
+	1uD1KiDtSSv98e3/EYvzmCfs7MQVzlu/250lVsAOuF6lFOg=
+X-Google-Smtp-Source: APXvYqwEk0cuVexEY0L1/B+ZdQSG/HAwWdzZkoLXfpZTa0bIhmckUtQ22BPlOOBHFQldrzSd7Wh6EcrFcOsxuS7EY0g=
+X-Received: by 2002:a5d:4946:: with SMTP id r6mr35723349wrs.310.1558418991270; 
+	Mon, 20 May 2019 23:09:51 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1srf=vjP+PEgk6LHOib4oaxHx1OZUd_OFTqoyCeqUwdmSA@mail.gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] RPi 7" Touch Display
+From: Belisko Marek <marek.belisko@gmail.com>
+Date: Tue, 21 May 2019 08:09:40 +0200
+Message-ID: <CAAfyv36rHpLWA0sO=nZHePMHVjLBpsUgGmPUXpQ2gObF7+2gJA@mail.gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: setting SRC_URI runtime - possible options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,184 +67,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 May 2019 01:21:26 -0000
-Content-Type: multipart/alternative;
-	boundary="------------8053402254A78A7EADC661E8"
-Content-Language: en-US
+X-List-Received-Date: Tue, 21 May 2019 06:09:55 -0000
+Content-Type: multipart/alternative; boundary="00000000000063032d05895fb212"
 
---------------8053402254A78A7EADC661E8
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+--00000000000063032d05895fb212
+Content-Type: text/plain; charset="UTF-8"
 
-Khem,
+Hi,
 
-Yes, the 32-bit image (raspberrypi3 machine) works.
+I have special need to fetch repo which is defined in config file in form
+(repo and branch):
+git@testrepo.com/myrepo mysuperbranch
 
-:rjs
+Config file is placed in recipe directory. I've tried to add some bits and
+pieces but it seems it's not doing right. Snippet from recipe:
 
-On 5/19/19 9:11 AM, Khem Raj wrote:
->
->
-> On Sat, May 18, 2019 at 11:02 PM Rudolf Streif 
-> <rudolf.streif@ibeeto.com <mailto:rudolf.streif@ibeeto.com>> wrote:
->
->     Thanks, Khem. 64 bit, raspberrypi3-64 machine with vc4graphics.
->
->
-> Please try 32bit we only have hdmi tested in 64bit this far
->
->
->
->     On Sat, May 18, 2019, 22:13 Khem Raj <raj.khem@gmail.com
->     <mailto:raj.khem@gmail.com>> wrote:
->
->
->
->         On 5/16/19 9:01 AM, Andrei Gherzan wrote:
->         > HI,
->         >
->         > On 16/05/2019 16.31, Rudolf J Streif wrote:
->         >> I am trying to use the "official" RPi 7" touch display
->         >>
->         (https://www.raspberrypi.org/products/raspberry-pi-touch-display/)
->         >> with meta-raspberrypi (most recent from master). However, I
->         cannot get
->         >> it to work. As a matter of fact the display does not even
->         show the GPU
->         >> rainbow screen making me think that the GPU firmware
->         packaged with
->         >> meta-raspberrypi does not support the DSI display. It works
->         just fine
->         >> with the latest Raspbian release (screen and touch).
->         >>
->         >> I searched the web up and down but could not find anything.
->         Maybe
->         >> somebody has an idea? Wrong firmware (maybe cannot be
->         distributed
->         >> because of licensing...)?
->         > Sadly we don't actively test display and other related toys
->         so they
->         > might be broken. Even so, I would be surprised if the DSI
->         port doesn't
->         > work. What is you final config.txt (pastebin it please)?
->         >
->
->         are you building 64bit or 32bit images ?
->         are you using vc4grpahics or userland graphics ?
->
+LICENSE = "CLOSED"
+
+SRCREV = "${AUTOREV}"
+PV = "${SRCPV}"
+
+do_fetch_prepend () {
+
+    src_uri = d.getVar('SRC_URI')
+
+    p = d.getVar("FILE")
+    idx = p.rfind("/")
+    p = p[:idx]
+    p += "/config.txt"
+
+    with open(p) as f:
+        read_data = f.readline().strip().split(" ")
+        d.setVar('SRC_URI', read_data[0])
+}
+
+SRC_URI = ""
+
+S = "${WORKDIR}/git"
+
+It looks like that repo is fetched but unpack doesn't put git directory in
+$WORKDIR and in build directory I get strange directories like:
+
+!=
+bitbake-cookerdaemon.log
+cache
+conf
+${@d.getVar('S')
+else
+if
+os.path.join('
+os.path.normpath(d.getVar('S'))
+os.path.normpath(d.getVar('WORKDIR'))
+'patches')}
+tmp
+
+so there is obviously I'm doing something wrong :). My question is if this
+is the way or should I stick to some variables set in local.conf and then
+use it in recipe? Thanks a lot for any pointers.
+
+BR,
+
+marek
 -- 
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3396 x700
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
 
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
 
---------------8053402254A78A7EADC661E8
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+--00000000000063032d05895fb212
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Khem,</p>
-    <p>Yes, the 32-bit image (raspberrypi3 machine) works.</p>
-    <p>:rjs<br>
-    </p>
-    <div class="moz-cite-prefix">On 5/19/19 9:11 AM, Khem Raj wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAMKF1srf=vjP+PEgk6LHOib4oaxHx1OZUd_OFTqoyCeqUwdmSA@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div><br>
-      </div>
-      <div><br>
-        <div class="gmail_quote">
-          <div dir="ltr" class="gmail_attr">On Sat, May 18, 2019 at
-            11:02 PM Rudolf Streif &lt;<a
-              href="mailto:rudolf.streif@ibeeto.com"
-              moz-do-not-send="true">rudolf.streif@ibeeto.com</a>&gt;
-            wrote:<br>
-          </div>
-          <blockquote class="gmail_quote" style="margin:0 0 0
-            .8ex;border-left:1px #ccc solid;padding-left:1ex">
-            <div dir="auto">
-              <div>Thanks, Khem. 64 bit, raspberrypi3-64 machine with
-                vc4graphics. </div>
-            </div>
-          </blockquote>
-          <div dir="auto"><br>
-          </div>
-          <div dir="auto">Please try 32bit we only have hdmi tested in
-            64bit this far </div>
-          <div dir="auto"><br>
-          </div>
-          <blockquote class="gmail_quote" style="margin:0 0 0
-            .8ex;border-left:1px #ccc solid;padding-left:1ex">
-            <div dir="auto">
-              <div><br>
-                <br>
-                <div class="gmail_quote">
-                  <div dir="ltr" class="gmail_attr">On Sat, May 18,
-                    2019, 22:13 Khem Raj &lt;<a
-                      href="mailto:raj.khem@gmail.com" target="_blank"
-                      moz-do-not-send="true">raj.khem@gmail.com</a>&gt;
-                    wrote:<br>
-                  </div>
-                  <blockquote class="gmail_quote" style="margin:0 0 0
-                    .8ex;border-left:1px #ccc solid;padding-left:1ex"><br>
-                    <br>
-                    On 5/16/19 9:01 AM, Andrei Gherzan wrote:<br>
-                    &gt; HI,<br>
-                    &gt; <br>
-                    &gt; On 16/05/2019 16.31, Rudolf J Streif wrote:<br>
-                    &gt;&gt; I am trying to use the "official" RPi 7"
-                    touch display<br>
-                    &gt;&gt; (<a
-                      href="https://www.raspberrypi.org/products/raspberry-pi-touch-display/"
-                      rel="noreferrer noreferrer" target="_blank"
-                      moz-do-not-send="true">https://www.raspberrypi.org/products/raspberry-pi-touch-display/</a>)<br>
-                    &gt;&gt; with meta-raspberrypi (most recent from
-                    master). However, I cannot get<br>
-                    &gt;&gt; it to work. As a matter of fact the display
-                    does not even show the GPU<br>
-                    &gt;&gt; rainbow screen making me think that the GPU
-                    firmware packaged with<br>
-                    &gt;&gt; meta-raspberrypi does not support the DSI
-                    display. It works just fine<br>
-                    &gt;&gt; with the latest Raspbian release (screen
-                    and touch).<br>
-                    &gt;&gt;<br>
-                    &gt;&gt; I searched the web up and down but could
-                    not find anything. Maybe<br>
-                    &gt;&gt; somebody has an idea? Wrong firmware (maybe
-                    cannot be distributed<br>
-                    &gt;&gt; because of licensing...)?<br>
-                    &gt; Sadly we don't actively test display and other
-                    related toys so they<br>
-                    &gt; might be broken. Even so, I would be surprised
-                    if the DSI port doesn't<br>
-                    &gt; work. What is you final config.txt (pastebin it
-                    please)?<br>
-                    &gt; <br>
-                    <br>
-                    are you building 64bit or 32bit images ?<br>
-                    are you using vc4grpahics or userland graphics ?<br>
-                  </blockquote>
-                </div>
-              </div>
-            </div>
-          </blockquote>
-        </div>
-      </div>
-    </blockquote>
-    <pre class="moz-signature" cols="72">-- 
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3396 x700</pre>
-  </body>
-</html>
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Hi,<div><br></div><div>I=
+ have special need to fetch repo which is defined in config file in form (r=
+epo and branch):</div><div><a href=3D"http://git@testrepo.com/myrepo">git@t=
+estrepo.com/myrepo</a> mysuperbranch</div><div><br></div><div>Config file i=
+s placed in recipe directory. I&#39;ve tried to add some bits and pieces bu=
+t it seems it&#39;s not doing right. Snippet from recipe:</div><div><br></d=
+iv><div><div>LICENSE =3D &quot;CLOSED&quot;</div><div><br></div><div>SRCREV=
+ =3D &quot;${AUTOREV}&quot;</div><div>PV =3D &quot;${SRCPV}&quot;</div><div=
+><br></div><div>do_fetch_prepend () {</div><div>=C2=A0 =C2=A0=C2=A0</div><d=
+iv>=C2=A0 =C2=A0 src_uri =3D d.getVar(&#39;SRC_URI&#39;)</div><div>=C2=A0 =
+=C2=A0=C2=A0</div><div>=C2=A0 =C2=A0 p =3D d.getVar(&quot;FILE&quot;)</div>=
+<div>=C2=A0 =C2=A0 idx =3D p.rfind(&quot;/&quot;)</div><div>=C2=A0 =C2=A0 p=
+ =3D p[:idx]</div><div>=C2=A0 =C2=A0 p +=3D &quot;/config.txt&quot;</div><d=
+iv><br></div><div>=C2=A0 =C2=A0 with open(p) as f:</div><div>=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 read_data =3D f.readline().strip().split(&quot; &quot;)</div>=
+<div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 d.setVar(&#39;SRC_URI&#39;, read_data[0])<=
+br></div><div>}</div><div><br></div><div>SRC_URI =3D &quot;&quot;<br></div>=
+<div><br></div><div>S =3D &quot;${WORKDIR}/git&quot;</div></div><div><br cl=
+ear=3D"all"><div>It looks like that repo is fetched but unpack doesn&#39;t =
+put git directory in $WORKDIR and in build directory I get strange director=
+ies like:</div><div><div><br></div><div>!=3D</div><div>bitbake-cookerdaemon=
+.log</div><div>cache</div><div>conf</div><div>${@d.getVar(&#39;S&#39;)</div=
+><div>else</div><div>if</div><div>os.path.join(&#39;</div><div>os.path.norm=
+path(d.getVar(&#39;S&#39;))</div><div>os.path.normpath(d.getVar(&#39;WORKDI=
+R&#39;))</div><div>&#39;patches&#39;)}</div><div>tmp</div></div><div><br></=
+div><div>so there is obviously I&#39;m doing something wrong :). My questio=
+n is if this is the way or should I stick to some variables set in local.co=
+nf and then use it in recipe? Thanks a lot for any pointers.</div><div><br>=
+</div><div>BR,</div><div><br></div><div>marek</div>-- <br><div dir=3D"ltr" =
+class=3D"gmail_signature">as simple and primitive as possible<br>----------=
+---------------------------------------<br>Marek Belisko - OPEN-NANDRA<br>F=
+reelance Developer<br><br>Ruska Nova Ves 219 | Presov, 08005 Slovak Republi=
+c<br>Tel: +421 915 052 184<br>skype: marekwhite<br>twitter: #opennandra<br>=
+web: <a href=3D"http://open-nandra.com" target=3D"_blank">http://open-nandr=
+a.com</a></div></div></div></div></div>
 
---------------8053402254A78A7EADC661E8--
+--00000000000063032d05895fb212--
