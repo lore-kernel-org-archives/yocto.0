@@ -1,76 +1,65 @@
-Return-Path: <paul@betafive.co.uk>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DC4E0E00D5D; Tue, 21 May 2019 12:30:56 -0700 (PDT)
+	id D4EB8E00D5D; Tue, 21 May 2019 12:54:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [64.147.123.20 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kanavin[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 333 seconds by postgrey-1.32 at yocto-www;
-	Tue, 21 May 2019 12:30:56 PDT
-Received: from wout4-smtp.messagingengine.com (wout4-smtp.messagingengine.com
-	[64.147.123.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34BD7E00D32
-	for <yocto@yoctoproject.org>; Tue, 21 May 2019 12:30:56 -0700 (PDT)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailout.west.internal (Postfix) with ESMTP id 082D55CA
-	for <yocto@yoctoproject.org>; Tue, 21 May 2019 15:25:22 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-	by compute1.internal (MEProxy); Tue, 21 May 2019 15:25:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=betafive.co.uk;
-	h=mime-version:message-id:date:from:to:subject:content-type; s=
-	fm1; bh=860HOFehcE7AbyGC+O6Vy5VA4lqhtBQU0WgQN5vyfeU=; b=Ez1bcOeB
-	UyC75B22gj1faM1K5tRTgLmNcO67AEeY05vjQfW+5NTyLV+frNdaPTZ/tThrDHbU
-	In46fJKtO4Nm8q9dBpmZUXmUgIyWK+yCI6Xqzc8PCEXKLIbVH2Kk2bNK+GJRu8P6
-	9uC5PtkLA450LXgQqq4wkRktA8dBc+rnbgskbonrqZLG9FAUb4kZ7uWhEpMNY7GF
-	boJdnaYG+Bh1hYddU+NQyXhNHgBh0704//yWiG8N7wBERNnvV7A2zZInmuDksSED
-	w3ILT48FS8rF+rOBCiaLBzm8R21NCkWfBQRq07eJSYDbPSFLPbpLvj2/1v/8zrR2
-	oRmLs61Qbx2zjw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=content-type:date:from:message-id
-	:mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm2; bh=860HOFehcE7AbyGC+O6Vy5VA4lqht
-	BQU0WgQN5vyfeU=; b=4znztVtxcSZknWyJBucln6tqAksnP0r00k+YjfSfRMU3u
-	/Jw54EhjQ1R+fj6gB/NXZ4CB2P1Z2nvya7wgQlUiRAaON1EHrVT4C7sfFkRaHjTM
-	GAZY6ygunymDm8xw8xEA5bdESKn1iRoYCIsY66LhT+eJ6ovdgAu/8yierZf6B/y7
-	tZbF89wxAR9qD0DGlyHClkNiotlRzY0k/6dqCmoxYcOniQkmcEubPEtHNY6fzrG8
-	2JG+kjyH2KS8KxkNxpPn2gdRCfKEKw1c4sHD+xxA+FO8Ax0bb1x0moiQZ2SCbcT1
-	E4Taa6rzFDSbGKHauslu8HBiDlPSCpv3okV4Y76dw==
-X-ME-Sender: <xms:olDkXJae_iyJYA-_l_k3YKzluQzyI0UgbWiyMz_RpE33qMCjz8GvlA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddruddutddgudefkecutefuodetggdotefrod
-	ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-	necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-	enucfjughrpefofgggkfffhffvufgtsehttdertderredtnecuhfhrohhmpedfrfgruhhl
-	uceurghrkhgvrhdfuceophgruhhlsegsvghtrghfihhvvgdrtghordhukheqnecuffhomh
-	grihhnpeihohgtthhophhrohhjvggtthdrohhrghenucfrrghrrghmpehmrghilhhfrhho
-	mhepphgruhhlsegsvghtrghfihhvvgdrtghordhukhenucevlhhushhtvghrufhiiigvpe
-	dt
-X-ME-Proxy: <xmx:olDkXE_dpxOq8vfLWtsM-Iq_p_l1jHxqXQJbwtj_GoVuKExmQYVsgg>
-	<xmx:olDkXJG0AvdSeVuxjZ_HjEINn6DRlGdFWwdoumAiIR9a24xc9kC72Q>
-	<xmx:olDkXOe4yBA0AyG1D4s0-DaTJn_hhLBzzTZ-0aeAUoyWIHjKz-hWPg>
-	<xmx:olDkXDQ125bFGyozsIbLOMxCsuL92AY50vdQQh3aBZts6dvd9plx2g>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 19E067C8FA; Tue, 21 May 2019 15:25:22 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.6-550-g29afa21-fmstable-20190520v1
-Mime-Version: 1.0
-Message-Id: <605eba8c-7265-40e3-8619-81355ec46e7d@www.fastmail.com>
-Date: Tue, 21 May 2019 20:23:44 +0100
-From: "Paul Barker" <paul@betafive.co.uk>
-To: "Yocto discussion list" <yocto@yoctoproject.org>
-Subject: distrodata documentation in 2.7 Mega Manual
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.181 listed in list.dnswl.org]
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com
+	[209.85.167.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54C29E00D32
+	for <yocto@yoctoproject.org>; Tue, 21 May 2019 12:54:26 -0700 (PDT)
+Received: by mail-oi1-f181.google.com with SMTP id a132so13814125oib.2
+	for <yocto@yoctoproject.org>; Tue, 21 May 2019 12:54:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=gvEJoPlBqy8CAyPIfCEXHI3Kz7I5MkdaIgYgGe+ueq4=;
+	b=X4cFXW3NbPP8gjlbnOJ4gDLiG1G8N1Z6pRd3tfZd3F+jdxj2i1gQbBOAjeyDTe0RQJ
+	18KU+iXS/gHZ2xe4LSfq6oB0Ka90v8nR2uf0xuW9CgdlLAka2faWL52Glh84nMb2Yc9x
+	DNJ2sKe/Hba2rhCstpMTPyqFBvZByY9YO24aB7SIw0JB6R0PkYoUsKOhw1wz715EWTk/
+	GYatOi3r3cz0tQwhfRMAQO82i3lVFS0peqFviN6Mb50KgsNP5qy0OOcdUOyvwuOllew5
+	sjKlXZES3wpQFi6enD9FuZnqYgj9Xo0gHCUCOvkuZgeLANNSPKAd442mbN/eWGOa72IG
+	m24A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=gvEJoPlBqy8CAyPIfCEXHI3Kz7I5MkdaIgYgGe+ueq4=;
+	b=GTx5GDLSekXCMCWGQZ48M+DwYQvM3xpvzuthzaBjLmo7YtHZli80EjaigZrz0wnf/I
+	k8T83qCOYm6ULk/dcxB+RFkY48xQAIqoJ1SJAq8K4uOoykoTkMZpqX9p4jwAGK/RtDiE
+	mKQ07ez3BHnENET5X/Nkemyw9qx2ILr1gEwJaCg8M21rIyqan/Lpp87vrFGYohL/becR
+	XQqO73+9/TBGpnVONzc3WKRJBBqZ9wtMDZ7FOKjWPSAf4241rm/0AUNcZlWrqNTXV9K+
+	d7E3KrrVgLLP/lUTr8OTBO+sekX9P9wcthOEWA9nbzTMD0Spp6iuHzFn3Bwg7EZELFyy
+	70gw==
+X-Gm-Message-State: APjAAAV6+9S3QbIBtJf6yVK63dgFOt4wXKqroSv50FDB6hxVSYfh34zR
+	DNy4a3tF5kDw5OG4y1z3YmGhn2ONOJCOdQD1JMM=
+X-Google-Smtp-Source: APXvYqztcseDZOUyrDjMml4JGicFqvv4nq3DDsAp6sz1l3Ztk77ffdwbCE1xkNn0KmB+izPw8R9NMd3C21MYs8RRvXk=
+X-Received: by 2002:aca:6087:: with SMTP id u129mr2683033oib.70.1558468465768; 
+	Tue, 21 May 2019 12:54:25 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAFNP8OvJX6LZX-LKdaX6y78BUoNSwAvm2dh6Jkw5nKoPhYabzw@mail.gmail.com>
+In-Reply-To: <CAFNP8OvJX6LZX-LKdaX6y78BUoNSwAvm2dh6Jkw5nKoPhYabzw@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Tue, 21 May 2019 21:54:14 +0200
+Message-ID: <CANNYZj82Rg-_OjqfQFR5cvcmu_oHj9skCLLvfH_cD6iWbGqj1A@mail.gmail.com>
+To: Scott Rifenbark <srifenbark@gmail.com>,
+	jean-marie.lemetayer@savoirfairelinux.com
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: NPM Fetcher question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,17 +71,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 May 2019 19:30:56 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 21 May 2019 19:54:26 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Just reading the 2.7 Mega Manual at https://www.yoctoproject.org/docs/2.7/mega-manual/mega-manual.html and noticed a possible bug.
+I think Jean-Marie might be able to help as he recently did a bit of NPM fixing?
 
-"24.15.9. Removed Classes" indicates that the `distrodata` class is now gone. However it's still referred to in several other places in the documentation. May need a bit of garbage collection.
 
-Thanks,
+Alex
 
--- 
-Paul Barker
-Managing Director & Principal Engineer
-Beta Five Ltd
+On Tue, 21 May 2019 at 19:52, Scott Rifenbark <srifenbark@gmail.com> wrote:
+>
+> Hi,
+>
+> I am trying to determine if the information in https://wiki.yoctoproject.org/wiki/TipsAndTricks/NPM is relevant and up-to-date for current YP release.  I am having trouble finding a resource familiar with this topic.
+>
+> Can anyone point me to the expert for this area?
+>
+> Thanks,
+> Scott Rifenbark (docs)
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
