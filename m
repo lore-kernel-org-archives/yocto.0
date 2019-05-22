@@ -1,76 +1,82 @@
-Return-Path: <Kamal.Pandey@ifm.com>
+Return-Path: <paul@betafive.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1CB07E00D6B; Tue, 21 May 2019 22:11:50 -0700 (PDT)
+	id 59D4EE00931; Wed, 22 May 2019 00:50:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
 	low *      trust
-	*      [91.90.150.80 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [64.147.123.25 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from s2080.ppsmtp.net (s2080.ppsmtp.net [91.90.150.80])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF7FDE00D5D
-	for <yocto@yoctoproject.org>; Tue, 21 May 2019 22:11:48 -0700 (PDT)
-Received: from pps.filterd (s2080.ppsmtp.net [127.0.0.1])
-	by s2080.ppsmtp.net (8.16.0.27/8.16.0.27) with SMTP id x4M5BCw4004987
-	for <yocto@yoctoproject.org>; Wed, 22 May 2019 07:11:47 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ifm.com;
-	h=from : to : subject :
-	date : message-id : mime-version : content-type; s=pps;
-	bh=l+ksLlWG52ur3jOYoUFnAS1LDnpkUX25+L6IZV86REU=;
-	b=k3Y/joxPSUL6zU93tO6aD234vDLlV0vgySW2NVPUSND3VV2AaviO9pDhzpB5HVr4PRkP
-	ayjZMGFdwA/KOVSEwq6DhcF9Nl8MXOKw6Sas0ZgGCb6hzR7EcJHo2vQhxLvSxtOfaXKJ
-	q8k3q4VZ1neURiF0yDplVLz6guDCFYT24ArW6Hv2BtDGedj9QpQd3HjMLZ8qdBM6cI+v
-	GXxuoXsnfzMYpe/9YfXVSuvNHVZHN3Bcjgm7xi+yTY+Z2vOL7Z26qAYbeuOI1rbuJhj/
-	+dgTVFMK2H8YC0qGthUMfXL0b+deG03QUumPluJkzkJ4LtPtNFr5y2oRH2snE5zXYRsV
-	Kw== 
-Received: from deesdmz226.dmz.es.de.ifm (mail26.ifm.com [194.156.152.226])
-	by s2080.ppsmtp.net with ESMTP id 2smjfusa74-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
-	for <yocto@yoctoproject.org>; Wed, 22 May 2019 07:11:47 +0200
-Received: from deesdmz226.dmz.es.de.ifm (localhost.localdomain [127.0.0.1])
-	by deesdmz226.dmz.es.de.ifm (Postfix) with ESMTP id BB17B703838
-	for <yocto@yoctoproject.org>; Wed, 22 May 2019 07:11:46 +0200 (CEST)
-From: "Pandey, Kamal" <Kamal.Pandey@ifm.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] configuration for a layer apart from local.conf
-Thread-Index: AdUQW/zpWQNLj+xgRMunSqQRQAoyFw==
-Date: Wed, 22 May 2019 05:11:45 +0000
-Message-ID: <3e81b5f5e0294337bf5409b23344e282@ifm.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.29.169.111]
-x-tm-as-product-ver: SMEX-12.5.0.1684-8.5.1010-24624.002
-x-tm-as-result: No-13.943100-5.000000-10
-x-tmase-matchedrid: 49Em7KPP995HW+94FA8JF8K1Ib9JAALxrogFtKd/P7cLBZEuqIL9SpO9
-	mQGx4jC3Sa7i4WMGYwF/2SsgU8jyNW7vEKjEI8LygNylVbI/EAyoCf7IdvPAJzrW2rRfTfGrevR
-	Ae5P8R94/+RSNQ9LGXlDQ43dkW3a5LDC3FGTHI3eL6bUMM+bbIv98fIf4wIXlI0YrtQLsSUxxQt
-	HzHkAOcFullIPhHVLL+jCEWxpgJgH5s5ZGHFKFGG/+RwWenb0Y1ViV5EWK7TubKItl61J/yc894
-	3oc3p3s32mPO5tnasfhQCaf8WIp0Ne+KCPJg/Zhi5CcbFR7sWrh2rjqPbZZLkLKcuPjo0pV
-x-tm-as-user-approved-sender: Yes
-x-tm-as-user-blocked-sender: No
-x-tmase-result: 10--13.943100-5.000000
-x-tmase-version: SMEX-12.5.0.1684-8.5.1010-24624.002
-x-tm-snts-smtp: 156DA88BDE69C33B1AB0A63C0B17B5D6552CD54476DB22A93B34CE77FC8317C32002:9
-x-c2processedorg: 02c94ccb-b9eb-40fe-af38-4bcaa8aaafa4
-MIME-Version: 1.0
-X-CompuMailGateway: Version: 7.00.0.19367.x86_64 COMPUMAIL Date:
-	20190522051146Z
-X-Proofpoint-ID: SID=2smjfusa74 QID=2smjfusa74-1
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
-	definitions=2019-05-22_02:, , signatures=0
-Subject: configuration for a layer apart from local.conf
+Received: from wout2-smtp.messagingengine.com (wout2-smtp.messagingengine.com
+	[64.147.123.25])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9CD31E00931
+	for <yocto@yoctoproject.org>; Wed, 22 May 2019 00:50:55 -0700 (PDT)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailout.west.internal (Postfix) with ESMTP id ED6C84A7;
+	Wed, 22 May 2019 03:50:53 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+	by compute1.internal (MEProxy); Wed, 22 May 2019 03:50:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=betafive.co.uk;
+	h=mime-version:message-id:in-reply-to:references:date:from:to
+	:cc:subject:content-type; s=fm1; bh=UwU0FDnXzWVJIpHJK/w2oQaNLy7S
+	x1z59Cs6UoLXO3o=; b=BbrB64fmWJyECVb61CsM1e6eenPCN+7JXq4ur2QrTMfj
+	BuLA9B4j47a2bczTLlJ/rtZ+8XDWuQvMnhUFL9+y8neeHWxal68GsWBuEkIVHsuC
+	l5AKkA0zZ20hfzA44mBN88nCqMGEj2PHrsytOwewaIBONDDxAhqdksPyZsvyf17V
+	rLGf5iGRR64FLcmdXmXh+ckI3tDppVU/ipcj4YBdAX9uGgo7+lFVFyKVbqbCsMkE
+	4vVKpqifvUZlMbyMD4/v4TJlBpqxi0xRc3ZQlB0Mw9dJS3weQxTHlcqIco8BUVjy
+	8jH6lG6ANsvlgo/PU3n2B3nnIQeHGv5LPqWYVc2lTA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=UwU0FD
+	nXzWVJIpHJK/w2oQaNLy7Sx1z59Cs6UoLXO3o=; b=QKYBMM9k62i3pZmSvCyhzh
+	AQC2nzgrcIFxaJFmzn+VCTgvLgTqnnlJOLPaMfOhm30fPY02XqGBvJwNUA41fNbQ
+	NAwMR0Ve8mLFSXIY6Jg6db7ndZdUCNyhGWKS5JID/EPRx9YDIt60TFB6J1COXqUU
+	iYcHmf9DXfhE3Ut+Xuw4Dx4ccV8/uTbJjkF0BG2sil1y8iYBrdl22ZJfbG0T1/F0
+	aGjvLTot9+lOOgwXwq7PeJ3zy1LMYSFnNB7DV1t29bywW7pZzncwyn7jIaX0PW+w
+	xICa1kh3ctV4J027jYZ2npvtagOx6SmMoAb4Ev1RzFiuBgfxW2i9AU41gELH2HoA
+	==
+X-ME-Sender: <xms:Xf_kXECpagRP7ukgX9LhfdYM4s0-A5yWiw0stcdJM14eBJNcroSuDw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddrudduuddguddvhecutefuodetggdotefrod
+	ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
+	necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
+	enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfrfgr
+	uhhluceurghrkhgvrhdfuceophgruhhlsegsvghtrghfihhvvgdrtghordhukheqnecurf
+	grrhgrmhepmhgrihhlfhhrohhmpehprghulhessggvthgrfhhivhgvrdgtohdruhhknecu
+	vehluhhsthgvrhfuihiivgeptd
+X-ME-Proxy: <xmx:Xf_kXMoIbotQgL30exG4EiWTLshi2Oek4hIk9oHD73VfRldv_Z0vhQ>
+	<xmx:Xf_kXMtuwoxXcRkctAHiRiYlQ-6i_BvtwB8soTU9emfoCbizzx5G_w>
+	<xmx:Xf_kXBBEDxMq2HkvTANu26cUNWFCQrEU6VGHGz1ZG2yQ_6zohZ7PzQ>
+	<xmx:Xf_kXCvJ9s25DlWkXeLLSnuHopCtXYSsf83tR0d-vPq5JMSrKLipdg>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 00E1AE00A1; Wed, 22 May 2019 03:50:52 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-550-g29afa21-fmstable-20190520v1
+Mime-Version: 1.0
+Message-Id: <7247318a-7294-4879-bc0b-6af506cab3ca@www.fastmail.com>
+In-Reply-To: <CAAfyv37ZAPU-5HZP+LpXM6oeuoscnku_rOzCDFXNuoVC+zOFcQ@mail.gmail.com>
+References: <CAAfyv36rHpLWA0sO=nZHePMHVjLBpsUgGmPUXpQ2gObF7+2gJA@mail.gmail.com>
+	<CANNYZj_E0+sizpK0gvTa3H_8r1wZtW2sY3S2rz7PbMnU99Zv8w@mail.gmail.com>
+	<CAAfyv34RLBR_vJqnZxnW5T_+SyGU8Mtn4eM_gzKuFcCoMx2y_w@mail.gmail.com>
+	<CANNYZj--jzkXeyqGiMms05wvD0yQvWt1uUmJD9xGe3=xrN7b5Q@mail.gmail.com>
+	<CAAfyv37ZAPU-5HZP+LpXM6oeuoscnku_rOzCDFXNuoVC+zOFcQ@mail.gmail.com>
+Date: Wed, 22 May 2019 08:50:52 +0100
+From: "Paul Barker" <paul@betafive.co.uk>
+To: "Belisko Marek" <marek.belisko@gmail.com>,
+	"Alexander Kanavin" <alex.kanavin@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: setting SRC_URI runtime - possible options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,105 +88,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 22 May 2019 05:11:50 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_3e81b5f5e0294337bf5409b23344e282ifmcom_"
+X-List-Received-Date: Wed, 22 May 2019 07:50:56 -0000
+Content-Type: text/plain
 
---_000_3e81b5f5e0294337bf5409b23344e282ifmcom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Tue, 21 May 2019, at 11:23, Belisko Marek wrote:
+> On Tue, May 21, 2019 at 12:14 PM Alexander Kanavin 
+> <alex.kanavin@gmail.com> wrote:
+> > You can write a class which sets the template for SRC_URI and then a
+> >  series of recipes that inherit the class, and define the variable that
+> >  would turn the template into the actual URI.
+> OK I think it make sense. So parsing of config file will be done in 
+> class and then class will be used in recipes to set correct SRU_URI.
+> Do you have any idea what is wrong with actual code I posted? Why it is 
+> doing some strange things? Thanks.
 
-Hi,
-I want to know if there is any other place where we can set configuration f=
-or a particular layer, apart from local.conf. For example if I want to set =
-LICENSE_FLAGS_WHITELIST can I do that in layer.conf, or do I need to do tha=
-t in local.conf only. Similarly for BBMASK too. So basically my question is=
-, for setting the configurations of a particular layer, is there any place =
-where I can set those variables inside that layer only?
-Best Regards
-Kamal Pandey
+You're setting the SRC_URI value only in the do_fetch task. It's needed in at least the do_unpack task as well and possibly other tasks.
 
+You could look at setting this in an anonymous python function instead if you really need to parse a config file.
 
---_000_3e81b5f5e0294337bf5409b23344e282ifmcom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+-- 
+Paul Barker
+Managing Director & Principal Engineer
+Beta Five Ltd
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Trebuchet MS";
-	panose-1:2 11 6 3 2 2 2 2 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-IN" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal">I want to know if there is any other place where we =
-can set configuration for a particular layer, apart from local.conf. For ex=
-ample if I want to set LICENSE_FLAGS_WHITELIST can I do that in layer.conf,=
- or do I need to do that in local.conf
- only. Similarly for BBMASK too. So basically my question is, for setting t=
-he configurations of a particular layer, is there any place where I can set=
- those variables inside that layer only?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
-tyle=3D"font-size:10.0pt;font-family:&quot;Trebuchet MS&quot;,sans-serif;co=
-lor:black;mso-fareast-language:EN-IN">Best Regards
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
-tyle=3D"font-size:10.0pt;font-family:&quot;Trebuchet MS&quot;,sans-serif;co=
-lor:black;mso-fareast-language:EN-IN">Kamal Pandey<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_3e81b5f5e0294337bf5409b23344e282ifmcom_--
