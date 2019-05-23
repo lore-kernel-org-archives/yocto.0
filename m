@@ -1,76 +1,76 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 43D62E00B5F; Thu, 23 May 2019 16:49:48 -0700 (PDT)
+	id 5CDA4E00B5F; Thu, 23 May 2019 16:55:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FREEMAIL_REPLY,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.215.182 listed in list.dnswl.org]
+	*      [209.85.210.174 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
-	[209.85.215.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49225E00B43
-	for <yocto@yoctoproject.org>; Thu, 23 May 2019 16:49:46 -0700 (PDT)
-Received: by mail-pg1-f182.google.com with SMTP id z3so3946068pgp.8
-	for <yocto@yoctoproject.org>; Thu, 23 May 2019 16:49:46 -0700 (PDT)
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com
+	[209.85.210.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00B97E00B43
+	for <yocto@yoctoproject.org>; Thu, 23 May 2019 16:55:55 -0700 (PDT)
+Received: by mail-pf1-f174.google.com with SMTP id y11so4115042pfm.13
+	for <yocto@yoctoproject.org>; Thu, 23 May 2019 16:55:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:organization:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=ulILMwaB7nEnxpHSiCOSMjc4rFxTEtipgfgcDHUXksc=;
-	b=LInWwccRobSgmVMKt0Z4s4wtTg6e1AEjefhAajRvYhK8SvzexnBTYmDb2ZUIvjWhOE
-	OljAhzBV+RN/xBpq75xR3BZzHcwkaDtCSV3cLrMPKdjJ9/1mYIw5TqrKEpN/7YmsovqM
-	oEiQbarZV5vewuP+HEhhCrIRYDGrczAnCyT1ki0u1RzB0hOSrzYh6wj7Hzs0aHv3efUc
-	puwhRC+PqJplvAshK354/UIHh8b9w+yrtSK5Jfa7hV4W7Cekw5D9pmZuL0zrirCTK+NP
-	RiSNLuFcGsZtqemKzkTZXvHP2l3+loPDG+N2aQaoo7UH+QdLPAhsRw23Va5JFx19BGTw
-	92dQ==
+	h=subject:to:references:from:organization:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language:content-transfer-encoding;
+	bh=3RunZ6RTOEYmeqAvKOd8aUE/6Eo/zRtHFwchT3LvYyY=;
+	b=H7Sx+ZiIDtNTHnQT5jkSx6PQ++mqVreLliHWtSvJXy79yCTXW/8/5yaZ/Vs/Ab1HX0
+	K8UmM9xuXpLjxmi42sqpLlBhm5RyzoxXczjPxL8iz4mHEy/zpR1vNI85URevUrokf424
+	/gfBg4bM5Mtrb8+/cgqKNwrWb9kGwKa/7uUWOBXBICFQQeCWcHNQ+n3pDdDehckMzdFp
+	AMlC7nfqgIo70DK1WSDgZbCxhjORFLMkq2xPHunAOXCIUB5iSwBhUpf2ggRCF8SxbJsC
+	BHnlZUxaHK/8+dZRD+pFQyPjZIEZi2QhHAqRt6JlLbm8hzPFbP+znxDtHE12hkPFnN70
+	66sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:organization
+	h=x-gm-message-state:subject:to:references:from:organization
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-language:content-transfer-encoding;
-	bh=ulILMwaB7nEnxpHSiCOSMjc4rFxTEtipgfgcDHUXksc=;
-	b=D+D2IJkJgaVXznSjFuyxD7ZvBEd5dmYZ5FCXmYKn074yqiQSzOdZMI06XBKct9fJgI
-	RSxYi6ERsYDoYVuxgmiLmRpM7/u78ZgMAkUxngML1wreS42Cuq2dWZUZmFcOwuNZw6j3
-	VAG4kDQfhFIOyiYrmlWP5aaFzn5iRtqYycuocOz4Q4lm0efxxte/PM6OxsRfChJHbyju
-	ELBJEYdRbrER5p7eeBQhRZ5rxqRhs3hvsdH6nNMu8o8UTBhHBRFqnkhXKU8tLorRqw9L
-	OYsgOVrb/hrnaJDZRX0++32xDBPmYKwugq8oxqS/zS/xtga62lY5Nojs3aXXA0jTj/0Q
-	eTXg==
-X-Gm-Message-State: APjAAAUTm92XC+tOQ14pdg0cmZimrpT9MKU2cSRthq7/7e9Cq5fgREWF
-	zHTTcUz1Nex47zHvohpdO1u74WN5gTQ=
-X-Google-Smtp-Source: APXvYqwlFK8Ei4essE9k3cmK7xF7H9NRbwXaWx0XGRrmZe1xNKCHjU2tuDDib/T4og/SvM798ZEUSg==
-X-Received: by 2002:a65:6681:: with SMTP id b1mr26276805pgw.301.1558655384923; 
-	Thu, 23 May 2019 16:49:44 -0700 (PDT)
+	bh=3RunZ6RTOEYmeqAvKOd8aUE/6Eo/zRtHFwchT3LvYyY=;
+	b=OEVr9eU1iBs6tjaDsdFRdwRAvdiBfHxfJe5KyPxZGycIYm6OPs5rUqjmpCpqQj+7NR
+	lenHwkuHygpsspHtztgtDzwVZvI1KU4jBRMgNPuja97Na5Ukdv1t5ZgpgGeYYgWdGGax
+	8Zx4pJlGzg2MzXT1wdIhgnonLXVmk+6RGLHFZT9YLcT2ZRpjabiDa2oOrqipaXoHun/+
+	+ek6ivrTv6WtxaMEo+UuTkoxE5PjzqDpuae5bE8pu1+esJAfkV8qXDYXdEoQndt0wqDx
+	6fY1UIfbPRN95FdtKeKwEbCUKCFfafpKA6RpILvsY6uKLwrG2JOaTzpWbHXntVx3XxuU
+	bCyA==
+X-Gm-Message-State: APjAAAUVUgo/Q7av4bAptpgh6v8w+oPUM6vhFSTR0hltaAGVDohseKuK
+	FwxTahqBKsCpecl896TcnzeGDlwyJH4=
+X-Google-Smtp-Source: APXvYqyCjlRdKpdkrRCk4uS9WoJjaQw26kcNvf5juBhyG1mbStCIfkFyWF7tzn8T7yygF9firkGZwQ==
+X-Received: by 2002:a17:90a:bd8b:: with SMTP id
+	z11mr5088384pjr.39.1558655754918; 
+	Thu, 23 May 2019 16:55:54 -0700 (PDT)
 Received: from hermes.local ([2601:646:8500:6bc6:7892:9931:70c0:491e])
-	by smtp.gmail.com with ESMTPSA id l38sm402014pje.12.2019.05.23.16.49.43
+	by smtp.gmail.com with ESMTPSA id g8sm571873pfk.83.2019.05.23.16.55.54
 	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Thu, 23 May 2019 16:49:44 -0700 (PDT)
-To: Ralf Spiwoks <spiwoks@cern.ch>, "Burton, Ross" <ross.burton@intel.com>
-References: <51a78952-31b9-6b1b-2459-c1092b50fdf2@cern.ch>
-	<CAJTo0LbkJSEP+49qR_fSmN5cGB0-n+Gz8xaFnLvuvi3WAy+zOA@mail.gmail.com>
-	<cc00f116-9071-3d5e-7fa7-a14af9bd71af@cern.ch>
+	Thu, 23 May 2019 16:55:54 -0700 (PDT)
+To: virendra kumar thakur <coolveer07@gmail.com>,
+	Yocto-mailing-list <yocto@yoctoproject.org>
+References: <CANGFfGa=qMdrWzo-Lxs-tb=6q3XH7aqXVrOd7JdC3G9Yk3Lp=g@mail.gmail.com>
+	<CANGFfGYLEXR49NvsQUuDawFoGDYiDzGPVaqLiaN=vZzSbdtsnQ@mail.gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
 Organization: HIMVIS LLC
-Message-ID: <70c52f90-eba9-d67b-7d8c-55b5a249f1ae@gmail.com>
-Date: Thu, 23 May 2019 16:49:42 -0700
+Message-ID: <277b0434-c5df-ac19-5e79-6c5ffb6a55d5@gmail.com>
+Date: Thu, 23 May 2019 16:55:53 -0700
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:67.0)
 	Gecko/20100101 Thunderbird/67.0
 MIME-Version: 1.0
-In-Reply-To: <cc00f116-9071-3d5e-7fa7-a14af9bd71af@cern.ch>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Re: PN is uppercase
+In-Reply-To: <CANGFfGYLEXR49NvsQUuDawFoGDYiDzGPVaqLiaN=vZzSbdtsnQ@mail.gmail.com>
+Subject: Re: /usr/share/common-license package/recipeinfo contains GPLv3 info
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,60 +82,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 May 2019 23:49:48 -0000
+X-List-Received-Date: Thu, 23 May 2019 23:55:56 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 
 
 
-On 5/21/19 12:50 AM, Ralf Spiwoks wrote:
-> Hi Ross,
+On 5/23/19 2:42 AM, virendra kumar thakur wrote:
 > 
-> Thanks for your email. I am realising that I have not replied to your
-> email earlier. Sorry. I guess it was partly because your answer put
-> me slightly off. On the one hand, I thought that as a general approach,
-> Linux was case sensitive, unlike its big rival Windows, and I was not
-> aware  of package managers which would explicitly forbid uppercase
-> package names. I find the approach of allowing only lowercase package
-> names quite limiting, and frankly a drawback for using Yocto
 > 
-> On the other hand I have a few tens of packages to maintain, which
-> have uppercase letters in the package names and which did work with
-> Yocto in previous versions. So, because of a new convention we would
-> have to rework some of the packages or ignore the warning messages.
-> And until we find the effort for reworking those package recipes we
-> will stay with the latter option.
+> Hello team,
+> 
+> I am trying to build yocto image without GPLv3 package, I have added 
+> below things in local.conf and enable meta-gplv2 layer.
+> 
+> INCOMPATIBLE_LICENSE = "GPL-3.0 LGPL-3.0 AGPL-3. 0" in local.conf.
 
-The package name rules are not new, they have been with OE/YP forever
-so it should have failed always. Similar to debian see
-
-https://www.debian.org/doc/debian-policy/ch-controlfields.html#list-of-fields
+Can you try adding GPLv3+ to INCOMPATIBLE_LICENSE and see if that helps ?
 
 > 
-> Thanks for your patience and your explanations. Cheers,
+> After verifying from package.manifest and license.manifest file in 
+> build/tmp/deploy/license/ directory I observe that no GPLv3 package is 
+> present in rootfs.
 > 
-> Ralf.
+> But I can see in 
+> rootfs/usr/share/common-license/package/libgcrypt-lic/recipeinfo
 > 
-> On 4/2/19 1:54 PM, Burton, Ross wrote:
->> On Tue, 2 Apr 2019 at 12:36, Ralf Spiwoks <spiwoks@cern.ch> wrote:
->>> TWO questions:
->>>
->>> 1) Are those two issues related?
->>
->> Probably not, unless you're trying to use a mixed-case override.
->>
->>> 2) What is the logic behind allowing only lower case package names? 
->>> This is to me
->>>      a serious restriction on the use of Yocto.
->>
->> Two reasons: some package managers forbid packages with uppercase
->> names; and for performance reasons overrides are lowercase and as
->> package names are often embedded in overrides this implies that
->> package names need to be lowercase.
->>
->> What's the problem with using lowercase names?
->>
->> Ross
->>
+> LICENSE: GPLV2+ &LGPLV2.1+ &GPLV3+
+> PR: r0
+> PV : 1.8.4
+> 
+> Is present..
+> 
+> My doubt is why any GPLv3 is present in common-license directory?
+> 
+> From: "Burton, Ross" <ross.burton@intel.com <mailto:ross.burton@intel.com>>
+> To: virendra kumar thakur <coolveer07@gmail.com 
+> <mailto:coolveer07@gmail.com>>
+> Cc: Yocto-mailing-list <yocto@yoctoproject.org 
+> <mailto:yocto@yoctoproject.org>>
+> Subject: Re: [yocto] GPLv3 package present in rootfs
+> 
+> On Wed, 22 May 2019 at 06:26, virendra kumar thakur
+> <coolveer07@gmail.com <mailto:coolveer07@gmail.com>> wrote:
+>> still some package gnutls, libidn2, libassuan, are added into rootfs.
+> 
+> Randomly picking libassuan:
+> 
+> LICENSE_${PN} = "LGPLv2.1+"
+> 
+> The library itself is LGPL-2.  Have you verified the *package*
+> licenses for what is actually going into the image?
+> 
+> Ross
+> 
+> 
+> 
+> 
 
