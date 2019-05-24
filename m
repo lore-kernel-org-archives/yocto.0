@@ -1,107 +1,67 @@
-Return-Path: <harish.tg@aptiv.com>
+Return-Path: <coolveer07@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8D183E00B58; Thu, 23 May 2019 23:34:57 -0700 (PDT)
+	id EF3B5E00BAA; Thu, 23 May 2019 23:37:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [69.195.251.241 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-Received: from usflmia-meg1.delphi.com (usflmia-meg1.delphi.com
-	[69.195.251.241])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97D01E008F2
-	for <yocto@yoctoproject.org>; Thu, 23 May 2019 23:34:55 -0700 (PDT)
-Received: from 10492-US-DLP001.delphiauto.net (unknown [10.201.250.13]) by
-	usflmia-meg1.delphi.com with smtp
-	id 0689_0b3f_6a023bc4_d207_4446_86fb_938145e99777;
-	Fri, 24 May 2019 02:31:14 -0400
-Received: from usflmia-gw2.delphi.com ([10.192.117.25])
-	by 10492-US-DLP001.delphiauto.net (8.13.8/8.13.8) with ESMTP id
-	x4O6YsVa026158
-	for <yocto@yoctoproject.org>; Fri, 24 May 2019 02:34:54 -0400
-Received: from mx0a-00275a01.pphosted.com (mx0a-00275a01.pphosted.com
-	[148.163.157.133]) by usflmia-gw2.delphi.com with smtp
-	(TLS: TLSv1/SSLv3,256bits,ECDHE-RSA-AES256-GCM-SHA384)
-	id 3a94_9848_8f5e6a16_a969_4ab6_af35_184936c79e10;
-	Fri, 24 May 2019 02:32:08 -0400
-Received: from pps.filterd (m0109022.ppops.net [127.0.0.1])
-	by mx0a-00275a01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id
-	x4O6YVSu030687
-	for <yocto@yoctoproject.org>; Fri, 24 May 2019 06:34:52 GMT
-Received: from nam05-by2-obe.outbound.protection.outlook.com
-	(mail-by2nam05lp2059.outbound.protection.outlook.com [104.47.50.59])
-	by mx0a-00275a01.pphosted.com with ESMTP id 2sp9swgfnc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT)
-	for <yocto@yoctoproject.org>; Fri, 24 May 2019 06:34:52 +0000
-Received: from BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM (129.75.106.24) by
-	BN6P197MB0036.NAMP197.PROD.OUTLOOK.COM (129.75.106.23) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1900.20; Fri, 24 May 2019 06:34:50 +0000
-Received: from BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM
-	([fe80::6c86:e18e:fac4:6bf5]) by BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM
-	([fe80::6c86:e18e:fac4:6bf5%8]) with mapi id 15.20.1900.020;
-	Fri, 24 May 2019 06:34:50 +0000
-From: "Tg, Harish" <harish.tg@aptiv.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] EXT SENDER - yocto Digest, Vol 104, Issue 95
-Thread-Index: AQHVEKJktXx0yxcK9kKNv1vrSBjDyKZ4rPPggADUGwCAADwkgIAABdSAgAACn0CAAA6MsA==
-Date: Fri, 24 May 2019 06:34:50 +0000
-Message-ID: <BN6P197MB00494F7E154BBCCEF51B9A6CFB020@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
-References: <mailman.14370.1558531613.2881.yocto@yoctoproject.org>
-	<BN6P197MB004909BFF82584B53EF5DF24FB010@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
-	<d10908a2-a6ac-5011-c629-0cf9de89cce6@gmail.com>
-	<BN6P197MB00490F98551A58F58C80FAA7FB020@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
-	<99738dcb-c223-6a19-0f5c-3d8fb0ee31c8@gmail.com>
-	<BN6P197MB00494FED4E8CA66ED4885186FB020@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
-In-Reply-To: <BN6P197MB00494FED4E8CA66ED4885186FB020@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [1.6.70.242]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: dab0faf3-6edb-49a1-5673-08d6e011ecb2
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(2017052603328)(7193020);
-	SRVR:BN6P197MB0036; 
-x-ms-traffictypediagnostic: BN6P197MB0036:
-x-ms-exchange-purlcount: 4
-x-microsoft-antispam-prvs: <BN6P197MB0036EF960D4C7EC128E187ACFB020@BN6P197MB0036.NAMP197.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:4502;
-x-forefront-prvs: 0047BC5ADE
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(136003)(366004)(376002)(346002)(39860400002)(396003)(10533003)(18543002)(27574002)(199004)(13464003)(189003)(53936002)(99286004)(53546011)(6506007)(7696005)(76176011)(33656002)(2351001)(102836004)(25786009)(71190400001)(71200400001)(316002)(3846002)(256004)(14444005)(5024004)(6116002)(478600001)(66946007)(66476007)(66556008)(73956011)(2501003)(2940100002)(76116006)(186003)(8676002)(305945005)(66446008)(64756008)(68736007)(2906002)(11346002)(1730700003)(486006)(26005)(446003)(476003)(966005)(7736002)(81166006)(14454004)(66066001)(8936002)(81156014)(6306002)(74316002)(6916009)(2473003)(9686003)(86362001)(52536014)(6436002)(229853002)(5660300002)(5640700003)(55016002)(547064002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6P197MB0036;
-	H:BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: aptiv.com does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: SmPB8XOUhglyhk80WU1eo4OPYVq5GJ6xuf5X++MGwwKL5RzVzp3IMeOTqR4yyy9tcJXV71LqptIYjghYvas9u33eQE9EbVy4QgJKKfq77cX/UHVtHrV5x7fBsSQpgD2vKSpNZ/pB7v7qW+fwLuT96Ilv4kp6ThIYC/tgGnYmwA8Sy/4KhUDvzBm+tgGyUAAaGWqpWl1dMv2iyUQU4tUip7Ixj1BRWTl2GM6wTxQlfkpP98Qy1LbiMd0xxdBCEXsAl5pQYayQEWDiiOMpKJAYq6SVahseKyJoGdaQHDhWhCWcbQB3hVw3X13kDAClW7z/UmsSbi2OpGZFaF3ZmhdeE4A0pkGrdoT0hH4q5xND/0LRoq6POniB3ILZQGXAsuhVIy7gj56V1mkULRHSkTPKK5/dpcPmO/kuP0X7Be94qGE=
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (coolveer07[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.171 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com
+	[209.85.222.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F279E00B5F
+	for <yocto@yoctoproject.org>; Thu, 23 May 2019 23:37:51 -0700 (PDT)
+Received: by mail-qk1-f171.google.com with SMTP id d10so5833830qko.4
+	for <yocto@yoctoproject.org>; Thu, 23 May 2019 23:37:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=rwAHQXOyUBouv2GYEx8ClRjSaxArFnB8le2ReN1haQM=;
+	b=hLJhj/NLf29qAQ1LJYmDAQ0oYJJTH0vQ/wKo/sQ0fYmQaZEf3v8qJnvrEa/0Ud1bCw
+	VIeYcpsnw2t2MJJEiXp9ch54jPLSQs11AdKApF9sTDRC1pqfqudnaF28NLAbgUS2L1nA
+	6yUQDbqO4h7zrOpubEXGqeyVt7lETumG3Hj/c6Z3jnHNAnIO9Wzubm67cMYRm6ARZ66L
+	B/nsgPqbVAJo7mFCB4OQ/bhw7v+TyjPER9HfsPRBdjVChIkRXDFZWQBP8FNwcrIPe7sn
+	fGBPYB4UVdegjj6/ZkwL6g15chPRWxxf6Aaz9ZLECwTztFEth/sg0fUT4YBj1RvqQYQM
+	bWpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=rwAHQXOyUBouv2GYEx8ClRjSaxArFnB8le2ReN1haQM=;
+	b=LBuiPswrfsOvr8zD/F7+KksUnNkRNigTpz9NibS4YHvsEL5hWtqRlfXHYE+49vxGbf
+	G83ITo/mOR30KHev1jkqzALXhIkpbS+2khSN4cw5w04SUBD+5/HhjahPiMK6d3qmCiNn
+	7fyGuVRhRQGpucu9dGX9pP2D3fcDrqBP+eP1DzkmFVdW3vS5tN+Up9Xdz8EisPMpJMOA
+	nrDa+UoVBSJk3sf+kLQ5TvC5ji0OX/R27gnbo4+W0ihB0smR1hC6ztYeOJ7QRBqDkdtX
+	8+ka0+XKwM/kh0TvWaLVZeeVYf4PLpMw7nK5obnixkcTZsakjvhwbMGxfRaPAnp3Q6UC
+	jctg==
+X-Gm-Message-State: APjAAAXxo4aCwjZG+z0l5Ms8+Or3Poara7uafRs2mxr/vm9G0w3wNIEc
+	cAAvc5SaACSQPIIjj0Uogi2Qj1U64t8Fh8+hiKI=
+X-Google-Smtp-Source: APXvYqwi68dWQLUXuM/QQ5Hi0KCsxmp+42F6lztRXjbfiXHi1OcQMz2xjV2Hvz8CvcEsJQyw/a6BSr6O1LYhK6xULWo=
+X-Received: by 2002:a0c:8a93:: with SMTP id 19mr75116700qvv.7.1558679871416;
+	Thu, 23 May 2019 23:37:51 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: aptiv.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dab0faf3-6edb-49a1-5673-08d6e011ecb2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 May 2019 06:34:50.9249 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 6b1311e5-123f-49db-acdf-8847c2d00bed
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6P197MB0036
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
-	definitions=2019-05-24_01:, , signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
-	priorityscore=1501
-	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
-	clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
-	mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
-	scancount=1 engine=8.0.1-1810050000 definitions=main-1905240045
-X-RCIS-Action: ALLOW
-X-MEG-POLICY: ALLOW
-Subject: FW: EXT SENDER - yocto Digest, Vol 104, Issue 95
+References: <CANGFfGa=qMdrWzo-Lxs-tb=6q3XH7aqXVrOd7JdC3G9Yk3Lp=g@mail.gmail.com>
+	<CANGFfGYLEXR49NvsQUuDawFoGDYiDzGPVaqLiaN=vZzSbdtsnQ@mail.gmail.com>
+	<277b0434-c5df-ac19-5e79-6c5ffb6a55d5@gmail.com>
+In-Reply-To: <277b0434-c5df-ac19-5e79-6c5ffb6a55d5@gmail.com>
+From: virendra kumar thakur <coolveer07@gmail.com>
+Date: Fri, 24 May 2019 12:07:39 +0530
+Message-ID: <CANGFfGaQudi3B5t+YuL5j8ChqfDDeTi-7SrdJGNg4zVjh8y00g@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: /usr/share/common-license package/recipeinfo contains GPLv3 info
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -113,193 +73,187 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 May 2019 06:34:57 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 24 May 2019 06:37:54 -0000
+Content-Type: multipart/alternative; boundary="0000000000000df32d05899c70f6"
 
-TWFpbGluZyBpdCB0byB0aGUgdGhyZWFkLg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
-RnJvbTogVGcsIEhhcmlzaCANClNlbnQ6IEZyaWRheSwgTWF5IDI0LCAyMDE5IDExOjE3IEFNDQpU
-bzogS2hlbSBSYWogPHJhai5raGVtQGdtYWlsLmNvbT47IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcN
-ClN1YmplY3Q6IFJFOiBbeW9jdG9dIEVYVCBTRU5ERVIgLSB5b2N0byBEaWdlc3QsIFZvbCAxMDQs
-IElzc3VlIDk1DQoNCkhpIFJhaiwNCiAgICAgICAgICAgIFdoYXQgSSBhbSBhc2tpbmcgeW91IGlz
-IHRoYXQgaG93IHRoZSB5b2N0byBwaWNrcyB1cCBjb21wb25lbnRzIGZvciAvdXNyL2JpbiBmb2xk
-ZXIgb2Ygcm9vdGZzLiBXaGVyZSBkbyB0aGV5IGV4aXN0IGJlZm9yZSBjb3B5aW5nPyBJIGFtIHNv
-cnJ5IGJ1dCBJIGZlZWwgSSBkbyBub3QgbmVlZCB0byB3cml0ZSBhIHJlY2lwZSBmb3IgYWRkaW5n
-IGp1c3Qgb25lIG9mIHRoZSBjb21tYW5kcy4gSXQgaXMganVzdCB0aGF0IEkgbmVlZCB0byBhZGQg
-InViaWF0dGFjaCIgdG8gdGFyZ2V0IC91c3IvYmluIG9mIHJvb3Rmcy4gVGhhdOKAmXMgd2h5IEkg
-YW0gYXNraW5nIHdoZXJlIGRvIEkgcGxhY2UgbXkgInViaWF0dGFjaCIgY29tbWFuZCBhbmQgdGhl
-cmUgc2hvdWxkIGFsc28gYmUgYSBmb2xkZXIgZm9yIHRoaXMuIFBsZWFzZSBjbGFyaWZ5Lg0KDQpU
-aGFua3MsDQpIYXJpc2guDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogS2hlbSBS
-YWogW21haWx0bzpyYWoua2hlbUBnbWFpbC5jb21dDQpTZW50OiBGcmlkYXksIE1heSAyNCwgMjAx
-OSAxMTowMyBBTQ0KVG86IFRnLCBIYXJpc2ggPGhhcmlzaC50Z0BhcHRpdi5jb20+OyB5b2N0b0B5
-b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBFWFQgU0VOREVSIC0geW9jdG8g
-RGlnZXN0LCBWb2wgMTA0LCBJc3N1ZSA5NQ0KDQpQbGVhc2Uga2VlcCB0aGUgdGhyZWFkIG9uIGxp
-c3QgYW5kIGF2b2lkIHBtLg0KDQphcyBJIHNhaWQgeW91IG5lZWQNCg0KMS4gV3JpdGUgYSByZWNp
-cGUgZm9yIHlvdXIgcGFja2FnZQ0KMi4gaW4gZG9faW5zdGFsbCBvZiB0aGUgcmVjaXBlIHlvdSB3
-YW50IHRvIG1lbnRpb24gd2hlcmUgaXQgc2hvdWxkIGJlIHBsYWNlZCBlLmcuDQoNCmluc3RhbGwg
-LUQgLW0gMDc1NSA8eW91ci1iaW5hcnk+ICR7RH0ke2JpbmRpcn0vPHlvdXItYmluYXJ5Pg0KDQp3
-b3VsZCBwdXQgaXQgaW4gL3Vzci9iaW4gb24gdGFyZ2V0IHdoZW4gdGhpcyBwYWNrYWdlIGlzIGlu
-Y2x1ZGVkIGluIGltYWdlDQoNCjMuIEluY2x1ZGUgdGhlIHBhY2thZ2UgaW4gaW1hZ2UgdmlhIElN
-QUdFX0lOU1RBTEwNCg0KDQoNCk9uIDUvMjMvMTkgMTA6MTMgUE0sIFRnLCBIYXJpc2ggd3JvdGU6
-DQo+IEhpIFJhaiwNCj4gICAgICAgICAgICAgIEFub3RoZXIgcXVlc3Rpb24gSSBoYXZlIGlzIHdo
-ZXJlIGRvIEkgcGxhY2UgbXkgY3VzdG9tICJ1YmlhdHRhY2giIGNvbW1hbmQuIEFsc28gSSBhbSBu
-b3Qgc3VyZSBmcm9tIHdoZXJlIGRvZXMgdGhlIHlvY3RvIGJ1aWxkcyB0aGUgcm9vdGZzIC91c3Iv
-YmluIGNvbXBvbmVudHMuIFdoZXJlIGRvIHRoZXkgY29waWVkIGZyb20/DQo+IA0KPiBUaGFua3Ms
-DQo+IEhhcmlzaC4NCj4gDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEto
-ZW0gUmFqIFttYWlsdG86cmFqLmtoZW1AZ21haWwuY29tXQ0KPiBTZW50OiBGcmlkYXksIE1heSAy
-NCwgMjAxOSA3OjA3IEFNDQo+IFRvOiBUZywgSGFyaXNoIDxoYXJpc2gudGdAYXB0aXYuY29tPjsg
-eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPiBTdWJqZWN0OiBSZTogW3lvY3RvXSBFWFQgU0VOREVS
-IC0geW9jdG8gRGlnZXN0LCBWb2wgMTA0LCBJc3N1ZSA5NQ0KPiANCj4gDQo+IA0KPiBPbiA1LzIz
-LzE5IDU6NTkgQU0sIFRnLCBIYXJpc2ggd3JvdGU6DQo+PiBIaSwNCj4+ICAgICAgICBJIGhhdmUg
-YSBxdWVzdGlvbi4gSG93IHRvIGFkZCBjb21tYW5kcyBsaWtlICJ1YmlhdHRhY2giIHRvIC91c3Iv
-YmluIG9mIHJvb3RmcyBpbWFnZS4gSSBzdHJ1Z2dsaW5nIHdpdGggdGhlIHJlY2lwZXMuIEkgZG8g
-bm90IHdhbnQgdG8gd3JpdGUgbXkgb3duIHJlY2lwZSBidXQgSSBuZWVkIHRvIGVkaXQgc29tZSBy
-ZWNpcGUgYW5kIGFkZCB0aGUgY29tbWFuZC4gV2hpY2ggaXMgdGhlIHBsYWNlPyBJIGFtIHVzaW5n
-IHlvY3RvIGZvciBteSBwcm9qZWN0IG9uIFRJIHBsYXRmb3JtIGFuZCBMaW51eC4NCj4+IEtpbmRs
-eSBoZWxwLg0KPj4NCj4gDQo+IFRoZXJlIGlzIG9lLXBrZ2RhdGEtdXRpbCB3aGljaCBjYW4gaGVs
-cCB0byBtYXAgZmlsZXMgdG8gcmVjaXBlcyBidXQgd2UgDQo+IGRvIG5vdCBoYXZlIGEgZGF0YWJh
-c2UgZm9yIG1hcHBpbmcuIE1heWJlIGl0IGlzIGEgZ29vZCB0aGluZyB0byBoYXZlDQo+IA0KPiBm
-b3IgeW91ciBwcm9ibGVtIHViaWF0dGFjaCBpcyBwcm92aWRlZCBieSBtdGQtdXRpbHMtdWJpZnMg
-d2hpY2ggaXMgDQo+IGJ1aWx0IGZyb20gbXRkLXV0aWxzIHJlY2lwZS4gSSBmb3VuZCBpdCB2aWEg
-YWJvdmUgdG9vbA0KPiANCj4gJSBvZS1wa2dkYXRhLXV0aWwgZmluZC1wYXRoIC91c3Ivc2Jpbi91
-YmlhdHRhY2gubXRkLXV0aWxzDQo+IG10ZC11dGlscy11YmlmczogL3Vzci9zYmluL3ViaWF0dGFj
-aC5tdGQtdXRpbHMNCj4gDQo+ICUgb2UtcGtnZGF0YS11dGlsIGxvb2t1cC1yZWNpcGUgbXRkLXV0
-aWxzLXViaWZzIG10ZC11dGlscw0KPiANCj4gU28geW91IG5lZWQgdG8gYWRkDQo+IA0KPiBJTUFH
-RV9JTlNUQUxMX2FwcGVuZCA9ICIgbXRkLXV0aWxzLXViaWZzIiBpbiB5b3VyIGltYWdlIHJlY2lw
-ZSBvciANCj4gbG9jYWwuY29uZg0KPj4NCj4+IFRoYW5rcywNCj4+IEhhcmlzaC4NCj4+DQo+PiAt
-LS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPj4gRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3By
-b2plY3Qub3JnDQo+PiBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10gT24g
-QmVoYWxmIE9mIA0KPj4geW9jdG8tcmVxdWVzdEB5b2N0b3Byb2plY3Qub3JnDQo+PiBTZW50OiBX
-ZWRuZXNkYXksIE1heSAyMiwgMjAxOSA2OjU3IFBNDQo+PiBUbzogeW9jdG9AeW9jdG9wcm9qZWN0
-Lm9yZw0KPj4gU3ViamVjdDogRVhUIFNFTkRFUiAtIHlvY3RvIERpZ2VzdCwgVm9sIDEwNCwgSXNz
-dWUgOTUNCj4+DQo+PiBTZW5kIHlvY3RvIG1haWxpbmcgbGlzdCBzdWJtaXNzaW9ucyB0bw0KPj4g
-CXlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4+DQo+PiBUbyBzdWJzY3JpYmUgb3IgdW5zdWJzY3Jp
-YmUgdmlhIHRoZSBXb3JsZCBXaWRlIFdlYiwgdmlzaXQNCj4+IAkNCj4+IGh0dHBzOi8vdXJsZGVm
-ZW5zZS5wcm9vZnBvaW50LmNvbS92Mi91cmw/dT1odHRwcy0zQV9fbGlzdHMueW9jdG9wcm9qZQ0K
-Pj4gYw0KPj4gdC5vcmdfbGlzdGluZm9feW9jdG8mZD1Ed0lDQWcmYz1RTV96N2toQUlkYWd3SHQt
-MTJKbEtBJnI9NGRmVXBxajY4ZVlBDQo+PiBmDQo+PiBWSnM1dWsyWGtvbGNPUXlzT1A1Vm5jU0Z4
-NmJrYW8mbT1zd0xCSnlSemdxeC1JeDFkbnYwNFpoTjZhX1dWUVNtUVNXNVkNCj4+IFkgTGczaDQw
-JnM9YTRzU1ZMbnp6QVAzWlJZczAxV3ZTYWlTYzlRUW1mYVQ3emRCUmUwSGN3TSZlPQ0KPj4gb3Is
-IHZpYSBlbWFpbCwgc2VuZCBhIG1lc3NhZ2Ugd2l0aCBzdWJqZWN0IG9yIGJvZHkgJ2hlbHAnIHRv
-DQo+PiAJeW9jdG8tcmVxdWVzdEB5b2N0b3Byb2plY3Qub3JnDQo+Pg0KPj4gWW91IGNhbiByZWFj
-aCB0aGUgcGVyc29uIG1hbmFnaW5nIHRoZSBsaXN0IGF0DQo+PiAJeW9jdG8tb3duZXJAeW9jdG9w
-cm9qZWN0Lm9yZw0KPj4NCj4+IFdoZW4gcmVwbHlpbmcsIHBsZWFzZSBlZGl0IHlvdXIgU3ViamVj
-dCBsaW5lIHNvIGl0IGlzIG1vcmUgc3BlY2lmaWMgdGhhbiAiUmU6IENvbnRlbnRzIG9mIHlvY3Rv
-IGRpZ2VzdC4uLiINCj4+DQo+Pg0KPj4gVG9kYXkncyBUb3BpY3M6DQo+Pg0KPj4gICAgICAxLiBH
-UEx2MyBwYWNrYWdlIHByZXNlbnQgaW4gcm9vdGZzICh2aXJlbmRyYSBrdW1hciB0aGFrdXIpDQo+
-PiAgICAgIDIuIEJ1aWxkaW5nIHNpbmdsZSBwYWNrYWdlIGFzIGltYWdlLCByZXNwZWN0aW5nIGRl
-cGVuZGVuY2llcw0KPj4gICAgICAgICAoTm9ybWFuIFN0ZXR0ZXIpDQo+Pg0KPj4NCj4+IC0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLQ0KPj4gLQ0KPj4NCj4+IE1lc3NhZ2U6IDENCj4+IERhdGU6IFdlZCwgMjIgTWF5IDIw
-MTkgMTg6NTU6NDUgKzA1MzANCj4+IEZyb206IHZpcmVuZHJhIGt1bWFyIHRoYWt1ciA8Y29vbHZl
-ZXIwN0BnbWFpbC5jb20+DQo+PiBUbzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPj4gU3ViamVj
-dDogW3lvY3RvXSBHUEx2MyBwYWNrYWdlIHByZXNlbnQgaW4gcm9vdGZzDQo+PiBNZXNzYWdlLUlE
-Og0KPj4gCTxDQU5HRmZHYW1ub0otWUI9bTdjdk40WEJXaWVZOFY1M3MrcFJmZzAwZTEtQXd3cXp0
-QmdAbWFpbC5nbWFpbC5jb20+DQo+PiBDb250ZW50LVR5cGU6IHRleHQvcGxhaW47IGNoYXJzZXQ9
-InV0Zi04Ig0KPj4NCj4+IEhlbGxvIHRlYW0sDQo+Pg0KPj4gSSB3YW50IHRvIHJlbW92ZSBzb21l
-IEdQTHYzIHBhY2thZ2UgZnJvbSByb290ZnMsIGJ1dCBpdCBpcyBzdGlsbCBwcmVzZW50Lg0KPj4N
-Cj4+IEkgYW0gdXNpbmcgSU5DT01QQVRJQkxFX0xJQ0VOU0UgPSAiR1BMLTMuMCBMR1BMLTMuMCBB
-R1BMLTMuIDAiDQo+Pg0KPj4gc3RpbGwgc29tZSBwYWNrYWdlIGdudXRscywgbGliaWRuMiwgbGli
-YXNzdWFuLCBhcmUgYWRkZWQgaW50byByb290ZnMuDQo+PiAtLS0tLS0tLS0tLS0tLSBuZXh0IHBh
-cnQgLS0tLS0tLS0tLS0tLS0gQW4gSFRNTCBhdHRhY2htZW50IHdhcyANCj4+IHNjcnViYmVkLi4u
-DQo+PiBVUkw6DQo+PiA8aHR0cHM6Ly91cmxkZWZlbnNlLnByb29mcG9pbnQuY29tL3YyL3VybD91
-PWh0dHAtM0FfX2xpc3RzLnlvY3RvcHJvamUNCj4+IGMNCj4+IHQub3JnX3BpcGVybWFpbF95b2N0
-b19hdHRhY2htZW50c18yMDE5MDUyMl9mYjllYmU2N19hdHRhY2htZW50LTJEMDAwMS4NCj4+IGh0
-bWwmZD1Ed0lDQWcmYz1RTV96N2toQUlkYWd3SHQtMTJKbEtBJnI9NGRmVXBxajY4ZVlBZlZKczV1
-azJYa29sY09ReQ0KPj4gcw0KPj4gT1A1Vm5jU0Z4NmJrYW8mbT1zd0xCSnlSemdxeC1JeDFkbnYw
-NFpoTjZhX1dWUVNtUVNXNVlZTGczaDQwJnM9QkJQYW5WDQo+PiBoIGptZE9RYVlYWkZlYjRSV2k5
-TWRScEdZQkZMbXFpaERlU0FkcyZlPT4NCj4+DQo+PiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0NCj4+DQo+PiBNZXNzYWdlOiAyDQo+PiBEYXRlOiBXZWQsIDIyIE1heSAyMDE5IDEyOjM2
-OjE4ICswMDAwDQo+PiBGcm9tOiBOb3JtYW4gU3RldHRlciA8Tm9ybWFuLlN0ZXR0ZXJAZ2Fyei1m
-cmlja2UuY29tPg0KPj4gVG86ICJ5b2N0b0B5b2N0b3Byb2plY3Qub3JnIiA8eW9jdG9AeW9jdG9w
-cm9qZWN0Lm9yZz4NCj4+IFN1YmplY3Q6IFt5b2N0b10gQnVpbGRpbmcgc2luZ2xlIHBhY2thZ2Ug
-YXMgaW1hZ2UsIHJlc3BlY3RpbmcNCj4+IAlkZXBlbmRlbmNpZXMNCj4+IE1lc3NhZ2UtSUQ6DQo+
-PiAJDQo+PiA8QTI0REMwMzVGRTVGOEY0QkFFN0Y2M0ZCMUIwN0Q3QkM1MzI3QjFAU1JWMjQuaGFt
-YnVyZy5nYXJ6LWZyaWNrZS5kZT4NCj4+IENvbnRlbnQtVHlwZTogdGV4dC9wbGFpbjsgY2hhcnNl
-dD0iaXNvLTg4NTktMSINCj4+DQo+PiBIaSB0aGVyZSwNCj4+DQo+PiBJIGFtIGN1cnJlbnRseSB3
-b3JraW5nIG9uIGEgbWluaW1hbCBDTEkgb25seSBzeXN0ZW0uDQo+PiBUaGUgaW1hZ2UgaXMgYmFz
-ZWQgb24gJ2NvcmUtaW1hZ2UtYmFzZScgdXNpbmcgc3lzdmluaXQgYW5kIGJ1c3lib3guDQo+PiBU
-byByZWR1Y2UgaW1hZ2Ugc2l6ZSBhbmQgYm9vdCB0aW1lLCBJIHJlbW92ZWQgYXMgbWFueSBwYWNr
-YWdlcyBhcyBwb3NzaWJsZS4gRm9yIHNvbWUgYXBwbGljYXRpb24gY2FzZXMgSSB3aWxsIG5lZWQg
-cHl0aG9uMyB0aG91Z2guDQo+PiBNeSBpZGVhIHdhcyB0byBoYXZlIHB5dGhvbjMgYXMgc29tZSBr
-aW5kIG9mIGFkZC1vbiBpbiBhIHNxdWFzaGZzIGltYWdlLCB0aGF0IGNhbiBiZSBtb3VudGVkIG9u
-bHkgd2hlbiBuZWVkZWQuDQo+Pg0KPj4gU28gSSB0cmllZCB0byBidWlsZCBhbiBpbWFnZSBvbmx5
-IGNvbnRhaW5pbmcgdGhlIHB5dGhvbjMgcGFja2FnZSwgYnV0IGFzIGxpdHRsZSBhcyBwb3NzaWJs
-ZSBvdGhlcndpc2UsIGxpa2UgdGhpczoNCj4+DQo+PiBpbmhlcml0IGltYWdlDQo+PiBJTUFHRV9G
-U1RZUEVTID0gInNxdWFzaGZzLXh6Ig0KPj4gREVGQVVMVF9UQVNLX1BST1ZJREVSID0gIiINCj4+
-IERJU1RST19FWFRSQV9SREVQRU5EUyA9ICIiDQo+PiBESVNUUk9fRkVBVFVSRVMgPSAiIg0KPj4g
-UE9LWV9ERUZBVUxUX0VYVFJBX1JERVBFTkRTID0gIiINCj4+IElNQUdFX0ZFQVRVUkVTID0gIiIN
-Cj4+IElNQUdFX0xJTkdVQVMgPSAiIg0KPj4gQ09SRV9JTUFHRV9CQVNFX0lOU1RBTEwgPSAiIg0K
-Pj4gUkRFUEVORFNfJHtQTn0gPSAiIg0KPj4gUEFDS0FHRV9FWENMVURFID0gImJ1c3lib3ggb3Bl
-bnNzbCBydW4tcG9zdGluc3RzIHVwZGF0ZS1yYy5kIg0KPj4gVklSVFVBTC1SVU5USU1FX2Rldl9t
-YW5hZ2VyID0gIiINCj4+IFZJUlRVQUwtUlVOVElNRV9sb2dpbl9tYW5hZ2VyID0gIiINCj4+IFZJ
-UlRVQUwtUlVOVElNRV9pbml0X21hbmFnZXIgPSAiIg0KPj4gVklSVFVBTC1SVU5USU1FX2luaXRz
-Y3JpcHRzID0gIiINCj4+IFZJUlRVQUwtUlVOVElNRV9rZXltYXBzID0gIiINCj4+IFZJUlRVQUwt
-UlVOVElNRV9iYXNlLXV0aWxzID0gIiINCj4+IFBSRUZFUlJFRF9QUk9WSURFUl92aXJ0dWFsL2Jh
-c2UtdXRpbHMgPSAiIg0KPj4NCj4+IElNQUdFX0lOU1RBTEwgPSAicHl0aG9uMyINCj4+DQo+PiBC
-dXQgbGlrZSB0aGlzIEkgY2FuIG9ubHkgbWFudWFsbHkgZXhjbHVkZSBwYWNrYWdlcyBJIGFscmVh
-ZHkgaGF2ZSBpbiBteSBtYWluIE9TIGltYWdlLiBTb21lIHBhY2thZ2VzIGNhbid0IGJlIGV4Y2x1
-ZGVkIGF0IGFsbCwgYXMgcHl0aG9uMyBkZXBlbmRzIG9uIHRoZW0gYW5kIHdvbid0IGJ1aWxkIGlm
-IHRoZXkgYXJlIGV4Y2x1ZGVkLg0KPj4NCj4+IElzIHRoZXJlIGEgd2F5IHRvIGhhdmUgZGVwZW5k
-ZW5jaWVzIGJldHdlZW4gaW1hZ2VzPyBTbyBJIGNvdWxkIGhhdmUgdGhlIHB5dGhvbi1pbWFnZSBi
-dWlsZCBrbm93IHdoaWNoIGRlcGVuZGVuY2llcyBhcmUgYWxyZWFkeSBidWlsdCBpbnRvIG15IE9T
-IGltYWdlIGFuZCB0aGVyZWZvcmUgbm90IGluY2x1ZGUgdGhlbSBpdHNlbGY/DQo+Pg0KPj4gT3Ig
-d291bGQgaXQgYmUgYmV0dGVyIHRvIGF2b2lkIGJ1aWxkaW5nIGEgc2Vjb25kIGltYWdlIGFuZCBy
-YXRoZXIgYnVpbGQgJ3B5dGhvbjMnIHdpdGggbXkgT1MtaW1hZ2UsIGFkZGluZyBpdCB0byBQQUNL
-QUdFX0VYQ0xVREUgYW5kIGZyb20gd2l0aGluIHRoaXMgYnVpbGQgcHJvY2VzcyBwYWNrIGFsbCBw
-eXRob24zIGZpbGVzIGludG8gYW4gaW1hZ2U/IElmIEkgd2VyZSB0byBwdXJzdWUgdGhpcyBtZXRo
-b2QsIGFueSBzdWdnZXN0aW9ucyBvbiBob3cgdG8gc2VwYXJhdGUgdGhlIHB5dGhvbjMgZmlsZXMg
-ZnJvbSB0aGUgcmVzdCBvZiBteSByb290ZnMsIGluY2x1ZGluZyB0aGUgbmVjZXNzYXJ5IGRlcGVu
-ZGVuY2llcz8NCj4+DQo+PiBBbnkgYWR2aWNlIGFuZCBpZGVhIGlzIG11Y2ggYXBwcmVjaWF0ZWQu
-DQo+Pg0KPj4gTWl0IGZyZXVuZGxpY2hlbiBHcj8/ZW4gLyBCZXN0IHJlZ2FyZHMgTm9ybWFuIFN0
-ZXR0ZXIgU1cgRU5XSUNLTFVORyANCj4+IEVNQkVEREVEIFNZU1RFTVMgR2FyeiAmIEZyaWNrZSBH
-bWJIDQo+Pg0KPj4gMjEwNzkgSGFtYnVyZw0KPj4gRGlyZWN0OiArNDkgNDAgNzkxODk5IC0gNDc3
-DQo+PiBGYXg6ICs0OSA0MCA3OTE4OTkgLSAzOQ0KPj4gTm9ybWFuLlN0ZXR0ZXJAZ2Fyei1mcmlj
-a2UuY29tDQo+PiBodHRwczovL3VybGRlZmVuc2UucHJvb2Zwb2ludC5jb20vdjIvdXJsP3U9aHR0
-cC0zQV9fd3d3LmdhcnotMkRmcmlja2UuDQo+PiBjb20mZD1Ed0lDQWcmYz1RTV96N2toQUlkYWd3
-SHQtMTJKbEtBJnI9NGRmVXBxajY4ZVlBZlZKczV1azJYa29sY09ReXMNCj4+IE8NCj4+IFA1Vm5j
-U0Z4NmJrYW8mbT1zd0xCSnlSemdxeC1JeDFkbnYwNFpoTjZhX1dWUVNtUVNXNVlZTGczaDQwJnM9
-Zmw4elhfVA0KPj4gNw0KPj4gNHRQMTdTMk1kMXh2TW1YVm1XclBMandaTzkyOWV1T2ktZjQmZT08
-aHR0cHM6Ly91cmxkZWZlbnNlLnByb29mcG9pbnQuDQo+PiBjb20vdjIvdXJsP3U9aHR0cHMtM0Ff
-X3VybGRlZmVuc2UucHJvb2Zwb2ludC5jJmQ9RHdJQ2FRJmM9UU1fejdraEFJZGENCj4+IGd3SHQt
-MTJKbEtBJnI9NGRmVXBxajY4ZVlBZlZKczV1azJYa29sY09ReXNPUDVWbmNTRng2YmthbyZtPXRW
-djFydWpjVg0KPj4gdXZWU2ZMNms4TG5IZWJwSzBlYmRJS2QtZGxlZ3NBb2NYZyZzPTNUeG9TYXJr
-STN5V3hnUi1fSnY1X2lReFhTcVhIbTR1DQo+PiB2OVhEVnRTRXFYWSZlPQ0KPj4gb20vdjIvdXJs
-P3U9aHR0cC0zQV9fd3d3LmdhcnotMkRmcmlja2UuY29tXyZkPUR3SUNBZyZjPVFNX3o3a2hBSWRh
-Z3dIDQo+PiB0DQo+PiAtMTJKbEtBJnI9NGRmVXBxajY4ZVlBZlZKczV1azJYa29sY09ReXNPUDVW
-bmNTRng2YmthbyZtPXN3TEJKeVJ6Z3F4LUkNCj4+IHgNCj4+IDFkbnYwNFpoTjZhX1dWUVNtUVNX
-NVlZTGczaDQwJnM9akp5dEdfVVhvNmY4RGcxdzlSeDdaQnJQdmFJWmQ2ZFQwU0VhVA0KPj4gTQ0K
-Pj4gaHFScHcmZT0+DQo+PiBXRSBNQUtFIElUIFlPVVJTIQ0KPj4gW2NpZDppbWFnZTAwMS5qcGdA
-MDFENTEwQTkuN0Y5Q0Q2NDBdDQo+PiBTaXR6IGRlciBHZXNlbGxzY2hhZnQ6IEQtMjEwNzkgSGFt
-YnVyZw0KPj4gUmVnaXN0ZXJnZXJpY2h0OiBBbXRzZ2VyaWNodCBIYW1idXJnLCBIUkIgNjA1MTQN
-Cj4+IEdlc2NoP2Z0c2Y/aHJlcjogTWF0dGhpYXMgRnJpY2tlLCBNYW5mcmVkIEdhcnosIE1hcmMt
-TWljaGFlbCBCcmF1bg0KPj4NCj4+IC0tLS0tLS0tLS0tLS0tIG5leHQgcGFydCAtLS0tLS0tLS0t
-LS0tLSBBbiBIVE1MIGF0dGFjaG1lbnQgd2FzIA0KPj4gc2NydWJiZWQuLi4NCj4+IFVSTDoNCj4+
-IDxodHRwczovL3VybGRlZmVuc2UucHJvb2Zwb2ludC5jb20vdjIvdXJsP3U9aHR0cC0zQV9fbGlz
-dHMueW9jdG9wcm9qZQ0KPj4gYw0KPj4gdC5vcmdfcGlwZXJtYWlsX3lvY3RvX2F0dGFjaG1lbnRz
-XzIwMTkwNTIyXzA2M2ZkMzI2X2F0dGFjaG1lbnQuaHRtbCZkDQo+PiA9DQo+PiBEd0lDQWcmYz1R
-TV96N2toQUlkYWd3SHQtMTJKbEtBJnI9NGRmVXBxajY4ZVlBZlZKczV1azJYa29sY09ReXNPUDVW
-bmMNCj4+IFMNCj4+IEZ4NmJrYW8mbT1zd0xCSnlSemdxeC1JeDFkbnYwNFpoTjZhX1dWUVNtUVNX
-NVlZTGczaDQwJnM9bkpwSWlqMndKLVRvSQ0KPj4gMQ0KPj4gM25zMXJpSGNRclo5U0NZa2t5aC1l
-UmctRkt5ZEUmZT0+DQo+PiAtLS0tLS0tLS0tLS0tLSBuZXh0IHBhcnQgLS0tLS0tLS0tLS0tLS0g
-QSBub24tdGV4dCBhdHRhY2htZW50IHdhcyANCj4+IHNjcnViYmVkLi4uDQo+PiBOYW1lOiBpbWFn
-ZTAwMS5qcGcNCj4+IFR5cGU6IGltYWdlL2pwZWcNCj4+IFNpemU6IDE0ODA0IGJ5dGVzDQo+PiBE
-ZXNjOiBpbWFnZTAwMS5qcGcNCj4+IFVSTDoNCj4+IDxodHRwczovL3VybGRlZmVuc2UucHJvb2Zw
-b2ludC5jb20vdjIvdXJsP3U9aHR0cC0zQV9fbGlzdHMueW9jdG9wcm9qZQ0KPj4gYw0KPj4gdC5v
-cmdfcGlwZXJtYWlsX3lvY3RvX2F0dGFjaG1lbnRzXzIwMTkwNTIyXzA2M2ZkMzI2X2F0dGFjaG1l
-bnQuanBnJmQ9DQo+PiBEDQo+PiB3SUNBZyZjPVFNX3o3a2hBSWRhZ3dIdC0xMkpsS0Emcj00ZGZV
-cHFqNjhlWUFmVkpzNXVrMlhrb2xjT1F5c09QNVZuY1MNCj4+IEYNCj4+IHg2YmthbyZtPXN3TEJK
-eVJ6Z3F4LUl4MWRudjA0WmhONmFfV1ZRU21RU1c1WVlMZzNoNDAmcz11eXhxQTI0SmNCcjB6Qg0K
-Pj4gaA0KPj4gSHdUZkE4WHRxWDVPYnJSa05NRk5sRDNIdHBvcyZlPT4NCj4+DQo+PiAtLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4+DQo+PiAtLQ0KPj4gX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4+IHlvY3RvIG1haWxpbmcgbGlzdA0KPj4g
-eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPj4gaHR0cHM6Ly91cmxkZWZlbnNlLnByb29mcG9pbnQu
-Y29tL3YyL3VybD91PWh0dHBzLTNBX19saXN0cy55b2N0b3Byb2plDQo+PiBjDQo+PiB0Lm9yZ19s
-aXN0aW5mb195b2N0byZkPUR3SUNBZyZjPVFNX3o3a2hBSWRhZ3dIdC0xMkpsS0Emcj00ZGZVcHFq
-NjhlWUENCj4+IGYNCj4+IFZKczV1azJYa29sY09ReXNPUDVWbmNTRng2YmthbyZtPXN3TEJKeVJ6
-Z3F4LUl4MWRudjA0WmhONmFfV1ZRU21RU1c1WQ0KPj4gWSBMZzNoNDAmcz1hNHNTVkxuenpBUDNa
-UllzMDFXdlNhaVNjOVFRbWZhVDd6ZEJSZTBIY3dNJmU9DQo+Pg0KPj4NCj4+IEVuZCBvZiB5b2N0
-byBEaWdlc3QsIFZvbCAxMDQsIElzc3VlIDk1DQo+PiAqKioqKioqKioqKioqKioqKioqKioqKioq
-KioqKioqKioqKioqKg0KPj4NCg==
+--0000000000000df32d05899c70f6
+Content-Type: text/plain; charset="UTF-8"
 
+Thank you khem raj for your input, I have already tried with
+
+INCOMPATIBLE_LICENSE = "GPLv3+ LGPLv3+ AGPLv3+"
+
+And this also
+
+INCOMPATIBLE_LICENSE = "GPLv3* LGPLv3* AGPLv3*"
+
+But no luck, still I can see same output
+
+
+rootfs/usr/share/common-license/package/libgcrypt-lic/recipeinfo
+
+LICENSE: GPLV2+ &LGPLV2.1+ &GPLV3+
+PR: r0
+ PV : 1.8.4
+
+
+On Fri 24 May, 2019, 5:25 AM Khem Raj, <raj.khem@gmail.com> wrote:
+
+>
+>
+> On 5/23/19 2:42 AM, virendra kumar thakur wrote:
+> >
+> >
+> > Hello team,
+> >
+> > I am trying to build yocto image without GPLv3 package, I have added
+> > below things in local.conf and enable meta-gplv2 layer.
+> >
+> > INCOMPATIBLE_LICENSE = "GPL-3.0 LGPL-3.0 AGPL-3. 0" in local.conf.
+>
+> Can you try adding GPLv3+ to INCOMPATIBLE_LICENSE and see if that helps ?
+>
+> >
+> > After verifying from package.manifest and license.manifest file in
+> > build/tmp/deploy/license/ directory I observe that no GPLv3 package is
+> > present in rootfs.
+> >
+> > But I can see in
+> > rootfs/usr/share/common-license/package/libgcrypt-lic/recipeinfo
+> >
+> > LICENSE: GPLV2+ &LGPLV2.1+ &GPLV3+
+> > PR: r0
+> > PV : 1.8.4
+> >
+> > Is present..
+> >
+> > My doubt is why any GPLv3 is present in common-license directory?
+> >
+> > From: "Burton, Ross" <ross.burton@intel.com <mailto:
+> ross.burton@intel.com>>
+> > To: virendra kumar thakur <coolveer07@gmail.com
+> > <mailto:coolveer07@gmail.com>>
+> > Cc: Yocto-mailing-list <yocto@yoctoproject.org
+> > <mailto:yocto@yoctoproject.org>>
+> > Subject: Re: [yocto] GPLv3 package present in rootfs
+> >
+> > On Wed, 22 May 2019 at 06:26, virendra kumar thakur
+> > <coolveer07@gmail.com <mailto:coolveer07@gmail.com>> wrote:
+> >> still some package gnutls, libidn2, libassuan, are added into rootfs.
+> >
+> > Randomly picking libassuan:
+> >
+> > LICENSE_${PN} = "LGPLv2.1+"
+> >
+> > The library itself is LGPL-2.  Have you verified the *package*
+> > licenses for what is actually going into the image?
+> >
+> > Ross
+> >
+> >
+> >
+> >
+>
+
+--0000000000000df32d05899c70f6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div>Thank you khem raj for your input, I have already tr=
+ied with</div><div dir=3D"auto"><br></div><div dir=3D"auto"><span style=3D"=
+font-family:sans-serif">INCOMPATIBLE_LICENSE =3D &quot;GPLv3+=C2=A0</span><=
+span style=3D"font-family:sans-serif">LGPLv3+ AGPLv3+&quot;</span></div><di=
+v dir=3D"auto"><span style=3D"font-family:sans-serif">=C2=A0</span></div><d=
+iv dir=3D"auto"><font face=3D"sans-serif">And this also</font></div><div di=
+r=3D"auto"><font face=3D"sans-serif"><br></font></div><div dir=3D"auto"><sp=
+an style=3D"font-family:sans-serif">INCOMPATIBLE_LICENSE =3D &quot;GPLv3*=
+=C2=A0</span><span style=3D"font-family:sans-serif">LGPLv3* AGPLv3*&quot;</=
+span></div><div dir=3D"auto"><font face=3D"sans-serif"><br></font></div><di=
+v dir=3D"auto"><font face=3D"sans-serif">But no luck, still I can see same =
+output</font></div><div dir=3D"auto"><font face=3D"sans-serif"><br></font><=
+/div><div dir=3D"auto"><font face=3D"sans-serif"><br></font></div><div dir=
+=3D"auto"><span style=3D"font-family:sans-serif">rootfs/usr/share/common-li=
+cens</span><span style=3D"font-family:sans-serif">e/package/libgcrypt-lic/r=
+ecipe</span><span style=3D"font-family:sans-serif">info</span><br style=3D"=
+font-family:sans-serif"><br style=3D"font-family:sans-serif"><span style=3D=
+"font-family:sans-serif">LICENSE: GPLV2+ &amp;LGPLV2.1+ &amp;GPLV3+</span><=
+br style=3D"font-family:sans-serif"><span style=3D"font-family:sans-serif">=
+PR: r0</span></div><div dir=3D"auto"><span style=3D"font-family:sans-serif"=
+>=C2=A0PV : 1.8.4</span><font face=3D"sans-serif"><br></font></div><div dir=
+=3D"auto"><font face=3D"sans-serif"><br></font><br><div class=3D"gmail_quot=
+e" dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_attr">On Fri 24 May, 2019, =
+5:25 AM Khem Raj, &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.=
+com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><br>
+<br>
+On 5/23/19 2:42 AM, virendra kumar thakur wrote:<br>
+&gt; <br>
+&gt; <br>
+&gt; Hello team,<br>
+&gt; <br>
+&gt; I am trying to build yocto image without GPLv3 package, I have added <=
+br>
+&gt; below things in local.conf and enable meta-gplv2 layer.<br>
+&gt; <br>
+&gt; INCOMPATIBLE_LICENSE =3D &quot;GPL-3.0 LGPL-3.0 AGPL-3. 0&quot; in loc=
+al.conf.<br>
+<br>
+Can you try adding GPLv3+ to INCOMPATIBLE_LICENSE and see if that helps ?<b=
+r>
+<br>
+&gt; <br>
+&gt; After verifying from package.manifest and license.manifest file in <br=
+>
+&gt; build/tmp/deploy/license/ directory I observe that no GPLv3 package is=
+ <br>
+&gt; present in rootfs.<br>
+&gt; <br>
+&gt; But I can see in <br>
+&gt; rootfs/usr/share/common-license/package/libgcrypt-lic/recipeinfo<br>
+&gt; <br>
+&gt; LICENSE: GPLV2+ &amp;LGPLV2.1+ &amp;GPLV3+<br>
+&gt; PR: r0<br>
+&gt; PV : 1.8.4<br>
+&gt; <br>
+&gt; Is present..<br>
+&gt; <br>
+&gt; My doubt is why any GPLv3 is present in common-license directory?<br>
+&gt; <br>
+&gt; From: &quot;Burton, Ross&quot; &lt;<a href=3D"mailto:ross.burton@intel=
+.com" target=3D"_blank" rel=3D"noreferrer">ross.burton@intel.com</a> &lt;ma=
+ilto:<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank" rel=3D"nore=
+ferrer">ross.burton@intel.com</a>&gt;&gt;<br>
+&gt; To: virendra kumar thakur &lt;<a href=3D"mailto:coolveer07@gmail.com" =
+target=3D"_blank" rel=3D"noreferrer">coolveer07@gmail.com</a> <br>
+&gt; &lt;mailto:<a href=3D"mailto:coolveer07@gmail.com" target=3D"_blank" r=
+el=3D"noreferrer">coolveer07@gmail.com</a>&gt;&gt;<br>
+&gt; Cc: Yocto-mailing-list &lt;<a href=3D"mailto:yocto@yoctoproject.org" t=
+arget=3D"_blank" rel=3D"noreferrer">yocto@yoctoproject.org</a> <br>
+&gt; &lt;mailto:<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank"=
+ rel=3D"noreferrer">yocto@yoctoproject.org</a>&gt;&gt;<br>
+&gt; Subject: Re: [yocto] GPLv3 package present in rootfs<br>
+&gt; <br>
+&gt; On Wed, 22 May 2019 at 06:26, virendra kumar thakur<br>
+&gt; &lt;<a href=3D"mailto:coolveer07@gmail.com" target=3D"_blank" rel=3D"n=
+oreferrer">coolveer07@gmail.com</a> &lt;mailto:<a href=3D"mailto:coolveer07=
+@gmail.com" target=3D"_blank" rel=3D"noreferrer">coolveer07@gmail.com</a>&g=
+t;&gt; wrote:<br>
+&gt;&gt; still some package gnutls, libidn2, libassuan, are added into root=
+fs.<br>
+&gt; <br>
+&gt; Randomly picking libassuan:<br>
+&gt; <br>
+&gt; LICENSE_${PN} =3D &quot;LGPLv2.1+&quot;<br>
+&gt; <br>
+&gt; The library itself is LGPL-2.=C2=A0 Have you verified the *package*<br=
+>
+&gt; licenses for what is actually going into the image?<br>
+&gt; <br>
+&gt; Ross<br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+&gt; <br>
+</blockquote></div></div></div>
+
+--0000000000000df32d05899c70f6--
