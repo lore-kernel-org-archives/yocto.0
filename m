@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 22335E00931; Thu, 23 May 2019 22:29:57 -0700 (PDT)
+	id 680DAE00CC9; Thu, 23 May 2019 22:33:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,68 +9,69 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.172 listed in list.dnswl.org]
+	*      [209.85.210.169 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
-	[209.85.214.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D439DE00931
-	for <yocto@yoctoproject.org>; Thu, 23 May 2019 22:29:55 -0700 (PDT)
-Received: by mail-pl1-f172.google.com with SMTP id gn7so3668989plb.10
-	for <yocto@yoctoproject.org>; Thu, 23 May 2019 22:29:55 -0700 (PDT)
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com
+	[209.85.210.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0869EE00798
+	for <yocto@yoctoproject.org>; Thu, 23 May 2019 22:33:01 -0700 (PDT)
+Received: by mail-pf1-f169.google.com with SMTP id a23so4607981pff.4
+	for <yocto@yoctoproject.org>; Thu, 23 May 2019 22:33:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:references:from:organization:message-id:date:user-agent
 	:mime-version:in-reply-to:content-language:content-transfer-encoding;
-	bh=kCMDkR86xgJVfd7mMas48F74JONCuJQzeJHQuBr2cD8=;
-	b=mNZU64n5enMFSqvAhgySPif2GBQbHW626lcyygm1VRg1CvHgWkleKdpwpg/Y+eeEu8
-	6GcXykM7DLTJ73op3b3m41/cQqNSsYVCnVJX7xQzMQg3oKVAu7gAHF6eVw+gAzzaG9oT
-	WayJH6lOELRkxiC1FiZDp5iQ/6YlTDpTlUECnHcDJGFlX/qZhn6fDPJxRKgZ3flJpNPR
-	J2CzeBXyhFsqezy2PzJfi8O+834aHsTwTJLpFrvH4rWLxbOnpTBnSy1EdK56JGm+gYhw
-	4moi0JNuE9Pi9wn7UR3fZ5Z8HfOzOEF8YEH9R5HQJPBGlbXGLm5K1KkjFLSTW2kI6KUt
-	M14Q==
+	bh=SpjVrnbaEc3wz+Z/5P4pQ9/PHz8oqN38gm/1FKO/l84=;
+	b=t8ylSp8uGHCjF3cz+elWLU+I7PK6EY2ETQVysQPcV4cbtE+59M+3riptf3skTVBbT8
+	q4Cg9xMOPPQGkxVklfVmzO+qaazbV0M3+E8DdxQDM+rwBqzln4k1IQX86CbZCDuNsC8/
+	QZVq6BkFx/RMzfkFN7sWxkPGYdzjEgqWWznsfT3BIUraPq9DsHfFSBLaedALKQorcCnu
+	Bc575su3Z7Po4A6GVxrj9T8UKH344wi755SrWy57Q+LCTc/wHRLk/x+1qsGMuCIzIAwT
+	7/t2iPEkhrL7BnW2Ye3VcVGCFUsKeflkQoPRnWFWGIjlroV7Kz2yRJ+dSaEmv/1F/0ih
+	02WA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:references:from:organization
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-language:content-transfer-encoding;
-	bh=kCMDkR86xgJVfd7mMas48F74JONCuJQzeJHQuBr2cD8=;
-	b=dmyqPmmMfcj3wIflifov/BrXDKERVU2Fmi+LY8kVVjkh7W3AnmDtfH0WjW9NjmgS59
-	37cj7rDijaaUMI+EABcC8Ozm93rA2ejTP4ertTevcc8FdAHzThc/2AONwJPgoGi9zxcT
-	01DPtbULQN8x0Nqz87SRrDtRxNmPzrWcdU3b/pfsmYjgwpo08pThauReZsNf1UN5JH1J
-	60BkRvU7+mJ19+xVY1L/d4Zi1Bitn5Iw8PGGtDrM5x2czbtDqsZUH7jJ/KJXHXxnLXzX
-	gCCDShV3AisQPVI5Pf+M+LFz4JfQlzDMRP2yczsinfXASnni0DErGflroplri2P+M7AB
-	UXlA==
-X-Gm-Message-State: APjAAAVK9LyxcBD+QlvbqsFDzvdFykzBgFaE/3pQr3pnO1QqRh9Aa7jD
-	VZ/n50TYDvveL5MvZ2DKalpJWvRbh84=
-X-Google-Smtp-Source: APXvYqyPbwORrcgKZJ+puR3NVvqf6FPChsSbO+pX/sU0PfMnPtz/vB0LSCNv35X7VEEc4wk6qNq3Qw==
-X-Received: by 2002:a17:902:ca4:: with SMTP id
-	33mr66221482plt.107.1558675794526; 
-	Thu, 23 May 2019 22:29:54 -0700 (PDT)
+	bh=SpjVrnbaEc3wz+Z/5P4pQ9/PHz8oqN38gm/1FKO/l84=;
+	b=TTTErD3ROXCORRhp0iTY+Ypl2Fn1BfcKvFnO3qjP0HpMUuxCyf+6kwTGeVzZUXpJv5
+	G7Ld1yPbUp+yjO8tfDtMmaljwVUDASZVI9/kI3hY70la/iyqeD8/YFuKdwGGdshTcvzu
+	xPIsV4f6NyxnTXJPXg+MAKaz9Swt1j7awZgmhsotdo37/g7TGZ5MRcQ0BIOamLsil0gv
+	1kLYY32J54kOevmYraDLFaxJURgxqWvZKr8Cn+QMknratTf7Xb7Ir2GVFAauEutOGTA4
+	mZ0JfA9scz18tHkaTfsttAvWgKLMO64632MJqEjuwxHrrYKJ5Ct6mpvypsSFS2RbBAjS
+	HhIg==
+X-Gm-Message-State: APjAAAX1JuQXHaPh6UDmrJO+HQF4iV/YxK4775ktZ9CHSmY0VeTl/1RS
+	HyTTxL57Y3e95GPZYp6J8HVKsIEggpk=
+X-Google-Smtp-Source: APXvYqyCIwqJ7yyLhN1Q9hDAi/YjI2ANOsS2RfVBvxmpwS/C82c0m99aMwsEuqtTdT4Gj8YEHXNP5A==
+X-Received: by 2002:a63:fc55:: with SMTP id
+	r21mr102255588pgk.441.1558675980912; 
+	Thu, 23 May 2019 22:33:00 -0700 (PDT)
 Received: from hermes.local ([2601:646:8500:6bc6:313d:8ef2:9687:9b74])
-	by smtp.gmail.com with ESMTPSA id t5sm949432pgn.80.2019.05.23.22.29.53
+	by smtp.gmail.com with ESMTPSA id
+	h71sm1989738pje.11.2019.05.23.22.32.59
 	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Thu, 23 May 2019 22:29:53 -0700 (PDT)
+	Thu, 23 May 2019 22:33:00 -0700 (PDT)
 To: "Tg, Harish" <harish.tg@aptiv.com>,
 	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 References: <mailman.14370.1558531613.2881.yocto@yoctoproject.org>
 	<BN6P197MB004909BFF82584B53EF5DF24FB010@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
 	<d10908a2-a6ac-5011-c629-0cf9de89cce6@gmail.com>
-	<BN6P197MB0049095C269F2F4C0388960DFB020@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
+	<BN6P197MB00490F98551A58F58C80FAA7FB020@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
 From: Khem Raj <raj.khem@gmail.com>
 Organization: HIMVIS LLC
-Message-ID: <889665c9-53a0-e40a-9605-dd1f837040bf@gmail.com>
-Date: Thu, 23 May 2019 22:29:52 -0700
+Message-ID: <99738dcb-c223-6a19-0f5c-3d8fb0ee31c8@gmail.com>
+Date: Thu, 23 May 2019 22:32:59 -0700
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:67.0)
 	Gecko/20100101 Thunderbird/67.0
 MIME-Version: 1.0
-In-Reply-To: <BN6P197MB0049095C269F2F4C0388960DFB020@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
+In-Reply-To: <BN6P197MB00490F98551A58F58C80FAA7FB020@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
 Subject: Re: EXT SENDER - yocto Digest, Vol 104, Issue 95
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -83,27 +84,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 May 2019 05:29:57 -0000
+X-List-Received-Date: Fri, 24 May 2019 05:33:03 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-That could be done by writing a recipe to build and/or package your 
-version. So look how to write a new recipe, if its prebuilt you just 
-might be able to package it using do_install() step in your recipe
+Please keep the thread on list and avoid pm.
 
-and then add that package to IMAGE_INSTALL
+as I said you need
 
-see 
-https://wiki.yoctoproject.org/wiki/Building_your_own_recipes_from_first_principles
+1. Write a recipe for your package
+2. in do_install of the recipe you want to mention where it should be 
+placed e.g.
 
-especially section  "Build an example package based on a remote source 
-archive"
+install -D -m 0755 <your-binary> ${D}${bindir}/<your-binary>
+
+would put it in /usr/bin on target when this package is included in image
+
+3. Include the package in image via IMAGE_INSTALL
 
 
-On 5/23/19 9:58 PM, Tg, Harish wrote:
+
+On 5/23/19 10:13 PM, Tg, Harish wrote:
 > Hi Raj,
->               My ubiattach is separate one which works for our project. Its not part of ubifs package. I need to place that in /usr/bin rootfs image. Also I couldn’t find the place where I need to copy this ubiattach command. You can take this as custom ubiattach command. I could locate local.conf but there is no IMAGE_INSTALL_append in it. I do not have clear idea. Please clarify.
+>              Another question I have is where do I place my custom "ubiattach" command. Also I am not sure from where does the yocto builds the rootfs /usr/bin components. Where do they copied from?
 > 
 > Thanks,
 > Harish.
