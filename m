@@ -1,85 +1,103 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <harish.tg@aptiv.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 40485E00BAA; Thu, 23 May 2019 21:37:53 -0700 (PDT)
+	id 5ED17E00B5F; Thu, 23 May 2019 22:10:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, LOTS_OF_MONEY,
-	RCVD_IN_DNSWL_NONE, US_DOLLARS_3 autolearn=no version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.195 listed in list.dnswl.org]
-	*  1.4 US_DOLLARS_3 BODY: Mentions millions of $ ($NN,NNN,NNN.NN)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid *  0.0 LOTS_OF_MONEY Huge... sums of money
-Received: from mail-pg1-f195.google.com (mail-pg1-f195.google.com
-	[209.85.215.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4F0FE00B5F
-	for <yocto@yoctoproject.org>; Thu, 23 May 2019 21:37:51 -0700 (PDT)
-Received: by mail-pg1-f195.google.com with SMTP id w22so4310471pgi.6
-	for <yocto@yoctoproject.org>; Thu, 23 May 2019 21:37:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:organization:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=e8KSif4ZewQ3osw47d94Yc4mRG2YCT8EmQGJy1vxe/s=;
-	b=cRvNsxEh4ZJjDAzIuGk7ogNkhELRPhlowQBRFTqHE+OISBLMn3cguRm+gx+rIayPM2
-	FyNtTbCspuVJdJJ8E15RvPMkRbe40g+1G9IPRT1rRLaqQ9YYYbSCR8WX3NegKuQe9eFc
-	gSQ/ox1HChqESe6oAN9RbnZWp8b4yeCEUPFWfMj8gmZkdyFf/3oQxxsQ9liIXKtaFYe0
-	jWMuKkJlw8VSf1w3ELEoTkluHn0MtpIiRLxVFYD19KLuU5phnC5s0unQgYAUxlQibJqN
-	+Lwige7jlwa444TkPOA7KMov3lZh5QM7REmxzEmH/98VycV2lNoraXZCj2cs+MhnLvrX
-	Tuew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:organization
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-language:content-transfer-encoding;
-	bh=e8KSif4ZewQ3osw47d94Yc4mRG2YCT8EmQGJy1vxe/s=;
-	b=Y5E03In9e5UOAmVL27YYf3TCsK3xvuLsCpb/DJIVICz2I0OTgft/Sz6Nemf+xfHYPh
-	FOJNnh53NqAiN0/dQaKskdhaSF6KaGbTlEaub1bf5lYJ1MCr6szs9O6cp1Eoh2LAYrbr
-	BwaU4SeauA4YzCzMwULtGUF6pX2kyS3YNvwypYtGMxz5wcB+50UDFTwWp4KqPHxHHJ83
-	un6r5zBb9Gq71yahcMuiCTzibAGeD2+QfUoEduMMcMf+7XMk6xx1TprFjZBkgbdvzHXs
-	PX1LBrWAXNqfGEGfRr3Icf4fXKXReQvAN3Zv2PfQlTSKpAFxkWocSFYeDmn9or71GleT
-	9u2Q==
-X-Gm-Message-State: APjAAAW1a8agvJOu125HvJM6mbRc5ANKH/RCsSBAMOFp7PXRMHHKcSAf
-	pBjAqORffMjSxY4T8M+2SwcGyxIxuFY=
-X-Google-Smtp-Source: APXvYqxn6peTG5pzRrvdX5FHJBpwF94p2OgYlPBeg3TjIovNthIeLX5KXnx9Q8av+D7YZDvvAlk6bQ==
-X-Received: by 2002:a63:42:: with SMTP id 63mr103333497pga.337.1558672670508; 
-	Thu, 23 May 2019 21:37:50 -0700 (PDT)
-Received: from hermes.local ([2601:646:8500:6bc6:313d:8ef2:9687:9b74])
-	by smtp.gmail.com with ESMTPSA id m12sm859268pgi.56.2019.05.23.21.37.49
-	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Thu, 23 May 2019 21:37:49 -0700 (PDT)
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-References: <CAGAf8LxJyLUqa+kOv7+Zs0zbXBD3JjR4yEsqHTi4rDx805826A@mail.gmail.com>
-	<903d2bf0-2711-b734-d844-ef032fb67d58@2net.co.uk>
-	<CAGAf8LyRa0AXf-097GAoJa=jUY3pK8fWxCaDXGReu+GqVJOi4A@mail.gmail.com>
-	<CADkTA4MQc=OYaTqTwoGv0mzLcQ3a6R911_UjCuCpRCootgtiwA@mail.gmail.com>
-	<CAGAf8LwwfKq4kXE5=bf_1+Aa8aqOG+8NrL31Mii2TfLhXyLXKA@mail.gmail.com>
-	<CADkTA4OYJs71BPbeM3+gz1+heAQw4L5zJ4U77emrywG5bzz-HQ@mail.gmail.com>
-	<CAGAf8Lxcs7sigNHZxrOj1HUfn0x12=4o3bh85Ku-E=w=1iGGFg@mail.gmail.com>
-	<CADkTA4NXu3qt+88TA_mjaDDaZooadX6_H=Z_mMsfi7Op0gFB6Q@mail.gmail.com>
-	<CAGAf8LwUfCGHkKjE-VWpZjvh9Q9A1ZUEDkGbZ-+syQpnyMWf-g@mail.gmail.com>
-	<c554f8bb-6ca3-e432-955c-a2eb32c48a54@gmail.com>
-	<CAGAf8LwfH9_=71tkO-Y=MuG-6tGKXmSCOS6bzWx6ekUsPzAQqQ@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <e24e42cd-19a2-8cf7-d032-8a27dbecd4b9@gmail.com>
-Date: Thu, 23 May 2019 21:37:48 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:67.0)
-	Gecko/20100101 Thunderbird/67.0
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [69.195.251.241 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+Received: from usflmia-meg1.delphi.com (usflmia-meg1.delphi.com
+	[69.195.251.241])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71C07E0091A
+	for <yocto@yoctoproject.org>; Thu, 23 May 2019 22:10:16 -0700 (PDT)
+Received: from 10492-US-DLP002.delphiauto.net (unknown [10.201.250.14]) by
+	usflmia-meg1.delphi.com with smtp
+	id 0689_9520_3d82b067_eedf_46ae_9487_42b9857f03ae;
+	Fri, 24 May 2019 00:54:47 -0400
+Received: from usflmia-gw2.delphi.com ([10.192.117.25])
+	by 10492-US-DLP002.delphiauto.net (8.13.8/8.13.8) with ESMTP id
+	x4O4wP3a021140; Fri, 24 May 2019 00:58:25 -0400
+Received: from mx0a-00275a01.pphosted.com (mx0a-00275a01.pphosted.com
+	[148.163.157.133]) by usflmia-gw2.delphi.com with smtp
+	(TLS: TLSv1/SSLv3,256bits,ECDHE-RSA-AES256-GCM-SHA384)
+	id 5522_b284_aa4743a1_8faa_4f25_9c4c_a25dc33c59d7;
+	Fri, 24 May 2019 00:54:45 -0400
+Received: from pps.filterd (m0109020.ppops.net [127.0.0.1])
+	by mx0a-00275a01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id
+	x4O4tI64032423; Fri, 24 May 2019 00:58:24 -0400
+Received: from nam05-dm3-obe.outbound.protection.outlook.com
+	(mail-dm3nam05lp2050.outbound.protection.outlook.com [104.47.49.50])
+	by mx0a-00275a01.pphosted.com with ESMTP id 2sp6cf8yqq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+	Fri, 24 May 2019 00:58:24 -0400
+Received: from BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM (129.75.106.24) by
+	BN6P197MB0036.NAMP197.PROD.OUTLOOK.COM (129.75.106.23) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.1900.20; Fri, 24 May 2019 04:58:22 +0000
+Received: from BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM
+	([fe80::6c86:e18e:fac4:6bf5]) by BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM
+	([fe80::6c86:e18e:fac4:6bf5%8]) with mapi id 15.20.1900.020;
+	Fri, 24 May 2019 04:58:22 +0000
+From: "Tg, Harish" <harish.tg@aptiv.com>
+To: Khem Raj <raj.khem@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] EXT SENDER - yocto Digest, Vol 104, Issue 95
+Thread-Index: AQHVEKJktXx0yxcK9kKNv1vrSBjDyKZ4rPPggADUGwCAADd/MA==
+Date: Fri, 24 May 2019 04:58:22 +0000
+Message-ID: <BN6P197MB0049095C269F2F4C0388960DFB020@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
+References: <mailman.14370.1558531613.2881.yocto@yoctoproject.org>
+	<BN6P197MB004909BFF82584B53EF5DF24FB010@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
+	<d10908a2-a6ac-5011-c629-0cf9de89cce6@gmail.com>
+In-Reply-To: <d10908a2-a6ac-5011-c629-0cf9de89cce6@gmail.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [1.6.70.242]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 4a49aec5-789f-49fc-a431-08d6e004727b
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(2017052603328)(7193020);
+	SRVR:BN6P197MB0036; 
+x-ms-traffictypediagnostic: BN6P197MB0036:
+x-ms-exchange-purlcount: 4
+x-microsoft-antispam-prvs: <BN6P197MB00362D8F915FC12A05C12746FB020@BN6P197MB0036.NAMP197.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:2803;
+x-forefront-prvs: 0047BC5ADE
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(136003)(346002)(376002)(366004)(39860400002)(396003)(199004)(13464003)(189003)(10533003)(27574002)(18543002)(26005)(486006)(11346002)(2906002)(14454004)(81166006)(8936002)(81156014)(66066001)(966005)(7736002)(476003)(446003)(186003)(8676002)(64756008)(66446008)(305945005)(68736007)(9686003)(86362001)(55016002)(229853002)(52536014)(6436002)(5660300002)(74316002)(6306002)(6246003)(110136005)(33656002)(102836004)(25786009)(99286004)(76176011)(6506007)(53546011)(53936002)(7696005)(6116002)(5024004)(14444005)(256004)(76116006)(2501003)(478600001)(73956011)(66556008)(66476007)(66946007)(71200400001)(71190400001)(3846002)(316002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6P197MB0036;
+	H:BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: aptiv.com does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: er8BNyDsbbAv+0nY/zQXBymFiNJljMgBeNs+hmiQ+oF5uV+yhjyi+hq2tYBBpANsIbA6t0hlmusjj26nzxFGuWW9Md4GBgnORjqYQZz08pzVEaj8Ve4F6LM8TkD1CNr39sOyvEKYGepNgb7w/0Ddx0ESdDdjSz5hD2c7uM50T5UVI13tBN9JC2BP+Go6bMIXXKkRrGGfxoKu6Bj93IyCynhv6RXd3T5U8TKevGwpAUJG5pKoN/W2ad/0Kca51ijon2ab78n0tsETy3FQfAyNhclTVszUJuv0DEkdRrcbJ22HquE6rhJ7no27LTwDUtK/7Va+hfq6qt6B2sordnt6uU672BK6f6e5T5R3wO2zzmiUpfP0GIjlSLbxM6Qp/niOgEQkYv5JAVcVlURUjIkUndzFtgcnuh9TDivAaxVLdwU=
 MIME-Version: 1.0
-In-Reply-To: <CAGAf8LwfH9_=71tkO-Y=MuG-6tGKXmSCOS6bzWx6ekUsPzAQqQ@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Building Out-of-Tree Modules on the BBB Target
+X-OriginatorOrg: aptiv.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a49aec5-789f-49fc-a431-08d6e004727b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 May 2019 04:58:22.3629 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 6b1311e5-123f-49db-acdf-8847c2d00bed
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6P197MB0036
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+	definitions=2019-05-24_01:, , signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+	priorityscore=1501
+	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+	clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+	mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+	scancount=1 engine=8.0.1-1810050000 definitions=main-1905240033
+X-RCIS-Action: ALLOW
+X-MEG-POLICY: ALLOW
+Subject: Re: EXT SENDER - yocto Digest, Vol 104, Issue 95
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -91,511 +109,162 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 May 2019 04:37:53 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Fri, 24 May 2019 05:10:18 -0000
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-
-
-On 5/23/19 9:14 PM, Zoran Stojsavljevic wrote:
->  > I think this is a fair suggestion. Having prebuilt kernel available
->  > that contains the configuration and header files used in the build is
->  > all that is required for external modules to build in addition to
->  > toolchain, so maybe its worth a try to create such a package and then
->  > have kernel-source separated out which can be installed on top if one
->  > needs
-> 
-> I am man of experimental try-outs. So, in order to see how big kernel is,
-> I did the following:
-> Fedora 29 (which I am using as a host) with kernel-headers (NOT full
-> kernel source tree):
-> [vuser@fedora29-ssd 5.0.16-200.fc29.x86_64]$ pwd
-> /usr/src/kernels/5.0.16-200.fc29.x86_64
-> [vuser@fedora29-ssd 5.0.16-200.fc29.x86_64]$ du --summarize
-> /*102124    . <<======= ~95MB*/
-> 
-> Kernel.org kernel 5.0.6, the full kernel source tree size:
-> [vuser@fedora29-ssd linux-5.0.6]$ pwd
-> /home/vuser/projects/kernel.org/linux-5.0.6 <http://kernel.org/linux-5.0.6>
-> [vuser@fedora29-ssd linux-5.0.6]$ du --summarize
-> /*960592    . <<======= ~900MB*/
-> 
-> These are ballpark numbers. You can draw conclusions for yourselves!
-> 
-> It is ~ 7x to 9x reduction in size. Having BBB's DDR2 of size 512MB,
-> and initramfs for testing purposes, in speaks for itself.
-> 
-
-yes thats what I was expecting too. Anything smaller helps.
-
-
-> (I am aware that YOCTO kernels are less/smaller in size, but how smaller?)
-> 
-
-Not in source. The binaries may be
-
-> Zoran
-> _______
-> 
-> 
-> On Fri, May 24, 2019 at 3:00 AM Khem Raj <raj.khem@gmail.com 
-> <mailto:raj.khem@gmail.com>> wrote:
-> 
-> 
-> 
->     On 5/23/19 3:32 AM, Zoran Stojsavljevic wrote:
->      > After some tests (and I had other problems to take care of, as well),
->      > here is the following:
->      >
->      >> These have all been discussed off an on over the past 5 years.
->      >> I can't get at bugzilla right now, but all the details are
->     logged in cases.
->      >> A survey of all the distros, their kernel package, etc, were all
->     looked at.
->      >> We had to balance the traditional packaging with some new concepts
->      >> and landed with what we have now.
->      >
->      > I tried several tests. This is my final conclusion (two cases):
->      >
->     https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/Issues/kernel-development.txt
->      >
->      > The kernel issue is described here: there is need to have the YOCTO
->      > minimum configuration with the kernel setup:
->      > [1] The entire kernel source code in:
->      > /usr/src/kernel/`uname-r`/<kernel source code>
->      > [2] The header files in: /usr/src/kernel/`uname-r`/<header file
->      > directory structures>
->      >
->      > Point [1] is achieved with the following local.config file:
->      >
->     https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/Issues/local-devsrc.conf
->      >
->      > Namely, with the following snippets in the local.conf:
->      > TOOLCHAIN_TARGET_TASK_append = " packagegroup-core-tools-profile
->      > packagegroup-core-buildessential kernel-devsrc"
->      > KERNEL_DEV_TOOLS = "packagegroup-core-tools-profile
->      > packagegroup-core-buildessential kernel-devsrc"
->      > KERNEL_DEV_MODULE = "kernel-modules"
->      > CORE_IMAGE_EXTRA_INSTALL += "${KERNEL_DEV_MODULE} \
->      > ${KERNEL_DEV_TOOLS} \
->      > systemtap \
->      > "
->      >
->      > Problem with this approach is that such a kernel makes the rootfs too
->      > big and impractical:
->      > -rw-r--r--. 2 user vboxusers 101499952 May 17 14:32
->      > core-image-minimal-beaglebone.rootfs.tar.xz
->      >
->      > The main issue is point [2]: how to achieve it?
->      > The suggestion is to introduce the new package in YOCTO kernel,
->      > called: kernel-headers
->      > The OBVIOUS benefit is that it will serve to the purpose of building
->      > modules out of the tree on the target with
->      > minimal mpact to rootfs!
-> 
->     I think this is a fair suggestion. Having prebuilt kernel available
->     that contains the configuration and header files used in the build is
->     all that is required for external modules to build in addition to
->     toolchain, so maybe its worth a try to create such a package and then
->     have kernel-source separated out which can be installed on top if one
->     needs
-> 
->      >
->      > Thank you,
->      > Zoran Stojsavljevic
->      > _______
->      >
->      > On Thu, May 16, 2019 at 12:04 AM Bruce Ashfield
->      > <bruce.ashfield@gmail.com <mailto:bruce.ashfield@gmail.com>> wrote:
->      >>
->      >>
->      >>
->      >> On Wed, May 15, 2019 at 4:09 PM Zoran Stojsavljevic
->     <zoran.stojsavljevic@gmail.com
->     <mailto:zoran.stojsavljevic@gmail.com>> wrote:
->      >>>
->      >>>> The core-image-kernel-dev image is how I do all my on target
->      >>>> testing when I introduce a new reference kernel for a release.
->      >>>
->      >>> Maybe you are correct. Maybe I should use/add in my local.conf
->     the following:
->      >>>
->      >>> KERNEL_DEV_TOOLS ?= "packagegroup-core-tools-profile
->      >>> packagegroup-core-buildessential kernel-devsrc"
->      >>> KERNEL_DEV_MODULE ?= "kernel-modules"
->      >>> CORE_IMAGE_EXTRA_INSTALL += "${KERNEL_DEV_MODULE} \
->      >>>                               ${KERNEL_DEV_TOOLS} \
->      >>>                               systemtap \
->      >>>                              "
->      >>> I need to try these... Maybe this addendum will solve the $1
->     mio USD problem?!
->      >>>
->      >>>> And IIRC the autobuilders are using a sato based image (Richard
->      >>>> could confirm more easily that I could what image type the
->      >>>> autobuilders are using for hello-world on target module tests).
->      >>>
->      >>> I am just advertising something more simple. To have mandatory
->      >>> /lib/modules/`uname -r` directory. And introduce few more
->     packages, as
->      >>> Fedora distro, for example, has: kernel-headers (assuming YOCTO
->      >>> rootfs, the following will be installed: /usr/src/kernel/`uname
->      >>> -r`/<header file directory structures>. This also makes addition of
->      >>> /lib/modules/`uname -r`/build file (which is soft link to
->      >>> usr/src/kernel/`uname -r`).
->      >>
->      >>
->      >> These have all been discussed off an on over the past 5 years. I
->     can't get at bugzilla right now, but all the details are logged in
->     cases. A survey of all the distros, their kernel package, etc, were
->     all looked at. We had to balance the traditional packaging with some
->     new concepts and landed with what we have now.
->      >>
->      >>
->      >>>
->      >>> Or kernel-devel package. Then, the whole current kernel source code
->      >>> will be introduced, and also support for it.
->      >>
->      >>
->      >> There's a case for this one as well, I'll probably have it done
->     for the fall release. But our devsrc used to pretty much be the full
->     source it has now been pruned down to something more manageable. 
->     There are definitely some cases for having the full source on the
->     target again, and it will be a separate package, just not the
->     minimal one to build out of tree modules, etc.
->      >>
->      >>
->      >>
->      >>>
->      >>>
->      >>> SDK building with such a support is good/cool. But sometimes,
->     before
->      >>> introducing SDK, some tests should be done on target. NO need to
->      >>> optionally include built-in layer hello-world driver example.
->     Since I
->      >>> (or you name the person) have own test drivers, which will be
->     imported
->      >>> out of tree, externally, to the target test bed!
->      >>>
->      >>
->      >> I never use the SDK myself, so you are not alone in not going to
->     it first. Hopefully I'll get some new patches out in the coming
->     month before summer holidays really kick in.
->      >>
->      >> Bruce
->      >>
->      >>
->      >>>
->      >>> Just thinking loud...
->      >>>
->      >>> Zoran
->      >>> _______
->      >>>
->      >>> On Wed, May 15, 2019 at 4:25 PM Bruce Ashfield
->     <bruce.ashfield@gmail.com <mailto:bruce.ashfield@gmail.com>> wrote:
->      >>>>
->      >>>>
->      >>>>
->      >>>> On Wed, May 15, 2019 at 3:44 AM Zoran Stojsavljevic
->     <zoran.stojsavljevic@gmail.com
->     <mailto:zoran.stojsavljevic@gmail.com>> wrote:
->      >>>>>
->      >>>>>> That's correct. That command only adds the kernel source and
->      >>>>>> build infrastructure to the SDK, not to your target image.
->     You'd still
->      >>>>>> need to arrange to have the kernel-devsrc package installed
->     on the
->      >>>>>> target image if you want it on the board's rootfs. How you
->     arrange
->      >>>>>> to have the package installed to the image varies with the image
->      >>>>>> (since they all don't have the same image install variables,
->     etc).
->      >>>>>
->      >>>>> And here is a $1,000,000 USD question? How to do it on Poky (as
->      >>>>> example of what you have stated in RED)? ;-)
->      >>>>>
->      >>>>> In other words: how to arrange it on Poky (as a Referent
->     example)?
->      >>>>
->      >>>>
->      >>>> The core-image-kernel-dev image is how I do all my on target
->     testing when I introduce a new reference kernel for a release. And
->     IIRC the autobuilders are using a sato based image (Richard could
->     confirm more easily that I could what image type the autobuilders
->     are using for hello-world on target module tests).
->      >>>>
->      >>>> Bruce
->      >>>>
->      >>>>
->      >>>>>
->      >>>>>
->      >>>>> Thank you,
->      >>>>> Zoran
->      >>>>> _______
->      >>>>>
->      >>>>>
->      >>>>> On Wed, May 15, 2019 at 7:41 AM Bruce Ashfield
->     <bruce.ashfield@gmail.com <mailto:bruce.ashfield@gmail.com>> wrote:
->      >>>>>>
->      >>>>>>
->      >>>>>>
->      >>>>>> On Tue, May 14, 2019 at 1:30 PM Zoran Stojsavljevic
->     <zoran.stojsavljevic@gmail.com
->     <mailto:zoran.stojsavljevic@gmail.com>> wrote:
->      >>>>>>>
->      >>>>>>> Hello Chris, Bruce,
->      >>>>>>>
->      >>>>>>> I have some additional data to share with you both, since I
->     have tried
->      >>>>>>> something. And here is my take on the things!
->      >>>>>>>
->      >>>>>>>> 1. Build using a bb recipe.
->      >>>>>>>> Take a look at meta-skeleton/recipes-kernel/hello-mod for
->     an example.
->      >>>>>>>> You just need to add meta-skeleton to your bblayers.conf
->     and then
->      >>>>>>>>   bitbake hello-mod
->      >>>>>>>
->      >>>>>>> I looked into this example, and, yes, it is classic kernel
->     module
->      >>>>>>> definition out of the tree. With some outdated data, all
->     cool, the
->      >>>>>>> YOCTO designer should take care himself to fix these data,
->     if using
->      >>>>>>> this stuff.
->      >>>>>>>
->      >>>>>>> But this is NOT mandatory, since I can add out of the tree
->     module NOT
->      >>>>>>> actually using built-in module. I just use
->     .../tmp/deploy/images/bbb/*
->      >>>>>>> generated stuff, since I have automated scripts which are
->     bringing all
->      >>>>>>> these on my BBB target. Then I tftp my source code module
->     to the
->      >>>>>>> target.
->      >>>>>>>
->      >>>>>>>> 2. Build from the SDK:
->      >>>>>>>> First, add the kernel source to the SDK by adding this to
->     conf/local.conf
->      >>>>>>>>   TOOLCHAIN_TARGET_TASK_append = " kernel-devsrc"
->      >>>>>>>
->      >>>>>>> YES, this is THE command which should generate
->      >>>>>>> /usr/src/kernel(s)/`uname -r` or similar... But adding it to
->      >>>>>>> local.conf and after deleting kernel, then regenerating
->     bitbake -k
->      >>>>>>> core-image-minimal does not bring this path into the rootfs
->     image!?
->      >>>>>>
->      >>>>>>
->      >>>>>> That's correct. That command only adds the kernel source and
->     build infrastructure to the SDK, not to your target image. You'd
->     still need to arrange to have the kernel-devsrc package installed on
->     the target image if you want it on the board's rootfs. How you
->     arrange to have the package installed to the image varies with the
->     image (since they all don't have the same image install variables, etc).
->      >>>>>>
->      >>>>>>
->      >>>>>>>
->      >>>>>>>
->      >>>>>>> I did it actually using meta-bbb, and using poky referent
->     distro as
->      >>>>>>> two additional layers to the more complex bbb image!
->      >>>>>>> https://github.com/jumpnow/meta-bbb.git
->      >>>>>>>
->      >>>>>>> The (KAS - you can figure out out of it local.conf) script
->     I am using
->      >>>>>>> to build such a BBB image is here:
->      >>>>>>>
->     https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-releases/bbb-warrior/kas-bbb-warrior.yml
->      >>>>>>>
->      >>>>>>> I did not try it with BBB reference poky only! Maybe I
->     should try it
->      >>>>>>> as only referent poky? What do you think?
->      >>>>>>>
->      >>>>>>> Does in this case is SDK build really mandatory??? Should
->     NOT be!
->      >>>>>>>
->      >>>>>>
->      >>>>>> You only do the SDK steps if you want to support building
->     out of tree modules in an SDK install. So it is not mandatory for on
->     target module builds.
->      >>>>>>
->      >>>>>> Bruce
->      >>>>>>
->      >>>>>>
->      >>>>>>>
->      >>>>>>>> Once the SDK is installed, generate the kernel headers:
->      >>>>>>>>   sudo -i
->      >>>>>>>>   .
->     /opt/poky/2.6.2/environment-setup-cortexa8hf-neon-poky-linux-gnueabi
->      >>>>>>>>   cd
->     /opt/poky/2.6.2/sysroots/cortexa8hf-neon-poky-linux-gnueabi
->      >>>>>>>>   cd /usr/src/kernel
->      >>>>>>>>   make oldconfig scripts
->      >>>>>>>>   exit
->      >>>>>>>
->      >>>>>>> This is in nutshell the same what I did (a bit different)
->     for Embedded
->      >>>>>>> Debian. This is already on the target BBB, NOT while
->     building YOCTO
->      >>>>>>> BBB image!
->      >>>>>>>
->      >>>>>>>> Finally, build your module using a Makefile like this
->      >>>>>>>>   obj-m := hello-mod.o
->      >>>>>>>>   all:
->      >>>>>>>>         make -C $(SDKTARGETSYSROOT)/usr/src/kernel
->     M=$(shell pwd)
->      >>>>>>>
->      >>>>>>> As said before: bringing my own module into the target BBB
->     (I have my
->      >>>>>>> own examples, and I build them on the target with the
->     almost the same
->      >>>>>>> Makefiles)
->      >>>>>>>
->      >>>>>>> Zoran
->      >>>>>>> _______
->      >>>>>>>
->      >>>>>>> On Sun, May 12, 2019 at 3:15 PM Chris Simmonds
->     <chris@2net.co.uk <mailto:chris@2net.co.uk>> wrote:
->      >>>>>>>>
->      >>>>>>>> Hi Zoran,
->      >>>>>>>>
->      >>>>>>>> There are two ways to do this
->      >>>>>>>>
->      >>>>>>>> 1. Build using a bb recipe.
->      >>>>>>>> Take a look at meta-skeleton/recipes-kernel/hello-mod for
->     an example.
->      >>>>>>>> You just need to add meta-skeleton to your bblaysers.conf
->     and then
->      >>>>>>>>    bitbake hello-mod
->      >>>>>>>>
->      >>>>>>>>
->      >>>>>>>> 2. Build from the SDK:
->      >>>>>>>> First, add the kernel source to the SDK by adding this to
->     conf/local/conf
->      >>>>>>>>    TOOLCHAIN_TARGET_TASK_append = " kernel-devsrc"
->      >>>>>>>>
->      >>>>>>>> Then build the SDK
->      >>>>>>>>    bitbake -c populate_sdk [your image recipe]
->      >>>>>>>>
->      >>>>>>>> Once the SDK is installed, generate the kernel headers:
->      >>>>>>>>    sudo -i
->      >>>>>>>>    .
->     /opt/poky/2.6.2/environment-setup-cortexa8hf-neon-poky-linux-gnueabi
->      >>>>>>>>    cd
->     /opt/poky/2.6.2/sysroots/cortexa8hf-neon-poky-linux-gnueabi
->      >>>>>>>>    cd /usr/src/kernel
->      >>>>>>>>    make oldconfig scripts
->      >>>>>>>>    exit
->      >>>>>>>>
->      >>>>>>>> Finally, build your module using a Makefile like this
->      >>>>>>>>
->      >>>>>>>>    obj-m := hello-mod.o
->      >>>>>>>>    all:
->      >>>>>>>>          make -C $(SDKTARGETSYSROOT)/usr/src/kernel
->     M=$(shell pwd)
->      >>>>>>>>
->      >>>>>>>>
->      >>>>>>>> HTH,
->      >>>>>>>> Chris
->      >>>>>>>>
->      >>>>>>>> On 12/05/2019 11:53, Zoran Stojsavljevic wrote:
->      >>>>>>>>> Hello to the YOCTO community,
->      >>>>>>>>>
->      >>>>>>>>> I am using (to build the target for Beagle Bone Black)
->     the following script:
->      >>>>>>>>> https://github.com/ZoranStojsavljevic/bbb-yocto
->      >>>>>>>>>
->     https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-yocto.sh
->      >>>>>>>>>
->      >>>>>>>>> The latest kernel I am using from the following repo:
->      >>>>>>>>> https://github.com/jumpnow/meta-bbb
->      >>>>>>>>>
->      >>>>>>>>> Is kernel 5.0.14 .
->      >>>>>>>>>
->      >>>>>>>>> Here is the snippet of the boot traces:
->      >>>>>>>>> Starting kernel ...
->      >>>>>>>>>
->      >>>>>>>>> [    0.000000] Booting Linux on physical CPU 0x0
->      >>>>>>>>> [    0.000000] Linux version 5.0.14-jumpnow
->     (oe-user@oe-host) (gcc
->      >>>>>>>>> version 8.3.0 (GCC)) #1 Fri May 10 13:12:33 UTC 2019
->      >>>>>>>>> [    0.000000] CPU: ARMv7 Processor [413fc082] revision 2
->     (ARMv7), cr=10c5387d
->      >>>>>>>>> [    0.000000] CPU: PIPT / VIPT nonaliasing data cache,
->     VIPT aliasing
->      >>>>>>>>> instruction cache
->      >>>>>>>>> [    0.000000] OF: fdt: Machine model: TI AM335x
->     BeagleBone Black
->      >>>>>>>>> [    0.000000] Memory policy: Data cache writeback
->      >>>>>>>>> [    0.000000] cma: Reserved 16 MiB at 0x9f000000
->      >>>>>>>>> [    0.000000] CPU: All CPU(s) started in SVC mode.
->      >>>>>>>>> [    0.000000] AM335X ES2.1 (sgx neon)
->      >>>>>>>>> [    0.000000] random: get_random_bytes called from
->      >>>>>>>>> start_kernel+0xa4/0x460 with crng_init=0
->      >>>>>>>>> [    0.000000] Built 1 zonelists, mobility grouping on. 
->     Total pages: 130048
->      >>>>>>>>> [    0.000000] Kernel command line: console=ttyO0,115200n8
->      >>>>>>>>> root=/dev/ram0 ip=dhcp
->      >>>>>>>>>
->      >>>>>>>>> According to the documentation, the following:
->      >>>>>>>>> 2.10.1. Building Out-of-Tree Modules on the Target
->      >>>>>>>>>
->     https://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html
->      >>>>>>>>>
->      >>>>>>>>> I tried to find /usr/src/kernels/5.0.14.
->     <http://5.0.14.>.. Directory, since I see
->      >>>>>>>>> from the build that kernel-dev and kernel-devsrc are
->     included:
->      >>>>>>>>> [user@fedora29-ssd bbb-yocto]$ bitbake -s | grep kernel
->      >>>>>>>>> core-image-kernel-dev                                 :1.0-r0
->      >>>>>>>>> kernel-devsrc                                         :1.0-r0
->      >>>>>>>>> kernel-selftest                                       :1.0-r0
->      >>>>>>>>>
->      >>>>>>>>> THE PROBLEM: But I could not find ob BBB target
->     /usr/src/kernels
->      >>>>>>>>> directory at all!?
->      >>>>>>>>>
->      >>>>>>>>> Two questions here?
->      >>>>>>>>> [1] Do you have any advice on this problem (what I am
->     missing here)?
->      >>>>>>>>> [2] Alternative to [1]: how I can use cross compiler from
->      >>>>>>>>> .../build/tmp to build Out-of-Tree Module for the BBB
->     target on the
->      >>>>>>>>> host?
->      >>>>>>>>>
->      >>>>>>>>> Thank you,
->      >>>>>>>>> Zoran
->      >>>>>>>>> _______
->      >>>>>>>>>
->      >>>>>>>>
->      >>>>>>>>
->      >>>>>>>> --
->      >>>>>>>> Chris Simmonds, trainer and consultant at 2net
->      >>>>>>>> http://www.2net.co.uk
->      >>>>>>>> Author of "Mastering Embedded Linux Programming"
->      >>>>>>
->      >>>>>>
->      >>>>>>
->      >>>>>> --
->      >>>>>> - Thou shalt not follow the NULL pointer, for chaos and
->     madness await thee at its end
->      >>>>>> - "Use the force Harry" - Gandalf, Star Trek II
->      >>>>>>
->      >>>>
->      >>>>
->      >>>> --
->      >>>> - Thou shalt not follow the NULL pointer, for chaos and
->     madness await thee at its end
->      >>>> - "Use the force Harry" - Gandalf, Star Trek II
->      >>>>
->      >>
->      >>
->      >>
->      >> --
->      >> - Thou shalt not follow the NULL pointer, for chaos and madness
->     await thee at its end
->      >> - "Use the force Harry" - Gandalf, Star Trek II
->      >>
-> 
+SGkgUmFqLA0KICAgICAgICAgICAgIE15IHViaWF0dGFjaCBpcyBzZXBhcmF0ZSBvbmUgd2hpY2gg
+d29ya3MgZm9yIG91ciBwcm9qZWN0LiBJdHMgbm90IHBhcnQgb2YgdWJpZnMgcGFja2FnZS4gSSBu
+ZWVkIHRvIHBsYWNlIHRoYXQgaW4gL3Vzci9iaW4gcm9vdGZzIGltYWdlLiBBbHNvIEkgY291bGRu
+4oCZdCBmaW5kIHRoZSBwbGFjZSB3aGVyZSBJIG5lZWQgdG8gY29weSB0aGlzIHViaWF0dGFjaCBj
+b21tYW5kLiBZb3UgY2FuIHRha2UgdGhpcyBhcyBjdXN0b20gdWJpYXR0YWNoIGNvbW1hbmQuIEkg
+Y291bGQgbG9jYXRlIGxvY2FsLmNvbmYgYnV0IHRoZXJlIGlzIG5vIElNQUdFX0lOU1RBTExfYXBw
+ZW5kIGluIGl0LiBJIGRvIG5vdCBoYXZlIGNsZWFyIGlkZWEuIFBsZWFzZSBjbGFyaWZ5Lg0KDQpU
+aGFua3MsDQpIYXJpc2guDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBLaGVt
+IFJhaiBbbWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0gDQpTZW50OiBGcmlkYXksIE1heSAyNCwg
+MjAxOSA3OjA3IEFNDQpUbzogVGcsIEhhcmlzaCA8aGFyaXNoLnRnQGFwdGl2LmNvbT47IHlvY3Rv
+QHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIEVYVCBTRU5ERVIgLSB5b2N0
+byBEaWdlc3QsIFZvbCAxMDQsIElzc3VlIDk1DQoNCg0KDQpPbiA1LzIzLzE5IDU6NTkgQU0sIFRn
+LCBIYXJpc2ggd3JvdGU6DQo+IEhpLA0KPiAgICAgICBJIGhhdmUgYSBxdWVzdGlvbi4gSG93IHRv
+IGFkZCBjb21tYW5kcyBsaWtlICJ1YmlhdHRhY2giIHRvIC91c3IvYmluIG9mIHJvb3RmcyBpbWFn
+ZS4gSSBzdHJ1Z2dsaW5nIHdpdGggdGhlIHJlY2lwZXMuIEkgZG8gbm90IHdhbnQgdG8gd3JpdGUg
+bXkgb3duIHJlY2lwZSBidXQgSSBuZWVkIHRvIGVkaXQgc29tZSByZWNpcGUgYW5kIGFkZCB0aGUg
+Y29tbWFuZC4gV2hpY2ggaXMgdGhlIHBsYWNlPyBJIGFtIHVzaW5nIHlvY3RvIGZvciBteSBwcm9q
+ZWN0IG9uIFRJIHBsYXRmb3JtIGFuZCBMaW51eC4NCj4gS2luZGx5IGhlbHAuDQo+IA0KDQpUaGVy
+ZSBpcyBvZS1wa2dkYXRhLXV0aWwgd2hpY2ggY2FuIGhlbHAgdG8gbWFwIGZpbGVzIHRvIHJlY2lw
+ZXMgYnV0IHdlIGRvIG5vdCBoYXZlIGEgZGF0YWJhc2UgZm9yIG1hcHBpbmcuIE1heWJlIGl0IGlz
+IGEgZ29vZCB0aGluZyB0byBoYXZlDQoNCmZvciB5b3VyIHByb2JsZW0gdWJpYXR0YWNoIGlzIHBy
+b3ZpZGVkIGJ5IG10ZC11dGlscy11YmlmcyB3aGljaCBpcyBidWlsdCBmcm9tIG10ZC11dGlscyBy
+ZWNpcGUuIEkgZm91bmQgaXQgdmlhIGFib3ZlIHRvb2wNCg0KJSBvZS1wa2dkYXRhLXV0aWwgZmlu
+ZC1wYXRoIC91c3Ivc2Jpbi91YmlhdHRhY2gubXRkLXV0aWxzDQptdGQtdXRpbHMtdWJpZnM6IC91
+c3Ivc2Jpbi91YmlhdHRhY2gubXRkLXV0aWxzDQoNCiUgb2UtcGtnZGF0YS11dGlsIGxvb2t1cC1y
+ZWNpcGUgbXRkLXV0aWxzLXViaWZzIG10ZC11dGlscw0KDQpTbyB5b3UgbmVlZCB0byBhZGQNCg0K
+SU1BR0VfSU5TVEFMTF9hcHBlbmQgPSAiIG10ZC11dGlscy11YmlmcyIgaW4geW91ciBpbWFnZSBy
+ZWNpcGUgb3IgbG9jYWwuY29uZg0KPiANCj4gVGhhbmtzLA0KPiBIYXJpc2guDQo+IA0KPiAtLS0t
+LU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVj
+dC5vcmcgDQo+IFttYWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhh
+bGYgT2YgDQo+IHlvY3RvLXJlcXVlc3RAeW9jdG9wcm9qZWN0Lm9yZw0KPiBTZW50OiBXZWRuZXNk
+YXksIE1heSAyMiwgMjAxOSA2OjU3IFBNDQo+IFRvOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+
+IFN1YmplY3Q6IEVYVCBTRU5ERVIgLSB5b2N0byBEaWdlc3QsIFZvbCAxMDQsIElzc3VlIDk1DQo+
+IA0KPiBTZW5kIHlvY3RvIG1haWxpbmcgbGlzdCBzdWJtaXNzaW9ucyB0bw0KPiAJeW9jdG9AeW9j
+dG9wcm9qZWN0Lm9yZw0KPiANCj4gVG8gc3Vic2NyaWJlIG9yIHVuc3Vic2NyaWJlIHZpYSB0aGUg
+V29ybGQgV2lkZSBXZWIsIHZpc2l0DQo+IAkNCj4gaHR0cHM6Ly91cmxkZWZlbnNlLnByb29mcG9p
+bnQuY29tL3YyL3VybD91PWh0dHBzLTNBX19saXN0cy55b2N0b3Byb2plYw0KPiB0Lm9yZ19saXN0
+aW5mb195b2N0byZkPUR3SUNBZyZjPVFNX3o3a2hBSWRhZ3dIdC0xMkpsS0Emcj00ZGZVcHFqNjhl
+WUFmDQo+IFZKczV1azJYa29sY09ReXNPUDVWbmNTRng2YmthbyZtPXN3TEJKeVJ6Z3F4LUl4MWRu
+djA0WmhONmFfV1ZRU21RU1c1WVkNCj4gTGczaDQwJnM9YTRzU1ZMbnp6QVAzWlJZczAxV3ZTYWlT
+YzlRUW1mYVQ3emRCUmUwSGN3TSZlPQ0KPiBvciwgdmlhIGVtYWlsLCBzZW5kIGEgbWVzc2FnZSB3
+aXRoIHN1YmplY3Qgb3IgYm9keSAnaGVscCcgdG8NCj4gCXlvY3RvLXJlcXVlc3RAeW9jdG9wcm9q
+ZWN0Lm9yZw0KPiANCj4gWW91IGNhbiByZWFjaCB0aGUgcGVyc29uIG1hbmFnaW5nIHRoZSBsaXN0
+IGF0DQo+IAl5b2N0by1vd25lckB5b2N0b3Byb2plY3Qub3JnDQo+IA0KPiBXaGVuIHJlcGx5aW5n
+LCBwbGVhc2UgZWRpdCB5b3VyIFN1YmplY3QgbGluZSBzbyBpdCBpcyBtb3JlIHNwZWNpZmljIHRo
+YW4gIlJlOiBDb250ZW50cyBvZiB5b2N0byBkaWdlc3QuLi4iDQo+IA0KPiANCj4gVG9kYXkncyBU
+b3BpY3M6DQo+IA0KPiAgICAgMS4gR1BMdjMgcGFja2FnZSBwcmVzZW50IGluIHJvb3RmcyAodmly
+ZW5kcmEga3VtYXIgdGhha3VyKQ0KPiAgICAgMi4gQnVpbGRpbmcgc2luZ2xlIHBhY2thZ2UgYXMg
+aW1hZ2UsIHJlc3BlY3RpbmcgZGVwZW5kZW5jaWVzDQo+ICAgICAgICAoTm9ybWFuIFN0ZXR0ZXIp
+DQo+IA0KPiANCj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiANCj4gTWVzc2FnZTogMQ0KPiBEYXRlOiBXZWQs
+IDIyIE1heSAyMDE5IDE4OjU1OjQ1ICswNTMwDQo+IEZyb206IHZpcmVuZHJhIGt1bWFyIHRoYWt1
+ciA8Y29vbHZlZXIwN0BnbWFpbC5jb20+DQo+IFRvOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+
+IFN1YmplY3Q6IFt5b2N0b10gR1BMdjMgcGFja2FnZSBwcmVzZW50IGluIHJvb3Rmcw0KPiBNZXNz
+YWdlLUlEOg0KPiAJPENBTkdGZkdhbW5vSi1ZQj1tN2N2TjRYQldpZVk4VjUzcytwUmZnMDBlMS1B
+d3dxenRCZ0BtYWlsLmdtYWlsLmNvbT4NCj4gQ29udGVudC1UeXBlOiB0ZXh0L3BsYWluOyBjaGFy
+c2V0PSJ1dGYtOCINCj4gDQo+IEhlbGxvIHRlYW0sDQo+IA0KPiBJIHdhbnQgdG8gcmVtb3ZlIHNv
+bWUgR1BMdjMgcGFja2FnZSBmcm9tIHJvb3RmcywgYnV0IGl0IGlzIHN0aWxsIHByZXNlbnQuDQo+
+IA0KPiBJIGFtIHVzaW5nIElOQ09NUEFUSUJMRV9MSUNFTlNFID0gIkdQTC0zLjAgTEdQTC0zLjAg
+QUdQTC0zLiAwIg0KPiANCj4gc3RpbGwgc29tZSBwYWNrYWdlIGdudXRscywgbGliaWRuMiwgbGli
+YXNzdWFuLCBhcmUgYWRkZWQgaW50byByb290ZnMuDQo+IC0tLS0tLS0tLS0tLS0tIG5leHQgcGFy
+dCAtLS0tLS0tLS0tLS0tLSBBbiBIVE1MIGF0dGFjaG1lbnQgd2FzIA0KPiBzY3J1YmJlZC4uLg0K
+PiBVUkw6IA0KPiA8aHR0cHM6Ly91cmxkZWZlbnNlLnByb29mcG9pbnQuY29tL3YyL3VybD91PWh0
+dHAtM0FfX2xpc3RzLnlvY3RvcHJvamVjDQo+IHQub3JnX3BpcGVybWFpbF95b2N0b19hdHRhY2ht
+ZW50c18yMDE5MDUyMl9mYjllYmU2N19hdHRhY2htZW50LTJEMDAwMS4NCj4gaHRtbCZkPUR3SUNB
+ZyZjPVFNX3o3a2hBSWRhZ3dIdC0xMkpsS0Emcj00ZGZVcHFqNjhlWUFmVkpzNXVrMlhrb2xjT1F5
+cw0KPiBPUDVWbmNTRng2YmthbyZtPXN3TEJKeVJ6Z3F4LUl4MWRudjA0WmhONmFfV1ZRU21RU1c1
+WVlMZzNoNDAmcz1CQlBhblZoDQo+IGptZE9RYVlYWkZlYjRSV2k5TWRScEdZQkZMbXFpaERlU0Fk
+cyZlPT4NCj4gDQo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiANCj4gTWVzc2Fn
+ZTogMg0KPiBEYXRlOiBXZWQsIDIyIE1heSAyMDE5IDEyOjM2OjE4ICswMDAwDQo+IEZyb206IE5v
+cm1hbiBTdGV0dGVyIDxOb3JtYW4uU3RldHRlckBnYXJ6LWZyaWNrZS5jb20+DQo+IFRvOiAieW9j
+dG9AeW9jdG9wcm9qZWN0Lm9yZyIgPHlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQo+IFN1YmplY3Q6
+IFt5b2N0b10gQnVpbGRpbmcgc2luZ2xlIHBhY2thZ2UgYXMgaW1hZ2UsIHJlc3BlY3RpbmcNCj4g
+CWRlcGVuZGVuY2llcw0KPiBNZXNzYWdlLUlEOg0KPiAJPEEyNERDMDM1RkU1RjhGNEJBRTdGNjNG
+QjFCMDdEN0JDNTMyN0IxQFNSVjI0LmhhbWJ1cmcuZ2Fyei1mcmlja2UuZGU+DQo+IENvbnRlbnQt
+VHlwZTogdGV4dC9wbGFpbjsgY2hhcnNldD0iaXNvLTg4NTktMSINCj4gDQo+IEhpIHRoZXJlLA0K
+PiANCj4gSSBhbSBjdXJyZW50bHkgd29ya2luZyBvbiBhIG1pbmltYWwgQ0xJIG9ubHkgc3lzdGVt
+Lg0KPiBUaGUgaW1hZ2UgaXMgYmFzZWQgb24gJ2NvcmUtaW1hZ2UtYmFzZScgdXNpbmcgc3lzdmlu
+aXQgYW5kIGJ1c3lib3guDQo+IFRvIHJlZHVjZSBpbWFnZSBzaXplIGFuZCBib290IHRpbWUsIEkg
+cmVtb3ZlZCBhcyBtYW55IHBhY2thZ2VzIGFzIHBvc3NpYmxlLiBGb3Igc29tZSBhcHBsaWNhdGlv
+biBjYXNlcyBJIHdpbGwgbmVlZCBweXRob24zIHRob3VnaC4NCj4gTXkgaWRlYSB3YXMgdG8gaGF2
+ZSBweXRob24zIGFzIHNvbWUga2luZCBvZiBhZGQtb24gaW4gYSBzcXVhc2hmcyBpbWFnZSwgdGhh
+dCBjYW4gYmUgbW91bnRlZCBvbmx5IHdoZW4gbmVlZGVkLg0KPiANCj4gU28gSSB0cmllZCB0byBi
+dWlsZCBhbiBpbWFnZSBvbmx5IGNvbnRhaW5pbmcgdGhlIHB5dGhvbjMgcGFja2FnZSwgYnV0IGFz
+IGxpdHRsZSBhcyBwb3NzaWJsZSBvdGhlcndpc2UsIGxpa2UgdGhpczoNCj4gDQo+IGluaGVyaXQg
+aW1hZ2UNCj4gSU1BR0VfRlNUWVBFUyA9ICJzcXVhc2hmcy14eiINCj4gREVGQVVMVF9UQVNLX1BS
+T1ZJREVSID0gIiINCj4gRElTVFJPX0VYVFJBX1JERVBFTkRTID0gIiINCj4gRElTVFJPX0ZFQVRV
+UkVTID0gIiINCj4gUE9LWV9ERUZBVUxUX0VYVFJBX1JERVBFTkRTID0gIiINCj4gSU1BR0VfRkVB
+VFVSRVMgPSAiIg0KPiBJTUFHRV9MSU5HVUFTID0gIiINCj4gQ09SRV9JTUFHRV9CQVNFX0lOU1RB
+TEwgPSAiIg0KPiBSREVQRU5EU18ke1BOfSA9ICIiDQo+IFBBQ0tBR0VfRVhDTFVERSA9ICJidXN5
+Ym94IG9wZW5zc2wgcnVuLXBvc3RpbnN0cyB1cGRhdGUtcmMuZCINCj4gVklSVFVBTC1SVU5USU1F
+X2Rldl9tYW5hZ2VyID0gIiINCj4gVklSVFVBTC1SVU5USU1FX2xvZ2luX21hbmFnZXIgPSAiIg0K
+PiBWSVJUVUFMLVJVTlRJTUVfaW5pdF9tYW5hZ2VyID0gIiINCj4gVklSVFVBTC1SVU5USU1FX2lu
+aXRzY3JpcHRzID0gIiINCj4gVklSVFVBTC1SVU5USU1FX2tleW1hcHMgPSAiIg0KPiBWSVJUVUFM
+LVJVTlRJTUVfYmFzZS11dGlscyA9ICIiDQo+IFBSRUZFUlJFRF9QUk9WSURFUl92aXJ0dWFsL2Jh
+c2UtdXRpbHMgPSAiIg0KPiANCj4gSU1BR0VfSU5TVEFMTCA9ICJweXRob24zIg0KPiANCj4gQnV0
+IGxpa2UgdGhpcyBJIGNhbiBvbmx5IG1hbnVhbGx5IGV4Y2x1ZGUgcGFja2FnZXMgSSBhbHJlYWR5
+IGhhdmUgaW4gbXkgbWFpbiBPUyBpbWFnZS4gU29tZSBwYWNrYWdlcyBjYW4ndCBiZSBleGNsdWRl
+ZCBhdCBhbGwsIGFzIHB5dGhvbjMgZGVwZW5kcyBvbiB0aGVtIGFuZCB3b24ndCBidWlsZCBpZiB0
+aGV5IGFyZSBleGNsdWRlZC4NCj4gDQo+IElzIHRoZXJlIGEgd2F5IHRvIGhhdmUgZGVwZW5kZW5j
+aWVzIGJldHdlZW4gaW1hZ2VzPyBTbyBJIGNvdWxkIGhhdmUgdGhlIHB5dGhvbi1pbWFnZSBidWls
+ZCBrbm93IHdoaWNoIGRlcGVuZGVuY2llcyBhcmUgYWxyZWFkeSBidWlsdCBpbnRvIG15IE9TIGlt
+YWdlIGFuZCB0aGVyZWZvcmUgbm90IGluY2x1ZGUgdGhlbSBpdHNlbGY/DQo+IA0KPiBPciB3b3Vs
+ZCBpdCBiZSBiZXR0ZXIgdG8gYXZvaWQgYnVpbGRpbmcgYSBzZWNvbmQgaW1hZ2UgYW5kIHJhdGhl
+ciBidWlsZCAncHl0aG9uMycgd2l0aCBteSBPUy1pbWFnZSwgYWRkaW5nIGl0IHRvIFBBQ0tBR0Vf
+RVhDTFVERSBhbmQgZnJvbSB3aXRoaW4gdGhpcyBidWlsZCBwcm9jZXNzIHBhY2sgYWxsIHB5dGhv
+bjMgZmlsZXMgaW50byBhbiBpbWFnZT8gSWYgSSB3ZXJlIHRvIHB1cnN1ZSB0aGlzIG1ldGhvZCwg
+YW55IHN1Z2dlc3Rpb25zIG9uIGhvdyB0byBzZXBhcmF0ZSB0aGUgcHl0aG9uMyBmaWxlcyBmcm9t
+IHRoZSByZXN0IG9mIG15IHJvb3RmcywgaW5jbHVkaW5nIHRoZSBuZWNlc3NhcnkgZGVwZW5kZW5j
+aWVzPw0KPiANCj4gQW55IGFkdmljZSBhbmQgaWRlYSBpcyBtdWNoIGFwcHJlY2lhdGVkLg0KPiAN
+Cj4gTWl0IGZyZXVuZGxpY2hlbiBHcj8/ZW4gLyBCZXN0IHJlZ2FyZHMgTm9ybWFuIFN0ZXR0ZXIg
+U1cgRU5XSUNLTFVORyANCj4gRU1CRURERUQgU1lTVEVNUyBHYXJ6ICYgRnJpY2tlIEdtYkgNCj4g
+DQo+IDIxMDc5IEhhbWJ1cmcNCj4gRGlyZWN0OiArNDkgNDAgNzkxODk5IC0gNDc3DQo+IEZheDog
+KzQ5IDQwIDc5MTg5OSAtIDM5DQo+IE5vcm1hbi5TdGV0dGVyQGdhcnotZnJpY2tlLmNvbQ0KPiBo
+dHRwczovL3VybGRlZmVuc2UucHJvb2Zwb2ludC5jb20vdjIvdXJsP3U9aHR0cC0zQV9fd3d3Lmdh
+cnotMkRmcmlja2UuDQo+IGNvbSZkPUR3SUNBZyZjPVFNX3o3a2hBSWRhZ3dIdC0xMkpsS0Emcj00
+ZGZVcHFqNjhlWUFmVkpzNXVrMlhrb2xjT1F5c08NCj4gUDVWbmNTRng2YmthbyZtPXN3TEJKeVJ6
+Z3F4LUl4MWRudjA0WmhONmFfV1ZRU21RU1c1WVlMZzNoNDAmcz1mbDh6WF9UNw0KPiA0dFAxN1My
+TWQxeHZNbVhWbVdyUExqd1pPOTI5ZXVPaS1mNCZlPTxodHRwczovL3VybGRlZmVuc2UucHJvb2Zw
+b2ludC5jDQo+IG9tL3YyL3VybD91PWh0dHAtM0FfX3d3dy5nYXJ6LTJEZnJpY2tlLmNvbV8mZD1E
+d0lDQWcmYz1RTV96N2toQUlkYWd3SHQNCj4gLTEySmxLQSZyPTRkZlVwcWo2OGVZQWZWSnM1dWsy
+WGtvbGNPUXlzT1A1Vm5jU0Z4NmJrYW8mbT1zd0xCSnlSemdxeC1JeA0KPiAxZG52MDRaaE42YV9X
+VlFTbVFTVzVZWUxnM2g0MCZzPWpKeXRHX1VYbzZmOERnMXc5Ung3WkJyUHZhSVpkNmRUMFNFYVRN
+DQo+IGhxUnB3JmU9Pg0KPiBXRSBNQUtFIElUIFlPVVJTIQ0KPiBbY2lkOmltYWdlMDAxLmpwZ0Aw
+MUQ1MTBBOS43RjlDRDY0MF0NCj4gU2l0eiBkZXIgR2VzZWxsc2NoYWZ0OiBELTIxMDc5IEhhbWJ1
+cmcNCj4gUmVnaXN0ZXJnZXJpY2h0OiBBbXRzZ2VyaWNodCBIYW1idXJnLCBIUkIgNjA1MTQNCj4g
+R2VzY2g/ZnRzZj9ocmVyOiBNYXR0aGlhcyBGcmlja2UsIE1hbmZyZWQgR2FyeiwgTWFyYy1NaWNo
+YWVsIEJyYXVuDQo+IA0KPiAtLS0tLS0tLS0tLS0tLSBuZXh0IHBhcnQgLS0tLS0tLS0tLS0tLS0g
+QW4gSFRNTCBhdHRhY2htZW50IHdhcyANCj4gc2NydWJiZWQuLi4NCj4gVVJMOiANCj4gPGh0dHBz
+Oi8vdXJsZGVmZW5zZS5wcm9vZnBvaW50LmNvbS92Mi91cmw/dT1odHRwLTNBX19saXN0cy55b2N0
+b3Byb2plYw0KPiB0Lm9yZ19waXBlcm1haWxfeW9jdG9fYXR0YWNobWVudHNfMjAxOTA1MjJfMDYz
+ZmQzMjZfYXR0YWNobWVudC5odG1sJmQ9DQo+IER3SUNBZyZjPVFNX3o3a2hBSWRhZ3dIdC0xMkps
+S0Emcj00ZGZVcHFqNjhlWUFmVkpzNXVrMlhrb2xjT1F5c09QNVZuY1MNCj4gRng2YmthbyZtPXN3
+TEJKeVJ6Z3F4LUl4MWRudjA0WmhONmFfV1ZRU21RU1c1WVlMZzNoNDAmcz1uSnBJaWoyd0otVG9J
+MQ0KPiAzbnMxcmlIY1FyWjlTQ1lra3loLWVSZy1GS3lkRSZlPT4NCj4gLS0tLS0tLS0tLS0tLS0g
+bmV4dCBwYXJ0IC0tLS0tLS0tLS0tLS0tIEEgbm9uLXRleHQgYXR0YWNobWVudCB3YXMgDQo+IHNj
+cnViYmVkLi4uDQo+IE5hbWU6IGltYWdlMDAxLmpwZw0KPiBUeXBlOiBpbWFnZS9qcGVnDQo+IFNp
+emU6IDE0ODA0IGJ5dGVzDQo+IERlc2M6IGltYWdlMDAxLmpwZw0KPiBVUkw6IA0KPiA8aHR0cHM6
+Ly91cmxkZWZlbnNlLnByb29mcG9pbnQuY29tL3YyL3VybD91PWh0dHAtM0FfX2xpc3RzLnlvY3Rv
+cHJvamVjDQo+IHQub3JnX3BpcGVybWFpbF95b2N0b19hdHRhY2htZW50c18yMDE5MDUyMl8wNjNm
+ZDMyNl9hdHRhY2htZW50LmpwZyZkPUQNCj4gd0lDQWcmYz1RTV96N2toQUlkYWd3SHQtMTJKbEtB
+JnI9NGRmVXBxajY4ZVlBZlZKczV1azJYa29sY09ReXNPUDVWbmNTRg0KPiB4NmJrYW8mbT1zd0xC
+SnlSemdxeC1JeDFkbnYwNFpoTjZhX1dWUVNtUVNXNVlZTGczaDQwJnM9dXl4cUEyNEpjQnIwekJo
+DQo+IEh3VGZBOFh0cVg1T2JyUmtOTUZObEQzSHRwb3MmZT0+DQo+IA0KPiAtLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0NCj4gDQo+IC0tDQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fDQo+IHlvY3RvIG1haWxpbmcgbGlzdA0KPiB5b2N0b0B5b2N0
+b3Byb2plY3Qub3JnDQo+IGh0dHBzOi8vdXJsZGVmZW5zZS5wcm9vZnBvaW50LmNvbS92Mi91cmw/
+dT1odHRwcy0zQV9fbGlzdHMueW9jdG9wcm9qZWMNCj4gdC5vcmdfbGlzdGluZm9feW9jdG8mZD1E
+d0lDQWcmYz1RTV96N2toQUlkYWd3SHQtMTJKbEtBJnI9NGRmVXBxajY4ZVlBZg0KPiBWSnM1dWsy
+WGtvbGNPUXlzT1A1Vm5jU0Z4NmJrYW8mbT1zd0xCSnlSemdxeC1JeDFkbnYwNFpoTjZhX1dWUVNt
+UVNXNVlZDQo+IExnM2g0MCZzPWE0c1NWTG56ekFQM1pSWXMwMVd2U2FpU2M5UVFtZmFUN3pkQlJl
+MEhjd00mZT0NCj4gDQo+IA0KPiBFbmQgb2YgeW9jdG8gRGlnZXN0LCBWb2wgMTA0LCBJc3N1ZSA5
+NQ0KPiAqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKg0KPiANCg==
 
