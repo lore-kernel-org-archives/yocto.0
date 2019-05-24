@@ -1,60 +1,60 @@
-Return-Path: <ranshalit@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5E738E00B81; Fri, 24 May 2019 02:29:34 -0700 (PDT)
+	id 22282E00BAA; Fri, 24 May 2019 02:35:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (ranshalit[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.174 listed in list.dnswl.org]
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com
-	[209.85.222.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CB09E00931
-	for <yocto@yoctoproject.org>; Fri, 24 May 2019 02:29:33 -0700 (PDT)
-Received: by mail-qk1-f174.google.com with SMTP id t64so6254165qkh.1
-	for <yocto@yoctoproject.org>; Fri, 24 May 2019 02:29:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=A51Sg+GkpZlOtZ7EvGfE0MA7hCQXzZT/0AP199Orf7M=;
-	b=VfX+dMA/6m3QZdkb5BN2t15mQ9FumdZihg3nwo9lAN0OD/MYYzvF8s+6EKRPUatZpC
-	wqEXHBUDT36TC+q7FiDe4ceu0QH7VM7gXpxSRFyyiy6Zb05LELbxeD8Q8f6m4gxlXCO0
-	tgdGO0/pF09gKUTldOFUZHrzoDAM5jO1V4LHf+rHpZvZjk9nkOsA9i+7vFEGnBhzhfTj
-	6ue6PqJqovpUO7q+nek4KB7AGRVRn4x1M4XkwPBHwjxqr/pUSbWz/VaN8cWQgWXf7+W3
-	sgjayrBQl8nv7cLpP5w1UStizcap8UlGikWnlxCoCcO5n+xUg1OvAaBq0cIFLTQjA7c4
-	/d/g==
+	*      [209.85.166.182 listed in list.dnswl.org]
+Received: from mail-it1-f182.google.com (mail-it1-f182.google.com
+	[209.85.166.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96813E00B58
+	for <yocto@yoctoproject.org>; Fri, 24 May 2019 02:35:09 -0700 (PDT)
+Received: by mail-it1-f182.google.com with SMTP id 9so12854621itf.4
+	for <yocto@yoctoproject.org>; Fri, 24 May 2019 02:35:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=EMvN+mBrVjGAzn6+BGuvMjJo3F0g3CgHnpAM31oaPzU=;
+	b=0z3ADi6dAaQBEYftsVosgLeobMwzjapG/njsoVCkE+c+huKFd25kOh58M++NSYsk+a
+	PDbpMK3KUO2UBab+i5R7Qaz9xxs7eQYY4XhG8ZOzHh4GbC/fVX0GoAr6XkkzqK8PiXtW
+	/HD9n2X5oH37fRBl0dtF29pmk4OdNyjIzPpWvYSsAwNboFJgb4rD5FkFCr1AyYf3JAGP
+	kuNJxs+6LAjwoptG/Sj6NFfkg7eiq6w95yeENB1BRMBmNyRw608n4U5nAMYPSjAX7sV3
+	EkoK5JM7ksKDjbXLGm7b6rBR61w9hUmB5pnEMwrgIl4QRzw5/BMOJKnz+1OU1ykyd7Ln
+	bwGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=A51Sg+GkpZlOtZ7EvGfE0MA7hCQXzZT/0AP199Orf7M=;
-	b=mNczqHgPeChQN3OrhZhWqOeZfZZGGai76Fz1CWk4ka6/RJa5y+Ol5v/kVF1H/+MVHi
-	6fFUoD0Wfc00g42HeGOY3x4amVVLnyWol4CowcM1ReX5OO1qSgt+Hw0/6p5Mw02XXGOp
-	dyzutBoJ3rDAUu/pSVXHwsdHfSrqPuvt/jTy9M06TsY2SBt5lxgW7eiNKIB3VHwSLPax
-	Y8fecyLJeLfEIIe4z8vgNU7e63lH73/j1U4PHEviPbvcqQtN0l3HQ/MCgK5frrgY3bcm
-	NmX0w/GJGbux8xwBIeSve8qMFDEa6s1Awf3yqfB3AgLYBrMzz0QVXJuhomergXxtK0gL
-	GCIg==
-X-Gm-Message-State: APjAAAV4MVzEcPGYg4jLdQDgjXXsYB9kzbA1lrnUuHeQJEMKQlKEmWC5
-	AeJUujho36/P3E5U2V7m5o/QF4xdg6kNXjbghX/mxrLO2kk=
-X-Google-Smtp-Source: APXvYqyck2nCZz5AmIPLRgGNTBzRygBD+WTE33QwKvp2p8a8JoYfx4f2Fpp774vwAWDdt+gg9GDnavXNmI2gYbEGlxw=
-X-Received: by 2002:a0c:ba93:: with SMTP id x19mr17555216qvf.107.1558690173135;
-	Fri, 24 May 2019 02:29:33 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=EMvN+mBrVjGAzn6+BGuvMjJo3F0g3CgHnpAM31oaPzU=;
+	b=MGXQT7bN4AEvByT+mZTcJA4L+Xf3aN3z3Tg5Lq3FCOIn5cBy1CgyjNhGwqJCWNurQS
+	LPH42qW4XmcplnQ28VF/dDAGDdx9P2Z4iN69/mxr/n3HHA+2P1zYIMO98oAYh8hTR5ve
+	49dWMaOhegbGQd7LJEWWwV8riRcNqfIVMZVpRJ3/iDu8lkCAJFyOTSnk6pqixGblXkWh
+	qfeB345WdKRAHweCweKSR1+A/zp7w35vgMGaKMmXZb2AgXoqKdF9+0oZThS1cABjxmN5
+	huGk+BG9kiluE8SuDTIO89tqq6BTsv+bevPDltyazsqdsFNXKkCWF9ihOhCXzgjFvjzH
+	D16w==
+X-Gm-Message-State: APjAAAW5H3tYbmPwsJ/xvjj3E7PUFpOpLyJ46imjaJmXeIPTBn5x7AsY
+	1yswGXBgWeQVa4aSCAo1PdMR7ICS9CvYIq+9vzEYFA==
+X-Google-Smtp-Source: APXvYqxXkYecS7o/mwhlu2REtGq7LRYVUX+qTAWhkBpjOFjXtSgF5lvNYz5UACSZOrg0VUg+puTkSIZe4D91mM6Pxqg=
+X-Received: by 2002:a24:19cd:: with SMTP id b196mr17750498itb.74.1558690509165;
+	Fri, 24 May 2019 02:35:09 -0700 (PDT)
 MIME-Version: 1.0
-From: Ranran <ranshalit@gmail.com>
-Date: Fri, 24 May 2019 12:30:51 +0300
-Message-ID: <CAJ2oMhLz9VHJoO_m8N7=jPN+3dxxCSZcsi8ZWMLtUtB0eGsOwg@mail.gmail.com>
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Finding recipe for ATOM N450
+References: <CAJ2oMhLz9VHJoO_m8N7=jPN+3dxxCSZcsi8ZWMLtUtB0eGsOwg@mail.gmail.com>
+In-Reply-To: <CAJ2oMhLz9VHJoO_m8N7=jPN+3dxxCSZcsi8ZWMLtUtB0eGsOwg@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 24 May 2019 10:34:57 +0100
+Message-ID: <CAJTo0LapxigXZi=AGp5TCMLGdaSyWktBgmVhajSJQFDS7nJuKg@mail.gmail.com>
+To: Ranran <ranshalit@gmail.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: Finding recipe for ATOM N450
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,18 +66,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 May 2019 09:29:35 -0000
+X-List-Received-Date: Fri, 24 May 2019 09:35:10 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hello,
+The meta-intel BSP is the recommend BSP for all Intel platfoms.
 
-I searched for ATOM N450 recipe, but only found very old one:
-https://old.yoctoproject.org/downloads/bsps/edison11/atom-pc
-The problem is that we need newer gcc (above 4.8.2).
+Ross
 
-Should it be better to just use generic x86 recipe ?
-https://old.yoctoproject.org/downloads/bsps/rocko24/generic-x86
-
-Thank you,
-ranran
+On Fri, 24 May 2019 at 10:30, Ranran <ranshalit@gmail.com> wrote:
+>
+> Hello,
+>
+> I searched for ATOM N450 recipe, but only found very old one:
+> https://old.yoctoproject.org/downloads/bsps/edison11/atom-pc
+> The problem is that we need newer gcc (above 4.8.2).
+>
+> Should it be better to just use generic x86 recipe ?
+> https://old.yoctoproject.org/downloads/bsps/rocko24/generic-x86
+>
+> Thank you,
+> ranran
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
