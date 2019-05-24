@@ -1,84 +1,74 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A7176E00B81; Thu, 23 May 2019 18:00:04 -0700 (PDT)
+	id F29E0E00B58; Thu, 23 May 2019 18:36:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, LOTS_OF_MONEY,
-	RCVD_IN_DNSWL_NONE, US_DOLLARS_3 autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.176 listed in list.dnswl.org]
-	*  1.4 US_DOLLARS_3 BODY: Mentions millions of $ ($NN,NNN,NNN.NN)
+	*      [209.85.215.171 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid *  0.0 LOTS_OF_MONEY Huge... sums of money
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com
-	[209.85.210.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF2A2E00B43
-	for <yocto@yoctoproject.org>; Thu, 23 May 2019 18:00:03 -0700 (PDT)
-Received: by mail-pf1-f176.google.com with SMTP id z28so4232957pfk.0
-	for <yocto@yoctoproject.org>; Thu, 23 May 2019 18:00:03 -0700 (PDT)
+	*      valid
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com
+	[209.85.215.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF80AE00931
+	for <yocto@yoctoproject.org>; Thu, 23 May 2019 18:36:55 -0700 (PDT)
+Received: by mail-pg1-f171.google.com with SMTP id f25so4073753pgv.10
+	for <yocto@yoctoproject.org>; Thu, 23 May 2019 18:36:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:organization:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=hQPUAXdvrHvZc1zb+368ImFksjL2wwg1m1rVDvhEub4=;
-	b=Sskwd8fwG2sZX3W5caM/E8aIfqnl/9gNp7kJyPMLF3EXXK7wf7IKuNIEuVYC06MJJV
-	62fPDXCyDOl9PypFjVsEG42XZjmRGaou3djpFBhCNaUabZjjeETcthvbZXzGqUmW0bDL
-	2o3mpypCeakPNTUmQ+ajFRILFdozsv2uG8Ii+QRgl5RLz5pDfttz6FzVE3THtSmZ/CEX
-	Hbv1WnMvZyqKxUxLr3rmUe7pv9RUntiCbEDalrmi9nE1hh4u6Q6ynf2pA/xfKRFvIU9B
-	0S37P4K+Pl0TsU97EHGrysB3mLIvJTrtTrkyM+kZlybkPNAx0JE2yS/5Ap/Z+Rhx1FWZ
-	UX/w==
+	h=subject:to:references:from:organization:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language:content-transfer-encoding;
+	bh=GnnGK0BRDMFg+Lzbv4iXqVg4ry3uOXopBtUyfEJ+4M0=;
+	b=qVmy4+hRcFz+hVnK4Yk2j9PERKiZ44565slL5RiEI3QU7YvZOdWd5/5WOUoB5yo5nd
+	glN/U03PHM0ckY0ZvPdilRxvNVSICNqlBx5mX9AqS1PgVKWPbc2eKBipNKOsO9bp9Opr
+	U5FJiRdhlIma0m2RS0FdhmsqAzCjb7lnLq7F+7HfP7ezXvCXZoW6jJu11Mu4mGH7P0/q
+	C45BQssFvPp8KvFVluiuk08aXIKACDDFajj/rIwlI8xnIk6leCkauu6fPPVb0LObk+uq
+	AI/eAvWYOBiymcxHeuc7XaZqCTgv6T+fT4fYJ4Uc0H3cO7BsxmJSJftSP2NKRqWXt0ER
+	wqcQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:organization
+	h=x-gm-message-state:subject:to:references:from:organization
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-language:content-transfer-encoding;
-	bh=hQPUAXdvrHvZc1zb+368ImFksjL2wwg1m1rVDvhEub4=;
-	b=nl+/tftfAU+Dyaza3BWoRkwJLGu9qqaJHdZWf2a2fI8+BgDdgNC26Jga/fTZcB7TPd
-	oPUi8lInDyJjMaYuobDPns+2JGI0VOqfTl5UpV7dALVyUho3aBRtTDWMk2R3BjADxVST
-	sRtT97FuRe83va9Y/mmktBnRZSQ/jEKdTkrwxN5uuNl2/TmXbvVaUEvvbF54jSwRlE8s
-	ucOKjXe0oI3+bYtayhZRFDCXHYuEdSxo4PAYUsJpKTz0cdseHIe4UFDKcMMBQsv1oywT
-	GmImgSQ6T0MXtGpCT+Of5vAKL5TxHdKDtNW+LBlvwnsCOF/0DViZTaCbMvNF6DbGtXd7
-	ZDuw==
-X-Gm-Message-State: APjAAAWIfR0eVhcJvlx5iSg115mHdU0Sz7Br06cRn9nEr1t5pqbnRXaP
-	ec3eVyVVR1Tx1gG5KHGNXBBklsUEp/Q=
-X-Google-Smtp-Source: APXvYqzSsGQMpmYuusenRBpz823jg0U0Lwdr5cCCVghqCBL6chlUF4U0kanKzpERHA5e2sBzPwjOFg==
-X-Received: by 2002:a63:d70b:: with SMTP id d11mr99526265pgg.178.1558659602455;
-	Thu, 23 May 2019 18:00:02 -0700 (PDT)
+	bh=GnnGK0BRDMFg+Lzbv4iXqVg4ry3uOXopBtUyfEJ+4M0=;
+	b=T48xFIb+TmKRbPUD54rihM92CNGcVoqPybvDZLHmrcwMwVV+q8TZe2r9NN4iqDkOmT
+	1LNo/Q4mVurv70P0XkGpPP9WVVs0/kRTOppF9bkmeoDUuVNFgJrsUMILQkh8l0yIRJYE
+	b7gOKV5Ay3s+usIIPKx/gPXOdiMcdNHhgeqvODFXRtQEh5W3M4vVbSv1u8NkG46DIu+7
+	j104GZBJRgT+rqjAk6EnbjRgf9T0ogz6J9tlRzn9qWVhdL9cOnqw/drtCftQ0T/hbV7i
+	Xr1E3ZiXLd0TNk8CBhBULFf3DSjhuE8r3RKhTeu0BEAt1ecYslV5iDn/8mmbeWDljXVE
+	0L2A==
+X-Gm-Message-State: APjAAAVFhb8ENnsTvPNYo9XhaD9bluU+jcbo7y69AmiTnkqN69ATarzm
+	KZ1U4xfh9x/sjwviOcGxviK2jzJ5+7A=
+X-Google-Smtp-Source: APXvYqy32R5qk72puvTJ6Mn/p75ZYmRJuDGZC+6vhEMWbfl8zbnnvoDG0THM7Omz7FG8/3d4H1SSLw==
+X-Received: by 2002:a63:f54c:: with SMTP id e12mr6539352pgk.62.1558661814608; 
+	Thu, 23 May 2019 18:36:54 -0700 (PDT)
 Received: from hermes.local ([2601:646:8500:6bc6:41da:1c8d:2ccb:5914])
-	by smtp.gmail.com with ESMTPSA id 8sm637904pfj.93.2019.05.23.18.00.01
+	by smtp.gmail.com with ESMTPSA id m6sm573477pgr.18.2019.05.23.18.36.53
 	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-	Thu, 23 May 2019 18:00:01 -0700 (PDT)
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>,
-	Bruce Ashfield <bruce.ashfield@gmail.com>
-References: <CAGAf8LxJyLUqa+kOv7+Zs0zbXBD3JjR4yEsqHTi4rDx805826A@mail.gmail.com>
-	<903d2bf0-2711-b734-d844-ef032fb67d58@2net.co.uk>
-	<CAGAf8LyRa0AXf-097GAoJa=jUY3pK8fWxCaDXGReu+GqVJOi4A@mail.gmail.com>
-	<CADkTA4MQc=OYaTqTwoGv0mzLcQ3a6R911_UjCuCpRCootgtiwA@mail.gmail.com>
-	<CAGAf8LwwfKq4kXE5=bf_1+Aa8aqOG+8NrL31Mii2TfLhXyLXKA@mail.gmail.com>
-	<CADkTA4OYJs71BPbeM3+gz1+heAQw4L5zJ4U77emrywG5bzz-HQ@mail.gmail.com>
-	<CAGAf8Lxcs7sigNHZxrOj1HUfn0x12=4o3bh85Ku-E=w=1iGGFg@mail.gmail.com>
-	<CADkTA4NXu3qt+88TA_mjaDDaZooadX6_H=Z_mMsfi7Op0gFB6Q@mail.gmail.com>
-	<CAGAf8LwUfCGHkKjE-VWpZjvh9Q9A1ZUEDkGbZ-+syQpnyMWf-g@mail.gmail.com>
+	Thu, 23 May 2019 18:36:54 -0700 (PDT)
+To: "Tg, Harish" <harish.tg@aptiv.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <mailman.14370.1558531613.2881.yocto@yoctoproject.org>
+	<BN6P197MB004909BFF82584B53EF5DF24FB010@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
 From: Khem Raj <raj.khem@gmail.com>
 Organization: HIMVIS LLC
-Message-ID: <c554f8bb-6ca3-e432-955c-a2eb32c48a54@gmail.com>
-Date: Thu, 23 May 2019 18:00:00 -0700
+Message-ID: <d10908a2-a6ac-5011-c629-0cf9de89cce6@gmail.com>
+Date: Thu, 23 May 2019 18:36:52 -0700
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:67.0)
 	Gecko/20100101 Thunderbird/67.0
 MIME-Version: 1.0
-In-Reply-To: <CAGAf8LwUfCGHkKjE-VWpZjvh9Q9A1ZUEDkGbZ-+syQpnyMWf-g@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Building Out-of-Tree Modules on the BBB Target
+In-Reply-To: <BN6P197MB004909BFF82584B53EF5DF24FB010@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
+Subject: Re: EXT SENDER - yocto Digest, Vol 104, Issue 95
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -90,371 +80,174 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 May 2019 01:00:04 -0000
+X-List-Received-Date: Fri, 24 May 2019 01:36:58 -0000
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
 
 
-On 5/23/19 3:32 AM, Zoran Stojsavljevic wrote:
-> After some tests (and I had other problems to take care of, as well),
-> here is the following:
+On 5/23/19 5:59 AM, Tg, Harish wrote:
+> Hi,
+>       I have a question. How to add commands like "ubiattach" to /usr/bin of rootfs image. I struggling with the recipes. I do not want to write my own recipe but I need to edit some recipe and add the command. Which is the place? I am using yocto for my project on TI platform and Linux.
+> Kindly help.
 > 
->> These have all been discussed off an on over the past 5 years.
->> I can't get at bugzilla right now, but all the details are logged in cases.
->> A survey of all the distros, their kernel package, etc, were all looked at.
->> We had to balance the traditional packaging with some new concepts
->> and landed with what we have now.
-> 
-> I tried several tests. This is my final conclusion (two cases):
-> https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/Issues/kernel-development.txt
-> 
-> The kernel issue is described here: there is need to have the YOCTO
-> minimum configuration with the kernel setup:
-> [1] The entire kernel source code in:
-> /usr/src/kernel/`uname-r`/<kernel source code>
-> [2] The header files in: /usr/src/kernel/`uname-r`/<header file
-> directory structures>
-> 
-> Point [1] is achieved with the following local.config file:
-> https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/Issues/local-devsrc.conf
-> 
-> Namely, with the following snippets in the local.conf:
-> TOOLCHAIN_TARGET_TASK_append = " packagegroup-core-tools-profile
-> packagegroup-core-buildessential kernel-devsrc"
-> KERNEL_DEV_TOOLS = "packagegroup-core-tools-profile
-> packagegroup-core-buildessential kernel-devsrc"
-> KERNEL_DEV_MODULE = "kernel-modules"
-> CORE_IMAGE_EXTRA_INSTALL += "${KERNEL_DEV_MODULE} \
-> ${KERNEL_DEV_TOOLS} \
-> systemtap \
-> "
-> 
-> Problem with this approach is that such a kernel makes the rootfs too
-> big and impractical:
-> -rw-r--r--. 2 user vboxusers 101499952 May 17 14:32
-> core-image-minimal-beaglebone.rootfs.tar.xz
-> 
-> The main issue is point [2]: how to achieve it?
-> The suggestion is to introduce the new package in YOCTO kernel,
-> called: kernel-headers
-> The OBVIOUS benefit is that it will serve to the purpose of building
-> modules out of the tree on the target with
-> minimal mpact to rootfs!
 
-I think this is a fair suggestion. Having prebuilt kernel available
-that contains the configuration and header files used in the build is 
-all that is required for external modules to build in addition to 
-toolchain, so maybe its worth a try to create such a package and then 
-have kernel-source separated out which can be installed on top if one
-needs
+There is oe-pkgdata-util which can help to map files to recipes but we 
+do not have a database for mapping. Maybe it is a good thing to have
 
+for your problem ubiattach is provided by mtd-utils-ubifs which is built 
+from mtd-utils recipe. I found it via above tool
+
+% oe-pkgdata-util find-path /usr/sbin/ubiattach.mtd-utils
+mtd-utils-ubifs: /usr/sbin/ubiattach.mtd-utils
+
+% oe-pkgdata-util lookup-recipe mtd-utils-ubifs
+mtd-utils
+
+So you need to add
+
+IMAGE_INSTALL_append = " mtd-utils-ubifs" in your image recipe or local.conf
 > 
-> Thank you,
-> Zoran Stojsavljevic
-> _______
+> Thanks,
+> Harish.
 > 
-> On Thu, May 16, 2019 at 12:04 AM Bruce Ashfield
-> <bruce.ashfield@gmail.com> wrote:
->>
->>
->>
->> On Wed, May 15, 2019 at 4:09 PM Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com> wrote:
->>>
->>>> The core-image-kernel-dev image is how I do all my on target
->>>> testing when I introduce a new reference kernel for a release.
->>>
->>> Maybe you are correct. Maybe I should use/add in my local.conf the following:
->>>
->>> KERNEL_DEV_TOOLS ?= "packagegroup-core-tools-profile
->>> packagegroup-core-buildessential kernel-devsrc"
->>> KERNEL_DEV_MODULE ?= "kernel-modules"
->>> CORE_IMAGE_EXTRA_INSTALL += "${KERNEL_DEV_MODULE} \
->>>                               ${KERNEL_DEV_TOOLS} \
->>>                               systemtap \
->>>                              "
->>> I need to try these... Maybe this addendum will solve the $1 mio USD problem?!
->>>
->>>> And IIRC the autobuilders are using a sato based image (Richard
->>>> could confirm more easily that I could what image type the
->>>> autobuilders are using for hello-world on target module tests).
->>>
->>> I am just advertising something more simple. To have mandatory
->>> /lib/modules/`uname -r` directory. And introduce few more packages, as
->>> Fedora distro, for example, has: kernel-headers (assuming YOCTO
->>> rootfs, the following will be installed: /usr/src/kernel/`uname
->>> -r`/<header file directory structures>. This also makes addition of
->>> /lib/modules/`uname -r`/build file (which is soft link to
->>> usr/src/kernel/`uname -r`).
->>
->>
->> These have all been discussed off an on over the past 5 years. I can't get at bugzilla right now, but all the details are logged in cases. A survey of all the distros, their kernel package, etc, were all looked at. We had to balance the traditional packaging with some new concepts and landed with what we have now.
->>
->>
->>>
->>> Or kernel-devel package. Then, the whole current kernel source code
->>> will be introduced, and also support for it.
->>
->>
->> There's a case for this one as well, I'll probably have it done for the fall release. But our devsrc used to pretty much be the full source it has now been pruned down to something more manageable.  There are definitely some cases for having the full source on the target again, and it will be a separate package, just not the minimal one to build out of tree modules, etc.
->>
->>
->>
->>>
->>>
->>> SDK building with such a support is good/cool. But sometimes, before
->>> introducing SDK, some tests should be done on target. NO need to
->>> optionally include built-in layer hello-world driver example. Since I
->>> (or you name the person) have own test drivers, which will be imported
->>> out of tree, externally, to the target test bed!
->>>
->>
->> I never use the SDK myself, so you are not alone in not going to it first. Hopefully I'll get some new patches out in the coming month before summer holidays really kick in.
->>
->> Bruce
->>
->>
->>>
->>> Just thinking loud...
->>>
->>> Zoran
->>> _______
->>>
->>> On Wed, May 15, 2019 at 4:25 PM Bruce Ashfield <bruce.ashfield@gmail.com> wrote:
->>>>
->>>>
->>>>
->>>> On Wed, May 15, 2019 at 3:44 AM Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com> wrote:
->>>>>
->>>>>> That's correct. That command only adds the kernel source and
->>>>>> build infrastructure to the SDK, not to your target image. You'd still
->>>>>> need to arrange to have the kernel-devsrc package installed on the
->>>>>> target image if you want it on the board's rootfs. How you arrange
->>>>>> to have the package installed to the image varies with the image
->>>>>> (since they all don't have the same image install variables, etc).
->>>>>
->>>>> And here is a $1,000,000 USD question? How to do it on Poky (as
->>>>> example of what you have stated in RED)? ;-)
->>>>>
->>>>> In other words: how to arrange it on Poky (as a Referent example)?
->>>>
->>>>
->>>> The core-image-kernel-dev image is how I do all my on target testing when I introduce a new reference kernel for a release. And IIRC the autobuilders are using a sato based image (Richard could confirm more easily that I could what image type the autobuilders are using for hello-world on target module tests).
->>>>
->>>> Bruce
->>>>
->>>>
->>>>>
->>>>>
->>>>> Thank you,
->>>>> Zoran
->>>>> _______
->>>>>
->>>>>
->>>>> On Wed, May 15, 2019 at 7:41 AM Bruce Ashfield <bruce.ashfield@gmail.com> wrote:
->>>>>>
->>>>>>
->>>>>>
->>>>>> On Tue, May 14, 2019 at 1:30 PM Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com> wrote:
->>>>>>>
->>>>>>> Hello Chris, Bruce,
->>>>>>>
->>>>>>> I have some additional data to share with you both, since I have tried
->>>>>>> something. And here is my take on the things!
->>>>>>>
->>>>>>>> 1. Build using a bb recipe.
->>>>>>>> Take a look at meta-skeleton/recipes-kernel/hello-mod for an example.
->>>>>>>> You just need to add meta-skeleton to your bblayers.conf and then
->>>>>>>>   bitbake hello-mod
->>>>>>>
->>>>>>> I looked into this example, and, yes, it is classic kernel module
->>>>>>> definition out of the tree. With some outdated data, all cool, the
->>>>>>> YOCTO designer should take care himself to fix these data, if using
->>>>>>> this stuff.
->>>>>>>
->>>>>>> But this is NOT mandatory, since I can add out of the tree module NOT
->>>>>>> actually using built-in module. I just use .../tmp/deploy/images/bbb/*
->>>>>>> generated stuff, since I have automated scripts which are bringing all
->>>>>>> these on my BBB target. Then I tftp my source code module to the
->>>>>>> target.
->>>>>>>
->>>>>>>> 2. Build from the SDK:
->>>>>>>> First, add the kernel source to the SDK by adding this to conf/local.conf
->>>>>>>>   TOOLCHAIN_TARGET_TASK_append = " kernel-devsrc"
->>>>>>>
->>>>>>> YES, this is THE command which should generate
->>>>>>> /usr/src/kernel(s)/`uname -r` or similar... But adding it to
->>>>>>> local.conf and after deleting kernel, then regenerating bitbake -k
->>>>>>> core-image-minimal does not bring this path into the rootfs image!?
->>>>>>
->>>>>>
->>>>>> That's correct. That command only adds the kernel source and build infrastructure to the SDK, not to your target image. You'd still need to arrange to have the kernel-devsrc package installed on the target image if you want it on the board's rootfs. How you arrange to have the package installed to the image varies with the image (since they all don't have the same image install variables, etc).
->>>>>>
->>>>>>
->>>>>>>
->>>>>>>
->>>>>>> I did it actually using meta-bbb, and using poky referent distro as
->>>>>>> two additional layers to the more complex bbb image!
->>>>>>> https://github.com/jumpnow/meta-bbb.git
->>>>>>>
->>>>>>> The (KAS - you can figure out out of it local.conf) script I am using
->>>>>>> to build such a BBB image is here:
->>>>>>> https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-releases/bbb-warrior/kas-bbb-warrior.yml
->>>>>>>
->>>>>>> I did not try it with BBB reference poky only! Maybe I should try it
->>>>>>> as only referent poky? What do you think?
->>>>>>>
->>>>>>> Does in this case is SDK build really mandatory??? Should NOT be!
->>>>>>>
->>>>>>
->>>>>> You only do the SDK steps if you want to support building out of tree modules in an SDK install. So it is not mandatory for on target module builds.
->>>>>>
->>>>>> Bruce
->>>>>>
->>>>>>
->>>>>>>
->>>>>>>> Once the SDK is installed, generate the kernel headers:
->>>>>>>>   sudo -i
->>>>>>>>   . /opt/poky/2.6.2/environment-setup-cortexa8hf-neon-poky-linux-gnueabi
->>>>>>>>   cd /opt/poky/2.6.2/sysroots/cortexa8hf-neon-poky-linux-gnueabi
->>>>>>>>   cd /usr/src/kernel
->>>>>>>>   make oldconfig scripts
->>>>>>>>   exit
->>>>>>>
->>>>>>> This is in nutshell the same what I did (a bit different) for Embedded
->>>>>>> Debian. This is already on the target BBB, NOT while building YOCTO
->>>>>>> BBB image!
->>>>>>>
->>>>>>>> Finally, build your module using a Makefile like this
->>>>>>>>   obj-m := hello-mod.o
->>>>>>>>   all:
->>>>>>>>         make -C $(SDKTARGETSYSROOT)/usr/src/kernel M=$(shell pwd)
->>>>>>>
->>>>>>> As said before: bringing my own module into the target BBB (I have my
->>>>>>> own examples, and I build them on the target with the almost the same
->>>>>>> Makefiles)
->>>>>>>
->>>>>>> Zoran
->>>>>>> _______
->>>>>>>
->>>>>>> On Sun, May 12, 2019 at 3:15 PM Chris Simmonds <chris@2net.co.uk> wrote:
->>>>>>>>
->>>>>>>> Hi Zoran,
->>>>>>>>
->>>>>>>> There are two ways to do this
->>>>>>>>
->>>>>>>> 1. Build using a bb recipe.
->>>>>>>> Take a look at meta-skeleton/recipes-kernel/hello-mod for an example.
->>>>>>>> You just need to add meta-skeleton to your bblaysers.conf and then
->>>>>>>>    bitbake hello-mod
->>>>>>>>
->>>>>>>>
->>>>>>>> 2. Build from the SDK:
->>>>>>>> First, add the kernel source to the SDK by adding this to conf/local/conf
->>>>>>>>    TOOLCHAIN_TARGET_TASK_append = " kernel-devsrc"
->>>>>>>>
->>>>>>>> Then build the SDK
->>>>>>>>    bitbake -c populate_sdk [your image recipe]
->>>>>>>>
->>>>>>>> Once the SDK is installed, generate the kernel headers:
->>>>>>>>    sudo -i
->>>>>>>>    . /opt/poky/2.6.2/environment-setup-cortexa8hf-neon-poky-linux-gnueabi
->>>>>>>>    cd /opt/poky/2.6.2/sysroots/cortexa8hf-neon-poky-linux-gnueabi
->>>>>>>>    cd /usr/src/kernel
->>>>>>>>    make oldconfig scripts
->>>>>>>>    exit
->>>>>>>>
->>>>>>>> Finally, build your module using a Makefile like this
->>>>>>>>
->>>>>>>>    obj-m := hello-mod.o
->>>>>>>>    all:
->>>>>>>>          make -C $(SDKTARGETSYSROOT)/usr/src/kernel M=$(shell pwd)
->>>>>>>>
->>>>>>>>
->>>>>>>> HTH,
->>>>>>>> Chris
->>>>>>>>
->>>>>>>> On 12/05/2019 11:53, Zoran Stojsavljevic wrote:
->>>>>>>>> Hello to the YOCTO community,
->>>>>>>>>
->>>>>>>>> I am using (to build the target for Beagle Bone Black) the following script:
->>>>>>>>> https://github.com/ZoranStojsavljevic/bbb-yocto
->>>>>>>>> https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-yocto.sh
->>>>>>>>>
->>>>>>>>> The latest kernel I am using from the following repo:
->>>>>>>>> https://github.com/jumpnow/meta-bbb
->>>>>>>>>
->>>>>>>>> Is kernel 5.0.14 .
->>>>>>>>>
->>>>>>>>> Here is the snippet of the boot traces:
->>>>>>>>> Starting kernel ...
->>>>>>>>>
->>>>>>>>> [    0.000000] Booting Linux on physical CPU 0x0
->>>>>>>>> [    0.000000] Linux version 5.0.14-jumpnow (oe-user@oe-host) (gcc
->>>>>>>>> version 8.3.0 (GCC)) #1 Fri May 10 13:12:33 UTC 2019
->>>>>>>>> [    0.000000] CPU: ARMv7 Processor [413fc082] revision 2 (ARMv7), cr=10c5387d
->>>>>>>>> [    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing
->>>>>>>>> instruction cache
->>>>>>>>> [    0.000000] OF: fdt: Machine model: TI AM335x BeagleBone Black
->>>>>>>>> [    0.000000] Memory policy: Data cache writeback
->>>>>>>>> [    0.000000] cma: Reserved 16 MiB at 0x9f000000
->>>>>>>>> [    0.000000] CPU: All CPU(s) started in SVC mode.
->>>>>>>>> [    0.000000] AM335X ES2.1 (sgx neon)
->>>>>>>>> [    0.000000] random: get_random_bytes called from
->>>>>>>>> start_kernel+0xa4/0x460 with crng_init=0
->>>>>>>>> [    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 130048
->>>>>>>>> [    0.000000] Kernel command line: console=ttyO0,115200n8
->>>>>>>>> root=/dev/ram0 ip=dhcp
->>>>>>>>>
->>>>>>>>> According to the documentation, the following:
->>>>>>>>> 2.10.1. Building Out-of-Tree Modules on the Target
->>>>>>>>> https://www.yoctoproject.org/docs/latest/kernel-dev/kernel-dev.html
->>>>>>>>>
->>>>>>>>> I tried to find /usr/src/kernels/5.0.14... Directory, since I see
->>>>>>>>> from the build that kernel-dev and kernel-devsrc are included:
->>>>>>>>> [user@fedora29-ssd bbb-yocto]$ bitbake -s | grep kernel
->>>>>>>>> core-image-kernel-dev                                 :1.0-r0
->>>>>>>>> kernel-devsrc                                         :1.0-r0
->>>>>>>>> kernel-selftest                                       :1.0-r0
->>>>>>>>>
->>>>>>>>> THE PROBLEM: But I could not find ob BBB target /usr/src/kernels
->>>>>>>>> directory at all!?
->>>>>>>>>
->>>>>>>>> Two questions here?
->>>>>>>>> [1] Do you have any advice on this problem (what I am missing here)?
->>>>>>>>> [2] Alternative to [1]: how I can use cross compiler from
->>>>>>>>> .../build/tmp to build Out-of-Tree Module for the BBB target on the
->>>>>>>>> host?
->>>>>>>>>
->>>>>>>>> Thank you,
->>>>>>>>> Zoran
->>>>>>>>> _______
->>>>>>>>>
->>>>>>>>
->>>>>>>>
->>>>>>>> --
->>>>>>>> Chris Simmonds, trainer and consultant at 2net
->>>>>>>> http://www.2net.co.uk
->>>>>>>> Author of "Mastering Embedded Linux Programming"
->>>>>>
->>>>>>
->>>>>>
->>>>>> --
->>>>>> - Thou shalt not follow the NULL pointer, for chaos and madness await thee at its end
->>>>>> - "Use the force Harry" - Gandalf, Star Trek II
->>>>>>
->>>>
->>>>
->>>> --
->>>> - Thou shalt not follow the NULL pointer, for chaos and madness await thee at its end
->>>> - "Use the force Harry" - Gandalf, Star Trek II
->>>>
->>
->>
->>
->> --
->> - Thou shalt not follow the NULL pointer, for chaos and madness await thee at its end
->> - "Use the force Harry" - Gandalf, Star Trek II
->>
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of yocto-request@yoctoproject.org
+> Sent: Wednesday, May 22, 2019 6:57 PM
+> To: yocto@yoctoproject.org
+> Subject: EXT SENDER - yocto Digest, Vol 104, Issue 95
+> 
+> Send yocto mailing list submissions to
+> 	yocto@yoctoproject.org
+> 
+> To subscribe or unsubscribe via the World Wide Web, visit
+> 	https://urldefense.proofpoint.com/v2/url?u=https-3A__lists.yoctoproject.org_listinfo_yocto&d=DwICAg&c=QM_z7khAIdagwHt-12JlKA&r=4dfUpqj68eYAfVJs5uk2XkolcOQysOP5VncSFx6bkao&m=swLBJyRzgqx-Ix1dnv04ZhN6a_WVQSmQSW5YYLg3h40&s=a4sSVLnzzAP3ZRYs01WvSaiSc9QQmfaT7zdBRe0HcwM&e=
+> or, via email, send a message with subject or body 'help' to
+> 	yocto-request@yoctoproject.org
+> 
+> You can reach the person managing the list at
+> 	yocto-owner@yoctoproject.org
+> 
+> When replying, please edit your Subject line so it is more specific than "Re: Contents of yocto digest..."
+> 
+> 
+> Today's Topics:
+> 
+>     1. GPLv3 package present in rootfs (virendra kumar thakur)
+>     2. Building single package as image, respecting dependencies
+>        (Norman Stetter)
+> 
+> 
+> ----------------------------------------------------------------------
+> 
+> Message: 1
+> Date: Wed, 22 May 2019 18:55:45 +0530
+> From: virendra kumar thakur <coolveer07@gmail.com>
+> To: yocto@yoctoproject.org
+> Subject: [yocto] GPLv3 package present in rootfs
+> Message-ID:
+> 	<CANGFfGamnoJ-YB=m7cvN4XBWieY8V53s+pRfg00e1-AwwqztBg@mail.gmail.com>
+> Content-Type: text/plain; charset="utf-8"
+> 
+> Hello team,
+> 
+> I want to remove some GPLv3 package from rootfs, but it is still present.
+> 
+> I am using INCOMPATIBLE_LICENSE = "GPL-3.0 LGPL-3.0 AGPL-3. 0"
+> 
+> still some package gnutls, libidn2, libassuan, are added into rootfs.
+> -------------- next part --------------
+> An HTML attachment was scrubbed...
+> URL: <https://urldefense.proofpoint.com/v2/url?u=http-3A__lists.yoctoproject.org_pipermail_yocto_attachments_20190522_fb9ebe67_attachment-2D0001.html&d=DwICAg&c=QM_z7khAIdagwHt-12JlKA&r=4dfUpqj68eYAfVJs5uk2XkolcOQysOP5VncSFx6bkao&m=swLBJyRzgqx-Ix1dnv04ZhN6a_WVQSmQSW5YYLg3h40&s=BBPanVhjmdOQaYXZFeb4RWi9MdRpGYBFLmqihDeSAds&e=>
+> 
+> ------------------------------
+> 
+> Message: 2
+> Date: Wed, 22 May 2019 12:36:18 +0000
+> From: Norman Stetter <Norman.Stetter@garz-fricke.com>
+> To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+> Subject: [yocto] Building single package as image, respecting
+> 	dependencies
+> Message-ID:
+> 	<A24DC035FE5F8F4BAE7F63FB1B07D7BC5327B1@SRV24.hamburg.garz-fricke.de>
+> Content-Type: text/plain; charset="iso-8859-1"
+> 
+> Hi there,
+> 
+> I am currently working on a minimal CLI only system.
+> The image is based on 'core-image-base' using sysvinit and busybox.
+> To reduce image size and boot time, I removed as many packages as possible. For some application cases I will need python3 though.
+> My idea was to have python3 as some kind of add-on in a squashfs image, that can be mounted only when needed.
+> 
+> So I tried to build an image only containing the python3 package, but as little as possible otherwise, like this:
+> 
+> inherit image
+> IMAGE_FSTYPES = "squashfs-xz"
+> DEFAULT_TASK_PROVIDER = ""
+> DISTRO_EXTRA_RDEPENDS = ""
+> DISTRO_FEATURES = ""
+> POKY_DEFAULT_EXTRA_RDEPENDS = ""
+> IMAGE_FEATURES = ""
+> IMAGE_LINGUAS = ""
+> CORE_IMAGE_BASE_INSTALL = ""
+> RDEPENDS_${PN} = ""
+> PACKAGE_EXCLUDE = "busybox openssl run-postinsts update-rc.d"
+> VIRTUAL-RUNTIME_dev_manager = ""
+> VIRTUAL-RUNTIME_login_manager = ""
+> VIRTUAL-RUNTIME_init_manager = ""
+> VIRTUAL-RUNTIME_initscripts = ""
+> VIRTUAL-RUNTIME_keymaps = ""
+> VIRTUAL-RUNTIME_base-utils = ""
+> PREFERRED_PROVIDER_virtual/base-utils = ""
+> 
+> IMAGE_INSTALL = "python3"
+> 
+> But like this I can only manually exclude packages I already have in my main OS image. Some packages can't be excluded at all, as python3 depends on them and won't build if they are excluded.
+> 
+> Is there a way to have dependencies between images? So I could have the python-image build know which dependencies are already built into my OS image and therefore not include them itself?
+> 
+> Or would it be better to avoid building a second image and rather build 'python3' with my OS-image, adding it to PACKAGE_EXCLUDE and from within this build process pack all python3 files into an image? If I were to pursue this method, any suggestions on how to separate the python3 files from the rest of my rootfs, including the necessary dependencies?
+> 
+> Any advice and idea is much appreciated.
+> 
+> Mit freundlichen Gr??en / Best regards
+> Norman Stetter
+> SW ENWICKLUNG EMBEDDED SYSTEMS
+> Garz & Fricke GmbH
+> 
+> 21079 Hamburg
+> Direct: +49 40 791899 - 477
+> Fax: +49 40 791899 - 39
+> Norman.Stetter@garz-fricke.com
+> https://urldefense.proofpoint.com/v2/url?u=http-3A__www.garz-2Dfricke.com&d=DwICAg&c=QM_z7khAIdagwHt-12JlKA&r=4dfUpqj68eYAfVJs5uk2XkolcOQysOP5VncSFx6bkao&m=swLBJyRzgqx-Ix1dnv04ZhN6a_WVQSmQSW5YYLg3h40&s=fl8zX_T74tP17S2Md1xvMmXVmWrPLjwZO929euOi-f4&e=<https://urldefense.proofpoint.com/v2/url?u=http-3A__www.garz-2Dfricke.com_&d=DwICAg&c=QM_z7khAIdagwHt-12JlKA&r=4dfUpqj68eYAfVJs5uk2XkolcOQysOP5VncSFx6bkao&m=swLBJyRzgqx-Ix1dnv04ZhN6a_WVQSmQSW5YYLg3h40&s=jJytG_UXo6f8Dg1w9Rx7ZBrPvaIZd6dT0SEaTMhqRpw&e=>
+> WE MAKE IT YOURS!
+> [cid:image001.jpg@01D510A9.7F9CD640]
+> Sitz der Gesellschaft: D-21079 Hamburg
+> Registergericht: Amtsgericht Hamburg, HRB 60514
+> Gesch?ftsf?hrer: Matthias Fricke, Manfred Garz, Marc-Michael Braun
+> 
+> -------------- next part --------------
+> An HTML attachment was scrubbed...
+> URL: <https://urldefense.proofpoint.com/v2/url?u=http-3A__lists.yoctoproject.org_pipermail_yocto_attachments_20190522_063fd326_attachment.html&d=DwICAg&c=QM_z7khAIdagwHt-12JlKA&r=4dfUpqj68eYAfVJs5uk2XkolcOQysOP5VncSFx6bkao&m=swLBJyRzgqx-Ix1dnv04ZhN6a_WVQSmQSW5YYLg3h40&s=nJpIij2wJ-ToI13ns1riHcQrZ9SCYkkyh-eRg-FKydE&e=>
+> -------------- next part --------------
+> A non-text attachment was scrubbed...
+> Name: image001.jpg
+> Type: image/jpeg
+> Size: 14804 bytes
+> Desc: image001.jpg
+> URL: <https://urldefense.proofpoint.com/v2/url?u=http-3A__lists.yoctoproject.org_pipermail_yocto_attachments_20190522_063fd326_attachment.jpg&d=DwICAg&c=QM_z7khAIdagwHt-12JlKA&r=4dfUpqj68eYAfVJs5uk2XkolcOQysOP5VncSFx6bkao&m=swLBJyRzgqx-Ix1dnv04ZhN6a_WVQSmQSW5YYLg3h40&s=uyxqA24JcBr0zBhHwTfA8XtqX5ObrRkNMFNlD3Htpos&e=>
+> 
+> ------------------------------
+> 
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://urldefense.proofpoint.com/v2/url?u=https-3A__lists.yoctoproject.org_listinfo_yocto&d=DwICAg&c=QM_z7khAIdagwHt-12JlKA&r=4dfUpqj68eYAfVJs5uk2XkolcOQysOP5VncSFx6bkao&m=swLBJyRzgqx-Ix1dnv04ZhN6a_WVQSmQSW5YYLg3h40&s=a4sSVLnzzAP3ZRYs01WvSaiSc9QQmfaT7zdBRe0HcwM&e=
+> 
+> 
+> End of yocto Digest, Vol 104, Issue 95
+> **************************************
+> 
 
