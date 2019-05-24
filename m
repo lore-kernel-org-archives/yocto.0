@@ -1,59 +1,65 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <coolveer07@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 963CEE00BAA; Fri, 24 May 2019 01:42:17 -0700 (PDT)
+	id 351FCE00BAA; Fri, 24 May 2019 01:53:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.174 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (coolveer07[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f174.google.com (mail-it1-f174.google.com
-	[209.85.166.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E69AE00B5F
-	for <yocto@yoctoproject.org>; Fri, 24 May 2019 01:42:16 -0700 (PDT)
-Received: by mail-it1-f174.google.com with SMTP id e184so12669446ite.1
-	for <yocto@yoctoproject.org>; Fri, 24 May 2019 01:42:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.172 listed in list.dnswl.org]
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com
+	[209.85.222.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8EC57E00931
+	for <yocto@yoctoproject.org>; Fri, 24 May 2019 01:53:25 -0700 (PDT)
+Received: by mail-qk1-f172.google.com with SMTP id d10so6321390qko.4
+	for <yocto@yoctoproject.org>; Fri, 24 May 2019 01:53:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=D9vNbUQewXsu1aOhTVUNq7/dY9CZuDmM+Y/68+VBjhs=;
-	b=WacRLvVvk0VSvrOnyh5g6G5g3B55QvyD5sQDGV8wsI3cvsK0pBEKihBMyKcvK1qW9Z
-	o4K3dHXz7TXxvoT9AeD0t8pB5dXxGaSBoR0aVCkePghFEBu6iYPwiaZoNrgJzc+0MlTx
-	pYyphalZPjBBf4/24YhkPadiq64DylLxYNDkZvrnkpv/mP4+GheronE7W7Y/mvGN4f2y
-	jYQNwfIQH5Kb9fQBB4CPoI6lqDjGEkSfgt1ghmIz3iG15x+hGUc0ox7VRtaEdd4qoM32
-	BOJwL/+JZTXMHO5HAXeQ2JoMQBQkLL2KFvnWIygSKToeT2B5PY+pLFa1lCFAPy1AnCg4
-	RCqQ==
+	:cc; bh=X4Ye/RSwZ6bmTQPlLYGdXKfOBGIgJXOgeGv3BAC1Au8=;
+	b=Kc97+5EgzTqkoRP6fhoJRAE1pAMJSDhJFjRYOXp+BS5URUZbvGV6f70EwBeQymnjtm
+	Rrd3kpwRtwguA7YVu8fO8x4SWLFMEWP9IZAsBObaRCOx3wPBzq+S/oRDp96vg/HqV5Yj
+	glTyC5rKfIkAI5v7rZyxUinJQM0pMtbrRVXsEDbCvq+7HnLZQQ9QRrmWmXd7Tbxx6JKR
+	/ckrbm/FFVRDPJ0xwD73dW9SFolxufRszlEzEfQhpKxwxxX6Ivv+5yYKuntx522HzyqP
+	gT5cYKH1h9sFiHpT7DoJtN+P8f2vm4DWpwzsOkNmm4nUs9zbIhUOECHHdCpNrFkK1y/w
+	AqOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=D9vNbUQewXsu1aOhTVUNq7/dY9CZuDmM+Y/68+VBjhs=;
-	b=Hz9hGfvghVM+UhC92Umgg+SwxCkGPjhsz+AL+joTnWqHtKLQpaN802jr7M/wRXgjkx
-	o+ZAJXVcQ71jc/wlCy5kzk8D+aV6LkVp0bwVNJmdEqx3uLzYQjxhQ3so+kqLD9B12Gbk
-	XOOZK6BOqFPBa8wItcf+8HmXP481tMBs4rPem6cl2WmdUXbvRy9ZnNNKM1UmRNBrByie
-	zoGRwu937kcm1nQj/4LIfKecPhyPpn2zFUA6n1aQP7uggR03IqZyGBmhBuPs7iJIxnbf
-	bH4sf0+me3cem3JwzZzb7dmtlsE4fNxJggHswvxRd8JdA2SttSOS6TZlz6Ep3qzjCpow
-	i9Cw==
-X-Gm-Message-State: APjAAAU1hYY44azpN80ZNoqPS7QBRy8BbVS0ch+WdaGqhemKIyDWtJLi
-	JLmnJF521ADao/5Jza+XoIuifCe/WHZKP8JScSrpog==
-X-Google-Smtp-Source: APXvYqz4xm5yRFEQP3g81eCvjfqXtK/DLxunXD86/xIQ4Pg6dvkZsuI6Rdu49m5QPug8OtuLjGdFdsRZRXs7PQ1FE6A=
-X-Received: by 2002:a24:19cd:: with SMTP id b196mr17586334itb.74.1558687336502;
-	Fri, 24 May 2019 01:42:16 -0700 (PDT)
+	bh=X4Ye/RSwZ6bmTQPlLYGdXKfOBGIgJXOgeGv3BAC1Au8=;
+	b=PRRWKPgJlxyJf6hkhKzQDARQzMKqcXF8lGxEKNb95ZwIUVWVZOTFizSt1QF4kB/zJp
+	KYKX2KunaWaZ29+hdCZh4zPMpYMS7c99M3UGEdsWsIkYMbHwLgemxHAb+KtWjABTkQMS
+	IfGgaaEVdEfxsyFVVN8L+DqbyRiuo3VSpaeHSVHPSi5kQSr/8+BttLLQ+G6aqlaDDv+G
+	GSZw+Ez2kTMWqiQLD/6PgqmwKbJjulx1PAX0nbuRhD1x0aHFFb8Rs3buj2deulpKGy92
+	VoNn7YtQYiXaSFYZYGbLxlPLhu1f9Z/YxAxnGjxcuVhpa/j9eJIfq3Ha+jfZgxg1FuLG
+	38PA==
+X-Gm-Message-State: APjAAAWi4ZsTXzoJXp1fOlBl/y65pEswcvouXmIh2BNqFxSvxuG9aSA/
+	VOfOw2SIJNHK0DpTrvc+W6qc9OWaaO1Segf0RjA=
+X-Google-Smtp-Source: APXvYqxqTaRJ9bxpKkv44g0a88Wk87wISJhc41E6zR8GiLVeTqySTRckz1CFxN1EQ7X05k36mH3FpWwQnbgi/3XsR9E=
+X-Received: by 2002:a0c:8931:: with SMTP id 46mr55160980qvp.3.1558688004933;
+	Fri, 24 May 2019 01:53:24 -0700 (PDT)
 MIME-Version: 1.0
 References: <CANGFfGa=qMdrWzo-Lxs-tb=6q3XH7aqXVrOd7JdC3G9Yk3Lp=g@mail.gmail.com>
 	<CANGFfGYLEXR49NvsQUuDawFoGDYiDzGPVaqLiaN=vZzSbdtsnQ@mail.gmail.com>
-In-Reply-To: <CANGFfGYLEXR49NvsQUuDawFoGDYiDzGPVaqLiaN=vZzSbdtsnQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 24 May 2019 09:42:05 +0100
-Message-ID: <CAJTo0LZhzU62AeFwbBsO4bqLCzMgBHYPvRKzMqa5ozT1eJnuGA@mail.gmail.com>
-To: virendra kumar thakur <coolveer07@gmail.com>
+	<CAJTo0LZhzU62AeFwbBsO4bqLCzMgBHYPvRKzMqa5ozT1eJnuGA@mail.gmail.com>
+In-Reply-To: <CAJTo0LZhzU62AeFwbBsO4bqLCzMgBHYPvRKzMqa5ozT1eJnuGA@mail.gmail.com>
+From: virendra kumar thakur <coolveer07@gmail.com>
+Date: Fri, 24 May 2019 14:23:12 +0530
+Message-ID: <CANGFfGb+-UK91oshvtWSEc0cXTYuPmN0DEdYG=iVwCjCW3pTEw@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 Cc: Yocto-mailing-list <yocto@yoctoproject.org>
 Subject: Re: /usr/share/common-license package/recipeinfo contains GPLv3 info
 X-BeenThere: yocto@yoctoproject.org
@@ -67,27 +73,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 May 2019 08:42:17 -0000
+X-List-Received-Date: Fri, 24 May 2019 08:53:26 -0000
+Content-Type: multipart/alternative; boundary="000000000000d98de505899e547f"
+
+--000000000000d98de505899e547f
 Content-Type: text/plain; charset="UTF-8"
 
-On Thu, 23 May 2019 at 10:43, virendra kumar thakur
-<coolveer07@gmail.com> wrote:
-> But I can see in rootfs/usr/share/common-license/package/libgcrypt-lic/recipeinfo
+Ok, thanks.
+
+On Fri 24 May, 2019, 2:12 PM Burton, Ross, <ross.burton@intel.com> wrote:
+
+> On Thu, 23 May 2019 at 10:43, virendra kumar thakur
+> <coolveer07@gmail.com> wrote:
+> > But I can see in
+> rootfs/usr/share/common-license/package/libgcrypt-lic/recipeinfo
+> >
+> > LICENSE: GPLV2+ &LGPLV2.1+ &GPLV3+
+> > PR: r0
+> > PV : 1.8.4
 >
-> LICENSE: GPLV2+ &LGPLV2.1+ &GPLV3+
-> PR: r0
-> PV : 1.8.4
+> At a guess, because the libgcrypt recipe is:
+>
+> LICENSE = "GPLv2+ & LGPLv2.1+ & GPLv3+"
+>
+> Whereas libgcrypt itself is:
+>
+> LICENSE_${PN} = "LGPLv2.1+"
+>
+> That's a bit of a meta-question: what license is a license package
+> that only contains license texts?
+>
+> Ross
+>
 
-At a guess, because the libgcrypt recipe is:
+--000000000000d98de505899e547f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-LICENSE = "GPLv2+ & LGPLv2.1+ & GPLv3+"
+<div dir=3D"auto">Ok, thanks.=C2=A0</div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr" class=3D"gmail_attr">On Fri 24 May, 2019, 2:12 PM Burton, Ros=
+s, &lt;<a href=3D"mailto:ross.burton@intel.com">ross.burton@intel.com</a>&g=
+t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
+.8ex;border-left:1px #ccc solid;padding-left:1ex">On Thu, 23 May 2019 at 10=
+:43, virendra kumar thakur<br>
+&lt;<a href=3D"mailto:coolveer07@gmail.com" target=3D"_blank" rel=3D"norefe=
+rrer">coolveer07@gmail.com</a>&gt; wrote:<br>
+&gt; But I can see in rootfs/usr/share/common-license/package/libgcrypt-lic=
+/recipeinfo<br>
+&gt;<br>
+&gt; LICENSE: GPLV2+ &amp;LGPLV2.1+ &amp;GPLV3+<br>
+&gt; PR: r0<br>
+&gt; PV : 1.8.4<br>
+<br>
+At a guess, because the libgcrypt recipe is:<br>
+<br>
+LICENSE =3D &quot;GPLv2+ &amp; LGPLv2.1+ &amp; GPLv3+&quot;<br>
+<br>
+Whereas libgcrypt itself is:<br>
+<br>
+LICENSE_${PN} =3D &quot;LGPLv2.1+&quot;<br>
+<br>
+That&#39;s a bit of a meta-question: what license is a license package<br>
+that only contains license texts?<br>
+<br>
+Ross<br>
+</blockquote></div>
 
-Whereas libgcrypt itself is:
-
-LICENSE_${PN} = "LGPLv2.1+"
-
-That's a bit of a meta-question: what license is a license package
-that only contains license texts?
-
-Ross
-
+--000000000000d98de505899e547f--
