@@ -1,102 +1,76 @@
-Return-Path: <harish.tg@aptiv.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5ED17E00B5F; Thu, 23 May 2019 22:10:18 -0700 (PDT)
+	id 22335E00931; Thu, 23 May 2019 22:29:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [69.195.251.241 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-Received: from usflmia-meg1.delphi.com (usflmia-meg1.delphi.com
-	[69.195.251.241])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71C07E0091A
-	for <yocto@yoctoproject.org>; Thu, 23 May 2019 22:10:16 -0700 (PDT)
-Received: from 10492-US-DLP002.delphiauto.net (unknown [10.201.250.14]) by
-	usflmia-meg1.delphi.com with smtp
-	id 0689_9520_3d82b067_eedf_46ae_9487_42b9857f03ae;
-	Fri, 24 May 2019 00:54:47 -0400
-Received: from usflmia-gw2.delphi.com ([10.192.117.25])
-	by 10492-US-DLP002.delphiauto.net (8.13.8/8.13.8) with ESMTP id
-	x4O4wP3a021140; Fri, 24 May 2019 00:58:25 -0400
-Received: from mx0a-00275a01.pphosted.com (mx0a-00275a01.pphosted.com
-	[148.163.157.133]) by usflmia-gw2.delphi.com with smtp
-	(TLS: TLSv1/SSLv3,256bits,ECDHE-RSA-AES256-GCM-SHA384)
-	id 5522_b284_aa4743a1_8faa_4f25_9c4c_a25dc33c59d7;
-	Fri, 24 May 2019 00:54:45 -0400
-Received: from pps.filterd (m0109020.ppops.net [127.0.0.1])
-	by mx0a-00275a01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id
-	x4O4tI64032423; Fri, 24 May 2019 00:58:24 -0400
-Received: from nam05-dm3-obe.outbound.protection.outlook.com
-	(mail-dm3nam05lp2050.outbound.protection.outlook.com [104.47.49.50])
-	by mx0a-00275a01.pphosted.com with ESMTP id 2sp6cf8yqq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-	Fri, 24 May 2019 00:58:24 -0400
-Received: from BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM (129.75.106.24) by
-	BN6P197MB0036.NAMP197.PROD.OUTLOOK.COM (129.75.106.23) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.1900.20; Fri, 24 May 2019 04:58:22 +0000
-Received: from BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM
-	([fe80::6c86:e18e:fac4:6bf5]) by BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM
-	([fe80::6c86:e18e:fac4:6bf5%8]) with mapi id 15.20.1900.020;
-	Fri, 24 May 2019 04:58:22 +0000
-From: "Tg, Harish" <harish.tg@aptiv.com>
-To: Khem Raj <raj.khem@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] EXT SENDER - yocto Digest, Vol 104, Issue 95
-Thread-Index: AQHVEKJktXx0yxcK9kKNv1vrSBjDyKZ4rPPggADUGwCAADd/MA==
-Date: Fri, 24 May 2019 04:58:22 +0000
-Message-ID: <BN6P197MB0049095C269F2F4C0388960DFB020@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.172 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com
+	[209.85.214.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D439DE00931
+	for <yocto@yoctoproject.org>; Thu, 23 May 2019 22:29:55 -0700 (PDT)
+Received: by mail-pl1-f172.google.com with SMTP id gn7so3668989plb.10
+	for <yocto@yoctoproject.org>; Thu, 23 May 2019 22:29:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:organization:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language:content-transfer-encoding;
+	bh=kCMDkR86xgJVfd7mMas48F74JONCuJQzeJHQuBr2cD8=;
+	b=mNZU64n5enMFSqvAhgySPif2GBQbHW626lcyygm1VRg1CvHgWkleKdpwpg/Y+eeEu8
+	6GcXykM7DLTJ73op3b3m41/cQqNSsYVCnVJX7xQzMQg3oKVAu7gAHF6eVw+gAzzaG9oT
+	WayJH6lOELRkxiC1FiZDp5iQ/6YlTDpTlUECnHcDJGFlX/qZhn6fDPJxRKgZ3flJpNPR
+	J2CzeBXyhFsqezy2PzJfi8O+834aHsTwTJLpFrvH4rWLxbOnpTBnSy1EdK56JGm+gYhw
+	4moi0JNuE9Pi9wn7UR3fZ5Z8HfOzOEF8YEH9R5HQJPBGlbXGLm5K1KkjFLSTW2kI6KUt
+	M14Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:organization
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-language:content-transfer-encoding;
+	bh=kCMDkR86xgJVfd7mMas48F74JONCuJQzeJHQuBr2cD8=;
+	b=dmyqPmmMfcj3wIflifov/BrXDKERVU2Fmi+LY8kVVjkh7W3AnmDtfH0WjW9NjmgS59
+	37cj7rDijaaUMI+EABcC8Ozm93rA2ejTP4ertTevcc8FdAHzThc/2AONwJPgoGi9zxcT
+	01DPtbULQN8x0Nqz87SRrDtRxNmPzrWcdU3b/pfsmYjgwpo08pThauReZsNf1UN5JH1J
+	60BkRvU7+mJ19+xVY1L/d4Zi1Bitn5Iw8PGGtDrM5x2czbtDqsZUH7jJ/KJXHXxnLXzX
+	gCCDShV3AisQPVI5Pf+M+LFz4JfQlzDMRP2yczsinfXASnni0DErGflroplri2P+M7AB
+	UXlA==
+X-Gm-Message-State: APjAAAVK9LyxcBD+QlvbqsFDzvdFykzBgFaE/3pQr3pnO1QqRh9Aa7jD
+	VZ/n50TYDvveL5MvZ2DKalpJWvRbh84=
+X-Google-Smtp-Source: APXvYqyPbwORrcgKZJ+puR3NVvqf6FPChsSbO+pX/sU0PfMnPtz/vB0LSCNv35X7VEEc4wk6qNq3Qw==
+X-Received: by 2002:a17:902:ca4:: with SMTP id
+	33mr66221482plt.107.1558675794526; 
+	Thu, 23 May 2019 22:29:54 -0700 (PDT)
+Received: from hermes.local ([2601:646:8500:6bc6:313d:8ef2:9687:9b74])
+	by smtp.gmail.com with ESMTPSA id t5sm949432pgn.80.2019.05.23.22.29.53
+	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+	Thu, 23 May 2019 22:29:53 -0700 (PDT)
+To: "Tg, Harish" <harish.tg@aptiv.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 References: <mailman.14370.1558531613.2881.yocto@yoctoproject.org>
 	<BN6P197MB004909BFF82584B53EF5DF24FB010@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
 	<d10908a2-a6ac-5011-c629-0cf9de89cce6@gmail.com>
-In-Reply-To: <d10908a2-a6ac-5011-c629-0cf9de89cce6@gmail.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [1.6.70.242]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4a49aec5-789f-49fc-a431-08d6e004727b
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600141)(711020)(4605104)(2017052603328)(7193020);
-	SRVR:BN6P197MB0036; 
-x-ms-traffictypediagnostic: BN6P197MB0036:
-x-ms-exchange-purlcount: 4
-x-microsoft-antispam-prvs: <BN6P197MB00362D8F915FC12A05C12746FB020@BN6P197MB0036.NAMP197.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:2803;
-x-forefront-prvs: 0047BC5ADE
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(136003)(346002)(376002)(366004)(39860400002)(396003)(199004)(13464003)(189003)(10533003)(27574002)(18543002)(26005)(486006)(11346002)(2906002)(14454004)(81166006)(8936002)(81156014)(66066001)(966005)(7736002)(476003)(446003)(186003)(8676002)(64756008)(66446008)(305945005)(68736007)(9686003)(86362001)(55016002)(229853002)(52536014)(6436002)(5660300002)(74316002)(6306002)(6246003)(110136005)(33656002)(102836004)(25786009)(99286004)(76176011)(6506007)(53546011)(53936002)(7696005)(6116002)(5024004)(14444005)(256004)(76116006)(2501003)(478600001)(73956011)(66556008)(66476007)(66946007)(71200400001)(71190400001)(3846002)(316002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6P197MB0036;
-	H:BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: aptiv.com does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: er8BNyDsbbAv+0nY/zQXBymFiNJljMgBeNs+hmiQ+oF5uV+yhjyi+hq2tYBBpANsIbA6t0hlmusjj26nzxFGuWW9Md4GBgnORjqYQZz08pzVEaj8Ve4F6LM8TkD1CNr39sOyvEKYGepNgb7w/0Ddx0ESdDdjSz5hD2c7uM50T5UVI13tBN9JC2BP+Go6bMIXXKkRrGGfxoKu6Bj93IyCynhv6RXd3T5U8TKevGwpAUJG5pKoN/W2ad/0Kca51ijon2ab78n0tsETy3FQfAyNhclTVszUJuv0DEkdRrcbJ22HquE6rhJ7no27LTwDUtK/7Va+hfq6qt6B2sordnt6uU672BK6f6e5T5R3wO2zzmiUpfP0GIjlSLbxM6Qp/niOgEQkYv5JAVcVlURUjIkUndzFtgcnuh9TDivAaxVLdwU=
+	<BN6P197MB0049095C269F2F4C0388960DFB020@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
+From: Khem Raj <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <889665c9-53a0-e40a-9605-dd1f837040bf@gmail.com>
+Date: Thu, 23 May 2019 22:29:52 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:67.0)
+	Gecko/20100101 Thunderbird/67.0
 MIME-Version: 1.0
-X-OriginatorOrg: aptiv.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4a49aec5-789f-49fc-a431-08d6e004727b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 May 2019 04:58:22.3629 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 6b1311e5-123f-49db-acdf-8847c2d00bed
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6P197MB0036
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
-	definitions=2019-05-24_01:, , signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
-	priorityscore=1501
-	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
-	clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
-	mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
-	scancount=1 engine=8.0.1-1810050000 definitions=main-1905240033
-X-RCIS-Action: ALLOW
-X-MEG-POLICY: ALLOW
+In-Reply-To: <BN6P197MB0049095C269F2F4C0388960DFB020@BN6P197MB0049.NAMP197.PROD.OUTLOOK.COM>
 Subject: Re: EXT SENDER - yocto Digest, Vol 104, Issue 95
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -109,162 +83,226 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 May 2019 05:10:18 -0000
+X-List-Received-Date: Fri, 24 May 2019 05:29:57 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 
-SGkgUmFqLA0KICAgICAgICAgICAgIE15IHViaWF0dGFjaCBpcyBzZXBhcmF0ZSBvbmUgd2hpY2gg
-d29ya3MgZm9yIG91ciBwcm9qZWN0LiBJdHMgbm90IHBhcnQgb2YgdWJpZnMgcGFja2FnZS4gSSBu
-ZWVkIHRvIHBsYWNlIHRoYXQgaW4gL3Vzci9iaW4gcm9vdGZzIGltYWdlLiBBbHNvIEkgY291bGRu
-4oCZdCBmaW5kIHRoZSBwbGFjZSB3aGVyZSBJIG5lZWQgdG8gY29weSB0aGlzIHViaWF0dGFjaCBj
-b21tYW5kLiBZb3UgY2FuIHRha2UgdGhpcyBhcyBjdXN0b20gdWJpYXR0YWNoIGNvbW1hbmQuIEkg
-Y291bGQgbG9jYXRlIGxvY2FsLmNvbmYgYnV0IHRoZXJlIGlzIG5vIElNQUdFX0lOU1RBTExfYXBw
-ZW5kIGluIGl0LiBJIGRvIG5vdCBoYXZlIGNsZWFyIGlkZWEuIFBsZWFzZSBjbGFyaWZ5Lg0KDQpU
-aGFua3MsDQpIYXJpc2guDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBLaGVt
-IFJhaiBbbWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0gDQpTZW50OiBGcmlkYXksIE1heSAyNCwg
-MjAxOSA3OjA3IEFNDQpUbzogVGcsIEhhcmlzaCA8aGFyaXNoLnRnQGFwdGl2LmNvbT47IHlvY3Rv
-QHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIEVYVCBTRU5ERVIgLSB5b2N0
-byBEaWdlc3QsIFZvbCAxMDQsIElzc3VlIDk1DQoNCg0KDQpPbiA1LzIzLzE5IDU6NTkgQU0sIFRn
-LCBIYXJpc2ggd3JvdGU6DQo+IEhpLA0KPiAgICAgICBJIGhhdmUgYSBxdWVzdGlvbi4gSG93IHRv
-IGFkZCBjb21tYW5kcyBsaWtlICJ1YmlhdHRhY2giIHRvIC91c3IvYmluIG9mIHJvb3RmcyBpbWFn
-ZS4gSSBzdHJ1Z2dsaW5nIHdpdGggdGhlIHJlY2lwZXMuIEkgZG8gbm90IHdhbnQgdG8gd3JpdGUg
-bXkgb3duIHJlY2lwZSBidXQgSSBuZWVkIHRvIGVkaXQgc29tZSByZWNpcGUgYW5kIGFkZCB0aGUg
-Y29tbWFuZC4gV2hpY2ggaXMgdGhlIHBsYWNlPyBJIGFtIHVzaW5nIHlvY3RvIGZvciBteSBwcm9q
-ZWN0IG9uIFRJIHBsYXRmb3JtIGFuZCBMaW51eC4NCj4gS2luZGx5IGhlbHAuDQo+IA0KDQpUaGVy
-ZSBpcyBvZS1wa2dkYXRhLXV0aWwgd2hpY2ggY2FuIGhlbHAgdG8gbWFwIGZpbGVzIHRvIHJlY2lw
-ZXMgYnV0IHdlIGRvIG5vdCBoYXZlIGEgZGF0YWJhc2UgZm9yIG1hcHBpbmcuIE1heWJlIGl0IGlz
-IGEgZ29vZCB0aGluZyB0byBoYXZlDQoNCmZvciB5b3VyIHByb2JsZW0gdWJpYXR0YWNoIGlzIHBy
-b3ZpZGVkIGJ5IG10ZC11dGlscy11YmlmcyB3aGljaCBpcyBidWlsdCBmcm9tIG10ZC11dGlscyBy
-ZWNpcGUuIEkgZm91bmQgaXQgdmlhIGFib3ZlIHRvb2wNCg0KJSBvZS1wa2dkYXRhLXV0aWwgZmlu
-ZC1wYXRoIC91c3Ivc2Jpbi91YmlhdHRhY2gubXRkLXV0aWxzDQptdGQtdXRpbHMtdWJpZnM6IC91
-c3Ivc2Jpbi91YmlhdHRhY2gubXRkLXV0aWxzDQoNCiUgb2UtcGtnZGF0YS11dGlsIGxvb2t1cC1y
-ZWNpcGUgbXRkLXV0aWxzLXViaWZzIG10ZC11dGlscw0KDQpTbyB5b3UgbmVlZCB0byBhZGQNCg0K
-SU1BR0VfSU5TVEFMTF9hcHBlbmQgPSAiIG10ZC11dGlscy11YmlmcyIgaW4geW91ciBpbWFnZSBy
-ZWNpcGUgb3IgbG9jYWwuY29uZg0KPiANCj4gVGhhbmtzLA0KPiBIYXJpc2guDQo+IA0KPiAtLS0t
-LU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVj
-dC5vcmcgDQo+IFttYWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhh
-bGYgT2YgDQo+IHlvY3RvLXJlcXVlc3RAeW9jdG9wcm9qZWN0Lm9yZw0KPiBTZW50OiBXZWRuZXNk
-YXksIE1heSAyMiwgMjAxOSA2OjU3IFBNDQo+IFRvOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+
-IFN1YmplY3Q6IEVYVCBTRU5ERVIgLSB5b2N0byBEaWdlc3QsIFZvbCAxMDQsIElzc3VlIDk1DQo+
-IA0KPiBTZW5kIHlvY3RvIG1haWxpbmcgbGlzdCBzdWJtaXNzaW9ucyB0bw0KPiAJeW9jdG9AeW9j
-dG9wcm9qZWN0Lm9yZw0KPiANCj4gVG8gc3Vic2NyaWJlIG9yIHVuc3Vic2NyaWJlIHZpYSB0aGUg
-V29ybGQgV2lkZSBXZWIsIHZpc2l0DQo+IAkNCj4gaHR0cHM6Ly91cmxkZWZlbnNlLnByb29mcG9p
-bnQuY29tL3YyL3VybD91PWh0dHBzLTNBX19saXN0cy55b2N0b3Byb2plYw0KPiB0Lm9yZ19saXN0
-aW5mb195b2N0byZkPUR3SUNBZyZjPVFNX3o3a2hBSWRhZ3dIdC0xMkpsS0Emcj00ZGZVcHFqNjhl
-WUFmDQo+IFZKczV1azJYa29sY09ReXNPUDVWbmNTRng2YmthbyZtPXN3TEJKeVJ6Z3F4LUl4MWRu
-djA0WmhONmFfV1ZRU21RU1c1WVkNCj4gTGczaDQwJnM9YTRzU1ZMbnp6QVAzWlJZczAxV3ZTYWlT
-YzlRUW1mYVQ3emRCUmUwSGN3TSZlPQ0KPiBvciwgdmlhIGVtYWlsLCBzZW5kIGEgbWVzc2FnZSB3
-aXRoIHN1YmplY3Qgb3IgYm9keSAnaGVscCcgdG8NCj4gCXlvY3RvLXJlcXVlc3RAeW9jdG9wcm9q
-ZWN0Lm9yZw0KPiANCj4gWW91IGNhbiByZWFjaCB0aGUgcGVyc29uIG1hbmFnaW5nIHRoZSBsaXN0
-IGF0DQo+IAl5b2N0by1vd25lckB5b2N0b3Byb2plY3Qub3JnDQo+IA0KPiBXaGVuIHJlcGx5aW5n
-LCBwbGVhc2UgZWRpdCB5b3VyIFN1YmplY3QgbGluZSBzbyBpdCBpcyBtb3JlIHNwZWNpZmljIHRo
-YW4gIlJlOiBDb250ZW50cyBvZiB5b2N0byBkaWdlc3QuLi4iDQo+IA0KPiANCj4gVG9kYXkncyBU
-b3BpY3M6DQo+IA0KPiAgICAgMS4gR1BMdjMgcGFja2FnZSBwcmVzZW50IGluIHJvb3RmcyAodmly
-ZW5kcmEga3VtYXIgdGhha3VyKQ0KPiAgICAgMi4gQnVpbGRpbmcgc2luZ2xlIHBhY2thZ2UgYXMg
-aW1hZ2UsIHJlc3BlY3RpbmcgZGVwZW5kZW5jaWVzDQo+ICAgICAgICAoTm9ybWFuIFN0ZXR0ZXIp
-DQo+IA0KPiANCj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiANCj4gTWVzc2FnZTogMQ0KPiBEYXRlOiBXZWQs
-IDIyIE1heSAyMDE5IDE4OjU1OjQ1ICswNTMwDQo+IEZyb206IHZpcmVuZHJhIGt1bWFyIHRoYWt1
-ciA8Y29vbHZlZXIwN0BnbWFpbC5jb20+DQo+IFRvOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+
-IFN1YmplY3Q6IFt5b2N0b10gR1BMdjMgcGFja2FnZSBwcmVzZW50IGluIHJvb3Rmcw0KPiBNZXNz
-YWdlLUlEOg0KPiAJPENBTkdGZkdhbW5vSi1ZQj1tN2N2TjRYQldpZVk4VjUzcytwUmZnMDBlMS1B
-d3dxenRCZ0BtYWlsLmdtYWlsLmNvbT4NCj4gQ29udGVudC1UeXBlOiB0ZXh0L3BsYWluOyBjaGFy
-c2V0PSJ1dGYtOCINCj4gDQo+IEhlbGxvIHRlYW0sDQo+IA0KPiBJIHdhbnQgdG8gcmVtb3ZlIHNv
-bWUgR1BMdjMgcGFja2FnZSBmcm9tIHJvb3RmcywgYnV0IGl0IGlzIHN0aWxsIHByZXNlbnQuDQo+
-IA0KPiBJIGFtIHVzaW5nIElOQ09NUEFUSUJMRV9MSUNFTlNFID0gIkdQTC0zLjAgTEdQTC0zLjAg
-QUdQTC0zLiAwIg0KPiANCj4gc3RpbGwgc29tZSBwYWNrYWdlIGdudXRscywgbGliaWRuMiwgbGli
-YXNzdWFuLCBhcmUgYWRkZWQgaW50byByb290ZnMuDQo+IC0tLS0tLS0tLS0tLS0tIG5leHQgcGFy
-dCAtLS0tLS0tLS0tLS0tLSBBbiBIVE1MIGF0dGFjaG1lbnQgd2FzIA0KPiBzY3J1YmJlZC4uLg0K
-PiBVUkw6IA0KPiA8aHR0cHM6Ly91cmxkZWZlbnNlLnByb29mcG9pbnQuY29tL3YyL3VybD91PWh0
-dHAtM0FfX2xpc3RzLnlvY3RvcHJvamVjDQo+IHQub3JnX3BpcGVybWFpbF95b2N0b19hdHRhY2ht
-ZW50c18yMDE5MDUyMl9mYjllYmU2N19hdHRhY2htZW50LTJEMDAwMS4NCj4gaHRtbCZkPUR3SUNB
-ZyZjPVFNX3o3a2hBSWRhZ3dIdC0xMkpsS0Emcj00ZGZVcHFqNjhlWUFmVkpzNXVrMlhrb2xjT1F5
-cw0KPiBPUDVWbmNTRng2YmthbyZtPXN3TEJKeVJ6Z3F4LUl4MWRudjA0WmhONmFfV1ZRU21RU1c1
-WVlMZzNoNDAmcz1CQlBhblZoDQo+IGptZE9RYVlYWkZlYjRSV2k5TWRScEdZQkZMbXFpaERlU0Fk
-cyZlPT4NCj4gDQo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiANCj4gTWVzc2Fn
-ZTogMg0KPiBEYXRlOiBXZWQsIDIyIE1heSAyMDE5IDEyOjM2OjE4ICswMDAwDQo+IEZyb206IE5v
-cm1hbiBTdGV0dGVyIDxOb3JtYW4uU3RldHRlckBnYXJ6LWZyaWNrZS5jb20+DQo+IFRvOiAieW9j
-dG9AeW9jdG9wcm9qZWN0Lm9yZyIgPHlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQo+IFN1YmplY3Q6
-IFt5b2N0b10gQnVpbGRpbmcgc2luZ2xlIHBhY2thZ2UgYXMgaW1hZ2UsIHJlc3BlY3RpbmcNCj4g
-CWRlcGVuZGVuY2llcw0KPiBNZXNzYWdlLUlEOg0KPiAJPEEyNERDMDM1RkU1RjhGNEJBRTdGNjNG
-QjFCMDdEN0JDNTMyN0IxQFNSVjI0LmhhbWJ1cmcuZ2Fyei1mcmlja2UuZGU+DQo+IENvbnRlbnQt
-VHlwZTogdGV4dC9wbGFpbjsgY2hhcnNldD0iaXNvLTg4NTktMSINCj4gDQo+IEhpIHRoZXJlLA0K
-PiANCj4gSSBhbSBjdXJyZW50bHkgd29ya2luZyBvbiBhIG1pbmltYWwgQ0xJIG9ubHkgc3lzdGVt
-Lg0KPiBUaGUgaW1hZ2UgaXMgYmFzZWQgb24gJ2NvcmUtaW1hZ2UtYmFzZScgdXNpbmcgc3lzdmlu
-aXQgYW5kIGJ1c3lib3guDQo+IFRvIHJlZHVjZSBpbWFnZSBzaXplIGFuZCBib290IHRpbWUsIEkg
-cmVtb3ZlZCBhcyBtYW55IHBhY2thZ2VzIGFzIHBvc3NpYmxlLiBGb3Igc29tZSBhcHBsaWNhdGlv
-biBjYXNlcyBJIHdpbGwgbmVlZCBweXRob24zIHRob3VnaC4NCj4gTXkgaWRlYSB3YXMgdG8gaGF2
-ZSBweXRob24zIGFzIHNvbWUga2luZCBvZiBhZGQtb24gaW4gYSBzcXVhc2hmcyBpbWFnZSwgdGhh
-dCBjYW4gYmUgbW91bnRlZCBvbmx5IHdoZW4gbmVlZGVkLg0KPiANCj4gU28gSSB0cmllZCB0byBi
-dWlsZCBhbiBpbWFnZSBvbmx5IGNvbnRhaW5pbmcgdGhlIHB5dGhvbjMgcGFja2FnZSwgYnV0IGFz
-IGxpdHRsZSBhcyBwb3NzaWJsZSBvdGhlcndpc2UsIGxpa2UgdGhpczoNCj4gDQo+IGluaGVyaXQg
-aW1hZ2UNCj4gSU1BR0VfRlNUWVBFUyA9ICJzcXVhc2hmcy14eiINCj4gREVGQVVMVF9UQVNLX1BS
-T1ZJREVSID0gIiINCj4gRElTVFJPX0VYVFJBX1JERVBFTkRTID0gIiINCj4gRElTVFJPX0ZFQVRV
-UkVTID0gIiINCj4gUE9LWV9ERUZBVUxUX0VYVFJBX1JERVBFTkRTID0gIiINCj4gSU1BR0VfRkVB
-VFVSRVMgPSAiIg0KPiBJTUFHRV9MSU5HVUFTID0gIiINCj4gQ09SRV9JTUFHRV9CQVNFX0lOU1RB
-TEwgPSAiIg0KPiBSREVQRU5EU18ke1BOfSA9ICIiDQo+IFBBQ0tBR0VfRVhDTFVERSA9ICJidXN5
-Ym94IG9wZW5zc2wgcnVuLXBvc3RpbnN0cyB1cGRhdGUtcmMuZCINCj4gVklSVFVBTC1SVU5USU1F
-X2Rldl9tYW5hZ2VyID0gIiINCj4gVklSVFVBTC1SVU5USU1FX2xvZ2luX21hbmFnZXIgPSAiIg0K
-PiBWSVJUVUFMLVJVTlRJTUVfaW5pdF9tYW5hZ2VyID0gIiINCj4gVklSVFVBTC1SVU5USU1FX2lu
-aXRzY3JpcHRzID0gIiINCj4gVklSVFVBTC1SVU5USU1FX2tleW1hcHMgPSAiIg0KPiBWSVJUVUFM
-LVJVTlRJTUVfYmFzZS11dGlscyA9ICIiDQo+IFBSRUZFUlJFRF9QUk9WSURFUl92aXJ0dWFsL2Jh
-c2UtdXRpbHMgPSAiIg0KPiANCj4gSU1BR0VfSU5TVEFMTCA9ICJweXRob24zIg0KPiANCj4gQnV0
-IGxpa2UgdGhpcyBJIGNhbiBvbmx5IG1hbnVhbGx5IGV4Y2x1ZGUgcGFja2FnZXMgSSBhbHJlYWR5
-IGhhdmUgaW4gbXkgbWFpbiBPUyBpbWFnZS4gU29tZSBwYWNrYWdlcyBjYW4ndCBiZSBleGNsdWRl
-ZCBhdCBhbGwsIGFzIHB5dGhvbjMgZGVwZW5kcyBvbiB0aGVtIGFuZCB3b24ndCBidWlsZCBpZiB0
-aGV5IGFyZSBleGNsdWRlZC4NCj4gDQo+IElzIHRoZXJlIGEgd2F5IHRvIGhhdmUgZGVwZW5kZW5j
-aWVzIGJldHdlZW4gaW1hZ2VzPyBTbyBJIGNvdWxkIGhhdmUgdGhlIHB5dGhvbi1pbWFnZSBidWls
-ZCBrbm93IHdoaWNoIGRlcGVuZGVuY2llcyBhcmUgYWxyZWFkeSBidWlsdCBpbnRvIG15IE9TIGlt
-YWdlIGFuZCB0aGVyZWZvcmUgbm90IGluY2x1ZGUgdGhlbSBpdHNlbGY/DQo+IA0KPiBPciB3b3Vs
-ZCBpdCBiZSBiZXR0ZXIgdG8gYXZvaWQgYnVpbGRpbmcgYSBzZWNvbmQgaW1hZ2UgYW5kIHJhdGhl
-ciBidWlsZCAncHl0aG9uMycgd2l0aCBteSBPUy1pbWFnZSwgYWRkaW5nIGl0IHRvIFBBQ0tBR0Vf
-RVhDTFVERSBhbmQgZnJvbSB3aXRoaW4gdGhpcyBidWlsZCBwcm9jZXNzIHBhY2sgYWxsIHB5dGhv
-bjMgZmlsZXMgaW50byBhbiBpbWFnZT8gSWYgSSB3ZXJlIHRvIHB1cnN1ZSB0aGlzIG1ldGhvZCwg
-YW55IHN1Z2dlc3Rpb25zIG9uIGhvdyB0byBzZXBhcmF0ZSB0aGUgcHl0aG9uMyBmaWxlcyBmcm9t
-IHRoZSByZXN0IG9mIG15IHJvb3RmcywgaW5jbHVkaW5nIHRoZSBuZWNlc3NhcnkgZGVwZW5kZW5j
-aWVzPw0KPiANCj4gQW55IGFkdmljZSBhbmQgaWRlYSBpcyBtdWNoIGFwcHJlY2lhdGVkLg0KPiAN
-Cj4gTWl0IGZyZXVuZGxpY2hlbiBHcj8/ZW4gLyBCZXN0IHJlZ2FyZHMgTm9ybWFuIFN0ZXR0ZXIg
-U1cgRU5XSUNLTFVORyANCj4gRU1CRURERUQgU1lTVEVNUyBHYXJ6ICYgRnJpY2tlIEdtYkgNCj4g
-DQo+IDIxMDc5IEhhbWJ1cmcNCj4gRGlyZWN0OiArNDkgNDAgNzkxODk5IC0gNDc3DQo+IEZheDog
-KzQ5IDQwIDc5MTg5OSAtIDM5DQo+IE5vcm1hbi5TdGV0dGVyQGdhcnotZnJpY2tlLmNvbQ0KPiBo
-dHRwczovL3VybGRlZmVuc2UucHJvb2Zwb2ludC5jb20vdjIvdXJsP3U9aHR0cC0zQV9fd3d3Lmdh
-cnotMkRmcmlja2UuDQo+IGNvbSZkPUR3SUNBZyZjPVFNX3o3a2hBSWRhZ3dIdC0xMkpsS0Emcj00
-ZGZVcHFqNjhlWUFmVkpzNXVrMlhrb2xjT1F5c08NCj4gUDVWbmNTRng2YmthbyZtPXN3TEJKeVJ6
-Z3F4LUl4MWRudjA0WmhONmFfV1ZRU21RU1c1WVlMZzNoNDAmcz1mbDh6WF9UNw0KPiA0dFAxN1My
-TWQxeHZNbVhWbVdyUExqd1pPOTI5ZXVPaS1mNCZlPTxodHRwczovL3VybGRlZmVuc2UucHJvb2Zw
-b2ludC5jDQo+IG9tL3YyL3VybD91PWh0dHAtM0FfX3d3dy5nYXJ6LTJEZnJpY2tlLmNvbV8mZD1E
-d0lDQWcmYz1RTV96N2toQUlkYWd3SHQNCj4gLTEySmxLQSZyPTRkZlVwcWo2OGVZQWZWSnM1dWsy
-WGtvbGNPUXlzT1A1Vm5jU0Z4NmJrYW8mbT1zd0xCSnlSemdxeC1JeA0KPiAxZG52MDRaaE42YV9X
-VlFTbVFTVzVZWUxnM2g0MCZzPWpKeXRHX1VYbzZmOERnMXc5Ung3WkJyUHZhSVpkNmRUMFNFYVRN
-DQo+IGhxUnB3JmU9Pg0KPiBXRSBNQUtFIElUIFlPVVJTIQ0KPiBbY2lkOmltYWdlMDAxLmpwZ0Aw
-MUQ1MTBBOS43RjlDRDY0MF0NCj4gU2l0eiBkZXIgR2VzZWxsc2NoYWZ0OiBELTIxMDc5IEhhbWJ1
-cmcNCj4gUmVnaXN0ZXJnZXJpY2h0OiBBbXRzZ2VyaWNodCBIYW1idXJnLCBIUkIgNjA1MTQNCj4g
-R2VzY2g/ZnRzZj9ocmVyOiBNYXR0aGlhcyBGcmlja2UsIE1hbmZyZWQgR2FyeiwgTWFyYy1NaWNo
-YWVsIEJyYXVuDQo+IA0KPiAtLS0tLS0tLS0tLS0tLSBuZXh0IHBhcnQgLS0tLS0tLS0tLS0tLS0g
-QW4gSFRNTCBhdHRhY2htZW50IHdhcyANCj4gc2NydWJiZWQuLi4NCj4gVVJMOiANCj4gPGh0dHBz
-Oi8vdXJsZGVmZW5zZS5wcm9vZnBvaW50LmNvbS92Mi91cmw/dT1odHRwLTNBX19saXN0cy55b2N0
-b3Byb2plYw0KPiB0Lm9yZ19waXBlcm1haWxfeW9jdG9fYXR0YWNobWVudHNfMjAxOTA1MjJfMDYz
-ZmQzMjZfYXR0YWNobWVudC5odG1sJmQ9DQo+IER3SUNBZyZjPVFNX3o3a2hBSWRhZ3dIdC0xMkps
-S0Emcj00ZGZVcHFqNjhlWUFmVkpzNXVrMlhrb2xjT1F5c09QNVZuY1MNCj4gRng2YmthbyZtPXN3
-TEJKeVJ6Z3F4LUl4MWRudjA0WmhONmFfV1ZRU21RU1c1WVlMZzNoNDAmcz1uSnBJaWoyd0otVG9J
-MQ0KPiAzbnMxcmlIY1FyWjlTQ1lra3loLWVSZy1GS3lkRSZlPT4NCj4gLS0tLS0tLS0tLS0tLS0g
-bmV4dCBwYXJ0IC0tLS0tLS0tLS0tLS0tIEEgbm9uLXRleHQgYXR0YWNobWVudCB3YXMgDQo+IHNj
-cnViYmVkLi4uDQo+IE5hbWU6IGltYWdlMDAxLmpwZw0KPiBUeXBlOiBpbWFnZS9qcGVnDQo+IFNp
-emU6IDE0ODA0IGJ5dGVzDQo+IERlc2M6IGltYWdlMDAxLmpwZw0KPiBVUkw6IA0KPiA8aHR0cHM6
-Ly91cmxkZWZlbnNlLnByb29mcG9pbnQuY29tL3YyL3VybD91PWh0dHAtM0FfX2xpc3RzLnlvY3Rv
-cHJvamVjDQo+IHQub3JnX3BpcGVybWFpbF95b2N0b19hdHRhY2htZW50c18yMDE5MDUyMl8wNjNm
-ZDMyNl9hdHRhY2htZW50LmpwZyZkPUQNCj4gd0lDQWcmYz1RTV96N2toQUlkYWd3SHQtMTJKbEtB
-JnI9NGRmVXBxajY4ZVlBZlZKczV1azJYa29sY09ReXNPUDVWbmNTRg0KPiB4NmJrYW8mbT1zd0xC
-SnlSemdxeC1JeDFkbnYwNFpoTjZhX1dWUVNtUVNXNVlZTGczaDQwJnM9dXl4cUEyNEpjQnIwekJo
-DQo+IEh3VGZBOFh0cVg1T2JyUmtOTUZObEQzSHRwb3MmZT0+DQo+IA0KPiAtLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0NCj4gDQo+IC0tDQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fDQo+IHlvY3RvIG1haWxpbmcgbGlzdA0KPiB5b2N0b0B5b2N0
-b3Byb2plY3Qub3JnDQo+IGh0dHBzOi8vdXJsZGVmZW5zZS5wcm9vZnBvaW50LmNvbS92Mi91cmw/
-dT1odHRwcy0zQV9fbGlzdHMueW9jdG9wcm9qZWMNCj4gdC5vcmdfbGlzdGluZm9feW9jdG8mZD1E
-d0lDQWcmYz1RTV96N2toQUlkYWd3SHQtMTJKbEtBJnI9NGRmVXBxajY4ZVlBZg0KPiBWSnM1dWsy
-WGtvbGNPUXlzT1A1Vm5jU0Z4NmJrYW8mbT1zd0xCSnlSemdxeC1JeDFkbnYwNFpoTjZhX1dWUVNt
-UVNXNVlZDQo+IExnM2g0MCZzPWE0c1NWTG56ekFQM1pSWXMwMVd2U2FpU2M5UVFtZmFUN3pkQlJl
-MEhjd00mZT0NCj4gDQo+IA0KPiBFbmQgb2YgeW9jdG8gRGlnZXN0LCBWb2wgMTA0LCBJc3N1ZSA5
-NQ0KPiAqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKg0KPiANCg==
+That could be done by writing a recipe to build and/or package your 
+version. So look how to write a new recipe, if its prebuilt you just 
+might be able to package it using do_install() step in your recipe
+
+and then add that package to IMAGE_INSTALL
+
+see 
+https://wiki.yoctoproject.org/wiki/Building_your_own_recipes_from_first_principles
+
+especially section  "Build an example package based on a remote source 
+archive"
+
+
+On 5/23/19 9:58 PM, Tg, Harish wrote:
+> Hi Raj,
+>               My ubiattach is separate one which works for our project. Its not part of ubifs package. I need to place that in /usr/bin rootfs image. Also I couldn’t find the place where I need to copy this ubiattach command. You can take this as custom ubiattach command. I could locate local.conf but there is no IMAGE_INSTALL_append in it. I do not have clear idea. Please clarify.
+> 
+> Thanks,
+> Harish.
+> 
+> -----Original Message-----
+> From: Khem Raj [mailto:raj.khem@gmail.com]
+> Sent: Friday, May 24, 2019 7:07 AM
+> To: Tg, Harish <harish.tg@aptiv.com>; yocto@yoctoproject.org
+> Subject: Re: [yocto] EXT SENDER - yocto Digest, Vol 104, Issue 95
+> 
+> 
+> 
+> On 5/23/19 5:59 AM, Tg, Harish wrote:
+>> Hi,
+>>        I have a question. How to add commands like "ubiattach" to /usr/bin of rootfs image. I struggling with the recipes. I do not want to write my own recipe but I need to edit some recipe and add the command. Which is the place? I am using yocto for my project on TI platform and Linux.
+>> Kindly help.
+>>
+> 
+> There is oe-pkgdata-util which can help to map files to recipes but we do not have a database for mapping. Maybe it is a good thing to have
+> 
+> for your problem ubiattach is provided by mtd-utils-ubifs which is built from mtd-utils recipe. I found it via above tool
+> 
+> % oe-pkgdata-util find-path /usr/sbin/ubiattach.mtd-utils
+> mtd-utils-ubifs: /usr/sbin/ubiattach.mtd-utils
+> 
+> % oe-pkgdata-util lookup-recipe mtd-utils-ubifs mtd-utils
+> 
+> So you need to add
+> 
+> IMAGE_INSTALL_append = " mtd-utils-ubifs" in your image recipe or local.conf
+>>
+>> Thanks,
+>> Harish.
+>>
+>> -----Original Message-----
+>> From: yocto-bounces@yoctoproject.org
+>> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of
+>> yocto-request@yoctoproject.org
+>> Sent: Wednesday, May 22, 2019 6:57 PM
+>> To: yocto@yoctoproject.org
+>> Subject: EXT SENDER - yocto Digest, Vol 104, Issue 95
+>>
+>> Send yocto mailing list submissions to
+>> 	yocto@yoctoproject.org
+>>
+>> To subscribe or unsubscribe via the World Wide Web, visit
+>> 	
+>> https://urldefense.proofpoint.com/v2/url?u=https-3A__lists.yoctoprojec
+>> t.org_listinfo_yocto&d=DwICAg&c=QM_z7khAIdagwHt-12JlKA&r=4dfUpqj68eYAf
+>> VJs5uk2XkolcOQysOP5VncSFx6bkao&m=swLBJyRzgqx-Ix1dnv04ZhN6a_WVQSmQSW5YY
+>> Lg3h40&s=a4sSVLnzzAP3ZRYs01WvSaiSc9QQmfaT7zdBRe0HcwM&e=
+>> or, via email, send a message with subject or body 'help' to
+>> 	yocto-request@yoctoproject.org
+>>
+>> You can reach the person managing the list at
+>> 	yocto-owner@yoctoproject.org
+>>
+>> When replying, please edit your Subject line so it is more specific than "Re: Contents of yocto digest..."
+>>
+>>
+>> Today's Topics:
+>>
+>>      1. GPLv3 package present in rootfs (virendra kumar thakur)
+>>      2. Building single package as image, respecting dependencies
+>>         (Norman Stetter)
+>>
+>>
+>> ----------------------------------------------------------------------
+>>
+>> Message: 1
+>> Date: Wed, 22 May 2019 18:55:45 +0530
+>> From: virendra kumar thakur <coolveer07@gmail.com>
+>> To: yocto@yoctoproject.org
+>> Subject: [yocto] GPLv3 package present in rootfs
+>> Message-ID:
+>> 	<CANGFfGamnoJ-YB=m7cvN4XBWieY8V53s+pRfg00e1-AwwqztBg@mail.gmail.com>
+>> Content-Type: text/plain; charset="utf-8"
+>>
+>> Hello team,
+>>
+>> I want to remove some GPLv3 package from rootfs, but it is still present.
+>>
+>> I am using INCOMPATIBLE_LICENSE = "GPL-3.0 LGPL-3.0 AGPL-3. 0"
+>>
+>> still some package gnutls, libidn2, libassuan, are added into rootfs.
+>> -------------- next part -------------- An HTML attachment was
+>> scrubbed...
+>> URL:
+>> <https://urldefense.proofpoint.com/v2/url?u=http-3A__lists.yoctoprojec
+>> t.org_pipermail_yocto_attachments_20190522_fb9ebe67_attachment-2D0001.
+>> html&d=DwICAg&c=QM_z7khAIdagwHt-12JlKA&r=4dfUpqj68eYAfVJs5uk2XkolcOQys
+>> OP5VncSFx6bkao&m=swLBJyRzgqx-Ix1dnv04ZhN6a_WVQSmQSW5YYLg3h40&s=BBPanVh
+>> jmdOQaYXZFeb4RWi9MdRpGYBFLmqihDeSAds&e=>
+>>
+>> ------------------------------
+>>
+>> Message: 2
+>> Date: Wed, 22 May 2019 12:36:18 +0000
+>> From: Norman Stetter <Norman.Stetter@garz-fricke.com>
+>> To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+>> Subject: [yocto] Building single package as image, respecting
+>> 	dependencies
+>> Message-ID:
+>> 	<A24DC035FE5F8F4BAE7F63FB1B07D7BC5327B1@SRV24.hamburg.garz-fricke.de>
+>> Content-Type: text/plain; charset="iso-8859-1"
+>>
+>> Hi there,
+>>
+>> I am currently working on a minimal CLI only system.
+>> The image is based on 'core-image-base' using sysvinit and busybox.
+>> To reduce image size and boot time, I removed as many packages as possible. For some application cases I will need python3 though.
+>> My idea was to have python3 as some kind of add-on in a squashfs image, that can be mounted only when needed.
+>>
+>> So I tried to build an image only containing the python3 package, but as little as possible otherwise, like this:
+>>
+>> inherit image
+>> IMAGE_FSTYPES = "squashfs-xz"
+>> DEFAULT_TASK_PROVIDER = ""
+>> DISTRO_EXTRA_RDEPENDS = ""
+>> DISTRO_FEATURES = ""
+>> POKY_DEFAULT_EXTRA_RDEPENDS = ""
+>> IMAGE_FEATURES = ""
+>> IMAGE_LINGUAS = ""
+>> CORE_IMAGE_BASE_INSTALL = ""
+>> RDEPENDS_${PN} = ""
+>> PACKAGE_EXCLUDE = "busybox openssl run-postinsts update-rc.d"
+>> VIRTUAL-RUNTIME_dev_manager = ""
+>> VIRTUAL-RUNTIME_login_manager = ""
+>> VIRTUAL-RUNTIME_init_manager = ""
+>> VIRTUAL-RUNTIME_initscripts = ""
+>> VIRTUAL-RUNTIME_keymaps = ""
+>> VIRTUAL-RUNTIME_base-utils = ""
+>> PREFERRED_PROVIDER_virtual/base-utils = ""
+>>
+>> IMAGE_INSTALL = "python3"
+>>
+>> But like this I can only manually exclude packages I already have in my main OS image. Some packages can't be excluded at all, as python3 depends on them and won't build if they are excluded.
+>>
+>> Is there a way to have dependencies between images? So I could have the python-image build know which dependencies are already built into my OS image and therefore not include them itself?
+>>
+>> Or would it be better to avoid building a second image and rather build 'python3' with my OS-image, adding it to PACKAGE_EXCLUDE and from within this build process pack all python3 files into an image? If I were to pursue this method, any suggestions on how to separate the python3 files from the rest of my rootfs, including the necessary dependencies?
+>>
+>> Any advice and idea is much appreciated.
+>>
+>> Mit freundlichen Gr??en / Best regards Norman Stetter SW ENWICKLUNG
+>> EMBEDDED SYSTEMS Garz & Fricke GmbH
+>>
+>> 21079 Hamburg
+>> Direct: +49 40 791899 - 477
+>> Fax: +49 40 791899 - 39
+>> Norman.Stetter@garz-fricke.com
+>> https://urldefense.proofpoint.com/v2/url?u=http-3A__www.garz-2Dfricke.
+>> com&d=DwICAg&c=QM_z7khAIdagwHt-12JlKA&r=4dfUpqj68eYAfVJs5uk2XkolcOQysO
+>> P5VncSFx6bkao&m=swLBJyRzgqx-Ix1dnv04ZhN6a_WVQSmQSW5YYLg3h40&s=fl8zX_T7
+>> 4tP17S2Md1xvMmXVmWrPLjwZO929euOi-f4&e=<https://urldefense.proofpoint.c
+>> om/v2/url?u=http-3A__www.garz-2Dfricke.com_&d=DwICAg&c=QM_z7khAIdagwHt
+>> -12JlKA&r=4dfUpqj68eYAfVJs5uk2XkolcOQysOP5VncSFx6bkao&m=swLBJyRzgqx-Ix
+>> 1dnv04ZhN6a_WVQSmQSW5YYLg3h40&s=jJytG_UXo6f8Dg1w9Rx7ZBrPvaIZd6dT0SEaTM
+>> hqRpw&e=>
+>> WE MAKE IT YOURS!
+>> [cid:image001.jpg@01D510A9.7F9CD640]
+>> Sitz der Gesellschaft: D-21079 Hamburg
+>> Registergericht: Amtsgericht Hamburg, HRB 60514
+>> Gesch?ftsf?hrer: Matthias Fricke, Manfred Garz, Marc-Michael Braun
+>>
+>> -------------- next part -------------- An HTML attachment was
+>> scrubbed...
+>> URL:
+>> <https://urldefense.proofpoint.com/v2/url?u=http-3A__lists.yoctoprojec
+>> t.org_pipermail_yocto_attachments_20190522_063fd326_attachment.html&d=
+>> DwICAg&c=QM_z7khAIdagwHt-12JlKA&r=4dfUpqj68eYAfVJs5uk2XkolcOQysOP5VncS
+>> Fx6bkao&m=swLBJyRzgqx-Ix1dnv04ZhN6a_WVQSmQSW5YYLg3h40&s=nJpIij2wJ-ToI1
+>> 3ns1riHcQrZ9SCYkkyh-eRg-FKydE&e=>
+>> -------------- next part -------------- A non-text attachment was
+>> scrubbed...
+>> Name: image001.jpg
+>> Type: image/jpeg
+>> Size: 14804 bytes
+>> Desc: image001.jpg
+>> URL:
+>> <https://urldefense.proofpoint.com/v2/url?u=http-3A__lists.yoctoprojec
+>> t.org_pipermail_yocto_attachments_20190522_063fd326_attachment.jpg&d=D
+>> wICAg&c=QM_z7khAIdagwHt-12JlKA&r=4dfUpqj68eYAfVJs5uk2XkolcOQysOP5VncSF
+>> x6bkao&m=swLBJyRzgqx-Ix1dnv04ZhN6a_WVQSmQSW5YYLg3h40&s=uyxqA24JcBr0zBh
+>> HwTfA8XtqX5ObrRkNMFNlD3Htpos&e=>
+>>
+>> ------------------------------
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://urldefense.proofpoint.com/v2/url?u=https-3A__lists.yoctoprojec
+>> t.org_listinfo_yocto&d=DwICAg&c=QM_z7khAIdagwHt-12JlKA&r=4dfUpqj68eYAf
+>> VJs5uk2XkolcOQysOP5VncSFx6bkao&m=swLBJyRzgqx-Ix1dnv04ZhN6a_WVQSmQSW5YY
+>> Lg3h40&s=a4sSVLnzzAP3ZRYs01WvSaiSc9QQmfaT7zdBRe0HcwM&e=
+>>
+>>
+>> End of yocto Digest, Vol 104, Issue 95
+>> **************************************
+>>
 
