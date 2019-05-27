@@ -1,64 +1,61 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <praveen.vatt@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 29875E00C7D; Mon, 27 May 2019 03:16:57 -0700 (PDT)
+	id 2CE29E008E3; Mon, 27 May 2019 04:29:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (alex.kanavin[at]gmail.com)
+	provider *      (praveen.vatt[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.54 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.65 listed in list.dnswl.org]
-Received: from mail-ot1-f65.google.com (mail-ot1-f65.google.com
-	[209.85.210.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8601E00B33
-	for <yocto@yoctoproject.org>; Mon, 27 May 2019 03:16:56 -0700 (PDT)
-Received: by mail-ot1-f65.google.com with SMTP id l17so14393381otq.1
-	for <yocto@yoctoproject.org>; Mon, 27 May 2019 03:16:56 -0700 (PDT)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+	[209.85.128.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84864E008E3
+	for <yocto@yoctoproject.org>; Mon, 27 May 2019 04:29:45 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id w9so9380475wmi.0
+	for <yocto@yoctoproject.org>; Mon, 27 May 2019 04:29:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=YHYp4/DdIrowL1EEcvkn39AB32ceYKSJqa2bJsOPnjw=;
-	b=A4PGAFD9w3qBtj0oAb7de/mObu3JqdUYNVZS5+PVjFgTPpeR+fKso6P9KeA9fBzb6N
-	97t6cr5PtSZoB702i42XIuZD2aLztYmL4hQVY5keAG58nq+QOuERNamAruOLpXmpLGZ7
-	TsAj3fOo8IURdkNJwkODJoF7VvGOnsLII7U1OWy3XVt2T2hHhD2bEUX6oZjWQYYH50dr
-	xnEuUCpNMUJLD9uFdxcvhAR7Z09Lniv+cnb2KYRccrpTWgPWle/Le/FUvooBsk0vsfun
-	H5WsgxVqLf5Akq3z8fhLIbMPJ5j2hlnJXTGRLoSPT4iBHxtLcwUMiT4kkRi822LAXA3m
-	cE1A==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=CQyvRjRV5cifmYyhlGdjPzD5U1hWTRW4emO9rZEhaew=;
+	b=SCovRALI0oVAurmOaCCJLdHbNk2Yr0z5SIdwu9jqVJTNvLede23S/1Z7e+5Fh58xt2
+	2YtD0J6UMtFOu0aqVMPCcQBsLPvbqIVVbLTVSo1sMWmresFTuk6bazTh6QQUfJYDLGas
+	wBopGtogF1h9DOJzzQkXMPyC9iAH19x7qBpeZ2UMQQ76l0vjGOU5nsyMn5qrkuZvmd+s
+	4KA82AAs8vBGkPJFeoTBEbrAjxF502whyHSJyrJqofzOZooWb2+D/qPbnSqPbQaGKQKP
+	hV60DCu7CnXXAE36zS3daRC6dJPKGEn4U3eT9WcuTPiDnQ6zxJAiFTWpCCmx8vWkgcNY
+	l2IA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=YHYp4/DdIrowL1EEcvkn39AB32ceYKSJqa2bJsOPnjw=;
-	b=DMs2FzHCqZbTqRCUmzql0lOa8ejhJma+PasZjUKtc5H60N6b8qVwYz3VfNqBh4yAfn
-	067Xc9T4uozLD/mhhCxXfmQh0l+hMCTaOW82T5qWl9xS2JVl9+z7fGfShBycE9NYbHbs
-	b2vph9gbH0ugjYxeR3M1QHij4+k0ZZmu/iYbX9gw7hRw9jg8hMCNFjJJnkQdc4XuYhk+
-	zL8mMM6mCaOInRlvsg7AJr+gluerhRVSoEqu0LT0E5oZoY01zB3wuumtWWQ50w8T3oZP
-	teBj5dlRolaer7OlDGmsskrQ7nGkI65T4y1CcMlBtLXbeHEazO8ecLkpxBZShDqDn1lm
-	fuhg==
-X-Gm-Message-State: APjAAAV7RZ8UFj1BHr1GS9Io87Au0x3M9shD3ej/Kly0a3zqNaCzDGoc
-	kTfB2WycYxGC460cPEl7d4+PxyQRv3quvAP4UmEzOVYH
-X-Google-Smtp-Source: APXvYqy7ktdAgN4g1lAI3wkFj0VmJE6dW/PSXQlkaXgFtEEfdVnL22rUUoJ5evhIAbGZjBvpHo9GdMAqMDCfvziMgj0=
-X-Received: by 2002:a9d:694a:: with SMTP id p10mr7426880oto.61.1558952215982; 
-	Mon, 27 May 2019 03:16:55 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=CQyvRjRV5cifmYyhlGdjPzD5U1hWTRW4emO9rZEhaew=;
+	b=X00htKlSu/FFvr8IcP73yX4QDIJcI53RNlrAJVjX9au51jWIef9yIbyGe180lydqXm
+	pPAna3/ygxzE8XDh0VZYzUp91TamFROB+btKeVlS5c+6aK3InIiOROxd/+kmQVvZR1kn
+	UJNWb/OXfjPqxU8+C2z4smNhpJD5LlJUjw6BWV4g+dRtB66i2FjpnALVftgh6uUnjtP2
+	juQP5oOpj2cH4VdRHk4oRnMiIvQBnUHQpLhgjvwDvvK992GrdYqFZbb+rTGmkEI2Ls7M
+	N+dQJpCg1B6/G3NiKfiSBuDHzpQ+ydmlQUKkKNIC9wVkDeCZKk2KJf5Ocbt+XAt/FdAy
+	MkDA==
+X-Gm-Message-State: APjAAAUPGrArP1ZxFr0Iv6N9AS7IKHwEJBYV92o8jRUkPVfJ023+wB7r
+	jwNtpPzjgNERa7A/oVNxCKCk8mqT4r7Y2dEQXG03f14A
+X-Google-Smtp-Source: APXvYqxwx2JtNbdfc2H5MlqZkyBTaDF7hYId7PLiTPlJOWQtNWIJ+pzfwyNCgN9aTQXODeL34slV53sq+/h9XGLRK1M=
+X-Received: by 2002:a1c:f31a:: with SMTP id q26mr9596312wmq.137.1558956584530; 
+	Mon, 27 May 2019 04:29:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190513162531.45297-1-alex.kanavin@gmail.com>
-In-Reply-To: <20190513162531.45297-1-alex.kanavin@gmail.com>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Mon, 27 May 2019 12:16:45 +0200
-Message-ID: <CANNYZj8MvEUjB-w+JjBRtbTnjw=B--L36+nXOVDAjzf+suxtcw@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>,
-	ajlennon@dynamicdevices.co.uk
-Subject: Re: [meta-mono][PATCH] mono-5.xx: fix an issue with too long paths in doltlibtool
+From: praveen vattipalli <praveen.vatt@gmail.com>
+Date: Mon, 27 May 2019 16:59:33 +0530
+Message-ID: <CA+pXca1pnxm6Y56m5oaPjkkegH-c7a6TATzWLG=B5EYppA+ncw@mail.gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: final image size got increased when migrated from krogoth to Sumo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,36 +67,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 May 2019 10:16:57 -0000
+X-List-Received-Date: Mon, 27 May 2019 11:29:46 -0000
+Content-Type: multipart/alternative; boundary="00000000000070f6280589dcdd9e"
+
+--00000000000070f6280589dcdd9e
 Content-Type: text/plain; charset="UTF-8"
 
-Ping?
+Hi All,
 
-Alex
+I have migrated Yocto poky version from Krogoth to Sumo, after building the
+final image, i observed that the size of image got increased by more than
+70Mb. I have not added any new packages.
+Any suggestions, how can I reduce the image size now.
 
-On Mon, 13 May 2019 at 18:25, Alexander Kanavin <alex.kanavin@gmail.com> wrote:
->
-> When build directory is deeply nested, the shebang limit of 127
-> characters is hit, which leads to doltlibtool failing to execute.
->
-> Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
-> ---
->  recipes-mono/mono/mono-5.xx.inc | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/recipes-mono/mono/mono-5.xx.inc b/recipes-mono/mono/mono-5.xx.inc
-> index c36374c..dec2475 100644
-> --- a/recipes-mono/mono/mono-5.xx.inc
-> +++ b/recipes-mono/mono/mono-5.xx.inc
-> @@ -102,3 +102,7 @@ RDEPENDS_${PN} =+ "bash"
->
->  # Workaround for observed race in `make install`
->  PARALLEL_MAKEINST=""
-> +
-> +# Otherwise the full path to bash is written to the first line of doltlibtool script
-> +# which causes build failures with deeply nested build directories
-> +CACHED_CONFIGUREVARS += "ac_cv_path_DOLT_BASH='/usr/bin/env bash'"
-> --
-> 2.17.1
->
+Thanks in Advance.
 
+Thanks,
+Praveen
+
+--00000000000070f6280589dcdd9e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi All,<div><br></div><div>I have migrated Yocto poky vers=
+ion from Krogoth to Sumo, after building the final image, i observed that t=
+he size of image got increased by more than 70Mb. I have not added any new =
+packages.</div><div>Any suggestions, how can I reduce the image size now.</=
+div><div><br></div><div><div><div>Thanks in Advance.<br><br></div>Thanks,<b=
+r></div>Praveen=C2=A0=C2=A0<br></div></div>
+
+--00000000000070f6280589dcdd9e--
