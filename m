@@ -1,67 +1,51 @@
-Return-Path: <trini@konsulko.com>
+Return-Path: <Archana.c727@toshiba-tsip.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C581FE00D61; Fri, 31 May 2019 06:22:59 -0700 (PDT)
+	id BBE1BE00D3E; Sun, 26 May 2019 22:08:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.169 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com
-	[209.85.222.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 890F1E00D59
-	for <yocto@yoctoproject.org>; Fri, 31 May 2019 06:22:57 -0700 (PDT)
-Received: by mail-qk1-f169.google.com with SMTP id a27so6220676qkk.5
-	for <yocto@yoctoproject.org>; Fri, 31 May 2019 06:22:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=konsulko.com; s=google;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=OQWGb9eq1xKqkZ0944oxLnksYsfizzhqXye4uAaVRrQ=;
-	b=O3kTnaLAeWhW0tTQ+6tnzvkJzpD7l2KrQGfezkPa7hnLfdR/peTsf2w53a3gWgLCq+
-	aZ51wilW+OCGVI/PZo8lMzOMQasJh/eUAy9tDjXUsaJUYzgETj5lrBe1ioOsfapkmwsu
-	Nt1kkTsEIqsVHtATrKksn0t7VSGbqJIkRsdNw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=OQWGb9eq1xKqkZ0944oxLnksYsfizzhqXye4uAaVRrQ=;
-	b=ul/ib7k5oiej5KKZKLGzEAufGyV94zaaUWbRjJqynbqZU9166P5G5sowEVwPRyhCul
-	WmM88Yq2sWCRgKVhttK4da6tP97VEHbM2AjQBu4gKi+svO5JSxxWpHga3c5/rXrWWYh9
-	637HYMfzS6CJomX8a+IpBA0wqYuRwkjFppgPNJ0mT4dj4tIwv2NMj6qjtI676LUSYZLX
-	Meo9wvJC3K9KZh76XaJIRDEG5sVIKO0UailaebAqmjYkikH0L92sI6v6fC4hpD0ibVXn
-	92VugukV4Nut20AGmOdNI7H1JY4kGVhoyAq3ORRv702ukxaJ/s6EhtfkzYvZtdC4KvkK
-	kDEg==
-X-Gm-Message-State: APjAAAU93hirld9rr0wXWy5ehK4KqfkNCS7+V98usXHCLAagovT12WbQ
-	z11tv0gTqcwkeCw/xOVTZLSOh4g3rgPv0Q==
-X-Google-Smtp-Source: APXvYqxRQCOaKU9SviK4Npu7g898q/KGhazeoEheCgERrMRFcydPBqnptvJZ3lcJTSoqtdZDfTxkpw==
-X-Received: by 2002:ae9:f707:: with SMTP id s7mr8489639qkg.187.1559308976607; 
-	Fri, 31 May 2019 06:22:56 -0700 (PDT)
-Received: from bill-the-cat
-	(cpe-2606-A000-1401-82DE-AD03-AD73-D69F-32FC.dyn6.twc.com.
-	[2606:a000:1401:82de:ad03:ad73:d69f:32fc])
-	by smtp.gmail.com with ESMTPSA id d7sm254639qth.44.2019.05.31.06.22.55
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 31 May 2019 06:22:55 -0700 (PDT)
-Date: Fri, 31 May 2019 09:22:53 -0400
-From: Tom Rini <trini@konsulko.com>
-To: JH <jupiter.hce@gmail.com>
-Message-ID: <20190531132253.GC20781@bill-the-cat>
-References: <CAA=hcWTwG4oo=qJvbrx04zaTXRy8u1H6HLEGV_J7r25jpzSVOA@mail.gmail.com>
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from peak.toshiba-tesi.com (unknown [202.56.254.199])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 756A6E00C02
+	for <yocto@yoctoproject.org>; Sun, 26 May 2019 22:04:52 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2CUAgAqb+tc/xlVdApkHAEBAQQBAQcEA?=
+	=?us-ascii?q?QGBVAQBAQsBgmiBPQqECZUamlQJAQEBAQEBAQEBNwEBhEACF4JNNwYOAQMBAQU?=
+	=?us-ascii?q?BAQEBBIEKC4VLAQUjEUUQAgEIDQsCAiYCAgIwFRACBA4FrFiBLxoChSuDHYFGg?=
+	=?us-ascii?q?QwoAYFgjAiEIz6ERDqCUIJYBIEtAQEBjFiaSgEGAQEBgg9eklKCD4pjA4lUjG6?=
+	=?us-ascii?q?YBYF5cIFugU6QUnKNMYEhAQE?=
+X-IPAS-Result: =?us-ascii?q?A2CUAgAqb+tc/xlVdApkHAEBAQQBAQcEAQGBVAQBAQsBgmi?=
+	=?us-ascii?q?BPQqECZUamlQJAQEBAQEBAQEBNwEBhEACF4JNNwYOAQMBAQUBAQEBBIEKC4VLA?=
+	=?us-ascii?q?QUjEUUQAgEIDQsCAiYCAgIwFRACBA4FrFiBLxoChSuDHYFGgQwoAYFgjAiEIz6?=
+	=?us-ascii?q?ERDqCUIJYBIEtAQEBjFiaSgEGAQEBgg9eklKCD4pjA4lUjG6YBYF5cIFugU6QU?=
+	=?us-ascii?q?nKNMYEhAQE?=
+X-IronPort-AV: E=Sophos;i="5.60,517,1549909800"; d="scan'208";a="21095691"
+Received: from unknown (HELO tosblrmbx04.TOSHIBA-TSIP.COM) ([10.116.85.25])
+	by peak.toshiba-tesi.com with ESMTP; 27 May 2019 10:16:18 +0530
+Received: from TOSBLRMBX01.TOSHIBA-TSIP.COM ([fe80::1d8f:a072:df12:dcb2]) by
+	tosblrmbx04.TOSHIBA-TSIP.COM ([fe80::2089:5e37:936d:8fb9%18]) with mapi
+	id 14.02.0247.003; Mon, 27 May 2019 10:30:12 +0530
+From: Archana Polampalli <Archana.c727@toshiba-tsip.com>
+To: "ross.burton@intel.com" <ross.burton@intel.com>
+Thread-Topic: [yocto] Difference between DEPENDS and BUILD-DEPENDS
+Thread-Index: AQHVEjYvPxzbKcK7jEKAOo738+voA6Z7fBWAgAKVbgA=
+Date: Mon, 27 May 2019 05:00:11 +0000
+Message-ID: <1558933214.9936.20.camel@toshiba-tsip.com>
+References: <1558705171.9936.16.camel@toshiba-tsip.com>
+	<CAJTo0LYAG01HYA3tPMQ_82eDikm7r9Lv9Pu38LEVKhcBMcbbCA@mail.gmail.com>
+In-Reply-To: <CAJTo0LYAG01HYA3tPMQ_82eDikm7r9Lv9Pu38LEVKhcBMcbbCA@mail.gmail.com>
+Accept-Language: en-IN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.28.80.64]
 MIME-Version: 1.0
-In-Reply-To: <CAA=hcWTwG4oo=qJvbrx04zaTXRy8u1H6HLEGV_J7r25jpzSVOA@mail.gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: How to extract files from wic.gz image?
+X-Mailman-Approved-At: Fri, 31 May 2019 09:25:16 -0700
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Difference between DEPENDS and BUILD-DEPENDS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,53 +57,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 May 2019 13:22:59 -0000
-X-Groupsio-MsgNum: 45447
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="7OoDBnYS+k9XyeYv"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 27 May 2019 05:08:14 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <83A59103DC134144AEAF6E70FE390333@TOSHIBA-TSIP.COM>
+Content-Transfer-Encoding: base64
 
---7OoDBnYS+k9XyeYv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+VGhhbmsgeW91IHNvIG11Y2gsbm93IGl0cyBjbGVhci4NCg0KUmVnYXJkcywNCkFyY2hhbmENCg0K
+DQpPbiBTYXQsIDIwMTktMDUtMjUgYXQgMTQ6MzIgKzAxMDAsIEJ1cnRvbiwgUm9zcyB3cm90ZToN
+Cj4gT24gU2F0LCAyNSBNYXkgMjAxOSBhdCAxNDoyOCwgQXJjaGFuYSBQb2xhbXBhbGxpDQo+IDxB
+cmNoYW5hLmM3MjdAdG9zaGliYS10c2lwLmNvbT4gd3JvdGU6DQo+ID4gDQo+ID4gaSBhbSB3b3Jr
+aW5nIG9uIG9uZSBvcGVuIHNvdXJjZSBwcm9qZWN0LGZvciB0aGlzIGkgaGF2ZSB0byBhZGQgc29t
+ZQ0KPiA+IGRlYmlhbiBwYWNrYWdlcyBhcyB5b2N0byByZWNpcGllcy4NCj4gPiBpIGFtIHRyeWlu
+ZyB0byBhZGQgImF1ZGl0IiByZWNpcGUsc28gaWFtIHRyeWluZyB0byB1bmRlcnN0YW5kIHRoZQ0K
+PiA+IGF1ZGl0DQo+ID4gZGViaWFuIHBhY2thZ2UgLGkgZ290IHN0cnVjayBiZXR3ZWVuICJkZXBl
+bmRzIiBhbmQgImJ1aWxkLWRlcGVuZHMiDQo+IERlYmlhbiBCdWlsZC1EZXBlbmRzID09IE9wZW5F
+bWJlZGRlZCBERVBFTkRTDQo+IERlYmlhbiBEZXBlbmRzID09IE9wZW5FbWJlZGRlZCBSREVQRU5E
+Uw0KPiANCj4gUm9zcwpUaGUgaW5mb3JtYXRpb24gY29udGFpbmVkIGluIHRoaXMgZS1tYWlsIG1l
+c3NhZ2UgYW5kIGluIGFueQ0KYXR0YWNobWVudHMvYW5uZXh1cmUvYXBwZW5kaWNlcyBpcyBjb25m
+aWRlbnRpYWwgdG8gdGhlIA0KcmVjaXBpZW50IGFuZCBtYXkgY29udGFpbiBwcml2aWxlZ2VkIGlu
+Zm9ybWF0aW9uLiANCklmIHlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZCByZWNpcGllbnQsIHBsZWFz
+ZSBub3RpZnkgdGhlDQpzZW5kZXIgYW5kIGRlbGV0ZSB0aGUgbWVzc2FnZSBhbG9uZyB3aXRoIGFu
+eSANCmF0dGFjaG1lbnRzL2FubmV4dXJlL2FwcGVuZGljZXMuIFlvdSBzaG91bGQgbm90IGRpc2Ns
+b3NlLA0KY29weSBvciBvdGhlcndpc2UgdXNlIHRoZSBpbmZvcm1hdGlvbiBjb250YWluZWQgaW4g
+dGhlDQptZXNzYWdlIG9yIGFueSBhbm5leHVyZS4gQW55IHZpZXdzIGV4cHJlc3NlZCBpbiB0aGlz
+IGUtbWFpbCANCmFyZSB0aG9zZSBvZiB0aGUgaW5kaXZpZHVhbCBzZW5kZXIgZXhjZXB0IHdoZXJl
+IHRoZSBzZW5kZXIgDQpzcGVjaWZpY2FsbHkgc3RhdGVzIHRoZW0gdG8gYmUgdGhlIHZpZXdzIG9m
+IA0KVG9zaGliYSBTb2Z0d2FyZSBJbmRpYSBQdnQuIEx0ZC4gKFRTSVApLEJhbmdhbG9yZS4NCg0K
+QWx0aG91Z2ggdGhpcyB0cmFuc21pc3Npb24gYW5kIGFueSBhdHRhY2htZW50cyBhcmUgYmVsaWV2
+ZWQgdG8gYmUNCmZyZWUgb2YgYW55IHZpcnVzIG9yIG90aGVyIGRlZmVjdCB0aGF0IG1pZ2h0IGFm
+ZmVjdCBhbnkgY29tcHV0ZXIgDQpzeXN0ZW0gaW50byB3aGljaCBpdCBpcyByZWNlaXZlZCBhbmQg
+b3BlbmVkLCBpdCBpcyB0aGUgcmVzcG9uc2liaWxpdHkNCm9mIHRoZSByZWNpcGllbnQgdG8gZW5z
+dXJlIHRoYXQgaXQgaXMgdmlydXMgZnJlZSBhbmQgbm8gcmVzcG9uc2liaWxpdHkgDQppcyBhY2Nl
+cHRlZCBieSBUb3NoaWJhIEVtYmVkZGVkIFNvZnR3YXJlIEluZGlhIFB2dC4gTHRkLCBmb3IgYW55
+IGxvc3Mgb3INCmRhbWFnZSBhcmlzaW5nIGluIGFueSB3YXkgZnJvbSBpdHMgdXNlLgo=
 
-On Fri, May 31, 2019 at 10:21:40PM +1000, JH wrote:
-> Hi,
->=20
-> What command and tools to extract files from Yocto / bitbake image
-> such as dev-image-20190528085324.rootfs.wic.gz?
->=20
-> I am using IMX UUU to install dev-image-20190528085324.rootfs.wic.gz
-> to IMX, I was advised to extract the archive and use "uuu <script
-> name>" or "uuu u-boot-dtb.imx" to get bootloader work first.
 
-A wic image is just another way of saying it's a raw disk image.
-Decompress it, losetup -P (generally useful, but not needed this time)
-and dd out the contents you want.
-
---=20
-Tom
-
---7OoDBnYS+k9XyeYv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iQIcBAEBAgAGBQJc8SqtAAoJEIf59jXTHXZSVkAP/idqz+W8HmpQjJiuKMg6HFLk
-MjwknTJx3v97WP2ywMU6HNBu9jRWmohXylDBY8FWx8RRxuhwKAg3/Fzy4D7yxNJM
-o4x4h4yBYDB8HjW6VHq8conCmcMqEXytTnVz50ZO3uP8MazaXwuHd6iJsHp+Hii5
-ZuumgsRki/5reTM8pwAbN1iSKdpEz6Sm53JQ/vEmFxFqzC4QMnF0rSOHKhqtp9gt
-p5+3OCOVNGoXrdYVzEEC9/xFm+QDQqQudhzMLyZ3hHhPxd45lb+PSJlmpV+yIIxn
-gPnAGv/qp3MqILf+ZF/29W3oVoVvXH73eBUT8tJRgens+bYLXCWCbE01z1xVJOId
-Qd5sWVoStG1jSK9f2fqIEInSjtqLidTGbCqcNmz/EM6xAc0KXBE6QAjYJ34HMP0Y
-Vuqc15skgnG88RBOeR5OH1Kv9CZTcunIJregXgOSoCjSKFSCgUrmPnBcEaljntA4
-OsmzeaqF/nX9mhTmrZ01mvJ9cJ6N3bHi2A97La/2hZw1ijZzcrXWKBG5iVgo42Df
-SfZr+8PlKn+xsIbMgeRfyESbv1+dl/vK4tWOCYqbqgYAlQ2qWg+4P0vM5XZAXSrm
-CGl/jXUvMAFXKtMxYI/F8vPkZh85XlNv0mBHkfN8XQEfqEWw2PxBQHcNopdM2r7k
-og40qtEZZyPln1GMxhGQ
-=Bx0z
------END PGP SIGNATURE-----
-
---7OoDBnYS+k9XyeYv--
