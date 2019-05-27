@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B0D60E00C43; Sun, 26 May 2019 21:56:45 -0700 (PDT)
+	id CD4B5E006D2; Sun, 26 May 2019 21:56:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,53 +13,57 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.171 listed in list.dnswl.org]
+	*      [209.85.210.196 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com
-	[209.85.210.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 992A0E00C36
-	for <yocto@yoctoproject.org>; Sun, 26 May 2019 21:56:44 -0700 (PDT)
-Received: by mail-pf1-f171.google.com with SMTP id u17so8843221pfn.7
-	for <yocto@yoctoproject.org>; Sun, 26 May 2019 21:56:44 -0700 (PDT)
+Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
+	[209.85.210.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3EECE006D2
+	for <yocto@yoctoproject.org>; Sun, 26 May 2019 21:56:45 -0700 (PDT)
+Received: by mail-pf1-f196.google.com with SMTP id r22so5966283pfh.9
+	for <yocto@yoctoproject.org>; Sun, 26 May 2019 21:56:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=NW0CCyM80ZanBT2x6mSxQr7H2Wy32nkbcolbNgikvHM=;
-	b=bOsnlAL1UjV/XDi2YG0tEzz+/IlRmgtlCsBAICw0lw8UlntwKNtsVjkVeJclfjoKt4
-	sbnynIzeQg/jQtpx+wOvrht5+sa6vbIIUTclGfKsCvsZHeoDZpM22uPX+b7/CbaCFg+o
-	6/Fw//TYlnaU6U5FYUjIFytxRKZXp6im5bpxZBcFcGyWVFULY4msrdebhMqjbWKASLyz
-	UuZnFcFYfrbBjKiw//py9F1STRR0gY6UyvZA/Zo6V05x/4lENVcKgTlA5Kcy8wg6is/Y
-	zJCx6YMUg7g9fhboaTGTiKfwD3s2HYElUWnHRZ5IIppwbeI5wcorLUSsgFvpuG3dGwca
-	qB6w==
+	h=from:to:subject:date:message-id:in-reply-to:references;
+	bh=yX2rFZh5laJlVGIba46sXfznSqdt4kD3VR8KHw6esbg=;
+	b=S80Rbu9Y+huLJG4NBXxMRzVJwcr6qz5P3kdfFNjHgmxicAUD5aHMf/GIbvl8Wjtzd5
+	SYks/cdYceQecxLEEY/EkKWe1m6pm3fOHsV2SSQ8X0BcdBBxVxi1Vdsy+tdk79KSUqdG
+	zY29RpgLMB0dVb2EAu85FpqfFu1exvoQYQ1eYOP/ZGmJBdd8w1dg4Sa8tFEFnz/86mTB
+	EFeWXPRk7xj2c6GaPUx/Yjxc3tFxmN15Qda0kP9PI4NBVhnwgW9Ud6QIUipKMgyZ0iwg
+	sHbSVvhKUQq+ruoXagvWSec52jnxN+1yWjjsXZFPJ2Gc9H1R1ZMRQAAGdie/7UCjnGHc
+	/mLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=NW0CCyM80ZanBT2x6mSxQr7H2Wy32nkbcolbNgikvHM=;
-	b=cuY7DtR9Hv3Vzxo3uXslu01HtVOkCLs/0aUzXyNRIM5x00HTdNSCm+S1boaxiAonbU
-	6QvPdaaH5qnT8+C50I6YtfKNxdFH8z9CAGUMxH0IC1qMW9uWjGagRtow6r1oMrOEXups
-	3RPLlQPubzOiu6qa6M2FQDafSSTmloDGUPqJ4CnYPN5XksuVYY1f/UdOGqsgJdoNi+mH
-	2f9aQt+Pv+/y3MSmLY+xsm5tH94iXyE/8+q7vzEHUh1xV55aH2bB37UvJpLXgTuN+pVH
-	ptkRGvISrVrmak5xpj/v9e/VOSuu5f/fgivOZsLBJpnWBsUNaht7eJouRkHMg6rMVO+D
-	tdpw==
-X-Gm-Message-State: APjAAAXbeBdQTgcoKc4G5/NuviARVlP8Hko7eMw+Jx2KMiG4UFTydUmb
-	kUC9fVsouY27CCqul5c+zo1kvg1i
-X-Google-Smtp-Source: APXvYqyouUiTXn8cjg151AmI20CyehJvgMq07OQpUZqiZH1jZaVDYuVyzZWEer5DECVgaLwhDGcBkg==
-X-Received: by 2002:a62:ee04:: with SMTP id e4mr19799881pfi.232.1558933003715; 
-	Sun, 26 May 2019 21:56:43 -0700 (PDT)
+	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+	:references;
+	bh=yX2rFZh5laJlVGIba46sXfznSqdt4kD3VR8KHw6esbg=;
+	b=mFl0JO0P19dFudkWz6+I7T/HIbUuFmncdwKQJm5dH6psMXyUgszVTWQFaMnQ1IoNE3
+	5a3GIyKOkeswI6e+C02KoY9exuL0DvDARdq94EqNAEL9Fqm+AXjazdTVQSx1qWKO1cFN
+	J7yklb+ZKmua0kv6nOb1FMkIXKVsXij6tUcPSvWa5OA8NHCynd36HANjjjBriu4ko7bH
+	nZy69b9Rbn/K8CnSLiGlrdKABpw1oGggQmQO31+kkyBlMbHxahGODh7ywjgFG2dB8TYf
+	ZzGDDi/HvIUI2D3pSaXUTIcx6qRBhcJmnwuaSsf2IVhr1hZesVXrrhshL3Ue7atco+nY
+	DXTQ==
+X-Gm-Message-State: APjAAAUo5pCF9Twzp89LU09fT0kEA6267zPqEXkUxLQEe7NOqZohMuj8
+	Phkd5J5q4uUUFXeu/yV1AFUCwqTn
+X-Google-Smtp-Source: APXvYqyRARfvowB70bUFupcZjbY7Vu4Z6R8DAKHXFzaZzxBm3CtgteBbg/MPv71zwQpUW4cbsnsm2w==
+X-Received: by 2002:a17:90a:ac18:: with SMTP id
+	o24mr29421940pjq.116.1558933005207; 
+	Sun, 26 May 2019 21:56:45 -0700 (PDT)
 Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
 	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	x24sm8648072pjq.27.2019.05.26.21.56.42 for <yocto@yoctoproject.org>
+	x24sm8648072pjq.27.2019.05.26.21.56.44 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 26 May 2019 21:56:43 -0700 (PDT)
+	Sun, 26 May 2019 21:56:44 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sun, 26 May 2019 21:56:27 -0700
-Message-Id: <20190527045641.18884-1-akuster808@gmail.com>
+Date: Sun, 26 May 2019 21:56:29 -0700
+Message-Id: <20190527045641.18884-3-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
-Subject: [meta-security][PATCH 00/14] Port over meta-integrity
+In-Reply-To: <20190527045641.18884-1-akuster808@gmail.com>
+References: <20190527045641.18884-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH 02/14] layer.conf: add LAYERSERIES_COMPAT
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,109 +75,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 May 2019 04:56:45 -0000
+X-List-Received-Date: Mon, 27 May 2019 04:56:46 -0000
 
-Copied meta-integrity from meta-intel-iot-security that Intel created,
-to carry on maintenance. 
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ meta-integrity/conf/layer.conf | 2 ++
+ 1 file changed, 2 insertions(+)
 
-This update that code base to work on master.
-
-runtime test passes on Arm H/w and qemux86-64
-
-Armin Kuster (14):
-  meta-integrity: port over from meta-intel-iot-security
-  layer.conf: add LAYERSERIES_COMPAT
-  README: update
-  ima-evm-utils: cleanup and update to tip
-  ima.cfg: update to 5.0 kernel
-  linux: update bbappend
-  base-files: add appending to automount securityfs
-  ima-policy-hashed: add new recipe
-  ima_policy_simple: add another sample policy
-  policy: add ima appraise all policy
-  data: remove policies
-  initramfs: clean up to pull in packages.
-  runtime qa: moderize ima test
-  image: add image for testing
-
- meta-integrity/README.md                      | 250 ++++++++++++++++++
- meta-integrity/classes/ima-evm-rootfs.bbclass |  92 +++++++
- meta-integrity/conf/layer.conf                |  24 ++
- .../data/debug-keys/privkey_ima.pem           |  16 ++
- meta-integrity/data/debug-keys/x509_ima.der   | Bin 0 -> 707 bytes
- meta-integrity/lib/oeqa/runtime/cases/ima.py  | 129 +++++++++
- .../base-files/base-files-ima.inc             |   5 +
- .../base-files/base-files_%.bbappend          |   1 +
- .../images/integrity-image-minimal.bb         |  22 ++
- .../initrdscripts/initramfs-framework-ima.bb  |  28 ++
- .../initrdscripts/initramfs-framework-ima/ima |  52 ++++
- .../packagegroup-ima-evm-utils.bb             |   9 +
- .../systemd/files/machine-id-commit-sync.conf |   2 +
- .../systemd/files/random-seed-sync.conf       |   3 +
- .../recipes-core/systemd/systemd_%.bbappend   |  13 +
- .../recipes-kernel/linux/linux-%.bbappend     |   3 +
- .../0001-ima-fix-ima_inode_post_setattr.patch |  51 ++++
- ...for-creating-files-using-the-mknodat.patch | 138 ++++++++++
- ...-file-hash-setting-by-user-to-fix-an.patch |  60 +++++
- .../recipes-kernel/linux/linux/ima.cfg        |  18 ++
- .../linux/linux/ima_evm_root_ca.cfg           |   3 +
- ...link-to-libcrypto-instead-of-OpenSSL.patch |  65 +++++
- ...ls-replace-INCLUDES-with-AM_CPPFLAGS.patch |  43 +++
- ...clude-hash-info.gen-into-distributio.patch |  31 +++
- ...ma-evm-utils-update-.gitignore-files.patch |  34 +++
- ...nd-line-apply-operation-to-all-paths.patch |  68 +++++
- .../ima-evm-utils/disable-doc-creation.patch  |  50 ++++
- ...t-depend-on-xattr.h-with-IMA-defines.patch |  47 ++++
- .../ima-evm-utils/ima-evm-utils_git.bb        |  41 +++
- .../files/ima_policy_appraise_all             |  29 ++
- .../ima-policy-appraise-all_1.0.bb            |  18 ++
- .../ima_policy_hashed/files/ima_policy_hashed |  77 ++++++
- .../ima-policy-hashed_1.0.bb                  |  20 ++
- .../ima_policy_simple/files/ima_policy_simple |   4 +
- .../ima-policy-simple_1.0.bb                  |  18 ++
- meta-integrity/scripts/ima-gen-CA-signed.sh   |  48 ++++
- meta-integrity/scripts/ima-gen-local-ca.sh    |  42 +++
- meta-integrity/scripts/ima-gen-self-signed.sh |  41 +++
- 38 files changed, 1595 insertions(+)
- create mode 100644 meta-integrity/README.md
- create mode 100644 meta-integrity/classes/ima-evm-rootfs.bbclass
- create mode 100644 meta-integrity/conf/layer.conf
- create mode 100644 meta-integrity/data/debug-keys/privkey_ima.pem
- create mode 100644 meta-integrity/data/debug-keys/x509_ima.der
- create mode 100644 meta-integrity/lib/oeqa/runtime/cases/ima.py
- create mode 100644 meta-integrity/recipes-core/base-files/base-files-ima.inc
- create mode 100644 meta-integrity/recipes-core/base-files/base-files_%.bbappend
- create mode 100644 meta-integrity/recipes-core/images/integrity-image-minimal.bb
- create mode 100644 meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima.bb
- create mode 100644 meta-integrity/recipes-core/initrdscripts/initramfs-framework-ima/ima
- create mode 100644 meta-integrity/recipes-core/packagegroups/packagegroup-ima-evm-utils.bb
- create mode 100644 meta-integrity/recipes-core/systemd/files/machine-id-commit-sync.conf
- create mode 100644 meta-integrity/recipes-core/systemd/files/random-seed-sync.conf
- create mode 100644 meta-integrity/recipes-core/systemd/systemd_%.bbappend
- create mode 100644 meta-integrity/recipes-kernel/linux/linux-%.bbappend
- create mode 100644 meta-integrity/recipes-kernel/linux/linux/0001-ima-fix-ima_inode_post_setattr.patch
- create mode 100644 meta-integrity/recipes-kernel/linux/linux/0002-ima-add-support-for-creating-files-using-the-mknodat.patch
- create mode 100644 meta-integrity/recipes-kernel/linux/linux/Revert-ima-limit-file-hash-setting-by-user-to-fix-an.patch
- create mode 100644 meta-integrity/recipes-kernel/linux/linux/ima.cfg
- create mode 100644 meta-integrity/recipes-kernel/linux/linux/ima_evm_root_ca.cfg
- create mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0001-ima-evm-utils-link-to-libcrypto-instead-of-OpenSSL.patch
- create mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0002-ima-evm-utils-replace-INCLUDES-with-AM_CPPFLAGS.patch
- create mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0003-ima-evm-utils-include-hash-info.gen-into-distributio.patch
- create mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0004-ima-evm-utils-update-.gitignore-files.patch
- create mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/command-line-apply-operation-to-all-paths.patch
- create mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/disable-doc-creation.patch
- create mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/evmctl.c-do-not-depend-on-xattr.h-with-IMA-defines.patch
- create mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_git.bb
- create mode 100644 meta-integrity/recipes-security/ima_policy_appraise_all/files/ima_policy_appraise_all
- create mode 100644 meta-integrity/recipes-security/ima_policy_appraise_all/ima-policy-appraise-all_1.0.bb
- create mode 100644 meta-integrity/recipes-security/ima_policy_hashed/files/ima_policy_hashed
- create mode 100644 meta-integrity/recipes-security/ima_policy_hashed/ima-policy-hashed_1.0.bb
- create mode 100644 meta-integrity/recipes-security/ima_policy_simple/files/ima_policy_simple
- create mode 100644 meta-integrity/recipes-security/ima_policy_simple/ima-policy-simple_1.0.bb
- create mode 100755 meta-integrity/scripts/ima-gen-CA-signed.sh
- create mode 100755 meta-integrity/scripts/ima-gen-local-ca.sh
- create mode 100755 meta-integrity/scripts/ima-gen-self-signed.sh
-
+diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
+index e8bb268..2f696cf 100644
+--- a/meta-integrity/conf/layer.conf
++++ b/meta-integrity/conf/layer.conf
+@@ -20,3 +20,5 @@ IMA_EVM_BASE := '${LAYERDIR}'
+ # dependent on location of the layer). Exporting it to just the
+ # interactive shell is enough.
+ OE_TERMINAL_EXPORTS += "IMA_EVM_BASE"
++
++LAYERSERIES_COMPAT_integrity = "warrior"
 -- 
 2.17.1
 
