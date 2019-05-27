@@ -1,6 +1,6 @@
 Return-Path: <marek.belisko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 84D76E00D35; Mon, 27 May 2019 10:33:12 -0700 (PDT)
+	id DDD9FE00D35; Mon, 27 May 2019 13:49:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,56 +13,48 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (marek.belisko[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.54 listed in list.dnswl.org]
+	*      [209.85.221.43 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
-	[209.85.128.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCADBE00798
-	for <yocto@yoctoproject.org>; Mon, 27 May 2019 10:33:10 -0700 (PDT)
-Received: by mail-wm1-f54.google.com with SMTP id 15so185970wmg.5
-	for <yocto@yoctoproject.org>; Mon, 27 May 2019 10:33:10 -0700 (PDT)
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
+	[209.85.221.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08954E00C78
+	for <yocto@yoctoproject.org>; Mon, 27 May 2019 13:49:47 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id b18so17917683wrq.12
+	for <yocto@yoctoproject.org>; Mon, 27 May 2019 13:49:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=UL3Nl1WLOO2def5/JVfIgNjhVx29/tOG0nEBOP5PNs8=;
-	b=UJKrS7IoYX4pK0+4q50o+LpMJf+x5NQvl0IyJQyOSQuQUsGRUb5pjwVx/NEwYvgLw9
-	78o35LTb720HNj8Hzj9WS7Qq5IPKmOERUJqovPbUz1HNSMSklpBJOz+r7dPznPP0k9eJ
-	QiYKbL4aTlt9m7yM4SixDznVYD/KdhUtfqXTCmDW7kgfeteLA1a/N5lKeB7I6xyhSovk
-	ExbowCvOTUrNVEP/+VwOUG0RQyZJnDZvJbRGoOtVhj3Umw0/2CuKc9GdGhjEZS4NZdOJ
-	pvn1guTyHxxIhckRiw5LXOtxWFUYJCR/b5w2RvlUauma4Hys9h1ISbiHvggJlhepHK0L
-	v15A==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=XX3s24rWgHupkKgaZOL2+x+WHj8OUkFrxRNfRRTLP1o=;
+	b=S+CkM+y6keDz9JtWd7dggREI+C90uwd8Y7w49FXDDKu99Wlb0yueS9++i3LGEt0ZqJ
+	eyq4mS3dvcT0Y05s0GkkxR9x5Ddm72RXc0P0PpZzDdSCfe5/+kquEZ7M1SOlOgU8+FeH
+	JlxkhX2eTCJ1bNEyMTRCDRrHR2zUJCjxYkFdLNStyNV8ZRYnL1Fju6UHWMpDGrwAJ99z
+	AyigDIri+mH1MPJxf4tvfVdvswvV+X6zqhTyur3dvLhqMYY5EoL2ML2karL3JWEWQQw/
+	apeofYIhrA4JVQk0qjfhtbhEfe40VW/0lo9Yn9KzU3oiQRZOLi/qQNSJGUgYy7xXUTCp
+	wR2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=UL3Nl1WLOO2def5/JVfIgNjhVx29/tOG0nEBOP5PNs8=;
-	b=JJlevst6FoJEFuQiUvN1+2QC9RdXt/a46ijNrXFo4PlbQNW+IMMSSwDKXX94ba29jT
-	whE/bAYTw83SwhzyuLkQb49Pqhpk1GMsCi7ieESGshJ4Ub+kIHGt259MFnHs7Q/+3vFl
-	w8rJ9itI/xamaijNa75rOdqsd3DrYfT/DNqJA82jkgBFYsuOUc6gBnfszqivxolrCIwP
-	6hj7EDyU8qJbQt6Jw2JdzN4MZmYw/UupaCQDXSraw1zbWXUOemOxp1PVbVEAzamDjWC3
-	IeOq1/KX4k6TbROaX8CL6tb0I7qpKdqD4uSJ+rNqq5qwZ+fP/2/ROo0nNyhLnOueh8T5
-	CJjQ==
-X-Gm-Message-State: APjAAAVVblzWtoEkml6WaG8fQ1Kovy6ffdo/AuA2Ley29TVeHDK9LWG+
-	UVP7l1adIKtYLLKSFuFbGJ2mleiAo91eXtB0DvU=
-X-Google-Smtp-Source: APXvYqwwos/OpRkpcEL6y3QxgSOWFK7zE5m3rp0ExC0n8yw/20aG7xIeqprkCAN3qJCiwoKoaWd8uDnIkth9tHi4svg=
-X-Received: by 2002:a1c:be12:: with SMTP id o18mr133923wmf.124.1558978389845; 
-	Mon, 27 May 2019 10:33:09 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=XX3s24rWgHupkKgaZOL2+x+WHj8OUkFrxRNfRRTLP1o=;
+	b=c+0rizY9+F6MYEVcU6hiGC+c20Ih62vvF5JNBRZAM6SzF3bQNQgMHdwhCVs7XSRTs9
+	lTDw8M07pV2vM8bazLNpmMH6AITYt9gN1TCrVF3il7tV9Yjv4569CHjDRd6Yf6IgjNgJ
+	dzrG7Qmie3wP29eqarsgxDcZim2mHH1ETQwOLX1kKAZR6BJ31FWIohtLNcK6e+ZAedqy
+	foakakLTqyPw3/hEDWXrbfA3Wyc7OqM3Ssny3AgUP0QTCrPld+9dOhcErZKGgmYO7nu9
+	s95LbHVRvids7SNFHniwjDNn5+HDOZRXi0VefjkyrF0ZRBSXlf4MEsFy3mOTK2ZsoZ7/
+	Mhvg==
+X-Gm-Message-State: APjAAAUusJzQXe9BG3wSSNOVO2NaLpLLVdmDIJlPbZCbPapvyzz8r7qv
+	xsd1mC6fqmMcKgNKWKokJxuc/GKR1UiQCVXwEbSP+C4o2RY=
+X-Google-Smtp-Source: APXvYqy3hkccA9/MH9JXQZ80v/w9ol1XL1tNSF/2yvjdhxjsfkvoC7OTJ0IvMkt10CvR4gCSDUiZwGcb3GypRxG1zuc=
+X-Received: by 2002:adf:cc8d:: with SMTP id p13mr22904600wrj.114.1558990186788;
+	Mon, 27 May 2019 13:49:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAAfyv34HAOaAaO1cyiQbR8P6mQPp8p3gCT2jM=UyQDGfvV-fYw@mail.gmail.com>
-	<CA+2YH7ud9TX=ohQSk8XY=GzpewzFsXo6Z2eBJ=bXacyAsojV9A@mail.gmail.com>
-In-Reply-To: <CA+2YH7ud9TX=ohQSk8XY=GzpewzFsXo6Z2eBJ=bXacyAsojV9A@mail.gmail.com>
 From: Belisko Marek <marek.belisko@gmail.com>
-Date: Mon, 27 May 2019 19:32:57 +0200
-Message-ID: <CAAfyv34jJ362tu3x_8J1+FuV3zFpchkB8Ft9w-WERrxCNPxbvg@mail.gmail.com>
-To: Enrico <ebutera@users.sourceforge.net>
-Cc: yocto <yocto@yoctoproject.org>, Sergey Lapin <slapin@ossfans.org>,
-	Nicolas Aguirre <aguirre.nicolas@gmail.com>,
-	OpenEmbedded Development mailing list
-	<openembedded-devel@lists.openembedded.org>
-Subject: Re: meta-sunxi maintained?
+Date: Mon, 27 May 2019 22:49:34 +0200
+Message-ID: <CAAfyv37hwLXMMXsu1Vbh-C5jLq+ETzHxL79m4Cq6h8_sJ9Kwgw@mail.gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: gstreamer1.0-plugins-base meta-sunxi issue with custom virtual/egl or virtual/libgles2 on thud
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,54 +66,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 May 2019 17:33:12 -0000
+X-List-Received-Date: Mon, 27 May 2019 20:49:48 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Enrico,
+Hi,
 
-On Mon, May 27, 2019 at 5:44 PM Enrico <ebutera@users.sourceforge.net> wrote:
->
-> Hi,
->
-> i try to keep it maintained, but now i just have a lime2 for testing
-> on real hardware, and i don't have the resources to do test builds for
-> all the supported boards.
-> Your help would be welcome, i can't check right now if i have the
-> rights to add you as co-maintainer, anyway i will add you.
-Thanks I have few sunxi based boards so can do tests also on my setup.
-Pls ping me when you will add me. Thanks.
->
-> Thanks for the help!
->
-> Enrico
+I'm trying to compile image using libnice which have dependency on
+gstreamer. Everything went fine but I get QA issues for plugins-base
+like:
 
-Marek
->
-> On Mon, May 27, 2019 at 4:50 PM Belisko Marek <marek.belisko@gmail.com> wrote:
-> >
-> > Hello,
-> >
-> > I'm just curious if meta-sunxi is still maintained? I was contributed
-> > to layer back while and when look now thud branch is un-compilable
-> > (dri2proto not replaced) and warrior branch not created yet. There is
-> > 14 issues + 6 pending pull requests. Added maintainers also in CC. I
-> > think it would be good to have sunxi properly maintained as boards
-> > with sunxi processors are popular. I can give a hand as co-maintainer
-> > if necessary. Thanks a lot.
-> >
-> > BR,
-> >
-> > marek
-> >
-> > --
-> > as simple and primitive as possible
-> > -------------------------------------------------
-> > Marek Belisko - OPEN-NANDRA
-> > Freelance Developer
-> >
-> > Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-> > Tel: +421 915 052 184
-> > skype: marekwhite
-> > twitter: #opennandra
-> > web: http://open-nandra.com
+ERROR: gstreamer1.0-plugins-base-1.14.4-r0 do_package_qa: QA Issue:
+/usr/lib/libgstgl-1.0.so.0.1404.0 contained in package libgstgl-1.0
+requires libGLESv2.so, but no providers found in
+RDEPENDS_libgstgl-1.0? [file-rdeps]
+ERROR: gstreamer1.0-plugins-base-1.14.4-r0 do_package_qa: QA Issue:
+/usr/lib/libgstgl-1.0.so.0.1404.0 contained in package libgstgl-1.0
+requires libEGL.so, but no providers found in RDEPENDS_libgstgl-1.0?
+[file-rdeps]
+ERROR: gstreamer1.0-plugins-base-1.14.4-r0 do_package_qa: QA Issue:
+/usr/lib/gstreamer-1.0/libgstopengl.so contained in package
+gstreamer1.0-plugins-base-opengl requires libGLESv2.so, but no
+providers found in RDEPENDS_gstreamer1.0-plugins-base-opengl?
+[file-rdeps]
+ERROR: gstreamer1.0-plugins-base-1.14.4-r0 do_package_qa: QA Issue:
+/usr/lib/gstreamer-1.0/libgstopengl.so contained in package
+gstreamer1.0-plugins-base-opengl requires libEGL.so, but no providers
+found in RDEPENDS_gstreamer1.0-plugins-base-opengl? [file-rdeps]
+ERROR: gstreamer1.0-plugins-base-1.14.4-r0 do_package_qa: QA run found
+fatal errors. Please consider fixing them.
+ERROR: gstreamer1.0-plugins-base-1.14.4-r0 do_package_qa: Function
+failed: do_package_qa
+
+meta-sunxi is using custom recipe which provide virtual/egl
+virtual/libgles2 see:
+https://github.com/linux-sunxi/meta-sunxi/blob/master/recipes-graphics/libgles/sunxi-mali_git.bb
+
+also in configuration there is:
+PREFERRED_PROVIDER_virtual/mesa ?= "mesa-gl"
+PREFERRED_PROVIDER_virtual/libgl ?= "mesa-gl"
+PREFERRED_PROVIDER_virtual/libgles1 ?= "sunxi-mali"
+PREFERRED_PROVIDER_virtual/libgles2 ?= "sunxi-mali"
+PREFERRED_PROVIDER_virtual/egl ?= "sunxi-mali"
+XSERVER += "sunxi-mali \
+sunxi-mali-dev"
+MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "\
+kernel-module-mali \
+kernel-module-mali-drm \
+"
+
+which is fine. I was able to workaround this issue by adding bbappend
+for plugins base with content:
+RDEPENDS_libgstgl-1.0 += "sunxi-mali"
+RDEPENDS_${PN}-opengl += "sunxi-mali"
+
+and add RPROVIDES_${PN} = "libGLESv1_CM.so libGLESv2.so libEGL.so" to
+sunxi-mali.bb recipe.
+
+Above workaround is not nice because if someone update
+PREFERRED_PROVIDER then gstreamer will be broken. Any ideas how to fix
+properly this QA issue? Thanks.
+
+BR,
+
+marek
+
+
+-- 
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
+
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
 
