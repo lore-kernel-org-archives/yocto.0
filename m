@@ -1,66 +1,62 @@
-Return-Path: <praveen.vatt@gmail.com>
+Return-Path: <Moritz.Porst@gmx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4330DE00C43; Mon, 27 May 2019 04:47:12 -0700 (PDT)
+	id 0B044E00C7D; Mon, 27 May 2019 06:26:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, FREEMAIL_FROM, HTML_MESSAGE, MIME_HTML_ONLY,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (praveen.vatt[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.43 listed in list.dnswl.org]
+	provider *      (moritz.porst[at]gmx.de)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [212.227.15.18 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
-	[209.85.221.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3D71E00B33
-	for <yocto@yoctoproject.org>; Mon, 27 May 2019 04:47:10 -0700 (PDT)
-Received: by mail-wr1-f43.google.com with SMTP id d9so16649722wrx.0
-	for <yocto@yoctoproject.org>; Mon, 27 May 2019 04:47:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=L/C0ryHe9eB5t9LlYLLKlBaHnzoSrcJw14HwEKVM3nI=;
-	b=YwLdbMS7eXtMrxBxX+jPCJ+SerQIsID+tJFiV+MDa/am5uDqtQgYCK9mMWsxuqwv9n
-	lTGFDtmTg6wIE4RegmCC7f+rRQhATgYoZrZs7rBbN6Mpee17Z8Fg4aV4Ed7GP8FtYLeh
-	YGJKHuPzu0nI1NIh4yMc5keacm/jFimJEm7fRLrqWRTsM1F3PrJREEe5v+zgzAexV0ww
-	abm41rOmac7FG3DLIkjQHGASSex3sRs0lnvDiPOOhRRHEJxu8ULOrnc1jQmv7OMAQHiH
-	he5z0hQNIRg71MvhyNAZJEdUDoD3hDKLfVQtaRWQVTI6OViJK4kZcgIF6+gFSWwYAHkz
-	k4Fw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=L/C0ryHe9eB5t9LlYLLKlBaHnzoSrcJw14HwEKVM3nI=;
-	b=LaCi1Uen5tvz1vesRoqiVfY4umj8i5xT+aJy0amCESzGJkBcpxS6NOnt0adkjBguNt
-	IeUiK95Q5l5sPwavNbLetpdqbCktBq/A8UBQccWQw/DHqDoM+N4LwUrUSZFVjdBY+vux
-	2aWiAH0Kb0mvHvI+GTZfS3G6jqnIrKyXN7exd2fJ/4AqqbzRMGw0+IWgmlpcP+5eu6uR
-	sMUPqf7W3D/RRJfpo4QqSp0LgsjCYPC0Bvh0mH1/pq8DOVNSxTB4jZ7tyir2SYQGfrip
-	Tx45aeBRLh/NugtyMhwjwSIlqM1d1/E0y5vnuEq6kbWPdGSVSTsY8REz3RQAtu5rD64E
-	aSFQ==
-X-Gm-Message-State: APjAAAVi277D+rRH/HW/iWTmVsCa6GgdG6uVURl6bR+DC3Lcyzfx3cYN
-	PgH7WkbF3b2bCvMaDWgl6MMPFTeGH3wE6oaNhXE=
-X-Google-Smtp-Source: APXvYqziWAvdVHkGQSgpEimvrDAftmZuttdNrmX+yG7p4jCPF0vamYB3MHpo9OPSGz4DXm0n/OiCEdDH/H5fFj4q0Wc=
-X-Received: by 2002:a5d:6242:: with SMTP id m2mr7537837wrv.310.1558957630140; 
-	Mon, 27 May 2019 04:47:10 -0700 (PDT)
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B148E0053F
+	for <yocto@yoctoproject.org>; Mon, 27 May 2019 06:26:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=badeba3b8450; t=1558963608;
+	bh=Wvk2MkiskvHz7L0B00BBKDT87alKXhJzyVj0Du7078s=;
+	h=X-UI-Sender-Class:From:To:Subject:Date;
+	b=B1GbJaiGcOJjpUu70Jyzyrvkj2qxHH9NNvQskYwNz8972pCLtKDlEdNGvZbi6WYv/
+	HlJig2ZJPVpmyxiJUUT/X2K1A5iag7YPPgaCeCSHhZK4dKYtrCAsDikTg7WdelDswk
+	cbDv/Mk5ui/k8jJzyZqHZLOsWI7w1YjvTgbGzwhI=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [80.152.229.14] ([80.152.229.14]) by web-mail.gmx.net
+	(3c-app-gmx-bs16.server.lan [172.19.170.68]) (via HTTP);
+	Mon, 27 May 2019 15:26:48 +0200
 MIME-Version: 1.0
-References: <CA+pXca1pnxm6Y56m5oaPjkkegH-c7a6TATzWLG=B5EYppA+ncw@mail.gmail.com>
-	<CAP71Wjw=AzrWVDjh0Nx1PoVrF3XQk9wV6ZsBPayrpmg6b=VcqA@mail.gmail.com>
-In-Reply-To: <CAP71Wjw=AzrWVDjh0Nx1PoVrF3XQk9wV6ZsBPayrpmg6b=VcqA@mail.gmail.com>
-From: praveen vattipalli <praveen.vatt@gmail.com>
-Date: Mon, 27 May 2019 17:16:58 +0530
-Message-ID: <CA+pXca3U9wsVMEmvxc0Zwm7efdYSRo+U_sYCM4yW-dw7YEZ=vg@mail.gmail.com>
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: final image size got increased when migrated from krogoth to Sumo
+Message-ID: <trinity-631dde4f-bab9-4c73-8545-286ae7269df2-1558963608089@3c-app-gmx-bs16>
+From: "Moritz Porst" <Moritz.Porst@gmx.de>
+To: yocto@yoctoproject.org
+Date: Mon, 27 May 2019 15:26:48 +0200
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:DbLpygWyv3wq3v5dn/omRFE8qcrojdSTXM5uCRe7ErqkwcJaMreVS5sKo1TOZA2/FnqLZ
+	6av1aQqPmKVR+AazXkiSkrMgu3smX1IezqjYUdJF8k2KQTCKbCZbu62zWNhcK2MXc0vH9WP0Up3s
+	cwBcj7COttvmGqW3iacClCukwxbwMUKPNG7biNWbBXY/KyYHb0xnIySl4ilvm3kGIjqYkK3+Nq+k
+	RfY/XP5zmOvvoL7866PVmNAHKojN6i70FbusZSGNMCyOec8ueKGL5xpwEIJym0q0czRnZQILDZne
+	ZY=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:edIYGZGa98Q=:9iSpt3nQOy5vngsX3qPLLZ
+	ysboLvuBfnh9OHb+atQvKQZAzzrAfhtckue4ILWLkA4u+m7lk+b3UUiNYK3Xdj0EQEx2/bz8O
+	o6tD+Ryp6ePFN0BRaKKpAjxVNX9IGDbl3g8zLgBV6eMyb4/1jyyi3e+PK+y1jfP+W44mRWoxP
+	mSsEY19GcmgapnbmIevOiHKdBhsv1t5+Bpqqsa6oxhgDc6/Enfc7mLeQv8FCCnA5YKPHzP3IO
+	qf8rsB30wZAA75oBy1/EAdUnAIhhyN4fIKr8FmgUaTI/fCMncOKjBeGtx+ameYMmE9u3TDksz
+	Z+VevwCI500d0Updn9/EDbNtmK7B1vo/9c5Y4/qeyYeSSZ4mfysL3aGPOZ5Pjmvzs4Z7uOR6N
+	9M15tMwMKj/zDw+jwfacFVublczBwkG1riVmMXAndIKosjeq39ZnAUW/HK5dk8LyzwFTDEPXy
+	89V8nB5kuhKm/RdP9OQZPI7mGVk/WxwjHFVN+uZsdy+mhbrInGRxe3etpxj4+TOcveXW0nYY0
+	hSzXWcvzOX/9zv4ZEH8ggV1kxgs1QWcQtjqPoUti2M0uoh4pMW7npFhDRw4XUMHAYqtzoSAtP
+	HHXJXoBfLlI6PicbbYRDK6Pc+LXARc0fhkIVJO93tj1u5XUSFNJz2oSg==
+Subject: [meta-swupdate] build fails under thud
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,81 +68,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 May 2019 11:47:12 -0000
-Content-Type: multipart/alternative; boundary="000000000000c3b4260589dd1bc1"
+X-List-Received-Date: Mon, 27 May 2019 13:26:50 -0000
+Content-Type: text/html; charset=UTF-8
 
---000000000000c3b4260589dd1bc1
-Content-Type: text/plain; charset="UTF-8"
+<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>Hello</div>
 
-Thanks Nicolas, i will try this.
+<div>&nbsp;</div>
 
-On Mon, May 27, 2019 at 5:10 PM Nicolas Dechesne <
-nicolas.dechesne@linaro.org> wrote:
+<div>I want to create an update mechanism for our embedded system. I chose swupdate because it is very well documented and seems flexible.</div>
 
-> On Mon, May 27, 2019 at 1:29 PM praveen vattipalli
-> <praveen.vatt@gmail.com> wrote:
-> >
-> > Hi All,
-> >
-> > I have migrated Yocto poky version from Krogoth to Sumo, after building
-> the final image, i observed that the size of image got increased by more
-> than 70Mb. I have not added any new packages.
-> > Any suggestions, how can I reduce the image size now.
->
-> you should most likely start looking at buildhistory data which will
-> give you the list of installed packages and their size. that should
-> give you hints about what has changed.
->
-> >
-> > Thanks in Advance.
-> >
-> > Thanks,
-> > Praveen
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
->
+<div>When trying to build swupdate-image it fails with several undefined references, just a few as example:</div>
 
---000000000000c3b4260589dd1bc1
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+<div>&quot;&quot;&quot;</div>
 
-<div dir=3D"ltr">Thanks=C2=A0Nicolas, i will try this.</div><br><div class=
-=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, May 27, 2019=
- at 5:10 PM Nicolas Dechesne &lt;<a href=3D"mailto:nicolas.dechesne@linaro.=
-org">nicolas.dechesne@linaro.org</a>&gt; wrote:<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">On Mon, May 27, 2019 at 1:29 PM praveen va=
-ttipalli<br>
-&lt;<a href=3D"mailto:praveen.vatt@gmail.com" target=3D"_blank">praveen.vat=
-t@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hi All,<br>
-&gt;<br>
-&gt; I have migrated Yocto poky version from Krogoth to Sumo, after buildin=
-g the final image, i observed that the size of image got increased by more =
-than 70Mb. I have not added any new packages.<br>
-&gt; Any suggestions, how can I reduce the image size now.<br>
-<br>
-you should most likely start looking at buildhistory data which will<br>
-give you the list of installed packages and their size. that should<br>
-give you hints about what has changed.<br>
-<br>
-&gt;<br>
-&gt; Thanks in Advance.<br>
-&gt;<br>
-&gt; Thanks,<br>
-&gt; Praveen<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
-oproject.org</a><br>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
-br>
-</blockquote></div>
+<div>
+<div>/opt/thudPoky/build/tmp/work/corei7-64-poky-linux/swupdate/2018.11-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux/../../libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/8.2.0/ld: bootloader/lib.a(uboot.o): in function &#96;bootloader_env_set&#39;:<br/>
+&#124; uboot.c:(.text.bootloader_env_set+0x40): undefined reference to &#96;fw_env_open&#39;<br/>
+&#124; /opt/thudPoky/build/tmp/work/corei7-64-poky-linux/swupdate/2018.11-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux/../../libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/8.2.0/ld: uboot.c:(.text.bootloader_env_set+0xf8): undefined reference to &#96;fw_env_write&#39;</div>
 
---000000000000c3b4260589dd1bc1--
+<div>&quot;&quot;&quot;</div>
+
+<div>I see lots of &quot;uboot&quot; in the trace, but to my understanding swupdate should also work with grub which I enabled using:</div>
+
+<div>EFI_PROVIDER = &quot;grub-efi&quot;&nbsp;&nbsp;&nbsp; (First tried to use PREFERRED_PROVIDER_virtual/bootloader, but this doesn&#39;t work with EFI booting)</div>
+
+<div>When I want to enable &quot;uboot&quot; this way, bitbake tells me there is no uboot.</div>
+
+<div>&nbsp;</div>
+
+<div>I know there is also the option of writing my own init scripts but this would be just reinventing the wheel (given there is an swupdate available) and probably more error-prone than a grown update tool. Thus I would like to get swupdate to work.</div>
+
+<div>&nbsp;</div>
+
+<div>Any ideas ?</div>
+
+<div>&nbsp;</div>
+
+<div>Best regards</div>
+
+<div>Moritz</div>
+</div></div></body></html>
+
