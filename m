@@ -1,66 +1,64 @@
-Return-Path: <jonaskgandersson@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 39479E00C7D; Mon, 27 May 2019 02:36:30 -0700 (PDT)
+	id 29875E00C7D; Mon, 27 May 2019 03:16:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jonaskgandersson[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.47 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	provider *      (alex.kanavin[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-yw1-f47.google.com (mail-yw1-f47.google.com
-	[209.85.161.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD4F2E0049C
-	for <yocto@yoctoproject.org>; Mon, 27 May 2019 02:36:28 -0700 (PDT)
-Received: by mail-yw1-f47.google.com with SMTP id b74so6423515ywe.5
-	for <yocto@yoctoproject.org>; Mon, 27 May 2019 02:36:28 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.65 listed in list.dnswl.org]
+Received: from mail-ot1-f65.google.com (mail-ot1-f65.google.com
+	[209.85.210.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8601E00B33
+	for <yocto@yoctoproject.org>; Mon, 27 May 2019 03:16:56 -0700 (PDT)
+Received: by mail-ot1-f65.google.com with SMTP id l17so14393381otq.1
+	for <yocto@yoctoproject.org>; Mon, 27 May 2019 03:16:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=00uV0EHVJeoY/RTjvD3RjkR6Q9ZxfjpAFMfW5JQCykY=;
-	b=gGj9BUxuES3L12xC+tgZCC3Ivre4i9gtxXjVw/IyZ2xxjJ/Vcvwdv0wP4WNJHJcH83
-	hLp+5vQGdH15L9cP65QNV+2M67CSPqOYJ3TT0ca3/Y6DH47oVWGhOB15euf8DXnNrYa9
-	Spf7TMRy1+X9+A4r4S7ldwXOsC98iTNMD3dvEofK2GakVcpvPZXRjK8cCbAVCnXFcBgX
-	/NXsoC/sUuMdcs/7jMh541ke/Aw5VL4gmNhYoKGggvRkzSZFDhJhrX8xJBMGhxHPJ+/o
-	R+XL7JWoEqYSiPQ3RWpMNrBPULXRszahGBCs3viRxxLwaMJwPOFPFEC8iu5KJ/Gxdclf
-	IMuw==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
+	bh=YHYp4/DdIrowL1EEcvkn39AB32ceYKSJqa2bJsOPnjw=;
+	b=A4PGAFD9w3qBtj0oAb7de/mObu3JqdUYNVZS5+PVjFgTPpeR+fKso6P9KeA9fBzb6N
+	97t6cr5PtSZoB702i42XIuZD2aLztYmL4hQVY5keAG58nq+QOuERNamAruOLpXmpLGZ7
+	TsAj3fOo8IURdkNJwkODJoF7VvGOnsLII7U1OWy3XVt2T2hHhD2bEUX6oZjWQYYH50dr
+	xnEuUCpNMUJLD9uFdxcvhAR7Z09Lniv+cnb2KYRccrpTWgPWle/Le/FUvooBsk0vsfun
+	H5WsgxVqLf5Akq3z8fhLIbMPJ5j2hlnJXTGRLoSPT4iBHxtLcwUMiT4kkRi822LAXA3m
+	cE1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=00uV0EHVJeoY/RTjvD3RjkR6Q9ZxfjpAFMfW5JQCykY=;
-	b=CDhoFZSZonxypNJzOjE/xETixFsfq0qHcFUgR1RC64x7OO6P8Kg+yzfHMw5o3+VnUD
-	xcO6MYPjz+osZEJhLM/U3sUbicZ/XawheySvyew4RilXtY00CymYMUiiHKgxw4/2KVSP
-	0R1+ZoZvFzQmatsLMhm57CrG7v/qNaClTcy5lsYSEor7ZqTovfFeBHlfq4bs1N84j4X9
-	d240AE4Jt/ieJ06hGAhHb8rOsE86uU3mukW/QMUmR2ilRpX6k9zEGy/qaGV5CL4Qydi5
-	HEcPNUEf6+brjdw5en0lPJDyDESOftzcvfXaW3oyx9xt30Fp/+u3swKUoCoK4JUx75Cf
-	68Dg==
-X-Gm-Message-State: APjAAAXrr3F24gyz6QMXIJX9n7Iad3CGfvIDtdQeOjaK+LJyxRSyxzrQ
-	kfHOt4ZYLXhG+XDc2H7dBT9Uzfcq7Yd+9sztEJ0=
-X-Google-Smtp-Source: APXvYqxEJJNzB7T96uegnGxPdkD8SOEGut6ZAlyJh1I0OG5f/zzWquUkUvgS1q1GhIlW5i6k2xvFEYSziD3BhscvhME=
-X-Received: by 2002:a81:1d02:: with SMTP id d2mr21121367ywd.361.1558949788185; 
-	Mon, 27 May 2019 02:36:28 -0700 (PDT)
+	:message-id:subject:to;
+	bh=YHYp4/DdIrowL1EEcvkn39AB32ceYKSJqa2bJsOPnjw=;
+	b=DMs2FzHCqZbTqRCUmzql0lOa8ejhJma+PasZjUKtc5H60N6b8qVwYz3VfNqBh4yAfn
+	067Xc9T4uozLD/mhhCxXfmQh0l+hMCTaOW82T5qWl9xS2JVl9+z7fGfShBycE9NYbHbs
+	b2vph9gbH0ugjYxeR3M1QHij4+k0ZZmu/iYbX9gw7hRw9jg8hMCNFjJJnkQdc4XuYhk+
+	zL8mMM6mCaOInRlvsg7AJr+gluerhRVSoEqu0LT0E5oZoY01zB3wuumtWWQ50w8T3oZP
+	teBj5dlRolaer7OlDGmsskrQ7nGkI65T4y1CcMlBtLXbeHEazO8ecLkpxBZShDqDn1lm
+	fuhg==
+X-Gm-Message-State: APjAAAV7RZ8UFj1BHr1GS9Io87Au0x3M9shD3ej/Kly0a3zqNaCzDGoc
+	kTfB2WycYxGC460cPEl7d4+PxyQRv3quvAP4UmEzOVYH
+X-Google-Smtp-Source: APXvYqy7ktdAgN4g1lAI3wkFj0VmJE6dW/PSXQlkaXgFtEEfdVnL22rUUoJ5evhIAbGZjBvpHo9GdMAqMDCfvziMgj0=
+X-Received: by 2002:a9d:694a:: with SMTP id p10mr7426880oto.61.1558952215982; 
+	Mon, 27 May 2019 03:16:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAKpuFdc42Q4e=nu7EbQGOFuOtEwN0EVaKwdSkB-o8dE+tZ+VoQ@mail.gmail.com>
-	<8b5bbc55-0d92-37f5-924f-084aa2b6a8f8@gmail.com>
-In-Reply-To: <8b5bbc55-0d92-37f5-924f-084aa2b6a8f8@gmail.com>
-From: Jonas Andersson <jonaskgandersson@gmail.com>
-Date: Mon, 27 May 2019 11:36:17 +0200
-Message-ID: <CAKpuFdePFRnbETyu0BHyXxHCv4vjjM2fg+-YnvdhCBHa3C+0Wg@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: RPI WiFi not loading module
+References: <20190513162531.45297-1-alex.kanavin@gmail.com>
+In-Reply-To: <20190513162531.45297-1-alex.kanavin@gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Mon, 27 May 2019 12:16:45 +0200
+Message-ID: <CANNYZj8MvEUjB-w+JjBRtbTnjw=B--L36+nXOVDAjzf+suxtcw@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>,
+	ajlennon@dynamicdevices.co.uk
+Subject: Re: [meta-mono][PATCH] mono-5.xx: fix an issue with too long paths in doltlibtool
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,135 +70,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 May 2019 09:36:30 -0000
-Content-Type: multipart/alternative; boundary="00000000000058f78e0589db487b"
-
---00000000000058f78e0589db487b
+X-List-Received-Date: Mon, 27 May 2019 10:16:57 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+Ping?
 
-Thanks for the reply.
+Alex
 
-I have looked in to some of the issues on meta-raspberrypi and found some
-good information but nothing to fix my issue, i will post an
-issue there as well for the rpi specific problem.
-
-The question i have regarding Yocto is about KERNEL_MODULE_AUTOLOAD, i get
-the module added to /etc/modules-load.d/ but cant
-understand what service/script that is responsible for loading it.
-
-/ Jonas
-
-Den fre 24 maj 2019 kl 02:03 skrev Khem Raj <raj.khem@gmail.com>:
-
+On Mon, 13 May 2019 at 18:25, Alexander Kanavin <alex.kanavin@gmail.com> wrote:
 >
+> When build directory is deeply nested, the shebang limit of 127
+> characters is hit, which leads to doltlibtool failing to execute.
 >
-> On 5/23/19 2:14 AM, Jonas Andersson wrote:
-> > Hi
-> >
-> > I have problem to get my WiFi working on boot on Raspberry Pi 3.
-> >
-> > The problem is that wlan0 interface not showing up, if I manually
-> > run modprobe brcmfmac it works.
-> >
-> > To try to "force" the load of brcmfmac i added it to
-> > KERNEL_MODULE_AUTOLOAD and that generated an file
-> > in /etc/modules-load.d/ -> brcmfmac.conf but it is still not loaded.
-> >
-> > I use systemd an to my understanding systemd-modules-load.service is
-> > handling module auto load, but that file is missing and I cant see how
-> > to include it in my build.
-> >
-> > Building thud version and I have added the following to my image recipe:
-> >
-> > DISTRO_FEATURES_append = " wifi"
-> >
-> > IMAGE_INSTALL_append = " iw wpa-supplicant packagegroup-base
-> > module-init-tools"
-> >
-> > IMAGE_INSTALL_append = "\
-> >      linux-firmware-rpidistro-bcm43430 \
-> >      linux-firmware-rpidistro-bcm43455 \
-> >      bluez-firmware-rpidistro-bcm43430a1-hcd \
-> >      bluez-firmware-rpidistro-bcm4345c0-hcd \
-> >   "
-> > Then i have symlinked wpa-supplicant service to load wpa-supplicant.conf
-> > file and that work when I manually loads the module.
-> >
+> Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+> ---
+>  recipes-mono/mono/mono-5.xx.inc | 4 ++++
+>  1 file changed, 4 insertions(+)
 >
-> I wonder if something like this will help you
-> https://github.com/YoeDistro/meta-yoe/tree/master/recipes-core/systemd
+> diff --git a/recipes-mono/mono/mono-5.xx.inc b/recipes-mono/mono/mono-5.xx.inc
+> index c36374c..dec2475 100644
+> --- a/recipes-mono/mono/mono-5.xx.inc
+> +++ b/recipes-mono/mono/mono-5.xx.inc
+> @@ -102,3 +102,7 @@ RDEPENDS_${PN} =+ "bash"
 >
-> > Best regards
-> > Jonas
-> >
+>  # Workaround for observed race in `make install`
+>  PARALLEL_MAKEINST=""
+> +
+> +# Otherwise the full path to bash is written to the first line of doltlibtool script
+> +# which causes build failures with deeply nested build directories
+> +CACHED_CONFIGUREVARS += "ac_cv_path_DOLT_BASH='/usr/bin/env bash'"
+> --
+> 2.17.1
 >
 
---00000000000058f78e0589db487b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>Thanks for the reply.</div><div><br=
-></div><div>I have looked in to some of the issues on meta-raspberrypi and =
-found some good information but nothing to fix my issue, i will post an</di=
-v><div>issue there as well for the rpi specific problem.</div><div><br></di=
-v><div>The question i have regarding Yocto is about=C2=A0KERNEL_MODULE_AUTO=
-LOAD, i get the module added to /etc/modules-load.d/ but cant</div><div>und=
-erstand what service/script that is responsible for loading it.</div><div><=
-br></div><div>/ Jonas</div></div><br><div class=3D"gmail_quote"><div dir=3D=
-"ltr" class=3D"gmail_attr">Den fre 24 maj 2019 kl 02:03 skrev Khem Raj &lt;=
-<a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt;:<br></div>=
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex"><br>
-<br>
-On 5/23/19 2:14 AM, Jonas Andersson wrote:<br>
-&gt; Hi<br>
-&gt; <br>
-&gt; I have problem to get my WiFi working on boot on Raspberry Pi 3.<br>
-&gt; <br>
-&gt; The problem is that wlan0 interface not showing up, if I manually <br>
-&gt; run=C2=A0modprobe brcmfmac it works.<br>
-&gt; <br>
-&gt; To try to &quot;force&quot; the load of brcmfmac i added it to <br>
-&gt; KERNEL_MODULE_AUTOLOAD=C2=A0and that generated an file <br>
-&gt; in=C2=A0/etc/modules-load.d/ -&gt;=C2=A0brcmfmac.conf but it is still =
-not loaded.<br>
-&gt; <br>
-&gt; I use systemd an to my understanding=C2=A0systemd-modules-load.service=
- is <br>
-&gt; handling module auto load, but that file is missing and I cant see how=
- <br>
-&gt; to include it in my build.<br>
-&gt; <br>
-&gt; Building thud version and I have added the following to my image recip=
-e:<br>
-&gt; <br>
-&gt; DISTRO_FEATURES_append =3D &quot; wifi&quot;<br>
-&gt; <br>
-&gt; IMAGE_INSTALL_append =3D &quot; iw wpa-supplicant packagegroup-base <b=
-r>
-&gt; module-init-tools&quot;<br>
-&gt; <br>
-&gt; IMAGE_INSTALL_append =3D &quot;\<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 linux-firmware-rpidistro-bcm43430 \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 linux-firmware-rpidistro-bcm43455 \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 bluez-firmware-rpidistro-bcm43430a1-hcd \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 bluez-firmware-rpidistro-bcm4345c0-hcd \<br>
-&gt;=C2=A0 =C2=A0&quot;<br>
-&gt; Then i have symlinked wpa-supplicant service to load wpa-supplicant.co=
-nf <br>
-&gt; file and that work when I manually loads the module.<br>
-&gt; <br>
-<br>
-I wonder if something like this will help you<br>
-<a href=3D"https://github.com/YoeDistro/meta-yoe/tree/master/recipes-core/s=
-ystemd" rel=3D"noreferrer" target=3D"_blank">https://github.com/YoeDistro/m=
-eta-yoe/tree/master/recipes-core/systemd</a><br>
-<br>
-&gt; Best regards<br>
-&gt; Jonas<br>
-&gt; <br>
-</blockquote></div>
-
---00000000000058f78e0589db487b--
