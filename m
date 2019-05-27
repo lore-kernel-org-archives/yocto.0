@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7346CE00D43; Sun, 26 May 2019 21:56:52 -0700 (PDT)
+	id CFA02E00D4D; Sun, 26 May 2019 21:56:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,57 +13,57 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.215.193 listed in list.dnswl.org]
+	*      [209.85.215.196 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com
-	[209.85.215.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB0FCE00CF4
-	for <yocto@yoctoproject.org>; Sun, 26 May 2019 21:56:48 -0700 (PDT)
-Received: by mail-pg1-f193.google.com with SMTP id d30so8376828pgm.7
-	for <yocto@yoctoproject.org>; Sun, 26 May 2019 21:56:48 -0700 (PDT)
+Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com
+	[209.85.215.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35740E00C36
+	for <yocto@yoctoproject.org>; Sun, 26 May 2019 21:56:52 -0700 (PDT)
+Received: by mail-pg1-f196.google.com with SMTP id n27so8383282pgm.4
+	for <yocto@yoctoproject.org>; Sun, 26 May 2019 21:56:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=Mfa09A6gvOKwDKHSZSGWWTGUmGPBUTP8tztFbWUcEq0=;
-	b=d3gUhVuPttIeHG8Z4pjbrr15ovni446h5GcN0swn1QDYseJuRrvMLsLq423Xg7INng
-	LbX3cuU8TPOuNOfPXljTN0azqUwPOf0abbkPVgIuJtj4Wm6nw1ZkuHFCsI2SAzB1Cv6M
-	lFBkrB7N3wPBrh94FQHUFtDC1YbDj/K/BBhBlNNPQ2mFOcxG2CL4ebBCmr0ZwqrV9BDY
-	9ObOHC7s9YIj9+LNIlki6yr28/EDhXFv3IScGUoae0gJb3RARqqnVFMfMGil2jW4eOJG
-	0E9mrBeRWOcU3JMEvJUyFlBUMFiYqQ3J5fcbod2+VL7LJ6KNJYNnLZWfQLLy5RcDIsLd
-	6Uwg==
+	bh=aEZqpCP6A+aSQu7t2eP3m57JH5G3XI2NrNqQ8FEUOBs=;
+	b=UNyWSGoLAjPVykH46ZOKDxH77xb3VAkvyFsYZoSccs9EAL0TX4AbzR1ek9ZP4gBadr
+	liUUhmqPFUQW91TABSn0fdERM+ozPLgDORAlJhc3N4IbwadnVpzSa6kx953gtzcKMzxN
+	0441PjtM43YDq9XvhKZQGTPGfUkm96RP5PELj2LRVXGqPrS0VpxzPEVjl7GhNzXjHiEy
+	07Pquf/lbWpWxiDn/JlcT9jGyd9oquRD7P/T0GAaMsbrCjxO1RH6nFYJrQYMKDRzwzNb
+	tBSEeDjoEALcsEmcHSSHAsVNLVUAMVBPsuSP1veuyqb9WEsPwif5J2okhRXN96A7pj1S
+	jmdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references;
-	bh=Mfa09A6gvOKwDKHSZSGWWTGUmGPBUTP8tztFbWUcEq0=;
-	b=HWlEeEiaMVejKFMSHRowGpL5mHpQAD1z8rTKiVdlfu5sJNoY4n+0bvC8ie7US6Pl9X
-	v3Wiob9ZYkLS/bh3a967O53j0N19fzXAED3bNYu8NNlZec69CfNBgcenzeI9IN47KeMF
-	SaR0f6Tx8J5xAmg2WVrubGOUU6PyX9PLj8SJ0gJrJezY58kW5riB9r7vPfVMmP09peNR
-	rVPxGJCyXWSW+UN+50utnupZpOJgTv1Bh2exy7UZ72YY7B39fdxn2jg7LgBFyI5c0IQE
-	0mlZlY7NCxSd8PZ62JkqnRk9Wrnf2u6xhEW1EjTPyyBnpZUtwPEHTeJG2/rZ1/GtMf4u
-	3U0A==
-X-Gm-Message-State: APjAAAXg7cmOXej56+9AeGPX5AUqKq+/rFit/Y/701hYQMr/tnr79WKT
-	2yHjEv780UKabSe0oP76x8gdqGCU
-X-Google-Smtp-Source: APXvYqypVDMjOTaJVK+sJ8tKs2bfqQ0hGtYHbdWxdxMaHLnmOwaK6YeeBw7STdN8ZPoPDXCHoJMYMQ==
-X-Received: by 2002:a63:4422:: with SMTP id
-	r34mr121758522pga.362.1558933008150; 
-	Sun, 26 May 2019 21:56:48 -0700 (PDT)
+	bh=aEZqpCP6A+aSQu7t2eP3m57JH5G3XI2NrNqQ8FEUOBs=;
+	b=YwS/tEfbt/a5j18y8/M3EST0tXODBCqKK6VLAGqCO1zxiEx1/39CWZ9FVCCLnTJOnK
+	Z7RNVlOQS4Whvzr3ls1gR9GXUpueD6NRGzqU0cSfG1AAPCeoX8TbpMdFKXFr71qIGb9w
+	VBFWY4ik1WddCGjdPvGZOOyUXVLQIVnhwoeQ1PGfDm9R6OUuvj0VyQqwETVajCHQSOhx
+	2Ld9i0wHc0XPcBSon8vngDVdbXToYxdGw7o+1LtlwJKKAtOJOl74t2B7RGdwJQP5FPJj
+	exEEl+q1r1TA2wrSVCvmUifWqw6RWrrG0Wv2i5WOud0oPd6iUtTt3yINEBlNOqNKs2YT
+	nTjg==
+X-Gm-Message-State: APjAAAUZaSRnPFI8b+GSO/Rf8pMku7/PwdQjIHQmwLMihJ/A+NFYYB2z
+	GfaGXIwUyAc/Pr1BhiqvZIf0gEn9
+X-Google-Smtp-Source: APXvYqy+uhR7PwZxvBLYTXw0/8CVh5y2jFh8Hay7vJh0yQTOs5QLB7eumVXtHItl9RpabHxQuME2vQ==
+X-Received: by 2002:aa7:9ab0:: with SMTP id
+	x16mr124268654pfi.201.1558933011591; 
+	Sun, 26 May 2019 21:56:51 -0700 (PDT)
 Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
 	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	x24sm8648072pjq.27.2019.05.26.21.56.47 for <yocto@yoctoproject.org>
+	x24sm8648072pjq.27.2019.05.26.21.56.50 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 26 May 2019 21:56:47 -0700 (PDT)
+	Sun, 26 May 2019 21:56:51 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sun, 26 May 2019 21:56:33 -0700
-Message-Id: <20190527045641.18884-7-akuster808@gmail.com>
+Date: Sun, 26 May 2019 21:56:38 -0700
+Message-Id: <20190527045641.18884-12-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190527045641.18884-1-akuster808@gmail.com>
 References: <20190527045641.18884-1-akuster808@gmail.com>
-Subject: [meta-security][PATCH 06/14] linux: update bbappend
+Subject: [meta-security][PATCH 11/14] data: remove policies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,136 +77,144 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Mon, 27 May 2019 04:56:52 -0000
 
-remove untested code
-
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../recipes-kernel/linux/linux-%.bbappend     | 117 +-----------------
- 1 file changed, 2 insertions(+), 115 deletions(-)
+ meta-integrity/data/ima_policy_appraise_all | 29 --------
+ meta-integrity/data/ima_policy_hashed       | 77 ---------------------
+ meta-integrity/data/ima_policy_simple       |  4 --
+ 3 files changed, 110 deletions(-)
+ delete mode 100644 meta-integrity/data/ima_policy_appraise_all
+ delete mode 100644 meta-integrity/data/ima_policy_hashed
+ delete mode 100644 meta-integrity/data/ima_policy_simple
 
-diff --git a/meta-integrity/recipes-kernel/linux/linux-%.bbappend b/meta-integrity/recipes-kernel/linux/linux-%.bbappend
-index 48560b1..931854e 100644
---- a/meta-integrity/recipes-kernel/linux/linux-%.bbappend
-+++ b/meta-integrity/recipes-kernel/linux/linux-%.bbappend
-@@ -1,116 +1,3 @@
--IMA_ENABLED_HERE := "${@'yes' if bb.data.inherits_class('kernel', d) and 'ima' in d.getVar('DISTRO_FEATURES', True).split() else 'no'}"
-+FILESEXTRAPATHS_prepend := "${THISDIR}/linux:"
- 
--IMA_FILESEXTRAPATHS_yes := "${THISDIR}/linux:"
--IMA_FILESEXTRAPATHS_no := ""
--FILESEXTRAPATHS_prepend := "${IMA_FILESEXTRAPATHS_${IMA_ENABLED_HERE}}"
--
--# These two patches are necessary to unpack archives with security.ima xattr
--# such that security.ima is taken from the archive. If the policy
--# allows hashing, unpatched kernels (at least up to 4.3) will replace
--# a signed hash in security.ima with a locally computed hash.
+diff --git a/meta-integrity/data/ima_policy_appraise_all b/meta-integrity/data/ima_policy_appraise_all
+deleted file mode 100644
+index 36e71a7..0000000
+--- a/meta-integrity/data/ima_policy_appraise_all
++++ /dev/null
+@@ -1,29 +0,0 @@
 -#
--# Note that only bsdtar/libarchive are known to work; GNU tar sets
--# the security.ima on an empty file and the tries re-opening it for
--# writing its content, which then fails due to the IMA hash mismatch.
+-# Integrity measure policy (http://sourceforge.net/p/linux-ima/wiki/Home/#measure-nothing-appraise-everything)
+-# 
+-# Do not measure anything, but appraise everything
 -#
--# Kernels >= 4.7 have the patches, while older kernels are likely to
--# need the patches. So apply them by default. To avoid that,
--# set IMA_EVM_SETATTR_PATCH_x.y.z (where x.y.z == linux kernel version)
--# to an empty string (to avoid patching) or some other patch files
--# suitable for that kernel.
--def ima_evm_setattr_patch(d):
--    result = []
--    linux_version = d.getVar('LINUX_VERSION', True) or ''
--    # These two patches are known to be included upstream.
--    if bb.utils.vercmp_string_op(linux_version, '4.7', '<'):
--        patches = d.getVar('IMA_EVM_SETATTR_PATCH_' + linux_version, True)
--        if patches != None:
--            # Patches explicitly chosen, may be empty.
--            result.append(patches)
--        else:
--            # Enabled by default.
--            result.append('file://0001-ima-fix-ima_inode_post_setattr.patch file://0002-ima-add-support-for-creating-files-using-the-mknodat.patch')
--    # This one addresses a problem added in 4.2. The upstream revert will land
--    # in some future kernel. We need to extend version check once we know
--    # which kernels have the patch.
--    if bb.utils.vercmp_string_op(linux_version, '4.2', '>='):
--        patches = d.getVar('IMA_EVM_SETATTR_REVERT_PATCH_' + linux_version, True)
--        if patches != None:
--            # Patches explicitly chosen, may be empty.
--            result.append(patches)
--        else:
--            # Enabled by default.
--            result.append('file://Revert-ima-limit-file-hash-setting-by-user-to-fix-an.patch')
--    return ' '.join(result)
+-# PROC_SUPER_MAGIC
+-dont_appraise fsmagic=0x9fa0
+-# SYSFS_MAGIC
+-dont_appraise fsmagic=0x62656572
+-# DEBUGFS_MAGIC
+-dont_appraise fsmagic=0x64626720
+-# TMPFS_MAGIC
+-dont_appraise fsmagic=0x01021994
+-# RAMFS_MAGIC
+-dont_appraise fsmagic=0x858458f6
+-# DEVPTS_SUPER_MAGIC
+-dont_appraise fsmagic=0x1cd1
+-# BIFMT
+-dont_appraise fsmagic=0x42494e4d
+-# SECURITYFS_MAGIC
+-dont_appraise fsmagic=0x73636673
+-# SELINUXFS_MAGIC
+-dont_appraise fsmagic=0xf97cff8c
+-# NSFS_MAGIC (introduced in 3.19, see cd025f7 and e149ed2 in the upstream Linux kernel)
+-dont_appraise fsmagic=0x6e736673
+-# EFIVARFS_MAGIC
+-dont_appraise fsmagic=0xde5e81e4
 -
--# Edison kernel too old, patch not applicable -> swupd is broken in Ostro OS for Edison.
--IMA_EVM_SETATTR_PATCH_3.10.98 = ""
--
--# Kernel config fragment enabling IMA/EVM and (where necessary and possible)
--# also patching the kernel.
--IMA_EVM_CFG_yes = " file://ima.cfg \
--                    ${@ ima_evm_setattr_patch(d)} \
--                  "
--IMA_EVM_CFG_no = ""
--SRC_URI_append = "${IMA_EVM_CFG_${IMA_ENABLED_HERE}}"
--
--# IMA_EVM_ROOT_CA, if set, is the absolute path to a der-encoded
--# x509 CA certificate which will get compiled into the kernel.
--# The kernel will then use it to validate additional certificates,
--# like the one loaded dynamically for IMA.
+-appraise
+diff --git a/meta-integrity/data/ima_policy_hashed b/meta-integrity/data/ima_policy_hashed
+deleted file mode 100644
+index 7f89c8d..0000000
+--- a/meta-integrity/data/ima_policy_hashed
++++ /dev/null
+@@ -1,77 +0,0 @@
+-# With this policy, all files on regular partitions are
+-# appraised. Files with signed IMA hash and normal hash are
+-# accepted. Signed files cannot be modified while hashed files can be
+-# (which will also update the hash). However, signed files can
+-# be deleted, so in practice it is still possible to replace them
+-# with a modified version.
 -#
--# Depending on the kernel version, there are two ways to add the
--# CA certificate:
--# - For Linux < 4.3, we put the x509 file into the source directory
--#   where the kernel compilation will find it automatically
--#   (http://lxr.free-electrons.com/source/kernel/Makefile?v=4.2#L115).
--# - For Linux >= 4.3, we set SYSTEM_TRUSTED_KEYS
--#   (http://lxr.free-electrons.com/source/certs/Kconfig?v=4.3#L29).
--#   The ima_evm_root_ca.cfg only contains a blank file name.
--#   The actual file name gets patched in after the file was used
--#   to configure the kernel (see do_kernel_configme_append).
--#   This has to point to a single file, i.e. using it for IMA has to
--#   be coordinated with other usages.
+-# Without EVM, this is obviously not very secure, so this policy is
+-# just an example and/or basis for further improvements. For that
+-# purpose, some comments show what could be added to make the policy
+-# more secure.
 -#
--# The IMA_EVM_ROOT_CA default is set globally in ima-evm-rootfs.bbclass.
--# Need weaker default here in case that ima-evm-rootfs.bbclass is not
--# inherited.
--IMA_EVM_ROOT_CA ??= ""
--
--# Add CONFIG_SYSTEM_TRUSTED_KEYS (for recent kernels) and
--# copy the root certificate into the build directory. By using
--# the normal fetcher mechanism for the certificate we ensure that
--# a rebuild is triggered when the file name or content change.
+-# With EVM the situation might be different because access
+-# to the EVM key can be restricted.
 -#
--# Recompiling on name change is a bit too aggressive and causes
--# unnecessary rebuilds when only the location of the file, but not its
--# content change. This may need further work, should it become a problem
--# in practice. For example, IMA_EVM_ROOT_CA could be redefined as
--# an URL that then gets found via the normal file lookup.
--#
--# The fetcher does not expand SRC_URI. We have to enforce that here.
--IMA_EVM_ROOT_CA_CFG_yes = "${@ \
-- ((' file://ima_evm_root_ca.cfg' if bb.utils.vercmp_string_op('${LINUX_VERSION}', '4.3', '>=') else '') + \
--   ' file://${IMA_EVM_ROOT_CA}') \
-- if '${IMA_EVM_ROOT_CA}' else ''}"
--IMA_EVM_ROOT_CA_CFG_no = ""
+-# Files which are appraised are also measured. This allows
+-# debugging whether a file is in policy by looking at
+-# /sys/kernel/security/ima/ascii_runtime_measurements
 -
--SRC_URI_append = "${IMA_EVM_ROOT_CA_CFG_${IMA_ENABLED_HERE}}"
+-# PROC_SUPER_MAGIC
+-dont_appraise fsmagic=0x9fa0
+-dont_measure fsmagic=0x9fa0
+-# SYSFS_MAGIC
+-dont_appraise fsmagic=0x62656572
+-dont_measure fsmagic=0x62656572
+-# DEBUGFS_MAGIC
+-dont_appraise fsmagic=0x64626720
+-dont_measure fsmagic=0x64626720
+-# TMPFS_MAGIC
+-dont_appraise fsmagic=0x01021994
+-dont_measure fsmagic=0x01021994
+-# RAMFS_MAGIC
+-dont_appraise fsmagic=0x858458f6
+-dont_measure fsmagic=0x858458f6
+-# DEVPTS_SUPER_MAGIC
+-dont_appraise fsmagic=0x1cd1
+-dont_measure fsmagic=0x1cd1
+-# BIFMT
+-dont_appraise fsmagic=0x42494e4d
+-dont_measure fsmagic=0x42494e4d
+-# SECURITYFS_MAGIC
+-dont_appraise fsmagic=0x73636673
+-dont_measure fsmagic=0x73636673
+-# SELINUXFS_MAGIC
+-dont_appraise fsmagic=0xf97cff8c
+-dont_measure fsmagic=0xf97cff8c
+-# NSFS_MAGIC (introduced in 3.19, see cd025f7 and e149ed2 in the upstream Linux kernel)
+-dont_appraise fsmagic=0x6e736673
+-dont_measure fsmagic=0x6e736673
+-# SMACK_MAGIC
+-dont_appraise fsmagic=0x43415d53
+-dont_measure fsmagic=0x43415d53
+-# CGROUP_SUPER_MAGIC
+-dont_appraise fsmagic=0x27e0eb
+-dont_measure fsmagic=0x27e0eb
+-# EFIVARFS_MAGIC
+-dont_appraise fsmagic=0xde5e81e4
+-dont_measure fsmagic=0xde5e81e4
 -
--do_kernel_configme_append () {
--    if [ '${IMA_EVM_ROOT_CA}' ] && grep -q '^CONFIG_SYSTEM_TRUSTED_KEYS=' ${B}/.config; then
--        # We can replace a blank value from ima_evm_root_ca.cfg,
--        # but when we find some other value, then we have to abort
--        # because we can't set more than one value.
--        eval `grep '^CONFIG_SYSTEM_TRUSTED_KEYS='`
--        if [ "$CONFIG_SYSTEM_TRUSTED_KEYS" ] && [ "$CONFIG_SYSTEM_TRUSTED_KEYS" != "${IMA_EVM_ROOT_CA}" ]; then
--            bbfatal "CONFIG_SYSTEM_TRUSTED_KEYS already set to $CONFIG_SYSTEM_TRUSTED_KEYS, cannot replace with IMA_EVM_ROOT_CA = ${IMA_EVM_ROOT_CA}"
--            exit 1
--        fi
--        pemcert=${B}/`basename ${IMA_EVM_ROOT_CA}`.pem
--        openssl x509 -inform der -in ${IMA_EVM_ROOT_CA} -out $pemcert
--        sed -i -e "s;^CONFIG_SYSTEM_TRUSTED_KEYS=.*;CONFIG_SYSTEM_TRUSTED_KEYS=\"$pemcert\";" ${B}/.config
--    fi
--}
+-# Special partition, no checking done.
+-# dont_measure  fsuuid=a11234...
+-# dont_appraise fsuuid=a11243...
 -
--do_kernel_configme[depends] += "${@ 'openssl-native:do_populate_sysroot' if '${IMA_ENABLED_HERE}' == 'yes' and '${IMA_EVM_ROOT_CA}' else '' }"
-+SRC_URI += "${@bb.utils.contains('DISTRO_FEATURES', 'ima', ' file://ima.cfg', '', d)}"
+-# Special immutable group.
+-# appraise appraise_type=imasig func=FILE_CHECK mask=MAY_READ fgroup=200
+-
+-# All executables must be signed - too strict, we need to
+-# allow installing executables on the device.
+-# appraise appraise_type=imasig func=FILE_MMAP mask=MAY_EXEC
+-# appraise appraise_type=imasig func=BPRM_CHECK mask=MAY_EXEC
+-
+-# Default rule. Would be needed also when other rules were added that
+-# determine what to do in case of reading (mask=MAY_READ or
+-# mask=MAY_EXEC) because otherwise writing does not update the file
+-# hash.
+-appraise
+-measure
+diff --git a/meta-integrity/data/ima_policy_simple b/meta-integrity/data/ima_policy_simple
+deleted file mode 100644
+index 38ca8f5..0000000
+--- a/meta-integrity/data/ima_policy_simple
++++ /dev/null
+@@ -1,4 +0,0 @@
+-# Very simple policy demonstrating the systemd policy loading bug
+-# (policy with one line works, two lines don't).
+-dont_appraise fsmagic=0x9fa0
+-dont_appraise fsmagic=0x62656572
 -- 
 2.17.1
 
