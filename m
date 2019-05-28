@@ -1,81 +1,61 @@
-Return-Path: <ronan.gaillard@live.fr>
+Return-Path: <lookatyouhacker@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E17BCE00D35; Tue, 28 May 2019 05:29:00 -0700 (PDT)
+	id 6AA0EE00D38; Tue, 28 May 2019 06:11:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (ronan.gaillard[at]live.fr)
+	provider *      (lookatyouhacker[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [40.92.64.15 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 71969 seconds by postgrey-1.32 at yocto-www;
-	Tue, 28 May 2019 05:28:58 PDT
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com
-	(mail-oln040092064015.outbound.protection.outlook.com [40.92.64.15])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28733E00C37
-	for <yocto@yoctoproject.org>; Tue, 28 May 2019 05:28:58 -0700 (PDT)
-Received: from HE1EUR01FT006.eop-EUR01.prod.protection.outlook.com
-	(10.152.0.55) by HE1EUR01HT034.eop-EUR01.prod.protection.outlook.com
-	(10.152.0.231) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.1922.16;
-	Mon, 27 May 2019 15:56:26 +0000
-Received: from AM5PR0402MB2851.eurprd04.prod.outlook.com (10.152.0.55) by
-	HE1EUR01FT006.mail.protection.outlook.com (10.152.1.228) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
-	15.20.1922.16 via Frontend Transport; Mon, 27 May 2019 15:56:26 +0000
-Received: from AM5PR0402MB2851.eurprd04.prod.outlook.com
-	([fe80::25d9:f870:c142:5298]) by
-	AM5PR0402MB2851.eurprd04.prod.outlook.com
-	([fe80::25d9:f870:c142:5298%4]) with mapi id 15.20.1922.021;
-	Mon, 27 May 2019 15:56:26 +0000
-From: Ronan GAILLARD <ronan.gaillard@live.fr>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: monit lcrypt issue
-Thread-Index: AQHVFKS91ltIxYj4tUaAi3FOVwZ93Q==
-Date: Mon, 27 May 2019 15:56:25 +0000
-Message-ID: <AM5PR0402MB2851C4E800E1F2D93A0C950B9C1D0@AM5PR0402MB2851.eurprd04.prod.outlook.com>
-Accept-Language: fr-FR, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: DB6PR05CA0014.eurprd05.prod.outlook.com
-	(2603:10a6:6:14::27) To AM5PR0402MB2851.eurprd04.prod.outlook.com
-	(2603:10a6:203:99::18)
-x-incomingtopheadermarker: OriginalChecksum:19644C015D015A6FD3F3AE9523888C5FBBEE897956AC305C0EB546E6F016FF31;
-	UpperCasedChecksum:FC5C921CFBF605E6B862E6F90E30E242F4D170922C1E98F4F46CDF757FFAE21B;
-	SizeAsReceived:7258; Count:48
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: Apple Mail (2.3445.102.3)
-x-tmn: [xWvrlY6zfhmIZajEta2fXjCnRf/davtG]
-x-microsoft-original-message-id: <5EDB9550-357C-467D-909C-90E3BAF53E98@live.fr>
-x-ms-publictraffictype: Email
-x-incomingheadercount: 48
-x-eopattributedmessage: 0
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031323274)(2017031324274)(2017031322404)(1601125500)(1603101475)(1701031045);
-	SRVR:HE1EUR01HT034; 
-x-ms-traffictypediagnostic: HE1EUR01HT034:
-x-ms-exchange-purlcount: 2
-x-microsoft-antispam-message-info: CRgFMYE9E7m5bVN0VpQI+TauklVaxdwL9auUYCSEp51Aj5hlQUfgG+ys8qLKRbALRkaue2ZCkbSGjnm0tlnbZGfnaalm45Bs0/14/S3UUncm0rK4sh5KM6E8qD3iFb30ltPby9HkFvgZeuxlWT3DYKcSCSGYNnxKqSEAsSjG7fHMTXI7r3ATDY2cGclz8Cmv
+	*      [209.85.167.180 listed in list.dnswl.org]
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com
+	[209.85.167.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11A47E00C78
+	for <yocto@yoctoproject.org>; Tue, 28 May 2019 06:11:14 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id w144so14167663oie.12
+	for <yocto@yoctoproject.org>; Tue, 28 May 2019 06:11:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=RhfnK0gvjnkvqdY2ionizhUC4TbbEA51WiyKypd1yOQ=;
+	b=e7WcBMAhpJJE6PUEHmj02V4OETvEI/hMW+tFxNSDMia+ziuM2zQlagH3wXlNQ0v8+p
+	B0eawwRXJYBBj87m/aB7Y3rfXQtH6BwX3uWaZLyhNq70rEFBdIw7XiZy4tneFO2MCOEK
+	NNZO5JFjD1NFjGwROYlOQ7gSsdfiT9FY1X3hsQKS8dB4zoos15HDCtNtiHH2w3OWY1Oo
+	IMg1XxCluyg/Zf2PxM1AqFrIaVwt4SNEHvt2cfQQ5a8yWavGlmh3gwxvnyLcCnVHmJnB
+	Dv4tX3gmhFeTq9bWyUJUi+xMyv3SkNLrfElwy023pHcc93ynEdCkrHPjbCQZWsMH4ZSp
+	9chA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=RhfnK0gvjnkvqdY2ionizhUC4TbbEA51WiyKypd1yOQ=;
+	b=LHlolfRQLx3rs2nyJVNx8nqburORaue38DR3Xi7hE0Me0fY95hIo630fMroJPmpcce
+	nI4q3Ie8ChaR8WsXv2Kvno0+/Bg7eqRXy6jCEF5i6Myouj4UMMuCZ0aArrpizll2yx9c
+	Xykkq2BGphZIunQqfjxqeSqj/q8HLcJP1/RxEpfK2vowAz8xWpy94TlF400xp6VrADr3
+	XFgSURkvFftZLMU0cOtMRRe5Om03irytYCn9n8Y35ddcO9snAVOy4gJ+VZcfz0DYh8vs
+	O7B9c/VKAUDcwMGmBSxdb9qqizM3ypn52gMLpmpQMVGxBzQ0Ia9gIRQKxVoTuk18gWA6
+	pQmQ==
+X-Gm-Message-State: APjAAAVZHjUDyrpQXL1sMLx40llxgjN0jKtCOoOM1qiiND2+8pha1WVZ
+	QTMp14QCpMaVtDwhus6K6+iNiD4voGJSemlF4CxFlTxw
+X-Google-Smtp-Source: APXvYqzNdcMQVG7Fq02iQgtjK1K8a33JYFAa80bMpd1KsZcckYr1SctkUMLBsf0bs0obCZOuls7/6NdRd0Vmqg7ZFrI=
+X-Received: by 2002:aca:c348:: with SMTP id t69mr2613493oif.95.1559049074043; 
+	Tue, 28 May 2019 06:11:14 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: b8640f0e-823f-4422-baae-08d6e2bbdf19
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 May 2019 15:56:25.9559 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1EUR01HT034
-Cc: "martin.hammerchmidt@gmail.com" <martin.hammerchmidt@gmail.com>
-Subject: monit lcrypt issue
+From: Shane Peelar <lookatyouhacker@gmail.com>
+Date: Tue, 28 May 2019 09:11:02 -0400
+Message-ID: <CAEseUXksuzYTytKVPaGZA5X_8aCOXFB-seZOSA=2jeTc_cDW=Q@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: [prelink-cross][PATCH] Enable prelink-cross to work on binaries built with -fno-plt
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -87,82 +67,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 May 2019 12:29:01 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_AM5PR0402MB2851C4E800E1F2D93A0C950B9C1D0AM5PR0402MB2851_"
+X-List-Received-Date: Tue, 28 May 2019 13:11:15 -0000
+X-Groupsio-MsgNum: 45402
+Content-Type: multipart/mixed; boundary="0000000000003fa7a10589f2666a"
 
---_000_AM5PR0402MB2851C4E800E1F2D93A0C950B9C1D0AM5PR0402MB2851_
-Content-Type: text/plain; charset="utf-8"
+--0000000000003fa7a10589f2666a
+Content-Type: multipart/alternative; boundary="0000000000003fa79e0589f26668"
+
+--0000000000003fa79e0589f26668
+Content-Type: text/plain; charset="UTF-8"
+
+Make an assert in arch-x86_64.c a conditional if to handle things the same
+way as other arches.
+Enables binaries built with -fno-plt to be prelinked.
+
+--0000000000003fa79e0589f26668
+Content-Type: text/html; charset="UTF-8"
+
+<div dir="ltr"><div>Make an assert in arch-x86_64.c a conditional if to handle things the same way as other arches.</div><div>Enables binaries built with -fno-plt to be prelinked.<br></div></div>
+
+--0000000000003fa79e0589f26668--
+
+--0000000000003fa7a10589f2666a
+Content-Type: application/octet-stream; 
+	name="0001-arch-x86_64.c-Make-assert-conditional.patch"
+Content-Disposition: attachment; 
+	filename="0001-arch-x86_64.c-Make-assert-conditional.patch"
 Content-Transfer-Encoding: base64
+Content-ID: <f_jw7tiamg0>
+X-Attachment-Id: f_jw7tiamg0
 
-bW9uaXQgbGNyeXB0IGlzc3VlOiAgRXhwb3NlIGxjcnlwdCB3aGlsZSBidWlsZGluZyBtb25pdCB3
-aXRoIFlvY3RvIFRodWQNCg0KV2hlbiBidWlsZGluZyBtb25pdCB1c2luZyBZb2N0byBUaHVkIHRo
-ZSBmb2xsb3dpbmcgZXJyb3IgcG9wcyB3aGlsZSBidWlsZGluZyBtb25pdCA1LjI1LjIgOg0KL3Vz
-ci9zcmMvZGVidWcvbW9uaXQvNS4yNS4yLXIwL21vbml0LTUuMjUuMi9zcmMvdXRpbC5jOjE2NzU6
-IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8gYGNyeXB04oCZDQoNCk9sZGVyIHZlcnNpb25zIG9mIGds
-aWJjIHN1cHBsaWVkIGEgbGliY3J5cHQgbGlicmFyeSBmb3IgdGhpcyBwdXJwb3NlLCBhbmQgZGVj
-bGFyZWQgdGhlIGZ1bmN0aW9uIGluIDx1bmlzdGQuaD4uDQpOZXdlciB2ZXJzaW9ucyBvZiBnbGli
-YyBkb24ndCBzdXBwbHkgbGliY3J5cHQuIEluIG9yZGVyIHRvIHByZXZlbnQgdGhlIHVuZGVmaW5l
-ZCBsY3J5cHQgZXJyb3Igd2UgbmVlZCB0byBhZGQgdmlydHVhbC9jcnlwdCB0byB0aGUgcmVjaXBl
-4oCZcyBERVBFTkRTDQoNClNpZ25lZC1vZmYtYnk6IFJvbmFuIEdhaWxsYXJkIDxyb25hbi5nYWls
-bGFyZEBsaXZlLmZyPG1haWx0bzpyb25hbi5nYWlsbGFyZEBsaXZlLmZyPj4NCuKAlA0KDQpkaWZm
-IC0tZ2l0IGEvbWV0YS1jZ2wtY29tbW9uL3JlY2lwZXMtY2dsL21vbml0L21vbml0XzUuMjUuMi5i
-YiBiL21ldGEtY2dsLWNvbW1vbi9yZWNpcGVzLWNnbC9tb25pdC9tb25pdF81LjI1LjIuYmINCmlu
-ZGV4IGFiOWU5MjIuLjdhOTY3MjIgMTAwNjQ0DQotLS0gYS9tZXRhLWNnbC1jb21tb24vcmVjaXBl
-cy1jZ2wvbW9uaXQvbW9uaXRfNS4yNS4yLmJiDQorKysgYi9tZXRhLWNnbC1jb21tb24vcmVjaXBl
-cy1jZ2wvbW9uaXQvbW9uaXRfNS4yNS4yLmJiDQpAQCAtOSw3ICs5LDcgQEAgSE9NRVBBR0UgPSAi
-aHR0cDovL21tb25pdC5jb20vbW9uaXQvIg0KIExJQ0VOU0UgPSAiQUdQTHYzIg0KIExJQ19GSUxF
-U19DSEtTVU0gPSAiZmlsZTovL0NPUFlJTkc7bWQ1PWVhMTE2YTdkZWZhZjBlOTNiM2JiNzNiMmEz
-NGEzZjUxIg0KDQotREVQRU5EUyA9ICJvcGVuc3NsIHpsaWIiDQorREVQRU5EUyA9ICJvcGVuc3Ns
-IHpsaWIgdmlydHVhbC9jcnlwdCINCg0KIFNSQ19VUkkgPSAiXA0KICAgICAgICBodHRwOi8vbW1v
-bml0LmNvbS9tb25pdC9kaXN0LyR7QlB9LnRhci5neiBcDQoNCg==
+RnJvbSAyY2MxZDU4Y2FhYmE5OTQ4NTU1MTZiNTBkNWFmMDU3ODU0Yzk0ZmU4IE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBTaGFuZSBQZWVsYXIgPGxvb2thdHlvdWhhY2tlckBnbWFpbC5j
+b20+CkRhdGU6IFNhdCwgMjUgTWF5IDIwMTkgMDg6NDU6NDUgLTA0MDAKU3ViamVjdDogW1BBVENI
+XSBhcmNoLXg4Nl82NC5jOiBNYWtlIGFzc2VydCBjb25kaXRpb25hbAoKTWFrZSB0aGUgYXNzZXJ0
+IGluIGFyY2hfcHJlbGluayBhIGNvbmRpdGlvbiBpbnN0ZWFkIG9mIGFuIGFzc2VydCwKa2VlcGlu
+ZyB0aGluZ3MgY29uc2lzdGVudCB3aXRoIHRoZSBvdGhlciBhcmNoZXMuICBUaGlzIG1ha2VzCnBy
+ZWxpbmsgbm90IGJhaWwgb3V0IG9uIGAtZm5vLXBsdGAgZXhlY3V0YWJsZXMuCgpTaWduZWQtb2Zm
+LWJ5OiBTaGFuZSBQZWVsYXIgPGxvb2thdHlvdWhhY2tlckBnbWFpbC5jb20+Ci0tLQogc3JjL2Fy
+Y2gteDg2XzY0LmMgfCAzICsrLQogMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBk
+ZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL3NyYy9hcmNoLXg4Nl82NC5jIGIvc3JjL2FyY2gteDg2
+XzY0LmMKaW5kZXggMmY2YzU1MS4uYWE3MzllNiAxMDA2NDQKLS0tIGEvc3JjL2FyY2gteDg2XzY0
+LmMKKysrIGIvc3JjL2FyY2gteDg2XzY0LmMKQEAgLTQxOCw3ICs0MTgsOCBAQCB4ODZfNjRfYXJj
+aF9wcmVsaW5rIChzdHJ1Y3QgcHJlbGlua19pbmZvICppbmZvKQogCQkJICIucGx0IikpCiAJYnJl
+YWs7CiAKLSAgICAgIGFzc2VydCAoaSA8IGRzby0+ZWhkci5lX3NobnVtKTsKKyAgICAgIGlmIChp
+ID09IGRzby0+ZWhkci5lX3NobnVtKQorCXJldHVybiAwOwogICAgICAgZGF0YSA9IGRzby0+c2hk
+cltpXS5zaF9hZGRyICsgMHgxNjsKICAgICAgIHdyaXRlX2xlNjQgKGRzbywgZHNvLT5pbmZvW0RU
+X1BMVEdPVF0gKyA4LCBkYXRhKTsKICAgICB9Ci0tIAoyLjIxLjAKCg==
 
---_000_AM5PR0402MB2851C4E800E1F2D93A0C950B9C1D0AM5PR0402MB2851_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <6874448CEED516429E2ED0871D92AF2A@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
-
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ3b3JkLXdy
-YXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgbGluZS1icmVhazogYWZ0
-ZXItd2hpdGUtc3BhY2U7IiBjbGFzcz0iIj4NCm1vbml0IGxjcnlwdCBpc3N1ZTogJm5ic3A7RXhw
-b3NlIGxjcnlwdCB3aGlsZSBidWlsZGluZyBtb25pdCB3aXRoIFlvY3RvIFRodWQ8YnIgY2xhc3M9
-IiI+DQo8YnIgY2xhc3M9IiI+DQpXaGVuIGJ1aWxkaW5nIG1vbml0IHVzaW5nIFlvY3RvIFRodWQg
-dGhlIGZvbGxvd2luZyBlcnJvciBwb3BzIHdoaWxlIGJ1aWxkaW5nIG1vbml0IDUuMjUuMiA6PGJy
-IGNsYXNzPSIiPg0KL3Vzci9zcmMvZGVidWcvbW9uaXQvNS4yNS4yLXIwL21vbml0LTUuMjUuMi9z
-cmMvdXRpbC5jOjE2NzU6IHVuZGVmaW5lZCByZWZlcmVuY2UgdG8gYGNyeXB04oCZPGJyIGNsYXNz
-PSIiPg0KPGJyIGNsYXNzPSIiPg0KT2xkZXIgdmVyc2lvbnMgb2YgZ2xpYmMgc3VwcGxpZWQgYSZu
-YnNwO2xpYmNyeXB0Jm5ic3A7bGlicmFyeSBmb3IgdGhpcyBwdXJwb3NlLCBhbmQgZGVjbGFyZWQg
-dGhlIGZ1bmN0aW9uIGluJm5ic3A7Jmx0O3VuaXN0ZC5oJmd0Oy48YnIgY2xhc3M9IiI+DQpOZXdl
-ciB2ZXJzaW9ucyBvZiBnbGliYyBkb24ndCBzdXBwbHkmbmJzcDtsaWJjcnlwdC4gSW4gb3JkZXIg
-dG8gcHJldmVudCB0aGUgdW5kZWZpbmVkIGxjcnlwdCBlcnJvciB3ZSBuZWVkIHRvIGFkZCB2aXJ0
-dWFsL2NyeXB0IHRvIHRoZSByZWNpcGXigJlzIERFUEVORFMNCjxkaXYgY2xhc3M9IiI+PGJyIGNs
-YXNzPSIiPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSIiPlNpZ25lZC1vZmYtYnk6IFJvbmFuIEdhaWxs
-YXJkICZsdDs8YSBocmVmPSJtYWlsdG86cm9uYW4uZ2FpbGxhcmRAbGl2ZS5mciIgY2xhc3M9IiI+
-cm9uYW4uZ2FpbGxhcmRAbGl2ZS5mcjwvYT4mZ3Q7PC9kaXY+DQo8ZGl2IGNsYXNzPSIiPuKAlDwv
-ZGl2Pg0KPGRpdiBjbGFzcz0iIj48YnIgY2xhc3M9IiI+DQo8L2Rpdj4NCjxkaXYgY2xhc3M9IiI+
-DQo8ZGl2IGNsYXNzPSIiPmRpZmYgLS1naXQgYS9tZXRhLWNnbC1jb21tb24vcmVjaXBlcy1jZ2wv
-bW9uaXQvbW9uaXRfNS4yNS4yLmJiIGIvbWV0YS1jZ2wtY29tbW9uL3JlY2lwZXMtY2dsL21vbml0
-L21vbml0XzUuMjUuMi5iYjwvZGl2Pg0KPGRpdiBjbGFzcz0iIj5pbmRleCBhYjllOTIyLi43YTk2
-NzIyIDEwMDY0NDwvZGl2Pg0KPGRpdiBjbGFzcz0iIj4tLS0gYS9tZXRhLWNnbC1jb21tb24vcmVj
-aXBlcy1jZ2wvbW9uaXQvbW9uaXRfNS4yNS4yLmJiPC9kaXY+DQo8ZGl2IGNsYXNzPSIiPiYjNDM7
-JiM0MzsmIzQzOyBiL21ldGEtY2dsLWNvbW1vbi9yZWNpcGVzLWNnbC9tb25pdC9tb25pdF81LjI1
-LjIuYmI8L2Rpdj4NCjxkaXYgY2xhc3M9IiI+QEAgLTksNyAmIzQzOzksNyBAQCBIT01FUEFHRSA9
-ICZxdW90OzxhIGhyZWY9Imh0dHA6Ly9tbW9uaXQuY29tL21vbml0LyIgY2xhc3M9IiI+aHR0cDov
-L21tb25pdC5jb20vbW9uaXQvPC9hPiZxdW90OzwvZGl2Pg0KPGRpdiBjbGFzcz0iIj4mbmJzcDtM
-SUNFTlNFID0gJnF1b3Q7QUdQTHYzJnF1b3Q7PC9kaXY+DQo8ZGl2IGNsYXNzPSIiPiZuYnNwO0xJ
-Q19GSUxFU19DSEtTVU0gPSAmcXVvdDs8YSBocmVmPSJmaWxlOi8vQ09QWUlORzttZDU9ZWExMTZh
-N2RlZmFmMGU5M2IzYmI3M2IyYTM0YTNmNTEiIGNsYXNzPSIiPmZpbGU6Ly9DT1BZSU5HO21kNT1l
-YTExNmE3ZGVmYWYwZTkzYjNiYjczYjJhMzRhM2Y1MTwvYT4mcXVvdDs8L2Rpdj4NCjxkaXYgY2xh
-c3M9IiI+PGJyIGNsYXNzPSIiPg0KPC9kaXY+DQo8ZGl2IGNsYXNzPSIiPi1ERVBFTkRTID0gJnF1
-b3Q7b3BlbnNzbCB6bGliJnF1b3Q7PC9kaXY+DQo8ZGl2IGNsYXNzPSIiPiYjNDM7REVQRU5EUyA9
-ICZxdW90O29wZW5zc2wgemxpYiB2aXJ0dWFsL2NyeXB0JnF1b3Q7PC9kaXY+DQo8ZGl2IGNsYXNz
-PSIiPjxiciBjbGFzcz0iIj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0iIj4mbmJzcDtTUkNfVVJJID0g
-JnF1b3Q7XDwvZGl2Pg0KPGRpdiBjbGFzcz0iIj4mbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsg
-PGEgaHJlZj0iaHR0cDovL21tb25pdC5jb20vbW9uaXQvZGlzdC8ke0JQfS50YXIuZ3oiIGNsYXNz
-PSIiPg0KaHR0cDovL21tb25pdC5jb20vbW9uaXQvZGlzdC8ke0JQfS50YXIuZ3o8L2E+IFw8L2Rp
-dj4NCjwvZGl2Pg0KPGRpdiBjbGFzcz0iIj48YnIgY2xhc3M9IiI+DQo8L2Rpdj4NCjwvYm9keT4N
-CjwvaHRtbD4NCg==
-
---_000_AM5PR0402MB2851C4E800E1F2D93A0C950B9C1D0AM5PR0402MB2851_--
+--0000000000003fa7a10589f2666a--
