@@ -1,61 +1,119 @@
-Return-Path: <lookatyouhacker@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6AA0EE00D38; Tue, 28 May 2019 06:11:15 -0700 (PDT)
+	id 3DDE0E00D36; Tue, 28 May 2019 07:51:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (lookatyouhacker[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.195 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.180 listed in list.dnswl.org]
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com
-	[209.85.167.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11A47E00C78
-	for <yocto@yoctoproject.org>; Tue, 28 May 2019 06:11:14 -0700 (PDT)
-Received: by mail-oi1-f180.google.com with SMTP id w144so14167663oie.12
-	for <yocto@yoctoproject.org>; Tue, 28 May 2019 06:11:14 -0700 (PDT)
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com
+	[209.85.214.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A932AE0043B
+	for <yocto@yoctoproject.org>; Tue, 28 May 2019 07:51:09 -0700 (PDT)
+Received: by mail-pl1-f195.google.com with SMTP id w7so8446520plz.1
+	for <yocto@yoctoproject.org>; Tue, 28 May 2019 07:51:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=RhfnK0gvjnkvqdY2ionizhUC4TbbEA51WiyKypd1yOQ=;
-	b=e7WcBMAhpJJE6PUEHmj02V4OETvEI/hMW+tFxNSDMia+ziuM2zQlagH3wXlNQ0v8+p
-	B0eawwRXJYBBj87m/aB7Y3rfXQtH6BwX3uWaZLyhNq70rEFBdIw7XiZy4tneFO2MCOEK
-	NNZO5JFjD1NFjGwROYlOQ7gSsdfiT9FY1X3hsQKS8dB4zoos15HDCtNtiHH2w3OWY1Oo
-	IMg1XxCluyg/Zf2PxM1AqFrIaVwt4SNEHvt2cfQQ5a8yWavGlmh3gwxvnyLcCnVHmJnB
-	Dv4tX3gmhFeTq9bWyUJUi+xMyv3SkNLrfElwy023pHcc93ynEdCkrHPjbCQZWsMH4ZSp
-	9chA==
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=Cz9zKa37LsKnAFtxOex8Rpt81YSgu0HlS/TyV4rkwrc=;
+	b=lkaEXESIe82pw+4VuRFxTr8atUS9jYASIuXULDUvBH6LPkk/i6KwBmc6rKx5U2cYF1
+	klguYEaIQMGTQtqfR5PXBDLrZy3nKbDiEWMXc/DEyxLH6C4OSJW2YuDmunB0IM/NKYH8
+	Jq8wBn9GL6wdtAvVukRjH51pRmp6hbql38wS4HjDLbdDkl1XI4vqPCZ4pEFWsfbGpzRT
+	OMUc4sGg0heWgKc4nkwID/6vPUuXgbK6WhAOZ8eIe47XS8/iEU9ZXk3611EsD9yaMnJg
+	q63yi4wTL0NQy4vsrg61DHDZI8aqObrZLqYPK76fqJ401Zm2QzJcQeJkV+qdDjMNOK76
+	pCJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=RhfnK0gvjnkvqdY2ionizhUC4TbbEA51WiyKypd1yOQ=;
-	b=LHlolfRQLx3rs2nyJVNx8nqburORaue38DR3Xi7hE0Me0fY95hIo630fMroJPmpcce
-	nI4q3Ie8ChaR8WsXv2Kvno0+/Bg7eqRXy6jCEF5i6Myouj4UMMuCZ0aArrpizll2yx9c
-	Xykkq2BGphZIunQqfjxqeSqj/q8HLcJP1/RxEpfK2vowAz8xWpy94TlF400xp6VrADr3
-	XFgSURkvFftZLMU0cOtMRRe5Om03irytYCn9n8Y35ddcO9snAVOy4gJ+VZcfz0DYh8vs
-	O7B9c/VKAUDcwMGmBSxdb9qqizM3ypn52gMLpmpQMVGxBzQ0Ia9gIRQKxVoTuk18gWA6
-	pQmQ==
-X-Gm-Message-State: APjAAAVZHjUDyrpQXL1sMLx40llxgjN0jKtCOoOM1qiiND2+8pha1WVZ
-	QTMp14QCpMaVtDwhus6K6+iNiD4voGJSemlF4CxFlTxw
-X-Google-Smtp-Source: APXvYqzNdcMQVG7Fq02iQgtjK1K8a33JYFAa80bMpd1KsZcckYr1SctkUMLBsf0bs0obCZOuls7/6NdRd0Vmqg7ZFrI=
-X-Received: by 2002:aca:c348:: with SMTP id t69mr2613493oif.95.1559049074043; 
-	Tue, 28 May 2019 06:11:14 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-transfer-encoding:content-language;
+	bh=Cz9zKa37LsKnAFtxOex8Rpt81YSgu0HlS/TyV4rkwrc=;
+	b=l/p0HOlYuNWEg6GdOYteiQREYXppY+V7VLFu3Vs+xR97sR19DX1qkm5x1JfwEeTgIw
+	Qy9m+1vNB1+oClUl6CDMfxF6yduzO08WkXI5XfVOPwa+SSUcKYMryYL0EZ4omKJXHcVL
+	YCr5QIFawojJ7mWOTN7t6fYm2vmROv9Ji3G90/XiY5ctv0oLF2wqiZmMFSH6KG1lNwwZ
+	WPjeTIGFMH3s9Z4MpOiY/yXUOvu188eundZt9gXpwAlNEs2N7chMEQa6x7A3TpSYubgu
+	Kczy0H2kCpiX1y4g6YXyJ3FG206lhNxjlO8xWUmJ/usCGWKzTo72ZENElJ+LL9Oyuy7Y
+	6nBg==
+X-Gm-Message-State: APjAAAXjRLAKI/+oXMhXa3WCx5rZTlYiVsAUlWAkvp8pBJ1Eu4UfNc36
+	BKjTSg82NEOv8aUxOwb43VjRyoRI
+X-Google-Smtp-Source: APXvYqxQfDFp/Ntr/gao7A6pXIRSECuk4cP1vb70fidqFxonBph+qz+/dQRbnSkHle8qERmHKM8qlQ==
+X-Received: by 2002:a17:902:7c10:: with SMTP id
+	x16mr20635187pll.4.1559055069004; 
+	Tue, 28 May 2019 07:51:09 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:c33:88b0:7832:d929:cf73?
+	([2601:202:4180:c33:88b0:7832:d929:cf73])
+	by smtp.gmail.com with ESMTPSA id
+	m9sm22780581pgd.23.2019.05.28.07.51.08
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 28 May 2019 07:51:08 -0700 (PDT)
+To: changqing.li@windriver.com, yocto@yoctoproject.org
+References: <1559011075-69802-1-git-send-email-changqing.li@windriver.com>
+From: akuster808 <akuster808@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+	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
+	8CS2NxU=
+Message-ID: <803d299c-d622-1080-c4c7-b5c26f501fdc@gmail.com>
+Date: Tue, 28 May 2019 07:51:07 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.6.1
 MIME-Version: 1.0
-From: Shane Peelar <lookatyouhacker@gmail.com>
-Date: Tue, 28 May 2019 09:11:02 -0400
-Message-ID: <CAEseUXksuzYTytKVPaGZA5X_8aCOXFB-seZOSA=2jeTc_cDW=Q@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: [prelink-cross][PATCH] Enable prelink-cross to work on binaries built with -fno-plt
+In-Reply-To: <1559011075-69802-1-git-send-email-changqing.li@windriver.com>
+Subject: Re: [PATCH] samhain: add rconflict for client and server mode
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,52 +125,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 May 2019 13:11:15 -0000
-X-Groupsio-MsgNum: 45402
-Content-Type: multipart/mixed; boundary="0000000000003fa7a10589f2666a"
+X-List-Received-Date: Tue, 28 May 2019 14:51:10 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
---0000000000003fa7a10589f2666a
-Content-Type: multipart/alternative; boundary="0000000000003fa79e0589f26668"
 
---0000000000003fa79e0589f26668
-Content-Type: text/plain; charset="UTF-8"
 
-Make an assert in arch-x86_64.c a conditional if to handle things the same
-way as other arches.
-Enables binaries built with -fno-plt to be prelinked.
+On 5/27/19 7:37 PM, changqing.li@windriver.com wrote:
+> From: Changqing Li <changqing.li@windriver.com>
+>
+> Signed-off-by: Changqing Li <changqing.li@windriver.com>
 
---0000000000003fa79e0589f26668
-Content-Type: text/html; charset="UTF-8"
+merged. 
 
-<div dir="ltr"><div>Make an assert in arch-x86_64.c a conditional if to handle things the same way as other arches.</div><div>Enables binaries built with -fno-plt to be prelinked.<br></div></div>
+thanks,
+Armin
+> ---
+>  recipes-ids/samhain/samhain-client_4.3.2.bb | 1 +
+>  recipes-ids/samhain/samhain-server_4.3.2.bb | 1 +
+>  2 files changed, 2 insertions(+)
+>
+> diff --git a/recipes-ids/samhain/samhain-client_4.3.2.bb b/recipes-ids/samhain/samhain-client_4.3.2.bb
+> index 812408e..0f53a8c 100644
+> --- a/recipes-ids/samhain/samhain-client_4.3.2.bb
+> +++ b/recipes-ids/samhain/samhain-client_4.3.2.bb
+> @@ -9,3 +9,4 @@ EXTRA_OECONF += " \
+>          "
+>  
+>  RDEPENDS_${PN} = "acl zlib attr bash"
+> +RCONFLICTS_${PN} = "samhain-standalone"
+> diff --git a/recipes-ids/samhain/samhain-server_4.3.2.bb b/recipes-ids/samhain/samhain-server_4.3.2.bb
+> index 9341d44..d304912 100644
+> --- a/recipes-ids/samhain/samhain-server_4.3.2.bb
+> +++ b/recipes-ids/samhain/samhain-server_4.3.2.bb
+> @@ -18,3 +18,4 @@ do_install_append() {
+>  }
+>  
+>  RDEPENDS_${PN} += "gmp bash perl"
+> +RCONFLICTS_${PN} = "samhain-standalone"
 
---0000000000003fa79e0589f26668--
 
---0000000000003fa7a10589f2666a
-Content-Type: application/octet-stream; 
-	name="0001-arch-x86_64.c-Make-assert-conditional.patch"
-Content-Disposition: attachment; 
-	filename="0001-arch-x86_64.c-Make-assert-conditional.patch"
-Content-Transfer-Encoding: base64
-Content-ID: <f_jw7tiamg0>
-X-Attachment-Id: f_jw7tiamg0
-
-RnJvbSAyY2MxZDU4Y2FhYmE5OTQ4NTU1MTZiNTBkNWFmMDU3ODU0Yzk0ZmU4IE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiBTaGFuZSBQZWVsYXIgPGxvb2thdHlvdWhhY2tlckBnbWFpbC5j
-b20+CkRhdGU6IFNhdCwgMjUgTWF5IDIwMTkgMDg6NDU6NDUgLTA0MDAKU3ViamVjdDogW1BBVENI
-XSBhcmNoLXg4Nl82NC5jOiBNYWtlIGFzc2VydCBjb25kaXRpb25hbAoKTWFrZSB0aGUgYXNzZXJ0
-IGluIGFyY2hfcHJlbGluayBhIGNvbmRpdGlvbiBpbnN0ZWFkIG9mIGFuIGFzc2VydCwKa2VlcGlu
-ZyB0aGluZ3MgY29uc2lzdGVudCB3aXRoIHRoZSBvdGhlciBhcmNoZXMuICBUaGlzIG1ha2VzCnBy
-ZWxpbmsgbm90IGJhaWwgb3V0IG9uIGAtZm5vLXBsdGAgZXhlY3V0YWJsZXMuCgpTaWduZWQtb2Zm
-LWJ5OiBTaGFuZSBQZWVsYXIgPGxvb2thdHlvdWhhY2tlckBnbWFpbC5jb20+Ci0tLQogc3JjL2Fy
-Y2gteDg2XzY0LmMgfCAzICsrLQogMSBmaWxlIGNoYW5nZWQsIDIgaW5zZXJ0aW9ucygrKSwgMSBk
-ZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL3NyYy9hcmNoLXg4Nl82NC5jIGIvc3JjL2FyY2gteDg2
-XzY0LmMKaW5kZXggMmY2YzU1MS4uYWE3MzllNiAxMDA2NDQKLS0tIGEvc3JjL2FyY2gteDg2XzY0
-LmMKKysrIGIvc3JjL2FyY2gteDg2XzY0LmMKQEAgLTQxOCw3ICs0MTgsOCBAQCB4ODZfNjRfYXJj
-aF9wcmVsaW5rIChzdHJ1Y3QgcHJlbGlua19pbmZvICppbmZvKQogCQkJICIucGx0IikpCiAJYnJl
-YWs7CiAKLSAgICAgIGFzc2VydCAoaSA8IGRzby0+ZWhkci5lX3NobnVtKTsKKyAgICAgIGlmIChp
-ID09IGRzby0+ZWhkci5lX3NobnVtKQorCXJldHVybiAwOwogICAgICAgZGF0YSA9IGRzby0+c2hk
-cltpXS5zaF9hZGRyICsgMHgxNjsKICAgICAgIHdyaXRlX2xlNjQgKGRzbywgZHNvLT5pbmZvW0RU
-X1BMVEdPVF0gKyA4LCBkYXRhKTsKICAgICB9Ci0tIAoyLjIxLjAKCg==
-
---0000000000003fa7a10589f2666a--
