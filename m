@@ -1,71 +1,81 @@
-Return-Path: <dimtass@gmail.com>
+Return-Path: <paul@betafive.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65B36E00D35; Tue, 28 May 2019 02:01:24 -0700 (PDT)
+	id 7F6A3E00D38; Tue, 28 May 2019 02:32:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.44 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (dimtass[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [66.111.4.28 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com
-	[209.85.210.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B19FEE00798
-	for <yocto@yoctoproject.org>; Tue, 28 May 2019 02:01:23 -0700 (PDT)
-Received: by mail-ot1-f44.google.com with SMTP id 66so17070970otq.0
-	for <yocto@yoctoproject.org>; Tue, 28 May 2019 02:01:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=VPCgSkZdapBnjBaUZwfXhUKnY/WYf+xF1ySnZuEjSP0=;
-	b=lNR+LEgWw3Pn/b2nYjlJV0AFKHxYqV5NjtSG0wH7jFEpVVfJd4pGyM7uXwGQTYX6qm
-	Gn0tgrSRlwn9IQOK0xmd95JBbt6EU/i0VgsiCsqn8JyAGYkuYCKMJvwpiheaMZ3pbpF/
-	oaVKUUIQ8VId73O9sWpfVdWqUrL2xrIFCfAfvxRU3Y644jVmLDqcV7x8PexoXIlE9Ed5
-	Ea2u1cBdj1io5+dc73CgQyGyyz/49OnCEWqtG4ttWHj7WfUi5x5w5+rij62WKKypHu6W
-	W4BHjw3u+8aRythO/U3gM5gw/rnC3wKxNaK6SQ8u9M14j13uXaFZOFkLL0xXu9UtbHL/
-	wvYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=VPCgSkZdapBnjBaUZwfXhUKnY/WYf+xF1ySnZuEjSP0=;
-	b=LMtEv2JaREuRi+Ka9snZU0MLHX9uX4+dk7U68Tz+alsiyrQPGPxhsEBGpwXtnzeNZE
-	msf1g93xOASsDZnNpt14H750KCJyTmTNttzE4MghVK+sIahoSDf4cbue66U43AMDD+dc
-	64lCL7EH0ZQ+GNbbOoI3m+Miq3lstrWo7eA3neVNB1kWJ78UoA/dX+xG1UeM50EqcEEI
-	Q58ITLKAOoNjvIcV/fXWkwrc/UFG6okC3BRkUYKFttbw+k8Wm0fifTRTxWm+b0kjvef5
-	bph1oWAsCeZKuCg+m2OaM/PZZzYOikuzBVFqW6E9dweRlv1Tl1LgyveFe6z8+VKU8OKD
-	hkFg==
-X-Gm-Message-State: APjAAAU0ATQEWUE/0qYBN0q4wqN7c+DlfHnBa+cxzaQbVQb7Ju9W2US8
-	trqd7+dsGNcvIYlfYSElyYzpSZiV4rRtn4ZQc7g=
-X-Google-Smtp-Source: APXvYqwRT77Q72PpnmH1fGi+a9dtBldVgccnpCsDIZnq7Wo1uRkm03+THgrfW6oq2awb3XemZFU8CVn7ig7+VbrxPl4=
-X-Received: by 2002:a9d:6189:: with SMTP id g9mr17547234otk.241.1559034083022; 
-	Tue, 28 May 2019 02:01:23 -0700 (PDT)
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com
+	[66.111.4.28])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D559FE00798
+	for <yocto@yoctoproject.org>; Tue, 28 May 2019 02:32:21 -0700 (PDT)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailout.nyi.internal (Postfix) with ESMTP id 6048D22087;
+	Tue, 28 May 2019 05:32:21 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+	by compute1.internal (MEProxy); Tue, 28 May 2019 05:32:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=betafive.co.uk;
+	h=subject:to:cc:references:from:message-id:date:mime-version
+	:in-reply-to:content-type:content-transfer-encoding; s=fm1; bh=1
+	C6N2ld+F9LnCdvorDvAhQQZLjAb34Qo2qwH7rrtTQk=; b=ZD96KKV1wA6h6Ng2S
+	7l614uyS2kvmu2NqlUA3C8y7cM1jLj/F7MdqZCVKPadO1A1bdLYTGtJd1Px0lw8t
+	4WeXP6zzz6ALuwXS99KGJT7qFHrlapWU+asKWCeevnR+OfhTqnIjS7738oX3iJU3
+	V0GW+h+GR8vml1AQ8/Nl8sogjoEjdELEvvdb5ylr5pEzev+FZ83QspYCoI4rHwzm
+	TVq3BrbTmjKRymPjnYH3rgSEAtJgzCdHPNOIWRKIqoN341R7F+IjD8BQP/YBtcGR
+	TrqIVdGpe1suITzt4RH9++vrrnSAGJUzQBkAh+fdoPrO+5AqJaOJB2PcDDzNZ384
+	OekEA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-transfer-encoding:content-type
+	:date:from:in-reply-to:message-id:mime-version:references
+	:subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm2; bh=1C6N2ld+F9LnCdvorDvAhQQZLjAb34Qo2qwH7rrtT
+	Qk=; b=OSkanZvA8NtzrLhHNgDuZfdz1wH0ZC/lkGqPRmmzBY1ufkIcYIdxQcyvS
+	dhon4W7HmZlWjTwbNnQL8Y9PQMpgT4oJDV8AL417MTdKLmtvWsk31/M7kCBK/4X7
+	FRbCWKBSLaViHZikF3w9HfOSwPKRYouVIJg02kDTMOcQHS5UQtUx1pzJbdQy5FY9
+	ql8TbAR5E6IkqNEXe/+6pqEBLARTd3uvoiXbVErLCcnPWvD1mrP7YIBBQ7f5XsCL
+	ApI8DHLJD/HMhCX40m/2UK2GwmeKjOqWdeMVDO1mBHCv5fvc/+8l+qs/MZ/NKedI
+	rOCJagnva0bYPBXzG7VOG8kOBcGtg==
+X-ME-Sender: <xms:JADtXHNcNBQJ449FPpYysTX6eId__3WGTmndcNkituRLJibdh3exlg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduuddruddvhedgudejucetufdoteggodetrfdotf
+	fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+	uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+	cujfgurhepuffvfhfhohfkffgfgggjtgfgsehtkeertddtfeejnecuhfhrohhmpefrrghu
+	lhcuuegrrhhkvghruceophgruhhlsegsvghtrghfihhvvgdrtghordhukheqnecukfhppe
+	ekuddrudekjedrfedvrddufeeknecurfgrrhgrmhepmhgrihhlfhhrohhmpehprghulhes
+	sggvthgrfhhivhgvrdgtohdruhhknecuvehluhhsthgvrhfuihiivgeptd
+X-ME-Proxy: <xmx:JQDtXAc3ybgjUn54ap95_CBEZdZr8AEZ0-WjL2L0IZQo8HJbG7K85w>
+	<xmx:JQDtXBz3rt9oONhQOOqcHtjot1PurLjo75nKgWk0vWjuIOLNNQSNOw>
+	<xmx:JQDtXF3yzWcwnMOm4lqkbVOO-sOHC0j4qyyKqjBUteffJ3PYtJDxBA>
+	<xmx:JQDtXJl10RnEa-_MFZ56Wpt0_wgaNGmyMni_n76pSgWR9AAGX7JE9g>
+Received: from [192.168.1.120] (138.32.187.81.in-addr.arpa [81.187.32.138])
+	by mail.messagingengine.com (Postfix) with ESMTPA id 5DA788005B;
+	Tue, 28 May 2019 05:32:20 -0400 (EDT)
+To: Davis Roman <davis.roman84@gmail.com>,
+	Yocto discussion list <yocto@yoctoproject.org>
+References: <CACfi_Z1qodZZ2WPAsMx5Tiz5OJmuQ0yEMA7gyVSaUrb7=kzDeg@mail.gmail.com>
+From: Paul Barker <paul@betafive.co.uk>
+Organization: Beta Five Ltd
+Message-ID: <0a5534ef-7f4b-f164-0751-52b880e7073e@betafive.co.uk>
+Date: Tue, 28 May 2019 10:32:20 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+	Thunderbird/60.5.0
 MIME-Version: 1.0
-References: <CAAfyv34HAOaAaO1cyiQbR8P6mQPp8p3gCT2jM=UyQDGfvV-fYw@mail.gmail.com>
-	<CA+2YH7ud9TX=ohQSk8XY=GzpewzFsXo6Z2eBJ=bXacyAsojV9A@mail.gmail.com>
-	<CAAfyv34jJ362tu3x_8J1+FuV3zFpchkB8Ft9w-WERrxCNPxbvg@mail.gmail.com>
-In-Reply-To: <CAAfyv34jJ362tu3x_8J1+FuV3zFpchkB8Ft9w-WERrxCNPxbvg@mail.gmail.com>
-From: Dimitris Tassopoulos <dimtass@gmail.com>
-Date: Tue, 28 May 2019 11:01:11 +0200
-Message-ID: <CACKFPN1bgM_DPDRRDxkjekqZ9gQwV9S+1MkHF42z6MvczD81Jg@mail.gmail.com>
-To: Belisko Marek <marek.belisko@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>, Sergey Lapin <slapin@ossfans.org>,
-	Enrico <ebutera@users.sourceforge.net>,
-	Nicolas Aguirre <aguirre.nicolas@gmail.com>,
-	OpenEmbedded Development mailing list
-	<openembedded-devel@lists.openembedded.org>
-Subject: Re: meta-sunxi maintained?
+In-Reply-To: <CACfi_Z1qodZZ2WPAsMx5Tiz5OJmuQ0yEMA7gyVSaUrb7=kzDeg@mail.gmail.com>
+Cc: poky@yoctoproject.org, song li <ghosty.lee.1984@gmail.com>
+Subject: Re: [poky] yocto is unstable to build final image when recipe has slash in SRCBRANCH
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,175 +87,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 May 2019 09:01:24 -0000
-Content-Type: multipart/alternative; boundary="000000000000b61e1a0589eee8a0"
+X-List-Received-Date: Tue, 28 May 2019 09:32:22 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 
---000000000000b61e1a0589eee8a0
-Content-Type: text/plain; charset="UTF-8"
+On 24/05/2019 20:38, Davis Roman wrote:
+> Hello,
+> 
+> In my recipe, I've found that a forward slash in SRCBRANCH, results in 
+> an error during the final image construction,
+> 
+> SRCBRANCH = "feature/compile_with_gcc7_4_rocko_toolchain"
+> 
+> 
+> Error given:
+> 
+> Collected errors:
+>   * opkg_prepare_url_for_install: Couldn't find anything to satisfy 
+> 'tron-app'.
+> 
+> ERROR: tron-image-grip-1.0-r0 do_rootfs: Function failed: do_rootfs
+> 
+> 
+> Does anyone have a way to make the slash in the SRCBRANCH variable work?
+> 
 
-Hi Belisko,
+SRCBRANCH is not a standard variable to my knowledge. You'll probably 
+have to give some more specific info on the recipe that's using it, what 
+bitbake command you ran and the full error message.
 
-you can also have a look in to this layer:
-http://layers.openembedded.org/layerindex/branch/master/layer/meta-allwinner-hx/
-It's for allwinner H2,H3 and H5 boards that already have support on Armbian.
-Pretty much is just a Yocto layer with all the patches and BSP support from
-Armbian.
-It supports 4.14 and 4.19 mainline kernels only and also the PREEMPT-RT
-patches.
-Warrior support was added recently, too.
+Thanks,
 
-A similar one is also this:
-http://layers.openembedded.org/layerindex/branch/master/layer/meta-nanopi-neo4/
+-- 
+Paul Barker
+Managing Director & Principal Engineer
+Beta Five Ltd
 
-Dimitris
-
-On Mon, May 27, 2019 at 7:33 PM Belisko Marek <marek.belisko@gmail.com>
-wrote:
-
-> Hi Enrico,
->
-> On Mon, May 27, 2019 at 5:44 PM Enrico <ebutera@users.sourceforge.net>
-> wrote:
-> >
-> > Hi,
-> >
-> > i try to keep it maintained, but now i just have a lime2 for testing
-> > on real hardware, and i don't have the resources to do test builds for
-> > all the supported boards.
-> > Your help would be welcome, i can't check right now if i have the
-> > rights to add you as co-maintainer, anyway i will add you.
-> Thanks I have few sunxi based boards so can do tests also on my setup.
-> Pls ping me when you will add me. Thanks.
-> >
-> > Thanks for the help!
-> >
-> > Enrico
->
-> Marek
-> >
-> > On Mon, May 27, 2019 at 4:50 PM Belisko Marek <marek.belisko@gmail.com>
-> wrote:
-> > >
-> > > Hello,
-> > >
-> > > I'm just curious if meta-sunxi is still maintained? I was contributed
-> > > to layer back while and when look now thud branch is un-compilable
-> > > (dri2proto not replaced) and warrior branch not created yet. There is
-> > > 14 issues + 6 pending pull requests. Added maintainers also in CC. I
-> > > think it would be good to have sunxi properly maintained as boards
-> > > with sunxi processors are popular. I can give a hand as co-maintainer
-> > > if necessary. Thanks a lot.
-> > >
-> > > BR,
-> > >
-> > > marek
-> > >
-> > > --
-> > > as simple and primitive as possible
-> > > -------------------------------------------------
-> > > Marek Belisko - OPEN-NANDRA
-> > > Freelance Developer
-> > >
-> > > Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-> > > Tel: +421 915 052 184
-> > > skype: marekwhite
-> > > twitter: #opennandra
-> > > web: http://open-nandra.com
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---000000000000b61e1a0589eee8a0
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi Belisko,<div><br></div><div>you can also have a look in=
- to this layer:=C2=A0<a href=3D"http://layers.openembedded.org/layerindex/b=
-ranch/master/layer/meta-allwinner-hx/">http://layers.openembedded.org/layer=
-index/branch/master/layer/meta-allwinner-hx/</a></div><div>It&#39;s for all=
-winner H2,H3 and H5 boards that already have support on Armbian.</div><div>=
-Pretty much is just a Yocto layer with all the patches and BSP support from=
- Armbian.</div><div>It supports 4.14 and 4.19 mainline kernels only and als=
-o the PREEMPT-RT patches.</div><div>Warrior support was added recently, too=
-.</div><div><br></div><div>A similar one is also this:=C2=A0<a href=3D"http=
-://layers.openembedded.org/layerindex/branch/master/layer/meta-nanopi-neo4/=
-">http://layers.openembedded.org/layerindex/branch/master/layer/meta-nanopi=
--neo4/</a></div><div><br></div><div>Dimitris</div></div><br><div class=3D"g=
-mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, May 27, 2019 at 7=
-:33 PM Belisko Marek &lt;<a href=3D"mailto:marek.belisko@gmail.com">marek.b=
-elisko@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
-dding-left:1ex">Hi Enrico,<br>
-<br>
-On Mon, May 27, 2019 at 5:44 PM Enrico &lt;<a href=3D"mailto:ebutera@users.=
-sourceforge.net" target=3D"_blank">ebutera@users.sourceforge.net</a>&gt; wr=
-ote:<br>
-&gt;<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; i try to keep it maintained, but now i just have a lime2 for testing<b=
-r>
-&gt; on real hardware, and i don&#39;t have the resources to do test builds=
- for<br>
-&gt; all the supported boards.<br>
-&gt; Your help would be welcome, i can&#39;t check right now if i have the<=
-br>
-&gt; rights to add you as co-maintainer, anyway i will add you.<br>
-Thanks I have few sunxi based boards so can do tests also on my setup.<br>
-Pls ping me when you will add me. Thanks.<br>
-&gt;<br>
-&gt; Thanks for the help!<br>
-&gt;<br>
-&gt; Enrico<br>
-<br>
-Marek<br>
-&gt;<br>
-&gt; On Mon, May 27, 2019 at 4:50 PM Belisko Marek &lt;<a href=3D"mailto:ma=
-rek.belisko@gmail.com" target=3D"_blank">marek.belisko@gmail.com</a>&gt; wr=
-ote:<br>
-&gt; &gt;<br>
-&gt; &gt; Hello,<br>
-&gt; &gt;<br>
-&gt; &gt; I&#39;m just curious if meta-sunxi is still maintained? I was con=
-tributed<br>
-&gt; &gt; to layer back while and when look now thud branch is un-compilabl=
-e<br>
-&gt; &gt; (dri2proto not replaced) and warrior branch not created yet. Ther=
-e is<br>
-&gt; &gt; 14 issues + 6 pending pull requests. Added maintainers also in CC=
-. I<br>
-&gt; &gt; think it would be good to have sunxi properly maintained as board=
-s<br>
-&gt; &gt; with sunxi processors are popular. I can give a hand as co-mainta=
-iner<br>
-&gt; &gt; if necessary. Thanks a lot.<br>
-&gt; &gt;<br>
-&gt; &gt; BR,<br>
-&gt; &gt;<br>
-&gt; &gt; marek<br>
-&gt; &gt;<br>
-&gt; &gt; --<br>
-&gt; &gt; as simple and primitive as possible<br>
-&gt; &gt; -------------------------------------------------<br>
-&gt; &gt; Marek Belisko - OPEN-NANDRA<br>
-&gt; &gt; Freelance Developer<br>
-&gt; &gt;<br>
-&gt; &gt; Ruska Nova Ves 219 | Presov, 08005 Slovak Republic<br>
-&gt; &gt; Tel: +421 915 052 184<br>
-&gt; &gt; skype: marekwhite<br>
-&gt; &gt; twitter: #opennandra<br>
-&gt; &gt; web: <a href=3D"http://open-nandra.com" rel=3D"noreferrer" target=
-=3D"_blank">http://open-nandra.com</a><br>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
-
---000000000000b61e1a0589eee8a0--
