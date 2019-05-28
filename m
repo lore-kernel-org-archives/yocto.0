@@ -1,74 +1,69 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <moritz.porst@gmx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6DFB3E00D31; Tue, 28 May 2019 03:11:32 -0700 (PDT)
+	id 35764E00D31; Tue, 28 May 2019 03:51:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marek.belisko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.48 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	provider *      (moritz.porst[at]gmx.de)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [212.227.15.18 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com
-	[209.85.221.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F3ECE0049C
-	for <yocto@yoctoproject.org>; Tue, 28 May 2019 03:11:30 -0700 (PDT)
-Received: by mail-wr1-f48.google.com with SMTP id d9so19561346wrx.0
-	for <yocto@yoctoproject.org>; Tue, 28 May 2019 03:11:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=1Mw4xyIoLpAukC5C6zfvPTwD1Wo/ebbBsJLVTlW0fzQ=;
-	b=jI98KaI5ygeWFXLMhLWkb/Vg0HDR+f+e/n+LW6F+8W5opTgrSDSY3LRmQ+28qbHOVh
-	6HVK+/PpaW3HPElxw3bVYQh87I7FdrJB/2vj4roDRZVSSCwgP2/PUIKEzeNaJHUOrJkC
-	ANigtdwkUiM+9QIeg4wNA5bzKVLwO9olTurnpzeSSD0OExptwWosfkDNKrhhMW29ioDp
-	PcuQDMYhSLF+Y36SLrOvu1nu9SwiHkjwa+6xKWsVjyBIuuh9PETg9InXeTdoc2DkltYE
-	+iW7Un14CS0BaoiKGi/aUe6x/ltheQk6PEACgYBvES2XbrI/BlJ+fQFRnBKBaKEY4lW0
-	5ebg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=1Mw4xyIoLpAukC5C6zfvPTwD1Wo/ebbBsJLVTlW0fzQ=;
-	b=KBbgBgPq/q6d4LVYSBkVhWy0xmR3cpVFQHltooNtf4Ggj10hNYNO72Mfq/zQbDUFBh
-	DrfOvn0jZkkyBCdVKbkbrII4UHl7dVFX3HiJG2h2+jIWjbVCdQNMZ6dvgDIT63FdYiA6
-	sO4wFXSXktLKJtNaMvHeUB402h2sp4rG5ixlndrQPJ3B76hsy+5ArliHB1T2ZVdG1qlt
-	SjhXnJlLgRpO2Nuhj0aCObfi0vsiN9PgVfeUL5P8quKNcXdMJIauOUNsE8X6Y93AKca0
-	GvSEuKgGjTtQMziNMWeWPOKqseR51Ky4TgeX2vPUkEVTMYV5vT8P9VDUdMIfl8R3QIVL
-	WcpA==
-X-Gm-Message-State: APjAAAVsW45kELPI7/Hw6+k54W1gB8dMzV44yd6HyIXefX1beSK63ihC
-	t+/EAfOgAEK8ptpJh0FSkILYOhVQtFzx59IxkZs=
-X-Google-Smtp-Source: APXvYqzvWxVrOyhwIaVV9ZwBJVbreH/q6cslduleVqEGAfDcIXI8Cg28IxTttS39a2TOZqb2rhwLVcD0ObxEzFe2PV8=
-X-Received: by 2002:adf:e309:: with SMTP id b9mr75507195wrj.135.1559038289514; 
-	Tue, 28 May 2019 03:11:29 -0700 (PDT)
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 901CAE00942
+	for <yocto@yoctoproject.org>; Tue, 28 May 2019 03:51:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=badeba3b8450; t=1559040673;
+	bh=IN9BMGHHT1c9v3j0rUurUiRYyHUMqOti9Hee/lI1bas=;
+	h=X-UI-Sender-Class:Subject:To:References:From:Date:In-Reply-To;
+	b=atCLRoWaG/Pnmkkhnth6Jmy7gfMSkUoQsx2T7VouyzKAj9cXZCZbVzTaelx6iF944
+	AVX4ZPWMN21bqQ6PQEwnBiZAFUjQZOfnQpATmuis2sQLILZmvdt268TolNNH/cOgNR
+	50u7jcKH4qv+8nuLC6uaEbOnEHNfePXrqkjBEY6w=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [141.99.128.135] ([141.99.128.135]) by mail.gmx.com (mrgmx005
+	[212.227.17.190]) with ESMTPSA (Nemesis) id 1N4zAs-1gV7ht1MyC-010xe6
+	for <yocto@yoctoproject.org>; Tue, 28 May 2019 12:51:13 +0200
+To: yocto@yoctoproject.org
+References: <trinity-631dde4f-bab9-4c73-8545-286ae7269df2-1558963608089@3c-app-gmx-bs16>
+	<9ac8b53d-84f5-6ee0-d445-57335f8f0836@googlemail.com>
+	<trinity-97a0a696-4e0c-4136-b172-142666b42c34-1558969528500@3c-app-gmx-bs16>
+	<68d0b5b9-6b70-7afa-390d-5cf5f003730d@googlemail.com>
+From: Moritz Porst <moritz.porst@gmx.de>
+Message-ID: <bfbd0c02-e82c-c4e3-4a90-9b1162a6a0b9@gmx.de>
+Date: Tue, 28 May 2019 12:51:09 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <CAAfyv34HAOaAaO1cyiQbR8P6mQPp8p3gCT2jM=UyQDGfvV-fYw@mail.gmail.com>
-	<CA+2YH7ud9TX=ohQSk8XY=GzpewzFsXo6Z2eBJ=bXacyAsojV9A@mail.gmail.com>
-	<CAAfyv34jJ362tu3x_8J1+FuV3zFpchkB8Ft9w-WERrxCNPxbvg@mail.gmail.com>
-	<CACKFPN1bgM_DPDRRDxkjekqZ9gQwV9S+1MkHF42z6MvczD81Jg@mail.gmail.com>
-	<CAAfyv36-ykHu2Gfet1CeuR8tjNgernF4m01AjnQaOzcFb-BZaw@mail.gmail.com>
-	<CACKFPN1q13OJfCcRCP6aLxGOC+cM+2zjwoTLNbkAn5dAS+J_DA@mail.gmail.com>
-In-Reply-To: <CACKFPN1q13OJfCcRCP6aLxGOC+cM+2zjwoTLNbkAn5dAS+J_DA@mail.gmail.com>
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Tue, 28 May 2019 12:11:18 +0200
-Message-ID: <CAAfyv36hNk8CXYEfYASZJ-tOPEUwZ23i1zyDdLbVWk6r9ONkDA@mail.gmail.com>
-To: Dimitris Tassopoulos <dimtass@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	Sergey Lapin <slapin@ossfans.org>, Enrico <ebutera@users.sourceforge.net>,
-	Nicolas Aguirre <aguirre.nicolas@gmail.com>,
-	OpenEmbedded Development mailing list
-	<openembedded-devel@lists.openembedded.org>
-Subject: Re: meta-sunxi maintained?
+In-Reply-To: <68d0b5b9-6b70-7afa-390d-5cf5f003730d@googlemail.com>
+X-Provags-ID: V03:K1:cUxhQ7nV7+XTG036YLRjEaFmQQh4Ln+DtFtWLGDyf9sfp60pACj
+	3oC7sY+6g48bK+IG0hb2bMocgtpubAlZJBp/fW+Ct6NrDrXzUKwOUY1eduPymjrks+AVzGw
+	2Iz/s/7/yCrj9w/+f+wG2wJpL/0583gxw9ghLdd0ce1wK6JRgwi60RH5NqnaLwygz3YuZH4
+	lJgekoKVyorB3eztySwwg==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:HSajXfFwVds=:T1pEZBy5Wxbq34OESXPNo2
+	7MickkViLhkdz3DQZfjqcvjp0p+u9mq/rYOpKqGco66rkef9ch5Bxg4/2EziyAEjYC+Z+T+UF
+	95voHbx1qX9E6zp+rTa/aof2V6gsqICIMOF5xlBt2KLhjZKt4Xj7Jwwp0WCHx+MmGbAqcPGtp
+	sWKepsh6gMvKIFzJhvIJZZAAJ2khI8YNLMPC05OuDQgSrFVXlmPs79LecCahcSMrtDqhapQw5
+	FaNApH5tCKoaUGaC5JFhuZpgXEHH1rd+zsElc4bLVpVEQG6gIHSrYt+iHLPJJ1BtdMiubCMlv
+	5X+dwGHhRnd8/j2ypEj5hEhC7+CbEBTGixizXP7A68YUMi3KIEkjanoOAq3bhxLMOEqW+pq0s
+	7D/0SICjRT2vROK1b8y/S4bB5NgHhcKgyB2mDlVk3doIkbfGnqISMFHlp5Qy9i/ipndyhJ98P
+	FJnjp9vsy2obtimLmjuNa8pLMPSw5W/TNoX/jkw5+oUx6Bizpo578rVZ0suTXeVFJT1qUEviA
+	O1M6Yhmlfe49jtpuES6ZLdem4Sf7FbfyEfyGNkRcBGAhqkXfRmzlEY8N+pFe5eM1I0ASkMFsB
+	1JY1NrKND0Jx7pTboKeb0XsJJg5dJ0xKIQqzoQSro7K4sD4GPXgDhWT7n12RIxgCZ+zbFzE4n
+	0qTHgEGgu+Xj3vJ0AuTI5BaroE+J9UH5RUL1Yq1wzmgfeUyBI/IPla2a78i3fEnwuhVhPqNz1
+	yhC3IOJD4xWBOcWEM+5LToDw7Oai1hdVfucrDtF3bIM3eLrtR749aqCctUG6oQeQNf/ATDi32
+	ZnCdKnVdC6bpwYxloe846kab+R6FTXRbaQOVCTIw+tsRpFjLyRA6vFmPOP9jF6Fd8SlV6QJT5
+	t4ySUNtT0wh/vJ6rK2aF8mF1sBJCmcr1TyaRcslVpAQNRzpeu5qv0Ui75eXmGZACWpX5pVtSE
+	YklAoisl945FYO7Mjy5u8Ki6xir4Csqy3U/MfAjhz5YJ6PGb4pYW/
+Subject: Re: [meta-swupdate] build fails under thud
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,148 +75,373 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 May 2019 10:11:32 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 28 May 2019 10:51:16 -0000
+Content-Type: multipart/alternative;
+	boundary="------------7C55C19C63FD4FEC8C7BBF8D"
+Content-Language: en-US
+
+--------------7C55C19C63FD4FEC8C7BBF8D
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Hi Dimitris,
+Hello Matthias,
 
-On Tue, May 28, 2019 at 12:06 PM Dimitris Tassopoulos <dimtass@gmail.com> w=
-rote:
->
-> Hi Belisko,
->
-> I was thinking about this also, too. The only reason is that in meta-sunx=
-i they do a great job and they keep their layer clean, which is great I thi=
-nk. The other layers are just based on the armbian distro, which is a lot d=
-ifferent, but for me it was much easier to integrate their patches, patchin=
-g scripts and bootloader scripts to a Yocto layer. That way the only thing =
-I do is that from time to time I just integrate their new patches and that'=
-s it. There's no development in the layer is just re-use of the armbian wor=
-k and a wrapper around it. Therefore, it's hard, even no doable to put thos=
-e different architectures together. But definitely that decision also bothe=
-red me a lot before I create the layer and I also don't like time to be spe=
-nd on the same thing from different people. Nevertheless, from my point of =
-view I couldn't find a way to put those things together. I've tried but I c=
-ouldn't do it.
->
-> Therefore, it was easier for me to do it the way I've done it. And after =
-all, although it doesn't seem right, at the same time this is the beauty of=
- the open source. I think the layers are just incompatible in the way that =
-they are do things. Also it's not bad to have alternatives.
->
-> Sunxi is a great community and I believe many of the armbian patches are =
-coming from there. Others not. Of course, having them all together would be=
- nice. But I don't think that it's possible because of the different approa=
-ch.
->
-> I hope this explains your question and even more that explains that was n=
-ot a decision to divide things or create more hassle for the same chips.
-Yes certainly. Thanks for great explanation and sorry if I wrote it in
-not polite way I didn't mean to offence ;). Thanks.
->
-> Regards,
-> Dimitris
->
-> Belisko Marek <marek.belisko@gmail.com> schrieb am Di., 28. Mai 2019, 11:=
-49:
->>
->> Hi Dimitris,
->>
->> On Tue, May 28, 2019 at 11:01 AM Dimitris Tassopoulos <dimtass@gmail.com=
-> wrote:
->> >
->> > Hi Belisko,
->> >
->> > you can also have a look in to this layer: http://layers.openembedded.=
-org/layerindex/branch/master/layer/meta-allwinner-hx/
->> > It's for allwinner H2,H3 and H5 boards that already have support on Ar=
-mbian.
->> > Pretty much is just a Yocto layer with all the patches and BSP support=
- from Armbian.
->> > It supports 4.14 and 4.19 mainline kernels only and also the PREEMPT-R=
-T patches.
->> > Warrior support was added recently, too.
->> OK thanks. I think I'll stick with meta-sunxi ;). What about join
->> forces and maintains one layer properly instead having it separated?
->> >
->> > A similar one is also this: http://layers.openembedded.org/layerindex/=
-branch/master/layer/meta-nanopi-neo4/
->> >
->> > Dimitris
->> >
->> > On Mon, May 27, 2019 at 7:33 PM Belisko Marek <marek.belisko@gmail.com=
-> wrote:
->> >>
->> >> Hi Enrico,
->> >>
->> >> On Mon, May 27, 2019 at 5:44 PM Enrico <ebutera@users.sourceforge.net=
-> wrote:
->> >> >
->> >> > Hi,
->> >> >
->> >> > i try to keep it maintained, but now i just have a lime2 for testin=
-g
->> >> > on real hardware, and i don't have the resources to do test builds =
-for
->> >> > all the supported boards.
->> >> > Your help would be welcome, i can't check right now if i have the
->> >> > rights to add you as co-maintainer, anyway i will add you.
->> >> Thanks I have few sunxi based boards so can do tests also on my setup=
-.
->> >> Pls ping me when you will add me. Thanks.
->> >> >
->> >> > Thanks for the help!
->> >> >
->> >> > Enrico
->> >>
->> >> Marek
->> >> >
->> >> > On Mon, May 27, 2019 at 4:50 PM Belisko Marek <marek.belisko@gmail.=
-com> wrote:
->> >> > >
->> >> > > Hello,
->> >> > >
->> >> > > I'm just curious if meta-sunxi is still maintained? I was contrib=
-uted
->> >> > > to layer back while and when look now thud branch is un-compilabl=
-e
->> >> > > (dri2proto not replaced) and warrior branch not created yet. Ther=
-e is
->> >> > > 14 issues + 6 pending pull requests. Added maintainers also in CC=
-. I
->> >> > > think it would be good to have sunxi properly maintained as board=
-s
->> >> > > with sunxi processors are popular. I can give a hand as co-mainta=
-iner
->> >> > > if necessary. Thanks a lot.
->> >> > >
->> >> > > BR,
->> >> > >
->> >> > > marek
->> >> > >
->> >> > > --
->> >> > > as simple and primitive as possible
->> >> > > -------------------------------------------------
->> >> > > Marek Belisko - OPEN-NANDRA
->> >> > > Freelance Developer
->> >> > >
->> >> > > Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
->> >> > > Tel: +421 915 052 184
->> >> > > skype: marekwhite
->> >> > > twitter: #opennandra
->> >> > > web: http://open-nandra.com
->> >> --
->> >> _______________________________________________
->> >> yocto mailing list
->> >> yocto@yoctoproject.org
->> >> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
->>
->> marek
+Thank you, your help is much appreciated. Seems I have misunderstood how
+to add swupdate to my image. However the swupdate package somehow has to
+put an initramfs in place since to my understanding it is also possible
+to do updates without 2 rootfs available which would require an update
+through the initramfs.
 
-BR,
+Anyway, thank you again ! This should make it work
 
-marek
+On 27/05/2019 18:59, Matthias Schoepfer wrote:
+>
+> Hi Moritz,
+>
+> I will try to answer what I can inline:
+>
+> On 5/27/19 5:05 PM, Moritz Porst wrote:
+>> Hi Matthias
+>> Thank you very much for your help, this is not mentioned in the
+>> official repository.
+>> I tried what you said. It enables me (even without .bbappend) to
+>> build the swupdate-image.
+>> Now for the defconfig. I did it with a .bbappend the way the yocto
+>> documentation suggests (FILESEXTRAPATHS and SRC_URI) but which recipe
+>> do I need to append to? I thought just choose swupdate_git.bb, then
+>> swupdate_2018.11.bb. I always receive the following rootfs file:
+> you can either bbappend the _2018.11 or make a swupdate_%.bbappend,
+> that is then valid for both _git and _2018.11 if you happen to use the
+> _git version.
+>> swupdate-image-ccns5.ext4.gz.u-boot=C2=A0=C2=A0 (Clearly still uboot, I=
+ don't
+>> know why it managed to build though)
+>> Also I get the following warning on invoking bitbake for swupdate-image=
+:
+>> WARNING:
+>> /opt/thudPoky/meta-swupdate/recipes-support/swupdate/swupdate_2018.11.b=
+b.do_compile
+>> is tainted from a forced run
+> This is because you bitbake -c menuconfig swupdate. If you clean the
+> build (bitbake -c cleansstate swupdate), this should disappear. Then
+> you can check, if your bbappend gets picked up correctly.
+>> Finally I always end up with microcode.cpio in my /boot directory
+>> which comes from meta-intel. I guess swupdate would replace the
+>> initrd/initramfs ?
+>> I put the following lines in my image description:
+>> INITRAMFS_IMAGE =3D "swupdate-image-ccns5"
+>> INITRAMFS_IMAGE_BUNDLE =3D "1"
+>> Shouldn't they cause the swupdate-image to be bundled into the
+>> kernel, thus that if I build my image that I end up with the swupdate
+>> initramfs in my /boot directory ?
+>
+> Errr.... you want to *add* swupdate to an image recipe. It is not an
+> image by itself. Well, I guess, there is a rescue image within
+> swupdate, but that is a different story and I have no experience with
+> it. There are ways to add packages to an image, for example through
+> IMAGE_INSTALL_append =3D " swupdate " in local.conf
+>
+> https://www.yoctoproject.org/docs/2.7/mega-manual/mega-manual.html#using=
+poky-extend-customimage-localconf
+>
+>> Sorry for all the questions and thanks in advance !
+>> Best regards
+>> Moritz
+>> *Gesendet:*=C2=A0Montag, 27. Mai 2019 um 15:31 Uhr
+>> *Von:*=C2=A0"Matthias Schoepfer" <matthias.schoepfer@googlemail.com>
+>> *An:* yocto@yoctoproject.org
+>> *Betreff:*=C2=A0Re: [yocto] [meta-swupdate] build fails under thud
+>>
+>> Hi Moritz!
+>>
+>> You need to configure swupdate kind of like the linux kernel with
+>> menuconfig:
+>>
+>> bitbake -c menuconfig swupdate
+>>
+>> do not forget to copy your config then into an bbappend to swupdate
+>> (defconfig).
+>>
+>> Hope that helps,
+>>
+>> Regards,
+>>
+>> =C2=A0=C2=A0 Matthias
+>>
+>> On 5/27/19 3:26 PM, Moritz Porst wrote:
+>>
+>>     Hello
+>>     I want to create an update mechanism for our embedded system. I
+>>     chose swupdate because it is very well documented and seems flexibl=
+e.
+>>     When trying to build swupdate-image it fails with several
+>>     undefined references, just a few as example:
+>>     """
+>>     /opt/thudPoky/build/tmp/work/corei7-64-poky-linux/swupdate/2018.11-=
+r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux/../../libexec/x86_64-po=
+ky-linux/gcc/x86_64-poky-linux/8.2.0/ld:
+>>     bootloader/lib.a(uboot.o): in function `bootloader_env_set':
+>>     | uboot.c:(.text.bootloader_env_set+0x40): undefined reference to
+>>     `fw_env_open'
+>>     |
+>>     /opt/thudPoky/build/tmp/work/corei7-64-poky-linux/swupdate/2018.11-=
+r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux/../../libexec/x86_64-po=
+ky-linux/gcc/x86_64-poky-linux/8.2.0/ld:
+>>     uboot.c:(.text.bootloader_env_set+0xf8): undefined reference to
+>>     `fw_env_write'
+>>     """
+>>     I see lots of "uboot" in the trace, but to my understanding
+>>     swupdate should also work with grub which I enabled using:
+>>     EFI_PROVIDER =3D "grub-efi"=C2=A0=C2=A0=C2=A0 (First tried to use
+>>     PREFERRED_PROVIDER_virtual/bootloader, but this doesn't work with
+>>     EFI booting)
+>>     When I want to enable "uboot" this way, bitbake tells me there is
+>>     no uboot.
+>>     I know there is also the option of writing my own init scripts
+>>     but this would be just reinventing the wheel (given there is an
+>>     swupdate available) and probably more error-prone than a grown
+>>     update tool. Thus I would like to get swupdate to work.
+>>     Any ideas ?
+>>     Best regards
+>>     Moritz
+>>
+>> -- _______________________________________________ yocto mailing list
+>> yocto@yoctoproject.org https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
 
+--------------7C55C19C63FD4FEC8C7BBF8D
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
+8">
+  </head>
+  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <p>Hello Matthias,</p>
+    <p>Thank you, your help is much appreciated. Seems I have
+      misunderstood how to add swupdate to my image. However the
+      swupdate package somehow has to put an initramfs in place since to
+      my understanding it is also possible to do updates without 2
+      rootfs available which would require an update through the
+      initramfs.</p>
+    <p>Anyway, thank you again ! This should make it work</p>
+    <div class=3D"moz-cite-prefix">On 27/05/2019 18:59, Matthias Schoepfer
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:68d0b5b9-6b70-7afa-390d-5cf5f003730d@googlemail.com">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUT=
+F-8">
+      <p>Hi Moritz,</p>
+      <p>I will try to answer what I can inline:<br>
+      </p>
+      <div class=3D"moz-cite-prefix">On 5/27/19 5:05 PM, Moritz Porst
+        wrote:<br>
+      </div>
+      <blockquote type=3D"cite"
+cite=3D"mid:trinity-97a0a696-4e0c-4136-b172-142666b42c34-1558969528500@3c-=
+app-gmx-bs16">
+        <meta http-equiv=3D"content-type" content=3D"text/html;
+          charset=3DUTF-8">
+        <div style=3D"font-family: Verdana;font-size: 12.0px;">
+          <div>
+            <div>Hi Matthias</div>
+            <div>=C2=A0</div>
+            <div>Thank you very much for your help, this is not
+              mentioned in the official repository.</div>
+            <div>I tried what you said. It enables me (even without
+              .bbappend) to build the swupdate-image.</div>
+            <div>Now for the defconfig. I did it with a .bbappend the
+              way the yocto documentation suggests (FILESEXTRAPATHS and
+              SRC_URI) but which recipe do I need to append to? I
+              thought just choose swupdate_git.bb, then
+              swupdate_2018.11.bb. I always receive the following rootfs
+              file:</div>
+          </div>
+        </div>
+      </blockquote>
+      you can either bbappend the _2018.11 or make a
+      swupdate_%.bbappend, that is then valid for both _git and _2018.11
+      if you happen to use the _git version. <br>
+      <blockquote type=3D"cite"
+cite=3D"mid:trinity-97a0a696-4e0c-4136-b172-142666b42c34-1558969528500@3c-=
+app-gmx-bs16">
+        <div style=3D"font-family: Verdana;font-size: 12.0px;">
+          <div>
+            <div>=C2=A0</div>
+            <div>swupdate-image-ccns5.ext4.gz.u-boot=C2=A0=C2=A0 (Clearly =
+still
+              uboot, I don't know why it managed to build though)</div>
+            <div>=C2=A0</div>
+            <div>Also I get the following warning on invoking bitbake
+              for swupdate-image:</div>
+            <div>WARNING:
+/opt/thudPoky/meta-swupdate/recipes-support/swupdate/swupdate_2018.11.bb.d=
+o_compile
+              is tainted from a forced run</div>
+          </div>
+        </div>
+      </blockquote>
+      This is because you bitbake -c menuconfig swupdate. If you clean
+      the build (bitbake -c cleansstate swupdate), this should
+      disappear. Then you can check, if your bbappend gets picked up
+      correctly. <br>
+      <blockquote type=3D"cite"
+cite=3D"mid:trinity-97a0a696-4e0c-4136-b172-142666b42c34-1558969528500@3c-=
+app-gmx-bs16">
+        <div style=3D"font-family: Verdana;font-size: 12.0px;">
+          <div>
+            <div>=C2=A0</div>
+            <div>Finally I always end up with microcode.cpio in my /boot
+              directory which comes from meta-intel. I guess swupdate
+              would replace the initrd/initramfs ?</div>
+            <div>I put the following lines in my image description:</div>
+            <div>=C2=A0</div>
+            <div>INITRAMFS_IMAGE =3D "swupdate-image-ccns5"<br>
+              INITRAMFS_IMAGE_BUNDLE =3D "1"</div>
+            <div>=C2=A0</div>
+            <div>Shouldn't they cause the swupdate-image to be bundled
+              into the kernel, thus that if I build my image that I end
+              up with the swupdate initramfs in my /boot directory ?</div>
+          </div>
+        </div>
+      </blockquote>
+      <p>Errr.... you want to *add* swupdate to an image recipe. It is
+        not an image by itself. Well, I guess, there is a rescue image
+        within swupdate, but that is a different story and I have no
+        experience with it. There are ways to add packages to an image,
+        for example through IMAGE_INSTALL_append =3D " swupdate " in
+        local.conf <br>
+      </p>
+      <p><a class=3D"moz-txt-link-freetext"
+href=3D"https://www.yoctoproject.org/docs/2.7/mega-manual/mega-manual.html=
+#usingpoky-extend-customimage-localconf"
+          moz-do-not-send=3D"true">https://www.yoctoproject.org/docs/2.7/m=
+ega-manual/mega-manual.html#usingpoky-extend-customimage-localconf</a><br>
+      </p>
+      <blockquote type=3D"cite"
+cite=3D"mid:trinity-97a0a696-4e0c-4136-b172-142666b42c34-1558969528500@3c-=
+app-gmx-bs16">
+        <div style=3D"font-family: Verdana;font-size: 12.0px;">
+          <div>
+            <div>=C2=A0</div>
+            <div>Sorry for all the questions and thanks in advance !</div>
+            <div>=C2=A0</div>
+            <div>Best regards</div>
+            <div>Moritz</div>
+            <div>=C2=A0
+              <div name=3D"quote" style=3D"margin:10px 5px 5px 10px;
+                padding: 10px 0 10px 10px; border-left:2px solid
+                #C3D9E5; word-wrap: break-word; -webkit-nbsp-mode:
+                space; -webkit-line-break: after-white-space;">
+                <div style=3D"margin:0 0 10px 0;"><b>Gesendet:</b>=C2=A0Mo=
+ntag,
+                  27. Mai 2019 um 15:31 Uhr<br>
+                  <b>Von:</b>=C2=A0"Matthias Schoepfer" <a
+                    class=3D"moz-txt-link-rfc2396E"
+                    href=3D"mailto:matthias.schoepfer@googlemail.com"
+                    moz-do-not-send=3D"true">&lt;matthias.schoepfer@google=
+mail.com&gt;</a><br>
+                  <b>An:</b>=C2=A0<a class=3D"moz-txt-link-abbreviated"
+                    href=3D"mailto:yocto@yoctoproject.org"
+                    moz-do-not-send=3D"true">yocto@yoctoproject.org</a><br=
+>
+                  <b>Betreff:</b>=C2=A0Re: [yocto] [meta-swupdate] build
+                  fails under thud</div>
+                <div name=3D"quoted-content">
+                  <div style=3D"background-color: rgb(255,255,255);">
+                    <p>Hi Moritz!</p>
+                    <p>You need to configure swupdate kind of like the
+                      linux kernel with menuconfig:</p>
+                    <p>bitbake -c menuconfig swupdate</p>
+                    <p>do not forget to copy your config then into an
+                      bbappend to swupdate (defconfig).</p>
+                    <p>Hope that helps,</p>
+                    <p>Regards,</p>
+                    <p>=C2=A0=C2=A0 Matthias</p>
+                    <div class=3D"moz-cite-prefix">On 5/27/19 3:26 PM,
+                      Moritz Porst wrote:</div>
+                    <blockquote>
+                      <div style=3D"font-family: Verdana;font-size:
+                        12.0px;">
+                        <div>Hello</div>
+                        <div>=C2=A0</div>
+                        <div>I want to create an update mechanism for
+                          our embedded system. I chose swupdate because
+                          it is very well documented and seems flexible.</=
+div>
+                        <div>When trying to build swupdate-image it
+                          fails with several undefined references, just
+                          a few as example:</div>
+                        <div>"""</div>
+                        <div>
+                          <div>/opt/thudPoky/build/tmp/work/corei7-64-poky=
+-linux/swupdate/2018.11-r0/recipe-sysroot-native/usr/bin/x86_64-poky-linux=
+/../../libexec/x86_64-poky-linux/gcc/x86_64-poky-linux/8.2.0/ld:
+                            bootloader/lib.a(uboot.o): in function
+                            `bootloader_env_set':<br>
+                            | uboot.c:(.text.bootloader_env_set+0x40):
+                            undefined reference to `fw_env_open'<br>
+                            |
+/opt/thudPoky/build/tmp/work/corei7-64-poky-linux/swupdate/2018.11-r0/reci=
+pe-sysroot-native/usr/bin/x86_64-poky-linux/../../libexec/x86_64-poky-linu=
+x/gcc/x86_64-poky-linux/8.2.0/ld:
+                            uboot.c:(.text.bootloader_env_set+0xf8):
+                            undefined reference to `fw_env_write'</div>
+                          <div>"""</div>
+                          <div>I see lots of "uboot" in the trace, but
+                            to my understanding swupdate should also
+                            work with grub which I enabled using:</div>
+                          <div>EFI_PROVIDER =3D "grub-efi"=C2=A0=C2=A0=C2=
+=A0 (First tried
+                            to use
+                            PREFERRED_PROVIDER_virtual/bootloader, but
+                            this doesn't work with EFI booting)</div>
+                          <div>When I want to enable "uboot" this way,
+                            bitbake tells me there is no uboot.</div>
+                          <div>=C2=A0</div>
+                          <div>I know there is also the option of
+                            writing my own init scripts but this would
+                            be just reinventing the wheel (given there
+                            is an swupdate available) and probably more
+                            error-prone than a grown update tool. Thus I
+                            would like to get swupdate to work.</div>
+                          <div>=C2=A0</div>
+                          <div>Any ideas ?</div>
+                          <div>=C2=A0</div>
+                          <div>Best regards</div>
+                          <div>Moritz</div>
+                        </div>
+                      </div>
+                      =C2=A0
+                      <fieldset class=3D"mimeAttachmentHeader">=C2=A0</fie=
+ldset>
+                    </blockquote>
+                    -- _______________________________________________
+                    yocto mailing list <a
+                      class=3D"moz-txt-link-abbreviated"
+                      href=3D"mailto:yocto@yoctoproject.org"
+                      moz-do-not-send=3D"true">yocto@yoctoproject.org</a>
+                    <a
+                      href=3D"https://lists.yoctoproject.org/listinfo/yoct=
+o"
+                      target=3D"_blank" moz-do-not-send=3D"true">https://l=
+ists.yoctoproject.org/listinfo/yocto</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      </blockquote>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+    </blockquote>
+  </body>
+</html>
+
+--------------7C55C19C63FD4FEC8C7BBF8D--
