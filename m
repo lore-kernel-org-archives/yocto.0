@@ -1,60 +1,39 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DDD9FE00D35; Mon, 27 May 2019 13:49:48 -0700 (PDT)
+	id 969B7E00D35; Mon, 27 May 2019 18:00:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marek.belisko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.43 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
-	[209.85.221.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08954E00C78
-	for <yocto@yoctoproject.org>; Mon, 27 May 2019 13:49:47 -0700 (PDT)
-Received: by mail-wr1-f43.google.com with SMTP id b18so17917683wrq.12
-	for <yocto@yoctoproject.org>; Mon, 27 May 2019 13:49:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=XX3s24rWgHupkKgaZOL2+x+WHj8OUkFrxRNfRRTLP1o=;
-	b=S+CkM+y6keDz9JtWd7dggREI+C90uwd8Y7w49FXDDKu99Wlb0yueS9++i3LGEt0ZqJ
-	eyq4mS3dvcT0Y05s0GkkxR9x5Ddm72RXc0P0PpZzDdSCfe5/+kquEZ7M1SOlOgU8+FeH
-	JlxkhX2eTCJ1bNEyMTRCDRrHR2zUJCjxYkFdLNStyNV8ZRYnL1Fju6UHWMpDGrwAJ99z
-	AyigDIri+mH1MPJxf4tvfVdvswvV+X6zqhTyur3dvLhqMYY5EoL2ML2karL3JWEWQQw/
-	apeofYIhrA4JVQk0qjfhtbhEfe40VW/0lo9Yn9KzU3oiQRZOLi/qQNSJGUgYy7xXUTCp
-	wR2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=XX3s24rWgHupkKgaZOL2+x+WHj8OUkFrxRNfRRTLP1o=;
-	b=c+0rizY9+F6MYEVcU6hiGC+c20Ih62vvF5JNBRZAM6SzF3bQNQgMHdwhCVs7XSRTs9
-	lTDw8M07pV2vM8bazLNpmMH6AITYt9gN1TCrVF3il7tV9Yjv4569CHjDRd6Yf6IgjNgJ
-	dzrG7Qmie3wP29eqarsgxDcZim2mHH1ETQwOLX1kKAZR6BJ31FWIohtLNcK6e+ZAedqy
-	foakakLTqyPw3/hEDWXrbfA3Wyc7OqM3Ssny3AgUP0QTCrPld+9dOhcErZKGgmYO7nu9
-	s95LbHVRvids7SNFHniwjDNn5+HDOZRXi0VefjkyrF0ZRBSXlf4MEsFy3mOTK2ZsoZ7/
-	Mhvg==
-X-Gm-Message-State: APjAAAUusJzQXe9BG3wSSNOVO2NaLpLLVdmDIJlPbZCbPapvyzz8r7qv
-	xsd1mC6fqmMcKgNKWKokJxuc/GKR1UiQCVXwEbSP+C4o2RY=
-X-Google-Smtp-Source: APXvYqy3hkccA9/MH9JXQZ80v/w9ol1XL1tNSF/2yvjdhxjsfkvoC7OTJ0IvMkt10CvR4gCSDUiZwGcb3GypRxG1zuc=
-X-Received: by 2002:adf:cc8d:: with SMTP id p13mr22904600wrj.114.1558990186788;
-	Mon, 27 May 2019 13:49:46 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77C3DE00C37
+	for <yocto@yoctoproject.org>; Mon, 27 May 2019 18:00:37 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x4S100D0019823
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Mon, 27 May 2019 18:00:26 -0700
+Received: from [128.224.162.186] (128.224.162.186) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.439.0;
+	Mon, 27 May 2019 18:00:25 -0700
+To: <yocto@yoctoproject.org>
+References: <1551779999-231946-1-git-send-email-changqing.li@windriver.com>
+	<3427a8c2-543e-f71c-9c10-fca3b5c0667e@windriver.com>
+From: Changqing Li <changqing.li@windriver.com>
+Message-ID: <a42d5db8-1cae-008e-dd8f-d533662007d6@windriver.com>
+Date: Tue, 28 May 2019 09:00:22 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.2.1
 MIME-Version: 1.0
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Mon, 27 May 2019 22:49:34 +0200
-Message-ID: <CAAfyv37hwLXMMXsu1Vbh-C5jLq+ETzHxL79m4Cq6h8_sJ9Kwgw@mail.gmail.com>
-To: yocto <yocto@yoctoproject.org>
-Subject: gstreamer1.0-plugins-base meta-sunxi issue with custom virtual/egl or virtual/libgles2 on thud
+In-Reply-To: <3427a8c2-543e-f71c-9c10-fca3b5c0667e@windriver.com>
+X-Originating-IP: [128.224.162.186]
+Subject: Re: [patchtest-oe][PATCH] test_metadata_src_uri: new unittest detecting added patch files without modifying SRC_URI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,80 +45,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 27 May 2019 20:49:48 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 28 May 2019 01:00:38 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-Hi,
+ping
 
-I'm trying to compile image using libnice which have dependency on
-gstreamer. Everything went fine but I get QA issues for plugins-base
-like:
-
-ERROR: gstreamer1.0-plugins-base-1.14.4-r0 do_package_qa: QA Issue:
-/usr/lib/libgstgl-1.0.so.0.1404.0 contained in package libgstgl-1.0
-requires libGLESv2.so, but no providers found in
-RDEPENDS_libgstgl-1.0? [file-rdeps]
-ERROR: gstreamer1.0-plugins-base-1.14.4-r0 do_package_qa: QA Issue:
-/usr/lib/libgstgl-1.0.so.0.1404.0 contained in package libgstgl-1.0
-requires libEGL.so, but no providers found in RDEPENDS_libgstgl-1.0?
-[file-rdeps]
-ERROR: gstreamer1.0-plugins-base-1.14.4-r0 do_package_qa: QA Issue:
-/usr/lib/gstreamer-1.0/libgstopengl.so contained in package
-gstreamer1.0-plugins-base-opengl requires libGLESv2.so, but no
-providers found in RDEPENDS_gstreamer1.0-plugins-base-opengl?
-[file-rdeps]
-ERROR: gstreamer1.0-plugins-base-1.14.4-r0 do_package_qa: QA Issue:
-/usr/lib/gstreamer-1.0/libgstopengl.so contained in package
-gstreamer1.0-plugins-base-opengl requires libEGL.so, but no providers
-found in RDEPENDS_gstreamer1.0-plugins-base-opengl? [file-rdeps]
-ERROR: gstreamer1.0-plugins-base-1.14.4-r0 do_package_qa: QA run found
-fatal errors. Please consider fixing them.
-ERROR: gstreamer1.0-plugins-base-1.14.4-r0 do_package_qa: Function
-failed: do_package_qa
-
-meta-sunxi is using custom recipe which provide virtual/egl
-virtual/libgles2 see:
-https://github.com/linux-sunxi/meta-sunxi/blob/master/recipes-graphics/libgles/sunxi-mali_git.bb
-
-also in configuration there is:
-PREFERRED_PROVIDER_virtual/mesa ?= "mesa-gl"
-PREFERRED_PROVIDER_virtual/libgl ?= "mesa-gl"
-PREFERRED_PROVIDER_virtual/libgles1 ?= "sunxi-mali"
-PREFERRED_PROVIDER_virtual/libgles2 ?= "sunxi-mali"
-PREFERRED_PROVIDER_virtual/egl ?= "sunxi-mali"
-XSERVER += "sunxi-mali \
-sunxi-mali-dev"
-MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "\
-kernel-module-mali \
-kernel-module-mali-drm \
-"
-
-which is fine. I was able to workaround this issue by adding bbappend
-for plugins base with content:
-RDEPENDS_libgstgl-1.0 += "sunxi-mali"
-RDEPENDS_${PN}-opengl += "sunxi-mali"
-
-and add RPROVIDES_${PN} = "libGLESv1_CM.so libGLESv2.so libEGL.so" to
-sunxi-mali.bb recipe.
-
-Above workaround is not nice because if someone update
-PREFERRED_PROVIDER then gstreamer will be broken. Any ideas how to fix
-properly this QA issue? Thanks.
-
-BR,
-
-marek
-
-
+On 4/29/19 2:10 PM, Changqing Li wrote:
+> ping
+>
+> On 3/5/19 5:59 PM, changqing.li@windriver.com wrote:
+>> From: Changqing Li <changqing.li@windriver.com>
+>>
+>> Adds new unittest detecting when a patch file is added but no 
+>> corresponding
+>> change to the SRC_URI is done.
+>>
+>> This patch is from <daniela.plascencia@linux.intel.com>, get from commit
+>> 49201c19cfe4cadd127b112d2858d5b28db49c20, this commit is reverted by 
+>> commit
+>> 6108d97f83b211f9eb245f339a412debd0ec5db4.
+>>
+>> The added test case is ok, reason of series 9949 patchtest failed is:
+>> recipe weston have REQUIRED_DISTRO_FEATURES, so parse recipe skipped,
+>> cause self.modified is none, actually .bb is mofified, so make the 
+>> testcase failed.
+>>
+>> during patchtest, we don't really need DISTRO_FEATURES, so fix the 
+>> problem
+>> by set REQUIRED_DISTRO_FEATURES to "" in repo patchtest, meantime, 
+>> add this
+>> testcase back.
+>>
+>> [Yocto #13005]
+>>
+>> Signed-off-by: Changqing Li <changqing.li@windriver.com>
+>> ---
+>>   tests/test_metadata_src_uri.py | 25 +++++++++++++++++++++++++
+>>   1 file changed, 25 insertions(+)
+>>
+>> diff --git a/tests/test_metadata_src_uri.py 
+>> b/tests/test_metadata_src_uri.py
+>> index a4c5caa..f684ced 100644
+>> --- a/tests/test_metadata_src_uri.py
+>> +++ b/tests/test_metadata_src_uri.py
+>> @@ -85,3 +85,28 @@ class SrcUri(base.Metadata):
+>>                                 'Amend the patch containing the 
+>> software patch file removal',
+>>                                 data=[('Patch', f) for f in 
+>> not_removed])
+>>   +    def test_src_uri_path_not_updated(self):
+>> +        new_patches = set()
+>> +        for patch in self.patchset:
+>> +            if patch.is_added_file and patch.path.endswith('.patch'):
+>> +                new_patches.add(os.path.basename(patch.path))
+>> +
+>> +        if not new_patches:
+>> +            self.skip('No new patches added, skipping test')
+>> +
+>> +        if not self.modified:
+>> +            self.fail('New patch path missing in SRC_URI',
+>> +                       "Add the patch path to the recipe's SRC_URI",
+>> +                       data=[('New patch(es)', 
+>> '\n'.join(new_patches))])
+>> +
+>> +        for pn in self.modified:
+>> +            rd = self.tinfoil.parse_recipe(pn)
+>> +
+>> +            patchtestdata.PatchTestDataStore['%s-%s-%s' % 
+>> (self.shortid(), self.metadata, pn)] = rd.getVar(self.metadata)
+>> +            test_src_uri    = 
+>> patchtestdata.PatchTestDataStore['%s-%s-%s' % (self.shortid(), 
+>> self.metadata, pn)].split()
+>> +            test_files    = set([os.path.basename(patch) for patch 
+>> in test_src_uri if patch.startswith('file://')])
+>> +
+>> +            if not test_files.issuperset(new_patches):
+>> +                self.fail('New patch path missing in SRC_URI',
+>> +                          "Add the patch path in the recipe's SRC_URI",
+>> +                          data=[('New patch(es)', p) for p in 
+>> new_patches.difference(test_files)])
+>
 -- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
+BRs
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+Sandy(Li Changqing)
+
 
