@@ -1,39 +1,41 @@
 Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 969B7E00D35; Mon, 27 May 2019 18:00:38 -0700 (PDT)
+	id 8A23AE00D39; Mon, 27 May 2019 18:00:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	https://www.dnswl.org/, *      medium trust
 	*      [192.103.53.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77C3DE00C37
-	for <yocto@yoctoproject.org>; Mon, 27 May 2019 18:00:37 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16D63E00D31
+	for <yocto@yoctoproject.org>; Mon, 27 May 2019 18:00:57 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x4S100D0019823
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 27 May 2019 18:00:26 -0700
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x4S100Cw019823
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 27 May 2019 18:00:11 -0700
 Received: from [128.224.162.186] (128.224.162.186) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.439.0;
-	Mon, 27 May 2019 18:00:25 -0700
-To: <yocto@yoctoproject.org>
-References: <1551779999-231946-1-git-send-email-changqing.li@windriver.com>
-	<3427a8c2-543e-f71c-9c10-fca3b5c0667e@windriver.com>
+	Mon, 27 May 2019 17:59:50 -0700
+To: <yocto@yoctoproject.org>, "Burton, Ross" <ross.burton@intel.com>,
+	<pb@pbcl.net>
+References: <b36da33b-df9e-2991-5444-cd45a4c3e2d1@windriver.com>
+	<1556607386-98960-1-git-send-email-changqing.li@windriver.com>
+	<1556607386-98960-2-git-send-email-changqing.li@windriver.com>
 From: Changqing Li <changqing.li@windriver.com>
-Message-ID: <a42d5db8-1cae-008e-dd8f-d533662007d6@windriver.com>
-Date: Tue, 28 May 2019 09:00:22 +0800
+Message-ID: <f35da20a-ae10-1b6e-da56-0b25af2887f6@windriver.com>
+Date: Tue, 28 May 2019 08:59:47 +0800
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.2.1
 MIME-Version: 1.0
-In-Reply-To: <3427a8c2-543e-f71c-9c10-fca3b5c0667e@windriver.com>
+In-Reply-To: <1556607386-98960-2-git-send-email-changqing.li@windriver.com>
 X-Originating-IP: [128.224.162.186]
-Subject: Re: [patchtest-oe][PATCH] test_metadata_src_uri: new unittest detecting added patch files without modifying SRC_URI
+Subject: Re: [update-rc.d][PATCH V3] update-rc.d: support enable/disable options
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,88 +47,149 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 May 2019 01:00:38 -0000
+X-List-Received-Date: Tue, 28 May 2019 01:00:57 -0000
 Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 ping
 
-On 4/29/19 2:10 PM, Changqing Li wrote:
-> ping
+On 4/30/19 2:56 PM, changqing.li@windriver.com wrote:
+> From: Changqing Li <changqing.li@windriver.com>
 >
-> On 3/5/19 5:59 PM, changqing.li@windriver.com wrote:
->> From: Changqing Li <changqing.li@windriver.com>
->>
->> Adds new unittest detecting when a patch file is added but no 
->> corresponding
->> change to the SRC_URI is done.
->>
->> This patch is from <daniela.plascencia@linux.intel.com>, get from commit
->> 49201c19cfe4cadd127b112d2858d5b28db49c20, this commit is reverted by 
->> commit
->> 6108d97f83b211f9eb245f339a412debd0ec5db4.
->>
->> The added test case is ok, reason of series 9949 patchtest failed is:
->> recipe weston have REQUIRED_DISTRO_FEATURES, so parse recipe skipped,
->> cause self.modified is none, actually .bb is mofified, so make the 
->> testcase failed.
->>
->> during patchtest, we don't really need DISTRO_FEATURES, so fix the 
->> problem
->> by set REQUIRED_DISTRO_FEATURES to "" in repo patchtest, meantime, 
->> add this
->> testcase back.
->>
->> [Yocto #13005]
->>
->> Signed-off-by: Changqing Li <changqing.li@windriver.com>
->> ---
->>   tests/test_metadata_src_uri.py | 25 +++++++++++++++++++++++++
->>   1 file changed, 25 insertions(+)
->>
->> diff --git a/tests/test_metadata_src_uri.py 
->> b/tests/test_metadata_src_uri.py
->> index a4c5caa..f684ced 100644
->> --- a/tests/test_metadata_src_uri.py
->> +++ b/tests/test_metadata_src_uri.py
->> @@ -85,3 +85,28 @@ class SrcUri(base.Metadata):
->>                                 'Amend the patch containing the 
->> software patch file removal',
->>                                 data=[('Patch', f) for f in 
->> not_removed])
->>   +    def test_src_uri_path_not_updated(self):
->> +        new_patches = set()
->> +        for patch in self.patchset:
->> +            if patch.is_added_file and patch.path.endswith('.patch'):
->> +                new_patches.add(os.path.basename(patch.path))
->> +
->> +        if not new_patches:
->> +            self.skip('No new patches added, skipping test')
->> +
->> +        if not self.modified:
->> +            self.fail('New patch path missing in SRC_URI',
->> +                       "Add the patch path to the recipe's SRC_URI",
->> +                       data=[('New patch(es)', 
->> '\n'.join(new_patches))])
->> +
->> +        for pn in self.modified:
->> +            rd = self.tinfoil.parse_recipe(pn)
->> +
->> +            patchtestdata.PatchTestDataStore['%s-%s-%s' % 
->> (self.shortid(), self.metadata, pn)] = rd.getVar(self.metadata)
->> +            test_src_uri    = 
->> patchtestdata.PatchTestDataStore['%s-%s-%s' % (self.shortid(), 
->> self.metadata, pn)].split()
->> +            test_files    = set([os.path.basename(patch) for patch 
->> in test_src_uri if patch.startswith('file://')])
->> +
->> +            if not test_files.issuperset(new_patches):
->> +                self.fail('New patch path missing in SRC_URI',
->> +                          "Add the patch path in the recipe's SRC_URI",
->> +                          data=[('New patch(es)', p) for p in 
->> new_patches.difference(test_files)])
+> Add support of enable/disable options, refer
+> https://manpages.debian.org/wheezy/sysv-rc/update-rc.d.8.en.html
 >
+> With support of these options, the usr can never change an existing
+> configuration even after upgrading a package. The program will only
+> install links if none are present, otherwise, it will keep
+> the previous configuration.
+>
+> preinst in update-rc.d.bbclass will delete all the links under
+> rcrunlevel.d, this behavior now conflicts with enable/disable
+> options. so remove preinst from the update-rc.d.bbclass
+>
+> [Yocto 12955]
+>
+> Signed-off-by: Changqing Li <changqing.li@windriver.com>
+> ---
+>   update-rc.d | 81 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+>   1 file changed, 81 insertions(+)
+>
+> diff --git a/update-rc.d b/update-rc.d
+> index e07cf85..a7fb7bc 100644
+> --- a/update-rc.d
+> +++ b/update-rc.d
+> @@ -27,6 +27,7 @@ usage()
+>   usage: update-rc.d [-n] [-f] [-r <root>] <basename> remove
+>          update-rc.d [-n] [-r <root>] [-s] <basename> defaults [NN | sNN kNN]
+>          update-rc.d [-n] [-r <root>] [-s] <basename> start|stop NN runlvl [runlvl] [...] .
+> +       update-rc.d [-n] [-r <root>] [-s] <basename> enable|disable [S|2|3|4|5]
+>   		-n: not really
+>   		-f: force
+>   		-v: verbose
+> @@ -101,6 +102,53 @@ makelinks()
+>   	done
+>   }
+>   
+> +# function to disable/enable init script link of one run level
+> +# $1 should be K/S, means to disable/enable
+> +# $2 means which run level to disable/enable
+> +renamelink()
+> +{
+> +	local oldstartstop newstartstop lev oldnn newnn
+> +	if [ "x$1" = "xS" ]; then
+> +		oldstartstop="K"
+> +		newstartstop="S"
+> +	else
+> +		oldstartstop="S"
+> +		newstartstop="K"
+> +	fi
+> +
+> +	lev=$2
+> +	# modifies existing runlevel links for the script /etc/init.d/name by renaming start links to stop link
+> +        # or stop link to start link with a sequence number equal to the difference of 100 minus the original sequence number.
+> +	if ls ${etcd}${lev}.d/${oldstartstop}*${bn} >/dev/null 2>&1; then
+> +		oldnn=`basename ${etcd}${lev}.d/${oldstartstop}*${bn}|cut -c2-3`
+> +		newnn=$[100-$oldnn]
+> +		[ $verbose -eq 1 ] && echo "rename ${etcd}${lev}.d/${oldstartstop}${oldnn}${bn} -> ${etcd}${lev}.d/${newstartstop}${newnn}${bn}"
+> +		if [ $notreally -eq 0 ];then
+> +			mv ${etcd}${lev}.d/${oldstartstop}${oldnn}${bn} ${etcd}${lev}.d/${newstartstop}${newnn}${bn}
+> +		fi
+> +		if [ $dostart -eq 1 ] && [ $newstartstop = "S" ] && [ $lev = $RUNLEVEL ]; then
+> +			$fn start || true
+> +		fi
+> +	fi
+> +
+> +}
+> +
+> +# function to disable/enable init script link
+> +# $1 should be K/S, means to disable/enable
+> +# $2 run level [S|2|3|4|5], optional, If no start runlevel is
+> +# specified after the disable or enable keywords
+> +# the script will attempt to modify links in all start runlevels
+> +renamelinks()
+> +{
+> +	if [ $# -eq 2 ]; then
+> +		renamelink $1 $2
+> +	else
+> +		for i in 2 3 4 5 S; do
+> +			renamelink $1 $i
+> +		done
+> +	fi
+> +}
+> +
+>   while [ $# -gt 0 ]; do
+>   	case $1 in
+>   		-n)	notreally=1
+> @@ -221,6 +269,13 @@ case $1 in
+>   		;;
+>   
+>   	start | stop)
+> +		if [ $# -lt 4 ]
+> +		then
+> +			echo "Not enough arguments"
+> +			usage
+> +			exit 1
+> +		fi
+> +
+>   		while [ $# -gt 0 ]; do
+>   			if [ $1 = "start" ]; then
+>   				letter=S
+> @@ -251,6 +306,32 @@ case $1 in
+>   		makelinks
+>   		;;
+>   
+> +	enable | disable)
+> +		if [ $1 = "enable" ]; then
+> +			letter=S
+> +		elif [ $1 = "disable" ]; then
+> +			letter=K
+> +		else
+> +			usage
+> +			exit 1
+> +		fi
+> +		shift
+> +		#
+> +		if [ $# -gt 0 ]
+> +		then
+> +			case $1 in
+> +				S|2|3|4|5)
+> +					renamelinks $letter $1
+> +					;;
+> +				*)
+> +					usage
+> +					exit 1
+> +					;;
+> +			esac
+> +		else
+> +			renamelinks $letter
+> +		fi
+> +		;;
+>   	*)
+>   		usage
+>   		exit 1
+
 -- 
 BRs
 
