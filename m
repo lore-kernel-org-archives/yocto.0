@@ -1,49 +1,61 @@
-Return-Path: <Norman.Stetter@garz-fricke.com>
+Return-Path: <aaron.biver@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5B5E0E00D48; Wed, 29 May 2019 06:31:32 -0700 (PDT)
+	id 02ABAE00BE9; Wed, 29 May 2019 08:12:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [212.72.187.39 listed in list.dnswl.org]
-Received: from mailout-afstr39.mailout.artfiles.de
-	(mailout-afstr39.mailout.artfiles.de [212.72.187.39])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C668E00D46
-	for <yocto@yoctoproject.org>; Wed, 29 May 2019 06:31:30 -0700 (PDT)
-Received: from [89.27.136.47] (helo=mail.garz-fricke.com)
-	auth=mx@garz-fricke.com by mailout.artfiles.de with esmtpsa
-	(TLS1.2:ECDHE_RSA_AES_256_CBC_SHA384:256) (Exim 4.86_2)
-	id 1hVyfj-0005QU-7j; Wed, 29 May 2019 15:31:15 +0200
-Received: from SRV24.hamburg.garz-fricke.de ([fe80::91bd:d629:787:188]) by
-	SRV24.hamburg.garz-fricke.de ([fe80::91bd:d629:787:188%12]) with mapi
-	id 14.03.0439.000; Wed, 29 May 2019 15:30:28 +0200
-From: Norman Stetter <Norman.Stetter@garz-fricke.com>
-To: Paul Barker <paul@betafive.co.uk>, "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Building single package as image, respecting dependencies
-Thread-Index: AdUQmvjUgZzqIjtPR86llJuZzr/bmQAtXcWAAAUv9UD//+/YAP/+x/TwgAKG+QD//4+pIIAGt1YA//4LTUA=
-Date: Wed, 29 May 2019 13:30:28 +0000
-Message-ID: <A24DC035FE5F8F4BAE7F63FB1B07D7BC532FF8@SRV24.hamburg.garz-fricke.de>
-References: <A24DC035FE5F8F4BAE7F63FB1B07D7BC5327B1@SRV24.hamburg.garz-fricke.de>
-	<CAJTo0LYPsgt_8=F7bFQmSNuDrAsC9EZg6WFKoc=B0kknLq6oPQ@mail.gmail.com>
-	<A24DC035FE5F8F4BAE7F63FB1B07D7BC53299E@SRV24.hamburg.garz-fricke.de>
-	<CAJTo0Lb7a63q_LezyqOovtBh9DdGj9ra16MHAehipsJcwCvK7g@mail.gmail.com>
-	<A24DC035FE5F8F4BAE7F63FB1B07D7BC532AD7@SRV24.hamburg.garz-fricke.de>
-	<CAJTo0La8otdHXLLjH-ef_eFKavv2O7UkRasEWSjVc=S9L+3VOA@mail.gmail.com>
-	<A24DC035FE5F8F4BAE7F63FB1B07D7BC532BF8@SRV24.hamburg.garz-fricke.de>
-	<acf7205f-c3ed-59c1-8c4b-ad8d1cf40213@betafive.co.uk>
-In-Reply-To: <acf7205f-c3ed-59c1-8c4b-ad8d1cf40213@betafive.co.uk>
-Accept-Language: en-US, de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.20.0.130]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (aaron.biver[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.170 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com
+	[209.85.208.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C1BAE00A7D
+	for <yocto@yoctoproject.org>; Wed, 29 May 2019 08:12:11 -0700 (PDT)
+Received: by mail-lj1-f170.google.com with SMTP id a10so2839489ljf.6
+	for <yocto@yoctoproject.org>; Wed, 29 May 2019 08:12:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=tDGOtAUMENfHQ39pvfDrPeWahijZq4zNOHh3+UDmuJM=;
+	b=X63U0NCxIeW1r88Kc5riBqGztALkMXtaXTyic0rpM1TMNZBtyODxvJOEmtdy37Gn64
+	tkehe9ZDuFM0MPE6+6s7D2TFNpC8BHUHJItcaCm6FIf8mZ1GwC+AwfMEpalSZHpt+wSz
+	VLmV8FihH7A4u0oTL8c6ED2W5MYiuVS1367tDt0LSueNzdx4WINYS+OmV99X9rh9nycu
+	wFbXoX8Gx3wLNiKTfJ+gXBJOEBEYtR0zBLjPu/zdOhXBR4/EsCvULBi+9ulo6a5eWhoR
+	BnGUl9NL7bACoNT10JyuwzBJNjuYOsrp7FYTV91MZvTLQAFGu/S0ZBcIelUzoS+cv9Xu
+	8/SQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=tDGOtAUMENfHQ39pvfDrPeWahijZq4zNOHh3+UDmuJM=;
+	b=DfbRyOzhdhlx7cBMN8WdF2qBSUNyjZrDHulwdGim9u+BfvchTXJc5NZJkXn5Uy/NI6
+	J+UYY3NX3rnfaDu5VpD2hXM10v6s3uUL4NnQGehhA3r5dkW5NkufaMW9U1wvR9EariId
+	boEnHfgt4LR2YZHDt7TiOlhaCvFClUR0JYCecthFIhud65B0KLRfe/C4tgeXvnrguzdZ
+	FgWY99+foAg+9nJkvYqtw0POQ3CYCAcpA7EIs+ZK7gJgzCQL8htCPDddrULcmubnR4RP
+	l1k879OHuQKxtcI7y/9aLuuLJSt0a99bPqGuAKfOwgMQucIEh26w4XeEtO1gaI8HNZIX
+	8wUg==
+X-Gm-Message-State: APjAAAVJAOm96sp2kjWjFEO81po6qdJEuNKW2FQfiTM295gIkciydcNl
+	FSakFIHCkUXMqocrY8ceomipSPA50aR0WXRHAI9w87Wk
+X-Google-Smtp-Source: APXvYqwUbBkjZEYuYHWrCFSpGDjzKB0B4mq0/g4+RlcPNk7bSs9xebKCqttYmg6BkasRk0v+blx05yxlJxgXDtUV8qk=
+X-Received: by 2002:a2e:9112:: with SMTP id m18mr4786678ljg.181.1559142729672; 
+	Wed, 29 May 2019 08:12:09 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Building single package as image, respecting dependencies
+From: A <aaron.biver@gmail.com>
+Date: Wed, 29 May 2019 11:11:58 -0400
+Message-ID: <CAMd7AX__Mty+QP8oK_pwqpPyoh89P-NtjciwbO3YOaCstHu_Wg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Creating a special file as a dependency., .. how do I cause a recipe to execute
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,41 +67,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 May 2019 13:31:32 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 29 May 2019 15:12:12 -0000
+Content-Type: multipart/alternative; boundary="0000000000008e6d4c058a083449"
 
-SGVsbG8gUGF1bCwNCg0KdGhhbmsgeW91IGZvciB5b3VyIHN1Z2dlc3Rpb24uIEkgd2lsbCBsb29r
-IGludG8gaXQuDQoNCk1lYW53aGlsZSBJIHdvcmtlZCBhcm91bmQgbXkgaXNzdWUgYnkgYnVpbGRp
-bmcgYWxsIHB5dGhvbjMgcGFja2FnZXMsIGJ1dCBleGNsdWRpbmcgdGhlbSBmcm9tIHRoZSByb290
-ZnMuIFRoZW4gdGhleSBnZXQgaW5zdGFsbGVkIGludG8gYSBzZXBhcmF0ZSAncm9vdGZzJywgd2hp
-Y2ggSSBwYWNrIGFzIGEgc3F1YXNoZnMgaW1hZ2UuDQoNCkl0IG1pZ2h0IG5vdCBiZSB0aGF0IGVs
-ZWdhbnQsIGJ1dCBpdCB3b3Jrcy4NCg0KUmVnYXJkcywNCg0KTk9ybWFuDQoNCg0KTWl0IGZyZXVu
-ZGxpY2hlbiBHcsO8w59lbiAvIEJlc3QgcmVnYXJkcw0KTm9ybWFuIFN0ZXR0ZXINClNXIEVOV0lD
-S0xVTkcgRU1CRURERUQgU1lTVEVNUw0KR2FyeiAmIEZyaWNrZSBHbWJIDQoNCjIxMDc5IEhhbWJ1
-cmcNCkRpcmVjdDogKzQ5IDQwIDc5MTg5OSAtIDQ3Nw0KRmF4OiArNDkgNDAgNzkxODk5IC0gMzkN
-Ck5vcm1hbi5TdGV0dGVyQGdhcnotZnJpY2tlLmNvbQ0Kd3d3LmdhcnotZnJpY2tlLmNvbQ0KV0Ug
-TUFLRSBJVCBZT1VSUyENCg0KU2l0eiBkZXIgR2VzZWxsc2NoYWZ0OiBELTIxMDc5IEhhbWJ1cmcN
-ClJlZ2lzdGVyZ2VyaWNodDogQW10c2dlcmljaHQgSGFtYnVyZywgSFJCIDYwNTE0DQpHZXNjaMOk
-ZnRzZsO8aHJlcjogTWF0dGhpYXMgRnJpY2tlLCBNYW5mcmVkIEdhcnosIE1hcmMtTWljaGFlbCBC
-cmF1bg0KDQo+IC0tLS0tVXJzcHLDvG5nbGljaGUgTmFjaHJpY2h0LS0tLS0NCj4gVm9uOiBQYXVs
-IEJhcmtlciBbbWFpbHRvOnBhdWxAYmV0YWZpdmUuY28udWtdDQo+IEdlc2VuZGV0OiBUdWVzZGF5
-LCBNYXkgMjgsIDIwMTkgMTE6MzcgQU0NCj4gQW46IE5vcm1hbiBTdGV0dGVyIDxOb3JtYW4uU3Rl
-dHRlckBnYXJ6LWZyaWNrZS5jb20+OyBCdXJ0b24sIFJvc3MNCj4gPHJvc3MuYnVydG9uQGludGVs
-LmNvbT4NCj4gQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gQmV0cmVmZjogUmU6IFt5b2N0
-b10gQnVpbGRpbmcgc2luZ2xlIHBhY2thZ2UgYXMgaW1hZ2UsIHJlc3BlY3RpbmcNCj4gZGVwZW5k
-ZW5jaWVzDQo+IA0KPiBPbiAyNC8wNS8yMDE5IDE1OjI4LCBOb3JtYW4gU3RldHRlciB3cm90ZToN
-Cj4gPiBJcyB0aGVyZSBubyB3YXkgdG8gc2ltcGx5IGZvcmNlIGJpdGJha2UgdG8gb25seSBidWls
-ZCB0aGUgcGFja2FnZXMgSQ0KPiA+IHdhbnQsIGlnbm9yaW5nIGRlcGVuZGVuY2llcz8gV2UgdXNl
-ZCB0byBidWlsZCB0aGUgaW1hZ2UgbGlrZSB0aGlzDQo+ID4gYmVmb3JlLCB1c2luZyBQVFhEaXN0
-Lg0KPiA+DQo+ID4gRXZlcnl0aGluZyBlbHNlIHNlZW1zIHRvIGJlIGEgZGlydHkgaGFjay4NCj4g
-DQo+IENhbiB5b3UganVzdCBjb2xsZWN0IHRoZSBleHRyYSBwYWNrYWdlcyAoaXBrL2RlYi9ycG0g
-YXMgYXBwcm9wcmlhdGUpLCBwdXQNCj4gdGhlbSBpbiBhIHBhY2thZ2UgZmVlZCBhbmQgaW5zdGFs
-bCB0aGVtIG9uLXRhcmdldCBhcyByZXF1aXJlZD8NCj4gDQo+IFRoZSBwYWNrYWdlIGZlZWQgZG9l
-c24ndCBoYXZlIHRvIGJlIG9uIGEgd2Vic2VydmVyLCB5b3UgY291bGQgcHV0IGl0IGluIGENCj4g
-ZGlyZWN0b3J5IGluIGEgc2VwYXJhdGUgcGFydGl0aW9uIG9uIHRoZSB0YXJnZXQgaWYgdGhhdCdz
-IHdoYXQgeW91IG5lZWQuDQo+IA0KPiBUaGFua3MsDQo+IA0KPiAtLQ0KPiBQYXVsIEJhcmtlcg0K
-PiBNYW5hZ2luZyBEaXJlY3RvciAmIFByaW5jaXBhbCBFbmdpbmVlcg0KPiBCZXRhIEZpdmUgTHRk
-DQo=
+--0000000000008e6d4c058a083449
+Content-Type: text/plain; charset="UTF-8"
 
+I would like to create a directory structure under TMPDIR as part of the
+installation of my bitbake environment... I later create a jffs2 image from
+${TMPDIR}/myapptmp/*.
+
+(If it matters, I'm doing this because I want all my proprietary software
+installed in a separate partition in the QSPI that gets mounted to a
+separate /app directory) on boot.
+
+So, I have my do_install function do things like this:
+    MY_STAGING_DIR=${TMPDIR}/mytmp
+    install -d ${MY_STAGING_DIR}
+    install -d ${MY_STAGING_DIR}/bin
+    install -d ${MY_STAGING_DIR}/script
+...
+
+And my recipe also states things like this:
+FILES_${PN} = " \
+    ${TMPDIR}/mytmp  \
+    ${TMPDIR}/mytmp  /bin \
+    ${TMPDIR}/mytmp  /script \
+...
+
+However, when I delete this directory and run my recipe's do_install
+function, I don't see the temporary directory getting created.
+On the other hand, if I edit my recipe (say, to insert debugging to figure
+out what is going on) and run it again, I see the temporary directory is
+created..
+
+I suppose I could delete the temp directory every time I change code,... if
+I remember every time, this would be great.  On the other hand, how can I
+make the recipe run the do_install when the output object (temp directory)
+is not there?
+
+--0000000000008e6d4c058a083449
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I would like to create a directory structure under TMPDIR =
+as part of the installation of my bitbake environment... I later create a j=
+ffs2 image from ${TMPDIR}/myapptmp/*.<div><br></div><div>(If it matters, I&=
+#39;m doing this because I want all my proprietary software installed in a =
+separate partition in the QSPI that gets mounted to a separate /app directo=
+ry) on boot.</div><div><br></div><div>So, I have my do_install function do =
+things like this:</div><div>=C2=A0 =C2=A0 MY_STAGING_DIR=3D${TMPDIR}/mytmp<=
+br>=C2=A0 =C2=A0 install -d ${MY_STAGING_DIR}<br>=C2=A0 =C2=A0 install -d $=
+{MY_STAGING_DIR}/bin<br>=C2=A0 =C2=A0 install -d ${MY_STAGING_DIR}/script<b=
+r><div>...</div><div><br></div><div>And my recipe also states things like t=
+his:</div></div><div>FILES_${PN} =3D &quot; \<br>=C2=A0 =C2=A0 ${TMPDIR}/my=
+tmp=C2=A0 \<br>=C2=A0 =C2=A0 ${TMPDIR}/mytmp=C2=A0 /bin \<br>=C2=A0 =C2=A0 =
+${TMPDIR}/mytmp=C2=A0 /script \</div><div>...<br><br></div><div>However, wh=
+en I delete this directory and run my recipe&#39;s do_install function, I d=
+on&#39;t see the temporary directory getting created.</div><div>On the othe=
+r hand, if I edit my recipe (say, to insert debugging to figure out what is=
+ going on) and run it again, I see the temporary directory is created..</di=
+v><div><br></div><div>I suppose I could delete the temp directory every tim=
+e I change code,... if I remember every time, this would be great.=C2=A0 On=
+ the other hand, how can I make the recipe run the do_install when the outp=
+ut object (temp directory) is not there?</div><div><br></div><div><br></div=
+><div><br></div></div>
+
+--0000000000008e6d4c058a083449--
