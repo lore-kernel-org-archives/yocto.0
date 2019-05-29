@@ -1,41 +1,65 @@
-Return-Path: <Changqing.Li@windriver.com>
+Return-Path: <ms.priyanshu.sharma@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ED25DE00D42; Tue, 28 May 2019 19:29:08 -0700 (PDT)
+	id CAFB3E00D43; Tue, 28 May 2019 20:46:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9D93E00B8F
-	for <yocto@yoctoproject.org>; Tue, 28 May 2019 19:29:07 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x4T2SwDm022426
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 28 May 2019 19:29:01 -0700 (PDT)
-Received: from [128.224.162.186] (128.224.162.186) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.439.0;
-	Tue, 28 May 2019 19:28:58 -0700
-To: akuster <akuster@mvista.com>, Randy MacLeod <randy.macleod@windriver.com>
-References: <1551779999-231946-1-git-send-email-changqing.li@windriver.com>
-	<3427a8c2-543e-f71c-9c10-fca3b5c0667e@windriver.com>
-	<a42d5db8-1cae-008e-dd8f-d533662007d6@windriver.com>
-	<46d05a5b-c884-0f87-5cee-02d005f04225@mvista.com>
-From: Changqing Li <changqing.li@windriver.com>
-Message-ID: <dd502bbb-d5a4-35fb-fb64-3af8af8a3ede@windriver.com>
-Date: Wed, 29 May 2019 10:28:55 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.2.1
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (ms.priyanshu.sharma[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.42 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com
+	[209.85.210.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7348CE00A7D
+	for <yocto@yoctoproject.org>; Tue, 28 May 2019 20:46:23 -0700 (PDT)
+Received: by mail-ot1-f42.google.com with SMTP id l25so618906otp.8
+	for <yocto@yoctoproject.org>; Tue, 28 May 2019 20:46:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
+	bh=mJNzn2M+zgkz8Tn4ecHd5EG+VVS6oWkQTaXUje3d1kA=;
+	b=Mx8uIF3JtAQGZE6/z3ejDIqKHluIgBBp1TkDg/AlYzvnQ9LdSu5+wZP+IkCUspK/BS
+	hYsX6TLfoqqJhIw9D9w2Z/edL/PIjw5sH9dfS1jm28NKALnsCSJXczykIgWHEHFbqZs6
+	+vq3d40HZtwrUzSEDHvpo3TnjlOcwOVhVb2/3brxcWZtxLcmie1BoIrXXyxl3BSByDOP
+	EobDbrA2IDPSJZX6a/X5FlViyjlF5DftfmsGGWA2ofZvpLwaIOPVuFE5bf4YHXdUBA2H
+	HDWCuERv5iKZxY6dvHYw8ydqXcTVOieT2ni2dxopbPOcVRYUKwcIWRAWpRyWpPf+pKhY
+	dYUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to;
+	bh=mJNzn2M+zgkz8Tn4ecHd5EG+VVS6oWkQTaXUje3d1kA=;
+	b=e8+5VTeXvKY+3DZ5EuJH3B7fwT3x2/UKqbdnmeswSikb/LxMI9Ld9aqPezM2QR7ssR
+	N5kxMboB7zxx1gikk3pUA9SjQXu6HVM2lM/E7g5GoCHgrDbWcL1HiUIHISX0e/MkfDLE
+	/tfHG/r0Cvok2PsxipGU+fzBvj4DugJ0kkXFNqO789khD+llhxFSZRlToislhN9D88vB
+	nV4lNJ/vDM4nJegXZ29eHo1jImUPotNVc9K1c+quBtJMyE5NUbWkXbLNylEM97Jk5N+2
+	/RD7/68THeEqco707xVzRe0llTyMu8CylnHXIzMiH+VTwlAenDST4FPZ2nO146iyUauZ
+	p4FA==
+X-Gm-Message-State: APjAAAUcC1793xtv2Hz6jE2DLHRORN0vzNmCF9iMA2C8roHMcb2nFsgM
+	1z3hkJHH31zalEesPCy40CkqB5CTCK6+5BeHmRqU+8TH
+X-Google-Smtp-Source: APXvYqyXbNHWQ2PGx1o92/KOuzzJlWGY09Mc3mAQ/+sKNoDhx5QVD/enzUp0n+xDVeSF4eQ1EgwTfzyF67g31ApRhHc=
+X-Received: by 2002:a9d:69d9:: with SMTP id v25mr39582oto.4.1559101582490;
+	Tue, 28 May 2019 20:46:22 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <46d05a5b-c884-0f87-5cee-02d005f04225@mvista.com>
-X-Originating-IP: [128.224.162.186]
-Cc: yocto@yoctoproject.org
-Subject: Re: [patchtest-oe][PATCH] test_metadata_src_uri: new unittest detecting added patch files without modifying SRC_URI
+References: <CAA_f9ePQ3mFXpTQBQPEo6-HVgvBma6C3nkNu9k6iHy64-CYe2w@mail.gmail.com>
+	<CAA_f9eMaMJKm8fqwcvti+7BDCc9WjzS2X+u3OeRWuYFs0=-nrg@mail.gmail.com>
+In-Reply-To: <CAA_f9eMaMJKm8fqwcvti+7BDCc9WjzS2X+u3OeRWuYFs0=-nrg@mail.gmail.com>
+From: Priyanshu Sharma <ms.priyanshu.sharma@gmail.com>
+Date: Wed, 29 May 2019 09:16:11 +0530
+Message-ID: <CAA_f9ePDefA8KeyJHZWDVasLX8T_jkV_tXEvzK6PQ3c5=g+zaA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: Custom eSDK build fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,110 +71,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 May 2019 02:29:09 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-List-Received-Date: Wed, 29 May 2019 03:46:24 -0000
+Content-Type: multipart/alternative; boundary="000000000000fe40be0589fe9fc7"
 
+--000000000000fe40be0589fe9fc7
+Content-Type: text/plain; charset="UTF-8"
 
-On 5/28/19 10:53 PM, akuster wrote:
+I have made changes in populate_sdk_ext.bbclass to copy my layers during
+do_populate_sdk and that works fine.
+Now, I'm hitting failure at :
+*ERROR: Failed to generate filtered task list for extensible SDK *( after
+this it prints the contents of my custom conf-notes)
+
+Looking at the source of this error, it comes from populate_sdk_ext.bbclass
+-
+https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/populate_sdk_ext.bbclass#n170
+And its failing because its not finding a tasklist_bb_log.txt.
+
+This text file contains logs of setscene tasks of all the packages built.
+For some reason, this file is not getting auto-generated for my custom
+image.
+
+Any hints?
+
+Warm Regards,
+Priyanshu Sharma
+
+On Wed, May 15, 2019 at 3:57 PM Priyanshu Sharma <
+ms.priyanshu.sharma@gmail.com> wrote:
+
+> I see that my custom layers are not being copied in
+> <image-workdir>/sdk-ext/image/opt/${DISTRO}/${POKY_VERSION}/layers. Though
+> the conf files at
+> <image-workdir>/sdk-ext/image/opt/${DISTRO}/${POKY_VERSION}/conf.
 >
-> On 5/27/19 6:00 PM, Changqing Li wrote:
->> ping
+> How can I include my layers also in this?
+>
+> Warm Regards,
+> Priyanshu Sharma
+>
+> On Thu, May 2, 2019 at 3:12 PM Priyanshu Sharma <
+> ms.priyanshu.sharma@gmail.com> wrote:
+>
+>> Hi,
 >>
->> On 4/29/19 2:10 PM, Changqing Li wrote:
->>> ping
->>>
-> Does this mean you have a working knowledge of patchtest?
+>> I've a custom Yocto layer and use that as TEMPLATECONF for building. My
+>> custom layer also contains the image recipe based on pulsar-image (from
+>> meta-ivi).
+>>
+>> I'm using Yocto 2.5. The extensible sdk build fails at
+>> do_populate_sdk_ext task for my image recipe.
+>>
+>> $ bitbake <image> -f -c populate_sdk_ext
+>> Error -
+>> Exception: FileNotFoundError: [Errno 2] No such file or directory:
+>> '<path-in-build-direcroty>/<image>/<PV>/sdk-ext/image//opt/<distro>/2.5.1/conf/local.conf.bak'
+>> ->
+>> '<path-in-biuld-directory>/<image>/<PV>/sdk-ext/image//opt/<distro>/2.5.1/conf/local.conf'
+>>
+>> If I check the path, <>/sdk-ext/image//opt/<distro>/2.5.1 , this
+>> directory is getting created but getting deleted afterwards.
+>> And  the one left after build fails is -
+>> <>/sdk-ext/image//opt/<distro>/layers
+>>
+>> Is there any configuration to be modified/added for my custom image?
+>>
+>> Warm regards,
+>> Priyanshu Sharma
+>>
 >
-> The one used by the project appears to be off line.  Can you help?
->
-> kind regards,
-> Armin
 
-I have do some work on this,  and can try to help,  but I don't have
+--000000000000fe40be0589fe9fc7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-access right of the server,  and I also don't have the admin account of
+<div dir=3D"ltr"><div dir=3D"ltr"><br>I have made changes in populate_sdk_e=
+xt.bbclass to copy my layers during do_populate_sdk and that works fine.=C2=
+=A0<br>Now, I&#39;m hitting failure at :<br><b>ERROR: Failed to generate fi=
+ltered task list for extensible SDK </b>( after this it prints the contents=
+ of my custom conf-notes)<br><br>Looking at the source of this error, it co=
+mes from populate_sdk_ext.bbclass -=C2=A0
 
-the patchwork.  if  someone can  provide these info,  I am glad to help.
+<a href=3D"https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classe=
+s/populate_sdk_ext.bbclass#n170">https://git.yoctoproject.org/cgit/cgit.cgi=
+/poky/tree/meta/classes/populate_sdk_ext.bbclass#n170</a><br>And its failin=
+g because its not finding a tasklist_bb_log.txt.<br><br>This text file cont=
+ains logs of setscene tasks of all the packages built. For some reason, thi=
+s file is not getting auto-generated for my custom image.=C2=A0<br><br>Any =
+hints?<br><br></div><div>Warm Regards,</div><div>Priyanshu Sharma</div><br>=
+<div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Ma=
+y 15, 2019 at 3:57 PM Priyanshu Sharma &lt;<a href=3D"mailto:ms.priyanshu.s=
+harma@gmail.com">ms.priyanshu.sharma@gmail.com</a>&gt; wrote:<br></div><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
+:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">I see that m=
+y custom layers are not being copied in &lt;image-workdir&gt;/sdk-ext/image=
+/opt/${DISTRO}/${POKY_VERSION}/layers. Though the conf files at &lt;image-w=
+orkdir&gt;/sdk-ext/image/opt/${DISTRO}/${POKY_VERSION}/conf.<div><br></div>=
+<div>How can I include my layers also in this?</div><div><br></div><div>War=
+m Regards,</div><div>Priyanshu Sharma</div></div><br><div class=3D"gmail_qu=
+ote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, May 2, 2019 at 3:12 PM P=
+riyanshu Sharma &lt;<a href=3D"mailto:ms.priyanshu.sharma@gmail.com" target=
+=3D"_blank">ms.priyanshu.sharma@gmail.com</a>&gt; wrote:<br></div><blockquo=
+te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
+solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">=
+Hi,<div><br></div><div>I&#39;ve a custom Yocto layer and use that as TEMPLA=
+TECONF for building. My custom layer also contains the image recipe based o=
+n pulsar-image (from meta-ivi).=C2=A0</div><div><br></div><div>I&#39;m usin=
+g Yocto 2.5. The extensible sdk build fails at do_populate_sdk_ext task for=
+ my image recipe.</div><div><br></div><div><font face=3D"trebuchet ms, sans=
+-serif">$ bitbake &lt;image&gt; -f -c populate_sdk_ext</font></div><div>Err=
+or -</div><div><font face=3D"trebuchet ms, sans-serif">Exception: FileNotFo=
+undError: [Errno 2] No such file or directory: &#39;&lt;path-in-build-direc=
+roty&gt;/&lt;image&gt;/&lt;PV&gt;/sdk-ext/image//opt/&lt;distro&gt;/2.5.1/c=
+onf/local.conf.bak&#39; -&gt; &#39;&lt;path-in-biuld-directory&gt;/&lt;imag=
+e&gt;/&lt;PV&gt;/sdk-ext/image//opt/&lt;distro&gt;/2.5.1/conf/local.conf&#3=
+9;</font><br></div><div><br></div><div>If I check the path, &lt;&gt;/sdk-ex=
+t/image//opt/&lt;distro&gt;/2.5.1 , this directory is getting created but g=
+etting deleted afterwards.</div><div>And=C2=A0 the one left after build fai=
+ls is - &lt;&gt;/sdk-ext/image//opt/&lt;distro&gt;/layers<br><br>Is there a=
+ny configuration to be modified/added for my custom image?</div><div><br></=
+div><div>Warm regards,<br>Priyanshu Sharma</div></div></div>
+</blockquote></div>
+</blockquote></div></div>
 
->>> On 3/5/19 5:59 PM, changqing.li@windriver.com wrote:
->>>> From: Changqing Li <changqing.li@windriver.com>
->>>>
->>>> Adds new unittest detecting when a patch file is added but no
->>>> corresponding
->>>> change to the SRC_URI is done.
->>>>
->>>> This patch is from <daniela.plascencia@linux.intel.com>, get from
->>>> commit
->>>> 49201c19cfe4cadd127b112d2858d5b28db49c20, this commit is reverted by
->>>> commit
->>>> 6108d97f83b211f9eb245f339a412debd0ec5db4.
->>>>
->>>> The added test case is ok, reason of series 9949 patchtest failed is:
->>>> recipe weston have REQUIRED_DISTRO_FEATURES, so parse recipe skipped,
->>>> cause self.modified is none, actually .bb is mofified, so make the
->>>> testcase failed.
->>>>
->>>> during patchtest, we don't really need DISTRO_FEATURES, so fix the
->>>> problem
->>>> by set REQUIRED_DISTRO_FEATURES to "" in repo patchtest, meantime,
->>>> add this
->>>> testcase back.
->>>>
->>>> [Yocto #13005]
->>>>
->>>> Signed-off-by: Changqing Li <changqing.li@windriver.com>
->>>> ---
->>>>    tests/test_metadata_src_uri.py | 25 +++++++++++++++++++++++++
->>>>    1 file changed, 25 insertions(+)
->>>>
->>>> diff --git a/tests/test_metadata_src_uri.py
->>>> b/tests/test_metadata_src_uri.py
->>>> index a4c5caa..f684ced 100644
->>>> --- a/tests/test_metadata_src_uri.py
->>>> +++ b/tests/test_metadata_src_uri.py
->>>> @@ -85,3 +85,28 @@ class SrcUri(base.Metadata):
->>>>                                  'Amend the patch containing the
->>>> software patch file removal',
->>>>                                  data=[('Patch', f) for f in
->>>> not_removed])
->>>>    +    def test_src_uri_path_not_updated(self):
->>>> +        new_patches = set()
->>>> +        for patch in self.patchset:
->>>> +            if patch.is_added_file and patch.path.endswith('.patch'):
->>>> +                new_patches.add(os.path.basename(patch.path))
->>>> +
->>>> +        if not new_patches:
->>>> +            self.skip('No new patches added, skipping test')
->>>> +
->>>> +        if not self.modified:
->>>> +            self.fail('New patch path missing in SRC_URI',
->>>> +                       "Add the patch path to the recipe's SRC_URI",
->>>> +                       data=[('New patch(es)',
->>>> '\n'.join(new_patches))])
->>>> +
->>>> +        for pn in self.modified:
->>>> +            rd = self.tinfoil.parse_recipe(pn)
->>>> +
->>>> +            patchtestdata.PatchTestDataStore['%s-%s-%s' %
->>>> (self.shortid(), self.metadata, pn)] = rd.getVar(self.metadata)
->>>> +            test_src_uri    =
->>>> patchtestdata.PatchTestDataStore['%s-%s-%s' % (self.shortid(),
->>>> self.metadata, pn)].split()
->>>> +            test_files    = set([os.path.basename(patch) for patch
->>>> in test_src_uri if patch.startswith('file://')])
->>>> +
->>>> +            if not test_files.issuperset(new_patches):
->>>> +                self.fail('New patch path missing in SRC_URI',
->>>> +                          "Add the patch path in the recipe's
->>>> SRC_URI",
->>>> +                          data=[('New patch(es)', p) for p in
->>>> new_patches.difference(test_files)])
->
--- 
-BRs
-
-Sandy(Li Changqing)
-
-
+--000000000000fe40be0589fe9fc7--
