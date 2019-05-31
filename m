@@ -1,65 +1,62 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 32956E00D6B; Fri, 31 May 2019 04:31:17 -0700 (PDT)
+	id 8EB64E00D61; Fri, 31 May 2019 05:21:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jupiter.hce[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.50 listed in list.dnswl.org]
+	*      [209.85.166.171 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com
-	[209.85.166.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B690AE00D61
-	for <yocto@yoctoproject.org>; Fri, 31 May 2019 04:31:16 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id r185so7864312iod.6
-	for <yocto@yoctoproject.org>; Fri, 31 May 2019 04:31:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=Jtc9IPewrgKSA4I9HkHmL+HxD7sMrMAxUnW/qA+W/wA=;
-	b=pvApjnSOFVI6Fxu2Y0jOqAltGfBowqY5KpW7LT1tGlEuL5C3v7xCXJuHxWUdhr5HTD
-	9J7ExOcaw4DFOiCxulDTkKHMK8V8mzD/Aqlf8vqcu03bfwZEOnTTMA7L9L7X045QUHzE
-	Ei/asSvSxWFlD/4/kx9sBX/5kgZRdnLfjqIU1om/Zz+yxP/fueAnegAieR0P6wYnnbbS
-	GUdnAJujMGPu/FpzG8MjPclHkm9QulGzgM1eiUHx9BR3MCiOwmai4DeDxzap4onx7Dbs
-	jRvnSZfujhuQujp13erpG/Vy6Jel6KNT05q/MPrvgpW1vU49OmsVFRrVUVCqhmQ2O8f7
-	rUWA==
+Received: from mail-it1-f171.google.com (mail-it1-f171.google.com
+	[209.85.166.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76610E00D52
+	for <yocto@yoctoproject.org>; Fri, 31 May 2019 05:21:41 -0700 (PDT)
+Received: by mail-it1-f171.google.com with SMTP id m3so15356307itl.1
+	for <yocto@yoctoproject.org>; Fri, 31 May 2019 05:21:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=8MsC/tFe7K16NzLkQveN7LbbvARrpyLO1q4ja6Lw3NU=;
+	b=QvP/5kD3hFs04FloMWfYoeR+1/WXvaUliBPmeJnEDG9yivkqxPrNkxLlqdTLPzFF2G
+	MvG5ZQItEi/Q6+ryi5MGxbakJ82rykzruMObu1V8r5tO2WaCwiPhwJhh0vCJMGN7+vhK
+	WcobJQod4IjzhZLCnZFaq0O+CAzmwSXEqatiWIEh5ptGtDcsiWcz3uPX5q91lVGTEJjz
+	tzAagB8/Fkd4qowEnYGvOcormMJxKeTsmWLCRdzAYrzvfy6noS+3ZCGTFoTujlUtA5Jn
+	5ogKzSR8unRQ5Z9OrygZCPIM0JLGzSKfTB3a82fhCAugabPAtwApGk62SCQff0JifrGn
+	Wqvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=Jtc9IPewrgKSA4I9HkHmL+HxD7sMrMAxUnW/qA+W/wA=;
-	b=e3xvqClfS0eyxV4Kf0JFDbhrJ7ibEteNBkyY7GgtQApL3aLCwll9WtSM5adtNjgRtv
-	5dr4MMDCU55A4dmXJS/28DwYG9lVvF9PZ5q7/XwaEAESrnU/eQBkpJIJdiiWvumImZ8S
-	d47dpTelMWAjHY0zoKrYBKCsnxrxzzzXDqcoYsxQOPE0fbvIJqx7r6QIm3VI4MrVqocn
-	ew9wrhyFf5CfnN7Qc6MDbW2gr9xVsrDB5tQakPFZPJzZHGwE55tZmjQN4KHDLLN/DPtG
-	t+mnwvlYZzHmXLy6sk5hvK2w+SCHDKZ7KJQ0CDzmDPVutLPanTMaZJjJGO9FcWn7mXHV
-	kzdg==
-X-Gm-Message-State: APjAAAVIx5xNgHl1XAbEIaNqKPF12ARwZkn2V5+iTrKRaQAdLe5fyKfB
-	VceFfGzlpzIKcvHfsllHmxANTCmFNT3KlBrRzZM4CQ==
-X-Google-Smtp-Source: APXvYqw2Mk1zydBAina9do5XhSY7OGOIGBiysYqrS69IO3uKglIS7UAXHz1SJBB8+U+I3NXbovpjrUisf0S9mkTOG28=
-X-Received: by 2002:a6b:38c3:: with SMTP id f186mr6341230ioa.187.1559302276059;
-	Fri, 31 May 2019 04:31:16 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=8MsC/tFe7K16NzLkQveN7LbbvARrpyLO1q4ja6Lw3NU=;
+	b=asWlKkRNw1BtuSY/494joLbyKS8FGs640KCUyOGMYHps2j0rH2sUKLcl1D3p8gOOVc
+	fM4UPq8B5anFZxP7cqePuAO4O71gPL+OjE1linM2BRUecrEXtVGroEyfUUbnC2TNfYGE
+	5usk25qHfoVX81Jzb5C5bUGfeB4D9rHTmBsWalhC+XHBsPnfnVClC86DnzvwpMhKAgUb
+	wydgLvvd/BXu0MdNeRbKDwFul06GflgxPsvM1ixTPljUlO04LZLSDMAW0oKjKCe2xoKL
+	wu4QOFlTvQ1ejQzHOHRFQUItPf6na/LTyjH+bBsSarttJMdcR12NDuMafi1a5Mrx2Qik
+	Ds5Q==
+X-Gm-Message-State: APjAAAWzo+73wn/wlRCPkIZmflkn1QPow1wr8DiP5jTp0p9LYAtOYaxt
+	j5FbZ3jQlqb23YVz3lEd8UeqpmzjHWFeYjf0LbyAJu2k
+X-Google-Smtp-Source: APXvYqwyvEA7D3djekzo0sKDL3jtJOO0MsOPhA0CVgqd73QtiQ6AguSl8pjdJ9J1kaJpuuUMNFxdekENIMwbWn8kuOY=
+X-Received: by 2002:a02:70d6:: with SMTP id f205mr6450888jac.138.1559305300737;
+	Fri, 31 May 2019 05:21:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <CALEwogiTw_xO+T4-vopZGQ+6MZOC+qCdTfug4wAWLJN-saa81Q@mail.gmail.com>
-	<CANNYZj8D8RjHcJV4bLsVQDEPkSdhiYU7vyWWZUAP+J-ZpNwN+g@mail.gmail.com>
-	<CALEwogg926iAfj+nyYJPJd92f3ByBi0+0uS8Uvof4DeB5Kpniw@mail.gmail.com>
-	<CANNYZj-Gf3Va9JXPvKpPc0=A013F-4dR=qG0YyE8VU3jnyObOw@mail.gmail.com>
-	<CALEwogi0mA4cHV_DWDdf92NP7o6o7WpMZZJZ+OAKeC_Nsdw=Ag@mail.gmail.com>
-In-Reply-To: <CALEwogi0mA4cHV_DWDdf92NP7o6o7WpMZZJZ+OAKeC_Nsdw=Ag@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 31 May 2019 12:31:05 +0100
-Message-ID: <CAJTo0Larf5ibOE1V0Veepjefx-gzTtq79uMwP1-4w8gcfjqJvA@mail.gmail.com>
-To: =?UTF-8?Q?Serkan_T=C3=BCrker?= <serkan.tuerker@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Python module not found when using autotools
+Received: by 2002:ac0:92cf:0:0:0:0:0 with HTTP; Fri, 31 May 2019 05:21:40
+	-0700 (PDT)
+From: JH <jupiter.hce@gmail.com>
+Date: Fri, 31 May 2019 22:21:40 +1000
+Message-ID: <CAA=hcWTwG4oo=qJvbrx04zaTXRy8u1H6HLEGV_J7r25jpzSVOA@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: How to extract files from wic.gz image?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,26 +68,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 May 2019 11:31:17 -0000
+X-List-Received-Date: Fri, 31 May 2019 12:21:42 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, 30 May 2019 at 21:27, Serkan T=C3=BCrker <serkan.tuerker@gmail.com>=
- wrote:
-> I understand the process of debugging build failures. I am just confused =
-why my approach doesn't work.
-> "python-soundcloud.bb" has the same format like other python module recip=
-es in meta-oe.
-> In tizonia.bb, I have added "python-soundcloud" to DEPENDS, so I assumed =
-bitbake would resolve the necessary path's, which are necessary for the bui=
-ld.
-> It is also not only my fault not being able to fix this, it is also large=
-ly related to the fact, that there is not much documentation around how to =
-start developing with Yocto in general.
+Hi,
 
-*How* is it looking for the module.  If as Alex said, it is running
-the *native* Python, then it won't be finding any *target* modules
-that you have DEPENDed on.
+What command and tools to extract files from Yocto / bitbake image
+such as dev-image-20190528085324.rootfs.wic.gz?
 
-Ross
+I am using IMX UUU to install dev-image-20190528085324.rootfs.wic.gz
+to IMX, I was advised to extract the archive and use "uuu <script
+name>" or "uuu u-boot-dtb.imx" to get bootloader work first.
+
+Thank you.
+
+- jupiter
 
