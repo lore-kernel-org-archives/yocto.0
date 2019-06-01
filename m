@@ -1,63 +1,67 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <morne.lamprecht@melangex.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF9B7E00B18; Sat,  1 Jun 2019 08:43:38 -0700 (PDT)
+	id 6FC35E00D3F; Sat,  1 Jun 2019 11:26:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marek.belisko[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.67 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.128.52 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
-	[209.85.221.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42B6AE00A96
-	for <yocto@yoctoproject.org>; Sat,  1 Jun 2019 08:43:38 -0700 (PDT)
-Received: by mail-wr1-f67.google.com with SMTP id m6so2708345wrj.10
-	for <yocto@yoctoproject.org>; Sat, 01 Jun 2019 08:43:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=bahi5IS5kKSKTeHIP7q1ubuZxeemm/Qk+UjyRVYb6yI=;
-	b=BrE4HmNObFrczAb4xNm0RCgLzlZhH8TgZZsiaEl6VGtmYxQX440J/5Pg6UoM/0nHZI
-	XtSKb3sN5z5e3pVwn7Uiu/LR/aTzyDZRXjEihWn9gD6MJ59lqV8hKHEggZQm7ETRuXQl
-	ArIJKmilVWsiv9F8JR2ZggaTp5XKrFpmDQfV5F/JoIbZdHP9zQ5wKPkfj1a6kZj9zahL
-	iBlXJ6/lMUQ0QkEI9ooWl/HemDoEfMT4X0B+VqrooAIv9He3noiJrkF29xuroG7OaBm0
-	p8pmE4qmLeHf+9pN9h3T5GAm8DbODCgJsX6otBankCsZ5CmSkGI8ZXOwmBm1ZTmJ2JW5
-	TD8w==
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
+	[209.85.128.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01CE4E00B18
+	for <yocto@yoctoproject.org>; Sat,  1 Jun 2019 11:26:02 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id t5so7820989wmh.3
+	for <yocto@yoctoproject.org>; Sat, 01 Jun 2019 11:26:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=melangex-com.20150623.gappssmtp.com; s=20150623;
+	h=sender:date:from:to:cc:subject:message-id:references:mime-version
+	:content-disposition:content-transfer-encoding:in-reply-to
+	:user-agent; bh=czbbFhSANWVKFonkm2B/TdYyTiqqf1liEmNqVpInc3M=;
+	b=RBZ7Lflae8R7x8V/RX+35tWBqhYa01hmpRCBvlmB77NxZoGWBiU8f8lzkzyzNUP7IP
+	J3A0x+dPAQnKYBNx1s/RAClzEJx0iyV8vz2GkgOmq9Y5ICO75/DvLEZjYON/nZdNtcGI
+	6aZ4ZgYJX1sE48WHNV2SPKHo7IWVbm4CC04pRuFUWoR/i/u9VsijKaI90NJIbbvvqcLD
+	d+xtsjgXExj1zUoLxOMqsrkW4f8jO4p+OyoydD6/CeH0BS5G+Yvbchc2ajxXy3NfH8rQ
+	VQ49bWaPA7xq3BREsGq5udmFaqd47ORuQEdLjJDJcK4FrjW87u363NXOj2EJQxgetB71
+	M7aA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=bahi5IS5kKSKTeHIP7q1ubuZxeemm/Qk+UjyRVYb6yI=;
-	b=hA/cKeW2YxnsVXqGDYr1UvhQ1NycWjq88lz1NtVO4G1l1O7Cr5Rw8KuJK1/fMTf1X1
-	oMtAsuN5vgA5zNmmIKb8RaSEQTvHT3cw2801mhLx64eWyzglJ139NrXf2mJuDuRwUl3X
-	gCpAVvuPitk0l2+ZMphPLCnkleqTtk8ePCHGXoVwEyRxCSa5bMN12kjzlNBjwCZLYGn9
-	otPwGkljt6vFCIyhRrhDkfNoKSOUPs+MUR4T2QYH9x9ZjoCGWKaRJiL9LT4DxeUKMt1A
-	KkGAKr6QC6QY4Jfxir8Vh4/KDQxQA8D+bdTEnSJlpJJqnsu1CxfoOfP+3FPva9gxSyVa
-	EeQw==
-X-Gm-Message-State: APjAAAV5vLPhl+w2NtZ36gBI1TkAXxL1juEUzCADHd3msKUULDAlQq61
-	R1RcBeaLhvD+/zMlULEdyhReaCNfBgdc/wV59YE=
-X-Google-Smtp-Source: APXvYqwV8FI1QCQwRMxRRDugHQJFCOC68AJTJCn/boWrJlv6TbTJqPZ0Ad9eqZGB3Z0DDKyugoAjT3uzDX2xKjlwIKg=
-X-Received: by 2002:a5d:6144:: with SMTP id y4mr10591294wrt.84.1559403817196; 
-	Sat, 01 Jun 2019 08:43:37 -0700 (PDT)
-MIME-Version: 1.0
+	h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+	:references:mime-version:content-disposition
+	:content-transfer-encoding:in-reply-to:user-agent;
+	bh=czbbFhSANWVKFonkm2B/TdYyTiqqf1liEmNqVpInc3M=;
+	b=M+ni8fRIRV6Kd1C4ZfWcZ8PZtinZBleGgZBGdh7LZaUQHNBDjqPZRzL/myFOCEvQfX
+	XGWTDyfcdAavxM1Z7ndSAJcyJFMZVzw1gUl/lChzfjT4spwoKIaVV1dviQAvSadymhbd
+	ujdGS/p51i86NA06c1tJX6UFrPXK4KeNeT4xafcJrIMRYbXPKiCgj8cFs/goSuBtpJIG
+	kgeampw92Ssx9GK12Nuk23igaP8b2v68j94NXQPEKdBqiBDLzBqRkxgBIZwlJdDNjTYJ
+	yBPS23f/bSG6l1ul2ajUIIbq5IZUwNPH8/T2u40ZrcJuqme01g+p77/GD9enfLd1ZWOA
+	ofoA==
+X-Gm-Message-State: APjAAAVZbzfEKvrdTFZIFCmiMmSKYqxjQzYr+7XduBXeRkyoWfnv3vxb
+	HB7/9a9gRd82KeRCdy3GEnN5gg==
+X-Google-Smtp-Source: APXvYqx5QImBVkph2BpuaEInrF1Ia9d2xtCeHa5JMBh05T4kAJ7M++fLo6OAFKQ+RghOB+F7/n8Mcg==
+X-Received: by 2002:a7b:ca4c:: with SMTP id m12mr9017670wml.37.1559413561732; 
+	Sat, 01 Jun 2019 11:26:01 -0700 (PDT)
+Received: from localhost ([209.203.60.70]) by smtp.gmail.com with ESMTPSA id
+	f2sm10311075wrq.48.2019.06.01.11.25.59
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Sat, 01 Jun 2019 11:26:00 -0700 (PDT)
+Sender: =?UTF-8?Q?Morn=C3=A9_Lamprecht?= <morne.lamprecht@melangex.com>
+Date: Sat, 1 Jun 2019 20:25:56 +0200
+From: =?iso-8859-1?Q?Morn=E9?= Lamprecht <morne@linux.com>
+To: Belisko Marek <marek.belisko@gmail.com>
+Message-ID: <20190601182556.GB19383@archworkstation>
 References: <20190601144016.GA19383@archworkstation>
-In-Reply-To: <20190601144016.GA19383@archworkstation>
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Sat, 1 Jun 2019 17:43:25 +0200
-Message-ID: <CAAfyv35XN0SiU8PQ0ZL9tXSk52FxkCsOjuXoxYM35egNL6DTxw@mail.gmail.com>
-To: =?UTF-8?Q?Morn=C3=A9_Lamprecht?= <morne@linux.com>
+	<CAAfyv35XN0SiU8PQ0ZL9tXSk52FxkCsOjuXoxYM35egNL6DTxw@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CAAfyv35XN0SiU8PQ0ZL9tXSk52FxkCsOjuXoxYM35egNL6DTxw@mail.gmail.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Cc: yocto <yocto@yoctoproject.org>
 Subject: Re: do_rootfs fails while attempting to install hostapd package
 X-BeenThere: yocto@yoctoproject.org
@@ -71,56 +75,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 01 Jun 2019 15:43:38 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 01 Jun 2019 18:26:04 -0000
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-Hi,
+>I would check run.do_rootfs and check it maybe 
+>there will be some more info.
 
-On Sat, Jun 1, 2019 at 4:41 PM Morn=C3=A9 Lamprecht <morne@linux.com> wrote=
-:
->
-> Hi
->
-> I created a new custom distribution and
-> everything seems to work fine until the do_rootfs
-> task is executed. It fails specifically when
-> trying to install the hostapd package, with the
-> error below (snippet from log.do_rootfs):
-I would check run.do_rootfs and check it maybe there will be some more info=
-.
-Do you have some custom extension for hostapd? Thanks.
->
-> > Running scriptlet: hostapd-2.6-r0.aarch64
-> >
-> > usage: update-rc.d [-n] [-f] [-r <root>] <basename> remove update-rc.d
-> > [-n] [-r <root>] [-s] <basename> defaults [NN | sNN kNN]
-> > update-rc.d [-n] [-r <root>] [-s] <basename> start|stop NN runlvl [runl=
-vl]
-> >
-> > error: %prein(hostapd-2.6-r0.aarch64) scriptlet failed, exit status 1
->
-> > error: hostapd-2.6-r0.aarch64: install failed
->
-> The hostapd package itself builds fine, it is
-> just the installation to the rootfs that fails.
->
-> The hostapd package is specified in
-> MACHINE_EXTRA_DEPENDS, if I remove it, then the
-> build succeeds without any issues.
->
-> If I interpret the error correctly, it is the
-> preinstall scriptlet that fails...but I am not
-> sure where to start debugging this.
->
-> Any suggestions ?
->
->                 - Morn=C3=A9
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+I checked it based on your suggestion, 
+unfortunately found no relevant info.
 
-marek
+>Do you have some custom extension for hostapd?
+
+No, just the standard package.
+
+		- Morné
 
