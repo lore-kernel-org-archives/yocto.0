@@ -1,66 +1,69 @@
-Return-Path: <anibal.limon@linaro.org>
+Return-Path: <morne.lamprecht@melangex.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6CBD2E00D44; Mon,  3 Jun 2019 11:39:48 -0700 (PDT)
+	id A7BE0E00D4D; Mon,  3 Jun 2019 12:07:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.215.193 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.128.48 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com
-	[209.85.215.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBC39E00B33
-	for <yocto@yoctoproject.org>; Mon,  3 Jun 2019 11:39:47 -0700 (PDT)
-Received: by mail-pg1-f193.google.com with SMTP id e6so7517409pgd.9
-	for <yocto@yoctoproject.org>; Mon, 03 Jun 2019 11:39:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=kk1rEbh/TxU6/fHms84tW3/6tenRWfIkaJaRPC8CbIs=;
-	b=kSBI9o+BwKzwcuS73mbz6OJmePo3NMREkcOqt2BrPFf1YuUqBrzxNmGmwfDBNTCTdr
-	zUw/6PYoS5qKKHCwcpQApKHAxP6pLU2AnglNN8cS2JWVGDJAlZW6P0at6RAvf8cC9ebi
-	Qa7F7BKR8iHk+nsTrjZuwMRu73IJv+RAoc0cO0/FVHjba4ge2tJ7kJ0lMbDHADYwsvPk
-	1RxwbAq8OsbGNdMpoQyOdZqzg7VZf9IaT6kZ/e7sNnKd6V7dlqszMz6CR1CrnCulP6r5
-	3/ChPK0fGuA0k01dd7SHrE8gsVF427IBcnVO72Fk+oRcqB1j/q8qfkh1MSeaASAW67Hg
-	zQlQ==
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com
+	[209.85.128.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1534CE00D38
+	for <yocto@yoctoproject.org>; Mon,  3 Jun 2019 12:07:16 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id d17so4628032wmb.3
+	for <yocto@yoctoproject.org>; Mon, 03 Jun 2019 12:07:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=melangex-com.20150623.gappssmtp.com; s=20150623;
+	h=sender:date:from:to:subject:message-id:mail-followup-to:references
+	:mime-version:content-disposition:content-transfer-encoding
+	:in-reply-to:user-agent;
+	bh=jYHD8dsMcAbdsjbQrIYjg3TuBYUk0oKaTTnmYMW4SGc=;
+	b=QubXGOlljLASKazyUPKIErayhPDoxLP5MWdRB+3SwJaQBTJ4Fr6wBk9/MAIqifp1Tc
+	FeFRgOIsDgNkffV4waCJVGyXcUqSqcRvfwRiZpOnocgQ8eNIyd+1aRZgyfIEv+ps8UCT
+	c2cYCtWzTSo1/ZCianj0MMc27+WCE10SrM8aDRGnnXuSR8iDI88BYi6wTc+4maisCV8c
+	cOBw6o4LqURdoAVYffi6h0I6WXh9+wFPexAI8p/YGfSCoCmRXJWYFpyRsuPTHNDgIf4f
+	RLvCyfEsZ8fbNRk291YcxWcRKbea7TazHUyHOkhngqzW+LrDAXhq22S49d8T1o5MgzRX
+	C7Lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=kk1rEbh/TxU6/fHms84tW3/6tenRWfIkaJaRPC8CbIs=;
-	b=GnQm/H53ozdsrbQ/xOmMXgMUtpvYfxaZP80L4In9yvRuumJNPIJ7sgP3Zq3wau4ARM
-	gV00Nc7LxddhdzZX0TxeV89/Jm/tCFHk2hG2Ujq0bPIlY8oMHTKvnh+xZC9Fx9Wshyay
-	ctXtufMwBuaikSCWnWDk8VB8XjOz/pmbEdNL9WcWRM54vDFaLXpChySZw4WLi1Wbw8Ky
-	p1ApYU/7aPxxgaWbOXvGSaf8GSgbvWUIbVQpqCEv+pNYNRpzYmGdvhA6BpYWY52rNlf9
-	njsx8rIcGMpfIU5fxLLz6GxaSfpn/rNSJCiZG0JuGx1n2j6voucSnQ1GO0sy5+F+oksL
-	6H1A==
-X-Gm-Message-State: APjAAAUrmnsfeAOifqJFYOaRGKKi7nIP4W+62FUy4B64nCTUxsYbdop0
-	hEKCTbTqkrwtJtX1pW0Pzd2LXLKTVLg=
-X-Google-Smtp-Source: APXvYqyT9/hRJNcGfqqnc5eq6UJKyo6VxmGNQ9nV2xOI9gSL6pHTs6sYBbkNXp/Ly/Q8OTrUh1VzkQ==
-X-Received: by 2002:a63:1f11:: with SMTP id f17mr24798438pgf.311.1559587187070;
-	Mon, 03 Jun 2019 11:39:47 -0700 (PDT)
-Received: from blackbox.Home ([200.68.141.43])
-	by smtp.gmail.com with ESMTPSA id
-	w1sm23847414pfg.51.2019.06.03.11.39.45
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 03 Jun 2019 11:39:46 -0700 (PDT)
-From: =?UTF-8?q?An=C3=ADbal=20Lim=C3=B3n?= <anibal.limon@linaro.org>
+	h=x-gm-message-state:sender:date:from:to:subject:message-id
+	:mail-followup-to:references:mime-version:content-disposition
+	:content-transfer-encoding:in-reply-to:user-agent;
+	bh=jYHD8dsMcAbdsjbQrIYjg3TuBYUk0oKaTTnmYMW4SGc=;
+	b=AnM1tlb4h4kS9oy5fXfOIvSuGQMTJw+e82nGQo/ImWKnAHCQ3OvUPhAeV7r4+coT8R
+	p33fnp5sC4Oc5pU5+kSQ43rw1RcFAMYNvT/oC5TOmFGnXxUzVX4t6DS/1m4wSiWmmCX7
+	5a24mSNeLO3NvDUHhMje5LH7HNupgrUGkQd4u3nje5gfHDRNIGxVEiUA9bWPwhKzjtyy
+	rOG6dykiDET/WV0psbQtj1a0Y7SKt+K5MByO4A55RlJdIPXEJOXeU09FnZkiKNsWH8PY
+	kBhnaokER2ed/agSsPdmVcdI8mZO0lPuv3baIsT0aP+EajJzNzYzd2D4b0N/K64fZuIk
+	RfrQ==
+X-Gm-Message-State: APjAAAUvJ7yxLtjLNqOVuVgBlqZudTd6P1m83vxitnS/1YbZwhESxC0w
+	a6BmkErmq40x11iIIJfelTMbM/04hkc=
+X-Google-Smtp-Source: APXvYqyDhjgZFaES8gClCSOPO+JugshJknMOKQ3hJ7geLHTRD5GCNmSKBWkO2aNYEU4dgXendjpgTw==
+X-Received: by 2002:a1c:9957:: with SMTP id b84mr15913525wme.165.1559588835644;
+	Mon, 03 Jun 2019 12:07:15 -0700 (PDT)
+Received: from localhost ([209.203.60.70]) by smtp.gmail.com with ESMTPSA id
+	f2sm16071640wrq.48.2019.06.03.12.07.14 for <yocto@yoctoproject.org>
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Mon, 03 Jun 2019 12:07:14 -0700 (PDT)
+Sender: =?UTF-8?Q?Morn=C3=A9_Lamprecht?= <morne.lamprecht@melangex.com>
+Date: Mon, 3 Jun 2019 21:07:11 +0200
+From: =?iso-8859-1?Q?Morn=E9?= Lamprecht <morne@linux.com>
 To: yocto@yoctoproject.org
-Date: Mon,  3 Jun 2019 13:39:58 -0500
-Message-Id: <20190603183958.14830-1-anibal.limon@linaro.org>
-X-Mailer: git-send-email 2.20.1
+Message-ID: <20190603190711.GB24026@archworkstation>
+Mail-Followup-To: yocto@yoctoproject.org
+References: <CAGAf8Lxb88uf_zw0Hzkc74zSD3GG4zQh-UwzQmBhMTLCxqRd5Q@mail.gmail.com>
 MIME-Version: 1.0
-Subject: [ptest-runner][PATCH] Add SPDX-License-Identifier: GPL-2.0-or-later to source files
+In-Reply-To: <CAGAf8Lxb88uf_zw0Hzkc74zSD3GG4zQh-UwzQmBhMTLCxqRd5Q@mail.gmail.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
+Subject: Re: Potential (?) systemd YOCTO problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,127 +75,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Jun 2019 18:39:48 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 03 Jun 2019 19:07:17 -0000
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Aníbal Limón <anibal.limon@linaro.org>
----
- main.c             | 2 ++
- ptest_list.c       | 2 ++
- ptest_list.h       | 2 ++
- tests/main.c       | 2 ++
- tests/ptest_list.c | 2 ++
- tests/utils.c      | 2 ++
- utils.c            | 2 ++
- utils.h            | 2 ++
- 8 files changed, 16 insertions(+)
+On Mon, Jun 03, 2019 at 07:38:47PM +0200, Zoran Stojsavljevic wrote:
+>Still. I expected to see the following on the 
+>target (my BBB): /etc/init.d/networking script, 
 
-diff --git a/main.c b/main.c
-index e963efe..83cd8f2 100644
---- a/main.c
-+++ b/main.c
-@@ -15,6 +15,8 @@
-  * along with this program; if not, write to the Free Software
-  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * AUTHORS
-  * 	Aníbal Limón <anibal.limon@intel.com>
-  */
-diff --git a/ptest_list.c b/ptest_list.c
-index 3e393d5..d48349f 100644
---- a/ptest_list.c
-+++ b/ptest_list.c
-@@ -15,6 +15,8 @@
-  * along with this program; if not, write to the Free Software
-  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * AUTHORS
-  * 	Aníbal Limón <anibal.limon@intel.com>
-  */
-diff --git a/ptest_list.h b/ptest_list.h
-index 03d7539..b4b1ac6 100644
---- a/ptest_list.h
-+++ b/ptest_list.h
-@@ -15,6 +15,8 @@
-  * along with this program; if not, write to the Free Software
-  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * AUTHORS
-  * 	Aníbal Limón <anibal.limon@intel.com>
-  */
-diff --git a/tests/main.c b/tests/main.c
-index cceda7d..c3b4da5 100644
---- a/tests/main.c
-+++ b/tests/main.c
-@@ -15,6 +15,8 @@
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
- *
-+* SPDX-License-Identifier: GPL-2.0-or-later
-+*
- * AUTHORS
- * 	Aníbal Limón <anibal.limon@intel.com>
- */
-diff --git a/tests/ptest_list.c b/tests/ptest_list.c
-index 5c0036d..e0ec276 100644
---- a/tests/ptest_list.c
-+++ b/tests/ptest_list.c
-@@ -15,6 +15,8 @@
-  * along with this program; if not, write to the Free Software
-  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * AUTHORS
-  * 	Aníbal Limón <anibal.limon@intel.com>
-  */
-diff --git a/tests/utils.c b/tests/utils.c
-index 2ccb1c0..3ba64d6 100644
---- a/tests/utils.c
-+++ b/tests/utils.c
-@@ -15,6 +15,8 @@
-  * along with this program; if not, write to the Free Software
-  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * AUTHORS
-  * 	Aníbal Limón <anibal.limon@intel.com>
-  */
-diff --git a/utils.c b/utils.c
-index 05c2bfe..6e453a1 100644
---- a/utils.c
-+++ b/utils.c
-@@ -15,6 +15,8 @@
-  * along with this program; if not, write to the Free Software
-  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * AUTHORS
-  * 	Aníbal Limón <anibal.limon@intel.com>
-  */
-diff --git a/utils.h b/utils.h
-index 5a3f44a..6175ed1 100644
---- a/utils.h
-+++ b/utils.h
-@@ -15,6 +15,8 @@
-  * along with this program; if not, write to the Free Software
-  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * AUTHORS
-  * 	Aníbal Limón <anibal.limon@intel.com>
-  */
--- 
-2.20.1
+I would have a look at the values of 
+DISTRO_FEATURES_BACKFILL_CONSIDERED as well as 
+VIRTUAL-RUNTIME_initscripts.
 
+My understanding is that if the former is set to 
+"sysvinit", it causes any redundant SysVinit 
+scripts to be removed, and further, that if the 
+latter is set to "", then all initscripts are 
+removed from the image altogether.
+
+		- Morn�
 
