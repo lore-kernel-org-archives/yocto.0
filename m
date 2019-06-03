@@ -1,6 +1,6 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <morne.lamprecht@melangex.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F2DB1E00D44; Mon,  3 Jun 2019 08:30:46 -0700 (PDT)
+	id E06CDE00D44; Mon,  3 Jun 2019 09:54:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,54 +10,64 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.68 listed in list.dnswl.org]
+	*      [209.85.221.47 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io1-f68.google.com (mail-io1-f68.google.com
-	[209.85.166.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CD9FE00D36
-	for <yocto@yoctoproject.org>; Mon,  3 Jun 2019 08:30:44 -0700 (PDT)
-Received: by mail-io1-f68.google.com with SMTP id x24so14653510ion.5
-	for <yocto@yoctoproject.org>; Mon, 03 Jun 2019 08:30:44 -0700 (PDT)
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+	[209.85.221.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 660D2E00D36
+	for <yocto@yoctoproject.org>; Mon,  3 Jun 2019 09:54:12 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id n4so9802685wrs.3
+	for <yocto@yoctoproject.org>; Mon, 03 Jun 2019 09:54:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:content-transfer-encoding;
-	bh=973XdxTtHcxmIiop01R4hIkl1chWf3NCXlVxWqjRA44=;
-	b=tW638iFC77ds9W4tNBoN2GPwB4JUmUu2rv9GhJ3UcVTbPQ27sXvPQ5cx2CcR0JTea5
-	izzBISixWizYnXgEKTyopeexcEjZMmqCUl8zJG0D7HM65AIe5Jq8rPNsAjSDLg8bKUuZ
-	fqxammAPY5/YK58Dus3SvzXALOubWzMuXkxY6ezn+yBpaJXXRP/qB+im1zEptAUTJwqq
-	82omwY2AEzgGH16oQWG+npAhk6JC0SzphyZSMuncrBI5M0QJdWDJTFFAMSbi9/t9ZcI4
-	NA9nQ/2k1QiPH478JNBALgNgbi68NmVMW8Uk0JGrX35c8AT8/at7GdpHUblwSJHAKjGD
-	S2Ow==
+	d=melangex-com.20150623.gappssmtp.com; s=20150623;
+	h=sender:date:from:to:subject:message-id:mail-followup-to:references
+	:mime-version:content-disposition:content-transfer-encoding
+	:in-reply-to:user-agent;
+	bh=k1/x/5oQb20HVBS2BYOW6jOaCl6y2xKC96ur9Cbq//M=;
+	b=KmccukXEg6oLA2hEQ1f8rFYNa5B3+cj/MEMMKTUDRJgaM3wVHFZ1aTIPYGlkXZdAJr
+	EBhswSHs6+enG6Y85kItefgj7CMb0/a74rY4dIqou3gn2ObTvcYZHPcbOYEE+h+yPuGb
+	TYE89rdPLm1em6dUo61+KXreMRP3tMasYjSBvMW2QPC4GIN80OyRIgtOh0Sg7ktBtiRs
+	J5VY1Afja3TybtXbgPpqNQ0owIBvHX9AZj5UYdyBtGmeQWxsmJRYlJSbd19lTEys681H
+	0djgOona4dES7cQxrg/ziQQd9HXUQdVw4/AWng7HPSgBpldMLwdoW1UBSpEotVzVg6oV
+	heiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:content-transfer-encoding;
-	bh=973XdxTtHcxmIiop01R4hIkl1chWf3NCXlVxWqjRA44=;
-	b=CwMzXEz1jUq5hXO7JE2BtgEYAXrQfNJqo3Tsh/SWqNEdBEnDZJPa8NoIa28vj1Ud9y
-	DH64tzWQYhoVQs4QSj91kvZ6T8XaH8MPQO+0XJiVP098m9gqaRdlWFXjLOwz3UXph68f
-	ekYAND+y7tqb0QNclxouWiKifhNqxqQ4rd0Q9tyQWKtb9UgksYE/sMWWNB2KX2HODgJk
-	f27yWxvbBMYK9Lqi9NlKJXvGkD5eCnuGZZaqDE6s8U5YmvqNAbzLfx16RthMS8anxpJS
-	POG8UO9VL6MtKfs86sEwQ9J2m3VPwR+1z8Uj02KE9Mirck284ccO+wFZGt9WpJKmYYea
-	SxZQ==
-X-Gm-Message-State: APjAAAW6qUpr32g6k6FRBZh/RcnhZUqDWI+bi6QihOXxLGxM64QftFUM
-	avDE3xCOsg4DMbO3yRu5euBO25BFflDWxZ3/xHB8RG4W
-X-Google-Smtp-Source: APXvYqwGjrx0OS7tALPa1jxK2+4Kv4qvj/2SKOplxURqZkbGFxCg3k+bUt9FMcWF+bPOx/4SCAcIK0fVHCAY+IXC6gM=
-X-Received: by 2002:a6b:bc02:: with SMTP id m2mr18175631iof.25.1559575844241; 
-	Mon, 03 Jun 2019 08:30:44 -0700 (PDT)
-MIME-Version: 1.0
+	h=x-gm-message-state:sender:date:from:to:subject:message-id
+	:mail-followup-to:references:mime-version:content-disposition
+	:content-transfer-encoding:in-reply-to:user-agent;
+	bh=k1/x/5oQb20HVBS2BYOW6jOaCl6y2xKC96ur9Cbq//M=;
+	b=WQ0/no3CVI+hWTbhB9NS562Ho5/4lzpMQNZ6TC1Uj/sHdv4z9i72wOEWZOSr7i2EPS
+	kpaaJgxb/6QJdAWGxie8a7KjOGWLDxkBTB8m7Whb/PI1V5hKR5Euc/sVtmgFGDMOLbEY
+	AMvtYnZWJ6oKbQWCtxJ7U5hmZ7N9Jck3p49VF9wDOSk40Bkj3ChZPkVHIsGqnJFdUofu
+	qvfx+y3pod/rxSVjgE1+6iHV6Tg/o54VeitPUhGorfcJ2xOQKBHwl4zlN5H/ExHjU/Lm
+	H5qOPvkUtMy9jXPRZZ8AOsNMTxr2vnqDHhpUnAY/SLU5fwoa1qjWNEcCpW43doYC+eFB
+	498A==
+X-Gm-Message-State: APjAAAXDPyzy8EbDdbK/xDY6otvHJoMBGiHlxNk69a1IzAnl/U/sY9iw
+	W+ptvwKNDIJhYg47QBzWJTpoyLKnVAk=
+X-Google-Smtp-Source: APXvYqwIsQLt33D4NH13Nxp0YlXt6a+DVsPt0NS4WjFwtta83LdeFzeGrB3uKrQrCYs9JN0+pUBdXQ==
+X-Received: by 2002:adf:bac5:: with SMTP id w5mr5976881wrg.124.1559580850977; 
+	Mon, 03 Jun 2019 09:54:10 -0700 (PDT)
+Received: from localhost ([209.203.60.70]) by smtp.gmail.com with ESMTPSA id
+	u205sm18890068wmu.47.2019.06.03.09.54.09 for <yocto@yoctoproject.org>
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Mon, 03 Jun 2019 09:54:10 -0700 (PDT)
+Sender: =?UTF-8?Q?Morn=C3=A9_Lamprecht?= <morne.lamprecht@melangex.com>
+Date: Mon, 3 Jun 2019 18:54:06 +0200
+From: =?iso-8859-1?Q?Morn=E9?= Lamprecht <morne@linux.com>
+To: yocto@yoctoproject.org
+Message-ID: <20190603165406.GA24026@archworkstation>
+Mail-Followup-To: yocto@yoctoproject.org
 References: <20190601144016.GA19383@archworkstation>
 	<CAAfyv35XN0SiU8PQ0ZL9tXSk52FxkCsOjuXoxYM35egNL6DTxw@mail.gmail.com>
 	<20190601182556.GB19383@archworkstation>
 	<CAAfyv37b6xSxKE=HYEUkDOQkTYPP_fom73bpf-k07-jT0p6kuQ@mail.gmail.com>
 	<20190603140546.GA28701@archworkstation>
-In-Reply-To: <20190603140546.GA28701@archworkstation>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 3 Jun 2019 16:30:33 +0100
-Message-ID: <CAJTo0Lab3g3xnpzSCo-Uu2_q7ujGzWEhrB-0WyBAs=zG=v7GaA@mail.gmail.com>
-To: yocto <yocto@yoctoproject.org>
+	<CAJTo0Lab3g3xnpzSCo-Uu2_q7ujGzWEhrB-0WyBAs=zG=v7GaA@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CAJTo0Lab3g3xnpzSCo-Uu2_q7ujGzWEhrB-0WyBAs=zG=v7GaA@mail.gmail.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Subject: Re: do_rootfs fails while attempting to install hostapd package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -70,21 +80,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Jun 2019 15:30:47 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 03 Jun 2019 16:54:12 -0000
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-On Mon, 3 Jun 2019 at 15:06, Morn=C3=A9 Lamprecht <morne@linux.com> wrote:
-> I also have DISTRO_FEATURES_BACKFULL_CONSIDERED =3D
-> "sysvinit" in my config (also had it during the
-> failed builds), I thought it would prevent
-> sysvinit from being added/backfilled to the
-> DISTRO features ? So I'm not sure why
-> DISTRO_FEATURES_remove is also required in this
-> case ?
+On Mon, Jun 03, 2019 at 04:30:33PM +0100, Burton, Ross wrote:
+>The variable is 
+>DISTRO_FEATURES_BACKFILL_CONSIDERED, in case 
+>that wasn't a typo when writing the mail.
 
-The variable is DISTRO_FEATURES_BACKFILL_CONSIDERED, in case that
-wasn't a typo when writing the mail.
+It wasn't a typo, and that was exactly the 
+problem.  Well spotted, everything in the world 
+makes sense again :-)
 
-Ross
+		- Morné
 
