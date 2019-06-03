@@ -1,74 +1,60 @@
-Return-Path: <morne.lamprecht@melangex.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E06CDE00D44; Mon,  3 Jun 2019 09:54:12 -0700 (PDT)
+	id 9027EE00D44; Mon,  3 Jun 2019 10:39:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.47 listed in list.dnswl.org]
+	*      [209.85.160.180 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
-	[209.85.221.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 660D2E00D36
-	for <yocto@yoctoproject.org>; Mon,  3 Jun 2019 09:54:12 -0700 (PDT)
-Received: by mail-wr1-f47.google.com with SMTP id n4so9802685wrs.3
-	for <yocto@yoctoproject.org>; Mon, 03 Jun 2019 09:54:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=melangex-com.20150623.gappssmtp.com; s=20150623;
-	h=sender:date:from:to:subject:message-id:mail-followup-to:references
-	:mime-version:content-disposition:content-transfer-encoding
-	:in-reply-to:user-agent;
-	bh=k1/x/5oQb20HVBS2BYOW6jOaCl6y2xKC96ur9Cbq//M=;
-	b=KmccukXEg6oLA2hEQ1f8rFYNa5B3+cj/MEMMKTUDRJgaM3wVHFZ1aTIPYGlkXZdAJr
-	EBhswSHs6+enG6Y85kItefgj7CMb0/a74rY4dIqou3gn2ObTvcYZHPcbOYEE+h+yPuGb
-	TYE89rdPLm1em6dUo61+KXreMRP3tMasYjSBvMW2QPC4GIN80OyRIgtOh0Sg7ktBtiRs
-	J5VY1Afja3TybtXbgPpqNQ0owIBvHX9AZj5UYdyBtGmeQWxsmJRYlJSbd19lTEys681H
-	0djgOona4dES7cQxrg/ziQQd9HXUQdVw4/AWng7HPSgBpldMLwdoW1UBSpEotVzVg6oV
-	heiQ==
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com
+	[209.85.160.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05632E00CAA
+	for <yocto@yoctoproject.org>; Mon,  3 Jun 2019 10:38:59 -0700 (PDT)
+Received: by mail-qt1-f180.google.com with SMTP id l3so10419731qtj.5
+	for <yocto@yoctoproject.org>; Mon, 03 Jun 2019 10:38:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=GGdHjes6478HihtAhOLdEWLQxt5BMWl4hqlYJFw5xcQ=;
+	b=V7FWzwcKE/JzDvaBTecbD6ZQvmXjpVaMwUrcfwYuPNgB54nQWXpK1XdFJfjm/ntF+q
+	iEftJ/3oUT4wW2KsPBnVVLM6x1E0WT7AXFRXwHE0Z1vLQuldwY1fiqLV1AilUJo4UuAQ
+	4XkSOBXRibwp9hI36tsoUdrIUh9UUVVkTHaExXI4iyuCuL6mK/J4USsSklm0Oi58X0WK
+	Z1rWPFS21TpoSOrk6q0zcJqATxCe6lflBBq5qtIxbn/SVwDz0vMi6NX6s2jBd6gAWPZV
+	2zv+tklNRD+Zm7cug2QLw3pIzQZ1szNkLwtPfH2/V0qtssya7BNukSZVn05pnOm+0D39
+	iRXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:sender:date:from:to:subject:message-id
-	:mail-followup-to:references:mime-version:content-disposition
-	:content-transfer-encoding:in-reply-to:user-agent;
-	bh=k1/x/5oQb20HVBS2BYOW6jOaCl6y2xKC96ur9Cbq//M=;
-	b=WQ0/no3CVI+hWTbhB9NS562Ho5/4lzpMQNZ6TC1Uj/sHdv4z9i72wOEWZOSr7i2EPS
-	kpaaJgxb/6QJdAWGxie8a7KjOGWLDxkBTB8m7Whb/PI1V5hKR5Euc/sVtmgFGDMOLbEY
-	AMvtYnZWJ6oKbQWCtxJ7U5hmZ7N9Jck3p49VF9wDOSk40Bkj3ChZPkVHIsGqnJFdUofu
-	qvfx+y3pod/rxSVjgE1+6iHV6Tg/o54VeitPUhGorfcJ2xOQKBHwl4zlN5H/ExHjU/Lm
-	H5qOPvkUtMy9jXPRZZ8AOsNMTxr2vnqDHhpUnAY/SLU5fwoa1qjWNEcCpW43doYC+eFB
-	498A==
-X-Gm-Message-State: APjAAAXDPyzy8EbDdbK/xDY6otvHJoMBGiHlxNk69a1IzAnl/U/sY9iw
-	W+ptvwKNDIJhYg47QBzWJTpoyLKnVAk=
-X-Google-Smtp-Source: APXvYqwIsQLt33D4NH13Nxp0YlXt6a+DVsPt0NS4WjFwtta83LdeFzeGrB3uKrQrCYs9JN0+pUBdXQ==
-X-Received: by 2002:adf:bac5:: with SMTP id w5mr5976881wrg.124.1559580850977; 
-	Mon, 03 Jun 2019 09:54:10 -0700 (PDT)
-Received: from localhost ([209.203.60.70]) by smtp.gmail.com with ESMTPSA id
-	u205sm18890068wmu.47.2019.06.03.09.54.09 for <yocto@yoctoproject.org>
-	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Mon, 03 Jun 2019 09:54:10 -0700 (PDT)
-Sender: =?UTF-8?Q?Morn=C3=A9_Lamprecht?= <morne.lamprecht@melangex.com>
-Date: Mon, 3 Jun 2019 18:54:06 +0200
-From: =?iso-8859-1?Q?Morn=E9?= Lamprecht <morne@linux.com>
-To: yocto@yoctoproject.org
-Message-ID: <20190603165406.GA24026@archworkstation>
-Mail-Followup-To: yocto@yoctoproject.org
-References: <20190601144016.GA19383@archworkstation>
-	<CAAfyv35XN0SiU8PQ0ZL9tXSk52FxkCsOjuXoxYM35egNL6DTxw@mail.gmail.com>
-	<20190601182556.GB19383@archworkstation>
-	<CAAfyv37b6xSxKE=HYEUkDOQkTYPP_fom73bpf-k07-jT0p6kuQ@mail.gmail.com>
-	<20190603140546.GA28701@archworkstation>
-	<CAJTo0Lab3g3xnpzSCo-Uu2_q7ujGzWEhrB-0WyBAs=zG=v7GaA@mail.gmail.com>
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=GGdHjes6478HihtAhOLdEWLQxt5BMWl4hqlYJFw5xcQ=;
+	b=LKGYFNqNSg3i1I52YO/08NKZ2uO9lytCMb0bnrsdBLTSlRjANidEENPgBtK7lVn8vT
+	9uGdtIWSn+w/16m1N3SbIj1zt79eI85vpX65sQPp7bvai3z34JuDiOkW8zSkw9VWd4Yg
+	potKgy6H7Zyq/KnW8etLlPoVr+zVHvvAEnpQ0CgeG9QcAz52sGC3K6qgP1qs2SgI7cBL
+	tUcoA+oiGv0aw4Yc/3zAu8YXYHVeWXjaByvLOL0Utxmz/48Mt3+F91derS0XO5cdhb1R
+	F6mFGmee3g7e9ZYkuBEtgVrrEGa0rZ7zPWHlz2YITJeI8jmCeQSizpR31enZQkTxkSEx
+	PaUw==
+X-Gm-Message-State: APjAAAVhxbWYNv09LaQwGQOTD0YONVeicnFIp+hrzxJiXubHqkGLZr9S
+	uz2E/dNMwzcMcSAMr+qheu3hR7uZ1y+8wFRNue9ZPp3s
+X-Google-Smtp-Source: APXvYqy0LNW2RlIm3Nl577B7AAFRffjOZWOQXjhCfX+K05N7W+alqP1v/n8LbvSNp/TI/2DMZjP+dsUgE7dnZj6/hOE=
+X-Received: by 2002:ac8:42d4:: with SMTP id g20mr24157472qtm.78.1559583539021; 
+	Mon, 03 Jun 2019 10:38:59 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAJTo0Lab3g3xnpzSCo-Uu2_q7ujGzWEhrB-0WyBAs=zG=v7GaA@mail.gmail.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
-Subject: Re: do_rootfs fails while attempting to install hostapd package
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Mon, 3 Jun 2019 19:38:47 +0200
+Message-ID: <CAGAf8Lxb88uf_zw0Hzkc74zSD3GG4zQh-UwzQmBhMTLCxqRd5Q@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Potential (?) systemd YOCTO problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -80,19 +66,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Jun 2019 16:54:12 -0000
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 03 Jun 2019 17:39:00 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Jun 03, 2019 at 04:30:33PM +0100, Burton, Ross wrote:
->The variable is 
->DISTRO_FEATURES_BACKFILL_CONSIDERED, in case 
->that wasn't a typo when writing the mail.
+Hello Folks,
 
-It wasn't a typo, and that was exactly the 
-problem.  Well spotted, everything in the world 
-makes sense again :-)
+I am a bit deeper to the systemd service investigation in YOCTO. I
+installed systemd service, I also have network manager package.
 
-		- Morné
+I am using warrior. Here are the snippets of the HOST:
+[user@fedora29-ssd build]$ bitbake --version
+BitBake Build Tool Core version 1.42.0
+[user@fedora29-ssd build]$ bitbake -s | grep networkmanager
+networkmanager                                     :1.16.0-r0
+networkmanager-openvpn                             :1.8.10-r0
+python-networkmanager                                 :2.1-r0
+[user@fedora29-ssd build]$ bitbake -s | grep systemd
+python-systemd                                        :234-r0
+python3-systemd                                       :234-r0
+systemd                             1:241+AUTOINC+c1f8ff8d0d-r0
+systemd-bootchart                   :233+gitAUTOINC+fe1c5e41e6-r0
+systemd-bootconf                                     :1.00-r0
+systemd-compat-units                                 :1.0-r29
+systemd-conf                        :241+AUTOINC+c1f8ff8d0d-r0
+systemd-machine-units                                :1.0-r19
+systemd-serialgetty                                   :1.0-r5
+systemd-systemctl-native                              :1.0-r6
+[user@fedora29-ssd build]$
+
+Still. I expected to see the following on the target (my BBB):
+/etc/init.d/networking script, but I have the following:
+root@beaglebone:/etc/init.d# pwd
+/etc/init.d
+root@beaglebone:/etc/init.d# ls -al
+drwxr-xr-x    2 root     root          4096 Jun  3  2019 .
+drwxr-xr-x   27 root     root          4096 May 30 23:46 ..
+-rwxr-xr-x    1 root     root          1419 May 31  2019 socketcand
+root@beaglebone:/etc/init.d#
+
+The socketcand recipe is here:
+https://github.com/ZoranStojsavljevic/meta-socketcan/blob/master/recipes-can/socketcand/socketcand.bb
+
+Should I add something to the networkmanager recipe (to add some
+inheritance)??? To have the component (network script) in
+play/installed (in /etc/init.d/)?
+
+The command: # systemctl restart systemd-networkd does work.
+
+root@beaglebone:/etc/systemd# ls
+coredump.conf   logind.conf     networkd.conf   sleep.conf
+system.conf     user
+journald.conf   network         resolved.conf   system
+timesyncd.conf  user.conf
+root@beaglebone:/etc/systemd# cd network
+root@beaglebone:/etc/systemd/network# ls -al
+drwxr-xr-x    2 root     root          4096 May 31 00:57 .
+drwxr-xr-x    5 root     root          4096 Jun  3  2019 ..
+root@beaglebone:/etc/systemd/network#
+
+What I am doing wrong here?
+
+Thank you,
+Zoran
+_______
 
