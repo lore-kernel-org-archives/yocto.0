@@ -1,34 +1,63 @@
-Return-Path: <Hongxu.Jia@windriver.com>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7B2E2E00D44; Tue,  4 Jun 2019 00:54:50 -0700 (PDT)
+	id 27E3BE00D35; Tue,  4 Jun 2019 04:43:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 991DDE00D36
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2019 00:54:48 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x547sHrq009103
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 4 Jun 2019 00:54:37 -0700
-Received: from pek-lpg-core1-vm2.wrs.com (128.224.156.107) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.439.0; Tue, 4 Jun 2019 00:54:07 -0700
-From: Hongxu Jia <hongxu.jia@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 4 Jun 2019 15:54:06 +0800
-Message-ID: <1559634846-13094-1-git-send-email-hongxu.jia@windriver.com>
-X-Mailer: git-send-email 2.7.4
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jupiter.hce[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.182 listed in list.dnswl.org]
+Received: from mail-it1-f182.google.com (mail-it1-f182.google.com
+	[209.85.166.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF210E00C7D
+	for <yocto@yoctoproject.org>; Tue,  4 Jun 2019 04:43:50 -0700 (PDT)
+Received: by mail-it1-f182.google.com with SMTP id a186so32859062itg.0
+	for <yocto@yoctoproject.org>; Tue, 04 Jun 2019 04:43:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=LX2IDtGE8/CltipjuHSZpZ0PYC7CB0kVtJRuN0azRVM=;
+	b=KrKAatPN0qzrrx8C7Nkl1W65QkQs+aqRn2gmmx4KCsInyL0N6Stmtc8HOTtbkinvGd
+	Jaj471n5U2G3RgmwjoJkbZ93OupoHUhBSyRFvSQ+eTzeqxBW0efNF1XRKZiQ7pe0FhU8
+	LCGH7FLwsVArHlQHF4ntl493R0z8nPFEdzbSO2iEQ3pM7esDPJmqhRyGJNTjeD64o7xR
+	Qd0JHYh6/gk/nHeFl9/s+gqx3WAxlSD9L9gCWPWlq3Ysh1tfyicjpB6w9P9ERCoqOPqE
+	6YXAs1EGx9OMEj2rWX6huL7mqOiCMxmDifbGKs8759yedbi6zqETmFy92LqWeE7WnCT0
+	e0JA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=LX2IDtGE8/CltipjuHSZpZ0PYC7CB0kVtJRuN0azRVM=;
+	b=aNtBUJqRkxYIrOYfzPQ8s1APIE+JMW3MDNh2LFiOOe2f2M5UttyX0lK0WgQSM2u7ZG
+	/sMZsE/rSQfqMx0429DTF38+n3ev29pfU1VjHdjRnmjLNIkvckIXCmZ78spI2qasRAVS
+	v5seRzEoVBLcTfk17azNJINphSOIdNukpQ6ATyUiRsemdy9yB5I290fU1kijE29X8n4O
+	Tq5h2Z6CB1R7USBkc16PWWOVlLo9bn8TBXSynRA1a17YxDvfdQ92VOEYCEOgtxs/zBEu
+	zHVMiiYw/Mv9IoPcDvJtau0gp0tGW47tHRzkNTi5qNMxyQk26NbxWYtd6T+n4TXQ4njw
+	IvHA==
+X-Gm-Message-State: APjAAAUi6GYrVBnjPGScKhOnJrJyYjO+HEnN6IeYrMo9B662VrSLKaUC
+	AY39Cxx1b6ekBI0rp1XnQyajBMBEBf6cItOvlKUBH208
+X-Google-Smtp-Source: APXvYqw4LftPHdQt/yfgeT45wZvKsNHTpg0/9y0pmmxRGv0cueVZBIeZZ5z8tUHgILXOWEe1jwhscIVTEOcY01+//NQ=
+X-Received: by 2002:a24:69c1:: with SMTP id
+	e184mr20277144itc.168.1559648629973; 
+	Tue, 04 Jun 2019 04:43:49 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [meta-cgl][PATCH] resource-agents: improve reproducibility
+Received: by 2002:ac0:92cf:0:0:0:0:0 with HTTP;
+	Tue, 4 Jun 2019 04:43:49 -0700 (PDT)
+From: JH <jupiter.hce@gmail.com>
+Date: Tue, 4 Jun 2019 21:43:49 +1000
+Message-ID: <CAA=hcWSduw6wzQ_9pg1yT4jGwky0bfWypSS8tSJm72ZHh9Q+2w@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: How to build Yocto zImage ramdisk image format
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,41 +69,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Jun 2019 07:54:50 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 04 Jun 2019 11:43:51 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Script ocf-binaries contains build path
-$ grep tmp-glibc -rn image/
-|image/usr/lib64/ocf/lib/heartbeat/ocf-binaries:11:: ${EGREP:="/buildarea1/hjia/
-wrlinux-1019/build_master-wr_qemux86-64_2019053109/build/tmp-glibc/hosttools/grep -E"}
-|image/usr/lib64/ocf/lib/heartbeat/ocf-binaries:16:: ${TEST:=/buildarea1/hjia/
-wrlinux-1019/build_master-wr_qemux86-64_2019053109/build/tmp-glibc/hosttools/test}
+Hi,
 
-Set grep/test path rather than using hosttools which refers
-commit in oe-core [f6e7a3b libtool: Don't hardcode grep paths]
+I build a zImage--imx.bin, dose it contains initramfs? I downloaded
+the zImage to IMX using MfgTool, it got an error "Wrong Ramdisk Image
+Format".
 
-Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
----
- .../recipes-cgl/cluster-resource-agents/resource-agents_4.0.1.bb     | 5 +++++
- 1 file changed, 5 insertions(+)
+How to build a ramdisk image? Should it be a separate command or
+should it use a ramdisk recipe?
 
-diff --git a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents_4.0.1.bb b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents_4.0.1.bb
-index 8b2b8e1..ba00a80 100644
---- a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents_4.0.1.bb
-+++ b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents_4.0.1.bb
-@@ -44,6 +44,11 @@ RDEPENDS_${PN} += "bash perl lvm2 \
- 
- inherit autotools systemd pkgconfig
- 
-+CACHED_CONFIGUREVARS += " \
-+    ac_cv_path_GREP=grep \
-+    ac_cv_path_TEST=test \
-+"
-+
- EXTRA_OECONF += "--disable-fatal-warnings \
-                  --with-rsctmpdir=/var/run/heartbeat/rsctmp"
- 
--- 
-2.7.4
+I found a couple of initramfs.bb, such as
+fsl-image-mfgtool-initramfs.bb, core-image-minimal-initramfs.bb, but
+there is no ramdisk.bb.
 
+Appreciate any examples to build a ramdisk image format.
+
+Thank you.
+
+- JH
 
