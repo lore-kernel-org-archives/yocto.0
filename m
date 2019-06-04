@@ -1,40 +1,65 @@
-Return-Path: <andreea.volosincu@windriver.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E1489E00D47; Tue,  4 Jun 2019 12:39:23 -0700 (PDT)
+	id D79FBE00D48; Tue,  4 Jun 2019 14:34:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCA10E00C37
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2019 12:39:22 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x54JdLP6011911
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 4 Jun 2019 12:39:22 -0700 (PDT)
-Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.194]) by
-	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.03.0439.000;
-	Tue, 4 Jun 2019 12:39:09 -0700
-From: "Volosincu, Andreea S" <andreea.volosincu@windriver.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Thread-Topic: Yocto Project DevDay NA 2019 - Extend your Embedded Linux
-	Conference Experience
-Thread-Index: AdUbDRODs3PW3o6IQnOWXvXBd/hLZQ==
-Date: Tue, 4 Jun 2019 19:39:08 +0000
-Message-ID: <A084970538D2234B96D99D06FA9D974FC37CEE23@ALA-MBD.corp.ad.wrs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.11.118.91]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.196 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qt1-f196.google.com (mail-qt1-f196.google.com
+	[209.85.160.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43EF7E00C7D
+	for <yocto@yoctoproject.org>; Tue,  4 Jun 2019 14:34:28 -0700 (PDT)
+Received: by mail-qt1-f196.google.com with SMTP id s15so15616223qtk.9
+	for <yocto@yoctoproject.org>; Tue, 04 Jun 2019 14:34:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=3tAiXUtWNSxqV3w7d/36j0cD/2y/egaXe3NQiCe/8d4=;
+	b=hzuU9VUgsMnokLIOn0XNaKkiqV+OAUwxFS67fQE+t3N0UhyNWSOJR8j//dT6rbE1NG
+	/17Elcpq3ciroiy22OckyTkr9Zm+X4QDc3bCMykWMqpXtjhGvjwQEJkeWHcUpgb87Onu
+	rWnPBqY+uUkcVKt0OW0KarJBkwTCLM5WgsNgrMx8Q/9GEuqbo67f2zTnSwfd0XB4XD5V
+	Og0d0wp6XCAbvYznXlak5uBE057HPXkKxnxZG1oYi5Hh01pKMchy+Cmj9nkuxbkJJUmE
+	gOPPD3OLN3iVCiK7W5c6a+X8Igp+zFn+AB0BaLOpV/ujLnem6WAOHvTD6zCvx9JwsOV8
+	8fcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=3tAiXUtWNSxqV3w7d/36j0cD/2y/egaXe3NQiCe/8d4=;
+	b=LtnpBXC/ycBH2Jy2XLQCoKD1hgB0hmvNEMPjGNR78XSV+gYCsUc26QEeA8Y2ubsuAz
+	k8vUMlXOH2OIBbjrC5uq1soM+pJ5/ZvxII8ZN2/I0hIfTgnsirHduZsQA+BCJXHReyYC
+	BliOnYQnBUaN656Zes6a6XxfSfrnj0m9/OePhOAsITnsocuL7kMB+SDuqbePAlT1rNyX
+	C2GUvGdeTwCQ5H6HDov57RHv00HTDO78U3v0MuHOgskAcIGCX730182iy7pQOblquzIG
+	JcfBkGRzo4ZzOMtI3T/GpakksTDTvRkSZr7GOnNvDARq09cy061TKzibrjPmHeGfabCd
+	pthw==
+X-Gm-Message-State: APjAAAVEzztac0zgBA5UPUhdthMOrCFBdn8TwiStlMq7clgA/SafJ0Se
+	7E2F53+eP1bZ8THv45E1qI+chaA3Sm/+3ZP6OSZCQglj
+X-Google-Smtp-Source: APXvYqwleAUqWjAuNoODIsgkcE/DWUZPLju158jqou7ZMtYh5w/aAGaf0MfF7VgaZ9XKG/Fmileb/PLYI99c1O6LSHA=
+X-Received: by 2002:ac8:2fce:: with SMTP id m14mr10835414qta.22.1559684066072; 
+	Tue, 04 Jun 2019 14:34:26 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Yocto Project DevDay NA 2019 - Extend your Embedded Linux Conference Experience
+References: <CAGAf8Lxb88uf_zw0Hzkc74zSD3GG4zQh-UwzQmBhMTLCxqRd5Q@mail.gmail.com>
+	<20190603190711.GB24026@archworkstation>
+In-Reply-To: <20190603190711.GB24026@archworkstation>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Tue, 4 Jun 2019 23:34:15 +0200
+Message-ID: <CAGAf8LxXdZADK+ScSXLr1Ov-xAY24YsS2nZ-1-SpSKDbS3cBHw@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>, morne@linux.com
+Subject: Potential (?) systemd YOCTO problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,138 +71,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Jun 2019 19:39:24 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_A084970538D2234B96D99D06FA9D974FC37CEE23ALAMBDcorpadwrs_"
-
---_000_A084970538D2234B96D99D06FA9D974FC37CEE23ALAMBDcorpadwrs_
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 04 Jun 2019 21:34:28 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello Everybody,
-
-The registration for the Yocto Project DevDay NA 2019 is now open. Join our=
- knowledgeable and engaging instructors to learn about creating custom-buil=
-d Linux distributions using the Yocto Project infrastructure and tools, acr=
-oss multiple architectures.
-
-Date: Tuesday, August 20, 2019
-Time: 9:00 am - 5:00 pm
-Location: Hilton San Diego Bayfront
-
-There are two ways to register - by adding it your ELC registration or on t=
-he separate registration page.
-
-Register now. <https://www.yoctoproject.org/yocto-project-dev-day-north-ame=
-rica-2019/>
-
-Best regards,
-Yocto Project Advocacy Team
-
-
---_000_A084970538D2234B96D99D06FA9D974FC37CEE23ALAMBDcorpadwrs_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> I would have a look at the values of
+> DISTRO_FEATURES_BACKFILL_CONSIDERED as well as
+> VIRTUAL-RUNTIME_initscripts.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:"Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:Cambria;
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Cambria&quot;,serif=
-">Hello Everybody,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Cambria&quot;,serif=
-"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Cambria&quot;,serif=
-">The registration for the Yocto Project DevDay NA 2019 is now open. Join o=
-ur knowledgeable and engaging instructors to learn about creating custom-bu=
-ild Linux distributions using the Yocto Project
- infrastructure and tools, across multiple architectures.<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Cambria&quot;,serif=
-"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Cambria&quot;,serif=
-">Date: Tuesday, August 20, 2019<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Cambria&quot;,serif=
-">Time: 9:00 am &#8211; 5:00 pm<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Cambria&quot;,serif=
-">Location: Hilton San Diego Bayfront<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Cambria&quot;,serif=
-"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Cambria Math&quot;,=
-serif">There are two ways to register &#8211; by adding it your ELC registr=
-ation or on the separate registration page.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span class=3D"MsoHyperlink"><span style=3D"font-fam=
-ily:&quot;Cambria&quot;,serif"><o:p><span style=3D"text-decoration:none">&n=
-bsp;</span></o:p></span></span></p>
-<p class=3D"MsoNormal"><span class=3D"MsoHyperlink"><span style=3D"font-fam=
-ily:&quot;Cambria&quot;,serif"><a href=3D"https://www.yoctoproject.org/yoct=
-o-project-dev-day-north-america-2019/">Register now.
-<o:p></o:p></a></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Cambria&quot;,serif=
-"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Cambria&quot;,serif=
-">Best regards,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Cambria&quot;,serif=
-">Yocto Project Advocacy Team<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> My understanding is that if the former is set to
+> "sysvinit", it causes any redundant SysVinit
+> scripts to be removed, and further, that if the
+> latter is set to "", then all initscripts are
+> removed from the image altogether.
 
---_000_A084970538D2234B96D99D06FA9D974FC37CEE23ALAMBDcorpadwrs_--
+I would like to thank you for the advice. I tried several combinations
+without any success, and at the end I came up exactly what you have
+suggested to me.
+
+Local.conf looks something like this:
+https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/experimental/lo=
+cal.conf_core-tools-profile
+
+And the latest changes committed which I have tried following your
+suggestion are:
+https://github.com/ZoranStojsavljevic/bbb-yocto/commit/83c22e8ec516020206dc=
+1b34e93276cca8f3f16b
+
+I need to do more tests... But seems that initial tests show that all
+scripts are in place, and systemd is used.
+
+This also should be much better documented somewhere in YOCTO
+documentation. My best guess (I did not find it anywhere in the
+manuals, maybe I missed the paragraph - please, advice where it is?).
+
+Thank you again,
+Zoran
+_______
+
+On Mon, Jun 3, 2019 at 9:07 PM Morn=C3=A9 Lamprecht <morne@linux.com> wrote=
+:
+>
+> On Mon, Jun 03, 2019 at 07:38:47PM +0200, Zoran Stojsavljevic wrote:
+> >Still. I expected to see the following on the
+> >target (my BBB): /etc/init.d/networking script,
+>
+> I would have a look at the values of
+> DISTRO_FEATURES_BACKFILL_CONSIDERED as well as
+> VIRTUAL-RUNTIME_initscripts.
+>
+> My understanding is that if the former is set to
+> "sysvinit", it causes any redundant SysVinit
+> scripts to be removed, and further, that if the
+> latter is set to "", then all initscripts are
+> removed from the image altogether.
+>
+>                 - Morn=C3=A9
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
