@@ -1,30 +1,65 @@
-Return-Path: <quentin.schulz@streamunlimited.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5DD0E00CD5; Tue,  4 Jun 2019 08:11:58 -0700 (PDT)
+	id 1072CE00D4C; Tue,  4 Jun 2019 11:37:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [213.33.87.19 listed in list.dnswl.org]
-Received: from bsmtp7.bon.at (bsmtp7.bon.at [213.33.87.19])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98C80E0098A
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2019 08:11:57 -0700 (PDT)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp7.bon.at (Postfix) with ESMTPSA id 45JFl0350tz5tlG
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2019 17:11:56 +0200 (CEST)
-Date: Tue, 4 Jun 2019 17:11:55 +0200
-From: Quentin Schulz <quentin.schulz@streamunlimited.com>
-To: yocto@yoctoproject.org
-Message-ID: <20190604151155.vwoppnn6qlw3jyap@qschulz>
-References: <20190531093143.r6ernips6l3yoevp@qschulz>
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.45 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com
+	[209.85.210.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82C5AE00CF4
+	for <yocto@yoctoproject.org>; Tue,  4 Jun 2019 11:37:32 -0700 (PDT)
+Received: by mail-ot1-f45.google.com with SMTP id r21so8051885otq.6
+	for <yocto@yoctoproject.org>; Tue, 04 Jun 2019 11:37:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=HtKK0VIRNYCKS7jrhH7vDuXRw2VwvdbToBcfTDkoSpw=;
+	b=t+tBQjy0kVbZ/wVPfWvVNUEt/1eVnSkutN60OLmmlfNIW4UwlYL73PR5Fwd54jML5v
+	fOMXCrNU+PYBmbIyWyMGBi10JdalY9MwF79Zo4u7fTVh0FNFs28gQPTwrpk8DLhZZSpw
+	rLOjgk9FmorKiDo/6koJLXNHo5pTm8m3d3le/tqG7YS10Mzd7lN+iZszIvTucEVvc2CF
+	hVurXUSMYHva+z5BaOcw7kDRJyTjmzj0Ybh3MQcv1J38aFUheXViSKzuLRbDozKPgy73
+	WoyaQSzXh/qyu5EIdZG8RJ9emQCjQFOwjFhsVZhFEnCHZyoEKAIxP/EIpiWWNfPYI1sx
+	f5/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=HtKK0VIRNYCKS7jrhH7vDuXRw2VwvdbToBcfTDkoSpw=;
+	b=PcAECxco4IgRwg6eKllfPia/c7lqfgTkPNqQrpd/4yr28di8m9isOTt3WOMQV/0DSc
+	41tuT9VpTB7h+xJbRh+EhGl4QaJXeJmY5VKxUlYKXNwwnKcnk3hviScEdPN6789BRt1N
+	rurXObJA2zlhQdoVj5zvhjQKd0uJWbDj9endQeSRn/Wae4i7nRQvcgxqwFZcR6seUJcI
+	fsZ/w/yhYIsLWY7JsTC0TOA77wZEoY3XO+gY5TJNvme7xXE8UzaDM4S1H2JYkr312knu
+	DlC8Rl0o5/KwVxgE/ly7JJZsbGpBXOMTWxxTGhO49XQoQs4hFf+cpZt1WoUWqCl0VLp9
+	/gcg==
+X-Gm-Message-State: APjAAAXq2OlNnytsOXUPwXvLzfi6D1MwI58EFWkNJomOF8zTHe1kpELZ
+	MusHoIrO9CbHHDxbj0pf+AJM1kGbzrlvcgB8AXJYeA==
+X-Google-Smtp-Source: APXvYqwIi9oNuiFzWu3VnrkDmvVxcC6xaCC1Kg+LhAoPlWUOnF15IASdqGPoTNG16+uegWQRTY01ZA4YEFg9zaJBHkI=
+X-Received: by 2002:a9d:5f05:: with SMTP id f5mr1358825oti.167.1559673451917; 
+	Tue, 04 Jun 2019 11:37:31 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190531093143.r6ernips6l3yoevp@qschulz>
-User-Agent: NeoMutt/20180716
+References: <20190531093143.r6ernips6l3yoevp@qschulz>
+	<20190604151155.vwoppnn6qlw3jyap@qschulz>
+In-Reply-To: <20190604151155.vwoppnn6qlw3jyap@qschulz>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Tue, 4 Jun 2019 20:37:18 +0200
+Message-ID: <CANNYZj9BzxqGVK959nddQeEquD6j553F4_Yra3vguZjnLzC4zQ@mail.gmail.com>
+To: Quentin Schulz <quentin.schulz@streamunlimited.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: Issue with INCOMPATIBLE_LICENSE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -37,104 +72,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Jun 2019 15:11:58 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 04 Jun 2019 18:37:33 -0000
+Content-Type: multipart/alternative; boundary="0000000000001135e3058a83c63c"
 
-Hi all,
+--0000000000001135e3058a83c63c
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, May 31, 2019 at 11:31:43AM +0200, Quentin Schulz wrote:
-> Hi all,
-> 
-> We're in the middle of an upgrade to Thud 2.6.2. While doing so, we
-> blindly updated all upstream layers we use and we found out (during
-> integration phase, no need to send lawyers :) ) that even though we have
-> GPLv3 in INCOMPATIBLE_LICENSE, qt5.11 was built.
-> 
-> conf/local.conf
-> INCOMPATIBLE_LICENSE = "GPLv3 GPLv3+ LGPLv3 LGPLv3+"
-> 
-> https://github.com/meta-qt5/meta-qt5/blob/thud/recipes-qt/qt5/qtbase_git.bb
-> LICENSE = "GFDL-1.3 & BSD & ( GPL-3.0 & The-Qt-Company-GPL-Exception-1.0 | The-Qt-Company-Commercial ) & ( GPL-2.0+ | LGPL-3.0 | The-Qt-Company-Commercial )"
-> 
-> My understanding of the above LICENSE is that even though I have GPLv3
-> blacklisted, because I haven't blacklisted The-Qt-Company-Commercial the
-> package got built. I'm not really happy with Qt doing that (no warning,
-> no LICENSE_FLAGS). Quick question unrelated to the actual important
-> question:
-> 
-> Would it be possible (theoritically, I know you've nothing to do with
-> maintenance of meta-qt5; also not tested, just "pseudo-code") to have
-> something like:
-> python() {
-> 	if "GPLv3" in d.getVar('INCOMPATIBLE_LICENSE'):
-> 		d.setVar("LICENSE_FLAGS", "commercial")
-> }
-> 
-> so if we are blacklisting GPLv3, we have to add commercial_qtbase to
-> LICENSE_FLAGS_WHITELIST to be able to build it.
-> 
-> So now, the actual issue. I've blacklisted The-Qt-Company-Commercial as
-> well and qtbase is still building. How so?
-> 
-> For me, it results in the following:
-> LICENSE = "GFDL-1.3 & BSD & ( not-compat & The-Qt-Company-GPL-Exception-1.0 | not-compat ) & ( GPL-2.0+ | LGPL-3.0 | not-compat )"
-> which in the end looks like:
-> LICENSE = "GFDL-1.3 & BSD & not-compat & ( GPL-2.0+ | LGPL-3.0 | not-compat )"
-> which is basically:
-> LICENSE = "not-compat"
-> 
-> Is there an error in this simplification?
-> Am I misunderstanding how INCOMPATIBLE_LICENSE is working in Yocto?
-> Have I missed something?
-> Is there something actually buggy in the INCOMPATIBLE_LICENSE
-> implementation?
-> 
-> Also, please note that I tested with GPL-3.0 in INCOMPATIBLE_LICENSE as
-> I wanted to exclude license "aliases" not being supported by
-> INCOMPATIBLE_LICENSE (and since it's what's apparently tested from what
-> is said in the mega-manual).
-> 
-> I want to be sure to not be able to build qt >= 5.7, we're never too far
-> from an unfortunate upgrade or people in the company not knowing we
-> cannot use qt >= 5.7.
-> 
+On Tue, 4 Jun 2019 at 17:12, Quentin Schulz <
+quentin.schulz@streamunlimited.com> wrote:
 
-It's actually a bit worse than I expected.
+> Why do we filter INCOMPATIBLE_LICENSE to have only SPDX licenses or
+> their aliases (my understanding of respectively SRC_DISTRIBUTE_LICENSES
+> and SPDXLICENSEMAP)?
+> Is this actually expected?
+>
+> If it is, can we please actually document it?
+>
+> Also, how should one add a custom license? I could find this[3]
+> discussion on the ML but nothing "official". Can we document it? I
+> wouldn't know today what to do without having to read the source code
+> and the licensing is critical to most companies.
+>
 
-If I create a simple baz recipe with LICENSE = "FooLicense" and have
-INCOMPATIBLE_LICENSE = "FooLicense" in conf/local.conf, `bitbake baz`
-will NOT complain, and will be built.
+Sending patches is far more efficient than asking questions; generally,
+everyone is busy with their own problems. If you see a deficiency, and have
+a clear idea how to make it better, please do contribute improvements.
 
-Now, my understanding is that INCOMPATIBLE_LICENSE is passed[1] as an
-argument to expand_wildcard_licenses[2] which returns a list of licenses
-which have to be part of either SPDXLICENSEMAP or
-SRC_DISTRIBUTE_LICENSES.
+Alex
 
-However, in the case of qtbase, The-Qt-Company-Commercial is nowhere to
-be found in those variables.
+--0000000000001135e3058a83c63c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Why do we filter INCOMPATIBLE_LICENSE to have only SPDX licenses or
-their aliases (my understanding of respectively SRC_DISTRIBUTE_LICENSES
-and SPDXLICENSEMAP)?
-Is this actually expected?
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Tue, 4 Jun 2019 at 17:12, Quentin Schulz &lt;<a href=3D"mailto:qu=
+entin.schulz@streamunlimited.com">quentin.schulz@streamunlimited.com</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Why do =
+we filter INCOMPATIBLE_LICENSE to have only SPDX licenses or<br>
+their aliases (my understanding of respectively SRC_DISTRIBUTE_LICENSES<br>
+and SPDXLICENSEMAP)?<br>
+Is this actually expected?<br>
+<br>
+If it is, can we please actually document it?<br>
+<br>
+Also, how should one add a custom license? I could find this[3]<br>
+discussion on the ML but nothing &quot;official&quot;. Can we document it? =
+I<br>
+wouldn&#39;t know today what to do without having to read the source code<b=
+r>
+and the licensing is critical to most companies.<br></blockquote><div><br><=
+/div><div>Sending patches is far more efficient than asking questions; gene=
+rally, everyone is busy with their own problems. If you see a deficiency, a=
+nd have a clear idea how to make it better, please do contribute improvemen=
+ts.</div><div><br></div><div>Alex<br></div><div>=C2=A0</div></div></div>
 
-If it is, can we please actually document it?
-
-Also, how should one add a custom license? I could find this[3]
-discussion on the ML but nothing "official". Can we document it? I
-wouldn't know today what to do without having to read the source code
-and the licensing is critical to most companies.
-
-Let me know how and if I can help,
-Thanks,
-Quentin
-
-[1] https://git.yoctoproject.org/cgit.cgi/poky/tree/meta/classes/base.bbclass#n524
-[2] https://git.yoctoproject.org/cgit.cgi/poky/tree/meta/classes/license.bbclass#n265
-[3] https://lists.yoctoproject.org/pipermail/yocto/2013-June/014366.html
--- 
-StreamUnlimited Engineering GmbH
-High Tech Campus Vienna, Gutheil-Schoder-Gasse 10, 1100 Vienna, Austria
-quentin.schulz@streamunlimited.com, www.streamunlimited.com
-
+--0000000000001135e3058a83c63c--
