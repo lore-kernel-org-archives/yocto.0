@@ -1,42 +1,34 @@
-Return-Path: <mauro@faresoftware.it>
+Return-Path: <Hongxu.Jia@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D95A4E00D44; Tue,  4 Jun 2019 00:08:55 -0700 (PDT)
+	id 7B2E2E00D44; Tue,  4 Jun 2019 00:54:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [62.149.156.56 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from smtpcmd0756.aruba.it (smtpcmd0756.aruba.it [62.149.156.56])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F627E006D2
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2019 00:08:51 -0700 (PDT)
-Received: from [192.168.24.172] ([93.38.119.136])
-	by smtpcmd07.ad.aruba.it with bizsmtp
-	id LX8p2000R2wfazh01X8pmq; Tue, 04 Jun 2019 09:08:49 +0200
-To: yocto@yoctoproject.org
-From: Mauro Ziliani <mauro@faresoftware.it>
-Message-ID: <7e9f634a-175f-1e49-2d80-da364686d077@faresoftware.it>
-Date: Tue, 4 Jun 2019 09:08:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.0
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 991DDE00D36
+	for <yocto@yoctoproject.org>; Tue,  4 Jun 2019 00:54:48 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x547sHrq009103
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 4 Jun 2019 00:54:37 -0700
+Received: from pek-lpg-core1-vm2.wrs.com (128.224.156.107) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.3.439.0; Tue, 4 Jun 2019 00:54:07 -0700
+From: Hongxu Jia <hongxu.jia@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 4 Jun 2019 15:54:06 +0800
+Message-ID: <1559634846-13094-1-git-send-email-hongxu.jia@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
-	t=1559632129; bh=oGSz5Y29/5F60g6gQY0XI2W3pZT+sa0Og5mr1LCNy6Y=;
-	h=To:From:Subject:Date:MIME-Version:Content-Type;
-	b=eTuTDu+wx+YVYT4WoLNSfLc8Yn6jtWr/04g7nOndUS0A02ZzEJrHPduXisi3+aAvJ
-	eBVEDc2jEBgV2h4PEMHs1ig3x7ewAKItNNIrm0QAa8AE9JeHA4riliXL08qxPfF2yV
-	wnsRIhmOmIaAlAlydlgFJdv6zyYG1CI0zakLUNrJ3NC6UR+gocFF0Gf8fF6SGsADHj
-	64VIXoBr8nm9P5ZGP7Huy56s4KRBEnfzx7s7V0BaEQ5u5lDMikp06FDBO2xgsjH0WW
-	L5rO9Y43nufXBPZE3dhDh0nkP5eZXsz6NCUVfwWdP3rqFySd205Z5kmcLbPN8MHFBw
-	eLcAbtqFCjBGg==
-Subject: How to disable SIMD extensions (mmx, sse3, ...)?
+Subject: [meta-cgl][PATCH] resource-agents: improve reproducibility
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,28 +40,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Jun 2019 07:08:55 -0000
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: it
+X-List-Received-Date: Tue, 04 Jun 2019 07:54:50 -0000
+Content-Type: text/plain
 
-Hi all.
+Script ocf-binaries contains build path
+$ grep tmp-glibc -rn image/
+|image/usr/lib64/ocf/lib/heartbeat/ocf-binaries:11:: ${EGREP:="/buildarea1/hjia/
+wrlinux-1019/build_master-wr_qemux86-64_2019053109/build/tmp-glibc/hosttools/grep -E"}
+|image/usr/lib64/ocf/lib/heartbeat/ocf-binaries:16:: ${TEST:=/buildarea1/hjia/
+wrlinux-1019/build_master-wr_qemux86-64_2019053109/build/tmp-glibc/hosttools/test}
 
-I'm working with a Geode LX800, porting an old application Debian-based 
-into Yocto Thud.
+Set grep/test path rather than using hosttools which refers
+commit in oe-core [f6e7a3b libtool: Don't hardcode grep paths]
 
-I need to disable some multimedia SIMD extensions for gcc compiler.
+Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+---
+ .../recipes-cgl/cluster-resource-agents/resource-agents_4.0.1.bb     | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Where I can do this?
-
-I suppose I have to disable SIMD extensions in 
-conf/machine/geode_lx800.conf file (the machine descriptor file), but I 
-cannot find any document about.
-
-
-Can you help me?
-
-MZ
-
+diff --git a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents_4.0.1.bb b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents_4.0.1.bb
+index 8b2b8e1..ba00a80 100644
+--- a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents_4.0.1.bb
++++ b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents_4.0.1.bb
+@@ -44,6 +44,11 @@ RDEPENDS_${PN} += "bash perl lvm2 \
+ 
+ inherit autotools systemd pkgconfig
+ 
++CACHED_CONFIGUREVARS += " \
++    ac_cv_path_GREP=grep \
++    ac_cv_path_TEST=test \
++"
++
+ EXTRA_OECONF += "--disable-fatal-warnings \
+                  --with-rsctmpdir=/var/run/heartbeat/rsctmp"
+ 
+-- 
+2.7.4
 
 
