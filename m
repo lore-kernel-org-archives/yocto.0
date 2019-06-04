@@ -1,63 +1,53 @@
-Return-Path: <joaohf@gmail.com>
+Return-Path: <rpurdie@rpsys.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 26F79E00A0C; Sun,  2 Jun 2019 22:40:53 -0700 (PDT)
+	id 7D4CFE006D2; Tue,  4 Jun 2019 09:10:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (joaohf[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.46 listed in list.dnswl.org]
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com
-	[209.85.208.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68240E00A0C
-	for <yocto@yoctoproject.org>; Sun,  2 Jun 2019 22:40:52 -0700 (PDT)
-Received: by mail-ed1-f46.google.com with SMTP id g13so25150648edu.5
-	for <yocto@yoctoproject.org>; Sun, 02 Jun 2019 22:40:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=rHdXUSBCZLziT/u3svhJkLRbrZKJ1Hm7SExQw/c/kN4=;
-	b=J7GKf/UVI9kK3Z6ZGKpZn+ljwzMe1acgldmK+Ac6u11mu2ACRTwLqmVFzTkm9krpSR
-	8+YVhb07W6ionWWZgDVdXHhNsN+syp2aeqTFfkoQ7hiRiwgMU/aZUGjeXJLoV1cksTVZ
-	ZBZ6WL7bmxt1NGBvEfpBwi0wszpIuE+rzAKnYuiCvurANSG10yIUeyI5Lj9C7ob7s4DH
-	7j10E3hMqKTMpXXtr/9QUiJtYn203riNLtAdObXW9n90uGcGZQpcS5YMApWu6SEy+BnC
-	vQTFnZnbCBFjX6gBqDYnP5TdUCHyVqkVbS2u0TiZLE2btE37vsrsCV4NhV6SBos7EtE7
-	uxvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=rHdXUSBCZLziT/u3svhJkLRbrZKJ1Hm7SExQw/c/kN4=;
-	b=GXtarqbY02gsPj7fXG0aVyMTCy6pKfkv1nLf4Cf6ERkkvtCplPgsYNyeBhUZJSt13E
-	zL/xPLZn9mkJDyHRHRSd5i8OHXvHBzlt8/3zw7+H+W/sQjfQsDGU7mikhEreSi/zRQLi
-	CBhiz98izIRj98LF8jbQmH3/VP72YVkhbdBVkP2/dwNsr4ude+H57pcDZ6ajCVKjloMf
-	Vff5zaMGo0khiA6TrsOR2UTju5IS2/fDucNovNf6palz5X2gRIIeDeZhX0k/UCl6dHpU
-	5DVsYlOdxWG94WpyZJWc4HlDhGuTn8f0zjrfh/kggqfboaULTZbmDtNx0GnOJjowEK7e
-	Uocg==
-X-Gm-Message-State: APjAAAX2De/bcl5kN11NYQAaBV5yhvYgKBUSIgz7gMj1XQxEH3n+vX9u
-	bB/OaDecA6m5db9Yu/Af4RJC8dn1ukHouYouhSxPng==
-X-Google-Smtp-Source: APXvYqwJIHzYy47hF+yqzNYMwShRFXj1Mt4k5pqscC5ebdUcjRLWF9D1UvVKLx/D4G0Sp/QcZViy/QXOTzu6StXAeU0=
-X-Received: by 2002:a17:906:2922:: with SMTP id
-	v2mr21431206ejd.115.1559540451029; 
-	Sun, 02 Jun 2019 22:40:51 -0700 (PDT)
+	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
+X-Greylist: delayed 461 seconds by postgrey-1.32 at yocto-www;
+	Tue, 04 Jun 2019 09:10:35 PDT
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67B56E006D2;
+	Tue,  4 Jun 2019 09:10:35 -0700 (PDT)
+Received: from hex ([192.168.3.34]) (authenticated bits=0)
+	by dan.rpsys.net (8.15.2/8.15.2/Debian-10) with ESMTPSA id
+	x54G2WTK024050
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=NOT); Tue, 4 Jun 2019 17:02:33 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=rpsys.net; s=default;
+	t=1559664156; bh=6eSVWV4c3Io6dNXv6ThRB2d0oJUKs3SVYUFWnAB/dg8=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+	b=PfQdulKt/p1wZwfePBS6NxoaMYVouO4nKNzqvbmFkj3NcVAui3Ju/GDoXXt8e33v9
+	ydEvVnhQgCwuIAfk0bpYwrhiXYrADaXb2+/WSWSCT2r8WTFFP0TONfz6w3+sG9zASZ
+	M15JxMh+3Wxfm5HQmC1uP2ijCQ+zxhYh/kI116YrocfT7HtDsFCnKpJvL58VDp9dO6
+	rU4RdBgvWD1/nGw3wDvZz4AOvx4jXGHenbkTC4IyVUtMNJuLtVp8L2sHA1uVBqoWIx
+	EaOCOjt6KijLKVkkjd4CcjQEdvR4wNLhIHnPB/a89UyWn+21pL9/ssQJ8ufO706ubA
+	BOi8X+e8ROP/A==
+Message-ID: <0f6e55fc6305b3f5cb477af4f4aff4c2e67e2b00.camel@rpsys.net>
+From: Richard Purdie <rpurdie@rpsys.net>
+To: Changqing Li <changqing.li@windriver.com>, akuster <akuster@mvista.com>,
+	Randy MacLeod <randy.macleod@windriver.com>
+Date: Tue, 04 Jun 2019 17:02:32 +0100
+In-Reply-To: <dd502bbb-d5a4-35fb-fb64-3af8af8a3ede@windriver.com>
+References: <1551779999-231946-1-git-send-email-changqing.li@windriver.com>
+	<3427a8c2-543e-f71c-9c10-fca3b5c0667e@windriver.com>
+	<a42d5db8-1cae-008e-dd8f-d533662007d6@windriver.com>
+	<46d05a5b-c884-0f87-5cee-02d005f04225@mvista.com>
+	<dd502bbb-d5a4-35fb-fb64-3af8af8a3ede@windriver.com>
+User-Agent: Evolution 3.32.2-1 
 MIME-Version: 1.0
-From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
-Date: Mon, 3 Jun 2019 07:40:40 +0200
-Message-ID: <CANFVK78ymEGrUgqtr0sH+6F6vOzmwbuq75AqdYVqYhTDN9ro0g@mail.gmail.com>
-To: yocto@yoctoproject.org
+X-Virus-Scanned: clamav-milter 0.100.3 at dan
+X-Virus-Status: Clean
 X-Mailman-Approved-At: Thu, 06 Jun 2019 08:27:38 -0700
-Subject: EMQ recipe
+Cc: yocto@yoctoproject.org, "Eggleton, Paul" <paul.eggleton@intel.com>
+Subject: Re: [patchtest-oe][PATCH] test_metadata_src_uri: new unittest detecting added patch files without modifying SRC_URI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,81 +59,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Jun 2019 05:40:53 -0000
-Content-Type: multipart/alternative; boundary="00000000000098b66d058a64ce94"
-
---00000000000098b66d058a64ce94
+X-List-Received-Date: Tue, 04 Jun 2019 16:10:37 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On Wed, 2019-05-29 at 10:28 +0800, Changqing Li wrote:
+> On 5/28/19 10:53 PM, akuster wrote:
+> > On 5/27/19 6:00 PM, Changqing Li wrote:
+> > > ping
+> > > 
+> > > On 4/29/19 2:10 PM, Changqing Li wrote:
+> > > > ping
+> > > > 
+> > Does this mean you have a working knowledge of patchtest?
+> > 
+> > The one used by the project appears to be off line.  Can you help?
+> > 
+> > kind regards,
+> > Armin
+> 
+> I have do some work on this,  and can try to help,  but I don't have
+> 
+> access right of the server,  and I also don't have the admin account
+> of the patchwork.  if  someone can  provide these info,  I am glad to
+> help.
 
-I'm the author of a Yocto Project layer called meta-erlang. I would like to
-announce that now is possible to use Yocto Project which build a embedded
-Linux distro and on top of that install the EMQ (a mqtt broker) or EMQ
-edge. I've created the recipe and all the patches necessary to do that.
+Help would be much appreciated, lets take this offlist and work with
+Michael and Paul and see if we can figure out how to move forward.
 
-My main target is to bring software made with Erlang/Elixir possible to run
-in Yocto/Openembedded ecosystem.
+Cheers,
 
-Just in case, if you have a embedded project and are planing to run emq
-edge, for example. This could be feasible for you.
+Richard
 
-Check it:
 
- - https://layers.openembedded.org/layerindex/branch/master/recipes/?q=emq
- - http://joaohf.github.io/meta-erlang/#/guides-emqx
- - https://github.com/joaohf/meta-erlang
- - https://www.yoctoproject.org/
- - https://www.emqx.io/
-
-Best regards,
-
---00000000000098b66d058a64ce94
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto"><span style=3D"font-family:sans-serif;font-size:12.8px">H=
-i,</span><br style=3D"font-family:sans-serif;font-size:12.8px"><br style=3D=
-"font-family:sans-serif;font-size:12.8px"><span style=3D"font-family:sans-s=
-erif;font-size:12.8px">I&#39;m the author of a Yocto Project layer called m=
-eta-erlang. I would like to announce that now is possible to use Yocto Proj=
-ect which build a embedded Linux distro and on top of that install the EMQ =
-(a mqtt broker) or EMQ edge. I&#39;ve created the recipe and all the patche=
-s necessary to do that.</span><br style=3D"font-family:sans-serif;font-size=
-:12.8px"><br style=3D"font-family:sans-serif;font-size:12.8px"><span style=
-=3D"font-family:sans-serif;font-size:12.8px">My main target is to bring sof=
-tware made with Erlang/Elixir possible to run in Yocto/Openembedded ecosyst=
-em.</span><br style=3D"font-family:sans-serif;font-size:12.8px"><br style=
-=3D"font-family:sans-serif;font-size:12.8px"><span style=3D"font-family:san=
-s-serif;font-size:12.8px">Just in case, if you have a embedded project and =
-are planing to run emq edge, for example. This could be feasible for you.</=
-span><br style=3D"font-family:sans-serif;font-size:12.8px"><br style=3D"fon=
-t-family:sans-serif;font-size:12.8px"><span style=3D"font-family:sans-serif=
-;font-size:12.8px">Check it:</span><br style=3D"font-family:sans-serif;font=
--size:12.8px"><br style=3D"font-family:sans-serif;font-size:12.8px"><span s=
-tyle=3D"font-family:sans-serif;font-size:12.8px">=C2=A0-=C2=A0</span><a hre=
-f=3D"https://layers.openembedded.org/layerindex/branch/master/recipes/?q=3D=
-emq" style=3D"text-decoration-line:none;color:rgb(66,133,244);font-family:s=
-ans-serif;font-size:12.8px">https://layers.openembedded.org/layerindex/bran=
-ch/master/recipes/?q=3Demq</a><br style=3D"font-family:sans-serif;font-size=
-:12.8px"><span style=3D"font-family:sans-serif;font-size:12.8px">=C2=A0-=C2=
-=A0</span><a href=3D"http://joaohf.github.io/meta-erlang/#/guides-emqx" sty=
-le=3D"text-decoration-line:none;color:rgb(66,133,244);font-family:sans-seri=
-f;font-size:12.8px">http://joaohf.github.io/meta-erlang/#/guides-emqx</a><b=
-r style=3D"font-family:sans-serif;font-size:12.8px"><span style=3D"font-fam=
-ily:sans-serif;font-size:12.8px">=C2=A0-=C2=A0</span><a href=3D"https://git=
-hub.com/joaohf/meta-erlang" style=3D"text-decoration-line:none;color:rgb(66=
-,133,244);font-family:sans-serif;font-size:12.8px">https://github.com/joaoh=
-f/meta-erlang</a><br style=3D"font-family:sans-serif;font-size:12.8px"><spa=
-n style=3D"font-family:sans-serif;font-size:12.8px">=C2=A0-=C2=A0</span><a =
-href=3D"https://www.yoctoproject.org/" style=3D"text-decoration-line:none;c=
-olor:rgb(66,133,244);font-family:sans-serif;font-size:12.8px">https://www.y=
-octoproject.org/</a><br style=3D"font-family:sans-serif;font-size:12.8px"><=
-span style=3D"font-family:sans-serif;font-size:12.8px">=C2=A0-=C2=A0</span>=
-<a href=3D"https://www.emqx.io/" style=3D"text-decoration-line:none;color:r=
-gb(66,133,244);font-family:sans-serif;font-size:12.8px">https://www.emqx.io=
-/</a><br style=3D"font-family:sans-serif;font-size:12.8px"><br style=3D"fon=
-t-family:sans-serif;font-size:12.8px"><span style=3D"font-family:sans-serif=
-;font-size:12.8px">Best regards,</span></div>
-
---00000000000098b66d058a64ce94--
