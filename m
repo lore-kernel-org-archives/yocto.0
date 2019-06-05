@@ -1,6 +1,6 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <morne.lamprecht@melangex.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7AE8DE00D6B; Wed,  5 Jun 2019 09:01:48 -0700 (PDT)
+	id A6F43E00D51; Wed,  5 Jun 2019 09:17:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,53 +10,63 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.196 listed in list.dnswl.org]
+	*      [209.85.128.54 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-it1-f196.google.com (mail-it1-f196.google.com
-	[209.85.166.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5400E00D48
-	for <yocto@lists.yoctoproject.org>;
-	Wed,  5 Jun 2019 09:01:47 -0700 (PDT)
-Received: by mail-it1-f196.google.com with SMTP id j204so4321567ite.4
-	for <yocto@lists.yoctoproject.org>;
-	Wed, 05 Jun 2019 09:01:47 -0700 (PDT)
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
+	[209.85.128.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7B57E00CF4
+	for <yocto@yoctoproject.org>; Wed,  5 Jun 2019 09:17:26 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id v19so2906932wmj.5
+	for <yocto@yoctoproject.org>; Wed, 05 Jun 2019 09:17:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=K4ZOnJuL1oL90NeSluQGjZCMErU1UP5t627pUPjCCsI=;
-	b=pyFmVOmly53jnkKwcB7EAWH4sxsLyqOGkMWK3EbzIGUoH6W3Lx2PlmLKMGztRnmRG4
-	4tshSV1pfpV0+BQJiDi/sX6QZc7MQCP9tolwvIWO6KxM2fJhNErjAs1BO3c6qvsVahzz
-	OofJpC7pPA8mHSW9JyHRjbGuC4wZKpysGkc4ddetAB77iH1uCxshsE9NwrnD+rqO0dE7
-	MxVerrUqQD9jjQtSlqULDRRRaPAmZ8HVHqrO23yu8WsajnDxCHcpaF6iO9rwdA2rDSDq
-	/q0CRYarwfu1g4gsV5IJn61ma7mKIaTV2kjT4Ls9CHZbZgk8jWaAP5dM07o9w7GGwgLH
-	6+AQ==
+	d=melangex-com.20150623.gappssmtp.com; s=20150623;
+	h=sender:date:from:to:subject:message-id:mail-followup-to:references
+	:mime-version:content-disposition:content-transfer-encoding
+	:in-reply-to:user-agent;
+	bh=E1U1wSwXthF8ImMO8xTxfQjpSY8Gh5tdoscvLdKC2JQ=;
+	b=Kpyu6hlhbWh80iU9ezwyhbcfsqXCMLGnol35HposJt1SHHA9pamjaO/+klWmM67s3D
+	wURiYsw+ADAr/G35W0bQ0S+BoFjMZpxcmXjgs0SBtriue1UCH3GCk/ASjcnKQxrtJF2W
+	BnLqkjCYdSI6tfU4IjD4WplmYJ7CrdmNSsnjV4Cn+yRNQjGvjiV5hB1BG0ABV/+cYeu+
+	LaUUQ0LyFv44W/82/WP20jw4IvTlwkQn4xDDhSzjRbbxRO/q82alO8txaQEJb/n0P/HA
+	nJArpVY/4BIYNKTb/gvbqPRzBgw6u5pJ9NHF17snMBmfq/h96jq+hUsFZqtgakBnoKG+
+	Xuxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=K4ZOnJuL1oL90NeSluQGjZCMErU1UP5t627pUPjCCsI=;
-	b=SE98yxCaA/aKqOX2yDjEj+LneP5612G+9BIUhvZHENu6mSx+5oS9JtLJ269Rc6h5KZ
-	nsEPJYndKkN1dXh5WFWycOV71nI+J7dK0t+XJpm4D9/z/0frGN/83xw2RjA6K0oATLOe
-	owjz8xaRI8KEWp/jb1xKPElJJt9JKQwAWysc80f/b4eZhmp3kwM/OrK/9JhfTuwQnoOA
-	nYgAoKC3ozAP4N1NLkjVnw5z34ZXWsmUkp4lYY9JtS5ED6FzItV3uvP/NbmJRjJminLy
-	Hyn/dg6KWIhxWEGlIKnWfhSgoYThVclgJuCWanM1ugJlBxua08vnHaLSB4HUrT5Bxi7g
-	H3wg==
-X-Gm-Message-State: APjAAAVgSYKpYACYcLwsuVStvVH30ENvisAh7IxZRmG7kuCn5Ifq7jxN
-	sWk3IICjssNUB7P1WhNQVe0142LvyvDOuX47eExRjw==
-X-Google-Smtp-Source: APXvYqwNdGNmz/hOCmxdJ/v+rlAemUDzitP8jLiym1QHtcalcK35jEHbpv9lNtOCoSAbE/P1h/ogmPaHKvI9OYYCzyE=
-X-Received: by 2002:a24:64c5:: with SMTP id t188mr26300056itc.83.1559750507133;
-	Wed, 05 Jun 2019 09:01:47 -0700 (PDT)
+	h=x-gm-message-state:sender:date:from:to:subject:message-id
+	:mail-followup-to:references:mime-version:content-disposition
+	:content-transfer-encoding:in-reply-to:user-agent;
+	bh=E1U1wSwXthF8ImMO8xTxfQjpSY8Gh5tdoscvLdKC2JQ=;
+	b=uD255oEf3Ht9V24QbMzxpIlUoMnODFzMESFIcU/2uOp2nZ0k5xCxGru2t1oXM25bIw
+	w4RsdfdxvnQCfKryT6JW47fdVVA5kfkc34Qlx7jONiulm72GnmxMQid+fTqv8saFIgrQ
+	SiGlh50DA6Pt8CKlbbMRSUP/p2JT5PFFRR6Nj0XrAAaUgqHG7vEwInYF+y0o3K4lPid0
+	3Z2dyf7WE9rmXPz62N5Nsv1XdV4/mHfZtEd47x28EYAw6hMTZJZXcog89d1rmtw1af3V
+	eUB8T1Z9xbH8NF+Q8c6wMRjRv5QMh7pMP6c1JCJbTyC1wY9JOkD90iOvEnnkUbJLBbE0
+	PNug==
+X-Gm-Message-State: APjAAAVmwnA51/uq5x5pT9r04BQLon93tEzZogu8o7GSv5AtA48rHfkT
+	KAiItioVRxc8pzwAG/yMEPwHqgfFv5s=
+X-Google-Smtp-Source: APXvYqwFczwVj23IXJIu2vN8GiO1XA5JV0bJKJzrtMmfbm/wYqgC6YqTSDFTwgzqUeqLRtjlqHBdcg==
+X-Received: by 2002:a1c:44d4:: with SMTP id
+	r203mr20752142wma.158.1559751445204; 
+	Wed, 05 Jun 2019 09:17:25 -0700 (PDT)
+Received: from localhost ([209.203.60.70]) by smtp.gmail.com with ESMTPSA id
+	65sm38730218wro.85.2019.06.05.09.17.23 for <yocto@yoctoproject.org>
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Wed, 05 Jun 2019 09:17:24 -0700 (PDT)
+Sender: =?UTF-8?Q?Morn=C3=A9_Lamprecht?= <morne.lamprecht@melangex.com>
+Date: Wed, 5 Jun 2019 18:17:20 +0200
+From: =?iso-8859-1?Q?Morn=E9?= Lamprecht <morne@linux.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Message-ID: <20190605161720.GA9461@archworkstation>
+Mail-Followup-To: Yocto Project <yocto@yoctoproject.org>
+References: <CAGAf8Lxb88uf_zw0Hzkc74zSD3GG4zQh-UwzQmBhMTLCxqRd5Q@mail.gmail.com>
+	<20190603190711.GB24026@archworkstation>
+	<CAGAf8LxXdZADK+ScSXLr1Ov-xAY24YsS2nZ-1-SpSKDbS3cBHw@mail.gmail.com>
 MIME-Version: 1.0
-References: <20190605075602.599-1-Martin.Jansa@gmail.com>
-In-Reply-To: <20190605075602.599-1-Martin.Jansa@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 5 Jun 2019 17:01:34 +0100
-Message-ID: <CAJTo0Lb0M+xcNjjsjfaNK5q7dKAnj+QEw-Vb5joY8OuRz_RhvQ@mail.gmail.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [meta-gplv2][PATCH] elfutils: ignore new error from gcc-9
+In-Reply-To: <CAGAf8LxXdZADK+ScSXLr1Ov-xAY24YsS2nZ-1-SpSKDbS3cBHw@mail.gmail.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
+Subject: Re: Potential (?) systemd YOCTO problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,41 +78,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Jun 2019 16:01:48 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 05 Jun 2019 16:17:27 -0000
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-Pushed, thanks.
+On Tue, Jun 04, 2019 at 11:34:15PM +0200, Zoran 
+Stojsavljevic wrote:
+>(I did not find it anywhere in the manuals, 
+>maybe I missed the paragraph - please, advice 
+>where it is?).
 
-Ross
+This is where I found it previously:
+https://www.yoctoproject.org/docs/2.7/dev-manual/dev-manual.html#using-systemd-exclusively
 
-On Wed, 5 Jun 2019 at 08:56, Martin Jansa <martin.jansa@gmail.com> wrote:
->
-> Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
-> ---
->  recipes-devtools/elfutils/elfutils_0.148.bb | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/recipes-devtools/elfutils/elfutils_0.148.bb b/recipes-devtools/elfutils/elfutils_0.148.bb
-> index a03b74e..1f07a28 100644
-> --- a/recipes-devtools/elfutils/elfutils_0.148.bb
-> +++ b/recipes-devtools/elfutils/elfutils_0.148.bb
-> @@ -57,6 +57,10 @@ SRC_URI += "\
->  "
->  inherit autotools gettext
->
-> +# There is a fix in 0.175 version (https://sourceware.org/bugzilla/show_bug.cgi?id=23884)
-> +# but 0.175 has different license, so to be safe don't backport the fix, just ignore the issue
-> +CFLAGS += "-Wno-error=missing-attributes"
-> +
->  EXTRA_OECONF = "--program-prefix=eu- --without-lzma"
->  EXTRA_OECONF_append_class-native = " --without-bzlib"
->  EXTRA_OECONF_append_libc-uclibc = " --enable-uclibc"
-> --
-> 2.17.1
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>Thank you again,
+
+Glad I could help.
+
+		- Morné
 
