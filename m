@@ -1,6 +1,6 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 25DA8E00D63; Tue,  4 Jun 2019 19:32:38 -0700 (PDT)
+	id 93ABAE00D63; Wed,  5 Jun 2019 00:55:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,7 +10,7 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jupiter.hce[at]gmail.com)
+	provider *      (martin.jansa[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -18,45 +18,50 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.44 listed in list.dnswl.org]
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com
-	[209.85.166.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFE04E00D5C
-	for <yocto@yoctoproject.org>; Tue,  4 Jun 2019 19:32:36 -0700 (PDT)
-Received: by mail-io1-f44.google.com with SMTP id u19so3145033ior.9
-	for <yocto@yoctoproject.org>; Tue, 04 Jun 2019 19:32:36 -0700 (PDT)
+	*      [209.85.221.67 listed in list.dnswl.org]
+Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
+	[209.85.221.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C6B5E00D5C
+	for <yocto@lists.yoctoproject.org>;
+	Wed,  5 Jun 2019 00:55:52 -0700 (PDT)
+Received: by mail-wr1-f67.google.com with SMTP id n9so5970867wru.0
+	for <yocto@lists.yoctoproject.org>;
+	Wed, 05 Jun 2019 00:55:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=AVHgVcaK7UbIVHR2WqSaLsbtVAqjclz4XbB/E8yGfJU=;
-	b=CXDjcXNuuImIdTadoOC0Ctei8Fj2hW/VdLnvG+BxkYNjDKIiuaf7TQn7PJQSG8E5xP
-	d78iyAaxjZFgw/NCBhlBVS3jH9hILaaeuTZv8sPo/D37izaLKwY1G6o5bqn3AIDx6H4Y
-	VeQnOuJ5ijkqu37W8ifsk5QFqiDRGvdyjY4nM75Y31D/w55YSh3zPBgZlQvAaRilmCTD
-	JLhZq9Z126TIpnmwe7fwjQHMyUo97hGg8gRiOro82jUvGQF9IrJPEmcTPeR5bK174UkX
-	aX2Gr5Us3s13Vsvrj9p8tLm67l4G2ZYHuGWCGt+7EvT9DI/mR9STtoEHlH9L81aJk8D9
-	l9sA==
+	h=from:to:cc:subject:date:message-id;
+	bh=NNWkR/pK4ZSirIPoKsqaui8+SuhCzXZA7ZD2P87ZM4E=;
+	b=M/jFEMvUI7xxWjh1PbLcJKbQSkKzB1hkBwnKrvLCk7BERFobWJgZaT3002YOTKichn
+	Ddv+Frq1j0uUdfTYcF14lLZTb7u8PMw98TIqtYGvZMnhuw8e7d4Ac5Q8ve/LXlhoek+8
+	0qApn9iJsoD5an/cRZUpfI5UfH5CCpzMqce8HpdUmWB64RZEzcrLHpUwKby4WFdJOejR
+	YMDZJ2TznBJiMQ2vB46lp+esLtuCoUwDTiVfuIM3VdKF6PBowwkZdpS88zoaiC30OJtf
+	x2dFA6ZJccvf8wHElvlEo7thjtMENovfn6Vs5RNO8pfXMFKRc3Jpkp8AvvY5JMpjtvHT
+	/9Jg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=AVHgVcaK7UbIVHR2WqSaLsbtVAqjclz4XbB/E8yGfJU=;
-	b=WMarnAYNOmaAW2kbcJu7vTfKVNVec0XVeW+4UktgofAQoVEj71CtGqjJ4d2hcedd07
-	z/Tk43HGZwzXTdRshV6vQONbcQ2XqI/gRzE5zMqNTF4AQEjiO5GHF9QLHueZcvCd99+E
-	jy4AuN/HNwVQO8g9bjj1mzXSsqtWvQrvI94UM+Oa3Zos+mqDWxJMlWiRnlqf45r/Mbkm
-	Rj7l2P5sqB2639UxZJt/ySPuUgNGyeI8vpB8n2K3b/x3RZoxSr8GSUsiAvqvIkIlANwZ
-	Q0YWv48T6IZg8aaOkPXi8Vwq8Cn7G+S42rYMH0C5IobcIFK1SX+5uOabQ3bZ5wMZKMzT
-	LzEA==
-X-Gm-Message-State: APjAAAWuaU3F1yT08M+40oT/6kphR7Lk5y9yk/88pJAeFRxvMjDCwSkQ
-	+TsGXaCb8NSiIuUHuqSssPjngMkKNOS/e1+uLrGlVdVD
-X-Google-Smtp-Source: APXvYqzkNwPadZMkHSzoS5mLEYGSTr6bbEOzhag12k41+CjfyVv6FcxXRlq0tZXN/PwDveXsF1nIieK72bu0Yu8PVIs=
-X-Received: by 2002:a6b:8b51:: with SMTP id n78mr24666450iod.192.1559701956015;
-	Tue, 04 Jun 2019 19:32:36 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:ac0:92cf:0:0:0:0:0 with HTTP;
-	Tue, 4 Jun 2019 19:32:35 -0700 (PDT)
-From: JH <jupiter.hce@gmail.com>
-Date: Wed, 5 Jun 2019 12:32:35 +1000
-Message-ID: <CAA=hcWRLVZXTeubkZwJtCRCBTGysUvkoPOoC3BPESOEUNoRpoA@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Yocto image types
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=NNWkR/pK4ZSirIPoKsqaui8+SuhCzXZA7ZD2P87ZM4E=;
+	b=UZqTpUGxgOH15lniYCWwbJtv/+a840c8bru8anDA+3Ho8wr12lyhvpsQIPhCIKqjL+
+	/y42E5HNoCgZelFobzHFdaKfTWm1jG30KX7KzV4TRXWR686rxMQxhoKzHqm1dasvDes+
+	JgiAe1VyVIEPIKjAnRPOVF9zGj/mvFeAbfs7ddtD1KvDzx/Eaf+TRkiFDCcTFGh09BYZ
+	Dhic4xTZyq9DqajNRvw/sEsOWVIEAinHkU/XfLyKQ6rDVk2VG2iLycBYUgTLcV1cF4cJ
+	qheR+ni78Rs/kzFaQOmn+5mNQvRtKdbpFBs8/YukUDlpShQd1uXOOhgv7t4eRvAScBcD
+	67fw==
+X-Gm-Message-State: APjAAAV87A/cDaSQkMv/9seoG8exTH3rBziqzvYhhdyVNjqvkNXSrozi
+	oPOkUHuQ8o0npwo3U3G6zY7B1Amd
+X-Google-Smtp-Source: APXvYqz2d6mipoAt7FCLETXsQ+TVPwibHG9JA9sCOpvhCy0TMJsLa5GjamJqJkJXGsaS3lg0jYvOhQ==
+X-Received: by 2002:adf:e30d:: with SMTP id b13mr6229882wrj.246.1559721351039; 
+	Wed, 05 Jun 2019 00:55:51 -0700 (PDT)
+Received: from localhost (ip-217-030-068-212.aim-net.cz. [217.30.68.212])
+	by smtp.gmail.com with ESMTPSA id h1sm1943308wrt.20.2019.06.05.00.55.50
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Wed, 05 Jun 2019 00:55:50 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+To: yocto@lists.yoctoproject.org
+Date: Wed,  5 Jun 2019 07:56:02 +0000
+Message-Id: <20190605075602.599-1-Martin.Jansa@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-gplv2][PATCH] elfutils: ignore new error from gcc-9
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,34 +73,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Jun 2019 02:32:38 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 05 Jun 2019 07:55:53 -0000
 
-Hi,
+Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+---
+ recipes-devtools/elfutils/elfutils_0.148.bb | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-I built Yocto image, Could anyone explain what are files in
-deploy/images directories?
+diff --git a/recipes-devtools/elfutils/elfutils_0.148.bb b/recipes-devtools/elfutils/elfutils_0.148.bb
+index a03b74e..1f07a28 100644
+--- a/recipes-devtools/elfutils/elfutils_0.148.bb
++++ b/recipes-devtools/elfutils/elfutils_0.148.bb
+@@ -57,6 +57,10 @@ SRC_URI += "\
+ "
+ inherit autotools gettext
+ 
++# There is a fix in 0.175 version (https://sourceware.org/bugzilla/show_bug.cgi?id=23884)
++# but 0.175 has different license, so to be safe don't backport the fix, just ignore the issue
++CFLAGS += "-Wno-error=missing-attributes"
++
+ EXTRA_OECONF = "--program-prefix=eu- --without-lzma"
+ EXTRA_OECONF_append_class-native = " --without-bzlib"
+ EXTRA_OECONF_append_libc-uclibc = " --enable-uclibc"
+-- 
+2.17.1
 
-
-modules--*.tgz
-
-dev-image*rootfs.wic.gz
-
-zImage*.bin
-
-I guess modules--*.tgz is compressed file for all modules,
-dev-image*rootfs.wic.gz is the rootfs image can be downloaded to SD
-card, zImage*.bin is the compressed initramfs can be used by mfgtool
-uuu for download to NAND flash, is it correct?
-
-I currently has an error of for downloading zImage*.bin Wrong Ramdisk
-Image Format. how can following recipes be used to add ramdisk format
-to zImage?
-
-meta-freescale/recipes-fsl/images/fsl-image-mfgtool-initramfs.bb
-oe-core/meta/recipes-core/images/core-image-minimal-initramfs.bb
-
-Thank you.
-
-- JH
 
