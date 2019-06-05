@@ -1,70 +1,87 @@
-Return-Path: <mans.zigher@gmail.com>
+Return-Path: <maciej.pijanowski@3mdeb.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 41A37E00CF4; Wed,  5 Jun 2019 05:44:56 -0700 (PDT)
+	id B2F14E00D48; Wed,  5 Jun 2019 07:59:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_EXCESS_BASE64,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (mans.zigher[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.174 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com
-	[209.85.208.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C003E00CF4
-	for <yocto@yoctoproject.org>; Wed,  5 Jun 2019 05:44:55 -0700 (PDT)
-Received: by mail-lj1-f174.google.com with SMTP id s21so12360643lji.8
-	for <yocto@yoctoproject.org>; Wed, 05 Jun 2019 05:44:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:content-transfer-encoding;
-	bh=qoS+uIOP/cU8pXy5tzj2Fo2au/F6Dgcg7lW1q8k1cOk=;
-	b=FZTrqKPu+MB867YKQHvW9wxeVaFaBixS97OvjlLPQC0o57p1lAuwQGt8GNtMt6VZnv
-	eY+hFXs3QmR3sNoHxF93m9YlRrwWKPkSV3oQkutJjbxcGDiH+SbAGmwXgtySZBCYmZ/s
-	IzMQ+7Zf/pGggOL5xh/D4FMzA9GLB64NaXdtFd03+3oA5rgRcUvWXJgVNWQyD0rMxHOy
-	EsYPklFe525YnllV0kj4HBcSY95jcPPqOMNfJDeWnxscy9NLzQLcJk2Km6k+JB0W7HqV
-	5joMIXwiLdXuzgOLY9c0APZBXTxY+XfE2d/RidtOENpSvtQdy3s/LhEOlWG3kkfYczRw
-	vyPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:content-transfer-encoding;
-	bh=qoS+uIOP/cU8pXy5tzj2Fo2au/F6Dgcg7lW1q8k1cOk=;
-	b=VVKpubrSTpW58kxDkwbinHBvNpxTBs4fwMVFtcpVwJXPqya7qw21pGYmPQM0nNCgaS
-	Fxk67jJF2ISGaQ9rtjBXdKIFgnRZBQv00MjLnu8vyGF+UA3mImPfeeNsM6sdmWGO1lTH
-	vQ/0rz8yvddUfbrbIhTi7FY+PMzT9PeiXhPe7A5hl1m0JhSwCnol7B/KVRWkgzgtUzEb
-	b3a/lDGWDCIQI4Rwf2Aq7yA+XjEWQ2mVWJr7Aa+xloYKQmJ0sAgmFxADAloqaF5bq/KF
-	KAat9L36K7exlHudBFJIWWb/aBFptsMcBka6qVMV8yV4lhefv/icYBAZUQwVbgr41Esl
-	HMTg==
-X-Gm-Message-State: APjAAAUllmGy5J9njly0/i7Ip77RaEInAHnLuxaFo6hz1BY/f6Ht8+Dd
-	SeXZhho9Bv3sU6zf5fSMfmKsTR39lCFqfOmtNFJdnM2SxIQ=
-X-Google-Smtp-Source: APXvYqxyVeZET0GRWLwJb3gufuALaZKiQN/iOW5YV6FPNxIBu02EcrD/jHmI6gJU1OaM5W0gnKTKfwPnhKjodpVFDPQ=
-X-Received: by 2002:a2e:655b:: with SMTP id z88mr21453925ljb.108.1559738693661;
-	Wed, 05 Jun 2019 05:44:53 -0700 (PDT)
+	*      [178.33.250.45 listed in list.dnswl.org]
+X-Greylist: delayed 5398 seconds by postgrey-1.32 at yocto-www;
+	Wed, 05 Jun 2019 07:59:32 PDT
+Received: from 2.mo179.mail-out.ovh.net (2.mo179.mail-out.ovh.net
+	[178.33.250.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76498E009EA
+	for <yocto@yoctoproject.org>; Wed,  5 Jun 2019 07:59:32 -0700 (PDT)
+Received: from player797.ha.ovh.net (unknown [10.109.159.222])
+	by mo179.mail-out.ovh.net (Postfix) with ESMTP id D34DF12DCD2
+	for <yocto@yoctoproject.org>; Wed,  5 Jun 2019 15:04:28 +0200 (CEST)
+Received: from 3mdeb.com (85-222-117-222.dynamic.chello.pl [85.222.117.222])
+	(Authenticated sender: maciej.pijanowski@3mdeb.com)
+	by player797.ha.ovh.net (Postfix) with ESMTPSA id 049BF6A12B6E;
+	Wed,  5 Jun 2019 13:04:25 +0000 (UTC)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=maciej.pijanowski@3mdeb.com; keydata=
+	mQINBFy+vRwBEACs+tNUJ4aKRaJm4BDZxCRBTMRS/ng8XT9yEkH6xnaOroLtYM7Uwb2QqvtN
+	uBR6Q6adYF/IcnzOuJeIlVEHloU+GyihHq1U4kJH6qI4FnnjjDhC3g7Tpms+R+yLGI1/lQ4x
+	4wA7m1Mm1oNBF7ry+p640/1rj3xxa6UEv387/coVWNP6scxhcff+rYPCkquViKob96VF/XeY
+	vav+DrBK96v9VyR3EK2DQjmw2FY/0Q95bOZ/CcfbmhIe4rCcRuZECR5zyvPVdTLtgfVJIteG
+	bhHXDLXaKVXtshdUrAPiqY6Cd0alRjEnXi9QNoyx/Vcl8ChpYTLHYqZSfsjpJhnpXSfgS6YH
+	iOhViUP5IB0kDvnDl/8fbUiBeUgXZqY4+j3NsL6FkbNch+7zMShj1cZwr0u5dO2MzcmLuYJm
+	JwMM1dE9hwRTfPPQfagGfiAcLt6IuK0cVygU7WOtAVbBXgoqTE76qbAc3qmdSiSmVL53AK76
+	meVEtt15lIZClulAMMqb23x0D+/bFCgmyywGjpWEyZA4q7ZRZomWxFr9BxKVQAyKGM5d6gQP
+	lsFFFCbuDr/gOsrXg6DTUm3amEMwGobbtU/ZWzn8OW8wjNeQnB5efJBhzt/ORihaE+5KXfq5
+	CwX9rurlIlUDT/t96VoBkYDeg36M0f7sP+7SVyPi1Qpum66h4wARAQABtC9NYWNpZWogUGlq
+	YW5vd3NraSA8bWFjaWVqLnBpamFub3dza2lAM21kZWIuY29tPokCNwQTAQgAIQUCXL69HAIb
+	AwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRDxQB0uHMsZ70SVEACI+qknq7ZImBXu7ha3
+	mQ6IJwxa9UgDwExbDGdUv6OeHAV6fGoyRsKE7mV1Q1y/coJd4vQlQBTKT7sJFlIGcSmtcjPS
+	2OShHy8IiNf1Hy/7juV2Oxs3fv1f9cdLIzLe/oF2uRdKRRM2pgYiz8SeS6Q+MPUmXN1qOpmD
+	glvf6ODhAiTj84RaeR5ikmW+9/Ldpt2PAUKT2PkHTQOKTkAkE9w+VTxdo+bmj//QIJtFT41f
+	2A7nDESzSo38Jw91jXdNb8f7lOd+RCl1hlf09agbQnKFB1LFdbGsLvYLUjIgvMF+rOOGjeXR
+	WOqo8WoowA/FfJYC9Rw+9qqAJ6TvjkxeZrhXxCxgHuA60mWxn/NofbxtZSYuHw6Abwg71Nta
+	SJ07qCCaSHlwouYcGgSatg1mmqqOkOPbp0sls54Go1FR3R9yJJR5fBJEl1amiu/ytLCbdEVT
+	Y8bE6bcgwBk7mWzNmdmf/EykaNIPbwnPDtLIQ+9rDX34ACIJNbxdMCjmrocKVBTJ9cSOlOuQ
+	xlQrrmdFKAnz0exvvE9YACgmlZ0LjzGFwm4U9G5BdJDkAeNQfbRs4CkCPgBpInmMjoelpFTW
+	dCDoGilLikNjGfgfCc8ENccw9rZndmbuWKixVMRXU3R/Fxjc0xtJvL5Iz7HLxzvtmN/OBShG
+	+iFROS+HC6tAkVYC1rkCDQRcvr0cARAAuQDEynwHXPMV54ZoBfLxURH63RzhIjYlX88HnqEn
+	/mNY2FIwUtKS73LLl7ljH4XLFDGZCEFgYttddc9wwJXw9pDvVxLICV3nTKNyBipShj/LOGbf
+	B4Pk0qlkKx5KpqSmVFZRM7mwK88tGhAILfu9IBSk/QOS1QRFztB0L2kkU/UslyJqoMD4qJqI
+	QGwPf5drfK6c685yFhdDcHcXeNgnTap68wviPLBAhRPMd8qDxMIZMARi+wxb5w6OwDxetSJn
+	kNkxCtMpiXbna/hTMIvRqC9VgwBrAINzsJMk4qVqy5CYXNJ/tkHAtTIHISliRkaZYBDdXCo9
+	SltNctQGIK1IaqTf8iLq4pehm252NTVw8QYw2usErsHp3fZLNTcJhpr4prq4aIP8ERzbaBb/
+	02i6VXAjVS5LNrIqXvkJkOeLfLRC2Fwbj6sdK5maRBGmtkGvhXJYIUlbQchY83dbQziQoMxM
+	97ZQO0l5QZRJAIjIyYXx4AaZBxoHXr9jdle54Rj/+Lru54/yDT8zWxzO+PaotQxykgEsDTXv
+	T8+kfpGOfd3ojfrKhX+bTym0TT/MVMI5CYqllQ3wF9QZFchj0I//8148Fanezj8sHbGNdNi6
+	4mpKGpEBpaLBwySx+o7SaxLvlD4GbqETIwoOxMcpvo7nQKpgHeOEu81+SDc+9KKSFjEAEQEA
+	AYkCHwQYAQgACQUCXL69HAIbDAAKCRDxQB0uHMsZ70tNEACA0ZKeJYPUHy+95d20N/i31Oze
+	BzbMksMrd/j+qPOgeTjEytxrfeOVQY/gok0sOvhDYoFvLiip0lxrIS/tHZcaH/CQn0jZkaHA
+	tGWy4hrb7wKnUEpAAwepYQyxxPy/upliLwmLX7oxdvJIY0A3T/m+8gLzR+OEJB4MfGUypSzT
+	N2RY2xTyvXUQYgw/iRHucduCYv0ZNHCzs2CtKeZpcuuozClAjPywwItn0o3YJDdZWShd6WmO
+	cOnklq9XjwxTOYWxn2i/NGv/BY7DOALzrFbp66hjMa0Vz7lCGKvSDVDcJLBnNd4Jf69DB1Ie
+	pHx5jdJHqk61DZq4yYQBh/MM4oAP7MsUE02rnp+pXqAjJUhFp6+wLP1irRL+SzdYGdda1uio
+	lhfvd/icZAEuMUnnaSkA28NjoIVwI5YmdDKuqmFWCA8PSHY8k+LLxuk/AZdV862OYCb1+r7l
+	sc1l7tHAPHGGjG3i7Hh89FdAMQ0vSGTkGuOZIAKF7atKf7TVc7M3PPT3RACCXx0ABRA3/FqR
+	lX18nOduQOSYS5LGRg4dHv5m9kgu6asXmwDP82sg8ca1RsxXuTLCrIYpGlGkThnzgqWxlC7M
+	Ridv3wyyJp8CIgdeYl4oZaSFhz12B+VaM1n8y8Nsg1e9oHHNdEWT1/S5QJRb4Ig3LQOmUhZw
+	0f2bcrTp9w==
+Message-ID: <192ab27f-b9e0-246f-63bf-c49bd49516f2@3mdeb.com>
+Date: Wed, 5 Jun 2019 15:04:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <CAEhQi8=9_SmqLtsUnb8fWan+3Z2SF0gQvovts=e+GCFg88PaRg@mail.gmail.com>
-	<CAEhQi8ne31nyNVjp6rD+t_t86gyWH6cuy5-mU6EFzjkicyf75Q@mail.gmail.com>
-	<CAEhQi8=Z4c-jqGoAW__3mqyrkhG2HZBkP4Nt+zOGrUzTJB3oig@mail.gmail.com>
-	<CAEhQi8kPOsicUCWJTeVxUxuX93YAMsz-o6WWkQpcu9O77oxHLQ@mail.gmail.com>
-	<CAEhQi8kLtWNVUNB3Zy6pC5xXJ_3pvroP9_QoPQDQSXE8aOXcuw@mail.gmail.com>
-	<CAEhQi8nhcSM=E3GveB4m6fqCf+dzMt6yYJHg6A3LW52uoe2pTg@mail.gmail.com>
-In-Reply-To: <CAEhQi8nhcSM=E3GveB4m6fqCf+dzMt6yYJHg6A3LW52uoe2pTg@mail.gmail.com>
-From: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
-Date: Wed, 5 Jun 2019 14:44:42 +0200
-Message-ID: <CAEhQi8nmgY7786+s4+u1g60-YDdbeDQBkp=Ngw3fAW5k3snSCA@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [multilib] No Manifest file generated from: lib32-alsa-lib
+X-Ovh-Tracer-Id: 13680809770785582686
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduuddrudegvddgiedtucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
+Cc: marmarek@invisiblethingslab.com,
+	=?UTF-8?Q?Piotr_Kr=c3=b3l?= <piotr.krol@3mdeb.com>
+Subject: git fetcher - AUTOREV and best practices
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,191 +93,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Jun 2019 12:44:56 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 05 Jun 2019 14:59:33 -0000
+X-Groupsio-MsgNum: 45494
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="TCur2JfUHHxcmG2amRSuOYNpA8yc7kGbj"
+
+--TCur2JfUHHxcmG2amRSuOYNpA8yc7kGbj
+Content-Type: multipart/mixed; boundary="5FWrTz1dJTgicWtB7joMG1gjk3MruLQhb";
+ protected-headers="v1"
+From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Cc: =?UTF-8?Q?Piotr_Kr=c3=b3l?= <piotr.krol@3mdeb.com>,
+ marmarek@invisiblethingslab.com
+Message-ID: <192ab27f-b9e0-246f-63bf-c49bd49516f2@3mdeb.com>
+Subject: git fetcher - AUTOREV and best practices
+
+--5FWrTz1dJTgicWtB7joMG1gjk3MruLQhb
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
 
-So it looks like I should include armv7ahf-neon-mx8mm to
-PACKAGE_EXTRA_ARCHS but I am unsure how to do that any ideas?
+Hello,
 
-/M=C3=A5ns
+As explained in the mega manual [1], when using the git:// fetcher,
+setting the
+SRCREV to ${AUTOREV} will result in building the latest commit from
+given git
+branch (master, if not specified otherwise).
 
-Den ons 5 juni 2019 kl 14:05 skrev M=C3=A5ns Zigher <mans.zigher@gmail.com>=
-:
->
-> Looking in the env dump I can see that meta-freescale is overwriting
-> the PACKAGE_ARCH in a alsa-lib_%.bbappend
->
-> PACKAGE_ARCH_imx =3D "${MACHINE_SOCARCH}"
->
-> /M=C3=A5ns
->
-> Den ons 5 juni 2019 kl 14:04 skrev M=C3=A5ns Zigher <mans.zigher@gmail.co=
-m>:
-> >
-> > So running bitbake -e lib32-alsa-lib I can see the following
-> >
-> > # $SSTATE_MANMACH [2 operations]
-> > #   set? /home/extzig/Workspace/mozart-workspace/layers/poky/meta/class=
-es/sstate.bbclass:54
-> > #     "${SSTATE_PKGARCH}"
-> > #   set sstate.bbclass:94
-> > [__anon_105__home_extzig_Workspace_mozart_workspace_layers_poky_meta_cl=
-asses_sstate_bbclass]
-> > #     "armv7ahf-neon-mx8mm"
-> > # pre-expansion value:
-> > #   "armv7ahf-neon-mx8mm"
-> > SSTATE_MANMACH=3D"armv7ahf-neon-mx8mm"
-> >
-> > So first the SSTATE_MANMACH variable is set to
-> >
-> > SSTATE_MANMACH ?=3D "${SSTATE_PKGARCH}"
-> >
-> > at line 54 in sstate.bbclass but then it will be overwritten at line 94=
- to
-> >
-> > d.setVar('SSTATE_MANMACH', d.expand("${PACKAGE_ARCH}"))
-> >
-> > The code that results in this looks like
-> >
-> >     if bb.data.inherits_class('native', d):
-> >         d.setVar('SSTATE_PKGARCH', d.getVar('BUILD_ARCH', False))
-> >     elif bb.data.inherits_class('crosssdk', d):
-> >         d.setVar('SSTATE_PKGARCH',
-> > d.expand("${BUILD_ARCH}_${SDK_ARCH}_${SDK_OS}"))
-> >     elif bb.data.inherits_class('cross', d):
-> >         d.setVar('SSTATE_PKGARCH', d.expand("${BUILD_ARCH}_${TARGET_ARC=
-H}"))
-> >     elif bb.data.inherits_class('nativesdk', d):
-> >         d.setVar('SSTATE_PKGARCH', d.expand("${SDK_ARCH}_${SDK_OS}"))
-> >     elif bb.data.inherits_class('cross-canadian', d):
-> >         d.setVar('SSTATE_PKGARCH', d.expand("${SDK_ARCH}_${PACKAGE_ARCH=
-}"))
-> >     elif bb.data.inherits_class('allarch', d) and
-> > d.getVar("PACKAGE_ARCH") =3D=3D "all":
-> >         d.setVar('SSTATE_PKGARCH', "allarch")
-> >     else:
-> >         d.setVar('SSTATE_MANMACH', d.expand("${PACKAGE_ARCH}"))
-> >
-> > So I guess either PACKAGE_ARCH is screwed up for alsa-lib or I should
-> > not get to that else statement.
-> >
-> > /M=C3=A5ns
-> >
-> > Den ons 5 juni 2019 kl 13:39 skrev M=C3=A5ns Zigher <mans.zigher@gmail.=
-com>:
-> > >
-> > > I have the following manifest files
-> > >
-> > > find . -name "manifest*-lib32-alsa-lib*"
-> > > ./manifest-mimx8mm-lib32-alsa-lib.packagedata
-> > > ./manifest-armv7ahf-neon-mx8mm-lib32-alsa-lib.package_write_rpm
-> > > ./manifest-armv7ahf-neon-mx8mm-lib32-alsa-lib.package
-> > >
-> > > but find_sstate_manifest called from package_manager
-> > >
-> > > ./meta/lib/oe/package_manager.py:615:        manifest, d2 =3D
-> > > oe.sstatesig.find_sstate_manifest(c, taskdepdata[dep][2], taskname, d=
-,
-> > > multilibs)
-> > > ./meta/lib/oe/sstatesig.py:372:def find_sstate_manifest(taskdata,
-> > > taskdata2, taskname, d, multilibcache):
-> > >
-> > > will only look for
-> > >
-> > > manifest-armv7at2hf-neon-lib32-alsa-lib.package_write_rpm
-> > > manifest-armv7ahf-neon-lib32-alsa-lib.package_write_rpm
-> > >
-> > > I am not sure why the mx8mm is added to the lib32-alsa-lib manifest
-> > > file since this is not added to any other package when building it fo=
-r
-> > > lib32.
-> > >
-> > > /M=C3=A5ns
-> > >
-> > > Den ons 5 juni 2019 kl 13:00 skrev M=C3=A5ns Zigher <mans.zigher@gmai=
-l.com>:
-> > > >
-> > > > I think this looks wrong
-> > > > "manifest-x86_64_x86_64-nativesdk-lib32-alsa-lib.package_write_rpm"=
- I
-> > > > have not intentionally added lib32-alsa-lib to the nativesdk part s=
-o I
-> > > > am not sure why it expects to find that?
-> > > >
-> > > > /M=C3=A5ns
-> > > >
-> > > > Den ons 5 juni 2019 kl 12:46 skrev M=C3=A5ns Zigher <mans.zigher@gm=
-ail.com>:
-> > > > >
-> > > > > When checking the build for lib32-alsa-lib there is no rpm packag=
-e created
-> > > > >
-> > > > > deploy-rpms/armv7ahf_neon_mx8mm# ls
-> > > > > lib32-alsa-conf-1.1.5-r0.armv7ahf_neon_mx8mm.rpm
-> > > > > lib32-alsa-server-1.1.5-r0.armv7ahf_neon_mx8mm.rpm
-> > > > > lib32-libasound2-1.1.5-r0.armv7ahf_neon_mx8mm.rpm
-> > > > > lib32-libasound-dbg-1.1.5-r0.armv7ahf_neon_mx8mm.rpm
-> > > > > lib32-libasound-dev-1.1.5-r0.armv7ahf_neon_mx8mm.rpm
-> > > > >
-> > > > > it matches the alsa-lib build also when checking the list of pack=
-ages by running
-> > > > >
-> > > > > oe-pkgdata-util list-pkg-files -p lib32-alsa-lib and oe-pkgdata-u=
-til
-> > > > > list-pkg-files -p alsa-lib
-> > > > >
-> > > > > there is a package lib32-alsa-lib and alsa-lib so why is there no=
- rpm
-> > > > > for this package? I would have thought that that should be the ca=
-se?
-> > > > >
-> > > > > /M=C3=A5ns
-> > > > >
-> > > > > Den ons 5 juni 2019 kl 11:06 skrev M=C3=A5ns Zigher <mans.zigher@=
-gmail.com>:
-> > > > > >
-> > > > > > Hi,
-> > > > > >
-> > > > > > I am trying to build an SDK where I have multilib enabled in my
-> > > > > > local.conf but I am encountering this error message
-> > > > > >
-> > > > > > WARNING: strix-sdk-1.0-r0 do_populate_sdk: Manifest
-> > > > > > /workdir/builds/imx8mm/tmp/sstate-control/manifest-x86_64_x86_6=
-4-nativesdk-lib32-alsa-lib.package_write_rpm
-> > > > > > not found in mimx8mm aarch64-mx8mm armv7at2hf-neon armv7ahf-neo=
-n
-> > > > > > armv7at2hf-vfp armv7ahf-vfp armv6thf-vfp armv6hf-vfp armv5tehf-=
-vfp
-> > > > > > armv5ehf-vfp armv5thf-vfp armv5hf-vfp allarch x86_64_x86_64-nat=
-ivesdk
-> > > > > > (variant 'lib32')?
-> > > > > > ERROR: strix-sdk-1.0-r0 do_populate_sdk: No manifest generated =
-from:
-> > > > > > lib32-alsa-lib in
-> > > > > > virtual:multilib:lib32:/workdir/layers/poky/meta/recipes-multim=
-edia/alsa/alsa-lib_1.1.5.bb
-> > > > > > ERROR: strix-sdk-1.0-r0 do_populate_sdk: Function failed: do_po=
-pulate_sdk
-> > > > > >
-> > > > > > I am currently using poky sumo could not see that anything have
-> > > > > > changed in alsa-lib except bumping it to 1.1.6 in thud. I have =
-tried
-> > > > > > go through the code in both
-> > > > > >
-> > > > > > ./poky/meta/lib/oe/package_manager.py
-> > > > > >
-> > > > > > and
-> > > > > >
-> > > > > > ./poky/meta/lib/oe/sstatesig.py
-> > > > > >
-> > > > > > to see if I could understand why there is no manifest file crea=
-ted for
-> > > > > > lib32-alsa-lib but without any luck. What task should I run to =
-create
-> > > > > > the Manifest file? Any other pointers to where I should look to
-> > > > > > understand this issue is appreciated.
-> > > > > >
-> > > > > > BR
-> > > > > > M=C3=A5ns Zigher
+Using AUTOREV feature in recipe has following implications as far as I
+can see:
 
+- the same recipe might get built using different git commit, depending
+on when
+=C2=A0 the build was run, which breaks the reproducibility,
+- it imposes some potential security risk - by specifying the exact
+commit in
+=C2=A0 the recipe, we can at least say that this revision of this package=
+ is fine
+=C2=A0 and we want to build it; with AUTOREV we might not be aware of the=
+
+code we're
+=C2=A0 fetching
+
+I'm wondering whether there are any best practices or strict rules
+written down
+for recipes getting upstream to follow in this area. When inspecting some=
+ of
+the layers from the git.yoctoprojects.org, it appears that the AUTOREV
+feature
+is almost not used, besides a few exceptions.
+
+I'm wondering whether it would make sense to raise a warning when git
+fetcher
+with AUTOREV is used, so it would be easier to build on top OE / Yocto wi=
+th
+reproducibility / security in mind.
+
+I understand that this feature is mostly meant for development purposes. =
+I'm
+just looking for a tools how one could easily make sure that each
+fetched source code
+is verified prior compilation.
+
+I've already looked at the https:// fetcher (which is mostly used for
+fetching tarballs).
+It requires the recipe to contain valid md5 and sha256 sums. Even if we
+suppress the
+error in case checksum mismatch in the recipe by setting the
+BB_STRICT_CHECKSUM
+to 0, we are still getting the warning, which is the desired behavior I
+believe.
+
+
+[1]:
+https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var=
+-AUTOREV
+[2]:
+https://www.yoctoproject.org/docs/2.0.1/bitbake-user-manual/bitbake-user-=
+manual.html#var-BB_STRICT_CHECKSUM
+
+--=20
+Maciej Pijanowski
+Embedded Systems Engineer
+https://3mdeb.com | @3mdeb_com
+
+
+
+--5FWrTz1dJTgicWtB7joMG1gjk3MruLQhb--
+
+--TCur2JfUHHxcmG2amRSuOYNpA8yc7kGbj
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCAAGBQJc973YAAoJEPFAHS4cyxnv+mYP/3UOyYFgXgEcEtOxrsoojIxQ
+xr7P/xyS2nZiP1wYqdtndzQ3LhSJrbq9V+1SW1imrHMZZwexzX51djOLGXdW9oQ8
++SDC6TrWgfnAkjxQiHbsvMtBQkMspoVWuTKmoUfu1GCMJaydWCWkkzZgpV4iaaws
+W0vkM0WOXbl0EZsDAx86FsCr9EFrXZ2lRFczMBQWrcx678OMvXV7QvwgV/NlR694
+sJkWc3Z5sgONLGdCLg8F/Oi/r+LNEojOL40eBV7zIeNktarbwFEoDWyIl8FUUNaw
+fWuORCQpamQISjhzhNDk/2T34fjtoyKvaP/3hX9ZYHm24QxY5A+PmXdJ97FALja7
+7uW+rcFTTn80EDbG1aTfiu9xnjPb0KfdiKE7DJY+wNa9wJAS4nj8CbvaaEOxx/83
+3KlmS0es8mNCHtcphJBjWlXp1+82IDmkU8ZqfzLpI3Xa3k5MuprUAO0KeLUx3CgZ
+i4uJhUukZTo4bjIhfdWWSYhd4UX6nLyqxPwttwn43iPHfk65qgNcuVok4wYjFBm9
+RhSVG+U4shpFuECNGGCic/BCd71NlZvY1WE1iFclqM4xDtam5HracpNvlN40ea3L
+XBlZQKrIirjkJv4InItSHpy6g19LeOsefmYxzG7tLC+PLuzTPPADuJMREjD+ehct
+0GWyVxq3R3dFjXYQQZSK
+=8HML
+-----END PGP SIGNATURE-----
+
+--TCur2JfUHHxcmG2amRSuOYNpA8yc7kGbj--
