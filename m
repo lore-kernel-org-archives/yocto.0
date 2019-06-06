@@ -1,72 +1,31 @@
-Return-Path: <prvs=1060d78f21=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <quentin.schulz@streamunlimited.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D6DBCE00D74; Thu,  6 Jun 2019 04:59:58 -0700 (PDT)
+	id AB354E00D7E; Thu,  6 Jun 2019 05:14:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [85.215.255.81 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de
-	[85.215.255.81])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BFA4E00D30
-	for <yocto@yoctoproject.org>; Thu,  6 Jun 2019 04:59:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1559822394;
-	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
-	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-	bh=cngcT/cVn/jakRRQ6yIBjXz0HVU40lXCbYd/qx1uwdM=;
-	b=E8P9UqP5qT46sWVaDm0yknkjjSh4suIQuUE7IHzffxMDuiZl9OKfnqqv5pH0Bouu37
-	Ry7I2OzC+N2rUoxNwuKChZmsAbG/JnoJhhsotavEkcjqH9FTMdJRbxZVLgc2qsHdyXq6
-	6yl0sFkKNqWcg+qONUSVxXLBUiaqjh5C/gPAbw9iFHOfvs/3cNaFtR8RtC3vm7LbQy0P
-	b8SmwVw9XdJ70xpAmAT3OnHK8MTcnWUB1OTVz2lV9Q0zbAQI0kZkzqpnK5+i+ZEaNcSp
-	yYA5okCjXnUXPaQ4TJLWjDfCOi/VC1lFTuvNC8NpG8mW6E0umtSlVFGLvgsU92bRji+j
-	hxug==
-X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/KqCOd+ZZzzoK8epFp9XQIUl6aPGQL"
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de by smtp.strato.de (RZmta 44.23 AUTH)
-	with ESMTPSA id L0890fv56Bxs4dy
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Thu, 6 Jun 2019 13:59:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1559822393; x=1560427193;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
-	Subject:Message-ID:References:MIME-Version:Content-Type:
-	Content-Disposition:Content-Transfer-Encoding:In-Reply-To:
-	User-Agent; bh=cngcT/cVn/jakRRQ6yIBjXz0HVU40lXCbYd/qx1uwdM=; b=S
-	PQJuTB+9yq/7bEpsdjABetDOMBMNejkuaGCSh6ygdv/ECTJJZDTxqGvuQBPH2kHS
-	ZrssrRZfq9lJsGj0S8ELRQTAhl05wIqwyQy6L3l7Bo1HnAWxoQlyK3+W5ZoWjp+Q
-	YyQyJa8AGUw8H2+EnIQSvbyBiakY3qgvyT6hUyqWkg=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v19.0.1) with ESMTPSA id
-	md50000173346.msg; Thu, 06 Jun 2019 13:59:53 +0200
-X-MDArrival-Date: Thu, 06 Jun 2019 13:59:53 +0200
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=1060d78f21=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-Date: Thu, 6 Jun 2019 13:59:52 +0200
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-To: JH <jupiter.hce@gmail.com>
-Message-ID: <20190606115951.uc36gymkoqiod325@jholzmayr.localdomain>
-References: <CAA=hcWSh9-DaYwFED5UpT_h1C0H22HG76LVd3d+aL4V+LBQQBA@mail.gmail.com>
-	<CAA=hcWSmDyqJ2_4zw7-gXZ8KeB-wUk9G7iNieCsMQDGL3V2+Dg@mail.gmail.com>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [213.33.87.19 listed in list.dnswl.org]
+Received: from bsmtp7.bon.at (bsmtp7.bon.at [213.33.87.19])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BD1DE009EA
+	for <yocto@yoctoproject.org>; Thu,  6 Jun 2019 05:14:57 -0700 (PDT)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp7.bon.at (Postfix) with ESMTPSA id 45KPjq5YD7z5tlD
+	for <yocto@yoctoproject.org>; Thu,  6 Jun 2019 14:14:55 +0200 (CEST)
+Date: Thu, 6 Jun 2019 14:14:54 +0200
+From: Quentin Schulz <quentin.schulz@streamunlimited.com>
+To: yocto@yoctoproject.org
+Message-ID: <20190606121454.tmzqfwn65upqjilu@qschulz>
+References: <20190531093143.r6ernips6l3yoevp@qschulz>
 MIME-Version: 1.0
-In-Reply-To: <CAA=hcWSmDyqJ2_4zw7-gXZ8KeB-wUk9G7iNieCsMQDGL3V2+Dg@mail.gmail.com>
+In-Reply-To: <20190531093143.r6ernips6l3yoevp@qschulz>
 User-Agent: NeoMutt/20180716
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Support NAND flash
+Subject: Re: Issue with INCOMPATIBLE_LICENSE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,83 +37,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Jun 2019 11:59:58 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Thu, 06 Jun 2019 12:14:58 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
 
-On Thu, Jun 06, 2019 at 09:15:46PM +1000, JH wrote:
-> More specific, looks to me that the drivers are OS based, the eCos has
-> NAND I/O, the OpenWRT has some support NAND I/O as well, how does the
-> Yocto support?
+FYI,
 
-This is not exactly a "how does the yocto" support-thing. Yocto is not
-the OS. The OS by itself is the Linux kernel, which has extensive NAND
-support in a lot of varieties. If you want to have a look, see
-https://elixir.bootlin.com/linux/latest/source/drivers/mtd and
-especially the nand subdirectory. In a nutshell it goes like this: if
-you buy a board, ask whomever gave it to you for a kernel plus config
-that works. Also, they are in most cases also obliged to tell you how to
-write something to the (NAND-)flash.
-
-For the userspace side, there is the mtd-utils suite:
-http://www.linux-mtd.infradead.org which is already nicely packaged for
-OE: http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-devtools/mtd/mtd-utils_git.bb
-
-So these are your starting points, you have to apply them to your
-specific setup yourself. The only common things I can think of is:
-1) make sure your kernel+config support the flash chip in use
-2) install the mtd-utils for interacting with it.
-
-Greetz.
-
+On Fri, May 31, 2019 at 11:31:43AM +0200, Quentin Schulz wrote:
+> Hi all,
 > 
-> Thank you.
+> We're in the middle of an upgrade to Thud 2.6.2. While doing so, we
+> blindly updated all upstream layers we use and we found out (during
+> integration phase, no need to send lawyers :) ) that even though we have
+> GPLv3 in INCOMPATIBLE_LICENSE, qt5.11 was built.
 > 
-> Kind regards,
+> conf/local.conf
+> INCOMPATIBLE_LICENSE = "GPLv3 GPLv3+ LGPLv3 LGPLv3+"
 > 
-> - JH
+> https://github.com/meta-qt5/meta-qt5/blob/thud/recipes-qt/qt5/qtbase_git.bb
+> LICENSE = "GFDL-1.3 & BSD & ( GPL-3.0 & The-Qt-Company-GPL-Exception-1.0 | The-Qt-Company-Commercial ) & ( GPL-2.0+ | LGPL-3.0 | The-Qt-Company-Commercial )"
 > 
-> On 6/6/19, JH <jupiter.hce@gmail.com> wrote:
-> > Hi,
-> >
-> > Has anyone used NAND? Does the MTD already support the NAND driver or
-> > do you have to work our the detailed driver yourself? Could you share
-> > your experiences how to build the image and to hand and access the
-> > NAND if it is required?
-> >
-> > Thank you.
-> >
-> > Kind regards,
-> >
-> > - JH
-> >
-> -- 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> My understanding of the above LICENSE is that even though I have GPLv3
+> blacklisted, because I haven't blacklisted The-Qt-Company-Commercial the
+> package got built. I'm not really happy with Qt doing that (no warning,
+> no LICENSE_FLAGS). Quick question unrelated to the actual important
+> question:
+> 
+> Would it be possible (theoritically, I know you've nothing to do with
+> maintenance of meta-qt5; also not tested, just "pseudo-code") to have
+> something like:
+> python() {
+> 	if "GPLv3" in d.getVar('INCOMPATIBLE_LICENSE'):
+> 		d.setVar("LICENSE_FLAGS", "commercial")
+> }
+> 
+> so if we are blacklisting GPLv3, we have to add commercial_qtbase to
+> LICENSE_FLAGS_WHITELIST to be able to build it.
+> 
 
++ LICENSE_FLAGS = "${@ "commercial" if (incompatible_license_contains('GPL-3.0', True, False, d) or \
++             incompatible_license_contains('The-Qt-Company-GPL-Exception-1.0', True, False, d) or \
++             (incompatible_license_contains('GPL-2.0+', True, False, d) and \       
++              incompatible_license_contains('LGPL-3.0', True, False, d))) \         
++              else ''}"
+
+For qtbase_git.bb seems to work fine.
+
+LICENSE is GFDL-1.3 & BSD & ( GPL-3.0 & The-Qt-Company-GPL-Exception-1.0 | The-Qt-Company-Commercial ) & ( GPL-2.0+ | LGPL-3.0 | The-Qt-Company-Commercial )
+So it is commercial if
+GPL-3.0 | The-Qt-Company-GPL-Exception-1.0 | (GPL-2.0+ & LGPL-3.0) is
+False.
+
+> So now, the actual issue. I've blacklisted The-Qt-Company-Commercial as
+> well and qtbase is still building. How so?
+> 
+> For me, it results in the following:
+> LICENSE = "GFDL-1.3 & BSD & ( not-compat & The-Qt-Company-GPL-Exception-1.0 | not-compat ) & ( GPL-2.0+ | LGPL-3.0 | not-compat )"
+> which in the end looks like:
+> LICENSE = "GFDL-1.3 & BSD & not-compat & ( GPL-2.0+ | LGPL-3.0 | not-compat )"
+> which is basically:
+> LICENSE = "not-compat"
+> 
+> Is there an error in this simplification?
+> Am I misunderstanding how INCOMPATIBLE_LICENSE is working in Yocto?
+> Have I missed something?
+> Is there something actually buggy in the INCOMPATIBLE_LICENSE
+> implementation?
+> 
+> Also, please note that I tested with GPL-3.0 in INCOMPATIBLE_LICENSE as
+> I wanted to exclude license "aliases" not being supported by
+> INCOMPATIBLE_LICENSE (and since it's what's apparently tested from what
+> is said in the mega-manual).
+> 
+> I want to be sure to not be able to build qt >= 5.7, we're never too far
+> from an unfortunate upgrade or people in the company not knowing we
+> cannot use qt >= 5.7.
+> 
+
+FYI, a patch was sent regarding this issue:
+http://lists.openembedded.org/pipermail/openembedded-core/2019-June/283266.html
+
+Quentin
 -- 
-———————————————
-Josef Holzmayr
-Software Developer Embedded Systems
-
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
-
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548 
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
-
+StreamUnlimited Engineering GmbH
+High Tech Campus Vienna, Gutheil-Schoder-Gasse 10, 1100 Vienna, Austria
+quentin.schulz@streamunlimited.com, www.streamunlimited.com
 
