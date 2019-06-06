@@ -1,41 +1,63 @@
-Return-Path: <david.reyna@windriver.com>
+Return-Path: <mans.zigher@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E8F6E00D79; Thu,  6 Jun 2019 00:57:24 -0700 (PDT)
+	id 3DA05E00D74; Thu,  6 Jun 2019 01:02:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_EXCESS_BASE64,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E695EE00BAF
-	for <yocto@yoctoproject.org>; Thu,  6 Jun 2019 00:57:17 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x567uvkq027564
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 6 Jun 2019 00:57:07 -0700
-Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.194]) by
-	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.03.0439.000;
-	Thu, 6 Jun 2019 00:56:46 -0700
-From: "Reyna, David" <david.reyna@windriver.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Minutes: Yocto Project Technical Team Meeting 6/4/2019
-Thread-Index: AdUcMyxnsefqgYLJTpKJLr1E/8C1rA==
-Date: Thu, 6 Jun 2019 07:56:46 +0000
-Message-ID: <5E53D14CE4667A45B9A06760DE5D13D0F3C9ABD7@ALA-MBD.corp.ad.wrs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.11.118.216]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (mans.zigher[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.173 listed in list.dnswl.org]
+	*  1.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com
+	[209.85.208.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0539E00D4E
+	for <yocto@yoctoproject.org>; Thu,  6 Jun 2019 01:02:45 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id i21so1097826ljj.3
+	for <yocto@yoctoproject.org>; Thu, 06 Jun 2019 01:02:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to
+	:content-transfer-encoding;
+	bh=f8pnpG15qi/TMP6/cXQGli1KnCivCsov0LsJ9Q414+Y=;
+	b=bdk13qbvsYx2kjD+6NszypxEqHf166vBY8gT8a3JOEOhCSOF3M2q5iyZcrqaLYuQZz
+	Edo2s/95T9ySxpNDDanrIuMFywjPfZpyXVVpXG66zlDmUX+Y3M2I4BrzA1+1lPUPqkv5
+	kuS39O3PeJepDxOOmaIP8oMUgrpGJhRB0KqwhQPcH37ZmiJxGBdaHSHYUpaJqe5biECn
+	6juM7A/pTHijCHi8gWblBsSiuHFmgzUXhgOrzD7X996VKqAJK5dyO5YDZfSSeemFOlSp
+	LuV2qAt1hCsiR2wGEK3Jx8GoUK1Q52zicPnhd+w7V8RTWBN7Ysu8ob3iz9HYeE6SkNV8
+	ESTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+	:content-transfer-encoding;
+	bh=f8pnpG15qi/TMP6/cXQGli1KnCivCsov0LsJ9Q414+Y=;
+	b=BPbkNiuyi/7TJVaDvjAA9jKDbABvq64tHA1KnyQe/zcPKOEtHKFYdGjQe3hsou7oRk
+	f6Zu14ZyMtcXllKpjGv8w5v6mDeSebTrqqdoSeOLv4ZpjoPNbkWi62oYMV+0TBWtLW2I
+	mgOqvXA++HXzBvFz+oK5wGrP68z+urxyqlgGZp0VPkv6XLYfO4N+U88h5Qnkv047GIUQ
+	oIJWxauO3O+uYBhaB9/9gebTPH8ePY3yOLwRFIJAsPaawO6AdHG58+/0CtOYD6opTX+R
+	oQjeT+LAy+ijYM7Az2KLseQY9keO4qBUV7uX2t35wzPwilHP8Bb0SoR4LQJDmJ+hvUSx
+	4DMA==
+X-Gm-Message-State: APjAAAUEynbdTYptsEhqHS2CCJRl56Z2RJVFCAzqd+tUOB8a6YyGcvrf
+	p1WJ7Gl+k6UG/1jvXkkDOuJx2iWtQRLaf1u9265fyYiVfHQ=
+X-Google-Smtp-Source: APXvYqxNH2HqGL1pz43TXaj1ZN8R6KczFRYc1dWYcCPo2dzeQabtEyh/VB69ZTuL8S1+0MYyc5oG7A72BciGFuvy7h4=
+X-Received: by 2002:a2e:9d43:: with SMTP id y3mr22559157ljj.154.1559808164203; 
+	Thu, 06 Jun 2019 01:02:44 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "'JOLLEY, STEPHEN'" <stephen.k.jolley@intel.com>
-Subject: Minutes: Yocto Project Technical Team Meeting 6/4/2019
+From: =?UTF-8?B?TcOlbnMgWmlnaGVy?= <mans.zigher@gmail.com>
+Date: Thu, 6 Jun 2019 10:02:32 +0200
+Message-ID: <CAEhQi8m3pJtUMMzSH0enBmLz5=x4CYnvV3LW-1W8BHJdMDGR_w@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: How to set PACKAGE_EXTRA_ARCHS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,169 +69,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Jun 2019 07:57:24 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_5E53D14CE4667A45B9A06760DE5D13D0F3C9ABD7ALAMBDcorpadwrs_"
+X-List-Received-Date: Thu, 06 Jun 2019 08:02:46 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---_000_5E53D14CE4667A45B9A06760DE5D13D0F3C9ABD7ALAMBDcorpadwrs_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hi,
 
-WW9jdG8gUHJvamVjdCBUZWNobmljYWwgVGVhbSBNZWV0aW5nDQpNSU5VVEVTOiA2LzQvMjAxOQ0K
-DQpBdHRlbmRlZXM6IFJpY2hhcmQsIEFybWluLCBKb3NodWFXLCBCcnVjZSwgTWljaGFlbCwgUmFu
-ZHksIFNjb3R0LCBBbGVqYW5kcm8sIFJvYlcsIFJvc3MsIE1pY2hhZWxILCBUaW0sIFZpbmVlbGEs
-IERhdmlkLCBUcmV2b3IsIFNhamFsDQoNClJQOg0KICAqIFlQLTIuNiBNMSBmb3IgdGhpcyBjb21p
-bmcgTW9uZGF5DQogICogcHRlc3QgZGVwZW5kZW5jaWVzIGFyZSBpbXByb3ZpbmcsIGFuZCB3ZSBh
-cmUgZ2V0dGluZyBiZXR0ZXIgcmVzdWx0cw0KICAqIE0xIGF0IHJpc2sgZm9yIHBhdGNodGVzdCwg
-UlAgYW5kIFBhdWwgYXJlIHdvcmtpbmcgb24gaXQNCiAgKiBLZXkgY2hhbmdlIGZvciBNMSBpcyBH
-Q0M5LCBhbmQgd2Ugd29ya2luZyBvbiBhIGZldyByZWdyZXNzaW9ucw0KICAqIE5lZWQgcGVvcGxl
-IHRvIHdvcmsgb24gdGhlIE5FV0NPTUVSIGRlZmVjdHMNCiAgKiBKb3NodWEgaXMgd29ya2luZyBv
-biB0aGUgYXV0b2J1aWxkZXINCiAgKiBSYW5keTogS2V2aW4gd2lsbCBiZSBwaW5nZWQgb24gdGhl
-IFFFTVUgaXNzdWUgKFBQQz8pDQoNCkFybWluOiBGZWRvcmEgQ29yZSAzMCBmb3IgTSE/IFJQOiB3
-ZSBjb3VsZCBhZGQgd29ya2VycyB0b2RheSB0byB0ZXN0IHRoYXQgaG9zdC4gUlA6IEZZSSwgd2Ug
-ZGlkIGdldCBmdW5kaW5nIGZvciB1cGRhdGVkIGJ1aWxkIHNlcnZlcnMuDQoNCkFybWluOiBRdWVz
-dGlvbiBhYm91dCDigJx4ZeKAnSBzdXBwb3J0LCBpc3N1ZSB3aXRoIHN1cHBvcnRpbmcgdHdvIHRh
-cmJhbGwgY29tcHJlc3Npb25zLiBFdmlkZW50bHkgc29tZSBob3N0cywgYW5kIGVzcGVjaWFsbHkg
-c29tZSBjb250YWluZXJzLCBkbyBub3QgaGF2ZSBhbiB0YXIgdGhhdCBzdXBwb3J0cyDigJNKIChz
-cGVjaWZpY2FsbHkgVGh1ZCkgb3IgZG8gbm90IGhhdmUg4oCceGXigJ0uIFJQIG1lbnRpb25zIHRo
-YXQgdGhlIFRodWQgZG9jdW1lbnRhdGlvbiBkb2VzIHJlcXVpcmUg4oCceGXigJ0uDQoNClJhbmR5
-OiBQVGVzdCBpbXByb3ZlbWVudHMgYSBwcmlvcml0eSBmb3IgTTI/IFJQOiBHQ0M5LCBibHVleiwg
-YW5kIGFjbCBwcmlvcml0aWVzIGZvciBmaXhpbmcuDQoNClNjb3R0OiBBbnkgc3BlY2lmaWMgaGVs
-cCBoZSBjYW4gcHJvdmlkZSAyLjg/IFRoZXJlIHdhcyBtZW50aW9uIG9mIFNQRFggaGVhZGVycyBk
-b25lIGJ1dCBub3QgbGljZW5zZXMsIG1vcmUgcHRlc3QsIEFSTSBhdXRvYnVpbGRlci4NCg0KUlA6
-IFdhbnQgdG8gYWNoaWV2ZSBmb3IgMi44Og0KICAqIFB0ZXN0DQogICogTGljZW5zZQ0KICAqIHJl
-cHJvZHVjaWJpbGl0eQ0KICAqIGhhc2ggZXF1aXZhbGVuY3kgaW1wb3J0YW50LCBuZWVkcyB1cGRh
-dGVzIHRvIHJ1bnF1ZXVlIHRvIGltcGxlbWVudCwNCg0KSGFzaCBlcXVpdmFsZW5jeSBvbmx5IGFz
-IGdvb2QgYXMgYnVpbGRzIGFyZSByZXByb2R1Y2libGUuIE1lbnRpb24gdGhhdCBzaW1wbGUgY2hh
-bmdlcyB0byBwZXJsIHJkZXBlbmRzIGNhbiBoYXZlIGEgZGVlcCBjYXNjYWRlIGVmZmVjdC4gVGhl
-IGZlYXR1cmUgbmVlZHMgdG8gbG9vayBhdCB3aGF0IGNoYW5nZWQsIGtub3cgdGhhdCBub3RoaW5n
-IHJlYWxseSBjaGFuZ2VkLCBhbmQgdGhlbiBzdWJzdGl0dXRlIHNhbWUgaGFzaCBhbmQgc2F2ZSB1
-bi1uZWVkZWQgcmVidWlsZC4gRm9yIGV4YW1wbGUg4oCccGVybC1uYXRpdmXigJkgcmVidWlsZHMs
-IGxvb2sgdG8gc2VlIHRoYXQgaXQgaXMgYmluYXJ5IGVxdWl2YWxlbnQgKGJpdCBieSBiaXQpLiBB
-bm90aGVyIG1vcmUgZmxleGlibGUgKGJ1dCBwcm9iYWJseSBsYXRlcikgdGVjaG5pcXVlIGNvdWxk
-IGJlIGVsZiBzeW1ib2wgY29tcGFyaXNvbiBmb3IgZXF1aXZhbGVuY3kuIFJQOiBnb2FsIGlzIHRv
-IG1ha2UgdGhlIGNoZWNrZXIgcGx1Z2dhYmxlIHNvIHRoYXQgZW5oYW5jZW1lbnRzIGFyZSBlYXN5
-LiBSaWNoYXJkIG1lbnRpb25lZCB0aGF0IGl0IG1pZ2h0IGJlIHdvcnRoIHRha2luZyBhIG1vbnRo
-IG9mZiBvZiBoaXMgZGFpbHkgbWVyZ2UgdGFza3MganVzdCB0byBnZXQgdGhpcyBmZWF0dXJlIGRv
-bmUuDQoNClJhbmR5OiBJcyB0aGVyZSBpZGxlIHRpbWUgd2UgY2FuIHVzZT8gUGVyaGFwcyBpbiBz
-b21lIHRpbWV6b25lIGxpa2UgQ2hpbmE/IFJQOiB1c3VhbGx5IGZpcmVzIG9mZiBidWlsZHMgYXQg
-ZW5kIG9mIGhpcyBkYXksIHNvIG5vdCByZWFsIGlkbGUgdGltZXpvbmUuDQoNClJQOiBjYW4gdXNl
-IGhlbHAgaW4gZ2V0dGluZyBwdWxsIHJlcXVlc3RzIHRvZ2V0aGVyDQoNClJQOiBBdXRvbWF0ZWQg
-dGVzdHMsIHByb3ZhYmxlIHJlcHJvZHVjaWJsZSBidWlsZHMgaW1wb3J0YW50IHRvIG91ciB1cHN0
-cmVhbSBjcmVkLg0KDQpTY290dDogTWV0YS1hZ2wtdjI/IEl0IGhhcyBiZWNvbWUgaGFyZCB0byBt
-YWludGFpbiwgc3RhbGUgZGVwZW5kZW5jaWVzLCBubyBzZWN1cml0eSBwYXRjaGluZywgb2Jzb2xl
-dGUgY29tcG9uZW50cy4NCg0KUlA6IGFueXRoaW5nIHdlIGFyZSBtaXNzaW5nPyBSYW5keSB0b3Vj
-aGVkIG9uIFJ1c3QuIFJQOiBuaWNlIGZvciAyLjksIGJ1dCByZXByb2R1Y2liaWxpdHkgbW9yZSBp
-bXBvcnRhbnQuDQoNClRpbTogTWV0YS12aXJ0dWFsaXphdGlvbiBpbnRvIGNvcmU/IFBlcmhhcHMg
-Zm9yIDIuOS4gTWV0YS1weXRob24/IFNwbGl0IG9mZiBWMiBzdXBwb3J0IHRvIHNlcGFyYXRlIHJl
-cG8uDQoNCi0gRGF2aWQNCg0KDQo=
+I am facing an issue described here
+https://lists.yoctoproject.org/pipermail/yocto/2019-June/045565.html.
+I have come to the conclusion that I need to add armv7ahf-neon-mx8mm
+to PACKAGE_EXTRA_ARCHS but it is not obvious how to do that based on
+what is stated in the reference manual
+https://www.yoctoproject.org/docs/2.4/ref-manual/ref-manual.html#var-PACKAG=
+E_EXTRA_ARCHS,
+at least not for me. I have gone through the existing usage of the
+PACKAGE_EXTRA_ARCHS in poky but in there it is always used in
+combination with tune so for example
 
---_000_5E53D14CE4667A45B9A06760DE5D13D0F3C9ABD7ALAMBDcorpadwrs_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+PACKAGE_EXTRA_ARCHS_tune-armv7atb-neon  =3D
+"${PACKAGE_EXTRA_ARCHS_tune-armv7atb} armv7ab-neon armv7at2b-neon"
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
-dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
-LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
-ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
-PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExcHQ7Ij4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPllvY3RvIFBy
-b2plY3QgVGVjaG5pY2FsIFRlYW0gTWVldGluZzwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgY29s
-b3I9IiMxRjQ5N0QiPk1JTlVURVM6IDYvNC8yMDE5PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBj
-b2xvcj0iIzFGNDk3RCI+Jm5ic3A7PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFG
-NDk3RCI+QXR0ZW5kZWVzOiBSaWNoYXJkLCBBcm1pbiwgSm9zaHVhVywgQnJ1Y2UsIE1pY2hhZWws
-IFJhbmR5LCBTY290dCwgQWxlamFuZHJvLCBSb2JXLCBSb3NzLCBNaWNoYWVsSCwgVGltLCBWaW5l
-ZWxhLCBEYXZpZCwgVHJldm9yLCBTYWphbDwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9
-IiMxRjQ5N0QiPiZuYnNwOzwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0Qi
-PlJQOiA8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj4mbmJzcDsgKiBZ
-UC0yLjYgTTEgZm9yIHRoaXMgY29taW5nIE1vbmRheTwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQg
-Y29sb3I9IiMxRjQ5N0QiPiZuYnNwOyAqIHB0ZXN0IGRlcGVuZGVuY2llcyBhcmUgaW1wcm92aW5n
-LCBhbmQgd2UgYXJlIGdldHRpbmcgYmV0dGVyIHJlc3VsdHM8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxm
-b250IGNvbG9yPSIjMUY0OTdEIj4mbmJzcDsgKiBNMSBhdCByaXNrIGZvciBwYXRjaHRlc3QsIFJQ
-IGFuZCBQYXVsIGFyZSB3b3JraW5nIG9uIGl0PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xv
-cj0iIzFGNDk3RCI+Jm5ic3A7ICogS2V5IGNoYW5nZSBmb3IgTTEgaXMgR0NDOSwgYW5kIHdlIHdv
-cmtpbmcgb24gYSBmZXcgcmVncmVzc2lvbnM8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9y
-PSIjMUY0OTdEIj4mbmJzcDsgKiBOZWVkIHBlb3BsZSB0byB3b3JrIG9uIHRoZSBORVdDT01FUiBk
-ZWZlY3RzPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFGNDk3RCI+Jm5ic3A7ICog
-Sm9zaHVhIGlzIHdvcmtpbmcgb24gdGhlIGF1dG9idWlsZGVyPC9mb250PjwvZGl2Pg0KPGRpdj48
-Zm9udCBjb2xvcj0iIzFGNDk3RCI+Jm5ic3A7ICogUmFuZHk6IEtldmluIHdpbGwgYmUgcGluZ2Vk
-IG9uIHRoZSBRRU1VIGlzc3VlIChQUEM/KTwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0i
-VGltZXMgTmV3IFJvbWFuIiBzaXplPSIzIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZv
-bnQtc2l6ZToxMnB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgY29s
-b3I9IiMxRjQ5N0QiPkFybWluOiBGZWRvcmEgQ29yZSAzMCBmb3IgTSE/IFJQOiB3ZSBjb3VsZCBh
-ZGQgd29ya2VycyB0b2RheSB0byB0ZXN0IHRoYXQgaG9zdC4gUlA6IEZZSSwgd2UgZGlkIGdldCBm
-dW5kaW5nIGZvciB1cGRhdGVkIGJ1aWxkIHNlcnZlcnMuPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9u
-dCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjEycHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48
-Zm9udCBjb2xvcj0iIzFGNDk3RCI+QXJtaW46IFF1ZXN0aW9uIGFib3V0IOKAnHhl4oCdIHN1cHBv
-cnQsIGlzc3VlIHdpdGggc3VwcG9ydGluZyB0d28gdGFyYmFsbCBjb21wcmVzc2lvbnMuIEV2aWRl
-bnRseSBzb21lIGhvc3RzLCBhbmQgZXNwZWNpYWxseSBzb21lIGNvbnRhaW5lcnMsIGRvIG5vdCBo
-YXZlIGFuIHRhciB0aGF0IHN1cHBvcnRzIOKAk0ogKHNwZWNpZmljYWxseSBUaHVkKSBvciBkbyBu
-b3QgaGF2ZSDigJx4ZeKAnS4gUlAgbWVudGlvbnMgdGhhdA0KdGhlIFRodWQgZG9jdW1lbnRhdGlv
-biBkb2VzIHJlcXVpcmUg4oCceGXigJ0uPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJU
-aW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjEycHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xv
-cj0iIzFGNDk3RCI+UmFuZHk6IFBUZXN0IGltcHJvdmVtZW50cyBhIHByaW9yaXR5IGZvciBNMj8g
-UlA6IEdDQzksIGJsdWV6LCBhbmQgYWNsIHByaW9yaXRpZXMgZm9yIGZpeGluZy4gPC9mb250Pjwv
-ZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiIGNvbG9yPSIj
-MUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250
-PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFGNDk3RCI+U2NvdHQ6IEFueSBzcGVjaWZpYyBo
-ZWxwIGhlIGNhbiBwcm92aWRlIDIuOD8gVGhlcmUgd2FzIG1lbnRpb24gb2YgU1BEWCBoZWFkZXJz
-IGRvbmUgYnV0IG5vdCBsaWNlbnNlcywgbW9yZSBwdGVzdCwgQVJNIGF1dG9idWlsZGVyLjwvZm9u
-dD48L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPiZuYnNwOzwvZm9udD48L2Rpdj4N
-CjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPlJQOiBXYW50IHRvIGFjaGlldmUgZm9yIDIuODo8
-L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj4mbmJzcDsgKiBQdGVzdDwv
-Zm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPiZuYnNwOyAqIExpY2Vuc2U8
-L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj4mbmJzcDsgKiByZXByb2R1
-Y2liaWxpdHk8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj4mbmJzcDsg
-KiBoYXNoIGVxdWl2YWxlbmN5IGltcG9ydGFudCwgbmVlZHMgdXBkYXRlcyB0byBydW5xdWV1ZSB0
-byBpbXBsZW1lbnQsIDwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iVGltZXMgTmV3IFJv
-bWFuIiBzaXplPSIzIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMnB0
-OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0Qi
-Pkhhc2ggZXF1aXZhbGVuY3kgb25seSBhcyBnb29kIGFzIGJ1aWxkcyBhcmUgcmVwcm9kdWNpYmxl
-LiBNZW50aW9uIHRoYXQgc2ltcGxlIGNoYW5nZXMgdG8gcGVybCByZGVwZW5kcyBjYW4gaGF2ZSBh
-IGRlZXAgY2FzY2FkZSBlZmZlY3QuIFRoZSBmZWF0dXJlIG5lZWRzIHRvIGxvb2sgYXQgd2hhdCBj
-aGFuZ2VkLCBrbm93IHRoYXQgbm90aGluZyByZWFsbHkgY2hhbmdlZCwgYW5kIHRoZW4gc3Vic3Rp
-dHV0ZQ0Kc2FtZSBoYXNoIGFuZCBzYXZlIHVuLW5lZWRlZCByZWJ1aWxkLiBGb3IgZXhhbXBsZSDi
-gJxwZXJsLW5hdGl2ZeKAmSByZWJ1aWxkcywgbG9vayB0byBzZWUgdGhhdCBpdCBpcyBiaW5hcnkg
-ZXF1aXZhbGVudCAoYml0IGJ5IGJpdCkuIEFub3RoZXIgbW9yZSBmbGV4aWJsZSAoYnV0IHByb2Jh
-Ymx5IGxhdGVyKSB0ZWNobmlxdWUgY291bGQgYmUgZWxmIHN5bWJvbCBjb21wYXJpc29uIGZvciBl
-cXVpdmFsZW5jeS4gUlA6IGdvYWwgaXMgdG8gbWFrZSB0aGUgY2hlY2tlcg0KcGx1Z2dhYmxlIHNv
-IHRoYXQgZW5oYW5jZW1lbnRzIGFyZSBlYXN5LiBSaWNoYXJkIG1lbnRpb25lZCB0aGF0IGl0IG1p
-Z2h0IGJlIHdvcnRoIHRha2luZyBhIG1vbnRoIG9mZiBvZiBoaXMgZGFpbHkgbWVyZ2UgdGFza3Mg
-anVzdCB0byBnZXQgdGhpcyBmZWF0dXJlIGRvbmUuPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBm
-YWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjEycHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9u
-dCBjb2xvcj0iIzFGNDk3RCI+UmFuZHk6IElzIHRoZXJlIGlkbGUgdGltZSB3ZSBjYW4gdXNlPyBQ
-ZXJoYXBzIGluIHNvbWUgdGltZXpvbmUgbGlrZSBDaGluYT8gUlA6IHVzdWFsbHkgZmlyZXMgb2Zm
-IGJ1aWxkcyBhdCBlbmQgb2YgaGlzIGRheSwgc28gbm90IHJlYWwgaWRsZSB0aW1lem9uZS48L2Zv
-bnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj4mbmJzcDs8L2ZvbnQ+PC9kaXY+
-DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj5SUDogY2FuIHVzZSBoZWxwIGluIGdldHRpbmcg
-cHVsbCByZXF1ZXN0cyB0b2dldGhlcjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9IiMx
-RjQ5N0QiPiZuYnNwOzwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPlJQ
-OiBBdXRvbWF0ZWQgdGVzdHMsIHByb3ZhYmxlIHJlcHJvZHVjaWJsZSBidWlsZHMgaW1wb3J0YW50
-IHRvIG91ciB1cHN0cmVhbSBjcmVkLjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iVGlt
-ZXMgTmV3IFJvbWFuIiBzaXplPSIzIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMnB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9
-IiMxRjQ5N0QiPlNjb3R0OiBNZXRhLWFnbC12Mj8gSXQgaGFzIGJlY29tZSBoYXJkIHRvIG1haW50
-YWluLCBzdGFsZSBkZXBlbmRlbmNpZXMsIG5vIHNlY3VyaXR5IHBhdGNoaW5nLCBvYnNvbGV0ZSBj
-b21wb25lbnRzLjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iVGltZXMgTmV3IFJvbWFu
-IiBzaXplPSIzIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMnB0OyI+
-Jm5ic3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPlJQ
-OiBhbnl0aGluZyB3ZSBhcmUgbWlzc2luZz8gUmFuZHkgdG91Y2hlZCBvbiBSdXN0LiBSUDogbmlj
-ZSBmb3IgMi45LCBidXQgcmVwcm9kdWNpYmlsaXR5IG1vcmUgaW1wb3J0YW50LjwvZm9udD48L2Rp
-dj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPiZuYnNwOzwvZm9udD48L2Rpdj4NCjxkaXY+
-PGZvbnQgY29sb3I9IiMxRjQ5N0QiPlRpbTogTWV0YS12aXJ0dWFsaXphdGlvbiBpbnRvIGNvcmU/
-IFBlcmhhcHMgZm9yIDIuOS4gTWV0YS1weXRob24/IFNwbGl0IG9mZiBWMiBzdXBwb3J0IHRvIHNl
-cGFyYXRlIHJlcG8uPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9t
-YW4iIHNpemU9IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7
-Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFGNDk3RCI+
-LSBEYXZpZDwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iVGltZXMgTmV3IFJvbWFuIiBz
-aXplPSIzIiBjb2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMnB0OyI+Jm5i
-c3A7PC9zcGFuPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iVGltZXMgTmV3IFJvbWFu
-IiBzaXplPSIzIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7Ij4mbmJzcDs8L3NwYW4+PC9m
-b250PjwvZGl2Pg0KPC9zcGFuPjwvZm9udD4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+How can I make sure to get armv7ahf-neon-mx8mm added to the
+PACKAGE_EXTRA_ARCHS variable and where should it be set local.conf,
+machine configuration?
 
---_000_5E53D14CE4667A45B9A06760DE5D13D0F3C9ABD7ALAMBDcorpadwrs_--
+BR
+M=C3=A5ns Zigher
+
