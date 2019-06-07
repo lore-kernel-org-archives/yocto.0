@@ -1,6 +1,6 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E1B9E00A96; Thu,  6 Jun 2019 17:07:38 -0700 (PDT)
+	id 5CC3BE00AAF; Thu,  6 Jun 2019 17:12:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,108 +10,61 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+	provider *      (jupiter.hce[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.215.193 listed in list.dnswl.org]
+	*      [209.85.166.195 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com
-	[209.85.215.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A5FFE008E3
-	for <yocto@yoctoproject.org>; Thu,  6 Jun 2019 17:07:37 -0700 (PDT)
-Received: by mail-pg1-f193.google.com with SMTP id w34so125448pga.12
-	for <yocto@yoctoproject.org>; Thu, 06 Jun 2019 17:07:37 -0700 (PDT)
+Received: from mail-it1-f195.google.com (mail-it1-f195.google.com
+	[209.85.166.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFE9CE009EA
+	for <yocto@yoctoproject.org>; Thu,  6 Jun 2019 17:12:15 -0700 (PDT)
+Received: by mail-it1-f195.google.com with SMTP id r135so185747ith.1
+	for <yocto@yoctoproject.org>; Thu, 06 Jun 2019 17:12:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=pjuWGmYGRauXNkQvUmN8fUBazlFY+ZG5w/8z+Tao6zE=;
-	b=czSEr05MxcxohV3Y7NoKFfkvpGW9jmmWAZlQKd35Z2anGAy/UeaNcNGpTKK4TaKOYy
-	G3M8s6ZD82Dhf6oa6sVNeKcgu4MZAYl+eE4J05ZMh56R16PiYb8auLD9ic6wQBVig/W3
-	Wq9mEKcHdD5/nRtexFs9Ap51YVrZyHdy1ORqwR25rgDyli7ccee5CN37pTBmnOchj33B
-	BI7iY0EExa/tGjCdzGNXbF5B+yeMRawEovyKVtMTYSZdjr9ep6snCQ6STbusU51v3XyY
-	HrhnkdD41+9B5MVFPa4g/t2bumzUFF86ztmeu068W6hMg+Z1Riid1P65R0gqm3nwa5H1
-	3oXQ==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=MuAkrS+bvhpDHzTUt3NDgxtD4ePuoarzkEOpLFZduDw=;
+	b=NN0k5jqKYV84YN569U+O/NeGVKt7XOHCh6bxk+nNf9UXRda8pEVJeky54q1rLD/XJf
+	6WI3kyBFUZe3YUhyifoomo/uAeKh7wdWBhUAN5TlLDJ5fZDv1TdXPasqLHrXMfUpNBuQ
+	fuVzVIYXDHxDtkKYe13JNmlDefc98NtNeXCtRKqQ6xihfRxvvXXw+/159SjccW1XUqOH
+	UR/aHNq5FrOW5P3RVxJHdvAjQGbKL1Wwpr9mL5Sc/F2LGJLrAiMmCTSzc3RTFI9Zolg+
+	ijSvFVc4WYd4sZyQe45IppfGJI/FMnIQYIZhQqQoKPTP6O4EANXkPfbF7tiuBUv+VRWD
+	0DNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-transfer-encoding:content-language;
-	bh=pjuWGmYGRauXNkQvUmN8fUBazlFY+ZG5w/8z+Tao6zE=;
-	b=gwm8uB0Rqu1uWZtRSxHG3uUKVOXVocYzy8iqAbMhCLmNXg8sWa7Laji0g32JfBurdC
-	HREaU+gpn2KAIitWdsEIJC5/CLalJgRjoQjpO1yS6UEYyd7his7W8SN2KprqbKNBjKQO
-	j3T5qTk+bR4L2AlWIE03KkTY4NWA2WkQFzHeTTjs/sDtsR7Kwvota34WitaQwTMvA11n
-	xj4qQmi3ZU1G9rPFKAvMCbVZz+0cEtMUrWiw71S9g9Js8Kva9F8iMAsd0GL7rlE5ui9t
-	juAgOY/pstfmxvsaSdt48iAKNAhv+necm34Qhs15lcimWhi+TUGlNpzH7gxwVXgldDVZ
-	wk/A==
-X-Gm-Message-State: APjAAAUL3NjgaGpQHsnnrJW//08jsD6PYfIsdwKBk7XDG80Q/gS8yRvm
-	FrPz9mJuJNofCEGQo8HQ+W2gSapl
-X-Google-Smtp-Source: APXvYqx5nIrbkHKRi3p+XO/ewSWdjH+2dmZHU29sV9S9IRhwml35aPpoy8QFl6oWigMpUX6LvCp8bA==
-X-Received: by 2002:a62:e511:: with SMTP id n17mr48996952pff.181.1559866057250;
-	Thu, 06 Jun 2019 17:07:37 -0700 (PDT)
-Received: from ?IPv6:2601:202:4180:c33:649f:275:809c:24d6?
-	([2601:202:4180:c33:649f:275:809c:24d6])
-	by smtp.gmail.com with ESMTPSA id u2sm208712pjv.9.2019.06.06.17.07.35
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 06 Jun 2019 17:07:36 -0700 (PDT)
-To: Michael Halstead <mhalstead@linuxfoundation.org>, yocto@yoctoproject.org
-References: <20190606234656.28343-1-mhalstead@linuxfoundation.org>
-From: akuster808 <akuster808@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
-	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
-	8CS2NxU=
-Message-ID: <1a8c9eb7-3866-4b98-ca7c-95fc00bf4989@gmail.com>
-Date: Thu, 6 Jun 2019 17:07:35 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.0
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=MuAkrS+bvhpDHzTUt3NDgxtD4ePuoarzkEOpLFZduDw=;
+	b=Krw39tJ5A6bRcwt6Cbc4wbP51kj+/CouDu/1Re55Aj3hA21a5fzVdKzMOtY98n46PN
+	SSG250UNOPwTsDgye9plWBWk3kwpDtWA4XKcto51uROIABhaZo298Wf50eFNSlJxdv59
+	EpHnoRUbLrE/7od08S9D0LdNtHaE4zqtm3c2NZkuC8eikfMR/htEoE4PDMLhUSE8nQPz
+	NpR1ha8/WAbguo5yAAtZVUsgrRo/sy61BJxAuJVFTs4hsEwGFGQsur4RPCHcdQcroW4q
+	oK54OTzC2YXmXXhVtwRF5pF3u6f8eKaMRsU1hnjAkP0bS4nz0cRnfP3WFPudIN8agCjU
+	rq0Q==
+X-Gm-Message-State: APjAAAW3wB+sdnhHRhu/Gg+T/WUOL4lzYTVi9KJXYAJBHU66NFPmMv/I
+	PCmEQEHHNiWhGK3j1BL25d2NGmNAJQgLPYeuSwzOyU+71fE=
+X-Google-Smtp-Source: APXvYqzz3OuvHHF0HKEoSC9SoRFByS7AfsZGZMPkTY5FT4LEQBInS+NnN+g3onUIRmg989VHb6oPbIh7DkSFjmvPblM=
+X-Received: by 2002:a05:6638:2a9:: with SMTP id
+	d9mr31243719jaq.94.1559866335283; 
+	Thu, 06 Jun 2019 17:12:15 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190606234656.28343-1-mhalstead@linuxfoundation.org>
-Subject: Re: [PATCH][yocto-docs] ref-manual: Corrected openSUSE essential packages
+Received: by 2002:ac0:92cf:0:0:0:0:0 with HTTP;
+	Thu, 6 Jun 2019 17:12:14 -0700 (PDT)
+In-Reply-To: <20190606115951.uc36gymkoqiod325@jholzmayr.localdomain>
+References: <CAA=hcWSh9-DaYwFED5UpT_h1C0H22HG76LVd3d+aL4V+LBQQBA@mail.gmail.com>
+	<CAA=hcWSmDyqJ2_4zw7-gXZ8KeB-wUk9G7iNieCsMQDGL3V2+Dg@mail.gmail.com>
+	<20190606115951.uc36gymkoqiod325@jholzmayr.localdomain>
+From: JH <jupiter.hce@gmail.com>
+Date: Fri, 7 Jun 2019 10:12:14 +1000
+Message-ID: <CAA=hcWTmW1DZBeCo3mG8EnFSPrL=13+shB9h0HC27FritNMp5w@mail.gmail.com>
+To: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Support NAND flash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -123,38 +76,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Jun 2019 00:07:38 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Fri, 07 Jun 2019 00:12:17 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Thanks Josef for the response and links, the board is not off the
+shelf product, it was designed by a hardware contractor, so I have do
+as you advised to change kernel+config and to add mtd-utils recipe.
 
+In my previous project working on a TI ARM processor with NOR Flash,
+installed with Debian armhf, I did not recall any work to interface
+MTD NOR Flash, it was booted like a normal Linux distribute. For NAND,
+is the Linux be able to handle read / write NAND flash as in NOR?
 
-On 6/6/19 4:46 PM, Michael Halstead wrote:
-> Some packages were bumped onto the pip3 install line. Install them with zypper as before.
-with backport? ie is Warrior or Thud affected, I suspect so
+Thank you very much.
 
-- armin
+Kind regards,
+
+- JH
+
+On 6/6/19, Josef Holzmayr <holzmayr@rsi-elektrotechnik.de> wrote:
+> On Thu, Jun 06, 2019 at 09:15:46PM +1000, JH wrote:
+>> More specific, looks to me that the drivers are OS based, the eCos has
+>> NAND I/O, the OpenWRT has some support NAND I/O as well, how does the
+>> Yocto support?
 >
-> Signed-off-by: Michael Halstead <mhalstead@linuxfoundation.org>
-> ---
->  documentation/poky.ent | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> This is not exactly a "how does the yocto" support-thing. Yocto is not
+> the OS. The OS by itself is the Linux kernel, which has extensive NAND
+> support in a lot of varieties. If you want to have a look, see
+> https://elixir.bootlin.com/linux/latest/source/drivers/mtd and
+> especially the nand subdirectory. In a nutshell it goes like this: if
+> you buy a board, ask whomever gave it to you for a kernel plus config
+> that works. Also, they are in most cases also obliged to tell you how to
+> write something to the (NAND-)flash.
 >
-> diff --git a/documentation/poky.ent b/documentation/poky.ent
-> index b5f600969..a436d9027 100644
-> --- a/documentation/poky.ent
-> +++ b/documentation/poky.ent
-> @@ -68,8 +68,8 @@
->       python3-jinja2 SDL-devel xterm">
->  <!ENTITY OPENSUSE_HOST_PACKAGES_ESSENTIAL "python gcc gcc-c++ git chrpath make wget python-xml \
->       diffstat makeinfo python-curses patch socat python3 python3-curses tar python3-pip \
-> -     python3-pexpect xz which python3-Jinja2 Mesa-libEGL1
-> -     $ sudo pip3 install GitPython libSDL-devel xterm">
-> +     python3-pexpect xz which python3-Jinja2 Mesa-libEGL1 libSDL-devel xterm
-> +     $ sudo pip3 install GitPython">
->  <!ENTITY CENTOS_HOST_PACKAGES_ESSENTIAL "-y epel-release
->       $ sudo yum makecache
->       $ sudo yum install gawk make wget tar bzip2 gzip python unzip perl patch \
-
+> For the userspace side, there is the mtd-utils suite:
+> http://www.linux-mtd.infradead.org which is already nicely packaged for
+> OE:
+> http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-devtools=
+/mtd/mtd-utils_git.bb
+>
+> So these are your starting points, you have to apply them to your
+> specific setup yourself. The only common things I can think of is:
+> 1) make sure your kernel+config support the flash chip in use
+> 2) install the mtd-utils for interacting with it.
+>
+> Greetz.
+>
+>>
+>> Thank you.
+>>
+>> Kind regards,
+>>
+>> - JH
+>>
+>> On 6/6/19, JH <jupiter.hce@gmail.com> wrote:
+>> > Hi,
+>> >
+>> > Has anyone used NAND? Does the MTD already support the NAND driver or
+>> > do you have to work our the detailed driver yourself? Could you share
+>> > your experiences how to build the image and to hand and access the
+>> > NAND if it is required?
+>> >
+>> > Thank you.
+>> >
+>> > Kind regards,
+>> >
+>> > - JH
+>> >
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+> --
+> =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+> Josef Holzmayr
+> Software Developer Embedded Systems
+>
+> Tel: +49 8444 9204-48
+> Fax: +49 8444 9204-50
+>
+> R-S-I Elektrotechnik GmbH & Co. KG
+> Woelkestrasse 11
+> D-85301 Schweitenkirchen
+> www.rsi-elektrotechnik.de
+> =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+> Amtsgericht Ingolstadt =E2=80=93 GmbH: HRB 191328 =E2=80=93 KG: HRA 17039=
+3
+> Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+> Ust-IdNr: DE 128592548
+>
+> _____________________________________________________________
+> Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+> Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+> USt-IdNr.: DE 128592548
+>
+>
 
