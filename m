@@ -1,62 +1,117 @@
-Return-Path: <mhalstead@linuxfoundation.org>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 182E8E00A00; Thu,  6 Jun 2019 16:47:18 -0700 (PDT)
+	id 7E1B9E00A96; Thu,  6 Jun 2019 17:07:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.193 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.215.173 listed in list.dnswl.org]
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com
-	[209.85.215.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96095E0096F
-	for <yocto@yoctoproject.org>; Thu,  6 Jun 2019 16:47:17 -0700 (PDT)
-Received: by mail-pg1-f173.google.com with SMTP id n2so104734pgp.11
-	for <yocto@yoctoproject.org>; Thu, 06 Jun 2019 16:47:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=from:to:cc:subject:date:message-id;
-	bh=SiuMQQDWqRZsF11CeXIP/KVPQyYUID+K4nf/Xgc1bGc=;
-	b=c0mBpOr3NZQMoHpec68Z5fX3HVLapS18jesI3Cc7zxLbjgRyDAydYPwRG/MgnSJfbN
-	SxtInAv+Tv9OADxPYIG+VkdhOe/wBFjsonwGL2eqZppBFU7OG4O8JPkLA4mPAcqE6tTq
-	tc6ZY2ChhYp/LUC/dXGCGuoGlJuk3wfLUsTRk=
+Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com
+	[209.85.215.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A5FFE008E3
+	for <yocto@yoctoproject.org>; Thu,  6 Jun 2019 17:07:37 -0700 (PDT)
+Received: by mail-pg1-f193.google.com with SMTP id w34so125448pga.12
+	for <yocto@yoctoproject.org>; Thu, 06 Jun 2019 17:07:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=pjuWGmYGRauXNkQvUmN8fUBazlFY+ZG5w/8z+Tao6zE=;
+	b=czSEr05MxcxohV3Y7NoKFfkvpGW9jmmWAZlQKd35Z2anGAy/UeaNcNGpTKK4TaKOYy
+	G3M8s6ZD82Dhf6oa6sVNeKcgu4MZAYl+eE4J05ZMh56R16PiYb8auLD9ic6wQBVig/W3
+	Wq9mEKcHdD5/nRtexFs9Ap51YVrZyHdy1ORqwR25rgDyli7ccee5CN37pTBmnOchj33B
+	BI7iY0EExa/tGjCdzGNXbF5B+yeMRawEovyKVtMTYSZdjr9ep6snCQ6STbusU51v3XyY
+	HrhnkdD41+9B5MVFPa4g/t2bumzUFF86ztmeu068W6hMg+Z1Riid1P65R0gqm3nwa5H1
+	3oXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=SiuMQQDWqRZsF11CeXIP/KVPQyYUID+K4nf/Xgc1bGc=;
-	b=hDpXITEHMK+wXkzmtNFZB7eOjEKgKYrfjCljYXXAxU89rwWitSfPpveaDH1PTOYzQj
-	xcnt2xvCCM32RvmXmjpNsVLvdZbmTgYXRHUjJCPopMnTU81Ic4BaljB6c59lYdhHni9s
-	R5E3XNIejLhuDIvDEw4teaXzHkz7q37wZuTteTsBs78qPSwDM0DR0p5L1tfcKPnvRv5H
-	KRPttE09xVZH7tKPwb0kMYbjBHb4jh1pxoreIKKbxqAHIbwWkv9n2lskDDDtUXZ5uHoM
-	9R2Z6AIwjHZGQ4tlglSM+BKQAx/HGMSql3EAPxaPqDZsuW8FQQxu9qLbd2BMPoGrBy+X
-	CeSA==
-X-Gm-Message-State: APjAAAX6vqefFKvKuWcvJJibf6XdFgmlB51OD7iYVAIfAXC0hi+R1ECy
-	5f9e4Dpk4h1FZlCIo1CNEHh7u9ECrDg=
-X-Google-Smtp-Source: APXvYqwqQlZqNCPnbkE83kgEmrl0hDwwgdnTiwbWG1E7cU3urcErEW5YFCVvEGCihTLLsIMT/Nwbkw==
-X-Received: by 2002:a17:90a:2430:: with SMTP id
-	h45mr2565429pje.14.1559864836551; 
-	Thu, 06 Jun 2019 16:47:16 -0700 (PDT)
-Received: from yct-lpt.pdx.yoctoproject.org
-	(96-95-153-9-static.hfc.comcastbusiness.net. [96.95.153.9])
-	by smtp.gmail.com with ESMTPSA id n13sm245364pgh.6.2019.06.06.16.47.15
-	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-	Thu, 06 Jun 2019 16:47:15 -0700 (PDT)
-From: Michael Halstead <mhalstead@linuxfoundation.org>
-To: yocto@yoctoproject.org
-Date: Thu,  6 Jun 2019 16:46:56 -0700
-Message-Id: <20190606234656.28343-1-mhalstead@linuxfoundation.org>
-X-Mailer: git-send-email 2.17.2
-Subject: [PATCH][yocto-docs] ref-manual: Corrected openSUSE essential packages
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-transfer-encoding:content-language;
+	bh=pjuWGmYGRauXNkQvUmN8fUBazlFY+ZG5w/8z+Tao6zE=;
+	b=gwm8uB0Rqu1uWZtRSxHG3uUKVOXVocYzy8iqAbMhCLmNXg8sWa7Laji0g32JfBurdC
+	HREaU+gpn2KAIitWdsEIJC5/CLalJgRjoQjpO1yS6UEYyd7his7W8SN2KprqbKNBjKQO
+	j3T5qTk+bR4L2AlWIE03KkTY4NWA2WkQFzHeTTjs/sDtsR7Kwvota34WitaQwTMvA11n
+	xj4qQmi3ZU1G9rPFKAvMCbVZz+0cEtMUrWiw71S9g9Js8Kva9F8iMAsd0GL7rlE5ui9t
+	juAgOY/pstfmxvsaSdt48iAKNAhv+necm34Qhs15lcimWhi+TUGlNpzH7gxwVXgldDVZ
+	wk/A==
+X-Gm-Message-State: APjAAAUL3NjgaGpQHsnnrJW//08jsD6PYfIsdwKBk7XDG80Q/gS8yRvm
+	FrPz9mJuJNofCEGQo8HQ+W2gSapl
+X-Google-Smtp-Source: APXvYqx5nIrbkHKRi3p+XO/ewSWdjH+2dmZHU29sV9S9IRhwml35aPpoy8QFl6oWigMpUX6LvCp8bA==
+X-Received: by 2002:a62:e511:: with SMTP id n17mr48996952pff.181.1559866057250;
+	Thu, 06 Jun 2019 17:07:37 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:c33:649f:275:809c:24d6?
+	([2601:202:4180:c33:649f:275:809c:24d6])
+	by smtp.gmail.com with ESMTPSA id u2sm208712pjv.9.2019.06.06.17.07.35
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 06 Jun 2019 17:07:36 -0700 (PDT)
+To: Michael Halstead <mhalstead@linuxfoundation.org>, yocto@yoctoproject.org
+References: <20190606234656.28343-1-mhalstead@linuxfoundation.org>
+From: akuster808 <akuster808@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+	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
+	8CS2NxU=
+Message-ID: <1a8c9eb7-3866-4b98-ca7c-95fc00bf4989@gmail.com>
+Date: Thu, 6 Jun 2019 17:07:35 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <20190606234656.28343-1-mhalstead@linuxfoundation.org>
+Subject: Re: [PATCH][yocto-docs] ref-manual: Corrected openSUSE essential packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,31 +123,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Jun 2019 23:47:18 -0000
+X-List-Received-Date: Fri, 07 Jun 2019 00:07:38 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Some packages were bumped onto the pip3 install line. Install them with zypper as before.
 
-Signed-off-by: Michael Halstead <mhalstead@linuxfoundation.org>
----
- documentation/poky.ent | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/documentation/poky.ent b/documentation/poky.ent
-index b5f600969..a436d9027 100644
---- a/documentation/poky.ent
-+++ b/documentation/poky.ent
-@@ -68,8 +68,8 @@
-      python3-jinja2 SDL-devel xterm">
- <!ENTITY OPENSUSE_HOST_PACKAGES_ESSENTIAL "python gcc gcc-c++ git chrpath make wget python-xml \
-      diffstat makeinfo python-curses patch socat python3 python3-curses tar python3-pip \
--     python3-pexpect xz which python3-Jinja2 Mesa-libEGL1
--     $ sudo pip3 install GitPython libSDL-devel xterm">
-+     python3-pexpect xz which python3-Jinja2 Mesa-libEGL1 libSDL-devel xterm
-+     $ sudo pip3 install GitPython">
- <!ENTITY CENTOS_HOST_PACKAGES_ESSENTIAL "-y epel-release
-      $ sudo yum makecache
-      $ sudo yum install gawk make wget tar bzip2 gzip python unzip perl patch \
--- 
-2.17.2
+On 6/6/19 4:46 PM, Michael Halstead wrote:
+> Some packages were bumped onto the pip3 install line. Install them with zypper as before.
+with backport? ie is Warrior or Thud affected, I suspect so
+
+- armin
+>
+> Signed-off-by: Michael Halstead <mhalstead@linuxfoundation.org>
+> ---
+>  documentation/poky.ent | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/documentation/poky.ent b/documentation/poky.ent
+> index b5f600969..a436d9027 100644
+> --- a/documentation/poky.ent
+> +++ b/documentation/poky.ent
+> @@ -68,8 +68,8 @@
+>       python3-jinja2 SDL-devel xterm">
+>  <!ENTITY OPENSUSE_HOST_PACKAGES_ESSENTIAL "python gcc gcc-c++ git chrpath make wget python-xml \
+>       diffstat makeinfo python-curses patch socat python3 python3-curses tar python3-pip \
+> -     python3-pexpect xz which python3-Jinja2 Mesa-libEGL1
+> -     $ sudo pip3 install GitPython libSDL-devel xterm">
+> +     python3-pexpect xz which python3-Jinja2 Mesa-libEGL1 libSDL-devel xterm
+> +     $ sudo pip3 install GitPython">
+>  <!ENTITY CENTOS_HOST_PACKAGES_ESSENTIAL "-y epel-release
+>       $ sudo yum makecache
+>       $ sudo yum install gawk make wget tar bzip2 gzip python unzip perl patch \
 
 
