@@ -1,53 +1,62 @@
-Return-Path: <bunk@stusta.de>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B1030E00A49; Mon, 10 Jun 2019 01:09:35 -0700 (PDT)
+	id 3F790E00A5C; Mon, 10 Jun 2019 02:13:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [141.84.69.5 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FBC1E008E3
-	for <yocto@yoctoproject.org>; Mon, 10 Jun 2019 01:09:34 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 45Mm4r3kMqz4D;
-	Mon, 10 Jun 2019 10:09:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
-	s=default; t=1560154172;
-	bh=JDJtZC3Erx6/4uKjXU4ZlCmf8MKn/rnMrrXuF7UOhf8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=daE8MEGcT8xpmEWnbVTyGcfIeOfubbTAAp9FM7teV9Qec//xkZFIjX/RbAYB+yQBA
-	+zAsr8C3a9x3O9/IMfi8aicjTSx5tAjlVaNj89JrIHNjpx6b/XUkGZzDVyH7/lL5c4
-	OP5y/uC/Lv50CJyKq9GaEbIzSVTwsR0iNebgLzMsrlafgHjKlCP+rxcm4ClbhB52Vo
-	Bmt2tY9d8kDWf59zW+hc3+4/jhARDYEl0mg+eT9/2QZ9Gdxn5Uq+gqX3/gEIIT21CA
-	lNoxsigs5zkycMUhCC112SUMBeodwPSQYbQoqOYg2ElJWc6HfMepwleQdsf/FNPWRa
-	hDnO74VOLYAcH0Gv9dQEpz0TDvRc53iWcRzhtCyrol95kmoj4AGbGqlrVY2PpW1LAH
-	ybHQKlWbUVl/1ZL0h5+3egO7QIBbGL9t7ydAl/Ji5/Nx+JPuv2NAAxSin81Qu6hsZ9
-	aq+RO/fQVYYG3vf4t7W/pJ7ZBvBoM+vr8Kmkbh3zy/2qCKkrmswzM3QebecENFDRb6
-	Q8UJfYeDxRghCTkDR6tNXYhHZPJerFeiFLyAJ8g8ZFglC0e92Ua6RPNbTc58YPPx8H
-	etLmyYY7TzKMOMX2puvf1k2eYcztq2c1FcFnkapaVsQrqnPYUZTAb8I72CymVHFPdT
-	9xaathIB/p0Fh0FY+zCbPNAc=
-Date: Mon, 10 Jun 2019 11:09:30 +0300
-From: Adrian Bunk <bunk@stusta.de>
-To: Zang Ruochen <zangrc.fnst@cn.fujitsu.com>
-Message-ID: <20190610080930.GA5894@localhost>
-References: <20190610072424.14779-1-zangrc.fnst@cn.fujitsu.com>
-	<20190610072424.14779-4-zangrc.fnst@cn.fujitsu.com>
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.177 listed in list.dnswl.org]
+Received: from mail-it1-f177.google.com (mail-it1-f177.google.com
+	[209.85.166.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1ED04E009EA
+	for <yocto@yoctoproject.org>; Mon, 10 Jun 2019 02:13:34 -0700 (PDT)
+Received: by mail-it1-f177.google.com with SMTP id x22so12035172itl.2
+	for <yocto@yoctoproject.org>; Mon, 10 Jun 2019 02:13:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=SQbjShdFIjzFT6N6HzmJaJeI/4MzBiEbMKpLSffPVxM=;
+	b=1W6mYnWaBIs2qrjvLz+lpQ/Wq8e4zS90fz1pbfBI+KWuzafZTTeB/8HEFLihV18CrX
+	XlGV2//vRrwciMvV0QG2Gz/KF84Lbo2K3xMSbqmAcx9j1Vv8Gta19aVbXgDLiIKWSaja
+	n4aKyZXJzcgcfK44AEelFVutxm62H8HNr5aZ/oPehE3e3/cdnenI7E0zOTFFUhlqSsJ5
+	dSRMl9AZJB3gv20M4+um5CLJHCUXRaFs/ep3M5oTaZkukWSFqlAniw6S4nGgpEsbiiiy
+	2Z1HBV3cfgvRiECQk6Pkn6ivD2jIkBlN3BFCAaRaruS36eY1ho8Xv2+Fv5uML31SyJga
+	4jsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=SQbjShdFIjzFT6N6HzmJaJeI/4MzBiEbMKpLSffPVxM=;
+	b=oQDYUnENvAdxUQVaXxUQAdmcWcQPMHUeE5wZYz2SxVg4Kqs5Tn9KD6Z7tpoExNq7pX
+	3V37ibfAurpIHyKWEb/ypaev21V12ERil/K7flODNT785feY0lln5Z+LmxoiI653Wtln
+	CwY1iBWmFb4vCoI8L1jQn+3R/iGFUMSqgNkDCccofFqnBxHmf/VfcJO4QF1pNWBERzHv
+	Lbkf4QymarXdgD0i7EK4Z4YukxjO0Sca0IUqBYECEEo6kpwOV/q+vEUjSTTX2g0Z/WdT
+	6vh/HS4h5pcG0+N9FMUCUKnLsn1Dk0hvSLxccn2iV9zs5vLiNDKK5EYkUP8bqDMHTfp/
+	+o2g==
+X-Gm-Message-State: APjAAAV7vgF1LWpyloHVuolig/QZcvhq+muw7fo1rAPpGguK6luzDZJz
+	uCrcUDw8z2BklLbUxb+TOtNhTeW8qf5h0TJNZ5vSpvNv
+X-Google-Smtp-Source: APXvYqyWrWboqgHH7Kjby3i46MBDaEmNx3y5m9V1U8fjrR0KQv04RpHOWUkzRcOKcws+Gincjka4FDs6lyQs38Oe5EU=
+X-Received: by 2002:a24:1d01:: with SMTP id 1mr7945181itj.83.1560158014581;
+	Mon, 10 Jun 2019 02:13:34 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190610072424.14779-4-zangrc.fnst@cn.fujitsu.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-security][master][warrior][PATCH 3/3] python3-scapy: solved the conflict with python-scapy
+References: <AM0PR10MB2658E98F7B370BD2FAEE187EC3330@AM0PR10MB2658.EURPRD10.PROD.OUTLOOK.COM>
+	<CAJTo0Lb2dGk4rdX1cm83aDyEr8WxapH3+nAL6oVgSeO-hFZbiQ@mail.gmail.com>
+	<7ebe65af-7756-eee5-ec9e-9d7f8637d761@emagii.com>
+In-Reply-To: <7ebe65af-7756-eee5-ec9e-9d7f8637d761@emagii.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 10 Jun 2019 10:13:23 +0100
+Message-ID: <CAJTo0LaMhs4OEWVtvp5AKhwvCRGZ4MNBRHh+5CaCx1Bm7js0Dw@mail.gmail.com>
+To: Ulf Samuelsson <yocto@emagii.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Multiple MACHINEs and DISTROs: When to use own build dir, SSTATE_DIR, DL_DIR ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,48 +68,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Jun 2019 08:09:35 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-List-Received-Date: Mon, 10 Jun 2019 09:13:36 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Jun 10, 2019 at 03:24:24PM +0800, Zang Ruochen wrote:
-> -Rename the following file to resolve the conflict with python-scapy:
-> 	Rename /usr/bin/UTscapy to /usr/bin/UTscapy3
-> 	Rename /usr/bin/scapy to /usr/bin/scapy3
-> 
-> Signed-off-by: Zang Ruochen <zangrc.fnst@cn.fujitsu.com>
-> ---
->  recipes-security/scapy/python3-scapy_2.4.2.bb | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/recipes-security/scapy/python3-scapy_2.4.2.bb b/recipes-security/scapy/python3-scapy_2.4.2.bb
-> index 83c79f4..abcaeeb 100644
-> --- a/recipes-security/scapy/python3-scapy_2.4.2.bb
-> +++ b/recipes-security/scapy/python3-scapy_2.4.2.bb
-> @@ -3,3 +3,7 @@ require python-scapy.inc
->  
->  SRC_URI += "file://run-ptest"
->  
-> +do_install_append() {
-> +        mv ${D}${bindir}/scapy ${D}${bindir}/scapy3
-> +        mv ${D}${bindir}/UTscapy ${D}${bindir}/UTscapy3
-> +}
+On Sun, 9 Jun 2019 at 23:19, Ulf Samuelsson <yocto@emagii.com> wrote:
+> When you have the same machine, and the recipes have variants
+> which are DISTRO dependent the SSTATE_DIR can be messed up
+>
+> We never digged deep enough to find the cause,
+> but when we separated the SSTATE to only have one DISTRO
+> in the same SSTATE, the problem disappeared.
 
-A proper solution would require using alternatives so that installing 
-either the python2 or the python3 version would provide the binary.
+The recipes were actively broken then, because DISTRO is in the hash.
+If the DISTRO changes, the hash changes.
 
-But given that python2 is reaching end of life I would suggest to just 
-rename the python2 binaries and keep the python3 binaries that will stay
-long-term at their upstream names.
-
-cu
-Adrian
-
--- 
-
-       "Is there not promise of rain?" Ling Tan asked suddenly out
-        of the darkness. There had been need of rain for many days.
-       "Only a promise," Lao Er said.
-                                       Pearl S. Buck - Dragon Seed
-
+Ross
 
