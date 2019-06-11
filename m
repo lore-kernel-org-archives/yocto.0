@@ -1,68 +1,34 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1D1B9E00D54; Mon, 10 Jun 2019 15:18:21 -0700 (PDT)
+	id 32CE0E00D54; Mon, 10 Jun 2019 18:28:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.41 listed in list.dnswl.org]
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
-	[209.85.128.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94343E00D4C
-	for <yocto@yoctoproject.org>; Mon, 10 Jun 2019 15:18:20 -0700 (PDT)
-Received: by mail-wm1-f41.google.com with SMTP id 207so855345wma.1
-	for <yocto@yoctoproject.org>; Mon, 10 Jun 2019 15:18:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:user-agent:mime-version:content-transfer-encoding;
-	bh=gDRWwseJMKqJvKm+hs1oPVIIFgl7X7lMHT4FRTskXUg=;
-	b=NgiNX4Hr6a2bxLkq4aX5ZjXfnZMisP66A4qT5BN3O9BtPCZ2Azn/aTEo+NhkdEoP/F
-	ip67uDKJmz3vSWwUHoEkviXb+NgaCj1FjUpXOb6Dulroi4ozuJHj1+paUXAt4RZB3NWu
-	dxdaAdLVh/R9X6u8B5nJfacWwSOIfu/gqEM7I=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=gDRWwseJMKqJvKm+hs1oPVIIFgl7X7lMHT4FRTskXUg=;
-	b=GhX1uVDqkI73PG0x37tzsfx1sY96eiUxILUT2VlYqi9qy0HxnnaARFgCNCcBiVdt+j
-	osA3vPiWNkCcmFK0ZP2+91D47I1PXWqbbuPmONubyBrVLiaGCBDg6c5yyXx1t6s36mea
-	9dLOgGJ+OUS1K0jrrsNo+t6o47C4J5p+cgaK5FAYB0Y79H+LOQZfskzenG0SsOVJTXDx
-	IeWJrMcN30TM617KrWI1kPCFDSIEs2jrdv4oSNM9ap+t4y/s5Uf5m2CSU0ZWWFEflLyF
-	+YV0W05ncwywqVb0q6BXqmYRg6/E+VnwT0Sc0W9a1Lj+UH50UOGIZvS2tRMPyMJhHz/L
-	60OA==
-X-Gm-Message-State: APjAAAUt7ag5p1S6p3F0a+n8W84SNpIrbXjF5Hlk1NZcy5BU7ENtQ2Ik
-	QfFZNKktXlXuvFwFsOj5W2FXSQ==
-X-Google-Smtp-Source: APXvYqzW8+SzhhLmFT6t2FeXtTKail2lybHZPHW5mXVELgaxFnHkS2hfdy3hxOy4B+AbpTBwHo0IYQ==
-X-Received: by 2002:a1c:a00f:: with SMTP id j15mr16169224wme.167.1560205099614;
-	Mon, 10 Jun 2019 15:18:19 -0700 (PDT)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	t198sm1200488wmt.2.2019.06.10.15.18.18
-	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Mon, 10 Jun 2019 15:18:18 -0700 (PDT)
-Message-ID: <41f4e149903ed82864c7160a558ba5d41b2074e3.camel@linuxfoundation.org>
-From: richard.purdie@linuxfoundation.org
-To: Poky Build User <pokybuild@debian8.yocto.io>, yocto@yoctoproject.org
-Date: Mon, 10 Jun 2019 23:18:17 +0100
-In-Reply-To: <20190610213814.BC1771A009F@debian8-ty-1.yocto.io>
-References: <20190610213814.BC1771A009F@debian8-ty-1.yocto.io>
-User-Agent: Evolution 3.32.2-1 
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 246C3E00D39
+	for <yocto@yoctoproject.org>; Mon, 10 Jun 2019 18:28:41 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x5B1SLiG018143
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Mon, 10 Jun 2019 18:28:31 -0700
+Received: from pek-hostel-deb01.wrs.com (128.224.153.151) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.439.0; Mon, 10 Jun 2019 18:28:10 -0700
+From: Chen Qi <Qi.Chen@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 11 Jun 2019 09:14:20 +0800
+Message-ID: <1560215660-13260-1-git-send-email-Qi.Chen@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Cc: otavio@ossystems.com.br, aaron.chun.yew.chan@intel.com,
-	akuster808@gmail.com
-Subject: Re: QA notification for completed autobuilder build (yocto-2.8_M1.rc1)
+Subject: [meta-anaconda][PATCH] .gitignore: add *.pyc and *.pyo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,23 +40,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Jun 2019 22:18:21 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 11 Jun 2019 01:28:43 -0000
+Content-Type: text/plain
 
-On Mon, 2019-06-10 at 21:38 +0000, Poky Build User wrote:
-> A build flagged for QA (yocto-2.8_M1.rc1) was completed on the
-> autobuilder and is available at:
-> 
-> 
->     https://autobuilder.yocto.io/pub/releases/yocto-2.8_M1.rc1
-> 
+The .gitignore needs to contain these two items, otherwise, we get
+unstaged lib/oeqa/selftest/cases/__pycache__/ every time we run
+oe-selftest.
 
-I've triggered an rc2 since one of the autobuilder workers messed up
-the mips builds.
+Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
+---
+ .gitignore | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Cheers,
-
-Richard
+diff --git a/.gitignore b/.gitignore
+index b093583..c01df45 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -1,3 +1,5 @@
++*.pyc
++*.pyo
+ /*.patch
+ *.swp
+ *.orig
+-- 
+2.7.4
 
 
