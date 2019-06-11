@@ -1,41 +1,68 @@
-Return-Path: <Zhe.He@windriver.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CAA98E00D6F; Tue, 11 Jun 2019 00:01:52 -0700 (PDT)
+	id F3C90E00D6F; Tue, 11 Jun 2019 00:07:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39C6CE00D68
-	for <yocto@yoctoproject.org>; Tue, 11 Jun 2019 00:01:52 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x5B70sLW027333
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 11 Jun 2019 00:01:25 -0700
-Received: from [128.224.162.221] (128.224.162.221) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.439.0;
-	Tue, 11 Jun 2019 00:01:00 -0700
-To: "Mittal, Anuj" <anuj.mittal@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <1560222410-414851-1-git-send-email-zhe.he@windriver.com>
-	<1560222410-414851-2-git-send-email-zhe.he@windriver.com>
-	<82c0e90ca18d0b5a2389a9fc608f3bab61492f7f.camel@intel.com>
-From: He Zhe <zhe.he@windriver.com>
-Message-ID: <0f6a60c2-b3c0-e787-51f4-d77046f91b08@windriver.com>
-Date: Tue, 11 Jun 2019 15:00:57 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <82c0e90ca18d0b5a2389a9fc608f3bab61492f7f.camel@intel.com>
-X-Originating-IP: [128.224.162.221]
-Subject: Re: [meta-dpdk][PATCH] dpdk: Fix do_compile failure for qemux86 and qemux86-64
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (martin.jansa[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.50 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+	[209.85.128.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66EFDE00D6C
+	for <yocto@lists.yoctoproject.org>;
+	Tue, 11 Jun 2019 00:07:59 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id s3so1645839wms.2
+	for <yocto@lists.yoctoproject.org>;
+	Tue, 11 Jun 2019 00:07:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=hhxb3yg3CDVZe+qtmrsxzVrtwy25aIRpuSiPIspni6Y=;
+	b=W/I5B6Eo7lJGA+9yjj7FtxYQYwC2GMRusGPqwLLel24N43PZXW1HcTPplFGOPEw1Ec
+	euhkEYP9/MPL59srDmc3EYbc/aUqI0XHVXbcwoo/YJQ3l7e1AwRXWr4hFAcher+qPPdM
+	JRHfD0TA5OBSn/LUTMACjl0Zfnx2ao5I1JmWCtqt2lhWX8dPU0qnChk/2ECCSouY7vk2
+	xabskUZlRUDstNq6ioKCjYUsXRxdBz8UN4LGBRWG6rMzLw3fEDSyW9sr4/OrSGRMT7El
+	YgfLhK9OlTIACWpwfuoPOMjcPf8dCGJVYZx9i4Mk/LyFGapzCyG31gc+WRefEbZGfXoz
+	6eLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=hhxb3yg3CDVZe+qtmrsxzVrtwy25aIRpuSiPIspni6Y=;
+	b=Yq8HkLX/ETQVMEATQ0SdrFPe4VyGq/IltbPHNQ2/rWiDzhSLKeAjyfI+4og5E3xEr7
+	+VztwE7HaQptIbt+fNQl5CEqcg2E+dDRRMk3KgEVnMAVB0tqwZCgNEsE7D2VhMie2W4D
+	9HbK3S85G1vwr2sz5KD54zQH0lB8xELdgU7d7auAsxIYsUlAFtoNVMsWQnew15VXoClg
+	UD1dFpGiHXfH16x0TlYLMXE7+fB0fuJz3fCaQOiXheZio5U7tXZuyVCP50KjtmWlb6kw
+	DUS9fwa38G76Y/vARRIorNbaboEmHVEiypGfZeHKFpTp+uxtrEpg1P3h0cwlBeAZ+Sxk
+	jznw==
+X-Gm-Message-State: APjAAAX2OUD5dncxOtyaGBY8DQ7FKEi2wYsfK/eLm5nlljjYzyjUMyZe
+	XmAvhwgJh69t+zMK+JTY8hUaKi/f
+X-Google-Smtp-Source: APXvYqzrvhmdlWf1dZwv36VHuaY6yNWBJTT/TOLwuTKZhpWh2jWRQT02aSWQwveqnTvjTXlqyb4Y+A==
+X-Received: by 2002:a1c:c255:: with SMTP id s82mr17498532wmf.6.1560236878160; 
+	Tue, 11 Jun 2019 00:07:58 -0700 (PDT)
+Received: from localhost (ip-217-030-068-212.aim-net.cz. [217.30.68.212])
+	by smtp.gmail.com with ESMTPSA id
+	l190sm1405749wml.25.2019.06.11.00.07.57
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Tue, 11 Jun 2019 00:07:57 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+To: yocto@lists.yoctoproject.org
+Date: Tue, 11 Jun 2019 07:07:55 +0000
+Message-Id: <20190611070755.192-1-Martin.Jansa@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-gplv2][PATCH] bc: use u-a for bc as well
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,126 +74,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jun 2019 07:01:53 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Tue, 11 Jun 2019 07:08:00 -0000
 
+* bc can be provided by busybox as well (e.g. if you have your own
+  defconfig and forget to explicitly disable it:
+  ...
+  *
+  * Miscellaneous Utilities
+  *
+  adjtimex (4.7 kb) (ADJTIMEX) [N/y/?] n
+  bbconfig (9.7 kb) (BBCONFIG) [N/y/?] n
+  bc (45 kb) (BC) [Y/n/?] (NEW) dc (36 kb) (DC) [Y/n/?] y
+    Use bc code base for dc (larger, more features) (FEATURE_DC_BIG) [Y] (NEW) y
+      Interactive mode (+4kb) (FEATURE_BC_INTERACTIVE) [Y/n/?] (NEW)     Enable bc/dc long options (FEATURE_BC_LONG_OPTIONS) [Y/n] (NEW) beep (2.4 kb) (BEEP) [N/y/?] n
+  chat (6.3 kb) (CHAT) [N/y/?] n
+  conspy (10 kb) (CONSPY) [N/y/?] n
+  ...
+  ), causing conflict in u-a:
 
+  update-alternatives: Error: not linking /usr/bin/bc to /bin/busybox.nosuid since /usr/bin/bc exists and is not a link
 
-On 6/11/19 2:31 PM, Mittal, Anuj wrote:
-> On Tue, 2019-06-11 at 11:06 +0800, zhe.he@windriver.com wrote:
->> From: He Zhe <zhe.he@windriver.com>
->>
->> DPDK_TARGET_MACHINE in bbappend in other layers forms the dpdk-
->> internal variable
->> MACHINE_CFLAGS which is passed to dpdk compilation command line
->> containing the
->> first -march parameter. And EXTRA_CFLAGS in dpdk.inc is passed to
->> dpdk command
->> line containing the second -march parameter. By mistake, the first
->> -march had
->> always overwritten the second one until the following commit of GCC
->> v9.1.0
->> 8c0f695d83d1 ("driver: Also prune joined switches with negation").
->>
->> Since it was fixed, the second -march, which was core2 for qemux86-64 
->> or
->> core2-32 for qemux86, began to take effect. But core2* does not have
->> SSE4.2
->> feature which is required by some dpdk instruction optimization and
->> thus cause
->> the following compilation failure.
->>
->> 9.1.0/include/smmintrin.h:179:1: error: inlining failed in call to
->> always_inline
->> '_mm_blendv_epi8': target specific option mismatch
->>   179 | _mm_blendv_epi8 (__m128i __X, __m128i __Y, __m128i __M)
->>       | ^~~~~~~~~~~~~~~
->>
->> This patch adds DPDK_EXTRA_CFLAGS to append appropriate -march,
->> corei7 which is
->> minimum and clear and independent of host machine, to dpdk
->> compilation command
->> line to overwrite all previous ones, without having to change dpdk
->> source code.
->>
->> Note that as we do not want to change the default tune core2* for
->> qemux86*, this
->> patch just fixes the compilation error. It would probably not be able
->> to run on
->> qemux86* with corei7 tune.
-> I don't think overriding arch values in recipe is appropriate. Also the
-> recipe is setting COMPATIBLE_MACHINE to be null because of this reason.
-> If the MACHINE that we're building for doesn't support the features
-> required, then we shouldn't be building dpdk for it in my opinion.
+  and then whole do_rootfs or do_populate_sdk to fail because busybox postinst is failing:
 
-This is largely a fix for those who want to test building qemux86* with dpdk.
-It does no harm to the rest of the configuration, and can be use as a way to
-append potential flags to dpdk building command line.
+  do_populate_sdk: Postinstall scriptlets of ['busybox'] have failed. If the intention is to defer them to first boot,
+  then please place them into pkg_postinst_ontarget_${PN} (). Deferring to first boot via 'exit 1' is no longer supported.
 
-But it's fine to me to drop it if it does not make much sense to you.
+Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+---
+ recipes-extended/bc/bc_1.06.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Thanks,
-Zhe
-
->
-> Thanks,
->
-> Anuj
->
->> Signed-off-by: He Zhe <zhe.he@windriver.com>
->> ---
->>  recipes-extended/dpdk/dpdk.inc | 9 ++++++---
->>  1 file changed, 6 insertions(+), 3 deletions(-)
->>
->> diff --git a/recipes-extended/dpdk/dpdk.inc b/recipes-
->> extended/dpdk/dpdk.inc
->> index a0e081a..0275e0c 100644
->> --- a/recipes-extended/dpdk/dpdk.inc
->> +++ b/recipes-extended/dpdk/dpdk.inc
->> @@ -61,6 +61,9 @@ DPDK_RTE_TARGET_x86-64 = "x86_64-native-linuxapp-
->> gcc"
->>  DPDK_RTE_TARGET_x86 = "i686-native-linuxapp-gcc"
->>  DPDK_RTE_TARGET_aarch64 = "arm64-${DPDK_TARGET_MACH}-linuxapp-gcc"
->>  export RTE_TARGET = "${DPDK_RTE_TARGET}"
->> +DPDK_EXTRA_CFLAGS = ""
->> +DPDK_EXTRA_CFLAGS_qemux86 ?= "-march=corei7"
->> +DPDK_EXTRA_CFLAGS_qemux86-64 ?= "-march=corei7"
->>  
->>  # The list of intel Comms platforms and their target machine
->>  # process mapping. The supported target machine is listed under
->> @@ -100,18 +103,18 @@ do_compile () {
->>  
->>  	cd ${S}/${RTE_TARGET}
->>  	oe_runmake EXTRA_LDFLAGS="-L${STAGING_LIBDIR} --hash-style=gnu" 
->> \
->> -		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS}
->> -I${STAGING_INCDIR}" \
->> +		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS}
->> ${DPDK_EXTRA_CFLAGS} -I${STAGING_INCDIR}" \
->>  		   CROSS="${TARGET_PREFIX}" \
->>  		   prefix=""  LDFLAGS="${TUNE_LDARGS}"  WERROR_FLAGS="-
->> w" V=1
->>  
->>  	cd ${S}/examples/
->>  	oe_runmake EXTRA_LDFLAGS="-L${STAGING_LIBDIR} --hash-style=gnu
->> -fuse-ld=bfd" \
->> -		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS}
->> -I${STAGING_INCDIR}" \
->> +		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS}
->> ${DPDK_EXTRA_CFLAGS} -I${STAGING_INCDIR}" \
->>  		   CROSS="${TARGET_PREFIX}" O="${S}/examples/$@/"
->>  
->>  	cd ${S}/test/
->>  	oe_runmake EXTRA_LDFLAGS="-L${STAGING_LIBDIR} --hash-style=gnu
->> -fuse-ld=bfd" \
->> -		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS}
->> -I${STAGING_INCDIR}" \
->> +		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS}
->> ${DPDK_EXTRA_CFLAGS} -I${STAGING_INCDIR}" \
->>  		   CROSS="${TARGET_PREFIX}" O="${S}/test/$@/"
->>  }
->>  
+diff --git a/recipes-extended/bc/bc_1.06.bb b/recipes-extended/bc/bc_1.06.bb
+index d8c8a86..3de1b24 100644
+--- a/recipes-extended/bc/bc_1.06.bb
++++ b/recipes-extended/bc/bc_1.06.bb
+@@ -20,7 +20,7 @@ SRC_URI[sha256sum] = "4ef6d9f17c3c0d92d8798e35666175ecd3d8efac4009d6457b5c99cea7
+ 
+ inherit autotools texinfo update-alternatives
+ 
+-ALTERNATIVE_${PN} = "dc"
++ALTERNATIVE_${PN} = "bc dc"
+ ALTERNATIVE_PRIORITY = "100"
+ 
+ BBCLASSEXTEND = "native"
+-- 
+2.17.1
 
 
