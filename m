@@ -1,35 +1,34 @@
 Return-Path: <Zhe.He@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 60245E00D68; Mon, 10 Jun 2019 20:07:27 -0700 (PDT)
+	id 58C9FE00D6C; Mon, 10 Jun 2019 20:07:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	https://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4172CE00798
-	for <yocto@yoctoproject.org>; Mon, 10 Jun 2019 20:07:25 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x5B37JC7010901
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDDB6E00D6E
+	for <yocto@yoctoproject.org>; Mon, 10 Jun 2019 20:07:38 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x5B372AY020738
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 10 Jun 2019 20:07:19 -0700 (PDT)
+	Mon, 10 Jun 2019 20:07:12 -0700
 Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
 	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.439.0; Mon, 10 Jun 2019 20:07:18 -0700
+	14.3.439.0; Mon, 10 Jun 2019 20:06:51 -0700
 From: <zhe.he@windriver.com>
 To: <anuj.mittal@intel.com>, <yocto@yoctoproject.org>
-Date: Tue, 11 Jun 2019 11:06:50 +0800
-Message-ID: <1560222410-414851-2-git-send-email-zhe.he@windriver.com>
+Date: Tue, 11 Jun 2019 11:06:49 +0800
+Message-ID: <1560222410-414851-1-git-send-email-zhe.he@windriver.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1560222410-414851-1-git-send-email-zhe.he@windriver.com>
-References: <1560222410-414851-1-git-send-email-zhe.he@windriver.com>
 MIME-Version: 1.0
-Subject: [meta-dpdk][PATCH] dpdk: Fix do_compile failure for qemux86 and qemux86-64
+Subject: [meta-dpdk][PATCH] dpdk: mk: disable warning for packed member pointer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,77 +40,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jun 2019 03:07:27 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 11 Jun 2019 03:07:44 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
 From: He Zhe <zhe.he@windriver.com>
 
-DPDK_TARGET_MACHINE in bbappend in other layers forms the dpdk-internal variable
-MACHINE_CFLAGS which is passed to dpdk compilation command line containing the
-first -march parameter. And EXTRA_CFLAGS in dpdk.inc is passed to dpdk command
-line containing the second -march parameter. By mistake, the first -march had
-always overwritten the second one until the following commit of GCC v9.1.0
-8c0f695d83d1 ("driver: Also prune joined switches with negation").
+Backport a patch from upstream to fix the following build failure.
 
-Since it was fixed, the second -march, which was core2 for qemux86-64 or
-core2-32 for qemux86, began to take effect. But core2* does not have SSE4.2
-feature which is required by some dpdk instruction optimization and thus cause
-the following compilation failure.
-
-9.1.0/include/smmintrin.h:179:1: error: inlining failed in call to always_inline
-'_mm_blendv_epi8': target specific option mismatch
-  179 | _mm_blendv_epi8 (__m128i __X, __m128i __Y, __m128i __M)
-      | ^~~~~~~~~~~~~~~
-
-This patch adds DPDK_EXTRA_CFLAGS to append appropriate -march, corei7 which is
-minimum and clear and independent of host machine, to dpdk compilation command
-line to overwrite all previous ones, without having to change dpdk source code.
-
-Note that as we do not want to change the default tune core2* for qemux86*, this
-patch just fixes the compilation error. It would probably not be able to run on
-qemux86* with corei7 tune.
+x86_64-native-linuxapp-gcc/include/rte_ether.h:178:2: error:
+converting a packed 'const struct ether_addr' pointer (alignment 1) to a 'unaligned_uint16_t' {aka 'const short
+ unsigned int'} pointer (alignment 2) may result in an unaligned pointer value [-Werror=address-of-packed-member]
+|   178 |  const unaligned_uint16_t *ea_words = (const unaligned_uint16_t *)ea;
+|       |  ^~~~~
 
 Signed-off-by: He Zhe <zhe.he@windriver.com>
 ---
- recipes-extended/dpdk/dpdk.inc | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+ ...disable-warning-for-packed-member-pointer.patch | 48 ++++++++++++++++++++++
+ recipes-extended/dpdk/dpdk_17.11.3.bb              |  1 +
+ 2 files changed, 49 insertions(+)
+ create mode 100644 recipes-extended/dpdk/dpdk/dpdk-17.11-mk-disable-warning-for-packed-member-pointer.patch
 
-diff --git a/recipes-extended/dpdk/dpdk.inc b/recipes-extended/dpdk/dpdk.inc
-index a0e081a..0275e0c 100644
---- a/recipes-extended/dpdk/dpdk.inc
-+++ b/recipes-extended/dpdk/dpdk.inc
-@@ -61,6 +61,9 @@ DPDK_RTE_TARGET_x86-64 = "x86_64-native-linuxapp-gcc"
- DPDK_RTE_TARGET_x86 = "i686-native-linuxapp-gcc"
- DPDK_RTE_TARGET_aarch64 = "arm64-${DPDK_TARGET_MACH}-linuxapp-gcc"
- export RTE_TARGET = "${DPDK_RTE_TARGET}"
-+DPDK_EXTRA_CFLAGS = ""
-+DPDK_EXTRA_CFLAGS_qemux86 ?= "-march=corei7"
-+DPDK_EXTRA_CFLAGS_qemux86-64 ?= "-march=corei7"
- 
- # The list of intel Comms platforms and their target machine
- # process mapping. The supported target machine is listed under
-@@ -100,18 +103,18 @@ do_compile () {
- 
- 	cd ${S}/${RTE_TARGET}
- 	oe_runmake EXTRA_LDFLAGS="-L${STAGING_LIBDIR} --hash-style=gnu" \
--		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} -I${STAGING_INCDIR}" \
-+		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} ${DPDK_EXTRA_CFLAGS} -I${STAGING_INCDIR}" \
- 		   CROSS="${TARGET_PREFIX}" \
- 		   prefix=""  LDFLAGS="${TUNE_LDARGS}"  WERROR_FLAGS="-w" V=1
- 
- 	cd ${S}/examples/
- 	oe_runmake EXTRA_LDFLAGS="-L${STAGING_LIBDIR} --hash-style=gnu -fuse-ld=bfd" \
--		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} -I${STAGING_INCDIR}" \
-+		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} ${DPDK_EXTRA_CFLAGS} -I${STAGING_INCDIR}" \
- 		   CROSS="${TARGET_PREFIX}" O="${S}/examples/$@/"
- 
- 	cd ${S}/test/
- 	oe_runmake EXTRA_LDFLAGS="-L${STAGING_LIBDIR} --hash-style=gnu -fuse-ld=bfd" \
--		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} -I${STAGING_INCDIR}" \
-+		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} ${DPDK_EXTRA_CFLAGS} -I${STAGING_INCDIR}" \
- 		   CROSS="${TARGET_PREFIX}" O="${S}/test/$@/"
- }
- 
+diff --git a/recipes-extended/dpdk/dpdk/dpdk-17.11-mk-disable-warning-for-packed-member-pointer.patch b/recipes-extended/dpdk/dpdk/dpdk-17.11-mk-disable-warning-for-packed-member-pointer.patch
+new file mode 100644
+index 0000000..70a8dec
+--- /dev/null
++++ b/recipes-extended/dpdk/dpdk/dpdk-17.11-mk-disable-warning-for-packed-member-pointer.patch
+@@ -0,0 +1,48 @@
++From a385972c3675dd2b4792ab5b3cf7a536e6f9846c Mon Sep 17 00:00:00 2001
++From: Reshma Pattan <reshma.pattan@intel.com>
++Date: Thu, 2 May 2019 10:33:34 +0100
++Subject: [PATCH] mk: disable warning for packed member pointer
++MIME-Version: 1.0
++Content-Type: text/plain; charset=UTF-8
++Content-Transfer-Encoding: 8bit
++
++gcc 9 on Fedora 30 gives an error
++"taking address of packed member may result in an
++unaligned pointer value" warnings.
++
++For clang builds this warning is already disabled,
++so disable "-Waddress-of-packed-member" for gcc builds
++also.
++
++Snippet of build error:
++lib/librte_eal/linux/eal/eal_memalloc.c: In function ‘alloc_seg_walk’:
++lib/librte_eal/linux/eal/eal_memalloc.c:768:12: error:
++taking address of packed member of ‘struct rte_mem_config’ may result
++in an unaligned pointer value [-Werror=address-of-packed-member]
++  768 |  cur_msl = &mcfg->memsegs[msl_idx];
++      |            ^~~~~~~~~~~~~~~~~~~~~~~
++
++Signed-off-by: Reshma Pattan <reshma.pattan@intel.com>
++Tested-by: David Marchand <david.marchand@redhat.com>
++Upstream-Status: Backport
++Signed-off-by: He Zhe <zhe.he@windriver.com>
++---
++ mk/toolchain/gcc/rte.vars.mk | 3 +++
++ 1 file changed, 3 insertions(+)
++
++diff --git a/mk/toolchain/gcc/rte.vars.mk b/mk/toolchain/gcc/rte.vars.mk
++index d8b99fa..b852fcf 100644
++--- a/mk/toolchain/gcc/rte.vars.mk
+++++ b/mk/toolchain/gcc/rte.vars.mk
++@@ -87,5 +87,8 @@ WERROR_FLAGS += -Wimplicit-fallthrough=2
++ WERROR_FLAGS += -Wno-format-truncation
++ endif
++ 
+++# disable packed member unalign warnings
+++WERROR_FLAGS += -Wno-address-of-packed-member
+++
++ export CC AS AR LD OBJCOPY OBJDUMP STRIP READELF
++ export TOOLCHAIN_CFLAGS TOOLCHAIN_LDFLAGS TOOLCHAIN_ASFLAGS
++-- 
++2.7.4
++
+diff --git a/recipes-extended/dpdk/dpdk_17.11.3.bb b/recipes-extended/dpdk/dpdk_17.11.3.bb
+index 7fc89d2..af42ad8 100644
+--- a/recipes-extended/dpdk/dpdk_17.11.3.bb
++++ b/recipes-extended/dpdk/dpdk_17.11.3.bb
+@@ -12,4 +12,5 @@ SRC_URI += "\
+         file://dpdk-16.07-dpdk-fix-for-parellel-make-issue.patch \
+         file://dpdk-17.02-dpdk-fix-installation-warning-and-issue.patch \
+         file://dpdk-17.11-Fix-strncpy-error-for-GCC8.patch \
++        file://dpdk-17.11-mk-disable-warning-for-packed-member-pointer.patch \
+ "
 -- 
 2.7.4
 
