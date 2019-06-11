@@ -1,6 +1,6 @@
-Return-Path: <ee.peng.yeoh@intel.com>
+Return-Path: <Zhe.He@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 80B77E00D60; Mon, 10 Jun 2019 18:54:09 -0700 (PDT)
+	id 60245E00D68; Mon, 10 Jun 2019 20:07:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,47 +10,26 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
 	*      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E59A9E00D53
-	for <yocto@yoctoproject.org>; Mon, 10 Jun 2019 18:54:08 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	10 Jun 2019 18:54:08 -0700
-X-ExtLoop1: 1
-Received: from pgsmsx101.gar.corp.intel.com ([10.221.44.78])
-	by fmsmga004.fm.intel.com with ESMTP; 10 Jun 2019 18:54:06 -0700
-Received: from pgsmsx109.gar.corp.intel.com ([169.254.14.167]) by
-	PGSMSX101.gar.corp.intel.com ([169.254.1.171]) with mapi id
-	14.03.0415.000; Tue, 11 Jun 2019 09:51:58 +0800
-From: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>
-To: "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
-	Poky Build User <pokybuild@debian8.yocto.io>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: QA notification for completed autobuilder build
-	(yocto-2.8_M1.rc1)
-Thread-Index: AQHVH9prUV/mgdX96UGYZUA3BqNFfaaVsLfQ
-Date: Tue, 11 Jun 2019 01:51:58 +0000
-Message-ID: <9DDD2658D1FE414E99172D2DB1E4D043481E6A23@PGSMSX109.gar.corp.intel.com>
-References: <20190610213814.BC1771A009F@debian8-ty-1.yocto.io>
-	<41f4e149903ed82864c7160a558ba5d41b2074e3.camel@linuxfoundation.org>
-In-Reply-To: <41f4e149903ed82864c7160a558ba5d41b2074e3.camel@linuxfoundation.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiYjZmZDI1MjUtZjcwNi00MzFkLWIyZTctMjAyZGZiZjQzOGVkIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiazB2MzVSMTN3Q2x2YTEwUVFQYlRoalA0RGhubkxIcmEwTDhkQVdvbDErcmtzWkZsQmVhWExIXC9OMnhNa3dYTmwifQ==
-dlp-product: dlpe-windows
-dlp-version: 11.0.600.7
-dlp-reaction: no-action
-x-originating-ip: [172.30.20.206]
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4172CE00798
+	for <yocto@yoctoproject.org>; Mon, 10 Jun 2019 20:07:25 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x5B37JC7010901
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 10 Jun 2019 20:07:19 -0700 (PDT)
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.439.0; Mon, 10 Jun 2019 20:07:18 -0700
+From: <zhe.he@windriver.com>
+To: <anuj.mittal@intel.com>, <yocto@yoctoproject.org>
+Date: Tue, 11 Jun 2019 11:06:50 +0800
+Message-ID: <1560222410-414851-2-git-send-email-zhe.he@windriver.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1560222410-414851-1-git-send-email-zhe.he@windriver.com>
+References: <1560222410-414851-1-git-send-email-zhe.he@windriver.com>
 MIME-Version: 1.0
-Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>, "Chan,
-	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
-	"akuster808@gmail.com" <akuster808@gmail.com>
-Subject: Re: QA notification for completed autobuilder build (yocto-2.8_M1.rc1)
+Subject: [meta-dpdk][PATCH] dpdk: Fix do_compile failure for qemux86 and qemux86-64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,28 +41,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Jun 2019 01:54:09 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 11 Jun 2019 03:07:27 -0000
+Content-Type: text/plain
 
-UmljaGFyZCwNCg0KVGhhbmtzIGZvciBpbmZvcm1pbmchIA0KDQpCZXN0IHJlZ2FyZHMsDQpZZW9o
-IEVlIFBlbmcgDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiByaWNoYXJkLnB1
-cmRpZUBsaW51eGZvdW5kYXRpb24ub3JnIFttYWlsdG86cmljaGFyZC5wdXJkaWVAbGludXhmb3Vu
-ZGF0aW9uLm9yZ10gDQpTZW50OiBUdWVzZGF5LCBKdW5lIDExLCAyMDE5IDY6MTggQU0NClRvOiBQ
-b2t5IEJ1aWxkIFVzZXIgPHBva3lidWlsZEBkZWJpYW44LnlvY3RvLmlvPjsgeW9jdG9AeW9jdG9w
-cm9qZWN0Lm9yZw0KQ2M6IG90YXZpb0Bvc3N5c3RlbXMuY29tLmJyOyB5aS56aGFvQHdpbmRyaXZl
-ci5jb207IFNhbmdhbCwgQXBvb3J2IDxhcG9vcnYuc2FuZ2FsQGludGVsLmNvbT47IFllb2gsIEVl
-IFBlbmcgPGVlLnBlbmcueWVvaEBpbnRlbC5jb20+OyBDaGFuLCBBYXJvbiBDaHVuIFlldyA8YWFy
-b24uY2h1bi55ZXcuY2hhbkBpbnRlbC5jb20+OyBBbmcsIENoaW4gSHVhdCA8Y2hpbi5odWF0LmFu
-Z0BpbnRlbC5jb20+OyBha3VzdGVyODA4QGdtYWlsLmNvbTsgc2pvbGxleS55cC5wbUBnbWFpbC5j
-b207IEphaW4sIFNhbmdlZXRhIDxzYW5nZWV0YS5qYWluQGludGVsLmNvbT4NClN1YmplY3Q6IFJl
-OiBRQSBub3RpZmljYXRpb24gZm9yIGNvbXBsZXRlZCBhdXRvYnVpbGRlciBidWlsZCAoeW9jdG8t
-Mi44X00xLnJjMSkNCg0KT24gTW9uLCAyMDE5LTA2LTEwIGF0IDIxOjM4ICswMDAwLCBQb2t5IEJ1
-aWxkIFVzZXIgd3JvdGU6DQo+IEEgYnVpbGQgZmxhZ2dlZCBmb3IgUUEgKHlvY3RvLTIuOF9NMS5y
-YzEpIHdhcyBjb21wbGV0ZWQgb24gdGhlIA0KPiBhdXRvYnVpbGRlciBhbmQgaXMgYXZhaWxhYmxl
-IGF0Og0KPiANCj4gDQo+ICAgICBodHRwczovL2F1dG9idWlsZGVyLnlvY3RvLmlvL3B1Yi9yZWxl
-YXNlcy95b2N0by0yLjhfTTEucmMxDQo+IA0KDQpJJ3ZlIHRyaWdnZXJlZCBhbiByYzIgc2luY2Ug
-b25lIG9mIHRoZSBhdXRvYnVpbGRlciB3b3JrZXJzIG1lc3NlZCB1cCB0aGUgbWlwcyBidWlsZHMu
-DQoNCkNoZWVycywNCg0KUmljaGFyZA0KDQo=
+From: He Zhe <zhe.he@windriver.com>
+
+DPDK_TARGET_MACHINE in bbappend in other layers forms the dpdk-internal variable
+MACHINE_CFLAGS which is passed to dpdk compilation command line containing the
+first -march parameter. And EXTRA_CFLAGS in dpdk.inc is passed to dpdk command
+line containing the second -march parameter. By mistake, the first -march had
+always overwritten the second one until the following commit of GCC v9.1.0
+8c0f695d83d1 ("driver: Also prune joined switches with negation").
+
+Since it was fixed, the second -march, which was core2 for qemux86-64 or
+core2-32 for qemux86, began to take effect. But core2* does not have SSE4.2
+feature which is required by some dpdk instruction optimization and thus cause
+the following compilation failure.
+
+9.1.0/include/smmintrin.h:179:1: error: inlining failed in call to always_inline
+'_mm_blendv_epi8': target specific option mismatch
+  179 | _mm_blendv_epi8 (__m128i __X, __m128i __Y, __m128i __M)
+      | ^~~~~~~~~~~~~~~
+
+This patch adds DPDK_EXTRA_CFLAGS to append appropriate -march, corei7 which is
+minimum and clear and independent of host machine, to dpdk compilation command
+line to overwrite all previous ones, without having to change dpdk source code.
+
+Note that as we do not want to change the default tune core2* for qemux86*, this
+patch just fixes the compilation error. It would probably not be able to run on
+qemux86* with corei7 tune.
+
+Signed-off-by: He Zhe <zhe.he@windriver.com>
+---
+ recipes-extended/dpdk/dpdk.inc | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/recipes-extended/dpdk/dpdk.inc b/recipes-extended/dpdk/dpdk.inc
+index a0e081a..0275e0c 100644
+--- a/recipes-extended/dpdk/dpdk.inc
++++ b/recipes-extended/dpdk/dpdk.inc
+@@ -61,6 +61,9 @@ DPDK_RTE_TARGET_x86-64 = "x86_64-native-linuxapp-gcc"
+ DPDK_RTE_TARGET_x86 = "i686-native-linuxapp-gcc"
+ DPDK_RTE_TARGET_aarch64 = "arm64-${DPDK_TARGET_MACH}-linuxapp-gcc"
+ export RTE_TARGET = "${DPDK_RTE_TARGET}"
++DPDK_EXTRA_CFLAGS = ""
++DPDK_EXTRA_CFLAGS_qemux86 ?= "-march=corei7"
++DPDK_EXTRA_CFLAGS_qemux86-64 ?= "-march=corei7"
+ 
+ # The list of intel Comms platforms and their target machine
+ # process mapping. The supported target machine is listed under
+@@ -100,18 +103,18 @@ do_compile () {
+ 
+ 	cd ${S}/${RTE_TARGET}
+ 	oe_runmake EXTRA_LDFLAGS="-L${STAGING_LIBDIR} --hash-style=gnu" \
+-		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} -I${STAGING_INCDIR}" \
++		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} ${DPDK_EXTRA_CFLAGS} -I${STAGING_INCDIR}" \
+ 		   CROSS="${TARGET_PREFIX}" \
+ 		   prefix=""  LDFLAGS="${TUNE_LDARGS}"  WERROR_FLAGS="-w" V=1
+ 
+ 	cd ${S}/examples/
+ 	oe_runmake EXTRA_LDFLAGS="-L${STAGING_LIBDIR} --hash-style=gnu -fuse-ld=bfd" \
+-		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} -I${STAGING_INCDIR}" \
++		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} ${DPDK_EXTRA_CFLAGS} -I${STAGING_INCDIR}" \
+ 		   CROSS="${TARGET_PREFIX}" O="${S}/examples/$@/"
+ 
+ 	cd ${S}/test/
+ 	oe_runmake EXTRA_LDFLAGS="-L${STAGING_LIBDIR} --hash-style=gnu -fuse-ld=bfd" \
+-		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} -I${STAGING_INCDIR}" \
++		   EXTRA_CFLAGS="${HOST_CC_ARCH} ${TOOLCHAIN_OPTIONS} ${DPDK_EXTRA_CFLAGS} -I${STAGING_INCDIR}" \
+ 		   CROSS="${TARGET_PREFIX}" O="${S}/test/$@/"
+ }
+ 
+-- 
+2.7.4
+
 
