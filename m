@@ -1,36 +1,68 @@
-Return-Path: <Changqing.Li@windriver.com>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1617EE00DF0; Thu, 13 Jun 2019 02:16:54 -0700 (PDT)
+	id 905D0E00D94; Thu, 13 Jun 2019 03:57:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED4D9E00D63
-	for <yocto@yoctoproject.org>; Thu, 13 Jun 2019 02:16:52 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x5D9GW1q012465
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 13 Jun 2019 02:16:42 -0700
-Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.439.0; Thu, 13 Jun 2019 02:16:21 -0700
-From: <changqing.li@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 13 Jun 2019 17:16:20 +0800
-Message-ID: <1560417380-358445-1-git-send-email-changqing.li@windriver.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <20190613082931.GA15674@localhost>
-References: <20190613082931.GA15674@localhost>
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jupiter.hce[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.48 listed in list.dnswl.org]
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com
+	[209.85.166.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35E76E00C7D
+	for <yocto@yoctoproject.org>; Thu, 13 Jun 2019 03:56:58 -0700 (PDT)
+Received: by mail-io1-f48.google.com with SMTP id i10so15816418iol.13
+	for <yocto@yoctoproject.org>; Thu, 13 Jun 2019 03:56:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=V9VOHf9Y8AQecsGcWRl/wpUvmahSsY9879XXhw6kTFg=;
+	b=eCaXkIYm3u/l+BRzBZD44/BIrZYH6djgoZF4P6Q1CjKlPxCZMaJ6wK7XW1m34dXUut
+	0PIGtFpnr61VuuHRFVaVpKPXVJ7OP4kCt+z3h7I4SBd2A4DljXvVC2IRER2G/82VvJqX
+	Y+MZyTjB15dsST2SP0BXS6s3i0M2uvi6J5cG5daQys5Df1ZPI1IOP+2vpHz36NdaZ16O
+	o50kixRQt1bIUtMocMxpDVJ3yP13aqs9mQTZMMu6u1MvmmxpLvPSWrV0KKTISIX6NYSn
+	r4S6G76MaG3JyeZgR644vkfAvjJlW2g8Mo57oV5h8wqFHNxLoS5N8ILl04MUgqxrHd3M
+	eWaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=V9VOHf9Y8AQecsGcWRl/wpUvmahSsY9879XXhw6kTFg=;
+	b=XMDNEtx69w3D5Rihoy49he2qwtoC+d+xlsKO1YurCm5YNIsiTT7arJ6y497A8tKuvf
+	pEbJLNPSGFBiA+pFavbAKvYzKaADGfmzJ5aucJNiJdyeJ/foo5VpN7JH7pZ3Eg8m3cqu
+	7y1lAZuEMJrUQTnRwGbUA7JF2wsedNdkwNvN4aX298eLhmgHQd+4btUrM5kIoydckzu/
+	ObKdrpNNwvnSLgztmf++9sPxaTp7t8UbkrHMumY1rshccCnEOa8dyUoUF3zrHRqSouKx
+	B77DtzB+M+uMtHWL+/s/GCcrqEkDhGLQ7cO0duIYQjS+QYypb4WyG9Yd2CF2S2CNwP+P
+	iXiw==
+X-Gm-Message-State: APjAAAWpA64roeEKAgehwfBgfnaWeHaRMVhI5WAIZ0IYRQHU8y8C/fSB
+	CiQZJQPbknj6Q3cXzW2tW8CgUVFrcA0e8qjHojA=
+X-Google-Smtp-Source: APXvYqxEJ6hxYMrDutfKGx7WJC2GXNYgMpsxNwzjlMJFkilcZVvocjoczlruiU8oirZ+G0zI3NYaewV+rEhHawS6O8Y=
+X-Received: by 2002:a05:6602:22cc:: with SMTP id
+	e12mr833813ioe.192.1560423417858; 
+	Thu, 13 Jun 2019 03:56:57 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [patchtest][PATCH V2] patchtest: fix linux-yocto version
+Received: by 2002:ac0:92cf:0:0:0:0:0 with HTTP; Thu, 13 Jun 2019 03:56:57
+	-0700 (PDT)
+In-Reply-To: <2c0a96e74f3acf0ac45f2bc55908df330fd85cab.camel@linuxfoundation.org>
+References: <CAA=hcWRzPWecUL0-e2hhNYE2RzjbuL9=fCLqTyy7GRFD563yGQ@mail.gmail.com>
+	<2c0a96e74f3acf0ac45f2bc55908df330fd85cab.camel@linuxfoundation.org>
+From: JH <jupiter.hce@gmail.com>
+Date: Thu, 13 Jun 2019 20:56:57 +1000
+Message-ID: <CAA=hcWRWf-JC3Mg2kmTJ22YjiQto0ixpfNUrnzdbn172nnDE0w@mail.gmail.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Download git source not the latest
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,42 +74,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Jun 2019 09:16:54 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 13 Jun 2019 10:57:00 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-From: Changqing Li <changqing.li@windriver.com>
+I set up for my release version which is nothing to do with the git
+source, how could I link the PV to autorev?
 
-4.9 is not avaiable currently, so remove version from bbappend
-and remove PREFERRED_VERSION.
+VERSION_MAJOR = "1"
+VERSION_MINOR = "0"
+VERSION_BUILD = "0"
+PV = "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BUILD}"
 
-Signed-off-by: Changqing Li <changqing.li@windriver.com>
----
- .../linux/{linux-yocto_4.%.bbappend => linux-yocto_%.bbappend}       | 0
- scripts/create-guest-machine                                         | 5 -----
- 2 files changed, 5 deletions(-)
- rename meta-patchtest/recipes-kernel/linux/{linux-yocto_4.%.bbappend => linux-yocto_%.bbappend} (100%)
+Thanks Richard,
 
-diff --git a/meta-patchtest/recipes-kernel/linux/linux-yocto_4.%.bbappend b/meta-patchtest/recipes-kernel/linux/linux-yocto_%.bbappend
-similarity index 100%
-rename from meta-patchtest/recipes-kernel/linux/linux-yocto_4.%.bbappend
-rename to meta-patchtest/recipes-kernel/linux/linux-yocto_%.bbappend
-diff --git a/scripts/create-guest-machine b/scripts/create-guest-machine
-index 8dd6a2e..8381ef8 100755
---- a/scripts/create-guest-machine
-+++ b/scripts/create-guest-machine
-@@ -145,11 +145,6 @@ cat >> $POKY/build/conf/auto.conf << EOF
- $PTSMARK
- MACHINE = "$MACHINE"
- 
--# The preferred kernel version in poky (4.10%, master) returns an error whilst
--# executing patchtest on guest. Changing the preferred version to 4.9% as it
--# is more suitable and does not present any errors.
--PREFERRED_VERSION_linux-yocto_qemux86-64 = "4.9%"
--
- PACKAGE_CLASSES = "package_ipk"
- IMAGE_FSTYPES = "ext4"
- SSTATE_MIRRORS ?= "file://.* http://sstate.yoctoproject.org/dev/PATH"
--- 
-2.7.4
+- jupiter
 
+On 6/12/19, Richard Purdie <richard.purdie@linuxfoundation.org> wrote:
+> On Tue, 2019-06-11 at 20:38 +1000, JH wrote:
+>> Hi,
+>>
+>> I set up SRCREV = "${AUTOREV}" in the recipe of my application, but
+>> too often it downloaded the old revision. How can I force the bitbake
+>> to download the latest git source?
+>
+> What did you set PV to?
+>
+> You need to have SRCPV in PV for autorev to work properly.
+>
+> Regards,
+>
+> Richard
+>
+>
 
