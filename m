@@ -1,60 +1,40 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <Yi.Zhao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4179E00C93; Wed, 12 Jun 2019 03:59:08 -0700 (PDT)
+	id C9086E00D64; Wed, 12 Jun 2019 17:06:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.172 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com
-	[209.85.222.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80278E00B8F
-	for <yocto@yoctoproject.org>; Wed, 12 Jun 2019 03:59:07 -0700 (PDT)
-Received: by mail-qk1-f172.google.com with SMTP id c11so9784529qkk.8
-	for <yocto@yoctoproject.org>; Wed, 12 Jun 2019 03:59:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=uDBvx6EtCu2d8yJFDxD8uCKPPsQJOQL9GStkD+IRZ40=;
-	b=baaECed0Ssy4FaqBiDeki1ZjDFcGne9J07xDK0DHjtBkzOdz0GfloyxFiE3RjXgQdo
-	xcpS/Ia/J+4bvFvX9p5jFAjX8GXNu+vkKpvj+I1BviUQaSyeeY7iuMHERyFfCJ+C2/q9
-	Ww1eAUisGF/+bozZFoSfnDJpQjDPFJUNgiERmZLLUqNGzIHty839DugzVJYDIMWxcgTF
-	AV9BnqyK9YAtBwPkcN5LUCLp1CNBIY7pj3vIwER2euTQ3IMDVdUwfFlMlbHmZRSTVdnH
-	vu1BT4Lv/k0mmIzewitq0G037IBGYDN4QPbP9X76Tx0zwN2ee2oxMnfH/wfwNPdapetd
-	v1xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=uDBvx6EtCu2d8yJFDxD8uCKPPsQJOQL9GStkD+IRZ40=;
-	b=pei+Gm7s839+ul+BmqLz3CLIseoQW0lbGlFUHykqiCzeC+ZKsWfuRtrGZkYlF25RHE
-	VtKFxtasO6ZoLqBmaJyETZ1c5JvvHr1O7t7I+L8YxxfYM6oECV7Xt8Mrre/+MJ02svcq
-	qKN/BnrXecl0Vp5KP4V1WMPD3Bpr+WHA22++UwfTQwLmATnKDD2L17zq4EqOo2jWD7mh
-	XEW/hnN19nDiH9ivkjBPLLg/YZ794J/SwTJLoVbH5MNEPS9IHzCHrz6SKxHHgTP6caM/
-	4R5Vuza10LKQ3ea3naP8OxiSjxC4UCYMPOf4Juijx4g8snN1fydZC4UI/b8f/7vT9pBk
-	ODog==
-X-Gm-Message-State: APjAAAUQaqbq5+Jq+havnqrCMWbuPouSYQWSAZCy5MhDVjMCsMyQKF5M
-	+iYerYoIGC++nxEdCKjoPyoxRVMBrxTXEzGXXb4SFa5Dqbs=
-X-Google-Smtp-Source: APXvYqwPTSy1kmL91wVugos7bq69a4vN3NQ+MGH+GfAsn2vAfkzuQw60kZButOo6/UFaXlziI5WPyv5AuiHmxIV3LZE=
-X-Received: by 2002:a37:4d16:: with SMTP id a22mr63761803qkb.103.1560337146561;
-	Wed, 12 Jun 2019 03:59:06 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A58FFE00D46
+	for <yocto@yoctoproject.org>; Wed, 12 Jun 2019 17:06:47 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x5D06iT1011542
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 12 Jun 2019 17:06:44 -0700 (PDT)
+Received: from [128.224.162.136] (128.224.162.136) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.439.0;
+	Wed, 12 Jun 2019 17:06:43 -0700
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+References: <1560326000-21130-1-git-send-email-yi.zhao@windriver.com>
+	<CANNYZj_7JUwUu0WgtRS2C_bR8thJPDMwWvBg74cCKw763Lq6Vw@mail.gmail.com>
+From: Yi Zhao <yi.zhao@windriver.com>
+Message-ID: <d27d5cb3-44be-796b-1bf5-f36d9726712c@windriver.com>
+Date: Thu, 13 Jun 2019 08:06:40 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.6.1
 MIME-Version: 1.0
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Wed, 12 Jun 2019 12:58:51 +0200
-Message-ID: <CAGAf8LzGyxg63e19mWJT6rqOy5jv4vUs4-Py=872aWT5DPHHOA@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: [current stable poky kernel] linux-stable-5.0.21-r0
+In-Reply-To: <CANNYZj_7JUwUu0WgtRS2C_bR8thJPDMwWvBg74cCKw763Lq6Vw@mail.gmail.com>
+X-Originating-IP: [128.224.162.136]
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-selinux][PATCH] glib-2.0: fix configure error for meson build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,25 +46,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Jun 2019 10:59:08 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 13 Jun 2019 00:06:48 -0000
+Content-Type: multipart/alternative;
+	boundary="------------B514F99782A0A7494EFEDC2B"
+Content-Language: en-US
 
-Hello to all,
+--------------B514F99782A0A7494EFEDC2B
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I did (an hour ago) quick git pull on the several git repos for my BBB
-target platform.
 
-But I still see that the poky kernel is still one of 5.0 series! Why?
-There are already well known stable kernels series 5.1 (5.1.9).
+On 6/12/19 6:03 PM, Alexander Kanavin wrote:
+> On Wed, 12 Jun 2019 at 09:54, Yi Zhao <yi.zhao@windriver.com 
+> <mailto:yi.zhao@windriver.com>> wrote:
+>
+>     +PACKAGECONFIG[selinux] =
+>     "-Dselinux=enabled,-Dselinux=disabled,libselinux,"
+>
+>
+> This line should probably go into the oe-core recipe? It is fine to 
+> have options that depend on things absent in oe-core, as long as those 
+> options are disabled by default.
 
-Please, check kernel.org: https://www.kernel.org/
 
-What is the problem (if any)? As I found building kernels of 5.1
-series with built-in kernel source tree, there is a mismatch with the
-/meta/recipes-kernel/lttng/ lttng package?!
+Thanks. I will test it and send a patch to oe-core
 
-Please, advise?
 
-Thank you,
-Zoran
+//Yi
 
+>
+> Alex
+
+--------------B514F99782A0A7494EFEDC2B
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 6/12/19 6:03 PM, Alexander Kanavin
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CANNYZj_7JUwUu0WgtRS2C_bR8thJPDMwWvBg74cCKw763Lq6Vw@mail.gmail.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <div dir="ltr">
+        <div dir="ltr">On Wed, 12 Jun 2019 at 09:54, Yi Zhao &lt;<a
+            href="mailto:yi.zhao@windriver.com" moz-do-not-send="true">yi.zhao@windriver.com</a>&gt;
+          wrote:<br>
+        </div>
+        <div class="gmail_quote">
+          <blockquote class="gmail_quote" style="margin:0px 0px 0px
+            0.8ex;border-left:1px solid
+            rgb(204,204,204);padding-left:1ex">+PACKAGECONFIG[selinux] =
+            "-Dselinux=enabled,-Dselinux=disabled,libselinux,"<br>
+          </blockquote>
+          <div><br>
+          </div>
+          <div>This line should probably go into the oe-core recipe? It
+            is fine to have options that depend on things absent in
+            oe-core, as long as those options are disabled by default.<br>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>Thanks. I will test it and send a patch to oe-core</p>
+    <p><br>
+    </p>
+    <p>//Yi<br>
+    </p>
+    <blockquote type="cite"
+cite="mid:CANNYZj_7JUwUu0WgtRS2C_bR8thJPDMwWvBg74cCKw763Lq6Vw@mail.gmail.com">
+      <div dir="ltr">
+        <div class="gmail_quote">
+          <div><br>
+          </div>
+          <div>Alex<br>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+  </body>
+</html>
+
+--------------B514F99782A0A7494EFEDC2B--
