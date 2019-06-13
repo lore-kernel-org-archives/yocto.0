@@ -1,6 +1,6 @@
 Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 905D0E00D94; Thu, 13 Jun 2019 03:57:00 -0700 (PDT)
+	id 99B68E00D8F; Thu, 13 Jun 2019 04:34:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,58 +11,52 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (jupiter.hce[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.49 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.48 listed in list.dnswl.org]
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com
-	[209.85.166.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35E76E00C7D
-	for <yocto@yoctoproject.org>; Thu, 13 Jun 2019 03:56:58 -0700 (PDT)
-Received: by mail-io1-f48.google.com with SMTP id i10so15816418iol.13
-	for <yocto@yoctoproject.org>; Thu, 13 Jun 2019 03:56:58 -0700 (PDT)
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com
+	[209.85.166.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D846E00D46
+	for <yocto@yoctoproject.org>; Thu, 13 Jun 2019 04:34:43 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id e3so16045127ioc.12
+	for <yocto@yoctoproject.org>; Thu, 13 Jun 2019 04:34:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=V9VOHf9Y8AQecsGcWRl/wpUvmahSsY9879XXhw6kTFg=;
-	b=eCaXkIYm3u/l+BRzBZD44/BIrZYH6djgoZF4P6Q1CjKlPxCZMaJ6wK7XW1m34dXUut
-	0PIGtFpnr61VuuHRFVaVpKPXVJ7OP4kCt+z3h7I4SBd2A4DljXvVC2IRER2G/82VvJqX
-	Y+MZyTjB15dsST2SP0BXS6s3i0M2uvi6J5cG5daQys5Df1ZPI1IOP+2vpHz36NdaZ16O
-	o50kixRQt1bIUtMocMxpDVJ3yP13aqs9mQTZMMu6u1MvmmxpLvPSWrV0KKTISIX6NYSn
-	r4S6G76MaG3JyeZgR644vkfAvjJlW2g8Mo57oV5h8wqFHNxLoS5N8ILl04MUgqxrHd3M
-	eWaw==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=ULIAZ8Q3QPdeQGyjOPtvnCiXuoHmcxkOTUKRera8NY8=;
+	b=Na3bzBSZxkv1Wwyp82E5KES/SAL527BCiMS5UsucMQmEJBgAUbKsrgd1hzEQNuvZvV
+	SA8DxFvo8DBV0sM2ljc1ZMAifO7IQSQM7+PQZ6VPv9zbG9sQhgOMBL0H5CPpw2ug1EF1
+	wW9sbxlJlUMzg/f495za3sNaGgxlQicvJAo6aB/mjKHmwgwXoAz4CSACIXhkhpzYqQq+
+	ekuj+h+sqve5q3mzqgL4tx4gvmAG7UJW/sZB0fIP3YLHAqn4JBV4MOrdg/53UmPJxYwp
+	TMJnYCrFfJTc8DlBN9/bQVRA6ZP0ge+I0Id9np23xqZkthGGLMEIAkibTLl7unzps9zH
+	5AJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=V9VOHf9Y8AQecsGcWRl/wpUvmahSsY9879XXhw6kTFg=;
-	b=XMDNEtx69w3D5Rihoy49he2qwtoC+d+xlsKO1YurCm5YNIsiTT7arJ6y497A8tKuvf
-	pEbJLNPSGFBiA+pFavbAKvYzKaADGfmzJ5aucJNiJdyeJ/foo5VpN7JH7pZ3Eg8m3cqu
-	7y1lAZuEMJrUQTnRwGbUA7JF2wsedNdkwNvN4aX298eLhmgHQd+4btUrM5kIoydckzu/
-	ObKdrpNNwvnSLgztmf++9sPxaTp7t8UbkrHMumY1rshccCnEOa8dyUoUF3zrHRqSouKx
-	B77DtzB+M+uMtHWL+/s/GCcrqEkDhGLQ7cO0duIYQjS+QYypb4WyG9Yd2CF2S2CNwP+P
-	iXiw==
-X-Gm-Message-State: APjAAAWpA64roeEKAgehwfBgfnaWeHaRMVhI5WAIZ0IYRQHU8y8C/fSB
-	CiQZJQPbknj6Q3cXzW2tW8CgUVFrcA0e8qjHojA=
-X-Google-Smtp-Source: APXvYqxEJ6hxYMrDutfKGx7WJC2GXNYgMpsxNwzjlMJFkilcZVvocjoczlruiU8oirZ+G0zI3NYaewV+rEhHawS6O8Y=
-X-Received: by 2002:a05:6602:22cc:: with SMTP id
-	e12mr833813ioe.192.1560423417858; 
-	Thu, 13 Jun 2019 03:56:57 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=ULIAZ8Q3QPdeQGyjOPtvnCiXuoHmcxkOTUKRera8NY8=;
+	b=SDSx7vMApfc8B4EmeQEc7t+GRLBmuzNrD9AuxgvNKPQY1FK6a88DMgEFcJKEwDKL8b
+	ADbIrHSAwXVhh7fI9ETBfLqNlkX6obwml1DXm4cA8/VughS3G7WztEQaJpD20b64se0Q
+	n2zjyssfqg0mHvSxqc9mul4kuQggzBBZzywBNwvcGigIimquEwvrfzczkxpoajru/i7h
+	JfpumdMpDyKoGY5/HK3kZMnnt8XlJYNauIJCdaFQRW/rY8mMaI3ikDrWUBBGeWDFq4i5
+	7lrf9aGYcg/hawdQElVOBeTIuQMZKPfBxMjzuTACWgQqj9paEWLVxLlutqM8Eyd/IIFg
+	MzwA==
+X-Gm-Message-State: APjAAAW+Y4RIVuQ1u3gUbVmMTMbR/mwImhjxKhi6O1dw9rW2a4qMvLlE
+	9cmIPG0wM6HUZCUqfUwiOPD6EbVrHtJi2Wtw0tNSQtOd
+X-Google-Smtp-Source: APXvYqzs6D4yW9P/QsbRSJMHZPS0Jge24fB7mCGYNciH4P8X9bf+2o1ipHD7/oQAeHVQBkWBr+d7/iCumVC1XjYV0qc=
+X-Received: by 2002:a02:69d7:: with SMTP id e206mr60596101jac.21.1560425683015;
+	Thu, 13 Jun 2019 04:34:43 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:ac0:92cf:0:0:0:0:0 with HTTP; Thu, 13 Jun 2019 03:56:57
+Received: by 2002:ac0:92cf:0:0:0:0:0 with HTTP; Thu, 13 Jun 2019 04:34:42
 	-0700 (PDT)
-In-Reply-To: <2c0a96e74f3acf0ac45f2bc55908df330fd85cab.camel@linuxfoundation.org>
-References: <CAA=hcWRzPWecUL0-e2hhNYE2RzjbuL9=fCLqTyy7GRFD563yGQ@mail.gmail.com>
-	<2c0a96e74f3acf0ac45f2bc55908df330fd85cab.camel@linuxfoundation.org>
 From: JH <jupiter.hce@gmail.com>
-Date: Thu, 13 Jun 2019 20:56:57 +1000
-Message-ID: <CAA=hcWRWf-JC3Mg2kmTJ22YjiQto0ixpfNUrnzdbn172nnDE0w@mail.gmail.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Download git source not the latest
+Date: Thu, 13 Jun 2019 21:34:42 +1000
+Message-ID: <CAA=hcWQQD-zc9LxQ5ft0fzUEuX-9wwA=rvjtVwoMRmCAG=Xfew@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Command to make zimage to ramdisk format
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,36 +68,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Jun 2019 10:57:00 -0000
+X-List-Received-Date: Thu, 13 Jun 2019 11:34:44 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-I set up for my release version which is nothing to do with the git
-source, how could I link the PV to autorev?
+Hi,
 
-VERSION_MAJOR = "1"
-VERSION_MINOR = "0"
-VERSION_BUILD = "0"
-PV = "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_BUILD}"
+I built the Yocto images:
 
-Thanks Richard,
+dev-image-20190528085324.rootfs.wic.gz
+zImage--xxxx.bin
 
-- jupiter
+I need to build zImage to ramdisk to run it on RAM in development.
+What is the correct mkimage command can be used for add ramdisk to the
+zimage?
 
-On 6/12/19, Richard Purdie <richard.purdie@linuxfoundation.org> wrote:
-> On Tue, 2019-06-11 at 20:38 +1000, JH wrote:
->> Hi,
->>
->> I set up SRCREV = "${AUTOREV}" in the recipe of my application, but
->> too often it downloaded the old revision. How can I force the bitbake
->> to download the latest git source?
->
-> What did you set PV to?
->
-> You need to have SRCPV in PV for autorev to work properly.
->
-> Regards,
->
-> Richard
->
->
+$ mkimage -A arm -T ramdisk -C none -n uInitrd -d /path/to/initrd.img
+/path/to/uInitrd
+
+Thank you.
+
+Kind regards,
+
+- JH
 
