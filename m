@@ -1,67 +1,60 @@
-Return-Path: <Moritz.Porst@gmx.de>
+Return-Path: <sbabic@denx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78250E00E1B; Fri, 14 Jun 2019 03:24:56 -0700 (PDT)
+	id 5650CE00E1E; Fri, 14 Jun 2019 05:19:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, FREEMAIL_FROM, HTML_MESSAGE, MIME_HTML_ONLY,
-	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (moritz.porst[at]gmx.de)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
 	low *      trust
-	*      [212.227.17.21 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.7 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
+	*      [212.18.0.9 listed in list.dnswl.org]
 X-Greylist: delayed 303 seconds by postgrey-1.32 at yocto-www;
-	Fri, 14 Jun 2019 03:24:55 PDT
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37359E00E0D
-	for <yocto@yoctoproject.org>; Fri, 14 Jun 2019 03:24:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=badeba3b8450; t=1560507894;
-	bh=Cz1ICACMV5d1HQu6PWOv3gKtVgkDuMcLJBe6Hqe7P1w=;
-	h=X-UI-Sender-Class:From:To:Subject:Date:In-Reply-To:References;
-	b=fUJWScYCkUuznE170CYWt9hKV/Lu628KliI3hgeDLcm91pydhm9rMYX7pqWn+mEWt
-	zMSSbR/H+aQFfgNrJnpbRFCBaEg7fPC4bchYJI86K7LjmC6BXa36v+WRmpe0jaML6B
-	O5gvfoVMfQaSlltGoA6TjeZcM52Y7z1PSbxED3Bs=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [80.152.229.14] ([80.152.229.14]) by web-mail.gmx.net
-	(3c-app-gmx-bs22.server.lan [172.19.170.74]) (via HTTP);
-	Fri, 14 Jun 2019 12:19:51 +0200
-MIME-Version: 1.0
-Message-ID: <trinity-c1af16bc-9d60-4a88-a48b-24690878e39b-1560507591276@3c-app-gmx-bs22>
-From: "Moritz Porst" <Moritz.Porst@gmx.de>
-To: yocto@yoctoproject.org
-Date: Fri, 14 Jun 2019 12:19:51 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <CAGAf8LzTzOPr8p0Jf61tOu2U50fVafFiwV1X3WTVtPEYtv+BXg@mail.gmail.com>
+	Fri, 14 Jun 2019 05:19:15 PDT
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC97BE00E07
+	for <yocto@yoctoproject.org>; Fri, 14 Jun 2019 05:19:15 -0700 (PDT)
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+	by mail-out.m-online.net (Postfix) with ESMTP id 45QKKH1YYTz1rLPZ;
+	Fri, 14 Jun 2019 14:14:11 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+	by mail.m-online.net (Postfix) with ESMTP id 45QKKH1Lx4z1qqkX;
+	Fri, 14 Jun 2019 14:14:11 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new,
+	port 10024)
+	with ESMTP id NYmXu9_nvTfs; Fri, 14 Jun 2019 14:14:09 +0200 (CEST)
+Received: from babic.homelinux.org (host-88-217-136-221.customer.m-online.net
+	[88.217.136.221])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail.mnet-online.de (Postfix) with ESMTPS;
+	Fri, 14 Jun 2019 14:14:09 +0200 (CEST)
+Received: from localhost (mail.babic.homelinux.org [127.0.0.1])
+	by babic.homelinux.org (Postfix) with ESMTP id CFD22454037E;
+	Fri, 14 Jun 2019 14:14:08 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at babic.homelinux.org
+Received: from babic.homelinux.org ([127.0.0.1])
+	by localhost (mail.babic.homelinux.org [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id CVOW9S7YnNKV; Fri, 14 Jun 2019 14:14:05 +0200 (CEST)
+Received: from [192.168.178.89] (stefano-MacBookPro.fritz.box [192.168.178.89])
+	by babic.homelinux.org (Postfix) with ESMTPS id A87BD454035B;
+	Fri, 14 Jun 2019 14:14:05 +0200 (CEST)
+To: Moritz Porst <Moritz.Porst@gmx.de>, yocto@yoctoproject.org
 References: <trinity-b159ef9f-c6c8-4d3e-bd0b-ca88d3c5596e-1560500116612@3c-app-gmx-bs53>
 	<CAGAf8LzTzOPr8p0Jf61tOu2U50fVafFiwV1X3WTVtPEYtv+BXg@mail.gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:VG5uM2pKukJade5626vBFVOFPB80N4fH0ezhFsH/PfB9VpS567ZeH6k8U2zbsK0Nh9CaT
-	trJ64ZzV2tFgIZWhCGg59AELZr6guw4hbyVPqAv/rEH+GLQh8fAIaECkEQlJMBwtkj7+BUkjFhSt
-	YpTGDpk34RUPZ/Bq5oAiBSihySLbaEbbjtiTgwfMiwId6RgTCWPddwLItvrMzCUvz4IQp4iSgl9h
-	SG+60OR1OczfT6fpZkd2uIWEUSI/1lURIYk2Q+ti6qgNCAdvjloGUV1MxtWZC7DrE7SXPx0e2SRG
-	rM=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:lqlJ+u/Mpcg=:bhdqpTLrxIZDdSlqhDsTgb
-	6hxVJYGTsQZo4+dZJBqiBxZUM+Bfr2tNkgz3fQ8x2nnpC/ZVxCt6hb2gH6Jo95FrxYemMLpI6
-	LDNOLXIcd+e+VC5C/xmMBJCemVEwiCh6OH8VWfRtRH7yfY1AhUxiyR3sAKe6mvr2d/z419geS
-	F2C2wSTcx6SrSs3TBKOLRNxXgGMb9s17d/Cg/p0uECaMHMdHI/qnaISmUd9HJIQZyf8FNZcYQ
-	8iN6Ga9tjzSaDCn5yHWnaD3G6XC7H8+FVJrvm9xCauFdznikg5NvG+NttrANabwC9e6yeDbX7
-	zuS3giY2gRMO+Nrv87dK2L0QS78ZNrrISbtUZtE2nuWSRU7UPbYpwgEZG5uuTZ3tdgtjjSB90
-	t0eWHqg3CcpKDfBgXZuGevQ83oLo+sljsz4TGPPYXpKO2U6vqzZnOOWFmo3X9G1C6ft8ClpMq
-	ha2FVKQp6/oJkfZeF6VPbu8sC2X4L41LF4OaY1rvmofqShzUbVpIVC3+D3hxsPJd2zvigKgi2
-	hu4yD7R5c4JXQKOlV7Oa6wXB7ebWzI2+E/eRhJ3QLR7ji+dBDQhuejzuymZjFC79rGygcR7o9
-	ak17QfrIxhMXKINftN1TXATqjzwPLaEOWYa13O62X00OJofKID1z/gMw==
+	<trinity-c1af16bc-9d60-4a88-a48b-24690878e39b-1560507591276@3c-app-gmx-bs22>
+From: Stefano Babic <sbabic@denx.de>
+Message-ID: <bf5c8bfd-87bd-ddf1-246b-4095c349fca3@denx.de>
+Date: Fri, 14 Jun 2019 14:14:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <trinity-c1af16bc-9d60-4a88-a48b-24690878e39b-1560507591276@3c-app-gmx-bs22>
 Subject: Re: [meta-swupdate] failed update leads to kernel panic
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -74,108 +67,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jun 2019 10:24:56 -0000
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Fri, 14 Jun 2019 12:19:17 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>
-<div>(Sorry, the answer should go to everyone)</div>
+Hi Moritz,
 
-<div>Thanks for your response, unfortunately it didn&#39;t work out for me.</div>
+On 14/06/19 12:19, Moritz Porst wrote:
+> (Sorry, the answer should go to everyone)
+> Thanks for your response, unfortunately it didn't work out for me.
+> Because I am not 100% sure whether I did the correct thing I describe it:
+> In my layer I went to recipes-kernel/kernel/files, here I added a file
+> defconfig which I filled with the content of your config-initramfs
+> my linux-yocto_%.bbappend, residing one level lower (kernel), got this
+> file added so it reads (in its entirety):
+>  
+> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> SRC_URI += "file://0001-sdcard-power-management-off.patch"
+> SRC_URI += "file://defconfig"
+>  
+> However I *also* have a file called defconfig in meta-swupdate which is
+> basically the swupdate config that comes from menuconfig. I let this
+> untouched but since this is not the kernel defconfig I guess you didn't
+> mean this file ?
+>  
+> Additionally I can't mount the rootfs with the failed boot so I cannot
+> access the dmesg log file. Any advice here ?
+>  
+> Best regards
+> Moritz
+>  
+>  
+>  
+> *Gesendet:* Freitag, 14. Juni 2019 um 11:00 Uhr
+> *Von:* "Zoran Stojsavljevic" <zoran.stojsavljevic@gmail.com>
+> *An:* "Moritz Porst" <Moritz.Porst@gmx.de>
+> *Cc:* "Yocto Project" <yocto@yoctoproject.org>
+> *Betreff:* Re: [yocto] [meta-swupdate] failed update leads to kernel panic
+>> However if I abort the update while running (i.e. simulating a power cut)
+>> and then reboot I end up in a kernel panic: "Unable to mount rootfs on
+>> unknown block". My understanding is that I should at least end up in a
+>> busybox or that the update is retried, but this does not happen.
+> 
+> You missed to attach failed dmesg while the system booted and aborted.
+> Nevertheless, I expect problem with your defconfig, which does NOT
+> have options set for initramfs. These ones:
+> https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/custom/config-initramfs
+> 
+> Please, could you add these one to your current .config, this might
+> very well solve your problem.
+> 
+> Best Regards,
+> Zoran
+> _______
+> 
+> On Fri, Jun 14, 2019 at 10:15 AM Moritz Porst <Moritz.Porst@gmx.de> wrote:
+>>
+>> Hello,
+>>
+>> I am currently having trouble to get swupdate working properly.
+>> My problem:
+>> I can execute swupdate -i normally and if the update fits I have no
+> problem. However if I abort the update while running (i.e. simulating a
+> power cut) and then reboot I end up in a kernel panic: "Unable to mount
+> rootfs on unknown block". My understanding is that I should at least end
+> up in a busybox or that the update is retried, but this does not happen.
+>> I receive 1 error when updating which does not stop the update: "Could
+> not find MTD".
+>>
+>> My configuration:
+>> I have a single rootfs and a separate boot partition. I build the
+> initramfs using:
 
-<div>Because I am not 100% sure whether I did the correct thing I describe it:</div>
+You have a *single* rootfs, you stop an upgrade (resulting of course in
+a corrupted rootfs or worse), and you wonder that kernel cannot mount
+it....your update concept is broken.
 
-<div>In my layer I went to recipes-kernel/kernel/files, here I added a file defconfig which I filled with the content of your config-initramfs</div>
+You *must* check the bootloader marker in U-Boot (default is the
+"recovery_status" variable) and you *mus*t start again the updater (the
+ramdisk) until the marker (it is a transaction flag) is set. It is
+erased by SWUpdate only after a successful update. You are now starting
+your board with a half-completed update.
 
-<div>my linux-yocto_%.bbappend, residing one level lower (kernel), got this file added so it reads (in its entirety):</div>
+Best regards,
+Stefano Babic
 
-<div>
-<div>&nbsp;</div>
 
-<div>FILESEXTRAPATHS_prepend := &quot;&#36;{THISDIR}/&#36;{PN}:&quot;</div>
+>> ---
+>> IMAGE_INSTALL = "base-files \
+>> base-passwd \
+>> swupdate \
+>> busybox \
+>> libconfig \
+>> util-linux-sfdisk \
+>> mtd-utils \
+>> mtd-utils-ubifs \
+>> ${@bb.utils.contains('SWUPDATE_INIT', 'tiny',
+> 'virtual/initscripts-swupdate', 'initscripts sysvinit', d)} \
+>> "
+>> ---
+>> This is taken from swupdate-image. I include the same packages (via
+> _append) in my base image, is this necessary ?
+>> I bundle the initramfs with my image using INITRAMFS_IMAGE_BUNDLE = "1"
+>>
+>> Can you see a mistake I made ?
+>>
+>> Best regards
+>> Moritz
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> 
 
-<div>SRC_URI += &quot;file://0001-sdcard-power-management-off.patch&quot;<br/>
-SRC_URI += &quot;file://defconfig&quot;</div>
-
-<div>&nbsp;</div>
-
-<div>However I *also* have a file called defconfig in meta-swupdate which is basically the swupdate config that comes from menuconfig. I let this untouched but since this is not the kernel defconfig I guess you didn&#39;t mean this file ?</div>
-
-<div>&nbsp;</div>
-
-<div>Additionally I can&#39;t mount the rootfs with the failed boot so I cannot access the dmesg log file. Any advice here ?</div>
-
-<div>&nbsp;</div>
-
-<div>Best regards</div>
-
-<div>Moritz</div>
-
-<div>&nbsp;</div>
-</div>
-
-<div>&nbsp;</div>
-
-<div>&nbsp;
-<div name="quote" style="margin:10px 5px 5px 10px; padding: 10px 0 10px 10px; border-left:2px solid #C3D9E5; word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">
-<div style="margin:0 0 10px 0;"><b>Gesendet:</b>&nbsp;Freitag, 14. Juni 2019 um 11:00 Uhr<br/>
-<b>Von:</b>&nbsp;&quot;Zoran Stojsavljevic&quot; &lt;zoran.stojsavljevic@gmail.com&gt;<br/>
-<b>An:</b>&nbsp;&quot;Moritz Porst&quot; &lt;Moritz.Porst@gmx.de&gt;<br/>
-<b>Cc:</b>&nbsp;&quot;Yocto Project&quot; &lt;yocto@yoctoproject.org&gt;<br/>
-<b>Betreff:</b>&nbsp;Re: [yocto] [meta-swupdate] failed update leads to kernel panic</div>
-
-<div name="quoted-content">&gt; However if I abort the update while running (i.e. simulating a power cut)<br/>
-&gt; and then reboot I end up in a kernel panic: &quot;Unable to mount rootfs on<br/>
-&gt; unknown block&quot;. My understanding is that I should at least end up in a<br/>
-&gt; busybox or that the update is retried, but this does not happen.<br/>
-<br/>
-You missed to attach failed dmesg while the system booted and aborted.<br/>
-Nevertheless, I expect problem with your defconfig, which does NOT<br/>
-have options set for initramfs. These ones:<br/>
-<a href="https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/custom/config-initramfs" target="_blank">https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/custom/config-initramfs</a><br/>
-<br/>
-Please, could you add these one to your current .config, this might<br/>
-very well solve your problem.<br/>
-<br/>
-Best Regards,<br/>
-Zoran<br/>
-_______<br/>
-<br/>
-On Fri, Jun 14, 2019 at 10:15 AM Moritz Porst &lt;Moritz.Porst@gmx.de&gt; wrote:<br/>
-&gt;<br/>
-&gt; Hello,<br/>
-&gt;<br/>
-&gt; I am currently having trouble to get swupdate working properly.<br/>
-&gt; My problem:<br/>
-&gt; I can execute swupdate -i normally and if the update fits I have no problem. However if I abort the update while running (i.e. simulating a power cut) and then reboot I end up in a kernel panic: &quot;Unable to mount rootfs on unknown block&quot;. My understanding is that I should at least end up in a busybox or that the update is retried, but this does not happen.<br/>
-&gt; I receive 1 error when updating which does not stop the update: &quot;Could not find MTD&quot;.<br/>
-&gt;<br/>
-&gt; My configuration:<br/>
-&gt; I have a single rootfs and a separate boot partition. I build the initramfs using:<br/>
-&gt; ---<br/>
-&gt; IMAGE_INSTALL = &quot;base-files &#92;<br/>
-&gt; base-passwd &#92;<br/>
-&gt; swupdate &#92;<br/>
-&gt; busybox &#92;<br/>
-&gt; libconfig &#92;<br/>
-&gt; util-linux-sfdisk &#92;<br/>
-&gt; mtd-utils &#92;<br/>
-&gt; mtd-utils-ubifs &#92;<br/>
-&gt; &#36;{@bb.utils.contains(&#39;SWUPDATE_INIT&#39;, &#39;tiny&#39;, &#39;virtual/initscripts-swupdate&#39;, &#39;initscripts sysvinit&#39;, d)} &#92;<br/>
-&gt; &quot;<br/>
-&gt; ---<br/>
-&gt; This is taken from swupdate-image. I include the same packages (via _append) in my base image, is this necessary ?<br/>
-&gt; I bundle the initramfs with my image using INITRAMFS_IMAGE_BUNDLE = &quot;1&quot;<br/>
-&gt;<br/>
-&gt; Can you see a mistake I made ?<br/>
-&gt;<br/>
-&gt; Best regards<br/>
-&gt; Moritz<br/>
-&gt; --<br/>
-&gt; _______________________________________________<br/>
-&gt; yocto mailing list<br/>
-&gt; yocto@yoctoproject.org<br/>
-&gt; <a href="https://lists.yoctoproject.org/listinfo/yocto" target="_blank">https://lists.yoctoproject.org/listinfo/yocto</a></div>
-</div>
-</div>
-</div></div></body></html>
+-- 
+=====================================================================
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
+=====================================================================
 
