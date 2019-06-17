@@ -1,62 +1,64 @@
-Return-Path: <star@gmx.li>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A7C0FE00CBD; Mon, 17 Jun 2019 06:00:10 -0700 (PDT)
+	id 3B7EBE00D64; Mon, 17 Jun 2019 07:05:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (star[at]gmx.li)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [212.227.17.22 listed in list.dnswl.org]
+	provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.193 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5D27E00CBD
-	for <yocto@yoctoproject.org>; Mon, 17 Jun 2019 06:00:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=badeba3b8450; t=1560776407;
-	bh=oNeCoC55DWdU2A7nhSaiLlZpBosJZAC4ipzPGMMjji4=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=eCQbVcu+S3mvSN7H5nxSogp5mzUsuSqNcaZ189K/WMpMXL08hRMZJenquLGBxjSFX
-	iFBJ4Pf1A8y86Q0rpCg/bqPfeqn+kAJYmIHpSJFnqW/fJEm44c+XUtj9JtHAHptWfl
-	mO+xkh63B9pwg6L/f0bmgR0/rQtzWmsuB/11vjnc=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [62.225.157.196] ([62.225.157.196]) by web-mail.gmx.net
-	(3c-app-gmx-bs08.server.lan [172.19.170.59]) (via HTTP);
-	Mon, 17 Jun 2019 15:00:07 +0200
+Received: from mail-qk1-f193.google.com (mail-qk1-f193.google.com
+	[209.85.222.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05A22E00D30
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2019 07:05:27 -0700 (PDT)
+Received: by mail-qk1-f193.google.com with SMTP id p144so6186997qke.11
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2019 07:05:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=v7Jrg27Y8S4GftmZu/ApvRAf1kkWyXQg/cpc5PEEZtU=;
+	b=G+zo7EqR61PTkacnht6PWNWEYQ+oXycw9vhOhYlumwDGNzR0ltuvbp7slNasQPZ9j7
+	YF7DaA1J4DrTUId5hbVYXQGmHnJWJcGiCH6yiYCF1NJU5i/LHwVKdYSgN9hlLRBLZmxE
+	upUlNbrlLct0HUJSSbh4U4/lEt7YoLjA0PvrTSYFUMmQ9tlKPn6iVrhTiATdUOrrLYNd
+	EztUCab8RHEK87wgcsITC6Dtc5qrGuy5aDUxj4r9l8SaRJsgeYie44FAYGZT3lfsFDyp
+	aPZraXZ54xkMaIHQH0Gz3CVbpVCzztUWXnOkRFqmo1K48P1Ti/Hm2zaaLpUNN33IAHgw
+	uHFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=v7Jrg27Y8S4GftmZu/ApvRAf1kkWyXQg/cpc5PEEZtU=;
+	b=s1LRpx4AmsvUG90V2/aWySc/1+g1QmhrRQBA8xwMtIbgBxl0yTEXzQ8Rsvj2EkCqDh
+	DA3ZuR/xbMgwrhR3Vx97cCm+9EVBjrLLNFy1FM1oWNYxNTwfWnGz6Pv5qaKvHv3kygcR
+	i582DZW9syD7tFW4Ff/jhYBhrfJqg45yUKaYZ33LeLz16ftMAq8XVXOrjQUwJpZ2JPDZ
+	8iYLS1nlKkhdCtr1Mu2sJdVdv8PaKGwqQCfNK97KOKm+8ON/OVKjG8KLRRq0DTJZXfgP
+	IMojzqQb2AnSMF3Xc0XYFcKIvNfM/PbO1ASYVbgjNxFPd2dqCHwJuuRWwxWHlggAXWNz
+	Pqxw==
+X-Gm-Message-State: APjAAAXwPdAmgT4GJ25+vWOI5W90WGRciy9ExDLdmzOZzpyzetqoGmil
+	Clvf0Z5pOtiwUw1SL5P8DI6/pKmrAcSpyw0bAa0=
+X-Google-Smtp-Source: APXvYqwtLZb9dK7dkFk4Xr287AxvWtT4RVU6QEJ/qNKEz9k0apX3s8Ow/5Z6OqsdxtezVJEfFRmTy3+9F0uFVvGNKxE=
+X-Received: by 2002:a37:4d16:: with SMTP id a22mr87412824qkb.103.1560780327320;
+	Mon, 17 Jun 2019 07:05:27 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <trinity-90f4bc6a-aa89-4bf8-aa92-72aec6a019e5-1560776407716@3c-app-gmx-bs08>
-From: "Arno Steffens" <star@gmx.li>
-To: "Zoran Stojsavljevic" <zoran.stojsavljevic@gmail.com>
-Date: Mon, 17 Jun 2019 15:00:07 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <CAGAf8LyBsd9Ya+RV94FQj+19f5Um+AypitaAoO0pn5_w+rq+nA@mail.gmail.com>
 References: <trinity-1bbd10a3-ee46-4746-90c7-0b5a49a62f26-1560772981350@3c-app-gmx-bs08>
 	<CAGAf8LyBsd9Ya+RV94FQj+19f5Um+AypitaAoO0pn5_w+rq+nA@mail.gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:jzUqFTyu/8kyI/cDw5doEVcC7cjyGygt89fnrtiOEWVNGtMDnIa7ZwCNC1dkNmyRQt82r
-	b8lWyntJEubF0Emjq1QiXe8RnLIQYpjUfIjhI0ncpEHnMT+I0ikxxfm4bDxa/LB7IVzvDQRjcvbJ
-	aeDn7BO/KA/NztR5QWCgPX7XUogoWE+DgvgUjEfFZ8pfual2JSzQnWwXRJRVQxcmtvlgaAdNEZyL
-	HDqtKIvwBrkdgRFXX64odLI0xqX0trqXm0k/bRxm1/8tEPyzfi5hMGUJTC4FGv2fnH0DQVRp842j
-	fM=
-X-UI-Out-Filterresults: notjunk:1;V03:K0:GHcQlkPy+Vc=:pSBXNcvk09SwBpliOzzAyx
-	7B8ZdICvpSrGSV56zlhkCXzAKvqusMOvniHnjiGv/xPUWmbV4L7DpSZHY/RLMgMApsiTYqt+T
-	4JVEwfoVwGNYeW8Zee3FLBCoVnyszMK5oJkfznNlW8Qq6wWHHYpqYxtT01fMtwqc4J3AMuINm
-	A/EcrXr7ce3dhY1cD07DNoRceWMddRivKcT2zSAndSSoLMZaLIoykjHgm7py2i9cNDsZvDUY/
-	kQkse0uPRK5Xn2CGZOpTVQyjty/PrUKvsG8Xu9akuTrlUsFAUX1yimmpdhINZprEQIfyadNy3
-	METZM7NnDOgDUjvGP/0CemsQuRyMXB5DNB5HiemfRXsItfyxy3FTY2uEN3+kWRX4J/NVuQkzg
-	cFb4eCAT/SpR8TJnnEpMKiljL4ECb6fVTKqyYbz+jSv4ET8X+OO1TNccCLrqmYa1fBwrsGqbC
-	F8gISXCU2SixjLTpJdqVHuo+HpYfBUP1m/UeXwzuBMKiJB6NCzynJM4GFnF+hgkj9eRLIYR2H
-	xYY2MJjn7VENBW7oSr91BiP+vkKY+YJmyqgOFt4gwqOXu90NgcuASXtwlMrWyyRtAMCk40T3l
-	Tlz+hf76ydIxxCrQRWrnNTF/KW1QAGiOF5P6fPxeT3rF6v3MihVuYQaw==
+	<trinity-90f4bc6a-aa89-4bf8-aa92-72aec6a019e5-1560776407716@3c-app-gmx-bs08>
+In-Reply-To: <trinity-90f4bc6a-aa89-4bf8-aa92-72aec6a019e5-1560776407716@3c-app-gmx-bs08>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Mon, 17 Jun 2019 16:05:15 +0200
+Message-ID: <CAGAf8LwnPTFedqXA6zwSF22bK_VPs2otSsVg5e=hDAXp+q5Csg@mail.gmail.com>
+To: Arno Steffens <star@gmx.li>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: cortexa9t2hf instead of cortexa9hf
 X-BeenThere: yocto@yoctoproject.org
@@ -70,62 +72,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Jun 2019 13:00:10 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 17 Jun 2019 14:05:29 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Hello Zoran,
-thanks. As far as I understand is thumb2 another mode of coding, that migh=
-t create more compact code.
-But I want to keep all compatible to my previous tool-chain and settings.
-The only file where I can found this "cortexa9t2hf" is
-./meta/conf/machine/include/tune-cortexa9.inc
-but I can't see how I can control Yocto to generate "cortexa9hf-neon" as b=
-efore.
-Or have I been wrong the time before?
+Hello Arno,
 
-bitbake gives me in 2.5:
+Let me try to explain my point of view. Since here (my best guess) we
+have some asynchronous bitbake code which went South upon introducing
+T2 HW extension.
 
-TUNE_FEATURES        =3D "arm armv7a vfp thumb neon callconvention-hard co=
-rtexa9"
-TARGET_FPU           =3D "hard"
+Point [1]: as far as I understand arm, cortexa9t2hf is is just a
+superset of previous cortexa9hf (HW wise). NEON HW extension (NEON
+media coprocessor) exists in both of them. In other words:
+cortexa9t2hf = cortexa9hf HW + T2 HW extension.
 
-and in 2.7:
-TUNE_FEATURES        =3D "arm vfp cortexa9 neon thumb callconvention-hard"
-TARGET_FPU           =3D "hard"
+Point [2]:
+> bitbake gives me in 2.5:
+> TUNE_FEATURES        = "arm armv7a vfp thumb neon callconvention-hard cortexa9"
+> TARGET_FPU           = "hard"
+>
+> and in 2.7:
+> TUNE_FEATURES        = "arm vfp cortexa9 neon thumb callconvention-hard"
+> TARGET_FPU           = "hard"
 
-so armv7a seem to be missing. In terms of thumb both is same. But is that =
-the reason? Where to set it?
-Arno
+These two lines are the same: you are able to use 32b arm mode, 16bit
+thumb mode, using armv7 HW with neon HW extension, and using HW FP
+extension as well. The Cortex in both cases is A9.
 
+I expect that somebody somewhere in bitbake version 1.42 - 100% sure
+(since 2.5/Sumo uses bitbake 1.38) dropped "armv7a" as TUNE FEATURE,
+and I have no idea if this is done intentionally or not.
+
+Because of that I copied Alex and Ross to CC: into email, so they
+should unveil this mystery (I would prefer "armv7" to stay in bitbake
+1.42, since A8 and A9 belongs to armv7, A15 belongs to armv8 (IIRC).
+
+Bottom line: nothing to be done by you, Arno, seems that bitbake 1.42
+should return "armv7" as TUNE FEATURE.
+
+Best Regards,
+Zoran
+_______
+
+
+On Mon, Jun 17, 2019 at 3:00 PM Arno Steffens <star@gmx.li> wrote:
 >
-> Hello Arno,
+> Hello Zoran,
+> thanks. As far as I understand is thumb2 another mode of coding, that might create more compact code.
+> But I want to keep all compatible to my previous tool-chain and settings.
+> The only file where I can found this "cortexa9t2hf" is
+> ./meta/conf/machine/include/tune-cortexa9.inc
+> but I can't see how I can control Yocto to generate "cortexa9hf-neon" as before.
+> Or have I been wrong the time before?
 >
-> Your question, per say, has little to do with YOCTO forum. But I'll
-> try (as my best) to answer your question.
+> bitbake gives me in 2.5:
 >
-> Cortexa9hf should be armv7 A9 Hard Floating (it contains HW FP unit).
+> TUNE_FEATURES        = "arm armv7a vfp thumb neon callconvention-hard cortexa9"
+> TARGET_FPU           = "hard"
 >
-> Cortexa9t2hf is by analogy armv7 A9 T2 Hard Floating. Now, the
-> question is what is T2? T2 is addition to the previous architecture
-> Cortexa9hf, and addition is Thumb-2 mode.
+> and in 2.7:
+> TUNE_FEATURES        = "arm vfp cortexa9 neon thumb callconvention-hard"
+> TARGET_FPU           = "hard"
 >
-> Hope this helps,
+> so armv7a seem to be missing. In terms of thumb both is same. But is that the reason? Where to set it?
+> Arno
 >
-> Zoran
-> _______
->
-> On Mon, Jun 17, 2019 at 2:03 PM Arno Steffens <star@gmx.li> wrote:
 > >
-> > I switched from Yocto 2.5 to 2.7 and recognised a new architetcure nam=
-e.
-> > Instead of cortexa9hf it is now build for cortexa9t2hf? Did I do somet=
-hing wrong or what exactly does this t2 mean?
-> > Target system is a Zynq7020 system.
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
->
+> > Hello Arno,
+> >
+> > Your question, per say, has little to do with YOCTO forum. But I'll
+> > try (as my best) to answer your question.
+> >
+> > Cortexa9hf should be armv7 A9 Hard Floating (it contains HW FP unit).
+> >
+> > Cortexa9t2hf is by analogy armv7 A9 T2 Hard Floating. Now, the
+> > question is what is T2? T2 is addition to the previous architecture
+> > Cortexa9hf, and addition is Thumb-2 mode.
+> >
+> > Hope this helps,
+> >
+> > Zoran
+> > _______
+> >
+> > On Mon, Jun 17, 2019 at 2:03 PM Arno Steffens <star@gmx.li> wrote:
+> > >
+> > > I switched from Yocto 2.5 to 2.7 and recognised a new architetcure name.
+> > > Instead of cortexa9hf it is now build for cortexa9t2hf? Did I do something wrong or what exactly does this t2 mean?
+> > > Target system is a Zynq7020 system.
+> > > --
+> > > _______________________________________________
+> > > yocto mailing list
+> > > yocto@yoctoproject.org
+> > > https://lists.yoctoproject.org/listinfo/yocto
+> >
 
