@@ -1,61 +1,59 @@
-Return-Path: <rudolf.streif@ibeeto.com>
+Return-Path: <samo_pogacnik@t-2.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 018E6E00D72; Mon, 17 Jun 2019 11:00:23 -0700 (PDT)
+	id EA03BE00D6E; Mon, 17 Jun 2019 12:00:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.179 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [93.103.246.67 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com
-	[209.85.208.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33B8DE00D68
-	for <yocto@yoctoproject.org>; Mon, 17 Jun 2019 11:00:23 -0700 (PDT)
-Received: by mail-lj1-f179.google.com with SMTP id p17so10238645ljg.1
-	for <yocto@yoctoproject.org>; Mon, 17 Jun 2019 11:00:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=U69qF/ZAeOIiSgfLkuOrt+OvnwMfMMGxmZ7pLdZ/XPw=;
-	b=Zpu2/gDdmBiEzzlbXg50udIKhwDpK+g70jnQ3AZFwzaJ4Fx9ZuWdPz5J5Lnk0y/mVg
-	fSj/r9AYfW/Lv1IjOsHs0F8fIsBENEewriNDhQq3KL+AS0iZm/liDtwP0raRn8oBDtoo
-	/I3zdEhu+ib7sHWVg/GwFlcqPNaAroqA6F91Dpdsi51kbyYFKivR44/Eqn7WS0tEy8pQ
-	lxzVcaH7uoYd6Ec7tDhKEM8TA5umqVP8wx8vG3QN8URElkvzI+ydnbgiPef0BNz7LS6I
-	S8gqiuT9pemYs7xof5D3lCbr455kr8gVzZXv5/orKqw7qBUFWBdh+rMln47OmCEQjmPy
-	ZIyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=U69qF/ZAeOIiSgfLkuOrt+OvnwMfMMGxmZ7pLdZ/XPw=;
-	b=ildp9q2E6CcGMyMKlUZ0Rk+dWSdLZ1nhHuKcm7/SYEaWC+tHyB5euV9Qtx1a9JXT8K
-	SRlT4J7rMdLH7vQrfjVKYXmdPHjltNk+MKfYbxNvZqXYGsjijpP/1oI93Y/UHb7wr8ga
-	IT2ERNG9drNGXtyv18CErTjBS7PgtBw0cZ8C6Un0g0eGHEF1Y0iEb5GZWxqnBG2+iaM7
-	3jqrxRhQ3yEwJJotpB/r5c6as1JsQ5+3N2d8eQvbLUoSOeaFo9J1QijV3kIcAVOzhIkE
-	1cjP4xVw9RSr2H1t6zYkB2pOedb+1gP2/4fhJh7MFA40H5W4qe8xsQsXUk/vrJVljLt8
-	N3BA==
-X-Gm-Message-State: APjAAAWKAo6+FbWtQcBcuQvkdZOJJCNTUH/IHoeWo2T6v6DPeY39X2qQ
-	SkSSfeEd8fSXaMKoGqonJwNOEBH/dXVym7AWaZ98tA==
-X-Google-Smtp-Source: APXvYqylwHEzEJQTvubXtTmnEXASbsfQ+7qg5IAFb9TjWyxKMehFL3ND7ejCpsEnmjxi01DxdpI31C1nONZsmB0kOSc=
-X-Received: by 2002:a2e:2993:: with SMTP id p19mr31956605ljp.202.1560794422084;
-	Mon, 17 Jun 2019 11:00:22 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAAx3WaCUb18Yf6Qp33qQCu9O3s-qpa75uoSm+sKv89jR0FbZmQ@mail.gmail.com>
-In-Reply-To: <CAAx3WaCUb18Yf6Qp33qQCu9O3s-qpa75uoSm+sKv89jR0FbZmQ@mail.gmail.com>
-From: Rudolf Streif <rudolf.streif@ibeeto.com>
-Date: Mon, 17 Jun 2019 11:00:09 -0700
-Message-ID: <CAPxNcnfeBKEEn-fEW2evxd3O3uVxrFmuOJMb6quwZz=oGpXgYg@mail.gmail.com>
-To: Gabriele Zampieri <gabbla.malist@gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Running Yocto inside Docker
+X-Greylist: delayed 514 seconds by postgrey-1.32 at yocto-www;
+	Mon, 17 Jun 2019 12:00:00 PDT
+Received: from smtp-good-out-3.t-2.net (smtp-good-out-3.t-2.net
+	[93.103.246.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A8BDE00798
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2019 12:00:00 -0700 (PDT)
+Received: from smtp-1.t-2.net (smtp-1.t-2.net [84.255.208.30])
+	by smtp-good-out-3.t-2.net (Postfix) with ESMTP id 45SL0F0HVrz9vfdJ
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2019 20:51:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=t-2.net;
+	s=smtp-out-2; t=1560797485;
+	bh=tKq/tOU6IATqKPkjWZdnCyxcWnTYkidSMV1+vpAXcxU=;
+	h=Subject:From:To:Date;
+	b=KEqi6IVNcuxjLBdk96LxLgVKqY7HcA4nqGiAY9lxsan3/mslKBXSyArYFvEmELq9k
+	w5LExT3oOBfciKbEeHIYSyDjlXqRFs8OrdS/9o0WcfuZH3Jc4oda5XyPQ1hijyW1Vu
+	8Dmb75OLi6ENBz1DT1G7A7dYPlk6TRHo+1z6wICA=
+Received: from localhost (localhost [127.0.0.1])
+	by smtp-1.t-2.net (Postfix) with ESMTP id 45SL0F0GCszN37rw
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2019 20:51:25 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at t-2.net
+Received: from smtp-1.t-2.net ([127.0.0.1])
+	by localhost (smtp-1.t-2.net [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 1fj509oMozeR for <yocto@yoctoproject.org>;
+	Mon, 17 Jun 2019 20:51:24 +0200 (CEST)
+Received: from hp450g3 (89-212-91-172.static.t-2.net [89.212.91.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp-1.t-2.net (Postfix) with ESMTPS
+	for <yocto@yoctoproject.org>; Mon, 17 Jun 2019 20:51:24 +0200 (CEST)
+Message-ID: <cdb4c491aff4ee234638b33fd2b0d787abc204a8.camel@t-2.net>
+From: Samo =?UTF-8?Q?Poga=C4=8Dnik?= <samo_pogacnik@t-2.net>
+To: yocto@yoctoproject.org
+Date: Mon, 17 Jun 2019 20:51:22 +0200
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+Mime-Version: 1.0
+Subject: Bash-based build tool/environment u2up-yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,67 +65,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Jun 2019 18:00:24 -0000
-Content-Type: multipart/alternative; boundary="000000000000189888058b88c5b8"
-
---000000000000189888058b88c5b8
+X-List-Received-Date: Mon, 17 Jun 2019 19:00:02 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-That's more of a Gitlab than Yocto question. I am doing this all the time
-with my GL server on AWS. You need to add deploy a key to the repo you want
-to access and then push the key to your Docker instance from gitlab-ci.yaml
-from the repo that you are using with GL CI.
+Hi,
 
-:rjs
+I am new to the yocto mailing list and i would like to share my bash-based
+tool/environment to build a yocto-based linux distribution. The tool/environment
+is called u2up-yocto and can be found here: https://github.com/spog/u2up-yocto
 
-On Mon, Jun 17, 2019, 07:20 Gabriele Zampieri <gabbla.malist@gmail.com>
-wrote:
+Using u2up-yocto, i tried to achieve a few goals:
+1) being able to build some default poky machine/image targets out-of-the-box
+without manually creating specific build configuration.
 
-> Hi all,
->
-> does anyone have a guide on how to setup Yocto to run inside docker? Right
-> now I managed to trigger the build from GitLab, but I'm facing an issue
-> related to ssh keys (some recipes from my meta layer are hosted on a
-> privare repository). Probably this is not the best mailing list to ask this
-> kind of question, but it may worth a try.
->
-> Thank you,
-> Gabriele
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+2) being able to extend default functionality by adding external/internal
+layers, git repos and additional local configuration without modifying any
+released u2up-yocto files.
 
---000000000000189888058b88c5b8
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+You are welcome to check two sample projects, using u2up-yocto:
+- https://github.com/spog/meta-u2up-homegw.git
+- https://github.com/spog/meta-u2up-pc-installer.git
 
-<div dir=3D"auto">That&#39;s more of a Gitlab than Yocto question. I am doi=
-ng this all the time with my GL server on AWS. You need to add deploy a key=
- to the repo you want to access and then push the key to your Docker instan=
-ce from gitlab-ci.yaml from the repo that you are using with GL CI.<div dir=
-=3D"auto"><br></div><div dir=3D"auto">:rjs</div></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jun 17, 2019, 07:20=
- Gabriele Zampieri &lt;<a href=3D"mailto:gabbla.malist@gmail.com">gabbla.ma=
-list@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" st=
-yle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div =
-dir=3D"ltr"><div>Hi all,</div><div><br></div><div>does anyone have a guide =
-on how to setup Yocto to run inside docker? Right now I managed to trigger =
-the build from GitLab, but I&#39;m facing an issue related to ssh keys (som=
-e recipes from my meta layer are hosted on a privare repository). Probably =
-this is not the best mailing list to ask this kind of question, but it may =
-worth a try.</div><div><br></div><div>Thank you, <br></div><div>Gabriele<br=
-></div></div>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank" rel=3D"noreferr=
-er">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
- noreferrer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yoct=
-o</a><br>
-</blockquote></div>
+3) define a new distro name
 
---000000000000189888058b88c5b8--
+4) provide a simple common (cross-projects) downloads and shared-sstate
+configuration
+
+best regards, samo
+
+
+
+
