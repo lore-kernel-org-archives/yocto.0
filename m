@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B6B9CE00D39; Fri, 14 Jun 2019 16:48:36 -0700 (PDT)
+	id 84D1DE00D4F; Sun, 16 Jun 2019 18:24:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,55 +13,54 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.196 listed in list.dnswl.org]
+	*      [209.85.215.193 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
-	[209.85.210.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF4C2E00D11
-	for <yocto@yoctoproject.org>; Fri, 14 Jun 2019 16:48:34 -0700 (PDT)
-Received: by mail-pf1-f196.google.com with SMTP id x15so2319310pfq.0
-	for <yocto@yoctoproject.org>; Fri, 14 Jun 2019 16:48:34 -0700 (PDT)
+Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com
+	[209.85.215.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A9BDE00CBD
+	for <yocto@yoctoproject.org>; Sun, 16 Jun 2019 18:24:40 -0700 (PDT)
+Received: by mail-pg1-f193.google.com with SMTP id n2so4794962pgp.11
+	for <yocto@yoctoproject.org>; Sun, 16 Jun 2019 18:24:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:openpgp:autocrypt:message-id:date
+	h=subject:to:references:cc:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=f6KDbssaCG8/29dMRfIcWHuQNtFRCbs5rQHggDBHygU=;
-	b=HEgkuf0F2by5gtICNCjQvHK5ui/5PhF2fkjNitq5cYUu9AUpddd7k0kYtP1UV9wFvp
-	2OjYF6BnBkxEeTOr8kjh/tF8b9Ny4E4tQ3efXtUnrBTFJ08Un/wmIrUvCAgV/bH6zIcI
-	AJOQHW67f/4sXalg19PTeu5Aa066d+lS1RS2t0LmquWDw9qvj16FUzlb7suYNGq+XLUt
-	NL/pl7bzxtsRVb3vKooWoUppZmqFbiS7PHvRGBR/R23XNNInz64qEMTzx1XmcEiDlILO
-	cWk7vf5fYVlgUAw7ed4ZtPxXOWAxBVCIuviOLfaMOjGAjnvHBODqAmVuqtOxIp/sxmQw
-	YTvw==
+	bh=SaSNuWxIungPFW4cRGapJTZVgg/sifGVBPRDFnwr9II=;
+	b=LIRkyn1BVm85ATlptkvD+UZ4JvSRYDwR2nit/NgTUPOMrCIj2Q6VJTb6bwIFy/xDfB
+	I/IxHjxvv0NM82TbhY6D1HhajhidKLnglI7Wg26/YSzHjz3BMQodCnjYv3zBQHp5serS
+	AaGmAPS73wQuldQir0y2HVTjg3Xqph5VaT3+SZccyVE2q0c+yVQ1wUPvq2JW5zKvrA3n
+	/dNFOHTsc57/WMHGAIneOLInTXmZl80YgFEyesmJn2HUqBqQCZUkN2aEUF3IpaDX40Ne
+	xs7QazzzDzqdtS2N+wL5fiSh+Yt0ZdK5b/Oqp+vFAxFJ4f0VWqLfs+Se35Gl0dei10pX
+	uNxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+	h=x-gm-message-state:subject:to:references:cc:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=f6KDbssaCG8/29dMRfIcWHuQNtFRCbs5rQHggDBHygU=;
-	b=QFObembzVSweehO66PBAm9mQnRbWP4aexWt0oub/Zyh9B++PlsG/odu595odK3NY3r
-	9+uHizCMKEIThg6u5ZEKtHwHNSXBKV3UER0u2CYIK6yQGblRdEIyKHqemiyvqWGSPe+h
-	Socw/kyuzII0semxMDl3ips2qkpNWbBTyBMlbCtz7+Whv5gS+m8NOdv6J/dBNXxVYUr0
-	8FXU79r5iTj1IEjE86jPQgrJByEeJNo3ucX0mVSKlWSMkJ2PzeouGy4UCsG8E5G2CarB
-	0f/xxNgoGz5DonBiFGQXP50KUe+GOEpumZb3yt/OF/eWqvoCJVe8R+OVBbqtgXMO4gsd
-	LdHA==
-X-Gm-Message-State: APjAAAVJ61oGcUjxWwNPc3UyeTz1FUmPgJ8drpfttvGX6ZnqfPxQkUS+
-	YQfqm0PTvswwhT1Z0IwLadWZE9gb
-X-Google-Smtp-Source: APXvYqyITiodk7rPZPMU79Uo0uFScIYuSmYDFiB/qDANzXJZyV5Rck3TXqQXVFzFB0s+8D7Vs0t1+w==
-X-Received: by 2002:a63:de43:: with SMTP id y3mr39624134pgi.271.1560556113918; 
-	Fri, 14 Jun 2019 16:48:33 -0700 (PDT)
-Received: from ?IPv6:2601:646:8100:b254:f1f2:b6fa:2cfe:4d00?
-	([2601:646:8100:b254:f1f2:b6fa:2cfe:4d00])
-	by smtp.gmail.com with ESMTPSA id m19sm364622pjl.0.2019.06.14.16.48.33
+	bh=SaSNuWxIungPFW4cRGapJTZVgg/sifGVBPRDFnwr9II=;
+	b=XnVg6dLzDf5of0LbIUheolXJctT8DlZdpjRcvsoGUT/gFN1AqTv7WJPo7hyw1zRXvQ
+	pjRf7w7gEKvgaIYkoDKfOE8/UdPB9Fxf5qERwdiw0mFsNvaLp4/EMate0eto8ijyFEL5
+	nBNc0O+A/4uNRp5rbDjePSszQf1JfMpNXYn2ezY/NYhixDNwxiJzSIsaU0x2zjdmykc/
+	8g5mSF1Uqj8bkZDwnwmBNhbRO13jJ/WlQWAdvUE7iZ1h9GZo7Mq0lnGG2RClQCE2l4iz
+	0enNK1JTCKxUQrrtMRGzyKVwL0bSWGXyBh3vDuwg3GKILcHEuFcqvAjQLehqWQ87OY2P
+	1dHw==
+X-Gm-Message-State: APjAAAVpTcrval3xosFVyvV9BF7rA2Mxl/gZqNrCOGcqaJ55Yy8B+oF1
+	FPPmun3SeT2ew1qFY+GZuBM=
+X-Google-Smtp-Source: APXvYqysmxU3DXW27zvoElkO/CsrXdQHuAfB8TJ/x4Mfph5vpEF7+jDjt20jWtGc8v+8FI6VPQFDaw==
+X-Received: by 2002:a65:5004:: with SMTP id f4mr47948952pgo.268.1560734679857; 
+	Sun, 16 Jun 2019 18:24:39 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:c33:61b7:98f7:aea7:ab3b?
+	([2601:202:4180:c33:61b7:98f7:aea7:ab3b])
+	by smtp.gmail.com with ESMTPSA id
+	u124sm3670656pgb.50.2019.06.16.18.24.38
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 14 Jun 2019 16:48:33 -0700 (PDT)
-To: ChenQi <Qi.Chen@windriver.com>, Armin Kuster <akuster808@gmail.com>,
-	yocto@yoctoproject.org
-References: <20190510030957.26040-1-akuster808@gmail.com>
-	<26b35a5c-4225-b4f0-3222-76a74e80688e@windriver.com>
+	Sun, 16 Jun 2019 18:24:39 -0700 (PDT)
+To: yocto@yoctoproject.org
+References: <20190606234656.28343-1-mhalstead@linuxfoundation.org>
 From: akuster808 <akuster808@gmail.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
@@ -107,13 +106,13 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <2acd40e9-9bcd-915e-779b-b4a1e8e5efa9@gmail.com>
-Date: Fri, 14 Jun 2019 16:48:32 -0700
+Message-ID: <36aa5271-6cd1-a22b-56bd-7a43b8ad09d3@gmail.com>
+Date: Sun, 16 Jun 2019 18:24:38 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <26b35a5c-4225-b4f0-3222-76a74e80688e@windriver.com>
-Subject: Re: [meta-security][PATCH 1/2] oe-selftest: add running cve checker
+In-Reply-To: <20190606234656.28343-1-mhalstead@linuxfoundation.org>
+Subject: Re: [PATCH][yocto-docs] ref-manual: Corrected openSUSE essential packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -125,50 +124,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Jun 2019 23:48:36 -0000
+X-List-Received-Date: Mon, 17 Jun 2019 01:24:42 -0000
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-Q2hlbiwKCk9uIDYvMTQvMTkgMToxMyBBTSwgQ2hlblFpIHdyb3RlOgo+IEhpIEFybWluLAo+
-Cj4gSSBqdXN0IG5vdGljZWQgdGhpcyBzZWxmdGVzdCBjYXNlLgo+IEhhdmUgeW91IGNvbnNp
-ZGVyZWQgcHV0dGluZyBpdCBpbnRvIG9lLWNvcmU/ClllcyBJIGhhdmUuIFRoYXQgd2FzIHRo
-ZSBmaXJzdCBwbGFjZSBJIHdhbnRlZCB0byBwdXQgaXQgYnV0IFJpY2hhcmQgYW5kClJvc3Mg
-aGF2ZSByZXNlcnZhdGlvbnMgYWJvdXQgZG9pbmcgdGhhdCBzbyBpdCBzaXRzIGluIG1ldGEt
-c2VjdXJpdHkKdW50aWwgd2UgY2FuIGdldCBpdCBpbnRvIGNvcmUuCgpSZWdhcmRzLAphcm1p
-bgoKCj4KPiBCZXN0IFJlZ2FyZHMsCj4gQ2hlbiBRaQo+Cj4gT24gMDUvMTAvMjAxOSAxMTow
-OSBBTSwgQXJtaW4gS3VzdGVyIHdyb3RlOgo+PiBTaWduZWQtb2ZmLWJ5OiBBcm1pbiBLdXN0
-ZXIgPGFrdXN0ZXI4MDhAZ21haWwuY29tPgo+PiAtLS0KPj4gwqAgbGliL29lcWEvc2VsZnRl
-c3QvY2FzZXMvY3ZlY2hlY2tlci5weSB8IDI3ICsrKysrKysrKysrKysrKysrKysrKysrKysr
-Kwo+PiDCoCAxIGZpbGUgY2hhbmdlZCwgMjcgaW5zZXJ0aW9ucygrKQo+PiDCoCBjcmVhdGUg
-bW9kZSAxMDA2NDQgbGliL29lcWEvc2VsZnRlc3QvY2FzZXMvY3ZlY2hlY2tlci5weQo+Pgo+
-PiBkaWZmIC0tZ2l0IGEvbGliL29lcWEvc2VsZnRlc3QvY2FzZXMvY3ZlY2hlY2tlci5weQo+
-PiBiL2xpYi9vZXFhL3NlbGZ0ZXN0L2Nhc2VzL2N2ZWNoZWNrZXIucHkKPj4gbmV3IGZpbGUg
-bW9kZSAxMDA2NDQKPj4gaW5kZXggMDAwMDAwMC4uMjNjYTdkMgo+PiAtLS0gL2Rldi9udWxs
-Cj4+ICsrKyBiL2xpYi9vZXFhL3NlbGZ0ZXN0L2Nhc2VzL2N2ZWNoZWNrZXIucHkKPj4gQEAg
-LTAsMCArMSwyNyBAQAo+PiAraW1wb3J0IG9zCj4+ICtpbXBvcnQgcmUKPj4gKwo+PiArZnJv
-bSBvZXFhLnNlbGZ0ZXN0LmNhc2UgaW1wb3J0IE9FU2VsZnRlc3RUZXN0Q2FzZQo+PiArZnJv
-bSBvZXFhLnV0aWxzLmNvbW1hbmRzIGltcG9ydCBiaXRiYWtlLCBnZXRfYmJfdmFyCj4+ICsK
-Pj4gK2NsYXNzIEN2ZUNoZWNrZXJUZXN0cyhPRVNlbGZ0ZXN0VGVzdENhc2UpOgo+PiArwqDC
-oMKgIGRlZiB0ZXN0X2N2ZV9jaGVja2VyKHNlbGYpOgo+PiArwqDCoMKgwqDCoMKgwqAgaW1h
-Z2UgPSAiY29yZS1pbWFnZS1zYXRvIgo+PiArCj4+ICvCoMKgwqDCoMKgwqDCoCBkZXBsb3lf
-ZGlyID0gZ2V0X2JiX3ZhcigiREVQTE9ZX0RJUl9JTUFHRSIpCj4+ICvCoMKgwqDCoMKgwqDC
-oCBpbWFnZV9saW5rX25hbWUgPSBnZXRfYmJfdmFyKCdJTUFHRV9MSU5LX05BTUUnLCBpbWFn
-ZSkKPj4gKwo+PiArwqDCoMKgwqDCoMKgwqAgbWFuaWZlc3RfbGluayA9IG9zLnBhdGguam9p
-bihkZXBsb3lfZGlyLCAiJXMuY3ZlIiAlCj4+IGltYWdlX2xpbmtfbmFtZSkKPj4gKwo+PiAr
-wqDCoMKgwqDCoMKgwqAgc2VsZi5sb2dnZXIuaW5mbygnQ1ZFX0NIRUNLX01BTklGRVNUID0g
-IiVzIicgJSBtYW5pZmVzdF9saW5rKQo+PiArwqDCoMKgwqDCoMKgwqAgaWYgKG5vdCAnY3Zl
-LWNoZWNrJyBpbiBnZXRfYmJfdmFyKCdJTkhFUklUJykpOgo+PiArwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBhZGRfY3ZlX2NoZWNrX2NvbmZpZyA9ICdJTkhFUklUICs9ICJjdmUtY2hlY2si
-Jwo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzZWxmLmFwcGVuZF9jb25maWcoYWRkX2N2
-ZV9jaGVja19jb25maWcpCj4+ICvCoMKgwqDCoMKgwqDCoCBzZWxmLmFwcGVuZF9jb25maWco
-J0NWRV9DSEVDS19NQU5JRkVTVCA9ICIlcyInICUgbWFuaWZlc3RfbGluaykKPj4gK8KgwqDC
-oMKgwqDCoMKgIHJlc3VsdCA9IGJpdGJha2UoIi1rIC1jIGN2ZV9jaGVjayAlcyIgJSBpbWFn
-ZSwKPj4gaWdub3JlX3N0YXR1cz1UcnVlKQo+PiArwqDCoMKgwqDCoMKgwqAgaWYgKG5vdCAn
-Y3ZlLWNoZWNrJyBpbiBnZXRfYmJfdmFyKCdJTkhFUklUJykpOgo+PiArwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoCBzZWxmLnJlbW92ZV9jb25maWcoYWRkX2N2ZV9jaGVja19jb25maWcpCj4+
-ICsKPj4gK8KgwqDCoMKgwqDCoMKgIGlzZmlsZSA9IG9zLnBhdGguaXNmaWxlKG1hbmlmZXN0
-X2xpbmspCj4+ICvCoMKgwqDCoMKgwqDCoCBzZWxmLmFzc2VydEVxdWFsKFRydWUsIGlzZmls
-ZSwgJ0ZhaWxlZCB0byBjcmVhdGUgY3ZlIGRhdGEKPj4gZmlsZSA6ICVzJyAlIG1hbmlmZXN0
-X2xpbmspCj4+ICsKPgo+Cgo=
+
+
+On 6/6/19 4:46 PM, Michael Halstead wrote:
+> Some packages were bumped onto the pip3 install line. Install them with zypper as before.
+>
+> Signed-off-by: Michael Halstead <mhalstead@linuxfoundation.org>
+> ---
+
+is this too early to Ping?
+
+is there an issue with this patch?
+
+-armin
+>  documentation/poky.ent | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/documentation/poky.ent b/documentation/poky.ent
+> index b5f600969..a436d9027 100644
+> --- a/documentation/poky.ent
+> +++ b/documentation/poky.ent
+> @@ -68,8 +68,8 @@
+>       python3-jinja2 SDL-devel xterm">
+>  <!ENTITY OPENSUSE_HOST_PACKAGES_ESSENTIAL "python gcc gcc-c++ git chrpath make wget python-xml \
+>       diffstat makeinfo python-curses patch socat python3 python3-curses tar python3-pip \
+> -     python3-pexpect xz which python3-Jinja2 Mesa-libEGL1
+> -     $ sudo pip3 install GitPython libSDL-devel xterm">
+> +     python3-pexpect xz which python3-Jinja2 Mesa-libEGL1 libSDL-devel xterm
+> +     $ sudo pip3 install GitPython">
+>  <!ENTITY CENTOS_HOST_PACKAGES_ESSENTIAL "-y epel-release
+>       $ sudo yum makecache
+>       $ sudo yum install gawk make wget tar bzip2 gzip python unzip perl patch \
+
 
