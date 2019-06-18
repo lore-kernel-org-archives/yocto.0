@@ -1,39 +1,66 @@
-Return-Path: <ayaka@soulik.info>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 034FBE00D6B; Tue, 18 Jun 2019 09:02:25 -0700 (PDT)
+	id 0A970E00D6B; Tue, 18 Jun 2019 09:08:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 535 seconds by postgrey-1.32 at yocto-www;
-	Tue, 18 Jun 2019 09:02:23 PDT
-Received: from kozue.soulik.info (kozue.soulik.info [108.61.200.231])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A60DE00A7D
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2019 09:02:23 -0700 (PDT)
-Received: from [IPv6:2001:470:b30d:2:c604:15ff:0:de1] (unknown
-	[IPv6:2001:470:b30d:2:c604:15ff:0:de1])
-	by kozue.soulik.info (Postfix) with ESMTPSA id B114B100B71;
-	Wed, 19 Jun 2019 00:54:51 +0900 (JST)
-To: Trevor Woerner <twoerner@gmail.com>
-References: <20190424145918.26040-1-ayaka@soulik.info>
-	<20190424145918.26040-4-ayaka@soulik.info>
-	<20190504030638.GB26588@linux-uys3>
-	<15a392f0-fbec-cfce-980b-6904bf7e222c@soulik.info>
-	<20190506133157.GA14979@linux-uys3>
-	<4bfa5df9-dc5a-0ecb-c92f-5714ddaf2d89@soulik.info>
-	<CAHUNapTAAg_2iTYFDhX1HsyzDPMW1rTVpnqOt2Bg=peXzgLZFQ@mail.gmail.com>
-From: ayaka <ayaka@soulik.info>
-Message-ID: <cb5f9171-49ab-816c-e64a-8fa91a443bd7@soulik.info>
-Date: Tue, 18 Jun 2019 23:52:59 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.0
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.180 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com
+	[209.85.222.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 767D3E00D42
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2019 09:08:34 -0700 (PDT)
+Received: by mail-qk1-f180.google.com with SMTP id g18so8940897qkl.3
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2019 09:08:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=rKb6hwOc3q1bqZGPIIz91RxxEXaVg+w+G23NiMd1CJs=;
+	b=EB1+p7rms5+0OX5HSXvSsThe9yzyreiw1Bivs+ldkp+os67wggljAm0ctIzBWW3L7r
+	LU5++iuOBk5Oh1I5yTv1p3eSUTo9sAdx6j/swlTJGneOVC0iFlAQKjGwA+VGK9fB+SW8
+	OVPwksaRz20/wb8n8SKAKFM+GAswWt8+rICrQn5x9RMSA8FTbWdk+tFsY1YpMuyk/sHk
+	wG3rZIrng+/eVImHl/rtmfmAx1GmPaFxRWJ2r0OwGfWR5z3b1uDiUVTcPgqMUuq27Gsu
+	3gPBBijb8JrmFeIUC2/IH4ZCQF79HxVEgsGRTpCQL7D+IWUzN/y6cejMV3SuoQ+IoaKa
+	CIow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=rKb6hwOc3q1bqZGPIIz91RxxEXaVg+w+G23NiMd1CJs=;
+	b=mWvoTXXoJ7AvB0CamMWVlWlUtus2NdG10TjS8J+MUfN98zzORc1VYrN95z3im3KBAi
+	Vld1QvSJloSnKfHEQs7tIEjkzVYPYLObBuHN0Kf/P2/HV2EXbfjpUqb06PZtCwlcKS5G
+	1BBnn868AGX2pnLJTnGwx04N6OjWDYaa8vLdtxf++i7n54dkxJ84tmuHdNquGWVgM0z6
+	g6P9NGUY9EZk1dmVPLfryMpQvLSS4d+W6oo3K8KLuOuqA76RuYndUOYuo9yV10CXIZQw
+	GDVX8JJ+MHIj3TmPZEXtc40mEIMScDqNz1Jpz3FjX/DsKiWBX81vjXaydBPuwOsCA/lF
+	WAkA==
+X-Gm-Message-State: APjAAAWy2vtHCJa9L2dfdL9RtvmjNSinGKjsfhqJC0W2ZSWBAKztR1B9
+	gB0Z2dr1G/LcoP+gPN1JbLJQqC4bbxtXaGO0kAo=
+X-Google-Smtp-Source: APXvYqwxNCmPxFTdAo3iSWz0Qo6DIa2WclGB0kNs026fPR2n91DQPhPt6JrnklwmJN6NGMlWTimwwvB8MVfvBbBr2mI=
+X-Received: by 2002:a05:620a:1407:: with SMTP id
+	d7mr83214963qkj.20.1560874113274; 
+	Tue, 18 Jun 2019 09:08:33 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAHUNapTAAg_2iTYFDhX1HsyzDPMW1rTVpnqOt2Bg=peXzgLZFQ@mail.gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [PATCH 3/3] recipes-bsp/u-boot: update to the latest version
+References: <CAGni2MiauEboBBr0qsqn1jB57AQoEEaOw3wRoavnuQX8TJGtNA@mail.gmail.com>
+In-Reply-To: <CAGni2MiauEboBBr0qsqn1jB57AQoEEaOw3wRoavnuQX8TJGtNA@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 18 Jun 2019 09:08:06 -0700
+Message-ID: <CAMKF1so4oLnAugjsZ6PwUt-8xBLszbwy45dsgRH02S2y00aMXQ@mail.gmail.com>
+To: matthew stanger <stangerm2@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: devshell env in warrior
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,119 +72,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2019 16:02:25 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-List-Received-Date: Tue, 18 Jun 2019 16:08:35 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Jun 17, 2019 at 4:55 PM matthew stanger <stangerm2@gmail.com> wrote=
+:
+>
+> I'm trying to figure out why when running devshell in Warrior CC/CFLAGS a=
+re not the same as do_compile for a recipe. For example.
+> devshell printenv yields:
+> CC=3Daarch64-poky-linux-gcc   -fuse-ld=3Dbfd -fmacro-prefix-map=3D/home/m=
+att/rdk_warrior/build/tmp/work/7271-poky-linux/brcm/18.3+AUTOINC+0a6fb7430f=
+-0=3D/usr/src/debug/ursr/18.3+AUTOINC+0a6fb7430f-0 -fdebug-prefix-map=3D/ho=
+me/matt/rdk_warrior/build/tmp/work/7271-poky-linux/brcm/18.3+AUTOINC+0a6fb7=
+430f-0=3D/usr/src/debug/ursr/18.3+AUTOINC+0a6fb7430f-0 -fdebug-prefix-map=
+=3D/home/matt/rdk_warrior/build/tmp/work/7271-poky-linux/brcm/18.3+AUTOINC+=
+0a6fb7430f-0/recipe-sysroot=3D -fdebug-prefix-map=3D/home/matt/rdk_warrior/=
+build/tmp/work/7271-poky-linux/brcm/18.3+AUTOINC+0a6fb7430f-0/recipe-sysroo=
+t-native=3D  -fdebug-prefix-map=3D/home/matt/rdk_warrior/build/tmp/work-sha=
+red/tmobile-7271-kaon-mini/kernel-source=3D/usr/src/kernel
+>
+> do_compile() {
+>     /usr/bin/printenv | sort > debug.log
+> }
+> yields...
+> CC=3Daarch64-poky-linux-gcc  -mcpu=3Dcortex-a53+crc+crypto -fstack-protec=
+tor-strong  -D_FORTIFY_SOURCE=3D2 -Wformat -Wformat-security -Werror=3Dform=
+at-security --sysroot=3D/home/matt/rdk_warrior/build/tmp/work/tmobile_7271_=
+kaon_mini-poky-linux/ursr/18.3+AUTOINC+0a6fb7430f-0/recipe-sysroot
+>
+> This causes some very different behavior out of the makefile. The recipe =
+I"m working with has no do_configure, and only calls a makefile through do_=
+compile. No appends/prepends or custom functions in the recipe. This recipe=
+ is for a lovely Broadcom driver/userspace glob and I'm trying to troublesh=
+oot it with x64 but not being able to get a correct working env makes life =
+hard. Any idea's of where I might be going wrong?
+>
 
-On 09/05/2019 01:30, Trevor Woerner wrote:
-> a previous patch of yours did a:
->     require recipes-bsp/u-boot/u-boot-common.inc
-> which defines this SRCREV
->
-> my subtle point being: I don't get the impression you're testing your 
-> patches, or at least not testing them correctly.
+Check that Makefiles are not overriding CC/CXX/LD etc. some old crufty
+Makefiles I have seen doing that, you might see something like
 
-I did the test before but I forget to remove the variables in local.conf
+CC =3D ${CROSS_COMPILE}gcc etc. which you should convert to weak defines
+e.g. CC ?=3D ....
 
-Anyway I will start a clean build this time.
-
-Now I met a problem with new gcc 9 on the latest oe, I will fix them 
-then flush new patches later.
-
->
-> the fact you're CCing Romain suggests your either using a very old 
-> branch of https://git.yoctoproject.org/cgit/cgit.cgi/meta-rockchip/ or 
-> that you're submitting patches to me for 
-> https://github.com/rockchip-linux/meta-rockchip ?
-> Unfortunately for me, when 
-> https://github.com/rockchip-linux/meta-rockchip did a clone of 
-> https://git.yoctoproject.org/cgit/cgit.cgi/meta-rockchip/, they left 
-> my and Romain's names as maintainers in the README (along with 
-> instructions for github)
->
-> On Wed, May 8, 2019 at 12:19 PM ayaka <ayaka@soulik.info 
-> <mailto:ayaka@soulik.info>> wrote:
->
->
->     On 5/6/19 9:31 PM, Trevor Woerner wrote:
->     > On Sat 2019-05-04 @ 06:43:34 PM, ayaka wrote:
->     >> On 5/4/19 11:06 AM, Trevor Woerner wrote:
->     >>> On Wed 2019-04-24 @ 10:59:18 PM, Randy 'ayaka' Li wrote:
->     >>>> From: Randy Li <ayaka@soulik.info <mailto:ayaka@soulik.info>>
->     >>>>
->     >>>> Signed-off-by: Randy Li <ayaka@soulik.info
->     <mailto:ayaka@soulik.info>>
->     >>>> ---
->     >>>>    recipes-bsp/u-boot/u-boot-rockchip_git.bb
->     <http://u-boot-rockchip_git.bb> | 18 ++++++++++++++++++
->     >>>>    1 file changed, 18 insertions(+)
->     >>>>    create mode 100644
->     recipes-bsp/u-boot/u-boot-rockchip_git.bb
->     <http://u-boot-rockchip_git.bb>
->     >>>>
->     >>>> diff --git a/recipes-bsp/u-boot/u-boot-rockchip_git.bb
->     <http://u-boot-rockchip_git.bb>
->     b/recipes-bsp/u-boot/u-boot-rockchip_git.bb
->     <http://u-boot-rockchip_git.bb>
->     >>>> new file mode 100644
->     >>>> index 0000000..aa4b84d
->     >>>> --- /dev/null
->     >>>> +++ b/recipes-bsp/u-boot/u-boot-rockchip_git.bb
->     <http://u-boot-rockchip_git.bb>
->     >>>> @@ -0,0 +1,18 @@
->     >>>> +# Copyright (C) 2019 SUMOMO Computer Assocation
->     >>>> +# Released under the MIT license (see COPYING.MIT for the terms)
->     >>>> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
->     >>>> +
->     >>>> +include u-boot-rockchip.inc
->     >>>> +
->     >>>> +DESCRIPTION = "Rockchip U-Boot"
->     >>>> +
->     >>>> +LIC_FILES_CHKSUM =
->     "file://Licenses/README;md5=a2c678cfd4a4d97135585cad908541c6"
->     >>>> +
->     >>>> +SRC_URI = " \
->     >>>> +  git://github.com/rockchip-linux/u-boot.git;branch=release
->     <http://github.com/rockchip-linux/u-boot.git;branch=release>; \
->     >>>> +  file://binutils-2.28-ld-fix.patch \
->     >>>> +  file://gcc7_fixup.patch \
->     >>>> +  "
->     >>>> +
->     >>>> +S = "${WORKDIR}/git"
->     >>>> +PV = "v2019.01"
->     >>> This doesn't even get past the fetching stage:
->     >> I am sorry, I forget that ssh git protocol only work for those
->     users who
->     >> uploaded their key to the github, I would change it back to https.
->     >>>     WARNING: u-boot-rockchip-1_v2019.01-r0 do_fetch: Failed to
->     fetch URL
->     git://github.com/rockchip-linux/u-boot.git;branch=release
->     <http://github.com/rockchip-linux/u-boot.git;branch=release>;,
->     attempting MIRRORS if available
->     >>>     ERROR: u-boot-rockchip-1_v2019.01-r0 do_fetch: Fetcher
->     failure: Unable to find revision
->     3c99166441bf3ea325af2da83cfe65430b49c066 in branch release even
->     from upstream
->     >>>     ERROR: u-boot-rockchip-1_v2019.01-r0 do_fetch: Fetcher
->     failure for URL:
->     'git://github.com/rockchip-linux/u-boot.git;branch=release;
->     <http://github.com/rockchip-linux/u-boot.git;branch=release;>'.
->     Unable to fetch URL from any source.
->     >>>     ERROR: u-boot-rockchip-1_v2019.01-r0 do_fetch:
->     >>>     ERROR: u-boot-rockchip-1_v2019.01-r0 do_fetch: Function
->     failed: base_do_fetch
->     >>>     ERROR: Task
->     (/opt/oe/configs/z/build-master/meta-rockchip/layers/meta-rockchip/recipes-bsp/u-boot/u-boot-rockchip_git.bb:do_fetch)
->     failed with exit code '1'
->     > The problem is that it's trying to fetch commit 3c9916 which
->     doesn't exist on
->     > github.com/rockchip-linux/u-boot.git
->     <http://github.com/rockchip-linux/u-boot.git>. That revision is on
->     upstream U-Boot.
->     How comes? I didn't write any commit id there, it is based on the
->     branch
->     at all.
->
+> Cheers
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
