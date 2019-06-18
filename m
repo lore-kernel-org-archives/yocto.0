@@ -1,66 +1,75 @@
-Return-Path: <stangerm2@gmail.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B49A2E00D4C; Tue, 18 Jun 2019 10:09:03 -0700 (PDT)
+	id 3A58BE00D42; Tue, 18 Jun 2019 10:13:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (stangerm2[at]gmail.com)
+	provider *      (martin.jansa[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.68 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.221.46 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ot1-f68.google.com (mail-ot1-f68.google.com
-	[209.85.210.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94E79E00A7D
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2019 10:09:02 -0700 (PDT)
-Received: by mail-ot1-f68.google.com with SMTP id b7so15915602otl.11
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2019 10:09:02 -0700 (PDT)
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
+	[209.85.221.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F737E00CD5
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2019 10:13:40 -0700 (PDT)
+Received: by mail-wr1-f46.google.com with SMTP id m3so376742wrv.2
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2019 10:13:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=MTfly/mvrVPr3//Q/Qles8VsUHxixESXfwJfsux2x5w=;
-	b=GX84soDONWKP9kAG7kRZYxQCPBGvSuJ3cDGvIOF5z1JDcyIgotu+vTemWcPFW7asd4
-	pffzNt843VArvgHJYtq3Tc5WxfFj5P+LPjTkTuRoKAKgVAJlGO9OHpURnhW4puAljCZM
-	gWMNWsVC7bZghhIMvvffVyF8iLO4V+gIbJOjwbSXhAOz1DxvH4y67GqkGLfeAyX2N1A1
-	pTJwNVTjo3Jk438TI/n6GrkV4bQ0HnjoGuCo7yQVlXqcAFS8ZDyUU3OdQj5XoDRQGy0w
-	+po5IV9ZAAUmTQWImmEo/gQAlUhgz/P0lD2JGssCF/U3btaU2cmypvVTFOiV+kZCWrXN
-	j/8A==
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=xgaz9PsmDzxoly/6Nv07inxFU3OZXhBJLQOz1PL8lIE=;
+	b=PvEqGRWHkTRpHctXBgtih7z34B5zKzQyh9dqc7vsAGsar6Xx3WJBtfJPXryyael3rJ
+	zu2cNPNnPwhyVSXbTuY0zqCrGc9MUom1Tq5tzAKU5Xg8EkOpDgHqmIqAX6HyitFg5sJq
+	K7rGK3qvUXl9xWJ37S97l1XeQzrULe8gOlydsj4smubWcaPMi7CGat1Zxl63nzKSxFkB
+	uoPzHc7vSK3iChqVn1Zm+Nle9yo/bHcw8XgP7IiMNhTXpT4VXzSnhi/k5VIyE2jkWNzj
+	/s33PXILqbdUK7bm5giVL8pe3x/wARq3Y+m2KgAFI9d2W6ON4dYXyXAaHegqy5swSfMS
+	WHVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=MTfly/mvrVPr3//Q/Qles8VsUHxixESXfwJfsux2x5w=;
-	b=S3//jo/MvGW5kOH0hM38X2CuH0TN2J4l4tMWLknKgZdl8A6SjeAw0FkEZN7AzSj568
-	mRbOTxkmbpIr8ixmMkewc4iYSvbobY+o7c0/tbC0OkibfvFLXhSD2jqgdSEfGE0X2DYr
-	66S33GQCWUGblBHAirbAjxQsDhifZDMn+MlTB2ryPtQHz0aBWuOdPog0N6Eu6ISzaCse
-	+a5HZsKCrzV818NIcmVV8tM749wyzCV2XjZ/pR3xXuWYBLNNxckPU17z4qZ8QeH0KMel
-	W1QiYk3vFjtRWhhGfIgd1AcHid5Lw7S2xN0RQP/YLfGwIV4e2HL6c2IMWhjR1pVhCcCE
-	ixIQ==
-X-Gm-Message-State: APjAAAVqkkbUYRb1drsrQ+D1FZl2UJy/01px0+JjoJx4jLp9scXzy/yd
-	kkJxswlROXVQkbxjZXyBLRFEpVTV5zcr4CqCSg==
-X-Google-Smtp-Source: APXvYqz53D+bBMF9PLqkqlbvM0ogvjgQaX9NNtueuyHWhfiUnYxZ4BekH6ndkVTwBK+//orY3rS2nBYBuEsyUzFApZA=
-X-Received: by 2002:a9d:806:: with SMTP id 6mr58041854oty.15.1560877741698;
-	Tue, 18 Jun 2019 10:09:01 -0700 (PDT)
+	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=xgaz9PsmDzxoly/6Nv07inxFU3OZXhBJLQOz1PL8lIE=;
+	b=IklTrW3keB0E2RPB6lAWx0jrMw+0n5Vxsm0kS0jHRHDtZWUcHnWCf6nA8WtgSA+vnf
+	Ae/YS5i8fmuNx5ofmbaHXisfEbRLpZGMuhEdw/vDGQYxoqDuVhjpFfKxD+BcrWiPAp5f
+	Y99zQGkMdZh8lTh/MVsIjDcCLldjd8UqVflf5qqDaPcDet2QeVeFxlQGQMiX+aAFgSd5
+	tlRBpd+3WWfWodL6zCMFx9+IQO9i/+hADgWdFaacIx34MshDOrIsoFEo29rhl+YliJzF
+	4g4STPVoFHSMkhgO6+KICuWhKAyhPQv+hCFAxOIgjQmYPxuWDETaxgY1I5t091nWZwiT
+	OEEQ==
+X-Gm-Message-State: APjAAAVl9zY9gAdq/RWZb78L467sQAtqMBbzxS9DTRpM01+gd80ODqOC
+	sw9r0vuwAnYVUOkEz6MIpmE=
+X-Google-Smtp-Source: APXvYqyRomrsjVeQhaGlpPocgrL2bvp1r7xyBNE8otO5iUF+Nv6MzOnrCxKd2D/6O3y+qthqYwMbGw==
+X-Received: by 2002:adf:e843:: with SMTP id d3mr3552582wrn.249.1560878019629; 
+	Tue, 18 Jun 2019 10:13:39 -0700 (PDT)
+Received: from localhost (ip-217-030-068-212.aim-net.cz. [217.30.68.212])
+	by smtp.gmail.com with ESMTPSA id 72sm9989341wrk.22.2019.06.18.10.13.38
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Tue, 18 Jun 2019 10:13:38 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Tue, 18 Jun 2019 19:13:45 +0200
+To: Arno Steffens <star@gmx.li>
+Message-ID: <20190618171345.GB1501@jama>
+References: <trinity-1bbd10a3-ee46-4746-90c7-0b5a49a62f26-1560772981350@3c-app-gmx-bs08>
+	<CAGAf8LyBsd9Ya+RV94FQj+19f5Um+AypitaAoO0pn5_w+rq+nA@mail.gmail.com>
+	<trinity-90f4bc6a-aa89-4bf8-aa92-72aec6a019e5-1560776407716@3c-app-gmx-bs08>
+	<CAGAf8LwnPTFedqXA6zwSF22bK_VPs2otSsVg5e=hDAXp+q5Csg@mail.gmail.com>
+	<trinity-fe27ef88-5231-4c98-92a3-47d5fb327d83-1560793656274@3c-app-gmx-bs55>
 MIME-Version: 1.0
-References: <CAGni2MiauEboBBr0qsqn1jB57AQoEEaOw3wRoavnuQX8TJGtNA@mail.gmail.com>
-	<CAMKF1so4oLnAugjsZ6PwUt-8xBLszbwy45dsgRH02S2y00aMXQ@mail.gmail.com>
-In-Reply-To: <CAMKF1so4oLnAugjsZ6PwUt-8xBLszbwy45dsgRH02S2y00aMXQ@mail.gmail.com>
-From: matthew stanger <stangerm2@gmail.com>
-Date: Tue, 18 Jun 2019 11:08:25 -0600
-Message-ID: <CAGni2MjpuAQx3nCtgdiBAwB_ixRKyBDpMtZHRxUEkcxabU6JFQ@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <trinity-fe27ef88-5231-4c98-92a3-47d5fb327d83-1560793656274@3c-app-gmx-bs55>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: devshell env in warrior
+Subject: Re: cortexa9t2hf instead of cortexa9hf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,137 +81,178 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2019 17:09:03 -0000
-Content-Type: multipart/alternative; boundary="00000000000054f5dd058b9c2bfa"
+X-List-Received-Date: Tue, 18 Jun 2019 17:13:43 -0000
+X-Groupsio-MsgNum: 45642
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="A6N2fC+uXW/VQSAv"
+Content-Disposition: inline
 
---00000000000054f5dd058b9c2bfa
-Content-Type: text/plain; charset="UTF-8"
-
-Hey Khem,
-
-Check that Makefiles are not overriding CC/CXX/LD etc. some old crufty
-> Makefiles I have seen doing that, you might see something like
-
-In the recipe it's caused by 'inherit module', which is needed because part
-of the recipe is building modules. I would understand this would unset
-CFLAGS and such but am not sure why the devshell should be different that
-the environment at the first line of do_compile?
-
-On Tue, Jun 18, 2019 at 10:08 AM Khem Raj <raj.khem@gmail.com> wrote:
-
-> On Mon, Jun 17, 2019 at 4:55 PM matthew stanger <stangerm2@gmail.com>
-> wrote:
-> >
-> > I'm trying to figure out why when running devshell in Warrior CC/CFLAGS
-> are not the same as do_compile for a recipe. For example.
-> > devshell printenv yields:
-> > CC=aarch64-poky-linux-gcc   -fuse-ld=bfd
-> -fmacro-prefix-map=/home/matt/rdk_warrior/build/tmp/work/7271-poky-linux/brcm/18.3+AUTOINC+0a6fb7430f-0=/usr/src/debug/ursr/18.3+AUTOINC+0a6fb7430f-0
-> -fdebug-prefix-map=/home/matt/rdk_warrior/build/tmp/work/7271-poky-linux/brcm/18.3+AUTOINC+0a6fb7430f-0=/usr/src/debug/ursr/18.3+AUTOINC+0a6fb7430f-0
-> -fdebug-prefix-map=/home/matt/rdk_warrior/build/tmp/work/7271-poky-linux/brcm/18.3+AUTOINC+0a6fb7430f-0/recipe-sysroot=
-> -fdebug-prefix-map=/home/matt/rdk_warrior/build/tmp/work/7271-poky-linux/brcm/18.3+AUTOINC+0a6fb7430f-0/recipe-sysroot-native=
-> -fdebug-prefix-map=/home/matt/rdk_warrior/build/tmp/work-shared/tmobile-7271-kaon-mini/kernel-source=/usr/src/kernel
-> >
-> > do_compile() {
-> >     /usr/bin/printenv | sort > debug.log
-> > }
-> > yields...
-> > CC=aarch64-poky-linux-gcc  -mcpu=cortex-a53+crc+crypto
-> -fstack-protector-strong  -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security
-> -Werror=format-security
-> --sysroot=/home/matt/rdk_warrior/build/tmp/work/tmobile_7271_kaon_mini-poky-linux/ursr/18.3+AUTOINC+0a6fb7430f-0/recipe-sysroot
-> >
-> > This causes some very different behavior out of the makefile. The recipe
-> I"m working with has no do_configure, and only calls a makefile through
-> do_compile. No appends/prepends or custom functions in the recipe. This
-> recipe is for a lovely Broadcom driver/userspace glob and I'm trying to
-> troubleshoot it with x64 but not being able to get a correct working env
-> makes life hard. Any idea's of where I might be going wrong?
-> >
->
-> Check that Makefiles are not overriding CC/CXX/LD etc. some old crufty
-> Makefiles I have seen doing that, you might see something like
->
-> CC = ${CROSS_COMPILE}gcc etc. which you should convert to weak defines
-> e.g. CC ?= ....
->
-> > Cheers
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
->
-
---00000000000054f5dd058b9c2bfa
-Content-Type: text/html; charset="UTF-8"
+--A6N2fC+uXW/VQSAv
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hey Khem,<div><br></div><blockquote class=3D"gmail_quote" =
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
-dding-left:1ex">Check that Makefiles are not overriding CC/CXX/LD etc. some=
- old crufty<br>Makefiles I have seen doing that, you might see something li=
-ke</blockquote><div>In the recipe it&#39;s caused by &#39;inherit module&#3=
-9;, which is needed because part of the recipe is building modules. I would=
- understand this would unset CFLAGS and such but am not sure why the devshe=
-ll should be different that the environment at the first line of do_compile=
-?</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Tue, Jun 18, 2019 at 10:08 AM Khem Raj &lt;<a href=3D"mailto:raj.=
-khem@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex">On Mon, Jun 17, 2019 at 4:55 PM matthew s=
-tanger &lt;<a href=3D"mailto:stangerm2@gmail.com" target=3D"_blank">stanger=
-m2@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; I&#39;m trying to figure out why when running devshell in Warrior CC/C=
-FLAGS are not the same as do_compile for a recipe. For example.<br>
-&gt; devshell printenv yields:<br>
-&gt; CC=3Daarch64-poky-linux-gcc=C2=A0 =C2=A0-fuse-ld=3Dbfd -fmacro-prefix-=
-map=3D/home/matt/rdk_warrior/build/tmp/work/7271-poky-linux/brcm/18.3+AUTOI=
-NC+0a6fb7430f-0=3D/usr/src/debug/ursr/18.3+AUTOINC+0a6fb7430f-0 -fdebug-pre=
-fix-map=3D/home/matt/rdk_warrior/build/tmp/work/7271-poky-linux/brcm/18.3+A=
-UTOINC+0a6fb7430f-0=3D/usr/src/debug/ursr/18.3+AUTOINC+0a6fb7430f-0 -fdebug=
--prefix-map=3D/home/matt/rdk_warrior/build/tmp/work/7271-poky-linux/brcm/18=
-.3+AUTOINC+0a6fb7430f-0/recipe-sysroot=3D -fdebug-prefix-map=3D/home/matt/r=
-dk_warrior/build/tmp/work/7271-poky-linux/brcm/18.3+AUTOINC+0a6fb7430f-0/re=
-cipe-sysroot-native=3D=C2=A0 -fdebug-prefix-map=3D/home/matt/rdk_warrior/bu=
-ild/tmp/work-shared/tmobile-7271-kaon-mini/kernel-source=3D/usr/src/kernel<=
-br>
-&gt;<br>
-&gt; do_compile() {<br>
-&gt;=C2=A0 =C2=A0 =C2=A0/usr/bin/printenv | sort &gt; debug.log<br>
-&gt; }<br>
-&gt; yields...<br>
-&gt; CC=3Daarch64-poky-linux-gcc=C2=A0 -mcpu=3Dcortex-a53+crc+crypto -fstac=
-k-protector-strong=C2=A0 -D_FORTIFY_SOURCE=3D2 -Wformat -Wformat-security -=
-Werror=3Dformat-security --sysroot=3D/home/matt/rdk_warrior/build/tmp/work/=
-tmobile_7271_kaon_mini-poky-linux/ursr/18.3+AUTOINC+0a6fb7430f-0/recipe-sys=
-root<br>
-&gt;<br>
-&gt; This causes some very different behavior out of the makefile. The reci=
-pe I&quot;m working with has no do_configure, and only calls a makefile thr=
-ough do_compile. No appends/prepends or custom functions in the recipe. Thi=
-s recipe is for a lovely Broadcom driver/userspace glob and I&#39;m trying =
-to troubleshoot it with x64 but not being able to get a correct working env=
- makes life hard. Any idea&#39;s of where I might be going wrong?<br>
-&gt;<br>
-<br>
-Check that Makefiles are not overriding CC/CXX/LD etc. some old crufty<br>
-Makefiles I have seen doing that, you might see something like<br>
-<br>
-CC =3D ${CROSS_COMPILE}gcc etc. which you should convert to weak defines<br=
->
-e.g. CC ?=3D ....<br>
-<br>
-&gt; Cheers<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
-oproject.org</a><br>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
-errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
-br>
-</blockquote></div>
+On Mon, Jun 17, 2019 at 07:47:36PM +0200, Arno Steffens wrote:
+> Thanks for explaining this.
+> I take some time to read about thumb/thumb2. The feedback is mixed. It se=
+ems to generate more compact code, but some say it speeds up, others it slo=
+ws down because of reduced function set - and it can cause strange effects.
+> And mixing this causes time to switch processor mode. So, as I am not an =
+expert in this and can't decide what ist best on per function base and spee=
+d is of highest priority, I think I better should use not thumb(2).
+>=20
+> So, do I get it right that with this cortexa9t2hf I just have the option =
+to compile it for thumb2? But without using a dedicated compiler option it =
+generates same "standard" arm code and the difference is just to adapt all =
+the Makefiles for this suffix.
+>=20
+> According to Martin I can get the previous setting by just set ARM_INSTRU=
+CTION_SET to "arm" instead of "armv7a". Mh - I just afraid that I lose othe=
+r kinds of optimisation. (I am just a user not an expert in arm architectur=
+e).
 
---00000000000054f5dd058b9c2bfa--
+I didn't say anything about changing the DEFAULTTUNE.
+
+Just ARM_INSTRUCTION_SET to "arm" which will give you "cortexa9hf" again
+(not "armv7a").
+
+> On the other hand for those like me it is better go the standard way. Onc=
+e I am sure compiler results will not become worse (see above) I go for the=
+ pain and renaming my toolchain/makefiles/stuff.
+
+The results should be almost the same, maybe slightly better, depends on
+the actual code as Khem mentioned.
+
+But if this causes you a lot of pain "renaming my toolchain/makefiles/stuff"
+then you should probably spend the time on your tooling instead of
+replacing one hardcoded value with another.
+
+Cheers,
+
+>=20
+> Thanks for you taking the time.
+> Arno
+>=20
+> > Hello Arno,
+> >
+> > Let me try to explain my point of view. Since here (my best guess) we
+> > have some asynchronous bitbake code which went South upon introducing
+> > T2 HW extension.
+> >
+> > Point [1]: as far as I understand arm, cortexa9t2hf is is just a
+> > superset of previous cortexa9hf (HW wise). NEON HW extension (NEON
+> > media coprocessor) exists in both of them. In other words:
+> > cortexa9t2hf =3D cortexa9hf HW + T2 HW extension.
+> >
+> > Point [2]:
+> > > bitbake gives me in 2.5:
+> > > TUNE_FEATURES        =3D "arm armv7a vfp thumb neon callconvention-ha=
+rd cortexa9"
+> > > TARGET_FPU           =3D "hard"
+> > >
+> > > and in 2.7:
+> > > TUNE_FEATURES        =3D "arm vfp cortexa9 neon thumb callconvention-=
+hard"
+> > > TARGET_FPU           =3D "hard"
+> >
+> > These two lines are the same: you are able to use 32b arm mode, 16bit
+> > thumb mode, using armv7 HW with neon HW extension, and using HW FP
+> > extension as well. The Cortex in both cases is A9.
+> >
+> > I expect that somebody somewhere in bitbake version 1.42 - 100% sure
+> > (since 2.5/Sumo uses bitbake 1.38) dropped "armv7a" as TUNE FEATURE,
+> > and I have no idea if this is done intentionally or not.
+> >
+> > Because of that I copied Alex and Ross to CC: into email, so they
+> > should unveil this mystery (I would prefer "armv7" to stay in bitbake
+> > 1.42, since A8 and A9 belongs to armv7, A15 belongs to armv8 (IIRC).
+> >
+> > Bottom line: nothing to be done by you, Arno, seems that bitbake 1.42
+> > should return "armv7" as TUNE FEATURE.
+> >
+> > Best Regards,
+> > Zoran
+> > _______
+> >
+> >
+> > On Mon, Jun 17, 2019 at 3:00 PM Arno Steffens <star@gmx.li> wrote:
+> > >
+> > > Hello Zoran,
+> > > thanks. As far as I understand is thumb2 another mode of coding, that=
+ might create more compact code.
+> > > But I want to keep all compatible to my previous tool-chain and setti=
+ngs.
+> > > The only file where I can found this "cortexa9t2hf" is
+> > > ./meta/conf/machine/include/tune-cortexa9.inc
+> > > but I can't see how I can control Yocto to generate "cortexa9hf-neon"=
+ as before.
+> > > Or have I been wrong the time before?
+> > >
+> > > bitbake gives me in 2.5:
+> > >
+> > > TUNE_FEATURES        =3D "arm armv7a vfp thumb neon callconvention-ha=
+rd cortexa9"
+> > > TARGET_FPU           =3D "hard"
+> > >
+> > > and in 2.7:
+> > > TUNE_FEATURES        =3D "arm vfp cortexa9 neon thumb callconvention-=
+hard"
+> > > TARGET_FPU           =3D "hard"
+> > >
+> > > so armv7a seem to be missing. In terms of thumb both is same. But is =
+that the reason? Where to set it?
+> > > Arno
+> > >
+> > > >
+> > > > Hello Arno,
+> > > >
+> > > > Your question, per say, has little to do with YOCTO forum. But I'll
+> > > > try (as my best) to answer your question.
+> > > >
+> > > > Cortexa9hf should be armv7 A9 Hard Floating (it contains HW FP unit=
+).
+> > > >
+> > > > Cortexa9t2hf is by analogy armv7 A9 T2 Hard Floating. Now, the
+> > > > question is what is T2? T2 is addition to the previous architecture
+> > > > Cortexa9hf, and addition is Thumb-2 mode.
+> > > >
+> > > > Hope this helps,
+> > > >
+> > > > Zoran
+> > > > _______
+> > > >
+> > > > On Mon, Jun 17, 2019 at 2:03 PM Arno Steffens <star@gmx.li> wrote:
+> > > > >
+> > > > > I switched from Yocto 2.5 to 2.7 and recognised a new architetcur=
+e name.
+> > > > > Instead of cortexa9hf it is now build for cortexa9t2hf? Did I do =
+something wrong or what exactly does this t2 mean?
+> > > > > Target system is a Zynq7020 system.
+> > > > > --
+> > > > > _______________________________________________
+> > > > > yocto mailing list
+> > > > > yocto@yoctoproject.org
+> > > > > https://lists.yoctoproject.org/listinfo/yocto
+> > > >
+> >
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--A6N2fC+uXW/VQSAv
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQRU+ejDffEzV2Je2oc3VSO3ZXaAHAUCXQkbyAAKCRA3VSO3ZXaA
+HHVKAKCZ4ImJD5o0M25zQw3xiPvg87aYSgCfTmOwbrWZQQXZDyDBhgTcAejNVFU=
+=6yNt
+-----END PGP SIGNATURE-----
+
+--A6N2fC+uXW/VQSAv--
