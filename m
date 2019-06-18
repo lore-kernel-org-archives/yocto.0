@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0A970E00D6B; Tue, 18 Jun 2019 09:08:35 -0700 (PDT)
+	id 884C9E00D42; Tue, 18 Jun 2019 09:16:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,54 +13,56 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.180 listed in list.dnswl.org]
+	*      [209.85.160.171 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com
-	[209.85.222.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 767D3E00D42
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2019 09:08:34 -0700 (PDT)
-Received: by mail-qk1-f180.google.com with SMTP id g18so8940897qkl.3
-	for <yocto@yoctoproject.org>; Tue, 18 Jun 2019 09:08:34 -0700 (PDT)
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com
+	[209.85.160.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79F68E00CB9
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2019 09:16:57 -0700 (PDT)
+Received: by mail-qt1-f171.google.com with SMTP id w17so9629697qto.10
+	for <yocto@yoctoproject.org>; Tue, 18 Jun 2019 09:16:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=rKb6hwOc3q1bqZGPIIz91RxxEXaVg+w+G23NiMd1CJs=;
-	b=EB1+p7rms5+0OX5HSXvSsThe9yzyreiw1Bivs+ldkp+os67wggljAm0ctIzBWW3L7r
-	LU5++iuOBk5Oh1I5yTv1p3eSUTo9sAdx6j/swlTJGneOVC0iFlAQKjGwA+VGK9fB+SW8
-	OVPwksaRz20/wb8n8SKAKFM+GAswWt8+rICrQn5x9RMSA8FTbWdk+tFsY1YpMuyk/sHk
-	wG3rZIrng+/eVImHl/rtmfmAx1GmPaFxRWJ2r0OwGfWR5z3b1uDiUVTcPgqMUuq27Gsu
-	3gPBBijb8JrmFeIUC2/IH4ZCQF79HxVEgsGRTpCQL7D+IWUzN/y6cejMV3SuoQ+IoaKa
-	CIow==
+	:cc; bh=SA9UI0xxcY9le5LGlEBG7Q2kCHZqiknvo5qMrzVYWfg=;
+	b=LDYG/apXz6yZDAazmpdEi1+gARpmg/QKfPYsWhpxKBhlK/VH0e0Z3ukiNcwF9eoga/
+	0ubIQDqg0U0koMHwCn2g5lbGMn1P8hAYU+nhnlmaPU+s/w2Vj9pQGOFtnPhKrnryEfHZ
+	pS99HCZLVOBbGIferCqAmKq9WqOvjS7XusMRrpYU0vAXaWTj+B/nGkvHHwESDPSbftP7
+	xv6CDADz/58BuInQXPxrc6mnCkxDsz0A2bqRoULNpJBKEphmvhcVuLJnnCrVEUrDntNl
+	ETF1VWirGQUH50pEWUFnok6+q8xA97MByA1xpLhssvVsJXE+fLhkwZxbqxSvS5kggu7f
+	jMbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=rKb6hwOc3q1bqZGPIIz91RxxEXaVg+w+G23NiMd1CJs=;
-	b=mWvoTXXoJ7AvB0CamMWVlWlUtus2NdG10TjS8J+MUfN98zzORc1VYrN95z3im3KBAi
-	Vld1QvSJloSnKfHEQs7tIEjkzVYPYLObBuHN0Kf/P2/HV2EXbfjpUqb06PZtCwlcKS5G
-	1BBnn868AGX2pnLJTnGwx04N6OjWDYaa8vLdtxf++i7n54dkxJ84tmuHdNquGWVgM0z6
-	g6P9NGUY9EZk1dmVPLfryMpQvLSS4d+W6oo3K8KLuOuqA76RuYndUOYuo9yV10CXIZQw
-	GDVX8JJ+MHIj3TmPZEXtc40mEIMScDqNz1Jpz3FjX/DsKiWBX81vjXaydBPuwOsCA/lF
-	WAkA==
-X-Gm-Message-State: APjAAAWy2vtHCJa9L2dfdL9RtvmjNSinGKjsfhqJC0W2ZSWBAKztR1B9
-	gB0Z2dr1G/LcoP+gPN1JbLJQqC4bbxtXaGO0kAo=
-X-Google-Smtp-Source: APXvYqwxNCmPxFTdAo3iSWz0Qo6DIa2WclGB0kNs026fPR2n91DQPhPt6JrnklwmJN6NGMlWTimwwvB8MVfvBbBr2mI=
-X-Received: by 2002:a05:620a:1407:: with SMTP id
-	d7mr83214963qkj.20.1560874113274; 
-	Tue, 18 Jun 2019 09:08:33 -0700 (PDT)
+	:message-id:subject:to:cc;
+	bh=SA9UI0xxcY9le5LGlEBG7Q2kCHZqiknvo5qMrzVYWfg=;
+	b=C+rz7E7yJ1xmZdik6kCXtHXyfcxjuFct4lXfKzcWa6m6EPKQx1my/L3lQYeX4/bolI
+	wIp1FSJr8AqH6bKq8AUflFK01YrcDeawyZHbNUDVh6j8UuaCu/kkMI3e0EOEZZvyWHTM
+	SsmC30Cd4WINE08TFXnOLPHuzvdNP4ekmgHTKhJbleDLd/YxndgUXihR78pX8/fdITWR
+	FFiPtIMDdU/wYeoxZYcdGUYlxi6P5t6aXtixSNF1VrBt8u77yz1gvHvmp1f8LL9j9PBW
+	1PBoh/O7jDH+DOJ7NmquVh2yVzkJtzANYP5cq4ewqnBQdYTrmuN9BTdfB2GqdfEyiOMw
+	YHMQ==
+X-Gm-Message-State: APjAAAWJ3gZY1Wex8Fzfvx9LEHNLaJILNcrm1+ijMJWSm7GFpPyfwx03
+	LznQX2pn679k8TMo9scUZk/MroYVIIJ2caJ+p30=
+X-Google-Smtp-Source: APXvYqwxWc1X7RaPILCKHBbb9ll4DEyCMjUcVGRMW9s1G5Tv+wZcT4gX/ytkEcB4u3GWfFXA0QYQ4nBYclutUkyUn6o=
+X-Received: by 2002:a0c:bd1d:: with SMTP id m29mr28330952qvg.181.1560874616347;
+	Tue, 18 Jun 2019 09:16:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAGni2MiauEboBBr0qsqn1jB57AQoEEaOw3wRoavnuQX8TJGtNA@mail.gmail.com>
-In-Reply-To: <CAGni2MiauEboBBr0qsqn1jB57AQoEEaOw3wRoavnuQX8TJGtNA@mail.gmail.com>
+References: <trinity-1bbd10a3-ee46-4746-90c7-0b5a49a62f26-1560772981350@3c-app-gmx-bs08>
+	<CAGAf8LyBsd9Ya+RV94FQj+19f5Um+AypitaAoO0pn5_w+rq+nA@mail.gmail.com>
+	<trinity-90f4bc6a-aa89-4bf8-aa92-72aec6a019e5-1560776407716@3c-app-gmx-bs08>
+	<CAGAf8LwnPTFedqXA6zwSF22bK_VPs2otSsVg5e=hDAXp+q5Csg@mail.gmail.com>
+	<trinity-fe27ef88-5231-4c98-92a3-47d5fb327d83-1560793656274@3c-app-gmx-bs55>
+In-Reply-To: <trinity-fe27ef88-5231-4c98-92a3-47d5fb327d83-1560793656274@3c-app-gmx-bs55>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 18 Jun 2019 09:08:06 -0700
-Message-ID: <CAMKF1so4oLnAugjsZ6PwUt-8xBLszbwy45dsgRH02S2y00aMXQ@mail.gmail.com>
-To: matthew stanger <stangerm2@gmail.com>
+Date: Tue, 18 Jun 2019 09:16:30 -0700
+Message-ID: <CAMKF1sqq0vxQUrayZzG02T8ciRe19JJ90-TkNy1Exa16Wz7vng@mail.gmail.com>
+To: Arno Steffens <star@gmx.li>
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: devshell env in warrior
+Subject: Re: cortexa9t2hf instead of cortexa9hf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,51 +74,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Jun 2019 16:08:35 -0000
+X-List-Received-Date: Tue, 18 Jun 2019 16:16:58 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 17, 2019 at 4:55 PM matthew stanger <stangerm2@gmail.com> wrote=
-:
+On Mon, Jun 17, 2019 at 10:48 AM Arno Steffens <star@gmx.li> wrote:
 >
-> I'm trying to figure out why when running devshell in Warrior CC/CFLAGS a=
-re not the same as do_compile for a recipe. For example.
-> devshell printenv yields:
-> CC=3Daarch64-poky-linux-gcc   -fuse-ld=3Dbfd -fmacro-prefix-map=3D/home/m=
-att/rdk_warrior/build/tmp/work/7271-poky-linux/brcm/18.3+AUTOINC+0a6fb7430f=
--0=3D/usr/src/debug/ursr/18.3+AUTOINC+0a6fb7430f-0 -fdebug-prefix-map=3D/ho=
-me/matt/rdk_warrior/build/tmp/work/7271-poky-linux/brcm/18.3+AUTOINC+0a6fb7=
-430f-0=3D/usr/src/debug/ursr/18.3+AUTOINC+0a6fb7430f-0 -fdebug-prefix-map=
-=3D/home/matt/rdk_warrior/build/tmp/work/7271-poky-linux/brcm/18.3+AUTOINC+=
-0a6fb7430f-0/recipe-sysroot=3D -fdebug-prefix-map=3D/home/matt/rdk_warrior/=
-build/tmp/work/7271-poky-linux/brcm/18.3+AUTOINC+0a6fb7430f-0/recipe-sysroo=
-t-native=3D  -fdebug-prefix-map=3D/home/matt/rdk_warrior/build/tmp/work-sha=
-red/tmobile-7271-kaon-mini/kernel-source=3D/usr/src/kernel
+> Thanks for explaining this.
+> I take some time to read about thumb/thumb2. The feedback is mixed. It seems to generate more compact code, but some say it speeds up, others it slows down because of reduced function set - and it can cause strange effects.
+> And mixing this causes time to switch processor mode. So, as I am not an expert in this and can't decide what ist best on per function base and speed is of highest priority, I think I better should use not thumb(2).
 >
-> do_compile() {
->     /usr/bin/printenv | sort > debug.log
-> }
-> yields...
-> CC=3Daarch64-poky-linux-gcc  -mcpu=3Dcortex-a53+crc+crypto -fstack-protec=
-tor-strong  -D_FORTIFY_SOURCE=3D2 -Wformat -Wformat-security -Werror=3Dform=
-at-security --sysroot=3D/home/matt/rdk_warrior/build/tmp/work/tmobile_7271_=
-kaon_mini-poky-linux/ursr/18.3+AUTOINC+0a6fb7430f-0/recipe-sysroot
+> So, do I get it right that with this cortexa9t2hf I just have the option to compile it for thumb2? But without using a dedicated compiler option it generates same "standard" arm code and the difference is just to adapt all the Makefiles for this suffix.
 >
-> This causes some very different behavior out of the makefile. The recipe =
-I"m working with has no do_configure, and only calls a makefile through do_=
-compile. No appends/prepends or custom functions in the recipe. This recipe=
- is for a lovely Broadcom driver/userspace glob and I'm trying to troublesh=
-oot it with x64 but not being able to get a correct working env makes life =
-hard. Any idea's of where I might be going wrong?
+> According to Martin I can get the previous setting by just set ARM_INSTRUCTION_SET to "arm" instead of "armv7a". Mh - I just afraid that I lose other kinds of optimisation. (I am just a user not an expert in arm architecture).
+> On the other hand for those like me it is better go the standard way. Once I am sure compiler results will not become worse (see above) I go for the pain and renaming my toolchain/makefiles/stuff.
 >
+> Thanks for you taking the time.
 
-Check that Makefiles are not overriding CC/CXX/LD etc. some old crufty
-Makefiles I have seen doing that, you might see something like
+While the gains/losses from using thumb2 ISA depends upon type of
+loads you have and nature of code, in general this is most commonly
+used ISA in linux distros, so most of the apps would have
+been used compiled with this and probably optimized for as well. I
+would advise that you do some bench-marking for your loads and then
+decide if using thumb2 ISA is right choice for you or not.
 
-CC =3D ${CROSS_COMPILE}gcc etc. which you should convert to weak defines
-e.g. CC ?=3D ....
+if you want to drop thumb2 you can set appropriate default tune in
+your machine config and that will do it
 
-> Cheers
+DEFAULTTUNE = "cortexa9hf-neon"
+
+
+> Arno
+>
+> > Hello Arno,
+> >
+> > Let me try to explain my point of view. Since here (my best guess) we
+> > have some asynchronous bitbake code which went South upon introducing
+> > T2 HW extension.
+> >
+> > Point [1]: as far as I understand arm, cortexa9t2hf is is just a
+> > superset of previous cortexa9hf (HW wise). NEON HW extension (NEON
+> > media coprocessor) exists in both of them. In other words:
+> > cortexa9t2hf = cortexa9hf HW + T2 HW extension.
+> >
+> > Point [2]:
+> > > bitbake gives me in 2.5:
+> > > TUNE_FEATURES        = "arm armv7a vfp thumb neon callconvention-hard cortexa9"
+> > > TARGET_FPU           = "hard"
+> > >
+> > > and in 2.7:
+> > > TUNE_FEATURES        = "arm vfp cortexa9 neon thumb callconvention-hard"
+> > > TARGET_FPU           = "hard"
+> >
+> > These two lines are the same: you are able to use 32b arm mode, 16bit
+> > thumb mode, using armv7 HW with neon HW extension, and using HW FP
+> > extension as well. The Cortex in both cases is A9.
+> >
+> > I expect that somebody somewhere in bitbake version 1.42 - 100% sure
+> > (since 2.5/Sumo uses bitbake 1.38) dropped "armv7a" as TUNE FEATURE,
+> > and I have no idea if this is done intentionally or not.
+> >
+> > Because of that I copied Alex and Ross to CC: into email, so they
+> > should unveil this mystery (I would prefer "armv7" to stay in bitbake
+> > 1.42, since A8 and A9 belongs to armv7, A15 belongs to armv8 (IIRC).
+> >
+> > Bottom line: nothing to be done by you, Arno, seems that bitbake 1.42
+> > should return "armv7" as TUNE FEATURE.
+> >
+> > Best Regards,
+> > Zoran
+> > _______
+> >
+> >
+> > On Mon, Jun 17, 2019 at 3:00 PM Arno Steffens <star@gmx.li> wrote:
+> > >
+> > > Hello Zoran,
+> > > thanks. As far as I understand is thumb2 another mode of coding, that might create more compact code.
+> > > But I want to keep all compatible to my previous tool-chain and settings.
+> > > The only file where I can found this "cortexa9t2hf" is
+> > > ./meta/conf/machine/include/tune-cortexa9.inc
+> > > but I can't see how I can control Yocto to generate "cortexa9hf-neon" as before.
+> > > Or have I been wrong the time before?
+> > >
+> > > bitbake gives me in 2.5:
+> > >
+> > > TUNE_FEATURES        = "arm armv7a vfp thumb neon callconvention-hard cortexa9"
+> > > TARGET_FPU           = "hard"
+> > >
+> > > and in 2.7:
+> > > TUNE_FEATURES        = "arm vfp cortexa9 neon thumb callconvention-hard"
+> > > TARGET_FPU           = "hard"
+> > >
+> > > so armv7a seem to be missing. In terms of thumb both is same. But is that the reason? Where to set it?
+> > > Arno
+> > >
+> > > >
+> > > > Hello Arno,
+> > > >
+> > > > Your question, per say, has little to do with YOCTO forum. But I'll
+> > > > try (as my best) to answer your question.
+> > > >
+> > > > Cortexa9hf should be armv7 A9 Hard Floating (it contains HW FP unit).
+> > > >
+> > > > Cortexa9t2hf is by analogy armv7 A9 T2 Hard Floating. Now, the
+> > > > question is what is T2? T2 is addition to the previous architecture
+> > > > Cortexa9hf, and addition is Thumb-2 mode.
+> > > >
+> > > > Hope this helps,
+> > > >
+> > > > Zoran
+> > > > _______
+> > > >
+> > > > On Mon, Jun 17, 2019 at 2:03 PM Arno Steffens <star@gmx.li> wrote:
+> > > > >
+> > > > > I switched from Yocto 2.5 to 2.7 and recognised a new architetcure name.
+> > > > > Instead of cortexa9hf it is now build for cortexa9t2hf? Did I do something wrong or what exactly does this t2 mean?
+> > > > > Target system is a Zynq7020 system.
+> > > > > --
+> > > > > _______________________________________________
+> > > > > yocto mailing list
+> > > > > yocto@yoctoproject.org
+> > > > > https://lists.yoctoproject.org/listinfo/yocto
+> > > >
+> >
 > --
 > _______________________________________________
 > yocto mailing list
