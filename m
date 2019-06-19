@@ -1,66 +1,58 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <vineela.tummalapalli@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CB32BE00D00; Wed, 19 Jun 2019 13:03:03 -0700 (PDT)
+	id 0F05EE00DD3; Wed, 19 Jun 2019 15:18:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.182 listed in list.dnswl.org]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com
-	[209.85.160.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C92CAE00AD5
-	for <yocto@yoctoproject.org>; Wed, 19 Jun 2019 13:03:02 -0700 (PDT)
-Received: by mail-qt1-f182.google.com with SMTP id i34so546970qta.6
-	for <yocto@yoctoproject.org>; Wed, 19 Jun 2019 13:03:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=SorwOUzJTVHWkvul/TAABQ4n6+fhPfqoTPLSOecq2Bk=;
-	b=ba05LV/Tu1giYFxFbvvF33E4khGZ3XKp1KIiz7yZ+zc5bm2t3494wMk5G8pCskAmP3
-	S5Bzcm1RhtgCzL/ECTJYu16Ld8tAYOvaqfCxgqvwoy5AQ8Ng7HSg8Hgf9xAwh3Xvu4Rv
-	X33PH3AFlwZXR/DL7Tn3prKK5banKVXcQBd2H5YeD4gExVl2vkdITrLDn9NQJ25w2QFL
-	BMDKZrkCvsfZpnZFcsBnTFgB6ex8oMlrw1mzQliMjclwWuGRJk1SbFBCQxQccrIlI3WR
-	xy/DLFNOJxM1DhPBsxW9ipv0QIx/3Jo+Jj+n2OzWCcl/Fj4hMDIbLUSiJcSkg6b18h+m
-	8E5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=SorwOUzJTVHWkvul/TAABQ4n6+fhPfqoTPLSOecq2Bk=;
-	b=e2PUtd/kkwumgalIy+HgHOj4X0fdBtrdYI0/5kc9yBEJPisoC0WeTTbPguUk8fI+6K
-	rfIBqWjMDgzUdWJzrkb0IdxNJm16XbeVjg/7fUHjAbZQJJK4QmQIPW0P/Yra+9WCu4wf
-	G6eXei2TRU7JUGq5YqkrobOkwVngtcbXMXNg6dQUK0GMYec0koN7RMFctNNJ17S0OWNY
-	axXbm7iwb+nFgXj6v+8oEZGLC7XBvIfLgln6+LzU9Hay0PsLMHD3lFFZT6T2N5m9mDiN
-	mjUvHrEcUYQyBnRsdTR8yoS2DhDK6eLd5bmu0krVX0yyAV+1QTL8paTPDTZ244q57d8Q
-	/zIQ==
-X-Gm-Message-State: APjAAAWN4CpeiQBpm8j26EygPQjVivgLpnVylCr+BF+p48pvGPePN7ds
-	wQp7SrlJwHJiD+DCZ8sHb4YYRpbXEBpFJqpS/bE=
-X-Google-Smtp-Source: APXvYqy34nnU1Xn/R/WuXNeDbVB61ZoDjD6k9mSxyiEVtbk3QPJfm5QWFp1HO4IpG37brIVTBRTb1Ih05o5XFuZafpU=
-X-Received: by 2002:a0c:b0ce:: with SMTP id p14mr35550905qvc.51.1560974581898; 
-	Wed, 19 Jun 2019 13:03:01 -0700 (PDT)
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C2ECE00D33
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2019 15:18:11 -0700 (PDT)
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+	by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	19 Jun 2019 15:18:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.63,394,1557212400"; 
+	d="txt'?scan'208,217";a="335316068"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by orsmga005.jf.intel.com with ESMTP; 19 Jun 2019 15:18:10 -0700
+Received: from orsmsx112.amr.corp.intel.com (10.22.240.13) by
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.3.439.0; Wed, 19 Jun 2019 15:18:09 -0700
+Received: from orsmsx107.amr.corp.intel.com ([169.254.1.18]) by
+	ORSMSX112.amr.corp.intel.com ([169.254.3.232]) with mapi id
+	14.03.0439.000; Wed, 19 Jun 2019 15:18:09 -0700
+From: "Tummalapalli, Vineela" <vineela.tummalapalli@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto-announce] [ANNOUNCEMENT] Milestone 1 for Yocto Project
+	2.8 (yocto-2.8_M1) now available
+Thread-Index: AdUm3iyH3e+reKodTQ2xE5yZm4iDOwAAw93gAAF0K1A=
+Date: Wed, 19 Jun 2019 22:18:09 +0000
+Message-ID: <363DC7214F94884BBF80916755E7D655206E057D@ORSMSX107.amr.corp.intel.com>
+References: <363DC7214F94884BBF80916755E7D655206E046A@ORSMSX107.amr.corp.intel.com>
+	<363DC7214F94884BBF80916755E7D655206E04E7@ORSMSX107.amr.corp.intel.com>
+In-Reply-To: <363DC7214F94884BBF80916755E7D655206E04E7@ORSMSX107.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNjQyNmJmYWUtMzdhYS00YTJmLThjNzEtYmFhZWYxYzlmMDY3IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiT3FIdjUwM1UxYjdjbE1lb2Y5ZFpVazhXQWllUnJIVUZwTjVFdmRDVmd6V2FZVmFhU1wvWjZOdmZuUE42TjlZemgifQ==
+x-ctpclassification: CTP_NT
+dlp-product: dlpe-windows
+dlp-version: 11.0.600.7
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-References: <CAA42Xj5nygLnFp_ojTP5J59czFuG7f82c6bc_SLax+4+Ot2QVg@mail.gmail.com>
-	<CAA42Xj5pNmu1BSVAd2FMTJvwO1fSbtckDfp+EOP9ELikG_=POw@mail.gmail.com>
-In-Reply-To: <CAA42Xj5pNmu1BSVAd2FMTJvwO1fSbtckDfp+EOP9ELikG_=POw@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 19 Jun 2019 13:02:51 -0700
-Message-ID: <CAMKF1spO50-WtUOinnWO9wSqohTUXjBng-z_mFVtf0mbwbRP_A@mail.gmail.com>
-To: =?UTF-8?B?SsOpcsOpbXkgU2luZ3k=?= <jeremy.singy@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Can't build SDK while shrinking shadow tools
+Subject: FW: [yocto-announce] [ANNOUNCEMENT] Milestone 1 for Yocto Project 2.8 (yocto-2.8_M1) now available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,197 +64,231 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jun 2019 20:03:03 -0000
-Content-Type: multipart/alternative; boundary="0000000000007520a4058bb2b78e"
+X-List-Received-Date: Wed, 19 Jun 2019 22:18:12 -0000
+X-Groupsio-MsgNum: 45653
+Content-Language: en-US
+Content-Type: multipart/mixed;
+	boundary="_004_363DC7214F94884BBF80916755E7D655206E057DORSMSX107amrcor_"
 
---0000000000007520a4058bb2b78e
-Content-Type: text/plain; charset="UTF-8"
+--_004_363DC7214F94884BBF80916755E7D655206E057DORSMSX107amrcor_
+Content-Type: multipart/alternative;
+	boundary="_000_363DC7214F94884BBF80916755E7D655206E057DORSMSX107amrcor_"
+
+--_000_363DC7214F94884BBF80916755E7D655206E057DORSMSX107amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jun 14, 2019 at 2:16 AM J=C3=A9r=C3=A9my Singy <jeremy.singy@gmail.=
-com> wrote:
 
-> Hi,
->
-> I'm facing a problem by trying to shrink the size of our root filesystem.
-> To avoid installing some unneeded tools such as adduser, groupadd,
-> nologin, etc. I just created as usual a shadow_%.bbappend in our layer
-> which removes the content using do_install_append:
->
->     # do not install alternatives
->     ALTERNATIVE_${PN} =3D ""
->     ALTERNATIVE_${PN}-base =3D ""
+From: yocto-announce-bounces@yoctoproject.org [mailto:yocto-announce-bounce=
+s@yoctoproject.org] On Behalf Of Tummalapalli, Vineela
+Sent: Wednesday, June 19, 2019 2:35 PM
+To: yocto-announce@yoctoproject.org; yocto@yocoproject.org
+Subject: Re: [yocto-announce] [ANNOUNCEMENT] Milestone 1 for Yocto Project =
+2.8 (yocto-2.8_M1) now available
+
+Hello,
 
 
-This is most probably the reason for your issue
-You may want to remove the alternatives which you are deleting but not
-everything
+We are pleased to announce the second milestone release for Yocto Project 2=
+.8 (yocto-2.8_M1) is available for download now.
 
->
->
->     # remove unwanted files on target
->     do_install_append_class-target () {
->       rm -r ${D}${base_bindir}
->       rm -r ${D}${base_sbindir}
->       rm -r ${D}${bindir}
->       rm -r ${D}${sbindir}
->     }
->
-> Building an image with this works well and I got rid of the unwanted
-> tools but I get an error whenever I try to build the SDK for this image
-> with do_populate_sdk:
->
->     WARNING: ceres-image-1.0-r0 do_populate_sdk:
-> nativesdk-util-linux.postinst returned 1, marking as unpacked only,
-> configuration required on target.
->     ERROR: ceres-image-1.0-r0 do_populate_sdk: Postinstall scriptlets
-> of ['nativesdk-util-linux'] have failed. If the intention is to defer
-> them to first boot,
->     then please place them into pkg_postinst_ontarget_${PN} ().
->     Deferring to first boot via 'exit 1' is no longer supported.
->     Details of the failure are in
->
-> /home/chsingj/yocto-thud/tmp/work/ceres_con-oe-linux-gnueabi/ceres-image/=
-1.0-r0/temp/log.do_populate_sdk.
->     ERROR: ceres-image-1.0-r0 do_populate_sdk: Function failed:
-> do_populate_sdk
->     ERROR: Logfile of failure stored in:
->
-> /home/chsingj/yocto-thud/tmp/work/ceres_con-oe-linux-gnueabi/ceres-image/=
-1.0-r0/temp/log.do_populate_sdk.28331
->     ERROR: Task
-> (/home/chsingj/meta-delta/recipes-core/images/ceres-image.bb:
-> do_populate_sdk)
-> failed with exit code '1'
->     NOTE: Tasks Summary: Attempted 2730 tasks of which 2729 didn't
-> need to be rerun and 1 failed.
->
-> The log file shows an error with update-alternatives (probably a
-> failing ln call):
->
->     update-alternatives: Error: not linking
->
-> [BUILDPATH]/tmp/work/ceres_con-oe-linux-gnueabi/ceres-image/1.0-r0/sdk/im=
-age/opt/ceres/sdk-2019.05-r1/sysroots/x86_64-delta-linux/sbin/nologin
-> to
-> /opt/ceres/sdk-2019.05-r1/sysroots/x86_64-delta-linux/sbin/nologin.util-l=
-inux
-> since
-> [BUILDPATH]/tmp/work/ceres_con-oe-linux-gnueabi/ceres-image/1.0-r0/sdk/im=
-age/opt/ceres/sdk-2019.05-r1/sysroots/x86_64-delta-linux/sbin/nologin
-> exists and is not a link
->
-> If I remove the bbappend, the SDK builds fine but of course my image
-> contains the unwanted files. I tried many other recipe tweaks but I
-> can't get over some build errors. I'd like to avoid a solution using
-> ROOTFS_POSTPROCESS_COMMAND in the image recipe as I would have to
-> explicitely list all shadow tools and it would blow up my recipe. Is
-> there any solution here? Is it maybe a bug that can be fixed? Thanks!
->
-> Regards,
-> Jeremy
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
 
---0000000000007520a4058bb2b78e
-Content-Type: text/html; charset="UTF-8"
+
+Download:
+
+
+
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-2.8_M1/
+
+
+
+bitbake: c4d90890547af642e99cc541af3415df3559563e
+
+meta-gplv2: 168a5070bdf3bc45edb5bf2a1add9b7c081f5b64
+
+meta-intel: c941d896c08d6d83694ba0af1fdf4f4dcb625e9f
+
+meta-mingw: d17724b0eac76792a49e56213cba74e32edba48f
+
+oecore: 86266dfcd70b8e3435d267538c3e6e4d69be829e
+
+poky: 9910a3631ce953b8dd8f3d57d6e122c7fd8cb462
+
+
+
+Test report:
+
+
+
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-2.8_M1/te=
+streport.txt
+
+
+
+Thank you.
+
+
+
+Vineela Tummalapalli
+
+Yocto Project Build and Release
+Vineela.tummalapalli@intel.com<mailto:Vineela.tummalapalli@intel.com>
+
+--_000_363DC7214F94884BBF80916755E7D655206E057DORSMSX107amrcor_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Fri, Jun 14, 2019 at 2:16 AM J=C3=A9r=C3=A9my Singy &lt;=
-<a href=3D"mailto:jeremy.singy@gmail.com">jeremy.singy@gmail.com</a>&gt; wr=
-ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
-border-left:1px #ccc solid;padding-left:1ex">Hi,<br>
-<br>
-I&#39;m facing a problem by trying to shrink the size of our root filesyste=
-m.<br>
-To avoid installing some unneeded tools such as adduser, groupadd,<br>
-nologin, etc. I just created as usual a shadow_%.bbappend in our layer<br>
-which removes the content using do_install_append:<br>
-<br>
-=C2=A0 =C2=A0 # do not install alternatives<br>
-=C2=A0 =C2=A0 ALTERNATIVE_${PN} =3D &quot;&quot;<br>
-=C2=A0 =C2=A0 ALTERNATIVE_${PN}-base =3D &quot;&quot;</blockquote><div dir=
-=3D"auto"><br></div><div dir=3D"auto">This is most probably the reason for =
-your issue=C2=A0</div><div dir=3D"auto">You may want to remove the alternat=
-ives which you are deleting but not everything=C2=A0</div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
-ing-left:1ex"><br>
-<br>
-=C2=A0 =C2=A0 # remove unwanted files on target<br>
-=C2=A0 =C2=A0 do_install_append_class-target () {<br>
-=C2=A0 =C2=A0 =C2=A0 rm -r ${D}${base_bindir}<br>
-=C2=A0 =C2=A0 =C2=A0 rm -r ${D}${base_sbindir}<br>
-=C2=A0 =C2=A0 =C2=A0 rm -r ${D}${bindir}<br>
-=C2=A0 =C2=A0 =C2=A0 rm -r ${D}${sbindir}<br>
-=C2=A0 =C2=A0 }<br>
-<br>
-Building an image with this works well and I got rid of the unwanted<br>
-tools but I get an error whenever I try to build the SDK for this image<br>
-with do_populate_sdk:<br>
-<br>
-=C2=A0 =C2=A0 WARNING: ceres-image-1.0-r0 do_populate_sdk:<br>
-nativesdk-util-linux.postinst returned 1, marking as unpacked only,<br>
-configuration required on target.<br>
-=C2=A0 =C2=A0 ERROR: ceres-image-1.0-r0 do_populate_sdk: Postinstall script=
-lets<br>
-of [&#39;nativesdk-util-linux&#39;] have failed. If the intention is to def=
-er<br>
-them to first boot,<br>
-=C2=A0 =C2=A0 then please place them into pkg_postinst_ontarget_${PN} ().<b=
-r>
-=C2=A0 =C2=A0 Deferring to first boot via &#39;exit 1&#39; is no longer sup=
-ported.<br>
-=C2=A0 =C2=A0 Details of the failure are in<br>
-/home/chsingj/yocto-thud/tmp/work/ceres_con-oe-linux-gnueabi/ceres-image/1.=
-0-r0/temp/log.do_populate_sdk.<br>
-=C2=A0 =C2=A0 ERROR: ceres-image-1.0-r0 do_populate_sdk: Function failed: d=
-o_populate_sdk<br>
-=C2=A0 =C2=A0 ERROR: Logfile of failure stored in:<br>
-/home/chsingj/yocto-thud/tmp/work/ceres_con-oe-linux-gnueabi/ceres-image/1.=
-0-r0/temp/log.do_populate_sdk.28331<br>
-=C2=A0 =C2=A0 ERROR: Task<br>
-(/home/chsingj/meta-delta/recipes-core/images/ceres-image.bb:do_populate_sd=
-k)<br>
-failed with exit code &#39;1&#39;<br>
-=C2=A0 =C2=A0 NOTE: Tasks Summary: Attempted 2730 tasks of which 2729 didn&=
-#39;t<br>
-need to be rerun and 1 failed.<br>
-<br>
-The log file shows an error with update-alternatives (probably a<br>
-failing ln call):<br>
-<br>
-=C2=A0 =C2=A0 update-alternatives: Error: not linking<br>
-[BUILDPATH]/tmp/work/ceres_con-oe-linux-gnueabi/ceres-image/1.0-r0/sdk/imag=
-e/opt/ceres/sdk-2019.05-r1/sysroots/x86_64-delta-linux/sbin/nologin<br>
-to /opt/ceres/sdk-2019.05-r1/sysroots/x86_64-delta-linux/sbin/nologin.util-=
-linux<br>
-since [BUILDPATH]/tmp/work/ceres_con-oe-linux-gnueabi/ceres-image/1.0-r0/sd=
-k/image/opt/ceres/sdk-2019.05-r1/sysroots/x86_64-delta-linux/sbin/nologin<b=
-r>
-exists and is not a link<br>
-<br>
-If I remove the bbappend, the SDK builds fine but of course my image<br>
-contains the unwanted files. I tried many other recipe tweaks but I<br>
-can&#39;t get over some build errors. I&#39;d like to avoid a solution usin=
-g<br>
-ROOTFS_POSTPROCESS_COMMAND in the image recipe as I would have to<br>
-explicitely list all shadow tools and it would blow up my recipe. Is<br>
-there any solution here? Is it maybe a bug that can be fixed? Thanks!<br>
-<br>
-Regards,<br>
-Jeremy<br>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:"Courier New";}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.EmailStyle20
+	{mso-style-type:personal;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+span.EmailStyle21
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><a name=3D"_MailEndCompose"><span style=3D"color:#1F=
+497D"><o:p>&nbsp;</o:p></span></a></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><a name=3D"_____replyseparator"></a><b>From:</b> yoc=
+to-announce-bounces@yoctoproject.org [mailto:yocto-announce-bounces@yoctopr=
+oject.org]
+<b>On Behalf Of </b>Tummalapalli, Vineela<br>
+<b>Sent:</b> Wednesday, June 19, 2019 2:35 PM<br>
+<b>To:</b> yocto-announce@yoctoproject.org; yocto@yocoproject.org<br>
+<b>Subject:</b> Re: [yocto-announce] [ANNOUNCEMENT] Milestone 1 for Yocto P=
+roject 2.8 (yocto-2.8_M1) now available<o:p></o:p></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;;color:black">Hello,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<pre><span style=3D"color:black">We are pleased to announce the second mile=
+stone release for Yocto Project 2.</span><span style=3D"color:#1F497D">8</s=
+pan><span style=3D"color:black"> (yocto-2.</span><span style=3D"color:#1F49=
+7D">8</span><span style=3D"color:black">_M</span><span style=3D"color:#1F49=
+7D">1</span><span style=3D"color:black">) is available for download now.<o:=
+p></o:p></span></pre>
+<pre><span style=3D"color:black"><o:p>&nbsp;</o:p></span></pre>
+<pre><span style=3D"color:black">Download:<o:p></o:p></span></pre>
+<pre><span style=3D"color:black"><o:p>&nbsp;</o:p></span></pre>
+<pre><span style=3D"color:black"><a href=3D"http://downloads.yoctoproject.o=
+rg/releases/yocto/milestones/yocto-2.8_M1/">http://downloads.yoctoproject.o=
+rg/releases/yocto/milestones/yocto-2.8_M1/</a><o:p></o:p></span></pre>
+<pre><span style=3D"color:black"><o:p>&nbsp;</o:p></span></pre>
+<pre><span style=3D"color:black">bitbake: c4d90890547af642e99cc541af3415df3=
+559563e<o:p></o:p></span></pre>
+<pre><span style=3D"color:black">meta-gplv2: 168a5070bdf3bc45edb5bf2a1add9b=
+7c081f5b64<o:p></o:p></span></pre>
+<pre><span style=3D"color:black">meta-intel: c941d896c08d6d83694ba0af1fdf4f=
+4dcb625e9f<o:p></o:p></span></pre>
+<pre><span style=3D"color:black">meta-mingw: d17724b0eac76792a49e56213cba74=
+e32edba48f<o:p></o:p></span></pre>
+<pre><span style=3D"color:black">oecore: 86266dfcd70b8e3435d267538c3e6e4d69=
+be829e<o:p></o:p></span></pre>
+<pre><span style=3D"color:black">poky: 9910a3631ce953b8dd8f3d57d6e122c7fd8c=
+b462<o:p></o:p></span></pre>
+<pre><span style=3D"color:black"><o:p>&nbsp;</o:p></span></pre>
+<pre><span style=3D"color:black">Test report:<o:p></o:p></span></pre>
+<pre><span style=3D"color:black"><o:p>&nbsp;</o:p></span></pre>
+<pre><a href=3D"http://downloads.yoctoproject.org/releases/yocto/milestones=
+/yocto-2.8_M1/testreport.txt">http://downloads.yoctoproject.org/releases/yo=
+cto/milestones/yocto-2.8_M1/testreport.txt</a><o:p></o:p></pre>
+<pre><span style=3D"color:black"><o:p>&nbsp;</o:p></span></pre>
+<pre><span style=3D"color:black">Thank you.<o:p></o:p></span></pre>
+<pre><span style=3D"color:black"><o:p>&nbsp;</o:p></span></pre>
+<pre><span style=3D"color:black">Vineela Tummalapalli<o:p></o:p></span></pr=
+e>
+<pre><span style=3D"color:black">Yocto Project Build and Release<o:p></o:p>=
+</span></pre>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
+urier New&quot;;color:black"><a href=3D"mailto:Vineela.tummalapalli@intel.c=
+om"><span style=3D"color:black;text-decoration:none">Vineela.tummalapalli@i=
+ntel.com</span></a>
+<o:p></o:p></span></p>
+</div>
+</body>
+</html>
 
---0000000000007520a4058bb2b78e--
+--_000_363DC7214F94884BBF80916755E7D655206E057DORSMSX107amrcor_--
+
+--_004_363DC7214F94884BBF80916755E7D655206E057DORSMSX107amrcor_
+Content-Type: text/plain; name="ATT00001.txt"
+Content-Description: ATT00001.txt
+Content-Disposition: attachment; filename="ATT00001.txt"; size=172;
+	creation-date="Wed, 19 Jun 2019 21:35:24 GMT";
+	modification-date="Wed, 19 Jun 2019 21:35:24 GMT"
+Content-ID: <8E66892B675EDA4DB1DF243DC044E944@intel.com>
+Content-Transfer-Encoding: base64
+
+LS0gDQpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KeW9j
+dG8tYW5ub3VuY2UgbWFpbGluZyBsaXN0DQp5b2N0by1hbm5vdW5jZUB5b2N0b3Byb2plY3Qub3Jn
+DQpodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8tYW5ub3VuY2UN
+Cg==
+
+--_004_363DC7214F94884BBF80916755E7D655206E057DORSMSX107amrcor_--
