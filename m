@@ -1,68 +1,39 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <Randy.MacLeod@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1B3EE00DB7; Wed, 19 Jun 2019 07:43:18 -0700 (PDT)
+	id 75104E00DB7; Wed, 19 Jun 2019 10:50:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.66 listed in list.dnswl.org]
-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com
-	[209.85.128.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25598E00DA7
-	for <yocto@yoctoproject.org>; Wed, 19 Jun 2019 07:43:17 -0700 (PDT)
-Received: by mail-wm1-f66.google.com with SMTP id g135so2111687wme.4
-	for <yocto@yoctoproject.org>; Wed, 19 Jun 2019 07:43:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-	:mime-version:content-transfer-encoding;
-	bh=dLgNKCU860XuGfF+ASNjUGaZzkF7Y3HOZ09KGabcNBw=;
-	b=eEnRSkTYb5Pe65MtnVpTDlOTSA565qTqvKm4YxI/4/SJ/AAApmuuG5J5HxO5aQI4m3
-	pK1am5eNEMahZBtyJOJBOAngBcOV4evU9VK0h7dTJzQ84fh2VbdMtYdqHrM8OrEvu+Wu
-	zMSxxTJH+E3o7SahpG6wSvsFqCvnkGlcwLI7g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=dLgNKCU860XuGfF+ASNjUGaZzkF7Y3HOZ09KGabcNBw=;
-	b=n1UiRf3wi+ilDuE5q6PmIBKSbhG5uxx40SCBYuOgS0pgj2Ej45hYMIVZ16jYeOi2pB
-	xnaxFAl0vjB2axM8IA50aleL6olJifSZ5x99mnTnzxn0OdXQBd6L6fu65tQiXQ3emllm
-	3Wnzukur6gvsCJxMKZZ0jKGT0pBsc3SV4tmGMuKxoiW1PaSvCOhV8stFVgofR98hpfl7
-	9HuJUWQ9+fujhr/owNIUsPdvhe2PiDjBRYnX15jz6nLsB2gtMJxm80u38cZlte2+76ho
-	4AmI/bld8nFjMZDbpsLoB/qSgEozo4wyjEzY9TYDGVBFJzwZB53oayKYzgzlMWP7F67k
-	QH2g==
-X-Gm-Message-State: APjAAAU7N1q8d8614MAmYvys++RLUrc2vwMaW6LhhXTEbdY3HATOLcd5
-	K4F5hFUM94YkIW4D+cGmvDk6lJ1THYk=
-X-Google-Smtp-Source: APXvYqySFTLQ/xUlkUR007CxXP36sXPTwVXK1muaAqGwjX+va8i8UCThmvaHYydr8lvIpTI4N5U7aA==
-X-Received: by 2002:a1c:9a53:: with SMTP id c80mr8247474wme.173.1560955397169; 
-	Wed, 19 Jun 2019 07:43:17 -0700 (PDT)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	g11sm15710392wru.24.2019.06.19.07.43.15
-	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Wed, 19 Jun 2019 07:43:15 -0700 (PDT)
-Message-ID: <9c91416162466b6f8c7990804a9fd9c6689ad131.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: changqing.li@windriver.com, yocto@yoctoproject.org
-Date: Wed, 19 Jun 2019 15:43:14 +0100
-In-Reply-To: <1556607386-98960-2-git-send-email-changqing.li@windriver.com>
-References: <b36da33b-df9e-2991-5444-cd45a4c3e2d1@windriver.com>
-	<1556607386-98960-1-git-send-email-changqing.li@windriver.com>
-	<1556607386-98960-2-git-send-email-changqing.li@windriver.com>
-User-Agent: Evolution 3.32.2-1 
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51BD8E00DA7
+	for <yocto@yoctoproject.org>; Wed, 19 Jun 2019 10:50:00 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x5JHnvri013714
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 19 Jun 2019 10:49:57 -0700 (PDT)
+Received: from [172.25.44.4] (172.25.44.4) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.439.0;
+	Wed, 19 Jun 2019 10:49:56 -0700
+To: <yocto@yoctoproject.org>, <anibal.limon@linaro.org>
+References: <20190613223928.14424-1-Randy.MacLeod@windriver.com>
+	<20190614144853.25839-1-Randy.MacLeod@windriver.com>
+	<20190614144853.25839-5-Randy.MacLeod@windriver.com>
+From: Randy MacLeod <randy.macleod@windriver.com>
+Message-ID: <98784449-a7d4-1015-2918-600e9c6f2c1c@windriver.com>
+Date: Wed, 19 Jun 2019 13:49:43 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.0
 MIME-Version: 1.0
-Subject: Re: [update-rc.d][PATCH V3] update-rc.d: support enable/disable options
+In-Reply-To: <20190614144853.25839-5-Randy.MacLeod@windriver.com>
+X-Originating-IP: [172.25.44.4]
+Subject: Re: [ptest-runner][PATCH v2 4/4] utils: ensure child can be session leader
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,31 +45,245 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Jun 2019 14:43:18 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 19 Jun 2019 17:50:02 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
 
-On Tue, 2019-04-30 at 14:56 +0800, changqing.li@windriver.com wrote:
-> From: Changqing Li <changqing.li@windriver.com>
+On 6/14/19 10:48 AM, Randy MacLeod wrote:
+> When running the run-execscript bash ptest as a user rather than root, a warning:
+>    bash: cannot set terminal process group (16036): Inappropriate ioctl for device
+>    bash: no job control in this shell
+> contaminates the bash log files causing the test to fail. This happens only
+> when run under ptest-runner and not when interactively testing!
 > 
-> Add support of enable/disable options, refer
-> https://manpages.debian.org/wheezy/sysv-rc/update-rc.d.8.en.html
+> The changes made to fix this include:
+> 1. Get the process group id (pgid) before forking,
+> 2. Set the pgid in both the parent and child to avoid a race,
+> 3. Find, open and set permission on the child tty, and
+> 4. Allow the child to attach to controlling tty.
 > 
-> With support of these options, the usr can never change an existing
-> configuration even after upgrading a package. The program will only
-> install links if none are present, otherwise, it will keep
-> the previous configuration.
-> 
-> preinst in update-rc.d.bbclass will delete all the links under
-> rcrunlevel.d, this behavior now conflicts with enable/disable
-> options. so remove preinst from the update-rc.d.bbclass
-> 
-> [Yocto 12955]
-> 
-> Signed-off-by: Changqing Li <changqing.li@windriver.com>
+> Also add '-lutil' to Makefile. This lib is from libc and provides openpty.
 
-Merged, thanks, sorry about the delay.
 
-Richard
+Hmmm, I was making the code compile cleanly under clang using
+   -Weverything
+when I noticed:
 
+1. the 'make check' tests. They still work fine.
+2. The './ptest-runner -d tests/data -t 1' tests
+    which now generate loads of error like:
+     ERROR: Unable to detach from controlling tty, Inappropriate ioctl 
+for device
+
+so while this change fixed the bash-ptest, the ptest-runner self-test
+it did something wrong.... Ah, I'm calling:
+    ioctl(0, TIOCNOTTY) == -1)
+repeatedly in the parent so that's what's generating the extra logs.
+Fixed locally and I'll send a patch but it's not urgent. Phew! :)
+
+Anibal,
+
+If you could reply to explain your plans for Richard's patches
+that would help me figure out when to send the clang warning clean-ups
+commits and what commit to base my work on.
+
+
+../Randy
+
+> 
+> Signed-off-by: Sakib Sajal <sakib.sajal@windriver.com>
+> Signed-off-by: Randy MacLeod <Randy.MacLeod@windriver.com>
+> ---
+>   Makefile |   2 +-
+>   utils.c  | 102 +++++++++++++++++++++++++++++++++++++++++++++++++------
+>   2 files changed, 92 insertions(+), 12 deletions(-)
+> 
+> diff --git a/Makefile b/Makefile
+> index 1bde7be..439eb79 100644
+> --- a/Makefile
+> +++ b/Makefile
+> @@ -29,7 +29,7 @@ TEST_DATA=$(shell echo `pwd`/tests/data)
+>   all: $(SOURCES) $(EXECUTABLE)
+>   
+>   $(EXECUTABLE): $(OBJECTS)
+> -	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
+> +	$(CC) $(LDFLAGS) $(OBJECTS) -lutil -o $@
+>   
+>   tests: $(TEST_SOURCES) $(TEST_EXECUTABLE)
+>   
+> diff --git a/utils.c b/utils.c
+> index ad737c2..f11ce39 100644
+> --- a/utils.c
+> +++ b/utils.c
+> @@ -1,5 +1,6 @@
+>   /**
+>    * Copyright (c) 2016 Intel Corporation
+> + * Copyright (C) 2019 Wind River Systems, Inc.
+>    *
+>    * This program is free software; you can redistribute it and/or
+>    * modify it under the terms of the GNU General Public License
+> @@ -22,23 +23,27 @@
+>    */
+>   
+>   #define _GNU_SOURCE
+> +
+>   #include <stdio.h>
+>   
+> +#include <dirent.h>
+> +#include <errno.h>
+> +#include <fcntl.h>
+> +#include <grp.h>
+>   #include <libgen.h>
+> -#include <signal.h>
+>   #include <poll.h>
+> -#include <fcntl.h>
+> +#include <pty.h>
+> +#include <signal.h>
+> +#include <stdlib.h>
+> +#include <string.h>
+>   #include <time.h>
+> -#include <dirent.h>
+> +#include <unistd.h>
+> +
+> +#include <sys/ioctl.h>
+>   #include <sys/resource.h>
+> +#include <sys/stat.h>
+>   #include <sys/types.h>
+>   #include <sys/wait.h>
+> -#include <sys/stat.h>
+> -#include <unistd.h>
+> -#include <string.h>
+> -#include <stdlib.h>
+> -
+> -#include <errno.h>
+>   
+>   #include "ptest_list.h"
+>   #include "utils.h"
+> @@ -346,6 +351,53 @@ wait_child(const char *ptest_dir, const char *run_ptest, pid_t pid,
+>   	return status;
+>   }
+>   
+> +/* Returns an integer file descriptor.
+> + * If it returns < 0, an error has occurred.
+> + * Otherwise, it has returned the slave pty file descriptor.
+> + * fp should be writable, likely stdout/err.
+> + */
+> +static int
+> +setup_slave_pty(FILE *fp) {
+> +	int pty_master = -1;
+> +	int pty_slave = -1;
+> +	char pty_name[256];
+> +	struct group *gptr;
+> +	gid_t gid;
+> +	int slave = -1;
+> +
+> +	if (openpty(&pty_master, &pty_slave, pty_name, NULL, NULL) < 0) {
+> +		fprintf(fp, "ERROR: openpty() failed with: %s.\n", strerror(errno));
+> +		return -1;
+> +	}
+> +
+> +	if ((gptr = getgrnam(pty_name)) != 0) {
+> +		gid = gptr->gr_gid;
+> +	} else {
+> +		/* If the tty group does not exist, don't change the
+> +		 * group on the slave pty, only the owner
+> +		 */
+> +		gid = -1;
+> +	}
+> +
+> +	/* chown/chmod the corresponding pty, if possible.
+> +	 * This will only work if the process has root permissions.
+> +	 */
+> +	if (chown(pty_name, getuid(), gid) != 0) {
+> +		fprintf(fp, "ERROR; chown() failed with: %s.\n", strerror(errno));
+> +	}
+> +
+> +	/* Makes the slave read/writeable for the user. */
+> +	if (chmod(pty_name, S_IRUSR|S_IWUSR) != 0) {
+> +		fprintf(fp, "ERROR: chmod() failed with: %s.\n", strerror(errno));
+> +	}
+> +
+> +	if ((slave = open(pty_name, O_RDWR)) == -1) {
+> +		fprintf(fp, "ERROR: open() failed with: %s.\n", strerror(errno));
+> +	}
+> +	return (slave);
+> +}
+> +
+> +
+>   int
+>   run_ptests(struct ptest_list *head, const struct ptest_options opts,
+>   		const char *progname, FILE *fp, FILE *fp_stderr)
+> @@ -362,6 +414,8 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
+>   	int timeouted;
+>   	time_t sttime, entime;
+>   	int duration;
+> +	int slave;
+> +	int pgid = -1;
+>   
+>   	if (opts.xml_filename) {
+>   		xh = xml_create(ptest_list_length(head), opts.xml_filename);
+> @@ -379,7 +433,6 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
+>   			close(pipefd_stdout[1]);
+>   			break;
+>   		}
+> -
+>   		fprintf(fp, "START: %s\n", progname);
+>   		PTEST_LIST_ITERATE_START(head, p);
+>   			char *ptest_dir = strdup(p->run_ptest);
+> @@ -388,6 +441,13 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
+>   				break;
+>   			}
+>   			dirname(ptest_dir);
+> +			if (ioctl(0, TIOCNOTTY) == -1) {
+> +				fprintf(fp, "ERROR: Unable to detach from controlling tty, %s\n", strerror(errno));
+> +			}
+> +
+> +			if ((pgid = getpgid(0)) == -1) {
+> +				fprintf(fp, "ERROR: getpgid() failed, %s\n", strerror(errno));
+> +			}
+>   
+>   			child = fork();
+>   			if (child == -1) {
+> @@ -395,13 +455,33 @@ run_ptests(struct ptest_list *head, const struct ptest_options opts,
+>   				rc = -1;
+>   				break;
+>   			} else if (child == 0) {
+> -				setsid();
+> +				close(0);
+> +				if ((slave = setup_slave_pty(fp)) < 0) {
+> +					fprintf(fp, "ERROR: could not setup pty (%d).", slave);
+> +				}
+> +				if (setpgid(0,pgid) == -1) {
+> +					fprintf(fp, "ERROR: setpgid() failed, %s\n", strerror(errno));
+> +				}
+> +
+> +				if (setsid() ==  -1) {
+> +					fprintf(fp, "ERROR: setsid() failed, %s\n", strerror(errno));
+> +				}
+> +
+> +				if (ioctl(0, TIOCSCTTY, NULL) == -1) {
+> +					fprintf(fp, "ERROR: Unable to attach to controlling tty, %s\n", strerror(errno));
+> +				}
+> +
+>   				run_child(p->run_ptest, pipefd_stdout[1], pipefd_stderr[1]);
+> +
+>   			} else {
+>   				int status;
+>   				int fds[2]; fds[0] = pipefd_stdout[0]; fds[1] = pipefd_stderr[0];
+>   				FILE *fps[2]; fps[0] = fp; fps[1] = fp_stderr;
+>   
+> +				if (setpgid(child, pgid) == -1) {
+> +					fprintf(fp, "ERROR: setpgid() failed, %s\n", strerror(errno));
+> +				}
+> +
+>   				sttime = time(NULL);
+>   				fprintf(fp, "%s\n", get_stime(stime, GET_STIME_BUF_SIZE, sttime));
+>   				fprintf(fp, "BEGIN: %s\n", ptest_dir);
+> 
+
+
+-- 
+# Randy MacLeod
+# Wind River Linux
 
