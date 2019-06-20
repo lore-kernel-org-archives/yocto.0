@@ -1,6 +1,6 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <balazovic.peter@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C32BFE00CD7; Sat, 22 Jun 2019 09:59:30 -0700 (PDT)
+	id E3EC9E00CB9; Thu, 20 Jun 2019 09:00:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,106 +10,53 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+	provider *      (balazovic.peter[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.215.173 listed in list.dnswl.org]
+	*      [209.85.166.46 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com
-	[209.85.215.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C0ECE00A21
-	for <yocto@yoctoproject.org>; Sat, 22 Jun 2019 09:59:29 -0700 (PDT)
-Received: by mail-pg1-f173.google.com with SMTP id m4so4241681pgk.0
-	for <yocto@yoctoproject.org>; Sat, 22 Jun 2019 09:59:29 -0700 (PDT)
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com
+	[209.85.166.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF64DE00CB9
+	for <yocto@yoctoproject.org>; Thu, 20 Jun 2019 09:00:06 -0700 (PDT)
+Received: by mail-io1-f46.google.com with SMTP id h6so409969ioh.3
+	for <yocto@yoctoproject.org>; Thu, 20 Jun 2019 09:00:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=to:from:subject:openpgp:autocrypt:message-id:date:user-agent
-	:mime-version:content-language;
-	bh=4N1uwy+TfCiEYfJyWTghKs3wT6HzSmAi/d86La8kmsE=;
-	b=YwQqAKfkIiaNEHGtmsnedDTKQnf5EmF02OMb4mbJue/hcppWnyYmjAeuLNKe6nWaWE
-	7f9pvqN0+vBNzLeRstykta6sEgZQOO7lvibJYYhH79dZE1loD+VzgDZYSf1GEc6oZbnd
-	ZRXIdoXYnNqeTrObCQDDTeH31IXiKUj49I20imh9UVL/ad2MGp4LlirL+7cQ7Y/tNdSP
-	VJ8YhUD9BNrox/uxJzl7Zt6WzARZDpJY/qCRaXC3LIFs2dbOrikANBA7uWj0/h578Pdk
-	c13SSVjRhkPgGGggVyhYeJhqnNL0T87Bfl38nOCLgHW4UVrmhZ/CzYE9qmGR+W/yX/Ig
-	XkbA==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=YYqeqmlZT8zRjOO/aKlWuTIvcSC28PMrVGvVYrg67wQ=;
+	b=dGPHKIKIs43bVnepBKKlpQeF5ouUNFEMNrJGtHL5d1LPlivmTLTHgn65lblisfrqCt
+	9QiEV0ZjdSrLO0J3Z2qZp8w8nELFGqtN+Ya9t3+IsysvW3HEfjOZWZ/cOEyq8dH6bl4Q
+	4lu1XD9LQWMoBQ3ls9fxC3o6hXUMo2lbgb/jW/8LAcYJPJcQgpqXdD6xYceFsyH3ov+Y
+	KSbJzrumJ3/ygAlBo7qQmj74lVl8Oi7QEibFDToeApe82hxc+9YFLiL+vV04gIwXz9m+
+	5Ao5C4YdkYsrPzgDD8xWEqjEJg4E38dI3DWLrKSUaCGmcC2BNh/AYGJ8idz5cWjbHZOS
+	SZpg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:openpgp:autocrypt:message-id
-	:date:user-agent:mime-version:content-language;
-	bh=4N1uwy+TfCiEYfJyWTghKs3wT6HzSmAi/d86La8kmsE=;
-	b=AIekfLJz4lwgaEIBxZXy3dueZBiptZjVJckNNieiyOVwf9e8XLa7FwOf28TpvjVDBI
-	hQ8ZmpSBeoFTTPNIH53C3FCYpPc6U7P/UbcFqfMC86B1OpNfeji4dgw+2u2fSupC+h5p
-	E/Eb61fvZN/Rf2Vm6srRG56+QVqmKXSzeBOPX/nfDMnrQ4mweWA9mh/UOEJ/LduSCOuU
-	qI714s2IBPbOygKYC90RqkDjzsmO+oUFuh37zAs3RB5uTCIJ2PHn3Nj4f1j6xBwKCOFx
-	4dGzKT6RfxRlbKja14Jb0i58nL4R1k2KgPNFn3uSf2+hxSMH2mbbc4isnuLJqliCWBUX
-	4ZFA==
-X-Gm-Message-State: APjAAAXt5tR7TVwC9rSlCmwIhr000XfthRmjtOjrD7kr7qkwNCzn0soN
-	ME+xXHXdviATXr5NIX9MIb0EzXkkIfI=
-X-Google-Smtp-Source: APXvYqwMWYrcvoZttz9M75+SKwsC87RB6jtN70Grhi+rU7spXwnSf3TaPefallIPz1FIofNgEl1fsQ==
-X-Received: by 2002:a65:4383:: with SMTP id m3mr23689869pgp.435.1561222768841; 
-	Sat, 22 Jun 2019 09:59:28 -0700 (PDT)
-Received: from ?IPv6:2601:202:4180:c33:a815:85a1:2256:bc9d?
-	([2601:202:4180:c33:a815:85a1:2256:bc9d])
-	by smtp.gmail.com with ESMTPSA id y5sm6279274pgv.12.2019.06.22.09.59.27
-	for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 22 Jun 2019 09:59:28 -0700 (PDT)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: akuster808 <akuster808@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
-	mQINBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
-	Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
-	mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
-	aquZVHNXxPwjKPaSEEYqQjFeiNgFTavV+AhM2dmPmGUWCX9RZisrqA4slGwEB0srMdFf12Zg
-	mD35Y9jZ80qpu5LPtJCFcsaAlebqR+dg36pIpiRR+olhN1wmC6LYP1vw6uMEYBjkTa2Rnb6+
-	C4FDzCJD4UCrUvLMNeTW810DY0bjMMj3SfmSGSfQUssaaaTXCVlLGuGxyCr/kza1rHaXMKum
-	Ek4EFj1fyn7AfkSLEHfJfY4sO1tpgigvs4eD/4ZSQEXSu/TjVvyKx4EvUbhlGMRyH2CPwD/H
-	7DFF8tcVtJvCwUUW+zKtjxjSSLrhniNMXAOQJZ6CdaqCe4OyJQT5aRdr+FWbBRjpaRCCf5nf
-	dTc88NMU9PrBT3vu0QJ5WNPO6MJpnb+d8iMNLZAz8tv8JMm2l+sMcNKSJ6lhX8peoBsfMVqc
-	FgiykEO0fUt7DCbUYR5tLjM/3E5tHvTjMooVJyOxoufVLYtTtQARAQABtCFha3VzdGVyODA4
-	IDxha3VzdGVyODA4QGdtYWlsLmNvbT6JAj0EEwEIACcFAlnlUP4CGyMFCQlmAYAFCwkIBwIG
-	FQgJCgsCBBYCAwECHgECF4AACgkQ7ou0mfRW5/kuhRAAlR2FTq5572jrX5nnPR7AqI2bvSVb
-	vqGLlvv739WhghvagbC+tu05QguopAhWW1/DcHK2+QtfIoC9UZrSW4RaO0CCo5sPjqK7l1KT
-	ngWX/rGjF6xTF2QN0U/btcpMyVN2CNtVLwsDF9e+GHKoUcnFkP+JP8vHGokN9k6E/c97hLaL
-	IJPeKl8LZXc2Efk+MaW1NXkfDJdcp/p+voajbihSQO6OZ/o+x9d2I3ZybKfTZ71+ek5Hxzjz
-	g6KkMOI7KJjlmBlrQFAtVbS+CFAKrwkYznE6ggkcmGv3N7DeUBTUR78hf+EZEAM+ajeLMtrG
-	rXE00pIb+gLGYPZxba5pCdQ+qWUW38qi9UnIRPm6fq7Ypx1r6XwJvbgCOkhbxo3D4YUdyC0b
-	FE9lgrg8htbc9in4j2+hVI6ALswNjLprzXdzdKrd+T3Egx36o3Z/qrYsW2o5/A5sVvvASVKi
-	wRPuEKhEhfmiHUPLvuKqhMoymHaz3fg5D2Q8G0gSDkLgeEpAjiWqf4+AGLx+MSDai7DSOsmI
-	t61kWxs7cFTB32UrB/TDoVNn3Fm88ZFQpA/bngikE9jgEm045mSY86fNlbFj2mcCd0Ha1i1n
-	aYc97RpgfjNMWyHDVHOGrNg/hJjkGa5RsAXkfyBwltHRw0Hj4urUQ3rr8um8PLe43SezPwXA
-	oRoyDxC5Ag0EWeVQ/gEQALNHwj5VSPdnvXy1RXUuH+rclMx4x8zaqDyY0YqHfA7b/d8Y0VAt
-	Y6YpzDeFTwD8A0Wfb7kZ2mlDIE6ODCB71uT/E3C6b+FiiN+lgzslznjUW+9l8ddDhRrC8HMG
-	37vrXF5h++PTXUKEKUlkDib1w093tu3mlJXUvIAzl8CEHkptF6Br0L9XxFwuWoNUfjT9IorQ
-	0SVIhvq5PhVAITXUD5fD7/N8B4TYegmHFRo1UaaKSnSHwlJJkzKpeWOH8QTYrP0RHxX86Obv
-	IZuwbAo3F3oojcvLJt9NxWnbEmEALkleklLZnukgu7q5Wp1VDwhUbMFTLb6qmnBa/Xi30uOk
-	0l1TMHDbeQswvQDOZBAMukSRqyBetKxQ3iTfZ/3z1ubQRcVDbVlMDScSHQq0LK3F9yMOMM/6
-	0QPqJjl13xn/+Bn7WJiAIXXwzAV7uo6i0khFfjDtCDQ40aeffqOLxp1yMLkc3EKJGcQ5F6O2
-	ycEf4QXCYUbMXjxB0EJB8y7z+xOi5Mmd/pPlVmZ2gQK84NAL90p7n7jRlyf3gOUY+JOl4c5e
-	UFiIhOzmuqNrvPOiZ02GXh6SGUU5y7IgSoIKvXSFgHAn2OG/tcspBmkyv6IuNVpmbmEgYn4I
-	Rnt40UXVQkxTh0dENFhk2cjunMYozV/OqYCgmZLFSeJd8kAo4yn+yOtNABEBAAGJAiUEGAEI
-	AA8FAlnlUP4CGwwFCQlmAYAACgkQ7ou0mfRW5/nNcg//R63cbOS6zLtvdnPub3Ssp1Ft8Wmv
-	mni+kccuNApuDV7d63QckYxjAfUv2zYMLpbh87gVbLyCq9ASn552EbfRhTvHdk44CgbHBVcI
-	ZBEdZWgRR5ViJakQSYHpP2e5AGNFnx9gSIuRTaa5rvZM+4xeoZ2vJiq93TtaYPr7UFNfK+c4
-	vv4C66lkt9l95/I10eSc3RqbOKZW47emlg4X3ygEoB9k2lPrpspyf6sUuSEi0WrlSxoLAr6p
-	JG8rTUErYNeXe6JCdL31odDx1Dh5sdKIj2RicUYZNilxu9f1M7jZwf2ra1FGAlKj2ybqmgpZ
-	EFteaiCinEYsvDyZyOiWHjAFI+RZIPQQL3AnVp4l7wYD3r9hnqYPww0slyMDcb9262RoFkHq
-	dDwxPYarrNjWUpOzxB6bFxOgNRdCTgvQl8Ftk8a/yXB6vHeUSm1vPFCBxQPZytyfOLhEWm0J
-	/mkVL0Z6iRK3p1LKnpLYCS4/esL2u7RrhPyCs2SsL58YcQF/g+PpeT9geZ+oyZ/4IQ+TWJoU
-	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
-	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
-	8CS2NxU=
-Message-ID: <4f64137b-5a26-9799-0fff-f524e786941d@gmail.com>
-Date: Sat, 22 Jun 2019 09:59:19 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.0
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=YYqeqmlZT8zRjOO/aKlWuTIvcSC28PMrVGvVYrg67wQ=;
+	b=kyTU/r8TlIZubkiha9C69O4WjqHrYoj81VzrvFy8sy1rV/k1lHtaazw2lgphKOiF76
+	assoFKchHlt0/avZxYMncXv5lxZXLu5UcI5NVLjdOMj/rx/uP6RnmvBrGuBVfXaOB/ES
+	WFleirqZDMRzbskmOqLo8m72B1tPmLz6uLEjXZUvk8LXEXQT7WpY+Lbi1hQh2+Rs6Tqe
+	v9A5C3/JBVSRjxDMVrEoQLPqy6YXM7VVu87P/MpgsKQhfb2BMLDdnIj+IdmgoOKxZIqh
+	WjZEuRFQIFRV6UKzCmObsOldOoj5ZsbGnVIepPJS4mWRoTHb1o+MldShHDn23xBO700X
+	r9AQ==
+X-Gm-Message-State: APjAAAWin0FK5WVm6/e8WvU1BKxk648NuaG4TkS79x2UnhL31ucKjD5Q
+	iLh+WOJUmckmp1bqWdHKo8J1SRNMy8+C8G4bN95/isMA0JA=
+X-Google-Smtp-Source: APXvYqxi+u78IA1cPbw+eGFCFnt1ArWb2SvodU7cA5AF9++Nyb6H5mQLJaCYjZNAJDGojGowEFPLtqeX95gzm4Yq95k=
+X-Received: by 2002:a5d:80c3:: with SMTP id h3mr12574715ior.167.1561046405831; 
+	Thu, 20 Jun 2019 09:00:05 -0700 (PDT)
 MIME-Version: 1.0
-Subject: update-rc.d 0.9 request
+From: Peter Balazovic <balazovic.peter@gmail.com>
+Date: Thu, 20 Jun 2019 18:01:27 +0200
+Message-ID: <CAFq4t4gy3vRzfR00sz8PPS3VUGE_YXu2tJYD8KWnEvUBk4DhEg@mail.gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+X-Mailman-Approved-At: Sat, 22 Jun 2019 13:35:31 -0700
+Subject: Warrior, extended SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -121,39 +68,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 22 Jun 2019 16:59:30 -0000
-Content-Type: multipart/alternative;
-	boundary="------------32F5E97E5CD921C536F30602"
-Content-Language: en-US
+X-List-Received-Date: Thu, 20 Jun 2019 16:00:08 -0000
+Content-Type: multipart/alternative; boundary="0000000000007f5fa5058bc3705f"
 
---------------32F5E97E5CD921C536F30602
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+--0000000000007f5fa5058bc3705f
+Content-Type: text/plain; charset="UTF-8"
 
-Is is possible to bump the version of update-rc.d
-<https://git.yoctoproject.org/cgit/cgit.cgi/update-rc.d/> to 0.9 ? New
-functionality was added after 0.8 and a simple hash makes version
-control harder.
+Hello guys
 
-- Armin
+I'm trying to generate extended SDK under Yocto-Warrior and getting error
+such as
 
---------------32F5E97E5CD921C536F30602
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
+ERROR: image-qt5-1.0-r0 do_sdk_depends: The file
+/usr/include/tensorflow/contrib/lite/string_util.h is installed by both
+tensorflow and tensorflow-lite, aborting
+ERROR: image-qt5-1.0-r0 do_sdk_depends:
+ERROR: image-qt5-1.0-r0 do_sdk_depends: Function failed:
+extend_recipe_sysroot
 
-<html>
-  <head>
+can you help me identify an issue on this fail?
 
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    Is is possible to bump the version of <a title="update-rc.d"
-      href="https://git.yoctoproject.org/cgit/cgit.cgi/update-rc.d/">update-rc.d</a>
-    to 0.9 ? New functionality was added after 0.8 and a simple hash
-    makes version control harder.<br>
-    <br>
-    - Armin<br>
-  </body>
-</html>
+Thanks.
+Peter
 
---------------32F5E97E5CD921C536F30602--
+--0000000000007f5fa5058bc3705f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello guys</div><div><br></div><div>I&#39;m trying to=
+ generate extended SDK under Yocto-Warrior and getting error such as <br></=
+div><div><br></div><div>ERROR: image-qt5-1.0-r0 do_sdk_depends: The file /u=
+sr/include/tensorflow/contrib/lite/string_util.h is installed by both tenso=
+rflow and tensorflow-lite, aborting<br>ERROR: image-qt5-1.0-r0 do_sdk_depen=
+ds: <br>ERROR: image-qt5-1.0-r0 do_sdk_depends: Function failed: extend_rec=
+ipe_sysroot</div><div><br></div><div>can you help me identify an issue on t=
+his fail? <br></div><div><br></div><div>Thanks.</div><div>Peter<br></div></=
+div>
+
+--0000000000007f5fa5058bc3705f--
