@@ -1,90 +1,62 @@
-Return-Path: <b@halonis.de>
+Return-Path: <piotr.betlej@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2AE2BE00B9C; Fri, 21 Jun 2019 15:16:35 -0700 (PDT)
+	id 9DFA2E008A4; Sun, 23 Jun 2019 01:47:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (piotr.betlej[at]googlemail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.177 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 483 seconds by postgrey-1.32 at yocto-www;
-	Fri, 21 Jun 2019 15:16:32 PDT
-Received: from mail.xunit.de (mail.xunit.de [87.98.242.4])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F321EE00B8F
-	for <yocto@yoctoproject.org>; Fri, 21 Jun 2019 15:16:32 -0700 (PDT)
-Received: from [192.168.188.30] (x4db476bf.dyn.telefonica.de [77.180.118.191])
-	by mail.xunit.de (Postfix) with ESMTPSA id F0ACF87B43
-	for <yocto@yoctoproject.org>; Sat, 22 Jun 2019 00:08:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=halonis.de;
-	s=default; t=1561154903;
-	bh=fINE9rDq/3Ln4LZwQeALTgrwXBX7v5AVwfVSW808GMY=;
-	h=Subject:To:References:From:Date:In-Reply-To;
-	b=ZWKJX7dNmy68bgdXv5aHDPuqVTdtauaWwpMUIhsn1xK66MchdLBklzIs/DJIlpfZa
-	3gPlF1pVyCGv5VsQIzVMDxWSXstpiOfuNS1X+QxFFm97Q7+jfGkYYJOfxJ/ccAcPjV
-	CzCE1Cal69zDP7suRQAyDhJGIl6VG/X3eGgeJ4GQ=
-To: yocto@yoctoproject.org
-References: <CAAx3WaCUb18Yf6Qp33qQCu9O3s-qpa75uoSm+sKv89jR0FbZmQ@mail.gmail.com>
-	<CAPxNcnfeBKEEn-fEW2evxd3O3uVxrFmuOJMb6quwZz=oGpXgYg@mail.gmail.com>
-From: Benjamin <b@halonis.de>
-Openpgp: preference=signencrypt
-Autocrypt: addr=b@halonis.de; prefer-encrypt=mutual; keydata=
-	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
-	MuI1ocDsTzxo
-Message-ID: <61eed6bb-10f6-e46a-7735-431934ace662@xunit.de>
-Date: Sat, 22 Jun 2019 00:08:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.0
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com
+	[209.85.167.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A32EAE008A4
+	for <yocto@yoctoproject.org>; Sun, 23 Jun 2019 01:47:05 -0700 (PDT)
+Received: by mail-oi1-f177.google.com with SMTP id m206so7583630oib.12
+	for <yocto@yoctoproject.org>; Sun, 23 Jun 2019 01:47:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=1aDFyEfT/tZXLPoGBC3GEqZ/rnTd5agnRlVxQmYAOY8=;
+	b=msScqafImqh3k8YJRH7Fy0EmMAwJPGV37VFyB2hPF6dem3pddJ1AzvZ7ezxRYaKihu
+	Ah9RX/n9VDhITk8fI2A7mXfinSc+3QifFVCOfZNaHbDfnZY7YvxiGUuI5yfy/zoandFe
+	p+pz0F8EIne+tluGdv5w8ghqSIzbjIHexskFfRMF7D4yTHvQwudIlN0TjnZVXzTGbJTI
+	/OkHvvhNQfid39F4R6JSmVwacyo5Hooe3/2xB/Q4JRLlazqkthxoGh8qs3ltQaOZIH/E
+	+FULjK4wAQu1UtueKYemPcqBmk/nhn1G0udHT6octRJOed2ZPCzec352vEm0m39E5eEG
+	aPFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=1aDFyEfT/tZXLPoGBC3GEqZ/rnTd5agnRlVxQmYAOY8=;
+	b=PSr03L+3fTxbn78eFsWdrJUik7HGr170GDHLWfOUuESJpIp/d7GW1MkqgoZokev2z6
+	XPGTFYdQXrGEPOwrG0UXYiiKxo6/6Q38I8+TYPHIQOIYxDBwjfNsIRYEf+zRpr0tziq8
+	fWph4lSwVY9Masn6zfSGCrDt8s1Z5l4fHhcKqg7YRVT/IENXy4xlGELnLBpDaQxzeyTa
+	YFJFsvrQWtTUWRbaIbdQ0c1QnTs1rM97HP2NdGHitoc3Y/f+BRfp89JFqTJJa33nV31J
+	RxSasXW2FP9tBd6xQi0C/CGbz0fJb050vLKXxosjanWaUGRNQjiP1V8RWwyHFzfsDpO7
+	j01g==
+X-Gm-Message-State: APjAAAU+Y8FcDj00DJMHDPmlcPxBkRWHY9/WUBva+vjBY9dnuCEv3A92
+	/ANMWFxr38GbIEa89eW/0UGqlPw1NCmVsPJAhff3dy8ej9M=
+X-Google-Smtp-Source: APXvYqzsg5CmImOCoiseUcp34aHAEOe/qs7eDlAWVMcZ+dBNhGEnjRGWHnNuWwzIt9dSl3kVTEnqcnQxQvJs4X+Qgmw=
+X-Received: by 2002:aca:eb57:: with SMTP id j84mr7741799oih.17.1561279624405; 
+	Sun, 23 Jun 2019 01:47:04 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAPxNcnfeBKEEn-fEW2evxd3O3uVxrFmuOJMb6quwZz=oGpXgYg@mail.gmail.com>
-X-Mailman-Approved-At: Sat, 22 Jun 2019 13:35:31 -0700
-Subject: Re: Running Yocto inside Docker
+From: Piotr Betlej <piotr.betlej@googlemail.com>
+Date: Sun, 23 Jun 2019 10:46:53 +0200
+Message-ID: <CAPLYstDpCM=6uwF=0gzA9u-C=LU0zfPnbWNsh-V9M0GL+g2wtw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: dnf fail in do_rootfs cannot find shared library
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -96,152 +68,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Jun 2019 22:16:35 -0000
-Content-Type: multipart/alternative;
-	boundary="------------050B6415B1189BDA15103B22"
-Content-Language: en-US
+X-List-Received-Date: Sun, 23 Jun 2019 08:47:07 -0000
+Content-Type: multipart/alternative; boundary="000000000000686596058bf9bd64"
 
---------------050B6415B1189BDA15103B22
-Content-Type: text/plain; charset=utf-8
+--000000000000686596058bf9bd64
+Content-Type: text/plain; charset="UTF-8"
+
+Hi all,
+
+this happens if one compiles a plain makefile project, since there is no
+-Wl,-soname,my_library.so.1 linker option added automatically as it is in
+case of using autotools or cmake for recipe.
+DNF checks content of the so file and if it does not have SONAME inside, it
+refuses to continue rootfs processing displaying confusing message "nothing
+provides my_lib.so ...". There should be a better warning message or some
+clean policy for it.
+
+Regards
+
+Piotr Betlej
+
+--000000000000686596058bf9bd64
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hej,
+<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>this happens if one =
+compiles a plain makefile project, since there is no -Wl,-soname,my_library=
+.so.1 linker option added automatically as it is in case of using autotools=
+ or cmake for recipe.</div><div>DNF checks content of the so file and if it=
+ does not have SONAME inside, it refuses to continue rootfs processing disp=
+laying confusing message &quot;nothing provides my_lib.so ...&quot;. There =
+should be a better warning message or some clean policy for it.<br></div><d=
+iv><br></div><div>Regards</div><div><br></div><div>Piotr Betlej<br></div></=
+div>
 
-I use for this secret variables and store the access tokens or ssh keys
-in in one of this. A script running inside of the docker container uses
-sed magic for replacing string, when ever the direct usage of the secret
-variables is not possible. The ssh key is then written in a first step
-with something like
-
-echo "$SECRET_PRIVATE_SSH" > ~/.ssh/id_ecdsa && chmod 600 ~/.ssh/id_ecdsa=
-
-
-gitlab will not print the secret variables in clear format.
-
-https://docs.gitlab.com/ee/ci/variables/#via-the-ui
-
-Whenever possible you should use a deploy token, best would be to add
-this as well as the above mentioned ui variables. With the protected
-feature you can even prevent non privileged developers from stealing
-this secrets.
-
-https://docs.gitlab.com/ee/user/project/deploy_tokens/#creating-a-deploy-=
-token
-
-
-Am 17.06.19 um 20:00 schrieb Rudolf Streif:
-> That's more of a Gitlab than Yocto question. I am doing this all the
-> time with my GL server on AWS. You need to add deploy a key to the
-> repo you want to access and then push the key to your Docker instance
-> from gitlab-ci.yaml from the repo that you are using with GL CI.
->
-> :rjs
->
-> On Mon, Jun 17, 2019, 07:20 Gabriele Zampieri <gabbla.malist@gmail.com
-> <mailto:gabbla.malist@gmail.com>> wrote:
->
->     Hi all,
->
->     does anyone have a guide on how to setup Yocto to run inside
->     docker? Right now I managed to trigger the build from GitLab, but
->     I'm facing an issue related to ssh keys (some recipes from my meta
->     layer are hosted on a privare repository). Probably this is not
->     the best mailing list to ask this kind of question, but it may
->     worth a try.
->
->     Thank you,
->     Gabriele
->     --=20
->     _______________________________________________
->     yocto mailing list
->     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->     https://lists.yoctoproject.org/listinfo/yocto
->
->
-
---------------050B6415B1189BDA15103B22
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p>Hej,</p>
-    <p>I use for this secret variables and store the access tokens or
-      ssh keys in in one of this. A script running inside of the docker
-      container uses sed magic for replacing string, when ever the
-      direct usage of the secret variables is not possible. The ssh key
-      is then written in a first step with something like</p>
-    <p>echo "$SECRET_PRIVATE_SSH" &gt; ~/.ssh/id_ecdsa &amp;&amp; chmod
-      600 ~/.ssh/id_ecdsa</p>
-    <p>gitlab will not print the secret variables in clear format.</p>
-    <p><a class="moz-txt-link-freetext" href="https://docs.gitlab.com/ee/ci/variables/#via-the-ui">https://docs.gitlab.com/ee/ci/variables/#via-the-ui</a></p>
-    <p>Whenever possible you should use a deploy token, best would be to
-      add this as well as the above mentioned ui variables. With the
-      protected feature you can even prevent non privileged developers
-      from stealing this secrets.<br>
-    </p>
-    <p><a class="moz-txt-link-freetext" href="https://docs.gitlab.com/ee/user/project/deploy_tokens/#creating-a-deploy-token">https://docs.gitlab.com/ee/user/project/deploy_tokens/#creating-a-deploy-token</a><br>
-    </p>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">Am 17.06.19 um 20:00 schrieb Rudolf
-      Streif:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAPxNcnfeBKEEn-fEW2evxd3O3uVxrFmuOJMb6quwZz=oGpXgYg@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="auto">That's more of a Gitlab than Yocto question. I am
-        doing this all the time with my GL server on AWS. You need to
-        add deploy a key to the repo you want to access and then push
-        the key to your Docker instance from gitlab-ci.yaml from the
-        repo that you are using with GL CI.
-        <div dir="auto"><br>
-        </div>
-        <div dir="auto">:rjs</div>
-      </div>
-      <br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Mon, Jun 17, 2019, 07:20
-          Gabriele Zampieri &lt;<a href="mailto:gabbla.malist@gmail.com"
-            moz-do-not-send="true">gabbla.malist@gmail.com</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0 0 0
-          .8ex;border-left:1px #ccc solid;padding-left:1ex">
-          <div dir="ltr">
-            <div>Hi all,</div>
-            <div><br>
-            </div>
-            <div>does anyone have a guide on how to setup Yocto to run
-              inside docker? Right now I managed to trigger the build
-              from GitLab, but I'm facing an issue related to ssh keys
-              (some recipes from my meta layer are hosted on a privare
-              repository). Probably this is not the best mailing list to
-              ask this kind of question, but it may worth a try.</div>
-            <div><br>
-            </div>
-            <div>Thank you, <br>
-            </div>
-            <div>Gabriele<br>
-            </div>
-          </div>
-          -- <br>
-          _______________________________________________<br>
-          yocto mailing list<br>
-          <a href="mailto:yocto@yoctoproject.org" target="_blank"
-            rel="noreferrer" moz-do-not-send="true">yocto@yoctoproject.org</a><br>
-          <a href="https://lists.yoctoproject.org/listinfo/yocto"
-            rel="noreferrer noreferrer" target="_blank"
-            moz-do-not-send="true">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-        </blockquote>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-    </blockquote>
-  </body>
-</html>
-
---------------050B6415B1189BDA15103B22--
+--000000000000686596058bf9bd64--
