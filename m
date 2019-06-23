@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 911F0E00B8E; Sun, 23 Jun 2019 11:15:23 -0700 (PDT)
+	id 04C07E00B8E; Sun, 23 Jun 2019 11:15:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,58 +13,57 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.215.181 listed in list.dnswl.org]
+	*      [209.85.210.196 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com
-	[209.85.215.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 564CAE00B1A
-	for <yocto@yoctoproject.org>; Sun, 23 Jun 2019 11:15:21 -0700 (PDT)
-Received: by mail-pg1-f181.google.com with SMTP id z19so2886263pgl.12
-	for <yocto@yoctoproject.org>; Sun, 23 Jun 2019 11:15:21 -0700 (PDT)
+Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
+	[209.85.210.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CEFCE00B6C
+	for <yocto@yoctoproject.org>; Sun, 23 Jun 2019 11:15:23 -0700 (PDT)
+Received: by mail-pf1-f196.google.com with SMTP id p184so6169669pfp.7
+	for <yocto@yoctoproject.org>; Sun, 23 Jun 2019 11:15:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=FltkyArZFWJM8Y/yEgkvzjbX+cu1zkI/gcO2BG8ckC8=;
-	b=JoepammndUPG2h7OS/9W/L8SO8Rxu9y5LnS0/U2IohYDJ1D3x6dkpTTcg8/fnvUgmZ
-	0ru4aaIXnEhv/7/u338OHZkHcgWZA5kOaf/AyblONi1WUeyAi1MTkCiNB9AJhPFNWUu7
-	wkLqUGAy519mJ105QoL7oB6prixfuOIlzDTYQ4yjSibLdovaPYYNkVp0Cn7mji5vOiBd
-	9Y1qaB7vInYOPHapvODrwesJ1sRrjhDww4uAbb83RmI2QUVdXbaNNAreRKW9uFqv8x5T
-	Fb+qxrYtN9pSach75MKU0GLW0BWuEGAPJnTK66RrAf8ZjaPnS65aQdm/gIrzoVvINcA9
-	JJHg==
+	bh=nHh5Wfpisq8oNuxMG6Qh6KQI7UWJ0jhfGX7LvOAfduo=;
+	b=VsOtfpFXn2e++zYXiNUcfS+tXFytO7OniixpsftzUz/pQWRgZenZIdXUAIGjfwMaRq
+	jg2yIXIrsKgyEPhm4V3OiMqAncaaZlbmnKf1ljYc81g/7Vnja7u8244xg2zw3qehqtw3
+	DtEYJmSZWzR81uKMYBH0fkObhaRTn07BlARpLkM4juYW9OgiYBaOcBEnd8vVxoOhJ52A
+	Z2/gVexNWUusMkAHAmi8H1xqFNGfSlCLjp/oKaSlYA5apmFayEeXlG4ZU7LW59OR4xEm
+	Z+WFvMlS2BU3zHuv1S3IFrqsYjZ6i1yLk4NGtWhraxr74K3LpWu3rxXASzR31bCIqxDR
+	lGcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
 	:references;
-	bh=FltkyArZFWJM8Y/yEgkvzjbX+cu1zkI/gcO2BG8ckC8=;
-	b=itVbGtTxOEiG0Of6sfRYTd8DrWLOcqdeeDFeW1ZZdY1ivY5R4IYy5xeGwIHK8kRxk9
-	Wg066B8VjCAoQ6hOWpa3uGxvmshxcSHNQxmDi9BeF2mdZ8T1d1Fvbory7Wg9q3q9v9JZ
-	86N1svqI3aAf3EC1OUqR43PARmSK+koRRP80O9BEAndCuF3JoRfQu48B82nlTVWSRTjk
-	5pveqca7PyAoerZvx1FIp08++PIqQO66L5yZzNA2H4WD8rdibIjTxyjos5zwujya3GhQ
-	vlk6bCWvCsahIUgS1BkcBQaewyN9sIUUgW4tI5r/x9OTrQnc9drkOlWtYE2PsgDWMPHn
-	stzg==
-X-Gm-Message-State: APjAAAViop4u7V7R42tmCQpXbmblWC+6VWf95XtHaDteR9fGVWgCP6py
-	ah/b1YBF6iyeObxgnw2RJRbxORbjErY=
-X-Google-Smtp-Source: APXvYqwMDURtq/JWjQPHuejr6io5MO5ACGMk2IwxZcos2u9rHgc0z56R7kR6S7XE1HEVaHIYJB3l3w==
-X-Received: by 2002:a17:90a:8984:: with SMTP id
-	v4mr19923389pjn.133.1561313720754; 
-	Sun, 23 Jun 2019 11:15:20 -0700 (PDT)
+	bh=nHh5Wfpisq8oNuxMG6Qh6KQI7UWJ0jhfGX7LvOAfduo=;
+	b=GVYAiI0mgnnz1ItOKTKn6rdZNlRbUCAi7eGkoOjcQ+6jQgitft4q1XJv/FH47k7hbS
+	Dx8pz/u8NX0XocjIkuwduqnxvCDuGA6YjPhApvpHtJMdehPhPSdX6jkZDA8yd7nWawX+
+	lN4B9yMRoJhZELwlCNkI7pHvr9nHaJDL8eLuzo3rB98PnpiNvc+kZqpSPXChGpNxM8zn
+	yFzth1qKO41bn0q3uSP3819rK8fh2+FPbpWE99EWz91cOUUQN0sDHmg7S9rNGC5lmUDO
+	V73vx2UCG5I/wnZDXbek0w0XEEiY8nYMgAjgoYwhUDemhkWO0jpA3LP/A2tjxkGxjBkk
+	GnnQ==
+X-Gm-Message-State: APjAAAVb2N2DsB4kvMMxJHtGYk9zejrw6ab4dbudQJ4CGbXt+HYzh7uS
+	vL8fylYpNo/TCBI4jrh7uwli6xZVaWw=
+X-Google-Smtp-Source: APXvYqwtiEszY9dHIkisRV9j9VQIOI0Nibysqp6Ut5LS2UPUxuU/KQAPQecAWvsxun6g5fL5DrTmHQ==
+X-Received: by 2002:a65:64d6:: with SMTP id t22mr29726470pgv.406.1561313722886;
+	Sun, 23 Jun 2019 11:15:22 -0700 (PDT)
 Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
 	[67.181.203.136])
-	by smtp.gmail.com with ESMTPSA id u1sm7855359pgr.94.2019.06.23.11.15.20
+	by smtp.gmail.com with ESMTPSA id u1sm7855359pgr.94.2019.06.23.11.15.22
 	for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 23 Jun 2019 11:15:20 -0700 (PDT)
+	Sun, 23 Jun 2019 11:15:22 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sun, 23 Jun 2019 11:15:11 -0700
-Message-Id: <20190623181518.19564-2-akuster808@gmail.com>
+Date: Sun, 23 Jun 2019 11:15:14 -0700
+Message-Id: <20190623181518.19564-5-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190623181518.19564-1-akuster808@gmail.com>
 References: <20190623181518.19564-1-akuster808@gmail.com>
-Subject: [meta-security][meta-tpm][PATCH 2/9] tpm2 images: create tpm2 image and fix packagegroup
+Subject: [meta-security][meta-tpm][PATCH 5/9] tpm2-tcti-uefi: update to tip
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,64 +75,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 23 Jun 2019 18:15:23 -0000
+X-List-Received-Date: Sun, 23 Jun 2019 18:15:24 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../recipes-core/images/security-tpm2-image.bb | 18 ++++++++++++++++++
- .../packagegroup/packagegroup-security-tpm2.bb |  5 ++++-
- 2 files changed, 22 insertions(+), 1 deletion(-)
- create mode 100644 meta-tpm/recipes-core/images/security-tpm2-image.bb
+ meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-tpm/recipes-core/images/security-tpm2-image.bb b/meta-tpm/recipes-core/images/security-tpm2-image.bb
-new file mode 100644
-index 0000000..7e047d1
---- /dev/null
-+++ b/meta-tpm/recipes-core/images/security-tpm2-image.bb
-@@ -0,0 +1,18 @@
-+DESCRIPTION = "A small image for building a tpm2 image for testing"
-+
-+IMAGE_FEATURES += "ssh-server-openssh"
-+
-+IMAGE_INSTALL = "\
-+    packagegroup-base \
-+    packagegroup-core-boot \
-+    packagegroup-security-tpm2 \
-+    os-release \
-+"
-+
-+IMAGE_LINGUAS ?= " "
-+
-+LICENSE = "MIT"
-+
-+inherit core-image
-+
-+export IMAGE_BASENAME = "security-tpm2-image"
-diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
-index 5ded3a2..9296d99 100644
---- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
-+++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
-@@ -5,17 +5,20 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
+index 815691d..43854c4 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
+@@ -7,7 +7,7 @@ DEPENDS = "libtss2-dev gnu-efi-native gnu-efi pkgconfig"
+ SRC_URI = "git://github.com/tpm2-software/tpm2-tcti-uefi.git \
+            file://configure_oe_fixup.patch \
+           "
+-SRCREV = "131889d12d2c7d8974711d2ebd1032cd32577b7f"
++SRCREV = "7baf1eebfeb56a896bdd5d677fb24377d619eb9d"
  
- inherit packagegroup
- 
--PACKAGES = "packagegroup-security-tpm2"
-+PACKAGES = "${PN}"
- 
- SUMMARY_packagegroup-security-tpm2 = "Security TPM 2.0 support"
- RDEPENDS_packagegroup-security-tpm2 = " \
-     tpm2-tools \
-     trousers \
-+    tpm2-tss \
-     libtss2 \
-+    libtss2-mu \
-     libtss2-tcti-device \
-     libtss2-tcti-mssim \
-     tpm2-abrmd \
-     tpm2-pkcs11 \
-+    ibmswtpm2 \
-     cryptsetup-tpm-incubator \
-     "
+ S = "${WORKDIR}/git"
  
 -- 
 2.17.1
