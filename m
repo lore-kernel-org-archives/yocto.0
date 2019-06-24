@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 95B9DE00C78; Sun, 23 Jun 2019 11:15:28 -0700 (PDT)
+	id 9ACAFE00BAD; Sun, 23 Jun 2019 17:09:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,58 +13,53 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.171 listed in list.dnswl.org]
+	*      [209.85.215.196 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com
-	[209.85.214.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E54FE00C6A
-	for <yocto@yoctoproject.org>; Sun, 23 Jun 2019 11:15:26 -0700 (PDT)
-Received: by mail-pl1-f171.google.com with SMTP id ay6so5535445plb.9
-	for <yocto@yoctoproject.org>; Sun, 23 Jun 2019 11:15:26 -0700 (PDT)
+Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com
+	[209.85.215.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79D1EE00798
+	for <yocto@yoctoproject.org>; Sun, 23 Jun 2019 17:09:29 -0700 (PDT)
+Received: by mail-pg1-f196.google.com with SMTP id m4so5502921pgk.0
+	for <yocto@yoctoproject.org>; Sun, 23 Jun 2019 17:09:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=WghGu8hlvIfinOMR8rZFAwsRnFzOVH3etdWv9FSOTu8=;
-	b=UJgpQcuZUDr37ZCHingUI0qP4rWz7jSMGGksJysgW0T0H7hvXbSxH8xwc4Vri68jYv
-	sSZ2OoIaVxcUQvyCMk9wDK7CPMovQqnKJDk/pHIFdiQd59SQ2ZaEs+J8CY/OvVurBuDL
-	xWetBCIWvmWJY2dOH+UlB4HNP4PUi26RB2vDJJpKPC6quDp8T8fHFwfGUd26ZsF9YBQw
-	PfBDSu+bCuUOjS48ehjsqQqkm4Pxly3TmYx2KAi2UUsKfeJ+KVqvC4sOPmBVkjba1dXp
-	+8pqBeuJaalKYtD1JhmNs7YKxXoep0apy9JXDI6lwlKI1fO7gx1C98eMQ8A/j9TNZWrU
-	MaZQ==
+	h=from:to:subject:date:message-id;
+	bh=6X/Tx33k8KioRtrJKZVXCKWtfvgEG3bPxEUjMYKRlCk=;
+	b=I4zDBGbggMWaLi0X5u4lgPQzfZ8QHAIBQfLGGUvdjH3ZqFEZ26FkXn7WCTEPrGyDbY
+	g3yBGxipJLFVVzp7PBQ45TnLlSmnvyFCA2k+BeeVXuucS/bBFXQ3hapauFyPKsngdx16
+	SmI260wJxZFGbOSlDQwGDoahduZZQx3uXhGAdKTADtY6Pfn3vZAkUwz7giAxxaqizNF7
+	8zRIjQ7VHlkrPmajWcHWwVd4wbergVajcFtrVaF55LvhihMeMd3kOguvrZf6lUFhM6bx
+	X2cL53Sqm8bYjCFu8iZquVPJI2sAq0x/nS2GEXWeg2vnNE3DxPRs9UC+sGEOJIourG7m
+	W0bQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-	:references;
-	bh=WghGu8hlvIfinOMR8rZFAwsRnFzOVH3etdWv9FSOTu8=;
-	b=szHpSPLIB+DPXnIRM0bRndpRHik0Rk1uTuyIwfb0nhqfzm0GtUEzaKQ+0BuKKHtlep
-	zPfdpkURN6nzKcQOzgb8njhr9of83HSQ1SXUKcWj2TR94874O34OaW9HepJbqGNKWIr2
-	HGGEZ3/ZHp49VMBhy8xORyMeKUblhiMGBhtWBrRq+U3ty9MVLMVyg5ABCa4JetXNHFs0
-	9AGZxIfbJKoJf+YD2sF1csgKU0c2w+i9zhRbiUmlnGujsKhscIeY8o4fngygkuJlKaS5
-	y/67KXksNFpWy4oxDRmoWCFpyF90qhn9HZMceUChabl4W57oGUFau5zr7UUabWVhkxmo
-	Oqqw==
-X-Gm-Message-State: APjAAAUx2nF3h2UymNwonlXrsUjvp+MKRFe9jHIgTk5Iowp0OwifbYf7
-	EytpwivmCynQeWDUqjsTRYjwThe2iPE=
-X-Google-Smtp-Source: APXvYqzjV0/hlzXdYZgIHFuNajYKy8HJofpfX9VspVl5V/8hlUQX0VA+HNl/ssgfZbFE88gSGnv2bw==
-X-Received: by 2002:a17:902:9041:: with SMTP id
-	w1mr131048853plz.132.1561313726265; 
-	Sun, 23 Jun 2019 11:15:26 -0700 (PDT)
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=6X/Tx33k8KioRtrJKZVXCKWtfvgEG3bPxEUjMYKRlCk=;
+	b=ECpd3Zeoz6XxISbM7m9ft6nj8/2QfHiyHaTgcVkLekWoxYTZtGPwNkwhDWULFWlu2U
+	w5mg196Q2ynauMQd24/VBBbiuXvnvaF1f5u3owe9vNIocoG9LHlD5VC771PTFeKPFEUq
+	Y2KAFwSdc3UQrp3RZVDqvAg3u1jOzTXw3eLaD7qsSJeLUI3zMPznMuga912TnA5c4aaY
+	XJxf4xxYmN5HJwHTL+OJHLGd4np2spSC04tA2MQTJTDNacSXm+Q4Bn88l9Tvcfa+WL/7
+	iomIZ5hMdzrIoieqds5dSTm9kuYBRgOVvqOPbYGnzumA36cf9TsHuiy16sNpgCYIjZ7q
+	AC8A==
+X-Gm-Message-State: APjAAAVdHP1u0+p91QjpSxPzF3ymwoKwue1U797idbA9tyY/sMRUGlKU
+	lUAdn4dfgwR/8V6CWG+dJYsJzrklVmc=
+X-Google-Smtp-Source: APXvYqzBDgrdfRnXquT6o1+wx+G79B48Fe1ORQQ5Zen5py+2SnnrpIBUrR/sINEuWvcUy8pGgSul+Q==
+X-Received: by 2002:a63:5656:: with SMTP id g22mr30902571pgm.280.1561334968713;
+	Sun, 23 Jun 2019 17:09:28 -0700 (PDT)
 Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
-	[67.181.203.136])
-	by smtp.gmail.com with ESMTPSA id u1sm7855359pgr.94.2019.06.23.11.15.25
-	for <yocto@yoctoproject.org>
+	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
+	j1sm9823717pfe.101.2019.06.23.17.09.28 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 23 Jun 2019 11:15:25 -0700 (PDT)
+	Sun, 23 Jun 2019 17:09:28 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Sun, 23 Jun 2019 11:15:18 -0700
-Message-Id: <20190623181518.19564-9-akuster808@gmail.com>
+Date: Sun, 23 Jun 2019 17:09:26 -0700
+Message-Id: <20190624000927.20172-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190623181518.19564-1-akuster808@gmail.com>
-References: <20190623181518.19564-1-akuster808@gmail.com>
-Subject: [meta-security][meta-tpm][PATCH 9/9] tpm2-tss-engine: update to 1.0.0
+Subject: [meta-security][PATCH 1/2] libmspack: update SRC_URI and package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,30 +71,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 23 Jun 2019 18:15:28 -0000
+X-List-Received-Date: Mon, 24 Jun 2019 00:09:30 -0000
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../{tpm2-tss-engine_0.9.9.bb => tpm2-tss-engine_1.0.0.bb}      | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- rename meta-tpm/recipes-tpm2/tpm2-tss-engine/{tpm2-tss-engine_0.9.9.bb => tpm2-tss-engine_1.0.0.bb} (95%)
+ .../{libmspack_0.10.1.bb => libmspack_1.9.1.bb}        | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+ rename recipes-security/libmspack/{libmspack_0.10.1.bb => libmspack_1.9.1.bb} (53%)
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_0.9.9.bb b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.0.bb
-similarity index 95%
-rename from meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_0.9.9.bb
-rename to meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.0.bb
-index 36530be..0a8d54f 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_0.9.9.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.0.bb
-@@ -8,7 +8,7 @@ SECTION = "security/tpm"
+diff --git a/recipes-security/libmspack/libmspack_0.10.1.bb b/recipes-security/libmspack/libmspack_1.9.1.bb
+similarity index 53%
+rename from recipes-security/libmspack/libmspack_0.10.1.bb
+rename to recipes-security/libmspack/libmspack_1.9.1.bb
+index b46159f..8c288be 100644
+--- a/recipes-security/libmspack/libmspack_0.10.1.bb
++++ b/recipes-security/libmspack/libmspack_1.9.1.bb
+@@ -6,11 +6,11 @@ DEPENDS = ""
  
- DEPENDS = "autoconf-archive-native bash-completion libtss2 libgcrypt openssl"
+ LIC_FILES_CHKSUM = "file://COPYING.LIB;beginline=1;endline=2;md5=5b1fd1f66ef926b3c8a5bb00a72a28dd"
  
--SRCREV = "bef89ec79cbb4c99963b0e336d9184827c545782"
-+SRCREV = "a81d44a8610e28e5987af64f8aae16e4a2d09eaa"
- SRC_URI = "git://github.com/tpm2-software/tpm2-tss-engine.git"
+-SRC_URI = "${DEBIAN_MIRROR}/main/libm/${BPN}/${BPN}_${PV}.orig.tar.xz"
+-
+-SRC_URI[md5sum] = "d894d91eba4d2c6f76695fc9566d5387"
+-SRC_URI[sha256sum] = "850c57442b850bf1bc0fc4ea8880903ebf2bed063c3c80782ee4626fbcb0e67d"
++SRCREV = "63d3faf90423a4a6c174539a7d32111a840adadc"
++SRC_URI = "git://github.com/kyz/libmspack.git"
  
- inherit autotools-brokensep pkgconfig systemd
+ inherit autotools
+ 
+-S = "${WORKDIR}/${BP}alpha"
++S = "${WORKDIR}/git/${BPN}"
++
++inherit autotools
 -- 
 2.17.1
 
