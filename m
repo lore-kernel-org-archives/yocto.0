@@ -1,61 +1,63 @@
-Return-Path: <elcapitanbrown@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 810F2E00D45; Tue, 25 Jun 2019 07:42:25 -0700 (PDT)
+	id 1F46DE00D44; Tue, 25 Jun 2019 07:48:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (elcapitanbrown[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.46 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.166.44 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com
-	[209.85.221.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A2BDE00D42
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 07:42:24 -0700 (PDT)
-Received: by mail-wr1-f46.google.com with SMTP id n9so18253803wru.0
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 07:42:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=NnaTvVss9d76DUl3lD0rHhO3Y2TKT0jI907bZ6QSdfo=;
-	b=ko/Tt05pwqXrWZLlF21/jD5hkbwi/zWt0n81+MYQ1jiAVrtHb9usAPRDFeLSy1Pd7i
-	c9NlpREK/D6rkXsTHzW+LKgpZ34nZFO1E4Q6ClqBM/TYIMBD+4w9FxxyUq/ttSueQRcn
-	M+qh/nRdAFYZljcperACy8plV+osPuJ6gn03lpzCjaS1TpHnSflcFWhOkIx64i8o5/hr
-	DFHyYIR+XbKsgneBwUopnu/O9XBPb/7qGX3OKifh/nhxqX+RZGR3BZhKE0/VOp69cw8k
-	HcR4z1Sf1rieUNnA1AwqynS47QNBZANUOVD9QIyIpedRQD71A/cLZGgUwn6k3VNCvP6m
-	XdjQ==
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com
+	[209.85.166.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84995E00CF4
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 07:48:12 -0700 (PDT)
+Received: by mail-io1-f44.google.com with SMTP id e3so65809ioc.12
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 07:48:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=LanZ9Q0dhZDXbZoP6XVTpnCZ8evWOue1BCGMi3z6Gs0=;
+	b=kgjhMZnoUk98dJ2BtGz0f3gJ0bulTuM+E7TPWeX5aJ3JLcHVESIiwHLGV+O+0f6B7t
+	RW4/ZdFRfwDvfTLq7K8lqfyHdjEYlvxwUyh7yJSHI7EQw+B5KcHpZo8MDwBRotpQ20Pt
+	WfWtNTKEI/PwtmU/QB81J5cctPxm74PpaLJwpnFCmLxQnsnxJ0BwbQ+CdPfJlyPOb1Hh
+	FW/D6ZtaTUFt4oKwXa1v+3TSDbMJI5A1/iIuA2aZXAxOzUcWe8MXVBlRhxeE/apAKSdr
+	deY+l5JytDKst5oLB5fKA7X7bdSLEthnafgIKvBvB1PHuymEkw8TFVySnS04UVXt/8Dt
+	DNuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=NnaTvVss9d76DUl3lD0rHhO3Y2TKT0jI907bZ6QSdfo=;
-	b=QDw9hLeOeHUQRiDLehcKDU95IFB8YdyvTj1/jo48urlanzuOIrzcJka/h/JOc/JoJS
-	4hAywRMytGI3DSU9dj/EWTyogqhZCBk13XzuoegJiWA2lTqnZlE154GpakRKNq5iuaM9
-	HthuuIggHqrRdM/YMPv3CotWkKzYiflKABdu2uOekeyb5Sggiqo4RL4mlPgyeBpSteYD
-	GFK6+hHCn+G1TiPREHW1MMoBeYUAxUZRc5Mew+ZhONLl3781a67H961dfYt0RNLMf4bp
-	4ilxEmERRtj912NvPNN5jpJviVY8646QDHY4jYjG/ubuxuGPhIfyKR1x9N6Fw3+oaUqA
-	HTnw==
-X-Gm-Message-State: APjAAAWFWV3Anf4+JgjvhNGuKMi7RK5kX2Onn4zmH8EUBZSrbMGwuE88
-	JpPdsYSjqsOAskbA7Q2f+ygbcEqQC5nXtCkJvOvCLA==
-X-Google-Smtp-Source: APXvYqwNCbL5iSvE6K1DmXFvpt/kCZ2NUG4538VZMUEVGKsM/rjl+a7QKbv/anDCx7RZIwQNhmjo4Mvo0j3oqoDzfcw=
-X-Received: by 2002:adf:ea8b:: with SMTP id s11mr32875306wrm.100.1561473743856;
-	Tue, 25 Jun 2019 07:42:23 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=LanZ9Q0dhZDXbZoP6XVTpnCZ8evWOue1BCGMi3z6Gs0=;
+	b=Kbq9prWSJhZsc3Z5Bf6VpTTJlkrLb/YSef4LyEt7fM8YwoyjUao8iRf6Zbn/iDdEsl
+	bvjrf3PbvNMz2qLfWHCU7wrTtAKuAIfnr0KWdBY9k9Gg5ultdo1Qm9sHQluYWlaWKJjD
+	0SjRP+yDfXp+YAvZr6W5RvAufFvGYrvw3EA8Ty2q/0T1rtu64ZSk7lH8ITLn4le/W7zi
+	/PJiW/Fq+kUL6NA/bZFVkV+VAuHQPeWG7sZ8WWKPxC8cQPbuLljM9qjP8yVGUoRyXwmG
+	ijkjJRLPRTJgfR4Dc1sdRJPPNZbi7KhNYGtQthZSAP7jytVovrAXveREadq9DEoeYIi4
+	OvuA==
+X-Gm-Message-State: APjAAAXLLqCDqdbiqVZTmtDq7uTC1Y67QdWzVlaH2CGSJc/+LLP8S/eV
+	/i+xu16mjSSMWH299zdGzY+kgKSpY7Kifi3I7RvndA==
+X-Google-Smtp-Source: APXvYqwuPvqoS/5HmIMPava8IzAMHZknKKxDE6+VUIIRpA5lxcLHtkuM+yKJZ4VXImmjAc38iPzdOH392VwA904FX+Q=
+X-Received: by 2002:a05:6602:104:: with SMTP id
+	s4mr6134228iot.200.1561474091893; 
+	Tue, 25 Jun 2019 07:48:11 -0700 (PDT)
 MIME-Version: 1.0
-From: Larry Brown <elcapitanbrown@gmail.com>
-Date: Tue, 25 Jun 2019 10:42:12 -0400
-Message-ID: <CAOmL4Ug9JTVvhecmi43K13pc+BbXZxc6AEtrfjEfjTh2zSQK+g@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Cortex m7 imx rt1052
+References: <22839e9497e34df9b93272590fcc483d@in.bosch.com>
+In-Reply-To: <22839e9497e34df9b93272590fcc483d@in.bosch.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 25 Jun 2019 15:48:00 +0100
+Message-ID: <CAJTo0LaUTDZi-cKg4dfGDdfm+gNrVxwPRQpVO0chprNn9nTBMQ@mail.gmail.com>
+To: "Vignesh Rajendran (RBEI/ECF3)" <Vignesh.Rajendran@in.bosch.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"Ramadevi Sennakesavan \(RBEI/ECF3\)" <Ramadevi.Sennakesavan@in.bosch.com>
+Subject: Re: build on CVE is failing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,38 +69,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jun 2019 14:42:25 -0000
-Content-Type: multipart/alternative; boundary="000000000000d43383058c26ef43"
-
---000000000000d43383058c26ef43
+X-List-Received-Date: Tue, 25 Jun 2019 14:48:13 -0000
 Content-Type: text/plain; charset="UTF-8"
-
-Does anyone know if there is a base bsp for at least the development board
-imx rt1052?
-
--- 
-Larry Brown
-S/V Trident
-Palm Harbor, FL
-~~~~~~~~~~~~~~~~~_/)~~~~~~~~
-    ~     ~          ~~           ~
-~           ~~_/)    ~      ~ ~        ~
-     ~                  _/)          ~
-
---000000000000d43383058c26ef43
-Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:comic sa=
-ns ms,sans-serif">Does anyone know if there is a base bsp for at least the =
-development board imx rt1052?</div><div><br></div>-- <br><div dir=3D"ltr" c=
-lass=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr=
-">Larry Brown<div>S/V Trident</div><div>Palm Harbor, FL</div><div>~~~~~~~~~=
-~~~~~~~~_/)~~~~~~~~</div><div>=C2=A0 =C2=A0 ~ =C2=A0 =C2=A0 ~ =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0~~ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ~</div><div>~ =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 ~~_/) =C2=A0 =C2=A0~ =C2=A0 =C2=A0 =C2=
-=A0~ ~ =C2=A0 =C2=A0 =C2=A0 =C2=A0~</div><div>=C2=A0 =C2=A0 =C2=A0~ =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0_/) =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0~</div></div></div></div>
+Yes, you're right, this is a bug in the new functionality.
 
---000000000000d43383058c26ef43--
+The usual variables are in the data store, so you can get them with
+e.g. d.getVar("http_proxy"), as you can clearly replicate the failure
+would you be able to attempt a patch?
+
+Ross
+
+On Tue, 25 Jun 2019 at 11:14, Vignesh Rajendran (RBEI/ECF3)
+<Vignesh.Rajendran@in.bosch.com> wrote:
+>
+> Hi,
+>
+>
+>
+> I was trying to check the CVE feature on Yocto.
+>
+>
+>
+> I couldn=E2=80=99t succeed the build with CVE.
+>
+> https://pastebin.com/m7hNcNcm
+>
+>
+>
+> There seems like proxy environment doesn=E2=80=99t recognized inside do_p=
+opulate_cve_db.
+>
+>
+>
+> ERROR: cve-update-db-1.0-r0 do_populate_cve_db: HTTPSConnectionPool(host=
+=3D'nvd.nist.gov', port=3D443):
+>
+> Max retries exceeded with url: /feeds/json/cve/1.0/nvdcve-1.0-2002.meta (=
+Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection o=
+bject at 0x7f787f1a8908>: Failed to establish a new connection: [Errno -2] =
+Name or service not known',))
+>
+>
+>
+> I am using HEAD of poky master branch.
+>
+>
+>
+> Best regards,
+>
+> Rajendran Vignesh
+> RBEI/ECF3
+>
+> Tel. +91 422 676-5103 | Threema Work: +914226765103
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
