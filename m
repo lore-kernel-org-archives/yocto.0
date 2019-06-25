@@ -1,40 +1,62 @@
-Return-Path: <andreea.volosincu@windriver.com>
+Return-Path: <balazovic.peter@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CD6DBE00C5C; Sun,  7 Jul 2019 22:17:05 -0700 (PDT)
+	id BB963E00D35; Tue, 25 Jun 2019 00:01:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (balazovic.peter[at]gmail.com)
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE0E8E0098A
-	for <yocto@yoctoproject.org>; Sun,  7 Jul 2019 22:17:04 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x685H3Kd028861
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sun, 7 Jul 2019 22:17:03 -0700 (PDT)
-Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.194]) by
-	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.03.0439.000;
-	Sun, 7 Jul 2019 22:17:03 -0700
-From: "Volosincu, Andreea S" <andreea.volosincu@windriver.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Thread-Topic: =?Windows-1252?Q?Upcoming_Session_=96_Live_Coding_with_Yocto_Project_=96_?=
-	=?Windows-1252?Q?SDKs_Overview?=
-Thread-Index: AdU1TBdEe2NmZ7E8SxqumEv/uKXmFg==
-Date: Mon, 8 Jul 2019 05:17:02 +0000
-Message-ID: <A084970538D2234B96D99D06FA9D974FCA83A0EF@ALA-MBD.corp.ad.wrs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.11.118.112]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.42 listed in list.dnswl.org]
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com
+	[209.85.166.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 641D6E00D2C
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 00:01:01 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id k8so1374721iot.1
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 00:01:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=h+qtO1RmcTW+kwgf/1irgVuVUoN0xH7kRdJSDp0hyx0=;
+	b=RVBgop7hAKWt4dUO7Sbeva8YcyTq8KtrOcN7jdyEnN0pta1BEGw69Q1/HcNOrFfHQM
+	/0oKspqzGFYs5LIwTeZpcqwHEkNQzJYGBV+1/p75yc47eO6jueAR8YUm1wcKGXlcm+Sb
+	cHnIESd/fcQ0OfQy0mGJQToDtyXaX8ULFczc6CeCTic0tuuCQGdrXVVvIHDcmXm4XuhG
+	3FOClAehctgBekua25OUNVs+8OW81AVF68JNis6PPD8FKhtAchLQHYL5skK3HL4Fm9nX
+	gyf79QUcf3MmQZhmcTFaaob5jN1Jl5SP6NmGmtZnR07JnR1jlhXqi5MpMnde3S+IesS6
+	tGBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=h+qtO1RmcTW+kwgf/1irgVuVUoN0xH7kRdJSDp0hyx0=;
+	b=ahevH2FTvqyRzWupeSzyHnx3mdeUJd2fwyYVlPKKP8yqhzJRCGzCIljEySe+XoxqEn
+	a9rDi4xNG4Dnl9MEzNTILIAGtwcsmGROHENV4Trdg62w4eWAUArKF8xaXkJsml9AzpfJ
+	Nsplcgai9vw5gnLWmpEVH6ul6E+mLQUQyrPxPD/gLkq5PEPexwmSnlfrnunbmj3iFC1A
+	I+LkWCjygP6yFZQB/C+z0ymcZMhCuib4sovJQPH/sd3LpbT/48EsrPRVKAZh85F4eyWv
+	qNiUY4GFlqnIIT+ZZgigwMqATjyzSa0q+01TvM73dlps3V7OiJ0RR5bJU7jgZf2x61/g
+	enMw==
+X-Gm-Message-State: APjAAAWL8lO15YSPgALcK7jkqGmg5hpaOee6zLZvTCMtam52Uq/2iPTx
+	gK7UwyuNfWXYcsYZLsHPtTX9V/6vQekBprJmivH6rrGLfbY=
+X-Google-Smtp-Source: APXvYqy67pBgGL32/WRAiqmxL3X4drgva73o9mIv+t37XZBX6FmbuBbS2LwC1e9o3T8zJOqi3ypkHF5pAiLX4J4Nb1I=
+X-Received: by 2002:a02:aa0d:: with SMTP id r13mr29383842jam.129.1561446060608;
+	Tue, 25 Jun 2019 00:01:00 -0700 (PDT)
 MIME-Version: 1.0
-Subject: =?UTF-8?B?VXBjb21pbmcgU2Vzc2lvbiDigJMgTGl2ZSBDb2Rpbmcgd2l0aCBZb2N0byBQcm9qZWN0IOKAkyBTREtzIE92ZXJ2aWV3?=
+From: Peter Balazovic <balazovic.peter@gmail.com>
+Date: Tue, 25 Jun 2019 09:00:49 +0200
+Message-ID: <CAFq4t4houL31Cf=gDwGx6JsVXRdrAeL-7ORkBOO4pa=otz6BDw@mail.gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+X-Mailman-Approved-At: Mon, 08 Jul 2019 02:27:29 -0700
+Subject: Issue on do_sdk_depends: The file ... is installed by both.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,107 +68,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Jul 2019 05:17:05 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_A084970538D2234B96D99D06FA9D974FCA83A0EFALAMBDcorpadwrs_"
+X-List-Received-Date: Tue, 25 Jun 2019 07:01:01 -0000
+Content-Type: multipart/alternative; boundary="000000000000c750ba058c207dad"
 
---_000_A084970538D2234B96D99D06FA9D974FCA83A0EFALAMBDcorpadwrs_
-Content-Type: text/plain; charset="Windows-1252"
+--000000000000c750ba058c207dad
+Content-Type: text/plain; charset="UTF-8"
+
+Hello guys
+
+I'm trying to generate extended SDK under and generating extended SDK I am
+getting the erros such as
+
+ERROR: image-qt5-1.0-r0 do_sdk_depends: The file
+/usr/include/tensorflow/contrib/lite/string_util.h is installed by both
+tensorflow and tensorflow-lite, aborting
+ERROR: image-qt5-1.0-r0 do_sdk_depends:
+ERROR: image-qt5-1.0-r0 do_sdk_depends: Function failed:
+extend_recipe_sysroot
+
+can you help me identify an issue on this fail?
+
+Thanks.
+
+--000000000000c750ba058c207dad
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Get ready for the next session of Live Coding with Yocto Project.
+<div dir=3D"ltr"><div>Hello guys</div><div><br></div><div>I&#39;m trying to=
+ generate extended SDK under and generating extended SDK I am getting the e=
+rros such as=C2=A0<br></div><div><br></div><div>ERROR: image-qt5-1.0-r0 do_=
+sdk_depends: The file /usr/include/tensorflow/contrib/lite/string_util.h is=
+ installed by both tensorflow and tensorflow-lite, aborting<br>ERROR: image=
+-qt5-1.0-r0 do_sdk_depends:=C2=A0<br>ERROR: image-qt5-1.0-r0 do_sdk_depends=
+: Function failed: extend_recipe_sysroot</div><div><br></div><div>can you h=
+elp me identify an issue on this fail?=C2=A0<br></div><div><br></div><div>T=
+hanks.</div></div>
 
-Join us =96
-When: July 9th, 2019 5:00 PM Europe/Berlin
-Where: Yocto Project Twitch channel - twitch.tv/yocto_project
-What: Yocto Project developer, Josef Holzmayr, will talk about SDKs =96 wha=
-t they are, what they can be used for, and how to generate them.
-
---_000_A084970538D2234B96D99D06FA9D974FCA83A0EFALAMBDcorpadwrs_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:"Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-p.mentions-texteditorcontent, li.mentions-texteditorcontent, div.mentions-t=
-exteditorcontent
-	{mso-style-name:mentions-texteditor__content;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman",serif;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Get ready for the next session of Live Coding with Y=
-octo Project.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Join us =96 <o:p></o:p></p>
-<p class=3D"MsoNormal">When: July 9th, 2019 5:00 PM Europe/Berlin<o:p></o:p=
-></p>
-<p class=3D"MsoNormal">Where: Yocto Project Twitch channel - twitch.tv/yoct=
-o_project
-<o:p></o:p></p>
-<p class=3D"MsoNormal">What: Yocto Project developer, Josef Holzmayr, will =
-talk about SDKs =96 what they are, what they can be used for, and how to ge=
-nerate them.<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_A084970538D2234B96D99D06FA9D974FCA83A0EFALAMBDcorpadwrs_--
+--000000000000c750ba058c207dad--
