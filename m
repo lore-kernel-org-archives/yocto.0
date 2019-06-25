@@ -1,63 +1,66 @@
-Return-Path: <adim@jfrog.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 462FFE00D35; Tue, 25 Jun 2019 00:20:07 -0700 (PDT)
+	id 6C39EE00D35; Tue, 25 Jun 2019 00:30:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	T_REMOTE_IMAGE autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.68 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (martin.jansa[at]gmail.com)
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  0.0 T_REMOTE_IMAGE Message contains an external image
-Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com
-	[209.85.221.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CC1CE00BAF
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 00:20:06 -0700 (PDT)
-Received: by mail-wr1-f68.google.com with SMTP id x17so16524435wrl.9
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 00:20:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jfrog.com; s=jfrogcom;
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.50 listed in list.dnswl.org]
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com
+	[209.85.208.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 288E4E00CF4
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 00:30:15 -0700 (PDT)
+Received: by mail-ed1-f50.google.com with SMTP id i11so25676571edq.0
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 00:30:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=BcoN+xyg7HHjyZDLiL/HL2VPazWa+sVPZHtosGggLuk=;
-	b=RTkEKG8sMbT6OIsA5n0L5juIIOzjH6HE4XZC0SsTOmL/7CHmETpUiQPGERKnnfLgll
-	eFkLbM7Og14MJT/tiKQaipuMVMeSSDLBFExTfKMxzFOKI9DCYyVq+6UM8pBUKZ0kL3XE
-	8k9mJLo5RAaOSNTZACtP0jwfesMvMbUToCJD0=
+	:cc; bh=0xfmokty4wQIVxypL+7ajg+B34HMqmuVAJ7SIV/vtXk=;
+	b=rrtQbmrd9CL+wE1W0FTmXjr4smLz6+1xvMOWqZ4uCGYgsnQ6cJYrZLBnRvtdJdqJre
+	+BYzYsrxDxFjPQDR5FqJAIbO0vaPUGqbwgq8vK0h4xe+Bs9VVERuTBxtd+9BjQQi90j2
+	Ox8BAeAzF8XpfW5zllW02b0lO1qw1Qgw2Fz9lDDbiBTZMvms7PfLJQxg0kVPvAgLKHol
+	f7K3fL27egHcBzq8NkHD0Q59k2d771/Cvf0XRe7pUbQRS74UweNxCo8KgqTOW6tjGFqh
+	eJrSY3KNC0xLt2CvGCr6VFflU+PP47fvSYF/WS8feEC2m+F1sTIoMXT0vSecvbop8iuR
+	pefg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=BcoN+xyg7HHjyZDLiL/HL2VPazWa+sVPZHtosGggLuk=;
-	b=WJIaEPPJqyMZFwAa3NLz48pdOsCaESmnnQ1NTR3Y0EXM4XJgQvJenUJOcouqA3yaPh
-	q388553Uf3saa7iZJb6nYh0BD9pasZyXGukgfzzI86Ma0xuU7r8WQNH+SbNEiHaESm+o
-	2AS4OxUo+1HXJJMWweJFkhldNjh85ayt4WFhMDdZysZ6iYO1Pb/84r6a7SpPdFEehzGd
-	yhoyO/WHbT05ynEHy8gm2seP3kAZGPuWfoGbszNFNUfOvWbUtJZbnII6vIZhulyJCGoq
-	jiDHS8BENR8C39C6kNM9dpWb7/f3M+u6ZQfYnMgvy615b7712dKswnSTNemuAqQfc8O9
-	Duuw==
-X-Gm-Message-State: APjAAAXMin6WB7xyLVEYEwQytj9io1vEwLrMnk/CQp9UMNYMukZI5gv2
-	HxqI0iMzUEIlfmpqKeU/kH0MNyOeYik+N5+mwFdhyWm8hx4zmupB93BfNPm27idxIRDS61MrLui
-	/UhjlAwgeXzcYYVTCxh3A5YPUlA==
-X-Google-Smtp-Source: APXvYqzkCVzKI8pK5tulC8MPfyKfH98rlmLGFnGWl0/C+tERwGruvtpwX9PC9c4py4uWTqRyaEH1HpaIqp5CnXQVsX0=
-X-Received: by 2002:adf:e301:: with SMTP id b1mr24727777wrj.304.1561447205509; 
-	Tue, 25 Jun 2019 00:20:05 -0700 (PDT)
+	bh=0xfmokty4wQIVxypL+7ajg+B34HMqmuVAJ7SIV/vtXk=;
+	b=tGRFWOmGsOwcvHZh61nrV2B/LuDuM7T3Zh2Hi7q1BhwclaFg8ankOVGnavwkTY1091
+	/iwG9xvGkrR4yMkCdaTNqJkM6BvjNuZZBMN4IZ097YA3Md0PYTPYGI0W9X2ta9kOfryh
+	j/t2fBbp5zCHDDKUwBFqAKSgMk47hfnX5VWCi0+42/SuQBfh9+M/CckOaRl4QxTIX8Bd
+	mj5JkJZ0FIfka4A2lhroFLBNXRKE39kDMZoMIHmXLoJYoP5RSmyMElY+6lY9pN4+UEpr
+	/Eo28vMBN3pdamyCryvwG0XpRFWV+mgwoqyHkjRqorf1ogvC6dqPmDqXW4/525dPzbD3
+	oBZg==
+X-Gm-Message-State: APjAAAUKJpMP+O3xEBTJGCiDlznCtqxOJ9FkU/ZAQYc+fLsyNKShCUmp
+	vfoZ/KUEckpxWBn08OUcsl8DoZ/DSAiNSyv3ZR6jYRg5
+X-Google-Smtp-Source: APXvYqwY2gJZYpmV47E5eJ6VwAjYZjnXri/gTUoeTfBucqEhrFpLPM6Ps9H1XJts//5ctylV1VI6BZk4OUFutJX6fFw=
+X-Received: by 2002:a17:906:9705:: with SMTP id
+	k5mr99401854ejx.5.1561447815013; 
+	Tue, 25 Jun 2019 00:30:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAM483UybQzjLoxaa6M25stxwf7xWXa-xW9Q6WxHz=PjwimaT3A@mail.gmail.com>
-	<c77b5c42da8261128f45af9a8461ce9f09eb2921.camel@redrectangle.org>
-In-Reply-To: <c77b5c42da8261128f45af9a8461ce9f09eb2921.camel@redrectangle.org>
-From: Adi Malca <adim@jfrog.com>
-Date: Tue, 25 Jun 2019 10:19:54 +0300
-Message-ID: <CAM483UypTWk6J2A-=jO8g95-cM=fvD8_pnFKHU-PV=5s3t37Hg@mail.gmail.com>
-To: Robert Joslyn <robert.joslyn@redrectangle.org>
-Cc: yocto@yoctoproject.org
-Subject: Re: OPKG Spec
+References: <1561429587556.6733@lge.com>
+In-Reply-To: <1561429587556.6733@lge.com>
+From: Martin Jansa <martin.jansa@gmail.com>
+Date: Tue, 25 Jun 2019 09:30:04 +0200
+Message-ID: <CA+chaQf7VB36-ihmnx+ARiJ7VC4rQcuBSHgmwj33ytr_fauERw@mail.gmail.com>
+To: "keith.derrick" <keith.derrick@lge.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Dealing with line endings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,238 +72,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jun 2019 07:20:07 -0000
-Content-Type: multipart/alternative; boundary="000000000000054722058c20c253"
+X-List-Received-Date: Tue, 25 Jun 2019 07:30:17 -0000
+Content-Type: multipart/alternative; boundary="0000000000005969b0058c20e636"
 
---000000000000054722058c20c253
+--0000000000005969b0058c20e636
 Content-Type: text/plain; charset="UTF-8"
 
-Thank you Robert, the last 2 links to the code were very helpful.
+Hi Keith,
 
-On Tue, Jun 25, 2019 at 8:28 AM Robert Joslyn <
-robert.joslyn@redrectangle.org> wrote:
+you can use dos2unix.bbclass:
+http://git.openembedded.org/openembedded-core/tree/meta/classes/dos2unix.bbclass
+to convert them before do_patch.
 
-> On Sun, 2019-06-23 at 16:15 +0300, Adi Malca wrote:
-> > Hello,
-> >
-> > I'm looking for the current official OPKG spec with spelling and case
-> > sensitive.
-> > For example:
-> > Package:
-> > Version:
-> > Description:
-> > Section:
-> > Priority:
-> > Maintainer:
-> > License:
-> > Architecture:
-> > OE:
-> > Homepage:
-> > Depends:
-> > Source:
-> > Filename:
-> > SHA1:
-> > SHA256:
-> >
-> > Best Regards,
-> > Adi
->
-> I'm not sure if there is an official spec somewhere, but the structure
-> of the packages and server index files can be seen in the code. The
-> main opkg utility is here:
-> http://git.yoctoproject.org/cgit/cgit.cgi/opkg/
->
-> The helper scripts are also useful:
-> http://git.yoctoproject.org/cgit/cgit.cgi/opkg-utils/
->
-> You can see the structure of the metadata you mention, including
-> spelling, capitalization, etc, here:
-> http://git.yoctoproject.org/cgit/cgit.cgi/opkg/tree/libopkg/pkg.c#n552
->
-> You can also see it here (perhaps more concisely):
-> http://git.yoctoproject.org/cgit/cgit.cgi/opkg-utils/tree/opkg.py#n491
->
-> The Packages and Packages.gz index files use these variables. For
-> example, this is what shows up in the index for busybox on one of my
-> builds:
->
-> Package: busybox
-> Version: 1.30.1-r0
-> Depends: libc6 (>= 2.29), update-alternatives-opkg
-> Recommends: busybox-udhcpc
-> Section: base
-> Architecture: armv7vet2hf-neon
-> Maintainer: Poky <poky@yoctoproject.org>
-> MD5Sum: c0b45a09adec305b49153133a3392917
-> Size: 315406
-> Filename: busybox_1.30.1-r0_armv7vet2hf-neon.ipk
-> Source: busybox_1.30.1.bb
-> Description: Tiny versions of many common UNIX utilities in a single
-> small executable
-> OE: busybox
-> HomePage: http://www.busybox.net
-> License: GPLv2 & bzip2
-> Priority: optional
->
-> Packages can also use SHA256 rather than MD5.
->
-> Package: busybox
-> Version: 1.30.1-r0
-> Depends: libc6 (>= 2.29), update-alternatives-opkg
-> Recommends: busybox-udhcpc
-> Section: base
-> Architecture: armv7vet2hf-neon
-> Maintainer: Poky <poky@yoctoproject.org>
-> SHA256sum:
-> 3ca8d2dd79759fa34bf04a0ee97fef5e354d97da76b03672544f3c4eeef76ac9
-> Size: 315406
-> Filename: busybox_1.30.1-r0_armv7vet2hf-neon.ipk
-> Source: busybox_1.30.1.bb
-> Description: Tiny versions of many common UNIX utilities in a single
-> small executable
-> OE: busybox
-> HomePage: http://www.busybox.net
-> License: GPLv2 & bzip2
-> Priority: optional
->
-> I'm not sure if anyone has any package feeds built by Yocto publicly
-> available, but OpenWRT uses opkg as well, with public feeds available.
-> For example:
->
-> https://downloads.openwrt.org/releases/18.06.2/packages/aarch64_cortex-a53/base/
+Cheers,
+
+On Tue, Jun 25, 2019 at 4:57 AM keith.derrick <keith.derrick@lge.com> wrote:
+
+> I am using an upstream repo with a mix of line endings.
 >
 >
-> Robert
+> In my recipe, I'm applying a patch with normalized line endings, as our
+> meta layer repo has a .gitattributes with "text=auto" set.
 >
+>
+> The patch is failing due to "different line endings".
+>
+>
+> Can the git fetcher be configured to normalize line endings on unpack? I
+> tried setting core.autocrlf in my global .gitconfig, but the
+> fetcher/unpacker seems to ignore it.
+>
+>
+> Thanks
+>
+> Keith
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
--- 
- <https://support.jfrog.com/>
-
---000000000000054722058c20c253
+--0000000000005969b0058c20e636
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thank you Robert, the last 2 links to the code were very h=
-elpful.</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Tue, Jun 25, 2019 at 8:28 AM Robert Joslyn &lt;<a href=3D"mailto:=
-robert.joslyn@redrectangle.org">robert.joslyn@redrectangle.org</a>&gt; wrot=
-e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Sun, 2019-=
-06-23 at 16:15 +0300, Adi Malca wrote:<br>
-&gt; Hello,<br>
-&gt; <br>
-&gt; I&#39;m looking for the current official OPKG spec with spelling and c=
-ase<br>
-&gt; sensitive.<br>
-&gt; For example:<br>
-&gt; Package: <br>
-&gt; Version: <br>
-&gt; Description: <br>
-&gt; Section: <br>
-&gt; Priority: <br>
-&gt; Maintainer: <br>
-&gt; License: <br>
-&gt; Architecture: <br>
-&gt; OE: <br>
-&gt; Homepage:<br>
-&gt; Depends: <br>
-&gt; Source: <br>
-&gt; Filename: <br>
-&gt; SHA1:<br>
-&gt; SHA256:<br>
-&gt; <br>
-&gt; Best Regards,<br>
-&gt; Adi<br>
-<br>
-I&#39;m not sure if there is an official spec somewhere, but the structure<=
+<div dir=3D"ltr">Hi Keith,<div><br></div><div>you can use dos2unix.bbclass:=
+</div><div><a href=3D"http://git.openembedded.org/openembedded-core/tree/me=
+ta/classes/dos2unix.bbclass">http://git.openembedded.org/openembedded-core/=
+tree/meta/classes/dos2unix.bbclass</a></div><div>to convert them before do_=
+patch.</div><div><br></div><div>Cheers,</div></div><br><div class=3D"gmail_=
+quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jun 25, 2019 at 4:57 A=
+M keith.derrick &lt;<a href=3D"mailto:keith.derrick@lge.com">keith.derrick@=
+lge.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex">
+
+
+
+
+<div dir=3D"ltr" style=3D"font-size:12pt;color:rgb(0,0,0);background-color:=
+rgb(255,255,255);font-family:Calibri,Arial,Helvetica,sans-serif">
+<p>I am using=C2=A0an upstream repo with a mix of line endings.<br>
+</p>
+<p><br>
+</p>
+<p>In my recipe, I&#39;m applying a patch with normalized line endings, as =
+our meta layer repo has a .gitattributes with &quot;text=3Dauto&quot; set.<=
 br>
-of the packages and server index files can be seen in the code. The<br>
-main opkg utility is here: <br>
-<a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/opkg/" rel=3D"noreferr=
-er" target=3D"_blank">http://git.yoctoproject.org/cgit/cgit.cgi/opkg/</a><b=
-r>
-<br>
-The helper scripts are also useful: <br>
-<a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/opkg-utils/" rel=3D"no=
-referrer" target=3D"_blank">http://git.yoctoproject.org/cgit/cgit.cgi/opkg-=
-utils/</a><br>
-<br>
-You can see the structure of the metadata you mention, including<br>
-spelling, capitalization, etc, here:<br>
-<a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/opkg/tree/libopkg/pkg.=
-c#n552" rel=3D"noreferrer" target=3D"_blank">http://git.yoctoproject.org/cg=
-it/cgit.cgi/opkg/tree/libopkg/pkg.c#n552</a><br>
-<br>
-You can also see it here (perhaps more concisely):<br>
-<a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/opkg-utils/tree/opkg.p=
-y#n491" rel=3D"noreferrer" target=3D"_blank">http://git.yoctoproject.org/cg=
-it/cgit.cgi/opkg-utils/tree/opkg.py#n491</a><br>
-<br>
-The Packages and Packages.gz index files use these variables. For<br>
-example, this is what shows up in the index for busybox on one of my<br>
-builds:<br>
-<br>
-Package: busybox<br>
-Version: 1.30.1-r0<br>
-Depends: libc6 (&gt;=3D 2.29), update-alternatives-opkg<br>
-Recommends: busybox-udhcpc<br>
-Section: base<br>
-Architecture: armv7vet2hf-neon<br>
-Maintainer: Poky &lt;<a href=3D"mailto:poky@yoctoproject.org" target=3D"_bl=
-ank">poky@yoctoproject.org</a>&gt;<br>
-MD5Sum: c0b45a09adec305b49153133a3392917<br>
-Size: 315406<br>
-Filename: busybox_1.30.1-r0_armv7vet2hf-neon.ipk<br>
-Source: <a href=3D"http://busybox_1.30.1.bb" rel=3D"noreferrer" target=3D"_=
-blank">busybox_1.30.1.bb</a><br>
-Description: Tiny versions of many common UNIX utilities in a single<br>
-small executable<br>
-OE: busybox<br>
-HomePage: <a href=3D"http://www.busybox.net" rel=3D"noreferrer" target=3D"_=
-blank">http://www.busybox.net</a><br>
-License: GPLv2 &amp; bzip2<br>
-Priority: optional<br>
-<br>
-Packages can also use SHA256 rather than MD5.<br>
-<br>
-Package: busybox<br>
-Version: 1.30.1-r0<br>
-Depends: libc6 (&gt;=3D 2.29), update-alternatives-opkg<br>
-Recommends: busybox-udhcpc<br>
-Section: base<br>
-Architecture: armv7vet2hf-neon<br>
-Maintainer: Poky &lt;<a href=3D"mailto:poky@yoctoproject.org" target=3D"_bl=
-ank">poky@yoctoproject.org</a>&gt;<br>
-SHA256sum:<br>
-3ca8d2dd79759fa34bf04a0ee97fef5e354d97da76b03672544f3c4eeef76ac9<br>
-Size: 315406<br>
-Filename: busybox_1.30.1-r0_armv7vet2hf-neon.ipk<br>
-Source: <a href=3D"http://busybox_1.30.1.bb" rel=3D"noreferrer" target=3D"_=
-blank">busybox_1.30.1.bb</a><br>
-Description: Tiny versions of many common UNIX utilities in a single<br>
-small executable<br>
-OE: busybox<br>
-HomePage: <a href=3D"http://www.busybox.net" rel=3D"noreferrer" target=3D"_=
-blank">http://www.busybox.net</a><br>
-License: GPLv2 &amp; bzip2<br>
-Priority: optional<br>
-<br>
-I&#39;m not sure if anyone has any package feeds built by Yocto publicly<br=
->
-available, but OpenWRT uses opkg as well, with public feeds available.<br>
-For example:<br>
-<a href=3D"https://downloads.openwrt.org/releases/18.06.2/packages/aarch64_=
-cortex-a53/base/" rel=3D"noreferrer" target=3D"_blank">https://downloads.op=
-enwrt.org/releases/18.06.2/packages/aarch64_cortex-a53/base/</a><br>
-<br>
-<br>
-Robert<br>
-<br>
+</p>
+<p><br>
+</p>
+<p>The patch is failing due to &quot;different line endings&quot;.<br>
+</p>
+<p><br>
+</p>
+<p>Can the git fetcher be configured to normalize line endings on unpack? I=
+ tried setting core.autocrlf in my global .gitconfig, but the fetcher/unpac=
+ker seems to ignore it.<br>
+</p>
+<p><br>
+</p>
+<p>Thanks<br>
+</p>
+<p>Keith<br>
+</p>
+<p><br>
+</p>
+</div>
+
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
 </blockquote></div>
 
-<br>
-<a href=3D"https://support.jfrog.com/" target=3D"_blank"><img src=3D"https:=
-//leap.jfrog.com/rs/256-FNZ-187/images/supportportal-ticket.png"></a>
-
---000000000000054722058c20c253--
+--0000000000005969b0058c20e636--
