@@ -1,68 +1,68 @@
-Return-Path: <elcapitanbrown@gmail.com>
+Return-Path: <jeremy.singy@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 85595E00D35; Tue, 25 Jun 2019 06:25:27 -0700 (PDT)
+	id 02012E00D42; Tue, 25 Jun 2019 07:00:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, FROM_EXCESS_BASE64,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (elcapitanbrown[at]gmail.com)
+	provider *      (jeremy.singy[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.54 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.166.49 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com
-	[209.85.221.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58825E00BAF
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 06:25:26 -0700 (PDT)
-Received: by mail-wr1-f54.google.com with SMTP id x4so17864718wrt.6
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 06:25:26 -0700 (PDT)
+	*  0.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com
+	[209.85.166.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69C54E00D42
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 07:00:08 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id e5so414219iok.4
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 07:00:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=QTLUWIvo7+ippKiZAPxDE6zsTjMlUQ6AZH0oscCAhXU=;
-	b=AR3Fzgjzwg6JMWsjcNRL0fjTvwwDeCqyHRx+c5uSIvAYe7PdYT0JZbcDYGtPt4hO6V
-	4KMWHqcXpaOUjTKWrZzQp0BEs7xNSP8pB2NGW1HtC0+VkOya1z8BJgZH0CUR3YzB18K4
-	3syOsvYH8wy0iE9xbTKW2hpENF6n0et0mIRjvUd2S8w0ntIZUCUdvvsN6cStnt0jayR0
-	3jjLxEPE96QOHUJn1UKlOv+oooFIUu49Yq8dQBSEI+AgZDKqZEXYE6yz2lOtE3ObZChv
-	hrkH6tNHOaJ513I3CM2fY5tFuuENi0N7Sl4nLciSkkjg9SQjHh44Z2qjwAoepmZd1+5i
-	e4jw==
+	:cc:content-transfer-encoding;
+	bh=pwyvKHk6vtx35gSzfOHjsZUoKAEVyFL3ZYMm1uf8IHw=;
+	b=oNDcRwCRwpzJHPm9a8Bjjf8hb19c/ActbXZMYfOdk4eesFX1fVWqBxd88Tw5U5U3c/
+	jDoydTa/7ZEgUfcTdMIyEa9xRU7RApcPcSyThBjjDUH8Svxxy6/IXArqImrWj0LLNZvs
+	KwtGYY24sczR4BvW+05Hgf+K9QHGmVGGIpOwnP1z0YVbh9O5Gp1qX9INeeHMBSlP4qMs
+	TjKbegrCpL8BWt/VOut0xg8GFvEPDERazq+XJTBZEg8l1PH45+i8pc2RNHvqxQqPPdOS
+	RwoKcz18sgKDXZvyqUW++LuoQ3Vwskz4bYp/Q4T+nVufPiA83a236/HhfuP0vqybYC3j
+	1VQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=QTLUWIvo7+ippKiZAPxDE6zsTjMlUQ6AZH0oscCAhXU=;
-	b=im2GdS0hvWrd5N/0penqpGa4ZdAZLXaQF34IWKC70+jxjHgdfyG56WHmetE6oNCHvH
-	sunoQRooGr9SfrCegjsL3THyvOAo8P4SCy/T3ONv67+o/UzqwLAslc7pWT/nI08hmWKJ
-	vyrxo29/fgB7qEgV9p23un9qM87Zyf1BopkKV2p3oS9WgNhfOocEVHIzLX9F3J03vcnN
-	4UNpqhiGGNrWtpcCor4MTBO6vQ+dBaL0wolvu64A2HNarUueirqu3/pX8lhlKWsjpq5l
-	2GVRHgadm4jaLzjoExnjkhvwZvSbYhjE7PiEnNGHQdqyEKJ2KOIeIPj4MvWZE8Yiqyt7
-	RoJg==
-X-Gm-Message-State: APjAAAX5RFLRipUFj1V6z6NJDUDE8StPkKzucFBeyG3b+E6ygBoJiqw1
-	guv1SFkj/FUOzZSFNxq58NRcr4WtPJC0YhOl5/w=
-X-Google-Smtp-Source: APXvYqwQK4rt2vJ6vkrF/uLmjIOt19buz7Wz4ynW/dJvART4v/drPcum7faFqLmb/GLJoCO7CFXLWuExUwIh8WNtF0A=
-X-Received: by 2002:a5d:4849:: with SMTP id n9mr91481106wrs.139.1561469125256; 
-	Tue, 25 Jun 2019 06:25:25 -0700 (PDT)
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=pwyvKHk6vtx35gSzfOHjsZUoKAEVyFL3ZYMm1uf8IHw=;
+	b=WSbuUwoQM3fdunitarF+WumdbxE9JxOAfy0/RPPJWblcmMCPf48wTUdV237aWbd1IK
+	/Ucu+U2io0/KDInOVm1hIx4G9dOcvnkAtOO3tt8fAT5nkk+TjZT5YBvDxIsTHr9anbOt
+	EtQBDtpL4Hr+DtubxwiToT17l3rXqeiX5LET+Bdtst0cMA+3dIGHOcJx2KrPN4U41YoM
+	RDR0PEYH1gtZE93WHwiQcMyn2FTVPD2WKedb6CNiFDEvJjdvKgY/oQIJsh8o6ewxCWfa
+	iMtog1CNemkKCUca56jPe6m7B11hUekgeGPTveFYMrWMiki2yP2pgOT/HVml8QBi64bc
+	vHBQ==
+X-Gm-Message-State: APjAAAW4HOPx2gKx28G1gZBbAuBbYyyltkNRqSibXfUpNKUbLmV18BIR
+	wMtdwfgQ0zjC20DoW/YzDgSZ8XEofOqYwLgv4L4=
+X-Google-Smtp-Source: APXvYqxnZvYjh9msrGqEybKHWqCXTJuFeyN2UxDJ4SvPs5w2e6zsXX6pA9T5OegOB5W/T9p9g3mVFP3fmfcTZjXzidI=
+X-Received: by 2002:a6b:fb02:: with SMTP id h2mr20735107iog.289.1561471207835; 
+	Tue, 25 Jun 2019 07:00:07 -0700 (PDT)
 MIME-Version: 1.0
-References: <6fefee9b-8521-b633-8ae4-00b09e6d3532@googlemail.com>
-	<20190624070810.GD1584@archworkstation>
-	<43163f9c-29e2-6069-bd13-ff65f82d55bd@googlemail.com>
-	<CAAx3WaA+OemjNchvCFd_3m3K5LE4OedqFVtwdPAjYNwUSWv28Q@mail.gmail.com>
-In-Reply-To: <CAAx3WaA+OemjNchvCFd_3m3K5LE4OedqFVtwdPAjYNwUSWv28Q@mail.gmail.com>
-From: Larry Brown <elcapitanbrown@gmail.com>
-Date: Tue, 25 Jun 2019 09:25:13 -0400
-Message-ID: <CAOmL4Ujwqu1pVe5zEGntJjYTNgw7__LPi_mdgn7-xU93dwF62A@mail.gmail.com>
-To: Gabriele Zampieri <gabbla.malist@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: General Question: Device specific value store
+References: <CAA42Xj5nygLnFp_ojTP5J59czFuG7f82c6bc_SLax+4+Ot2QVg@mail.gmail.com>
+	<CAA42Xj5pNmu1BSVAd2FMTJvwO1fSbtckDfp+EOP9ELikG_=POw@mail.gmail.com>
+	<CAMKF1spO50-WtUOinnWO9wSqohTUXjBng-z_mFVtf0mbwbRP_A@mail.gmail.com>
+In-Reply-To: <CAMKF1spO50-WtUOinnWO9wSqohTUXjBng-z_mFVtf0mbwbRP_A@mail.gmail.com>
+From: =?UTF-8?B?SsOpcsOpbXkgU2luZ3k=?= <jeremy.singy@gmail.com>
+Date: Tue, 25 Jun 2019 15:59:56 +0200
+Message-ID: <CAA42Xj4dm_QYKAQ+r-JfZ8k=_vj-N1H4WwLp131=MyMGQgcyvA@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Can't build SDK while shrinking shadow tools
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,214 +74,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Jun 2019 13:25:27 -0000
-Content-Type: multipart/alternative; boundary="00000000000089eb08058c25dcae"
-
---00000000000089eb08058c25dcae
+X-List-Received-Date: Tue, 25 Jun 2019 14:00:11 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-You could either partition the flash with intentional space left at the end
-of the disk and write/read directly to the flash at the specified location
-or you could put it at the end of the uboot space.  There is a chunk of
-unused space at the end of the uboot image that is not used IIRC that
-should give enough for a serial and key.  You'd have to test to find out
-for sure.  You could cat the uboot image to hexdump to see how much space
-is left empty.  The idea of a space at the end of the flash is probably
-better as reformatting or re-partitioning with this space left alone should
-retain your values.
-
-If anyone has issues with these suggestions feel free to correct me but it
-seems pretty safe to me since you have control over how you partition your
-device and this data will be pretty static.
-
-
-On Tue, Jun 25, 2019 at 6:09 AM Gabriele Zampieri <gabbla.malist@gmail.com>
-wrote:
-
-> Hi Matthias,
+On Wed, Jun 19, 2019 at 10:03 PM Khem Raj <raj.khem@gmail.com> wrote:
 >
-> an easier solution may be write those data during production. I don't
-> think that having a custom partition for each device is a good idea. You
-> could start the device in "production mode" and inject into the device
-> specific data through serial or USB. Obviously you must have some piece o=
-f
-> software running on the device that can read/write that partition.
->
-> In my opinion Yocto does not mention anything about this procedure
-> probably because this is not the standard way.
->
-> Gabriele
->
-> Il giorno mar 25 giu 2019 alle ore 10:53 Matthias Schoepfer <
-> matthias.schoepfer@googlemail.com> ha scritto:
->
->> Hi Morn=C3=A9,
+> On Fri, Jun 14, 2019 at 2:16 AM J=C3=A9r=C3=A9my Singy <jeremy.singy@gmai=
+l.com> wrote:
 >>
->> thanks for you answer. Maybe, I will explain more: we have a Dragonboard
->> 410c based hardware. We use a read-only rootfs in one partition
->> (actually two with A/B approach) and we have a data partition for user
->> data as well as device specific data. We can partition and flash the
->> device through fastboot. So, if we can prepare ext4 filesystems (maybe
->> through yocto instead of hand-crafted scripting) for each device,
->> commissioning will be an easy task for the manufacturer.
+>> Hi,
 >>
->> I guess, we are not the only ones that need to store device specific
->> information besides the rootfs, and I do not find a whole lot about it
->> in the yocto manuals. I wonder, if there are best practices, how to
->> protect the data from getting corrupted (intentionally by an attacker or
->> by accident through ... flash corruption or whatever).
+>> I'm facing a problem by trying to shrink the size of our root filesystem=
+.
+>> To avoid installing some unneeded tools such as adduser, groupadd,
+>> nologin, etc. I just created as usual a shadow_%.bbappend in our layer
+>> which removes the content using do_install_append:
 >>
->> Regards,
->>
->>     Matthias
->>
->> On 6/24/19 9:08 AM, Morn=C3=A9 Lamprecht wrote:
->> > On Mon, Jun 17, 2019 at 05:25:56PM +0200, Matthias Schoepfer wrote:
->> >> Is there a smart, recommended way to deal with device specific data
->> >> (i.e.  serial number, credentials for backend access, you name it),
->> >> that is specific for *one* device, and hence does not belong into the
->> >> rootfs. I know, that there are (safe) hardware stores for it, but
->> >> what, if your device does not have one.
->> >
->> > Not sure if I'm misunderstanding your question, but this should be
->> > part of your device commissioning process, i.e. like injecting
->> > specific security keys etc...so basically this will part of your image
->> > install / flash process, and not really part of the Yocto build
->> > process. The specifics of such a process would depend on your specific
->> > commissioning process.
->> >
->> >         - Morn=C3=A9
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>>     # do not install alternatives
+>>     ALTERNATIVE_${PN} =3D ""
+>>     ALTERNATIVE_${PN}-base =3D ""
 >
+> This is most probably the reason for your issue
+> You may want to remove the alternatives which you are deleting but not ev=
+erything
 
+In the meantime I could fix the problem. I had to remove the
+alternative for nologin in the util-linux recipe as well (as hinted by
+the error message, this was the offending recipe)
 
---=20
-Larry Brown
-S/V Trident
-Palm Harbor, FL
-~~~~~~~~~~~~~~~~~_/)~~~~~~~~
-    ~     ~          ~~           ~
-~           ~~_/)    ~      ~ ~        ~
-     ~                  _/)          ~
+I just wrote a util-linux_%.bbappend to remove the alternatives for
+nologin (which I don't need) and I could then build the SDK:
 
---00000000000089eb08058c25dcae
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+    ALTERNATIVE_${PN}_remove =3D "nologin"
+    ALTERNATIVE_LINK_NAME[nologin] =3D ""
+    do_install_append() {
+      rm -f ${D}${base_sbindir}/nologin
+    }
 
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:comic sa=
-ns ms,sans-serif">You could either partition the flash with intentional spa=
-ce left at the end of the disk and write/read directly to the flash at the =
-specified location or you could put it at the end of the uboot space.=C2=A0=
- There is a chunk of unused space at the end of the uboot image that is not=
- used IIRC that should give enough for a serial and key.=C2=A0 You&#39;d ha=
-ve to test to find out for sure.=C2=A0 You could cat the uboot image to hex=
-dump to see how much space is left empty.=C2=A0 The idea of a space at the =
-end of the flash is probably better as reformatting or re-partitioning with=
- this space left alone should retain your values.</div><div class=3D"gmail_=
-default" style=3D"font-family:comic sans ms,sans-serif"><br></div><div clas=
-s=3D"gmail_default" style=3D"font-family:comic sans ms,sans-serif">If anyon=
-e has issues with these suggestions feel free to correct me but it seems pr=
-etty safe to me since you have control over how you partition your device a=
-nd this data will be pretty static.</div><div class=3D"gmail_default" style=
-=3D"font-family:comic sans ms,sans-serif"><br></div></div><br><div class=3D=
-"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Jun 25, 2019 at=
- 6:09 AM Gabriele Zampieri &lt;<a href=3D"mailto:gabbla.malist@gmail.com">g=
-abbla.malist@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
-04);padding-left:1ex"><div dir=3D"ltr"><div>Hi Matthias,</div><div><br></di=
-v><div>an easier solution may be write those data during production. I don&=
-#39;t think that having a custom partition for each device is a good idea. =
-You could start the device in &quot;production mode&quot; and inject into t=
-he device specific data through serial or USB. Obviously you must have some=
- piece of software running on the device that can read/write that partition=
-. <br></div><div><br></div><div>In my opinion Yocto does not mention anythi=
-ng about this procedure probably because this is not the standard way.<br><=
-/div><div><br></div><div>Gabriele<br></div></div><br><div class=3D"gmail_qu=
-ote"><div dir=3D"ltr" class=3D"gmail_attr">Il giorno mar 25 giu 2019 alle o=
-re 10:53 Matthias Schoepfer &lt;<a href=3D"mailto:matthias.schoepfer@google=
-mail.com" target=3D"_blank">matthias.schoepfer@googlemail.com</a>&gt; ha sc=
-ritto:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Morn=
-=C3=A9,<br>
-<br>
-thanks for you answer. Maybe, I will explain more: we have a Dragonboard <b=
-r>
-410c based hardware. We use a read-only rootfs in one partition <br>
-(actually two with A/B approach) and we have a data partition for user <br>
-data as well as device specific data. We can partition and flash the <br>
-device through fastboot. So, if we can prepare ext4 filesystems (maybe <br>
-through yocto instead of hand-crafted scripting) for each device, <br>
-commissioning will be an easy task for the manufacturer.<br>
-<br>
-I guess, we are not the only ones that need to store device specific <br>
-information besides the rootfs, and I do not find a whole lot about it <br>
-in the yocto manuals. I wonder, if there are best practices, how to <br>
-protect the data from getting corrupted (intentionally by an attacker or <b=
-r>
-by accident through ... flash corruption or whatever).<br>
-<br>
-Regards,<br>
-<br>
-=C2=A0=C2=A0=C2=A0 Matthias<br>
-<br>
-On 6/24/19 9:08 AM, Morn=C3=A9 Lamprecht wrote:<br>
-&gt; On Mon, Jun 17, 2019 at 05:25:56PM +0200, Matthias Schoepfer wrote:<br=
->
-&gt;&gt; Is there a smart, recommended way to deal with device specific dat=
-a <br>
-&gt;&gt; (i.e.=C2=A0 serial number, credentials for backend access, you nam=
-e it), <br>
-&gt;&gt; that is specific for *one* device, and hence does not belong into =
-the <br>
-&gt;&gt; rootfs. I know, that there are (safe) hardware stores for it, but =
-<br>
-&gt;&gt; what, if your device does not have one.<br>
-&gt;<br>
-&gt; Not sure if I&#39;m misunderstanding your question, but this should be=
- <br>
-&gt; part of your device commissioning process, i.e. like injecting <br>
-&gt; specific security keys etc...so basically this will part of your image=
- <br>
-&gt; install / flash process, and not really part of the Yocto build <br>
-&gt; process. The specifics of such a process would depend on your specific=
- <br>
-&gt; commissioning process.<br>
-&gt;<br>
-&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - Morn=C3=A9<br>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
- class=3D"gmail_signature"><div dir=3D"ltr">Larry Brown<div>S/V Trident</di=
-v><div>Palm Harbor, FL</div><div>~~~~~~~~~~~~~~~~~_/)~~~~~~~~</div><div>=C2=
-=A0 =C2=A0 ~ =C2=A0 =C2=A0 ~ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0~~ =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 ~</div><div>~ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 ~~_/) =C2=A0 =C2=A0~ =C2=A0 =C2=A0 =C2=A0~ ~ =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0~</div><div>=C2=A0 =C2=A0 =C2=A0~ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0_/) =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0~</div></div>=
-</div>
+Thanks for your help,
+Jeremy
 
---00000000000089eb08058c25dcae--
