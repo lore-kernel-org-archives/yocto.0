@@ -1,35 +1,66 @@
-Return-Path: <Yi.Zhao@windriver.com>
+Return-Path: <anibal.limon@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4768FE00D4D; Tue, 25 Jun 2019 18:00:50 -0700 (PDT)
+	id B1EF7E00D4C; Tue, 25 Jun 2019 18:50:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32209E00CD5
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 18:00:45 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x5Q10J8e017779
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 18:00:35 -0700
-Received: from localhost (128.224.162.136) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.439.0;
-	Tue, 25 Jun 2019 18:00:15 -0700
-From: Yi Zhao <yi.zhao@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 26 Jun 2019 09:00:13 +0800
-Message-ID: <1561510813-10520-1-git-send-email-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.7.4
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.68 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-vs1-f68.google.com (mail-vs1-f68.google.com
+	[209.85.217.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF3AEE00A7D
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 18:50:42 -0700 (PDT)
+Received: by mail-vs1-f68.google.com with SMTP id v6so526428vsq.4
+	for <yocto@yoctoproject.org>; Tue, 25 Jun 2019 18:50:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=g1xA4Cyl4q8WbRmQ1wZ7nKQ0XJOQ+CDk8Achy4KRN14=;
+	b=EwK0xUG1zdlaC2ko1WMSuVas9nzoEkjmrWwLNmMXqE+GHA/8W8GDrg+5NrfXpL7kkW
+	s0G0seXhYM9BSyCO+pfC4Kr1toRkLhGKvOApaNPgQCHECXhl4mLk1nUvulvAf6uzfOCg
+	F4MGmdkTwqp0usFA/5IHT5dTGVwXxX7O/uQSDgtSHpuYrZyGdDJPh90truN4QNUofLlP
+	GRha3L9t7kbQTJD3YAxedrKozEK2lNjNMSNx8slZmZUOBBXDQgWPlcKzk+nJd5L9SzwH
+	MnszZY2ZcI76iE/V1UWiH2KPr0jiQQdNxGyMiniUZsbQ1CKsz1iZi4Ai76DeKA+0SHV6
+	yJaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=g1xA4Cyl4q8WbRmQ1wZ7nKQ0XJOQ+CDk8Achy4KRN14=;
+	b=HDsYf4BF71KUFRDPzQ4UL79dnDxv8ORhTnTLtMKIFpDz0qemt4Y1UMtj6LnOVHcRRA
+	yXXSrl0Stwdjo/37Av9N313vpCqW3/gGQfDP3Plm+h3WbrYd+4hLI+2q4BqnWe+7y5fE
+	hU59b5cYa2jbP/4igtHyszm6001blpLXgtjuykPxVqZgoKM58djawSh6jT0A68XjKXaS
+	+ClyfYpkIJY6WuTeq4Hw0xpvBmGGeZDg5OB7nyO0jSySUAwbU+gi/lthnLt/2DtFGx6Y
+	p3y6XfYaRuaML8SWL7gl6B6Q4pwEH9Aw/LQYe43ZQhw7KS8sFM2LR2RZ5WM5RzzWzkr3
+	IuOA==
+X-Gm-Message-State: APjAAAVoAobtYa0yQQ20RElhgQifHV4Rnl5OknF0DSJ/NJnLcUFOfnT1
+	GvmG+l5jb3Q88DeeKaxHITl3+i00jq4DXQ/mSmEyZg==
+X-Google-Smtp-Source: APXvYqzY8YP5b8RMjgRGefz3kssvJgHFOKfbq9ooDmmIwhuyjI/telj4Jh+J1S1hGWR4508j8aZ92OMJqeAzx3AaH1s=
+X-Received: by 2002:a67:fe5a:: with SMTP id m26mr1394224vsr.230.1561513842245; 
+	Tue, 25 Jun 2019 18:50:42 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [128.224.162.136]
-Subject: [meta-selinux][PATCH] audit: upgrade 2.8.4 -> 2.8.5
+References: <20190613223928.14424-1-Randy.MacLeod@windriver.com>
+	<20190614144853.25839-1-Randy.MacLeod@windriver.com>
+	<20190614144853.25839-5-Randy.MacLeod@windriver.com>
+	<98784449-a7d4-1015-2918-600e9c6f2c1c@windriver.com>
+In-Reply-To: <98784449-a7d4-1015-2918-600e9c6f2c1c@windriver.com>
+From: Anibal Limon <anibal.limon@linaro.org>
+Date: Tue, 25 Jun 2019 20:51:13 -0500
+Message-ID: <CA+_AqisMBmPaNy7xyt1+9c73RnMcChugCcxz6Bb4cBOCHG=-kQ@mail.gmail.com>
+To: Randy MacLeod <randy.macleod@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [ptest-runner][PATCH v2 4/4] utils: ensure child can be session leader
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,337 +72,688 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Jun 2019 01:00:50 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 26 Jun 2019 01:50:44 -0000
+Content-Type: multipart/alternative; boundary="000000000000e11f7b058c3045a3"
 
-* Drop backport patch:
-  0001-Remove-strdupa-as-suggested-in-pull-request-25.patch
+--000000000000e11f7b058c3045a3
+Content-Type: text/plain; charset="UTF-8"
 
-* Refresh all patches.
+On Wed, 19 Jun 2019 at 12:50, Randy MacLeod <randy.macleod@windriver.com>
+wrote:
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- ...e-strdupa-as-suggested-in-pull-request-25.patch | 47 ----------------------
- ...bstitue-functions-for-strndupa-rawmemchr.patch} | 23 +++++------
- .../audit/audit/audit-python-configure.patch       | 10 ++---
- recipes-security/audit/audit/audit-python.patch    |  8 ++--
- recipes-security/audit/audit/auditd                |  2 +-
- .../audit/audit/fix-swig-host-contamination.patch  | 22 +++++-----
- .../audit/{audit_2.8.4.bb => audit_2.8.5.bb}       |  7 ++--
- 7 files changed, 35 insertions(+), 84 deletions(-)
- delete mode 100644 recipes-security/audit/audit/0001-Remove-strdupa-as-suggested-in-pull-request-25.patch
- rename recipes-security/audit/audit/{0002-Add-substitue-functions-for-strndupa-rawmemchr.patch => Add-substitue-functions-for-strndupa-rawmemchr.patch} (88%)
- rename recipes-security/audit/{audit_2.8.4.bb => audit_2.8.5.bb} (92%)
+> On 6/14/19 10:48 AM, Randy MacLeod wrote:
+> > When running the run-execscript bash ptest as a user rather than root, a
+> warning:
+> >    bash: cannot set terminal process group (16036): Inappropriate ioctl
+> for device
+> >    bash: no job control in this shell
+> > contaminates the bash log files causing the test to fail. This happens
+> only
+> > when run under ptest-runner and not when interactively testing!
+> >
+> > The changes made to fix this include:
+> > 1. Get the process group id (pgid) before forking,
+> > 2. Set the pgid in both the parent and child to avoid a race,
+> > 3. Find, open and set permission on the child tty, and
+> > 4. Allow the child to attach to controlling tty.
+> >
+> > Also add '-lutil' to Makefile. This lib is from libc and provides
+> openpty.
+>
+>
+> Hmmm, I was making the code compile cleanly under clang using
+>    -Weverything
+> when I noticed:
+>
+> 1. the 'make check' tests. They still work fine.
+> 2. The './ptest-runner -d tests/data -t 1' tests
+>     which now generate loads of error like:
+>      ERROR: Unable to detach from controlling tty, Inappropriate ioctl
+> for device
+>
+> so while this change fixed the bash-ptest, the ptest-runner self-test
+> it did something wrong.... Ah, I'm calling:
+>     ioctl(0, TIOCNOTTY) == -1)
+> repeatedly in the parent so that's what's generating the extra logs.
+> Fixed locally and I'll send a patch but it's not urgent. Phew! :)
+>
+> Anibal,
+>
+> If you could reply to explain your plans for Richard's patches
+> that would help me figure out when to send the clang warning clean-ups
+> commits and what commit to base my work on.
+>
 
-diff --git a/recipes-security/audit/audit/0001-Remove-strdupa-as-suggested-in-pull-request-25.patch b/recipes-security/audit/audit/0001-Remove-strdupa-as-suggested-in-pull-request-25.patch
-deleted file mode 100644
-index 38029aa..0000000
---- a/recipes-security/audit/audit/0001-Remove-strdupa-as-suggested-in-pull-request-25.patch
-+++ /dev/null
-@@ -1,47 +0,0 @@
--From a1782b58b687b74249dc8b2411a3f646b821ebd6 Mon Sep 17 00:00:00 2001
--From: Steve Grubb <sgrubb@redhat.com>
--Date: Thu, 4 Oct 2018 08:45:47 -0400
--Subject: [PATCH] Remove strdupa as suggested in pull request #25
--
-----
-- src/auditd.c | 11 ++++++-----
-- 1 file changed, 6 insertions(+), 5 deletions(-)
--
--Origin: https://github.com/linux-audit/audit-userspace/commit/a1782b58b687b74249dc8b2411a3f646b821ebd6
--Applied-Upstream: yes
--
--diff --git a/src/auditd.c b/src/auditd.c
--index b0952db..c826ec0 100644
----- a/src/auditd.c
--+++ b/src/auditd.c
--@@ -209,21 +209,22 @@ static void cont_handler(struct ev_loop *loop, struct ev_signal *sig,
-- 
-- static int extract_type(const char *str)
-- {
---	const char *tptr, *ptr2, *ptr = str;
--+	const char *ptr2, *ptr = str;
-- 	if (*str == 'n') {
-- 		ptr = strchr(str+1, ' ');
-- 		if (ptr == NULL)
-- 			return -1; // Malformed - bomb out
-- 		ptr++;
-- 	}
--+
-- 	// ptr should be at 't'
-- 	ptr2 = strchr(ptr, ' ');
---	// get type=xxx in a buffer
---	tptr = strndupa(ptr, ptr2 - ptr);
--+
-- 	// find =
---	str = strchr(tptr, '=');
---	if (str == NULL)
--+	str = strchr(ptr, '=');
--+	if (str == NULL || str >= ptr2)
-- 		return -1; // Malformed - bomb out
--+
-- 	// name is 1 past
-- 	str++;
-- 	return audit_name_to_msg_type(str);
---- 
--2.20.1
--
-diff --git a/recipes-security/audit/audit/0002-Add-substitue-functions-for-strndupa-rawmemchr.patch b/recipes-security/audit/audit/Add-substitue-functions-for-strndupa-rawmemchr.patch
-similarity index 88%
-rename from recipes-security/audit/audit/0002-Add-substitue-functions-for-strndupa-rawmemchr.patch
-rename to recipes-security/audit/audit/Add-substitue-functions-for-strndupa-rawmemchr.patch
-index c948aa3..bb6c61e 100644
---- a/recipes-security/audit/audit/0002-Add-substitue-functions-for-strndupa-rawmemchr.patch
-+++ b/recipes-security/audit/audit/Add-substitue-functions-for-strndupa-rawmemchr.patch
-@@ -1,12 +1,11 @@
--From 5346b6af0ca67a2965ca5846ae150f3021a2aa17 Mon Sep 17 00:00:00 2001
-+From bdcdc3dff4469aac88e718bd15958d5ed4b9392a Mon Sep 17 00:00:00 2001
- From: Steve Grubb <sgrubb@redhat.com>
- Date: Tue, 26 Feb 2019 18:33:33 -0500
- Subject: [PATCH] Add substitue functions for strndupa & rawmemchr
- 
-+Upstream-Status: Backport
-+[https://github.com/linux-audit/audit-userspace/commit/d579a08bb1cde71f939c13ac6b2261052ae9f77e]
- ---
--Origin: https://github.com/linux-audit/audit-userspace/commit/d579a08bb1cde71f939c13ac6b2261052ae9f77e
--Applied-Upstream: yes
--
-  auparse/auparse.c   | 12 +++++++++++-
-  auparse/interpret.c |  9 ++++++++-
-  configure.ac        | 14 +++++++++++++-
-@@ -14,7 +13,7 @@ Applied-Upstream: yes
-  4 files changed, 43 insertions(+), 4 deletions(-)
- 
- diff --git a/auparse/auparse.c b/auparse/auparse.c
--index f84712e..3764046 100644
-+index 650db02..2e1c737 100644
- --- a/auparse/auparse.c
- +++ b/auparse/auparse.c
- @@ -1,5 +1,5 @@
-@@ -24,7 +23,7 @@ index f84712e..3764046 100644
-   * All Rights Reserved.
-   *
-   * This library is free software; you can redistribute it and/or
--@@ -1100,6 +1100,16 @@ static int str2event(char *s, au_event_t *e)
-+@@ -1118,6 +1118,16 @@ static int str2event(char *s, au_event_t *e)
-  	return 0;
-  }
-  
-@@ -42,7 +41,7 @@ index f84712e..3764046 100644
-  static int extract_timestamp(const char *b, au_event_t *e)
-  {
- diff --git a/auparse/interpret.c b/auparse/interpret.c
--index 1846f9d..8540bd1 100644
-+index 51c4a5e..67b7b77 100644
- --- a/auparse/interpret.c
- +++ b/auparse/interpret.c
- @@ -853,6 +853,13 @@ err_out:
-@@ -69,7 +68,7 @@ index 1846f9d..8540bd1 100644
-  				break;
-  			*ptr = ' ';
- diff --git a/configure.ac b/configure.ac
--index ede7109..97b547f 100644
-+index 54bdbf1..aef07fb 100644
- --- a/configure.ac
- +++ b/configure.ac
- @@ -1,7 +1,7 @@
-@@ -101,7 +100,7 @@ index ede7109..97b547f 100644
-  ALLWARNS=""
-  ALLDEBUG="-g"
- diff --git a/src/ausearch-lol.c b/src/ausearch-lol.c
--index 4fbfbae..5eecefe 100644
-+index 5d17a72..758c33e 100644
- --- a/src/ausearch-lol.c
- +++ b/src/ausearch-lol.c
- @@ -1,6 +1,6 @@
-@@ -112,8 +111,8 @@ index 4fbfbae..5eecefe 100644
-  * All Rights Reserved. 
-  *
-  * This software may be freely redistributed and/or modified under the
--@@ -131,6 +131,16 @@ static int inline events_are_equal(event *e1, event *e2)
-- 	return 1;
-+@@ -152,6 +152,16 @@ static int compare_event_time(event *e1, event *e2)
-+ 	return 0;
-  }
-  
- +#ifndef HAVE_STRNDUPA
-@@ -130,5 +129,5 @@ index 4fbfbae..5eecefe 100644
-   * This function will look at the line and pick out pieces of it.
-   */
- -- 
--2.20.1
-+2.7.4
- 
-diff --git a/recipes-security/audit/audit/audit-python-configure.patch b/recipes-security/audit/audit/audit-python-configure.patch
-index cb62ec3..37096b0 100644
---- a/recipes-security/audit/audit/audit-python-configure.patch
-+++ b/recipes-security/audit/audit/audit-python-configure.patch
-@@ -1,9 +1,9 @@
--From be689ee1748c6aa531dbca982e0218d077ac901c Mon Sep 17 00:00:00 2001
-+From 6a2710db094061e1956fac3ed81114d0e958ea21 Mon Sep 17 00:00:00 2001
- From: Li xin <lixin.fnst@cn.fujitsu.com>
- Date: Sun, 19 Jul 2015 00:49:13 +0900
- Subject: [PATCH] audit: python cross-compile
- 
--Upstream-Status: pending
-+Upstream-Status: Inappropriate [embedded specific]
- 
- Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com>
- Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
-@@ -14,10 +14,10 @@ Signed-off-by: T.O. Radzy Radzykewycz <radzy@windriver.com>
-  1 file changed, 2 insertions(+), 15 deletions(-)
- 
- diff --git a/configure.ac b/configure.ac
--index 1f48cb4..cdb5219 100644
-+index 6e345f1..54bdbf1 100644
- --- a/configure.ac
- +++ b/configure.ac
--@@ -94,21 +94,8 @@ if test x$use_python = xno ; then
-+@@ -99,21 +99,8 @@ if test "x$use_python" = xno ; then
-  else
-  AC_MSG_RESULT(testing)
-  AM_PATH_PYTHON
-@@ -42,5 +42,5 @@ index 1f48cb4..cdb5219 100644
-  AM_CONDITIONAL(HAVE_PYTHON, test ${python_found} = "yes")
-  
- -- 
--1.9.1
-+2.7.4
- 
-diff --git a/recipes-security/audit/audit/audit-python.patch b/recipes-security/audit/audit/audit-python.patch
-index 0c2dc1c..c1a2595 100644
---- a/recipes-security/audit/audit/audit-python.patch
-+++ b/recipes-security/audit/audit/audit-python.patch
-@@ -1,8 +1,10 @@
--From 9c8fd14feabe985242ef08e52c3e866d7755fa6e Mon Sep 17 00:00:00 2001
-+From 9d95d7e28a2c4cbefa998d375de180c731a151b1 Mon Sep 17 00:00:00 2001
- From: Li xin <lixin.fnst@cn.fujitsu.com>
- Date: Sun, 19 Jul 2015 01:40:48 +0900
- Subject: [PATCH] Remove hard coded python include directory
- 
-+Upstream-Status: Inappropriate [embedded specific]
-+
- Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
- ---
-  bindings/Makefile.am                | 8 +++++++-
-@@ -11,7 +13,7 @@ Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
-  3 files changed, 12 insertions(+), 4 deletions(-)
- 
- diff --git a/bindings/Makefile.am b/bindings/Makefile.am
--index cc68df3..998b990 100644
-+index 5b5c576..7a15205 100644
- --- a/bindings/Makefile.am
- +++ b/bindings/Makefile.am
- @@ -22,4 +22,10 @@
-@@ -58,5 +60,5 @@ index 8c98b94..ae7c52b 100644
-  pyexec_LTLIBRARIES = _audit.la
-  pyexec_SOLIBRARIES = _audit.so
- -- 
--1.8.4.2
-+2.7.4
- 
-diff --git a/recipes-security/audit/audit/auditd b/recipes-security/audit/audit/auditd
-index fcd96c9..cda2e43 100755
---- a/recipes-security/audit/audit/auditd
-+++ b/recipes-security/audit/audit/auditd
-@@ -30,7 +30,7 @@ SCRIPTNAME=/etc/init.d/"$NAME"
- 
- . /etc/default/rcS
- 
--. /etc/init.d/functions                                                
-+. /etc/init.d/functions
- 
- #
- # Function that starts the daemon/service
-diff --git a/recipes-security/audit/audit/fix-swig-host-contamination.patch b/recipes-security/audit/audit/fix-swig-host-contamination.patch
-index faeeeeb..184f515 100644
---- a/recipes-security/audit/audit/fix-swig-host-contamination.patch
-+++ b/recipes-security/audit/audit/fix-swig-host-contamination.patch
-@@ -1,4 +1,4 @@
--From d7577e1e55595123e3bcec78fa4a79fe8a314fe5 Mon Sep 17 00:00:00 2001
-+From bd70f570ffb82991feb7a539ac1abf3165d417a4 Mon Sep 17 00:00:00 2001
- From: Li xin <lixin.fnst@cn.fujitsu.com>
- Date: Sun, 19 Jul 2015 02:42:58 +0900
- Subject: [PATCH] audit: Fixed swig host contamination issue
-@@ -8,17 +8,17 @@ Unfortunately, the swig info file references host include
- directories.  Some of these were previously noticed and
- eliminated, but the one fixed here was not.
- 
--Upstream Status:  pending
-+Upstream-Status: Inappropriate [embedded specific]
- 
- Signed-off-by: Anders Hedlund <anders.hedlund@windriver.com>
- Signed-off-by: Joe Slater <jslater@windriver.com>
- ---
-  bindings/swig/python/Makefile.am | 3 ++-
-- bindings/swig/src/auditswig.i    | 4 ++--
-- 2 files changed, 4 insertions(+), 3 deletions(-)
-+ bindings/swig/src/auditswig.i    | 2 +-
-+ 2 files changed, 3 insertions(+), 2 deletions(-)
- 
- diff --git a/bindings/swig/python/Makefile.am b/bindings/swig/python/Makefile.am
--index ae7c52b..d1bb93c 100644
-+index ae7c52b..c580bc0 100644
- --- a/bindings/swig/python/Makefile.am
- +++ b/bindings/swig/python/Makefile.am
- @@ -22,6 +22,7 @@
-@@ -34,25 +34,23 @@ index ae7c52b..d1bb93c 100644
-  nodist__audit_la_SOURCES  = audit_wrap.c
-  audit.py audit_wrap.c: ${srcdir}/../src/auditswig.i 
- -	swig -o audit_wrap.c ${SWIG_FLAGS} ${SWIG_INCLUDES} ${srcdir}/../src/auditswig.i 
--+	swig -o audit_wrap.c ${SWIG_FLAGS} ${SWIG_INCLUDES} -I$(STDINC) ${srcdir}/../src/auditswig.i 
-++	swig -o audit_wrap.c ${SWIG_FLAGS} ${SWIG_INCLUDES} -I$(STDINC) ${srcdir}/../src/auditswig.i
-  
-  CLEANFILES = audit.py* audit_wrap.c *~
-  
- diff --git a/bindings/swig/src/auditswig.i b/bindings/swig/src/auditswig.i
--index 9364ac4..48667d4 100644
-+index 7ebb373..424fb68 100644
- --- a/bindings/swig/src/auditswig.i
- +++ b/bindings/swig/src/auditswig.i
--@@ -39,8 +39,8 @@ signed
-+@@ -39,7 +39,7 @@ signed
-  #define __attribute(X) /*nothing*/
-  typedef unsigned __u32;
-  typedef unsigned uid_t;
- -%include "/usr/include/linux/audit.h"
- +%include "linux/audit.h"
-  #define __extension__ /*nothing*/
---%include "/usr/include/stdint.h"
--+%include "stdint.h"
-+ #include <stdint.h>
-  %include "../lib/libaudit.h"
-- 
- -- 
--1.8.4.2
-+2.7.4
- 
-diff --git a/recipes-security/audit/audit_2.8.4.bb b/recipes-security/audit/audit_2.8.5.bb
-similarity index 92%
-rename from recipes-security/audit/audit_2.8.4.bb
-rename to recipes-security/audit/audit_2.8.5.bb
-index 594786a..bd09873 100644
---- a/recipes-security/audit/audit_2.8.4.bb
-+++ b/recipes-security/audit/audit_2.8.5.bb
-@@ -11,14 +11,13 @@ SRC_URI = "http://people.redhat.com/sgrubb/${BPN}/${BPN}-${PV}.tar.gz \
-            file://audit-python-configure.patch \
-            file://audit-python.patch \
-            file://fix-swig-host-contamination.patch \
--           file://0001-Remove-strdupa-as-suggested-in-pull-request-25.patch \
--           file://0002-Add-substitue-functions-for-strndupa-rawmemchr.patch \
-+           file://Add-substitue-functions-for-strndupa-rawmemchr.patch \
-            file://auditd \
-            file://auditd.service \
-            file://audit-volatile.conf \
- "
--SRC_URI[md5sum] = "ec9510312564c3d9483bccf8dbda4779"
--SRC_URI[sha256sum] = "a410694d09fc5708d980a61a5abcb9633a591364f1ecc7e97ad5daef9c898c38"
-+SRC_URI[md5sum] = "9455e5773670afdbccaeb92681b2e97d"
-+SRC_URI[sha256sum] = "0e5d4103646e00f8d1981e1cd2faea7a2ae28e854c31a803e907a383c5e2ecb7"
- 
- inherit autotools pythonnative update-rc.d systemd
- 
--- 
-2.7.4
+Hi,
+
+I plan to take the Richard patches, He added in the recipe to have real
+testing and looks like
+there aren't problems related to, Richard can you confirm it?,
+
+Regarding the openpty include, I see some linkage problem when running make
+check, proposed fix:
+
+...
+--- a/Makefile
++++ b/Makefile
+@@ -22,19 +22,20 @@ TEST_SOURCES=tests/main.c tests/ptest_list.c
+tests/utils.c $(BASE_SOURCES)
+ TEST_OBJECTS=$(TEST_SOURCES:.c=.o)
+ TEST_EXECUTABLE=ptest-runner-test
+ TEST_LDFLAGS=-lm -lrt -lpthread
+-TEST_LIBSTATIC=-lcheck -lsubunit
++TEST_LIBSTATIC=-lutil
++TEST_LIBSTATIC_TEST=$(TEST_LIBSTATIC) -lcheck -lsubunit
+
+ TEST_DATA=$(shell echo `pwd`/tests/data)
+
+ all: $(SOURCES) $(EXECUTABLE)
+
+ $(EXECUTABLE): $(OBJECTS)
+-       $(CC) $(LDFLAGS) $(OBJECTS) -lutil -o $@
++       $(CC) $(LDFLAGS) $(OBJECTS) -o $@ $(TEST_LIBSTATIC)
+
+ tests: $(TEST_SOURCES) $(TEST_EXECUTABLE)
+
+ $(TEST_EXECUTABLE): $(TEST_OBJECTS)
+-       $(CC) $(LDFLAGS) $(TEST_LDFLAGS) $(TEST_OBJECTS) -o $@
+$(TEST_LIBSTATIC)
++       $(CC) $(LDFLAGS) $(TEST_LDFLAGS) $(TEST_OBJECTS) -o $@
+$(TEST_LIBSTATIC_TEST)
+
+ check: $(TEST_EXECUTABLE)
+        ./$(TEST_EXECUTABLE) -d $(TEST_DATA)
+...
+
+Best regards,
+Anibal
 
 
+
+>
+>
+> ../Randy
+>
+> >
+> > Signed-off-by: Sakib Sajal <sakib.sajal@windriver.com>
+> > Signed-off-by: Randy MacLeod <Randy.MacLeod@windriver.com>
+> > ---
+> >   Makefile |   2 +-
+> >   utils.c  | 102 +++++++++++++++++++++++++++++++++++++++++++++++++------
+> >   2 files changed, 92 insertions(+), 12 deletions(-)
+> >
+> > diff --git a/Makefile b/Makefile
+> > index 1bde7be..439eb79 100644
+> > --- a/Makefile
+> > +++ b/Makefile
+> > @@ -29,7 +29,7 @@ TEST_DATA=$(shell echo `pwd`/tests/data)
+> >   all: $(SOURCES) $(EXECUTABLE)
+> >
+> >   $(EXECUTABLE): $(OBJECTS)
+> > -     $(CC) $(LDFLAGS) $(OBJECTS) -o $@
+> > +     $(CC) $(LDFLAGS) $(OBJECTS) -lutil -o $@
+> >
+> >   tests: $(TEST_SOURCES) $(TEST_EXECUTABLE)
+> >
+> > diff --git a/utils.c b/utils.c
+> > index ad737c2..f11ce39 100644
+> > --- a/utils.c
+> > +++ b/utils.c
+> > @@ -1,5 +1,6 @@
+> >   /**
+> >    * Copyright (c) 2016 Intel Corporation
+> > + * Copyright (C) 2019 Wind River Systems, Inc.
+> >    *
+> >    * This program is free software; you can redistribute it and/or
+> >    * modify it under the terms of the GNU General Public License
+> > @@ -22,23 +23,27 @@
+> >    */
+> >
+> >   #define _GNU_SOURCE
+> > +
+> >   #include <stdio.h>
+> >
+> > +#include <dirent.h>
+> > +#include <errno.h>
+> > +#include <fcntl.h>
+> > +#include <grp.h>
+> >   #include <libgen.h>
+> > -#include <signal.h>
+> >   #include <poll.h>
+> > -#include <fcntl.h>
+> > +#include <pty.h>
+> > +#include <signal.h>
+> > +#include <stdlib.h>
+> > +#include <string.h>
+> >   #include <time.h>
+> > -#include <dirent.h>
+> > +#include <unistd.h>
+> > +
+> > +#include <sys/ioctl.h>
+> >   #include <sys/resource.h>
+> > +#include <sys/stat.h>
+> >   #include <sys/types.h>
+> >   #include <sys/wait.h>
+> > -#include <sys/stat.h>
+> > -#include <unistd.h>
+> > -#include <string.h>
+> > -#include <stdlib.h>
+> > -
+> > -#include <errno.h>
+> >
+> >   #include "ptest_list.h"
+> >   #include "utils.h"
+> > @@ -346,6 +351,53 @@ wait_child(const char *ptest_dir, const char
+> *run_ptest, pid_t pid,
+> >       return status;
+> >   }
+> >
+> > +/* Returns an integer file descriptor.
+> > + * If it returns < 0, an error has occurred.
+> > + * Otherwise, it has returned the slave pty file descriptor.
+> > + * fp should be writable, likely stdout/err.
+> > + */
+> > +static int
+> > +setup_slave_pty(FILE *fp) {
+> > +     int pty_master = -1;
+> > +     int pty_slave = -1;
+> > +     char pty_name[256];
+> > +     struct group *gptr;
+> > +     gid_t gid;
+> > +     int slave = -1;
+> > +
+> > +     if (openpty(&pty_master, &pty_slave, pty_name, NULL, NULL) < 0) {
+> > +             fprintf(fp, "ERROR: openpty() failed with: %s.\n",
+> strerror(errno));
+> > +             return -1;
+> > +     }
+> > +
+> > +     if ((gptr = getgrnam(pty_name)) != 0) {
+> > +             gid = gptr->gr_gid;
+> > +     } else {
+> > +             /* If the tty group does not exist, don't change the
+> > +              * group on the slave pty, only the owner
+> > +              */
+> > +             gid = -1;
+> > +     }
+> > +
+> > +     /* chown/chmod the corresponding pty, if possible.
+> > +      * This will only work if the process has root permissions.
+> > +      */
+> > +     if (chown(pty_name, getuid(), gid) != 0) {
+> > +             fprintf(fp, "ERROR; chown() failed with: %s.\n",
+> strerror(errno));
+> > +     }
+> > +
+> > +     /* Makes the slave read/writeable for the user. */
+> > +     if (chmod(pty_name, S_IRUSR|S_IWUSR) != 0) {
+> > +             fprintf(fp, "ERROR: chmod() failed with: %s.\n",
+> strerror(errno));
+> > +     }
+> > +
+> > +     if ((slave = open(pty_name, O_RDWR)) == -1) {
+> > +             fprintf(fp, "ERROR: open() failed with: %s.\n",
+> strerror(errno));
+> > +     }
+> > +     return (slave);
+> > +}
+> > +
+> > +
+> >   int
+> >   run_ptests(struct ptest_list *head, const struct ptest_options opts,
+> >               const char *progname, FILE *fp, FILE *fp_stderr)
+> > @@ -362,6 +414,8 @@ run_ptests(struct ptest_list *head, const struct
+> ptest_options opts,
+> >       int timeouted;
+> >       time_t sttime, entime;
+> >       int duration;
+> > +     int slave;
+> > +     int pgid = -1;
+> >
+> >       if (opts.xml_filename) {
+> >               xh = xml_create(ptest_list_length(head),
+> opts.xml_filename);
+> > @@ -379,7 +433,6 @@ run_ptests(struct ptest_list *head, const struct
+> ptest_options opts,
+> >                       close(pipefd_stdout[1]);
+> >                       break;
+> >               }
+> > -
+> >               fprintf(fp, "START: %s\n", progname);
+> >               PTEST_LIST_ITERATE_START(head, p);
+> >                       char *ptest_dir = strdup(p->run_ptest);
+> > @@ -388,6 +441,13 @@ run_ptests(struct ptest_list *head, const struct
+> ptest_options opts,
+> >                               break;
+> >                       }
+> >                       dirname(ptest_dir);
+> > +                     if (ioctl(0, TIOCNOTTY) == -1) {
+> > +                             fprintf(fp, "ERROR: Unable to detach from
+> controlling tty, %s\n", strerror(errno));
+> > +                     }
+> > +
+> > +                     if ((pgid = getpgid(0)) == -1) {
+> > +                             fprintf(fp, "ERROR: getpgid() failed,
+> %s\n", strerror(errno));
+> > +                     }
+> >
+> >                       child = fork();
+> >                       if (child == -1) {
+> > @@ -395,13 +455,33 @@ run_ptests(struct ptest_list *head, const struct
+> ptest_options opts,
+> >                               rc = -1;
+> >                               break;
+> >                       } else if (child == 0) {
+> > -                             setsid();
+> > +                             close(0);
+> > +                             if ((slave = setup_slave_pty(fp)) < 0) {
+> > +                                     fprintf(fp, "ERROR: could not
+> setup pty (%d).", slave);
+> > +                             }
+> > +                             if (setpgid(0,pgid) == -1) {
+> > +                                     fprintf(fp, "ERROR: setpgid()
+> failed, %s\n", strerror(errno));
+> > +                             }
+> > +
+> > +                             if (setsid() ==  -1) {
+> > +                                     fprintf(fp, "ERROR: setsid()
+> failed, %s\n", strerror(errno));
+> > +                             }
+> > +
+> > +                             if (ioctl(0, TIOCSCTTY, NULL) == -1) {
+> > +                                     fprintf(fp, "ERROR: Unable to
+> attach to controlling tty, %s\n", strerror(errno));
+> > +                             }
+> > +
+> >                               run_child(p->run_ptest, pipefd_stdout[1],
+> pipefd_stderr[1]);
+> > +
+> >                       } else {
+> >                               int status;
+> >                               int fds[2]; fds[0] = pipefd_stdout[0];
+> fds[1] = pipefd_stderr[0];
+> >                               FILE *fps[2]; fps[0] = fp; fps[1] =
+> fp_stderr;
+> >
+> > +                             if (setpgid(child, pgid) == -1) {
+> > +                                     fprintf(fp, "ERROR: setpgid()
+> failed, %s\n", strerror(errno));
+> > +                             }
+> > +
+> >                               sttime = time(NULL);
+> >                               fprintf(fp, "%s\n", get_stime(stime,
+> GET_STIME_BUF_SIZE, sttime));
+> >                               fprintf(fp, "BEGIN: %s\n", ptest_dir);
+> >
+>
+>
+> --
+> # Randy MacLeod
+> # Wind River Linux
+>
+
+--000000000000e11f7b058c3045a3
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Wed, 19 Jun 2019 at 12:50, Randy M=
+acLeod &lt;<a href=3D"mailto:randy.macleod@windriver.com" target=3D"_blank"=
+>randy.macleod@windriver.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex">On 6/14/19 10:48 AM, Randy MacLeod wrote:<br>
+&gt; When running the run-execscript bash ptest as a user rather than root,=
+ a warning:<br>
+&gt;=C2=A0 =C2=A0 bash: cannot set terminal process group (16036): Inapprop=
+riate ioctl for device<br>
+&gt;=C2=A0 =C2=A0 bash: no job control in this shell<br>
+&gt; contaminates the bash log files causing the test to fail. This happens=
+ only<br>
+&gt; when run under ptest-runner and not when interactively testing!<br>
+&gt; <br>
+&gt; The changes made to fix this include:<br>
+&gt; 1. Get the process group id (pgid) before forking,<br>
+&gt; 2. Set the pgid in both the parent and child to avoid a race,<br>
+&gt; 3. Find, open and set permission on the child tty, and<br>
+&gt; 4. Allow the child to attach to controlling tty.<br>
+&gt; <br>
+&gt; Also add &#39;-lutil&#39; to Makefile. This lib is from libc and provi=
+des openpty.<br>
+<br>
+<br>
+Hmmm, I was making the code compile cleanly under clang using<br>
+=C2=A0 =C2=A0-Weverything<br>
+when I noticed:<br>
+<br>
+1. the &#39;make check&#39; tests. They still work fine.<br>
+2. The &#39;./ptest-runner -d tests/data -t 1&#39; tests<br>
+=C2=A0 =C2=A0 which now generate loads of error like:<br>
+=C2=A0 =C2=A0 =C2=A0ERROR: Unable to detach from controlling tty, Inappropr=
+iate ioctl <br>
+for device<br>
+<br>
+so while this change fixed the bash-ptest, the ptest-runner self-test<br>
+it did something wrong.... Ah, I&#39;m calling:<br>
+=C2=A0 =C2=A0 ioctl(0, TIOCNOTTY) =3D=3D -1)<br>
+repeatedly in the parent so that&#39;s what&#39;s generating the extra logs=
+.<br>
+Fixed locally and I&#39;ll send a patch but it&#39;s not urgent. Phew! :)<b=
+r>
+<br>
+Anibal,<br>
+<br>
+If you could reply to explain your plans for Richard&#39;s patches<br>
+that would help me figure out when to send the clang warning clean-ups<br>
+commits and what commit to base my work on.<br></blockquote><div><br></div>=
+<div>Hi,=C2=A0</div><div><br></div><div>I plan to take the Richard patches,=
+ He added in the recipe to have real testing and looks like</div><div>there=
+ aren&#39;t problems related to, Richard can you confirm it?,</div><div><br=
+></div><div>Regarding the openpty include, I see some linkage problem when =
+running make check, proposed fix:</div><div><br></div><div>...</div><div>--=
+- a/Makefile<br>+++ b/Makefile<br>@@ -22,19 +22,20 @@ TEST_SOURCES=3Dtests/=
+main.c tests/ptest_list.c tests/utils.c $(BASE_SOURCES)<br>=C2=A0TEST_OBJEC=
+TS=3D$(TEST_SOURCES:.c=3D.o)<br>=C2=A0TEST_EXECUTABLE=3Dptest-runner-test<b=
+r>=C2=A0TEST_LDFLAGS=3D-lm -lrt -lpthread<br>-TEST_LIBSTATIC=3D-lcheck -lsu=
+bunit<br>+TEST_LIBSTATIC=3D-lutil<br>+TEST_LIBSTATIC_TEST=3D$(TEST_LIBSTATI=
+C) -lcheck -lsubunit <br>=C2=A0<br>=C2=A0TEST_DATA=3D$(shell echo `pwd`/tes=
+ts/data)<br>=C2=A0<br>=C2=A0all: $(SOURCES) $(EXECUTABLE)<br>=C2=A0<br>=C2=
+=A0$(EXECUTABLE): $(OBJECTS)<br>- =C2=A0 =C2=A0 =C2=A0 $(CC) $(LDFLAGS) $(O=
+BJECTS) -lutil -o $@<br>+ =C2=A0 =C2=A0 =C2=A0 $(CC) $(LDFLAGS) $(OBJECTS) =
+-o $@ $(TEST_LIBSTATIC)<br>=C2=A0<br>=C2=A0tests: $(TEST_SOURCES) $(TEST_EX=
+ECUTABLE)<br>=C2=A0<br>=C2=A0$(TEST_EXECUTABLE): $(TEST_OBJECTS)<br>- =C2=
+=A0 =C2=A0 =C2=A0 $(CC) $(LDFLAGS) $(TEST_LDFLAGS) $(TEST_OBJECTS) -o $@ $(=
+TEST_LIBSTATIC)<br>+ =C2=A0 =C2=A0 =C2=A0 $(CC) $(LDFLAGS) $(TEST_LDFLAGS) =
+$(TEST_OBJECTS) -o $@ $(TEST_LIBSTATIC_TEST)<br>=C2=A0<br>=C2=A0check: $(TE=
+ST_EXECUTABLE)<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 ./$(TEST_EXECUTABLE) -d $(TES=
+T_DATA)<br></div><div>...</div><div><br></div><div>Best regards,</div><div>=
+Anibal</div><div><br></div><div>=C2=A0</div><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
+;padding-left:1ex">
+<br>
+<br>
+../Randy<br>
+<br>
+&gt; <br>
+&gt; Signed-off-by: Sakib Sajal &lt;<a href=3D"mailto:sakib.sajal@windriver=
+.com" target=3D"_blank">sakib.sajal@windriver.com</a>&gt;<br>
+&gt; Signed-off-by: Randy MacLeod &lt;<a href=3D"mailto:Randy.MacLeod@windr=
+iver.com" target=3D"_blank">Randy.MacLeod@windriver.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 =C2=A0Makefile |=C2=A0 =C2=A02 +-<br>
+&gt;=C2=A0 =C2=A0utils.c=C2=A0 | 102 ++++++++++++++++++++++++++++++++++++++=
++++++++++++------<br>
+&gt;=C2=A0 =C2=A02 files changed, 92 insertions(+), 12 deletions(-)<br>
+&gt; <br>
+&gt; diff --git a/Makefile b/Makefile<br>
+&gt; index 1bde7be..439eb79 100644<br>
+&gt; --- a/Makefile<br>
+&gt; +++ b/Makefile<br>
+&gt; @@ -29,7 +29,7 @@ TEST_DATA=3D$(shell echo `pwd`/tests/data)<br>
+&gt;=C2=A0 =C2=A0all: $(SOURCES) $(EXECUTABLE)<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0$(EXECUTABLE): $(OBJECTS)<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0$(CC) $(LDFLAGS) $(OBJECTS) -o $@<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0$(CC) $(LDFLAGS) $(OBJECTS) -lutil -o $@<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0tests: $(TEST_SOURCES) $(TEST_EXECUTABLE)<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; diff --git a/utils.c b/utils.c<br>
+&gt; index ad737c2..f11ce39 100644<br>
+&gt; --- a/utils.c<br>
+&gt; +++ b/utils.c<br>
+&gt; @@ -1,5 +1,6 @@<br>
+&gt;=C2=A0 =C2=A0/**<br>
+&gt;=C2=A0 =C2=A0 * Copyright (c) 2016 Intel Corporation<br>
+&gt; + * Copyright (C) 2019 Wind River Systems, Inc.<br>
+&gt;=C2=A0 =C2=A0 *<br>
+&gt;=C2=A0 =C2=A0 * This program is free software; you can redistribute it =
+and/or<br>
+&gt;=C2=A0 =C2=A0 * modify it under the terms of the GNU General Public Lic=
+ense<br>
+&gt; @@ -22,23 +23,27 @@<br>
+&gt;=C2=A0 =C2=A0 */<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0#define _GNU_SOURCE<br>
+&gt; +<br>
+&gt;=C2=A0 =C2=A0#include &lt;stdio.h&gt;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; +#include &lt;dirent.h&gt;<br>
+&gt; +#include &lt;errno.h&gt;<br>
+&gt; +#include &lt;fcntl.h&gt;<br>
+&gt; +#include &lt;grp.h&gt;<br>
+&gt;=C2=A0 =C2=A0#include &lt;libgen.h&gt;<br>
+&gt; -#include &lt;signal.h&gt;<br>
+&gt;=C2=A0 =C2=A0#include &lt;poll.h&gt;<br>
+&gt; -#include &lt;fcntl.h&gt;<br>
+&gt; +#include &lt;pty.h&gt;<br>
+&gt; +#include &lt;signal.h&gt;<br>
+&gt; +#include &lt;stdlib.h&gt;<br>
+&gt; +#include &lt;string.h&gt;<br>
+&gt;=C2=A0 =C2=A0#include &lt;time.h&gt;<br>
+&gt; -#include &lt;dirent.h&gt;<br>
+&gt; +#include &lt;unistd.h&gt;<br>
+&gt; +<br>
+&gt; +#include &lt;sys/ioctl.h&gt;<br>
+&gt;=C2=A0 =C2=A0#include &lt;sys/resource.h&gt;<br>
+&gt; +#include &lt;sys/stat.h&gt;<br>
+&gt;=C2=A0 =C2=A0#include &lt;sys/types.h&gt;<br>
+&gt;=C2=A0 =C2=A0#include &lt;sys/wait.h&gt;<br>
+&gt; -#include &lt;sys/stat.h&gt;<br>
+&gt; -#include &lt;unistd.h&gt;<br>
+&gt; -#include &lt;string.h&gt;<br>
+&gt; -#include &lt;stdlib.h&gt;<br>
+&gt; -<br>
+&gt; -#include &lt;errno.h&gt;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0#include &quot;ptest_list.h&quot;<br>
+&gt;=C2=A0 =C2=A0#include &quot;utils.h&quot;<br>
+&gt; @@ -346,6 +351,53 @@ wait_child(const char *ptest_dir, const char *run=
+_ptest, pid_t pid,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0return status;<br>
+&gt;=C2=A0 =C2=A0}<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; +/* Returns an integer file descriptor.<br>
+&gt; + * If it returns &lt; 0, an error has occurred.<br>
+&gt; + * Otherwise, it has returned the slave pty file descriptor.<br>
+&gt; + * fp should be writable, likely stdout/err.<br>
+&gt; + */<br>
+&gt; +static int<br>
+&gt; +setup_slave_pty(FILE *fp) {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0int pty_master =3D -1;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0int pty_slave =3D -1;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0char pty_name[256];<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0struct group *gptr;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0gid_t gid;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0int slave =3D -1;<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0if (openpty(&amp;pty_master, &amp;pty_slave, pty_=
+name, NULL, NULL) &lt; 0) {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fp, &quot;ERR=
+OR: openpty() failed with: %s.\n&quot;, strerror(errno));<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return -1;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0}<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0if ((gptr =3D getgrnam(pty_name)) !=3D 0) {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0gid =3D gptr-&gt;gr_g=
+id;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0} else {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/* If the tty group d=
+oes not exist, don&#39;t change the<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 * group on the slave=
+ pty, only the owner<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 */<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0gid =3D -1;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0}<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0/* chown/chmod the corresponding pty, if possible=
+.<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 * This will only work if the process has root pe=
+rmissions.<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 */<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0if (chown(pty_name, getuid(), gid) !=3D 0) {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fp, &quot;ERR=
+OR; chown() failed with: %s.\n&quot;, strerror(errno));<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0}<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0/* Makes the slave read/writeable for the user. *=
+/<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0if (chmod(pty_name, S_IRUSR|S_IWUSR) !=3D 0) {<br=
+>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fp, &quot;ERR=
+OR: chmod() failed with: %s.\n&quot;, strerror(errno));<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0}<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0if ((slave =3D open(pty_name, O_RDWR)) =3D=3D -1)=
+ {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fp, &quot;ERR=
+OR: open() failed with: %s.\n&quot;, strerror(errno));<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0}<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0return (slave);<br>
+&gt; +}<br>
+&gt; +<br>
+&gt; +<br>
+&gt;=C2=A0 =C2=A0int<br>
+&gt;=C2=A0 =C2=A0run_ptests(struct ptest_list *head, const struct ptest_opt=
+ions opts,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0const char *prog=
+name, FILE *fp, FILE *fp_stderr)<br>
+&gt; @@ -362,6 +414,8 @@ run_ptests(struct ptest_list *head, const struct p=
+test_options opts,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0int timeouted;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0time_t sttime, entime;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0int duration;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0int slave;<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0int pgid =3D -1;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0if (opts.xml_filename) {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0xh =3D xml_creat=
+e(ptest_list_length(head), opts.xml_filename);<br>
+&gt; @@ -379,7 +433,6 @@ run_ptests(struct ptest_list *head, const struct p=
+test_options opts,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0close(pipefd_stdout[1]);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0break;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt; -<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fp, &quo=
+t;START: %s\n&quot;, progname);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0PTEST_LIST_ITERA=
+TE_START(head, p);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0char *ptest_dir =3D strdup(p-&gt;run_ptest);<br>
+&gt; @@ -388,6 +441,13 @@ run_ptests(struct ptest_list *head, const struct =
+ptest_options opts,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0}<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0dirname(ptest_dir);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0if (ioctl(0, TIOCNOTTY) =3D=3D -1) {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fp, &quot;ERROR: Unable to detac=
+h from controlling tty, %s\n&quot;, strerror(errno));<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0}<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0if ((pgid =3D getpgid(0)) =3D=3D -1) {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fp, &quot;ERROR: getpgid() faile=
+d, %s\n&quot;, strerror(errno));<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0}<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0child =3D fork();<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0if (child =3D=3D -1) {<br>
+&gt; @@ -395,13 +455,33 @@ run_ptests(struct ptest_list *head, const struct=
+ ptest_options opts,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0rc =3D -1;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0break;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0} else if (child =3D=3D 0) {<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0setsid();<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0close(0);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if ((slave =3D setup_slave_pty(fp)) &lt;=
+ 0) {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fp, =
+&quot;ERROR: could not setup pty (%d).&quot;, slave);<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (setpgid(0,pgid) =3D=3D -1) {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fp, =
+&quot;ERROR: setpgid() failed, %s\n&quot;, strerror(errno));<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (setsid() =3D=3D=C2=A0 -1) {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fp, =
+&quot;ERROR: setsid() failed, %s\n&quot;, strerror(errno));<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt; +<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (ioctl(0, TIOCSCTTY, NULL) =3D=3D -1)=
+ {<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fp, =
+&quot;ERROR: Unable to attach to controlling tty, %s\n&quot;, strerror(errn=
+o));<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt; +<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0run_child(p-&gt;run_ptest, pipefd_=
+stdout[1], pipefd_stderr[1]);<br>
+&gt; +<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0} else {<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0int status;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0int fds[2]; fds[0] =3D pipefd_stdo=
+ut[0]; fds[1] =3D pipefd_stderr[0];<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0FILE *fps[2]; fps[0] =3D fp; fps[1=
+] =3D fp_stderr;<br>
+&gt;=C2=A0 =C2=A0<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (setpgid(child, pgid) =3D=3D -1) {<br=
+>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fp, =
+&quot;ERROR: setpgid() failed, %s\n&quot;, strerror(errno));<br>
+&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
+&gt; +<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0sttime =3D time(NULL);<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fp, &quot;%s\n&quot;, get_=
+stime(stime, GET_STIME_BUF_SIZE, sttime));<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fprintf(fp, &quot;BEGIN: %s\n&quot=
+;, ptest_dir);<br>
+&gt; <br>
+<br>
+<br>
+-- <br>
+# Randy MacLeod<br>
+# Wind River Linux<br>
+</blockquote></div></div>
+
+--000000000000e11f7b058c3045a3--
