@@ -1,38 +1,61 @@
-Return-Path: <Yi.Zhao@windriver.com>
+Return-Path: <daniel.wenninger92@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AB73BE00D75; Wed, 26 Jun 2019 17:40:23 -0700 (PDT)
+	id BFAB7E00D63; Wed, 26 Jun 2019 23:32:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F04FE00D68
-	for <yocto@yoctoproject.org>; Wed, 26 Jun 2019 17:40:23 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x5R0dH5d027849
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 26 Jun 2019 17:39:43 -0700
-Received: from localhost (128.224.162.195) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.439.0;
-	Wed, 26 Jun 2019 17:39:40 -0700
-From: Yi Zhao <yi.zhao@windriver.com>
-To: <yocto@yoctoproject.org>, <Adrian.Dudau@enea.com>,
-	<alexandru.vaduva@linux.com>
-Date: Thu, 27 Jun 2019 08:39:01 +0800
-Message-ID: <1561595941-25137-3-git-send-email-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1561595941-25137-1-git-send-email-yi.zhao@windriver.com>
-References: <1561595941-25137-1-git-send-email-yi.zhao@windriver.com>
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (daniel.wenninger92[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.47 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com
+	[209.85.210.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61689E00C74
+	for <yocto@yoctoproject.org>; Wed, 26 Jun 2019 23:32:00 -0700 (PDT)
+Received: by mail-ot1-f47.google.com with SMTP id l15so1120089otn.9
+	for <yocto@yoctoproject.org>; Wed, 26 Jun 2019 23:32:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=SgxTP52z2Wve5JQ/zH0cLbCpKUAKPnzB5/5/JQvs670=;
+	b=ozjxgjLaYM6qheNqj4SZdtgcGlGXO9sEDAbvgk2gGhxAYuH78lyaZVdEiWpR7XwSDW
+	LDRULXYHwppHdx0q/5O+B/Fok5L+PQxWbrmT4q9FfmajfSpq+5JZ8zfPAUIKbKrACkMQ
+	wShr1Okx4KKq8IlpY3oLVmbh8ZbGOenlpLpg2/ZGzf4F8WUlOj9mTXzoiVIbtjK2tdLn
+	C3vaZd0SWc6+Cpe7xRnRibCpns0YN4LfxXvnuOSk/PVHeMYpiwajAYLLsVwEPqCIkuKX
+	XbwJAVUxB6SH/rDhwEd6pitlOL3k6YWUvaZOdHBdvIN2uGIu8Zz2zl0LGpX1BV1z5DpN
+	v2Iw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=SgxTP52z2Wve5JQ/zH0cLbCpKUAKPnzB5/5/JQvs670=;
+	b=INMwEKY/IFReH5+C8yxAuWwTAienfRW+UVro/DNuHFLf/Ve6L1z2ixpdUyjqIl+E1J
+	ye8BoDH/PZ0hDiEZbY5cxnilyWM6155i4pIxkIYMwJz84oAEPZT3HQgO8tQbod7j+qzn
+	01Cl/psuaZgy84/R2wxlEfy/6DSaOz08VsW/kHAjne8UIFH6jh3M/1H5zhiUndv0wbLG
+	h1meHIUo6l3xD/8x3WjPY6irEhmxStejqlzn+R+OwiFaQu73eKSyZFzI+t1fz39ipjzV
+	6IGiQKBqdB/AJYceGMvwPbr+znNBeG8dDHzDPuc88LS9uPtPFgCnIV7YAQt+y9EWTstr
+	Dr5w==
+X-Gm-Message-State: APjAAAVkPi4p+uwsIJGe5q6OOQeY3hZunY+O+ppRFpgaHeUApILSDEPO
+	y96WbNOHQWMkxctGCAPZw5rWRNGpw/FSqWfeYbME98UR
+X-Google-Smtp-Source: APXvYqzawKWP/V2NaLIdbgb4O6uXduTupVczdwZJbso6EvoJsuh8DW9LJv3mJM8/MkHmNxxZ84brb5eJeBlDzmmajLo=
+X-Received: by 2002:a9d:7203:: with SMTP id u3mr1932839otj.313.1561617119351; 
+	Wed, 26 Jun 2019 23:31:59 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [128.224.162.195]
-Subject: [meta-cgl][PATCH 3/3] libhtml-tagset-perl: remove recipe
+From: danwe <daniel.wenninger92@gmail.com>
+Date: Thu, 27 Jun 2019 08:31:49 +0200
+Message-ID: <CAEmXcAxcyTEv0tqmGrT9RyFch2ZxZWpAti5ssnh0+P0zTR9tqQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: bitbak command: No recipe available for
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,43 +67,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Jun 2019 00:40:23 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 27 Jun 2019 06:32:00 -0000
+Content-Type: multipart/alternative; boundary="000000000000ac985e058c4851e4"
 
-The libhtml-tagset-perl recipe was added to meta-perl layer with commit:
-4058e65f3c4e17ad04423f4c9edf8607fe6fdb4f
-We can drop this duplicate recipe.
+--000000000000ac985e058c4851e4
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- .../recipes-perl/perl/libhtml-tagset-perl_3.20.bb       | 17 -----------------
- 1 file changed, 17 deletions(-)
- delete mode 100644 meta-cgl-common/recipes-perl/perl/libhtml-tagset-perl_3.20.bb
+while using the command:
+daniel@daniel-VirtualBox:~/bbb$ MACHINE=beaglebone bitbake core-immage-full
+cmdline I get the following ouput:
+````
 
-diff --git a/meta-cgl-common/recipes-perl/perl/libhtml-tagset-perl_3.20.bb b/meta-cgl-common/recipes-perl/perl/libhtml-tagset-perl_3.20.bb
-deleted file mode 100644
-index 2765cd2..0000000
---- a/meta-cgl-common/recipes-perl/perl/libhtml-tagset-perl_3.20.bb
-+++ /dev/null
-@@ -1,17 +0,0 @@
--DESCRIPTION = "HTML Tagset bits."
--HOMEPAGE = "http://search.cpan.org/dist/HTML-Tagset/"
--SECTION = "libs"
--LICENSE = "Artistic-1.0 | GPL-1.0+"
--LIC_FILES_CHKSUM = "file://README;beginline=60;md5=16ddda2d845a5546f615e6b122d1dbad"
--PR = "r4"
--
--SRC_URI = "http://search.cpan.org/CPAN/authors/id/P/PE/PETDANCE/HTML-Tagset-${PV}.tar.gz"
--
--S = "${WORKDIR}/HTML-Tagset-${PV}"
--
--inherit cpan
--
--BBCLASSEXTEND="native"
--
--SRC_URI[md5sum] = "d2bfa18fe1904df7f683e96611e87437"
--SRC_URI[sha256sum] = "adb17dac9e36cd011f5243881c9739417fd102fce760f8de4e9be4c7131108e2"
--- 
-2.7.4
+Loading cache: 100% |############################################| Time:
+0:00:03
+
+Loaded 1358 entries from dependency cache.
+
+Parsing recipes: 100% |##########################################| Time:
+0:00:12
+
+Parsing of 832 .bb files complete (829 cached, 3 parsed). 1361 targets, 65
+skipped, 0 masked, 0 errors.
+
+ERROR: No recipes available for:
+
+  /home/daniel/meta-bbb/recipes-connectivity/openssh/openssh_7.%.bbappend
+
+  /home/daniel/meta-bbb/recipes-qt/qt5/qtbase_git.bbappend
+
+  /home/daniel/meta-bbb/recipes-support/ntp/ntp_4.2.%.bbappend
 
 
+
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+````
+
+How can I solve this?
+
+Thanks.
+
+Daniel
+
+--000000000000ac985e058c4851e4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>while using the command:=C2=A0</div><div>daniel@danie=
+l-VirtualBox:~/bbb$ MACHINE=3Dbeaglebone bitbake core-immage-full cmdline I=
+ get the following ouput:</div><div>````</div><div><p class=3D"MsoNormal" s=
+tyle=3D"margin:0cm 0cm 0.0001pt;font-size:12pt;font-family:&quot;Liberation=
+ Serif&quot;,serif"><span lang=3D"EN-US">Loading cache: 100% |#############=
+###############################| Time: 0:00:03</span></p><p class=3D"MsoNor=
+mal" style=3D"margin:0cm 0cm 0.0001pt;font-size:12pt;font-family:&quot;Libe=
+ration Serif&quot;,serif"><span lang=3D"EN-US">Loaded 1358 entries from dep=
+endency cache.</span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0=
+001pt;font-size:12pt;font-family:&quot;Liberation Serif&quot;,serif"><span =
+lang=3D"EN-US">Parsing recipes: 100% |#####################################=
+#####| Time: 0:00:12</span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0=
+cm 0.0001pt;font-size:12pt;font-family:&quot;Liberation Serif&quot;,serif">=
+<span lang=3D"EN-US">Parsing of 832 .bb files complete (829 cached, 3 parse=
+d). 1361 targets, 65 skipped, 0 masked, 0 errors.</span></p><p class=3D"Mso=
+Normal" style=3D"margin:0cm 0cm 0.0001pt;font-size:12pt;font-family:&quot;L=
+iberation Serif&quot;,serif"><span lang=3D"EN-US">ERROR: No recipes availab=
+le for:</span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;f=
+ont-size:12pt;font-family:&quot;Liberation Serif&quot;,serif"><span lang=3D=
+"EN-US">=C2=A0 /home/daniel/meta-bbb/recipes-connectivity/openssh/openssh_7=
+.%.bbappend</span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001=
+pt;font-size:12pt;font-family:&quot;Liberation Serif&quot;,serif"><span lan=
+g=3D"EN-US">=C2=A0 /home/daniel/meta-bbb/recipes-qt/qt5/qtbase_git.bbappend=
+</span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-siz=
+e:12pt;font-family:&quot;Liberation Serif&quot;,serif"><span lang=3D"EN-US"=
+>=C2=A0 /home/daniel/meta-bbb/recipes-support/ntp/ntp_4.2.%.bbappend</span>=
+</p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-size:12pt;=
+font-family:&quot;Liberation Serif&quot;,serif"><span lang=3D"EN-US">=C2=A0=
+</span></p><p class=3D"MsoNormal" style=3D"margin:0cm 0cm 0.0001pt;font-siz=
+e:12pt;font-family:&quot;Liberation Serif&quot;,serif"><span lang=3D"EN-US"=
+>Summary: There was 1 ERROR message shown, returning a non-zero exit code.<=
+/span></p></div><div>````</div><div><br></div><div>How can I solve this?</d=
+iv><div><br></div><div>Thanks.</div><div><br></div><div>Daniel</div></div>
+
+--000000000000ac985e058c4851e4--
