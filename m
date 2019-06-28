@@ -1,62 +1,60 @@
-Return-Path: <aaron.biver@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 259EAE00BE9; Fri, 28 Jun 2019 11:34:03 -0700 (PDT)
+	id BA703E00BE9; Fri, 28 Jun 2019 12:53:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE, WEIRD_PORT autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (aaron.biver[at]gmail.com)
-	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.48 listed in list.dnswl.org]
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com
-	[209.85.167.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D4F5E0096F
-	for <yocto@yoctoproject.org>; Fri, 28 Jun 2019 11:34:01 -0700 (PDT)
-Received: by mail-lf1-f48.google.com with SMTP id d11so4607639lfb.4
-	for <yocto@yoctoproject.org>; Fri, 28 Jun 2019 11:34:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=19LPX9XHexvPCWpT1BwDsssvXW4ykH5bYNV4AZKMIyg=;
-	b=m7Nth9IkOQ9nbzKE7MmtBjYtHRhunEHbxRl+lAad4RHjrP5pb+fjoo5LEGDfJsNosS
-	+DeB8fXzA5kA//N9DoSZ0d61QfZ1V2WjJTq/415zutY8y6wifAgHwrhmH1gIKUqUxH3o
-	emokgRZo+ni0J/P0u3pgodWkAq8PJkFqkDCF3kpPtAKJgLmHca3LUFKEqn+B0EgsDAvc
-	J5YN4xKrsrCTJO8uYWyvtWdm2OeuzWyWBNSmGNBidFrrHUtZcKhQJaetqCINLEdzfNp8
-	xV6N3eMjWvQ089c+kQDBkJXDqiveLXwW1OyyBFHNrKhvX39or64wwBHj/u1Jjwrk458m
-	aIig==
+	*      [209.85.166.44 listed in list.dnswl.org]
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com
+	[209.85.166.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EC00E00A49
+	for <yocto@yoctoproject.org>; Fri, 28 Jun 2019 12:53:47 -0700 (PDT)
+Received: by mail-io1-f44.google.com with SMTP id j6so15012456ioa.5
+	for <yocto@yoctoproject.org>; Fri, 28 Jun 2019 12:53:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=UjZ5yNIsfZrS0zALt/NkYysuG27n++aFrEy+VoHOZXc=;
+	b=FGX/srW/Mc8wqdiKy8xcaw8bJm1XdUzH/enYnzHhhZnXygMED54iME3u4H0BV0fRt5
+	EwKgGYclegTBrmE7rw0VZnVtTPrrVgi+NHsSbuLepoNE0JMlmuXtt1SMvjrrwKVm07IN
+	Jln2leMEu6NaCrUJM50jhi4VUps8YKwDIeWi77u3ySW6jQv15VyI0QOFTmDLs/LnM3wK
+	5iCIVo+cNxaFEaKMHp/QH2aNQswzxS27lM6bmarBNflD0dGBX7K1gNzbmSMl8cePA4cQ
+	I4+7VS2ycN8OLCGIDQKtqF5dMPDp75Cdh90Y30On9Y8/gtJy5O1SwPB/rMrkDU6mCB6Q
+	8e6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=19LPX9XHexvPCWpT1BwDsssvXW4ykH5bYNV4AZKMIyg=;
-	b=Eih7BnHV8iEHys6Pa9Kdwrg7o6c02IX2RGMMB5TGn7gYzvxgbjmscw1RbYRKoapnBF
-	G6D0mKL+/n2r7ASrmh1eNtaIyDwO++b1Eqqh+kAoK7wWkKxzsHfNsop6QX79EMiVnSTS
-	5Tf4S7cTxs9AhXyKxMnd9EqK7mtBhgt2jZHL6lHqMmQQAo9Wr+cNyoJyNSP6IgFb8CoO
-	HztvPpdsVenAqFkUOcPdaJQKxOeVhkPZ2s9lqEsw/OE+r1wTfAOiYQceUJS7MJiUArxA
-	/n9DNSdFBvtEQaYzGNt8mnw5tu3hpmxPNm38vHMEEyXW1pmIkMK4/WKXKZ2ddZ1j2JH5
-	pV8A==
-X-Gm-Message-State: APjAAAVa0IHDC3UomncxKMNrX3OwOpv3pJ/elHxrrOLXBACo0+TLZK73
-	b1JoiCtZ9NKaNPaDgw7tlP7/ZxU1AHfyEyDPC4u1y5U1
-X-Google-Smtp-Source: APXvYqyDlGeSLpLVjX6KECSeAqtgSRmjhXolpD95qpfNA5261OIc7yqZfcG4GBtceNApmV0r+gnlAg3g28pAUO4Msgo=
-X-Received: by 2002:a19:550f:: with SMTP id n15mr5838723lfe.34.1561746839844; 
-	Fri, 28 Jun 2019 11:33:59 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=UjZ5yNIsfZrS0zALt/NkYysuG27n++aFrEy+VoHOZXc=;
+	b=dic/vAwBitayLgPltS+V0SC1a4KU+LtDB1/qgzTzT44/TXEWBv6YZiMj4CtQV3aWRT
+	3ZU8cxbHBu98vQsloXDPVeO+NkRMK2VM8HSNSVhiIDqkr9oqSsylTMaIxQWDT2/hJ0Zb
+	huV6DnA72RPPaJSDUDK1LkCA5ssVFy2iTHJzpn+Xt20Jn87AJy63nOYI5OTVJtOo5nBn
+	bpE2ZSQhnp1vOAytpKuJ+XR+hy8YoodtZdIu3AB5zK8RiO84pO70WksTptPCZlgZM3sj
+	3RZkh3XfpKLCtYqnp/cjvKWTxACEMz4mYa6zS9QYVxIWIRm94bDLit8nfqbxALUfB4RY
+	iTqw==
+X-Gm-Message-State: APjAAAVJgyZk32Qh+95H8znJNAQo9nx3vVbLKRiGeMJrb6nBwqHyOXVp
+	rm8+UUsm89KRP9C7QrnTAqgF50WKmMc6u2Gk/g0ASaM8
+X-Google-Smtp-Source: APXvYqzVVmnK52k7V7cQKOtzjYKkwb6t/dI6oityst9hm9nESWeAgT3OPA0NQtmuTwxby3RkOujz6ZAK3zu3DYoWl7w=
+X-Received: by 2002:a02:914c:: with SMTP id b12mr13860179jag.105.1561751627314;
+	Fri, 28 Jun 2019 12:53:47 -0700 (PDT)
 MIME-Version: 1.0
-From: Aaron Biver <aaron.biver@gmail.com>
-Date: Fri, 28 Jun 2019 14:33:48 -0400
-Message-ID: <CAMd7AX9bg5u+Wm=bWbbW7_0A06Ko6njP9OuE96+-W1PxJjugUQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Creating a file within a recipe
+References: <CAMd7AX9bg5u+Wm=bWbbW7_0A06Ko6njP9OuE96+-W1PxJjugUQ@mail.gmail.com>
+In-Reply-To: <CAMd7AX9bg5u+Wm=bWbbW7_0A06Ko6njP9OuE96+-W1PxJjugUQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 28 Jun 2019 20:53:34 +0100
+Message-ID: <CAJTo0LaYOfqUoqwV257E60ZSZPzHBZ9pCUM6q0fckE8MLVnSeQ@mail.gmail.com>
+To: Aaron Biver <aaron.biver@gmail.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Creating a file within a recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,44 +66,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Jun 2019 18:34:03 -0000
-Content-Type: multipart/alternative; boundary="0000000000009e3b1e058c6685a9"
-
---0000000000009e3b1e058c6685a9
+X-List-Received-Date: Fri, 28 Jun 2019 19:53:48 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-I'd like to be able to create a file using the cat command in a recipe.
-The sub-goal is to have the file created somewhere I can actually find it:
+The bash parser does have some bugs, and I think you just found one.
+Probably easier to have a template on disk in SRC_URI, and sed in the
+value you want.
 
-do_create_tebf0808() {
-cat > tebf0808.bif <<EOF
-all:
-{
-    ${LATEST_TEBF0808_FW}
-}
-EOF
-}
+Ross
 
-This fails at the "EOF" line:
-ERROR: ParseError at ...firmware.bb:43: unparsed line: 'EOF'
-                         | ETA:  --:--:--
+On Fri, 28 Jun 2019 at 19:35, Aaron Biver <aaron.biver@gmail.com> wrote:
+>
+> I'd like to be able to create a file using the cat command in a recipe.  The sub-goal is to have the file created somewhere I can actually find it:
+>
+> do_create_tebf0808() {
+> cat > tebf0808.bif <<EOF
+> all:
+> {
+>     ${LATEST_TEBF0808_FW}
+> }
+> EOF
+> }
+>
+> This fails at the "EOF" line:
+> ERROR: ParseError at ...firmware.bb:43: unparsed line: 'EOF'                                        | ETA:  --:--:--
+>
+> Maybe sed would work better?
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Maybe sed would work better?
-
---0000000000009e3b1e058c6685a9
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>I&#39;d like to be able to create a file using the ca=
-t command in a recipe.=C2=A0 The sub-goal is to have the file created somew=
-here I can actually find it:</div><div><br></div><div>do_create_tebf0808() =
-{<br>cat &gt; tebf0808.bif &lt;&lt;EOF <br>all:<br>{<br>=C2=A0 =C2=A0 ${LAT=
-EST_TEBF0808_FW}<br>}<br>EOF<br>}<br></div><div><br></div><div>This fails a=
-t the &quot;EOF&quot; line:</div><div>ERROR: ParseError at ...<a href=3D"ht=
-tp://firmware.bb:43">firmware.bb:43</a>: unparsed line: &#39;EOF&#39; =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| ETA: =C2=A0=
---:--:--</div><div><br></div><div>Maybe sed would work better?</div><div><b=
-r></div><div><br></div></div>
-
---0000000000009e3b1e058c6685a9--
