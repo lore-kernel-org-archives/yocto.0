@@ -1,48 +1,69 @@
-Return-Path: <ch@denx.de>
+Return-Path: <sjolley.yp.pm@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9EF8AE00BE9; Fri, 28 Jun 2019 13:56:26 -0700 (PDT)
+	id CC745E00AF2; Sat, 29 Jun 2019 09:11:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [212.18.0.9 listed in list.dnswl.org]
-X-Greylist: delayed 495 seconds by postgrey-1.32 at yocto-www;
-	Fri, 28 Jun 2019 13:56:24 PDT
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DD29E00BE9
-	for <yocto@yoctoproject.org>; Fri, 28 Jun 2019 13:56:24 -0700 (PDT)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 45b83r0YnQz1rC8T;
-	Fri, 28 Jun 2019 22:48:08 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-	by mail.m-online.net (Postfix) with ESMTP id 45b83r0MMqz1qqkT;
-	Fri, 28 Jun 2019 22:48:08 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new,
-	port 10024)
-	with ESMTP id sgyQoomIS6k7; Fri, 28 Jun 2019 22:48:06 +0200 (CEST)
-X-Auth-Info: F/1oPeuAL89LimSr0/iPj6HZ1Xrr1cWg8C1gdSe0PCo=
-Received: from localhost (dslb-084-063-248-205.084.063.pools.vodafone-ip.de
-	[84.63.248.205])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail.mnet-online.de (Postfix) with ESMTPSA;
-	Fri, 28 Jun 2019 22:48:06 +0200 (CEST)
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (sjolley.yp.pm[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.181 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com
+	[209.85.160.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A36FAE00994
+	for <yocto@yoctoproject.org>; Sat, 29 Jun 2019 09:11:51 -0700 (PDT)
+Received: by mail-qt1-f181.google.com with SMTP id x47so9854906qtk.11
+	for <yocto@yoctoproject.org>; Sat, 29 Jun 2019 09:11:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id:mime-version:content-language
+	:thread-index; bh=J3AOLSgYvP0SILIttafbLD2KMeZgBlDm5BNwHd5tpjw=;
+	b=uaJJSnRC4GjE1FJPj8bIZ7hUuUnFwNt/RV9s1FQG27XkB+FMxqwJ+LZAbQjNmbHaji
+	WeBJTKupksvZuchVzE7Zz8LqXdJmHO1diERPcgsRBl9h8Ov4XCGkiw7WD7z0Q1aUPTIr
+	n+DOEl9BMO2Q6dV2KM9PdB52DsBNpQlCk7wheEhpHOlbRDYvaqddrFvLpuFEQoNg1oyc
+	HUSMmBaX0QgcJR6RxGrStIJZLM0mB0V9E2w1QOgYyVxH5Rse8eXKSx2Fwe7BjiaKWmqh
+	Sq97a7duqFAqX+27w4j6UeMLS2Y619sYhpDDC02lNSX3ji+J+qS3z0qSj57xUYTOam+P
+	mwYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:content-language:thread-index;
+	bh=J3AOLSgYvP0SILIttafbLD2KMeZgBlDm5BNwHd5tpjw=;
+	b=jX0+CLDF2ERiZsa9MQgv694d3Xcd9ffUfH8LcpoPZK1HYRb7HgBr0GYouKmTIp1f0y
+	XVT/t3dqP2kKIHe0gzeh7XHa35N8vi1kZ4YzbWPPvwojZLvWrM0PCKqvrr6reQgRruB9
+	r1zUE6UGWc/83UlpXVkewBV8LQWvCw7nnkL1KWhtN3WAZrRGjkJ3FJgF3BoSOfnUtCnU
+	U8g96gK/4vy7udtNEb79fg7jPIgCKdd7yvIgBhz/kZlkUFum8zOtUMu49cKDAcCznZZY
+	VHeujaVlQaLpeYJEDar1sEriz446gieT2/85P1Hm94erBG89yi58PpQsRQryFXZG/Vns
+	l5kw==
+X-Gm-Message-State: APjAAAVskQWYxrJBv2l4RwroGjnBJ5aDejU3ip8HtycP1TKHlGfi1Bck
+	qKg7xstTtmspSseHNUp8/ZE=
+X-Google-Smtp-Source: APXvYqwhlO3HZMpCXuZGOUpqiPMgf4FuVLHdOiKJUm88XdTXKrvHMI5QQWMk6SyahdXAHHtpGL3lEQ==
+X-Received: by 2002:ac8:34c5:: with SMTP id x5mr12562360qtb.91.1561824710843; 
+	Sat, 29 Jun 2019 09:11:50 -0700 (PDT)
+Received: from sjolley ([96.79.126.57]) by smtp.gmail.com with ESMTPSA id
+	z12sm2354824qkf.20.2019.06.29.09.11.49
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 29 Jun 2019 09:11:50 -0700 (PDT)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Date: Sat, 29 Jun 2019 09:11:48 -0700
+Message-ID: <0aa501d52e95$5bd1ab50$137501f0$@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAMd7AX9SH60WPAhR87p=Za17rDOCf0CMsp3S7LFbgrT9Y+c2RQ@mail.gmail.com>
-References: <CAMd7AX9SH60WPAhR87p=Za17rDOCf0CMsp3S7LFbgrT9Y+c2RQ@mail.gmail.com>
-To: Aaron Biver <aaron.biver@gmail.com>, yocto@yoctoproject.org
-From: Claudius Heine <ch@denx.de>
-Message-ID: <156175488609.25365.211872127310867605@ardipi>
-User-Agent: alot/0.8
-Date: Fri, 28 Jun 2019 22:48:06 +0200
-Subject: Re: Syntax for zero-padding a number in a recipe?
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdUulHiMDOJvjny5Q4CWfv36gSkFtQ==
+Subject: Meetings next week.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,97 +75,254 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Jun 2019 20:56:26 -0000
-X-Groupsio-MsgNum: 45770
-Content-Type: multipart/signed; micalg="pgp-sha256";
-	protocol="application/pgp-signature";
-	boundary="===============2567205036423631179=="
-Content-Disposition: inline
+X-List-Received-Date: Sat, 29 Jun 2019 16:11:52 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0AA6_01D52E5A.AF734880"
+Content-Language: en-us
 
---===============2567205036423631179==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
+------=_NextPart_000_0AA6_01D52E5A.AF734880
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+Due to the 4th of July holiday next week.  Some meetings will be changed.
+
+ 
+
+Triage will be canceled on the 4th..  Next Bug Triage meeting Thursday will
+be July 11th at 7:30am PDT (https://zoom.us/j/454367603)
+
+Monthly Project Meeting will still be Tuesday July 2nd at 8am PDT (
+<https://zoom.us/j/990892712> https://zoom.us/j/990892712) 
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Project Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:               <mailto:sjolley.yp.pm@gmail.com>
+sjolley.yp.pm@gmail.com
+
+ 
+
+
+------=_NextPart_000_0AA6_01D52E5A.AF734880
+Content-Type: text/html;
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:2072726791;
+	mso-list-template-ids:-1990839192;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>All,<o:p></o:p></spa=
+n></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'><o:p>&nbsp;</o:p></s=
+pan></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Due to the 4th of =
+July holiday next week.&nbsp; Some meetings will be =
+changed.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'><o:p>&nbsp;</o:p></s=
+pan></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Triage will be =
+canceled on the 4<sup>th</sup>..&nbsp; Next Bug Triage meeting Thursday =
+will be July 11th at 7:30am PDT (<a =
+href=3D"https://zoom.us/j/454367603">https://zoom.us/j/454367603</a>)<o:p=
+></o:p></span></p><p =
+style=3D'margin:0in;margin-bottom:.0001pt;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Monthly Project =
+Meeting will still be Tuesday July 2nd at 8am PDT (<a =
+href=3D"https://zoom.us/j/990892712"><span =
+style=3D'color:#1155CC'>https://zoom.us/j/990892712)</span></a>&nbsp;<o:p=
+></o:p></span></p><p =
+style=3D'margin:0in;margin-bottom:.0001pt;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'><o:p>&nbsp;</o:p></s=
+pan></p><p =
+style=3D'margin:0in;margin-bottom:.0001pt;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Thanks,<o:p></o:p></=
+span></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Project Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif;color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif;color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif",serif'>(208) =
+244-4460</span><span style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif;color:black'><o:p></o:p></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif;color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com"><span =
+style=3D'color:#0563C1'>sjolley.yp.pm@gmail.com</span></a></span></u></sp=
+an><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-Quoting Aaron Biver (2019-06-28 18:44:40)
-> Is there such a thing as zero padding a number in a recipe (or vice versa?
-> I'd be just as happy starting with a zero-padded number, and converting it
-> to non-zero-padded.
-
-In bitbake you could do this with inline python:
-
-	NUMBER =3D "1"
-	NUMBER_PADDED =3D "${@"{:02d}".format(d.getVar("NUMBER", True))}"
-	NUMBER_PADDED2 =3D "0012"
-	NUMBER2 =3D "${@str(int(d.getVar("NUMBER_PADDED2", True)))}"
-
-I have not tested this and it could possible be done more elegant, but
-it should work.
-
-regards,
-Claudius
-
-> The crux of the dilemma is that I must have zero-padding for file-naming,
-> but I CAN'T have zero padding in these numbers when I pass them to the C
-> code (or the C code treats them as octal).
->=20
-> I'd like to start with:
-> VERSION_MAJOR=3D"1"
-> VERSION_MINOR=3D"19"
->=20
-> And turn this into "01" and "19" for purposes of naming the output file
-> from the recipe.
->=20
-> I've tried the bash-style printf -v, but the recipe kicks the printf lines
-> out with a parse error.
->=20
-> VERSION_MAJOR=3D"01"
-> VERSION_MINOR=3D"19"
->=20
-> VERSION_MAJOR_STR=3D""
-> VERSION_MINOR_STR=3D""
->=20
-> printf -v VERSION_MAJOR_STR "%02d" VERSION_MAJOR
-> printf -v VERSION_MINOR_STR "%02d" VERSION_MINOR
->=20
->=20
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
---
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-54 Fax: (+49)-8142-66989-80 Email: ch@denx.de
-
-           PGP key: 6FF2 E59F 00C6 BC28 31D8 64C1 1173 CB19 9808 B153
-                             Keyserver: hkp://pool.sks-keyservers.net
-
---===============2567205036423631179==
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Content-Description: signature
-Content-Type: application/pgp-signature; name="signature.asc"; charset="us-ascii"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEb/LlnwDGvCgx2GTBEXPLGZgIsVMFAl0WfQAACgkQEXPLGZgI
-sVMGWQ/+Os9JTnEwFlZ7CsH+MAmP1R0v1MzDjIhEB2aHEoGSnu/0osYW9SrCVyIl
-yj77gboXqFitMHHiyPMQsnx0klYBqLeWL+w8pDDvf6VojomZu0ugjCRkiZ2jwqqV
-UkIRb/13yiok/PAHYDMPLZTls1U4rGez3o0c0Yj0lIM+ovdvJ55/hm22R/oEiFLG
-f5/k7kNFQC5XiBbIIDouAzhV/L2qosWEfUr5WFVV4ZjeRJ+l4bRBaP/0DbWJH5yg
-66U4NAlppZLCtUULWhcx8HtLE3qCmWbFq0CMwcisBiqP8yIDi3zqaD9/PNl96quM
-1XWrA3cUV+hbsSXVS7gTdmTiqM8HIJgpk32a6hdg6mcHq/qji7U03bgl1p6pg/oi
-P5D2ixIMcjt4aaKjhpvqnNVNPFSlPZ68c3eC/pr1S/SiDAX/h+ScQ1D66bJrzgYK
-zkrj7iHnPcVaYD52Wi15Q99pTA8pF+zLUdUR05OGKbIFzCRviJSy/vx9BQYiHjb1
-IZDPoMWJ2u+aHLAeFT91GFLFecVCOLhAV2rhohz7+3PTKv9cdhhc2+gaQXWENAsH
-ImMViquy0JFM8gW51zMRTVqeDSDCZNAqusTeCUTNeb6bRm6/wg3/xoVJlWQM6Q94
-wF7Z43d8ZTN5HpIG3o9L6IohOEsQM2K5WYdMnYoSWqPDNGQHMkE=
-=A6S1
------END PGP SIGNATURE-----
-
---===============2567205036423631179==--
+------=_NextPart_000_0AA6_01D52E5A.AF734880--
