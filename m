@@ -1,39 +1,33 @@
-Return-Path: <anuj.mittal@intel.com>
+Return-Path: <Mingli.Yu@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC00CE00B31; Sun, 30 Jun 2019 15:46:54 -0700 (PDT)
+	id 56B0BE00D42; Sun, 30 Jun 2019 19:08:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93C36E008E3
-	for <yocto@yoctoproject.org>; Sun, 30 Jun 2019 15:46:54 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	30 Jun 2019 15:46:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.63,437,1557212400"; d="scan'208";a="338444067"
-Received: from anmitta2-mobl.gar.corp.intel.com (HELO [10.249.65.134])
-	([10.249.65.134])
-	by orsmga005.jf.intel.com with ESMTP; 30 Jun 2019 15:46:52 -0700
-To: zhe.he@windriver.com, yocto@yoctoproject.org
-References: <1561455820-9421-1-git-send-email-zhe.he@windriver.com>
-From: Anuj Mittal <anuj.mittal@intel.com>
-Message-ID: <45fd1791-5a3e-9288-778d-c4418167797c@intel.com>
-Date: Mon, 1 Jul 2019 06:46:51 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.2
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32110E00BAD
+	for <yocto@yoctoproject.org>; Sun, 30 Jun 2019 19:08:32 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x6128VKu026520
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 30 Jun 2019 19:08:31 -0700 (PDT)
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.439.0; Sun, 30 Jun 2019 19:08:23 -0700
+From: <mingli.yu@windriver.com>
+To: <yocto@yoctoproject.org>, <bruce.ashfield@gmail.com>
+Date: Mon, 1 Jul 2019 10:08:21 +0800
+Message-ID: <1561946902-247680-1-git-send-email-mingli.yu@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <1561455820-9421-1-git-send-email-zhe.he@windriver.com>
-Subject: Re: [meta-dpdk][PATCH] dpdk: Remove 18.05
+Subject: [meta-cloud-services][PATCH 1/2] meta-cloud-services: add layer depends on networking-layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,25 +39,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 30 Jun 2019 22:46:55 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 01 Jul 2019 02:08:33 -0000
+Content-Type: text/plain
 
-On 25-Jun-19 05:43 PM, zhe.he@windriver.com wrote:
-> From: He Zhe <zhe.he@windriver.com>
-> 
-> We have already had 18.11 and 18.05 is not a stable version.
-> 
-> Signed-off-by: He Zhe <zhe.he@windriver.com>
-> ---
->   recipes-extended/dpdk/dpdk_18.05.bb | 15 ---------------
->   1 file changed, 15 deletions(-)
->   delete mode 100644 recipes-extended/dpdk/dpdk_18.05.bb
+From: Mingli Yu <Mingli.Yu@windriver.com>
 
-Can you please also remove the patches that are specific to this version?
+Since spice of meta-cloud-services depends on
+cyrus-sasl which comes from networking-layer,
+add missing layer depends back.
 
-Thanks,
+Signed-off-by: Mingli Yu <Mingli.Yu@windriver.com>
+---
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Anuj
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 203f9db..2cfb75f 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -8,4 +8,4 @@ BBFILE_COLLECTIONS += "cloud-services-layer"
+ BBFILE_PATTERN_cloud-services-layer := "^${LAYERDIR}/"
+ BBFILE_PRIORITY_cloud-services-layer = "5"
+ LAYERSERIES_COMPAT_cloud-services-layer = "thud warrior"
+-LAYERDEPENDS_cloud-services-layer = "core filesystems-layer"
++LAYERDEPENDS_cloud-services-layer = "core filesystems-layer networking-layer"
+-- 
+2.7.4
+
 
