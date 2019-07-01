@@ -1,88 +1,72 @@
-Return-Path: <maciej.pijanowski@3mdeb.com>
+Return-Path: <moritz.porst@gmx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5EAFBE00D42; Mon,  1 Jul 2019 04:18:44 -0700 (PDT)
+	id 35968E00D42; Mon,  1 Jul 2019 05:20:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (moritz.porst[at]gmx.de)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [188.165.33.109 listed in list.dnswl.org]
+	*      [212.227.15.19 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 10796 seconds by postgrey-1.32 at yocto-www;
-	Mon, 01 Jul 2019 04:18:42 PDT
-Received: from 10.mo4.mail-out.ovh.net (10.mo4.mail-out.ovh.net
-	[188.165.33.109])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6867E00A49
-	for <yocto@yoctoproject.org>; Mon,  1 Jul 2019 04:18:42 -0700 (PDT)
-Received: from player738.ha.ovh.net (unknown [10.109.160.5])
-	by mo4.mail-out.ovh.net (Postfix) with ESMTP id 5D8071F7D61
-	for <yocto@yoctoproject.org>; Mon,  1 Jul 2019 09:42:44 +0200 (CEST)
-Received: from 3mdeb.com (85-222-117-222.dynamic.chello.pl [85.222.117.222])
-	(Authenticated sender: maciej.pijanowski@3mdeb.com)
-	by player738.ha.ovh.net (Postfix) with ESMTPSA id E1C2B788A2E7
-	for <yocto@yoctoproject.org>; Mon,  1 Jul 2019 07:42:43 +0000 (UTC)
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F9D6E00BAF
+	for <yocto@yoctoproject.org>; Mon,  1 Jul 2019 05:20:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=badeba3b8450; t=1561983605;
+	bh=tz2cG4+yJwFOlBgDQNI26OC8Ul9hIIf8RxFGPL7mH4U=;
+	h=X-UI-Sender-Class:Subject:To:References:From:Date:In-Reply-To;
+	b=QiqwgsmlYQ8VTBcNUgh9Wl82tz893ZvDMLPb8uJz/cWcDq8pb23JS/S/OJRkKk+Fy
+	BcSQxvSGFE45mwBRGIT6n9j1EYlxd4pG6YkTeT25I6kmz/g+WDp7577CJSX8TFGQH5
+	9S53+0GKUiaRoX91J7CAZ9x+DQDLXbo+nszmmn/A=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [192.168.2.132] ([80.152.229.14]) by mail.gmx.com (mrgmx005
+	[212.227.17.190]) with ESMTPSA (Nemesis) id 1MowKi-1iKm8Q3Qxa-00qOMv
+	for <yocto@yoctoproject.org>; Mon, 01 Jul 2019 14:20:04 +0200
 To: yocto@yoctoproject.org
-References: <CAG+Ob8Z2dTj+Yx44T_cWbRELkCcapPUaY=1h51nG0HBuGN6BxQ@mail.gmail.com>
-From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=maciej.pijanowski@3mdeb.com; keydata=
-	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
-	0f2bcrTp9w==
-Message-ID: <d4286c14-41cc-315c-e85b-21facfbca979@3mdeb.com>
-Date: Mon, 1 Jul 2019 09:42:42 +0200
+References: <89d3d916-1fca-5ff5-e68e-79370dd0bfb7@gmx.de>
+	<CAGAf8Lz2t90EjsaXPXxsSoioHb33u7dutnREiFr53NYp-WVD5A@mail.gmail.com>
+	<34ae2007-e315-4b5a-c388-9c8adab28cbd@gmx.de>
+From: Moritz Porst <moritz.porst@gmx.de>
+Message-ID: <ef2f4683-959e-ec26-b8c0-b7298cb9a60b@gmx.de>
+Date: Mon, 1 Jul 2019 14:19:59 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.7.1
 MIME-Version: 1.0
-In-Reply-To: <CAG+Ob8Z2dTj+Yx44T_cWbRELkCcapPUaY=1h51nG0HBuGN6BxQ@mail.gmail.com>
-X-Ovh-Tracer-Id: 13363305994583551657
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduvddrvdehgdduvdefucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenuc
-Subject: Re: Yocto stucks when building!
+In-Reply-To: <34ae2007-e315-4b5a-c388-9c8adab28cbd@gmx.de>
+X-Provags-ID: V03:K1:9Udr26BvzpjQRsgxW+wj7zMRBMugWoWI2FTqoxJTcn1H17hzHyO
+	IcEdvCWRaDRSODNSwzgNpneUXenehAo6hzkJ12lZYq13DaBP8rRd4/r74aBRI4P+1x47Ryw
+	LP3egTRzbh90WLPwAMfQd05R5goxQK3BBGehL2gmmL3w5WK1Ee5kPNNN/RJ1VrRRws1Z6ef
+	LhpnA802idUuQaeWxm6+w==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:Ajkl/Goq9ho=:hoUfi0uAFBbB6ZlYaVTcsN
+	N/xjlVepwoznBYZUw88XsOy5ixd98Yhq6N++xu3H5GSQ0wIsZNaqaZWH+7Y44BHI7O8jf2+pl
+	9PyEQxUEnyVNmV+SFf18E3/mIO0jgN1kHxytNi86kZ+tFtG9jfXaVNU6hShfkPdC/3i+oBme7
+	ZdgT9hI+XXoihqKI7+KqZO4ZhacMFkxXp1EPoJFYtd27C/lshtyCnPoRtpLTkfag0zVlYILsK
+	ZIvFAh1hSlyrFs9gCHDOsnBDqBnq9a8bMLdDXAQ6V7SKQx6LRD/JQHmmzgylso3v2j40Dr/XN
+	w/lnIf9zzUyLpS2ca2m5AJP+cK7C/59glHloYfsYMBUwZm+fKMb9DT8tRDr8EaIvsCJu9u/EB
+	oNNiIqr+qUMwxupeOlTy4DyyUzGeZOyVRiwXsez3WufaNwlC4d8sttcYpm5G22WYXT3owaGUA
+	Stv3NummvDRD7JtKdUYv3cEnr0Vw+tw2o3GKe/PIfIzkWZikfXncwVMBRYZ12ix7H6UKDLEJs
+	OiQ4nab4IpbQ9/PQhp7WkUPKaGnd7snXONL2aIKCK8aGR3vRrQL79KIPMm5Rf5ZktvRGMWdvF
+	9rDVpZJN5sMC3EtK4Fmo/IfJHDU7uMU/TsSHhnVF+n/Q3W0DpOVurAlLxp6sygciRwGzJU6sp
+	+algc3Nm6SkPO+mpBwiSGxd4y4jpWh3+TxkJd6GrPCiKbSyZ9YoZa1BGvyXl+sl7/XM43NvoM
+	kWc+FIZMATFiVWR+bniTWqOMZE1z0Mok9Wn9kb6Mh9OGVp0RpEZxve6XyLM5mYSrdB3nXupqv
+	HrfZBmSsqTcLN7SWOE7aiMzz6Mi6asuY8m38hH/jnqckwa4TIWbQ3OQ/aKLm10tWAnA3NfHW2
+	OCzOBIPF7JUKe+XoJfgS81l0u33jsrihdEYxBiPepmT8vtwLa6An1IWA1bMLS7hsXyBM66bu6
+	KqugIdb8moFRWznOJVGPSrM9Rh+SQACiPGyQntZX6rCRhseLh6vfra7AaNUPY3FL4ecQ//Blz
+	zAKANKFPfsBZ1HNOME1seJQwGK6M020vKA5zFRfrwMZ0/u0CEPDWsAq9deHDtlrKeEciDRycI
+	WOFGg3O+OGBUFwRGgJU15/XNrLKWZUj3aThJwSyTjmZJRz77/c/TLBd7drDgduFvhIUbbpnea
+	FHizDJ4+Q4lMhicvNzAeKV3yhkSuCK0JMG2o/KrJ93Dc6Uy75lg+mflfEsSmeHeR83Db8J6p/
+	06GMR668urzv5LZRt
+Subject: Re: Can't boot to initramfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -94,154 +78,613 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jul 2019 11:18:44 -0000
+X-List-Received-Date: Mon, 01 Jul 2019 12:20:08 -0000
 Content-Type: multipart/alternative;
-	boundary="------------D3A31724BAB0353D45CDFA87"
+	boundary="------------273F62890BC2274BA6050E1A"
 Content-Language: en-US
 
---------------D3A31724BAB0353D45CDFA87
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+--------------273F62890BC2274BA6050E1A
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 
+Hey,
+So I have proceeded a tiny bit.
+What I did was to copy the core-image-minimal-initramfs.cpio.gz to my
+/boot partition and boot using (EFI grub):
 
-On 01.07.2019 09:39, Onur Eser wrote:
-> Hello,
-Hi
-> I am trying to build a yocto for i.MX6, with a QT5 layer, everything
-> is okay, but it freezes on 2666th task! When 4 tasks are running at
-> the same time in normal, when it comes to 2666th, it is only one task
-> and takes forever! (I made it wait for one night)
->
-> Build Configuration:
-> BB_VERSION        = "1.26.0"
-> BUILD_SYS         = "x86_64-linux"
-> NATIVELSBSTRING   = "Ubuntu-16.04"
-> TARGET_SYS        = "i586-poky-linux"
-> MACHINE           = "qemux86"
-First of all, it seems you are not building for the iMX6, but for the
-qemux86.
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.8.2"
-> TUNE_FEATURES     = "m32 i586"
-> TARGET_FPU        = ""
-> meta              = "fido:87631919819b6f85f23f57689cd1065c64d7fb03"
-> meta-qt5          = "fido:90919b9d86988e7da01fa2c0a07246b5b5600a5d"
-> meta-fsl-arm      = "fido:c9f259a4bf8472dfa3ff75f1c3fcbe5e0ded7aaf"
-> meta-solidrun-arm-imx6 = "fido:3e496c0895b0abf8d2aaca2c622246c1f9f3ed75"
-> meta-yocto        
-> meta-yocto-bsp    = "fido:87631919819b6f85f23f57689cd1065c64d7fb03"
-fido release is *really* old. Where did you get the documentation to
-start this build from?
-I think you might have difficult time getting support with such old release.
->
-> NOTE: Preparing RunQueue
-> NOTE: Executing SetScene Tasks
-> NOTE: Executing RunQueue Tasks
-> Currently 1 running tasks (2666 of 5960):
-> 0: attr-native-2.4.47-r0 do_compile (pid 3485)
->
-> How to solve this?
-> Thanks,
-> Onur
->
--- 
-Maciej Pijanowski
-Embedded Systems Engineer
-https://3mdeb.com | @3mdeb_com
+linux /bzimage
+initrd /initramfs.cpio.gz
 
+This way the boot process starts and at some point it says "can't find
+rootfs.img, dropping to a shell". It doesn't drop to a shell though...
+(busybox is included)
+Booting without the initrd (or with initrd /microcode.cpio) results in a
+kernel panic. This leads me to the suspicion that meta-intel overwrites
+my initramfs (since microcode.cpio is present in boot)
+Further more think I shouldn't even be required to set initrd for boot
+since it should be embedded into the kernel ?
+(INITRAMFS_IMAGE_BUNDLE=3D"1") I got the relevant variables from bitbake
+-e here, maybe someone more experienced can spot an error ?
 
---------------D3A31724BAB0353D45CDFA87
+# $INITRAMFS_FSTYPES [2 operations]
+#=C2=A0=C2=A0 set /opt/thudPoky/meta/conf/documentation.conf:228
+#=C2=A0=C2=A0=C2=A0=C2=A0 [doc] "Defines the format for the output image o=
+f an initial RAM
+disk (initramfs), which is used during boot."
+#=C2=A0=C2=A0 set? /opt/thudPoky/meta/conf/bitbake.conf:770
+#=C2=A0=C2=A0=C2=A0=C2=A0 "cpio.gz"
+# pre-expansion value:
+#=C2=A0=C2=A0 "cpio.gz"
+INITRAMFS_FSTYPES=3D"cpio.gz"
+#
+# $INITRAMFS_IMAGE
+#=C2=A0=C2=A0 set /opt/thudPoky/build/conf/local.conf:257
+#=C2=A0=C2=A0=C2=A0=C2=A0 "core-image-minimal-initramfs"
+INITRAMFS_IMAGE=3D"core-image-minimal-initramfs"
+#
+# $INITRAMFS_IMAGE_BUNDLE
+#=C2=A0=C2=A0 set /opt/thudPoky/build/conf/local.conf:258
+#=C2=A0=C2=A0=C2=A0=C2=A0 "1"
+INITRAMFS_IMAGE_BUNDLE=3D"1"
+#
+# $INITRAMFS_MAXSIZE [2 operations]
+#=C2=A0=C2=A0 set /opt/thudPoky/meta-ccns5/conf/machine/ccns5.conf:34
+#=C2=A0=C2=A0=C2=A0=C2=A0 "200000"
+#=C2=A0=C2=A0 set /opt/thudPoky/meta/conf/bitbake.conf:774
+#=C2=A0=C2=A0=C2=A0=C2=A0 [_defaultval] "131072"
+# pre-expansion value:
+#=C2=A0=C2=A0 "200000"
+INITRAMFS_MAXSIZE=3D"200000"
+#
+# $INITRD
+#=C2=A0=C2=A0 set /opt/thudPoky/meta/conf/documentation.conf:229
+#=C2=A0=C2=A0=C2=A0=C2=A0 [doc] "Indicates a list of filesystem images to =
+concatenate and
+use as an initial RAM disk (initrd)."
+#
+# $INITRD_IMAGE_LIVE
+#=C2=A0=C2=A0 set? /opt/thudPoky/meta/classes/image-live.bbclass:39
+#=C2=A0=C2=A0=C2=A0=C2=A0 "${MLPREFIX}core-image-minimal-initramfs"
+INITRD_IMAGE_LIVE=3D"core-image-minimal-initramfs"
+#
+# $INITRD_LIVE [2 operations]
+#=C2=A0=C2=A0 _prepend /opt/thudPoky/meta-intel/conf/machine/include/meta-=
+intel.inc:23
+#=C2=A0=C2=A0=C2=A0=C2=A0 "${@bb.utils.contains('MACHINE_FEATURES', 'intel=
+-ucode',
+'${DEPLOY_DIR_IMAGE}/microcode.cpio ', '', d)}"
+#=C2=A0=C2=A0 set? /opt/thudPoky/meta/classes/image-live.bbclass:40
+# "${DEPLOY_DIR_IMAGE}/${INITRD_IMAGE_LIVE}-${MACHINE}.cpio.gz"
+# pre-expansion value:
+#=C2=A0=C2=A0 "${@bb.utils.contains('MACHINE_FEATURES', 'intel-ucode',
+'${DEPLOY_DIR_IMAGE}/microcode.cpio ', '',
+d)}${DEPLOY_DIR_IMAGE}/${INITRD_IMAGE_LIVE}-${MACHINE}.cpio.gz"
+INITRD_LIVE=3D"/opt/thudPoky/build/tmp/deploy/images/ccns5/microcode.cpio
+/opt/thudPoky/build/tmp/deploy/images/ccns5/core-image-minimal-initramfs-c=
+cns5.cpio.gz"
+
+The last line seems strange to me because 2 different images are set.
+.cpio on it's own is not included in INITRAMFS_FSTYPES and I can not
+find any documentation on the variable INITRD_LIVE.
+
+Best regards
+Moritz
+
+On 01.07.19 11:19, Moritz Porst wrote:
+>
+> Hello Zoran,
+> thanks for your answer
+>
+> On 28.06.19 14:26, Zoran Stojsavljevic wrote:
+>> > INITRAMFS_IMAGE =3D /*"core-image-minimal-initramfs"*/
+>> > INITRAMFS_IMAGE_BUNDLE =3D "1"
+>> ...
+>> > You can find the /var/log/dmesg here: https://pastebin.com/ya7iCtq7I
+>>
+>> Some hints...
+>>
+>> [1] Kernel command line: BOOT_IMAGE=3D/bzImage
+>> root=3DPARTUUID=3D71d1d94a-83e8-4895-98eb-35309f58119f
+>> break=3Dpremount quiet rootwait rootwait rootfstype=3Dext4
+>> /*console=3DttyS0,115200 console=3Dtty0*/
+>> /*
+>> */
+>> input: Video Bus as
+>> /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input7
+>> fbcon: inteldrmfb (fb0) is primary device
+>> Console: switching to colour frame buffer device 128x48
+>> /*i915 0000:00:02.0: fb0: inteldrmfb frame buffer device*/
+>> snd_hda_intel 0000:00:1b.0: bound 0000:00:02.0 (ops
+>> i915_audio_component_bind_ops [i915])
+>>
+>> Hmmmmm... You are using console and serial, but full i915 GFX kernel
+>> driver is still included in the build???
+> I started from the core-image-minimal to have a small image and
+> extended it with the features I need, which is e.g. a graphical
+> system. The console=3D[...] part in the kernel command line is probably
+> a remnant but my image boots into the GUI. Is this a problem ?
+>> /*
+>> */
+>> [2] efi: EFI v2.31 by American Megatrends
+>>
+>> Using AMI BIOS as boot loader FW... OK?! Am I correct?
+> My bootloader is currently grub, the EFI is AM.
+>>
+>> [3] smpboot: CPU0: Intel(R) Atom(TM) CPU =C2=A0E3825 =C2=A0@ 1.33GHz (f=
+amily:
+>> 0x6, model: 0x37, stepping: 0x9)
+>>
+>> This is CPUID ID 0x30679, which uses MCU... Which MicroCodeUnit?
+>> M0130679xxx (info from AMI BIOS)?
+> Sorry but I can't find this info in the EFI
+>>
+>> [4] Using INTEL ATOM BYT E3825 dual core (sans Hyper-threading),
+>> implies that you are using
+>> 4GB (e820 messages) as single channel (one memory module DDR3 as
+>> 4GB)! Am I correct (important)?
+> 2GB, single channel.
+>>
+>> [5] Dracut phase?!
+>> > To my understanding the initramfs should be embedded in /boot/bzImage=
+.
+>> > However since I use an intel platform I also have a
+>> /boot/microcode.cpio
+>> > which gets loaded via "initrd /microcode.cpio". Removing this line in
+>> > grub does not enable me to get an initramfs prompt either (again, usi=
+ng
+>> > break as option).
+>>
+>> You are obviously stopping in boot phase called dracut. Please, try
+>> to mount by hand
+>> /dev/sda(whatever)... You should use fdisk -l command, or do ls -al
+>> /dev | grep sda to
+>> dig out which partition you need to mount to /tmp dir to see
+>> rootfstype=3Dext4 (HDD/SSD)
+> No, the boot does not stop. Even if I do issue "break=3Dpremount" I end
+> up in my graphical interface with the rootfs mounted. This is the last
+> message in the log:
+> EXT4-fs (sdb2): re-mounted. Opts: (null)
+> The rootfs partition is always 2, so either /dev/sda2 or /dev/sdb2
+> (when booting from stick)
+>> _______
+>>
+>> Just thinking loud... .. .
+>>
+>> Hope this helps (has very little to do with YOCTO build system, BTW)
+>> . ;-)
+>>
+>> Zoran
+>> _______
+>>
+>>
+>> On Fri, Jun 28, 2019 at 11:22 AM Moritz Porst <moritz.porst@gmx.de
+>> <mailto:moritz.porst@gmx.de>> wrote:
+>>
+>>     Hello,
+>>     I currently try to deploy a single rootfs update mechanism for my
+>>     embedded device. I can't boot to initramfs using either "break" or
+>>     "break=3Dpremount" (without quotes...). I tried this in
+>>     systemd-boot and
+>>     grub-efi (always efi boot) but the boot process just continues
+>>     normally.
+>>     If I insert at the same point e.g. "quiet" this argument is
+>>     recognised.
+>>     I boot the .wic image with a separate boot partition from a USB
+>>     stick.
+>>     in local.conf I have set:
+>>     INITRAMFS_IMAGE =3D "core-image-minimal-initramfs"
+>>     INITRAMFS_IMAGE_BUNDLE =3D "1"
+>>
+>>     In order to reduce complexity I now use the standard
+>>     core-image-minimal-initramfs without .bbappend. I can confirm (from
+>>     seeing the task) that bitbake bundled the kernel with the initramfs=
+.
+>>
+>>     You can find the /var/log/dmesg here: https://pastebin.com/ya7iCtq7
+>>
+>>     To my understanding the initramfs should be embedded in
+>>     /boot/bzImage.
+>>     However since I use an intel platform I also have a
+>>     /boot/microcode.cpio
+>>     which gets loaded via "initrd /microcode.cpio". Removing this line =
+in
+>>     grub does not enable me to get an initramfs prompt either (again,
+>>     using
+>>     break as option).
+>>
+>>     Did I forget some configuration or do I have to put the break
+>>     statement
+>>     at a very specific position within the "linux ..." boot command ?
+>>     Do you
+>>     know which bitbake variables to check ? (both set in local.conf
+>>     do not
+>>     get overwritten, already checked this). I got the thud branch check=
+ed
+>>     out in all my meta-layers except for meta-qt which is currently on
+>>     master branch.
+>>
+>>     Help is much appreciated !
+>>
+>>     Best regards
+>>     Moritz
+>>
+>>     --
+>>     _______________________________________________
+>>     yocto mailing list
+>>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>>     https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
+
+--------------273F62890BC2274BA6050E1A
 Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
+8">
   </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p><br>
+  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <p>Hey,<br>
+      So I have proceeded a tiny bit.<br>
+      What I did was to copy the core-image-minimal-initramfs.cpio.gz to
+      my /boot partition and boot using (EFI grub):</p>
+    <p>linux /bzimage<br>
+      initrd /initramfs.cpio.gz</p>
+    <p>This way the boot process starts and at some point it says "can't
+      find rootfs.img, dropping to a shell". It doesn't drop to a shell
+      though... (busybox is included)<br>
+      Booting without the initrd (or with initrd /microcode.cpio)
+      results in a kernel panic. This leads me to the suspicion that
+      meta-intel overwrites my initramfs (since microcode.cpio is
+      present in boot)<br>
+      Further more think I shouldn't even be required to set initrd for
+      boot since it should be embedded into the kernel ?
+      (INITRAMFS_IMAGE_BUNDLE=3D"1") I got the relevant variables from
+      bitbake -e here, maybe someone more experienced can spot an error
+      ?</p>
+    <p># $INITRAMFS_FSTYPES [2 operations]<br>
+      #=C2=A0=C2=A0 set /opt/thudPoky/meta/conf/documentation.conf:228<br>
+      #=C2=A0=C2=A0=C2=A0=C2=A0 [doc] "Defines the format for the output i=
+mage of an initial
+      RAM disk (initramfs), which is used during boot."<br>
+      #=C2=A0=C2=A0 set? /opt/thudPoky/meta/conf/bitbake.conf:770<br>
+      #=C2=A0=C2=A0=C2=A0=C2=A0 "cpio.gz"<br>
+      # pre-expansion value:<br>
+      #=C2=A0=C2=A0 "cpio.gz"<br>
+      INITRAMFS_FSTYPES=3D"cpio.gz"<br>
+      #<br>
+      # $INITRAMFS_IMAGE<br>
+      #=C2=A0=C2=A0 set /opt/thudPoky/build/conf/local.conf:257<br>
+      #=C2=A0=C2=A0=C2=A0=C2=A0 "core-image-minimal-initramfs"<br>
+      INITRAMFS_IMAGE=3D"core-image-minimal-initramfs"<br>
+      #<br>
+      # $INITRAMFS_IMAGE_BUNDLE<br>
+      #=C2=A0=C2=A0 set /opt/thudPoky/build/conf/local.conf:258<br>
+      #=C2=A0=C2=A0=C2=A0=C2=A0 "1"<br>
+      INITRAMFS_IMAGE_BUNDLE=3D"1"<br>
+      #<br>
+      # $INITRAMFS_MAXSIZE [2 operations]<br>
+      #=C2=A0=C2=A0 set /opt/thudPoky/meta-ccns5/conf/machine/ccns5.conf:3=
+4<br>
+      #=C2=A0=C2=A0=C2=A0=C2=A0 "200000"<br>
+      #=C2=A0=C2=A0 set /opt/thudPoky/meta/conf/bitbake.conf:774<br>
+      #=C2=A0=C2=A0=C2=A0=C2=A0 [_defaultval] "131072"<br>
+      # pre-expansion value:<br>
+      #=C2=A0=C2=A0 "200000"<br>
+      INITRAMFS_MAXSIZE=3D"200000"<br>
+      #<br>
+      # $INITRD<br>
+      #=C2=A0=C2=A0 set /opt/thudPoky/meta/conf/documentation.conf:229<br>
+      #=C2=A0=C2=A0=C2=A0=C2=A0 [doc] "Indicates a list of filesystem imag=
+es to concatenate
+      and use as an initial RAM disk (initrd)."<br>
+      #<br>
+      # $INITRD_IMAGE_LIVE<br>
+      #=C2=A0=C2=A0 set? /opt/thudPoky/meta/classes/image-live.bbclass:39<=
+br>
+      #=C2=A0=C2=A0=C2=A0=C2=A0 "${MLPREFIX}core-image-minimal-initramfs"<=
+br>
+      INITRD_IMAGE_LIVE=3D"core-image-minimal-initramfs"<br>
+      #<br>
+      # $INITRD_LIVE [2 operations]<br>
+      #=C2=A0=C2=A0 _prepend
+      /opt/thudPoky/meta-intel/conf/machine/include/meta-intel.inc:23<br>
+      #=C2=A0=C2=A0=C2=A0=C2=A0 <a class=3D"moz-txt-link-rfc2396E" href=3D=
+"mailto:${@bb.utils.contains('MACHINE_FEATURES','intel-ucode','${DEPLOY_DI=
+R_IMAGE}/microcode.cpio','',d)}">"${@bb.utils.contains('MACHINE_FEATURES',=
+ 'intel-ucode',
+      '${DEPLOY_DIR_IMAGE}/microcode.cpio ', '', d)}"</a><br>
+      #=C2=A0=C2=A0 set? /opt/thudPoky/meta/classes/image-live.bbclass:40<=
+br>
+      #=C2=A0=C2=A0=C2=A0=C2=A0
+      "${DEPLOY_DIR_IMAGE}/${INITRD_IMAGE_LIVE}-${MACHINE}.cpio.gz"<br>
+      # pre-expansion value:<br>
+      #=C2=A0=C2=A0 <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:${@b=
+b.utils.contains('MACHINE_FEATURES','intel-ucode','${DEPLOY_DIR_IMAGE}/mic=
+rocode.cpio','',d)}${DEPLOY_DIR_IMAGE}/${INITRD_IMAGE_LIVE}-${MACHINE}.cpi=
+o.gz">"${@bb.utils.contains('MACHINE_FEATURES', 'intel-ucode',
+      '${DEPLOY_DIR_IMAGE}/microcode.cpio ', '',
+      d)}${DEPLOY_DIR_IMAGE}/${INITRD_IMAGE_LIVE}-${MACHINE}.cpio.gz"</a><=
+br>
+INITRD_LIVE=3D"/opt/thudPoky/build/tmp/deploy/images/ccns5/microcode.cpio
+/opt/thudPoky/build/tmp/deploy/images/ccns5/core-image-minimal-initramfs-c=
+cns5.cpio.gz"</p>
+    <p>The last line seems strange to me because 2 different images are
+      set. .cpio on it's own is not included in INITRAMFS_FSTYPES and I
+      can not find any documentation on the variable INITRD_LIVE.</p>
+    <p>Best regards<br>
+      Moritz<br>
     </p>
-    <div class="moz-cite-prefix">On 01.07.2019 09:39, Onur Eser wrote:<br>
+    <div class=3D"moz-cite-prefix">On 01.07.19 11:19, Moritz Porst wrote:<=
+br>
     </div>
-    <blockquote type="cite"
-cite="mid:CAG+Ob8Z2dTj+Yx44T_cWbRELkCcapPUaY=1h51nG0HBuGN6BxQ@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="ltr">
-        <div>Hello,</div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:34ae2007-e315-4b5a-c388-9c8adab28cbd@gmx.de">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUT=
+F-8">
+      <p>Hello Zoran, <br>
+        thanks for your answer</p>
+      <div class=3D"moz-cite-prefix">On 28.06.19 14:26, Zoran
+        Stojsavljevic wrote:<br>
       </div>
-    </blockquote>
-    Hi<br>
-    <blockquote type="cite"
-cite="mid:CAG+Ob8Z2dTj+Yx44T_cWbRELkCcapPUaY=1h51nG0HBuGN6BxQ@mail.gmail.com">
-      <div dir="ltr">
-        <div>I am trying to build a yocto for i.MX6, with a QT5 layer,
-          everything is okay, but it freezes on 2666th task! When 4
-          tasks are running at the same time in normal, when it comes to
-          2666th, it is only one task and takes forever! (I made it wait
-          for one night)<br>
+      <blockquote type=3D"cite"
+cite=3D"mid:CAGAf8Lz2t90EjsaXPXxsSoioHb33u7dutnREiFr53NYp-WVD5A@mail.gmail=
+.com">
+        <meta http-equiv=3D"content-type" content=3D"text/html;
+          charset=3DUTF-8">
+        <div dir=3D"ltr">&gt; INITRAMFS_IMAGE =3D <span
+            style=3D"color:rgb(255,0,0)"><i><b>"core-image-minimal-initram=
+fs"</b></i></span><br>
+          &gt; INITRAMFS_IMAGE_BUNDLE =3D "1"<br>
+          ...<br>
+          &gt; You can find the /var/log/dmesg here: <a
+            href=3D"https://pastebin.com/ya7iCtq7I" target=3D"_blank"
+            moz-do-not-send=3D"true">https://pastebin.com/ya7iCtq7I</a><br=
+>
+          <div><br>
+          </div>
+          <div>Some hints...<br>
+          </div>
+          <div><br>
+          </div>
+          <div>[1] Kernel command line: BOOT_IMAGE=3D/bzImage
+            root=3DPARTUUID=3D71d1d94a-83e8-4895-98eb-35309f58119f</div>
+          <div> break=3Dpremount quiet rootwait rootwait rootfstype=3Dext4=
+ <span
+              style=3D"color:rgb(255,0,0)"><i><b>console=3DttyS0,115200
+                  console=3Dtty0</b></i></span></div>
+          <div><span style=3D"color:rgb(255,0,0)"><i><b><br>
+                </b></i></span></div>
+          <div>
+            <div
+class=3D"m_7608936463979074663m_8346544213632041194m_-7765005672330660518g=
+mail-de1">input:
+              Video Bus as
+              /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/inpu=
+t/input7</div>
+            <div
+class=3D"m_7608936463979074663m_8346544213632041194m_-7765005672330660518g=
+mail-de2">fbcon:
+              inteldrmfb (fb0) is primary device</div>
+            <div
+class=3D"m_7608936463979074663m_8346544213632041194m_-7765005672330660518g=
+mail-de1">Console:
+              switching to colour frame buffer device 128x48</div>
+            <div
+class=3D"m_7608936463979074663m_8346544213632041194m_-7765005672330660518g=
+mail-de1"><span
+                style=3D"color:rgb(255,0,0)"><i><b>i915 0000:00:02.0: fb0:
+                    inteldrmfb frame buffer device</b></i></span></div>
+            snd_hda_intel 0000:00:1b.0: bound 0000:00:02.0 (ops
+            i915_audio_component_bind_ops [i915])</div>
+          <div><br>
+          </div>
+          <div>Hmmmmm... You are using console and serial, but full i915
+            GFX kernel driver is still included in the build???<br>
+          </div>
         </div>
-        <div><br>
+      </blockquote>
+      I started from the core-image-minimal to have a small image and
+      extended it with the features I need, which is e.g. a graphical
+      system. The console=3D[...] part in the kernel command line is
+      probably a remnant but my image boots into the GUI. Is this a
+      problem ?<br>
+      <blockquote type=3D"cite"
+cite=3D"mid:CAGAf8Lz2t90EjsaXPXxsSoioHb33u7dutnREiFr53NYp-WVD5A@mail.gmail=
+.com">
+        <div dir=3D"ltr">
+          <div><span style=3D"color:rgb(255,0,0)"></span></div>
+          <div><span style=3D"color:rgb(255,0,0)"><i><b><br>
+                </b></i></span></div>
+          <div><span style=3D"color:rgb(0,0,0)">[2] efi: EFI v2.31 by
+              American Megatrends</span></div>
+          <div><span style=3D"color:rgb(0,0,0)"><br>
+            </span></div>
+          <div><span style=3D"color:rgb(0,0,0)">Using AMI BIOS as boot
+              loader FW... OK?! Am I correct?<br>
+            </span></div>
         </div>
-        <div>Build Configuration:<br>
-          BB_VERSION        = "1.26.0"<br>
-          BUILD_SYS         = "x86_64-linux"<br>
-          NATIVELSBSTRING   = "Ubuntu-16.04"<br>
-          TARGET_SYS        = "i586-poky-linux"<br>
-          MACHINE           = "qemux86"<br>
+      </blockquote>
+      My bootloader is currently grub, the EFI is AM.<br>
+      <blockquote type=3D"cite"
+cite=3D"mid:CAGAf8Lz2t90EjsaXPXxsSoioHb33u7dutnREiFr53NYp-WVD5A@mail.gmail=
+.com">
+        <div dir=3D"ltr">
+          <div><span style=3D"color:rgb(0,0,0)"><br>
+            </span></div>
+          <div><span style=3D"color:rgb(0,0,0)">[3] smpboot: CPU0:
+              Intel(R) Atom(TM) CPU =C2=A0E3825 =C2=A0@ 1.33GHz (family: 0=
+x6,
+              model: 0x37, stepping: 0x9)</span></div>
+          <div><span style=3D"color:rgb(0,0,0)"><br>
+            </span></div>
+          <div><span style=3D"color:rgb(0,0,0)"></span>This is CPUID ID
+            0x30679, which uses MCU... Which MicroCodeUnit? <span
+              style=3D"font-size:12.8px">M0130679xxx (info from AMI BIOS)<=
+/span>?<span
+              style=3D"font-size:12.8px"><br>
+            </span></div>
         </div>
-      </div>
-    </blockquote>
-    First of all, it seems you are not building for the iMX6, but for
-    the qemux86.<br>
-    <blockquote type="cite"
-cite="mid:CAG+Ob8Z2dTj+Yx44T_cWbRELkCcapPUaY=1h51nG0HBuGN6BxQ@mail.gmail.com">
-      <div dir="ltr">
-        <div>DISTRO            = "poky"<br>
-          DISTRO_VERSION    = "1.8.2"<br>
-          TUNE_FEATURES     = "m32 i586"<br>
-          TARGET_FPU        = ""<br>
-          meta              =
-          "fido:87631919819b6f85f23f57689cd1065c64d7fb03"<br>
-          meta-qt5          =
-          "fido:90919b9d86988e7da01fa2c0a07246b5b5600a5d"<br>
-          meta-fsl-arm      =
-          "fido:c9f259a4bf8472dfa3ff75f1c3fcbe5e0ded7aaf"<br>
-          meta-solidrun-arm-imx6 =
-          "fido:3e496c0895b0abf8d2aaca2c622246c1f9f3ed75"<br>
-          meta-yocto        <br>
-          meta-yocto-bsp    =
-          "fido:87631919819b6f85f23f57689cd1065c64d7fb03"<br>
+      </blockquote>
+      Sorry but I can't find this info in the EFI<br>
+      <blockquote type=3D"cite"
+cite=3D"mid:CAGAf8Lz2t90EjsaXPXxsSoioHb33u7dutnREiFr53NYp-WVD5A@mail.gmail=
+.com">
+        <div dir=3D"ltr">
+          <div><span style=3D"color:rgb(0,0,0)"><br>
+            </span></div>
+          <div><span style=3D"color:rgb(0,0,0)">[4] Using INTEL ATOM BYT
+              E3825 dual core (sans Hyper-threading), implies that you
+              are using</span></div>
+          <div><span style=3D"color:rgb(0,0,0)">4GB (e820 messages) as
+              single channel (one memory module DDR3 as 4GB)! Am I
+              correct (important)?</span></div>
         </div>
-      </div>
-    </blockquote>
-    fido release is *really* old. Where did you get the documentation to
-    start this build from?<br>
-    I think you might have difficult time getting support with such old
-    release.<br>
-    <blockquote type="cite"
-cite="mid:CAG+Ob8Z2dTj+Yx44T_cWbRELkCcapPUaY=1h51nG0HBuGN6BxQ@mail.gmail.com">
-      <div dir="ltr">
-        <div><br>
-          NOTE: Preparing RunQueue<br>
-          NOTE: Executing SetScene Tasks<br>
-          NOTE: Executing RunQueue Tasks<br>
-          Currently 1 running tasks (2666 of 5960):<br>
-          0: attr-native-2.4.47-r0 do_compile (pid 3485)</div>
-        <div><br>
+      </blockquote>
+      2GB, single channel. <br>
+      <blockquote type=3D"cite"
+cite=3D"mid:CAGAf8Lz2t90EjsaXPXxsSoioHb33u7dutnREiFr53NYp-WVD5A@mail.gmail=
+.com">
+        <div dir=3D"ltr">
+          <div><span style=3D"color:rgb(0,0,0)"><br>
+            </span></div>
+          <div><span style=3D"color:rgb(0,0,0)">[5] Dracut phase?!<br>
+            </span></div>
+          <div><span style=3D"color:rgb(0,0,0)">&gt; To my understanding
+              the initramfs should be embedded in /boot/bzImage.<br>
+              &gt; However since I use an intel platform I also have a
+              /boot/microcode.cpio<br>
+              &gt; which gets loaded via "initrd /microcode.cpio".
+              Removing this line in<br>
+              &gt; grub does not enable me to get an initramfs prompt
+              either (again, using<br>
+              &gt; break as option).<br>
+            </span></div>
+          <div><span style=3D"color:rgb(0,0,0)"><br>
+            </span></div>
+          <div><span style=3D"color:rgb(0,0,0)">You are obviously stopping
+              in boot phase called dracut. Please, try to mount by hand</s=
+pan></div>
+          <div><span style=3D"color:rgb(0,0,0)">/dev/sda(whatever)... You
+              should use fdisk -l command, or do ls -al /dev | grep sda
+              to</span></div>
+          <div><span style=3D"color:rgb(0,0,0)">dig out which partition
+              you need to mount to /tmp dir to see rootfstype=3Dext4
+              (HDD/SSD)<br>
+            </span></div>
         </div>
-        <div>How to solve this?</div>
-        <div>Thanks,</div>
-        <div>Onur<br>
+      </blockquote>
+      No, the boot does not stop. Even if I do issue "break=3Dpremount" I
+      end up in my graphical interface with the rootfs mounted. This is
+      the last message in the log:<br>
+      EXT4-fs (sdb2): re-mounted. Opts: (null)<br>
+      The rootfs partition is always 2, so either /dev/sda2 or /dev/sdb2
+      (when booting from stick)<br>
+      <blockquote type=3D"cite"
+cite=3D"mid:CAGAf8Lz2t90EjsaXPXxsSoioHb33u7dutnREiFr53NYp-WVD5A@mail.gmail=
+.com">
+        <div dir=3D"ltr">
+          <div><span style=3D"color:rgb(0,0,0)">_______<br>
+            </span></div>
+          <div><span style=3D"color:rgb(0,0,0)"><br>
+            </span></div>
+          <div><span style=3D"color:rgb(0,0,0)">Just thinking loud... .. .=
+<br>
+            </span></div>
+          <div><span style=3D"color:rgb(0,0,0)"><br>
+            </span></div>
+          <div><span style=3D"color:rgb(0,0,0)">Hope this helps (has very
+              little to do with YOCTO build system, BTW) . ;-)<br>
+            </span></div>
+          <div><span style=3D"color:rgb(0,0,0)"><br>
+            </span></div>
+          <div><span style=3D"color:rgb(0,0,0)">Zoran</span></div>
+          <div><span style=3D"color:rgb(0,0,0)">_______<br>
+            </span></div>
         </div>
-      </div>
+        <br>
+        <br>
+        <div class=3D"gmail_quote">
+          <div dir=3D"ltr" class=3D"gmail_attr">On Fri, Jun 28, 2019 at
+            11:22 AM Moritz Porst &lt;<a
+              href=3D"mailto:moritz.porst@gmx.de" target=3D"_blank"
+              moz-do-not-send=3D"true">moritz.porst@gmx.de</a>&gt; wrote:<=
+br>
+          </div>
+          <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
+            0.8ex;border-left:1px solid
+            rgb(204,204,204);padding-left:1ex">Hello,<br>
+            I currently try to deploy a single rootfs update mechanism
+            for my<br>
+            embedded device. I can't boot to initramfs using either
+            "break" or<br>
+            "break=3Dpremount" (without quotes...). I tried this in
+            systemd-boot and<br>
+            grub-efi (always efi boot) but the boot process just
+            continues normally.<br>
+            If I insert at the same point e.g. "quiet" this argument is
+            recognised.<br>
+            I boot the .wic image with a separate boot partition from a
+            USB stick.<br>
+            in local.conf I have set:<br>
+            INITRAMFS_IMAGE =3D "core-image-minimal-initramfs"<br>
+            INITRAMFS_IMAGE_BUNDLE =3D "1"<br>
+            <br>
+            In order to reduce complexity I now use the standard<br>
+            core-image-minimal-initramfs without .bbappend. I can
+            confirm (from<br>
+            seeing the task) that bitbake bundled the kernel with the
+            initramfs.<br>
+            <br>
+            You can find the /var/log/dmesg here: <a
+              href=3D"https://pastebin.com/ya7iCtq7" rel=3D"noreferrer"
+              target=3D"_blank" moz-do-not-send=3D"true">https://pastebin.=
+com/ya7iCtq7</a><br>
+            <br>
+            To my understanding the initramfs should be embedded in
+            /boot/bzImage.<br>
+            However since I use an intel platform I also have a
+            /boot/microcode.cpio<br>
+            which gets loaded via "initrd /microcode.cpio". Removing
+            this line in<br>
+            grub does not enable me to get an initramfs prompt either
+            (again, using<br>
+            break as option).<br>
+            <br>
+            Did I forget some configuration or do I have to put the
+            break statement<br>
+            at a very specific position within the "linux ..." boot
+            command ? Do you<br>
+            know which bitbake variables to check ? (both set in
+            local.conf do not<br>
+            get overwritten, already checked this). I got the thud
+            branch checked<br>
+            out in all my meta-layers except for meta-qt which is
+            currently on<br>
+            master branch.<br>
+            <br>
+            Help is much appreciated !<br>
+            <br>
+            Best regards<br>
+            Moritz<br>
+            <br>
+            -- <br>
+            _______________________________________________<br>
+            yocto mailing list<br>
+            <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank"
+              moz-do-not-send=3D"true">yocto@yoctoproject.org</a><br>
+            <a href=3D"https://lists.yoctoproject.org/listinfo/yocto"
+              rel=3D"noreferrer" target=3D"_blank" moz-do-not-send=3D"true=
+">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+          </blockquote>
+        </div>
+      </blockquote>
       <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
     </blockquote>
-    <pre class="moz-signature" cols="72">-- 
-Maciej Pijanowski
-Embedded Systems Engineer
-<a class="moz-txt-link-freetext" href="https://3mdeb.com">https://3mdeb.com</a> | @3mdeb_com</pre>
   </body>
 </html>
 
---------------D3A31724BAB0353D45CDFA87--
+--------------273F62890BC2274BA6050E1A--
