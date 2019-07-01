@@ -1,72 +1,70 @@
-Return-Path: <moritz.porst@gmx.de>
+Return-Path: <sjolley.yp.pm@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0EA69E00C40; Mon,  1 Jul 2019 07:33:52 -0700 (PDT)
+	id 192B2E00D4F; Mon,  1 Jul 2019 11:00:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, FREEMAIL_FROM, HTML_MESSAGE,
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	https://www.dnswl.org/, no *      trust
-	*      [212.227.15.19 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (moritz.porst[at]gmx.de)
+	provider *      (sjolley.yp.pm[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.171 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD8ABE00A49
-	for <yocto@yoctoproject.org>; Mon,  1 Jul 2019 07:33:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=badeba3b8450; t=1561991628;
-	bh=VecNZsyyYy66i7IrUsB+TCFbKFNOOfd37foFA9DGGKE=;
-	h=X-UI-Sender-Class:Subject:To:Cc:References:From:Date:In-Reply-To;
-	b=PxCwhK2msjxS4PyQ9WASARbAi5AIT6BxG3L1vdIkRjAp4be8cuWKsxwJ7RR+E0ih1
-	zS6RcCBeKvfvk2y0UdXPeQ8DjSEeaOquTH/D1HZMtmWFmc3l5h0fmiFx7urmFC7VV7
-	zJYLVokPWx00Ssv/ULARxZGqxxQFWWKndQ01Aj7g=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.2.132] ([80.152.229.14]) by mail.gmx.com (mrgmx002
-	[212.227.17.190]) with ESMTPSA (Nemesis) id 0MGSDw-1hmNEh3B8i-00DDrr;
-	Mon, 01 Jul 2019 16:33:47 +0200
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-References: <89d3d916-1fca-5ff5-e68e-79370dd0bfb7@gmx.de>
-	<CAGAf8Lz2t90EjsaXPXxsSoioHb33u7dutnREiFr53NYp-WVD5A@mail.gmail.com>
-	<34ae2007-e315-4b5a-c388-9c8adab28cbd@gmx.de>
-	<CAGAf8Ly7JjRxj0aduWbB26jsuKqFVLDLVr=qgKPQMxcUhWiadg@mail.gmail.com>
-From: Moritz Porst <moritz.porst@gmx.de>
-Message-ID: <66af0e83-056c-ee5a-7bcd-863c14da72de@gmx.de>
-Date: Mon, 1 Jul 2019 16:33:42 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.1
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com
+	[209.85.160.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFFD3E00D4D
+	for <yocto@yoctoproject.org>; Mon,  1 Jul 2019 11:00:53 -0700 (PDT)
+Received: by mail-qt1-f171.google.com with SMTP id n11so15612349qtl.5
+	for <yocto@yoctoproject.org>; Mon, 01 Jul 2019 11:00:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id:mime-version:thread-index
+	:content-language;
+	bh=sRGSVfknMT2uwr2ApBlGRc1AcUYPk6TKuOc0L2P6Poo=;
+	b=s4G6u6o86d4yOPTHeImA+tblMnIfAwEnsLrVGAcToRudqrwGJMg3TFbS59Q8cta2ME
+	OD5VH3nhYxDItuw+zPn1Snz9+JyxBIJ2f8nBcEmE5qLbcE9Yfgwc1i9rGW/zNGb0VaE0
+	04qdavD75ILGHmlM4iiJJJkGbr1gqWwqz+9gHYLLYsPGq1yzXfRXiuOWBEF3iwuwxTLe
+	es6cCxm2b1HmITqHsXB8Mpssg38mZGigIeETRCRIQbWEzgUmbPkGtDweW9YU+O9iStWe
+	64hLvQkPQ2YGXO2C8ozvIprA8+Pr/H8bRPmsBW4szRCOBJcxVu5AGC9qdm3rG45xqzoe
+	Us4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:thread-index:content-language;
+	bh=sRGSVfknMT2uwr2ApBlGRc1AcUYPk6TKuOc0L2P6Poo=;
+	b=U3dwkQLSzgoz4T9QQws3rIea5zEPJ2EXkSsM58Q4ZWrejQhYNVtYRS03BX0HU7QSds
+	bzrzPWkrLsJLuLr92ySFsGSGPyOc9TlGSzUrnqqo4IhN3NT/C5rZO+WZpWUQQJoFkAab
+	VZg78tgsEdUrdLTXm4AaFHhCDdDQAgFjSf3k5TxNFylUHmoruo9VW7s0TgNEDUfa3yCY
+	XwTFGVQEhMYjWzTGAoyWzkQD9wHAV9PE+8e9L7hQSSOM4vToAilN6B/LuemiyNJMNV/9
+	FuFFuMuHKJ/sozMm5m1qvN82Ch5BuLk/NMGvt65OJcWd632denOUUNalPHq/+rMXrm4X
+	DbDg==
+X-Gm-Message-State: APjAAAUpqL2KZGoHsA76a+9uhk+D/XpI+yst6zeC5DtX9gUhqgijqG1H
+	qZgrD0EPc8k8vTProFxagPk=
+X-Google-Smtp-Source: APXvYqzI3ygqN5f4QJtWheCQHh82Fo0apDkEA81z/TvV1c4v44aWrUVXsr4GFpoMdh6AGsdC60WYRw==
+X-Received: by 2002:ac8:2a88:: with SMTP id b8mr19474348qta.331.1562004051777; 
+	Mon, 01 Jul 2019 11:00:51 -0700 (PDT)
+Received: from sjolley ([96.79.126.57]) by smtp.gmail.com with ESMTPSA id
+	i17sm4956564qkl.71.2019.07.01.11.00.50
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 01 Jul 2019 11:00:51 -0700 (PDT)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Date: Mon, 1 Jul 2019 11:00:50 -0700
+Message-ID: <002501d53036$ebc10380$c3430a80$@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAGAf8Ly7JjRxj0aduWbB26jsuKqFVLDLVr=qgKPQMxcUhWiadg@mail.gmail.com>
-X-Provags-ID: V03:K1:1oXuVwAURI1eoHGZOY+bb+LgZ84h5ZVke4V2npAsiaiuIx92cuG
-	/+XzImUyNu3zwQHI2Fn3rLXiSta5A58FToSp/xaqtFy/QMctrd5tLyyaTqQrrQhR6seu0kD
-	lw2HkGB+8BMz3gh8gz/imd+rH8alyY6Af9auzD5QCx1VmSmS3hMnw6ThzZQWsoWhldmDdY7
-	EHYMKzJr+1V+OJoVHlumg==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:rzrEpAVSZtw=:IohTTUX6H5PLJi2zRF8364
-	9e+XqPTTLV5vOPahd+L6torwCKck4ZNzGD2VaE0SJoE12Wzh2AMAtosQKOn3V2EJObBjZ6SXB
-	ofETCbxzXiT3xGNiMhqg9S+QN4pKpsvC67WpHMnShn/0540bW9+tBLXOLBNv3uhavYgQF4TxS
-	dN3/q8MuJuq/En3l90C10qaNrDmzRkXlSFv34w1j9DAVxdeHeeIvatl00tLFngUyV51WoK1/M
-	r/W+AdcDngB8+WttQiZJea36H3gpbfxXDAs9bCK/0gKYjkJ9IiMnGwdzuwnrQZ70CANmCrSAL
-	+fMLQJCYDqe1Nc03B0w9UkfKg1psf84qyNZ6EfQwRcfS59SAwqIKzXovYMRwIMUdg9nRJYE4b
-	iPq3dO+ZZbk65kaVisXIJKkO0u4sJ4moGIcjNn7P3NrXcOG2Vt8N5eFPjkN80CFC3+sBbOEXx
-	uJhmBMjd/zHNlzwbKi26lNwV2dudqdnwUMk67rM+dztfHi0eUShHRsuR/Ck71q2Q4TGbnrA5O
-	AmvCDpwrN45O0CnDmpuo1d5Ul3SR6u5bubUmNk0ofO1MGK4445GDOUkOsLyv9vTG0sZrUkLXe
-	WWTDIQoQq4WyHQwJpCrfhxcavy14iGYzxk0RwJOmGaR86FPC4BzcrbDPs+zLfxMy1L3OYSY/6
-	OFl0NzxxdHeTiZHoOedtzXgGVHfRaSxNfBYL8o2+mw5hodUOpGEO2IBanQik+Ifp3+oeO0QIR
-	0OUZRTx15e0S9yi4uYrDyGeIqGkx65ZzJh+WoLuQW3GU134Iu+ffe/h8dUbdZHlnLFJoI+3Bu
-	TyDZVv8/JFFEErHU3d1pYPnL50WocNPgTZfGceyQhbmZA0B81TgLd5X4VwfKhjjIew3cygykv
-	wTRhO1QFEbrZZzLzLQ6DKBMp7eCFkq8W9Pp+aKI6lrvfZZMg4LbiOmnNeELu0m8KQZx8/nD2y
-	jpaCYmfv6cLiM9Yv7PqZrsokiDFl1CTr+tFCpM+vX53zCDBvqGYwe5w85PuWGhyuPfamfooZF
-	hr2D/HlMfAZx2QlXvXc53sReqsaYgmgv1gcAi6ebQM5BMQPX8eV4r1jHkS54n5QsRKbd1by37
-	BYbtIFAp4JaNei5Wbye9k9xcB1RQGhsjpYc
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Can't boot to initramfs
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKIOpuXg+3kIrejQS9osqDFak18/Q==
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,626 +76,292 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 01 Jul 2019 14:33:52 -0000
+X-List-Received-Date: Mon, 01 Jul 2019 18:00:56 -0000
 Content-Type: multipart/alternative;
-	boundary="------------50BBFE2BF509D7D9F956762E"
-Content-Language: en-US
+	boundary="----=_NextPart_000_0026_01D52FFC.3F636400"
+Content-Language: en-us
 
---------------50BBFE2BF509D7D9F956762E
-Content-Type: text/plain; charset=utf-8; format=flowed
+------=_NextPart_000_0026_01D52FFC.3F636400
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+ 
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
+
+ 
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 282
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "2.8", "2.9', "2.99" and "Future", the more pressing/urgent
+issues being in "2.8" and then "2.9".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newcomer_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+ 
+
+
+------=_NextPart_000_0026_01D52FFC.3F636400
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0141_01D52A86.A2057AB0";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
-I think I found the issue. ( see below )
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:p=3D"urn:schemas-microsoft-com:office:powerpoint" =
+xmlns:a=3D"urn:schemas-microsoft-com:office:access" =
+xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" =
+xmlns:s=3D"uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" =
+xmlns:rs=3D"urn:schemas-microsoft-com:rowset" xmlns:z=3D"#RowsetSchema" =
+xmlns:b=3D"urn:schemas-microsoft-com:office:publisher" =
+xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadsheet" =
+xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" =
+xmlns:odc=3D"urn:schemas-microsoft-com:office:odc" =
+xmlns:oa=3D"urn:schemas-microsoft-com:office:activation" =
+xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" =
+xmlns:rtc=3D"http://microsoft.com/officenet/conferencing" =
+xmlns:D=3D"DAV:" xmlns:Repl=3D"http://schemas.microsoft.com/repl/" =
+xmlns:mt=3D"http://schemas.microsoft.com/sharepoint/soap/meetings/" =
+xmlns:x2=3D"http://schemas.microsoft.com/office/excel/2003/xml" =
+xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" =
+xmlns:ois=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" =
+xmlns:dir=3D"http://schemas.microsoft.com/sharepoint/soap/directory/" =
+xmlns:ds=3D"http://www.w3.org/2000/09/xmldsig#" =
+xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint/dsp" =
+xmlns:udc=3D"http://schemas.microsoft.com/data/udc" =
+xmlns:xsd=3D"http://www.w3.org/2001/XMLSchema" =
+xmlns:sub=3D"http://schemas.microsoft.com/sharepoint/soap/2002/1/alerts/"=
+ xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#" =
+xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" =
+xmlns:sps=3D"http://schemas.microsoft.com/sharepoint/soap/" =
+xmlns:xsi=3D"http://www.w3.org/2001/XMLSchema-instance" =
+xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/soap" =
+xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" =
+xmlns:udcp2p=3D"http://schemas.microsoft.com/data/udc/parttopart" =
+xmlns:wf=3D"http://schemas.microsoft.com/sharepoint/soap/workflow/" =
+xmlns:dsss=3D"http://schemas.microsoft.com/office/2006/digsig-setup" =
+xmlns:dssi=3D"http://schemas.microsoft.com/office/2006/digsig" =
+xmlns:mdssi=3D"http://schemas.openxmlformats.org/package/2006/digital-sig=
+nature" =
+xmlns:mver=3D"http://schemas.openxmlformats.org/markup-compatibility/2006=
+" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns:mrels=3D"http://schemas.openxmlformats.org/package/2006/relationshi=
+ps" xmlns:spwp=3D"http://microsoft.com/sharepoint/webpartpages" =
+xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/2006/types"=
+ =
+xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/2006/messag=
+es" =
+xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/=
+" =
+xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortalServer/Pub=
+lishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" =
+xmlns:st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoPlainText>All,<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>The =
+triage team is starting to try and collect up and classify bugs which a =
+newcomer to the project would be able to work on in a way which means =
+people can find them. They're being listed on the triage page under the =
+appropriate heading:<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
+><p class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoPlainText>The idea is these bugs should be straight forward =
+for a person to help work on who doesn't have deep experience with the =
+project.&nbsp; If anyone can help, please take ownership of the bug and =
+send patches!&nbsp; If anyone needs help/advice there are people on irc =
+who can likely do so, or some of the more experienced contributors will =
+likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Also, =
+the triage team meets weekly and does its best to handle the bugs =
+reported into the Bugzilla. The number of people attending that meeting =
+has fallen, as have the number of people available to help fix bugs. One =
+of the things we hear users report is they don't know how to help. We =
+(the triage team) are therefore going to start reporting out the =
+currently 282 unassigned or newcomer bugs.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>We're =
+hoping people may be able to spare some time now and again to help out =
+with these.&nbsp; Bugs are split into two types, &quot;true bugs&quot; =
+where things don't work as they should and &quot;enhancements&quot; =
+which are features we'd want to add to the system.&nbsp; There are also =
+roughly four different &quot;priority&quot; classes right now, =
+&#8220;2.8&#8221;, &#8220;2.9&#8217;, &quot;2.99&quot; and =
+&quot;Future&quot;, the more pressing/urgent issues being in =
+&quot;2.8&quot; and then &#8220;2.9&#8221;.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Please =
+review this link and if a bug is something you would be able to help =
+with either take ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newco=
+mer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_New=
+comer_Bugs</a><o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a><o:p><=
+/o:p></span></p><p class=3DMsoNormal><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:=
+p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-On 01.07.19 15:57, Zoran Stojsavljevic wrote:
-> Hello Moritz,
->
-> Too hot here, in Belgrade... Where I am resting for the Time being
-> (actually, this message given to my invisible spying security "angels"
-> on this list)...  :-) Projected +38C degrees today. Too hot for this
-> too old Siberian untouchable bobcat!
-Luckily it's a rather cold day in germany, thanks that you still take
-the time to answer !
->
->> I started from the core-image-minimal to have a small image and
->> extended it with the features I need, which is e.g. a graphical system.
->> The console=3D[...] part in the kernel command line is probably a
->> remnant but my image boots into the GUI. Is this a problem ?
-> Nope, it is not. If you need to do it correctly, you should use
-> bitbake -k core-image-sato build command (my best educated guess).
-> Then, I do not feel comfortable seeing in your kernel command line
-> serial interface, do you agree?
-Yes that is true.
-> YOCTO maintainers, any additional
-> advices?
->
->> My bootloader is currently grub, the EFI is AM.
-> Nope. Eeeeeeeeek. Wrong. Currently, your boot-loader is UEFI AMI. Your
-> OS (Linux probably, U name it) boot-loader is GRUB2. Let us keep it
-> contained, sane and sober.
->
->> Sorry but I can't find this info in the EFI.
-> Could you, please try the following command being root: dmesg | grep
-> MCU. or grep mcu, or grep CPUID or grep cpuid?? Please, post results
-> to this list (to me).
-No luck unfortunately (used grep -i)
->
-> Could you, also, send to YOCTO list/me attached file:
-> /boot/microcode.cpio so I can somehow (?) inspect it? ;-)
-I send it to you directly, so I don't spam the list with a large attachmen=
-t.
->
->> 2GB, single channel.
-> All Cool. E3825 by HW/silicon design could/does NOT support multiple
-> memory channels. ONLY single... But even YOCTO primes (INTEL ones from
-> this list) are not gonna tell this to you. Not 'cause they are nasty.
-> They are NOT aware/they are ignorant (with the purpose)! ;-))
->
->> No, the boot does not stop. Even if I do issue "break=3Dpremount" I
->> end up in my graphical interface with the rootfs mounted. This is the
->> last message in the log: EXT4-fs (sdb2): re-mounted. Opts: (null)
->> The rootfs partition is always 2, so either /dev/sda2 or /dev/sdb2
->> (when booting from stick)
-> Yes, from https://pastebin.com/ya7iCtq7, so it is remounted rw, not
-> read only. So, it seems that you have passed dracut phase. and mounted
-> SD or flash rootfs. So, initramfs is NOT your true problem, is it???
-The thing is that the boot works but I want an initramfs that can be
-used for updating (in case the rootfs is broken). However I need to be
-able to intercept the boot process there because otherwise I can't
-deploy an update mechanism, that's what I was trying.
->
-> Zoran
-> _______
->
->
->> No, the boot does not stop. Even if I do issue "break=3Dpremount" I end=
- up
->> in my graphical interface with the rootfs mounted. This is  the last me=
-ssage
->> in the log: EXT4-fs (sdb2): re-mounted. Opts: (null) The rootfs partiti=
-on is
->> always 2, so either /dev/sda2 or /dev/sdb2 (when booting from stick)
->
->
-So for the issue...
-I expected yocto to put the bundled bzImage onto my rootfs. This was not
-the case. My image directory contains 2x bzImage, one bundled and one
-unbundled. Apparently yocto puts the >un<bundled image onto my /boot
-partition and uses it for boot. So of course I couldn't access initramfs
-in this case. Now I get to the initramfs statement "dropping to shell"
-if I intentionally boot with wrong rootfs.
-Still I don't get the interactive shell.
-On the github ostroproject site I found this:
-
-# debug: adds debug boot parameters like 'shell' and 'debug', see
-#=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 meta/recipes-core/initrdscript=
-s/initramfs-framework/debug for
-details
-# Could be removed in more minimal product image.
-PACKAGE_INSTALL +=3D "initramfs-module-debug"
-
-including the module-debug still does not enable me to get an
-interactive shell.
-I was following this site: https://wiki.debian.org/InitramfsDebug
-I am aware that yocto is no debian but I expected that kernel parameters
-(like 'break') would be independent of the distribution.
-
-Lastly I do not really need the interactive shell, it is enough if I can
-deploy a custom init script in the initramfs. Still I think that getting
-an initramfs shell should be as simple as stating the name of the
-initramfs image and setting the "INITRAMFS_DO_BUNDLE" variable.
-
-Best regards
-Moritz
-
-
-> On Mon, Jul 1, 2019 at 11:20 AM Moritz Porst <moritz.porst@gmx.de> wrote=
-:
->> Hello Zoran,
->> thanks for your answer
->>
->> On 28.06.19 14:26, Zoran Stojsavljevic wrote:
->>
->>> INITRAMFS_IMAGE =3D "core-image-minimal-initramfs"
->>> INITRAMFS_IMAGE_BUNDLE =3D "1"
->> ...
->>> You can find the /var/log/dmesg here: https://pastebin.com/ya7iCtq7I
->> Some hints...
->>
->> [1] Kernel command line: BOOT_IMAGE=3D/bzImage root=3DPARTUUID=3D71d1d9=
-4a-83e8-4895-98eb-35309f58119f
->> break=3Dpremount quiet rootwait rootwait rootfstype=3Dext4 console=3Dtt=
-yS0,115200 console=3Dtty0
->>
->> input: Video Bus as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDE=
-O:00/input/input7
->> fbcon: inteldrmfb (fb0) is primary device
->> Console: switching to colour frame buffer device 128x48
->> i915 0000:00:02.0: fb0: inteldrmfb frame buffer device
->> snd_hda_intel 0000:00:1b.0: bound 0000:00:02.0 (ops i915_audio_componen=
-t_bind_ops [i915])
->>
->> Hmmmmm... You are using console and serial, but full i915 GFX kernel dr=
-iver is still included in the build???
->>
->> I started from the core-image-minimal to have a small image and extende=
-d it with the features I need, which is e.g. a graphical system. The conso=
-le=3D[...] part in the kernel command line is probably a remnant but my im=
-age boots into the GUI. Is this a problem ?
->>
->>
->> [2] efi: EFI v2.31 by American Megatrends
->>
->> Using AMI BIOS as boot loader FW... OK?! Am I correct?
->>
->> My bootloader is currently grub, the EFI is AM.
->>
->>
->> [3] smpboot: CPU0: Intel(R) Atom(TM) CPU  E3825  @ 1.33GHz (family: 0x6=
-, model: 0x37, stepping: 0x9)
->>
->> This is CPUID ID 0x30679, which uses MCU... Which MicroCodeUnit? M01306=
-79xxx (info from AMI BIOS)?
->>
->> Sorry but I can't find this info in the EFI
->>
->>
->> [4] Using INTEL ATOM BYT E3825 dual core (sans Hyper-threading), implie=
-s that you are using
->> 4GB (e820 messages) as single channel (one memory module DDR3 as 4GB)! =
-Am I correct (important)?
->>
->> 2GB, single channel.
->>
->>
->> [5] Dracut phase?!
->>> To my understanding the initramfs should be embedded in /boot/bzImage.
->>> However since I use an intel platform I also have a /boot/microcode.cp=
-io
->>> which gets loaded via "initrd /microcode.cpio". Removing this line in
->>> grub does not enable me to get an initramfs prompt either (again, usin=
-g
->>> break as option).
->> You are obviously stopping in boot phase called dracut. Please, try to =
-mount by hand
->> /dev/sda(whatever)... You should use fdisk -l command, or do ls -al /de=
-v | grep sda to
->> dig out which partition you need to mount to /tmp dir to see rootfstype=
-=3Dext4 (HDD/SSD)
->>
->> No, the boot does not stop. Even if I do issue "break=3Dpremount" I end=
- up in my graphical interface with the rootfs mounted. This is the last me=
-ssage in the log:
->> EXT4-fs (sdb2): re-mounted. Opts: (null)
->> The rootfs partition is always 2, so either /dev/sda2 or /dev/sdb2 (whe=
-n booting from stick)
->>
->> _______
->>
->> Just thinking loud... .. .
->>
->> Hope this helps (has very little to do with YOCTO build system, BTW) . =
-;-)
->>
->> Zoran
->> _______
->>
->>
->> On Fri, Jun 28, 2019 at 11:22 AM Moritz Porst <moritz.porst@gmx.de> wro=
-te:
->>> Hello,
->>> I currently try to deploy a single rootfs update mechanism for my
->>> embedded device. I can't boot to initramfs using either "break" or
->>> "break=3Dpremount" (without quotes...). I tried this in systemd-boot a=
-nd
->>> grub-efi (always efi boot) but the boot process just continues normall=
-y.
->>> If I insert at the same point e.g. "quiet" this argument is recognised=
-.
->>> I boot the .wic image with a separate boot partition from a USB stick.
->>> in local.conf I have set:
->>> INITRAMFS_IMAGE =3D "core-image-minimal-initramfs"
->>> INITRAMFS_IMAGE_BUNDLE =3D "1"
->>>
->>> In order to reduce complexity I now use the standard
->>> core-image-minimal-initramfs without .bbappend. I can confirm (from
->>> seeing the task) that bitbake bundled the kernel with the initramfs.
->>>
->>> You can find the /var/log/dmesg here: https://pastebin.com/ya7iCtq7
->>>
->>> To my understanding the initramfs should be embedded in /boot/bzImage.
->>> However since I use an intel platform I also have a /boot/microcode.cp=
-io
->>> which gets loaded via "initrd /microcode.cpio". Removing this line in
->>> grub does not enable me to get an initramfs prompt either (again, usin=
-g
->>> break as option).
->>>
->>> Did I forget some configuration or do I have to put the break statemen=
-t
->>> at a very specific position within the "linux ..." boot command ? Do y=
-ou
->>> know which bitbake variables to check ? (both set in local.conf do not
->>> get overwritten, already checked this). I got the thud branch checked
->>> out in all my meta-layers except for meta-qt which is currently on
->>> master branch.
->>>
->>> Help is much appreciated !
->>>
->>> Best regards
->>> Moritz
->>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
-
---------------50BBFE2BF509D7D9F956762E
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
-8">
-  </head>
-  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
-    <p>Hello,<br>
-      I think I found the issue. ( see below )<br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 01.07.19 15:57, Zoran Stojsavljevic
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAGAf8Ly7JjRxj0aduWbB26jsuKqFVLDLVr=3DqgKPQMxcUhWiadg@mail.gma=
-il.com">
-      <pre class=3D"moz-quote-pre" wrap=3D"">Hello Moritz,
-
-Too hot here, in Belgrade... Where I am resting for the Time being
-(actually, this message given to my invisible spying security "angels"
-on this list)...  :-) Projected +38C degrees today. Too hot for this
-too old Siberian untouchable bobcat!</pre>
-    </blockquote>
-    Luckily it's a rather cold day in germany, thanks that you still
-    take the time to answer !<br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAGAf8Ly7JjRxj0aduWbB26jsuKqFVLDLVr=3DqgKPQMxcUhWiadg@mail.gma=
-il.com">
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-
-</pre>
-      <blockquote type=3D"cite">
-        <pre class=3D"moz-quote-pre" wrap=3D"">I started from the core-ima=
-ge-minimal to have a small image and
-extended it with the features I need, which is e.g. a graphical system.
-The console=3D[...] part in the kernel command line is probably a
-remnant but my image boots into the GUI. Is this a problem ?
-</pre>
-      </blockquote>
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-Nope, it is not. If you need to do it correctly, you should use
-bitbake -k core-image-sato build command (my best educated guess).
-Then, I do not feel comfortable seeing in your kernel command line
-serial interface, do you agree? </pre>
-    </blockquote>
-    Yes that is true.<br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAGAf8Ly7JjRxj0aduWbB26jsuKqFVLDLVr=3DqgKPQMxcUhWiadg@mail.gma=
-il.com">
-      <pre class=3D"moz-quote-pre" wrap=3D"">YOCTO maintainers, any additi=
-onal
-advices?
-
-</pre>
-      <blockquote type=3D"cite">
-        <pre class=3D"moz-quote-pre" wrap=3D"">My bootloader is currently =
-grub, the EFI is AM.
-</pre>
-      </blockquote>
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-Nope. Eeeeeeeeek. Wrong. Currently, your boot-loader is UEFI AMI. Your
-OS (Linux probably, U name it) boot-loader is GRUB2. Let us keep it
-contained, sane and sober.
-
-</pre>
-      <blockquote type=3D"cite">
-        <pre class=3D"moz-quote-pre" wrap=3D"">Sorry but I can't find this=
- info in the EFI.
-</pre>
-      </blockquote>
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-Could you, please try the following command being root: dmesg | grep
-MCU. or grep mcu, or grep CPUID or grep cpuid?? Please, post results
-to this list (to me).</pre>
-    </blockquote>
-    No luck unfortunately (used grep -i)<br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAGAf8Ly7JjRxj0aduWbB26jsuKqFVLDLVr=3DqgKPQMxcUhWiadg@mail.gma=
-il.com">
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-
-Could you, also, send to YOCTO list/me attached file:
-/boot/microcode.cpio so I can somehow (?) inspect it? ;-)</pre>
-    </blockquote>
-    I send it to you directly, so I don't spam the list with a large
-    attachment.<br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAGAf8Ly7JjRxj0aduWbB26jsuKqFVLDLVr=3DqgKPQMxcUhWiadg@mail.gma=
-il.com">
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-
-</pre>
-      <blockquote type=3D"cite">
-        <pre class=3D"moz-quote-pre" wrap=3D"">2GB, single channel.
-</pre>
-      </blockquote>
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-All Cool. E3825 by HW/silicon design could/does NOT support multiple
-memory channels. ONLY single... But even YOCTO primes (INTEL ones from
-this list) are not gonna tell this to you. Not 'cause they are nasty.
-They are NOT aware/they are ignorant (with the purpose)! ;-))
-
-</pre>
-      <blockquote type=3D"cite">
-        <pre class=3D"moz-quote-pre" wrap=3D"">No, the boot does not stop.=
- Even if I do issue "break=3Dpremount" I
-end up in my graphical interface with the rootfs mounted. This is the
-last message in the log: EXT4-fs (sdb2): re-mounted. Opts: (null)
-The rootfs partition is always 2, so either /dev/sda2 or /dev/sdb2
-(when booting from stick)
-</pre>
-      </blockquote>
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-Yes, from <a class=3D"moz-txt-link-freetext" href=3D"https://pastebin.com/=
-ya7iCtq7">https://pastebin.com/ya7iCtq7</a>, so it is remounted rw, not
-read only. So, it seems that you have passed dracut phase. and mounted
-SD or flash rootfs. So, initramfs is NOT your true problem, is it???</pre>
-    </blockquote>
-    The thing is that the boot works but I want an initramfs that can be
-    used for updating (in case the rootfs is broken). However I need to
-    be able to intercept the boot process there because otherwise I
-    can't deploy an update mechanism, that's what I was trying.<br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAGAf8Ly7JjRxj0aduWbB26jsuKqFVLDLVr=3DqgKPQMxcUhWiadg@mail.gma=
-il.com">
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-
-Zoran
-_______
-
-
-</pre>
-      <blockquote type=3D"cite">
-        <pre class=3D"moz-quote-pre" wrap=3D"">No, the boot does not stop.=
- Even if I do issue "break=3Dpremount" I end up
-in my graphical interface with the rootfs mounted. This is  the last messa=
-ge
-in the log: EXT4-fs (sdb2): re-mounted. Opts: (null) The rootfs partition =
-is
-always 2, so either /dev/sda2 or /dev/sdb2 (when booting from stick)
-</pre>
-      </blockquote>
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-
-
-</pre>
-    </blockquote>
-    <p>So for the issue...<br>
-      I expected yocto to put the bundled bzImage onto my rootfs. This
-      was not the case. My image directory contains 2x bzImage, one
-      bundled and one unbundled. Apparently yocto puts the
-      &gt;un&lt;bundled image onto my /boot partition and uses it for
-      boot. So of course I couldn't access initramfs in this case. Now I
-      get to the initramfs statement "dropping to shell" if I
-      intentionally boot with wrong rootfs.<br>
-      Still I don't get the interactive shell.<br>
-      On the github ostroproject site I found this:</p>
-    <p># debug: adds debug boot parameters like 'shell' and 'debug', see<b=
-r>
-      #=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 meta/recipes-core/initrd=
-scripts/initramfs-framework/debug
-      for details<br>
-      # Could be removed in more minimal product image.<br>
-      PACKAGE_INSTALL +=3D "initramfs-module-debug"</p>
-    <p>including the module-debug still does not enable me to get an
-      interactive shell. <br>
-      I was following this site: <a class=3D"moz-txt-link-freetext" href=
-=3D"https://wiki.debian.org/InitramfsDebug">https://wiki.debian.org/Initra=
-mfsDebug</a><br>
-      I am aware that yocto is no debian but I expected that kernel
-      parameters (like 'break') would be independent of the
-      distribution.</p>
-    <p>Lastly I do not really need the interactive shell, it is enough
-      if I can deploy a custom init script in the initramfs. Still I
-      think that getting an initramfs shell should be as simple as
-      stating the name of the initramfs image and setting the
-      "INITRAMFS_DO_BUNDLE" variable.</p>
-    <p>Best regards<br>
-      Moritz<br>
-    </p>
-    <table class=3D"highlight tab-size js-file-line-container"
-      data-tab-size=3D"8">
-      <tbody>
-        <tr>
-          <td id=3D"LC23" class=3D"blob-code blob-code-inner js-file-line"=
-><br>
-          </td>
-        </tr>
-        <tr>
-        </tr>
-      </tbody>
-    </table>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAGAf8Ly7JjRxj0aduWbB26jsuKqFVLDLVr=3DqgKPQMxcUhWiadg@mail.gma=
-il.com">
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-On Mon, Jul 1, 2019 at 11:20 AM Moritz Porst <a class=3D"moz-txt-link-rfc2=
-396E" href=3D"mailto:moritz.porst@gmx.de">&lt;moritz.porst@gmx.de&gt;</a> =
-wrote:
-</pre>
-      <blockquote type=3D"cite">
-        <pre class=3D"moz-quote-pre" wrap=3D"">
-Hello Zoran,
-thanks for your answer
-
-On 28.06.19 14:26, Zoran Stojsavljevic wrote:
-
-</pre>
-        <blockquote type=3D"cite">
-          <pre class=3D"moz-quote-pre" wrap=3D"">INITRAMFS_IMAGE =3D "core=
--image-minimal-initramfs"
-INITRAMFS_IMAGE_BUNDLE =3D "1"
-</pre>
-        </blockquote>
-        <pre class=3D"moz-quote-pre" wrap=3D"">...
-</pre>
-        <blockquote type=3D"cite">
-          <pre class=3D"moz-quote-pre" wrap=3D"">You can find the /var/log=
-/dmesg here: <a class=3D"moz-txt-link-freetext" href=3D"https://pastebin.c=
-om/ya7iCtq7I">https://pastebin.com/ya7iCtq7I</a>
-</pre>
-        </blockquote>
-        <pre class=3D"moz-quote-pre" wrap=3D"">
-Some hints...
-
-[1] Kernel command line: BOOT_IMAGE=3D/bzImage root=3DPARTUUID=3D71d1d94a-=
-83e8-4895-98eb-35309f58119f
-break=3Dpremount quiet rootwait rootwait rootfstype=3Dext4 console=3DttyS0=
-,115200 console=3Dtty0
-
-input: Video Bus as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:0=
-0/input/input7
-fbcon: inteldrmfb (fb0) is primary device
-Console: switching to colour frame buffer device 128x48
-i915 0000:00:02.0: fb0: inteldrmfb frame buffer device
-snd_hda_intel 0000:00:1b.0: bound 0000:00:02.0 (ops i915_audio_component_b=
-ind_ops [i915])
-
-Hmmmmm... You are using console and serial, but full i915 GFX kernel drive=
-r is still included in the build???
-
-I started from the core-image-minimal to have a small image and extended i=
-t with the features I need, which is e.g. a graphical system. The console=
-=3D[...] part in the kernel command line is probably a remnant but my imag=
-e boots into the GUI. Is this a problem ?
-
-
-[2] efi: EFI v2.31 by American Megatrends
-
-Using AMI BIOS as boot loader FW... OK?! Am I correct?
-
-My bootloader is currently grub, the EFI is AM.
-
-
-[3] smpboot: CPU0: Intel(R) Atom(TM) CPU  E3825  @ 1.33GHz (family: 0x6, m=
-odel: 0x37, stepping: 0x9)
-
-This is CPUID ID 0x30679, which uses MCU... Which MicroCodeUnit? M0130679x=
-xx (info from AMI BIOS)?
-
-Sorry but I can't find this info in the EFI
-
-
-[4] Using INTEL ATOM BYT E3825 dual core (sans Hyper-threading), implies t=
-hat you are using
-4GB (e820 messages) as single channel (one memory module DDR3 as 4GB)! Am =
-I correct (important)?
-
-2GB, single channel.
-
-
-[5] Dracut phase?!
-</pre>
-        <blockquote type=3D"cite">
-          <pre class=3D"moz-quote-pre" wrap=3D"">To my understanding the i=
-nitramfs should be embedded in /boot/bzImage.
-However since I use an intel platform I also have a /boot/microcode.cpio
-which gets loaded via "initrd /microcode.cpio". Removing this line in
-grub does not enable me to get an initramfs prompt either (again, using
-break as option).
-</pre>
-        </blockquote>
-        <pre class=3D"moz-quote-pre" wrap=3D"">
-You are obviously stopping in boot phase called dracut. Please, try to mou=
-nt by hand
-/dev/sda(whatever)... You should use fdisk -l command, or do ls -al /dev |=
- grep sda to
-dig out which partition you need to mount to /tmp dir to see rootfstype=3D=
-ext4 (HDD/SSD)
-
-No, the boot does not stop. Even if I do issue "break=3Dpremount" I end up=
- in my graphical interface with the rootfs mounted. This is the last messa=
-ge in the log:
-EXT4-fs (sdb2): re-mounted. Opts: (null)
-The rootfs partition is always 2, so either /dev/sda2 or /dev/sdb2 (when b=
-ooting from stick)
-
-_______
-
-Just thinking loud... .. .
-
-Hope this helps (has very little to do with YOCTO build system, BTW) . ;-)
-
-Zoran
-_______
-
-
-On Fri, Jun 28, 2019 at 11:22 AM Moritz Porst <a class=3D"moz-txt-link-rfc=
-2396E" href=3D"mailto:moritz.porst@gmx.de">&lt;moritz.porst@gmx.de&gt;</a>=
- wrote:
-</pre>
-        <blockquote type=3D"cite">
-          <pre class=3D"moz-quote-pre" wrap=3D"">
-Hello,
-I currently try to deploy a single rootfs update mechanism for my
-embedded device. I can't boot to initramfs using either "break" or
-"break=3Dpremount" (without quotes...). I tried this in systemd-boot and
-grub-efi (always efi boot) but the boot process just continues normally.
-If I insert at the same point e.g. "quiet" this argument is recognised.
-I boot the .wic image with a separate boot partition from a USB stick.
-in local.conf I have set:
-INITRAMFS_IMAGE =3D "core-image-minimal-initramfs"
-INITRAMFS_IMAGE_BUNDLE =3D "1"
-
-In order to reduce complexity I now use the standard
-core-image-minimal-initramfs without .bbappend. I can confirm (from
-seeing the task) that bitbake bundled the kernel with the initramfs.
-
-You can find the /var/log/dmesg here: <a class=3D"moz-txt-link-freetext" h=
-ref=3D"https://pastebin.com/ya7iCtq7">https://pastebin.com/ya7iCtq7</a>
-
-To my understanding the initramfs should be embedded in /boot/bzImage.
-However since I use an intel platform I also have a /boot/microcode.cpio
-which gets loaded via "initrd /microcode.cpio". Removing this line in
-grub does not enable me to get an initramfs prompt either (again, using
-break as option).
-
-Did I forget some configuration or do I have to put the break statement
-at a very specific position within the "linux ..." boot command ? Do you
-know which bitbake variables to check ? (both set in local.conf do not
-get overwritten, already checked this). I got the thud branch checked
-out in all my meta-layers except for meta-qt which is currently on
-master branch.
-
-Help is much appreciated !
-
-Best regards
-Moritz
-
-=2D-
-_______________________________________________
-yocto mailing list
-<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:yocto@yoctoproject.or=
-g">yocto@yoctoproject.org</a>
-<a class=3D"moz-txt-link-freetext" href=3D"https://lists.yoctoproject.org/=
-listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
-</pre>
-        </blockquote>
-      </blockquote>
-    </blockquote>
-  </body>
-</html>
-
---------------50BBFE2BF509D7D9F956762E--
+------=_NextPart_000_0026_01D52FFC.3F636400--
