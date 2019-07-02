@@ -1,6 +1,6 @@
-Return-Path: <gabbla.malist@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2C7F4E00D98; Tue,  2 Jul 2019 06:01:30 -0700 (PDT)
+	id 7BDFBE00D74; Tue,  2 Jul 2019 07:20:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,56 +10,117 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (gabbla.malist[at]gmail.com)
+	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.182 listed in list.dnswl.org]
+	*      [209.85.210.173 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com
-	[209.85.208.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E774EE00DB1
-	for <yocto@yoctoproject.org>; Tue,  2 Jul 2019 06:01:19 -0700 (PDT)
-Received: by mail-lj1-f182.google.com with SMTP id a21so16778848ljh.7
-	for <yocto@yoctoproject.org>; Tue, 02 Jul 2019 06:01:19 -0700 (PDT)
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com
+	[209.85.210.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C872DE00C02
+	for <yocto@yoctoproject.org>; Tue,  2 Jul 2019 07:20:00 -0700 (PDT)
+Received: by mail-pf1-f173.google.com with SMTP id i189so8309975pfg.10
+	for <yocto@yoctoproject.org>; Tue, 02 Jul 2019 07:20:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=s6jvdxgNaUlHu7K5zso9LTLnJHHm7a+hNz1ZxWOYHTs=;
-	b=TmiW/+EDeHxJ21xVrbYEF6gp1BYhT2PrzyRltPKuH1x7MlBGvnRu4JGuLyDkIojHdP
-	B3rYr0NX0UrJ1rdbqRyOr1lMt70HBJHyW/8WnvhBYrcVLuggY1V7ICjxTETVz41sDpYb
-	wz6cL7KrVnTd6NsYucuZBGqaew3JW+Kt8n7b/5xtc4HJboMOxLxyVoE4SeTX1hq4EyaC
-	wts8/9z9loFhG/jMJutC2S3sQyIEg0xgcSQxlOagKHSC9y9y6jTTCnxSAK3kNwLiKYYK
-	iCaLQNyi1dSndiaLmkngN4aSL7RmdRmFXhSdRx19pNoGtaucdwKi/K8nW+9spCPuwgO7
-	aVfw==
+	h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language;
+	bh=lwS5JI1NzP8/pWaBefo6xv0sTOQcNV+Wyvr1UTj2m1A=;
+	b=FDtCaSSECOFBWbLGyjJxbf6hzsdGv7NXt/MBNpk/eaQ7JD0Iw0sAfbVsCEN2WY6wnV
+	fdi2VhTXuBQ1YO7qu/0d+RFEhZnddj+hN1nFZDzJ8/zbE/WH0MTlixYxvTJZM5ffOQ7v
+	bKClMEKPG3DuxMH7bh8+VDw4rxUfKipAsFxBGhm95Baj+EIx3xBsKxfuyK6C8h2ywyrb
+	mDWAXlaeXsMyIl2YltoBM+oXLBlR98IvyaqRKExrFWNPmV04jDbVtaSDByeCSufyOaPA
+	IoXUwcNbLTJ9dpDFGCYu5HUa22PxU6mgu+ma8iuqC36bPTHmWlM6KuPfi77wDUQFzkIa
+	tVEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=s6jvdxgNaUlHu7K5zso9LTLnJHHm7a+hNz1ZxWOYHTs=;
-	b=d7geNpTRuegZzNn8o9322vXLyt+an/GyL30IjHRh8XqZ6t/2fIUKaaAE9Kz4AuwMXG
-	G24OANIMmnE22KxukFjPu48MARBy7MoPFI9zCjW5fSrsEk1lWyjtfILB0h7AnpaI3Bmb
-	q8loXKaumKW3NHTq0hYEaaTuiSxOktOvFM35IKk6/pZk7jkz2H3Q4y+JQWIuUKzNFSKa
-	+4iwau6+nA/ZNqhe7GAOxckn1cQ833Cis8OOj7nEdyxUG4+CPOdjl2QCogbUf3YnjNTd
-	Z0POoRzVPfqECwusnrFQPmqCsc7qm0+yP6/8MAUZeHApssO2MO8wpIRKOGRqNCVzvmC8
-	VO6w==
-X-Gm-Message-State: APjAAAV/wXpws0FuoFwddZWhJEOyH9eE1F53riF6kipFhkuji4YGNEFe
-	JGgvO4yt7obHxcE14f7WrskLRRPauhE0gob+0Jo=
-X-Google-Smtp-Source: APXvYqyWyS2ouDrP15VXfBq4+X3I7bI5V01HI+qq3x+cEQMGKofM7T337H60v7j0319M2P8Jjt7bx6bhS1CkqewRMZ4=
-X-Received: by 2002:a2e:5c88:: with SMTP id q130mr3101951ljb.176.1562072479010;
-	Tue, 02 Jul 2019 06:01:19 -0700 (PDT)
+	h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-language;
+	bh=lwS5JI1NzP8/pWaBefo6xv0sTOQcNV+Wyvr1UTj2m1A=;
+	b=JpSfzud1bPEUB0oOsgG70MRCUIp9lRxfKis7+Mul6hzKzCmvTxoECWr4UMyaJXV9/d
+	tmamwj/sTAJNIK2LUERqZsw7hjCOUDdf0PWbJyXiEwpTTHRUnVv33APqx8anGZbLzIoa
+	R8X5QoCUrWCoN5Pulo/eNJrb2D5OppMmk9icFuXkY8nzbw7MY7PvcDCzKskK6ROY9zjZ
+	bq1R/TDwt44yDWI3TstMWDWZCxoUOgj7uTrhszEJQqf7Q+yrKGluTB1FvACrW/Tf3MwE
+	/QR/9Efi2z61l1WR4do9FDQAmywkXlPWsOuYMmShSXLhPI03tFu+g4crzy90Zi7Fa3cc
+	SIQg==
+X-Gm-Message-State: APjAAAWcb1lC9RRhfrDGnit6Kjb+v4k65vxR/PmgFnaPkzvt4UUsN20d
+	2ha/umtU8dLsRSXBRz2Km70=
+X-Google-Smtp-Source: APXvYqz0m7xlqcKKhVTv2WsSBZrxHx9kIRKkEcfOyDEmLbu/n/P/U2VAxR9z/OphK1hQjIAcxd7AqQ==
+X-Received: by 2002:a63:f857:: with SMTP id v23mr16764218pgj.228.1562077200361;
+	Tue, 02 Jul 2019 07:20:00 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:c33:81e7:b32d:c93c:ae01?
+	([2601:202:4180:c33:81e7:b32d:c93c:ae01])
+	by smtp.gmail.com with ESMTPSA id
+	10sm19282588pfb.30.2019.07.02.07.19.58
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 02 Jul 2019 07:19:59 -0700 (PDT)
+To: "Jain, Sangeeta" <sangeeta.jain@intel.com>,
+	"pokybuild@centos7-ty-4.yocto.io" <pokybuild@centos7-ty-4.yocto.io>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
+	"sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>
+References: <20190701030845.0C5E523F54@centos7-ty-4.yocto.io>
+	<fdd9755f-6468-759b-ed3b-22abc5580826@windriver.com>
+	<015AB11D45F2C442929CB2765DAE738634E5F069@PGSMSX110.gar.corp.intel.com>
+From: akuster808 <akuster808@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+	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
+	8CS2NxU=
+Message-ID: <fcefb97f-3dfb-2a01-8b01-3df40968abde@gmail.com>
+Date: Tue, 2 Jul 2019 07:19:57 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.1
 MIME-Version: 1.0
-References: <2566dd81001d4f4891db00ffb2419a21@trijicon.com>
-In-Reply-To: <2566dd81001d4f4891db00ffb2419a21@trijicon.com>
-From: Gabriele Zampieri <gabbla.malist@gmail.com>
-Date: Tue, 2 Jul 2019 15:01:07 +0200
-Message-ID: <CAAx3WaC2q69zRwvEiSYVt328hi+zAC5zJp2ihZCufAkEHW9tYQ@mail.gmail.com>
-To: Chad Gong <cgong@trijicon.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Poky build errors, help is needed
+In-Reply-To: <015AB11D45F2C442929CB2765DAE738634E5F069@PGSMSX110.gar.corp.intel.com>
+Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>, "Chan,
+	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>
+Subject: Re: QA notification for completed autobuilder build (yocto-2.7.1.rc1)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,236 +132,427 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Jul 2019 13:01:30 -0000
-Content-Type: multipart/alternative; boundary="0000000000003990e9058cb2572b"
+X-List-Received-Date: Tue, 02 Jul 2019 14:20:02 -0000
+Content-Type: multipart/alternative;
+	boundary="------------B0DBE2F5FE65F79A38CCC8C7"
+Content-Language: en-US
 
---0000000000003990e9058cb2572b
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Chad,
-
-why are you checking out such an old version? As the tutorial said, try:
-
-git checkout tags/yocto-2.7 -b my-yocto-2.7
-
-Probably some URLs are no longer available.
-
-Gabriele
-
-
-Il giorno mar 2 lug 2019 alle ore 14:53 Chad Gong <cgong@trijicon.com> ha
-scritto:
-
-> Hi,
->
->
->
-> I am new to Yocto project and try to build my first yocto project by
-> following instructions on
-> https://www.yoctoproject.org/docs/current/brief-yoctoprojectqs/brief-yoctoprojectqs.html.
-> I checked out branch yocto-2.5.3, and tried to build targets, such as
-> core-image-minimal, meta-toolchain, but always get some fetch errors or
-> checksum errors, such as:
->
->
->
-> ERROR: libmpc-native-1.1.0-r0 do_fetch: Checksum failure fetching
-> https://ftp.gnu.org/gnu/mpc/mpc-1.1.0.tar.gz
->
-> WARNING: quilt-native-0.65-r0 do_fetch: Failed to fetch URL
-> http://download.savannah.gnu.org/releases/quilt/quilt-0.65.tar.gz,
-> attempting MIRRORS if available
->
-> WARNING: m4-native-1.4.18-r0 do_fetch: Failed to fetch URL
-> http://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz, attempting MIRRORS if
-> available
->
->
->
-> I am running Ubuntu 18.04 virtual box on Windows 7.
->
->
->
-> Chad Gong
->
-> Electrical Engineer
->
->
->
-> Trijicon, Inc.
->
->  | P.O. Box 930059
->
-> Wixom, Michigan 48393 US
->
-> cgong@trijicon.com |
->
->
->
-> ------------------------------
-> This electronic message contains information that may be confidential,
-> privileged, proprietary, or subject to the export control laws of the
-> United States, including the Arms Export Control Act (22 U.S.C. 2571 et
-> seq.), the International Traffic in Arms Regulations  (22 C.F.R. Part 120
-> et seq.), and/or the Export Administration Regulations (15 C.F.R. Part 730
-> et seq.).  This information is intended for the use of the addressee only,
-> and if you are not the intended recipient, any disclosure, copying,
-> distribution, printing, or any other use of, the contents of this message
-> is prohibited.  Any transfer, retransfer, or disclosure of this data to a
-> Foreign Person without United States Government authorization is also
-> prohibited.  If you have received this message in error, please notify the
-> sender and destroy the original message.
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---0000000000003990e9058cb2572b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi Chad,</div><div><br></div><div>why are you checkin=
-g out such an old version? As the tutorial said, try:</div><div style=3D"ma=
-rgin-left:40px"><pre class=3D"gmail-literallayout">git checkout tags/yocto-=
-2.7 -b my-yocto-2.7<br><br></pre></div><pre class=3D"gmail-literallayout"><=
-span style=3D"font-family:arial,sans-serif">Probably some URLs are no longe=
-r available.<br><br></span></pre><pre class=3D"gmail-literallayout"><span s=
-tyle=3D"font-family:arial,sans-serif">Gabriele</span><br></pre></div><br><d=
-iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Il giorno ma=
-r 2 lug 2019 alle ore 14:53 Chad Gong &lt;<a href=3D"mailto:cgong@trijicon.=
-com">cgong@trijicon.com</a>&gt; ha scritto:<br></div><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
-,204,204);padding-left:1ex">
+--------------B0DBE2F5FE65F79A38CCC8C7
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
 
 
+On 7/1/19 10:26 PM, Jain, Sangeeta wrote:
+>
+> Hello All,
+>
+>  
+>
+> Intel and WR YP QA is planning for QA execution for YP build 2.7.rc1
+>
+> We are planning to execute following tests for this cycle:
+>
+
+I would like to thank Intel and Wind River for doing QA.
+
+>  
+>
+> OEQA-manual tests for following module:
+>
+>  
+>
+> 1. OE-Core
+>
+> 2. BSP-hw
+>
+> 3. BSP-Qemu
+>
+>  
+>
+> Runtime auto test for following platforms:
+>
+>  
+>
+> 1. MinnowTurbot 32-bit
+>
+> 2. Coffee Lake
+>
+> 3. NUC 7
+>
+> 4. NUC 6
+>
+> 5. Edgerouter
+>
+> 6. MPC8315e-rdb
+>
+> 7. Beaglebone
+>
+>  
+>
+> ETA for completion is Friday, 5 July.
+>
+
+That sounds great.
+
+Thank you
+Armin
+>
+>  
+>
+>  
+>
+> Thanks & Regards,
+>
+> Sangeeta Jain
+>
+>  
+>
+>  
+>
+> -------- Forwarded Message --------
+>
+> *Subject: *
+>
+> 	
+>
+> QA notification for completed autobuilder build (yocto-2.7.1.rc1)
+>
+> *Date: *
+>
+> 	
+>
+> Mon, 1 Jul 2019 03:08:44 +0000
+>
+> *From: *
+>
+> 	
+>
+> Poky Build User <pokybuild@centos7-ty-4.yocto.io>
+> <mailto:pokybuild@centos7-ty-4.yocto.io>
+>
+> *To: *
+>
+> 	
+>
+> yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>
+> *CC: *
+>
+> 	
+>
+> otavio@ossystems.com.br <mailto:otavio@ossystems.com.br>,
+> yi.zhao@windriver.com <mailto:yi.zhao@windriver.com>,
+> apoorv.sangal@intel.com <mailto:apoorv.sangal@intel.com>,
+> ee.peng.yeoh@intel.com <mailto:ee.peng.yeoh@intel.com>,
+> aaron.chun.yew.chan@intel.com <mailto:aaron.chun.yew.chan@intel.com>,
+> chin.huat.ang@intel.com <mailto:chin.huat.ang@intel.com>,
+> richard.purdie@linuxfoundation.org
+> <mailto:richard.purdie@linuxfoundation.org>, akuster808@gmail.com
+> <mailto:akuster808@gmail.com>, sjolley.yp.pm@gmail.com
+> <mailto:sjolley.yp.pm@gmail.com>, sangeeta.jain@intel.com
+> <mailto:sangeeta.jain@intel.com>
+>
+>
+>
+>
+> A build flagged for QA (yocto-2.7.1.rc1) was completed on the
+> autobuilder and is available at:
+>
+>
+> https://autobuilder.yocto.io/pub/releases/yocto-2.7.1.rc1
+>
+>
+> Build hash information:
+> bitbake: 34ed28a412af642a993642c14bd8b95d5ef22cd8
+> meta-gplv2: 460ba027fd79b99151f95c826446f3aead5d17ff
+> meta-intel: e84c763090f91196a5d234f62ee39bcf296c7f2e
+> meta-mingw: 10695afe8cd406844e0d0dd868c11677e07557d4
+> oecore: 886deb4d0919c7a81036ea14fb8fd0f1619dd3a3
+> poky: 38d5c8ea98cfa49825c473eba8984c12edf062be
+>
+>
+>
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+> <mailto:richard.purdie@linuxfoundation.org>
+>
+>
 
 
+--------------B0DBE2F5FE65F79A38CCC8C7
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <br>
+    <br>
+    <div class="moz-cite-prefix">On 7/1/19 10:26 PM, Jain, Sangeeta
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:015AB11D45F2C442929CB2765DAE738634E5F069@PGSMSX110.gar.corp.intel.com">
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;
+	mso-fareast-language:EN-US;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoPlainText">Hello All,<o:p></o:p></p>
+        <p class="MsoPlainText"><o:p> </o:p></p>
+        <p class="MsoPlainText">Intel and WR YP QA is planning for QA
+          execution for YP build 2.7.rc1<o:p></o:p></p>
+        <p class="MsoPlainText">We are planning to execute following
+          tests for this cycle:</p>
+      </div>
+    </blockquote>
+    <br>
+    I would like to thank Intel and Wind River for doing QA.<br>
+    <br>
+    <blockquote type="cite"
+cite="mid:015AB11D45F2C442929CB2765DAE738634E5F069@PGSMSX110.gar.corp.intel.com">
+      <div class="WordSection1">
+        <p class="MsoPlainText"><o:p></o:p></p>
+        <p class="MsoPlainText"><o:p> </o:p></p>
+        <p class="MsoPlainText">OEQA-manual tests for following module:<o:p></o:p></p>
+        <p class="MsoPlainText"><o:p> </o:p></p>
+        <p class="MsoPlainText">1. OE-Core<o:p></o:p></p>
+        <p class="MsoPlainText">2. BSP-hw<o:p></o:p></p>
+        <p class="MsoPlainText">3. BSP-Qemu<o:p></o:p></p>
+        <p class="MsoPlainText"><o:p> </o:p></p>
+        <p class="MsoPlainText">Runtime auto test for following
+          platforms:<o:p></o:p></p>
+        <p class="MsoPlainText"><o:p> </o:p></p>
+        <p class="MsoPlainText">1. MinnowTurbot 32-bit<o:p></o:p></p>
+        <p class="MsoPlainText">2. Coffee Lake<o:p></o:p></p>
+        <p class="MsoPlainText">3. NUC 7<o:p></o:p></p>
+        <p class="MsoPlainText">4. NUC 6<o:p></o:p></p>
+        <p class="MsoPlainText">5. Edgerouter<o:p></o:p></p>
+        <p class="MsoPlainText">6. MPC8315e-rdb<o:p></o:p></p>
+        <p class="MsoPlainText">7. Beaglebone<o:p></o:p></p>
+        <p class="MsoPlainText"><o:p> </o:p></p>
+        <p class="MsoPlainText">ETA for completion is Friday, 5 July.</p>
+      </div>
+    </blockquote>
+    <br>
+    That sounds great.<br>
+    <br>
+    Thank you<br>
+    Armin<br>
+    <blockquote type="cite"
+cite="mid:015AB11D45F2C442929CB2765DAE738634E5F069@PGSMSX110.gar.corp.intel.com">
+      <div class="WordSection1">
+        <p class="MsoPlainText"><o:p></o:p></p>
+        <p class="MsoNormal"><span
+            style="color:windowtext;mso-fareast-language:EN-US"><o:p> </o:p></span></p>
+        <p class="MsoNormal"><span
+            style="color:windowtext;mso-fareast-language:EN-US"><o:p> </o:p></span></p>
+        <div>
+          <p class="MsoNormal"><span style="color:windowtext"
+              lang="EN-US">Thanks &amp; Regards,<o:p></o:p></span></p>
+          <p class="MsoNormal"><span style="color:windowtext"
+              lang="EN-US">Sangeeta Jain<o:p></o:p></span></p>
+        </div>
+        <p class="MsoNormal"><span
+            style="color:windowtext;mso-fareast-language:EN-US"><o:p> </o:p></span></p>
+        <div style="border:none;border-left:solid blue 1.5pt;padding:0cm
+          0cm 0cm 4.0pt">
+          <div>
+            <p class="MsoNormal"><a name="_____replyseparator"
+                moz-do-not-send="true"></a><o:p> </o:p></p>
+          </div>
+          <div>
+            <p class="MsoNormal">-------- Forwarded Message -------- <o:p></o:p></p>
+            <table class="MsoNormalTable" cellspacing="0"
+              cellpadding="0" border="0">
+              <tbody>
+                <tr>
+                  <td style="padding:0cm 0cm 0cm 0cm" valign="top"
+                    nowrap="nowrap">
+                    <p class="MsoNormal" style="text-align:right"
+                      align="right"><b>Subject: <o:p></o:p></b></p>
+                  </td>
+                  <td style="padding:0cm 0cm 0cm 0cm">
+                    <p class="MsoNormal">QA notification for completed
+                      autobuilder build (yocto-2.7.1.rc1)<o:p></o:p></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:0cm 0cm 0cm 0cm" valign="top"
+                    nowrap="nowrap">
+                    <p class="MsoNormal" style="text-align:right"
+                      align="right"><b>Date: <o:p></o:p></b></p>
+                  </td>
+                  <td style="padding:0cm 0cm 0cm 0cm">
+                    <p class="MsoNormal">Mon, 1 Jul 2019 03:08:44 +0000<o:p></o:p></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:0cm 0cm 0cm 0cm" valign="top"
+                    nowrap="nowrap">
+                    <p class="MsoNormal" style="text-align:right"
+                      align="right"><b>From: <o:p></o:p></b></p>
+                  </td>
+                  <td style="padding:0cm 0cm 0cm 0cm">
+                    <p class="MsoNormal">Poky Build User <a
+                        href="mailto:pokybuild@centos7-ty-4.yocto.io"
+                        moz-do-not-send="true">
+                        &lt;pokybuild@centos7-ty-4.yocto.io&gt;</a><o:p></o:p></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:0cm 0cm 0cm 0cm" valign="top"
+                    nowrap="nowrap">
+                    <p class="MsoNormal" style="text-align:right"
+                      align="right"><b>To: <o:p></o:p></b></p>
+                  </td>
+                  <td style="padding:0cm 0cm 0cm 0cm">
+                    <p class="MsoNormal"><a
+                        href="mailto:yocto@yoctoproject.org"
+                        moz-do-not-send="true">yocto@yoctoproject.org</a><o:p></o:p></p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding:0cm 0cm 0cm 0cm" valign="top"
+                    nowrap="nowrap">
+                    <p class="MsoNormal" style="text-align:right"
+                      align="right"><b>CC: <o:p></o:p></b></p>
+                  </td>
+                  <td style="padding:0cm 0cm 0cm 0cm">
+                    <p class="MsoNormal"><a
+                        href="mailto:otavio@ossystems.com.br"
+                        moz-do-not-send="true">otavio@ossystems.com.br</a>,
+                      <a href="mailto:yi.zhao@windriver.com"
+                        moz-do-not-send="true">yi.zhao@windriver.com</a>,
+                      <a href="mailto:apoorv.sangal@intel.com"
+                        moz-do-not-send="true">
+                        apoorv.sangal@intel.com</a>, <a
+                        href="mailto:ee.peng.yeoh@intel.com"
+                        moz-do-not-send="true">ee.peng.yeoh@intel.com</a>,
+                      <a href="mailto:aaron.chun.yew.chan@intel.com"
+                        moz-do-not-send="true">aaron.chun.yew.chan@intel.com</a>,
+                      <a href="mailto:chin.huat.ang@intel.com"
+                        moz-do-not-send="true">chin.huat.ang@intel.com</a>,
+                      <a
+                        href="mailto:richard.purdie@linuxfoundation.org"
+                        moz-do-not-send="true">
+                        richard.purdie@linuxfoundation.org</a>, <a
+                        href="mailto:akuster808@gmail.com"
+                        moz-do-not-send="true">akuster808@gmail.com</a>,
+                      <a href="mailto:sjolley.yp.pm@gmail.com"
+                        moz-do-not-send="true">sjolley.yp.pm@gmail.com</a>,
+                      <a href="mailto:sangeeta.jain@intel.com"
+                        moz-do-not-send="true">
+                        sangeeta.jain@intel.com</a><o:p></o:p></p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <p class="MsoNormal" style="margin-bottom:12.0pt"><br>
+              <br>
+              <br>
+              A build flagged for QA (yocto-2.7.1.rc1) was completed on
+              the autobuilder and is available at:<br>
+              <br>
+              <br>
+              <a
+                href="https://autobuilder.yocto.io/pub/releases/yocto-2.7.1.rc1"
+                moz-do-not-send="true">https://autobuilder.yocto.io/pub/releases/yocto-2.7.1.rc1</a><br>
+              <br>
+              <br>
+              Build hash information: <br>
+              bitbake: 34ed28a412af642a993642c14bd8b95d5ef22cd8<br>
+              meta-gplv2: 460ba027fd79b99151f95c826446f3aead5d17ff<br>
+              meta-intel: e84c763090f91196a5d234f62ee39bcf296c7f2e<br>
+              meta-mingw: 10695afe8cd406844e0d0dd868c11677e07557d4<br>
+              oecore: 886deb4d0919c7a81036ea14fb8fd0f1619dd3a3<br>
+              poky: 38d5c8ea98cfa49825c473eba8984c12edf062be<br>
+              <br>
+              <br>
+              <br>
+              This is an automated message from the Yocto Project
+              Autobuilder<br>
+              Git: git://git.yoctoproject.org/yocto-autobuilder2<br>
+              Email: <a
+                href="mailto:richard.purdie@linuxfoundation.org"
+                moz-do-not-send="true">richard.purdie@linuxfoundation.org</a><br>
+              <br>
+              <br>
+              <o:p></o:p></p>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
 
-<div lang=3D"EN-US">
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"></p>
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"></p>
-<div class=3D"gmail-m_-29008135627327856WordSection1">
-<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I am new to Yocto project and try to build my first =
-yocto project by following instructions on
-<a href=3D"https://www.yoctoproject.org/docs/current/brief-yoctoprojectqs/b=
-rief-yoctoprojectqs.html" target=3D"_blank">
-https://www.yoctoproject.org/docs/current/brief-yoctoprojectqs/brief-yoctop=
-rojectqs.html</a>. I checked out branch yocto-2.5.3, and tried to build tar=
-gets, such as core-image-minimal, meta-toolchain, but always get some fetch=
- errors or checksum errors, such
- as:<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">ERROR: libmpc-native-1.1.0-r0 do_fetch: Checksum fai=
-lure fetching
-<a href=3D"https://ftp.gnu.org/gnu/mpc/mpc-1.1.0.tar.gz" target=3D"_blank">=
-https://ftp.gnu.org/gnu/mpc/mpc-1.1.0.tar.gz</a><u></u><u></u></p>
-<p class=3D"MsoNormal">WARNING: quilt-native-0.65-r0 do_fetch: Failed to fe=
-tch URL <a href=3D"http://download.savannah.gnu.org/releases/quilt/quilt-0.=
-65.tar.gz" target=3D"_blank">http://download.savannah.gnu.org/releases/quil=
-t/quilt-0.65.tar.gz</a>, attempting MIRRORS if available<u></u><u></u></p>
-<p class=3D"MsoNormal">WARNING: m4-native-1.4.18-r0 do_fetch: Failed to fet=
-ch URL <a href=3D"http://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz" target=3D"_bl=
-ank">http://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz</a>, attempting MIRRORS if =
-available<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">I am running Ubuntu 18.04 virtual box on Windows 7.<=
-u></u><u></u></p>
-</div>
-<p></p>
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"><font face=3D"Arial"=
-><span style=3D"color:black;font-size:8pt"><font size=3D"4"><font face=3D"A=
-rial"></font></font><font color=3D"#000000"><font size=3D"2" face=3D"Arial"=
-><font size=3D"4"><font face=3D"Arial"><strong>=C2=A0</strong></font></font=
-></font></font></span></font></p>
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"><font style=3D"font-=
-family:Arial;font-size:10pt">Chad</font>
-<font style=3D"font-family:Arial;font-size:10pt">Gong</font>=C2=A0</p>
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"><font color=3D"#0000=
-00"></font><font color=3D"dimgray"><font style=3D"font-family:Arial;font-si=
-ze:8pt;color:rgb(127,127,127)">Electrical Engineer</font></font></p>
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"><font color=3D"dimgr=
-ay"></font>=C2=A0</p>
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"><font color=3D"dimgr=
-ay"><strong></strong></font></p>
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"><font style=3D"font-=
-family:Arial;font-size:10pt;color:rgb(0,0,0);font-weight:bold">Trijicon, In=
-c.</font></p>
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"></p>
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"></p>
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"><font size=3D"2" fac=
-e=3D"Arial"></font><font size=3D"2" face=3D"Arial"><font size=3D"1" color=
-=3D"#7f7f7f"></font></font></p>
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"><font size=3D"1" fac=
-e=3D"Arial" color=3D"#7f7f7f">=C2=A0|=C2=A0<font style=3D"font-family:Arial=
-;font-size:8pt;color:rgb(127,127,127)">P.O. Box 930059</font></font></p>
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"><font size=3D"2" fac=
-e=3D"Arial" color=3D"#7f7f7f"><font style=3D"font-family:Arial;font-size:8p=
-t;color:rgb(127,127,127)">Wixom</font>,=C2=A0<font style=3D"font-family:Ari=
-al;font-size:8pt;color:rgb(127,127,127)">Michigan</font>=C2=A0<font style=
-=3D"font-family:Arial;font-size:8pt;color:rgb(127,127,127)">48393</font>=C2=
-=A0<font style=3D"font-family:Arial;font-size:8pt;color:rgb(127,127,127)">U=
-S</font></font></p>
-<font color=3D"#000000"><font size=3D"2" face=3D"Arial">
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"><font style=3D"font-=
-family:Arial;font-size:8pt;color:rgb(127,127,127)"><a href=3D"mailto:cgong@=
-trijicon.com" target=3D"_blank">cgong@trijicon.com</a></font><font size=3D"=
-1" color=3D"#7f7f7f">=C2=A0|</font>
-</p>
-</font></font>
-<p></p>
-<p style=3D"margin:0in 0in 0pt" class=3D"gmail-m_-2900813562732785606ea7d56=
--9b56-4188-95c6-ef3d80b314e5"></p>
-<p></p>
-<p style=3D"margin:0in 0in 0pt" class=3D"gmail-m_-2900813562732785606ea7d56=
--9b56-4188-95c6-ef3d80b314e5"></p>
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID">=C2=A0</p>
-<p class=3D"gmail-m_-29008135627327856ImprintUniqueID"><em><font color=3D"#=
-595959"></font></em></p>
-<hr id=3D"gmail-m_-29008135627327856HR1">
-<font size=3D"2">This electronic message contains information that may be c=
-onfidential, privileged, proprietary, or subject to the export control laws=
- of the United States, including the Arms Export Control Act (22 U.S.C. 257=
-1 et seq.), the International Traffic
- in Arms Regulations=C2=A0 (22 C.F.R. Part 120 et seq.), and/or the Export =
-Administration Regulations (15 C.F.R. Part 730 et seq.).=C2=A0 This informa=
-tion is intended for the use of the addressee only, and if you are not the =
-intended recipient, any disclosure, copying,
- distribution, printing, or any other use of, the contents of this message =
-is prohibited.=C2=A0 Any transfer, retransfer, or disclosure of this data t=
-o a Foreign Person without United States Government authorization is also p=
-rohibited.=C2=A0 If you have received this
- message in error, please notify the sender and destroy the original messag=
-e.</font>=C2=A0
-<br>
-<p></p>
-<p></p>
-</div>
-
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
-
---0000000000003990e9058cb2572b--
+--------------B0DBE2F5FE65F79A38CCC8C7--
