@@ -1,58 +1,62 @@
-Return-Path: <btv1==086c9cf8106==cgong@trijicon.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6411E00D74; Tue,  2 Jul 2019 08:25:16 -0700 (PDT)
+	id 7803BE00C43; Tue,  2 Jul 2019 08:29:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from WI11BFS.trijicon.com
-	(50-253-248-89-static.hfc.comcastbusiness.net [50.253.248.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA59AE00C02
-	for <yocto@yoctoproject.org>; Tue,  2 Jul 2019 08:25:15 -0700 (PDT)
-X-ASG-Debug-ID: 1562081114-1008250bbaa46b40001-yzSStA
-Received: from WI102WEP.trijicon1.com (wi102wep.trijicon1.com [10.0.0.99]) by
-	WI11BFS.trijicon.com with ESMTP id p38bBhVNTyjtFmhX;
-	Tue, 02 Jul 2019 11:25:14 -0400 (EDT)
-X-Barracuda-Envelope-From: cgong@trijicon.com
-Received: from WI102WEP.trijicon1.com (10.0.0.99) by WI102WEP.trijicon1.com
-	(10.0.0.99) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1034.26;
-	Tue, 2 Jul 2019 11:25:07 -0400
-Received: from WI102WEP.trijicon1.com ([::1]) by WI102WEP.trijicon1.com
-	([::1]) with mapi id 15.01.1034.033; Tue, 2 Jul 2019 11:25:07 -0400
-From: Chad Gong <cgong@trijicon.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Poky build errors, help is needed
-X-ASG-Orig-Subj: RE: [yocto] Poky build errors, help is needed
-Thread-Index: AdUw0o8Uu4i3AJLIQi68br/66gdncgAJRcUAAAOnaZA=
-Date: Tue, 2 Jul 2019 15:25:07 +0000
-Message-ID: <9b82304b0ac6483b9de2eedbc6a961f7@trijicon.com>
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.52 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com
+	[209.85.166.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B818FE00BB5
+	for <yocto@yoctoproject.org>; Tue,  2 Jul 2019 08:29:43 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id s7so37832935iob.11
+	for <yocto@yoctoproject.org>; Tue, 02 Jul 2019 08:29:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=PDAUNNard5Ai/g/9KdHXuWSFqcKV5v5GAuKvOlq7mb4=;
+	b=cV7zOfdq32JMx+Ho5l6S/avjocyUwn96OUDIq6+Oc7iHq7M9/RAY+s3zrhZaPaGp1T
+	/t+75H1KHhXbbAPsAsMECupqeaHxl0Mh040l+V3u5Gs5LAl/yiH9R3aZwnBdb5seo2j/
+	GixbV6lma4EhpgQZ9W/l3fmhFV134YGo75mbaYCZMGFhaAWO76cCaN3aNdJVigGXjy8q
+	AtwK7YNBvmX1L9WptlJhXCFKjMbPfJyjGqJ11bY9v9tm9gwZZj0TNPldIrFVcxnjdLpM
+	dwco1221hitVqcQveqYu0qLAOBDy4HAF3Eh5hyn4TLtgEdkoTM2Cif4IMRmu38lfh81B
+	3qoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=PDAUNNard5Ai/g/9KdHXuWSFqcKV5v5GAuKvOlq7mb4=;
+	b=sk9sbuKuyeRhQdWXv3ECK0glT3z+88rTqvbsvDvl8qiJl4xeqqfssHeRVXErCqBv8f
+	lFPqGpFB3ONY3ZqwiUlQ009qaLX/lUDOqXsNiRxjve2jtYG7yg+CTnf8z/AM1BD7Aihy
+	YX2UkyTF+pjbTmf/6exMYZtrgUFMymMM1gJsKDMHhvXNbQoLfL6Rc4NSPLk3wWF/S3R1
+	q7GKLttFdVwzXJ7dUyXvG2QIRMVbHJIXBZ1JnxCnIJoAmaB1cve/0WincY8jaWv/V4S8
+	QVRkGke83E5V74+IGnG0qFlE/f9TpQPSIAMwbJLBNhZ7bMqub7OjpdtPCnVp7TPtIioO
+	8G2Q==
+X-Gm-Message-State: APjAAAX8hT2IcZtVJBJV8FSzX5GFK0x2QZdDMb4XwOob2PTdQSvuhQrT
+	HlC4KNV8Evb1sMWsexDXX0uHGh8BRdZZr+FBY54DEA==
+X-Google-Smtp-Source: APXvYqz8WSnZHCiSMY8evNbYy6rGt000+G7S12wvp8Wc5fmrdry2U54nAdnQtL9RMuI7EznrCDK0y6isEYE8i68tBeQ=
+X-Received: by 2002:a05:6602:104:: with SMTP id
+	s4mr25629142iot.200.1562081383169; 
+	Tue, 02 Jul 2019 08:29:43 -0700 (PDT)
+MIME-Version: 1.0
 References: <2566dd81001d4f4891db00ffb2419a21@trijicon.com>
 	<CAJTo0LZcAF+F5SF1ifK+wB5ZzZjDXhZHn0a-Q+7wA1FRqJRDgQ@mail.gmail.com>
-In-Reply-To: <CAJTo0LZcAF+F5SF1ifK+wB5ZzZjDXhZHn0a-Q+7wA1FRqJRDgQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.0.10.224]
-x-exclaimer-md-config: 74e93b01-4765-4777-9f3e-4485472e4022
-MIME-Version: 1.0
-X-Barracuda-Connect: wi102wep.trijicon1.com[10.0.0.99]
-X-Barracuda-Start-Time: 1562081114
-X-Barracuda-URL: https://wi11bsf.trijicon1.com:443/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at trijicon.com
-X-Barracuda-Scan-Msg-Size: 3421
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.73416
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
+	<9b82304b0ac6483b9de2eedbc6a961f7@trijicon.com>
+In-Reply-To: <9b82304b0ac6483b9de2eedbc6a961f7@trijicon.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 2 Jul 2019 16:29:30 +0100
+Message-ID: <CAJTo0LbvoJNCAncDpSk-yUQSN=x3Oge4R-bQJV-6MzYTKHmvwg@mail.gmail.com>
+To: Chad Gong <cgong@trijicon.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Poky build errors, help is needed
 X-BeenThere: yocto@yoctoproject.org
@@ -66,70 +70,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Jul 2019 15:25:16 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 02 Jul 2019 15:29:44 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Um9zcywgR2FicmllbGUsDQoNCkkgc3dpdGNoZWQgdG8gYnJhbmNoIDIuNy4gU3RpbGwgaGF2ZSB0
-aGUgc2FtZSBwcm9ibGVtIGFzIHNob3duIGJlbG93Lg0KDQpFUlJPUjogb3BrZy11dGlscy0wLjQu
-MC1yMCBkb19mZXRjaDogQ2hlY2tzdW0gZmFpbHVyZSBmZXRjaGluZyBodHRwOi8vZ2l0LnlvY3Rv
-cHJvamVjdC5vcmcvY2dpdC9jZ2l0LmNnaS9vcGtnLXV0aWxzL3NuYXBzaG90L29wa2ctdXRpbHMt
-MC40LjAudGFyLmd6DQoNCg0KV2hlbiB1c2luZyB3Z2V0LCB0aGUgZmlsZXMgY2FuIGJlIGRvd25s
-b2FkZWQgYXMgc2hvd24gYmVsb3cuDQoNCiQgd2dldCBodHRwOi8vZ2l0LnlvY3RvcHJvamVjdC5v
-cmcvY2dpdC9jZ2l0LmNnaS9vcGtnLXV0aWxzL3NuYXBzaG90L29wa2ctdXRpbHMtMC40LjAudGFy
-Lmd6DQotLTIwMTktMDctMDEgMjA6MTE6MDEtLSAgaHR0cDovL2dpdC55b2N0b3Byb2plY3Qub3Jn
-L2NnaXQvY2dpdC5jZ2kvb3BrZy11dGlscy9zbmFwc2hvdC9vcGtnLXV0aWxzLTAuNC4wLnRhci5n
-eg0KUmVzb2x2aW5nIGdpdC55b2N0b3Byb2plY3Qub3JnIChnaXQueW9jdG9wcm9qZWN0Lm9yZyku
-Li4gMTQwLjIxMS4xNjkuNTYNCkNvbm5lY3RpbmcgdG8gZ2l0LnlvY3RvcHJvamVjdC5vcmcgKGdp
-dC55b2N0b3Byb2plY3Qub3JnKXwxNDAuMjExLjE2OS41Nnw6ODAuLi4gY29ubmVjdGVkLg0KSFRU
-UCByZXF1ZXN0IHNlbnQsIGF3YWl0aW5nIHJlc3BvbnNlLi4uIDIwMCBPSw0KTGVuZ3RoOiB1bnNw
-ZWNpZmllZCBbYXBwbGljYXRpb24veC1nemlwXQ0KU2F2aW5nIHRvOiDigJhvcGtnLXV0aWxzLTAu
-NC4wLnRhci5neuKAmQ0KDQpvcGtnLXV0aWxzLTAuNC4wLnRhci5neiAgICAgICAgICAgWyA8PT4g
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIF0gIDI5LjgySyAgLS0u
-LUtCL3MgICAgaW4gMC4wMDVzDQoNCjIwMTktMDctMDEgMjA6MTE6MDIgKDUuOTcgTUIvcykgLSDi
-gJhvcGtnLXV0aWxzLTAuNC4wLnRhci5neuKAmSBzYXZlZCBbMzA1MzZdDQoNCg0KDQoNCg0KQ2hh
-ZCBHb25nDQpFbGVjdHJpY2FsIEVuZ2luZWVyDQoNClRyaWppY29uLCBJbmMuDQoNCg0KIHwgUC5P
-LiBCb3ggOTMwMDU5DQpXaXhvbSwgTWljaGlnYW4gNDgzOTMgVVMNCmNnb25nQHRyaWppY29uLmNv
-bSB8DQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBCdXJ0b24sIFJvc3MgPHJv
-c3MuYnVydG9uQGludGVsLmNvbT4NClNlbnQ6IFR1ZXNkYXksIEp1bHkgMDIsIDIwMTkgOTowMCBB
-TQ0KVG86IENoYWQgR29uZyA8Y2dvbmdAdHJpamljb24uY29tPg0KQ2M6IHlvY3RvQHlvY3RvcHJv
-amVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIFBva3kgYnVpbGQgZXJyb3JzLCBoZWxwIGlz
-IG5lZWRlZA0KDQpDQVVUSU9OOiBUaGlzIGVtYWlsIG9yaWdpbmF0ZWQgZnJvbSBvdXRzaWRlIHlv
-dXIgb3JnYW5pemF0aW9uLiBFeGVyY2lzZSBjYXV0aW9uIHdoZW4gb3BlbmluZyBhdHRhY2htZW50
-cyBvciBjbGlja2luZyBsaW5rcywgZXNwZWNpYWxseSBmcm9tIHVua25vd24gc2VuZGVycy4NCg0K
-T24gVHVlLCAyIEp1bCAyMDE5IGF0IDEzOjUzLCBDaGFkIEdvbmcgPGNnb25nQHRyaWppY29uLmNv
-bT4gd3JvdGU6DQo+IFdBUk5JTkc6IG00LW5hdGl2ZS0xLjQuMTgtcjAgZG9fZmV0Y2g6IEZhaWxl
-ZCB0byBmZXRjaCBVUkwNCj4gaHR0cDovL2Z0cC5nbnUub3JnL2dudS9tNC9tNC0xLjQuMTgudGFy
-Lmd6LCBhdHRlbXB0aW5nIE1JUlJPUlMgaWYNCj4gYXZhaWxhYmxlDQoNCiQgd2dldCBodHRwOi8v
-ZnRwLmdudS5vcmcvZ251L200L200LTEuNC4xOC50YXIuZ3oNClVSTCB0cmFuc2Zvcm1lZCB0byBI
-VFRQUyBkdWUgdG8gYW4gSFNUUyBwb2xpY3kNCi0tMjAxOS0wNy0wMiAxMzo1OTozNC0tICBodHRw
-czovL2Z0cC5nbnUub3JnL2dudS9tNC9tNC0xLjQuMTgudGFyLmd6DQpSZXNvbHZpbmcgZnRwLmdu
-dS5vcmcgKGZ0cC5nbnUub3JnKS4uLiAyMDkuNTEuMTg4LjIwLCAyMDAxOjQ3MDoxNDI6Mzo6YiBD
-b25uZWN0aW5nIHRvIGZ0cC5nbnUub3JnIChmdHAuZ251Lm9yZyl8MjA5LjUxLjE4OC4yMHw6NDQz
-Li4uIGNvbm5lY3RlZC4NCkhUVFAgcmVxdWVzdCBzZW50LCBhd2FpdGluZyByZXNwb25zZS4uLiAy
-MDAgT0sNCkxlbmd0aDogMjAwNjY0MyAoMS45TSkgW2FwcGxpY2F0aW9uL3gtZ3ppcF0gU2F2aW5n
-IHRvOiDigJhtNC0xLjQuMTgudGFyLmd64oCZDQoNCm00LTEuNC4xOC50YXIuZ3oNCjEwMCVbPT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT5dDQogIDEuOTFNICAxLjM4TUIvcyAgICBpbiAxLjRzDQoNCjIw
-MTktMDctMDIgMTM6NTk6MzYgKDEuMzggTUIvcykgLSDigJhtNC0xLjQuMTgudGFyLmd64oCZIHNh
-dmVkIFsyMDA2NjQzLzIwMDY2NDNdDQoNCkxvb2tzIGxpa2UgeW91J3ZlIGdvdCBuZXR3b3JraW5n
-IHByb2JsZW1zIGluc2lkZSB0aGUgdmlydHVhbCBtYWNoaW5lLg0KVmVyaWZ5IHVzaW5nIHdnZXQg
-dGhhdCB5b3UgY2FuIGRvd25sb2FkIHRob3NlIGZpbGVzIHN1Y2Nlc3NmdWxseS4NCg0KUm9zcw0K
-DQoNCg0KVGhpcyBlbGVjdHJvbmljIG1lc3NhZ2UgY29udGFpbnMgaW5mb3JtYXRpb24gdGhhdCBt
-YXkgYmUNCmNvbmZpZGVudGlhbCwgcHJpdmlsZWdlZCwgcHJvcHJpZXRhcnksIG9yIHN1YmplY3Qg
-dG8gdGhlIGV4cG9ydCBjb250cm9sIGxhd3Mgb2YNCnRoZSBVbml0ZWQgU3RhdGVzLCBpbmNsdWRp
-bmcgdGhlIEFybXMgRXhwb3J0IENvbnRyb2wgQWN0ICgyMiBVLlMuQy4gMjU3MSBldA0Kc2VxLiks
-IHRoZSBJbnRlcm5hdGlvbmFsIFRyYWZmaWMgaW4gQXJtcyBSZWd1bGF0aW9ucyAgKDIyIEMuRi5S
-LiBQYXJ0IDEyMA0KZXQgc2VxLiksIGFuZC9vciB0aGUgRXhwb3J0IEFkbWluaXN0cmF0aW9uIFJl
-Z3VsYXRpb25zICgxNSBDLkYuUi4gUGFydCA3MzAgZXQNCnNlcS4pLiAgVGhpcyBpbmZvcm1hdGlv
-biBpcyBpbnRlbmRlZCBmb3IgdGhlIHVzZSBvZiB0aGUgYWRkcmVzc2VlIG9ubHksIGFuZA0KaWYg
-eW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwgYW55IGRpc2Nsb3N1cmUsIGNvcHlp
-bmcsIGRpc3RyaWJ1dGlvbiwNCnByaW50aW5nLCBvciBhbnkgb3RoZXIgdXNlIG9mLCB0aGUgY29u
-dGVudHMgb2YgdGhpcyBtZXNzYWdlIGlzIHByb2hpYml0ZWQuDQpBbnkgdHJhbnNmZXIsIHJldHJh
-bnNmZXIsIG9yIGRpc2Nsb3N1cmUgb2YgdGhpcyBkYXRhIHRvIGEgRm9yZWlnbiBQZXJzb24gd2l0
-aG91dA0KVW5pdGVkIFN0YXRlcyBHb3Zlcm5tZW50IGF1dGhvcml6YXRpb24gaXMgYWxzbyBwcm9o
-aWJpdGVkLiAgSWYgeW91IGhhdmUNCnJlY2VpdmVkIHRoaXMgbWVzc2FnZSBpbiBlcnJvciwgcGxl
-YXNlIG5vdGlmeSB0aGUgc2VuZGVyIGFuZCBkZXN0cm95IHRoZQ0Kb3JpZ2luYWwgbWVzc2FnZS4N
-Cg==
+Check that the checksum of the file you grabbed matches the recipe.
+There's a MD5 in the recipe that it is comparing against.
+
+Ross
+
+On Tue, 2 Jul 2019 at 16:25, Chad Gong <cgong@trijicon.com> wrote:
+>
+> Ross, Gabriele,
+>
+> I switched to branch 2.7. Still have the same problem as shown below.
+>
+> ERROR: opkg-utils-0.4.0-r0 do_fetch: Checksum failure fetching http://git=
+.yoctoproject.org/cgit/cgit.cgi/opkg-utils/snapshot/opkg-utils-0.4.0.tar.gz
+>
+>
+> When using wget, the files can be downloaded as shown below.
+>
+> $ wget http://git.yoctoproject.org/cgit/cgit.cgi/opkg-utils/snapshot/opkg=
+-utils-0.4.0.tar.gz
+> --2019-07-01 20:11:01--  http://git.yoctoproject.org/cgit/cgit.cgi/opkg-u=
+tils/snapshot/opkg-utils-0.4.0.tar.gz
+> Resolving git.yoctoproject.org (git.yoctoproject.org)... 140.211.169.56
+> Connecting to git.yoctoproject.org (git.yoctoproject.org)|140.211.169.56|=
+:80... connected.
+> HTTP request sent, awaiting response... 200 OK
+> Length: unspecified [application/x-gzip]
+> Saving to: =E2=80=98opkg-utils-0.4.0.tar.gz=E2=80=99
+>
+> opkg-utils-0.4.0.tar.gz           [ <=3D>                                =
+            ]  29.82K  --.-KB/s    in 0.005s
+>
+> 2019-07-01 20:11:02 (5.97 MB/s) - =E2=80=98opkg-utils-0.4.0.tar.gz=E2=80=
+=99 saved [30536]
+>
+>
+>
+>
+>
+> Chad Gong
+> Electrical Engineer
+>
+> Trijicon, Inc.
+>
+>
+>  | P.O. Box 930059
+> Wixom, Michigan 48393 US
+> cgong@trijicon.com |
+>
+> -----Original Message-----
+> From: Burton, Ross <ross.burton@intel.com>
+> Sent: Tuesday, July 02, 2019 9:00 AM
+> To: Chad Gong <cgong@trijicon.com>
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Poky build errors, help is needed
+>
+> CAUTION: This email originated from outside your organization. Exercise c=
+aution when opening attachments or clicking links, especially from unknown =
+senders.
+>
+> On Tue, 2 Jul 2019 at 13:53, Chad Gong <cgong@trijicon.com> wrote:
+> > WARNING: m4-native-1.4.18-r0 do_fetch: Failed to fetch URL
+> > http://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz, attempting MIRRORS if
+> > available
+>
+> $ wget http://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz
+> URL transformed to HTTPS due to an HSTS policy
+> --2019-07-02 13:59:34--  https://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz
+> Resolving ftp.gnu.org (ftp.gnu.org)... 209.51.188.20, 2001:470:142:3::b C=
+onnecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... connected.
+> HTTP request sent, awaiting response... 200 OK
+> Length: 2006643 (1.9M) [application/x-gzip] Saving to: =E2=80=98m4-1.4.18=
+.tar.gz=E2=80=99
+>
+> m4-1.4.18.tar.gz
+> 100%[=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D>]
+>   1.91M  1.38MB/s    in 1.4s
+>
+> 2019-07-02 13:59:36 (1.38 MB/s) - =E2=80=98m4-1.4.18.tar.gz=E2=80=99 save=
+d [2006643/2006643]
+>
+> Looks like you've got networking problems inside the virtual machine.
+> Verify using wget that you can download those files successfully.
+>
+> Ross
+>
+>
+>
+> This electronic message contains information that may be
+> confidential, privileged, proprietary, or subject to the export control l=
+aws of
+> the United States, including the Arms Export Control Act (22 U.S.C. 2571 =
+et
+> seq.), the International Traffic in Arms Regulations  (22 C.F.R. Part 120
+> et seq.), and/or the Export Administration Regulations (15 C.F.R. Part 73=
+0 et
+> seq.).  This information is intended for the use of the addressee only, a=
+nd
+> if you are not the intended recipient, any disclosure, copying, distribut=
+ion,
+> printing, or any other use of, the contents of this message is prohibited=
+.
+> Any transfer, retransfer, or disclosure of this data to a Foreign Person =
+without
+> United States Government authorization is also prohibited.  If you have
+> received this message in error, please notify the sender and destroy the
+> original message.
 
