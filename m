@@ -1,67 +1,69 @@
-Return-Path: <gabbla.malist@gmail.com>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 73C7FE00D6B; Tue,  2 Jul 2019 02:06:00 -0700 (PDT)
+	id 3C810E00D6B; Tue,  2 Jul 2019 03:04:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (gabbla.malist[at]gmail.com)
+	provider *      (jupiter.hce[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.181 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.166.53 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com
-	[209.85.208.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A1B9E00BB5
-	for <yocto@yoctoproject.org>; Tue,  2 Jul 2019 02:05:58 -0700 (PDT)
-Received: by mail-lj1-f181.google.com with SMTP id r9so16086154ljg.5
-	for <yocto@yoctoproject.org>; Tue, 02 Jul 2019 02:05:58 -0700 (PDT)
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com
+	[209.85.166.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27E35E0097C
+	for <yocto@yoctoproject.org>; Tue,  2 Jul 2019 03:04:27 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id u19so27115480ior.9
+	for <yocto@yoctoproject.org>; Tue, 02 Jul 2019 03:04:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=s7tCtn0NXrP8eR8LNMUkjUGut578zmCOh/oG07xRg9Q=;
-	b=f5dNkltrSemqSy4nE1Jf+zVmgryruqUzMIOcZLw7xiWfZqodkGcdIAl474n4ZM7Pt5
-	dM9gCjcVD9jhDoWQUrfRin2cUDgixpWnz8B3LlGfx40BB65ZWvVl1PntpdEZG0ydFbhM
-	dKDNL8reshBweAxZeENwoMtaVKbv13REt0EjFW7h8UkivULnQIGS31/zLQG0eh/MRt8q
-	5qF9YEK1/KKnpxnkz+cR4Nrj9lRwi32qEF2Pl6BHeoTgPgIul+H74boSfN5CdswoRovB
-	VGqtCMNIT/ZeqL5wscFK3Pj8CWbRVpJ9Im084wr2WzsHK2B3NopshxYc2b7NU+UZeudd
-	1XEg==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=9WAqeE+lm1oy+QLDz3m4LpHUZm55EpMXRFM4wzFDKEA=;
+	b=EgE3XOPpSpqr63tYCJMQqobpynuBSiX2RnzpsZfpP+ZFYt4W0ikVDD3O8R7qQ+nL9V
+	uQua/UFleCCQvcPNqmyRgzCuVP8Uf/aVawfJ1yNd6Y+WzdRM3pksvG1UhJd9sfCEXwtg
+	atNVFRxGuOqwLxx1EUB7wsMwHXzCBkTP5+sqQK2Ln37IGz57ktR/RJ3oRvkuNgJWawcz
+	BAaZM5BweVIVwFLLEli5oRb4BoIJqL0BEysyWVwnfzcjuXICarFBRfs2P3BZKZXEXg1M
+	MzSQJU0Y94XRWZp6Ynw2tpNxBcKFGXmo4zs+ReHYbgORRIAwPcuKIFKIAnN6FhLnKNQM
+	OhCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc;
-	bh=s7tCtn0NXrP8eR8LNMUkjUGut578zmCOh/oG07xRg9Q=;
-	b=k/gGUzb0HKTx8hk0uLTBYOjzZZa8+nv44e4mhsxYHx5NnXKWDODtBzDBG8220m3wOX
-	iz8kzOtFQ4uSzrMXJRXX6ZsHfZLXPKsHU/08ZB8kZN2dwLpdmr7d+LnpZcyC4o2moMSt
-	2UUbuSEqKMamRZZ0mmwAlBE5vJ28dUeXRxb7CBqc0THXVr511NzUfE8619Q9NBXKUBHc
-	R09f3HQvG0L4OZiTbmM5N1mYL+mXPszzItFPsGA4Uv+MBB90Q+tYguVWQluclw8YeDNU
-	2w17vGOg4zGTccAdRt/uJ+5bSfAGZ4mcEV347W0crKtqT6LvolvY5PrIgOstM2ebUOQw
-	BGsg==
-X-Gm-Message-State: APjAAAVCd5K1AeaE4oorg+/v91rAqguUe7vlsYDmpvNAKCrUSo7nne0G
-	aRzmSjDL2M4M3Ia3rNdNyNmhFrnpeSbARKgRF2/QSg==
-X-Google-Smtp-Source: APXvYqyLqBwiKlyW6wSmAtuAR6keYEeOa8xQc5W5H92y18HRlT0BTBS2X4YZfFGI0vw8XPCUN6r5pVKJ20DYzbpPPlc=
-X-Received: by 2002:a2e:7604:: with SMTP id r4mr16733517ljc.225.1562058357283; 
-	Tue, 02 Jul 2019 02:05:57 -0700 (PDT)
+	bh=9WAqeE+lm1oy+QLDz3m4LpHUZm55EpMXRFM4wzFDKEA=;
+	b=cQV4udqp0YZqoswfPx2Iw4mickeyXuIx0ISNRBmtA70I70Jvolz8xnF95yaQmVND6Q
+	H8YcS9dnBeQ5bg0r7FpyTkQANbhJ5qNKBZ7nG7r1siScvvOGYr1UQCsXgTGNbQhA3IC5
+	2e3jdXiXzWliBEkNKxw5zsrWdPUNCYzPu+EvexmSnqKMsIPdnh1lHw2ZPezi65Ugax8R
+	j4A+24S0lWe3x63EC7ZpuEJinmBCkquRwJXxauGYUeckflYrwClC62F5zagdZ2zo2Fnq
+	9HEcCm/fMJLLsPhV8e2wLHM03Q8X4Nk+vuzZUiutokiKS596stw2OOmQKnqo43wwJFW1
+	Z1Mw==
+X-Gm-Message-State: APjAAAVtm3BntCsTmYYz/ab2FGwZdsS561D0Tae8eO9VxsG9XUG67vEj
+	e5f+60xHIdC47JVCsm3rU/vAO5iahsr9CM/6WQcsMhi7
+X-Google-Smtp-Source: APXvYqwvc7s4JBfho3lL9pWTqjPrFuLHdB8qikPWSTVw/3JEQO9aLejKHgZKZeRa2+eoDuXycnooN8S4LKQ7i+f6lgk=
+X-Received: by 2002:a02:6996:: with SMTP id e144mr35449261jac.47.1562061865951;
+	Tue, 02 Jul 2019 03:04:25 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAAx3WaCCs+z5ctCrmM25YHh84S2L9y+E85KnuDvKNNFqe304Uw@mail.gmail.com>
-	<CAAx3WaCPyfPKHDsrHa5EP_WxSAg0xsr+HW2DwiRem7N6pQmOWw@mail.gmail.com>
-	<d2d4cc62-efb4-1b2b-0cae-65fa52b4a36d@topic.nl>
-In-Reply-To: <d2d4cc62-efb4-1b2b-0cae-65fa52b4a36d@topic.nl>
-From: Gabriele Zampieri <gabbla.malist@gmail.com>
-Date: Tue, 2 Jul 2019 11:05:45 +0200
-Message-ID: <CAAx3WaAnpZr96xoWc81FEnWn9C8wgxgPZt66pbdmPkRMH5dE_w@mail.gmail.com>
-To: Mike Looijmans <mike.looijmans@topic.nl>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Getting a package PV from another
+Received: by 2002:ac0:8a3d:0:0:0:0:0 with HTTP;
+	Tue, 2 Jul 2019 03:04:25 -0700 (PDT)
+In-Reply-To: <CAAx3WaD_iMtz_J0HYf0NULAxVSSNppVo6gtUx530pvqvb5qzag@mail.gmail.com>
+References: <CAA=hcWS547t=FCMVfxhvWuEtLD_sfp8RrEGwqQQ5de2XScxb2A@mail.gmail.com>
+	<CAAx3WaCNkhNS38tsYaycsiNzeJYN_YjXoGak4Yd1QxSUWQmYPA@mail.gmail.com>
+	<CAA=hcWSr42PPkOiUkz0sG3F7Nxp4eWEi4mGVn85Pgg4yt6Az-g@mail.gmail.com>
+	<CAAx3WaD_iMtz_J0HYf0NULAxVSSNppVo6gtUx530pvqvb5qzag@mail.gmail.com>
+From: JH <jupiter.hce@gmail.com>
+Date: Tue, 2 Jul 2019 20:04:25 +1000
+Message-ID: <CAA=hcWQR6KtwN69S1w2egbFEhGY1XesdMBUTtesUy7NTvh-JvA@mail.gmail.com>
+To: Gabriele Zampieri <gabbla.malist@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Allow choose of U-Boot config for machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,124 +75,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Jul 2019 09:06:00 -0000
-Content-Type: multipart/alternative; boundary="0000000000008123f6058caf0dde"
-
---0000000000008123f6058caf0dde
+X-List-Received-Date: Tue, 02 Jul 2019 10:04:28 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Mike,
+Thank you very much Gabriele, appreciate it.
 
-thank you for your reply. The meta-layer that we use are locked (they won't
-be changed once in production, so the git hash won't tell much about). I
-need that information for tracking/distribution purposes, since I already
-have a way to get it at runtime.
-
-Gabriele
-
-Il giorno lun 1 lug 2019 alle ore 15:23 Mike Looijmans <
-mike.looijmans@topic.nl> ha scritto:
-
-> The version of your OE layer is all the version that you'll ever
-> (technically)
-> need. That version (usually a git hash) dictates all other versions.
+On 7/2/19, Gabriele Zampieri <gabbla.malist@gmail.com> wrote:
+> Since UBOOT_CONFIG is a standard property, I suggest you to read the
+> following links:
 >
-> When asked for version numbers of included packages, I always just dump
-> the
-> manifest file into their lap.
+>    -
 >
-> You can also ask and report the version numbers at runtime (e.g. using
-> opkg or
-> dpkg). That also prevents lying to your users :)
+> https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-UBOOT_CONFIG
+>    -
 >
-> On 01-07-19 11:28, Gabriele Zampieri wrote:
-> > Up, with more details:
-> >
-> > I have a top recipe that depends on *my-image:do_build*. I'd like to
-> retrieve
-> > the PV of a couple of packages (from that top recipe) that are used to
-> mark
-> > our custom software. Any suggestions?
-> >
-> > Gabriele
-> >
-> > Il giorno ven 28 giu 2019 alle ore 11:25 Gabriele Zampieri
-> > <gabbla.malist@gmail.com <mailto:gabbla.malist@gmail.com>> ha scritto:
-> >
-> >     Hi all,
-> >
-> >     is there a way to get a specific package version from another?
-> >
-> >     Best regards,
-> >     Gabriele
-> >
-> >
+> https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-UBOOT_MACHINE
 >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Please not that the links I provided refers to the latest documentation,
+> you should check the docs for your YP version.
+>
+> About testing, I have no idea about how to test uboot without the target
+> board. If you are planning to use a commercial solution which is supported
+> by Yocto, you should be safe enough for now.
+>
+> Gabriele
+>
+> Il giorno mar 2 lug 2019 alle ore 09:40 JH <jupiter.hce@gmail.com> ha
+> scritto:
+>
+>> Thanks Gabriele, you are right, it did not work in command line but it
+>> did not complain after UBOOT_CONFIG = "nand" to local.conf, how can I
+>> am sure it is built to boot from nand? I don't have a board to try
+>> yet.
+>>
+>> Thank you very much.
+>>
+>> Kind regards,
+>>
+>> - jh
+>>
+>>
+>> On 7/2/19, Gabriele Zampieri <gabbla.malist@gmail.com> wrote:
+>> > Hi,
+>> >
+>> > you must use double quotes around nand, so:
+>> > UBOOT_CONFIG = "nand"
+>> >
+>> > However I cannot guarantee this line will be the solution, I usually
+>> > use
+>> a
+>> > customized uboot.
+>> >
+>> > Gabriele
+>> >
+>> > Il giorno mar 2 lug 2019 alle ore 04:07 JH <jupiter.hce@gmail.com> ha
+>> > scritto:
+>> >
+>> >> Hi,
+>> >>
+>> >> The imx6ullevk.conf defined sdcard for booting on imx6 EVK:
+>> >>
+>> >> imx6ullevk.conf
+>> >>
+>> >> UBOOT_CONFIG ??= "sd"
+>> >> UBOOT_CONFIG[sd] = "mx6ull_14x14_evk_config,sdcard"
+>> >> UBOOT_CONFIG[mfgtool] = "mx6ull_14x14_evk_config"
+>> >>
+>> >> I need to change it for a customized board referenced from imx6 EVK
+>> >> but booting from NAND, there are some blogs said it can be done to add
+>> >> UBOOT_CONFIG=nand either in local.conf or command line. I tried it did
+>> >> not work:
+>> >>
+>> >> ERROR: Unable to start bitbake server (None)
+>> >> --- Starting bitbake server pid 2673 at 2019-07-02 11:54:24.011086 ---
+>> >> ERROR: local.conf:34: unparsed line: 'UBOOT_CONFIG=nand'
+>> >>
+>> >> What should be a proper process to overwrite imx6ullevk.conf
+>> >> UBOOT_CONFIG from sdcard to nand?
+>> >>
+>> >> Thank you.
+>> >>
+>> >> Kind regards,
+>> >>
+>> >> - JH
+>> >> --
+>> >> _______________________________________________
+>> >> yocto mailing list
+>> >> yocto@yoctoproject.org
+>> >> https://lists.yoctoproject.org/listinfo/yocto
+>> >>
+>> >
+>>
 >
 
---0000000000008123f6058caf0dde
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi Mike,</div><div><br></div><div>thank you for your =
-reply. The meta-layer that we use are locked (they won&#39;t be changed onc=
-e in production, so the git hash won&#39;t tell much about). I need that in=
-formation for tracking/distribution purposes, since I already have a way to=
- get it at runtime.</div><div><br></div><div>Gabriele<br></div></div><br><d=
-iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Il giorno lu=
-n 1 lug 2019 alle ore 15:23 Mike Looijmans &lt;<a href=3D"mailto:mike.looij=
-mans@topic.nl">mike.looijmans@topic.nl</a>&gt; ha scritto:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex">The version of your OE layer is =
-all the version that you&#39;ll ever (technically) <br>
-need. That version (usually a git hash) dictates all other versions.<br>
-<br>
-When asked for version numbers of included packages, I always just dump the=
- <br>
-manifest file into their lap.<br>
-<br>
-You can also ask and report the version numbers at runtime (e.g. using opkg=
- or <br>
-dpkg). That also prevents lying to your users :)<br>
-<br>
-On 01-07-19 11:28, Gabriele Zampieri wrote:<br>
-&gt; Up, with more details:<br>
-&gt; <br>
-&gt; I have a top recipe that depends on *my-image:do_build*. I&#39;d like =
-to retrieve <br>
-&gt; the PV of a couple of packages (from that top recipe) that are used to=
- mark <br>
-&gt; our custom software. Any suggestions?<br>
-&gt; <br>
-&gt; Gabriele<br>
-&gt; <br>
-&gt; Il giorno ven 28 giu 2019 alle ore 11:25 Gabriele Zampieri <br>
-&gt; &lt;<a href=3D"mailto:gabbla.malist@gmail.com" target=3D"_blank">gabbl=
-a.malist@gmail.com</a> &lt;mailto:<a href=3D"mailto:gabbla.malist@gmail.com=
-" target=3D"_blank">gabbla.malist@gmail.com</a>&gt;&gt; ha scritto:<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Hi all,<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0is there a way to get a specific package version fr=
-om another?<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0 =C2=A0Best regards,<br>
-&gt;=C2=A0 =C2=A0 =C2=A0Gabriele<br>
-&gt; <br>
-&gt; <br>
-<br>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
-
---0000000000008123f6058caf0dde--
