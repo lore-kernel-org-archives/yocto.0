@@ -1,60 +1,62 @@
-Return-Path: <btv1==086c9cf8106==cgong@trijicon.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7D000E00C7D; Tue,  2 Jul 2019 05:52:22 -0700 (PDT)
+	id 34011E00D39; Tue,  2 Jul 2019 06:00:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 968 seconds by postgrey-1.32 at yocto-www;
-	Tue, 02 Jul 2019 05:52:21 PDT
-Received: from WI11BFS.trijicon.com
-	(50-253-248-89-static.hfc.comcastbusiness.net [50.253.248.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A5C8E0097C
-	for <yocto@yoctoproject.org>; Tue,  2 Jul 2019 05:52:21 -0700 (PDT)
-X-ASG-Debug-ID: 1562070972-1008250bbaa3d2b0001-yzSStA
-Received: from WI102WEP.trijicon1.com (wi102wep.trijicon1.com [10.0.0.99]) by
-	WI11BFS.trijicon.com with ESMTP id hYyodJPQh2vOooJQ for
-	<yocto@yoctoproject.org>; Tue, 02 Jul 2019 08:36:12 -0400 (EDT)
-X-Barracuda-Envelope-From: cgong@trijicon.com
-Received: from WI102WEP.trijicon1.com (10.0.0.99) by WI102WEP.trijicon1.com
-	(10.0.0.99) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1034.26;
-	Tue, 2 Jul 2019 08:36:05 -0400
-Received: from WI102WEP.trijicon1.com ([::1]) by WI102WEP.trijicon1.com
-	([::1]) with mapi id 15.01.1034.033; Tue, 2 Jul 2019 08:36:05 -0400
-From: Chad Gong <cgong@trijicon.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Poky build errors, help is needed
-X-ASG-Orig-Subj: Poky build errors, help is needed
-Thread-Index: AdUw0o8Uu4i3AJLIQi68br/66gdncg==
-Date: Tue, 2 Jul 2019 12:36:04 +0000
-Message-ID: <2566dd81001d4f4891db00ffb2419a21@trijicon.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.0.10.224]
-x-exclaimer-md-config: 74e93b01-4765-4777-9f3e-4485472e4022
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.54 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com
+	[209.85.166.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03CC5E00C09
+	for <yocto@yoctoproject.org>; Tue,  2 Jul 2019 06:00:40 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id i10so22908826iol.13
+	for <yocto@yoctoproject.org>; Tue, 02 Jul 2019 06:00:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=fNoQYuilG1sehg+S3cZxGH/v97hLDgDcRLch6xqGbdg=;
+	b=S1xnvztAZhANEHMIQBoxt5Sq0HIGi16/PgRRQkBQFFM7DuyD3pmO3R7UU8JKb9jpls
+	0xG5vWo9bf5YJJtsqLiRIXI7z00nOGCC9rUcyC2PqqrFQehLPwjLRDOXgMYavSr1Crt/
+	T+jekoT7DwmiJBZv4BFSbWBEtL69zSzjFneBqdVQvcx65kBJ1vGr+v2fok9kURIpyMJf
+	KH12nD4u1pIjjoq7Aherkx0iHrgQRUoZfs10/sCbWD91h+QE3D4fvMs1x82gfuAhIq6I
+	Ycnfv+y9WLhnTl209pCynej3jcQqlYzUJqipFE4ZgRIYwNdslApTNLGgd0VUpshV+4ER
+	jzuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=fNoQYuilG1sehg+S3cZxGH/v97hLDgDcRLch6xqGbdg=;
+	b=Vm+9ej06tUHzGWS/sSan/xiwkEkBKcw3XT2iT1o86Hu+gG4dZjN/G7iiMMB17DdtvI
+	OxkivLKaeN1mgfcgrmoAH6yTxVY/oXzJUXKttccRbWYgUm7RmTM8meveY4z4/IspcmMt
+	asDBfFFtszKMyC/3PZcFn3fEGcbXH7xn8ecCFv3NvOD0/QbdAyv7ZYtG4X6aBdI/3MI0
+	T91QFkCv0wooJXkzFJxISJu8Wl2xcGLnZsDJo0rmlfgooNT1RAFzwQXQUwri6Oz82gfU
+	I/PdzhUg/DkmL7+DMaRO1rOhVHOXhRzkn3eo3NVNYujIbHVpkCn6g+C6p3sf+MsmjNdK
+	B3Sg==
+X-Gm-Message-State: APjAAAWWrgXWwNWffIfenioTBSVZjveidO5rh55DrQLIlHbAJM63B7GN
+	zyOv94yLC6gO5UAeaa18/XzOkRILWaBLLZ8/IiYK/g==
+X-Google-Smtp-Source: APXvYqxguRAOgXIVrMsYaQB7RaxjR45k/W2BjocQ/KRiEso50M8Mp2bVkkv/IMQOq3RyH+6Jeb/eiGjGPU0knDSj8Ds=
+X-Received: by 2002:a05:6602:104:: with SMTP id
+	s4mr24850119iot.200.1562072440503; 
+	Tue, 02 Jul 2019 06:00:40 -0700 (PDT)
 MIME-Version: 1.0
-X-Barracuda-Connect: wi102wep.trijicon1.com[10.0.0.99]
-X-Barracuda-Start-Time: 1562070972
-X-Barracuda-URL: https://wi11bsf.trijicon1.com:443/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at trijicon.com
-X-Barracuda-Scan-Msg-Size: 8843
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.73410
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in message
-Subject: Poky build errors, help is needed
+References: <2566dd81001d4f4891db00ffb2419a21@trijicon.com>
+In-Reply-To: <2566dd81001d4f4891db00ffb2419a21@trijicon.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 2 Jul 2019 14:00:28 +0100
+Message-ID: <CAJTo0LZcAF+F5SF1ifK+wB5ZzZjDXhZHn0a-Q+7wA1FRqJRDgQ@mail.gmail.com>
+To: Chad Gong <cgong@trijicon.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Poky build errors, help is needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,175 +68,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Jul 2019 12:52:22 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_2566dd81001d4f4891db00ffb2419a21trijiconcom_"
+X-List-Received-Date: Tue, 02 Jul 2019 13:00:42 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
---_000_2566dd81001d4f4891db00ffb2419a21trijiconcom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+On Tue, 2 Jul 2019 at 13:53, Chad Gong <cgong@trijicon.com> wrote:
+> WARNING: m4-native-1.4.18-r0 do_fetch: Failed to fetch URL http://ftp.gnu=
+.org/gnu/m4/m4-1.4.18.tar.gz, attempting MIRRORS if available
 
-SGksDQoNCkkgYW0gbmV3IHRvIFlvY3RvIHByb2plY3QgYW5kIHRyeSB0byBidWlsZCBteSBmaXJz
-dCB5b2N0byBwcm9qZWN0IGJ5IGZvbGxvd2luZyBpbnN0cnVjdGlvbnMgb24gaHR0cHM6Ly93d3cu
-eW9jdG9wcm9qZWN0Lm9yZy9kb2NzL2N1cnJlbnQvYnJpZWYteW9jdG9wcm9qZWN0cXMvYnJpZWYt
-eW9jdG9wcm9qZWN0cXMuaHRtbC4gSSBjaGVja2VkIG91dCBicmFuY2ggeW9jdG8tMi41LjMsIGFu
-ZCB0cmllZCB0byBidWlsZCB0YXJnZXRzLCBzdWNoIGFzIGNvcmUtaW1hZ2UtbWluaW1hbCwgbWV0
-YS10b29sY2hhaW4sIGJ1dCBhbHdheXMgZ2V0IHNvbWUgZmV0Y2ggZXJyb3JzIG9yIGNoZWNrc3Vt
-IGVycm9ycywgc3VjaCBhczoNCg0KRVJST1I6IGxpYm1wYy1uYXRpdmUtMS4xLjAtcjAgZG9fZmV0
-Y2g6IENoZWNrc3VtIGZhaWx1cmUgZmV0Y2hpbmcgaHR0cHM6Ly9mdHAuZ251Lm9yZy9nbnUvbXBj
-L21wYy0xLjEuMC50YXIuZ3oNCldBUk5JTkc6IHF1aWx0LW5hdGl2ZS0wLjY1LXIwIGRvX2ZldGNo
-OiBGYWlsZWQgdG8gZmV0Y2ggVVJMIGh0dHA6Ly9kb3dubG9hZC5zYXZhbm5haC5nbnUub3JnL3Jl
-bGVhc2VzL3F1aWx0L3F1aWx0LTAuNjUudGFyLmd6LCBhdHRlbXB0aW5nIE1JUlJPUlMgaWYgYXZh
-aWxhYmxlDQpXQVJOSU5HOiBtNC1uYXRpdmUtMS40LjE4LXIwIGRvX2ZldGNoOiBGYWlsZWQgdG8g
-ZmV0Y2ggVVJMIGh0dHA6Ly9mdHAuZ251Lm9yZy9nbnUvbTQvbTQtMS40LjE4LnRhci5neiwgYXR0
-ZW1wdGluZyBNSVJST1JTIGlmIGF2YWlsYWJsZQ0KDQpJIGFtIHJ1bm5pbmcgVWJ1bnR1IDE4LjA0
-IHZpcnR1YWwgYm94IG9uIFdpbmRvd3MgNy4NCg0KDQoNCkNoYWQgR29uZw0KDQpFbGVjdHJpY2Fs
-IEVuZ2luZWVyDQoNCg0KDQpUcmlqaWNvbiwgSW5jLg0KDQogfCBQLk8uIEJveCA5MzAwNTkNCg0K
-V2l4b20sIE1pY2hpZ2FuIDQ4MzkzIFVTDQoNCmNnb25nQHRyaWppY29uLmNvbSB8DQoNCg0KDQpf
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KVGhpcyBlbGVjdHJvbmljIG1lc3NhZ2Ug
-Y29udGFpbnMgaW5mb3JtYXRpb24gdGhhdCBtYXkgYmUgY29uZmlkZW50aWFsLCBwcml2aWxlZ2Vk
-LCBwcm9wcmlldGFyeSwgb3Igc3ViamVjdCB0byB0aGUgZXhwb3J0IGNvbnRyb2wgbGF3cyBvZiB0
-aGUgVW5pdGVkIFN0YXRlcywgaW5jbHVkaW5nIHRoZSBBcm1zIEV4cG9ydCBDb250cm9sIEFjdCAo
-MjIgVS5TLkMuIDI1NzEgZXQgc2VxLiksIHRoZSBJbnRlcm5hdGlvbmFsIFRyYWZmaWMgaW4gQXJt
-cyBSZWd1bGF0aW9ucyAgKDIyIEMuRi5SLiBQYXJ0IDEyMCBldCBzZXEuKSwgYW5kL29yIHRoZSBF
-eHBvcnQgQWRtaW5pc3RyYXRpb24gUmVndWxhdGlvbnMgKDE1IEMuRi5SLiBQYXJ0IDczMCBldCBz
-ZXEuKS4gIFRoaXMgaW5mb3JtYXRpb24gaXMgaW50ZW5kZWQgZm9yIHRoZSB1c2Ugb2YgdGhlIGFk
-ZHJlc3NlZSBvbmx5LCBhbmQgaWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwg
-YW55IGRpc2Nsb3N1cmUsIGNvcHlpbmcsIGRpc3RyaWJ1dGlvbiwgcHJpbnRpbmcsIG9yIGFueSBv
-dGhlciB1c2Ugb2YsIHRoZSBjb250ZW50cyBvZiB0aGlzIG1lc3NhZ2UgaXMgcHJvaGliaXRlZC4g
-IEFueSB0cmFuc2ZlciwgcmV0cmFuc2Zlciwgb3IgZGlzY2xvc3VyZSBvZiB0aGlzIGRhdGEgdG8g
-YSBGb3JlaWduIFBlcnNvbiB3aXRob3V0IFVuaXRlZCBTdGF0ZXMgR292ZXJubWVudCBhdXRob3Jp
-emF0aW9uIGlzIGFsc28gcHJvaGliaXRlZC4gIElmIHlvdSBoYXZlIHJlY2VpdmVkIHRoaXMgbWVz
-c2FnZSBpbiBlcnJvciwgcGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVyIGFuZCBkZXN0cm95IHRoZSBv
-cmlnaW5hbCBtZXNzYWdlLg0K
+$ wget http://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz
+URL transformed to HTTPS due to an HSTS policy
+--2019-07-02 13:59:34--  https://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.gz
+Resolving ftp.gnu.org (ftp.gnu.org)... 209.51.188.20, 2001:470:142:3::b
+Connecting to ftp.gnu.org (ftp.gnu.org)|209.51.188.20|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 2006643 (1.9M) [application/x-gzip]
+Saving to: =E2=80=98m4-1.4.18.tar.gz=E2=80=99
 
---_000_2566dd81001d4f4891db00ffb2419a21trijiconcom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+m4-1.4.18.tar.gz
+100%[=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D>]
+  1.91M  1.38MB/s    in 1.4s
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjwhLS0gVGVtcGxhdGUgZ2VuZXJhdGVkIGJ5IEV4Y2xh
-aW1lciBNYWlsIERpc2NsYWltZXJzIG9uIDA4OjM2OjA1IFR1ZXNkYXksIDIgSnVseSAyMDE5IC0t
-Pg0KPG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0L2h0bWw7IGNo
-YXJzZXQ9dXRmLTgiPg0KPHN0eWxlIHR5cGU9InRleHQvY3NzIj5QLkltcHJpbnRVbmlxdWVJRCB7
-DQoJTUFSR0lOOiAwY20gMGNtIDBwdA0KfQ0KTEkuSW1wcmludFVuaXF1ZUlEIHsNCglNQVJHSU46
-IDBjbSAwY20gMHB0DQp9DQpESVYuSW1wcmludFVuaXF1ZUlEIHsNCglNQVJHSU46IDBjbSAwY20g
-MHB0DQp9DQpUQUJMRS5JbXByaW50VW5pcXVlSURUYWJsZSB7DQoJTUFSR0lOOiAwY20gMGNtIDBw
-dA0KfQ0KRElWLlNlY3Rpb24xIHsNCglwYWdlOiBTZWN0aW9uMQ0KfQ0KPC9zdHlsZT48IS0tIFRl
-bXBsYXRlIGdlbmVyYXRlZCBieSBFeGNsYWltZXIgTWFpbCBEaXNjbGFpbWVycyBvbiAwODozNjow
-NSBUdWVzZGF5LCAyIEp1bHkgMjAxOSAtLT48c3R5bGUgdHlwZT0idGV4dC9jc3MiPlAuSW1wcmlu
-dFVuaXF1ZUlEIHsNCglNQVJHSU46IDBjbSAwY20gMHB0DQp9DQpMSS5JbXByaW50VW5pcXVlSUQg
-ew0KCU1BUkdJTjogMGNtIDBjbSAwcHQNCn0NCkRJVi5JbXByaW50VW5pcXVlSUQgew0KCU1BUkdJ
-TjogMGNtIDBjbSAwcHQNCn0NClRBQkxFLkltcHJpbnRVbmlxdWVJRFRhYmxlIHsNCglNQVJHSU46
-IDBjbSAwY20gMHB0DQp9DQpESVYuU2VjdGlvbjEgew0KCXBhZ2U6IFNlY3Rpb24xDQp9DQo8L3N0
-eWxlPg0KPG1ldGEgbmFtZT0iR2VuZXJhdG9yIiBjb250ZW50PSJNaWNyb3NvZnQgV29yZCAxNSAo
-ZmlsdGVyZWQgbWVkaXVtKSI+DQo8c3R5bGU+PCEtLQ0KLyogRm9udCBEZWZpbml0aW9ucyAqLw0K
-QGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiQ2FtYnJpYSBNYXRoIjsNCglwYW5vc2UtMToyIDQg
-NSAzIDUgNCA2IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Q2FsaWJyaTsNCglw
-YW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0K
-cC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGluOw0K
-CW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5
-OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNv
-LXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9uOnVu
-ZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0
-eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVy
-bGluZTt9DQpzcGFuLkVtYWlsU3R5bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1jb21w
-b3NlOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOndpbmRvd3Rl
-eHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9u
-dC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3Np
-emU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYu
-V29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBn
-dGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIx
-MDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpz
-aGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIg
-Lz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxh
-bmc9IkVOLVVTIiBsaW5rPSIjMDU2M0MxIiB2bGluaz0iIzk1NEY3MiI+DQo8cCBjbGFzcz0iSW1w
-cmludFVuaXF1ZUlEIj48L3A+DQo8cCBjbGFzcz0iSW1wcmludFVuaXF1ZUlEIj48L3A+DQo8ZGl2
-IGNsYXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SGksPG86cD48L286
-cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPkkgYW0gbmV3IHRvIFlvY3RvIHByb2plY3QgYW5kIHRyeSB0byBidWls
-ZCBteSBmaXJzdCB5b2N0byBwcm9qZWN0IGJ5IGZvbGxvd2luZyBpbnN0cnVjdGlvbnMgb24NCjxh
-IGhyZWY9Imh0dHBzOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9jcy9jdXJyZW50L2JyaWVmLXlv
-Y3RvcHJvamVjdHFzL2JyaWVmLXlvY3RvcHJvamVjdHFzLmh0bWwiPg0KaHR0cHM6Ly93d3cueW9j
-dG9wcm9qZWN0Lm9yZy9kb2NzL2N1cnJlbnQvYnJpZWYteW9jdG9wcm9qZWN0cXMvYnJpZWYteW9j
-dG9wcm9qZWN0cXMuaHRtbDwvYT4uIEkgY2hlY2tlZCBvdXQgYnJhbmNoIHlvY3RvLTIuNS4zLCBh
-bmQgdHJpZWQgdG8gYnVpbGQgdGFyZ2V0cywgc3VjaCBhcyBjb3JlLWltYWdlLW1pbmltYWwsIG1l
-dGEtdG9vbGNoYWluLCBidXQgYWx3YXlzIGdldCBzb21lIGZldGNoIGVycm9ycyBvciBjaGVja3N1
-bSBlcnJvcnMsIHN1Y2gNCiBhczo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+RVJST1I6IGxpYm1w
-Yy1uYXRpdmUtMS4xLjAtcjAgZG9fZmV0Y2g6IENoZWNrc3VtIGZhaWx1cmUgZmV0Y2hpbmcNCjxh
-IGhyZWY9Imh0dHBzOi8vZnRwLmdudS5vcmcvZ251L21wYy9tcGMtMS4xLjAudGFyLmd6Ij5odHRw
-czovL2Z0cC5nbnUub3JnL2dudS9tcGMvbXBjLTEuMS4wLnRhci5nejwvYT48bzpwPjwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPldBUk5JTkc6IHF1aWx0LW5hdGl2ZS0wLjY1LXIwIGRv
-X2ZldGNoOiBGYWlsZWQgdG8gZmV0Y2ggVVJMIGh0dHA6Ly9kb3dubG9hZC5zYXZhbm5haC5nbnUu
-b3JnL3JlbGVhc2VzL3F1aWx0L3F1aWx0LTAuNjUudGFyLmd6LCBhdHRlbXB0aW5nIE1JUlJPUlMg
-aWYgYXZhaWxhYmxlPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5XQVJOSU5H
-OiBtNC1uYXRpdmUtMS40LjE4LXIwIGRvX2ZldGNoOiBGYWlsZWQgdG8gZmV0Y2ggVVJMIGh0dHA6
-Ly9mdHAuZ251Lm9yZy9nbnUvbTQvbTQtMS40LjE4LnRhci5neiwgYXR0ZW1wdGluZyBNSVJST1JT
-IGlmIGF2YWlsYWJsZTxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4m
-bmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGFtIHJ1bm5pbmcgVWJ1bnR1
-IDE4LjA0IHZpcnR1YWwgYm94IG9uIFdpbmRvd3MgNy48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
-PHA+PC9wPg0KPHAgY2xhc3M9IkltcHJpbnRVbmlxdWVJRCI+PGZvbnQgZmFjZT0iQXJpYWwiPjxz
-cGFuIHN0eWxlPSJDT0xPUjogYmxhY2s7IEZPTlQtU0laRTogOHB0Ij48Zm9udCBzaXplPSI0Ij48
-Zm9udCBmYWNlPSJBcmlhbCI+PC9mb250PjwvZm9udD48Zm9udCBjb2xvcj0iIzAwMDAwMCI+PGZv
-bnQgc2l6ZT0iMiIgZmFjZT0iQXJpYWwiPjxmb250IHNpemU9IjQiPjxmb250IGZhY2U9IkFyaWFs
-Ij48c3Ryb25nPiZuYnNwOzwvc3Ryb25nPjwvZm9udD48L2ZvbnQ+PC9mb250PjwvZm9udD48L3Nw
-YW4+PC9mb250PjwvcD4NCjxwIGNsYXNzPSJJbXByaW50VW5pcXVlSUQiPjxmb250IHN0eWxlPSJm
-b250LWZhbWlseTpBcmlhbDtmb250LXNpemU6MTBwdDsiPkNoYWQ8L2ZvbnQ+DQo8Zm9udCBzdHls
-ZT0iZm9udC1mYW1pbHk6QXJpYWw7Zm9udC1zaXplOjEwcHQ7Ij5Hb25nPC9mb250PiZuYnNwOzwv
-cD4NCjxwIGNsYXNzPSJJbXByaW50VW5pcXVlSUQiPjxmb250IGNvbG9yPSIjMDAwMDAwIj48L2Zv
-bnQ+PGZvbnQgY29sb3I9ImRpbWdyYXkiPjxmb250IHN0eWxlPSJmb250LWZhbWlseTpBcmlhbDtm
-b250LXNpemU6OHB0O2NvbG9yOiM3RjdGN0Y7Ij5FbGVjdHJpY2FsIEVuZ2luZWVyPC9mb250Pjwv
-Zm9udD48L3A+DQo8cCBjbGFzcz0iSW1wcmludFVuaXF1ZUlEIj48Zm9udCBjb2xvcj0iZGltZ3Jh
-eSI+PC9mb250PiZuYnNwOzwvcD4NCjxwIGNsYXNzPSJJbXByaW50VW5pcXVlSUQiPjxmb250IGNv
-bG9yPSJkaW1ncmF5Ij48c3Ryb25nPjwvc3Ryb25nPjwvZm9udD48L3A+DQo8cCBjbGFzcz0iSW1w
-cmludFVuaXF1ZUlEIj48Zm9udCBzdHlsZT0iZm9udC1mYW1pbHk6QXJpYWw7Zm9udC1zaXplOjEw
-cHQ7Y29sb3I6IzAwMDAwMDtmb250LXdlaWdodDpib2xkOyI+VHJpamljb24sIEluYy48L2ZvbnQ+
-PC9wPg0KPHAgY2xhc3M9IkltcHJpbnRVbmlxdWVJRCI+PC9wPg0KPHAgY2xhc3M9IkltcHJpbnRV
-bmlxdWVJRCI+PC9wPg0KPHAgY2xhc3M9IkltcHJpbnRVbmlxdWVJRCI+PGZvbnQgc2l6ZT0iMiIg
-ZmFjZT0iQXJpYWwiPjwvZm9udD48Zm9udCBzaXplPSIyIiBmYWNlPSJBcmlhbCI+PGZvbnQgY29s
-b3I9IiM3ZjdmN2YiIHNpemU9IjEiPjwvZm9udD48L2ZvbnQ+PC9wPg0KPHAgY2xhc3M9IkltcHJp
-bnRVbmlxdWVJRCI+PGZvbnQgY29sb3I9IiM3ZjdmN2YiIHNpemU9IjEiIGZhY2U9IkFyaWFsIj4m
-bmJzcDt8Jm5ic3A7PGZvbnQgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsO2ZvbnQtc2l6ZTo4cHQ7
-Y29sb3I6IzdGN0Y3RjsiPlAuTy4gQm94IDkzMDA1OTwvZm9udD48L2ZvbnQ+PC9wPg0KPHAgY2xh
-c3M9IkltcHJpbnRVbmlxdWVJRCI+PGZvbnQgY29sb3I9IiM3ZjdmN2YiIHNpemU9IjIiIGZhY2U9
-IkFyaWFsIj48Zm9udCBzdHlsZT0iZm9udC1mYW1pbHk6QXJpYWw7Zm9udC1zaXplOjhwdDtjb2xv
-cjojN0Y3RjdGOyI+V2l4b208L2ZvbnQ+LCZuYnNwOzxmb250IHN0eWxlPSJmb250LWZhbWlseTpB
-cmlhbDtmb250LXNpemU6OHB0O2NvbG9yOiM3RjdGN0Y7Ij5NaWNoaWdhbjwvZm9udD4mbmJzcDs8
-Zm9udCBzdHlsZT0iZm9udC1mYW1pbHk6QXJpYWw7Zm9udC1zaXplOjhwdDtjb2xvcjojN0Y3RjdG
-OyI+NDgzOTM8L2ZvbnQ+Jm5ic3A7PGZvbnQgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsO2ZvbnQt
-c2l6ZTo4cHQ7Y29sb3I6IzdGN0Y3RjsiPlVTPC9mb250PjwvZm9udD48L3A+DQo8Zm9udCBjb2xv
-cj0iIzAwMDAwMCI+PGZvbnQgc2l6ZT0iMiIgZmFjZT0iQXJpYWwiPg0KPHAgY2xhc3M9IkltcHJp
-bnRVbmlxdWVJRCI+PGZvbnQgc3R5bGU9ImZvbnQtZmFtaWx5OkFyaWFsO2ZvbnQtc2l6ZTo4cHQ7
-Y29sb3I6IzdGN0Y3RjsiPmNnb25nQHRyaWppY29uLmNvbTwvZm9udD48Zm9udCBjb2xvcj0iIzdm
-N2Y3ZiIgc2l6ZT0iMSI+Jm5ic3A7fDwvZm9udD4NCjwvcD4NCjwvZm9udD48L2ZvbnQ+DQo8cD48
-L3A+DQo8cCBzdHlsZT0iTUFSR0lOOiAwaW4gMGluIDBwdCIgY2xhc3M9IjA2ZWE3ZDU2LTliNTYt
-NDE4OC05NWM2LWVmM2Q4MGIzMTRlNSI+PC9wPg0KPHA+PC9wPg0KPHAgc3R5bGU9Ik1BUkdJTjog
-MGluIDBpbiAwcHQiIGNsYXNzPSIwNmVhN2Q1Ni05YjU2LTQxODgtOTVjNi1lZjNkODBiMzE0ZTUi
-PjwvcD4NCjxwIGNsYXNzPSJJbXByaW50VW5pcXVlSUQiPjwvcD4NCjxwPjwvcD4NCjxwPjwvcD4N
-CjxwPjwvcD4NCjxwPjwvcD4NCjxwPjwvcD4NCjxwPjwvcD4NCjxwPjwvcD4NCjxwPjwvcD4NCjxw
-PjwvcD4NCjxwPjwvcD4NCjxwIGNsYXNzPSJJbXByaW50VW5pcXVlSUQiPiZuYnNwOzwvcD4NCjxw
-IGNsYXNzPSJJbXByaW50VW5pcXVlSUQiPjxlbT48Zm9udCBjb2xvcj0iIzU5NTk1OSI+PC9wPg0K
-PGhyIGlkPSJIUjEiPg0KPGZvbnQgc2l6ZT0iMiI+VGhpcyBlbGVjdHJvbmljIG1lc3NhZ2UgY29u
-dGFpbnMgaW5mb3JtYXRpb24gdGhhdCBtYXkgYmUgY29uZmlkZW50aWFsLCBwcml2aWxlZ2VkLCBw
-cm9wcmlldGFyeSwgb3Igc3ViamVjdCB0byB0aGUgZXhwb3J0IGNvbnRyb2wgbGF3cyBvZiB0aGUg
-VW5pdGVkIFN0YXRlcywgaW5jbHVkaW5nIHRoZSBBcm1zIEV4cG9ydCBDb250cm9sIEFjdCAoMjIg
-VS5TLkMuIDI1NzEgZXQgc2VxLiksIHRoZSBJbnRlcm5hdGlvbmFsIFRyYWZmaWMNCiBpbiBBcm1z
-IFJlZ3VsYXRpb25zJm5ic3A7ICgyMiBDLkYuUi4gUGFydCAxMjAgZXQgc2VxLiksIGFuZC9vciB0
-aGUgRXhwb3J0IEFkbWluaXN0cmF0aW9uIFJlZ3VsYXRpb25zICgxNSBDLkYuUi4gUGFydCA3MzAg
-ZXQgc2VxLikuJm5ic3A7IFRoaXMgaW5mb3JtYXRpb24gaXMgaW50ZW5kZWQgZm9yIHRoZSB1c2Ug
-b2YgdGhlIGFkZHJlc3NlZSBvbmx5LCBhbmQgaWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJl
-Y2lwaWVudCwgYW55IGRpc2Nsb3N1cmUsIGNvcHlpbmcsDQogZGlzdHJpYnV0aW9uLCBwcmludGlu
-Zywgb3IgYW55IG90aGVyIHVzZSBvZiwgdGhlIGNvbnRlbnRzIG9mIHRoaXMgbWVzc2FnZSBpcyBw
-cm9oaWJpdGVkLiZuYnNwOyBBbnkgdHJhbnNmZXIsIHJldHJhbnNmZXIsIG9yIGRpc2Nsb3N1cmUg
-b2YgdGhpcyBkYXRhIHRvIGEgRm9yZWlnbiBQZXJzb24gd2l0aG91dCBVbml0ZWQgU3RhdGVzIEdv
-dmVybm1lbnQgYXV0aG9yaXphdGlvbiBpcyBhbHNvIHByb2hpYml0ZWQuJm5ic3A7IElmIHlvdSBo
-YXZlIHJlY2VpdmVkIHRoaXMNCiBtZXNzYWdlIGluIGVycm9yLCBwbGVhc2Ugbm90aWZ5IHRoZSBz
-ZW5kZXIgYW5kIGRlc3Ryb3kgdGhlIG9yaWdpbmFsIG1lc3NhZ2UuPC9mb250PjwvZm9udD48L2Vt
-PiZuYnNwOw0KPGJyPg0KPHA+PC9wPg0KPHA+PC9wPg0KPC9ib2R5Pg0KPC9odG1sPg0K
+2019-07-02 13:59:36 (1.38 MB/s) - =E2=80=98m4-1.4.18.tar.gz=E2=80=99 saved =
+[2006643/2006643]
 
---_000_2566dd81001d4f4891db00ffb2419a21trijiconcom_--
+Looks like you've got networking problems inside the virtual machine.
+Verify using wget that you can download those files successfully.
+
+Ross
+
