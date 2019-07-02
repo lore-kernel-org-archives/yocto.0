@@ -1,34 +1,65 @@
-Return-Path: <alexander.stein@systec-electronic.com>
+Return-Path: <gabbla.malist@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1CFA4E00D6C; Mon,  1 Jul 2019 23:02:03 -0700 (PDT)
+	id B128EE00C09; Mon,  1 Jul 2019 23:04:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (gabbla.malist[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [212.118.221.216 listed in list.dnswl.org]
-X-Greylist: delayed 343 seconds by postgrey-1.32 at yocto-www;
-	Mon, 01 Jul 2019 23:02:01 PDT
-Received: from s1.ox4u.de (ox4u.de [212.118.221.216])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E100AE00C09
-	for <yocto@yoctoproject.org>; Mon,  1 Jul 2019 23:02:01 -0700 (PDT)
-Received: by s1.ox4u.de (Postfix, from userid 65534)
-	id 56ED4260087; Tue,  2 Jul 2019 07:56:16 +0200 (CEST)
-Received: from ws-140106.localnet (unknown [212.185.67.146])
-	(using TLSv1 with cipher DHE-RSA-CAMELLIA256-SHA (256/256 bits))
-	(No client certificate requested)
-	by s1.ox4u.de (Postfix) with ESMTPSA id 281A7260084
-	for <yocto@yoctoproject.org>; Tue,  2 Jul 2019 07:56:16 +0200 (CEST)
-From: Alexander Stein <alexander.stein@systec-electronic.com>
-To: yocto@yoctoproject.org
-Date: Tue, 02 Jul 2019 07:56:15 +0200
-Message-ID: <6621707.vr12PsKZiC@ws-140106>
+	*      [209.85.208.177 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com
+	[209.85.208.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3FDD7E0090C
+	for <yocto@yoctoproject.org>; Mon,  1 Jul 2019 23:04:07 -0700 (PDT)
+Received: by mail-lj1-f177.google.com with SMTP id 205so15609314ljj.8
+	for <yocto@yoctoproject.org>; Mon, 01 Jul 2019 23:04:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=uy7u3hkUB55H7TclRILH5EsFGyww76Dnr4jU+kaX2HQ=;
+	b=TOBMzbvg5EEOjwLpveJWQpErEa71eKb8S9FvcSKOdev2k/vl3sVZWsDrHY8PlLKmhb
+	Xy9CrFkf3A7BS4x/Ez+xoA4+DYLQzgHwndJLO1RAJdjG6VUg5HFynjQuDkz8LnINvc2L
+	lm7VFGMEWWfzgL4cDSmWGoW9B9T6TLDPF2ZYiCas6mWLS4Y5lmzhmwo0aIdHKVEOCThF
+	35vUcQVPFkW1ZUzPLmFEfGAdxhxUShzTGWk+w9pIdnkvrZEs/mRBuX1XeygtfdxyD2CA
+	vzf6whzp6Ex5PZoakxBVIkp1P+32MoVj7PwNJboQNn9O/1aUdpkTv6fSD6XOtezta9Vb
+	uEtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=uy7u3hkUB55H7TclRILH5EsFGyww76Dnr4jU+kaX2HQ=;
+	b=AqYTktOnBFXTwY0plNhMBfO9zvgvOlIRqofrff5tDaA1F63y6/erq05/X/B2+M75hE
+	t6suYV9Qlv5qDgWx91RwkKcf9VmmF4yTPWeyp/wypNL+zBqYfC09xMpzf/AsZ2zQF8Vk
+	WuePdEp4+Rt9UdRcBRvTz+/9r4Ftf42rPgpbPa3uBKIHzumigzROgC7pWEhxw2N29F82
+	XUwdLxE1Qu+YYA6xtlVmUnAbMDFiBfSfzmx87ZKF5Dkj2H2k+QVkLJXlXefImAUY4mZS
+	rL4ktM8+1TdfQNHjEzyAYESpDLrO0wRp//JF0Kkwgl8QT2x6DXxyzc0Zg+ub6L6qPOBf
+	yukQ==
+X-Gm-Message-State: APjAAAW7KBNrcAJ1qMosW7X9JBt2bmBFBNlg3exCP6hu8Kn1+SInnM+7
+	37Vcsr2axy9MemGmmu9jSdp5L+zqRN/LLJnf0nk=
+X-Google-Smtp-Source: APXvYqyR0rnw+/A7eFLARLob+mwZ7jIihIZf5jcRiR2uby2dJcw1gtj9E2xRK32vWCiVR3hCWN4VjCeQ09VsfbRV8cM=
+X-Received: by 2002:a2e:5302:: with SMTP id h2mr15656479ljb.47.1562047446007; 
+	Mon, 01 Jul 2019 23:04:06 -0700 (PDT)
 MIME-Version: 1.0
-Subject: useradd-staticids: problem with --user-group
+References: <CAA=hcWS547t=FCMVfxhvWuEtLD_sfp8RrEGwqQQ5de2XScxb2A@mail.gmail.com>
+In-Reply-To: <CAA=hcWS547t=FCMVfxhvWuEtLD_sfp8RrEGwqQQ5de2XScxb2A@mail.gmail.com>
+From: Gabriele Zampieri <gabbla.malist@gmail.com>
+Date: Tue, 2 Jul 2019 08:03:54 +0200
+Message-ID: <CAAx3WaCNkhNS38tsYaycsiNzeJYN_YjXoGak4Yd1QxSUWQmYPA@mail.gmail.com>
+To: JH <jupiter.hce@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Allow choose of U-Boot config for machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,49 +71,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Jul 2019 06:02:03 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 02 Jul 2019 06:04:08 -0000
+Content-Type: multipart/alternative; boundary="00000000000024441f058cac837b"
+
+--00000000000024441f058cac837b
+Content-Type: text/plain; charset="UTF-8"
 
 Hi,
 
-I need to use useradd-staticids to have fixed UID/GID during update. For that I've set the following in my conf/local.conf:
-> USERADD_ERROR_DYNAMIC = "1"
-> USERADDEXTENSION = "useradd-staticids"
-> USERADD_GID_TABLES = "files/group"
-> USERADD_UID_TABLES = "files/passwd"
+you must use double quotes around nand, so:
+UBOOT_CONFIG = "nand"
 
-After deleting TMPDIR and rebuilding I get a build error in dbus package. In the log.do_prepare_recipe_sysroot logfile I have the following lines:
-> [...]
-> Running groupadd commands...
-> NOTE: dbus: Performing groupadd with [--root $TMPDIR/work/cortexa7hf-neon-poky-linux-gnueabi/dbus/1.12.2-r0/recipe-sysroot --force --gid 999 --system netdev]
-> NOTE: dbus: group netdev already exists, not re-creating it
-> NOTE: dbus: Performing groupadd with [--root $TMPDIR/work/cortexa7hf-neon-poky-linux-gnueabi/dbus/1.12.2-r0/recipe-sysroot  --gid 998 messagebus]
-> groupadd: GID '998' already exists
+However I cannot guarantee this line will be the solution, I usually use a
+customized uboot.
 
-In $TMPDIR/work/cortexa7hf-neon-poky-linux-gnueabi/dbus/1.12.2-r0/recipe-sysroot/etc/group there the following entries:
-> [...]
-> nogroup:*:65534:
-> systemd-journal:x:999:
-> systemd-timesync:!:998:
-> systemd-network:!:997:
-> systemd-resolve:!:996:
-> polkitd:!:995:
-> systemd-bus-proxy:!:994:
-> netdev:x:993:
+Gabriele
 
-So, ok. netdev is already there, but due to the --force parameter this is no error. But for adding the user-group using a fixed GID without --force fails as GID 998 is already used for systemd-timesync at this stage.
+Il giorno mar 2 lug 2019 alle ore 04:07 JH <jupiter.hce@gmail.com> ha
+scritto:
 
-$ grep systemd-timesync files/group 
-systemd-timesync:x:990:
+> Hi,
+>
+> The imx6ullevk.conf defined sdcard for booting on imx6 EVK:
+>
+> imx6ullevk.conf
+>
+> UBOOT_CONFIG ??= "sd"
+> UBOOT_CONFIG[sd] = "mx6ull_14x14_evk_config,sdcard"
+> UBOOT_CONFIG[mfgtool] = "mx6ull_14x14_evk_config"
+>
+> I need to change it for a customized board referenced from imx6 EVK
+> but booting from NAND, there are some blogs said it can be done to add
+> UBOOT_CONFIG=nand either in local.conf or command line. I tried it did
+> not work:
+>
+> ERROR: Unable to start bitbake server (None)
+> --- Starting bitbake server pid 2673 at 2019-07-02 11:54:24.011086 ---
+> ERROR: local.conf:34: unparsed line: 'UBOOT_CONFIG=nand'
+>
+> What should be a proper process to overwrite imx6ullevk.conf
+> UBOOT_CONFIG from sdcard to nand?
+>
+> Thank you.
+>
+> Kind regards,
+>
+> - JH
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-So I wonder how to solve that. Should --force be added to the user-group step too? Or should the wanted GIDs for groups like systemd-timesync also be fixed before adding dbus specific users/groups?
+--00000000000024441f058cac837b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I'm currently using sumo and without using useradd-staticids the build is fine, but the mapping user<->UID/GID might alter.
+<div dir=3D"ltr"><div>Hi, <br></div><div><br></div><div>you must use double=
+ quotes around nand, so:</div><div style=3D"margin-left:40px">UBOOT_CONFIG =
+=3D &quot;nand&quot;</div><div style=3D"margin-left:40px"><br></div><div>Ho=
+wever I cannot guarantee this line will be the solution, I usually use a cu=
+stomized uboot.</div><div><br></div><div>Gabriele<br> </div></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Il giorno mar 2=
+ lug 2019 alle ore 04:07 JH &lt;<a href=3D"mailto:jupiter.hce@gmail.com">ju=
+piter.hce@gmail.com</a>&gt; ha scritto:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex">Hi,<br>
+<br>
+The imx6ullevk.conf defined sdcard for booting on imx6 EVK:<br>
+<br>
+imx6ullevk.conf<br>
+<br>
+UBOOT_CONFIG ??=3D &quot;sd&quot;<br>
+UBOOT_CONFIG[sd] =3D &quot;mx6ull_14x14_evk_config,sdcard&quot;<br>
+UBOOT_CONFIG[mfgtool] =3D &quot;mx6ull_14x14_evk_config&quot;<br>
+<br>
+I need to change it for a customized board referenced from imx6 EVK<br>
+but booting from NAND, there are some blogs said it can be done to add<br>
+UBOOT_CONFIG=3Dnand either in local.conf or command line. I tried it did<br=
+>
+not work:<br>
+<br>
+ERROR: Unable to start bitbake server (None)<br>
+--- Starting bitbake server pid 2673 at 2019-07-02 11:54:24.011086 ---<br>
+ERROR: local.conf:34: unparsed line: &#39;UBOOT_CONFIG=3Dnand&#39;<br>
+<br>
+What should be a proper process to overwrite imx6ullevk.conf<br>
+UBOOT_CONFIG from sdcard to nand?<br>
+<br>
+Thank you.<br>
+<br>
+Kind regards,<br>
+<br>
+- JH<br>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>
 
-Best regards,
-Alexander
-
-
-
-
+--00000000000024441f058cac837b--
