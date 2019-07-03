@@ -1,65 +1,59 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <sb@baader.hu>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CBBA3E00CF4; Wed,  3 Jul 2019 08:23:09 -0700 (PDT)
+	id EA437E00CF4; Wed,  3 Jul 2019 09:53:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.169 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com
-	[209.85.222.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F339E00C37
-	for <yocto@yoctoproject.org>; Wed,  3 Jul 2019 08:23:08 -0700 (PDT)
-Received: by mail-qk1-f169.google.com with SMTP id g18so3070171qkl.3
-	for <yocto@yoctoproject.org>; Wed, 03 Jul 2019 08:23:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=i8r43wkWEIc8BFLAkPnaU+sKD02XWO2K3zj19oo0Qrg=;
-	b=E6dmnpmE43rVBI/AAmdovXUGAzuxFzgKfx0pbGm5Xt7ChcMpQH3IYs5z92s322tNWF
-	iYJ5tVjJqm7uOYaI20vGRr4AlI7ovoJ93bQ/X2MFAMNblwoWdubpm1DKnw2FK7PGSXt2
-	sI7X6BQgXN21lFFpVzm8qhHecQqbsUqbjAjhU79bhUznw3xkZn4OBniV3Ca44LZkbK59
-	o5tnv6zE9M7qeL+QcfqYFA3vL9wso1vxa0LeFdKpnJ25tiAcfiiGx6vfIsecMr6yew4K
-	dPV1kotgTjqJGUOU9+u/rEiV6rOYQJ8G6kcexnFbsyKPynzTIoYY2W4uQvB4cRJ+Ditg
-	XBKg==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.50 listed in list.dnswl.org]
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com
+	[209.85.210.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D143E00C43
+	for <yocto@lists.yoctoproject.org>;
+	Wed,  3 Jul 2019 09:53:31 -0700 (PDT)
+Received: by mail-ot1-f50.google.com with SMTP id d17so3081341oth.5
+	for <yocto@lists.yoctoproject.org>;
+	Wed, 03 Jul 2019 09:53:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=baader-hu.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=U99tlp9ZgmX5nX+yMUfYPJjuPGG/A9hU/LM9CZKd1o4=;
+	b=MauHRnvHikqZ4nutd34sRSvHYza7aN3pxnf6237V760somLr9bIdmyzmTaYnqp42pq
+	OlB33cP7dDZSxHFHUB5aMKhr0gYD0jkLrZnr+BB3U2FpHOrVLUKC/Gr0jVEWrTNYAKM9
+	6e7MHPDCVAfKQM03+lL+Sl318T5l/hDtnbNuzlYItgUMMPqlQjTLwvEMm8OkCHVNeXeP
+	AXZRDb1t4jU6rndVRfOnnx1aUjIJ3skgv6ji2R3+xZGtIQ3v/baiayMHUlo4+RCGqN4+
+	VBZSipKnMjnWsjs3QLwR+lQkKCC4YP1+sCc0dTB3PFhX5i1nFGhWBWc1aBbIX0aYlwaC
+	YyCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=i8r43wkWEIc8BFLAkPnaU+sKD02XWO2K3zj19oo0Qrg=;
-	b=sUI8SEsG2m69HO3xMbzUd9Qma+bwabR2sRXbHrjvmDjILHcQg3W5BuALfJRz1l9cBy
-	ktqvOlgWrjVPM1zv3UGgAp6cEXys/Mt3zWLV5KPaB01Xyu6f5gPJSg5qodgveQrlmRw1
-	nu8cp8SqpzTPJ05ZDqk35huT7Sqz2VzOZ96eba/vAz0nXNucsIWWqgvDOsr6h5zRdWbH
-	GDysXkrzL6v+M8/izQ++Otplz2RXSp+5Fkb6qgMwWdJS0qfNFSeqgWB2DVjYXQv4V0yo
-	ZLWNXihZBRsaR7LfilbBHwYaeCfiyTKKb/apd2M7hgYlGA5Lz9Lh/l9/FKDtU63SDbT2
-	mBfA==
-X-Gm-Message-State: APjAAAXXFBP3g+J0pXmw/b5y0If0QxZywo90I4qzJg6yrGehxrbLyKT1
-	qsrQb/iOqyW3oxsKfafjWY0BrHKLgRuydnmjJ0g=
-X-Google-Smtp-Source: APXvYqyGWb+cOzP1BDH8vVULEAPhWWdH+8BY23WeUQKRfIRwLvNF0RNXyBAVa0IhGOV92UMU6xE7ToW8dWNLe4ksb/M=
-X-Received: by 2002:a37:795:: with SMTP id 143mr31564686qkh.140.1562167387821; 
-	Wed, 03 Jul 2019 08:23:07 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=U99tlp9ZgmX5nX+yMUfYPJjuPGG/A9hU/LM9CZKd1o4=;
+	b=eptg1jy3yLWP4pPKTcEU6JRc5bc3OuT4CWV7CgTYsHMMp9v0PIixUYWHfCkgGDBWjc
+	/pw9rGGS+CVdx5t1vucEhBLh6dFhvTyve++Ru7gDJrST5qc0I/UVWCnfdp6kmVHJarfd
+	5MB5zJmovJwogJyPammDBVHuk0Y6ooN0LCDbm3Wr2nNVW29K376VvAPCRhrs5Ha0kkXh
+	xPKD0ydH10q6RDxNNKuH0N9CZV1sDx3yTZTIMIVVGdSKf9xT7gCHVDCpDHgcVI78VPE8
+	erU1oPSs88bqP3eE7uuC5YR0iT6PAwOwtKQ0mh4Vujevb6qDlCOopUVlDtTvQS1aeM/U
+	PuUA==
+X-Gm-Message-State: APjAAAXifNyDnfIu7ww8G4sPZE82pwMtl0aG6TSCi03bhfXZer12EkJv
+	8ubwAoXxHvMJx+f8f7aWaMmYPyiZKOhrE5konZ519djx1gIj9Q==
+X-Google-Smtp-Source: APXvYqyHZ+J9aSc9q78U6xyeP46VR2rz9dA22b4+h3zrRhA5tsa/Wflm9so+yr25lCHg7gxYak9OtIRHnxCC6Zqulh4=
+X-Received: by 2002:a9d:7a82:: with SMTP id l2mr30937117otn.120.1562172810273; 
+	Wed, 03 Jul 2019 09:53:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <2566dd81001d4f4891db00ffb2419a21@trijicon.com>
-In-Reply-To: <2566dd81001d4f4891db00ffb2419a21@trijicon.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Wed, 3 Jul 2019 17:22:56 +0200
-Message-ID: <CAGAf8LzqieWdWhVDEahqkDMUBNByxoobNKqzsBV=KyZBQ0OXnA@mail.gmail.com>
-To: Chad Gong <cgong@trijicon.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Poky build errors, help is needed
+From: =?UTF-8?Q?Szabolcs_B=C3=A1der?= <sb@baader.hu>
+Date: Wed, 3 Jul 2019 18:53:19 +0200
+Message-ID: <CAH_3R3JqkPYpSbK2Bwdf6eUbqJv6N3gpdC2Xr98JP9hJBAmW8Q@mail.gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: How to run script before mount rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,90 +65,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Jul 2019 15:23:09 -0000
+X-List-Received-Date: Wed, 03 Jul 2019 16:53:32 -0000
+Content-Type: multipart/alternative; boundary="0000000000006f37ee058cc9b35d"
+
+--0000000000006f37ee058cc9b35d
 Content-Type: text/plain; charset="UTF-8"
+
+Hi,
+
+I created for Raspberry Pi a simple OS-boot-switcher. I change a param from
+rootfs, reboot and new OS run. I would like to add to for this flow a
+parameter to create ro boot and rootfs.
+
+I would like to read this parameter at boot and depend on this choose which
+OS will load. How could I define this at boot (eg. from cmdline.txt or with
+a shell script or load c code ..?). What is the best idea/ way to do that
+within Yocto?
+
+
+Thanks in advance,
+Szabolcs
+
+--0000000000006f37ee058cc9b35d
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Please, try to check trijicon.com firewall: which services are
-available, which are not.
+<div dir=3D"ltr"><div>Hi,</div><div><br></div><div>I created for Raspberry =
+Pi a simple OS-boot-switcher. I change a param from rootfs, reboot and new =
+OS run. I would like to add to for this flow a parameter to create ro boot =
+and rootfs. <br></div><div><br></div><div>I would like to read this paramet=
+er at boot and depend on this choose which OS will load. How could I define=
+ this at boot (eg. from cmdline.txt or with a shell script or load c code .=
+.?). What is the best idea/ way to do that within Yocto?</div><div><br></di=
+v><div><br></div><div>Thanks in advance,</div><div>Szabolcs<br></div></div>
 
-Please, read the following:
-https://serverfault.com/questions/309052/check-if-port-is-open-or-closed-on=
--a-linux-server
-
-And also the following:
-https://en.wikipedia.org/wiki/List_of_TCP_and_UDP_port_numbers
-
-Please, explore and learn about CLI nmap (very powerful) command.
-
-Hope this helps,
-Zoran
-_______
-
-
-On Tue, Jul 2, 2019 at 2:53 PM Chad Gong <cgong@trijicon.com> wrote:
->
-> Hi,
->
->
->
-> I am new to Yocto project and try to build my first yocto project by foll=
-owing instructions on https://www.yoctoproject.org/docs/current/brief-yocto=
-projectqs/brief-yoctoprojectqs.html. I checked out branch yocto-2.5.3, and =
-tried to build targets, such as core-image-minimal, meta-toolchain, but alw=
-ays get some fetch errors or checksum errors, such as:
->
->
->
-> ERROR: libmpc-native-1.1.0-r0 do_fetch: Checksum failure fetching https:/=
-/ftp.gnu.org/gnu/mpc/mpc-1.1.0.tar.gz
->
-> WARNING: quilt-native-0.65-r0 do_fetch: Failed to fetch URL http://downlo=
-ad.savannah.gnu.org/releases/quilt/quilt-0.65.tar.gz, attempting MIRRORS if=
- available
->
-> WARNING: m4-native-1.4.18-r0 do_fetch: Failed to fetch URL http://ftp.gnu=
-.org/gnu/m4/m4-1.4.18.tar.gz, attempting MIRRORS if available
->
->
->
-> I am running Ubuntu 18.04 virtual box on Windows 7.
->
->
->
-> Chad Gong
->
-> Electrical Engineer
->
->
->
-> Trijicon, Inc.
->
->  | P.O. Box 930059
->
-> Wixom, Michigan 48393 US
->
-> cgong@trijicon.com |
->
->
->
-> ________________________________
-> This electronic message contains information that may be confidential, pr=
-ivileged, proprietary, or subject to the export control laws of the United =
-States, including the Arms Export Control Act (22 U.S.C. 2571 et seq.), the=
- International Traffic in Arms Regulations  (22 C.F.R. Part 120 et seq.), a=
-nd/or the Export Administration Regulations (15 C.F.R. Part 730 et seq.).  =
-This information is intended for the use of the addressee only, and if you =
-are not the intended recipient, any disclosure, copying, distribution, prin=
-ting, or any other use of, the contents of this message is prohibited.  Any=
- transfer, retransfer, or disclosure of this data to a Foreign Person witho=
-ut United States Government authorization is also prohibited.  If you have =
-received this message in error, please notify the sender and destroy the or=
-iginal message.
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+--0000000000006f37ee058cc9b35d--
