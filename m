@@ -1,82 +1,66 @@
-Return-Path: <don.schoppe@connecteddev.com>
+Return-Path: <btv1==087564a510a==cgong@trijicon.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F1FD2E00C87; Wed,  3 Jul 2019 12:52:42 -0700 (PDT)
+	id CDC3AE00C81; Wed,  3 Jul 2019 12:53:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [40.107.79.139 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from NAM03-CO1-obe.outbound.protection.outlook.com
-	(mail-eopbgr790139.outbound.protection.outlook.com [40.107.79.139])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B28A7E00BF7
-	for <yocto@yoctoproject.org>; Wed,  3 Jul 2019 12:52:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=connecteddev.onmicrosoft.com; s=selector1-connecteddev-onmicrosoft-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=5pGZbBlmARP8mEp8dFI2LngN+zVEfMQsxarE/ZFMtFk=;
-	b=q56NnNL5lw8neBlcCUMND0U0WTtOkE9ZNoT1VsS3SNV8VvsxFmCwswa8Z+8d53CA41gugVHRwg5CGaZdtMz5oKsJ042ldkqqefqKTiVamhp1mzBZbvszga4rXxSFDDFk+IST8tUiwnHOlgGiRZ36ZjZ8rQ3tNUnnzfW3uK3QPTA=
-Received: from BN6PR17MB1252.namprd17.prod.outlook.com (10.173.236.138) by
-	BN6PR17MB1458.namprd17.prod.outlook.com (10.175.194.18) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.2032.18; Wed, 3 Jul 2019 19:52:39 +0000
-Received: from BN6PR17MB1252.namprd17.prod.outlook.com
-	([fe80::e43e:8bad:8f97:b36c]) by
-	BN6PR17MB1252.namprd17.prod.outlook.com
-	([fe80::e43e:8bad:8f97:b36c%7]) with mapi id 15.20.2052.010;
-	Wed, 3 Jul 2019 19:52:39 +0000
-From: Don Schoppe <don.schoppe@connecteddev.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Building .wic with luks encrypted rootfs
-Thread-Index: AdUx1uzZQUn5JkkCRMSJuVBwjADMCA==
-Date: Wed, 3 Jul 2019 19:52:38 +0000
-Message-ID: <BN6PR17MB1252A92618EFF415CFBB1D1084FB0@BN6PR17MB1252.namprd17.prod.outlook.com>
+Received: from WI11BFS.trijicon.com
+	(50-253-248-89-static.hfc.comcastbusiness.net [50.253.248.89])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B51FE008CA
+	for <yocto@yoctoproject.org>; Wed,  3 Jul 2019 12:53:36 -0700 (PDT)
+X-ASG-Debug-ID: 1562183615-1008250bbaa8fcb0001-yzSStA
+Received: from WI102WEP.trijicon1.com (wi102wep.trijicon1.com [10.0.0.99]) by
+	WI11BFS.trijicon.com with ESMTP id jub946fIAqonPiHq;
+	Wed, 03 Jul 2019 15:53:35 -0400 (EDT)
+X-Barracuda-Envelope-From: cgong@trijicon.com
+Received: from WI102WEP.trijicon1.com (10.0.0.99) by WI102WEP.trijicon1.com
+	(10.0.0.99) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1034.26;
+	Wed, 3 Jul 2019 15:53:28 -0400
+Received: from WI102WEP.trijicon1.com ([::1]) by WI102WEP.trijicon1.com
+	([::1]) with mapi id 15.01.1034.033; Wed, 3 Jul 2019 15:53:28 -0400
+From: Chad Gong <cgong@trijicon.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] Poky build errors, help is needed
+X-ASG-Orig-Subj: RE: [yocto] Poky build errors, help is needed
+Thread-Index: AdUw0o8Uu4i3AJLIQi68br/66gdncgAJRcUAAAOnaZAAAY0NAAACjpXwAAQCa4AAHohW4AAJ46CAAAPrqKA=
+Date: Wed, 3 Jul 2019 19:53:28 +0000
+Message-ID: <cfaa374acb35448ca38b96cde6bc8320@trijicon.com>
+References: <2566dd81001d4f4891db00ffb2419a21@trijicon.com>
+	<CAJTo0LZcAF+F5SF1ifK+wB5ZzZjDXhZHn0a-Q+7wA1FRqJRDgQ@mail.gmail.com>
+	<9b82304b0ac6483b9de2eedbc6a961f7@trijicon.com>
+	<CAJTo0LbvoJNCAncDpSk-yUQSN=x3Oge4R-bQJV-6MzYTKHmvwg@mail.gmail.com>
+	<1f5813cde712457c8eae5ce20a5e90e2@trijicon.com>
+	<CAJTo0LYApGjZXeQFP+gr_55cXaKwOGahnW4Zp83M8Hj+pSNOZQ@mail.gmail.com>
+	<9d65e7b2c1794d4ab7618a9a769b4bf9@trijicon.com>
+	<CAJTo0LYxA818Q3vmOea4rRffiJR=XkSkRe3cSMPtc+7otQuo7A@mail.gmail.com>
+In-Reply-To: <CAJTo0LYxA818Q3vmOea4rRffiJR=XkSkRe3cSMPtc+7otQuo7A@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=don.schoppe@connecteddev.com; 
-x-originating-ip: [174.99.222.202]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1ae519c1-4089-4a11-513e-08d6fff000e9
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
-	SRVR:BN6PR17MB1458; 
-x-ms-traffictypediagnostic: BN6PR17MB1458:
-x-ms-exchange-purlcount: 3
-x-microsoft-antispam-prvs: <BN6PR17MB1458A98BB71934530F571FEA84FB0@BN6PR17MB1458.namprd17.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 00872B689F
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(396003)(346002)(39830400003)(376002)(366004)(136003)(189003)(199004)(51874003)(55016002)(508600001)(6306002)(3846002)(44832011)(25786009)(486006)(9686003)(54896002)(2906002)(256004)(6116002)(66066001)(14444005)(476003)(5640700003)(68736007)(9326002)(5660300002)(6436002)(52536014)(790700001)(1730700003)(81166006)(81156014)(6506007)(14454004)(186003)(26005)(33656002)(76116006)(73956011)(66556008)(66446008)(71200400001)(64756008)(66476007)(71190400001)(66946007)(86362001)(102836004)(2351001)(99286004)(7696005)(74316002)(7736002)(8676002)(2501003)(8936002)(53936002)(6916009)(316002)(142923001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6PR17MB1458;
-	H:BN6PR17MB1252.namprd17.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: connecteddev.com does not
-	designate permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: eiORmia6yD9Vg9MaRl/qxsI2THEEzuwpXUw6jFz0av+xS5FdJFGGyWSRNycgHfYDgl9g2PV1OmYEXIK4NwoWN5w1UYEQIs1BRi+ojZSFUg3VLLdLmDirKxTjOtGpqV8Ehn355jVYPdXfQC9iV1Sx4LUpGEtGO5Aa9QBkmE+cC3HSXH9MDEnvItTk+or1MavOxQx+kCRi9lNwZtkXyXe+htAWvHACjehBpF6FEnr7eFhytTCemd78OhNx1UEu7YZ73z0naNd8TSeJ6F8gbQCu4kCevv+f+kTw5T77LvjT56co0YQ4uTpY4B+R6+VU0ImpEKy8JLisCUnb0jxA30i4CZySHpUBFD1Zy+tjpnj1lExW+T0zCFWqPht0ozoTX7BGW2BkWDHJ/JMo9KJNL7Z51SDk76IDqcPj03Ph4Te0HBo=
+x-originating-ip: [10.0.10.224]
+x-exclaimer-md-config: 74e93b01-4765-4777-9f3e-4485472e4022
 MIME-Version: 1.0
-X-OriginatorOrg: connecteddev.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1ae519c1-4089-4a11-513e-08d6fff000e9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jul 2019 19:52:39.0019 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: bc3620fa-cd13-4c3a-91ad-fdac8e256a00
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: don.schoppe@connecteddev.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR17MB1458
-Subject: Building .wic with luks encrypted rootfs
+X-Barracuda-Connect: wi102wep.trijicon1.com[10.0.0.99]
+X-Barracuda-Start-Time: 1562183615
+X-Barracuda-URL: https://wi11bsf.trijicon1.com:443/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at trijicon.com
+X-Barracuda-Scan-Msg-Size: 2799
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.73471
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Poky build errors, help is needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -88,156 +72,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 03 Jul 2019 19:52:43 -0000
+X-List-Received-Date: Wed, 03 Jul 2019 19:53:42 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BN6PR17MB1252A92618EFF415CFBB1D1084FB0BN6PR17MB1252namp_"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---_000_BN6PR17MB1252A92618EFF415CFBB1D1084FB0BN6PR17MB1252namp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Um9zcywNCg0KSSBvcGVuZWQgdGhlIGxvZy5kb19mZXRjaCBmaWxlLCBhbmQgaXQgbG9va3MgbGlr
+ZSBhIGZpbGUgZ2l0Ml9naXRodWIuY29tLnRoa3VrdWsubGlibnNsLnRhci5neiB3YXMgZG93bmxv
+YWRlZCBmcm9tIHRoZSBtaXJyb3Igc2l0ZSBodHRwOi8vZG93bmxvYWRzLnlvY3RvcHJvamVjdC5v
+cmcvbWlycm9yL3NvdXJjZXMvZ2l0Ml9naXRodWIuY29tLnRoa3VrdWsubGlibnNsLnRhci5neiAu
+VGhlbiBhbiBlcnJvciBoYXBwZW5lZCB3aXRoIHRhciwgYXMgc2hvd24gYmVsb3c6DQoNCnRhciAt
+eHpmIC9ob21lL2NoYWQvbXlidWlsZC1jb3JlaW1hZ2VtaW5pbWFsLTI3MC0yL2Rvd25sb2Fkcy9n
+aXQyX2dpdGh1Yi5jb20udGhrdWt1ay5saWJuc2wudGFyLmd6IGZhaWxlZCB3aXRoIGV4aXQgY29k
+ZSAyLCBvdXRwdXQ6DQoNCmd6aXA6IHN0ZGluOiBub3QgaW4gZ3ppcCBmb3JtYXQNCnRhcjogQ2hp
+bGQgcmV0dXJuZWQgc3RhdHVzIDENCnRhcjogRXJyb3IgaXMgbm90IHJlY292ZXJhYmxlOiBleGl0
+aW5nIG5vdw0KDQoNCg0KDQpDaGFkIEdvbmcNCkVsZWN0cmljYWwgRW5naW5lZXINCg0KVHJpamlj
+b24sIEluYy4NCg0KDQogfCBQLk8uIEJveCA5MzAwNTkNCldpeG9tLCBNaWNoaWdhbiA0ODM5MyBV
+Uw0KY2dvbmdAdHJpamljb24uY29tIHwNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZy
+b206IEJ1cnRvbiwgUm9zcyA8cm9zcy5idXJ0b25AaW50ZWwuY29tPg0KU2VudDogV2VkbmVzZGF5
+LCBKdWx5IDAzLCAyMDE5IDk6NTUgQU0NClRvOiBDaGFkIEdvbmcgPGNnb25nQHRyaWppY29uLmNv
+bT4NCkNjOiBZb2N0by1tYWlsaW5nLWxpc3QgPHlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQpTdWJq
+ZWN0OiBSZTogW3lvY3RvXSBQb2t5IGJ1aWxkIGVycm9ycywgaGVscCBpcyBuZWVkZWQNCg0KQ0FV
+VElPTjogVGhpcyBlbWFpbCBvcmlnaW5hdGVkIGZyb20gb3V0c2lkZSB5b3VyIG9yZ2FuaXphdGlv
+bi4gRXhlcmNpc2UgY2F1dGlvbiB3aGVuIG9wZW5pbmcgYXR0YWNobWVudHMgb3IgY2xpY2tpbmcg
+bGlua3MsIGVzcGVjaWFsbHkgZnJvbSB1bmtub3duIHNlbmRlcnMuDQoNCk9uIFdlZCwgMyBKdWwg
+MjAxOSBhdCAxNDoyMSwgQ2hhZCBHb25nIDxjZ29uZ0B0cmlqaWNvbi5jb20+IHdyb3RlOg0KPiBJ
+IHJlLXJhbiBhbm90aGVyIGJ1aWxkIG9mIHRoZSBzYW1lIGNvbmZpZ3VyYXRpb24uIFRoaXMgdGlt
+ZSB0aGVyZSBpcyBubyBmZXRjaCBlcnJvciBmb3IgdGhlIGZpbGUgdGhhdCBmYWlsZWQgbGFzdCB0
+aW1lLiBJIGxvb2tzIGVhY2ggdGltZSBJIGJ1aWxkLCBJIGdldCBkaWZmZXJlbnQgZmV0Y2ggZXJy
+b3IgcmFuZG9tbHkuIEJ1dCB0aGlzIHRpbWUgdGhlIGZhaWxlZCBVUkwgaXMgZ2l0IHNob3duIGJl
+bG93LCBhbmQgSSBjYW5ub3QgZXZlbiB1c2Ugd2dldCB0byBkb3dubG9hZCBpdC4NCj4NCj4gRVJS
+T1I6IGxpYm5zbDItbmF0aXZlLTEuMi4wK2dpdEFVVE9JTkMrMzdjNWZmZTMwMy1yMCBkb19mZXRj
+aDogRmV0Y2hlciBmYWlsdXJlIGZvciBVUkw6ICdnaXQ6Ly9naXRodWIuY29tL3Roa3VrdWsvbGli
+bnNsJy4gVW5hYmxlIHRvIGZldGNoIFVSTCBmcm9tIGFueSBzb3VyY2UuDQo+DQo+ICQgd2dldCBn
+aXQ6Ly9naXRodWIuY29tL3Roa3VrdWsvbGlibnNsDQo+IGdpdDovL2dpdGh1Yi5jb20vdGhrdWt1
+ay9saWJuc2w6IFVuc3VwcG9ydGVkIHNjaGVtZSDigJhnaXTigJkuDQoNClllcywgd2dldCBpcyBh
+IEhUVFAgZmV0Y2hlciwgbm90IGEgZ2l0IGZldGNoZXIuDQoNCkxvb2sgYXQgdGhlIGxvZy5kb19m
+ZXRjaCBmb3IgbGlibnNsMi1uYXRpdmUgKHRtcC93b3JrLyovbGlibnNsMi1uYXRpdmUvMS4yLjAv
+dGVtcC9sb2cuZG9fZmV0Y2guICBUaGF0IHdpbGwgdGVsbCB5b3Ugd2hhdCBpcyBmYWlsaW5nLiAg
+TWF5YmUgeW91J3ZlIGEgZmlyZXdhbGwgdGhhdCBpc24ndCBhbGxvd2luZyBnaXQgb3V0Pw0KDQpS
+b3NzDQoNCg0KDQpUaGlzIGVsZWN0cm9uaWMgbWVzc2FnZSBjb250YWlucyBpbmZvcm1hdGlvbiB0
+aGF0IG1heSBiZQ0KY29uZmlkZW50aWFsLCBwcml2aWxlZ2VkLCBwcm9wcmlldGFyeSwgb3Igc3Vi
+amVjdCB0byB0aGUgZXhwb3J0IGNvbnRyb2wgbGF3cyBvZg0KdGhlIFVuaXRlZCBTdGF0ZXMsIGlu
+Y2x1ZGluZyB0aGUgQXJtcyBFeHBvcnQgQ29udHJvbCBBY3QgKDIyIFUuUy5DLiAyNTcxIGV0DQpz
+ZXEuKSwgdGhlIEludGVybmF0aW9uYWwgVHJhZmZpYyBpbiBBcm1zIFJlZ3VsYXRpb25zICAoMjIg
+Qy5GLlIuIFBhcnQgMTIwDQpldCBzZXEuKSwgYW5kL29yIHRoZSBFeHBvcnQgQWRtaW5pc3RyYXRp
+b24gUmVndWxhdGlvbnMgKDE1IEMuRi5SLiBQYXJ0IDczMCBldA0Kc2VxLikuICBUaGlzIGluZm9y
+bWF0aW9uIGlzIGludGVuZGVkIGZvciB0aGUgdXNlIG9mIHRoZSBhZGRyZXNzZWUgb25seSwgYW5k
+DQppZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCBhbnkgZGlzY2xvc3VyZSwg
+Y29weWluZywgZGlzdHJpYnV0aW9uLA0KcHJpbnRpbmcsIG9yIGFueSBvdGhlciB1c2Ugb2YsIHRo
+ZSBjb250ZW50cyBvZiB0aGlzIG1lc3NhZ2UgaXMgcHJvaGliaXRlZC4NCkFueSB0cmFuc2Zlciwg
+cmV0cmFuc2Zlciwgb3IgZGlzY2xvc3VyZSBvZiB0aGlzIGRhdGEgdG8gYSBGb3JlaWduIFBlcnNv
+biB3aXRob3V0DQpVbml0ZWQgU3RhdGVzIEdvdmVybm1lbnQgYXV0aG9yaXphdGlvbiBpcyBhbHNv
+IHByb2hpYml0ZWQuICBJZiB5b3UgaGF2ZQ0KcmVjZWl2ZWQgdGhpcyBtZXNzYWdlIGluIGVycm9y
+LCBwbGVhc2Ugbm90aWZ5IHRoZSBzZW5kZXIgYW5kIGRlc3Ryb3kgdGhlDQpvcmlnaW5hbCBtZXNz
+YWdlLg0K
 
-Hi,
-
-We would like to use a luks encrypted rootfs with the SAMA5D2. We've includ=
-ed meta-encrypted-storage (https://github.com/jiazhang0/meta-secure-core/tr=
-ee/master/meta-encrypted-storage) in our Yocto configuration. This leverage=
-s an initramfs with cryptsetup and init scripts to unlock and mount an encr=
-ypted rootfs during boot.
-
-The issue we have is not knowing how to automatically build the encrypted r=
-ootfs and package it into the .wic file during the Yocto build process. Tod=
-ay our Yocto build produces a .wic with a boot partition and a plain rootfs=
- which is then flashed to eMMC. We would like to replace the plain rootfs i=
-n the .wic with an encrypted one.
-
-The basic steps to create a luks encrypted file system look something like =
-this:
-
-cryptsetup luksFormat /dev/mmcblkxxx keyfile cryptroot
-cryptsetup luksOpen -d keyfile /dev/mmcblkxxx cryptroot
-mkfs.ext4 /dev/mapper/cryptroot
-mount  /dev/mapper/cryptroot /mnt/cryptroot
-cp -ax /mnt/path-to-rootfs/* /mnt/cryptroot  # populate luks encrypted part=
-ition
-unmount /mnt/crtyproot
-cryptsetup luksClose cryptroot
-
-Where would we incorporate this into the BB recipes? Or is this a case wher=
-e we would need to make changes / extension so the WIC scripts and/or plugi=
-ns?
-
-Thanks in advance for any suggestions.
-
-Regards,
-Don
-
---_000_BN6PR17MB1252A92618EFF415CFBB1D1084FB0BN6PR17MB1252namp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi, <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">We would like to use a luks encrypted rootfs with th=
-e SAMA5D2. We've included meta-encrypted-storage (https://github.com/jiazha=
-ng0/meta-secure-core/tree/master/meta-encrypted-storage) in our Yocto confi=
-guration. This leverages an initramfs
- with cryptsetup and init scripts to unlock and mount an encrypted rootfs d=
-uring boot.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The issue we have is not knowing how to automaticall=
-y build the encrypted rootfs and package it into the .wic file during the Y=
-octo build process. Today our Yocto build produces a .wic with a boot parti=
-tion and a plain rootfs which is then
- flashed to eMMC. We would like to replace the plain rootfs in the .wic wit=
-h an encrypted one.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The basic steps to create a luks encrypted file syst=
-em look something like this:
-<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">cryptsetup luksFormat /de=
-v/mmcblkxxx keyfile cryptroot<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">cryptsetup luksOpen -d ke=
-yfile /dev/mmcblkxxx cryptroot<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">mkfs.ext4 /dev/mapper/cry=
-ptroot <o:p>
-</o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">mount&nbsp; /dev/mapper/c=
-ryptroot /mnt/cryptroot<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">cp -ax /mnt/path-to-rootf=
-s/* /mnt/cryptroot&nbsp; # populate luks encrypted partition<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">unmount /mnt/crtyproot<o:=
-p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">cryptsetup luksClose cryp=
-troot<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Where would we incorporate this into the BB recipes?=
- Or is this a case where we would need to make changes / extension so the W=
-IC scripts and/or plugins?
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks in advance for any suggestions. <o:p></o:p></=
-p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Don<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_BN6PR17MB1252A92618EFF415CFBB1D1084FB0BN6PR17MB1252namp_--
