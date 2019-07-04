@@ -1,75 +1,63 @@
-Return-Path: <peter.kjellerstedt@axis.com>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D5D48E00D86; Thu,  4 Jul 2019 03:44:29 -0700 (PDT)
+	id 7760BE00D88; Thu,  4 Jul 2019 04:13:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jupiter.hce[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [195.60.68.11 listed in list.dnswl.org]
-X-Greylist: delayed 338 seconds by postgrey-1.32 at yocto-www;
-	Thu, 04 Jul 2019 03:44:28 PDT
-Received: from bastet.se.axis.com (bastet.se.axis.com [195.60.68.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F56FE00C43
-	for <yocto@yoctoproject.org>; Thu,  4 Jul 2019 03:44:28 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by bastet.se.axis.com (Postfix) with ESMTP id 918C0184C8;
-	Thu,  4 Jul 2019 12:38:49 +0200 (CEST)
-X-Axis-User: NO
-X-Axis-NonUser: YES
-X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
-Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
-	by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
-	port 10024)
-	with LMTP id IeQVrY-x3Cns; Thu,  4 Jul 2019 12:38:48 +0200 (CEST)
-Received: from boulder03.se.axis.com (boulder03.se.axis.com [10.0.8.17])
-	by bastet.se.axis.com (Postfix) with ESMTPS id 5B28018415;
-	Thu,  4 Jul 2019 12:38:48 +0200 (CEST)
-Received: from boulder03.se.axis.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 3E01B1E093;
-	Thu,  4 Jul 2019 12:38:48 +0200 (CEST)
-Received: from boulder03.se.axis.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 325F61E092;
-	Thu,  4 Jul 2019 12:38:48 +0200 (CEST)
-Received: from thoth.se.axis.com (unknown [10.0.2.173])
-	by boulder03.se.axis.com (Postfix) with ESMTP;
-	Thu,  4 Jul 2019 12:38:48 +0200 (CEST)
-Received: from XBOX01.axis.com (xbox01.axis.com [10.0.5.15])
-	by thoth.se.axis.com (Postfix) with ESMTP id 25A4C29B2;
-	Thu,  4 Jul 2019 12:38:48 +0200 (CEST)
-Received: from xbox11.axis.com (10.0.5.25) by XBOX01.axis.com (10.0.5.15) with
-	Microsoft SMTP Server (TLS) id 15.0.1365.1;
-	Thu, 4 Jul 2019 12:38:47 +0200
-Received: from xbox06.axis.com (10.0.15.176) by xbox11.axis.com (10.0.5.25)
-	with Microsoft SMTP Server (TLS) id 15.0.1365.1;
-	Thu, 4 Jul 2019 12:38:47 +0200
-Received: from xbox06.axis.com ([fe80::59d2:4cb0:3900:3c35]) by
-	xbox06.axis.com ([fe80::59d2:4cb0:3900:3c35%12]) with mapi id
-	15.00.1395.000; Thu, 4 Jul 2019 12:38:47 +0200
-From: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>, Thomas Roos
-	<Thomas.Roos@industronic.de>, "Volosincu, Andreea S"
-	<andreea.volosincu@windriver.com>
-Thread-Topic: [yocto] yocto dev day ELCE 2019 Lyon ?
-Thread-Index: AQHVMjBYqcJJtrYPZ0i4Yh8p48/xPKa54goAgABhzcA=
-Date: Thu, 4 Jul 2019 10:38:47 +0000
-Message-ID: <e31b617f50e44913a1bb0203e39527c4@xbox06.axis.com>
-References: <OFDFFF8F9D.BA13B49C-ONC125842D.00221F33-C125842D.002264A7@INDUSTRONIC.DE>
-	<CAP71Wjy4RwRpjFD31wA_b8CpZn5u+2wHHscwCvS7zFCp9pruoQ@mail.gmail.com>
-In-Reply-To: <CAP71Wjy4RwRpjFD31wA_b8CpZn5u+2wHHscwCvS7zFCp9pruoQ@mail.gmail.com>
-Accept-Language: en-US, sv-FI
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.0.5.60]
+	*      [209.85.166.52 listed in list.dnswl.org]
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com
+	[209.85.166.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA28DE00D35
+	for <yocto@yoctoproject.org>; Thu,  4 Jul 2019 04:13:54 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id u13so7722437iop.0
+	for <yocto@yoctoproject.org>; Thu, 04 Jul 2019 04:13:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=TvH1AfrUpilh7xC9/ixYyzfInHfkH5uKHHz/FwshZJU=;
+	b=UYBWUgZtLQosO1DxE4LIBnryuSJx3fsNIiLrOHhm0Zd87i+VgOykpK0urjuO/iH15I
+	UYZhsnjaFATX4lbCeU575lGW3OdZoCnkE4jiTsmuGzNkHwoXkqn2RqDyUhVNJcjib6eA
+	eEhpBntn1qMRBZvN6ECrRMXP/GtrBaU1BerLR339zTiacc3yrxP/OP3rzBhk0RygSZDs
+	id353w2Ub16cko6xW4X9CkqK0/RXNjZzJWBphU8fNIrolL4qw3wODS8s/YfKIVTXd6M3
+	Da6bK5KMF/NRuzql2Iu9m3IYt6QcRIQVYA8FzwbC6Y8a89bw8g4VRuA87paZbVnE+PnS
+	6vMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=TvH1AfrUpilh7xC9/ixYyzfInHfkH5uKHHz/FwshZJU=;
+	b=tZG+KQVBjzVTTNXDHPjbYympCVe2IzSokNFuMASh2SK9sTLzx9iEK3C8mPQ1lu1k7c
+	0viw3TglMmQ50R7ccG/vUuXbTIlKbPQx90+EXwzlyEx6Ry9boa0/XSbsh2v+qq9eK/mv
+	1zZJKls3YL/ym1OnuClP6q5RDtAGY+/FM19IrPOvF/rhWG1PB/ngKwz4tmtDDZGF7cPl
+	WDx75JJNSVOOmCb2OtFSte6BpSSQ7EqypYhDoYGSrNejmW9SKlckLkJeG9JvohNwcjsP
+	Ha1ASyIT78fYw/9LG+F2i3nLRTu/HDlXc0ZTO/UIeovmtRK0BIE1ifOFSe2Oh7o9ckf6
+	5zVA==
+X-Gm-Message-State: APjAAAWg0T/++HLrh9AbHI0Sm+WY5M7AgVsk2N+qdc4AtDlrIDnQjJJK
+	Jfz2L6WYA1gpYdRwHz9LISvda4SBVuG3B3MQBAF4ueaa
+X-Google-Smtp-Source: APXvYqysKjki0NqBbd4Rf2T5EJbQ0aZeKHIMoKyUDcOcfOG/cOVwUtCbIxHKyKb1hVt7al/+MClb251VjPiwjzrMe80=
+X-Received: by 2002:a05:6638:627:: with SMTP id
+	h7mr6652317jar.33.1562238833898; 
+	Thu, 04 Jul 2019 04:13:53 -0700 (PDT)
 MIME-Version: 1.0
-X-TM-AS-GCONF: 00
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: yocto dev day ELCE 2019 Lyon ?
+Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP;
+	Thu, 4 Jul 2019 04:13:53 -0700 (PDT)
+From: JH <jupiter.hce@gmail.com>
+Date: Thu, 4 Jul 2019 21:13:53 +1000
+Message-ID: <CAA=hcWQVSkh5ZSxFyEJiYdthpoWmJhOxtx802VWGhYd8LpO8BQ@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Failing to build initramfs ramdisk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -81,42 +69,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Jul 2019 10:44:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 04 Jul 2019 11:13:55 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org>
-> On Behalf Of Nicolas Dechesne
-> Sent: den 4 juli 2019 08:45
-> To: Thomas Roos <Thomas.Roos@industronic.de>; Volosincu, Andreea S
-> <andreea.volosincu@windriver.com>
-> Cc: Yocto list discussion <yocto@yoctoproject.org>
-> Subject: Re: [yocto] yocto dev day ELCE 2019 Lyon ?
->=20
-> Hi Thomas,
->=20
-> On Thu, Jul 4, 2019 at 8:18 AM Thomas Roos <Thomas.Roos@industronic.de>
-> wrote:
-> >
-> > Hi,
-> > are there any plans to organize a yocto dev day in October 2019,
-> > Lyon. Embedded Linux Conference Europe?
-> > cheers, Thomas
->=20
-> Yes, in fact we are trying something new for the first time at ELC-E
-> this year, see:
-> https://lists.yoctoproject.org/pipermail/yocto/2019-May/045088.html
->=20
-> There will be a 2-day "Yocto Project Summit" with a mix of
-> presentations/talks, training classes and developers meetings,
-> including a social event in the evening.
->=20
-> cc'ing Andreea if there are more questions.
+Hi,
 
-Will this replace OEDEM too?
+I tried to build initramfs ramdisk on imx6, I added following
+statements in local.conf
 
-//Peter
+UBOOT_CONFIG = "emmc"
+INITRAMFS_IMAGE_BUNDLE = "1"
 
+The build failed at last stage of do_image_wic, the error is "No such
+file or directory u-boot.imx", what I could be missing?
+
+Thank you.
+
+- jh
 
