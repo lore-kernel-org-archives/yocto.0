@@ -1,84 +1,69 @@
-Return-Path: <onureser12@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CA093E00920; Thu,  4 Jul 2019 03:21:11 -0700 (PDT)
+	id 5F88BE00D88; Thu,  4 Jul 2019 03:27:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (onureser12[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.51 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.166.45 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com
-	[209.85.208.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0976AE00920
-	for <yocto@yoctoproject.org>; Thu,  4 Jul 2019 03:21:10 -0700 (PDT)
-Received: by mail-ed1-f51.google.com with SMTP id i11so4947991edq.0
-	for <yocto@yoctoproject.org>; Thu, 04 Jul 2019 03:21:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:thread-topic:thread-index:date:message-id
-	:references:in-reply-to:accept-language:content-language
-	:mime-version; bh=LSFpZki5UBncEWvhU+YQb5V/HCPMrt/nFAcLffBz3nM=;
-	b=bA2jXF0fhe/Wq5qLPpdN2q0eYqE9gFHYgSpwqXIoX+H8Psi12ExJqgarN19G98cMSd
-	fh70hHR/Qr/rAh0yIBa0p7yDEE6hiC5nH+lWXtFj6XfLzQRDwnKwo6B63x815e4f5Kfr
-	QnQN8upWTvrY+bhydhsi0vfmS7xhDx6ZuwkGorB/453ws3T7Q3+wYqpWDXFrc8GkGCy7
-	eTxyscRn4cdOUjkFA2Y/aMG/q0FI8NVsooID88hTdp0GHJiaqWelUArUFTaxnXednk7j
-	IepnW8sTGxmYcthKjHYrFtrSVy5PLpIu7vurfqKAV9Tjk3mhRlgyokLpEKw1l5bIm8I+
-	8AZw==
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com
+	[209.85.166.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7788E00D35
+	for <yocto@yoctoproject.org>; Thu,  4 Jul 2019 03:27:26 -0700 (PDT)
+Received: by mail-io1-f45.google.com with SMTP id g20so2235822ioc.12
+	for <yocto@yoctoproject.org>; Thu, 04 Jul 2019 03:27:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=P3Hks1rA1z3uPCNsRqZVWzwUNRsNGzJ9+kjsatg+NTw=;
+	b=GVFL/D30AE5MWUI/rD0ERmvnaJnDTl/bjvWKMzKQrcOpR7OOE/eviZYjsi7lIoc8zK
+	prXWJc9QHLhqWo6iAP1P4UHY9hTLb8voxNb0A9gI59PjLEyg5DswkHTGeQVXye5BYm+3
+	knMuFc7ImiUs4dLx0A9fJgdD8NaJVBvZk3ffUTWcA7POCVe6FbgiU3GUCloahjJFhCAw
+	2GE5W77XAnSEXdmBqamt8hsset1+l5+wgTQPBO41xoO8d5sPKq3eGaq9JGsHhxcxOhlY
+	SEP0RhE3waiERy24fTST6eePdKNVoJwh9bdkD99hg7F/SsAYNoJiwcrMR54taQo++weU
+	zlBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:thread-topic:thread-index
-	:date:message-id:references:in-reply-to:accept-language
-	:content-language:mime-version;
-	bh=LSFpZki5UBncEWvhU+YQb5V/HCPMrt/nFAcLffBz3nM=;
-	b=unGB5DiRPZLCQDSWU5kenseITn4MitLnULu0tKLycHY1DV24U0jMLPN5otrVFEyCUH
-	HiA8CcmoE0uQNis9TEcZvwuWk8dFWIz7H5jD5DZJz3hBtMSXTkZLnEnmy0nrN2hIDYdN
-	2BZl98QtPmuVeWrbPh4iI9HLdBQIKXiaWAgOe6K0mq5/D6U55JLRlhaFxmvC+HZqcUp/
-	f7ZUWUcKFYLUA8Fq+oa76tnUDFY1ZjtWU0TcQNVQqOPTHJYONVwdQaXlq7bO0uG98vv9
-	EstLkAb62+NMk2Sy51iOiRIY97TBOWObVmNcLWj9dUquFm4E9H6XATjkIJwolPqupKhG
-	rx4w==
-X-Gm-Message-State: APjAAAXonlGOjYqVVp7wpVCkYeorbukS3gLb5Q/yRo+tCwWGkpEQcRSX
-	kn5TOoFMk8G76x5umI6FVfE=
-X-Google-Smtp-Source: APXvYqzAGw87YhxHVwbQ3KCQemBBvj5m4W8oehciBsvk9vRJlJNVrfnRlVhkl4M3Xn6m4ZMWuhxLFw==
-X-Received: by 2002:a17:906:12d7:: with SMTP id
-	l23mr36605273ejb.282.1562235669799; 
-	Thu, 04 Jul 2019 03:21:09 -0700 (PDT)
-Received: from AM0PR0302MB3331.eurprd03.prod.outlook.com ([40.101.80.109])
-	by smtp.gmail.com with ESMTPSA id i1sm982288ejo.32.2019.07.04.03.21.09
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 04 Jul 2019 03:21:09 -0700 (PDT)
-From: Onur Eser <onureser12@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>, Zoran Stojsavljevic
-	<zoran.stojsavljevic@gmail.com>
-Thread-Topic: [yocto] Json-Glib failed to build during the building of Weston
-	image
-Thread-Index: AWd0UFFt9B42bETW7UyT4mg2KxSNK2dXUFc2dzMyVnLUh69JDA==
-X-MS-Exchange-MessageSentRepresentingType: 1
-Date: Thu, 4 Jul 2019 10:21:07 +0000
-Message-ID: <AM0PR0302MB33312C4AF1F6A392FDE4FB54FAFA0@AM0PR0302MB3331.eurprd03.prod.outlook.com>
-References: <CAG+Ob8YjxmmHaEJ-N80QzNKcrP8=5PbMewVApk4tW7J994KfJg@mail.gmail.com>
-	<CAGAf8LxzH6BLd43+di7Wy3pRJnNiqPimRW0c6CQWnpTo2X9Xsg@mail.gmail.com>,
-	<CAJTo0LYDOruPah4+sHeVMEJwrcpeh2+uP9hpGvw3V+fFtWsUJw@mail.gmail.com>
-In-Reply-To: <CAJTo0LYDOruPah4+sHeVMEJwrcpeh2+uP9hpGvw3V+fFtWsUJw@mail.gmail.com>
-Accept-Language: tr-TR, en-US
-X-MS-Has-Attach: 
-X-MS-Exchange-Organization-SCL: -1
-X-MS-TNEF-Correlator: 
-X-MS-Exchange-Organization-RecordReviewCfmType: 0
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=P3Hks1rA1z3uPCNsRqZVWzwUNRsNGzJ9+kjsatg+NTw=;
+	b=KsrkjmbsCvfpE2p9O+kqj8Ato3eCCWOGMETb0iGJdLB7Nbd7YIsqT9wXDPJ6R2qeco
+	8SaYGSsV3CbAQdCAydXhvsmJKjbszqIM3rQpeecjoID6Lj0DM3Fv1iy1t+xo6dwye8bw
+	AJi6Ryzf+sWacREA2YR5Lx95ZrK7qrL9j1PCxdI3mJOmCGBBggOR5PJcOnZqJgyBgcMV
+	i3C2UM2FI0+nNq0VvptmkZ10wdtk1Nw4leR2WL4sFYPetuflH64w9yOhxmKAIjKP+8Md
+	zRIuyFAe5YAOABntfPuQhb0RLhnIXAe0kiDPGhwUhmRudx4nVkAzT2M4TAvU/JYLyePI
+	jivQ==
+X-Gm-Message-State: APjAAAVjzrUfzhnBCvNs/Kl8ePFFiPQqEF3hmqvrMrKAjTnSPYFKZsDc
+	XKjLLnBlbQpYyEIJ4JBUidzOGAkLvJdiPpcar0smRETV8Uk=
+X-Google-Smtp-Source: APXvYqxwVnf+6R7VZ6TXdVzGFf+6+ExMlRL5wbCT5gPM9O0USCKbddJTRMSFjXPhD7vLSUkbx7KWGvZrGiCCMobAh+w=
+X-Received: by 2002:a02:b395:: with SMTP id p21mr49250985jan.31.1562236046268; 
+	Thu, 04 Jul 2019 03:27:26 -0700 (PDT)
 MIME-Version: 1.0
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Json-Glib failed to build during the building of Weston image
+References: <2566dd81001d4f4891db00ffb2419a21@trijicon.com>
+	<CAJTo0LZcAF+F5SF1ifK+wB5ZzZjDXhZHn0a-Q+7wA1FRqJRDgQ@mail.gmail.com>
+	<9b82304b0ac6483b9de2eedbc6a961f7@trijicon.com>
+	<CAJTo0LbvoJNCAncDpSk-yUQSN=x3Oge4R-bQJV-6MzYTKHmvwg@mail.gmail.com>
+	<1f5813cde712457c8eae5ce20a5e90e2@trijicon.com>
+	<CAJTo0LYApGjZXeQFP+gr_55cXaKwOGahnW4Zp83M8Hj+pSNOZQ@mail.gmail.com>
+	<9d65e7b2c1794d4ab7618a9a769b4bf9@trijicon.com>
+	<CAJTo0LYxA818Q3vmOea4rRffiJR=XkSkRe3cSMPtc+7otQuo7A@mail.gmail.com>
+	<cfaa374acb35448ca38b96cde6bc8320@trijicon.com>
+In-Reply-To: <cfaa374acb35448ca38b96cde6bc8320@trijicon.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 4 Jul 2019 11:27:15 +0100
+Message-ID: <CAJTo0LYCAxzb37f2QhzVvdpOArjWzSFKK-oTwOj3ssHNrJKKGw@mail.gmail.com>
+To: Chad Gong <cgong@trijicon.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Poky build errors, help is needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -90,87 +75,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Jul 2019 10:21:11 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_AM0PR0302MB33312C4AF1F6A392FDE4FB54FAFA0AM0PR0302MB3331_"
-
---_000_AM0PR0302MB33312C4AF1F6A392FDE4FB54FAFA0AM0PR0302MB3331_
-Content-Type: text/plain; charset="iso-8859-2"
+X-List-Received-Date: Thu, 04 Jul 2019 10:27:27 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Well, changed my configuration a little bit. Now, compiling again for a cor=
-e weston image. I will let you know if anything goes wrong again. And thank=
- you for giving me information about my host system, Zoran.
-Onur
+On Wed, 3 Jul 2019 at 20:54, Chad Gong <cgong@trijicon.com> wrote:
+> I opened the log.do_fetch file, and it looks like a file git2_github.com.=
+thkukuk.libnsl.tar.gz was downloaded from the mirror site http://downloads.=
+yoctoproject.org/mirror/sources/git2_github.com.thkukuk.libnsl.tar.gz .Then=
+ an error happened with tar, as shown below:
+>
+> tar -xzf /home/chad/mybuild-coreimageminimal-270-2/downloads/git2_github.=
+com.thkukuk.libnsl.tar.gz failed with exit code 2, output:
+>
+> gzip: stdin: not in gzip format
+> tar: Child returned status 1
+> tar: Error is not recoverable: exiting now
 
+$ wget http://downloads.yoctoproject.org/mirror/sources/git2_github.com.thk=
+ukuk.libnsl.tar.gz
+...
+$ file git2_github.com.thkukuk.libnsl.tar.gz
+git2_github.com.thkukuk.libnsl.tar.gz: gzip compressed data, last
+modified: Tue Jul 31 07:59:20 2018, from Unix
+$ tar ztvf git2_github.com.thkukuk.libnsl.tar.gz
+drwxr-xr-x pokybuild/users   0 2018-07-31 08:46 ./
+-rw-r--r-- pokybuild/users 955 2018-07-31 08:46 ./packed-refs
+drwxr-xr-x pokybuild/users   0 2018-07-31 08:46 ./objects/
 
-________________________________
-Kimden: Burton, Ross <ross.burton@intel.com>
-G=F6nderme tarihi: Per=BAembe, Temmuz 4, 2019 1:16 =D6S
-Kime: Zoran Stojsavljevic
-Bilgi: Onur Eser; Yocto Project
-Konu: Re: [yocto] Json-Glib failed to build during the building of Weston i=
-mage
+Can you see what happened to your local file?  Still looks like you've
+got network issues.
 
-On Thu, 4 Jul 2019 at 10:43, Zoran Stojsavljevic
-<zoran.stojsavljevic@gmail.com> wrote:
-> Why Weston protocol? Why not classical X11 Client Server in user
-> space? Which DeskTop are U using in Ur YOCTO build?
-
-Weston is arguably superior to X11 in most respects, and for new
-platforms which are not tied to a classic X server I entirely
-recommend Weston over X.
+Oh, and you can share DL_DIR between builds, so I'd move it out of
+your build directory.
 
 Ross
 
---_000_AM0PR0302MB33312C4AF1F6A392FDE4FB54FAFA0AM0PR0302MB3331_
-Content-Type: text/html; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-2">
-</head>
-<body>
-<div>
-<div>
-<div>
-<div style=3D"direction: ltr;">Well, changed my configuration a little bit.=
- Now, compiling again for a core weston image. I will let you know if anyth=
-ing goes wrong again. And thank you for giving me information about my host=
- system, Zoran.</div>
-<div style=3D"direction: ltr;">Onur</div>
-</div>
-<div><br>
-</div>
-<div class=3D"ms-outlook-ios-signature"></div>
-</div>
-<div>&nbsp;</div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"dir=3D&quot;ltr&quot;"><font face=3D"Calib=
-ri, sans-serif" style=3D"font-size:11pt" color=3D"#000000"><b>Kimden:</b> B=
-urton, Ross &lt;ross.burton@intel.com&gt;<br>
-<b>G=F6nderme tarihi:</b> Per=BAembe, Temmuz 4, 2019 1:16 =D6S<br>
-<b>Kime:</b> Zoran Stojsavljevic<br>
-<b>Bilgi:</b> Onur Eser; Yocto Project<br>
-<b>Konu:</b> Re: [yocto] Json-Glib failed to build during the building of W=
-eston image
-<div>&nbsp;</div>
-</font></div>
-On Thu, 4 Jul 2019 at 10:43, Zoran Stojsavljevic <br>
-&lt;zoran.stojsavljevic@gmail.com&gt; wrote: <br>
-&gt; Why Weston protocol? Why not classical X11 Client Server in user <br>
-&gt; space? Which DeskTop are U using in Ur YOCTO build? <br>
-<br>
-Weston is arguably superior to X11 in most respects, and for new <br>
-platforms which are not tied to a classic X server I entirely <br>
-recommend Weston over X. <br>
-<br>
-Ross <br>
-</div>
-</body>
-</html>
-
---_000_AM0PR0302MB33312C4AF1F6A392FDE4FB54FAFA0AM0PR0302MB3331_--
