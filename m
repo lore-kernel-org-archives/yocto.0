@@ -1,65 +1,67 @@
-Return-Path: <philip@balister.org>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DBB3EE00D90; Fri,  5 Jul 2019 14:42:26 -0700 (PDT)
+	id 19D8FE00D8F; Fri,  5 Jul 2019 16:11:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jupiter.hce[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [216.168.135.166 listed in list.dnswl.org]
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF3F0E00D83
-	for <yocto@yoctoproject.org>; Fri,  5 Jul 2019 14:42:25 -0700 (PDT)
-Received: (qmail 5327 invoked by uid 1003); 5 Jul 2019 21:42:25 -0000
-Received: from unknown (HELO ?192.168.11.100?)
-	(philip@opensdr.com@73.152.143.112)
-	by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
-	5 Jul 2019 21:42:25 -0000
-To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>,
-	Nicolas Dechesne <nicolas.dechesne@linaro.org>,
-	Thomas Roos <Thomas.Roos@industronic.de>,
-	"Volosincu, Andreea S" <andreea.volosincu@windriver.com>
-References: <OFDFFF8F9D.BA13B49C-ONC125842D.00221F33-C125842D.002264A7@INDUSTRONIC.DE>
-	<CAP71Wjy4RwRpjFD31wA_b8CpZn5u+2wHHscwCvS7zFCp9pruoQ@mail.gmail.com>
-	<e31b617f50e44913a1bb0203e39527c4@xbox06.axis.com>
-From: Philip Balister <philip@balister.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
-	xsBNBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
-	HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
-	rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
-	2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
-	fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
-	AAHNJVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz7CwH4EEwECACgCGyMG
-	CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
-	nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
-	3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
-	YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
-	3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
-	yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4YxjOwE0ETo83gQEIAPs+ZC0R
-	gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
-	GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
-	uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
-	LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
-	gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAcLAZQQYAQIADwIbDAUC
-	WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
-	1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
-	ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
-	icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
-	ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
-	6eUfr0u7CwnEyqiQ
-Message-ID: <bb27d70f-608c-ec0c-bfa0-3b89a953e45a@balister.org>
-Date: Fri, 5 Jul 2019 17:42:23 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
-	Thunderbird/52.5.2
+	*      [209.85.166.44 listed in list.dnswl.org]
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com
+	[209.85.166.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB40AE00A7D
+	for <yocto@yoctoproject.org>; Fri,  5 Jul 2019 16:10:58 -0700 (PDT)
+Received: by mail-io1-f44.google.com with SMTP id z3so7329746iog.0
+	for <yocto@yoctoproject.org>; Fri, 05 Jul 2019 16:10:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=1vtwE9Yc53g+8n7hjiDHR3AstGqHrZZlYJMDk5eTeTo=;
+	b=fAoUMs+nw71K7AqQjT7vbGcxeTKkfgnFU6NEE3/cdrpQDx5nDOw3UQxULpONuu+XFf
+	xJZOwbMujO+4UpCiQNaOGd193TCpMQ6CwDFxN8pyfMoAXcqqns/dljWtjBhfBHQ+5kIJ
+	/eAZToN/vbWx4XUJhtrYkqD5ecqaoLriG+y0YVhnV8Tl3Wg3W2pBWQwPIkrvfMAtxTdU
+	OgO2c5iX1UI3R7wIiie2kmyV/wRo10n5OfFqp/2Qq8kakcxzIqt3OoRz0ENKz0Xm74VX
+	1BDoTQSdT2RQR25MSk38mNQVf+VjdgVsFDv/NOvtS9FmNL+JqmhLiv4KoeBikWKhQg+N
+	gt2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=1vtwE9Yc53g+8n7hjiDHR3AstGqHrZZlYJMDk5eTeTo=;
+	b=rPEW6UOUt+lqcF5gXD8hWb8pR5fKTj2yBSwLO5B2S+dydI5ClBWEqp6/MPr1xDdSlj
+	W6OU2u8tlOcsEirTyn86lfplqPJMYtKSbjOjrU3qwXeNA0bUHSgy9fiiCV05dRvrzvU3
+	K3Qpk38dM3MHAAW9wAGNMThSyBZDIzboYnFnRwY7A9t2lKd2eacwHMi+RSPVAOyRl/aL
+	CZQOa75XdBkhO7SbhlR2QNjrNXWQzPP1eDTO2BKwmbkKw+9uQrRZlMvb4ANOPpQ5ZhLI
+	F6hecqtKP23ucPTugBZWRUQq1FgMKbjtktaMa9Z6laynnbn0iA9jHI7MF/yI9RQOU/1H
+	jtnw==
+X-Gm-Message-State: APjAAAVDoOf4IOsTEd7KUbR4mMmM5BMCe0RDFJ6Rbg7FStvGLr9dlcHX
+	3Gx/ZIy2e1N3aD8e4RHQgxXbvl4eDFTFP2y3bJg=
+X-Google-Smtp-Source: APXvYqxyK7FDVIt1A3BNm6ZlFWWpsL7rlggmuG/kA34dD7KaQ/TX9y0FJwNhFYKXVE3VrvffnjahPk4WPZmSSofz7F0=
+X-Received: by 2002:a5e:db02:: with SMTP id q2mr779232iop.306.1562368258239;
+	Fri, 05 Jul 2019 16:10:58 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <e31b617f50e44913a1bb0203e39527c4@xbox06.axis.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: yocto dev day ELCE 2019 Lyon ?
+Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP;
+	Fri, 5 Jul 2019 16:10:57 -0700 (PDT)
+In-Reply-To: <CAAx3WaDPHT=dcqjChDw-Cf72-rLirbAOPKMZmOHF1YJmia9quQ@mail.gmail.com>
+References: <CAA=hcWRnntFMMmipmOBSw-BrG0p+Fix3u8rGONvh6NUEoi4TSA@mail.gmail.com>
+	<CAAx3WaDPHT=dcqjChDw-Cf72-rLirbAOPKMZmOHF1YJmia9quQ@mail.gmail.com>
+From: JH <jupiter.hce@gmail.com>
+Date: Sat, 6 Jul 2019 09:10:57 +1000
+Message-ID: <CAA=hcWR=V=Ha_Gi69r2Vu4seseFqDV59Fj9sqBrd55WaFCiNrg@mail.gmail.com>
+To: Gabriele Zampieri <gabbla.malist@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: How to extrac rootfs.wic in Ubuntu?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,49 +73,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Jul 2019 21:42:26 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-MW
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 05 Jul 2019 23:11:01 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-In 07/04/2019 06:38 AM, Peter Kjellerstedt wrote:
->> -----Original Message-----
->> From: yocto-bounces@yoctoproject.org <yocto-bounces@yoctoproject.org>
->> On Behalf Of Nicolas Dechesne
->> Sent: den 4 juli 2019 08:45
->> To: Thomas Roos <Thomas.Roos@industronic.de>; Volosincu, Andreea S
->> <andreea.volosincu@windriver.com>
->> Cc: Yocto list discussion <yocto@yoctoproject.org>
->> Subject: Re: [yocto] yocto dev day ELCE 2019 Lyon ?
->>
->> Hi Thomas,
->>
->> On Thu, Jul 4, 2019 at 8:18 AM Thomas Roos <Thomas.Roos@industronic.de>
->> wrote:
->>>
->>> Hi,
->>> are there any plans to organize a yocto dev day in October 2019,
->>> Lyon. Embedded Linux Conference Europe?
->>> cheers, Thomas
->>
->> Yes, in fact we are trying something new for the first time at ELC-E
->> this year, see:
->> https://lists.yoctoproject.org/pipermail/yocto/2019-May/045088.html
->>
->> There will be a 2-day "Yocto Project Summit" with a mix of
->> presentations/talks, training classes and developers meetings,
->> including a social event in the evening.
->>
->> cc'ing Andreea if there are more questions.
-> 
-> Will this replace OEDEM too?
+Good tips, Thanks Gabriele and Onur.
 
-Yes. 5 days of conference sessions meetings is enough for anyone :)
-
-Philip
-
-
-> 
-> //Peter
-> 
+On 7/5/19, Gabriele Zampieri <gabbla.malist@gmail.com> wrote:
+> Hi,
+>
+> in your machine conf add: (or just overload it, if you need only tar.gz
+> images, this will speedup the image generation process)
+> IMAGE_FSTYPES += " tar.gz"
+>
+> The list of (standard) available image types can be found here:
+> https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-IMAGE_TYPES
+>
+> Gabriele
+>
+> Il giorno ven 5 lug 2019 alle ore 14:23 JH <jupiter.hce@gmail.com> ha
+> scritto:
+>
+>> Hi,
+>>
+>> I know I can use dd to write wic to a device such as a SD card, but I
+>> need to extract rootfs.wic then repack it by tar.gz in Ubuntu machine.
+>> Is it possible? How can I do it.
+>>
+>> Thank you.
+>>
+>> - jupiter
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
 
