@@ -1,6 +1,6 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A929E00D4F; Sat,  6 Jul 2019 16:32:37 -0700 (PDT)
+	id B786FE00D5F; Sat,  6 Jul 2019 19:03:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,7 +10,7 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+	provider *      (jupiter.hce[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -18,51 +18,45 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.194 listed in list.dnswl.org]
-Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
-	[209.85.210.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF41BE00D1C
-	for <yocto@yoctoproject.org>; Sat,  6 Jul 2019 16:32:35 -0700 (PDT)
-Received: by mail-pf1-f194.google.com with SMTP id i189so5801196pfg.10
-	for <yocto@yoctoproject.org>; Sat, 06 Jul 2019 16:32:35 -0700 (PDT)
+	*      [209.85.166.46 listed in list.dnswl.org]
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com
+	[209.85.166.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44168E0098A
+	for <yocto@yoctoproject.org>; Sat,  6 Jul 2019 19:03:42 -0700 (PDT)
+Received: by mail-io1-f46.google.com with SMTP id u19so27156097ior.9
+	for <yocto@yoctoproject.org>; Sat, 06 Jul 2019 19:03:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=We5mAu36Ln2c8ZiYUCabeyRjoQU9wC0mY1D9hGZhrZM=;
-	b=DlcOa3yBImupSNqvOED0xOl2MdSd1zfKxrdwJdQ7q7UHL9adpXBjYrFSj6Dq6r+ytQ
-	8mgRY9pWwpD2JlGVCGVkvD2hR4mFYozCdz1qDoQK7tl+rNcdNauQNSj3IOfnCalcKSfX
-	KuXNaN/GRTfzds0Yw38ZHy/qblM/Xi6eRdUve+3ITH08AJ8BXqPY5Px6b4EUZ6UmhSsb
-	vk2whyU3VsExW9DjOXU1PNOu074our07zNVroYvKL4SZkF9bCnOFjXJzCIsJSkHAjzOY
-	VubJzSOHhqraGE8HCYTJx+S/Nh192N21veDBLMd6eRPnRrwRFIFKH7Lzvaplh0EWUcJC
-	Rggg==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=j0BrOU+8rmk2xHYOQSfx0tk/EKhrk+cVemnYuFFvch0=;
+	b=SKDk2T8FWFQgdFFHGgLRUAyzi9ubvfbMkDWN2+TZ6j0UVc9XobUdBo1bMvgHlHIQy8
+	v4x8tr5MNWO7VCKStNX7X9aQDySofOGup1/WDNlga+4DvGTPTD+cl/E7fmIdldvUz+SL
+	VXZ/izq6vwsn4TExibq9bwboVXpVtLB5lqprHeGzMAWkZwVake6Ew+rqaDDBpIukWOhI
+	MP3g79n+91ht4yDC1RuO/4BU2KMZ0Z8sWbFRgT/kI+lOGWCTRMIfS9pLg9+gwKEkPSpK
+	ezwa8YKzwY0zP9n5nyU+QyRdKh8cyDySn48ixMzHb6dmJVTtrrDA4H7zyZOuvXVrBi/m
+	vamw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-	:references;
-	bh=We5mAu36Ln2c8ZiYUCabeyRjoQU9wC0mY1D9hGZhrZM=;
-	b=Py6aF5TeHGIMmKJk1ioY6gpzJxf8gwGpaTPShqGGdXyq1QPk7lIxCu2KyHYT77twPb
-	Z5ObpoAxM2aEBPBR7bLamdCm7pc0Q0K1808+EhSYoVdDuELnbvugf+GsiCAQHcWVhiCj
-	psU/i/YuDwAqjFXsDfK6jx2qv1ymesL4aK5aNOzai820lBrTYqDbEPxAhUFoArkIAbYu
-	fKGfKvdmLIqn+0PbgYOu5ZS5jZqUpIKkkQcaMURu+n+bIM3Pmpwom40ZY5q+pk07XXqu
-	qVlqgcVnFbLlku5XOnLZWr+2DQFKmBlW6HLWEH6ReruelkpSACFBhQbaG8VOusjFUuyI
-	Nl6Q==
-X-Gm-Message-State: APjAAAX6skmLL1UscttTIYZ479qnFbCjCQriTCo563eMz7Sal/zNkuNR
-	W947NZv7/nHd+J2RtUqhEh2VpVl/D+A=
-X-Google-Smtp-Source: APXvYqzUVJ/0L6/XaetmCNfXVxB69bcLZMZocr6f5dRbV9NVajr3Ae9eE+VrIff74PxjWYMvjBKNrw==
-X-Received: by 2002:a65:48c3:: with SMTP id o3mr13556336pgs.70.1562455955169; 
-	Sat, 06 Jul 2019 16:32:35 -0700 (PDT)
-Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
-	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	a25sm12486639pfn.1.2019.07.06.16.32.34 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sat, 06 Jul 2019 16:32:34 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sat,  6 Jul 2019 16:32:30 -0700
-Message-Id: <20190706233230.2774-4-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190706233230.2774-1-akuster808@gmail.com>
-References: <20190706233230.2774-1-akuster808@gmail.com>
-Subject: [meta-security-compliance][PATCH 4/4] meta-security-compliance: add meta-python
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=j0BrOU+8rmk2xHYOQSfx0tk/EKhrk+cVemnYuFFvch0=;
+	b=hRSugBqsHNf8iAdtF1D+T9S0P8Ybwgn/zWrzULApyfJQFHMKt6xTjd7A7CKDrN6Se1
+	qVQGtK+4msRNH1w9IQz0uzrkddcap+YIuy6jwikVnnKsbDPCf3KSTxeapwtAkhtDqMhs
+	25Ub1oWuvjjfFQLjzgQLgWAV4ea8sfbAmXSE8VU5lfrsVpceWsD1XHV47tFLDbwVd/oD
+	RMHpp34b0NksRIL30c+lSdl4P+NIlKkdHMhoMxXGQkafYFxZ2KlifkQUWNYoVNPpGaBf
+	Ayho90f+czw5QdGQKOSU0EQlAAhQ1j4DzXK0rSRtmZmieUVwrbN8Tr23FGR3o/USJjJC
+	HPHg==
+X-Gm-Message-State: APjAAAV/SThGQoT9OAt8eLBIR5AxR/YVOFkvxIuZCwFfQbPI/+bW5sK7
+	tLWmPMupkISMcdX2lKcDdznDujhI+TNcR4TWc6jl5QvG
+X-Google-Smtp-Source: APXvYqyWGkGiF+NkrCIvEcWxC9KaVD/ReXWDJryXl0vad5Pi+x8cZdMVkQAvS2QGxHFA5/rHWrdrB1j0aeRosmsAMpY=
+X-Received: by 2002:a6b:8f47:: with SMTP id r68mr5899226iod.204.1562465021643; 
+	Sat, 06 Jul 2019 19:03:41 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP;
+	Sat, 6 Jul 2019 19:03:41 -0700 (PDT)
+From: JH <jupiter.hce@gmail.com>
+Date: Sun, 7 Jul 2019 12:03:41 +1000
+Message-ID: <CAA=hcWSYY+m=kLaZNoy4a9L2Xm3oV=CjGuvu56Of-Xx_XYnD-g@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: How to add udev in Yocto build?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,28 +68,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 06 Jul 2019 23:32:37 -0000
+X-List-Received-Date: Sun, 07 Jul 2019 02:03:42 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-with some for the recipe updates, more pyton support is needed
+Hi,
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- meta-security-compliance/conf/layer.conf | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+I need to add a udev file to make kernel device name symbolic link,
+any example I can make the Yocto configure to achieve it?
 
-diff --git a/meta-security-compliance/conf/layer.conf b/meta-security-compliance/conf/layer.conf
-index b245a16..9ccadab 100644
---- a/meta-security-compliance/conf/layer.conf
-+++ b/meta-security-compliance/conf/layer.conf
-@@ -10,6 +10,4 @@ BBFILE_PRIORITY_scanners-layer = "10"
- 
- LAYERSERIES_COMPAT_scanners-layer = "warrior"
- 
--LAYERDEPENDS_scanners-layer = " \
--    core \
--"
-+LAYERDEPENDS_scanners-layer = "core openembedded-layer meta-python"
--- 
-2.17.1
+Thank you.
 
+Kind regards,
+
+- jupiter
 
