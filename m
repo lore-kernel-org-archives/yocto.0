@@ -1,62 +1,37 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B786FE00D5F; Sat,  6 Jul 2019 19:03:42 -0700 (PDT)
+	id D6B26E00DA3; Sun,  7 Jul 2019 18:34:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jupiter.hce[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.46 listed in list.dnswl.org]
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com
-	[209.85.166.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44168E0098A
-	for <yocto@yoctoproject.org>; Sat,  6 Jul 2019 19:03:42 -0700 (PDT)
-Received: by mail-io1-f46.google.com with SMTP id u19so27156097ior.9
-	for <yocto@yoctoproject.org>; Sat, 06 Jul 2019 19:03:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=j0BrOU+8rmk2xHYOQSfx0tk/EKhrk+cVemnYuFFvch0=;
-	b=SKDk2T8FWFQgdFFHGgLRUAyzi9ubvfbMkDWN2+TZ6j0UVc9XobUdBo1bMvgHlHIQy8
-	v4x8tr5MNWO7VCKStNX7X9aQDySofOGup1/WDNlga+4DvGTPTD+cl/E7fmIdldvUz+SL
-	VXZ/izq6vwsn4TExibq9bwboVXpVtLB5lqprHeGzMAWkZwVake6Ew+rqaDDBpIukWOhI
-	MP3g79n+91ht4yDC1RuO/4BU2KMZ0Z8sWbFRgT/kI+lOGWCTRMIfS9pLg9+gwKEkPSpK
-	ezwa8YKzwY0zP9n5nyU+QyRdKh8cyDySn48ixMzHb6dmJVTtrrDA4H7zyZOuvXVrBi/m
-	vamw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=j0BrOU+8rmk2xHYOQSfx0tk/EKhrk+cVemnYuFFvch0=;
-	b=hRSugBqsHNf8iAdtF1D+T9S0P8Ybwgn/zWrzULApyfJQFHMKt6xTjd7A7CKDrN6Se1
-	qVQGtK+4msRNH1w9IQz0uzrkddcap+YIuy6jwikVnnKsbDPCf3KSTxeapwtAkhtDqMhs
-	25Ub1oWuvjjfFQLjzgQLgWAV4ea8sfbAmXSE8VU5lfrsVpceWsD1XHV47tFLDbwVd/oD
-	RMHpp34b0NksRIL30c+lSdl4P+NIlKkdHMhoMxXGQkafYFxZ2KlifkQUWNYoVNPpGaBf
-	Ayho90f+czw5QdGQKOSU0EQlAAhQ1j4DzXK0rSRtmZmieUVwrbN8Tr23FGR3o/USJjJC
-	HPHg==
-X-Gm-Message-State: APjAAAV/SThGQoT9OAt8eLBIR5AxR/YVOFkvxIuZCwFfQbPI/+bW5sK7
-	tLWmPMupkISMcdX2lKcDdznDujhI+TNcR4TWc6jl5QvG
-X-Google-Smtp-Source: APXvYqyWGkGiF+NkrCIvEcWxC9KaVD/ReXWDJryXl0vad5Pi+x8cZdMVkQAvS2QGxHFA5/rHWrdrB1j0aeRosmsAMpY=
-X-Received: by 2002:a6b:8f47:: with SMTP id r68mr5899226iod.204.1562465021643; 
-	Sat, 06 Jul 2019 19:03:41 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 756A6E00A93
+	for <yocto@yoctoproject.org>; Sun,  7 Jul 2019 18:34:15 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x681YDLa008425
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 7 Jul 2019 18:34:13 -0700 (PDT)
+Received: from [128.224.162.148] (128.224.162.148) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.439.0;
+	Sun, 7 Jul 2019 18:34:13 -0700
+To: JH <jupiter.hce@gmail.com>, Yocto discussion list <yocto@yoctoproject.org>
+References: <CAA=hcWTqFYjb0hzeFJNuDCGfZB8=G5h1eN4b9GULgng_5YQCLw@mail.gmail.com>
+From: ChenQi <Qi.Chen@windriver.com>
+Message-ID: <fa7df758-1686-90cf-3a47-bfe6e5b2450b@windriver.com>
+Date: Mon, 8 Jul 2019 09:46:45 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
 MIME-Version: 1.0
-Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP;
-	Sat, 6 Jul 2019 19:03:41 -0700 (PDT)
-From: JH <jupiter.hce@gmail.com>
-Date: Sun, 7 Jul 2019 12:03:41 +1000
-Message-ID: <CAA=hcWSYY+m=kLaZNoy4a9L2Xm3oV=CjGuvu56Of-Xx_XYnD-g@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: How to add udev in Yocto build?
+In-Reply-To: <CAA=hcWTqFYjb0hzeFJNuDCGfZB8=G5h1eN4b9GULgng_5YQCLw@mail.gmail.com>
+X-Originating-IP: [128.224.162.148]
+Subject: Re: Missing init symbolic link in rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,17 +43,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 07 Jul 2019 02:03:42 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 08 Jul 2019 01:34:15 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 07/07/2019 07:01 AM, JH wrote:
+> Hi,
+>
+> I built the rootfs image but it missed a symbolic link init at the /
+> directory, although I added following init link manually, I should fix
+> it in Yocto build. What should I fix the image build cofiguration  to
+> include init link at the /?
+>
+> $ ls /
+> bin   dev  home  lib    mnt   root  sbin  tmp  var
+> boot  etc  init  media  proc  run   sys   usr
+>
+> $ ls -l /init
+> init -> /sbin/init
+>
+> Thank you.
+>
+> Kind regards,
+>
+> - jupiter
 
-I need to add a udev file to make kernel device name symbolic link,
-any example I can make the Yocto configure to achieve it?
+/sbin/init is default location. Why do you need /init ?
 
-Thank you.
+Best Regards,
 
-Kind regards,
+Chen Qi
 
-- jupiter
 
