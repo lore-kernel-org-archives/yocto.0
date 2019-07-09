@@ -1,61 +1,64 @@
-Return-Path: <jku@goto.fi>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BAA12E00C87; Tue,  9 Jul 2019 02:55:47 -0700 (PDT)
+	id 84C6AE00CF4; Tue,  9 Jul 2019 02:56:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	https://www.dnswl.org/, no *      trust
+	*      [209.85.160.177 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.65 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lf1-f65.google.com (mail-lf1-f65.google.com
-	[209.85.167.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 130A2E00C7D
-	for <yocto@yoctoproject.org>; Tue,  9 Jul 2019 02:55:46 -0700 (PDT)
-Received: by mail-lf1-f65.google.com with SMTP id v85so10036189lfa.6
-	for <yocto@yoctoproject.org>; Tue, 09 Jul 2019 02:55:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=goto.fi; s=google;
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com
+	[209.85.160.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB921E00C81
+	for <yocto@yoctoproject.org>; Tue,  9 Jul 2019 02:56:09 -0700 (PDT)
+Received: by mail-qt1-f177.google.com with SMTP id z4so17542937qtc.3
+	for <yocto@yoctoproject.org>; Tue, 09 Jul 2019 02:56:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=qL2VQ/BbiOMUjTM+EgnidtEWH5xLxf4VAJebgi0uT14=;
-	b=MiRNLEAZ5v5uELV9Z4LMCsqV1fHH91f8y6xgYXFfNhGyankbN7mjkhzRMS1B7FEM4k
-	UFr2WIacdBSZgqIxKbp+iGdIkR/3tz2xjOODZM9fwhX8ajdHKzumciHbOYx3sKqsP6JW
-	+ApaQnX886e3jUaDfLbubV4ZxiTZVT5+vrXh8=
+	:cc; bh=Zj08rAtFnaMa+6vHFhAkXTgwi26WVtB0UIkfytTZdW8=;
+	b=vQYJOBV+1nEBwD9WQJ+j1A0EpoN/rzgytwac+exAZgQaBe03906bvCuTA9gyntSHWI
+	9mvQ/zp0gLiXmGPf5ydqvHGMY7/DLtaz9SMMoMCU158UWNHUMRfwWvUkjgKCdhrXIlA0
+	aYkz7LK9KnDboF0kjFLx49meAtuTRq28Wkhmkkpw8sEgdgfIPUFtatpkifTVeEz76zAO
+	W0oZ9aTeUyofxPcLP2MFUeoO2qq6pmdRj1UuB4ylIsAoIA+R9JPH0wZmNoWecv010vqB
+	wZdG8ZnY3A49rMqSwyxSHaBijAL82kxEeBV8gdJJpbdijpfHjH/WSUxKtecMtOzrlZMn
+	5MVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=qL2VQ/BbiOMUjTM+EgnidtEWH5xLxf4VAJebgi0uT14=;
-	b=N4GbWEm9LijYIaQlvzGrx42PWpluoSLJ5l9SPQjHQDsdDX6WA3Y2Pxc05TelJ13IgP
-	+dvMsg3WY1W+siI9n0EvEs4YyDPuK1TaUrN2prlTmQwcQ2r1A6bBoTmK+o4o4Dnic4ke
-	ObZd1ILmXME+YjqEemK1abS9NGgICt5ZxGhZ0bp7NQqXyBOlEYv3Xa4qiUe1g50HSDQd
-	snlmCsFIbXLGO9UEQsqRs16bpyiL2f2tUPCmSYYjBcTQXoOtIFcz9cgnClknoZrYihft
-	GygeqFPSkXd8mIF9hv46i3Dr1ZbQHkUzFD2h9fXfnfWQPaJleXY2WJb8B9QYTzcMf/+m
-	h4kQ==
-X-Gm-Message-State: APjAAAVmXUV7OgNAGawTT2nQShn22JCkaf03zKd2nnEZe5LxmW243a1j
-	AOnxX0UfQC6pthiAyZRK15iallfDkhxS6swK9H3JnA==
-X-Google-Smtp-Source: APXvYqwUa+LmWk+qlbzkDMHHGM3WkkdoJpzbG4xEirFkuorcONXAdeTaVnNAH9KfZ4UrJXfSRleMrmce4QECGIWph5U=
-X-Received: by 2002:a05:6512:146:: with SMTP id
-	m6mr10038165lfo.90.1562666145818; 
-	Tue, 09 Jul 2019 02:55:45 -0700 (PDT)
+	bh=Zj08rAtFnaMa+6vHFhAkXTgwi26WVtB0UIkfytTZdW8=;
+	b=UPO+rdET7NDHy7QLdMWvjbLAXhY+bsAKPc9dXy+FZ5lZU1W+0rxDk4SaUr5PJhgHfK
+	OSi4UIgJ8G/0jAqMoKvwnEFUfL0rPYVYV4mMb4hGgdxacntTUfK9sWjAmixjPeqY+XTt
+	j2+s3O3Dq+5DfcOKS1QFofbtZhHPA49fP1HwJX/XK+uPl8qztVUnRtEf54+OQdDAv+9e
+	8zV3A81KfmwFNzpPZOOmGCgxiyXnRpycGG73FmLHiZuHmChenrmLJbpMu3vIW75I3Y54
+	DU7+zjGODJ11PQg7lRzLkyxhIgVnx6zy8VcOfCmxMkHQVkUUl1uGnUYb9rdE+yqyrm0l
+	q4BQ==
+X-Gm-Message-State: APjAAAXBo3C+2ysT47cDRU6IpXiobk60PWbhnE3Awnsx/P5HbuE4aXIW
+	oUUf2OVXWACUDwZChIJhpDLdoXPtviJAjiq854c=
+X-Google-Smtp-Source: APXvYqwp64UMUkfZaI8gH2gsMe5kHTU6yzSsM6LbDWm6z0xW7hhfDvEbCH0pdK7weQoitlkbfO/JCPP6INijtGPO6Dw=
+X-Received: by 2002:ac8:290c:: with SMTP id y12mr17316786qty.141.1562666169374;
+	Tue, 09 Jul 2019 02:56:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAEmXcAy0wo=CnCgCWREHKugwrfWWL2RdPtZ9dZWGuB2NTPDoEA@mail.gmail.com>
-	<CAEmXcAxmtRtXSOf9dPD5gokFymDmCWNG9D55krgokOsCQ6GXXw@mail.gmail.com>
-In-Reply-To: <CAEmXcAxmtRtXSOf9dPD5gokFymDmCWNG9D55krgokOsCQ6GXXw@mail.gmail.com>
-From: Jussi Kukkonen <jku@goto.fi>
-Date: Tue, 9 Jul 2019 12:55:30 +0300
-Message-ID: <CAD5=o+p2z7yVwwROyTu2Ca6yPW+28qE85pM6gdqb3QmUxM-tqQ@mail.gmail.com>
-To: danwe <daniel.wenninger92@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: bitbak command: No recipe available for
+References: <CAA=hcWREgSBse3oq8FhH2bCNcr5FC4SYTyeFuW9_b-KdTX1VGQ@mail.gmail.com>
+In-Reply-To: <CAA=hcWREgSBse3oq8FhH2bCNcr5FC4SYTyeFuW9_b-KdTX1VGQ@mail.gmail.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Tue, 9 Jul 2019 11:55:57 +0200
+Message-ID: <CAGAf8Ly56LcA3wih1BOqi0rbm+z2nwonTi5=jBjjQ_+=55uQNg@mail.gmail.com>
+To: JH <jupiter.hce@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Stuck to build zImage-initramfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,30 +70,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Jul 2019 09:55:47 -0000
+X-List-Received-Date: Tue, 09 Jul 2019 09:56:14 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Mon, 8 Jul 2019 at 12:29, danwe <daniel.wenninger92@gmail.com> wrote:
+Please, read the following thread:
+https://lists.yoctoproject.org/pipermail/yocto/2018-July/041680.html
+
+Zoran
+_______
+
+On Mon, Jul 8, 2019 at 11:43 PM JH <jupiter.hce@gmail.com> wrote:
 >
 > Hi,
 >
-> while using the command:
-> daniel@daniel-VirtualBox:~/bbb$ MACHINE=beaglebone bitbake core-immage-full cmdline
-> I get the following ouput:
+> I have been stuck to build zImage-initramfs for weeks. I've read Yocto
+> latest document, but still failed to generate the initarmfs to run on
+> RAM. I added following statements in local.conf:
 >
-> Loading cache: 100% |############################################| Time: 0:00:03
-> Loaded 1358 entries from dependency cache.
-> Parsing recipes: 100% |##########################################| Time: 0:00:12
-> Parsing of 832 .bb files complete (829 cached, 3 parsed). 1361 targets, 65 skipped, 0 masked, 0 errors.
-> ERROR: No recipes available for:
->   /home/daniel/meta-bbb/recipes-connectivity/openssh/openssh_7.%.bbappend
->   /home/daniel/meta-bbb/recipes-qt/qt5/qtbase_git.bbappend
->   /home/daniel/meta-bbb/recipes-support/ntp/ntp_4.2.%.bbappend
-
-Ross answered this already: Your meta-bbb version seems incompatible
-with your poky version. If you are using git, make sure the branch
-names of all your layers match and that the branches are up to date.
-
-HTH,
-  Jussi
+> UBOOT_CONFIG = "ram"
+> INITRAMFS_IMAGE_BUNDLE = "1"
+> DISTRO_FEATURES_append = " ram"
+> IMAGE_FSTYPES_append = " cpio.xz"
+>
+> It built to following images:
+>
+> dev-image.rootfs.cpio.xz
+> u-boot.imx-ram
+> zImage.bin
+>
+> If I extract the dev-image.rootfs.cpio.xz, it contains zImage at boot directory.
+>
+> What I need is the zImage-initramfs to contain the rootfs in initramfs format.
+>
+> I see there is document ramfs-rootfs-initramfs.txt, but it did not
+> mention how to generate zImage-initramfs.
+>
+> There is core-image-minimal-initramfs.bb, but it cannot be run:
+>
+> $ MACHINE="imx6evk" DISTRO="imx6evk" bitbake core-image-minimal-initramfs
+> ERROR: Nothing PROVIDES 'core-image-minimal-initramfs'
+> core-image-minimal-initramfs was skipped: incompatible with host
+> arm-oe-linux-gnueabi (not in COMPATIBLE_HOST)
+>
+> Could any one help what I am missing here and how to build the zImage-initramfs?
+>
+> Thank you.
+>
+> Kind regards,
+>
+> - jh
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
