@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 487EFE00BF7; Tue,  9 Jul 2019 20:10:48 -0700 (PDT)
+	id 723C1E00E04; Tue,  9 Jul 2019 20:11:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,50 +13,50 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.173 listed in list.dnswl.org]
+	*      [209.85.222.195 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com
-	[209.85.160.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F024E00BF7
-	for <yocto@yoctoproject.org>; Tue,  9 Jul 2019 20:10:47 -0700 (PDT)
-Received: by mail-qt1-f173.google.com with SMTP id l9so904803qtu.6
-	for <yocto@yoctoproject.org>; Tue, 09 Jul 2019 20:10:47 -0700 (PDT)
+Received: from mail-qk1-f195.google.com (mail-qk1-f195.google.com
+	[209.85.222.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1484E00D8B
+	for <yocto@yoctoproject.org>; Tue,  9 Jul 2019 20:11:40 -0700 (PDT)
+Received: by mail-qk1-f195.google.com with SMTP id a27so801489qkk.5
+	for <yocto@yoctoproject.org>; Tue, 09 Jul 2019 20:11:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=ewLPDzaNJ2SpzbTW9SP2cgOVChDDhFE2+AftIb4gXM4=;
-	b=PL+an7uu3qHxAmikAGNA73Um8uzrYi/CC/eM06jC9sohjJ5BT/H8R6AaiUX6SrgeDx
-	TdnPF5pc23oSMQjqAqCPChY6+IShHRRqAK6lAnL+NRuFSrZ34YYeNdxg1N+dqcIAwpre
-	+ji9YbbND3sgGz+ZJP1WFe/SyuhAVYTV0jpyEZHj03YiVsHVH34UMhjwaHDzYs10XyQ6
-	pBrfj/fJh8eX7AmRfM34gbp3eoxc6yrCK3OUSCgSrrS7uc/Vpd4SB70leZXgzuaNufMW
-	SFfgPmYhMDc4Jhmt5kkRgIiuasokAG9ifPW2q5VPDzbiI5psxHUoQef48JI3wdVrlSZ8
-	gkUQ==
+	:cc; bh=19Q2XkZHreIxERSBCZzonyqtFT7+oEJJfnyxXRNCeKw=;
+	b=lvqwf6Jr11PkUtVwKEygzkJpWJQxfInEjv0Je2KcQfBLk8TP5oKRspQCEOsBiFlVG2
+	2PV5MZEefmn74mYljw7LQUFwdSp4ruZmiC9eSJXSwYLypdhPgE4/qMO1upg3Nz9V/QMM
+	sfgvIiU3y0bJIIXnHL9IfP1EZsUP0HDU2cwo9jUr/47GUpLC6ZVPfWVthoewrKIBB+9L
+	R/s0ak+eErmEHIRqx3SCI+jzh/PtDFwyyqiJvIdym35fh1igMES3k+HpWnsHNahruC3G
+	nzCzp0JzM84tPDx590+ibvj2TFzNNneCBH4ZwP9ono8OUy6ErZFp1aTqekyOPJd0ZWPU
+	DOdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=ewLPDzaNJ2SpzbTW9SP2cgOVChDDhFE2+AftIb4gXM4=;
-	b=bBDZu/Hd/e0c6q7sSVtQOMni7d5HvGrshea97TAirtVa4EOS6v/iQWApMbEkmff2OB
-	9CjmdsFVWb6a6b43cBH+jM4YarJEM+JpVhv7hz7cJ6+Bqu94etG9nfn6thT0l+bqE7DY
-	utAEtM3ucP6VmOtYVNPGYIqWCxVLvQr3TAUMx9zZTwagwpAW5TWr9gjeNwpWMZ4t4zI6
-	7LsgzOijDv8x3POPY4ytLhb1szp3VD0iSmifFtzkL3mvO4B4rI5b/RsYAD01jVNk4zAV
-	zhA8LA0X4UbThB0O2lLh0PNDDkE+FkaXDRjNmzAoJK+zefezRzQfmtd5basnfFxBgCi3
-	ofIg==
-X-Gm-Message-State: APjAAAU9figPmm//FDUiBmLDBpUeRqsqzOL5Hy6eekCRSf8wFRW7bxls
-	PWh4I/r25xlh72zfg8Id7TJzRsMJmduLPeHi5qY8vKC2
-X-Google-Smtp-Source: APXvYqxLTgIaXRSjRoI6wZFY8+ssueJG5i041NNPbJQrGAS/xgteR9l+YGuBb1Mvlo/TWL4CEcTyJizJN7VM956gK7s=
-X-Received: by 2002:ac8:764f:: with SMTP id i15mr16129613qtr.194.1562728246331;
-	Tue, 09 Jul 2019 20:10:46 -0700 (PDT)
+	bh=19Q2XkZHreIxERSBCZzonyqtFT7+oEJJfnyxXRNCeKw=;
+	b=E2Wepb/uxd+A/p2qeW8rT83U5l7QKbmZE89f4bIS4VePfeEvgQWqJ8NTJmBnymf04L
+	Y6SBJPVLPb1/X+ms36fyB7QUtGzPuEgvOnXkV8VQP86TuTRNBJl5mK6MPRas/05YFr1L
+	pb5VtgkzGCEn2Nfcu+zM2eTOJRSWIVc48ef4QZjDMMBRStuPsrIZAyICOzg6oFaeRNwu
+	FAfFPo/r80hsio8AAtDWk3K4PKR/MtTaVno3HAWGEknzAMzuP6PA6QKIxrCIW+rZs0Cr
+	7qBWNTq/J67ZHq6mYWmWfYu/K+8ShyBhniX+RqDhjSMCy1q2Ytk/j5VnaDg+u9+Y0fZZ
+	Aw1Q==
+X-Gm-Message-State: APjAAAXKeqUpoKa3/1ouziYdbkgdkaK/00Rqy6BQc+5D29koWED/1m/5
+	l0ySQTsfrwkL1m5B4OqM6jd8fy2hqvgvMTEfnj0=
+X-Google-Smtp-Source: APXvYqwO6CAXim0gBNinb5Yj2g/C9dktuKV/h0eFRw+YaLNbWv5SGmVarKPYtj5ti3UN/q82p4JkC3YlhHpbmY1nk8Q=
+X-Received: by 2002:a37:7083:: with SMTP id l125mr20919831qkc.71.1562728300156;
+	Tue, 09 Jul 2019 20:11:40 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAH_3R3LWCSQk62OBmhUiihYTAPE1Geknops2-ehp_VzidxEn3w@mail.gmail.com>
 In-Reply-To: <CAH_3R3LWCSQk62OBmhUiihYTAPE1Geknops2-ehp_VzidxEn3w@mail.gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 9 Jul 2019 20:10:30 -0700
-Message-ID: <CAMKF1sodePzbOftWotqRcRfUv6a=STQjVwdVTY07P6Hi2V0Q3A@mail.gmail.com>
+Date: Tue, 9 Jul 2019 20:11:26 -0700
+Message-ID: <CAMKF1spysmieTg_r+7Z-sr3rTu=NbiBS+ar-EAA7sbevqgC7rw@mail.gmail.com>
 To: =?UTF-8?Q?Szabolcs_B=C3=A1der?= <sb@baader.hu>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: How to load into u-boot binary (srec) file
@@ -71,10 +71,10 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Jul 2019 03:10:48 -0000
-Content-Type: multipart/alternative; boundary="00000000000000cddc058d4b06d5"
+X-List-Received-Date: Wed, 10 Jul 2019 03:11:48 -0000
+Content-Type: multipart/alternative; boundary="000000000000362e2a058d4b09a9"
 
---00000000000000cddc058d4b06d5
+--000000000000362e2a058d4b09a9
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -125,6 +125,11 @@ On Mon, Jul 8, 2019 at 9:27 AM Szabolcs B=C3=A1der <sb@baader.hu> wrote:
 > I get errors, because I think.. the mkimage part.. isn't working..
 > somebody could help me, how to solve this?
 >
+>
+if you post error messages that you see. It might provide more context
+
+
+
 > Regards,
 > Szabolcs
 > --
@@ -134,23 +139,24 @@ On Mon, Jul 8, 2019 at 9:27 AM Szabolcs B=C3=A1der <sb@baader.hu> wrote:
 > https://lists.yoctoproject.org/listinfo/yocto
 >
 
---00000000000000cddc058d4b06d5
+--000000000000362e2a058d4b09a9
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div class=3D"gmail_default" style=3D"font-family:monospace,monospace"><br>=
-</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
-On Mon, Jul 8, 2019 at 9:27 AM Szabolcs B=C3=A1der &lt;<a href=3D"mailto:sb=
-@baader.hu">sb@baader.hu</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex"><div dir=3D"ltr"><div>Hello,</div><div><br></div><d=
-iv>I created this code:</div><div><br></div><div>```<br><table class=3D"gma=
-il-m_8672351412033928711gmail-highlight gmail-m_8672351412033928711gmail-ta=
-b-size gmail-m_8672351412033928711gmail-js-file-line-container"><tbody><tr>=
-<td id=3D"gmail-m_8672351412033928711gmail-file-example-standalone-bb-LC1" =
-class=3D"gmail-m_8672351412033928711gmail-blob-code gmail-m_867235141203392=
-8711gmail-blob-code-inner gmail-m_8672351412033928711gmail-js-file-line"># =
-u-boot standalone hello-world.c test image</td>
+<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
+t-family:monospace,monospace"><br></div></div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jul 8, 2019 at 9:27 AM Szab=
+olcs B=C3=A1der &lt;<a href=3D"mailto:sb@baader.hu">sb@baader.hu</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
+"ltr"><div>Hello,</div><div><br></div><div>I created this code:</div><div><=
+br></div><div>```<br><table class=3D"gmail-m_8672351412033928711gmail-highl=
+ight gmail-m_8672351412033928711gmail-tab-size gmail-m_8672351412033928711g=
+mail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_86723514120339287=
+11gmail-file-example-standalone-bb-LC1" class=3D"gmail-m_867235141203392871=
+1gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner gmail-m_8=
+672351412033928711gmail-js-file-line"># u-boot standalone hello-world.c tes=
+t image</td>
       </tr>
       <tr>
         </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
@@ -439,8 +445,12 @@ gmail-m_8672351412033928711gmail-js-file-line">
         </tr></tbody></table>addtask do_deploy after do_compile before do_b=
 uild</div><div>```</div><div><br></div><div>I get errors, because I think..=
  the mkimage part.. isn&#39;t working.. somebody could help me, how to solv=
-e this? <br></div><div><br></div><div>Regards,</div><div>Szabolcs<br></div>=
-</div>
+e this? <br></div><div><br></div></div></blockquote><div><br></div><div><di=
+v class=3D"gmail_default" style=3D"font-family:monospace,monospace">if you =
+post error messages that you see. It might provide more context </div><br><=
+/div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
+ 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
+v dir=3D"ltr"><div></div><div>Regards,</div><div>Szabolcs<br></div></div>
 -- <br>
 _______________________________________________<br>
 yocto mailing list<br>
@@ -448,6 +458,6 @@ yocto mailing list<br>
 ect.org</a><br>
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
 " target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
+</blockquote></div></div>
 
---00000000000000cddc058d4b06d5--
+--000000000000362e2a058d4b09a9--
