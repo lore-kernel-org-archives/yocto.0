@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <onureser12@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 723C1E00E04; Tue,  9 Jul 2019 20:11:48 -0700 (PDT)
+	id 21B24E00C46; Wed, 10 Jul 2019 00:04:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,56 +10,61 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
+	provider *      (onureser12[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.195 listed in list.dnswl.org]
+	*      [209.85.166.43 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f195.google.com (mail-qk1-f195.google.com
-	[209.85.222.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1484E00D8B
-	for <yocto@yoctoproject.org>; Tue,  9 Jul 2019 20:11:40 -0700 (PDT)
-Received: by mail-qk1-f195.google.com with SMTP id a27so801489qkk.5
-	for <yocto@yoctoproject.org>; Tue, 09 Jul 2019 20:11:40 -0700 (PDT)
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com
+	[209.85.166.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D2F4E006EE
+	for <yocto@yoctoproject.org>; Wed, 10 Jul 2019 00:04:36 -0700 (PDT)
+Received: by mail-io1-f43.google.com with SMTP id s7so2401863iob.11
+	for <yocto@yoctoproject.org>; Wed, 10 Jul 2019 00:04:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=19Q2XkZHreIxERSBCZzonyqtFT7+oEJJfnyxXRNCeKw=;
-	b=lvqwf6Jr11PkUtVwKEygzkJpWJQxfInEjv0Je2KcQfBLk8TP5oKRspQCEOsBiFlVG2
-	2PV5MZEefmn74mYljw7LQUFwdSp4ruZmiC9eSJXSwYLypdhPgE4/qMO1upg3Nz9V/QMM
-	sfgvIiU3y0bJIIXnHL9IfP1EZsUP0HDU2cwo9jUr/47GUpLC6ZVPfWVthoewrKIBB+9L
-	R/s0ak+eErmEHIRqx3SCI+jzh/PtDFwyyqiJvIdym35fh1igMES3k+HpWnsHNahruC3G
-	nzCzp0JzM84tPDx590+ibvj2TFzNNneCBH4ZwP9ono8OUy6ErZFp1aTqekyOPJd0ZWPU
-	DOdg==
+	:cc; bh=B4d8z7wlGplr9Sl1vZ2DSN2mGpC31ycjQTVnfSJGNmI=;
+	b=uwtlt2kSZFwCg0+toeYwzVsttAcZHBjwSsqgH2zN0Bjij1SHtyNqyMyBZZvwHUgcx7
+	g4s9jbX7Ux5zjv6f+cU4Am/bILt5SJsSsKQgsvsTSKFHZlaHpmqWocmcAy+aFth2/5OE
+	TTAFM0b17SM44sxaNKjYlnQLiflSPcqGcn5wkc5Bc105w1SYkzA4512EsWBw+wu2vjVq
+	X7MffTiA8fTrk8aCsiSsFcOloBtsO1ElWDxGr07jrqsOXu9KAHOoKAShoCgr1a8WZ+mU
+	giP8dEGSVlkg430eJzQfEH4dTg65QsFGFSHF67IbyRQEp6BHvu+ft2dbJxQdZfpuZ+iG
+	6AKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=19Q2XkZHreIxERSBCZzonyqtFT7+oEJJfnyxXRNCeKw=;
-	b=E2Wepb/uxd+A/p2qeW8rT83U5l7QKbmZE89f4bIS4VePfeEvgQWqJ8NTJmBnymf04L
-	Y6SBJPVLPb1/X+ms36fyB7QUtGzPuEgvOnXkV8VQP86TuTRNBJl5mK6MPRas/05YFr1L
-	pb5VtgkzGCEn2Nfcu+zM2eTOJRSWIVc48ef4QZjDMMBRStuPsrIZAyICOzg6oFaeRNwu
-	FAfFPo/r80hsio8AAtDWk3K4PKR/MtTaVno3HAWGEknzAMzuP6PA6QKIxrCIW+rZs0Cr
-	7qBWNTq/J67ZHq6mYWmWfYu/K+8ShyBhniX+RqDhjSMCy1q2Ytk/j5VnaDg+u9+Y0fZZ
-	Aw1Q==
-X-Gm-Message-State: APjAAAXKeqUpoKa3/1ouziYdbkgdkaK/00Rqy6BQc+5D29koWED/1m/5
-	l0ySQTsfrwkL1m5B4OqM6jd8fy2hqvgvMTEfnj0=
-X-Google-Smtp-Source: APXvYqwO6CAXim0gBNinb5Yj2g/C9dktuKV/h0eFRw+YaLNbWv5SGmVarKPYtj5ti3UN/q82p4JkC3YlhHpbmY1nk8Q=
-X-Received: by 2002:a37:7083:: with SMTP id l125mr20919831qkc.71.1562728300156;
-	Tue, 09 Jul 2019 20:11:40 -0700 (PDT)
+	bh=B4d8z7wlGplr9Sl1vZ2DSN2mGpC31ycjQTVnfSJGNmI=;
+	b=fQAuypwF/L4O6YEJ8GvghRa1PJmqcq69orJPcQjpCaUl2W8lUVQeJJhYlLazt4fbJW
+	rVSqUj7inZjnJvVfa1lfoz80ULf6k9WR+8n6NDEE7xHA8FlBWAh8Y5aP1h5NpBz7m38r
+	tPxt3I7eZaCTKCbtn0/8lLeJ/JXtPmMH9OUgqzYcbioFTXZVLvrx7HQqnYIcpB5FbZjd
+	3IHcZ273Dvr7o16OIj+Kf0zynNQVGe7SFrtf+5KzFHkkKeXlAIvqMaT5xzAzsSSL7lce
+	wDxZsbhOdNJmE8ITSdstBT14/TQHVX8CEcdHMqDSgTE6teN6uvWpgQcopPUNqs9D8UgR
+	5HIQ==
+X-Gm-Message-State: APjAAAVxnKBv3vJ82diAXEkq9zrL0E7CA5H1SLYYRSjvZIQVlA+p/Q/7
+	pkC6wr02PDz/YViyXjDUf1U5bQ+YrUI5c4jFByI=
+X-Google-Smtp-Source: APXvYqwYUWoZhdccFoVGNLW4V7++ms6cZ6pDym5KWqCSV+wWKUWHiNMjDuHZ8MAWcO0kY8hTEtiDz28OFzGx6qqZQ3g=
+X-Received: by 2002:a5e:c705:: with SMTP id f5mr16840452iop.113.1562742275828; 
+	Wed, 10 Jul 2019 00:04:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAH_3R3LWCSQk62OBmhUiihYTAPE1Geknops2-ehp_VzidxEn3w@mail.gmail.com>
-In-Reply-To: <CAH_3R3LWCSQk62OBmhUiihYTAPE1Geknops2-ehp_VzidxEn3w@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 9 Jul 2019 20:11:26 -0700
-Message-ID: <CAMKF1spysmieTg_r+7Z-sr3rTu=NbiBS+ar-EAA7sbevqgC7rw@mail.gmail.com>
-To: =?UTF-8?Q?Szabolcs_B=C3=A1der?= <sb@baader.hu>
+References: <CAG+Ob8ZcYRYaFcyFopckNiTMR8ZTJW5vcM1cO+DZM7-0aR3+rA@mail.gmail.com>
+	<CAGAf8LzyVbxJ--aDihMZyokOo+Sn18s=4vQvX91Y5jBpvbc_Bg@mail.gmail.com>
+	<CAG+Ob8YYxVf4d9LEjL5Z9KEm3zP4xBMHr-H46rqumXOLLJAZyA@mail.gmail.com>
+	<CAGAf8Lx0gUQorBVBGUCURDXW6JexowXTWsfAcdu+DMxTRrb2vQ@mail.gmail.com>
+	<CAG+Ob8bWkY+zhVbhfDUu_mfrpA-DNvVb4K-vfu=3BuhGsp_Akw@mail.gmail.com>
+	<CAGAf8LxRTZwp0t1F=ZLZgESPK6Q=34uyw5gu_orUcXzj1r7FEw@mail.gmail.com>
+In-Reply-To: <CAGAf8LxRTZwp0t1F=ZLZgESPK6Q=34uyw5gu_orUcXzj1r7FEw@mail.gmail.com>
+From: Onur Eser <onureser12@gmail.com>
+Date: Wed, 10 Jul 2019 10:04:23 +0300
+Message-ID: <CAG+Ob8adeHW4tNWD=GFdEySPmhRKFwNS8FQjpSC1LGEkt1e=WQ@mail.gmail.com>
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: How to load into u-boot binary (srec) file
+Subject: Re: [Meta-Qt5] "Unknown Module: declarative" Error While Creating Toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,393 +76,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Jul 2019 03:11:48 -0000
-Content-Type: multipart/alternative; boundary="000000000000362e2a058d4b09a9"
+X-List-Received-Date: Wed, 10 Jul 2019 07:04:37 -0000
+Content-Type: multipart/alternative; boundary="00000000000039f273058d4e4ae0"
 
---000000000000362e2a058d4b09a9
+--00000000000039f273058d4e4ae0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 8, 2019 at 9:27 AM Szabolcs B=C3=A1der <sb@baader.hu> wrote:
+Hello everyone,
 
-> Hello,
->
-> I created this code:
->
-> ```
-> # u-boot standalone hello-world.c test image
-> require recipes-core/images/core-image-base.bb
->
-> COMPATIBLE_MACHINE =3D "^rpi$"
->
-> ENABLE_UART=3D"1"
-> RPI_USE_U_BOOT=3D"1"
->
-> # maybe works??
-> CONFIG_STANDALONE_LOAD_ADDR=3D"0x10000000"
->
-> DEPENDS =3D "u-boot-mkimage-native"
->
-> SUMMARY=3D"Helloworld"
-> DESCRIPTION=3D"Helloworld"
-> LICENSE=3D"CLOSED"
-> # LIC_FILES_CHCKSUM =3D "file://COPYING;md5=3D1fec1f350300594d23a1d03379c=
-0c989"
->
-> SRC_URI +=3D "file://hello_world.c"
-> HELLO ?=3D "hello_world.c"
-> do_compile() {
-> mkimage -A arm -O linux -T standalone -C none -a ${LOAD_ADDR} -e 0 \
-> -n "standalone example script" \
-> -d ${WORKDIR}/${HELLO} ${B}/helloworld.srec
-> }
->
-> inherit deploy
->
-> do_deploy() {
-> install -d ${DEPLOYDIR}
-> install -m 0644 ${B}/helloworld.srec ${DEPLOYDIR}/
-> }
->
-> addtask do_deploy after do_compile before do_build
-> ```
->
-> I get errors, because I think.. the mkimage part.. isn't working..
-> somebody could help me, how to solve this?
->
->
-if you post error messages that you see. It might provide more context
+I have tried the thud branch as Zoran suggested. Faced exactly the same
+issue.
+Any other suggestions?
+Output: https://paste.ee/p/PupWr#Epvqnw9FoasgQEBhIXqQ8hH7veMcRybX
+I have built a system with qt5 recipes, but cannot create a toolchain
+for it since a week ago. Am I retarded?
 
+Have a lovely day!
+Onur
 
+Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>, 9 Tem 2019 Sal, 12:47
+tarihinde =C5=9Funu yazd=C4=B1:
 
-> Regards,
-> Szabolcs
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> One thing on my prio list is to buy very powerful 16 or 32 INTEL core
+> 6950 or + server. Maybe AMD Ryzen 32 or 64 core (most likely). This
+> almost eliminates this build problem... But in the current situation I
+> am presently, I could not even buy extra bubble gum. ;-)
+>
+> I have only my HP Elite Book 840 G1 which has 4 HW threads (2C +
+> 2HYP), and I have the same problem for YOCTO. To build any YOCTO build
+> goes forever (the extras is that I have 500GB SSD there, which makes
+> it much faster).
+>
+> But, nevertheless, the newer, the better... Hopefully! Toradex YOCTO
+> gurus may hop to this thread, and help...
+>
+> Zoran
+> _______
+>
+> On Tue, Jul 9, 2019 at 11:12 AM Onur Eser <onureser12@gmail.com> wrote:
+> >
+> > Zoran,
+> >
+> > I know you are not a Qt Layers expert. I am trying to describe my
+> problem to experts via common mails, so they will not missunderstand my
+> issue.
+> > Oh lord, whole new building... I am not a time traveller, but I can say
+> that I will wait for 10 hours or something for that to build, and it will
+> fail because of something else.
+> > The worst part is, it gives the error on the FINAL STEP. After hours an=
+d
+> hours and hours.
+> > Anyway, I will try thud branch. Wish me luck.
+> >
+> > Others can still offer solutions, I will keep this build too.
+> > Onur
 >
 
---000000000000362e2a058d4b09a9
+--00000000000039f273058d4e4ae0
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"fon=
-t-family:monospace,monospace"><br></div></div><br><div class=3D"gmail_quote=
-"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Jul 8, 2019 at 9:27 AM Szab=
-olcs B=C3=A1der &lt;<a href=3D"mailto:sb@baader.hu">sb@baader.hu</a>&gt; wr=
-ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
-"ltr"><div>Hello,</div><div><br></div><div>I created this code:</div><div><=
-br></div><div>```<br><table class=3D"gmail-m_8672351412033928711gmail-highl=
-ight gmail-m_8672351412033928711gmail-tab-size gmail-m_8672351412033928711g=
-mail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_86723514120339287=
-11gmail-file-example-standalone-bb-LC1" class=3D"gmail-m_867235141203392871=
-1gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner gmail-m_8=
-672351412033928711gmail-js-file-line"># u-boot standalone hello-world.c tes=
-t image</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC2" class=3D"gmail-m_8672351412=
-033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner g=
-mail-m_8672351412033928711gmail-js-file-line">require recipes-core/images/<=
-a href=3D"http://core-image-base.bb" target=3D"_blank">core-image-base.bb</=
-a></td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC3" class=3D"gmail-m_8672351412=
-033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner g=
-mail-m_8672351412033928711gmail-js-file-line">
-<br></td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC4" class=3D"gmail-m_8672351412=
-033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner g=
-mail-m_8672351412033928711gmail-js-file-line">COMPATIBLE_MACHINE =3D &quot;=
-^rpi$&quot;</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC5" class=3D"gmail-m_8672351412=
-033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner g=
-mail-m_8672351412033928711gmail-js-file-line">
-<br></td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC6" class=3D"gmail-m_8672351412=
-033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner g=
-mail-m_8672351412033928711gmail-js-file-line">ENABLE_UART=3D&quot;1&quot;</=
-td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC7" class=3D"gmail-m_8672351412=
-033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner g=
-mail-m_8672351412033928711gmail-js-file-line">RPI_USE_U_BOOT=3D&quot;1&quot=
-;</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC8" class=3D"gmail-m_8672351412=
-033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner g=
-mail-m_8672351412033928711gmail-js-file-line">
-<br></td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC9" class=3D"gmail-m_8672351412=
-033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner g=
-mail-m_8672351412033928711gmail-js-file-line"># maybe works??<br></td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC10" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">CONFIG_STANDALONE_LOAD_ADDR=
-=3D&quot;0x10000000&quot;</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC11" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">
-<br></td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC12" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">DEPENDS =3D &quot;u-boot-mki=
-mage-native&quot;</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC13" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">
-<br></td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC14" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">SUMMARY=3D&quot;Helloworld&q=
-uot;</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC15" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">DESCRIPTION=3D&quot;Hellowor=
-ld&quot;</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC16" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">LICENSE=3D&quot;CLOSED&quot;=
-</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC17" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line"># LIC_FILES_CHCKSUM =3D &quo=
-t;file://COPYING;md5=3D1fec1f350300594d23a1d03379c0c989&quot;</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC18" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">
-<br></td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC19" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">SRC_URI +=3D &quot;file://he=
-llo_world.c&quot;</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC20" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">HELLO ?=3D &quot;hello_world=
-.c&quot;</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC21" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">do_compile() {</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC22" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">    mkimage -A arm -O linux =
--T standalone -C none -a ${LOAD_ADDR} -e 0 \</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC23" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">    -n &quot;standalone exam=
-ple script&quot; \</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC24" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">    -d ${WORKDIR}/${HELLO} $=
-{B}/helloworld.srec</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC25" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">}</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC26" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">
-<br></td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC27" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">inherit deploy</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC28" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">
-<br></td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC29" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">do_deploy() {</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC30" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">    install -d ${DEPLOYDIR}<=
-/td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC31" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">    install -m 0644 ${B}/hel=
-loworld.srec ${DEPLOYDIR}/</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC32" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">}</td>
-      </tr>
-      <tr>
-        </tr></tbody></table><table class=3D"gmail-m_8672351412033928711gma=
-il-highlight gmail-m_8672351412033928711gmail-tab-size gmail-m_867235141203=
-3928711gmail-js-file-line-container"><tbody><tr><td id=3D"gmail-m_867235141=
-2033928711gmail-file-example-standalone-bb-LC33" class=3D"gmail-m_867235141=
-2033928711gmail-blob-code gmail-m_8672351412033928711gmail-blob-code-inner =
-gmail-m_8672351412033928711gmail-js-file-line">
-<br></td>
-      </tr>
-      <tr>
-        </tr></tbody></table>addtask do_deploy after do_compile before do_b=
-uild</div><div>```</div><div><br></div><div>I get errors, because I think..=
- the mkimage part.. isn&#39;t working.. somebody could help me, how to solv=
-e this? <br></div><div><br></div></div></blockquote><div><br></div><div><di=
-v class=3D"gmail_default" style=3D"font-family:monospace,monospace">if you =
-post error messages that you see. It might provide more context </div><br><=
-/div><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px=
- 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><di=
-v dir=3D"ltr"><div></div><div>Regards,</div><div>Szabolcs<br></div></div>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div></div>
+<div dir=3D"ltr"><div>Hello everyone,</div><div><br></div><div>I have tried=
+ the thud branch as Zoran suggested. Faced exactly the same issue.</div><di=
+v>Any other suggestions?</div><div>Output: <a href=3D"https://paste.ee/p/Pu=
+pWr#Epvqnw9FoasgQEBhIXqQ8hH7veMcRybX" target=3D"_blank">https://paste.ee/p/=
+PupWr#Epvqnw9FoasgQEBhIXqQ8hH7veMcRybX</a></div><div>I have built a system =
+with qt5 recipes, but cannot create a toolchain</div><div>for it since a we=
+ek ago. Am I retarded?</div><div><br></div><div>Have a lovely day!</div><di=
+v>Onur<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">Zoran Stojsavljevic &lt;<a href=3D"mailto:zoran.stojsavljev=
+ic@gmail.com">zoran.stojsavljevic@gmail.com</a>&gt;, 9 Tem 2019 Sal, 12:47 =
+tarihinde =C5=9Funu yazd=C4=B1:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex">One thing on my prio list is to buy very powerful 16 or 32 =
+INTEL core<br>
+6950 or + server. Maybe AMD Ryzen 32 or 64 core (most likely). This<br>
+almost eliminates this build problem... But in the current situation I<br>
+am presently, I could not even buy extra bubble gum. ;-)<br>
+<br>
+I have only my HP Elite Book 840 G1 which has 4 HW threads (2C +<br>
+2HYP), and I have the same problem for YOCTO. To build any YOCTO build<br>
+goes forever (the extras is that I have 500GB SSD there, which makes<br>
+it much faster).<br>
+<br>
+But, nevertheless, the newer, the better... Hopefully! Toradex YOCTO<br>
+gurus may hop to this thread, and help...<br>
+<br>
+Zoran<br>
+_______<br>
+<br>
+On Tue, Jul 9, 2019 at 11:12 AM Onur Eser &lt;<a href=3D"mailto:onureser12@=
+gmail.com" target=3D"_blank">onureser12@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Zoran,<br>
+&gt;<br>
+&gt; I know you are not a Qt Layers expert. I am trying to describe my prob=
+lem to experts via common mails, so they will not missunderstand my issue.<=
+br>
+&gt; Oh lord, whole new building... I am not a time traveller, but I can sa=
+y that I will wait for 10 hours or something for that to build, and it will=
+ fail because of something else.<br>
+&gt; The worst part is, it gives the error on the FINAL STEP. After hours a=
+nd hours and hours.<br>
+&gt; Anyway, I will try thud branch. Wish me luck.<br>
+&gt;<br>
+&gt; Others can still offer solutions, I will keep this build too.<br>
+&gt; Onur<br>
+</blockquote></div>
 
---000000000000362e2a058d4b09a9--
+--00000000000039f273058d4e4ae0--
