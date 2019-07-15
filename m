@@ -1,67 +1,70 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 872C0E00C87; Mon, 15 Jul 2019 07:43:27 -0700 (PDT)
+	id 68E6CE00C93; Mon, 15 Jul 2019 10:16:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
+	provider *      (sjolley.yp.pm[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.196 listed in list.dnswl.org]
+	*      [209.85.166.47 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f196.google.com (mail-qk1-f196.google.com
-	[209.85.222.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94503E003E1
-	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 07:43:26 -0700 (PDT)
-Received: by mail-qk1-f196.google.com with SMTP id 201so11769126qkm.9
-	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 07:43:26 -0700 (PDT)
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com
+	[209.85.166.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8169FE008F2
+	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 10:16:38 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id q22so35322076iog.4
+	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 10:16:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=bTv76HeKC7WYHzNJBx+gpY1oZlBJ4DW9AuPl4MqMB6U=;
-	b=mkt0e44195J68BJs7T+y3ZmkBk1HUUlA1MEcEfiIcy/Q8/5xzroMRTPJx5vELnD6G5
-	+LD0jYGdoK0HjFf9C96mhweuNkQ0NV9gBdp1ZYqXW3Y9GQvvvZg2/5fCSU0MUsImgsA7
-	De8MhcaubTXtj58v9bRs5XLVEh9t3H+SjC1KjK6Lcvzf2OziNA0BVXKIK3OLgqeXDaOL
-	4VuA+fLZO7HnkBa8Gc959/KF8iXCoTRV4McfYd/XoLNmIeoAJTknYjjJnZ8dMR7Go+T/
-	FZBHqlKw0QabaK7fwmZJww8yjesMdpjI+WivCol3pW7iD1hxoqdkKEFEwvNtH2vTGbZk
-	pyOA==
+	h=from:to:subject:date:message-id:mime-version:thread-index
+	:content-language;
+	bh=zLrxD1P2oRUNzP0zwu7v3mE8l7ruBlB8ouMHinHdtCI=;
+	b=H0PPrQwz+GbscEMxT8yVejTYcx6Q6yMYbfk55TJxTDUmrkwabxh08hACVKeE24k5SB
+	Im+bzn9jTnrH1h0lCLz1U+qO1NLsv9DhVPaoP+9Li2+OU88sRCXMsvi/9n/ABHBNdM0B
+	FZsMnTVAktc8/BxcYT6fTibLS4UmhzJH7imcoGX7OPJ2ZZksgsekvk7/ogJpBCTfyb7a
+	gy3w4VhSQvTe0GAWQK3m6TGBo8Iu0ImjlNXywiuOLx4/XqJ8VnhvfEn5pX2x4msoBYux
+	dKqOYEmGJE00b7Yu3yXxuhT2mlbPh+f7DrwiFyd2lCiWQUu6rXVQTe8OiGAgnBG7ljiI
+	fUtA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=bTv76HeKC7WYHzNJBx+gpY1oZlBJ4DW9AuPl4MqMB6U=;
-	b=Ke63qyRhJiqPEjc9KGdlPzlqC7w6gmFeKVZ7Rk5pvdOKRP2BIzXIbg8xWH6jFVjpWJ
-	4rYtPBnQFBLpnjsagv7Yee0FU7QrOGpHcpdV0XXVXbNN5VpA/FqwlcQCEUb/zz82hnHA
-	TeQCfKXnIFqtZrISh++DQaAm4nM/zBRb1wwZvQcMIEYMPhVKAUkiGvaEur+KjWl5UqTH
-	V6TY0AUu7y9VpSY6s6abzF661gtkSucak58QkZRkynxiQLDcGbSb0FJ3sr9gi0cxepqk
-	YITWvJexX+emR830/KLTK9TXB+BM3pREhx7/iygQwsAuNRN5RSE3r/HF8//Le1xbWGXe
-	jpJg==
-X-Gm-Message-State: APjAAAWlymA5LuFnws7Lmgn7lMsfZP3XP9Qa0pNmjXN/mokBUyaGIJbS
-	3Xi0f+hnYSbqOI+FoO9unEQhCtKdKajWsyUwUU8=
-X-Google-Smtp-Source: APXvYqza7V6UpyV2fQS36k3EYjU2m6bBU4BK76fSPw8ZMcrryQsQxnOdSOQvTm3jrXnGtBLOZ6372OCt6UY/U/enxpE=
-X-Received: by 2002:a37:7083:: with SMTP id l125mr16269091qkc.71.1563201805738;
-	Mon, 15 Jul 2019 07:43:25 -0700 (PDT)
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:thread-index:content-language;
+	bh=zLrxD1P2oRUNzP0zwu7v3mE8l7ruBlB8ouMHinHdtCI=;
+	b=MvJnfad9Id95FXxebvpMUVaCxctck8WrTjavlg6YyGyEKdW8+J+EcioRBWjX3N/Wj1
+	NrJ/zQZlCo9gXR4o1j5xeyeOzSiJITezFbvXE2QSHElvS3GOpawKw9Nmd50FTvLiw5x8
+	NNon5dUoCtI5nJFCgDhu0vIRNnl2WhR9ZGa83qIc/iXuq7JueRTzqGaBL+69j+wYkEq5
+	EBB0Bfo5ZtPEoNyhvxOg1G7LKwH+krJXYXOrQ5PdAS8H1dWvi4ejiEAdqd9EWXqBt4st
+	mgZZnAJTsZCBmohMuiKgYINCJsbqhRxAIWU8ygGFJ2ZM74FAeCSJJVkd92LCZNcVjBoN
+	4xyA==
+X-Gm-Message-State: APjAAAWBzAq9ZEbkj0hTK/Aq3G8AtTl/pk/o8cus/cBdQjfm1Za6OArd
+	iqgDqWEyuRcCwtp193Ffo3YCxPeK
+X-Google-Smtp-Source: APXvYqwJEDb3k1bTlU4Gwe0flDSjlAPE8fnUnv6shRLZZUMuk6rpHpjDS8DMBnRUXkPj6rUu2TIf9Q==
+X-Received: by 2002:a02:cc76:: with SMTP id j22mr29848035jaq.9.1563210997958; 
+	Mon, 15 Jul 2019 10:16:37 -0700 (PDT)
+Received: from sjolley ([96.79.126.57]) by smtp.gmail.com with ESMTPSA id
+	e188sm14679074ioa.3.2019.07.15.10.16.36
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 15 Jul 2019 10:16:37 -0700 (PDT)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Date: Mon, 15 Jul 2019 10:16:38 -0700
+Message-ID: <014e01d53b31$10e77c20$32b67460$@gmail.com>
 MIME-Version: 1.0
-References: <CAG+Ob8ZcYRYaFcyFopckNiTMR8ZTJW5vcM1cO+DZM7-0aR3+rA@mail.gmail.com>
-	<CAMKF1soen1zoyD=eE73Vod4pG_OBSSVLb2mpWE50VVsjObas2w@mail.gmail.com>
-	<CAG+Ob8ZWhYpp9qh2+6nvsJouf9usOCTWsP_7836T6FHh1F8vAA@mail.gmail.com>
-In-Reply-To: <CAG+Ob8ZWhYpp9qh2+6nvsJouf9usOCTWsP_7836T6FHh1F8vAA@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 15 Jul 2019 07:43:10 -0700
-Message-ID: <CAMKF1srC+oqXp6skipS_ch_S4XWORn7ErYTTJBXcBUbpXBN+NQ@mail.gmail.com>
-To: Onur Eser <onureser12@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [Meta-Qt5] "Unknown Module: declarative" Error While Creating Toolchain
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQE4SNjMB/m+RW21Y7uFis+4TSLEEw==
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,124 +76,292 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Jul 2019 14:43:27 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 15 Jul 2019 17:16:40 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_014F_01D53AF6.648B1520"
+Content-Language: en-us
+
+------=_NextPart_000_014F_01D53AF6.648B1520
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+ 
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
+
+ 
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 303
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "2.8", "2.9', "2.99" and "Future", the more pressing/urgent
+issues being in "2.8" and then "2.9".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newcomer_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+ 
+
+
+------=_NextPart_000_014F_01D53AF6.648B1520
+Content-Type: text/html;
+	boundary="----=_NextPart_000_039D_01D53592.A1F4CCD0";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 15, 2019 at 1:06 AM Onur Eser <onureser12@gmail.com> wrote:
->
-> Hi Khem,
-> Thank you for your answer. I have built a toolchain as exactly as you sai=
-d, days ago.
-> But it was giving error Unknown Modules: widgets when I try to compile. M=
-e and my
-> BSP found that this is a know Qt layer issue that will not be solved til =
-an update is pushed to meta-qt5 layer.
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:p=3D"urn:schemas-microsoft-com:office:powerpoint" =
+xmlns:a=3D"urn:schemas-microsoft-com:office:access" =
+xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" =
+xmlns:s=3D"uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" =
+xmlns:rs=3D"urn:schemas-microsoft-com:rowset" xmlns:z=3D"#RowsetSchema" =
+xmlns:b=3D"urn:schemas-microsoft-com:office:publisher" =
+xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadsheet" =
+xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" =
+xmlns:odc=3D"urn:schemas-microsoft-com:office:odc" =
+xmlns:oa=3D"urn:schemas-microsoft-com:office:activation" =
+xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" =
+xmlns:rtc=3D"http://microsoft.com/officenet/conferencing" =
+xmlns:D=3D"DAV:" xmlns:Repl=3D"http://schemas.microsoft.com/repl/" =
+xmlns:mt=3D"http://schemas.microsoft.com/sharepoint/soap/meetings/" =
+xmlns:x2=3D"http://schemas.microsoft.com/office/excel/2003/xml" =
+xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" =
+xmlns:ois=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" =
+xmlns:dir=3D"http://schemas.microsoft.com/sharepoint/soap/directory/" =
+xmlns:ds=3D"http://www.w3.org/2000/09/xmldsig#" =
+xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint/dsp" =
+xmlns:udc=3D"http://schemas.microsoft.com/data/udc" =
+xmlns:xsd=3D"http://www.w3.org/2001/XMLSchema" =
+xmlns:sub=3D"http://schemas.microsoft.com/sharepoint/soap/2002/1/alerts/"=
+ xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#" =
+xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" =
+xmlns:sps=3D"http://schemas.microsoft.com/sharepoint/soap/" =
+xmlns:xsi=3D"http://www.w3.org/2001/XMLSchema-instance" =
+xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/soap" =
+xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" =
+xmlns:udcp2p=3D"http://schemas.microsoft.com/data/udc/parttopart" =
+xmlns:wf=3D"http://schemas.microsoft.com/sharepoint/soap/workflow/" =
+xmlns:dsss=3D"http://schemas.microsoft.com/office/2006/digsig-setup" =
+xmlns:dssi=3D"http://schemas.microsoft.com/office/2006/digsig" =
+xmlns:mdssi=3D"http://schemas.openxmlformats.org/package/2006/digital-sig=
+nature" =
+xmlns:mver=3D"http://schemas.openxmlformats.org/markup-compatibility/2006=
+" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns:mrels=3D"http://schemas.openxmlformats.org/package/2006/relationshi=
+ps" xmlns:spwp=3D"http://microsoft.com/sharepoint/webpartpages" =
+xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/2006/types"=
+ =
+xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/2006/messag=
+es" =
+xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/=
+" =
+xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortalServer/Pub=
+lishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" =
+xmlns:st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoPlainText>All,<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>The =
+triage team is starting to try and collect up and classify bugs which a =
+newcomer to the project would be able to work on in a way which means =
+people can find them. They're being listed on the triage page under the =
+appropriate heading:<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
+><p class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoPlainText>The idea is these bugs should be straight forward =
+for a person to help work on who doesn't have deep experience with the =
+project.&nbsp; If anyone can help, please take ownership of the bug and =
+send patches!&nbsp; If anyone needs help/advice there are people on irc =
+who can likely do so, or some of the more experienced contributors will =
+likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Also, =
+the triage team meets weekly and does its best to handle the bugs =
+reported into the Bugzilla. The number of people attending that meeting =
+has fallen, as have the number of people available to help fix bugs. One =
+of the things we hear users report is they don't know how to help. We =
+(the triage team) are therefore going to start reporting out the =
+currently 303 unassigned or newcomer bugs.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>We're =
+hoping people may be able to spare some time now and again to help out =
+with these.&nbsp; Bugs are split into two types, &quot;true bugs&quot; =
+where things don't work as they should and &quot;enhancements&quot; =
+which are features we'd want to add to the system.&nbsp; There are also =
+roughly four different &quot;priority&quot; classes right now, =
+&#8220;2.8&#8221;, &#8220;2.9&#8217;, &quot;2.99&quot; and =
+&quot;Future&quot;, the more pressing/urgent issues being in =
+&quot;2.8&quot; and then &#8220;2.9&#8221;.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Please =
+review this link and if a bug is something you would be able to help =
+with either take ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newco=
+mer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_New=
+comer_Bugs</a><o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a><o:p><=
+/o:p></span></p><p class=3DMsoNormal><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:=
+p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-What is complete error here and which recipe is it coming from ?
-it looks like that package needs QtWidgets
-
-> Thank you anyway, I am trying to native compile over Debian.
-> Have a great week!
-> Onur
->
-> Khem Raj <raj.khem@gmail.com>, 15 Tem 2019 Pzt, 03:55 tarihinde =C5=9Funu=
- yazd=C4=B1:
->>
->> On Mon, Jul 8, 2019 at 10:59 PM Onur Eser <onureser12@gmail.com> wrote:
->> >
->> > Hello All,
->> >
->> > I have talked to my BSP provider and they have solved the conflict fil=
-es issue with an update. Now I am able to create and boot a Yocto Image wit=
-h Meta-Qt5 recipes and 'dev_pkgs' in it. But still cannot create a toolchai=
-n. Nor with I guess it is trying to compile something before qtdeclarative,=
- but these 'something' depends on qtdeclarative.
->> >
->> > My image is core image is Weston. I added the line 'inherit populate_s=
-dk_qt5' to my core-image-weston.bb file. And tried both commands 'bitbake m=
-eta-toolchain-qt5' and 'bitbake -c populate_sdk core-image-weston'. The res=
-ult is the same.
->> >
->> > I cut just the error part of my output:
->> >
->> > | cd qdeclarativefolderlistmodel/ && ( test -e Makefile || /home/closx=
-/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/qtquick1/5.10.1+git=
-AUTOINC+b2476dcd53-r0/recipe-sysroot-native/usr/bin/qt5/qmake -o Makefile /=
-home/closx/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/qtquick1/=
-5.10.1+gitAUTOINC+b2476dcd53-r0/git/tests/auto/declarative/qdeclarativefold=
-erlistmodel/qdeclarativefolderlistmodel.pro ) && make -f Makefile
->> > | Project ERROR: Unknown module(s) in QT: declarative widgets
->> > | Makefile:88: recipe for target 'sub-qdeclarativecomponent-make_first=
-' failed
->> > | make[2]: *** [sub-qdeclarativecomponent-make_first] Error 3
->> > | make[2]: *** Waiting for unfinished jobs....
->> > | Project ERROR: Unknown module(s) in QT: declarative
->> > | Project ERROR: Unknown module(s) in QT: declarative
->> > | Makefile:113: recipe for target 'sub-qdeclarativecontext-make_first'=
- failed
->> > | make[2]: *** [sub-qdeclarativecontext-make_first] Error 3
->> > | Project ERROR: Unknown module(s) in QT: declarative
->> > | Makefile:138: recipe for target 'sub-qdeclarativeengine-make_first' =
-failed
->> > | make[2]: *** [sub-qdeclarativeengine-make_first] Error 3
->> > | Makefile:63: recipe for target 'sub-parserstress-make_first' failed
->> > | make[2]: *** [sub-parserstress-make_first] Error 3
->> > | make[2]: Entering directory '/home/closx/poky/build/tmp/work/cortexa=
-9hf-neon-poky-linux-gnueabi/qtquick1/5.10.1+gitAUTOINC+b2476dcd53-r0/build/=
-tests/manual/declarative'
->> > | make[2]: Nothing to be done for 'first'.
->> > | make[2]: Leaving directory '/home/closx/poky/build/tmp/work/cortexa9=
-hf-neon-poky-linux-gnueabi/qtquick1/5.10.1+gitAUTOINC+b2476dcd53-r0/build/t=
-ests/manual/declarative'
->> > | make[1]: Leaving directory '/home/closx/poky/build/tmp/work/cortexa9=
-hf-neon-poky-linux-gnueabi/qtquick1/5.10.1+gitAUTOINC+b2476dcd53-r0/build/t=
-ests/manual'
->> > | Project ERROR: Unknown module(s) in QT: declarative
->> > | Makefile:163: recipe for target 'sub-qdeclarativeerror-make_first' f=
-ailed
->> > | make[2]: *** [sub-qdeclarativeerror-make_first] Error 3
->> > | Project ERROR: Unknown module(s) in QT: declarative
->> > | Makefile:188: recipe for target 'sub-qdeclarativefolderlistmodel-mak=
-e_first' failed
->> > | make[2]: *** [sub-qdeclarativefolderlistmodel-make_first] Error 3
->> > | make[2]: Leaving directory '/home/closx/poky/build/tmp/work/cortexa9=
-hf-neon-poky-linux-gnueabi/qtquick1/5.10.1+gitAUTOINC+b2476dcd53-r0/build/t=
-ests/auto/declarative'
->> > | Makefile:45: recipe for target 'sub-declarative-make_first' failed
->> > | make[1]: *** [sub-declarative-make_first] Error 2
->> > | make[1]: Leaving directory '/home/closx/poky/build/tmp/work/cortexa9=
-hf-neon-poky-linux-gnueabi/qtquick1/5.10.1+gitAUTOINC+b2476dcd53-r0/build/t=
-ests/auto'
->> > | Makefile:45: recipe for target 'sub-auto-make_first' failed
->> > | make: *** [sub-auto-make_first] Error 2
->> > | ERROR: oe_runmake failed
->> > | WARNING: exit code 1 from a shell command.
->> > | ERROR: Function failed: do_compile_ptest_base (log file is located a=
-t /home/closx/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/qtquic=
-k1/5.10.1+gitAUTOINC+b2476dcd53-r0/temp/log.do_compile_ptest_base.29566)
->> > ERROR: Task (/home/closx/poky/meta-qt5/recipes-qt/qt5/qtquick1_git.bb:=
-do_compile_ptest_base) failed with exit code '1'
->> >
->> > What do you guys think the reason of this issue may be? Any solution o=
-ffers?
->> >
->> > My full output:
->> > https://paste.ee/p/PupWr#Epvqnw9FoasgQEBhIXqQ8hH7veMcRybX
->> >
->> > Another source issue again?
->> > Have a lovely day!
->>
->> qtquick1 has been removed but I am guessting you are on an older
->> release. Can you try adding DEPENDS +=3D "qtdeclarative"  to qtquick1
->> recipe and see if that helps ?
->> secondly you can stop build ptest for this package since thats where
->> its failing, that might be a workaround.
->>
->> > Onur
->> > --
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
-
+------=_NextPart_000_014F_01D53AF6.648B1520--
