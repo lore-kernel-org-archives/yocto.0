@@ -1,64 +1,73 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 995D6E00D97; Mon, 15 Jul 2019 03:24:21 -0700 (PDT)
+	id 679B9E00D36; Mon, 15 Jul 2019 05:10:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jupiter.hce[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.53 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.45 listed in list.dnswl.org]
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
-	[209.85.221.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BB5AE00D67
-	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 03:24:18 -0700 (PDT)
-Received: by mail-wr1-f45.google.com with SMTP id n9so16486267wrr.4
-	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 03:24:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=aoZ4rknxSN+3EXBOW2KCOXNUwgGk0lww0nAZ2sQ+tis=;
-	b=NAIPdaIVsK2wGGCYbiknLrFi3MXQsfeyvJNIU91EL8VBgULea65Ac7+0MHMCvyeRli
-	Heak1Kc8pRnKfR/Ppratt/8y17H1UqRA2D2h4zOQm0y+m3vLD1C+ywLumAl2c+bSTi+0
-	6X4Z4wPkfuFA17za16UB7q1Oq7Yr2YEarMhJs03sf1ruPKymsHaRJPQfAF+AN+KRa4Xa
-	V7dMOXaYxnOIqNWPZXwXAtyrOF99fWxk19iMlLRt8YTW+zn3/7h3ZsOCMFe8uRxSBmuZ
-	pwMsSQXZnPYCpC4ehK6a5Bi8V0yT+NH9LAwU0PaOZeqvxZF7IOtL4qo5kdy+gxf5qCA8
-	iDFw==
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com
+	[209.85.166.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 868EEE00A00
+	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 05:10:51 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id m24so33695285ioo.2
+	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 05:10:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=/sfbIHu3F7oJJw2P+ez+HcTxkOzN5ZCwLi6FKHL9Egk=;
+	b=UjCTXWM73SbFfnHJ2xFh0AaR7n7JZPrW6pYmI6mF0bQNV+dnmAgzDOtaWpfl+ipBhR
+	2xp+9pzj6iJvQkhabs++ZCQEOaZlayWsz8i99iBhFsF8fDXs2CVMDPzds+ZUwMVd1796
+	gKEfR89AXR4D2LWKRwAxw+ykomtJo0Kr67sZzw/IUxJnnf6DKkIEHlURHqL4aGKi75in
+	mwQYpPMGJVirsb4RVyDXY92c04X5suF+jQ4zjxIJ5MjFVOiHOub99Zo8bqVXHB8mxUiw
+	A2+ZevAWNj6cRoc3wfBe8OP7oatB9DcL8p59dvDCbhKmd/PkDlSSJAK1lZGK+nyXcehO
+	ssng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=aoZ4rknxSN+3EXBOW2KCOXNUwgGk0lww0nAZ2sQ+tis=;
-	b=CFOxNTYo5r3W6hZ4rAvJtn8mvuiGweGxN4itxqVPxEBRAUmgwGZnqRY8+E7V8aQUsG
-	Ig0XafbzNr5RGGSrguLSb6UMvw6g0w4lyW5HXh95MgF39WMScfX0H/b43has/BleMAf9
-	5Tp3pS6B1JbMiFVGrkIqg7V/AgcoG5ohKK3oeFnFMWltJKjNEHBNun4ObYvpRA6SFpBn
-	oSP5SVr/w6HOeg5IxvoyPJTqKb3jynXO83wp7fF1YbXNyfQsVcmElk+g5Ip8xvVe3j1o
-	CdDEycLqFSh22m18mEswTxj/pIVwsy2mXISdtL1MUUbp9tXqXrMXIrNAScLCo0xIf4D+
-	uOkA==
-X-Gm-Message-State: APjAAAVbrQN+Iek750wPwST6r1t3qPxZ8tPgGySb8ez74lkizY2qs/J3
-	QdJp0V/S3qTfAazY5HJst6kskArvMJA=
-X-Google-Smtp-Source: APXvYqycz3xczdOAcmXAf/Ed0IRqsHcIx9RSVOQ2xsPcxUrMV7/kgKPgLCZUWbebBH++dO3PdjpbGw==
-X-Received: by 2002:a5d:4108:: with SMTP id l8mr27955807wrp.113.1563186257217; 
-	Mon, 15 Jul 2019 03:24:17 -0700 (PDT)
-Received: from flashheart.burtonini.com (35.106.2.81.in-addr.arpa.
-	[81.2.106.35]) by smtp.gmail.com with ESMTPSA id
-	x20sm35582906wrg.10.2019.07.15.03.24.15 for <yocto@yoctoproject.org>
-	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Mon, 15 Jul 2019 03:24:15 -0700 (PDT)
-From: Ross Burton <ross.burton@intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 15 Jul 2019 11:24:12 +0100
-Message-Id: <20190715102412.3282-1-ross.burton@intel.com>
-X-Mailer: git-send-email 2.20.1
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=/sfbIHu3F7oJJw2P+ez+HcTxkOzN5ZCwLi6FKHL9Egk=;
+	b=URsr40L96Urg1ncq7Lito0UykzHHVjZ2IacaEfsKQd4+YrNyeSBYzW9WMnciFaysls
+	7BU6Gfp54zSSTM38jsHXn33ea+pnxstJBlIhY0/Hbp0helJFllO84WZru5RBMHZoytvl
+	P6Lh1FOk1Z1/1bff3i0gwrMBp0g3R4gfm7F6G0FyZ59ZkHUEMK1Vm4+NTqskKQqvi7rJ
+	fBop778Q64LQ7SABc/TAGdH8X8NAQU0+sjEJ0ZVsRzqOdVdIqfbjEt29ojD5Kcpu7/wi
+	GNb8G34wPWYdspa2B+m74WgtTqUy1eP3lkWjeD14vBgxQ3amqYykaxBZ6oDv2JK8HQAp
+	qukQ==
+X-Gm-Message-State: APjAAAVBahSy/s/0aGX0DeMfsaOQE81s8EtqP+JDR2LwkV1MltMfvR+y
+	1Pz6R1tAVoon1kO0+uQN4fFll/Pu8kpIx3em2blXoXLZ
+X-Google-Smtp-Source: APXvYqyKL5j4NjsGJ354I0ofBtYphCO7Y23wb/pvvcUPN0FbMhh441rT9vBBRB2qmqQiHtxgxKnHLve7As5u8O5pEEA=
+X-Received: by 2002:a5e:db02:: with SMTP id q2mr23444509iop.306.1563192650886; 
+	Mon, 15 Jul 2019 05:10:50 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [PATCH][yocto-docs] ref-system-requirements: add Debian 10 to supported distribution list
+Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP; Mon, 15 Jul 2019 05:10:50
+	-0700 (PDT)
+In-Reply-To: <CAGAf8Ly+e5WCacexoLK9fMxnUK_p9oE_Stsuw98o2Nk_O0O78Q@mail.gmail.com>
+References: <89d3d916-1fca-5ff5-e68e-79370dd0bfb7@gmx.de>
+	<CAGAf8Lz2t90EjsaXPXxsSoioHb33u7dutnREiFr53NYp-WVD5A@mail.gmail.com>
+	<34ae2007-e315-4b5a-c388-9c8adab28cbd@gmx.de>
+	<CAGAf8Ly7JjRxj0aduWbB26jsuKqFVLDLVr=qgKPQMxcUhWiadg@mail.gmail.com>
+	<66af0e83-056c-ee5a-7bcd-863c14da72de@gmx.de>
+	<CAGAf8LxHRZ8+UcSWjE4tNfnkGEGnQGAjWjmL3svMqVUUvd60gg@mail.gmail.com>
+	<29974dbb-39f5-cf15-7c64-4b707ce0d157@gmx.de>
+	<CAGAf8Ly+e5WCacexoLK9fMxnUK_p9oE_Stsuw98o2Nk_O0O78Q@mail.gmail.com>
+From: JH <jupiter.hce@gmail.com>
+Date: Mon, 15 Jul 2019 22:10:50 +1000
+Message-ID: <CAA=hcWSvSDx5sXRdiLFFE8cJa_wyLDhDO6OHmB+c0JcgfRLc6Q@mail.gmail.com>
+To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Can't boot to initramfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,29 +79,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Jul 2019 10:24:21 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 15 Jul 2019 12:10:52 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Debian 10 is a supported distribution now, so add it to the documentation.
+Hi Zoran,
 
-Signed-off-by: Ross Burton <ross.burton@intel.com>
----
- documentation/ref-manual/ref-system-requirements.xml | 1 +
- 1 file changed, 1 insertion(+)
+On 7/12/19, Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com> wrote:
+> Moritz,
+>
+> Thank you very much for this reply. It makes it very clear... What is
+> the current State of Affairs for the topic.
+>
+> Let us see if there will be the improvement to this topic. I'll
+> document this on one of my private GitHubs. And archive this email.
 
-diff --git a/documentation/ref-manual/ref-system-requirements.xml b/documentation/ref-manual/ref-system-requirements.xml
-index 239dd84bbdd..51995309d4f 100644
---- a/documentation/ref-manual/ref-system-requirements.xml
-+++ b/documentation/ref-manual/ref-system-requirements.xml
-@@ -95,6 +95,7 @@
-                 <listitem><para>CentOS 7.x</para></listitem>
-                 <listitem><para>Debian GNU/Linux 8.x (Jessie)</para></listitem>
-                 <listitem><para>Debian GNU/Linux 9.x (Stretch)</para></listitem>
-+                <listitem><para>Debian GNU/Linux 10.x (Buster)</para></listitem>
-                 <listitem><para>OpenSUSE 42.3</para></listitem>
-             </itemizedlist>
-         </para>
--- 
-2.20.1
+Any chance to access your documents?
 
+Thank you.
+
+- jupiter
 
