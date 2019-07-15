@@ -1,70 +1,66 @@
-Return-Path: <moritz.porst@gmx.de>
+Return-Path: <onureser12@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 147D9E00D36; Mon, 15 Jul 2019 00:12:41 -0700 (PDT)
+	id CC3AAE00D36; Mon, 15 Jul 2019 01:06:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	https://www.dnswl.org/, low *      trust
-	*      [212.227.17.21 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (moritz.porst[at]gmx.de)
+	provider *      (onureser12[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.44 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8743CE00D11
-	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 00:12:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=badeba3b8450; t=1563174755;
-	bh=wGTrqXA6dTmr836HZDqv8ZaMSOgUT5MF+klPfHsSilU=;
-	h=X-UI-Sender-Class:Subject:To:References:From:Date:In-Reply-To;
-	b=kwjVmJBZPvsEdlHEGmO3v+ZFX8Ibbx09Mspw+eXukIJnnngFGtIyeNVBb9/6IooZ+
-	UKrfbry8O6U4Cs9DS/B/Wcoelp35t2uKYoPkjA1J0/HYg1a6mDy5hMWVfEkuW+nxqM
-	SHjxJ/5lbOK+py9DPQHD25jBqzwsURy+L2WmWr8U=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.2.132] ([80.152.229.14]) by mail.gmx.com (mrgmx105
-	[212.227.17.168]) with ESMTPSA (Nemesis) id 1MBDnC-1hbL6T2v9i-00ClhT;
-	Mon, 15 Jul 2019 09:12:35 +0200
-To: Madhu Krishnamurthy <madhukanthk@yahoo.com>,
-	Yocto Discussion List <yocto@yoctoproject.org>
-References: <1600236519.1269258.1563172945935.ref@mail.yahoo.com>
-	<1600236519.1269258.1563172945935@mail.yahoo.com>
-From: Moritz Porst <moritz.porst@gmx.de>
-Message-ID: <4f57a648-55e1-3ce7-53a4-c9df8da0f726@gmx.de>
-Date: Mon, 15 Jul 2019 09:12:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.2
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com
+	[209.85.221.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48D63E003E1
+	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 01:06:31 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id g17so15994953wrr.5
+	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 01:06:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=s+gULeRSDGVXnmw3+XOJf6sfdcwrfGz3MjJKXzBl8Xg=;
+	b=oTV4JfD+pbJTlqSLc/+pfhD57tfaP8VE/vkow4WDOM5iOtHI62pqK31nWduvPYttL3
+	im6D7htDc4Fwzar8TXnwnxHbPMev36G9ehdHvJlBaoXunIDA4OUfi3dQb+pLCLADbREj
+	HAcGfLhnG/prS/9pDVnAd63SdD41V1bl/L0KB5hlqiU9A6z9xgE7M76h0VSqfk36VhCg
+	0cHYQ0H3prUO/9gTDMqFEZmyJZp8CRQDUG2IG93SF2rmhYkvnl8LX/SN4BoybwctXpar
+	ZwQJLU93m7i2V+8YpOoDchwApBh9/2BNEJILsZCt0rUdxnumZ6UK8/N3EouiOfoIQgio
+	4q4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=s+gULeRSDGVXnmw3+XOJf6sfdcwrfGz3MjJKXzBl8Xg=;
+	b=XLAsjcypWIB4VnvSPeDnY+grBcyYU9WZEZ4P5pMXw/YKfL8zmFfwkKzTRfUHqZBBlp
+	+1iwCDaH5hZ2MyC7tHbyMiYQUW6NeqyQDWbL4fjI6mQ2o7zNy6LrFVMLe/eS4Bo4PFa5
+	LPK06eMqnKo+E0f03xxir4NYuBDNUKFuRbThGjQkHRLOC9rnB+bqhIk7kaxY9EOeTWcQ
+	d3iNKvx2iWT1kIA+B+XoEHCI42SWRfMRgQJFxzt9JgqAR4iupDTWk0HegwwMYPgbxfjw
+	AvXEkrcarsbxiGrsgQmiyTeubTc2yzNzhaTIujsQSayZiY9lIUKdg3/ztUI35cAmm6nr
+	XJFA==
+X-Gm-Message-State: APjAAAVwGr0sp2V2PqGoh3BNvRp1KDiA9a56Y1y3QW2mNVxjE189OgTl
+	kc2cfinjrfT56cthvMGFZ+u7Il8QOSAQhWnloIU=
+X-Google-Smtp-Source: APXvYqw28EN2Ey/8r3YnmF6ztoiTBIUmHnG08ZkmSXlS91iQhz78X3Ish4MV2KvzYb0mjnWJb8L9KfudEVtOyNJBdXg=
+X-Received: by 2002:a5d:528d:: with SMTP id c13mr26955151wrv.247.1563177990256;
+	Mon, 15 Jul 2019 01:06:30 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1600236519.1269258.1563172945935@mail.yahoo.com>
-X-Provags-ID: V03:K1:6yImHqS2mWOhwJ0Ruxb1/WjvWE6gMvkqtwmLVmIC7A4oxUKzXEE
-	sRxEK6sAt2lO7Vy4ROqH5bbLl5t94OpBqiJ3DkH/42goI8klQtax22XZNr8ppYqdw/Fcxno
-	tQVeMt+h7E0Gq0qYffywQjrP9rIohB7vcrqNlNZ/N5cgxPvh30HWjuqF+FV4prYK7A1As1o
-	vq348y2EdQH6sRFAfYAyw==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:08H1rU82sSA=:41VHjMquafl2FRGf7e0ABn
-	2D0womo1+Zgm5sTGdduKuZTz67DIQvwSEbQrldGbJezeULp2J3kfYs3srJwdPGBtshlizCP3f
-	rcxH66iJEu8CjTESvhU5OFXgFUhc7E06uM4fF91sVmNt07CtnzBzDP+x7t0eKh7hNd2yhSTFG
-	lgOujq10mfkI48gpvUfFg8EaQtGkJa8zqFUW+19pSsPrGvaWunLcd1h0Y1RmCMpkPVvgNhHgy
-	4V2YstUSz7c1sRl3EHfQp9ApSVGAYCAy/ZDmiOhVKXmeqKMxcTlVWeRDKfLefLsGUEGcgvYDd
-	LPQWozxqJkZ883oCazKC4batjCe8xX7Ulry6B6C5a0YkLBfNQ+B7pQMNJQZIDpIa/34CJ3fpl
-	kn4sG+1kRvMosf7lpmKTLBqdCeMjRcHXBmsIYB1qk4kTlz5JD+qJRpbpw3HuW46ovxmqlTX6H
-	lihU6HDstfUOMdIaZob1h7aXxXVdg+3E0XGtbaLJ4wrjucyOgWh7CYL6Eb7Cd4rLhaX141HTL
-	fwMSNeZNnjpfK+I+PcHil4ASlEEb4wRi6bwBWLobOTvdQ7KS1ySgaNrnVCYeAPjxsy80MXSJk
-	mHbLI72XbA6Z1YVFi4VvCo6Eyk7GHy7Ax2T2/r98U2kBtPjFbE4QTK27bZAOefGPTOL5KmJMm
-	IoyQ8fHUb20enYkzUqRq6iIlYO+wuinP2GCrW8cDqIYeZR+8OpWr5XTAbARTtQz6i67q18J0g
-	w6hiI9wkaktWbezT+mmqHS4wUsI2NW0PXfnDAZbUuj0i5iltuMXrDVOnebcBnfH1VMquxUYoF
-	rRNCe/1LJllpJtCuWSCXsPTuIt5OXvtmH+1Md6EsmN5JdHsaDwvNZ1bAW9LSKXtcfA0oBcxpQ
-	kWiEuVgbLNMWJQ7wasN2QIxKzbDnaficMz7cGpJVSBmfOhiUar4EIFGDMg4z7eB91S/WdvrQd
-	UMZJWIbAQ0+YhiRn7bOYi7LLIJU0CMGpBVb+czIWD4j8ioWvMNwmD6D2H2RJlDl2RrfQvND11
-	/wE/IeZXuciFg806gfZvip7IE0VVw45dY3ukWpEV7Eu+yk9p0FxmUDKXTScz2b7U0O0XY619A
-	uIuy4zGTaxXQ3W07eal45CIDyD/DRt914MJ
-Subject: Re: No GNU_HASH in the elf binary
+References: <CAG+Ob8ZcYRYaFcyFopckNiTMR8ZTJW5vcM1cO+DZM7-0aR3+rA@mail.gmail.com>
+	<CAMKF1soen1zoyD=eE73Vod4pG_OBSSVLb2mpWE50VVsjObas2w@mail.gmail.com>
+In-Reply-To: <CAMKF1soen1zoyD=eE73Vod4pG_OBSSVLb2mpWE50VVsjObas2w@mail.gmail.com>
+From: Onur Eser <onureser12@gmail.com>
+Date: Mon, 15 Jul 2019 11:06:18 +0300
+Message-ID: <CAG+Ob8ZWhYpp9qh2+6nvsJouf9usOCTWsP_7836T6FHh1F8vAA@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [Meta-Qt5] "Unknown Module: declarative" Error While Creating Toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,367 +72,256 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Jul 2019 07:12:41 -0000
-Content-Type: multipart/alternative;
-	boundary="------------62D7AD2672BBCE1162637AFC"
-Content-Language: en-US
+X-List-Received-Date: Mon, 15 Jul 2019 08:06:32 -0000
+Content-Type: multipart/alternative; boundary="000000000000d47e78058db3bc1f"
 
---------------62D7AD2672BBCE1162637AFC
-Content-Type: text/plain; charset=utf-8; format=flowed
+--000000000000d47e78058db3bc1f
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello
+Hi Khem,
+Thank you for your answer. I have built a toolchain as exactly as you said,
+days ago.
+But it was giving error Unknown Modules: widgets when I try to compile. Me
+and my
+BSP found that this is a know Qt layer issue that will not be solved til an
+update is pushed to meta-qt5 layer.
+Thank you anyway, I am trying to native compile over Debian.
+Have a great week!
+Onur
 
-On 15.07.19 08:42, Madhu Krishnamurthy wrote:
-> Hello,
-> I am trying to package an already built binary executable called mlc
-> (memory latency checker) to yocto and I get this error.
->
-> ERROR: mem-tst-0.1 do_package: QA Issue: File
-> '/usr/local/flex_pkgs/diags/mlc' from mem was already stripped, this
-> will prevent future debugging! [already-stripped]
-> ERROR: mem-tst-0.1 do_package: Fatal QA errors found, failing task.
-> ERROR: mem-tst-0.1 do_package: Function failed: do_package
-Your recipe is not called mlc but mem-tst-0.1
-> ERROR: Logfile of failure stored in:
-> /home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/te=
-mp/log.do_package.27614
-> ERROR: Task
-> (/home/cluser/ac/z_cpu/poky/../meta-flex/meta-z/recipes-utils/mem/mem_ts=
-t_0.1.bb:do_package)
-> failed with exit=C2=A0code '1'
-> NOTE: Tasks Summary: Attempted 458 tasks of which 457 didn't need to
-> be rerun and 1 failed.
->
-> I googled and found that I need to add this
->
-> *INSANE_SKIP_mlc =3D "ldflags"*
-> *INSANE_SKIP_mlc-dev =3D "ldflags"*
+Khem Raj <raj.khem@gmail.com>, 15 Tem 2019 Pzt, 03:55 tarihinde =C5=9Funu y=
+azd=C4=B1:
 
-Thus the two lines above can't work. The preferred way to do this is to
-use ${PN} variable which expands to the package name. Like this: >>
-INSANE_SKIP_${PN} =3D "ldflags" <<
+> On Mon, Jul 8, 2019 at 10:59 PM Onur Eser <onureser12@gmail.com> wrote:
+> >
+> > Hello All,
+> >
+> > I have talked to my BSP provider and they have solved the conflict file=
+s
+> issue with an update. Now I am able to create and boot a Yocto Image with
+> Meta-Qt5 recipes and 'dev_pkgs' in it. But still cannot create a toolchai=
+n.
+> Nor with I guess it is trying to compile something before qtdeclarative,
+> but these 'something' depends on qtdeclarative.
+> >
+> > My image is core image is Weston. I added the line 'inherit
+> populate_sdk_qt5' to my core-image-weston.bb file. And tried both
+> commands 'bitbake meta-toolchain-qt5' and 'bitbake -c populate_sdk
+> core-image-weston'. The result is the same.
+> >
+> > I cut just the error part of my output:
+> >
+> > | cd qdeclarativefolderlistmodel/ && ( test -e Makefile ||
+> /home/closx/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/qtquic=
+k1/5.10.1+gitAUTOINC+b2476dcd53-r0/recipe-sysroot-native/usr/bin/qt5/qmake
+> -o Makefile
+> /home/closx/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/qtquic=
+k1/5.10.1+gitAUTOINC+b2476dcd53-r0/git/tests/auto/declarative/qdeclarativef=
+olderlistmodel/
+> qdeclarativefolderlistmodel.pro ) && make -f Makefile
+> > | Project ERROR: Unknown module(s) in QT: declarative widgets
+> > | Makefile:88: recipe for target 'sub-qdeclarativecomponent-make_first'
+> failed
+> > | make[2]: *** [sub-qdeclarativecomponent-make_first] Error 3
+> > | make[2]: *** Waiting for unfinished jobs....
+> > | Project ERROR: Unknown module(s) in QT: declarative
+> > | Project ERROR: Unknown module(s) in QT: declarative
+> > | Makefile:113: recipe for target 'sub-qdeclarativecontext-make_first'
+> failed
+> > | make[2]: *** [sub-qdeclarativecontext-make_first] Error 3
+> > | Project ERROR: Unknown module(s) in QT: declarative
+> > | Makefile:138: recipe for target 'sub-qdeclarativeengine-make_first'
+> failed
+> > | make[2]: *** [sub-qdeclarativeengine-make_first] Error 3
+> > | Makefile:63: recipe for target 'sub-parserstress-make_first' failed
+> > | make[2]: *** [sub-parserstress-make_first] Error 3
+> > | make[2]: Entering directory
+> '/home/closx/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/qtqui=
+ck1/5.10.1+gitAUTOINC+b2476dcd53-r0/build/tests/manual/declarative'
+> > | make[2]: Nothing to be done for 'first'.
+> > | make[2]: Leaving directory
+> '/home/closx/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/qtqui=
+ck1/5.10.1+gitAUTOINC+b2476dcd53-r0/build/tests/manual/declarative'
+> > | make[1]: Leaving directory
+> '/home/closx/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/qtqui=
+ck1/5.10.1+gitAUTOINC+b2476dcd53-r0/build/tests/manual'
+> > | Project ERROR: Unknown module(s) in QT: declarative
+> > | Makefile:163: recipe for target 'sub-qdeclarativeerror-make_first'
+> failed
+> > | make[2]: *** [sub-qdeclarativeerror-make_first] Error 3
+> > | Project ERROR: Unknown module(s) in QT: declarative
+> > | Makefile:188: recipe for target
+> 'sub-qdeclarativefolderlistmodel-make_first' failed
+> > | make[2]: *** [sub-qdeclarativefolderlistmodel-make_first] Error 3
+> > | make[2]: Leaving directory
+> '/home/closx/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/qtqui=
+ck1/5.10.1+gitAUTOINC+b2476dcd53-r0/build/tests/auto/declarative'
+> > | Makefile:45: recipe for target 'sub-declarative-make_first' failed
+> > | make[1]: *** [sub-declarative-make_first] Error 2
+> > | make[1]: Leaving directory
+> '/home/closx/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/qtqui=
+ck1/5.10.1+gitAUTOINC+b2476dcd53-r0/build/tests/auto'
+> > | Makefile:45: recipe for target 'sub-auto-make_first' failed
+> > | make: *** [sub-auto-make_first] Error 2
+> > | ERROR: oe_runmake failed
+> > | WARNING: exit code 1 from a shell command.
+> > | ERROR: Function failed: do_compile_ptest_base (log file is located at
+> /home/closx/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/qtquic=
+k1/5.10.1+gitAUTOINC+b2476dcd53-r0/temp/log.do_compile_ptest_base.29566)
+> > ERROR: Task (/home/closx/poky/meta-qt5/recipes-qt/qt5/qtquick1_git.bb:d=
+o_compile_ptest_base)
+> failed with exit code '1'
+> >
+> > What do you guys think the reason of this issue may be? Any solution
+> offers?
+> >
+> > My full output:
+> > https://paste.ee/p/PupWr#Epvqnw9FoasgQEBhIXqQ8hH7veMcRybX
+> >
+> > Another source issue again?
+> > Have a lovely day!
+>
+> qtquick1 has been removed but I am guessting you are on an older
+> release. Can you try adding DEPENDS +=3D "qtdeclarative"  to qtquick1
+> recipe and see if that helps ?
+> secondly you can stop build ptest for this package since thats where
+> its failing, that might be a workaround.
+>
+> > Onur
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Best regards
-Moritz
-
-> *INHIBIT_PACKAGE_DEBUG_SPLIT =3D "1"*
-> *INHIBIT_PACKAGE_STRIP =3D "1"*
->
-> But after adding that I still get this error.
-> *ERROR: mem-tst-0.1 do_package_qa: QA Issue: No GNU_HASH in the elf
-> binary:
-> '/home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/p=
-ackages-split/mem/usr/local/flex_pkgs/diags/mlc'
-> [ldflags]*
-> Appreciate any help.
->
-> Thanks and regards
-> Madhu
->
-> (more log details)
-> NOTE: Executing RunQueue Tasks
-> NOTE: mem-tst-0.1 do_package_qa: Direct dependencies are
-> ['virtual:native:/home/cluser/ac/z_cpu/poky/meta/recipes-devtools/pseudo=
-/pseudo_1.8.2.bb:do_populate_sysroot',
-> '/home/cluser/ac/z_cpu/poky/meta/recipes-devtools/binutils/binutils-cros=
-s_2.29.bb:do_populate_sysroot']
-> NOTE: mem-tst-0.1 do_package_qa: Installed into sysroot: []
-> NOTE: mem-tst-0.1 do_package_qa: Skipping as already exists in
-> sysroot: ['pseudo-native', 'binutils-cross-x86_64',
-> 'gnu-config-native', 'bison-native', 'flex-native',
-> 'texinfo-dummy-native', 'autoconf-native', 'quilt-native',
-> 'zlib-native', 'gettext-minimal-native', 'automake-native',
-> 'xz-native', 'libtool-native', 'm4-native']
-> NOTE: mem-tst-0.1 do_package_qa: DO PACKAGE QA
-> NOTE: mem-tst-0.1 do_package_qa: Checking Package: mem
-> NOTE: mem-tst-0.1 do_package_qa: x86_64-poky-linux-objdump -p
-> /home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/pa=
-ckages-split/mem/usr/local/flex_pkgs/diags/mlc
-> *ERROR: mem-tst-0.1 do_package_qa: QA Issue: No GNU_HASH in the elf
-> binary:
-> '/home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/p=
-ackages-split/mem/usr/local/flex_pkgs/diags/mlc'
-> [ldflags]*
-> NOTE: mem-tst-0.1 do_package_qa: Checking Package: mem-staticdev
-> NOTE: mem-tst-0.1 do_package_qa: Checking Package: mem-locale
-> NOTE: mem-tst-0.1 do_package_qa: Checking Package: mem-doc
-> NOTE: mem-tst-0.1 do_package_qa: Checking Package: mem-dbg
-> NOTE: mem-tst-0.1 do_package_qa: Checking Package: mem-dev
-> *ERROR: mem-tst-0.1 do_package_qa: QA run found fatal errors. Please
-> consider fixing them.*
-> *ERROR: mem-tst-0.1 do_package_qa: Function failed: do_package_qa*
-> *ERROR: Logfile of failure stored in:
-> /home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/te=
-mp/log.do_package_qa.25300*
-> *ERROR: Task
-> (/home/cluser/ac/z_cpu/poky/../meta-flex/meta-z/recipes-utils/mem/mem_ts=
-t_0.1.bb:do_package_qa)
-> failed with exit code '1'*
-> NOTE: Tasks Summary: Attempted 461 tasks of which 460 didn't need to
-> be rerun and 1 failed.
->
-> Summary: 1 task failed:
-> /home/cluser/ac/z_cpu/poky/../meta-flex/meta-z/recipes-utils/mem/mem_tst=
-_0.1.bb:do_package_qa
->
->
->
-
---------------62D7AD2672BBCE1162637AFC
-Content-Type: text/html; charset=utf-8
+--000000000000d47e78058db3bc1f
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
-8">
-  </head>
-  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
-    <p>Hello<br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 15.07.19 08:42, Madhu Krishnamurthy
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:1600236519.1269258.1563172945935@mail.yahoo.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUT=
-F-8">
-      <div class=3D"yahoo-style-wrap" style=3D"font-family:Helvetica Neue,
-        Helvetica, Arial, sans-serif;font-size:16px;">
-        <div dir=3D"ltr" data-setdir=3D"false">
-          <div>
-            <div dir=3D"ltr" style=3D"font-family: &quot;Helvetica
-              Neue&quot;, Helvetica, Arial, sans-serif; font-size:
-              16px;">Hello,</div>
-            <div dir=3D"ltr" style=3D"font-family: &quot;Helvetica
-              Neue&quot;, Helvetica, Arial, sans-serif; font-size:
-              16px;">I am trying to package an already built binary
-              executable called mlc (memory latency checker) to yocto
-              and I get this error.=C2=A0</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><br>
-            </div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><font
-                color=3D"#cd232c">ERROR: mem-tst-0.1 do_package: QA Issue:
-                File '/usr/local/flex_pkgs/diags/mlc' from mem was
-                already stripped, this will prevent future debugging!
-                [already-stripped]</font></div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><font
-                color=3D"#cd232c">ERROR: mem-tst-0.1 do_package: Fatal QA
-                errors found, failing task.</font></div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><font
-                color=3D"#cd232c">ERROR: mem-tst-0.1 do_package: Function
-                failed: do_package</font></div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <font color=3D"#cd232c"><font color=3D"#000000">Your recipe is not
-        called mlc but mem-tst-0.1</font></font><br>
-    <blockquote type=3D"cite"
-      cite=3D"mid:1600236519.1269258.1563172945935@mail.yahoo.com">
-      <div class=3D"yahoo-style-wrap" style=3D"font-family:Helvetica Neue,
-        Helvetica, Arial, sans-serif;font-size:16px;">
-        <div dir=3D"ltr" data-setdir=3D"false">
-          <div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><font
-                color=3D"#cd232c">ERROR: Logfile of failure stored in:
-/home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/temp=
-/log.do_package.27614</font></div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><font
-                color=3D"#cd232c">ERROR: Task
-(/home/cluser/ac/z_cpu/poky/../meta-flex/meta-z/recipes-utils/mem/mem_tst_=
-0.1.bb:do_package)
-                failed with exit</font>=C2=A0code '1'</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">NOTE:
-              Tasks Summary: Attempted 458 tasks of which 457 didn't
-              need to be rerun and 1 failed.</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><br>
-            </div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">I googled
-              and found that I need to add this</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><br>
-            </div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><b>INSANE_SK=
-IP_mlc
-                =3D "ldflags"</b></div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><b>INSANE_SK=
-IP_mlc-dev
-                =3D "ldflags"</b></div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <p>Thus the two lines above can't work. The preferred way to do this
-      is to use ${PN} variable which expands to the package name. Like
-      this: &gt;&gt; INSANE_SKIP_${PN} =3D "ldflags" &lt;&lt;<br>
-    </p>
-    <p>Best regards<br>
-      Moritz<br>
-    </p>
-    <blockquote type=3D"cite"
-      cite=3D"mid:1600236519.1269258.1563172945935@mail.yahoo.com">
-      <div class=3D"yahoo-style-wrap" style=3D"font-family:Helvetica Neue,
-        Helvetica, Arial, sans-serif;font-size:16px;">
-        <div dir=3D"ltr" data-setdir=3D"false">
-          <div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><b>INHIBIT_P=
-ACKAGE_DEBUG_SPLIT
-                =3D "1"</b></div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><b>INHIBIT_P=
-ACKAGE_STRIP
-                =3D "1"</b></div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><br>
-            </div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">But after
-              adding that I still get this error.=C2=A0</div>
-            <div dir=3D"ltr" style=3D"font-family: &quot;Helvetica
-              Neue&quot;, Helvetica, Arial, sans-serif; font-size:
-              16px;"><b style=3D"color: rgb(205, 35, 44); font-family:
-                Helvetica, Arial, sans-serif;">ERROR: mem-tst-0.1
-                do_package_qa: QA Issue: No GNU_HASH in the elf binary:
-'/home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/pac=
-kages-split/mem/usr/local/flex_pkgs/diags/mlc'
-                [ldflags]</b></div>
-            <div dir=3D"ltr" style=3D"font-family: &quot;Helvetica
-              Neue&quot;, Helvetica, Arial, sans-serif; font-size:
-              16px;">=C2=A0</div>
-            <div dir=3D"ltr" style=3D"font-family: &quot;Helvetica
-              Neue&quot;, Helvetica, Arial, sans-serif; font-size:
-              16px;">Appreciate any help.</div>
-            <div dir=3D"ltr" style=3D"font-family: &quot;Helvetica
-              Neue&quot;, Helvetica, Arial, sans-serif; font-size:
-              16px;"><br>
-            </div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">Thanks and
-              regards</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">Madhu</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><br>
-            </div>
-            <div dir=3D"ltr" style=3D"font-family: &quot;Helvetica
-              Neue&quot;, Helvetica, Arial, sans-serif; font-size:
-              16px;">(more log details)</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">NOTE:
-              Executing RunQueue Tasks</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">NOTE:
-              mem-tst-0.1 do_package_qa: Direct dependencies are
-['virtual:native:/home/cluser/ac/z_cpu/poky/meta/recipes-devtools/pseudo/p=
-seudo_1.8.2.bb:do_populate_sysroot',
-'/home/cluser/ac/z_cpu/poky/meta/recipes-devtools/binutils/binutils-cross_=
-2.29.bb:do_populate_sysroot']</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">NOTE:
-              mem-tst-0.1 do_package_qa: Installed into sysroot: []</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">NOTE:
-              mem-tst-0.1 do_package_qa: Skipping as already exists in
-              sysroot: ['pseudo-native', 'binutils-cross-x86_64',
-              'gnu-config-native', 'bison-native', 'flex-native',
-              'texinfo-dummy-native', 'autoconf-native', 'quilt-native',
-              'zlib-native', 'gettext-minimal-native',
-              'automake-native', 'xz-native', 'libtool-native',
-              'm4-native']</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">NOTE:
-              mem-tst-0.1 do_package_qa: DO PACKAGE QA</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">NOTE:
-              mem-tst-0.1 do_package_qa: Checking Package: mem</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">NOTE:
-              mem-tst-0.1 do_package_qa: x86_64-poky-linux-objdump -p
-/home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/pack=
-ages-split/mem/usr/local/flex_pkgs/diags/mlc</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><font
-                color=3D"#cd232c"><b>ERROR: mem-tst-0.1 do_package_qa: QA
-                  Issue: No GNU_HASH in the elf binary:
-'/home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/pac=
-kages-split/mem/usr/local/flex_pkgs/diags/mlc'
-                  [ldflags]</b></font></div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">NOTE:
-              mem-tst-0.1 do_package_qa: Checking Package: mem-staticdev</=
-div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">NOTE:
-              mem-tst-0.1 do_package_qa: Checking Package: mem-locale</div=
+<div dir=3D"ltr"><div>Hi Khem,</div><div>Thank you for your answer. I have =
+built a toolchain as exactly as you said, days ago.</div><div> But it was g=
+iving error Unknown Modules: widgets when I try to compile. Me and my</div>=
+<div>BSP found that this is a know Qt layer issue that will not be solved t=
+il an update is pushed to meta-qt5 layer.</div><div>Thank you anyway, I am =
+trying to native compile over Debian.</div><div>Have a great week!</div><di=
+v>Onur<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.khem=
+@gmail.com</a>&gt;, 15 Tem 2019 Pzt, 03:55 tarihinde =C5=9Funu yazd=C4=B1:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Mon, Jul 8, 2=
+019 at 10:59 PM Onur Eser &lt;<a href=3D"mailto:onureser12@gmail.com" targe=
+t=3D"_blank">onureser12@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Hello All,<br>
+&gt;<br>
+&gt; I have talked to my BSP provider and they have solved the conflict fil=
+es issue with an update. Now I am able to create and boot a Yocto Image wit=
+h Meta-Qt5 recipes and &#39;dev_pkgs&#39; in it. But still cannot create a =
+toolchain. Nor with I guess it is trying to compile something before qtdecl=
+arative, but these &#39;something&#39; depends on qtdeclarative.<br>
+&gt;<br>
+&gt; My image is core image is Weston. I added the line &#39;inherit popula=
+te_sdk_qt5&#39; to my <a href=3D"http://core-image-weston.bb" rel=3D"norefe=
+rrer" target=3D"_blank">core-image-weston.bb</a> file. And tried both comma=
+nds &#39;bitbake meta-toolchain-qt5&#39; and &#39;bitbake -c populate_sdk c=
+ore-image-weston&#39;. The result is the same.<br>
+&gt;<br>
+&gt; I cut just the error part of my output:<br>
+&gt;<br>
+&gt; | cd qdeclarativefolderlistmodel/ &amp;&amp; ( test -e Makefile || /ho=
+me/closx/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/qtquick1/5.=
+10.1+gitAUTOINC+b2476dcd53-r0/recipe-sysroot-native/usr/bin/qt5/qmake -o Ma=
+kefile /home/closx/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/q=
+tquick1/5.10.1+gitAUTOINC+b2476dcd53-r0/git/tests/auto/declarative/qdeclara=
+tivefolderlistmodel/<a href=3D"http://qdeclarativefolderlistmodel.pro" rel=
+=3D"noreferrer" target=3D"_blank">qdeclarativefolderlistmodel.pro</a> ) &am=
+p;&amp; make -f Makefile<br>
+&gt; | Project ERROR: Unknown module(s) in QT: declarative widgets<br>
+&gt; | Makefile:88: recipe for target &#39;sub-qdeclarativecomponent-make_f=
+irst&#39; failed<br>
+&gt; | make[2]: *** [sub-qdeclarativecomponent-make_first] Error 3<br>
+&gt; | make[2]: *** Waiting for unfinished jobs....<br>
+&gt; | Project ERROR: Unknown module(s) in QT: declarative<br>
+&gt; | Project ERROR: Unknown module(s) in QT: declarative<br>
+&gt; | Makefile:113: recipe for target &#39;sub-qdeclarativecontext-make_fi=
+rst&#39; failed<br>
+&gt; | make[2]: *** [sub-qdeclarativecontext-make_first] Error 3<br>
+&gt; | Project ERROR: Unknown module(s) in QT: declarative<br>
+&gt; | Makefile:138: recipe for target &#39;sub-qdeclarativeengine-make_fir=
+st&#39; failed<br>
+&gt; | make[2]: *** [sub-qdeclarativeengine-make_first] Error 3<br>
+&gt; | Makefile:63: recipe for target &#39;sub-parserstress-make_first&#39;=
+ failed<br>
+&gt; | make[2]: *** [sub-parserstress-make_first] Error 3<br>
+&gt; | make[2]: Entering directory &#39;/home/closx/poky/build/tmp/work/cor=
+texa9hf-neon-poky-linux-gnueabi/qtquick1/5.10.1+gitAUTOINC+b2476dcd53-r0/bu=
+ild/tests/manual/declarative&#39;<br>
+&gt; | make[2]: Nothing to be done for &#39;first&#39;.<br>
+&gt; | make[2]: Leaving directory &#39;/home/closx/poky/build/tmp/work/cort=
+exa9hf-neon-poky-linux-gnueabi/qtquick1/5.10.1+gitAUTOINC+b2476dcd53-r0/bui=
+ld/tests/manual/declarative&#39;<br>
+&gt; | make[1]: Leaving directory &#39;/home/closx/poky/build/tmp/work/cort=
+exa9hf-neon-poky-linux-gnueabi/qtquick1/5.10.1+gitAUTOINC+b2476dcd53-r0/bui=
+ld/tests/manual&#39;<br>
+&gt; | Project ERROR: Unknown module(s) in QT: declarative<br>
+&gt; | Makefile:163: recipe for target &#39;sub-qdeclarativeerror-make_firs=
+t&#39; failed<br>
+&gt; | make[2]: *** [sub-qdeclarativeerror-make_first] Error 3<br>
+&gt; | Project ERROR: Unknown module(s) in QT: declarative<br>
+&gt; | Makefile:188: recipe for target &#39;sub-qdeclarativefolderlistmodel=
+-make_first&#39; failed<br>
+&gt; | make[2]: *** [sub-qdeclarativefolderlistmodel-make_first] Error 3<br=
 >
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">NOTE:
-              mem-tst-0.1 do_package_qa: Checking Package: mem-doc</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">NOTE:
-              mem-tst-0.1 do_package_qa: Checking Package: mem-dbg</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">NOTE:
-              mem-tst-0.1 do_package_qa: Checking Package: mem-dev</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><font
-                color=3D"#cd232c"><b>ERROR: mem-tst-0.1 do_package_qa: QA
-                  run found fatal errors. Please consider fixing them.</b>=
-</font></div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><font
-                color=3D"#cd232c"><b>ERROR: mem-tst-0.1 do_package_qa:
-                  Function failed: do_package_qa</b></font></div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><font
-                color=3D"#cd232c"><b>ERROR: Logfile of failure stored in:
-/home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/temp=
-/log.do_package_qa.25300</b></font></div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><font
-                color=3D"#cd232c"><b>ERROR: Task
-(/home/cluser/ac/z_cpu/poky/../meta-flex/meta-z/recipes-utils/mem/mem_tst_=
-0.1.bb:do_package_qa)
-                  failed with exit code '1'</b></font></div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">NOTE:
-              Tasks Summary: Attempted 461 tasks of which 460 didn't
-              need to be rerun and 1 failed.</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><br>
-            </div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">Summary: 1
-              task failed:</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;">=C2=A0
-/home/cluser/ac/z_cpu/poky/../meta-flex/meta-z/recipes-utils/mem/mem_tst_0=
-.1.bb:do_package_qa</div>
-            <div style=3D"font-family: &quot;Helvetica Neue&quot;,
-              Helvetica, Arial, sans-serif; font-size: 16px;"><br>
-            </div>
-          </div>
-          <br>
-        </div>
-      </div>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-    </blockquote>
-  </body>
-</html>
+&gt; | make[2]: Leaving directory &#39;/home/closx/poky/build/tmp/work/cort=
+exa9hf-neon-poky-linux-gnueabi/qtquick1/5.10.1+gitAUTOINC+b2476dcd53-r0/bui=
+ld/tests/auto/declarative&#39;<br>
+&gt; | Makefile:45: recipe for target &#39;sub-declarative-make_first&#39; =
+failed<br>
+&gt; | make[1]: *** [sub-declarative-make_first] Error 2<br>
+&gt; | make[1]: Leaving directory &#39;/home/closx/poky/build/tmp/work/cort=
+exa9hf-neon-poky-linux-gnueabi/qtquick1/5.10.1+gitAUTOINC+b2476dcd53-r0/bui=
+ld/tests/auto&#39;<br>
+&gt; | Makefile:45: recipe for target &#39;sub-auto-make_first&#39; failed<=
+br>
+&gt; | make: *** [sub-auto-make_first] Error 2<br>
+&gt; | ERROR: oe_runmake failed<br>
+&gt; | WARNING: exit code 1 from a shell command.<br>
+&gt; | ERROR: Function failed: do_compile_ptest_base (log file is located a=
+t /home/closx/poky/build/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/qtquic=
+k1/5.10.1+gitAUTOINC+b2476dcd53-r0/temp/log.do_compile_ptest_base.29566)<br=
+>
+&gt; ERROR: Task (/home/closx/poky/meta-qt5/recipes-qt/qt5/qtquick1_git.bb:=
+do_compile_ptest_base) failed with exit code &#39;1&#39;<br>
+&gt;<br>
+&gt; What do you guys think the reason of this issue may be? Any solution o=
+ffers?<br>
+&gt;<br>
+&gt; My full output:<br>
+&gt; <a href=3D"https://paste.ee/p/PupWr#Epvqnw9FoasgQEBhIXqQ8hH7veMcRybX" =
+rel=3D"noreferrer" target=3D"_blank">https://paste.ee/p/PupWr#Epvqnw9FoasgQ=
+EBhIXqQ8hH7veMcRybX</a><br>
+&gt;<br>
+&gt; Another source issue again?<br>
+&gt; Have a lovely day!<br>
+<br>
+qtquick1 has been removed but I am guessting you are on an older<br>
+release. Can you try adding DEPENDS +=3D &quot;qtdeclarative&quot;=C2=A0 to=
+ qtquick1<br>
+recipe and see if that helps ?<br>
+secondly you can stop build ptest for this package since thats where<br>
+its failing, that might be a workaround.<br>
+<br>
+&gt; Onur<br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
+oproject.org</a><br>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
+errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
+br>
+</blockquote></div>
 
---------------62D7AD2672BBCE1162637AFC--
+--000000000000d47e78058db3bc1f--
