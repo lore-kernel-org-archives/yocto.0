@@ -1,6 +1,6 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE1B6E00B9C; Mon, 15 Jul 2019 05:45:48 -0700 (PDT)
+	id B0E0FE00CF4; Mon, 15 Jul 2019 07:31:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,61 +10,57 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jupiter.hce[at]gmail.com)
+	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.45 listed in list.dnswl.org]
+	*      [209.85.214.194 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com
-	[209.85.166.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44C06E00798
-	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 05:45:48 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id i10so33738975iol.13
-	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 05:45:48 -0700 (PDT)
+Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com
+	[209.85.214.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83068E00C87
+	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 07:31:42 -0700 (PDT)
+Received: by mail-pl1-f194.google.com with SMTP id k8so8396632plt.3
+	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 07:31:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=efc6Rjn5P3aIm+sYQyxdFAqlIerhTKH5vu+SeUB9+8k=;
-	b=keEWygvWh1Lwf4tAIbhK3x6Grnc+6eJZteYVbYvcLSaO8264YqNcbRry5ASXK+uMsl
-	Cv50WfhQ91r0T1FaMw7f4qPPD9PXgJEF7FQ0i3Nv2CM9Gc0jfITGQQnhJ0P6+1/n1pB/
-	cTfmvQU/RIWOQEYqJpchJ70YSeMbuBCbZXyq4FQ2gdkwXG8if1OdQ4ATjeNyQUxT2laY
-	wDnl2pMNGB6KjTmnDT5a9eDhWxCwHPgF1xS8w8ybEhuHQs3nIpwGi0sV97DojZSjijZN
-	bo3V/qjmvJ+ZYD7bA5/3xPyqHWg171Hs5uGZlSCOGULQpTIjBWq0wN2qfrN3rWTjkG3X
-	MydQ==
+	h=from:to:subject:date:message-id;
+	bh=wn3c6PC09L7nMS2lnH+459pzUzYiELQZlZaetMmu7ZU=;
+	b=MlnhL4LK8uRkiklFcR6nXXaVha2U1We6mMiEgAyUdHvAOHe8wLid0O7SaQlQdphs7B
+	DJltQyFc0GmhkXq4L0PyH7jBI8IcE230mVMUoNL0fq4e7NwZIfiOLJ+1vwsT0hLPuKtu
+	DVZHQIPbshcvxZ5vbNlGUaraMZrQ0jyaa+fI/SKejbcB7jXMTjBWIbshYs2n1l0/i/gs
+	c4xVBC4YeKGds8AgtkyxFPpU5Kp8TdCdHIQpp3rvSXTZ4Mz9gSeDCSflVuTLi4U2Rjn/
+	Gwv3xnfGnckg5eLurZGWPnZP10HaIt6cr3ALO4KzFmRFOEOH5wPaFSLmG2eSV2fWZPrf
+	Pw2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=efc6Rjn5P3aIm+sYQyxdFAqlIerhTKH5vu+SeUB9+8k=;
-	b=FmzKFXL3InrVMaslxCddIUSrYcakPfmqVz0Cv4NAkh2332lKyRjMxlwri3ktlzOWgi
-	+l+95SwsXdDp6vfcxO8KxJ/575S0KbPPex2v4gOijIYAEXreCxYr4qri/bkmNxkpuN6G
-	V0DsaQg70ZVOuxezGhSjotDSRCzx6eYjHJ1Bnx/hTZpgs1D5D17q0Ft7ZKlnhh/cdfdT
-	2pRfWoCzt3y2BIWUZSmKw0qAj5+YSLv5b2xMvwrebwhPcyxKSOa2LxJqUVu0O8WR4aca
-	FHveiznSQKt3exv8bvdziw/M8QHqt2Hyu5QjyCwv9WsUAlisHa753/ZmMv1C3DQ3/ENl
-	B6bA==
-X-Gm-Message-State: APjAAAW/r8InnWJx0BAkc+Oz+5Rf9PfgBSuF2jGybY4XcvbYzaFlEglI
-	rJNgcRBBpvSDCZ0guXLY9HEBWrhgWl6lsX4PWLg=
-X-Google-Smtp-Source: APXvYqyb3a6rtAkDq1fOTmbnX9k7fow/T+low7BHwAbzhAtcU2UknxJ23n2eIraFjtljkPkX32PgYv+HH81+nj9FuOg=
-X-Received: by 2002:a05:6602:22cc:: with SMTP id
-	e12mr25562763ioe.192.1563194747741; 
-	Mon, 15 Jul 2019 05:45:47 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP; Mon, 15 Jul 2019 05:45:47
-	-0700 (PDT)
-In-Reply-To: <CAAx3WaAY2REFJpV3ibOwMmmTHjZbiNsOXVX_eCkFVA5WgO_YzA@mail.gmail.com>
-References: <CAA=hcWTkikzH-X=GxuJ3YgA9MBwRu0UCtnt-O0mZrbjOrELDgw@mail.gmail.com>
-	<CAAx3WaD0FMBZDjT8eYBBVsvcFCD-S3wRR9hiR5ifB2cAJs8y_g@mail.gmail.com>
-	<0f4cfe52-7b7a-145c-b8ac-fbefeeb51e6e@3mdeb.com>
-	<CAAx3WaAY2REFJpV3ibOwMmmTHjZbiNsOXVX_eCkFVA5WgO_YzA@mail.gmail.com>
-From: JH <jupiter.hce@gmail.com>
-Date: Mon, 15 Jul 2019 22:45:47 +1000
-Message-ID: <CAA=hcWQqBrzU=SYRDLELG=vu_0=82CNLwz6u3F6=kXhRoUmhqw@mail.gmail.com>
-To: Gabriele Zampieri <gabbla.malist@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Where to add U-Boot argements bootargs and bootcmd?
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=wn3c6PC09L7nMS2lnH+459pzUzYiELQZlZaetMmu7ZU=;
+	b=EWuAj6fcN6RD79nWMt5Al7YvPW3y6KfjVGjW9e2WxW9YSB2DRB6NfEWfDWqcM+s2wO
+	sSm+VaqHQizXhsfeTTV1NmdfesBASIIf5IuLar7s/Fsw/vK8FbbFIybSaDJuBGm0alTT
+	WLTenltWvQD36bFejqsDstJq+MCQ43Sm8OLGWlhzBPdZ2/3VvhH1OCOXg7+ipliHmC2M
+	v5p5hGXfNyHrMdD1xHIHSx6yxex5sBh8+JU1wX+w8sl9uvRA1+UY0CseDUSY6dSVKToT
+	RCppk4T24f3xm7IP5qEFefzTpFbHNrR7yVxWB0/iXk71Y4OTKq6wl8lLo+H70+HKdMwx
+	JnFw==
+X-Gm-Message-State: APjAAAURA7YRTauUc9s6++ApQRZGFF1zaSgxfIyeKRjIAKSVQj8+V5Nx
+	UYXOk2B+6EYzE+St8OWAksl1p/ci
+X-Google-Smtp-Source: APXvYqyedqMMRjKDHT+JJvXxC265f0TQu+BDaFZ9VXuqjeBUAMLnqmU97j0ycE+Y5eobmk0m0Nw0oA==
+X-Received: by 2002:a17:902:6b86:: with SMTP id
+	p6mr29449005plk.14.1563201101789; 
+	Mon, 15 Jul 2019 07:31:41 -0700 (PDT)
+Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
+	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
+	v13sm20173458pfn.109.2019.07.15.07.31.40 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 15 Jul 2019 07:31:41 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Mon, 15 Jul 2019 07:31:39 -0700
+Message-Id: <20190715143139.24765-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-security][PATCH] keyutils: remove from meta-security
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,76 +72,222 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Jul 2019 12:45:48 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 15 Jul 2019 14:31:43 -0000
 
-Thanks Gabriele and Maciej, I use meta-freescale for imx6. The u-boot
-argements seem defined in wks files such as imx-uboot-mxs.wks,
-imx-uboot-bootpart.wks, not quite sure how to extend or overwrite it.
-Sorry still learning the Yocto.
+now in meta-oe
 
-Thank you.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../files/fix_library_install_path.patch      | 28 ----------
+ ...ror-report-by-adding-default-message.patch | 42 ---------------
+ .../keyutils-test-fix-output-format.patch     | 41 --------------
+ recipes-security/keyutils/files/run-ptest     |  3 --
+ recipes-security/keyutils/keyutils_1.6.bb     | 53 -------------------
+ 5 files changed, 167 deletions(-)
+ delete mode 100644 recipes-security/keyutils/files/fix_library_install_path.patch
+ delete mode 100644 recipes-security/keyutils/files/keyutils-fix-error-report-by-adding-default-message.patch
+ delete mode 100644 recipes-security/keyutils/files/keyutils-test-fix-output-format.patch
+ delete mode 100755 recipes-security/keyutils/files/run-ptest
+ delete mode 100644 recipes-security/keyutils/keyutils_1.6.bb
 
-Kind regards,
+diff --git a/recipes-security/keyutils/files/fix_library_install_path.patch b/recipes-security/keyutils/files/fix_library_install_path.patch
+deleted file mode 100644
+index 938fe2e..0000000
+--- a/recipes-security/keyutils/files/fix_library_install_path.patch
++++ /dev/null
+@@ -1,28 +0,0 @@
+-From b0355cc205543ffd33752874295139d57c4fbc3e Mon Sep 17 00:00:00 2001
+-From: Wenzong Fan <wenzong.fan@windriver.com>
+-Date: Tue, 26 Sep 2017 07:59:51 +0000
+-Subject: [PATCH] Subject: [PATCH] keyutils: use relative path for link
+-
+-The absolute path of the symlink will be invalid
+-when populated in sysroot, so use relative path instead.
+-
+-Upstream-Status: Pending
+-
+-Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+-Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+-{rebased for 1.6]
+-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+-
+-Index: keyutils-1.6/Makefile
+-===================================================================
+---- keyutils-1.6.orig/Makefile
+-+++ keyutils-1.6/Makefile
+-@@ -184,7 +184,7 @@ ifeq ($(NO_SOLIB),0)
+- 	$(INSTALL) -D $(LIBNAME) $(DESTDIR)$(LIBDIR)/$(LIBNAME)
+- 	$(LNS) $(LIBNAME) $(DESTDIR)$(LIBDIR)/$(SONAME)
+- 	mkdir -p $(DESTDIR)$(USRLIBDIR)
+--	$(LNS) $(LIBDIR)/$(SONAME) $(DESTDIR)$(USRLIBDIR)/$(DEVELLIB)
+-+	$(LNS) $(SONAME) $(DESTDIR)$(USRLIBDIR)/$(DEVELLIB)
+- 	sed \
+- 	-e 's,@VERSION\@,$(VERSION),g' \
+- 	-e 's,@prefix\@,$(PREFIX),g' \
+diff --git a/recipes-security/keyutils/files/keyutils-fix-error-report-by-adding-default-message.patch b/recipes-security/keyutils/files/keyutils-fix-error-report-by-adding-default-message.patch
+deleted file mode 100644
+index acd91c0..0000000
+--- a/recipes-security/keyutils/files/keyutils-fix-error-report-by-adding-default-message.patch
++++ /dev/null
+@@ -1,42 +0,0 @@
+-fix keyutils test error report
+-
+-Upstream-Status: Pending
+-
+-"Permission denied" may be the reason of EKEYEXPIRED and EKEYREVOKED.
+-"Required key not available" may be the reason of EKEYREVOKED.
+-EXPIRED and REVOKED are 2 status of kernel security keys features.
+-But the userspace keyutils lib will output the error message, which may
+-have several reasons.
+-
+-Signed-off-by: Han Chao <chan@windriver.com>
+-
+-diff --git a/tests/toolbox.inc.sh b/tests/toolbox.inc.sh
+-index bbca00a..739e9d0 100644
+---- a/tests/toolbox.inc.sh
+-+++ b/tests/toolbox.inc.sh
+-@@ -227,11 +227,12 @@ function expect_error ()
+- 	    ;;
+- 	EKEYEXPIRED)
+- 	    my_err="Key has expired"
+--	    alt_err="Unknown error 127"
+-+	    alt_err="Permission denied"
+- 	    ;;
+- 	EKEYREVOKED)
+- 	    my_err="Key has been revoked"
+--	    alt_err="Unknown error 128"
+-+	    alt_err="Permission denied"
+-+	    alt2_err="Required key not available"
+- 	    ;;
+- 	EKEYREJECTED)
+- 	    my_err="Key has been rejected"
+-@@ -249,6 +250,9 @@ function expect_error ()
+-     elif [ "x$alt_err" != "x" ] && expr "$my_errmsg" : ".*: $alt_err" >&/dev/null
+-     then
+- 	:
+-+    elif [ "x$alt2_err" != "x" ] && expr "$my_errmsg" : ".*: $alt2_err" >&/dev/null
+-+    then
+-+	:
+-     elif [ "x$old_err" != "x" ] && expr "$my_errmsg" : ".*: $old_err" >&/dev/null
+-     then
+- 	:
+-
+diff --git a/recipes-security/keyutils/files/keyutils-test-fix-output-format.patch b/recipes-security/keyutils/files/keyutils-test-fix-output-format.patch
+deleted file mode 100644
+index a4ffd50..0000000
+--- a/recipes-security/keyutils/files/keyutils-test-fix-output-format.patch
++++ /dev/null
+@@ -1,41 +0,0 @@
+-From 49b6321368e4bd3cd233d045cd09004ddd7968b2 Mon Sep 17 00:00:00 2001
+-From: Jackie Huang <jackie.huang@windriver.com>
+-Date: Mon, 15 May 2017 14:52:00 +0800
+-Subject: [PATCH] keyutils: fix output format
+-
+-keyutils ptest output format is incorrect, according to yocto
+-Development Manual
+-(http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#testing-packages-with-ptest)
+-5.10.6. Testing Packages With ptestThe test generates output in the format used by Automake:
+-<result>: <testname>
+-where the result can be PASS, FAIL, or SKIP, and the testname can be any
+-identifying string.
+-So we should change the test result format to match yocto ptest rules.
+-
+-Upstream-Status: Inappropriate [OE ptest specific]
+-
+-Signed-off-by: Li Wang <li.wang@windriver.com>
+-Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+----
+- tests/runtest.sh | 5 +++++
+- 1 file changed, 5 insertions(+)
+-
+-diff --git a/tests/runtest.sh b/tests/runtest.sh
+-index b6eaa7c..84263fb 100644
+---- a/tests/runtest.sh
+-+++ b/tests/runtest.sh
+-@@ -21,6 +21,11 @@ for i in ${TESTS}; do
+-     echo "### RUNNING TEST $i"
+-     if [[ $AUTOMATED != 0 ]] ; then
+-         bash ./runtest.sh
+-+        if [ $? != 0 ]; then
+-+            echo "FAIL: $i"
+-+        else
+-+            echo "PASS: $i"
+-+        fi
+-     else
+-         bash ./runtest.sh || exit 1
+-     fi
+--- 
+-2.11.0
+-
+diff --git a/recipes-security/keyutils/files/run-ptest b/recipes-security/keyutils/files/run-ptest
+deleted file mode 100755
+index 305707f..0000000
+--- a/recipes-security/keyutils/files/run-ptest
++++ /dev/null
+@@ -1,3 +0,0 @@
+-#!/bin/sh
+-export AUTOMATED=1
+-make -C tests run
+diff --git a/recipes-security/keyutils/keyutils_1.6.bb b/recipes-security/keyutils/keyutils_1.6.bb
+deleted file mode 100644
+index 4d3a96f..0000000
+--- a/recipes-security/keyutils/keyutils_1.6.bb
++++ /dev/null
+@@ -1,53 +0,0 @@
+-SUMMARY = "Linux Key Management Utilities"
+-DESCRIPTION = "\
+-    Utilities to control the kernel key management facility and to provide \
+-    a mechanism by which the kernel call back to userspace to get a key \
+-    instantiated. \
+-    "
+-HOMEPAGE = "http://people.redhat.com/dhowells/keyutils"
+-SECTION = "base"
+-
+-LICENSE = "LGPLv2.1+ & GPLv2.0+"
+-
+-LIC_FILES_CHKSUM = "file://LICENCE.GPL;md5=5f6e72824f5da505c1f4a7197f004b45 \
+-                    file://LICENCE.LGPL;md5=7d1cacaa3ea752b72ea5e525df54a21f"
+-
+-inherit siteinfo autotools-brokensep ptest
+-
+-SRC_URI = "http://people.redhat.com/dhowells/keyutils/${BP}.tar.bz2 \
+-           file://keyutils-test-fix-output-format.patch \
+-           file://keyutils-fix-error-report-by-adding-default-message.patch \
+-           file://run-ptest \
+-           file://fix_library_install_path.patch \
+-           "
+-
+-SRC_URI[md5sum] = "191987b0ab46bb5b50efd70a6e6ce808"
+-SRC_URI[sha256sum] = "d3aef20cec0005c0fa6b4be40079885567473185b1a57b629b030e67942c7115"
+-
+-EXTRA_OEMAKE = "'CFLAGS=${CFLAGS} -Wall' \
+-    NO_ARLIB=1 \
+-    BINDIR=${base_bindir} \
+-    SBINDIR=${base_sbindir} \
+-    LIBDIR=${libdir} \
+-    USRLIBDIR=${libdir} \
+-    INCLUDEDIR=${includedir} \
+-    BUILDFOR=${SITEINFO_BITS}-bit \
+-    NO_GLIBC_KEYERR=1 \
+-    "
+-
+-do_install () {
+-    install -d ${D}/${libdir}/pkgconfig
+-    oe_runmake DESTDIR=${D} install
+-}
+-
+-do_install_ptest () {
+-    cp -r ${S}/tests ${D}${PTEST_PATH}/
+-    sed -i -e 's/OSDIST=Unknown/OSDIST=${DISTRO}/' ${D}${PTEST_PATH}/tests/prepare.inc.sh
+-}
+-
+-
+-RDEPENDS_${PN}-ptest += "lsb"
+-RDEPENDS_${PN}-ptest_append_libc-glibc = " glibc-utils"
+-RDEPENDS_${PN}-ptest_append_libc-musl = " musl-utils"
+-
+-BBCLASSEXTEND = "native nativesdk"
+-- 
+2.17.1
 
-- jh
-
-On 7/15/19, Gabriele Zampieri <gabbla.malist@gmail.com> wrote:
-> Yes, thanks Maciej for pointing that out! It may be a good starting point
-> for JH.
->
-> Gabriele
->
-> Il giorno lun 15 lug 2019 alle ore 10:29 Maciej Pijanowski <
-> maciej.pijanowski@3mdeb.com> ha scritto:
->
->>
->> On 15.07.2019 08:45, Gabriele Zampieri wrote:
->>
->> Hi,
->>
->> as far as I know, there is no mechanism to add custom bootargs and/or
->> bootcmd to uboot via Yocto (correct me if I'm wrong). I usually patch the
->> upstream uboot to achieve this task.
->>
->> I also haven't heard of any standardized way. It may depend on the target
->> hardware
->> and the BSP layer you are using. Apart from patching the U-Boot, there
->> also might
->> be boot.cmd script to modify or the config.txt in case of the RPI, for
->> example.
->>
->>
->> Best regards,
->> Gabriele
->>
->> Il giorno lun 8 lug 2019 alle ore 22:43 JH <jupiter.hce@gmail.com> ha
->> scritto:
->>
->>> Hi,
->>>
->>> Which Yocto files and which statement can I add my own U-Boot bootargs
->>> and bootcmd?
->>>
->>> Thank you.
->>>
->>> - jupiter
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>
->> --
->> Maciej Pijanowski
->> Embedded Systems Engineerhttps://3mdeb.com | @3mdeb_com
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->
 
