@@ -1,62 +1,66 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <madhukanthk@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 48492E00D30; Mon, 15 Jul 2019 10:51:54 -0700 (PDT)
+	id CDF01E00C93; Mon, 15 Jul 2019 11:05:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	https://www.dnswl.org/, no *      trust
-	*      [209.85.166.68 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (madhukanthk[at]yahoo.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [98.137.69.205 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io1-f68.google.com (mail-io1-f68.google.com
-	[209.85.166.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95D3CE00BF7
-	for <yocto@lists.yoctoproject.org>;
-	Mon, 15 Jul 2019 10:51:53 -0700 (PDT)
-Received: by mail-io1-f68.google.com with SMTP id j6so3217523ioa.5
-	for <yocto@lists.yoctoproject.org>;
-	Mon, 15 Jul 2019 10:51:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=Eft1HJlWDYTTTTSo4YqiCD0SGXK4xMCBgqQt1lOpU1k=;
-	b=wJeE03aaij14KOzYG3PzUMKo23cMMcNx0IpB6h6XqboOM81iob44ahoaK9kHDzAmfM
-	IuOnlPooeFNZno/8yrvHT3WZNToNkV4F5lbcfkpUG0ahPFDeGRcmjEYUI4OU22HfdQGM
-	isLoD1NIDx5E5fRWyh501Uj/quP+W2BMdvP32rgwjAxH6c3RnmOIrxI1YAWL5sBHx2Pe
-	pgbkxrnRPfWj4mhQHeU5UHz/kKXvqNSKwg+PHiSwk27KvcNqMZvHxfgm1ivae8olS3z2
-	PLlkDvshOr1q1A6kBtSQQXNf9UjTE5V00c2GG2icmuOTp6miziP9dBh61YeaX8OR+FG2
-	BKwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=Eft1HJlWDYTTTTSo4YqiCD0SGXK4xMCBgqQt1lOpU1k=;
-	b=oLpI3E86Yw1wN3/zsB5EGD2PKRCMriOkuygbH+iCXHGomWoTfnt9yakvKhB77Z006m
-	TZzFVUXoDKURFuyyVBmfq62fAGZZ3c0mnbpkrQTAG/YdnWdshl+Wi1ESvEv9qfaO8PFL
-	Our6LCL3K/AD3/g08x92QeWwDJ9DLfQF3izIuvntGRNw4s5uPCaSksENW5DIhcLR/LcL
-	jF+q6/ncNwXre95I0zq1Fbiw8nPYm8hzyIuAQmxiB4lcQ59dmQvhLOtAC19IAzaxToKH
-	6vF/IfwvliLTA8WTMwfyompeCTgSxzK4q2C0I4DAA4+ccZJ6gvsodsqnSDIQgvrOWqOU
-	Wg2Q==
-X-Gm-Message-State: APjAAAUNJvEgNoP9S/RzSWnJLOiEmo+NkALGAXjMY+/qxrKFNkodSr4S
-	2ol2Hst11Tj8FLL07aPL+8wLPmHup9H3jkWMytT/BA==
-X-Google-Smtp-Source: APXvYqy6Nf04Hq6UogsK8LVSQKtaH8Pt0I6MWMu3IYfZtFnHpOMekMxVUu8rvLwRGKKFn4xgkHTfs1z1my1BbXrVPpU=
-X-Received: by 2002:a5e:c744:: with SMTP id g4mr25080730iop.187.1563213112123; 
-	Mon, 15 Jul 2019 10:51:52 -0700 (PDT)
+Received: from sonic312-24.consmr.mail.gq1.yahoo.com
+	(sonic312-24.consmr.mail.gq1.yahoo.com [98.137.69.205])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5D1EE00BF7
+	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 11:05:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1563213937; bh=2PQXRHOubciNVRBFIM/g50ZoJVBJyxuZhvasrDY8bGI=;
+	h=Date:From:To:In-Reply-To:References:Subject:From:Subject;
+	b=pyGQPRBP+CDIM28gLJgqciYOQKkN07CTJGp4JjKvFOyyt0G9bXvop2n4KSbx+5nmFvwi4EnzMAsOhzLLMFG5c7B4rc1nC19NvMfzARfnsJ6aFarucYtHix7gdClo7NaS8xtlIIiY0t38c8uQo2BoqzrXDA4Q8oWUta4b4hcyYreEsWckVpIeUmR/d8L8Y50/+uNx4vRWujUEFk7IFhFCr6FIL2fnXmllOpcRKDtRCOkenJFL4yWNueVxvfSV5cR4/I8MAutirdwEMX6E/qP1iSNXOz6G37chEa2yf7/+Et6fNa0beukJcKZ/4TB6m4OCboYAHC05ZrQs6MYTHd4mkg==
+X-YMail-OSG: ehTjBL8VM1m1ptU_XGVWIlszW5i72ANbmM1dOZC5vR0L8VR8jEOLx0vh0.PJ1yr
+	vtB2omfsSaF04KMuPRhWwbabMAX2e_fIf4s73KJuT1KDLXw_TycXiHdx87WGWq0v3t8OCzm8mIYi
+	KAzoOeJfSs7yMCA7Ox1u8PnySKtIeXPpC6zLpfNVi5DKIWLL1g_0JtnJLG_F7npq.qKKrj0btpyy
+	fD3QkZDOsM.wx6d8fXoFu48WuO7HSHmvb4UYhIwOPBE77ytRAYemC6tPGUBRxDBmbYtYLaQ3wO4L
+	L5REl4xR.YfR1DTV29ZenStzlZUZ2T9QXmlhTnOAOQMC6mjL1ZYWEqz0A1g92DuC1R.qR81wP1dw
+	gtSHvhcWjQqzMfrndHW8JTgpkiXrk5h3PPnFGrGJEcUlyqzzmdPKNNGO.vsUuVh5k11dQKs9xg_p
+	CNGfj0WIMrreQeN8.Ihe2B5Iv4i2zLMrlthYZM.zjCsKnKgZtx313YR7mSVw9KhbPVqyFN6xgdUP
+	ZqeWd.T3OOLQd.SKhKC8MfbWP3H48EVfHFCPqZZed.4JgC6mhAi03R8TsxH2evgamoZwYLSItOWd
+	8MdzrkueN6xJjb8XKHTCKxnKjkpxpy44AbAnmVSg1YsfYgm7L0stL1RZY4Vvp6AD7BK95ffCmwiU
+	zZzjiigU25535ReS1q6arc3F_3IiQEZFS9gq4WDdOX8xH0bCkDjbIxJO8HjnCe9rS.EghHAesAff
+	VfEcMTMFfYAfuuVK7qh93Hl3T9CXa16e9HnF3anM9P4Xp1QnL_ZkiaTkbrWY7bmphUbkdsKD7PpD
+	JSIy74Dw4T5skuM246_gfqu0iloH0geXQGXzGEKZnomFrFaDp8EtcghWyuxEtqRQWmxWT9an78Wh
+	LmDV23IlLsc_yXXwc7BDgvrKl3OWmEWaHLJyBBDD5Agb.aipTFw8dKtucSWLKJ85UZurlHDq4_Zj
+	uwBCzyLy_67Me.4Kx8cnBlXAiUtPjg1MDt3.PlUxk.Teb_KXBCLSfavoCmfowFtsGmXILRXrVpMM
+	HQ.zHUXko8MkP5J.IvOobx8MJt8bVQoEWXevNGlokQlscd9f9ct4LKtvOeFSrHThQMxq72.YshHn
+	j_nOWlFQJSkZSNlS11054RE5MIu4VYvxBVwQmoTEfUxf8jHr6XElb0JMM5Xr1kf_lubXOi.3p1ZI
+	9zeOGR6CElR.nHyMovmlJA30Z.H9zm8uOYd6Ii8Uo4JI-
+Received: from sonic.gate.mail.ne1.yahoo.com by
+	sonic312.consmr.mail.gq1.yahoo.com with HTTP;
+	Mon, 15 Jul 2019 18:05:37 +0000
+Date: Mon, 15 Jul 2019 18:05:35 +0000 (UTC)
+From: Madhu Krishnamurthy <madhukanthk@yahoo.com>
+To: Yocto Discussion List <yocto@yoctoproject.org>
+Message-ID: <486568347.1593370.1563213935990@mail.yahoo.com>
+In-Reply-To: <4f57a648-55e1-3ce7-53a4-c9df8da0f726@gmx.de>
+References: <1600236519.1269258.1563172945935.ref@mail.yahoo.com>
+	<1600236519.1269258.1563172945935@mail.yahoo.com>
+	<4f57a648-55e1-3ce7-53a4-c9df8da0f726@gmx.de>
 MIME-Version: 1.0
-References: <20190702155105.28148-1-JPEWhacker@gmail.com>
-In-Reply-To: <20190702155105.28148-1-JPEWhacker@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 15 Jul 2019 18:51:40 +0100
-Message-ID: <CAJTo0LZY3rr9yjHqtJkVO4AVgStsm3LTZW2p6g-uvH5ruj4gOA@mail.gmail.com>
-To: Joshua Watt <jpewhacker@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [meta-gplv2][PATCH] gnupg: Enable native build support
+X-Mailer: WebService/1.1.13991 YMailNorrin Mozilla/5.0 (Windows NT 10.0;
+	WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100
+	Safari/537.36
+Subject: Re: No GNU_HASH in the elf binary
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,55 +72,260 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 15 Jul 2019 17:51:54 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 15 Jul 2019 18:05:38 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1593369_623873553.1563213935986"
 
-Merged.
+------=_Part_1593369_623873553.1563213935986
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Ross
+ Moritz,Yes, that was it. Thank you very much. Appreciate your help.
+best regardsMadhu
+    On Monday, July 15, 2019, 12:12:38 AM PDT, Moritz Porst <moritz.porst@g=
+mx.de> wrote: =20
+=20
+ =20
+Hello
+=20
+ On 15.07.19 08:42, Madhu Krishnamurthy wrote:
+ =20
+=20
+   Hello, I am trying to package an already built binary executable called =
+mlc (memory latency checker) to yocto and I get this error.=C2=A0=20
+  ERROR: mem-tst-0.1 do_package: QA Issue: File '/usr/local/flex_pkgs/diags=
+/mlc' from mem was already stripped, this will prevent future debugging!  [=
+already-stripped] ERROR: mem-tst-0.1 do_package: Fatal QA errors found, fai=
+ling task. ERROR: mem-tst-0.1 do_package: Function failed: do_package    Yo=
+ur recipe is not called mlc but mem-tst-0.1
+=20
+    ERROR: Logfile of failure stored in:/home/cluser/ac/z_cpu/build/tmp/wor=
+k/corei7-64-poky-linux/mem/tst-0.1/temp/log.do_package.27614 ERROR: Task(/h=
+ome/cluser/ac/z_cpu/poky/../meta-flex/meta-z/recipes-utils/mem/mem_tst_0.1.=
+bb:do_package) failed with exit=C2=A0code '1' NOTE: Tasks Summary: Attempte=
+d 458 tasks of which 457 didn't need to be rerun and 1 failed.=20
+  I googled and found that I need to add this=20
+  INSANE_SKIP_mlc =3D "ldflags" INSANE_SKIP_mlc-dev =3D "ldflags"   =20
+=20
+Thus the two lines above can't work. The preferred way to do this is to use=
+ ${PN} variable which expands to the package name. Like this: >> INSANE_SKI=
+P_${PN} =3D "ldflags" <<
+=20
+=20
+Best regards
+ Moritz
 
-On Tue, 2 Jul 2019 at 17:03, Joshua Watt <jpewhacker@gmail.com> wrote:
->
-> Adds support for building gnupg as a -native recipe.
->
-> Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
-> ---
->  recipes-support/gnupg/gnupg_1.4.7.bb | 5 +++++
->  1 file changed, 5 insertions(+)
->
-> diff --git a/recipes-support/gnupg/gnupg_1.4.7.bb b/recipes-support/gnupg/gnupg_1.4.7.bb
-> index 85636ab..a7fbd11 100644
-> --- a/recipes-support/gnupg/gnupg_1.4.7.bb
-> +++ b/recipes-support/gnupg/gnupg_1.4.7.bb
-> @@ -84,6 +84,7 @@ EXTRA_OECONF = "--disable-ldap \
->                 "
->
->  # Force gcc's traditional handling of inline to avoid issues with gcc 5
-> +BUILD_CFLAGS += "-fgnu89-inline"
->  CFLAGS += "-fgnu89-inline"
->
->  do_install () {
-> @@ -95,6 +96,8 @@ do_install () {
->
->  # split out gpgv from main package
->  RDEPENDS_${PN} = "gpgv"
-> +RDEPENDS_${PN}_class-native = ""
-> +
->  PACKAGES =+ "gpgv"
->  FILES_gpgv = "${bindir}/gpgv"
->
-> @@ -104,3 +107,5 @@ FILES_${PN} = "${bindir}/* ${datadir}/${BPN} ${libexecdir}/${BPN}/*"
->  PACKAGECONFIG ??= ""
->  PACKAGECONFIG[curl] = "--with-libcurl=${STAGING_LIBDIR},--without-libcurl,curl"
->  PACKAGECONFIG[libusb] = "--with-libusb=${STAGING_LIBDIR},--without-libusb,libusb-compat"
-> +
-> +BBCLASSEXTEND += "native"
-> --
-> 2.21.0
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+ =20
+    INHIBIT_PACKAGE_DEBUG_SPLIT =3D "1" INHIBIT_PACKAGE_STRIP =3D "1"=20
+  But after adding that I still get this error.=C2=A0 ERROR: mem-tst-0.1 do=
+_package_qa: QA Issue: No GNU_HASH in the elf binary:'/home/cluser/ac/z_cpu=
+/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/packages-split/mem/usr/loc=
+al/flex_pkgs/diags/mlc' [ldflags] =C2=A0 Appreciate any help.=20
+  Thanks and regards Madhu=20
+  (more log details) NOTE: Executing RunQueue Tasks NOTE: mem-tst-0.1 do_pa=
+ckage_qa: Direct dependencies are['virtual:native:/home/cluser/ac/z_cpu/pok=
+y/meta/recipes-devtools/pseudo/pseudo_1.8.2.bb:do_populate_sysroot','/home/=
+cluser/ac/z_cpu/poky/meta/recipes-devtools/binutils/binutils-cross_2.29.bb:=
+do_populate_sysroot'] NOTE: mem-tst-0.1 do_package_qa: Installed into sysro=
+ot: [] NOTE: mem-tst-0.1 do_package_qa: Skipping as already exists in sysro=
+ot: ['pseudo-native', 'binutils-cross-x86_64', 'gnu-config-native', 'bison-=
+native', 'flex-native', 'texinfo-dummy-native', 'autoconf-native', 'quilt-n=
+ative', 'zlib-native', 'gettext-minimal-native', 'automake-native', 'xz-nat=
+ive', 'libtool-native', 'm4-native'] NOTE: mem-tst-0.1 do_package_qa: DO PA=
+CKAGE QA NOTE: mem-tst-0.1 do_package_qa: Checking Package: mem NOTE: mem-t=
+st-0.1 do_package_qa: x86_64-poky-linux-objdump -p/home/cluser/ac/z_cpu/bui=
+ld/tmp/work/corei7-64-poky-linux/mem/tst-0.1/packages-split/mem/usr/local/f=
+lex_pkgs/diags/mlc ERROR: mem-tst-0.1 do_package_qa: QA Issue: No GNU_HASH =
+in the elf binary:'/home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linu=
+x/mem/tst-0.1/packages-split/mem/usr/local/flex_pkgs/diags/mlc' [ldflags] N=
+OTE: mem-tst-0.1 do_package_qa: Checking Package: mem-staticdev NOTE: mem-t=
+st-0.1 do_package_qa: Checking Package: mem-locale NOTE: mem-tst-0.1 do_pac=
+kage_qa: Checking Package: mem-doc NOTE: mem-tst-0.1 do_package_qa: Checkin=
+g Package: mem-dbg NOTE: mem-tst-0.1 do_package_qa: Checking Package: mem-d=
+ev ERROR: mem-tst-0.1 do_package_qa: QA run found fatal errors. Please cons=
+ider fixing them. ERROR: mem-tst-0.1 do_package_qa: Function failed: do_pac=
+kage_qa ERROR: Logfile of failure stored in:/home/cluser/ac/z_cpu/build/tmp=
+/work/corei7-64-poky-linux/mem/tst-0.1/temp/log.do_package_qa.25300 ERROR: =
+Task(/home/cluser/ac/z_cpu/poky/../meta-flex/meta-z/recipes-utils/mem/mem_t=
+st_0.1.bb:do_package_qa) failed with exit code '1' NOTE: Tasks Summary: Att=
+empted 461 tasks of which 460 didn't need to be rerun and 1 failed.=20
+  Summary: 1 task failed: =C2=A0/home/cluser/ac/z_cpu/poky/../meta-flex/met=
+a-z/recipes-utils/mem/mem_tst_0.1.bb:do_package_qa=20
+  =20
+  =20
+ =20
+  =20
 
+------=_Part_1593369_623873553.1563213935986
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html><head></head><body><div class="ydp893e88a2yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div></div>
+        <div dir="ltr" data-setdir="false">Moritz,</div><div dir="ltr" data-setdir="false">Yes, that was it. Thank you very much. Appreciate your help.</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">best regards</div><div dir="ltr" data-setdir="false">Madhu</div><div><br></div>
+        
+        </div><div id="ydpc0967d43yahoo_quoted_4121298286" class="ydpc0967d43yahoo_quoted">
+            <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:13px;color:#26282a;">
+                
+                <div>
+                    On Monday, July 15, 2019, 12:12:38 AM PDT, Moritz Porst &lt;moritz.porst@gmx.de&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id="ydpc0967d43yiv9194675671"><div>
+    <p>Hello<br clear="none">
+    </p>
+    <div class="ydpc0967d43yiv9194675671moz-cite-prefix">On 15.07.19 08:42, Madhu Krishnamurthy
+      wrote:<br clear="none">
+    </div>
+    <blockquote type="cite">
+      </blockquote></div><div><div class="ydpc0967d43yiv9194675671yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;">
+        <div dir="ltr">
+          <div>
+            <div dir="ltr">Hello,</div>
+            <div dir="ltr">I am trying to package an already built binary
+              executable called mlc (memory latency checker) to yocto
+              and I get this error.&nbsp;</div>
+            <div><br clear="none">
+            </div>
+            <div><font color="#cd232c">ERROR: mem-tst-0.1 do_package: QA Issue:
+                File '/usr/local/flex_pkgs/diags/mlc' from mem was
+                already stripped, this will prevent future debugging!
+                [already-stripped]</font></div>
+            <div><font color="#cd232c">ERROR: mem-tst-0.1 do_package: Fatal QA
+                errors found, failing task.</font></div>
+            <div><font color="#cd232c">ERROR: mem-tst-0.1 do_package: Function
+                failed: do_package</font></div>
+          </div>
+        </div>
+      </div>
+    
+    <font color="#cd232c"><font color="#000000">Your recipe is not
+        called mlc but mem-tst-0.1</font></font><br clear="none">
+    <blockquote type="cite">
+      <div class="ydpc0967d43yiv9194675671yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;">
+        <div dir="ltr">
+          <div>
+            <div><font color="#cd232c">ERROR: Logfile of failure stored in:
+/home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/temp/log.do_package.27614</font></div>
+            <div><font color="#cd232c">ERROR: Task
+(/home/cluser/ac/z_cpu/poky/../meta-flex/meta-z/recipes-utils/mem/mem_tst_0.1.bb:do_package)
+                failed with exit</font>&nbsp;code '1'</div>
+            <div>NOTE:
+              Tasks Summary: Attempted 458 tasks of which 457 didn't
+              need to be rerun and 1 failed.</div>
+            <div><br clear="none">
+            </div>
+            <div>I googled
+              and found that I need to add this</div>
+            <div><br clear="none">
+            </div>
+            <div><b>INSANE_SKIP_mlc
+                = "ldflags"</b></div>
+            <div><b>INSANE_SKIP_mlc-dev
+                = "ldflags"</b></div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <p>Thus the two lines above can't work. The preferred way to do this
+      is to use ${PN} variable which expands to the package name. Like
+      this: &gt;&gt; INSANE_SKIP_${PN} = "ldflags" &lt;&lt;<br clear="none">
+    </p>
+    <p>Best regards<br clear="none">
+      Moritz</p><div class="ydpc0967d43yiv9194675671yqt5945410026" id="ydpc0967d43yiv9194675671yqtfd59728"><br clear="none">
+    </div><div class="ydpc0967d43yiv9194675671yqt5945410026" id="ydpc0967d43yiv9194675671yqtfd78430">
+    <blockquote type="cite">
+      <div class="ydpc0967d43yiv9194675671yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;">
+        <div dir="ltr">
+          <div>
+            <div><b>INHIBIT_PACKAGE_DEBUG_SPLIT
+                = "1"</b></div>
+            <div><b>INHIBIT_PACKAGE_STRIP
+                = "1"</b></div>
+            <div><br clear="none">
+            </div>
+            <div>But after
+              adding that I still get this error.&nbsp;</div>
+            <div dir="ltr"><b style="color:rgb(205, 35, 44);font-family:Helvetica, Arial, sans-serif;">ERROR: mem-tst-0.1
+                do_package_qa: QA Issue: No GNU_HASH in the elf binary:
+'/home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/packages-split/mem/usr/local/flex_pkgs/diags/mlc'
+                [ldflags]</b></div>
+            <div dir="ltr">&nbsp;</div>
+            <div dir="ltr">Appreciate any help.</div>
+            <div dir="ltr"><br clear="none">
+            </div>
+            <div>Thanks and
+              regards</div>
+            <div>Madhu</div>
+            <div><br clear="none">
+            </div>
+            <div dir="ltr">(more log details)</div>
+            <div>NOTE:
+              Executing RunQueue Tasks</div>
+            <div>NOTE:
+              mem-tst-0.1 do_package_qa: Direct dependencies are
+['virtual:native:/home/cluser/ac/z_cpu/poky/meta/recipes-devtools/pseudo/pseudo_1.8.2.bb:do_populate_sysroot',
+'/home/cluser/ac/z_cpu/poky/meta/recipes-devtools/binutils/binutils-cross_2.29.bb:do_populate_sysroot']</div>
+            <div>NOTE:
+              mem-tst-0.1 do_package_qa: Installed into sysroot: []</div>
+            <div>NOTE:
+              mem-tst-0.1 do_package_qa: Skipping as already exists in
+              sysroot: ['pseudo-native', 'binutils-cross-x86_64',
+              'gnu-config-native', 'bison-native', 'flex-native',
+              'texinfo-dummy-native', 'autoconf-native', 'quilt-native',
+              'zlib-native', 'gettext-minimal-native',
+              'automake-native', 'xz-native', 'libtool-native',
+              'm4-native']</div>
+            <div>NOTE:
+              mem-tst-0.1 do_package_qa: DO PACKAGE QA</div>
+            <div>NOTE:
+              mem-tst-0.1 do_package_qa: Checking Package: mem</div>
+            <div>NOTE:
+              mem-tst-0.1 do_package_qa: x86_64-poky-linux-objdump -p
+/home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/packages-split/mem/usr/local/flex_pkgs/diags/mlc</div>
+            <div><font color="#cd232c"><b>ERROR: mem-tst-0.1 do_package_qa: QA
+                  Issue: No GNU_HASH in the elf binary:
+'/home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/packages-split/mem/usr/local/flex_pkgs/diags/mlc'
+                  [ldflags]</b></font></div>
+            <div>NOTE:
+              mem-tst-0.1 do_package_qa: Checking Package: mem-staticdev</div>
+            <div>NOTE:
+              mem-tst-0.1 do_package_qa: Checking Package: mem-locale</div>
+            <div>NOTE:
+              mem-tst-0.1 do_package_qa: Checking Package: mem-doc</div>
+            <div>NOTE:
+              mem-tst-0.1 do_package_qa: Checking Package: mem-dbg</div>
+            <div>NOTE:
+              mem-tst-0.1 do_package_qa: Checking Package: mem-dev</div>
+            <div><font color="#cd232c"><b>ERROR: mem-tst-0.1 do_package_qa: QA
+                  run found fatal errors. Please consider fixing them.</b></font></div>
+            <div><font color="#cd232c"><b>ERROR: mem-tst-0.1 do_package_qa:
+                  Function failed: do_package_qa</b></font></div>
+            <div><font color="#cd232c"><b>ERROR: Logfile of failure stored in:
+/home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/temp/log.do_package_qa.25300</b></font></div>
+            <div><font color="#cd232c"><b>ERROR: Task
+(/home/cluser/ac/z_cpu/poky/../meta-flex/meta-z/recipes-utils/mem/mem_tst_0.1.bb:do_package_qa)
+                  failed with exit code '1'</b></font></div>
+            <div>NOTE:
+              Tasks Summary: Attempted 461 tasks of which 460 didn't
+              need to be rerun and 1 failed.</div>
+            <div><br clear="none">
+            </div>
+            <div>Summary: 1
+              task failed:</div>
+            <div>&nbsp;
+/home/cluser/ac/z_cpu/poky/../meta-flex/meta-z/recipes-utils/mem/mem_tst_0.1.bb:do_package_qa</div>
+            <div><br clear="none">
+            </div>
+          </div>
+          <br clear="none">
+        </div>
+      </div>
+      <br clear="none">
+      <fieldset class="ydpc0967d43yiv9194675671mimeAttachmentHeader"></fieldset>
+    </blockquote>
+  </div></div></div></div>
+            </div>
+        </div></body></html>
+
+------=_Part_1593369_623873553.1563213935986--
