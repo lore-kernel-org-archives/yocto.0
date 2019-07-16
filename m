@@ -1,64 +1,48 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <andy.pont@sdcsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ADC0CE00D59; Tue, 16 Jul 2019 06:00:06 -0700 (PDT)
+	id 08152E00D63; Tue, 16 Jul 2019 06:43:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	MIME_QP_LONG_LINE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.53 listed in list.dnswl.org]
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com
-	[209.85.166.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A395E00D4F
-	for <yocto@yoctoproject.org>; Tue, 16 Jul 2019 06:00:05 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id e20so9389262iob.9
-	for <yocto@yoctoproject.org>; Tue, 16 Jul 2019 06:00:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=JG7bTkIpOy5wrOc9wGKaQSrVQ24KcOBgl4vnjd52zXA=;
-	b=Bz8alsVxI+yLtAdl0d6Pk9MrqozR8pSUw0C2qaUTP5EsunQMPoUGwhOr7jqEKO68Wv
-	ebhogUm5kEDPCxtcck3pcc1aYrR2OnWe7NfgmTJokJLFjGg+ARJMGo0j42OafwVCSs2H
-	QXuYBg9yNLA31GKZ6PqAEHvu0/t41eyjjwUE04XlgV2YljZqLO+ot9ONe3LHIqW4Veja
-	vd/KVdfSHdWcvnPMOxDT5EfT0RBJebToHOHAd2f3WPQxAPgCX65LB32yGUjzyJ5UIjoN
-	SR1pth/WXnYSYTS953hS9sRn7XgpAVs5mwq+Ur0RtGusfNbDRfidL36ofvlVqAMajdIL
-	MBVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=JG7bTkIpOy5wrOc9wGKaQSrVQ24KcOBgl4vnjd52zXA=;
-	b=OGoP7hHHoLr02p+L3aHTJpClPl9B1VOh63QhaxCH8ALiYUtAJ0zB9bMMK6Z0uPSyXf
-	S+xFj7FPaavTaoBSTLjYhPxl7lYsbGvM84TcYljfx73x3vqzA9qkn+jRt9N/d+fHCYjh
-	pD2EW3E8SSAWSKNC/lRDAudr+FoZf8iJoO88THobvvOvKE05SMS3T4aPNawLoFENCSsC
-	j3XkjDW1txSZN0AwXm7fpaOuKE/DYHwF7FGETgu7xJHF1Lh8uI8ZJCJwddsm9E0i26QZ
-	o86JxBZxWcede7hMBWd7GnILG9Zhdpuo/ISeaaLdHv0rFzHXPZtjEWBpNcnuL5hzk4Hy
-	0jSQ==
-X-Gm-Message-State: APjAAAVNlSJMxOsrgDddXmw0w/0Oowjw5PhARIQgZnlp6KWyGNuWNBy5
-	hfHBhAjFVIPWLAmAsGd0f3Yx0i991lJSvvoL/9uNVSayHWM=
-X-Google-Smtp-Source: APXvYqztPQF9hj+rlTNdpCAr+IpmfGH/LGjVy8rxtAg7+2gKre/XQ+Vbzpi3ccPom6DbPHVQRCvvb6d4znilI6JaTlY=
-X-Received: by 2002:a5e:a708:: with SMTP id b8mr31621069iod.25.1563282004799; 
-	Tue, 16 Jul 2019 06:00:04 -0700 (PDT)
-MIME-Version: 1.0
+	*      [216.40.44.185 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
+Received: from smtprelay.hostedemail.com (smtprelay0185.hostedemail.com
+	[216.40.44.185])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4693E00D47
+	for <yocto@yoctoproject.org>; Tue, 16 Jul 2019 06:43:51 -0700 (PDT)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+	[216.40.38.60])
+	by smtprelay07.hostedemail.com (Postfix) with ESMTP id DB259181D39C5;
+	Tue, 16 Jul 2019 13:43:50 +0000 (UTC)
+X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
+X-HE-Tag: sock54_5bb0e71280430
+X-Filterd-Recvd-Size: 4901
+Received: from [192.168.10.100] (unknown [5.133.40.160])
+	(Authenticated sender: andy.pont@sdcsystems.com)
+	by omf05.hostedemail.com (Postfix) with ESMTPA;
+	Tue, 16 Jul 2019 13:43:49 +0000 (UTC)
+From: "Andy Pont" <andy.pont@sdcsystems.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 16 Jul 2019 13:43:48 +0000
+Message-Id: <emab60b5bf-fc36-4f84-9f82-34972ce7b708@andys-imac.local>
+In-Reply-To: <CAJTo0LZ54xu1as_EtmenHkTxq0JmonmUUm24ZnoaVWO3ujDVDw@mail.gmail.com>
 References: <em1f413de5-81b2-4304-ba58-358a033d5bf7@andys-imac.local>
-In-Reply-To: <em1f413de5-81b2-4304-ba58-358a033d5bf7@andys-imac.local>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 16 Jul 2019 13:59:52 +0100
-Message-ID: <CAJTo0LZ54xu1as_EtmenHkTxq0JmonmUUm24ZnoaVWO3ujDVDw@mail.gmail.com>
-To: Andy Pont <andy.pont@sdcsystems.com>
+	<CAJTo0LZ54xu1as_EtmenHkTxq0JmonmUUm24ZnoaVWO3ujDVDw@mail.gmail.com>
+User-Agent: eM_Client/7.2.35700.0
+Mime-Version: 1.0
 Cc: Yocto-mailing-list <yocto@yoctoproject.org>
 Subject: Re: wpewebkit, cog and libgles2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Andy Pont <andy.pont@sdcsystems.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -67,31 +51,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jul 2019 13:00:06 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 16 Jul 2019 13:43:53 -0000
+Content-Type: multipart/alternative;
+	boundary="------=_MBE208B1FA-6822-40D9-AFBC-4A122D6A99F7"
+
+--------=_MBE208B1FA-6822-40D9-AFBC-4A122D6A99F7
+Content-Type: text/plain; format=flowed; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, 16 Jul 2019 at 13:53, Andy Pont <andy.pont@sdcsystems.com> wrote:
-> I am building for a Microchip (Atmel) SAMA5D2 using meta-atmel.  We don=
-=E2=80=99t need OpenGL or 3D support - hence one of the reasons for picking=
- the SAMA5D2 which doesn=E2=80=99t have a hardware GPU.
->
-> The options appear to be to either add software OpenGL support to the con=
-figuration to resolve the dependency or tell wpewebkit not to want OpenGL s=
-upport.
+Ross wrote...=0A=0A>Well the libwpe build script says this:=0A>=0A>find_pac=
+kage(EGL REQUIRED)=0A>=0A>(https://github.com/WebPlatformForEmbedded/libwpe=
+/blob/master/CMakeLists.txt)=0A=0AI=E2=80=99m confused now as there appears =
+to be two active meta layers that =0Asupport WPE WebKit. The one you refer=
+ence meta-wpe and the one I was =0Aoriginally using meta-webkit (https://gi=
+thub.com/Igalia/meta-webkit) as =0Athat was the one that included Cog. Is o=
+ne preferred to the other?=0A=0A>Which suggests that you can't build it wit=
+hout EGL.  You should=0A>investigate whether EGL is simply an option, or wh=
+ether it's used as a=0A>fundamental part of the rendering.  If it's optiona=
+l then the Mesa=0A>recipe can build a software GL implementation, if the la=
+tter then=0A>you'll need a new browser as software GL is *terrible*.=0AI=E2=
+=80=99m not wedded to Cog as a browser. I just need something that can =0As=
+upport HTML5 and Javascript as it will be running a single page =0Aapplicat=
+ion (SPA) served from localhost.=0A=0A-Andy.
 
-Well the libwpe build script says this:
+--------=_MBE208B1FA-6822-40D9-AFBC-4A122D6A99F7
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-find_package(EGL REQUIRED)
+<html><head>=0A=0A<style id=3D"css_styles" type=3D"text/css">blockquote.cit=
+e { margin-left: 5px; margin-right: 0px; padding-left: 10px; padding-right:=
+0px; border-left: 1px solid #cccccc }=0Ablockquote.cite2 {margin-left: 5px; =
+margin-right: 0px; padding-left: 10px; padding-right:0px; border-left: 1px =
+solid #cccccc; margin-top: 3px; padding-top: 0px; }=0Aa img { border: 0px; =
+}=0Ali[style=3D'text-align: center;'], li[style=3D'text-align: right;'] {  =
+list-style-position: inside;}=0Abody { font-family: Verdana; font-size: 12=
+px;   }</style></head><body class=3D"plain" style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;"><div><div>Ross w=
+rote...</div>=0A</div><div><br /></div>=0A<div id=3D"x7785aa2b94504de"><blo=
+ckquote type=3D"cite" class=3D"cite2"><div class=3D"plain_line">Well the li=
+bwpe build script says this:</div>=0A<div class=3D"plain_line">=C2=A0</div>=
+=0A<div class=3D"plain_line">find_package(EGL REQUIRED)</div>=0A<div class=
+=3D"plain_line">=C2=A0</div>=0A<div class=3D"plain_line">(https://github.co=
+m/WebPlatformForEmbedded/libwpe/blob/master/CMakeLists.txt)</div></blockquo=
+te><div id=3D"x7785aa2b94504de"><br /></div><div id=3D"x7785aa2b94504de">I=
+=E2=80=99m confused now as there appears to be two active meta layers that=
+ support WPE WebKit. The one you reference meta-wpe and the one I was origin=
+ally using meta-webkit (<a href=3D"https://github.com/Igalia/meta-webkit">h=
+ttps://github.com/Igalia/meta-webkit</a>) as that was the one that included =
+Cog.  Is one preferred to the other?</div><br /><blockquote type=3D"cite"=
+ class=3D"cite2"><div class=3D"plain_line">Which suggests that you can't bui=
+ld it without EGL.  You should</div>=0A<div class=3D"plain_line">investigat=
+e whether EGL is simply an option, or whether it's used as a</div>=0A<div c=
+lass=3D"plain_line">fundamental part of the rendering.  If it's optional th=
+en the Mesa</div>=0A<div class=3D"plain_line">recipe can build a software G=
+L implementation, if the latter then</div>=0A<div class=3D"plain_line">you'=
+ll need a new browser as software GL is *terrible*.</div></blockquote>I=E2=
+=80=99m not wedded to Cog as a browser.  I just need something that can sup=
+port HTML5 and Javascript as it will be running a single page application (=
+SPA) served from localhost.</div><div id=3D"x7785aa2b94504de"><br /></div><=
+div id=3D"x7785aa2b94504de">-Andy.</div><div id=3D"x7785aa2b94504de"><block=
+quote type=3D"cite" class=3D"cite2">=0A</blockquote></div>=0A</body></html>
 
-(https://github.com/WebPlatformForEmbedded/libwpe/blob/master/CMakeLists.tx=
-t)
-
-Which suggests that you can't build it without EGL.  You should
-investigate whether EGL is simply an option, or whether it's used as a
-fundamental part of the rendering.  If it's optional then the Mesa
-recipe can build a software GL implementation, if the latter then
-you'll need a new browser as software GL is *terrible*.
-
-Ross
-
+--------=_MBE208B1FA-6822-40D9-AFBC-4A122D6A99F7--
