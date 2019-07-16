@@ -1,61 +1,46 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <anuj.mittal@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B4EA5E00D4F; Mon, 15 Jul 2019 23:38:20 -0700 (PDT)
+	id 3EDA6E00D53; Mon, 15 Jul 2019 23:54:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marek.belisko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.50 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com
-	[209.85.208.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC9C2E00BF7
-	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 23:38:18 -0700 (PDT)
-Received: by mail-ed1-f50.google.com with SMTP id w20so18222561edd.2
-	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 23:38:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=FITysRLCD6U/F5XSRhmn3gKpSzrU5yQNUx1jwqvsb40=;
-	b=J9XnLBfXO2pTeL0ajDOYr5mwWlHdAboN0H5vJRzmKz3XIEYWSdMLSCD5+Wmdq+bPAf
-	aqfDoPt8axEVrayr6O3M7crmlPE0i1DslpKGaWvkMc5WoXiFSuH3rSAhVPPgU70b9MH4
-	fedNRArzFO3h+ql7j2BHbbnE44TA/aIAnACLcyPZMFpsSvJiGD8WmLKd6hfXZgRUnnuH
-	Ry+Q1wCInbKatNCDCCytEXAhhHugRJNyK3sDiuWBhbsgQ2RWhlSMuWvrZjhTFWJCN5xe
-	qeXG/fa4PqmJiYLAkOBqyvPKt8+/SBjgnxaXN2AZ0G+hVH3Bv28CPM7j7LbKxV+3O5kJ
-	v2fA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=FITysRLCD6U/F5XSRhmn3gKpSzrU5yQNUx1jwqvsb40=;
-	b=jKlpnOprBzFrCG8imOiB7FIPl7ljERdeexIua1cxYpZ0hhosgy6GtRL6mFpbw3DrCx
-	b+I7jVGooEWl8Hd0rrezJLYjFO9DtKdcWRepNj4hMn2yBhnxqECOP33X+7DqF2PKLehH
-	g5liMKsjjwvZpuPm7FGC4OKqYOqlW6EF06bAUwnBgj+QntCcIbSPWhqtsbv4NHZSFVXq
-	ArKCTnyZjfgCkdhPtlOBAZxF+1OSu4EO252yNBvG/fuIPFvtCxPKgCv06jH3lqQlspoQ
-	L/XMtpPb5cmb24zPeBVkd+1yoJwMW/Bz1lSV7W9Y6C/dwsezIhyT6xX02gof+JseudFp
-	cH4g==
-X-Gm-Message-State: APjAAAX/gikUkHxOa1xbiPVGVur62NsYyxU2oc9WNOdznxQ4bispZ6AP
-	Uu4ce++8oVtf4SB4y2ViIsnfnwBYrR9TN0hak/5gNSoHSa8=
-X-Google-Smtp-Source: APXvYqyUku6IrVhzTCSgU5yy6dCS5yX63St5Kzn7+ERl79VouphZgqOabUTeNB2m9/+8NmeJMVf5vZf8meybWp70Iws=
-X-Received: by 2002:a17:906:4e92:: with SMTP id
-	v18mr24879729eju.57.1563259097763; 
-	Mon, 15 Jul 2019 23:38:17 -0700 (PDT)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C99B6E00D4D
+	for <yocto@yoctoproject.org>; Mon, 15 Jul 2019 23:54:22 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	15 Jul 2019 23:54:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.63,496,1557212400"; d="scan'208";a="366565926"
+Received: from kmsmsx153.gar.corp.intel.com ([172.21.73.88])
+	by fmsmga006.fm.intel.com with ESMTP; 15 Jul 2019 23:54:21 -0700
+Received: from pgsmsx101.gar.corp.intel.com ([169.254.1.22]) by
+	KMSMSX153.gar.corp.intel.com ([169.254.5.152]) with mapi id
+	14.03.0439.000; Tue, 16 Jul 2019 14:54:20 +0800
+From: "Mittal, Anuj" <anuj.mittal@intel.com>
+To: "marek.belisko@gmail.com" <marek.belisko@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] wic: error when using --rootfs-dir=${IMAGE_ROOTFS}/data
+Thread-Index: AQHVO6EsvmpD8tuOWkaeXHOTwQg5w6bMSTaA
+Date: Tue, 16 Jul 2019 06:54:20 +0000
+Message-ID: <08c031fbe9971a0190cda3aa098d8641a7ffbeab.camel@intel.com>
+References: <CAAfyv37LBSDh6JR19KdLwb0EJCc5OpRQYBvj5UFtp=Y6Y-_dGw@mail.gmail.com>
+In-Reply-To: <CAAfyv37LBSDh6JR19KdLwb0EJCc5OpRQYBvj5UFtp=Y6Y-_dGw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.255.186.215]
 MIME-Version: 1.0
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Tue, 16 Jul 2019 08:38:06 +0200
-Message-ID: <CAAfyv37LBSDh6JR19KdLwb0EJCc5OpRQYBvj5UFtp=Y6Y-_dGw@mail.gmail.com>
-To: yocto <yocto@yoctoproject.org>
-Subject: wic: error when using --rootfs-dir=${IMAGE_ROOTFS}/data
+Subject: Re: wic: error when using --rootfs-dir=${IMAGE_ROOTFS}/data
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,50 +52,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 16 Jul 2019 06:38:20 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 16 Jul 2019 06:54:23 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3CA6D4CE7D23D94ABCCD2C24FCAED177@intel.com>
+Content-Transfer-Encoding: base64
 
-Hi,
-
-I have wks file with following content:
-
-part ubootenv --ondisk=mmcblk --no-table --size 12
-part /boot --source bootimg-partition --ondisk mmcblk --fstype=vfat
---label boot --active --align 1024 --size 16
-part /root --source rootfs --ondisk mmcblk --fstype=ext4 --label rootA
---align 1024 --fixed-size 300 --exclude-path data/
-part /data --source rootfs --rootfs-dir=${IMAGE_ROOTFS}/data --ondisk
-"mmcblk" --fstype=ext4 --label data --align 1024 --fixed-size 200
-
-Basically I want to create extra data partition with content from
-rootfs /data directory. When wic image is created I'm getting strange
-errors like:
-
-Couldn't get bitbake variable from
-/home/marekbelisko/.build/tmp/sysroots/raspberrypi0-wifi/imgdata/${IMAGE_ROOTFS}/data.env.
- | File /home/marekbelisko/.build/tmp/sysroots/raspberrypi0-wifi/imgdata/${IMAGE_ROOTFS}/data.env
-doesn't exist.
-
-I found similar usage (for boot directory in poky):
-scripts/lib/wic/canned-wks/efi-bootdisk.wks.in:2:part /boot --source
-rootfs --rootfs-dir=${IMAGE_ROOTFS}/boot --fstype=vfat --label boot
---active --align 1024 --use-uuid --overhead-factor 1.0
-
-Am I doing something wrong here or any ideas? Thanks.
-
-BR,
-
-marek
-
--- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
-
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
+T24gVHVlLCAyMDE5LTA3LTE2IGF0IDA4OjM4ICswMjAwLCBCZWxpc2tvIE1hcmVrIHdyb3RlOg0K
+PiBJIGhhdmUgd2tzIGZpbGUgd2l0aCBmb2xsb3dpbmcgY29udGVudDoNCj4gDQo+IHBhcnQgdWJv
+b3RlbnYgLS1vbmRpc2s9bW1jYmxrIC0tbm8tdGFibGUgLS1zaXplIDEyDQo+IHBhcnQgL2Jvb3Qg
+LS1zb3VyY2UgYm9vdGltZy1wYXJ0aXRpb24gLS1vbmRpc2sgbW1jYmxrIC0tZnN0eXBlPXZmYXQN
+Cj4gLS1sYWJlbCBib290IC0tYWN0aXZlIC0tYWxpZ24gMTAyNCAtLXNpemUgMTYNCj4gcGFydCAv
+cm9vdCAtLXNvdXJjZSByb290ZnMgLS1vbmRpc2sgbW1jYmxrIC0tZnN0eXBlPWV4dDQgLS1sYWJl
+bA0KPiByb290QQ0KPiAtLWFsaWduIDEwMjQgLS1maXhlZC1zaXplIDMwMCAtLWV4Y2x1ZGUtcGF0
+aCBkYXRhLw0KPiBwYXJ0IC9kYXRhIC0tc291cmNlIHJvb3RmcyAtLXJvb3Rmcy1kaXI9JHtJTUFH
+RV9ST09URlN9L2RhdGEgLS1vbmRpc2sNCj4gIm1tY2JsayIgLS1mc3R5cGU9ZXh0NCAtLWxhYmVs
+IGRhdGEgLS1hbGlnbiAxMDI0IC0tZml4ZWQtc2l6ZSAyMDANCj4gDQo+IEJhc2ljYWxseSBJIHdh
+bnQgdG8gY3JlYXRlIGV4dHJhIGRhdGEgcGFydGl0aW9uIHdpdGggY29udGVudCBmcm9tDQo+IHJv
+b3RmcyAvZGF0YSBkaXJlY3RvcnkuIFdoZW4gd2ljIGltYWdlIGlzIGNyZWF0ZWQgSSdtIGdldHRp
+bmcgc3RyYW5nZQ0KPiBlcnJvcnMgbGlrZToNCj4gDQo+IENvdWxkbid0IGdldCBiaXRiYWtlIHZh
+cmlhYmxlIGZyb20NCj4gL2hvbWUvbWFyZWtiZWxpc2tvLy5idWlsZC90bXAvc3lzcm9vdHMvcmFz
+cGJlcnJ5cGkwLQ0KPiB3aWZpL2ltZ2RhdGEvJHtJTUFHRV9ST09URlN9L2RhdGEuZW52Lg0KPiAg
+fCBGaWxlIC9ob21lL21hcmVrYmVsaXNrby8uYnVpbGQvdG1wL3N5c3Jvb3RzL3Jhc3BiZXJyeXBp
+MC0NCj4gd2lmaS9pbWdkYXRhLyR7SU1BR0VfUk9PVEZTfS9kYXRhLmVudg0KPiBkb2Vzbid0IGV4
+aXN0Lg0KDQpJZiB5b3UgaGF2ZW4ndCB0cmllZCB0aGlzIGFscmVhZHksIHJlbmFtaW5nIC53a3Mg
+dG8gLndrcy5pbiBtaWdodCBoZWxwLg0KDQpUaGFua3MsDQpBbnVqDQo=
 
