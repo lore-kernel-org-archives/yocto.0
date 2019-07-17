@@ -1,64 +1,38 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <mickael.tansorier@smile.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 70A69E00D46; Wed, 17 Jul 2019 06:05:44 -0700 (PDT)
+	id ADC93E00D7E; Wed, 17 Jul 2019 09:01:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (bruce.ashfield[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.68 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-lf1-f68.google.com (mail-lf1-f68.google.com
-	[209.85.167.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A443E00D1C
-	for <yocto@yoctoproject.org>; Wed, 17 Jul 2019 06:05:43 -0700 (PDT)
-Received: by mail-lf1-f68.google.com with SMTP id b29so9171934lfq.1
-	for <yocto@yoctoproject.org>; Wed, 17 Jul 2019 06:05:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=yB46JYNiVsvpZ/p9sj3WuH6tbgxPpRmEw+5pYS9+rLQ=;
-	b=JYJfgv8YRZaH4iQTb9zzG05k1TE5trBrVjyUeX3W0GlplRrTkukmkWwiNgSVu7jTHW
-	dRYPZ8tVzuxNWfx+OpVaWo+bag0X+zfH1El5nGE9agQBq/ZHVn/6XFxw+F7X37feUwVd
-	LP2A/CfmOLbzDejz+DtBsUxXX++E1mcb8Hu2kEb9/qgheU3P0N15Imn3loK1GdtxZSbC
-	3VnSwx8Do/0kGJQcXvy0EV8VCJFdK0lyCy4W/54B884ii6bZwkB0DO8ktXlCg5YlDFSL
-	dEycX4I4GxC1VxiS0EevcPvWEmIiqevEkIZZyzj2ktORJWyYhPXzZBKYny/rh/mkthEE
-	k+hQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=yB46JYNiVsvpZ/p9sj3WuH6tbgxPpRmEw+5pYS9+rLQ=;
-	b=Rd6pmVdnISbG1doOV02r99WUj8Qy/9F9EfeZA2HtYih+Sm1k3iZ0g1GSn3XnmkfWKF
-	Q9pr5BRgk5m34bXQYPwK8sgbflFNkuagK44wLtCIEPwlt/fKSwDAYeyokOoP3aCGinLc
-	ZEhRSXLl0jhVSx5py78OJiA3bBOp+XRcqu6Pt3aRuMnNzc9KUDW3PmuVCnWcQSxKKg4i
-	m1VEZJBss/70yaURae03F4azQ1ssrG2VRmMtGUXqvADI7G65vXtVLUdcxGoAsvo+Yp9C
-	6t0OhmeVFNP2w4HIkIwQ5FdZa3z/O2xBJBwcnHYMUXP3joIvfiaPuoQNPLPMSFZro7Fk
-	4kfA==
-X-Gm-Message-State: APjAAAUBcnKMYcZmPA+PtWNfnjqi/pESavR1XgcfvnMGIidlS05gDptt
-	V1oiC1hRB/1dfRi67oardM7Cv7qtyNfepSfNmK0=
-X-Google-Smtp-Source: APXvYqxbAK3mdbLCb3g200coHqZ24kCMOtkp7WF4gYuUgSY1mmkbKq+MqqwV2nQQYMG63xTSFNNrZDDoXKRYErjx+9A=
-X-Received: by 2002:ac2:46ef:: with SMTP id q15mr18230293lfo.63.1563368742457; 
-	Wed, 17 Jul 2019 06:05:42 -0700 (PDT)
+X-Greylist: delayed 756 seconds by postgrey-1.32 at yocto-www;
+	Wed, 17 Jul 2019 09:01:01 PDT
+Received: from idris.smile.fr (idris.smile.fr [91.216.209.19])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14F24E00C9E
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2019 09:01:01 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by idris.smile.fr (Postfix) with ESMTP id 341161F4D852;
+	Wed, 17 Jul 2019 17:48:24 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at smile.fr
+Received: from idris.smile.fr ([127.0.0.1])
+	by localhost (bluemind-mta.prod.vitry.intranet [127.0.0.1])
+	(amavisd-new, port 10024)
+	with ESMTP id 3G+6kpsUOxx5; Wed, 17 Jul 2019 17:48:23 +0200 (CEST)
+Received: from P-ASN-Amnesia.nantes.intranet
+	(static-css-ccs-204145.business.bouyguestelecom.com
+	[176.157.204.145])
+	by idris.smile.fr (Postfix) with ESMTPSA id B9C9D1F403CC;
+	Wed, 17 Jul 2019 17:48:23 +0200 (CEST)
+From: =?UTF-8?q?Micka=C3=ABl=20Tansorier?= <mickael.tansorier@smile.fr>
+To: yocto@yoctoproject.org
+Date: Wed, 17 Jul 2019 17:48:16 +0200
+Message-Id: <20190717154816.9842-1-mickael.tansorier@smile.fr>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-References: <CA+pXca1VC_m+5VgUtE4MqTXBMhJ=aL8cJZfk43FxJwgnN-2gQA@mail.gmail.com>
-In-Reply-To: <CA+pXca1VC_m+5VgUtE4MqTXBMhJ=aL8cJZfk43FxJwgnN-2gQA@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Wed, 17 Jul 2019 09:05:31 -0400
-Message-ID: <CADkTA4NFOnri8x1D557SQUJY_1AJvGxQEU6ue0CaSW0D+iFLQQ@mail.gmail.com>
-To: praveen vattipalli <praveen.vatt@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: getting error in "make-mod-scripts-1.0-r0" while building meta-altera kernel as local source
+Subject: [psplash][PATCH] bmp: Add option to print bmp image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,65 +44,277 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jul 2019 13:05:44 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 17 Jul 2019 16:01:03 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jul 17, 2019 at 7:43 AM praveen vattipalli
-<praveen.vatt@gmail.com> wrote:
->
-> Hi All,
-> we are upgrading Yocto from Krogath to Sumo version.
-> while using meta-altera kernel source as local source,
->
-> if i use  EXTERNALSRC_BUILD variable
-> EXTERNALSRC = "${TOPDIR}/../meta-altera/recipes-kernel/linux/files/kernel-source"
-> EXTERNALSRC_BUILD = "${TOPDIR}/../meta-altera/recipes-kernel/linux/files/kernel-source"
+Add option to load image in `psplash` command line.
+Image is bmp3 format. If this image can not be found or
+loading fail, default image is print.
 
-Have you tried making these different directories ? The error you are
-seeing is telling you that you
-are trying to build in an already configured/dirty source directory.
-Not having a split source and
-build is one easy way to get into the state that you are seeing.
+bmp_layout.h: describe bmp3 file inspire of bmp_layout.h
+from u-boot.
+psplash-fb.{c|h}: add function to draw GBR888 image.
+psplash.c: Add option to read bmp image and print it
+if loading file is right.
 
-> getting make-mod-scripts-1.0-r0 error.
->
-> if i comment EXTERNALSRC_BUILD = "${TOPDIR}/../meta-altera/recipes-kernel/linux/files/kernel-source" i could able to build the image.
+Signed-off-by: Mickaël Tansorier <mickael.tansorier@smile.fr>
+---
+ bmp_layout.h | 35 +++++++++++++++++++
+ psplash-fb.c | 25 ++++++++++++++
+ psplash-fb.h |  9 +++++
+ psplash.c    | 95 ++++++++++++++++++++++++++++++++++++++++++++++++++--
+ 4 files changed, 161 insertions(+), 3 deletions(-)
+ create mode 100644 bmp_layout.h
 
-See my above comment. By default the externalsrc class does a split
-source and build directory,
-which is why it works.
-
-Bruce
-
->
-> any suggestion, if i miss anything.
-> Thanks in advance
->
-> logs:
-> ERROR: make-mod-scripts-1.0-r0 do_configure: oe_runmake failed
->
->  Using /home/pkumar/tp4100_sumo/sumo/yocto_platform/platform/meta-altera/recipes-kernel/linux/files/kernel-source as source for kernel
-> |   /home/pkumar/tp4100_sumo/sumo/yocto_platform/platform/meta-altera/recipes-kernel/linux/files/kernel-source is not clean, please run 'make mrproper'
-> |   in the '/home/pkumar/tp4100_sumo/sumo/yocto_platform/platform/meta-altera/recipes-kernel/linux/files/kernel-source' directory.
-> | /home/pkumar/tp4100_sumo/sumo/yocto_platform/platform/meta-altera/recipes-kernel/linux/files/kernel-source/Makefile:1064: recipe for target 'prepare3' failed
-> | make[1]: *** [prepare3] Error 1
-> | make[1]: Leaving directory '/home/pkumar/tp4100_sumo/sumo/yocto_platform/platform/build/tmp/work-shared/cyclone5/kernel-build-artifacts'
-> | Makefile:146: recipe for target 'sub-make' failed
-> | make: *** [sub-make] Error 2
->
-> Thanks,
-> Praveen
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
-
+diff --git a/bmp_layout.h b/bmp_layout.h
+new file mode 100644
+index 0000000..f397ef9
+--- /dev/null
++++ b/bmp_layout.h
+@@ -0,0 +1,35 @@
++/* Layout of a bmp file */
++/* format = bmp3        */
++
++#ifndef _BMP_LAYOUT_H_
++#define _BMP_LAYOUT_H_
++
++#define BMP_IMG_BYTES_PER_PIXEL 3
++
++struct __attribute__((__packed__)) bmp_header {
++	/* Header */
++	char signature[2];
++	__u32	file_size;
++	__u32	reserved;
++	__u32	data_offset;
++	/* InfoHeader */
++	__u32	size;
++	__u32	width;
++	__u32	height;
++	__u16	planes;
++	__u16	bit_count;
++	__u32	compression;
++	__u32	image_size;
++	__u32	x_pixels_per_m;
++	__u32	y_pixels_per_m;
++	__u32	colors_used;
++	__u32	colors_important;
++};
++
++struct bmp_image {
++	struct bmp_header header;
++	/* ColorTable */
++	uint8 * data;
++};
++
++#endif /* _BMP_LAYOUT_H_ */
+diff --git a/psplash-fb.c b/psplash-fb.c
+index c064d18..307d6a8 100644
+--- a/psplash-fb.c
++++ b/psplash-fb.c
+@@ -441,6 +441,31 @@ psplash_fb_draw_image (PSplashFB    *fb,
+     }
+ }
+ 
++void
++psplash_fb_draw_image_raw_GBR888 (PSplashFB    *fb,
++		       int          x,
++		       int          y,
++		       int          img_width,
++		       int          img_height,
++		       int          img_bytes_per_pixel,
++		       uint8       *rle_data)
++{
++  uint8       *p = rle_data;
++  int          dx = 0, dy = 0,  total_len;
++  int          img_rowstride = img_bytes_per_pixel*img_width;
++
++  total_len = img_rowstride * img_height;
++  /* Start at the end of pointer */
++  p += (total_len - 1);
++
++  while ((p - rle_data) >= 0)
++    {
++		psplash_fb_plot_pixel (fb, x-dx, y+dy, *(p), *(p-1), *(p-2));
++		if (++dx * img_bytes_per_pixel >= img_rowstride) { dx=0; dy++; }
++			p -= img_bytes_per_pixel;
++    }
++}
++
+ /* Font rendering code based on BOGL by Ben Pfaff */
+ 
+ static int
+diff --git a/psplash-fb.h b/psplash-fb.h
+index d0dce10..297add8 100644
+--- a/psplash-fb.h
++++ b/psplash-fb.h
+@@ -77,6 +77,15 @@ psplash_fb_draw_image (PSplashFB    *fb,
+ 		       int          img_rowstride,
+ 		       uint8       *rle_data);
+ 
++void
++psplash_fb_draw_image_raw_GBR888 (PSplashFB    *fb,
++		       int          x,
++		       int          y,
++		       int          img_width,
++		       int          img_height,
++		       int          img_bytes_pre_pixel,
++		       uint8       *rle_data);
++
+ void
+ psplash_fb_text_size (int                *width,
+ 		      int                *height,
+diff --git a/psplash.c b/psplash.c
+index 992e199..f8a92b6 100644
+--- a/psplash.c
++++ b/psplash.c
+@@ -24,6 +24,7 @@
+ #include "psplash-poky-img.h"
+ #include "psplash-bar-img.h"
+ #include "radeon-font.h"
++#include "bmp_layout.h"
+ 
+ #define SPLIT_LINE_POS(fb)                                  \
+ 	(  (fb)->height                                     \
+@@ -40,6 +41,59 @@ psplash_exit (int UNUSED(signum))
+   psplash_console_reset ();
+ }
+ 
++struct bmp_image *read_image_bmp(char *image_name)
++{
++  FILE *file;
++  size_t read;
++  struct bmp_image *bmp;
++
++  file = fopen(image_name, "rb");
++  if (file != NULL)
++    {
++      bmp = malloc(sizeof(struct bmp_image));
++
++      /* Read header */
++      read = fread(&bmp->header, sizeof(struct bmp_header), 1, file);
++      if (read != 1)
++        {
++          printf("Error: Fail to read header\n");
++          free(bmp);
++          fclose(file);
++          return NULL;
++        }
++
++      /* Read BMP image signature */
++      if (bmp->header.signature[0] != 'B' && bmp->header.signature[1] != 'M')
++        {
++          printf("Error: File format is not correct.\n");
++          free(bmp);
++          fclose(file);
++          return NULL;
++        }
++
++      bmp->data = malloc(sizeof(uint8) * bmp->header.image_size);
++
++      /* Read data image */
++      read = fread(bmp->data, sizeof(uint8), (bmp->header.image_size), file);
++      if (read != bmp->header.image_size)
++        {
++          printf("Error: Cannot read data image.\n");
++          free(bmp);
++          fclose(file);
++          return NULL;
++        }
++
++      fclose(file);
++    }
++  else
++    {
++      printf("Error: Cannot open %s.\n",image_name);
++      return NULL;
++	}
++
++  return bmp;
++}
++
+ void
+ psplash_draw_msg (PSplashFB *fb, const char *msg)
+ {
+@@ -208,6 +262,8 @@ main (int argc, char** argv)
+   int        pipe_fd, i = 0, angle = 0, fbdev_id = 0, ret = 0;
+   PSplashFB *fb;
+   bool       disable_console_switch = FALSE;
++  char       image_name[255] = "";
++  struct bmp_image *bmp = NULL;
+ 
+   signal(SIGHUP, psplash_exit);
+   signal(SIGINT, psplash_exit);
+@@ -233,10 +289,16 @@ main (int argc, char** argv)
+         fbdev_id = atoi(argv[i]);
+         continue;
+       }
++    if (!strcmp(argv[i],"-i") || !strcmp(argv[i],"--image"))
++      {
++        if (++i >= argc) goto fail;
++        strcpy(image_name,argv[i]);
++        continue;
++      }
+ 
+     fail:
+       fprintf(stderr, 
+-              "Usage: %s [-n|--no-console-switch][-a|--angle <0|90|180|270>][-f|--fbdev <0..9>]\n", 
++              "Usage: %s [-n|--no-console-switch][-a|--angle <0|90|180|270>][-f|--fbdev <0..9>][-i|--image <bmp_image>]\n",
+               argv[0]);
+       exit(-1);
+   }
+@@ -278,8 +340,31 @@ main (int argc, char** argv)
+   psplash_fb_draw_rect (fb, 0, 0, fb->width, fb->height,
+                         PSPLASH_BACKGROUND_COLOR);
+ 
+-  /* Draw the Poky logo  */
+-  psplash_fb_draw_image (fb, 
++  if (strcmp(image_name,"") != 0)
++    {
++      bmp = read_image_bmp(image_name);
++    }
++
++  if (bmp != NULL)
++    {
++	  /* Draw loaded logo */
++      psplash_fb_draw_image_raw_GBR888 (fb,
++			 (fb->width  + bmp->header.width)/2,
++#if PSPLASH_IMG_FULLSCREEN
++			 (fb->height - bmp->header.height)/2,
++#else
++			 (fb->height * PSPLASH_IMG_SPLIT_NUMERATOR
++			  / PSPLASH_IMG_SPLIT_DENOMINATOR - bmp->header.height)/2,
++#endif
++			 bmp->header.width,
++			 bmp->header.height,
++			 BMP_IMG_BYTES_PER_PIXEL,
++			 bmp->data);
++    }
++  else
++    {
++      /* Draw the Poky logo  */
++      psplash_fb_draw_image (fb,
+ 			 (fb->width  - POKY_IMG_WIDTH)/2, 
+ #if PSPLASH_IMG_FULLSCREEN
+ 			 (fb->height - POKY_IMG_HEIGHT)/2,
+@@ -292,6 +377,7 @@ main (int argc, char** argv)
+ 			 POKY_IMG_BYTES_PER_PIXEL,
+ 			 POKY_IMG_ROWSTRIDE,
+ 			 POKY_IMG_RLE_PIXEL_DATA);
++    }
+ 
+   /* Draw progress bar border */
+   psplash_fb_draw_image (fb, 
+@@ -320,5 +406,8 @@ main (int argc, char** argv)
+   if (!disable_console_switch)
+     psplash_console_reset ();
+ 
++  if(bmp!=NULL)
++    free(bmp);
++
+   return ret;
+ }
 -- 
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
+2.22.0
+
 
