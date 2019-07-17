@@ -1,95 +1,120 @@
-Return-Path: <jeffrey.siegel@nokia.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6B44EE00D7E; Wed, 17 Jul 2019 15:19:02 -0700 (PDT)
+	id B01B9E00D85; Wed, 17 Jul 2019 16:30:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [40.107.15.90 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.210.175 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from EUR01-DB5-obe.outbound.protection.outlook.com
-	(mail-eopbgr150090.outbound.protection.outlook.com [40.107.15.90])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E54F3E00D55
-	for <yocto@yoctoproject.org>; Wed, 17 Jul 2019 15:19:00 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
-	b=T/IdygY63Anv8XL+a38ucGC1Lz2LJ8RWmT2Zm2bEiQFRCo+LT7LB4KsAXFX32MSm3jqfXllOzB0RI+QbZJDLktCijBaTaQuKswbFkTSamXSMAKJc8vcTpScijTo8erviN+vqk+7ASUtbv6H8aJmWO/VBD3yYdoaOnCmnxkntQ86odqxhlS4hkRxx4Zg4ab+lkSrz1IIiaw3JGgxj8c2lLKfBf1fut/+6L/L3KlXzT8bhY34ohpa5YQUZQCT23wI29W6D+ST+zpOynXlWyCd2m9nllDUEjEPTU/TDwTdrLHDNZSYhlTEj06qbHKTCQch3njwFlTfXDNbLyt4V0vde5g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
-	s=arcselector9901;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=/Q8ELCjwfhSYpMbivn8iljaCw/Uv7/qr3FWPc0LfMEo=;
-	b=T4s1+XNK+FfbCxtF2Ant52H+Kdyz0sr8HBB/GvUCFzVKDbGGL8Y1HwQ5w0cn9yB+sFqEz1pCdKhao81maAyH9HAfwWdy0hu53acd5i82ZUone3LkW2E7T9sqszhrB9nlP/J+DaRJwedG9s1CwIY/WlqOo3a+3aJVzTcGLLkaPFKcWVScG8QRMD3HWiIJuPJsqRqTqWU7N0t6lnIxC3TxOmAcUOne3SIXHJ3YXJm4JNHLSQ3T8LPVteRcN2868HzOlWbJ3C7eBndwexI9pQ4J30LfQI0zFR0wK0KtWsOwaYSrt+368bwDgEvRcwnrsfeSTubTheBJVBI1a5NtY4jaEA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
-	smtp.mailfrom=nokia.com;dmarc=pass action=none
-	header.from=nokia.com;dkim=pass header.d=nokia.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com; 
-	s=selector1-nokia-onmicrosoft-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=/Q8ELCjwfhSYpMbivn8iljaCw/Uv7/qr3FWPc0LfMEo=;
-	b=f/0L08B3KD3qU1COolEG+ZxAKHVAQn2AJpSVBEGtfNfb01gml+nYSBlXfxPtLKNytM7uq+3cVORJyVv+/VgraimR+/lE3L2V05pp2OT0sQ3V6lCat6LKjDKpNJE1YYn6mDTiffDhV2fPDoys0CltMD7TZlKY/LlTeY2NqySYgR0=
-Received: from DB7PR07MB3868.eurprd07.prod.outlook.com (52.134.96.151) by
-	DB7PR07MB6170.eurprd07.prod.outlook.com (20.178.43.138) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.2094.9; Wed, 17 Jul 2019 22:18:59 +0000
-Received: from DB7PR07MB3868.eurprd07.prod.outlook.com
-	([fe80::28be:481:544c:d163]) by DB7PR07MB3868.eurprd07.prod.outlook.com
-	([fe80::28be:481:544c:d163%6]) with mapi id 15.20.2115.003;
-	Wed, 17 Jul 2019 22:18:59 +0000
-From: "Siegel, Jeffrey (Nokia - US/Murray Hill)" <jeffrey.siegel@nokia.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Patching a file in $WORKDIR
-Thread-Index: AdU79JIhVFWSJI/zROiORfF4+b2aPwAkgB0AABmz3dA=
-Date: Wed, 17 Jul 2019 22:18:59 +0000
-Message-ID: <DB7PR07MB3868C6D1A22BFDB10427625789C90@DB7PR07MB3868.eurprd07.prod.outlook.com>
-References: <DB7PR07MB386841A804D548629B676B8F89CE0@DB7PR07MB3868.eurprd07.prod.outlook.com>
-	<CAJTo0Lbm7Kuh3a+zd2_bPL==zUw_umt8Q8qv0tkRHRv227A=dA@mail.gmail.com>
-In-Reply-To: <CAJTo0Lbm7Kuh3a+zd2_bPL==zUw_umt8Q8qv0tkRHRv227A=dA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=jeffrey.siegel@nokia.com; 
-x-originating-ip: [135.245.20.11]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: dbd002ab-1ed7-4303-4352-08d70b04c40f
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
-	SRVR:DB7PR07MB6170; 
-x-ms-traffictypediagnostic: DB7PR07MB6170:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <DB7PR07MB6170EB503D1BB95A9F417D9E89C90@DB7PR07MB6170.eurprd07.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 01018CB5B3
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(4636009)(136003)(39860400002)(376002)(366004)(396003)(346002)(13464003)(51914003)(189003)(199004)(7696005)(6506007)(8676002)(86362001)(53546011)(14454004)(76176011)(33656002)(316002)(66556008)(476003)(446003)(81166006)(81156014)(7736002)(486006)(71200400001)(229853002)(71190400001)(305945005)(74316002)(66066001)(102836004)(99286004)(4326008)(11346002)(186003)(53936002)(6436002)(26005)(25786009)(55016002)(52536014)(5660300002)(9686003)(76116006)(8936002)(66946007)(478600001)(6306002)(6916009)(966005)(6116002)(6246003)(64756008)(68736007)(66446008)(256004)(2906002)(66476007)(3846002);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:DB7PR07MB6170;
-	H:DB7PR07MB3868.eurprd07.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: nokia.com does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: IS3UUHJMgcZ5u/XsBzosklkGifFLLJzSXBem9J8/u1n+1T3AkLvAeyCa7XjPYYnpCFY9HXYgCSUYTLCS/y+VQ0JTaecyhqRJ/AKgq5bw42crBx6RTRM3QfX1I9IewvapGaNo9WISaLppodxLrG+B/lPAiu8cFUMEpSWjUus9et/ASYtggCkzsL6JUSq87r+Ii6IA6jCn1tAiXLrqyV85Uq0h7AZrWyTkfo9z5LhlMF+Y6sh1Rux4HPfGOOBO91kgJXETreUpm06zyV+Xg2o0wbJJ6QX3a/n73yBta4SUeg7DQkhQoOJe7vCsJdk7AbKaqsB/ahAZal9wfn5i+/sn4rzQW85Qp7Zw4Fey9uxZqmTXRJvu3ONKptwYF7jBuoys0yk+kwUqwv2TosJfwc9Q1C4Fd/gRFDFsdMfOeUHTa3Y=
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com
+	[209.85.210.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A115E00D7E
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2019 16:30:55 -0700 (PDT)
+Received: by mail-pf1-f175.google.com with SMTP id f17so7628489pfn.6
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2019 16:30:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=rWqwvlcf7aLVJ0pn736Sc1Oo5UngP1z2VGzKZbNAXKo=;
+	b=tb87uY6iSz3h9c0OZr+EUqkNQJoTyGFBhkUlUckBpMi1fmnI8hVOX7etv4OwIB/upV
+	72bDSXnZxA2U+grTqgKIn6iMs44JfRX3g3adWl91g3VpRSGEqBD6zyxAd2CWmHoP2+9H
+	MYAaLqnlGb4BQWXqYydUq6fMVx2d3jSI9agy481DHEA29xQlhTVtr0G+kr4Xgr2Gljro
+	ANptY1kYgF5ilfDVuGsfirormBaOMPFpOBZzf9JvUijpNnrIzL7Q5dvDPbns5aN/K0Az
+	UZgVjD5aXwnCCKMJx+xtfjdPRF7JHsHfCguqJr1q+kXjyBSZ+poPjckUgGLVbevk70+k
+	C4Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-transfer-encoding:content-language;
+	bh=rWqwvlcf7aLVJ0pn736Sc1Oo5UngP1z2VGzKZbNAXKo=;
+	b=BesS7xTVJjFF55E3xG12RWEowKpC4gp4G97MRWxsAsXFOSXxfZX+jlONRbyGqejff1
+	TlT4jrWppVMgGmewG87iNiBSYcWciBJuLBtiRKDxmESH8NFPTzqX+Uggrr7FUAQzcXE6
+	LqJMUzY1H0enrsJlFB/yYt0LL0IxYg6TmAwBWZwIs+iLcgB6sbdxKX6XSMx5JW4k/n0q
+	uPktGin8Qf3lcmancc3i+aEluySgZJl/oTDClPDNR+qSExeFm193VNjLx4xVX+EFrRow
+	a3elJDW22P1dB9nYHGMDWr/mjV/mpoOQLF9nH/p63OWAQ6VoO2yPcILSu23dWQDp/Hma
+	AUkA==
+X-Gm-Message-State: APjAAAVYf+zYsWqm0N/tUfvRy4oKRwzBLAdFSNJt8C90NeeQdrcGSXa9
+	2lSMKDq+fVLH2JWbD6nP8RPqMX4N
+X-Google-Smtp-Source: APXvYqxvAmvnqlPjB0DKgtg9rq9+fL7CsLZYjXbVJaanEoeCgVJl7Lxp4El6FsxV6UrIsKiQwTSuFg==
+X-Received: by 2002:a63:2ec9:: with SMTP id u192mr43210239pgu.16.1563406254535;
+	Wed, 17 Jul 2019 16:30:54 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:c33:f51d:4a31:5625:62b4?
+	([2601:202:4180:c33:f51d:4a31:5625:62b4])
+	by smtp.gmail.com with ESMTPSA id
+	r2sm35336591pfl.67.2019.07.17.16.30.53
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 17 Jul 2019 16:30:53 -0700 (PDT)
+To: "Burton, Ross" <ross.burton@intel.com>,
+	Yocto-mailing-list <yocto@yoctoproject.org>
+References: <CAJTo0LaOHbSB75OGLsHJ3Vxd5eVgg9+7Cq3k0=P-BwPLpFiyjg@mail.gmail.com>
+From: akuster808 <akuster808@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+	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
+	8CS2NxU=
+Message-ID: <671b950f-0d22-15b0-a034-359b8f97a2dd@gmail.com>
+Date: Wed, 17 Jul 2019 16:30:52 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.2
 MIME-Version: 1.0
-X-OriginatorOrg: nokia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dbd002ab-1ed7-4303-4352-08d70b04c40f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jul 2019 22:18:59.1734 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 5d471751-9675-428d-917b-70f44f9630b0
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jeffrey.siegel@nokia.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR07MB6170
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Patching a file in $WORKDIR
+In-Reply-To: <CAJTo0LaOHbSB75OGLsHJ3Vxd5eVgg9+7Cq3k0=P-BwPLpFiyjg@mail.gmail.com>
+Cc: OE-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] RFC: dropping official support for Debian 8 / Opensuse 42.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -101,35 +126,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jul 2019 22:19:02 -0000
+X-List-Received-Date: Wed, 17 Jul 2019 23:30:55 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
 
-VGhhbmtzIGZvciB0aGUgaGVscC4gSSBnb3QgaXQgdG8gd29yayB1c2luZyAncGF0Y2hkaXInIGFz
-IFJvc3MgcmVjb21tZW5kZWQ6DQoNCnJlYWRsaW5lXzcuMC5iYmFwcGVuZDoNCiMgV2UgZG8gdGhp
-cyB0byBlbmFibGUgdGhlICJIb21lIiBhbmQgIkVuZCIga2V5cw0KRklMRVNFWFRSQVBBVEhTX3By
-ZXBlbmQgOj0gIiR7VEhJU0RJUn0vZmlsZXM6Ig0KU1JDX1VSSSs9ImZpbGU6Ly9pbnB1dHJjLnBh
-dGNoO3BhdGNoZGlyPSR7V09SS0RJUn0iDQoNClJlZ2FyZHMsDQpKZWZmDQoNCi0tLS0tT3JpZ2lu
-YWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBp
-bnRlbC5jb21dIA0KU2VudDogV2VkbmVzZGF5LCBKdWx5IDE3LCAyMDE5IDY6MDEgQU0NClRvOiBT
-aWVnZWwsIEplZmZyZXkgKE5va2lhIC0gVVMvTXVycmF5IEhpbGwpIDxqZWZmcmV5LnNpZWdlbEBu
-b2tpYS5jb20+DQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0
-b10gUGF0Y2hpbmcgYSBmaWxlIGluICRXT1JLRElSDQoNCk9uIFR1ZSwgMTYgSnVsIDIwMTkgYXQg
-MTc6NDUsIFNpZWdlbCwgSmVmZnJleSAoTm9raWEgLSBVUy9NdXJyYXkgSGlsbCkgPGplZmZyZXku
-c2llZ2VsQG5va2lhLmNvbT4gd3JvdGU6DQo+IEkgYW0gdHJ5aW5nIHRvIHVzZSBhIGJiYXBwZW5k
-IGZpbGUgdG8gcGF0Y2ggYSBmaWxlIGluICRXT1JLRElSLiBUbyBteSB1bmRlcnN0YW5kaW5nLCB0
-aGUgbmF0aXZlIFlvY3RvIHBhdGNoaW5nIHByb2Nlc3Mgb25seSB3b3JrcyBmb3IgcGF0Y2hpbmcg
-ZmlsZXMgaW4gJFMuDQoNCk5vLCB0aGUgZGVmYXVsdCBkaXJlY3RvcnkgZm9yIHBhdGNoIGFwcGxp
-Y2F0aW9uIGlzICRTIChmb3Igb2J2aW91cyByZWFzb25zKS4gIFlvdSBjYW4gY2hhbmdlIHRoZSBw
-YXRoIHRoYXQgaXMgcGF0Y2hlZCBieSB1c2luZyB0aGUgYHBhdGNoZGlyYCBwYXJhbWV0ZXI6DQoN
-Cmh0dHBzOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvZG9jcy9sYXRlc3QvcmVmLW1hbnVhbC9yZWYt
-bWFudWFsLmh0bWwjdmFyLVNSQ19VUkkNCg0KQWxzbyBhcyBHYWJyaWVsZSBzYWlkLCBvbmx5IC5w
-YXRjaCBhbmQgLmRpZmYgZmlsZXMgYXJlIGFwcGxpZWQgYXV0b21hdGljYWxseS4gIEJlc3QgdG8g
-cmVuYW1lIHRvIGlucHV0cmMucGF0Y2guDQoNCj4gVXNpbmcgZGV2c2hlbGwsIEkgaGF2ZSBjb25m
-aXJtZWQgdGhhdCB0aGUg4oCccGF0Y2jigJ0gcHJvZ3JhbSBiZWluZyBleGVjdXRlZCBpcyB0aGUg
-b25lIGZyb20gdGhlIFlvY3RvIGVudmlyb25tZW50ICgkQlVJTERESVIvdG1wLWdsaWJjL2hvc3R0
-b29scyksIG5vdCB0aGUgYnVpbGQgaG9zdC4NCg0KSGF2ZSBhIGxvb2sgYXQgd2hhdCBob3N0dG9v
-bHMvcGF0Y2ggYWN0dWFsbHkgaXM6IHlvdSdsbCBzZWUgaXQncyBqdXN0IGEgc3ltbGluayB0byAv
-dXNyL2Jpbi9wYXRjaC4NCg0KUm9zcw0K
+
+
+On 7/17/19 1:37 PM, Burton, Ross wrote:
+> Hi,
+>
+> Now that both Debian 8 and OpenSuse 42.3 are end-of-life and no longer
+> formally supported, we think it's time to drop them from the supported
+> distribution list.  Initially this involves removing them from the
+> SANITY_TESTED_DISTROS list in Poky, at some point during this cycle we
+> may remove those distributions from the Yocto Project autobuilder to
+> add more workers for other supported distributions.
+>
+> It is expected that the next release will probably work on those two
+> distributions, there are no plans to do new and exciting things
+> dropping these unsupported distributions enables -- like increasing
+> the minimum Python version to 3.5 until after the 2.8 release in
+> October.
+>
+> Please, if this impacts you, speak up now.
+
++1
+>
+> Ross
+
 
