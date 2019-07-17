@@ -1,36 +1,57 @@
-Return-Path: <Randy.MacLeod@windriver.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B658BE00E1E; Wed, 17 Jul 2019 11:36:33 -0700 (PDT)
+	id 17204E00D7E; Wed, 17 Jul 2019 13:37:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABBB8E00E1E
-	for <yocto@yoctoproject.org>; Wed, 17 Jul 2019 11:36:21 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x6HIZilf030433
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 17 Jul 2019 11:35:54 -0700
-Received: from fidler.wrs.com (172.25.44.5) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.468.0;
-	Wed, 17 Jul 2019 11:35:33 -0700
-From: Randy MacLeod <Randy.MacLeod@windriver.com>
-To: <yocto@yoctoproject.org>, <anibal.limon@linaro.org>
-Date: Wed, 17 Jul 2019 14:35:29 -0400
-Message-ID: <20190717183530.24893-3-Randy.MacLeod@windriver.com>
-X-Mailer: git-send-email 2.17.0
-In-Reply-To: <20190717183530.24893-1-Randy.MacLeod@windriver.com>
-References: <20190717183530.24893-1-Randy.MacLeod@windriver.com>
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.52 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com
+	[209.85.166.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF1C6E00D75
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2019 13:37:43 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id e20so17576242iob.9
+	for <yocto@yoctoproject.org>; Wed, 17 Jul 2019 13:37:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to:cc;
+	bh=cPDegesFKOF14fHWvXJWO293w29aPKJUAmrm2tHRAmE=;
+	b=Nc2q/C4gVzWuFnbqeB731tSiXj8+PRY9Z+qgQW47kgBNsjY8GJHCknBbYpBV2ux1km
+	+V/VeMs6T3oveG+WPLMVKou6qlIfGX5eUnBGjsg3RZDwqOKWuE2NH/v1lw2bQDSCBG2i
+	HdUD7tFYCoad5dFUZxCBdSpnlk/QGt9caZ60FgOKKBMA1EzDSCU2usPh83wxEL634eEw
+	qgtqvQ0DNTrVAi5igPfDN3VJt4vOYrYTbQG6+aS2NJIlm9lcWeYWuMEyT/o3FL+REYBD
+	gWLLKFgIX7KzaswN54CXkIOA7amI8d9rZ16iizNd6pzkcxa0t4EDzIHvSSGIOfqoBi+C
+	doMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+	bh=cPDegesFKOF14fHWvXJWO293w29aPKJUAmrm2tHRAmE=;
+	b=a3JznOrMXZiup64y5zDStGqOlQPbhmEyZ0BBIrv5Dprh5YH/BG/eFoH9TvBSOnppM0
+	54f4+Dtl2nIQun6xiZw5S1Keh2kmc3aBv7dpUZNp1R6cKKSVm/1gvP10bGaf+GmjzuLe
+	A6vKRLZ3b3j+djauGMRm6dhdoB3SSOOl7/jJy4Bq+oAJuGSEru4ApXk9kkFSM+SKORkC
+	s0QuEuu9lxcBgq4+xkpM6siPUE+ZIksKy4OMbZCYNnKTCHRbXFNvN1+3Lw9WZMyncL5R
+	P8rfoOkv7O0t5gHswjteKWs4rw7W5n5g8i37KKacLTRqJc4qwyfAXQo0dzrbmX1sWqu2
+	E5XQ==
+X-Gm-Message-State: APjAAAUP+sQUjmYuCs3EUgOxVn96iH3V7r7AsVh/MwVM0c7GvbWVJ3qY
+	bVrdYsEKw1Tj7TNcMM8oOlW01Ph+Iu9MDzMdIurbs/tc
+X-Google-Smtp-Source: APXvYqz/0FiS0po3PIoZpcPI3XMBRuJb7VAnkEpZ3gxsiy4e9l7YP98qzWHM3KIqNSs+j2sffmajlPaRYyoIqwktHno=
+X-Received: by 2002:a5e:c744:: with SMTP id g4mr37533006iop.187.1563395862880; 
+	Wed, 17 Jul 2019 13:37:42 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [ptest-runner][PATCH 3/4] tests: fix clang warnings.
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 17 Jul 2019 21:37:31 +0100
+Message-ID: <CAJTo0LaOHbSB75OGLsHJ3Vxd5eVgg9+7Cq3k0=P-BwPLpFiyjg@mail.gmail.com>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+Cc: OE-core <openembedded-core@lists.openembedded.org>
+Subject: RFC: dropping official support for Debian 8 / Opensuse 42.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,76 +63,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 17 Jul 2019 18:36:33 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 17 Jul 2019 20:37:44 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Make tests build using: clang -Weverything
-There are a few warnings that remain that are not
-variable casting or macro fixes.
+Hi,
 
-Signed-off-by: Randy MacLeod <Randy.MacLeod@windriver.com>
----
- tests/main.c  |  5 +----
- tests/utils.c | 19 +++++++++----------
- 2 files changed, 10 insertions(+), 14 deletions(-)
+Now that both Debian 8 and OpenSuse 42.3 are end-of-life and no longer
+formally supported, we think it's time to drop them from the supported
+distribution list.  Initially this involves removing them from the
+SANITY_TESTED_DISTROS list in Poky, at some point during this cycle we
+may remove those distributions from the Yocto Project autobuilder to
+add more workers for other supported distributions.
 
-diff --git a/tests/main.c b/tests/main.c
-index c3b4da5..e1a8b69 100644
---- a/tests/main.c
-+++ b/tests/main.c
-@@ -62,13 +62,10 @@ main(int argc, char *argv[])
- 				opts_directory = strdup(optarg);
- 			break;
- 			case 'h':
--				print_usage(stdout, argv[0]);
--				exit(0);
--			break;
-+				/* fall though !! */
- 			default:
- 				print_usage(stdout, argv[0]);
- 				exit(1);
--			break;
- 		}
- 	}
- 
-diff --git a/tests/utils.c b/tests/utils.c
-index 3ba64d6..571d488 100644
---- a/tests/utils.c
-+++ b/tests/utils.c
-@@ -33,7 +33,6 @@
- #include "utils.h"
- 
- #define PRINT_PTEST_BUF_SIZE 8192
--#define PRINT_PTEST_MAX_LINE 512
- 
- extern char *opts_directory;
- 
-@@ -247,15 +246,15 @@ END_TEST
- static int
- filecmp(FILE *fp1, FILE *fp2)
- {
--    char f1, f2;
--    while (1) {
--			  int end = 0;
--        if ((f1 = getc(fp1)) == EOF) end++;
--        if ((f2 = getc(fp2)) == EOF) end++;
--
--				if (end == 2) return 0;
--				if (end == 1) return 1;
--        if (f1 != f2) return 2;
-+	int f1, f2;
-+	while (1) {
-+		int end = 0;
-+		if ((f1 = getc(fp1)) == EOF) end++;
-+		if ((f2 = getc(fp2)) == EOF) end++;
-+
-+		if (end == 2) return 0;
-+		if (end == 1) return 1;
-+		if (f1 != f2) return 2;
-     }
- }
- 
--- 
-2.17.0
+It is expected that the next release will probably work on those two
+distributions, there are no plans to do new and exciting things
+dropping these unsupported distributions enables -- like increasing
+the minimum Python version to 3.5 until after the 2.8 release in
+October.
 
+Please, if this impacts you, speak up now.
+
+Ross
 
