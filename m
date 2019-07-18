@@ -1,87 +1,63 @@
-Return-Path: <maciej.pijanowski@3mdeb.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B244CE00D90; Thu, 18 Jul 2019 03:19:19 -0700 (PDT)
+	id A4E11E00D94; Thu, 18 Jul 2019 04:31:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [178.33.251.19 listed in list.dnswl.org]
-X-Greylist: delayed 12362 seconds by postgrey-1.32 at yocto-www;
-	Thu, 18 Jul 2019 03:19:17 PDT
-Received: from 14.mo7.mail-out.ovh.net (14.mo7.mail-out.ovh.net
-	[178.33.251.19])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C971E00B8F
-	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 03:19:17 -0700 (PDT)
-Received: from player791.ha.ovh.net (unknown [10.108.57.16])
-	by mo7.mail-out.ovh.net (Postfix) with ESMTP id 2B972129EFA
-	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 12:19:15 +0200 (CEST)
-Received: from 3mdeb.com (85-222-117-222.dynamic.chello.pl [85.222.117.222])
-	(Authenticated sender: maciej.pijanowski@3mdeb.com)
-	by player791.ha.ovh.net (Postfix) with ESMTPSA id 87C837F42935
-	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 10:19:15 +0000 (UTC)
-To: yocto@yoctoproject.org
-References: <CAA=hcWTbyJUmn458++uuMzWCki2R+s0aRd4u6_eQ76oSFgAFwg@mail.gmail.com>
-From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=maciej.pijanowski@3mdeb.com; keydata=
-	mQINBFy+vRwBEACs+tNUJ4aKRaJm4BDZxCRBTMRS/ng8XT9yEkH6xnaOroLtYM7Uwb2QqvtN
-	uBR6Q6adYF/IcnzOuJeIlVEHloU+GyihHq1U4kJH6qI4FnnjjDhC3g7Tpms+R+yLGI1/lQ4x
-	4wA7m1Mm1oNBF7ry+p640/1rj3xxa6UEv387/coVWNP6scxhcff+rYPCkquViKob96VF/XeY
-	vav+DrBK96v9VyR3EK2DQjmw2FY/0Q95bOZ/CcfbmhIe4rCcRuZECR5zyvPVdTLtgfVJIteG
-	bhHXDLXaKVXtshdUrAPiqY6Cd0alRjEnXi9QNoyx/Vcl8ChpYTLHYqZSfsjpJhnpXSfgS6YH
-	iOhViUP5IB0kDvnDl/8fbUiBeUgXZqY4+j3NsL6FkbNch+7zMShj1cZwr0u5dO2MzcmLuYJm
-	JwMM1dE9hwRTfPPQfagGfiAcLt6IuK0cVygU7WOtAVbBXgoqTE76qbAc3qmdSiSmVL53AK76
-	meVEtt15lIZClulAMMqb23x0D+/bFCgmyywGjpWEyZA4q7ZRZomWxFr9BxKVQAyKGM5d6gQP
-	lsFFFCbuDr/gOsrXg6DTUm3amEMwGobbtU/ZWzn8OW8wjNeQnB5efJBhzt/ORihaE+5KXfq5
-	CwX9rurlIlUDT/t96VoBkYDeg36M0f7sP+7SVyPi1Qpum66h4wARAQABtC9NYWNpZWogUGlq
-	YW5vd3NraSA8bWFjaWVqLnBpamFub3dza2lAM21kZWIuY29tPokCNwQTAQgAIQUCXL69HAIb
-	AwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRDxQB0uHMsZ70SVEACI+qknq7ZImBXu7ha3
-	mQ6IJwxa9UgDwExbDGdUv6OeHAV6fGoyRsKE7mV1Q1y/coJd4vQlQBTKT7sJFlIGcSmtcjPS
-	2OShHy8IiNf1Hy/7juV2Oxs3fv1f9cdLIzLe/oF2uRdKRRM2pgYiz8SeS6Q+MPUmXN1qOpmD
-	glvf6ODhAiTj84RaeR5ikmW+9/Ldpt2PAUKT2PkHTQOKTkAkE9w+VTxdo+bmj//QIJtFT41f
-	2A7nDESzSo38Jw91jXdNb8f7lOd+RCl1hlf09agbQnKFB1LFdbGsLvYLUjIgvMF+rOOGjeXR
-	WOqo8WoowA/FfJYC9Rw+9qqAJ6TvjkxeZrhXxCxgHuA60mWxn/NofbxtZSYuHw6Abwg71Nta
-	SJ07qCCaSHlwouYcGgSatg1mmqqOkOPbp0sls54Go1FR3R9yJJR5fBJEl1amiu/ytLCbdEVT
-	Y8bE6bcgwBk7mWzNmdmf/EykaNIPbwnPDtLIQ+9rDX34ACIJNbxdMCjmrocKVBTJ9cSOlOuQ
-	xlQrrmdFKAnz0exvvE9YACgmlZ0LjzGFwm4U9G5BdJDkAeNQfbRs4CkCPgBpInmMjoelpFTW
-	dCDoGilLikNjGfgfCc8ENccw9rZndmbuWKixVMRXU3R/Fxjc0xtJvL5Iz7HLxzvtmN/OBShG
-	+iFROS+HC6tAkVYC1rkCDQRcvr0cARAAuQDEynwHXPMV54ZoBfLxURH63RzhIjYlX88HnqEn
-	/mNY2FIwUtKS73LLl7ljH4XLFDGZCEFgYttddc9wwJXw9pDvVxLICV3nTKNyBipShj/LOGbf
-	B4Pk0qlkKx5KpqSmVFZRM7mwK88tGhAILfu9IBSk/QOS1QRFztB0L2kkU/UslyJqoMD4qJqI
-	QGwPf5drfK6c685yFhdDcHcXeNgnTap68wviPLBAhRPMd8qDxMIZMARi+wxb5w6OwDxetSJn
-	kNkxCtMpiXbna/hTMIvRqC9VgwBrAINzsJMk4qVqy5CYXNJ/tkHAtTIHISliRkaZYBDdXCo9
-	SltNctQGIK1IaqTf8iLq4pehm252NTVw8QYw2usErsHp3fZLNTcJhpr4prq4aIP8ERzbaBb/
-	02i6VXAjVS5LNrIqXvkJkOeLfLRC2Fwbj6sdK5maRBGmtkGvhXJYIUlbQchY83dbQziQoMxM
-	97ZQO0l5QZRJAIjIyYXx4AaZBxoHXr9jdle54Rj/+Lru54/yDT8zWxzO+PaotQxykgEsDTXv
-	T8+kfpGOfd3ojfrKhX+bTym0TT/MVMI5CYqllQ3wF9QZFchj0I//8148Fanezj8sHbGNdNi6
-	4mpKGpEBpaLBwySx+o7SaxLvlD4GbqETIwoOxMcpvo7nQKpgHeOEu81+SDc+9KKSFjEAEQEA
-	AYkCHwQYAQgACQUCXL69HAIbDAAKCRDxQB0uHMsZ70tNEACA0ZKeJYPUHy+95d20N/i31Oze
-	BzbMksMrd/j+qPOgeTjEytxrfeOVQY/gok0sOvhDYoFvLiip0lxrIS/tHZcaH/CQn0jZkaHA
-	tGWy4hrb7wKnUEpAAwepYQyxxPy/upliLwmLX7oxdvJIY0A3T/m+8gLzR+OEJB4MfGUypSzT
-	N2RY2xTyvXUQYgw/iRHucduCYv0ZNHCzs2CtKeZpcuuozClAjPywwItn0o3YJDdZWShd6WmO
-	cOnklq9XjwxTOYWxn2i/NGv/BY7DOALzrFbp66hjMa0Vz7lCGKvSDVDcJLBnNd4Jf69DB1Ie
-	pHx5jdJHqk61DZq4yYQBh/MM4oAP7MsUE02rnp+pXqAjJUhFp6+wLP1irRL+SzdYGdda1uio
-	lhfvd/icZAEuMUnnaSkA28NjoIVwI5YmdDKuqmFWCA8PSHY8k+LLxuk/AZdV862OYCb1+r7l
-	sc1l7tHAPHGGjG3i7Hh89FdAMQ0vSGTkGuOZIAKF7atKf7TVc7M3PPT3RACCXx0ABRA3/FqR
-	lX18nOduQOSYS5LGRg4dHv5m9kgu6asXmwDP82sg8ca1RsxXuTLCrIYpGlGkThnzgqWxlC7M
-	Ridv3wyyJp8CIgdeYl4oZaSFhz12B+VaM1n8y8Nsg1e9oHHNdEWT1/S5QJRb4Ig3LQOmUhZw
-	0f2bcrTp9w==
-Message-ID: <894b59cc-bd91-6178-de1b-f0d190655307@3mdeb.com>
-Date: Thu, 18 Jul 2019 12:19:13 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.2
+	*      [209.85.166.66 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f66.google.com (mail-io1-f66.google.com
+	[209.85.166.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 012E8E00D89
+	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 04:31:55 -0700 (PDT)
+Received: by mail-io1-f66.google.com with SMTP id h6so50835892iom.7
+	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 04:31:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=8abdp40UONM7xS8MfGE9pcTtlDC9FMxvwqZkceWpzfs=;
+	b=quOLBSkF//k0ZBfmXrmc9e2zhhEYRzaejx1F4TBK58/49HyHSnztgZgArdfENAbwwt
+	Y3jxUFjwBZTBVMTdtNuCKot1g+FC9Z5H7/MmGbaPNBYprlJR4P3vdbVpTibEf9gxymCU
+	gLZVtrtYINUg3Mjuk7H3lq3ua/BTJWDkHw4Lz1o7MmGU+6JjJRpKeuCSglSd7Y0hULQN
+	8ORz2jBzF1ygjgvFNtAnSZq5xje1TykGxlpMvsl9rEW/5bRnvAAuS1nSX3PuqhoHiG+/
+	pJGpxLxokAWKRBF1reCd6r8XAJcrfWKfBQ3/en98cr/EIddbGeI2Sak3zPUjjbpUMZzP
+	Vgcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=8abdp40UONM7xS8MfGE9pcTtlDC9FMxvwqZkceWpzfs=;
+	b=tRJGwmm9k8CpJHUfMBfP7g7cNn1V7LoPmGyO2+DMf0O1UFP2yNxVV+n9dc9gRGu0Xz
+	lpm7a8RZB6JPZS+oFvSM7hNeqJdrjY6lxCapGCzoIMnHGta7kTqogbAIL7v7CwUtACmj
+	ZdSyFEq3EnVAiXXV2Ce45nfqAUXVKXNr6vUaeV5D1+Yw6LlU7bqKViLBe4AU420paAl8
+	MDWAgZdioF7+Yx7j7iGNroChmu9p2JIMbxLtf4JuMc2IEbukqw4vq0SCd3J9+v0H5hZN
+	0K1od/nJAa+UWUlvU7qb60YhnXMMKvQdyyMBJmo3tjB5FIcP2tqkouB0MA6doDai2Tdb
+	vSjw==
+X-Gm-Message-State: APjAAAVJbTm7LOTPaU4qjG9b9zSgWG0W8hbW1xG4zR3qVpvbPZJOHoAN
+	da9qjDtzXYfAt0v4gu0kcWaN84lZa4AMeByEfaTWyGVk
+X-Google-Smtp-Source: APXvYqzDkKL6tKeXQ9F2gy9qFLEXPNLc/nK2yKhiz1gMEvHIvQw8XKPwf33DSuDJd56x3cyfGvwBBB5MiTgxr9HdwO4=
+X-Received: by 2002:a02:3093:: with SMTP id
+	q141mr48084190jaq.128.1563449515054; 
+	Thu, 18 Jul 2019 04:31:55 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAA=hcWTbyJUmn458++uuMzWCki2R+s0aRd4u6_eQ76oSFgAFwg@mail.gmail.com>
-X-Ovh-Tracer-Id: 5161969598734347945
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduvddrieehgddvkecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecu
-Subject: Re: Missing service file
+References: <CAJTo0LaOHbSB75OGLsHJ3Vxd5eVgg9+7Cq3k0=P-BwPLpFiyjg@mail.gmail.com>
+	<20190718060409.GA27459@localhost>
+In-Reply-To: <20190718060409.GA27459@localhost>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 18 Jul 2019 12:31:43 +0100
+Message-ID: <CAJTo0LbDCp=Wn76R56LxkAbU7pbkeJuBmnXhVr7h=gCJd1phqA@mail.gmail.com>
+To: Adrian Bunk <bunk@stusta.de>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
+	OE-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] RFC: dropping official support for Debian 8 / Opensuse 42.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -93,94 +69,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Jul 2019 10:19:19 -0000
-X-Groupsio-MsgNum: 45994
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature";
-	boundary="9x4BeWBZriqOKr856KL4sEmdeonX9bRvz"
+X-List-Received-Date: Thu, 18 Jul 2019 11:31:56 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---9x4BeWBZriqOKr856KL4sEmdeonX9bRvz
-Content-Type: multipart/mixed; boundary="H7VonZZFNWGkL1JgwKQuuPTewnoID9zDs";
- protected-headers="v1"
-From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
-To: yocto@yoctoproject.org
-Message-ID: <894b59cc-bd91-6178-de1b-f0d190655307@3mdeb.com>
-Subject: Re: [yocto] Missing service file
-References: <CAA=hcWTbyJUmn458++uuMzWCki2R+s0aRd4u6_eQ76oSFgAFwg@mail.gmail.com>
-In-Reply-To: <CAA=hcWTbyJUmn458++uuMzWCki2R+s0aRd4u6_eQ76oSFgAFwg@mail.gmail.com>
-
---H7VonZZFNWGkL1JgwKQuuPTewnoID9zDs
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
-
-
-On 18.07.2019 12:01, JH wrote:
-> Hi,
+On Thu, 18 Jul 2019 at 07:04, Adrian Bunk <bunk@stusta.de> wrote:
+> > Now that both Debian 8 and OpenSuse 42.3 are end-of-life and no longer
+> > formally supported, we think it's time to drop them from the supported
+> > distribution list.
 >
-> I set up a service file at following myapp.bb file, but that service
-> file was not installed to /lib/systemd/system. What could I be wrong
-> here?
-Not installed means it's not in the final image on the target? Which
-package gets installed into the
-image? I guess the ${PN} package.
+> Debian 8 is still LTS-supported for a year, unless there is urgency to
+> drop support for it the right time for dropping would be after 2.8
+> (2.9 release and Debian 8 LTS EOL will both be in Q2 2020).
 
-Have you inspected the recipe
-work/YOUR_TARGET/RECIPE_NAME/RECIPE_VERSION/image dir?
-Maybe it is present there, but not in the package you are installing
-(check the content of the pacakges-split dir as well).
+I'm inclined to dropping 8 and just supporting 9 and 10.  We don't
+*need* to exercise every distro.
 
-You may use the:
+> Should OpenSuse be dropped, or just the version upgraded to 15.1?
 
-FILES_${PN} +=3D "/lib/systemd/system/${PN}.service
+42.3 dropped.  15.1 should be it's replacement, yes.  This is already
+being exercised on the autobuilder.
 
-to force packaging the file into the ${PN} package.
+> Fedora 28 is also unsupported (but will be the basis of CentOS 8).
+
+Good point, and we also don't have Fedora 30 in the list.  Again, this
+is already being exercised on the autobuilder.
+
+> CentOS 7 is based on Fedora 19 from 2013.
 >
->
-> SYSTEMD_SERVICE_${PN} =3D "${PN}.service"
-> SYSTEMD_AUTO_ENABLE_${PN} =3D "enable"
->
-> do_install() {
-> ......
-> install -m 0644 ${S}/lib/systemd/system/${PN}.service
-> ${D}/${systemd_system_unitdir}
-> }
->
-> Thank you.
->
-> Kind regards,
->
-> - jh
+> This is the oldest currently supported distribution, and when to remove
+> support for it (replacing it with the not yet existing CentOS 8) should
+> IMHO be part of this discussion.
 
---=20
-Maciej Pijanowski
-Embedded Systems Engineer
-https://3mdeb.com | @3mdeb_com
+Centos 7 support is, I believe, already patchy - I think we mandate
+the buildtools for that?  Any idea what the support plan for Centos 7
+will be once 8 is released, whenever that is?
 
+Ross
 
-
---H7VonZZFNWGkL1JgwKQuuPTewnoID9zDs--
-
---9x4BeWBZriqOKr856KL4sEmdeonX9bRvz
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIcBAEBCAAGBQJdMEehAAoJEPFAHS4cyxnvOhgQAJ5AkEbIw6cMNChTw2MLEwOK
-+eSjta9+iUXXxd/zTmbxO8vYjcGG9uSNqC2Ta38npyqAIIsY5J1b4Y64aZ+vgGsN
-y1vXyIJcDbclwqXjHSGe0sBezMuZSJ3eJ4EDJCH4+rPshOPHRq6YON+QAfEktnkA
-TMWVcwx3rdu3nh+NC14+4zIJ+b/i1nwpTpPJQcjoIn/79GRODY5mH0wF2D/e+ajw
-GFZKHdZnCAAhQGgb9Pt9iwnBH5oxwpQER3IlEC6i/CXavtraI3NZ2lz3ojPQJg63
-MLkZS+/ZvyZoNCRTtp2GJ0+HxtAIOpB32okDP0jrl51TT/fTqAoG2ntamprfh1fw
-+cZSxg/dpD2xDhAi+UEsxr2qJjTONoZy1YIQe3XNoSwwEy6JoWaBH7K/NIx0Bu00
-9MsdmBjyo7751nsO1R7tjMdm9BGuxdU/wl+bt2LhnnokR5PGc/66UNzJLJrg7aKJ
-V5w394XERNHfaL9Tj5C26eeZ5hJ3ReVqEjYLHd+h6K8BzJEa+9loUKTMMb9jmU1T
-lgnF95ieirasZShuKDvg0WL6MFa5NbdF640pNEP/jGkA9KOrFg6lboN5oqd7rZhu
-z6biJHWKhDnU6MIYT32XGdTqtTH7xM8cQAETGdKkBZm1qi1OQlvoMR/FatFbjY6i
-FDRzAM0JF12IWrYGWceL
-=f8w/
------END PGP SIGNATURE-----
-
---9x4BeWBZriqOKr856KL4sEmdeonX9bRvz--
