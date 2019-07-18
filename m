@@ -1,71 +1,40 @@
-Return-Path: <jpewhacker@gmail.com>
+Return-Path: <david.reyna@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9B503E00D45; Thu, 18 Jul 2019 08:26:00 -0700 (PDT)
+	id 0D58FE00D44; Thu, 18 Jul 2019 09:04:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jpewhacker[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.49 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com
-	[209.85.166.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C588E00B8E
-	for <yocto@lists.yoctoproject.org>;
-	Thu, 18 Jul 2019 08:25:59 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id q22so52066744iog.4
-	for <yocto@lists.yoctoproject.org>;
-	Thu, 18 Jul 2019 08:25:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=OE2HBmVuA965//dUb5bN7Tjspz0/j/MMbfvaAL/3v7s=;
-	b=FUdgkVaHdmrNM81iJ7dJMvcz/rwSZJR1hMBViJPQVz/Qt14rrllYlHe92C4fmkT/ks
-	eL2WUS6+tU4gQXULo+NbqMRh6S8T/q6/DdCFhisPKhYT725rC60yVolt9i+krCA6S6uU
-	i98UPB1KwvIw+T/Rz4q0VvoBPCHPH8/c8P6gdY/tbag2P1yDnwVR5VQ3nG03hNeg6cxe
-	m6to8MgsvVssi/W3zdSo1x5LjAUYUHX4H8hq+nvSaFZP6fOwID4A5IgQspFMDHp0S8PO
-	uLcAtJC512Q0HgKA0kn6sMwmU/bOd3FZVP51wyYh+hIlVzy4tzWQLV3eT5BonJGedSjk
-	kM7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=OE2HBmVuA965//dUb5bN7Tjspz0/j/MMbfvaAL/3v7s=;
-	b=el8DYxumuVcRTVtayU3k51HdETaBwCkahQR2AUL5fF5BQZ9iSbWe54dn2sfx20b233
-	egq2nrd0KknxZmNZnqtML4ApwWYjowZgNOKqt8isH/hw3aH4I1Z6j4smmL7VDCL4Ndtc
-	N0Fad6nkHAXXT4sH/AIJ/vSz6MiSM6UzIjLe4Utus8lb0e7kNeAkCKEXf0jlAAmEn5FE
-	agRKEoQx9K61SidgHtlKFDZT+Iq+lJgqtXye5IcpPRq9+xuV14pz+g+Q4QdUuASOvfA5
-	loSqA2QrgUHAQWAUR2QCWJcYUJRUflR9BGpz6YKBG1KgRRzLdrL1shHWj/wJvUWcVxFC
-	flyg==
-X-Gm-Message-State: APjAAAVnNqrgN7HFmILBkQYEMYxYyI2yhS90z5Kq5g1f6c8hpLTqlpNl
-	8uiA5TW+jquu0uE2uRogqb3nlSTr
-X-Google-Smtp-Source: APXvYqwAPRS/oIGItomQN+PGW8DNDN9A6ovQLBKKHhUiXaSJ72vKv7SfXgmC7zPUiJ2JTwlKB00xig==
-X-Received: by 2002:a5d:9957:: with SMTP id v23mr42392174ios.117.1563463559236;
-	Thu, 18 Jul 2019 08:25:59 -0700 (PDT)
-Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
-	by smtp.gmail.com with ESMTPSA id
-	c11sm15579919ioi.72.2019.07.18.08.25.58
-	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Thu, 18 Jul 2019 08:25:58 -0700 (PDT)
-From: Joshua Watt <jpewhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-To: yocto@lists.yoctoproject.org
-Date: Thu, 18 Jul 2019 10:25:36 -0500
-Message-Id: <20190718152536.28368-1-JPEWhacker@gmail.com>
-X-Mailer: git-send-email 2.21.0
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BEC6E00AB4
+	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 09:04:43 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x6IG4hVM017291
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 09:04:43 -0700 (PDT)
+Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.115]) by
+	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.03.0468.000;
+	Thu, 18 Jul 2019 09:04:43 -0700
+From: "Reyna, David" <david.reyna@windriver.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Minutes: Yocto Project Monthly Meeting 7/16/2019
+Thread-Index: AdU9dPzw7C2ldqY7Ql6gSlEB/a2Vnw==
+Date: Thu, 18 Jul 2019 16:04:42 +0000
+Message-ID: <5E53D14CE4667A45B9A06760DE5D13D0FAD3DC3F@ALA-MBD.corp.ad.wrs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [147.11.119.169]
 MIME-Version: 1.0
-Subject: [meta-mingw][PATCH] bzip2: Remove bbappend
+Cc: "'JOLLEY, STEPHEN'" <stephen.k.jolley@intel.com>
+Subject: Minutes: Yocto Project Monthly Meeting 7/16/2019
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,70 +46,143 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Jul 2019 15:26:00 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 18 Jul 2019 16:04:46 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_5E53D14CE4667A45B9A06760DE5D13D0FAD3DC3FALAMBDcorpadwrs_"
 
-The patch being applied by meta-mingw has been upstreamed as of 1.0.8,
-so there is no need to have a bbappend anymore.
+--_000_5E53D14CE4667A45B9A06760DE5D13D0FAD3DC3FALAMBDcorpadwrs_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
----
- .../0001-Fix-include-path-separator.patch     | 33 -------------------
- recipes-extended/bzip2/bzip2_1.0.7.bbappend   |  4 ---
- 2 files changed, 37 deletions(-)
- delete mode 100644 recipes-extended/bzip2/bzip2/0001-Fix-include-path-separator.patch
- delete mode 100644 recipes-extended/bzip2/bzip2_1.0.7.bbappend
+WW9jdG8gUHJvamVjdCBNb250aGx5IE1lZXRpbmcNCk1JTlVURVM6IDcvMTYvMjAxOQ0KDQpBdHRl
+bmRlZXM6IFJpY2hhcmQsIEFybWluLCBKb3NodWFXLCBCcnVjZSwgTWljaGFlbCwgIEZyZWRlcmlj
+LCBUaW0sIFZpbmVlbGEsIERhdmlkLCBUcmV2b3INCg0KUlA6DQogICogU3RhdHVzIHVwZGF0ZSB3
+aWxsIGdvIG91dCBsYXRlciB0b2RheTogaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL3Bp
+cGVybWFpbC95b2N0by8yMDE5LUp1bHkvMDQ2MDQyLmh0bWwNCiAgKiBSaWNoYXJkIHdpbGwgbm90
+IGJlIGF0IEVMQyBTYW4gRGllZ28gKGxpbWl0ZWQgY29uZmVyZW5jZSBidWRnZXQpDQoNClRpbTog
+UHl0aG9uIDMuNCBpcyBvbiBEZWJpYW4gOCwgd2FudHMgdG8gbW92ZSBZUCB0byBQeXRob24gMy41
+IGFzIG1pbmltdW0NCg0KQXJtaW46IFdpbGwgd2UgbW92ZSB0byBLZXJuZWwgNS4yPyBCcnVjZTog
+d2Ugd2lsbCBmb2xsb3cgdGhlIHB1Ymxpc2hlZCBZUCBwb2xpY3kgb24ga2VybmVsIHVwZGF0ZXMu
+ICBMVFMgcmVsZWFzZSB0aW1pbmcgaGFzIGJlZW4gY2xvc2UgYW5kL29yIGFmdGVyIFlQIHJlbGVh
+c2UgZGF0ZXMgc28gd2lsbCBwcm9iYWJseSBtaXNzIGFnYWluIHRoaXMgeWVhci4gVGhlIHZlcnNp
+b24gaXMgdXN1YWxseSBwaWNrZWQgYWZ0ZXIgTGludXggUGx1bWJlcnMuDQoNCkFybWluOiBMU0Ig
+dmVyc3VzIExUUz8gUmljaGFyZDogdGhlcmUgYXJlIHR3byB0ZXN0cywgKGEpIFBva3kgTFNCIGFu
+ZCAoYikgS2VybmVsIFguWSwgYW5kIHdlIHByb3Bvc2UgdG8gZHJvcCB0aGUgUG9reSBMU0IgdGVz
+dC4NCg0KQnJ1Y2U6IEtlcm5lbCA1LjMgd2lsbCBub3QgYmUgcmVhZHkgZm9yIG91ciByZWxlYXNl
+LCBzbyBwcm9iYWJseSA1LjIgd2lsbCBiZSB0aGUgbnVtYmVyLg0KDQpSaWNoYXJkOiBjb25zaWRl
+cmluZyB0byBudW1iZXIgWVAgcmVsZWFzZSBhcyAzLjAgaW5zdGVhZCBvZiAyLjgsIGJlY2F1c2Ug
+b2YgbWFueSBjaGFuZ2VzIChlc3BlY2lhbGx5IHJ1bnF1ZXVlKS4gVGltIG5vdGVkIGFsc28gdGhl
+IG1ham9yIHRyYW5zaXRpb24gdG8gUHl0aG9uIDMsIGFuZCBNaWNoYWVsIG5vdGVkIHdlIGRpZCBh
+IHNpbWlsYXIganVtcCBmb3IgWVAtMi4wLiBRdWVzdGlvbjogd2lsbCB0aGVyZSBiZSBhIGZ1bmN0
+aW9uYWwgY2hhbmdlIHdpdGggdGhpcyBudW1iZXJpbmcgdHJhbnNpdGlvbj8gUmljaGFyZDogbm8u
+DQoNClJpY2hhcmQ6IHF1ZXN0aW9uIHRvIEpvc2h1YSBhYm91dCBoYXNoIHN0YXRlIGVxdWl2YWxl
+bmN5PyBSdW5xdWV1ZSBjb3VsZCBzdXBwb3J0IGl0LiBKb3NodWE6IGN1cnJlbnRseSB0aGVyZSBh
+cmUgaXNzdWVzIGluIHRoZSBwZXJzaXN0ZW50IHN0YXRlLiBSaWNoYXJkOiB3b3VsZCBsaWtlIHRo
+aXMgZmVhdHVyZSBmb3IgMy4wLCBhbmQgYXJlIHRoZXJlIGFueSBpbXBsaWNhdGlvbnM/IEpvc2h1
+YTogY2Fubm90IGNvbXBsZXRlIHRoaXMgYW5kIHJlcHJvZHVjaWJpbGl0eSBieSBoaW1zZWxmLiBS
+aWNoYXJkOiBtaWdodCBoZWxwIHdpdGggdGhpcyBlZmZvcnQgc2luY2UgdGhlc2UgY2hhbmdlcyBj
+YW4g4oCccHV0IHVzIG9uIHRoZSBtYXDigJ0uDQoNClRyZXZvcjogd2lsbCBtb3ZlIHRvIGhhc2gg
+ZXF1aXZhbGVuY3kgcmVkdWNlIHJ1bnF1ZXVlIHRpbWU/IFJpY2hhcmQ6IHBvdGVudGlhbCBnYWlu
+cy4gRXZlbiBsb2NhbCBzZXQgY2FuIHJlY2VpdmUgYSBodWdlIHNwZWVkIGdhaW4sIGZvciBleGFt
+cGxlIGEgbm9uLWltcGFjdGluZyBjaGFuZ2UgdG8g4oCcY29yZS1uYXRpdmXigJ0gd291bGQgbm8g
+bG9uZ2VyIHRyaWdnZXIgdW5uZWVkZWQgZ2xvYmFsIHJlYnVpbGRpbmcuDQoNClRyZXZvcjogTFNC
+IHJlbW92YWwuIExUUCBsaWtlIExTQj8gUmljaGFyZDogTFRQIHN1cHBvcnRlZCwgTFNCIGRlYWQu
+DQoNCk1pY2hhZWw6IE1haWxpbmcgbGlzdCB0cmFuc2l0aW9uIHN0aWxsIGluIHByb2dyZXNzLiBM
+aXN0cyB3aWxsIGJlY29tZSDigJxsaXN0LnByb2plY3Qub3Jn4oCdLg0KDQpKb3NodWE6IFpvb20g
+bGlua3MgZm9yIHRoaXMgbWVldGluZyBhcmUgd3JvbmcuIE1pY2hhZWw6IHRoZXJlIGFyZSBzZXZl
+cmFsIGxpbmtzIGZvciB0aGlzIHRpbWUgc2xvdCBmb3IgdGhlIHR3byBvdmVybGFwcGluZyBtZWV0
+aW5ncy4gV2lsbCB0cnkgdG8gY29uc29saWRhdGUgb24gdGhlIG1vcmUgcG9wdWxhciBsaW5rIChv
+ciBtYXkgY2FuY2VsIGJvdGggYW5kIGNyZWF0ZSBhIG5ldyBvbmUpLiBXaWxsIGFsc28gbmVlZCB0
+byB1cGRhdGUgR29vZ2xlIENhbGVuZGFyLg0KDQotIERhdmlkDQoNCg0K
 
-diff --git a/recipes-extended/bzip2/bzip2/0001-Fix-include-path-separator.patch b/recipes-extended/bzip2/bzip2/0001-Fix-include-path-separator.patch
-deleted file mode 100644
-index 4c43b7a..0000000
---- a/recipes-extended/bzip2/bzip2/0001-Fix-include-path-separator.patch
-+++ /dev/null
-@@ -1,33 +0,0 @@
--From 84c8769b52c63cce8a8a413e5fcbad1a65681d46 Mon Sep 17 00:00:00 2001
--From: Joshua Watt <JPEW.hacker@gmail.com>
--Date: Tue, 2 Jul 2019 13:06:30 -0500
--Subject: [PATCH] Fix include path separator
--
--Changes the include path separator for Windows builds to use "/" instead
--of "\". Windows has no problems with using a forward slash as a path
--separator, but using a backslash causes problems when attempting to
--cross compile for other platforms (for example, when trying to cross
--compile for MinGW from Linux).
--
--Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
--Upstream-Status: Submitted [https://sourceware.org/ml/bzip2-devel/2019-q3/msg00004.html]
-----
-- bzip2.c | 2 +-
-- 1 file changed, 1 insertion(+), 1 deletion(-)
--
--diff --git a/bzip2.c b/bzip2.c
--index e362c65..be3b3be 100644
----- a/bzip2.c
--+++ b/bzip2.c
--@@ -128,7 +128,7 @@
-- #if BZ_LCCWIN32
-- #   include <io.h>
-- #   include <fcntl.h>
---#   include <sys\stat.h>
--+#   include <sys/stat.h>
-- 
-- #   define NORETURN       /**/
-- #   define PATH_SEP       '\\'
---- 
--2.21.0
--
-diff --git a/recipes-extended/bzip2/bzip2_1.0.7.bbappend b/recipes-extended/bzip2/bzip2_1.0.7.bbappend
-deleted file mode 100644
-index 3cc4b01..0000000
---- a/recipes-extended/bzip2/bzip2_1.0.7.bbappend
-+++ /dev/null
-@@ -1,4 +0,0 @@
--
--FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--
--SRC_URI_append_mingw32 = " file://0001-Fix-include-path-separator.patch"
--- 
-2.21.0
+--_000_5E53D14CE4667A45B9A06760DE5D13D0FAD3DC3FALAMBDcorpadwrs_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
+dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
+LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
+ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
+PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExcHQ7Ij4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPllvY3RvIFBy
+b2plY3QgTW9udGhseSBNZWV0aW5nPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFG
+NDk3RCI+TUlOVVRFUzogNy8xNi8yMDE5PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0i
+IzFGNDk3RCI+Jm5ic3A7PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFGNDk3RCI+
+QXR0ZW5kZWVzOiBSaWNoYXJkLCBBcm1pbiwgSm9zaHVhVywgQnJ1Y2UsIE1pY2hhZWwsJm5ic3A7
+IEZyZWRlcmljLCBUaW0sIFZpbmVlbGEsIERhdmlkLCBUcmV2b3I8L2ZvbnQ+PC9kaXY+DQo8ZGl2
+Pjxmb250IGNvbG9yPSIjMUY0OTdEIj4mbmJzcDs8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNv
+bG9yPSIjMUY0OTdEIj5SUDogPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFGNDk3
+RCI+Jm5ic3A7ICogU3RhdHVzIHVwZGF0ZSB3aWxsIGdvIG91dCBsYXRlciB0b2RheTogPGEgaHJl
+Zj0iaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL3BpcGVybWFpbC95b2N0by8yMDE5LUp1
+bHkvMDQ2MDQyLmh0bWwiPjxmb250IGNvbG9yPSJibHVlIj48dT5odHRwczovL2xpc3RzLnlvY3Rv
+cHJvamVjdC5vcmcvcGlwZXJtYWlsL3lvY3RvLzIwMTktSnVseS8wNDYwNDIuaHRtbDwvdT48L2Zv
+bnQ+PC9hPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPiZuYnNwOyAq
+IFJpY2hhcmQgd2lsbCBub3QgYmUgYXQgRUxDIFNhbiBEaWVnbyAobGltaXRlZCBjb25mZXJlbmNl
+IGJ1ZGdldCk8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IlRpbWVzIE5ldyBSb21hbiIg
+c2l6ZT0iMyIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPiZu
+YnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj5UaW06
+IFB5dGhvbiAzLjQgaXMgb24gRGViaWFuIDgsIHdhbnRzIHRvIG1vdmUgWVAgdG8gUHl0aG9uIDMu
+NSBhcyBtaW5pbXVtPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9t
+YW4iIHNpemU9IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7
+Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFGNDk3RCI+
+QXJtaW46IFdpbGwgd2UgbW92ZSB0byBLZXJuZWwgNS4yPyBCcnVjZTogd2Ugd2lsbCBmb2xsb3cg
+dGhlIHB1Ymxpc2hlZCBZUCBwb2xpY3kgb24ga2VybmVsIHVwZGF0ZXMuJm5ic3A7IExUUyByZWxl
+YXNlIHRpbWluZyBoYXMgYmVlbiBjbG9zZSBhbmQvb3IgYWZ0ZXIgWVAgcmVsZWFzZSBkYXRlcyBz
+byB3aWxsIHByb2JhYmx5IG1pc3MgYWdhaW4gdGhpcyB5ZWFyLiBUaGUgdmVyc2lvbiBpcyB1c3Vh
+bGx5IHBpY2tlZA0KYWZ0ZXIgTGludXggUGx1bWJlcnMuPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9u
+dCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjEycHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48
+Zm9udCBjb2xvcj0iIzFGNDk3RCI+QXJtaW46IExTQiB2ZXJzdXMgTFRTPyBSaWNoYXJkOiB0aGVy
+ZSBhcmUgdHdvIHRlc3RzLCAoYSkgUG9reSBMU0IgYW5kIChiKSBLZXJuZWwgWC5ZLCBhbmQgd2Ug
+cHJvcG9zZSB0byBkcm9wIHRoZSBQb2t5IExTQiB0ZXN0LjwvZm9udD48L2Rpdj4NCjxkaXY+PGZv
+bnQgY29sb3I9IiMxRjQ5N0QiPiZuYnNwOzwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9
+IiMxRjQ5N0QiPkJydWNlOiBLZXJuZWwgNS4zIHdpbGwgbm90IGJlIHJlYWR5IGZvciBvdXIgcmVs
+ZWFzZSwgc28gcHJvYmFibHkgNS4yIHdpbGwgYmUgdGhlIG51bWJlci48L2ZvbnQ+PC9kaXY+DQo8
+ZGl2Pjxmb250IGZhY2U9IlRpbWVzIE5ldyBSb21hbiIgc2l6ZT0iMyIgY29sb3I9IiMxRjQ5N0Qi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+
+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj5SaWNoYXJkOiBjb25zaWRlcmluZyB0byBudW1i
+ZXIgWVAgcmVsZWFzZSBhcyAzLjAgaW5zdGVhZCBvZiAyLjgsIGJlY2F1c2Ugb2YgbWFueSBjaGFu
+Z2VzIChlc3BlY2lhbGx5IHJ1bnF1ZXVlKS4gVGltIG5vdGVkIGFsc28gdGhlIG1ham9yIHRyYW5z
+aXRpb24gdG8gUHl0aG9uIDMsIGFuZCBNaWNoYWVsIG5vdGVkIHdlIGRpZCBhIHNpbWlsYXIganVt
+cCBmb3IgWVAtMi4wLiBRdWVzdGlvbjogd2lsbCB0aGVyZQ0KYmUgYSBmdW5jdGlvbmFsIGNoYW5n
+ZSB3aXRoIHRoaXMgbnVtYmVyaW5nIHRyYW5zaXRpb24/IFJpY2hhcmQ6IG5vLjwvZm9udD48L2Rp
+dj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPiZuYnNwOzwvZm9udD48L2Rpdj4NCjxkaXY+
+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPlJpY2hhcmQ6IHF1ZXN0aW9uIHRvIEpvc2h1YSBhYm91dCBo
+YXNoIHN0YXRlIGVxdWl2YWxlbmN5PyBSdW5xdWV1ZSBjb3VsZCBzdXBwb3J0IGl0LiBKb3NodWE6
+IGN1cnJlbnRseSB0aGVyZSBhcmUgaXNzdWVzIGluIHRoZSBwZXJzaXN0ZW50IHN0YXRlLiBSaWNo
+YXJkOiB3b3VsZCBsaWtlIHRoaXMgZmVhdHVyZSBmb3IgMy4wLCBhbmQgYXJlIHRoZXJlIGFueSBp
+bXBsaWNhdGlvbnM/IEpvc2h1YTogY2Fubm90DQpjb21wbGV0ZSB0aGlzIGFuZCByZXByb2R1Y2li
+aWxpdHkgYnkgaGltc2VsZi4gUmljaGFyZDogbWlnaHQgaGVscCB3aXRoIHRoaXMgZWZmb3J0IHNp
+bmNlIHRoZXNlIGNoYW5nZXMgY2FuIOKAnHB1dCB1cyBvbiB0aGUgbWFw4oCdLjwvZm9udD48L2Rp
+dj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPiZuYnNwOzwvZm9udD48L2Rpdj4NCjxkaXY+
+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPlRyZXZvcjogd2lsbCBtb3ZlIHRvIGhhc2ggZXF1aXZhbGVu
+Y3kgcmVkdWNlIHJ1bnF1ZXVlIHRpbWU/IFJpY2hhcmQ6IHBvdGVudGlhbCBnYWlucy4gRXZlbiBs
+b2NhbCBzZXQgY2FuIHJlY2VpdmUgYSBodWdlIHNwZWVkIGdhaW4sIGZvciBleGFtcGxlIGEgbm9u
+LWltcGFjdGluZyBjaGFuZ2UgdG8g4oCcY29yZS1uYXRpdmXigJ0gd291bGQgbm8gbG9uZ2VyIHRy
+aWdnZXIgdW5uZWVkZWQgZ2xvYmFsIHJlYnVpbGRpbmcuPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9u
+dCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjEycHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48
+Zm9udCBjb2xvcj0iIzFGNDk3RCI+VHJldm9yOiBMU0IgcmVtb3ZhbC4gTFRQIGxpa2UgTFNCPyBS
+aWNoYXJkOiBMVFAgc3VwcG9ydGVkLCBMU0IgZGVhZC48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250
+IGNvbG9yPSIjMUY0OTdEIj4mbmJzcDs8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIj
+MUY0OTdEIj5NaWNoYWVsOiBNYWlsaW5nIGxpc3QgdHJhbnNpdGlvbiBzdGlsbCBpbiBwcm9ncmVz
+cy4gTGlzdHMgd2lsbCBiZWNvbWUg4oCcbGlzdC5wcm9qZWN0Lm9yZ+KAnS48L2ZvbnQ+PC9kaXY+
+DQo8ZGl2Pjxmb250IGZhY2U9IlRpbWVzIE5ldyBSb21hbiIgc2l6ZT0iMyIgY29sb3I9IiMxRjQ5
+N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9k
+aXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj5Kb3NodWE6IFpvb20gbGlua3MgZm9yIHRo
+aXMgbWVldGluZyBhcmUgd3JvbmcuIE1pY2hhZWw6IHRoZXJlIGFyZSBzZXZlcmFsIGxpbmtzIGZv
+ciB0aGlzIHRpbWUgc2xvdCBmb3IgdGhlIHR3byBvdmVybGFwcGluZyBtZWV0aW5ncy4gV2lsbCB0
+cnkgdG8gY29uc29saWRhdGUgb24gdGhlIG1vcmUgcG9wdWxhciBsaW5rIChvciBtYXkgY2FuY2Vs
+IGJvdGggYW5kIGNyZWF0ZSBhIG5ldyBvbmUpLiBXaWxsDQphbHNvIG5lZWQgdG8gdXBkYXRlIEdv
+b2dsZSBDYWxlbmRhci48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IlRpbWVzIE5ldyBS
+b21hbiIgc2l6ZT0iMyIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTJw
+dDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdE
+Ij4tIERhdmlkPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4i
+IHNpemU9IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7Ij4m
+bmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9t
+YW4iIHNpemU9IjMiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPiZuYnNwOzwvc3Bhbj48
+L2ZvbnQ+PC9kaXY+DQo8L3NwYW4+PC9mb250Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
+--_000_5E53D14CE4667A45B9A06760DE5D13D0FAD3DC3FALAMBDcorpadwrs_--
