@@ -1,52 +1,74 @@
-Return-Path: <andy.pont@sdcsystems.com>
+Return-Path: <jpewhacker@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2CF5AE00D44; Thu, 18 Jul 2019 07:20:57 -0700 (PDT)
+	id 9B503E00D45; Thu, 18 Jul 2019 08:26:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	MIME_QP_LONG_LINE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jpewhacker[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [216.40.44.80 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
-Received: from smtprelay.hostedemail.com (smtprelay0080.hostedemail.com
-	[216.40.44.80])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A034E00931
-	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 07:20:55 -0700 (PDT)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
-	[216.40.38.60])
-	by smtprelay06.hostedemail.com (Postfix) with ESMTP id D24A418223257
-	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 14:20:54 +0000 (UTC)
-X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
-X-HE-Tag: mouth83_5f307338bc51b
-X-Filterd-Recvd-Size: 4424
-Received: from [192.168.10.100] (unknown [5.133.40.160])
-	(Authenticated sender: andy.pont@sdcsystems.com)
-	by omf05.hostedemail.com (Postfix) with ESMTPA
-	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 14:20:53 +0000 (UTC)
-From: "Andy Pont" <andy.pont@sdcsystems.com>
-To: Yocto-mailing-list <yocto@yoctoproject.org>
-Date: Thu, 18 Jul 2019 14:20:52 +0000
-Message-Id: <em63551664-00f9-4739-a4b7-be1cbb48c459@andys-imac.local>
-In-Reply-To: <em5fc92910-8a05-49f2-8de4-549a958d3bfb@andys-imac.local>
-References: <em1f413de5-81b2-4304-ba58-358a033d5bf7@andys-imac.local>
-	<CAJTo0LZ54xu1as_EtmenHkTxq0JmonmUUm24ZnoaVWO3ujDVDw@mail.gmail.com>
-	<emab60b5bf-fc36-4f84-9f82-34972ce7b708@andys-imac.local>
-	<19139793-90fa-6f48-729b-71327366a6f6@gmail.com>
-	<emc0ea84ff-4bf5-4b4e-89c1-299102a74f86@andys-imac.local>
-	<CAJTo0LYmuCZma7ERtbU7ujX9OUVXLqGEe7qfmdN6OjxSmzgKvQ@mail.gmail.com>
-	<em5fc92910-8a05-49f2-8de4-549a958d3bfb@andys-imac.local>
-User-Agent: eM_Client/7.2.35700.0
-Mime-Version: 1.0
-Subject: Re: wpewebkit, cog and libgles2
+	*      [209.85.166.49 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com
+	[209.85.166.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C588E00B8E
+	for <yocto@lists.yoctoproject.org>;
+	Thu, 18 Jul 2019 08:25:59 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id q22so52066744iog.4
+	for <yocto@lists.yoctoproject.org>;
+	Thu, 18 Jul 2019 08:25:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=OE2HBmVuA965//dUb5bN7Tjspz0/j/MMbfvaAL/3v7s=;
+	b=FUdgkVaHdmrNM81iJ7dJMvcz/rwSZJR1hMBViJPQVz/Qt14rrllYlHe92C4fmkT/ks
+	eL2WUS6+tU4gQXULo+NbqMRh6S8T/q6/DdCFhisPKhYT725rC60yVolt9i+krCA6S6uU
+	i98UPB1KwvIw+T/Rz4q0VvoBPCHPH8/c8P6gdY/tbag2P1yDnwVR5VQ3nG03hNeg6cxe
+	m6to8MgsvVssi/W3zdSo1x5LjAUYUHX4H8hq+nvSaFZP6fOwID4A5IgQspFMDHp0S8PO
+	uLcAtJC512Q0HgKA0kn6sMwmU/bOd3FZVP51wyYh+hIlVzy4tzWQLV3eT5BonJGedSjk
+	kM7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=OE2HBmVuA965//dUb5bN7Tjspz0/j/MMbfvaAL/3v7s=;
+	b=el8DYxumuVcRTVtayU3k51HdETaBwCkahQR2AUL5fF5BQZ9iSbWe54dn2sfx20b233
+	egq2nrd0KknxZmNZnqtML4ApwWYjowZgNOKqt8isH/hw3aH4I1Z6j4smmL7VDCL4Ndtc
+	N0Fad6nkHAXXT4sH/AIJ/vSz6MiSM6UzIjLe4Utus8lb0e7kNeAkCKEXf0jlAAmEn5FE
+	agRKEoQx9K61SidgHtlKFDZT+Iq+lJgqtXye5IcpPRq9+xuV14pz+g+Q4QdUuASOvfA5
+	loSqA2QrgUHAQWAUR2QCWJcYUJRUflR9BGpz6YKBG1KgRRzLdrL1shHWj/wJvUWcVxFC
+	flyg==
+X-Gm-Message-State: APjAAAVnNqrgN7HFmILBkQYEMYxYyI2yhS90z5Kq5g1f6c8hpLTqlpNl
+	8uiA5TW+jquu0uE2uRogqb3nlSTr
+X-Google-Smtp-Source: APXvYqwAPRS/oIGItomQN+PGW8DNDN9A6ovQLBKKHhUiXaSJ72vKv7SfXgmC7zPUiJ2JTwlKB00xig==
+X-Received: by 2002:a5d:9957:: with SMTP id v23mr42392174ios.117.1563463559236;
+	Thu, 18 Jul 2019 08:25:59 -0700 (PDT)
+Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
+	by smtp.gmail.com with ESMTPSA id
+	c11sm15579919ioi.72.2019.07.18.08.25.58
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Thu, 18 Jul 2019 08:25:58 -0700 (PDT)
+From: Joshua Watt <jpewhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+To: yocto@lists.yoctoproject.org
+Date: Thu, 18 Jul 2019 10:25:36 -0500
+Message-Id: <20190718152536.28368-1-JPEWhacker@gmail.com>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Subject: [meta-mingw][PATCH] bzip2: Remove bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Andy Pont <andy.pont@sdcsystems.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -55,56 +77,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Jul 2019 14:20:57 -0000
-Content-Type: multipart/alternative;
-	boundary="------=_MB7CF4B4A0-67B3-4056-A166-073476AFC233"
+X-List-Received-Date: Thu, 18 Jul 2019 15:26:00 -0000
+Content-Transfer-Encoding: 8bit
 
---------=_MB7CF4B4A0-67B3-4056-A166-073476AFC233
-Content-Type: text/plain; format=flowed; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+The patch being applied by meta-mingw has been upstreamed as of 1.0.8,
+so there is no need to have a bbappend anymore.
 
-I wrote...=0A=0A>The conf/distro/poky-atmel.conf file in meta-atmel contain=
-s the =0A>following line:=0A>=0A>DISTRO_FEATURES_remove ?=3D "opengl waylan=
-d x11 3g nfc pulseaudio=E2=80=9D=0A>=0A>Switching back to the regular DISTR=
-O =3D =E2=80=9Cpoky=E2=80=9D seems to have got it =0A>building again.=0ASwi=
-tching back to poky caused a whole host of other issues.  I have =0Amanaged =
-to create a configuration that fully builds cog and wpewebkit =0Ausing pok=
-y-atmel with wpebackend-rdk, wayland and core-image-weston.=0A=0AWhen I boo=
-t the board a desktop appears with an icon that opens a =0AWayland terminal=
-.   I=E2=80=99m trying to find some information on how to =0Areplace that s=
-o that it starts Cog automatically at boot up but not =0Afinding anything h=
-elpful.  I know that Cog itself works as I can start =0Ait up using the deb=
-ug terminal.=0A=0A-Andy.=0A
+Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
+---
+ .../0001-Fix-include-path-separator.patch     | 33 -------------------
+ recipes-extended/bzip2/bzip2_1.0.7.bbappend   |  4 ---
+ 2 files changed, 37 deletions(-)
+ delete mode 100644 recipes-extended/bzip2/bzip2/0001-Fix-include-path-separator.patch
+ delete mode 100644 recipes-extended/bzip2/bzip2_1.0.7.bbappend
 
---------=_MB7CF4B4A0-67B3-4056-A166-073476AFC233
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+diff --git a/recipes-extended/bzip2/bzip2/0001-Fix-include-path-separator.patch b/recipes-extended/bzip2/bzip2/0001-Fix-include-path-separator.patch
+deleted file mode 100644
+index 4c43b7a..0000000
+--- a/recipes-extended/bzip2/bzip2/0001-Fix-include-path-separator.patch
++++ /dev/null
+@@ -1,33 +0,0 @@
+-From 84c8769b52c63cce8a8a413e5fcbad1a65681d46 Mon Sep 17 00:00:00 2001
+-From: Joshua Watt <JPEW.hacker@gmail.com>
+-Date: Tue, 2 Jul 2019 13:06:30 -0500
+-Subject: [PATCH] Fix include path separator
+-
+-Changes the include path separator for Windows builds to use "/" instead
+-of "\". Windows has no problems with using a forward slash as a path
+-separator, but using a backslash causes problems when attempting to
+-cross compile for other platforms (for example, when trying to cross
+-compile for MinGW from Linux).
+-
+-Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
+-Upstream-Status: Submitted [https://sourceware.org/ml/bzip2-devel/2019-q3/msg00004.html]
+----
+- bzip2.c | 2 +-
+- 1 file changed, 1 insertion(+), 1 deletion(-)
+-
+-diff --git a/bzip2.c b/bzip2.c
+-index e362c65..be3b3be 100644
+---- a/bzip2.c
+-+++ b/bzip2.c
+-@@ -128,7 +128,7 @@
+- #if BZ_LCCWIN32
+- #   include <io.h>
+- #   include <fcntl.h>
+--#   include <sys\stat.h>
+-+#   include <sys/stat.h>
+- 
+- #   define NORETURN       /**/
+- #   define PATH_SEP       '\\'
+--- 
+-2.21.0
+-
+diff --git a/recipes-extended/bzip2/bzip2_1.0.7.bbappend b/recipes-extended/bzip2/bzip2_1.0.7.bbappend
+deleted file mode 100644
+index 3cc4b01..0000000
+--- a/recipes-extended/bzip2/bzip2_1.0.7.bbappend
++++ /dev/null
+@@ -1,4 +0,0 @@
+-
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-
+-SRC_URI_append_mingw32 = " file://0001-Fix-include-path-separator.patch"
+-- 
+2.21.0
 
-<html><head><style id=3D"css_styles">blockquote.cite { margin-left: 5px; ma=
-rgin-right: 0px; padding-left: 10px; padding-right:0px; border-left: 1px so=
-lid #cccccc }=0Ablockquote.cite2 {margin-left: 5px; margin-right: 0px; padd=
-ing-left: 10px; padding-right:0px; border-left: 1px solid #cccccc; margin-t=
-op: 3px; padding-top: 0px; }=0Aa img { border: 0px; }=0Ali[style=3D'text-al=
-ign: center;'], li[style=3D'text-align: right;'] {  list-style-position: in=
-side;}=0Abody { font-family: Verdana; font-size: 12px;   }</style></head><b=
-ody class=3D"plain"><div><div>I wrote...</div>=0A</div><div><br /></div>=0A=
-<div id=3D"x2dba15263e4345f"><blockquote type=3D"cite" class=3D"cite2"><div =
-id=3D"xf02825291217422"><div id=3D"xf02825291217422">The conf/distro/poky-=
-atmel.conf file in meta-atmel contains the following line:</div></div><div=
- id=3D"xf02825291217422"><br /></div><div id=3D"xf02825291217422">DISTRO_FEA=
-TURES_remove ?=3D "opengl wayland x11 3g nfc pulseaudio=E2=80=9D</div><div=
- id=3D"xf02825291217422"><br /></div><div id=3D"xf02825291217422">Switching=
- back to the regular DISTRO =3D =E2=80=9Cpoky=E2=80=9D seems to have got it=
- building again.</div></blockquote>Switching back to poky caused a whole hos=
-t of other issues. =C2=A0I have managed to create a configuration that full=
-y builds cog and wpewebkit using poky-atmel with wpebackend-rdk, wayland an=
-d core-image-weston.</div><div id=3D"x2dba15263e4345f"><br /></div><div id=
-=3D"x2dba15263e4345f">When I boot the board a desktop appears with an icon=
- that opens a Wayland terminal. =C2=A0 I=E2=80=99m trying to find some infor=
-mation on how to replace that so that it starts Cog automatically at boot u=
-p but not finding anything helpful. =C2=A0I know that Cog itself works as I =
-can start it up using the debug terminal.</div><div id=3D"x2dba15263e4345f=
-"><br /></div><div id=3D"x2dba15263e4345f">-Andy.</div><div id=3D"x2dba1526=
-3e4345f"><br /></div>=0A</body></html>
 
---------=_MB7CF4B4A0-67B3-4056-A166-073476AFC233--
