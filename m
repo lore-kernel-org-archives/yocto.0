@@ -1,40 +1,60 @@
-Return-Path: <david.reyna@windriver.com>
+Return-Path: <wpdster@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0D58FE00D44; Thu, 18 Jul 2019 09:04:46 -0700 (PDT)
+	id DEEA5E00B33; Thu, 18 Jul 2019 14:26:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BEC6E00AB4
-	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 09:04:43 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x6IG4hVM017291
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 09:04:43 -0700 (PDT)
-Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.115]) by
-	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.03.0468.000;
-	Thu, 18 Jul 2019 09:04:43 -0700
-From: "Reyna, David" <david.reyna@windriver.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Minutes: Yocto Project Monthly Meeting 7/16/2019
-Thread-Index: AdU9dPzw7C2ldqY7Ql6gSlEB/a2Vnw==
-Date: Thu, 18 Jul 2019 16:04:42 +0000
-Message-ID: <5E53D14CE4667A45B9A06760DE5D13D0FAD3DC3F@ALA-MBD.corp.ad.wrs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.11.119.169]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (wpdster[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.181 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com
+	[209.85.222.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC8DCE00A96
+	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 14:26:45 -0700 (PDT)
+Received: by mail-qk1-f181.google.com with SMTP id d15so21674454qkl.4
+	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 14:26:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Z3g1MnclEzpcCtn9kcOZQQPIrjStj2R9tVUlLBKOAoU=;
+	b=m5C/KeSnDITICbD6j/vqEJeT9/zK5+h/Ll7bBfZMKE+eOzfYUFEldpzwr9OOHjACDg
+	XnpWyAM19unhHwTtpSQQLk/CmjVfHEivSffZciWw9Ev8ZBK0I4IdS/FO4sWLQuViYgSj
+	uAPi8sMe7H99QIDhsQxQff4HZg926qzO6ni+7N0mW8Avo8LSUzBDu5ijC8jFEvVMYYBM
+	5Ntl8MI3/ZmRQKunitrs6yLU0crMswqX+Pb1xaM92L0kYqlLLkmksebzYWGEB7P9UfzA
+	McH3AFBtaRt1vWq/VBksaixI3eYNd4ZdAV9ZlTJ1KdaJ+9+NRHIWAVZf8lulqiog+wTP
+	0Kxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Z3g1MnclEzpcCtn9kcOZQQPIrjStj2R9tVUlLBKOAoU=;
+	b=JbLXf/XfSD/bw/K39u7f86Y+Xjj2kY1xhcR8JM/lVWTWJY7i7dV7Xo1obBzt79kZc0
+	cJTxrVsl2Qudaui/wHqO2sz72PlDj6CTt61NQxr22vhQ2y6bYdJ8ElAii4vCraGH30ek
+	fS4jcpg+wGhPpBU2PmcrKTsktLvSranpWKeHAXqqMcTl1muSd7V+6Gysa1T7bwSYi8Fo
+	U9vhUN5l5DPVlYdmzmKxv11TSDFcrpa1Q7ikMEvhv5k+bTSpnRHu/5e0Ab1yBuyRddGo
+	HpF8CEoLtZeXUfsZ+JWt8o9U1ITGX9cCgjXCXTs1BY26X2j86juifmXVzwaTSe4QxRS6
+	TMHQ==
+X-Gm-Message-State: APjAAAWXdFxUyX1shBlV6ARBp8PjEcTTMSxSTBlW+3oZ/JpDF1DxmUJQ
+	yBZLFOzZaz4wgj9ePK8pgSDHeTbjS8ooMuWMn1bZIbHo
+X-Google-Smtp-Source: APXvYqynza2MMwMHy87WgeljslMrXKZck/gOWyozTFA+E73KLTqKwxPmQzTZ7IeGJYQ8jLfV/BybJFOJu6WphUWZbfg=
+X-Received: by 2002:a37:4b46:: with SMTP id y67mr32140383qka.66.1563485204922; 
+	Thu, 18 Jul 2019 14:26:44 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "'JOLLEY, STEPHEN'" <stephen.k.jolley@intel.com>
-Subject: Minutes: Yocto Project Monthly Meeting 7/16/2019
+From: Patrick Doyle <wpdster@gmail.com>
+Date: Thu, 18 Jul 2019 17:26:19 -0400
+Message-ID: <CAF_dkJDbqR8yPWRYX_2wT+Pk1+cuNcntWizg3hhZnA_vVVwnaA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: How to specify a different kernel for an image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,143 +66,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Jul 2019 16:04:46 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_5E53D14CE4667A45B9A06760DE5D13D0FAD3DC3FALAMBDcorpadwrs_"
+X-List-Received-Date: Thu, 18 Jul 2019 21:26:47 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---_000_5E53D14CE4667A45B9A06760DE5D13D0FAD3DC3FALAMBDcorpadwrs_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hello All,
+I have a situation where I need to build an image for my machine with
+a different kernel than is specified by
+PREFERRED_PROVIDER_virtual/kernel.  But I also need to build the
+default kernel.  This is for a "manufacturing" image which will
+include the full production image, and then some (and, possibly,
+without some).  The kernel configuration needs to be different for the
+manufacturing image.
 
-WW9jdG8gUHJvamVjdCBNb250aGx5IE1lZXRpbmcNCk1JTlVURVM6IDcvMTYvMjAxOQ0KDQpBdHRl
-bmRlZXM6IFJpY2hhcmQsIEFybWluLCBKb3NodWFXLCBCcnVjZSwgTWljaGFlbCwgIEZyZWRlcmlj
-LCBUaW0sIFZpbmVlbGEsIERhdmlkLCBUcmV2b3INCg0KUlA6DQogICogU3RhdHVzIHVwZGF0ZSB3
-aWxsIGdvIG91dCBsYXRlciB0b2RheTogaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL3Bp
-cGVybWFpbC95b2N0by8yMDE5LUp1bHkvMDQ2MDQyLmh0bWwNCiAgKiBSaWNoYXJkIHdpbGwgbm90
-IGJlIGF0IEVMQyBTYW4gRGllZ28gKGxpbWl0ZWQgY29uZmVyZW5jZSBidWRnZXQpDQoNClRpbTog
-UHl0aG9uIDMuNCBpcyBvbiBEZWJpYW4gOCwgd2FudHMgdG8gbW92ZSBZUCB0byBQeXRob24gMy41
-IGFzIG1pbmltdW0NCg0KQXJtaW46IFdpbGwgd2UgbW92ZSB0byBLZXJuZWwgNS4yPyBCcnVjZTog
-d2Ugd2lsbCBmb2xsb3cgdGhlIHB1Ymxpc2hlZCBZUCBwb2xpY3kgb24ga2VybmVsIHVwZGF0ZXMu
-ICBMVFMgcmVsZWFzZSB0aW1pbmcgaGFzIGJlZW4gY2xvc2UgYW5kL29yIGFmdGVyIFlQIHJlbGVh
-c2UgZGF0ZXMgc28gd2lsbCBwcm9iYWJseSBtaXNzIGFnYWluIHRoaXMgeWVhci4gVGhlIHZlcnNp
-b24gaXMgdXN1YWxseSBwaWNrZWQgYWZ0ZXIgTGludXggUGx1bWJlcnMuDQoNCkFybWluOiBMU0Ig
-dmVyc3VzIExUUz8gUmljaGFyZDogdGhlcmUgYXJlIHR3byB0ZXN0cywgKGEpIFBva3kgTFNCIGFu
-ZCAoYikgS2VybmVsIFguWSwgYW5kIHdlIHByb3Bvc2UgdG8gZHJvcCB0aGUgUG9reSBMU0IgdGVz
-dC4NCg0KQnJ1Y2U6IEtlcm5lbCA1LjMgd2lsbCBub3QgYmUgcmVhZHkgZm9yIG91ciByZWxlYXNl
-LCBzbyBwcm9iYWJseSA1LjIgd2lsbCBiZSB0aGUgbnVtYmVyLg0KDQpSaWNoYXJkOiBjb25zaWRl
-cmluZyB0byBudW1iZXIgWVAgcmVsZWFzZSBhcyAzLjAgaW5zdGVhZCBvZiAyLjgsIGJlY2F1c2Ug
-b2YgbWFueSBjaGFuZ2VzIChlc3BlY2lhbGx5IHJ1bnF1ZXVlKS4gVGltIG5vdGVkIGFsc28gdGhl
-IG1ham9yIHRyYW5zaXRpb24gdG8gUHl0aG9uIDMsIGFuZCBNaWNoYWVsIG5vdGVkIHdlIGRpZCBh
-IHNpbWlsYXIganVtcCBmb3IgWVAtMi4wLiBRdWVzdGlvbjogd2lsbCB0aGVyZSBiZSBhIGZ1bmN0
-aW9uYWwgY2hhbmdlIHdpdGggdGhpcyBudW1iZXJpbmcgdHJhbnNpdGlvbj8gUmljaGFyZDogbm8u
-DQoNClJpY2hhcmQ6IHF1ZXN0aW9uIHRvIEpvc2h1YSBhYm91dCBoYXNoIHN0YXRlIGVxdWl2YWxl
-bmN5PyBSdW5xdWV1ZSBjb3VsZCBzdXBwb3J0IGl0LiBKb3NodWE6IGN1cnJlbnRseSB0aGVyZSBh
-cmUgaXNzdWVzIGluIHRoZSBwZXJzaXN0ZW50IHN0YXRlLiBSaWNoYXJkOiB3b3VsZCBsaWtlIHRo
-aXMgZmVhdHVyZSBmb3IgMy4wLCBhbmQgYXJlIHRoZXJlIGFueSBpbXBsaWNhdGlvbnM/IEpvc2h1
-YTogY2Fubm90IGNvbXBsZXRlIHRoaXMgYW5kIHJlcHJvZHVjaWJpbGl0eSBieSBoaW1zZWxmLiBS
-aWNoYXJkOiBtaWdodCBoZWxwIHdpdGggdGhpcyBlZmZvcnQgc2luY2UgdGhlc2UgY2hhbmdlcyBj
-YW4g4oCccHV0IHVzIG9uIHRoZSBtYXDigJ0uDQoNClRyZXZvcjogd2lsbCBtb3ZlIHRvIGhhc2gg
-ZXF1aXZhbGVuY3kgcmVkdWNlIHJ1bnF1ZXVlIHRpbWU/IFJpY2hhcmQ6IHBvdGVudGlhbCBnYWlu
-cy4gRXZlbiBsb2NhbCBzZXQgY2FuIHJlY2VpdmUgYSBodWdlIHNwZWVkIGdhaW4sIGZvciBleGFt
-cGxlIGEgbm9uLWltcGFjdGluZyBjaGFuZ2UgdG8g4oCcY29yZS1uYXRpdmXigJ0gd291bGQgbm8g
-bG9uZ2VyIHRyaWdnZXIgdW5uZWVkZWQgZ2xvYmFsIHJlYnVpbGRpbmcuDQoNClRyZXZvcjogTFNC
-IHJlbW92YWwuIExUUCBsaWtlIExTQj8gUmljaGFyZDogTFRQIHN1cHBvcnRlZCwgTFNCIGRlYWQu
-DQoNCk1pY2hhZWw6IE1haWxpbmcgbGlzdCB0cmFuc2l0aW9uIHN0aWxsIGluIHByb2dyZXNzLiBM
-aXN0cyB3aWxsIGJlY29tZSDigJxsaXN0LnByb2plY3Qub3Jn4oCdLg0KDQpKb3NodWE6IFpvb20g
-bGlua3MgZm9yIHRoaXMgbWVldGluZyBhcmUgd3JvbmcuIE1pY2hhZWw6IHRoZXJlIGFyZSBzZXZl
-cmFsIGxpbmtzIGZvciB0aGlzIHRpbWUgc2xvdCBmb3IgdGhlIHR3byBvdmVybGFwcGluZyBtZWV0
-aW5ncy4gV2lsbCB0cnkgdG8gY29uc29saWRhdGUgb24gdGhlIG1vcmUgcG9wdWxhciBsaW5rIChv
-ciBtYXkgY2FuY2VsIGJvdGggYW5kIGNyZWF0ZSBhIG5ldyBvbmUpLiBXaWxsIGFsc28gbmVlZCB0
-byB1cGRhdGUgR29vZ2xlIENhbGVuZGFyLg0KDQotIERhdmlkDQoNCg0K
+What is the recommended mechanism to override the value of
+PREFERRED_PROVIDE_virtual/kernel in my manufacturing-image.bb recipe?
 
---_000_5E53D14CE4667A45B9A06760DE5D13D0FAD3DC3FALAMBDcorpadwrs_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+--wpd
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
-dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
-LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
-ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
-PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExcHQ7Ij4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPllvY3RvIFBy
-b2plY3QgTW9udGhseSBNZWV0aW5nPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFG
-NDk3RCI+TUlOVVRFUzogNy8xNi8yMDE5PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0i
-IzFGNDk3RCI+Jm5ic3A7PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFGNDk3RCI+
-QXR0ZW5kZWVzOiBSaWNoYXJkLCBBcm1pbiwgSm9zaHVhVywgQnJ1Y2UsIE1pY2hhZWwsJm5ic3A7
-IEZyZWRlcmljLCBUaW0sIFZpbmVlbGEsIERhdmlkLCBUcmV2b3I8L2ZvbnQ+PC9kaXY+DQo8ZGl2
-Pjxmb250IGNvbG9yPSIjMUY0OTdEIj4mbmJzcDs8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNv
-bG9yPSIjMUY0OTdEIj5SUDogPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFGNDk3
-RCI+Jm5ic3A7ICogU3RhdHVzIHVwZGF0ZSB3aWxsIGdvIG91dCBsYXRlciB0b2RheTogPGEgaHJl
-Zj0iaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL3BpcGVybWFpbC95b2N0by8yMDE5LUp1
-bHkvMDQ2MDQyLmh0bWwiPjxmb250IGNvbG9yPSJibHVlIj48dT5odHRwczovL2xpc3RzLnlvY3Rv
-cHJvamVjdC5vcmcvcGlwZXJtYWlsL3lvY3RvLzIwMTktSnVseS8wNDYwNDIuaHRtbDwvdT48L2Zv
-bnQ+PC9hPjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPiZuYnNwOyAq
-IFJpY2hhcmQgd2lsbCBub3QgYmUgYXQgRUxDIFNhbiBEaWVnbyAobGltaXRlZCBjb25mZXJlbmNl
-IGJ1ZGdldCk8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IlRpbWVzIE5ldyBSb21hbiIg
-c2l6ZT0iMyIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPiZu
-YnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj5UaW06
-IFB5dGhvbiAzLjQgaXMgb24gRGViaWFuIDgsIHdhbnRzIHRvIG1vdmUgWVAgdG8gUHl0aG9uIDMu
-NSBhcyBtaW5pbXVtPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9t
-YW4iIHNpemU9IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7
-Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFGNDk3RCI+
-QXJtaW46IFdpbGwgd2UgbW92ZSB0byBLZXJuZWwgNS4yPyBCcnVjZTogd2Ugd2lsbCBmb2xsb3cg
-dGhlIHB1Ymxpc2hlZCBZUCBwb2xpY3kgb24ga2VybmVsIHVwZGF0ZXMuJm5ic3A7IExUUyByZWxl
-YXNlIHRpbWluZyBoYXMgYmVlbiBjbG9zZSBhbmQvb3IgYWZ0ZXIgWVAgcmVsZWFzZSBkYXRlcyBz
-byB3aWxsIHByb2JhYmx5IG1pc3MgYWdhaW4gdGhpcyB5ZWFyLiBUaGUgdmVyc2lvbiBpcyB1c3Vh
-bGx5IHBpY2tlZA0KYWZ0ZXIgTGludXggUGx1bWJlcnMuPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9u
-dCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjEycHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48
-Zm9udCBjb2xvcj0iIzFGNDk3RCI+QXJtaW46IExTQiB2ZXJzdXMgTFRTPyBSaWNoYXJkOiB0aGVy
-ZSBhcmUgdHdvIHRlc3RzLCAoYSkgUG9reSBMU0IgYW5kIChiKSBLZXJuZWwgWC5ZLCBhbmQgd2Ug
-cHJvcG9zZSB0byBkcm9wIHRoZSBQb2t5IExTQiB0ZXN0LjwvZm9udD48L2Rpdj4NCjxkaXY+PGZv
-bnQgY29sb3I9IiMxRjQ5N0QiPiZuYnNwOzwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9
-IiMxRjQ5N0QiPkJydWNlOiBLZXJuZWwgNS4zIHdpbGwgbm90IGJlIHJlYWR5IGZvciBvdXIgcmVs
-ZWFzZSwgc28gcHJvYmFibHkgNS4yIHdpbGwgYmUgdGhlIG51bWJlci48L2ZvbnQ+PC9kaXY+DQo8
-ZGl2Pjxmb250IGZhY2U9IlRpbWVzIE5ldyBSb21hbiIgc2l6ZT0iMyIgY29sb3I9IiMxRjQ5N0Qi
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+
-DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj5SaWNoYXJkOiBjb25zaWRlcmluZyB0byBudW1i
-ZXIgWVAgcmVsZWFzZSBhcyAzLjAgaW5zdGVhZCBvZiAyLjgsIGJlY2F1c2Ugb2YgbWFueSBjaGFu
-Z2VzIChlc3BlY2lhbGx5IHJ1bnF1ZXVlKS4gVGltIG5vdGVkIGFsc28gdGhlIG1ham9yIHRyYW5z
-aXRpb24gdG8gUHl0aG9uIDMsIGFuZCBNaWNoYWVsIG5vdGVkIHdlIGRpZCBhIHNpbWlsYXIganVt
-cCBmb3IgWVAtMi4wLiBRdWVzdGlvbjogd2lsbCB0aGVyZQ0KYmUgYSBmdW5jdGlvbmFsIGNoYW5n
-ZSB3aXRoIHRoaXMgbnVtYmVyaW5nIHRyYW5zaXRpb24/IFJpY2hhcmQ6IG5vLjwvZm9udD48L2Rp
-dj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPiZuYnNwOzwvZm9udD48L2Rpdj4NCjxkaXY+
-PGZvbnQgY29sb3I9IiMxRjQ5N0QiPlJpY2hhcmQ6IHF1ZXN0aW9uIHRvIEpvc2h1YSBhYm91dCBo
-YXNoIHN0YXRlIGVxdWl2YWxlbmN5PyBSdW5xdWV1ZSBjb3VsZCBzdXBwb3J0IGl0LiBKb3NodWE6
-IGN1cnJlbnRseSB0aGVyZSBhcmUgaXNzdWVzIGluIHRoZSBwZXJzaXN0ZW50IHN0YXRlLiBSaWNo
-YXJkOiB3b3VsZCBsaWtlIHRoaXMgZmVhdHVyZSBmb3IgMy4wLCBhbmQgYXJlIHRoZXJlIGFueSBp
-bXBsaWNhdGlvbnM/IEpvc2h1YTogY2Fubm90DQpjb21wbGV0ZSB0aGlzIGFuZCByZXByb2R1Y2li
-aWxpdHkgYnkgaGltc2VsZi4gUmljaGFyZDogbWlnaHQgaGVscCB3aXRoIHRoaXMgZWZmb3J0IHNp
-bmNlIHRoZXNlIGNoYW5nZXMgY2FuIOKAnHB1dCB1cyBvbiB0aGUgbWFw4oCdLjwvZm9udD48L2Rp
-dj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPiZuYnNwOzwvZm9udD48L2Rpdj4NCjxkaXY+
-PGZvbnQgY29sb3I9IiMxRjQ5N0QiPlRyZXZvcjogd2lsbCBtb3ZlIHRvIGhhc2ggZXF1aXZhbGVu
-Y3kgcmVkdWNlIHJ1bnF1ZXVlIHRpbWU/IFJpY2hhcmQ6IHBvdGVudGlhbCBnYWlucy4gRXZlbiBs
-b2NhbCBzZXQgY2FuIHJlY2VpdmUgYSBodWdlIHNwZWVkIGdhaW4sIGZvciBleGFtcGxlIGEgbm9u
-LWltcGFjdGluZyBjaGFuZ2UgdG8g4oCcY29yZS1uYXRpdmXigJ0gd291bGQgbm8gbG9uZ2VyIHRy
-aWdnZXIgdW5uZWVkZWQgZ2xvYmFsIHJlYnVpbGRpbmcuPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9u
-dCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjEycHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48
-Zm9udCBjb2xvcj0iIzFGNDk3RCI+VHJldm9yOiBMU0IgcmVtb3ZhbC4gTFRQIGxpa2UgTFNCPyBS
-aWNoYXJkOiBMVFAgc3VwcG9ydGVkLCBMU0IgZGVhZC48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250
-IGNvbG9yPSIjMUY0OTdEIj4mbmJzcDs8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIj
-MUY0OTdEIj5NaWNoYWVsOiBNYWlsaW5nIGxpc3QgdHJhbnNpdGlvbiBzdGlsbCBpbiBwcm9ncmVz
-cy4gTGlzdHMgd2lsbCBiZWNvbWUg4oCcbGlzdC5wcm9qZWN0Lm9yZ+KAnS48L2ZvbnQ+PC9kaXY+
-DQo8ZGl2Pjxmb250IGZhY2U9IlRpbWVzIE5ldyBSb21hbiIgc2l6ZT0iMyIgY29sb3I9IiMxRjQ5
-N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9k
-aXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj5Kb3NodWE6IFpvb20gbGlua3MgZm9yIHRo
-aXMgbWVldGluZyBhcmUgd3JvbmcuIE1pY2hhZWw6IHRoZXJlIGFyZSBzZXZlcmFsIGxpbmtzIGZv
-ciB0aGlzIHRpbWUgc2xvdCBmb3IgdGhlIHR3byBvdmVybGFwcGluZyBtZWV0aW5ncy4gV2lsbCB0
-cnkgdG8gY29uc29saWRhdGUgb24gdGhlIG1vcmUgcG9wdWxhciBsaW5rIChvciBtYXkgY2FuY2Vs
-IGJvdGggYW5kIGNyZWF0ZSBhIG5ldyBvbmUpLiBXaWxsDQphbHNvIG5lZWQgdG8gdXBkYXRlIEdv
-b2dsZSBDYWxlbmRhci48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZhY2U9IlRpbWVzIE5ldyBS
-b21hbiIgc2l6ZT0iMyIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTJw
-dDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdE
-Ij4tIERhdmlkPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4i
-IHNpemU9IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7Ij4m
-bmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9t
-YW4iIHNpemU9IjMiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPiZuYnNwOzwvc3Bhbj48
-L2ZvbnQ+PC9kaXY+DQo8L3NwYW4+PC9mb250Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
-
---_000_5E53D14CE4667A45B9A06760DE5D13D0FAD3DC3FALAMBDcorpadwrs_--
