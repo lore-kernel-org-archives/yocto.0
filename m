@@ -1,61 +1,87 @@
-Return-Path: <gabbla.malist@gmail.com>
+Return-Path: <maciej.pijanowski@3mdeb.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F271DE00B33; Wed, 17 Jul 2019 23:51:44 -0700 (PDT)
+	id 5BA61E00D8A; Thu, 18 Jul 2019 00:04:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (gabbla.malist[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.67 listed in list.dnswl.org]
-Received: from mail-lf1-f67.google.com (mail-lf1-f67.google.com
-	[209.85.167.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88896E009FA
-	for <yocto@yoctoproject.org>; Wed, 17 Jul 2019 23:51:42 -0700 (PDT)
-Received: by mail-lf1-f67.google.com with SMTP id 62so13470001lfa.8
-	for <yocto@yoctoproject.org>; Wed, 17 Jul 2019 23:51:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=HV6XksThjLZ7gVefwK8wjglmTGtXwqe1C/ryrR0VucU=;
-	b=cHiSziM/d2a/IV9cgICd3odN1rUFTUEDoCaXKnBvcobC0L3yVCh1XtkbI2T7oabnsD
-	GvWy3PDkaEflYn4vb/I3CRkhedDVyCzgssULPRjHmrb82/awFToss32UOc2Zq8gSKpo2
-	o3ho8UT7sv+/08R60on+JwfbW1pUken5pM8Rd9cadRY4vaO18spaX5YpehZQp0aj50Oq
-	Ctsh6GekN3P7MUQtdW2U8AF4mKfgASKAfoew06LWvLGGFwZLeqbJf5xMLWUSZCT94F+V
-	y/uwcuU3Vi2BoWNnxDaA3pVB07Wq0W3hSmqMgHUG5eF493svYJrOuS1x6dfyTcTxaZ5m
-	v+Tg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=HV6XksThjLZ7gVefwK8wjglmTGtXwqe1C/ryrR0VucU=;
-	b=Muig91ohcbxu7aLeLAtyHOjkP7scBHLqeaqJor4s0SRdmXhO0OVuY6/VS27l9nsdE5
-	2Pw8OEIBjFgWTF7dv2iSQXgSrEVONIsOGJelS90rZ6TyFqXSxOKSz3vtOiJ+wqA2r92Q
-	dzj1SxmKifNho++qhukR21ESmPErKcRGp+Z8K8/3PUCHRDenefdDY8f/g0JsquXjsRBh
-	v95bL2THSYbqT+J/fjZiJipxmVKp1lojWbjVwzCLP7MPikBt3jWnHF6mV0dCWyRGWgsI
-	hipljx3klYixCk5eWghBRxxqz0wGYWQGyONAsw7XWw3hWGynvMzz6VsMSKHzm6U7mlyI
-	PPRQ==
-X-Gm-Message-State: APjAAAUN+k10KHVW9MARQAlWaNH+SA+oquv1Jnwp/62hWG4Z3LyNezrx
-	pEvN0Yi8AhQkUThN/yUlyiUzpIJIQGKwuot7mC3L4DQz
-X-Google-Smtp-Source: APXvYqxqlQ3YsEaBe+SnVXAEYxbqGXvuzcTPavM/yLmWxP9vpR/EJA5Hb/64NUIyvVKFs0fgC91KWw1cVq2yNwnmJ4Q=
-X-Received: by 2002:ac2:419a:: with SMTP id z26mr20335926lfh.21.1563432701459; 
-	Wed, 17 Jul 2019 23:51:41 -0700 (PDT)
+	*      [46.105.56.76 listed in list.dnswl.org]
+X-Greylist: delayed 250 seconds by postgrey-1.32 at yocto-www;
+	Thu, 18 Jul 2019 00:04:01 PDT
+Received: from 6.mo179.mail-out.ovh.net (6.mo179.mail-out.ovh.net
+	[46.105.56.76])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B8D9E00B8F
+	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 00:04:01 -0700 (PDT)
+Received: from player786.ha.ovh.net (unknown [10.108.35.131])
+	by mo179.mail-out.ovh.net (Postfix) with ESMTP id 8B125137125
+	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 08:54:11 +0200 (CEST)
+Received: from 3mdeb.com (85-222-117-222.dynamic.chello.pl [85.222.117.222])
+	(Authenticated sender: maciej.pijanowski@3mdeb.com)
+	by player786.ha.ovh.net (Postfix) with ESMTPSA id 26E7382212E1
+	for <yocto@yoctoproject.org>; Thu, 18 Jul 2019 06:54:11 +0000 (UTC)
+To: yocto@yoctoproject.org
+References: <2df6a579f4b90431256b6e19a41d852f@vivaldi.net>
+From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=maciej.pijanowski@3mdeb.com; keydata=
+	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
+	0f2bcrTp9w==
+Message-ID: <a5abd61c-39b6-6dd6-43b6-2344f6311b2c@3mdeb.com>
+Date: Thu, 18 Jul 2019 08:54:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.2
 MIME-Version: 1.0
-From: Gabriele Zampieri <gabbla.malist@gmail.com>
-Date: Thu, 18 Jul 2019 08:51:30 +0200
-Message-ID: <CAAx3WaB4Gue=O76b86yhrxPuFKLzSE2_0yCUQJLbNzN4t+GDFw@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: eSDK: python3.5.real: No such file or directory
+In-Reply-To: <2df6a579f4b90431256b6e19a41d852f@vivaldi.net>
+X-Ovh-Tracer-Id: 1698701488687034025
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduvddrieeggdduuddvucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenuc
+Subject: Re: List of Supported Python versions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,43 +93,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 18 Jul 2019 06:51:45 -0000
-Content-Type: multipart/alternative; boundary="000000000000cd0093058def0a37"
+X-List-Received-Date: Thu, 18 Jul 2019 07:04:02 -0000
+X-Groupsio-MsgNum: 45986
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="J6fwnOquq0P7QSYmBZsB8sXuIQxiJruKk"
 
---000000000000cd0093058def0a37
-Content-Type: text/plain; charset="UTF-8"
+--J6fwnOquq0P7QSYmBZsB8sXuIQxiJruKk
+Content-Type: multipart/mixed; boundary="6XwsqbUlTRHPjkISNHc7p9p0iOIdEFb5F";
+ protected-headers="v1"
+From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
+To: yocto@yoctoproject.org
+Message-ID: <a5abd61c-39b6-6dd6-43b6-2344f6311b2c@3mdeb.com>
+Subject: Re: [yocto] List of Supported Python versions
+References: <2df6a579f4b90431256b6e19a41d852f@vivaldi.net>
+In-Reply-To: <2df6a579f4b90431256b6e19a41d852f@vivaldi.net>
 
-Hi all,
-
-I just created my first eSDK for a custom image. It installs just fine.
-When I try to run "devtool --help" (after sourcing the env setup), I got
-this output:
-/home/user/poky_sdk/sysroots/x86_64-pokysdk-linux/usr/bin/python3: line 5:
-/home/user/poky_sdk/sysroots/x86_64-pokysdk-linux/usr/bin/python3.5.real:
-No such file or directory
-I have python3.5 installed on my host.
-
-Thanks in advance,
-Gabriele
-
---000000000000cd0093058def0a37
-Content-Type: text/html; charset="UTF-8"
+--6XwsqbUlTRHPjkISNHc7p9p0iOIdEFb5F
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
 
-<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>I just created my fi=
-rst eSDK for a custom image. It installs just fine. When I try to run &quot=
-;devtool --help&quot; (after sourcing the env setup), I got this output:</d=
-iv><div style=3D"margin-left:40px"><span style=3D"font-family:courier new,m=
-onospace">/home/user/poky_sdk/sysroots/x86_64-pokysdk-linux/usr/bin/python3=
-: line 5: /home/user/poky_sdk/sysroots/x86_64-pokysdk-linux/usr/bin/python3=
-.5.real: No such file or directory</span></div><div><span style=3D"font-fam=
-ily:courier new,monospace"><font face=3D"arial,sans-serif">I have python3.5=
- installed on my host.</font></span></div><div><span style=3D"font-family:c=
-ourier new,monospace"><font face=3D"arial,sans-serif"><br></font></span></d=
-iv><div><span style=3D"font-family:courier new,monospace"><font face=3D"ari=
-al,sans-serif">Thanks in advance,</font></span></div><div><span style=3D"fo=
-nt-family:courier new,monospace"><font face=3D"arial,sans-serif">Gabriele<b=
-r></font></span></div><div><span style=3D"font-family:courier new,monospace=
-"></span></div></div>
+The link to the search engine:
+https://layers.openembedded.org/layerindex/branch/master/recipes/
 
---000000000000cd0093058def0a37--
+On 18.07.2019 07:41, jaymin.dabhi@vivaldi.net wrote:
+> Hello Team,
+>
+> Which Python, Python-OpenCV, Python-Numpy, Python-Scipy and OpenCV
+> (max)versions are supported in Yocto 2.0.3 (Jethro) distro version?
+>
+> Can I get list of notes in which version of all supported modules have
+> been mentioned?
+>
+>
+> Please let me know.
+>
+> Regards,
+> Jaymin
+
+--=20
+Maciej Pijanowski
+Embedded Systems Engineer
+https://3mdeb.com | @3mdeb_com
+
+
+
+--6XwsqbUlTRHPjkISNHc7p9p0iOIdEFb5F--
+
+--J6fwnOquq0P7QSYmBZsB8sXuIQxiJruKk
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCAAGBQJdMBeSAAoJEPFAHS4cyxnv/nUP/31iCdiOoUMHIr6NCFUlo9Ls
+hMKAxSmS8kKZGqxiRm4oimKFrkNW8Aea07XEwFYMkUMRXxeD/jusylyZxAee/0yP
+2Yui5l/sDtmksujeBWsbuzivpz48Kjmdn8Wqgjl9VAk7Ebw01Gswxxms2LZx5J5R
+1bFQ6Dh7Bn5Re/ISIxe9RmMfG6wMJeDvTFcez9UxJWPdFBBLKiz28E9gfAFTmDEC
+JNTTT3GEttflf1NFS/nsYgNk+PeUGUUcIK9j2syd5OaPUw1ZJeLn6T8vLzGue1cY
+oCRYwjki6HU8Rf8tbdjmnO9SvdHKjNtjjAM8RLZCNOKJIHKBqKi56+aFdtT92dAQ
+I3pWIhqxfcAtlRJqLBxfbX/dawJKdXVWBiOzv3D8QTMGZQOd0ijNigRIGdHxzACc
+W1uPA2nITWnlqiOgM6M7rPRYtQidUDECbOWBohrF8V7//TKLPNaHXlk8f21i6ZXm
+ZCwWfrUieE1HE8eRBY++jVnNa6m1nE26exiCDHPw1GEsh90qfbTdmb4Z3ZNHd3l5
+7bl9BCDF4ibtIdelfhJz2AMtGHAB1lVuxylJEDE51945XuRMYtdS+X4rodKwq9ai
+nZRimuZoq1TGKHhyVBMPLWEPt4nslxR/A0WkgCMd2MTGeBjDIy/P9i+CmTRz9LtA
+WN0Tj9/NIaHJENHa9uAz
+=Zr3G
+-----END PGP SIGNATURE-----
+
+--J6fwnOquq0P7QSYmBZsB8sXuIQxiJruKk--
