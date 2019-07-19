@@ -1,64 +1,93 @@
-Return-Path: <madhukanthk@yahoo.com>
+Return-Path: <krzysztof.taborski@nokia.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C33AEE00C02; Sat, 13 Jul 2019 12:33:15 -0700 (PDT)
+	id 4E2B2E00BD5; Fri, 19 Jul 2019 08:47:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (madhukanthk[at]yahoo.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [98.137.68.206 listed in list.dnswl.org]
+	*      [40.107.15.103 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from sonic304-25.consmr.mail.gq1.yahoo.com
-	(sonic304-25.consmr.mail.gq1.yahoo.com [98.137.68.206])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF33BE00736
-	for <yocto@yoctoproject.org>; Sat, 13 Jul 2019 12:33:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
-	t=1563046394; bh=ZrfEjKi1tm7if+79EEOUe6hnUCihuHND1TqBM5na6ZI=;
-	h=Date:From:To:Subject:References:From:Subject;
-	b=fY3z7+Wc9hrfDoy+8HBPH64i+E/1pkx5X9wma8ytmwdfsfrd3oKCAHsCSihYXaU8HFLjmjjzvs+79ql4EiF8al0j1ee893vz1M5AUwe7Ds6g6hHvXz7LK/VzvWlNR0oX0TtX8UzMeUlv50SoEqR9OdeYjAdr+6E0b80wsZBj1z8dPnv4ymG7uNkikSf2ZEG76seqvhF8Y3Gsyz76136mB6ORL5DxDUnp/3wzaeDG0jurqxnbTYtV4hzHXM9d/51F32P/QMFGV3z1gHzObvJ53BgU6ZJdqHHtgSOKBKIXzTyc9shmIj/LCTFp9VjydJULRxwNJTDhoIZYOYQgXvgkoQ==
-X-YMail-OSG: 1VqVS8gVM1nqfeQXHT.o.A27QFCV1oN4N1GyhOMbnwcHEx3RxG3qVsLbWHOdJ0A
-	WHSA1AV_XVvU0CPjT0yDEzJgKyM8njBcjbmD7gkH_98egdPTBA8RLUaZ1YcFwo_kdyikx7DVklqD
-	9Gew2OG8iZPmw3Om7ORAex9M1omsFBHg_dMea1f6d8nhGv_9OlQyfpm3rvB65Yp8Jgc4OMhkWCrY
-	Fzc26kyXoMF85fq.YwncU1itOH8q6FNbOoVlYUer1hiu8a27.kyvaITY3MHfGIgZqkDPOm7jLBfF
-	AL4yGVXafVPln_vVDDPnOS8RoTdme_JQjnzxdY4a1gdVFq3GZoeId1.Ui6K.Y_lJA.hoQMhfxKij
-	ECtYHBaxz2GPyApEqoF5AGU39cGVaYFhEhsUExycD753LCbElZxaCa_6b488sVLEcPH.cYQYSsx6
-	0EYFQ1bRn5PsdKNgDCX3qhu_lEK4v7BKBVAD9pDQ3UJe6mfjA8Y7jMzpDsADbEyPr3iz5WpHGXFI
-	8ktuHCnV0y.0qTLjpek4i8AUMwwJybRRL1k4nwsJ62fEW0tPovztoDw1bIlizXVmWMDccsb_PYUh
-	_wZ9sK3h69F8NHqpusoBZqHpNLFShmNL8hgWDMD_2E0Idseu03V25N4zDSMv6XpR9FX.Rd2noY_9
-	43NrSoFOHtEblnoQcdBasnIDrDhnHS7vCICg4r3_K_7ZcfxnPYJb1lx1vdcksAxwsrEGGKLEtmoL
-	faCWQCDMtsW432rSrkrxQN.S8DI4FuAMvnUbMIS_f7GKKlYVifk9_rPesISmyggmb67W1_CQKvdA
-	7V_EWDfboqdSeUZCoS2Mf1he2sAURDBK8Rr52kURhCUWHf5MGWtcogPtCaMLqJ4INBNpKO0bNNuc
-	R3Mn4vzU8NGTdsF7R6XR25ZMumJZGLmwlf5Ox3aHaMvYty0zKeoEX81kGPJKMQGXJ97Vh1y7GtsU
-	BX5VcWXrq5K1vPiK3T9.xlpaU1ceE_CYex_hlB4KzQfWCBb45bfnyrRbemFiobCo0f297Oiae06D
-	Tqv7Fyl_2WAUVzoKA1PGUSyYxHdgg6GN2hFuSWAIrrej16ztgdienkjzWWY_E7v_mFEuug7oO37D
-	N2eigYsiuVPOMpT3G0Ld7o3HXybXgDUujFEJhBgjl5pQ6TEUSlM2htqEHMriF7hjxGzZEiWO_593
-	4d0Ac4._RGjb4SoSOZ2p0bUhgl_cWrWGgRnXA7cN8EYVlcn21Nw--
-Received: from sonic.gate.mail.ne1.yahoo.com by
-	sonic304.consmr.mail.gq1.yahoo.com with HTTP;
-	Sat, 13 Jul 2019 19:33:14 +0000
-Date: Sat, 13 Jul 2019 19:33:07 +0000 (UTC)
-From: Madhu Krishnamurthy <madhukanthk@yahoo.com>
-To: Yocto Discussion List <yocto@yoctoproject.org>
-Message-ID: <1200227794.879484.1563046387364@mail.yahoo.com>
+Received: from EUR01-DB5-obe.outbound.protection.outlook.com
+	(mail-eopbgr150103.outbound.protection.outlook.com [40.107.15.103])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E266AE00B8E
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2019 08:47:27 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+	b=Sk7E5jK3D1jbHj+9rcd8NKf78NZK0VFHCmPKIHgsvaZLsd6KLHgvYEW6Tr2ZISqWWNrvo7Hp01dE0xDn6QcSis+7fGtszKkSzlSrfxIH2RNrWYASs942fGi3CxUjDP3rJp/gW5YSqVbtKJugs8yc66MFKonHm7GPt3wMTi0lf5LA3SLtsyBz6cZAv3bY75RwmSgD+0iifxHrIvpBo6zLSzVugBPq2fa2gYwJLIdnYiSvBBJ/8QcurMJ3Daqv6AVgOIuKruju37tcfFebc5mk8R0sdAyYOvjCw5SZ0vAZXAzaYccZc32y78mQUArazpUd0B18nTXq0riQuH2mxeBLvg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+	s=arcselector9901;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=q7oNAwlvY2VSWgdTftGrIl7tJ2cxxdgK61Q/9xRWhmQ=;
+	b=Y/aMVxx5HkUpSi/0VOnvd7t1l0aDfjvZoVhCYNCwEKQIMVYJd3dz9y/LvVeAT03VMEA4SvpEscHcy2vaTnn/tOOTTQgnX7kz7nT9L4J4EKC8y+AAd+c41rcUaOhwLHyckKZqI5ZSrdKyrsfDvhWvZreW0HA0GXgjpKnb357VI5fy0wrfQt7K0SIT5qD9srBHVJ+0ocDOB9GZL+7xqTmw/nxZDSGouWdWUzk2nREBW/ZVkXTjb4rGNAwL9okwtLkSEa052KKyNJcQt3YUENhRqcw9dFbErTMua5COpjqcnIrjtuQWRCyQ08bz7wtkAI4a8h6oiYYUOqOH/wcll+EByQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+	smtp.mailfrom=nokia.com;dmarc=pass action=none
+	header.from=nokia.com;dkim=pass header.d=nokia.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nokia.onmicrosoft.com; 
+	s=selector1-nokia-onmicrosoft-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=q7oNAwlvY2VSWgdTftGrIl7tJ2cxxdgK61Q/9xRWhmQ=;
+	b=g5ZacVghLk8/Wal23cOy58gp5YMI46SNbEtTv3KyVEA6KET5rNjW0mpP5N0HJcX8zMpzBn1z6V88Y89NDAlmEVUdcnos5L3eiji4wlRW4kll3pPv6ysmPbsduRJ1xLWUO8LF5HyEfpOAv0EP8TqHTdzgfygAOT+Eixq9ljL2MWU=
+Received: from AM6PR07MB4868.eurprd07.prod.outlook.com (20.177.119.90) by
+	AM6PR07MB4760.eurprd07.prod.outlook.com (20.177.37.223) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.2094.10; Fri, 19 Jul 2019 15:47:26 +0000
+Received: from AM6PR07MB4868.eurprd07.prod.outlook.com
+	([fe80::ac57:f113:5f8d:87ed]) by
+	AM6PR07MB4868.eurprd07.prod.outlook.com
+	([fe80::ac57:f113:5f8d:87ed%6]) with mapi id 15.20.2115.005;
+	Fri, 19 Jul 2019 15:47:26 +0000
+From: "Taborski, Krzysztof (Nokia - PL/Wroclaw)" <krzysztof.taborski@nokia.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Recipes for gcc-native
+Thread-Index: AQHVPkjh6Fk1aqmrF0SLX7ETrz/INA==
+Date: Fri, 19 Jul 2019 15:47:26 +0000
+Message-ID: <AM6PR07MB48681013AFE59E28FAC8E5F38CCB0@AM6PR07MB4868.eurprd07.prod.outlook.com>
+Accept-Language: pl-PL, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=krzysztof.taborski@nokia.com; 
+x-originating-ip: [131.228.32.180]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 336e5c25-04d3-4b9e-c176-08d70c60660c
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);
+	SRVR:AM6PR07MB4760; 
+x-ms-traffictypediagnostic: AM6PR07MB4760:
+x-microsoft-antispam-prvs: <AM6PR07MB4760B4E7594382EF0EBBF4D88CCB0@AM6PR07MB4760.eurprd07.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 01039C93E4
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(4636009)(346002)(366004)(376002)(136003)(39860400002)(396003)(189003)(199004)(25786009)(6916009)(86362001)(6506007)(7736002)(2906002)(486006)(9686003)(54896002)(55016002)(71190400001)(71200400001)(256004)(6436002)(5640700003)(19627405001)(53936002)(3846002)(6116002)(14454004)(7696005)(2351001)(186003)(478600001)(3480700005)(74316002)(5660300002)(105004)(52536014)(476003)(81166006)(81156014)(1730700003)(33656002)(76116006)(64756008)(66446008)(99286004)(66556008)(66476007)(66946007)(102836004)(8936002)(8676002)(68736007)(26005)(66066001)(2501003)(316002)(4744005);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:AM6PR07MB4760;
+	H:AM6PR07MB4868.eurprd07.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: nokia.com does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: jaPrxhLLRaeJjr/FyvPhoLctodOttsfUc7NjHz32Mb1VJLwGB4FIS6h8IxkvctVRa4iTtba9Qrnxov0uZw8bc6hfGPWZvLB8sZvM6YKhNbyTircI9zgxhSDeIG8bPkzvvEWSrzLOGUsjjXLfjjPWIRKTrZ5+YZG8eHbg3wObtm6gNA0ubwTPj37g/LT6hCAqTW24QOsMNqtlckhq7SDJ/YP9c3QS7/zjZRCE0et/RlXl6KLD77VAvayNVBkn5/n5egO6UKPUaNeLDe3XGo/6W73jTij9EYCptAnh9wzkjzpb3m5/M6KpjK0kbKmaIlvSt9BhtnmPeWC4Mw2DDjAixEtUITbBZmisjMNdnepz3SAvTYAgafCSa4RDW1YY8Rl6kKEITB8I5aO+sPaApOQJjJxgaTBbrNmLBHkYg7Ad4cs=
 MIME-Version: 1.0
-References: <1200227794.879484.1563046387364.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.13991 YMailNorrin Mozilla/5.0 (Windows NT 10.0;
-	WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100
-	Safari/537.36
+X-OriginatorOrg: nokia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 336e5c25-04d3-4b9e-c176-08d70c60660c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Jul 2019 15:47:26.3470 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 5d471751-9675-428d-917b-70f44f9630b0
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: krzysztof.taborski@nokia.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR07MB4760
 X-Mailman-Approved-At: Mon, 22 Jul 2019 13:12:26 -0700
-Subject: No GNU_HASH in the elf binary
+Subject: Recipes for gcc-native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,134 +99,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 13 Jul 2019 19:33:15 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_879483_1938242192.1563046387362"
+X-List-Received-Date: Fri, 19 Jul 2019 15:47:29 -0000
+Content-Language: pl-PL
+Content-Type: multipart/alternative;
+	boundary="_000_AM6PR07MB48681013AFE59E28FAC8E5F38CCB0AM6PR07MB4868eurp_"
 
-------=_Part_879483_1938242192.1563046387362
-Content-Type: text/plain; charset=UTF-8
+--_000_AM6PR07MB48681013AFE59E28FAC8E5F38CCB0AM6PR07MB4868eurp_
+Content-Type: text/plain; charset="iso-8859-2"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,I am trying to package an already built binary executable called mlc =
-(memory latency checker) to yocto and I get this error.=C2=A0
-ERROR: mem-tst-0.1 do_package: QA Issue: File '/usr/local/flex_pkgs/diags/m=
-lc' from mem was already stripped, this will prevent future debugging! [alr=
-eady-stripped]ERROR: mem-tst-0.1 do_package: Fatal QA errors found, failing=
- task.ERROR: mem-tst-0.1 do_package: Function failed: do_packageERROR: Logf=
-ile of failure stored in: /home/cluser/ac/z_cpu/build/tmp/work/corei7-64-po=
-ky-linux/mem/tst-0.1/temp/log.do_package.27614ERROR: Task (/home/cluser/ac/=
-z_cpu/poky/../meta-flex/meta-z/recipes-utils/mem/mem_tst_0.1.bb:do_package)=
- failed with exit code '1'NOTE: Tasks Summary: Attempted 458 tasks of which=
- 457 didn't need to be rerun and 1 failed.
-I googled and found that I need to add this
-INSANE_SKIP_mlc =3D "ldflags"INSANE_SKIP_mlc-dev =3D "ldflags"INHIBIT_PACKA=
-GE_DEBUG_SPLIT =3D "1"INHIBIT_PACKAGE_STRIP =3D "1"
-But after adding that I still get this error.=C2=A0ERROR: mem-tst-0.1 do_pa=
-ckage_qa: QA Issue: No GNU_HASH in the elf binary: '/home/cluser/ac/z_cpu/b=
-uild/tmp/work/corei7-64-poky-linux/mem/tst-0.1/packages-split/mem/usr/local=
-/flex_pkgs/diags/mlc' [ldflags]=C2=A0Appreciate any help.
-Thanks and regardsMadhu
-(more log details)NOTE: Executing RunQueue TasksNOTE: mem-tst-0.1 do_packag=
-e_qa: Direct dependencies are ['virtual:native:/home/cluser/ac/z_cpu/poky/m=
-eta/recipes-devtools/pseudo/pseudo_1.8.2.bb:do_populate_sysroot', '/home/cl=
-user/ac/z_cpu/poky/meta/recipes-devtools/binutils/binutils-cross_2.29.bb:do=
-_populate_sysroot']NOTE: mem-tst-0.1 do_package_qa: Installed into sysroot:=
- []NOTE: mem-tst-0.1 do_package_qa: Skipping as already exists in sysroot: =
-['pseudo-native', 'binutils-cross-x86_64', 'gnu-config-native', 'bison-nati=
-ve', 'flex-native', 'texinfo-dummy-native', 'autoconf-native', 'quilt-nativ=
-e', 'zlib-native', 'gettext-minimal-native', 'automake-native', 'xz-native'=
-, 'libtool-native', 'm4-native']NOTE: mem-tst-0.1 do_package_qa: DO PACKAGE=
- QANOTE: mem-tst-0.1 do_package_qa: Checking Package: memNOTE: mem-tst-0.1 =
-do_package_qa: x86_64-poky-linux-objdump -p /home/cluser/ac/z_cpu/build/tmp=
-/work/corei7-64-poky-linux/mem/tst-0.1/packages-split/mem/usr/local/flex_pk=
-gs/diags/mlcERROR: mem-tst-0.1 do_package_qa: QA Issue: No GNU_HASH in the =
-elf binary: '/home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/=
-tst-0.1/packages-split/mem/usr/local/flex_pkgs/diags/mlc' [ldflags]NOTE: me=
-m-tst-0.1 do_package_qa: Checking Package: mem-staticdevNOTE: mem-tst-0.1 d=
-o_package_qa: Checking Package: mem-localeNOTE: mem-tst-0.1 do_package_qa: =
-Checking Package: mem-docNOTE: mem-tst-0.1 do_package_qa: Checking Package:=
- mem-dbgNOTE: mem-tst-0.1 do_package_qa: Checking Package: mem-devERROR: me=
-m-tst-0.1 do_package_qa: QA run found fatal errors. Please consider fixing =
-them.ERROR: mem-tst-0.1 do_package_qa: Function failed: do_package_qaERROR:=
- Logfile of failure stored in: /home/cluser/ac/z_cpu/build/tmp/work/corei7-=
-64-poky-linux/mem/tst-0.1/temp/log.do_package_qa.25300ERROR: Task (/home/cl=
-user/ac/z_cpu/poky/../meta-flex/meta-z/recipes-utils/mem/mem_tst_0.1.bb:do_=
-package_qa) failed with exit code '1'NOTE: Tasks Summary: Attempted 461 tas=
-ks of which 460 didn't need to be rerun and 1 failed.
-Summary: 1 task failed:=C2=A0 /home/cluser/ac/z_cpu/poky/../meta-flex/meta-=
-z/recipes-utils/mem/mem_tst_0.1.bb:do_package_qa
+Hello,
+I am wondering, if there is any reason, that yocto project does not deliver=
+s recipes for gcc-native ( in similar way as python-native for example)?
+
+It would allow to build native recipes with different/higher version of gcc=
+, than this, which user has on my build servers.
 
 
-------=_Part_879483_1938242192.1563046387362
-Content-Type: text/html; charset=UTF-8
+Best regards,
+
+Krzysztof Taborski
+
+--_000_AM6PR07MB48681013AFE59E28FAC8E5F38CCB0AM6PR07MB4868eurp_
+Content-Type: text/html; charset="iso-8859-2"
 Content-Transfer-Encoding: quoted-printable
 
-<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
-ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
-=3D"ltr" data-setdir=3D"false"><div dir=3D"ltr" data-setdir=3D"false"><div>=
-<div dir=3D"ltr" data-setdir=3D"false">Hello,</div><div dir=3D"ltr" data-se=
-tdir=3D"false">I am trying to package an already built binary executable ca=
-lled mlc (memory latency checker) to yocto and I get this error.&nbsp;</div=
-><div><br></div><div><font color=3D"#cd232c">ERROR: mem-tst-0.1 do_package:=
- QA Issue: File '/usr/local/flex_pkgs/diags/mlc' from mem was already strip=
-ped, this will prevent future debugging! [already-stripped]</font></div><di=
-v><font color=3D"#cd232c">ERROR: mem-tst-0.1 do_package: Fatal QA errors fo=
-und, failing task.</font></div><div><font color=3D"#cd232c">ERROR: mem-tst-=
-0.1 do_package: Function failed: do_package</font></div><div><font color=3D=
-"#cd232c">ERROR: Logfile of failure stored in: /home/cluser/ac/z_cpu/build/=
-tmp/work/corei7-64-poky-linux/mem/tst-0.1/temp/log.do_package.27614</font><=
-/div><div><font color=3D"#cd232c">ERROR: Task (/home/cluser/ac/z_cpu/poky/.=
-./meta-flex/meta-z/recipes-utils/mem/mem_tst_0.1.bb:do_package) failed with=
- exit</font> code '1'</div><div>NOTE: Tasks Summary: Attempted 458 tasks of=
- which 457 didn't need to be rerun and 1 failed.</div><div><br></div><div>I=
- googled and found that I need to add this</div><div><br></div><div><b>INSA=
-NE_SKIP_mlc =3D "ldflags"</b></div><div><b>INSANE_SKIP_mlc-dev =3D "ldflags=
-"</b></div><div><b>INHIBIT_PACKAGE_DEBUG_SPLIT =3D "1"</b></div><div><b>INH=
-IBIT_PACKAGE_STRIP =3D "1"</b></div><div><br></div><div>But after adding th=
-at I still get this error.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false=
-"><span><b style=3D"color: rgb(205, 35, 44); font-family: &quot;Helvetica N=
-eue&quot;, Helvetica, Arial, sans-serif; font-size: 16px;">ERROR: mem-tst-0=
-.1 do_package_qa: QA Issue: No GNU_HASH in the elf binary: '/home/cluser/ac=
-/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/packages-split/mem/u=
-sr/local/flex_pkgs/diags/mlc' [ldflags]</b></span></div><div dir=3D"ltr" da=
-ta-setdir=3D"false">&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false">Appr=
-eciate any help.</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div=
->Thanks and regards</div><div>Madhu</div><div><br></div><div dir=3D"ltr" da=
-ta-setdir=3D"false">(more log details)</div><div>NOTE: Executing RunQueue T=
-asks</div><div>NOTE: mem-tst-0.1 do_package_qa: Direct dependencies are ['v=
-irtual:native:/home/cluser/ac/z_cpu/poky/meta/recipes-devtools/pseudo/pseud=
-o_1.8.2.bb:do_populate_sysroot', '/home/cluser/ac/z_cpu/poky/meta/recipes-d=
-evtools/binutils/binutils-cross_2.29.bb:do_populate_sysroot']</div><div>NOT=
-E: mem-tst-0.1 do_package_qa: Installed into sysroot: []</div><div>NOTE: me=
-m-tst-0.1 do_package_qa: Skipping as already exists in sysroot: ['pseudo-na=
-tive', 'binutils-cross-x86_64', 'gnu-config-native', 'bison-native', 'flex-=
-native', 'texinfo-dummy-native', 'autoconf-native', 'quilt-native', 'zlib-n=
-ative', 'gettext-minimal-native', 'automake-native', 'xz-native', 'libtool-=
-native', 'm4-native']</div><div>NOTE: mem-tst-0.1 do_package_qa: DO PACKAGE=
- QA</div><div>NOTE: mem-tst-0.1 do_package_qa: Checking Package: mem</div><=
-div>NOTE: mem-tst-0.1 do_package_qa: x86_64-poky-linux-objdump -p /home/clu=
-ser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/packages-split=
-/mem/usr/local/flex_pkgs/diags/mlc</div><div><font color=3D"#cd232c"><b>ERR=
-OR: mem-tst-0.1 do_package_qa: QA Issue: No GNU_HASH in the elf binary: '/h=
-ome/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/package=
-s-split/mem/usr/local/flex_pkgs/diags/mlc' [ldflags]</b></font></div><div>N=
-OTE: mem-tst-0.1 do_package_qa: Checking Package: mem-staticdev</div><div>N=
-OTE: mem-tst-0.1 do_package_qa: Checking Package: mem-locale</div><div>NOTE=
-: mem-tst-0.1 do_package_qa: Checking Package: mem-doc</div><div>NOTE: mem-=
-tst-0.1 do_package_qa: Checking Package: mem-dbg</div><div>NOTE: mem-tst-0.=
-1 do_package_qa: Checking Package: mem-dev</div><div><font color=3D"#cd232c=
-"><b>ERROR: mem-tst-0.1 do_package_qa: QA run found fatal errors. Please co=
-nsider fixing them.</b></font></div><div><font color=3D"#cd232c"><b>ERROR: =
-mem-tst-0.1 do_package_qa: Function failed: do_package_qa</b></font></div><=
-div><font color=3D"#cd232c"><b>ERROR: Logfile of failure stored in: /home/c=
-luser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/temp/log.do_=
-package_qa.25300</b></font></div><div><font color=3D"#cd232c"><b>ERROR: Tas=
-k (/home/cluser/ac/z_cpu/poky/../meta-flex/meta-z/recipes-utils/mem/mem_tst=
-_0.1.bb:do_package_qa) failed with exit code '1'</b></font></div><div>NOTE:=
- Tasks Summary: Attempted 461 tasks of which 460 didn't need to be rerun an=
-d 1 failed.</div><div><br></div><div>Summary: 1 task failed:</div><div>&nbs=
-p; /home/cluser/ac/z_cpu/poky/../meta-flex/meta-z/recipes-utils/mem/mem_tst=
-_0.1.bb:do_package_qa</div><div><br></div></div><br></div></div></div></bod=
-y></html>
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+2">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hello,</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+I am wondering, if there is any reason, that yocto project does not deliver=
+s recipes for gcc-native ( in similar way as python-native for example)?</d=
+iv>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+It would allow to build native recipes with different/higher version of gcc=
+, than this, which user has on my build servers.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"Signature">
+<div id=3D"divtagdefaultwrapper" style=3D"font-size:12pt; color:#000000; ba=
+ckground-color:#FFFFFF; font-family:Calibri,Arial,Helvetica,sans-serif">
+<p style=3D"margin-top: 0px; margin-bottom: 0px;">Best regards,</p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;">Krzysztof Taborski</p>
+</div>
+</div>
+</body>
+</html>
 
-------=_Part_879483_1938242192.1563046387362--
+--_000_AM6PR07MB48681013AFE59E28FAC8E5F38CCB0AM6PR07MB4868eurp_--
