@@ -1,66 +1,61 @@
-Return-Path: <wpdster@gmail.com>
+Return-Path: <torres.soldado@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1F53AE00D89; Fri, 19 Jul 2019 05:49:23 -0700 (PDT)
+	id B06B2E00D89; Fri, 19 Jul 2019 06:17:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (wpdster[at]gmail.com)
+	provider *      (torres.soldado[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.172 listed in list.dnswl.org]
+	*      [209.85.208.173 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com
-	[209.85.160.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88C3DE00C09
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2019 05:49:22 -0700 (PDT)
-Received: by mail-qt1-f172.google.com with SMTP id h21so30726328qtn.13
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2019 05:49:22 -0700 (PDT)
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com
+	[209.85.208.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1538DE00B8E
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2019 06:17:22 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id h10so30788536ljg.0
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2019 06:17:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=/tDu/K3sNx1w4Dc7YkUa42WbTNrAE0tTMhy0Ay66WWI=;
-	b=XVEF6k8WQXolUmMOC4YubhcJ5fKqgb5I+esjhFH7O/JA7y6Ryym5Ykn1kK+9cemL03
-	Ar2aMugoG37g918j4C1N8lH0hTu7X7MQaC8OL6TRiobeTW6r1yd0uYGjGbJPijgkQbZ6
-	TTz9YFV1HTc5zgcBhz4o2ZnmqauW++ItYixxFkAw+VTHoibtrg99sTd1YBmRryATjjEL
-	SGuya9R/rdhhaz7+SoYoZI95NV9wWWaPpU73exzUgV15FGCvqw74leiW/zB2xur/va0C
-	V4U9R0g6bVki9o+TV3pvsWoNl0HBJybJZu2td788S8YDsefJup1FWVuK27rD+dqJs8pG
-	GCAg==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=qDY5jqpbjDyagtBl6DCr+Tld+R8IUoeyOVpO/RPrRYc=;
+	b=iUgqdl9X0TRqbA9BPYx7MikJS2LFxMsMOZLIXqj14iZn7IDekiGcKyi59cm3iC6YKR
+	eCiexBjCX27AUPFwPxnaWVdhFfKdJR3cv/ykKok+KgRUImad+Xm0Ehqkb/hNeDEJTRFF
+	qynemHO0yJP96cc1gLh4vx1hlOHmv1PGOu3EU3G/FtBNZhPzVLCqg1yZmHXqBbK5a+2I
+	2sY5U6fevToiJPe6yvSEQqMH7YdDULw0WmmoooELOeK2UKpkCULS3yJVBHcBIl+1pDoL
+	TFa1KPaEZjFEgXnH0zcLJz/wldoCHttAB6pUuXx3x8mA1rJSmW1T0fxXAvJk7yT3nNQi
+	3Q7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=/tDu/K3sNx1w4Dc7YkUa42WbTNrAE0tTMhy0Ay66WWI=;
-	b=Td5+v1g1zMgozuqu35OONiarYqPGLz13SXyc3S7mFvNuxOu8Rpbs3SqrQ5ZDc1mjyx
-	FACdHhZffKjbrYuPY8jFxUIaQdHoXhFUyqFmoulrbdnWa00aQAb6WV9XDz5eiRDN7cZL
-	jWHmsBbH8qhPVmvOglnSJ1m7goJBnHXxG0n+zROAb1Ax0ybK9SwxfuTVesgFDtnodBtK
-	PuHU8silsGZ7QO6AMg3ayp88PWqIW86Z4m49twqcKvZJFWeWxea0CCMFrn8ODpzXKss+
-	5do8oMDwNTzxpSfJyZB7Nd8ivl1jS0gnE6T52BRUeOn3ILKP70crEXp1BLVvizNhnG6h
-	Ns3A==
-X-Gm-Message-State: APjAAAX6CAKLKLBIvwvv4kLVe7891sYORR6VkD9y6PTWXmZ6CHNizgrk
-	l3PwhvjuKycVPLcNrIIWtSQ+jbMejGuW7e4KYMo=
-X-Google-Smtp-Source: APXvYqyqH6CBEqouiiDgrARmoAF4SzzsvCnxzso4iw/yFXliMUvVvbXHxm+RDf5+2KBKzJfVvoVo/DT3g+ENoHwfJDg=
-X-Received: by 2002:ac8:30c4:: with SMTP id w4mr35575944qta.314.1563540561910; 
-	Fri, 19 Jul 2019 05:49:21 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=qDY5jqpbjDyagtBl6DCr+Tld+R8IUoeyOVpO/RPrRYc=;
+	b=e25ODsSc4PbPgh2gv09n/wAw4OeFCdVdOsX2zwZTVkGWRLQjTh/oawWRbuafmBZQg+
+	GqW2K/RIRdrp2OQvKu1uxXZbU2TbtbVxaflaz6ASO38YlB8QSTUu/4sE+Jj3YzX4uBBZ
+	PfGxBk3EdEzS7DyuyQQ7h6bMC9dKPqnoMpNl5ILnmEJZulXt/l020qExGe2H0573lxtP
+	xH2yHYhsg38IFAyblwdnpDkpoXPtGs9wXpnR5K+zCR0wk3umUWx7ZU3q74FC4AxByBlI
+	2z7t8TBQvNqFgF2s7FqGAP7qCchFYT2RmNidS/tHMC1y7yKeYgWmXtAJs+ZSYDqPh8dy
+	Sk9A==
+X-Gm-Message-State: APjAAAXKjAcyg3G8QmS2yYnp3dJorL0o0DRWMCLCVlMG/41uTmWfJbf8
+	vk6O0HHjVkiy88PNrkpL+UkMFLW7jtgKaJyX+/mKO1/FUEWQAA==
+X-Google-Smtp-Source: APXvYqx+JJo7mI8wHf1rLN09MzvN8R6EQX87iz17E+54xHCrKq+T7vgoDUGQ76dv9GJNasa8Zke8c9AWj26YS+4CwWI=
+X-Received: by 2002:a2e:86cc:: with SMTP id n12mr3413906ljj.146.1563542242016; 
+	Fri, 19 Jul 2019 06:17:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAF_dkJDbqR8yPWRYX_2wT+Pk1+cuNcntWizg3hhZnA_vVVwnaA@mail.gmail.com>
-	<CAAx3WaDTteqencYsxrb+1a_TgR8cazNUJ7-3VX9VxeePQkmRoQ@mail.gmail.com>
-In-Reply-To: <CAAx3WaDTteqencYsxrb+1a_TgR8cazNUJ7-3VX9VxeePQkmRoQ@mail.gmail.com>
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Fri, 19 Jul 2019 08:48:55 -0400
-Message-ID: <CAF_dkJB=p0EWosdL6cTe1YN+38KN8Qb8LuYoOvF06URR96oQCw@mail.gmail.com>
-To: Gabriele Zampieri <gabbla.malist@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: How to specify a different kernel for an image
+From: Sergio Torres Soldado <torres.soldado@gmail.com>
+Date: Fri, 19 Jul 2019 14:17:10 +0100
+Message-ID: <CAFuHCCD22a3r41RmUsv3Grbt+2YY0uTXp+ZuiLo+Xh5ivBVghA@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Setting home directory ownership
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,57 +67,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jul 2019 12:49:23 -0000
+X-List-Received-Date: Fri, 19 Jul 2019 13:17:25 -0000
+Content-Type: multipart/alternative; boundary="000000000000ed4171058e088bca"
+
+--000000000000ed4171058e088bca
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 19, 2019 at 1:58 AM Gabriele Zampieri
-<gabbla.malist@gmail.com> wrote:
->
-> Hi,
->
-> you could define two machines, where the manufacturing one is just an ove=
-rlay of the production one. If the two kernels differs only for their confi=
-g, you can specify different defconfig based on machine. If you need a comp=
-letely different kernel, just specify  PREFERRED_PROVIDER_virtual/kernel in=
- manufacturing overlay
+I am unable to set the home directory ownership. I am using poky@warrior
+and my last attempt was the following recipe:
 
-Hi Gabriele,
-I wondered about that, but I get confused about the MACHINE concept in
-Yocto/OE/bitbake...
+"""
+inherit useradd
+USERADD_PACKAGES = "${PN}"
 
-1. If I define a new machine, but I have a lot of recipes conditioned
-on the old machine, how do I say "This is the same as machine A, but
-with these differences"?  I have defined a machine now ("mymachine")
-and have recipes and .bbappend files with things like this in them:
+USERADD_PARAM_${PN} = "-P someusername -u 1000 -d /home/someusername -r -s
+/bin/bash foosomeusername"
 
-SRC_URI_mymachine +=3D "file:/blah/blah/blah"
-do_install_append_mymachine() {
-  do_stuff()
+LICENSE = "CLOSED"
+
+do_install () {
+  install -d ${D}/home/someusername
+  # If I don't use the UID I get an error message saying "invalid user:
+hubshuffle", although it seems to work for some usernames e.g. "user1" like
+in the skeleton recipe for useradd.
+  chown -R 1000 ${D}/home/foosomeusername
 }
 
-Do I have to replicate (and maintain) all of the references to
-mymachine to also refer to my newly defined "installationmachine"?  Or
-can I tell Bitbake that "installationmachine" is the same as
-"mymachine", and just add/change new stuff for "installationmachine"?
+pkg_postinst_${PN} () {
+  chown -R 1000 $D/home/someusername
+}
 
-I hope my confusion here makes sense, but since it's confusion, it's
-tough to tell :-)
+FILES_${PN} = " \
+  /home/someusername \
+"
+"""
 
-2. My new image going to be used as an installation image for my
-production image.  So I need to include the production image (for
-MACHINE=3D"mymachine")) deploy products in the image for my installation
-image.  How can I do that if I define a new MACHINE for the production
-image?
+I don't know what I am doing wrong, any hint is very welcome thanks.
 
-Thank you so much for the suggestion... it confirms that I am looking
-in the right places and thinking about the right things... I just
-don't know how to solve this problem.
+--000000000000ed4171058e088bca
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I'm also surprised that it's not a more general problem... which leads
-me to believe that I must be thinking about this the wrong way.
+<div dir=3D"ltr">I am unable to set the home directory ownership. I am usin=
+g poky@warrior and my last attempt was the following recipe:<div><br></div>=
+<div>&quot;&quot;&quot;</div><div>inherit useradd<br>USERADD_PACKAGES =3D &=
+quot;${PN}&quot;<br><br>USERADD_PARAM_${PN} =3D &quot;-P someusername -u 10=
+00 -d /home/someusername=C2=A0-r -s /bin/bash foosomeusername&quot;<br><br>=
+LICENSE =3D &quot;CLOSED&quot;<br><br>do_install () {<br>=C2=A0 install -d =
+${D}/home/someusername</div><div>=C2=A0 # If I don&#39;t use the UID I get =
+an error message saying &quot;invalid user: hubshuffle&quot;, although it s=
+eems to work for some usernames e.g. &quot;user1&quot; like in the skeleton=
+ recipe for useradd.<br>=C2=A0 chown -R 1000 ${D}/home/foosomeusername<br>}=
+<br><br>pkg_postinst_${PN} () {<br>=C2=A0 chown -R 1000 $D/home/someusernam=
+e<br>}<br><br>FILES_${PN} =3D &quot; \<br>=C2=A0 /home/someusername=C2=A0\<=
+br>&quot;<br></div><div>&quot;&quot;&quot;</div><div><br></div><div>I don&#=
+39;t know what I am doing wrong, any hint is very welcome thanks.</div></di=
+v>
 
-Thanks again.
-
---wpd
-
+--000000000000ed4171058e088bca--
