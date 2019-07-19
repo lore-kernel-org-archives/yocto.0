@@ -1,6 +1,6 @@
-Return-Path: <gabbla.malist@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E2559E00C09; Fri, 19 Jul 2019 07:03:28 -0700 (PDT)
+	id 4F068E00BD5; Fri, 19 Jul 2019 07:46:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,58 +10,68 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (gabbla.malist[at]gmail.com)
+	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.51 listed in list.dnswl.org]
+	*      [209.85.210.195 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com
-	[209.85.167.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A60C9E00A93
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2019 07:03:27 -0700 (PDT)
-Received: by mail-lf1-f51.google.com with SMTP id p197so21810998lfa.2
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2019 07:03:27 -0700 (PDT)
+Received: from mail-pf1-f195.google.com (mail-pf1-f195.google.com
+	[209.85.210.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF2A8E00AF2
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2019 07:46:47 -0700 (PDT)
+Received: by mail-pf1-f195.google.com with SMTP id y15so14292692pfn.5
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2019 07:46:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=t0aeydPvKHhSKnOAGGTbRjruw7EIWN4qaMXXbRH3uzM=;
-	b=VErMbzeZj5TAGNMrtAxTPnZWDSLmM/s222WowF4AFpf1ouygVcUgMDDFonTggJwqwD
-	LbEdlwPY4yyJEAGCbyqzDocUKHJSTepH9SpyAkcfFVd9jefocKbOOdROMtESs3TVdJLN
-	4mFDjqmoDZLax3sRwJZv9vPHezaqa4yv1M68BiUC70qOBEM0f7cl3eZrMdJeaPYbZiFo
-	9TwmrHE1YSlLuhUxnMEPOeiTACER/5R521fGaDIr2tDkCY1kxaMF7FqC6OI91KVVkLOn
-	JHoIUqcPjrZQtJuOJIhFmMwVccsGltbLQS7tPIvwZlJHH4wymRStuGPp/1ACMXyyPNmA
-	pcaQ==
+	h=subject:to:references:from:organization:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language;
+	bh=nUFB5gIum9mKihERL6mTmgj79kzE0Z7fg4xwHO9rYsw=;
+	b=LATAuYPaNIF22ZQGmCDUvgRuXAGO3jRgFsCDt8oy8Xdo1Bj4Hh8LjmqWsCXWSUUzNy
+	Ocpi0MynoSUf4V9HBb2EVDZtOvDXa9kcWolHGLlpbgSbOLMCg3y4zEeZU3UGAy1cIQ3B
+	saTLyNxXtnFON33yhmRO3QZbgem+QYor8Z/8EtB+asoCFuZgGCGkXXDeB1Ce0ambNe9O
+	Ccyspxta6yRPOLmYpuBVbWGyF9x4g8SY68Ic44wGPjy24juksC/JGzaRgGGVIk6SmzzG
+	/GhYpYe2hfovxK8bIKyQGkW5D8Hjo2mtjKWtzxeCsYqKreAN6sJoXMaumL2G9YADSpTn
+	mL6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=t0aeydPvKHhSKnOAGGTbRjruw7EIWN4qaMXXbRH3uzM=;
-	b=hOnMlRqUiChy0KYO9q2YGbpi58TbO5IQUAklFAcvsA7A6mN5q0R7exd61wvdILiseC
-	xU/HdkgdPY7Am3fwekrzGdDJf2H4fDkJgO83nWD654R8tCYxNTA05B2AAJShfsQOTYoi
-	LUPvkkXNqPZSewJoI/SPzeOIzoIGyh6R/ZPv4iJYXttk7elp7lXaMTbjrDjggRRZA1hG
-	iY9qRAjH4jAHgUmR1nqsJItjXgf6PBhcWBy4MWCZ4hgTd/pfx2HNbs2qTvtXtHcYg+4c
-	WnJifo/Lh02H+kCQF4jrIsTUpXYfEFEh+9aDPZjSDUJnZ+Fkv+PppiQk2IRbXIQ9LAgP
-	1CQA==
-X-Gm-Message-State: APjAAAU6UMXuFaE5/qnBtIv8cD5WTo2WhdSr11upcoHufXYFpu77fP/4
-	wXzVa1aGqjwVcYA0U6r4FlDokLVZ9h1G6UqRyHM=
-X-Google-Smtp-Source: APXvYqwM5WExlvmKfTv6xSwAy86XolRkQzl6M+UPB2ESeEVB7gz+CB2h/Ry9A3dhFpZ2nD4hnALOELX742dTmOwNELM=
-X-Received: by 2002:a19:6904:: with SMTP id e4mr4837326lfc.156.1563545006774; 
-	Fri, 19 Jul 2019 07:03:26 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:from:organization
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-language;
+	bh=nUFB5gIum9mKihERL6mTmgj79kzE0Z7fg4xwHO9rYsw=;
+	b=GjqMaC0kQFLCyMr1xNHDQD1yKU802whrutnaaYfAUvwhLc1x4oj5Hz+BTNWQsQbZDS
+	Yovg1Vk3kZm1QLJn+E7ruTqlkS8BHkTuBGWl2maTK5WmbhVSx+SNq4LeBuflnobVTnKh
+	GXOk4nmXOAW5ZscKjvGXXSyAmgfJ5K5wYLyLPXDSKzqa/7hrJ+7suZjrC57tQ1FM7o1Y
+	EXesV0s95/1sVjQWtCet+SmKNIxoLBNbiEh0YExY5F+Wnijqairp2ccZDCTqJQNG3366
+	geEATcLGed7BeTVgtpwJLt8GvUzCdyZdEAd56TceFlwwURRjMComoeU8tfxfAQMnO94n
+	Af+Q==
+X-Gm-Message-State: APjAAAULyxlIWN+9ZhtA0fuYJ4Q5qozLTnp9uFZub5SHq40/XHZN6677
+	UXCk/Y0lJXz6Z07Oi2bvH0oPtJrCLpA=
+X-Google-Smtp-Source: APXvYqwryHJC+mpy6jTps9tEe9aJO46Gl05jfJPHt6EAlew648LpmOTj65+VTGaQeoo3f+zLrBZVXQ==
+X-Received: by 2002:a17:90a:bc42:: with SMTP id
+	t2mr58084124pjv.121.1563547606805; 
+	Fri, 19 Jul 2019 07:46:46 -0700 (PDT)
+Received: from ?IPv6:2601:646:8500:6bc6::be55? ([2601:646:8500:6bc6::be55])
+	by smtp.gmail.com with ESMTPSA id
+	s22sm32907237pfh.107.2019.07.19.07.46.45
+	(version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+	Fri, 19 Jul 2019 07:46:46 -0700 (PDT)
+To: =?UTF-8?Q?Mar=c3=ada_del_Mar_Velasco_AERTEC_Solutions_=e2=80=93_Aerospac?=
+	=?UTF-8?Q?e_=26_Aviation?= <mvelasco@aertecsolutions.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <AM0PR09MB4066402C6F9DCEC298A30B89D7CB0@AM0PR09MB4066.eurprd09.prod.outlook.com>
+From: Khem Raj <raj.khem@gmail.com>
+Organization: HIMVIS
+Message-ID: <b523de05-b217-4faa-4e7c-bd8bcfcf26e5@gmail.com>
+Date: Fri, 19 Jul 2019 07:46:55 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <CAF_dkJDbqR8yPWRYX_2wT+Pk1+cuNcntWizg3hhZnA_vVVwnaA@mail.gmail.com>
-	<CAAx3WaDTteqencYsxrb+1a_TgR8cazNUJ7-3VX9VxeePQkmRoQ@mail.gmail.com>
-	<CAF_dkJB=p0EWosdL6cTe1YN+38KN8Qb8LuYoOvF06URR96oQCw@mail.gmail.com>
-In-Reply-To: <CAF_dkJB=p0EWosdL6cTe1YN+38KN8Qb8LuYoOvF06URR96oQCw@mail.gmail.com>
-From: Gabriele Zampieri <gabbla.malist@gmail.com>
-Date: Fri, 19 Jul 2019 16:03:14 +0200
-Message-ID: <CAAx3WaCKS21xWZ_b3jqJFm61D+_QPy0Aago0Tais8hVTyoKqKw@mail.gmail.com>
-To: Patrick Doyle <wpdster@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: How to specify a different kernel for an image
+In-Reply-To: <AM0PR09MB4066402C6F9DCEC298A30B89D7CB0@AM0PR09MB4066.eurprd09.prod.outlook.com>
+Subject: Re: ERROR: Actual rootfs size is larger than allowed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,211 +83,259 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jul 2019 14:03:29 -0000
-Content-Type: multipart/alternative; boundary="000000000000b81b35058e093022"
+X-List-Received-Date: Fri, 19 Jul 2019 14:46:49 -0000
+Content-Type: multipart/alternative;
+	boundary="------------8DE0DDBA903B0C010C13A8C1"
+Content-Language: en-US
 
---000000000000b81b35058e093022
-Content-Type: text/plain; charset="UTF-8"
+--------------8DE0DDBA903B0C010C13A8C1
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Patrick,
 
-Do I have to replicate (and maintain) all of the references to
-> mymachine to also refer to my newly defined "installationmachine"?  Or
-> can I tell Bitbake that "installationmachine" is the same as
-> "mymachine", and just add/change new stuff for "installationmachine"?
+On 7/19/19 4:27 AM, María del Mar Velasco AERTEC Solutions – Aerospace & 
+Aviation wrote:
 >
+> Dear all,
+>
+> I am new at Yocto Project and I have a simple question. I have cloned 
+> poky (rocko branch), sourced the environment and bitbaked the 
+> core-minimal-image-dev without problems. I can write the image in a SD 
+> Card and I am able to boot the system.
+>
+> However, when I add IMAGE_INSTALL_append to local.conf with some 
+> packages recipes (IMAGE_INSTALL_append = “nodejs” for example), I get 
+> the following error:
+>
+>   * ERROR: Function failed: do_image_wic
+>   * ERROR: Actual rootfs size (284260 KB) is larger than allowed size
+>     262144 KB.
+>
+> My question is: where could I find that 262144 KB default size value? 
+> I would like to change it and make it bigger. I have tried to add 
+>  IMAGE_ROOTFS_SIZE = “5000000” to local.conf file but it still fails.
+>
+you might want to check the kickstart ( .wks ) file and adjust the 
+--fixed-size values for partition sizes
 
-I would approach in this way: in my meta-something/conf/machine:
-- machine_base.inc where I put all the standard machine configuration for
-production
-- mymachine.conf
-require conf/machine/machine_base.inc
-- myinstallationmachine.conf
-require conf/machine/machine_base.inc
-PREFERRED_PROVIDER_virtual/kernel = "some-linux-provider"
-Then in something.bbappend:
-- If the property is common to both machines:
-SRC_URI_append = " file://modifications.patch"
-- if the property is machine specific:
-SRC_URI_append_<MACHINE> = " file://machinespec.patch"
- In this way you have to maintain only the differences between your
-machines, without redundancy.
 
-2. My new image going to be used as an installation image for my
-> production image.  So I need to include the production image (for
-> MACHINE="mymachine")) deploy products in the image for my installation
-> image.  How can I do that if I define a new MACHINE for the production
-> image?
+> I attach the log.do_image_wic file.
 >
-
-This is not clear to me. With 'installation image' do you mean a full image
-(bootloader, kernel, rootfs etc)?
-Can you give me some more details about this use case?
-
-Best regards,
-Gabriele
-
-Il giorno ven 19 lug 2019 alle ore 14:49 Patrick Doyle <wpdster@gmail.com>
-ha scritto:
-
-> On Fri, Jul 19, 2019 at 1:58 AM Gabriele Zampieri
-> <gabbla.malist@gmail.com> wrote:
-> >
-> > Hi,
-> >
-> > you could define two machines, where the manufacturing one is just an
-> overlay of the production one. If the two kernels differs only for their
-> config, you can specify different defconfig based on machine. If you need a
-> completely different kernel, just specify
-> PREFERRED_PROVIDER_virtual/kernel in manufacturing overlay
+> Thanks you in advance,
 >
-> Hi Gabriele,
-> I wondered about that, but I get confused about the MACHINE concept in
-> Yocto/OE/bitbake...
+> MM
 >
-> 1. If I define a new machine, but I have a lot of recipes conditioned
-> on the old machine, how do I say "This is the same as machine A, but
-> with these differences"?  I have defined a machine now ("mymachine")
-> and have recipes and .bbappend files with things like this in them:
->
-> SRC_URI_mymachine += "file:/blah/blah/blah"
-> do_install_append_mymachine() {
->   do_stuff()
-> }
->
-> Do I have to replicate (and maintain) all of the references to
-> mymachine to also refer to my newly defined "installationmachine"?  Or
-> can I tell Bitbake that "installationmachine" is the same as
-> "mymachine", and just add/change new stuff for "installationmachine"?
->
-> I hope my confusion here makes sense, but since it's confusion, it's
-> tough to tell :-)
->
-> 2. My new image going to be used as an installation image for my
-> production image.  So I need to include the production image (for
-> MACHINE="mymachine")) deploy products in the image for my installation
-> image.  How can I do that if I define a new MACHINE for the production
-> image?
->
-> Thank you so much for the suggestion... it confirms that I am looking
-> in the right places and thinking about the right things... I just
-> don't know how to solve this problem.
->
-> I'm also surprised that it's not a more general problem... which leads
-> me to believe that I must be thinking about this the wrong way.
->
-> Thanks again.
->
-> --wpd
 >
 
---000000000000b81b35058e093022
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--------------8DE0DDBA903B0C010C13A8C1
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-<div dir=3D"ltr"><div>Hi Patrick,</div><div><br></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex"><div>Do I have to replicate (and maintain) all=
- of the references to<br>
-mymachine to also refer to my newly defined &quot;installationmachine&quot;=
-?=C2=A0 Or<br>
-can I tell Bitbake that &quot;installationmachine&quot; is the same as<br>
-&quot;mymachine&quot;, and just add/change new stuff for &quot;installation=
-machine&quot;?</div></blockquote><div><br></div><div>I would approach in th=
-is way: in my meta-something/conf/machine:</div><div style=3D"margin-left:4=
-0px">- machine_base.inc where I put all the standard machine configuration =
-for production<br></div><div style=3D"margin-left:40px">- mymachine.conf <b=
-r></div><div style=3D"margin-left:80px">require conf/machine/machine_base.i=
-nc</div><div style=3D"margin-left:40px">- myinstallationmachine.conf</div><=
-div style=3D"margin-left:80px">require conf/machine/machine_base.inc</div><=
-div style=3D"margin-left:80px"><span class=3D"gmail-im">PREFERRED_PROVIDER_=
-virtual/kernel =3D &quot;some-linux-provider&quot;<br></span></div><div><sp=
-an class=3D"gmail-im">Then in something.bbappend:</span></div><div style=3D=
-"margin-left:40px"><span class=3D"gmail-im">- If the property is common to =
-both machines:</span></div><div style=3D"margin-left:80px"><span class=3D"g=
-mail-im">SRC_URI_append =3D &quot; file://modifications.patch&quot;</span><=
-/div><div style=3D"margin-left:40px"><span class=3D"gmail-im">- if the prop=
-erty is machine specific:</span></div><div style=3D"margin-left:80px"><span=
- class=3D"gmail-im">SRC_URI_append_&lt;MACHINE&gt; =3D &quot; file://machin=
-espec.patch&quot;</span></div><span class=3D"gmail-im">=C2=A0In this way yo=
-u have to maintain only the differences between your machines, without redu=
-ndancy.<br></span><div><div><div style=3D"margin-left:80px"><span class=3D"=
-gmail-im"><br></span></div><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
-"><div><span class=3D"gmail-im">2. My new image going to be used as an inst=
-allation image for my<br>
-production image.=C2=A0 So I need to include the production image (for<br>
-MACHINE=3D&quot;mymachine&quot;)) deploy products in the image for my insta=
-llation<br>
-image.=C2=A0 How can I do that if I define a new MACHINE for the production=
-<br>
-image?</span></div></blockquote></div><div><br></div><div>This is not clear=
- to me. With &#39;installation image&#39; do you mean a full image (bootloa=
-der, kernel, rootfs etc)?</div><div>Can you give me some more details about=
- this use case?</div><div><br></div><div>Best regards, <br></div><div>Gabri=
-ele<br></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
-ass=3D"gmail_attr">Il giorno ven 19 lug 2019 alle ore 14:49 Patrick Doyle &=
-lt;<a href=3D"mailto:wpdster@gmail.com">wpdster@gmail.com</a>&gt; ha scritt=
-o:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Fri, Jul 1=
-9, 2019 at 1:58 AM Gabriele Zampieri<br>
-&lt;<a href=3D"mailto:gabbla.malist@gmail.com" target=3D"_blank">gabbla.mal=
-ist@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; you could define two machines, where the manufacturing one is just an =
-overlay of the production one. If the two kernels differs only for their co=
-nfig, you can specify different defconfig based on machine. If you need a c=
-ompletely different kernel, just specify=C2=A0 PREFERRED_PROVIDER_virtual/k=
-ernel in manufacturing overlay<br>
-<br>
-Hi Gabriele,<br>
-I wondered about that, but I get confused about the MACHINE concept in<br>
-Yocto/OE/bitbake...<br>
-<br>
-1. If I define a new machine, but I have a lot of recipes conditioned<br>
-on the old machine, how do I say &quot;This is the same as machine A, but<b=
-r>
-with these differences&quot;?=C2=A0 I have defined a machine now (&quot;mym=
-achine&quot;)<br>
-and have recipes and .bbappend files with things like this in them:<br>
-<br>
-SRC_URI_mymachine +=3D &quot;file:/blah/blah/blah&quot;<br>
-do_install_append_mymachine() {<br>
-=C2=A0 do_stuff()<br>
-}<br>
-<br>
-Do I have to replicate (and maintain) all of the references to<br>
-mymachine to also refer to my newly defined &quot;installationmachine&quot;=
-?=C2=A0 Or<br>
-can I tell Bitbake that &quot;installationmachine&quot; is the same as<br>
-&quot;mymachine&quot;, and just add/change new stuff for &quot;installation=
-machine&quot;?<br>
-<br>
-I hope my confusion here makes sense, but since it&#39;s confusion, it&#39;=
-s<br>
-tough to tell :-)<br>
-<br>
-2. My new image going to be used as an installation image for my<br>
-production image.=C2=A0 So I need to include the production image (for<br>
-MACHINE=3D&quot;mymachine&quot;)) deploy products in the image for my insta=
-llation<br>
-image.=C2=A0 How can I do that if I define a new MACHINE for the production=
-<br>
-image?<br>
-<br>
-Thank you so much for the suggestion... it confirms that I am looking<br>
-in the right places and thinking about the right things... I just<br>
-don&#39;t know how to solve this problem.<br>
-<br>
-I&#39;m also surprised that it&#39;s not a more general problem... which le=
-ads<br>
-me to believe that I must be thinking about this the wrong way.<br>
-<br>
-Thanks again.<br>
-<br>
---wpd<br>
-</blockquote></div>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 7/19/19 4:27 AM, María del Mar
+      Velasco AERTEC Solutions – Aerospace &amp; Aviation wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:AM0PR09MB4066402C6F9DCEC298A30B89D7CB0@AM0PR09MB4066.eurprd09.prod.outlook.com">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=windows-1252">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+span.EstiloCorreo17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1808545788;
+	mso-list-type:hybrid;
+	mso-list-template-ids:1811301814 1694126100 134807555 134807557 134807553 134807555 134807557 134807553 134807555 134807557;}
+@list l0:level1
+	{mso-level-start-at:0;
+	mso-level-number-format:bullet;
+	mso-level-text:\F0E8;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:20.4pt;
+	text-indent:-18.0pt;
+	font-family:Wingdings;
+	mso-fareast-font-family:Calibri;
+	mso-bidi-font-family:Arial;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:56.4pt;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:92.4pt;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:128.4pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:164.4pt;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:200.4pt;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:236.4pt;
+	text-indent:-18.0pt;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:272.4pt;
+	text-indent:-18.0pt;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	margin-left:308.4pt;
+	text-indent:-18.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal">Dear all,<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">I am new at Yocto Project and I have a
+          simple question. I have cloned poky (rocko branch), sourced
+          the environment and bitbaked the core-minimal-image-dev
+          without problems. I can write the image in a SD Card and I am
+          able to boot the system.
+          <o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">However, when I add IMAGE_INSTALL_append to
+          local.conf with some packages recipes (IMAGE_INSTALL_append =
+          “nodejs” for example), I get the following error:<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <ul style="margin-top:0cm" type="disc">
+          <li class="MsoListParagraph"
+            style="margin-left:-15.6pt;mso-list:l0 level1 lfo1">
+            ERROR: Function failed: do_image_wic<o:p></o:p></li>
+          <li class="MsoListParagraph"
+            style="margin-left:-15.6pt;mso-list:l0 level1 lfo1">
+            ERROR: Actual rootfs size (284260 KB) is larger than allowed
+            size 262144 KB.<o:p></o:p></li>
+        </ul>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">My question is: where could I find that
+          262144 KB default size value? I would like to change it and
+          make it bigger. I have tried to add  IMAGE_ROOTFS_SIZE =
+          “5000000” to local.conf file but it still fails.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+      </div>
+    </blockquote>
+    <p>you might want to check the kickstart ( .wks ) file and adjust
+      the --fixed-size values for partition sizes <br>
+    </p>
+    <p><br>
+    </p>
+    <blockquote type="cite"
+cite="mid:AM0PR09MB4066402C6F9DCEC298A30B89D7CB0@AM0PR09MB4066.eurprd09.prod.outlook.com">
+      <div class="WordSection1">
+        <p class="MsoNormal">I attach the log.do_image_wic file.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">Thanks you in advance,<o:p></o:p></p>
+        <p class="MsoNormal"><o:p> </o:p></p>
+        <p class="MsoNormal">MM<o:p></o:p></p>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+    </blockquote>
+  </body>
+</html>
 
---000000000000b81b35058e093022--
+--------------8DE0DDBA903B0C010C13A8C1--
