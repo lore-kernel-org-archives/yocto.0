@@ -1,6 +1,6 @@
-Return-Path: <torres.soldado@gmail.com>
+Return-Path: <gabbla.malist@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 730C3E00C09; Fri, 19 Jul 2019 06:52:14 -0700 (PDT)
+	id E2559E00C09; Fri, 19 Jul 2019 07:03:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,55 +10,58 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (torres.soldado[at]gmail.com)
+	provider *      (gabbla.malist[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.172 listed in list.dnswl.org]
+	*      [209.85.167.51 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com
-	[209.85.208.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 168C5E009EA
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2019 06:52:12 -0700 (PDT)
-Received: by mail-lj1-f172.google.com with SMTP id i21so30881855ljj.3
-	for <yocto@yoctoproject.org>; Fri, 19 Jul 2019 06:52:12 -0700 (PDT)
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com
+	[209.85.167.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A60C9E00A93
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2019 07:03:27 -0700 (PDT)
+Received: by mail-lf1-f51.google.com with SMTP id p197so21810998lfa.2
+	for <yocto@yoctoproject.org>; Fri, 19 Jul 2019 07:03:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=P/1W3J5Z3f+DY3KrltjSzrS7FIHFWXOY3Vgb7X80n7E=;
-	b=rGiv9ejb/APdORpoDMsUT9ka4WV0uF6Ev3m4l90ssUBGkq+F8RsUhORljRG7vXAJ/D
-	WkwuwR25zFn7gwguV7qZOFJfY3RTnjZYLh1NG7d596QwPMQNmkVHFvDaazDZCjKU+fWo
-	DlFb73kfRL26ugVb3aJyQ/QEq7tNXxWKikBT/7Fbh8/4MXftZviQRHayVS8egAYl1Fqf
-	iHtAvdUJ/zxc55l6doIX1rbpU+C1k7UV/+hCL5ZV/8LMoXxBXVJWjuDS7q85/Z16Mjlj
-	0BIaa6ZcqQt4KxQpvhtwSk7q10gbaPJlmoqwqiqrI0rb2P5oVG2MPB+Vj30vQUkNRA2d
-	cKeg==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=t0aeydPvKHhSKnOAGGTbRjruw7EIWN4qaMXXbRH3uzM=;
+	b=VErMbzeZj5TAGNMrtAxTPnZWDSLmM/s222WowF4AFpf1ouygVcUgMDDFonTggJwqwD
+	LbEdlwPY4yyJEAGCbyqzDocUKHJSTepH9SpyAkcfFVd9jefocKbOOdROMtESs3TVdJLN
+	4mFDjqmoDZLax3sRwJZv9vPHezaqa4yv1M68BiUC70qOBEM0f7cl3eZrMdJeaPYbZiFo
+	9TwmrHE1YSlLuhUxnMEPOeiTACER/5R521fGaDIr2tDkCY1kxaMF7FqC6OI91KVVkLOn
+	JHoIUqcPjrZQtJuOJIhFmMwVccsGltbLQS7tPIvwZlJHH4wymRStuGPp/1ACMXyyPNmA
+	pcaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=P/1W3J5Z3f+DY3KrltjSzrS7FIHFWXOY3Vgb7X80n7E=;
-	b=d9z+u2FYu6zuV1eMxjfSuHotCeJNTO1iOsDYRARK5XoyRDtGRxkeZHePxvBTDSp1Tq
-	ycezOVeCBoaouXIGk2JEWtj0H9/VRi4ixV4WOdTBgw7q35SdKPL5Ut1/bvJvlzBY4vX9
-	g15Cr8zcsgzgXTQXG5X52YhIo1pQRt0fSsFkDcQh7lCVgmnRcEzy2DNYLKj053dc0gN4
-	gyHSSje9byZXxYk59kWnjchvrGb9nGDfDOSziEyETDQade5WlgLRtxhX4TgY0n4uRSax
-	UiIjEMNusWSVI89iyJMMIWfSHbrK9tUTD/8iR6/nYn/T05yMWBAd0l5TYQ4tUlSLJ7Kb
-	BCOQ==
-X-Gm-Message-State: APjAAAUYN+BXzjM+sgC0LOiO8sFNwf3YJriQt+XxkYi7CgY0iSLmQM2d
-	g6uyi5m3iTydXtWE+ASE61ZvVCaG9faHJ0b3+P8gJumlNT0rFQ==
-X-Google-Smtp-Source: APXvYqzspEpA3mRVNR8cN2Z6KeMXf+pB2aIzK7/swdTcKHhTvwkMBinMXYfeyBTP86rUKYVP+iBfqtQW1n8jRn8sVuY=
-X-Received: by 2002:a2e:9d8a:: with SMTP id c10mr4048430ljj.147.1563544331907; 
-	Fri, 19 Jul 2019 06:52:11 -0700 (PDT)
+	:message-id:subject:to:cc;
+	bh=t0aeydPvKHhSKnOAGGTbRjruw7EIWN4qaMXXbRH3uzM=;
+	b=hOnMlRqUiChy0KYO9q2YGbpi58TbO5IQUAklFAcvsA7A6mN5q0R7exd61wvdILiseC
+	xU/HdkgdPY7Am3fwekrzGdDJf2H4fDkJgO83nWD654R8tCYxNTA05B2AAJShfsQOTYoi
+	LUPvkkXNqPZSewJoI/SPzeOIzoIGyh6R/ZPv4iJYXttk7elp7lXaMTbjrDjggRRZA1hG
+	iY9qRAjH4jAHgUmR1nqsJItjXgf6PBhcWBy4MWCZ4hgTd/pfx2HNbs2qTvtXtHcYg+4c
+	WnJifo/Lh02H+kCQF4jrIsTUpXYfEFEh+9aDPZjSDUJnZ+Fkv+PppiQk2IRbXIQ9LAgP
+	1CQA==
+X-Gm-Message-State: APjAAAU6UMXuFaE5/qnBtIv8cD5WTo2WhdSr11upcoHufXYFpu77fP/4
+	wXzVa1aGqjwVcYA0U6r4FlDokLVZ9h1G6UqRyHM=
+X-Google-Smtp-Source: APXvYqwM5WExlvmKfTv6xSwAy86XolRkQzl6M+UPB2ESeEVB7gz+CB2h/Ry9A3dhFpZ2nD4hnALOELX742dTmOwNELM=
+X-Received: by 2002:a19:6904:: with SMTP id e4mr4837326lfc.156.1563545006774; 
+	Fri, 19 Jul 2019 07:03:26 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAFuHCCD22a3r41RmUsv3Grbt+2YY0uTXp+ZuiLo+Xh5ivBVghA@mail.gmail.com>
-In-Reply-To: <CAFuHCCD22a3r41RmUsv3Grbt+2YY0uTXp+ZuiLo+Xh5ivBVghA@mail.gmail.com>
-From: Sergio Torres Soldado <torres.soldado@gmail.com>
-Date: Fri, 19 Jul 2019 14:52:00 +0100
-Message-ID: <CAFuHCCAfFEzAz8bcEKLhYdYwWjbCKo30=t+_MFepzD+aO59D2Q@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Setting home directory ownership
+References: <CAF_dkJDbqR8yPWRYX_2wT+Pk1+cuNcntWizg3hhZnA_vVVwnaA@mail.gmail.com>
+	<CAAx3WaDTteqencYsxrb+1a_TgR8cazNUJ7-3VX9VxeePQkmRoQ@mail.gmail.com>
+	<CAF_dkJB=p0EWosdL6cTe1YN+38KN8Qb8LuYoOvF06URR96oQCw@mail.gmail.com>
+In-Reply-To: <CAF_dkJB=p0EWosdL6cTe1YN+38KN8Qb8LuYoOvF06URR96oQCw@mail.gmail.com>
+From: Gabriele Zampieri <gabbla.malist@gmail.com>
+Date: Fri, 19 Jul 2019 16:03:14 +0200
+Message-ID: <CAAx3WaCKS21xWZ_b3jqJFm61D+_QPy0Aago0Tais8hVTyoKqKw@mail.gmail.com>
+To: Patrick Doyle <wpdster@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: How to specify a different kernel for an image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,93 +73,211 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 19 Jul 2019 13:52:14 -0000
-Content-Type: multipart/alternative; boundary="0000000000007e75c2058e090897"
+X-List-Received-Date: Fri, 19 Jul 2019 14:03:29 -0000
+Content-Type: multipart/alternative; boundary="000000000000b81b35058e093022"
 
---0000000000007e75c2058e090897
+--000000000000b81b35058e093022
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Sorry. I was using NFS boot and was copying over the rootfs with "cp -r"
-instead of "cp -a", the permissions are fine. The only issue that remains
-is that I have to use "chmod -R 1000" i.e. the UID instead of the username
-otherwise I get the following error:
-"""
-| DEBUG: Python function extend_recipe_sysroot finished
-| DEBUG: Executing shell function do_install
-| install: invalid user =E2=80=98someusername=E2=80=99
-"""
+Hi Patrick,
 
-On Fri, 19 Jul 2019 at 14:17, Sergio Torres Soldado <
-torres.soldado@gmail.com> wrote:
+Do I have to replicate (and maintain) all of the references to
+> mymachine to also refer to my newly defined "installationmachine"?  Or
+> can I tell Bitbake that "installationmachine" is the same as
+> "mymachine", and just add/change new stuff for "installationmachine"?
+>
 
-> I am unable to set the home directory ownership. I am using poky@warrior
-> and my last attempt was the following recipe:
+I would approach in this way: in my meta-something/conf/machine:
+- machine_base.inc where I put all the standard machine configuration for
+production
+- mymachine.conf
+require conf/machine/machine_base.inc
+- myinstallationmachine.conf
+require conf/machine/machine_base.inc
+PREFERRED_PROVIDER_virtual/kernel = "some-linux-provider"
+Then in something.bbappend:
+- If the property is common to both machines:
+SRC_URI_append = " file://modifications.patch"
+- if the property is machine specific:
+SRC_URI_append_<MACHINE> = " file://machinespec.patch"
+ In this way you have to maintain only the differences between your
+machines, without redundancy.
+
+2. My new image going to be used as an installation image for my
+> production image.  So I need to include the production image (for
+> MACHINE="mymachine")) deploy products in the image for my installation
+> image.  How can I do that if I define a new MACHINE for the production
+> image?
 >
-> """
-> inherit useradd
-> USERADD_PACKAGES =3D "${PN}"
+
+This is not clear to me. With 'installation image' do you mean a full image
+(bootloader, kernel, rootfs etc)?
+Can you give me some more details about this use case?
+
+Best regards,
+Gabriele
+
+Il giorno ven 19 lug 2019 alle ore 14:49 Patrick Doyle <wpdster@gmail.com>
+ha scritto:
+
+> On Fri, Jul 19, 2019 at 1:58 AM Gabriele Zampieri
+> <gabbla.malist@gmail.com> wrote:
+> >
+> > Hi,
+> >
+> > you could define two machines, where the manufacturing one is just an
+> overlay of the production one. If the two kernels differs only for their
+> config, you can specify different defconfig based on machine. If you need a
+> completely different kernel, just specify
+> PREFERRED_PROVIDER_virtual/kernel in manufacturing overlay
 >
-> USERADD_PARAM_${PN} =3D "-P someusername -u 1000 -d /home/someusername -r=
- -s
-> /bin/bash foosomeusername"
+> Hi Gabriele,
+> I wondered about that, but I get confused about the MACHINE concept in
+> Yocto/OE/bitbake...
 >
-> LICENSE =3D "CLOSED"
+> 1. If I define a new machine, but I have a lot of recipes conditioned
+> on the old machine, how do I say "This is the same as machine A, but
+> with these differences"?  I have defined a machine now ("mymachine")
+> and have recipes and .bbappend files with things like this in them:
 >
-> do_install () {
->   install -d ${D}/home/someusername
->   # If I don't use the UID I get an error message saying "invalid user:
-> hubshuffle", although it seems to work for some usernames e.g. "user1" li=
-ke
-> in the skeleton recipe for useradd.
->   chown -R 1000 ${D}/home/foosomeusername
+> SRC_URI_mymachine += "file:/blah/blah/blah"
+> do_install_append_mymachine() {
+>   do_stuff()
 > }
 >
-> pkg_postinst_${PN} () {
->   chown -R 1000 $D/home/someusername
-> }
+> Do I have to replicate (and maintain) all of the references to
+> mymachine to also refer to my newly defined "installationmachine"?  Or
+> can I tell Bitbake that "installationmachine" is the same as
+> "mymachine", and just add/change new stuff for "installationmachine"?
 >
-> FILES_${PN} =3D " \
->   /home/someusername \
-> "
-> """
+> I hope my confusion here makes sense, but since it's confusion, it's
+> tough to tell :-)
 >
-> I don't know what I am doing wrong, any hint is very welcome thanks.
+> 2. My new image going to be used as an installation image for my
+> production image.  So I need to include the production image (for
+> MACHINE="mymachine")) deploy products in the image for my installation
+> image.  How can I do that if I define a new MACHINE for the production
+> image?
+>
+> Thank you so much for the suggestion... it confirms that I am looking
+> in the right places and thinking about the right things... I just
+> don't know how to solve this problem.
+>
+> I'm also surprised that it's not a more general problem... which leads
+> me to believe that I must be thinking about this the wrong way.
+>
+> Thanks again.
+>
+> --wpd
 >
 
---0000000000007e75c2058e090897
+--000000000000b81b35058e093022
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Sorry. I was using NFS boot and was copying over the =
-rootfs with &quot;cp -r&quot; instead of &quot;cp -a&quot;, the permissions=
- are fine. The only issue that remains is that I have to use &quot;chmod -R=
- 1000&quot; i.e. the UID instead of the username otherwise I get the follow=
-ing error:</div><div>&quot;&quot;&quot;</div><div><span style=3D"font-famil=
-y:monospace"><span style=3D"color:rgb(0,0,0)">| DEBUG: Python function exte=
-nd_recipe_sysroot finished
-</span><br>| DEBUG: Executing shell function do_install
-<br>| install: invalid user =E2=80=98someusername=E2=80=99<br>
-&quot;&quot;&quot;</span></div><br><div class=3D"gmail_quote"><div dir=3D"l=
-tr" class=3D"gmail_attr">On Fri, 19 Jul 2019 at 14:17, Sergio Torres Soldad=
-o &lt;<a href=3D"mailto:torres.soldado@gmail.com">torres.soldado@gmail.com<=
-/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
-div dir=3D"ltr">I am unable to set the home directory ownership. I am using=
- poky@warrior and my last attempt was the following recipe:<div><br></div><=
-div>&quot;&quot;&quot;</div><div>inherit useradd<br>USERADD_PACKAGES =3D &q=
-uot;${PN}&quot;<br><br>USERADD_PARAM_${PN} =3D &quot;-P someusername -u 100=
-0 -d /home/someusername=C2=A0-r -s /bin/bash foosomeusername&quot;<br><br>L=
-ICENSE =3D &quot;CLOSED&quot;<br><br>do_install () {<br>=C2=A0 install -d $=
-{D}/home/someusername</div><div>=C2=A0 # If I don&#39;t use the UID I get a=
-n error message saying &quot;invalid user: hubshuffle&quot;, although it se=
-ems to work for some usernames e.g. &quot;user1&quot; like in the skeleton =
-recipe for useradd.<br>=C2=A0 chown -R 1000 ${D}/home/foosomeusername<br>}<=
-br><br>pkg_postinst_${PN} () {<br>=C2=A0 chown -R 1000 $D/home/someusername=
-<br>}<br><br>FILES_${PN} =3D &quot; \<br>=C2=A0 /home/someusername=C2=A0\<b=
-r>&quot;<br></div><div>&quot;&quot;&quot;</div><div><br></div><div>I don&#3=
-9;t know what I am doing wrong, any hint is very welcome thanks.</div></div=
->
-</blockquote></div></div>
+<div dir=3D"ltr"><div>Hi Patrick,</div><div><br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex"><div>Do I have to replicate (and maintain) all=
+ of the references to<br>
+mymachine to also refer to my newly defined &quot;installationmachine&quot;=
+?=C2=A0 Or<br>
+can I tell Bitbake that &quot;installationmachine&quot; is the same as<br>
+&quot;mymachine&quot;, and just add/change new stuff for &quot;installation=
+machine&quot;?</div></blockquote><div><br></div><div>I would approach in th=
+is way: in my meta-something/conf/machine:</div><div style=3D"margin-left:4=
+0px">- machine_base.inc where I put all the standard machine configuration =
+for production<br></div><div style=3D"margin-left:40px">- mymachine.conf <b=
+r></div><div style=3D"margin-left:80px">require conf/machine/machine_base.i=
+nc</div><div style=3D"margin-left:40px">- myinstallationmachine.conf</div><=
+div style=3D"margin-left:80px">require conf/machine/machine_base.inc</div><=
+div style=3D"margin-left:80px"><span class=3D"gmail-im">PREFERRED_PROVIDER_=
+virtual/kernel =3D &quot;some-linux-provider&quot;<br></span></div><div><sp=
+an class=3D"gmail-im">Then in something.bbappend:</span></div><div style=3D=
+"margin-left:40px"><span class=3D"gmail-im">- If the property is common to =
+both machines:</span></div><div style=3D"margin-left:80px"><span class=3D"g=
+mail-im">SRC_URI_append =3D &quot; file://modifications.patch&quot;</span><=
+/div><div style=3D"margin-left:40px"><span class=3D"gmail-im">- if the prop=
+erty is machine specific:</span></div><div style=3D"margin-left:80px"><span=
+ class=3D"gmail-im">SRC_URI_append_&lt;MACHINE&gt; =3D &quot; file://machin=
+espec.patch&quot;</span></div><span class=3D"gmail-im">=C2=A0In this way yo=
+u have to maintain only the differences between your machines, without redu=
+ndancy.<br></span><div><div><div style=3D"margin-left:80px"><span class=3D"=
+gmail-im"><br></span></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+"><div><span class=3D"gmail-im">2. My new image going to be used as an inst=
+allation image for my<br>
+production image.=C2=A0 So I need to include the production image (for<br>
+MACHINE=3D&quot;mymachine&quot;)) deploy products in the image for my insta=
+llation<br>
+image.=C2=A0 How can I do that if I define a new MACHINE for the production=
+<br>
+image?</span></div></blockquote></div><div><br></div><div>This is not clear=
+ to me. With &#39;installation image&#39; do you mean a full image (bootloa=
+der, kernel, rootfs etc)?</div><div>Can you give me some more details about=
+ this use case?</div><div><br></div><div>Best regards, <br></div><div>Gabri=
+ele<br></div></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
+ass=3D"gmail_attr">Il giorno ven 19 lug 2019 alle ore 14:49 Patrick Doyle &=
+lt;<a href=3D"mailto:wpdster@gmail.com">wpdster@gmail.com</a>&gt; ha scritt=
+o:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Fri, Jul 1=
+9, 2019 at 1:58 AM Gabriele Zampieri<br>
+&lt;<a href=3D"mailto:gabbla.malist@gmail.com" target=3D"_blank">gabbla.mal=
+ist@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; you could define two machines, where the manufacturing one is just an =
+overlay of the production one. If the two kernels differs only for their co=
+nfig, you can specify different defconfig based on machine. If you need a c=
+ompletely different kernel, just specify=C2=A0 PREFERRED_PROVIDER_virtual/k=
+ernel in manufacturing overlay<br>
+<br>
+Hi Gabriele,<br>
+I wondered about that, but I get confused about the MACHINE concept in<br>
+Yocto/OE/bitbake...<br>
+<br>
+1. If I define a new machine, but I have a lot of recipes conditioned<br>
+on the old machine, how do I say &quot;This is the same as machine A, but<b=
+r>
+with these differences&quot;?=C2=A0 I have defined a machine now (&quot;mym=
+achine&quot;)<br>
+and have recipes and .bbappend files with things like this in them:<br>
+<br>
+SRC_URI_mymachine +=3D &quot;file:/blah/blah/blah&quot;<br>
+do_install_append_mymachine() {<br>
+=C2=A0 do_stuff()<br>
+}<br>
+<br>
+Do I have to replicate (and maintain) all of the references to<br>
+mymachine to also refer to my newly defined &quot;installationmachine&quot;=
+?=C2=A0 Or<br>
+can I tell Bitbake that &quot;installationmachine&quot; is the same as<br>
+&quot;mymachine&quot;, and just add/change new stuff for &quot;installation=
+machine&quot;?<br>
+<br>
+I hope my confusion here makes sense, but since it&#39;s confusion, it&#39;=
+s<br>
+tough to tell :-)<br>
+<br>
+2. My new image going to be used as an installation image for my<br>
+production image.=C2=A0 So I need to include the production image (for<br>
+MACHINE=3D&quot;mymachine&quot;)) deploy products in the image for my insta=
+llation<br>
+image.=C2=A0 How can I do that if I define a new MACHINE for the production=
+<br>
+image?<br>
+<br>
+Thank you so much for the suggestion... it confirms that I am looking<br>
+in the right places and thinking about the right things... I just<br>
+don&#39;t know how to solve this problem.<br>
+<br>
+I&#39;m also surprised that it&#39;s not a more general problem... which le=
+ads<br>
+me to believe that I must be thinking about this the wrong way.<br>
+<br>
+Thanks again.<br>
+<br>
+--wpd<br>
+</blockquote></div>
 
---0000000000007e75c2058e090897--
+--000000000000b81b35058e093022--
