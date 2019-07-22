@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 30567E00D30; Mon, 22 Jul 2019 09:04:34 -0700 (PDT)
+	id AF53AE00D2C; Mon, 22 Jul 2019 09:34:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,54 +13,52 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.174 listed in list.dnswl.org]
+	*      [209.85.160.173 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com
-	[209.85.160.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E422E00BB6;
-	Mon, 22 Jul 2019 09:04:33 -0700 (PDT)
-Received: by mail-qt1-f174.google.com with SMTP id k10so39090242qtq.1;
-	Mon, 22 Jul 2019 09:04:33 -0700 (PDT)
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com
+	[209.85.160.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74F7CE0090E
+	for <yocto@yoctoproject.org>; Mon, 22 Jul 2019 09:34:38 -0700 (PDT)
+Received: by mail-qt1-f173.google.com with SMTP id a15so39101891qtn.7
+	for <yocto@yoctoproject.org>; Mon, 22 Jul 2019 09:34:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=vZQzyk26XkbHA/mVSe59QEf+iZ6s4OenfJ3ADB3X7Y4=;
-	b=jY2aM4a/AhQBiXtNMiQqyA3ZADDbxWKEivdjFL65epjr3VPaUUo4aAm14a5i59EAz1
-	esf/KoyQlId7pkWyZJzE8cDw+FHNUgsqizIvyzqq8PfvkvctasF2mJuF4OmS6ljGOtak
-	xkpBEQ9c7zAFLZvR5AtqFzrVLZLyp9W8Os3dfA2IMQn7QLUBMQhNfnucqJZ6BdFcM/U9
-	SIrIddov7cn0bBNGXMhjytDStvkNXxE06Z5BokTXZbk+Xs536s9/GQQg+VSV12eWFOJJ
-	R8bibOgnhYLj4NLVZojHem3kQe0h18JI4Jkp/K4wcAd2BVU6B67HpYNEtIQMjmiJuvQw
-	fo1A==
+	:cc; bh=Ssk7XANe2LzZxcvloU8QxYIzkwirHpInNREvuU3As7Y=;
+	b=aix0UmAX7FTHwiLcUQyqe0BmqPTE7Q8a4prIvwe+JrHvThCL5zDzK1l9KDaDNlQUSr
+	cxt5VFcQPgDgkA6ITzwAJczXRb1oBreXi7YkNv7323ACWO2X6MdjrsVgf6BQ3VpCvr2/
+	/h7oBoRcmuUPITp4cUNuPS5lz3f3eIwKmUZhpOS1H8YyITLDwsudXsOOKxHP/K9xuzaF
+	2ZGMuoXaIV064JViE9gejS0ebQJDuEL6b1X/mj0P9qfLYVmT9UqQ/uqarmtlWPMtZY7e
+	uA2tqBBb8/De4Y0QW20zuB0F1Vt7VtA3piHQbs++fLaGv4ks/kvQmYAVMN0OYGU7s+7J
+	5PQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=vZQzyk26XkbHA/mVSe59QEf+iZ6s4OenfJ3ADB3X7Y4=;
-	b=KU/3tcxb8vh3crPbYD4wu0egSrHj2fvGL41ICdU11ZVyhdcUIqfcMas27yjk3x5iXl
-	pIkVV1EQGSrKDz2aJDDbHXXq9t1FInkntcJtZmt7xjnk9Md6GNQ4F73OUBV/U6UpXN2a
-	nfAUCXmqZuvOeJmFq1dS77dz3js5DyOkzUQTY6nTamcrec34Yeme5mpGZnsvj64YETnU
-	zgCK5V3/5VUjLGFl3TBUJZ2bZ8a5u8WaROFZeo6KXDUJfodqmo9H8k3YmaxYBMfbiU6a
-	qZdt959P6iNppBUzJrDbozPTJABqTqZOv7iNArVd0QQXa+cAa9vR1GeYvcZ9g0t0yjos
-	bcMA==
-X-Gm-Message-State: APjAAAXwaqNypj+5uItLYJeO+2seI4/PcFDb0IOUWs1j2i/AktvWkN1Y
-	e9dunhjrv6dStKdNtodU8fP5iMTH8558oxeMlktmgcmr7k8=
-X-Google-Smtp-Source: APXvYqztZkXS0dX3J1IFvEbImPGVTXcOngNnvI/fn12m2E5nGrDbSdpDEWfrI7YNAVQjqgGSg+DMycGJBSJJ1jKdZ2g=
-X-Received: by 2002:a0c:bd1d:: with SMTP id m29mr52318157qvg.181.1563811472598;
-	Mon, 22 Jul 2019 09:04:32 -0700 (PDT)
+	bh=Ssk7XANe2LzZxcvloU8QxYIzkwirHpInNREvuU3As7Y=;
+	b=cohF72G499erI+qcnBT1pSK6HdOyNXK28/AYIEX/MXISZVKZJzAgNGPzdnYMekbhW6
+	di2U+xzzloPYfAdfjBuxyPSwPGRY5oA48SXuz1scizQOEpvLIM1PS2zfmjxmxB2MHH4p
+	X4HhyxQuEhcwNO3ioFmRuZXamiQEN9H/d9hZIGck+p9jn/wV0lW99JUsloL7YHff/uvS
+	57K/p0LVn+gERCMCaw8zLajI5peOY1x9lfzgrcu5XKeeWEYKVXktY3Hs6qz8AoynVv33
+	8KL+F7MCfNq38c71ABCMYlHf0iJQ3xoJa/HNRQhXgp8caCCE23O0GxDJnahtTkA5oq0r
+	uBNg==
+X-Gm-Message-State: APjAAAUoGQN4ig4iaIf+VHNZ7lCAm79g9HpwpskMTPjG/Qj2yCkOqMvN
+	N1QnL5VKXiGAcvPxHLSRvkzWFxE1AWX0eNUJSjRCUrXv
+X-Google-Smtp-Source: APXvYqxsZZzeWVa0Ba8os4wZhrm3ZrCfkkz731u6sseAz7X8QYrYp0pgABpSvhAO0xboFzV22uT2D1wLJPVy+8Dh+Do=
+X-Received: by 2002:ac8:525a:: with SMTP id y26mr50110116qtn.378.1563813277562;
+	Mon, 22 Jul 2019 09:34:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <86eeb8cf-ff2a-e782-c7a9-44fc4496bf62@mindchasers.com>
-	<10fcfe4c-3247-6010-9f22-7996dd090333@mindchasers.com>
-In-Reply-To: <10fcfe4c-3247-6010-9f22-7996dd090333@mindchasers.com>
+References: <f9842057-d93a-d6f4-bba2-937f6b44b346@herbrechtsmeier.net>
+In-Reply-To: <f9842057-d93a-d6f4-bba2-937f6b44b346@herbrechtsmeier.net>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 22 Jul 2019 09:04:06 -0700
-Message-ID: <CAMKF1spum8hq2qtwVTEvVZkzaf7n3ay3_JhBbpdUSh+DuSnZwA@mail.gmail.com>
-To: Bob Cochran <yocto@mindchasers.com>
-Cc: "meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>,
-	Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Looking for a recommendation for the right Yocto dev board that supports MIPI CSI-2...
+Date: Mon, 22 Jul 2019 09:34:11 -0700
+Message-ID: <CAMKF1sqe=hV1trKzofXr3phL5ZC4LFx-AN11q9y2DofQSBZ_iQ@mail.gmail.com>
+To: Stefan Herbrechtsmeier <stefan@herbrechtsmeier.net>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Create an image from deployed files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,50 +70,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Jul 2019 16:04:34 -0000
+X-List-Received-Date: Mon, 22 Jul 2019 16:34:39 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Jul 3, 2019 at 4:32 PM Bob Cochran <yocto@mindchasers.com> wrote:
+On Wed, Jul 3, 2019 at 12:43 PM Stefan Herbrechtsmeier
+<stefan@herbrechtsmeier.net> wrote:
 >
-> On 6/20/19 11:24 PM, Bob Cochran wrote:
-> > Hi,
-> >
-> > I'm doing some work with MIPI cameras, and I need a development board
-> > with stable Yocto and MIPI CSI-2 support.   At this point, I'm
-> > thinking i.MX, but I'm open to any suggestion.
+> Hi,
 >
-> It looks like we're going to purchase an NXP MCIMX8M-EVK dev board (at
-> least one to get started).   Can someone please confirm that the
-> imx8mqevk.conf machine file is for this board?
+> what would be the best solution to create an image from deployed files?
 >
-> Is this board Yocto Project stable?  I need to be able to build the
-> master branch for this board (or should I be using next?). Any comments
-> or feedback will be great appreciated.
+> The wic bootimg-partition plugin copy over files listed in
+> IMAGE_BOOT_FILES and create a partition inside the wic image. The
+> image.bbclass creates an image from individual packages.
 >
-> https://www.nxp.com/support/developer-resources/evaluation-and-development-boards/i.mx-evaluation-and-development-boards/evaluation-kit-for-the-i.mx-8m-applications-processor:MCIMX8M-EVK
+> I want to create an image like the image.bbclass but from deployed files
+> like the wic bootimg-partition plugin.
+>
+> I have add an image_types_vfat.bbclass to create vfat images, move the
+> common parts from image.bbclass into image-common.bbclass and add a
+> boot-image.bbclass. This class duplicates some code from the wic
+> bootimg-partition plugin inside the do_rootfs function and add some
+> dummy tasks to minimize the changes in the common code.
+>
+> I wonder if this is the right direction or if another solution exists.
 >
 
-seems it is in meta-freescale.
-https://git.yoctoproject.org/cgit/cgit.cgi/meta-freescale/tree/conf/machine/imx8mqevk.conf?h=master
+I would think you can add a wic kickstart image to generate your desired image
 
-> Thanks
->
-> Bob
->
->
-> >
-> > I'm not sure what type of access I'll have to the D-PHY data streams.
-> > Do they always terminate into a GPU?   However, I would like a board
-> > that gives me the most capability to control / route the data with
-> > open source drivers.
-> >
-> > I suppose I want CSI-2 in and HDMI out.
-> >
-> > Thank you,
-> >
-> > Bob
-> >
-> >
+> Best regards
+>    Stefan
 >
 > --
 > _______________________________________________
