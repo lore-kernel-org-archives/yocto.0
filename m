@@ -1,62 +1,40 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <david.reyna@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8F9ECE00BD5; Tue, 23 Jul 2019 04:47:20 -0700 (PDT)
+	id EA24EE00D4E; Tue, 23 Jul 2019 08:35:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	https://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jupiter.hce[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.53 listed in list.dnswl.org]
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com
-	[209.85.166.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D375E00A49
-	for <yocto@yoctoproject.org>; Tue, 23 Jul 2019 04:47:20 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id i10so81042657iol.13
-	for <yocto@yoctoproject.org>; Tue, 23 Jul 2019 04:47:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=S6gp51plx259cdGs9i4Ve4/t4M5pMcgFbP3QCrZXyG4=;
-	b=MW7KYQhmWS9l4X72LUWzv/60n2tR3UVmiIc/9urzMjpHa2yeHTyZFiP3Btz71NRTav
-	wsIcYngCmAJnSBmFd+g7m9WPkMVjXWaJGK6W9aAAbLZiP7Jst782I6X9X/VkwWWBEgSS
-	8cOD53vf8ngpNjxTdBZ1FekGNJgvb9xk/7dnhhxxC5n6Rxfr/eLrozP05DHEpXS5QNnZ
-	/SWtR4i7Md99HwI35vvZ3vr2qfBWW50rFLxMx3957e6n7UuFaFi+pp2bPvm1y9i92sYn
-	ooyJJhhFTkO3LMbJplgP1FI3IaOT+/+F1RklNt4EVAuMKpfGLrGDPPcEK6PUz4inZWq4
-	B73g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=S6gp51plx259cdGs9i4Ve4/t4M5pMcgFbP3QCrZXyG4=;
-	b=E2K8dHjHzVDKblxp2I+jC+mmaEGWM5WRjvMz/7+iauxefMMQ4L8bkGamWZ1WgweQOy
-	7SkgPZvNJNVxpfjTD6NhXmaM78vVFvCVhaQuG8HbdWG9n4HuWgYBuUyI2+fbGL4pYyR6
-	z1W+jMudDpCycg22WYVWE+yqq2iQmLnr/TfdFPXoSXUhlvueEFl1AHR/7l0cgB8YEVtx
-	sEd2jQDIIpRPQx4cYmazDy7X1akMBcwsYytGxGkfWwgKyEqOt0FZbGNVvcT1N4OxLN4u
-	27dkuFMxMjxhmAy4qtl3quhVmdRVW0jIQ579f+vUNSt0/FII9/WIe+mgJjBeYtsOXcEa
-	tl7w==
-X-Gm-Message-State: APjAAAXnrxzxB0ctiz65i5+r8iqPmbATq0hD/LoTcFkW/tkMklISnGmy
-	bsRilJ84VKDW02T1WC+O6EMptclIZFuhQscRIyffQy8a
-X-Google-Smtp-Source: APXvYqwP/F0I/WIQvzTtmEWQe304g3npkhl6gb8lo2Ga3TJaiytJM7lAcgjJLjHkcIWVlGq+kKfHkfrjh3M/JsCiHxI=
-X-Received: by 2002:a6b:d809:: with SMTP id y9mr72773662iob.301.1563882439487; 
-	Tue, 23 Jul 2019 04:47:19 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4173DE00D36
+	for <yocto@yoctoproject.org>; Tue, 23 Jul 2019 08:35:57 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x6NFZ0TC023815
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 23 Jul 2019 08:35:47 -0700
+Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.115]) by
+	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.03.0468.000;
+	Tue, 23 Jul 2019 08:35:38 -0700
+From: "Reyna, David" <david.reyna@windriver.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Minutes: Yocto Project Monthly Meeting 7/23/2019
+Thread-Index: AdVBbBGUmMfLsXUXS2qKesskcr3WMw==
+Date: Tue, 23 Jul 2019 15:35:38 +0000
+Message-ID: <5E53D14CE4667A45B9A06760DE5D13D0FAD43FCF@ALA-MBD.corp.ad.wrs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [147.11.116.142]
 MIME-Version: 1.0
-Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP; Tue, 23 Jul 2019 04:47:18
-	-0700 (PDT)
-From: JH <jupiter.hce@gmail.com>
-Date: Tue, 23 Jul 2019 21:47:18 +1000
-Message-ID: <CAA=hcWRAA9pGSy2DK1T1h7cH=n1yCN_vwwdChivaBcbH=nm+rA@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: install -m 0644 ${S}/lib/systemd/system/${PN}.service ${D}/${systemd_system_unitdir} failed to add service file to ${systemd_system_unitdir}
+Subject: Minutes: Yocto Project Monthly Meeting 7/23/2019
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,29 +46,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Jul 2019 11:47:20 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 23 Jul 2019 15:35:59 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_5E53D14CE4667A45B9A06760DE5D13D0FAD43FCFALAMBDcorpadwrs_"
 
-Hi,
+--_000_5E53D14CE4667A45B9A06760DE5D13D0FAD43FCFALAMBDcorpadwrs_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-I set up the configuration for service files at following:
+WW9jdG8gUHJvamVjdCBNb250aGx5IE1lZXRpbmcNCk1JTlVURVM6IDcvMjMvMjAxOQ0KDQpBdHRl
+bmRlZXM6IFJpY2hhcmQsIEpvc2h1YVcsIEJydWNlLCBUaW0sIFZpbmVlbGEsIERhdmlkLCBUcmV2
+b3IsIEphbi1TaW1vbiAoYXQgZW5kKQ0KDQpOb3RlOiBjb25zb2xpZGF0ZWQgYnJpZGdlIGZvciBU
+dWVzZGF5IG1lZXRpbmdzOiBodHRwczovL3pvb20udXMvai85OTA4OTI3MTINCg0KUlA6DQogICog
+V2Vla2x5IHN0YXR1cyB1cGRhdGUgd2lsbCBnbyBvdXQgbGF0ZXIgdG9kYXkNCiAgKiAyLjcuMSBv
+dXQgbGFzdCB3ZWVrDQogICogMi42LjMuIGR1ZSBvdXQgV2VkbmVzZGF5DQogICogQXV0b2J1aWxk
+ZXIgcGVyZm9ybWFuY2UgaXNzdWVzIGZpbmFsbHkgZm91bmQgYW5kIGZpeGVkDQogICogU29tZSBp
+c3N1ZXMgd2l0aCBkZWZhdWx0IHBva3kgaW5pdCBzeXN0ZW0gKHN5c3YgdnMuIHN5c3RlbSkNCg0K
+UmljaGFyZDogUnVucXVldWUgb3B0aW1pemF0aW9ucyBhcHBlYXIgdG8gYmUgd29ya2luZywgdGhv
+dWdoIHNvbWUgcGVyZm9ybWFuY2UgaXNzdWVzIChzb21ldGltZXMgMyBtaW51dGUgYnJlYWsgZm9y
+IGNhbGN1bGF0aW9ucykuIEV4YW1wbGUgb2YgZmVhdHVyZSwgaWYg4oCcbTQtbmF0aXZl4oCdIGhh
+cyBjaGFuZ2UgYnV0IGRvX3BvcHVsYXRlX3NzdGF0ZSBzYW1lIHRoZW4gc3N0YXRlIGxlZnQgdGhl
+IHNhbWUgYW5kIG5vIGNhc2NhZGUgb2YgcmVidWlsZHMgdG8gcmVzdCBvZiBwYWNrYWdlcy4gUmlj
+aGFyZCBxdWl0ZSBleGNpdGVkIGFib3V0IHRoaXMsIGVzcGVjaWFsbHkgaGF2aW5nIHRoaXMgZWFy
+bHkgaW4gdGhlIGRldmVsb3BtZW50IGN5Y2xlLg0KDQpKb3NodWE6IFdoYXQgYWJvdXQgbm9uLWxv
+Y2FsIGltcGxlbWVudGF0aW9ucz8gUmljaGFyZDogZm9jdXNpbmcgb24gbG9jYWwgaGFzaCBzdGF0
+ZSBlcXVpdmFsZW5jeSBmaXJzdC4gR29vZCBzdGVwIHRvd2FyZHMgcmVwcm9kdWNpYmlsaXR5LiBO
+ZXh0IHdvdWxkIHRoZW4gYmUgbm9uLWxvY2FsIHN1cHBvcnQuIEdvYWwgaXMgbGVzcyBkdXBsaWNh
+dGVkIGluIHNzdGF0ZS1jYWNoZXMsIHdoaWNoIHdpbGwgaGVscCB3aXRoIHNzdGF0ZS1jYWNoZSBt
+aXJyb3JzLiBKb3NodWE6IHdvdWxkIGFwcGVhciB0aGF0IG5vbi1sb2NhbCB1c2VycyB3b3VsZCBz
+dGlsbCBuZWVkIHRoZSBzc3RhdGUgYW5kIGRhdGFiYXNlIHRvZ2V0aGVyLg0KDQpSaWNoYXJkOiBy
+dW5xdWV1ZSBhcGkgY2x1bmt5IGluIHRoYXQgaXQgc3VwcG9ydHMgbXVsdGlwbGUgdGFza2VkIGZv
+cm1hdHMuIFdvdWxkIGxpa2UgdG8gY29uc29saWRhdGUgdGhlbSBidXQgdGhhdCB3b3VsZCByZXF1
+aXJlIGEg4oCcZmxhZyBkYXnigJ0gZm9yIGV2ZXJ5b25lIHRvIG1ha2UgdGhlIHRyYW5zaXRpb24u
+DQoNClJpY2hhcmQ6IGNoYW5nZXMgY291bGQgcnVuIGFnYWluc3QgZWFybGllciByZWxlYXNlcyBs
+aWtlIFdhcnJpb3IvVGh1ZCB3aXRoIG1pbm9yIHBhdGNoZXMgaWYgd2Ugd291bGQgd2FudCB0byBk
+byBzby4NCg0KQnJ1Y2U6IDUuMyBrZXJuZWwgZHJvcHBlZCwgc28gaGUgaXMgYnVzeSB3aXRoIHRo
+YXQuDQoNCi0gRGF2aWQNCg0KDQo=
 
-SYSTEMD_SERVICE_${PN} = "${PN}.service bootstrap.service"
+--_000_5E53D14CE4667A45B9A06760DE5D13D0FAD43FCFALAMBDcorpadwrs_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-do_install() {
-    ..............
-    install -d ${D}/${systemd_system_unitdir}
-    install -m 0644 ${S}/lib/systemd/system/*.service
-${D}/${systemd_system_unitdir}
-}
+PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
+dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
+dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
+LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
+ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
+PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIj48c3BhbiBzdHls
+ZT0iZm9udC1zaXplOjExcHQ7Ij4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPllvY3RvIFBy
+b2plY3QgTW9udGhseSBNZWV0aW5nPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFG
+NDk3RCI+TUlOVVRFUzogNy8yMy8yMDE5PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0i
+IzFGNDk3RCI+Jm5ic3A7PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFGNDk3RCI+
+QXR0ZW5kZWVzOiBSaWNoYXJkLCBKb3NodWFXLCBCcnVjZSwgVGltLCBWaW5lZWxhLCBEYXZpZCwg
+VHJldm9yLCBKYW4tU2ltb24gKGF0IGVuZCk8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9y
+PSIjMUY0OTdEIj4mbmJzcDs8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdE
+Ij5Ob3RlOiBjb25zb2xpZGF0ZWQgYnJpZGdlIGZvciBUdWVzZGF5IG1lZXRpbmdzOiA8YSBocmVm
+PSJodHRwczovL3pvb20udXMvai85OTA4OTI3MTIiPjxmb250IGZhY2U9IlRpbWVzIE5ldyBSb21h
+biIgc2l6ZT0iMyIgY29sb3I9ImJsdWUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPjx1
+Pmh0dHBzOi8vem9vbS51cy9qLzk5MDg5MjcxMjwvdT48L3NwYW4+PC9mb250PjwvYT48L2ZvbnQ+
+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj4mbmJzcDs8L2ZvbnQ+PC9kaXY+DQo8
+ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj5SUDogPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBj
+b2xvcj0iIzFGNDk3RCI+Jm5ic3A7ICogV2Vla2x5IHN0YXR1cyB1cGRhdGUgd2lsbCBnbyBvdXQg
+bGF0ZXIgdG9kYXk8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj4mbmJz
+cDsgKiAyLjcuMSBvdXQgbGFzdCB3ZWVrPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0i
+IzFGNDk3RCI+Jm5ic3A7ICogMi42LjMuIGR1ZSBvdXQgV2VkbmVzZGF5PC9mb250PjwvZGl2Pg0K
+PGRpdj48Zm9udCBjb2xvcj0iIzFGNDk3RCI+Jm5ic3A7ICogQXV0b2J1aWxkZXIgcGVyZm9ybWFu
+Y2UgaXNzdWVzIGZpbmFsbHkgZm91bmQgYW5kIGZpeGVkPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9u
+dCBjb2xvcj0iIzFGNDk3RCI+Jm5ic3A7ICogU29tZSBpc3N1ZXMgd2l0aCBkZWZhdWx0IHBva3kg
+aW5pdCBzeXN0ZW0gKHN5c3YgdnMuIHN5c3RlbSk8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZh
+Y2U9IlRpbWVzIE5ldyBSb21hbiIgc2l6ZT0iMyIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxl
+PSJmb250LXNpemU6MTJwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250
+IGNvbG9yPSIjMUY0OTdEIj5SaWNoYXJkOiBSdW5xdWV1ZSBvcHRpbWl6YXRpb25zIGFwcGVhciB0
+byBiZSB3b3JraW5nLCB0aG91Z2ggc29tZSBwZXJmb3JtYW5jZSBpc3N1ZXMgKHNvbWV0aW1lcyAz
+IG1pbnV0ZSBicmVhayBmb3IgY2FsY3VsYXRpb25zKS4gRXhhbXBsZSBvZiBmZWF0dXJlLCBpZiDi
+gJxtNC1uYXRpdmXigJ0gaGFzIGNoYW5nZSBidXQgZG9fcG9wdWxhdGVfc3N0YXRlIHNhbWUgdGhl
+biBzc3RhdGUgbGVmdCB0aGUgc2FtZQ0KYW5kIG5vIGNhc2NhZGUgb2YgcmVidWlsZHMgdG8gcmVz
+dCBvZiBwYWNrYWdlcy4gUmljaGFyZCBxdWl0ZSBleGNpdGVkIGFib3V0IHRoaXMsIGVzcGVjaWFs
+bHkgaGF2aW5nIHRoaXMgZWFybHkgaW4gdGhlIGRldmVsb3BtZW50IGN5Y2xlLjwvZm9udD48L2Rp
+dj4NCjxkaXY+PGZvbnQgZmFjZT0iVGltZXMgTmV3IFJvbWFuIiBzaXplPSIzIiBjb2xvcj0iIzFG
+NDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMnB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48
+L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPkpvc2h1YTogV2hhdCBhYm91dCBub24t
+bG9jYWwgaW1wbGVtZW50YXRpb25zPyBSaWNoYXJkOiBmb2N1c2luZyBvbiBsb2NhbCBoYXNoIHN0
+YXRlIGVxdWl2YWxlbmN5IGZpcnN0LiBHb29kIHN0ZXAgdG93YXJkcyByZXByb2R1Y2liaWxpdHku
+IE5leHQgd291bGQgdGhlbiBiZSBub24tbG9jYWwgc3VwcG9ydC4gR29hbCBpcyBsZXNzIGR1cGxp
+Y2F0ZWQgaW4gc3N0YXRlLWNhY2hlcywgd2hpY2ggd2lsbCBoZWxwDQp3aXRoIHNzdGF0ZS1jYWNo
+ZSBtaXJyb3JzLiBKb3NodWE6IHdvdWxkIGFwcGVhciB0aGF0IG5vbi1sb2NhbCB1c2VycyB3b3Vs
+ZCBzdGlsbCBuZWVkIHRoZSBzc3RhdGUgYW5kIGRhdGFiYXNlIHRvZ2V0aGVyLjwvZm9udD48L2Rp
+dj4NCjxkaXY+PGZvbnQgZmFjZT0iVGltZXMgTmV3IFJvbWFuIiBzaXplPSIzIiBjb2xvcj0iIzFG
+NDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMnB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48
+L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPlJpY2hhcmQ6IHJ1bnF1ZXVlIGFwaSBj
+bHVua3kgaW4gdGhhdCBpdCBzdXBwb3J0cyBtdWx0aXBsZSB0YXNrZWQgZm9ybWF0cy4gV291bGQg
+bGlrZSB0byBjb25zb2xpZGF0ZSB0aGVtIGJ1dCB0aGF0IHdvdWxkIHJlcXVpcmUgYSDigJxmbGFn
+IGRheeKAnSBmb3IgZXZlcnlvbmUgdG8gbWFrZSB0aGUgdHJhbnNpdGlvbi48L2ZvbnQ+PC9kaXY+
+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj4mbmJzcDs8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxm
+b250IGNvbG9yPSIjMUY0OTdEIj5SaWNoYXJkOiBjaGFuZ2VzIGNvdWxkIHJ1biBhZ2FpbnN0IGVh
+cmxpZXIgcmVsZWFzZXMgbGlrZSBXYXJyaW9yL1RodWQgd2l0aCBtaW5vciBwYXRjaGVzIGlmIHdl
+IHdvdWxkIHdhbnQgdG8gZG8gc28uPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJUaW1l
+cyBOZXcgUm9tYW4iIHNpemU9IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1z
+aXplOjEycHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0i
+IzFGNDk3RCI+QnJ1Y2U6IDUuMyBrZXJuZWwgZHJvcHBlZCwgc28gaGUgaXMgYnVzeSB3aXRoIHRo
+YXQuPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9
+IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7Ij4mbmJzcDs8
+L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFGNDk3RCI+LSBEYXZpZDwv
+Zm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iVGltZXMgTmV3IFJvbWFuIiBzaXplPSIzIiBj
+b2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMnB0OyI+Jm5ic3A7PC9zcGFu
+PjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iVGltZXMgTmV3IFJvbWFuIiBzaXplPSIz
+Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2
+Pg0KPC9zcGFuPjwvZm9udD4NCjwvYm9keT4NCjwvaHRtbD4NCg==
 
-Despite both service files are in build directory, the final image
-installation does not include those service files, appreciate anyone
-help.
-
-Thank you.
-
-Kind regards,
-
-- jh
-
+--_000_5E53D14CE4667A45B9A06760DE5D13D0FAD43FCFALAMBDcorpadwrs_--
