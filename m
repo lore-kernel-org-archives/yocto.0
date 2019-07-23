@@ -1,40 +1,66 @@
-Return-Path: <david.reyna@windriver.com>
+Return-Path: <brgl@bgdev.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EA24EE00D4E; Tue, 23 Jul 2019 08:35:58 -0700 (PDT)
+	id F1153E00942; Tue, 23 Jul 2019 09:22:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4173DE00D36
-	for <yocto@yoctoproject.org>; Tue, 23 Jul 2019 08:35:57 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x6NFZ0TC023815
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 23 Jul 2019 08:35:47 -0700
-Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.115]) by
-	ALA-HCA.corp.ad.wrs.com ([147.11.189.40]) with mapi id 14.03.0468.000;
-	Tue, 23 Jul 2019 08:35:38 -0700
-From: "Reyna, David" <david.reyna@windriver.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Minutes: Yocto Project Monthly Meeting 7/23/2019
-Thread-Index: AdVBbBGUmMfLsXUXS2qKesskcr3WMw==
-Date: Tue, 23 Jul 2019 15:35:38 +0000
-Message-ID: <5E53D14CE4667A45B9A06760DE5D13D0FAD43FCF@ALA-MBD.corp.ad.wrs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.11.116.142]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.65 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com
+	[209.85.221.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC4B9E00942
+	for <yocto@yoctoproject.org>; Tue, 23 Jul 2019 09:22:38 -0700 (PDT)
+Received: by mail-wr1-f65.google.com with SMTP id r1so43838114wrl.7
+	for <yocto@yoctoproject.org>; Tue, 23 Jul 2019 09:22:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=JN86JO5SBXTVRfJ8cDh/j6sEXCVazntAz7KJvxeTiz8=;
+	b=qbJHiNw1h9snaG2Ed5pCY/EPWDYR0ryTrOrmIkRngEAW5nKSlVb8FDQMjk08JrSR1+
+	qrf2KHpPkCe9CnRpf/QT1TuBujyLNGxe7pBNCCIARTc9fFH5MgOMAI+T0FEEqJcBI/FW
+	k7/NSkUucOZS/0RLqdoL8Gt3mkC5Z+y6K/Fme+wfNhVmKqXbt9n3+FTULQKkVjcY/jtm
+	l7H+h0Mefmy08hpV+sggemOBJW/SMCOocd81caygWMZwuuDhg2PZ9V2ARJhr8o4OwgiA
+	8pU7mVVa9STPiSvPHhlTOXukhKj/+HCOIiE9SMtmai7QHrZO8Jp8VqLyp4GaUxWwX0Qf
+	W7qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=JN86JO5SBXTVRfJ8cDh/j6sEXCVazntAz7KJvxeTiz8=;
+	b=WisvgMfb7+ZMKQh0+OCjfeXEM476FrWFV1fmAJ5pJVCtQkAul8vpJUILzVtGoHiknR
+	E+zru9ReKrq1BGFvQXTa6/0S88UL2sEsuFkbQQ0/sK1BHeV1TyY1KPEZZpANNHGU/qSr
+	KxghneR1wZsHv6ViTs8bQIUhH6vgrF1LqkmCpQB2jiIOYszrbIUrehfMulosDyGjBs2r
+	ZaVFUmrGYQXDZlH/QqFo3VJRCIm2t0+lD7961KSYBblPOM+l4FNp+d60jz0w5JcOCm4v
+	0Mws5sYT8TqIjohhFGQG6PwYxNH9Qc/5R332KM5NB8Ne8iQtgZ3IoR50PSLzud7Y9muR
+	0z5w==
+X-Gm-Message-State: APjAAAVbmcJZlMeF30tj9eO7aBvBjdbLGQzt3WVE4enf8dX+Upy974dN
+	w6TDdk7I0A3w3ACNrxFjTFU=
+X-Google-Smtp-Source: APXvYqyz7N7EteASnouPrswPza0pVN9AQdjxxl5bQKK5L9EwodVzUOZ45Kmk2QISvwi7YeM3ZfbJOw==
+X-Received: by 2002:a5d:4e02:: with SMTP id p2mr54819227wrt.182.1563898958048; 
+	Tue, 23 Jul 2019 09:22:38 -0700 (PDT)
+Received: from debian-brgl.home (lfbn-1-7087-108.w90-116.abo.wanadoo.fr.
+	[90.116.255.108]) by smtp.gmail.com with ESMTPSA id
+	o4sm33561830wmh.35.2019.07.23.09.22.36
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Tue, 23 Jul 2019 09:22:37 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Khem Raj <raj.khem@gmail.com>,
+	yocto@yoctoproject.org
+Date: Tue, 23 Jul 2019 18:22:35 +0200
+Message-Id: <20190723162235.31617-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Monthly Meeting 7/23/2019
+Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: [meta][PATCH] qemu: add a patch fixing the native build on newer kernels
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,113 +72,381 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Jul 2019 15:35:59 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_5E53D14CE4667A45B9A06760DE5D13D0FAD43FCFALAMBDcorpadwrs_"
+X-List-Received-Date: Tue, 23 Jul 2019 16:22:42 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---_000_5E53D14CE4667A45B9A06760DE5D13D0FAD43FCFALAMBDcorpadwrs_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-WW9jdG8gUHJvamVjdCBNb250aGx5IE1lZXRpbmcNCk1JTlVURVM6IDcvMjMvMjAxOQ0KDQpBdHRl
-bmRlZXM6IFJpY2hhcmQsIEpvc2h1YVcsIEJydWNlLCBUaW0sIFZpbmVlbGEsIERhdmlkLCBUcmV2
-b3IsIEphbi1TaW1vbiAoYXQgZW5kKQ0KDQpOb3RlOiBjb25zb2xpZGF0ZWQgYnJpZGdlIGZvciBU
-dWVzZGF5IG1lZXRpbmdzOiBodHRwczovL3pvb20udXMvai85OTA4OTI3MTINCg0KUlA6DQogICog
-V2Vla2x5IHN0YXR1cyB1cGRhdGUgd2lsbCBnbyBvdXQgbGF0ZXIgdG9kYXkNCiAgKiAyLjcuMSBv
-dXQgbGFzdCB3ZWVrDQogICogMi42LjMuIGR1ZSBvdXQgV2VkbmVzZGF5DQogICogQXV0b2J1aWxk
-ZXIgcGVyZm9ybWFuY2UgaXNzdWVzIGZpbmFsbHkgZm91bmQgYW5kIGZpeGVkDQogICogU29tZSBp
-c3N1ZXMgd2l0aCBkZWZhdWx0IHBva3kgaW5pdCBzeXN0ZW0gKHN5c3YgdnMuIHN5c3RlbSkNCg0K
-UmljaGFyZDogUnVucXVldWUgb3B0aW1pemF0aW9ucyBhcHBlYXIgdG8gYmUgd29ya2luZywgdGhv
-dWdoIHNvbWUgcGVyZm9ybWFuY2UgaXNzdWVzIChzb21ldGltZXMgMyBtaW51dGUgYnJlYWsgZm9y
-IGNhbGN1bGF0aW9ucykuIEV4YW1wbGUgb2YgZmVhdHVyZSwgaWYg4oCcbTQtbmF0aXZl4oCdIGhh
-cyBjaGFuZ2UgYnV0IGRvX3BvcHVsYXRlX3NzdGF0ZSBzYW1lIHRoZW4gc3N0YXRlIGxlZnQgdGhl
-IHNhbWUgYW5kIG5vIGNhc2NhZGUgb2YgcmVidWlsZHMgdG8gcmVzdCBvZiBwYWNrYWdlcy4gUmlj
-aGFyZCBxdWl0ZSBleGNpdGVkIGFib3V0IHRoaXMsIGVzcGVjaWFsbHkgaGF2aW5nIHRoaXMgZWFy
-bHkgaW4gdGhlIGRldmVsb3BtZW50IGN5Y2xlLg0KDQpKb3NodWE6IFdoYXQgYWJvdXQgbm9uLWxv
-Y2FsIGltcGxlbWVudGF0aW9ucz8gUmljaGFyZDogZm9jdXNpbmcgb24gbG9jYWwgaGFzaCBzdGF0
-ZSBlcXVpdmFsZW5jeSBmaXJzdC4gR29vZCBzdGVwIHRvd2FyZHMgcmVwcm9kdWNpYmlsaXR5LiBO
-ZXh0IHdvdWxkIHRoZW4gYmUgbm9uLWxvY2FsIHN1cHBvcnQuIEdvYWwgaXMgbGVzcyBkdXBsaWNh
-dGVkIGluIHNzdGF0ZS1jYWNoZXMsIHdoaWNoIHdpbGwgaGVscCB3aXRoIHNzdGF0ZS1jYWNoZSBt
-aXJyb3JzLiBKb3NodWE6IHdvdWxkIGFwcGVhciB0aGF0IG5vbi1sb2NhbCB1c2VycyB3b3VsZCBz
-dGlsbCBuZWVkIHRoZSBzc3RhdGUgYW5kIGRhdGFiYXNlIHRvZ2V0aGVyLg0KDQpSaWNoYXJkOiBy
-dW5xdWV1ZSBhcGkgY2x1bmt5IGluIHRoYXQgaXQgc3VwcG9ydHMgbXVsdGlwbGUgdGFza2VkIGZv
-cm1hdHMuIFdvdWxkIGxpa2UgdG8gY29uc29saWRhdGUgdGhlbSBidXQgdGhhdCB3b3VsZCByZXF1
-aXJlIGEg4oCcZmxhZyBkYXnigJ0gZm9yIGV2ZXJ5b25lIHRvIG1ha2UgdGhlIHRyYW5zaXRpb24u
-DQoNClJpY2hhcmQ6IGNoYW5nZXMgY291bGQgcnVuIGFnYWluc3QgZWFybGllciByZWxlYXNlcyBs
-aWtlIFdhcnJpb3IvVGh1ZCB3aXRoIG1pbm9yIHBhdGNoZXMgaWYgd2Ugd291bGQgd2FudCB0byBk
-byBzby4NCg0KQnJ1Y2U6IDUuMyBrZXJuZWwgZHJvcHBlZCwgc28gaGUgaXMgYnVzeSB3aXRoIHRo
-YXQuDQoNCi0gRGF2aWQNCg0KDQo=
+The build fails on qemu-native if we're using kernels after commit
+0768e17073dc527ccd18ed5f96ce85f9985e9115. This adds an upstream
+patch that fixes the issue.
 
---_000_5E53D14CE4667A45B9A06760DE5D13D0FAD43FCFALAMBDcorpadwrs_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+---
+ meta/recipes-devtools/qemu/qemu.inc           |   1 +
+ ...o-handle-variably-sized-SIOCGSTAMP-w.patch | 339 ++++++++++++++++++
+ 2 files changed, 340 insertions(+)
+ create mode 100644 meta/recipes-devtools/qemu/qemu/0014-linux-user-fix-to-handle-variably-sized-SIOCGSTAMP-w.patch
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRvciIgY29udGVu
-dD0iTWljcm9zb2Z0IEV4Y2hhbmdlIFNlcnZlciI+DQo8IS0tIGNvbnZlcnRlZCBmcm9tIHJ0ZiAt
-LT4NCjxzdHlsZT48IS0tIC5FbWFpbFF1b3RlIHsgbWFyZ2luLWxlZnQ6IDFwdDsgcGFkZGluZy1s
-ZWZ0OiA0cHQ7IGJvcmRlci1sZWZ0OiAjODAwMDAwIDJweCBzb2xpZDsgfSAtLT48L3N0eWxlPg0K
-PC9oZWFkPg0KPGJvZHk+DQo8Zm9udCBmYWNlPSJDYWxpYnJpIiBzaXplPSIyIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExcHQ7Ij4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPllvY3RvIFBy
-b2plY3QgTW9udGhseSBNZWV0aW5nPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFG
-NDk3RCI+TUlOVVRFUzogNy8yMy8yMDE5PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0i
-IzFGNDk3RCI+Jm5ic3A7PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFGNDk3RCI+
-QXR0ZW5kZWVzOiBSaWNoYXJkLCBKb3NodWFXLCBCcnVjZSwgVGltLCBWaW5lZWxhLCBEYXZpZCwg
-VHJldm9yLCBKYW4tU2ltb24gKGF0IGVuZCk8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9y
-PSIjMUY0OTdEIj4mbmJzcDs8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdE
-Ij5Ob3RlOiBjb25zb2xpZGF0ZWQgYnJpZGdlIGZvciBUdWVzZGF5IG1lZXRpbmdzOiA8YSBocmVm
-PSJodHRwczovL3pvb20udXMvai85OTA4OTI3MTIiPjxmb250IGZhY2U9IlRpbWVzIE5ldyBSb21h
-biIgc2l6ZT0iMyIgY29sb3I9ImJsdWUiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTJwdDsiPjx1
-Pmh0dHBzOi8vem9vbS51cy9qLzk5MDg5MjcxMjwvdT48L3NwYW4+PC9mb250PjwvYT48L2ZvbnQ+
-PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj4mbmJzcDs8L2ZvbnQ+PC9kaXY+DQo8
-ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj5SUDogPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBj
-b2xvcj0iIzFGNDk3RCI+Jm5ic3A7ICogV2Vla2x5IHN0YXR1cyB1cGRhdGUgd2lsbCBnbyBvdXQg
-bGF0ZXIgdG9kYXk8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj4mbmJz
-cDsgKiAyLjcuMSBvdXQgbGFzdCB3ZWVrPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0i
-IzFGNDk3RCI+Jm5ic3A7ICogMi42LjMuIGR1ZSBvdXQgV2VkbmVzZGF5PC9mb250PjwvZGl2Pg0K
-PGRpdj48Zm9udCBjb2xvcj0iIzFGNDk3RCI+Jm5ic3A7ICogQXV0b2J1aWxkZXIgcGVyZm9ybWFu
-Y2UgaXNzdWVzIGZpbmFsbHkgZm91bmQgYW5kIGZpeGVkPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9u
-dCBjb2xvcj0iIzFGNDk3RCI+Jm5ic3A7ICogU29tZSBpc3N1ZXMgd2l0aCBkZWZhdWx0IHBva3kg
-aW5pdCBzeXN0ZW0gKHN5c3YgdnMuIHN5c3RlbSk8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250IGZh
-Y2U9IlRpbWVzIE5ldyBSb21hbiIgc2l6ZT0iMyIgY29sb3I9IiMxRjQ5N0QiPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTJwdDsiPiZuYnNwOzwvc3Bhbj48L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxmb250
-IGNvbG9yPSIjMUY0OTdEIj5SaWNoYXJkOiBSdW5xdWV1ZSBvcHRpbWl6YXRpb25zIGFwcGVhciB0
-byBiZSB3b3JraW5nLCB0aG91Z2ggc29tZSBwZXJmb3JtYW5jZSBpc3N1ZXMgKHNvbWV0aW1lcyAz
-IG1pbnV0ZSBicmVhayBmb3IgY2FsY3VsYXRpb25zKS4gRXhhbXBsZSBvZiBmZWF0dXJlLCBpZiDi
-gJxtNC1uYXRpdmXigJ0gaGFzIGNoYW5nZSBidXQgZG9fcG9wdWxhdGVfc3N0YXRlIHNhbWUgdGhl
-biBzc3RhdGUgbGVmdCB0aGUgc2FtZQ0KYW5kIG5vIGNhc2NhZGUgb2YgcmVidWlsZHMgdG8gcmVz
-dCBvZiBwYWNrYWdlcy4gUmljaGFyZCBxdWl0ZSBleGNpdGVkIGFib3V0IHRoaXMsIGVzcGVjaWFs
-bHkgaGF2aW5nIHRoaXMgZWFybHkgaW4gdGhlIGRldmVsb3BtZW50IGN5Y2xlLjwvZm9udD48L2Rp
-dj4NCjxkaXY+PGZvbnQgZmFjZT0iVGltZXMgTmV3IFJvbWFuIiBzaXplPSIzIiBjb2xvcj0iIzFG
-NDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMnB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48
-L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPkpvc2h1YTogV2hhdCBhYm91dCBub24t
-bG9jYWwgaW1wbGVtZW50YXRpb25zPyBSaWNoYXJkOiBmb2N1c2luZyBvbiBsb2NhbCBoYXNoIHN0
-YXRlIGVxdWl2YWxlbmN5IGZpcnN0LiBHb29kIHN0ZXAgdG93YXJkcyByZXByb2R1Y2liaWxpdHku
-IE5leHQgd291bGQgdGhlbiBiZSBub24tbG9jYWwgc3VwcG9ydC4gR29hbCBpcyBsZXNzIGR1cGxp
-Y2F0ZWQgaW4gc3N0YXRlLWNhY2hlcywgd2hpY2ggd2lsbCBoZWxwDQp3aXRoIHNzdGF0ZS1jYWNo
-ZSBtaXJyb3JzLiBKb3NodWE6IHdvdWxkIGFwcGVhciB0aGF0IG5vbi1sb2NhbCB1c2VycyB3b3Vs
-ZCBzdGlsbCBuZWVkIHRoZSBzc3RhdGUgYW5kIGRhdGFiYXNlIHRvZ2V0aGVyLjwvZm9udD48L2Rp
-dj4NCjxkaXY+PGZvbnQgZmFjZT0iVGltZXMgTmV3IFJvbWFuIiBzaXplPSIzIiBjb2xvcj0iIzFG
-NDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMnB0OyI+Jm5ic3A7PC9zcGFuPjwvZm9udD48
-L2Rpdj4NCjxkaXY+PGZvbnQgY29sb3I9IiMxRjQ5N0QiPlJpY2hhcmQ6IHJ1bnF1ZXVlIGFwaSBj
-bHVua3kgaW4gdGhhdCBpdCBzdXBwb3J0cyBtdWx0aXBsZSB0YXNrZWQgZm9ybWF0cy4gV291bGQg
-bGlrZSB0byBjb25zb2xpZGF0ZSB0aGVtIGJ1dCB0aGF0IHdvdWxkIHJlcXVpcmUgYSDigJxmbGFn
-IGRheeKAnSBmb3IgZXZlcnlvbmUgdG8gbWFrZSB0aGUgdHJhbnNpdGlvbi48L2ZvbnQ+PC9kaXY+
-DQo8ZGl2Pjxmb250IGNvbG9yPSIjMUY0OTdEIj4mbmJzcDs8L2ZvbnQ+PC9kaXY+DQo8ZGl2Pjxm
-b250IGNvbG9yPSIjMUY0OTdEIj5SaWNoYXJkOiBjaGFuZ2VzIGNvdWxkIHJ1biBhZ2FpbnN0IGVh
-cmxpZXIgcmVsZWFzZXMgbGlrZSBXYXJyaW9yL1RodWQgd2l0aCBtaW5vciBwYXRjaGVzIGlmIHdl
-IHdvdWxkIHdhbnQgdG8gZG8gc28uPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJUaW1l
-cyBOZXcgUm9tYW4iIHNpemU9IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjEycHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0i
-IzFGNDk3RCI+QnJ1Y2U6IDUuMyBrZXJuZWwgZHJvcHBlZCwgc28gaGUgaXMgYnVzeSB3aXRoIHRo
-YXQuPC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBmYWNlPSJUaW1lcyBOZXcgUm9tYW4iIHNpemU9
-IjMiIGNvbG9yPSIjMUY0OTdEIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7Ij4mbmJzcDs8
-L3NwYW4+PC9mb250PjwvZGl2Pg0KPGRpdj48Zm9udCBjb2xvcj0iIzFGNDk3RCI+LSBEYXZpZDwv
-Zm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iVGltZXMgTmV3IFJvbWFuIiBzaXplPSIzIiBj
-b2xvcj0iIzFGNDk3RCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMnB0OyI+Jm5ic3A7PC9zcGFu
-PjwvZm9udD48L2Rpdj4NCjxkaXY+PGZvbnQgZmFjZT0iVGltZXMgTmV3IFJvbWFuIiBzaXplPSIz
-Ij48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEycHQ7Ij4mbmJzcDs8L3NwYW4+PC9mb250PjwvZGl2
-Pg0KPC9zcGFuPjwvZm9udD4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+diff --git a/meta/recipes-devtools/qemu/qemu.inc b/meta/recipes-devtools/qemu/qemu.inc
+index 7f0b3a7a73..46c40b7d4f 100644
+--- a/meta/recipes-devtools/qemu/qemu.inc
++++ b/meta/recipes-devtools/qemu/qemu.inc
+@@ -24,6 +24,7 @@ SRC_URI = "https://download.qemu.org/${BPN}-${PV}.tar.xz \
+            file://0009-linux-user-Fix-webkitgtk-hangs-on-32-bit-x86-target.patch \
+            file://0010-Revert-linux-user-fix-mmap-munmap-mprotect-mremap-sh.patch \
+            file://0013-target-arm-Fix-vector-operation-segfault.patch \
++           file://0014-linux-user-fix-to-handle-variably-sized-SIOCGSTAMP-w.patch \
+ 	   file://CVE-2019-12155.patch \
+            "
+ UPSTREAM_CHECK_REGEX = "qemu-(?P<pver>\d+(\.\d+)+)\.tar"
+diff --git a/meta/recipes-devtools/qemu/qemu/0014-linux-user-fix-to-handle-variably-sized-SIOCGSTAMP-w.patch b/meta/recipes-devtools/qemu/qemu/0014-linux-user-fix-to-handle-variably-sized-SIOCGSTAMP-w.patch
+new file mode 100644
+index 0000000000..2feb567f1c
+--- /dev/null
++++ b/meta/recipes-devtools/qemu/qemu/0014-linux-user-fix-to-handle-variably-sized-SIOCGSTAMP-w.patch
+@@ -0,0 +1,339 @@
++From 8104018ba4c66e568d2583a3a0ee940851ee7471 Mon Sep 17 00:00:00 2001
++From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
++Date: Tue, 23 Jul 2019 17:50:00 +0200
++Subject: [PATCH] linux-user: fix to handle variably sized SIOCGSTAMP with new
++ kernels
++MIME-Version: 1.0
++Content-Type: text/plain; charset=UTF-8
++Content-Transfer-Encoding: 8bit
++
++The SIOCGSTAMP symbol was previously defined in the
++asm-generic/sockios.h header file. QEMU sees that header
++indirectly via sys/socket.h
++
++In linux kernel commit 0768e17073dc527ccd18ed5f96ce85f9985e9115
++the asm-generic/sockios.h header no longer defines SIOCGSTAMP.
++Instead it provides only SIOCGSTAMP_OLD, which only uses a
++32-bit time_t on 32-bit architectures.
++
++The linux/sockios.h header then defines SIOCGSTAMP using
++either SIOCGSTAMP_OLD or SIOCGSTAMP_NEW as appropriate. If
++SIOCGSTAMP_NEW is used, then the tv_sec field is 64-bit even
++on 32-bit architectures
++
++To cope with this we must now convert the old and new type from
++the target to the host one.
++
++Signed-off-by: Daniel P. Berrangé <berrange@redhat.com>
++Signed-off-by: Laurent Vivier <laurent@vivier.eu>
++Reviewed-by: Arnd Bergmann <arnd@arndb.de>
++Message-Id: <20190718130641.15294-1-laurent@vivier.eu>
++Signed-off-by: Laurent Vivier <laurent@vivier.eu>
++Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
++---
++Uptream-status: Backport (upstream commit: 6d5d5dde9adb5acb32e6b8e3dfbf47fff0f308d2)
++
++ linux-user/ioctls.h        |  21 +++++-
++ linux-user/syscall.c       | 140 +++++++++++++++++++++++++++++--------
++ linux-user/syscall_defs.h  |  30 +++++++-
++ linux-user/syscall_types.h |   6 --
++ 4 files changed, 159 insertions(+), 38 deletions(-)
++
++diff --git a/linux-user/ioctls.h b/linux-user/ioctls.h
++index ae8951625f..e6a27ad9d6 100644
++--- a/linux-user/ioctls.h
+++++ b/linux-user/ioctls.h
++@@ -219,8 +219,25 @@
++   IOCTL(SIOCGRARP, IOC_R, MK_PTR(MK_STRUCT(STRUCT_arpreq)))
++   IOCTL(SIOCGIWNAME, IOC_W | IOC_R, MK_PTR(MK_STRUCT(STRUCT_char_ifreq)))
++   IOCTL(SIOCGPGRP, IOC_R, MK_PTR(TYPE_INT)) /* pid_t */
++-  IOCTL(SIOCGSTAMP, IOC_R, MK_PTR(MK_STRUCT(STRUCT_timeval)))
++-  IOCTL(SIOCGSTAMPNS, IOC_R, MK_PTR(MK_STRUCT(STRUCT_timespec)))
+++
+++  /*
+++   * We can't use IOCTL_SPECIAL() because it will set
+++   * host_cmd to XXX_OLD and XXX_NEW and these macros
+++   * are not defined with kernel prior to 5.2.
+++   * We must set host_cmd to the same value as in target_cmd
+++   * otherwise the consistency check in syscall_init()
+++   * will trigger an error.
+++   * host_cmd is ignored by the do_ioctl_XXX() helpers.
+++   * FIXME: create a macro to define this kind of entry
+++   */
+++  { TARGET_SIOCGSTAMP_OLD, TARGET_SIOCGSTAMP_OLD,
+++    "SIOCGSTAMP_OLD", IOC_R, do_ioctl_SIOCGSTAMP },
+++  { TARGET_SIOCGSTAMPNS_OLD, TARGET_SIOCGSTAMPNS_OLD,
+++    "SIOCGSTAMPNS_OLD", IOC_R, do_ioctl_SIOCGSTAMPNS },
+++  { TARGET_SIOCGSTAMP_NEW, TARGET_SIOCGSTAMP_NEW,
+++    "SIOCGSTAMP_NEW", IOC_R, do_ioctl_SIOCGSTAMP },
+++  { TARGET_SIOCGSTAMPNS_NEW, TARGET_SIOCGSTAMPNS_NEW,
+++    "SIOCGSTAMPNS_NEW", IOC_R, do_ioctl_SIOCGSTAMPNS },
++ 
++   IOCTL(RNDGETENTCNT, IOC_R, MK_PTR(TYPE_INT))
++   IOCTL(RNDADDTOENTCNT, IOC_W, MK_PTR(TYPE_INT))
++diff --git a/linux-user/syscall.c b/linux-user/syscall.c
++index 96cd4bf86d..6df480e13d 100644
++--- a/linux-user/syscall.c
+++++ b/linux-user/syscall.c
++@@ -37,6 +37,7 @@
++ #include <sched.h>
++ #include <sys/timex.h>
++ #include <sys/socket.h>
+++#include <linux/sockios.h>
++ #include <sys/un.h>
++ #include <sys/uio.h>
++ #include <poll.h>
++@@ -1139,8 +1140,9 @@ static inline abi_long copy_from_user_timeval(struct timeval *tv,
++ {
++     struct target_timeval *target_tv;
++ 
++-    if (!lock_user_struct(VERIFY_READ, target_tv, target_tv_addr, 1))
+++    if (!lock_user_struct(VERIFY_READ, target_tv, target_tv_addr, 1)) {
++         return -TARGET_EFAULT;
+++    }
++ 
++     __get_user(tv->tv_sec, &target_tv->tv_sec);
++     __get_user(tv->tv_usec, &target_tv->tv_usec);
++@@ -1155,8 +1157,26 @@ static inline abi_long copy_to_user_timeval(abi_ulong target_tv_addr,
++ {
++     struct target_timeval *target_tv;
++ 
++-    if (!lock_user_struct(VERIFY_WRITE, target_tv, target_tv_addr, 0))
+++    if (!lock_user_struct(VERIFY_WRITE, target_tv, target_tv_addr, 0)) {
+++        return -TARGET_EFAULT;
+++    }
+++
+++    __put_user(tv->tv_sec, &target_tv->tv_sec);
+++    __put_user(tv->tv_usec, &target_tv->tv_usec);
+++
+++    unlock_user_struct(target_tv, target_tv_addr, 1);
+++
+++    return 0;
+++}
+++
+++static inline abi_long copy_to_user_timeval64(abi_ulong target_tv_addr,
+++                                             const struct timeval *tv)
+++{
+++    struct target__kernel_sock_timeval *target_tv;
+++
+++    if (!lock_user_struct(VERIFY_WRITE, target_tv, target_tv_addr, 0)) {
++         return -TARGET_EFAULT;
+++    }
++ 
++     __put_user(tv->tv_sec, &target_tv->tv_sec);
++     __put_user(tv->tv_usec, &target_tv->tv_usec);
++@@ -1166,6 +1186,48 @@ static inline abi_long copy_to_user_timeval(abi_ulong target_tv_addr,
++     return 0;
++ }
++ 
+++static inline abi_long target_to_host_timespec(struct timespec *host_ts,
+++                                               abi_ulong target_addr)
+++{
+++    struct target_timespec *target_ts;
+++
+++    if (!lock_user_struct(VERIFY_READ, target_ts, target_addr, 1)) {
+++        return -TARGET_EFAULT;
+++    }
+++    __get_user(host_ts->tv_sec, &target_ts->tv_sec);
+++    __get_user(host_ts->tv_nsec, &target_ts->tv_nsec);
+++    unlock_user_struct(target_ts, target_addr, 0);
+++    return 0;
+++}
+++
+++static inline abi_long host_to_target_timespec(abi_ulong target_addr,
+++                                               struct timespec *host_ts)
+++{
+++    struct target_timespec *target_ts;
+++
+++    if (!lock_user_struct(VERIFY_WRITE, target_ts, target_addr, 0)) {
+++        return -TARGET_EFAULT;
+++    }
+++    __put_user(host_ts->tv_sec, &target_ts->tv_sec);
+++    __put_user(host_ts->tv_nsec, &target_ts->tv_nsec);
+++    unlock_user_struct(target_ts, target_addr, 1);
+++    return 0;
+++}
+++
+++static inline abi_long host_to_target_timespec64(abi_ulong target_addr,
+++                                                 struct timespec *host_ts)
+++{
+++    struct target__kernel_timespec *target_ts;
+++
+++    if (!lock_user_struct(VERIFY_WRITE, target_ts, target_addr, 0)) {
+++        return -TARGET_EFAULT;
+++    }
+++    __put_user(host_ts->tv_sec, &target_ts->tv_sec);
+++    __put_user(host_ts->tv_nsec, &target_ts->tv_nsec);
+++    unlock_user_struct(target_ts, target_addr, 1);
+++    return 0;
+++}
+++
++ static inline abi_long copy_from_user_timezone(struct timezone *tz,
++                                                abi_ulong target_tz_addr)
++ {
++@@ -4790,6 +4852,54 @@ static abi_long do_ioctl_kdsigaccept(const IOCTLEntry *ie, uint8_t *buf_temp,
++     return get_errno(safe_ioctl(fd, ie->host_cmd, sig));
++ }
++ 
+++static abi_long do_ioctl_SIOCGSTAMP(const IOCTLEntry *ie, uint8_t *buf_temp,
+++                                    int fd, int cmd, abi_long arg)
+++{
+++    struct timeval tv;
+++    abi_long ret;
+++
+++    ret = get_errno(safe_ioctl(fd, SIOCGSTAMP, &tv));
+++    if (is_error(ret)) {
+++        return ret;
+++    }
+++
+++    if (cmd == (int)TARGET_SIOCGSTAMP_OLD) {
+++        if (copy_to_user_timeval(arg, &tv)) {
+++            return -TARGET_EFAULT;
+++        }
+++    } else {
+++        if (copy_to_user_timeval64(arg, &tv)) {
+++            return -TARGET_EFAULT;
+++        }
+++    }
+++
+++    return ret;
+++}
+++
+++static abi_long do_ioctl_SIOCGSTAMPNS(const IOCTLEntry *ie, uint8_t *buf_temp,
+++                                      int fd, int cmd, abi_long arg)
+++{
+++    struct timespec ts;
+++    abi_long ret;
+++
+++    ret = get_errno(safe_ioctl(fd, SIOCGSTAMPNS, &ts));
+++    if (is_error(ret)) {
+++        return ret;
+++    }
+++
+++    if (cmd == (int)TARGET_SIOCGSTAMPNS_OLD) {
+++        if (host_to_target_timespec(arg, &ts)) {
+++            return -TARGET_EFAULT;
+++        }
+++    } else{
+++        if (host_to_target_timespec64(arg, &ts)) {
+++            return -TARGET_EFAULT;
+++        }
+++    }
+++
+++    return ret;
+++}
+++
++ #ifdef TIOCGPTPEER
++ static abi_long do_ioctl_tiocgptpeer(const IOCTLEntry *ie, uint8_t *buf_temp,
++                                      int fd, int cmd, abi_long arg)
++@@ -6160,32 +6270,6 @@ static inline abi_long target_ftruncate64(void *cpu_env, abi_long arg1,
++ }
++ #endif
++ 
++-static inline abi_long target_to_host_timespec(struct timespec *host_ts,
++-                                               abi_ulong target_addr)
++-{
++-    struct target_timespec *target_ts;
++-
++-    if (!lock_user_struct(VERIFY_READ, target_ts, target_addr, 1))
++-        return -TARGET_EFAULT;
++-    __get_user(host_ts->tv_sec, &target_ts->tv_sec);
++-    __get_user(host_ts->tv_nsec, &target_ts->tv_nsec);
++-    unlock_user_struct(target_ts, target_addr, 0);
++-    return 0;
++-}
++-
++-static inline abi_long host_to_target_timespec(abi_ulong target_addr,
++-                                               struct timespec *host_ts)
++-{
++-    struct target_timespec *target_ts;
++-
++-    if (!lock_user_struct(VERIFY_WRITE, target_ts, target_addr, 0))
++-        return -TARGET_EFAULT;
++-    __put_user(host_ts->tv_sec, &target_ts->tv_sec);
++-    __put_user(host_ts->tv_nsec, &target_ts->tv_nsec);
++-    unlock_user_struct(target_ts, target_addr, 1);
++-    return 0;
++-}
++-
++ static inline abi_long target_to_host_itimerspec(struct itimerspec *host_itspec,
++                                                  abi_ulong target_addr)
++ {
++diff --git a/linux-user/syscall_defs.h b/linux-user/syscall_defs.h
++index 12c8407144..c918419306 100644
++--- a/linux-user/syscall_defs.h
+++++ b/linux-user/syscall_defs.h
++@@ -208,16 +208,34 @@ struct target_linger {
++     abi_int l_linger;       /* How long to linger for       */
++ };
++ 
+++#if defined(TARGET_SPARC64) && !defined(TARGET_ABI32)
+++struct target_timeval {
+++    abi_long tv_sec;
+++    abi_int tv_usec;
+++};
+++#define target__kernel_sock_timeval target_timeval
+++#else
++ struct target_timeval {
++     abi_long tv_sec;
++     abi_long tv_usec;
++ };
++ 
+++struct target__kernel_sock_timeval {
+++    abi_llong tv_sec;
+++    abi_llong tv_usec;
+++};
+++#endif
+++
++ struct target_timespec {
++     abi_long tv_sec;
++     abi_long tv_nsec;
++ };
++ 
+++struct target__kernel_timespec {
+++    abi_llong tv_sec;
+++    abi_llong tv_nsec;
+++};
+++
++ struct target_timezone {
++     abi_int tz_minuteswest;
++     abi_int tz_dsttime;
++@@ -743,8 +761,16 @@ struct target_pollfd {
++ #define TARGET_SIOCATMARK      0x8905
++ #define TARGET_SIOCGPGRP       0x8904
++ #endif
++-#define TARGET_SIOCGSTAMP      0x8906          /* Get stamp (timeval) */
++-#define TARGET_SIOCGSTAMPNS    0x8907          /* Get stamp (timespec) */
+++#if defined(TARGET_SH4)
+++#define TARGET_SIOCGSTAMP_OLD   TARGET_IOR('s', 100, struct target_timeval)
+++#define TARGET_SIOCGSTAMPNS_OLD TARGET_IOR('s', 101, struct target_timespec)
+++#else
+++#define TARGET_SIOCGSTAMP_OLD   0x8906
+++#define TARGET_SIOCGSTAMPNS_OLD 0x8907
+++#endif
+++
+++#define TARGET_SIOCGSTAMP_NEW   TARGET_IOR(0x89, 0x06, abi_llong[2])
+++#define TARGET_SIOCGSTAMPNS_NEW TARGET_IOR(0x89, 0x07, abi_llong[2])
++ 
++ /* Networking ioctls */
++ #define TARGET_SIOCADDRT       0x890B          /* add routing table entry */
++diff --git a/linux-user/syscall_types.h b/linux-user/syscall_types.h
++index b98a23b0f1..4e36983826 100644
++--- a/linux-user/syscall_types.h
+++++ b/linux-user/syscall_types.h
++@@ -14,12 +14,6 @@ STRUCT(serial_icounter_struct,
++ STRUCT(sockaddr,
++        TYPE_SHORT, MK_ARRAY(TYPE_CHAR, 14))
++ 
++-STRUCT(timeval,
++-       MK_ARRAY(TYPE_LONG, 2))
++-
++-STRUCT(timespec,
++-       MK_ARRAY(TYPE_LONG, 2))
++-
++ STRUCT(rtentry,
++        TYPE_ULONG, MK_STRUCT(STRUCT_sockaddr), MK_STRUCT(STRUCT_sockaddr), MK_STRUCT(STRUCT_sockaddr),
++        TYPE_SHORT, TYPE_SHORT, TYPE_ULONG, TYPE_PTRVOID, TYPE_SHORT, TYPE_PTRVOID,
++-- 
++2.21.0
++
+-- 
+2.21.0
 
---_000_5E53D14CE4667A45B9A06760DE5D13D0FAD43FCFALAMBDcorpadwrs_--
+
