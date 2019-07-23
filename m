@@ -1,61 +1,40 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Yi.Zhao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1A2FFE00942; Mon, 22 Jul 2019 15:04:47 -0700 (PDT)
+	id 39ECBE0098A; Mon, 22 Jul 2019 18:52:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	https://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.51 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com
-	[209.85.166.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBE84E0090E
-	for <yocto@yoctoproject.org>; Mon, 22 Jul 2019 15:04:44 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id k20so77428545ios.10
-	for <yocto@yoctoproject.org>; Mon, 22 Jul 2019 15:04:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=intel-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=bqDvxeD4ysf5DuUck8SPfkM9WZI18c2QNk/S8uqptVk=;
-	b=WLxxlHRKjIs8AaK8S7VkFRIogd+ahmKCzvHiqnTRsL+LVj+m9S+bBS+XvCsJTAVzMa
-	oN//FTNWkxRiNisTfJaBsCHK9GFBUbNtaPH+REpfmzJdyOUzTgvLkQDtBa3TDpLSzfTC
-	fTjP/Xlt0Zt4+28BPYhg5Bvx3sMTFxPmziLxjHM0Rt4QXfyFrgZMuH6WRK+MCThP/5h0
-	sA4mTVP17e2rvaEhEgg1tvJlY2I7a9ZmNZW/xJUZ5NPiVwIarNW+aIMwo0ltYnibRPQ9
-	2oKLTepEHgzR/CfxzbBtW3nT/0Mdjn+/j9oupQ7rBevWvTzAuRAENbjJ77bTbA+HbN9d
-	orSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=bqDvxeD4ysf5DuUck8SPfkM9WZI18c2QNk/S8uqptVk=;
-	b=CMYj1rEmNXNCKEMJlojY3hcj3+mZNApLjtIHDqT75fzRtHJVSFYnXj6xrNZD6wyMwd
-	12g5nCmcZ789zWx2Opb0W1rFUT/BupOpNfUGSkWN3UDH163keItbZX+gDM9jv3PlVtkq
-	iLgzfwn9M8pZwtrOP3KoaQLvuEvdsHd6Rd+ib0R6qi5acimpQe+qS6FDZ/fd9B5OxWM0
-	MWicF6aLA1AgJYcre0ZvhR2GjKSjJe/M4xWxgM/ENoXEloXFbmLIvqzono1ZFNyrmHu5
-	OHoxzo+oZN96FukQDO/OhGBr1aFjLuvdC7VkhKk3txh8WxZToT3T9a78ktyO/6k5GN6B
-	YOPQ==
-X-Gm-Message-State: APjAAAWmoL2fuwa0iLhuveGqwo9tp/ktpKQI7Cg9hFYVpmJSarWWk1bB
-	VuHQx1Xaoc+y7P7kYgqQRin7sLzU2UlhNfwXeUpDYA==
-X-Google-Smtp-Source: APXvYqwLi+iGTgfpZYAhheIxFJAMaEZvcIZQO8aKc28xAS4SwCx2h008m/CuA/jzRuq3rU8Z1ebKPNxWTCjLiY1ZcuY=
-X-Received: by 2002:a5e:9701:: with SMTP id w1mr68964851ioj.294.1563833084284; 
-	Mon, 22 Jul 2019 15:04:44 -0700 (PDT)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 262B8E008F2
+	for <yocto@yoctoproject.org>; Mon, 22 Jul 2019 18:52:03 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x6N1pL6G032066
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 22 Jul 2019 18:51:36 -0700
+Received: from [128.224.162.136] (128.224.162.136) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0;
+	Mon, 22 Jul 2019 18:51:30 -0700
+To: Armin Kuster <akuster808@gmail.com>
+References: <20190706233230.2774-1-akuster808@gmail.com>
+	<20190706233230.2774-2-akuster808@gmail.com>
+From: Yi Zhao <yi.zhao@windriver.com>
+Message-ID: <b893d9fb-74ec-d807-ae8d-ce7830d96ed3@windriver.com>
+Date: Tue, 23 Jul 2019 09:51:27 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.7.2
 MIME-Version: 1.0
-References: <1200227794.879484.1563046387364.ref@mail.yahoo.com>
-	<1200227794.879484.1563046387364@mail.yahoo.com>
-In-Reply-To: <1200227794.879484.1563046387364@mail.yahoo.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 22 Jul 2019 23:04:32 +0100
-Message-ID: <CAJTo0La8FB-jaUBzmQM5hefVZ4WNY2MGn=_o+chscQWxd7xaJQ@mail.gmail.com>
-To: Madhu Krishnamurthy <madhukanthk@yahoo.com>
-Cc: Yocto Discussion List <yocto@yoctoproject.org>
-Subject: Re: No GNU_HASH in the elf binary
+In-Reply-To: <20190706233230.2774-2-akuster808@gmail.com>
+X-Originating-IP: [128.224.162.136]
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-security-compliance][PATCH 2/4] openscap: add 1.3.1 recipes for upstream source
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,19 +46,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 22 Jul 2019 22:04:47 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 23 Jul 2019 01:52:05 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-On Mon, 22 Jul 2019 at 21:13, Madhu Krishnamurthy <madhukanthk@yahoo.com> wrote:
-> INSANE_SKIP_mlc = "ldflags"
-> INSANE_SKIP_mlc-dev = "ldflags"
-> INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
-> INHIBIT_PACKAGE_STRIP = "1"
+Hi Armin,
+
+
+I got the following error when build openscap:
+
+ERROR: openscap-git-r0 do_compile_ptest_base: Function failed: 
+do_compile_ptest_base (log file is located at 
+/buildarea/build/tmp/work/core2-64-poky-linux/openscap/git-r0/temp/log.do_compile_ptest_base.329146)
+ERROR: Logfile of failure stored in: 
+/buildarea/build/tmp/work/core2-64-poky-linux/openscap/git-r0/temp/log.do_compile_ptest_base.329146
+Log data follows:
+| DEBUG: Executing shell function do_compile_ptest_base
+| 
+/buildarea/build/tmp/work/core2-64-poky-linux/openscap/git-r0/temp/run.do_compile_ptest_base.329146: 
+line 108: oe-runcmake: command not found
+| WARNING: 
+/buildarea/build/tmp/work/core2-64-poky-linux/openscap/git-r0/temp/run.do_compile_ptest_base.329146:1 
+exit 127 from 'oe-runcmake tests'
+| ERROR: Function failed: do_compile_ptest_base (log file is located at 
+/buildarea/build/tmp/work/core2-64-poky-linux/openscap/git-r0/temp/log.do_compile_ptest_base.329146)
+
+
+//Yi
+
+
+On 7/7/19 7:32 AM, Armin Kuster wrote:
+> Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> ---
+>   .../recipes-openscap/openscap/openscap.inc            | 11 +++++------
+>   .../recipes-openscap/openscap/openscap_1.3.1.bb       | 10 ++++++++++
+>   .../recipes-openscap/openscap/openscap_git.bb         |  4 ++--
+>   3 files changed, 17 insertions(+), 8 deletions(-)
+>   create mode 100644 meta-security-compliance/recipes-openscap/openscap/openscap_1.3.1.bb
 >
-> But after adding that I still get this error.
-> ERROR: mem-tst-0.1 do_package_qa: QA Issue: No GNU_HASH in the elf binary: '/home/cluser/ac/z_cpu/build/tmp/work/corei7-64-poky-linux/mem/tst-0.1/packages-split/mem/usr/local/flex_pkgs/diags/mlc' [ldflags]
-
-The _mlc part is the package name, which isn't mlc.  Use INSANE_SKIP_mem-tst.
-
-Ross
+> diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap.inc b/meta-security-compliance/recipes-openscap/openscap/openscap.inc
+> index 4c1f206..e5daaf8 100644
+> --- a/meta-security-compliance/recipes-openscap/openscap/openscap.inc
+> +++ b/meta-security-compliance/recipes-openscap/openscap/openscap.inc
+> @@ -10,10 +10,10 @@ DEPENDS = "autoconf-archive dbus acl bzip2 pkgconfig gconf procps curl libxml2 l
+>   
+>   DEPENDS_class-native = "autoconf-archive-native pkgconfig-native swig-native curl-native libxml2-native libxslt-native dpkg-native libgcrypt-native nss-native"
+>   
+> -inherit cmake pkgconfig python3native perlnative ptest
+> -
+>   S = "${WORKDIR}/git"
+>   
+> +inherit cmake pkgconfig python3native perlnative ptest
+> +
+>   PACKAGECONFIG ?= "python3 rpm perl"
+>   PACKAGECONFIG[python3] = "-DENABLE_PYTHON3=True, , python3, python3"
+>   PACKAGECONFIG[perl] = "-DENABLE_PERL=True,, perl, perl"
+> @@ -25,7 +25,6 @@ EXTRA_OECONF += "-DENABLE_PROBES_INDEPENDENT=yes -DENABLE_PROBES_LINUX=yes -DWIT
+>                   -DENABLE_OSCAP_UTIL_DOCKER=no \
+>                   "
+>   
+> -EXTRA_OECONF_class-native += "-DENABLE_PROBES=True"
+>   
+>   STAGING_OSCAP_DIR = "${TMPDIR}/work-shared/${MACHINE}/oscap-source"
+>   STAGING_OSCAP_BUILDDIR = "${TMPDIR}/work-shared/openscap/oscap-build-artifacts"
+> @@ -33,9 +32,9 @@ STAGING_OSCAP_BUILDDIR = "${TMPDIR}/work-shared/openscap/oscap-build-artifacts"
+>   EXTRANATIVEPATH += "chrpath-native"
+>   
+>   do_configure_append_class-native () {
+> -	sed -i 's:OSCAP_DEFAULT_CPE_PATH.*$:OSCAP_DEFAULT_CPE_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/cpe":' ${S}/config.h
+> -	sed -i 's:OSCAP_DEFAULT_SCHEMA_PATH.*$:OSCAP_DEFAULT_SCHEMA_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/schemas":' ${S}/config.h
+> -	sed -i 's:OSCAP_DEFAULT_XSLT_PATH.*$:OSCAP_DEFAULT_XSLT_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/xsl":' ${S}/config.h
+> +	sed -i 's:OSCAP_DEFAULT_CPE_PATH.*$:OSCAP_DEFAULT_CPE_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/cpe":' ${B}/config.h
+> +	sed -i 's:OSCAP_DEFAULT_SCHEMA_PATH.*$:OSCAP_DEFAULT_SCHEMA_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/schemas":' ${B}/config.h
+> +	sed -i 's:OSCAP_DEFAULT_XSLT_PATH.*$:OSCAP_DEFAULT_XSLT_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/xsl":' ${B}/config.h
+>   }
+>   
+>   do_clean[cleandirs] += " ${STAGING_OSCAP_BUILDDIR}"
+> diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.1.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.1.bb
+> new file mode 100644
+> index 0000000..c29fd42
+> --- /dev/null
+> +++ b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.1.bb
+> @@ -0,0 +1,10 @@
+> +SUMARRY = "NIST Certified SCAP 1.2 toolkit"
+> +
+> +require openscap.inc
+> +
+> +SRCREV = "3a4c635691380fa990a226acc8558db35d7ebabc"
+> +SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3 \
+> +           file://run-ptest \
+> +"
+> +
+> +DEFAULT_PREFERENCE = "-1"
+> diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
+> index 3dfa99e..aded920 100644
+> --- a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
+> +++ b/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
+> @@ -3,9 +3,9 @@
+>   
+>   SUMARRY = "NIST Certified SCAP 1.2 toolkit with OE changes"
+>   
+> +include openscap.inc
+> +
+>   SRCREV = "4bbdb46ff651f809d5b38ca08d769790c4bfff90"
+>   SRC_URI = "git://github.com/akuster/openscap.git;branch=oe-1.3 \
+>              file://run-ptest \
+>   "
+> -
+> -include openscap.inc
 
