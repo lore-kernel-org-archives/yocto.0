@@ -1,42 +1,62 @@
-Return-Path: <Yi.Zhao@windriver.com>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D2ADAE00BD5; Mon, 22 Jul 2019 23:46:59 -0700 (PDT)
+	id 8F9ECE00BD5; Tue, 23 Jul 2019 04:47:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C28A9E00B8E
-	for <yocto@yoctoproject.org>; Mon, 22 Jul 2019 23:46:58 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x6N6kLfD007833
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 22 Jul 2019 23:46:31 -0700
-Received: from [128.224.162.136] (128.224.162.136) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0;
-	Mon, 22 Jul 2019 23:46:10 -0700
-To: Akuster808 <akuster808@gmail.com>
-References: <20190706233230.2774-1-akuster808@gmail.com>
-	<20190706233230.2774-2-akuster808@gmail.com>
-	<b893d9fb-74ec-d807-ae8d-ce7830d96ed3@windriver.com>
-	<0D32C76F-BDC4-432B-BB95-9E8DFA1EA7B2@gmail.com>
-From: Yi Zhao <yi.zhao@windriver.com>
-Message-ID: <72d2037a-3787-85b6-1a16-bfda804f48c7@windriver.com>
-Date: Tue, 23 Jul 2019 14:46:06 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jupiter.hce[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.53 listed in list.dnswl.org]
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com
+	[209.85.166.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D375E00A49
+	for <yocto@yoctoproject.org>; Tue, 23 Jul 2019 04:47:20 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id i10so81042657iol.13
+	for <yocto@yoctoproject.org>; Tue, 23 Jul 2019 04:47:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=S6gp51plx259cdGs9i4Ve4/t4M5pMcgFbP3QCrZXyG4=;
+	b=MW7KYQhmWS9l4X72LUWzv/60n2tR3UVmiIc/9urzMjpHa2yeHTyZFiP3Btz71NRTav
+	wsIcYngCmAJnSBmFd+g7m9WPkMVjXWaJGK6W9aAAbLZiP7Jst782I6X9X/VkwWWBEgSS
+	8cOD53vf8ngpNjxTdBZ1FekGNJgvb9xk/7dnhhxxC5n6Rxfr/eLrozP05DHEpXS5QNnZ
+	/SWtR4i7Md99HwI35vvZ3vr2qfBWW50rFLxMx3957e6n7UuFaFi+pp2bPvm1y9i92sYn
+	ooyJJhhFTkO3LMbJplgP1FI3IaOT+/+F1RklNt4EVAuMKpfGLrGDPPcEK6PUz4inZWq4
+	B73g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=S6gp51plx259cdGs9i4Ve4/t4M5pMcgFbP3QCrZXyG4=;
+	b=E2K8dHjHzVDKblxp2I+jC+mmaEGWM5WRjvMz/7+iauxefMMQ4L8bkGamWZ1WgweQOy
+	7SkgPZvNJNVxpfjTD6NhXmaM78vVFvCVhaQuG8HbdWG9n4HuWgYBuUyI2+fbGL4pYyR6
+	z1W+jMudDpCycg22WYVWE+yqq2iQmLnr/TfdFPXoSXUhlvueEFl1AHR/7l0cgB8YEVtx
+	sEd2jQDIIpRPQx4cYmazDy7X1akMBcwsYytGxGkfWwgKyEqOt0FZbGNVvcT1N4OxLN4u
+	27dkuFMxMjxhmAy4qtl3quhVmdRVW0jIQ579f+vUNSt0/FII9/WIe+mgJjBeYtsOXcEa
+	tl7w==
+X-Gm-Message-State: APjAAAXnrxzxB0ctiz65i5+r8iqPmbATq0hD/LoTcFkW/tkMklISnGmy
+	bsRilJ84VKDW02T1WC+O6EMptclIZFuhQscRIyffQy8a
+X-Google-Smtp-Source: APXvYqwP/F0I/WIQvzTtmEWQe304g3npkhl6gb8lo2Ga3TJaiytJM7lAcgjJLjHkcIWVlGq+kKfHkfrjh3M/JsCiHxI=
+X-Received: by 2002:a6b:d809:: with SMTP id y9mr72773662iob.301.1563882439487; 
+	Tue, 23 Jul 2019 04:47:19 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <0D32C76F-BDC4-432B-BB95-9E8DFA1EA7B2@gmail.com>
-X-Originating-IP: [128.224.162.136]
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-security-compliance][PATCH 2/4] openscap: add 1.3.1 recipes for upstream source
+Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP; Tue, 23 Jul 2019 04:47:18
+	-0700 (PDT)
+From: JH <jupiter.hce@gmail.com>
+Date: Tue, 23 Jul 2019 21:47:18 +1000
+Message-ID: <CAA=hcWRAA9pGSy2DK1T1h7cH=n1yCN_vwwdChivaBcbH=nm+rA@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: install -m 0644 ${S}/lib/systemd/system/${PN}.service ${D}/${systemd_system_unitdir} failed to add service file to ${systemd_system_unitdir}
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,112 +68,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 23 Jul 2019 06:46:59 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+X-List-Received-Date: Tue, 23 Jul 2019 11:47:20 -0000
+Content-Type: text/plain; charset="UTF-8"
 
+Hi,
 
-On 7/23/19 2:38 PM, Akuster808 wrote:
->
->> On Jul 23, 2019, at 02:51, Yi Zhao <yi.zhao@windriver.com> wrote:
->>
->> Hi Armin,
->>
->>
->> I got the following error when build openscap:
->>
->> ERROR: openscap-git-r0 do_compile_ptest_base: Function failed: do_compile_ptest_base (log file is located at /buildarea/build/tmp/work/core2-64-poky-linux/openscap/git-r0/temp/log.do_compile_ptest_base.329146)
->> ERROR: Logfile of failure stored in: /buildarea/build/tmp/work/core2-64-poky-linux/openscap/git-r0/temp/log.do_compile_ptest_base.329146
->> Log data follows:
->> | DEBUG: Executing shell function do_compile_ptest_base
->> | /buildarea/build/tmp/work/core2-64-poky-linux/openscap/git-r0/temp/run.do_compile_ptest_base.329146: line 108: oe-runcmake: command not found
->> | WARNING: /buildarea/build/tmp/work/core2-64-poky-linux/openscap/git-r0/temp/run.do_compile_ptest_base.329146:1 exit 127 from 'oe-runcmake tests'
->> | ERROR: Function failed: do_compile_ptest_base (log file is located at /buildarea/build/tmp/work/core2-64-poky-linux/openscap/git-r0/temp/log.do_compile_ptest_base.329146)
-> Thats not good. Thought I had run though this code path.
->
-> I am traveling the next  2 weeks so i am not sure how quickly I can address this issue.
+I set up the configuration for service files at following:
 
+SYSTEMD_SERVICE_${PN} = "${PN}.service bootstrap.service"
 
-That's OK. Thanks.
+do_install() {
+    ..............
+    install -d ${D}/${systemd_system_unitdir}
+    install -m 0644 ${S}/lib/systemd/system/*.service
+${D}/${systemd_system_unitdir}
+}
 
+Despite both service files are in build directory, the final image
+installation does not include those service files, appreciate anyone
+help.
 
-//Yi
+Thank you.
 
->
-> Armin
->>
->> //Yi
->>
->>
->>> On 7/7/19 7:32 AM, Armin Kuster wrote:
->>> Signed-off-by: Armin Kuster <akuster808@gmail.com>
->>> ---
->>>   .../recipes-openscap/openscap/openscap.inc            | 11 +++++------
->>>   .../recipes-openscap/openscap/openscap_1.3.1.bb       | 10 ++++++++++
->>>   .../recipes-openscap/openscap/openscap_git.bb         |  4 ++--
->>>   3 files changed, 17 insertions(+), 8 deletions(-)
->>>   create mode 100644 meta-security-compliance/recipes-openscap/openscap/openscap_1.3.1.bb
->>>
->>> diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap.inc b/meta-security-compliance/recipes-openscap/openscap/openscap.inc
->>> index 4c1f206..e5daaf8 100644
->>> --- a/meta-security-compliance/recipes-openscap/openscap/openscap.inc
->>> +++ b/meta-security-compliance/recipes-openscap/openscap/openscap.inc
->>> @@ -10,10 +10,10 @@ DEPENDS = "autoconf-archive dbus acl bzip2 pkgconfig gconf procps curl libxml2 l
->>>     DEPENDS_class-native = "autoconf-archive-native pkgconfig-native swig-native curl-native libxml2-native libxslt-native dpkg-native libgcrypt-native nss-native"
->>>   -inherit cmake pkgconfig python3native perlnative ptest
->>> -
->>>   S = "${WORKDIR}/git"
->>>   +inherit cmake pkgconfig python3native perlnative ptest
->>> +
->>>   PACKAGECONFIG ?= "python3 rpm perl"
->>>   PACKAGECONFIG[python3] = "-DENABLE_PYTHON3=True, , python3, python3"
->>>   PACKAGECONFIG[perl] = "-DENABLE_PERL=True,, perl, perl"
->>> @@ -25,7 +25,6 @@ EXTRA_OECONF += "-DENABLE_PROBES_INDEPENDENT=yes -DENABLE_PROBES_LINUX=yes -DWIT
->>>                   -DENABLE_OSCAP_UTIL_DOCKER=no \
->>>                   "
->>>   -EXTRA_OECONF_class-native += "-DENABLE_PROBES=True"
->>>     STAGING_OSCAP_DIR = "${TMPDIR}/work-shared/${MACHINE}/oscap-source"
->>>   STAGING_OSCAP_BUILDDIR = "${TMPDIR}/work-shared/openscap/oscap-build-artifacts"
->>> @@ -33,9 +32,9 @@ STAGING_OSCAP_BUILDDIR = "${TMPDIR}/work-shared/openscap/oscap-build-artifacts"
->>>   EXTRANATIVEPATH += "chrpath-native"
->>>     do_configure_append_class-native () {
->>> -    sed -i 's:OSCAP_DEFAULT_CPE_PATH.*$:OSCAP_DEFAULT_CPE_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/cpe":' ${S}/config.h
->>> -    sed -i 's:OSCAP_DEFAULT_SCHEMA_PATH.*$:OSCAP_DEFAULT_SCHEMA_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/schemas":' ${S}/config.h
->>> -    sed -i 's:OSCAP_DEFAULT_XSLT_PATH.*$:OSCAP_DEFAULT_XSLT_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/xsl":' ${S}/config.h
->>> +    sed -i 's:OSCAP_DEFAULT_CPE_PATH.*$:OSCAP_DEFAULT_CPE_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/cpe":' ${B}/config.h
->>> +    sed -i 's:OSCAP_DEFAULT_SCHEMA_PATH.*$:OSCAP_DEFAULT_SCHEMA_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/schemas":' ${B}/config.h
->>> +    sed -i 's:OSCAP_DEFAULT_XSLT_PATH.*$:OSCAP_DEFAULT_XSLT_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/xsl":' ${B}/config.h
->>>   }
->>>     do_clean[cleandirs] += " ${STAGING_OSCAP_BUILDDIR}"
->>> diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.1.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.1.bb
->>> new file mode 100644
->>> index 0000000..c29fd42
->>> --- /dev/null
->>> +++ b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.1.bb
->>> @@ -0,0 +1,10 @@
->>> +SUMARRY = "NIST Certified SCAP 1.2 toolkit"
->>> +
->>> +require openscap.inc
->>> +
->>> +SRCREV = "3a4c635691380fa990a226acc8558db35d7ebabc"
->>> +SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3 \
->>> +           file://run-ptest \
->>> +"
->>> +
->>> +DEFAULT_PREFERENCE = "-1"
->>> diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
->>> index 3dfa99e..aded920 100644
->>> --- a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
->>> +++ b/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
->>> @@ -3,9 +3,9 @@
->>>     SUMARRY = "NIST Certified SCAP 1.2 toolkit with OE changes"
->>>   +include openscap.inc
->>> +
->>>   SRCREV = "4bbdb46ff651f809d5b38ca08d769790c4bfff90"
->>>   SRC_URI = "git://github.com/akuster/openscap.git;branch=oe-1.3 \
->>>              file://run-ptest \
->>>   "
->>> -
->>> -include openscap.inc
+Kind regards,
+
+- jh
 
