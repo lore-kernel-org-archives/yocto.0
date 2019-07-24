@@ -1,6 +1,6 @@
 Return-Path: <peterson.russell@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 559DDE00D90; Wed, 24 Jul 2019 11:29:08 -0700 (PDT)
+	id 7F5D5E00D5D; Wed, 24 Jul 2019 11:30:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,54 +11,54 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (peterson.russell[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.177 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com
-	[209.85.222.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57531E00D5D
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 11:29:07 -0700 (PDT)
-Received: by mail-qk1-f177.google.com with SMTP id d15so34469995qkl.4
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 11:29:07 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.176 listed in list.dnswl.org]
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com
+	[209.85.160.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44996E00920
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 11:30:40 -0700 (PDT)
+Received: by mail-qt1-f176.google.com with SMTP id n11so46473669qtl.5
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 11:30:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=e0mmMv4OEC8s4ZCVfKyUCYTifqfvI93s6r7DPB0IojY=;
-	b=dxJ6/JXJ3fWyHQ84Ih5RGAo8FoYnvbGDpMtwKe56UOFd1JmVwHPCApw+ArP6l8qOAS
-	IQf4hzWLRKQ5sha3xFt9VKA6998eFbGTTPSDH5ae0mv5XCtUo+iQWh8pvxichgdh0cQ/
-	YVbG65VDOq47dmrHEpitFTM752WV2yBsQ/U75c1vLpUXlbst8Zvk/lmCnjbUmcOlWpJU
-	tqcVyMXe402TptG2JVNqy5tPal1zM53up5remHZx23+QaqWKTqfgQ1poR3r53EQPBzo2
-	VWJzsz6z3mM1pbcZ8/XlesKvym8EVLZfZQkgL3TCplbr/rcCEK9MWgxlhx1WEJTXLH7O
-	O9Xw==
+	:cc; bh=OeMrN5qeBXhFA4ajMeN+znlOf4ogn3aJf3OOUu7j4mA=;
+	b=RGKlDM7fg3BzA7YJOWgvijmvNctnztJ+jEqtra18QgQ1e/hDZGLXkH6dmOEZ3Maqls
+	3npDNSLyYVi8CKQg9pOLANCPl3OT632b255RqXrhLOcS+asyrR2F2yDsXYVfC14pu1J2
+	AuaifLlt958NIX9xlzMRVjJ7kd68hWtxS0qYpnrDL29xQZgicTBHSTmfALD8D9wB6Acq
+	6P063REDF0j/MCip8Oe3ZhUJs7ccK6dYmQ3K0ryLu6N7Fb/zWXXTR7IIg52V8aeth5Sv
+	Fvd3umZvUhytmmKxEc8+/cRnGea0obHfURosIbrngVhu1AyHsKxoCRS7rT0LS2L4BoZ4
+	mbRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=e0mmMv4OEC8s4ZCVfKyUCYTifqfvI93s6r7DPB0IojY=;
-	b=Gjfw4mQ4S5hAQGjKtrfXXPjSSNv+A4pKcg+oB+X+2V2sUvE7TiyH81kTpxBah31trT
-	FhrFZEE/N65Wxl/Umce7sckr8AXj5ouPrEh+wg/+mOf1WpALBm/McFBvLyfTMAARCB3q
-	vaD9ME6DaTCTlwl/y/xw6J7aUpQ8TzCmHMkcO1Bc3BpITiohLeAExg7YbwgAzCrQsMCH
-	w8tHD9WQVZ7yv4EXaNXKg/ekGPbxHddYHXad3nrM48gFdkwlQH52igCko5BPnTXtDIdi
-	ULwMirAUiVuah47fyGfOL0HyqE+k3Iy8TpKkkGWtcdZW3l+lANR5SM49vLN/88x2ypHf
-	+rlg==
-X-Gm-Message-State: APjAAAUZHCGUwiDoQnShaE+H+fiqogTSsBsv/QoFu2mNIqlUOrflu8Wk
-	qnHyejwFtEfXDqkKno3+b7f9Fx5tG9b2KMSqEFu9Ow==
-X-Google-Smtp-Source: APXvYqz6KPS0hWwQRtR7FCrr+xhjDQoYJQ5e4NVKeMHSiM8Jq/r+lLY2+/whREXG4CADKXV0Wrtu9S4daFJVOcxwTZ0=
-X-Received: by 2002:a37:9d15:: with SMTP id g21mr51644523qke.343.1563992946580;
-	Wed, 24 Jul 2019 11:29:06 -0700 (PDT)
+	bh=OeMrN5qeBXhFA4ajMeN+znlOf4ogn3aJf3OOUu7j4mA=;
+	b=oYEChJXiH/V/oK9YvaeaTXH9nwJFPdicmb0Ou1boDynPZKnbSQd6TkUaPXV/EVQkV6
+	mFYswlrEv8ZnO1t1Wx+GbxcNz1bw6NKo3uYvr17/eYh/GRsZpw5f2dsBgwbH4t/A7o3c
+	itmcS8tpYnabZqtR5nWD1O1otwAyItPMp6NkCWJSRjfilfqmvCi/rdaAtlpcpnLc7knR
+	HJ478B/OSensbVnUzPn5gPdKsr14KeDviQMc2iJbD5jdowaRpBgJ0ScnOtsKhJYoqgS/
+	p3viFSZ1mqKNYU8EnAKIw2C0S68jh9OCDGKt+VntRgBphFRExBctPnNXiij4lkey9V6u
+	bLoA==
+X-Gm-Message-State: APjAAAVyZRQNNG3QbgFHyin95NwGMQtamGF+MvZeqpR23bBy0Twcqter
+	/3cETrnVOzqAIaXOk8kWiI8TPw2yEy4YtLYMbc0=
+X-Google-Smtp-Source: APXvYqzkeiHk9uiXkBAZkp96CU5hQrk4vIDuAIELoqnQpkrUYJcfmjZklHdJin2O65qED1LExzHT2bsmz+N1lLTg/Zg=
+X-Received: by 2002:ac8:25b1:: with SMTP id e46mr59361614qte.36.1563993039619; 
+	Wed, 24 Jul 2019 11:30:39 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAJxG=fmKGb1fSVi=tRF2shqYbOkuYBiDzXOhSQRPXdHxs63gbg@mail.gmail.com>
-	<352d8e79-5b16-b711-0051-e3dc27e90f75@ibeeto.com>
-In-Reply-To: <352d8e79-5b16-b711-0051-e3dc27e90f75@ibeeto.com>
+	<fba9017e-ffd3-f44c-c75a-8be6e46d10b9@windriver.com>
+In-Reply-To: <fba9017e-ffd3-f44c-c75a-8be6e46d10b9@windriver.com>
 From: Russell Peterson <peterson.russell@gmail.com>
-Date: Wed, 24 Jul 2019 14:28:55 -0400
-Message-ID: <CAJxG=fnT7e=Hi_-iyDzbut0Re_8s-Di=M4Tenfpr+rNAuNbSrg@mail.gmail.com>
-To: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Date: Wed, 24 Jul 2019 14:30:28 -0400
+Message-ID: <CAJxG=fmQosVzrmmPv9ab5C5BkUVnM=Wryy+dUPXvA1_+XC+b5w@mail.gmail.com>
+To: Yi Zhao <yi.zhao@windriver.com>
 Cc: yocto@yoctoproject.org
 Subject: Re: PREMIRROR
 X-BeenThere: yocto@yoctoproject.org
@@ -72,47 +72,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2019 18:29:08 -0000
-Content-Type: multipart/alternative; boundary="0000000000000320ce058e717c74"
+X-List-Received-Date: Wed, 24 Jul 2019 18:30:41 -0000
+Content-Type: multipart/alternative; boundary="0000000000008eca81058e71813a"
 
---0000000000000320ce058e717c74
+--0000000000008eca81058e71813a
 Content-Type: text/plain; charset="UTF-8"
 
-Hi, Rudolf.
-
-Thanks for the reply.  Yes, I am aware of the eSDK functionality, however,
-I have some unique requirements that I am trying to work around.
-Regardless... what I am doing should work, no?  I simply want to use a
-local git repo (the directory itself hence protocol=file) instead of what
-the recipe specifies.  Looks like the fetch is working but the do_unpack
-task is ignoring PREMIRRORS (or at least the localpath variable seems
-wrong).
+Thanks, Yi.  I did try that and I see the tar file is created... but again,
+the do_unpack function seems to ignore it and go directly to the github
+repository.
 
 --Russ
 
 
-On Wed, Jul 24, 2019 at 12:19 PM Rudolf J Streif <rudolf.streif@ibeeto.com>
-wrote:
+On Wed, Jul 24, 2019 at 4:28 AM Yi Zhao <yi.zhao@windriver.com> wrote:
 
-> Russell,
 >
-> You don't need PREMIRROR for this functionality. It's not exactly intended
-> for that use.
->
-> The simplest way to achieve what you are looking for is to use devtool. If
-> I understand you correctly you are downloading sources from a remote repo
-> on GitHub but want to have them locally to make modifications? If so use:
->
-> devtool add myrecipe localsrc fetchuri
->
-> from your build environment (you have to source oe-init-build-env first).
-> devtool then fetches the source from fetchuri into a directory localsrc as
-> a git repo and automatically creates the recipe for it.
->
-> :rjs
->
->
-> On 7/23/19 1:49 PM, Russell Peterson wrote:
+> On 7/24/19 4:49 AM, Russell Peterson wrote:
 >
 > Hello,
 >
@@ -135,6 +111,25 @@ wrote:
 > found: clone or directory not available or not up to date (shallow clone
 > not enabled)"
 >
+>
+> Maybe you can use BB_GENERATE_MIRROR_TARBALLS to generate git repo tarball
+> and put it to your download mirror.
+>
+> See:
+> https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-bb-BB_GENERATE_MIRROR_TARBALLS
+>
+>         and
+>
+>
+> https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-DL_DIR
+>
+>
+> Regards,
+>
+> Yi
+>
+>
+>
 > Any help on what I am missing would be appreciated.
 >
 > Regards,
@@ -143,54 +138,28 @@ wrote:
 >
 >
 >
-> --
-> -----
-> Rudolf J Streif
-> CEO/CTO ibeeto
-> +1.855.442.3396 x700
->
 >
 
---0000000000000320ce058e717c74
+--0000000000008eca81058e71813a
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi, Rudolf.<div><br></div><div>Thanks for the reply.=C2=A0=
- Yes, I am aware of the eSDK functionality, however, I have some unique req=
-uirements that I am trying to work around.=C2=A0 Regardless... what I am do=
-ing should work, no?=C2=A0 I simply want to use a local git repo (the direc=
-tory itself hence protocol=3Dfile) instead of what the recipe specifies.=C2=
-=A0 Looks like the fetch is working but the do_unpack task is ignoring PREM=
-IRRORS (or at least the localpath variable seems wrong).</div><div><br></di=
-v><div>--Russ</div><div><br></div></div><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 24, 2019 at 12:19 PM Rudolf J=
- Streif &lt;<a href=3D"mailto:rudolf.streif@ibeeto.com">rudolf.streif@ibeet=
-o.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex">
+<div dir=3D"ltr">Thanks, Yi.=C2=A0 I did try that and I see the tar file is=
+ created... but again, the do_unpack function seems to ignore it and go dir=
+ectly to the github repository.<div><br></div><div>--Russ</div><div><br></d=
+iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Wed, Jul 24, 2019 at 4:28 AM Yi Zhao &lt;<a href=3D"mailto:yi.zhao@wi=
+ndriver.com">yi.zhao@windriver.com</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex">
  =20
    =20
  =20
   <div bgcolor=3D"#FFFFFF">
-    <p>Russell,</p>
-    <p>You don&#39;t need PREMIRROR for this functionality. It&#39;s not ex=
-actly
-      intended for that use.</p>
-    <p>The simplest way to achieve what you are looking for is to use
-      devtool. If I understand you correctly you are downloading sources
-      from a remote repo on GitHub but want to have them locally to make
-      modifications? If so use:</p>
-    <p>devtool add myrecipe localsrc fetchuri</p>
-    <p>from your build environment (you have to source oe-init-build-env
-      first). devtool then fetches the source from fetchuri into a
-      directory localsrc as a git repo and automatically creates the
-      recipe for it.</p>
-    <p>:rjs<br>
-    </p>
     <p><br>
     </p>
-    <div class=3D"gmail-m_-6306057233364702931moz-cite-prefix">On 7/23/19 1=
-:49 PM, Russell Peterson
+    <div class=3D"gmail-m_5147416499914025504moz-cite-prefix">On 7/24/19 4:=
+49 AM, Russell Peterson
       wrote:<br>
     </div>
     <blockquote type=3D"cite">
@@ -226,6 +195,35 @@ s
           about &quot;no up to date source found: clone or directory not
           available or not up to date (shallow clone not enabled)&quot;</di=
 v>
+      </div>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>Maybe you can use BB_GENERATE_MIRROR_TARBALLS to generate git
+      repo tarball and put it to your download mirror.<br>
+    </p>
+    <p>See:
+<a class=3D"gmail-m_5147416499914025504moz-txt-link-freetext" href=3D"https=
+://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-bb-BB_=
+GENERATE_MIRROR_TARBALLS" target=3D"_blank">https://www.yoctoproject.org/do=
+cs/latest/mega-manual/mega-manual.html#var-bb-BB_GENERATE_MIRROR_TARBALLS</=
+a></p>
+    <p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 and<br>
+    </p>
+    <p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+<a class=3D"gmail-m_5147416499914025504moz-txt-link-freetext" href=3D"https=
+://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-DL_DIR=
+" target=3D"_blank">https://www.yoctoproject.org/docs/latest/mega-manual/me=
+ga-manual.html#var-DL_DIR</a><br>
+    </p>
+    <p><br>
+    </p>
+    <p>Regards,</p>
+    <p>Yi</p>
+    <p><br>
+    </p>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
         <div><br>
         </div>
         <div>Any help on what I am missing would be appreciated.</div>
@@ -241,17 +239,11 @@ v>
         </div>
       </div>
       <br>
-      <fieldset class=3D"gmail-m_-6306057233364702931mimeAttachmentHeader">=
-</fieldset>
+      <fieldset class=3D"gmail-m_5147416499914025504mimeAttachmentHeader"><=
+/fieldset>
     </blockquote>
-    <pre class=3D"gmail-m_-6306057233364702931moz-signature" cols=3D"72">--=
-=20
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3396 x700</pre>
   </div>
 
 </blockquote></div>
 
---0000000000000320ce058e717c74--
+--0000000000008eca81058e71813a--
