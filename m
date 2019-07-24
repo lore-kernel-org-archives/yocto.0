@@ -1,59 +1,35 @@
-Return-Path: <jku@goto.fi>
+Return-Path: <Hongxu.Jia@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DCEE2E00D53; Wed, 24 Jul 2019 02:10:01 -0700 (PDT)
+	id D3FBEE00D53; Wed, 24 Jul 2019 03:11:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	https://www.dnswl.org/, no *      trust
-	*      [209.85.167.53 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	https://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com
-	[209.85.167.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9821E00AB4
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 02:10:00 -0700 (PDT)
-Received: by mail-lf1-f53.google.com with SMTP id c19so31415860lfm.10
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 02:10:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=goto.fi; s=google;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=P1YL9dAZjY/XWKj7M3rigyJCkXk8QxoFEs/+OuoGfgU=;
-	b=lODUIRxQs2LkYpf8d1++LZN5ZsqSy2XkxUwIN1DSX5qa5/+rnbmF3DQuKaz2bDaNO/
-	o1XJNTU0WPy2fxvZ8YzF0m55CRSpXbxdgR+srTP1SiV87MuwRHbfjzeONxuAa7F6COvl
-	FCO+m2/PND6s+4RISaP7cNoRd08eZdjgQFTOo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=P1YL9dAZjY/XWKj7M3rigyJCkXk8QxoFEs/+OuoGfgU=;
-	b=CxEkUXLOCEYMkdbxrflymftuzTETZRu4MC9mQyZ6QNnfIgueYkwtlUY4Xs66iZiV2j
-	FQGuEc25+UVAg6+kL2NjswNABam93wmN1guJfGzpCf/RHh//Bs5LjaYe3e18FQVJdLtV
-	wMezraN0F6bbQ6qT3X+KsBlmy/W6WmXMIYG2Tvtbw7zvUodrk8m3kFdFDi9G+lOJkZGh
-	YMIAIhVpevs0fLv60U0NjO5Zi46xCUOquFIcwQp7d+CXAdLyBUqYKHtIYZw3JdAqsgpw
-	BmcEDkc2USU4QqlcPu6EguFcXpPWgPcEyB90rF8Jp/NftGKAOLRDa3gcsuQeOp6PPgHr
-	b1gQ==
-X-Gm-Message-State: APjAAAXZQAXQ8scu0h6ahO/fACkvgCz4Zctg2Zckw9x9HZUxgO7hO5js
-	NYI360Qvq7l4hwvZahPCnGNHF6adAXsxOhF2d4c=
-X-Google-Smtp-Source: APXvYqy5RQkHqvSe88lP3bBk2rPLc921g804HH7Nezf0JBaan5zmnwsi/jM1ifnzazcNAGvHd5VHQgW4H8KCW4ztWbw=
-X-Received: by 2002:ac2:5c42:: with SMTP id s2mr27072166lfp.61.1563959399434; 
-	Wed, 24 Jul 2019 02:09:59 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BA9BE00D36
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 03:11:49 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x6OABmHL005924
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 24 Jul 2019 03:11:48 -0700 (PDT)
+Received: from pek-lpg-core1-vm2.wrs.com (128.224.156.107) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.468.0; Wed, 24 Jul 2019 03:11:47 -0700
+From: Hongxu Jia <hongxu.jia@windriver.com>
+To: <yocto@yoctoproject.org>, <anuj.mittal@intel.com>
+Date: Wed, 24 Jul 2019 18:11:18 +0800
+Message-ID: <1563963079-20347-2-git-send-email-hongxu.jia@windriver.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1563963079-20347-1-git-send-email-hongxu.jia@windriver.com>
+References: <1563963079-20347-1-git-send-email-hongxu.jia@windriver.com>
 MIME-Version: 1.0
-References: <CAA=hcWRAA9pGSy2DK1T1h7cH=n1yCN_vwwdChivaBcbH=nm+rA@mail.gmail.com>
-In-Reply-To: <CAA=hcWRAA9pGSy2DK1T1h7cH=n1yCN_vwwdChivaBcbH=nm+rA@mail.gmail.com>
-From: Jussi Kukkonen <jku@goto.fi>
-Date: Wed, 24 Jul 2019 12:09:43 +0300
-Message-ID: <CAD5=o+p32DFi0q7s872tA1+u+U_WzjyexwPDvVYq6bfKbFTp+Q@mail.gmail.com>
-To: JH <jupiter.hce@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: install -m 0644 ${S}/lib/systemd/system/${PN}.service ${D}/${systemd_system_unitdir} failed to add service file to ${systemd_system_unitdir}
+Subject: [meta-intel][PATCH 2/3] intel-mediasdk: check for "opengl" feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,36 +41,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2019 09:10:01 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 24 Jul 2019 10:11:50 -0000
+Content-Type: text/plain
 
-On Tue, 23 Jul 2019 at 14:48, JH <jupiter.hce@gmail.com> wrote:
->
-> Hi,
->
-> I set up the configuration for service files at following:
->
-> SYSTEMD_SERVICE_${PN} = "${PN}.service bootstrap.service"
->
-> do_install() {
->     ..............
->     install -d ${D}/${systemd_system_unitdir}
->     install -m 0644 ${S}/lib/systemd/system/*.service
-> ${D}/${systemd_system_unitdir}
-> }
->
-> Despite both service files are in build directory, the final image
-> installation does not include those service files, appreciate anyone
-> help.
+Since comit [a78c420 libva: check for "opengl" feature] applied in oe-core,
+and intel-mediasdk depends on libva, it should check for "opengl"
+feature too.
 
-Your script installs from ${S} but your explanation talks about the
-build directory. Did you intend to install from ${B}?
+Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+---
+ recipes-multimedia/mediasdk/intel-mediasdk_19.2.0.bb | 3 +++
+ 1 file changed, 3 insertions(+)
 
-If that's not the issue, then you want dig deeper: look in the build
-logs and the package directories inside workdir: does the file
-actually get installed and packaged? Is the correct package really
-added to image?
+diff --git a/recipes-multimedia/mediasdk/intel-mediasdk_19.2.0.bb b/recipes-multimedia/mediasdk/intel-mediasdk_19.2.0.bb
+index 1e2c70f..ffbd915 100644
+--- a/recipes-multimedia/mediasdk/intel-mediasdk_19.2.0.bb
++++ b/recipes-multimedia/mediasdk/intel-mediasdk_19.2.0.bb
+@@ -11,6 +11,9 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=3cb331af679cd8f968bf799a9c55b46e"
+ # Only for 64 bit until media-driver issues aren't fixed
+ COMPATIBLE_HOST = '(x86_64).*-linux'
+ 
++inherit distro_features_check
++REQUIRED_DISTRO_FEATURES = "opengl"
++
+ DEPENDS += "libdrm libva intel-media-driver"
+ 
+ PACKAGECONFIG ??= "${@bb.utils.contains("DISTRO_FEATURES", "x11", "dri3", "", d)} \
+-- 
+2.7.4
 
-HTH,
-  Jussi
 
