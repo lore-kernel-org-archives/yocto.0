@@ -1,71 +1,72 @@
 Return-Path: <dbaryshkov@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C1F82E00DB1; Wed, 24 Jul 2019 05:38:40 -0700 (PDT)
+	id 620F8E00E27; Wed, 24 Jul 2019 05:38:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	https://www.dnswl.org/, no *      trust
-	*      [209.85.167.66 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (dbaryshkov[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.196 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lf1-f66.google.com (mail-lf1-f66.google.com
-	[209.85.167.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DD5EE00D9F
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 05:38:37 -0700 (PDT)
-Received: by mail-lf1-f66.google.com with SMTP id 62so26976159lfa.8
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 05:38:37 -0700 (PDT)
+Received: from mail-lj1-f196.google.com (mail-lj1-f196.google.com
+	[209.85.208.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBFFEE00DA7
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 05:38:42 -0700 (PDT)
+Received: by mail-lj1-f196.google.com with SMTP id z28so44428888ljn.4
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 05:38:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references
 	:mime-version:content-transfer-encoding;
-	bh=BfXttuy2oHUr9XJlbWRZUWXk1lMqZ94gp9yl41Awv68=;
-	b=SRXkvo3uE5BeqAz9DeSigo3Paf/7bfs3gAJ/W35iZYlV4kA05cz+g5ewMKcyGcf5ae
-	EXIT+nf3Mv5VVuczeWknZRJAW5HMOaWW/4pfNZaEWZEg4shOrizOvEIwOXam3+cxRe+C
-	3zzksI6m24Vb8ge0E3aVZhs4S/B0Bmg/qyjJqEVwp2Jsdu+LmDQjYFaWselsgOVkk589
-	iukb1B7XCrJxmzddD0S8na11tSMA8xoaL7ngpywFN60tPWvkHVcQ23jRaAG0hm9HbN2s
-	i/AbnKZ00Uh+EIXfQHkrfJZDXxCZyTXut4OFQMrzDs85VEJfySjxjXSshIxTTK3ucui5
-	Jv8g==
+	bh=9gIBw980opKuJYILyZdS1GRmg0nlpvEk/ndGcXFtzLc=;
+	b=ePI0Qde6XA2iPUS6uCMmRf3cHcmirtWVLYmCZB0CiYLZ7Kl8YSUFHUmARPsFLoMGGM
+	7egHS8Sg4H0YV1JjII2AtprgBOFKFsNA1lGzr/dliOiHTCkcliErzeozFbNYmg5GnLMJ
+	K1/B2WoS3ZZAiclnq0eN7YXh/9fDUvzz6FLSu7H7tFgBbnL+D1aIorjSZ+g5eudLS3Ik
+	tZ9bTxeVI3Wr6RO+XbneTeM6eFiOxMDWJyl4WLtZMfJ5Oa4+IPGEBH6odlYH1N+S+w8m
+	pUiEcKu83NvSk6oMJebmIxxOPnS1rK7Roe1htdQ91dcRzX90sfWykQNGdBlIAq5dtn/C
+	YMyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references:mime-version:content-transfer-encoding;
-	bh=BfXttuy2oHUr9XJlbWRZUWXk1lMqZ94gp9yl41Awv68=;
-	b=BJ8/oBK/3iUgdEk+bA1n6d4/BLM+8BhK1TxtntlhzUmNN2lL/ps8X5Mfn4V33Iq6ST
-	ZTWHtHqwZC2Hw01sDz73j0lBJMdwcKb/NCPJqYVmjH5gDoIoQ+TSQ+r9phY3PFe5Ih/l
-	LD8NpSLvGKrf5uRF1CnqlEcOPLVZi9AZCvPO6QmtGVHoAZek5FItkkSsFYFBkH+DK/fv
-	4Jtd+XIaqudFiV0ThYpI/PNnHswUS7WwZDEOIvsfiqSEFcxtsC6q06eTLY/BeLiL59DN
-	c6TU366jYJTJolpcpEPOS6yeGeqm1Lu2vDZzZVyHpmy6QO1lQvNdUJpz/SwmcVVFIsnQ
-	dM2w==
-X-Gm-Message-State: APjAAAVVoSLfVF+/MKu24vlpJLhkedd27g9PGA15LYaLLf2zhvWfQx3X
-	/Px+dE8awiW0Jdb74fT7oIuzxNRkb0s=
-X-Google-Smtp-Source: APXvYqy89cbJgJWvhL25jL+iF7GyR4RFWcnKQbIn299a3FbIm/PG2+rfNUXhy9KJ/mZkPsaB5l1q7w==
-X-Received: by 2002:ac2:48bc:: with SMTP id u28mr26662771lfg.126.1563971915778;
-	Wed, 24 Jul 2019 05:38:35 -0700 (PDT)
+	bh=9gIBw980opKuJYILyZdS1GRmg0nlpvEk/ndGcXFtzLc=;
+	b=TVnU/O7dS1QYOqjzqsEKyyMsDqS/65ICvcJIxsxExVXsLqo77c1m4LTEQXi5NqJhPi
+	i5QmqxttyRzEnK8+gv0SA8V3qqIgD0OO6cK3L95Y0TRRtMv9lDPwqlqP4DND9q1HULK1
+	Vx8MGZMzvSRpOcvMoCW9c6z4X25MrjGzL/TuQiDC6EFp/PjhM4nFDqS4N028ErhjI1Sc
+	ADu0wjWcZm6xpBuwEhtcj1acib/sIF6hltbV3+ik6dhCNJrYtwWrYFL0YO0fE8bw/xDn
+	sV8Y2tWYB+6loEta9FZGZAIpfNfbYXH1yJLc3lREEoX2zNhhxc+E6VbLlt0I43+5P3c6
+	EUpQ==
+X-Gm-Message-State: APjAAAVaDoZRbMQTHmU2OUfTdDK7r8YgBc8M3veM8WKaH3u5TAT325SJ
+	/42Zcj+WAh3WwcmG2GcPBJJ9d9wsuOk=
+X-Google-Smtp-Source: APXvYqzxhP6CCJhE6tNXO0MoMsf/RYj+rxNuCEHqE+CxjQ9Q4PbJoW8XVo2BX0+XeanTgf/5Kn9fuQ==
+X-Received: by 2002:a2e:9003:: with SMTP id h3mr40619640ljg.194.1563971921196; 
+	Wed, 24 Jul 2019 05:38:41 -0700 (PDT)
 Received: from localhost.localdomain ([94.25.229.59])
 	by smtp.gmail.com with ESMTPSA id
-	p15sm8694423lji.80.2019.07.24.05.38.34
+	p15sm8694423lji.80.2019.07.24.05.38.38
 	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Wed, 24 Jul 2019 05:38:35 -0700 (PDT)
+	Wed, 24 Jul 2019 05:38:40 -0700 (PDT)
 From: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
 To: yocto@yoctoproject.org
-Date: Wed, 24 Jul 2019 15:38:28 +0300
-Message-Id: <20190724123832.17417-2-dbaryshkov@gmail.com>
+Date: Wed, 24 Jul 2019 15:38:30 +0300
+Message-Id: <20190724123832.17417-4-dbaryshkov@gmail.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190724123832.17417-1-dbaryshkov@gmail.com>
 References: <20190724123832.17417-1-dbaryshkov@gmail.com>
 MIME-Version: 1.0
-Cc: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
-Subject: [meta-security][PATCH 2/6] tpm2-tss: fix compilation when using updated AX_CODE_COVERAGE macro
+Cc: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>,
+	Armin Kuster <akuster808@gmail.com>
+Subject: [meta-security][PATCH 4/6] tpm2-tcti-uefi: fix configure arguments
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,126 +78,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2019 12:38:40 -0000
+X-List-Received-Date: Wed, 24 Jul 2019 12:38:46 -0000
 Content-Transfer-Encoding: 8bit
 
 From: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
 
-New autoconf-archive comes with updated AX_CODE_COVERAGE macro, which is
-not compatible with current tpm2-tss source base. Apply upstream patch
-to fix this incompatibility.
+Pass correct location of EFI's crt0 and ld script thus removing the need
+to patch configure.ac.
 
 Signed-off-by: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
 ---
- ...-ax_code_coverage.m4-version-2019.01.patch | 84 +++++++++++++++++++
- .../recipes-tpm2/tpm2-tss/tpm2-tss_2.2.3.bb   |  3 +-
- 2 files changed, 86 insertions(+), 1 deletion(-)
- create mode 100644 meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss/0001-build-update-for-ax_code_coverage.m4-version-2019.01.patch
+ .../files/configure_oe_fixup.patch            | 27 -------------------
+ .../tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb    | 10 +++++--
+ 2 files changed, 8 insertions(+), 29 deletions(-)
+ delete mode 100644 meta-tpm/recipes-tpm2/tpm2-tcti-uefi/files/configure_oe_fixup.patch
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss/0001-build-update-for-ax_code_coverage.m4-version-2019.01.patch b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss/0001-build-update-for-ax_code_coverage.m4-version-2019.01.patch
-new file mode 100644
-index 000000000000..86b2cb6dd7d3
---- /dev/null
-+++ b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss/0001-build-update-for-ax_code_coverage.m4-version-2019.01.patch
-@@ -0,0 +1,84 @@
-+From ec08ab41495ac40641475707c46e844503ada5b3 Mon Sep 17 00:00:00 2001
-+From: Jonas Witschel <diabonas@gmx.de>
-+Date: Mon, 7 Jan 2019 22:15:06 +0100
-+Subject: [PATCH] build: update for ax_code_coverage.m4 version 2019.01.06
-+
-+@CODE_COVERAGE_RULES@ doesn't exist any more and needs to be replaced.
-+Also includes a compatibility switch for older versions of the file.
-+
-+Signed-off-by: Jonas Witschel <diabonas@gmx.de>
-+---
-+ .gitignore   |  1 +
-+ .travis.yml  | 10 +++++-----
-+ Makefile.am  |  6 ++++++
-+ configure.ac |  3 +++
-+ 4 files changed, 15 insertions(+), 5 deletions(-)
-+
-+diff --git a/.gitignore b/.gitignore
-+index 7c6a7b62e6c1..aa1a7efdff71 100644
-+--- a/.gitignore
-++++ b/.gitignore
-+@@ -26,6 +26,7 @@
-+ AUTHORS
-+ tags
-+ aclocal.m4
-++aminclude_static.am
-+ autom4te.cache/
-+ [Bb]uild/
-+ [Dd]ebug/
-+diff --git a/.travis.yml b/.travis.yml
-+index 55f88e22999b..a668e2953dc2 100644
-+--- a/.travis.yml
-++++ b/.travis.yml
-+@@ -44,11 +44,11 @@ addons:
-+ 
-+ install:
-+ # Autoconf archive
-+-  - wget https://download.01.org/tpm2/autoconf-archive-2017.09.28.tar.xz
-+-  - sha256sum autoconf-archive-2017.09.28.tar.xz | grep -q 5c9fb5845b38b28982a3ef12836f76b35f46799ef4a2e46b48e2bd3c6182fa01 || travis_terminate 1
-+-  - tar xJf autoconf-archive-2017.09.28.tar.xz
-+-  - cp autoconf-archive-2017.09.28/m4/ax_code_coverage.m4 m4/
-+-  - cp autoconf-archive-2017.09.28/m4/ax_prog_doxygen.m4 m4/
-++  - wget http://ftpmirror.gnu.org/autoconf-archive/autoconf-archive-2019.01.06.tar.xz
-++  - sha256sum autoconf-archive-2019.01.06.tar.xz | grep -q 17195c833098da79de5778ee90948f4c5d90ed1a0cf8391b4ab348e2ec511e3f || travis_terminate 1
-++  - tar xJf autoconf-archive-2019.01.06.tar.xz
-++  - cp autoconf-archive-2019.01.06/m4/ax_code_coverage.m4 m4/
-++  - cp autoconf-archive-2019.01.06/m4/ax_prog_doxygen.m4 m4/
-+ # IBM-TPM
-+   - wget https://download.01.org/tpm2/ibmtpm974.tar.gz
-+ # OpenSSL 1.0.2
-+diff --git a/Makefile.am b/Makefile.am
-+index 1b792d89a392..8e62e9c77c7d 100644
-+--- a/Makefile.am
-++++ b/Makefile.am
-+@@ -19,7 +19,13 @@ noinst_PROGRAMS =
-+ 
-+ ### Add ax_* rules ###
-+ # ax_code_coverage
-++if AUTOCONF_CODE_COVERAGE_2019_01_06
-++include $(top_srcdir)/aminclude_static.am
-++clean-local: code-coverage-clean
-++dist-clean-local: code-coverage-dist-clean
-++else
-+ @CODE_COVERAGE_RULES@
-++endif
-+ 
-+ # ax_doxygen
-+ @DX_RULES@
-+diff --git a/configure.ac b/configure.ac
-+index 6c7b0fd96399..22b79c50c015 100644
-+--- a/configure.ac
-++++ b/configure.ac
-+@@ -312,6 +312,9 @@ AS_IF([test "x$enable_doxygen_doc" != xno],
-+       [ERROR_IF_NO_PROG([doxygen])])
-+ 
-+ AX_CODE_COVERAGE
-++m4_ifdef([_AX_CODE_COVERAGE_RULES],
-++         [AM_CONDITIONAL(AUTOCONF_CODE_COVERAGE_2019_01_06, [true])],
-++         [AM_CONDITIONAL(AUTOCONF_CODE_COVERAGE_2019_01_06, [false])])
-+ 
-+ AC_OUTPUT
-+ 
-+-- 
-+2.20.1
-+
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.2.3.bb b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.2.3.bb
-index cf93159ce40f..ffbd3f4e4eff 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.2.3.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.2.3.bb
-@@ -8,7 +8,8 @@ DEPENDS = "autoconf-archive-native libgcrypt openssl"
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/files/configure_oe_fixup.patch b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/files/configure_oe_fixup.patch
+deleted file mode 100644
+index 8a216cd45eff..000000000000
+--- a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/files/configure_oe_fixup.patch
++++ /dev/null
+@@ -1,27 +0,0 @@
+-Upstream-Status: OE specific
+-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+-
+-Index: git/configure.ac
+-===================================================================
+---- git.orig/configure.ac
+-+++ git/configure.ac
+-@@ -84,9 +84,6 @@ AC_ARG_WITH([efi-lds],
+-             AS_HELP_STRING([--with-efi-lds=LDS_PATH],[Path to gnu-efi lds file.]),
+-             [],
+-             [with_efi_lds="/usr/lib/elf_${ARCH}_efi.lds"])
+--AC_CHECK_FILE(["${with_efi_lds}"],
+--              [],
+--              [AC_MSG_ERROR([Missing file: ${with_efi_lds}.])])
+- EXTRA_LDFLAGS="-L /usr/lib -L /usr/lib64 -Wl,--script=${with_efi_lds}"
+- 
+- # path to object file from gnu-efi
+-@@ -94,9 +91,6 @@ AC_ARG_WITH([efi-crt0],
+-             AS_HELP_STRING([--with-efi-crt0=OBJ_PATH],[Path to gnu-efi crt0 object file.]),
+-             [],
+-             [with_efi_crt0="/usr/lib/crt0-efi-${ARCH}.o"])
+--AC_CHECK_FILE(["${with_efi_crt0}"],
+--              [],
+--              [AC_MSG_ERROR([Missing ${with_efi_crt0} file.])])
+- EXTRA_LDLIBS="${with_efi_crt0}"
+- 
+- # check for efi and gnuefi libraries
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
+index 983f72ebeb68..ed9b7e1ddc8e 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
+@@ -5,7 +5,6 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=500b2e742befc3da00684d8a1d5fd9da"
+ DEPENDS = "libtss2-dev gnu-efi-native gnu-efi pkgconfig autoconf-archive-native"
  
- SRCREV = "36b1539c82bf675265d6f6a6cd808a189b6971f4"
+ SRC_URI = "git://github.com/tpm2-software/tpm2-tcti-uefi.git \
+-           file://configure_oe_fixup.patch \
+           "
+ SRCREV = "7baf1eebfeb56a896bdd5d677fb24377d619eb9d"
  
--SRC_URI = "git://github.com/tpm2-software/tpm2-tss.git;branch=2.2.x"
-+SRC_URI = "git://github.com/tpm2-software/tpm2-tss.git;branch=2.2.x \
-+    file://0001-build-update-for-ax_code_coverage.m4-version-2019.01.patch"
+@@ -13,6 +12,13 @@ S = "${WORKDIR}/git"
  
- inherit autotools-brokensep pkgconfig systemd
+ inherit autotools pkgconfig
  
++EFI_ARCH_x86 = "ia32"
++EFI_ARCH_x86-64 = "x86_64"
++
+ COMPATIBLE_HOST = "(i.86|x86_64).*-linux"
+-EXTRA_OECONF_append = " --with-efi-includedir=${STAGING_INCDIR}/efi --with-efi-lds=${STAGING_LIBDIR_NATIVE}/"
++EXTRA_OECONF_append = "\
++    --with-efi-includedir=${STAGING_INCDIR}/efi \
++    --with-efi-crt0=${STAGING_LIBDIR_NATIVE}/crt0-efi-${EFI_ARCH}.o \
++    --with-efi-lds=${STAGING_LIBDIR_NATIVE}/elf_${EFI_ARCH}_efi.lds \
++"
+ RDEPENDS_${PN} = "gnu-efi"
 -- 
 2.20.1
 
