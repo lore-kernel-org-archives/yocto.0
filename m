@@ -1,93 +1,69 @@
-Return-Path: <mvelasco@aertecsolutions.com>
+Return-Path: <dbaryshkov@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7DE89E00D89; Wed, 24 Jul 2019 04:37:25 -0700 (PDT)
+	id BD19FE00D9F; Wed, 24 Jul 2019 05:38:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	https://www.dnswl.org/, no *      trust
+	*      [209.85.208.194 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [40.107.0.89 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (dbaryshkov[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from EUR02-AM5-obe.outbound.protection.outlook.com
-	(mail-eopbgr00089.outbound.protection.outlook.com [40.107.0.89])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC190E00D53
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 04:37:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
-	b=XOiIYYnuS8tBDDk7VIEczzEtYnEJJtEAvTQ14H03PULWMpVS4+Icf25uHrYb3sUfhoOT4Y0/9zOeL3rY41pIhFFjUVk6rQ5zoWcONB81cT5Rf6000kYDEtUh3HcnaqNWnPvb8pj+72U+xk+F2ABf7Ggg1JF9O0bF2X2qfxtvcgYnt0wK5i6K2AuSwb+PdTiB4CTHlsyGsvt2zyeUJc4D7S59r/2pFdZ4Kuxf56DN1FCZnH8nSTEvNhgBbZFsoUVZqj0YbY+fJxGB8pzrgxIrJvV7sCyiZjKZKw7Qg8C2n4ME4X6iyF465mtge3G8FQz5R3JWLHYrQ8/ymZXwu5jTgA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
-	s=arcselector9901;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=02zGlPsuBLibFa4MaSKCS1PbcBScYJZvg/g9Nf5+G8Y=;
-	b=GVvUf1treytrfithCr1LFUtxtYHBGFuWwyl3CQ2wiFDDVV5ln8IndtvOHXpNt6EEG/h8fE6gs367fLdLFzA80znm1muVrE2/rR4XagRO+uF0z+F4HUW0LXgU+0OvA4ATzSVUzLbRmtQqo3mflPo2wYMBXjXzwwdT5gC5HtZnV41iD1Rmm7PEcfPlKCR/zkoRFcPnb8Mm99VkHf8Dr7BQh/10qtzJf7sJKa27NfmK2FeHLkTwmpCMfORf714udDszrjZMnjcB3DXGo4TiV6eQhIVtSudjXQgoSvPgeDA0t7PZuHQIpD2OVAfXiZmE4KHK41SGfIF9uFmvMXsgSDqZ1A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
-	smtp.mailfrom=aertecsolutions.com;dmarc=pass action=none
-	header.from=aertecsolutions.com;dkim=pass
-	header.d=aertecsolutions.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=aertec.onmicrosoft.com; s=selector2-aertec-onmicrosoft-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=02zGlPsuBLibFa4MaSKCS1PbcBScYJZvg/g9Nf5+G8Y=;
-	b=b+R2iXGeIXFD9rmYdGSd+EgcxAPz9QnvMnuYSfW1lOghDcTCQEhptuHGsFzK9kmVegsCTH8PZ4+4MeFH3UVa497GzIh6cIiFJTOKoK1/F8q02dTmRZ+FD3GSNh/R+ILQ7HgjcVRsDItcxydvQodiC8MuoeaTTy6UzQm3y0uFVT0=
-Received: from AM0PR09MB4066.eurprd09.prod.outlook.com (10.186.131.71) by
-	AM0PR09MB3809.eurprd09.prod.outlook.com (52.132.215.211) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.2094.17; Wed, 24 Jul 2019 11:37:19 +0000
-Received: from AM0PR09MB4066.eurprd09.prod.outlook.com
-	([fe80::b4ed:ee1a:3ea1:c7ca]) by
-	AM0PR09MB4066.eurprd09.prod.outlook.com
-	([fe80::b4ed:ee1a:3ea1:c7ca%3]) with mapi id 15.20.2115.005;
-	Wed, 24 Jul 2019 11:37:19 +0000
-From: =?Windows-1252?Q?Mar=EDa_del_Mar_Velasco_AERTEC_Solutions_=96_Aerospace_?=
-	=?Windows-1252?Q?=26_Aviation?= <mvelasco@aertecsolutions.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: systemd gives me a failed boot
-Thread-Index: AdVCDMxQWsmVjLauSlKKCAHC+aC7/w==
-Date: Wed, 24 Jul 2019 11:37:19 +0000
-Message-ID: <AM0PR09MB40668EA6FC51F3EAB2E87F23D7C60@AM0PR09MB4066.eurprd09.prod.outlook.com>
-Accept-Language: es-ES, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=mvelasco@aertecsolutions.com; 
-x-originating-ip: [77.230.158.4]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1f49cf4b-1e67-4318-7747-08d7102b493b
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
-	SRVR:AM0PR09MB3809; 
-x-ms-traffictypediagnostic: AM0PR09MB3809:
-x-microsoft-antispam-prvs: <AM0PR09MB38093FB521BD3DD0FF905157D7C60@AM0PR09MB3809.eurprd09.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 0108A997B2
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(4636009)(39850400004)(376002)(136003)(366004)(396003)(346002)(189003)(199004)(102836004)(413944005)(45776006)(64756008)(66446008)(476003)(5660300002)(66556008)(66476007)(26005)(256004)(6306002)(81166006)(76116006)(1730700003)(52536014)(53936002)(81156014)(71200400001)(66946007)(74316002)(4744005)(6506007)(71190400001)(8936002)(7736002)(186003)(86362001)(6116002)(3846002)(54896002)(99286004)(6436002)(478600001)(8676002)(7696005)(6916009)(486006)(5640700003)(66066001)(2906002)(19627235002)(9686003)(25786009)(55016002)(14454004)(33656002)(68736007)(2351001)(2501003)(790700001)(316002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:AM0PR09MB3809;
-	H:AM0PR09MB4066.eurprd09.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: aertecsolutions.com does not
-	designate permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: X4Ke79wcI0ZEZWsh2ndazXYvCnRkQ/zinG7XrVwggMU+asDiGxymf54aYwiOvykvXRw+lxvJ5g/6k5aDo5E4ptYT2hBOXqVuSSnwB7JlV1CS2LvV5zxwPWE+f4EA5ZlQ0owFvvvVbuWCkN2kw5DNUQ9h0S58l9yjiV+cJNWSj17B5Y/YJXp3DAtE+uU9pmwt4M06v2WnEXa+SdXRcjh7QgixPmr4IZn7USd8K3w8/bffCBdyssqUbBirKSU6+O14Dx1f3zkxoZ934PhP1jdIBLH4nj3GTyDScod/RfDx3F0YC2jf8uqqNsMfep4VHAbqbZEkZhWLIYaLBd6tH9iiH4AG3xET3Wpo/0FU8BPEIDc7mKINj0cfjPohnwZiJJrbTpJPnycA7BxjIMTL4Te5ttZJ6bVsIi2KJJFY/0tqook=
+Received: from mail-lj1-f194.google.com (mail-lj1-f194.google.com
+	[209.85.208.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F13B1E00D53
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 05:38:35 -0700 (PDT)
+Received: by mail-lj1-f194.google.com with SMTP id k18so44332652ljc.11
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 05:38:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=93vLc05lWPBbUdmyxSFraVw3fyQ1F1s4bw0yuyx86/g=;
+	b=c6BdHyqRxM4w0tAgQGjEyexysRkd+EYQaeVeZ6xZhmrDEC8qVA7Y368ZLlE3OmYLEn
+	2FkGYl/A6o6CjyOGVtyt51mhB1OeQp/sssO9O9SZSpuYNPDQtv+OVwla2JugafxCCYU1
+	g5xEtEmLkrJakUKiewAybyolZvDxsm2WWRkYBHJrYJbViWqdJjUAgVTErUg4ESttdszD
+	xPqpk4FSQVsm/VjHwpk94K5sCrcwRJcqEOlfRksnu2ATOcyL67ORw4ZvXQHLSBcOydjv
+	VF+cHWcOGTXHOi8KDT0F26iSv5NkF5jedPT9F6pAMlZFM1d1LEQpbX+CKuWKhRgF4pkD
+	nL9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=93vLc05lWPBbUdmyxSFraVw3fyQ1F1s4bw0yuyx86/g=;
+	b=A1hSsHCeesHqk2v7bMyy5maV6Eynj6F+9MRNtP0iE+tMKcfNos8rlnWothWGFtOkHo
+	xF2QnVnWWpqUp45FdVlEeG92bUC5S77cDyxQ0SjBgwIEgMWjoQYJsR4R2FT8Ufwx6C/K
+	0xLqDSntTDtWWfLIA61tro5U1u4/0EIVQ6pZXeo+7YM/R56X1Vsiqz4a4h0i9oNbsRK/
+	4U9T6/pWL4EvEKIuBBN9dChHX9rgdxtOtzpb8cHflw1AK5oJxXi44/lqdObssq0ssaDp
+	J0wEB1ieTqRO5/PFhkHvvDH28WWzHXnVlevoxuR2HQId+YQAtFEYBVhjfOmi5SNYZ2M5
+	TS7A==
+X-Gm-Message-State: APjAAAVyrDpJ/zqFnazyqXNQirGxX48WboLyMlvAljwpApVWsJSeEq2r
+	sJfF6A1OS7zOusWUTWQX3owNTE+xaA8=
+X-Google-Smtp-Source: APXvYqwskN6rH6jPhZazqz5wtAqFgQML0q/jyIFz3dsmANXAKgiD4QqHBnZoYBVTWUbOcBTSFd/2FQ==
+X-Received: by 2002:a2e:9a58:: with SMTP id k24mr42847251ljj.165.1563971914590;
+	Wed, 24 Jul 2019 05:38:34 -0700 (PDT)
+Received: from localhost.localdomain ([94.25.229.59])
+	by smtp.gmail.com with ESMTPSA id
+	p15sm8694423lji.80.2019.07.24.05.38.33
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Wed, 24 Jul 2019 05:38:33 -0700 (PDT)
+From: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+To: yocto@yoctoproject.org
+Date: Wed, 24 Jul 2019 15:38:27 +0300
+Message-Id: <20190724123832.17417-1-dbaryshkov@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-X-OriginatorOrg: aertecsolutions.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1f49cf4b-1e67-4318-7747-08d7102b493b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jul 2019 11:37:19.3005 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: ab98a94e-6e04-48d7-be01-b54a8cfe74b2
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mvelasco@aertecsolutions.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR09MB3809
-Subject: systemd gives me a failed boot
+Cc: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
+Subject: [meta-security][PATCH 1/6] packagegroup-security-tpm2: stop including tpm2-tcti-uefi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -99,147 +75,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2019 11:37:25 -0000
-Content-Language: es-ES
-Content-Type: multipart/alternative;
-	boundary="_000_AM0PR09MB40668EA6FC51F3EAB2E87F23D7C60AM0PR09MB4066eurp_"
+X-List-Received-Date: Wed, 24 Jul 2019 12:38:36 -0000
+Content-Transfer-Encoding: 8bit
 
---_000_AM0PR09MB40668EA6FC51F3EAB2E87F23D7C60AM0PR09MB4066eurp_
-Content-Type: text/plain; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
+From: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
 
-Dear all,
+tpm2-tcti-uefi is a EFI module, so it should not be included in the
+rootfs.
 
-I use rocko branch of poky and I am able to create the core-image-minimal-d=
-ev and boot my target system without problems.
-Now, I am interested in using systemd in the target. I follow the Yocto pro=
-ject instructions, by adding the following lines in local.conf:
+Signed-off-by: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
+---
+ .../recipes-core/packagegroup/packagegroup-security-tpm2.bb    | 3 ---
+ 1 file changed, 3 deletions(-)
 
-DISTRO_FEATURES_append =3D " systemd"
-VIRTUAL-RUNTIME_init_manager =3D "systemd"
-VIRTUAL-RUNTIME_initscripts =3D ""
-DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "sysvinit"
-
-
-However, with these changes, booting process fails and system enters in eme=
-rgency mode. I have found that some people solve this problem by ensuring t=
-hat kernel has CONFIG_FHANDLE=3Dy flag. I have checked that flag is set to =
-yes and I have not idea how to get my target working with system. Could any=
-body help me?
-
+diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
+index 9296d9967e32..8f5c537b9505 100644
+--- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
++++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
+@@ -21,6 +21,3 @@ RDEPENDS_packagegroup-security-tpm2 = " \
+     ibmswtpm2 \
+     cryptsetup-tpm-incubator \
+     "
+-
+-RDEPENDS_packagegroup-security-tpm2_append_x86 = " tpm2-tcti-uefi"
+-RDEPENDS_packagegroup-security-tpm2_append_x86-64 = " tpm2-tcti-uefi"
+-- 
+2.20.1
 
 
-Thanks you in advance.
-
-
-
---_000_AM0PR09MB40668EA6FC51F3EAB2E87F23D7C60AM0PR09MB4066eurp_
-Content-Type: text/html; charset="Windows-1252"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
-252">
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-pre
-	{mso-style-priority:99;
-	mso-style-link:"HTML con formato previo Car";
-	margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:10.0pt;
-	font-family:"Courier New";}
-span.EstiloCorreo17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.HTMLconformatoprevioCar
-	{mso-style-name:"HTML con formato previo Car";
-	mso-style-priority:99;
-	mso-style-link:"HTML con formato previo";
-	font-family:"Courier New";
-	mso-fareast-language:EN-GB;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 3.0cm 70.85pt 3.0cm;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Dear all,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I use rocko branch of poky and I am able to create t=
-he core-image-minimal-dev and boot my target system without problems.<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal">Now, I am interested in using systemd in the target.=
- I follow the Yocto project instructions, by adding the following lines in =
-local.conf:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:black;mso-fareast-language:EN-GB">DISTRO_FEATURES_app=
-end =3D &quot; systemd&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:black;mso-fareast-language:EN-GB">VIRTUAL-RUNTIME_ini=
-t_manager =3D &quot;systemd&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:black;mso-fareast-language:EN-GB">VIRTUAL-RUNTIME_ini=
-tscripts =3D &quot;&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Co=
-urier New&quot;;color:black;mso-fareast-language:EN-GB">DISTRO_FEATURES_BAC=
-KFILL_CONSIDERED =3D &quot;sysvinit&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<pre><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-s=
-erif;mso-fareast-language:EN-US">However, with these changes, booting proce=
-ss fails and system enters in emergency mode. I have found that some people=
- solve this problem by ensuring that kernel has CONFIG_FHANDLE=3Dy flag. I =
-have checked that flag is set to yes and I have not idea how to get my targ=
-et working with system. Could anybody help me?<o:p></o:p></span></pre>
-<pre><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-s=
-erif;mso-fareast-language:EN-US"><o:p>&nbsp;</o:p></span></pre>
-<pre><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-s=
-erif;mso-fareast-language:EN-US">Thanks you in advance.<o:p></o:p></span></=
-pre>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_AM0PR09MB40668EA6FC51F3EAB2E87F23D7C60AM0PR09MB4066eurp_--
