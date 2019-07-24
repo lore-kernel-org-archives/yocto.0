@@ -1,38 +1,59 @@
-Return-Path: <Yi.Zhao@windriver.com>
+Return-Path: <jku@goto.fi>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC6F5E00D53; Wed, 24 Jul 2019 01:28:18 -0700 (PDT)
+	id DCEE2E00D53; Wed, 24 Jul 2019 02:10:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	https://www.dnswl.org/, no *      trust
+	*      [209.85.167.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1BA9E00C25
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 01:28:16 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x6O8SF0t018661
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 24 Jul 2019 01:28:15 -0700 (PDT)
-Received: from [128.224.162.136] (128.224.162.136) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0;
-	Wed, 24 Jul 2019 01:28:15 -0700
-To: Russell Peterson <peterson.russell@gmail.com>, <yocto@yoctoproject.org>
-References: <CAJxG=fmKGb1fSVi=tRF2shqYbOkuYBiDzXOhSQRPXdHxs63gbg@mail.gmail.com>
-From: Yi Zhao <yi.zhao@windriver.com>
-Message-ID: <fba9017e-ffd3-f44c-c75a-8be6e46d10b9@windriver.com>
-Date: Wed, 24 Jul 2019 16:28:12 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com
+	[209.85.167.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9821E00AB4
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 02:10:00 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id c19so31415860lfm.10
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 02:10:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=goto.fi; s=google;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=P1YL9dAZjY/XWKj7M3rigyJCkXk8QxoFEs/+OuoGfgU=;
+	b=lODUIRxQs2LkYpf8d1++LZN5ZsqSy2XkxUwIN1DSX5qa5/+rnbmF3DQuKaz2bDaNO/
+	o1XJNTU0WPy2fxvZ8YzF0m55CRSpXbxdgR+srTP1SiV87MuwRHbfjzeONxuAa7F6COvl
+	FCO+m2/PND6s+4RISaP7cNoRd08eZdjgQFTOo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=P1YL9dAZjY/XWKj7M3rigyJCkXk8QxoFEs/+OuoGfgU=;
+	b=CxEkUXLOCEYMkdbxrflymftuzTETZRu4MC9mQyZ6QNnfIgueYkwtlUY4Xs66iZiV2j
+	FQGuEc25+UVAg6+kL2NjswNABam93wmN1guJfGzpCf/RHh//Bs5LjaYe3e18FQVJdLtV
+	wMezraN0F6bbQ6qT3X+KsBlmy/W6WmXMIYG2Tvtbw7zvUodrk8m3kFdFDi9G+lOJkZGh
+	YMIAIhVpevs0fLv60U0NjO5Zi46xCUOquFIcwQp7d+CXAdLyBUqYKHtIYZw3JdAqsgpw
+	BmcEDkc2USU4QqlcPu6EguFcXpPWgPcEyB90rF8Jp/NftGKAOLRDa3gcsuQeOp6PPgHr
+	b1gQ==
+X-Gm-Message-State: APjAAAXZQAXQ8scu0h6ahO/fACkvgCz4Zctg2Zckw9x9HZUxgO7hO5js
+	NYI360Qvq7l4hwvZahPCnGNHF6adAXsxOhF2d4c=
+X-Google-Smtp-Source: APXvYqy5RQkHqvSe88lP3bBk2rPLc921g804HH7Nezf0JBaan5zmnwsi/jM1ifnzazcNAGvHd5VHQgW4H8KCW4ztWbw=
+X-Received: by 2002:ac2:5c42:: with SMTP id s2mr27072166lfp.61.1563959399434; 
+	Wed, 24 Jul 2019 02:09:59 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAJxG=fmKGb1fSVi=tRF2shqYbOkuYBiDzXOhSQRPXdHxs63gbg@mail.gmail.com>
-X-Originating-IP: [128.224.162.136]
-Subject: Re: PREMIRROR
+References: <CAA=hcWRAA9pGSy2DK1T1h7cH=n1yCN_vwwdChivaBcbH=nm+rA@mail.gmail.com>
+In-Reply-To: <CAA=hcWRAA9pGSy2DK1T1h7cH=n1yCN_vwwdChivaBcbH=nm+rA@mail.gmail.com>
+From: Jussi Kukkonen <jku@goto.fi>
+Date: Wed, 24 Jul 2019 12:09:43 +0300
+Message-ID: <CAD5=o+p32DFi0q7s872tA1+u+U_WzjyexwPDvVYq6bfKbFTp+Q@mail.gmail.com>
+To: JH <jupiter.hce@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: install -m 0644 ${S}/lib/systemd/system/${PN}.service ${D}/${systemd_system_unitdir} failed to add service file to ${systemd_system_unitdir}
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,152 +65,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2019 08:28:18 -0000
-Content-Type: multipart/alternative;
-	boundary="------------7CB375AA48A49838FDCBB003"
-Content-Language: en-US
+X-List-Received-Date: Wed, 24 Jul 2019 09:10:01 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---------------7CB375AA48A49838FDCBB003
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-
-
-On 7/24/19 4:49 AM, Russell Peterson wrote:
-> Hello,
+On Tue, 23 Jul 2019 at 14:48, JH <jupiter.hce@gmail.com> wrote:
 >
-> I am looking to have bitbake pick up files for a particular recipe 
-> from a local git repository using the PREMIRROR functionality.
+> Hi,
 >
-> Basically, the recipe (bb file) points to github but in my local build 
-> I add PREMIRROR_prepend = "git://.*/.* 
-> git:///local/path/BASENAME;protocol=file\n"
+> I set up the configuration for service files at following:
 >
-> I will probably make the git regular expression more exact for my 
-> specific github repo but this works for now.
+> SYSTEMD_SERVICE_${PN} = "${PN}.service bootstrap.service"
 >
-> This all works (as I deleted the github download from the local 
-> download directory) because I can see in the do_fetch log and the 
-> correct (local) repo was found and placed in the DL_DIR.
+> do_install() {
+>     ..............
+>     install -d ${D}/${systemd_system_unitdir}
+>     install -m 0644 ${S}/lib/systemd/system/*.service
+> ${D}/${systemd_system_unitdir}
+> }
 >
-> Problem is, do_unpack fails because it appears to be looking for the 
-> original (github) SRC_URI.  Then it complains about "no up to date 
-> source found: clone or directory not available or not up to date 
-> (shallow clone not enabled)"
+> Despite both service files are in build directory, the final image
+> installation does not include those service files, appreciate anyone
+> help.
 
+Your script installs from ${S} but your explanation talks about the
+build directory. Did you intend to install from ${B}?
 
-Maybe you can use BB_GENERATE_MIRROR_TARBALLS to generate git repo 
-tarball and put it to your download mirror.
+If that's not the issue, then you want dig deeper: look in the build
+logs and the package directories inside workdir: does the file
+actually get installed and packaged? Is the correct package really
+added to image?
 
-See: 
-https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-bb-BB_GENERATE_MIRROR_TARBALLS
+HTH,
+  Jussi
 
-         and
-
-https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-DL_DIR
-
-
-Regards,
-
-Yi
-
-
->
-> Any help on what I am missing would be appreciated.
->
-> Regards,
->
-> Russell
->
->
->
-
---------------7CB375AA48A49838FDCBB003
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 7/24/19 4:49 AM, Russell Peterson
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAJxG=fmKGb1fSVi=tRF2shqYbOkuYBiDzXOhSQRPXdHxs63gbg@mail.gmail.com">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <div dir="ltr">
-        <div>Hello,<br>
-        </div>
-        <div><br>
-        </div>
-        <div>I am looking to have bitbake pick up files for a particular
-          recipe from a local git repository using the PREMIRROR
-          functionality.</div>
-        <div><br>
-        </div>
-        <div>Basically, the recipe (bb file) points to github but in my
-          local build I add PREMIRROR_prepend = "git://.*/.* 
-          git:///local/path/BASENAME;protocol=file\n"</div>
-        <div><br>
-        </div>
-        <div>I will probably make the git regular expression more exact
-          for my specific github repo but this works for now.</div>
-        <div><br>
-        </div>
-        <div>This all works (as I deleted the github download from the
-          local download directory) because I can see in the do_fetch
-          log and the correct (local) repo was found and placed in the
-          DL_DIR.</div>
-        <div><br>
-        </div>
-        <div>Problem is, do_unpack fails because it appears to be
-          looking for the original (github) SRC_URI.  Then it complains
-          about "no up to date source found: clone or directory not
-          available or not up to date (shallow clone not enabled)"</div>
-      </div>
-    </blockquote>
-    <p><br>
-    </p>
-    <p>Maybe you can use BB_GENERATE_MIRROR_TARBALLS to generate git
-      repo tarball and put it to your download mirror.<br>
-    </p>
-    <p>See:
-<a class="moz-txt-link-freetext" href="https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-bb-BB_GENERATE_MIRROR_TARBALLS">https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-bb-BB_GENERATE_MIRROR_TARBALLS</a></p>
-    <p>        and<br>
-    </p>
-    <p>       
-<a class="moz-txt-link-freetext" href="https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-DL_DIR">https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#var-DL_DIR</a><br>
-    </p>
-    <p><br>
-    </p>
-    <p>Regards,</p>
-    <p>Yi</p>
-    <p><br>
-    </p>
-    <blockquote type="cite"
-cite="mid:CAJxG=fmKGb1fSVi=tRF2shqYbOkuYBiDzXOhSQRPXdHxs63gbg@mail.gmail.com">
-      <div dir="ltr">
-        <div><br>
-        </div>
-        <div>Any help on what I am missing would be appreciated.</div>
-        <div><br>
-        </div>
-        <div>Regards,</div>
-        <div><br>
-        </div>
-        <div>Russell</div>
-        <div><br>
-        </div>
-        <div><br>
-        </div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-    </blockquote>
-  </body>
-</html>
-
---------------7CB375AA48A49838FDCBB003--
