@@ -1,45 +1,69 @@
-Return-Path: <andy.pont@sdcsystems.com>
+Return-Path: <peterson.russell@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C134FE00D5F; Wed, 24 Jul 2019 10:53:43 -0700 (PDT)
+	id 559DDE00D90; Wed, 24 Jul 2019 11:29:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	MIME_QP_LONG_LINE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (peterson.russell[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [216.40.44.154 listed in list.dnswl.org]
+	*      [209.85.222.177 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
-Received: from smtprelay.hostedemail.com (smtprelay0154.hostedemail.com
-	[216.40.44.154])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BC5FE00D5F
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 10:53:42 -0700 (PDT)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
-	[216.40.38.60])
-	by smtprelay06.hostedemail.com (Postfix) with ESMTP id 90932182244EC;
-	Wed, 24 Jul 2019 17:53:41 +0000 (UTC)
-X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
-X-HE-Tag: brass81_776d40aece026
-X-Filterd-Recvd-Size: 5485
-Received: from [192.168.10.100] (unknown [5.133.40.160])
-	(Authenticated sender: andy.pont@sdcsystems.com)
-	by omf14.hostedemail.com (Postfix) with ESMTPA;
-	Wed, 24 Jul 2019 17:53:40 +0000 (UTC)
-From: "Andy Pont" <andy.pont@sdcsystems.com>
-To: meta-ti@yoctoproject.org
-Date: Wed, 24 Jul 2019 17:53:36 +0000
-Message-Id: <em8e44e63f-388a-4ff6-ace9-d28ccd87f383@andys-imac.local>
-User-Agent: eM_Client/7.2.35700.0
-Mime-Version: 1.0
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Subject: Building for AM335x with meta-ti and meta-qt5
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com
+	[209.85.222.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57531E00D5D
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 11:29:07 -0700 (PDT)
+Received: by mail-qk1-f177.google.com with SMTP id d15so34469995qkl.4
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 11:29:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=e0mmMv4OEC8s4ZCVfKyUCYTifqfvI93s6r7DPB0IojY=;
+	b=dxJ6/JXJ3fWyHQ84Ih5RGAo8FoYnvbGDpMtwKe56UOFd1JmVwHPCApw+ArP6l8qOAS
+	IQf4hzWLRKQ5sha3xFt9VKA6998eFbGTTPSDH5ae0mv5XCtUo+iQWh8pvxichgdh0cQ/
+	YVbG65VDOq47dmrHEpitFTM752WV2yBsQ/U75c1vLpUXlbst8Zvk/lmCnjbUmcOlWpJU
+	tqcVyMXe402TptG2JVNqy5tPal1zM53up5remHZx23+QaqWKTqfgQ1poR3r53EQPBzo2
+	VWJzsz6z3mM1pbcZ8/XlesKvym8EVLZfZQkgL3TCplbr/rcCEK9MWgxlhx1WEJTXLH7O
+	O9Xw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=e0mmMv4OEC8s4ZCVfKyUCYTifqfvI93s6r7DPB0IojY=;
+	b=Gjfw4mQ4S5hAQGjKtrfXXPjSSNv+A4pKcg+oB+X+2V2sUvE7TiyH81kTpxBah31trT
+	FhrFZEE/N65Wxl/Umce7sckr8AXj5ouPrEh+wg/+mOf1WpALBm/McFBvLyfTMAARCB3q
+	vaD9ME6DaTCTlwl/y/xw6J7aUpQ8TzCmHMkcO1Bc3BpITiohLeAExg7YbwgAzCrQsMCH
+	w8tHD9WQVZ7yv4EXaNXKg/ekGPbxHddYHXad3nrM48gFdkwlQH52igCko5BPnTXtDIdi
+	ULwMirAUiVuah47fyGfOL0HyqE+k3Iy8TpKkkGWtcdZW3l+lANR5SM49vLN/88x2ypHf
+	+rlg==
+X-Gm-Message-State: APjAAAUZHCGUwiDoQnShaE+H+fiqogTSsBsv/QoFu2mNIqlUOrflu8Wk
+	qnHyejwFtEfXDqkKno3+b7f9Fx5tG9b2KMSqEFu9Ow==
+X-Google-Smtp-Source: APXvYqz6KPS0hWwQRtR7FCrr+xhjDQoYJQ5e4NVKeMHSiM8Jq/r+lLY2+/whREXG4CADKXV0Wrtu9S4daFJVOcxwTZ0=
+X-Received: by 2002:a37:9d15:: with SMTP id g21mr51644523qke.343.1563992946580;
+	Wed, 24 Jul 2019 11:29:06 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAJxG=fmKGb1fSVi=tRF2shqYbOkuYBiDzXOhSQRPXdHxs63gbg@mail.gmail.com>
+	<352d8e79-5b16-b711-0051-e3dc27e90f75@ibeeto.com>
+In-Reply-To: <352d8e79-5b16-b711-0051-e3dc27e90f75@ibeeto.com>
+From: Russell Peterson <peterson.russell@gmail.com>
+Date: Wed, 24 Jul 2019 14:28:55 -0400
+Message-ID: <CAJxG=fnT7e=Hi_-iyDzbut0Re_8s-Di=M4Tenfpr+rNAuNbSrg@mail.gmail.com>
+To: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: PREMIRROR
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Andy Pont <andy.pont@sdcsystems.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -48,76 +72,186 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2019 17:53:43 -0000
-Content-Type: multipart/alternative;
-	boundary="------=_MBE956B789-CE3A-40B0-81FC-3F8B36426D78"
+X-List-Received-Date: Wed, 24 Jul 2019 18:29:08 -0000
+Content-Type: multipart/alternative; boundary="0000000000000320ce058e717c74"
 
---------=_MBE956B789-CE3A-40B0-81FC-3F8B36426D78
-Content-Type: text/plain; format=flowed; charset=utf-8
+--0000000000000320ce058e717c74
+Content-Type: text/plain; charset="UTF-8"
+
+Hi, Rudolf.
+
+Thanks for the reply.  Yes, I am aware of the eSDK functionality, however,
+I have some unique requirements that I am trying to work around.
+Regardless... what I am doing should work, no?  I simply want to use a
+local git repo (the directory itself hence protocol=file) instead of what
+the recipe specifies.  Looks like the fetch is working but the do_unpack
+task is ignoring PREMIRRORS (or at least the localpath variable seems
+wrong).
+
+--Russ
+
+
+On Wed, Jul 24, 2019 at 12:19 PM Rudolf J Streif <rudolf.streif@ibeeto.com>
+wrote:
+
+> Russell,
+>
+> You don't need PREMIRROR for this functionality. It's not exactly intended
+> for that use.
+>
+> The simplest way to achieve what you are looking for is to use devtool. If
+> I understand you correctly you are downloading sources from a remote repo
+> on GitHub but want to have them locally to make modifications? If so use:
+>
+> devtool add myrecipe localsrc fetchuri
+>
+> from your build environment (you have to source oe-init-build-env first).
+> devtool then fetches the source from fetchuri into a directory localsrc as
+> a git repo and automatically creates the recipe for it.
+>
+> :rjs
+>
+>
+> On 7/23/19 1:49 PM, Russell Peterson wrote:
+>
+> Hello,
+>
+> I am looking to have bitbake pick up files for a particular recipe from a
+> local git repository using the PREMIRROR functionality.
+>
+> Basically, the recipe (bb file) points to github but in my local build I
+> add PREMIRROR_prepend = "git://.*/.*
+> git:///local/path/BASENAME;protocol=file\n"
+>
+> I will probably make the git regular expression more exact for my specific
+> github repo but this works for now.
+>
+> This all works (as I deleted the github download from the local download
+> directory) because I can see in the do_fetch log and the correct (local)
+> repo was found and placed in the DL_DIR.
+>
+> Problem is, do_unpack fails because it appears to be looking for the
+> original (github) SRC_URI.  Then it complains about "no up to date source
+> found: clone or directory not available or not up to date (shallow clone
+> not enabled)"
+>
+> Any help on what I am missing would be appreciated.
+>
+> Regards,
+>
+> Russell
+>
+>
+>
+> --
+> -----
+> Rudolf J Streif
+> CEO/CTO ibeeto
+> +1.855.442.3396 x700
+>
+>
+
+--0000000000000320ce058e717c74
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I am trying to build a Yocto (warrior) image for the AM335x using =0Ameta-t=
-i and meta-qt5 that will render directly to the GPU.  Initially =0Athis wil=
-l be for the Beaglebone Black but then ultimately will be for a =0Acustom h=
-ardware platform.=0A=0AIn broad outline, I think, the software stack needs=
- to look a bit like:=0A=0AQt Application=0AQtBase, QtWebEngine, etc.=0AQt-Op=
-enGL=0Ati-sgx-ddk=0AAM335x GPU=0A=0AI have included meta-ti and meta-qt5 in=
-to my belayers.conf and added =0Ati-sgx-ddk-km, ti-sgx-ddk-um, qtbase and q=
-twebengine to =0AIMAGE_INSTALL_append.  When I try to bitbake core-image-mi=
-nimal I start =0Ato get a failure to compile ti-sgx-ddk-km with a number of=
-, what appear =0Ato be, warnings of the form:=0A=0AKBUILD_EXTRA_SYMBOLS=3D=
-=0A| grep: =0A/home/me/Yocto/BeagleBoneBlack/tmp/work-shared/beaglebone/ker=
-nel-source/include/linux/amba: =0AIs a directory=0A| grep: =0A/home/me/Yoct=
-o/BeagleBoneBlack/tmp/work-shared/beaglebone/kernel-source/include/linux/av=
-f: =0AIs a directory=0A=0AIt then ultimately appears to give up with:=0A=0A=
-| ******* Multiarch build: no=0A| ******* Primary arch:    target_armel=0A| =
-******* Secondary arch:  none=0A| ../config/core.mk:513: $(KERNELDIR)/vmli=
-nux does not exist. Kbuild may =0Afail.=0A| eurasiacon/build/linux2/topleve=
-l.mk:230: =0Aeurasiacon/build/linux2/moduledefs/target_armel.mk: No such fi=
-le or =0Adirectory=0A=0AIs there a specific kernel I need to define in loca=
-l.conf that the GPU =0Adrivers build against?=0A=0AAlso, is there any speci=
-fic configuration I need to do in order to get =0AQt to use the SGX OpenGL=
- drivers?=0A=0AI have had a search on the web but not found anything for rec=
-ent Yocto =0Aversions, only very old stuff.=0A=0A-Andy.=0A=0A
+<div dir=3D"ltr">Hi, Rudolf.<div><br></div><div>Thanks for the reply.=C2=A0=
+ Yes, I am aware of the eSDK functionality, however, I have some unique req=
+uirements that I am trying to work around.=C2=A0 Regardless... what I am do=
+ing should work, no?=C2=A0 I simply want to use a local git repo (the direc=
+tory itself hence protocol=3Dfile) instead of what the recipe specifies.=C2=
+=A0 Looks like the fetch is working but the do_unpack task is ignoring PREM=
+IRRORS (or at least the localpath variable seems wrong).</div><div><br></di=
+v><div>--Russ</div><div><br></div></div><br><div class=3D"gmail_quote"><div=
+ dir=3D"ltr" class=3D"gmail_attr">On Wed, Jul 24, 2019 at 12:19 PM Rudolf J=
+ Streif &lt;<a href=3D"mailto:rudolf.streif@ibeeto.com">rudolf.streif@ibeet=
+o.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex">
+ =20
+   =20
+ =20
+  <div bgcolor=3D"#FFFFFF">
+    <p>Russell,</p>
+    <p>You don&#39;t need PREMIRROR for this functionality. It&#39;s not ex=
+actly
+      intended for that use.</p>
+    <p>The simplest way to achieve what you are looking for is to use
+      devtool. If I understand you correctly you are downloading sources
+      from a remote repo on GitHub but want to have them locally to make
+      modifications? If so use:</p>
+    <p>devtool add myrecipe localsrc fetchuri</p>
+    <p>from your build environment (you have to source oe-init-build-env
+      first). devtool then fetches the source from fetchuri into a
+      directory localsrc as a git repo and automatically creates the
+      recipe for it.</p>
+    <p>:rjs<br>
+    </p>
+    <p><br>
+    </p>
+    <div class=3D"gmail-m_-6306057233364702931moz-cite-prefix">On 7/23/19 1=
+:49 PM, Russell Peterson
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div dir=3D"ltr">
+        <div>Hello,<br>
+        </div>
+        <div><br>
+        </div>
+        <div>I am looking to have bitbake pick up files for a particular
+          recipe from a local git repository using the PREMIRROR
+          functionality.</div>
+        <div><br>
+        </div>
+        <div>Basically, the recipe (bb file) points to github but in my
+          local build I add PREMIRROR_prepend =3D &quot;git://.*/.*=C2=A0
+          git:///local/path/BASENAME;protocol=3Dfile\n&quot;</div>
+        <div><br>
+        </div>
+        <div>I will probably make the git regular expression more exact
+          for my specific github repo but this works for now.</div>
+        <div><br>
+        </div>
+        <div>This all works (as I deleted the github download from the
+          local download directory) because I can see in the do_fetch
+          log and the correct (local) repo was found and placed in the
+          DL_DIR.</div>
+        <div><br>
+        </div>
+        <div>Problem is, do_unpack fails because it appears to be
+          looking for the original (github) SRC_URI.=C2=A0 Then it complain=
+s
+          about &quot;no up to date source found: clone or directory not
+          available or not up to date (shallow clone not enabled)&quot;</di=
+v>
+        <div><br>
+        </div>
+        <div>Any help on what I am missing would be appreciated.</div>
+        <div><br>
+        </div>
+        <div>Regards,</div>
+        <div><br>
+        </div>
+        <div>Russell</div>
+        <div><br>
+        </div>
+        <div><br>
+        </div>
+      </div>
+      <br>
+      <fieldset class=3D"gmail-m_-6306057233364702931mimeAttachmentHeader">=
+</fieldset>
+    </blockquote>
+    <pre class=3D"gmail-m_-6306057233364702931moz-signature" cols=3D"72">--=
+=20
+-----
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3396 x700</pre>
+  </div>
 
---------=_MBE956B789-CE3A-40B0-81FC-3F8B36426D78
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+</blockquote></div>
 
-<html><head><style id=3D"css_styles">blockquote.cite { margin-left: 5px; ma=
-rgin-right: 0px; padding-left: 10px; padding-right:0px; border-left: 1px so=
-lid #cccccc }=0Ablockquote.cite2 {margin-left: 5px; margin-right: 0px; padd=
-ing-left: 10px; padding-right:0px; border-left: 1px solid #cccccc; margin-t=
-op: 3px; padding-top: 0px; }=0Aa img { border: 0px; }=0Ali[style=3D'text-al=
-ign: center;'], li[style=3D'text-align: right;'] {  list-style-position: in=
-side;}=0Abody { font-family: Verdana; font-size: 12px;   }</style></head><b=
-ody class=3D"plain"><div>I am trying to build a Yocto (warrior) image for t=
-he AM335x using meta-ti and meta-qt5 that will render directly to the GPU. =
-=C2=A0Initially this will be for the Beaglebone Black but then ultimately=
- will be for a custom hardware platform.</div><div><br /></div><div>In broad =
-outline, I think, the software stack needs to look a bit like:</div><div><=
-br /></div><div>Qt Application</div><div>QtBase, QtWebEngine, etc.</div><di=
-v>Qt-OpenGL</div><div>ti-sgx-ddk</div><div>AM335x GPU</div><div><br /></div=
-><div>I have included meta-ti and meta-qt5 into my belayers.conf and added=
- ti-sgx-ddk-km, ti-sgx-ddk-um, qtbase and qtwebengine to IMAGE_INSTALL_appen=
-d. =C2=A0When I try to bitbake core-image-minimal I start to get a failure=
- to compile ti-sgx-ddk-km with a number of, what appear to be, warnings of t=
-he form:</div><div><br /></div><div>KBUILD_EXTRA_SYMBOLS=3D</div><div>| gre=
-p: /home/me/Yocto/BeagleBoneBlack/tmp/work-shared/beaglebone/kernel-source/=
-include/linux/amba: Is a directory</div><div>| grep: /home/me/Yocto/BeagleB=
-oneBlack/tmp/work-shared/beaglebone/kernel-source/include/linux/avf: Is a d=
-irectory</div><div><br /></div><div>It then ultimately appears to give up w=
-ith:</div><div><br /></div><div>| ******* Multiarch build: no<br />| ******=
-* Primary arch:=C2=A0 =C2=A0 target_armel<br />| ******* Secondary arch:=C2=
-=A0 none<br />| ../config/core.mk:513: $(KERNELDIR)/vmlinux does not exist. =
-Kbuild may fail.<br />| eurasiacon/build/linux2/toplevel.mk:230: eurasiaco=
-n/build/linux2/moduledefs/target_armel.mk: No such file or directory</div><=
-div><br /></div><div>Is there a specific kernel I need to define in local.c=
-onf that the GPU drivers build against?</div><div><br /></div><div>Also, is =
-there any specific configuration I need to do in order to get Qt to use th=
-e SGX OpenGL drivers?</div><div><br /></div><div>I have had a search on the =
-web but not found anything for recent Yocto versions, only very old stuff.=
-</div><div><br /></div><div>-Andy.</div><div><br /></div><div><br /></div>=
-=0A</body></html>
-
---------=_MBE956B789-CE3A-40B0-81FC-3F8B36426D78--
+--0000000000000320ce058e717c74--
