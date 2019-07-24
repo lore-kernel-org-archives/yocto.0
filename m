@@ -1,34 +1,70 @@
-Return-Path: <Hongxu.Jia@windriver.com>
+Return-Path: <dbaryshkov@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5969FE00DBD; Wed, 24 Jul 2019 03:12:09 -0700 (PDT)
+	id 3362CE00D89; Wed, 24 Jul 2019 04:23:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47238E00D44
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 03:12:08 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x6OABVIX023110
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 24 Jul 2019 03:11:41 -0700
-Received: from pek-lpg-core1-vm2.wrs.com (128.224.156.107) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.468.0; Wed, 24 Jul 2019 03:11:20 -0700
-From: Hongxu Jia <hongxu.jia@windriver.com>
-To: <yocto@yoctoproject.org>, <anuj.mittal@intel.com>
-Date: Wed, 24 Jul 2019 18:11:17 +0800
-Message-ID: <1563963079-20347-1-git-send-email-hongxu.jia@windriver.com>
-X-Mailer: git-send-email 2.7.4
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (dbaryshkov[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.194 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-lj1-f194.google.com (mail-lj1-f194.google.com
+	[209.85.208.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18E37E00D36
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 04:23:29 -0700 (PDT)
+Received: by mail-lj1-f194.google.com with SMTP id x25so44188429ljh.2
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 04:23:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=KnDN7x1R/5iHTCstoRPY8JJhrhzZ4sMTvo+ZGEGRhMM=;
+	b=WkFrlL28jDRjLrFPIj3rrOFVAb1ikesQYxfQavO/suWvIjaabm/5ZLsWGrmU+yXa6V
+	W8hGquoadO79X9rBMWzxl97IooqpQ4kwgpnMn9m9vovIPokqgklK1kRErv0qYXOyHSW0
+	usffZRvKPh/xtUyChSooHwGkaXa/2lElWNnvOsiY71Idw+TDe5bJ5xCYp8gUWCywUnaw
+	SP+etWB8t3cNNPNp47iSi1zU+8HCe0gpusotjZ7gmN04tvtKjw5At7aI6ViXBi6XY2AC
+	fsJQi56dvixWZq1pXm4o6spimUm1ViayNxIzcDFBNbYzv/zC6l7yjEenYk1txCClWOOG
+	DFLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=KnDN7x1R/5iHTCstoRPY8JJhrhzZ4sMTvo+ZGEGRhMM=;
+	b=Myj5uGdTX11NI5lfLMFwIzDMhEbDl4yiMwPeh40Pbgb+Tji7MENpTpTb35ykXUdOcT
+	q5qG9rXuBOBFou6WEIwh3Ln3RaXiBoMnm9WUpRaLA4TrhUAxmRUDAPbanFEJnbAh1emi
+	f5/tQICF4yYXbcgKqS4xlW09qM6x1b/C7N5Lwltt8o+1n6Lm8SN8WcPxTclrrClKx/WA
+	ww1tcP4dfdqQs4+oG5FmlbMawb5ubr7OfJRAwlmocHT0iP+m0gI6nLZpWpBKW1Ysgncb
+	xM/AA1I1ibCGFqJsbMrMALEkobTCBuHfLFoRlAcM2Wr2MsT2/4lBo9TVFack7wGFai5q
+	GJnA==
+X-Gm-Message-State: APjAAAWkQdu+UWP8SkDD4Yo/uFv1RnrDsMvoKLz7/mkgCAOLU4qWtSiT
+	4xFVAr3/iC9cAgDb7FXAyJ+FcfqKTuI=
+X-Google-Smtp-Source: APXvYqxPQ/sqDe1ZyTXFJS2AEvQG+IWMBFq/eOEmuqBHWR3Z2J5J8y4K+BEeIWEiyDXR/jlXxIS62w==
+X-Received: by 2002:a2e:8155:: with SMTP id t21mr42263330ljg.80.1563967408609; 
+	Wed, 24 Jul 2019 04:23:28 -0700 (PDT)
+Received: from localhost.localdomain ([94.25.229.59])
+	by smtp.gmail.com with ESMTPSA id d7sm6982113lfa.86.2019.07.24.04.23.27
+	for <yocto@yoctoproject.org>
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Wed, 24 Jul 2019 04:23:27 -0700 (PDT)
+From: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+X-Google-Original-From: Dmitry Eremin-Solenikov
+	<dmitry_eremin-solenikov@mentor.com>
+To: yocto@yoctoproject.org
+Date: Wed, 24 Jul 2019 14:23:24 +0300
+Message-Id: <20190724112326.960-1-dmitry_eremin-solenikov@mentor.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [PATCH 1/3] intel-media-driver: check for "opengl" feature
+Subject: [meta-integrity][PATCH 1/3] layer.conf: add dependency on meta-security
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,33 +76,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2019 10:12:09 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 24 Jul 2019 11:23:31 -0000
+Content-Transfer-Encoding: 8bit
 
-Since comit [a78c420 libva: check for "opengl" feature] applied in oe-core,
-and intel-media-driver depends on libva, it should check for "opengl"
-feature too.
+ima-evm-utils recipe depends on keyutils recipe which is a part of
+meta-security layer.
 
-Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+Signed-off-by: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
 ---
- recipes-multimedia/libva/intel-media-driver_19.2.0.bb | 3 +++
- 1 file changed, 3 insertions(+)
+ meta-integrity/conf/layer.conf | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/recipes-multimedia/libva/intel-media-driver_19.2.0.bb b/recipes-multimedia/libva/intel-media-driver_19.2.0.bb
-index 8656992..8084567 100644
---- a/recipes-multimedia/libva/intel-media-driver_19.2.0.bb
-+++ b/recipes-multimedia/libva/intel-media-driver_19.2.0.bb
-@@ -14,6 +14,9 @@ LIC_FILES_CHKSUM = "file://LICENSE.md;md5=6aab5363823095ce682b155fef0231f0 \
- # Only for 64 bit until this is resolved: https://github.com/intel/media-driver/issues/356
- COMPATIBLE_HOST = '(x86_64).*-linux'
+diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
+index 2f696cf7c332..917aa86e11d7 100644
+--- a/meta-integrity/conf/layer.conf
++++ b/meta-integrity/conf/layer.conf
+@@ -22,3 +22,5 @@ IMA_EVM_BASE := '${LAYERDIR}'
+ OE_TERMINAL_EXPORTS += "IMA_EVM_BASE"
  
-+inherit distro_features_check
-+REQUIRED_DISTRO_FEATURES = "opengl"
-+
- DEPENDS += "libva gmmlib"
- 
- SRC_URI = "git://github.com/intel/media-driver.git;protocol=https;branch=intel-media-19.2 \
+ LAYERSERIES_COMPAT_integrity = "warrior"
++# ima-evm-utils depends on keyutils from meta-security
++LAYERDEPENDS_integrity = "core security"
 -- 
-2.7.4
+2.20.1
 
 
