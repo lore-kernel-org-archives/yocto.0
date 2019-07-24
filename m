@@ -1,6 +1,6 @@
 Return-Path: <dbaryshkov@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B6DAFE00DA7; Wed, 24 Jul 2019 06:03:42 -0700 (PDT)
+	id 6F7D4E00DE4; Wed, 24 Jul 2019 06:03:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -21,48 +21,50 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 Received: from mail-lj1-f196.google.com (mail-lj1-f196.google.com
 	[209.85.208.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6C89E00AB4
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 06:03:41 -0700 (PDT)
-Received: by mail-lj1-f196.google.com with SMTP id i21so44451273ljj.3
-	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 06:03:41 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FBC3E00DFA
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 06:03:45 -0700 (PDT)
+Received: by mail-lj1-f196.google.com with SMTP id x25so44482881ljh.2
+	for <yocto@yoctoproject.org>; Wed, 24 Jul 2019 06:03:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=93vLc05lWPBbUdmyxSFraVw3fyQ1F1s4bw0yuyx86/g=;
-	b=RC1X9uytdLXjJbtpWYcr1ucAMjmpl5ARyNeagxUc945SHPsxFoz6C46wn6///d8USn
-	JPh2qp1ubGxFXeViWuQaGKEb7IevO65M3IPO+gi9Cn9C9dcB+CiJsotorQG/haalhJNy
-	nUucU/F8FSf74Fn3QQVtfezDCqfGqGhM8tTaHn9MZ4AmlViEEqujaccFjAQMbeCAweAV
-	Pv21haPrTEwA6Zqk051E+V+l5B3Avzc0IWAtcXLUtBWeQQj7mYA6X9lQWzp9btVazASr
-	QnemEO1vlOaotE77H9jMSzkQgrvv0ujaz7kfH5V5u9+LC8TLPD6qawA7y5qqDZ43vzC2
-	EWzA==
+	h=from:to:cc:subject:date:message-id:in-reply-to:references
+	:mime-version:content-transfer-encoding;
+	bh=vDse2z4YvQ64lNz5PUH3n5I9sDN1rm7wLaC3vwxh5o0=;
+	b=dInKFlI680Vp9+EcX6lKC1acIOvtHlM5if4YMAhTrrrcOGPT0W/cma3gAAdcMociD8
+	7143kvagGaumlQzqGEZMTvIk4eL3qNjLEHpNYwdDz7WKGwk+qjwrP9l1DkYd6d/IWa5d
+	Si+mwdQtKjIDTc4l3x2UDHzusS3sjF9wil3hIgrk4GwkRs6OwIWOvSkHx/FU64FVW7kX
+	ZtFRuh0uAtnv0yT02iezhSdtqaW99ZrCokbCZccQ2jR1P7CGghOtypufhlRhQdOu8Nci
+	AyCGiliJt6h+LE+VwJN5Zh09BtwKNGUcaKrjjsRVYt0NBYUI6nTJDHn65p/RaZDoV77e
+	17bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=93vLc05lWPBbUdmyxSFraVw3fyQ1F1s4bw0yuyx86/g=;
-	b=ASlfHQxLxM7eTLTLngzkUUWebthSae2wDZ6MZ2cRZ64ny+fOX65PKULHpDOS2uIWBI
-	gbxK+EUg9Q2hgTEKJcWTtj+ABuAnt8tq6gGEqBBwk6jMOKDfNGb5w5lJDV8tzNIFhC9G
-	zR+mANjWI6vrw8T1rdu1ab3TSFTbRGwK67D6EO4QH/zycXapvtMzOED7nVgNOexXg88k
-	zwh6QdnYwHlC47YORorH3Lqp0g+kwfZQo5nS22EneUVsVtubnPyi5xQSA2/lQd/WYt+I
-	76hs7FKIMzRczaIFBqk0X5cJNr6zPvy4SsW8J1dYltX+BrVLRB/6nicKQNlPxU9RytZx
-	5ZxA==
-X-Gm-Message-State: APjAAAXif6gs010Y3OlAm0Q3QW4M3ZZRZtKux2q2GyLC3fgDtSeB5R/D
-	oLHjMRhGb5hf9ogTj8TYgH8/6AjZAU0=
-X-Google-Smtp-Source: APXvYqy6xaTTbMziIambCDuIK8QM6aIzmv2SIrYfCrI4QvSDUjLIxTU/MwWDAE1Ak4ODvomN7B3nKA==
-X-Received: by 2002:a2e:8801:: with SMTP id x1mr42165486ljh.1.1563973420082;
-	Wed, 24 Jul 2019 06:03:40 -0700 (PDT)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references:mime-version:content-transfer-encoding;
+	bh=vDse2z4YvQ64lNz5PUH3n5I9sDN1rm7wLaC3vwxh5o0=;
+	b=rGUObofhvKp+mNklQQ20CCVTXwGZdnJyIcBPUDJjOvysAlXrXpOyUDpQPLj9XZNCY8
+	YsY2hteWBSqBxByI4TvHAWPBUhJZens3jBAzquxwLEzCJyCZgqgE28spNVsefrDX2nUh
+	Nby5aMMkYM+epMHPk7pVGZBJMF2RZzxkFNquT0yLAeZtkEBIbWXgy+05YAcOw8rp5VmB
+	GUtL2nOwy/JHwJqyJ5yzkjFVoDhWk2NnpMU5gGB3sqgn1n2wM2RLAhwZFdMU+7vqic4z
+	KKsrHNrH9LZ7X69YIZrqcWnHCOx22CL+1BYOTgQ9MIfBhvEoOMA7+ynQjb6tflQ9eKWf
+	2/Ug==
+X-Gm-Message-State: APjAAAVJ5fFYv4+1yIJVLupk32bQhkoJrFVnP0ysIxU8YXJzhViUyz4+
+	BmTHQkuWPTC0/DvSrcoJh2op/twWl68=
+X-Google-Smtp-Source: APXvYqx2yQVi5MNavZzR1QuceK2EbT3FnfY4FlExqYkBdLn/A+AA+yaYMtMcW5SfxHWsH3j9Pand2Q==
+X-Received: by 2002:a2e:9dca:: with SMTP id x10mr42262078ljj.17.1563973424165; 
+	Wed, 24 Jul 2019 06:03:44 -0700 (PDT)
 Received: from localhost.localdomain ([94.25.229.59])
-	by smtp.gmail.com with ESMTPSA id 2sm8557038lji.94.2019.07.24.06.03.38
+	by smtp.gmail.com with ESMTPSA id 2sm8557038lji.94.2019.07.24.06.03.42
 	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Wed, 24 Jul 2019 06:03:39 -0700 (PDT)
+	Wed, 24 Jul 2019 06:03:43 -0700 (PDT)
 From: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
 To: yocto@yoctoproject.org
-Date: Wed, 24 Jul 2019 16:03:32 +0300
-Message-Id: <20190724130337.24454-1-dbaryshkov@gmail.com>
+Date: Wed, 24 Jul 2019 16:03:35 +0300
+Message-Id: <20190724130337.24454-4-dbaryshkov@gmail.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190724130337.24454-1-dbaryshkov@gmail.com>
+References: <20190724130337.24454-1-dbaryshkov@gmail.com>
 MIME-Version: 1.0
 Cc: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
-Subject: [meta-security][PATCH v2 1/6] packagegroup-security-tpm2: stop including tpm2-tcti-uefi
+Subject: [meta-security][PATCH v2 4/6] tpm2-tcti-uefi: fix configure arguments
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,30 +76,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 24 Jul 2019 13:03:42 -0000
+X-List-Received-Date: Wed, 24 Jul 2019 13:03:46 -0000
 Content-Transfer-Encoding: 8bit
 
 From: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
 
-tpm2-tcti-uefi is a EFI module, so it should not be included in the
-rootfs.
+Pass correct location of EFI's crt0 and ld script.
 
 Signed-off-by: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
 ---
- .../recipes-core/packagegroup/packagegroup-security-tpm2.bb    | 3 ---
- 1 file changed, 3 deletions(-)
+ .../recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb  | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
-index 9296d9967e32..8f5c537b9505 100644
---- a/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
-+++ b/meta-tpm/recipes-core/packagegroup/packagegroup-security-tpm2.bb
-@@ -21,6 +21,3 @@ RDEPENDS_packagegroup-security-tpm2 = " \
-     ibmswtpm2 \
-     cryptsetup-tpm-incubator \
-     "
--
--RDEPENDS_packagegroup-security-tpm2_append_x86 = " tpm2-tcti-uefi"
--RDEPENDS_packagegroup-security-tpm2_append_x86-64 = " tpm2-tcti-uefi"
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
+index 983f72ebeb68..03140506931d 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
+@@ -13,6 +13,13 @@ S = "${WORKDIR}/git"
+ 
+ inherit autotools pkgconfig
+ 
++EFI_ARCH_x86 = "ia32"
++EFI_ARCH_x86-64 = "x86_64"
++
+ COMPATIBLE_HOST = "(i.86|x86_64).*-linux"
+-EXTRA_OECONF_append = " --with-efi-includedir=${STAGING_INCDIR}/efi --with-efi-lds=${STAGING_LIBDIR_NATIVE}/"
++EXTRA_OECONF_append = "\
++    --with-efi-includedir=${STAGING_INCDIR}/efi \
++    --with-efi-crt0=${STAGING_LIBDIR_NATIVE}/crt0-efi-${EFI_ARCH}.o \
++    --with-efi-lds=${STAGING_LIBDIR_NATIVE}/elf_${EFI_ARCH}_efi.lds \
++"
+ RDEPENDS_${PN} = "gnu-efi"
 -- 
 2.20.1
 
