@@ -1,62 +1,49 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <Anders.Montonen@iki.fi>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5C37EE00C27; Thu, 25 Jul 2019 15:45:35 -0700 (PDT)
+	id 32C27E00D30; Thu, 25 Jul 2019 16:08:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jupiter.hce[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.50 listed in list.dnswl.org]
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com
-	[209.85.166.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACA95E00B33
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 15:45:34 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id h6so14198952iom.7
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 15:45:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=X4YdCUn+Q39oRWyomoMAcSbLCpIabblLqQsa+qdcX9o=;
-	b=hQDTrvdvjhndMxRSwSuwUNaIzKN/cgGJLT0HSoBOidxhl5iWDKz2PZyydag8jTC9dA
-	2wbrsiuEHakgpNUJ/m8QaGTM5PumyEzL9tnLNDpUZvkEf+Vb2Ss/nUPNv/kGiZK8afbd
-	hVW5tvBayvkGsZ62h1RwwihqWQzltKoJNJ3CeJS5nFIWQESTWVcUHEmDnlmFkEtPMOoa
-	Y59hohQBcYh0J4P6zKerPGylSCJeKLfDptUGlYuskWfibtJWzbpONwJeTEMmi88I+4zy
-	9IWWUkydOI4SN5+ljBjY3+crcsRa4skGMk9rweIWItQBa4+axCKA8OiXMQky5sUaAopL
-	P0mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=X4YdCUn+Q39oRWyomoMAcSbLCpIabblLqQsa+qdcX9o=;
-	b=rVPyQW+5zT6c8yJigOblWyppBDgglEmgUaKnKgYtv8Q/E4iZvUzhAVU1AEl/hpZH4q
-	5Hm3freC8jDSJ72/zdRWDyGryRCTsy45x8B/h5rilPYVhdbpNkXHgilySbNIj582Mhmk
-	8A1pD1Cxak+fSeoKWoTSS1fHFe434Po45B9uuBo/VYFWSCKmzRiNmzNOBxinrRD35TmV
-	JNSKLiS08/svABJlZTAVKWGxe4kqFfZWrEivRoHti+vh1Pj94VSDdAbxDpyTs4kiNWuS
-	v3h6GdzDTtcBmqVYiYbtVFm5EwBpg89WoJBMr+qRrEskdvNp2hWLjaswj5625XLKpypC
-	pJiA==
-X-Gm-Message-State: APjAAAUx2XdFVsd3HZcTWfiDohnbGeb0aSxEyTU1yRgSg9siKtRh2jrg
-	0HX1e9gQFD4k0FI75tGyZow049XezCB76UVu0pSnpQS1
-X-Google-Smtp-Source: APXvYqwkvIqsBAKxf1+M4c4xVNIXqRiKcXXhpW2l3TfRwYY3R8G5rwYJTjRUfSvoed+9KVyw6jyCZCHl9rzI8P/APWg=
-X-Received: by 2002:a6b:8f47:: with SMTP id r68mr87945824iod.204.1564094734013;
-	Thu, 25 Jul 2019 15:45:34 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP; Thu, 25 Jul 2019 15:45:33
-	-0700 (PDT)
-From: JH <jupiter.hce@gmail.com>
-Date: Fri, 26 Jul 2019 08:45:33 +1000
-Message-ID: <CAA=hcWQAt_d3aE0d0ZdHZH=cg-DDy7Hw+VyYXw5JNpOsjSe_Tw@mail.gmail.com>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [83.102.40.154 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 512 seconds by postgrey-1.32 at yocto-www;
+	Thu, 25 Jul 2019 16:07:58 PDT
+Received: from sypressi2.dnainternet.net (sypressi2.dnainternet.net
+	[83.102.40.154])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3D2DE00C22
+	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 16:07:58 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by sypressi2.dnainternet.net (Postfix) with ESMTP id 793FC17844
+	for <yocto@yoctoproject.org>; Fri, 26 Jul 2019 01:59:24 +0300 (EEST)
+X-Virus-Scanned: DNA Internet at dnainternet.net
+Received: from sypressi2.dnainternet.net ([83.102.40.154])
+	by localhost (sypressi2.dnainternet.net [127.0.0.1]) (DNA Internet,
+	port 10041) with ESMTP id s-ySjRmBwYCW for <yocto@yoctoproject.org>;
+	Fri, 26 Jul 2019 01:59:24 +0300 (EEST)
+Received: from kirsikkapuu2.dnainternet.net (kirsikkapuu2.dnainternet.net
+	[83.102.40.52])
+	by sypressi2.dnainternet.net (Postfix) with ESMTP id 0A83017807
+	for <yocto@yoctoproject.org>; Fri, 26 Jul 2019 01:59:24 +0300 (EEST)
+Received: from [192.168.1.58] (178-75-137-78.bb.dnainternet.fi [178.75.137.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by kirsikkapuu2.dnainternet.net (Postfix) with ESMTPS id D2D793CA2
+	for <yocto@yoctoproject.org>; Fri, 26 Jul 2019 01:59:22 +0300 (EEST)
+From: Anders Montonen <Anders.Montonen@iki.fi>
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
+Date: Fri, 26 Jul 2019 01:59:21 +0300
+References: <CAA=hcWQAt_d3aE0d0ZdHZH=cg-DDy7Hw+VyYXw5JNpOsjSe_Tw@mail.gmail.com>
 To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Recurrent service file
+In-Reply-To: <CAA=hcWQAt_d3aE0d0ZdHZH=cg-DDy7Hw+VyYXw5JNpOsjSe_Tw@mail.gmail.com>
+Message-Id: <A0DE6341-3472-422A-8CA7-2F524FFC14D7@iki.fi>
+X-Mailer: Apple Mail (2.3445.104.11)
+Subject: Re: Recurrent service file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,32 +55,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Jul 2019 22:45:35 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 25 Jul 2019 23:08:00 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_8686D626-ECA2-43FA-B7FC-FF2E8871B615"
 
-Hi,
+--Apple-Mail=_8686D626-ECA2-43FA-B7FC-FF2E8871B615
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-I am running Yocto distroI am building a service file like a cron job
-to run every 10 minutes, I searched from Internet, there was tips to
-use Restart=always and RestartSec=10min, but that seems not quite
-right, the document said that RestartSec is for delaying 10min, any
-tips how to fix following format?
+On 26 Jul 2019, at 1:45, JH <jupiter.hce@gmail.com> wrote:
+>=20
+> Hi,
+>=20
+> I am running Yocto distroI am building a service file like a cron job
+> to run every 10 minutes, I searched from Internet, there was tips to
+> use Restart=3Dalways and RestartSec=3D10min, but that seems not quite
+> right, the document said that RestartSec is for delaying 10min, any
+> tips how to fix following format?
 
-[Unit]
-Description=Cron job
+You probably want a timer unit that triggers the service unit: =
+<https://www.freedesktop.org/software/systemd/man/systemd.timer.html =
+<https://www.freedesktop.org/software/systemd/man/systemd.timer.html>>
 
-[Service]
-Type=simple
-Restart=always
-RestartSec=10min
-ExecStart=/usr/sbin/sa_cron_job.sh
+Regards,
+Anders=20
 
-[Install]
-WantedBy=multi-user.target
 
-Thank you.
+--Apple-Mail=_8686D626-ECA2-43FA-B7FC-FF2E8871B615
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
 
-Kind regards,
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" class=3D"">On =
+26 Jul 2019, at 1:45, JH &lt;<a href=3D"mailto:jupiter.hce@gmail.com" =
+class=3D"">jupiter.hce@gmail.com</a>&gt; wrote:<br =
+class=3D""><div><blockquote type=3D"cite" class=3D""><br =
+class=3D"Apple-interchange-newline"><div class=3D""><div class=3D"">Hi,<br=
+ class=3D""><br class=3D"">I am running Yocto distroI am building a =
+service file like a cron job<br class=3D"">to run every 10 minutes, I =
+searched from Internet, there was tips to<br class=3D"">use =
+Restart=3Dalways and RestartSec=3D10min, but that seems not quite<br =
+class=3D"">right, the document said that RestartSec is for delaying =
+10min, any<br class=3D"">tips how to fix following format?<br =
+class=3D""></div></div></blockquote><div><br class=3D""></div><div>You =
+probably want a timer unit that triggers the service unit: &lt;<a =
+href=3D"https://www.freedesktop.org/software/systemd/man/systemd.timer.htm=
+l" =
+class=3D"">https://www.freedesktop.org/software/systemd/man/systemd.timer.=
+html</a>&gt;</div><div><br =
+class=3D""></div><div>Regards,</div><div>Anders&nbsp;</div></div><br =
+class=3D""></body></html>=
 
-- jupiter
-
+--Apple-Mail=_8686D626-ECA2-43FA-B7FC-FF2E8871B615--
