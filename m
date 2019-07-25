@@ -1,35 +1,60 @@
-Return-Path: <Yi.Zhao@windriver.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6A4B8E00D59; Thu, 25 Jul 2019 01:35:14 -0700 (PDT)
+	id A7CC8E00D5F; Thu, 25 Jul 2019 01:52:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6537AE00C5C
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 01:35:09 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x6P8YWX2025386
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 25 Jul 2019 01:34:42 -0700
-Received: from localhost (128.224.162.136) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0;
-	Thu, 25 Jul 2019 01:34:21 -0700
-From: Yi Zhao <yi.zhao@windriver.com>
-To: <yocto@yoctoproject.org>, <akuster808@gmail.com>
-Date: Thu, 25 Jul 2019 16:34:18 +0800
-Message-ID: <1564043659-22405-1-git-send-email-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.7.4
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.68 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f68.google.com (mail-io1-f68.google.com
+	[209.85.166.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EF02E00D4A
+	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 01:52:50 -0700 (PDT)
+Received: by mail-io1-f68.google.com with SMTP id i10so95537787iol.13
+	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 01:52:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=AMAS0d0RfCdWY0JFt/VH/5QVdjtDnaDy7Z1m8IqUM60=;
+	b=uMF5SeXHr0+kDslPybQg0c2rFQO+pW4u597uOfQM7I/5anFi24/UYAhiyLXPUpz/FX
+	BfHnWXZt3mYE2XdvXvRdbGopZnu1uAWVESMl2y85usoswbqYEgtYTGCDcw9fPrbylkb6
+	8r+ynK0TYjFtTaUOM+DYwcLW4YvD8+4tzVCiMlYzX94pZwDCZyFmQtQFcvvx6jgPhpEX
+	+tnurVO2Cx355Ni6M0s6ZzGDv5VTOlNOl2MoNACCmxxmhuPW731JRHTDjUmIQPFfBsNt
+	eIUPJaU4CydvSi3YzWt1+ursRm38NCUCsLwlKrH4bD3FdRKmPZxDa7wuNuKYwKTcN7+h
+	roBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=AMAS0d0RfCdWY0JFt/VH/5QVdjtDnaDy7Z1m8IqUM60=;
+	b=dGQqltEt0TBW5OyzAzHkFvoBGsC7fZBN1SHbmKZbOAzn7KrfhIM6e1lduNxR3a5Dtw
+	mHxnHaaujeY+ijpdaBbRgwsC5hMYVV8G15V7F+0OL6I7BxBUEeRv6PnTDWfv2t59uQun
+	NiDkIjkvy66NEA2KWjToNXQJ+ue6Td5zY+Ui7C1RCm4qDjfcbxKALvoR1D54cUVRWTgO
+	01AUI/rMNis6HTYr1FadXkJ1AMraGXXc35OhMNyiCk+6q4dfiUix/w5YccL+/OM7jy/i
+	9bvfYZh4tCPRuuJc5YusFPU3Z0+E7no/7C6xJJq41wyAmnI9dFipJk8lphMLDH43lbBm
+	lilQ==
+X-Gm-Message-State: APjAAAX+7UN+ica2NJnEFQO9yQBlIgB79zWACW2zW3u0yANhA2MM+IFb
+	onp4afSxI2PfJ7leE/oH4wT7mcLm9plil6RHqEL7PUNA
+X-Google-Smtp-Source: APXvYqxz40Bi6W2XogV3o+KnwiE94NzozHLoS/eB0I3AZX3iliTcm8DTQthJEiNE2COxG9gMyOUlTm8jQwuUFnBYn+Q=
+X-Received: by 2002:a5d:9e11:: with SMTP id h17mr31674909ioh.261.1564044769684;
+	Thu, 25 Jul 2019 01:52:49 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [128.224.162.136]
-Subject: [meta-security][PATCH 1/2] openscap: update recipe
+References: <CAA=hcWTJ_URf273D+6cp8JkeT=9oP5My37Lj22Ho_y5fNmT4=A@mail.gmail.com>
+In-Reply-To: <CAA=hcWTJ_URf273D+6cp8JkeT=9oP5My37Lj22Ho_y5fNmT4=A@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 25 Jul 2019 09:52:37 +0100
+Message-ID: <CAJTo0LYw0hH8r+KEQc43X6-CZJVwTnoQo6_=g19sQ7ZdpJXEuw@mail.gmail.com>
+To: JH <jupiter.hce@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: How to fix SSH interfactive promotion for Yocto Linux embedded system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,189 +66,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Jul 2019 08:35:14 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 25 Jul 2019 08:52:51 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-* Add PACKAGECONFIG for gcrypt, nss3 and selinux
-* Use EXTRA_OECMAKE rather than EXTRA_OECONF
-* Set CMAKE_SKIP_RPATH and CMAKE_SKIP_INSTALL_RPATH instead of chrpath
-* Remove ptest since there are many host contamination issues on target.
-  We will add it back when these issues are solved.
-* Drop the unused patch
-* Add PV
+You're using busybox's scp, which is limited compared to openssh.  If
+you want to use openssh's binaries install openssh-clients, otherwise
+adapt your options to work with busybox's scp.
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- .../openscap/files/probe_dir_fixup.patch           | 17 -----
- .../recipes-openscap/openscap/files/run-ptest      |  3 -
- .../recipes-openscap/openscap/openscap.inc         | 77 ++++++++--------------
- .../recipes-openscap/openscap/openscap_1.3.1.bb    |  1 -
- .../recipes-openscap/openscap/openscap_git.bb      |  3 +-
- 5 files changed, 30 insertions(+), 71 deletions(-)
- delete mode 100644 meta-security-compliance/recipes-openscap/openscap/files/probe_dir_fixup.patch
- delete mode 100644 meta-security-compliance/recipes-openscap/openscap/files/run-ptest
+Ross
 
-diff --git a/meta-security-compliance/recipes-openscap/openscap/files/probe_dir_fixup.patch b/meta-security-compliance/recipes-openscap/openscap/files/probe_dir_fixup.patch
-deleted file mode 100644
-index ecbe602..0000000
---- a/meta-security-compliance/recipes-openscap/openscap/files/probe_dir_fixup.patch
-+++ /dev/null
-@@ -1,17 +0,0 @@
--Index: git/configure.ac
--===================================================================
----- git.orig/configure.ac
--+++ git/configure.ac
--@@ -1109,11 +1109,7 @@ AC_ARG_WITH([crypto],
--      [],
--      [crypto=gcrypt])
-- 
---if test "x${libexecdir}" = xNONE; then
---	probe_dir="/usr/local/libexec/openscap"
---else
---	EXPAND_DIR(probe_dir,"${libexecdir}/openscap")
---fi
--+probe_dir="/usr/local/libexec/openscap"
-- 
-- AC_SUBST(probe_dir)
-- 
-diff --git a/meta-security-compliance/recipes-openscap/openscap/files/run-ptest b/meta-security-compliance/recipes-openscap/openscap/files/run-ptest
-deleted file mode 100644
-index 454a6a3..0000000
---- a/meta-security-compliance/recipes-openscap/openscap/files/run-ptest
-+++ /dev/null
-@@ -1,3 +0,0 @@
--#!/bin/sh
--cd tests
--make -k check
-diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap.inc b/meta-security-compliance/recipes-openscap/openscap/openscap.inc
-index e5daaf8..f23ea99 100644
---- a/meta-security-compliance/recipes-openscap/openscap/openscap.inc
-+++ b/meta-security-compliance/recipes-openscap/openscap/openscap.inc
-@@ -6,71 +6,50 @@ HOME_URL = "https://www.open-scap.org/tools/openscap-base/"
- LIC_FILES_CHKSUM = "file://COPYING;md5=fbc093901857fcd118f065f900982c24"
- LICENSE = "LGPL-2.1"
- 
--DEPENDS = "autoconf-archive dbus acl bzip2 pkgconfig gconf procps curl libxml2 libxslt libcap swig libgcrypt chrpath-replacement-native "
--
--DEPENDS_class-native = "autoconf-archive-native pkgconfig-native swig-native curl-native libxml2-native libxslt-native dpkg-native libgcrypt-native nss-native"
-+DEPENDS = "autoconf-archive dbus acl bzip2 pkgconfig gconf procps curl libxml2 libxslt libcap swig"
-+DEPENDS_class-native = "autoconf-archive-native pkgconfig-native swig-native curl-native libxml2-native libxslt-native libcap-native dpkg-native"
- 
- S = "${WORKDIR}/git"
- 
--inherit cmake pkgconfig python3native perlnative ptest
--
--PACKAGECONFIG ?= "python3 rpm perl"
--PACKAGECONFIG[python3] = "-DENABLE_PYTHON3=True, , python3, python3"
--PACKAGECONFIG[perl] = "-DENABLE_PERL=True,, perl, perl"
--PACKAGECONFIG[rpm] = "-DENABLE_OSCAP_UTIL_AS_RPM=True, ,rpm, rpm"
--
--EXTRA_OECONF += "-DENABLE_PROBES_INDEPENDENT=yes -DENABLE_PROBES_LINUX=yes -DWITH_CRYPTO=gcrypt\
--		-DENABLE_PROBES_SOLARIS=yes -DENABLE_PROBES_UNIX=yes  -DENABLE_TESTS=no \
--		-DENABLE_OSCAP_UTIL_SSH=yes -DENABLE_OSCAP_UTIL=yes -DENABLE_SCE=yes \
--                -DENABLE_OSCAP_UTIL_DOCKER=no \
--                "
--
-+inherit cmake pkgconfig python3native perlnative
-+
-+PACKAGECONFIG ?= "python3 rpm perl gcrypt ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux', '', d)}"
-+PACKAGECONFIG[python3] = "-DENABLE_PYTHON3=ON, ,python3, python3"
-+PACKAGECONFIG[perl] = "-DENABLE_PERL=ON, ,perl, perl"
-+PACKAGECONFIG[rpm] = "-DENABLE_OSCAP_UTIL_AS_RPM=ON, ,rpm, rpm"
-+PACKAGECONFIG[gcrypt] = "-DWITH_CRYPTO=gcrypt, ,libgcrypt"
-+PACKAGECONFIG[nss3] = "-DWITH_CRYPTO=nss3, ,nss"
-+PACKAGECONFIG[selinux] = ", ,libselinux"
-+
-+EXTRA_OECMAKE += "-DENABLE_PROBES_LINUX=ON -DENABLE_PROBES_UNIX=ON \
-+                  -DENABLE_PROBES_SOLARIS=OFF -DENABLE_PROBES_INDEPENDENT=ON \
-+                  -DENABLE_OSCAP_UTIL=ON -DENABLE_OSCAP_UTIL_SSH=ON \
-+                  -DENABLE_OSCAP_UTIL_DOCKER=OFF -DENABLE_OSCAP_UTIL_CHROOT=OFF \
-+                  -DENABLE_OSCAP_UTIL_PODMAN=OFF -DENABLE_OSCAP_UTIL_VM=OFF \
-+                  -DENABLE_PROBES_WINDOWS=OFF -DENABLE_VALGRIND=OFF \
-+                  -DENABLE_SCE=ON -DENABLE_MITRE=OFF -DENABLE_TESTS=OFF \
-+                  -DCMAKE_SKIP_INSTALL_RPATH=ON -DCMAKE_SKIP_RPATH=ON \
-+                 "
- 
- STAGING_OSCAP_DIR = "${TMPDIR}/work-shared/${MACHINE}/oscap-source"
- STAGING_OSCAP_BUILDDIR = "${TMPDIR}/work-shared/openscap/oscap-build-artifacts"
- 
--EXTRANATIVEPATH += "chrpath-native"
--
- do_configure_append_class-native () {
--	sed -i 's:OSCAP_DEFAULT_CPE_PATH.*$:OSCAP_DEFAULT_CPE_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/cpe":' ${B}/config.h
--	sed -i 's:OSCAP_DEFAULT_SCHEMA_PATH.*$:OSCAP_DEFAULT_SCHEMA_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/schemas":' ${B}/config.h
--	sed -i 's:OSCAP_DEFAULT_XSLT_PATH.*$:OSCAP_DEFAULT_XSLT_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/xsl":' ${B}/config.h
-+    sed -i 's:OSCAP_DEFAULT_CPE_PATH.*$:OSCAP_DEFAULT_CPE_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/cpe":' ${B}/config.h
-+    sed -i 's:OSCAP_DEFAULT_SCHEMA_PATH.*$:OSCAP_DEFAULT_SCHEMA_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/schemas":' ${B}/config.h
-+    sed -i 's:OSCAP_DEFAULT_XSLT_PATH.*$:OSCAP_DEFAULT_XSLT_PATH "${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/xsl":' ${B}/config.h
- }
- 
--do_clean[cleandirs] += " ${STAGING_OSCAP_BUILDDIR}"
--
--do_compile_append_class-target() {
--	sed -i -e 's:${STAGING_BINDIR_NATIVE}/python3-native/python3:${bindir}/python3:' ${B}/utils/oscap-docker
--}
-+do_clean[cleandirs] += "${STAGING_OSCAP_BUILDDIR}"
- 
- do_install_append_class-native () {
--	oscapdir=${STAGING_OSCAP_BUILDDIR}/${datadir_native}
--	install -d $oscapdir	
--	cp -a ${D}/${STAGING_DATADIR_NATIVE}/openscap $oscapdir
-+    oscapdir=${STAGING_OSCAP_BUILDDIR}/${datadir_native}
-+    install -d $oscapdir
-+    cp -a ${D}/${STAGING_DATADIR_NATIVE}/openscap $oscapdir
- }
- 
--TESTDIR = "tests"
--
--do_compile_ptest() {
--    oe-runcmake ${TESTDIR} 
--}
--
--do_install_ptest() {
--    # install the tests
--    cp -rf ${B}/${TESTDIR} ${D}${PTEST_PATH}
--}
--
--do_fixup_rpath() {
--	chrpath -d ${D}${libdir}/libopenscap.so.25.0.1
--	chrpath -d ${D}${libdir}/libopenscap_sce.so.25.0.1
--	chrpath -d ${D}${bindir}/oscap
--}
--
--addtask fixup_rpath before do_package after do_install
--
- FILES_${PN} += "${PYTHON_SITEPACKAGES_DIR}"
- 
- RDEPENDS_${PN} += "libxml2 python3 libgcc"
--RDEPENDS_${PN}-ptest = "bash perl python3-core"
- 
- BBCLASSEXTEND = "native"
-diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.1.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.1.bb
-index c29fd42..ad29efd 100644
---- a/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.1.bb
-+++ b/meta-security-compliance/recipes-openscap/openscap/openscap_1.3.1.bb
-@@ -4,7 +4,6 @@ require openscap.inc
- 
- SRCREV = "3a4c635691380fa990a226acc8558db35d7ebabc"
- SRC_URI = "git://github.com/OpenSCAP/openscap.git;branch=maint-1.3 \
--           file://run-ptest \
- "
- 
- DEFAULT_PREFERENCE = "-1"
-diff --git a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb b/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
-index aded920..963d3de 100644
---- a/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
-+++ b/meta-security-compliance/recipes-openscap/openscap/openscap_git.bb
-@@ -7,5 +7,6 @@ include openscap.inc
- 
- SRCREV = "4bbdb46ff651f809d5b38ca08d769790c4bfff90"
- SRC_URI = "git://github.com/akuster/openscap.git;branch=oe-1.3 \
--           file://run-ptest \
- "
-+
-+PV = "1.3.1+git${SRCPV}"
--- 
-2.7.4
-
+On Thu, 25 Jul 2019 at 02:10, JH <jupiter.hce@gmail.com> wrote:
+>
+> Hi,
+>
+> I am running busybox in imx6 using ssh and scp in shell scripts, but I
+> troubled to run the scripts to run ssh and scp, it did not have ssh
+> options stopped at following:
+>
+> scp .... -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -o
+> ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o
+> UserKnownHostsFile=/dev/null ...
+>
+> ECDSA key fingerprint is SHA256:rAS+4gVqPJj7yfVDHlhG1g5bQP+VgMczooGifv+H9vk.
+> Are you sure you want to continue connecting (yes/no)
+>
+> cp: can't stat '-o': No such file or directory
+> cp: can't stat 'ServerAliveInterval=60': No such file or directory
+> cp: can't stat '-o': No such file or directory
+> cp: can't stat 'ExitOnForwardFailure=yes': No such file or directory
+> cp: can't stat '-o': No such file or directory
+> cp: can't stat 'ServerAliveCountMax=3': No such file or directory
+> cp: can't stat '-o': No such file or directory
+> cp: can't stat 'StrictHostKeyChecking=no': No such file or directory
+> cp: can't stat '-o': No such file or directory
+> cp: can't stat 'UserKnownHostsFile=/dev/null': No such file or directory
+> root@solar:/tmp# ssh-keyscan SaController >> /home/root/.ssh/known_hosts
+>
+> What will be effective and simple solution in Yocto?
+>
+> - Replace busybox by bash recipe.
+>
+> - Install openssh-client to run ssh-keyscan to write the target to
+> .ssh/known_hosts
+>
+> Appreciate your advice for Yocto Linux embedded system.
+>
+> Thank you.
+>
+> Kind regards,
+>
+> - jupiter
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
