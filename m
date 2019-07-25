@@ -1,69 +1,115 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <harish.tg@aptiv.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9DDD7E00D5F; Thu, 25 Jul 2019 02:31:04 -0700 (PDT)
+	id 83AAEE00D59; Thu, 25 Jul 2019 04:24:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED,SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jupiter.hce[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.54 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com
-	[209.85.166.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A740E00D4A
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 02:31:03 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id q22so95793679iog.4
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 02:31:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=uae/81QQ7DJkBag7CdUgpe2fch673en2G/RfzO6qt+c=;
-	b=FfuOVvpm2J5SyBoQCyBb4YxLL5wIbJhzNj06yVWTziYfIoiQ5rXj14uR1fmQMp7Zyw
-	P+kfNc1OTrWiE23xLBQdocOw+Lrfka1pKKbcbE7n2iVXcNhYVNVYmXN6x+AFqPSrsow7
-	IRZBjQvUIFhiuLIZQc6JFxAWZIVvcoBGFfs+50G5RFVgTmOHjQqV4n35vyq+C5LLy9Fx
-	b0udTQ6RVjQiew+Mt4QuEREw/qdsN4dLLUNP0JBVuhaft+h30eO4KvrXmZojI789IMnK
-	+GOP8EkTFyIa17MR8WnUlAgvY9gJe8pZi76hcfm3BMsox4L9M0EErOSBhx7QNZeip0be
-	nkqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=uae/81QQ7DJkBag7CdUgpe2fch673en2G/RfzO6qt+c=;
-	b=CfFCi1DA2bpOMhxduaGfYs+r6l1dpFSR6xjtWSCzGqvmJTmlf3S4mcTsT55rtYtqXO
-	+v0qbAEqPecCajzDr0TaVjm2Lu35TRek7uRpCXvv8Aco/MWXQ3k40wKMZfSoJecsM8Gr
-	qFwMRJnZIFyMPFukiqy1Nap0hz/7G29iHDzh1fpRonb0Ojzwwz8Me0G4hD2cipdr76nu
-	g6VG8GqJCHmCbl6DXMxBy0gR+UXzarRbb+GZAYLgfRJX5VsjTN8DYrb19gSHs2+C6EEW
-	Z4qWEr4gxvHYzmkgMWDaUx7CQcDJ31zVrtiud59ZCr6kDjOsy06SsxyWjCQRS+9ES6aO
-	AWeg==
-X-Gm-Message-State: APjAAAV8b8dtoByh040PXJvE/q/OBUVNRpq5+rEEMOfI2KTYHcDjJ3EJ
-	IQYiPGDnVXclClsTeFb4oIK6p87XGqusyUsDaTC9jgo8
-X-Google-Smtp-Source: APXvYqz2m6ZcP3+OkUdmhtiDNUGnUw+yfRvDQRTIyOfop1Q+kctF9GQqZuXpeDhWgh4gcHiMbn/sAN9K/nQ1cV/njcQ=
-X-Received: by 2002:a05:6602:22cc:: with SMTP id
-	e12mr17620075ioe.192.1564047063453; 
-	Thu, 25 Jul 2019 02:31:03 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [69.195.251.241 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 291 seconds by postgrey-1.32 at yocto-www;
+	Thu, 25 Jul 2019 04:24:28 PDT
+Received: from usflmia-meg1.delphi.com (usflmia-meg1.delphi.com
+	[69.195.251.241])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1050E00BA1
+	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 04:24:28 -0700 (PDT)
+Received: from 10492-US-DLP001.delphiauto.net (unknown [10.201.250.13]) by
+	usflmia-meg1.delphi.com with smtp
+	id 77ef_82fe_83b93606_5edc_41d5_bf30_cbab449d7771;
+	Thu, 25 Jul 2019 07:19:34 -0400
+Received: from usflmia-gw2.delphi.com ([10.192.117.25])
+	by 10492-US-DLP001.delphiauto.net (8.13.8/8.13.8) with ESMTP id
+	x6PBJZbf008950
+	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 07:19:35 -0400
+Received: from mx0a-00275a01.pphosted.com (mx0a-00275a01.pphosted.com
+	[148.163.157.133]) by usflmia-gw2.delphi.com with smtp
+	(TLS: TLSv1/SSLv3,256bits,ECDHE-RSA-AES256-GCM-SHA384)
+	id 268c_ec46_de930386_4a64_496d_8791_ac7ac8df037e;
+	Thu, 25 Jul 2019 07:19:34 -0400
+Received: from pps.filterd (m0109021.ppops.net [127.0.0.1])
+	by mx0a-00275a01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id
+	x6PBEboX018477
+	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 07:19:34 -0400
+Received: from nam05-co1-obe.outbound.protection.outlook.com
+	(mail-co1nam05lp2055.outbound.protection.outlook.com [104.47.48.55])
+	by mx0a-00275a01.pphosted.com with ESMTP id 2ty9628dk8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
+	verify=NOT)
+	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 07:19:34 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+	b=oObmsk8vMPZqjWVnvCeDzQJtojGZtMrz5GVThxNAofj6JQttSX+83G6dtPf3v6dA2HWlt4INRl3i41DCyQpX3/wMpAF9prRxN0Jguz7BEHnZzIyT++bEBfKopv2/gdDWpuO8T75MWVdgCwPtZD5zo4PcrFgHgbhFHym2VrL0ecMEJZdHAll8g9jHK0hu6qTIS45xu9ihjwjqnlP2cmdzn3Tk/5dvBg2jxR9/pTCi7pnQEfKq5vrniQ2N20hqj3O1O2iJVI+JZEka4oC/0KDrFh8/gsy590dAwaI+5QD5jR3SemNwjBHswth5tCy/+WTZQZnsZdvM/lhq3ze0nQf+8w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+	s=arcselector9901;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=ms6aEzeh/AEHLSLsbNAaB0/uIRaR4NN0gPt7BW0Tk4g=;
+	b=iPrnVA7GxfKZ9BeJ9xNnyBRcWgIfyoWLL/wZJ07pfyuq3x0ma19+YdwLWVNF1XOTgammoW7+Ae6OYAbwmUh6qAL+yxEqYBEk8mLln/ZsNu61ycMtzq1qKplV1T9pRKkC/i1uDR+Iuz94TUDu0z4CLSEZw2cq+YfvRXdAG9uBLlP7Icu5znq89G/wCWqTjfHh1GI1oPj7SWjz7eJHBlpwqPIla32t5xFCa5ApUcSav6T0owXwd6qGMyHU2tCWrnqs/tu9huABQMlDgwDEtXBxKdvKBrPza7kNE28vsOqmCBM7s9EVLp0QOlzs/17S7TWykb+p11m6cmIEFPLN/w9RHQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+	smtp.mailfrom=aptiv.com;dmarc=pass action=none
+	header.from=aptiv.com;dkim=pass header.d=aptiv.com;arc=none
+Received: from MWHP197MB0045.NAMP197.PROD.OUTLOOK.COM (129.75.107.212) by
+	MWHP197MB0061.NAMP197.PROD.OUTLOOK.COM (129.75.107.216) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.2094.15; Thu, 25 Jul 2019 11:19:31 +0000
+Received: from MWHP197MB0045.NAMP197.PROD.OUTLOOK.COM
+	([fe80::68af:17fb:7215:c484]) by MWHP197MB0045.NAMP197.PROD.OUTLOOK.COM
+	([fe80::68af:17fb:7215:c484%7]) with mapi id 15.20.2094.017;
+	Thu, 25 Jul 2019 11:19:31 +0000
+From: "Tg, Harish" <harish.tg@aptiv.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: how to stop applying patches in yocto project
+Thread-Index: AdVC2nOeCx4xe/toTL+Nl7f+O99BvQ==
+Date: Thu, 25 Jul 2019 11:19:31 +0000
+Message-ID: <MWHP197MB0045719E8455D080537BF7A1FBC10@MWHP197MB0045.NAMP197.PROD.OUTLOOK.COM>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [1.6.70.242]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 45e2ac34-38cf-493a-9df5-08d710f1f726
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
+	SRVR:MWHP197MB0061; 
+x-ms-traffictypediagnostic: MWHP197MB0061:
+x-ms-exchange-purlcount: 2
+x-microsoft-antispam-prvs: <MWHP197MB00612370443A293555F127C2FBC10@MWHP197MB0061.NAMP197.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-forefront-prvs: 0109D382B0
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(979002)(376002)(396003)(39860400002)(136003)(366004)(346002)(199004)(189003)(52536014)(3846002)(9326002)(71200400001)(71190400001)(68736007)(25786009)(316002)(66946007)(66476007)(66556008)(64756008)(66446008)(8676002)(76116006)(54896002)(476003)(6916009)(55016002)(6306002)(8936002)(81156014)(5640700003)(1730700003)(486006)(53936002)(9686003)(81166006)(86362001)(2351001)(66066001)(2501003)(74316002)(558084003)(7736002)(6436002)(186003)(2906002)(26005)(102836004)(6116002)(256004)(6506007)(33656002)(790700001)(14454004)(478600001)(7696005)(5660300002)(99286004)(969003)(989001)(999001)(1009001)(1019001);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:MWHP197MB0061;
+	H:MWHP197MB0045.NAMP197.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: aptiv.com does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: m65dBtpY1kqEB7+zFkkPO1sJBMhl6HbIHArzWhOpopvr09vnsMrVEjIp4bzTkKKEfiZOowoGZ4LpTtkT6juYTDbCgqCCifwOWVkZZ9pxDkOZY1jd9iSl9220a/Z9SKg+eJVS4ncdE3Qmh4Ci0CzQofuK7QilIgL4JIKTtQSrGFTZMnU9Jjmc0UGcDptXZGHAmm3gRKkDQrKcYLlti3i7aywj47cxiwgx9AY8pftNRXpRFcqzeSokPsZqSWQQ/W16zIQwvBiWiHD63TXN43vKtpWGfiVtyF2gteSUNp6ajrGIRckCLgRA86NvajRy8+QLLJTi0aBkekRmRG3Qo6BPaKwqFDS0L4VmVpz54pzgqeiIhiKIg46mQXO+pf3/NjgFJ3/SmlEdPsNWeBtS1jzhZqb70QypKm7ggxrSq0P+y3I=
 MIME-Version: 1.0
-Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP; Thu, 25 Jul 2019 02:31:02
-	-0700 (PDT)
-In-Reply-To: <CAGAf8LyiX7-tkZf07A7bQwkndYcdGQpFm=Aq_hnMNt6e_OTvLQ@mail.gmail.com>
-References: <CAA=hcWTJ_URf273D+6cp8JkeT=9oP5My37Lj22Ho_y5fNmT4=A@mail.gmail.com>
-	<CAGAf8LzwJeTMLSVEKWdpTpbG+=XQdQxB7+zSKewm+oeDMVUrPA@mail.gmail.com>
-	<CAGAf8LyiX7-tkZf07A7bQwkndYcdGQpFm=Aq_hnMNt6e_OTvLQ@mail.gmail.com>
-From: JH <jupiter.hce@gmail.com>
-Date: Thu, 25 Jul 2019 19:31:02 +1000
-Message-ID: <CAA=hcWQcXJN9ZA210CR-Uu15i893=YxH-MDxneJXqbQnJgu=gg@mail.gmail.com>
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: How to fix SSH interfactive promotion for Yocto Linux embedded system
+X-OriginatorOrg: aptiv.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 45e2ac34-38cf-493a-9df5-08d710f1f726
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jul 2019 11:19:31.4759 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 6b1311e5-123f-49db-acdf-8847c2d00bed
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: harish.tg@aptiv.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHP197MB0061
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
+	definitions=2019-07-25_04:, , signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+	priorityscore=1501
+	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+	clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
+	mlxlogscore=814 adultscore=0 classifier=spam adjust=0 reason=mlx
+	scancount=1 engine=8.0.1-1906280000 definitions=main-1907250135
+X-RCIS-Action: ALLOW
+X-MEG-POLICY: ALLOW
+Subject: how to stop applying patches in yocto project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,93 +121,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Jul 2019 09:31:04 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 25 Jul 2019 11:24:29 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MWHP197MB0045719E8455D080537BF7A1FBC10MWHP197MB0045NAMP_"
 
-Thanks Zoran and Burton.
+--_000_MWHP197MB0045719E8455D080537BF7A1FBC10MWHP197MB0045NAMP_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-- jupiter
+Hi,
+         I have requirement that I shall not apply patches to the yocto pro=
+ject and then build u-boot, kernel and the images. Can u please help me? Ba=
+sically I need to revert back to PSDKLA-3.02 Release and without patches. P=
+lease guide me.
 
-On 7/25/19, Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com> wrote:
-> And, YES, since BysuBox supplies very reduced set of commands...
->
-> You should put these options
->> -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -o
->> ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o
->> UserKnownHostsFile=/dev/null ...
->
-> in the following file:/etc/ssh/ssh_config
->
-> Hope this helps.
->
-> Zoran
-> _______
->
-> On Thu, Jul 25, 2019 at 5:00 AM Zoran Stojsavljevic
-> <zoran.stojsavljevic@gmail.com> wrote:
->>
->> > scp .... -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -o
->> > ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o
->> > UserKnownHostsFile=/dev/null ...
->>
->> Format of your command is wrong... scp assumes your options as files
->> to be transferred.
->>
->> You need to compile better command, something like:
->> scp <file to transfer> user_name@host_IP_address:/directory path>
->> https://www.youtube.com/watch?v=fmMg6cyww14
->>
->> Zoran
->> _______
->>
->> On Thu, Jul 25, 2019 at 3:10 AM JH <jupiter.hce@gmail.com> wrote:
->> >
->> > Hi,
->> >
->> > I am running busybox in imx6 using ssh and scp in shell scripts, but I
->> > troubled to run the scripts to run ssh and scp, it did not have ssh
->> > options stopped at following:
->> >
->> > scp .... -o ServerAliveInterval=60 -o ExitOnForwardFailure=yes -o
->> > ServerAliveCountMax=3 -o StrictHostKeyChecking=no -o
->> > UserKnownHostsFile=/dev/null ...
->> >
->> > ECDSA key fingerprint is
->> > SHA256:rAS+4gVqPJj7yfVDHlhG1g5bQP+VgMczooGifv+H9vk.
->> > Are you sure you want to continue connecting (yes/no)
->> >
->> > cp: can't stat '-o': No such file or directory
->> > cp: can't stat 'ServerAliveInterval=60': No such file or directory
->> > cp: can't stat '-o': No such file or directory
->> > cp: can't stat 'ExitOnForwardFailure=yes': No such file or directory
->> > cp: can't stat '-o': No such file or directory
->> > cp: can't stat 'ServerAliveCountMax=3': No such file or directory
->> > cp: can't stat '-o': No such file or directory
->> > cp: can't stat 'StrictHostKeyChecking=no': No such file or directory
->> > cp: can't stat '-o': No such file or directory
->> > cp: can't stat 'UserKnownHostsFile=/dev/null': No such file or
->> > directory
->> > root@solar:/tmp# ssh-keyscan SaController >>
->> > /home/root/.ssh/known_hosts
->> >
->> > What will be effective and simple solution in Yocto?
->> >
->> > - Replace busybox by bash recipe.
->> >
->> > - Install openssh-client to run ssh-keyscan to write the target to
->> > .ssh/known_hosts
->> >
->> > Appreciate your advice for Yocto Linux embedded system.
->> >
->> > Thank you.
->> >
->> > Kind regards,
->> >
->> > - jupiter
->> > --
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
->
 
+Thanks,
+Harish.
+
+--_000_MWHP197MB0045719E8455D080537BF7A1FBC10MWHP197MB0045NAMP_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:DengXian;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@DengXian";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I h=
+ave requirement that I shall not apply patches to the yocto project and the=
+n build u-boot, kernel and the images. Can u please help me? Basically I ne=
+ed to revert back to PSDKLA-3.02 Release and without patches. Please guide
+ me.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">Harish.<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_MWHP197MB0045719E8455D080537BF7A1FBC10MWHP197MB0045NAMP_--
