@@ -1,115 +1,91 @@
-Return-Path: <harish.tg@aptiv.com>
+Return-Path: <aravindhlalgss@embedur.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83AAEE00D59; Thu, 25 Jul 2019 04:24:29 -0700 (PDT)
+	id 2C1D9E00D46; Thu, 25 Jul 2019 07:31:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [69.195.251.241 listed in list.dnswl.org]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [40.107.75.45 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 291 seconds by postgrey-1.32 at yocto-www;
-	Thu, 25 Jul 2019 04:24:28 PDT
-Received: from usflmia-meg1.delphi.com (usflmia-meg1.delphi.com
-	[69.195.251.241])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1050E00BA1
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 04:24:28 -0700 (PDT)
-Received: from 10492-US-DLP001.delphiauto.net (unknown [10.201.250.13]) by
-	usflmia-meg1.delphi.com with smtp
-	id 77ef_82fe_83b93606_5edc_41d5_bf30_cbab449d7771;
-	Thu, 25 Jul 2019 07:19:34 -0400
-Received: from usflmia-gw2.delphi.com ([10.192.117.25])
-	by 10492-US-DLP001.delphiauto.net (8.13.8/8.13.8) with ESMTP id
-	x6PBJZbf008950
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 07:19:35 -0400
-Received: from mx0a-00275a01.pphosted.com (mx0a-00275a01.pphosted.com
-	[148.163.157.133]) by usflmia-gw2.delphi.com with smtp
-	(TLS: TLSv1/SSLv3,256bits,ECDHE-RSA-AES256-GCM-SHA384)
-	id 268c_ec46_de930386_4a64_496d_8791_ac7ac8df037e;
-	Thu, 25 Jul 2019 07:19:34 -0400
-Received: from pps.filterd (m0109021.ppops.net [127.0.0.1])
-	by mx0a-00275a01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id
-	x6PBEboX018477
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 07:19:34 -0400
-Received: from nam05-co1-obe.outbound.protection.outlook.com
-	(mail-co1nam05lp2055.outbound.protection.outlook.com [104.47.48.55])
-	by mx0a-00275a01.pphosted.com with ESMTP id 2ty9628dk8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NOT)
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 07:19:34 -0400
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com
+	(mail-eopbgr750045.outbound.protection.outlook.com [40.107.75.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60803E00CAA
+	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 07:31:17 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
-	b=oObmsk8vMPZqjWVnvCeDzQJtojGZtMrz5GVThxNAofj6JQttSX+83G6dtPf3v6dA2HWlt4INRl3i41DCyQpX3/wMpAF9prRxN0Jguz7BEHnZzIyT++bEBfKopv2/gdDWpuO8T75MWVdgCwPtZD5zo4PcrFgHgbhFHym2VrL0ecMEJZdHAll8g9jHK0hu6qTIS45xu9ihjwjqnlP2cmdzn3Tk/5dvBg2jxR9/pTCi7pnQEfKq5vrniQ2N20hqj3O1O2iJVI+JZEka4oC/0KDrFh8/gsy590dAwaI+5QD5jR3SemNwjBHswth5tCy/+WTZQZnsZdvM/lhq3ze0nQf+8w==
+	b=Hnt1R7/XQjQhm2cRcfc/nPfLN2T6dBaTFsggLLlfSyp0viXC7Xg2MxA/srbhhHv4Q+eBbKNT6Vi2Qm9eIQiWeZ2oXLyam2NksU1BiF2puoF/7Clvn5diNeq7U5yvIwn+pesQGDUkjGNxxrDJ/6n5UPqYPLZr2300QZQf6zz+uBrcDpZ+OU7pmuDTaY+6nS8uT1xoYQV2I72gXAW0+G12rsUSUxAuSRNAyXTTfKratUjSMW24MPKoykZ2RGxfK9BCuKB5fvM6o/sU7THRrQE1kgHnFdWCHVoOa08/lmsKiyHfVtEBSThA7Cuyd0WiVk7NzJA26ldslrkIrCKFVu4zIQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
 	s=arcselector9901;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=ms6aEzeh/AEHLSLsbNAaB0/uIRaR4NN0gPt7BW0Tk4g=;
-	b=iPrnVA7GxfKZ9BeJ9xNnyBRcWgIfyoWLL/wZJ07pfyuq3x0ma19+YdwLWVNF1XOTgammoW7+Ae6OYAbwmUh6qAL+yxEqYBEk8mLln/ZsNu61ycMtzq1qKplV1T9pRKkC/i1uDR+Iuz94TUDu0z4CLSEZw2cq+YfvRXdAG9uBLlP7Icu5znq89G/wCWqTjfHh1GI1oPj7SWjz7eJHBlpwqPIla32t5xFCa5ApUcSav6T0owXwd6qGMyHU2tCWrnqs/tu9huABQMlDgwDEtXBxKdvKBrPza7kNE28vsOqmCBM7s9EVLp0QOlzs/17S7TWykb+p11m6cmIEFPLN/w9RHQ==
+	bh=25XHQBo0cPEKhGpkWLVNFo8bcS1A0NSjIyzJznpUAis=;
+	b=a5YF7kMhGk+yVCH4pAP0zgsfr8OWpBP4CXfl0lmkIvvBFCDSNwjr+wBLStgluilluj+8Mglaa2pN4yhr27xILubfcDDboEXFRsXgr0yGAkbRFCNbhGehwHPXAYuQ//RG1MY9astDIuYOSrd4xegT5ukvW/7T6n3x45Q6w8v20C/82rTrTjUWh7o7zX+ELU54rZKIV74nsjucvMh3+m5pKuWc5L2XhQ7jovOfkew2kFztcaUqhWS8OWMj9J07PFkRv+LEOHtWBsfdOY2Gwez7LdDaARQl/Y7+McW2sVpTr/ROcytTg8JcmDozKAnMYn64nwLVEpSMf5mT+ACRzZFwqA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
-	smtp.mailfrom=aptiv.com;dmarc=pass action=none
-	header.from=aptiv.com;dkim=pass header.d=aptiv.com;arc=none
-Received: from MWHP197MB0045.NAMP197.PROD.OUTLOOK.COM (129.75.107.212) by
-	MWHP197MB0061.NAMP197.PROD.OUTLOOK.COM (129.75.107.216) with Microsoft
+	smtp.mailfrom=embedur.com;dmarc=pass action=none
+	header.from=embedur.com;dkim=pass header.d=embedur.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=embedur.onmicrosoft.com; s=selector2-embedur-onmicrosoft-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=25XHQBo0cPEKhGpkWLVNFo8bcS1A0NSjIyzJznpUAis=;
+	b=Sc2Eh1zMHvtrjiRFifV3YRCTPYIO/AsBkfmkx5tDatZzg5q+UgA7/ibJ6bgHvQnhCKkH3tNJWuzDRe1wbe+cEaJ0MGvSNR3YTxkvWhVk9DuKIYUqcuCqKJm9fpvwoCnizLCCIHFyrfx6QHwV4GVUm0GDPu3vR6FJVnnLbfbqZKA=
+Received: from CY4PR15MB1158.namprd15.prod.outlook.com (10.172.177.144) by
+	CY4PR15MB1381.namprd15.prod.outlook.com (10.172.159.151) with Microsoft
 	SMTP
 	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.2094.15; Thu, 25 Jul 2019 11:19:31 +0000
-Received: from MWHP197MB0045.NAMP197.PROD.OUTLOOK.COM
-	([fe80::68af:17fb:7215:c484]) by MWHP197MB0045.NAMP197.PROD.OUTLOOK.COM
-	([fe80::68af:17fb:7215:c484%7]) with mapi id 15.20.2094.017;
-	Thu, 25 Jul 2019 11:19:31 +0000
-From: "Tg, Harish" <harish.tg@aptiv.com>
+	15.20.2115.10; Thu, 25 Jul 2019 14:31:13 +0000
+Received: from CY4PR15MB1158.namprd15.prod.outlook.com
+	([fe80::f16f:be4d:9a7:c7bc]) by CY4PR15MB1158.namprd15.prod.outlook.com
+	([fe80::f16f:be4d:9a7:c7bc%7]) with mapi id 15.20.2115.005;
+	Thu, 25 Jul 2019 14:31:13 +0000
+From: Aravindhlal G.S.S <aravindhlalgss@embedur.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: how to stop applying patches in yocto project
-Thread-Index: AdVC2nOeCx4xe/toTL+Nl7f+O99BvQ==
-Date: Thu, 25 Jul 2019 11:19:31 +0000
-Message-ID: <MWHP197MB0045719E8455D080537BF7A1FBC10@MWHP197MB0045.NAMP197.PROD.OUTLOOK.COM>
-Accept-Language: en-GB, en-US
+Thread-Topic: nostamp is not working as expected
+Thread-Index: AdVC9V4XVgLqAUPZTmyBEnkP14M10Q==
+Date: Thu, 25 Jul 2019 14:31:13 +0000
+Message-ID: <CY4PR15MB1158F1C7932F08B6467E0AEED0C10@CY4PR15MB1158.namprd15.prod.outlook.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [1.6.70.242]
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=aravindhlalgss@embedur.com; 
+x-originating-ip: [61.16.140.206]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 45e2ac34-38cf-493a-9df5-08d710f1f726
+x-ms-office365-filtering-correlation-id: 5a6b18aa-5c98-41d0-26a4-08d7110cbed2
 x-microsoft-antispam: BCL:0; PCL:0;
 	RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);
-	SRVR:MWHP197MB0061; 
-x-ms-traffictypediagnostic: MWHP197MB0061:
+	SRVR:CY4PR15MB1381; 
+x-ms-traffictypediagnostic: CY4PR15MB1381:
 x-ms-exchange-purlcount: 2
-x-microsoft-antispam-prvs: <MWHP197MB00612370443A293555F127C2FBC10@MWHP197MB0061.NAMP197.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-microsoft-antispam-prvs: <CY4PR15MB1381793A345875B6F7ABF27FD0C10@CY4PR15MB1381.namprd15.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
 x-forefront-prvs: 0109D382B0
 x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(979002)(376002)(396003)(39860400002)(136003)(366004)(346002)(199004)(189003)(52536014)(3846002)(9326002)(71200400001)(71190400001)(68736007)(25786009)(316002)(66946007)(66476007)(66556008)(64756008)(66446008)(8676002)(76116006)(54896002)(476003)(6916009)(55016002)(6306002)(8936002)(81156014)(5640700003)(1730700003)(486006)(53936002)(9686003)(81166006)(86362001)(2351001)(66066001)(2501003)(74316002)(558084003)(7736002)(6436002)(186003)(2906002)(26005)(102836004)(6116002)(256004)(6506007)(33656002)(790700001)(14454004)(478600001)(7696005)(5660300002)(99286004)(969003)(989001)(999001)(1009001)(1019001);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:MWHP197MB0061;
-	H:MWHP197MB0045.NAMP197.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	SFS:(10009020)(346002)(376002)(39830400003)(136003)(396003)(366004)(199004)(189003)(54896002)(6116002)(3846002)(53936002)(790700001)(66066001)(5660300002)(9686003)(2501003)(25786009)(68736007)(99286004)(76116006)(14454004)(2351001)(486006)(7736002)(7696005)(52536014)(71190400001)(71200400001)(6436002)(102836004)(74316002)(26005)(8936002)(4744005)(256004)(5640700003)(86362001)(6916009)(66946007)(33656002)(6306002)(66446008)(2906002)(476003)(81156014)(81166006)(64756008)(66556008)(66476007)(55016002)(1730700003)(8676002)(186003)(316002)(478600001)(6506007);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:CY4PR15MB1381;
+	H:CY4PR15MB1158.namprd15.prod.outlook.com; FPR:; SPF:None;
 	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: aptiv.com does not designate
+received-spf: None (protection.outlook.com: embedur.com does not designate
 	permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: m65dBtpY1kqEB7+zFkkPO1sJBMhl6HbIHArzWhOpopvr09vnsMrVEjIp4bzTkKKEfiZOowoGZ4LpTtkT6juYTDbCgqCCifwOWVkZZ9pxDkOZY1jd9iSl9220a/Z9SKg+eJVS4ncdE3Qmh4Ci0CzQofuK7QilIgL4JIKTtQSrGFTZMnU9Jjmc0UGcDptXZGHAmm3gRKkDQrKcYLlti3i7aywj47cxiwgx9AY8pftNRXpRFcqzeSokPsZqSWQQ/W16zIQwvBiWiHD63TXN43vKtpWGfiVtyF2gteSUNp6ajrGIRckCLgRA86NvajRy8+QLLJTi0aBkekRmRG3Qo6BPaKwqFDS0L4VmVpz54pzgqeiIhiKIg46mQXO+pf3/NjgFJ3/SmlEdPsNWeBtS1jzhZqb70QypKm7ggxrSq0P+y3I=
+x-microsoft-antispam-message-info: 4B0IOD772v39VEKiw6fe3/BrNHF+afUTjUMf6DVf5eB/FtQFyeNWQDEmq+4tmjHr6D58VqzldY0B39VMUk62vcg8G9NDX2aUmm7sSZubmnpKnFRfaUjv6ipdTxzDl7XsISolZZ/oWUjq22/9tPTzVLLSb81gQjr0y/cASRaywzEgSvNGwwcH6Ias/ocS7UvEIdzFO11zNySXuFH8Z1NLa/uNNACW+AcEqMs8S3Dt04gfGfO3+/BCRSJUWDgdEi5nwFqkf4p8K1CEaYDiySuzQhsYzk/gEjxzXqbqaH/9bZmqDFd6xOp59l+D4aesmVsLSXmG9rE1BNx5JXAA48z/dJaAC6MjMyF/41bNlKjwgyT2Lq/0k9FG5IYN2U6SrIejMuSTilbvXzRZu4J1k3a0q6vHyNIOQDUHL0vxr8oZQD0=
 MIME-Version: 1.0
-X-OriginatorOrg: aptiv.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45e2ac34-38cf-493a-9df5-08d710f1f726
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jul 2019 11:19:31.4759 (UTC)
+X-OriginatorOrg: embedur.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5a6b18aa-5c98-41d0-26a4-08d7110cbed2
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jul 2019 14:31:13.3048 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 6b1311e5-123f-49db-acdf-8847c2d00bed
+X-MS-Exchange-CrossTenant-id: 3e7c9d67-afab-4694-94e1-af28129ed65f
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: harish.tg@aptiv.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHP197MB0061
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:, ,
-	definitions=2019-07-25_04:, , signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
-	priorityscore=1501
-	malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
-	clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
-	mlxlogscore=814 adultscore=0 classifier=spam adjust=0 reason=mlx
-	scancount=1 engine=8.0.1-1906280000 definitions=main-1907250135
-X-RCIS-Action: ALLOW
-X-MEG-POLICY: ALLOW
-Subject: how to stop applying patches in yocto project
+X-MS-Exchange-CrossTenant-userprincipalname: aravindhlalgss@embedur.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR15MB1381
+Subject: nostamp is not working as expected
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -121,26 +97,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 25 Jul 2019 11:24:29 -0000
+X-List-Received-Date: Thu, 25 Jul 2019 14:31:20 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_MWHP197MB0045719E8455D080537BF7A1FBC10MWHP197MB0045NAMP_"
+	boundary="_000_CY4PR15MB1158F1C7932F08B6467E0AEED0C10CY4PR15MB1158namp_"
 
---_000_MWHP197MB0045719E8455D080537BF7A1FBC10MWHP197MB0045NAMP_
+--_000_CY4PR15MB1158F1C7932F08B6467E0AEED0C10CY4PR15MB1158namp_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-         I have requirement that I shall not apply patches to the yocto pro=
-ject and then build u-boot, kernel and the images. Can u please help me? Ba=
-sically I need to revert back to PSDKLA-3.02 Release and without patches. P=
-lease guide me.
+Hi Yocto Experts,
 
+I wanted to run do_compile task every time and should not fetch from the ss=
+tate cache for the incremental builds. In the correspond recipe, I had set =
+do_compile[nostamp] =3D "1"  and still it does not run every time. It is re=
+-run only after clean sstate.
 
-Thanks,
-Harish.
+Am I missing something ? can you please help ?
 
---_000_MWHP197MB0045719E8455D080537BF7A1FBC10MWHP197MB0045NAMP_
+Thanks
+-Aravindh
+
+--_000_CY4PR15MB1158F1C7932F08B6467E0AEED0C10CY4PR15MB1158namp_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -158,14 +136,8 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@DengXian";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
@@ -201,18 +173,21 @@ div.WordSection1
 </head>
 <body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
 <div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I h=
-ave requirement that I shall not apply patches to the yocto project and the=
-n build u-boot, kernel and the images. Can u please help me? Basically I ne=
-ed to revert back to PSDKLA-3.02 Release and without patches. Please guide
- me.<o:p></o:p></p>
+<p class=3D"MsoNormal">Hi Yocto Experts,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I wanted to run do_compile task every time and shoul=
+d not fetch from the sstate cache for the incremental builds. In the corres=
+pond recipe, I had set
+<b><i>do_compile[nostamp] =3D &#8220;1&#8221;</i> </b>&nbsp;and still it do=
+es not run every time. It is re-run only after clean sstate.<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">Harish.<o:p></o:p></p>
+<p class=3D"MsoNormal">Am I missing something ? can you please help ?<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks<o:p></o:p></p>
+<p class=3D"MsoNormal">-Aravindh<o:p></o:p></p>
 </div>
 </body>
 </html>
 
---_000_MWHP197MB0045719E8455D080537BF7A1FBC10MWHP197MB0045NAMP_--
+--_000_CY4PR15MB1158F1C7932F08B6467E0AEED0C10CY4PR15MB1158namp_--
