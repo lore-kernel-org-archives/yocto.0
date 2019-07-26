@@ -1,41 +1,44 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <andy.pont@sdcsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83876E00C87; Thu, 25 Jul 2019 21:24:01 -0700 (PDT)
+	id 18D8CE00C87; Fri, 26 Jul 2019 03:47:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	MIME_QP_LONG_LINE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Thu, 25 Jul 2019 21:24:00 PDT
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F769E00BD5
-	for <yocto@yoctoproject.org>; Thu, 25 Jul 2019 21:24:00 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	25 Jul 2019 21:22:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,309,1559545200"; d="scan'208";a="198170482"
-Received: from sweizhen-mobl1.gar.corp.intel.com (HELO localhost.localdomain)
-	([10.255.154.145])
-	by fmsmga002.fm.intel.com with ESMTP; 25 Jul 2019 21:22:53 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 26 Jul 2019 16:20:31 +1200
-Message-Id: <cover.1564114407.git.paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 2.20.1
-MIME-Version: 1.0
-Subject: [layerindex-web][PATCH v2 000/129] Docker setup / misc fixes (cover letter only)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [216.40.44.38 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
+Received: from smtprelay.hostedemail.com (smtprelay0038.hostedemail.com
+	[216.40.44.38])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59099E00BD5
+	for <yocto@yoctoproject.org>; Fri, 26 Jul 2019 03:47:49 -0700 (PDT)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net
+	[216.40.38.60])
+	by smtprelay04.hostedemail.com (Postfix) with ESMTP id 0C29A180A68C0
+	for <yocto@yoctoproject.org>; Fri, 26 Jul 2019 10:47:48 +0000 (UTC)
+X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
+X-HE-Tag: note93_9cdee4406632
+X-Filterd-Recvd-Size: 3931
+Received: from [192.168.10.100] (unknown [5.133.40.160])
+	(Authenticated sender: andy.pont@sdcsystems.com)
+	by omf16.hostedemail.com (Postfix) with ESMTPA
+	for <yocto@yoctoproject.org>; Fri, 26 Jul 2019 10:47:47 +0000 (UTC)
+From: "Andy Pont" <andy.pont@sdcsystems.com>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+Date: Fri, 26 Jul 2019 10:47:44 +0000
+Message-Id: <em6add36a5-a095-434a-8cb6-09f00973e98b@andys-imac.local>
+User-Agent: eM_Client/7.2.35700.0
+Mime-Version: 1.0
+Subject: Shared area conflict
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Andy Pont <andy.pont@sdcsystems.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -44,311 +47,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 26 Jul 2019 04:24:01 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 26 Jul 2019 10:47:50 -0000
+Content-Type: multipart/alternative;
+	boundary="------=_MB0A908E8C-BE7A-4291-AE27-74EA433C1374"
 
-The Clear Linux* Dissector [1] is a special-purpose fork of the OE Layer
-Index codebase. During development a number of general-purpose fixes have
-been made, so I am now sending a slightly reworked set of these back to be
-merged into the layer index. Highlights:
+--------=_MB0A908E8C-BE7A-4291-AE27-74EA433C1374
+Content-Type: text/plain; format=flowed; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-* Enhanced docker/docker-compose setup with script for one-command
-  installation - this is now the preferred method of installation for
-  uses other than development, so the README documentation has been
-  updated accordingly.
-* User-selectable security questions for password resets
-* Fixes for spec file importing
-* Various minor security fixes
+Hello,=0A=0AWhen I try to bitbake core-image-minimal it is giving up with t=
+he =0Afollowing error:=0A=0AERROR: mesa-gl-2_18.1.9-r0 do_packagedata: The=
+ recipe mesa-gl is trying =0Ato install files into a shared area when those=
+ files already exist. =0AThose files and their manifest location are:=0A   /=
+home/me/Yocto/BeagleBoneBlack/tmp/pkgdata/beaglebone/runtime/libgbm=0A    =
+ (matched in manifest-beaglebone-libgbm.packagedata)=0A   =0A/home/me/Yocto/=
+BeagleBoneBlack/tmp/pkgdata/beaglebone/runtime/libgbm-dev=0A     (matched i=
+n manifest-beaglebone-libgbm.packagedata)=0APlease verify which recipe shou=
+ld provide the above files.=0A=0AI=E2=80=99ve tried one of the suggestions=
+ that it gives in the rather verbose =0Amessage that follows and nuked the =
+=E2=80=9Ctmp=E2=80=9D directory and rebuilt but with =0Ano further success=
+.  My local.conf contains:=0A=0APREFERRED_PROVIDER_libgbm =3D =E2=80=9Clibg=
+bm=E2=80=9D=0APREFERRED_PROVIDER_libgbm-dev =3D "libgbm-dev=E2=80=9D=0A=0AH=
+ow do I get it to stop complaining?=0A=0A-Andy.
 
-[1] https://github.com/intel/clear-linux-dissector-web
+--------=_MB0A908E8C-BE7A-4291-AE27-74EA433C1374
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Changes since v1:
+<html><head><style id=3D"css_styles">blockquote.cite { margin-left: 5px; ma=
+rgin-right: 0px; padding-left: 10px; padding-right:0px; border-left: 1px so=
+lid #cccccc }=0Ablockquote.cite2 {margin-left: 5px; margin-right: 0px; padd=
+ing-left: 10px; padding-right:0px; border-left: 1px solid #cccccc; margin-t=
+op: 3px; padding-top: 0px; }=0Aa img { border: 0px; }=0Ali[style=3D'text-al=
+ign: center;'], li[style=3D'text-align: right;'] {  list-style-position: in=
+side;}=0Abody { font-family: Verdana; font-size: 12px;   }</style></head><b=
+ody class=3D"plain"><div>Hello,</div><div><br /></div><div>When I try to bi=
+tbake core-image-minimal it is giving up with the following error:</div><di=
+v><br /></div><div>ERROR: mesa-gl-2_18.1.9-r0 do_packagedata: The recipe me=
+sa-gl is trying to install files into a shared area when those files alread=
+y exist. Those files and their manifest location are:</div><div>=C2=A0 /hom=
+e/me/Yocto/BeagleBoneBlack/tmp/pkgdata/beaglebone/runtime/libgbm</div><div>=
+=C2=A0 =C2=A0 (matched in manifest-beaglebone-libgbm.packagedata)</div><div=
+>=C2=A0 /home/me/Yocto/BeagleBoneBlack/tmp/pkgdata/beaglebone/runtime/libgb=
+m-dev</div><div>=C2=A0 =C2=A0 (matched in manifest-beaglebone-libgbm.packag=
+edata)</div><div>Please verify which recipe should provide the above files.=
+</div><div><br /></div><div>I=E2=80=99ve tried one of the suggestions that=
+ it gives in the rather verbose message that follows and nuked the =E2=80=9C=
+tmp=E2=80=9D directory and rebuilt but with no further success. =C2=A0My lo=
+cal.conf contains:</div><div><br /></div><div>PREFERRED_PROVIDER_libgbm =3D =
+=E2=80=9Clibgbm=E2=80=9D</div><div>PREFERRED_PROVIDER_libgbm-dev =3D "libg=
+bm-dev=E2=80=9D</div><div><br /></div><div>How do I get it to stop complain=
+ing?</div><div><br /></div><div>-Andy.</div>=0A</body></html>
 
-* Add a few more fixes:
-  import_otherdistro: handle non-UTF8 encoded spec files
-  import_otherdistro: try-specfile: handle files in current dir
-  dockersetup: fix error when printing URL with https enabled
-
-
-
-The following changes since commit dba1fbe5d1c5d8714d7ca3ca86c42972ebde128e:
-
-  RRS: add missing migration (2019-05-28 09:57:58 +1200)
-
-are available in the Git repository at:
-
-  git://git.yoctoproject.org/layerindex-web paule/dissector-backports
-  http://git.yoctoproject.org/cgit.cgi/layerindex-web/log/?h=paule/dissector-backports
-
-Amber Elliot (6):
-  docker: add setup script
-  admin.py: Add custom SiteAdmin model.
-  Upgrade django-registration to version 3.0.
-  Add user security questions
-  layerindex/urls.py: improve formatting
-  requirements.txt: Require secure version of Django.
-
-Paul Eggleton (122):
-  Add ability to hide branches
-  Split out recipe dependency handling to its own function
-  docker: Add docker-compose file
-  update_classic_status: recognise pythonhosted.org as python
-  update_classic_status: set category for KDE packages
-  update_classic_status: categorise perl packages
-  import_otherdistro: add description option
-  import_otherdistro: improve display of deleted items
-  dockersetup: formatting fixes
-  dockersetup: add some error checking to the setup script
-  dockersetup: tweak portmapping option and display port
-  docker/nginx*.conf: fix up indentation
-  docker: use quoted values
-  dockersetup: add HTTPS support and use by default
-  dockersetup: Show intro message
-  dockersetup: add letsencrypt support
-  nginx: set some limits for DDOS protection
-  docker: set mariadb wait_timeout to upstream default
-  dockerignore: add docker files and tests
-  docker: enable user/password for RabbitMQ server
-  dockersetup: move HTTPS code to its own function
-  dockersetup: support update/reinstall mode
-  dockersetup: fix auto-generated passwords
-  dockersetup: warn if http proxy specified without https
-  dockersetup: use separate db account with lower privileges
-  dockersetup: use with open in readfile/writefile
-  .gitignore: add some more files/dirs
-  dockersetup: support importing gzip compressed database dumps
-  docker: pass through options for migrate script
-  docker: restart services automatically unless stopped
-  Update TableSorter to latest version of active fork
-  Disable caching on auth views
-  docker: enable SECURE_BROWSER_XSS_FILTER
-  Use shell=False where possible with utils.runcmd()
-  dockersetup: import database dump before running migrations
-  dockersetup: move superuser account creation to the end
-  dockersetup: set site info and email host
-  Rework README documents
-  import_layers: fix URL construction
-  Add a script to create initial db dump
-  dockersetup: add option to skip database migrations
-  dockersetup: enable error report emails
-  Disable autocomplete on sensitive fields
-  docker: Increase nginx max upload size
-  docker: increase gunicorn worker timeout to handle large images
-  ClassicRecipeDetailView does not need a form
-  Add ability to disposition comparison patches
-  Add access controls to PatchDispositionAdmin
-  import_otherdistro: refactor spec file import
-  import_otherdistro.py: avoid deleting all records if no spec files found
-  import_otherdistro.py: create layer/branch if they don't exist
-  Add sha256sum to Source model
-  Record sha256sum of other distro source files
-  dockersetup: require email address
-  import_otherdistro: optionally store local path
-  import_otherdistro: fix handling of garbage in description values
-  Determine if spec file patches are actually applied and striplevel
-  docker-compose: fix missing DATABASE_USER for layerscelery service
-  docker: add dependencies for derivative import
-  tasks: support running non-shell commands
-  tasks: fix incorrect closing tag on button
-  Enable task log/progress to work within docker
-  tasks: handle carriage returns in task output
-  Record configure options
-  Fix erroneously importing package fields from spec files
-  docker: use python3 in migrate script
-  docker: improve nginx https configuration security
-  docker: Increase max packet size to 128M
-  tasks: disable broker heartbeat to workaround connection issues
-  dockersetup: 'easy' subprocess conversions to not use shell=True
-  dockersetup: require python 3.4.3 or later
-  More shell quoting
-  dockersetup: remove redundant code to update non-HTTPS lines in nginx-ssl.conf
-  dockersetup: update nginx-ssl.conf in update mode
-  Reimplement simplesearch
-  admin: allow searching ClassicRecipes by cover_pn
-  requirements.txt: update versions
-  Set permissions for all volumes
-  docker: ensure application files are owned by root
-  Fix incorrect URL name leading to internal server error
-  Add license / note for django-registration-templates
-  Add LICENSE texts for distributed components
-  COPYING.MIT: update
-  admin: allow editing ClassicRecipe fields
-  Fix progressive task output when it contains entity-escaped characters
-  Try to make running background commands more responsive
-  Add a workaround for ConnectionResetErrors in task_log_view()
-  docker: delete docker directory from /opt/layerindex
-  Use "Packages" in tab name on main comparison pages instead of "Recipes"
-  Include branch name in "Not being applied" patch tooltip
-  Tone down Axes aggressiveness
-  dockersetup: use docker-compose exec instead of docker exec
-  dockersetup: Use -T option with docker-compose exec
-  dockersetup: obtain and use the real project name instead of hardcoding
-  dockersetup: add option to specify docker-compose project name
-  Replace custom pagination with django-bootstrap-pagination
-  dockersetup: do not set site name if a database file is specified
-  dockersetup: add option to disable adding admin user
-  docker: remove hardcoded container names
-  README: add pointer to import layer index data
-  requirements.txt: update
-  check_requirements: write out output of safety check
-  check_requirements.sh: improve output for cron usage
-  Fix axes lockout not working
-  dockersetup: handle http/https port properly
-  dockersetup: show a warning if no email host specified
-  dockersetup: refactor arguments handling slightly
-  dockersetup: support encryption/authentication for SMTP
-  check_requirements: make output file naming a bit more consistent
-  .gitignore: add a few more files
-  docker: disable client MIME type sniffing
-  check_requirements.sh: more tweaks
-  Tweak password reset security question handling
-  Fix a couple of Edit Profile form message bugs
-  requirements.txt: update pillow
-  auth_views: minor indentation fix
-  Fix admin logout login button redirection
-  Set string representation for UserProfile & SecurityQuestionAnswer models
-  Optionally allow accounts without security questions to reset password
-  import_otherdistro: handle non-UTF8 encoded spec files
-  import_otherdistro: try-specfile: handle files in current dir
-  dockersetup: fix error when printing URL with https enabled
-
-Terri Oda (1):
-  dockersetup: quote user input sent to subprocess
-
- .dockerignore                                 |    8 +
- .gitignore                                    |   15 +
- COPYING.MIT                                   |    5 +-
- Dockerfile                                    |    8 +-
- README                                        |  278 +-
- README.devel                                  |  121 +
- check_requirements.sh                         |   48 +-
- docker-compose.yml                            |   95 +
- docker/README                                 |   99 +-
- docker/certs/README                           |    7 +
- docker/migrate.sh                             |    2 +-
- docker/nginx-ssl.conf                         |   65 +-
- docker/nginx.conf                             |    6 +-
- docker/settings.py                            |   24 +-
- dockersetup.py                                |  785 ++++
- layerindex/admin.py                           |   31 +-
- layerindex/auth_forms.py                      |  133 +-
- layerindex/auth_views.py                      |   91 +-
- layerindex/context_processors.py              |    6 +-
- layerindex/forms.py                           |   75 +-
- layerindex/middleware.py                      |   15 +
- layerindex/migrations/0028_branch_hidden.py   |   20 +
- .../migrations/0030_securityquestion.py       |   46 +
- .../0031_securityquestion_populate.py         |   25 +
- .../migrations/0032_patchdisposition.py       |   31 +
- .../migrations/0034_source_sha256sum.py       |   20 +
- .../migrations/0036_layerbranch_local_path.py |   20 +
- layerindex/migrations/0037_patch_applied.py   |   20 +
- .../migrations/0038_patch_striplevel.py       |   20 +
- .../migrations/0041_recipe_configopts.py      |   20 +
- layerindex/models.py                          |   53 +
- layerindex/recipeparse.py                     |   42 +
- layerindex/securityquestions.py               |    6 +
- layerindex/simplesearch.py                    |   39 -
- layerindex/static/LICENSE.bootstrap           |   21 +
- layerindex/static/LICENSE.chartjs             |    9 +
- layerindex/static/LICENSE.diff2html           |   20 +
- layerindex/static/LICENSE.jquery              |   36 +
- layerindex/tasks.py                           |   13 +-
- layerindex/templatetags/addurlparameter.py    |   29 -
- layerindex/templatetags/pagination.py         |   52 -
- layerindex/tools/import_layer.py              |   10 +-
- layerindex/tools/import_layers.py             |    2 +-
- layerindex/tools/import_otherdistro.py        |  283 +-
- layerindex/tools/import_project.py            |    8 +-
- layerindex/tools/initial_db_dump.sh           |   67 +
- layerindex/tools/site_name.py                 |   71 +
- layerindex/tools/update_classic_status.py     |   10 +-
- layerindex/update.py                          |    4 +-
- layerindex/update_layer.py                    |   46 +-
- layerindex/urls.py                            |   79 +-
- layerindex/utils.py                           |   43 +-
- layerindex/views.py                           |  187 +-
- requirements.txt                              |   38 +-
- rrs/static/js/jquery.tablesorter.js           | 3945 ++++++++++++-----
- rrs/tools/rrs_maintainer_history.py           |    8 +-
- rrs/tools/rrs_upgrade_history.py              |   12 +-
- rrs/tools/rrs_upstream_email.py               |    2 +-
- rrs/tools/upgrade_history_internal.py         |   16 +-
- settings.py                                   |   11 +-
- templates/base.html                           |    6 +-
- .../activate.html                             |    2 +-
- .../activation_complete.html                  |    2 +-
- .../activation_email_body.txt}                |    2 +-
- .../activation_email_subject.txt              |    0
- .../activation_failed.html                    |   13 +
- .../registration_complete.html                |    0
- .../registration_form.html                    |    2 +-
- templates/layerindex/bulkchangesearch.html    |    6 +-
- templates/layerindex/classes.html             |    6 +-
- templates/layerindex/classicrecipedetail.html |   65 +
- templates/layerindex/classicrecipes.html      |   10 +-
- templates/layerindex/classicstats.html        |    2 +-
- .../layerindex/comparisonrecipebase.html      |   29 +-
- templates/layerindex/distros.html             |    6 +-
- templates/layerindex/history.html             |    6 +-
- templates/layerindex/layers.html              |    6 +-
- templates/layerindex/machines.html            |    6 +-
- templates/layerindex/profile.html             |    6 +
- templates/layerindex/recipes.html             |    6 +-
- templates/layerindex/reviewlist.html          |    6 +-
- templates/layerindex/task.html                |   21 +-
- templates/layerindex/updatelist.html          |    6 +-
- templates/pagination.html                     |   57 -
- templates/registration/LICENSE                |   21 +
- templates/registration/account_lockout.html   |    6 +
- .../{logout.html => logged_out.html}          |    0
- templates/registration/login.html             |    6 +-
- .../registration/password_change_form.html    |    2 +-
- .../registration/password_reset_complete.html |    2 +-
- .../registration/password_reset_confirm.html  |    8 +-
- .../registration/password_reset_email.txt     |    2 +-
- .../registration/password_reset_fail.html     |    6 +
- .../registration/password_reset_form.html     |    2 +-
- urls.py                                       |   26 +-
- 95 files changed, 5910 insertions(+), 1743 deletions(-)
- create mode 100644 README.devel
- create mode 100644 docker-compose.yml
- create mode 100644 docker/certs/README
- create mode 100755 dockersetup.py
- create mode 100644 layerindex/middleware.py
- create mode 100644 layerindex/migrations/0028_branch_hidden.py
- create mode 100644 layerindex/migrations/0030_securityquestion.py
- create mode 100644 layerindex/migrations/0031_securityquestion_populate.py
- create mode 100644 layerindex/migrations/0032_patchdisposition.py
- create mode 100644 layerindex/migrations/0034_source_sha256sum.py
- create mode 100644 layerindex/migrations/0036_layerbranch_local_path.py
- create mode 100644 layerindex/migrations/0037_patch_applied.py
- create mode 100644 layerindex/migrations/0038_patch_striplevel.py
- create mode 100644 layerindex/migrations/0041_recipe_configopts.py
- create mode 100644 layerindex/securityquestions.py
- delete mode 100644 layerindex/simplesearch.py
- create mode 100644 layerindex/static/LICENSE.bootstrap
- create mode 100644 layerindex/static/LICENSE.chartjs
- create mode 100644 layerindex/static/LICENSE.diff2html
- create mode 100644 layerindex/static/LICENSE.jquery
- delete mode 100644 layerindex/templatetags/addurlparameter.py
- delete mode 100644 layerindex/templatetags/pagination.py
- create mode 100755 layerindex/tools/initial_db_dump.sh
- create mode 100755 layerindex/tools/site_name.py
- rename templates/{registration => django_registration}/activate.html (77%)
- rename templates/{registration => django_registration}/activation_complete.html (62%)
- rename templates/{registration/activation_email.txt => django_registration/activation_email_body.txt} (83%)
- rename templates/{registration => django_registration}/activation_email_subject.txt (100%)
- create mode 100644 templates/django_registration/activation_failed.html
- rename templates/{registration => django_registration}/registration_complete.html (100%)
- rename templates/{registration => django_registration}/registration_form.html (93%)
- delete mode 100644 templates/pagination.html
- create mode 100644 templates/registration/LICENSE
- create mode 100644 templates/registration/account_lockout.html
- rename templates/registration/{logout.html => logged_out.html} (100%)
- create mode 100644 templates/registration/password_reset_fail.html
-
--- 
-2.20.1
-
-
+--------=_MB0A908E8C-BE7A-4291-AE27-74EA433C1374--
