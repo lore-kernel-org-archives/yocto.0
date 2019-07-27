@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 72768E00DD1; Fri, 26 Jul 2019 18:45:35 -0700 (PDT)
+	id E18F4E00AE6; Sat, 27 Jul 2019 09:33:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,52 +13,53 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.171 listed in list.dnswl.org]
+	*      [209.85.160.176 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com
-	[209.85.160.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E008EE00C09
-	for <yocto@yoctoproject.org>; Fri, 26 Jul 2019 18:45:34 -0700 (PDT)
-Received: by mail-qt1-f171.google.com with SMTP id l9so54423079qtu.6
-	for <yocto@yoctoproject.org>; Fri, 26 Jul 2019 18:45:34 -0700 (PDT)
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com
+	[209.85.160.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7587E0049C
+	for <yocto@yoctoproject.org>; Sat, 27 Jul 2019 09:33:03 -0700 (PDT)
+Received: by mail-qt1-f176.google.com with SMTP id z4so55749109qtc.3
+	for <yocto@yoctoproject.org>; Sat, 27 Jul 2019 09:33:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=8qM7Hz3Vn0oYR5fjih8aBBB6mFcCfWdWbWGvrwLD3eo=;
-	b=krL2uPA4H8dvIF/YHR0iuFZ3TXMAqlGJrA2BEFDvLL5vMPXvH1VIq3B0uNVBpeNKZO
-	O1l9TVTUrK+SJdKDo0cgn2WcLmWHBnZSiDl+iRus1q66wgb+YtqWqNJK/8MSouoaJiRK
-	BECTtLt/QtXYv3d4TfmFBqQYVq/A/xk0V4jleNSGEPlkvnQc03E31WjmtKlNX6uiZP1J
-	TuRIVa3wD61LtCb4aT1ZPgfB/o9AUFzeGf+TTKI+l2pJXUZW5wXt5YscMD2Q8VK88hLM
-	77S6hcazWwxkks2bNxGBBiiZJIxdvRUknD18rHp8Xg1roncCaLnd1vqw3lcNBorLF0Lc
-	v0XQ==
+	:cc:content-transfer-encoding;
+	bh=R/alpEGtyzIv/iQHTT/+lfkXVnS7EOazGxhqCiuJ/ro=;
+	b=ntDZOQCLnOoqXC6agqrX2w4YXuPsYF4vdHFSBcu5kH2i5qWDRyvRxt32QZvGvWAogt
+	DycGMVdeDG+/N5MNpb/v7jMdI27vG0/DmAvri9xrtd/4g6bNMXrFfr3A4pvSOfwQpP8W
+	Jm1Z4QLpDPfWgjuQk1Da7NFrCf0SfLWaMkUiM+xMgCYm6Eq6y6ODKTGCCR6FeZMEbDuE
+	+rKQCDYwV7hpbTzkL7tOg74LoMX4WJy9fSmN1+mq7ZK/73UW/hL0zLNTreleuR1uFipy
+	YxJYpYXsE6WRokKjahw0aE3bfSq0eV8C3n49mMKir/sG36ch8RktGbSI/fI3pdtQEqCT
+	mz0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=8qM7Hz3Vn0oYR5fjih8aBBB6mFcCfWdWbWGvrwLD3eo=;
-	b=iy1JNmKs+spl2v826LYtY+wtvSrUmAGCQ3SSRjxWjahr84hxKXnKf4QPcNCgBibAMO
-	fcLD8x3UFUuvPs1STVI1w36tYm54ZdeAXph8YbYiI9EZe/pp4RJEPUK74sa3TApArwYP
-	7Rc2k/L5Vu1GNtCE2x2EcU5JkhC2L+QSaWzNgfbnI+xn/KiCDJKySYXoPrnla97OKxLS
-	uNaIXI5gDsV37CFRZIhNgVjCevMqVDZw+RLagO3cV52YEVwBoSKDkGEWX1uU6f5C4jjc
-	UUtFZ9x8QjdbQx74Vy+VTJHcd1+JJX+kALAd6p9WqtWexDG/frBfhLmUHU790yS4kLqV
-	9aYw==
-X-Gm-Message-State: APjAAAXGbXcU6vuy7rGydD0FSFHMrO1CATtX9WF8Piq645hoOp1YnIWa
-	hpze1gfTtbMXeiEUROI1/HmFVXH/eD5Xmi980QWI+4Q1
-X-Google-Smtp-Source: APXvYqyrQXfEgmkhWlSYaziyripdYkS50WI/bPNeG4uLSEfImpk0fIeXjZVRIJofMgOHXxt9tXfzH+WEoLEYFNML3CQ=
-X-Received: by 2002:ac8:525a:: with SMTP id y26mr68606754qtn.378.1564191933843;
-	Fri, 26 Jul 2019 18:45:33 -0700 (PDT)
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=R/alpEGtyzIv/iQHTT/+lfkXVnS7EOazGxhqCiuJ/ro=;
+	b=PYh8pOzRlwBNfNWP89ZDZ1olQNRA1Kq3greG9zECbBvvi25ngkEoCOGU9ZtIlBs8v3
+	hZSVKCuIx/Bjsx0bHReZ96lkrT2SLdo/2OHblL1aycmq85UTVV05d/INyLqE9mxqBpXN
+	dFKj3S5vQDN6Rebc4KL51LvXAQ0HMRDfWIV2CyPmOQUEK1eEH6vIc9KQqrBMGc5W5jpA
+	bf/9F7VhWjDVuH1SjvK3dZVKsEEMEzNIF7k6q/f7fCAEeB1Z/yKY6lWoTaBhi+hJSUWt
+	g3HG8Qhx51PvWLqE2juI0B2U2B4+G2D40NXEb6Uh7p7viJTuc4OBgYNMfANg0Z9RCusm
+	EeOA==
+X-Gm-Message-State: APjAAAV35sVo41b0weJDScTjRQEafIr89u+PMBpoYizHj0r8blvHpKm6
+	oq8QyOwfnHldARywtyRDGxfhu3LAx1MQd06BhhCfxokB
+X-Google-Smtp-Source: APXvYqxRjCQ1b7uVUAUywDbVm4Utga1BXNQJ0tWN+h/JMvRar1onDAgaEdnpLFUVOFTVcR21khtX4aX+o9l1tgkzCWg=
+X-Received: by 2002:ac8:525a:: with SMTP id y26mr70812279qtn.378.1564245182639;
+	Sat, 27 Jul 2019 09:33:02 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAFSZm+ifrDXbzfNCqv+uremHoejuxL5C-9xhmDjduHFxO9Nivw@mail.gmail.com>
-In-Reply-To: <CAFSZm+ifrDXbzfNCqv+uremHoejuxL5C-9xhmDjduHFxO9Nivw@mail.gmail.com>
+References: <em6add36a5-a095-434a-8cb6-09f00973e98b@andys-imac.local>
+In-Reply-To: <em6add36a5-a095-434a-8cb6-09f00973e98b@andys-imac.local>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 26 Jul 2019 18:45:17 -0700
-Message-ID: <CAMKF1spRO+_sP2J-jZ1vzBFBVA+nAQZymvz2ie5uCVBjdPsDAQ@mail.gmail.com>
-To: Aaron Cohen <aaron@assonance.org>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: RDEPENDS in a containerized world
+Date: Sat, 27 Jul 2019 09:32:36 -0700
+Message-ID: <CAMKF1spg0j7VaRq_j=CywWMEg4=82QhEanqFMktT5xppSKGE_A@mail.gmail.com>
+To: Andy Pont <andy.pont@sdcsystems.com>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: Re: Shared area conflict
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,35 +71,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 27 Jul 2019 01:45:35 -0000
+X-List-Received-Date: Sat, 27 Jul 2019 16:33:05 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 26, 2019 at 10:36 AM Aaron Cohen <aaron@assonance.org> wrote:
+On Fri, Jul 26, 2019 at 3:48 AM Andy Pont <andy.pont@sdcsystems.com> wrote:
 >
-> I'm not sure if this is the proper venue, but I'll send it here hoping for any insight.
+> Hello,
 >
-> I'm developing a containerized system. Ideally the host will be somewhat minimal, and most of the functionality of the system will run inside docker containers.
+> When I try to bitbake core-image-minimal it is giving up with the followi=
+ng error:
 >
-> I have most of this working to some extent now, but am beginning to run into an issue.
+> ERROR: mesa-gl-2_18.1.9-r0 do_packagedata: The recipe mesa-gl is trying t=
+o install files into a shared area when those files already exist. Those fi=
+les and their manifest location are:
+>   /home/me/Yocto/BeagleBoneBlack/tmp/pkgdata/beaglebone/runtime/libgbm
+>     (matched in manifest-beaglebone-libgbm.packagedata)
+>   /home/me/Yocto/BeagleBoneBlack/tmp/pkgdata/beaglebone/runtime/libgbm-de=
+v
+>     (matched in manifest-beaglebone-libgbm.packagedata)
+> Please verify which recipe should provide the above files.
 >
-> How do I handle runtime dependencies that I "know" are provided by the host?
+> I=E2=80=99ve tried one of the suggestions that it gives in the rather ver=
+bose message that follows and nuked the =E2=80=9Ctmp=E2=80=9D directory and=
+ rebuilt but with no further success.  My local.conf contains:
 >
-> For example, I have one particular application that requires gpsd at runtime.
+> PREFERRED_PROVIDER_libgbm =3D =E2=80=9Clibgbm=E2=80=9D
+> PREFERRED_PROVIDER_libgbm-dev =3D "libgbm-dev=E2=80=9D
 >
-> I know that gpsd is installed on the host, so would prefer that it not be installed again in the docker container for this application.
->
-> Do I have to edit the recipe for the application and remove the RDEPENDS="gpsd" line, or is there some more clever way that I can specify that the RDEPENDS has been fulfilled for the container that is being built?
+> How do I get it to stop complaining?
 >
 
-The build-system is constructing a platform image and therefore it
-thinks as if it will run on bare-metal, rdeps are for ensuring that it
-does not have those dependencies missing. In your case
-the images is contained so you have to teach that to the build system.
-Maybe via a bbappend remove the runtime dependency and lower the QA
-guards to ignore it for given recipe.
+there are two recipes building/installing same files. You have to
+avoid conflicts via either removing them from one recipe or not
+installing
+them
 
-> Thanks,
-> Aaron
+> -Andy.
 > --
 > _______________________________________________
 > yocto mailing list
