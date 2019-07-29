@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <wpdster@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ED6ABE00C94; Mon, 29 Jul 2019 07:04:31 -0700 (PDT)
+	id 5F3E2E00CD2; Mon, 29 Jul 2019 07:53:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,56 +10,51 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
+	provider *      (wpdster[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.175 listed in list.dnswl.org]
+	*      [209.85.222.196 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com
-	[209.85.160.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B49FCE00931
-	for <yocto@yoctoproject.org>; Mon, 29 Jul 2019 07:04:30 -0700 (PDT)
-Received: by mail-qt1-f175.google.com with SMTP id r6so55531346qtt.0
-	for <yocto@yoctoproject.org>; Mon, 29 Jul 2019 07:04:30 -0700 (PDT)
+Received: from mail-qk1-f196.google.com (mail-qk1-f196.google.com
+	[209.85.222.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50F09E00C94
+	for <yocto@yoctoproject.org>; Mon, 29 Jul 2019 07:53:24 -0700 (PDT)
+Received: by mail-qk1-f196.google.com with SMTP id d15so44302453qkl.4
+	for <yocto@yoctoproject.org>; Mon, 29 Jul 2019 07:53:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=Pehb2x5rlZJf3VxvGXdjKTtlwG5NywaZuGb1HXHFZlc=;
-	b=oKH36Ehla52kHTJZxipmTVv85PS9MbOh394Xm/fqAutSGbWTrpnDElNotlU++tfhFN
-	6MAMMhA/xSy2IQ2/+t+K2hHpngv8ru5p02p4dc4cEKiLJWJMkHTFwOApW1v+L0Xv6vML
-	9+zPk8/ADVbJvmWfznMjMI6tBpU86/ucT2A0IQriSDsdVQWFXZ+ZVPT+cZRETVdU7J5J
-	7wWwoPo/0P40adDEGeFBdjo3+45CfJZAWzO0+ejZRtljNvmNq/i9wtNGcRZZAM/BtM+W
-	1Tf6HG5khm+WXKAqq52nyNue9hE8n5QiF6nlMH9nT5Z3ikx00Q5D6xsE0WzL2VV52co1
-	n/Cw==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=AFkHFy6jgMaJTnnKQ8ApEvc4Gubj4FIqqSnXFeMD5wU=;
+	b=hXfUWaSTNMLPw4oikOJaV4gCePEbWtstQO/M8YPzlAULlfkmnbjx+MfS5n+utMOujw
+	tt5KZtNIbA2H1Sa2FSlKqFfkFF9hKd11gUcknIxgS7gxGnrcFJmD46NjSv9cGjN/t7gL
+	T8XYcIC0p+1wL9Ua+OwPjs8EAF8fP+F7BQgMfK+TEjN5W9yZpFa08uSWuZrLrMdH1GL4
+	t9ZlPEzqiF7nEW3Uam81wKLsnP2zH4HOjudQA/AOtOZ+MDu74wfMd1FcNMBfyhrCqTex
+	ysM4lcGEcOu4zLKR7y4+Xqub4xhR6w83ly+hTWbgaR3p1A1YKKjGYijtkaPxvltjD3Fh
+	G7Ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=Pehb2x5rlZJf3VxvGXdjKTtlwG5NywaZuGb1HXHFZlc=;
-	b=Nb44sQX35Z26ar8LwEfkS/SPAL8vSbKuacgrszB3xFFqvGfRK06U8rsJ+PODzul5nO
-	S3zbnv9kKPVPIufm3Y53hJYOVV6RJA3kl0a0jAYJ52m1JIncqVlikOfYZtvttbQhNPxA
-	eFgErbEOxptb/EOd7TM/Gs6+M6gA7uD+glDbIGRDPgX48D5Ul6a60z8AnZJazsxU1art
-	tpV4KVN9ZiESfKyVwU8LqVJEJvYcG0gCqXoLARHRSyv1jCxNCi0F5Dm40mmZEV46wi+k
-	sj5Vt12NTNm9OuYVsEDA1oa1KrKvI6M1G1coMftMjR/S6pnHFKYhFWCELBii0akaSjV6
-	fEMQ==
-X-Gm-Message-State: APjAAAV/fQKvm75cIWKQXV5l6SBHiFwN+bZWEX1h+iMdafZ+C6+tNILw
-	cSQTVqRuGZcYRtj8cIHCRELkRRe2SDMLuEgbOyaBF16w
-X-Google-Smtp-Source: APXvYqzwRw62jGp2/i943h0K0sMOEt60mmx/6omGcHlJtmWqxDar4a95D3ejqxVj55d3+kHXltQd8zJlbzCUAtkmDFE=
-X-Received: by 2002:aed:3644:: with SMTP id e62mr75680383qtb.80.1564409069613; 
-	Mon, 29 Jul 2019 07:04:29 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=AFkHFy6jgMaJTnnKQ8ApEvc4Gubj4FIqqSnXFeMD5wU=;
+	b=YID6q0U1VfYX7lPoYXTKcRdhXi373kQLuq+aRX8yUkrbQMYKz0m0hTFT2gmBsdQ7JT
+	cp9bT1mrXBnuCcSb+tlH9AlWVA9AUQM7MJ1nSpdCa1Ml6vxAZ3yes+NGVx4caTcgkXWF
+	/hA30lv52YdFVUx1gUt10sW0mMIRs/B2LdYz/LC/EB1+uDwC6MdqmkwGlYGHy6ORLtx8
+	tIhzBGz+a33e7E6vZIRmhcPRENdLKhofiKhvZn/ZQkdbIlRX4auQRWza7y9uVCHGDuRq
+	Ic5PwMZB+DxI2v0gdIXyQYKpSIVByzkNc9c1nnm9IWzP14ILPS92ljKeVXVhsv17bsXm
+	VRsQ==
+X-Gm-Message-State: APjAAAXQBsLmMl94MH+wWMfWuH+zc3AHCe1CdcA+vxsqlQ8CU55rMbun
+	1APIqrQP4RMDh+647are29QVk/teW9WPJQzV/Glz6ugUVD0=
+X-Google-Smtp-Source: APXvYqxnd6X30W66mRUUV7vXp6lvLfM0xOSujERxPuJviGiWhyyx9ogyEZ4LnARCr9sjXexZ/I/6Zm8U15BlixxKMkI=
+X-Received: by 2002:a37:660d:: with SMTP id a13mr46210122qkc.36.1564412003376; 
+	Mon, 29 Jul 2019 07:53:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <CABjzrPQGehM6Vb-5UgvhE1tM5nEj90vpZM_2ZcjA0+eQ_2k5oA@mail.gmail.com>
-In-Reply-To: <CABjzrPQGehM6Vb-5UgvhE1tM5nEj90vpZM_2ZcjA0+eQ_2k5oA@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 29 Jul 2019 07:04:13 -0700
-Message-ID: <CAMKF1sqd0=K6kqKit-DFSp6hJ_-E37x87NpXZjafBV66kCisJA@mail.gmail.com>
-To: Shravan Singh <shravan@bluesparq.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Meta-raspberrypi
+From: Patrick Doyle <wpdster@gmail.com>
+Date: Mon, 29 Jul 2019 10:52:57 -0400
+Message-ID: <CAF_dkJAkv49GRCJDHwMJzTRKJ=QW37ajt-ETvoHmz2EPv5DVow@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Why does enabling initramfs pull eudev into my build?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,61 +66,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Jul 2019 14:04:32 -0000
+X-List-Received-Date: Mon, 29 Jul 2019 14:53:25 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 29, 2019 at 2:15 AM Shravan Singh <shravan@bluesparq.com> wrote=
-:
->
-> Hello All,
->
-> I am trying to create a base image for raspberry-pi cm3(compute module 3)
->
-> I am using warrior-21.0.1
-> I downloaded meta-raspberry-pi from  https://git.yoctoproject.org/git/met=
-a-raspberrypi
-> I added the layer in bblayer.conf and I have changed the machine variable=
- in local.conf
-> to raspberrypi-cm3
-> I am using oe-init-build script to generate the base files
->
-> Now when I run the command
-> bitbake core-image-base
->
-> I get the below mentioned error
-> Error: No recipes available for:
-> /home/blue/yacto/meta-raspberrypi/recipes-bsp/u-boot/u-boot_2019.07.bbapp=
-end
-> /home/blue/yacto/meta-raspberrypi/recipes-multimedia/gstreamer/gstreamer1=
-.0-omx_1.16%.bbappend
->
->
-> Any help with this?
+Did that get your attention? :-)
 
-always post the Build Configuration printed by bitbake on top, When
-you add layers ensure that the branches
-match to core layer e.g. if you are using warrior release for
-core/poky then use same branch checkout for
-meta-raspberrypi as well.
+I am trying to understand why eudev gets pulled into my build, where
+it wasn't part of it before.  I recently added an initramfs to my
+build by setting:
 
->
->
-> Regards,
-> Shravan Singh
-> (239) 243-0838
->
-> Blue Sparq, Inc.
-> 928 NE 24th Lane unit 4 and 5.
-> Cape Coral, FL 33993
->
-> IMPORTANT: The contents of this email and any attachments are confidentia=
-l. They are intended for the named recipient(s) only. If you have received =
-this email by mistake, please notify the sender immediately and do not disc=
-lose the contents to anyone or make copies thereof.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+INITRAMFS_IMAGE_BUNDLE="1"
+
+in my machine.conf file.  I have a custom, very minimal initramfs.bb
+recipe that doesn't do much more than:
+
+NO_RECOMMENDATIONS_pn-initramfs = "1"
+PACKAGE_INSTALL = "${VIRTUAL-RUNTIME_base-utils} validate-rootfs"
+IMAGE_FEATURES = ""
+export IMAGE_BASENAME = "${MLPREFIX}initramfs"
+IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
+inherit core-image
+
+When I run:
+
+$ bitbake base-image -g -u taskexp
+
+I see that eudev.do_build lists "base-image.du_build" as a dependent
+task and, for some reason, eudev.do_packagedata lists
+"initramfs.do_roofs" as a dependent task.
+
+When I remove INITRAMFS_IMAGE_BUNDLE from my machine.conf file, eudev
+is no longer included in my image.  (Although, oddly,
+initramfs.do_build is listed as a dependent task of eudev.do_build
+when I run taskexp on my initramfs recipe, but not when I run it on
+the base-image recipe.)
+
+Can anybody point me at (more) tools that can help me understand what
+I did to my initramfs.bb recipe that caused eudev to be included in my
+build?
+
+Thanks
+
+--wpd
 
