@@ -1,37 +1,91 @@
-Return-Path: <Yi.Zhao@windriver.com>
+Return-Path: <dvorkin@tibbo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8AD42E00D31; Mon, 29 Jul 2019 00:19:30 -0700 (PDT)
+	id 04AA6E00CB9; Mon, 29 Jul 2019 00:24:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23DA0E00CB9
-	for <yocto@yoctoproject.org>; Mon, 29 Jul 2019 00:19:30 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x6T7IhqS010170
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 29 Jul 2019 00:19:09 -0700
-Received: from localhost (128.224.162.195) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0;
-	Mon, 29 Jul 2019 00:19:01 -0700
-From: Yi Zhao <yi.zhao@windriver.com>
-To: <yocto@yoctoproject.org>, <akuster808@gmail.com>
-Date: Mon, 29 Jul 2019 15:18:27 +0800
-Message-ID: <1564384707-27108-3-git-send-email-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1564384707-27108-1-git-send-email-yi.zhao@windriver.com>
-References: <1564384707-27108-1-git-send-email-yi.zhao@windriver.com>
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.47 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com
+	[209.85.167.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50012E00951
+	for <yocto@yoctoproject.org>; Mon, 29 Jul 2019 00:24:47 -0700 (PDT)
+Received: by mail-lf1-f47.google.com with SMTP id b17so41323628lff.7
+	for <yocto@yoctoproject.org>; Mon, 29 Jul 2019 00:24:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tibbo.com; s=google;
+	h=from:subject:to:openpgp:autocrypt:message-id:date:user-agent
+	:mime-version; bh=nhHhhUXcR/Kc39xa4jNui9R3lkrhZ8DHqjUCoUCV9bw=;
+	b=XRJUcAmJrLwTYiA7vgN++mn70G779DzrInHWViS3TVsFQPvlRfv494XJxAPlLkz12M
+	vw3dZ4xWNQ77zZdZtB+NyskqcOfLVbz2GcVXXGKP84uRvW2KKcL19P2YPvw9H1ahJGbA
+	mrdRs2w1Tx5gocO+2jmG4M6/FebRvjNQE/53R6HdxHQSx7+zuNp8XeXNOTcDI++DhmEz
+	Pe+qAC/T6EBt6UVWKo1Neh3bDd4EPKa593LwgvfxdpzsnvWvJZqlWfhICD+BYuBLcssZ
+	HdvNqRnGuszZhUeXmmWsp60ywhppkgdea1CSY+1ql9oZLInD/Pb3dWZPswDbgb4ryFh7
+	8SnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:subject:to:openpgp:autocrypt:message-id
+	:date:user-agent:mime-version;
+	bh=nhHhhUXcR/Kc39xa4jNui9R3lkrhZ8DHqjUCoUCV9bw=;
+	b=LSVrhNVjk5hgVOri8a62OhcosCTA4yONdzTSnFg8hA4kxmIWl17qrxbC0/nwJKCQfe
+	FFpWQEoFln2Jz2Hl6W/RBAkZdsv/7uXVUCV+Ix0ylFbq2wCyBx2+fYg1jVexOIlcFg4Z
+	hRwg7IeAVazyB7GnTxyzCQpOaL216ErVZeuFtzCY0G54akIWnWw7pfJwvWdTxHBSQtbw
+	2v0bFUtOPq5rpV/4wSZ2+0S5JngVxGSrEQTiBIb5t7dtGygiif+teKu7Q2d3+lIxqzum
+	/cjV+nFiellSXFSP1qRDQGF/TttNPp4u2Roc4zxv8Dq+q2POoQ5eGopFbaEoCXaiNYLJ
+	gKlQ==
+X-Gm-Message-State: APjAAAUOeSNhFl6CBI7J2jm6ZBbahonc8GKSl8/LrdGdpoOMugV/lfJi
+	azrr7A2KdK3udMe2iwEmle2vZQDdxp1hgw==
+X-Google-Smtp-Source: APXvYqxRZBuYsm0MqB3VuBxaJVDOjE+PfLi7nwaiRq9LR22CncBmftr5gEw6F1m25gpm3FsB8coENA==
+X-Received: by 2002:ac2:44ce:: with SMTP id d14mr51260857lfm.143.1564385086088;
+	Mon, 29 Jul 2019 00:24:46 -0700 (PDT)
+Received: from [192.168.77.88] ([176.114.204.12])
+	by smtp.gmail.com with ESMTPSA id
+	q30sm11942162lfd.27.2019.07.29.00.24.44 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 29 Jul 2019 00:24:45 -0700 (PDT)
+From: Dvorkin Dmitry <dvorkin@tibbo.com>
+To: yocto@yoctoproject.org
+Openpgp: preference=signencrypt
+Autocrypt: addr=dvorkin@tibbo.com; keydata=
+	mQENBFwXTLwBCADcf7vAki++kjlGJ+ydOjgzIVLn4XY1mlJOM4ldu5J2NSXl4dlRYtvgu/na
+	2P5t+n7q6r3JlE40WvT6qln7Qx4Okjj1N7vL13PLujihSjU0E4g54pqTyNItPLazD/wTcXZI
+	nGbj6fM8RI4Nr3M/qyLsbIoG83kvtMaCMFa9Ia9KR5ncGRnYl3/uDYeohxYBx82YhQCrHoJE
+	IfQqW320Efy5F4KliU/ezH1KxCOkGWw91zh2VEZ4W+nnIby3QWi8uZMq/VP/q9i03Kksc/aq
+	YzuDS1Wv97kOZhco7kZNHawaQYU4sBLOeMjylQfPlfs5b79OTwTNXWIe03MSZCTdsMCnABEB
+	AAG0IkR2b3JraW4gRG1pdHJ5IDxkdm9ya2luQHRpYmJvLmNvbT6JAVQEEwEIAD4WIQSYWW5J
+	7CaiEICalwub62lnmy63WwUCXBdMvQIbAwUJAeEzgAULCQgHAgYVCAkKCwIEFgIDAQIeAQIX
+	gAAKCRCb62lnmy63WyPQB/461gUo5+SW/hNDtV3ahxFVv4wDKv9EcwItiIBzMfAPCTOYRs6Y
+	QtBYsmoLf48/ohPqHojf4rmcrp+WjgKIkn64PhZV/jtNzIUKB4UP8ZfZIRA38qiSrJ2NGFAI
+	Lah590BPNDbO4kkpc9G+QYDJJR7Zhz5wF5ppNdC2Ftmvn3eNPGtAC0Ygghy6rTluazcrfNwK
+	ayuVN3aUnwmFgVgQlGX9SIxaN3jaqosOcNYixUfJ4wdKevbNtZ+ZpvQizMyhNOHIHRhsyA7m
+	eqAE7ZdYHD+ydsmNksMjMFaw7r7Mn2JgUkZQwykbsI63GTxi9yXmPOao6QvN4RM4lr7L2vzR
+	rIBJuQENBFwXTL0BCAD6gcvCCRCJ05QnuUB/spY4eKtpU+/gH5vPG++b2bPpcIhNjbNi2yCD
+	i25oivfP3ftwfKjKtJP0A7G3EeowNqe1Ys30tQHwyCEesmzfoEqSB/39lL32FfTMiiLzim7H
+	2LEZYhxeSveDUVAG8jACQHZBwukyZdobmA9h2dEWRJz0AKFlzJkJYaoA+3itH3o4G9jpiPgf
+	Fa3siHGtiWN7cs6KA6A7Cty3Wpj/aT/rnbDIfoIoYYqt5efjNKux93EhSNF5Bx/8c8ySkIU9
+	Lks70zrOF6+APpkJds6SyNWywGgB+aYQYc9bR04xmAiWHgyoG2AcVzWal4vkIvDAhRYgNNML
+	ABEBAAGJATwEGAEIACYWIQSYWW5J7CaiEICalwub62lnmy63WwUCXBdMvQIbDAUJAeEzgAAK
+	CRCb62lnmy63WwVoCADXLHRLw9FXnUdtiq6jyAfw84Hm+EuL2h5dF9j24eG7gFloiSG+O1kT
+	agbVB879EvL4Ffwxno2Y7oAstN8SWB0RU+e8+Ljz0gKEJ5EvGDtm5f1S012BOWT0K7VAznpO
+	anhvoxdh9xNS09s1bb4tQ3KkZPL62g61Ef69fXPltM0Uk/+JA8zIqcI0IPslFV7d0qCQsC7V
+	+UmHm6aecaJHMzNibFfIlbDa5RP8SDVNlkiDiS57ibHjWX4Xoa71Q8owzm09CgEC+Xh+WqAX
+	KKbtWsPMtPTz2CvzWSv1Rmy3DkTtAQqfectrPiDVz7wHV2rUz+Gp98xWW1ybvwFE70ufN4F6
+Message-ID: <cfec84d1-ab9a-78df-b698-bad07e3b07e9@tibbo.com>
+Date: Mon, 29 Jul 2019 10:24:44 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
 MIME-Version: 1.0
-X-Originating-IP: [128.224.162.195]
-Subject: [meta-security][PATCH 2/2 V2] scap-security-guide: update recipe
+Subject: NPM yocto build problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,86 +97,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 29 Jul 2019 07:19:30 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 29 Jul 2019 07:24:48 -0000
+X-Groupsio-MsgNum: 46111
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="HwJshh3VGOUDOXbEvB1nlWbgCO82rhioQ"
 
-* Set B="${S}/build" to fix the build failure for out of source
-  directory
-* Remove do_complile and do_install. Use the default functions from
-  cmake.bbclass.
-* Install the artifacts to /usr/share rather than /usr/local/share
+--HwJshh3VGOUDOXbEvB1nlWbgCO82rhioQ
+Content-Type: multipart/mixed; boundary="3d5AOULA6qjTur2aqVYtrV8EHjYoTbSBD";
+ protected-headers="v1"
+From: Dvorkin Dmitry <dvorkin@tibbo.com>
+To: yocto@yoctoproject.org
+Message-ID: <cfec84d1-ab9a-78df-b698-bad07e3b07e9@tibbo.com>
+Subject: NPM yocto build problem
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- .../scap-security-guide/scap-security-guide.inc    | 28 +++++-----------------
- .../scap-security-guide/scap-security-guide_git.bb |  6 +----
- 2 files changed, 7 insertions(+), 27 deletions(-)
+--3d5AOULA6qjTur2aqVYtrV8EHjYoTbSBD
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
 
-diff --git a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide.inc b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide.inc
-index ed70c18..341721a 100644
---- a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide.inc
-+++ b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide.inc
-@@ -7,6 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=97662e4486d9a1d09f358851d9f41a1a"
- LICENSE = "LGPL-2.1"
- 
- DEPENDS = "openscap-native python3 python3-pyyaml-native python3-jinja2-native libxml2-native"
-+RDEPENDS_${PN} = "openscap"
- 
- S = "${WORKDIR}/git"
- 
-@@ -20,28 +21,11 @@ OECMAKE_GENERATOR = "Unix Makefiles"
- 
- EXTRA_OECMAKE += "-DENABLE_PYTHON_COVERAGE=OFF"
- 
--do_configure_prepend () {
--	sed -i -e 's:NAMES\ sed:NAMES\ ${HOSTTOOLS_DIR}/sed:g'   ${S}/CMakeLists.txt
--        sed -i 's:/usr/share/openscap/:${STAGING_OSCAP_BUILDDIR}${datadir_native}/openscap/:g' ${S}/cmake/SSGCommon.cmake
--}
--
--do_compile () {
--	cd ${S}/build
--	cmake ../
--	# oddly rhel7 needs to build first
--	make rhel7
--}
-+B = "${S}/build"
- 
--do_install () {
--	cd ${S}/build
--	make DESTDIR=${D} install
-+do_configure_prepend () {
-+    sed -i -e 's:NAMES\ sed:NAMES\ ${HOSTTOOLS_DIR}/sed:g' ${S}/CMakeLists.txt
-+    sed -i -e 's:NAMES\ grep:NAMES\ ${HOSTTOOLS_DIR}/grep:g' ${S}/CMakeLists.txt
- }
- 
--localdatadir = "${prefix}/local/share"
--localmandir = "${localdatadir}/man"
--localdocdir = "${localdatadir}/doc"
--localxmldir = "${localdatadir}/xml"
--
--FILES_${PN} += "${localdatadir} ${localxmldir}"
--FILES_${PN}-doc += "${localmandir} ${localdocdir}"
--RDEPNEDS_${PN} = "openscap"
-+FILES_${PN} += "${datadir}/xml"
-diff --git a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb
-index cb21fed..d9238c0 100644
---- a/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb
-+++ b/meta-security-compliance/recipes-openscap/scap-security-guide/scap-security-guide_git.bb
-@@ -2,12 +2,8 @@ SUMARRY = "SCAP content for various platforms, OE changes"
- 
- SRCREV = "5fdfdcb2e95afbd86ace555beca5d20cbf1043ed"
- SRC_URI = "git://github.com/akuster/scap-security-guide.git;branch=oe-0.1.44;"
--PV = "v0.1.44+git${SRCPV}"
-+PV = "0.1.44+git${SRCPV}"
- 
- require scap-security-guide.inc
- 
--do_compile_append () {
--    make openembedded
--}
--
- EXTRA_OECMAKE += "-DSSG_PRODUCT_OPENEMBEDDED=ON"
--- 
-2.7.4
+I see Jean-Marie made this commit
+
+https://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3Da34d0d539e5f=
+df341541fb628652d22289e80512
+
+I'm experiencing problems building and installing more then one node
+modules into image:
+
+https://pastebin.com/CXPkqD8j
+
+It says, /usr/lib/node is a FILE and is is already installed by another
+package. I'm using RPM package manager in Yocto and I'm pre-installing
+several NPM modules into my image.
 
 
+Did I make something wrong?
+
+
+
+
+
+
+
+--3d5AOULA6qjTur2aqVYtrV8EHjYoTbSBD--
+
+--HwJshh3VGOUDOXbEvB1nlWbgCO82rhioQ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEmFluSewmohCAmpcLm+tpZ5sut1sFAl0+nzwACgkQm+tpZ5su
+t1tmpwf+IkP/98qZ3Ac0syw+uPcsKNs0+TKyZ6AUYuesjgO9c8S3FZ8+AdTV8DU9
+pFeLZhwE3ClQ5iBDNPfsvKOSGrGGKfohB5iPKivWYhREX3V+G+fqDTO3uBvYYzeB
+8oJZT36fjrE19Wz1p2/91ZWiVYmCpuzdo29bkcTMh7HYOlvmZxL9RpL/P0DuOSFo
+ta7sb/wMFNF4erhktUcpN6RR4KPUUnNJNNVKz7QW/GKDomJnCK3tGlgj/NTRG8iI
+FsQ7Y5pHepKKwCArh6IJ52vZ46z2jCB7i82KPPagLy2t1O2u4RUxIJWQCuJKX9J4
+ompOOlUir0nI+cTNd38EpA4vPtssYA==
+=iZ8P
+-----END PGP SIGNATURE-----
+
+--HwJshh3VGOUDOXbEvB1nlWbgCO82rhioQ--
