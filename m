@@ -1,47 +1,62 @@
-Return-Path: <baisch@tau-tec.com>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5D669E00D89; Tue, 30 Jul 2019 07:37:14 -0700 (PDT)
+	id 261FBE00D88; Tue, 30 Jul 2019 07:46:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [85.13.130.187 listed in list.dnswl.org]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.53 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 304 seconds by postgrey-1.32 at yocto-www;
-	Tue, 30 Jul 2019 07:37:12 PDT
-Received: from dd5802.kasserver.com (dd5802.kasserver.com [85.13.130.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21616E00D77
-	for <yocto@yoctoproject.org>; Tue, 30 Jul 2019 07:37:12 -0700 (PDT)
-Received: from dd5802.kasserver.com (dd0800.kasserver.com [85.13.143.204])
-	by dd5802.kasserver.com (Postfix) with ESMTPSA id B02B33689E0D
-	for <yocto@yoctoproject.org>; Tue, 30 Jul 2019 16:32:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tau-tec.com;
-	s=kas201903211716; t=1564497127;
-	bh=Ipp2aYbheBaYp16xpTSObPVU2Cl7fo+jDXavJtveBL0=;
-	h=Subject:From:To:Date:From;
-	b=B6N3aEXP1JxBkUMOGLoz6WC04AE4Z8lWk9D1x5FClUYBu5Z9y0NdKdKRrkPyKpCYE
-	MKecjnbBbRSF6nkZ4I/OwmxMf3GSmHaBDe44mJwvW9XA42dF4TPzP63YGiloLBXto+
-	v9mOcXZ3YZLNlOMT/Zl/+Kns3D2Sbl9C8MUzY/dX4eBwH9f77KywkfYhlZjwj+Uie6
-	gA20FAVPzvRn3ajKwvw1vk2oQGZBHg4NcM7sPy8h5EOHekUynaDpTfvNwk3ZCufS9D
-	vKq5/dpxE4GRJr0mGOqrpkjIzcHLXFrH/dvmCXmeeVDX78UUOw7Rl602rP0XQVBCNU
-	5e3dREy/3G4mA==
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com
+	[209.85.167.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5759DE00D4D
+	for <yocto@yoctoproject.org>; Tue, 30 Jul 2019 07:46:24 -0700 (PDT)
+Received: by mail-lf1-f53.google.com with SMTP id c19so44915148lfm.10
+	for <yocto@yoctoproject.org>; Tue, 30 Jul 2019 07:46:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+	h=mime-version:from:date:message-id:subject:to
+	:content-transfer-encoding;
+	bh=w099luuBFFObpBnNwGTR9rOiGEmnaOPx8+DKgPoPEkA=;
+	b=lvHHBOcv0Qn9HbeuyNmEdik0U28B9geH6kK6CD1TsIL9KFok3UloRJUHMgKlbRGCj+
+	fC3oXS35NCfROKwgBAxGLKw4wy/zkEju5LiBIsheEPchlOWD7WEW2K8alezYTAekZ4D9
+	gRpT/R9Z2Qr59UCrhxyPPS6MsVU1Yen/dkOlF9OGYHzUOpM1X85co66g/+PmvVKjMG6m
+	JTN8W2CEJ/5Z/y2c0VhFcquICGC0dH+qgcYPxQuaRbviHLqugjBVbIGOT1gcyAO9HAH1
+	4NNP9W8D6MF1Tppkjh2R36vnR8c6/RBFrfP56/lj55x+Ox/lXcqpgAXYPLal9u6ZiDKX
+	n3jA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+	:content-transfer-encoding;
+	bh=w099luuBFFObpBnNwGTR9rOiGEmnaOPx8+DKgPoPEkA=;
+	b=auWUcqRENshzLscuP5dM7IzpSZtUfY4vzIhmoM9COwRGSDYROuwJPlzKCs22E43MKm
+	XsmqQ2W1+g2ZdHoZmm49aSnlvB1j2Ne/xpiiEIoLlfV+4u5Zw1afAkOOnyBXHOX6tuTA
+	uJ3yP77/aAFLAuxnZxYHxwVVLytTALvCau6cy12ltwIAE9D8P8RxhxcPtFY77terRcAS
+	DU+xlw2FGIK7L2D5wO9spvDb92uSliUUDXwHYcdP+q3LfMNm3vQwIckjjIROT9U96qnj
+	xGzENnk1U8JfZgt4suQsz28ACCLT6vHTbQfTIHn+HcMIKGl0umfWolInrP8kmELibvqA
+	7RMQ==
+X-Gm-Message-State: APjAAAV0InI4Vj6koxKRuY2mT+ayqBeMWjU52j4Suuv0ePfQZexaZpb9
+	qgAFbwn59zeZ5kO7lDOPaL4/dz/orWTsjzfz3VAQF7MohPo=
+X-Google-Smtp-Source: APXvYqxRbhny8bLatezLkpfn29BXWcOZIyXeosapu2oa7u5Jh0XbjNS9gin052O2rDFbBKJmpgdzbNruOBfLu5fyrUI=
+X-Received: by 2002:ac2:43bb:: with SMTP id t27mr20415238lfl.187.1564497982765;
+	Tue, 30 Jul 2019 07:46:22 -0700 (PDT)
 MIME-Version: 1.0
-X-SenderIP: 89.238.177.252
-User-Agent: ALL-INKL Webmail 2.11
-From: baisch@tau-tec.com
-To: yocto@yoctoproject.org
-Message-Id: <20190730143207.B02B33689E0D@dd5802.kasserver.com>
-Date: Tue, 30 Jul 2019 16:32:07 +0200 (CEST)
-Subject: SDK: getting error "xmlcatalog: not found" installing SDK
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Tue, 30 Jul 2019 16:46:11 +0200
+Message-ID: <CAP71WjyWeiJA+3ahU1cdDi5kh6qTVvTi7CCNo5qzOA9_ti2vCw@mail.gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>, 
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: LF Community Bridge Mentorship
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,80 +68,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Jul 2019 14:37:14 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 30 Jul 2019 14:46:25 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Dear all,
 
-after updating to warrior 2.7.1 from thud and trying to install the Extensible SDK again I'm getting the following error:
+The Community Bridge platform was launched earlier this year by the
+Linux Foundation. It=E2=80=99s a set of services available to LF projects t=
+o
+help them build stronger ecosystems, and foster developers
+relationship within their respective communities. See [1] and [2]. The
+Yocto Project has joined the Community Bridge Funding and Mentorship
+programs.
 
-```
-ERROR: build-sysroots-1.0-r0 do_build_native_sysroot: Error executing a python function in exec_python_func() autogenerated:
+If you have any specific questions about these programs, please do not
+hesitate to reach out to me.
 
-The stack trace of python calls that resulted in this exception/failure was:
-File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-     0001:
- *** 0002:do_build_native_sysroot(d)
-     0003:
-File: '/workdir/sdk/rpi/layers/poky/meta/recipes-core/meta/build-sysroots.bb', lineno: 23, function: do_build_native_sysroot
-     0019:
-     0020:python do_build_native_sysroot () {
-     0021:    targetsysroot = d.getVar("STANDALONE_SYSROOT")
-     0022:    nativesysroot = d.getVar("STANDALONE_SYSROOT_NATIVE")
- *** 0023:    staging_populate_sysroot_dir(targetsysroot, nativesysroot, True, d)
-     0024:}
-     0025:do_build_native_sysroot[cleandirs] = "${STANDALONE_SYSROOT_NATIVE}"
-     0026:do_build_native_sysroot[nostamp] = "1"
-     0027:addtask do_build_native_sysroot before do_build
-File: '/workdir/sdk/rpi/layers/poky/meta/classes/staging.bbclass', lineno: 235, function: staging_populate_sysroot_dir
-     0231:                        continue
-     0232:
-     0233:    staging_processfixme(fixme, targetdir, targetsysroot, nativesysroot, d)
-     0234:    for p in postinsts:
- *** 0235:        subprocess.check_output(p, shell=True, stderr=subprocess.STDOUT)
-     0236:
-     0237:#
-     0238:# Manifests here are complicated. The main sysroot area has the unpacked sstate
-     0239:# which us unrelocated and tracked by the main sstate manifests. Each recipe
-File: '/workdir/sdk/rpi/buildtools/sysroots/x86_64-pokysdk-linux/usr/lib/python3.7/subprocess.py', lineno: 395, function: check_output
-     0391:        # empty string. That is maintained here for backwards compatibility.
-     0392:        kwargs['input'] = '' if kwargs.get('universal_newlines', False) else b''
-     0393:
-     0394:    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
- *** 0395:               **kwargs).stdout
-     0396:
-     0397:
-     0398:class CompletedProcess(object):
-     0399:    """A process that has finished running.
-File: '/workdir/sdk/rpi/buildtools/sysroots/x86_64-pokysdk-linux/usr/lib/python3.7/subprocess.py', lineno: 487, function: run
-     0483:            raise
-     0484:        retcode = process.poll()
-     0485:        if check and retcode:
-     0486:            raise CalledProcessError(retcode, process.args,
- *** 0487:                                     output=stdout, stderr=stderr)
-     0488:    return CompletedProcess(process.args, retcode, stdout, stderr)
-     0489:
-     0490:
-     0491:def list2cmdline(seq):
-Exception: subprocess.CalledProcessError: Command '/workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog' returned non-zero exit status 127.
+Today, we would like to talk more about the mentorship program. We
+have tried several initiatives in the past about interns and
+mentorship, and we would like to do that again using the new LF
+platform. A mentorship program for the Yocto Project is a good
+opportunity for our overall community to reach out to new developers,
+improve our developers diversity. It will help increase the pool of
+available developers with appropriate skills about the Yocto Project
+and Open Embedded technologies and as a consequence create a more
+sustainable ecosystem around the Yocto Project. It also offers
+existing senior developers the chance to become mentors, and share
+their knowledge!
 
-Subprocess output:
-/workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog: 5: /workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog: xmlcatalog: not found
-/workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog: 8: /workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog: xmlcatalog: not found
-```
+We would like to request feedback about how to best define the Yocto
+Project Mentorship program.
 
-I believe the problem is that in the `postinst-docbook-xsl-stylesheets-native-xmlcatalog`, `xmlcatalog` is not an absolute path and thus not found.
-This can be traced to the new `layers/poky/meta/classes/xmlcatalog.bbclass`. I tried to change `xmlcatalog` to `${SYSROOT_DESTDIR}${bindir}/xmlcatalog` there, but even after cleaning the `docbook-xsl-stylesheets` recipe this change had no effect. I'm not sure if this class is cached somewhere else or something.
+The structure of the mentorship is flexible and we can adjust as
+needed. Our initial thought is to set 12-week project, which is what
+the Linux Kernel Mentorship program is using, see [4]. The overall
+process involves:
 
-Can someone help me getting the SDK to work again, and maybe this is general thing with needs to be fixed?
+1. Finding / defining work items for potential mentees.
+2. Get appropriate funding for mentees=E2=80=99 stipends
+3. Recruit mentors within our community
+4. Review and select mentees=E2=80=99 applications
 
+There has already been some work on the potential work items in the
+form of the newcomer bugs, some of which could be turned into work
+suitable for a mentorship programme.
 
-Thank you.
+=3D=3D=3D Call for ACTION =3D=3D=3D
 
-Regards,
+* We need your help for any of the items above, and especially #1 to
+get started. Whether you are a long time contributor to the project or
+you recently joined our mailing list, your feedback will be greatly
+appreciated.
+* If you are interested to participate as a mentor, please let me know!
+* You don=E2=80=99t need to be a project expert to be a mentor, you need to
+know how the project works and be willing to help guide someone
+through their task.
 
-- Michael
--- 
+There is no specific timeline set yet, it will most likely depend on
+how much feedback we receive about this initiative, but most likely
+the internships will have to be tied to the Yocto Project release
+timeline.
 
+If you have any questions or any suggestions, please reach out to me!
+cheers,
+Nico
+
+[1] https://www.linuxfoundation.org/press-release/2019/03/the-linux-foundat=
+ion-launches-new-communitybridge-platform-to-help-sustain-open-source-commu=
+nities/
+[2] https://communitybridge.org/
+[3] https://people.communitybridge.org/
+[4] https://wiki.linuxfoundation.org/lkmp
 
