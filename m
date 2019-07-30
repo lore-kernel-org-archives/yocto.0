@@ -1,64 +1,47 @@
-Return-Path: <wpdster@gmail.com>
+Return-Path: <baisch@tau-tec.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AAC21E00D47; Tue, 30 Jul 2019 06:34:47 -0700 (PDT)
+	id 5D669E00D89; Tue, 30 Jul 2019 07:37:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (wpdster[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.172 listed in list.dnswl.org]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [85.13.130.187 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com
-	[209.85.222.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25DAAE00CD2
-	for <yocto@yoctoproject.org>; Tue, 30 Jul 2019 06:34:47 -0700 (PDT)
-Received: by mail-qk1-f172.google.com with SMTP id m14so20898887qka.10
-	for <yocto@yoctoproject.org>; Tue, 30 Jul 2019 06:34:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=Oa00/M3LlYCMFTFVO6iI8BZvgSGhREeZHmraGWJJQhw=;
-	b=FCSua/FA10VwCC90rR5gEE+DQHiEP2k/zgHwYXVBIFHS88mXvzZits4QxIEsZ16AL5
-	nJL3EpkxOeeMMAbpVxp5+WEzKqGnCKLejPl2DlF+9qdGpI0FGuIc/eVu+mDLpO0A0pSf
-	t8/+FAtX9gRx9zzjly9qucJdq96XY9+kS1BLopQOt3wUJhIdFy5q9Tr2TmBAhJ5Ivgou
-	Z4bF76jKLn60s15Ik/oA0FF0WJnfD9nVqADPdkns5K67JnJPmcqaxoAjd1tHC1eDOaOD
-	LDT36ECpzjxjxj2LkmzOpPwIuL4PY1zG0+EeknMicqkXHMFEIJaTLBdICD1RNr+ItlxF
-	kbRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=Oa00/M3LlYCMFTFVO6iI8BZvgSGhREeZHmraGWJJQhw=;
-	b=ZSgjFuCLDGGDFm3FQCdDnn6lSY+aoVWw/p/8enVxzJwk4Bx3rTWeRENstxri/9jYDP
-	2hLi8EANaWi3/c1css1g3WC38tAj/cNyAjVGgNibT85NK72qynzR3a/G7UlYiahsf9Sa
-	w/BtnbztR6NgiBe40E/v7u2xusfgm8YHYAn75o8JD6b6jdH4q7kaDIgiKmf6KKP5N/YA
-	Eh4Pd5hnqf6O8yuwow917oUn0ZZ/HesD7gBoiK2K113ugdskBXfjPKODG7eV7FfBuFA7
-	1pFjFbxEuOP6HMjiiRnfXumn34os9gxBtZS1haBFF/wv3kcrhwRQ8AXAEOb/5IW10zqr
-	sJIg==
-X-Gm-Message-State: APjAAAVKst6psuSCozJhazyS1Qm/Ld+SMB/HTNkvVLUYCD3Hn9CDotN8
-	SEkSymCIaCKSiedcDrwypBuaOWt4fIv4LpY1mUj+rBapBFM=
-X-Google-Smtp-Source: APXvYqw+ABdVAvl5nDHJAjMo9SZeGOg8m9/B4nrOSS6PW3+dg7qPkLWt8hH3l8nj7aOdl3+VCFFdT8e72UYA4Crkgk4=
-X-Received: by 2002:a37:a389:: with SMTP id
-	m131mr79201977qke.168.1564493685896; 
-	Tue, 30 Jul 2019 06:34:45 -0700 (PDT)
+X-Greylist: delayed 304 seconds by postgrey-1.32 at yocto-www;
+	Tue, 30 Jul 2019 07:37:12 PDT
+Received: from dd5802.kasserver.com (dd5802.kasserver.com [85.13.130.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21616E00D77
+	for <yocto@yoctoproject.org>; Tue, 30 Jul 2019 07:37:12 -0700 (PDT)
+Received: from dd5802.kasserver.com (dd0800.kasserver.com [85.13.143.204])
+	by dd5802.kasserver.com (Postfix) with ESMTPSA id B02B33689E0D
+	for <yocto@yoctoproject.org>; Tue, 30 Jul 2019 16:32:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tau-tec.com;
+	s=kas201903211716; t=1564497127;
+	bh=Ipp2aYbheBaYp16xpTSObPVU2Cl7fo+jDXavJtveBL0=;
+	h=Subject:From:To:Date:From;
+	b=B6N3aEXP1JxBkUMOGLoz6WC04AE4Z8lWk9D1x5FClUYBu5Z9y0NdKdKRrkPyKpCYE
+	MKecjnbBbRSF6nkZ4I/OwmxMf3GSmHaBDe44mJwvW9XA42dF4TPzP63YGiloLBXto+
+	v9mOcXZ3YZLNlOMT/Zl/+Kns3D2Sbl9C8MUzY/dX4eBwH9f77KywkfYhlZjwj+Uie6
+	gA20FAVPzvRn3ajKwvw1vk2oQGZBHg4NcM7sPy8h5EOHekUynaDpTfvNwk3ZCufS9D
+	vKq5/dpxE4GRJr0mGOqrpkjIzcHLXFrH/dvmCXmeeVDX78UUOw7Rl602rP0XQVBCNU
+	5e3dREy/3G4mA==
 MIME-Version: 1.0
-References: <CAF_dkJAkv49GRCJDHwMJzTRKJ=QW37ajt-ETvoHmz2EPv5DVow@mail.gmail.com>
-In-Reply-To: <CAF_dkJAkv49GRCJDHwMJzTRKJ=QW37ajt-ETvoHmz2EPv5DVow@mail.gmail.com>
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Tue, 30 Jul 2019 09:34:19 -0400
-Message-ID: <CAF_dkJBuobVMJNW_AnLKEaKaCnNrex_c62qkDk0-AdBNzvgVmA@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Why does enabling initramfs pull eudev into my build?
+X-SenderIP: 89.238.177.252
+User-Agent: ALL-INKL Webmail 2.11
+From: baisch@tau-tec.com
+To: yocto@yoctoproject.org
+Message-Id: <20190730143207.B02B33689E0D@dd5802.kasserver.com>
+Date: Tue, 30 Jul 2019 16:32:07 +0200 (CEST)
+Subject: SDK: getting error "xmlcatalog: not found" installing SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,35 +53,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 30 Jul 2019 13:34:47 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 30 Jul 2019 14:37:14 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8bit
 
-On Mon, Jul 29, 2019 at 10:52 AM Patrick Doyle <wpdster@gmail.com> wrote:
->
-> Did that get your attention? :-)
->
-> I am trying to understand why eudev gets pulled into my build, where
-> it wasn't part of it before.  I recently added an initramfs to my
-> build...
-What I neglected to say was that a colleague of mine had recently
-added crda to our build as well, and that recipe has an explicit
-RDEPENDS on "udev".
+Hello,
 
-I did spend an interesting day learning about the difference between
-recipes that RDEPEND on providers and individual packages that RDEPEND
-on providers.  I was confused by the fact that the
-initramfs-framework_1.0.bb recipe contains:
+after updating to warrior 2.7.1 from thud and trying to install the Extensible SDK again I'm getting the following error:
 
-SUMMARY_initramfs-module-udev = "initramfs support for udev"
-RDEPENDS_initramfs-module-udev = "${PN}-base udev"
-FILES_initramfs-module-udev = "/init.d/01-udev"
+```
+ERROR: build-sysroots-1.0-r0 do_build_native_sysroot: Error executing a python function in exec_python_func() autogenerated:
 
-and, since I didn't depend/rdepend on initramfs-module-udev anywhere
-in my build, why that resulted in udev being included in my build.
+The stack trace of python calls that resulted in this exception/failure was:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+     0001:
+ *** 0002:do_build_native_sysroot(d)
+     0003:
+File: '/workdir/sdk/rpi/layers/poky/meta/recipes-core/meta/build-sysroots.bb', lineno: 23, function: do_build_native_sysroot
+     0019:
+     0020:python do_build_native_sysroot () {
+     0021:    targetsysroot = d.getVar("STANDALONE_SYSROOT")
+     0022:    nativesysroot = d.getVar("STANDALONE_SYSROOT_NATIVE")
+ *** 0023:    staging_populate_sysroot_dir(targetsysroot, nativesysroot, True, d)
+     0024:}
+     0025:do_build_native_sysroot[cleandirs] = "${STANDALONE_SYSROOT_NATIVE}"
+     0026:do_build_native_sysroot[nostamp] = "1"
+     0027:addtask do_build_native_sysroot before do_build
+File: '/workdir/sdk/rpi/layers/poky/meta/classes/staging.bbclass', lineno: 235, function: staging_populate_sysroot_dir
+     0231:                        continue
+     0232:
+     0233:    staging_processfixme(fixme, targetdir, targetsysroot, nativesysroot, d)
+     0234:    for p in postinsts:
+ *** 0235:        subprocess.check_output(p, shell=True, stderr=subprocess.STDOUT)
+     0236:
+     0237:#
+     0238:# Manifests here are complicated. The main sysroot area has the unpacked sstate
+     0239:# which us unrelocated and tracked by the main sstate manifests. Each recipe
+File: '/workdir/sdk/rpi/buildtools/sysroots/x86_64-pokysdk-linux/usr/lib/python3.7/subprocess.py', lineno: 395, function: check_output
+     0391:        # empty string. That is maintained here for backwards compatibility.
+     0392:        kwargs['input'] = '' if kwargs.get('universal_newlines', False) else b''
+     0393:
+     0394:    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+ *** 0395:               **kwargs).stdout
+     0396:
+     0397:
+     0398:class CompletedProcess(object):
+     0399:    """A process that has finished running.
+File: '/workdir/sdk/rpi/buildtools/sysroots/x86_64-pokysdk-linux/usr/lib/python3.7/subprocess.py', lineno: 487, function: run
+     0483:            raise
+     0484:        retcode = process.poll()
+     0485:        if check and retcode:
+     0486:            raise CalledProcessError(retcode, process.args,
+ *** 0487:                                     output=stdout, stderr=stderr)
+     0488:    return CompletedProcess(process.args, retcode, stdout, stderr)
+     0489:
+     0490:
+     0491:def list2cmdline(seq):
+Exception: subprocess.CalledProcessError: Command '/workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog' returned non-zero exit status 127.
 
-The answer is... it doesn't.  crda caused it to be included in my build.
+Subprocess output:
+/workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog: 5: /workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog: xmlcatalog: not found
+/workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog: 8: /workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog: xmlcatalog: not found
+```
 
-Thanks for listening.
+I believe the problem is that in the `postinst-docbook-xsl-stylesheets-native-xmlcatalog`, `xmlcatalog` is not an absolute path and thus not found.
+This can be traced to the new `layers/poky/meta/classes/xmlcatalog.bbclass`. I tried to change `xmlcatalog` to `${SYSROOT_DESTDIR}${bindir}/xmlcatalog` there, but even after cleaning the `docbook-xsl-stylesheets` recipe this change had no effect. I'm not sure if this class is cached somewhere else or something.
 
---wpd
+Can someone help me getting the SDK to work again, and maybe this is general thing with needs to be fixed?
+
+
+Thank you.
+
+Regards,
+
+- Michael
+-- 
+
 
