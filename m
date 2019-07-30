@@ -1,6 +1,6 @@
 Return-Path: <btgoodwin@geontech.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9DDCDE00D97; Tue, 30 Jul 2019 11:36:37 -0700 (PDT)
+	id B6167E00D8D; Tue, 30 Jul 2019 11:36:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,57 +10,57 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.66 listed in list.dnswl.org]
+	*      [209.85.222.50 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-ua1-f66.google.com (mail-ua1-f66.google.com
-	[209.85.222.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5751E00D4D
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com
+	[209.85.222.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49AF9E00D77
 	for <yocto@yoctoproject.org>; Tue, 30 Jul 2019 11:36:36 -0700 (PDT)
-Received: by mail-ua1-f66.google.com with SMTP id o2so25889744uae.10
+Received: by mail-ua1-f50.google.com with SMTP id g11so3323085uak.0
 	for <yocto@yoctoproject.org>; Tue, 30 Jul 2019 11:36:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=geontech-com.20150623.gappssmtp.com; s=20150623;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=McnbQlfyjsWqkOGLWEtL6SLw3BrZkq0fl7EMNnEEMQo=;
-	b=wf/4HNym/MhHahYd44xnrvFFZQm7e2W1Qd5MnK9iicvwdSZmu1FxwJ7Az/22QHj4dJ
-	SnWTR+tAyYIhUOHWqyKWp3UuWC2MZUpbW5e1KBRvrqS7R6zBqK6CxVeA0P3LBtLbLkXj
-	ZR9RZNPBwEfupe6RoxYKDweSHAdXMETEHLSH7DumIElxOk58gOej3NL8jyeNiCbeqKg6
-	9H1BhNnD7D5o+7ITBOy0syrcK5t/mtaaX0GmQ+apN9UJxKHnQsVSIUbWd868SBGOXFzw
-	6PBhzWrGBxrXd2gdNkFEcA9/xzQcQWuLrt5xD26hwJPcQO3zMEcASvEiE0gAOEHQ//2E
-	kVnw==
+	bh=jJXqI9DPMLOlkvd9aOjb3nRIdHrXPVTUDm1E+CzHxFw=;
+	b=FpewNj5G9qWbDlG0UExUd+rwexqReh2dwME7eVfokVU/LKX9yl9rmbKD2JaDQvoV1/
+	3Gn0w/4tLWZsM+rHKZyQFeYSpMH8IkTC2AuIwfqC0mlrPUjI1I/FCP6ZK+F1GwCS7Ulr
+	733Q69E6OkVdxJ6AGKO+o71060hhdITfQNODFoK0CajlnYYbtf40+698WvrpLJnCmgaT
+	wHzBRiMBqv0cjHCcJ9ojYU+MTu5TdIY+n1R8n6naTDfF+KKqGD0KxS9fpbY/W3byDDgA
+	OeSKI799qkT5XbrE3SwBe9GoW84lRxVjESrziy/b+rUnrL/9mX9NCYIdgNiEg3rGkzpD
+	hBqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=McnbQlfyjsWqkOGLWEtL6SLw3BrZkq0fl7EMNnEEMQo=;
-	b=MoU399umEnIYHs4QM7HffVNfplfWeaRMF5wc5u3WJMWF0Y5VoWcuDwXxmwvvHETfBh
-	nAe7r9oQaZ2gWarQP8VrxntLhZcQ4B0ISsoMNC+h4iXvpEtffOMsKLMykX1FQIqIUpCH
-	fgNXBc3pG8aClcUY4VnsnJ3VG+qZCsNCZ9qeYVUvr8oilRBhGeYWLsUP4+0nPt3zF/Nx
-	un6A1HmBJBtQQec/xzU+GJaNcVIn5waCC92f6ANR2ipXFOQsw172G7qOLTFhH4RCq+vy
-	MDcTnCYA43ezOLGda2ZHkmx6jDYwGobBaYNtSb98exgZawItX/Yl19qEVOzFFmXmnds8
-	0+Xw==
-X-Gm-Message-State: APjAAAUsT3wm/1kWsHh+B7M45sHtUvOMSCv1YlIPwUjlGlcKW3A9SpzV
-	GJxSCIXgUuHsSJCBg91N7no8cs38bYY=
-X-Google-Smtp-Source: APXvYqyPds/hi6t5ST/fyoUpcRP+GcEtXOzuuiNhGew5cT+IJlaAUl7sktDfusvSh5Fxvu8ZX3aQrw==
-X-Received: by 2002:ab0:208c:: with SMTP id r12mr66407105uak.27.1564511795780; 
+	bh=jJXqI9DPMLOlkvd9aOjb3nRIdHrXPVTUDm1E+CzHxFw=;
+	b=cQYHaCVswwG97v6lE2N6qRwxfhLS34uKknyqoZ6LrPlcSLpn3oZjRbHFJuOU700gpa
+	HyS8KXZgCV8VSSXQmnreAR4pf37vuxiIUdHqW3QzjIR2CvfSvRsyY17MdwX+eXAkIH+9
+	hpHjvDaRrGv7kAsQ7CfNZs0f0LuhLskFVoNTvUqIPiE/M7hnhZ1u7B2myUfMw/Qx19QZ
+	orl/gtwJkGIUWH1cuESkhQAS3rFg2LU9e+C8uJ2zK0jJK/57SFIm80dFibiiUDyNI03L
+	kr3Xi+skBERCVeywyB2rx0of+Frfv8uvqazYjqaTLEVZys0dBqethYN1OrJ749fNX0Xf
+	SEww==
+X-Gm-Message-State: APjAAAWgByNeyaCJR7Pln8juxTEMy5NP5MoTbHKWN1PDAUTkiKKjmVDB
+	MCn1jAgPlYqfFm016L5anm3tQ/3eQ7c=
+X-Google-Smtp-Source: APXvYqyULyh/ZYosRif42xq6IFOOB9kAf/vX3spOjCGBU5NqOnpHzOAlSfiDi1gp+x9Pk4Khvt4weQ==
+X-Received: by 2002:ab0:6911:: with SMTP id b17mr22624401uas.18.1564511795281; 
 	Tue, 30 Jul 2019 11:36:35 -0700 (PDT)
 Received: from intrepid.geontech.local
 	(static-108-40-78-74.bltmmd.fios.verizon.net. [108.40.78.74])
 	by smtp.gmail.com with ESMTPSA id
-	y71sm15036900vsc.19.2019.07.30.11.36.35
+	y71sm15036900vsc.19.2019.07.30.11.36.34
 	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Tue, 30 Jul 2019 11:36:35 -0700 (PDT)
+	Tue, 30 Jul 2019 11:36:34 -0700 (PDT)
 From: Thomas Goodwin <btgoodwin@geontech.com>
 To: yocto@yoctoproject.org
-Date: Tue, 30 Jul 2019 14:36:21 -0400
-Message-Id: <20190730183621.26193-3-btgoodwin@geontech.com>
+Date: Tue, 30 Jul 2019 14:36:20 -0400
+Message-Id: <20190730183621.26193-2-btgoodwin@geontech.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190730183621.26193-1-btgoodwin@geontech.com>
 References: <20190730183621.26193-1-btgoodwin@geontech.com>
 X-Mailman-Approved-At: Tue, 30 Jul 2019 11:45:43 -0700
-Subject: [yocto-autobuilder2][PATCH 3/3] Support for absolute paths to config files
+Subject: [yocto-autobuilder2][PATCH 2/3] Added remote distribution of config JSON files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,58 +74,65 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Tue, 30 Jul 2019 18:36:37 -0000
 
-Using absolute paths in ABHELPER_JSON with remote-loading
-now works; the paths are stripped to os.path.basename()
-before being provided to the builders.
+This feature/fix allows the worker to download the
+autobuilder helper JSON files from the controller
+rather than having to store them in the
+yocto-autobuilder-helper repository.  The process
+installs the file into the worker's
+builddir/yocto-autobuilder-helper path.
 
 Signed-off-by: Thomas Goodwin <btgoodwin@geontech.com>
 ---
- builders.py | 14 +++++++++++---
- 1 file changed, 11 insertions(+), 3 deletions(-)
+ builders.py | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
 diff --git a/builders.py b/builders.py
-index 35903de..16c1344 100644
+index 3d12969..35903de 100644
 --- a/builders.py
 +++ b/builders.py
-@@ -4,6 +4,7 @@ from yoctoabb import config
- from yoctoabb.steps.writelayerinfo import WriteLayerInfo
- from yoctoabb.steps.observer import RunConfigLogObserver
- from datetime import datetime
-+import copy
+@@ -18,6 +18,26 @@ extra_env = {}
+ if os.environ.get('ABHELPER_JSON'):
+     extra_env['ABHELPER_JSON'] = os.environ['ABHELPER_JSON']
  
- import os
- import json
-@@ -38,6 +39,13 @@ def add_abhelper_steps(factory):
-             workerdest=worker_helper,
-             haltOnFailure=True ))
- 
-+# At the worker, all paths are relative to builddir/yocto-autobuilder-helper
-+# once the add_abhelper_steps run.
-+worker_env = copy.deepcopy(extra_env)
-+if worker_env.get('ABHELPER_JSON'):
-+    configs = [os.path.basename(c) for c in worker_env['ABHELPER_JSON'].split(" ")]
-+    worker_env['ABHELPER_JSON'] = " ".join(configs)
++def add_abhelper_steps(factory):
++    """
++    Adds FileDownload steps to the factory for each specified autobuilder
++    helper JSON file and installs the file in the worker's
++    builddir/yocto-autobuilder-helper/ path.
++    """
++    abhelper_dir = os.path.expanduser("~/yocto-autobuilder-helper")
++    abhelper_configs = extra_env.get("ABHELPER_JSON", "config.json").split(" ")
++    for helper in abhelper_configs:
++        helper_name = os.path.basename(helper)
++        worker_helper = util.Interpolate("%(prop:builddir)s/yocto-autobuilder-helper/" + helper_name)
++        master_helper = helper
++        if not helper.startswith("/"):
++            master_helper = os.path.join(abhelper_dir, helper)
++        factory.addStep(steps.FileDownload(
++            name="Download '{}'".format(helper_name),
++            mastersrc=master_helper,
++            workerdest=worker_helper,
++            haltOnFailure=True ))
 +
  @util.renderer
  def get_sstate_release_number(props):
      """
-@@ -216,7 +224,7 @@ for builder in config.subbuilders:
-         workers = config.builder_to_workers['default']
-     builders.append(util.BuilderConfig(name=builder,
-                                        workernames=workers,
--                                       factory=f, env=extra_env))
-+                                       factory=f, env=worker_env))
- 
- def create_parent_builder_factory(buildername, waitname):
-     factory = util.BuildFactory()
-@@ -337,5 +345,5 @@ def create_parent_builder_factory(buildername, waitname):
- 
-     return factory
- 
--builders.append(util.BuilderConfig(name="a-quick", workernames=config.workers, factory=create_parent_builder_factory("a-quick", "wait-quick"), env=extra_env))
--builders.append(util.BuilderConfig(name="a-full", workernames=config.workers, factory=create_parent_builder_factory("a-full", "wait-full"), env=extra_env))
-+builders.append(util.BuilderConfig(name="a-quick", workernames=config.workers, factory=create_parent_builder_factory("a-quick", "wait-quick"), env=worker_env))
-+builders.append(util.BuilderConfig(name="a-full", workernames=config.workers, factory=create_parent_builder_factory("a-full", "wait-full"), env=worker_env))
+@@ -145,6 +165,7 @@ def create_builder_factory():
+         mode='incremental',
+         haltOnFailure=True,
+         name='Fetch yocto-autobuilder-helper'))
++    add_abhelper_steps(f)
+     f.addStep(steps.SetProperties(properties=ensure_props_set))
+     f.addStep(WriteLayerInfo(name='Write main layerinfo.json', haltOnFailure=True))
+     f.addStep(steps.ShellCommand(
+@@ -213,6 +234,7 @@ def create_parent_builder_factory(buildername, waitname):
+         mode='incremental',
+         haltOnFailure=True,
+         name='Fetch yocto-autobuilder-helper'))
++    add_abhelper_steps(factory)
+     factory.addStep(WriteLayerInfo(name='Write main layerinfo.json', haltOnFailure=True))
+     factory.addStep(steps.ShellCommand(
+         command=[
 -- 
 2.17.1
 
