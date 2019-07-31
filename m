@@ -1,62 +1,48 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <bunk@stusta.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BEADAE00D8F; Wed, 31 Jul 2019 04:06:13 -0700 (PDT)
+	id CF48CE00D89; Wed, 31 Jul 2019 06:30:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jupiter.hce[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [141.84.69.5 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.43 listed in list.dnswl.org]
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com
-	[209.85.166.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64825E00D85
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2019 04:06:13 -0700 (PDT)
-Received: by mail-io1-f43.google.com with SMTP id o9so31710459iom.3
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2019 04:06:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=B/t90gyjqMXWTmLG/QyZmPQmsmh8i9vIEM1nMvybn8Y=;
-	b=lfASb8n618toEGEtMUOCPQUsV5QWp6ghkRL/D5u+xdacXPzKx+j02fIOh2R6QDB3it
-	NoTqzlK5/LskhA7gZAhBIBCnkz2bsE9dNqI3vRcyq5UMZKmXkpsZ5g86Mp2A41xgeoY/
-	EjQV1o0ovzDlq80VJvhK3dZ7/RN8qZH6/TsIiAyp6xc2SUmSFUDzvaEKtqsP0nwMutS+
-	ddGQFFGP8+y8xHCubzs+1gVXIkf3LciKj0E0VD93a4WxlWWEtYzIr1n3vkWhvoj9LGTy
-	F9m6DM0xpOXxu5juXmQvM1c0wOFEtm4KQgZ7d+YliD9lsQk3GSNgtcwcE/YfU6EdRbjf
-	9b0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=B/t90gyjqMXWTmLG/QyZmPQmsmh8i9vIEM1nMvybn8Y=;
-	b=I9mrkTiT3ga93OPJv2ormZ266xvpPZ7evFTY92A65lejyzKBaMtHgvywCxvByxWEyp
-	NkmSbQB2FsxNhmOjq6JBWQCPSDX2rZVDklxRYyxmqa7lpTeaIKFqew0KpHi7SnE5aLhX
-	94+VA3AuRTQwA26pghGwfnHklmi/BI6VFK5FrGFfZO1v/bkuPoB0EjP4NQEjWjtZzjJp
-	9fwrFmofwynaMW4S4mKfg1vi41hYWbEtgkAoxS8jMF0av7gmdPFM68th5z0UbXK6Kqjd
-	rKQExUg4M3BnzN/Z41+lPj5D1T+p/3QOOc7YM3fcA7VyW4YaHVEGrFYGybm0pJhIw3bk
-	iWnQ==
-X-Gm-Message-State: APjAAAWHjpUIo3J8z6yqQfEvhpBMxhxbJowu8FXsAAwTJvj5/vK/isd2
-	BLiqWNr0aUBfwXgym8ctt85s6r/KjySC38ECUM9HWnqV
-X-Google-Smtp-Source: APXvYqzFmY0gblIoPS5mZ70hckJC8ANHnScwx6Q9giGjHgvNcXxqoV+Sj6muHH8fEz9LXO4voue+dlNkEgLg9mVKr/Y=
-X-Received: by 2002:a02:54c1:: with SMTP id t184mr95555415jaa.10.1564571172616;
-	Wed, 31 Jul 2019 04:06:12 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP; Wed, 31 Jul 2019 04:06:12
-	-0700 (PDT)
-From: JH <jupiter.hce@gmail.com>
-Date: Wed, 31 Jul 2019 21:06:12 +1000
-Message-ID: <CAA=hcWT8zsyukcEBT=C9XAYLMt2tCaRqZT6Z_5ijQKnSdrAQRw@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Anyone tried to build and to use QUIC?
+Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2C00E00CD5
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2019 06:29:59 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 45zDn24rY6z1n;
+	Wed, 31 Jul 2019 15:29:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
+	s=default; t=1564579799;
+	bh=MtQ3k3tEoBpCQzhEs2Ll6ivVGJo1zma8vh1MbOuSnuo=;
+	h=From:To:Cc:Subject:Date:From;
+	b=CA/CrbaVqcg598L63lr4FuKpXw8zKD/nFTpmwymh+6z+qZhQW5On/hZoIyox6izDW
+	Gid8Kfs4Pdmzk10o8mH+zf6qHYLMeKrIpvvd6P55yhZ4F5pZ1Jpm1+OmIT1UQBP3ZT
+	MyOoZyz+0jYv0oVkadSA3+CBJA4hwsbJJAKIWpmIddeJtv+K4pWnRFAkO6XWAaI1uQ
+	8XNTVNWlB1wXe0BxVOzEbJ/LRZ8Jc7xAJY0XBtlc2GQIA+Kif58ew+KHRjqHSZEQ5i
+	CEXXvbUE2jsDsAUgUqsniPKLjyzG8Y1tb+2h0rEhZd/0PGaVvjoSjsofEFM3ZPElTt
+	4ODela7w/4oLtQ+0+UvEmEcJUT3RBGK3TkbCLt/w0ZLKsvNBOC/zBTL9721Oz8FS42
+	PeBaF0664e4KTRZr9/Mzq+TdOOlBD5oCn6uR5k2Lc/zAoXLSa8NWj+DJVz30mA0iSJ
+	AQlCZuR2abvzNY5I+IhDlRXvhdepkGWRZ0DynGivlOl6clVLnzvDIawtHzW+FpTlZ4
+	AA83sZv9AeVFYujOWmz7xedB/Tlf4C9XhIrWLc8XsDhmYTtQI/fJCcimAoiVhz/wJl
+	7vwwZByPYxETfaa/JUsE7zMY8pqBvbgf5hilphheL2uHaOluqXfpWf1d13Q1jhe89h
+	H/LUy5tK9CyCTN/Zb9N08BMc=
+From: Adrian Bunk <bunk@stusta.de>
+To: yocto@yoctoproject.org
+Date: Wed, 31 Jul 2019 16:29:57 +0300
+Message-Id: <20190731132957.4782-1-bunk@stusta.de>
+X-Mailer: git-send-email 2.17.1
+Subject: [yocto-docs][PATCH] ref-manual: Remove documentation for the removed gnome class
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,17 +54,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jul 2019 11:06:13 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Wed, 31 Jul 2019 13:30:00 -0000
 
-Hi,
+When removed all it did was
+  inherit gnomebase gtk-icon-cache gconf mime
+which would also be the most trivial replacement.
 
-I searched recipes for supporting QUIC, but could not find it. Has
-anyone tried to build and to use QUIC?
+Most of the time not all of these classes were needed,
+and it is recommended to use only the ones actually required.
 
-Thank you.
+Signed-off-by: Adrian Bunk <bunk@stusta.de>
+---
+ documentation/ref-manual/ref-classes.xml | 15 ---------------
+ 1 file changed, 15 deletions(-)
 
-Kind regards,
+diff --git a/documentation/ref-manual/ref-classes.xml b/documentation/ref-manual/ref-classes.xml
+index 37619e382d..5403f20b6f 100644
+--- a/documentation/ref-manual/ref-classes.xml
++++ b/documentation/ref-manual/ref-classes.xml
+@@ -920,21 +920,6 @@
+     </para>
+ </section>
+ 
+-<section id='ref-classes-gnome'>
+-    <title><filename>gnome.bbclass</filename></title>
+-
+-    <para>
+-        The <filename>gnome</filename> class supports recipes that
+-        build software from the GNOME stack.
+-        This class inherits the
+-        <link linkend='ref-classes-gnomebase'><filename>gnomebase</filename></link>,
+-        <link linkend='ref-classes-gtk-icon-cache'><filename>gtk-icon-cache</filename></link>,
+-        <link linkend='ref-classes-gconf'><filename>gconf</filename></link> and
+-        <link linkend='ref-classes-mime'><filename>mime</filename></link> classes.
+-        The class also disables GObject introspection where applicable.
+-    </para>
+-</section>
+-
+ <section id='ref-classes-gnomebase'>
+     <title><filename>gnomebase.bbclass</filename></title>
+ 
+-- 
+2.17.1
 
-- JH
 
