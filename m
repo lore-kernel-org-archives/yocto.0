@@ -1,70 +1,68 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <dbaryshkov@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A62D7E00C5C; Wed, 31 Jul 2019 09:16:38 -0700 (PDT)
+	id BF7B3E00DA3; Wed, 31 Jul 2019 13:24:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (alex.kanavin[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	provider *      (dbaryshkov[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.195 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.217.66 listed in list.dnswl.org]
-Received: from mail-vs1-f66.google.com (mail-vs1-f66.google.com
-	[209.85.217.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28DFBE008E3
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2019 09:16:37 -0700 (PDT)
-Received: by mail-vs1-f66.google.com with SMTP id m23so46573269vso.1
-	for <yocto@yoctoproject.org>; Wed, 31 Jul 2019 09:16:37 -0700 (PDT)
+Received: from mail-lj1-f195.google.com (mail-lj1-f195.google.com
+	[209.85.208.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35390E00D75
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2019 13:24:55 -0700 (PDT)
+Received: by mail-lj1-f195.google.com with SMTP id v18so66910886ljh.6
+	for <yocto@yoctoproject.org>; Wed, 31 Jul 2019 13:24:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=usFPam1ZUZBQmuSJCkRl2fFvLuJT444NTa+jRN+HvP4=;
-	b=EHTVz6IeT0bFyADZbYshq+pjivShEbCDovFGLGDUn8qSwPiFw7aUOd7bZmlPXwW+S3
-	afmQoFiznkrc1Mw0Pjzj6NQWc8EiMAEvHvS0P1Et/kpApuVhyJqaqDzXFh8k0k+SStWM
-	xUvHUXdFZCZaunTpruTKcpOmoP+D62NJ1u24iNhMML5ofzhLWXfPGuVf5r+pjlSrPPyh
-	I3ctMmO6XCUi0YXda1KpOzbcHmzpcv5iyovky7eAqN9HsLFPFdlRtr7oiMiZz/PF5CPG
-	sBzhHsKkfVBUnTLdKOvXjGcPgSXbjbaKKsQiAEAcD9NO+JIfLZNX+7bkPYF5xqELmBpo
-	vHSQ==
+	h=from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=eQsCk+JTkfwfl46RFP5Uj8JYYxCLDVX28w/8RuoYWrY=;
+	b=eB1WCUfqIGH4ZwqYY2YKj+KMujvpmu++CP8RwgNIsnPYGkUD93DA59UoNVJpLJqB9q
+	FnOviTAIc6+CmCXvg3erQ3F5KWPHeYzsFymuXEkkk3mP55HbncClsbOoqZ0LNrm2nUHz
+	Gb35ChDkOCdlJQ3eR01j5U5z8tlPhYrjqXZ4ywnlplpSoabIVkOpOMZrkObNMrWP330p
+	DNc6MeFsOBg+WEaTWsRfxoAlkGExUH9WtztZ5M9ZjqTo0a2KmgjcHvSiKR2nf0OvR3Du
+	+6MH4XYXwmYx634OZ1J+zVUZTgeZxUr9kzTDiPMsbUPQmwFK9Y+LoVbPoZMZUXd0yawE
+	m5LA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=usFPam1ZUZBQmuSJCkRl2fFvLuJT444NTa+jRN+HvP4=;
-	b=HLd/TsfGUXPrys4wr6MRfmopQBFF5REAPAU8IImLVsy0wh+HYi+DS+mhSwLYjjD0hY
-	wZuFYdmk50l20WuEPDEB+/9rvEIh9ETep2LSGWb9tIguFMgxnmRoUCkCq3Khy0GBrJDf
-	NB+sR6oIbMB4tlNaWIUg/G7UW3otMjo45CdPjDzMlJOtXeHdq2nTY+YnT5mEa+e0SYbw
-	3Cz6tLGcfxiIjrvFwLU6E7W4DcYJzkOfkwi6CNITJzuYwjGwT3y5JnvylclLqdWWzmOO
-	YQSRBp0P48ADD2Swu9rR7AuAitRujk2MF79ZD3VplIIdlgCPNrvDNrt8caaHC+TQ7uy/
-	TRPA==
-X-Gm-Message-State: APjAAAXusu9t7qD27YXZGj/re3Cz4Q9vyJd4v5QFs1K8CB/PVDbP3phW
-	uClVaMbP3HQ7UXCAcDXBvlz9q4rncxxAR9FZI/pm1amk
-X-Google-Smtp-Source: APXvYqwyHGTDl5m07VbcdYyBULDxZyyLvHXEylPk+UKVIyqklODpBor3opWIE5ThKhCeuZneWMAw1D0QxcumyBUt7nQ=
-X-Received: by 2002:a05:6102:db:: with SMTP id
-	u27mr10068029vsp.83.1564589797486; 
-	Wed, 31 Jul 2019 09:16:37 -0700 (PDT)
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=eQsCk+JTkfwfl46RFP5Uj8JYYxCLDVX28w/8RuoYWrY=;
+	b=ZVJVUnG0xyGH0Zjnk6m8sdBjwsyyiF7MWvk4Einn5nKhJgbSVUHwaqSe4QFLxM3Wlh
+	1ZTRTCd1bCs/j1U4AthnCc8rHaH42IO3jVKy0D301LdRU9FZwrVIqJbU2Tb7OMTz7HvK
+	JqOOnqP2sWUhQc9z4ll0tKJYIcFtBe7KLn/FOOomE4V+H2l9vLOxI9U6sqikAJAGAMUY
+	nRzD0hP2cWSYrjjYn5lJiw1LTS1JQ087/g3bB7SJUaOsEa0AWd1yTpicMajCMpJtSTSS
+	46aSFVaDF8cUXWh66qQ3/A34+Y8Ioj0kdSJfW3CWVF3IWLipekj9h5xJiP+Yz1R6FD/Q
+	N1Iw==
+X-Gm-Message-State: APjAAAUaNp7kFTR55Nia0P8YMuFnQEmOw3lGumAOWFva81Hrk/6bO+A6
+	gI3f0umttfkpI9SrWZxf/E448PRiHpc=
+X-Google-Smtp-Source: APXvYqyu9cp4BbwfX0IZVEDpI3x9nYU0zNB62W54diutcMnMDIenCQHs64EWyXUSOnhly32x38Si9g==
+X-Received: by 2002:a2e:970d:: with SMTP id r13mr65611372lji.126.1564604693560;
+	Wed, 31 Jul 2019 13:24:53 -0700 (PDT)
+Received: from localhost.localdomain ([94.25.228.150])
+	by smtp.gmail.com with ESMTPSA id
+	y4sm11899138lfc.56.2019.07.31.13.24.52 for <yocto@yoctoproject.org>
+	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+	Wed, 31 Jul 2019 13:24:52 -0700 (PDT)
+From: dbaryshkov@gmail.com
+To: yocto@yoctoproject.org
+Date: Wed, 31 Jul 2019 23:24:51 +0300
+Message-Id: <20190731202451.845-1-dbaryshkov@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20190513162531.45297-1-alex.kanavin@gmail.com>
-	<CANNYZj8MvEUjB-w+JjBRtbTnjw=B--L36+nXOVDAjzf+suxtcw@mail.gmail.com>
-	<c545bc49-effe-629d-213c-55d52adcf5c8@dynamicdevices.co.uk>
-	<CANNYZj8jy+r9k3WhgpbkzOBKtGoUdiM2PD5Sng_8GgiQ3Z_7sQ@mail.gmail.com>
-	<ada9f29d-a922-d7db-a62f-a41ec5ac7cc4@dynamicdevices.co.uk>
-In-Reply-To: <ada9f29d-a922-d7db-a62f-a41ec5ac7cc4@dynamicdevices.co.uk>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 31 Jul 2019 18:16:26 +0200
-Message-ID: <CANNYZj8Ti7+KC5_zLpS8jL3SNvqe8_jGN5eY40FZ1stSxN0oJg@mail.gmail.com>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [meta-mono][PATCH] mono-5.xx: fix an issue with too long paths in doltlibtool
+Subject: [meta-integrity][PATCH] ima-evm-utils: bump to release 1.2.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,50 +74,252 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 31 Jul 2019 16:16:38 -0000
-Content-Type: multipart/alternative; boundary="00000000000019323e058efc73e5"
+X-List-Received-Date: Wed, 31 Jul 2019 20:24:58 -0000
+Content-Transfer-Encoding: 8bit
 
---00000000000019323e058efc73e5
-Content-Type: text/plain; charset="UTF-8"
+From: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
 
-Awesome, thanks!
+Signed-off-by: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
+---
+ ...link-to-libcrypto-instead-of-OpenSSL.patch | 65 -------------------
+ ...ls-replace-INCLUDES-with-AM_CPPFLAGS.patch | 43 ------------
+ ...clude-hash-info.gen-into-distributio.patch | 31 ---------
+ ...ma-evm-utils-update-.gitignore-files.patch | 34 ----------
+ .../ima-evm-utils/ima-evm-utils_git.bb        | 12 +---
+ 5 files changed, 3 insertions(+), 182 deletions(-)
+ delete mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0001-ima-evm-utils-link-to-libcrypto-instead-of-OpenSSL.patch
+ delete mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0002-ima-evm-utils-replace-INCLUDES-with-AM_CPPFLAGS.patch
+ delete mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0003-ima-evm-utils-include-hash-info.gen-into-distributio.patch
+ delete mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0004-ima-evm-utils-update-.gitignore-files.patch
 
-Alex
+diff --git a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0001-ima-evm-utils-link-to-libcrypto-instead-of-OpenSSL.patch b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0001-ima-evm-utils-link-to-libcrypto-instead-of-OpenSSL.patch
+deleted file mode 100644
+index 5ccb73d9b6e6..000000000000
+--- a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0001-ima-evm-utils-link-to-libcrypto-instead-of-OpenSSL.patch
++++ /dev/null
+@@ -1,65 +0,0 @@
+-From 4feaf9b61f93e4043eca26b4ec9f9f68d0cf5e68 Mon Sep 17 00:00:00 2001
+-From: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+-Date: Wed, 6 Mar 2019 01:08:43 +0300
+-Subject: [PATCH 1/4] ima-evm-utils: link to libcrypto instead of OpenSSL
+-
+-There is no need to link to full libssl. evmctl uses functions from
+-libcrypto, so let's link only against that library.
+-
+-Signed-off-by: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+----
+- configure.ac    | 4 +---
+- src/Makefile.am | 9 ++++-----
+- 2 files changed, 5 insertions(+), 8 deletions(-)
+-
+-diff --git a/configure.ac b/configure.ac
+-index 60f3684..32e8d85 100644
+---- a/configure.ac
+-+++ b/configure.ac
+-@@ -24,9 +24,7 @@ LT_INIT
+- # Checks for header files.
+- AC_HEADER_STDC
+- 
+--PKG_CHECK_MODULES(OPENSSL, [ openssl >= 0.9.8 ])
+--AC_SUBST(OPENSSL_CFLAGS)
+--AC_SUBST(OPENSSL_LIBS)
+-+PKG_CHECK_MODULES(LIBCRYPTO, [libcrypto >= 0.9.8 ])
+- AC_SUBST(KERNEL_HEADERS)
+- AC_CHECK_HEADER(unistd.h)
+- AC_CHECK_HEADERS(openssl/conf.h)
+-diff --git a/src/Makefile.am b/src/Makefile.am
+-index d74fc6f..b81281a 100644
+---- a/src/Makefile.am
+-+++ b/src/Makefile.am
+-@@ -1,11 +1,11 @@
+- lib_LTLIBRARIES = libimaevm.la
+- 
+- libimaevm_la_SOURCES = libimaevm.c
+--libimaevm_la_CPPFLAGS = $(OPENSSL_CFLAGS)
+-+libimaevm_la_CPPFLAGS = $(LIBCRYPTO_CFLAGS)
+- # current[:revision[:age]]
+- # result: [current-age].age.revision
+- libimaevm_la_LDFLAGS = -version-info 0:0:0
+--libimaevm_la_LIBADD =  $(OPENSSL_LIBS)
+-+libimaevm_la_LIBADD =  $(LIBCRYPTO_LIBS)
+- 
+- include_HEADERS = imaevm.h
+- 
+-@@ -17,12 +17,11 @@ hash_info.h: Makefile
+- bin_PROGRAMS = evmctl
+- 
+- evmctl_SOURCES = evmctl.c
+--evmctl_CPPFLAGS = $(OPENSSL_CFLAGS)
+-+evmctl_CPPFLAGS = $(LIBCRYPTO_CFLAGS)
+- evmctl_LDFLAGS = $(LDFLAGS_READLINE)
+--evmctl_LDADD =  $(OPENSSL_LIBS) -lkeyutils libimaevm.la
+-+evmctl_LDADD =  $(LIBCRYPTO_LIBS) -lkeyutils libimaevm.la
+- 
+- INCLUDES = -I$(top_srcdir) -include config.h
+- 
+- CLEANFILES = hash_info.h
+- DISTCLEANFILES = @DISTCLEANFILES@
+--
+--- 
+-2.17.1
+-
+diff --git a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0002-ima-evm-utils-replace-INCLUDES-with-AM_CPPFLAGS.patch b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0002-ima-evm-utils-replace-INCLUDES-with-AM_CPPFLAGS.patch
+deleted file mode 100644
+index 8237274ca8b6..000000000000
+--- a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0002-ima-evm-utils-replace-INCLUDES-with-AM_CPPFLAGS.patch
++++ /dev/null
+@@ -1,43 +0,0 @@
+-From 5bb10f3da420f4c46e44423276a9da0d4bc1b691 Mon Sep 17 00:00:00 2001
+-From: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+-Date: Wed, 6 Mar 2019 01:17:12 +0300
+-Subject: [PATCH 2/4] ima-evm-utils: replace INCLUDES with AM_CPPFLAGS
+-
+-Replace INCLUDES variable with AM_CPPFLAGS to stop Automake from warning
+-about deprecated variable usage.
+-
+-Signed-off-by: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+----
+- src/Makefile.am | 6 +++---
+- 1 file changed, 3 insertions(+), 3 deletions(-)
+-
+-diff --git a/src/Makefile.am b/src/Makefile.am
+-index b81281a..164e7e4 100644
+---- a/src/Makefile.am
+-+++ b/src/Makefile.am
+-@@ -1,7 +1,7 @@
+- lib_LTLIBRARIES = libimaevm.la
+- 
+- libimaevm_la_SOURCES = libimaevm.c
+--libimaevm_la_CPPFLAGS = $(LIBCRYPTO_CFLAGS)
+-+libimaevm_la_CPPFLAGS = $(AM_CPPFLAGS) $(LIBCRYPTO_CFLAGS)
+- # current[:revision[:age]]
+- # result: [current-age].age.revision
+- libimaevm_la_LDFLAGS = -version-info 0:0:0
+-@@ -17,11 +17,11 @@ hash_info.h: Makefile
+- bin_PROGRAMS = evmctl
+- 
+- evmctl_SOURCES = evmctl.c
+--evmctl_CPPFLAGS = $(LIBCRYPTO_CFLAGS)
+-+evmctl_CPPFLAGS = $(AM_CPPFLAGS) $(LIBCRYPTO_CFLAGS)
+- evmctl_LDFLAGS = $(LDFLAGS_READLINE)
+- evmctl_LDADD =  $(LIBCRYPTO_LIBS) -lkeyutils libimaevm.la
+- 
+--INCLUDES = -I$(top_srcdir) -include config.h
+-+AM_CPPFLAGS = -I$(top_srcdir) -include config.h
+- 
+- CLEANFILES = hash_info.h
+- DISTCLEANFILES = @DISTCLEANFILES@
+--- 
+-2.17.1
+-
+diff --git a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0003-ima-evm-utils-include-hash-info.gen-into-distributio.patch b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0003-ima-evm-utils-include-hash-info.gen-into-distributio.patch
+deleted file mode 100644
+index 3d250d2fca5d..000000000000
+--- a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0003-ima-evm-utils-include-hash-info.gen-into-distributio.patch
++++ /dev/null
+@@ -1,31 +0,0 @@
+-From c587ec307a6259a990bfab727cea7db28dba4c23 Mon Sep 17 00:00:00 2001
+-From: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+-Date: Wed, 6 Mar 2019 01:22:30 +0300
+-Subject: [PATCH 3/4] ima-evm-utils: include hash-info.gen into distribution
+-
+-Include hash-info.gen into tarball and call it from the sourcedir to fix
+-out-of-tree build (and thus 'make distcheck').
+-
+-Signed-off-by: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+----
+- src/Makefile.am | 3 ++-
+- 1 file changed, 2 insertions(+), 1 deletion(-)
+-
+-diff --git a/src/Makefile.am b/src/Makefile.am
+-index 164e7e4..9c037e2 100644
+---- a/src/Makefile.am
+-+++ b/src/Makefile.am
+-@@ -11,8 +11,9 @@ include_HEADERS = imaevm.h
+- 
+- nodist_libimaevm_la_SOURCES = hash_info.h
+- BUILT_SOURCES = hash_info.h
+-+EXTRA_DIST = hash_info.gen
+- hash_info.h: Makefile
+--	./hash_info.gen $(KERNEL_HEADERS) >$@
+-+	$(srcdir)/hash_info.gen $(KERNEL_HEADERS) >$@
+- 
+- bin_PROGRAMS = evmctl
+- 
+--- 
+-2.17.1
+-
+diff --git a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0004-ima-evm-utils-update-.gitignore-files.patch b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0004-ima-evm-utils-update-.gitignore-files.patch
+deleted file mode 100644
+index 4ada1a2710ca..000000000000
+--- a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils/0004-ima-evm-utils-update-.gitignore-files.patch
++++ /dev/null
+@@ -1,34 +0,0 @@
+-From b9f327c5c513ccea9cb56d4bbd50c1f66d629099 Mon Sep 17 00:00:00 2001
+-From: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+-Date: Wed, 6 Mar 2019 01:24:04 +0300
+-Subject: [PATCH 4/4] ima-evm-utils: update .gitignore files
+-
+-Signed-off-by: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+----
+- .gitignore     | 1 +
+- src/.gitignore | 1 +
+- 2 files changed, 2 insertions(+)
+- create mode 100644 src/.gitignore
+-
+-diff --git a/.gitignore b/.gitignore
+-index ca7a06e..cb82166 100644
+---- a/.gitignore
+-+++ b/.gitignore
+-@@ -45,6 +45,7 @@ cscope.*
+- ncscope.*
+- 
+- # Generated documentation
+-+*.1
+- *.8
+- *.5
+- manpage.links
+-diff --git a/src/.gitignore b/src/.gitignore
+-new file mode 100644
+-index 0000000..38e8e3c
+---- /dev/null
+-+++ b/src/.gitignore
+-@@ -0,0 +1 @@
+-+hash_info.h
+--- 
+-2.17.1
+-
+diff --git a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_git.bb b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_git.bb
+index 6d4f008df334..92c24c902d88 100644
+--- a/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_git.bb
++++ b/meta-integrity/recipes-security/ima-evm-utils/ima-evm-utils_git.bb
+@@ -6,9 +6,9 @@ DEPENDS += "openssl attr keyutils"
+ 
+ DEPENDS_class-native += "openssl-native keyutils-native"
+ 
+-PV = "1.1+git${SRCPV}"
+-SRCREV = "782224f33cd711050cbf6146a12122cd73f9136b"
+-SRC_URI = "git://git.code.sf.net/p/linux-ima/ima-evm-utils"
++PV = "1.2.1+git${SRCPV}"
++SRCREV = "3eab1f93b634249c1720f65fcb495b1996f0256e"
++SRC_URI = "git://git.code.sf.net/p/linux-ima/ima-evm-utils;branch=ima-evm-utils-1.2.y"
+ 
+ # Documentation depends on asciidoc, which we do not have, so
+ # do not build documentation.
+@@ -21,12 +21,6 @@ SRC_URI += "file://evmctl.c-do-not-depend-on-xattr.h-with-IMA-defines.patch"
+ # Required for xargs with more than one path as argument (better for performance).
+ SRC_URI += "file://command-line-apply-operation-to-all-paths.patch"
+ 
+-SRC_URI += "\
+-    file://0001-ima-evm-utils-link-to-libcrypto-instead-of-OpenSSL.patch \
+-    file://0002-ima-evm-utils-replace-INCLUDES-with-AM_CPPFLAGS.patch \
+-    file://0003-ima-evm-utils-include-hash-info.gen-into-distributio.patch \
+-    file://0004-ima-evm-utils-update-.gitignore-files.patch \
+-"
+ S = "${WORKDIR}/git"
+ 
+ inherit pkgconfig autotools
+-- 
+2.20.1
 
-On Wed, 31 Jul 2019 at 17:04, Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-wrote:
 
->
-> On 18/06/2019 11:58, Alexander Kanavin wrote:
-> > Ping #2!
-> >
-> > Alex
->
->
-> Apologies for the long delay! The patch is in finally...
->
->
->
-
---00000000000019323e058efc73e5
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Awesome, thanks! <br></div><div><br></div><div>Alex<b=
-r></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
-l_attr">On Wed, 31 Jul 2019 at 17:04, Alex J Lennon &lt;<a href=3D"mailto:a=
-jlennon@dynamicdevices.co.uk">ajlennon@dynamicdevices.co.uk</a>&gt; wrote:<=
-br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><br>
-On 18/06/2019 11:58, Alexander Kanavin wrote:<br>
-&gt; Ping #2!<br>
-&gt;<br>
-&gt; Alex<br>
-<br>
-<br>
-Apologies for the long delay! The patch is in finally...<br>
-<br>
-<br>
-</blockquote></div>
-
---00000000000019323e058efc73e5--
