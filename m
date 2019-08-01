@@ -1,51 +1,63 @@
-Return-Path: <ee.peng.yeoh@intel.com>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 69AD8E00DA3; Thu,  1 Aug 2019 00:30:47 -0700 (PDT)
+	id BB521E00DA3; Thu,  1 Aug 2019 00:37:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [134.134.136.126 listed in list.dnswl.org]
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2335E00CD7
-	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 00:30:46 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	01 Aug 2019 00:30:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,333,1559545200"; d="scan'208";a="175156764"
-Received: from pgsmsx101.gar.corp.intel.com ([10.221.44.78])
-	by orsmga003.jf.intel.com with ESMTP; 01 Aug 2019 00:30:44 -0700
-Received: from pgsmsx109.gar.corp.intel.com ([169.254.14.91]) by
-	PGSMSX101.gar.corp.intel.com ([169.254.1.22]) with mapi id
-	14.03.0439.000; Thu, 1 Aug 2019 15:30:43 +0800
-From: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: QA cycle report for 2.8 M2 RC1
-Thread-Index: AdVIOsDVMX0ezMlkQGSCHgUZ9Bv2Zw==
-Date: Thu, 1 Aug 2019 07:30:42 +0000
-Message-ID: <9DDD2658D1FE414E99172D2DB1E4D04348210BA7@PGSMSX109.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiM2Q3ZGVlZGMtMzI5NC00MzBhLTllNDktZjNkYmZlMGE5MWFlIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiQmtuckJFV1hyXC82MDRQSEdteDZcL0luc0pQc2JlV2RrZ2NOWDlHNloxZUdYdjl5RHRSRGhaVldwQU1NVGxPaXZhIn0=
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [172.30.20.205]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jupiter.hce[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.47 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com
+	[209.85.166.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5895EE00CD7
+	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 00:37:26 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id q22so22417537iog.4
+	for <yocto@yoctoproject.org>; Thu, 01 Aug 2019 00:37:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=2Y57X4dXJMO01y6YGVMOcBhSgCZgXAcVJCYj7ClSMK4=;
+	b=lpmV4hPGeTU8/uaKummnOuOx5rtz91XwvEl0a3J099UG91YGU0GYNGV8BmIcyXl0Cp
+	MknDV4MPs8C03HjDW/JHc5rJagJvBssgSud7MPvOftvvhpxgtBD4dNFGFt9UPNM7X5gz
+	fn7c8VVDT7PHxHQN+KmD9c5cVuctQ7BChVrZsdrEnEsYriCT3XriZAjwiHlSUqxndsea
+	1vpXQu1DgekEI04pzTDDnnkfKd+K4FTnMeb5H9VBC99uMvmo82RMz0gVHRikIwojnnYk
+	rTBpNjnqnuYnsMj5I3gMpZ0G8IznbbSarpGWZyHt7KY9OWeYC25hOjn8q1YlP9T7CSnt
+	pRtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=2Y57X4dXJMO01y6YGVMOcBhSgCZgXAcVJCYj7ClSMK4=;
+	b=oR31v5N6F2JamRXngL7SfdSoy5e/NnHhNC3TaVHp8fzoGT77zuR0opAJ0j/JOSLZpn
+	vAjsG9IX776QVwnpEiLXi+yxmcll00EwM1Hk71Qk1qEjW+gA9S7ivxD+1FEstKyPDIuw
+	lboq/Jpuwe+CgoBlSoezOLSlrpshKHgCoG59+PzeyADHvpCUsutq0elbipz45H1b7oce
+	epKbsI5L1W/CCh7raKdT+bXm6zXTjnUWRRkGMttlriJhL2dOCn26bn70oBJRfy/U42jJ
+	UYqbRCWxuudjK21n0XoApcqAn1gNcfsPxNU5WwgMOsn80W0UJng1OiPG2WTBnxrQhx2p
+	kghA==
+X-Gm-Message-State: APjAAAWPsDsIQU7aM56ywqqdJQ/SI82yTGvwnF4c2sowc/G4s72DE+S2
+	kk5As5yyeBb1oxzWXMwGqXrGPFXWdBQo0y7lBXRKBf7t
+X-Google-Smtp-Source: APXvYqwZ1zyUxsOkn9cj1gls46J/LQ2Ccg/U5zaoxjYhdk4ZIpYfnTFOaY2nLKquTdcon18LZ/cEIiLrhE0Jh5Z/SZU=
+X-Received: by 2002:a6b:8f47:: with SMTP id
+	r68mr121760932iod.204.1564645045650; 
+	Thu, 01 Aug 2019 00:37:25 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>, "Chan,
-	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
-	"akuster808@gmail.com" <akuster808@gmail.com>
-Subject: QA cycle report for 2.8 M2 RC1
+Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP;
+	Thu, 1 Aug 2019 00:37:24 -0700 (PDT)
+From: JH <jupiter.hce@gmail.com>
+Date: Thu, 1 Aug 2019 17:37:24 +1000
+Message-ID: <CAA=hcWSYrjxA8K1jURiiwpcY5pz6zb-cb6j7R9sOTM-831-BBQ@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Make the service the last run in boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,25 +69,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Aug 2019 07:30:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 01 Aug 2019 07:37:26 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Hello All,
-=20
-This is the full report for 2.8 M2 RC1: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dzeus&id=3Dd550d40646e1ca78a4b5d106e1b20831208b4c37
+Hi,
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects. =20
-Two new defects are found in this cycle, both beaglebone and genericx86-64 =
-facing shutdown hanging (BUG id:13461) and ptest failed (BUG id:13465).=20
-One timeout issues observed in ptests was mdadm (BUG id: 13368).
+How can I find the systemd last run service I can put it in my network
+application After=<last run tartget or service>?
 
-=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13461
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13465
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13368
+I need my network application service to be run at last in boot, I
+made After=connman and Requires=connman.service that did not work,
+always failed in boot, I have to manually restart the network
+application service which won't work in field operation.
+
+Searched from Internet, there is a blog Systemd: Run it last to create
+a custom.target After=multi-user.target, and put my network
+application service WantedBy=custom.target, that works well, but it is
+a little bit cumbersome to configure customer.target in Yocto bb file,
+enabling the customer.target is called systemctl isolate
+custom.target, the /etc/systemd/system/default.target link needs be
+changed to from multi-user.target to custom.target. I am not sure how
+it could be done in do_install, appreciate your tips.
+
+Thank you.
+
+Kind regards,
+
+- JH
 
