@@ -1,6 +1,6 @@
 Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0DB56E00DA9; Thu,  1 Aug 2019 04:30:55 -0700 (PDT)
+	id 1E38CE00DD1; Thu,  1 Aug 2019 04:34:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,55 +10,53 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.49 listed in list.dnswl.org]
+	*      [209.85.221.66 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
-	[209.85.128.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C7D6E00D75
-	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 04:30:48 -0700 (PDT)
-Received: by mail-wm1-f49.google.com with SMTP id v15so64290314wml.0
-	for <yocto@yoctoproject.org>; Thu, 01 Aug 2019 04:30:48 -0700 (PDT)
+Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com
+	[209.85.221.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDAF8E00927
+	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 04:33:02 -0700 (PDT)
+Received: by mail-wr1-f66.google.com with SMTP id p17so73178524wrf.11
+	for <yocto@yoctoproject.org>; Thu, 01 Aug 2019 04:33:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=mvista-com.20150623.gappssmtp.com; s=20150623;
-	h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=aa0YdhWJSwnla250LwWeth3vEXeUZiBYpqD2br8xVUY=;
-	b=pEmW4XghwU3uIADaDLMD33xihBqKlHD7PNmp50eWgWmi43Z8j9OAIInznAA2SrsO+5
-	+2Tm4wLLVBCajSzGvpUNJBurY+YM2vNsQmNlw6pDike4VzOSrLuOrDvdhogsZrIbG8xD
-	lYmgxhrJfhvLTnEQTcE6kXl3D26whOl534WOv9mBx952zY9nfYzkSz2nqLNpcgAYP5PI
-	XqWMu7Mj7Nzdh5LJuqgh+MD+c0hFk4nIEKC/3tMakvJwxp9A1tu9DrFwnzVwjIF1P2px
-	TrVxNeDpwNMUNecKu/q/Xt9QYgVsdq/lsd+zt4lRDxLxCAGQ+Sb6a6obDHCbvh4qfHVu
-	cuXA==
+	bh=NgxrlOurNWLDxsA+rIbcxzxCsgHR4SV+IQ7OW+gyRDs=;
+	b=1Zj+eY1no1R0kYFKSY5yF94orIRXoabPMbQ55CQTyDMVGeYzNNBWXhcxAFL0UFYQ7i
+	kMFkXuM+wbCa0ZKvC86HD98uEFE59xohI0pKh6CPySZ8mFQfu2rCujSQRdJAGBpRi47k
+	mJW0HzO6awi0lX4MlgvRkhAUuU+NMs8Kyy/GGIF5CL9F0yg1yYKg+U6bFH5++TFiGdep
+	JGZnOK2yR0NFKQIId8u3fRI6Nqrz7+lxlkem1kFaDuqzSsC92tyqXO6Lkf26T/+9JVV0
+	QaUKNtroy0qPULRtGSCQdCFyuRS0gdesgultdcMPeA71wFSHPJlRlXXNnCoq7MDLnRXA
+	Zkvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=aa0YdhWJSwnla250LwWeth3vEXeUZiBYpqD2br8xVUY=;
-	b=IlVoOIzghaG9bndEG5izX9w+t3zlvjDbQyxCEMkd+cDaMpfRzH0oF9kJtPnfpEtoIg
-	7fOuSWh8/RjjDuHQhMoScmXlG17kN8FWVJ6unzncx7wPAGjQvUrGqHF77doAj4XyVIKA
-	DhV0DugDWkJuN/tAjKDJUWRjG4e/3DfomSQ5h42ZPRPQYsv3XLKIWg+WLuX7eL0Xaopl
-	EHz35KGY1co7ZryLR344oqVpf+5FM5jHqNm90OuGVNpgAvQMoaf5L3nNaUsz53n7ixOO
-	HC11eMgY0u74n9pXQ9LWkaKpSimKayy5aYzhy80Gsa0SiBgKjmIQtQYNEqAnLbAHFw5M
-	bawQ==
-X-Gm-Message-State: APjAAAUb2U87dj9Ww6SLV4E8pCfaT5oakvlRvmUQYreNqUQL/igetq5z
-	VVzyCTcrJzFt9s/XnjSYfCoKxg==
-X-Google-Smtp-Source: APXvYqxPLABrVexc2t2/EhUpQrrVKG3I06bXQAygNLysJoVfagOlHI+o1eaKQHDfBXe4lQx1aCblxQ==
-X-Received: by 2002:a1c:407:: with SMTP id 7mr122314390wme.113.1564659047405; 
-	Thu, 01 Aug 2019 04:30:47 -0700 (PDT)
+	bh=NgxrlOurNWLDxsA+rIbcxzxCsgHR4SV+IQ7OW+gyRDs=;
+	b=fmRTK+l4DwyZuZEnRjw9ZUwD7l7ZAVFmrUFZaequxTD6VMNOAOo5C16ZAYCU4T+Bmz
+	S/3BoD9btYWuh09+arKPghyMlaxign6uk+fvyuwhi3Lvwg/5rR4cSUonJ0CVjCcR1GFt
+	+XCJUWIvFfKByRS3J6IEGnFPrUGxfmhYa9bgHXWMTbTyLnC6IkAUGRu6c6e/zritZpz5
+	LkxGaLdaaihOrPXPoLoCLKd7wByHrfLxHMh2mv0Gu2DCxuc0Vcjfwy6fpm8GDLOnLXcu
+	g+ddli6exD6BbFs9Ht52oo6FoscKtTRyey1Cdxk213eDK/bBsvlNQy+6/mWChIW2n61h
+	5Dmw==
+X-Gm-Message-State: APjAAAXHxfSZMkrr3EnJGois3etoQ4uiIROMfIzNImwAbRKhf4YcXiOr
+	2uQyBoa3iQACyXTtoRN2JNCjPP759vlH3wFl
+X-Google-Smtp-Source: APXvYqySfKseriTbZWYtlCz0Ko6kpb4zbgvpDmVdP7tTAbK35eUZDkNpU+3Av4AiM2UIcIDzGn9upg==
+X-Received: by 2002:adf:c508:: with SMTP id q8mr7742870wrf.148.1564659181325; 
+	Thu, 01 Aug 2019 04:33:01 -0700 (PDT)
 Received: from [192.168.1.25]
 	(host86-161-197-210.range86-161.btcentralplus.com. [86.161.197.210])
 	by smtp.gmail.com with ESMTPSA id
-	s12sm66618734wmh.34.2019.08.01.04.30.45
+	r4sm43478444wrq.82.2019.08.01.04.33.00
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 01 Aug 2019 04:30:46 -0700 (PDT)
-To: richard.purdie@linuxfoundation.org, "Yeoh, Ee Peng"
-	<ee.peng.yeoh@intel.com>, "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <9DDD2658D1FE414E99172D2DB1E4D04348210BA7@PGSMSX109.gar.corp.intel.com>
-	<5cb64dc7da80fdc8b2229b35ca7fe4ed55188622.camel@linuxfoundation.org>
+	Thu, 01 Aug 2019 04:33:00 -0700 (PDT)
+To: Thomas Goodwin <btgoodwin@geontech.com>, yocto@yoctoproject.org
+References: <20190730183621.26193-1-btgoodwin@geontech.com>
 From: akuster <akuster@mvista.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
@@ -104,16 +102,13 @@ Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <1b429a41-6521-6528-67f9-52b14fce426d@mvista.com>
-Date: Thu, 1 Aug 2019 04:30:44 -0700
+Message-ID: <82dd561e-17a9-e65a-48ef-23b005bd94c7@mvista.com>
+Date: Thu, 1 Aug 2019 04:32:59 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <5cb64dc7da80fdc8b2229b35ca7fe4ed55188622.camel@linuxfoundation.org>
-Cc: "akuster808@gmail.com" <akuster808@gmail.com>, "Chan,
-	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
-	"otavio@ossystems.com.br" <otavio@ossystems.com.br>
-Subject: Re: QA cycle report for 2.8 M2 RC1
+In-Reply-To: <20190730183621.26193-1-btgoodwin@geontech.com>
+Subject: Re: [yocto-autobuilder2][PATCH 1/3] Bug fix: added support for ABHELPER_JSON environ.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -125,46 +120,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Aug 2019 11:30:55 -0000
+X-List-Received-Date: Thu, 01 Aug 2019 11:34:58 -0000
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
 
 
-On 8/1/19 3:00 AM, richard.purdie@linuxfoundation.org wrote:
-> On Thu, 2019-08-01 at 07:30 +0000, Yeoh, Ee Peng wrote:
->> This is the full report for 2.8 M2 RC1:  
->> https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?h=zeus&id=d550d40646e1ca78a4b5d106e1b20831208b4c37
->>
->> ======= Summary ========
->> No high milestone defects.  
->> Two new defects are found in this cycle, both beaglebone and
->> genericx86-64 facing shutdown hanging (BUG id:13461) and ptest failed
->> (BUG id:13465). 
->> One timeout issues observed in ptests was mdadm (BUG id: 13368).
->>
->> ======= Bugs ========
->> https://bugzilla.yoctoproject.org/show_bug.cgi?id=13461
->> https://bugzilla.yoctoproject.org/show_bug.cgi?id=13465
->> https://bugzilla.yoctoproject.org/show_bug.cgi?id=13368
-> Thanks Ee Peng, Yi and everyone else in QA!
-+1,yes,  many thanks
+On 7/30/19 11:36 AM, Thomas Goodwin wrote:
+> The readme suggests exporting this variable from the
+> environment to expose multiple configuration JSON files
+> but the intended behavior doesn't work without adding the
+> variable to extra_env.
 
->
-> I think we do need to fix these regressions but they're not serious
-> enough to block release of M2, or require a rebuild. As such I think we
-> should release this.
-I am fine with releasing M2 but make them blockers for M3.
+Any chance of updating documentation on how to use this?
 
-- Armin
-
+- armin
 >
-> Any other feedback from anyone?
+> Signed-off-by: Thomas Goodwin <btgoodwin@geontech.com>
+> ---
+>  builders.py | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 >
-> Cheers,
->
-> Richard
->
+> diff --git a/builders.py b/builders.py
+> index 5765040..3d12969 100644
+> --- a/builders.py
+> +++ b/builders.py
+> @@ -15,7 +15,8 @@ maxsteps = 9
+>  # Environment to pass into the workers, e.g. to load further local configuration
+>  # fragments
+>  extra_env = {}
+> -#extra_env = {"ABHELPER_JSON" : "config.json /home/pokybuild/config-local.json"}
+> +if os.environ.get('ABHELPER_JSON'):
+> +    extra_env['ABHELPER_JSON'] = os.environ['ABHELPER_JSON']
+>  
+>  @util.renderer
+>  def get_sstate_release_number(props):
 
 
