@@ -1,63 +1,61 @@
-Return-Path: <btgoodwin@geontech.com>
+Return-Path: <wpdster@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E43A3E00C87; Thu,  1 Aug 2019 06:53:11 -0700 (PDT)
+	id D0A8DE00DA9; Thu,  1 Aug 2019 07:08:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.196 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (wpdster[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f196.google.com (mail-qk1-f196.google.com
-	[209.85.222.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BD5FE00BD5
-	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 06:53:09 -0700 (PDT)
-Received: by mail-qk1-f196.google.com with SMTP id s22so52092114qkj.12
-	for <yocto@yoctoproject.org>; Thu, 01 Aug 2019 06:53:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=geontech-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=7V2wVYY0K6R7bf2gN6/Nk9NrtJhGKrpSh3ETFmV9dyA=;
-	b=UIST7pkBxlSD9HZNdH6F+gZKYWBAVjmWFJX3T0kx/rjwetcd+qBrVkLcHoTkkZanoI
-	lnFOj0sh0ix+PA1sxop5pPPlAzIH+n/VbRMww76WE+Xst5YHDJrNpF8bMucVq6ucADOr
-	s+U1kCodMnZAWTzv3u4NzXtvGsdetjLqTtiYmLMI09ir0Lno1Fzn6bwMFt7gTSRJc+lL
-	g9d15Rd4OX+G3UAW4ZuVLlRBoDdRkMfykHt9BzudtAvQvNatCdOBB7dkeX4blWJ3Fk1h
-	d+euYMXcaKLOHPjjQjrCwhld2Ou/Wesmwlbbe7/d7/yV4u4VAlOi4iSQYBsX8UnnLLcd
-	3Hfw==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.178 listed in list.dnswl.org]
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
+	[209.85.222.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58906E00C87
+	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 07:08:39 -0700 (PDT)
+Received: by mail-qk1-f178.google.com with SMTP id g18so52088366qkl.3
+	for <yocto@yoctoproject.org>; Thu, 01 Aug 2019 07:08:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=y2PPZUGawaajE0wDFRymbd86wLhiBg7+vg77E7eXa18=;
+	b=YzWgxCP1ISs60j4mfKXBCVHi6iZ7Py+QogAJv+ToovSK5q077j+jn3KlQ+ZV0uz+xt
+	ZDpFR08WjDAWiSJpBGEK3VACYZyEwEhjuc3zZgPOsxCIfJKfuBEvA8d6Sz8M7Df9T6KT
+	7JRzMGhTTiZ99R2XkmNwZN1h44otQX/MuaerFH57NoSdAk9XZ0DOul8fht1lJdP7DSGR
+	6sXK0cjZf0SkVXdAhkm5E0cBNGZvlN3LmS0HuRPo14eB4nVUa4+qHCTgzAd41pPiTqwY
+	aIwHxuU8m341fRHLHSGS5AJRGrKAswYJAKlvorZCYk292r+3B0F7lSzPZehb0+MPFFJf
+	N1Zw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=7V2wVYY0K6R7bf2gN6/Nk9NrtJhGKrpSh3ETFmV9dyA=;
-	b=IeBhuEH7FciRkF9qWmUD5+uekWhwpQyNYwSB0JoJejuIQkjZ8nCwBGf6INoDDpc5Yp
-	KtRI3no/KCPuh4tloThhyPO8ccsJJ3oj5ncrttFGM0WtKAQAXuA1GPlP2ZDN9jzls3WQ
-	gVZ+ML9z0gEdxlLP5L5SnWB3K0S+n1gdjc71ZSOyvrVp05eHCyb2sY0afxxbgzyPAa8u
-	KY/FvmBOTLjz3CA4AtST8+qyiBpqu1kobMxaT86HCw+65ERtdVxsG6CVXJPeNPTKU3du
-	QNjxtyMPoZ+kUNiQe00RKANfkiqCClHMLB8EPcfxSKz0tiow5A2qXk//i/qpaQDf08sd
-	dI4A==
-X-Gm-Message-State: APjAAAVlGpMBK1nIENJ517S9sa97xKAMRyZ6G7bn0QAtw+j8oRldPcQa
-	rsuyuRKYOL0msEQ4Cd99sp2AOiWZ+3RBUzX3ZoA=
-X-Google-Smtp-Source: APXvYqxE+D12zvwjS7TxT6td2pSu+pInC453KNVyUPLfv5glAJERkAJbYgQ4d+Vqq59gg6LozUMyrYvszYucbhn87pk=
-X-Received: by 2002:a37:61c3:: with SMTP id
-	v186mr81058980qkb.158.1564667588337; 
-	Thu, 01 Aug 2019 06:53:08 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=y2PPZUGawaajE0wDFRymbd86wLhiBg7+vg77E7eXa18=;
+	b=M0fuFBwoxMtigrY4moL9OhDWaNrVZRw3g/PIYbW2fv9xSQVmWrxmiwqJYaGy5p38Z1
+	hWw7u514ZPczA/q9XLZydjgth6jM7jAmSPSwJyRWqdYCMtmNvDGLG5iJV/n0Auz9y+8K
+	yfGgl2GBym95slmHn5XC1spmVRuODldtalIRfX5AXX5h453P5XfAVDxvJ9B2vUj8u9ih
+	JhmCNsoX97qNZtqfFmKC9cKwiPxbeygZb0lXe6YfPNDm6ecOtUllCRqo97ozbYY3shOw
+	FUG4Pxvips9dTdBSG6pa0fR623MJxdti24fgYCthUGVV7uxPxulml5+BMKsOCDaKuQVH
+	ELPA==
+X-Gm-Message-State: APjAAAWnDGLVJRp8c6jLIHI/PhKySn3E2m30dxVSF8XhzFyEbyFU4LZp
+	i20DJ2tT3jLUt8Bf6FlCMKSm7BUJnjdu3UlPS96WKsZ+Ciw=
+X-Google-Smtp-Source: APXvYqw65osDgQu/qKvUAmwhRmRlJVtdDb+pdx2u4WdFBM8lZCU3jKbxpASWYhYh7x7rKUEEkjy23QosMxLYyXNLQuM=
+X-Received: by 2002:a05:620a:685:: with SMTP id
+	f5mr82565402qkh.238.1564668518654; 
+	Thu, 01 Aug 2019 07:08:38 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190730183621.26193-1-btgoodwin@geontech.com>
-	<82dd561e-17a9-e65a-48ef-23b005bd94c7@mvista.com>
-In-Reply-To: <82dd561e-17a9-e65a-48ef-23b005bd94c7@mvista.com>
-From: Thomas Goodwin <btgoodwin@geontech.com>
-Date: Thu, 1 Aug 2019 09:52:57 -0400
-Message-ID: <CABudRdxFBN166m8+eRJECFvXs5zbQkw8d0M=QF=G+6HV8=1nsw@mail.gmail.com>
-To: akuster <akuster@mvista.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto-autobuilder2][PATCH 1/3] Bug fix: added support for ABHELPER_JSON environ.
+From: Patrick Doyle <wpdster@gmail.com>
+Date: Thu, 1 Aug 2019 10:08:12 -0400
+Message-ID: <CAF_dkJBL96YB_Gbr1PRRN_f+Qr0EJO=T8ycifHwQwxUBnxC_LA@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Reproducible u-boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,117 +67,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Aug 2019 13:53:12 -0000
-Content-Type: multipart/alternative; boundary="000000000000cb728f058f0e8f36"
-
---000000000000cb728f058f0e8f36
+X-List-Received-Date: Thu, 01 Aug 2019 14:08:40 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-It's already there, this patch is to make it work as described:
-http://git.yoctoproject.org/cgit.cgi/yocto-autobuilder2/tree/README-WALKTHROUGHS.md?h=contrib/tgoodwin/config-json-fixes#n79
+How do I use the reproducible_build class to create a reproducible u-boot?
 
-Consequently, having the variable in your environment is the only way for
-the janitor to parse and use the same configuration files as the controller.
+I tried adding
 
-Thomas
+inherit reproducible_build
 
-On Thu, Aug 1, 2019 at 7:33 AM akuster <akuster@mvista.com> wrote:
+to my u-boot recipe, but when I do that, I generate errors of the form:
 
->
->
-> On 7/30/19 11:36 AM, Thomas Goodwin wrote:
-> > The readme suggests exporting this variable from the
-> > environment to expose multiple configuration JSON files
-> > but the intended behavior doesn't work without adding the
-> > variable to extra_env.
->
-> Any chance of updating documentation on how to use this?
->
-> - armin
-> >
-> > Signed-off-by: Thomas Goodwin <btgoodwin@geontech.com>
-> > ---
-> >  builders.py | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/builders.py b/builders.py
-> > index 5765040..3d12969 100644
-> > --- a/builders.py
-> > +++ b/builders.py
-> > @@ -15,7 +15,8 @@ maxsteps = 9
-> >  # Environment to pass into the workers, e.g. to load further local
-> configuration
-> >  # fragments
-> >  extra_env = {}
-> > -#extra_env = {"ABHELPER_JSON" : "config.json
-> /home/pokybuild/config-local.json"}
-> > +if os.environ.get('ABHELPER_JSON'):
-> > +    extra_env['ABHELPER_JSON'] = os.environ['ABHELPER_JSON']
-> >
-> >  @util.renderer
-> >  def get_sstate_release_number(props):
->
->
+ERROR: When reparsing
+/path/tot/u-boot_git.bb.do_deploy_source_date_epoch, the basehash
+value changed from
+e7c4a942e76dc4e630d9dc6e3b6d49db66adeb2c9a5e2d511fac3fc7dabd4e59 to
+4735b8a3f887bf83059c5d56e529f1a5650fab8ac53ce4e2c222524e690092ae. The
+metadata is not deterministic and this needs to be fixed.
 
---000000000000cb728f058f0e8f36
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Where should I look to learn more about the use of reproducible_build.bbclass?
 
-<div dir=3D"ltr"><div dir=3D"ltr">It&#39;s already there, this patch is to =
-make it work as described:=C2=A0=C2=A0<a href=3D"http://git.yoctoproject.or=
-g/cgit.cgi/yocto-autobuilder2/tree/README-WALKTHROUGHS.md?h=3Dcontrib/tgood=
-win/config-json-fixes#n79">http://git.yoctoproject.org/cgit.cgi/yocto-autob=
-uilder2/tree/README-WALKTHROUGHS.md?h=3Dcontrib/tgoodwin/config-json-fixes#=
-n79</a><div><input name=3D"virtru-metadata" type=3D"hidden" value=3D"{&quot=
-;email-policy&quot;:{&quot;state&quot;:&quot;closed&quot;,&quot;expirationU=
-nit&quot;:&quot;days&quot;,&quot;disableCopyPaste&quot;:false,&quot;disable=
-Print&quot;:false,&quot;disableForwarding&quot;:false,&quot;enableNoauth&qu=
-ot;:false,&quot;persistentProtection&quot;:false,&quot;expandedWatermarking=
-&quot;:false,&quot;expires&quot;:false,&quot;isManaged&quot;:false},&quot;a=
-ttachments&quot;:{},&quot;compose-id&quot;:&quot;12&quot;,&quot;compose-win=
-dow&quot;:{&quot;secure&quot;:false}}"><div><br></div><div>Consequently, ha=
-ving the variable in your environment is the only way for the janitor to pa=
-rse and use the same configuration files as the controller.</div><div><br><=
-/div><div>Thomas</div></div></div><br><div class=3D"gmail_quote" style=3D""=
-><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Aug 1, 2019 at 7:33 AM akust=
-er &lt;<a href=3D"mailto:akuster@mvista.com">akuster@mvista.com</a>&gt; wro=
-te:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
-0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><br>
-<br>
-On 7/30/19 11:36 AM, Thomas Goodwin wrote:<br>
-&gt; The readme suggests exporting this variable from the<br>
-&gt; environment to expose multiple configuration JSON files<br>
-&gt; but the intended behavior doesn&#39;t work without adding the<br>
-&gt; variable to extra_env.<br>
-<br>
-Any chance of updating documentation on how to use this?<br>
-<br>
-- armin<br>
-&gt;<br>
-&gt; Signed-off-by: Thomas Goodwin &lt;<a href=3D"mailto:btgoodwin@geontech=
-.com" target=3D"_blank">btgoodwin@geontech.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 builders.py | 3 ++-<br>
-&gt;=C2=A0 1 file changed, 2 insertions(+), 1 deletion(-)<br>
-&gt;<br>
-&gt; diff --git a/builders.py b/builders.py<br>
-&gt; index 5765040..3d12969 100644<br>
-&gt; --- a/builders.py<br>
-&gt; +++ b/builders.py<br>
-&gt; @@ -15,7 +15,8 @@ maxsteps =3D 9<br>
-&gt;=C2=A0 # Environment to pass into the workers, e.g. to load further loc=
-al configuration<br>
-&gt;=C2=A0 # fragments<br>
-&gt;=C2=A0 extra_env =3D {}<br>
-&gt; -#extra_env =3D {&quot;ABHELPER_JSON&quot; : &quot;config.json /home/p=
-okybuild/config-local.json&quot;}<br>
-&gt; +if os.environ.get(&#39;ABHELPER_JSON&#39;):<br>
-&gt; +=C2=A0 =C2=A0 extra_env[&#39;ABHELPER_JSON&#39;] =3D os.environ[&#39;=
-ABHELPER_JSON&#39;]<br>
-&gt;=C2=A0 <br>
-&gt;=C2=A0 @util.renderer<br>
-&gt;=C2=A0 def get_sstate_release_number(props):<br>
-<br>
-</blockquote></div></div>
+--wpd
 
---000000000000cb728f058f0e8f36--
