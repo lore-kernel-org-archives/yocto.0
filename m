@@ -1,62 +1,37 @@
-Return-Path: <btgoodwin@geontech.com>
+Return-Path: <Randy.MacLeod@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 11493E00DFE; Thu,  1 Aug 2019 11:39:28 -0700 (PDT)
+	id 083DCE00E39; Thu,  1 Aug 2019 13:54:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	https://www.dnswl.org/, *      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.169 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com
-	[209.85.222.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F354E009FA
-	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 11:39:27 -0700 (PDT)
-Received: by mail-qk1-f169.google.com with SMTP id s145so52837490qke.7
-	for <yocto@yoctoproject.org>; Thu, 01 Aug 2019 11:39:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=geontech-com.20150623.gappssmtp.com; s=20150623;
-	h=from:to:cc:subject:date:message-id;
-	bh=F1CQI33LRrXelah1olRMYoT0SndQDnHku2udh9/I0WQ=;
-	b=sbFqXRzh7TOLgMBL/FH8YOI+0b1+NLSG0gFvGE4PgQtWOHn7yuD0BG3pcmWSti/afQ
-	N1loJoFqj3BfhSTRibvkHpjpD9eCwYEy1BC48TgICLienTKTON918JoRRk4O6HdFHmoL
-	OxlKIeE91W6FnhEg5YvDYANK3yB3zcVfnRR6fgMYlvB4UaxJ/fhCw+wirxc6a3uVXVoU
-	JEtcNc3biu1F4WSmGBJkZiOPLAwMG4t4MgRA4e11+RHmWFHCoduy968TrRrzpy1bXD4a
-	eRsqNhMLa1BeznKjIITRzK+ZT+oENEV1OF/YJOEPWjD1EYTSA4dGKevjfBNKqp18lq6d
-	qyDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=F1CQI33LRrXelah1olRMYoT0SndQDnHku2udh9/I0WQ=;
-	b=Ca7yrxM44L5louM71uS6GKllouVsC8Wzd2oOsk4RKgjum7A2Y79uxSkeIkHhqCnfEo
-	/NlMwrO+h1UhrSZka+JuQhuId3KDD9itXEGXdpeo4Fcx6JjVfTt2knnisuY4GOMs7g59
-	7XrDb7UEpLI+ysQqIixtBavWyi/aqymVZqeu30OuYVEmmRwGQ/wkcVuPPNzisWsQiu/F
-	hiH6BwzyxhNwAdxanJ5yl5Wm+EqT5Vgw5kVwnXbZb4VB/E/i1MHSt0EIGg59wdIqQBvl
-	BHnvte+ffZ279GmmW8hly2HUFKlaYvCIEFwPZXF0J0G8YdDaKo6gcbEzn2CHcsrwyMu6
-	t+5A==
-X-Gm-Message-State: APjAAAXRzdGIF4GzKzRHcP3/fwoY+aRZRYkr90VZsTQmzqVqxnzeCQKH
-	EsgvO+bwB3ibUBOqLqYBhXCGZlOS7kw=
-X-Google-Smtp-Source: APXvYqx+salOKVkJi/lA9jVQVJW4cyZdNfNyNUi1/4oZCaWaPjsFts2wJ6jUoxW7KYgo3qIEZrc0Wg==
-X-Received: by 2002:a37:7083:: with SMTP id l125mr83275328qkc.71.1564684766649;
-	Thu, 01 Aug 2019 11:39:26 -0700 (PDT)
-Received: from intrepid.geontech.local
-	(static-108-40-78-74.bltmmd.fios.verizon.net. [108.40.78.74])
-	by smtp.gmail.com with ESMTPSA id
-	n5sm39606433qta.29.2019.08.01.11.39.26
-	(version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-	Thu, 01 Aug 2019 11:39:26 -0700 (PDT)
-From: Thomas Goodwin <btgoodwin@geontech.com>
-To: yocto@yoctoproject.org
-Date: Thu,  1 Aug 2019 14:39:15 -0400
-Message-Id: <20190801183915.9714-1-btgoodwin@geontech.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [yocto-autobuilder2][PATCH] builders.py: fix for AB helper repo branch being ignored.
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99336E00E35
+	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 13:54:20 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x71KsJxO001689
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 1 Aug 2019 13:54:19 -0700 (PDT)
+Received: from [128.224.56.213] (128.224.56.213) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.468.0;
+	Thu, 1 Aug 2019 13:54:18 -0700
+To: JH <jupiter.hce@gmail.com>, Yocto discussion list <yocto@yoctoproject.org>
+References: <CAA=hcWT8zsyukcEBT=C9XAYLMt2tCaRqZT6Z_5ijQKnSdrAQRw@mail.gmail.com>
+From: Randy MacLeod <randy.macleod@windriver.com>
+Message-ID: <867c4cd9-27b2-f7b0-63e0-c0a74a261675@windriver.com>
+Date: Thu, 1 Aug 2019 16:54:18 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <CAA=hcWT8zsyukcEBT=C9XAYLMt2tCaRqZT6Z_5ijQKnSdrAQRw@mail.gmail.com>
+X-Originating-IP: [128.224.56.213]
+Subject: Re: Anyone tried to build and to use QUIC?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,34 +43,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Aug 2019 18:39:28 -0000
+X-List-Received-Date: Thu, 01 Aug 2019 20:54:21 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Thomas Goodwin <btgoodwin@geontech.com>
----
- builders.py | 2 ++
- 1 file changed, 2 insertions(+)
+On 7/31/19 7:06 AM, JH wrote:
+> Hi,
+> 
+> I searched recipes for supporting QUIC, but could not find it. Has
+> anyone tried to build and to use QUIC?
+> 
+> Thank you.
+> 
+> Kind regards,
+> 
+> - JH
+> 
 
-diff --git a/builders.py b/builders.py
-index 16c1344..b57bed7 100644
---- a/builders.py
-+++ b/builders.py
-@@ -169,6 +169,7 @@ def create_builder_factory():
-         name="Clobber build dir"))
-     f.addStep(steps.Git(
-         repourl=config.repos["yocto-autobuilder-helper"][0],
-+        branch=config.repos["yocto-autobuilder-helper"][1],
-         workdir=util.Interpolate("%(prop:builddir)s/yocto-autobuilder-helper"),
-         mode='incremental',
-         haltOnFailure=True,
-@@ -238,6 +239,7 @@ def create_parent_builder_factory(buildername, waitname):
-     # check out the source
-     factory.addStep(steps.Git(
-         repourl=config.repos["yocto-autobuilder-helper"][0],
-+        branch=config.repos["yocto-autobuilder-helper"][1],
-         workdir=util.Interpolate("%(prop:builddir)s/yocto-autobuilder-helper"),
-         mode='incremental',
-         haltOnFailure=True,
+Hi,
+
+I presume that you mean QUIC (Quick UDP Internet Connections)
+as in:
+    https://github.com/conght/quic
+
+I also couldn't find an existing recipe using:
+    https://layers.openembedded.org/layerindex/branch/master/recipes/?q=QUIC
+
+or by a general web search.
+
+Do you have a specific implementation in mind?
+Care to write a recipe and send it in?
+FYI:
+   http://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
+
+Alternatively contractors and companies are available if you want to go
+that route.
+
 -- 
-2.17.1
-
+# Randy MacLeod
+# Wind River Linux
 
