@@ -1,6 +1,6 @@
-Return-Path: <wpdster@gmail.com>
+Return-Path: <dbaryshkov@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D0A8DE00DA9; Thu,  1 Aug 2019 07:08:40 -0700 (PDT)
+	id 450C1E00D30; Thu,  1 Aug 2019 07:32:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,52 +10,57 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (wpdster[at]gmail.com)
+	provider *      (dbaryshkov[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.193 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.178 listed in list.dnswl.org]
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
-	[209.85.222.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58906E00C87
-	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 07:08:39 -0700 (PDT)
-Received: by mail-qk1-f178.google.com with SMTP id g18so52088366qkl.3
-	for <yocto@yoctoproject.org>; Thu, 01 Aug 2019 07:08:39 -0700 (PDT)
+Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com
+	[209.85.215.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4090AE00B31
+	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 07:32:52 -0700 (PDT)
+Received: by mail-pg1-f193.google.com with SMTP id d1so1502096pgp.4
+	for <yocto@yoctoproject.org>; Thu, 01 Aug 2019 07:32:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=y2PPZUGawaajE0wDFRymbd86wLhiBg7+vg77E7eXa18=;
-	b=YzWgxCP1ISs60j4mfKXBCVHi6iZ7Py+QogAJv+ToovSK5q077j+jn3KlQ+ZV0uz+xt
-	ZDpFR08WjDAWiSJpBGEK3VACYZyEwEhjuc3zZgPOsxCIfJKfuBEvA8d6Sz8M7Df9T6KT
-	7JRzMGhTTiZ99R2XkmNwZN1h44otQX/MuaerFH57NoSdAk9XZ0DOul8fht1lJdP7DSGR
-	6sXK0cjZf0SkVXdAhkm5E0cBNGZvlN3LmS0HuRPo14eB4nVUa4+qHCTgzAd41pPiTqwY
-	aIwHxuU8m341fRHLHSGS5AJRGrKAswYJAKlvorZCYk292r+3B0F7lSzPZehb0+MPFFJf
-	N1Zw==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=QqQ8ZQBsETevYyesf6Iiy3orjVlkmAT8jBONy0NeyBQ=;
+	b=hTcj+FNPcFU4vgAVy+NYh5MlCyp7nYdFeRAXUSOte6RDJwUJAC13DZ3Hc2yn2k7C0C
+	XNbI2osn7JSdIS/PagwTCuDaA9Zyvkfx7lWCgs7lt/LAJrjdS//JlN8/lI5asaFqjGor
+	mJzD7N9VaXUyL8xW2h0SJ9M86M8lYJa+PcQ+r7pmZZ6Luxa8sKLCX4pWgTr7VwMJ3wMh
+	AbTe53kVHZGUob0yGiE0pPTns1Z58LzGtsi8mLvoil8xUVxVSS3azf6kaSouRfpfaiqz
+	7X0ZB2t7qASdhLGVBTl5q4sFTQPjs64Obj/O2Pnz7KI+WOp/ypRCNPOoEO+Wqdvfys4i
+	djMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=y2PPZUGawaajE0wDFRymbd86wLhiBg7+vg77E7eXa18=;
-	b=M0fuFBwoxMtigrY4moL9OhDWaNrVZRw3g/PIYbW2fv9xSQVmWrxmiwqJYaGy5p38Z1
-	hWw7u514ZPczA/q9XLZydjgth6jM7jAmSPSwJyRWqdYCMtmNvDGLG5iJV/n0Auz9y+8K
-	yfGgl2GBym95slmHn5XC1spmVRuODldtalIRfX5AXX5h453P5XfAVDxvJ9B2vUj8u9ih
-	JhmCNsoX97qNZtqfFmKC9cKwiPxbeygZb0lXe6YfPNDm6ecOtUllCRqo97ozbYY3shOw
-	FUG4Pxvips9dTdBSG6pa0fR623MJxdti24fgYCthUGVV7uxPxulml5+BMKsOCDaKuQVH
-	ELPA==
-X-Gm-Message-State: APjAAAWnDGLVJRp8c6jLIHI/PhKySn3E2m30dxVSF8XhzFyEbyFU4LZp
-	i20DJ2tT3jLUt8Bf6FlCMKSm7BUJnjdu3UlPS96WKsZ+Ciw=
-X-Google-Smtp-Source: APXvYqw65osDgQu/qKvUAmwhRmRlJVtdDb+pdx2u4WdFBM8lZCU3jKbxpASWYhYh7x7rKUEEkjy23QosMxLYyXNLQuM=
-X-Received: by 2002:a05:620a:685:: with SMTP id
-	f5mr82565402qkh.238.1564668518654; 
-	Thu, 01 Aug 2019 07:08:38 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=QqQ8ZQBsETevYyesf6Iiy3orjVlkmAT8jBONy0NeyBQ=;
+	b=QFK5vBXoPZKuUKdBDpFhzmmrYOhA+sHGgFm5eZkaimP9bxBh6mH89zpG69SyPI7MMB
+	ymUs5jfSm3cVhT2Vgr8a64xIhD9PPn7x96/7uiFrbgAijt0+tSyc4kR8eXU2XsmSmUK0
+	H+yqi44j8L40kabDbJ2iz6u1b3Oq5DKrNcmiax+tRnHlVCLofSBAhCdfgEu8XSaZY664
+	/UfG4T75qLNBUaY/cczvWiHgOJtt33aB1/qnEiLg4INiFCy6YcMa4mSkMlkAnMtcQY7Q
+	KyfchN8anmIXHatDCHHoiB6ZLTbxezVTMwKx4X6Ruu8Vmri4JXYWo9/VLZQcVOljiND6
+	p8eQ==
+X-Gm-Message-State: APjAAAXf2Eeie5tCrC7fiaNsYe5NfHXAU5BJdwhCtXNrm4RWkh0NEarJ
+	s3Qdq62Idc0AQEZMBdBLVeXRrX3/wtRa5MK6MxE=
+X-Google-Smtp-Source: APXvYqy+aYGm0qZiobmUwvVPDCOBkbqaqupOLejYucpB2ZPkSB42n2AiSGjWTnFqM4AGmwYd1ovkE/yy66eTV/UGVe8=
+X-Received: by 2002:aa7:8a99:: with SMTP id a25mr54254066pfc.127.1564669971669;
+	Thu, 01 Aug 2019 07:32:51 -0700 (PDT)
 MIME-Version: 1.0
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Thu, 1 Aug 2019 10:08:12 -0400
-Message-ID: <CAF_dkJBL96YB_Gbr1PRRN_f+Qr0EJO=T8ycifHwQwxUBnxC_LA@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Reproducible u-boot
+References: <20190731202451.845-1-dbaryshkov@gmail.com>
+	<7fa67ea5-9ec5-ee8e-5ba1-45f8a4345fc7@gmail.com>
+In-Reply-To: <7fa67ea5-9ec5-ee8e-5ba1-45f8a4345fc7@gmail.com>
+From: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
+Date: Thu, 1 Aug 2019 17:32:39 +0300
+Message-ID: <CALT56yO_pvNCF7cwErSoMnNCONVmPqROHx7OmUfvqqTpZVgW6A@mail.gmail.com>
+To: akuster808 <akuster808@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-integrity][PATCH] ima-evm-utils: bump to release 1.2.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,25 +72,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 Aug 2019 14:08:40 -0000
+X-List-Received-Date: Thu, 01 Aug 2019 14:32:53 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-How do I use the reproducible_build class to create a reproducible u-boot?
+=D1=87=D1=82, 1 =D0=B0=D0=B2=D0=B3. 2019 =D0=B3. =D0=B2 14:43, akuster808 <=
+akuster808@gmail.com>:
+>
+> Dmitry,
+>
+>
+> On 7/31/19 1:24 PM, dbaryshkov@gmail.com wrote:
+> > From: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
+> >
+> > Signed-off-by: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.=
+com>
+> > ---
+> >  ...link-to-libcrypto-instead-of-OpenSSL.patch | 65 -------------------
+> >  ...ls-replace-INCLUDES-with-AM_CPPFLAGS.patch | 43 ------------
+> >  ...clude-hash-info.gen-into-distributio.patch | 31 ---------
+> >  ...ma-evm-utils-update-.gitignore-files.patch | 34 ----------
+> >  .../ima-evm-utils/ima-evm-utils_git.bb        | 12 +---
+> >  5 files changed, 3 insertions(+), 182 deletions(-)
+> >  delete mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-e=
+vm-utils/0001-ima-evm-utils-link-to-libcrypto-instead-of-OpenSSL.patch
+> >  delete mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-e=
+vm-utils/0002-ima-evm-utils-replace-INCLUDES-with-AM_CPPFLAGS.patch
+> >  delete mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-e=
+vm-utils/0003-ima-evm-utils-include-hash-info.gen-into-distributio.patch
+> >  delete mode 100644 meta-integrity/recipes-security/ima-evm-utils/ima-e=
+vm-utils/0004-ima-evm-utils-update-.gitignore-files.patch
+> I am evaluation all your updates to this layer. I am traveling (PTO) and
+> have limited access to test system. I will either merge them or send
+> feedback in the next few days.
 
-I tried adding
+Thank you for the update. I'll wait for the feedback.
 
-inherit reproducible_build
-
-to my u-boot recipe, but when I do that, I generate errors of the form:
-
-ERROR: When reparsing
-/path/tot/u-boot_git.bb.do_deploy_source_date_epoch, the basehash
-value changed from
-e7c4a942e76dc4e630d9dc6e3b6d49db66adeb2c9a5e2d511fac3fc7dabd4e59 to
-4735b8a3f887bf83059c5d56e529f1a5650fab8ac53ce4e2c222524e690092ae. The
-metadata is not deterministic and this needs to be fixed.
-
-Where should I look to learn more about the use of reproducible_build.bbclass?
-
---wpd
+--=20
+With best wishes
+Dmitry
 
