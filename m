@@ -1,49 +1,42 @@
-Return-Path: <rpurdie@rpsys.net>
+Return-Path: <kaz@kylheku.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB0B9E00DFE; Fri,  2 Aug 2019 09:52:18 -0700 (PDT)
+	id 881F0E00E16; Fri,  2 Aug 2019 13:58:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-X-Greylist: delayed 654 seconds by postgrey-1.32 at yocto-www;
-	Fri, 02 Aug 2019 09:52:17 PDT
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8E82E00B1A
-	for <yocto@yoctoproject.org>; Fri,  2 Aug 2019 09:52:17 -0700 (PDT)
-Received: from hex ([192.168.3.26]) (authenticated bits=0)
-	by dan.rpsys.net (8.15.2/8.15.2/Debian-10) with ESMTPSA id
-	x72GfJj9001994
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256
-	verify=NOT); Fri, 2 Aug 2019 17:41:20 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=rpsys.net; s=default;
-	t=1564764080; bh=KlUkiPDntaL9mKfGda6dZ73Eh37VB0JCWm1Adpqb/XM=;
-	h=Subject:From:To:Date:In-Reply-To:References:From;
-	b=u0TiD9DZykRSHjPBOU61r5y8lmNHJrrSBLXf3rsER5KyjsTeLzDLIt1fsVIC0Gg03
-	r/MhrKCW8W/Cf1YKZxCqSkCgdXJYDtPx7FQaSRvuKuNU4rfzW45fvQK89P0lmE75AD
-	uFwCn/9x0jnjSxLlthUUbDbSH2quRzG4vduhAL1IK5Ac3iC6ebyCU0LerxgywZHSEL
-	vyKlquCoS/ZYy+D0tKDOFW+z5JQhVu4FyuLoY435LIEzyPFHqmm7mZi86OWVvGMeRq
-	ix4z+gLAUC43cQIroJVPOwTlVA7+PyddEaKoBMMvfpCA57fq9rkEZxZUgGnGJO3XSx
-	d/C/BAKQRM6Eg==
-Message-ID: <fdbce8969ca1a4fe12e4dcf1abaae68d79da0075.camel@rpsys.net>
-From: Richard Purdie <rpurdie@rpsys.net>
-To: Thomas Goodwin <btgoodwin@geontech.com>, yocto@yoctoproject.org
-In-Reply-To: <20190730183621.26193-2-btgoodwin@geontech.com>
-References: <20190730183621.26193-1-btgoodwin@geontech.com>
-	<20190730183621.26193-2-btgoodwin@geontech.com>
-User-Agent: Evolution 3.32.2-1 
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [64.59.134.13 listed in list.dnswl.org]
+X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
+	Fri, 02 Aug 2019 13:58:57 PDT
+Received: from smtp-out-no.shaw.ca (smtp-out-no.shaw.ca [64.59.134.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E658E00994
+	for <yocto@yoctoproject.org>; Fri,  2 Aug 2019 13:58:57 -0700 (PDT)
+Received: from kylheku.com ([70.79.163.252]) by shaw.ca with ESMTPA
+	id tecch1CrFsAGktecdhZGO7; Fri, 02 Aug 2019 14:57:56 -0600
+X-Authority-Analysis: v=2.3 cv=WeVylHpX c=1 sm=1 tr=0
+	a=95A0EdhkF1LMGt25d7h1IQ==:117 a=95A0EdhkF1LMGt25d7h1IQ==:17
+	a=IkcTkHD0fZMA:10 a=SMorJkV_YP8A:10 a=FmdZ9Uzk2mMA:10
+	a=QhSedKNqE5ra2gnNN2UA:9 a=QEXdDO2ut3YA:10 a=Z5ABNNGmrOfJ6cZ5bIyy:22
+	a=jd6J4Gguk5HxikPWLKER:22
+Received: from www-data by kylheku.com with local (Exim 4.72)
+	(envelope-from <kaz@kylheku.com>) id 1htecc-0005Ch-98
+	for yocto@yoctoproject.org; Fri, 02 Aug 2019 13:57:54 -0700
+To: yocto@yoctoproject.org
+X-PHP-Originating-Script: 501:rcmail.php
 MIME-Version: 1.0
-X-Virus-Scanned: clamav-milter 0.100.3 at dan
-X-Virus-Status: Clean
+From: Kaz Kylheku <kaz@kylheku.com>
+Message-ID: <e916cb6cb6d8dbb629e11a42bc0c8561@mail.kylheku.com>
+X-Sender: kaz@kylheku.com
+User-Agent: Roundcube Webmail/0.9.2
+X-CMAE-Envelope: MS4wfKqj3y17BA+LQHoEzpNb78NRutL+s3mjzCuhujZAabHjzK0GxlnJbSC4MSIQMaNyEWEqt3onUCPqnps3XOKSwthC0j+yKk11nKYB7qtMFcSsCMqgl6yr
+	tEVaqY4Qt8m+niyDO5LM/smZZ9O0NIdKixYGREq0aORqFfQJzU9ffAIi
 X-Mailman-Approved-At: Mon, 19 Aug 2019 02:32:48 -0700
-Subject: Re: [yocto-autobuilder2][PATCH 2/3] Added remote distribution of config JSON files
+Subject: [PATCH] In Yocto 2.7 powertop package is broken.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,36 +48,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-Date: Fri, 02 Aug 2019 16:52:18 -0000
-X-Original-Date: Fri, 02 Aug 2019 17:41:19 +0100
-X-List-Received-Date: Fri, 02 Aug 2019 16:52:18 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Date: Fri, 02 Aug 2019 20:58:57 -0000
+X-Original-Date: Fri, 02 Aug 2019 13:57:54 -0700
+X-List-Received-Date: Fri, 02 Aug 2019 20:58:57 -0000
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2019-07-30 at 14:36 -0400, Thomas Goodwin wrote:
-> This feature/fix allows the worker to download the
-> autobuilder helper JSON files from the controller
-> rather than having to store them in the
-> yocto-autobuilder-helper repository.  The process
-> installs the file into the worker's
-> builddir/yocto-autobuilder-helper path.
-> 
-> Signed-off-by: Thomas Goodwin <btgoodwin@geontech.com>
-> ---
->  builders.py | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
+Hi all,
 
-I like the idea however this is going to break the autobuilders as they
-already use full paths in the variable.
+Via a .bbappend file in my own layers, I added the following patch to
+build powertop, which is enabled when tools-profile is added to
+EXTRA_IMAGE_FEATURES.
 
-I've merged some of the other patches but this one will need a little
-further thought so we don't break the existing install.
+* recipes-profiling/powertop/files/posix-path-max-not-defined.patch:
+Patch for build issue. The C++ code needs to including <limits.h> which
+defines the POSIX PATH_MAX preprocessor symbol.
 
-The existing code also allows for different path locations on
-individual workers (e.g. different username) which this would break.
+Index: powertop-v2.10/src/wakeup/wakeup_ethernet.h
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+--- powertop-v2.10.orig/src/wakeup/wakeup_ethernet.h
++++ powertop-v2.10/src/wakeup/wakeup_ethernet.h
+@@ -25,6 +25,7 @@
+  #ifndef _INCLUDE_GUARD_ETHERNET_WAKEUP_H
+  #define _INCLUDE_GUARD_ETHERNET_WAKEUP_H
 
-Cheers,
++#include <limits.h>
+  #include <vector>
 
-Richard
+  #include "wakeup.h"
+Index: powertop-v2.10/src/wakeup/wakeup_usb.h
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+--- powertop-v2.10.orig/src/wakeup/wakeup_usb.h
++++ powertop-v2.10/src/wakeup/wakeup_usb.h
+@@ -26,6 +26,7 @@
+  #define _INCLUDE_GUARD_USB_WAKEUP_H
+
+  #include <vector>
++#include <limits.h>
+
+  #include "wakeup.h"
+
 
 
