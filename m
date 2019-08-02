@@ -1,54 +1,34 @@
-Return-Path: <ee.peng.yeoh@intel.com>
+Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B6402E00DA9; Thu,  1 Aug 2019 18:47:38 -0700 (PDT)
+	id 87B26E00EAC; Thu,  1 Aug 2019 20:06:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	https://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 794BCE00BD5
-	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 18:47:37 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	01 Aug 2019 18:47:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,336,1559545200"; d="scan'208";a="324428361"
-Received: from pgsmsx105.gar.corp.intel.com ([10.221.44.96])
-	by orsmga004.jf.intel.com with ESMTP; 01 Aug 2019 18:47:34 -0700
-Received: from pgsmsx109.gar.corp.intel.com ([169.254.14.91]) by
-	PGSMSX105.gar.corp.intel.com ([169.254.4.2]) with mapi id
-	14.03.0439.000; Fri, 2 Aug 2019 09:47:31 +0800
-From: "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>
-To: Pokybuild User <pokybuild@debian10-ty-3.yocto.io>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: QA notification for completed autobuilder build (yocto-2.6.3.rc1)
-Thread-Index: AQHVSHpxZH06QfVMLkWrptAVtpU0habnFxoQ
-Date: Fri, 2 Aug 2019 01:47:30 +0000
-Message-ID: <9DDD2658D1FE414E99172D2DB1E4D04348211190@PGSMSX109.gar.corp.intel.com>
-References: <20190801150425.40A8420251@debian10-ty-3.yocto.io>
-In-Reply-To: <20190801150425.40A8420251@debian10-ty-3.yocto.io>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMzI2ZmJiZjgtY2QwNC00NDE1LWEwOWYtOGExZTEwZDU5ZWM5IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiUEhvZDlEdWl3R0l3Y0k2ampPeHBWZk9aZ0x5OGJrU2czWGtKeTh5ZWNUa2I4MUQ2SXlMcCtTODduOE14bHFFSSJ9
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [172.30.20.206]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48A10E00E9E
+	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 20:06:54 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x7236XnM020456
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 1 Aug 2019 20:06:43 -0700
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.468.0; Thu, 1 Aug 2019 20:06:10 -0700
+From: <changqing.li@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 2 Aug 2019 11:06:08 +0800
+Message-ID: <1564715168-415533-1-git-send-email-changqing.li@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>, "Chan,
-	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
-	"akuster808@gmail.com" <akuster808@gmail.com>
-Subject: Re: QA notification for completed autobuilder build (yocto-2.6.3.rc1)
+Subject: [meta-security][PATCH] keyutils: remove it
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,66 +40,227 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Aug 2019 01:47:38 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 02 Aug 2019 03:06:56 -0000
+Content-Type: text/plain
 
-Hello All,
+From: Changqing Li <changqing.li@windriver.com>
 
-Intel and WR YP QA is planning for QA execution for YP build yocto-2.6.3.rc=
-1.
-We are planning to execute following tests for this cycle:
+keyutils have been moved to meta-openembeded by this commit
+https://git.openembedded.org/meta-openembedded/commit/?id=415e213ad75ec9a93171c963395a1c4b92c6233b
+so remove this one
 
-OEQA-manual tests for following module:
-1. OE-Core
-2. BSP-hw
-3. BSP-Qemu
+Signed-off-by: Changqing Li <changqing.li@windriver.com>
+---
+ .../keyutils/files/fix_library_install_path.patch  | 28 ------------
+ ...ix-error-report-by-adding-default-message.patch | 42 -----------------
+ .../files/keyutils-test-fix-output-format.patch    | 41 -----------------
+ recipes-security/keyutils/files/run-ptest          |  3 --
+ recipes-security/keyutils/keyutils_1.6.bb          | 53 ----------------------
+ 5 files changed, 167 deletions(-)
+ delete mode 100644 recipes-security/keyutils/files/fix_library_install_path.patch
+ delete mode 100644 recipes-security/keyutils/files/keyutils-fix-error-report-by-adding-default-message.patch
+ delete mode 100644 recipes-security/keyutils/files/keyutils-test-fix-output-format.patch
+ delete mode 100755 recipes-security/keyutils/files/run-ptest
+ delete mode 100644 recipes-security/keyutils/keyutils_1.6.bb
 
-Runtime auto test for following platforms:
-1. MinnowTurbot 32-bit
-2. NUC 7
-3. NUC 6
-4. Edgerouter
-5. MPC8315e-rdb
-6. Beaglebone
+diff --git a/recipes-security/keyutils/files/fix_library_install_path.patch b/recipes-security/keyutils/files/fix_library_install_path.patch
+deleted file mode 100644
+index 938fe2e..0000000
+--- a/recipes-security/keyutils/files/fix_library_install_path.patch
++++ /dev/null
+@@ -1,28 +0,0 @@
+-From b0355cc205543ffd33752874295139d57c4fbc3e Mon Sep 17 00:00:00 2001
+-From: Wenzong Fan <wenzong.fan@windriver.com>
+-Date: Tue, 26 Sep 2017 07:59:51 +0000
+-Subject: [PATCH] Subject: [PATCH] keyutils: use relative path for link
+-
+-The absolute path of the symlink will be invalid
+-when populated in sysroot, so use relative path instead.
+-
+-Upstream-Status: Pending
+-
+-Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+-Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+-{rebased for 1.6]
+-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+-
+-Index: keyutils-1.6/Makefile
+-===================================================================
+---- keyutils-1.6.orig/Makefile
+-+++ keyutils-1.6/Makefile
+-@@ -184,7 +184,7 @@ ifeq ($(NO_SOLIB),0)
+- 	$(INSTALL) -D $(LIBNAME) $(DESTDIR)$(LIBDIR)/$(LIBNAME)
+- 	$(LNS) $(LIBNAME) $(DESTDIR)$(LIBDIR)/$(SONAME)
+- 	mkdir -p $(DESTDIR)$(USRLIBDIR)
+--	$(LNS) $(LIBDIR)/$(SONAME) $(DESTDIR)$(USRLIBDIR)/$(DEVELLIB)
+-+	$(LNS) $(SONAME) $(DESTDIR)$(USRLIBDIR)/$(DEVELLIB)
+- 	sed \
+- 	-e 's,@VERSION\@,$(VERSION),g' \
+- 	-e 's,@prefix\@,$(PREFIX),g' \
+diff --git a/recipes-security/keyutils/files/keyutils-fix-error-report-by-adding-default-message.patch b/recipes-security/keyutils/files/keyutils-fix-error-report-by-adding-default-message.patch
+deleted file mode 100644
+index acd91c0..0000000
+--- a/recipes-security/keyutils/files/keyutils-fix-error-report-by-adding-default-message.patch
++++ /dev/null
+@@ -1,42 +0,0 @@
+-fix keyutils test error report
+-
+-Upstream-Status: Pending
+-
+-"Permission denied" may be the reason of EKEYEXPIRED and EKEYREVOKED.
+-"Required key not available" may be the reason of EKEYREVOKED.
+-EXPIRED and REVOKED are 2 status of kernel security keys features.
+-But the userspace keyutils lib will output the error message, which may
+-have several reasons.
+-
+-Signed-off-by: Han Chao <chan@windriver.com>
+-
+-diff --git a/tests/toolbox.inc.sh b/tests/toolbox.inc.sh
+-index bbca00a..739e9d0 100644
+---- a/tests/toolbox.inc.sh
+-+++ b/tests/toolbox.inc.sh
+-@@ -227,11 +227,12 @@ function expect_error ()
+- 	    ;;
+- 	EKEYEXPIRED)
+- 	    my_err="Key has expired"
+--	    alt_err="Unknown error 127"
+-+	    alt_err="Permission denied"
+- 	    ;;
+- 	EKEYREVOKED)
+- 	    my_err="Key has been revoked"
+--	    alt_err="Unknown error 128"
+-+	    alt_err="Permission denied"
+-+	    alt2_err="Required key not available"
+- 	    ;;
+- 	EKEYREJECTED)
+- 	    my_err="Key has been rejected"
+-@@ -249,6 +250,9 @@ function expect_error ()
+-     elif [ "x$alt_err" != "x" ] && expr "$my_errmsg" : ".*: $alt_err" >&/dev/null
+-     then
+- 	:
+-+    elif [ "x$alt2_err" != "x" ] && expr "$my_errmsg" : ".*: $alt2_err" >&/dev/null
+-+    then
+-+	:
+-     elif [ "x$old_err" != "x" ] && expr "$my_errmsg" : ".*: $old_err" >&/dev/null
+-     then
+- 	:
+-
+diff --git a/recipes-security/keyutils/files/keyutils-test-fix-output-format.patch b/recipes-security/keyutils/files/keyutils-test-fix-output-format.patch
+deleted file mode 100644
+index a4ffd50..0000000
+--- a/recipes-security/keyutils/files/keyutils-test-fix-output-format.patch
++++ /dev/null
+@@ -1,41 +0,0 @@
+-From 49b6321368e4bd3cd233d045cd09004ddd7968b2 Mon Sep 17 00:00:00 2001
+-From: Jackie Huang <jackie.huang@windriver.com>
+-Date: Mon, 15 May 2017 14:52:00 +0800
+-Subject: [PATCH] keyutils: fix output format
+-
+-keyutils ptest output format is incorrect, according to yocto
+-Development Manual
+-(http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#testing-packages-with-ptest)
+-5.10.6. Testing Packages With ptestThe test generates output in the format used by Automake:
+-<result>: <testname>
+-where the result can be PASS, FAIL, or SKIP, and the testname can be any
+-identifying string.
+-So we should change the test result format to match yocto ptest rules.
+-
+-Upstream-Status: Inappropriate [OE ptest specific]
+-
+-Signed-off-by: Li Wang <li.wang@windriver.com>
+-Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+----
+- tests/runtest.sh | 5 +++++
+- 1 file changed, 5 insertions(+)
+-
+-diff --git a/tests/runtest.sh b/tests/runtest.sh
+-index b6eaa7c..84263fb 100644
+---- a/tests/runtest.sh
+-+++ b/tests/runtest.sh
+-@@ -21,6 +21,11 @@ for i in ${TESTS}; do
+-     echo "### RUNNING TEST $i"
+-     if [[ $AUTOMATED != 0 ]] ; then
+-         bash ./runtest.sh
+-+        if [ $? != 0 ]; then
+-+            echo "FAIL: $i"
+-+        else
+-+            echo "PASS: $i"
+-+        fi
+-     else
+-         bash ./runtest.sh || exit 1
+-     fi
+--- 
+-2.11.0
+-
+diff --git a/recipes-security/keyutils/files/run-ptest b/recipes-security/keyutils/files/run-ptest
+deleted file mode 100755
+index 305707f..0000000
+--- a/recipes-security/keyutils/files/run-ptest
++++ /dev/null
+@@ -1,3 +0,0 @@
+-#!/bin/sh
+-export AUTOMATED=1
+-make -C tests run
+diff --git a/recipes-security/keyutils/keyutils_1.6.bb b/recipes-security/keyutils/keyutils_1.6.bb
+deleted file mode 100644
+index 4d3a96f..0000000
+--- a/recipes-security/keyutils/keyutils_1.6.bb
++++ /dev/null
+@@ -1,53 +0,0 @@
+-SUMMARY = "Linux Key Management Utilities"
+-DESCRIPTION = "\
+-    Utilities to control the kernel key management facility and to provide \
+-    a mechanism by which the kernel call back to userspace to get a key \
+-    instantiated. \
+-    "
+-HOMEPAGE = "http://people.redhat.com/dhowells/keyutils"
+-SECTION = "base"
+-
+-LICENSE = "LGPLv2.1+ & GPLv2.0+"
+-
+-LIC_FILES_CHKSUM = "file://LICENCE.GPL;md5=5f6e72824f5da505c1f4a7197f004b45 \
+-                    file://LICENCE.LGPL;md5=7d1cacaa3ea752b72ea5e525df54a21f"
+-
+-inherit siteinfo autotools-brokensep ptest
+-
+-SRC_URI = "http://people.redhat.com/dhowells/keyutils/${BP}.tar.bz2 \
+-           file://keyutils-test-fix-output-format.patch \
+-           file://keyutils-fix-error-report-by-adding-default-message.patch \
+-           file://run-ptest \
+-           file://fix_library_install_path.patch \
+-           "
+-
+-SRC_URI[md5sum] = "191987b0ab46bb5b50efd70a6e6ce808"
+-SRC_URI[sha256sum] = "d3aef20cec0005c0fa6b4be40079885567473185b1a57b629b030e67942c7115"
+-
+-EXTRA_OEMAKE = "'CFLAGS=${CFLAGS} -Wall' \
+-    NO_ARLIB=1 \
+-    BINDIR=${base_bindir} \
+-    SBINDIR=${base_sbindir} \
+-    LIBDIR=${libdir} \
+-    USRLIBDIR=${libdir} \
+-    INCLUDEDIR=${includedir} \
+-    BUILDFOR=${SITEINFO_BITS}-bit \
+-    NO_GLIBC_KEYERR=1 \
+-    "
+-
+-do_install () {
+-    install -d ${D}/${libdir}/pkgconfig
+-    oe_runmake DESTDIR=${D} install
+-}
+-
+-do_install_ptest () {
+-    cp -r ${S}/tests ${D}${PTEST_PATH}/
+-    sed -i -e 's/OSDIST=Unknown/OSDIST=${DISTRO}/' ${D}${PTEST_PATH}/tests/prepare.inc.sh
+-}
+-
+-
+-RDEPENDS_${PN}-ptest += "lsb"
+-RDEPENDS_${PN}-ptest_append_libc-glibc = " glibc-utils"
+-RDEPENDS_${PN}-ptest_append_libc-musl = " musl-utils"
+-
+-BBCLASSEXTEND = "native nativesdk"
+-- 
+2.7.4
 
-ETA for completion is next Wednesday, August 07.
-
------Original Message-----
-From: Pokybuild User [mailto:pokybuild@debian10-ty-3.yocto.io]=20
-Sent: Thursday, August 1, 2019 11:04 PM
-To: yocto@yoctoproject.org
-Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; Sangal, Apoorv <apoorv.=
-sangal@intel.com>; Yeoh, Ee Peng <ee.peng.yeoh@intel.com>; Chan, Aaron Chun=
- Yew <aaron.chun.yew.chan@intel.com>; Ang, Chin Huat <chin.huat.ang@intel.c=
-om>; richard.purdie@linuxfoundation.org; akuster808@gmail.com; sjolley.yp.p=
-m@gmail.com; Jain, Sangeeta <sangeeta.jain@intel.com>
-Subject: QA notification for completed autobuilder build (yocto-2.6.3.rc1)
-
-
-A build flagged for QA (yocto-2.6.3.rc1) was completed on the autobuilder a=
-nd is available at:
-
-
-    https://autobuilder.yocto.io/pub/releases/yocto-2.6.3.rc1
-
-
-Build hash information:=20
-
-bitbake: 4ce92f43eeac6a4bfd06e8567fa6891614b5b3b0
-meta-gplv2: aabc30f3bd03f97326fb8596910b94639fea7575
-meta-intel: 278f0b5fa2f1836635178bdc770e035d77ae03c7
-meta-mingw: 6556cde16fbdf42c7edae89bb186e5ae4982eff5
-oecore: d3d3f443039b03f1200a14bfe99f985592632018
-poky: cb26830f765f03309c0663352cc5849491271be8
-
-
-
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
-
-
-=20
 
