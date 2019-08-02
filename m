@@ -1,65 +1,64 @@
-Return-Path: <ryan.harkin@linaro.org>
+Return-Path: <btgoodwin@geontech.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B0ECAE00E17; Fri,  2 Aug 2019 13:20:52 -0700 (PDT)
+	id 4832FE00E16; Fri,  2 Aug 2019 14:55:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.180 listed in list.dnswl.org]
+	*      [209.85.160.193 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com
-	[209.85.222.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 338D9E00E12
-	for <yocto@yoctoproject.org>; Fri,  2 Aug 2019 13:20:51 -0700 (PDT)
-Received: by mail-qk1-f180.google.com with SMTP id a27so55846187qkk.5
-	for <yocto@yoctoproject.org>; Fri, 02 Aug 2019 13:20:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+Received: from mail-qt1-f193.google.com (mail-qt1-f193.google.com
+	[209.85.160.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3637E00E14
+	for <yocto@yoctoproject.org>; Fri,  2 Aug 2019 14:55:36 -0700 (PDT)
+Received: by mail-qt1-f193.google.com with SMTP id h21so75419231qtn.13
+	for <yocto@yoctoproject.org>; Fri, 02 Aug 2019 14:55:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=geontech-com.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=eEiWvoXcHWSko59RnkCqnG9NhfRSQbdumdn59fwrNUM=;
-	b=N3BGz7DRbdM8EQQMV1v25yla3SG2HLqU8vsSzvJ66OuLaM+YME3fhsslSGZKQxOhUL
-	o6NdshXkRgiyE1pCMj44a71Wb9dg4VuMFMRZZ2EQnsPikFwKXHTDS9GnqS7G+PY6+dEh
-	dqbqIyrr5e8M769qce74AwEWn/EWCGpa4MXv3yvzHT2FsyO1ORgctjnutD8FWWjxqc5p
-	bz9zwXu9hgqCIcu4aylhRXF5WJMEKJ5Ca+2Vd1aJytAiuB7cL5ChtnML9+EBH3mmhE7W
-	USS2+owh8uppT9QvgXL3XIxasiyaaD9je7YDNqF+8/6PKzDhdUez0s3c0OC34llpQPcF
-	Kl9A==
+	:cc; bh=slmCkAX4+lEEwZtryn/NDmZ3yaxp2Qy/sX0Wz8Jg2JA=;
+	b=utH7L6WEH6nW/eZddp0XZdhIR2ssd7Ziah+wnNy1KLXjCJPOBn4yfrHHzxrngzGOTz
+	ARf35/0DwhoSWHHFwrkngmkCZneyvLXIDuOgtPg9nZhKNmClO5IrfXd7+NIxoVCIy/2X
+	G0UUUp0A6jioyJplgJ3j6LJTlsFqePBvqiIFPpnUw0Z4maYEXNUClG+YUbwGbiIPVjmU
+	SiuC8Aw6yaU1Xy+7P95mBetJ0+pRj2m9yk6LUZAjsfY5d+5i0SkxSWDunlVfPuyA06p+
+	qoRXKsAuThN0Ln/IkGdtlSqJNrfe8XwHqSr/Vho6FlcQ6gMe7FTlxGyqI2POAzE/DTyw
+	PkCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=eEiWvoXcHWSko59RnkCqnG9NhfRSQbdumdn59fwrNUM=;
-	b=pZrPlYe0HskI6Ch0CZWaT9GPD4cu0LhPf1kEOXsiILlse3Cqa6iiZ/adpoTPDmwFXq
-	d0WS0HXht+YiwR8IjzZ5edzTg0Y4J42IrwiXTRvuv5POoTTeIbJlBuLwTAUs6dTR2wDf
-	EDOgDlvIO6btWsSZ3+em8uogFpS6/zsiDQZj+X3CXpSl3ARyteKV2AxuoSuOqW2eZHaR
-	gAyuYS4bLQRkSqzFuqcHDzJZ6VrsyDcHpYcBPXkJ+DgLSqXB10eK49LjAkSwsyqB7JGW
-	czZ5kdc+keSMQ9iGYOKdeKUWL84KJCltzHOVAHHgKjNWkz77weK3cLrbLolcP/mwuvct
-	Y7YQ==
-X-Gm-Message-State: APjAAAVcmiqVNcOr5IaGo67HvtsLkB0pbpg2ZRdSntPE0LsRW5ZkSNRI
-	BklAofDcQQCzDvPcpWonXQEjiITNjlDhz8SeeUumIsNvnzs=
-X-Google-Smtp-Source: APXvYqwppZy74Fn3v9NxnkcrD67gb/hk4deHnjIWQTRFZxkhG9rqbKUXEBayGQ2mkaxRhQwuUY4C4gHP1yraN3gRJ7k=
-X-Received: by 2002:a37:47d6:: with SMTP id
-	u205mr91679956qka.214.1564777250461; 
-	Fri, 02 Aug 2019 13:20:50 -0700 (PDT)
+	bh=slmCkAX4+lEEwZtryn/NDmZ3yaxp2Qy/sX0Wz8Jg2JA=;
+	b=VPSBuH59ho4kP3FlN9/UeC8htlaezSKV/uCXVOyY/hVBF8BLAyDvsqQhbGJ692bh4J
+	+rd8Y2arOpA5pTLxsLhvClrOPF5XruvXSI0FD39Q5mUOueywuZQHCIvSTsPoxIJV5Y8K
+	y2Rk4qPkbdCDV7zOfTyuTqYLQcTIksT5Gu1QSetveyo8Mg+xuxJnRcUGu+XTm4TSsjJf
+	n6xRA1OTJbez4G5nYwXsbk9ULL0QonWrHX8eF7aDPRYo+p7yLkm5O1ldYs9r+nYObMgL
+	ybdheI+jhYs4chcr1YDIPYVabw2BYji1NJXu2ZOTml2msBp4uSw9uQnmu6BeRlZXBN69
+	EViQ==
+X-Gm-Message-State: APjAAAVngqAuzZPklEwdcalIOmWhD2aAIe2INI/Dv7rciuQh/FfQwMmU
+	nZfEJOCkE1dXiLivocNVH+98MrxW0/prFNT7YWoedDy3Fio=
+X-Google-Smtp-Source: APXvYqyD1VmDZf+eNAflm4U6N9xWNlvXxzrfUwyrSpObfjD4i3wpx23Zzuq9fI/DEBJb9Hz12UgXcrQkw0YyJSBr7U4=
+X-Received: by 2002:a0c:bd18:: with SMTP id
+	m24mr100320925qvg.118.1564782936164; 
+	Fri, 02 Aug 2019 14:55:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAD0U-hKzQgF2wVnsjDLLanTiK3T=Ae8qb7dUy+qYbv=B9kUnXQ@mail.gmail.com>
-	<A2A9E37E9C946847B2258F923F7CFE42065D1659@GOEMAIL-Server2.goerlitz.int>
-In-Reply-To: <A2A9E37E9C946847B2258F923F7CFE42065D1659@GOEMAIL-Server2.goerlitz.int>
-From: Ryan Harkin <ryan.harkin@linaro.org>
-Date: Fri, 2 Aug 2019 21:20:38 +0100
-Message-ID: <CAD0U-h+uCX9-0M8nZtKMOotxBo6DWXz7Us2-FH06dqrf4Eipag@mail.gmail.com>
-To: Stelling2 Carsten <Carsten.Stelling2@goerlitz.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: /var/volatile not mounted as tmpfs on read-only rootfs when migrating to Warrior
+References: <20190730183621.26193-1-btgoodwin@geontech.com>
+	<20190730183621.26193-2-btgoodwin@geontech.com>
+	<fdbce8969ca1a4fe12e4dcf1abaae68d79da0075.camel@rpsys.net>
+In-Reply-To: <fdbce8969ca1a4fe12e4dcf1abaae68d79da0075.camel@rpsys.net>
+From: Thomas Goodwin <btgoodwin@geontech.com>
+Date: Fri, 2 Aug 2019 17:55:25 -0400
+Message-ID: <CABudRdzw1neniOu_d7KtmvPnB5pntz0jjrqwLOqjhwTK9ECHKw@mail.gmail.com>
+To: Richard Purdie <rpurdie@rpsys.net>
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto-autobuilder2][PATCH 2/3] Added remote distribution of config JSON files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,464 +70,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Aug 2019 20:20:52 -0000
-Content-Type: multipart/alternative; boundary="0000000000002ab599058f28187e"
+X-List-Received-Date: Fri, 02 Aug 2019 21:55:38 -0000
+Content-Type: multipart/alternative; boundary="0000000000000f9e59058f296bfe"
 
---0000000000002ab599058f28187e
+--0000000000000f9e59058f296bfe
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Carsten,
+I'm not sure I follow.  This collects everything into the worker's
+"builddir/yocto-autobuilder-helper" path (I think; I'm new to buildbot).
 
-Thanks for your help.
+My aim was to let the buildbot master the chance to SCM the configuration
+files apart from the helper's behavior which should otherwise be consistent
+whether we're rebuilding for warrior or morty.  For us this is turning out
+to not be "enough" since certain build targets don't exist between
+different releases of Poky and we're held back by BSPs to certain releases,
+so we need to decouple a bit further than this patch.  The issue could also
+be solved with templates that dynamically point to other templates based on
+the Force Build branch, revision, etc., but I'm looking for a more simple
+approach than a recursive overlay.
 
-On Fri, 2 Aug 2019 at 20:42, Stelling2 Carsten <
-Carsten.Stelling2@goerlitz.com> wrote:
+Thanks again for all your help and feedback.
 
-> Hi Ryan,
->
->
->
-> Regarding to timesyncd, have a look at
-> https://wiki.archlinux.org/index.php/systemd-timesyncd, especially the
-> section
->
-> =E2=80=9CNote: The service writes to a local file /var/lib/systemd/timesy=
-nc/clock
-> with every synchronization.
->
-> This location is hard-coded and cannot be changed. This may be problemati=
-c
-> for running off
->
-> read-only root partition or trying to minimize writes to an SD card.=E2=
-=80=9D
->
+Cheers,
 
-Yes, this looks like it is my problem. I experimented with timesync, and by
-making /var/lib and a few other places writable, I'm able to start it
-manually, but not via systemd, which I think is experiencing other issues
-with the read-only rootfs.
+Thomas
 
+On Fri, Aug 2, 2019 at 12:41 PM Richard Purdie <rpurdie@rpsys.net> wrote:
 
+> On Tue, 2019-07-30 at 14:36 -0400, Thomas Goodwin wrote:
+> > This feature/fix allows the worker to download the
+> > autobuilder helper JSON files from the controller
+> > rather than having to store them in the
+> > yocto-autobuilder-helper repository.  The process
+> > installs the file into the worker's
+> > builddir/yocto-autobuilder-helper path.
+> >
+> > Signed-off-by: Thomas Goodwin <btgoodwin@geontech.com>
+> > ---
+> >  builders.py | 22 ++++++++++++++++++++++
+> >  1 file changed, 22 insertions(+)
 >
-> See also https://github.com/systemd/systemd/issues/5610 for your problem
-> with systemd-resolved.
+> I like the idea however this is going to break the autobuilders as they
+> already use full paths in the variable.
 >
-> According to this, /var, /var/tmp, /run, and /tmp should be writable.
+> I've merged some of the other patches but this one will need a little
+> further thought so we don't break the existing install.
 >
-I think the problem is not Yocto specific, but possibly I overlook
-> something.
+> The existing code also allows for different path locations on
+> individual workers (e.g. different username) which this would break.
 >
-
-Again, I think you're right. I need to have these areas writable from boot.
-But I don't know how.
-
-I  suppose my problem is that these areas used to be writable when I was
-using Sumo, but moving to Warrior has caused something to change. I'm
-wondering what extra steps I need to do in Warrior to ensure that all these
-things are mounted with tmpfs as before. I expect my Sumo recipes worked
-through luck more than design, and now something has changed, I need to
-improve them.
-
-It is rather difficult to work out what the relevant changes are.
-
-Kind regards,
-Ryan.
-
-
+> Cheers,
 >
-> Best regards,
+> Richard
 >
->
->
-> Carsten
->
->
->
-> *Von:* yocto-bounces@yoctoproject.org [mailto:
-> yocto-bounces@yoctoproject.org] *Im Auftrag von *Ryan Harkin
-> *Gesendet:* Freitag, 2. August 2019 13:09
-> *An:* yocto@yoctoproject.org
-> *Cc:* openembedded
-> *Betreff:* [yocto] /var/volatile not mounted as tmpfs on read-only rootfs
-> when migrating to Warrior
->
->
->
-> Hi,
->
->
->
-> I have a working system based on Sumo. The system boots with a read-only
-> rootfs, then applies are read-write overlay for /etc.
->
->
->
-> When I migrate to Warrior, systemd-resolved fails to start. If I mount th=
-e
-> same rootfs via NFS, it starts and works fine.  systemd-timesyncd is also
-> failing, but I haven't looked into that yet. It also works fine on the NF=
-S
-> mounted system.
->
->
->
-> The resolve problem seems to be caused by two things:
->
->     - /var/volatile is read-only
->
->     - /run/systemd/resolve has the wrong ownership
->
->       drwxr-xr-x  2 systemd-network systemd-journal  80 Jul 12 16:23
-> resolve/
->
->       I think this permissions problem may be a result of the
-> /var/volatile mounting
->
->       problems; it looks fine on the NFS mounted system.
->
->
->
-> If I manually mount /var/volatile (it's in fstab) and change the ownershi=
-p
-> on /run/systemd/resolve, the service starts just fine.
->
->
->
-> I also notice that /tmp is not mounted at all, which may be related.
->
->
->
-> Here are the various tmp mount points on my read-only rootfs:
->
->
->
-> $ mount | grep tmp
->
-> devtmpfs on /dev type devtmpfs
-> (rw,nosuid,size=3D112036k,nr_inodes=3D28009,mode=3D755)
-> tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)
-> tmpfs on /run type tmpfs (rw,nosuid,nodev,mode=3D755)
-> tmpfs on /sys/fs/cgroup type tmpfs (ro,nosuid,nodev,noexec,mode=3D755)
-> overlay on /etc type overlay
-> (rw,relatime,lowerdir=3D/tmp/lower/etc,upperdir=3D/tmp/upper/etc,workdir=
-=3D/tmp/upper/work/etc)
-> tmpfs on /run/user/0 type tmpfs
-> (rw,nosuid,nodev,relatime,size=3D23840k,mode=3D700)
->
-> On the NFS mounted system, I see these:
->
->
->
-> $ mount | grep tmp
-> devtmpfs on /dev type devtmpfs
-> (rw,relatime,size=3D118180k,nr_inodes=3D29545,mode=3D755)
-> tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)
-> tmpfs on /run type tmpfs (rw,nosuid,nodev,mode=3D755)
-> tmpfs on /sys/fs/cgroup type tmpfs (ro,nosuid,nodev,noexec,mode=3D755)
-> tmpfs on /tmp type tmpfs (rw,nosuid,nodev)
-> tmpfs on /var/volatile type tmpfs (rw,relatime)
-> tmpfs on /run/user/0 type tmpfs
-> (rw,nosuid,nodev,relatime,size=3D23840k,mode=3D700)
->
-> As you can see, NFS has these extra mounts:
->
->
->
-> tmpfs on /tmp type tmpfs (rw,nosuid,nodev)
->
-> tmpfs on /var/volatile type tmpfs (rw,relatime)
->
->
->
-> I've tried reverting a few commits that may be related, but I haven't had
-> any luck working out things have changed, eg:
->
->
->
-> c4acf1b531  2018-10-19  volatile-binds: use overlayfs if available
->              [Matt Hoosier]
->
->
->
-> Advice would be appreciated. Are there any particular areas I should be
-> looking to work out what's going wrong?
->
->
->
-> Kind regards,
->
-> Ryan.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 >
 
---0000000000002ab599058f28187e
+--0000000000000f9e59058f296bfe
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Carsten,</div><div><br></div>Thanks for your help.=
-<div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
-n Fri, 2 Aug 2019 at 20:42, Stelling2 Carsten &lt;<a href=3D"mailto:Carsten=
-.Stelling2@goerlitz.com">Carsten.Stelling2@goerlitz.com</a>&gt; wrote:<br><=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bo=
-rder-left:1px solid rgb(204,204,204);padding-left:1ex">
-
-
-
-
-
-<div lang=3D"DE">
-<div class=3D"gmail-m_-3697380400908974868WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Arial,sans=
--serif;color:rgb(31,73,125)">Hi Ryan,<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Arial,sans=
--serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fa=
-mily:Arial,sans-serif;color:rgb(31,73,125)">Regarding to timesyncd, have a =
-look at
-<a href=3D"https://wiki.archlinux.org/index.php/systemd-timesyncd" target=
-=3D"_blank">https://wiki.archlinux.org/index.php/systemd-timesyncd</a>, esp=
-ecially the section<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fa=
-mily:Arial,sans-serif;color:rgb(31,73,125)">=E2=80=9CNote: The service writ=
-es to a local file /var/lib/systemd/timesync/clock with every synchronizati=
-on.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fa=
-mily:Arial,sans-serif;color:rgb(31,73,125)">This location is hard-coded and=
- cannot be changed. This may be problematic for running off<u></u><u></u></=
-span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fa=
-mily:Arial,sans-serif;color:rgb(31,73,125)">read-only root partition or try=
-ing to minimize writes to an SD card.=E2=80=9D</span></p></div></div></bloc=
-kquote><div><br></div><div>Yes, this looks like it is my problem. I experim=
-ented with timesync, and by making /var/lib and a few other places writable=
-, I&#39;m able to start it manually, but not via systemd, which I think is =
-experiencing other issues with the read-only rootfs.</div><div><br></div><b=
-lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
-ft:1px solid rgb(204,204,204);padding-left:1ex"><div lang=3D"DE"><div class=
-=3D"gmail-m_-3697380400908974868WordSection1"><p class=3D"MsoNormal"><span =
-lang=3D"EN-US" style=3D"font-size:10pt;font-family:Arial,sans-serif;color:r=
-gb(31,73,125)"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fa=
-mily:Arial,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fa=
-mily:Arial,sans-serif;color:rgb(31,73,125)">See also
-<a href=3D"https://github.com/systemd/systemd/issues/5610" target=3D"_blank=
-">https://github.com/systemd/systemd/issues/5610</a> for your problem with =
-systemd-resolved.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fa=
-mily:Arial,sans-serif;color:rgb(31,73,125)">According to this, /var, /var/t=
-mp, /run, and /tmp should be writable.</span><span style=3D"color:rgb(31,73=
-,125);font-family:Arial,sans-serif;font-size:10pt">=C2=A0</span></p></div><=
-/div></blockquote><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
- 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div la=
-ng=3D"DE"><div class=3D"gmail-m_-3697380400908974868WordSection1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fa=
-mily:Arial,sans-serif;color:rgb(31,73,125)">I think the problem is not Yoct=
-o specific, but possibly I overlook something.</span></p></div></div></bloc=
-kquote><div><br></div><div><div>Again, I think you&#39;re right. I need to =
-have these areas writable from boot. But I don&#39;t know how.</div></div><=
-div><br></div><div>I=C2=A0 suppose my problem is that these areas used to b=
-e writable when I was using Sumo, but moving to Warrior has caused somethin=
-g to change. I&#39;m wondering what extra steps I need to do in Warrior to =
-ensure that all these things are mounted with tmpfs as before. I expect my =
-Sumo recipes worked through luck more than design, and now something has ch=
-anged, I need to improve them.</div><div><br></div><div>It is rather diffic=
-ult to work out what the relevant changes are.</div><div><br></div><div>Kin=
-d regards,</div><div>Ryan.</div><div><br></div><blockquote class=3D"gmail_q=
-uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
-04);padding-left:1ex"><div lang=3D"DE"><div class=3D"gmail-m_-3697380400908=
-974868WordSection1"><p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"fo=
-nt-size:10pt;font-family:Arial,sans-serif;color:rgb(31,73,125)"><u></u><u><=
-/u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fa=
-mily:Arial,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fa=
-mily:Arial,sans-serif;color:rgb(31,73,125)">Best regards,<u></u><u></u></sp=
-an></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fa=
-mily:Arial,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fa=
-mily:Arial,sans-serif;color:rgb(31,73,125)">Carsten<u></u><u></u></span></p=
->
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10pt;font-fa=
-mily:Arial,sans-serif;color:rgb(31,73,125)"><u></u>=C2=A0<u></u></span></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:10pt;font-family:Tahoma,=
-sans-serif">Von:</span></b><span style=3D"font-size:10pt;font-family:Tahoma=
-,sans-serif"> <a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_=
-blank">yocto-bounces@yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-b=
-ounces@yoctoproject.org" target=3D"_blank">yocto-bounces@yoctoproject.org</=
-a>]
-<b>Im Auftrag von </b>Ryan Harkin<br>
-<b>Gesendet:</b> Freitag, 2. August 2019 13:09<br>
-<b>An:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
-o@yoctoproject.org</a><br>
-<b>Cc:</b> openembedded<br>
-<b>Betreff:</b> [yocto] /var/volatile not mounted as tmpfs on read-only roo=
-tfs when migrating to Warrior<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I have a working system based on Sumo. The system bo=
-ots with a read-only rootfs, then applies are read-write overlay for /etc.<=
-u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">When I migrate to Warrior, systemd-resolved fails to=
- start. If I mount the same rootfs via NFS, it starts and works fine.=C2=A0=
-=C2=A0systemd-timesyncd is also failing, but I haven&#39;t looked into that=
- yet. It also works fine on the NFS mounted system.<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">The resolve problem seems to be caused by two things=
-:<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">=C2=A0 =C2=A0 - /var/volatile is read-only<u></u><u>=
-</u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">=C2=A0 =C2=A0 - /run/systemd/resolve has the wrong o=
-wnership<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">=C2=A0 =C2=A0 =C2=A0 drwxr-xr-x =C2=A02 systemd-netw=
-ork systemd-journal =C2=A080 Jul 12 16:23 resolve/<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">=C2=A0 =C2=A0 =C2=A0 I think this permissions proble=
-m may be a result of the /var/volatile mounting<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">=C2=A0 =C2=A0 =C2=A0 problems; it looks fine on the =
-NFS mounted system.<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">If I manually mount /var/volatile (it&#39;s in fstab=
-) and change the ownership on /run/systemd/resolve, the service starts just=
- fine.<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I also notice that /tmp is not mounted at all, which=
- may be related.<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Here are the various tmp mount points on my read-onl=
-y rootfs:<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">$ mount | grep tmp<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">devtmpfs on /dev type devtmpfs (rw,nosuid,size=3D112=
-036k,nr_inodes=3D28009,mode=3D755)<br>
-tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)<br>
-tmpfs on /run type tmpfs (rw,nosuid,nodev,mode=3D755)<br>
-tmpfs on /sys/fs/cgroup type tmpfs (ro,nosuid,nodev,noexec,mode=3D755)<br>
-overlay on /etc type overlay (rw,relatime,lowerdir=3D/tmp/lower/etc,upperdi=
-r=3D/tmp/upper/etc,workdir=3D/tmp/upper/work/etc)<br>
-tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,size=3D23840k,mod=
-e=3D700)<br>
+<div dir=3D"ltr"><div dir=3D"ltr">I&#39;m not sure I follow.=C2=A0 This col=
+lects everything into the worker&#39;s &quot;builddir/yocto-autobuilder-hel=
+per&quot; path (I think; I&#39;m new to buildbot).<div><br></div><div>My ai=
+m was to let the buildbot master the chance to SCM the configuration files =
+apart from the helper&#39;s behavior which should otherwise be consistent w=
+hether we&#39;re rebuilding for warrior or morty.=C2=A0=C2=A0For us this is=
+ turning out to not be &quot;enough&quot; since certain build targets don&#=
+39;t exist between different releases of Poky and we&#39;re held back by BS=
+Ps to certain releases, so we need to decouple a bit further than this patc=
+h.=C2=A0 The issue could also be solved with templates that dynamically poi=
+nt to other templates based on the Force Build branch, revision, etc., but =
+I&#39;m looking for a more simple approach than a recursive overlay.<input =
+name=3D"virtru-metadata" type=3D"hidden" value=3D"{&quot;email-policy&quot;=
+:{&quot;state&quot;:&quot;closed&quot;,&quot;expirationUnit&quot;:&quot;day=
+s&quot;,&quot;disableCopyPaste&quot;:false,&quot;disablePrint&quot;:false,&=
+quot;disableForwarding&quot;:false,&quot;enableNoauth&quot;:false,&quot;per=
+sistentProtection&quot;:false,&quot;expandedWatermarking&quot;:false,&quot;=
+expires&quot;:false,&quot;isManaged&quot;:false},&quot;attachments&quot;:{}=
+,&quot;compose-id&quot;:&quot;1&quot;,&quot;compose-window&quot;:{&quot;sec=
+ure&quot;:false}}"></div><div><br>Thanks again for all your help and feedba=
+ck.</div><div><br></div><div>Cheers,</div><div><br></div><div>Thomas</div><=
+/div><br><div class=3D"gmail_quote" style=3D""><div dir=3D"ltr" class=3D"gm=
+ail_attr">On Fri, Aug 2, 2019 at 12:41 PM Richard Purdie &lt;<a href=3D"mai=
+lto:rpurdie@rpsys.net">rpurdie@rpsys.net</a>&gt; wrote:<br></div><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex">On Tue, 2019-07-30 at 14:36 -0400, =
+Thomas Goodwin wrote:<br>
+&gt; This feature/fix allows the worker to download the<br>
+&gt; autobuilder helper JSON files from the controller<br>
+&gt; rather than having to store them in the<br>
+&gt; yocto-autobuilder-helper repository.=C2=A0 The process<br>
+&gt; installs the file into the worker&#39;s<br>
+&gt; builddir/yocto-autobuilder-helper path.<br>
+&gt; <br>
+&gt; Signed-off-by: Thomas Goodwin &lt;<a href=3D"mailto:btgoodwin@geontech=
+.com" target=3D"_blank">btgoodwin@geontech.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 builders.py | 22 ++++++++++++++++++++++<br>
+&gt;=C2=A0 1 file changed, 22 insertions(+)<br>
 <br>
-On the NFS mounted system, I see these:<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">$ mount | grep tmp<br>
-devtmpfs on /dev type devtmpfs (rw,relatime,size=3D118180k,nr_inodes=3D2954=
-5,mode=3D755)<br>
-tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)<br>
-tmpfs on /run type tmpfs (rw,nosuid,nodev,mode=3D755)<br>
-tmpfs on /sys/fs/cgroup type tmpfs (ro,nosuid,nodev,noexec,mode=3D755)<br>
-tmpfs on /tmp type tmpfs (rw,nosuid,nodev)<br>
-tmpfs on /var/volatile type tmpfs (rw,relatime)<br>
-tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev,relatime,size=3D23840k,mod=
-e=3D700)<br>
+I like the idea however this is going to break the autobuilders as they<br>
+already use full paths in the variable.<br>
 <br>
-As you can see, NFS has these extra mounts:<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<p class=3D"MsoNormal">tmpfs on /tmp type tmpfs (rw,nosuid,nodev)<u></u><u>=
-</u></p>
-<div>
-<p class=3D"MsoNormal">tmpfs on /var/volatile type tmpfs (rw,relatime)<u></=
-u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">I&#39;ve tried reverting a few commits that may be r=
-elated, but I haven&#39;t had any luck working out things have changed, eg:=
-<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">c4acf1b531 =C2=A02018-10-19 =C2=A0volatile-binds: us=
-e overlayfs if available =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0[Matt Hoosier]=C2=A0<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Advice would be appreciated. Are there any particula=
-r areas I should be looking to work out what&#39;s going wrong?<u></u><u></=
-u></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Kind regards,<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Ryan.<u></u><u></u></p>
-</div>
-</div>
-</div>
-</div>
+I&#39;ve merged some of the other patches but this one will need a little<b=
+r>
+further thought so we don&#39;t break the existing install.<br>
+<br>
+The existing code also allows for different path locations on<br>
+individual workers (e.g. different username) which this would break.<br>
+<br>
+Cheers,<br>
+<br>
+Richard<br>
+<br>
+</blockquote></div></div>
 
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div></div></div>
-
---0000000000002ab599058f28187e--
+--0000000000000f9e59058f296bfe--
