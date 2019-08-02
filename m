@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D512EE00E6A; Thu,  1 Aug 2019 22:12:20 -0700 (PDT)
+	id 6FACFE00AE6; Fri,  2 Aug 2019 03:26:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,56 +10,60 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.179 listed in list.dnswl.org]
+	provider *      (jupiter.hce[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com
-	[209.85.160.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEA18E00E5E
-	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 22:12:17 -0700 (PDT)
-Received: by mail-qt1-f179.google.com with SMTP id 44so41675919qtg.11
-	for <yocto@yoctoproject.org>; Thu, 01 Aug 2019 22:12:17 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.67 listed in list.dnswl.org]
+Received: from mail-io1-f67.google.com (mail-io1-f67.google.com
+	[209.85.166.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7844E0049C
+	for <yocto@yoctoproject.org>; Fri,  2 Aug 2019 03:26:58 -0700 (PDT)
+Received: by mail-io1-f67.google.com with SMTP id j5so146945366ioj.8
+	for <yocto@yoctoproject.org>; Fri, 02 Aug 2019 03:26:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=PvWds5l5OiUPOKMM0z2MRrDQWbsg/ObkLRT/WFiGyWQ=;
-	b=jygRibHspZorC0aCaFyTMq0Zc8EVeDRPa3jwL6tzYV+ap1XoicQMk6hdlmVYIgtKkF
-	B23+jlbCUMc3EVzVRIkgkopesUkIwI0H4cixpFtfP8kBf3Y5Gb6O3Evm8Dm+pWvHsiR1
-	sJtlDnl5oxV6cxUEE/yNlqHrCGypbuKMyRM3Z3wikV9OEiuuHujCCGobD67CQPzoTrVV
-	LbQlVjBcLs84lTbyHEXyJs7m718mGWh2rMjdRj+N+YvBJZ1xhuZT5deFP5uXfHtPjD8F
-	oXm9EfHLb1WnOeDEr8lJVDF/bA4eut7fA2Qh0BxGtmVL404D9gk4l2Lk4jGrue5WEeG7
-	cjcA==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=CuTShbEY0ApdmFYc52r/SASenjZ21Pfmvt/Lrvohk1o=;
+	b=iOSOKRjbLialnVUeqnNb52HtHLtTPInwHbesc8ls+CLGuxWjTwif6rDydMXolJw/vd
+	OAlK9LV3lp70jMr+/+v668JzGP0GkPfMtNVDXugB8qJdWvbesxkTMswxJOAmDfDxTQtq
+	tC+u36tCSZ91hi6SZ59KNJXZS4/Wr3tLJmyFB+wHAzmv5SLB+nysLj3G+Xh6vu7Li6fl
+	foqP0qBjygi/SusZNQ+BAdjKjzO1wera7XbnJFcah35X6ui+kNLOrlC5Oub5rqkG+soS
+	s9NQSd7GchVccjh85eU7VED8RB9PklVGi9f2MrXiFfrQ9YQ9guYc1rnbYBS67XXiYIE/
+	Ev3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=PvWds5l5OiUPOKMM0z2MRrDQWbsg/ObkLRT/WFiGyWQ=;
-	b=LarS3hppjk/jOEMRvoOVv0DWIPgET30aCZdV3P1XpAYKwncXttPY+6dB1qJ3S2/WWl
-	Pco9jbf2F7NB9Cs4/qapSspyLUIwJqTpQYYSJjZnFLcbFKYcv3Ef/Ik8WtmRTM8dXgGV
-	dT/D6hT5Ms8ydytgJBzQfQV0OIA2B/OVOC4Dq3tNDLT1XjwvcHBLhf22s7hJSPuwFegQ
-	60a0oQfYhFzJ2Z/EMQXQVfJPSvihooz8ATaJsEyi/HzPibT3OieqzZ/6PpKt6vu5BPRl
-	4t0Cx/BDulpZBEZb1pjh09Bw5QNp5O0bNPvmrodAaciY5teSc/+gRMlb1etqLuttTWip
-	tBcA==
-X-Gm-Message-State: APjAAAXQpiiP8WhlvJTKC0hSlGQg3zG71jJAKyqjMPSxJnLTLnYgQhSt
-	Zm05D49jZyaf92/BRWzFV/x+WCGCGSZWP//pcWXLBaa9JYs=
-X-Google-Smtp-Source: APXvYqxNxlA6jIkDtk4BrkBMg6R5JuPMDBBRLTbio/G3pSD0Z3U2dGdv+/xdphwTyh0fGkJnjFCvwbjmtIB8sI5g05M=
-X-Received: by 2002:ac8:1183:: with SMTP id d3mr31753322qtj.53.1564722736796; 
-	Thu, 01 Aug 2019 22:12:16 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=CuTShbEY0ApdmFYc52r/SASenjZ21Pfmvt/Lrvohk1o=;
+	b=bYylzjDQtExkTdjYBmss6uXBQASbj0fFLfYzcs8KEcQ8fd5kSqgW4Dx8WOpsmsN2fz
+	VQ8DOhZWUKjngsJNn+ZKHUQpeAeqnlhtF0QdaQQ2jqWWkK/v5J4m0rrhiYVWRZprzDbn
+	mhYwFEPwDgk6mMOvGC1EM6pSQpYHjTTmiVMme4nkjV63eqCvTeHXrCZG1xWpBU/o4B4H
+	9tB7BhK0YbLhkBsP6ZcSNJWv9mvN3KgNt5wvrYrdPkx42o/na5BoH8D41dl77PucCt12
+	xWvgp3BHYPYmSejn3YTj/3+qdiIAjZIiAaTrHK35Fi1/Bz1TD9oay+8nm/nNET+d0xQU
+	eyvQ==
+X-Gm-Message-State: APjAAAXt7IPQVdzsbs6FxLobtleqhqFNOoku4B2jD/nKSwZOUmdf6PA3
+	HhKITeQFwSSldxVP6V1IEDDAhfcJ9IfY+VlP9k1NoXE4gn0=
+X-Google-Smtp-Source: APXvYqzroxgIC+Oh6kSED5vV74zsCRT86fUH3hT5Lcl8H5OfSFiIl6vN6RVPXfN6kIEz/q2ellK3tTeXogNIdEjUvUU=
+X-Received: by 2002:a6b:8f47:: with SMTP id r68mr867109iod.204.1564741618364; 
+	Fri, 02 Aug 2019 03:26:58 -0700 (PDT)
 MIME-Version: 1.0
-References: <LO2P265MB116541EFF189E7FE94EA99BFDEDF0@LO2P265MB1165.GBRP265.PROD.OUTLOOK.COM>
-In-Reply-To: <LO2P265MB116541EFF189E7FE94EA99BFDEDF0@LO2P265MB1165.GBRP265.PROD.OUTLOOK.COM>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 1 Aug 2019 22:12:00 -0700
-Message-ID: <CAMKF1sokGkGmND=ahwFupPXpV-0e2G+mkK-5_MnEMBhOaqcMRg@mail.gmail.com>
-To: Edward Tyrrell <ed@disignconsultants.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Patching /lib/systemd/system/systemd-networkd-wait-online.service
+Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP;
+	Fri, 2 Aug 2019 03:26:57 -0700 (PDT)
+In-Reply-To: <a8962625-43b0-006a-46fb-7df592302dbc@ibeeto.com>
+References: <CAA=hcWSYrjxA8K1jURiiwpcY5pz6zb-cb6j7R9sOTM-831-BBQ@mail.gmail.com>
+	<f881304f-668d-01c6-65ec-c26cf82199b5@windriver.com>
+	<CAA=hcWR+c=am2SHqRr3tUeMShLkzB+HrD2UBqhDwvK9ViyVHnw@mail.gmail.com>
+	<a8962625-43b0-006a-46fb-7df592302dbc@ibeeto.com>
+From: JH <jupiter.hce@gmail.com>
+Date: Fri, 2 Aug 2019 20:26:57 +1000
+Message-ID: <CAA=hcWQE+f19X692ct=ze05wBPeyMPMbyCUCnMdQe6SagpYGwQ@mail.gmail.com>
+To: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Make the service the last run in boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,95 +75,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Aug 2019 05:12:20 -0000
+X-List-Received-Date: Fri, 02 Aug 2019 10:26:59 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-you should be patching ./units/systemd-networkd-wait-online.service.in file
+Terrific, that works well, thanks Rudolf and ChenQi.
 
-On Thu, Aug 1, 2019 at 8:14 AM Edward Tyrrell <ed@disignconsultants.com> wr=
-ote:
+On 8/2/19, Rudolf J Streif <rudolf.streif@ibeeto.com> wrote:
+> Adding
 >
-> Hi,
+> After=multi-user.target
 >
+> to the [Unit] section in your systemd service file should do what you want.
 >
-> I'm trying to add a patch to the systemd layer to amend systemd-networkd-=
-wait-online.service. Within the service I simply want to add --any as a par=
-ameter.
+> :rjs
 >
->
-> The problem is my is bitbake fails with:
->
-> Applying patch 0020-systemd-networkd-wait-online-service.patch
-> can't find file to patch at input line 3
-> Perhaps you used the wrong -p or --strip option?
-> The text leading up to this was:
-> --------------------------
-> |--- a/units/systemd-networkd-wait-online.service 2019-05-23 13:38:23.000=
-000000 +0100
-> |+++ b/units/systemd-networkd-wait-online.service 2019-07-31 08:30:40.823=
-968051 +0100
-> --------------------------
-> No file to patch.  Skipping patch.
-> 1 out of 1 hunk ignored
-> Patch 0020-systemd-networkd-wait-online-service.patch does not apply (enf=
-orce with -f)
->
->
->
-> My ...../sources/poky/meta/recipes-core/systemd/systemd_234.bbappend cons=
-ists of:
->
->
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-> SRC_URI +=3D "file://0020-systemd-networkd-wait-online-service.patch"
->
-> My patch file:
->
-> --- a/units/systemd-networkd-wait-online.service 2019-05-23 13:38:23.0000=
-00000 +0100
-> +++ b/units/systemd-networkd-wait-online.service 2019-07-31 08:30:40.8239=
-68051 +0100
-> @@ -16,7 +16,7 @@
->
->  [Service]
->  Type=3Doneshot
-> -ExecStart=3D/lib/systemd/systemd-networkd-wait-online
-> +ExecStart=3D/lib/systemd/systemd-networkd-wait-online --any
->  RemainAfterExit=3Dyes
->
->  [Install]
->
-> -------------------------------------------------------------------------=
-------
->
->
-> So it finds the patch but struggles locating the service file to patch wi=
-thin the build. Any ideas where I'm going wrong?
->
-> Is ...../sources/poky/meta/recipes-core/systemd/systemd_234.bb the proper=
- place to patch this service file?
->
->
->
-> Regards,
->
->
-> Edward
->
->
->
->
-> This message and any attachment are confidential and may be privileged or=
- otherwise protected from disclosure. If you are not the intended recipient=
-, please telephone or email the sender and delete this message and any atta=
-chment from your system. If you are not the intended recipient you must not=
- copy this message or attachment or disclose the contents to any other pers=
-on.
->
+> On 8/1/19 4:08 AM, JH wrote:
+>> The application requires network connection to communicate services
+>> via Internet, it could only work if the network connection is ready,
+>> so I really want to know which system servuce run at last I could put
+>> it in the After statement.
+>>
+>> On 8/1/19, ChenQi <Qi.Chen@windriver.com> wrote:
+>>> On 08/01/2019 03:37 PM, JH wrote:
+>>>> Hi,
+>>>>
+>>>> How can I find the systemd last run service I can put it in my network
+>>>> application After=<last run tartget or service>?
+>>>>
+>>>> I need my network application service to be run at last in boot, I
+>>>> made After=connman and Requires=connman.service that did not work,
+>>>> always failed in boot, I have to manually restart the network
+>>>> application service which won't work in field operation.
+>>> I'd suggest you find out what you network service actually require.
+>>>
+>>>> Searched from Internet, there is a blog Systemd: Run it last to create
+>>>> a custom.target After=multi-user.target, and put my network
+>>>> application service WantedBy=custom.target, that works well, but it is
+>>>> a little bit cumbersome to configure customer.target in Yocto bb file,
+>>>> enabling the customer.target is called systemctl isolate
+>>>> custom.target, the /etc/systemd/system/default.target link needs be
+>>>> changed to from multi-user.target to custom.target. I am not sure how
+>>>> it could be done in do_install, appreciate your tips.
+>>>>
+>>>> Thank you.
+>>>>
+>>>> Kind regards,
+>>>>
+>>>> - JH
+>>>
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
 > --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> -----
+> Rudolf J Streif
+> CEO/CTO ibeeto
+> +1.855.442.3396 x700
+>
+>
+>
 
