@@ -1,33 +1,65 @@
-Return-Path: <Changqing.Li@windriver.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 385E3E00EB1; Thu,  1 Aug 2019 20:38:58 -0700 (PDT)
+	id D512EE00E6A; Thu,  1 Aug 2019 22:12:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0CAFE008E3
-	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 20:38:56 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x723cuc9006572
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 1 Aug 2019 20:38:56 -0700 (PDT)
-Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.468.0; Thu, 1 Aug 2019 20:38:49 -0700
-From: <changqing.li@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 2 Aug 2019 11:38:48 +0800
-Message-ID: <1564717128-350244-1-git-send-email-changqing.li@windriver.com>
-X-Mailer: git-send-email 2.7.4
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.179 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com
+	[209.85.160.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEA18E00E5E
+	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 22:12:17 -0700 (PDT)
+Received: by mail-qt1-f179.google.com with SMTP id 44so41675919qtg.11
+	for <yocto@yoctoproject.org>; Thu, 01 Aug 2019 22:12:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=PvWds5l5OiUPOKMM0z2MRrDQWbsg/ObkLRT/WFiGyWQ=;
+	b=jygRibHspZorC0aCaFyTMq0Zc8EVeDRPa3jwL6tzYV+ap1XoicQMk6hdlmVYIgtKkF
+	B23+jlbCUMc3EVzVRIkgkopesUkIwI0H4cixpFtfP8kBf3Y5Gb6O3Evm8Dm+pWvHsiR1
+	sJtlDnl5oxV6cxUEE/yNlqHrCGypbuKMyRM3Z3wikV9OEiuuHujCCGobD67CQPzoTrVV
+	LbQlVjBcLs84lTbyHEXyJs7m718mGWh2rMjdRj+N+YvBJZ1xhuZT5deFP5uXfHtPjD8F
+	oXm9EfHLb1WnOeDEr8lJVDF/bA4eut7fA2Qh0BxGtmVL404D9gk4l2Lk4jGrue5WEeG7
+	cjcA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=PvWds5l5OiUPOKMM0z2MRrDQWbsg/ObkLRT/WFiGyWQ=;
+	b=LarS3hppjk/jOEMRvoOVv0DWIPgET30aCZdV3P1XpAYKwncXttPY+6dB1qJ3S2/WWl
+	Pco9jbf2F7NB9Cs4/qapSspyLUIwJqTpQYYSJjZnFLcbFKYcv3Ef/Ik8WtmRTM8dXgGV
+	dT/D6hT5Ms8ydytgJBzQfQV0OIA2B/OVOC4Dq3tNDLT1XjwvcHBLhf22s7hJSPuwFegQ
+	60a0oQfYhFzJ2Z/EMQXQVfJPSvihooz8ATaJsEyi/HzPibT3OieqzZ/6PpKt6vu5BPRl
+	4t0Cx/BDulpZBEZb1pjh09Bw5QNp5O0bNPvmrodAaciY5teSc/+gRMlb1etqLuttTWip
+	tBcA==
+X-Gm-Message-State: APjAAAXQpiiP8WhlvJTKC0hSlGQg3zG71jJAKyqjMPSxJnLTLnYgQhSt
+	Zm05D49jZyaf92/BRWzFV/x+WCGCGSZWP//pcWXLBaa9JYs=
+X-Google-Smtp-Source: APXvYqxNxlA6jIkDtk4BrkBMg6R5JuPMDBBRLTbio/G3pSD0Z3U2dGdv+/xdphwTyh0fGkJnjFCvwbjmtIB8sI5g05M=
+X-Received: by 2002:ac8:1183:: with SMTP id d3mr31753322qtj.53.1564722736796; 
+	Thu, 01 Aug 2019 22:12:16 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [meta-security][PATCH] keyutils: remove it
+References: <LO2P265MB116541EFF189E7FE94EA99BFDEDF0@LO2P265MB1165.GBRP265.PROD.OUTLOOK.COM>
+In-Reply-To: <LO2P265MB116541EFF189E7FE94EA99BFDEDF0@LO2P265MB1165.GBRP265.PROD.OUTLOOK.COM>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 1 Aug 2019 22:12:00 -0700
+Message-ID: <CAMKF1sokGkGmND=ahwFupPXpV-0e2G+mkK-5_MnEMBhOaqcMRg@mail.gmail.com>
+To: Edward Tyrrell <ed@disignconsultants.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Patching /lib/systemd/system/systemd-networkd-wait-online.service
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,227 +71,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Aug 2019 03:38:58 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 02 Aug 2019 05:12:20 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Changqing Li <changqing.li@windriver.com>
+you should be patching ./units/systemd-networkd-wait-online.service.in file
 
-keyutils have been moved to meta-openembeded by this commit
-https://git.openembedded.org/meta-openembedded/commit/?id=415e213ad75ec9a93171c963395a1c4b92c6233b
-so remove this one
-
-Signed-off-by: Changqing Li <changqing.li@windriver.com>
----
- .../keyutils/files/fix_library_install_path.patch  | 28 ------------
- ...ix-error-report-by-adding-default-message.patch | 42 -----------------
- .../files/keyutils-test-fix-output-format.patch    | 41 -----------------
- recipes-security/keyutils/files/run-ptest          |  3 --
- recipes-security/keyutils/keyutils_1.6.bb          | 53 ----------------------
- 5 files changed, 167 deletions(-)
- delete mode 100644 recipes-security/keyutils/files/fix_library_install_path.patch
- delete mode 100644 recipes-security/keyutils/files/keyutils-fix-error-report-by-adding-default-message.patch
- delete mode 100644 recipes-security/keyutils/files/keyutils-test-fix-output-format.patch
- delete mode 100755 recipes-security/keyutils/files/run-ptest
- delete mode 100644 recipes-security/keyutils/keyutils_1.6.bb
-
-diff --git a/recipes-security/keyutils/files/fix_library_install_path.patch b/recipes-security/keyutils/files/fix_library_install_path.patch
-deleted file mode 100644
-index 938fe2e..0000000
---- a/recipes-security/keyutils/files/fix_library_install_path.patch
-+++ /dev/null
-@@ -1,28 +0,0 @@
--From b0355cc205543ffd33752874295139d57c4fbc3e Mon Sep 17 00:00:00 2001
--From: Wenzong Fan <wenzong.fan@windriver.com>
--Date: Tue, 26 Sep 2017 07:59:51 +0000
--Subject: [PATCH] Subject: [PATCH] keyutils: use relative path for link
--
--The absolute path of the symlink will be invalid
--when populated in sysroot, so use relative path instead.
--
--Upstream-Status: Pending
--
--Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
--Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
--{rebased for 1.6]
--Signed-off-by: Armin Kuster <akuster808@gmail.com>
--
--Index: keyutils-1.6/Makefile
--===================================================================
----- keyutils-1.6.orig/Makefile
--+++ keyutils-1.6/Makefile
--@@ -184,7 +184,7 @@ ifeq ($(NO_SOLIB),0)
-- 	$(INSTALL) -D $(LIBNAME) $(DESTDIR)$(LIBDIR)/$(LIBNAME)
-- 	$(LNS) $(LIBNAME) $(DESTDIR)$(LIBDIR)/$(SONAME)
-- 	mkdir -p $(DESTDIR)$(USRLIBDIR)
---	$(LNS) $(LIBDIR)/$(SONAME) $(DESTDIR)$(USRLIBDIR)/$(DEVELLIB)
--+	$(LNS) $(SONAME) $(DESTDIR)$(USRLIBDIR)/$(DEVELLIB)
-- 	sed \
-- 	-e 's,@VERSION\@,$(VERSION),g' \
-- 	-e 's,@prefix\@,$(PREFIX),g' \
-diff --git a/recipes-security/keyutils/files/keyutils-fix-error-report-by-adding-default-message.patch b/recipes-security/keyutils/files/keyutils-fix-error-report-by-adding-default-message.patch
-deleted file mode 100644
-index acd91c0..0000000
---- a/recipes-security/keyutils/files/keyutils-fix-error-report-by-adding-default-message.patch
-+++ /dev/null
-@@ -1,42 +0,0 @@
--fix keyutils test error report
--
--Upstream-Status: Pending
--
--"Permission denied" may be the reason of EKEYEXPIRED and EKEYREVOKED.
--"Required key not available" may be the reason of EKEYREVOKED.
--EXPIRED and REVOKED are 2 status of kernel security keys features.
--But the userspace keyutils lib will output the error message, which may
--have several reasons.
--
--Signed-off-by: Han Chao <chan@windriver.com>
--
--diff --git a/tests/toolbox.inc.sh b/tests/toolbox.inc.sh
--index bbca00a..739e9d0 100644
----- a/tests/toolbox.inc.sh
--+++ b/tests/toolbox.inc.sh
--@@ -227,11 +227,12 @@ function expect_error ()
-- 	    ;;
-- 	EKEYEXPIRED)
-- 	    my_err="Key has expired"
---	    alt_err="Unknown error 127"
--+	    alt_err="Permission denied"
-- 	    ;;
-- 	EKEYREVOKED)
-- 	    my_err="Key has been revoked"
---	    alt_err="Unknown error 128"
--+	    alt_err="Permission denied"
--+	    alt2_err="Required key not available"
-- 	    ;;
-- 	EKEYREJECTED)
-- 	    my_err="Key has been rejected"
--@@ -249,6 +250,9 @@ function expect_error ()
--     elif [ "x$alt_err" != "x" ] && expr "$my_errmsg" : ".*: $alt_err" >&/dev/null
--     then
-- 	:
--+    elif [ "x$alt2_err" != "x" ] && expr "$my_errmsg" : ".*: $alt2_err" >&/dev/null
--+    then
--+	:
--     elif [ "x$old_err" != "x" ] && expr "$my_errmsg" : ".*: $old_err" >&/dev/null
--     then
-- 	:
--
-diff --git a/recipes-security/keyutils/files/keyutils-test-fix-output-format.patch b/recipes-security/keyutils/files/keyutils-test-fix-output-format.patch
-deleted file mode 100644
-index a4ffd50..0000000
---- a/recipes-security/keyutils/files/keyutils-test-fix-output-format.patch
-+++ /dev/null
-@@ -1,41 +0,0 @@
--From 49b6321368e4bd3cd233d045cd09004ddd7968b2 Mon Sep 17 00:00:00 2001
--From: Jackie Huang <jackie.huang@windriver.com>
--Date: Mon, 15 May 2017 14:52:00 +0800
--Subject: [PATCH] keyutils: fix output format
--
--keyutils ptest output format is incorrect, according to yocto
--Development Manual
--(http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#testing-packages-with-ptest)
--5.10.6. Testing Packages With ptestThe test generates output in the format used by Automake:
--<result>: <testname>
--where the result can be PASS, FAIL, or SKIP, and the testname can be any
--identifying string.
--So we should change the test result format to match yocto ptest rules.
--
--Upstream-Status: Inappropriate [OE ptest specific]
--
--Signed-off-by: Li Wang <li.wang@windriver.com>
--Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
-----
-- tests/runtest.sh | 5 +++++
-- 1 file changed, 5 insertions(+)
--
--diff --git a/tests/runtest.sh b/tests/runtest.sh
--index b6eaa7c..84263fb 100644
----- a/tests/runtest.sh
--+++ b/tests/runtest.sh
--@@ -21,6 +21,11 @@ for i in ${TESTS}; do
--     echo "### RUNNING TEST $i"
--     if [[ $AUTOMATED != 0 ]] ; then
--         bash ./runtest.sh
--+        if [ $? != 0 ]; then
--+            echo "FAIL: $i"
--+        else
--+            echo "PASS: $i"
--+        fi
--     else
--         bash ./runtest.sh || exit 1
--     fi
---- 
--2.11.0
--
-diff --git a/recipes-security/keyutils/files/run-ptest b/recipes-security/keyutils/files/run-ptest
-deleted file mode 100755
-index 305707f..0000000
---- a/recipes-security/keyutils/files/run-ptest
-+++ /dev/null
-@@ -1,3 +0,0 @@
--#!/bin/sh
--export AUTOMATED=1
--make -C tests run
-diff --git a/recipes-security/keyutils/keyutils_1.6.bb b/recipes-security/keyutils/keyutils_1.6.bb
-deleted file mode 100644
-index 4d3a96f..0000000
---- a/recipes-security/keyutils/keyutils_1.6.bb
-+++ /dev/null
-@@ -1,53 +0,0 @@
--SUMMARY = "Linux Key Management Utilities"
--DESCRIPTION = "\
--    Utilities to control the kernel key management facility and to provide \
--    a mechanism by which the kernel call back to userspace to get a key \
--    instantiated. \
--    "
--HOMEPAGE = "http://people.redhat.com/dhowells/keyutils"
--SECTION = "base"
--
--LICENSE = "LGPLv2.1+ & GPLv2.0+"
--
--LIC_FILES_CHKSUM = "file://LICENCE.GPL;md5=5f6e72824f5da505c1f4a7197f004b45 \
--                    file://LICENCE.LGPL;md5=7d1cacaa3ea752b72ea5e525df54a21f"
--
--inherit siteinfo autotools-brokensep ptest
--
--SRC_URI = "http://people.redhat.com/dhowells/keyutils/${BP}.tar.bz2 \
--           file://keyutils-test-fix-output-format.patch \
--           file://keyutils-fix-error-report-by-adding-default-message.patch \
--           file://run-ptest \
--           file://fix_library_install_path.patch \
--           "
--
--SRC_URI[md5sum] = "191987b0ab46bb5b50efd70a6e6ce808"
--SRC_URI[sha256sum] = "d3aef20cec0005c0fa6b4be40079885567473185b1a57b629b030e67942c7115"
--
--EXTRA_OEMAKE = "'CFLAGS=${CFLAGS} -Wall' \
--    NO_ARLIB=1 \
--    BINDIR=${base_bindir} \
--    SBINDIR=${base_sbindir} \
--    LIBDIR=${libdir} \
--    USRLIBDIR=${libdir} \
--    INCLUDEDIR=${includedir} \
--    BUILDFOR=${SITEINFO_BITS}-bit \
--    NO_GLIBC_KEYERR=1 \
--    "
--
--do_install () {
--    install -d ${D}/${libdir}/pkgconfig
--    oe_runmake DESTDIR=${D} install
--}
--
--do_install_ptest () {
--    cp -r ${S}/tests ${D}${PTEST_PATH}/
--    sed -i -e 's/OSDIST=Unknown/OSDIST=${DISTRO}/' ${D}${PTEST_PATH}/tests/prepare.inc.sh
--}
--
--
--RDEPENDS_${PN}-ptest += "lsb"
--RDEPENDS_${PN}-ptest_append_libc-glibc = " glibc-utils"
--RDEPENDS_${PN}-ptest_append_libc-musl = " musl-utils"
--
--BBCLASSEXTEND = "native nativesdk"
--- 
-2.7.4
-
+On Thu, Aug 1, 2019 at 8:14 AM Edward Tyrrell <ed@disignconsultants.com> wr=
+ote:
+>
+> Hi,
+>
+>
+> I'm trying to add a patch to the systemd layer to amend systemd-networkd-=
+wait-online.service. Within the service I simply want to add --any as a par=
+ameter.
+>
+>
+> The problem is my is bitbake fails with:
+>
+> Applying patch 0020-systemd-networkd-wait-online-service.patch
+> can't find file to patch at input line 3
+> Perhaps you used the wrong -p or --strip option?
+> The text leading up to this was:
+> --------------------------
+> |--- a/units/systemd-networkd-wait-online.service 2019-05-23 13:38:23.000=
+000000 +0100
+> |+++ b/units/systemd-networkd-wait-online.service 2019-07-31 08:30:40.823=
+968051 +0100
+> --------------------------
+> No file to patch.  Skipping patch.
+> 1 out of 1 hunk ignored
+> Patch 0020-systemd-networkd-wait-online-service.patch does not apply (enf=
+orce with -f)
+>
+>
+>
+> My ...../sources/poky/meta/recipes-core/systemd/systemd_234.bbappend cons=
+ists of:
+>
+>
+> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+> SRC_URI +=3D "file://0020-systemd-networkd-wait-online-service.patch"
+>
+> My patch file:
+>
+> --- a/units/systemd-networkd-wait-online.service 2019-05-23 13:38:23.0000=
+00000 +0100
+> +++ b/units/systemd-networkd-wait-online.service 2019-07-31 08:30:40.8239=
+68051 +0100
+> @@ -16,7 +16,7 @@
+>
+>  [Service]
+>  Type=3Doneshot
+> -ExecStart=3D/lib/systemd/systemd-networkd-wait-online
+> +ExecStart=3D/lib/systemd/systemd-networkd-wait-online --any
+>  RemainAfterExit=3Dyes
+>
+>  [Install]
+>
+> -------------------------------------------------------------------------=
+------
+>
+>
+> So it finds the patch but struggles locating the service file to patch wi=
+thin the build. Any ideas where I'm going wrong?
+>
+> Is ...../sources/poky/meta/recipes-core/systemd/systemd_234.bb the proper=
+ place to patch this service file?
+>
+>
+>
+> Regards,
+>
+>
+> Edward
+>
+>
+>
+>
+> This message and any attachment are confidential and may be privileged or=
+ otherwise protected from disclosure. If you are not the intended recipient=
+, please telephone or email the sender and delete this message and any atta=
+chment from your system. If you are not the intended recipient you must not=
+ copy this message or attachment or disclose the contents to any other pers=
+on.
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
