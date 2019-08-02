@@ -1,69 +1,60 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <ryan.harkin@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6FACFE00AE6; Fri,  2 Aug 2019 03:26:59 -0700 (PDT)
+	id DCF95E00E82; Fri,  2 Aug 2019 04:08:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jupiter.hce[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.176 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.67 listed in list.dnswl.org]
-Received: from mail-io1-f67.google.com (mail-io1-f67.google.com
-	[209.85.166.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7844E0049C
-	for <yocto@yoctoproject.org>; Fri,  2 Aug 2019 03:26:58 -0700 (PDT)
-Received: by mail-io1-f67.google.com with SMTP id j5so146945366ioj.8
-	for <yocto@yoctoproject.org>; Fri, 02 Aug 2019 03:26:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=CuTShbEY0ApdmFYc52r/SASenjZ21Pfmvt/Lrvohk1o=;
-	b=iOSOKRjbLialnVUeqnNb52HtHLtTPInwHbesc8ls+CLGuxWjTwif6rDydMXolJw/vd
-	OAlK9LV3lp70jMr+/+v668JzGP0GkPfMtNVDXugB8qJdWvbesxkTMswxJOAmDfDxTQtq
-	tC+u36tCSZ91hi6SZ59KNJXZS4/Wr3tLJmyFB+wHAzmv5SLB+nysLj3G+Xh6vu7Li6fl
-	foqP0qBjygi/SusZNQ+BAdjKjzO1wera7XbnJFcah35X6ui+kNLOrlC5Oub5rqkG+soS
-	s9NQSd7GchVccjh85eU7VED8RB9PklVGi9f2MrXiFfrQ9YQ9guYc1rnbYBS67XXiYIE/
-	Ev3Q==
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com
+	[209.85.222.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04370E0097C
+	for <yocto@yoctoproject.org>; Fri,  2 Aug 2019 04:08:57 -0700 (PDT)
+Received: by mail-qk1-f176.google.com with SMTP id r6so54455622qkc.0
+	for <yocto@yoctoproject.org>; Fri, 02 Aug 2019 04:08:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+	h=mime-version:from:date:message-id:subject:to:cc;
+	bh=fu5zhaYCQUu3lRM0i1U4X/qHRFBibLoqkQX4lMHU/Cg=;
+	b=Tn6Mo8iZbMqZ3PRPaucDcXCWMMBmx0qyCyc8LcaMVasYna/tADazfkcSLSUIfWvLye
+	kKEf0KRSgUiSOLWk9nxxSvGoOS7qa7QnbD3KvZIDl2X7Vm4oXpcpuepDubw5rs7HQ9bB
+	ZEvXOB1Iin3sombe7gzsI34a5+lIuX1QFFI/Yhx2//+n2XrG1ByT/MGBgriHWMDPXPXs
+	iPvNpy99OdYT+/HUfocT7Z2JIlvC18wYG83wiepQZ+E3UQgrbXXBGw/euTo/BTyf8zYe
+	V+SV08Z/f6qk1bnXmFJQ1J6AR1jSaFgAqZADZKz7LHj4UYdRDCofsheReKsCgDXh+vAg
+	CwEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=CuTShbEY0ApdmFYc52r/SASenjZ21Pfmvt/Lrvohk1o=;
-	b=bYylzjDQtExkTdjYBmss6uXBQASbj0fFLfYzcs8KEcQ8fd5kSqgW4Dx8WOpsmsN2fz
-	VQ8DOhZWUKjngsJNn+ZKHUQpeAeqnlhtF0QdaQQ2jqWWkK/v5J4m0rrhiYVWRZprzDbn
-	mhYwFEPwDgk6mMOvGC1EM6pSQpYHjTTmiVMme4nkjV63eqCvTeHXrCZG1xWpBU/o4B4H
-	9tB7BhK0YbLhkBsP6ZcSNJWv9mvN3KgNt5wvrYrdPkx42o/na5BoH8D41dl77PucCt12
-	xWvgp3BHYPYmSejn3YTj/3+qdiIAjZIiAaTrHK35Fi1/Bz1TD9oay+8nm/nNET+d0xQU
-	eyvQ==
-X-Gm-Message-State: APjAAAXt7IPQVdzsbs6FxLobtleqhqFNOoku4B2jD/nKSwZOUmdf6PA3
-	HhKITeQFwSSldxVP6V1IEDDAhfcJ9IfY+VlP9k1NoXE4gn0=
-X-Google-Smtp-Source: APXvYqzroxgIC+Oh6kSED5vV74zsCRT86fUH3hT5Lcl8H5OfSFiIl6vN6RVPXfN6kIEz/q2ellK3tTeXogNIdEjUvUU=
-X-Received: by 2002:a6b:8f47:: with SMTP id r68mr867109iod.204.1564741618364; 
-	Fri, 02 Aug 2019 03:26:58 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+	bh=fu5zhaYCQUu3lRM0i1U4X/qHRFBibLoqkQX4lMHU/Cg=;
+	b=b3x4/U6CbaKRLsmZSmCoABsCnbMABZYF+ngepfSihJoO3/20ZSs3IQuuip6FAGKvmU
+	ARc/GXcWuzFNfQSOZ9WOrFjfmPHHOnApxBHs5N/fAbeJTEDFCE+pRN9wn1yFTxI+F+Bw
+	0DWn98NBw0Dlp1YxdPVAxugCjmW96KZG07IjxofBiAyjsSFuF0tEzbAKBntEXagiJp6r
+	WKB6K0z4AwA+JahJpc0ocg0IHwemc39zZLSgTFqKq5/zQW5AgbvT/c/BPMLGUqPSWC/q
+	iLR8gNx2dY4Roc4VDpVQ1MCLj7D4GTabeiTpB0lVyI8Iwk8qjBkPU7oIM5ZBmucn/ldT
+	xCKQ==
+X-Gm-Message-State: APjAAAVHZQ+kdz/0RZY97BPK4+pWvIu+RzK5ZPcg7SDg6b+/LgguzPfl
+	Uh4dcgnDtwjffdrCynuc7NqgEGc+i7tCo0T2WQj+y98fDy8=
+X-Google-Smtp-Source: APXvYqyvFU5zxyb9yoQH92QXanfpaoiYuInO4CP2iOKKVt8HGEUhbuwB54LjejOar67jU0ay+IrIhRJdI/jAGdTBIqU=
+X-Received: by 2002:ae9:c106:: with SMTP id z6mr93774291qki.285.1564744135356; 
+	Fri, 02 Aug 2019 04:08:55 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP;
-	Fri, 2 Aug 2019 03:26:57 -0700 (PDT)
-In-Reply-To: <a8962625-43b0-006a-46fb-7df592302dbc@ibeeto.com>
-References: <CAA=hcWSYrjxA8K1jURiiwpcY5pz6zb-cb6j7R9sOTM-831-BBQ@mail.gmail.com>
-	<f881304f-668d-01c6-65ec-c26cf82199b5@windriver.com>
-	<CAA=hcWR+c=am2SHqRr3tUeMShLkzB+HrD2UBqhDwvK9ViyVHnw@mail.gmail.com>
-	<a8962625-43b0-006a-46fb-7df592302dbc@ibeeto.com>
-From: JH <jupiter.hce@gmail.com>
-Date: Fri, 2 Aug 2019 20:26:57 +1000
-Message-ID: <CAA=hcWQE+f19X692ct=ze05wBPeyMPMbyCUCnMdQe6SagpYGwQ@mail.gmail.com>
-To: Rudolf J Streif <rudolf.streif@ibeeto.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Make the service the last run in boot
+From: Ryan Harkin <ryan.harkin@linaro.org>
+Date: Fri, 2 Aug 2019 12:08:44 +0100
+Message-ID: <CAD0U-hKzQgF2wVnsjDLLanTiK3T=Ae8qb7dUy+qYbv=B9kUnXQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Cc: openembedded <openembedded@lists.linaro.org>
+Subject: /var/volatile not mounted as tmpfs on read-only rootfs when migrating to Warrior
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,66 +66,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Aug 2019 10:26:59 -0000
+X-List-Received-Date: Fri, 02 Aug 2019 11:08:59 -0000
+Content-Type: multipart/alternative; boundary="0000000000005a4a0a058f20626c"
+
+--0000000000005a4a0a058f20626c
 Content-Type: text/plain; charset="UTF-8"
 
-Terrific, that works well, thanks Rudolf and ChenQi.
+Hi,
 
-On 8/2/19, Rudolf J Streif <rudolf.streif@ibeeto.com> wrote:
-> Adding
->
-> After=multi-user.target
->
-> to the [Unit] section in your systemd service file should do what you want.
->
-> :rjs
->
-> On 8/1/19 4:08 AM, JH wrote:
->> The application requires network connection to communicate services
->> via Internet, it could only work if the network connection is ready,
->> so I really want to know which system servuce run at last I could put
->> it in the After statement.
->>
->> On 8/1/19, ChenQi <Qi.Chen@windriver.com> wrote:
->>> On 08/01/2019 03:37 PM, JH wrote:
->>>> Hi,
->>>>
->>>> How can I find the systemd last run service I can put it in my network
->>>> application After=<last run tartget or service>?
->>>>
->>>> I need my network application service to be run at last in boot, I
->>>> made After=connman and Requires=connman.service that did not work,
->>>> always failed in boot, I have to manually restart the network
->>>> application service which won't work in field operation.
->>> I'd suggest you find out what you network service actually require.
->>>
->>>> Searched from Internet, there is a blog Systemd: Run it last to create
->>>> a custom.target After=multi-user.target, and put my network
->>>> application service WantedBy=custom.target, that works well, but it is
->>>> a little bit cumbersome to configure customer.target in Yocto bb file,
->>>> enabling the customer.target is called systemctl isolate
->>>> custom.target, the /etc/systemd/system/default.target link needs be
->>>> changed to from multi-user.target to custom.target. I am not sure how
->>>> it could be done in do_install, appreciate your tips.
->>>>
->>>> Thank you.
->>>>
->>>> Kind regards,
->>>>
->>>> - JH
->>>
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
-> --
-> -----
-> Rudolf J Streif
-> CEO/CTO ibeeto
-> +1.855.442.3396 x700
->
->
->
+I have a working system based on Sumo. The system boots with a read-only
+rootfs, then applies are read-write overlay for /etc.
 
+When I migrate to Warrior, systemd-resolved fails to start. If I mount the
+same rootfs via NFS, it starts and works fine.  systemd-timesyncd is also
+failing, but I haven't looked into that yet. It also works fine on the NFS
+mounted system.
+
+The resolve problem seems to be caused by two things:
+    - /var/volatile is read-only
+    - /run/systemd/resolve has the wrong ownership
+      drwxr-xr-x  2 systemd-network systemd-journal  80 Jul 12 16:23
+resolve/
+      I think this permissions problem may be a result of the /var/volatile
+mounting
+      problems; it looks fine on the NFS mounted system.
+
+If I manually mount /var/volatile (it's in fstab) and change the ownership
+on /run/systemd/resolve, the service starts just fine.
+
+I also notice that /tmp is not mounted at all, which may be related.
+
+Here are the various tmp mount points on my read-only rootfs:
+
+$ mount | grep tmp
+devtmpfs on /dev type devtmpfs
+(rw,nosuid,size=112036k,nr_inodes=28009,mode=755)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,mode=755)
+tmpfs on /sys/fs/cgroup type tmpfs (ro,nosuid,nodev,noexec,mode=755)
+overlay on /etc type overlay
+(rw,relatime,lowerdir=/tmp/lower/etc,upperdir=/tmp/upper/etc,workdir=/tmp/upper/work/etc)
+tmpfs on /run/user/0 type tmpfs
+(rw,nosuid,nodev,relatime,size=23840k,mode=700)
+
+On the NFS mounted system, I see these:
+
+$ mount | grep tmp
+devtmpfs on /dev type devtmpfs
+(rw,relatime,size=118180k,nr_inodes=29545,mode=755)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,mode=755)
+tmpfs on /sys/fs/cgroup type tmpfs (ro,nosuid,nodev,noexec,mode=755)
+tmpfs on /tmp type tmpfs (rw,nosuid,nodev)
+tmpfs on /var/volatile type tmpfs (rw,relatime)
+tmpfs on /run/user/0 type tmpfs
+(rw,nosuid,nodev,relatime,size=23840k,mode=700)
+
+As you can see, NFS has these extra mounts:
+
+tmpfs on /tmp type tmpfs (rw,nosuid,nodev)
+tmpfs on /var/volatile type tmpfs (rw,relatime)
+
+I've tried reverting a few commits that may be related, but I haven't had
+any luck working out things have changed, eg:
+
+c4acf1b531  2018-10-19  volatile-binds: use overlayfs if available
+             [Matt Hoosier]
+
+Advice would be appreciated. Are there any particular areas I should be
+looking to work out what's going wrong?
+
+Kind regards,
+Ryan.
+
+--0000000000005a4a0a058f20626c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I have a working system based on Su=
+mo. The system boots with a read-only rootfs, then applies are read-write o=
+verlay for /etc.</div><div><br></div><div>When I migrate to Warrior, system=
+d-resolved fails to start. If I mount the same rootfs via NFS, it starts an=
+d works fine.=C2=A0=C2=A0systemd-timesyncd is also failing, but I haven&#39=
+;t looked into that yet. It also works fine on the NFS mounted system.</div=
+><div><br></div><div>The resolve problem seems to be caused by two things:<=
+/div><div>=C2=A0 =C2=A0 - /var/volatile is read-only</div><div>=C2=A0 =C2=
+=A0 - /run/systemd/resolve has the wrong ownership</div><div>=C2=A0 =C2=A0 =
+=C2=A0 drwxr-xr-x =C2=A02 systemd-network systemd-journal =C2=A080 Jul 12 1=
+6:23 resolve/</div><div>=C2=A0 =C2=A0 =C2=A0 I think this permissions probl=
+em may be a result of the /var/volatile mounting</div><div>=C2=A0 =C2=A0 =
+=C2=A0 problems; it looks fine on the NFS mounted system.</div><div><br></d=
+iv><div>If I manually mount /var/volatile (it&#39;s in fstab) and change th=
+e ownership on /run/systemd/resolve, the service starts just fine.</div><di=
+v><br></div><div>I also notice that /tmp is not mounted at all, which may b=
+e related.</div><div><br></div><div>Here are the various tmp mount points o=
+n my read-only rootfs:</div><div><br></div><div>$ mount | grep tmp</div><di=
+v>devtmpfs on /dev type devtmpfs (rw,nosuid,size=3D112036k,nr_inodes=3D2800=
+9,mode=3D755)<br>tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)<br>tmpfs on=
+ /run type tmpfs (rw,nosuid,nodev,mode=3D755)<br>tmpfs on /sys/fs/cgroup ty=
+pe tmpfs (ro,nosuid,nodev,noexec,mode=3D755)<br>overlay on /etc type overla=
+y (rw,relatime,lowerdir=3D/tmp/lower/etc,upperdir=3D/tmp/upper/etc,workdir=
+=3D/tmp/upper/work/etc)<br>tmpfs on /run/user/0 type tmpfs (rw,nosuid,nodev=
+,relatime,size=3D23840k,mode=3D700)<br><br>On the NFS mounted system, I see=
+ these:</div><div><br></div><div>$ mount | grep tmp<br>devtmpfs on /dev typ=
+e devtmpfs (rw,relatime,size=3D118180k,nr_inodes=3D29545,mode=3D755)<br>tmp=
+fs on /dev/shm type tmpfs (rw,nosuid,nodev)<br>tmpfs on /run type tmpfs (rw=
+,nosuid,nodev,mode=3D755)<br>tmpfs on /sys/fs/cgroup type tmpfs (ro,nosuid,=
+nodev,noexec,mode=3D755)<br>tmpfs on /tmp type tmpfs (rw,nosuid,nodev)<br>t=
+mpfs on /var/volatile type tmpfs (rw,relatime)<br>tmpfs on /run/user/0 type=
+ tmpfs (rw,nosuid,nodev,relatime,size=3D23840k,mode=3D700)<br><br>As you ca=
+n see, NFS has these extra mounts:</div><div><br></div>tmpfs on /tmp type t=
+mpfs (rw,nosuid,nodev)<br><div>tmpfs on /var/volatile type tmpfs (rw,relati=
+me)<br></div><div><br></div><div>I&#39;ve tried reverting a few commits tha=
+t may be related, but I haven&#39;t had any luck working out things have ch=
+anged, eg:</div><div><br></div><div>c4acf1b531 =C2=A02018-10-19 =C2=A0volat=
+ile-binds: use overlayfs if available =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0[Matt Hoosier]=C2=A0<br></div><div=
+><br></div><div>Advice would be appreciated. Are there any particular areas=
+ I should be looking to work out what&#39;s going wrong?</div><div><br></di=
+v><div>Kind regards,</div><div>Ryan.</div></div>
+
+--0000000000005a4a0a058f20626c--
