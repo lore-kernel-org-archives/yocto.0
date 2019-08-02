@@ -1,6 +1,6 @@
 Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 87B26E00EAC; Thu,  1 Aug 2019 20:06:56 -0700 (PDT)
+	id 385E3E00EB1; Thu,  1 Aug 2019 20:38:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,24 +8,23 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	https://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48A10E00E9E
-	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 20:06:54 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x7236XnM020456
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0CAFE008E3
+	for <yocto@yoctoproject.org>; Thu,  1 Aug 2019 20:38:56 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x723cuc9006572
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 1 Aug 2019 20:06:43 -0700
+	for <yocto@yoctoproject.org>; Thu, 1 Aug 2019 20:38:56 -0700 (PDT)
 Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
 	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.468.0; Thu, 1 Aug 2019 20:06:10 -0700
+	14.3.468.0; Thu, 1 Aug 2019 20:38:49 -0700
 From: <changqing.li@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Fri, 2 Aug 2019 11:06:08 +0800
-Message-ID: <1564715168-415533-1-git-send-email-changqing.li@windriver.com>
+Date: Fri, 2 Aug 2019 11:38:48 +0800
+Message-ID: <1564717128-350244-1-git-send-email-changqing.li@windriver.com>
 X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
 Subject: [meta-security][PATCH] keyutils: remove it
@@ -40,7 +39,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Aug 2019 03:06:56 -0000
+X-List-Received-Date: Fri, 02 Aug 2019 03:38:58 -0000
 Content-Type: text/plain
 
 From: Changqing Li <changqing.li@windriver.com>
