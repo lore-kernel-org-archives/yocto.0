@@ -1,64 +1,39 @@
-Return-Path: <btgoodwin@geontech.com>
+Return-Path: <andreea.volosincu@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4832FE00E16; Fri,  2 Aug 2019 14:55:38 -0700 (PDT)
+	id 6DC77E00B31; Fri,  2 Aug 2019 17:06:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.193 listed in list.dnswl.org]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qt1-f193.google.com (mail-qt1-f193.google.com
-	[209.85.160.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3637E00E14
-	for <yocto@yoctoproject.org>; Fri,  2 Aug 2019 14:55:36 -0700 (PDT)
-Received: by mail-qt1-f193.google.com with SMTP id h21so75419231qtn.13
-	for <yocto@yoctoproject.org>; Fri, 02 Aug 2019 14:55:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=geontech-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=slmCkAX4+lEEwZtryn/NDmZ3yaxp2Qy/sX0Wz8Jg2JA=;
-	b=utH7L6WEH6nW/eZddp0XZdhIR2ssd7Ziah+wnNy1KLXjCJPOBn4yfrHHzxrngzGOTz
-	ARf35/0DwhoSWHHFwrkngmkCZneyvLXIDuOgtPg9nZhKNmClO5IrfXd7+NIxoVCIy/2X
-	G0UUUp0A6jioyJplgJ3j6LJTlsFqePBvqiIFPpnUw0Z4maYEXNUClG+YUbwGbiIPVjmU
-	SiuC8Aw6yaU1Xy+7P95mBetJ0+pRj2m9yk6LUZAjsfY5d+5i0SkxSWDunlVfPuyA06p+
-	qoRXKsAuThN0Ln/IkGdtlSqJNrfe8XwHqSr/Vho6FlcQ6gMe7FTlxGyqI2POAzE/DTyw
-	PkCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=slmCkAX4+lEEwZtryn/NDmZ3yaxp2Qy/sX0Wz8Jg2JA=;
-	b=VPSBuH59ho4kP3FlN9/UeC8htlaezSKV/uCXVOyY/hVBF8BLAyDvsqQhbGJ692bh4J
-	+rd8Y2arOpA5pTLxsLhvClrOPF5XruvXSI0FD39Q5mUOueywuZQHCIvSTsPoxIJV5Y8K
-	y2Rk4qPkbdCDV7zOfTyuTqYLQcTIksT5Gu1QSetveyo8Mg+xuxJnRcUGu+XTm4TSsjJf
-	n6xRA1OTJbez4G5nYwXsbk9ULL0QonWrHX8eF7aDPRYo+p7yLkm5O1ldYs9r+nYObMgL
-	ybdheI+jhYs4chcr1YDIPYVabw2BYji1NJXu2ZOTml2msBp4uSw9uQnmu6BeRlZXBN69
-	EViQ==
-X-Gm-Message-State: APjAAAVngqAuzZPklEwdcalIOmWhD2aAIe2INI/Dv7rciuQh/FfQwMmU
-	nZfEJOCkE1dXiLivocNVH+98MrxW0/prFNT7YWoedDy3Fio=
-X-Google-Smtp-Source: APXvYqyD1VmDZf+eNAflm4U6N9xWNlvXxzrfUwyrSpObfjD4i3wpx23Zzuq9fI/DEBJb9Hz12UgXcrQkw0YyJSBr7U4=
-X-Received: by 2002:a0c:bd18:: with SMTP id
-	m24mr100320925qvg.118.1564782936164; 
-	Fri, 02 Aug 2019 14:55:36 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02008E0090E
+	for <yocto@yoctoproject.org>; Fri,  2 Aug 2019 17:06:40 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x7306e9p002178
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 2 Aug 2019 17:06:40 -0700 (PDT)
+Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.56]) by
+	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.03.0468.000;
+	Fri, 2 Aug 2019 17:06:39 -0700
+From: "Volosincu, Andreea S" <andreea.volosincu@windriver.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Thread-Topic: Announcing Preliminary Agenda - DevDay NA 2019
+Thread-Index: AdVJjvQ8QKelU5/oQqyyYKdPbTC2UA==
+Date: Sat, 3 Aug 2019 00:06:39 +0000
+Message-ID: <A084970538D2234B96D99D06FA9D974FCA88DA77@ALA-MBD.corp.ad.wrs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [147.11.117.5]
 MIME-Version: 1.0
-References: <20190730183621.26193-1-btgoodwin@geontech.com>
-	<20190730183621.26193-2-btgoodwin@geontech.com>
-	<fdbce8969ca1a4fe12e4dcf1abaae68d79da0075.camel@rpsys.net>
-In-Reply-To: <fdbce8969ca1a4fe12e4dcf1abaae68d79da0075.camel@rpsys.net>
-From: Thomas Goodwin <btgoodwin@geontech.com>
-Date: Fri, 2 Aug 2019 17:55:25 -0400
-Message-ID: <CABudRdzw1neniOu_d7KtmvPnB5pntz0jjrqwLOqjhwTK9ECHKw@mail.gmail.com>
-To: Richard Purdie <rpurdie@rpsys.net>
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto-autobuilder2][PATCH 2/3] Added remote distribution of config JSON files
+Subject: Announcing Preliminary Agenda - DevDay NA 2019
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,119 +45,155 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 Aug 2019 21:55:38 -0000
-Content-Type: multipart/alternative; boundary="0000000000000f9e59058f296bfe"
+X-List-Received-Date: Sat, 03 Aug 2019 00:06:41 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_A084970538D2234B96D99D06FA9D974FCA88DA77ALAMBDcorpadwrs_"
 
---0000000000000f9e59058f296bfe
-Content-Type: text/plain; charset="UTF-8"
-
-I'm not sure I follow.  This collects everything into the worker's
-"builddir/yocto-autobuilder-helper" path (I think; I'm new to buildbot).
-
-My aim was to let the buildbot master the chance to SCM the configuration
-files apart from the helper's behavior which should otherwise be consistent
-whether we're rebuilding for warrior or morty.  For us this is turning out
-to not be "enough" since certain build targets don't exist between
-different releases of Poky and we're held back by BSPs to certain releases,
-so we need to decouple a bit further than this patch.  The issue could also
-be solved with templates that dynamically point to other templates based on
-the Force Build branch, revision, etc., but I'm looking for a more simple
-approach than a recursive overlay.
-
-Thanks again for all your help and feedback.
-
-Cheers,
-
-Thomas
-
-On Fri, Aug 2, 2019 at 12:41 PM Richard Purdie <rpurdie@rpsys.net> wrote:
-
-> On Tue, 2019-07-30 at 14:36 -0400, Thomas Goodwin wrote:
-> > This feature/fix allows the worker to download the
-> > autobuilder helper JSON files from the controller
-> > rather than having to store them in the
-> > yocto-autobuilder-helper repository.  The process
-> > installs the file into the worker's
-> > builddir/yocto-autobuilder-helper path.
-> >
-> > Signed-off-by: Thomas Goodwin <btgoodwin@geontech.com>
-> > ---
-> >  builders.py | 22 ++++++++++++++++++++++
-> >  1 file changed, 22 insertions(+)
->
-> I like the idea however this is going to break the autobuilders as they
-> already use full paths in the variable.
->
-> I've merged some of the other patches but this one will need a little
-> further thought so we don't break the existing install.
->
-> The existing code also allows for different path locations on
-> individual workers (e.g. different username) which this would break.
->
-> Cheers,
->
-> Richard
->
->
-
---0000000000000f9e59058f296bfe
-Content-Type: text/html; charset="UTF-8"
+--_000_A084970538D2234B96D99D06FA9D974FCA88DA77ALAMBDcorpadwrs_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">I&#39;m not sure I follow.=C2=A0 This col=
-lects everything into the worker&#39;s &quot;builddir/yocto-autobuilder-hel=
-per&quot; path (I think; I&#39;m new to buildbot).<div><br></div><div>My ai=
-m was to let the buildbot master the chance to SCM the configuration files =
-apart from the helper&#39;s behavior which should otherwise be consistent w=
-hether we&#39;re rebuilding for warrior or morty.=C2=A0=C2=A0For us this is=
- turning out to not be &quot;enough&quot; since certain build targets don&#=
-39;t exist between different releases of Poky and we&#39;re held back by BS=
-Ps to certain releases, so we need to decouple a bit further than this patc=
-h.=C2=A0 The issue could also be solved with templates that dynamically poi=
-nt to other templates based on the Force Build branch, revision, etc., but =
-I&#39;m looking for a more simple approach than a recursive overlay.<input =
-name=3D"virtru-metadata" type=3D"hidden" value=3D"{&quot;email-policy&quot;=
-:{&quot;state&quot;:&quot;closed&quot;,&quot;expirationUnit&quot;:&quot;day=
-s&quot;,&quot;disableCopyPaste&quot;:false,&quot;disablePrint&quot;:false,&=
-quot;disableForwarding&quot;:false,&quot;enableNoauth&quot;:false,&quot;per=
-sistentProtection&quot;:false,&quot;expandedWatermarking&quot;:false,&quot;=
-expires&quot;:false,&quot;isManaged&quot;:false},&quot;attachments&quot;:{}=
-,&quot;compose-id&quot;:&quot;1&quot;,&quot;compose-window&quot;:{&quot;sec=
-ure&quot;:false}}"></div><div><br>Thanks again for all your help and feedba=
-ck.</div><div><br></div><div>Cheers,</div><div><br></div><div>Thomas</div><=
-/div><br><div class=3D"gmail_quote" style=3D""><div dir=3D"ltr" class=3D"gm=
-ail_attr">On Fri, Aug 2, 2019 at 12:41 PM Richard Purdie &lt;<a href=3D"mai=
-lto:rpurdie@rpsys.net">rpurdie@rpsys.net</a>&gt; wrote:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex">On Tue, 2019-07-30 at 14:36 -0400, =
-Thomas Goodwin wrote:<br>
-&gt; This feature/fix allows the worker to download the<br>
-&gt; autobuilder helper JSON files from the controller<br>
-&gt; rather than having to store them in the<br>
-&gt; yocto-autobuilder-helper repository.=C2=A0 The process<br>
-&gt; installs the file into the worker&#39;s<br>
-&gt; builddir/yocto-autobuilder-helper path.<br>
-&gt; <br>
-&gt; Signed-off-by: Thomas Goodwin &lt;<a href=3D"mailto:btgoodwin@geontech=
-.com" target=3D"_blank">btgoodwin@geontech.com</a>&gt;<br>
-&gt; ---<br>
-&gt;=C2=A0 builders.py | 22 ++++++++++++++++++++++<br>
-&gt;=C2=A0 1 file changed, 22 insertions(+)<br>
-<br>
-I like the idea however this is going to break the autobuilders as they<br>
-already use full paths in the variable.<br>
-<br>
-I&#39;ve merged some of the other patches but this one will need a little<b=
-r>
-further thought so we don&#39;t break the existing install.<br>
-<br>
-The existing code also allows for different path locations on<br>
-individual workers (e.g. different username) which this would break.<br>
-<br>
-Cheers,<br>
-<br>
-Richard<br>
-<br>
-</blockquote></div></div>
+Yocto Project is excited to announce the preliminary agenda for the Yocto P=
+roject DevDay NA 2019.
 
---0000000000000f9e59058f296bfe--
+
+Agenda:
+
+Keynote & Welcome
+
+Package Feeds Deep-dive
+
+Runqueue and Build Equivalency to New Yocto Project Releases
+
+OEQA, QA Selftest, Runtime APIs, pTest
+
+Containers/Multiconfig
+
+Security Response Tool
+
+Gitlab, Docker and AWS or Devtool or User Space
+
+Not registered yet? Go to our event page and either add it to your OSS NA 2=
+019 registration, or complete the standalone registration.
+https://www.yoctoproject.org/yocto-project-dev-day-north-america-2019/
+
+Looking forward to welcoming you in San Diego!
+Yocto Project
+
+
+--_000_A084970538D2234B96D99D06FA9D974FCA88DA77ALAMBDcorpadwrs_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
+s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
+40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Yocto Project is excited to announce the preliminary=
+ agenda for the Yocto Project DevDay NA 2019.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><strong><span style=3D"font-s=
+ize:11.0pt;font-family:&quot;Calibri&quot;,sans-serif">Agenda:</span></stro=
+ng><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-ser=
+if"><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Calibri&quot;,sans-serif">Keynote &amp; Welcome<o:p></=
+o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Calibri&quot;,sans-serif">Package Feeds Deep-dive<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Calibri&quot;,sans-serif">Runqueue and Build Equivalen=
+cy to New Yocto Project Releases<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Calibri&quot;,sans-serif">OEQA, QA Selftest, Runtime A=
+PIs, pTest<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Calibri&quot;,sans-serif">Containers/Multiconfig<o:p><=
+/o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Calibri&quot;,sans-serif">Security Response Tool&nbsp;=
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:&quot;Calibri&quot;,sans-serif">Gitlab, Docker and AWS or De=
+vtool or User Space<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Not registered yet? Go to our event page and either =
+add it to your OSS NA 2019 registration, or complete the standalone registr=
+ation.<o:p></o:p></p>
+<p class=3D"MsoNormal"><a href=3D"https://www.yoctoproject.org/yocto-projec=
+t-dev-day-north-america-2019/">https://www.yoctoproject.org/yocto-project-d=
+ev-day-north-america-2019/</a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Looking forward to welcoming you in San Diego!<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal">Yocto Project<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_A084970538D2234B96D99D06FA9D974FCA88DA77ALAMBDcorpadwrs_--
