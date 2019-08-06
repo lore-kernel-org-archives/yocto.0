@@ -1,6 +1,6 @@
-Return-Path: <dbaryshkov@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5D7F4E00C25; Tue,  6 Aug 2019 06:54:56 -0700 (PDT)
+	id 31C5BE00C25; Tue,  6 Aug 2019 07:02:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,54 +10,110 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (dbaryshkov[at]gmail.com)
+	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.177 listed in list.dnswl.org]
+	*      [209.85.210.180 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com
-	[209.85.210.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05B85E00BAA
-	for <yocto@yoctoproject.org>; Tue,  6 Aug 2019 06:54:55 -0700 (PDT)
-Received: by mail-pf1-f177.google.com with SMTP id b13so41556659pfo.1
-	for <yocto@yoctoproject.org>; Tue, 06 Aug 2019 06:54:55 -0700 (PDT)
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com
+	[209.85.210.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D865BE00BAA
+	for <yocto@yoctoproject.org>; Tue,  6 Aug 2019 07:02:16 -0700 (PDT)
+Received: by mail-pf1-f180.google.com with SMTP id g2so41572030pfq.0
+	for <yocto@yoctoproject.org>; Tue, 06 Aug 2019 07:02:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:content-transfer-encoding;
-	bh=P7cEx34FlSKVZ+0ESIBv3BHVD6ife85I4yTvh42i8oQ=;
-	b=mt6FozKdAvWnXEr1nLZCd3R4EuEAbJxvNTgdm9aimhWOG1xFbglsJmN4jM+90o0K3z
-	Af2my0wJAV4ZKDXayBQZJehkHpfEqimN1ReKJ6qGexFmtvtx5wOnivvrAWyilYMxEz8B
-	kUBKHIWlwJDoNoAmhywLELXRGhPJouQ7neYTeUZbXtJuzGNVQq6+G6VGF7HmJm0ilp5j
-	PK3aQgYdWdK8kPUSP+5U+Q6n27Fs3yAUxWxKLYOVHBzZVG2StG31hCTorJGPetTsYV8T
-	9snP55JVLVhl1qbY2MZLneP8y3YJHTfQFDUvMuiPeFu52pVbTGii1PjIo0kya3sTW1j/
-	eVEw==
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=llnKHlmu33ZFZOPDo86rwNc4dxdEsEOex2gso1FMfZc=;
+	b=kAaUTUprUzsBkTKcRj4N0JQHFR+rkdMKKWqt1Yo/qVCfFbsoWT+kxrc/CLpridHZXl
+	Q9cR44f94DQio90etaP6gm0yUDAVJqPRioAKU1a4Fh2gw2coQlDt9zmzZDab/hHMAiE3
+	jtYxkoofrFxr3yQw7+3/etRu+qMCzPFnngk88SqJW1QLtmW6VIfA4f6Ypz3RHR4nYZOM
+	9WxDFcVAopzXtOIeGmYtbgwt4sCB7ejByXt/mRVhhZtNjLzLPCbZz2DVEYPBKrAjLvuO
+	Fl++57BPJtIyNJJ4ZvbWxJG2NITK3mjvum013O6+3XhWGt827koWjWQnNtlYoOp897KS
+	Eccg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:content-transfer-encoding;
-	bh=P7cEx34FlSKVZ+0ESIBv3BHVD6ife85I4yTvh42i8oQ=;
-	b=cz9e87zXQ6E6VUzUaveYrn+2azuY6IlOkLzYpM+ILuA21Y9MsEhhfW95K+GwWOl8Lo
-	Y8mwUZhRNurhGpDXR2pKNIaWeObCngtOEEu2hSHfe4PC/8ovrLlUWU1CkLQ5Rt87yAAb
-	0vdzpFZzGuLGv4dSW6vHgbrrUYYx8qbjqoD+p4CJfwXve+2Uqz0HijOiqBIkjJ/wlVJb
-	WsQaE6kyLYM+Ed516vvBbtn+sbQnmlNNbxTUAc901D/a5T7iy6pMhbSb67IQJPy94KNN
-	WFIRITsty1HIUl0UB9jxK91NS+Ran+KtmozhTaE4ONuItWZ4bGPtFnj7EUWWulqLzfld
-	fuCw==
-X-Gm-Message-State: APjAAAVs/HYmregC5qvtgdMvpNGjT8P31hn+Yj3PBFXapRwmsTfw+/EY
-	1wUf6i+i+x/1IXtXY3QS0ObH2fgScCft6buNG7RlaQ==
-X-Google-Smtp-Source: APXvYqz8lfeVJ4xh1kOYVgeR+91bdwzj6fjFPTIZnzIITiii/O1m6cNQR14HsjsKCRBevX06HL1rOmdnXGiCt0YZQ2Q=
-X-Received: by 2002:a63:4c21:: with SMTP id z33mr3185896pga.418.1565099695052; 
-	Tue, 06 Aug 2019 06:54:55 -0700 (PDT)
-MIME-Version: 1.0
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+	:message-id:date:user-agent:mime-version:in-reply-to
+	:content-transfer-encoding:content-language;
+	bh=llnKHlmu33ZFZOPDo86rwNc4dxdEsEOex2gso1FMfZc=;
+	b=TrLFVPKHv1qXZF+B8ErvQ8EXY3JdKwwuG2t2rMCUTqZnJ5ouz7HspbDEnaSjjGx8Um
+	ev434Qrh/ZxojDlKJxffjWkUQJt/mQpeysbWCng/0ADvDYYlD08TxGrtjtG6SL/cLBhy
+	cMsdh2jCo/KlovD1oVGB1Hjn8E+1yI83ImSPcm7zLH+eQanJY4b3g+3WvJBDwjhcNgFM
+	uKBb4opDvECDGbvNG8lB0hEGq9xR2fMwB1TjPS5xlfPpPmxgIDDd4RI77p0akuAe+pDw
+	Le2JRJK+ISnTxBgWEop99LRYmHMB1/SRU23/78YmIjsGoYdE5poEkB2r4B/vxoCC/vm5
+	JweQ==
+X-Gm-Message-State: APjAAAVDFwq8Wu1WOEIujmdf3RiZe03VJKJS4j7HOS8FArEJz8bGBv+S
+	goVLndC7rNjybbWyTmr5J5o=
+X-Google-Smtp-Source: APXvYqwUF/6SnU+hJgNdK/gq8H5AJXzUk93hWDVAUJH2omouGxko0SeSjZVOxSBJBuyMBEyxnxkJEw==
+X-Received: by 2002:a63:125c:: with SMTP id 28mr3189625pgs.255.1565100136397; 
+	Tue, 06 Aug 2019 07:02:16 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:c33:b1d3:f235:39b7:d104?
+	([2601:202:4180:c33:b1d3:f235:39b7:d104])
+	by smtp.gmail.com with ESMTPSA id
+	bg3sm34274066pjb.9.2019.08.06.07.02.15
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 06 Aug 2019 07:02:15 -0700 (PDT)
+To: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>, yocto@yoctoproject.org,
+	Armin Kuster <akuster808@gmail.com>
 References: <20190729104547.20894-1-dbaryshkov@gmail.com>
-In-Reply-To: <20190729104547.20894-1-dbaryshkov@gmail.com>
-From: Dmitry Eremin-Solenikov <dbaryshkov@gmail.com>
-Date: Tue, 6 Aug 2019 16:54:43 +0300
-Message-ID: <CALT56yMky0LbcDdJEiYn5L7hfd_KggtERt7=G-3ECU3mm9R87w@mail.gmail.com>
-To: yocto@yoctoproject.org, Armin Kuster <akuster808@gmail.com>
+	<CALT56yMky0LbcDdJEiYn5L7hfd_KggtERt7=G-3ECU3mm9R87w@mail.gmail.com>
+From: akuster808 <akuster808@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+	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
+	8CS2NxU=
+Message-ID: <91fbd48f-223e-aa51-045b-73ff171a6171@gmail.com>
+Date: Tue, 6 Aug 2019 07:02:14 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <CALT56yMky0LbcDdJEiYn5L7hfd_KggtERt7=G-3ECU3mm9R87w@mail.gmail.com>
 Subject: Re: [meta-integrity] layer.conf: switch to keyutils from meta-oe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -70,24 +126,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Aug 2019 13:54:56 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 06 Aug 2019 14:02:17 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-=D0=BF=D0=BD, 29 =D0=B8=D1=8E=D0=BB. 2019 =D0=B3. =D0=B2 13:45, <dbaryshkov=
-@gmail.com>:
->
-> From: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
->
-> As pointer by Martin Jansa, keyutils package is now a part of meta-oe,
-> so switch to using keyutils from that layer.
->
-> Signed-off-by: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.co=
-m>
 
-This patch is still necessary.
 
---=20
-With best wishes
-Dmitry
+On 8/6/19 6:54 AM, Dmitry Eremin-Solenikov wrote:
+> пн, 29 июл. 2019 г. в 13:45, <dbaryshkov@gmail.com>:
+>> From: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
+>>
+>> As pointer by Martin Jansa, keyutils package is now a part of meta-oe,
+>> so switch to using keyutils from that layer.
+>>
+>> Signed-off-by: Dmitry Eremin-Solenikov <dmitry_eremin-solenikov@mentor.com>
+> This patch is still necessary.
+
+ah, forgot that one. thanks.
+
+- armin
+>
+
 
