@@ -1,53 +1,66 @@
-Return-Path: <chin.huat.ang@intel.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0E55AE00D68; Tue,  6 Aug 2019 02:07:37 -0700 (PDT)
+	id CC876E00D5F; Tue,  6 Aug 2019 03:29:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.172 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Tue, 06 Aug 2019 02:07:36 PDT
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FBE8E00D59
-	for <yocto@yoctoproject.org>; Tue,  6 Aug 2019 02:07:36 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	06 Aug 2019 02:06:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,353,1559545200"; 
-	d="scan'208,217";a="373989815"
-Received: from kmsmsx152.gar.corp.intel.com ([172.21.73.87])
-	by fmsmga006.fm.intel.com with ESMTP; 06 Aug 2019 02:06:33 -0700
-Received: from pgsmsx110.gar.corp.intel.com ([169.254.13.19]) by
-	KMSMSX152.gar.corp.intel.com ([169.254.11.92]) with mapi id
-	14.03.0439.000; Tue, 6 Aug 2019 17:06:32 +0800
-From: "Ang, Chin Huat" <chin.huat.ang@intel.com>
-To: Yair Itzhaki <Yair.Itzhaki@docusign.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: Loading a Yocto kernel on Hyper-V hangs
-Thread-Index: AdVLooJHSg0tmsC+Tkqp4Uj0VRUVkAAis2fA
-Date: Tue, 6 Aug 2019 09:06:30 +0000
-Message-ID: <08E361F78D55674EADC52186A78684A534F4912E@PGSMSX110.gar.corp.intel.com>
-References: <MN2PR04MB5487E2DC52CC33F2DAD51E09FADA0@MN2PR04MB5487.namprd04.prod.outlook.com>
-In-Reply-To: <MN2PR04MB5487E2DC52CC33F2DAD51E09FADA0@MN2PR04MB5487.namprd04.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-originating-ip: [172.30.20.206]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com
+	[209.85.221.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49CA6E00CD5
+	for <yocto@yoctoproject.org>; Tue,  6 Aug 2019 03:29:20 -0700 (PDT)
+Received: by mail-vk1-f172.google.com with SMTP id s16so17193845vke.7
+	for <yocto@yoctoproject.org>; Tue, 06 Aug 2019 03:29:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=XGnecLXuPj0XJjouY9+gBC+JSc53CSeSWYKXXG/t0uA=;
+	b=hhVFFBEj8M870rDV064soFwVXfjUW4b6VLDvAxgA5HqLbOtd1Q+mUVUBIfm0uA0RZj
+	RXboa7TVh45W11/3mkYzS0Mp955bpRytDmO3GU2VHUTD467+ua1IUqmK9iq8Dff5B46S
+	Kmh8p5NWwDme7/VzPQTq5PiFFYTopeQCRPgn5JdLMxG7q55qdTCKh2XYpCpdDgqRsp/L
+	JiEjDhzp7GefMSKvxSjlFRm9scSVb4Uc8Lq+kAC5elEVm8G/qAHKWeaW2W4HUT/rNube
+	qONHaVscb3wIOpdfSGYCxZyPOLgqU2v6BYo/xHrwxQ6PwN7D+WEVEqRR+MqPzP6gT6SM
+	QeEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=XGnecLXuPj0XJjouY9+gBC+JSc53CSeSWYKXXG/t0uA=;
+	b=YF/jlTK47lg5xiwdncEBh3nrM97nwYbBZy+vxSvSUPckUMt+YB6lJeTD6f5SASE07G
+	FescJBnBkIv2irdysC7WYROJtCgpbqFk7q6o76IiOZHbMWV8/BUgTdC2qrnpuC7HsFGf
+	TT1nYiCU+XTg8hzpFqCG67MZfYmXwBHcByeitiCc4+yS22PHP81PvxyL+6OF2LDyzw7/
+	Z9ePuZB/4o44QuFJpGUgsLKMRzWlm/VLe9P0JPoT21RWV4hpPTDNNaP+VVn2mVCkv6dX
+	DY8mrVY+ClfyS24g/77F+g4aQyi2XdTkE7dI/737Xggo6+KWUzfkUmTkm6MipDiqhRQv
+	S57A==
+X-Gm-Message-State: APjAAAVoEZ5i3WVX4azCLPBA3q37SustE1vkXeq3Hy4iJFt1Xijx8FQ2
+	UVzcIKhfffDZUoHyqHnLy1lGSHCgPT/XNLpfq50=
+X-Google-Smtp-Source: APXvYqyIecLmJ9P1q1NZgLaSbFxwQvI527DPYWK+uT4RE+zOFoaD8dpn3zloEKORFpyAXL6QhG3Wd5oJ1UJi/gemSew=
+X-Received: by 2002:a1f:1288:: with SMTP id 130mr854297vks.12.1565087359527;
+	Tue, 06 Aug 2019 03:29:19 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: Loading a Yocto kernel on Hyper-V hangs
+References: <CAA=hcWSByxp8OR09orkP6RO9uto6Dpf0rZmsGWigW0yQ82P=0g@mail.gmail.com>
+	<CAA=hcWRHaOj+24TYr9WBcaZqBbTjn-6BXjdG+Q=dEe3J355gBA@mail.gmail.com>
+In-Reply-To: <CAA=hcWRHaOj+24TYr9WBcaZqBbTjn-6BXjdG+Q=dEe3J355gBA@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Tue, 6 Aug 2019 12:29:08 +0200
+Message-ID: <CANNYZj-=r2pf7bKNYjT+=j=rWC_ajYxZ2jUR5OQxpzpiEw-Egw@mail.gmail.com>
+To: JH <jupiter.hce@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: QA issue applibrary rdepends on app-dev [dev-deps], where is the do_package_qa?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,159 +72,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Aug 2019 09:07:37 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_08E361F78D55674EADC52186A78684A534F4912EPGSMSX110garcor_"
+X-List-Received-Date: Tue, 06 Aug 2019 10:29:20 -0000
+Content-Type: multipart/alternative; boundary="0000000000001b70ef058f704cfe"
 
---_000_08E361F78D55674EADC52186A78684A534F4912EPGSMSX110garcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--0000000000001b70ef058f704cfe
+Content-Type: text/plain; charset="UTF-8"
 
-T24gbWFzdGVyLCB1c2luZyBnZW5lcmljeDg2LTY0IG1hY2hpbmUgd2l0aCBsaW51eC15b2N0byBr
-ZXJuZWwgSSBhbHNvIHNlZSBncnViIGJvb3RlZCBpbnRvIGEgYmxhbmsgc2NyZWVuIHdoZW4gbm9u
-ZSBvZiB0aGUgSHlwZXItViBrZXJuZWwgY29uZmlncyBhcmUgZW5hYmxlZC4NCg0KSSBjb3VsZG7i
-gJl0IGZpbmQgYW55IEh5cGVyLVYga2VybmVsIGNvbmZpZyBmcmFnbWVudHMgaW4geW9jdG8ta2Vy
-bmVsLWNhY2hlIG9yIG1ldGEtdmlydHVhbGl6YXRpb24sIHNvIEkgZ29vZ2xlZCBmb3Ig4oCcaHlw
-ZXItdiBrZXJuZWwgY29uZmln4oCdIGFuZCB1c2VkIGEgdHJpY2sgWzFdIHRvIGFwcGx5IHRoZSBu
-ZWNlc3Nhcnkga2VybmVsIGNvbmZpZ3MgdG8gZ2V0IGJvdGggY29yZS1pbWFnZS1taW5pbWFsIGFu
-ZCBjb3JlLWltYWdlLXNhdG8gYm9vdCB1cCBwcm9wZXJseS4NCg0KWzFdIGh0dHBzOi8vd2lraS55
-b2N0b3Byb2plY3Qub3JnL3dpa2kvVGlwc0FuZFRyaWNrcy9RdWlja0FuZERpcnR5S2VybmVsQ29u
-ZmlnDQoNCi0tQ2hpbiBIdWF0DQoNCkZyb206IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9y
-ZyA8eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnPiBPbiBCZWhhbGYgT2YgWWFpciBJdHpo
-YWtpDQpTZW50OiBNb25kYXksIEF1Z3VzdCA1LCAyMDE5IDExOjQxIFBNDQpUbzogeW9jdG9AeW9j
-dG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogW3lvY3RvXSBMb2FkaW5nIGEgWW9jdG8ga2VybmVsIG9u
-IEh5cGVyLVYgaGFuZ3MNCg0KSGkgLA0KSSdtIHVzaW5nIFBva3kgKFdhcnJpb3IpLg0KQnVpbHQg
-YSBQbGFpbiBWYW5pbGxhIHN5c3RlbSBmb3IgYmFyZS1tZXRhbCB4NjQsIGFuZCBwdXQgaXQgb24g
-YSBoYXJkLWRyaXZlLg0KVGhlIHN5c3RlbSBib290cyB3ZWxsIG9uIGFuIEludGVsIE1CLg0KDQpU
-aGVuLCBhZGRlZCBhIFdJQyBpbWFnZSB0YXJnZXQsIGFuZCBjb252ZXJ0ZWQgdGhlIGRpc2sgaWFt
-Z2UgKHVzaW5nIHFlbXUtaW1nKSBpbnRvIGEgVk1ESy4NClRoZSBpbWFnZSBib290cyB3ZWxsIChH
-cnViIHByb21wdCwgZm9sbG93ZWQgYnkga2VybmVsIGxvYWRpbmcpIG9uIGEgV2luZG93cyBWbVdh
-cmUgKHRob3VnaCBJIGhhZCB0byBhZGQgc29tZSBrZXJuZWwgZmVhdHVyZXMgdG8gbWFrZSB0aGUg
-cm9vdCBGUyBhdmFpbGFibGUpLg0KDQpOZXh0LCBJIGNvbnZlcnRlZCB0aGUgc2FtZSBpbWFnZSB0
-byBWSERYIHVzaW5nIHFlbXUtaW1nLg0KQ29uZmlndXJlZCBhIEh5cGVyViBHZW4yIG1hY2hpbmUg
-KHRvIHVzZSBVRUZJKS4gU2VjdXJpdHkgaXMgdHVybmVkIG9mZi4NCkdydWIyIGxvYWRzIHdlbGw6
-DQpJIGdldCBhIEdydWIgcHJvbXB0LCBzZWxlY3QgdGhlIGtlcm5lbCDigJMgYnV0IG9uY2Ugc2Vs
-ZWN0ZWQgLSB0aGUgc3lzdGVtIGhhbmdzLg0KVHJpZWQgb24gZGlmZmVyZW50IFdpbmRvd3MgbWFj
-aGluZSAoV2luMTAsIFNlcnZlciAyMDE2KQ0KDQpXaGVuIHJlcGxhY2luZyB0aGUga2VybmVsIHdp
-dGggYSBzdG9jayBVYnVudHUga2VybmVsIOKAkyB0aGUga2VybmVsIGxvYWRzIHdlbGwuDQpUcmll
-ZCBvdGhlciAocHJlLWJ1aWx0KSBrZXJuZWxzIGZyb20gaHR0cDovL2Rvd25sb2Fkcy55b2N0b3By
-b2plY3Qub3JnL3JlbGVhc2VzL3lvY3RvL3lvY3RvLXgueS8uLi4uIOKAkyBzYW1lIG9kZCBiZWhh
-dmlvcjogR3J1YiBsb2Fkcywga2VybmVsIGRvZXMgbm90IGxvYWQuDQpUcmllZCBhIGRpZmZlcmVu
-dCBjb21wcmVzc2lvbiAob3RoZXIgdGhhbiBnemlwKSDigJMgc2FtZS4NCg0KQW55IGlkZWE/DQoN
-ClRoYW5rcywNCllhaXINCg0KDQo=
+You don't; package_qa is reporting real issues with your packaging, so you
+need to address them.
 
---_000_08E361F78D55674EADC52186A78684A534F4912EPGSMSX110garcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Alex
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
-OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
-cjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjoj
-OTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcC5tc29ub3JtYWwwLCBsaS5t
-c29ub3JtYWwwLCBkaXYubXNvbm9ybWFsMA0KCXttc28tc3R5bGUtbmFtZTptc29ub3JtYWw7DQoJ
-bXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJbWFyZ2luLXJpZ2h0OjBpbjsNCgltc28tbWFyZ2lu
-LWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4tbGVmdDowaW47DQoJZm9udC1zaXplOjExLjBwdDsN
-Cglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQpzcGFuLkVtYWlsU3R5bGUxOA0K
-CXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsNCglmb250LWZhbWlseToiQXJpYWwiLHNhbnMtc2Vy
-aWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQpzcGFuLkVtYWlsU3R5bGUyMA0KCXttc28tc3R5bGUt
-dHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsN
-Cgljb2xvcjp3aW5kb3d0ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4
-cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3Np
-emU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAxLjI1aW4gMS4waW4gMS4yNWluO30NCmRp
-di5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lm
-IGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9
-IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxv
-OnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIx
-IiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkg
-bGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9
-IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBtYXN0ZXIsIHVzaW5nIGdl
-bmVyaWN4ODYtNjQgbWFjaGluZSB3aXRoIGxpbnV4LXlvY3RvIGtlcm5lbCBJIGFsc28gc2VlIGdy
-dWIgYm9vdGVkIGludG8gYSBibGFuayBzY3JlZW4gd2hlbiBub25lIG9mIHRoZSBIeXBlci1WIGtl
-cm5lbCBjb25maWdzIGFyZSBlbmFibGVkLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIGNvdWxk
-buKAmXQgZmluZCBhbnkgSHlwZXItViBrZXJuZWwgY29uZmlnIGZyYWdtZW50cyBpbiB5b2N0by1r
-ZXJuZWwtY2FjaGUgb3IgbWV0YS12aXJ0dWFsaXphdGlvbiwgc28gSSBnb29nbGVkIGZvciDigJxo
-eXBlci12IGtlcm5lbCBjb25maWfigJ0gYW5kIHVzZWQgYSB0cmljayBbMV0gdG8gYXBwbHkgdGhl
-IG5lY2Vzc2FyeSBrZXJuZWwgY29uZmlncyB0byBnZXQgYm90aCBjb3JlLWltYWdlLW1pbmltYWwg
-YW5kIGNvcmUtaW1hZ2Utc2F0bw0KIGJvb3QgdXAgcHJvcGVybHkuPG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPlsxXSA8YSBocmVmPSJodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1Rp
-cHNBbmRUcmlja3MvUXVpY2tBbmREaXJ0eUtlcm5lbENvbmZpZyI+DQpodHRwczovL3dpa2kueW9j
-dG9wcm9qZWN0Lm9yZy93aWtpL1RpcHNBbmRUcmlja3MvUXVpY2tBbmREaXJ0eUtlcm5lbENvbmZp
-ZzwvYT48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+LS1DaGluIEh1YXQ8bzpwPjwvbzpwPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXYg
-c3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5n
-OjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPkZyb206PC9iPiB5
-b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgJmx0O3lvY3RvLWJvdW5jZXNAeW9jdG9wcm9q
-ZWN0Lm9yZyZndDsNCjxiPk9uIEJlaGFsZiBPZiA8L2I+WWFpciBJdHpoYWtpPGJyPg0KPGI+U2Vu
-dDo8L2I+IE1vbmRheSwgQXVndXN0IDUsIDIwMTkgMTE6NDEgUE08YnI+DQo8Yj5Ubzo8L2I+IHlv
-Y3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW3lvY3RvXSBMb2FkaW5n
-IGEgWW9jdG8ga2VybmVsIG9uIEh5cGVyLVYgaGFuZ3M8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
-PC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90
-OyxzYW5zLXNlcmlmIj5IaSAsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2Vy
-aWYiPkknbSB1c2luZyBQb2t5IChXYXJyaW9yKS48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVv
-dDssc2Fucy1zZXJpZiI+QnVpbHQgYSBQbGFpbiBWYW5pbGxhIHN5c3RlbSBmb3IgYmFyZS1tZXRh
-bCB4NjQsIGFuZCBwdXQgaXQgb24gYSBoYXJkLWRyaXZlLjxicj4NClRoZSBzeXN0ZW0gYm9vdHMg
-d2VsbCBvbiBhbiBJbnRlbCBNQi48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1z
-ZXJpZiI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
-PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWYiPlRo
-ZW4sIGFkZGVkIGEgV0lDIGltYWdlIHRhcmdldCwgYW5kIGNvbnZlcnRlZCB0aGUgZGlzayBpYW1n
-ZSAodXNpbmcgcWVtdS1pbWcpIGludG8gYSBWTURLLjxicj4NClRoZSBpbWFnZSBib290cyB3ZWxs
-IChHcnViIHByb21wdCwgZm9sbG93ZWQgYnkga2VybmVsIGxvYWRpbmcpIG9uIGEgV2luZG93cyBW
-bVdhcmUgKHRob3VnaCBJIGhhZCB0byBhZGQgc29tZSBrZXJuZWwgZmVhdHVyZXMgdG8gbWFrZSB0
-aGUgcm9vdCBGUyBhdmFpbGFibGUpLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5z
-LXNlcmlmIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZiI+
-TmV4dCwgSSBjb252ZXJ0ZWQgdGhlIHNhbWUgaW1hZ2UgdG8gVkhEWCB1c2luZyBxZW11LWltZy48
-YnI+DQpDb25maWd1cmVkIGEgSHlwZXJWIEdlbjIgbWFjaGluZSAodG8gdXNlIFVFRkkpLiBTZWN1
-cml0eSBpcyB0dXJuZWQgb2ZmLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNl
-cmlmIj5HcnViMiBsb2FkcyB3ZWxsOjxicj4NCkkgZ2V0IGEgR3J1YiBwcm9tcHQsIHNlbGVjdCB0
-aGUga2VybmVsIOKAkyBidXQgb25jZSBzZWxlY3RlZCAtIHRoZSBzeXN0ZW0gaGFuZ3MuPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQt
-ZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWYiPlRyaWVkIG9uIGRpZmZlcmVudCBX
-aW5kb3dzIG1hY2hpbmUgKFdpbjEwLCBTZXJ2ZXIgMjAxNik8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7QXJp
-YWwmcXVvdDssc2Fucy1zZXJpZiI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7
-LHNhbnMtc2VyaWYiPldoZW4gcmVwbGFjaW5nIHRoZSBrZXJuZWwgd2l0aCBhIHN0b2NrIFVidW50
-dSBrZXJuZWwg4oCTIHRoZSBrZXJuZWwgbG9hZHMgd2VsbC48YnI+DQpUcmllZCBvdGhlciAocHJl
-LWJ1aWx0KSBrZXJuZWxzIGZyb20gPGEgaHJlZj0iaHR0cDovL2Rvd25sb2Fkcy55b2N0b3Byb2pl
-Y3Qub3JnL3JlbGVhc2VzL3lvY3RvL3lvY3RvLXgueS8iPg0KaHR0cDovL2Rvd25sb2Fkcy55b2N0
-b3Byb2plY3Qub3JnL3JlbGVhc2VzL3lvY3RvL3lvY3RvLXgueS88L2E+Li4uLiDigJMgc2FtZSBv
-ZGQgYmVoYXZpb3I6IEdydWIgbG9hZHMsIGtlcm5lbCBkb2VzIG5vdCBsb2FkLjxicj4NClRyaWVk
-IGEgZGlmZmVyZW50IGNvbXByZXNzaW9uIChvdGhlciB0aGFuIGd6aXApIOKAkyBzYW1lLjxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
-LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmIj48bzpwPiZuYnNwOzwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6
-JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZiI+QW55IGlkZWE/PG86cD48L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90
-O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWYiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtBcmlhbCZx
-dW90OyxzYW5zLXNlcmlmIj5UaGFua3MsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNh
-bnMtc2VyaWYiPllhaXI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
-PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+On Tue, 6 Aug 2019 at 10:40, JH <jupiter.hce@gmail.com> wrote:
 
---_000_08E361F78D55674EADC52186A78684A534F4912EPGSMSX110garcor_--
+> Hi,
+>
+> According to the latest document:
+>
+> "Package QA checks are now performed during a new do_package_qa task
+> rather than being part of the do_package task. This allows more
+> parallel execution. This change is unlikely to be an issue except for
+> highly customized recipes that disable packaging tasks themselves by
+> marking them as noexec. For those packages, you will need to disable
+> the do_package_qa task as well."
+>
+> How can I disable the do_package_qa task?
+>
+> Thank you.
+>
+> Kind regards,
+>
+> - jh
+>
+> On 8/4/19, JH <jupiter.hce@gmail.com> wrote:
+> > Hi,
+> >
+> > I was running my Yocto build fine until I had a minor change to move
+> > libapplibrary.so to libapplibrry.so.${PN} and made libapplibrary.so to
+> > a symbolic link of libapplibrry.so.${PN}. Now it got an error of QA
+> > issue applibrary rdepends on app-dev [dev-deps], QA run found fatal
+> > errors, please consider fixing them.
+> >
+> > Even I reverse the changes back the, it still complained the same error.
+> >
+> > I don't have do_package_qa in my bb file, where is it from? What is
+> > that error about? How to fix it?
+> >
+> > Thank you.
+> >
+> > Kind regards,
+> >
+> > - jh
+> >
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--0000000000001b70ef058f704cfe
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>You don&#39;t; package_qa is reporting real issues wi=
+th your packaging, so you need to address them.</div><div><br></div><div>Al=
+ex<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Tue, 6 Aug 2019 at 10:40, JH &lt;<a href=3D"mailto:jupiter.h=
+ce@gmail.com">jupiter.hce@gmail.com</a>&gt; wrote:<br></div><blockquote cla=
+ss=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex">Hi,<br>
+<br>
+According to the latest document:<br>
+<br>
+&quot;Package QA checks are now performed during a new do_package_qa task<b=
+r>
+rather than being part of the do_package task. This allows more<br>
+parallel execution. This change is unlikely to be an issue except for<br>
+highly customized recipes that disable packaging tasks themselves by<br>
+marking them as noexec. For those packages, you will need to disable<br>
+the do_package_qa task as well.&quot;<br>
+<br>
+How can I disable the do_package_qa task?<br>
+<br>
+Thank you.<br>
+<br>
+Kind regards,<br>
+<br>
+- jh<br>
+<br>
+On 8/4/19, JH &lt;<a href=3D"mailto:jupiter.hce@gmail.com" target=3D"_blank=
+">jupiter.hce@gmail.com</a>&gt; wrote:<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; I was running my Yocto build fine until I had a minor change to move<b=
+r>
+&gt; libapplibrary.so to libapplibrry.so.${PN} and made libapplibrary.so to=
+<br>
+&gt; a symbolic link of libapplibrry.so.${PN}. Now it got an error of QA<br=
+>
+&gt; issue applibrary rdepends on app-dev [dev-deps], QA run found fatal<br=
+>
+&gt; errors, please consider fixing them.<br>
+&gt;<br>
+&gt; Even I reverse the changes back the, it still complained the same erro=
+r.<br>
+&gt;<br>
+&gt; I don&#39;t have do_package_qa in my bb file, where is it from? What i=
+s<br>
+&gt; that error about? How to fix it?<br>
+&gt;<br>
+&gt; Thank you.<br>
+&gt;<br>
+&gt; Kind regards,<br>
+&gt;<br>
+&gt; - jh<br>
+&gt;<br>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>
+
+--0000000000001b70ef058f704cfe--
