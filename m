@@ -1,58 +1,65 @@
-Return-Path: <GWilson@sakuraus.com>
+Return-Path: <marek.belisko@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0587CE00C9B; Tue,  6 Aug 2019 11:29:56 -0700 (PDT)
+	id 61E72E00CB9; Tue,  6 Aug 2019 11:40:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	https://www.dnswl.org/, low *      trust
-	*      [209.222.82.123 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from 11pmail.ess.barracuda.com (11pmail.ess.barracuda.com
-	[209.222.82.123])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE335E00C25
-	for <yocto@yoctoproject.org>; Tue,  6 Aug 2019 11:29:54 -0700 (PDT)
-Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
-	mx12.us-east-2b.ess.aws.cudaops.com (version=TLSv1.2
-	cipher=AES256-SHA256 bits=256 verify=NO);
-	Tue, 06 Aug 2019 18:29:48 +0000
-Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
-	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
-	Tue, 6 Aug 2019 11:28:39 -0700
-Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
-	([::1]) with mapi id 15.01.0669.032; Tue, 6 Aug 2019 11:28:39 -0700
-From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-To: Belisko Marek <marek.belisko@gmail.com>
-Thread-Topic: [yocto] U-boot enable not working for Raspberry Pi3
-Thread-Index: AdVMdFsl/WD6MMNoQLOCFWV356rAjgASMIQAAA4mYrA=
-Date: Tue, 6 Aug 2019 18:28:39 +0000
-Message-ID: <667c8e38a3664b2c964e978b07cb6963@sakuraus.com>
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (marek.belisko[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.52 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com
+	[209.85.208.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7ED6EE00A75
+	for <yocto@yoctoproject.org>; Tue,  6 Aug 2019 11:39:59 -0700 (PDT)
+Received: by mail-ed1-f52.google.com with SMTP id x19so77288263eda.12
+	for <yocto@yoctoproject.org>; Tue, 06 Aug 2019 11:39:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=T6Bp59AwTYEU0QYS0wHyFXtzwXE/mKIX7uXMnrp1pis=;
+	b=PvQ7qyKoBI2QSUdShtPZTXm+ZOuicXrydiughxuSQ1rHz2N8+3Tde+rBpFmLSvimZn
+	/VyKLG4+QnELZzwC12iSNL0zy8XM/qXPZTPNiZf1R+NuOlr2Zx6gMzYz0T7Wabaq5JO1
+	IAi8/wkknjWg9mK7rpzSdDqr9oQaN46+RbFgxRtYoz7R7mOpE47mILIAuZTuh125isY7
+	mS7qfACXhJsH5oJrfbbSBfjVp3jGztylOIh2NOsKl4UMzoX+AehiRwV6f23h1Sm/XNx8
+	V+gMKHBFn0hkvKZSzukClYnEQRiIx8RPt7hdWeR1rqbx58Tvb4Hj/+H+kg+X/jdTHfA9
+	XUuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=T6Bp59AwTYEU0QYS0wHyFXtzwXE/mKIX7uXMnrp1pis=;
+	b=KixyCoX8WdC7d2G8j/EF27qJmjVxvzvD4dC6kLMHLN0n22feF/WHhAecTp040pup7n
+	Bngd8ir/j0xcVeG6Gwt5sFcInLGhMK4eLQiPqJ7wbUbUyCcJTaP29p6PwzhlxRCY/UKI
+	ZOn1RMRKGDz2KkC/ESzGUP3TTM90rOcjE6HhmQFYBdC0LGXwf05/lhp5Eb+BWBxB44PP
+	YursYrsEV/uCR8GZ49L1puDXA2Q8JyL5K90cbuHZ2h9vyjmRU0lW4mMlwwW8gxCoCKyt
+	aG28CFAup6q3ULMBXDNI0ip+11FBDHnf3z+3/wGdmnu963DvJ58d0MHnBfUBMxE/3vdF
+	lbUg==
+X-Gm-Message-State: APjAAAUrUHOj95g2tfhFsj2ey0gDjm/USZUE7jbQqCKLK1y+XtLW0LUW
+	i+tBgnU2YtfS8BhwTZhRt5PG9yNbkoQxD0NtZu5xvQ==
+X-Google-Smtp-Source: APXvYqw0leicS2H5PjsilRd4jwmihKSjTMei2JzWHx718VK0NHpPPMfKjWhswq9g+/DQeyzeGIqzb75w22qHdSsmqGg=
+X-Received: by 2002:a17:906:43c9:: with SMTP id
+	j9mr4601334ejn.248.1565116798555; 
+	Tue, 06 Aug 2019 11:39:58 -0700 (PDT)
+MIME-Version: 1.0
 References: <a0b3676e80ee47cab3b6cbef25d77f22@sakuraus.com>
 	<CAAfyv34M_0dKu2ML0En8QyVCV5KXscZ6gYfZwE=-yrxxHuqxYA@mail.gmail.com>
-In-Reply-To: <CAAfyv34M_0dKu2ML0En8QyVCV5KXscZ6gYfZwE=-yrxxHuqxYA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.5.3]
-MIME-Version: 1.0
-X-BESS-ID: 1565116188-893023-15436-30295-1
-X-BESS-VER: 2019.1_20190805.2038
-X-BESS-Apparent-Source-IP: 12.26.104.5
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2,
-	rules version 3.2.2.216940 [from 
-	cloudscan20-198.us-east-2b.ess.aws.cudaops.com]
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
+	<667c8e38a3664b2c964e978b07cb6963@sakuraus.com>
+In-Reply-To: <667c8e38a3664b2c964e978b07cb6963@sakuraus.com>
+From: Belisko Marek <marek.belisko@gmail.com>
+Date: Tue, 6 Aug 2019 20:39:47 +0200
+Message-ID: <CAAfyv34nX0fE5Th7_cMPVTmM863wOu-okW8eFRCRNxdPX0YYWQ@mail.gmail.com>
+To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
 Cc: Yocto list discussion <yocto@yoctoproject.org>
 Subject: Re: U-boot enable not working for Raspberry Pi3
 X-BeenThere: yocto@yoctoproject.org
@@ -66,45 +73,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Aug 2019 18:29:56 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 06 Aug 2019 18:40:00 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-SGkgTWFyZWssDQoNClRoYW5rcyBmb3IgdGhlIHN1Z2dlc3Rpb24sIHRoYXQgc2VlbXMgdG8gYmUg
-dGhlIGNhc2UuIFdoYXQgaW1hZ2UgYXJlIHlvdSBidWlsZGluZyBzbyBJIGNhbiB0cnkgdGhhdCB0
-byBzZWUgd2hhdCBJIGdldD8NCg0KQlIsDQpHcmVnIA0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2Fn
-ZS0tLS0tDQo+IEZyb206IEJlbGlza28gTWFyZWsgW21haWx0bzptYXJlay5iZWxpc2tvQGdtYWls
-LmNvbV0NCj4gU2VudDogVHVlc2RheSwgQXVndXN0IDA2LCAyMDE5IDExOjEyIEFNDQo+IFRvOiBH
-cmVnIFdpbHNvbi1MaW5kYmVyZyA8R1dpbHNvbkBzYWt1cmF1cy5jb20+DQo+IENjOiBZb2N0byBs
-aXN0IGRpc2N1c3Npb24gPHlvY3RvQHlvY3RvcHJvamVjdC5vcmc+DQo+IFN1YmplY3Q6IFJlOiBb
-eW9jdG9dIFUtYm9vdCBlbmFibGUgbm90IHdvcmtpbmcgZm9yIFJhc3BiZXJyeSBQaTMNCj4gDQo+
-IEhpIEdyZWcsDQo+IA0KPiBPbiBUdWUsIEF1ZyA2LCAyMDE5IGF0IDc6MTIgUE0gR3JlZyBXaWxz
-b24tTGluZGJlcmcgPEdXaWxzb25Ac2FrdXJhdXMuY29tPg0KPiB3cm90ZToNCj4gPg0KPiA+IEkn
-bSB3b3JraW5nIHdpdGggYSBZb2N0byBTdW1vIGJ1aWxkIHByb3ZpZGVkIHdpdGggUXQncyBib290
-MnF0IHN5c3RlbS4gSSdtIHRyeWluZw0KPiB0byBlbmFibGUgdXNpbmcgRGFzIFUtYm9vdCB0byBs
-b2FkIExpbnV4IGFzIGEgZmlyc3Qgc3RlcCBpbiB0cnlpbmcgdG8gZW5hYmxlIE9TVHJlZQ0KPiB1
-cGRhdGVzLg0KPiA+DQo+ID4gSW4gdGhlIG1ldGEtcmFzcGJlcnJ5cGkgZG9jdW1lbnRhdGlvbiBp
-cyBzYXlzIHRvIHNldDoNCj4gPg0KPiA+IFJQSV9VU0VfVV9CT09UID0gIjEiDQo+IENvdWxkIGJl
-IHRoYSB0Ym9vdDJxdCBzb21laG93IGRyb3AgeW91ciBjb25maWcuIFBsZWFzZSB0cnkgdGluIHJ1
-biBiaXRiYWtlIC1lDQo+IDxJTUFHRV9OQU1FPiB8IGdyZXAgXlJQSV9VU0VfVV9CT09UIHRvIGJl
-IHN1cmUgdGhhdCB2YXJpYWJsZSBleGlzdHMuIEkNCj4gdXNlZCBpdCBtYW55IHRpbWVzIGFuZCBp
-dCB3b3JrcyBwZXJmZWN0bHkgZmluZS4NCj4gPg0KPiA+IHRvIGVuYWJsZSB1LWJvb3QgZm9yIHRo
-ZSByYXNwYmVycnlwaS4gSSBoYXZlIHNldCB0aGF0IHZhcmlhYmxlIGluIHRoZSB0b3AgbGV2ZWwN
-Cj4gbG9jYWwuY29uZiBmaWxlIGJ1dCBJIGRvbid0IHNlZW0gdG8gYmUgZ2V0dGluZyBhbnkgY2hh
-bmdlcyBpbiB0aGUgYnVpbGQuIE5vdGhpbmcgaW4gdGhlDQo+IGNvb2tlciBsb2cgc2hvd3MgYnVp
-bGRpbmcgdS1ib290LCBhbmQgdGhlIHN0YXJ0IHVwIHNjcmVlbiBkb2Vzbid0IHNob3cgYW55IHUt
-Ym9vdA0KPiBtZXNzYWdlcy4NCj4gPg0KPiA+IEl0IGFwcGVhcnMgdGhhdCBJJ20gbWlzc2luZyBu
-ZWNlc3NhcnkgdG8gdHVybiB1LWJvb3Qgb24sIGNhbiBhbnlib2R5IHNoZWQgc29tZQ0KPiBsaWdo
-dCBvbiB3aGF0IGlzIGdvaW5nIG9uPw0KPiA+DQo+ID4gUmVnYXJkcywNCj4gPg0KPiA+IEdyZWcg
-V2lsc29uLUxpbmRiZXJnDQo+ID4gd3d3LnNha3VyYXVzLmNvbQ0KPiA+IC0tDQo+ID4gX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj4gPiB5b2N0byBtYWls
-aW5nIGxpc3QNCj4gPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+ID4gaHR0cHM6Ly9saXN0cy55
-b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvDQo+IA0KPiBCUiwNCj4gDQo+IG1hcmVrDQo+
-IA0KPiAtLQ0KPiBhcyBzaW1wbGUgYW5kIHByaW1pdGl2ZSBhcyBwb3NzaWJsZQ0KPiAtLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+IE1hcmVrIEJlbGlz
-a28gLSBPUEVOLU5BTkRSQQ0KPiBGcmVlbGFuY2UgRGV2ZWxvcGVyDQo+IA0KPiBSdXNrYSBOb3Zh
-IFZlcyAyMTkgfCBQcmVzb3YsIDA4MDA1IFNsb3ZhayBSZXB1YmxpYw0KPiBUZWw6ICs0MjEgOTE1
-IDA1MiAxODQNCj4gc2t5cGU6IG1hcmVrd2hpdGUNCj4gdHdpdHRlcjogI29wZW5uYW5kcmENCj4g
-d2ViOiBodHRwOi8vb3Blbi1uYW5kcmEuY29tDQo=
+Hi Greg,
+
+On Tue, Aug 6, 2019 at 8:29 PM Greg Wilson-Lindberg
+<GWilson@sakuraus.com> wrote:
+>
+> Hi Marek,
+>
+> Thanks for the suggestion, that seems to be the case. What image are you building so I can try that to see what I get?
+Please don't top post ;). I'm building basic image. I worked few
+months ago with bootqt and sometimes it was bit tricky ;). Are you
+sure you have this variable set in local.conf?
+>
+> BR,
+> Greg
+>
+> > -----Original Message-----
+> > From: Belisko Marek [mailto:marek.belisko@gmail.com]
+> > Sent: Tuesday, August 06, 2019 11:12 AM
+> > To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+> > Cc: Yocto list discussion <yocto@yoctoproject.org>
+> > Subject: Re: [yocto] U-boot enable not working for Raspberry Pi3
+> >
+> > Hi Greg,
+> >
+> > On Tue, Aug 6, 2019 at 7:12 PM Greg Wilson-Lindberg <GWilson@sakuraus.com>
+> > wrote:
+> > >
+> > > I'm working with a Yocto Sumo build provided with Qt's boot2qt system. I'm trying
+> > to enable using Das U-boot to load Linux as a first step in trying to enable OSTree
+> > updates.
+> > >
+> > > In the meta-raspberrypi documentation is says to set:
+> > >
+> > > RPI_USE_U_BOOT = "1"
+> > Could be tha tboot2qt somehow drop your config. Please try tin run bitbake -e
+> > <IMAGE_NAME> | grep ^RPI_USE_U_BOOT to be sure that variable exists. I
+> > used it many times and it works perfectly fine.
+> > >
+> > > to enable u-boot for the raspberrypi. I have set that variable in the top level
+> > local.conf file but I don't seem to be getting any changes in the build. Nothing in the
+> > cooker log shows building u-boot, and the start up screen doesn't show any u-boot
+> > messages.
+> > >
+> > > It appears that I'm missing necessary to turn u-boot on, can anybody shed some
+> > light on what is going on?
+> > >
+> > > Regards,
+> > >
+> > > Greg Wilson-Lindberg
+> > > www.sakuraus.com
+> > > --
+> > > _______________________________________________
+> > > yocto mailing list
+> > > yocto@yoctoproject.org
+> > > https://lists.yoctoproject.org/listinfo/yocto
+> >
+> > BR,
+> >
+> > marek
+> >
+> > --
+> > as simple and primitive as possible
+> > -------------------------------------------------
+> > Marek Belisko - OPEN-NANDRA
+> > Freelance Developer
+> >
+> > Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+> > Tel: +421 915 052 184
+> > skype: marekwhite
+> > twitter: #opennandra
+> > web: http://open-nandra.com
+
+BR,
+
+marek
 
