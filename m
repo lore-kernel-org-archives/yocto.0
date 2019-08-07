@@ -1,53 +1,62 @@
-Return-Path: <vineela.tummalapalli@intel.com>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B1B58E00C9B; Tue,  6 Aug 2019 16:29:08 -0700 (PDT)
+	id 75B82E00D8E; Wed,  7 Aug 2019 01:11:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [192.55.52.151 listed in list.dnswl.org]
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67547E00C22;
-	Tue,  6 Aug 2019 16:29:07 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	06 Aug 2019 16:29:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,353,1559545200"; d="scan'208";a="168450194"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by orsmga008.jf.intel.com with ESMTP; 06 Aug 2019 16:29:06 -0700
-Received: from orsmsx114.amr.corp.intel.com (10.22.240.10) by
-	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
-	(TLS) id 14.3.439.0; Tue, 6 Aug 2019 16:29:06 -0700
-Received: from orsmsx107.amr.corp.intel.com ([169.254.1.15]) by
-	ORSMSX114.amr.corp.intel.com ([169.254.8.237]) with mapi id
-	14.03.0439.000; Tue, 6 Aug 2019 16:29:06 -0700
-From: "Tummalapalli, Vineela" <vineela.tummalapalli@intel.com>
-To: "yocto-announce@yoctoproject.org" <yocto-announce@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto-announce] [ANNOUNCEMENT] Milestone 2 for Yocto Project
-	2.8 (yocto-2.8_M2) now available
-Thread-Index: AdVMrKqRWytwI0KrQHadGjPVcUPgkw==
-Date: Tue, 6 Aug 2019 23:29:05 +0000
-Message-ID: <363DC7214F94884BBF80916755E7D6552072679E@ORSMSX107.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiN2VhMGIwYTItYTllMS00ZDYyLWFiZGYtYjA2YjFkZTk2ZWU0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiREFodlVPVVEzYlUxY1hVZ2g1ckdJdzkwNXFvRmRDNVwvbWQrVUcrZjNuZUJJOEU4SUZJK0VSOW9DWjRGTnZBMDkifQ==
-x-ctpclassification: CTP_NT
-dlp-product: dlpe-windows
-dlp-version: 11.0.600.7
-dlp-reaction: no-action
-x-originating-ip: [10.22.254.139]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jupiter.hce[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.41 listed in list.dnswl.org]
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com
+	[209.85.210.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10FD4E00D8A
+	for <yocto@yoctoproject.org>; Wed,  7 Aug 2019 01:11:29 -0700 (PDT)
+Received: by mail-ot1-f41.google.com with SMTP id q20so100804837otl.0
+	for <yocto@yoctoproject.org>; Wed, 07 Aug 2019 01:11:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=u+3FarTcJoocITliJ3f7j4sOYnl8Z1WQWiylHDZgNps=;
+	b=Df2q8FF4xh6WAFmGhc2VAafhPxT5qU+k2AFxtLQPAXgzPNJtaTMB13oEEF2yNQjkjV
+	H2+ms0gXo/8yNfM15jnMTLBgtQTliz2Fvuh7bygsZllr40AX55xU9E5CDu7L2G5ax0h9
+	IyfBL6o/owqprw41wJMWL9VAutoH3oCiulKAtZckyNKYzXaK/IPUIDZ5lVF1rgQP3Fs+
+	iqEd3bwDSzAkRPyL+8f/yAfVoDqna6dd9laAtXHYg1mI88YUpfrOO4f1Y5tydC97SGZE
+	HhTRCt/tIuO8KOadACz0kdY6hQlS9zZKHQDUJst5i5u+aHIY/j+ulpdggeHbGugic9Qz
+	kDDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=u+3FarTcJoocITliJ3f7j4sOYnl8Z1WQWiylHDZgNps=;
+	b=Ciqzv6IVbjhrtLnfjLXQlNclZ/jCmfbHHqLnPHeFxsWyOcQfHLt2PgvfKHCiYmtLf1
+	HziRryRRdbmGSDbvFAKBQmVVpnH4wEeUjppiQaGSeNYF/eahClQL5Ixb8RU/ZthY7S+v
+	u7lWZpsHm1cQS4Er9/ETCiBiYlvBg+ONKfXf05LjyZNm31QQiGpJJIPNTW123KneTmn2
+	qL4MwPpIsLRvZ6rwwKY/ebXQmjV06oR1XwlG1dzgE9Jyil/bw6ZlOwDFddOoLzPYkLV+
+	38/gK9Cuc+YgZxhRBOQNvpGta+eiOWTVLmR7I1hxJ3q5qY28/jjBze3TdFkzH2umAGYB
+	vIqA==
+X-Gm-Message-State: APjAAAVW4H4Fo/JGLH07du9+hekAWrALGBZeSZx96s1ofuBg8kFt0HC2
+	noAiE5DrN7ldSq1XAN/CKkUxc89DJ3Gr2rpkIRnGHYeI
+X-Google-Smtp-Source: APXvYqwLu9C2g/FfcINa+P1Pd33H7RQA2wYg7H7GufU+oieJXJlXg8UoUbN4AIvC60lRd4srqRvPVL846w+JJU5B/MA=
+X-Received: by 2002:a5d:8f8a:: with SMTP id l10mr1002835iol.306.1565165489154; 
+	Wed, 07 Aug 2019 01:11:29 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [yocto-announce] [ANNOUNCEMENT] Milestone 2 for Yocto Project 2.8 (yocto-2.8_M2) now available
+Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP;
+	Wed, 7 Aug 2019 01:11:28 -0700 (PDT)
+From: JH <jupiter.hce@gmail.com>
+Date: Wed, 7 Aug 2019 18:11:28 +1000
+Message-ID: <CAA=hcWS8cd8oXtY2z=JMAL6BB=tMSEi6yZMxSzz2fK8zyHnGEQ@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: How to create a service only startes at shutdown process?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,35 +68,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 Aug 2019 23:29:08 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 07 Aug 2019 08:11:30 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Hello All,
+Hi,
 
-We are pleased to announce the second milestone release for Yocto Project 2=
-.8 (yocto-2.8_M2) is now available for download.
-
-Download:
-
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-2.8_M2
-
-bitbake: f5ea06fc2b6713c9f8e85ecf7cb981ae9a84d896
-meta-gplv2: 1e2480e50f34e55bdfd5e06f98441e03a3752d5a
-meta-intel: 3227874941bb8f9b706d6057b1de3997881bdffd
-meta-mingw: 3fa43aa92f1a1c90304f6f4f49270915d1392cce
-oecore: e0c3436241afca93f107e325d1b9ffcdebf706cd
-poky: 835f7eac0610325e906591cd81890bebe8627580
-
-Full Test Report:
-
-http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-2.8_M2/te=
-streport.txt
+Most of the services are started in boot, how can I have create a
+service only to be active in shutdown (not in boot) to clean up?
 
 Thank you.
 
-Vineela Tummalapalli
-vineela.tummalapalli@intel.com
-Yocto Project Build and Release
+Kind regards,
+
+- jh
 
