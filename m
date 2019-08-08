@@ -1,56 +1,56 @@
-Return-Path: <GWilson@sakuraus.com>
+Return-Path: <sangeeta.jain@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CE40CE00D9F; Wed,  7 Aug 2019 16:04:03 -0700 (PDT)
+	id BBD7DE00DA4; Wed,  7 Aug 2019 20:01:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [209.222.82.32 listed in list.dnswl.org]
-Received: from 11pmail.ess.barracuda.com (11pmail.ess.barracuda.com
-	[209.222.82.32])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88ED5E0098A
-	for <yocto@yoctoproject.org>; Wed,  7 Aug 2019 16:04:02 -0700 (PDT)
-Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
-	mx3.us-east-2a.ess.aws.cudaops.com (version=TLSv1.2
-	cipher=AES256-SHA256 bits=256 verify=NO);
-	Wed, 07 Aug 2019 23:04:01 +0000
-Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
-	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
-	Wed, 7 Aug 2019 16:02:37 -0700
-Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
-	([::1]) with mapi id 15.01.0669.032; Wed, 7 Aug 2019 16:02:37 -0700
-From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Thread-Topic: How to patch a recipe .inc file
-Thread-Index: AdVNcyKzKVFIrxDfSamTwte0yhpxQA==
-Date: Wed, 7 Aug 2019 23:02:37 +0000
-Message-ID: <2d30857640b244c1a8903078c86e03bf@sakuraus.com>
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Wed, 07 Aug 2019 20:01:49 PDT
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E054E00BAA
+	for <yocto@yoctoproject.org>; Wed,  7 Aug 2019 20:01:48 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	07 Aug 2019 20:00:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,358,1559545200"; d="scan'208";a="326172328"
+Received: from kmsmsx154.gar.corp.intel.com ([172.21.73.14])
+	by orsmga004.jf.intel.com with ESMTP; 07 Aug 2019 20:00:44 -0700
+Received: from pgsmsx110.gar.corp.intel.com ([169.254.13.19]) by
+	KMSMSX154.gar.corp.intel.com ([169.254.12.93]) with mapi id
+	14.03.0439.000; Thu, 8 Aug 2019 11:00:43 +0800
+From: "Jain, Sangeeta" <sangeeta.jain@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: QA notification for completed autobuilder build (yocto-2.6.3.rc1)
+Thread-Index: AQHVSHpx6skgUSSoJkubB04NtkJ+dKbmkWwAgAjUY9A=
+Date: Thu, 8 Aug 2019 03:00:42 +0000
+Message-ID: <015AB11D45F2C442929CB2765DAE738634E8DB38@PGSMSX110.gar.corp.intel.com>
+References: <20190801150425.40A8420251@debian10-ty-3.yocto.io>
+	<9DDD2658D1FE414E99172D2DB1E4D04348211190@PGSMSX109.gar.corp.intel.com>
+In-Reply-To: <9DDD2658D1FE414E99172D2DB1E4D04348211190@PGSMSX109.gar.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.5.3]
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMzI2ZmJiZjgtY2QwNC00NDE1LWEwOWYtOGExZTEwZDU5ZWM5IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiUEhvZDlEdWl3R0l3Y0k2ampPeHBWZk9aZ0x5OGJrU2czWGtKeTh5ZWNUa2I4MUQ2SXlMcCtTODduOE14bHFFSSJ9
+x-originating-ip: [172.30.20.205]
 MIME-Version: 1.0
-X-BESS-ID: 1565219030-893004-29853-40382-4
-X-BESS-VER: 2019.1_20190806.2101
-X-BESS-Apparent-Source-IP: 12.26.104.5
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2,
-	rules version 3.2.2.216996 [from 
-	cloudscan12-150.us-east-2a.ess.aws.cudaops.com]
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-Subject: How to patch a recipe .inc file
+Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>, "Chan,
+	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
+	"akuster808@gmail.com" <akuster808@gmail.com>
+Subject: Re: QA notification for completed autobuilder build (yocto-2.6.3.rc1)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,28 +62,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 Aug 2019 23:04:03 -0000
+X-List-Received-Date: Thu, 08 Aug 2019 03:01:50 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I'm working with a Yocto Sumo build provided with Qt's boot2qt system. I'm =
-trying to enable using initramfs as a step in trying to enable OSTree updat=
-es.
+Hello All,
 
-In the meta-raspberrypi documentation, section 3.14, it says to add some ke=
-rnel config to the linux-raspberrypi.inc file. I would prefer to keep my ch=
-anges to Yocto layer files in my own tree so I'm trying to figure out how t=
-o patch the existing file. I've got bitbake finding my patch file, but it c=
-an't find the file to patch.
+This is the full report for 2.6.3 RC1: =20
+https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/log/?h=
+=3Dintel-yocto-testresults
 
-Can somebody help me to specify that the file that I'm patching is part of =
-the meta-raspberrypi linux recipe?
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+No high milestone defects. =20
+No new defects are found in this build.
 
-I'm going to be gone for a week, but I wanted to ask this now so maybe I'll=
- have some information when I get back.
+=3D=3D=3D=3D=3D=3D=3DQA notes=3D=3D=3D=3D=3D=3D=3D=3D=3D
+One minor issue is observed, after installed core-image-sato-sdk image to N=
+UC7 internal harddisk, during boot up, it hangs at the Yocto splash screen.=
+ Need to manual press keyboard "enter" button multiple times for it to cont=
+inue the boot and bring the screen to sato GUI. No bug is filed for this is=
+sue as this seems to be a minor issue and QA team investigating more onto i=
+t. This bug is consistently reproducible.
 
-Regards,
-Greg Wilson-Lindberg=A0=20
-=20
+
+Thanks & Regards,
+Sangeeta Jain
+
 
