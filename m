@@ -1,56 +1,72 @@
-Return-Path: <sangeeta.jain@intel.com>
+Return-Path: <jonaskgandersson@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BBD7DE00DA4; Wed,  7 Aug 2019 20:01:50 -0700 (PDT)
+	id A05E1E00DA4; Wed,  7 Aug 2019 22:38:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, MIME_QP_LONG_LINE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Wed, 07 Aug 2019 20:01:49 PDT
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E054E00BAA
-	for <yocto@yoctoproject.org>; Wed,  7 Aug 2019 20:01:48 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-	by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	07 Aug 2019 20:00:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,358,1559545200"; d="scan'208";a="326172328"
-Received: from kmsmsx154.gar.corp.intel.com ([172.21.73.14])
-	by orsmga004.jf.intel.com with ESMTP; 07 Aug 2019 20:00:44 -0700
-Received: from pgsmsx110.gar.corp.intel.com ([169.254.13.19]) by
-	KMSMSX154.gar.corp.intel.com ([169.254.12.93]) with mapi id
-	14.03.0439.000; Thu, 8 Aug 2019 11:00:43 +0800
-From: "Jain, Sangeeta" <sangeeta.jain@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: QA notification for completed autobuilder build (yocto-2.6.3.rc1)
-Thread-Index: AQHVSHpx6skgUSSoJkubB04NtkJ+dKbmkWwAgAjUY9A=
-Date: Thu, 8 Aug 2019 03:00:42 +0000
-Message-ID: <015AB11D45F2C442929CB2765DAE738634E8DB38@PGSMSX110.gar.corp.intel.com>
-References: <20190801150425.40A8420251@debian10-ty-3.yocto.io>
-	<9DDD2658D1FE414E99172D2DB1E4D04348211190@PGSMSX109.gar.corp.intel.com>
-In-Reply-To: <9DDD2658D1FE414E99172D2DB1E4D04348211190@PGSMSX109.gar.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMzI2ZmJiZjgtY2QwNC00NDE1LWEwOWYtOGExZTEwZDU5ZWM5IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiUEhvZDlEdWl3R0l3Y0k2ampPeHBWZk9aZ0x5OGJrU2czWGtKeTh5ZWNUa2I4MUQ2SXlMcCtTODduOE14bHFFSSJ9
-x-originating-ip: [172.30.20.205]
-MIME-Version: 1.0
-Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>, "Chan,
-	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
-	"akuster808@gmail.com" <akuster808@gmail.com>
-Subject: Re: QA notification for completed autobuilder build (yocto-2.6.3.rc1)
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jonaskgandersson[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.171 listed in list.dnswl.org]
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com
+	[209.85.208.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 372ABE0074B
+	for <yocto@yoctoproject.org>; Wed,  7 Aug 2019 22:38:24 -0700 (PDT)
+Received: by mail-lj1-f171.google.com with SMTP id z28so33457511ljn.4
+	for <yocto@yoctoproject.org>; Wed, 07 Aug 2019 22:38:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=AAHhG9WCwBqhsOF3LSxaslAeIfaYm0NFUljN1k2ndPU=;
+	b=YmJDnowK2FAL3ONl9QTFrYR+O5RAPTGNsOzeTb0KVov/BTRT/h96JD8xAaTPKdG3Jc
+	DrQVKJ3Rj0F8x2YgWLjZCKqy4qNtgshQ1zHERYlCA1O1H1nNqbqgqVU9tMALYUoMp28s
+	UciT0F2MnmDwbUS3kkUiLkkBARYew06YQi0RH6XeoKuh22N709k/2mxab2Yym3P5NdeZ
+	YhdxBRiFV+wXBNwB2wEy+PyE2J7R2KFje+f0NN6x/bRzXeTF0BhPT8wKb1uoTptHhY6v
+	U0YpNmqZIesx/W79Y3whkeB2gIQUXsbureoCfTy8+l+cxScwVG9DstvYdSU/eNnqnTaz
+	AINQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=AAHhG9WCwBqhsOF3LSxaslAeIfaYm0NFUljN1k2ndPU=;
+	b=dRkrxaaVMYJOTWmZ5+DETvW73TKmWJwGJ4RJTX7b/tiFTLGf+DujzLDDws5QVHng/Z
+	ZmG5Jq7rM7olhzaDMSKsvTopkqIRsPg3gYtP23yZZZulvf5KRS5pj8eTT+ldgNOvpcI8
+	UB1GRhELg1bJCcXi9A3ahVhB2qMXKeQev2qd8E1Oj+jfYh81rU2+8U4S+1/A5DpzKeOu
+	WWIXbKOOCSbLQ6zoG4zNdO1kpczakHXlp6G/UYQo3ec2LQvBo0s5RUGODdAtU7O1aaIT
+	SykWAs83RP7xJcGFQalNBGPE27Gif54gwUyQegs7Owl8WrvhXwvyP+I0S3xvwKsLHHGI
+	BpCQ==
+X-Gm-Message-State: APjAAAXAUXf/Wn0pVlX7lJCyEzcIkWReAhMxv+U8YzZfsXCiH2O6rqcI
+	SI1DAL9X1a/Ep4sntEZMbcEurc5i
+X-Google-Smtp-Source: APXvYqzmCtqBlHzfyvMURab/Tg0Rr3DB5wIrBwGfHIDnbi82bTej/NKlGzLwADs1jkWnVs4OoqTeXg==
+X-Received: by 2002:a2e:9bc6:: with SMTP id w6mr7121446ljj.156.1565242703170; 
+	Wed, 07 Aug 2019 22:38:23 -0700 (PDT)
+Received: from [172.21.20.159] (78-69-166-142-no533.tbcn.telia.com.
+	[78.69.166.142]) by smtp.gmail.com with ESMTPSA id
+	z83sm18775289ljb.73.2019.08.07.22.38.22
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 07 Aug 2019 22:38:22 -0700 (PDT)
+Mime-Version: 1.0 (1.0)
+From: Gmail <jonaskgandersson@gmail.com>
+X-Mailer: iPhone Mail (16F203)
+In-Reply-To: <2d30857640b244c1a8903078c86e03bf@sakuraus.com>
+Date: Thu, 8 Aug 2019 07:38:21 +0200
+Message-Id: <E62D42AF-4605-424F-80F1-E045B3225B5B@gmail.com>
+References: <2d30857640b244c1a8903078c86e03bf@sakuraus.com>
+To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: How to patch a recipe .inc file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,31 +78,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Aug 2019 03:01:50 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 08 Aug 2019 05:38:25 -0000
+Content-Type: text/plain;
+	charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,
+Hi,
 
-This is the full report for 2.6.3 RC1: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/log/?h=
-=3Dintel-yocto-testresults
+To add some kernel config I have created an extra .cfg file in:
+my_recipe/recipes-kernel/linux/linux-raspberrypi/
+and add an bb_append file:
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects. =20
-No new defects are found in this build.
+recipes-kernel/linux/linux-raspberrypi_%25.bbappend
+__________________________________________________________
+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
 
-=3D=3D=3D=3D=3D=3D=3DQA notes=3D=3D=3D=3D=3D=3D=3D=3D=3D
-One minor issue is observed, after installed core-image-sato-sdk image to N=
-UC7 internal harddisk, during boot up, it hangs at the Yocto splash screen.=
- Need to manual press keyboard "enter" button multiple times for it to cont=
-inue the boot and bring the screen to sato GUI. No bug is filed for this is=
-sue as this seems to be a minor issue and QA team investigating more onto i=
-t. This bug is consistently reproducible.
+SRC_URI +=3D "file://your_conf.cfg"
+__________________________________________________________
 
+BR
+Jonas
 
-Thanks & Regards,
-Sangeeta Jain
-
+> 8 aug. 2019 kl. 01:02 skrev Greg Wilson-Lindberg <GWilson@sakuraus.com>:
+>=20
+> I'm working with a Yocto Sumo build provided with Qt's boot2qt system. I'm=
+ trying to enable using initramfs as a step in trying to enable OSTree updat=
+es.
+>=20
+> In the meta-raspberrypi documentation, section 3.14, it says to add some k=
+ernel config to the linux-raspberrypi.inc file. I would prefer to keep my ch=
+anges to Yocto layer files in my own tree so I'm trying to figure out how to=
+ patch the existing file. I've got bitbake finding my patch file, but it can=
+'t find the file to patch.
+>=20
+> Can somebody help me to specify that the file that I'm patching is part of=
+ the meta-raspberrypi linux recipe?
+>=20
+> I'm going to be gone for a week, but I wanted to ask this now so maybe I'l=
+l have some information when I get back.
+>=20
+> Regards,
+> Greg Wilson-Lindberg =20
+>=20
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
