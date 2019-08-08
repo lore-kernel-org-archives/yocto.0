@@ -1,57 +1,72 @@
-Return-Path: <sangeeta.jain@intel.com>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B565AE008D3; Thu,  8 Aug 2019 01:38:21 -0700 (PDT)
+	id 30044E00DAF; Thu,  8 Aug 2019 01:57:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBEFFE008D3
-	for <yocto@yoctoproject.org>; Thu,  8 Aug 2019 01:38:20 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	08 Aug 2019 01:38:20 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,360,1559545200"; d="scan'208";a="198971826"
-Received: from kmsmsx151.gar.corp.intel.com ([172.21.73.86])
-	by fmsmga004.fm.intel.com with ESMTP; 08 Aug 2019 01:38:18 -0700
-Received: from pgsmsx110.gar.corp.intel.com ([169.254.13.19]) by
-	KMSMSX151.gar.corp.intel.com ([169.254.10.91]) with mapi id
-	14.03.0439.000; Thu, 8 Aug 2019 16:38:17 +0800
-From: "Jain, Sangeeta" <sangeeta.jain@intel.com>
-To: "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: QA notification for completed autobuilder build (yocto-2.6.3.rc1)
-Thread-Index: AQHVSHpx6skgUSSoJkubB04NtkJ+dKbmkWwAgAjUY9CAAQnqgIAAiE0g
-Date: Thu, 8 Aug 2019 08:38:17 +0000
-Message-ID: <015AB11D45F2C442929CB2765DAE738634E8E09D@PGSMSX110.gar.corp.intel.com>
-References: <20190801150425.40A8420251@debian10-ty-3.yocto.io>
-	<9DDD2658D1FE414E99172D2DB1E4D04348211190@PGSMSX109.gar.corp.intel.com>
-	<015AB11D45F2C442929CB2765DAE738634E8DB38@PGSMSX110.gar.corp.intel.com>
-	<f19c9e93640fd023e78b1607229f186a3e5b68f5.camel@linuxfoundation.org>
-In-Reply-To: <f19c9e93640fd023e78b1607229f186a3e5b68f5.camel@linuxfoundation.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-x-ctpclassification: CTP_NT
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMmU5MTJlYzYtMTRhMi00ZGFiLTg0ODgtYzdmMGQ1NzUxMWMwIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoieTZXWDdvUjV3Sjh3QlYyeGVXM0NLdlNBaDg0VnJya2dtajVOT3pqZ1RDRm9cL3IwWGRORUFFSkxreWg3anczZkUifQ==
-x-originating-ip: [172.30.20.206]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jupiter.hce[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.65 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ot1-f65.google.com (mail-ot1-f65.google.com
+	[209.85.210.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0C50E00AE6
+	for <yocto@yoctoproject.org>; Thu,  8 Aug 2019 01:57:07 -0700 (PDT)
+Received: by mail-ot1-f65.google.com with SMTP id j11so15220160otp.10
+	for <yocto@yoctoproject.org>; Thu, 08 Aug 2019 01:57:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc; bh=rS2k8k9g7SAGIGaKuW593peaXeyihhNIYk5yQ3ejAls=;
+	b=Coz2Drhu8Ct2Z2dxTrFVLbQBO3Ox6bvQ8WkdM33oVNajwZYxIIy/MDdiFGQP7xIeZj
+	gzLOaZLbnspmIQagTcO5yZ2Kx9LFYtWKW1q+olrl/pyjPc8NudeukBNweXVYS2n4wR68
+	3FieznhoSWAmwOrVTVEHYATuPpmeplFOcpV2jPySy4Lk6aAQER8TPzr+o6e/jnWy84Mb
+	VStyibKRf43eQLmOpM7bgA4q0TYZitEhSKuDhkoLxYULd6xT7tmF8KAXVfLs0KtpFpU6
+	0O/yA66a4VJD1BXHkAfDPUomoSeykYdyagi7hj27GH4k/NjlJWWWE9QPQEHRBp18pyqo
+	fpXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc;
+	bh=rS2k8k9g7SAGIGaKuW593peaXeyihhNIYk5yQ3ejAls=;
+	b=JoqphlW06FUkAOuQMcx38f6Mqs+EWOtJ2sl6FyBlVnvEcFPcHoQy6Kqu+W7FOvavn0
+	Kd/PLdezR7JYOX9DTPXehujZof29WLLRS5a6Q0V6DC/TDdgBoPX9KUiseKUY2Y6Exkxi
+	306JBkPHLo7LrTK3FHLD/tL+GnbF2phxde69S7PgfF1CynpV4MpGB4inJb2GM5ldFpSb
+	lBY8gcoobeFn65E1XRKq+iRq/cdHUKlL/MY6/Cz9EIlu0VxLEHoON1l/vLhFmnyXQIhC
+	cRglVZRVbJM1aQZewiO8hHjrOgpFn210cQkrpqh9+EIYDFxvVz4Nh3Phf4Yd5DBE3q3t
+	jvFQ==
+X-Gm-Message-State: APjAAAW13vasTerCib0A8MIqzVzjwPwQDedhHLagxKqBEXuS9bnDbjpJ
+	ADkB2EdjYsvnYVglnfZ35b4qcxzqJ9j+hK8pkj4=
+X-Google-Smtp-Source: APXvYqyHVAzg7B+u5aRegFEAI8nGXaNWPkMLqb38ZXQ24AR1GxJif8m538Tn9y4Z8Qd4jgH/CZ0pQ5WwTdaBt3uQVHM=
+X-Received: by 2002:a5e:c247:: with SMTP id w7mr14201907iop.72.1565254626887; 
+	Thu, 08 Aug 2019 01:57:06 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>, "Chan,
-	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
-	"akuster808@gmail.com" <akuster808@gmail.com>
-Subject: Re: QA notification for completed autobuilder build (yocto-2.6.3.rc1)
+Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP;
+	Thu, 8 Aug 2019 01:57:06 -0700 (PDT)
+In-Reply-To: <CANNYZj-ubZWmoSpmtUnyjOq=i7=HfSFLMqQTxzQ1pg+XeP+qqw@mail.gmail.com>
+References: <CAA=hcWSByxp8OR09orkP6RO9uto6Dpf0rZmsGWigW0yQ82P=0g@mail.gmail.com>
+	<CAA=hcWRHaOj+24TYr9WBcaZqBbTjn-6BXjdG+Q=dEe3J355gBA@mail.gmail.com>
+	<CANNYZj-=r2pf7bKNYjT+=j=rWC_ajYxZ2jUR5OQxpzpiEw-Egw@mail.gmail.com>
+	<CAA=hcWQYO82WQiqwQvEgwbX3EwG+yLNWoWtT0WZR=m7zfdO3aA@mail.gmail.com>
+	<CANNYZj-osAvfX3ga98oQSegsewdKixxFjd7RYuYG6uJGg8qoFw@mail.gmail.com>
+	<CAA=hcWTZ4Ob=5+OZk9MowBw-Rc85Z9MXGKq4Hqs+=L=_c_KAdQ@mail.gmail.com>
+	<CANNYZj-ubZWmoSpmtUnyjOq=i7=HfSFLMqQTxzQ1pg+XeP+qqw@mail.gmail.com>
+From: JH <jupiter.hce@gmail.com>
+Date: Thu, 8 Aug 2019 18:57:06 +1000
+Message-ID: <CAA=hcWSYFaSON77L3tOdkwP2S8NbSQ5jmTDXKPr4mPNajMSmDg@mail.gmail.com>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: QA issue applibrary rdepends on app-dev [dev-deps], where is the do_package_qa?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,42 +78,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 Aug 2019 08:38:21 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 08 Aug 2019 08:57:08 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-DQo+LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj5Gcm9tOiByaWNoYXJkLnB1cmRpZUBsaW51
-eGZvdW5kYXRpb24ub3JnIDxyaWNoYXJkLnB1cmRpZUBsaW51eGZvdW5kYXRpb24ub3JnPg0KPlNl
-bnQ6IFRodXJzZGF5LCA4IEF1Z3VzdCwgMjAxOSA0OjI5IFBNDQo+VG86IEphaW4sIFNhbmdlZXRh
-IDxzYW5nZWV0YS5qYWluQGludGVsLmNvbT47IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj5DYzog
-b3RhdmlvQG9zc3lzdGVtcy5jb20uYnI7IHlpLnpoYW9Ad2luZHJpdmVyLmNvbTsgU2FuZ2FsLCBB
-cG9vcnYNCj48YXBvb3J2LnNhbmdhbEBpbnRlbC5jb20+OyBDaGFuLCBBYXJvbiBDaHVuIFlldw0K
-PjxhYXJvbi5jaHVuLnlldy5jaGFuQGludGVsLmNvbT47IEFuZywgQ2hpbiBIdWF0IDxjaGluLmh1
-YXQuYW5nQGludGVsLmNvbT47DQo+YWt1c3RlcjgwOEBnbWFpbC5jb207IHNqb2xsZXkueXAucG1A
-Z21haWwuY29tOyBZZW9oLCBFZSBQZW5nDQo+PGVlLnBlbmcueWVvaEBpbnRlbC5jb20+OyBUdW1t
-YWxhcGFsbGksIFZpbmVlbGENCj48dmluZWVsYS50dW1tYWxhcGFsbGlAaW50ZWwuY29tPg0KPlN1
-YmplY3Q6IFJlOiBRQSBub3RpZmljYXRpb24gZm9yIGNvbXBsZXRlZCBhdXRvYnVpbGRlciBidWls
-ZCAoeW9jdG8tMi42LjMucmMxKQ0KPg0KPk9uIFRodSwgMjAxOS0wOC0wOCBhdCAwMzowMCArMDAw
-MCwgSmFpbiwgU2FuZ2VldGEgd3JvdGU6DQo+PiBIZWxsbyBBbGwsDQo+Pg0KPj4gVGhpcyBpcyB0
-aGUgZnVsbCByZXBvcnQgZm9yIDIuNi4zIFJDMToNCj4+IGh0dHBzOi8vZ2l0LnlvY3RvcHJvamVj
-dC5vcmcvY2dpdC9jZ2l0LmNnaS95b2N0by10ZXN0cmVzdWx0cy1jb250cmliL2wNCj4+IG9nLz9o
-PWludGVsLXlvY3RvLXRlc3RyZXN1bHRzDQo+Pg0KPj4gPT09PT09PSBTdW1tYXJ5ID09PT09PT09
-DQo+PiBObyBoaWdoIG1pbGVzdG9uZSBkZWZlY3RzLg0KPj4gTm8gbmV3IGRlZmVjdHMgYXJlIGZv
-dW5kIGluIHRoaXMgYnVpbGQuDQo+Pg0KPj4gPT09PT09PVFBIG5vdGVzPT09PT09PT09DQo+PiBP
-bmUgbWlub3IgaXNzdWUgaXMgb2JzZXJ2ZWQsIGFmdGVyIGluc3RhbGxlZCBjb3JlLWltYWdlLXNh
-dG8tc2RrIGltYWdlDQo+PiB0byBOVUM3IGludGVybmFsIGhhcmRkaXNrLCBkdXJpbmcgYm9vdCB1
-cCwgaXQgaGFuZ3MgYXQgdGhlIFlvY3RvDQo+PiBzcGxhc2ggc2NyZWVuLiBOZWVkIHRvIG1hbnVh
-bCBwcmVzcyBrZXlib2FyZCAiZW50ZXIiIGJ1dHRvbiBtdWx0aXBsZQ0KPj4gdGltZXMgZm9yIGl0
-IHRvIGNvbnRpbnVlIHRoZSBib290IGFuZCBicmluZyB0aGUgc2NyZWVuIHRvIHNhdG8gR1VJLiBO
-bw0KPj4gYnVnIGlzIGZpbGVkIGZvciB0aGlzIGlzc3VlIGFzIHRoaXMgc2VlbXMgdG8gYmUgYSBt
-aW5vciBpc3N1ZSBhbmQgUUENCj4+IHRlYW0gaW52ZXN0aWdhdGluZyBtb3JlIG9udG8gaXQuIFRo
-aXMgYnVnIGlzIGNvbnNpc3RlbnRseQ0KPj4gcmVwcm9kdWNpYmxlLg0KPg0KPlRoYW5rcyBmb3Ig
-cnVubmluZyB0aGUgdGVzdHMuDQo+DQo+RldJVyB0aGUgaXNzdWUgYWJvdmUgc291bmRzIHZlcnkg
-bGlrZSBhIGxhY2sgb2YgZW50cm9weSBwcm9ibGVtLCB5b3UgbWF5IHdhbnQNCj50byBsb29rIGF0
-IHRoZSBrZXJuZWwgY29uZmlndXJhdGlvbiBhbmQgc2VlIGhvdyBpdHMgZ2VuZXJhdGluZyBlbnRy
-b3B5LiBJZiB5b3UgY2FuDQo+c2VlIHRoZSBrZXJuZWwgYm9vdCBtZXNzYWdlcyBhbmQgZGlzYWJs
-ZSB0aGUgc3BsYXNoIHNjcmVlbiB0aGF0IHdvdWxkIGhlbHANCj5kZWJ1ZyBpdC4NCg0KVGhhbmtz
-IGZvciB0aGUgcG9pbnRlciBSaWNoYXJkLiBJdCB3aWxsIGhlbHAgaW4gZGVidWdnaW5nLg0KPg0K
-PkNoZWVycywNCj4NCj5SaWNoYXJkDQoNClRoYW5rcywNClNhbmdlZXRhDQoNCg==
+Hi Alex, thanks for your response and kind help. I finally fixed it by
+adding a do_package_qa() in my bb file. What will be the consequence
+about it?
+
+Thank you.
+
+Kind regards,
+
+- jh
+
+On 8/6/19, Alexander Kanavin <alex.kanavin@gmail.com> wrote:
+> The right way out of this is to fix the issue: your main package depends on
+> the -dev package, and so will always pull it into the target image. I am
+> not telling you how to disable the check, as you're merely hiding a bug
+> that way :)
+
+> If you provide ls -lR of ${D}, we might be able to understand what happens.
+
+I found run.do_qa_configure.30897, run.do_qa_staging.3677, run
+
+
+
+
+> Alex
+>
+> On Tue, 6 Aug 2019 at 14:45, JH <jupiter.hce@gmail.com> wrote:
+>
+>> Thanks Alex, here is the error in my application build, it used working
+>> well:
+>>
+>> ERROR: app_library-1.0.0-0 do_package_qa: QA Issue: app_library
+>> rdepends on app_library-dev [dev-deps]
+>> ERROR: app_library-1.0.0-0 do_package_qa: QA run found fatal errors.
+>> Please consider fixing them.
+>> ERROR: app_library-1.0.0-0 do_package_qa: Function failed: do_package_qa
+>> ERROR: Logfile of failure stored in:
+>>
+>> /home/build/tmp-glibc/work/cortexa7t2hf-neon-oe-linux-gnueabi/app_library/1.0.0-0/temp/log.do_package_qa.6626
+>> ERROR: Task
+>> (/home/build/oe-core/../meta-app/recipes-core/app_library/app_library_git.bb:
+>> do_package_qa)
+>> failed with exit code '1'
+>>
+>> There is no do_package_qa in my app_library_git.bb, where is that
+>> do_package_qa from? how can I disable it? It sounds every easy in the
+>> document to disable it, but it did not give any clues -:(.
+>>
+>> Thank you.
+>>
+>> Kind regards,
+>>
+>> - jh
+>> On 8/6/19, Alexander Kanavin <alex.kanavin@gmail.com> wrote:
+>> > It may help if you copy-paste the exact error you are getting, and the
+>> > content of the directory where it happens.
+>> >
+>> > Alex
+>> >
+>> > On Tue, 6 Aug 2019 at 13:09, JH <jupiter.hce@gmail.com> wrote:
+>> >
+>> >> On 8/6/19, Alexander Kanavin <alex.kanavin@gmail.com> wrote:
+>> >> > You don't; package_qa is reporting real issues with your packaging,
+>> >> > so
+>> >> you
+>> >> > need to address them.
+>> >>
+>> >> Well, my first issue is I need to build it, the document said it can
+>> >> be disabled, but did not say how, appreciate anyone helps how to
+>> >> disable it.
+>> >>
+>> >> Thank you
+>> >>
+>> >>
+>> >> > Alex
+>> >> >
+>> >> > On Tue, 6 Aug 2019 at 10:40, JH <jupiter.hce@gmail.com> wrote:
+>> >> >
+>> >> >> Hi,
+>> >> >>
+>> >> >> According to the latest document:
+>> >> >>
+>> >> >> "Package QA checks are now performed during a new do_package_qa
+>> >> >> task
+>> >> >> rather than being part of the do_package task. This allows more
+>> >> >> parallel execution. This change is unlikely to be an issue except
+>> >> >> for
+>> >> >> highly customized recipes that disable packaging tasks themselves
+>> >> >> by
+>> >> >> marking them as noexec. For those packages, you will need to
+>> >> >> disable
+>> >> >> the do_package_qa task as well."
+>> >> >>
+>> >> >> How can I disable the do_package_qa task?
+>> >> >>
+>> >> >> Thank you.
+>> >> >>
+>> >> >> Kind regards,
+>> >> >>
+>> >> >> - jh
+>> >> >>
+>> >> >> On 8/4/19, JH <jupiter.hce@gmail.com> wrote:
+>> >> >> > Hi,
+>> >> >> >
+>> >> >> > I was running my Yocto build fine until I had a minor change to
+>> move
+>> >> >> > libapplibrary.so to libapplibrry.so.${PN} and made
+>> >> >> > libapplibrary.so
+>> >> >> > to
+>> >> >> > a symbolic link of libapplibrry.so.${PN}. Now it got an error of
+>> >> >> > QA
+>> >> >> > issue applibrary rdepends on app-dev [dev-deps], QA run found
+>> >> >> > fatal
+>> >> >> > errors, please consider fixing them.
+>> >> >> >
+>> >> >> > Even I reverse the changes back the, it still complained the same
+>> >> >> > error.
+>> >> >> >
+>> >> >> > I don't have do_package_qa in my bb file, where is it from? What
+>> >> >> > is
+>> >> >> > that error about? How to fix it?
+>> >> >> >
+>> >> >> > Thank you.
+>> >> >> >
+>> >> >> > Kind regards,
+>> >> >> >
+>> >> >> > - jh
+>> >> >> >
+>> >> >> --
+>> >> >> _______________________________________________
+>> >> >> yocto mailing list
+>> >> >> yocto@yoctoproject.org
+>> >> >> https://lists.yoctoproject.org/listinfo/yocto
+>> >> >>
+>> >> >
+>> >>
+>> >
+>>
+>
 
