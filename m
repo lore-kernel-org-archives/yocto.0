@@ -1,6 +1,6 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <qian.hao.developer@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E2615E00D74; Thu,  8 Aug 2019 23:20:04 -0700 (PDT)
+	id EB6C3E00DFB; Thu,  8 Aug 2019 23:20:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,7 +10,7 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
+	provider *      (qian.hao.developer[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -18,43 +18,48 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.180 listed in list.dnswl.org]
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com
-	[209.85.160.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1BB9E00CD7
-	for <yocto@yoctoproject.org>; Thu,  8 Aug 2019 23:20:03 -0700 (PDT)
-Received: by mail-qt1-f180.google.com with SMTP id k10so25663357qtq.1
-	for <yocto@yoctoproject.org>; Thu, 08 Aug 2019 23:20:03 -0700 (PDT)
+	*      [209.85.210.46 listed in list.dnswl.org]
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com
+	[209.85.210.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9737E00DE4
+	for <yocto@yoctoproject.org>; Thu,  8 Aug 2019 23:20:22 -0700 (PDT)
+Received: by mail-ot1-f46.google.com with SMTP id q20so128430154otl.0
+	for <yocto@yoctoproject.org>; Thu, 08 Aug 2019 23:20:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=5hcWWa8lhGUdJlWGBPH3/W4zNqyQjwmPJJCC80Tyq64=;
-	b=OB4FDZgqL+rcb3QhKy2p63tNkSUGDJrPTiQ1Hcfk4eex8Y1WjZW74mAXL4V2wXjJGm
-	N9hB+u3rZBMAa0Gispnl1izndr/CXRvpCfgBREkIC10rWc8eHnFA5QhlSfgxJc8pZofg
-	ncHyD+6K/J5l7EmVcUAc/esmaOVgju/Gv3Jxn6ZWZFVFIjL8jVq+7u1JeeZ+oZ3eLKTT
-	Kcr4LpD0PWEWXn3WnhLlWs2jZFSGmRhzIcyRpPq3d8jWJkQXQn6J5g7g5tAidSCuFhYV
-	RYTa7qhj9sJodv/eAeveIjPvHJ8SfDiYREkg1ixKrh42I7zsXLv5KnKGbHr9/PujMOHM
-	ak8A==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=9mcgNzQVMi6YNgKARpLnnm9SY32yGAt3Rh+UT5jfG1I=;
+	b=QL+5rX5DxysRn+Ine2UVRjb37eg9vXQy6HaeqFKEHOPOWPLxuvrbT7eEi1gWWOAMYJ
+	A0kQX6U+XeQxKPIh+MjKahH6W5qDG6t5QlQUtuaIMXOvM0G+nqlkfUtT2RERhe8/j3gv
+	8XT22acvBe9NGAkZzs9Esr9SrNCAM0LYyYrKcskaKDWp4DKqN2d33w8XbaNc6b7J4yD1
+	cemNeWOFMmj43loV+9zSzymq9YQ4pMjJrGXPmNBb4SO/XsJSdCNtkpTp9h9lxfrSdr1f
+	aaKy7Ns5hgI0ks7sZAYK0sR6zIyG9lVYdx51sHQ8zJr8yzYUAm18nGY+sJlCxn5Dqv47
+	HrIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=5hcWWa8lhGUdJlWGBPH3/W4zNqyQjwmPJJCC80Tyq64=;
-	b=P9cMTVmBtqe5xYIGMhe6lQJCzGIRHqQWxLKHUw1P+moqLHH2oYFzkzcsINS0HHDR1j
-	1EplAiLnz01ouquTON4LLiSKM8QatOAFng4fHuAn4CvhDDe2+DQG8q9MydP0mwGIMfLz
-	jlwIkfL5smhHWWliwNqc2U3TFYbVJGFtYdRBZn/PGJ2Od9sTt5MSRgH9GXKzujz1KDZS
-	Sr2MwjncnEd8hhHwM9Mn72q7ZjPZOBZ1ZP6wbNUrhVo75cjsyZa96tjJepdtcxXK519+
-	Ehmx4Vzp5zIfkFlAmG2PO4bQ7vcWYYvq3aiTBBCiBPuX86NnlUJRl+sTKRFimFVLdEeR
-	GCYg==
-X-Gm-Message-State: APjAAAXCXnHl4npuilR/TyDN8QIEbd5DTxvQY9JJPlXxNJ4RKKhLvYde
-	PIpa7sxZCkyM1qY6BdtcbqCq9koQjyfzfE/yVjZIwAy53bs=
-X-Google-Smtp-Source: APXvYqxrUBNtbhH5mchXGiOBelPgJHOLnatZ5+YUAVqE9If7EaF0n0a0bEsl6Tx2oOz8fjJlMOLmGjaLwqoQWzkX1RM=
-X-Received: by 2002:ac8:72cc:: with SMTP id o12mr10087987qtp.328.1565331602652;
-	Thu, 08 Aug 2019 23:20:02 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=9mcgNzQVMi6YNgKARpLnnm9SY32yGAt3Rh+UT5jfG1I=;
+	b=RKgaS5A+1Aj2NAUcxkOztrufFlY1nLjhuQAEIZt5B+WW99ui4G6ueI8DxEEViPvwhF
+	iH/riAUWc2kYDhm33xrmrCCCgcoasWvD20PR91JJb50XHO3ys8MSLooPLY3NiwHcVSjS
+	e1H9JcC/2KGhu34bgAlOq/IMQEg1w9HUhfQjyUBKSCPhssItt4zSTexFdpbElhgSXZaZ
+	hUu7lCbFf3Kz87XZGZb7hg522gW/IaFvdxsRBWUPVJpPu3saLHaPzH7tpoCk9t0h2gGM
+	rXKdu/8FaujmGxTH2/8NjjKN5WXZk2do2ulGnzrAzLG2KsI/xv+2oXChyZzHXF/fbce+
+	oRmQ==
+X-Gm-Message-State: APjAAAUSOuG+vbiugx8++GFpfzeHSC8gJdu9n1hNDb3qX6/pHy4hPoNN
+	WSzD2H/MuF458YLYeDKlQXPWAGhbOBz0PqpsZxE=
+X-Google-Smtp-Source: APXvYqzbIDqXHu0DRteJG6aDKgwfav/OGpUBvSRrRTx3i5uS1OR3gj53k5J70xAKdDN+pIWISjqYwgsq/HrLKT+Nzoc=
+X-Received: by 2002:a54:4f1b:: with SMTP id e27mr5102580oiy.171.1565331622266; 
+	Thu, 08 Aug 2019 23:20:22 -0700 (PDT)
 MIME-Version: 1.0
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Fri, 9 Aug 2019 08:19:51 +0200
-Message-ID: <CAGAf8LxnLncDewt_k1SUP-H6313ubeNRRW0cqp-gawJ_xsrgaw@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Yocto repos for NXP referent platform MCIMXABASEV1 also called SABRE platform?
+References: <CACxpVWczf1PThsuUkLzJZD7j+p4EMk-fBnKuwQeUsiemqH9mhQ@mail.gmail.com>
+	<09b388f2-7f3a-75d2-4399-84c99b09c0e4@windriver.com>
+In-Reply-To: <09b388f2-7f3a-75d2-4399-84c99b09c0e4@windriver.com>
+From: Hao Qian <qian.hao.developer@gmail.com>
+Date: Fri, 9 Aug 2019 15:20:12 +0900
+Message-ID: <CACxpVWeDXBrXd=m1JVB5=P93dutVW=hxFyxWKPEwtFsDOQQBjg@mail.gmail.com>
+To: ChenQi <Qi.Chen@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Build error after changing $TMPDIR
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,23 +71,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Aug 2019 06:20:05 -0000
+X-List-Received-Date: Fri, 09 Aug 2019 06:20:30 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-Hello to all,
+On Fri, Aug 9, 2019 at 12:15 PM ChenQi <Qi.Chen@windriver.com> wrote:
+>
+> No, it's not a stupid question.
+>
+> For now, setting TMPDIR like this does cause build error. More sanity check might be needed to error out directly in such case.
+> You can just source the build directory to be some location you want.
+> . oe-init-build-env /path/to/your/build/dir
+>
+> Or maybe you have some other specific needs?
+>
+> Regards,
+> Chen Qi
 
-I am trying to find out some recent yocto repo, which contains YOCTO
-reference repo for the following NXP board:
-MCIMXABASEV1 also called SABRE platform.
+OK, I see.
+I will take your advice.
 
-Here is one repo I found reading this document... But this is too outdated!
+Thanks a lot, appreciate it.
 
-http://events17.linuxfoundation.org/sites/events/files/slides/AGLAMM_How%20we%20Run%20AGL%20on%20i.MX%20processors_tkobayashi_25FEB16%20rev.D.pdf
-
-Does anybody have some other repos/suggestions in mind for such a
-board? Please, come forward if yes...
-
-Thank you,
-Zoran
-_______
+Qian
 
