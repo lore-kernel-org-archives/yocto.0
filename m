@@ -1,64 +1,47 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <baisch@tau-tec.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 39CE3E00DED; Fri,  9 Aug 2019 09:51:02 -0700 (PDT)
+	id 08C1BE00DED; Fri,  9 Aug 2019 10:22:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.180 listed in list.dnswl.org]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [85.13.130.187 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com
-	[209.85.222.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A99CAE00945
-	for <yocto@yoctoproject.org>; Fri,  9 Aug 2019 09:51:01 -0700 (PDT)
-Received: by mail-qk1-f180.google.com with SMTP id u190so8485591qkh.5
-	for <yocto@yoctoproject.org>; Fri, 09 Aug 2019 09:51:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=MdjTwBUy1+26voN23+2PhDmY359u1iE99JTgUP4s0kI=;
-	b=rrrGXyxgf2JIPn/Gjgtxn/K6OISrMeiovMrVuhs3v7gfl2J22137ctjjLR1H+k2V9g
-	SxnY27tSxOJ4VcXYkRglfezTwOSy1kMuhZuVnHBAAe9KGQH2J3bL8sE+nEQkTbAA+QjW
-	MUj/0ntVPMITGly2am6LMDJTcnUDFnlbP1dNRb14eFY6Ba7LPQ85+POhRmCNw6OJDGGB
-	HS/Eh8WLqZZ4WqGum8ciHCXH9n++ao0Vz6qug1ROPdsDHR515/Tg+xOFjxhX0qbWT8G4
-	zfYigoVvPwYyEWmIT0eIS8SWm5O8tM+uYPBtXdWEhQVCI3sm4WquUWozv1+5W7eVmIyo
-	HlSA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=MdjTwBUy1+26voN23+2PhDmY359u1iE99JTgUP4s0kI=;
-	b=Sy0mBgsS3Ddss45zNxeybJoiAggOl1svoVrGh2uU9hBFTlvCoaH+TldnUMpZUcrm8o
-	XhgzrRhvnq4l1JzDVM0FSVzBo+xUNUpLjaDiPBFekujPT/usTs24K0CT0qNN6Pp/UqzW
-	96L6hGGQzHxxhCm5QZx+ABvpJS5EmeaHV7kv2hHkJvYfQVjd5ptvyeDvE7OpCXp3SzfL
-	Qk7ddRuV4K/ZZsWk7r7L/IErbu2/CLMHxh2RNYD5efbz4N955zTRdbB4Lw5ECaCBehPe
-	62iK6GFbkBK7kVnCSrUP1a5KEUYLYoMuYN20AMUqX1FuLefOCXGc4dRF27xbdL6GRSiy
-	bKyQ==
-X-Gm-Message-State: APjAAAUecBgB9BDCdaA5X0cKX71nybTZFl2SSZmgMlycXu1Cifjb/sRE
-	/bVpMjZj3C1nC+1Pb31vUNZpxMZmjvrxBb6KSIM=
-X-Google-Smtp-Source: APXvYqyZ3ywZKdYTjjUwsf5OL8TcrJMJQpYd03NTOIWhbwCM8E/U87gGSTg6rVfzvE0JmBxvvQVaHXofdRGKmLl91JA=
-X-Received: by 2002:a37:ef1a:: with SMTP id j26mr9554945qkk.474.1565369460517; 
-	Fri, 09 Aug 2019 09:51:00 -0700 (PDT)
+Received: from dd5802.kasserver.com (dd5802.kasserver.com [85.13.130.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98116E00AB4
+	for <yocto@yoctoproject.org>; Fri,  9 Aug 2019 10:22:26 -0700 (PDT)
+Received: from dd5802.kasserver.com (dd0802.kasserver.com [85.13.143.1])
+	by dd5802.kasserver.com (Postfix) with ESMTPSA id B1DC93681AB2
+	for <yocto@yoctoproject.org>; Fri,  9 Aug 2019 19:22:25 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tau-tec.com;
+	s=kas201903211716; t=1565371345;
+	bh=bZYP9mMpMicNysrukeynJn3tWPwjS4/DCe4wmjZG1/c=;
+	h=In-Reply-To:References:Subject:From:To:Date:From;
+	b=f5QERtj04rcScI0kmVNscorp9fByElxHb2a0uEhGJmYON3AJhHEfSA9+xwOHrWpHR
+	AsOwzzvtH5rvhAC+z/aHXtqaWj0mBEFTOmw+c4P4XiwI0YDVyC9skrF/GhCeEiHlkk
+	nXXKiynl4gOZKiXROoo5mMX6ceCVz1daBqyBtGMcHHJCGAef0WN4EiyoDYttslHgjX
+	XQd6cWMcY8A8CNL8L6gz1OpdxQunEaBRyksnBvuupUXSFpQAcaO02S5kAMczbjAiX8
+	6oWpENSTO10AtaWm0lpKnj/9v7DDAPy307QvGcYE8OXG0FKxkseOx2uwGs4JJqTi+T
+	gxd2Gwgy65rzw==
 MIME-Version: 1.0
-References: <CAGAf8LxnLncDewt_k1SUP-H6313ubeNRRW0cqp-gawJ_xsrgaw@mail.gmail.com>
-In-Reply-To: <CAGAf8LxnLncDewt_k1SUP-H6313ubeNRRW0cqp-gawJ_xsrgaw@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 9 Aug 2019 09:50:33 -0700
-Message-ID: <CAMKF1spSYzqBKA-n+kRSZv+J08CmOGogsfR_D_o19b_Y8578Pw@mail.gmail.com>
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Yocto repos for NXP referent platform MCIMXABASEV1 also called SABRE platform?
+X-SenderIP: 84.136.102.136
+User-Agent: ALL-INKL Webmail 2.11
+In-Reply-To: <20190730143207.B02B33689E0D@dd5802.kasserver.com>
+References: <20190730143207.B02B33689E0D@dd5802.kasserver.com>
+From: baisch@tau-tec.com
+To: yocto@yoctoproject.org
+Message-Id: <20190809172225.B1DC93681AB2@dd5802.kasserver.com>
+Date: Fri,  9 Aug 2019 19:22:25 +0200 (CEST)
+Subject: Re: SDK: getting error "xmlcatalog: not found" installing SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,36 +53,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Aug 2019 16:51:02 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 09 Aug 2019 17:22:29 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8bit
 
-On Thu, Aug 8, 2019 at 11:20 PM Zoran Stojsavljevic
-<zoran.stojsavljevic@gmail.com> wrote:
->
-> Hello to all,
->
-> I am trying to find out some recent yocto repo, which contains YOCTO
-> reference repo for the following NXP board:
-> MCIMXABASEV1 also called SABRE platform.
->
-> Here is one repo I found reading this document... But this is too outdated!
->
-> http://events17.linuxfoundation.org/sites/events/files/slides/AGLAMM_How%20we%20Run%20AGL%20on%20i.MX%20processors_tkobayashi_25FEB16%20rev.D.pdf
->
-> Does anybody have some other repos/suggestions in mind for such a
-> board? Please, come forward if yes...
->
+Hello everyone,
 
-I would say look at
+I was able to workaround this issue: 
 
-http://layers.openembedded.org/layerindex/branch/master/machines/?q=sabre&search=1
+In `conf/bblayers.conf` I put my custom layer ontop of the `meta` layer. Since classes seem to ignore the priority set by the layer config. Then I copied the `classes/xmlcatalog.bbclass` class to my layer and in the file I changed `xmlcatalog` to `${bindir}/xmlcatalog`.
 
-> Thank you,
-> Zoran
-> _______
-> --
+I'm still not sure if this an error specific to my setup or a general issue which should be fixed. Also I was hoping there is a better solution since changes to the original `classes/xmlcatalog.bbclass` will always be overridden.
+
+Regards,
+
+- Michael
+-- 
+
+
+baisch@tau-tec.com wrote on 30.07.2019 16:32:
+> Hello,
+> 
+> after updating to warrior 2.7.1 from thud and trying to install the
+> Extensible
+> SDK again I'm getting the following error:
+> 
+> ```
+> ERROR: build-sysroots-1.0-r0 do_build_native_sysroot: Error executing a
+> python
+> function in exec_python_func() autogenerated:
+> 
+> The stack trace of python calls that resulted in this exception/failure
+> was:
+> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+>      0001:
+>  *** 0002:do_build_native_sysroot(d)
+>      0003:
+> File:
+> '/workdir/sdk/rpi/layers/poky/meta/recipes-core/meta/build-sysroots.bb',
+> lineno: 23, function: do_build_native_sysroot
+>      0019:
+>      0020:python do_build_native_sysroot () {
+>      0021: targetsysroot = d.getVar("STANDALONE_SYSROOT")
+>      0022: nativesysroot = d.getVar("STANDALONE_SYSROOT_NATIVE")
+>  *** 0023: staging_populate_sysroot_dir(targetsysroot, nativesysroot,
+>  True, d)
+>      0024:}
+>      0025:do_build_native_sysroot[cleandirs] =
+>      "${STANDALONE_SYSROOT_NATIVE}"
+>      0026:do_build_native_sysroot[nostamp] = "1"
+>      0027:addtask do_build_native_sysroot before do_build
+> File: '/workdir/sdk/rpi/layers/poky/meta/classes/staging.bbclass', lineno:
+> 235,
+> function: staging_populate_sysroot_dir
+>      0231: continue
+>      0232:
+>      0233: staging_processfixme(fixme, targetdir, targetsysroot,
+>      nativesysroot, d)
+>      0234: for p in postinsts:
+>  *** 0235: subprocess.check_output(p, shell=True,
+>  stderr=subprocess.STDOUT)
+>      0236:
+>      0237:#
+>      0238:# Manifests here are complicated. The main sysroot area has the
+>      unpacked sstate
+>      0239:# which us unrelocated and tracked by the main sstate manifests.
+>      Each
+>      recipe
+> File:
+> '/workdir/sdk/rpi/buildtools/sysroots/x86_64-pokysdk-linux/usr/lib/python3.7/subprocess.py',
+> lineno: 395, function: check_output
+>      0391: # empty string. That is maintained here for backwards
+>      compatibility.
+>      0392: kwargs['input'] = '' if kwargs.get('universal_newlines', False)
+>      else b''
+>      0393:
+>      0394: return run(*popenargs, stdout=PIPE, timeout=timeout,
+>      check=True,
+>  *** 0395: **kwargs).stdout
+>      0396:
+>      0397:
+>      0398:class CompletedProcess(object):
+>      0399: """A process that has finished running.
+> File:
+> '/workdir/sdk/rpi/buildtools/sysroots/x86_64-pokysdk-linux/usr/lib/python3.7/subprocess.py',
+> lineno: 487, function: run
+>      0483: raise
+>      0484: retcode = process.poll()
+>      0485: if check and retcode:
+>      0486: raise CalledProcessError(retcode, process.args,
+>  *** 0487: output=stdout, stderr=stderr)
+>      0488: return CompletedProcess(process.args, retcode, stdout, stderr)
+>      0489:
+>      0490:
+>      0491:def list2cmdline(seq):
+> Exception: subprocess.CalledProcessError: Command
+> '/workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog'
+> returned non-zero exit status 127.
+> 
+> Subprocess output:
+> /workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog:
+> 5:
+> /workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog:
+> xmlcatalog: not found
+> /workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog:
+> 8:
+> /workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog:
+> xmlcatalog: not found
+> ```
+> 
+> I believe the problem is that in the
+> `postinst-docbook-xsl-stylesheets-native-xmlcatalog`, `xmlcatalog` is not
+> an
+> absolute path and thus not found.
+> This can be traced to the new
+> `layers/poky/meta/classes/xmlcatalog.bbclass`. I
+> tried to change `xmlcatalog` to `${SYSROOT_DESTDIR}${bindir}/xmlcatalog`
+> there,
+> but even after cleaning the `docbook-xsl-stylesheets` recipe this change
+> had no
+> effect. I'm not sure if this class is cached somewhere else or something.
+> 
+> Can someone help me getting the SDK to work again, and maybe this is
+> general
+> thing with needs to be fixed?
+> 
+> 
+> Thank you.
+> 
+> Regards,
+> 
+> - Michael
+> -- 
+> 
+> -- 
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
+> 
+> 
+
 
