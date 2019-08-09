@@ -1,67 +1,35 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <Yi.Zhao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D02A7E00CDF; Fri,  9 Aug 2019 00:52:02 -0700 (PDT)
+	id 5FF29E00D74; Fri,  9 Aug 2019 02:48:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	https://www.dnswl.org/, *      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jupiter.hce[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.48 listed in list.dnswl.org]
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com
-	[209.85.210.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADA99E00BF8
-	for <yocto@yoctoproject.org>; Fri,  9 Aug 2019 00:52:01 -0700 (PDT)
-Received: by mail-ot1-f48.google.com with SMTP id l15so72072619oth.7
-	for <yocto@yoctoproject.org>; Fri, 09 Aug 2019 00:52:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=ocUaWqwhLXnBcCw7mAq/fU+S7dBULyQbXWqanWtz9Qo=;
-	b=RtGXV+OPNl0zd8jqRNAgDP61MCvB5wVgvV2Rsn2Gdj3vM+y0f+GPLgai0H4OCnvv2h
-	fkfkDYnx2PUpw5fYNkIafRlOKTU/oVKAQF7mKXA7z09nTypzeoddKXm1QiN892FYEkvr
-	fcvpjIHgH0ueboT4EV27NDeUR3RVcdSgVEemuHZekB7XP1oVg+V977cmarbgpCgu3/7C
-	blN/PtJcFEWts4Y8swpKeTMEo8aASLt89Dzq5VPvbVBJbnoZe27JKjqobNrOOr7qmpzt
-	PUDnPnFv2sz4W/D3rEHJEEVEGvabVNt53kbgvM/4TTLNn5NbYwcizLrzYepmC5f5Nv8B
-	vEPg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=ocUaWqwhLXnBcCw7mAq/fU+S7dBULyQbXWqanWtz9Qo=;
-	b=R2iuYVwvzPlouJ3YJYO8MeWukaYOVinupvsU4C22D9MOXW22yFcaVWx3cVVXJF2bzB
-	xbVNLkjdA6jLuv8XriTYc2oXQIrqy9yX77mjixGa8unUZb675LDpyFV3N0JqqL93tTQO
-	5vMutY/ONpLIu8RldbYIwcLhHBwRoofhBSfAFgUBFFazsxlS2X8VRq7dI3v+ABhWavXR
-	DDgZ9xzpNzQOCPfPorUibU8pBlt8oqgWpdCwiodXCIlwsg8Qv7NaX2DDmvcrDOuDiFI1
-	Y4snghlGTsYEsUB4uFBz5nnx4WieoqyewdHt4QoHGEf/doLww1JRYRIY6/gw25Azk/Kg
-	80sg==
-X-Gm-Message-State: APjAAAVTnCPvjXq9WwzFzo9NcUoWShzrpufSBgou5X1OEPa7Av5lHxAG
-	11TjKRm9elH/tGW9QV6QbL/BFMTbx0W5c8LtCfE=
-X-Google-Smtp-Source: APXvYqx9WdKJ3736zZLRM2HA0pQ4b7p3ndT8j/esFk9aJq1RBgErsbXBQfkIxdzDtRpWV624dOSNSDpfsfMWKzT4CTQ=
-X-Received: by 2002:a02:cc8f:: with SMTP id s15mr20762087jap.94.1565337120967; 
-	Fri, 09 Aug 2019 00:52:00 -0700 (PDT)
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDA22E00CD7
+	for <yocto@yoctoproject.org>; Fri,  9 Aug 2019 02:48:34 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x799mETO020539
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 9 Aug 2019 02:48:24 -0700
+Received: from localhost (128.224.162.136) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0;
+	Fri, 9 Aug 2019 02:48:02 -0700
+From: Yi Zhao <yi.zhao@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 9 Aug 2019 17:48:00 +0800
+Message-ID: <1565344080-13306-1-git-send-email-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Received: by 2002:ac0:a712:0:0:0:0:0 with HTTP;
-	Fri, 9 Aug 2019 00:52:00 -0700 (PDT)
-In-Reply-To: <a7cda5f1-cc91-f9af-2bb2-326b1edd2eec@windriver.com>
-References: <CAA=hcWS8cd8oXtY2z=JMAL6BB=tMSEi6yZMxSzz2fK8zyHnGEQ@mail.gmail.com>
-	<a7cda5f1-cc91-f9af-2bb2-326b1edd2eec@windriver.com>
-From: JH <jupiter.hce@gmail.com>
-Date: Fri, 9 Aug 2019 17:52:00 +1000
-Message-ID: <CAA=hcWR_=eQPy2S5VePpEjexxoom_3=bCKUTtZXRw3sCSr=Dvg@mail.gmail.com>
-To: ChenQi <Qi.Chen@windriver.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: How to create a service only startes at shutdown process?
+X-Originating-IP: [128.224.162.136]
+Subject: [meta-selinux][PATCH] libselinux: fix build with glibc 2.30
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,60 +41,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Aug 2019 07:52:02 -0000
+X-List-Received-Date: Fri, 09 Aug 2019 09:48:35 -0000
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi ChenQi,
+Fix build error:
+procattr.c:27:14: error: static declaration of 'gettid' follows
+non-static declaration
+   27 | static pid_t gettid(void)
+      |              ^~~~~~
+In file included from /buildarea/build/tmp/work/core2-64-poky-linux/libselinux/2.8-r0/recipe-sysroot/usr/include/unistd.h:1170,
+                 from procattr.c:2:
+/buildarea/build/tmp/work/core2-64-poky-linux/libselinux/2.8-r0/recipe-sysroot/usr/include/bits/unistd_ext.h:34:16:
+note: previous declaration of 'gettid' was here
+   34 | extern __pid_t gettid (void) __THROW;
+      |                ^~~~~~
 
-Thanks for the help, I tried following service, it did not work, the
-systemd complains bad unit
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ ...Do-not-define-gettid-if-glibc-2.30-is-use.patch | 60 ++++++++++++++++++++++
+ recipes-security/selinux/libselinux_2.8.bb         |  1 +
+ 2 files changed, 61 insertions(+)
+ create mode 100644 recipes-security/selinux/libselinux/0001-libselinux-Do-not-define-gettid-if-glibc-2.30-is-use.patch
 
-[Unit]
-Description=Application Shutdown Service
-Before=multi-user.target
+diff --git a/recipes-security/selinux/libselinux/0001-libselinux-Do-not-define-gettid-if-glibc-2.30-is-use.patch b/recipes-security/selinux/libselinux/0001-libselinux-Do-not-define-gettid-if-glibc-2.30-is-use.patch
+new file mode 100644
+index 0000000..fc3e37e
+--- /dev/null
++++ b/recipes-security/selinux/libselinux/0001-libselinux-Do-not-define-gettid-if-glibc-2.30-is-use.patch
+@@ -0,0 +1,60 @@
++From 2c672b4cc39fbddb6faec2c7434832058f339d59 Mon Sep 17 00:00:00 2001
++From: Petr Lautrbach <plautrba@redhat.com>
++Date: Mon, 11 Mar 2019 16:00:41 +0100
++Subject: [PATCH] libselinux: Do not define gettid() if glibc >= 2.30 is used
++MIME-Version: 1.0
++Content-Type: text/plain; charset=UTF-8
++Content-Transfer-Encoding: 8bit
++
++Since version 2.30 glibc implements gettid() system call wrapper, see
++https://sourceware.org/bugzilla/show_bug.cgi?id=6399
++
++Fixes:
++cc -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -Wp,-D_GLIBCXX_ASSERTIONS -fexceptions -fstack-protector-strong -grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1 -specs=/usr/lib/rpm/redhat/redhat-annobin-cc1 -m64 -mtune=generic -fasynchronous-unwind-tables -fstack-clash-protection -fcf-protection -I../include -D_GNU_SOURCE  -DNO_ANDROID_BACKEND   -c -o procattr.o procattr.c
++procattr.c:28:14: error: static declaration of ‘gettid’ follows non-static declaration
++   28 | static pid_t gettid(void)
++      |              ^~~~~~
++In file included from /usr/include/unistd.h:1170,
++                 from procattr.c:2:
++/usr/include/bits/unistd_ext.h:34:16: note: previous declaration of ‘gettid’ was here
++   34 | extern __pid_t gettid (void) __THROW;
++      |                ^~~~~~
++
++Upstream-Status: Backport
++[https://github.com/SELinuxProject/selinux/commit/707e4b8610733b5c9eaac0f00239778f3edb23c2]
++
++Signed-off-by: Petr Lautrbach <plautrba@redhat.com>
++Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
++---
++ src/procattr.c | 15 +++++++++++++--
++ 1 file changed, 13 insertions(+), 2 deletions(-)
++
++diff --git a/src/procattr.c b/src/procattr.c
++index 8bf8432..3c7b87f 100644
++--- a/src/procattr.c
+++++ b/src/procattr.c
++@@ -22,8 +22,19 @@ static pthread_key_t destructor_key;
++ static int destructor_key_initialized = 0;
++ static __thread char destructor_initialized;
++ 
++-#ifndef __BIONIC__
++-/* Bionic declares this in unistd.h and has a definition for it */
+++/* Bionic and glibc >= 2.30 declare gettid() system call wrapper in unistd.h and
+++ * has a definition for it */
+++#ifdef __BIONIC__
+++  #define OVERRIDE_GETTID 0
+++#elif !defined(__GLIBC_PREREQ)
+++  #define OVERRIDE_GETTID 1
+++#elif !__GLIBC_PREREQ(2,30)
+++  #define OVERRIDE_GETTID 1
+++#else
+++  #define OVERRIDE_GETTID 0
+++#endif
+++
+++#if OVERRIDE_GETTID
++ static pid_t gettid(void)
++ {
++ 	return syscall(__NR_gettid);
++-- 
++2.7.4
++
+diff --git a/recipes-security/selinux/libselinux_2.8.bb b/recipes-security/selinux/libselinux_2.8.bb
+index 5de4607..7545967 100644
+--- a/recipes-security/selinux/libselinux_2.8.bb
++++ b/recipes-security/selinux/libselinux_2.8.bb
+@@ -12,4 +12,5 @@ SRC_URI += "\
+         file://libselinux-make-SOCK_CLOEXEC-optional.patch \
+         file://libselinux-define-FD_CLOEXEC-as-necessary.patch \
+         file://0001-src-Makefile-fix-includedir-in-libselinux.pc.patch \
++        file://0001-libselinux-Do-not-define-gettid-if-glibc-2.30-is-use.patch \
+         "
+-- 
+2.7.4
 
-[Service]
-Type=oneshot
-ExecStart=
-ExecStop=/usr/sbin/app_cleanup.sh
-
-[Install]
-WantedBy=multi-user.target
-
->> Most of the services are started in boot, how can I have create a
->> service only to be active in shutdown (not in boot) to clean up?
->>
->> Thank you.
->>
->> Kind regards,
->>
->> - jh
->
-> Make use of ExecStop, leave ExecStart to be empty.
-
-I tried it:
-
-[Unit]
-Description=Application Shutdown Service
-Before=multi-user.target
-
-[Service]
-Type=oneshot
-ExecStart=
-ExecStop=/usr/sbin/app_cleanup.sh
-
-[Install]
-WantedBy=multi-user.target
-
-There were errors:
-
-Loaded: bad-setting (Reason: Unit myclean.service has a bad unit file set)
-
-What I could be missing here?
-
-Thank you very much.
-
-Kind regards,
-
-- jh
 
