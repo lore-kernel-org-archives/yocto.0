@@ -1,47 +1,45 @@
 Return-Path: <baisch@tau-tec.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 08C1BE00DED; Fri,  9 Aug 2019 10:22:29 -0700 (PDT)
+	id 2D9E0E00DED; Fri,  9 Aug 2019 10:35:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	https://www.dnswl.org/, low *      trust
 	*      [85.13.130.187 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 Received: from dd5802.kasserver.com (dd5802.kasserver.com [85.13.130.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98116E00AB4
-	for <yocto@yoctoproject.org>; Fri,  9 Aug 2019 10:22:26 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BB8FE00AB6
+	for <yocto@yoctoproject.org>; Fri,  9 Aug 2019 10:35:06 -0700 (PDT)
 Received: from dd5802.kasserver.com (dd0802.kasserver.com [85.13.143.1])
-	by dd5802.kasserver.com (Postfix) with ESMTPSA id B1DC93681AB2
-	for <yocto@yoctoproject.org>; Fri,  9 Aug 2019 19:22:25 +0200 (CEST)
+	by dd5802.kasserver.com (Postfix) with ESMTPSA id 877B736872B9
+	for <yocto@yoctoproject.org>; Fri,  9 Aug 2019 19:35:05 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tau-tec.com;
-	s=kas201903211716; t=1565371345;
-	bh=bZYP9mMpMicNysrukeynJn3tWPwjS4/DCe4wmjZG1/c=;
-	h=In-Reply-To:References:Subject:From:To:Date:From;
-	b=f5QERtj04rcScI0kmVNscorp9fByElxHb2a0uEhGJmYON3AJhHEfSA9+xwOHrWpHR
-	AsOwzzvtH5rvhAC+z/aHXtqaWj0mBEFTOmw+c4P4XiwI0YDVyC9skrF/GhCeEiHlkk
-	nXXKiynl4gOZKiXROoo5mMX6ceCVz1daBqyBtGMcHHJCGAef0WN4EiyoDYttslHgjX
-	XQd6cWMcY8A8CNL8L6gz1OpdxQunEaBRyksnBvuupUXSFpQAcaO02S5kAMczbjAiX8
-	6oWpENSTO10AtaWm0lpKnj/9v7DDAPy307QvGcYE8OXG0FKxkseOx2uwGs4JJqTi+T
-	gxd2Gwgy65rzw==
+	s=kas201903211716; t=1565372105;
+	bh=8CSUCuoDiJlbR1FQOEK/uxnEqCbQ5OUQ8rjjbAH6SjY=;
+	h=Subject:From:To:Date:From;
+	b=NMxYVDzBd+ilweeNqpGdRd1+0JEj3aDucRyyBzakkmfy9y7HGpezCix40I+MjvXB+
+	YBzrIhjMD7t/dMw2d1spviRfFqoswp/N1UmXSJxgVDrNZfZluP+uvUBbSn2bsMy4QT
+	GdvhK3Ne+wG/x/AzFimyrV5rzo6nK3L+OjnBU0t/LSfaETljpay+c+asbTNGM8Nlx4
+	rJ88np3/CtfZKbkKYITWjohapea1AswrubpiQlg0RipapqgMN1AlCWdDIRwuKki7+q
+	5ZgRC4JfFh1yr/A2zM2F9DauH0CrJHQ7FxAKB9xcEraF57tPEqpZH8//zIwBlST5C6
+	Oys3mXQE4EdFA==
 MIME-Version: 1.0
 X-SenderIP: 84.136.102.136
 User-Agent: ALL-INKL Webmail 2.11
-In-Reply-To: <20190730143207.B02B33689E0D@dd5802.kasserver.com>
-References: <20190730143207.B02B33689E0D@dd5802.kasserver.com>
 From: baisch@tau-tec.com
 To: yocto@yoctoproject.org
-Message-Id: <20190809172225.B1DC93681AB2@dd5802.kasserver.com>
-Date: Fri,  9 Aug 2019 19:22:25 +0200 (CEST)
-Subject: Re: SDK: getting error "xmlcatalog: not found" installing SDK
+Message-Id: <20190809173505.877B736872B9@dd5802.kasserver.com>
+Date: Fri,  9 Aug 2019 19:35:05 +0200 (CEST)
+Subject: Using extensible SDK with multilib
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,145 +51,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Aug 2019 17:22:29 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 09 Aug 2019 17:35:07 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+
 
 Hello everyone,
 
-I was able to workaround this issue: 
+Short version:
 
-In `conf/bblayers.conf` I put my custom layer ontop of the `meta` layer. Since classes seem to ignore the priority set by the layer config. Then I copied the `classes/xmlcatalog.bbclass` class to my layer and in the file I changed `xmlcatalog` to `${bindir}/xmlcatalog`.
+I have an 64 bit Yocto Raspberry build with a piece of 32 bit software with
+multilib. The goal is now to be able to use the eSDK to build 32 bit
+software for that system. After building and installing the eSDK there are
+even two files environment-setup-aarch64-poky-linux and
+environment-setup-armv7ve-vfp-pokymllib32-linux-gnueabi. After sourcing the
+32bit armv7ve environment file, devtool is still building my software as 64
+bit. Why doesn't it work?
 
-I'm still not sure if this an error specific to my setup or a general issue which should be fixed. Also I was hoping there is a better solution since changes to the original `classes/xmlcatalog.bbclass` will always be overridden.
+Long version:
+
+The multilib definition in my local config looks like this:
+
+require conf/multilib.conf
+MULTILIBS = "multilib:lib32"
+DEFAULTTUNE_virtclass-multilib-lib32 = "armv7ve"
+IMAGE_INSTALL_append_raspberrypi3-64 = " lib32-software-dummy"
+
+
+The software-dummy "hello world" project builds fine in 32 bit.
+
+Now on to the eSDK: The
+environment-setup-armv7ve-vfp-pokymllib32-linux-gnueabi actually didn't work
+out of the box, I needed to add the bottom of
+environment-setup-aarch64-poky-linux to
+environment-setup-armv7ve-vfp-pokymllib32-linux-gnueabi, so devtool is
+found.
+
+This part was missing from the armv7ve environment file:
+
+. /workdir/sdk/rpi/buildtools/environment-setup*
+export OE_SKIP_SDK_CHECK=1
+export DEPLOY_DIR_IMAGE=/workdir/sdk/rpi/tmp/deploy/images/raspberrypi3-64
+export PATH=/workdir/sdk/rpi/sysroots/x86_64-pokysdk-linux/usr/bin:$PATH
+printf 'SDK environment now set up; additionally you may now run devtool to
+perform development tasks.
+Run devtool --help for further details.
+'
+(which bitbake > /dev/null 2>&1 && echo 'WARNING: attempting to use the
+extensible SDK in an environment set up to run bitbake - this may lead to
+unexpected results. Please source this script in a new shell session
+instead.') || true
+
+
+Another thing I noticed that SDKTARGETSYSROOT in both files point to
+/workdir/sdk/rpi/tmp/sysroots/raspberrypi3-64 which is maybe not correct.
+Also not very sure about DEPLOY_DIR_IMAGE.
+
+
+Eg. in environment-setup-aarch64-poky-linux we have:
+
+export CC="aarch64-poky-linux-gcc --sysroot=$SDKTARGETSYSROOT"
+export CXX="aarch64-poky-linux-g++ --sysroot=$SDKTARGETSYSROOT"
+…
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-poky-linux-
+
+
+while in environment-setup-armv7ve-vfp-pokymllib32-linux-gnueabi:
+
+export CC="arm-pokymllib32-linux-gnueabi-gcc -march=armv7ve -mfpu=vfp
+-mfloat-abi=softfp --sysroot=$SDKTARGETSYSROOT"
+export CXX="arm-pokymllib32-linux-gnueabi-g++ -march=armv7ve -mfpu=vfp
+-mfloat-abi=softfp --sysroot=$SDKTARGETSYSROOT"
+…
+export ARCH=arm
+export CROSS_COMPILE=arm-pokymllib32-linux-gnueabi-
+
+
+After sourcing the armv7ve environment file, building the software I added
+with devtool, it's still building in 64 bit. Looking at the run.do_install
+logfile I see this:
+
+export AR="aarch64-poky-linux-ar"
+export AS="aarch64-poky-linux-as "
+…
+export CC="aarch64-poky-linux-gcc -fstack-protector-strong
+-D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security
+--sysroot=/workdir/sdk/rpi/tmp/work/aarch64-poky-linux/cmake-test/1.0-r0/recipe-sysroot"
+…
+export CCLD="aarch64-poky-linux-gcc -fstack-protector-strong
+-D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security
+--sysroot=/workdir/sdk/rpi/tmp/work/aarch64-poky-linux/cmake-test/1.0-r0/recipe-sysroot"
+
+
+for some reason it's all 64 bit in there and I don't know where this comes
+from. The armv7ve environment file also has
+/workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/arm-pokymllib32-linux-gnueabi
+in it's PATH, where the 32 bit compilers seem to live.
+
+
+The only way I found to build my software is to build a little script that
+calls bitbake directly or to add IMAGE_INSTALL_append_raspberrypi3-64 = "
+lib32-cmake-test" to the local.config and build the image with devtool. Both
+are not nice solutions.
+
+Thank you for any help!
 
 Regards,
 
 - Michael
--- 
+--
 
-
-baisch@tau-tec.com wrote on 30.07.2019 16:32:
-> Hello,
-> 
-> after updating to warrior 2.7.1 from thud and trying to install the
-> Extensible
-> SDK again I'm getting the following error:
-> 
-> ```
-> ERROR: build-sysroots-1.0-r0 do_build_native_sysroot: Error executing a
-> python
-> function in exec_python_func() autogenerated:
-> 
-> The stack trace of python calls that resulted in this exception/failure
-> was:
-> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->      0001:
->  *** 0002:do_build_native_sysroot(d)
->      0003:
-> File:
-> '/workdir/sdk/rpi/layers/poky/meta/recipes-core/meta/build-sysroots.bb',
-> lineno: 23, function: do_build_native_sysroot
->      0019:
->      0020:python do_build_native_sysroot () {
->      0021: targetsysroot = d.getVar("STANDALONE_SYSROOT")
->      0022: nativesysroot = d.getVar("STANDALONE_SYSROOT_NATIVE")
->  *** 0023: staging_populate_sysroot_dir(targetsysroot, nativesysroot,
->  True, d)
->      0024:}
->      0025:do_build_native_sysroot[cleandirs] =
->      "${STANDALONE_SYSROOT_NATIVE}"
->      0026:do_build_native_sysroot[nostamp] = "1"
->      0027:addtask do_build_native_sysroot before do_build
-> File: '/workdir/sdk/rpi/layers/poky/meta/classes/staging.bbclass', lineno:
-> 235,
-> function: staging_populate_sysroot_dir
->      0231: continue
->      0232:
->      0233: staging_processfixme(fixme, targetdir, targetsysroot,
->      nativesysroot, d)
->      0234: for p in postinsts:
->  *** 0235: subprocess.check_output(p, shell=True,
->  stderr=subprocess.STDOUT)
->      0236:
->      0237:#
->      0238:# Manifests here are complicated. The main sysroot area has the
->      unpacked sstate
->      0239:# which us unrelocated and tracked by the main sstate manifests.
->      Each
->      recipe
-> File:
-> '/workdir/sdk/rpi/buildtools/sysroots/x86_64-pokysdk-linux/usr/lib/python3.7/subprocess.py',
-> lineno: 395, function: check_output
->      0391: # empty string. That is maintained here for backwards
->      compatibility.
->      0392: kwargs['input'] = '' if kwargs.get('universal_newlines', False)
->      else b''
->      0393:
->      0394: return run(*popenargs, stdout=PIPE, timeout=timeout,
->      check=True,
->  *** 0395: **kwargs).stdout
->      0396:
->      0397:
->      0398:class CompletedProcess(object):
->      0399: """A process that has finished running.
-> File:
-> '/workdir/sdk/rpi/buildtools/sysroots/x86_64-pokysdk-linux/usr/lib/python3.7/subprocess.py',
-> lineno: 487, function: run
->      0483: raise
->      0484: retcode = process.poll()
->      0485: if check and retcode:
->      0486: raise CalledProcessError(retcode, process.args,
->  *** 0487: output=stdout, stderr=stderr)
->      0488: return CompletedProcess(process.args, retcode, stdout, stderr)
->      0489:
->      0490:
->      0491:def list2cmdline(seq):
-> Exception: subprocess.CalledProcessError: Command
-> '/workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog'
-> returned non-zero exit status 127.
-> 
-> Subprocess output:
-> /workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog:
-> 5:
-> /workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog:
-> xmlcatalog: not found
-> /workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog:
-> 8:
-> /workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog:
-> xmlcatalog: not found
-> ```
-> 
-> I believe the problem is that in the
-> `postinst-docbook-xsl-stylesheets-native-xmlcatalog`, `xmlcatalog` is not
-> an
-> absolute path and thus not found.
-> This can be traced to the new
-> `layers/poky/meta/classes/xmlcatalog.bbclass`. I
-> tried to change `xmlcatalog` to `${SYSROOT_DESTDIR}${bindir}/xmlcatalog`
-> there,
-> but even after cleaning the `docbook-xsl-stylesheets` recipe this change
-> had no
-> effect. I'm not sure if this class is cached somewhere else or something.
-> 
-> Can someone help me getting the SDK to work again, and maybe this is
-> general
-> thing with needs to be fixed?
-> 
-> 
-> Thank you.
-> 
-> Regards,
-> 
-> - Michael
-> -- 
-> 
-> -- 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-> 
-> 
 
 
