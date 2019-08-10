@@ -1,45 +1,50 @@
-Return-Path: <baisch@tau-tec.com>
+Return-Path: <ouyangxuan10@163.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2D9E0E00DED; Fri,  9 Aug 2019 10:35:07 -0700 (PDT)
+	id B565EE00C9C; Sat, 10 Aug 2019 00:35:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	https://www.dnswl.org/, low *      trust
-	*      [85.13.130.187 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (ouyangxuan10[at]163.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from dd5802.kasserver.com (dd5802.kasserver.com [85.13.130.187])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BB8FE00AB6
-	for <yocto@yoctoproject.org>; Fri,  9 Aug 2019 10:35:06 -0700 (PDT)
-Received: from dd5802.kasserver.com (dd0802.kasserver.com [85.13.143.1])
-	by dd5802.kasserver.com (Postfix) with ESMTPSA id 877B736872B9
-	for <yocto@yoctoproject.org>; Fri,  9 Aug 2019 19:35:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=tau-tec.com;
-	s=kas201903211716; t=1565372105;
-	bh=8CSUCuoDiJlbR1FQOEK/uxnEqCbQ5OUQ8rjjbAH6SjY=;
-	h=Subject:From:To:Date:From;
-	b=NMxYVDzBd+ilweeNqpGdRd1+0JEj3aDucRyyBzakkmfy9y7HGpezCix40I+MjvXB+
-	YBzrIhjMD7t/dMw2d1spviRfFqoswp/N1UmXSJxgVDrNZfZluP+uvUBbSn2bsMy4QT
-	GdvhK3Ne+wG/x/AzFimyrV5rzo6nK3L+OjnBU0t/LSfaETljpay+c+asbTNGM8Nlx4
-	rJ88np3/CtfZKbkKYITWjohapea1AswrubpiQlg0RipapqgMN1AlCWdDIRwuKki7+q
-	5ZgRC4JfFh1yr/A2zM2F9DauH0CrJHQ7FxAKB9xcEraF57tPEqpZH8//zIwBlST5C6
-	Oys3mXQE4EdFA==
-MIME-Version: 1.0
-X-SenderIP: 84.136.102.136
-User-Agent: ALL-INKL Webmail 2.11
-From: baisch@tau-tec.com
+X-Greylist: delayed 911 seconds by postgrey-1.32 at yocto-www;
+	Sat, 10 Aug 2019 00:35:44 PDT
+Received: from m13-31.163.com (m13-31.163.com [220.181.13.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A6B2E00A5C
+	for <yocto@yoctoproject.org>; Sat, 10 Aug 2019 00:35:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=HoslM
+	NiPETy9RzspQ4sD++XCtOSYJGgspHCjWLcqbQc=; b=GIjWG3h1KITSXN9My3IGq
+	tzZtA6paYM5I8ek9YaJomNUMYX5plwXha7Oi4m6I4scyAy3kRfgeXmBQolneKQO6
+	OtBGPvhab6WZb2h8bVTa9URNDu766h/1jFsGKdulI43z0onCrerobjiTYYF+m83c
+	oNXPQ+tX61YpbENz3DQMRw=
+Received: from ouyangxuan10$163.com ( [106.120.127.15] ) by
+	ajax-webmail-wmsvr31 (Coremail) ; Sat, 10 Aug 2019 15:20:30 +0800 (CST)
+X-Originating-IP: [106.120.127.15]
+Date: Sat, 10 Aug 2019 15:20:30 +0800 (CST)
+From: www <ouyangxuan10@163.com>
 To: yocto@yoctoproject.org
-Message-Id: <20190809173505.877B736872B9@dd5802.kasserver.com>
-Date: Fri,  9 Aug 2019 19:35:05 +0200 (CEST)
-Subject: Using extensible SDK with multilib
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.10 build 20190724(ac680a23)
+	Copyright (c) 2002-2019 www.mailtech.cn 163com
+X-CM-CTRLDATA: Vpk8B2Zvb3Rlcl9odG09MTQwMDo1Ng==
+MIME-Version: 1.0
+Message-ID: <b9d05c.477a.16c7a667413.Coremail.ouyangxuan10@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: H8GowADnKqI+cE5d8gvOAA--.14983W
+X-CM-SenderInfo: prx1t0pj0xt0irq6il2tof0z/1tbiLh4N2lSIjMDq4gAAs-
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Subject: ask a question about filesystem in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,116 +56,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 Aug 2019 17:35:07 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sat, 10 Aug 2019 07:35:46 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_71260_473889476.1565421630483"
 
+------=_Part_71260_473889476.1565421630483
+Content-Type: text/plain; charset=GBK
+Content-Transfer-Encoding: base64
 
-Hello everyone,
+RGVhciBhbGwsCgoKSSdtIG5ldyBsZWFybmVyIGFuZCB1c2VyIG9mIHlvY3RvLiBXaGVuIEkgdXNl
+ZCBpdCwgSSBlbmNvdW50ZXJlZCBhIHByb2JsZW0uIEkgZG9uJ3Qga25vdyBob3cgdG8gcmVzb2x2
+ZSBpdCwgc28gSSBhc2sgZm9yIGhlbHAuCnRoZSBwcm9ibGVtIGlzIGhvdyBjYW4gSSBjcmVhdGUg
+YSBuZXcgcGFydGl0aW9uIG9uIHlvY3RvPyBpZiBJIGhhdmUgYSBwYWNrYWdlIG5hbWVkIHdlYnVp
+LCBpdCBjYW4gYmUgZ2VuZXJhdGUgc2V2ZXJhbCBleGVjdXRlIGZpbGVzIGFuZCBjb25maWd1cmF0
+aW9uIGZpbGVzLCB0aGUgZXhlY3V0ZSBmaWxlcyB3aWxsIGJlIGluc3RhbGwgaW50byBmaWxlc3lz
+dGVtLCBzdWNoIGFzICIvdXNyL2JpbiIsIGFuZCBiZSBwYWNrZWQgdG8gcm9mcy4gYnV0IEkgZG9u
+J3Qgd2FudCBwYWNrIHRoZSBjb25maWd1cmF0aW9uIGZpbGVzICB0byByb2ZzLCBhbmQgSSB3YW50
+IGNyZWF0ZSBhIG5ldyBpbWFnZSBhbmQgdGhlIGltYWdlIHdpbGwgYmUgYSBwYXJ0aXRpb24gb2Yg
+dGhlIGdsb2JhbCBpbWFnZSwgYW5kIHBhY2sgdGhlIGNvbmZpZ3VyYXRpb24gZmlsZSB0byBpdCwg
+d2hlbiB0aGUgc3lzdGVtIHN0YXJ0IHJ1bm5pbmcsIGl0IGNhbiBiZSAgc2VwYXJhdGUgICAgbW91
+bnQgdG8gdGhlIGZpbGVzeXN0ZW0uCgoKV2hlbiBwYWNrIHRvIHJvZnMgaW1hZ2UsIEkgZG9uJ3Qg
+a25vdyBob3cgdG8gc2VwYXJhdGUgdGhlIGV4ZWN1dGUgZmlsZSBhbmQgY29uZmlndXJhdGlvbiBm
+aWxlIGluIHRoZSB3ZWJ1aSBwYWNrYWdlIGFuZCBwYWNrIHRvIGRpZmZlcmVudCBwYXJ0LiBDYW4g
+c29tZW9uZSBoZWxwIG1lIHRvIHRlbGwgbWUgaG93IHRvIHNvbHZlIHRoaXMgcHJvYmxlbT8KCgpJ
+IGFtIGxvb2tpbmcgZm9yd2FyZCB0byB5b3VyIHJlcGx5LgoKCnRoYW5rc6OsCkJ5cm9u
 
-Short version:
+------=_Part_71260_473889476.1565421630483
+Content-Type: text/html; charset=GBK
+Content-Transfer-Encoding: base64
 
-I have an 64 bit Yocto Raspberry build with a piece of 32 bit software with
-multilib. The goal is now to be able to use the eSDK to build 32 bit
-software for that system. After building and installing the eSDK there are
-even two files environment-setup-aarch64-poky-linux and
-environment-setup-armv7ve-vfp-pokymllib32-linux-gnueabi. After sourcing the
-32bit armv7ve environment file, devtool is still building my software as 64
-bit. Why doesn't it work?
+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
+Zm9udC1mYW1pbHk6QXJpYWwiPjxkaXY+RGVhciBhbGwsPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRp
+dj5JJ20gbmV3IGxlYXJuZXIgYW5kIHVzZXIgb2YgeW9jdG8uIFdoZW4gSSB1c2VkIGl0LCBJIGVu
+Y291bnRlcmVkIGEgcHJvYmxlbS4gSSBkb24ndCBrbm93IGhvdyB0byByZXNvbHZlIGl0LCBzbyBJ
+IGFzayBmb3IgaGVscC48L2Rpdj48ZGl2PnRoZSBwcm9ibGVtIGlzIGhvdyBjYW4gSSBjcmVhdGUg
+YSBuZXcgcGFydGl0aW9uIG9uIHlvY3RvPyBpZiBJIGhhdmUgYSBwYWNrYWdlIG5hbWVkIHdlYnVp
+LCBpdCBjYW4gYmUgZ2VuZXJhdGUgc2V2ZXJhbCBleGVjdXRlIGZpbGVzIGFuZCBjb25maWd1cmF0
+aW9uIGZpbGVzLCB0aGUgZXhlY3V0ZSBmaWxlcyB3aWxsIGJlIGluc3RhbGwgaW50byBmaWxlc3lz
+dGVtLCBzdWNoIGFzICIvdXNyL2JpbiIsIGFuZCBiZSBwYWNrZWQgdG8gcm9mcy4gYnV0IEkgZG9u
+J3Qgd2FudCBwYWNrIHRoZSBjb25maWd1cmF0aW9uIGZpbGVzJm5ic3A7IHRvIHJvZnMsIGFuZCBJ
+IHdhbnQgY3JlYXRlIGEgbmV3IGltYWdlIGFuZCB0aGUgaW1hZ2Ugd2lsbCBiZSBhIHBhcnRpdGlv
+biBvZiB0aGUgZ2xvYmFsIGltYWdlLCBhbmQgcGFjayB0aGUgY29uZmlndXJhdGlvbiBmaWxlIHRv
+IGl0LCB3aGVuIHRoZSBzeXN0ZW0gc3RhcnQgcnVubmluZywgaXQgY2FuIGJlJm5ic3A7Jm5ic3A7
+PHNwYW4gc3R5bGU9ImJhY2tncm91bmQtY29sb3I6IHJnYig2NywgMTQ4LCAyNTUpOyBjb2xvcjog
+cmdiKDI1NSwgMjU1LCAyNTUpOyBmb250LWZhbWlseTogQXJpYWwsICZxdW90O1BpbmdGYW5nIFND
+JnF1b3Q7LCAmcXVvdDtIaXJhZ2lubyBTYW5zIEdCJnF1b3Q7LCBTVEhlaXRpLCAmcXVvdDtNaWNy
+b3NvZnQgWWFIZWkmcXVvdDssICZxdW90O1dlblF1YW5ZaSBNaWNybyBIZWkmcXVvdDssIHNhbnMt
+c2VyaWY7IGZvbnQtc2l6ZTogMTNweDsiPnNlcGFyYXRlPC9zcGFuPiZuYnNwOyAmbmJzcDsgbW91
+bnQgdG8gdGhlIGZpbGVzeXN0ZW0uPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5XaGVuIHBhY2sg
+dG8gcm9mcyBpbWFnZSwgSSBkb24ndCBrbm93IGhvdyB0byBzZXBhcmF0ZSB0aGUgZXhlY3V0ZSBm
+aWxlIGFuZCBjb25maWd1cmF0aW9uIGZpbGUgaW4gdGhlIHdlYnVpIHBhY2thZ2UgYW5kIHBhY2sg
+dG8gZGlmZmVyZW50IHBhcnQuJm5ic3A7Q2FuIHNvbWVvbmUgaGVscCBtZSB0byB0ZWxsIG1lIGhv
+dyB0byBzb2x2ZSB0aGlzIHByb2JsZW0/PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5JIGFtIGxv
+b2tpbmcgZm9yd2FyZCB0byB5b3VyIHJlcGx5LjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+dGhh
+bmtzo6w8L2Rpdj48ZGl2PkJ5cm9uPC9kaXY+PC9kaXY+PGJyPjxicj48c3BhbiB0aXRsZT0ibmV0
+ZWFzZWZvb3RlciI+PHA+Jm5ic3A7PC9wPjwvc3Bhbj4=
 
-Long version:
-
-The multilib definition in my local config looks like this:
-
-require conf/multilib.conf
-MULTILIBS = "multilib:lib32"
-DEFAULTTUNE_virtclass-multilib-lib32 = "armv7ve"
-IMAGE_INSTALL_append_raspberrypi3-64 = " lib32-software-dummy"
-
-
-The software-dummy "hello world" project builds fine in 32 bit.
-
-Now on to the eSDK: The
-environment-setup-armv7ve-vfp-pokymllib32-linux-gnueabi actually didn't work
-out of the box, I needed to add the bottom of
-environment-setup-aarch64-poky-linux to
-environment-setup-armv7ve-vfp-pokymllib32-linux-gnueabi, so devtool is
-found.
-
-This part was missing from the armv7ve environment file:
-
-. /workdir/sdk/rpi/buildtools/environment-setup*
-export OE_SKIP_SDK_CHECK=1
-export DEPLOY_DIR_IMAGE=/workdir/sdk/rpi/tmp/deploy/images/raspberrypi3-64
-export PATH=/workdir/sdk/rpi/sysroots/x86_64-pokysdk-linux/usr/bin:$PATH
-printf 'SDK environment now set up; additionally you may now run devtool to
-perform development tasks.
-Run devtool --help for further details.
-'
-(which bitbake > /dev/null 2>&1 && echo 'WARNING: attempting to use the
-extensible SDK in an environment set up to run bitbake - this may lead to
-unexpected results. Please source this script in a new shell session
-instead.') || true
-
-
-Another thing I noticed that SDKTARGETSYSROOT in both files point to
-/workdir/sdk/rpi/tmp/sysroots/raspberrypi3-64 which is maybe not correct.
-Also not very sure about DEPLOY_DIR_IMAGE.
-
-
-Eg. in environment-setup-aarch64-poky-linux we have:
-
-export CC="aarch64-poky-linux-gcc --sysroot=$SDKTARGETSYSROOT"
-export CXX="aarch64-poky-linux-g++ --sysroot=$SDKTARGETSYSROOT"
-…
-export ARCH=arm64
-export CROSS_COMPILE=aarch64-poky-linux-
-
-
-while in environment-setup-armv7ve-vfp-pokymllib32-linux-gnueabi:
-
-export CC="arm-pokymllib32-linux-gnueabi-gcc -march=armv7ve -mfpu=vfp
--mfloat-abi=softfp --sysroot=$SDKTARGETSYSROOT"
-export CXX="arm-pokymllib32-linux-gnueabi-g++ -march=armv7ve -mfpu=vfp
--mfloat-abi=softfp --sysroot=$SDKTARGETSYSROOT"
-…
-export ARCH=arm
-export CROSS_COMPILE=arm-pokymllib32-linux-gnueabi-
-
-
-After sourcing the armv7ve environment file, building the software I added
-with devtool, it's still building in 64 bit. Looking at the run.do_install
-logfile I see this:
-
-export AR="aarch64-poky-linux-ar"
-export AS="aarch64-poky-linux-as "
-…
-export CC="aarch64-poky-linux-gcc -fstack-protector-strong
--D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security
---sysroot=/workdir/sdk/rpi/tmp/work/aarch64-poky-linux/cmake-test/1.0-r0/recipe-sysroot"
-…
-export CCLD="aarch64-poky-linux-gcc -fstack-protector-strong
--D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security
---sysroot=/workdir/sdk/rpi/tmp/work/aarch64-poky-linux/cmake-test/1.0-r0/recipe-sysroot"
-
-
-for some reason it's all 64 bit in there and I don't know where this comes
-from. The armv7ve environment file also has
-/workdir/sdk/rpi/tmp/sysroots/x86_64/usr/bin/arm-pokymllib32-linux-gnueabi
-in it's PATH, where the 32 bit compilers seem to live.
-
-
-The only way I found to build my software is to build a little script that
-calls bitbake directly or to add IMAGE_INSTALL_append_raspberrypi3-64 = "
-lib32-cmake-test" to the local.config and build the image with devtool. Both
-are not nice solutions.
-
-Thank you for any help!
-
-Regards,
-
-- Michael
---
-
-
-
+------=_Part_71260_473889476.1565421630483--
