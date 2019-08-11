@@ -1,43 +1,36 @@
-Return-Path: <maciej.pijanowski@3mdeb.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0E084E00B8E; Sat, 10 Aug 2019 06:14:35 -0700 (PDT)
+	id EE6A3E00B57; Sun, 11 Aug 2019 14:17:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [188.165.44.50 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 8400 seconds by postgrey-1.32 at yocto-www;
-	Sat, 10 Aug 2019 06:14:33 PDT
-Received: from 5.mo4.mail-out.ovh.net (5.mo4.mail-out.ovh.net [188.165.44.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8ED70E00AB4
-	for <yocto@yoctoproject.org>; Sat, 10 Aug 2019 06:14:33 -0700 (PDT)
-Received: from player738.ha.ovh.net (unknown [10.109.146.143])
-	by mo4.mail-out.ovh.net (Postfix) with ESMTP id D5231200012
-	for <yocto@yoctoproject.org>; Sat, 10 Aug 2019 10:26:21 +0200 (CEST)
-Received: from 3mdeb.com (89-66-81-159.dynamic.chello.pl [89.66.81.159])
-	(Authenticated sender: maciej.pijanowski@3mdeb.com)
-	by player738.ha.ovh.net (Postfix) with ESMTPSA id 716838E1ABBD;
-	Sat, 10 Aug 2019 08:26:20 +0000 (UTC)
-To: www <ouyangxuan10@163.com>, yocto@yoctoproject.org
-References: <b9d05c.477a.16c7a667413.Coremail.ouyangxuan10@163.com>
-From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
-Message-ID: <31226eab-9d1d-20de-0edf-83100afb6919@3mdeb.com>
-Date: Sat, 10 Aug 2019 10:26:19 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D924E00A93
+	for <yocto@yoctoproject.org>; Sun, 11 Aug 2019 14:17:30 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	11 Aug 2019 14:17:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,374,1559545200"; d="scan'208";a="204521290"
+Received: from syloh-mobl.gar.corp.intel.com (HELO localhost.localdomain)
+	([10.255.156.154])
+	by fmsmga002.fm.intel.com with ESMTP; 11 Aug 2019 14:17:27 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Mon, 12 Aug 2019 09:17:08 +1200
+Message-Id: <cover.1565558135.git.paul.eggleton@linux.intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <b9d05c.477a.16c7a667413.Coremail.ouyangxuan10@163.com>
-X-Ovh-Tracer-Id: 9200009616157322921
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduvddrudduledgtdegucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenuc
-Subject: Re: ask a question about filesystem in yocto
+Subject: [layerindex-web][PATCH 0/4] dockersetup fixes (cover letter only)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,154 +42,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 10 Aug 2019 13:14:35 -0000
-Content-Type: multipart/alternative;
-	boundary="------------CE8A49F151610EEAEC2456AE"
-Content-Language: en-US
-
---------------CE8A49F151610EEAEC2456AE
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-List-Received-Date: Sun, 11 Aug 2019 21:17:31 -0000
 Content-Transfer-Encoding: 8bit
 
+Some fixes for the dockersetup.py script from the Clear Linux Dissector on
+top of the set that was merged recently.
 
-On 10.08.2019 09:20, www wrote:
-> Dear all,
-Hi,
->
-> I'm new learner and user of yocto. When I used it, I encountered a 
-> problem. I don't know how to resolve it, so I ask for help.
-> the problem is how can I create a new partition on yocto? if I have a 
-> package named webui, it can be generate several execute files and 
-> configuration files, the execute files will be install into 
-> filesystem, such as "/usr/bin", and be packed to rofs. but I don't 
-> want pack the configuration files  to rofs, and I want create a new 
-> image and the image will be a partition of the global image, and pack 
-> the configuration file to it, when the system start running, it can be 
-> separate    mount to the filesystem.
->
-> When pack to rofs image, I don't know how to separate the execute file 
-> and configuration file in the webui package and pack to different 
-> part. Can someone help me to tell me how to solve this problem?
-Please take a look at wic: 
-https://www.yoctoproject.org/docs/2.4.2/dev-manual/dev-manual.html#creating-partitioned-images-using-wic
 
-You can for example exclude some subdirectory from main rootfs partition 
-and place it onto another partition instead.
+The following changes since commit 73198bd5483c16b9852121c6855dc6dac96a98a0:
 
-Take a look at following wic flags:
---rootfs-dir
---exclude-path
+  README: add reference to using import_layers to update (2019-08-06 12:04:17 +1200)
 
-You can define subdirs to split in local.conf or another config file 
-(e.g. distro config) using the WIC_CREATE_EXTRA_ARGS
-and flags as: --rootfs-dir rootfs-main=${IMAGE_ROOTFS}
->
-> I am looking forward to your reply.
->
-> thanks，
-> Byron
->
->
->
+are available in the Git repository at:
+
+  git://git.yoctoproject.org/layerindex-web paule/dissector-backports2
+  http://git.yoctoproject.org/cgit.cgi/layerindex-web/log/?h=paule/dissector-backports2
+
+Paul Eggleton (4):
+  dockersetup.py: add connectivity check
+  docker: fix comment at top of Dockerfile
+  dockersetup: proxy support fixes
+  dockersetup: add uninstall option
+
+ Dockerfile                   |   4 +-
+ docker/connectivity_check.sh |  35 ++++++++
+ docker/git-proxy             |  10 ++-
+ dockersetup.py               | 167 ++++++++++++++++++++++++++++-------
+ 4 files changed, 181 insertions(+), 35 deletions(-)
+ create mode 100755 docker/connectivity_check.sh
+
 -- 
-Maciej Pijanowski
-Embedded Systems Engineer
-https://3mdeb.com | @3mdeb_com
+2.20.1
 
 
---------------CE8A49F151610EEAEC2456AE
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 10.08.2019 09:20, www wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:b9d05c.477a.16c7a667413.Coremail.ouyangxuan10@163.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div
-        style="line-height:1.7;color:#000000;font-size:14px;font-family:Arial">
-        <div>Dear all,</div>
-      </div>
-    </blockquote>
-    Hi,<br>
-    <blockquote type="cite"
-      cite="mid:b9d05c.477a.16c7a667413.Coremail.ouyangxuan10@163.com">
-      <div
-        style="line-height:1.7;color:#000000;font-size:14px;font-family:Arial">
-        <div><br>
-        </div>
-        <div>I'm new learner and user of yocto. When I used it, I
-          encountered a problem. I don't know how to resolve it, so I
-          ask for help.</div>
-        <div>the problem is how can I create a new partition on yocto?
-          if I have a package named webui, it can be generate several
-          execute files and configuration files, the execute files will
-          be install into filesystem, such as "/usr/bin", and be packed
-          to rofs. but I don't want pack the configuration files  to
-          rofs, and I want create a new image and the image will be a
-          partition of the global image, and pack the configuration file
-          to it, when the system start running, it can be  <span
-            style="background-color: rgb(67, 148, 255); color: rgb(255,
-            255, 255); font-family: Arial, &quot;PingFang SC&quot;,
-            &quot;Hiragino Sans GB&quot;, STHeiti, &quot;Microsoft
-            YaHei&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif;
-            font-size: 13px;">separate</span>    mount to the
-          filesystem.</div>
-        <div><br>
-        </div>
-        <div>When pack to rofs image, I don't know how to separate the
-          execute file and configuration file in the webui package and
-          pack to different part. Can someone help me to tell me how to
-          solve this problem?</div>
-      </div>
-    </blockquote>
-    Please take a look at wic:
-<a class="moz-txt-link-freetext" href="https://www.yoctoproject.org/docs/2.4.2/dev-manual/dev-manual.html#creating-partitioned-images-using-wic">https://www.yoctoproject.org/docs/2.4.2/dev-manual/dev-manual.html#creating-partitioned-images-using-wic</a><br>
-    <br>
-    You can for example exclude some subdirectory from main rootfs
-    partition and place it onto another partition instead.<br>
-    <br>
-    Take a look at following wic flags:<br>
-    --rootfs-dir<br>
-    --exclude-path<br>
-    <br>
-    You can define subdirs to split in local.conf or another config file
-    (e.g. distro config) using the <span class="pl-en">WIC_CREATE_EXTRA_ARGS
-      <br>
-      and </span><span class="pl-en"> </span><span class="pl-s1">flags
-      as: --</span><span class="pl-en">rootfs</span><span class="pl-s1">-</span><span
-      class="pl-en">dir rootfs</span><span class="pl-s1">-</span><span
-      class="pl-en">main=</span><span class="pl-en">${IMAGE_ROOTFS}</span><br>
-    <span class="pl-en"></span>
-    <blockquote type="cite"
-      cite="mid:b9d05c.477a.16c7a667413.Coremail.ouyangxuan10@163.com">
-      <div
-        style="line-height:1.7;color:#000000;font-size:14px;font-family:Arial"><br>
-        <div>I am looking forward to your reply.</div>
-        <div><br>
-        </div>
-        <div>thanks，</div>
-        <div>Byron</div>
-      </div>
-      <br>
-      <br>
-      <span title="neteasefooter">
-        <p> </p>
-      </span><br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-    </blockquote>
-    <pre class="moz-signature" cols="72">-- 
-Maciej Pijanowski
-Embedded Systems Engineer
-<a class="moz-txt-link-freetext" href="https://3mdeb.com">https://3mdeb.com</a> | @3mdeb_com</pre>
-  </body>
-</html>
-
---------------CE8A49F151610EEAEC2456AE--
