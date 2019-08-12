@@ -1,40 +1,67 @@
-Return-Path: <j.behnke@schmidttechnology.de>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C1E58E00D77; Mon, 12 Aug 2019 02:12:12 -0700 (PDT)
+	id 470CDE00D79; Mon, 12 Aug 2019 03:42:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	MIME_HTML_ONLY,MIME_QP_LONG_LINE,URI_HEX autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 URI_HEX URI: URI hostname has long hexadecimal sequence
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.175 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
-	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Mon, 12 Aug 2019 02:12:10 PDT
-Received: from mail.schmidttechnology.de (mail.schmidttechnology.ch
-	[212.185.41.2])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AF30E00B8F
-	for <yocto@yoctoproject.org>; Mon, 12 Aug 2019 02:12:10 -0700 (PDT)
-X-GFI-TNEF2MIME: 1.2
-Received: from ST04.sft.schmidt-feintechnik.de ([fe80::2989:544f:bde7:d994])
-	by ST04.sft.schmidt-feintechnik.de ([fe80::2989:544f:bde7:d994%10])
-	with mapi id 14.03.0468.000; Mon, 12 Aug 2019 11:11:06 +0200
-From: "Behnke, Jochen" <j.behnke@schmidttechnology.de>
-To: "yocto Mailingliste (yocto@yoctoproject.org)" <yocto@yoctoproject.org>
-Thread-Topic: wic create - bad ownership of directories inside image
-Thread-Index: AdVQ7HKa1+aWnPsGSzybgn4086sMuQ==
-Date: Mon, 12 Aug 2019 11:11:05 +0200
-Message-ID: <55F1D5644E5E5A4493FCBE6156D13CD6AD921671@ST04.sft.schmidt-feintechnik.de>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: <55F1D5644E5E5A4493FCBE6156D13CD6AD921671@ST04.sft.schmidt-feintechnik.de>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com
+	[209.85.222.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F86FE00C46
+	for <yocto@yoctoproject.org>; Mon, 12 Aug 2019 03:42:12 -0700 (PDT)
+Received: by mail-qk1-f175.google.com with SMTP id m2so12244546qkd.10
+	for <yocto@yoctoproject.org>; Mon, 12 Aug 2019 03:42:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=nefGwOAAACebhH2Efy2VbUC2lCVOmvuC/bhp/Cj6gxg=;
+	b=OR4Zse1LhIo8rqGj2+cNRp4jmEI+kLCSljx/zZbDXtx9vBB9ckjDTSj3i6KZ57piQ3
+	cA+PAQ7naanUsd7CtrhzomM3N0iE1JMrcRGU2t7HbbBgZCDkW6kxO/enSUyTMBRfg2PP
+	X/STlrHKJ6GsQJMfUgGlwR3WoIUubTOw+GYth6A/6VCrwpN1EdkK8oF5dJWPA/IvBLsI
+	fM96eRnsY4ydvrBluzUYI2JEy3XIr1yY8HrzaR/Dv9shHNeYdRXdtGbodmbIlq8U5SQW
+	1KTTzpL9zgteKPCHOJaMTN3yA/HVD3o/OfwywfuqYlypkcpj871nMZP9LK6s+VVjP1uo
+	rESg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=nefGwOAAACebhH2Efy2VbUC2lCVOmvuC/bhp/Cj6gxg=;
+	b=BDzjBBiDulVyiPYqPSxh6k7f+PJrZDmjQ6dCsaGnrG+sot4XHNSzZO6zdRTvHau4ap
+	jzLDaT9IGJ7Z6+cCD0vFV8Bed54yDEXzVjACvzqWHpG2S/5UISApleZ0Nv+3GaPYsuTg
+	1hWTv30lV0mesrOplKGKK00SahDy6+sJNoBIGXUJd61csTTRvRPemjF/sOKa/GbVYL9r
+	zvB/LDASOhjeZU3pVn2mrph8nNbRrjEff26YjuxkNf2HUwpapKMiNh4i8q3B2Q6Ea9Dc
+	6/4kvVKJIV94ZMxAvWWVmLybZYPJSwlmMXn1PBPdg2fPMSnYvQ+8pkVY3EP6Z45OfDMu
+	5D/Q==
+X-Gm-Message-State: APjAAAUmtgel+cjowdX2aABxjrVMpKxbeqIHvRZOxrGT3ZhFPkcfB+ZT
+	J9ram7eudmkehWs7DNB0zqmUuO7ZIEsmFR39br8=
+X-Google-Smtp-Source: APXvYqyz1oqYGWFQlI9SgU3Acl8PGC3A3L1U6NsJ5QNm0/m/zLN1w8Wq2oHELOz1P5jB4NkXK9mVtL71He1YqELYutk=
+X-Received: by 2002:a05:620a:16d6:: with SMTP id
+	a22mr29651707qkn.414.1565606531867; 
+	Mon, 12 Aug 2019 03:42:11 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [192.168.41.234]
-Disclaimer: SID=010500000000000515000000993c4a7a4675257c8b2de024250d0000
-Subject: wic create - bad ownership of directories inside image
+References: <CAGAf8LxnLncDewt_k1SUP-H6313ubeNRRW0cqp-gawJ_xsrgaw@mail.gmail.com>
+	<CAMKF1spSYzqBKA-n+kRSZv+J08CmOGogsfR_D_o19b_Y8578Pw@mail.gmail.com>
+In-Reply-To: <CAMKF1spSYzqBKA-n+kRSZv+J08CmOGogsfR_D_o19b_Y8578Pw@mail.gmail.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Mon, 12 Aug 2019 12:42:00 +0200
+Message-ID: <CAGAf8LywDVWYfQbpni5Kve_8CdTGYtcy-iA+Lwu3qJ56i4Z-1w@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Yocto repos for NXP referent platform MCIMXABASEV1 also called SABRE platform?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,130 +73,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 Aug 2019 09:12:12 -0000
-Content-Language: de-DE
-Content-Type: multipart/mixed;
-	boundary="part__362851C4_6C5A_4333_A3EE_69E574191"
+X-List-Received-Date: Mon, 12 Aug 2019 10:42:13 -0000
+Content-Type: multipart/alternative; boundary="00000000000030a71b058fe92da1"
 
---part__362851C4_6C5A_4333_A3EE_69E574191
-Content-Type: text/html; charset="us-ascii"
+--00000000000030a71b058fe92da1
+Content-Type: text/plain; charset="UTF-8"
+
+Hello Khem,
+
+Thank you for the reply.
+
+I would say look at:
+https://github.com/ZoranStojsavljevic/imx6-sabre-automotive-bsp
+
+Zoran
+_______
+
+On Fri, Aug 9, 2019 at 6:51 PM Khem Raj <raj.khem@gmail.com> wrote:
+
+> On Thu, Aug 8, 2019 at 11:20 PM Zoran Stojsavljevic
+> <zoran.stojsavljevic@gmail.com> wrote:
+> >
+> > Hello to all,
+> >
+> > I am trying to find out some recent yocto repo, which contains YOCTO
+> > reference repo for the following NXP board:
+> > MCIMXABASEV1 also called SABRE platform.
+> >
+> > Here is one repo I found reading this document... But this is too
+> outdated!
+> >
+> >
+> http://events17.linuxfoundation.org/sites/events/files/slides/AGLAMM_How%20we%20Run%20AGL%20on%20i.MX%20processors_tkobayashi_25FEB16%20rev.D.pdf
+> >
+> > Does anybody have some other repos/suggestions in mind for such a
+> > board? Please, come forward if yes...
+> >
+>
+> I would say look at
+>
+>
+> http://layers.openembedded.org/layerindex/branch/master/machines/?q=sabre&search=1
+>
+> > Thank you,
+> > Zoran
+> > _______
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--00000000000030a71b058fe92da1
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Disclaimer: SID=010500000000000515000000993c4a7a4675257c8b2de024250d0000
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micro=
-soft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" xm=
-lns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http://w=
-ww.w3.org/TR/REC-html40"><head><meta http-equiv=3DContent-Type content=3D"te=
-xt/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Wor=
-d 14 (filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Arial","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
---> gfidisc.schmidttechnology.de {color:black; !important} </style><!--[if g=
-te mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--> <meta name=3D"application-name" content=3D=
-"gfidisc.schmidttechnology.de "> </head><body lang=3DDE link=3Dblue vlink=3D=
-purple><div class=3DWordSection1><p class=3DMsoNormal><span style=3D'font-fa=
-mily:"Arial","sans-serif"'>Hello,<o:p></o:p></span></p><p class=3DMsoNormal>=
-<span style=3D'font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p=
-><p class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Arial","sans-=
-serif"'>I am using poky 2.6.1 (thud) and create images using the wic utility=
-.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'font=
--family:"Arial","sans-serif"'>Recently I noticed that all directories contai=
-ned in the created image are owned by UID 1000 and not by root. The files in=
-side the image however are owned by root.<o:p></o:p></span></p><p class=3DMs=
-oNormal><span lang=3DEN-US style=3D'font-family:"Arial","sans-serif"'>The UI=
-D 1000 refers to my unprivileged user on the host system.<o:p></o:p></span><=
-/p><p class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Arial","san=
-s-serif"'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-U=
-S style=3D'font-family:"Arial","sans-serif"'>Here is the command I use to cr=
-eate the image<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif"'> &#8220;wic create mkefidisk &#82=
-11;e core-image-minimal&#8221;<o:p></o:p></span></p><p class=3DMsoNormal><sp=
-an lang=3DEN-US style=3D'font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p>=
-</span></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Ari=
-al","sans-serif"'>The images created by bitbake directly (.tar.bz2, .hddimg)=
- are correct so this seems to be a wic related problem.<o:p></o:p></span></p=
-><p class=3DMsoNormal><span lang=3DEN-US style=3D'font-family:"Arial","sans-=
-serif"'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US =
-style=3D'font-family:"Arial","sans-serif"'>Does anybody have a solution for =
-this?<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'=
-font-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p><p class=3DMso=
-Normal><span lang=3DEN-US style=3D'font-family:"Arial","sans-serif"'>Many th=
-anks in advance, any hint is appreciated.<o:p></o:p></span></p><p class=3DMs=
-oNormal><span lang=3DEN-US style=3D'font-family:"Arial","sans-serif"'><o:p>&=
-nbsp;</o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US style=3D'font-=
-family:"Arial","sans-serif"'><o:p>&nbsp;</o:p></span></p><p class=3DMsoNorma=
-l><span style=3D'font-family:"Arial","sans-serif"'>Regards<o:p></o:p></span>=
-</p><p class=3DMsoNormal><span style=3D'font-family:"Arial","sans-serif"'>Jo=
-chen</span><span style=3D'font-size:10.0pt;font-family:"Arial","sans-serif";=
-mso-fareast-language:DE'><o:p></o:p></span></p><p class=3DMsoNormal><o:p>&nb=
-sp;</o:p></p></div><p class=3D"gfidisc.SID=3D010500000000000515000000993c4a7=
-a4675257c8b2de024250d0000" id=3D"gfidisc.SID=3D010500000000000515000000993c4=
-a7a4675257c8b2de024250d0000" style=3D"gfidisc.SID=3D010500000000000515000000=
-993c4a7a4675257c8b2de024250d0000"></p><a id=3D"gfidisc.SID=3D010500000000000=
-515000000993c4a7a4675257c8b2de024250d0000" title=3D"gfidisc.SID=3D0105000000=
-00000515000000993c4a7a4675257c8b2de024250d0000" href=3D"gfidisc.SID=3D010500=
-000000000515000000993c4a7a4675257c8b2de024250d0000" class=3D"gfidisc.SID=3D0=
-10500000000000515000000993c4a7a4675257c8b2de024250d0000" style=3D"text-decor=
-ation: none !important;"></a><gfidisc.SID=3D010500000000000515000000993c4a7a=
-4675257c8b2de024250d0000/><h1 class=3D"gfidisc.SID=3D01050000000000051500000=
-0993c4a7a4675257c8b2de024250d0000" style=3D"gfidisc.SID=3D010500000000000515=
-000000993c4a7a4675257c8b2de024250d0000"></h1><p><span style=3D"font-family: =
-'Arial','sans-serif';">__________________________________<br /><strong><span=
- style=3D"font-family: 'Arial','sans-serif';">SCHMIDT Technology GmbH</span>=
-</strong><br />Feldbergstrasse 1<br />78112 St. Georgen/Germany<br />Telefon=
- +49 (0) 77 24 / 89 90<br />Fax +49 (0) 77 24 / 89 91 01<br /><a href=3D"mai=
-lto:info@schmidttechnology.de">info@schmidttechnology.de</a><br /><a href=3D=
-"http://www.schmidttechnology.de">http://www.schmidttechnology.de</a></span>=
-<br /><br /><span style=3D"font-family: 'Arial','sans-serif'; font-size: 7.5=
-pt;">USt-Id Nr. DE 811725105 &middot; Registergericht Freiburg HRB 600 755<b=
-r />Geschaeftsfuehrung: Oliver Schmidt, Stephan Schmidt<br /></span><!--?xml=
-:namespace prefix =3D "o" ns =3D "urn:schemas-microsoft-com:office:office" ?=
---></p><p class=3D"gfidisc.SID=3D010500000000000515000000993c4a7a4675257c8b2=
-de024250d0000" id=3D"gfidisc.SID=3D010500000000000515000000993c4a7a4675257c8=
-b2de024250d0000" style=3D"gfidisc.SID=3D010500000000000515000000993c4a7a4675=
-257c8b2de024250d0000"></p><a id=3D"gfidisc.SID=3D010500000000000515000000993=
-c4a7a4675257c8b2de024250d0000" title=3D"gfidisc.SID=3D0105000000000005150000=
-00993c4a7a4675257c8b2de024250d0000" href=3D"gfidisc.SID=3D010500000000000515=
-000000993c4a7a4675257c8b2de024250d0000" class=3D"gfidisc.SID=3D0105000000000=
-00515000000993c4a7a4675257c8b2de024250d0000" style=3D"text-decoration: none =
-!important;"></a><gfidisc.SID=3D010500000000000515000000993c4a7a4675257c8b2d=
-e024250d0000/><h1 class=3D"gfidisc.SID=3D010500000000000515000000993c4a7a467=
-5257c8b2de024250d0000" style=3D"gfidisc.SID=3D010500000000000515000000993c4a=
-7a4675257c8b2de024250d0000"></h1></body></html>
+<div dir=3D"ltr">Hello Khem,<div><br></div><div>Thank you for the reply.</d=
+iv><div><br></div><div>I would say look at:<br>
+</div><div><a href=3D"https://github.com/ZoranStojsavljevic/imx6-sabre-auto=
+motive-bsp">https://github.com/ZoranStojsavljevic/imx6-sabre-automotive-bsp=
+</a></div><div><br></div><div>Zoran</div><div>_______<br></div></div><br><d=
+iv class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Aug =
+9, 2019 at 6:51 PM Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com">raj.k=
+hem@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex">On Thu, Aug 8, 2019 at 11:20 PM Zoran Stojsavljevic<br>
+&lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com" target=3D"_blank">zora=
+n.stojsavljevic@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Hello to all,<br>
+&gt;<br>
+&gt; I am trying to find out some recent yocto repo, which contains YOCTO<b=
+r>
+&gt; reference repo for the following NXP board:<br>
+&gt; MCIMXABASEV1 also called SABRE platform.<br>
+&gt;<br>
+&gt; Here is one repo I found reading this document... But this is too outd=
+ated!<br>
+&gt;<br>
+&gt; <a href=3D"http://events17.linuxfoundation.org/sites/events/files/slid=
+es/AGLAMM_How%20we%20Run%20AGL%20on%20i.MX%20processors_tkobayashi_25FEB16%=
+20rev.D.pdf" rel=3D"noreferrer" target=3D"_blank">http://events17.linuxfoun=
+dation.org/sites/events/files/slides/AGLAMM_How%20we%20Run%20AGL%20on%20i.M=
+X%20processors_tkobayashi_25FEB16%20rev.D.pdf</a><br>
+&gt;<br>
+&gt; Does anybody have some other repos/suggestions in mind for such a<br>
+&gt; board? Please, come forward if yes...<br>
+&gt;<br>
+<br>
+I would say look at<br>
+<br>
+<a href=3D"http://layers.openembedded.org/layerindex/branch/master/machines=
+/?q=3Dsabre&amp;search=3D1" rel=3D"noreferrer" target=3D"_blank">http://lay=
+ers.openembedded.org/layerindex/branch/master/machines/?q=3Dsabre&amp;searc=
+h=3D1</a><br>
+<br>
+&gt; Thank you,<br>
+&gt; Zoran<br>
+&gt; _______<br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoct=
+oproject.org</a><br>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noref=
+errer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><=
+br>
+</blockquote></div>
 
---part__362851C4_6C5A_4333_A3EE_69E574191--
+--00000000000030a71b058fe92da1--
