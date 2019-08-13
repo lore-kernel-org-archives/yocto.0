@@ -1,19 +1,19 @@
-Return-Path: <3eh9TXQ8JBfUqebvlZqlmolgbZqdjXfi.ZljvlZqlvlZqlmolgbZq.lod@calendar-server.bounces.google.com>
+Return-Path: <3px9TXQ8JBSQTHEYOCTOPROJECTGMAIL.COMYOCTOYOCTOPROJECT.ORG@calendar-server.bounces.google.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9D6FBE00E13; Tue, 13 Aug 2019 13:37:34 -0700 (PDT)
+	id 93E17E00C78; Tue, 13 Aug 2019 13:38:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLYTO,HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	https://www.dnswl.org/, no *      trust
-	*      [209.85.161.73 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (theyoctoproject[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.219.202 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
@@ -22,56 +22,56 @@ X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	*      valid
 	* 1.0 FREEMAIL_REPLYTO Reply-To/From or Reply-To/body contain different
 	*      freemails
-Received: from mail-yw1-f73.google.com (mail-yw1-f73.google.com
-	[209.85.161.73])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C298E00BEB
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2019 13:37:14 -0700 (PDT)
-Received: by mail-yw1-f73.google.com with SMTP id n139so80513736ywd.22
-	for <yocto@yoctoproject.org>; Tue, 13 Aug 2019 13:37:14 -0700 (PDT)
+Received: from mail-yb1-f202.google.com (mail-yb1-f202.google.com
+	[209.85.219.202])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 218C4E00E48
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2019 13:37:59 -0700 (PDT)
+Received: by mail-yb1-f202.google.com with SMTP id n62so5530092ybg.0
+	for <yocto@yoctoproject.org>; Tue, 13 Aug 2019 13:37:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
 	h=mime-version:reply-to:sender:auto-submitted:message-id:date:subject
-	:from:to; bh=/1aLFAjqqGfCtkhlpUiUnsKFV/qDycCIgq0lzXw/Mok=;
-	b=GzyPRNcc/IBNNJ1wGXNmqze4G+VWcOUTBGfprppNdOeLR1Wt/7RfAo7vjaKTWtNOLG
-	lQa3PXAaJJEnDgSWFuK0u/RpkeQC2H5robQz79uHV0VKYjnwiTWVDiOH/XMxoxZ64Oxg
-	k6tpsNmBiYMt92F8SgjPN6DHkPGyuGzMmjwAq0a5IUpaY4X4FlAnXodh0Zmnt7fgjHXN
-	lJ8ynDKYVfQETHZ8gzzLoyx3F9H1oemRVwjz11N4hujHPzHDiziY4Lwl+ek8z1wnNbUI
-	Yz4ejVucLVgZalv9gB+Sf6C+vmzQGFMw7MEnKTVR0670Ol4732PbD325U34YYMXGyfaH
-	mGrw==
+	:from:to; bh=wyNcM+ArxQZfh00mnEp06aTpvKkbags3Rby2meRryzg=;
+	b=T1vMWQG0HYWUtVFDh+u82YJhWwLSbeIDuaGRYiVjZP9J+OJomN0YE1WD9TsqytIOz3
+	EFInb0VKc+ANaw5pY3zTjenG8rF2wZbqnNMt7xT4VeSI1cv3u23X8F6tH7puyzSK+nYP
+	e9Utf8llIhJf5lXA6U9qLKbw5BZW6tL8enTJ3Pyj5/iQldsit6QSpoXIQmJ4O+83j+09
+	RUBHKkMqJKpDTbiJgooJhztyc8ghykhFUP5VIE+iBYgh49LXKManS8cFGr4wTMmvoZDy
+	ZX/Wm8P3zjbP+zCvJzjpyY37EfEJ1zqeXeDgSOJSYn4LoxLMeV6dUqDCWnShFMZXe/vb
+	TE1g==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:reply-to:sender:auto-submitted:message-id:date:subject
-	:from:to; bh=/1aLFAjqqGfCtkhlpUiUnsKFV/qDycCIgq0lzXw/Mok=;
-	b=JZMyE7t4fxEvpOWo3kzis9n6yYO3Tr6QaWNWYLJA/QUgouXcZGJnwrFZN6Nr6+XBDM
-	+7xehfYQerWCTOWS1lmCnreiDgZ/tPI+VyPkJ1BsjT5jdgXRY0YGAHaIBeyy4EJbFxW3
-	MBIsPJtS2CNU5W3R3I+RFSo/N5i9AAndjSgVDYNU56ENOMZP1DXNCukC3sGGwpQ6Lvdg
-	Sv0O+O+dpYVQ4siMfnb9CMi3miF4INksc0TjD5gr47ZuYlR2MOVR7H++/2Nx11lW3U5z
-	SUtqmlwDx8OjED3NNUg0ADmvITbkRN3yKi7Zyo+eBxEehDqyIlJ1puMC2zFt92ls+JyI
-	juZg==
+	:from:to; bh=wyNcM+ArxQZfh00mnEp06aTpvKkbags3Rby2meRryzg=;
+	b=BnxLtDlpKtaBgQF8We99tn6WwT75Mtb+bsQJpZqgcplcSDtnplGiV4Hqx+JcKVAP0y
+	K8K7CJzMAPn8cCtjlPgqhNNQt8yfNPDAeGptCK0RWbv6eqew99Q91IUUtww8YM1vt335
+	JiHwnoEaEG/s+msd26t5qu7ElBwlH7r1IldS6ymx3xT9HEP233U1zNOIcxdSe+3JaH7y
+	RRms8Z7Obriv4jETESkdk/73ID9ctcsHdKONjqMeBoGAvDvDd9m3UisE9uIBJzJM1qIb
+	SvLjMhjOiYmvVuae6l+PkYMN+SGVOwUoabbduJ6axcUNTsknQrWrIJqk20u8h7iNBqe8
+	trUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:reply-to:sender:auto-submitted
 	:message-id:date:subject:from:to;
-	bh=/1aLFAjqqGfCtkhlpUiUnsKFV/qDycCIgq0lzXw/Mok=;
-	b=Y6teG6DMe5+d1S3+maqLFWket0hmHm1E+xgLyB3q9gbIFtYLO3897ZBJWh+Y9Q/sq1
-	EOGiaNoGipvvX4uUqZVKtG6oC2cpXlygl7oJ1mT8zzhpBorM/wsISdwkgtG4FPXky2aI
-	gjLnnlEejmIU0R/ks74BFNOwzTUP9BlmFcVuNGY7OzyuCVNjVZ1fLLoNi+Nqanp4wFlU
-	avoeylGBFxk56yaKHIjVUnOCf1phav7oCwRX694TEUf6r9J42hvUlu3qg6z/HYsySB8A
-	RxFhRBBhatSRYBc2LkdtFSLSrYk8ff9cXt/dzkaLx4Ui3OmGaNh7ciUBSQ55+TCzhoze
-	ayCw==
-X-Gm-Message-State: APjAAAWj8ziHOXcqL81bVKZ92QanhOyYK7VYsCthfZIMu21jx2w6kORa
-	AXwWgrYopR1CQMvrsKMJRt3PNMueTHAiOqDEPbH/
-X-Google-Smtp-Source: APXvYqyqZ9J1kvE9KVp/oVfGwyq0NOVn63ymjG2OmpJwPS1uBbA681NM4qL0yEC09o3o0+so67KPsMN56X2svKmdRzux
+	bh=wyNcM+ArxQZfh00mnEp06aTpvKkbags3Rby2meRryzg=;
+	b=OuwZ65NLwyEVLlEtqFPLMw3Cvu5e4qTsSDt3aGu1obJCNwxvX9hvqr5a5HSjDJJhMB
+	jwao8WIEWGi7R/yaYt3a3tNtBzA8cbL4fkQwaBRIQqI69MYbScNpnZtXh6E+nEwBPNzb
+	fcoTJMyckr6IZ/gR/kXk1aNZkahxdoBvpV5J+tvxq8t86hZRa30IKEBbeit6BXTtA9OL
+	WDKVUVPZ8uG6TTXPp5cLiFl3/btow8N84Wni4ASBUW75Ij5R+O++S0GKiTMpecInRHH8
+	DGjzzj8HEA71IgjCM4BqZourav1tqeBbIrDxvkMpI5/4jigeWYbZrJYT0ciEh3FXE/eZ
+	zabg==
+X-Gm-Message-State: APjAAAUp4kP20VIvneoGU/rltn5JUKiP6r84AK+tgJvZyGqU/3GOXD6D
+	2iLQEXJxja1hFbVeN3Xgv/qmdjYCovG6tgnDRhW+
+X-Google-Smtp-Source: APXvYqylOKawwTw0tGKXO2eK3QxEQ5HlJwC2okpaYlTVSbLc4ePsr+7XBYw+XJCHw1QTx/sK5Vvv1p7hVzKIfxXvNtIK
 MIME-Version: 1.0
-X-Received: by 2002:a05:6902:4ca:: with SMTP id
-	v10mr416328ybs.20.1565728634200; 
-	Tue, 13 Aug 2019 13:37:14 -0700 (PDT)
+X-Received: by 2002:a81:6284:: with SMTP id
+	w126mr18655070ywb.159.1565728679545; 
+	Tue, 13 Aug 2019 13:37:59 -0700 (PDT)
 Sender: Google Calendar <calendar-notification@google.com>
 Auto-Submitted: auto-generated
-Message-ID: <0000000000000e68380590059ba8@google.com>
-Date: Tue, 13 Aug 2019 20:37:14 +0000
+Message-ID: <000000000000c253a10590059d6f@google.com>
+Date: Tue, 13 Aug 2019 20:37:59 +0000
 From: theyoctoproject@gmail.com
-To: yocto@yoctoproject.org, sjolley.yp.pm@gmail.com, 
-	stephen.k.jolley@intel.com
-Subject: Updated invitation: Yocto Project Technical Team Meeting / Engineering Sync @ Tue Aug 20, 2019 8am - 9am (PDT) (yocto@yoctoproject.org)
+To: yocto@yoctoproject.org, stephen.k.jolley@intel.com, 
+	sjolley.yp.pm@gmail.com
+Subject: Updated invitation: Yocto Project Technical Team Meeting / Engineering Sync @ Weekly from 8am to 9am on Tuesday (PDT) (yocto@yoctoproject.org)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -84,14 +84,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 Aug 2019 20:37:34 -0000
-X-Groupsio-MsgNum: 46282
-Content-Type: multipart/mixed; boundary="0000000000000e681d0590059ba7"
+X-List-Received-Date: Tue, 13 Aug 2019 20:38:26 -0000
+X-Groupsio-MsgNum: 46283
+Content-Type: multipart/mixed; boundary="000000000000c253880590059d6e"
 
---0000000000000e681d0590059ba7
-Content-Type: multipart/alternative; boundary="0000000000000e681a0590059ba5"
+--000000000000c253880590059d6e
+Content-Type: multipart/alternative; boundary="000000000000c253830590059d6c"
 
---0000000000000e681a0590059ba5
+--000000000000c253830590059d6c
 Content-Type: text/plain; charset="UTF-8"; format=flowed; delsp=yes
 Content-Transfer-Encoding: base64
 
@@ -109,33 +109,33 @@ MTJUdWVzZGF5cyB3aGVuIHdlIGFyZW7igJl0IGhhdmluZyB0aGUgTW9udGhseSAgDQpUZWNobmlj
 YWwgQ2FsbCBUaGUgWW9jdG8gUHJvamVjdCBob3N0cyBhIGVuZ2luZWVyaW5nIHN5bmMgYnkgd2hp
 Y2ggdGhlICANCnRlY2huaWNhbCB0ZWFtIGRpc2N1c3NlcyB0aGUgY3VycmVudCBzdGF0dXMgb2Yg
 ZW5naW5lZXJpbmcgdG9waWNzLCAgDQppbmNsdWRpbmcgdGhlIGF1dG9idWlsZGVyLCBkb2N1bWVu
-dGF0aW9uLCBidWlsZHMsIGFuZCByZWxlYXNlcy4NCldoZW46IFR1ZSBBdWcgMjAsIDIwMTkgOGFt
-IOKAkyA5YW0gUGFjaWZpYyBUaW1lIC0gTG9zIEFuZ2VsZXMgKGNoYW5nZWQpDQpXaGVyZTogWm9v
-bSBNZWV0aW5nOiBodHRwczovL3pvb20udXMvai85OTA4OTI3MTINCkNhbGVuZGFyOiB5b2N0b0B5
-b2N0b3Byb2plY3Qub3JnDQpXaG86DQogICAgICogdGhleW9jdG9wcm9qZWN0QGdtYWlsLmNvbSAt
-IG9yZ2FuaXplcg0KICAgICAqIHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCiAgICAgKiBzam9sbGV5
-LnlwLnBtQGdtYWlsLmNvbQ0KICAgICAqIHN0ZXBoZW4uay5qb2xsZXlAaW50ZWwuY29tDQoNCkV2
-ZW50IGRldGFpbHM6ICANCmh0dHBzOi8vd3d3Lmdvb2dsZS5jb20vY2FsZW5kYXIvZXZlbnQ/YWN0
-aW9uPVZJRVcmZWlkPU56UndhamhrTVdnMmIzQTJNbUk1YWpjMGIyMWpZamxyWTNCbmFtZGlPVzlq
-YkdocU1HSTVhbU52Y3pOcGJ6bG9OakZwYW1ka01XNWpORjh5TURFNU1EZ3lNRlF4TlRBd01EQmFJ
-SGx2WTNSdlFIbHZZM1J2Y0hKdmFtVmpkQzV2Y21jJnRvaz1NalVqZEdobGVXOWpkRzl3Y205cVpX
-TjBRR2R0WVdsc0xtTnZiV1poTTJObFlUTmtORFF5T1dKak5XSmtOekJoWkdJM09EWTFZakJqTW1a
-bU1EY3pOMk01WkRnJmN0ej1BbWVyaWNhJTJGTG9zX0FuZ2VsZXMmaGw9ZW4mZXM9MA0KDQpJbnZp
-dGF0aW9uIGZyb20gR29vZ2xlIENhbGVuZGFyOiBodHRwczovL3d3dy5nb29nbGUuY29tL2NhbGVu
-ZGFyLw0KDQpZb3UgYXJlIHJlY2VpdmluZyB0aGlzIGNvdXJ0ZXN5IGVtYWlsIGF0IHRoZSBhY2Nv
-dW50IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcgIA0KYmVjYXVzZSB5b3UgYXJlIGFuIGF0dGVuZGVl
-IG9mIHRoaXMgZXZlbnQuDQoNClRvIHN0b3AgcmVjZWl2aW5nIGZ1dHVyZSB1cGRhdGVzIGZvciB0
-aGlzIGV2ZW50LCBkZWNsaW5lIHRoaXMgZXZlbnQuICANCkFsdGVybmF0aXZlbHkgeW91IGNhbiBz
-aWduIHVwIGZvciBhIEdvb2dsZSBhY2NvdW50IGF0ICANCmh0dHBzOi8vd3d3Lmdvb2dsZS5jb20v
-Y2FsZW5kYXIvIGFuZCBjb250cm9sIHlvdXIgbm90aWZpY2F0aW9uIHNldHRpbmdzIGZvciAgDQp5
-b3VyIGVudGlyZSBjYWxlbmRhci4NCg0KRm9yd2FyZGluZyB0aGlzIGludml0YXRpb24gY291bGQg
-YWxsb3cgYW55IHJlY2lwaWVudCB0byBzZW5kIGEgcmVzcG9uc2UgdG8gIA0KdGhlIG9yZ2FuaXpl
-ciBhbmQgYmUgYWRkZWQgdG8gdGhlIGd1ZXN0IGxpc3QsIG9yIGludml0ZSBvdGhlcnMgcmVnYXJk
-bGVzcyAgDQpvZiB0aGVpciBvd24gaW52aXRhdGlvbiBzdGF0dXMsIG9yIHRvIG1vZGlmeSB5b3Vy
-IFJTVlAuIExlYXJuIG1vcmUgYXQgIA0KaHR0cHM6Ly9zdXBwb3J0Lmdvb2dsZS5jb20vY2FsZW5k
-YXIvYW5zd2VyLzM3MTM1I2ZvcndhcmRpbmcNCg==
+dGF0aW9uLCBidWlsZHMsIGFuZCByZWxlYXNlcy4NCldoZW46IFdlZWtseSBmcm9tIDhhbSB0byA5
+YW0gb24gVHVlc2RheSBQYWNpZmljIFRpbWUgLSBMb3MgQW5nZWxlcyAoY2hhbmdlZCkNCldoZXJl
+OiBab29tIE1lZXRpbmc6IGh0dHBzOi8vem9vbS51cy9qLzk5MDg5MjcxMg0KQ2FsZW5kYXI6IHlv
+Y3RvQHlvY3RvcHJvamVjdC5vcmcNCldobzoNCiAgICAgKiB0aGV5b2N0b3Byb2plY3RAZ21haWwu
+Y29tIC0gb3JnYW5pemVyDQogICAgICogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KICAgICAqIHN0
+ZXBoZW4uay5qb2xsZXlAaW50ZWwuY29tDQogICAgICogc2pvbGxleS55cC5wbUBnbWFpbC5jb20N
+Cg0KRXZlbnQgZGV0YWlsczogIA0KaHR0cHM6Ly93d3cuZ29vZ2xlLmNvbS9jYWxlbmRhci9ldmVu
+dD9hY3Rpb249VklFVyZlaWQ9TnpSd2FqaGtNV2cyYjNBMk1tSTVhamMwYjIxallqbHJZM0JuYW1k
+aU9XOWpiR2hxTUdJNWFtTnZjek5wYnpsb05qRnBhbWRrTVc1ak5GOVNNakF4T1RBNE1qZFVNVFV3
+TURBd0lIbHZZM1J2UUhsdlkzUnZjSEp2YW1WamRDNXZjbWMmdG9rPU1qVWpkR2hsZVc5amRHOXdj
+bTlxWldOMFFHZHRZV2xzTG1OdmJXSTBPVEkxTW1FMU9EQTFOek5rT1RkaU9UTm1aVGhpWkRjME5X
+WTBZVEpoTXpCak9EZGxaVGsmY3R6PUFtZXJpY2ElMkZMb3NfQW5nZWxlcyZobD1lbiZlcz0wDQoN
+Ckludml0YXRpb24gZnJvbSBHb29nbGUgQ2FsZW5kYXI6IGh0dHBzOi8vd3d3Lmdvb2dsZS5jb20v
+Y2FsZW5kYXIvDQoNCllvdSBhcmUgcmVjZWl2aW5nIHRoaXMgY291cnRlc3kgZW1haWwgYXQgdGhl
+IGFjY291bnQgeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZyAgDQpiZWNhdXNlIHlvdSBhcmUgYW4gYXR0
+ZW5kZWUgb2YgdGhpcyBldmVudC4NCg0KVG8gc3RvcCByZWNlaXZpbmcgZnV0dXJlIHVwZGF0ZXMg
+Zm9yIHRoaXMgZXZlbnQsIGRlY2xpbmUgdGhpcyBldmVudC4gIA0KQWx0ZXJuYXRpdmVseSB5b3Ug
+Y2FuIHNpZ24gdXAgZm9yIGEgR29vZ2xlIGFjY291bnQgYXQgIA0KaHR0cHM6Ly93d3cuZ29vZ2xl
+LmNvbS9jYWxlbmRhci8gYW5kIGNvbnRyb2wgeW91ciBub3RpZmljYXRpb24gc2V0dGluZ3MgZm9y
+ICANCnlvdXIgZW50aXJlIGNhbGVuZGFyLg0KDQpGb3J3YXJkaW5nIHRoaXMgaW52aXRhdGlvbiBj
+b3VsZCBhbGxvdyBhbnkgcmVjaXBpZW50IHRvIHNlbmQgYSByZXNwb25zZSB0byAgDQp0aGUgb3Jn
+YW5pemVyIGFuZCBiZSBhZGRlZCB0byB0aGUgZ3Vlc3QgbGlzdCwgb3IgaW52aXRlIG90aGVycyBy
+ZWdhcmRsZXNzICANCm9mIHRoZWlyIG93biBpbnZpdGF0aW9uIHN0YXR1cywgb3IgdG8gbW9kaWZ5
+IHlvdXIgUlNWUC4gTGVhcm4gbW9yZSBhdCAgDQpodHRwczovL3N1cHBvcnQuZ29vZ2xlLmNvbS9j
+YWxlbmRhci9hbnN3ZXIvMzcxMzUjZm9yd2FyZGluZw0K
 
---0000000000000e681a0590059ba5
+--000000000000c253830590059d6c
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
@@ -153,12 +153,12 @@ t-weight:normal"><strong>This event has been changed.</strong></h4><div sty=
 le=3D"padding:2px"><span itemprop=3D"publisher" itemscope itemtype=3D"http:=
 //schema.org/Organization"><meta itemprop=3D"name" content=3D"Google Calend=
 ar"/></span><meta itemprop=3D"eventId/googleCalendar" content=3D"74pj8d1h6o=
-p62b9j74omcb9kcpgjgb9oclhj0b9jcos3io9h61ijgd1nc4_20190820T150000Z"/><div st=
+p62b9j74omcb9kcpgjgb9oclhj0b9jcos3io9h61ijgd1nc4_R20190827T150000"/><div st=
 yle=3D"float:right;font-weight:bold;font-size:13px"> <a href=3D"https://www=
 .google.com/calendar/event?action=3DVIEW&amp;eid=3DNzRwajhkMWg2b3A2MmI5ajc0=
-b21jYjlrY3BnamdiOW9jbGhqMGI5amNvczNpbzloNjFpamdkMW5jNF8yMDE5MDgyMFQxNTAwMDB=
-aIHlvY3RvQHlvY3RvcHJvamVjdC5vcmc&amp;tok=3DMjUjdGhleW9jdG9wcm9qZWN0QGdtYWls=
-LmNvbWZhM2NlYTNkNDQyOWJjNWJkNzBhZGI3ODY1YjBjMmZmMDczN2M5ZDg&amp;ctz=3DAmeri=
+b21jYjlrY3BnamdiOW9jbGhqMGI5amNvczNpbzloNjFpamdkMW5jNF9SMjAxOTA4MjdUMTUwMDA=
+wIHlvY3RvQHlvY3RvcHJvamVjdC5vcmc&amp;tok=3DMjUjdGhleW9jdG9wcm9qZWN0QGdtYWls=
+LmNvbWI0OTI1MmE1ODA1NzNkOTdiOTNmZThiZDc0NWY0YTJhMzBjODdlZTk&amp;ctz=3DAmeri=
 ca%2FLos_Angeles&amp;hl=3Den&amp;es=3D0" style=3D"color:#20c;white-space:no=
 wrap" itemprop=3D"url">more details &raquo;</a><br></div><h3 style=3D"paddi=
 ng:0 0 6px 0;margin:0;font-family:Arial,Sans-serif;font-size:16px;font-weig=
@@ -170,9 +170,9 @@ wrap;width:90px" valign=3D"top"><div><i style=3D"font-style:normal">When</i=
 ></div></td><td style=3D"padding-bottom:10px;font-family:Arial,Sans-serif;f=
 ont-size:13px;color:#222" valign=3D"top"><div style=3D"text-indent:-1px"><s=
 trong style=3D"color:#080">Changed: </strong><time itemprop=3D"startDate" d=
-atetime=3D"20190820T150000Z"></time><time itemprop=3D"endDate" datetime=3D"=
-20190820T160000Z"></time>Tue Aug 20, 2019 8am =E2=80=93 9am <span style=3D"=
-color:#888">Pacific Time - Los Angeles</span></div></td></tr><tr><td style=
+atetime=3D"20190827T150000Z"></time><time itemprop=3D"endDate" datetime=3D"=
+20190827T160000Z"></time>Weekly from 8am to 9am on Tuesday <span style=3D"c=
+olor:#888">Pacific Time - Los Angeles</span></div></td></tr><tr><td style=
 =3D"padding:0 1em 10px 0;font-family:Arial,Sans-serif;font-size:13px;color:=
 #888;white-space:nowrap;width:90px" valign=3D"top"><div><i style=3D"font-st=
 yle:normal">Where</i></div></td><td style=3D"padding-bottom:10px;font-famil=
@@ -218,106 +218,106 @@ nt:-1px"><span style=3D"font-family:Courier New,monospace">&#x2022;</span><=
 /div></td><td style=3D"padding-right:10px;font-family:Arial,Sans-serif;font=
 -size:13px;color:#222"><div style=3D"text-indent:-1px"><div><div style=3D"m=
 argin:0 0 0.3em 0"><span itemprop=3D"attendee" itemscope itemtype=3D"http:/=
-/schema.org/Person"><span itemprop=3D"name" class=3D"notranslate">sjolley.y=
-p.pm@gmail.com</span><meta itemprop=3D"email" content=3D"sjolley.yp.pm@gmai=
-l.com"/></span></div></div></div></td></tr><tr><td style=3D"padding-right:1=
-0px;font-family:Arial,Sans-serif;font-size:13px;color:#222;width:10px"><div=
- style=3D"text-indent:-1px"><span style=3D"font-family:Courier New,monospac=
-e">&#x2022;</span></div></td><td style=3D"padding-right:10px;font-family:Ar=
-ial,Sans-serif;font-size:13px;color:#222"><div style=3D"text-indent:-1px"><=
-div><div style=3D"margin:0 0 0.3em 0"><span itemprop=3D"attendee" itemscope=
- itemtype=3D"http://schema.org/Person"><span itemprop=3D"name" class=3D"not=
-ranslate">stephen.k.jolley@intel.com</span><meta itemprop=3D"email" content=
-=3D"stephen.k.jolley@intel.com"/></span></div></div></div></td></tr></table=
-></td></tr></table><div style=3D"padding-bottom:15px;font-family:Arial,Sans=
--serif;font-size:13px;color:#222;white-space:pre-wrap!important;white-space=
-:-moz-pre-wrap!important;white-space:-pre-wrap!important;white-space:-o-pre=
--wrap!important;white-space:pre;word-wrap:break-word"><span><br>The Yocto P=
-roject hosts a technical call. All community members are invited to join on=
- both the call and in the IRC channel, which are used simultaneously.<br>We=
- encourage people attending the meeting to logon and announce themselves on=
- the Yocto Project IRC chancel during the meeting (optional):<br><br>Yocto =
-IRC: <a href=3D"https://www.google.com/url?q=3Dhttp%3A%2F%2Fwebchat.freenod=
-e.net%2F%3Fchannels%3D%23yocto&amp;sa=3DD&amp;ust=3D1566160634184000&amp;us=
-g=3DAFQjCNG_zR-czzGupKK1sq5bsmPBKNN2BA" target=3D"_blank">http://webchat.fr=
-eenode.net/?channels=3D#yocto</a><br><br>Wiki: <a href=3D"https://www.googl=
-e.com/url?q=3Dhttps%3A%2F%2Fwww.yoctoproject.org%2Fpublic-virtual-meetings%=
-2F&amp;sa=3DD&amp;ust=3D1566160634184000&amp;usg=3DAFQjCNEyHpiQVHbq4wnGt5oI=
-c5QRw7i1xg" target=3D"_blank">https://www.yoctoproject.org/public-virtual-m=
-eetings/</a><br><br>Bridge is with Zoom at: <a href=3D"https://www.google.c=
-om/url?q=3Dhttps%3A%2F%2Fzoom.us%2Fj%2F990892712&amp;sa=3DD&amp;ust=3D15661=
-60634184000&amp;usg=3DAFQjCNFlWW0N_3Qkxqx6RnIQQVdHemdJcw" target=3D"_blank"=
->https://zoom.us/j/990892712</a><br><br>Tuesdays when we aren=E2=80=99t hav=
-ing the Monthly Technical Call The Yocto Project hosts a engineering sync b=
-y which the technical team discusses the current status of engineering topi=
-cs, including the autobuilder, documentation, builds, and releases.</span><=
-meta itemprop=3D"description" content=3D"The Yocto Project hosts a technica=
-l call. All community members are invited to join on both the call and in t=
-he IRC channel, which are used simultaneously.We encourage people attending=
- the meeting to logon and announce themselves on the Yocto Project IRC chan=
-cel during the meeting (optional):Yocto IRC: http://webchat.freenode.net/?c=
-hannels=3D#yoctoWiki: https://www.yoctoproject.org/public-virtual-meetings/=
-Bridge is with Zoom at: https://zoom.us/j/990892712Tuesdays when we aren=E2=
-=80=99t having the Monthly Technical Call The Yocto Project hosts a enginee=
-ring sync by which the technical team discusses the current status of engin=
-eering topics, including the autobuilder, documentation, builds, and releas=
-es."/></div></div><p style=3D"color:#222;font-size:13px;margin:0"><span sty=
-le=3D"color:#888">Going (yocto@yoctoproject.org)?&nbsp;&nbsp;&nbsp;</span><=
-wbr><strong><span itemprop=3D"potentialaction" itemscope itemtype=3D"http:/=
-/schema.org/RsvpAction"><meta itemprop=3D"attendance" content=3D"http://sch=
-ema.org/RsvpAttendance/Yes"/><span itemprop=3D"handler" itemscope itemtype=
-=3D"http://schema.org/HttpActionHandler"><link itemprop=3D"method" href=3D"=
-http://schema.org/HttpRequestMethod/GET"/><a href=3D"https://www.google.com=
-/calendar/event?action=3DRESPOND&amp;eid=3DNzRwajhkMWg2b3A2MmI5ajc0b21jYjlr=
-Y3BnamdiOW9jbGhqMGI5amNvczNpbzloNjFpamdkMW5jNF8yMDE5MDgyMFQxNTAwMDBaIHlvY3R=
-vQHlvY3RvcHJvamVjdC5vcmc&amp;rst=3D1&amp;tok=3DMjUjdGhleW9jdG9wcm9qZWN0QGdt=
-YWlsLmNvbWZhM2NlYTNkNDQyOWJjNWJkNzBhZGI3ODY1YjBjMmZmMDczN2M5ZDg&amp;ctz=3DA=
-merica%2FLos_Angeles&amp;hl=3Den&amp;es=3D0" style=3D"color:#20c;white-spac=
-e:nowrap" itemprop=3D"url">Yes</a></span></span><span style=3D"margin:0 0.4=
-em;font-weight:normal"> - </span><span itemprop=3D"potentialaction" itemsco=
-pe itemtype=3D"http://schema.org/RsvpAction"><meta itemprop=3D"attendance" =
-content=3D"http://schema.org/RsvpAttendance/Maybe"/><span itemprop=3D"handl=
-er" itemscope itemtype=3D"http://schema.org/HttpActionHandler"><link itempr=
-op=3D"method" href=3D"http://schema.org/HttpRequestMethod/GET"/><a href=3D"=
-https://www.google.com/calendar/event?action=3DRESPOND&amp;eid=3DNzRwajhkMW=
-g2b3A2MmI5ajc0b21jYjlrY3BnamdiOW9jbGhqMGI5amNvczNpbzloNjFpamdkMW5jNF8yMDE5M=
-DgyMFQxNTAwMDBaIHlvY3RvQHlvY3RvcHJvamVjdC5vcmc&amp;rst=3D3&amp;tok=3DMjUjdG=
-hleW9jdG9wcm9qZWN0QGdtYWlsLmNvbWZhM2NlYTNkNDQyOWJjNWJkNzBhZGI3ODY1YjBjMmZmM=
-DczN2M5ZDg&amp;ctz=3DAmerica%2FLos_Angeles&amp;hl=3Den&amp;es=3D0" style=3D=
-"color:#20c;white-space:nowrap" itemprop=3D"url">Maybe</a></span></span><sp=
-an style=3D"margin:0 0.4em;font-weight:normal"> - </span><span itemprop=3D"=
-potentialaction" itemscope itemtype=3D"http://schema.org/RsvpAction"><meta =
-itemprop=3D"attendance" content=3D"http://schema.org/RsvpAttendance/No"/><s=
-pan itemprop=3D"handler" itemscope itemtype=3D"http://schema.org/HttpAction=
-Handler"><link itemprop=3D"method" href=3D"http://schema.org/HttpRequestMet=
-hod/GET"/><a href=3D"https://www.google.com/calendar/event?action=3DRESPOND=
-&amp;eid=3DNzRwajhkMWg2b3A2MmI5ajc0b21jYjlrY3BnamdiOW9jbGhqMGI5amNvczNpbzlo=
-NjFpamdkMW5jNF8yMDE5MDgyMFQxNTAwMDBaIHlvY3RvQHlvY3RvcHJvamVjdC5vcmc&amp;rst=
-=3D2&amp;tok=3DMjUjdGhleW9jdG9wcm9qZWN0QGdtYWlsLmNvbWZhM2NlYTNkNDQyOWJjNWJk=
-NzBhZGI3ODY1YjBjMmZmMDczN2M5ZDg&amp;ctz=3DAmerica%2FLos_Angeles&amp;hl=3Den=
-&amp;es=3D0" style=3D"color:#20c;white-space:nowrap" itemprop=3D"url">No</a=
-></span></span></strong>&nbsp;&nbsp;&nbsp;&nbsp;<wbr><a href=3D"https://www=
-.google.com/calendar/event?action=3DVIEW&amp;eid=3DNzRwajhkMWg2b3A2MmI5ajc0=
-b21jYjlrY3BnamdiOW9jbGhqMGI5amNvczNpbzloNjFpamdkMW5jNF8yMDE5MDgyMFQxNTAwMDB=
-aIHlvY3RvQHlvY3RvcHJvamVjdC5vcmc&amp;tok=3DMjUjdGhleW9jdG9wcm9qZWN0QGdtYWls=
-LmNvbWZhM2NlYTNkNDQyOWJjNWJkNzBhZGI3ODY1YjBjMmZmMDczN2M5ZDg&amp;ctz=3DAmeri=
-ca%2FLos_Angeles&amp;hl=3Den&amp;es=3D0" style=3D"color:#20c;white-space:no=
-wrap" itemprop=3D"url">more options &raquo;</a></p></td></tr><tr><td style=
-=3D"background-color:#f6f6f6;color:#888;border-top:1px Solid #ccc;font-fami=
-ly:Arial,Sans-serif;font-size:11px"><p>Invitation from <a href=3D"https://w=
-ww.google.com/calendar/" target=3D"_blank" style=3D"">Google Calendar</a></=
-p><p>You are receiving this courtesy email at the account yocto@yoctoprojec=
-t.org because you are an attendee of this event.</p><p>To stop receiving fu=
-ture updates for this event, decline this event. Alternatively you can sign=
- up for a Google account at https://www.google.com/calendar/ and control yo=
-ur notification settings for your entire calendar.</p><p>Forwarding this in=
-vitation could allow any recipient to send a response to the organizer and =
-be added to the guest list, or invite others regardless of their own invita=
-tion status, or to modify your RSVP. <a href=3D"https://support.google.com/=
-calendar/answer/37135#forwarding">Learn More</a>.</p></td></tr></table></di=
-v></span></span>
+/schema.org/Person"><span itemprop=3D"name" class=3D"notranslate">stephen.k=
+.jolley@intel.com</span><meta itemprop=3D"email" content=3D"stephen.k.jolle=
+y@intel.com"/></span></div></div></div></td></tr><tr><td style=3D"padding-r=
+ight:10px;font-family:Arial,Sans-serif;font-size:13px;color:#222;width:10px=
+"><div style=3D"text-indent:-1px"><span style=3D"font-family:Courier New,mo=
+nospace">&#x2022;</span></div></td><td style=3D"padding-right:10px;font-fam=
+ily:Arial,Sans-serif;font-size:13px;color:#222"><div style=3D"text-indent:-=
+1px"><div><div style=3D"margin:0 0 0.3em 0"><span itemprop=3D"attendee" ite=
+mscope itemtype=3D"http://schema.org/Person"><span itemprop=3D"name" class=
+=3D"notranslate">sjolley.yp.pm@gmail.com</span><meta itemprop=3D"email" con=
+tent=3D"sjolley.yp.pm@gmail.com"/></span></div></div></div></td></tr></tabl=
+e></td></tr></table><div style=3D"padding-bottom:15px;font-family:Arial,San=
+s-serif;font-size:13px;color:#222;white-space:pre-wrap!important;white-spac=
+e:-moz-pre-wrap!important;white-space:-pre-wrap!important;white-space:-o-pr=
+e-wrap!important;white-space:pre;word-wrap:break-word"><span><br>The Yocto =
+Project hosts a technical call. All community members are invited to join o=
+n both the call and in the IRC channel, which are used simultaneously.<br>W=
+e encourage people attending the meeting to logon and announce themselves o=
+n the Yocto Project IRC chancel during the meeting (optional):<br><br>Yocto=
+ IRC: <a href=3D"https://www.google.com/url?q=3Dhttp%3A%2F%2Fwebchat.freeno=
+de.net%2F%3Fchannels%3D%23yocto&amp;sa=3DD&amp;ust=3D1566160679517000&amp;u=
+sg=3DAFQjCNGgm5d_EFLQ5p3suA4z_PDVz9uHVw" target=3D"_blank">http://webchat.f=
+reenode.net/?channels=3D#yocto</a><br><br>Wiki: <a href=3D"https://www.goog=
+le.com/url?q=3Dhttps%3A%2F%2Fwww.yoctoproject.org%2Fpublic-virtual-meetings=
+%2F&amp;sa=3DD&amp;ust=3D1566160679517000&amp;usg=3DAFQjCNHptWK0gGclD_X6EZi=
+40OZy489f8Q" target=3D"_blank">https://www.yoctoproject.org/public-virtual-=
+meetings/</a><br><br>Bridge is with Zoom at: <a href=3D"https://www.google.=
+com/url?q=3Dhttps%3A%2F%2Fzoom.us%2Fj%2F990892712&amp;sa=3DD&amp;ust=3D1566=
+160679517000&amp;usg=3DAFQjCNH9h9yDub0iiAFKzB57l5cYn5wnuA" target=3D"_blank=
+">https://zoom.us/j/990892712</a><br><br>Tuesdays when we aren=E2=80=99t ha=
+ving the Monthly Technical Call The Yocto Project hosts a engineering sync =
+by which the technical team discusses the current status of engineering top=
+ics, including the autobuilder, documentation, builds, and releases.</span>=
+<meta itemprop=3D"description" content=3D"The Yocto Project hosts a technic=
+al call. All community members are invited to join on both the call and in =
+the IRC channel, which are used simultaneously.We encourage people attendin=
+g the meeting to logon and announce themselves on the Yocto Project IRC cha=
+ncel during the meeting (optional):Yocto IRC: http://webchat.freenode.net/?=
+channels=3D#yoctoWiki: https://www.yoctoproject.org/public-virtual-meetings=
+/Bridge is with Zoom at: https://zoom.us/j/990892712Tuesdays when we aren=
+=E2=80=99t having the Monthly Technical Call The Yocto Project hosts a engi=
+neering sync by which the technical team discusses the current status of en=
+gineering topics, including the autobuilder, documentation, builds, and rel=
+eases."/></div></div><p style=3D"color:#222;font-size:13px;margin:0"><span =
+style=3D"color:#888">Going (yocto@yoctoproject.org)?&nbsp;&nbsp;&nbsp;</spa=
+n><wbr>All events in this series:&nbsp;&nbsp;&nbsp;<strong><span itemprop=
+=3D"potentialaction" itemscope itemtype=3D"http://schema.org/RsvpAction"><m=
+eta itemprop=3D"attendance" content=3D"http://schema.org/RsvpAttendance/Yes=
+"/><span itemprop=3D"handler" itemscope itemtype=3D"http://schema.org/HttpA=
+ctionHandler"><link itemprop=3D"method" href=3D"http://schema.org/HttpReque=
+stMethod/GET"/><a href=3D"https://www.google.com/calendar/event?action=3DRE=
+SPOND&amp;eid=3DNzRwajhkMWg2b3A2MmI5ajc0b21jYjlrY3BnamdiOW9jbGhqMGI5amNvczN=
+pbzloNjFpamdkMW5jNF9SMjAxOTA4MjdUMTUwMDAwIHlvY3RvQHlvY3RvcHJvamVjdC5vcmc&am=
+p;rst=3D1&amp;tok=3DMjUjdGhleW9jdG9wcm9qZWN0QGdtYWlsLmNvbWI0OTI1MmE1ODA1NzN=
+kOTdiOTNmZThiZDc0NWY0YTJhMzBjODdlZTk&amp;ctz=3DAmerica%2FLos_Angeles&amp;hl=
+=3Den&amp;es=3D0" style=3D"color:#20c;white-space:nowrap" itemprop=3D"url">=
+Yes</a></span></span><span style=3D"margin:0 0.4em;font-weight:normal"> - <=
+/span><span itemprop=3D"potentialaction" itemscope itemtype=3D"http://schem=
+a.org/RsvpAction"><meta itemprop=3D"attendance" content=3D"http://schema.or=
+g/RsvpAttendance/Maybe"/><span itemprop=3D"handler" itemscope itemtype=3D"h=
+ttp://schema.org/HttpActionHandler"><link itemprop=3D"method" href=3D"http:=
+//schema.org/HttpRequestMethod/GET"/><a href=3D"https://www.google.com/cale=
+ndar/event?action=3DRESPOND&amp;eid=3DNzRwajhkMWg2b3A2MmI5ajc0b21jYjlrY3Bna=
+mdiOW9jbGhqMGI5amNvczNpbzloNjFpamdkMW5jNF9SMjAxOTA4MjdUMTUwMDAwIHlvY3RvQHlv=
+Y3RvcHJvamVjdC5vcmc&amp;rst=3D3&amp;tok=3DMjUjdGhleW9jdG9wcm9qZWN0QGdtYWlsL=
+mNvbWI0OTI1MmE1ODA1NzNkOTdiOTNmZThiZDc0NWY0YTJhMzBjODdlZTk&amp;ctz=3DAmeric=
+a%2FLos_Angeles&amp;hl=3Den&amp;es=3D0" style=3D"color:#20c;white-space:now=
+rap" itemprop=3D"url">Maybe</a></span></span><span style=3D"margin:0 0.4em;=
+font-weight:normal"> - </span><span itemprop=3D"potentialaction" itemscope =
+itemtype=3D"http://schema.org/RsvpAction"><meta itemprop=3D"attendance" con=
+tent=3D"http://schema.org/RsvpAttendance/No"/><span itemprop=3D"handler" it=
+emscope itemtype=3D"http://schema.org/HttpActionHandler"><link itemprop=3D"=
+method" href=3D"http://schema.org/HttpRequestMethod/GET"/><a href=3D"https:=
+//www.google.com/calendar/event?action=3DRESPOND&amp;eid=3DNzRwajhkMWg2b3A2=
+MmI5ajc0b21jYjlrY3BnamdiOW9jbGhqMGI5amNvczNpbzloNjFpamdkMW5jNF9SMjAxOTA4Mjd=
+UMTUwMDAwIHlvY3RvQHlvY3RvcHJvamVjdC5vcmc&amp;rst=3D2&amp;tok=3DMjUjdGhleW9j=
+dG9wcm9qZWN0QGdtYWlsLmNvbWI0OTI1MmE1ODA1NzNkOTdiOTNmZThiZDc0NWY0YTJhMzBjODd=
+lZTk&amp;ctz=3DAmerica%2FLos_Angeles&amp;hl=3Den&amp;es=3D0" style=3D"color=
+:#20c;white-space:nowrap" itemprop=3D"url">No</a></span></span></strong>&nb=
+sp;&nbsp;&nbsp;&nbsp;<wbr><a href=3D"https://www.google.com/calendar/event?=
+action=3DVIEW&amp;eid=3DNzRwajhkMWg2b3A2MmI5ajc0b21jYjlrY3BnamdiOW9jbGhqMGI=
+5amNvczNpbzloNjFpamdkMW5jNF9SMjAxOTA4MjdUMTUwMDAwIHlvY3RvQHlvY3RvcHJvamVjdC=
+5vcmc&amp;tok=3DMjUjdGhleW9jdG9wcm9qZWN0QGdtYWlsLmNvbWI0OTI1MmE1ODA1NzNkOTd=
+iOTNmZThiZDc0NWY0YTJhMzBjODdlZTk&amp;ctz=3DAmerica%2FLos_Angeles&amp;hl=3De=
+n&amp;es=3D0" style=3D"color:#20c;white-space:nowrap" itemprop=3D"url">more=
+ options &raquo;</a></p></td></tr><tr><td style=3D"background-color:#f6f6f6=
+;color:#888;border-top:1px Solid #ccc;font-family:Arial,Sans-serif;font-siz=
+e:11px"><p>Invitation from <a href=3D"https://www.google.com/calendar/" tar=
+get=3D"_blank" style=3D"">Google Calendar</a></p><p>You are receiving this =
+courtesy email at the account yocto@yoctoproject.org because you are an att=
+endee of this event.</p><p>To stop receiving future updates for this event,=
+ decline this event. Alternatively you can sign up for a Google account at =
+https://www.google.com/calendar/ and control your notification settings for=
+ your entire calendar.</p><p>Forwarding this invitation could allow any rec=
+ipient to send a response to the organizer and be added to the guest list, =
+or invite others regardless of their own invitation status, or to modify yo=
+ur RSVP. <a href=3D"https://support.google.com/calendar/answer/37135#forwar=
+ding">Learn More</a>.</p></td></tr></table></div></span></span>
 
---0000000000000e681a0590059ba5
+--000000000000c253830590059d6c
 Content-Type: text/calendar; charset="UTF-8"; method=REQUEST
 Content-Transfer-Encoding: quoted-printable
 
@@ -345,11 +345,17 @@ RRULE:FREQ=3DYEARLY;BYMONTH=3D11;BYDAY=3D1SU
 END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
-DTSTART;TZID=3DAmerica/Los_Angeles:20190820T080000
-DTEND;TZID=3DAmerica/Los_Angeles:20190820T090000
-DTSTAMP:20190813T203714Z
+DTSTART;TZID=3DAmerica/Los_Angeles:20190827T080000
+DTEND;TZID=3DAmerica/Los_Angeles:20190827T090000
+RRULE:FREQ=3DWEEKLY;BYDAY=3DTU
+DTSTAMP:20190813T203759Z
 ORGANIZER;CN=3Dtheyoctoproject@gmail.com:mailto:theyoctoproject@gmail.com
-UID:74pj8d1h6op62b9j74omcb9kcpgjgb9oclhj0b9jcos3io9h61ijgd1nc4@google.com
+UID:74pj8d1h6op62b9j74omcb9kcpgjgb9oclhj0b9jcos3io9h61ijgd1nc4_R20190827T15
+ 0000@google.com
+ATTENDEE;CUTYPE=3DINDIVIDUAL;ROLE=3DREQ-PARTICIPANT;PARTSTAT=3DNEEDS-ACTION=
+;RSVP=3D
+ TRUE;CN=3Dyocto@yoctoproject.org;X-NUM-GUESTS=3D0:mailto:yocto@yoctoprojec=
+t.org
 ATTENDEE;CUTYPE=3DINDIVIDUAL;ROLE=3DREQ-PARTICIPANT;PARTSTAT=3DACCEPTED;RSV=
 P=3DTRUE
  ;CN=3Dtheyoctoproject@gmail.com;X-NUM-GUESTS=3D0:mailto:theyoctoproject@gm=
@@ -357,20 +363,15 @@ ail.c
  om
 ATTENDEE;CUTYPE=3DINDIVIDUAL;ROLE=3DREQ-PARTICIPANT;PARTSTAT=3DNEEDS-ACTION=
 ;RSVP=3D
- TRUE;CN=3Dyocto@yoctoproject.org;X-NUM-GUESTS=3D0:mailto:yocto@yoctoprojec=
-t.org
+ TRUE;CN=3Dstephen.k.jolley@intel.com;X-NUM-GUESTS=3D0:mailto:stephen.k.jol=
+ley@i
+ ntel.com
 ATTENDEE;CUTYPE=3DINDIVIDUAL;ROLE=3DREQ-PARTICIPANT;PARTSTAT=3DNEEDS-ACTION=
 ;RSVP=3D
  TRUE;CN=3Dsjolley.yp.pm@gmail.com;X-NUM-GUESTS=3D0:mailto:sjolley.yp.pm@gm=
 ail.c
  om
-ATTENDEE;CUTYPE=3DINDIVIDUAL;ROLE=3DREQ-PARTICIPANT;PARTSTAT=3DNEEDS-ACTION=
-;RSVP=3D
- TRUE;CN=3Dstephen.k.jolley@intel.com;X-NUM-GUESTS=3D0:mailto:stephen.k.jol=
-ley@i
- ntel.com
-X-MICROSOFT-CDO-OWNERAPPTID:-1512728414
-RECURRENCE-ID;TZID=3DAmerica/Los_Angeles:20190820T080000
+X-MICROSOFT-CDO-OWNERAPPTID:963975502
 CREATED:20180524T181406Z
 DESCRIPTION:<br>The Yocto Project hosts a technical call. All community mem
  bers are invited to join on both the call and in the IRC channel\, which a=
@@ -403,16 +404,16 @@ n
 h
  ttps://www.google.com/calendar/event?action=3DVIEW&eid=3DNzRwajhkMWg2b3A2M=
 mI5aj
- c0b21jYjlrY3BnamdiOW9jbGhqMGI5amNvczNpbzloNjFpamdkMW5jNF8yMDE5MDgyMFQxNTAw=
+ c0b21jYjlrY3BnamdiOW9jbGhqMGI5amNvczNpbzloNjFpamdkMW5jNF9SMjAxOTA4MjdUMTUw=
 M
- DBaIHlvY3RvQHlvY3RvcHJvamVjdC5vcmc&tok=3DMjUjdGhleW9jdG9wcm9qZWN0QGdtYWlsL=
+ DAwIHlvY3RvQHlvY3RvcHJvamVjdC5vcmc&tok=3DMjUjdGhleW9jdG9wcm9qZWN0QGdtYWlsL=
 mNv
- bWZhM2NlYTNkNDQyOWJjNWJkNzBhZGI3ODY1YjBjMmZmMDczN2M5ZDg&ctz=3DAmerica%2FLo=
+ bWI0OTI1MmE1ODA1NzNkOTdiOTNmZThiZDc0NWY0YTJhMzBjODdlZTk&ctz=3DAmerica%2FLo=
 s_A
  ngeles&hl=3Den&es=3D0.\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:=
 ~:~:~
  :~:~:~:~:~:~:~:~:~:~:~:~::~:~::-
-LAST-MODIFIED:20190813T203711Z
+LAST-MODIFIED:20190813T203755Z
 LOCATION:Zoom Meeting: https://zoom.us/j/990892712
 SEQUENCE:2
 STATUS:CONFIRMED
@@ -426,9 +427,9 @@ END:VALARM
 END:VEVENT
 END:VCALENDAR
 
---0000000000000e681a0590059ba5--
+--000000000000c253830590059d6c--
 
---0000000000000e681d0590059ba7
+--000000000000c253880590059d6e
 Content-Type: application/ics; name="invite.ics"
 Content-Disposition: attachment; filename="invite.ics"
 Content-Transfer-Encoding: base64
@@ -442,57 +443,57 @@ DQpSUlVMRTpGUkVRPVlFQVJMWTtCWU1PTlRIPTM7QllEQVk9MlNVDQpFTkQ6REFZTElHSFQNCkJF
 R0lOOlNUQU5EQVJEDQpUWk9GRlNFVEZST006LTA3MDANClRaT0ZGU0VUVE86LTA4MDANClRaTkFN
 RTpQU1QNCkRUU1RBUlQ6MTk3MDExMDFUMDIwMDAwDQpSUlVMRTpGUkVRPVlFQVJMWTtCWU1PTlRI
 PTExO0JZREFZPTFTVQ0KRU5EOlNUQU5EQVJEDQpFTkQ6VlRJTUVaT05FDQpCRUdJTjpWRVZFTlQN
-CkRUU1RBUlQ7VFpJRD1BbWVyaWNhL0xvc19BbmdlbGVzOjIwMTkwODIwVDA4MDAwMA0KRFRFTkQ7
-VFpJRD1BbWVyaWNhL0xvc19BbmdlbGVzOjIwMTkwODIwVDA5MDAwMA0KRFRTVEFNUDoyMDE5MDgx
-M1QyMDM3MTRaDQpPUkdBTklaRVI7Q049dGhleW9jdG9wcm9qZWN0QGdtYWlsLmNvbTptYWlsdG86
-dGhleW9jdG9wcm9qZWN0QGdtYWlsLmNvbQ0KVUlEOjc0cGo4ZDFoNm9wNjJiOWo3NG9tY2I5a2Nw
-Z2pnYjlvY2xoajBiOWpjb3MzaW85aDYxaWpnZDFuYzRAZ29vZ2xlLmNvbQ0KQVRURU5ERUU7Q1VU
-WVBFPUlORElWSURVQUw7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9QUNDRVBURUQ7UlNW
-UD1UUlVFDQogO0NOPXRoZXlvY3RvcHJvamVjdEBnbWFpbC5jb207WC1OVU0tR1VFU1RTPTA6bWFp
-bHRvOnRoZXlvY3RvcHJvamVjdEBnbWFpbC5jDQogb20NCkFUVEVOREVFO0NVVFlQRT1JTkRJVklE
-VUFMO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPQ0KIFRS
-VUU7Q049eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZztYLU5VTS1HVUVTVFM9MDptYWlsdG86eW9jdG9A
-eW9jdG9wcm9qZWN0Lm9yZw0KQVRURU5ERUU7Q1VUWVBFPUlORElWSURVQUw7Uk9MRT1SRVEtUEFS
-VElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9DQogVFJVRTtDTj1zam9sbGV5Lnlw
-LnBtQGdtYWlsLmNvbTtYLU5VTS1HVUVTVFM9MDptYWlsdG86c2pvbGxleS55cC5wbUBnbWFpbC5j
-DQogb20NCkFUVEVOREVFO0NVVFlQRT1JTkRJVklEVUFMO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BB
-UlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPQ0KIFRSVUU7Q049c3RlcGhlbi5rLmpvbGxleUBpbnRl
-bC5jb207WC1OVU0tR1VFU1RTPTA6bWFpbHRvOnN0ZXBoZW4uay5qb2xsZXlAaQ0KIG50ZWwuY29t
-DQpYLU1JQ1JPU09GVC1DRE8tT1dORVJBUFBUSUQ6LTE1MTI3Mjg0MTQNClJFQ1VSUkVOQ0UtSUQ7
-VFpJRD1BbWVyaWNhL0xvc19BbmdlbGVzOjIwMTkwODIwVDA4MDAwMA0KQ1JFQVRFRDoyMDE4MDUy
-NFQxODE0MDZaDQpERVNDUklQVElPTjo8YnI+VGhlIFlvY3RvIFByb2plY3QgaG9zdHMgYSB0ZWNo
-bmljYWwgY2FsbC4gQWxsIGNvbW11bml0eSBtZW0NCiBiZXJzIGFyZSBpbnZpdGVkIHRvIGpvaW4g
-b24gYm90aCB0aGUgY2FsbCBhbmQgaW4gdGhlIElSQyBjaGFubmVsXCwgd2hpY2ggYXINCiBlIHVz
-ZWQgc2ltdWx0YW5lb3VzbHkuPGJyPldlIGVuY291cmFnZSBwZW9wbGUgYXR0ZW5kaW5nIHRoZSBt
-ZWV0aW5nIHRvIGxvZ28NCiBuIGFuZCBhbm5vdW5jZSB0aGVtc2VsdmVzIG9uIHRoZSBZb2N0byBQ
-cm9qZWN0IElSQyBjaGFuY2VsIGR1cmluZyB0aGUgbWVldGkNCiBuZyAob3B0aW9uYWwpOjxicj48
-YnI+WW9jdG8gSVJDOiA8YSBocmVmPSJodHRwOi8vd2ViY2hhdC5mcmVlbm9kZS5uZXQvP2NoYW4N
-CiBuZWxzPSN5b2N0byI+aHR0cDovL3dlYmNoYXQuZnJlZW5vZGUubmV0Lz9jaGFubmVscz0jeW9j
-dG88L2E+PGJyPjxicj5XaWtpOiANCiA8YSBocmVmPSJodHRwczovL3d3dy55b2N0b3Byb2plY3Qu
-b3JnL3B1YmxpYy12aXJ0dWFsLW1lZXRpbmdzLyI+aHR0cHM6Ly93d3cNCiAueW9jdG9wcm9qZWN0
-Lm9yZy9wdWJsaWMtdmlydHVhbC1tZWV0aW5ncy88L2E+PGJyPjxicj5CcmlkZ2UgaXMgd2l0aCBa
-b29tIGENCiB0OiA8YSBocmVmPSJodHRwczovL3pvb20udXMvai85OTA4OTI3MTIiIGlkPSJvdzYz
-NCIgX19pc19vd25lcj0idHJ1ZSI+aHR0cHMNCiA6Ly96b29tLnVzL2ovOTkwODkyNzEyPC9hPjxi
-cj48YnI+VHVlc2RheXMgd2hlbiB3ZSBhcmVu4oCZdCBoYXZpbmcgdGhlIE1vbnRobA0KIHkgVGVj
-aG5pY2FsIENhbGwgVGhlIFlvY3RvIFByb2plY3QgaG9zdHMgYSBlbmdpbmVlcmluZyBzeW5jIGJ5
-IHdoaWNoIHRoZSB0ZQ0KIGNobmljYWwgdGVhbSBkaXNjdXNzZXMgdGhlIGN1cnJlbnQgc3RhdHVz
-IG9mIGVuZ2luZWVyaW5nIHRvcGljc1wsIGluY2x1ZGluZw0KICB0aGUgYXV0b2J1aWxkZXJcLCBk
-b2N1bWVudGF0aW9uXCwgYnVpbGRzXCwgYW5kIHJlbGVhc2VzLlxuXG4tOjp+On46On46fjp+Og0K
-IH46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46
-fjp+On46fjp+Ojp+On46Oi1cbg0KIFBsZWFzZSBkbyBub3QgZWRpdCB0aGlzIHNlY3Rpb24gb2Yg
-dGhlIGRlc2NyaXB0aW9uLlxuXG5WaWV3IHlvdXIgZXZlbnQgYXQgaA0KIHR0cHM6Ly93d3cuZ29v
-Z2xlLmNvbS9jYWxlbmRhci9ldmVudD9hY3Rpb249VklFVyZlaWQ9TnpSd2FqaGtNV2cyYjNBMk1t
-STVhag0KIGMwYjIxallqbHJZM0JuYW1kaU9XOWpiR2hxTUdJNWFtTnZjek5wYnpsb05qRnBhbWRr
-TVc1ak5GOHlNREU1TURneU1GUXhOVEF3TQ0KIERCYUlIbHZZM1J2UUhsdlkzUnZjSEp2YW1WamRD
-NXZjbWMmdG9rPU1qVWpkR2hsZVc5amRHOXdjbTlxWldOMFFHZHRZV2xzTG1Odg0KIGJXWmhNMk5s
-WVROa05EUXlPV0pqTldKa056QmhaR0kzT0RZMVlqQmpNbVptTURjek4yTTVaRGcmY3R6PUFtZXJp
-Y2ElMkZMb3NfQQ0KIG5nZWxlcyZobD1lbiZlcz0wLlxuLTo6fjp+Ojp+On46fjp+On46fjp+On46
-fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fg0KIDp+On46fjp+On46fjp+On46fjp+On46
-fjo6fjp+OjotDQpMQVNULU1PRElGSUVEOjIwMTkwODEzVDIwMzcxMVoNCkxPQ0FUSU9OOlpvb20g
-TWVldGluZzogaHR0cHM6Ly96b29tLnVzL2ovOTkwODkyNzEyDQpTRVFVRU5DRToyDQpTVEFUVVM6
-Q09ORklSTUVEDQpTVU1NQVJZOllvY3RvIFByb2plY3QgVGVjaG5pY2FsIFRlYW0gTWVldGluZyAv
-IEVuZ2luZWVyaW5nIFN5bmMNClRSQU5TUDpPUEFRVUUNCkJFR0lOOlZBTEFSTQ0KQUNUSU9OOkRJ
-U1BMQVkNCkRFU0NSSVBUSU9OOlRoaXMgaXMgYW4gZXZlbnQgcmVtaW5kZXINClRSSUdHRVI6LVAw
-RFQwSDE1TTBTDQpFTkQ6VkFMQVJNDQpFTkQ6VkVWRU5UDQpFTkQ6VkNBTEVOREFSDQo=
+CkRUU1RBUlQ7VFpJRD1BbWVyaWNhL0xvc19BbmdlbGVzOjIwMTkwODI3VDA4MDAwMA0KRFRFTkQ7
+VFpJRD1BbWVyaWNhL0xvc19BbmdlbGVzOjIwMTkwODI3VDA5MDAwMA0KUlJVTEU6RlJFUT1XRUVL
+TFk7QllEQVk9VFUNCkRUU1RBTVA6MjAxOTA4MTNUMjAzNzU5Wg0KT1JHQU5JWkVSO0NOPXRoZXlv
+Y3RvcHJvamVjdEBnbWFpbC5jb206bWFpbHRvOnRoZXlvY3RvcHJvamVjdEBnbWFpbC5jb20NClVJ
+RDo3NHBqOGQxaDZvcDYyYjlqNzRvbWNiOWtjcGdqZ2I5b2NsaGowYjlqY29zM2lvOWg2MWlqZ2Qx
+bmM0X1IyMDE5MDgyN1QxNQ0KIDAwMDBAZ29vZ2xlLmNvbQ0KQVRURU5ERUU7Q1VUWVBFPUlORElW
+SURVQUw7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9DQog
+VFJVRTtDTj15b2N0b0B5b2N0b3Byb2plY3Qub3JnO1gtTlVNLUdVRVNUUz0wOm1haWx0bzp5b2N0
+b0B5b2N0b3Byb2plY3Qub3JnDQpBVFRFTkRFRTtDVVRZUEU9SU5ESVZJRFVBTDtST0xFPVJFUS1Q
+QVJUSUNJUEFOVDtQQVJUU1RBVD1BQ0NFUFRFRDtSU1ZQPVRSVUUNCiA7Q049dGhleW9jdG9wcm9q
+ZWN0QGdtYWlsLmNvbTtYLU5VTS1HVUVTVFM9MDptYWlsdG86dGhleW9jdG9wcm9qZWN0QGdtYWls
+LmMNCiBvbQ0KQVRURU5ERUU7Q1VUWVBFPUlORElWSURVQUw7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7
+UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9DQogVFJVRTtDTj1zdGVwaGVuLmsuam9sbGV5QGlu
+dGVsLmNvbTtYLU5VTS1HVUVTVFM9MDptYWlsdG86c3RlcGhlbi5rLmpvbGxleUBpDQogbnRlbC5j
+b20NCkFUVEVOREVFO0NVVFlQRT1JTkRJVklEVUFMO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRT
+VEFUPU5FRURTLUFDVElPTjtSU1ZQPQ0KIFRSVUU7Q049c2pvbGxleS55cC5wbUBnbWFpbC5jb207
+WC1OVU0tR1VFU1RTPTA6bWFpbHRvOnNqb2xsZXkueXAucG1AZ21haWwuYw0KIG9tDQpYLU1JQ1JP
+U09GVC1DRE8tT1dORVJBUFBUSUQ6OTYzOTc1NTAyDQpDUkVBVEVEOjIwMTgwNTI0VDE4MTQwNloN
+CkRFU0NSSVBUSU9OOjxicj5UaGUgWW9jdG8gUHJvamVjdCBob3N0cyBhIHRlY2huaWNhbCBjYWxs
+LiBBbGwgY29tbXVuaXR5IG1lbQ0KIGJlcnMgYXJlIGludml0ZWQgdG8gam9pbiBvbiBib3RoIHRo
+ZSBjYWxsIGFuZCBpbiB0aGUgSVJDIGNoYW5uZWxcLCB3aGljaCBhcg0KIGUgdXNlZCBzaW11bHRh
+bmVvdXNseS48YnI+V2UgZW5jb3VyYWdlIHBlb3BsZSBhdHRlbmRpbmcgdGhlIG1lZXRpbmcgdG8g
+bG9nbw0KIG4gYW5kIGFubm91bmNlIHRoZW1zZWx2ZXMgb24gdGhlIFlvY3RvIFByb2plY3QgSVJD
+IGNoYW5jZWwgZHVyaW5nIHRoZSBtZWV0aQ0KIG5nIChvcHRpb25hbCk6PGJyPjxicj5Zb2N0byBJ
+UkM6IDxhIGhyZWY9Imh0dHA6Ly93ZWJjaGF0LmZyZWVub2RlLm5ldC8/Y2hhbg0KIG5lbHM9I3lv
+Y3RvIj5odHRwOi8vd2ViY2hhdC5mcmVlbm9kZS5uZXQvP2NoYW5uZWxzPSN5b2N0bzwvYT48YnI+
+PGJyPldpa2k6IA0KIDxhIGhyZWY9Imh0dHBzOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcvcHVibGlj
+LXZpcnR1YWwtbWVldGluZ3MvIj5odHRwczovL3d3dw0KIC55b2N0b3Byb2plY3Qub3JnL3B1Ymxp
+Yy12aXJ0dWFsLW1lZXRpbmdzLzwvYT48YnI+PGJyPkJyaWRnZSBpcyB3aXRoIFpvb20gYQ0KIHQ6
+IDxhIGhyZWY9Imh0dHBzOi8vem9vbS51cy9qLzk5MDg5MjcxMiIgaWQ9Im93NjM0IiBfX2lzX293
+bmVyPSJ0cnVlIj5odHRwcw0KIDovL3pvb20udXMvai85OTA4OTI3MTI8L2E+PGJyPjxicj5UdWVz
+ZGF5cyB3aGVuIHdlIGFyZW7igJl0IGhhdmluZyB0aGUgTW9udGhsDQogeSBUZWNobmljYWwgQ2Fs
+bCBUaGUgWW9jdG8gUHJvamVjdCBob3N0cyBhIGVuZ2luZWVyaW5nIHN5bmMgYnkgd2hpY2ggdGhl
+IHRlDQogY2huaWNhbCB0ZWFtIGRpc2N1c3NlcyB0aGUgY3VycmVudCBzdGF0dXMgb2YgZW5naW5l
+ZXJpbmcgdG9waWNzXCwgaW5jbHVkaW5nDQogIHRoZSBhdXRvYnVpbGRlclwsIGRvY3VtZW50YXRp
+b25cLCBidWlsZHNcLCBhbmQgcmVsZWFzZXMuXG5cbi06On46fjo6fjp+On46DQogfjp+On46fjp+
+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46fjp+On46
+On46fjo6LVxuDQogUGxlYXNlIGRvIG5vdCBlZGl0IHRoaXMgc2VjdGlvbiBvZiB0aGUgZGVzY3Jp
+cHRpb24uXG5cblZpZXcgeW91ciBldmVudCBhdCBoDQogdHRwczovL3d3dy5nb29nbGUuY29tL2Nh
+bGVuZGFyL2V2ZW50P2FjdGlvbj1WSUVXJmVpZD1OelJ3YWpoa01XZzJiM0EyTW1JNWFqDQogYzBi
+MjFqWWpsclkzQm5hbWRpT1c5amJHaHFNR0k1YW1OdmN6TnBiemxvTmpGcGFtZGtNVzVqTkY5U01q
+QXhPVEE0TWpkVU1UVXdNDQogREF3SUhsdlkzUnZRSGx2WTNSdmNISnZhbVZqZEM1dmNtYyZ0b2s9
+TWpVamRHaGxlVzlqZEc5d2NtOXFaV04wUUdkdFlXbHNMbU52DQogYldJME9USTFNbUUxT0RBMU56
+TmtPVGRpT1RObVpUaGlaRGMwTldZMFlUSmhNekJqT0RkbFpUayZjdHo9QW1lcmljYSUyRkxvc19B
+DQogbmdlbGVzJmhsPWVuJmVzPTAuXG4tOjp+On46On46fjp+On46fjp+On46fjp+On46fjp+On46
+fjp+On46fjp+On46fjp+On46fjp+DQogOn46fjp+On46fjp+On46fjp+On46fjp+Ojp+On46Oi0N
+CkxBU1QtTU9ESUZJRUQ6MjAxOTA4MTNUMjAzNzU1Wg0KTE9DQVRJT046Wm9vbSBNZWV0aW5nOiBo
+dHRwczovL3pvb20udXMvai85OTA4OTI3MTINClNFUVVFTkNFOjINClNUQVRVUzpDT05GSVJNRUQN
+ClNVTU1BUlk6WW9jdG8gUHJvamVjdCBUZWNobmljYWwgVGVhbSBNZWV0aW5nIC8gRW5naW5lZXJp
+bmcgU3luYw0KVFJBTlNQOk9QQVFVRQ0KQkVHSU46VkFMQVJNDQpBQ1RJT046RElTUExBWQ0KREVT
+Q1JJUFRJT046VGhpcyBpcyBhbiBldmVudCByZW1pbmRlcg0KVFJJR0dFUjotUDBEVDBIMTVNMFMN
+CkVORDpWQUxBUk0NCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVINCg==
 
---0000000000000e681d0590059ba7--
+--000000000000c253880590059d6e--
