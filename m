@@ -1,58 +1,38 @@
-Return-Path: <rick.liu@broadcom.com>
+Return-Path: <Randy.MacLeod@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ACA51E00D64; Wed, 14 Aug 2019 14:29:22 -0700 (PDT)
+	id E7FB5E00DD5; Wed, 14 Aug 2019 18:32:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.68 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-yw1-f68.google.com (mail-yw1-f68.google.com
-	[209.85.161.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 093E8E00C87
-	for <yocto@yoctoproject.org>; Wed, 14 Aug 2019 14:29:21 -0700 (PDT)
-Received: by mail-yw1-f68.google.com with SMTP id g19so126664ywe.2
-	for <yocto@yoctoproject.org>; Wed, 14 Aug 2019 14:29:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=broadcom.com; s=google;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=1NHc9ytWZV+s4494zgfI/ZKGxhSCoe+VWJC41HXPKoA=;
-	b=CNtuoOhYxkCzWrXmcuMjSB9fxYUH9o8RTY/sEObubDQ8hZMHnqtnqdsY52cVnd3Pyq
-	Skm8MtleRmm2Z9NosCPeZ/cKBKF3LxoW4yBQ/Y29ACvxKlinS38r7FIPGs6BBTW9kpjS
-	YmDQlFUy3f8P9W6fVDoaY7NVCmBpOnsMuaGSQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=1NHc9ytWZV+s4494zgfI/ZKGxhSCoe+VWJC41HXPKoA=;
-	b=HJOmXQb1FauvV4pmbVn+xHE4EJ4Ec55kdrLuNSevYBkclQ2RFkDTbenvRdG4XvIqfP
-	wNtQ4jbGE7OTpLvUbE2viVDkXzsr28hax9YMnqecGbM5uAzAKKUN3nzlg0yCrUORkJ71
-	wDNrgI3gJR+GXwREvq3JVvYVinvoArC1XrXdv7hqULnyOzpWCxPWc+k5WElBdLPTSCgI
-	lKDpOtywNJQh49l6SxNuB6ZLHAOBY9BWQAgfM78NNUGAl6W9LIUGDbVFlWatJ9k9JGSH
-	LnbKJUT4oUw4TrZAHL3GeLjGp3cGA9vvLkKsgm4NRUrYhuNldb7i1V43vh1EWESn4g1N
-	LB1g==
-X-Gm-Message-State: APjAAAVMmiMDx65xcsWKRIPtxi5GVOkx9OIJUBdGIaE0VFqrmXsrVoSs
-	RBYhxGGvwPyrtqyLeGknb2fOqBbpEn5UxhlMLEgrVVShcCTPtro=
-X-Google-Smtp-Source: APXvYqw/HqIJ6YUrioMQ3Kjwq7q1b9q9OrWITVIIdRCJTQmWL4sEk+SXvkE8JF/ejkirt9Xe2qwBua1CMrKHOJgpisw=
-X-Received: by 2002:a81:7a4b:: with SMTP id v72mr883045ywc.467.1565818161110; 
-	Wed, 14 Aug 2019 14:29:21 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06CCBE00D64
+	for <yocto@yoctoproject.org>; Wed, 14 Aug 2019 18:32:06 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x7F1W1bD005390
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 14 Aug 2019 18:32:02 -0700 (PDT)
+Received: from [172.25.44.5] (172.25.44.5) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.468.0;
+	Wed, 14 Aug 2019 18:32:01 -0700
+To: Andy Pont <andy.pont@sdcsystems.com>, Yocto-mailing-list
+	<yocto@yoctoproject.org>
+References: <emef36a268-6066-4af6-82a6-f8cb04f9c1a8@andys-imac.leeshillfarm.local>
+From: Randy MacLeod <randy.macleod@windriver.com>
+Message-ID: <bd399f66-6a9f-ef3b-c822-ccbb3bf62505@windriver.com>
+Date: Wed, 14 Aug 2019 21:32:00 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <CAKmBsab+ZgVk8TrF7dre-bY-ti1N9=CuN4+gPkQXfxaAxHPhkg@mail.gmail.com>
-In-Reply-To: <CAKmBsab+ZgVk8TrF7dre-bY-ti1N9=CuN4+gPkQXfxaAxHPhkg@mail.gmail.com>
-From: Rick Liu <rick.liu@broadcom.com>
-Date: Wed, 14 Aug 2019 14:29:10 -0700
-Message-ID: <CAKmBsabULdf6a1kyBeTuA9Eze6MQkxU_HYLLeT-wjDO0_rXrjg@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: Bitbake local.conf variable been override by weak assignment
+In-Reply-To: <emef36a268-6066-4af6-82a6-f8cb04f9c1a8@andys-imac.leeshillfarm.local>
+X-Originating-IP: [172.25.44.5]
+Subject: Re: Init stops working on second boot cycle
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,44 +44,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 Aug 2019 21:29:22 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 15 Aug 2019 01:32:09 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 
-oops~
-After I purged build/tmp and build/cache,
-it just works,
-so it's probably just cache issue.
+On 8/13/19 6:21 AM, Andy Pont wrote:
+> I’ve got a strange issue and I don’t know whether it is a Yocto related 
+> issue, a kernel issue or something else completely…
+> 
+> I have an image that is built with thud (2.6.2) using meta-atmel for the 
+> SAMA5D2-Xplained reference board.  I deploy the resulting .wic file to 
+> an SD card and boot the reference board and all is OK.  I can log into 
+> the terminal, upload files, etc. and again all seems to be well.
+> 
+> If I press the reset button on the hardware platform, on the next boot 
+> cycle it always stops with the following being last messages being 
+> displayed:
+> 
+> Freeing unused kernel memory: 1024K
+> Run /sbin/init as init process
+> INIT: version 2.88 booting
+> 
+> The system hasn’t completely hung as the occasional kernel message 
+> appears but the user space init process (sysvinit) doesn’t seem to be 
 
-# $BRCM_NXT-RELEASE-216_BRANCH [2 operations]
-#   set /home/rl891036/scrach/DHELPDESK-3176/poky/build/conf/local.conf:60
-#     "SIT_int_nxt_v216.1.15.0"
-#   set? /home/rl891036/scrach/DHELPDESK-3176/poky/build/../meta-brcm/meta-datacenter/recipes-kernel/nxt-l2-drv/brcm-nxt-l2-drv_nxtrelease.bb:10
-#     "RICK"
-# pre-expansion value:
-#   "SIT_int_nxt_v216.1.15.0"
-BRCM_NXT-RELEASE-216_BRANCH="SIT_int_nxt_v216.1.15.0"
+What sort of occasional kernel message and do they eventually stop?
 
-On Wed, Aug 14, 2019 at 1:18 PM Rick Liu <rick.liu@broadcom.com> wrote:
->
-> I have defined a global default value BRCM_NXT-RELEASE-216_BRANCH in local.conf,
-> and setup a weak assignment (?=) in my recipe,
-> but somehow the weak assignment override the local.conf global default value.
-> Does anyone have any idea?
->
-> build/conf/local.conf:
-> BRCM_NXT-RELEASE-216_BRANCH = "SIT_int_nxt_v216.1.15.0"
-> PREFERRED_VERSION_brcm-nxt-l2-drv = "nxtrelease%"
->
-> meta-brcm/meta-datacenter/recipes-kernel/nxt-l2-drv/brcm-nxt-l2drv_nxtrelese.bb:
-> BRCM_NXT-RELEASE-216_BRANCH ?= "RICK"
->
-> $ bitbake -e brcm-nxt-l2-drv
-> # $BRCM_NXT-RELEASE-216_BRANCH [2 operations]
-> #   set /home/rl891036/scrach/DHELPDESK-3176/poky/build/conf/local.conf:60
-> #     [_defaultval] "SIT_int_nxt_v216.1.15.0"
-> #   set? /home/rl891036/scrach/DHELPDESK-3176/poky/build/../meta-brcm/meta-datacenter/recipes-kernel/nxt-l2-drv/brcm-nxt-l2-drv_nxtrelease.bb:10
-> #     "RICK"
-> # pre-expansion value:
-> #   "RICK"
-> BRCM_NXT-RELEASE-216_BRANCH="RICK"
+> working at all.  If I put the SD card into a Linux desktop machine the 
+> file system on it is still valid and the changes that I have made are 
+> still present.
+> 
+> Anyone got any ideas as to what is screwing it up?
+
+No but here are some generic debugging tips.
+In no particular order, have you tried:
+
+1) setting kernel boot options such as:
+     init=/bin/bash
+
+    Does that reboot consistently when you press reset?
+
+2) getting sysvinit to start an emergency shell?
+    https://manpages.debian.org/testing/sysvinit-core/init.8.en.html
+    I don't know how you'd do that for your board but is
+    should be possible.
+
+3) single user mode:
+    https://wiki.gentoo.org/wiki/Sysvinit#Single_user_mode
+
+4) Does the problem happen if you run 'shutdown -r now'
+    rather than pressing the reset button?
+
+Good luck,
+
+-- 
+# Randy MacLeod
+# Wind River Linux
 
