@@ -1,6 +1,6 @@
 Return-Path: <Randy.MacLeod@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E7FB5E00DD5; Wed, 14 Aug 2019 18:32:08 -0700 (PDT)
+	id 5B949E00DEE; Wed, 14 Aug 2019 19:01:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,29 +10,28 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
 	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06CCBE00D64
-	for <yocto@yoctoproject.org>; Wed, 14 Aug 2019 18:32:06 -0700 (PDT)
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A119E00DE6
+	for <yocto@yoctoproject.org>; Wed, 14 Aug 2019 19:01:07 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x7F1W1bD005390
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x7F210Vm005233
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 14 Aug 2019 18:32:02 -0700 (PDT)
+	Wed, 14 Aug 2019 19:01:01 -0700 (PDT)
 Received: from [172.25.44.5] (172.25.44.5) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.3.468.0;
-	Wed, 14 Aug 2019 18:32:01 -0700
-To: Andy Pont <andy.pont@sdcsystems.com>, Yocto-mailing-list
-	<yocto@yoctoproject.org>
-References: <emef36a268-6066-4af6-82a6-f8cb04f9c1a8@andys-imac.leeshillfarm.local>
+	Wed, 14 Aug 2019 19:01:00 -0700
+To: <jaymin.dabhi@vivaldi.net>, <yocto@yoctoproject.org>
+References: <279ea8172bf6d37d284e8d5cb4efb077@vivaldi.net>
 From: Randy MacLeod <randy.macleod@windriver.com>
-Message-ID: <bd399f66-6a9f-ef3b-c822-ccbb3bf62505@windriver.com>
-Date: Wed, 14 Aug 2019 21:32:00 -0400
+Message-ID: <1997fc5b-2e25-c56a-c423-dd2c62404971@windriver.com>
+Date: Wed, 14 Aug 2019 22:00:59 -0400
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <emef36a268-6066-4af6-82a6-f8cb04f9c1a8@andys-imac.leeshillfarm.local>
+In-Reply-To: <279ea8172bf6d37d284e8d5cb4efb077@vivaldi.net>
 X-Originating-IP: [172.25.44.5]
-Subject: Re: Init stops working on second boot cycle
+Subject: Re: Segmentation fault | bitbake machine-image.bb | core dumped
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,59 +43,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 Aug 2019 01:32:09 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
+X-List-Received-Date: Thu, 15 Aug 2019 02:01:09 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Language: en-GB
 Content-Transfer-Encoding: 8bit
 
-On 8/13/19 6:21 AM, Andy Pont wrote:
-> Iâ€™ve got a strange issue and I donâ€™t know whether it is a Yocto related 
-> issue, a kernel issue or something else completelyâ€¦
+On 8/12/19 10:42 AM, jaymin.dabhi@vivaldi.net wrote:
+> Hello All,
 > 
-> I have an image that is built with thud (2.6.2) using meta-atmel for the 
-> SAMA5D2-Xplained reference board. Â I deploy the resulting .wic file to 
-> an SD card and boot the reference board and all is OK. Â I can log into 
-> the terminal, upload files, etc. and again all seems to be well.
+> Facing segmentation fault (core dumped) while doing bitbake.
+> I am using Yocto Jethro branch.
+
+Jethro isn't officially supported by the Yocto Project.
+The support cycle is ~ 1 year.
+
+https://wiki.yoctoproject.org/wiki/Releases
+
+Can you reproduce the issue on master or a newer supported branch?
+If so you could file a bug in:
+    https://wiki.yoctoproject.org/wiki/Releases
+
+Also, see below for some tips.
+
 > 
-> If I press the reset button on the hardware platform, on the next boot 
-> cycle it always stops with the following being last messages being 
-> displayed:
+> When I added python3-pip recipe (in local.conf) and started building 
+> image, segmentation fault occurred.
+> Although, I am able to bitbake python3-pip individually (i.e. bitbake 
+> python3-pip).
+> As per log my assumption is, core dumped is occurring at make_ext4fs 
+> execution.
 > 
-> Freeing unused kernel memory: 1024K
-> Run /sbin/init as init process
-> INIT: version 2.88 booting
+> Following are the error logs:
 > 
-> The system hasnâ€™t completely hung as the occasional kernel message 
-> appears but the user space init process (sysvinit) doesnâ€™t seem to be 
-
-What sort of occasional kernel message and do they eventually stop?
-
-> working at all. Â If I put the SD card into a Linux desktop machine the 
-> file system on it is still valid and the changes that I have made are 
-> still present.
+> ERROR: Function failed: do_makesystem (log file is located at 
+> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/temp/log.do_makesystem.15059) 
 > 
-> Anyone got any ideas as to what is screwing it up?
+> ERROR: Logfile of failure stored in: 
+> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/temp/log.do_makesystem.15059 
+> 
+> Log data follows:
+> | DEBUG: Executing shell function do_makesystem
+> | 
+> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/temp/run.do_makesystem.15059: 
+> line 105: 15073 Segmentation fault      (core dumped) make_ext4fs -J -b 
+> 1024 -s -a / -S 
 
-No but here are some generic debugging tips.
-In no particular order, have you tried:
+Odd, I've never see that happen before.
+Is it reproducible?
 
-1) setting kernel boot options such as:
-     init=/bin/bash
+Can you adjust the core file limits using 'ulimit',
+generate a core file and get a backtrace?
 
-    Does that reboot consistently when you press reset?
+> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/rootfs/etc/selinux/mls/contexts/files/file_contexts 
+> -l 768000000 
+> poky/build/tmp-glibc/deploy/images/apq8053-perf/apq8053-sysfs.ext4 
+> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/rootfs
+> | WARNING: 
+> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/temp/run.do_makesystem.15059:1 
+> exit 139 from
+> |   make_ext4fs -J -b 1024 -s -a / -S 
+> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/rootfs/etc/selinux/mls/contexts/files/file_contexts 
+> -l 768000000 
+> poky/build/tmp-glibc/deploy/images/apq8053-perf/apq8053-sysfs.ext4 
+> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/rootfs
+> | ERROR: Function failed: do_makesystem (log file is located at 
+> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/temp/log.do_makesystem.15059) 
+> 
+> ERROR: Task 11 ( 
+> poky/meta-qti-bsp/recipes-products/images/machine-image.bb, 
+> do_makesystem) failed with exit code '1'
+> 
+> 
+> Whether python3-pip recipe is creating an issue or something else? 
+> (attached the python3-pip recipe file)
 
-2) getting sysvinit to start an emergency shell?
-    https://manpages.debian.org/testing/sysvinit-core/init.8.en.html
-    I don't know how you'd do that for your board but is
-    should be possible.
+What did you change in your conf/local.conf file?
+If you revert that change, then you are able to generate the image
+again?
 
-3) single user mode:
-    https://wiki.gentoo.org/wiki/Sysvinit#Single_user_mode
+../Randy
 
-4) Does the problem happen if you run 'shutdown -r now'
-    rather than pressing the reset button?
+> Please let me know.
+> Any suggestions are welcome.
+> 
+> Regards,
+> Jaymin
+> 
 
-Good luck,
 
 -- 
 # Randy MacLeod
