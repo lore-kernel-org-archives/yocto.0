@@ -1,71 +1,65 @@
-Return-Path: <moritz.porst@gmx.de>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F11CCE00D89; Fri, 16 Aug 2019 01:26:59 -0700 (PDT)
+	id D6084E00E08; Fri, 16 Aug 2019 03:28:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (moritz.porst[at]gmx.de)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [212.227.17.21 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	provider *      (martin.jansa[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.51 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2D42E003E1
-	for <yocto@yoctoproject.org>; Fri, 16 Aug 2019 01:26:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=badeba3b8450; t=1565944006;
-	bh=xOft3bz+EpD9+2EMmrO5u6eW4J5NKv2ghKxfaVsRRps=;
-	h=X-UI-Sender-Class:Subject:To:References:From:Date:In-Reply-To;
-	b=eCUFMe7NVUQuxI5vueqKhxpImZTkZ/eEpFRqLiNnIR+koAI2TfltRfBvXEzaBra1f
-	VYBT/C3zwx8vsnCWoV9hFZh+zbuQDZea8SmF/CRwAgxsOwX9T54YC4v1kes8K2KZ1b
-	ojoEhsv717VneEQqa1TCffPv1dwkijGwFZSsM8HA=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [192.168.2.132] ([80.152.229.14]) by mail.gmx.com (mrgmx102
-	[212.227.17.168]) with ESMTPSA (Nemesis) id 0MMHaL-1hvWu32jMb-0080ut;
-	Fri, 16 Aug 2019 10:26:46 +0200
-To: "Mittal, Anuj" <anuj.mittal@intel.com>,
-	Yocto Project <yocto@yoctoproject.org>
-References: <e30590c0-3122-15f6-013b-2e6c565c89c9@bry.com.br>
-	<96faecc73afeba5146e926dc43b7bbcc7ee12947.camel@intel.com>
-From: Moritz Porst <moritz.porst@gmx.de>
-Message-ID: <e39e4c98-46d7-773a-285f-e34ddd451f01@gmx.de>
-Date: Fri, 16 Aug 2019 10:26:40 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <96faecc73afeba5146e926dc43b7bbcc7ee12947.camel@intel.com>
-X-Provags-ID: V03:K1:oRJxcFo8wUFX5vSI6eoqksdxi18dw2HqEhaMt5nor62KIzIkopl
-	h/2R5kjZblxtnifV3R989WVG/TgXBX7uUDczVEHPGr3sjHKUKnzc1u6xAAX4o2M2bTZqlQQ
-	ln1Dhs8TIZgGLWvcAyHYToLsprG6L6/wUJobcib6jf2Gh97pqt2H1/iZxr6bYnZ63UvjCWc
-	tbPsQ1aoEKK+8uIbTUJow==
-X-UI-Out-Filterresults: notjunk:1;V03:K0:8vBhobsigVY=:QG0ixfrP4zxD1XcZcvohmi
-	HdP5b2rXdE9OYYmFdiEOCE09rA/Nj9jtrN4uZ4RC2JyufnYFFvyR6/xNYWXngdQhyAKung9kg
-	819pypHzRWRBNLC5HAfUbtR7g1gYsuIsAY2++IyDmlKthfaqSRBovhpQGTxCd2M1w9tdQsywB
-	bdVqy9Aw6aF/CGhUZBEd6hOEoO8LqNwiYxP3Rmn/DJwLu/bOOScEOPvRNo0Vj9uzCcKug/LRZ
-	6zQfs+FWhU0M3Nj0vTRNDgusD5R5ToZAlAwOG7JhN+gotA5XfCfydJdm82bJbdVCCAMfUcZ4/
-	CSk+wOUcW3i0ZjsNzTHG8GV1WWfYxjPQe3lNVvEJ7XhsQi2lV97hQvqZKy84f7GcxlyOolTzD
-	gzS4ujDhMDcmToVdFSnr+ISN+l8ncUVxzGUzu7wstR6JOB4QqvnUD7pmH8teLJ4nG5h2dJq08
-	VbVEZI1RZRbBbgUgfnf42u+u7V1PtHlmmEd6DKmQxhmrcunjzV0DoupR+nKvceK+Fp9qDrDZV
-	d+hksxWMVgjSH+kCHTXxlPtmULnrrD4P19LgOzn5B7uB6jO+3S0nNmg08r807jEoI/fBpH8Sa
-	RekTJUNI0mFC+0zNqahfxwD262WyoKSdgkoOycyP+gxbKdYFfHSux/gzfmcFXpzO71GSZ374L
-	OcllC+T+wG6+siRtZSavOM8vkKMLNdSIwUsxeAo5hC9IfVLgUPUE8Q5ChHW4dKq1TTk+6p1RX
-	9zrrGVcWSZ59BfXTSQXSYrgaWb/72WfogDtyRW+l7hVnxVzzaKyg9wHasYAtgWu+cdkutfIV6
-	yDzfAGDp0+K5dFOIKBvyrpjocCylr7rtWKqlw4oFLDu92PmlASnRTXhHmS25OXEDWLA121S9U
-	2muNAUdOB63OHpSN5YYkkJ99C9ZEAvbAQk7pXPqGv72FWGKSJBjozs7RxUhOqRZnEKlbNsIp0
-	EChj4KumdRi8D76mB0yLMr2iVHIkVDZA6+5gKEKF74+6WCh+MeyY+1Nd0xp9tVmlRG35fCSlO
-	z3jkSLvc+7D2LWlUQG/WXQfP+9AcW5sF6QQfeos1s+7i/drNTgqbfNCWl/q7xoz7jzRV2on4Z
-	UilEf9p9phn6zhpWN9vn195O0808l9vmD/2KvZ26mrBIKJEm+9rqD24gb6b1hKr6HE5IP34Mk
-	S1cO4=
-Subject: Re: Trouble using initramfs
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
+	[209.85.221.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5EEFAE00BF8
+	for <yocto@yoctoproject.org>; Fri, 16 Aug 2019 03:28:07 -0700 (PDT)
+Received: by mail-wr1-f51.google.com with SMTP id z1so1044251wru.13
+	for <yocto@yoctoproject.org>; Fri, 16 Aug 2019 03:28:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:cc:subject:date:message-id;
+	bh=2dZpXOffrSx9cukSTb2T3RpE6ZGPrP5uYkHT+FDg2dk=;
+	b=UFWGWGlRIU+k/vom0+n2DXEePsdmDloA1P6bRR2ZxrJyRLFgHP4oAy8S/rCEHev/Kw
+	SIpPB1YkCIyLgiyr3up+3eqHMlhQFZV25RLnuFKMsqL+oIkUJmnueKRKndULHGQNnlWG
+	8J1o9376DuCzRb5g3LyhGCa17gSomh/LBILS9iqR99A8uk7OwB630bgQmCi9pgBMD/bC
+	ZOQuAJaYg5jkzXf00GVni/AfopuLBpPmUyKzEVFBVs2geoc/hMCDMadMLsXxVH2+yQyi
+	aR5Ld9NRiL6rMI3NhBeBrsmeamgJ5bSjNCfHmVEvKQhrtMJY9/oD+ck63MLrFcjO4AFC
+	mKZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=2dZpXOffrSx9cukSTb2T3RpE6ZGPrP5uYkHT+FDg2dk=;
+	b=rwjP0jC7/FKigTT4UuezOFyC0pZKcAu5CRYQkSc5XpO/pghltEYMVkt4ny8t5A8JY7
+	yIMs0L3mxSpLLGKkVfBW1ehLXdhpoksyS8sfBW0L0iidZscluL7UjP/PCGH+GfDWh3/N
+	HqC+oEchl3Snx1/VJ7O/3B0a/sQeJsLGXfMjkoAs5eitsbTt1C4wbTBj5BwCMDzIlDfE
+	a3szWpeeII5QYxWJz4olU+UWd41xHs1/fOeH3XyzZjAs9Cv52QJ6SbLHBnE+MWHd18An
+	SVEYIx+Jw2XSMCobshj+QOuQNRVyS5dke78vgYE+8MyK/zfJqj+CFjZe7cJokD87ZtZa
+	JQsw==
+X-Gm-Message-State: APjAAAX4y+NGsnQHKWBdZnwLaQAKpCN6NfknSQIL+J1N126N7/BVnRzI
+	8y1SWjSwM6WrRdi0tbn8nmExPf9U4g0=
+X-Google-Smtp-Source: APXvYqwzqcslJ/huh2bfnyiBjZwAdI1dl/lrvJOVl9EmBRxk+nCzldbMzz3d+Zq0IijU4bZnpbJQ9Q==
+X-Received: by 2002:adf:e78c:: with SMTP id n12mr9695030wrm.83.1565951286085; 
+	Fri, 16 Aug 2019 03:28:06 -0700 (PDT)
+Received: from localhost (ip-217-030-068-212.aim-net.cz. [217.30.68.212])
+	by smtp.gmail.com with ESMTPSA id b3sm8503261wrm.72.2019.08.16.03.28.04
+	(version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+	Fri, 16 Aug 2019 03:28:05 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+To: yocto@yoctoproject.org
+Date: Fri, 16 Aug 2019 10:28:09 +0000
+Message-Id: <20190816102809.2701530-1-Martin.Jansa@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-security][PATCH] smack: add runtime dependency on python3-core
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -77,128 +71,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Aug 2019 08:27:00 -0000
-Content-Type: multipart/alternative;
-	boundary="------------78DA35CB7DE373E9062E41F8"
-Content-Language: en-US
+X-List-Received-Date: Fri, 16 Aug 2019 10:28:08 -0000
 
---------------78DA35CB7DE373E9062E41F8
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+* fixes:
+  ERROR: QA Issue: /usr/share/smack/smack_rules_gen contained in package smack requires /usr/bin/python3, but no providers found in RDEPENDS_smack? [file-rdeps]
+
+Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+---
+ recipes-mac/smack/smack_1.3.1.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-mac/smack/smack_1.3.1.bb b/recipes-mac/smack/smack_1.3.1.bb
+index 246562a..f32d91b 100644
+--- a/recipes-mac/smack/smack_1.3.1.bb
++++ b/recipes-mac/smack/smack_1.3.1.bb
+@@ -48,7 +48,7 @@ INITSCRIPT_PARAMS = "start 16 2 3 4 5 . stop 35 0 1 6 ."
+ FILES_${PN} += "${sysconfdir}/init.d/smack"
+ FILES_${PN}-ptest += "generator"
+ 
+-RDEPENDS_${PN} += "coreutils"
++RDEPENDS_${PN} += "coreutils python3-core"
+ RDEPENDS_${PN}-ptest += "make bash bc"
+ 
+ BBCLASSEXTEND = "native"
+-- 
+2.17.1
 
 
-On 16.08.19 01:17, Mittal, Anuj wrote:
-> On Thu, 2019-08-15 at 19:12 -0300, Antonio Teixeira wrote:
->> Hello.
->>
->> I've been having trouble with loading initramfs on boot when the
->> initramfs is bundled with the kernel image.
->> I've been using the following options in local.conf:
->> INITRAMFS_IMAGE =3D "core-image-minimal-initramfs"
->> INITRAMFS_IMAGE_BUNDLE =3D "1"
->>
->> I'm using the linux-intel kernel from the meta-intel layer, however,
->> when booting, the kernel simply doesn't load the initramfs.
-When I build a bundled kernel image I have a normal bzImage (~10mb) and
-a bzImage-initramfs(~30mb) in my build directory. Check the kernel image
-on your device, for me always the unbundled one gets deployed with the
-image, so I copy the bundled image via "scp. You may have to increase
-size of the boot partition in case you use an additional boot partition.
-In wic you can use the --size <size in mb> command.
->>
->> If I set INITRAMFS_IMAGE_BUNDLE to "0", copy the generated initramfs
->> image to the boot partition, and then point grub to the external
->> initramfs.cpio.gz image using the initrd option in the boot entry
->> config, the kernel loads it fine and everything works.
-> Which branch are you using? Can you try the latest master with wic?
-> There was a fix to wic to allow copying the kernel image with bundled
-> initramfs to boot partition instead of the one without when
-> INITRAMFS_IMAGE_BUNDLE is 1.
-I didn't ask the original question but have the same problem. I have the
-thud branch checked out, but I couldn't find that fix on google. Can you
-elaborate on this ?
->
-> Thanks,
->
-> Anuj
-Best regards
-Moritz
-
---------------78DA35CB7DE373E9062E41F8
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
-8">
-  </head>
-  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
-    <p><br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 16.08.19 01:17, Mittal, Anuj wrote:<=
-br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:96faecc73afeba5146e926dc43b7bbcc7ee12947.camel@intel.com=
-">
-      <pre class=3D"moz-quote-pre" wrap=3D"">On Thu, 2019-08-15 at 19:12 -=
-0300, Antonio Teixeira wrote:
-</pre>
-      <blockquote type=3D"cite">
-        <pre class=3D"moz-quote-pre" wrap=3D"">Hello.
-
-I've been having trouble with loading initramfs on boot when the
-initramfs is bundled with the kernel image.
-I've been using the following options in local.conf:
-INITRAMFS_IMAGE =3D "core-image-minimal-initramfs"
-INITRAMFS_IMAGE_BUNDLE =3D "1"
-
-I'm using the linux-intel kernel from the meta-intel layer, however,
-when booting, the kernel simply doesn't load the initramfs.</pre>
-      </blockquote>
-    </blockquote>
-    <font size=3D"-1">When I build a bundled kernel image I have a normal
-      bzImage (~10mb) and a bzImage-initramfs(~30mb) in my build
-      directory. Check the kernel image on your device, for me always
-      the unbundled one gets deployed with the image, so I copy the
-      bundled image via "scp. You may have to increase size of the boot
-      partition in case you use an additional boot partition. In wic you
-      can use the --size &lt;size in mb&gt; command.</font><br>
-    <blockquote type=3D"cite"
-      cite=3D"mid:96faecc73afeba5146e926dc43b7bbcc7ee12947.camel@intel.com=
-">
-      <blockquote type=3D"cite">
-        <pre class=3D"moz-quote-pre" wrap=3D"">
-
-If I set INITRAMFS_IMAGE_BUNDLE to "0", copy the generated initramfs
-image to the boot partition, and then point grub to the external
-initramfs.cpio.gz image using the initrd option in the boot entry
-config, the kernel loads it fine and everything works.
-</pre>
-      </blockquote>
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-Which branch are you using? Can you try the latest master with wic?
-There was a fix to wic to allow copying the kernel image with bundled
-initramfs to boot partition instead of the one without when
-INITRAMFS_IMAGE_BUNDLE is 1.</pre>
-    </blockquote>
-    <font size=3D"-1">I didn't ask the original question but have the same
-      problem. I have the thud branch checked out, but I couldn't find
-      that fix on google. Can you elaborate on this ? </font><br>
-    <blockquote type=3D"cite"
-      cite=3D"mid:96faecc73afeba5146e926dc43b7bbcc7ee12947.camel@intel.com=
-">
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-
-Thanks,
-
-Anuj
-</pre>
-    </blockquote>
-    <font size=3D"-1">Best regards<br>
-      Moritz</font><br>
-  </body>
-</html>
-
---------------78DA35CB7DE373E9062E41F8--
