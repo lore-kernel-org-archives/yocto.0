@@ -1,6 +1,6 @@
-Return-Path: <jaymin.dabhi@vivaldi.net>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00D4FE00DFD; Thu, 15 Aug 2019 21:40:54 -0700 (PDT)
+	id DBD58E00D89; Fri, 16 Aug 2019 00:37:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,53 +11,54 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [82.221.130.149 listed in list.dnswl.org]
+	*      [209.85.208.171 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from smtp.vivaldi.net (smtp.vivaldi.net [82.221.130.149])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52A16E00D35
-	for <yocto@yoctoproject.org>; Thu, 15 Aug 2019 21:40:52 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by smtp.vivaldi.net (Postfix) with ESMTP id 135EC3FAF0;
-	Fri, 16 Aug 2019 04:40:51 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.10.3 smtp.vivaldi.net 135EC3FAF0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net; s=mail;
-	t=1565930451; bh=m/WD8jXC/KgskexMWG4rIUgsK9Q/rkSBlU92pRWeh4U=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=cKyBtqX+6NC2gfmeCQz4jNoy6baHL/taJgXejKOY7MUWXw1QchkBUbe8TZct9pVd0
-	c+eNG3wQLRZdMWd4cFwxycX6wkyIV56OlM5gs2uY9A7XwixOTos/fIvXtHDYWWxkGy
-	GpopcViCfTjwoLfmsSuoSlz8samojE6nj7+1G+c/iSaAHFJnuFWZgKhpXpBk1vx1Xi
-	o1yXXoaLvlJij9LFVRatuEqeDIdcIEFV4dgvPpC1UmuqRfxHpj9VAHGB7fL40Ukp0Y
-	8GWgbgV2EG7atWxBHxufAVFCunguMoEjZwyyrx6kAsttqUWxKastvNEwJkyw8tE5O4
-	RCCt5wJrXyC7g==
-X-Virus-Scanned: Debian amavisd-new at smtp.vivaldi.net
-Received: from smtp.vivaldi.net ([127.0.0.1])
-	by localhost (mxo-new.viv.ext [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id Gg46LCDnNd0y; Fri, 16 Aug 2019 04:40:49 +0000 (UTC)
-DKIM-Filter: OpenDKIM Filter v2.10.3 smtp.vivaldi.net 20C143F9F2
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vivaldi.net; s=mail;
-	t=1565930449; bh=m/WD8jXC/KgskexMWG4rIUgsK9Q/rkSBlU92pRWeh4U=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=W08hd8WDANnvJrB9is4+TQIrdpinel8yQRoXllWAdRi1sgoTSe0VUhMUJNbiCaR3R
-	rCRpKrQxjIH6muhdUCHeXzCW4KP/zGzgFO6neOU0N5fmR+VMdO1MDkBUmxOApB/QpA
-	wW5fqGh/zZiCujVrK/voj1TPX27P2QMsF4l4fJl4tkqAbe2dUYW96nIUT0RjaFtHtT
-	1LBfxVJmZSHmOeZRA/mr7DytXae6jMZTC3a5OtP7KN8mqgIkKVWZ5a/9iZOHGZgD1K
-	GyRXbhlvOCRjTXPbvrbIQRmwIWOzBKkew3nFKBjezRIxqpqGh/4eJh7Y1YICUcmejj
-	UdcR4NZ9Dx2cA==
-Date: Fri, 16 Aug 2019 10:10:46 +0530
-From: jaymin.dabhi@vivaldi.net
-To: Randy MacLeod <randy.macleod@windriver.com>
-In-Reply-To: <1997fc5b-2e25-c56a-c423-dd2c62404971@windriver.com>
-References: <279ea8172bf6d37d284e8d5cb4efb077@vivaldi.net>
-	<1997fc5b-2e25-c56a-c423-dd2c62404971@windriver.com>
-Message-ID: <be9ad8cf60e0401975f8b35bd22944de@vivaldi.net>
-X-Sender: jaymin.dabhi@vivaldi.net
-User-Agent: Roundcube Webmail/1.3.9
-Cc: yocto@yoctoproject.org
-Subject: Re: Segmentation fault | bitbake machine-image.bb | core dumped
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com
+	[209.85.208.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ACF5FE00BF8
+	for <yocto@yoctoproject.org>; Fri, 16 Aug 2019 00:37:23 -0700 (PDT)
+Received: by mail-lj1-f171.google.com with SMTP id x3so405018lji.5
+	for <yocto@yoctoproject.org>; Fri, 16 Aug 2019 00:37:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:content-transfer-encoding;
+	bh=5g/DHyLUP4kRRZ43igMitwXckVwvgfeFnP7i32hFbOA=;
+	b=Q/2niLdQo1bXuF2oNM0TyalgCBr7sW+kdUY61+4CDe2iTX9zrZY9Yo+ixu6reLFqQJ
+	qsu0Iq9pQvaCCcdRg37tOmeH8dpCigieWGryiafdE5X0/PJPmPPHTmZUEiCdDMh0rMk/
+	DTqAL9cAzAGTF6PY8/qA3lTFiwGjeDCfOcWrNNHvp0BmvmXS4eVCE9g2vS7szYHLajPq
+	sFHO7OJbKtbpipFWyoz9IkD2tdWhcYE7cekvZVu+3181iK/oeuQM1p3X4PXZ+HjsS6Un
+	zQjcA8XpsMFEE3b6NYrqsggfZrlcvZcXHEKLDi0mxBxO27EOBmzJYNwv3NzfefPNTsH1
+	B5rQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:content-transfer-encoding;
+	bh=5g/DHyLUP4kRRZ43igMitwXckVwvgfeFnP7i32hFbOA=;
+	b=nY5Smwhk8zWH2NdejfA8LDtZtKS8EsWRAtYqXMnWqCIQDmljzy7wLBnngWUryEDd7D
+	zrKq568IbwsYv+8wtEboHL9flAQIsJGVC5I5ZpYpctIoS4sRNL3VdByZKnanjEtVyBkJ
+	/ZWChzPM1Md9npdx69X9QHGK3DyuBBJgau1Ue4X1HtteOJRTKF9EG1ryVXZ02oGrT/xW
+	h5+Cur7JxaIB24NhEF9BqblyxMh8OWESouukGN4ko+ilZEopGcfoGmlE1+AX76ILpoHC
+	dNGvmL5xSzHQX5iJo2GUHe2PYqnYI8e4fVt1ynEEwlgELTU8fxRzZrucnlxjhvKCFy7D
+	eVag==
+X-Gm-Message-State: APjAAAVU+3a1achfTS6tKgey5fzm44aTrqJAnwy47Is06UOUwU0Evuw1
+	+I3kSDqaR2QKGPURoVp6jL+1a1SPXQ6W8zk80yFqA4Wu
+X-Google-Smtp-Source: APXvYqyeV3x0QSynLeRv6BxdV3wAkVN4WELto+P88QZQngqCWYnPgvKFMbEnG9sehwCibEcTnGzOjzQ7Ug6uTi/eFa0=
+X-Received: by 2002:a2e:b4d4:: with SMTP id r20mr4747556ljm.5.1565941041988;
+	Fri, 16 Aug 2019 00:37:21 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAP71WjyWeiJA+3ahU1cdDi5kh6qTVvTi7CCNo5qzOA9_ti2vCw@mail.gmail.com>
+In-Reply-To: <CAP71WjyWeiJA+3ahU1cdDi5kh6qTVvTi7CCNo5qzOA9_ti2vCw@mail.gmail.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Fri, 16 Aug 2019 09:37:10 +0200
+Message-ID: <CAP71WjxRwFni-yjPepwqBkk=77UwN0kaMdxNCz==Y2_28e67VQ@mail.gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>, 
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: LF Community Bridge Mentorship
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,111 +70,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 Aug 2019 04:40:55 -0000
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 16 Aug 2019 07:37:25 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Randy,
+hi there.
+just a reminder!
+cheers
 
-Thanks for your information regarding Yocto Jethro branch.
-
-Yes, this core dumped issue is reproducible.
-When I add python3-pip package in local.conf file and build complete 
-image, this core dumped is happening.
-
-Randy, it would be much helpful if you explain me how to adjust core 
-file limits using ulimit, and how get the backtrace?
-
-I have added python3-pip package in local.conf file, this is the one 
-change only I did in local.conf.
-Yes, I am able to generate the image successfully after reverting this 
-one change.
-
-Please let me know if more information require.
-
-On 15-08-2019 07:30 AM, Randy MacLeod wrote:
-> On 8/12/19 10:42 AM, jaymin.dabhi@vivaldi.net wrote:
->> Hello All,
->> 
->> Facing segmentation fault (core dumped) while doing bitbake.
->> I am using Yocto Jethro branch.
-> 
-> Jethro isn't officially supported by the Yocto Project.
-> The support cycle is ~ 1 year.
-> 
-> https://wiki.yoctoproject.org/wiki/Releases
-> 
-> Can you reproduce the issue on master or a newer supported branch?
-> If so you could file a bug in:
->    https://wiki.yoctoproject.org/wiki/Releases
-> 
-> Also, see below for some tips.
-> 
->> 
->> When I added python3-pip recipe (in local.conf) and started building 
->> image, segmentation fault occurred.
->> Although, I am able to bitbake python3-pip individually (i.e. bitbake 
->> python3-pip).
->> As per log my assumption is, core dumped is occurring at make_ext4fs 
->> execution.
->> 
->> Following are the error logs:
->> 
->> ERROR: Function failed: do_makesystem (log file is located at 
->> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/temp/log.do_makesystem.15059) 
->> ERROR: Logfile of failure stored in: 
->> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/temp/log.do_makesystem.15059 
->> Log data follows:
->> | DEBUG: Executing shell function do_makesystem
->> | 
->> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/temp/run.do_makesystem.15059: 
->> line 105: 15073 Segmentation fault      (core dumped) make_ext4fs -J 
->> -b 1024 -s -a / -S
-> 
-> Odd, I've never see that happen before.
-> Is it reproducible?
-> 
-> Can you adjust the core file limits using 'ulimit',
-> generate a core file and get a backtrace?
-> 
->> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/rootfs/etc/selinux/mls/contexts/files/file_contexts 
->> -l 768000000 
->> poky/build/tmp-glibc/deploy/images/apq8053-perf/apq8053-sysfs.ext4 
->> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/rootfs
->> | WARNING: 
->> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/temp/run.do_makesystem.15059:1 
->> exit 139 from
->> |   make_ext4fs -J -b 1024 -s -a / -S 
->> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/rootfs/etc/selinux/mls/contexts/files/file_contexts 
->> -l 768000000 
->> poky/build/tmp-glibc/deploy/images/apq8053-perf/apq8053-sysfs.ext4 
->> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/rootfs
->> | ERROR: Function failed: do_makesystem (log file is located at 
->> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/temp/log.do_makesystem.15059) 
->> ERROR: Task 11 ( 
->> poky/meta-qti-bsp/recipes-products/images/machine-image.bb, 
->> do_makesystem) failed with exit code '1'
->> 
->> 
->> Whether python3-pip recipe is creating an issue or something else? 
->> (attached the python3-pip recipe file)
-> 
-> What did you change in your conf/local.conf file?
-> If you revert that change, then you are able to generate the image
-> again?
-> 
-> ../Randy
-> 
->> Please let me know.
->> Any suggestions are welcome.
->> 
->> Regards,
->> Jaymin
->> 
-> 
-> 
-> --
-> # Randy MacLeod
-> # Wind River Linux
+On Tue, Jul 30, 2019 at 4:46 PM Nicolas Dechesne
+<nicolas.dechesne@linaro.org> wrote:
+>
+> Dear all,
+>
+> The Community Bridge platform was launched earlier this year by the
+> Linux Foundation. It=E2=80=99s a set of services available to LF projects=
+ to
+> help them build stronger ecosystems, and foster developers
+> relationship within their respective communities. See [1] and [2]. The
+> Yocto Project has joined the Community Bridge Funding and Mentorship
+> programs.
+>
+> If you have any specific questions about these programs, please do not
+> hesitate to reach out to me.
+>
+> Today, we would like to talk more about the mentorship program. We
+> have tried several initiatives in the past about interns and
+> mentorship, and we would like to do that again using the new LF
+> platform. A mentorship program for the Yocto Project is a good
+> opportunity for our overall community to reach out to new developers,
+> improve our developers diversity. It will help increase the pool of
+> available developers with appropriate skills about the Yocto Project
+> and Open Embedded technologies and as a consequence create a more
+> sustainable ecosystem around the Yocto Project. It also offers
+> existing senior developers the chance to become mentors, and share
+> their knowledge!
+>
+> We would like to request feedback about how to best define the Yocto
+> Project Mentorship program.
+>
+> The structure of the mentorship is flexible and we can adjust as
+> needed. Our initial thought is to set 12-week project, which is what
+> the Linux Kernel Mentorship program is using, see [4]. The overall
+> process involves:
+>
+> 1. Finding / defining work items for potential mentees.
+> 2. Get appropriate funding for mentees=E2=80=99 stipends
+> 3. Recruit mentors within our community
+> 4. Review and select mentees=E2=80=99 applications
+>
+> There has already been some work on the potential work items in the
+> form of the newcomer bugs, some of which could be turned into work
+> suitable for a mentorship programme.
+>
+> =3D=3D=3D Call for ACTION =3D=3D=3D
+>
+> * We need your help for any of the items above, and especially #1 to
+> get started. Whether you are a long time contributor to the project or
+> you recently joined our mailing list, your feedback will be greatly
+> appreciated.
+> * If you are interested to participate as a mentor, please let me know!
+> * You don=E2=80=99t need to be a project expert to be a mentor, you need =
+to
+> know how the project works and be willing to help guide someone
+> through their task.
+>
+> There is no specific timeline set yet, it will most likely depend on
+> how much feedback we receive about this initiative, but most likely
+> the internships will have to be tied to the Yocto Project release
+> timeline.
+>
+> If you have any questions or any suggestions, please reach out to me!
+> cheers,
+> Nico
+>
+> [1] https://www.linuxfoundation.org/press-release/2019/03/the-linux-found=
+ation-launches-new-communitybridge-platform-to-help-sustain-open-source-com=
+munities/
+> [2] https://communitybridge.org/
+> [3] https://people.communitybridge.org/
+> [4] https://wiki.linuxfoundation.org/lkmp
 
