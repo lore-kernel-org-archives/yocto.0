@@ -1,35 +1,36 @@
-Return-Path: <philip@balister.org>
+Return-Path: <sdi1100002@di.uoa.gr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4357BE00935; Mon, 19 Aug 2019 03:17:35 -0700 (PDT)
+	id A50CBE00935; Mon, 19 Aug 2019 04:08:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [216.168.135.166 listed in list.dnswl.org]
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90AADE008D3
-	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 03:17:34 -0700 (PDT)
-Received: (qmail 11538 invoked by uid 1003); 19 Aug 2019 10:17:33 -0000
-Received: from unknown (HELO ?10.8.0.6?) (philip@opensdr.com@73.152.143.112)
-	by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP;
-	19 Aug 2019 10:17:33 -0000
-To: "openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>,
-	Yocto Project <yocto@yoctoproject.org>
-From: Philip Balister <philip@balister.org>
-Openpgp: preference=signencrypt
-Message-ID: <1a542261-a335-db48-e7ce-7c1dda207ff1@balister.org>
-Date: Mon, 19 Aug 2019 12:17:30 +0200
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [195.134.100.72 listed in list.dnswl.org]
+X-Greylist: delayed 1209 seconds by postgrey-1.32 at yocto-www;
+	Mon, 19 Aug 2019 04:08:58 PDT
+Received: from msa.uoa.gr (msa.uoa.gr [195.134.100.72])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B2ADE007AA
+	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 04:08:57 -0700 (PDT)
+Received: by MSA with id AE92C8723EBA2CC09DBBB4AE3BCA0630BABD0AC3
+Received: from [88.197.47.46] ([88.197.47.46]) (authenticated bits=0)
+	by msa.uoa.gr (8.14.1/8.14.1) with ESMTP id x7JAmlPa004645
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=NOT)
+	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 13:48:47 +0300 (EEST)
+From: Ekaterini Voulgari <sdi1100002@di.uoa.gr>
+To: yocto@yoctoproject.org
+Message-ID: <62464e60-54da-b8fb-a0c5-864eee5b7e4a@di.uoa.gr>
+Date: Mon, 19 Aug 2019 13:48:47 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	Thunderbird/60.6.1
 MIME-Version: 1.0
-Subject: Yocto Project Summit at ELCE Call for Particpation
+Sender: sdi1100002@di.uoa.gr
+X-UoAMSAId: AE92C8723EBA2CC09DBBB4AE3BCA0630BABD0AC3
+Subject: Opencv headers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,31 +42,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Aug 2019 10:17:35 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-MW
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 19 Aug 2019 11:08:59 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: el-GR
 
-At the past few OopenEmbedded developer meetings, people have been
-asking for more developer and user focused events like a miniconf.
-Partly based on this feedback, there is a two day event sponsored by the
-Yocto Project that provides a chance for people to talk about the Yocto
-Project and OpenEmbedded. The CFP is a bit buried on the page and I like
-to get it more exposure, so here the direct link:
+Hello all,
+I'm trying to add a program to my image that uses opencv (#include 
+<opencv2/opencv.hpp>), but I get compile error "fatal error: 
+opencv2/opencv.hpp: No such file or directory"
 
-https://events.linuxfoundation.org/wp-content/uploads/2019/08/Yocto-Project-Summit-2019-CFP-1.pdf
+The file opencv.hpp exists in workdir 
+/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-musleabi/opencv/3.4.5-r0/image/usr/include/opencv2/opencv.hpp. 
+Can anyone help on where are the headers located in crossbuilds? Any 
+help appreciated.
+The recipe:
 
-We'd like to see new faces talking. We know there are a lot of good
-stories out there, that will help lots of people become better users and
-developers.
+SRC_URI = "file://capture.cpp"
 
-The link to the event is here:
+do_compile () {
+     ${CC} capture.cpp  -lopencv_core -lopencv_imgproc -lopencv_highgui 
+-lopencv_videoio
+}
 
-https://events.linuxfoundation.org/events/embedded-linux-conference-europe-2019/program/co-located-events/
+do_install () {
 
-Follow the path to the Yocto Project Summit. If you are alrady signed up
-for ELCE, you should be able to update your registration to include the
-Summit.
+         install -d -m 0755 ${D}/${bindir}
+         install -m 0755 prog_kameras ${D}/${bindir}/prog_kameras
+}
 
-Philip
 
