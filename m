@@ -1,42 +1,71 @@
-Return-Path: <Randy.MacLeod@windriver.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1318E00B1B; Mon, 19 Aug 2019 13:05:34 -0700 (PDT)
+	id 3E9E0E00B57; Mon, 19 Aug 2019 13:38:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E028BE00B1A
-	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 13:05:32 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x7JK5QoC029634
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 19 Aug 2019 13:05:26 -0700 (PDT)
-Received: from [128.224.56.214] (128.224.56.214) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.468.0;
-	Mon, 19 Aug 2019 13:05:25 -0700
-To: <jaymin.dabhi@vivaldi.net>
-References: <279ea8172bf6d37d284e8d5cb4efb077@vivaldi.net>
-	<1997fc5b-2e25-c56a-c423-dd2c62404971@windriver.com>
-	<be9ad8cf60e0401975f8b35bd22944de@vivaldi.net>
-	<581b32aa-8d6e-d6f6-71fe-a71f55354b33@windriver.com>
-	<b59c4408e9bcc0d3d0f9ece1aeda6cd5@vivaldi.net>
-From: Randy MacLeod <randy.macleod@windriver.com>
-Message-ID: <9fe01664-3d35-7b62-4519-2e78f8ba8673@windriver.com>
-Date: Mon, 19 Aug 2019 16:05:24 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (sjolley.yp.pm[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.172 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com
+	[209.85.210.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C905E00B1B
+	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 13:38:30 -0700 (PDT)
+Received: by mail-pf1-f172.google.com with SMTP id b24so1866734pfp.1
+	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 13:38:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id:mime-version:content-language
+	:thread-index; bh=TMuHogvs+3e3nS9TLhAkz90KFDu3xyoz0VegQ2ytmwI=;
+	b=U9SS3Y6sE9Nm8rppEdYxHwre0jWTW00H1pHz5QwnGVtkBc0FQcEU67NbmiawOkxXLJ
+	4qgLIy7ecB4yV8RqFnKVaNE5okAqgaYWnGqaCn1o42uD+fItYQn4lO8iunTZnP426Y4N
+	geSlLMFf+0MGWXdLEvixgB1G9qMTpC6UNvhlTRLXZtNmlLfFCUryCKH1k0z+ch5NFd7P
+	q7t/c43B+K1TUyZnu3kOOePgiprfXHy07kMEK5QSvGDwBNKMUnlKozGW/knHN1NK4hFw
+	zvFUW64xkIHO7qKqH4TeYadevjBjD1qW4cRqCCVZGKBcgzblg5vdjs78KYhs8fcEijZD
+	N+nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:content-language:thread-index;
+	bh=TMuHogvs+3e3nS9TLhAkz90KFDu3xyoz0VegQ2ytmwI=;
+	b=uEveTCxfVh+dl5AqF6YFKnp0lkqCLbnmsPiCGt8oHdyUvkju1aM6J3CY5b7DVE2/Gm
+	f8kXqLNGm6h1BnjHMFwLaLPxR9k/MjV/xRV8nX4+14TImF92x3y7fBft2A4qJBhYPeqB
+	MKcQK/iKJukmdhmNKQjnPCXjsl9obx0dluRx0mIMwwPZDxHZnj0GWvZvCSTIvIuiNaHX
+	eK73ZC+Uq/PSQ8DNJsXGaYX088IhFX030G3ui/RJmlX5sT4AUC4pyFtEofOMbfGbQo8r
+	7OAJcZ3WgTKokIq31SQu9OL59UEy7pMlB1IK6jvxmzbK0tGqFwCEbb/Ff3T1eYK6MAQ5
+	kdHA==
+X-Gm-Message-State: APjAAAVNKt6EA3o5UsUeMlZI1vpW8n+OscoMrH+cAA3SxUZiChWSKLKj
+	HG1NbuLD+fc6sM+ND7sZAbM=
+X-Google-Smtp-Source: APXvYqx8LxjV0RzY7iXSrZeE1/QAoMx6F7Wr1D5URA8c1oTjovKWW/Ut/XVzpOoJNW+I8URHM4MmZw==
+X-Received: by 2002:a63:6d8d:: with SMTP id
+	i135mr21452901pgc.303.1566247109616; 
+	Mon, 19 Aug 2019 13:38:29 -0700 (PDT)
+Received: from sjolley (wsip-184-185-163-98.ph.ph.cox.net. [184.185.163.98])
+	by smtp.gmail.com with ESMTPSA id
+	x24sm16320427pgl.84.2019.08.19.13.38.27
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 19 Aug 2019 13:38:29 -0700 (PDT)
+From: <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Date: Mon, 19 Aug 2019 13:38:27 -0700
+Message-ID: <00d901d556ce$0f9851b0$2ec8f510$@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <b59c4408e9bcc0d3d0f9ece1aeda6cd5@vivaldi.net>
-X-Originating-IP: [128.224.56.214]
-Cc: yocto@yoctoproject.org
-Subject: Re: Segmentation fault | bitbake machine-image.bb | core dumped
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJdfrE3K0BcRiAIzEcWBPvs0zD8eA==
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,333 +77,290 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Aug 2019 20:05:34 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 19 Aug 2019 20:38:32 -0000
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_00DA_01D55693.633A15F0"
+Content-Language: en-us
 
-On 8/19/19 12:33 AM, jaymin.dabhi@vivaldi.net wrote:
-> Hi Randy,
-> 
-> Thanks for info.
-> But, as you can see from previous logs, I was getting core dumped issue 
-> at the time of bitbake (while building the image).
-> How can I find the cause of this type of core dumped?
+------=_NextPart_000_00DA_01D55693.633A15F0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Hi Jaymin,
+All,
 
-While I'd like to help you with each step, I'm usually not going
-to do that (unless you become a Wind River customer. :) )
-
-
-To save us and anyone who might be reading this thread some time,
-it looks like the program you are having trouble with is from a
-meta-android layer or elsewhere. On ubuntu it's packaged in
-android-sdk-ext4-utils:
-    $ make_ext4fs
-
-    Command 'make_ext4fs' not found, but can be installed with:
-
-    sudo apt install android-sdk-ext4-utils  # version 8.1.0+r23-2, or
-    sudo apt install android-tools-fsutils   # version 5.1.1.r38-1.1
-
-Please read the rest of this email and let us know if you added
-that layer into your conf/bblayers.conf file for reference.
-
-
-Good luck,
-../Randy
-
-
-So, I wanted to confirm that bitbake wasn't preventing the
-core file from being generated, so I used a private machine running
-ubuntu-19.04 and replaced the gcc executable with my own program
-as shown below. Since you already have an error happening,
-you don't have to do this.
-
-
-Here's my simple program in /tmp/hw.c
-
-#include <stdio.h>
-#include <stdlib.h>
-
-void  do_segv() {
-   int *psplat = 0;
-   int x = -1;
-   x = *psplat;
-}
-
-
-int main(int c, char *v[]) {
-   printf("Hello world\n");
-   do_segv();
-
-   exit(0);
-}
-
-Compile it:
-gcc -g -o /tmp/hw /tmp/hw.c
-
-Now set the kernel's core_pattern as explained in:
-http://www.linuxhowtos.org/Tips%20and%20Tricks/coredump.htm
-
-$ sudo su -
-First save the old pattern:
-# cat /proc/sys/kernel/core_pattern  > /root/old-core-pattern
-# echo "core.%e.%p" > /proc/sys/kernel/core_pattern
-# exit
-
-Under your own user id:
-$ ulimit -c unlimited
-
-$ Test that we can generate a core dump outside of bitbake:
-$ /tmp/hw
-Hello world
-Segmentation fault (core dumped)
-$ file core.hw.20982
-core.hw.20982: ELF 64-bit LSB core file, x86-64, version 1 (SYSV), 
-SVR4-style, from '/tmp/hw', real uid: ..., execfn: '/tmp/hw', platform: 
-'x86_64'
-
-$ gdb /tmp/hw core.hw*
-...
-<snip startup text>
-...
-Reading symbols from /tmp/hw...
-[New LWP 20982]
-Core was generated by `/tmp/hw'.
-Program terminated with signal SIGSEGV, Segmentation fault.
-#0  0x000055af3c18617a in do_segv () at /tmp/hw.c:12
-12	  x = *psplat;
-(gdb) bt
-#0  0x000055af3c18617a in do_segv () at /tmp/hw.c:12
-#1  0x000055af3c1861a7 in main (c=1, v=0x7ffc801bfc38) at /tmp/hw.c:20
-(gdb)
-
-
-
-So, now I want to use this as a test to confirm that I can generate
-a core file when running bitbake to simulate your problem. In your
-case, everything is setup so that you should be able to start debugging 
-'make_ext4fs' but running bitbake, getting a core file, then running:
-$ gdb make_ext4fs /path/to/core.pattern
-
-
-I know that the OS doesn't depend on having a functioning compiler all
-the time so I'm going to *save*, then over-write the compiler. You call
-'gcc' to compile a program but it's actually a series of links on my
-Ubuntu distro:
-
-$ ls -l /usr/bin/gcc
-lrwxrwxrwx 1 root root 5 Apr  4 00:23 /usr/bin/gcc -> gcc-8
-$ ls -l /usr/bin/gcc-8
-lrwxrwxrwx 1 root root 22 Apr  6 11:04 /usr/bin/gcc-8 -> 
-x86_64-linux-gnu-gcc-8
-$ ls -l /usr/bin/x86_64-linux-gnu-gcc-8
--rwxr-xr-x 1 root root 19336 Aug 19 14:53 /usr/bin/x86_64-linux-gnu-gcc-8
-
-
-Copy the simple test program over the compiler executable BUT ...
-
-SAVE IT FIRST!!!
-
-
-# WARNING: only do this on a system that other people are not using:
-$ sudo mv /usr/bin/x86_64-linux-gnu-gcc-8 \
-           /usr/bin/x86_64-linux-gnu-gcc-8.orig
-$ sudo cp /tmp/hw /usr/bin/x86_64-linux-gnu-gcc-8
-
-Now, I know that m4-native is one of the first programs that use gcc
-so I can run:
-$ bitbake -c configure m4-native
-
-...
-
-
-| checking whether the C compiler works... no
-| configure: error: in 
-`/home/rmacleod/tmp/yp/b/test-ulimit/tmp-glibc/work/x86_64-linux/m4-native/1.4.18-r0/build':
-| configure: error: C compiler cannot create executables
-| See `config.log' for more details
-| WARNING: exit code 1 from a shell command.
-|
-ERROR: Task 
-(/home/rmacleod/tmp/yp/oe-core.git/meta/recipes-devtools/m4/m4-native_1.4.18.bb:do_configure) 
-failed with exit code '1'
-NOTE: Tasks Summary: Attempted 29 tasks of which 28 didn't need to be 
-rerun and 1 failed.
-
-Summary: 1 task failed:
  
-/home/rmacleod/tmp/yp/oe-core.git/meta/recipes-devtools/m4/m4-native_1.4.18.bb:do_configure
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
 
-$ find * -name "core*"
-tmp-glibc/work/x86_64-linux/m4-native/1.4.18-r0/build/core.gcc.21823
-...
-tmp-glibc/work/x86_64-linux/m4-native/1.4.18-r0/build/core.gcc.21808
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
 
+ 
 
-So core files are being generated.
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
 
-Now to restore the distro:
-$ sudo su -
-# rm /usr/bin/x86_64-linux-gnu-gcc-8
-# mv /usr/bin/x86_64-linux-gnu-gcc-8.orig /usr/bin/x86_64-linux-gnu-gcc-8
+ 
 
-# cat /root/old-core-pattern
-|/usr/share/apport/apport %p %s %c %d %P
-# echo "| /usr/share/apport/apport %p %s %c %d %P" > 
-/proc/sys/kernel/core_pattern
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-# rm /root/old-core-pattern
-# exit
+ 
 
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 297
+unassigned or newcomer bugs.
 
-Other useful info:
-Core file generation:
-https://stackoverflow.com/questions/2065912/core-dumped-but-core-file-is-not-in-the-current-directory
+ 
 
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "2.8", "2.9', "2.99" and "Future", the more pressing/urgent
+issues being in "2.8" and then "2.9".
 
-I hope that helps.
+ 
 
-If you can reproduce the issue on a supported YP branch
-, then you should
-open a defect in:
-   https://bugzilla.yoctoproject.org/
-with the exact steps you use to assemble you layers, and build a 
-project. If the bug is not in oe-core or bitbake, then you should
-consult the toplevel README for whatever layer is involved and follow-up
-in that way.
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newcomer_Bugs
 
-If you'd like additional support for the older release, consultants
-are available to hire:
-    https://www.yoctoproject.org/community/consultants/
-and certain YP members (such as Wind River) provide YP-based
-Linux distros that are supported for years and years. See:
-   https://www.yoctoproject.org/ecosystem/members/
+ 
 
-../Randy
+Thanks,
 
-> 
-> 
-> On 16-08-2019 07:11 PM, Randy MacLeod wrote:
->> On 8/16/19 12:40 AM, jaymin.dabhi@vivaldi.net wrote:
->>> Hi Randy,
->>>
->>> Thanks for your information regarding Yocto Jethro branch.
->>>
->>> Yes, this core dumped issue is reproducible.
->>> When I add python3-pip package in local.conf file and build complete 
->>> image, this core dumped is happening.
->>>
->>> Randy, it would be much helpful if you explain me how to adjust core 
->>> file limits using ulimit, and how get the backtrace?
->>
->> Via google:
->> https://jvns.ca/blog/2018/04/28/debugging-a-segfault-on-linux/
->>
->> ../Randy
->>
->>>
->>> I have added python3-pip package in local.conf file, this is the one 
->>> change only I did in local.conf.
->>> Yes, I am able to generate the image successfully after reverting 
->>> this one change.
->>>
->>> Please let me know if more information require.
->>>
->>> On 15-08-2019 07:30 AM, Randy MacLeod wrote:
->>>> On 8/12/19 10:42 AM, jaymin.dabhi@vivaldi.net wrote:
->>>>> Hello All,
->>>>>
->>>>> Facing segmentation fault (core dumped) while doing bitbake.
->>>>> I am using Yocto Jethro branch.
->>>>
->>>> Jethro isn't officially supported by the Yocto Project.
->>>> The support cycle is ~ 1 year.
->>>>
->>>> https://wiki.yoctoproject.org/wiki/Releases
->>>>
->>>> Can you reproduce the issue on master or a newer supported branch?
->>>> If so you could file a bug in:
->>>>    https://wiki.yoctoproject.org/wiki/Releases
->>>>
->>>> Also, see below for some tips.
->>>>
->>>>>
->>>>> When I added python3-pip recipe (in local.conf) and started 
->>>>> building image, segmentation fault occurred.
->>>>> Although, I am able to bitbake python3-pip individually (i.e. 
->>>>> bitbake python3-pip).
->>>>> As per log my assumption is, core dumped is occurring at 
->>>>> make_ext4fs execution.
->>>>>
->>>>> Following are the error logs:
->>>>>
->>>>> ERROR: Function failed: do_makesystem (log file is located at 
->>>>> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/temp/log.do_makesystem.15059) 
->>>>> ERROR: Logfile of failure stored in: 
->>>>> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/temp/log.do_makesystem.15059 
->>>>> Log data follows:
->>>>> | DEBUG: Executing shell function do_makesystem
->>>>> | 
->>>>> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/temp/run.do_makesystem.15059: 
->>>>> line 105: 15073 Segmentation fault      (core dumped) make_ext4fs 
->>>>> -J -b 1024 -s -a / -S
->>>>
->>>> Odd, I've never see that happen before.
->>>> Is it reproducible?
->>>>
->>>> Can you adjust the core file limits using 'ulimit',
->>>> generate a core file and get a backtrace?
->>>>
->>>>> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/rootfs/etc/selinux/mls/contexts/files/file_contexts 
->>>>> -l 768000000 
->>>>> poky/build/tmp-glibc/deploy/images/apq8053-perf/apq8053-sysfs.ext4 
->>>>> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/rootfs
->>>>> | WARNING: 
->>>>> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/temp/run.do_makesystem.15059:1 
->>>>> exit 139 from
->>>>> |   make_ext4fs -J -b 1024 -s -a / -S 
->>>>> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/rootfs/etc/selinux/mls/contexts/files/file_contexts 
->>>>> -l 768000000 
->>>>> poky/build/tmp-glibc/deploy/images/apq8053-perf/apq8053-sysfs.ext4 
->>>>> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/rootfs
->>>>> | ERROR: Function failed: do_makesystem (log file is located at 
->>>>> poky/build/tmp-glibc/work/apq8053-oe-linux/machine-image/1.0-r0/temp/log.do_makesystem.15059) 
->>>>> ERROR: Task 11 ( 
->>>>> poky/meta-qti-bsp/recipes-products/images/machine-image.bb, 
->>>>> do_makesystem) failed with exit code '1'
->>>>>
->>>>>
->>>>> Whether python3-pip recipe is creating an issue or something else? 
->>>>> (attached the python3-pip recipe file)
->>>>
->>>> What did you change in your conf/local.conf file?
->>>> If you revert that change, then you are able to generate the image
->>>> again?
->>>>
->>>> ../Randy
->>>>
->>>>> Please let me know.
->>>>> Any suggestions are welcome.
->>>>>
->>>>> Regards,
->>>>> Jaymin
->>>>>
->>>>
->>>>
->>>> -- # Randy MacLeod
->>>> # Wind River Linux
->>
->>
->> -- 
->> # Randy MacLeod
->> # Wind River Linux
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+ 
 
 
--- 
-# Randy MacLeod
-# Wind River Linux
+------=_NextPart_000_00DA_01D55693.633A15F0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0014_01D55131.6B73B490";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:p=3D"urn:schemas-microsoft-com:office:powerpoint" =
+xmlns:a=3D"urn:schemas-microsoft-com:office:access" =
+xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" =
+xmlns:s=3D"uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" =
+xmlns:rs=3D"urn:schemas-microsoft-com:rowset" xmlns:z=3D"#RowsetSchema" =
+xmlns:b=3D"urn:schemas-microsoft-com:office:publisher" =
+xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadsheet" =
+xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" =
+xmlns:odc=3D"urn:schemas-microsoft-com:office:odc" =
+xmlns:oa=3D"urn:schemas-microsoft-com:office:activation" =
+xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" =
+xmlns:rtc=3D"http://microsoft.com/officenet/conferencing" =
+xmlns:D=3D"DAV:" xmlns:Repl=3D"http://schemas.microsoft.com/repl/" =
+xmlns:mt=3D"http://schemas.microsoft.com/sharepoint/soap/meetings/" =
+xmlns:x2=3D"http://schemas.microsoft.com/office/excel/2003/xml" =
+xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" =
+xmlns:ois=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" =
+xmlns:dir=3D"http://schemas.microsoft.com/sharepoint/soap/directory/" =
+xmlns:ds=3D"http://www.w3.org/2000/09/xmldsig#" =
+xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint/dsp" =
+xmlns:udc=3D"http://schemas.microsoft.com/data/udc" =
+xmlns:xsd=3D"http://www.w3.org/2001/XMLSchema" =
+xmlns:sub=3D"http://schemas.microsoft.com/sharepoint/soap/2002/1/alerts/"=
+ xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#" =
+xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" =
+xmlns:sps=3D"http://schemas.microsoft.com/sharepoint/soap/" =
+xmlns:xsi=3D"http://www.w3.org/2001/XMLSchema-instance" =
+xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/soap" =
+xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" =
+xmlns:udcp2p=3D"http://schemas.microsoft.com/data/udc/parttopart" =
+xmlns:wf=3D"http://schemas.microsoft.com/sharepoint/soap/workflow/" =
+xmlns:dsss=3D"http://schemas.microsoft.com/office/2006/digsig-setup" =
+xmlns:dssi=3D"http://schemas.microsoft.com/office/2006/digsig" =
+xmlns:mdssi=3D"http://schemas.openxmlformats.org/package/2006/digital-sig=
+nature" =
+xmlns:mver=3D"http://schemas.openxmlformats.org/markup-compatibility/2006=
+" xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns:mrels=3D"http://schemas.openxmlformats.org/package/2006/relationshi=
+ps" xmlns:spwp=3D"http://microsoft.com/sharepoint/webpartpages" =
+xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/2006/types"=
+ =
+xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/2006/messag=
+es" =
+xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/SlideLibrary/=
+" =
+xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortalServer/Pub=
+lishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" =
+xmlns:st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoPlainText>All,<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>The =
+triage team is starting to try and collect up and classify bugs which a =
+newcomer to the project would be able to work on in a way which means =
+people can find them. They're being listed on the triage page under the =
+appropriate heading:<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
+><p class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoPlainText>The idea is these bugs should be straight forward =
+for a person to help work on who doesn't have deep experience with the =
+project.&nbsp; If anyone can help, please take ownership of the bug and =
+send patches!&nbsp; If anyone needs help/advice there are people on irc =
+who can likely do so, or some of the more experienced contributors will =
+likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Also, =
+the triage team meets weekly and does its best to handle the bugs =
+reported into the Bugzilla. The number of people attending that meeting =
+has fallen, as have the number of people available to help fix bugs. One =
+of the things we hear users report is they don't know how to help. We =
+(the triage team) are therefore going to start reporting out the =
+currently 297 unassigned or newcomer bugs.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>We're =
+hoping people may be able to spare some time now and again to help out =
+with these.&nbsp; Bugs are split into two types, &quot;true bugs&quot; =
+where things don't work as they should and &quot;enhancements&quot; =
+which are features we'd want to add to the system.&nbsp; There are also =
+roughly four different &quot;priority&quot; classes right now, =
+&#8220;2.8&#8221;, &#8220;2.9&#8217;, &quot;2.99&quot; and =
+&quot;Future&quot;, the more pressing/urgent issues being in =
+&quot;2.8&quot; and then &#8220;2.9&#8221;.<o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p class=3DMsoPlainText>Please =
+review this link and if a bug is something you would be able to help =
+with either take ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newco=
+mer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_New=
+comer_Bugs</a><o:p></o:p></p><p =
+class=3DMsoPlainText><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a><o:p><=
+/o:p></span></p><p class=3DMsoNormal><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p>&nbsp;</o:=
+p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_00DA_01D55693.633A15F0--
