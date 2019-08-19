@@ -1,65 +1,70 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <okaya@kernel.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 57FB5E00C11; Mon, 19 Aug 2019 04:21:24 -0700 (PDT)
+	id 47E41E0098A; Mon, 19 Aug 2019 05:30:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.179 listed in list.dnswl.org]
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
+	high *      trust
+	*      [198.145.29.99 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com
-	[209.85.208.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65BB5E00C22
-	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 04:21:07 -0700 (PDT)
-Received: by mail-lj1-f179.google.com with SMTP id e27so1384682ljb.7
-	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 04:21:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=v+7wbRX0HqERHyOa8DGcTgYhNwdb2T8qDVM8i3GBXsk=;
-	b=YD7e3oHQYRE/0+VbVheCLFizbz0RGovjoGMwS+npos0xxFJW+IRpITgvUZ7wK638mv
-	ifPAvqe72h0A3KP9Gw0aV4jiPOKdJSM/Cg0m/LJ3buZY4+k47++er3cbXk+pYkYVQGty
-	qYMM8Tn3r6CqHblyr2HPnnJhMLhxysp1uLQ43bwgId0WVcCNERXVcWrXbUQuu5/kj+QR
-	zYNxPVoBld/TyChiEqkzb4I8JISM3bW8Ulkxz0+6Ay0Tcsrb1R/oPe/lbJl9f5nzcOSj
-	/bnW9YuA8OxpXNpjV9ZFzzGI/DWKOYHqvmdgkcKhJD2tbBoKlkiOrR/UCgagt53nqKal
-	hLjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=v+7wbRX0HqERHyOa8DGcTgYhNwdb2T8qDVM8i3GBXsk=;
-	b=oCU9FZwWqX9BbdB+GEQeWnjl2dwinSwxBHFBsQS1G6LuW8qkULhn2cY9XEU7WjXP0y
-	+ZveJt4hfxf67EiR5Qr5J93gGD0KXvvZWM8VvrM16+fTw35Dg2LtUsW6GIcdRQyrTVa1
-	/NWZHSwt3upoCTxZQO11d4d8sO2WoFOzFTFAM8/UbkA2278MjY7lNrgpRKUQIJAm5qju
-	y/SkC3GheXSImVYb3XKO3+jnGwIAFsrJ5lA0f8c3vWUVwkXVAn1XiXesnUZoPmQo+HaP
-	tkXqcckIBf0QCeIyj6ItKcW1C3K7nDzTQK38AuqZK15vWE3qGKUtvN+0WUhVP5TWU87/
-	naMA==
-X-Gm-Message-State: APjAAAUQOKYNZCvfUG3A9+pfFPuyC85sEq1wBL6uYSd84kHxGqpJiLL6
-	BCXxBusko9WEkujNn3fKEWFOWo/I/7gxHT7yGn8kNA==
-X-Google-Smtp-Source: APXvYqwv+epqjzP+BZ5qgiyAcngmt5axGQ9gBEuYHB6wOIeAevWZyXbUFILF+5pZnt6Y2wMfw0q980N7h/5w24SxbiY=
-X-Received: by 2002:a2e:8e87:: with SMTP id z7mr6619512ljk.211.1566213666060; 
-	Mon, 19 Aug 2019 04:21:06 -0700 (PDT)
+Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21682E00935
+	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 05:30:45 -0700 (PDT)
+Received: from [192.168.1.74] (75-58-59-55.lightspeed.rlghnc.sbcglobal.net
+	[75.58.59.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by mail.kernel.org (Postfix) with ESMTPSA id AE6B520843;
+	Mon, 19 Aug 2019 12:30:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=default; t=1566217845;
+	bh=xLz1mmoCtDl78mggeusLeRm3eV9g/T951RBoDBgChnI=;
+	h=To:Cc:From:Subject:Date:From;
+	b=DwI//73CvMWUwb0Ks3u+B4DQJH18gAYlL/sW88OBjMTg5hUK5tFYzVJWp1z8QE4mv
+	o4INvsHIz+K7ZX+bfk0gAMPEfTlIXGwNesrYgiD9kZjqGZ05IgdSEIfdYVONaJTlFB
+	adv4WpTaeDzO9aZvMMG/WYOKV0noJVnNLNBMnBiw=
+To: yocto@yoctoproject.org
+From: Sinan Kaya <okaya@kernel.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=okaya@kernel.org; keydata=
+	mQENBFrnOrUBCADGOL0kF21B6ogpOkuYvz6bUjO7NU99PKhXx1MfK/AzK+SFgxJF7dMluoF6
+	uT47bU7zb7HqACH6itTgSSiJeSoq86jYoq5s4JOyaj0/18Hf3/YBah7AOuwk6LtV3EftQIhw
+	9vXqCnBwP/nID6PQ685zl3vH68yzF6FVNwbDagxUz/gMiQh7scHvVCjiqkJ+qu/36JgtTYYw
+	8lGWRcto6gr0eTF8Wd8f81wspmUHGsFdN/xPsZPKMw6/on9oOj3AidcR3P9EdLY4qQyjvcNC
+	V9cL9b5I/Ud9ghPwW4QkM7uhYqQDyh3SwgEFudc+/RsDuxjVlg9CFnGhS0nPXR89SaQZABEB
+	AAG0HVNpbmFuIEtheWEgPG9rYXlhQGtlcm5lbC5vcmc+iQFOBBMBCAA4FiEEYdOlMSE+a7/c
+	ckrQvGF4I+4LAFcFAlztcAoCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQvGF4I+4L
+	AFfidAf/VKHInxep0Z96iYkIq42432HTZUrxNzG9IWk4HN7c3vTJKv2W+b9pgvBF1SmkyQSy
+	8SJ3Zd98CO6FOHA1FigFyZahVsme+T0GsS3/OF1kjrtMktoREr8t0rK0yKpCTYVdlkHadxmR
+	Qs5xLzW1RqKlrNigKHI2yhgpMwrpzS+67F1biT41227sqFzW9urEl/jqGJXaB6GV+SRKSHN+
+	ubWXgE1NkmfAMeyJPKojNT7ReL6eh3BNB/Xh1vQJew+AE50EP7o36UXghoUktnx6cTkge0ZS
+	qgxuhN33cCOU36pWQhPqVSlLTZQJVxuCmlaHbYWvye7bBOhmiuNKhOzb3FcgT7kBDQRa5zq1
+	AQgAyRq/7JZKOyB8wRx6fHE0nb31P75kCnL3oE+smKW/sOcIQDV3C7mZKLf472MWB1xdr4Tm
+	eXeL/wT0QHapLn5M5wWghC80YvjjdolHnlq9QlYVtvl1ocAC28y43tKJfklhHiwMNDJfdZbw
+	9lQ2h+7nccFWASNUu9cqZOABLvJcgLnfdDpnSzOye09VVlKr3NHgRyRZa7me/oFJCxrJlKAl
+	2hllRLt0yV08o7i14+qmvxI2EKLX9zJfJ2rGWLTVe3EJBnCsQPDzAUVYSnTtqELu2AGzvDiM
+	gatRaosnzhvvEK+kCuXuCuZlRWP7pWSHqFFuYq596RRG5hNGLbmVFZrCxQARAQABiQEfBBgB
+	CAAJBQJa5zq1AhsMAAoJELxheCPuCwBX2UYH/2kkMC4mImvoClrmcMsNGijcZHdDlz8NFfCI
+	gSb3NHkarnA7uAg8KJuaHUwBMk3kBhv2BGPLcmAknzBIehbZ284W7u3DT9o1Y5g+LDyx8RIi
+	e7pnMcC+bE2IJExCVf2p3PB1tDBBdLEYJoyFz/XpdDjZ8aVls/pIyrq+mqo5LuuhWfZzPPec
+	9EiM2eXpJw+Rz+vKjSt1YIhg46YbdZrDM2FGrt9ve3YaM5H0lzJgq/JQPKFdbd5MB0X37Qc+
+	2m/A9u9SFnOovA42DgXUyC2cSbIJdPWOK9PnzfXqF3sX9Aol2eLUmQuLpThJtq5EHu6FzJ7Y
+	L+s0nPaNMKwv/Xhhm6Y=
+Message-ID: <d0118f7f-8e31-1cd6-5804-b199c755e639@kernel.org>
+Date: Mon, 19 Aug 2019 08:30:44 -0400
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <1a542261-a335-db48-e7ce-7c1dda207ff1@balister.org>
-In-Reply-To: <1a542261-a335-db48-e7ce-7c1dda207ff1@balister.org>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Mon, 19 Aug 2019 04:20:57 -0700
-Message-ID: <CAP71WjxFASX0tvkYA2+Bg9M8yquK4GZCWnoiV8xZ2AT04zr3Wg@mail.gmail.com>
-To: Philip Balister <philip@balister.org>
-Cc: Yocto Project <yocto@yoctoproject.org>,
-	"openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Yocto Project Summit at ELCE Call for Particpation
+Subject: [meta-mingw] QEMU on thud mingw SDK is broken
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,45 +76,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Aug 2019 11:21:24 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 19 Aug 2019 12:30:46 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-hi Philip,
 
-thanks for sending this out!
+I noticed last week that qemu packaged into mingw sdk is broken while
+the qemu in linux sdk works fine.
 
-On Mon, Aug 19, 2019 at 3:17 AM Philip Balister <philip@balister.org> wrote:
->
-> At the past few OopenEmbedded developer meetings, people have been
-> asking for more developer and user focused events like a miniconf.
-> Partly based on this feedback, there is a two day event sponsored by the
-> Yocto Project that provides a chance for people to talk about the Yocto
-> Project and OpenEmbedded. The CFP is a bit buried on the page and I like
-> to get it more exposure, so here the direct link:
+Qemu crashes very early while launching the kernel boot.
+This used to work fine on sumo.
 
-all information about the Summit is also available here now:
+Does anybody see this problem too?
 
-https://wiki.yoctoproject.org/wiki/Yocto_Project_Summit_2019
 
->
-> https://events.linuxfoundation.org/wp-content/uploads/2019/08/Yocto-Project-Summit-2019-CFP-1.pdf
->
-> We'd like to see new faces talking. We know there are a lot of good
-> stories out there, that will help lots of people become better users and
-> developers.
->
-> The link to the event is here:
->
-> https://events.linuxfoundation.org/events/embedded-linux-conference-europe-2019/program/co-located-events/
->
-> Follow the path to the Yocto Project Summit. If you are alrady signed up
-> for ELCE, you should be able to update your registration to include the
-> Summit.
->
-> Philip
-> --
-> _______________________________________________
-> Openembedded-core mailing list
-> Openembedded-core@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-core
 
