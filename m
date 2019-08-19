@@ -1,38 +1,70 @@
-Return-Path: <sdi1100002@di.uoa.gr>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5C8FFE00920; Mon, 19 Aug 2019 05:42:47 -0700 (PDT)
+	id 8E6FAE00AE6; Mon, 19 Aug 2019 07:20:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [195.134.100.72 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from msa.uoa.gr (msa.uoa.gr [195.134.100.72])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1FBBE007E1
-	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 05:42:45 -0700 (PDT)
-Received: by MSA with id 5587DD5238A5174B16D59E42DA063FF9990C6195
-Received: from [88.197.47.46] ([88.197.47.46]) (authenticated bits=0)
-	by msa.uoa.gr (8.14.1/8.14.1) with ESMTP id x7JCghP7008400
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=NOT)
-	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 15:42:44 +0300 (EEST)
-To: yocto@yoctoproject.org
-References: <62464e60-54da-b8fb-a0c5-864eee5b7e4a@di.uoa.gr>
-	<CAAx3WaD-DRxKveFH769ZW0ayi23AT+LRKborBP2mxH1iySVcqg@mail.gmail.com>
-From: Ekaterini Voulgari <sdi1100002@di.uoa.gr>
-Message-ID: <b434f24a-1184-b71b-b839-07203d5c0310@di.uoa.gr>
-Date: Mon, 19 Aug 2019 15:42:43 +0300
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.65 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
+	[209.85.128.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBB65E00AB6
+	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 07:20:31 -0700 (PDT)
+Received: by mail-wm1-f65.google.com with SMTP id v15so1799501wml.0
+	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 07:20:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.ro; s=google;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-transfer-encoding:content-language;
+	bh=qBAtdLIfvJq9SUTt93xwDnprBSCdg2qDMt+xyOjGvC8=;
+	b=ZicC0T9XrQPwU8kZu2VsaYL5EPZJfZB1zpJUgNJCsp7b+yVdFz+DDsqZirnqZ6IRAK
+	/Q2ONDuJr5cZoODeZMh9m84NDkdrfG4hMt+mLf3q4t4VVVn493v3xHBA5z7ZnDdrY3yk
+	w66pAxuNzTaOv4oVZ2neodm6jJ2G+L+3yZynVdTLx3xFYZ244g+37M233EmQmX23y14r
+	kuslfAK5YcqPrbSDQyxHzZTJp/yI5TWY2f+sW7a0xSIVC3SIfGhaoTmRzmjrLv8Qa450
+	+tUku9KLfkOoF2EHuW1/jHvxiebh4oQLZdY4kI4UFAmEZqSVQDDF7zsSenC2E5XpBoM0
+	/kXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-transfer-encoding
+	:content-language;
+	bh=qBAtdLIfvJq9SUTt93xwDnprBSCdg2qDMt+xyOjGvC8=;
+	b=oMHGixfxOMIXBObrMHO3e+4rQEPZ06/q0r0vRtq0uTGv3yvYxFP3RJ/N5WfSRfBRGZ
+	8xuPk1Ucx62tIyaFocw+YLZjmQjQgl3FxVYQLp7DIOVaAOGeLakgEaGLIt0wT632aQdo
+	eXAY8BKiLyiidiyhyYXpCIzSmg7i9HvWYBcqSwdBA55Ps0AomRkxvoxr6EgOXBPqIqeu
+	jzejnFjHdm/6Z7WzmNmZLi8AJVFG21KBTc9tV8wR0gUNSrhNj/tiDOZ5u7O3ehSmxX2L
+	rYAkhXPQe1Cx0winXppCAu3+XfP7EJpNXGFvVkAHad1rx6PH8L0aXcCKEjhl56BbPooH
+	lutg==
+X-Gm-Message-State: APjAAAUEiJASvLJC8lfsB4Xll0WTTbG7BSUGw5gSdVE4Sle0HwP5Fp9J
+	AKavWux+OPlXlviYNGeeczJfl6v3KMU=
+X-Google-Smtp-Source: APXvYqwGO91P4A1RiEl0TWF0GUx+Xb14KCC/mOhgCGYzQ/JoGWzF+OJogkafzm+8IQqSA8PzETT0+w==
+X-Received: by 2002:a1c:9d53:: with SMTP id g80mr20939766wme.103.1566224430516;
+	Mon, 19 Aug 2019 07:20:30 -0700 (PDT)
+Received: from [10.100.100.101] ([212.36.34.46])
+	by smtp.gmail.com with ESMTPSA id
+	d1sm12060578wrs.71.2019.08.19.07.20.29
+	(version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+	Mon, 19 Aug 2019 07:20:29 -0700 (PDT)
+To: Phillip Marks <pmarks@soeffects.com>, yocto@yoctoproject.org
+References: <CAMOxz4cBzWU_L-VK-m1Q65H_VVY3U1ekYkj=8Mejxf2XU6rnWQ@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Message-ID: <25f05c8e-607a-808e-72df-6d69281ffd60@gherzan.ro>
+Date: Mon, 19 Aug 2019 15:20:28 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.6.1
+	Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <CAAx3WaD-DRxKveFH769ZW0ayi23AT+LRKborBP2mxH1iySVcqg@mail.gmail.com>
-Sender: sdi1100002@di.uoa.gr
-X-UoAMSAId: 5587DD5238A5174B16D59E42DA063FF9990C6195
-Subject: Re: Opencv headers
+In-Reply-To: <CAMOxz4cBzWU_L-VK-m1Q65H_VVY3U1ekYkj=8Mejxf2XU6rnWQ@mail.gmail.com>
+Subject: Re: [meta-raspberrypi] Issues building bcm2835_bootfiles in Thud
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,145 +76,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Aug 2019 12:42:47 -0000
-Content-Type: multipart/alternative;
-	boundary="------------814B04EECCA18647F16E9FCD"
-Content-Language: el-GR
-
---------------814B04EECCA18647F16E9FCD
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Mon, 19 Aug 2019 14:20:33 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
-Indeed.Grazie.
+Hello,
 
-On 19/8/19 2:20 μ.μ., Gabriele Zampieri wrote:
-> Hi,
+On 14/08/2019 17.39, Phillip Marks wrote:
+> We are building Thud for a raspberry-pi0+wifi and we've noticed that
+> the recipe bcm2835_bootfiles
+> under meta-raspberrypi/recipes-bsp/bootfiles is not pulling in the
+> proprietary *.dtb modules from the firmware repository. This is
+> causing linux-raspberrypi to fail as it tries to build those modules
+> and fails on "no target found for bcm2708-rpi-0-w.dtb". How does
+> bcm2835_bootfiles pull in the Broadcom firmware modules and where in
+> build does it store them? We don't see them in tmp/work. 
 >
-> you need to add
-> DEPENDS = "opencv"
-> to your recipe. This will import the needed header in your recipe sysroot.
->
-> Best regards,
-> Gabriele
->
-> Il giorno lun 19 ago 2019 alle ore 13:09 Ekaterini Voulgari 
-> <sdi1100002@di.uoa.gr <mailto:sdi1100002@di.uoa.gr>> ha scritto:
->
->     Hello all,
->     I'm trying to add a program to my image that uses opencv (#include
->     <opencv2/opencv.hpp>), but I get compile error "fatal error:
->     opencv2/opencv.hpp: No such file or directory"
->
->     The file opencv.hpp exists in workdir
->     /build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-musleabi/opencv/3.4.5-r0/image/usr/include/opencv2/opencv.hpp.
->
->     Can anyone help on where are the headers located in crossbuilds? Any
->     help appreciated.
->     The recipe:
->
->     SRC_URI = "file://capture.cpp"
->
->     do_compile () {
->          ${CC} capture.cpp  -lopencv_core -lopencv_imgproc
->     -lopencv_highgui
->     -lopencv_videoio
->     }
->
->     do_install () {
->
->              install -d -m 0755 ${D}/${bindir}
->              install -m 0755 prog_kameras ${D}/${bindir}/prog_kameras
->     }
->
->     -- 
->     _______________________________________________
->     yocto mailing list
->     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->     https://lists.yoctoproject.org/listinfo/yocto
->
+Are you using a clean thud setup or updating the kernel to the current
+HEAD? You shouldn't hit this issue following the versions use in the
+thud branch of meta-raspberrypi. Long story short, the build system
+doesn't take advantage of the precompiled dtb files available in the
+Raspberry Pi firmware repository. It maintains a list of dtb as a
+variable and compiles them while compiling the kernel. I suspect that
+you have a bbappend which updates the kernel to current HEAD (includes a
+dtb rename backport).
 
---------------814B04EECCA18647F16E9FCD
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
+-- 
+Andrei Gherzan
+gpg: rsa4096/D4D94F67AD0E9640 | t: @agherzan
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <p>Indeed.Grazie.</p>
-    <div class="moz-cite-prefix">On 19/8/19 2:20 μ.μ., Gabriele Zampieri
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAAx3WaD-DRxKveFH769ZW0ayi23AT+LRKborBP2mxH1iySVcqg@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="ltr">
-        <div>Hi, <br>
-        </div>
-        <div><br>
-        </div>
-        <div>you need to add</div>
-        <div style="margin-left:40px">DEPENDS = "opencv"</div>
-        <div>to your recipe. This will import the needed header in your
-          recipe sysroot.</div>
-        <div><br>
-        </div>
-        <div>Best regards,<br>
-        </div>
-        <div>Gabriele<br>
-        </div>
-      </div>
-      <br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">Il giorno lun 19 ago 2019 alle
-          ore 13:09 Ekaterini Voulgari &lt;<a
-            href="mailto:sdi1100002@di.uoa.gr" moz-do-not-send="true">sdi1100002@di.uoa.gr</a>&gt;
-          ha scritto:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hello
-          all,<br>
-          I'm trying to add a program to my image that uses opencv
-          (#include <br>
-          &lt;opencv2/opencv.hpp&gt;), but I get compile error "fatal
-          error: <br>
-          opencv2/opencv.hpp: No such file or directory"<br>
-          <br>
-          The file opencv.hpp exists in workdir <br>
-/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-musleabi/opencv/3.4.5-r0/image/usr/include/opencv2/opencv.hpp.
-          <br>
-          Can anyone help on where are the headers located in
-          crossbuilds? Any <br>
-          help appreciated.<br>
-          The recipe:<br>
-          <br>
-          SRC_URI = <a class="moz-txt-link-rfc2396E" href="file://capture.cpp">"file://capture.cpp"</a><br>
-          <br>
-          do_compile () {<br>
-               ${CC} capture.cpp  -lopencv_core -lopencv_imgproc
-          -lopencv_highgui <br>
-          -lopencv_videoio<br>
-          }<br>
-          <br>
-          do_install () {<br>
-          <br>
-                   install -d -m 0755 ${D}/${bindir}<br>
-                   install -m 0755 prog_kameras
-          ${D}/${bindir}/prog_kameras<br>
-          }<br>
-          <br>
-          -- <br>
-          _______________________________________________<br>
-          yocto mailing list<br>
-          <a href="mailto:yocto@yoctoproject.org" target="_blank"
-            moz-do-not-send="true">yocto@yoctoproject.org</a><br>
-          <a href="https://lists.yoctoproject.org/listinfo/yocto"
-            rel="noreferrer" target="_blank" moz-do-not-send="true">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-        </blockquote>
-      </div>
-    </blockquote>
-  </body>
-</html>
 
---------------814B04EECCA18647F16E9FCD--
