@@ -1,70 +1,38 @@
-Return-Path: <okaya@kernel.org>
+Return-Path: <sdi1100002@di.uoa.gr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 47E41E0098A; Mon, 19 Aug 2019 05:30:46 -0700 (PDT)
+	id 5C8FFE00920; Mon, 19 Aug 2019 05:42:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-7.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	https://www.dnswl.org/, *      medium trust
+	*      [195.134.100.72 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [198.145.29.99 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21682E00935
-	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 05:30:45 -0700 (PDT)
-Received: from [192.168.1.74] (75-58-59-55.lightspeed.rlghnc.sbcglobal.net
-	[75.58.59.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPSA id AE6B520843;
-	Mon, 19 Aug 2019 12:30:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=default; t=1566217845;
-	bh=xLz1mmoCtDl78mggeusLeRm3eV9g/T951RBoDBgChnI=;
-	h=To:Cc:From:Subject:Date:From;
-	b=DwI//73CvMWUwb0Ks3u+B4DQJH18gAYlL/sW88OBjMTg5hUK5tFYzVJWp1z8QE4mv
-	o4INvsHIz+K7ZX+bfk0gAMPEfTlIXGwNesrYgiD9kZjqGZ05IgdSEIfdYVONaJTlFB
-	adv4WpTaeDzO9aZvMMG/WYOKV0noJVnNLNBMnBiw=
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from msa.uoa.gr (msa.uoa.gr [195.134.100.72])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1FBBE007E1
+	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 05:42:45 -0700 (PDT)
+Received: by MSA with id 5587DD5238A5174B16D59E42DA063FF9990C6195
+Received: from [88.197.47.46] ([88.197.47.46]) (authenticated bits=0)
+	by msa.uoa.gr (8.14.1/8.14.1) with ESMTP id x7JCghP7008400
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=NOT)
+	for <yocto@yoctoproject.org>; Mon, 19 Aug 2019 15:42:44 +0300 (EEST)
 To: yocto@yoctoproject.org
-From: Sinan Kaya <okaya@kernel.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=okaya@kernel.org; keydata=
-	mQENBFrnOrUBCADGOL0kF21B6ogpOkuYvz6bUjO7NU99PKhXx1MfK/AzK+SFgxJF7dMluoF6
-	uT47bU7zb7HqACH6itTgSSiJeSoq86jYoq5s4JOyaj0/18Hf3/YBah7AOuwk6LtV3EftQIhw
-	9vXqCnBwP/nID6PQ685zl3vH68yzF6FVNwbDagxUz/gMiQh7scHvVCjiqkJ+qu/36JgtTYYw
-	8lGWRcto6gr0eTF8Wd8f81wspmUHGsFdN/xPsZPKMw6/on9oOj3AidcR3P9EdLY4qQyjvcNC
-	V9cL9b5I/Ud9ghPwW4QkM7uhYqQDyh3SwgEFudc+/RsDuxjVlg9CFnGhS0nPXR89SaQZABEB
-	AAG0HVNpbmFuIEtheWEgPG9rYXlhQGtlcm5lbC5vcmc+iQFOBBMBCAA4FiEEYdOlMSE+a7/c
-	ckrQvGF4I+4LAFcFAlztcAoCGwMFCwkIBwIGFQoJCAsCBBYCAwECHgECF4AACgkQvGF4I+4L
-	AFfidAf/VKHInxep0Z96iYkIq42432HTZUrxNzG9IWk4HN7c3vTJKv2W+b9pgvBF1SmkyQSy
-	8SJ3Zd98CO6FOHA1FigFyZahVsme+T0GsS3/OF1kjrtMktoREr8t0rK0yKpCTYVdlkHadxmR
-	Qs5xLzW1RqKlrNigKHI2yhgpMwrpzS+67F1biT41227sqFzW9urEl/jqGJXaB6GV+SRKSHN+
-	ubWXgE1NkmfAMeyJPKojNT7ReL6eh3BNB/Xh1vQJew+AE50EP7o36UXghoUktnx6cTkge0ZS
-	qgxuhN33cCOU36pWQhPqVSlLTZQJVxuCmlaHbYWvye7bBOhmiuNKhOzb3FcgT7kBDQRa5zq1
-	AQgAyRq/7JZKOyB8wRx6fHE0nb31P75kCnL3oE+smKW/sOcIQDV3C7mZKLf472MWB1xdr4Tm
-	eXeL/wT0QHapLn5M5wWghC80YvjjdolHnlq9QlYVtvl1ocAC28y43tKJfklhHiwMNDJfdZbw
-	9lQ2h+7nccFWASNUu9cqZOABLvJcgLnfdDpnSzOye09VVlKr3NHgRyRZa7me/oFJCxrJlKAl
-	2hllRLt0yV08o7i14+qmvxI2EKLX9zJfJ2rGWLTVe3EJBnCsQPDzAUVYSnTtqELu2AGzvDiM
-	gatRaosnzhvvEK+kCuXuCuZlRWP7pWSHqFFuYq596RRG5hNGLbmVFZrCxQARAQABiQEfBBgB
-	CAAJBQJa5zq1AhsMAAoJELxheCPuCwBX2UYH/2kkMC4mImvoClrmcMsNGijcZHdDlz8NFfCI
-	gSb3NHkarnA7uAg8KJuaHUwBMk3kBhv2BGPLcmAknzBIehbZ284W7u3DT9o1Y5g+LDyx8RIi
-	e7pnMcC+bE2IJExCVf2p3PB1tDBBdLEYJoyFz/XpdDjZ8aVls/pIyrq+mqo5LuuhWfZzPPec
-	9EiM2eXpJw+Rz+vKjSt1YIhg46YbdZrDM2FGrt9ve3YaM5H0lzJgq/JQPKFdbd5MB0X37Qc+
-	2m/A9u9SFnOovA42DgXUyC2cSbIJdPWOK9PnzfXqF3sX9Aol2eLUmQuLpThJtq5EHu6FzJ7Y
-	L+s0nPaNMKwv/Xhhm6Y=
-Message-ID: <d0118f7f-8e31-1cd6-5804-b199c755e639@kernel.org>
-Date: Mon, 19 Aug 2019 08:30:44 -0400
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+References: <62464e60-54da-b8fb-a0c5-864eee5b7e4a@di.uoa.gr>
+	<CAAx3WaD-DRxKveFH769ZW0ayi23AT+LRKborBP2mxH1iySVcqg@mail.gmail.com>
+From: Ekaterini Voulgari <sdi1100002@di.uoa.gr>
+Message-ID: <b434f24a-1184-b71b-b839-07203d5c0310@di.uoa.gr>
+Date: Mon, 19 Aug 2019 15:42:43 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.6.1
 MIME-Version: 1.0
-Subject: [meta-mingw] QEMU on thud mingw SDK is broken
+In-Reply-To: <CAAx3WaD-DRxKveFH769ZW0ayi23AT+LRKborBP2mxH1iySVcqg@mail.gmail.com>
+Sender: sdi1100002@di.uoa.gr
+X-UoAMSAId: 5587DD5238A5174B16D59E42DA063FF9990C6195
+Subject: Re: Opencv headers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,19 +44,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 Aug 2019 12:30:46 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 19 Aug 2019 12:42:47 -0000
+Content-Type: multipart/alternative;
+	boundary="------------814B04EECCA18647F16E9FCD"
+Content-Language: el-GR
 
+--------------814B04EECCA18647F16E9FCD
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-I noticed last week that qemu packaged into mingw sdk is broken while
-the qemu in linux sdk works fine.
+Indeed.Grazie.
 
-Qemu crashes very early while launching the kernel boot.
-This used to work fine on sumo.
+On 19/8/19 2:20 μ.μ., Gabriele Zampieri wrote:
+> Hi,
+>
+> you need to add
+> DEPENDS = "opencv"
+> to your recipe. This will import the needed header in your recipe sysroot.
+>
+> Best regards,
+> Gabriele
+>
+> Il giorno lun 19 ago 2019 alle ore 13:09 Ekaterini Voulgari 
+> <sdi1100002@di.uoa.gr <mailto:sdi1100002@di.uoa.gr>> ha scritto:
+>
+>     Hello all,
+>     I'm trying to add a program to my image that uses opencv (#include
+>     <opencv2/opencv.hpp>), but I get compile error "fatal error:
+>     opencv2/opencv.hpp: No such file or directory"
+>
+>     The file opencv.hpp exists in workdir
+>     /build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-musleabi/opencv/3.4.5-r0/image/usr/include/opencv2/opencv.hpp.
+>
+>     Can anyone help on where are the headers located in crossbuilds? Any
+>     help appreciated.
+>     The recipe:
+>
+>     SRC_URI = "file://capture.cpp"
+>
+>     do_compile () {
+>          ${CC} capture.cpp  -lopencv_core -lopencv_imgproc
+>     -lopencv_highgui
+>     -lopencv_videoio
+>     }
+>
+>     do_install () {
+>
+>              install -d -m 0755 ${D}/${bindir}
+>              install -m 0755 prog_kameras ${D}/${bindir}/prog_kameras
+>     }
+>
+>     -- 
+>     _______________________________________________
+>     yocto mailing list
+>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>     https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Does anybody see this problem too?
+--------------814B04EECCA18647F16E9FCD
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <p>Indeed.Grazie.</p>
+    <div class="moz-cite-prefix">On 19/8/19 2:20 μ.μ., Gabriele Zampieri
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAAx3WaD-DRxKveFH769ZW0ayi23AT+LRKborBP2mxH1iySVcqg@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="ltr">
+        <div>Hi, <br>
+        </div>
+        <div><br>
+        </div>
+        <div>you need to add</div>
+        <div style="margin-left:40px">DEPENDS = "opencv"</div>
+        <div>to your recipe. This will import the needed header in your
+          recipe sysroot.</div>
+        <div><br>
+        </div>
+        <div>Best regards,<br>
+        </div>
+        <div>Gabriele<br>
+        </div>
+      </div>
+      <br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">Il giorno lun 19 ago 2019 alle
+          ore 13:09 Ekaterini Voulgari &lt;<a
+            href="mailto:sdi1100002@di.uoa.gr" moz-do-not-send="true">sdi1100002@di.uoa.gr</a>&gt;
+          ha scritto:<br>
+        </div>
+        <blockquote class="gmail_quote" style="margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hello
+          all,<br>
+          I'm trying to add a program to my image that uses opencv
+          (#include <br>
+          &lt;opencv2/opencv.hpp&gt;), but I get compile error "fatal
+          error: <br>
+          opencv2/opencv.hpp: No such file or directory"<br>
+          <br>
+          The file opencv.hpp exists in workdir <br>
+/build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-linux-musleabi/opencv/3.4.5-r0/image/usr/include/opencv2/opencv.hpp.
+          <br>
+          Can anyone help on where are the headers located in
+          crossbuilds? Any <br>
+          help appreciated.<br>
+          The recipe:<br>
+          <br>
+          SRC_URI = <a class="moz-txt-link-rfc2396E" href="file://capture.cpp">"file://capture.cpp"</a><br>
+          <br>
+          do_compile () {<br>
+               ${CC} capture.cpp  -lopencv_core -lopencv_imgproc
+          -lopencv_highgui <br>
+          -lopencv_videoio<br>
+          }<br>
+          <br>
+          do_install () {<br>
+          <br>
+                   install -d -m 0755 ${D}/${bindir}<br>
+                   install -m 0755 prog_kameras
+          ${D}/${bindir}/prog_kameras<br>
+          }<br>
+          <br>
+          -- <br>
+          _______________________________________________<br>
+          yocto mailing list<br>
+          <a href="mailto:yocto@yoctoproject.org" target="_blank"
+            moz-do-not-send="true">yocto@yoctoproject.org</a><br>
+          <a href="https://lists.yoctoproject.org/listinfo/yocto"
+            rel="noreferrer" target="_blank" moz-do-not-send="true">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+        </blockquote>
+      </div>
+    </blockquote>
+  </body>
+</html>
 
-
+--------------814B04EECCA18647F16E9FCD--
