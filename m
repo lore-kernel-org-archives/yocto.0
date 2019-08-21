@@ -1,42 +1,67 @@
-Return-Path: <mauro@faresoftware.it>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 60E52E00D11; Wed, 21 Aug 2019 02:10:28 -0700 (PDT)
+	id 579A1E00D8A; Wed, 21 Aug 2019 03:03:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	https://www.dnswl.org/, no *      trust
-	*      [62.149.156.86 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kanavin[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.217.52 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from smtpcmd0986.aruba.it (smtpcmd0986.aruba.it [62.149.156.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87D8DE008D3
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 02:10:27 -0700 (PDT)
-Received: from [10.0.3.121] ([78.6.3.122])
-	by smtpcmd09.ad.aruba.it with bizsmtp
-	id rlAS2000i2dwwGE01lATiu; Wed, 21 Aug 2019 11:10:27 +0200
-To: Yocto discussion list <yocto@yoctoproject.org>
-From: Mauro Ziliani <mauro@faresoftware.it>
-Message-ID: <4899567d-add8-eb6f-23bc-9db23bd9196f@faresoftware.it>
-Date: Wed, 21 Aug 2019 11:10:26 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com
+	[209.85.217.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6126E008D3
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 03:03:00 -0700 (PDT)
+Received: by mail-vs1-f52.google.com with SMTP id q16so977507vsm.2
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 03:03:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=xO5CxDwF3PYZCH9/P7YQIXt9OttYVlCZU7YW7kqOAVc=;
+	b=dYDYtwW38weaEYOHFFEoKKtNUHc0btw7NxqVNyPo2Z07r5jMNE1SDonOdrpc+zU32B
+	n8QUslAqj5R2XDFa/erx6nEsP2lQizPVp4DHPGj8FHi8tLRQQqYOylx/qpChgt7tjJCR
+	Mt9mcUYbl/vd75AxAZ1e0bZbmOF8VHgufMciTOhwwGSnbIPIPSoY8YnG//gshHkWkJ22
+	KAOXuYVQYqG+qitIjZmUYJDk+yrgF2rZU6Q9ipEx2NktgVJY9KG6ElJiIbzfiAW/bXRV
+	BnLFiWy9o8vIzv9PKqoq4IAPvVUz3y/hbZoXm/CYnIzmUhlGkxUF+2qfhPqI0aG83gvn
+	Moyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=xO5CxDwF3PYZCH9/P7YQIXt9OttYVlCZU7YW7kqOAVc=;
+	b=S0KZ1bWVSTkg/DHf5wpVSuUkUznyWEkIChlQ5LNJ3baoTHsa9oi/rnNlEQ2OqLNC8z
+	KHQBRRfPKmtJCgeEhiYw6Crv6sLF/jx9OYNa/DBFi+Z6IBVWU9USoChLbCYWyIwZOqkW
+	oSanWJgJ6YWSqv+iHCnOwCj7eN1rRQ1Zxgd3iCLkXKAmA6IBELukak2p5W7XeQK+0gnH
+	hCbYXhBQvgy11Rdtp+uukV48fq9fiCP2C4MuzkhR4noY1p6t/eRZcUpObbSGWsb8pc4e
+	7iDpIWcvOetAgYkjSaiBqy2ln7TovE+wCzFV4CMv9Y3/wRd3dapTRbknAEg1Gy6nluUg
+	VUDw==
+X-Gm-Message-State: APjAAAW04lb06JrLGdQPvzPTytLxCoNgVD0NPCf1Ldh71Ip7QicFOn00
+	vYQU0xrv8ul7Kh4DM/3sAYixvgOU8tHJtoXJXnWouRrB
+X-Google-Smtp-Source: APXvYqx0x6vVv86sZT5cvtUYCVDuSo39WP4JiovPZ0teLsH0GaRSM0IXBUKaZ14cHDk9nwGesLxVq0O8iypVlHEzly4=
+X-Received: by 2002:a67:62c5:: with SMTP id w188mr20424492vsb.25.1566381780038;
+	Wed, 21 Aug 2019 03:03:00 -0700 (PDT)
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
-	t=1566378627; bh=GAhdvB9EvpAmdDKeBNEW4jpHH2IwSnTH+91/O+Wmyhw=;
-	h=To:From:Subject:Date:MIME-Version:Content-Type;
-	b=JMnIRfpeV/WlHMLj2lEiZ+aDJbbrn2b4+fsrZVRDwYzCgAc2nbgbIGF5PNS3E8cjA
-	zqBpxK94Kz0EBnoh5c+tmHgTYVaUoHCEK8vYc6kGyDhVMj6116ZWkQsQNcV3h8DA36
-	3RC0djep2U+BuELuSwxDdNFVPu03UOhf4I/ELifzYPXUrfpVvjdzE6hHFem0nXKQns
-	/u2kGgecAuJ89nhlVzXFmG42nkIM1NYfz7lTyNqFHwEoffl7+OaMoN01QptwuSJuFP
-	2kmYK96AnXS8L9syFqjPFTJpLq55nBY5sm3zE45BS164pPjCTZgzUpd3O4QZqJ119D
-	oQRvn45iNg5aA==
-Subject: libGL missing. Which packages bring it?
+References: <cb03605c9f0d423eaae6bb2d7d60ca00@systec.de>
+	<CANNYZj9MnarpiyDPR0nk8xWKNXgPJVAEZ+g1v9+r0O0rjf8w9g@mail.gmail.com>
+	<f9f2c26c740d464daf3d729a1a499bc9@systec.de>
+In-Reply-To: <f9f2c26c740d464daf3d729a1a499bc9@systec.de>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 21 Aug 2019 12:02:49 +0200
+Message-ID: <CANNYZj_dTe1gwwsc8pQmDeC-MSt8qKJ=-FuJaLY1BOZTuV=yvA@mail.gmail.com>
+To: =?UTF-8?Q?Bert_B=C3=B6hne?= <bert.boehne@systec.de>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto 2.7 SDK Eclipse
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,22 +73,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2019 09:10:28 -0000
-Content-Type: text/plain; charset=iso-8859-15
-Content-Transfer-Encoding: 8bit
-Content-Language: it
+X-List-Received-Date: Wed, 21 Aug 2019 10:03:11 -0000
+Content-Type: multipart/alternative; boundary="00000000000094f6ba05909dade1"
 
-Hi all
+--00000000000094f6ba05909dade1
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I try to compile kivy for Pyro and Python3 for framebuffer con RPi3.
+On Wed, 21 Aug 2019 at 11:00, Bert B=C3=B6hne <bert.boehne@systec.de> wrote=
+:
 
-The builder cannot find libGL and -lGL linker fails.
+> thanks for your reply. Do I need the plugins for writing and debugging
+> code in Eclipse? The documentation says:
+>
+>
+>
+> 24.9.11. ADT Removed=C2=B6
+>
+>
+>
+> The Application Development Toolkit (ADT) has been removed because its
+> functionality almost completely overlapped with the standard SDK and the
+> extensible SDK. For information on these SDKs and how to build and use
+> them, see the Yocto Project Application Development and the Extensible
+> Software Development Kit (eSDK) manual.
+>
+>
+>
+> So would it work if I use Eclipse and maybe a plugin for CMake? Start
+> Eclipse from the cmdline where I sourced the SDK environment setup script=
+?
+>
+>
+>
+> What is the =E2=80=98normal=E2=80=99 way or tool for writing applications=
+? Is it weird to
+> want to use Eclipse?
+>
 
-Which are the packages that give libGL?
+I do not want to define 'normal'; for me personally the way to work is to
+do everything from command line, with an extremely lightweight editor (e.g.
+nano). Since I have never used Eclipse, I do not know what the (now
+removed) plugins actually do. You can certainly still edit code using
+Eclipse but I can imagine that for building it, and running it and other
+things you would have to switch to the command line.
+
+Alex
+
+--00000000000094f6ba05909dade1
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">On Wed, 21 Aug 2019 at 11:00, Bert B=C3=
+=B6hne &lt;<a href=3D"mailto:bert.boehne@systec.de">bert.boehne@systec.de</=
+a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex">
 
 
-Best regards
-
-    Mauro
 
 
+
+<div lang=3D"DE">
+<div class=3D"gmail-m_-6917546569108820139WordSection1"><span style=3D"font=
+-size:11pt;font-family:&quot;Calibri&quot;,sans-serif;color:rgb(31,73,125)"=
+ lang=3D"EN-US">thanks for your reply. Do I need the plugins for writing an=
+d debugging code in Eclipse? The documentation says:</span>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US"><u></u>=C2=A0<u><=
+/u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">24.9.11. ADT Remo=
+ved=C2=B6<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US"><u></u>=C2=A0<u><=
+/u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">The Application D=
+evelopment Toolkit (ADT) has been removed because its functionality almost =
+completely overlapped with
+ the standard SDK and the extensible SDK. For information on these SDKs and=
+ how to build and use them, see the Yocto Project Application Development a=
+nd the Extensible Software Development Kit (eSDK) manual.<u></u><u></u></sp=
+an></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US"><u></u>=C2=A0<u><=
+/u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">So would it work =
+if I use Eclipse and maybe a plugin for CMake? Start Eclipse from the cmdli=
+ne where I sourced the SDK
+ environment setup script?<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US"><u></u>=C2=A0<u><=
+/u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
+bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">What is the =E2=
+=80=98normal=E2=80=99 way or tool for writing applications? Is it weird to =
+want to use Eclipse?</span></p></div></div></blockquote><div><br></div><div=
+>I do not want to define &#39;normal&#39;; for me personally the way to wor=
+k is to do everything from command line, with an extremely lightweight edit=
+or (e.g. nano). Since I have never used Eclipse, I do not know what the (no=
+w removed) plugins actually do. You can certainly still edit code using Ecl=
+ipse but I can imagine that for building it, and running it and other thing=
+s you would have to switch to the command line.</div><div><br></div><div>Al=
+ex<br></div></div></div>
+
+--00000000000094f6ba05909dade1--
