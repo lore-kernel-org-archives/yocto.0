@@ -1,70 +1,36 @@
-Return-Path: <matthias.schoepfer@googlemail.com>
+Return-Path: <mickael.tansorier@smile.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A2ED7E00D88; Wed, 21 Aug 2019 04:02:47 -0700 (PDT)
+	id E2EFDE00D8A; Wed, 21 Aug 2019 04:46:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (matthias.schoepfer[at]googlemail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.46 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
-	[209.85.128.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 313F8E003C1
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 04:02:47 -0700 (PDT)
-Received: by mail-wm1-f46.google.com with SMTP id i63so1678572wmg.4
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 04:02:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20161025;
-	h=to:from:subject:message-id:date:user-agent:mime-version
-	:content-transfer-encoding:content-language;
-	bh=/CbT+JfENyD7cCcSZNWP8Dlh6EgdPIoO1/sRWaGpfYw=;
-	b=fUodYZgzMeCt3do/z8raJSrN4mTlRFiQfOWSu0LpwvHlnPVtb6qecEKOquOPkWIs5c
-	YKrswzGjkyjO9tXftAl3/0tY2hWeYxxgtcywGfVxbx/KhRVax41L3IaaWQZJaHrFMifZ
-	FpkTdGKjFNQIHGO1HUgpiTFJD4z3hiZ2Bjs89aQp8LjHou03tULXCN40MhN7zDWg06Hv
-	Bur8QFUWXqsNr+LjuJf9t6JlPIgvnMQKIBtmnKwGJLUjV5GFsQguVSsB0475cDVt/LtA
-	b0i2VpztPLND8/f83CmX31zjn9lfvK5eUI3q2r2J/2jjMvy+mBovL9J4EXdYBbxFJdoX
-	ginw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
-	:mime-version:content-transfer-encoding:content-language;
-	bh=/CbT+JfENyD7cCcSZNWP8Dlh6EgdPIoO1/sRWaGpfYw=;
-	b=sV85gRYAipD7hwJ3PwCUt0TPGdTzes8rmLpJeXbrWnChLcG1OgBf2iwDDySIA7eanJ
-	tJirvTyU14bw+FE8lmoTN8tGOz7Niu2GVe2/oPPcjIqOhftw2GiyQMXq8IPuqxKhcCRo
-	IV0wKcgr0F6Qu6/RfZmTqAqhlk8dW9U29rCfXr/jdvIbwfUNCLv6i0IMvciXOZoZbqmb
-	UaTlHvVjj3UaaSqQUoU8kT6YjjYRIDO1DBHXwDveCoZGETVclPIW0S6S8T/h7V3ozv74
-	XRuPG1GVeXAK0PRuUaueLrYWG7EuHbDa2gr4UM4DmImNBQoEGipQ0uJ5hVN0Gjtjnu/0
-	VNWw==
-X-Gm-Message-State: APjAAAWt9zv0XEK0AQXj2FsS9wJjGRJxfvS2FUm7l1X/cVTnyyRD/HhZ
-	UQEx1SwVPr5aIKYSfWJMUx0e5DJC
-X-Google-Smtp-Source: APXvYqzocL3gnnBehz26FN5lq5Jcz2IYzezwAZABTfq7d3uujaSUSzZfDZ0s1fQzmsoCm4nSRJwNhg==
-X-Received: by 2002:a7b:cd0f:: with SMTP id f15mr5551296wmj.86.1566385366045; 
-	Wed, 21 Aug 2019 04:02:46 -0700 (PDT)
-Received: from [172.16.100.184] ([213.168.66.146])
-	by smtp.gmail.com with ESMTPSA id w5sm3758677wmm.43.2019.08.21.04.02.45
-	for <yocto@yoctoproject.org>
-	(version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-	Wed, 21 Aug 2019 04:02:45 -0700 (PDT)
-To: Yocto-mailing-list <yocto@yoctoproject.org>
-From: Matthias Schoepfer <matthias.schoepfer@googlemail.com>
-Message-ID: <38ab2633-d83a-3951-45d4-bbfb34da58c8@googlemail.com>
-Date: Wed, 21 Aug 2019 13:02:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+Received: from idris.smile.fr (idris.smile.fr [91.216.209.19])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02EF8E00D84
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 04:46:46 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by idris.smile.fr (Postfix) with ESMTP id 8F1BB1EE0412;
+	Wed, 21 Aug 2019 13:46:45 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at smile.fr
+Received: from idris.smile.fr ([127.0.0.1])
+	by localhost (bluemind-mta.prod.vitry.intranet [127.0.0.1])
+	(amavisd-new, port 10024)
+	with ESMTP id buQiaIBov3tr; Wed, 21 Aug 2019 13:46:45 +0200 (CEST)
+Received: from P-ASN-Amnesia.nantes.intranet
+	(static-css-ccs-204145.business.bouyguestelecom.com
+	[176.157.204.145])
+	by idris.smile.fr (Postfix) with ESMTPSA id 4463C1EE02D3;
+	Wed, 21 Aug 2019 13:46:45 +0200 (CEST)
+From: =?UTF-8?q?Micka=C3=ABl=20Tansorier?= <mickael.tansorier@smile.fr>
+To: yocto@yoctoproject.org
+Date: Wed, 21 Aug 2019 13:46:33 +0200
+Message-Id: <20190821114633.28971-1-mickael.tansorier@smile.fr>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Subject: How to override RRECOMMENDS
+Subject: [psplash][PATCH] bmp: Add option to print bmp image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,38 +42,277 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2019 11:02:47 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
+X-List-Received-Date: Wed, 21 Aug 2019 11:46:50 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
 
-Hi!
+Add option to load image in `psplash` command line.
+Image is bmp3 format. If this image can not be found or
+loading fail, default image is print.
 
-In my update to latest warrior, I came across 
-4b393a21ffcf9fe00577b4a46c38b5db89b39e9d, which adds rng-tools as 
-RRECOMMENDS. So far, so good. But for some reason, rng-tools fails 
-miserably on my platform, why I cannot say, because it blocks the 
-watchdog daemon, so before I can get logged in, a reboot happens.
+bmp_layout.h: describe bmp3 file inspire of bmp_layout.h
+from u-boot.
+psplash-fb.{c|h}: add function to draw GBR888 image.
+psplash.c: Add option to read bmp image and print it
+if loading file is right.
 
-So I go and read the manual, and come across PACKAGE_EXCLUDE, 
-NO_RECOMMENDATIONS and BAD_RECOMMENDATIONS. I tried all of them from 
-local.conf:
+Signed-off-by: Mickaël Tansorier <mickael.tansorier@smile.fr>
+---
+ bmp_layout.h | 35 +++++++++++++++++++
+ psplash-fb.c | 25 ++++++++++++++
+ psplash-fb.h |  9 +++++
+ psplash.c    | 95 ++++++++++++++++++++++++++++++++++++++++++++++++++--
+ 4 files changed, 161 insertions(+), 3 deletions(-)
+ create mode 100644 bmp_layout.h
 
-
-PACKAGE_EXCLUDE = "rng-tools"
-
-
-NO_RECOMMENDATIONS =  "1"
-
-
-BAD_RECOMMENDATIONS = "rng-tools"
-
-and even with the pn-target_image/||/ (and yes, I replaced target_image 
-with my image name). But nothings seems to help. What am I missing?
-
-Regards,
-
-     Matthias
-
+diff --git a/bmp_layout.h b/bmp_layout.h
+new file mode 100644
+index 0000000..f397ef9
+--- /dev/null
++++ b/bmp_layout.h
+@@ -0,0 +1,35 @@
++/* Layout of a bmp file */
++/* format = bmp3        */
++
++#ifndef _BMP_LAYOUT_H_
++#define _BMP_LAYOUT_H_
++
++#define BMP_IMG_BYTES_PER_PIXEL 3
++
++struct __attribute__((__packed__)) bmp_header {
++	/* Header */
++	char signature[2];
++	__u32	file_size;
++	__u32	reserved;
++	__u32	data_offset;
++	/* InfoHeader */
++	__u32	size;
++	__u32	width;
++	__u32	height;
++	__u16	planes;
++	__u16	bit_count;
++	__u32	compression;
++	__u32	image_size;
++	__u32	x_pixels_per_m;
++	__u32	y_pixels_per_m;
++	__u32	colors_used;
++	__u32	colors_important;
++};
++
++struct bmp_image {
++	struct bmp_header header;
++	/* ColorTable */
++	uint8 * data;
++};
++
++#endif /* _BMP_LAYOUT_H_ */
+diff --git a/psplash-fb.c b/psplash-fb.c
+index c064d18..307d6a8 100644
+--- a/psplash-fb.c
++++ b/psplash-fb.c
+@@ -441,6 +441,31 @@ psplash_fb_draw_image (PSplashFB    *fb,
+     }
+ }
+ 
++void
++psplash_fb_draw_image_raw_GBR888 (PSplashFB    *fb,
++		       int          x,
++		       int          y,
++		       int          img_width,
++		       int          img_height,
++		       int          img_bytes_per_pixel,
++		       uint8       *rle_data)
++{
++  uint8       *p = rle_data;
++  int          dx = 0, dy = 0,  total_len;
++  int          img_rowstride = img_bytes_per_pixel*img_width;
++
++  total_len = img_rowstride * img_height;
++  /* Start at the end of pointer */
++  p += (total_len - 1);
++
++  while ((p - rle_data) >= 0)
++    {
++		psplash_fb_plot_pixel (fb, x-dx, y+dy, *(p), *(p-1), *(p-2));
++		if (++dx * img_bytes_per_pixel >= img_rowstride) { dx=0; dy++; }
++			p -= img_bytes_per_pixel;
++    }
++}
++
+ /* Font rendering code based on BOGL by Ben Pfaff */
+ 
+ static int
+diff --git a/psplash-fb.h b/psplash-fb.h
+index d0dce10..297add8 100644
+--- a/psplash-fb.h
++++ b/psplash-fb.h
+@@ -77,6 +77,15 @@ psplash_fb_draw_image (PSplashFB    *fb,
+ 		       int          img_rowstride,
+ 		       uint8       *rle_data);
+ 
++void
++psplash_fb_draw_image_raw_GBR888 (PSplashFB    *fb,
++		       int          x,
++		       int          y,
++		       int          img_width,
++		       int          img_height,
++		       int          img_bytes_pre_pixel,
++		       uint8       *rle_data);
++
+ void
+ psplash_fb_text_size (int                *width,
+ 		      int                *height,
+diff --git a/psplash.c b/psplash.c
+index 992e199..f8a92b6 100644
+--- a/psplash.c
++++ b/psplash.c
+@@ -24,6 +24,7 @@
+ #include "psplash-poky-img.h"
+ #include "psplash-bar-img.h"
+ #include "radeon-font.h"
++#include "bmp_layout.h"
+ 
+ #define SPLIT_LINE_POS(fb)                                  \
+ 	(  (fb)->height                                     \
+@@ -40,6 +41,59 @@ psplash_exit (int UNUSED(signum))
+   psplash_console_reset ();
+ }
+ 
++struct bmp_image *read_image_bmp(char *image_name)
++{
++  FILE *file;
++  size_t read;
++  struct bmp_image *bmp;
++
++  file = fopen(image_name, "rb");
++  if (file != NULL)
++    {
++      bmp = malloc(sizeof(struct bmp_image));
++
++      /* Read header */
++      read = fread(&bmp->header, sizeof(struct bmp_header), 1, file);
++      if (read != 1)
++        {
++          printf("Error: Fail to read header\n");
++          free(bmp);
++          fclose(file);
++          return NULL;
++        }
++
++      /* Read BMP image signature */
++      if (bmp->header.signature[0] != 'B' && bmp->header.signature[1] != 'M')
++        {
++          printf("Error: File format is not correct.\n");
++          free(bmp);
++          fclose(file);
++          return NULL;
++        }
++
++      bmp->data = malloc(sizeof(uint8) * bmp->header.image_size);
++
++      /* Read data image */
++      read = fread(bmp->data, sizeof(uint8), (bmp->header.image_size), file);
++      if (read != bmp->header.image_size)
++        {
++          printf("Error: Cannot read data image.\n");
++          free(bmp);
++          fclose(file);
++          return NULL;
++        }
++
++      fclose(file);
++    }
++  else
++    {
++      printf("Error: Cannot open %s.\n",image_name);
++      return NULL;
++	}
++
++  return bmp;
++}
++
+ void
+ psplash_draw_msg (PSplashFB *fb, const char *msg)
+ {
+@@ -208,6 +262,8 @@ main (int argc, char** argv)
+   int        pipe_fd, i = 0, angle = 0, fbdev_id = 0, ret = 0;
+   PSplashFB *fb;
+   bool       disable_console_switch = FALSE;
++  char       image_name[255] = "";
++  struct bmp_image *bmp = NULL;
+ 
+   signal(SIGHUP, psplash_exit);
+   signal(SIGINT, psplash_exit);
+@@ -233,10 +289,16 @@ main (int argc, char** argv)
+         fbdev_id = atoi(argv[i]);
+         continue;
+       }
++    if (!strcmp(argv[i],"-i") || !strcmp(argv[i],"--image"))
++      {
++        if (++i >= argc) goto fail;
++        strcpy(image_name,argv[i]);
++        continue;
++      }
+ 
+     fail:
+       fprintf(stderr, 
+-              "Usage: %s [-n|--no-console-switch][-a|--angle <0|90|180|270>][-f|--fbdev <0..9>]\n", 
++              "Usage: %s [-n|--no-console-switch][-a|--angle <0|90|180|270>][-f|--fbdev <0..9>][-i|--image <bmp_image>]\n",
+               argv[0]);
+       exit(-1);
+   }
+@@ -278,8 +340,31 @@ main (int argc, char** argv)
+   psplash_fb_draw_rect (fb, 0, 0, fb->width, fb->height,
+                         PSPLASH_BACKGROUND_COLOR);
+ 
+-  /* Draw the Poky logo  */
+-  psplash_fb_draw_image (fb, 
++  if (strcmp(image_name,"") != 0)
++    {
++      bmp = read_image_bmp(image_name);
++    }
++
++  if (bmp != NULL)
++    {
++	  /* Draw loaded logo */
++      psplash_fb_draw_image_raw_GBR888 (fb,
++			 (fb->width  + bmp->header.width)/2,
++#if PSPLASH_IMG_FULLSCREEN
++			 (fb->height - bmp->header.height)/2,
++#else
++			 (fb->height * PSPLASH_IMG_SPLIT_NUMERATOR
++			  / PSPLASH_IMG_SPLIT_DENOMINATOR - bmp->header.height)/2,
++#endif
++			 bmp->header.width,
++			 bmp->header.height,
++			 BMP_IMG_BYTES_PER_PIXEL,
++			 bmp->data);
++    }
++  else
++    {
++      /* Draw the Poky logo  */
++      psplash_fb_draw_image (fb,
+ 			 (fb->width  - POKY_IMG_WIDTH)/2, 
+ #if PSPLASH_IMG_FULLSCREEN
+ 			 (fb->height - POKY_IMG_HEIGHT)/2,
+@@ -292,6 +377,7 @@ main (int argc, char** argv)
+ 			 POKY_IMG_BYTES_PER_PIXEL,
+ 			 POKY_IMG_ROWSTRIDE,
+ 			 POKY_IMG_RLE_PIXEL_DATA);
++    }
+ 
+   /* Draw progress bar border */
+   psplash_fb_draw_image (fb, 
+@@ -320,5 +406,8 @@ main (int argc, char** argv)
+   if (!disable_console_switch)
+     psplash_console_reset ();
+ 
++  if(bmp!=NULL)
++    free(bmp);
++
+   return ret;
+ }
+-- 
+2.22.0
 
 
