@@ -1,69 +1,61 @@
-Return-Path: <bert.boehne@systec.de>
+Return-Path: <jonaskgandersson@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CF869E00D8A; Wed, 21 Aug 2019 05:05:33 -0700 (PDT)
+	id 604C5E00D8D; Wed, 21 Aug 2019 05:55:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, FROM_EXCESS_BASE64, 
-	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jonaskgandersson[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [77.222.82.230 listed in list.dnswl.org]
+	*      [209.85.219.173 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
-Received: from mail.demcon.nl (mail.demcon.nl [77.222.82.230])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1B5FE00D7E
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 05:05:31 -0700 (PDT)
-X-ASG-Debug-ID: 1566389130-0af87313ad4eea0001-yzSStA
-Received: from mail.demcon.nl ([172.17.2.18]) by mail.demcon.nl with ESMTP id
-	THRx9ZvTIk1s4Z04 (version=TLSv1.2
-	cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO);
-	Wed, 21 Aug 2019 14:05:30 +0200 (CEST)
-X-Barracuda-Envelope-From: bert.boehne@systec.de
-Received: from DEM-NL-EXCH02.demcon.local (172.17.2.18) by
-	DEM-NL-EXCH02.demcon.local (172.17.2.18) with Microsoft SMTP Server
-	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
-	15.1.1713.5; Wed, 21 Aug 2019 14:05:30 +0200
-Received: from DEM-NL-EXCH02.demcon.local ([fe80::2d7b:6e45:1735:4b69]) by
-	DEM-NL-EXCH02.demcon.local ([fe80::2d7b:6e45:1735:4b69%6]) with mapi id
-	15.01.1713.007; Wed, 21 Aug 2019 14:05:30 +0200
-From: =?utf-8?B?QmVydCBCw7ZobmU=?= <bert.boehne@systec.de>
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Thread-Topic: [yocto] Yocto 2.7 SDK Eclipse
-X-ASG-Orig-Subj: AW: [yocto] Yocto 2.7 SDK Eclipse
-Thread-Index: AdVXZ+To7bV7+e70TVqf5y89bD2+Xv//6kqA//7E1QCAAm69gP//vUIw
-Date: Wed, 21 Aug 2019 12:05:29 +0000
-Message-ID: <ce2d3aff07dd49d698e7e0a2ea08606b@systec.de>
-References: <cb03605c9f0d423eaae6bb2d7d60ca00@systec.de>
-	<CANNYZj9MnarpiyDPR0nk8xWKNXgPJVAEZ+g1v9+r0O0rjf8w9g@mail.gmail.com>
-	<f9f2c26c740d464daf3d729a1a499bc9@systec.de>
-	<CANNYZj_dTe1gwwsc8pQmDeC-MSt8qKJ=-FuJaLY1BOZTuV=yvA@mail.gmail.com>
-In-Reply-To: <CANNYZj_dTe1gwwsc8pQmDeC-MSt8qKJ=-FuJaLY1BOZTuV=yvA@mail.gmail.com>
-Accept-Language: de-DE, nl-NL, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.1.171]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com
+	[209.85.219.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2DCEE00D8A
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 05:55:53 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id m9so988518ybm.3
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 05:55:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=DRk6mKpC6OVQcGzVLj5jsD4EoIf/VaQJS4p8xW+P7TQ=;
+	b=Oh/ZWYdRiNX8QwSvgIULl1kbi9aTmYxTQWBjVoEY+LZQ/ZEDnMCN44d6BMqcHwirOT
+	PWfxrqzmd74M0JYtMm+u7n88fCg6MH7Wm0bimK3Y6hvGzrFYqhEKMU86DSKQKC+fwm/Z
+	LUnAfCPrmtqbG6sWQL+qCOv059l+9hY1u2PBUbziJEC1eo+1PqqUrlt+tsmqAD0JTNRf
+	5gls9Z9TkWD9ExCHONppOUW2y/PWdxxjttuXwsK2s7/bCcpENNQzMb7pshlyQE4FnIef
+	lvWjcUbC+xCmSaifJS0pmjGaYiYRLrV/BBLRIrdBtQEILxnGX7Pm867g3jHNhhz/JYJf
+	TsQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=DRk6mKpC6OVQcGzVLj5jsD4EoIf/VaQJS4p8xW+P7TQ=;
+	b=EeuJOHNAHNtgFuqNH3ixUsPHtg9qFGVy1mviAOEhR6KSpLzmYCqRrXTS+MZTG/laag
+	PZM1lYmAR/kb/lxqv5NXJBiSLNBwnIYlgwlPhURx1EmquGLHMKvG/cYg72X4nItlJ9WP
+	uF0cvE+JMjdM+Xb82qwweGh6HAXlkI0aflppgLNqIthOC2qzeUfV20ItqOVniNGFq6FM
+	978X0z2RJQJAjNKwi05Vwlt1hZ4Qc/aWQdMHFbVhuDTHLNo5Iv2Ejnk07/eSpSK3+Cjv
+	sWOJedAfiTR3Z5Qj5K4z03f77ezO6f/5LFovcDSK5Y/zMIZ3tLicJ+VnHixJW4oDmqp2
+	8LKA==
+X-Gm-Message-State: APjAAAUA9O97IJh2hmpnsvdOdjEcZHWc9xMXOWb7ks5qRjb2zaPZ46Vi
+	nzX4ocIJG/nQz5yd8tA1HvoHE6wasZzKT/tXvoZ6R0Zc
+X-Google-Smtp-Source: APXvYqy6qwVkvcpVSemDw4W/86Ovf2sdkp8KJm7OONY53MlYzufLjOTAuxxTKfbnfgQTYM1eVwHa4RseFxu/VhqF2WM=
+X-Received: by 2002:a25:d751:: with SMTP id o78mr25344329ybg.101.1566392152573;
+	Wed, 21 Aug 2019 05:55:52 -0700 (PDT)
 MIME-Version: 1.0
-X-Barracuda-Connect: UNKNOWN[172.17.2.18]
-X-Barracuda-Start-Time: 1566389130
-X-Barracuda-Encrypted: ECDHE-RSA-AES128-GCM-SHA256
-X-Barracuda-URL: https://172.17.2.40:443/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at demcon.nl
-X-Barracuda-Scan-Msg-Size: 8090
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Spam-Score: 0.00
-X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=9.0 tests=HTML_MESSAGE
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.75558
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-	0.00 HTML_MESSAGE           BODY: HTML included in message
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto 2.7 SDK Eclipse
+From: Jonas Andersson <jonaskgandersson@gmail.com>
+Date: Wed, 21 Aug 2019 14:55:41 +0200
+Message-ID: <CAKpuFdcoJr0c5fjCweYmkHxp1ap4Y7OpRvop4QF-6LORb3=_UA@mail.gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: npm nodejs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,162 +67,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2019 12:05:33 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_ce2d3aff07dd49d698e7e0a2ea08606bsystecde_"
+X-List-Received-Date: Wed, 21 Aug 2019 12:55:54 -0000
+Content-Type: multipart/alternative; boundary="000000000000d54c710590a017a5"
 
---_000_ce2d3aff07dd49d698e7e0a2ea08606bsystecde_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--000000000000d54c710590a017a5
+Content-Type: text/plain; charset="UTF-8"
 
-T0ssIHRoYW5rcy4gV2Ugd291bGQgbGlrZSB0byB1c2UgRWNsaXBzZSBiZWNhdXNlIHdlIGFyZSBj
-b21pbmcgZnJvbSBXaW5kb3dzIGFuZCBpdCB3b3VsZCBnaXZlIHVzIHRoZSBwb3NzaWJpbGl0eSB0
-byBjb2RlIGFuZCBkZWJ1ZyBlYXNpZXIgb3IgaW4gYSBtb3JlIGtub3duIHdheS4NCg0KVm9uOiBB
-bGV4YW5kZXIgS2FuYXZpbiBbbWFpbHRvOmFsZXgua2FuYXZpbkBnbWFpbC5jb21dDQpHZXNlbmRl
-dDogTWl0dHdvY2gsIDIxLiBBdWd1c3QgMjAxOSAxMjowMw0KQW46IEJlcnQgQsO2aG5lIDxiZXJ0
-LmJvZWhuZUBzeXN0ZWMuZGU+DQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KQmV0cmVmZjog
-UmU6IFt5b2N0b10gWW9jdG8gMi43IFNESyBFY2xpcHNlDQoNCk9uIFdlZCwgMjEgQXVnIDIwMTkg
-YXQgMTE6MDAsIEJlcnQgQsO2aG5lIDxiZXJ0LmJvZWhuZUBzeXN0ZWMuZGU8bWFpbHRvOmJlcnQu
-Ym9laG5lQHN5c3RlYy5kZT4+IHdyb3RlOg0KdGhhbmtzIGZvciB5b3VyIHJlcGx5LiBEbyBJIG5l
-ZWQgdGhlIHBsdWdpbnMgZm9yIHdyaXRpbmcgYW5kIGRlYnVnZ2luZyBjb2RlIGluIEVjbGlwc2U/
-IFRoZSBkb2N1bWVudGF0aW9uIHNheXM6DQoNCjI0LjkuMTEuIEFEVCBSZW1vdmVkwrYNCg0KVGhl
-IEFwcGxpY2F0aW9uIERldmVsb3BtZW50IFRvb2xraXQgKEFEVCkgaGFzIGJlZW4gcmVtb3ZlZCBi
-ZWNhdXNlIGl0cyBmdW5jdGlvbmFsaXR5IGFsbW9zdCBjb21wbGV0ZWx5IG92ZXJsYXBwZWQgd2l0
-aCB0aGUgc3RhbmRhcmQgU0RLIGFuZCB0aGUgZXh0ZW5zaWJsZSBTREsuIEZvciBpbmZvcm1hdGlv
-biBvbiB0aGVzZSBTREtzIGFuZCBob3cgdG8gYnVpbGQgYW5kIHVzZSB0aGVtLCBzZWUgdGhlIFlv
-Y3RvIFByb2plY3QgQXBwbGljYXRpb24gRGV2ZWxvcG1lbnQgYW5kIHRoZSBFeHRlbnNpYmxlIFNv
-ZnR3YXJlIERldmVsb3BtZW50IEtpdCAoZVNESykgbWFudWFsLg0KDQpTbyB3b3VsZCBpdCB3b3Jr
-IGlmIEkgdXNlIEVjbGlwc2UgYW5kIG1heWJlIGEgcGx1Z2luIGZvciBDTWFrZT8gU3RhcnQgRWNs
-aXBzZSBmcm9tIHRoZSBjbWRsaW5lIHdoZXJlIEkgc291cmNlZCB0aGUgU0RLIGVudmlyb25tZW50
-IHNldHVwIHNjcmlwdD8NCg0KV2hhdCBpcyB0aGUg4oCYbm9ybWFs4oCZIHdheSBvciB0b29sIGZv
-ciB3cml0aW5nIGFwcGxpY2F0aW9ucz8gSXMgaXQgd2VpcmQgdG8gd2FudCB0byB1c2UgRWNsaXBz
-ZT8NCg0KSSBkbyBub3Qgd2FudCB0byBkZWZpbmUgJ25vcm1hbCc7IGZvciBtZSBwZXJzb25hbGx5
-IHRoZSB3YXkgdG8gd29yayBpcyB0byBkbyBldmVyeXRoaW5nIGZyb20gY29tbWFuZCBsaW5lLCB3
-aXRoIGFuIGV4dHJlbWVseSBsaWdodHdlaWdodCBlZGl0b3IgKGUuZy4gbmFubykuIFNpbmNlIEkg
-aGF2ZSBuZXZlciB1c2VkIEVjbGlwc2UsIEkgZG8gbm90IGtub3cgd2hhdCB0aGUgKG5vdyByZW1v
-dmVkKSBwbHVnaW5zIGFjdHVhbGx5IGRvLiBZb3UgY2FuIGNlcnRhaW5seSBzdGlsbCBlZGl0IGNv
-ZGUgdXNpbmcgRWNsaXBzZSBidXQgSSBjYW4gaW1hZ2luZSB0aGF0IGZvciBidWlsZGluZyBpdCwg
-YW5kIHJ1bm5pbmcgaXQgYW5kIG90aGVyIHRoaW5ncyB5b3Ugd291bGQgaGF2ZSB0byBzd2l0Y2gg
-dG8gdGhlIGNvbW1hbmQgbGluZS4NCg0KQWxleA0K
+Hi
 
---_000_ce2d3aff07dd49d698e7e0a2ea08606bsystecde_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+I have used Yocto and npm/nodejs now for about 1 year and think it works
+but I not without some extra work. Are there any group working on
+npm/nodejs? As I use it quite frequent and puts some extra work every time
+i create an recipe I have some interest in supporting the work on
+npm/nodejs to make it an better experience.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
-DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
-b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
-Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
-dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1zb25vcm1hbDAsIGxpLm1z
-b25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCglt
-c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1zby1tYXJnaW4t
-Ym90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsNCglmb250LXNpemU6MTIuMHB0Ow0K
-CWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnNwYW4uRS1NYWlsRm9ybWF0
-dm9ybGFnZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5
-OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQN
-Cgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNh
-bnMtc2VyaWY7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rp
-b24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgMi4w
-Y20gNzAuODVwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0t
-Pjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0
-PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUg
-bXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4
-dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4N
-CjwvaGVhZD4NCjxib2R5IGxhbmc9IkRFIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxk
-aXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5n
-PSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
-aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4t
-VVMiPk9LLCB0aGFua3MuIFdlIHdvdWxkIGxpa2UgdG8gdXNlIEVjbGlwc2UgYmVjYXVzZSB3ZSBh
-cmUgY29taW5nIGZyb20gV2luZG93cyBhbmQgaXQgd291bGQgZ2l2ZSB1cyB0aGUgcG9zc2liaWxp
-dHkgdG8gY29kZQ0KIGFuZCBkZWJ1ZyBlYXNpZXIgb3IgaW4gYSBtb3JlIGtub3duIHdheS4gPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
-VVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
-dDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48
-bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LHNhbnMtc2VyaWYiPlZvbjo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+IEFsZXhhbmRlciBL
-YW5hdmluIFttYWlsdG86YWxleC5rYW5hdmluQGdtYWlsLmNvbV0NCjxicj4NCjxiPkdlc2VuZGV0
-OjwvYj4gTWl0dHdvY2gsIDIxLiBBdWd1c3QgMjAxOSAxMjowMzxicj4NCjxiPkFuOjwvYj4gQmVy
-dCBCw7ZobmUgJmx0O2JlcnQuYm9laG5lQHN5c3RlYy5kZSZndDs8YnI+DQo8Yj5DYzo8L2I+IHlv
-Y3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5CZXRyZWZmOjwvYj4gUmU6IFt5b2N0b10gWW9j
-dG8gMi43IFNESyBFY2xpcHNlPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPk9uIFdlZCwgMjEgQXVnIDIwMTkgYXQgMTE6MDAsIEJlcnQgQsO2aG5lICZsdDs8YSBo
-cmVmPSJtYWlsdG86YmVydC5ib2VobmVAc3lzdGVjLmRlIj5iZXJ0LmJvZWhuZUBzeXN0ZWMuZGU8
-L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxibG9ja3F1b3Rl
-IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRp
-bmc6MGNtIDBjbSAwY20gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBjbSI+
-DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBz
-dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
-bnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+dGhhbmtzIGZvciB5b3VyIHJlcGx5LiBEbyBJIG5lZWQg
-dGhlIHBsdWdpbnMgZm9yIHdyaXRpbmcgYW5kIGRlYnVnZ2luZyBjb2RlIGluIEVjbGlwc2U/IFRo
-ZSBkb2N1bWVudGF0aW9uIHNheXM6PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj4NCjwvc3Bhbj48
-bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
-cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMi
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
-c2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1h
-cmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXpl
-OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6
-IzFGNDk3RCI+MjQuOS4xMS4gQURUIFJlbW92ZWTCtjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFy
-Z2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
-MUY0OTdEIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
-dG8iPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
-eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+VGhlIEFwcGxp
-Y2F0aW9uIERldmVsb3BtZW50IFRvb2xraXQgKEFEVCkgaGFzIGJlZW4gcmVtb3ZlZCBiZWNhdXNl
-IGl0cyBmdW5jdGlvbmFsaXR5IGFsbW9zdA0KIGNvbXBsZXRlbHkgb3ZlcmxhcHBlZCB3aXRoIHRo
-ZSBzdGFuZGFyZCBTREsgYW5kIHRoZSBleHRlbnNpYmxlIFNESy4gRm9yIGluZm9ybWF0aW9uIG9u
-IHRoZXNlIFNES3MgYW5kIGhvdyB0byBidWlsZCBhbmQgdXNlIHRoZW0sIHNlZSB0aGUgWW9jdG8g
-UHJvamVjdCBBcHBsaWNhdGlvbiBEZXZlbG9wbWVudCBhbmQgdGhlIEV4dGVuc2libGUgU29mdHdh
-cmUgRGV2ZWxvcG1lbnQgS2l0IChlU0RLKSBtYW51YWwuPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1t
-YXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
-OiMxRjQ5N0QiPiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6
-YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5TbyB3b3Vs
-ZCBpdCB3b3JrIGlmIEkgdXNlIEVjbGlwc2UgYW5kIG1heWJlIGEgcGx1Z2luIGZvciBDTWFrZT8g
-U3RhcnQgRWNsaXBzZSBmcm9tIHRoZQ0KIGNtZGxpbmUgd2hlcmUgSSBzb3VyY2VkIHRoZSBTREsg
-ZW52aXJvbm1lbnQgc2V0dXAgc2NyaXB0Pzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJv
-dHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
-Ij4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHls
-ZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxz
-cGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
-dDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+V2hhdCBpcyB0aGUg4oCY
-bm9ybWFs4oCZIHdheSBvciB0b29sIGZvciB3cml0aW5nIGFwcGxpY2F0aW9ucz8gSXMgaXQgd2Vp
-cmQgdG8gd2FudCB0byB1c2UNCiBFY2xpcHNlPzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2
-Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86
-cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5J
-IGRvIG5vdCB3YW50IHRvIGRlZmluZSAnbm9ybWFsJzsgZm9yIG1lIHBlcnNvbmFsbHkgdGhlIHdh
-eSB0byB3b3JrIGlzIHRvIGRvIGV2ZXJ5dGhpbmcgZnJvbSBjb21tYW5kIGxpbmUsIHdpdGggYW4g
-ZXh0cmVtZWx5IGxpZ2h0d2VpZ2h0IGVkaXRvciAoZS5nLiBuYW5vKS4gU2luY2UgSSBoYXZlIG5l
-dmVyIHVzZWQgRWNsaXBzZSwgSSBkbyBub3Qga25vdyB3aGF0IHRoZSAobm93IHJlbW92ZWQpIHBs
-dWdpbnMgYWN0dWFsbHkNCiBkby4gWW91IGNhbiBjZXJ0YWlubHkgc3RpbGwgZWRpdCBjb2RlIHVz
-aW5nIEVjbGlwc2UgYnV0IEkgY2FuIGltYWdpbmUgdGhhdCBmb3IgYnVpbGRpbmcgaXQsIGFuZCBy
-dW5uaW5nIGl0IGFuZCBvdGhlciB0aGluZ3MgeW91IHdvdWxkIGhhdmUgdG8gc3dpdGNoIHRvIHRo
-ZSBjb21tYW5kIGxpbmUuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPkFsZXg8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4N
-CjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
+I thinks It quite hard to follow all the npm/nodejs parts of Yocto(devtool,
+fetcher and meta-oe/../nodejs), I get the feeling that all parts not are in
+sync.
 
---_000_ce2d3aff07dd49d698e7e0a2ea08606bsystecde_--
+I am no python developer but I would be happy to support and discuss
+solutions and questions regarding Yocto and npm/nodejs.
+
+Regards
+Jonas
+
+--000000000000d54c710590a017a5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi<div><br class=3D"gmail-Apple-interchange-newline">I hav=
+e used Yocto and npm/nodejs now for about 1 year and think it works but I n=
+ot without some extra work. Are there any group working on npm/nodejs? As I=
+ use it quite frequent and puts some extra work every time i create an reci=
+pe I=C2=A0have some interest in supporting the work on npm/nodejs to make i=
+t an better experience.</div><div><br></div><div>I thinks It quite hard to =
+follow all the npm/nodejs parts of Yocto(devtool, fetcher and meta-oe/../no=
+dejs), I get the feeling that all parts not are in sync.</div><div><br></di=
+v><div>I am no python developer but I would be happy to support and=C2=A0di=
+scuss solutions and questions regarding Yocto and npm/nodejs.</div><div><br=
+></div><div>Regards</div><div>Jonas=C2=A0</div></div>
+
+--000000000000d54c710590a017a5--
