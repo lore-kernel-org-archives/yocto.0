@@ -1,67 +1,70 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <matthias.schoepfer@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 579A1E00D8A; Wed, 21 Aug 2019 03:03:11 -0700 (PDT)
+	id A2ED7E00D88; Wed, 21 Aug 2019 04:02:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (alex.kanavin[at]gmail.com)
+	provider *      (matthias.schoepfer[at]googlemail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.52 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.128.46 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com
-	[209.85.217.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6126E008D3
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 03:03:00 -0700 (PDT)
-Received: by mail-vs1-f52.google.com with SMTP id q16so977507vsm.2
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 03:03:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=xO5CxDwF3PYZCH9/P7YQIXt9OttYVlCZU7YW7kqOAVc=;
-	b=dYDYtwW38weaEYOHFFEoKKtNUHc0btw7NxqVNyPo2Z07r5jMNE1SDonOdrpc+zU32B
-	n8QUslAqj5R2XDFa/erx6nEsP2lQizPVp4DHPGj8FHi8tLRQQqYOylx/qpChgt7tjJCR
-	Mt9mcUYbl/vd75AxAZ1e0bZbmOF8VHgufMciTOhwwGSnbIPIPSoY8YnG//gshHkWkJ22
-	KAOXuYVQYqG+qitIjZmUYJDk+yrgF2rZU6Q9ipEx2NktgVJY9KG6ElJiIbzfiAW/bXRV
-	BnLFiWy9o8vIzv9PKqoq4IAPvVUz3y/hbZoXm/CYnIzmUhlGkxUF+2qfhPqI0aG83gvn
-	Moyg==
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com
+	[209.85.128.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 313F8E003C1
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 04:02:47 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id i63so1678572wmg.4
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 04:02:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20161025;
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding:content-language;
+	bh=/CbT+JfENyD7cCcSZNWP8Dlh6EgdPIoO1/sRWaGpfYw=;
+	b=fUodYZgzMeCt3do/z8raJSrN4mTlRFiQfOWSu0LpwvHlnPVtb6qecEKOquOPkWIs5c
+	YKrswzGjkyjO9tXftAl3/0tY2hWeYxxgtcywGfVxbx/KhRVax41L3IaaWQZJaHrFMifZ
+	FpkTdGKjFNQIHGO1HUgpiTFJD4z3hiZ2Bjs89aQp8LjHou03tULXCN40MhN7zDWg06Hv
+	Bur8QFUWXqsNr+LjuJf9t6JlPIgvnMQKIBtmnKwGJLUjV5GFsQguVSsB0475cDVt/LtA
+	b0i2VpztPLND8/f83CmX31zjn9lfvK5eUI3q2r2J/2jjMvy+mBovL9J4EXdYBbxFJdoX
+	ginw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=xO5CxDwF3PYZCH9/P7YQIXt9OttYVlCZU7YW7kqOAVc=;
-	b=S0KZ1bWVSTkg/DHf5wpVSuUkUznyWEkIChlQ5LNJ3baoTHsa9oi/rnNlEQ2OqLNC8z
-	KHQBRRfPKmtJCgeEhiYw6Crv6sLF/jx9OYNa/DBFi+Z6IBVWU9USoChLbCYWyIwZOqkW
-	oSanWJgJ6YWSqv+iHCnOwCj7eN1rRQ1Zxgd3iCLkXKAmA6IBELukak2p5W7XeQK+0gnH
-	hCbYXhBQvgy11Rdtp+uukV48fq9fiCP2C4MuzkhR4noY1p6t/eRZcUpObbSGWsb8pc4e
-	7iDpIWcvOetAgYkjSaiBqy2ln7TovE+wCzFV4CMv9Y3/wRd3dapTRbknAEg1Gy6nluUg
-	VUDw==
-X-Gm-Message-State: APjAAAW04lb06JrLGdQPvzPTytLxCoNgVD0NPCf1Ldh71Ip7QicFOn00
-	vYQU0xrv8ul7Kh4DM/3sAYixvgOU8tHJtoXJXnWouRrB
-X-Google-Smtp-Source: APXvYqx0x6vVv86sZT5cvtUYCVDuSo39WP4JiovPZ0teLsH0GaRSM0IXBUKaZ14cHDk9nwGesLxVq0O8iypVlHEzly4=
-X-Received: by 2002:a67:62c5:: with SMTP id w188mr20424492vsb.25.1566381780038;
-	Wed, 21 Aug 2019 03:03:00 -0700 (PDT)
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding:content-language;
+	bh=/CbT+JfENyD7cCcSZNWP8Dlh6EgdPIoO1/sRWaGpfYw=;
+	b=sV85gRYAipD7hwJ3PwCUt0TPGdTzes8rmLpJeXbrWnChLcG1OgBf2iwDDySIA7eanJ
+	tJirvTyU14bw+FE8lmoTN8tGOz7Niu2GVe2/oPPcjIqOhftw2GiyQMXq8IPuqxKhcCRo
+	IV0wKcgr0F6Qu6/RfZmTqAqhlk8dW9U29rCfXr/jdvIbwfUNCLv6i0IMvciXOZoZbqmb
+	UaTlHvVjj3UaaSqQUoU8kT6YjjYRIDO1DBHXwDveCoZGETVclPIW0S6S8T/h7V3ozv74
+	XRuPG1GVeXAK0PRuUaueLrYWG7EuHbDa2gr4UM4DmImNBQoEGipQ0uJ5hVN0Gjtjnu/0
+	VNWw==
+X-Gm-Message-State: APjAAAWt9zv0XEK0AQXj2FsS9wJjGRJxfvS2FUm7l1X/cVTnyyRD/HhZ
+	UQEx1SwVPr5aIKYSfWJMUx0e5DJC
+X-Google-Smtp-Source: APXvYqzocL3gnnBehz26FN5lq5Jcz2IYzezwAZABTfq7d3uujaSUSzZfDZ0s1fQzmsoCm4nSRJwNhg==
+X-Received: by 2002:a7b:cd0f:: with SMTP id f15mr5551296wmj.86.1566385366045; 
+	Wed, 21 Aug 2019 04:02:46 -0700 (PDT)
+Received: from [172.16.100.184] ([213.168.66.146])
+	by smtp.gmail.com with ESMTPSA id w5sm3758677wmm.43.2019.08.21.04.02.45
+	for <yocto@yoctoproject.org>
+	(version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+	Wed, 21 Aug 2019 04:02:45 -0700 (PDT)
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+From: Matthias Schoepfer <matthias.schoepfer@googlemail.com>
+Message-ID: <38ab2633-d83a-3951-45d4-bbfb34da58c8@googlemail.com>
+Date: Wed, 21 Aug 2019 13:02:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <cb03605c9f0d423eaae6bb2d7d60ca00@systec.de>
-	<CANNYZj9MnarpiyDPR0nk8xWKNXgPJVAEZ+g1v9+r0O0rjf8w9g@mail.gmail.com>
-	<f9f2c26c740d464daf3d729a1a499bc9@systec.de>
-In-Reply-To: <f9f2c26c740d464daf3d729a1a499bc9@systec.de>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 21 Aug 2019 12:02:49 +0200
-Message-ID: <CANNYZj_dTe1gwwsc8pQmDeC-MSt8qKJ=-FuJaLY1BOZTuV=yvA@mail.gmail.com>
-To: =?UTF-8?Q?Bert_B=C3=B6hne?= <bert.boehne@systec.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto 2.7 SDK Eclipse
+Subject: How to override RRECOMMENDS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,110 +76,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2019 10:03:11 -0000
-Content-Type: multipart/alternative; boundary="00000000000094f6ba05909dade1"
+X-List-Received-Date: Wed, 21 Aug 2019 11:02:47 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 
---00000000000094f6ba05909dade1
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Hi!
 
-On Wed, 21 Aug 2019 at 11:00, Bert B=C3=B6hne <bert.boehne@systec.de> wrote=
-:
+In my update to latest warrior, I came across 
+4b393a21ffcf9fe00577b4a46c38b5db89b39e9d, which adds rng-tools as 
+RRECOMMENDS. So far, so good. But for some reason, rng-tools fails 
+miserably on my platform, why I cannot say, because it blocks the 
+watchdog daemon, so before I can get logged in, a reboot happens.
 
-> thanks for your reply. Do I need the plugins for writing and debugging
-> code in Eclipse? The documentation says:
->
->
->
-> 24.9.11. ADT Removed=C2=B6
->
->
->
-> The Application Development Toolkit (ADT) has been removed because its
-> functionality almost completely overlapped with the standard SDK and the
-> extensible SDK. For information on these SDKs and how to build and use
-> them, see the Yocto Project Application Development and the Extensible
-> Software Development Kit (eSDK) manual.
->
->
->
-> So would it work if I use Eclipse and maybe a plugin for CMake? Start
-> Eclipse from the cmdline where I sourced the SDK environment setup script=
-?
->
->
->
-> What is the =E2=80=98normal=E2=80=99 way or tool for writing applications=
-? Is it weird to
-> want to use Eclipse?
->
+So I go and read the manual, and come across PACKAGE_EXCLUDE, 
+NO_RECOMMENDATIONS and BAD_RECOMMENDATIONS. I tried all of them from 
+local.conf:
 
-I do not want to define 'normal'; for me personally the way to work is to
-do everything from command line, with an extremely lightweight editor (e.g.
-nano). Since I have never used Eclipse, I do not know what the (now
-removed) plugins actually do. You can certainly still edit code using
-Eclipse but I can imagine that for building it, and running it and other
-things you would have to switch to the command line.
 
-Alex
+PACKAGE_EXCLUDE = "rng-tools"
 
---00000000000094f6ba05909dade1
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Wed, 21 Aug 2019 at 11:00, Bert B=C3=
-=B6hne &lt;<a href=3D"mailto:bert.boehne@systec.de">bert.boehne@systec.de</=
-a>&gt; wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmai=
-l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
-4,204);padding-left:1ex">
+NO_RECOMMENDATIONS =  "1"
+
+
+BAD_RECOMMENDATIONS = "rng-tools"
+
+and even with the pn-target_image/||/ (and yes, I replaced target_image 
+with my image name). But nothings seems to help. What am I missing?
+
+Regards,
+
+     Matthias
 
 
 
-
-
-<div lang=3D"DE">
-<div class=3D"gmail-m_-6917546569108820139WordSection1"><span style=3D"font=
--size:11pt;font-family:&quot;Calibri&quot;,sans-serif;color:rgb(31,73,125)"=
- lang=3D"EN-US">thanks for your reply. Do I need the plugins for writing an=
-d debugging code in Eclipse? The documentation says:</span>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US"><u></u>=C2=A0<u><=
-/u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">24.9.11. ADT Remo=
-ved=C2=B6<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US"><u></u>=C2=A0<u><=
-/u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">The Application D=
-evelopment Toolkit (ADT) has been removed because its functionality almost =
-completely overlapped with
- the standard SDK and the extensible SDK. For information on these SDKs and=
- how to build and use them, see the Yocto Project Application Development a=
-nd the Extensible Software Development Kit (eSDK) manual.<u></u><u></u></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US"><u></u>=C2=A0<u><=
-/u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">So would it work =
-if I use Eclipse and maybe a plugin for CMake? Start Eclipse from the cmdli=
-ne where I sourced the SDK
- environment setup script?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US"><u></u>=C2=A0<u><=
-/u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt;font-family:&quot;Cali=
-bri&quot;,sans-serif;color:rgb(31,73,125)" lang=3D"EN-US">What is the =E2=
-=80=98normal=E2=80=99 way or tool for writing applications? Is it weird to =
-want to use Eclipse?</span></p></div></div></blockquote><div><br></div><div=
->I do not want to define &#39;normal&#39;; for me personally the way to wor=
-k is to do everything from command line, with an extremely lightweight edit=
-or (e.g. nano). Since I have never used Eclipse, I do not know what the (no=
-w removed) plugins actually do. You can certainly still edit code using Ecl=
-ipse but I can imagine that for building it, and running it and other thing=
-s you would have to switch to the command line.</div><div><br></div><div>Al=
-ex<br></div></div></div>
-
---00000000000094f6ba05909dade1--
