@@ -1,64 +1,52 @@
-Return-Path: <gabbla.malist@gmail.com>
+Return-Path: <peter@berginkonsult.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D61F3E00D84; Tue, 20 Aug 2019 23:36:25 -0700 (PDT)
+	id 7C810E00D84; Tue, 20 Aug 2019 23:43:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (gabbla.malist[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.47 listed in list.dnswl.org]
+	*      [46.30.212.1 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com
-	[209.85.167.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FB67E00D74
-	for <yocto@yoctoproject.org>; Tue, 20 Aug 2019 23:36:24 -0700 (PDT)
-Received: by mail-lf1-f47.google.com with SMTP id b29so946223lfq.1
-	for <yocto@yoctoproject.org>; Tue, 20 Aug 2019 23:36:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=hBNwAIz2S6+6sx/DBw8D46w9nho8yioWvN0Ag+cTnkw=;
-	b=XqkwYDNCIMvfqj6dQVf+kT2QmbueumkZUJNjNR5/1I2DrOcXEUF8NyftCbPGDil3VN
-	kIM+IbI1HnDWYCW4Da+4wMetWw2lsT31CSh59J/L97ni74ndZpMy5qOAlTfuC4B8XbVU
-	WoJf88lCyd4FwtnaOIwD5vFAUe1f5K109v+h+AHlkYlRW1WfR6nlqB5N8aYkRQDgpNb3
-	0b8aVUV2JKEfGsVcVojTrXChgSPa1x1TYOxl8YNyUC+tStmyftrCmJq+D1gZ3Sv/M7UB
-	MHwsYlVn6MCv7DgtEmKtG8+eXd0+qqXJnpBZF3ByweNXe/9sswj8MlgJxZZgySeNsLpq
-	eYaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=hBNwAIz2S6+6sx/DBw8D46w9nho8yioWvN0Ag+cTnkw=;
-	b=Pt4abca0isy9sAOl5DaU41lgEWcrCqGOxrJOkkfYBv4QYeJuOS9h+qYpguE+NGLQM6
-	pODBA3/7ilMAjzed++JpQHqJL2Q+G6SwOSh5JU2joXZnmicGFb8y9sxn2BDvkfsGZLcS
-	4gEhqWZxac64L+LjoC1GGGTRE9VaczpSYMpZtfVuuyubs+Yo3DgptMh/DC7HO0ZdFjyV
-	7HuO8+UFFe2t8x674oOedKuDMaiRQPBahO23v9awz0SaDt3wJv95DjZGC/SLoE3dV0U6
-	RhldwsBms9defDoBol4C0hxZzg1X5Vka+CpGUL+qDVrstyWGCt7oH/4LDAR44ebgciIf
-	D+vw==
-X-Gm-Message-State: APjAAAUkwRuh3eU+DKuTPJlkscXNDO6bTImtP1a4Pzp6vyAyo+ekSh+g
-	HXTmloF2hWoR5JwmNiOpRGRglIAiInFwkdfl56azlA==
-X-Google-Smtp-Source: APXvYqxMlCGj2IsodK2BQ9ZCJxLXyQLr+qx8QzYL0ln+xBis3cAPxxbadXqxUfDBF3m6xblyEu5XVJxRC/TARij99NI=
-X-Received: by 2002:ac2:4351:: with SMTP id o17mr17914033lfl.21.1566369383437; 
-	Tue, 20 Aug 2019 23:36:23 -0700 (PDT)
-MIME-Version: 1.0
+X-Greylist: delayed 61 seconds by postgrey-1.32 at yocto-www;
+	Tue, 20 Aug 2019 23:43:31 PDT
+Received: from mailrelay2-2.pub.mailoutpod1-cph3.one.com
+	(mailrelay2-2.pub.mailoutpod1-cph3.one.com [46.30.212.1])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C1B3E00D33
+	for <yocto@yoctoproject.org>; Tue, 20 Aug 2019 23:43:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=berginkonsult.se; s=20140924;
+	h=content-type:in-reply-to:mime-version:date:message-id:from:references:to:
+	subject:from; bh=1hWNLguT32FnURSg21afbtLdflMqBJQSre/ju7uAgp4=;
+	b=iTN4fiO1NSCOg7DTxxBHt83QLwXp8W+LhAcpCenoK9D1ldYIb8LA00/JSZm/jJfOmA8VMDZjnPLiL
+	muKO0KRwBG1ySi1dEyOHAb+BVSwp6ML2zRu/WpwPFEpyRUMLcTgmrUYcfkN+8w8wYd+tAz8oVfOKMy
+	a0BlcIsM5IWiQNGw=
+X-HalOne-Cookie: 2779934d54a752e6011e8d8457a4b912982a316b
+X-HalOne-ID: d77109ed-c3de-11e9-b9ff-d0431ea8a290
+Received: from [192.168.0.101] (unknown [90.141.253.5])
+	by mailrelay2.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
+	id d77109ed-c3de-11e9-b9ff-d0431ea8a290;
+	Wed, 21 Aug 2019 06:42:28 +0000 (UTC)
+To: yocto@yoctoproject.org
 References: <fb9ff55a-2fa8-39c5-aa9e-1cb9a5533c6e@faresoftware.it>
-In-Reply-To: <fb9ff55a-2fa8-39c5-aa9e-1cb9a5533c6e@faresoftware.it>
-From: Gabriele Zampieri <gabbla.malist@gmail.com>
-Date: Wed, 21 Aug 2019 08:36:12 +0200
-Message-ID: <CAAx3WaCZF75mCHjBP_3vF=Xy8xNUUnBGQWaakhvZV7a_S9LqMA@mail.gmail.com>
-To: Mauro Ziliani <mauro@faresoftware.it>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
+	<CAAx3WaCZF75mCHjBP_3vF=Xy8xNUUnBGQWaakhvZV7a_S9LqMA@mail.gmail.com>
+From: Peter Bergin <peter@berginkonsult.se>
+Message-ID: <b15935c3-785e-1356-3272-e69aab60d019@berginkonsult.se>
+Date: Wed, 21 Aug 2019 08:42:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <CAAx3WaCZF75mCHjBP_3vF=Xy8xNUUnBGQWaakhvZV7a_S9LqMA@mail.gmail.com>
 Subject: Re: Final DISTRO_FEATURES value
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -71,68 +59,127 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2019 06:36:25 -0000
-Content-Type: multipart/alternative; boundary="000000000000afdec405909acac3"
+X-List-Received-Date: Wed, 21 Aug 2019 06:43:32 -0000
+Content-Type: multipart/alternative;
+	boundary="------------D01D76A7BD4768433AD607E5"
+Content-Language: en-US
 
---000000000000afdec405909acac3
-Content-Type: text/plain; charset="UTF-8"
+--------------D01D76A7BD4768433AD607E5
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Ciao,
+Hi,
 
-you can inspect the testdata file located next to the generated image,
-under deploy floder.
+or if you want to inspect how it is built up you can find out by 
+'bitbake <image> -e'. Will produce information about from which files 
+the variable is built up. It produces a lot of output so pipe to a file 
+or editor.
 
-Best regards,
-Gabriele
+Regards,
+/Peter
 
-Il giorno mer 21 ago 2019 alle ore 08:25 Mauro Ziliani <
-mauro@faresoftware.it> ha scritto:
-
-> Hi all.
+On 2019-08-21 08:36, Gabriele Zampieri wrote:
+> Ciao,
 >
-> How can I inspect the final value of DISTRO_FEATURES when bitbake has
-> completed the parse all recipes?
->
+> you can inspect the testdata file located next to the generated image, 
+> under deploy floder.
 >
 > Best regards,
+> Gabriele
 >
->    MZ
+> Il giorno mer 21 ago 2019 alle ore 08:25 Mauro Ziliani 
+> <mauro@faresoftware.it <mailto:mauro@faresoftware.it>> ha scritto:
 >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>     Hi all.
+>
+>     How can I inspect the final value of DISTRO_FEATURES when bitbake has
+>     completed the parse all recipes?
+>
+>
+>     Best regards,
+>
+>        MZ
+>
+>     -- 
+>     _______________________________________________
+>     yocto mailing list
+>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>     https://lists.yoctoproject.org/listinfo/yocto
+>
 >
 
---000000000000afdec405909acac3
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Ciao, <br></div><div><br></div><div>you can inspect t=
-he testdata file located next to the generated image, under deploy floder.<=
-/div><div><br></div><div>Best regards,</div><div>Gabriele<br></div></div><b=
-r><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Il giorn=
-o mer 21 ago 2019 alle ore 08:25 Mauro Ziliani &lt;<a href=3D"mailto:mauro@=
-faresoftware.it">mauro@faresoftware.it</a>&gt; ha scritto:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
-x solid rgb(204,204,204);padding-left:1ex">Hi all.<br>
-<br>
-How can I inspect the final value of DISTRO_FEATURES when bitbake has <br>
-completed the parse all recipes?<br>
-<br>
-<br>
-Best regards,<br>
-<br>
-=C2=A0=C2=A0 MZ<br>
-<br>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div>
+--------------D01D76A7BD4768433AD607E5
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
---000000000000afdec405909acac3--
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">Hi,<br>
+      <br>
+      or if you want to inspect how it is built up you can find out by
+      'bitbake &lt;image&gt; -e'. Will produce information about from
+      which files the variable is built up. It produces a lot of output
+      so pipe to a file or editor.<br>
+      <br>
+      Regards,<br>
+      /Peter<br>
+      <br>
+      On 2019-08-21 08:36, Gabriele Zampieri wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAAx3WaCZF75mCHjBP_3vF=Xy8xNUUnBGQWaakhvZV7a_S9LqMA@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="ltr">
+        <div>Ciao, <br>
+        </div>
+        <div><br>
+        </div>
+        <div>you can inspect the testdata file located next to the
+          generated image, under deploy floder.</div>
+        <div><br>
+        </div>
+        <div>Best regards,</div>
+        <div>Gabriele<br>
+        </div>
+      </div>
+      <br>
+      <div class="gmail_quote">
+        <div dir="ltr" class="gmail_attr">Il giorno mer 21 ago 2019 alle
+          ore 08:25 Mauro Ziliani &lt;<a
+            href="mailto:mauro@faresoftware.it" moz-do-not-send="true">mauro@faresoftware.it</a>&gt;
+          ha scritto:<br>
+        </div>
+        <blockquote class="gmail_quote" style="margin:0px 0px 0px
+          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi
+          all.<br>
+          <br>
+          How can I inspect the final value of DISTRO_FEATURES when
+          bitbake has <br>
+          completed the parse all recipes?<br>
+          <br>
+          <br>
+          Best regards,<br>
+          <br>
+             MZ<br>
+          <br>
+          -- <br>
+          _______________________________________________<br>
+          yocto mailing list<br>
+          <a href="mailto:yocto@yoctoproject.org" target="_blank"
+            moz-do-not-send="true">yocto@yoctoproject.org</a><br>
+          <a href="https://lists.yoctoproject.org/listinfo/yocto"
+            rel="noreferrer" target="_blank" moz-do-not-send="true">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+        </blockquote>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------D01D76A7BD4768433AD607E5--
