@@ -1,36 +1,69 @@
-Return-Path: <mickael.tansorier@smile.fr>
+Return-Path: <bert.boehne@systec.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E2EFDE00D8A; Wed, 21 Aug 2019 04:46:49 -0700 (PDT)
+	id CF869E00D8A; Wed, 21 Aug 2019 05:05:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, FROM_EXCESS_BASE64, 
+	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from idris.smile.fr (idris.smile.fr [91.216.209.19])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02EF8E00D84
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 04:46:46 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by idris.smile.fr (Postfix) with ESMTP id 8F1BB1EE0412;
-	Wed, 21 Aug 2019 13:46:45 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at smile.fr
-Received: from idris.smile.fr ([127.0.0.1])
-	by localhost (bluemind-mta.prod.vitry.intranet [127.0.0.1])
-	(amavisd-new, port 10024)
-	with ESMTP id buQiaIBov3tr; Wed, 21 Aug 2019 13:46:45 +0200 (CEST)
-Received: from P-ASN-Amnesia.nantes.intranet
-	(static-css-ccs-204145.business.bouyguestelecom.com
-	[176.157.204.145])
-	by idris.smile.fr (Postfix) with ESMTPSA id 4463C1EE02D3;
-	Wed, 21 Aug 2019 13:46:45 +0200 (CEST)
-From: =?UTF-8?q?Micka=C3=ABl=20Tansorier?= <mickael.tansorier@smile.fr>
-To: yocto@yoctoproject.org
-Date: Wed, 21 Aug 2019 13:46:33 +0200
-Message-Id: <20190821114633.28971-1-mickael.tansorier@smile.fr>
-X-Mailer: git-send-email 2.22.0
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [77.222.82.230 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
+Received: from mail.demcon.nl (mail.demcon.nl [77.222.82.230])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1B5FE00D7E
+	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 05:05:31 -0700 (PDT)
+X-ASG-Debug-ID: 1566389130-0af87313ad4eea0001-yzSStA
+Received: from mail.demcon.nl ([172.17.2.18]) by mail.demcon.nl with ESMTP id
+	THRx9ZvTIk1s4Z04 (version=TLSv1.2
+	cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO);
+	Wed, 21 Aug 2019 14:05:30 +0200 (CEST)
+X-Barracuda-Envelope-From: bert.boehne@systec.de
+Received: from DEM-NL-EXCH02.demcon.local (172.17.2.18) by
+	DEM-NL-EXCH02.demcon.local (172.17.2.18) with Microsoft SMTP Server
+	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+	15.1.1713.5; Wed, 21 Aug 2019 14:05:30 +0200
+Received: from DEM-NL-EXCH02.demcon.local ([fe80::2d7b:6e45:1735:4b69]) by
+	DEM-NL-EXCH02.demcon.local ([fe80::2d7b:6e45:1735:4b69%6]) with mapi id
+	15.01.1713.007; Wed, 21 Aug 2019 14:05:30 +0200
+From: =?utf-8?B?QmVydCBCw7ZobmU=?= <bert.boehne@systec.de>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Thread-Topic: [yocto] Yocto 2.7 SDK Eclipse
+X-ASG-Orig-Subj: AW: [yocto] Yocto 2.7 SDK Eclipse
+Thread-Index: AdVXZ+To7bV7+e70TVqf5y89bD2+Xv//6kqA//7E1QCAAm69gP//vUIw
+Date: Wed, 21 Aug 2019 12:05:29 +0000
+Message-ID: <ce2d3aff07dd49d698e7e0a2ea08606b@systec.de>
+References: <cb03605c9f0d423eaae6bb2d7d60ca00@systec.de>
+	<CANNYZj9MnarpiyDPR0nk8xWKNXgPJVAEZ+g1v9+r0O0rjf8w9g@mail.gmail.com>
+	<f9f2c26c740d464daf3d729a1a499bc9@systec.de>
+	<CANNYZj_dTe1gwwsc8pQmDeC-MSt8qKJ=-FuJaLY1BOZTuV=yvA@mail.gmail.com>
+In-Reply-To: <CANNYZj_dTe1gwwsc8pQmDeC-MSt8qKJ=-FuJaLY1BOZTuV=yvA@mail.gmail.com>
+Accept-Language: de-DE, nl-NL, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.1.171]
 MIME-Version: 1.0
-Subject: [psplash][PATCH] bmp: Add option to print bmp image
+X-Barracuda-Connect: UNKNOWN[172.17.2.18]
+X-Barracuda-Start-Time: 1566389130
+X-Barracuda-Encrypted: ECDHE-RSA-AES128-GCM-SHA256
+X-Barracuda-URL: https://172.17.2.40:443/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at demcon.nl
+X-Barracuda-Scan-Msg-Size: 8090
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=9.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.75558
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto 2.7 SDK Eclipse
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,277 +75,162 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2019 11:46:50 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 21 Aug 2019 12:05:33 -0000
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_ce2d3aff07dd49d698e7e0a2ea08606bsystecde_"
 
-Add option to load image in `psplash` command line.
-Image is bmp3 format. If this image can not be found or
-loading fail, default image is print.
+--_000_ce2d3aff07dd49d698e7e0a2ea08606bsystecde_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-bmp_layout.h: describe bmp3 file inspire of bmp_layout.h
-from u-boot.
-psplash-fb.{c|h}: add function to draw GBR888 image.
-psplash.c: Add option to read bmp image and print it
-if loading file is right.
+T0ssIHRoYW5rcy4gV2Ugd291bGQgbGlrZSB0byB1c2UgRWNsaXBzZSBiZWNhdXNlIHdlIGFyZSBj
+b21pbmcgZnJvbSBXaW5kb3dzIGFuZCBpdCB3b3VsZCBnaXZlIHVzIHRoZSBwb3NzaWJpbGl0eSB0
+byBjb2RlIGFuZCBkZWJ1ZyBlYXNpZXIgb3IgaW4gYSBtb3JlIGtub3duIHdheS4NCg0KVm9uOiBB
+bGV4YW5kZXIgS2FuYXZpbiBbbWFpbHRvOmFsZXgua2FuYXZpbkBnbWFpbC5jb21dDQpHZXNlbmRl
+dDogTWl0dHdvY2gsIDIxLiBBdWd1c3QgMjAxOSAxMjowMw0KQW46IEJlcnQgQsO2aG5lIDxiZXJ0
+LmJvZWhuZUBzeXN0ZWMuZGU+DQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KQmV0cmVmZjog
+UmU6IFt5b2N0b10gWW9jdG8gMi43IFNESyBFY2xpcHNlDQoNCk9uIFdlZCwgMjEgQXVnIDIwMTkg
+YXQgMTE6MDAsIEJlcnQgQsO2aG5lIDxiZXJ0LmJvZWhuZUBzeXN0ZWMuZGU8bWFpbHRvOmJlcnQu
+Ym9laG5lQHN5c3RlYy5kZT4+IHdyb3RlOg0KdGhhbmtzIGZvciB5b3VyIHJlcGx5LiBEbyBJIG5l
+ZWQgdGhlIHBsdWdpbnMgZm9yIHdyaXRpbmcgYW5kIGRlYnVnZ2luZyBjb2RlIGluIEVjbGlwc2U/
+IFRoZSBkb2N1bWVudGF0aW9uIHNheXM6DQoNCjI0LjkuMTEuIEFEVCBSZW1vdmVkwrYNCg0KVGhl
+IEFwcGxpY2F0aW9uIERldmVsb3BtZW50IFRvb2xraXQgKEFEVCkgaGFzIGJlZW4gcmVtb3ZlZCBi
+ZWNhdXNlIGl0cyBmdW5jdGlvbmFsaXR5IGFsbW9zdCBjb21wbGV0ZWx5IG92ZXJsYXBwZWQgd2l0
+aCB0aGUgc3RhbmRhcmQgU0RLIGFuZCB0aGUgZXh0ZW5zaWJsZSBTREsuIEZvciBpbmZvcm1hdGlv
+biBvbiB0aGVzZSBTREtzIGFuZCBob3cgdG8gYnVpbGQgYW5kIHVzZSB0aGVtLCBzZWUgdGhlIFlv
+Y3RvIFByb2plY3QgQXBwbGljYXRpb24gRGV2ZWxvcG1lbnQgYW5kIHRoZSBFeHRlbnNpYmxlIFNv
+ZnR3YXJlIERldmVsb3BtZW50IEtpdCAoZVNESykgbWFudWFsLg0KDQpTbyB3b3VsZCBpdCB3b3Jr
+IGlmIEkgdXNlIEVjbGlwc2UgYW5kIG1heWJlIGEgcGx1Z2luIGZvciBDTWFrZT8gU3RhcnQgRWNs
+aXBzZSBmcm9tIHRoZSBjbWRsaW5lIHdoZXJlIEkgc291cmNlZCB0aGUgU0RLIGVudmlyb25tZW50
+IHNldHVwIHNjcmlwdD8NCg0KV2hhdCBpcyB0aGUg4oCYbm9ybWFs4oCZIHdheSBvciB0b29sIGZv
+ciB3cml0aW5nIGFwcGxpY2F0aW9ucz8gSXMgaXQgd2VpcmQgdG8gd2FudCB0byB1c2UgRWNsaXBz
+ZT8NCg0KSSBkbyBub3Qgd2FudCB0byBkZWZpbmUgJ25vcm1hbCc7IGZvciBtZSBwZXJzb25hbGx5
+IHRoZSB3YXkgdG8gd29yayBpcyB0byBkbyBldmVyeXRoaW5nIGZyb20gY29tbWFuZCBsaW5lLCB3
+aXRoIGFuIGV4dHJlbWVseSBsaWdodHdlaWdodCBlZGl0b3IgKGUuZy4gbmFubykuIFNpbmNlIEkg
+aGF2ZSBuZXZlciB1c2VkIEVjbGlwc2UsIEkgZG8gbm90IGtub3cgd2hhdCB0aGUgKG5vdyByZW1v
+dmVkKSBwbHVnaW5zIGFjdHVhbGx5IGRvLiBZb3UgY2FuIGNlcnRhaW5seSBzdGlsbCBlZGl0IGNv
+ZGUgdXNpbmcgRWNsaXBzZSBidXQgSSBjYW4gaW1hZ2luZSB0aGF0IGZvciBidWlsZGluZyBpdCwg
+YW5kIHJ1bm5pbmcgaXQgYW5kIG90aGVyIHRoaW5ncyB5b3Ugd291bGQgaGF2ZSB0byBzd2l0Y2gg
+dG8gdGhlIGNvbW1hbmQgbGluZS4NCg0KQWxleA0K
 
-Signed-off-by: Mickaël Tansorier <mickael.tansorier@smile.fr>
----
- bmp_layout.h | 35 +++++++++++++++++++
- psplash-fb.c | 25 ++++++++++++++
- psplash-fb.h |  9 +++++
- psplash.c    | 95 ++++++++++++++++++++++++++++++++++++++++++++++++++--
- 4 files changed, 161 insertions(+), 3 deletions(-)
- create mode 100644 bmp_layout.h
+--_000_ce2d3aff07dd49d698e7e0a2ea08606bsystecde_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-diff --git a/bmp_layout.h b/bmp_layout.h
-new file mode 100644
-index 0000000..f397ef9
---- /dev/null
-+++ b/bmp_layout.h
-@@ -0,0 +1,35 @@
-+/* Layout of a bmp file */
-+/* format = bmp3        */
-+
-+#ifndef _BMP_LAYOUT_H_
-+#define _BMP_LAYOUT_H_
-+
-+#define BMP_IMG_BYTES_PER_PIXEL 3
-+
-+struct __attribute__((__packed__)) bmp_header {
-+	/* Header */
-+	char signature[2];
-+	__u32	file_size;
-+	__u32	reserved;
-+	__u32	data_offset;
-+	/* InfoHeader */
-+	__u32	size;
-+	__u32	width;
-+	__u32	height;
-+	__u16	planes;
-+	__u16	bit_count;
-+	__u32	compression;
-+	__u32	image_size;
-+	__u32	x_pixels_per_m;
-+	__u32	y_pixels_per_m;
-+	__u32	colors_used;
-+	__u32	colors_important;
-+};
-+
-+struct bmp_image {
-+	struct bmp_header header;
-+	/* ColorTable */
-+	uint8 * data;
-+};
-+
-+#endif /* _BMP_LAYOUT_H_ */
-diff --git a/psplash-fb.c b/psplash-fb.c
-index c064d18..307d6a8 100644
---- a/psplash-fb.c
-+++ b/psplash-fb.c
-@@ -441,6 +441,31 @@ psplash_fb_draw_image (PSplashFB    *fb,
-     }
- }
- 
-+void
-+psplash_fb_draw_image_raw_GBR888 (PSplashFB    *fb,
-+		       int          x,
-+		       int          y,
-+		       int          img_width,
-+		       int          img_height,
-+		       int          img_bytes_per_pixel,
-+		       uint8       *rle_data)
-+{
-+  uint8       *p = rle_data;
-+  int          dx = 0, dy = 0,  total_len;
-+  int          img_rowstride = img_bytes_per_pixel*img_width;
-+
-+  total_len = img_rowstride * img_height;
-+  /* Start at the end of pointer */
-+  p += (total_len - 1);
-+
-+  while ((p - rle_data) >= 0)
-+    {
-+		psplash_fb_plot_pixel (fb, x-dx, y+dy, *(p), *(p-1), *(p-2));
-+		if (++dx * img_bytes_per_pixel >= img_rowstride) { dx=0; dy++; }
-+			p -= img_bytes_per_pixel;
-+    }
-+}
-+
- /* Font rendering code based on BOGL by Ben Pfaff */
- 
- static int
-diff --git a/psplash-fb.h b/psplash-fb.h
-index d0dce10..297add8 100644
---- a/psplash-fb.h
-+++ b/psplash-fb.h
-@@ -77,6 +77,15 @@ psplash_fb_draw_image (PSplashFB    *fb,
- 		       int          img_rowstride,
- 		       uint8       *rle_data);
- 
-+void
-+psplash_fb_draw_image_raw_GBR888 (PSplashFB    *fb,
-+		       int          x,
-+		       int          y,
-+		       int          img_width,
-+		       int          img_height,
-+		       int          img_bytes_pre_pixel,
-+		       uint8       *rle_data);
-+
- void
- psplash_fb_text_size (int                *width,
- 		      int                *height,
-diff --git a/psplash.c b/psplash.c
-index 992e199..f8a92b6 100644
---- a/psplash.c
-+++ b/psplash.c
-@@ -24,6 +24,7 @@
- #include "psplash-poky-img.h"
- #include "psplash-bar-img.h"
- #include "radeon-font.h"
-+#include "bmp_layout.h"
- 
- #define SPLIT_LINE_POS(fb)                                  \
- 	(  (fb)->height                                     \
-@@ -40,6 +41,59 @@ psplash_exit (int UNUSED(signum))
-   psplash_console_reset ();
- }
- 
-+struct bmp_image *read_image_bmp(char *image_name)
-+{
-+  FILE *file;
-+  size_t read;
-+  struct bmp_image *bmp;
-+
-+  file = fopen(image_name, "rb");
-+  if (file != NULL)
-+    {
-+      bmp = malloc(sizeof(struct bmp_image));
-+
-+      /* Read header */
-+      read = fread(&bmp->header, sizeof(struct bmp_header), 1, file);
-+      if (read != 1)
-+        {
-+          printf("Error: Fail to read header\n");
-+          free(bmp);
-+          fclose(file);
-+          return NULL;
-+        }
-+
-+      /* Read BMP image signature */
-+      if (bmp->header.signature[0] != 'B' && bmp->header.signature[1] != 'M')
-+        {
-+          printf("Error: File format is not correct.\n");
-+          free(bmp);
-+          fclose(file);
-+          return NULL;
-+        }
-+
-+      bmp->data = malloc(sizeof(uint8) * bmp->header.image_size);
-+
-+      /* Read data image */
-+      read = fread(bmp->data, sizeof(uint8), (bmp->header.image_size), file);
-+      if (read != bmp->header.image_size)
-+        {
-+          printf("Error: Cannot read data image.\n");
-+          free(bmp);
-+          fclose(file);
-+          return NULL;
-+        }
-+
-+      fclose(file);
-+    }
-+  else
-+    {
-+      printf("Error: Cannot open %s.\n",image_name);
-+      return NULL;
-+	}
-+
-+  return bmp;
-+}
-+
- void
- psplash_draw_msg (PSplashFB *fb, const char *msg)
- {
-@@ -208,6 +262,8 @@ main (int argc, char** argv)
-   int        pipe_fd, i = 0, angle = 0, fbdev_id = 0, ret = 0;
-   PSplashFB *fb;
-   bool       disable_console_switch = FALSE;
-+  char       image_name[255] = "";
-+  struct bmp_image *bmp = NULL;
- 
-   signal(SIGHUP, psplash_exit);
-   signal(SIGINT, psplash_exit);
-@@ -233,10 +289,16 @@ main (int argc, char** argv)
-         fbdev_id = atoi(argv[i]);
-         continue;
-       }
-+    if (!strcmp(argv[i],"-i") || !strcmp(argv[i],"--image"))
-+      {
-+        if (++i >= argc) goto fail;
-+        strcpy(image_name,argv[i]);
-+        continue;
-+      }
- 
-     fail:
-       fprintf(stderr, 
--              "Usage: %s [-n|--no-console-switch][-a|--angle <0|90|180|270>][-f|--fbdev <0..9>]\n", 
-+              "Usage: %s [-n|--no-console-switch][-a|--angle <0|90|180|270>][-f|--fbdev <0..9>][-i|--image <bmp_image>]\n",
-               argv[0]);
-       exit(-1);
-   }
-@@ -278,8 +340,31 @@ main (int argc, char** argv)
-   psplash_fb_draw_rect (fb, 0, 0, fb->width, fb->height,
-                         PSPLASH_BACKGROUND_COLOR);
- 
--  /* Draw the Poky logo  */
--  psplash_fb_draw_image (fb, 
-+  if (strcmp(image_name,"") != 0)
-+    {
-+      bmp = read_image_bmp(image_name);
-+    }
-+
-+  if (bmp != NULL)
-+    {
-+	  /* Draw loaded logo */
-+      psplash_fb_draw_image_raw_GBR888 (fb,
-+			 (fb->width  + bmp->header.width)/2,
-+#if PSPLASH_IMG_FULLSCREEN
-+			 (fb->height - bmp->header.height)/2,
-+#else
-+			 (fb->height * PSPLASH_IMG_SPLIT_NUMERATOR
-+			  / PSPLASH_IMG_SPLIT_DENOMINATOR - bmp->header.height)/2,
-+#endif
-+			 bmp->header.width,
-+			 bmp->header.height,
-+			 BMP_IMG_BYTES_PER_PIXEL,
-+			 bmp->data);
-+    }
-+  else
-+    {
-+      /* Draw the Poky logo  */
-+      psplash_fb_draw_image (fb,
- 			 (fb->width  - POKY_IMG_WIDTH)/2, 
- #if PSPLASH_IMG_FULLSCREEN
- 			 (fb->height - POKY_IMG_HEIGHT)/2,
-@@ -292,6 +377,7 @@ main (int argc, char** argv)
- 			 POKY_IMG_BYTES_PER_PIXEL,
- 			 POKY_IMG_ROWSTRIDE,
- 			 POKY_IMG_RLE_PIXEL_DATA);
-+    }
- 
-   /* Draw progress bar border */
-   psplash_fb_draw_image (fb, 
-@@ -320,5 +406,8 @@ main (int argc, char** argv)
-   if (!disable_console_switch)
-     psplash_console_reset ();
- 
-+  if(bmp!=NULL)
-+    free(bmp);
-+
-   return ret;
- }
--- 
-2.22.0
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIixzZXJpZjt9
+DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCglj
+b2xvcjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFu
+Lk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpw
+dXJwbGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1zb25vcm1hbDAsIGxpLm1z
+b25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsNCglt
+c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1zby1tYXJnaW4t
+Ym90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsNCglmb250LXNpemU6MTIuMHB0Ow0K
+CWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLHNlcmlmO30NCnNwYW4uRS1NYWlsRm9ybWF0
+dm9ybGFnZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5
+OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQN
+Cgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNh
+bnMtc2VyaWY7DQoJbXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rp
+b24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0IDcwLjg1cHQgMi4w
+Y20gNzAuODVwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0t
+Pjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0
+PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUg
+bXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4
+dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4N
+CjwvaGVhZD4NCjxib2R5IGxhbmc9IkRFIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxk
+aXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5n
+PSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OyxzYW5zLXNlcmlmO2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4t
+VVMiPk9LLCB0aGFua3MuIFdlIHdvdWxkIGxpa2UgdG8gdXNlIEVjbGlwc2UgYmVjYXVzZSB3ZSBh
+cmUgY29taW5nIGZyb20gV2luZG93cyBhbmQgaXQgd291bGQgZ2l2ZSB1cyB0aGUgcG9zc2liaWxp
+dHkgdG8gY29kZQ0KIGFuZCBkZWJ1ZyBlYXNpZXIgb3IgaW4gYSBtb3JlIGtub3duIHdheS4gPG86
+cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
+VVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVv
+dDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48
+bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3Bh
+biBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
+LHNhbnMtc2VyaWYiPlZvbjo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZiI+IEFsZXhhbmRlciBL
+YW5hdmluIFttYWlsdG86YWxleC5rYW5hdmluQGdtYWlsLmNvbV0NCjxicj4NCjxiPkdlc2VuZGV0
+OjwvYj4gTWl0dHdvY2gsIDIxLiBBdWd1c3QgMjAxOSAxMjowMzxicj4NCjxiPkFuOjwvYj4gQmVy
+dCBCw7ZobmUgJmx0O2JlcnQuYm9laG5lQHN5c3RlYy5kZSZndDs8YnI+DQo8Yj5DYzo8L2I+IHlv
+Y3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5CZXRyZWZmOjwvYj4gUmU6IFt5b2N0b10gWW9j
+dG8gMi43IFNESyBFY2xpcHNlPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiPk9uIFdlZCwgMjEgQXVnIDIwMTkgYXQgMTE6MDAsIEJlcnQgQsO2aG5lICZsdDs8YSBo
+cmVmPSJtYWlsdG86YmVydC5ib2VobmVAc3lzdGVjLmRlIj5iZXJ0LmJvZWhuZUBzeXN0ZWMuZGU8
+L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxibG9ja3F1b3Rl
+IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xpZCAjQ0NDQ0NDIDEuMHB0O3BhZGRp
+bmc6MGNtIDBjbSAwY20gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44cHQ7bWFyZ2luLXJpZ2h0OjBjbSI+
+DQo8ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBz
+dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNh
+bnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+dGhhbmtzIGZvciB5b3VyIHJlcGx5LiBEbyBJIG5lZWQg
+dGhlIHBsdWdpbnMgZm9yIHdyaXRpbmcgYW5kIGRlYnVnZ2luZyBjb2RlIGluIEVjbGlwc2U/IFRo
+ZSBkb2N1bWVudGF0aW9uIHNheXM6PC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIj4NCjwvc3Bhbj48
+bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRv
+cC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMi
+IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
+c2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1h
+cmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6
+IzFGNDk3RCI+MjQuOS4xMS4gQURUIFJlbW92ZWTCtjwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFy
+Z2luLWJvdHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6
+MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjoj
+MUY0OTdEIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+IiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1
+dG8iPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+VGhlIEFwcGxp
+Y2F0aW9uIERldmVsb3BtZW50IFRvb2xraXQgKEFEVCkgaGFzIGJlZW4gcmVtb3ZlZCBiZWNhdXNl
+IGl0cyBmdW5jdGlvbmFsaXR5IGFsbW9zdA0KIGNvbXBsZXRlbHkgb3ZlcmxhcHBlZCB3aXRoIHRo
+ZSBzdGFuZGFyZCBTREsgYW5kIHRoZSBleHRlbnNpYmxlIFNESy4gRm9yIGluZm9ybWF0aW9uIG9u
+IHRoZXNlIFNES3MgYW5kIGhvdyB0byBidWlsZCBhbmQgdXNlIHRoZW0sIHNlZSB0aGUgWW9jdG8g
+UHJvamVjdCBBcHBsaWNhdGlvbiBEZXZlbG9wbWVudCBhbmQgdGhlIEV4dGVuc2libGUgU29mdHdh
+cmUgRGV2ZWxvcG1lbnQgS2l0IChlU0RLKSBtYW51YWwuPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1t
+YXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6
+ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OyxzYW5zLXNlcmlmO2NvbG9y
+OiMxRjQ5N0QiPiZuYnNwOzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
+YWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6
+YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
+aWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdEIj5TbyB3b3Vs
+ZCBpdCB3b3JrIGlmIEkgdXNlIEVjbGlwc2UgYW5kIG1heWJlIGEgcGx1Z2luIGZvciBDTWFrZT8g
+U3RhcnQgRWNsaXBzZSBmcm9tIHRoZQ0KIGNtZGxpbmUgd2hlcmUgSSBzb3VyY2VkIHRoZSBTREsg
+ZW52aXJvbm1lbnQgc2V0dXAgc2NyaXB0Pzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJv
+dHRvbS1hbHQ6YXV0byI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjojMUY0OTdE
+Ij4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHls
+ZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxz
+cGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
+dDtDYWxpYnJpJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzFGNDk3RCI+V2hhdCBpcyB0aGUg4oCY
+bm9ybWFs4oCZIHdheSBvciB0b29sIGZvciB3cml0aW5nIGFwcGxpY2F0aW9ucz8gSXMgaXQgd2Vp
+cmQgdG8gd2FudCB0byB1c2UNCiBFY2xpcHNlPzwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjwvZGl2
+Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86
+cD4mbmJzcDs8L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5J
+IGRvIG5vdCB3YW50IHRvIGRlZmluZSAnbm9ybWFsJzsgZm9yIG1lIHBlcnNvbmFsbHkgdGhlIHdh
+eSB0byB3b3JrIGlzIHRvIGRvIGV2ZXJ5dGhpbmcgZnJvbSBjb21tYW5kIGxpbmUsIHdpdGggYW4g
+ZXh0cmVtZWx5IGxpZ2h0d2VpZ2h0IGVkaXRvciAoZS5nLiBuYW5vKS4gU2luY2UgSSBoYXZlIG5l
+dmVyIHVzZWQgRWNsaXBzZSwgSSBkbyBub3Qga25vdyB3aGF0IHRoZSAobm93IHJlbW92ZWQpIHBs
+dWdpbnMgYWN0dWFsbHkNCiBkby4gWW91IGNhbiBjZXJ0YWlubHkgc3RpbGwgZWRpdCBjb2RlIHVz
+aW5nIEVjbGlwc2UgYnV0IEkgY2FuIGltYWdpbmUgdGhhdCBmb3IgYnVpbGRpbmcgaXQsIGFuZCBy
+dW5uaW5nIGl0IGFuZCBvdGhlciB0aGluZ3MgeW91IHdvdWxkIGhhdmUgdG8gc3dpdGNoIHRvIHRo
+ZSBjb21tYW5kIGxpbmUuPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPkFsZXg8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4N
+CjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
-
+--_000_ce2d3aff07dd49d698e7e0a2ea08606bsystecde_--
