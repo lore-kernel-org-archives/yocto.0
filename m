@@ -1,33 +1,36 @@
-Return-Path: <stefan@herbrechtsmeier.net>
+Return-Path: <Yi.Zhao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 430FDE00D9E; Wed, 21 Aug 2019 12:25:01 -0700 (PDT)
+	id 69D75E00DAF; Thu, 22 Aug 2019 01:05:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [85.13.157.12 listed in list.dnswl.org]
-Received: from dd41138.kasserver.com (dd41138.kasserver.com [85.13.157.12])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E27DEE00D98
-	for <yocto@yoctoproject.org>; Wed, 21 Aug 2019 12:24:59 -0700 (PDT)
-Received: from [192.168.178.29] (i59F77EFE.versanet.de [89.247.126.254])
-	by dd41138.kasserver.com (Postfix) with ESMTPSA id 7992811A0072;
-	Wed, 21 Aug 2019 21:24:58 +0200 (CEST)
-To: Jonas Andersson <jonaskgandersson@gmail.com>,
-	Yocto list discussion <yocto@yoctoproject.org>
-References: <CAKpuFdcoJr0c5fjCweYmkHxp1ap4Y7OpRvop4QF-6LORb3=_UA@mail.gmail.com>
-From: Stefan Herbrechtsmeier <stefan@herbrechtsmeier.net>
-Message-ID: <6583e8cf-ad27-f1d4-153c-cfc875fc59e8@herbrechtsmeier.net>
-Date: Wed, 21 Aug 2019 21:24:57 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCB17E00DA3
+	for <yocto@yoctoproject.org>; Thu, 22 Aug 2019 01:05:52 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x7M85ppX018767
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 22 Aug 2019 01:05:52 -0700 (PDT)
+Received: from localhost (128.224.162.195) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0;
+	Thu, 22 Aug 2019 01:05:50 -0700
+From: Yi Zhao <yi.zhao@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 22 Aug 2019 16:05:24 +0800
+Message-ID: <1566461124-29766-2-git-send-email-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1566461124-29766-1-git-send-email-yi.zhao@windriver.com>
+References: <1566461124-29766-1-git-send-email-yi.zhao@windriver.com>
 MIME-Version: 1.0
-In-Reply-To: <CAKpuFdcoJr0c5fjCweYmkHxp1ap4Y7OpRvop4QF-6LORb3=_UA@mail.gmail.com>
-Subject: Re: npm nodejs
+X-Originating-IP: [128.224.162.195]
+Subject: [meta-selinux][PATCH 2/2 V2] setools: do not use unstable github archive tarballs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,45 +42,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 Aug 2019 19:25:09 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 22 Aug 2019 08:05:53 -0000
+Content-Type: text/plain
 
-Hi Jonas,
+From: Hongxu Jia <hongxu.jia@windriver.com>
 
-Am 21.08.19 um 14:55 schrieb Jonas Andersson:
-> I have used Yocto and npm/nodejs now for about 1 year and think it works 
-> but I not without some extra work. Are there any group working on 
-> npm/nodejs? As I use it quite frequent and puts some extra work every 
-> time i create an recipe I have some interest in supporting the work on 
-> npm/nodejs to make it an better experience.
-> 
-> I thinks It quite hard to follow all the npm/nodejs parts of 
-> Yocto(devtool, fetcher and meta-oe/../nodejs), I get the feeling that 
-> all parts not are in sync.
+Since commit [21f84fc insane: add sanity checks to SRC_URI] applied
+in oe-core, do not use unstable github archive tarballs
 
-I have start reworking the nodejs support but haven't the time to finish it.
+SETools has moved from https://github.com/TresysTechnology/setools to
+https://github.com/SELinuxProject/setools
+See: https://github.com/TresysTechnology/setools/wiki
 
-I have remove the use of the bitbake npm fetcher. I create a recipe per 
-npm package major version. Thereby the recipe downloads the npm archive 
-via https, extract it to /usr/lib/node_modules/name-major and creates 
-links for the dependency packages and binaries. This avoids duplicated 
-npm packages and allows a per package optimization like the remove of 
-scripts, tests and documentations. Furthermore I can patch npm packages 
-to use dynamic linking or build native packages.
+Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ recipes-security/setools/setools_4.1.1.bb | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-I have add a new plugin to the recipetool which creates a recipe from a 
-npm package. It extract the license, dependencies and binaries from the 
-package.json. Thereby the dependencies string is parsed and translated 
-into a <package name>-<major version> or <package name>-0.<minor 
-version> if major version is below 0. I assume that I can ignore the 
-minor and patch version number and always use the latest compatible version.
+diff --git a/recipes-security/setools/setools_4.1.1.bb b/recipes-security/setools/setools_4.1.1.bb
+index c5a2d34..db529f4 100644
+--- a/recipes-security/setools/setools_4.1.1.bb
++++ b/recipes-security/setools/setools_4.1.1.bb
+@@ -8,14 +8,14 @@ SETools."
+ SECTION = "base"
+ LICENSE = "GPLv2 & LGPLv2.1"
+ 
+-SRC_URI = "https://github.com/TresysTechnology/setools/archive/${PV}.tar.gz;downloadfilename=setools-${PV}.tar.gz \
++S = "${WORKDIR}/git"
++SRC_URI = "git://github.com/SELinuxProject/${BPN}.git;branch=4.1 \
+            file://setools4-fixes-for-cross-compiling.patch \
+            file://setools4-fix-cross-compiling-errors-for-powerpc-mips.patch \
+            file://Fix-build-failure-with-GCC-7-due-to-possible-truncat.patch \
+ "
+ 
+-SRC_URI[md5sum] = "54cf5c0ca2aa4ef7c6ac153981af34cd"
+-SRC_URI[sha256sum] = "46a927ea2b163cbe1d35cc35da43e45853e13720c7e02d4cf75a498783c19610"
++SRCREV = "e03617eb7ab5a035633bff66500b95d25232e331"
+ 
+ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=83a5eb6974c11f30785e90d0eeccf40c \
+                     file://${S}/COPYING.GPL;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
+-- 
+2.7.4
 
-On top of recipetool I have a script with creates a recipe for a npm 
-package and all its dependencies.
-
-
-Regards
-   Stefan
 
