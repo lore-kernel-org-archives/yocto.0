@@ -1,106 +1,40 @@
-Return-Path: <Richard.Schmitt@commscope.com>
+Return-Path: <j.behnke@schmidttechnology.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3F4ADE00D35; Thu, 22 Aug 2019 07:29:31 -0700 (PDT)
+	id A4D17E00D6A; Thu, 22 Aug 2019 08:23:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	MIME_QP_LONG_LINE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [216.71.142.185 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Thu, 22 Aug 2019 07:29:28 PDT
-Received: from esa6.commscope.iphmx.com (esa6.commscope.iphmx.com
-	[216.71.142.185])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17C97E00DAE
-	for <yocto@yoctoproject.org>; Thu, 22 Aug 2019 07:29:28 -0700 (PDT)
-IronPort-SDR: UZOdgqENc1DxJTvqbZ9s1HS6aKk+BNOogyyIodHgGvV2dMa/Wn+D0i93ZzKYS/3G+2TBmGHt8J
-	9o9GuCRvfs4RjdA3i6fvRtS52MfJM+n7wcNF6/0kwq5g7VfoMbf2R4lddJpwWGNod0KlSbvlMK
-	WlQOqERTh02RxtTy5cPHGn23X/pnfaiqfOfsT5NM/nq6tJIy2PIko4RIQXQ0ctDCVEMf915MWj
-	46qbD0qjsHpxCDHwKFjeE16Wx9cH8JFtEVGZNhopGFEVLlcB1ZIV6g1+sLvAvgs+IwIYo7hpdf
-	qMY=
-X-IronPort-AV: E=Sophos;i="5.64,416,1559534400"; d="scan'208";a="29326779"
-Received: from mail-cys01nam02lp2058.outbound.protection.outlook.com (HELO
-	NAM02-CY1-obe.outbound.protection.outlook.com) ([104.47.37.58])
-	by ob1.commscope.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
-	22 Aug 2019 10:28:25 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
-	b=bu0qtlgikR/R4dw+Dl1Lu8ff/sIVwU/mEyssubVulJ3I6kMI/ld6ula8gUmh3X83WJeb8owtPC70DeD3s+drGyMrLEp1D5S55Mxa3NZKrEgXQJEcChXQKljJQ6FtSUB+KlsTPvGqv/CcKsM+n6WowHu+OGaM8W5vxeYkVPol9A0n1dLQjmrpgyhTvsWgzKvXed05aKDRoX+Vial8O184FxtBg+9rhHvWHwHL5F+8zdurwy1mk55gC3KfftyeQANeBjJneKb5R2FRQcv/t3sn3ZuH5qGT3NkjeK9TbObQR75h7FKYgGE5SKqAMIFxupDSNKpa7yRebZ6hhBdFlTVrwg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
-	s=arcselector9901;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=x7nmvQc1N+w+/qvNvq/EcXvm31F438Hfp7PvjTZM7Vs=;
-	b=jcEmgQYi/tZeoGCoN8FuirmRP05FM3GG2gLTmYLmZWmUf183tHLT418GEqPfFrFJw+Pkh+ujTgmXO1pMADHEGKdwon7Q7SGtC5D3TGhrTF9t2/cnP5W923Buw6IuwTELh1veaNp/XDLTu15lpdmWxKgDLLlMKDMsdnMu+Vt5Cmj0B8Qtyh1xO+65bVPehS46bTYp5eIcE7DIf1wMwX8mBLms+txy9vcPM6Dn2/KHVPfQ4uVgJjoAGkXX3UFitmwhNNQHZkAMSdj7cr/3DR18IXnuKT5B3X+hqEul96li5z/Yy+SqZCJk27+wGMRU/Dblz7TsUyuudK4MNv+AmhjfVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
-	smtp.mailfrom=commscope.com; dmarc=pass action=none
-	header.from=commscope.com; dkim=pass header.d=commscope.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=commscope.onmicrosoft.com; s=selector2-commscope-onmicrosoft-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=x7nmvQc1N+w+/qvNvq/EcXvm31F438Hfp7PvjTZM7Vs=;
-	b=cr7YTsM7JSSaQ/1dGKmO/3Nc3alXnm4u1bHXCCQlRwkcBh6+NNIXSWNl/bWgkcni6/9DmGAhtg8I/n98GdocWC18C1jmtrOVQppjv0J0HEmPdE+w8BonEhs8u6gxjHdTNNrWh+dUtKCgfpwE+yMBmXbWG64BI8HGbDh98wwLHdI=
-Received: from MN2PR14MB2655.namprd14.prod.outlook.com (20.178.244.155) by
-	MN2PR14MB4094.namprd14.prod.outlook.com (52.135.49.150) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.2178.16; Thu, 22 Aug 2019 14:28:23 +0000
-Received: from MN2PR14MB2655.namprd14.prod.outlook.com
-	([fe80::f45c:5f79:b24c:391]) by MN2PR14MB2655.namprd14.prod.outlook.com
-	([fe80::f45c:5f79:b24c:391%7]) with mapi id 15.20.2178.020;
-	Thu, 22 Aug 2019 14:28:23 +0000
-From: "Schmitt, Richard" <Richard.Schmitt@commscope.com>
-To: Brad Bishop <bradleyb@fuzziesquirrel.com>, OpenBMC Maillist
-	<openbmc@lists.ozlabs.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] assembling lvm disk images
-Thread-Index: AQHVWPVn+/re73u+P0GdxSbCqs9o7qcHOXHg
-Date: Thu, 22 Aug 2019 14:28:23 +0000
-Message-ID: <MN2PR14MB265597F84291C8F0D51C00FDE6A50@MN2PR14MB2655.namprd14.prod.outlook.com>
-References: <38CEEC26-E746-42DE-B4AD-24BCB29ED326@fuzziesquirrel.com>
-In-Reply-To: <38CEEC26-E746-42DE-B4AD-24BCB29ED326@fuzziesquirrel.com>
-Accept-Language: en-US
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
+Received: from mail.schmidttechnology.de (mail.schmidttechnology.de
+	[212.185.41.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EDCAE00D38
+	for <yocto@yoctoproject.org>; Thu, 22 Aug 2019 08:23:19 -0700 (PDT)
+X-GFI-TNEF2MIME: 1.2
+Received: from ST04.sft.schmidt-feintechnik.de ([fe80::2989:544f:bde7:d994])
+	by ST04.sft.schmidt-feintechnik.de ([fe80::2989:544f:bde7:d994%10])
+	with mapi id 14.03.0468.000; Thu, 22 Aug 2019 17:23:18 +0200
+From: "Behnke, Jochen" <j.behnke@schmidttechnology.de>
+To: 'Randy MacLeod' <randy.macleod@windriver.com>, "yocto Mailingliste
+	(yocto@yoctoproject.org)" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] wic create - bad ownership of directories inside image
+Thread-Index: AdVQ7HKa1+aWnPsGSzybgn4086sMuQCEZiQAAX7cr+A=
+Date: Thu, 22 Aug 2019 17:23:16 +0200
+Message-ID: <55F1D5644E5E5A4493FCBE6156D13CD6AD94AA0D@ST04.sft.schmidt-feintechnik.de>
+References: <55F1D5644E5E5A4493FCBE6156D13CD6AD921671@ST04.sft.schmidt-feintechnik.de>
+	<05840950-f052-714b-0aac-aa598f209a4c@windriver.com>
+In-Reply-To: <05840950-f052-714b-0aac-aa598f209a4c@windriver.com>
+Accept-Language: de-DE, en-US
 X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=Richard.Schmitt@commscope.com; 
-x-originating-ip: [198.135.207.104]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: fd0c925a-ad04-4abb-d6e4-08d7270cfd11
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(5600166)(711020)(4605104)(1401327)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
-	SRVR:MN2PR14MB4094; 
-x-ms-traffictypediagnostic: MN2PR14MB4094:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <MN2PR14MB4094784329D401EFE1DC0851E6A50@MN2PR14MB4094.namprd14.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5236;
-x-forefront-prvs: 01371B902F
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(4636009)(396003)(346002)(136003)(376002)(366004)(39860400002)(199004)(189003)(13464003)(99286004)(2501003)(5660300002)(478600001)(33656002)(102836004)(186003)(7736002)(81156014)(8936002)(55016002)(14454004)(76176011)(446003)(81166006)(966005)(52536014)(8676002)(486006)(26005)(7696005)(2906002)(6436002)(3846002)(305945005)(6116002)(9686003)(6306002)(11346002)(5024004)(71200400001)(229853002)(53936002)(256004)(25786009)(74316002)(4326008)(6246003)(476003)(316002)(76116006)(66946007)(66556008)(86362001)(66476007)(6506007)(53546011)(110136005)(66446008)(71190400001)(64756008)(66066001);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR14MB4094;
-	H:MN2PR14MB2655.namprd14.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: commscope.com does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: YCSiHN4b4Qlu4cWi/Zra1x0JrXOttqQai58G0WAmVWJaJebnPN/EFmA6JxVFvm7Kj9BdqGb/ZwNv2fdTlXzKFHqNoDgUquU2JtUQxXRgMoeDx2KrYUXzVJflQdimDpIwknY+fn7CdfT5785IOJH+SzGUnWFWuHhtiFPs0QJ4VS8MsDmaAQ3n7e3fmi1x1/vDdNY48AhyR0U7ijKI0NLOdx2Oi7VGsgx89ZEaAWHApDpUAroY8eCNrO+D1YwwjnKAJWXJ2oa3DxNcRL4WvhCNDkLPjsVzj4e8XppSgr2LcgYFtf0dnThY86gOugm3Und3yp4rduSQ0dl/RC2lma0me+qwnMGjaUJM4m5x5Rpz85HY7uDetrZ/HwfOLI/pDIqUNbHlgaUWwPDpQ3F7RMAsb62j6FAPpJ+S+lGEKkm/QeI=
-x-ms-exchange-transport-forked: True
+X-MS-TNEF-Correlator: <55F1D5644E5E5A4493FCBE6156D13CD6AD94AA0D@ST04.sft.schmidt-feintechnik.de>
 MIME-Version: 1.0
-X-OriginatorOrg: commscope.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fd0c925a-ad04-4abb-d6e4-08d7270cfd11
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Aug 2019 14:28:23.3780 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 31472f81-8fe4-49ec-8bc3-fa1c295640d7
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: K9FEEiLlTAGu8nLBvh1+wR8N7pA3VN0bRH/zR7VPEzhMrOfQqYuLV33IQsl26o5X00qsbArfzbaGVj4NItesRsr09U3sO6GHlm5hicLyRvc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR14MB4094
-Cc: Adriana Kobylak <anoo@us.ibm.com>
-Subject: Re: assembling lvm disk images
+X-Originating-IP: [192.168.41.234]
+Disclaimer: SID=010500000000000515000000993c4a7a4675257c8b2de024250d0000
+Subject: Re: wic create - bad ownership of directories inside image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -112,38 +46,372 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 Aug 2019 14:29:32 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 22 Aug 2019 15:23:23 -0000
+Content-Language: de-DE
+Content-Type: multipart/mixed;
+	boundary="part__B1F15D94_25DD_430E_A83B_D8EF2BB27"
 
-Tm90IHN1cmUgdGhlIHR5cGUgb2YgbHZtIHlvdSdyZSB0cnlpbmcgdG8gdXNlLCBidXQgd2Ugc3Vj
-Y2Vzc2Z1bGx5IGJ1aWxkIGEgZG0tdmVyaXR5IHJvb3RmcyBvZmZsaW5lLiAgDQoNCkl0IHByb2Jh
-Ymx5IGlzIHNwZWNpZmljIHRvIHdoYXQgdHlwZSBvZiBsdm0geW91IGFyZSB1c2luZy4NCg0KUmlj
-aA0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0
-b3Byb2plY3Qub3JnIDx5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmc+IE9uIEJlaGFsZiBP
-ZiBCcmFkIEJpc2hvcA0KU2VudDogVGh1cnNkYXksIEF1Z3VzdCAyMiwgMjAxOSA5OjEzIEFNDQpU
-bzogT3BlbkJNQyBNYWlsbGlzdCA8b3BlbmJtY0BsaXN0cy5vemxhYnMub3JnPjsgeW9jdG9AeW9j
-dG9wcm9qZWN0Lm9yZw0KQ2M6IEFkcmlhbmEgS29ieWxhayA8YW5vb0B1cy5pYm0uY29tPg0KU3Vi
-amVjdDogW3lvY3RvXSBhc3NlbWJsaW5nIGx2bSBkaXNrIGltYWdlcw0KDQpNZXNzYWdlIHJlY2Vp
-dmVkIGZyb20gZXh0ZXJuYWwgc291cmNlLiBFeGVyY2lzZSBjYXV0aW9uIHdoZW4gb3BlbmluZyBh
-dHRhY2htZW50cywgY2xpY2tpbmcgbGlua3MsIG9yIGV4Y2hhbmdpbmcgaW5mb3JtYXRpb24uDQoN
-CiANCg0KRG9lcyBhbnlvbmUgaGF2ZSBhbnkgZXhwZXJpZW5jZSB3aXRoIGFzc2VtYmxpbmcgYW4g
-bHZtIGRpc2sgaW1hZ2UgZnJvbSBhIGJpdGJha2UgdGFzaz8gIE15IG5haWl2ZSBhcHByb2FjaCB0
-byB0aGlzIHdvdWxkIGJlIHRvIGludmVudCBhbmQgaW1wbGVtZW50IGFuIElNQUdFX0ZTVFlQRSB0
-aGF0IGJ1aWxkcyB1cCB0aGUgaW1hZ2UgaW4gYSBkb19pbWFnZV9mb28gdGFzay4NCg0KQnV0IHRo
-ZSBMVk0gdXNlcnNwYWNlIHRvb2xzIGRvbuKAmXQgZG8gb2ZmbGluZSBtb2RlIHNvIHRoaXMgc2Vl
-bXMgdG8gcmVxdWlyZSAgDQp0aGUgdXNlIG9mIHRoaW5ncyBsaWtlIGxvb3BiYWNrIGRldmljZXMg
-YW5kIHN1ZG8uICBJcyB0aGF0IGEgY2FuIG9mIHdvcm1zPyAgIA0KRG9lcyBhbnlvbmUgaGF2ZSBh
-bnkgYWR2aWNlIG9uIGhvdyB0byBkbyBzb21ldGhpbmcgbGlrZSB0aGlzPyAgUG9pbnRlcnMgdG8g
-c29tZXRoaW5nIHNpbWlsYXI/DQoNCnRoeCENCg0KYnJhZA0KLS0NCl9fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQp5b2N0byBtYWlsaW5nIGxpc3QNCnlvY3Rv
-QHlvY3RvcHJvamVjdC5vcmcNCmh0dHBzOi8vc2VjdXJlLXdlYi5jaXNjby5jb20vMTEyLWF2OEVE
-SUlJWGJZOGhTaWUxUVh2V3B5bzUwS3FuREtBQzhOYlM5cWdEbjM3aW84WnZfc3VEb0xXOWRXVGpP
-ZFlRX19wazY2Y2dzMzlkc3JORU10bE05NmY5bXJDYXR5QkNsZl83ejNrbTFUZGFXdlhLWmFYWXNx
-c3pEc2QwN2UwcnZMdzFFTUcwZGFBcEowS0Znc1A2aFFYWUMtZk1oeldOZVdla3VrUkZNSFlBa1Zj
-Q1hVUkVHZm05S0dpTHhjVzI2aF9pUkRtNTFJRzJsTjVBODFPdnljc3duZnloc0pvb294WWR4MEhG
-cG5xOE95dWNXdkh2QUZHUDl4bHc4UFRBRnRHR2xXVG5OUGNZTm84cHZfLTRXbW9qY3R3TXF4RjB0
-aFdKLUg0bGExVVY3X3IweFVCZkJ4NWNwaHBPL2h0dHBzJTNBJTJGJTJGbGlzdHMueW9jdG9wcm9q
-ZWN0Lm9yZyUyRmxpc3RpbmZvJTJGeW9jdG8NCg==
+--part__B1F15D94_25DD_430E_A83B_D8EF2BB27
+Content-Type: multipart/alternative;
+	boundary="part__BF07B0DA_157A_41E0_820F_701BFA922"
 
+--part__BF07B0DA_157A_41E0_820F_701BFA922
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+Disclaimer: SID=010500000000000515000000993c4a7a4675257c8b2de024250d0000
+
+Hello Randy,
+
+thanks for your reponse and sorry for my late reaction.
+
+In order to test, if the problem can be reproduced reliably, I performed a c=
+lean rebuild as follows
+
+$ source oe-init-build-env build-tca5-32
+$ rm -rf tmp
+$ rm -rf sstate-cache
+$ bitbake core-image-minimal
+$ wic create mkefidisk -e core-image-minmal
+
+I then mounted the resulting image file "mkefidisk-201908221701-sda.direct" =
+using a loopback device (losetup)
+Inside the Image all directories have UID/GID 1000/1000, which corresponds t=
+o my host user.
+Files however have UID/GID 0/0.
+
+So the answer to your question is "yes I can reproduce the behavior".
+
+One sidenote
+- I am using an appended core-image-minimal not the default
+- In my other image I am using qt5 (v5.12)
+
+
+
+Regards
+Jochen
+
+On 8/12/19 5:11 AM, Behnke, Jochen wrote:
+> Hello,
+> 
+> I am using poky 2.6.1 (thud) and create images using the wic utility.
+> 
+> Recently I noticed that all directories contained in the created image 
+> are owned by UID 1000 and not by root. The files inside the image 
+> however are owned by root.
+> 
+> The UID 1000 refers to my unprivileged user on the host system.
+> 
+> Here is the command I use to create the image
+> 
+> "wic create mkefidisk -e core-image-minimal"
+> 
+> The images created by bitbake directly (.tar.bz2, .hddimg) are correct 
+> so this seems to be a wic related problem.
+> 
+> Does anybody have a solution for this?
+
+Hi Jochen,
+
+No and I've never seen this particular extreme symptom.
+
+There is a known, generally rare bug:
+    Bug 12434 - pseudo: Incorrect UID/GID in packaged files
+    https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12434
+but that usually shows up when building.
+
+You could check you build logs for the generic stings from:
+
+    glibc-locale-2.26: glibc-locale:
+    /glibc-binary-localedata-en-gb/usr/lib/locale/en_GB/LC_MEASUREMENT
+    is owned by uid 3004, which is the same as the user running bitbake.
+    This may be due to host contamination [host-user-contaminated]
+
+
+Is your issue 100% reproducible?
+
+../Randy
+
+
+> 
+> Many thanks in advance, any hint is appreciated.
+> 
+> Regards
+> 
+> Jochen
+> 
+> <gfidisc.SID=3D010500000000000515000000993c4a7a4675257c8b2de024250d0000>
+> 
+> 
+> __________________________________
+> *SCHMIDT Technology GmbH*
+> Feldbergstrasse 1
+> 78112 St. Georgen/Germany
+> Telefon +49 (0) 77 24 / 89 90
+> Fax +49 (0) 77 24 / 89 91 01
+> info@schmidttechnology.de <mailto:info@schmidttechnology.de>
+> http://www.schmidttechnology.de
+> 
+> USt-Id Nr. DE 811725105 . Registergericht Freiburg HRB 600 755
+> Geschaeftsfuehrung: Oliver Schmidt, Stephan Schmidt
+> 
+> <gfidisc.SID=3D010500000000000515000000993c4a7a4675257c8b2de024250d0000>
+> 
+> 
+> 
+
+
+-- 
+# Randy MacLeod
+# Wind River Linux
+
+
+__________________________________=0ASCHMIDT Technology GmbH=0AFeldbergstras=
+se 1=0A78112 St. Georgen/Germany=0ATelefon +49 (0) 77 24 / 89 90=0AFax +49 (=
+0) 77 24 / 89 91 01=0Ainfo@schmidttechnology.de=0Ahttp://www.schmidttechnolo=
+gy.de=0A=0AUSt-Id Nr. DE 811725105 =B7 Registergericht Freiburg HRB 600 755=0A=
+Geschaeftsfuehrung: Oliver Schmidt, Stephan Schmidt=0A=0A
+
+
+--part__BF07B0DA_157A_41E0_820F_701BFA922
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+Disclaimer: SID=010500000000000515000000993c4a7a4675257c8b2de024250d0000
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">=
+
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left: =
+#800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Times New Roman" size=3D"3"><span style=3D"font-size:12pt;"><a=
+ name=3D"BM_BEGIN"></a>
+<div><font size=3D"2"><span style=3D"font-size:10pt;">Hello Randy,<br>
+
+<br>
+
+thanks for your reponse and sorry for my late reaction.<br>
+
+<br>
+
+In order to test, if the problem can be reproduced reliably, I performed a c=
+lean rebuild as follows<br>
+
+<br>
+
+$ source oe-init-build-env build-tca5-32<br>
+
+$ rm -rf tmp<br>
+
+$ rm -rf sstate-cache<br>
+
+$ bitbake core-image-minimal<br>
+
+$ wic create mkefidisk -e core-image-minmal<br>
+
+<br>
+
+I then mounted the resulting image file &quot;mkefidisk-201908221701-sda.dir=
+ect&quot; using a loopback device (losetup)<br>
+
+Inside the Image all directories have UID/GID 1000/1000, which corresponds t=
+o my host user.<br>
+
+Files however have UID/GID 0/0.<br>
+
+<br>
+
+So the answer to your question is &quot;yes I can reproduce the behavior&quo=
+t;.<br>
+
+<br>
+
+One sidenote<br>
+
+- I am using an appended core-image-minimal not the default<br>
+
+- In my other image I am using qt5 (v5.12)<br>
+
+<br>
+
+<br>
+
+<br>
+
+Regards<br>
+
+Jochen<br>
+
+<br>
+
+On 8/12/19 5:11 AM, Behnke, Jochen wrote:<br>
+
+&gt; Hello,<br>
+
+&gt; <br>
+
+&gt; I am using poky 2.6.1 (thud) and create images using the wic utility.<b=
+r>
+
+&gt; <br>
+
+&gt; Recently I noticed that all directories contained in the created image =
+<br>
+
+&gt; are owned by UID 1000 and not by root. The files inside the image <br>
+
+&gt; however are owned by root.<br>
+
+&gt; <br>
+
+&gt; The UID 1000 refers to my unprivileged user on the host system.<br>
+
+&gt; <br>
+
+&gt; Here is the command I use to create the image<br>
+
+&gt; <br>
+
+&gt; &#8220;wic create mkefidisk &#8211;e core-image-minimal&#8221;<br>
+
+&gt; <br>
+
+&gt; The images created by bitbake directly (.tar.bz2, .hddimg) are correct =
+<br>
+
+&gt; so this seems to be a wic related problem.<br>
+
+&gt; <br>
+
+&gt; Does anybody have a solution for this?<br>
+
+<br>
+
+Hi Jochen,<br>
+
+<br>
+
+No and I've never seen this particular extreme symptom.<br>
+
+<br>
+
+There is a known, generally rare bug:<br>
+
+&nbsp;&nbsp;&nbsp; Bug 12434 - pseudo: Incorrect UID/GID in packaged files<b=
+r>
+
+&nbsp;&nbsp;&nbsp; <a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi=
+?id=3D12434">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12434</a><b=
+r>
+
+but that usually shows up when building.<br>
+
+<br>
+
+You could check you build logs for the generic stings from:<br>
+
+<br>
+
+&nbsp;&nbsp;&nbsp; glibc-locale-2.26: glibc-locale:<br>
+
+&nbsp;&nbsp;&nbsp; /glibc-binary-localedata-en-gb/usr/lib/locale/en_GB/LC_ME=
+ASUREMENT<br>
+
+&nbsp;&nbsp;&nbsp; is owned by uid 3004, which is the same as the user runni=
+ng bitbake.<br>
+
+&nbsp;&nbsp;&nbsp; This may be due to host contamination [host-user-contamin=
+ated]<br>
+
+<br>
+
+<br>
+
+Is your issue 100% reproducible?<br>
+
+<br>
+
+../Randy<br>
+
+<br>
+
+<br>
+
+&gt; <br>
+
+&gt; Many thanks in advance, any hint is appreciated.<br>
+
+&gt; <br>
+
+&gt; Regards<br>
+
+&gt; <br>
+
+&gt; Jochen<br>
+
+&gt; <br>
+
+&gt; &lt;gfidisc.SID=3D010500000000000515000000993c4a7a4675257c8b2de024250d0=
+000&gt;<br>
+
+&gt; <br>
+
+&gt; <br>
+
+&gt; __________________________________<br>
+
+&gt; *SCHMIDT Technology GmbH*<br>
+
+&gt; Feldbergstrasse 1<br>
+
+&gt; 78112 St. Georgen/Germany<br>
+
+&gt; Telefon &#43;49 (0) 77 24 / 89 90<br>
+
+&gt; Fax &#43;49 (0) 77 24 / 89 91 01<br>
+
+&gt; info@schmidttechnology.de &lt;<a href=3D"mailto:info@schmidttechnology.=
+de">mailto:info@schmidttechnology.de</a>&gt;<br>
+
+&gt; <a href=3D"http://www.schmidttechnology.de">http://www.schmidttechnolog=
+y.de</a><br>
+
+&gt; <br>
+
+&gt; USt-Id Nr. DE 811725105 &middot; Registergericht Freiburg HRB 600 755<b=
+r>
+
+&gt; Geschaeftsfuehrung: Oliver Schmidt, Stephan Schmidt<br>
+
+&gt; <br>
+
+&gt; &lt;gfidisc.SID=3D010500000000000515000000993c4a7a4675257c8b2de024250d0=
+000&gt;<br>
+
+&gt; <br>
+
+&gt; <br>
+
+&gt; <br>
+
+<br>
+
+<br>
+
+-- <br>
+
+# Randy MacLeod<br>
+
+# Wind River Linux<br>
+
+</span></font></div>
+</span></font>
+</body>
+</html>
+
+--part__BF07B0DA_157A_41E0_820F_701BFA922--
+
+--part__B1F15D94_25DD_430E_A83B_D8EF2BB27--
