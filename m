@@ -1,35 +1,38 @@
-Return-Path: <bradleyb@fuzziesquirrel.com>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0B4F8E00D98; Thu, 22 Aug 2019 18:09:50 -0700 (PDT)
+	id CC5B4E00DA3; Thu, 22 Aug 2019 18:24:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from bajor.fuzziesquirrel.com (mail.fuzziesquirrel.com
-	[173.167.31.197])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9EB01E0082A
-	for <yocto@yoctoproject.org>; Thu, 22 Aug 2019 18:09:47 -0700 (PDT)
-X-Virus-Scanned: amavisd-new at fuzziesquirrel.com
-Received: from brads-mbp.dyn.fuzziesquirrel.com
-	(Brads-MBP.dyn.fuzziesquirrel.com [192.168.253.30])
-	by bajor.fuzziesquirrel.com (Postfix) with ESMTPSA id 9850B14E0C8;
-	Thu, 22 Aug 2019 21:09:45 -0400 (EDT)
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
-From: Brad Bishop <bradleyb@fuzziesquirrel.com>
-In-Reply-To: <628d5b4c-63d4-78b6-83d8-1781cbc86e0f@linux.intel.com>
-Date: Thu, 22 Aug 2019 21:09:45 -0400
-Message-Id: <7694CCA3-89BD-44FE-90D1-99569476E980@fuzziesquirrel.com>
-References: <038f49d9-099e-dabd-2957-d31e7b8bbf41@linux.intel.com>
-	<628d5b4c-63d4-78b6-83d8-1781cbc86e0f@linux.intel.com>
-To: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>,
- akuster808@gmail.com
-X-Mailer: Apple Mail (2.3445.104.11)
-Cc: yocto@yoctoproject.org, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-	James Feist <james.feist@linux.intel.com>
-Subject: Re: Build break in the latest openbmc tree.
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 561BAE00D38
+	for <yocto@yoctoproject.org>; Thu, 22 Aug 2019 18:24:13 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x7N1OAlU022873
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 22 Aug 2019 18:24:11 -0700 (PDT)
+Received: from [128.224.162.148] (128.224.162.148) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0;
+	Thu, 22 Aug 2019 18:24:01 -0700
+To: JH <jupiter.hce@gmail.com>, Yocto discussion list <yocto@yoctoproject.org>
+References: <CAA=hcWQ3N8VevOFcsL+595HZp4UqcgdQgQrQJFpMttDFLZPVdA@mail.gmail.com>
+	<CAA=hcWQ9fMMFw65h4M8LWM_Mqx-MDN2sUDy+pzLSMgFV1bak1Q@mail.gmail.com>
+From: ChenQi <Qi.Chen@windriver.com>
+Message-ID: <d61333d0-47a1-194a-abbc-d3dbf34bc296@windriver.com>
+Date: Fri, 23 Aug 2019 09:37:42 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:45.0) Gecko/20100101
+	Thunderbird/45.4.0
+MIME-Version: 1.0
+In-Reply-To: <CAA=hcWQ9fMMFw65h4M8LWM_Mqx-MDN2sUDy+pzLSMgFV1bak1Q@mail.gmail.com>
+X-Originating-IP: [128.224.162.148]
+Subject: Re: Can Yocto build to set up process running priority in service?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,43 +44,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Aug 2019 01:09:50 -0000
-Content-Type: text/plain;
-	charset=utf-8;
-	delsp=yes;
-	format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 23 Aug 2019 01:24:13 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-at 6:38 PM, James Feist <james.feist@linux.intel.com> wrote:
-
-> On 8/22/19 3:35 PM, Jae Hyun Yoo wrote:
->> Hi brad,
+On 08/23/2019 05:32 AM, JH wrote:
+> I have two processes launched from a service unit, how can the Yocto
+> customer distro to set up high_priority_process?
 >
-> + The mailing list
+> ExecStartPre=low_priority_priority
+> ExecStart=high_priroty_process
 >
->> We met a build break while making Intel platform builds.
->> ERROR: No recipes available for:
->> /home/yoojae/workspace/openbmc/meta-security/recipes-kernel/linux/linu=
-x-stable_5.2.bbappend =20
->> It was added by the subtree update patch but there is no main recipe f=
-or =20
->> it. Did we miss something?
->> Thanks,
->> Jae
+> Thank you.
+>
+> Kind regards,
+>
+> - jh
+>
+> On 8/22/19, JH <jupiter.hce@gmail.com> wrote:
+>> Hi,
+>>
+>> How to set up process running priority for services in Yocto build
+>> using renice or some method?
+>>
+>> Thank you.
+>>
+>> Kind regards,
+>>
+>> - jupiter
+>>
+Not sure about your exact needs. But as far as I know, nice value is 
+inherited. You can just set it for the shell that starts a yocto build. 
+If you are using some scripts, the same logic holds.
 
-Hi Jae
+Best Regards,
 
-linux-stable is in meta-odroid:
-https://lists.yoctoproject.org/pipermail/yocto/2019-August/046424.html
+Chen Qi
 
-It isn=E2=80=99t clear to me if meta-security is supposed to have a hard =
-dependency =20
-on meta-odroid or not.
-
-Hi Armin
-
-Could you suggest what the right thing to do here might be?
-
-thx!
-brad
 
