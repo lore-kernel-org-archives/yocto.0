@@ -1,6 +1,6 @@
-Return-Path: <sam.vr.lewis@gmail.com>
+Return-Path: <crawford.benjamin15@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B21FCE00C25; Thu, 22 Aug 2019 22:47:04 -0700 (PDT)
+	id 1CCD8E00DB6; Fri, 23 Aug 2019 07:33:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,53 +10,52 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (sam.vr.lewis[at]gmail.com)
+	provider *      (crawford.benjamin15[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.215.169 listed in list.dnswl.org]
+	*      [209.85.167.42 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com
-	[209.85.215.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A5FFE00BA1
-	for <yocto@yoctoproject.org>; Thu, 22 Aug 2019 22:47:03 -0700 (PDT)
-Received: by mail-pg1-f169.google.com with SMTP id e11so5136203pga.5
-	for <yocto@yoctoproject.org>; Thu, 22 Aug 2019 22:47:03 -0700 (PDT)
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com
+	[209.85.167.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B224E008F2
+	for <yocto@yoctoproject.org>; Fri, 23 Aug 2019 07:33:03 -0700 (PDT)
+Received: by mail-lf1-f42.google.com with SMTP id x3so7295679lfn.6
+	for <yocto@yoctoproject.org>; Fri, 23 Aug 2019 07:33:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=Y7AEsEcuQ6a3G8C9yaCLX0wHPIq514mRwBkfYsFLrM0=;
-	b=GvMUT7Jw90QXoi9VExP5fLKqIFzfFPUEccmbLbLWern2Q0w70+Ky5Tdrx7rhw9kerC
-	gost6E6PMymlcDqQdDBYmcfJD/aA1VBW2FNJT+CThOr4twq6AXk0rp+FFd1xmP93bRlu
-	PBBTUxsABmr9ehBggvfM7Sz5fNXq1fbNPESK9oyCJEVB7SmnCf4tBrrT/l0q9YP833Mm
-	9juVE5PeUvT+yRJkinTXSZ7LDe2ZfBReo6GLZNio5cS6t5JIUWCT/HUAsSttWqNk6KxY
-	/PkB3F1TX4SfLis8ppZW9AfjpZCZwlSi2Bk/28LNxZ1CWe52YZrrc3VbCvlHyL+8CMUy
-	4oqQ==
+	bh=To+ELG73xs3gKAmW1raKbqhRWUmvgFhaW3XQi6bjU14=;
+	b=p9qEIhmQwedcpMFF5GQvuessz1ONwYglabUW0sqbbQ7UBScQhNlOmFNPiVrKC4tCpD
+	qkI6CNQKXkEkXngge5v9QVzuf2BFs7meO46aM/YK98ZhwbqkUFSymeuFtMz/0IWA7NqV
+	9tsh3gIxg3TemdtORZWVLr8g4cz5k1b8nWZF1LI1zY4tgBsFiOctZE8XanMZ9ISR7tWI
+	E4IKj4Q0jEx6aSc/QIxXEQICP34OqLHjpUnjYJ2tNGMHnfUkTK1eLwp2ZJohZHbzK+rm
+	KxQZAi1a6c2SyWZFF3B4qwm0vcHXbEIuAguDbq1hcS14QND4GYT0oKP5xa4pPaTuUeok
+	Qicg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=Y7AEsEcuQ6a3G8C9yaCLX0wHPIq514mRwBkfYsFLrM0=;
-	b=VNbQsEOphdQTNoWpTtDfKqrZL+vVqfsqYx6E2ReGD99EEk/MlL4STbxyWBDRa0MmN2
-	oZg3bvyiF0Ij5q47SnoGf1U2vvgjsrRJZEPqmX8i28ceh+yX3TQnhghPHW4OwxMk1Hgs
-	/ch+nZOY+0BfCP0dBxFRnXO+X/2bttzmSwQuD124b1irYBg1aPauAaAM5590Y0BdyGCZ
-	zl4fu+NZlCu8qm2ZVCrMlnew7BTh0EbSNjoA2Zphl3g0OEB/Zn5vSQtdBjqETycsTWvS
-	gnFyjY91imqNdze+jcjm7gADDAhpgHvBvvVK9h/plMGOi+qpbyE70YviqqyPCIVby/Ga
-	Igjw==
-X-Gm-Message-State: APjAAAXELNH9/QvxUXqL42mWLCqs1riu1JbG7RHhQYRsWblIEqmiU1Sb
-	130e9zp46MDg40mTA7ziAJglsrMUX3z6Zw3ysbgoHnykM1Y=
-X-Google-Smtp-Source: APXvYqymjXXFpDzwYK+BZSLLFcqhMXOU2knCeRwtUUP5K/NPSmlTZpu2c9S9+UfATC5VZxImJ8ILzDV5PtfRK1e5AkY=
-X-Received: by 2002:a17:90a:bb0c:: with SMTP id
-	u12mr1632475pjr.132.1566539222710; 
-	Thu, 22 Aug 2019 22:47:02 -0700 (PDT)
+	bh=To+ELG73xs3gKAmW1raKbqhRWUmvgFhaW3XQi6bjU14=;
+	b=UzecAI+eCI/ofFzVD96ekpzzhAYxgi1vtKQLtuulEF3lABOfyBayZAVRzrkgRft/zx
+	eCcQFkNfjWP0TKCvlJFzW/6RG5EQoaUjvUb00EdsozIL/SS9886ohHsCPKYMfq5bmQL4
+	bpGBxmROyzkA3fTiQzdpF1++G+spNGACTplyM0vkkhCyXOCT1H//Wjz7RZrLcbrG3XqN
+	jCCr6V2yUdB2ObrchsM91RFjNoMweWb9W3Gf66gH28c27LsdyXNUIYCr7bf6RxbwhfWs
+	yYoKoCicFR9lRAw9jW58zqzdyuW0SpOx0Jzphh0vZn0F+O+9F3gECyOov9gCp0PHqXkf
+	kz7Q==
+X-Gm-Message-State: APjAAAVhe4pC7xsOKXTBSL/TgBNT8PN0Uh0uopABNFdvFckYeMoe0AJc
+	DPFq4VFFpc4UdrXfn9KVddJ2/MBWfy7KOr6p6ekNLQ==
+X-Google-Smtp-Source: APXvYqz9IutVEN26cYZBbmo40uTk+kOK/M9dPvt4zgqnfp03r3Yxx1/dZBMSw/WtwpHzjpqxA6vDhSCUsc6O1hOYTZE=
+X-Received: by 2002:ac2:5225:: with SMTP id i5mr2989213lfl.13.1566570782043;
+	Fri, 23 Aug 2019 07:33:02 -0700 (PDT)
 MIME-Version: 1.0
-From: Sam Lewis <sam.vr.lewis@gmail.com>
-Date: Fri, 23 Aug 2019 15:46:51 +1000
-Message-ID: <CA+ZLECuBBf7PsoKisB3aCuLeKyB-TxJsLWALKoqYMcSN9iVEfw@mail.gmail.com>
+From: Benjamin Crawford <crawford.benjamin15@gmail.com>
+Date: Fri, 23 Aug 2019 15:32:51 +0100
+Message-ID: <CANtEDzQ3y45AjX-uFbPCU2vBBn-pNhcgsUmJD7AJNdbtfd2VgA@mail.gmail.com>
 To: yocto@yoctoproject.org
-Subject: Creating fitImage output images
+Subject: Different package versions between host SDK and target image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,54 +67,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Aug 2019 05:47:04 -0000
-Content-Type: multipart/alternative; boundary="000000000000e57ed70590c255ca"
+X-List-Received-Date: Fri, 23 Aug 2019 14:33:04 -0000
+Content-Type: multipart/alternative; boundary="000000000000fab1500590c9aec3"
 
---000000000000e57ed70590c255ca
+--000000000000fab1500590c9aec3
 Content-Type: text/plain; charset="UTF-8"
 
-For my use case, I'd to generate an fitImage that contains a kernel, dtb &
-squashfs rootfs.
+Hi,
 
-The existing `kernel-fitimage.bbclass` class can be hacked to do what I
-want but it is tricky and doesn't feel quite right, as I'm not really using
-an initramfs. It also requires patching the kernel-fitimage.bbclass file to
-allow non cpio initramfs file types to be included in the resulting
-fitimage.
+I've been happily building images for the Renesas R-Car platform using the
+Yocto project until recently. After clearing the sstate-cache and
+rebuilding, I'm now suddenly encountering an issue where the version of
+OpenCV being installed into the host SDK and the one being installed into
+the target rootfs are different (OpenCV 3.3.x vs 3.4.x). Obviously, I now
+can't develop applications as the binaries try to link to the wrong version
+of the library. Can anyone tell what might have happened?
 
-Would the approach of adding a new, more customisable, fitImage image class
-be a better method to achieve this? Or is sticking with the kernel-fitimage
-the correct approach?
+Kind regards,
+Ben
 
-I noticed xilinx had a xilinx-fitimage image class in their meta-xilinx
-repo that appears to be much of what I want, so could prove to be a good
-starting place if the separate image type is a better way of proceeding:
-https://github.com/Xilinx/meta-xilinx/blob/61e3825585a5616a01de9a2570b81cf9c8a91bb3/classes/xilinx-fitimage.bbclass
-
---000000000000e57ed70590c255ca
+--000000000000fab1500590c9aec3
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div id=3D"gmail-:41n" class=3D"gmail-a3s gmail-aXjCH"><di=
-v dir=3D"ltr"><div>For my use case, I&#39;d to generate an fitImage that co=
-ntains a kernel, dtb &amp; squashfs rootfs. <br></div><div><br></div><div>T=
-he
- existing `kernel-fitimage.bbclass` class can be hacked to do what I=20
-want but it is tricky and doesn&#39;t feel quite right, as I&#39;m not real=
-ly=20
-using an initramfs. It also requires patching the=20
-kernel-fitimage.bbclass file to allow non cpio initramfs file types to=20
-be included in the resulting fitimage.<br></div><div><br></div><div>Would
- the approach of adding a new, more customisable, fitImage image class=20
-be a better method to achieve this? Or is sticking with the=20
-kernel-fitimage the correct approach? <br></div><div><br></div><div>I=20
-noticed xilinx had a xilinx-fitimage image class in their meta-xilinx=20
-repo that appears to be much of what I want, so could prove to be a good
- starting place if the separate image type is a better way of=20
-proceeding: <a href=3D"https://github.com/Xilinx/meta-xilinx/blob/61e382558=
-5a5616a01de9a2570b81cf9c8a91bb3/classes/xilinx-fitimage.bbclass" target=3D"=
-_blank">https://github.com/Xilinx/meta-xilinx/blob/61e3825585a5616a01de9a25=
-70b81cf9c8a91bb3/classes/xilinx-fitimage.bbclass</a></div></div></div></div=
->
+<div dir=3D"ltr">Hi,=C2=A0<div><br></div><div>I&#39;ve been happily buildin=
+g images for the Renesas R-Car platform using the Yocto project until recen=
+tly. After clearing the sstate-cache and rebuilding, I&#39;m now suddenly e=
+ncountering an issue where the version of OpenCV being installed into the h=
+ost SDK and the one being installed into the target rootfs are different (O=
+penCV 3.3.x vs 3.4.x). Obviously, I now can&#39;t develop applications as t=
+he binaries try to link to the wrong version of the library. Can anyone tel=
+l what might have happened?</div><div><br></div><div>Kind regards,<br>Ben</=
+div></div>
 
---000000000000e57ed70590c255ca--
+--000000000000fab1500590c9aec3--
