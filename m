@@ -1,6 +1,6 @@
-Return-Path: <wpdster@gmail.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3C017E00DB5; Fri, 23 Aug 2019 09:04:59 -0700 (PDT)
+	id 38EA0E00DB6; Fri, 23 Aug 2019 09:27:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,51 +10,56 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (wpdster[at]gmail.com)
+	provider *      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.215.195 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.160.175 listed in list.dnswl.org]
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com
-	[209.85.160.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDE42E00BA1
-	for <yocto@yoctoproject.org>; Fri, 23 Aug 2019 09:04:57 -0700 (PDT)
-Received: by mail-qt1-f175.google.com with SMTP id g4so1835466qtq.7
-	for <yocto@yoctoproject.org>; Fri, 23 Aug 2019 09:04:57 -0700 (PDT)
+Received: from mail-pg1-f195.google.com (mail-pg1-f195.google.com
+	[209.85.215.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C0EDE00AB4
+	for <yocto@yoctoproject.org>; Fri, 23 Aug 2019 09:27:19 -0700 (PDT)
+Received: by mail-pg1-f195.google.com with SMTP id d1so6046397pgp.4
+	for <yocto@yoctoproject.org>; Fri, 23 Aug 2019 09:27:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=QFHbIMLjI87ANibr4e6JnHtNHvTwZt990c/UaoyTMRo=;
-	b=qKQ66vohFGOg2E92gsQMHQoeZfheiMakcFcxaooSAdZl+y1rhyJE92rrBFmclyVstv
-	04QHvdXLmfGoiu6pN4bSQtinmgtg4AiREv8L3dPBgr/z2WYE/NniDDl6CwCm4C6m2+vG
-	4t8XzQaVbL5GX/SpInw3qyvCeTfiEP1uXlTy1tC4PRJ/hLXXs7h2kQGRWVvNSQ4EtjeI
-	/rRw+TfW9EyWSW0G6icjUNXtnUi/wdPVo7wR6VF2fq/9ld8EZ6wBZhqsJ+aYa88gLVPC
-	dQpHeuPX+r4v2trnOacdOPukDCNzfaYXMJpt68NZvZ6IrpWSS585uap8YOJKQ3fBC+6b
-	pZXg==
+	h=from:to:subject:date:message-id;
+	bh=/BWP0CRoNTQ8pGZr4KE9JSM0A/WwKytcOAhAdSIrACg=;
+	b=h1uVyj/hUNsWFaZWPfVValPcmpWu/ylA5xv+cGlBWFoyJEWCEtE2CNCTbI0hnZJmNq
+	DdDlY9wz9FVcCNbwJqjiuZp3E75HONwGF6LlDTvNgOoAQQ3Xsc52vQvW/V2GB44+G5ZH
+	Nx8B5P7Gfn7DTw4tmkqzu+FiRSpwUXEIaRq7K6XF98qsoq63RaCd72H6Y+506pqZw7Uw
+	0cwQvgCRd3K94mcwxQZ8PC9KOwqEKBDD7Cyb2tHLsBpSY8GezQjGwzhr2GgfCmXwPcxs
+	kxF18pejEL/0KDrgQhksCtzWAoGmYJB5pzHayaGrDpL4zAL16AyPrabap+7gkAa/NkbA
+	dKtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=QFHbIMLjI87ANibr4e6JnHtNHvTwZt990c/UaoyTMRo=;
-	b=QHBlWDSNKWyGIM919/YustKSLI/SXUgosQshyB8kvdXue2GRPvmyrxJUu+ivZoKrem
-	0EbFRar4hZ8jaoHfsZ+VvocIUEYcT1oQnSVgHiG2dqk0br/kjdN/1GcYR7VEvu8CuoVN
-	pDV5qYV+rzStnriSxt0HsrztvhTvOVrJI9CihA9NlzmewguLfEVeK4BUIXbY97A+feAo
-	Un2iiUj+hSnBnohIiw/s40cgxhVjKjf+QI4B7qlyguOab49MMYSb8KjhoiLeVc+pyLE/
-	X68knTJyTcdMmXVUIIznYdZ7lSt7iCperyEo3CO9AC7kdLZrceEVYRgHJMj2aBbA0fqo
-	JIRg==
-X-Gm-Message-State: APjAAAU4/m2HhwSqcOedm6YnbEoEUE2XXvc9jIWO8gRsZqgAMFG4y4Wp
-	KWiMrd/5px0zv0ghqMMCNBCtpuB4ceLPBMC0iK09j1TQ
-X-Google-Smtp-Source: APXvYqwFYpHotU8ymIkiKKGS8jJhDvxmkli9O6wzaUdbtkWZJc2pAYy1HNroDab8Z3HHLRjSUUdv6jrczeQ2tmj3KRc=
-X-Received: by 2002:ac8:6105:: with SMTP id a5mr5319793qtm.285.1566576296263; 
-	Fri, 23 Aug 2019 09:04:56 -0700 (PDT)
-MIME-Version: 1.0
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Fri, 23 Aug 2019 12:04:30 -0400
-Message-ID: <CAF_dkJCVmf9_B6xHwZsPw_rRP2aYVPdseh0db1ecp+qxFeJffw@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: How to include the checksum of the (read-only) rootfs in an initramfs
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=/BWP0CRoNTQ8pGZr4KE9JSM0A/WwKytcOAhAdSIrACg=;
+	b=aVW3+gzRvpO0k3qS+QqM5/EcrX6jDlcO4r86RPcytfBsJCeaEIFSr6Zu/+MmDVGYVc
+	S+5uBs3rKtIvAjkdcIaqzx61rGENSjGJmEJAjeazTu/THwgBzZL65HEUvxn7woOZJcFT
+	opaVKJrvFUIZpU1lj4tHph42j4VjG4IeOwae8pFbFLpKHBmmJdKcb7ushl42raegawqC
+	i1sBy0ljOGIorvn3yyJbCsJ4Ryu4+VXrPjgI6tZ/gx9+ea6MMHSSNUgi3oYpX24B7ozE
+	EkkHGmQHkrkk7FMGduWb43USMv0lBos8AN+Fd89VwuLeSurRmDgwI7AAF4AP3ckPxlut
+	SfTA==
+X-Gm-Message-State: APjAAAXgKcvfHkkEwthCAMmWajzJJWIN1c6lJhkjIfA++7OyO8wbeEVg
+	cxYuqpqq4Mk7oACqutqxadCO5mk4
+X-Google-Smtp-Source: APXvYqxa/Fozvc5RC/RfOVuOagBB/EJDl0Ht5uvmCTRBJ6rmEfhcDBntV7PPetoRAEcZ+gVUks4VKQ==
+X-Received: by 2002:a62:ab0a:: with SMTP id p10mr6258289pff.144.1566577638362; 
+	Fri, 23 Aug 2019 09:27:18 -0700 (PDT)
+Received: from localhost.localdomain (wsip-184-188-36-2.sd.sd.cox.net.
+	[184.188.36.2]) by smtp.gmail.com with ESMTPSA id
+	b30sm4478634pfr.117.2019.08.23.09.27.17 for <yocto@yoctoproject.org>
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Fri, 23 Aug 2019 09:27:17 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Fri, 23 Aug 2019 09:27:15 -0700
+Message-Id: <1566577636-29800-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 2.7.4
+Subject: [meta-security][PATCH 1/2] linux-stable: rename to more generic bbappend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,73 +71,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 23 Aug 2019 16:04:59 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Fri, 23 Aug 2019 16:27:20 -0000
 
-Is this a solved problem?  If so, what is the correct solution?
+use wildcards
 
-Here are some more details of the problem statement...
-I want to verify that my read-only rootfs has not been modified when I
-boot.  So I bundle the checksum of the the rootfs in /etc/rootfs.hash
-in my initramfs using something a lot like:
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-kernel/linux/{linux-stable_5.2.bbappend => linux-%_5.%.bbappend} | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename recipes-kernel/linux/{linux-stable_5.2.bbappend => linux-%_5.%.bbappend} (100%)
 
-do_install() {
-    install -d -m 0755 ${D}/etc
-    sha256sum -b ${DEPLOY_DIR_IMAGE}/base-image-${MACHINE}.squashfs-xz
-| cut -c-64 > ${D}/etc/rootfs.hash
-    install -d -m 0755 ${D}/init.d
-    install -m 0755 ${WORKDIR}/rootfs ${D}/init.d/90-rootfs
-}
+diff --git a/recipes-kernel/linux/linux-stable_5.2.bbappend b/recipes-kernel/linux/linux-%_5.%.bbappend
+similarity index 100%
+rename from recipes-kernel/linux/linux-stable_5.2.bbappend
+rename to recipes-kernel/linux/linux-%_5.%.bbappend
+-- 
+2.7.4
 
-This is part of my "validate-rootfs.bb" recipe which is part of my
-initramfs image.
-
-The problem is, I need to ensure that
-${DEPLOY_DIR_IMAGE}/base-image-${MACHINE}.squashfs-xz is up to date
-prior to the execution of my do_install() task.  So I added:
-
-do_install[depends] += "base-image:do_image_complete"
-
-to my recipe.  That has worked great... until I noticed that if I do:
-
-$ bitbake base-image -ccleansstate
-$ bitbake base-image
-
-I generate a new rootfs, with new timestamps, which means that it will
-have a new checksum.
-
-The problem is, since none of the inputs to base-image.bb have
-changed, none of the checksums have changed, so bitbake doesn't think
-it needs to run my validate-rootfs.bb recipe, so I don't get a new
-checksum embedded in my initramfs.
-
-So, I feel like I am doing something wrong here.  I _could_ generate
-rootfs.hash as part of generating
-${DEPLOY_DIR_IMAGE}/base-image-${MACHINE}.squashfs-xz, but I think I
-would still have the problem of making validate-rootfs.bb notice that
-a file in ${DEPLOY_DIR_IMAGE} has changed and therefore it should run
-again.
-
-Digging through the output of
-
-$ bitbake-dumpsig -t validate-rootfs do_install
-
-I noticed a line that read:
-
-This task depends on the checksums of files: []
-
-which looked promising.  Digging through the source code, I intuited
-that I could add something like:
-
-do_install[file-checksums] +=
-"${DEPLOY_DIR_IMAGE}/base-image-${MACHINE}.squashfs-xz:False"
-
-to my recipe.  This appeared to work at first, but also appears to be
-totally undocumented, and even as I write this, I am seeing situations
-where the checksum doesn't get recalculated.
-
-So I wonder if other folks have tried to solve this problem, and how
-they have done so.
-
---wpd
 
