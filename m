@@ -1,62 +1,94 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <rudolf.streif@ibeeto.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4918E00D7E; Mon, 26 Aug 2019 08:23:21 -0700 (PDT)
+	id D4D9BE00D83; Mon, 26 Aug 2019 10:11:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.171 listed in list.dnswl.org]
+	*      [209.85.215.182 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com
-	[209.85.222.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49A79E00D4F
-	for <yocto@yoctoproject.org>; Mon, 26 Aug 2019 08:23:19 -0700 (PDT)
-Received: by mail-qk1-f171.google.com with SMTP id s145so14321151qke.7
-	for <yocto@yoctoproject.org>; Mon, 26 Aug 2019 08:23:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=AkHBNL03dj6TBE3Y2zgpWjbN5doAIGBMP9GQxUmCQEk=;
-	b=csxYncO1Cv1YCItMC5/zgYtO/3iYyexXJtS3buNPmn5wmU7HYr17dE7QT5yhjRVJ+p
-	SQS4/EPXJ1Dr/s8GwFHndU86hs020ecG8m5beuPlQx2RYK8BsKX+eHmrozXEGiunnNsC
-	9HREc+T6WkZQley4qDAX8PTClas/GHJfXF+QrlSx4tsHSa0Ly1VFPYbG/sbrep8iHAms
-	FbNjqpAKzh9MNnf4NihC8mXrchqMfGoXlpNjz1lteZ7qCi84gNOX7dzE6h/urheXA4+o
-	ApOATvTdtwHffm/ItN29X91hQ/aVBUcOxuZ3X4Le1X3g8XH9UEN8Ub59LvBbSJ7teoqm
-	MrUA==
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com
+	[209.85.215.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB831E00D53
+	for <yocto@yoctoproject.org>; Mon, 26 Aug 2019 10:11:13 -0700 (PDT)
+Received: by mail-pg1-f182.google.com with SMTP id p3so10968187pgb.9
+	for <yocto@yoctoproject.org>; Mon, 26 Aug 2019 10:11:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
+	h=subject:to:references:from:openpgp:autocrypt:message-id:date
+	:user-agent:mime-version:in-reply-to;
+	bh=pECmBTpDWr5YZU6GLCMa1nIAWqyxDLnQHQB0kl2w4c4=;
+	b=BWPcZa+LzaMf3E5pxaHS2Ufx4z5obhtwFmijdWcdNLhDkW4jwzsrHWoYEvVtJlzLpC
+	Sr/xLaAKS6MtTXW3WxqCBgTV1w7eiVewQOZRt/iCD8yj04w3QuZs8Ui8QXj6Z31dDDuK
+	/iTmaqgTynuYzwXAkUV76JuxtlUBBoqkkWvQuf8H+u+toSiAj3VFeeQp62UlMYN/JDkD
+	A7L2GNmmROSK3qQQViQXdoYxxDgE3FOE/SzcuIvRf0k5u+Oyxr7mZGVWY2x62ZdkAVBf
+	Kt54eREcynYwJNY+bUQLOILOINE2BYlspkn24KKFn4lIooYoXRHNnstjZ1BIxXhELxTU
+	/S5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=AkHBNL03dj6TBE3Y2zgpWjbN5doAIGBMP9GQxUmCQEk=;
-	b=kNhAfY5mP5wjcRQpu4BieA0IqsDX0iwblO+IraZzxfQ9jT++Y/g6csseBZ4JkwzSMx
-	0uvxlE8H8n2QsMYaLSA9bfXr/3WhrNP0JStuTuMUIBBBPEVEh5kgtY9KCcw8WZBzNOot
-	U/JXwuwdEDkeiE2ppjJOZz+n+b30pasTT26H4AsGdWSJJv6HXy02MW9H9tcxOzBlt4JN
-	xEp68kCXA/5E6vDU+infCDLIpcZ+BrntfHMrXfLDJlHHCZ7ND4aFHpOJ7fvL8UnQisFG
-	FSo8oL2kJykbGw7nEPEbs3fckcWlwue9Ss/9vBCs848j2alrK4fd5pdetbPLEwzPg29h
-	lX4Q==
-X-Gm-Message-State: APjAAAVFpXwHBujimouzxG7SbWXXlOk4TjsGJgDEZAdtVBc/rpkcFMr5
-	seyFuz4x6gN7L2sRwutBDfhTR0I9byn3C386oDFG0DxF
-X-Google-Smtp-Source: APXvYqzYTj22A5W/ee+wmA/aOmJAWiLexp1kj+8SzHJ2AvENIesC1Dly1zbi6LuNXgXYo3Qgiz2lYPhK4LRZWITKH/0=
-X-Received: by 2002:a05:620a:131b:: with SMTP id
-	o27mr16773461qkj.140.1566832998409; 
-	Mon, 26 Aug 2019 08:23:18 -0700 (PDT)
+	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
+	:message-id:date:user-agent:mime-version:in-reply-to;
+	bh=pECmBTpDWr5YZU6GLCMa1nIAWqyxDLnQHQB0kl2w4c4=;
+	b=S7rouGf5zetQGGqBw8zsdUXerQqWpL4Ae1ichTU7uW0PgJwEPUpLWV9SXN8ETP7xqc
+	wwb5xrDiBPDrUM4oguiLxlvjNKgbo9YSJet4BKv3etkt0sU7U1siAzJZDsx6TFIYF3cZ
+	Ba0TB2tE6o+EjDDfCAYAqbVuN4KYz5fXmab8G2TDoX2kx6Sii0aAN2WvozStzLvopjDo
+	KCJL/ti8icog9vNyl1PgLLhR2/lYuxHi346A5uxNQBX3paqUQIDSoAdqM4J0hU/Z/qDV
+	mKCNgl1FNHCUd3HFeXgdaTYNIyh8Oc2paDgiiEXMojzpiSnvwc+wXq/gH0zJffljmJhr
+	XoiQ==
+X-Gm-Message-State: APjAAAXyhKUi5V/me14jxqB0F7Id68Jpg7aV1zSbKx+arY3XctljRqNl
+	zVIx20Bb6DgU4A5Z1L0X7vduQ2GHwOwt4A==
+X-Google-Smtp-Source: APXvYqw5zVCFWyY4beMhxVKV6a23vvmiXz9Az+/P/eUDT78SXDR8xBjA4yJuoUgp2HK1T0KYBrfv/A==
+X-Received: by 2002:a17:90a:fa8f:: with SMTP id
+	cu15mr21088383pjb.119.1566839472806; 
+	Mon, 26 Aug 2019 10:11:12 -0700 (PDT)
+Received: from rjs-zotac.ibeeto.com (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
+	by smtp.gmail.com with ESMTPSA id
+	a4sm13513689pfi.55.2019.08.26.10.11.10
+	(version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+	Mon, 26 Aug 2019 10:11:11 -0700 (PDT)
+To: Michael Eichhorn <devil.69@gmx.de>, yocto@yoctoproject.org
+References: <trinity-777d9367-a666-4cf2-a1ed-bc9942f2a8bf-1566828959769@3c-app-gmx-bs32>
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
+	mQENBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
+	Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
+	/Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
+	cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
+	3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
+	AAG0KlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPokBNwQTAQgA
+	IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
+	3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
+	txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
+	lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
+	Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
+	zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvuQENBFhQFAQBCADXoLKCuF48
+	5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
+	RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
+	w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
+	svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
+	tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAGJAR8EGAEIAAkFAlhQFAQC
+	GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
+	s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
+	fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
+	Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
+	P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
+	ROZj4g==
+Message-ID: <b808948d-2bc7-f055-d2ca-262261b9a988@ibeeto.com>
+Date: Mon, 26 Aug 2019 10:11:09 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
 MIME-Version: 1.0
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Mon, 26 Aug 2019 17:23:04 +0200
-Message-ID: <CAGAf8LwaOtu0OaRR+FuikEgvXTkNst6KUmd2wF_MV+t0UxTwCQ@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: WARNING: bluez5-5.50-r0 do_fetch: Failed to fetch URL file://variscite-bt.conf
+In-Reply-To: <trinity-777d9367-a666-4cf2-a1ed-bc9942f2a8bf-1566828959769@3c-app-gmx-bs32>
+Subject: Re: kernel modul install
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,65 +100,143 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Aug 2019 15:23:21 -0000
-Content-Type: multipart/alternative; boundary="0000000000004aec1e059106bcef"
+X-List-Received-Date: Mon, 26 Aug 2019 17:11:14 -0000
+X-Groupsio-MsgNum: 46409
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="bz7QUEcvc7URqCxVX547e0T5aQWJm7yWb"
 
---0000000000004aec1e059106bcef
-Content-Type: text/plain; charset="UTF-8"
+--bz7QUEcvc7URqCxVX547e0T5aQWJm7yWb
+Content-Type: multipart/mixed; boundary="B9L5gYnAHeOrHI7ZIMgSVcrnS0hlwQPX0";
+ protected-headers="v1"
+From: Rudolf J Streif <rudolf.streif@ibeeto.com>
+To: Michael Eichhorn <devil.69@gmx.de>, yocto@yoctoproject.org
+Message-ID: <b808948d-2bc7-f055-d2ca-262261b9a988@ibeeto.com>
+Subject: Re: [yocto] kernel modul install
+References: <trinity-777d9367-a666-4cf2-a1ed-bc9942f2a8bf-1566828959769@3c-app-gmx-bs32>
+In-Reply-To: <trinity-777d9367-a666-4cf2-a1ed-bc9942f2a8bf-1566828959769@3c-app-gmx-bs32>
 
-Hello Folks,
+--B9L5gYnAHeOrHI7ZIMgSVcrnS0hlwQPX0
+Content-Type: multipart/alternative;
+ boundary="------------EEAC06A3804A9007F3B44306"
+Content-Language: en-US
 
-While doing the following YOCTO build:
-http://variwiki.com/index.php?title=Yocto_Build_Release&release=RELEASE_MORTY_V1
-
-Actually, using the latest available tag: thud-fslc-4.14.78-mx6ul-v1.1
-<https://github.com/varigit/variscite-bsp-platform/releases/tag/thud-fslc-4.14.78-mx6ul-v1.1>
-From https://github.com/varigit/variscite-bsp-platform/tags
-
-I've got the following error, while compiling for both:
-bitbake -k fsl-image-gui
-bitbake -k fsl-image-qt5
-
-Seems, that the local file: file://variscite-bt.conf is somehow missing?!
-
-I can add this file artificially, but, the question is: why this file is
-missing???
-_______
-
-Transcript follows:
-bluez5-5.50-r0 do_fetch: Failed to fetch variscite-bt.conf
-https://pastebin.com/U9LRtNwr
-
-Thank you,
-Zoran
-_______
-
---0000000000004aec1e059106bcef
-Content-Type: text/html; charset="UTF-8"
+--------------EEAC06A3804A9007F3B44306
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello Folks,</div><div><br></div><div>While doing the=
- following YOCTO build:</div><div><a href=3D"http://variwiki.com/index.php?=
-title=3DYocto_Build_Release&amp;release=3DRELEASE_MORTY_V1">http://variwiki=
-.com/index.php?title=3DYocto_Build_Release&amp;release=3DRELEASE_MORTY_V1</=
-a></div><div><br></div><div>Actually, using the latest available tag: <a hr=
-ef=3D"https://github.com/varigit/variscite-bsp-platform/releases/tag/thud-f=
-slc-4.14.78-mx6ul-v1.1">thud-fslc-4.14.78-mx6ul-v1.1</a></div><div>From <a =
-href=3D"https://github.com/varigit/variscite-bsp-platform/tags">https://git=
-hub.com/varigit/variscite-bsp-platform/tags</a></div><div><br></div><div>I&=
-#39;ve got the following error, while compiling for both:<br></div><div>bit=
-bake -k fsl-image-gui</div><div>bitbake -k fsl-image-qt5</div><div><br></di=
-v><div>Seems, that the local file: file://variscite-bt.conf is somehow miss=
-ing?!<br></div><div><br></div><div>I can add this file artificially, but, t=
-he question is: why this file is missing???<br></div><div>_______</div><div=
-><br></div><div>Transcript follows:<span style=3D"font-weight:normal"><font=
- size=3D"2"><br></font></span></div><div><span style=3D"font-weight:normal"=
-><font size=3D"2">bluez5-5.50-r0 do_fetch: Failed to fetch variscite-bt.con=
-f</font></span><font size=3D"2"><span style=3D"font-weight:normal"><br></sp=
-an></font></div><div><font size=3D"2"><span style=3D"font-weight:normal"><a=
- href=3D"https://pastebin.com/U9LRtNwr">https://pastebin.com/U9LRtNwr</a></=
-span></font></div><div><div><br></div><div>Thank you,</div><div>Zoran</div>=
-<div>_______</div><div><br></div><span style=3D"font-weight:normal"></span>=
-</div></div>
+Michael,
 
---0000000000004aec1e059106bcef--
+You might want to share your recipe.
+
+Since do_install works on a private sysroot for your recipe it is
+unlikely that your module conflicts with a module with the same name
+from another recipe. You might install the module twice or you might
+have some leftovers from your development process. You might want to
+start with a clean environment: bitbake -c cleanall <recipe>.
+
+:rjs
+
+On 8/26/19 7:15 AM, Michael Eichhorn wrote:
+> Dear all,
+> =C2=A0
+> i am new to yocto and i created a recipe for a kernel modul for my bt
+> and wifi chip.
+> it seems that everthing works, but in my do_install i receive an error:=
+
+> ...is trying to install files into a shared area when those files
+> already exist...
+> My receipe is somehow producing an bluetooth.ko which is already
+> existing because
+> of my linux-mainline recipe.
+> What can i do? the relevant one is the one from my chip recipe.
+> =C2=A0
+> Best regards,
+> Michael
+>
+--=20
+-----
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3386 x700
+
+
+--------------EEAC06A3804A9007F3B44306
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <p>Michael,</p>
+    <p>You might want to share your recipe.</p>
+    <p>Since do_install works on a private sysroot for your recipe it is
+      unlikely that your module conflicts with a module with the same
+      name from another recipe. You might install the module twice or
+      you might have some leftovers from your development process. You
+      might want to start with a clean environment: bitbake -c cleanall
+      &lt;recipe&gt;.</p>
+    <p>:rjs<br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 8/26/19 7:15 AM, Michael Eichhorn
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:trinity-777d9367-a666-4cf2-a1ed-bc9942f2a8bf-1566828959769@3c=
+-app-gmx-bs32">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div style=3D"font-family: Verdana;font-size: 12.0px;">
+        <div>Dear all,</div>
+        <div>=C2=A0</div>
+        <div>i am new to yocto and i created a recipe for a kernel modul
+          for my bt and wifi chip.</div>
+        <div>it seems that everthing works, but in my do_install i
+          receive an error:</div>
+        <div>...is trying to install files into a shared area when those
+          files already exist...</div>
+        <div>My receipe is somehow producing an bluetooth.ko which is
+          already existing because</div>
+        <div>of my linux-mainline recipe.</div>
+        <div>What can i do? the relevant one is the one from my chip
+          recipe.</div>
+        <div>=C2=A0</div>
+        <div>Best regards,</div>
+        <div>Michael</div>
+      </div>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+    </blockquote>
+    <pre class=3D"moz-signature" cols=3D"72">--=20
+-----
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3386 x700</pre>
+  </body>
+</html>
+
+--------------EEAC06A3804A9007F3B44306--
+
+--B9L5gYnAHeOrHI7ZIMgSVcrnS0hlwQPX0--
+
+--bz7QUEcvc7URqCxVX547e0T5aQWJm7yWb
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAl1kEq0ACgkQjYyoKScz
+m3WYJgf/R1sm4Kokn0yXEuPFIA9tjxlNT0l0sFtwkcFv6vrWEndKVTfnA55b6G2W
++MgitxdIZ4L8MotT6Z6asvGtXbonizHneFkXpR3/QZpE/VJHfLM1nDmWukIv785X
+frziZ8W11allyQU6iVG64nkoQrB8gNZxnkDkPwsPEOY4h/k42XkAaS1n6BW3SqyW
+2k+GFKeh2y2xwj+mafGtLQocozBWB/tXW76v57u2qeriJJVWce+Kqhmx1KtDImcN
+W+OfN3t8zW8kx/qicUB3g3zuZSq0S6ySGL7Cj25qUBdv4fh9gvfec0Nk63VYLvZA
+Rdz0NNAQQA6DzZP/G9rR8SndhKbdYg==
+=U4EV
+-----END PGP SIGNATURE-----
+
+--bz7QUEcvc7URqCxVX547e0T5aQWJm7yWb--
