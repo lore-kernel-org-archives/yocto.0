@@ -1,68 +1,65 @@
-Return-Path: <ola.x.nilsson@axis.com>
+Return-Path: <devil.69@gmx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6E14E00CD7; Mon, 26 Aug 2019 05:04:00 -0700 (PDT)
+	id 29BF0E00D53; Mon, 26 Aug 2019 07:21:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, FREEMAIL_FROM, HTML_MESSAGE, MIME_HTML_ONLY,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (devil.69[at]gmx.de)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [195.60.68.11 listed in list.dnswl.org]
-X-Greylist: delayed 312 seconds by postgrey-1.32 at yocto-www;
-	Mon, 26 Aug 2019 05:03:59 PDT
-Received: from bastet.se.axis.com (bastet.se.axis.com [195.60.68.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E269E00CD7
-	for <yocto@yoctoproject.org>; Mon, 26 Aug 2019 05:03:59 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by bastet.se.axis.com (Postfix) with ESMTP id 12C6A1814A;
-	Mon, 26 Aug 2019 13:58:46 +0200 (CEST)
-X-Axis-User: NO
-X-Axis-NonUser: YES
-X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
-Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
-	by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
-	port 10024)
-	with LMTP id angyoB0pF3R3; Mon, 26 Aug 2019 13:58:45 +0200 (CEST)
-Received: from boulder02.se.axis.com (boulder02.se.axis.com [10.0.8.16])
-	by bastet.se.axis.com (Postfix) with ESMTPS id D0B3D183B8;
-	Mon, 26 Aug 2019 13:58:44 +0200 (CEST)
-Received: from boulder02.se.axis.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id B9CF41A063;
-	Mon, 26 Aug 2019 13:58:44 +0200 (CEST)
-Received: from boulder02.se.axis.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id ADA9E1A062;
-	Mon, 26 Aug 2019 13:58:44 +0200 (CEST)
-Received: from seth.se.axis.com (unknown [10.0.2.172])
-	by boulder02.se.axis.com (Postfix) with ESMTP;
-	Mon, 26 Aug 2019 13:58:44 +0200 (CEST)
-Received: from xbox06.axis.com (xbox06.axis.com [10.0.15.176])
-	by seth.se.axis.com (Postfix) with ESMTP id A11261FD5;
-	Mon, 26 Aug 2019 13:58:44 +0200 (CEST)
-Received: from XBOX04.axis.com (10.0.5.18) by xbox06.axis.com (10.0.15.176)
-	with Microsoft SMTP Server (TLS) id 15.0.1395.4;
-	Mon, 26 Aug 2019 13:58:44 +0200
-Received: from lnxolani1 (10.0.5.60) by xbox04.axis.com (10.0.5.18) with
-	Microsoft SMTP Server id 15.0.1395.4 via Frontend Transport;
-	Mon, 26 Aug 2019 13:58:44 +0200
-References: <CAA=hcWSByxp8OR09orkP6RO9uto6Dpf0rZmsGWigW0yQ82P=0g@mail.gmail.com>
-	<CAA=hcWRHaOj+24TYr9WBcaZqBbTjn-6BXjdG+Q=dEe3J355gBA@mail.gmail.com>
-	<CANNYZj-=r2pf7bKNYjT+=j=rWC_ajYxZ2jUR5OQxpzpiEw-Egw@mail.gmail.com>
-	<CAA=hcWQYO82WQiqwQvEgwbX3EwG+yLNWoWtT0WZR=m7zfdO3aA@mail.gmail.com>
-	<CANNYZj-osAvfX3ga98oQSegsewdKixxFjd7RYuYG6uJGg8qoFw@mail.gmail.com>
-	<CAA=hcWTZ4Ob=5+OZk9MowBw-Rc85Z9MXGKq4Hqs+=L=_c_KAdQ@mail.gmail.com>
-User-agent: mu4e 1.0; emacs 27.0.50
-From: Ola x Nilsson <ola.x.nilsson@axis.com>
-To: JH <jupiter.hce@gmail.com>
-In-Reply-To: <CAA=hcWTZ4Ob=5+OZk9MowBw-Rc85Z9MXGKq4Hqs+=L=_c_KAdQ@mail.gmail.com>
-Date: Mon, 26 Aug 2019 13:58:44 +0200
-Message-ID: <jwqzhjwi1e3.fsf@axis.com>
+	*      [212.227.15.18 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+X-Greylist: delayed 303 seconds by postgrey-1.32 at yocto-www;
+	Mon, 26 Aug 2019 07:21:03 PDT
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AD72E00C5C
+	for <yocto@yoctoproject.org>; Mon, 26 Aug 2019 07:21:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=badeba3b8450; t=1566829262;
+	bh=JQvskXjbpaX3rsFZ9MEGb3F4bw2IkDteaoXE3IJkqmY=;
+	h=X-UI-Sender-Class:From:To:Subject:Date;
+	b=X/kBZha3d/5YxOIofeL1iKc78BZMq70CjkqZl3y5Q/Q2zTP+BUxM67Laew5mlFDM5
+	f1COODeUPxON1oWats1Zt+V2FT+KcXSq6iO2OXmmDftJ3yNX/Vogq9a7lSfCDXz91z
+	kTQ6tlSS5aEFBmo7Yr6Oqe7iCMM5ozq9qFMuEBEI=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [217.108.170.8] ([217.108.170.8]) by web-mail.gmx.net
+	(3c-app-gmx-bs32.server.lan [172.19.170.84]) (via HTTP);
+	Mon, 26 Aug 2019 16:15:59 +0200
 MIME-Version: 1.0
-X-TM-AS-GCONF: 00
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: QA issue applibrary rdepends on app-dev [dev-deps], where is the do_package_qa?
+Message-ID: <trinity-777d9367-a666-4cf2-a1ed-bc9942f2a8bf-1566828959769@3c-app-gmx-bs32>
+From: "Michael Eichhorn" <devil.69@gmx.de>
+To: yocto@yoctoproject.org
+Date: Mon, 26 Aug 2019 16:15:59 +0200
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:4BrK9ytsaQHMMisz4cVHIyY7tgDcDcGY6lEP67cjKBAmMidnrpCsG6gw/bor8zALwcgM3
+	eJdvo6J7vQSCiWUQ3Vkze2DLewHWogfDKmwlEjdW7UKBIjw9lLl8EAYn5UdC+qZ+rIvNJ6nYRwLM
+	GnfKeFArdp+zzGcNJu6M5yegWtbInlhTESHhEvJ3DCHUmyvZ3eWFnBH86QitIc0nIFO3YMSuQRyE
+	mnm4KDtdkIcdNNUihPDeiV+9zL9uvSRT7X5BixL7XJ1bYa39M9ocYCTVNcpA/lUNLUjqzv+ZMJJa
+	KA=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:91Uzc6l1FZE=:JuozsTsoJMHOMZJjK0ZMzp
+	ldMCbWD1JlPhUeibBMubKCNUcvXG9JHzQdWDL1hIcrEYdyA+y01A541CD13zSu+4KhIDLtMTi
+	czWRrgfHzvKGU79fo/ru2jwYhK0mTjGzAhd7MzADUW2Va1WBtCFDuT1Ue93wjCWS3J1fdDEOC
+	e6iuuKjFU/ze9Q6Z7tI+fj8FKSpo/dMTkZSSMvpviggJVSQzTuqDD6PeOm9kee/QOUZEL8fbV
+	g/dgMCp+nZ/93BRIPCYHNkzUH/CNcwszymaZgeCfpTThcREhGWkHV8iCp1wqPCLWcUv2AaVzu
+	utUDqk+bm+tV9o7ncPQ8KBqgKljzbnTT6EO0OugdgBchQ9xeuut3asGmwR1X6psOUBdylOw4r
+	NQGuFUI8eZT6C3tqyKxv83LpMfNn9GAnZeL/xNleDJu8R0lIxfy4w6UagO9hKI4ysk+Vo7T86
+	otRHtb1qbggP+YBX2eXi15A4Fiou/aeH0D+fw+dGHp9+nBfcFlhWQ9xv17b5z5vBtrvRppmD1
+	jfGUp+LK1bO/LMdopYGnjJWQqm/3XkUmf6AQnMyYb2XnQxxAehJ/wCnKTnm3Is1xHg09ZbGT7
+	retY8isiiLXaQNzrbFH04SneEDHkIj7dr3VX4X8ZzZbzFgOmQWYvdivoTJ9LXZrZU/S8jIDnt
+	VKUM2aTQdzOjNYW9e8JbrnQEQ
+Subject: kernel modul install
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,119 +71,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 Aug 2019 12:04:00 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 26 Aug 2019 14:21:04 -0000
+Content-Type: text/html; charset=UTF-8
 
+<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>Dear all,</div>
 
-You now have nonstandard library names, which will confuse the
-package-split and automatic library dependency checker.  As a result, a
-dependency is added from the applibrary on app-dev.  But depending on
--dev packages is a no-no, hence the QA error.
+<div>&nbsp;</div>
 
-I have no idea whether the renameing of the library is a correct thing -
-it looks weird to me - but if it is, you need to fix the packaging by
-maniplating the FILES_* variables in your recipe.  You can inspect the
-results of package separation in the packages-split folder for your
-recipe.
+<div>i am new to yocto and i created a recipe for a kernel modul for my bt and wifi chip.</div>
 
-/Ola
+<div>it seems that everthing works, but in my do_install i receive an error:</div>
 
+<div>...is trying to install files into a shared area when those files already exist...</div>
 
-On Tue, Aug 06 2019, JH wrote:
+<div>My receipe is somehow producing an bluetooth.ko which is already existing because</div>
 
-> Thanks Alex, here is the error in my application build, it used working well:
->
-> ERROR: app_library-1.0.0-0 do_package_qa: QA Issue: app_library
-> rdepends on app_library-dev [dev-deps]
-> ERROR: app_library-1.0.0-0 do_package_qa: QA run found fatal errors.
-> Please consider fixing them.
-> ERROR: app_library-1.0.0-0 do_package_qa: Function failed: do_package_qa
-> ERROR: Logfile of failure stored in:
-> /home/build/tmp-glibc/work/cortexa7t2hf-neon-oe-linux-gnueabi/app_library/1.0.0-0/temp/log.do_package_qa.6626
-> ERROR: Task (/home/build/oe-core/../meta-app/recipes-core/app_library/app_library_git.bb:do_package_qa)
-> failed with exit code '1'
->
-> There is no do_package_qa in my app_library_git.bb, where is that
-> do_package_qa from? how can I disable it? It sounds every easy in the
-> document to disable it, but it did not give any clues -:(.
->
-> Thank you.
->
-> Kind regards,
->
-> - jh
-> On 8/6/19, Alexander Kanavin <alex.kanavin@gmail.com> wrote:
->> It may help if you copy-paste the exact error you are getting, and the
->> content of the directory where it happens.
->>
->> Alex
->>
->> On Tue, 6 Aug 2019 at 13:09, JH <jupiter.hce@gmail.com> wrote:
->>
->>> On 8/6/19, Alexander Kanavin <alex.kanavin@gmail.com> wrote:
->>> > You don't; package_qa is reporting real issues with your packaging, so
->>> you
->>> > need to address them.
->>>
->>> Well, my first issue is I need to build it, the document said it can
->>> be disabled, but did not say how, appreciate anyone helps how to
->>> disable it.
->>>
->>> Thank you
->>>
->>>
->>> > Alex
->>> >
->>> > On Tue, 6 Aug 2019 at 10:40, JH <jupiter.hce@gmail.com> wrote:
->>> >
->>> >> Hi,
->>> >>
->>> >> According to the latest document:
->>> >>
->>> >> "Package QA checks are now performed during a new do_package_qa task
->>> >> rather than being part of the do_package task. This allows more
->>> >> parallel execution. This change is unlikely to be an issue except for
->>> >> highly customized recipes that disable packaging tasks themselves by
->>> >> marking them as noexec. For those packages, you will need to disable
->>> >> the do_package_qa task as well."
->>> >>
->>> >> How can I disable the do_package_qa task?
->>> >>
->>> >> Thank you.
->>> >>
->>> >> Kind regards,
->>> >>
->>> >> - jh
->>> >>
->>> >> On 8/4/19, JH <jupiter.hce@gmail.com> wrote:
->>> >> > Hi,
->>> >> >
->>> >> > I was running my Yocto build fine until I had a minor change to move
->>> >> > libapplibrary.so to libapplibrry.so.${PN} and made libapplibrary.so
->>> >> > to
->>> >> > a symbolic link of libapplibrry.so.${PN}. Now it got an error of QA
->>> >> > issue applibrary rdepends on app-dev [dev-deps], QA run found fatal
->>> >> > errors, please consider fixing them.
->>> >> >
->>> >> > Even I reverse the changes back the, it still complained the same
->>> >> > error.
->>> >> >
->>> >> > I don't have do_package_qa in my bb file, where is it from? What is
->>> >> > that error about? How to fix it?
->>> >> >
->>> >> > Thank you.
->>> >> >
->>> >> > Kind regards,
->>> >> >
->>> >> > - jh
->>> >> >
->>> >> --
->>> >> _______________________________________________
->>> >> yocto mailing list
->>> >> yocto@yoctoproject.org
->>> >> https://lists.yoctoproject.org/listinfo/yocto
->>> >>
->>> >
->>>
->>
+<div>of my linux-mainline recipe.</div>
+
+<div>What can i do? the relevant one is the one from my chip recipe.</div>
+
+<div>&nbsp;</div>
+
+<div>Best regards,</div>
+
+<div>Michael</div></div></body></html>
 
