@@ -1,6 +1,6 @@
-Return-Path: <joe@deserted.net>
+Return-Path: <GWilson@sakuraus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4D4A6E00DD3; Wed, 28 Aug 2019 10:20:25 -0700 (PDT)
+	id 5CCADE00DE2; Wed, 28 Aug 2019 10:25:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,38 +10,48 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [68.232.129.153 listed in list.dnswl.org]
-X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
-	Wed, 28 Aug 2019 10:20:24 PDT
-Received: from esa1.mentor.iphmx.com (esa1.mentor.iphmx.com [68.232.129.153])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 267B3E0098A
-	for <yocto@yoctoproject.org>; Wed, 28 Aug 2019 10:20:24 -0700 (PDT)
-IronPort-SDR: TnUKBVlmmaxmu7KzGkDhHPje0kQwzKg2ek04HiBo9xJdl+9IMWyCqScvWPlm4yov5DR3a9xD+e
-	BsUt3F5FQsxojpb9v37nWzRY9l1jJ3onoM+/e/HvO/G8B0f3Y1yyDZbIM+fSFb6PKvgektXuR3
-	X41U+YcsOK9FHjSv4IlX9k5ZbLHllpx8mEM1Y5xbLveMtWv/rj+boBbSp09xsKAj/JqwQJl5bc
-	xyd8cUODrvVlTVMquFDPPVP3lzYZw9ZCsw6e3USS/d9BcXwtJPHMkvrjur0gRUbBVv3SWCDOBp
-	A64=
-X-IronPort-AV: E=Sophos;i="5.64,441,1559548800"; 
-	d="asc'?scan'208";a="42652452"
-Received: from orw-gwy-02-in.mentorg.com ([192.94.38.167])
-	by esa1.mentor.iphmx.com with ESMTP; 28 Aug 2019 09:19:21 -0800
-IronPort-SDR: vFijvKMvuJ1uww4/vta+CHvKKMuWW3cOinbwh0wvbTKloIleVORSZJfAl/YIOUnqAiY1uXYVwv
-	J2sXXoZR8oexirQ28uvLUX/jVGCdNUu4646KrnSkPxhtdVzvxcyD1knboHx2VJnkuKwHG9QRQ5
-	OG6AjvCBE4soAt+qcFNIfKHIpTs78aMY3NjgIVNXbs17GNPdQ6a8U1wdhwD0Hc8DvX8sm3OvJs
-	I+yyNFGYf/9mKfHmQrcLyICIkLBRxVfgJL6IMjn7/U1TjvQO4h+R6GSrS/bUJKEt0VtmGfPGDh
-	hdk=
-Date: Wed, 28 Aug 2019 13:19:17 -0400
-From: Joe MacDonald <joe@deserted.net>
-To: Mikko Rapeli <mikko.rapeli@bmw.de>
-Message-ID: <20190828171915.GA13881@deserted.net>
-References: <1567006222-23574-1-git-send-email-mikko.rapeli@bmw.de>
+	*      [209.222.82.123 listed in list.dnswl.org]
+Received: from 11pmail.ess.barracuda.com (11pmail.ess.barracuda.com
+	[209.222.82.123])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92C71E00D38
+	for <yocto@yoctoproject.org>; Wed, 28 Aug 2019 10:25:58 -0700 (PDT)
+Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
+	mx2.us-east-2b.ess.aws.cudaops.com (version=TLSv1.2
+	cipher=AES256-SHA256 bits=256 verify=NO);
+	Wed, 28 Aug 2019 17:25:57 +0000
+Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
+	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
+	Wed, 28 Aug 2019 10:25:55 -0700
+Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
+	([::1]) with mapi id 15.01.0669.032; Wed, 28 Aug 2019 10:25:55 -0700
+From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Thread-Topic: Error trying to generate Raspberry Pi initramfs
+Thread-Index: AdVdu7b8+55kGsaISpexjprS7ESBNw==
+Date: Wed, 28 Aug 2019 17:25:55 +0000
+Message-ID: <52773198ef8346c98474992339fade98@sakuraus.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.5.158]
 MIME-Version: 1.0
-In-Reply-To: <1567006222-23574-1-git-send-email-mikko.rapeli@bmw.de>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH 1/2] meson-selinux.bbclass: fix meson flags for glib-2.0-native
+X-BESS-ID: 1567013157-893003-24407-131667-1
+X-BESS-VER: 2019.1_20190823.2224
+X-BESS-Apparent-Source-IP: 12.26.104.5
+X-BESS-Outbound-Spam-Score: 0.50
+X-BESS-Outbound-Spam-Report: Code version 3.2,
+	rules version 3.2.2.217816 [from 
+	cloudscan14-18.us-east-2a.ess.aws.cudaops.com]
+	Rule breakdown below
+	pts rule name              description
+	---- ---------------------- --------------------------------
+	0.50 BSF_RULE7568M          META: Custom Rule 7568M 
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.50 using account:ESS29408 scores of
+	KILL_LEVEL=7.0 tests=BSF_RULE7568M, BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status: 1
+Subject: Error trying to generate Raspberry Pi initramfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,130 +63,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 28 Aug 2019 17:20:25 -0000
-X-Groupsio-MsgNum: 46431
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="3V7upXqbjpZ4EhLz"
-Content-Disposition: inline
-
---3V7upXqbjpZ4EhLz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Wed, 28 Aug 2019 17:25:59 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Mikko,
+I'm trying to generate an initramfs for a raspberry pi 3 for a sumo build. =
+We are based off of the Qt boot2qt system.
 
-Is this specifically for warrior (or thud), maybe?  The following commit
-explains the current logic:
+I have followed the instructions in the meta-raspberrypi.pdf documentation,=
+ section 3.14 Image with Initramfs.
 
-    commit bb0c9c3abcb935e4b362eb57985e1ee7fec0bfe0
-    Author: Yi Zhao <yi.zhao@windriver.com>
-    Date:   Wed Jun 12 15:53:20 2019 +0800
-   =20
-        glib-2.0: fix configure error for meson build
-   =20
-        In glib 2.60.x, it turns selinux into a meson feature. We should use
-        '-Dselinux=3Denabled/disabled' rather than '-Dselinux=3Dtrue/false'=
- to
-        enable/disable the feature.
-   =20
-        Add meso-enable-selinux.bbclass for this change and inherit it in
-        glib-2.0 bbappend to fix the configure error.
-   =20
-        Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-        Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
+I edited the meta-raspberrypi/recipes-kernel/linux/linux-raspberry.inc file=
+ and added the variables into my local.conf file. I created a rpi-minimal-i=
+nitramfs.bb recipe and it is created when I build the system. But the comma=
+nd line that is put into the boot partition is:
 
-and the second patch is already present in tree:
+dwc_otg.lpm_enable=3D0  root=3D/dev/mmcblk0p2 rootfstype=3Dext4 rootwait   =
+ fbcon=3Dmap:10 fbcon=3Dfont:VGA8x8
 
-    commit 087fe5c8144c246c6361bd8bcbd1ffd9e9b675bb
-    Author: Yi Zhao <yi.zhao@windriver.com>
-    Date:   Fri Aug 9 17:48:00 2019 +0800
-   =20
-        libselinux: fix build with glibc 2.30
-   =20
-        Fix build error:
-        procattr.c:27:14: error: static declaration of 'gettid' follows
-        non-static declaration
-           27 | static pid_t gettid(void)
-              |              ^~~~~~
-        In file included from /buildarea/build/tmp/work/core2-64-poky-linux=
-/libselinux/2.8-r0/recipe-sysroot/usr/include/unistd.h:1170,
-                         from procattr.c:2:
-        /buildarea/build/tmp/work/core2-64-poky-linux/libselinux/2.8-r0/rec=
-ipe-sysroot/usr/include/bits/unistd_ext.h:34:16:
-        note: previous declaration of 'gettid' was here
-           34 | extern __pid_t gettid (void) __THROW;
-              |                ^~~~~~
-   =20
-        Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-        Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
+No initramfs.
 
-This is what my current work tree looks like, for reference:
+In the linux-raspberry.inc file, after the insertion point for the new kern=
+el variables, there is a test for KERNEL_INITRAMFS. I tried setting this in=
+ my local.conf file, but when I do I get an error for a missing file:
 
-  $ repo forall -p -c git log -1 --pretty=3Doneline
-  project meta-openembedded/
-  2ebaa8df1257389161d0bee9e553c28f63e52005 python3-pyatspi: Add Dbus ATSPI =
-recipe
- =20
-  project meta-selinux/
-  154654a6fe12206a6b9ad6d8c36a4dbe672bcc46 selinux-python: Fix dependency f=
-or ntpath
- =20
-  project yocto-mainline/
-  ca2207f418b7847ffce4b8c53a5a442e5cf461d9 commands.py: fix typo
+| /home/..../tmp/deploy/images/raspberrypi3/uImage1-raspberrypi3.bin: No su=
+ch file or directory
 
--J.
+So, apparently that can't be set directly.
 
-[[yocto] [meta-selinux][PATCH 1/2] meson-selinux.bbclass: fix meson flags f=
-or glib-2.0-native] On 19.08.28 (Wed 18:30) Mikko Rapeli wrote:
+There seems to be something missing in the instructions in the meta-raspber=
+rypi.pdf documentation. Anyone that has any experience with setting this up=
+ and can help me figure out what I'm missing, I would greatly appreciate th=
+e help.
 
-> With latest poky master, glib-2.0-native fails to compile:
->=20
-> | meson.build:1:0: ERROR: Value "false" for combo option is not one of th=
-e choices. Possible choices are: "enabled",
->  "disabled", "auto".
->=20
-> Thus use enabled and disabled when enabling and disabling flags
-> with meson. Now glib-2.0-native compiles again.
->=20
-> Signed-off-by: Mikko Rapeli <mikko.rapeli@bmw.de>
-> ---
->  classes/meson-selinux.bbclass | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/classes/meson-selinux.bbclass b/classes/meson-selinux.bbclass
-> index 77a763a..91c2a2b 100644
-> --- a/classes/meson-selinux.bbclass
-> +++ b/classes/meson-selinux.bbclass
-> @@ -1,4 +1,4 @@
->  inherit selinux
-> =20
->  PACKAGECONFIG_append =3D " ${@target_selinux(d)}"
-> -PACKAGECONFIG[selinux] =3D "-Dselinux=3Dtrue,-Dselinux=3Dfalse,libselinu=
-x,"
-> +PACKAGECONFIG[selinux] =3D "-Dselinux=3Denabled,-Dselinux=3Ddisabled,lib=
-selinux,"
-> --=20
-> 1.9.1
->=20
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Regards,
+Greg Wilson-Lindberg
 
---=20
--Joe MacDonald.
-:wq
 
---3V7upXqbjpZ4EhLz
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
 
-iF0EABECAB0WIQRjqRhJknEwCqrWVXzAW9yWWiDRfAUCXWa3gAAKCRDAW9yWWiDR
-fEeUAKCZMd7dRX/nUliOmq6g0CsmJYtchACgi30URDd5pYtJjUs7obcWlrftGro=
-=Bedr
------END PGP SIGNATURE-----
 
---3V7upXqbjpZ4EhLz--
+
+
+
+
+
+
+
