@@ -1,48 +1,66 @@
-Return-Path: <joe@deserted.net>
+Return-Path: <johannes.wiesboeck@tum.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65607E00D35; Thu, 29 Aug 2019 07:27:09 -0700 (PDT)
+	id 75FAFE00D35; Thu, 29 Aug 2019 08:12:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FROM_EXCESS_BASE64,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [68.232.137.180 listed in list.dnswl.org]
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Thu, 29 Aug 2019 07:27:08 PDT
-Received: from esa3.mentor.iphmx.com (esa3.mentor.iphmx.com [68.232.137.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56BFDE0097C
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 07:27:08 -0700 (PDT)
-IronPort-SDR: 0u2KrvqrfuOoTfNXY/4RF2n+Ypk2lnzexdECxqZttO0Qx1kLVE8wbQkEGRm55QMi0T4uLGtTzX
-	TYZbxS3wClI8ADDqvqWYSOE1WeKTw2E7qp189OB+GeYov9zY6Kx1QxmM2SF/ZlV3hdRCTf0ax2
-	fz+byO8ZjsuBos1jS0rCfFH0bK7Acx/+VeR8sP/VoX/+Hs3RHVmJBoPxHH8Q2aH9GUJs6xq/SO
-	I1itzkhzh3xrhsAirTErk3ppzNmwpOeFN6kifRqMdiZJjnj6u02Bh9bwSafln5m4zvYi9c0QkQ
-	OhE=
-X-IronPort-AV: E=Sophos;i="5.64,443,1559548800"; 
-	d="asc'?scan'208";a="40873507"
-Received: from orw-gwy-01-in.mentorg.com ([192.94.38.165])
-	by esa3.mentor.iphmx.com with ESMTP; 29 Aug 2019 06:25:57 -0800
-IronPort-SDR: yaDcSbTChXS2b3BsyzRcKuU9sQqkZP/UxBUMt+qdUJku6eRZTRy7/SlzmSXzEMT/Yw9u2o7ZlO
-	65EMm1JUrZc7HYeQwBMCcx68vhdRMaSKGcByrWHgm9C/xY7bcZrQKsH+aImPFIQCNieuZg8xUn
-	xafxnyJ4wdIbFD/Ddycz5NVJ7m7kloxD5DkHXPDPHGqDQv0NwF5p+CDv/F86pw45d34KtO50Xw
-	urk9J+9NzDX175Dy3EtOhG9U3DfTqaS0Gm7HjUO3niuvCN/3gZVA+Xq5+/RuTR4LnackA2jvS8
-	2RQ=
-Date: Thu, 29 Aug 2019 10:25:53 -0400
-From: Joe MacDonald <joe@deserted.net>
-To: akuster808 <akuster808@gmail.com>
-Message-ID: <20190829142551.GA34991@deserted.net>
-References: <20190829054108.12642-1-yuanc.fnst@cn.fujitsu.com>
-	<754c1003-89ef-cf33-2508-d58c55947b99@gmail.com>
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [129.187.255.137 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	*  0.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
+X-Greylist: delayed 429 seconds by postgrey-1.32 at yocto-www;
+	Thu, 29 Aug 2019 08:12:47 PDT
+Received: from postout1.mail.lrz.de (postout1.mail.lrz.de [129.187.255.137])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5A10EE00C9C
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 08:12:47 -0700 (PDT)
+Received: from lxmhs51.srv.lrz.de (localhost [127.0.0.1])
+	by postout1.mail.lrz.de (Postfix) with ESMTP id 46K5X06hCqzyT4
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 17:05:36 +0200 (CEST)
+Authentication-Results: postout.lrz.de (amavisd-new); dkim=pass (2048-bit key)
+	reason="pass (just generated,
+	assumed good)" header.d=tum.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tum.de; h=
+	user-agent:in-reply-to:content-disposition:content-type
+	:content-type:mime-version:references:message-id:subject:subject
+	:from:from:date:date:received:received; s=postout; t=1567091136;
+	bh=RBYtXNElWJEE/Z7/Y7M2RqL/jJjYquoRJAFxBuayhKY=; b=BVnxSgqu83F4
+	noe0wKVFSLzL6uiQOCu6rPZxazkorWvrAP0DV4YjMAVPN6lXFawpOgLCnGcErlOy
+	BBLDUvAu6KaD8MNT5min06/Fg4NudJe1jQSF3n7UQhCfrkhBRKLPvGacwHJJgiap
+	v8Y5oq96qHeoPwtka7KPyY9TzHefu/oDN+aVyKSh4CycYsMmIa18QELIakpSeZxA
+	JmY4uVf9ZG01WhQUxalybrWnu2MCpwX2o3KVCXttd+XPG0qHnheHDg2bnSHW1SMU
+	AVdTWd5F1QG2gvyiQv/7NhYGKF1OHxv6IJ0djhDT0Um4OqpR+jagpei4aZtiHtPY
+	nqSaYetWvw==
+X-Virus-Scanned: by amavisd-new at lrz.de in lxmhs51.srv.lrz.de
+Received: from postout1.mail.lrz.de ([127.0.0.1])
+	by lxmhs51.srv.lrz.de (lxmhs51.srv.lrz.de [127.0.0.1]) (amavisd-new,
+	port 20024) with LMTP id KYKQftr1mugX for <yocto@yoctoproject.org>;
+	Thu, 29 Aug 2019 17:05:36 +0200 (CEST)
+Received: from localhost (mail.fortiss.org [178.15.138.114])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by postout1.mail.lrz.de (Postfix) with ESMTPSA id 46K5X0331rzySh
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 17:05:36 +0200 (CEST)
+Date: Thu, 29 Aug 2019 17:05:35 +0200
+From: Johannes =?utf-8?B?V2llc2LDtmNr?= <johannes.wiesboeck@tum.de>
+To: yocto@yoctoproject.org
+Message-ID: <20190829150535.2w2nir4bia4ze6ez@asterix>
+References: <20190829143056.cvo7vk7tpghfjnyh@asterix>
+	<20190829144027.whr2vf5lwnhoh4vk@asterix>
+	<20190829144815.62iqd6tnf6qot74m@asterix>
 MIME-Version: 1.0
-In-Reply-To: <754c1003-89ef-cf33-2508-d58c55947b99@gmail.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux] [PATCH] python-scapy: upgrade 2.4.2 -> 2.4.3
+In-Reply-To: <20190829144815.62iqd6tnf6qot74m@asterix>
+User-Agent: NeoMutt/20180716
+Subject: [help] Multiconfig - Depending on Recipe multiple times
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,97 +72,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Aug 2019 14:27:09 -0000
-X-Groupsio-MsgNum: 46442
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="TB36FDmn/VVEgNH/"
+X-List-Received-Date: Thu, 29 Aug 2019 15:12:48 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
---TB36FDmn/VVEgNH/
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hello Everyone,
 
-[Re: [yocto] [meta-selinux] [PATCH] python-scapy: upgrade 2.4.2 -> 2.4.3] O=
-n 19.08.29 (Thu 07:14) akuster808 wrote:
+i am using Yocto on the thud branch to build images for a real-time
+operating system based on FreeRTOS. I would like to run multiple images
+on different CPU cores in an asynchronous multi-processing (AMP) configuration.
+Each image will contain the software for only one single core. For
+deployment, i would like to pack all images into one package.
 
->=20
->=20
-> On 8/28/19 10:41 PM, Yuan Chao wrote:
-> > License file changed from bin/scapy to LICENSE
-> Is this the correct layer?
+Therefore, i would like to use multiconfig to build the same recipe four
+times for the same hardware but with different compiler options,
+determined by to core the image should run on. These builds are all based on
+the same source code but differ in compiler options used for building. After
+the images for all configurations are built, i would like to pack all images
+into a single package for deployment.
 
-There's no scapy in meta-selinux, AFAIK.  So proably this was destined
-for meta-security instead.
+I have created two recipes, one called amp-image, that should be built
+once for every multiconfig. A second recipe called master-image,
+depends on amp-image for every configuration, i.e. i have the line
 
--J.
+do_compile[mcdepends] = "multiconfig:amp-c0:amp-c0:amp-image:do_build multiconfig:amp-c0:amp-c1:amp-image:do_build"
 
->=20
-> -armin
-> >
-> > Signed-off-by: Yuan Chao <yuanc.fnst@cn.fujitsu.com>
-> > ---
-> >  recipes-security/scapy/python-scapy.inc                       | 4 ++--
-> >  .../scapy/{python-scapy_2.4.2.bb =3D> python-scapy_2.4.3.bb}    | 0
-> >  .../scapy/{python3-scapy_2.4.2.bb =3D> python3-scapy_2.4.3.bb}  | 0
-> >  3 files changed, 2 insertions(+), 2 deletions(-)
-> >  rename recipes-security/scapy/{python-scapy_2.4.2.bb =3D> python-scapy=
-_2.4.3.bb} (100%)
-> >  rename recipes-security/scapy/{python3-scapy_2.4.2.bb =3D> python3-sca=
-py_2.4.3.bb} (100%)
-> >
-> > diff --git a/recipes-security/scapy/python-scapy.inc b/recipes-security=
-/scapy/python-scapy.inc
-> > index baa69b2..28e13f2 100644
-> > --- a/recipes-security/scapy/python-scapy.inc
-> > +++ b/recipes-security/scapy/python-scapy.inc
-> > @@ -3,11 +3,11 @@ DESCRIPTION =3D "Scapy is a powerful interactive pack=
-et manipulation program. It i
-> >  SECTION =3D "security"
-> >  LICENSE =3D "GPLv2"
-> > =20
-> > -LIC_FILES_CHKSUM =3D "file://bin/scapy;beginline=3D9;endline=3D13;md5=
-=3D1d5249872cc54cd4ca3d3879262d0c69"
-> > +LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Db234ee4d69f5fce4486a80fdaf4=
-a4263"
-> > =20
-> >  S =3D "${WORKDIR}/git"
-> > =20
-> > -SRCREV =3D "bad14cb1a5aee29f8107fbe8ad008d4645f14da7"
-> > +SRCREV =3D "3047580162a9407ef05fe981983cacfa698f1159"
-> >  SRC_URI =3D "git://github.com/secdev/scapy.git"
-> > =20
-> >  inherit ptest
-> > diff --git a/recipes-security/scapy/python-scapy_2.4.2.bb b/recipes-sec=
-urity/scapy/python-scapy_2.4.3.bb
-> > similarity index 100%
-> > rename from recipes-security/scapy/python-scapy_2.4.2.bb
-> > rename to recipes-security/scapy/python-scapy_2.4.3.bb
-> > diff --git a/recipes-security/scapy/python3-scapy_2.4.2.bb b/recipes-se=
-curity/scapy/python3-scapy_2.4.3.bb
-> > similarity index 100%
-> > rename from recipes-security/scapy/python3-scapy_2.4.2.bb
-> > rename to recipes-security/scapy/python3-scapy_2.4.3.bb
->=20
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+in my master-image.bb file. I also have set up my multiconfigs according
+to [0].
 
---=20
--Joe MacDonald.
-Linux Architect | Mentor=AE A Siemens Business
-:wq
+When i try to build master-image with 
 
---TB36FDmn/VVEgNH/
-Content-Type: application/pgp-signature; name="signature.asc"
+bitbake multiconfig:amp-c0:master-image
 
------BEGIN PGP SIGNATURE-----
+i get an error, which i have attached in [1].
 
-iF0EABECAB0WIQRjqRhJknEwCqrWVXzAW9yWWiDRfAUCXWfgbwAKCRDAW9yWWiDR
-fMjEAKCvnU/f2LQs2fFTSiuE6y8NdvXF8QCgoukpASXa8rF61Bg1KITYr+1yfyY=
-=TIXL
------END PGP SIGNATURE-----
+My question is: Is it generally possible for a recipe to depend on one
+recipe multiple times but from a different multiconfig, like shown above?
+Also, if possible, are the sysroots of the dependencies automatically
+populated to the recipe depending on them, like with the usual DEPENDS
+variable.
 
---TB36FDmn/VVEgNH/--
+
+Thanks for any help!
+Johannes Wiesboeck
+
+[0] https://www.yoctoproject.org/docs/2.6/dev-manual/dev-manual.html#dev-building-images-for-multiple-targets-using-multiple-configurations
+[1] https://home.in.tum.de/~wiesboec/bitbake.txt
+
