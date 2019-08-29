@@ -1,66 +1,41 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <andreea.volosincu@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 405AFE00DF2; Thu, 29 Aug 2019 15:00:14 -0700 (PDT)
+	id E63DEE00DF8; Thu, 29 Aug 2019 16:24:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED,URIBL_GREY autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.182 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com
-	[209.85.210.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FFE8E00C9C
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 15:00:12 -0700 (PDT)
-Received: by mail-pf1-f182.google.com with SMTP id g2so3043264pfq.0
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 15:00:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=3ex/AJfqILANnQ/y1PAzFwK+naU0hmlKQi8fD2HDvFk=;
-	b=kIPtye60LMRzb66VD4gEFCmw+pfGPUzIKJ7MQioEle8hs5G2YgLNCfWPn+LmLA7Ddy
-	lf7SzDklawKptlHp8og6V2tIPoR1SOWZXoCqaonaYgr+cBPRaBvjSxfkz9YRl9LP04np
-	jibU4v1+/MuZzEuJ1PQSdGkQ0kUZkfw7gVSMqf+GhK2G0EhGJBbdlvmWaup3Tofy3Jkd
-	dpJ6fjlH8RahEfHO6NfputXkhTsymI1HcaEkHelALAxnzVrEcfAn79vaSwym0VzKl9xM
-	9db6aCwrxMiIGbxi59czywqpnpQSnjut4UsamjJ4C9+z09A34fZ2EjuNc5nQuy7cN1KL
-	PpAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=3ex/AJfqILANnQ/y1PAzFwK+naU0hmlKQi8fD2HDvFk=;
-	b=FnmCFgwJX5U16V5T8zY/g0go/TFqEIvwK/WnQw545zJ8JHDfKzzl9Ue5QNubFIyzF4
-	7fhtKRxH+LcnWtJ7Hw0TyJPobydqT6ju/9em3VaFxmcveSehjWqWrztd7oDlVPixgwNE
-	OgYo+8FjNxHkWt/jEDeetiPen7g4G0NLuH8JpSJ1ncKMq4XdVYPo/TEA4wv5FhA7F8LM
-	jG4I7/z2fetVESZv21X0xpmzm9aVyO+sVDal1lx7A9eQHaaYOC/mCw2CbUYXjgWyrnUk
-	fQ/Eq0AgLTC50tr+t+7R7l8FD5+fYP3N4AJTO34He0oX3KgkiKMF/mwNfUzF66PG9YI5
-	4R8Q==
-X-Gm-Message-State: APjAAAU6T6oRdRwkQuYbQD2PwFJDSvKpIyPFpm91wtz8vmbnSncsbgKy
-	lb42Pd1Sh1yZ/97cNfX4A1vQs63W
-X-Google-Smtp-Source: APXvYqztv82WSgzMn/aIlLkf4xgN7AGTSF74rCLS/mrqsHgTtsu6SBVHIaGFEiQOQvWuR92z3gzEuA==
-X-Received: by 2002:a17:90b:342:: with SMTP id fh2mr28666pjb.21.1567116011615; 
-	Thu, 29 Aug 2019 15:00:11 -0700 (PDT)
-Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
-	[67.181.203.136])
-	by smtp.gmail.com with ESMTPSA id z6sm5853872pgk.18.2019.08.29.15.00.08
-	for <yocto@yoctoproject.org>
-	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Thu, 29 Aug 2019 15:00:10 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu, 29 Aug 2019 15:00:07 -0700
-Message-Id: <20190829220007.29751-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-Subject: [meta-security][PATCH] python-scapy: drop py2 package
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	*  0.4 URIBL_GREY Contains an URL listed in the URIBL greylist
+	*      [URIs: cvent.com]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5591E00DE3
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 16:24:10 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x7TNO9i8026509
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 16:24:10 -0700 (PDT)
+Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.36]) by
+	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.03.0468.000;
+	Thu, 29 Aug 2019 16:24:04 -0700
+From: "Volosincu, Andreea S" <andreea.volosincu@windriver.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Thread-Topic: Yocto Project Summit 2019 - CFP Open
+Thread-Index: AdVev6bolKsFg4myQB6g+O0hgrQKFw==
+Date: Thu, 29 Aug 2019 23:24:03 +0000
+Message-ID: <A084970538D2234B96D99D06FA9D974FCA8EB423@ALA-MBD.corp.ad.wrs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [147.11.4.92]
+MIME-Version: 1.0
+Subject: Yocto Project Summit 2019 - CFP Open
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,114 +47,332 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Aug 2019 22:00:14 -0000
+X-List-Received-Date: Thu, 29 Aug 2019 23:24:13 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_A084970538D2234B96D99D06FA9D974FCA8EB423ALAMBDcorpadwrs_"
 
-fixup run-ptest
+--_000_A084970538D2234B96D99D06FA9D974FCA8EB423ALAMBDcorpadwrs_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/scapy/files/run-ptest        |  2 +-
- recipes-security/scapy/python-scapy.inc       | 22 ---------------
- recipes-security/scapy/python-scapy_2.4.3.bb  | 11 --------
- recipes-security/scapy/python3-scapy_2.4.3.bb | 27 ++++++++++++++++---
- 4 files changed, 25 insertions(+), 37 deletions(-)
- delete mode 100644 recipes-security/scapy/python-scapy.inc
- delete mode 100644 recipes-security/scapy/python-scapy_2.4.3.bb
+Yocto Project is pleased to announce the Yocto Project Summit 2019, a techn=
+ical conference for engineers, open source technologists, students and acad=
+emia in the OSS space.
 
-diff --git a/recipes-security/scapy/files/run-ptest b/recipes-security/scapy/files/run-ptest
-index 91b29f9..797d8ec 100644
---- a/recipes-security/scapy/files/run-ptest
-+++ b/recipes-security/scapy/files/run-ptest
-@@ -1,4 +1,4 @@
- #!/bin/sh
--UTscapy -t regression.uts -f text -l -C \
-+UTscapy3 -t regression.uts -f text -l -C \
-     -o @PTEST_PATH@/scapy_ptest_$(date +%Y%m%d-%H%M%S).log \
-     2>&1 | sed -e 's/^passed None/PASS:/' -e 's/^failed None/FAIL:/'
-diff --git a/recipes-security/scapy/python-scapy.inc b/recipes-security/scapy/python-scapy.inc
-deleted file mode 100644
-index 28e13f2..0000000
---- a/recipes-security/scapy/python-scapy.inc
-+++ /dev/null
-@@ -1,22 +0,0 @@
--SUMMARY = "Network scanning and manipulation tool"
--DESCRIPTION = "Scapy is a powerful interactive packet manipulation program. It is able to forge or decode packets of a wide number of protocols, send them on the wire, capture them, match requests and replies, and much more. It can easily handle most classical tasks like scanning, tracerouting, probing, unit tests, attacks or network discovery (it can replace hping, 85% of nmap, arpspoof, arp-sk, arping, tcpdump, tethereal, p0f, etc.). It also performs very well at a lot of other specific tasks that most other tools can't handle, like sending invalid frames, injecting your own 802.11 frames, combining technics (VLAN hopping+ARP cache poisoning, VOIP decoding on WEP encrypted channel, ...), etc."
--SECTION = "security"
--LICENSE = "GPLv2"
--
--LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
--
--S = "${WORKDIR}/git"
--
--SRCREV = "3047580162a9407ef05fe981983cacfa698f1159"
--SRC_URI = "git://github.com/secdev/scapy.git"
--
--inherit ptest
--
--do_install_ptest() {
--    install -m 0644 ${S}/test/regression.uts ${D}${PTEST_PATH}
--    sed -i 's,@PTEST_PATH@,${PTEST_PATH},' ${D}${PTEST_PATH}/run-ptest
--}
--
--RDEPENDS_${PN} = "tcpdump ${PYTHON_PN}-compression ${PYTHON_PN}-cryptography ${PYTHON_PN}-netclient  \
--                  ${PYTHON_PN}-netserver ${PYTHON_PN}-pydoc ${PYTHON_PN}-pkgutil ${PYTHON_PN}-shell \
--                  ${PYTHON_PN}-threading ${PYTHON_PN}-numbers ${PYTHON_PN}-pycrypto"
-diff --git a/recipes-security/scapy/python-scapy_2.4.3.bb b/recipes-security/scapy/python-scapy_2.4.3.bb
-deleted file mode 100644
-index 982620e..0000000
---- a/recipes-security/scapy/python-scapy_2.4.3.bb
-+++ /dev/null
-@@ -1,11 +0,0 @@
--inherit setuptools
--require python-scapy.inc
--
--SRC_URI += "file://run-ptest"
--
--RDEPENDS_${PN} += "${PYTHON_PN}-subprocess"
--
--do_install_append() {
--        mv ${D}${bindir}/scapy ${D}${bindir}/scapy2
--        mv ${D}${bindir}/UTscapy ${D}${bindir}/UTscapy2
--}
-diff --git a/recipes-security/scapy/python3-scapy_2.4.3.bb b/recipes-security/scapy/python3-scapy_2.4.3.bb
-index abcaeeb..925f188 100644
---- a/recipes-security/scapy/python3-scapy_2.4.3.bb
-+++ b/recipes-security/scapy/python3-scapy_2.4.3.bb
-@@ -1,9 +1,30 @@
--inherit setuptools3
--require python-scapy.inc
-+SUMMARY = "Network scanning and manipulation tool"
-+DESCRIPTION = "Scapy is a powerful interactive packet manipulation program. It is able to forge or decode packets of a wide number of protocols, send them on the wire, capture them, match requests and replies, and much more. It can easily handle most classical tasks like scanning, tracerouting, probing, unit tests, attacks or network discovery (it can replace hping, 85% of nmap, arpspoof, arp-sk, arping, tcpdump, tethereal, p0f, etc.). It also performs very well at a lot of other specific tasks that most other tools can't handle, like sending invalid frames, injecting your own 802.11 frames, combining technics (VLAN hopping+ARP cache poisoning, VOIP decoding on WEP encrypted channel, ...), etc."
-+SECTION = "security"
-+LICENSE = "GPLv2"
- 
--SRC_URI += "file://run-ptest"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
-+
-+S = "${WORKDIR}/git"
-+
-+SRCREV = "3047580162a9407ef05fe981983cacfa698f1159"
-+SRC_URI = "git://github.com/secdev/scapy.git \
-+           file://run-ptest"
-+
-+S = "${WORKDIR}/git"
-+
-+inherit setuptools3 ptest
- 
- do_install_append() {
-         mv ${D}${bindir}/scapy ${D}${bindir}/scapy3
-         mv ${D}${bindir}/UTscapy ${D}${bindir}/UTscapy3
- }
-+
-+do_install_ptest() {
-+    install -m 0644 ${S}/test/regression.uts ${D}${PTEST_PATH}
-+    sed -i 's,@PTEST_PATH@,${PTEST_PATH},' ${D}${PTEST_PATH}/run-ptest
-+}
-+
-+RDEPENDS_${PN} = "tcpdump ${PYTHON_PN}-compression ${PYTHON_PN}-cryptography ${PYTHON_PN}-netclient  \
-+                  ${PYTHON_PN}-netserver ${PYTHON_PN}-pydoc ${PYTHON_PN}-pkgutil ${PYTHON_PN}-shell \
-+                  ${PYTHON_PN}-threading ${PYTHON_PN}-numbers ${PYTHON_PN}-pycrypto"
--- 
-2.17.1
+Organized in conjunction with ELCE 2019, this 2-day event is where individu=
+als will learn about Yocto Projects' direction - including, but not limited=
+ to, new releases, development tools, features - get training on the next w=
+ave of embedded Linux technologies (segment previously known as Yocto Proje=
+ct Developer Day), and network with their industry peers, Yocto Project mai=
+ntainers and experts.
+
+DATE: Thursday, October 31 - Friday, November 1, 2019
+TIME: 9:00 am - 5:00 pm
+LOCATION: Lyon Convention Center
+REGISTRATION: Together with your ELCE registration<https://www.cvent.com/Ev=
+ents/Register/RegNumConfirmation.aspx?e=3D66d78d44-9d3c-4c92-85fa-a87ef8e8b=
+62b>
+EVENT PAGE: https://www.yoctoproject.org/yocto-project-summit-2019-2/
+
+The CFP is currently open.
+CFP Closes: 11:59 PM PST on Monday, September 16
+CFP Notifications: Monday, September 23
+Schedule Announcement: Thursday, September 30
+Slide Due Date: Monday, October 21
+
+CFP list of topics:
+
+?  DevTool
+
+?  Layer quality: e.g. creating robust layers, safely using existing layers
+
+?  Future languages (e.g. Rust)
+
+?  Productivity tricks and tools
+
+?  Security
+
+?  Reproducibility
+
+?  Init systems: pros and cons, selection, configuration
+
+?  Leveraging the new runqueue optimizations for mirrors, reproducible buil=
+ds
+
+?  Supporting the Application Developer
+
+?  DevOps
+
+?  Working with/creating BSPs
+
+?  Practical use of the Yocto Project
+
+Submit your proposals at conferences@yoctoproject.org<mailto:conferences@yo=
+ctoproject.org>
+
+Best regards,
+Yocto Project Advocacy Team
 
 
+
+--_000_A084970538D2234B96D99D06FA9D974FCA8EB423ALAMBDcorpadwrs_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:937296667;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-1383536856 67698701 67698691 67698693 67698689 6769=
+8691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0FC;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Yocto Project is pleased to announce the Yocto Proje=
+ct Summit 2019, a technical conference for engineers, open source technolog=
+ists, students and academia in the OSS space.&nbsp;
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Organized in conjunction with ELCE 2019, this 2-day =
+event is where individuals will learn about Yocto Projects&#8217; direction=
+ &#8212; including, but not limited to, new releases, development tools, fe=
+atures &#8212; get training on the next wave of embedded
+ Linux technologies (segment previously known as Yocto Project Developer Da=
+y), and network with their industry peers, Yocto Project maintainers and ex=
+perts.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">DATE: Thursday, October 31 &#8211; Friday, November =
+1, 2019<o:p></o:p></p>
+<p class=3D"MsoNormal">TIME: 9:00 am &#8211; 5:00 pm<o:p></o:p></p>
+<p class=3D"MsoNormal">LOCATION: Lyon Convention Center<o:p></o:p></p>
+<p class=3D"MsoNormal">REGISTRATION: <a href=3D"https://www.cvent.com/Event=
+s/Register/RegNumConfirmation.aspx?e=3D66d78d44-9d3c-4c92-85fa-a87ef8e8b62b=
+">
+Together with your ELCE registration</a><o:p></o:p></p>
+<p class=3D"MsoNormal">EVENT PAGE: <a href=3D"https://www.yoctoproject.org/=
+yocto-project-summit-2019-2/">
+https://www.yoctoproject.org/yocto-project-summit-2019-2/</a> <o:p></o:p></=
+p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The CFP is currently open. <o:p></o:p></p>
+<p class=3D"MsoNormal">CFP Closes: 11:59 PM PST on Monday, September 16<o:p=
+></o:p></p>
+<p class=3D"MsoNormal">CFP Notifications: Monday, September 23<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">Schedule Announcement: Thursday, September 30<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">Slide Due Date: Monday, October 21<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">CFP list of topics:<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
+yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
+an&quot;">&nbsp;
+</span></span></span><![endif]>DevTool<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
+yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
+an&quot;">&nbsp;
+</span></span></span><![endif]>Layer quality: e.g. creating robust layers, =
+safely using existing layers<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
+yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
+an&quot;">&nbsp;
+</span></span></span><![endif]>Future languages (e.g. Rust)<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
+yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
+an&quot;">&nbsp;
+</span></span></span><![endif]>Productivity tricks and tools<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
+yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
+an&quot;">&nbsp;
+</span></span></span><![endif]>Security<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
+yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
+an&quot;">&nbsp;
+</span></span></span><![endif]>Reproducibility<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
+yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
+an&quot;">&nbsp;
+</span></span></span><![endif]>Init systems: pros and cons, selection, conf=
+iguration<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
+yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
+an&quot;">&nbsp;
+</span></span></span><![endif]>Leveraging the new runqueue optimizations fo=
+r mirrors, reproducible builds<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
+yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
+an&quot;">&nbsp;
+</span></span></span><![endif]>Supporting the Application Developer<o:p></o=
+:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
+yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
+an&quot;">&nbsp;
+</span></span></span><![endif]>DevOps<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
+yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
+an&quot;">&nbsp;
+</span></span></span><![endif]>Working with/creating BSPs<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
+yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
+an&quot;">&nbsp;
+</span></span></span><![endif]>Practical use of the Yocto Project<o:p></o:p=
+></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Submit your proposals at <a href=3D"mailto:conferenc=
+es@yoctoproject.org">
+conferences@yoctoproject.org</a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Yocto Project Advocacy Team<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_A084970538D2234B96D99D06FA9D974FCA8EB423ALAMBDcorpadwrs_--
