@@ -1,6 +1,6 @@
-Return-Path: <GWilson@sakuraus.com>
+Return-Path: <joe@deserted.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 07566E00C9C; Thu, 29 Aug 2019 10:40:14 -0700 (PDT)
+	id CB3BAE00C9C; Thu, 29 Aug 2019 10:44:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,50 +10,38 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.222.82.122 listed in list.dnswl.org]
-Received: from 11pmail.ess.barracuda.com (11pmail.ess.barracuda.com
-	[209.222.82.122])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76483E00BB5
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 10:40:11 -0700 (PDT)
-Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
-	mx9.us-east-2b.ess.aws.cudaops.com (version=TLSv1.2
-	cipher=AES256-SHA256 bits=256 verify=NO);
-	Thu, 29 Aug 2019 17:40:09 +0000
-Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
-	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
-	Thu, 29 Aug 2019 10:39:59 -0700
-Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
-	([::1]) with mapi id 15.01.0669.032; Thu, 29 Aug 2019 10:39:59 -0700
-From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-To: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Thread-Topic: [yocto][meta-raspberrypi] Error trying to generate Raspberry Pi
-	initramfs
-Thread-Index: AdVekLnxmkGsEIiMSGqlPjLCWhCmVA==
-Date: Thu, 29 Aug 2019 17:39:59 +0000
-Message-ID: <5d1cad0e5416442aad80dd7faca08983@sakuraus.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.5.158]
+	*      [68.232.137.252 listed in list.dnswl.org]
+Received: from esa4.mentor.iphmx.com (esa4.mentor.iphmx.com [68.232.137.252])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 380DFE0097C
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 10:44:23 -0700 (PDT)
+IronPort-SDR: a2SaoiGc4kB+yyHxvODWUfhU+zAXf50mTzCcRwXRUAbX7MlzYDEQd3YqYIVQ/j8grKR7jVLuEH
+	qAyDk6Kle6MuoK3p6fcoVcBqPASKmFE5REoJAeNqJGJ6FmeDL8fFOkuj6ptRPH7pQWqlwKnI8c
+	u5f5gtCe5GO8teQ+21gpPHwLXK4NgrMRmHXvN/QGSFl2NaymCUKih0Z/BcX877juecyr38mYSf
+	CBfnyZ1LhTHPiLs18IGWxlglJ6mqS7Vk1HrNy2Tb5wmyJaDLb1QUZ0LvQD4KO0c2FbzVLZSOMV
+	k9k=
+X-IronPort-AV: E=Sophos;i="5.64,444,1559548800"; 
+	d="asc'?scan'208";a="40893068"
+Received: from orw-gwy-02-in.mentorg.com ([192.94.38.167])
+	by esa4.mentor.iphmx.com with ESMTP; 29 Aug 2019 09:44:22 -0800
+IronPort-SDR: BV+D5wb6mSX3RZAhinhqTjYGle0/fzj6jqCQPvGCb3y8cBzWgNm9RwbJr7/lBFq7/gyEj3j9TW
+	qqH4sVFr6BGXDTMqlY2bDV57m9qMZyfGOpnWEYUX+eYz8Eqiw11s0XQsHq2Z8K87/UaaO7zK88
+	iJX93O6ltJvtPgL2UQdfCU3M/xMGtCzMk7ekpTad+57sN+lfaEWs55au8BxFj+Usuk7qKLxroZ
+	drixK707CBebr295l88v1NnrivsvgUxi/xQKVcaTGsqwkti46E1Q2U0WXz9Chd8nhensFOFB7Y
+	zWo=
+Date: Thu, 29 Aug 2019 13:44:18 -0400
+From: Joe MacDonald <joe@deserted.net>
+To: Yi Zhao <yi.zhao@windriver.com>
+Message-ID: <20190829174416.GB34991@deserted.net>
+References: <1558327299-10731-1-git-send-email-yi.zhao@windriver.com>
+	<1558327299-10731-3-git-send-email-yi.zhao@windriver.com>
+	<d71334f8-dd32-d5df-68e4-aae6f55b2962@windriver.com>
 MIME-Version: 1.0
-X-BESS-ID: 1567100394-893017-30460-170105-6
-X-BESS-VER: 2019.1_20190823.2224
-X-BESS-Apparent-Source-IP: 12.26.104.5
-X-BESS-Outbound-Spam-Score: 0.50
-X-BESS-Outbound-Spam-Report: Code version 3.2,
-	rules version 3.2.2.217855 [from 
-	cloudscan9-86.us-east-2a.ess.aws.cudaops.com]
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	0.50 BSF_RULE7568M          META: Custom Rule 7568M 
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.50 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=BSF_RULE7568M, BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Error trying to generate Raspberry Pi initramfs
+In-Reply-To: <d71334f8-dd32-d5df-68e4-aae6f55b2962@windriver.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH 3/3] util-linux: drop obsolete patch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,60 +53,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Aug 2019 17:40:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 29 Aug 2019 17:44:23 -0000
+X-Groupsio-MsgNum: 46447
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="oC1+HKm2/end4ao3"
+Content-Disposition: inline
 
-SGkgWm9yYW4sDQpUaGFua3MgZm9yIHlvdXIgY29tbWVudHMuIA0KDQpJJ20gYWRkaW5nIFttZXRh
-LXJhc3BiZXJyeXBpXSB0byB0aGUgYXMgSSBoYXZlIHJlYWxpemVkIHRoYXQgc29tZSBtaWdodCBo
-YXZlIG1pc3NlZCB0aGlzIFJhc3BiZXJyeS1waSBzcGVjaWZpYyBxdWVzdGlvbi4NCg0KVGhhbmtz
-LA0KR3JlZyBXaWxzb24tTGluZGJlcmfCoCANCiANCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0t
-LS0NCj4gRnJvbTogWm9yYW4gU3RvanNhdmxqZXZpYyBbbWFpbHRvOnpvcmFuLnN0b2pzYXZsamV2
-aWNAZ21haWwuY29tXQ0KPiBTZW50OiBXZWRuZXNkYXksIEF1Z3VzdCAyOCwgMjAxOSAwNTowOCBQ
-TQ0KPiBUbzogR3JlZyBXaWxzb24tTGluZGJlcmcgPEdXaWxzb25Ac2FrdXJhdXMuY29tPg0KPiBD
-YzogWW9jdG8gbGlzdCBkaXNjdXNzaW9uIDx5b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KPiBTdWJq
-ZWN0OiBSZTogW3lvY3RvXSBFcnJvciB0cnlpbmcgdG8gZ2VuZXJhdGUgUmFzcGJlcnJ5IFBpIGlu
-aXRyYW1mcw0KPiANCj4gVGhyZWUgdGhpbmdzOg0KPiBbMV0gVGhlIGluaXRyYW1mcyBpcyBOT1Qg
-dGhlIGluaXRyZCAodGUgc2Vjb25kIG9uZSBpcyB0aGUgdGVtcA0KPiAgICAgICBzdGFnZSBpbiBi
-b290aW5nIHRoZSBsaW51eCB0byBtbWNibGsuLi4pOyBbMl0gVGhlcmUgYXJlIHNvbWUgY29uZmln
-IHBhcmFtZXRlcnMNCj4geW91IG5lZWQgdG8gc2V0IHVwIGluDQo+ICAgICAgIHlvdXIga2VybmVs
-IC5jb25maWcgZmlsZToNCj4gICAgICAgaHR0cHM6Ly9naXRodWIuY29tL1pvcmFuU3RvanNhdmxq
-ZXZpYy9iYmIteW9jdG8vYmxvYi9tYXN0ZXIvY3VzdG9tL2NvbmZpZy0NCj4gaW5pdHJhbWZzDQo+
-IFszXSBUaGUgY29tbWFuZCBsaW5lIGlzIGZvcm1lZCBpbiB1LWJvb3Qgb3IgaW4gZ3J1YjIsIG9y
-IGluDQo+ICAgICAgIHlvdXIgTGludXggYm9vdCBsb2FkZXIgKHlvdSBuZWVkIHRvIGFkZCBzb21l
-IGxpbmVzDQo+ICAgICAgIGluIGFzaCB1LWJvb3QgY29uZmlnIHNjcmlwdCwgYXMgdGhlIGZvbGxv
-d2luZyBleGFtcGxlKToNCj4gICAgICAgaHR0cHM6Ly9naXRodWIuY29tL1pvcmFuU3RvanNhdmxq
-ZXZpYy9iYmIteW9jdG8vYmxvYi9tYXN0ZXIvY3VzdG9tL3UtYm9vdC5hc2gNCj4gDQo+IEdvb2Qg
-THVjaywNCj4gWm9yYW4NCj4gX19fX19fXw0KPiANCj4gDQo+IE9uIFdlZCwgQXVnIDI4LCAyMDE5
-IGF0IDc6MjYgUE0gR3JlZyBXaWxzb24tTGluZGJlcmcNCj4gPEdXaWxzb25Ac2FrdXJhdXMuY29t
-PiB3cm90ZToNCj4gPg0KPiA+IEknbSB0cnlpbmcgdG8gZ2VuZXJhdGUgYW4gaW5pdHJhbWZzIGZv
-ciBhIHJhc3BiZXJyeSBwaSAzIGZvciBhIHN1bW8gYnVpbGQuIFdlIGFyZQ0KPiBiYXNlZCBvZmYg
-b2YgdGhlIFF0IGJvb3QycXQgc3lzdGVtLg0KPiA+DQo+ID4gSSBoYXZlIGZvbGxvd2VkIHRoZSBp
-bnN0cnVjdGlvbnMgaW4gdGhlIG1ldGEtcmFzcGJlcnJ5cGkucGRmIGRvY3VtZW50YXRpb24sDQo+
-IHNlY3Rpb24gMy4xNCBJbWFnZSB3aXRoIEluaXRyYW1mcy4NCj4gPg0KPiA+IEkgZWRpdGVkIHRo
-ZSBtZXRhLXJhc3BiZXJyeXBpL3JlY2lwZXMta2VybmVsL2xpbnV4L2xpbnV4LXJhc3BiZXJyeS5p
-bmMgZmlsZSBhbmQNCj4gYWRkZWQgdGhlIHZhcmlhYmxlcyBpbnRvIG15IGxvY2FsLmNvbmYgZmls
-ZS4gSSBjcmVhdGVkIGEgcnBpLW1pbmltYWwtaW5pdHJhbWZzLmJiDQo+IHJlY2lwZSBhbmQgaXQg
-aXMgY3JlYXRlZCB3aGVuIEkgYnVpbGQgdGhlIHN5c3RlbS4gQnV0IHRoZSBjb21tYW5kIGxpbmUg
-dGhhdCBpcyBwdXQNCj4gaW50byB0aGUgYm9vdCBwYXJ0aXRpb24gaXM6DQo+ID4NCj4gPiBkd2Nf
-b3RnLmxwbV9lbmFibGU9MCAgcm9vdD0vZGV2L21tY2JsazBwMiByb290ZnN0eXBlPWV4dDQgcm9v
-dHdhaXQNCj4gZmJjb249bWFwOjEwIGZiY29uPWZvbnQ6VkdBOHg4DQo+ID4NCj4gPiBObyBpbml0
-cmFtZnMuDQo+ID4NCj4gPiBJbiB0aGUgbGludXgtcmFzcGJlcnJ5LmluYyBmaWxlLCBhZnRlciB0
-aGUgaW5zZXJ0aW9uIHBvaW50IGZvciB0aGUgbmV3IGtlcm5lbCB2YXJpYWJsZXMsDQo+IHRoZXJl
-IGlzIGEgdGVzdCBmb3IgS0VSTkVMX0lOSVRSQU1GUy4gSSB0cmllZCBzZXR0aW5nIHRoaXMgaW4g
-bXkgbG9jYWwuY29uZiBmaWxlLCBidXQNCj4gd2hlbiBJIGRvIEkgZ2V0IGFuIGVycm9yIGZvciBh
-IG1pc3NpbmcgZmlsZToNCj4gPg0KPiA+IHwgL2hvbWUvLi4uLi90bXAvZGVwbG95L2ltYWdlcy9y
-YXNwYmVycnlwaTMvdUltYWdlMS1yYXNwYmVycnlwaTMuYmluOg0KPiA+IHwgTm8gc3VjaCBmaWxl
-IG9yIGRpcmVjdG9yeQ0KPiA+DQo+ID4gU28sIGFwcGFyZW50bHkgdGhhdCBjYW4ndCBiZSBzZXQg
-ZGlyZWN0bHkuDQo+ID4NCj4gPiBUaGVyZSBzZWVtcyB0byBiZSBzb21ldGhpbmcgbWlzc2luZyBp
-biB0aGUgaW5zdHJ1Y3Rpb25zIGluIHRoZSBtZXRhLQ0KPiByYXNwYmVycnlwaS5wZGYgZG9jdW1l
-bnRhdGlvbi4gQW55b25lIHRoYXQgaGFzIGFueSBleHBlcmllbmNlIHdpdGggc2V0dGluZyB0aGlz
-IHVwDQo+IGFuZCBjYW4gaGVscCBtZSBmaWd1cmUgb3V0IHdoYXQgSSdtIG1pc3NpbmcsIEkgd291
-bGQgZ3JlYXRseSBhcHByZWNpYXRlIHRoZSBoZWxwLg0KPiA+DQo+ID4gUmVnYXJkcywNCj4gPiBH
-cmVnIFdpbHNvbi1MaW5kYmVyZw0KPiA+DQo+ID4NCj4gPg0KPiA+DQo+ID4NCj4gPg0KPiA+DQo+
-ID4NCj4gPg0KPiA+DQo+ID4NCj4gPiAtLQ0KPiA+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fDQo+ID4geW9jdG8gbWFpbGluZyBsaXN0DQo+ID4geW9jdG9A
-eW9jdG9wcm9qZWN0Lm9yZw0KPiA+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0
-aW5mby95b2N0bw0K
+--oC1+HKm2/end4ao3
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+[Re: [yocto] [meta-selinux][PATCH 3/3] util-linux: drop obsolete patch] On =
+19.08.29 (Thu 16:00) Yi Zhao wrote:
+
+> Hi Joe,
+>=20
+>=20
+> Seems you were missing this patch. Would you please merge it? Thanks.
+
+Oh, yeah, sure.  It got classified as spam.  Since it was the end of a
+queue I just assumed they were mis-numbered when I only found 1/3 and
+2/3.
+
+Thanks for pinging me on it.
+
+-J.
+
+>=20
+>=20
+> //Yi
+>=20
+>=20
+> On 5/20/19 12:41 PM, Yi Zhao wrote:
+> > Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+> > ---
+> >   .../util-linux/fix-libmount_la_DEPENDENCIES.patch  | 28 -------------=
+---------
+> >   1 file changed, 28 deletions(-)
+> >   delete mode 100644 recipes-core/util-linux/util-linux/fix-libmount_la=
+_DEPENDENCIES.patch
+> >=20
+> > diff --git a/recipes-core/util-linux/util-linux/fix-libmount_la_DEPENDE=
+NCIES.patch b/recipes-core/util-linux/util-linux/fix-libmount_la_DEPENDENCI=
+ES.patch
+> > deleted file mode 100644
+> > index ab54818..0000000
+> > --- a/recipes-core/util-linux/util-linux/fix-libmount_la_DEPENDENCIES.p=
+atch
+> > +++ /dev/null
+> > @@ -1,28 +0,0 @@
+> > -Subject: [PATCH] util-linux: fix libmount_la_DEPENDENCIES.
+> > -
+> > -Upstream-Status: Pending
+> > -
+> > -libmount_la_LIBADD contains "-lselinux", this is not a object that
+> > -could consider as a dependency target. So fix this.
+> > -
+> > -Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com>
+> > ----
+> > - libmount/src/Makemodule.am |    2 +-
+> > - 1 files changed, 1 insertions(+), 1 deletions(-)
+> > -
+> > -diff --git a/libmount/src/Makemodule.am b/libmount/src/Makemodule.am
+> > -index 494e02a..bf494a4 100644
+> > ---- a/libmount/src/Makemodule.am
+> > -+++ b/libmount/src/Makemodule.am
+> > -@@ -38,7 +38,7 @@ libmount_la_CFLAGS =3D \
+> > - 	-I$(top_srcdir)/libmount/src
+> > -
+> > - libmount_la_DEPENDENCIES =3D \
+> > --	$(libmount_la_LIBADD) \
+> > -+	libcommon.la libblkid.la \
+> > - 	libmount/src/libmount.sym \
+> > - 	libmount/src/libmount.h.in
+> > -
+> > ---
+> > -1.7.5.4
+> > -
+
+--=20
+-Joe MacDonald.
+Linux Architect | Mentor=AE A Siemens Business
+:wq
+
+--oC1+HKm2/end4ao3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRjqRhJknEwCqrWVXzAW9yWWiDRfAUCXWgOyQAKCRDAW9yWWiDR
+fHXDAJ42w65v87gwxr7gDpiXv44PtdZU4gCcDFOBcloho8ZgI0ecS42GS5rB5Pg=
+=lZOR
+-----END PGP SIGNATURE-----
+
+--oC1+HKm2/end4ao3--
