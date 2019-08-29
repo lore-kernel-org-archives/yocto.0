@@ -1,47 +1,66 @@
-Return-Path: <joe@deserted.net>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CB3BAE00C9C; Thu, 29 Aug 2019 10:44:23 -0700 (PDT)
+	id 405AFE00DF2; Thu, 29 Aug 2019 15:00:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [68.232.137.252 listed in list.dnswl.org]
-Received: from esa4.mentor.iphmx.com (esa4.mentor.iphmx.com [68.232.137.252])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 380DFE0097C
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 10:44:23 -0700 (PDT)
-IronPort-SDR: a2SaoiGc4kB+yyHxvODWUfhU+zAXf50mTzCcRwXRUAbX7MlzYDEQd3YqYIVQ/j8grKR7jVLuEH
-	qAyDk6Kle6MuoK3p6fcoVcBqPASKmFE5REoJAeNqJGJ6FmeDL8fFOkuj6ptRPH7pQWqlwKnI8c
-	u5f5gtCe5GO8teQ+21gpPHwLXK4NgrMRmHXvN/QGSFl2NaymCUKih0Z/BcX877juecyr38mYSf
-	CBfnyZ1LhTHPiLs18IGWxlglJ6mqS7Vk1HrNy2Tb5wmyJaDLb1QUZ0LvQD4KO0c2FbzVLZSOMV
-	k9k=
-X-IronPort-AV: E=Sophos;i="5.64,444,1559548800"; 
-	d="asc'?scan'208";a="40893068"
-Received: from orw-gwy-02-in.mentorg.com ([192.94.38.167])
-	by esa4.mentor.iphmx.com with ESMTP; 29 Aug 2019 09:44:22 -0800
-IronPort-SDR: BV+D5wb6mSX3RZAhinhqTjYGle0/fzj6jqCQPvGCb3y8cBzWgNm9RwbJr7/lBFq7/gyEj3j9TW
-	qqH4sVFr6BGXDTMqlY2bDV57m9qMZyfGOpnWEYUX+eYz8Eqiw11s0XQsHq2Z8K87/UaaO7zK88
-	iJX93O6ltJvtPgL2UQdfCU3M/xMGtCzMk7ekpTad+57sN+lfaEWs55au8BxFj+Usuk7qKLxroZ
-	drixK707CBebr295l88v1NnrivsvgUxi/xQKVcaTGsqwkti46E1Q2U0WXz9Chd8nhensFOFB7Y
-	zWo=
-Date: Thu, 29 Aug 2019 13:44:18 -0400
-From: Joe MacDonald <joe@deserted.net>
-To: Yi Zhao <yi.zhao@windriver.com>
-Message-ID: <20190829174416.GB34991@deserted.net>
-References: <1558327299-10731-1-git-send-email-yi.zhao@windriver.com>
-	<1558327299-10731-3-git-send-email-yi.zhao@windriver.com>
-	<d71334f8-dd32-d5df-68e4-aae6f55b2962@windriver.com>
-MIME-Version: 1.0
-In-Reply-To: <d71334f8-dd32-d5df-68e4-aae6f55b2962@windriver.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH 3/3] util-linux: drop obsolete patch
+	*      [209.85.210.182 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com
+	[209.85.210.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FFE8E00C9C
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 15:00:12 -0700 (PDT)
+Received: by mail-pf1-f182.google.com with SMTP id g2so3043264pfq.0
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 15:00:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id;
+	bh=3ex/AJfqILANnQ/y1PAzFwK+naU0hmlKQi8fD2HDvFk=;
+	b=kIPtye60LMRzb66VD4gEFCmw+pfGPUzIKJ7MQioEle8hs5G2YgLNCfWPn+LmLA7Ddy
+	lf7SzDklawKptlHp8og6V2tIPoR1SOWZXoCqaonaYgr+cBPRaBvjSxfkz9YRl9LP04np
+	jibU4v1+/MuZzEuJ1PQSdGkQ0kUZkfw7gVSMqf+GhK2G0EhGJBbdlvmWaup3Tofy3Jkd
+	dpJ6fjlH8RahEfHO6NfputXkhTsymI1HcaEkHelALAxnzVrEcfAn79vaSwym0VzKl9xM
+	9db6aCwrxMiIGbxi59czywqpnpQSnjut4UsamjJ4C9+z09A34fZ2EjuNc5nQuy7cN1KL
+	PpAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=3ex/AJfqILANnQ/y1PAzFwK+naU0hmlKQi8fD2HDvFk=;
+	b=FnmCFgwJX5U16V5T8zY/g0go/TFqEIvwK/WnQw545zJ8JHDfKzzl9Ue5QNubFIyzF4
+	7fhtKRxH+LcnWtJ7Hw0TyJPobydqT6ju/9em3VaFxmcveSehjWqWrztd7oDlVPixgwNE
+	OgYo+8FjNxHkWt/jEDeetiPen7g4G0NLuH8JpSJ1ncKMq4XdVYPo/TEA4wv5FhA7F8LM
+	jG4I7/z2fetVESZv21X0xpmzm9aVyO+sVDal1lx7A9eQHaaYOC/mCw2CbUYXjgWyrnUk
+	fQ/Eq0AgLTC50tr+t+7R7l8FD5+fYP3N4AJTO34He0oX3KgkiKMF/mwNfUzF66PG9YI5
+	4R8Q==
+X-Gm-Message-State: APjAAAU6T6oRdRwkQuYbQD2PwFJDSvKpIyPFpm91wtz8vmbnSncsbgKy
+	lb42Pd1Sh1yZ/97cNfX4A1vQs63W
+X-Google-Smtp-Source: APXvYqztv82WSgzMn/aIlLkf4xgN7AGTSF74rCLS/mrqsHgTtsu6SBVHIaGFEiQOQvWuR92z3gzEuA==
+X-Received: by 2002:a17:90b:342:: with SMTP id fh2mr28666pjb.21.1567116011615; 
+	Thu, 29 Aug 2019 15:00:11 -0700 (PDT)
+Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
+	[67.181.203.136])
+	by smtp.gmail.com with ESMTPSA id z6sm5853872pgk.18.2019.08.29.15.00.08
+	for <yocto@yoctoproject.org>
+	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+	Thu, 29 Aug 2019 15:00:10 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu, 29 Aug 2019 15:00:07 -0700
+Message-Id: <20190829220007.29751-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-security][PATCH] python-scapy: drop py2 package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,98 +72,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Aug 2019 17:44:23 -0000
-X-Groupsio-MsgNum: 46447
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="oC1+HKm2/end4ao3"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 29 Aug 2019 22:00:14 -0000
 
---oC1+HKm2/end4ao3
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+fixup run-ptest
 
-[Re: [yocto] [meta-selinux][PATCH 3/3] util-linux: drop obsolete patch] On =
-19.08.29 (Thu 16:00) Yi Zhao wrote:
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/scapy/files/run-ptest        |  2 +-
+ recipes-security/scapy/python-scapy.inc       | 22 ---------------
+ recipes-security/scapy/python-scapy_2.4.3.bb  | 11 --------
+ recipes-security/scapy/python3-scapy_2.4.3.bb | 27 ++++++++++++++++---
+ 4 files changed, 25 insertions(+), 37 deletions(-)
+ delete mode 100644 recipes-security/scapy/python-scapy.inc
+ delete mode 100644 recipes-security/scapy/python-scapy_2.4.3.bb
 
-> Hi Joe,
->=20
->=20
-> Seems you were missing this patch. Would you please merge it? Thanks.
+diff --git a/recipes-security/scapy/files/run-ptest b/recipes-security/scapy/files/run-ptest
+index 91b29f9..797d8ec 100644
+--- a/recipes-security/scapy/files/run-ptest
++++ b/recipes-security/scapy/files/run-ptest
+@@ -1,4 +1,4 @@
+ #!/bin/sh
+-UTscapy -t regression.uts -f text -l -C \
++UTscapy3 -t regression.uts -f text -l -C \
+     -o @PTEST_PATH@/scapy_ptest_$(date +%Y%m%d-%H%M%S).log \
+     2>&1 | sed -e 's/^passed None/PASS:/' -e 's/^failed None/FAIL:/'
+diff --git a/recipes-security/scapy/python-scapy.inc b/recipes-security/scapy/python-scapy.inc
+deleted file mode 100644
+index 28e13f2..0000000
+--- a/recipes-security/scapy/python-scapy.inc
++++ /dev/null
+@@ -1,22 +0,0 @@
+-SUMMARY = "Network scanning and manipulation tool"
+-DESCRIPTION = "Scapy is a powerful interactive packet manipulation program. It is able to forge or decode packets of a wide number of protocols, send them on the wire, capture them, match requests and replies, and much more. It can easily handle most classical tasks like scanning, tracerouting, probing, unit tests, attacks or network discovery (it can replace hping, 85% of nmap, arpspoof, arp-sk, arping, tcpdump, tethereal, p0f, etc.). It also performs very well at a lot of other specific tasks that most other tools can't handle, like sending invalid frames, injecting your own 802.11 frames, combining technics (VLAN hopping+ARP cache poisoning, VOIP decoding on WEP encrypted channel, ...), etc."
+-SECTION = "security"
+-LICENSE = "GPLv2"
+-
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
+-
+-S = "${WORKDIR}/git"
+-
+-SRCREV = "3047580162a9407ef05fe981983cacfa698f1159"
+-SRC_URI = "git://github.com/secdev/scapy.git"
+-
+-inherit ptest
+-
+-do_install_ptest() {
+-    install -m 0644 ${S}/test/regression.uts ${D}${PTEST_PATH}
+-    sed -i 's,@PTEST_PATH@,${PTEST_PATH},' ${D}${PTEST_PATH}/run-ptest
+-}
+-
+-RDEPENDS_${PN} = "tcpdump ${PYTHON_PN}-compression ${PYTHON_PN}-cryptography ${PYTHON_PN}-netclient  \
+-                  ${PYTHON_PN}-netserver ${PYTHON_PN}-pydoc ${PYTHON_PN}-pkgutil ${PYTHON_PN}-shell \
+-                  ${PYTHON_PN}-threading ${PYTHON_PN}-numbers ${PYTHON_PN}-pycrypto"
+diff --git a/recipes-security/scapy/python-scapy_2.4.3.bb b/recipes-security/scapy/python-scapy_2.4.3.bb
+deleted file mode 100644
+index 982620e..0000000
+--- a/recipes-security/scapy/python-scapy_2.4.3.bb
++++ /dev/null
+@@ -1,11 +0,0 @@
+-inherit setuptools
+-require python-scapy.inc
+-
+-SRC_URI += "file://run-ptest"
+-
+-RDEPENDS_${PN} += "${PYTHON_PN}-subprocess"
+-
+-do_install_append() {
+-        mv ${D}${bindir}/scapy ${D}${bindir}/scapy2
+-        mv ${D}${bindir}/UTscapy ${D}${bindir}/UTscapy2
+-}
+diff --git a/recipes-security/scapy/python3-scapy_2.4.3.bb b/recipes-security/scapy/python3-scapy_2.4.3.bb
+index abcaeeb..925f188 100644
+--- a/recipes-security/scapy/python3-scapy_2.4.3.bb
++++ b/recipes-security/scapy/python3-scapy_2.4.3.bb
+@@ -1,9 +1,30 @@
+-inherit setuptools3
+-require python-scapy.inc
++SUMMARY = "Network scanning and manipulation tool"
++DESCRIPTION = "Scapy is a powerful interactive packet manipulation program. It is able to forge or decode packets of a wide number of protocols, send them on the wire, capture them, match requests and replies, and much more. It can easily handle most classical tasks like scanning, tracerouting, probing, unit tests, attacks or network discovery (it can replace hping, 85% of nmap, arpspoof, arp-sk, arping, tcpdump, tethereal, p0f, etc.). It also performs very well at a lot of other specific tasks that most other tools can't handle, like sending invalid frames, injecting your own 802.11 frames, combining technics (VLAN hopping+ARP cache poisoning, VOIP decoding on WEP encrypted channel, ...), etc."
++SECTION = "security"
++LICENSE = "GPLv2"
+ 
+-SRC_URI += "file://run-ptest"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=b234ee4d69f5fce4486a80fdaf4a4263"
++
++S = "${WORKDIR}/git"
++
++SRCREV = "3047580162a9407ef05fe981983cacfa698f1159"
++SRC_URI = "git://github.com/secdev/scapy.git \
++           file://run-ptest"
++
++S = "${WORKDIR}/git"
++
++inherit setuptools3 ptest
+ 
+ do_install_append() {
+         mv ${D}${bindir}/scapy ${D}${bindir}/scapy3
+         mv ${D}${bindir}/UTscapy ${D}${bindir}/UTscapy3
+ }
++
++do_install_ptest() {
++    install -m 0644 ${S}/test/regression.uts ${D}${PTEST_PATH}
++    sed -i 's,@PTEST_PATH@,${PTEST_PATH},' ${D}${PTEST_PATH}/run-ptest
++}
++
++RDEPENDS_${PN} = "tcpdump ${PYTHON_PN}-compression ${PYTHON_PN}-cryptography ${PYTHON_PN}-netclient  \
++                  ${PYTHON_PN}-netserver ${PYTHON_PN}-pydoc ${PYTHON_PN}-pkgutil ${PYTHON_PN}-shell \
++                  ${PYTHON_PN}-threading ${PYTHON_PN}-numbers ${PYTHON_PN}-pycrypto"
+-- 
+2.17.1
 
-Oh, yeah, sure.  It got classified as spam.  Since it was the end of a
-queue I just assumed they were mis-numbered when I only found 1/3 and
-2/3.
 
-Thanks for pinging me on it.
-
--J.
-
->=20
->=20
-> //Yi
->=20
->=20
-> On 5/20/19 12:41 PM, Yi Zhao wrote:
-> > Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-> > ---
-> >   .../util-linux/fix-libmount_la_DEPENDENCIES.patch  | 28 -------------=
----------
-> >   1 file changed, 28 deletions(-)
-> >   delete mode 100644 recipes-core/util-linux/util-linux/fix-libmount_la=
-_DEPENDENCIES.patch
-> >=20
-> > diff --git a/recipes-core/util-linux/util-linux/fix-libmount_la_DEPENDE=
-NCIES.patch b/recipes-core/util-linux/util-linux/fix-libmount_la_DEPENDENCI=
-ES.patch
-> > deleted file mode 100644
-> > index ab54818..0000000
-> > --- a/recipes-core/util-linux/util-linux/fix-libmount_la_DEPENDENCIES.p=
-atch
-> > +++ /dev/null
-> > @@ -1,28 +0,0 @@
-> > -Subject: [PATCH] util-linux: fix libmount_la_DEPENDENCIES.
-> > -
-> > -Upstream-Status: Pending
-> > -
-> > -libmount_la_LIBADD contains "-lselinux", this is not a object that
-> > -could consider as a dependency target. So fix this.
-> > -
-> > -Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com>
-> > ----
-> > - libmount/src/Makemodule.am |    2 +-
-> > - 1 files changed, 1 insertions(+), 1 deletions(-)
-> > -
-> > -diff --git a/libmount/src/Makemodule.am b/libmount/src/Makemodule.am
-> > -index 494e02a..bf494a4 100644
-> > ---- a/libmount/src/Makemodule.am
-> > -+++ b/libmount/src/Makemodule.am
-> > -@@ -38,7 +38,7 @@ libmount_la_CFLAGS =3D \
-> > - 	-I$(top_srcdir)/libmount/src
-> > -
-> > - libmount_la_DEPENDENCIES =3D \
-> > --	$(libmount_la_LIBADD) \
-> > -+	libcommon.la libblkid.la \
-> > - 	libmount/src/libmount.sym \
-> > - 	libmount/src/libmount.h.in
-> > -
-> > ---
-> > -1.7.5.4
-> > -
-
---=20
--Joe MacDonald.
-Linux Architect | Mentor=AE A Siemens Business
-:wq
-
---oC1+HKm2/end4ao3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRjqRhJknEwCqrWVXzAW9yWWiDRfAUCXWgOyQAKCRDAW9yWWiDR
-fHXDAJ42w65v87gwxr7gDpiXv44PtdZU4gCcDFOBcloho8ZgI0ecS42GS5rB5Pg=
-=lZOR
------END PGP SIGNATURE-----
-
---oC1+HKm2/end4ao3--
