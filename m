@@ -1,64 +1,61 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <simonkbaby@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3EB61E00C78; Thu, 29 Aug 2019 20:16:00 -0700 (PDT)
+	id 1A292E00C78; Thu, 29 Aug 2019 22:20:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
+	provider *      (simonkbaby[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.173 listed in list.dnswl.org]
+	*      [209.85.166.42 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com
-	[209.85.222.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3972E00AE4
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 20:15:58 -0700 (PDT)
-Received: by mail-qk1-f173.google.com with SMTP id 4so4942421qki.6
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 20:15:58 -0700 (PDT)
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com
+	[209.85.166.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C7A6E00B7A
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 22:20:15 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id s21so11693582ioa.1
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 22:20:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=9H8Hj56HG1b5J1b5nLGoMJ0IoT9uGFM0H3H/hsUYo5w=;
-	b=HxQbap/qO856AlItqOuM8o2Vt5biiSmRaioumJm5WrTuAcpw/J2bQDfWxiYQ6hI1Pn
-	kJn03eB7YP+lfPkoYdUeIPk1xTcaioib9Iiz1VXZ8jB+12AC8ca9fxLFTZBjOdh7H4w5
-	lTelJ3cdB7smYtWcgRAXopWwXwdWZkkOIZM9nMBF0fkf997E2dVgh5Q/A8TpgRjQXdVv
-	DjYWVS4mEHn3Kuhlu7Qg+XSVnnDbzJYiHdn/hOmusar3TtbMUPoh4VVI6+Cro5yPeM4j
-	lncTV/IbTyd0KoyukrEnjSI1lH639Gy77ODR6nuntHoL9F4eOMlAm6sle9E83Lz60vt9
-	NpEg==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=pC+1DLnvbRqAHCYtPLt7R8HZpzwQI+LKN8gCA22DPv4=;
+	b=J5rQYq4icgSaC5Y+KCIPTlWuTL4XviHVZiwsXEznYw5aACu/hyxSdmlh+44Co4DKwS
+	Q7OgYTQb/mPOVfBmwVvsjVKfbRG1ro40t99p9bFPDucxKQs1c/Gd70dKZsBjjnD68cX+
+	+djG7CQXUFteUsWIimPMyqN0QlGa+9H9yPnGZHhhvDFW0EizzleaogYTfalFRP2bgrPP
+	6mBCaKSDCaLtMsT4ENoSZaGfkqZfqKLcNt9+zg6+1K269JaXgR2kwurt5qTbmo+SLkGG
+	lCKZbchGaXa9J27DXmBd2MMYDhOPp/bkeRneIIqLofSmEJPFGtf8KmMetVZ7eXkBISr9
+	Fozw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=9H8Hj56HG1b5J1b5nLGoMJ0IoT9uGFM0H3H/hsUYo5w=;
-	b=hq58CEShVhzDxExD8hB9mRcxHiBnMdY1uMkTtrBOOUMaGfwb0Vgx66tA5u/Gs7/Zxe
-	PhqJdkBvMUILqaeugTlnEBIRFzUmtgngDAssY9T3kXv5j/mhIPQTQabLqdr1Fd4Q4XLL
-	lidhLVTeR4Q/+2tvuQymlAr3L9j3I75r3+pkUDo7ykhllkAwboCQa87OSFpllYGr++wI
-	nwd4QjTmndhg7uVZVwK8efyDffKJlw27pu0zStTP94m9s2mBNag+mW2+0DlRk2cjPzNp
-	0TS9bDpmHBPxNLrz2U8hYrDjp4TD3dZKXWN+IofP2WfBJfE81LDTjb541XhyprXJToET
-	Woow==
-X-Gm-Message-State: APjAAAVootvCvZeHH+6QWEbGGhCkq6+2xzGbqxPXQ2vQ0FnROA1m+GFm
-	i5KxFcLQ+wNXkfro2z/UHOsl5mTcsFwbwUKo3AA=
-X-Google-Smtp-Source: APXvYqwmkogxYwedzMEeXTS0bsOSWvi77dRd3h1X3Eb89orWqKDOpHX5/g9AQ/Myqli0rroHxJleJw7adYcI9EAF8GI=
-X-Received: by 2002:ae9:f80b:: with SMTP id x11mr13124275qkh.479.1567134958096;
-	Thu, 29 Aug 2019 20:15:58 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=pC+1DLnvbRqAHCYtPLt7R8HZpzwQI+LKN8gCA22DPv4=;
+	b=a59akXz43vTWK3NmagKD5alnas/gCh+R3Q+NRuzZWvxPOvozY1mkJQ/L4YyTs/ue9i
+	Ddc8MF84jtGNLJImHMjhQ3k3IQpzgSxzdzxzq5PdSgOaR24DfBt44MJMKri2fsBqnEG+
+	jNJedRe/7KysDAGliSXf8wfuNvijfZnANQ8J4yv0BRMswhkvbNnHtXGzaNnZXoncTiw+
+	MMH/zNI/Wadwfamvl6fisU7UmA9+s++/jE7V9KWenCev74wADXl7l2rL//GMGp5PLo8/
+	tFAKn35SUTpwwZYdoBVX8XXDbEijSGjHb/Y3+3OaNNNqAs8Za12DRTs/HMUnie5MBXWY
+	cHFA==
+X-Gm-Message-State: APjAAAXjghX2/1Q2xOMUzmjWF3M1zOReGMa0YuXcm2yMgnDSh+7ObcSH
+	S0qEMoH6n+DQfxcFj2OMYJEinR1PlVzl4vBHvQ37MVO9
+X-Google-Smtp-Source: APXvYqzCJM044qPxdcdciErd/2BPy2YNDG+73pf2kmqQ1ZKDZgQ3KRk3LPNjuuDTwgibj58vxEbvE6ABKaE3WQ5LJ/M=
+X-Received: by 2002:a5e:de47:: with SMTP id e7mr847611ioq.127.1567142415392;
+	Thu, 29 Aug 2019 22:20:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <5d1cad0e5416442aad80dd7faca08983@sakuraus.com>
-In-Reply-To: <5d1cad0e5416442aad80dd7faca08983@sakuraus.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Fri, 30 Aug 2019 05:15:46 +0200
-Message-ID: <CAGAf8LxEQiOsMsPaNRpzGNWFSKYUpfjzPQ-DbrrUCas9XkWqTA@mail.gmail.com>
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Error trying to generate Raspberry Pi initramfs
+From: SIMON BABY <simonkbaby@gmail.com>
+Date: Thu, 29 Aug 2019 22:20:04 -0700
+Message-ID: <CAEFUPH0y8_xLhwLY7ns-NSEaPdBE39kvxF2RFH-pQz0_-rQROw@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: QA Issue: Files/directories were installed but not shipped
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,108 +67,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Aug 2019 03:16:00 -0000
+X-List-Received-Date: Fri, 30 Aug 2019 05:20:17 -0000
+Content-Type: multipart/alternative; boundary="000000000000fb65fc05914ec6db"
+
+--000000000000fb65fc05914ec6db
 Content-Type: text/plain; charset="UTF-8"
 
-Hello Greg,
+Hello,
 
-This, what I have posted as answer work for me on BBB (BeagleBone
-Black) seamlessly.
+I am getting "ERROR:  QA Issue:  Files/directories were installed but not
+shipped". Can you please help to resolve. My logs and bb files are below.
 
-I did not try it on Sabre Automotive, but as we speak, I just
-straightened out the optimal local.conf for it (with very rich
-networking services on the top of Linux), and I am 100% sure the above
-initramfs methodology will work on Sabre Automotive as well.
 
-I have no idea about specifics on RPI 3. Sorry for that.
+ERROR: QA Issue: zipcpp: Files/directories were installed but not
+shipped in any package:
+  /usr
+  /usr/include
+  /usr/src
+  /usr/lib
+  /usr/include/zipc.h
+  /usr/include/logger.h
+  /usr/include/fmt
+  /usr/include/fmt/format.h
+  /usr/include/fmt/ranges.h
+  /usr/include/fmt/printf.h
 
-Best Regads,
-Zoran
-_______
 
-On Thu, Aug 29, 2019 at 7:40 PM Greg Wilson-Lindberg
-<GWilson@sakuraus.com> wrote:
->
-> Hi Zoran,
-> Thanks for your comments.
->
-> I'm adding [meta-raspberrypi] to the as I have realized that some might have missed this Raspberry-pi specific question.
->
-> Thanks,
-> Greg Wilson-Lindberg
->
-> > -----Original Message-----
-> > From: Zoran Stojsavljevic [mailto:zoran.stojsavljevic@gmail.com]
-> > Sent: Wednesday, August 28, 2019 05:08 PM
-> > To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-> > Cc: Yocto list discussion <yocto@yoctoproject.org>
-> > Subject: Re: [yocto] Error trying to generate Raspberry Pi initramfs
-> >
-> > Three things:
-> > [1] The initramfs is NOT the initrd (te second one is the temp
-> >       stage in booting the linux to mmcblk...); [2] There are some config parameters
-> > you need to set up in
-> >       your kernel .config file:
-> >       https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/custom/config-
-> > initramfs
-> > [3] The command line is formed in u-boot or in grub2, or in
-> >       your Linux boot loader (you need to add some lines
-> >       in ash u-boot config script, as the following example):
-> >       https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/custom/u-boot.ash
-> >
-> > Good Luck,
-> > Zoran
-> > _______
-> >
-> >
-> > On Wed, Aug 28, 2019 at 7:26 PM Greg Wilson-Lindberg
-> > <GWilson@sakuraus.com> wrote:
-> > >
-> > > I'm trying to generate an initramfs for a raspberry pi 3 for a sumo build. We are
-> > based off of the Qt boot2qt system.
-> > >
-> > > I have followed the instructions in the meta-raspberrypi.pdf documentation,
-> > section 3.14 Image with Initramfs.
-> > >
-> > > I edited the meta-raspberrypi/recipes-kernel/linux/linux-raspberry.inc file and
-> > added the variables into my local.conf file. I created a rpi-minimal-initramfs.bb
-> > recipe and it is created when I build the system. But the command line that is put
-> > into the boot partition is:
-> > >
-> > > dwc_otg.lpm_enable=0  root=/dev/mmcblk0p2 rootfstype=ext4 rootwait
-> > fbcon=map:10 fbcon=font:VGA8x8
-> > >
-> > > No initramfs.
-> > >
-> > > In the linux-raspberry.inc file, after the insertion point for the new kernel variables,
-> > there is a test for KERNEL_INITRAMFS. I tried setting this in my local.conf file, but
-> > when I do I get an error for a missing file:
-> > >
-> > > | /home/..../tmp/deploy/images/raspberrypi3/uImage1-raspberrypi3.bin:
-> > > | No such file or directory
-> > >
-> > > So, apparently that can't be set directly.
-> > >
-> > > There seems to be something missing in the instructions in the meta-
-> > raspberrypi.pdf documentation. Anyone that has any experience with setting this up
-> > and can help me figure out what I'm missing, I would greatly appreciate the help.
-> > >
-> > > Regards,
-> > > Greg Wilson-Lindberg
-> > >
-> > >
-> > >
-> > >
-> > >
-> > >
-> > >
-> > >
-> > >
-> > >
-> > >
-> > > --
-> > > _______________________________________________
-> > > yocto mailing list
-> > > yocto@yoctoproject.org
-> > > https://lists.yoctoproject.org/listinfo/yocto
+*bb file:*
 
+
+#
+# This file is the zipcpp recipe.
+#
+
+DEPENDS = "zeromq cppzmq"
+SUMMARY = "ZeroMQ based IPC C++ library"
+SECTION = "base"
+LICENSE = "CLOSED"
+
+SRC_URI = "git://git@elsvsapp02/TDY/ZIPCpp.git;protocol=ssh;branch=develop"
+SRCREV = "${AUTOREV}"
+
+S = "${WORKDIR}/git"
+
+LIB_ARTIFACT = "libzipcpp.so"
+LIB_VERSION = "1"
+
+do_install() {
+    install -d ${D}${libdir}
+    install -m 0755 ${S}/bin/${LIB_ARTIFACT}.${LIB_VERSION}
+${D}${libdir}/${LIB_ARTIFACT}.${LIB_VERSION}
+    ln -rs ${D}${libdir}/${LIB_ARTIFACT}.${LIB_VERSION}
+${D}${libdir}/${LIB_ARTIFACT}
+    install -d ${D}${includedir}
+    install -m 0644 ${S}/include/zipc.h ${D}${includedir}
+    install -m 0644 ${S}/include/logger.h ${D}${includedir}
+    install -d ${D}${includedir}/fmt
+    install -m 0644 ${S}/include/fmt/* ${D}${includedir}/fmt
+}
+
+#do_install_append() {
+#    rm -r ${D}/usr/share
+#}
+
+FILES_${PN} += "${libdir}/${LIB_ARTIFACT}.${LIB_VERSION}"
+FILES_${PN} += "${libdir}/${LIB_ARTIFACT}"
+PACKAGES = "${PN}"
+
+
+Rgds
+
+Simon
+
+--000000000000fb65fc05914ec6db
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><pre style=3D"white-space:pre-wrap;font-family:courier,&qu=
+ot;courier new&quot;,monospace;font-size:14px;margin-top:0px;margin-bottom:=
+0px;color:rgb(0,0,0)">Hello,</pre><pre style=3D"white-space:pre-wrap;font-f=
+amily:courier,&quot;courier new&quot;,monospace;font-size:14px;margin-top:0=
+px;margin-bottom:0px;color:rgb(0,0,0)">I am getting &quot;ERROR:  QA Issue:=
+  Files/directories were installed but not=20
+shipped&quot;. Can you please help to resolve. My logs and bb files are bel=
+ow.</pre><pre style=3D"white-space:pre-wrap;font-family:courier,&quot;couri=
+er new&quot;,monospace;font-size:14px;margin-top:0px;margin-bottom:0px;colo=
+r:rgb(0,0,0)"><br></pre><pre style=3D"white-space:pre-wrap;font-family:cour=
+ier,&quot;courier new&quot;,monospace;font-size:14px;margin-top:0px;margin-=
+bottom:0px;color:rgb(0,0,0)">ERROR: QA Issue: zipcpp: Files/directories wer=
+e installed but not shipped in any package:<br>=C2=A0 /usr<br>=C2=A0 /usr/i=
+nclude<br>=C2=A0 /usr/src<br>=C2=A0 /usr/lib<br>=C2=A0 /usr/include/zipc.h<=
+br>=C2=A0 /usr/include/logger.h<br>=C2=A0 /usr/include/fmt<br>=C2=A0 /usr/i=
+nclude/fmt/format.h<br>=C2=A0 /usr/include/fmt/ranges.h<br>=C2=A0 /usr/incl=
+ude/fmt/printf.h<br></pre><pre style=3D"white-space:pre-wrap;font-family:co=
+urier,&quot;courier new&quot;,monospace;font-size:14px;margin-top:0px;margi=
+n-bottom:0px;color:rgb(0,0,0)"><br></pre><pre style=3D"white-space:pre-wrap=
+;font-family:courier,&quot;courier new&quot;,monospace;font-size:14px;margi=
+n-top:0px;margin-bottom:0px;color:rgb(0,0,0)"><b>bb file:</b></pre><pre sty=
+le=3D"white-space:pre-wrap;font-family:courier,&quot;courier new&quot;,mono=
+space;font-size:14px;margin-top:0px;margin-bottom:0px;color:rgb(0,0,0)"><br=
+></pre><pre style=3D"white-space:pre-wrap;font-family:courier,&quot;courier=
+ new&quot;,monospace;font-size:14px;margin-top:0px;margin-bottom:0px;color:=
+rgb(0,0,0)">#<br># This file is the zipcpp recipe.<br>#<br><br>DEPENDS =3D =
+&quot;zeromq cppzmq&quot;<br>SUMMARY =3D &quot;ZeroMQ based IPC C++ library=
+&quot;<br>SECTION =3D &quot;base&quot;<br>LICENSE =3D &quot;CLOSED&quot;<br=
+><br>SRC_URI =3D &quot;git://git@elsvsapp02/TDY/ZIPCpp.git;protocol=3Dssh;b=
+ranch=3Ddevelop&quot;<br>SRCREV =3D &quot;${AUTOREV}&quot;<br><br>S =3D &qu=
+ot;${WORKDIR}/git&quot;<br><br>LIB_ARTIFACT =3D &quot;libzipcpp.so&quot;<br=
+>LIB_VERSION =3D &quot;1&quot;<br><br>do_install() {<br>=C2=A0 =C2=A0 insta=
+ll -d ${D}${libdir}<br>=C2=A0 =C2=A0 install -m 0755 ${S}/bin/${LIB_ARTIFAC=
+T}.${LIB_VERSION} ${D}${libdir}/${LIB_ARTIFACT}.${LIB_VERSION}<br>=C2=A0 =
+=C2=A0 ln -rs ${D}${libdir}/${LIB_ARTIFACT}.${LIB_VERSION} ${D}${libdir}/${=
+LIB_ARTIFACT}<br>=C2=A0 =C2=A0 install -d ${D}${includedir}<br>=C2=A0 =C2=
+=A0 install -m 0644 ${S}/include/zipc.h ${D}${includedir}<br>=C2=A0 =C2=A0 =
+install -m 0644 ${S}/include/logger.h ${D}${includedir}<br>=C2=A0 =C2=A0 in=
+stall -d ${D}${includedir}/fmt<br>=C2=A0 =C2=A0 install -m 0644 ${S}/includ=
+e/fmt/* ${D}${includedir}/fmt<br>}<br><br>#do_install_append() {<br># =C2=
+=A0 =C2=A0rm -r ${D}/usr/share<br>#}<br><br>FILES_${PN} +=3D &quot;${libdir=
+}/${LIB_ARTIFACT}.${LIB_VERSION}&quot;<br>FILES_${PN} +=3D &quot;${libdir}/=
+${LIB_ARTIFACT}&quot;<br>PACKAGES =3D &quot;${PN}&quot;<br></pre><pre style=
+=3D"white-space:pre-wrap;font-family:courier,&quot;courier new&quot;,monosp=
+ace;font-size:14px;margin-top:0px;margin-bottom:0px;color:rgb(0,0,0)"><br><=
+/pre><pre style=3D"white-space:pre-wrap;font-family:courier,&quot;courier n=
+ew&quot;,monospace;font-size:14px;margin-top:0px;margin-bottom:0px;color:rg=
+b(0,0,0)">Rgds</pre><pre style=3D"white-space:pre-wrap;font-family:courier,=
+&quot;courier new&quot;,monospace;font-size:14px;margin-top:0px;margin-bott=
+om:0px;color:rgb(0,0,0)">Simon</pre></div>
+
+--000000000000fb65fc05914ec6db--
