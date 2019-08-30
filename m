@@ -1,41 +1,64 @@
-Return-Path: <andreea.volosincu@windriver.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E63DEE00DF8; Thu, 29 Aug 2019 16:24:12 -0700 (PDT)
+	id 3EB61E00C78; Thu, 29 Aug 2019 20:16:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.8 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED,URIBL_GREY autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	*  0.4 URIBL_GREY Contains an URL listed in the URIBL greylist
-	*      [URIs: cvent.com]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5591E00DE3
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 16:24:10 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x7TNO9i8026509
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 16:24:10 -0700 (PDT)
-Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.36]) by
-	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.03.0468.000;
-	Thu, 29 Aug 2019 16:24:04 -0700
-From: "Volosincu, Andreea S" <andreea.volosincu@windriver.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Thread-Topic: Yocto Project Summit 2019 - CFP Open
-Thread-Index: AdVev6bolKsFg4myQB6g+O0hgrQKFw==
-Date: Thu, 29 Aug 2019 23:24:03 +0000
-Message-ID: <A084970538D2234B96D99D06FA9D974FCA8EB423@ALA-MBD.corp.ad.wrs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.11.4.92]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (zoran.stojsavljevic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.173 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com
+	[209.85.222.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3972E00AE4
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 20:15:58 -0700 (PDT)
+Received: by mail-qk1-f173.google.com with SMTP id 4so4942421qki.6
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 20:15:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=9H8Hj56HG1b5J1b5nLGoMJ0IoT9uGFM0H3H/hsUYo5w=;
+	b=HxQbap/qO856AlItqOuM8o2Vt5biiSmRaioumJm5WrTuAcpw/J2bQDfWxiYQ6hI1Pn
+	kJn03eB7YP+lfPkoYdUeIPk1xTcaioib9Iiz1VXZ8jB+12AC8ca9fxLFTZBjOdh7H4w5
+	lTelJ3cdB7smYtWcgRAXopWwXwdWZkkOIZM9nMBF0fkf997E2dVgh5Q/A8TpgRjQXdVv
+	DjYWVS4mEHn3Kuhlu7Qg+XSVnnDbzJYiHdn/hOmusar3TtbMUPoh4VVI6+Cro5yPeM4j
+	lncTV/IbTyd0KoyukrEnjSI1lH639Gy77ODR6nuntHoL9F4eOMlAm6sle9E83Lz60vt9
+	NpEg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=9H8Hj56HG1b5J1b5nLGoMJ0IoT9uGFM0H3H/hsUYo5w=;
+	b=hq58CEShVhzDxExD8hB9mRcxHiBnMdY1uMkTtrBOOUMaGfwb0Vgx66tA5u/Gs7/Zxe
+	PhqJdkBvMUILqaeugTlnEBIRFzUmtgngDAssY9T3kXv5j/mhIPQTQabLqdr1Fd4Q4XLL
+	lidhLVTeR4Q/+2tvuQymlAr3L9j3I75r3+pkUDo7ykhllkAwboCQa87OSFpllYGr++wI
+	nwd4QjTmndhg7uVZVwK8efyDffKJlw27pu0zStTP94m9s2mBNag+mW2+0DlRk2cjPzNp
+	0TS9bDpmHBPxNLrz2U8hYrDjp4TD3dZKXWN+IofP2WfBJfE81LDTjb541XhyprXJToET
+	Woow==
+X-Gm-Message-State: APjAAAVootvCvZeHH+6QWEbGGhCkq6+2xzGbqxPXQ2vQ0FnROA1m+GFm
+	i5KxFcLQ+wNXkfro2z/UHOsl5mTcsFwbwUKo3AA=
+X-Google-Smtp-Source: APXvYqwmkogxYwedzMEeXTS0bsOSWvi77dRd3h1X3Eb89orWqKDOpHX5/g9AQ/Myqli0rroHxJleJw7adYcI9EAF8GI=
+X-Received: by 2002:ae9:f80b:: with SMTP id x11mr13124275qkh.479.1567134958096;
+	Thu, 29 Aug 2019 20:15:58 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Yocto Project Summit 2019 - CFP Open
+References: <5d1cad0e5416442aad80dd7faca08983@sakuraus.com>
+In-Reply-To: <5d1cad0e5416442aad80dd7faca08983@sakuraus.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Fri, 30 Aug 2019 05:15:46 +0200
+Message-ID: <CAGAf8LxEQiOsMsPaNRpzGNWFSKYUpfjzPQ-DbrrUCas9XkWqTA@mail.gmail.com>
+To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] Error trying to generate Raspberry Pi initramfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,332 +70,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 Aug 2019 23:24:13 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_A084970538D2234B96D99D06FA9D974FCA8EB423ALAMBDcorpadwrs_"
+X-List-Received-Date: Fri, 30 Aug 2019 03:16:00 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---_000_A084970538D2234B96D99D06FA9D974FCA8EB423ALAMBDcorpadwrs_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hello Greg,
 
-Yocto Project is pleased to announce the Yocto Project Summit 2019, a techn=
-ical conference for engineers, open source technologists, students and acad=
-emia in the OSS space.
+This, what I have posted as answer work for me on BBB (BeagleBone
+Black) seamlessly.
 
-Organized in conjunction with ELCE 2019, this 2-day event is where individu=
-als will learn about Yocto Projects' direction - including, but not limited=
- to, new releases, development tools, features - get training on the next w=
-ave of embedded Linux technologies (segment previously known as Yocto Proje=
-ct Developer Day), and network with their industry peers, Yocto Project mai=
-ntainers and experts.
+I did not try it on Sabre Automotive, but as we speak, I just
+straightened out the optimal local.conf for it (with very rich
+networking services on the top of Linux), and I am 100% sure the above
+initramfs methodology will work on Sabre Automotive as well.
 
-DATE: Thursday, October 31 - Friday, November 1, 2019
-TIME: 9:00 am - 5:00 pm
-LOCATION: Lyon Convention Center
-REGISTRATION: Together with your ELCE registration<https://www.cvent.com/Ev=
-ents/Register/RegNumConfirmation.aspx?e=3D66d78d44-9d3c-4c92-85fa-a87ef8e8b=
-62b>
-EVENT PAGE: https://www.yoctoproject.org/yocto-project-summit-2019-2/
+I have no idea about specifics on RPI 3. Sorry for that.
 
-The CFP is currently open.
-CFP Closes: 11:59 PM PST on Monday, September 16
-CFP Notifications: Monday, September 23
-Schedule Announcement: Thursday, September 30
-Slide Due Date: Monday, October 21
+Best Regads,
+Zoran
+_______
 
-CFP list of topics:
-
-?  DevTool
-
-?  Layer quality: e.g. creating robust layers, safely using existing layers
-
-?  Future languages (e.g. Rust)
-
-?  Productivity tricks and tools
-
-?  Security
-
-?  Reproducibility
-
-?  Init systems: pros and cons, selection, configuration
-
-?  Leveraging the new runqueue optimizations for mirrors, reproducible buil=
-ds
-
-?  Supporting the Application Developer
-
-?  DevOps
-
-?  Working with/creating BSPs
-
-?  Practical use of the Yocto Project
-
-Submit your proposals at conferences@yoctoproject.org<mailto:conferences@yo=
-ctoproject.org>
-
-Best regards,
-Yocto Project Advocacy Team
-
-
-
---_000_A084970538D2234B96D99D06FA9D974FCA8EB423ALAMBDcorpadwrs_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On Thu, Aug 29, 2019 at 7:40 PM Greg Wilson-Lindberg
+<GWilson@sakuraus.com> wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:"Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:937296667;
-	mso-list-type:hybrid;
-	mso-list-template-ids:-1383536856 67698701 67698691 67698693 67698689 6769=
-8691 67698693 67698689 67698691 67698693;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0FC;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Yocto Project is pleased to announce the Yocto Proje=
-ct Summit 2019, a technical conference for engineers, open source technolog=
-ists, students and academia in the OSS space.&nbsp;
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Organized in conjunction with ELCE 2019, this 2-day =
-event is where individuals will learn about Yocto Projects&#8217; direction=
- &#8212; including, but not limited to, new releases, development tools, fe=
-atures &#8212; get training on the next wave of embedded
- Linux technologies (segment previously known as Yocto Project Developer Da=
-y), and network with their industry peers, Yocto Project maintainers and ex=
-perts.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">DATE: Thursday, October 31 &#8211; Friday, November =
-1, 2019<o:p></o:p></p>
-<p class=3D"MsoNormal">TIME: 9:00 am &#8211; 5:00 pm<o:p></o:p></p>
-<p class=3D"MsoNormal">LOCATION: Lyon Convention Center<o:p></o:p></p>
-<p class=3D"MsoNormal">REGISTRATION: <a href=3D"https://www.cvent.com/Event=
-s/Register/RegNumConfirmation.aspx?e=3D66d78d44-9d3c-4c92-85fa-a87ef8e8b62b=
-">
-Together with your ELCE registration</a><o:p></o:p></p>
-<p class=3D"MsoNormal">EVENT PAGE: <a href=3D"https://www.yoctoproject.org/=
-yocto-project-summit-2019-2/">
-https://www.yoctoproject.org/yocto-project-summit-2019-2/</a> <o:p></o:p></=
-p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">The CFP is currently open. <o:p></o:p></p>
-<p class=3D"MsoNormal">CFP Closes: 11:59 PM PST on Monday, September 16<o:p=
-></o:p></p>
-<p class=3D"MsoNormal">CFP Notifications: Monday, September 23<o:p></o:p></=
-p>
-<p class=3D"MsoNormal">Schedule Announcement: Thursday, September 30<o:p></=
-o:p></p>
-<p class=3D"MsoNormal">Slide Due Date: Monday, October 21<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">CFP list of topics:<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
-yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
-an&quot;">&nbsp;
-</span></span></span><![endif]>DevTool<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
-yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
-an&quot;">&nbsp;
-</span></span></span><![endif]>Layer quality: e.g. creating robust layers, =
-safely using existing layers<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
-yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
-an&quot;">&nbsp;
-</span></span></span><![endif]>Future languages (e.g. Rust)<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
-yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
-an&quot;">&nbsp;
-</span></span></span><![endif]>Productivity tricks and tools<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
-yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
-an&quot;">&nbsp;
-</span></span></span><![endif]>Security<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
-yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
-an&quot;">&nbsp;
-</span></span></span><![endif]>Reproducibility<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
-yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
-an&quot;">&nbsp;
-</span></span></span><![endif]>Init systems: pros and cons, selection, conf=
-iguration<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
-yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
-an&quot;">&nbsp;
-</span></span></span><![endif]>Leveraging the new runqueue optimizations fo=
-r mirrors, reproducible builds<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
-yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
-an&quot;">&nbsp;
-</span></span></span><![endif]>Supporting the Application Developer<o:p></o=
-:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
-yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
-an&quot;">&nbsp;
-</span></span></span><![endif]>DevOps<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
-yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
-an&quot;">&nbsp;
-</span></span></span><![endif]>Working with/creating BSPs<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"font-family:Wingdings"><span st=
-yle=3D"mso-list:Ignore">&uuml;<span style=3D"font:7.0pt &quot;Times New Rom=
-an&quot;">&nbsp;
-</span></span></span><![endif]>Practical use of the Yocto Project<o:p></o:p=
-></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Submit your proposals at <a href=3D"mailto:conferenc=
-es@yoctoproject.org">
-conferences@yoctoproject.org</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Best regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Yocto Project Advocacy Team<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> Hi Zoran,
+> Thanks for your comments.
+>
+> I'm adding [meta-raspberrypi] to the as I have realized that some might have missed this Raspberry-pi specific question.
+>
+> Thanks,
+> Greg Wilson-Lindberg
+>
+> > -----Original Message-----
+> > From: Zoran Stojsavljevic [mailto:zoran.stojsavljevic@gmail.com]
+> > Sent: Wednesday, August 28, 2019 05:08 PM
+> > To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+> > Cc: Yocto list discussion <yocto@yoctoproject.org>
+> > Subject: Re: [yocto] Error trying to generate Raspberry Pi initramfs
+> >
+> > Three things:
+> > [1] The initramfs is NOT the initrd (te second one is the temp
+> >       stage in booting the linux to mmcblk...); [2] There are some config parameters
+> > you need to set up in
+> >       your kernel .config file:
+> >       https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/custom/config-
+> > initramfs
+> > [3] The command line is formed in u-boot or in grub2, or in
+> >       your Linux boot loader (you need to add some lines
+> >       in ash u-boot config script, as the following example):
+> >       https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/custom/u-boot.ash
+> >
+> > Good Luck,
+> > Zoran
+> > _______
+> >
+> >
+> > On Wed, Aug 28, 2019 at 7:26 PM Greg Wilson-Lindberg
+> > <GWilson@sakuraus.com> wrote:
+> > >
+> > > I'm trying to generate an initramfs for a raspberry pi 3 for a sumo build. We are
+> > based off of the Qt boot2qt system.
+> > >
+> > > I have followed the instructions in the meta-raspberrypi.pdf documentation,
+> > section 3.14 Image with Initramfs.
+> > >
+> > > I edited the meta-raspberrypi/recipes-kernel/linux/linux-raspberry.inc file and
+> > added the variables into my local.conf file. I created a rpi-minimal-initramfs.bb
+> > recipe and it is created when I build the system. But the command line that is put
+> > into the boot partition is:
+> > >
+> > > dwc_otg.lpm_enable=0  root=/dev/mmcblk0p2 rootfstype=ext4 rootwait
+> > fbcon=map:10 fbcon=font:VGA8x8
+> > >
+> > > No initramfs.
+> > >
+> > > In the linux-raspberry.inc file, after the insertion point for the new kernel variables,
+> > there is a test for KERNEL_INITRAMFS. I tried setting this in my local.conf file, but
+> > when I do I get an error for a missing file:
+> > >
+> > > | /home/..../tmp/deploy/images/raspberrypi3/uImage1-raspberrypi3.bin:
+> > > | No such file or directory
+> > >
+> > > So, apparently that can't be set directly.
+> > >
+> > > There seems to be something missing in the instructions in the meta-
+> > raspberrypi.pdf documentation. Anyone that has any experience with setting this up
+> > and can help me figure out what I'm missing, I would greatly appreciate the help.
+> > >
+> > > Regards,
+> > > Greg Wilson-Lindberg
+> > >
+> > >
+> > >
+> > >
+> > >
+> > >
+> > >
+> > >
+> > >
+> > >
+> > >
+> > > --
+> > > _______________________________________________
+> > > yocto mailing list
+> > > yocto@yoctoproject.org
+> > > https://lists.yoctoproject.org/listinfo/yocto
 
---_000_A084970538D2234B96D99D06FA9D974FCA8EB423ALAMBDcorpadwrs_--
