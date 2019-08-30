@@ -1,6 +1,6 @@
 Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E62E4E00C78; Thu, 29 Aug 2019 22:59:15 -0700 (PDT)
+	id 7F142E00DFF; Thu, 29 Aug 2019 23:09:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,27 +8,26 @@ X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	https://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83F5AE00B7A
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 22:59:15 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x7U5wsOG001075
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8945E009D8
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 23:09:12 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x7U69CRl001020
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 22:59:04 -0700
+	for <yocto@yoctoproject.org>; Thu, 29 Aug 2019 23:09:12 -0700 (PDT)
 Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.468.0; Thu, 29 Aug 2019 22:58:44 -0700
+	14.3.468.0; Thu, 29 Aug 2019 23:09:11 -0700
 From: <changqing.li@windriver.com>
 To: <yocto@yoctoproject.org>
-Date: Fri, 30 Aug 2019 13:58:42 +0800
-Message-ID: <1567144722-454944-1-git-send-email-changqing.li@windriver.com>
+Date: Fri, 30 Aug 2019 14:09:10 +0800
+Message-ID: <1567145350-398562-1-git-send-email-changqing.li@windriver.com>
 X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Subject: [meta-dpdk][PATCH] dpdk: support usrmerge
+Subject: [meta-cloud-services][PATCH 1/14] glusterfs: support usrmerge [LINUXEXEC-1807]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,29 +39,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Aug 2019 05:59:16 -0000
+X-List-Received-Date: Fri, 30 Aug 2019 06:09:13 -0000
 Content-Type: text/plain
 
 From: Changqing Li <changqing.li@windriver.com>
 
+Issue: LINUXEXEC-1807
+
+(LOCAL REV: NOT UPSTREAM) -- send upstream 20190830
+
 Signed-off-by: Changqing Li <changqing.li@windriver.com>
 ---
- recipes-extended/dpdk/dpdk.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipes-extended/glusterfs/glusterfs.inc | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-diff --git a/recipes-extended/dpdk/dpdk.inc b/recipes-extended/dpdk/dpdk.inc
-index 9dcec76..08db741 100644
---- a/recipes-extended/dpdk/dpdk.inc
-+++ b/recipes-extended/dpdk/dpdk.inc
-@@ -40,7 +40,7 @@ do_configure[depends] += "virtual/kernel:do_shared_workdir"
+diff --git a/recipes-extended/glusterfs/glusterfs.inc b/recipes-extended/glusterfs/glusterfs.inc
+index 40a3922..66e2bf1 100644
+--- a/recipes-extended/glusterfs/glusterfs.inc
++++ b/recipes-extended/glusterfs/glusterfs.inc
+@@ -64,9 +64,11 @@ do_install_append() {
+     install -m 0755 ${WORKDIR}/glusterd.init \
+         ${D}${sysconfdir}/init.d/glusterd
  
- inherit module
+-    # Mount looks for mount.* plug-ins in /sbin; fix it with a symlink.
+-    mkdir -p ${D}${base_sbindir}
+-    (cd ${D}${base_sbindir}; ln -s ..${sbindir}/mount.glusterfs .)
++    if ! ${@bb.utils.contains('DISTRO_FEATURES','usrmerge','true','false',d)}; then
++        # Mount looks for mount.* plug-ins in /sbin; fix it with a symlink.
++        mkdir -p ${D}${base_sbindir}
++        (cd ${D}${base_sbindir}; ln -s ..${sbindir}/mount.glusterfs .)
++    fi
  
--export MODULE_DIR="/lib/modules/${KERNEL_VERSION}/kernel/drivers/net"
-+export MODULE_DIR="${@bb.utils.contains('DISTRO_FEATURES','usrmerge','/usr','',d)}/lib/modules/${KERNEL_VERSION}/kernel/drivers/net"
- export RTE_SDK = "${S}"
- 
- export ICP_ROOT = "${PKG_CONFIG_SYSROOT_DIR}/usr/include"
+     # These are plug-ins, so they don't need libtool configs.
+     find ${D}${libdir}/glusterfs/${PV} -name '*.la' -exec rm -f '{}' ';'
 -- 
 2.7.4
 
