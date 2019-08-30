@@ -1,6 +1,6 @@
 Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6F656E00E0A; Fri, 30 Aug 2019 00:07:30 -0700 (PDT)
+	id A17ECE00E01; Fri, 30 Aug 2019 00:13:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -12,28 +12,22 @@ X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2346E00E01
-	for <yocto@yoctoproject.org>; Fri, 30 Aug 2019 00:07:29 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x7U77MmC001398
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 30 Aug 2019 00:07:23 -0700 (PDT)
-Received: from [128.224.162.186] (128.224.162.186) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0;
-	Fri, 30 Aug 2019 00:07:22 -0700
-To: "Mittal, Anuj" <anuj.mittal@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <1567144722-454944-1-git-send-email-changqing.li@windriver.com>
-	<be77c2ec8eec35c8b63532877cb38c7c5894c5c5.camel@intel.com>
-From: Changqing Li <changqing.li@windriver.com>
-Message-ID: <d8436e17-6771-d3c7-5739-92debc60ffc5@windriver.com>
-Date: Fri, 30 Aug 2019 15:07:19 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.7.0
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AADEE009D8
+	for <yocto@yoctoproject.org>; Fri, 30 Aug 2019 00:13:30 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x7U7DTvj001423
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 30 Aug 2019 00:13:29 -0700 (PDT)
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.468.0; Fri, 30 Aug 2019 00:13:29 -0700
+From: <changqing.li@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 30 Aug 2019 15:13:27 +0800
+Message-ID: <1567149207-148954-1-git-send-email-changqing.li@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <be77c2ec8eec35c8b63532877cb38c7c5894c5c5.camel@intel.com>
-X-Originating-IP: [128.224.162.186]
-Subject: Re: [meta-dpdk][PATCH] dpdk: support usrmerge
+Subject: [meta-dpdk][PATCH V2] dpdk: support usrmerge
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,35 +39,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 Aug 2019 07:07:30 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-List-Received-Date: Fri, 30 Aug 2019 07:13:32 -0000
+Content-Type: text/plain
 
+From: Changqing Li <changqing.li@windriver.com>
 
-On 8/30/19 2:43 PM, Mittal, Anuj wrote:
-> On Fri, 2019-08-30 at 13:58 +0800, changqing.li@windriver.com wrote:
->> -export
->> MODULE_DIR="/lib/modules/${KERNEL_VERSION}/kernel/drivers/net"
->> +export MODULE_DIR="${@bb.utils.contains('DISTRO_FEATURES','usrmerge'
->> ,'/usr','',d)}/lib/modules/${KERNEL_VERSION}/kernel/drivers/net"
->>   export RTE_SDK = "${S}"
->>   
-> Should this be:
->
-> MODULE_DIR =
-> "${nonarch_base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers/net"
->
-> It should then be handled automatically. Can you please check?
-you are right,  it can write like this. I will send a V2
->
-> Thanks,
->
-> Anuj
+Signed-off-by: Changqing Li <changqing.li@windriver.com>
+---
+ recipes-extended/dpdk/dpdk.inc | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/recipes-extended/dpdk/dpdk.inc b/recipes-extended/dpdk/dpdk.inc
+index 9dcec76..9b04881 100644
+--- a/recipes-extended/dpdk/dpdk.inc
++++ b/recipes-extended/dpdk/dpdk.inc
+@@ -40,7 +40,7 @@ do_configure[depends] += "virtual/kernel:do_shared_workdir"
+ 
+ inherit module
+ 
+-export MODULE_DIR="/lib/modules/${KERNEL_VERSION}/kernel/drivers/net"
++export MODULE_DIR="${nonarch_base_libdir}/modules/${KERNEL_VERSION}/kernel/drivers/net"
+ export RTE_SDK = "${S}"
+ 
+ export ICP_ROOT = "${PKG_CONFIG_SYSROOT_DIR}/usr/include"
 -- 
-BRs
-
-Sandy(Li Changqing)
+2.7.4
 
 
