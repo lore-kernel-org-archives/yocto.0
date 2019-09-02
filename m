@@ -1,42 +1,69 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34368E00D84; Mon,  2 Sep 2019 08:01:41 -0700 (PDT)
+	id C9D1EE00961; Mon,  2 Sep 2019 08:33:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	NUMERIC_HTTP_ADDR, 
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [192.55.52.151 listed in list.dnswl.org]
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB920E00C81
-	for <yocto@yoctoproject.org>; Mon,  2 Sep 2019 08:01:40 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-	by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	02 Sep 2019 08:01:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,459,1559545200"; d="scan'208";a="382818484"
-Received: from oakcakay-mobl2.ger.corp.intel.com (HELO blackadder.local)
-	([10.252.38.52])
-	by fmsmga006.fm.intel.com with ESMTP; 02 Sep 2019 08:01:39 -0700
-To: yocto@yoctoproject.org
-References: <CAGAf8LwaOtu0OaRR+FuikEgvXTkNst6KUmd2wF_MV+t0UxTwCQ@mail.gmail.com>
-	<CAGAf8LwUBUT9SBgEPHO7tYYhhP6d5+SZoOF89-5MDDmj_Y1L=g@mail.gmail.com>
-From: Ross Burton <ross.burton@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
-	Swindon SN3 1RJ
-Message-ID: <754cae97-95fe-55e4-f2f3-f9714fe78ace@intel.com>
-Date: Mon, 2 Sep 2019 16:01:38 +0100
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
-	Gecko/20100101 Thunderbird/60.8.0
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kanavin[at]gmail.com)
+	*  1.2 NUMERIC_HTTP_ADDR URI: Uses a numeric IP address in URL
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.50 listed in list.dnswl.org]
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com
+	[209.85.222.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE430E0082A
+	for <yocto@yoctoproject.org>; Mon,  2 Sep 2019 08:33:57 -0700 (PDT)
+Received: by mail-ua1-f50.google.com with SMTP id n6so1166988uaq.3
+	for <yocto@yoctoproject.org>; Mon, 02 Sep 2019 08:33:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=3ikFNbPKAkpL/qB/4tpVDUWF3nq0v9Bk0pfx9s8BEA0=;
+	b=ppqfCi4FXPIDSAhHQi8Tux+2+VYV+/Ao0D+DcEzW+LxNSOf4YbR1Tv2L5vpUaUIyFo
+	Oy4feNTvjxHIMoJXFsA36UyRy9FcbqNaJOV+E01ZLA3zxaOpG2A+4yyfMDZZCNyhTu98
+	Qgb5YV1UkKsUXpa43Bmo8uDksFq6z9fiGpRpafI7SPprp902V3CkJr0OMIegzPsbt1wR
+	SELuFX6EInDU9j+sEazoLYls4bJviBrvXCR79x7qerNuzx7o1Q5WdpQNCGmTuLLSWFz2
+	gQWuVpCCKOoHK0Pjo0+xwDmxsUc9aMpbWGccpVzzZ10cknU6xQTxytjZAZV3E8HPcgG5
+	ovyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=3ikFNbPKAkpL/qB/4tpVDUWF3nq0v9Bk0pfx9s8BEA0=;
+	b=scof83ObgMyPDAatvE2YrOGrgcv3FmGPsx75qaB/DJiM3ve6rd+OB5P4CzMaXlkafP
+	jpfMFY9+3cVdwJbN77WiriCK62KbraFPgh9URjBwlT2vozmT3aSXJ4iowWtRpBvskGlx
+	TMpHjcMV4gu9v7rxxDQq9/6q1vy6WSg8sgrEmZT6yreGkk6v05pKzFjgFz6g3BVhsqlg
+	Ev+GmVs+xviXL3bT3O1C8fXEDZ/K3/KY0iUInxOfVswRPvpcBeGV9IH/L/zjWAXUXo/8
+	jzT3Qy1gavqatZUjhCCxnN9xTJx7Rayd9I2LSGhFwVTGBom+VTs6xuZVgwlBnZ/RDZFO
+	RCxA==
+X-Gm-Message-State: APjAAAVlHrgYBk6X82t1Mj6nIGQrRpZtEf2DFkcJ8p5U7YLnWwDgdnmV
+	vUK+TtqaGos0uOI86pX7cws+4ZETLj0j8O49SBo=
+X-Google-Smtp-Source: APXvYqxxP6L5cqFIBA0dg1XIBj1Fi8gYq0TbfzS9sCLnhZt8ynA/cvutkVBHQfvcaTB4P376Y4JLDX2jnaNQtwzkjVs=
+X-Received: by 2002:ab0:7097:: with SMTP id m23mr318516ual.89.1567438437157;
+	Mon, 02 Sep 2019 08:33:57 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAGAf8LwUBUT9SBgEPHO7tYYhhP6d5+SZoOF89-5MDDmj_Y1L=g@mail.gmail.com>
-Subject: Re: WARNING: bluez5-5.50-r0 do_fetch: Failed to fetch URL file://variscite-bt.conf
+References: <CACsETSsjtVOpXdR6_oWisx2LZM4hkKr37NfT+WmS_goDUZTO8g@mail.gmail.com>
+	<CANNYZj9=-t+=BZ4ahnJqvYufakkNa00gzjh0ksyoMR88HKMQ1g@mail.gmail.com>
+	<CACsETSurbOjmE5JRXO2gZKopAqM_LA22q=EsANiZWGgY-Z1UUg@mail.gmail.com>
+In-Reply-To: <CACsETSurbOjmE5JRXO2gZKopAqM_LA22q=EsANiZWGgY-Z1UUg@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Mon, 2 Sep 2019 17:33:45 +0200
+Message-ID: <CANNYZj8MY_h00dhWVF1ewefWXaBxOhxt0fZdqhkrwow_z9U0iA@mail.gmail.com>
+To: sateesh m <sateesh0457@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: ptest-runner yocto build sytem issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,57 +75,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Sep 2019 15:01:41 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 02 Sep 2019 15:33:59 -0000
+Content-Type: multipart/alternative; boundary="00000000000041117a059193b39e"
 
-That file isn't part of oe-core, given the name you should ask the 
-variscite-bsp-platform maintainers.
+--00000000000041117a059193b39e
+Content-Type: text/plain; charset="UTF-8"
 
-Ross
+On Mon, 2 Sep 2019 at 16:06, sateesh m <sateesh0457@gmail.com> wrote:
 
-On 27/08/2019 06:51, Zoran Stojsavljevic wrote:
-> BTW, I have created the complete description of this problem!
-> https://github.com/ZoranStojsavljevic/imx6-sabre-automotive-bsp/tree/master/Issues
-> 
-> Best Regards,
-> Zoran
-> _______
-> 
-> On Mon, Aug 26, 2019 at 5:23 PM Zoran Stojsavljevic 
-> <zoran.stojsavljevic@gmail.com <mailto:zoran.stojsavljevic@gmail.com>> 
-> wrote:
-> 
->     Hello Folks,
-> 
->     While doing the following YOCTO build:
->     http://variwiki.com/index.php?title=Yocto_Build_Release&release=RELEASE_MORTY_V1
-> 
->     Actually, using the latest available tag:
->     thud-fslc-4.14.78-mx6ul-v1.1
->     <https://github.com/varigit/variscite-bsp-platform/releases/tag/thud-fslc-4.14.78-mx6ul-v1.1>
->      From https://github.com/varigit/variscite-bsp-platform/tags
-> 
->     I've got the following error, while compiling for both:
->     bitbake -k fsl-image-gui
->     bitbake -k fsl-image-qt5
-> 
->     Seems, that the local file: file://variscite-bt.conf is somehow
->     missing?!
-> 
->     I can add this file artificially, but, the question is: why this
->     file is missing???
->     _______
-> 
->     Transcript follows:
->     bluez5-5.50-r0 do_fetch: Failed to fetch variscite-bt.conf
->     https://pastebin.com/U9LRtNwr
-> 
->     Thank you,
->     Zoran
->     _______
-> 
-> 
+> Sure, sir. If you don't mine can you please share where this log file will
+> present.
+> I am seeing /tmp-glibc/work/riscv-oe-linux/ptest-runner/2.3.4.../temp/
+> I am seeing here but log.do_rootfs file is not Present here.
+>
+> Can you please tell me where I can found this file.
+>
 
+I do not know what image you are building; it is in build directory of that
+image. Use 'find' to locate it :)
 
+Alex
+
+--00000000000041117a059193b39e
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Mon, 2 Sep 2019 at 16:06, sateesh m &lt;<a href=3D"mailto:sateesh=
+0457@gmail.com">sateesh0457@gmail.com</a>&gt; wrote:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
+d rgb(204,204,204);padding-left:1ex"><div dir=3D"auto">Sure, sir. If you do=
+n&#39;t mine can you please share where this log file will present.<div dir=
+=3D"auto">I am seeing /tmp-glibc/work/riscv-oe-linux/ptest-runner/<a href=
+=3D"http://2.3.4." target=3D"_blank">2.3.4.</a>../temp/=C2=A0</div><div dir=
+=3D"auto">I am seeing here but log.do_rootfs file is not Present here.</div=
+><div dir=3D"auto"><br></div><div dir=3D"auto">Can you please tell me where=
+ I can found this file.</div></div></blockquote><div><br></div><div>I do no=
+t know what image you are building; it is in build directory of that image.=
+ Use &#39;find&#39; to locate it :)</div><div><br></div><div>Alex<br></div>=
+</div></div>
+
+--00000000000041117a059193b39e--
