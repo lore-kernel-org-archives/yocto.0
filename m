@@ -1,36 +1,69 @@
-Return-Path: <Yi.Zhao@windriver.com>
+Return-Path: <sateesh0457@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9F485E00DCE; Sun,  8 Sep 2019 23:01:36 -0700 (PDT)
+	id 6466DE0096F; Mon,  2 Sep 2019 07:06:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-	SUBJ_OBFU_PUNCT_FEW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	NUMERIC_HTTP_ADDR, 
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* 0.7 SUBJ_OBFU_PUNCT_FEW Possible punctuation-obfuscated Subject:
-	header
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A7E5E00DAA
-	for <yocto@yoctoproject.org>; Sun,  8 Sep 2019 23:01:35 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x8961XT5012262
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 8 Sep 2019 23:01:33 -0700 (PDT)
-Received: from localhost (128.224.162.195) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0;
-	Sun, 8 Sep 2019 23:01:32 -0700
-From: Yi Zhao <yi.zhao@windriver.com>
-To: <yocto@yoctoproject.org>, <joe@deserted.net>, <Joe_MacDonald@mentor.com>
-Date: Mon, 9 Sep 2019 14:01:30 +0800
-Message-ID: <1568008890-8700-1-git-send-email-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.7.4
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (sateesh0457[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.68 listed in list.dnswl.org]
+	*  1.2 NUMERIC_HTTP_ADDR URI: Uses a numeric IP address in URL
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ot1-f68.google.com (mail-ot1-f68.google.com
+	[209.85.210.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7F56E008E3
+	for <yocto@yoctoproject.org>; Mon,  2 Sep 2019 07:06:25 -0700 (PDT)
+Received: by mail-ot1-f68.google.com with SMTP id c10so2297554otd.9
+	for <yocto@yoctoproject.org>; Mon, 02 Sep 2019 07:06:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=rIOwPng+SzUJWBcVD+5lkXM0/7MgQNoZmNa6Xzl92TM=;
+	b=Rfb3CVQrG7zAja1fAPMq7bPo1BYqR5DNlQAYx3dg2r8SLp1y2CH1rASTs9gVTRuO6i
+	ErA7a+V2hKQYaXznZVotljnMXI9IK1xKFIpr6on0syNNTM28J+f4vRghniUYibdcgX6W
+	sXkN554k0H1Ddrh1RAW70mGBs9H8gpPmL3N/2sbpzQBv1QMsyB1SlRy6TDhMiMFVuEgP
+	zPgftktHQjUqLPSxI2X7I59u3V9a1FJ5dHeTWe74Oq87gp/4JOsTXwmPjvFS9Bw8eIaI
+	dZPQEz9pt2xxAYDy/kwW5q5F8sR/VxFOK1gzBPsluVgYhM45qz+lW1JnRwwX4U8pof96
+	K4vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=rIOwPng+SzUJWBcVD+5lkXM0/7MgQNoZmNa6Xzl92TM=;
+	b=bhjgZZpdcX+2914ShtUhZnrAMddK8tO2fHH/tL+9hWCYxldSTXGK9VwkZJWPh2NCY9
+	0JLEJdEaGVpaO7Zpawt2UmkSAJqDLwUGmWbBNh2vjqRiV4QJaBxtFh9woOS1gQfi2Bt1
+	AmNFuGo7JZmspIPhuKgOVh7I7nZsPlbh90hzP4txuZJvrye3OS22gzGeUxIob2M5YrQz
+	UCuxWa1vi14xow2+5ODL9MqLGeYwn78Mdw5cv5lhA9+y6/qIF+Ch/fnaLa5aQBfiNVbp
+	8tyxk8vtqi7qGCFSo8za1zmMGyB3GdarIY2jw4050K28n7VCckQ7PEX5vWrA7zQ8OBsM
+	/bVw==
+X-Gm-Message-State: APjAAAVC/9vdyRmULQiThjeTbHyvhP0Ondd8H64dArrKXaok/q18c/5y
+	RlcEomly1l46SKsbIJ6FL+rKQYTDtUDrb4ESIv4=
+X-Google-Smtp-Source: APXvYqypf1oI8egNEbjgwVO1jdFM3yG6JawsgjZYy92rsCVWiLVeyCT3vZrQchwySwpi8oakAmRq5Fs5f/xZJTc0aZ0=
+X-Received: by 2002:a9d:7c99:: with SMTP id q25mr6056634otn.169.1567433184972; 
+	Mon, 02 Sep 2019 07:06:24 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [128.224.162.195]
-Subject: [meta-selinux][PATCH] conf/layer.conf: use BBFILES_DYNAMIC for dynamic layers
+References: <CACsETSsjtVOpXdR6_oWisx2LZM4hkKr37NfT+WmS_goDUZTO8g@mail.gmail.com>
+	<CANNYZj9=-t+=BZ4ahnJqvYufakkNa00gzjh0ksyoMR88HKMQ1g@mail.gmail.com>
+In-Reply-To: <CANNYZj9=-t+=BZ4ahnJqvYufakkNa00gzjh0ksyoMR88HKMQ1g@mail.gmail.com>
+From: sateesh m <sateesh0457@gmail.com>
+Date: Mon, 2 Sep 2019 19:36:13 +0530
+Message-ID: <CACsETSurbOjmE5JRXO2gZKopAqM_LA22q=EsANiZWGgY-Z1UUg@mail.gmail.com>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+X-Mailman-Approved-At: Mon, 09 Sep 2019 02:06:56 -0700
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: ptest-runner yocto build sytem issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,89 +75,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Sep 2019 06:01:36 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 02 Sep 2019 14:06:26 -0000
+Content-Type: multipart/alternative; boundary="0000000000003334900591927a4a"
 
-From: Robert Yang <liezhi.yang@windriver.com>
+--0000000000003334900591927a4a
+Content-Type: text/plain; charset="UTF-8"
 
-The previous code add all BBFILE_COLLECTIONS/recipes*/*/*.bbappend to BBFILES,
-which causes the parsing very slow when there are many layers, e.g., I have 87
-layers:
+Sure, sir. If you don't mine can you please share where this log file will
+present.
+I am seeing /tmp-glibc/work/riscv-oe-linux/ptest-runner/2.3.4.../temp/
+I am seeing here but log.do_rootfs file is not Present here.
 
-* Before:
-$ rm -fr tmp-glibc/ cache; time bitbake -p
-real    0m45.173s
-user    0m0.560s
-sys     0m0.060s
+Can you please tell me where I can found this file.
 
-* After:
-$ rm -fr tmp-glibc/ cache; time bitbake -p
-real    0m25.542s
-user    0m0.572s
-sys     0m0.040s
+Thanks & Regards,
+Sateesh
 
-It wasted 20s which wasn't worth (The host has 128 threads, it should cost more
-time on less power host), use BBFILES_DYNAMIC can fix the problem.
+On Mon 2 Sep, 2019, 7:11 PM Alexander Kanavin, <alex.kanavin@gmail.com>
+wrote:
 
-Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- conf/layer.conf                                               | 11 +++++++----
- .../recipes-daemons/iscsi-initiator-utils/files/initd.debian  |  0
- .../iscsi-initiator-utils/iscsi-initiator-utils_%.bbappend    |  0
- .../iscsi-initiator-utils/iscsi-initiator-utils_selinux.inc   |  0
- .../recipes-support}/augeas/augeas_%.bbappend                 |  0
- .../recipes-containers/lxc/lxc_%.bbappend                     |  0
- 6 files changed, 7 insertions(+), 4 deletions(-)
- rename {networking-layer => dynamic-layers/networking-layer}/recipes-daemons/iscsi-initiator-utils/files/initd.debian (100%)
- rename {networking-layer => dynamic-layers/networking-layer}/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_%.bbappend (100%)
- rename {networking-layer => dynamic-layers/networking-layer}/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_selinux.inc (100%)
- rename {meta-python/recipes-extended/augeas => dynamic-layers/openembedded-layer/recipes-support}/augeas/augeas_%.bbappend (100%)
- rename {virtualization-layer => dynamic-layers/virtualization-layer}/recipes-containers/lxc/lxc_%.bbappend (100%)
+> On Mon, 2 Sep 2019 at 15:06, sateesh m <sateesh0457@gmail.com> wrote:
+>
+>> I followed the wiki https://wiki.yoctoproject.org/wiki/Ptest , but when
+>> I boot to my image and run ptest-runner I have the output : "No ptests
+>> found."
+>> Is this normal ? I thought that
+>>
+>> DISTRO_FEATURES_append = " ptest"
+>> and
+>> EXTRA_IMAGE_FEATURES += "ptest-pkgs"
+>>
+>> would install all the ptests for me in my image, apparently I am wrong
+>> but could you please explain to me why this is not the case i.e why ptests
+>> are not automatically installed in the image even though I included the
+>> above lines in my local.conf ?
+>>
+>> How to test my packages using ptest. can you share sample test or testing
+>> procedure document .
+>>
+>
+> Can you share the log.do_rootfs file for your image please?
+>
+> There are also example ptest images in poky, so you could try those and
+> see how they work.
+>
+> Alex
+>
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 9dd34b1..89b9468 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -5,10 +5,13 @@ BBPATH .= ":${LAYERDIR}"
- BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
-             ${LAYERDIR}/recipes-*/*/*.bbappend"
- 
--# Let us add layer-specific bbappends which are only applied when that
--# layer is included in our configuration
--BBFILES += "${@' '.join('${LAYERDIR}/%s/recipes*/*/*.bbappend' % layer \
--               for layer in BBFILE_COLLECTIONS.split())}"
-+BBFILES_DYNAMIC += "openembedded-layer:${LAYERDIR}/dynamic-layers/openembedded-layer/*/*/*.bb \
-+                    openembedded-layer:${LAYERDIR}/dynamic-layers/openembedded-layer/*/*/*.bbappend \
-+                    networking-layer:${LAYERDIR}/dynamic-layers/networking-layer/*/*/*.bb \
-+                    networking-layer:${LAYERDIR}/dynamic-layers/networking-layer/*/*/*.bbappend \
-+                    virtualization-layer:${LAYERDIR}/dynamic-layers/virtualization-layer/recipes*/*/*.bb \
-+                    virtualization-layer:${LAYERDIR}/dynamic-layers/virtualization-layer/recipes*/*/*.bbappend \
-+                   "
- 
- BBFILE_COLLECTIONS += "selinux"
- BBFILE_PATTERN_selinux = "^${LAYERDIR}/"
-diff --git a/networking-layer/recipes-daemons/iscsi-initiator-utils/files/initd.debian b/dynamic-layers/networking-layer/recipes-daemons/iscsi-initiator-utils/files/initd.debian
-similarity index 100%
-rename from networking-layer/recipes-daemons/iscsi-initiator-utils/files/initd.debian
-rename to dynamic-layers/networking-layer/recipes-daemons/iscsi-initiator-utils/files/initd.debian
-diff --git a/networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_%.bbappend b/dynamic-layers/networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_%.bbappend
-similarity index 100%
-rename from networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_%.bbappend
-rename to dynamic-layers/networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_%.bbappend
-diff --git a/networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_selinux.inc b/dynamic-layers/networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_selinux.inc
-similarity index 100%
-rename from networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_selinux.inc
-rename to dynamic-layers/networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_selinux.inc
-diff --git a/meta-python/recipes-extended/augeas/augeas/augeas_%.bbappend b/dynamic-layers/openembedded-layer/recipes-support/augeas/augeas_%.bbappend
-similarity index 100%
-rename from meta-python/recipes-extended/augeas/augeas/augeas_%.bbappend
-rename to dynamic-layers/openembedded-layer/recipes-support/augeas/augeas_%.bbappend
-diff --git a/virtualization-layer/recipes-containers/lxc/lxc_%.bbappend b/dynamic-layers/virtualization-layer/recipes-containers/lxc/lxc_%.bbappend
-similarity index 100%
-rename from virtualization-layer/recipes-containers/lxc/lxc_%.bbappend
-rename to dynamic-layers/virtualization-layer/recipes-containers/lxc/lxc_%.bbappend
--- 
-2.7.4
+--0000000000003334900591927a4a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"auto">Sure, sir. If you don&#39;t mine can you please share whe=
+re this log file will present.<div dir=3D"auto">I am seeing /tmp-glibc/work=
+/riscv-oe-linux/ptest-runner/<a href=3D"http://2.3.4.">2.3.4.</a>../temp/=
+=C2=A0</div><div dir=3D"auto">I am seeing here but log.do_rootfs file is no=
+t Present here.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Can you =
+please tell me where I can found this file.</div><div dir=3D"auto"><br></di=
+v><div dir=3D"auto">Thanks &amp; Regards,</div><div dir=3D"auto">Sateesh</d=
+iv></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_att=
+r">On Mon 2 Sep, 2019, 7:11 PM Alexander Kanavin, &lt;<a href=3D"mailto:ale=
+x.kanavin@gmail.com">alex.kanavin@gmail.com</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc =
+solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_quote"><div di=
+r=3D"ltr" class=3D"gmail_attr">On Mon, 2 Sep 2019 at 15:06, sateesh m &lt;<=
+a href=3D"mailto:sateesh0457@gmail.com" target=3D"_blank" rel=3D"noreferrer=
+">sateesh0457@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_=
+quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex"><div dir=3D"ltr"><div>I followed=20
+the wiki <a href=3D"https://wiki.yoctoproject.org/wiki/Ptest" target=3D"_bl=
+ank" rel=3D"noreferrer">https://wiki.yoctoproject.org/wiki/Ptest</a> , but =
+when I boot to=20
+my image and run ptest-runner I have the output : &quot;No ptests found.&qu=
+ot;<br>Is this normal ? I thought that<br><br>DISTRO_FEATURES_append =3D &q=
+uot; ptest&quot;<br>and<br>EXTRA_IMAGE_FEATURES +=3D &quot;ptest-pkgs&quot;=
+<br><br>
+ would install all the ptests for me in my image, apparently I am wrong=20
+but could you please explain to me why this is not the case i.e why=20
+ptests are not automatically installed in the image even though I=20
+included the above lines in my local.conf ?</div><div><br></div><div>How to=
+ test my packages using ptest. can you share sample test or testing procedu=
+re document .</div></div></blockquote><div><br></div><div>Can you share the=
+ log.do_rootfs file for your image please?</div><div><br></div><div>There a=
+re also example ptest images in poky, so you could try those and see how th=
+ey work.<br></div><div><br></div><div>Alex<br></div></div></div>
+</blockquote></div>
 
+--0000000000003334900591927a4a--
