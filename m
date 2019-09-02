@@ -1,75 +1,60 @@
-Return-Path: <prvs=11484e62b5=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <pidge@toganlabs.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0843EE00961; Mon,  2 Sep 2019 06:57:58 -0700 (PDT)
+	id D8B08E0096F; Mon,  2 Sep 2019 07:27:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [85.215.255.22 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.160.179 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 363 seconds by postgrey-1.32 at yocto-www;
-	Mon, 02 Sep 2019 06:57:54 PDT
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
-	[85.215.255.22])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94946E00867
-	for <yocto@yoctoproject.org>; Mon,  2 Sep 2019 06:57:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1567432673;
-	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
-	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-	bh=KGVclPWnfCe3NqFE2xniZeKz0biOZeveCrxVjKACoos=;
-	b=k+Z2fkEoruskqeSybQ31mGOQORm3895+MQFgeXyr15IEoAZTmJnw5XO8VrfSX78OWf
-	wuCcxGdzWLKoeF31Cdsqw48ZL18xRxQw20GID3SaBJGS+cZ5Fy1qIQtxwLzypDO7kWAL
-	3DP6dC2AsxVn7Mtb8SWmcvEKhchhGIXD5rzb3fBkZfioXbjb7eL2dyNJMkcTkVn0gi8w
-	RCYLUnYMX1vmHKgJWiIP+AFJBeoA35lKRDd3o93nQNFrQNiXOaVQjkwVhYPjQ4wN65Cf
-	vrgJkAPy4+kECurOcoyGnvM35Cb+RRtm4ueZOuUZnAJTlw9UErbiW+jxjmMrzYk0gjJB
-	nYOg==
-X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/KqCOd+ZZzzoK8epFp9XQIUl6aPGQL"
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	by smtp.strato.de (RZmta 44.27.0 AUTH)
-	with ESMTPSA id R05a02v82DpoIKv
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Mon, 2 Sep 2019 15:51:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1567432309; x=1568037109;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
-	Subject:Message-ID:References:MIME-Version:Content-Type:
-	Content-Disposition:Content-Transfer-Encoding:In-Reply-To:
-	User-Agent; bh=KGVclPWnfCe3NqFE2xniZeKz0biOZeveCrxVjKACoos=; b=L
-	mHx2uyd42BLW0LaYQ6gB8gZXHexMT+ydl3RH7q76bx8Jp1DKZzbd49eM1gqMezrm
-	UZQWhTp/w2dX8SLGZrrb7pWeqD+Q46xPQvuDYWLOXCVYwOLR4/eEvZuDuEwzgk2g
-	gi46bVnOXFBaL9AeX1lcCbviRoQLWFA2+uuPrXZgFw=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v19.0.3) with ESMTPSA id
-	md50000195522.msg; Mon, 02 Sep 2019 15:51:48 +0200
-X-MDArrival-Date: Mon, 02 Sep 2019 15:51:48 +0200
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=11484e62b5=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-Date: Mon, 2 Sep 2019 15:51:44 +0200
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Message-ID: <20190902135144.ut63a3c4gd35qajv@jholzmayr.localdomain>
-References: <CAJKO-ja632JpvyfytYme9tGn3RWx5pBHr9Up59gXtw_bqmP-9g@mail.gmail.com>
-	<CANNYZj84SKy5dX+2ZEGDXxXf_qMBisfKaNzBHJPL+TtqKYwEqQ@mail.gmail.com>
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com
+	[209.85.160.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C74DE003C1
+	for <yocto@yoctoproject.org>; Mon,  2 Sep 2019 07:27:01 -0700 (PDT)
+Received: by mail-qt1-f179.google.com with SMTP id r15so10116279qtn.12
+	for <yocto@yoctoproject.org>; Mon, 02 Sep 2019 07:27:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=toganlabs-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=nF3cq87PLtenP3ZvXCxoMzCyOynO2T122xhC5Nd/u2A=;
+	b=GuxWY3hbNsiwHBIgq0PZxmKx8wdxA7porKjFXNeuH/2fXPD08A7iU5W14d2CGFN7Fp
+	0RZBvH8MKFP2JSZR5Mxr7y6aQRWb74l5pt/oVb1GMVHiwY2D58GoL0mkdy3eXq55fETc
+	/WmKkoCSUMUMolHSQ+vRUzlOJBN/cWYJdLfR6LWSGPoPCooA9JFRJmxRk584eK6upCYv
+	HxWAD8qb7hKxWJfB9Fogz4V2+aqC4kB4SMPKWriyrTca0K9tbsDVn0mr5b8x7Au77Evh
+	atH3FZ/MbeHtGSZC/Za86MA2gwjnWbGDMhK4KaoLGowjFZnU5deipLb8YkVBu5VbWoVq
+	VviQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=nF3cq87PLtenP3ZvXCxoMzCyOynO2T122xhC5Nd/u2A=;
+	b=XdhD7YQIQhPzonwqNdnaCEgPGkrv6nU8UGeIk21g+rEcG+8hYs4azB4Sb6tji9/7qD
+	zlEqMMH7lZ28qL1SqGSBWQ62hPKxnV4lfkLn/wCfT6ziJnF4bCxGCb6X7ATXqUMDp8lk
+	Bx2ISb2aulnK+N9rrhCWitkg2CkgKRNxyh7UNe+eX7iJCHZxtoAQ1H8SnThnQAAjz1fp
+	jTLwxzRKybwvfynk6ccTRp+nbLpaYb45jMIcmaBHENWDPp7+LOXi23LeDGGFyEfQiP2A
+	MQy7ONe8V33pK2VB6ZJegm+S8m9cemaQD1+xvUp9pXt7N2aMnCfzaDF7EqzojHdxKP52
+	P0Pw==
+X-Gm-Message-State: APjAAAU6GfdcpxC9l97qRntZigsQ0/GVGVerGqVJU0gaG+Nz5u9oSQcd
+	4UrmfjDikk/GHFK694yAQB7Xu0EramQpujEyn67OLXlozTFXgQ==
+X-Google-Smtp-Source: APXvYqwb3XO8fikJtAGupoqwHmhlEM0NezNN6Ivf8Cq/JjIGlVChAb62f5AUnoR4hHGlPwNnLpfkXduLPskL9siKWrY=
+X-Received: by 2002:ac8:6684:: with SMTP id d4mr28478103qtp.286.1567434420497; 
+	Mon, 02 Sep 2019 07:27:00 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CANNYZj84SKy5dX+2ZEGDXxXf_qMBisfKaNzBHJPL+TtqKYwEqQ@mail.gmail.com>
-User-Agent: NeoMutt/20180716
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	Brian Silverman <bri@readysetstem.com>
+References: <CAJKO-ja632JpvyfytYme9tGn3RWx5pBHr9Up59gXtw_bqmP-9g@mail.gmail.com>
+In-Reply-To: <CAJKO-ja632JpvyfytYme9tGn3RWx5pBHr9Up59gXtw_bqmP-9g@mail.gmail.com>
+From: Beth Flanagan <pidge@toganlabs.com>
+Date: Mon, 2 Sep 2019 15:26:49 +0100
+Message-ID: <CANik3vEF71r2tcN8r_PRVSsM59gs2x1OLAmQy9dEyevpV0Kizw@mail.gmail.com>
+To: Brian Silverman <bri@readysetstem.com>
+Cc: Yocto <yocto@yoctoproject.org>
 Subject: Re: Fetching Yocto layers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -82,65 +67,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Sep 2019 13:57:58 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 02 Sep 2019 14:27:03 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I'd like to throw kas into the discussion too, I've been using it quite
-successfully.
+On Mon, Sep 2, 2019 at 2:05 PM Brian Silverman <bri@readysetstem.com> wrote=
+:
+>
+> Is there a way to automatically fetch/add a yocto layer from another laye=
+r?
+>
+> My problem is that I=E2=80=99d like to be able to build instructions of m=
+y product from one version number.  But here=E2=80=99s our normal (example)=
+ build instructions:
+>
+> git clone git://git.yoctoproject.org/poky -b some_poky_tag
+>
+> cd poky
+> git clone git://git.somelayer1.com/meta-layer1 -b some_layer1_tag
+>
+> git clone git://git.somelayer2.com/meta-layer2 -b some_layer2_tag
+>
+> git clone git://git.mylayer.com/meta-mylayer -b some_mylayer_tag
+>
+> source ./oe-init-build-env
+> bitbake-layers add-layer ../meta-layer1
+> bitbake-layers add-layer ../meta-layer2
+> bitbake-layers add-layer ../meta-mylayer
+>
+> bitbake mylayer-image
+>
+>
+> The tags chosen above are based on what we test and ship.  So my issue is=
+ that someone has to correctly follow the above instructions for different =
+versions of multiple layers if they want a reproducible build of a specific=
+ version of mylayer-image.
+>
+> Is there a canonical why to encode this information within my layer?  Obv=
+iously I could script the above, store it in my layer, and have the user ru=
+n that script.  But, that seems very unyocto-like.
 
-https://github.com/siemens/kas
+There is combo-layer. I've used it before and for certain applications
+it's useful.
 
-Greetz
+https://wiki.yoctoproject.org/wiki/Combo-layer
 
-On Mon, Sep 02, 2019 at 03:34:28PM +0200, Alexander Kanavin wrote:
-> On Mon, 2 Sep 2019 at 15:05, Brian Silverman <bri@readysetstem.com> wrote:
-> 
-> > The tags chosen above are based on what we test and ship.  So my issue is
-> > that someone has to correctly follow the above instructions for different
-> > versions of multiple layers if they want a reproducible build of a specific
-> > version of mylayer-image.
-> >
-> > Is there a canonical why to encode this information within my layer?
-> > Obviously I could script the above, store it in my layer, and have the user
-> > run that script.  But, that seems very unyocto-like.
-> >
-> 
-> At the moment Yocto project does not have an off-the shelf setup for
-> multiple layers. You are welcome to provide and maintain one, until then it
-> is indeed custom scripts, or tools like Google's 'repo', or maybe git
-> submodules could work.
-> 
-> Alex
+http://git.yoctoproject.org/cgit.cgi/poky-config/tree/
 
-> -- 
+-b
+
+>
+> --
+>
+> Brian Silverman
+>
+> Ready Set STEM
+>
+> bri@readysetstem.com
+>
+>
+> --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
-
-
--- 
-———————————————
-Josef Holzmayr
-Software Developer Embedded Systems
-
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
-
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548 
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
-
 
