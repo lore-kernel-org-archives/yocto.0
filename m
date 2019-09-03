@@ -1,6 +1,6 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 490DBE00CD5; Tue,  3 Sep 2019 02:28:44 -0700 (PDT)
+	id 72BDEE00D68; Tue,  3 Sep 2019 09:13:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,57 +10,55 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
+	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.172 listed in list.dnswl.org]
+	*      [209.85.160.169 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com
-	[209.85.160.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC9D3E003E1
-	for <yocto@yoctoproject.org>; Tue,  3 Sep 2019 02:28:43 -0700 (PDT)
-Received: by mail-qt1-f172.google.com with SMTP id l22so6677829qtp.10
-	for <yocto@yoctoproject.org>; Tue, 03 Sep 2019 02:28:43 -0700 (PDT)
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com
+	[209.85.160.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80DA3E003E1
+	for <yocto@yoctoproject.org>; Tue,  3 Sep 2019 09:13:30 -0700 (PDT)
+Received: by mail-qt1-f169.google.com with SMTP id u40so11988433qth.11
+	for <yocto@yoctoproject.org>; Tue, 03 Sep 2019 09:13:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=rvPqElkA8Ptx7ivNElZ8KP5FD69y64u63IlyneV5/38=;
-	b=gpoJCDrkQPXnaMdRbjxKY2db6bLO9nVEJmBBVeOKyXBK46e8SEdm1b9nl4SpbE42XA
-	1JN3drrY8jmNFjfBuOaEsHhxoMFlHnQj4H2/jW2csQTjOINAYctUIjVQrh5mOuHbiXhP
-	C3xGwq99dd6QLYv/i98n6rInYiipWBpZYwzKRcF4pRRaGooouvd0k5sY/bcx/h2hqBM1
-	95QaV7qdUx27Bu3bgFjcZb/EqF3qEgJma2gzv26+iCSZntkXZ12Z2SVtaHFhwVSJ/o/4
-	ozDGi5IIcqOfkRXcGca4i4/p+rbyzsDqQlmxWDHjaMaaGNB0aH+IoOVVAkSjBcqfPjfO
-	JWgw==
+	:cc; bh=WEuoXePpJN+j06pPyCT30nVi7vJ5Dp5trgHjZSqyBPw=;
+	b=m3cHtZyZhS46F9SDO8gTD7MFDQhDhPGXis4UVnozKEV4+3P4TaelGMRMqqE2fcdVbg
+	+B5Wyi/xSPcbVo6DDVADiuvN/SyEC09/Ac8Jd06bef7EwMpyjS2OTpxHZ4XbzkpCfcsy
+	c9o2JtWJEzX8dKD3jGgPlsL6hv4u+FRCucB3zKjq6iyKUtCITgYhn+c6E8WyxxVQPCSC
+	jtXqsgcWYRBI/+NXy6MEeatOyGjk3yTf9CmmwQCYwcqfghkQq2OS5okyI+OvQCGGgwOd
+	TZYu8JNL15S6tjU1LpLBJ/6wriu17aSMS00lF2Qp6H6D07vO+odJK2t/LsLpIT3igCW+
+	Wjcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=rvPqElkA8Ptx7ivNElZ8KP5FD69y64u63IlyneV5/38=;
-	b=k+7ZfD8Pv3D+Sfui4x7dBKr203pq4WZ5itwu/BSxPWcUIMrqongWs7/mgYmB+pMhKn
-	FGJ8V+gmPWUt36aBXVq0l5Y6MhU3mlxYLqpspGlcGyAO1UC8P/i96XjzVKQFJPFTMPDG
-	dew74lM6dWL4q3dlhU7NLIugGHdEks2r3hUsamcI1Vwvqz2T3PdSYSpLiOHq/bzdNTkq
-	Peg4kyqf2ZfH3AE3ax088Ft7CFbkaZCy2qlFg2GPCHyT2uZsu3+44Gc+Nx+YyfXNUfUl
-	Vkmy/6ev0Vya3kmTCslrSmH6llkn0XUwYlk7QvNPWkNvsy7OrkBr/NrdCPpCNWMU/LSy
-	AnXQ==
-X-Gm-Message-State: APjAAAXcD0Q6GvRBncLIMjUuKuP3u1THsdxDwrgC0A474OzBx2TwAd9n
-	1SC1aAJFrUdzYxD1cHXevJfDw8oC/PyTerX4E3AxR8u75RY=
-X-Google-Smtp-Source: APXvYqxM5N6jwoyz9vPt4NmiP1cNH17Cl9Ah3+mArVMCsAJ3jgvJT6NmWx3z7z+Bel31vqdSmf575GDQN9UkJ36bESM=
-X-Received: by 2002:a0c:b596:: with SMTP id g22mr6698220qve.231.1567502923116; 
-	Tue, 03 Sep 2019 02:28:43 -0700 (PDT)
+	bh=WEuoXePpJN+j06pPyCT30nVi7vJ5Dp5trgHjZSqyBPw=;
+	b=e0fT7BpBeevNrmI5bgNraLwfKMNjOER6jG/GeOMpgZ6Lr6rEZUxLK/WzynrWs8MJBS
+	NZaaD/9cD3X1irrIytd/dnTvdTGPZsFHZPlEGBtDt1sGdG+IlC1VAvreNRJIOLMr2qBq
+	M1Z8aMXd6YJvikfyPQPTBWfPuasIMOXQcX2/hgDOo6tEroLOCdyk/L6ugRzgcWL5QRdd
+	cuIQqTQ4QF25V/iw6O0pf8G2yogYFk9qAZjT/5auy0WOQgBUpaeYf/X8odQwO79XxIIJ
+	pNeeOf+/2Lvcx0vIFxjqzLhUvZn0KRkMNDOqyBawEZOOFM3dqFBq04WD98NbjFDdAqWq
+	Sx9Q==
+X-Gm-Message-State: APjAAAXsQV1sRQeegA2QZhE0VEaI8z/pqbuFqLBEUWkYdIec3+20AyGo
+	QwTMirJ7LwEFdYun/G0SsaKQB/75aPnQB1m1LZ4=
+X-Google-Smtp-Source: APXvYqx4z8M7Jn2A4uRRldgxrNAFLbcVUFYQRuXKMSIHuZRkNnUcoJ6ymo8ZdWNmJlGHf3Gt2OVVLZzaqXzE6k86zmM=
+X-Received: by 2002:aed:3c52:: with SMTP id u18mr16136871qte.194.1567527209510;
+	Tue, 03 Sep 2019 09:13:29 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAGAf8LwaOtu0OaRR+FuikEgvXTkNst6KUmd2wF_MV+t0UxTwCQ@mail.gmail.com>
-	<CAGAf8LwUBUT9SBgEPHO7tYYhhP6d5+SZoOF89-5MDDmj_Y1L=g@mail.gmail.com>
-	<754cae97-95fe-55e4-f2f3-f9714fe78ace@intel.com>
-In-Reply-To: <754cae97-95fe-55e4-f2f3-f9714fe78ace@intel.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Tue, 3 Sep 2019 11:28:32 +0200
-Message-ID: <CAGAf8Lw_0idNSgTh9YwExtbC4QoM3U1mSZToQgQ4pv8aX_Bwbg@mail.gmail.com>
-To: Ross Burton <ross.burton@intel.com>
+References: <20190903085533.e18e9c3c566afe6e9a83f32f@t-online.de>
+In-Reply-To: <20190903085533.e18e9c3c566afe6e9a83f32f@t-online.de>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 3 Sep 2019 09:13:03 -0700
+Message-ID: <CAMKF1socKc3S_FKH88=cXiTA0ztVtaySXAmJbB5nqcywvYpK-w@mail.gmail.com>
+To: Markus Volk <f_l_k@t-online.de>
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: WARNING: bluez5-5.50-r0 do_fetch: Failed to fetch URL file://variscite-bt.conf
+Subject: Re: Error at extensible sdk installation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,72 +70,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Sep 2019 09:28:44 -0000
+X-List-Received-Date: Tue, 03 Sep 2019 16:13:32 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-No any time for the investigation..
-
-Here is the workaround. The file variscite-bt.conf (content is here):
-https://github.com/ZoranStojsavljevic/imx6-sabre-automotive-bsp/blob/master/Issues/variscite-bt.conf
-
-I inserted in one of the paths searched by fetcher, which are given here:
-https://github.com/ZoranStojsavljevic/imx6-sabre-automotive-bsp/blob/master/Issues/Fetch_failed.log
-
-This solved my problem (again, just sticks and ropes workaround, NOT
-at all final solution).
-
-Zoran
-_______
-
-On Mon, Sep 2, 2019 at 5:04 PM Ross Burton <ross.burton@intel.com> wrote:
+On Tue, Sep 3, 2019 at 12:05 AM Markus Volk <f_l_k@t-online.de> wrote:
 >
-> That file isn't part of oe-core, given the name you should ask the
-> variscite-bsp-platform maintainers.
 >
-> Ross
+> Hello,
 >
-> On 27/08/2019 06:51, Zoran Stojsavljevic wrote:
-> > BTW, I have created the complete description of this problem!
-> > https://github.com/ZoranStojsavljevic/imx6-sabre-automotive-bsp/tree/master/Issues
-> >
-> > Best Regards,
-> > Zoran
-> > _______
-> >
-> > On Mon, Aug 26, 2019 at 5:23 PM Zoran Stojsavljevic
-> > <zoran.stojsavljevic@gmail.com <mailto:zoran.stojsavljevic@gmail.com>>
-> > wrote:
-> >
-> >     Hello Folks,
-> >
-> >     While doing the following YOCTO build:
-> >     http://variwiki.com/index.php?title=Yocto_Build_Release&release=RELEASE_MORTY_V1
-> >
-> >     Actually, using the latest available tag:
-> >     thud-fslc-4.14.78-mx6ul-v1.1
-> >     <https://github.com/varigit/variscite-bsp-platform/releases/tag/thud-fslc-4.14.78-mx6ul-v1.1>
-> >      From https://github.com/varigit/variscite-bsp-platform/tags
-> >
-> >     I've got the following error, while compiling for both:
-> >     bitbake -k fsl-image-gui
-> >     bitbake -k fsl-image-qt5
-> >
-> >     Seems, that the local file: file://variscite-bt.conf is somehow
-> >     missing?!
-> >
-> >     I can add this file artificially, but, the question is: why this
-> >     file is missing???
-> >     _______
-> >
-> >     Transcript follows:
-> >     bluez5-5.50-r0 do_fetch: Failed to fetch variscite-bt.conf
-> >     https://pastebin.com/U9LRtNwr
-> >
-> >     Thank you,
-> >     Zoran
-> >     _______
-> >
-> >
+> i built myself an extensible sdk from current master branch. After successful build i tried to install and got the following error:
+>
+> /home/builder/tuxbox_sdk/tmp/sysroots/x86_64/usr/bin/postinst-docbook-xsl-stylesheets-native-xmlcatalog: line 5: xmlcatalog: command not found
+>
+> and was able to fix it wby adding "xmlcatalog" to HOSTTOOLS, but i guess thats not the propper way to fix it
+>
+
+infact that might be right soluition. Can you submit a patch
+> --
+> Markus Volk <f_l_k@t-online.de>
 >
 > --
 > _______________________________________________
