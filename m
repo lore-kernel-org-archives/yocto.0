@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 80759E00E02; Wed,  4 Sep 2019 16:26:59 -0700 (PDT)
+	id 581DDE00BB5; Wed,  4 Sep 2019 16:27:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,49 +18,53 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.181 listed in list.dnswl.org]
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com
-	[209.85.210.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1D74E00D9F
-	for <yocto@yoctoproject.org>; Wed,  4 Sep 2019 16:26:58 -0700 (PDT)
-Received: by mail-pf1-f181.google.com with SMTP id x127so422989pfb.7
-	for <yocto@yoctoproject.org>; Wed, 04 Sep 2019 16:26:58 -0700 (PDT)
+	*      [209.85.214.178 listed in list.dnswl.org]
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com
+	[209.85.214.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30035E00BB5
+	for <yocto@yoctoproject.org>; Wed,  4 Sep 2019 16:26:59 -0700 (PDT)
+Received: by mail-pl1-f178.google.com with SMTP id bd8so331722plb.6
+	for <yocto@yoctoproject.org>; Wed, 04 Sep 2019 16:26:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id;
-	bh=y3DEIyG8OrpQRiDh9pVOBwZJisk9FWTTNI0EbLzMSw0=;
-	b=oGq3v6Mq/QcseX2jrcJ9EguLNf1YjEMx+OO2La5HvxRb/C2Dojdl1o7NWBYhTURMVr
-	JJoxC2m3Hut6oaB+pUqEJwm1aJm+IHVszt+3U846D09sErdyA4T1kQFlNorvM3EUJ1Rh
-	pqDAVS/pKhBnuHHVu7BcNoS1lYVDTNchV6nd5OzluE9htE33xIyr98H1+JKh2kAE16VN
-	GlBz54DvpZNn9a6j7XTH8+ZeV+8FmOAhnvp4W6wix8tIb+xEHJLUj3YkWOv4R+VpICzw
-	/4pUfcsKFbeMWegyuh7X47lOmThZsRXwHQHyzJXrcElSR3Pp/3QSkMHN3dmRSrDqgNKy
-	kc8A==
+	h=from:to:subject:date:message-id:in-reply-to:references;
+	bh=SNw2N+CO7vKwbI/rDkOI32cwOmsQHpqSxqqlYIyTRv8=;
+	b=AESOpnFFYe9f8BzXuoIsKX1Stac8hiWnt+Qb2UZB14tjhLkFbX3l5HUZdHqvEYRFuT
+	0ug7mKXi2VmgFUkNshfGbf/wpWRd9jvusW4+g2GCGDCYskDO3JzL9SSZzFxNIQm9KE4Q
+	Z9Lhy4tvETzIQ4oxYOq4NQ3QvNISc2RxiJu9re1KULoFTIYFVjDCAjIZ8OGVOHayykru
+	1IaMH0FqCQFtKFbwaHbdjPcvDSkciyXJK5mMoUzn25i7jbLpUVzMdxEG2hGcC8X6m1EH
+	ie8gmC176AUyatGW6VvunmTiFceFQqu9WYaxovkX+sco9jCydLk6GGNc9ddsT+78siuT
+	Dq5A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=y3DEIyG8OrpQRiDh9pVOBwZJisk9FWTTNI0EbLzMSw0=;
-	b=GWNIOJ1/yt9GZJieGa78FCjtGkMXEY+GoTQMp3YHzUUP/uRZU6HqlLIwHKJhjuZJeB
-	zcg3f4ZPsKq2TQFeN+7h8OVkjx6TEnnI1KqrkVfjXWfsP5QWdqaWKTbv1y+4kb0PgZ+i
-	GOccA3EMthwm82QhPR8lJzsAi+Hxw3UCd0qe2RbYaAwdg46wHnGJnumHM/cup8542U1v
-	Bm8CPfFPxY7U7J+SfO1zQZi9oD9HGDSWi9Jsc7ytRayLet1JBpvN1gN1RTQanRFsHZ6V
-	sEDx81VzjtF/9pTDEZusjIOQWdjANR4B6J+p7JB5D2ehttti+fJDBLWKFlisTrYr0W9P
-	qGLQ==
-X-Gm-Message-State: APjAAAXW1bSbdNzsvAXsNGhEJheq3da3Zdu/dIi5JQe30F/ApthfWxyj
-	0rvgTf+ellLE1yc5WcV7gOHyknGU
-X-Google-Smtp-Source: APXvYqzp+gIzyR3O6/dfcV6UgxE3N7ir04EA2nzqqUKzVZWW2/vh8Y5n76Vh4Esbw4CLFjw0B+QYLQ==
-X-Received: by 2002:a62:55c1:: with SMTP id j184mr274465pfb.104.1567639618234; 
-	Wed, 04 Sep 2019 16:26:58 -0700 (PDT)
+	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+	:references;
+	bh=SNw2N+CO7vKwbI/rDkOI32cwOmsQHpqSxqqlYIyTRv8=;
+	b=AtpH0atEh++exaIu+ZxaJpLVdyvJxdS9JYyJFSWN9iwDB5CYZllqr08xIMC3vPIumF
+	T/BTYpj691I7polC35tL+lqdX9oKl9wp2ejAhGH7f2L2BQ8n7UUBegJ/ab78ofhlORu/
+	l2x1OzxoRQlOGBFN5iqgPFm6X9RZbI4uWGQ1PtGwKUEmp9faHG4+rRVowbloQPaCHmGv
+	2OzBiTwi+292Vtk9+ccFIbdnUZ4zhC3y1DeHxweGybu8hX+VuLfeFmJsgIs6YqDJLQ8P
+	QfI7gWnzHDykXCglIghXZIlZgG6eJ4A5GTcDdg4RSmuC1lC+IKc2AMXtdLD8UgFpTGbt
+	ASaA==
+X-Gm-Message-State: APjAAAUPrS0HQVZgEyWvopPcijRbhkfmJ9bjiThZtr+poV7fPnuLoNnY
+	eMB7/7A73faRzU5Fx4TDvm3rIjVp
+X-Google-Smtp-Source: APXvYqzHprdHLJJBP606Ja/70EJRuT4SigtOjGsW6coxLZPbWYt9w3uFEIKMhT4lMSPjdIAuVDtjbA==
+X-Received: by 2002:a17:902:8f90:: with SMTP id
+	z16mr315357plo.138.1567639619267; 
+	Wed, 04 Sep 2019 16:26:59 -0700 (PDT)
 Received: from akuster-ThinkPad-T460s.mvista.com
 	(c-71-204-143-8.hsd1.ca.comcast.net. [71.204.143.8])
 	by smtp.gmail.com with ESMTPSA id
-	129sm153508pfd.173.2019.09.04.16.26.57 for <yocto@yoctoproject.org>
+	129sm153508pfd.173.2019.09.04.16.26.58 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 04 Sep 2019 16:26:57 -0700 (PDT)
+	Wed, 04 Sep 2019 16:26:58 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Wed,  4 Sep 2019 16:26:53 -0700
-Message-Id: <1567639615-8404-1-git-send-email-akuster808@gmail.com>
+Date: Wed,  4 Sep 2019 16:26:54 -0700
+Message-Id: <1567639615-8404-2-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 2.7.4
-Subject: [meta-security][PATCH 1/3] cryptsetup-tpm-incubator: fix QA error RDEPENDS
+In-Reply-To: <1567639615-8404-1-git-send-email-akuster808@gmail.com>
+References: <1567639615-8404-1-git-send-email-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/3] oe-scap: Fix QA RDEPENDS error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,28 +76,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Sep 2019 23:26:59 -0000
+X-List-Received-Date: Wed, 04 Sep 2019 23:27:01 -0000
 
-ERROR: cryptsetup-tpm-incubator-0.9.9-r0 do_package_qa: QA Issue: /usr/lib/libcryptsetup.so.12.3.0 contained in package cryptsetup-tpm-incubator requires libdevmapper.so.1.02(DM_1_02_97)(64bit), but no providers found in RDEPENDS_cryptsetup-tpm-incubator? [file-rdeps]
+ERROR: oe-scap-1.0-r0 do_package_qa: QA Issue: /usr/share/oe-scap/run_tests.sh contained in package oe-scap requires /bin/bash, but no providers found in RDEPENDS_oe-scap? [file-rdeps]
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb          | 2 +-
+ meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb b/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb
-index 8b50445..8385c94 100644
---- a/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb
-+++ b/meta-tpm/recipes-tpm2/cryptsetup-tpm-incubator/cryptsetup-tpm-incubator_0.9.9.bb
-@@ -32,7 +32,7 @@ RRECOMMENDS_${PN} = "kernel-module-aes-generic \
-                      kernel-module-xts \
-                     "
+diff --git a/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb b/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb
+index e84ed30..fd53fcb 100644
+--- a/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb
++++ b/meta-security-compliance/recipes-openscap/oe-scap/oe-scap_1.0.bb
+@@ -30,4 +30,4 @@ do_install () {
  
--RDEPENDS_${PN} += "lvm2"
-+RDEPENDS_${PN} += "lvm2 libdevmapper"
- RRECOMMENDS_${PN} += "lvm2-udevrules"
+ FILES_${PN} += "${datadir}/oe-scap"
  
- RREPLACES_${PN} = "cryptsetup"
+-RDEPENDS_${PN} = "openscap"
++RDEPENDS_${PN} = "openscap bash"
 -- 
 2.7.4
 
