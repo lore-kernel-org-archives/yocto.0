@@ -1,68 +1,50 @@
-Return-Path: <marek.belisko@gmail.com>
+Return-Path: <vygu@protonmail.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2FDDE00DE3; Wed,  4 Sep 2019 00:26:29 -0700 (PDT)
+	id 5DA83E00DF3; Wed,  4 Sep 2019 01:52:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW, SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (marek.belisko[at]gmail.com)
+	provider *      (vygu[at]protonmail.ch)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [185.70.40.130 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.50 listed in list.dnswl.org]
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com
-	[209.85.208.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50735E00DD3
-	for <yocto@yoctoproject.org>; Wed,  4 Sep 2019 00:26:28 -0700 (PDT)
-Received: by mail-ed1-f50.google.com with SMTP id v38so15547612edm.7
-	for <yocto@yoctoproject.org>; Wed, 04 Sep 2019 00:26:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=tz295gZDT4m8JqxifRaUIBcKuidev13If5uAByoJPEk=;
-	b=hOhVRne/NkHdWF9bGf5ScwGsGENwNDG8mQ+0r2FhMiYJWykF2I2buNhWhzN2RqzVMC
-	pIildCa8hT24XTyF/oUEXxq1GO2El/5gicKXfDL81PmpCY/loTphwH2icgjhcSjfcJZf
-	zg35Tnvq3QX/Je2e5hE0otoWKZwLLkOpLw8rzIfDGhPVrYociOvxKt4+qC99fUqnEqBb
-	nsw2dHSK68OpkZkgiTLRia/KUNpnUjD45FFjr9Yw7BZFPpI8Wk9NyK7925H4Q4XX4DB8
-	KKmMkwXUujd5v3ylYS/eZIDrsQMkCJfmkmkWabdqUtGWPimikPAxmgjUMTf3idLfInuj
-	Qbxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=tz295gZDT4m8JqxifRaUIBcKuidev13If5uAByoJPEk=;
-	b=INTZsd522Sb5lkEK9YOSi9zXAUkIIU9674sj5nAVHaSgEZM5XKqqwPIgitCVLl+4P8
-	bwKGJ9UcjwhUVJLSUbBwGr6IDNK+11hwFjVY+YYBLBotiIk+io5m6n25X1LJNcdFl+Cx
-	6TP5vvVtrTMlNlL99nmUHYe+1mhOFl6JuOYuNFdBglL8USrqKdEcD5B8ao7WKDSz8IXU
-	LkVPsUyTMLS/2SyVr3ce4AERg8Ew8qIttFMQ7fbYVZx/ulRITXmVQMg6CZbUAem/z29Z
-	FMuvpSlCn1HtngIuyyIr/23DHAgWLRVRKm643htxpwy4Gn5RwVqKIRuZxIKIcBqgMXEM
-	U1Xw==
-X-Gm-Message-State: APjAAAVdGGLtii6d4fu2M2CMoL8OEiRWrzpXLLJiYe1ouH6U2zfxUjvz
-	cCit1cBWhHMhlX2q+8POlJjmeF/FX9kVaBuLdDDu9/CU
-X-Google-Smtp-Source: APXvYqzaTCBp/nl0jEH7hONZZhu5hVyFfN/x88lWEKYYVVdEQy+8SCP2miUjhnou7JrapD0KuZU2pJh7tZqRv5DTSpI=
-X-Received: by 2002:a50:ba0e:: with SMTP id g14mr4217527edc.241.1567581987390; 
-	Wed, 04 Sep 2019 00:26:27 -0700 (PDT)
+X-Greylist: delayed 358 seconds by postgrey-1.32 at yocto-www;
+	Wed, 04 Sep 2019 01:52:10 PDT
+Received: from mail-40130.protonmail.ch (mail-40130.protonmail.ch
+	[185.70.40.130])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FF5AE00DE2
+	for <yocto@yoctoproject.org>; Wed,  4 Sep 2019 01:52:10 -0700 (PDT)
+Date: Wed, 04 Sep 2019 08:46:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.ch;
+	s=default; t=1567586769;
+	bh=lT1swTEWaeZPrXecUopEulC9Pn5FhRnX3lp9nzZjKnw=;
+	h=Date:To:From:Reply-To:Subject:Feedback-ID:From;
+	b=J0G5GXcXGLyCvTQnDuWUTdWYQhoUsOerlh5jeBkn0GhwZgBKHYkWPbzNZnF/HLHRn
+	nZUCt+lCdQDEkX8o1644s6npL9Rtuh00OwWigrEEz31ydXAxDAIgxhDFWf+eKEXTsw
+	RPvvw34UecQ5xIRsz+C3tmmRo+shxiUaDabBBMt4=
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: vygu <vygu@protonmail.ch>
+Message-ID: <FccdzQfHvG4ZvcaMVpyN8tzbQBVkjLqPwkEVc0rvnUUOU4LL_9R5rzs6Ap_SXPo8N4orBveg5fX-ploC3XwWtvadKbUVOKMnTY6xshfOEos=@protonmail.ch>
+Feedback-ID: zBs-L8wQuKBorWEbLVdJJa3lLTcCv3Htc-27OHD_QG0eSCsj-lmyvhEbqA6BLcl_zRuO8x5lF36uIcXEqZFTgQ==:Ext:ProtonMail
 MIME-Version: 1.0
-References: <34a03f07554c4c9bae2d15dc9e4f4fb9@sakuraus.com>
-In-Reply-To: <34a03f07554c4c9bae2d15dc9e4f4fb9@sakuraus.com>
-From: Belisko Marek <marek.belisko@gmail.com>
-Date: Wed, 4 Sep 2019 09:26:16 +0200
-Message-ID: <CAAfyv35FU92Gutqb--0vmBoojqtJkL=G+_QW1OzPh=869nfZ7A@mail.gmail.com>
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Confusion about U-Boot setup
+Subject: perf.bb on poky master branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: vygu <vygu@protonmail.ch>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -71,34 +53,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Sep 2019 07:26:29 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 04 Sep 2019 08:52:12 -0000
+Content-Type: multipart/alternative;
+	boundary="b1_6a52cecc603a8834efcae1dff1399e1f"
 
-Hi,
+--b1_6a52cecc603a8834efcae1dff1399e1f
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-On Tue, Sep 3, 2019 at 8:58 PM Greg Wilson-Lindberg
-<GWilson@sakuraus.com> wrote:
->
-> I've configured a sumo build, by way of QT's boot2qt to use u-boot and I =
-am seeing a u-boot prompt for keypress to drop out of automatic booting on =
-startup, but I don't see any configuration scripts for u-boot (uEnv.txt or =
-a script) on the image or in the build tmp/ dir.
->
-> For the raspberry pi, how is u-boot configured on startup?
-there is u-boot variable called bootdelay which can be set to e.g. 2
-to wait until autoboot for 2 secs. I think this is the case. Thanks.
->
-> Regards,
-> Greg Wilson-Lindberg
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+SGVsbG8sCgpKdXN0IHRvIHNpZ25hbCB0aGVyZSBhcmUgc2V2ZXJhbCBtaXN0YWtlcyB3aXRoIHRo
+ZSByZWNpcGUgInBlcmYuYmIiIGZyb20gcG9reSBvbiBtYXN0ZXIgKGN1cnJlbnRseTogZTJiZGUw
+MDliMzI1YjQwNjQxNDA3ZWNmNTBmNTRlZDhjNDE3MjZkNikKCi0gSWYgIlB5dGhvbiAzIGlzIG5v
+dCB5ZXQgc3VwcG9ydGVkIiBieSAicGVyZiIgc291cmNlcywgaXQgY2F1c2VzIGFuIGlzc3VlIGR1
+cmluZyB0aGUgZG9fY29tcGlsZSB0YXNrCi0gVGhlIGxhc3QgImluc3RhbGwiIGluIHRoZSBkb19j
+b25maWd1cmVfcHJlcGVuZCB0YXNrIGFib3V0ICJ0b29scy9pbmNsdWRlL2xpbnV4L2JpdHMuaCIg
+ZG9lcyBub3Qgd29yayB3aXRoIGEgbGludXgga2VybmVsIDQuNSB0byA0LjE4IGJlY2F1c2UgdGhp
+cyBmaWxlIGRvZXMgbm90IGV4aXN0ClstIFRoZSB1c2FnZSBvZiBfcHJlcGVuZCBvciBfYXBwZW5k
+IGluIHRoaXMgYmIgZmlsZSBkb2VzIG5vdCBoZWxwIHRvIGNyZWF0ZSBhIGJiYXBwZW5kXQoKVnln
+dQ==
 
-BR,
 
-marek
+--b1_6a52cecc603a8834efcae1dff1399e1f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: base64
 
+PGRpdj5IZWxsbyw8YnI+PGJyPkp1c3QgdG8gc2lnbmFsIHRoZXJlIGFyZSBzZXZlcmFsIG1pc3Rh
+a2VzIHdpdGggdGhlIHJlY2lwZSAicGVyZi5iYiIgZnJvbSBwb2t5IG9uIG1hc3RlciAoY3VycmVu
+dGx5OiBlMmJkZTAwOWIzMjViNDA2NDE0MDdlY2Y1MGY1NGVkOGM0MTcyNmQ2KTxicj48YnI+LSBJ
+ZiAiUHl0aG9uIDMgaXMgbm90IHlldCBzdXBwb3J0ZWQiIGJ5ICJwZXJmIiBzb3VyY2VzLCBpdCBj
+YXVzZXMgYW4gaXNzdWUgZHVyaW5nIHRoZSBkb19jb21waWxlIHRhc2s8YnI+LSBUaGUgbGFzdCAi
+aW5zdGFsbCIgaW4gdGhlIGRvX2NvbmZpZ3VyZV9wcmVwZW5kIHRhc2sgYWJvdXQgInRvb2xzL2lu
+Y2x1ZGUvbGludXgvYml0cy5oIiBkb2VzIG5vdCB3b3JrIHdpdGggYSBsaW51eCBrZXJuZWwgNC41
+IHRvIDQuMTggYmVjYXVzZSB0aGlzIGZpbGUgZG9lcyBub3QgZXhpc3Q8L2Rpdj48ZGl2PlstIFRo
+ZSB1c2FnZSBvZiBfcHJlcGVuZCBvciBfYXBwZW5kIGluIHRoaXMgYmIgZmlsZSBkb2VzIG5vdCBo
+ZWxwIHRvIGNyZWF0ZSBhIGJiYXBwZW5kXTxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2IGNs
+YXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jayI+PGRpdiBjbGFzcz0icHJvdG9ubWFpbF9z
+aWduYXR1cmVfYmxvY2stdXNlciBwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jay1lbXB0eSI+PGJy
+PjwvZGl2PjxkaXYgY2xhc3M9InByb3Rvbm1haWxfc2lnbmF0dXJlX2Jsb2NrLXByb3RvbiI+Vnln
+dTxicj48L2Rpdj48L2Rpdj48ZGl2Pjxicj48L2Rpdj4=
+
+
+
+--b1_6a52cecc603a8834efcae1dff1399e1f--
