@@ -1,50 +1,60 @@
-Return-Path: <vygu@protonmail.ch>
+Return-Path: <matteo.facchinetti@sirius-es.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5DA83E00DF3; Wed,  4 Sep 2019 01:52:12 -0700 (PDT)
+	id E7907E00DF8; Wed,  4 Sep 2019 02:56:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW, SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (vygu[at]protonmail.ch)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [185.70.40.130 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.175 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 358 seconds by postgrey-1.32 at yocto-www;
-	Wed, 04 Sep 2019 01:52:10 PDT
-Received: from mail-40130.protonmail.ch (mail-40130.protonmail.ch
-	[185.70.40.130])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FF5AE00DE2
-	for <yocto@yoctoproject.org>; Wed,  4 Sep 2019 01:52:10 -0700 (PDT)
-Date: Wed, 04 Sep 2019 08:46:02 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.ch;
-	s=default; t=1567586769;
-	bh=lT1swTEWaeZPrXecUopEulC9Pn5FhRnX3lp9nzZjKnw=;
-	h=Date:To:From:Reply-To:Subject:Feedback-ID:From;
-	b=J0G5GXcXGLyCvTQnDuWUTdWYQhoUsOerlh5jeBkn0GhwZgBKHYkWPbzNZnF/HLHRn
-	nZUCt+lCdQDEkX8o1644s6npL9Rtuh00OwWigrEEz31ydXAxDAIgxhDFWf+eKEXTsw
-	RPvvw34UecQ5xIRsz+C3tmmRo+shxiUaDabBBMt4=
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: vygu <vygu@protonmail.ch>
-Message-ID: <FccdzQfHvG4ZvcaMVpyN8tzbQBVkjLqPwkEVc0rvnUUOU4LL_9R5rzs6Ap_SXPo8N4orBveg5fX-ploC3XwWtvadKbUVOKMnTY6xshfOEos=@protonmail.ch>
-Feedback-ID: zBs-L8wQuKBorWEbLVdJJa3lLTcCv3Htc-27OHD_QG0eSCsj-lmyvhEbqA6BLcl_zRuO8x5lF36uIcXEqZFTgQ==:Ext:ProtonMail
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com
+	[209.85.160.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BCCFE00BF8
+	for <yocto@yoctoproject.org>; Wed,  4 Sep 2019 02:56:36 -0700 (PDT)
+Received: by mail-qt1-f175.google.com with SMTP id t12so23623634qtp.9
+	for <yocto@yoctoproject.org>; Wed, 04 Sep 2019 02:56:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=sirius-es-it.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=zw6vIRRdybPx8/lxPYBikQQESEHbcvUfgN9NEWxOF9k=;
+	b=HD6FER5X0Ia2rID2ZFp/UNYCg9Hcir/eCQzQCEkyzbGsh/fsDGletIGxKzTeClr3ra
+	Uglm++GGEgQQHEMuFAgf5vmRIdsixTUwrjVaG4z2ODpF9rde/D7Y27MWyh2SRHkdYbT7
+	oxUnVajYHx81es7uYGu+RREkPgORb/8ZRo0tYwWs6nQ2GcnNs746yx0w96H0RS2inYTv
+	bNV0KZlf9r8hVuvw8Fo1XA1jMUBqgthy87p7d+WhK1lgl1GLPGV9dfJdbrABe/mD7uyr
+	IPTNL/qUYiMdwaZmQalkkDuLMmh45qOioQNVQEnet2V5iy1x9IwuGcUwhLxCRXDSt+mx
+	Xz+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=zw6vIRRdybPx8/lxPYBikQQESEHbcvUfgN9NEWxOF9k=;
+	b=Salg5vCAlzwst80sjMeSzCZ7aRLtuYS9I/l2zFNCdK4+HmxVd2e0MMiPqJ0xLfGgGP
+	Om5PwSWNAXzLtJXtxnpeXh7VJcD8AdqTaaQLNRH9ruT6e4FAUJWbFikIXtrfAaljLYd0
+	VBjQ4THsJMeKItFkqi9U7LbeGvAOgWQ+10/H5Z4cf4InWp2L/izhBG06I4jmhNWVejDq
+	dE5A5Dm/nOPT0yrN5eNkLByXAwRZ3Iya+UL/8ReqYGJuI+3CZjMax/cddQzNHaezbqTx
+	IveIN01OWI7krGO9nXcf1XVEu1pKsU80/1blZsZm9K/7mMxTBbTp8jgCKtWRC4x5qRaQ
+	F0jw==
+X-Gm-Message-State: APjAAAXPq5QOqED1I/HSk6eIvu6T1gkrxdxFXVjcpnap9DbS3K7pA+rS
+	7WcoU/ppHotH3YZacJbH9/YaziWRg1SPcwZIdsjhJecr70poL2q+
+X-Google-Smtp-Source: APXvYqwYQO4CZhRd0PqDcCVx+V0v6OS/Tkt9AAGZ6n/KK3MgAALzfQ6eqBIBV22tpR3SmBJpLfcMDYcvbrN7dMrR/+Q=
+X-Received: by 2002:ac8:4988:: with SMTP id f8mr10787427qtq.2.1567590995420;
+	Wed, 04 Sep 2019 02:56:35 -0700 (PDT)
 MIME-Version: 1.0
-Subject: perf.bb on poky master branch
+From: Matteo Facchinetti <matteo.facchinetti@sirius-es.it>
+Date: Wed, 4 Sep 2019 11:56:24 +0200
+Message-ID: <CAAjAsiw9Az8N1W=kY_PA92uPU==E+Bob0W_E8icqcGYxnnVhsg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: in-tree module dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: vygu <vygu@protonmail.ch>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -53,45 +63,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Sep 2019 08:52:12 -0000
-Content-Type: multipart/alternative;
-	boundary="b1_6a52cecc603a8834efcae1dff1399e1f"
+X-List-Received-Date: Wed, 04 Sep 2019 09:56:37 -0000
+Content-Type: multipart/alternative; boundary="0000000000006f7d760591b73865"
 
---b1_6a52cecc603a8834efcae1dff1399e1f
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
+--0000000000006f7d760591b73865
+Content-Type: text/plain; charset="UTF-8"
 
-SGVsbG8sCgpKdXN0IHRvIHNpZ25hbCB0aGVyZSBhcmUgc2V2ZXJhbCBtaXN0YWtlcyB3aXRoIHRo
-ZSByZWNpcGUgInBlcmYuYmIiIGZyb20gcG9reSBvbiBtYXN0ZXIgKGN1cnJlbnRseTogZTJiZGUw
-MDliMzI1YjQwNjQxNDA3ZWNmNTBmNTRlZDhjNDE3MjZkNikKCi0gSWYgIlB5dGhvbiAzIGlzIG5v
-dCB5ZXQgc3VwcG9ydGVkIiBieSAicGVyZiIgc291cmNlcywgaXQgY2F1c2VzIGFuIGlzc3VlIGR1
-cmluZyB0aGUgZG9fY29tcGlsZSB0YXNrCi0gVGhlIGxhc3QgImluc3RhbGwiIGluIHRoZSBkb19j
-b25maWd1cmVfcHJlcGVuZCB0YXNrIGFib3V0ICJ0b29scy9pbmNsdWRlL2xpbnV4L2JpdHMuaCIg
-ZG9lcyBub3Qgd29yayB3aXRoIGEgbGludXgga2VybmVsIDQuNSB0byA0LjE4IGJlY2F1c2UgdGhp
-cyBmaWxlIGRvZXMgbm90IGV4aXN0ClstIFRoZSB1c2FnZSBvZiBfcHJlcGVuZCBvciBfYXBwZW5k
-IGluIHRoaXMgYmIgZmlsZSBkb2VzIG5vdCBoZWxwIHRvIGNyZWF0ZSBhIGJiYXBwZW5kXQoKVnln
-dQ==
+Hi,
 
+I have a problem with a custom kernel module's recipe that depends to an
+other module (in-tree).
+My kernel module recipes built seems OK, but I have a problem when doing
+the rootfs image stage.
 
---b1_6a52cecc603a8834efcae1dff1399e1f
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
+Error:
+ Problem: package packagegroup-console-sirlinux-1.0-r0.0.noarch requires
+canopen-sync, but none of the providers can be installed
+  - package canopen-sync-git-r0.2.neo_sirius requires
+kernel-module-canopen-sync-4.9.51-yocto-standard, but none of the providers
+can be installed
+  - conflicting requests
+  - nothing provides kernel-module-xeno-can-4.9.51-yocto-standard needed by
+kernel-module-canopen-sync-4.9.51-yocto-standard-git-r0.2.neo_sirius
 
-PGRpdj5IZWxsbyw8YnI+PGJyPkp1c3QgdG8gc2lnbmFsIHRoZXJlIGFyZSBzZXZlcmFsIG1pc3Rh
-a2VzIHdpdGggdGhlIHJlY2lwZSAicGVyZi5iYiIgZnJvbSBwb2t5IG9uIG1hc3RlciAoY3VycmVu
-dGx5OiBlMmJkZTAwOWIzMjViNDA2NDE0MDdlY2Y1MGY1NGVkOGM0MTcyNmQ2KTxicj48YnI+LSBJ
-ZiAiUHl0aG9uIDMgaXMgbm90IHlldCBzdXBwb3J0ZWQiIGJ5ICJwZXJmIiBzb3VyY2VzLCBpdCBj
-YXVzZXMgYW4gaXNzdWUgZHVyaW5nIHRoZSBkb19jb21waWxlIHRhc2s8YnI+LSBUaGUgbGFzdCAi
-aW5zdGFsbCIgaW4gdGhlIGRvX2NvbmZpZ3VyZV9wcmVwZW5kIHRhc2sgYWJvdXQgInRvb2xzL2lu
-Y2x1ZGUvbGludXgvYml0cy5oIiBkb2VzIG5vdCB3b3JrIHdpdGggYSBsaW51eCBrZXJuZWwgNC41
-IHRvIDQuMTggYmVjYXVzZSB0aGlzIGZpbGUgZG9lcyBub3QgZXhpc3Q8L2Rpdj48ZGl2PlstIFRo
-ZSB1c2FnZSBvZiBfcHJlcGVuZCBvciBfYXBwZW5kIGluIHRoaXMgYmIgZmlsZSBkb2VzIG5vdCBo
-ZWxwIHRvIGNyZWF0ZSBhIGJiYXBwZW5kXTxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2IGNs
-YXNzPSJwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jayI+PGRpdiBjbGFzcz0icHJvdG9ubWFpbF9z
-aWduYXR1cmVfYmxvY2stdXNlciBwcm90b25tYWlsX3NpZ25hdHVyZV9ibG9jay1lbXB0eSI+PGJy
-PjwvZGl2PjxkaXYgY2xhc3M9InByb3Rvbm1haWxfc2lnbmF0dXJlX2Jsb2NrLXByb3RvbiI+Vnln
-dTxicj48L2Rpdj48L2Rpdj48ZGl2Pjxicj48L2Rpdj4=
+ERROR: sirlinux4-image-qt4e-1.0-r0 do_rootfs: Function failed: do_rootfs
+ERROR: Logfile of failure stored in:
+/workspace/neo-sirius_sirlinux4/build/tmp/work/neo_sirius-poky-linux-gnueabi/sirlinux4-image-qt4e/1.0-r0/temp/log.do_rootfs.9126
+ERROR: Task
+(/workspace/neo-sirius_sirlinux4/meta-sirlinux/recipes-qt4/images/sirlinux4-image-qt4e.bb:do_rootfs)
+failed with exit code '1'
 
 
+I don't understand how exactly the modules dependencies works...
+Initially, I suppose that PROVIDES variable was updated automatically with
+the correct modules names when compiled like module from kernel but now, I
+don't know if I have to specify it manually or is there any other way?
 
---b1_6a52cecc603a8834efcae1dff1399e1f--
+Regards,
+Matteo
+
+--0000000000006f7d760591b73865
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<br><br>I have a problem with a custom kernel module&#3=
+9;s recipe that depends to an other module (in-tree).<br>My kernel module r=
+ecipes built seems OK, but I have a problem when doing the rootfs image sta=
+ge.<br><br>Error: <br>=C2=A0Problem: package packagegroup-console-sirlinux-=
+1.0-r0.0.noarch requires canopen-sync, but none of the providers can be ins=
+talled<br>=C2=A0 - package canopen-sync-git-r0.2.neo_sirius requires kernel=
+-module-canopen-sync-4.9.51-yocto-standard, but none of the providers can b=
+e installed<br>=C2=A0 - conflicting requests<br>=C2=A0 - nothing provides k=
+ernel-module-xeno-can-4.9.51-yocto-standard needed by kernel-module-canopen=
+-sync-4.9.51-yocto-standard-git-r0.2.neo_sirius<br><br>ERROR: sirlinux4-ima=
+ge-qt4e-1.0-r0 do_rootfs: Function failed: do_rootfs<br>ERROR: Logfile of f=
+ailure stored in: /workspace/neo-sirius_sirlinux4/build/tmp/work/neo_sirius=
+-poky-linux-gnueabi/sirlinux4-image-qt4e/1.0-r0/temp/log.do_rootfs.9126<br>=
+ERROR: Task (/workspace/neo-sirius_sirlinux4/meta-sirlinux/recipes-qt4/imag=
+es/sirlinux4-image-qt4e.bb:do_rootfs) failed with exit code &#39;1&#39;<br>=
+<br><br>I don&#39;t understand how exactly the modules dependencies works..=
+.<br>Initially, I suppose that PROVIDES variable was updated automatically =
+with the correct modules names when compiled like module from kernel but no=
+w, I don&#39;t know if I have to specify it manually or is there any other =
+way?<br><br>Regards,<br>Matteo<br></div>
+
+--0000000000006f7d760591b73865--
