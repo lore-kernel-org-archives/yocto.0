@@ -1,6 +1,6 @@
-Return-Path: <alex.kanavin@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 95834E00C11; Wed,  4 Sep 2019 05:51:39 -0700 (PDT)
+	id 5623AE00E00; Wed,  4 Sep 2019 06:54:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,57 +10,56 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (alex.kanavin[at]gmail.com)
+	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.217.66 listed in list.dnswl.org]
+	*      [209.85.160.170 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-vs1-f66.google.com (mail-vs1-f66.google.com
-	[209.85.217.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48E53E00BB5
-	for <yocto@yoctoproject.org>; Wed,  4 Sep 2019 05:51:38 -0700 (PDT)
-Received: by mail-vs1-f66.google.com with SMTP id j25so13626415vsq.12
-	for <yocto@yoctoproject.org>; Wed, 04 Sep 2019 05:51:38 -0700 (PDT)
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com
+	[209.85.160.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F502E00DE6
+	for <yocto@yoctoproject.org>; Wed,  4 Sep 2019 06:54:41 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id b2so20945415qtq.5
+	for <yocto@yoctoproject.org>; Wed, 04 Sep 2019 06:54:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=xRG8dD3NDhfCo5ZiQ95yN+W0Z3g43qVhJKnzxZc64nU=;
-	b=aiJBToSuHKoEEmx65aeUioAe3hRUiQDO9WIF7zu+zv/rndShCd/yp5pfVpYy372995
-	jY+dTF9ym1rTjZ2TeMzXf8d5ORr2Ano9QB5GTINzfRmKAWn62T+cc3cgWJx+NnzlEBzE
-	HPlyOMcghpmSknjvMIbSVxNlKVs6FR71CKK5H/It57vVJPLclvvxwHHwVjG5F8a0F8jt
-	dJD10zNhotYct38FRMQgRks2e8qa1sQzIuAIQVXac7711p4AbvJcM7ufAWw/SEFQBHXz
-	v/YNtI7XNp74/ClV/Lx09St9vQfOdvj6VW65FhwZNVqSxvuPJWKrgrEKqQPwQ6AHglFw
-	gY9Q==
+	:cc; bh=OaQOM1/OZspw1ENRN6PHpaRqTtaSdD3NhPxdj/j7E4A=;
+	b=iVV48O91LgQI3/0q0tuHhpdo+8xtH385zqGDviZ+1FLq+2D3YLuNXx0YM0iCKNiNt7
+	UF9EN6Bl19f6OxSUkwzmGqC/hg0KISkGs4GnXDKrQeCdPZtlOVurXyOs0ERVoXzursj0
+	6R0g/DFeVNBwj2QJBlKC9/91bO1RmOPAfHPkL3PHIbZPZVqtGmhzqXlxjb25Jf8ZlXsU
+	/wCi1bszEFsVpN7Mr6yVE6OmDYgk0USoB+SPghF911iMWj6eYXcbSOzVoJPevJLRJpgD
+	uxCTCBnpHwNPwuvoWIFjavjG9nAk8wj+DTX/FUC/u1mlXKagco0lZ5BtsjT30IhlcAXk
+	DB0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=xRG8dD3NDhfCo5ZiQ95yN+W0Z3g43qVhJKnzxZc64nU=;
-	b=JUdiLt6ZevjrsGiTy4IZt6tFVnvxcMuZMFO9CLTitjTz21UYCu873dclEWg0iRBc7b
-	THl522W8eN5hCF+SnHdrFeupl6lb+c4DVr9MOihREtPz9FJBdb90HVq0m2O/ikZSI0m6
-	l2yTyRpAhZFi27aj/LuB6C6cKPn54GPxa42LMaxhOg5ZkPBKN0hFSaDeNM72Vuv8mAf7
-	GT1lpHdgJI9NP7my5CYrPT2IL0b3a+QF3AE47ugUF9er3+f2nkyK0d7S+2Wqw+LzmvUg
-	ljl1YrBC0ltNJRY9PpH/EfNRNn1ydVwihvRTJRLH/a+9/fgjLiveBxqaKLb8MzdGTGap
-	OOGA==
-X-Gm-Message-State: APjAAAXPqbrVR51Nx9AvIuJXIpFwKTWUPMX7OA3lc96ACDrNL1qkc0qd
-	W9LHdUMdt340vWf663Iq0sMVv14/Cb1ujsT0R/c=
-X-Google-Smtp-Source: APXvYqzXpXORJLKs0V/ShUTruLgsw//XW7Uq49NxDMTLrq2GZxP/XJ5Z5ZVoIaaFykBx528q87qcem6a7Oo0abNuSOg=
-X-Received: by 2002:a05:6102:1cb:: with SMTP id
-	s11mr10140542vsq.25.1567601497579; 
-	Wed, 04 Sep 2019 05:51:37 -0700 (PDT)
+	bh=OaQOM1/OZspw1ENRN6PHpaRqTtaSdD3NhPxdj/j7E4A=;
+	b=mpWEAfKqIDNc3XL0y+4rW5SGtSxQJwAqnpr2LwbsH1kM6RPWZP0D9jLL49dFJZsV9H
+	O/WtCbABEApxiyi0IA3mPrRbKg8aFS52TVGT5gewQKXJHxaRvdHlHvh774bD5ZDf/Tid
+	KFMe4GwcCZciW70KTyEqW+XJXuRiYrwTAXniTYHTjd4+7a4Qx8fV1UUXrgICwtvGPWEY
+	d7/RwBuDkLL2WDhkmKUSynOwXLfEzwSKDVKQw7qaXNfcmMJBAmRyB8KdZGicagf9KWas
+	3BTY5y0wxWX1GAoDP/zekacBG7qOZqSJxtK3+oOLLxgs4attD81g6hLV+rmKpY1EJpC1
+	cCFA==
+X-Gm-Message-State: APjAAAXoY0ba3nTxlWZ8jo5pNwExi5QVqX5ygFT5lTF7ZqqXnpulXIxe
+	7YfsZ44pV5WV8+W3fW5LRz37Iq6Fvm+llVaIc/o/CbB9
+X-Google-Smtp-Source: APXvYqwTlm7+6lsUHzpe2H5MObypnwdvbmLXRELm8Cz9QuzLm9xttr7gMr5A7ffiTeg++fblu2AsfklFCb14g3MdrRs=
+X-Received: by 2002:ac8:460d:: with SMTP id p13mr30955843qtn.378.1567605280397;
+	Wed, 04 Sep 2019 06:54:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <FccdzQfHvG4ZvcaMVpyN8tzbQBVkjLqPwkEVc0rvnUUOU4LL_9R5rzs6Ap_SXPo8N4orBveg5fX-ploC3XwWtvadKbUVOKMnTY6xshfOEos=@protonmail.ch>
-In-Reply-To: <FccdzQfHvG4ZvcaMVpyN8tzbQBVkjLqPwkEVc0rvnUUOU4LL_9R5rzs6Ap_SXPo8N4orBveg5fX-ploC3XwWtvadKbUVOKMnTY6xshfOEos=@protonmail.ch>
-From: Alexander Kanavin <alex.kanavin@gmail.com>
-Date: Wed, 4 Sep 2019 14:51:26 +0200
-Message-ID: <CANNYZj9Wz=jC7KQQQJMTAEeksKLDncxA1VdGfwPjp+2bXbpuaQ@mail.gmail.com>
-To: vygu <vygu@protonmail.ch>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: perf.bb on poky master branch
+References: <CAAjAsiw9Az8N1W=kY_PA92uPU==E+Bob0W_E8icqcGYxnnVhsg@mail.gmail.com>
+In-Reply-To: <CAAjAsiw9Az8N1W=kY_PA92uPU==E+Bob0W_E8icqcGYxnnVhsg@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 4 Sep 2019 06:54:29 -0700
+Message-ID: <CAMKF1soFzHWLyGS4jcur6mdUL18dkUt0qYnbiwygOosy-f3X2w@mail.gmail.com>
+To: Matteo Facchinetti <matteo.facchinetti@sirius-es.it>
+Cc: yocto@yoctoproject.org
+Subject: Re: in-tree module dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,54 +71,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Sep 2019 12:51:39 -0000
-Content-Type: multipart/alternative; boundary="00000000000069a50d0591b9aad9"
+X-List-Received-Date: Wed, 04 Sep 2019 13:54:42 -0000
+Content-Type: multipart/alternative; boundary="000000000000e2e0b50591ba8b5f"
 
---00000000000069a50d0591b9aad9
+--000000000000e2e0b50591ba8b5f
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 4 Sep 2019 at 10:53, vygu <vygu@protonmail.ch> wrote:
+On Wed, Sep 4, 2019 at 2:58 AM Matteo Facchinetti <
+matteo.facchinetti@sirius-es.it> wrote:
 
-> Just to signal there are several mistakes with the recipe "perf.bb" from
-> poky on master (currently: e2bde009b325b40641407ecf50f54ed8c41726d6)
+> Hi,
 >
-> - If "Python 3 is not yet supported" by "perf" sources, it causes an issue
-> during the do_compile task
-> - The last "install" in the do_configure_prepend task about
-> "tools/include/linux/bits.h" does not work with a linux kernel 4.5 to 4.18
-> because this file does not exist
-> [- The usage of _prepend or _append in this bb file does not help to
-> create a bbappend]
+> I have a problem with a custom kernel module's recipe that depends to an
+> other module (in-tree).
+> My kernel module recipes built seems OK, but I have a problem when doing
+> the rootfs image stage.
+>
+> Error:
+>  Problem: package packagegroup-console-sirlinux-1.0-r0.0.noarch requires
+> canopen-sync, but none of the providers can be installed
+>   - package canopen-sync-git-r0.2.neo_sirius requires
+> kernel-module-canopen-sync-4.9.51-yocto-standard, but none of the provide=
+rs
+> can be installed
+>   - conflicting requests
+>   - nothing provides kernel-module-xeno-can-4.9.51-yocto-standard needed
+> by kernel-module-canopen-sync-4.9.51-yocto-standard-git-r0.2.neo_sirius
 >
 
-I think this is expected: perf from oe-core is not guaranteed to work with
-kernels other than those provided by oe-core. If this cannot be solved by
-patching the original recipe (and sending patches to oe-core list), then
-you can probably just make a custom perf recipe instead that works for you.
+It seems this modules is not built can you check if that=E2=80=99s the case=
+ ? You
+might look for ipk or rpm in deploy area with this name
 
-Alex
+>
+> ERROR: sirlinux4-image-qt4e-1.0-r0 do_rootfs: Function failed: do_rootfs
+> ERROR: Logfile of failure stored in:
+> /workspace/neo-sirius_sirlinux4/build/tmp/work/neo_sirius-poky-linux-gnue=
+abi/sirlinux4-image-qt4e/1.0-r0/temp/log.do_rootfs.9126
+> ERROR: Task
+> (/workspace/neo-sirius_sirlinux4/meta-sirlinux/recipes-qt4/images/sirlinu=
+x4-image-qt4e.bb:do_rootfs)
+> failed with exit code '1'
+>
+>
+> I don't understand how exactly the modules dependencies works...
+> Initially, I suppose that PROVIDES variable was updated automatically wit=
+h
+> the correct modules names when compiled like module from kernel but now, =
+I
+> don't know if I have to specify it manually or is there any other way?
+>
+> Regards,
+> Matteo
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
---00000000000069a50d0591b9aad9
+--000000000000e2e0b50591ba8b5f
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Wed, 4 Sep 2019 at 10:53, vygu &lt;<a href=3D"mailto:vygu@protonm=
-ail.ch">vygu@protonmail.ch</a>&gt; wrote:<br></div><blockquote class=3D"gma=
-il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
-04,204);padding-left:1ex"><div>Just to signal there are several mistakes wi=
-th the recipe &quot;<a href=3D"http://perf.bb" target=3D"_blank">perf.bb</a=
->&quot; from poky on master (currently: e2bde009b325b40641407ecf50f54ed8c41=
-726d6)<br><br>- If &quot;Python 3 is not yet supported&quot; by &quot;perf&=
-quot; sources, it causes an issue during the do_compile task<br>- The last =
-&quot;install&quot; in the do_configure_prepend task about &quot;tools/incl=
-ude/linux/bits.h&quot; does not work with a linux kernel 4.5 to 4.18 becaus=
-e this file does not exist</div><div>[- The usage of _prepend or _append in=
- this bb file does not help to create a bbappend]<br></div></blockquote><di=
-v><br></div><div>I think this is expected: perf from oe-core is not guarant=
-eed to work with kernels other than those provided by oe-core. If this cann=
-ot be solved by patching the original recipe (and sending patches to oe-cor=
-e list), then you can probably just make a custom perf recipe instead that =
-works for you.</div><div><br></div><div>Alex<br></div></div></div>
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Wed, Sep 4, 2019 at 2:58 AM Matteo Facchinetti &lt;<a hr=
+ef=3D"mailto:matteo.facchinetti@sirius-es.it">matteo.facchinetti@sirius-es.=
+it</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">=
+Hi,<br><br>I have a problem with a custom kernel module&#39;s recipe that d=
+epends to an other module (in-tree).<br>My kernel module recipes built seem=
+s OK, but I have a problem when doing the rootfs image stage.<br><br>Error:=
+ <br>=C2=A0Problem: package packagegroup-console-sirlinux-1.0-r0.0.noarch r=
+equires canopen-sync, but none of the providers can be installed<br>=C2=A0 =
+- package canopen-sync-git-r0.2.neo_sirius requires kernel-module-canopen-s=
+ync-4.9.51-yocto-standard, but none of the providers can be installed<br>=
+=C2=A0 - conflicting requests<br>=C2=A0 - nothing provides kernel-module-xe=
+no-can-4.9.51-yocto-standard needed by kernel-module-canopen-sync-4.9.51-yo=
+cto-standard-git-r0.2.neo_sirius<br></div></blockquote><div dir=3D"auto"><b=
+r></div><div dir=3D"auto">It seems this modules is not built can you check =
+if that=E2=80=99s the case ? You might look for ipk or rpm in deploy area w=
+ith this name=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><b=
+r>ERROR: sirlinux4-image-qt4e-1.0-r0 do_rootfs: Function failed: do_rootfs<=
+br>ERROR: Logfile of failure stored in: /workspace/neo-sirius_sirlinux4/bui=
+ld/tmp/work/neo_sirius-poky-linux-gnueabi/sirlinux4-image-qt4e/1.0-r0/temp/=
+log.do_rootfs.9126<br>ERROR: Task (/workspace/neo-sirius_sirlinux4/meta-sir=
+linux/recipes-qt4/images/sirlinux4-image-qt4e.bb:do_rootfs) failed with exi=
+t code &#39;1&#39;<br><br><br>I don&#39;t understand how exactly the module=
+s dependencies works...<br>Initially, I suppose that PROVIDES variable was =
+updated automatically with the correct modules names when compiled like mod=
+ule from kernel but now, I don&#39;t know if I have to specify it manually =
+or is there any other way?<br><br>Regards,<br>Matteo</div><div dir=3D"ltr">=
+<br></div>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div></div>
 
---00000000000069a50d0591b9aad9--
+--000000000000e2e0b50591ba8b5f--
