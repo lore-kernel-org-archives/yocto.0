@@ -1,62 +1,63 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <alex.kanavin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A5D6FE00DFB; Wed,  4 Sep 2019 05:49:11 -0700 (PDT)
+	id 95834E00C11; Wed,  4 Sep 2019 05:51:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (bruce.ashfield[at]gmail.com)
+	provider *      (alex.kanavin[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.54 listed in list.dnswl.org]
+	*      [209.85.217.66 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com
-	[209.85.128.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78ACAE00DF3
-	for <yocto@yoctoproject.org>; Wed,  4 Sep 2019 05:49:09 -0700 (PDT)
-Received: by mail-wm1-f54.google.com with SMTP id n10so3605749wmj.0
-	for <yocto@yoctoproject.org>; Wed, 04 Sep 2019 05:49:09 -0700 (PDT)
+Received: from mail-vs1-f66.google.com (mail-vs1-f66.google.com
+	[209.85.217.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48E53E00BB5
+	for <yocto@yoctoproject.org>; Wed,  4 Sep 2019 05:51:38 -0700 (PDT)
+Received: by mail-vs1-f66.google.com with SMTP id j25so13626415vsq.12
+	for <yocto@yoctoproject.org>; Wed, 04 Sep 2019 05:51:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=3LzI4SccUbm9ngobL3tRxSukwWIkwqKdLP4srvrrwA4=;
-	b=cvvGXai3Z3IYdYi2uL9foscZYp5uV+GhWELolCmov2q//8MzOUpMt9uaX8/eNbvInh
-	bcvv+vfGboDQqvoxTK16Ivg85ey7SbArtvL61ZQeyZy9H7wMw1uka4LSIUI0OWjysNtw
-	vEPG6HacZyHdHWeCgl9k6p4pjhyEsjS6XEl2/sS1WfBjGyqqSiRSnxWcXoAT/QerikYF
-	Z8BK9PxzUgQy80OGpOlgf3gDGC2fd5KOIBdHZj9JuEng5QtohpfF1V8GsMiKDH6Koilw
-	YR4X6++X1K/PErMemLojwr75VbRSqc6R8b/00kGP0Og+lKasbaqciUJcSnypAg/rc9ZM
-	b69A==
+	:cc; bh=xRG8dD3NDhfCo5ZiQ95yN+W0Z3g43qVhJKnzxZc64nU=;
+	b=aiJBToSuHKoEEmx65aeUioAe3hRUiQDO9WIF7zu+zv/rndShCd/yp5pfVpYy372995
+	jY+dTF9ym1rTjZ2TeMzXf8d5ORr2Ano9QB5GTINzfRmKAWn62T+cc3cgWJx+NnzlEBzE
+	HPlyOMcghpmSknjvMIbSVxNlKVs6FR71CKK5H/It57vVJPLclvvxwHHwVjG5F8a0F8jt
+	dJD10zNhotYct38FRMQgRks2e8qa1sQzIuAIQVXac7711p4AbvJcM7ufAWw/SEFQBHXz
+	v/YNtI7XNp74/ClV/Lx09St9vQfOdvj6VW65FhwZNVqSxvuPJWKrgrEKqQPwQ6AHglFw
+	gY9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=3LzI4SccUbm9ngobL3tRxSukwWIkwqKdLP4srvrrwA4=;
-	b=L3ga3M7b2sA3uukobqrLZEJ/Jo2ANz22IoLLxVE94YXUnBVVwvzVnG3fFtGLn6xLth
-	HSfIK0aPn0Fed4G5rc6wz44A/KrUs41x6/R6geIjF101shcAbUaN3fstG7nMH3irIJiW
-	/0NbGT8OJ9jwJc63y+YUdgJBYdrUSEOzJ7BD6HSpu9F36QW/gkst5sI9Xw3e6SawGVwA
-	DH9DezIAXvdmQDuqWzTbOmz7G8ORsipxyexszXkAllZj2ykBK5ZNCnhfKsgMrANHvVTW
-	8UTetKxQv7bVXLyC391gQf7UjmUawzNhx8tUcSFFTm0qLXVXcjTNGiEgS+ZnTntYm7G8
-	+JLg==
-X-Gm-Message-State: APjAAAVGC3VIvOCzsra0znKp20tJdcAx7HmQi2s7Vx4lKBrgp8twKLCT
-	NC0oGOGKBBTrbrGUcmoDLN31h76uNgrCK/mw2BA=
-X-Google-Smtp-Source: APXvYqxcPUk4NVaFJmNmaCdQHnzIoX9PskACnU4a1ntDlg9wIy18b1vsrgP9wbqdGSaD5azqukDax0btziQRNtGlTuI=
-X-Received: by 2002:a05:600c:25a:: with SMTP id
-	26mr3896463wmj.60.1567601348309; 
-	Wed, 04 Sep 2019 05:49:08 -0700 (PDT)
+	bh=xRG8dD3NDhfCo5ZiQ95yN+W0Z3g43qVhJKnzxZc64nU=;
+	b=JUdiLt6ZevjrsGiTy4IZt6tFVnvxcMuZMFO9CLTitjTz21UYCu873dclEWg0iRBc7b
+	THl522W8eN5hCF+SnHdrFeupl6lb+c4DVr9MOihREtPz9FJBdb90HVq0m2O/ikZSI0m6
+	l2yTyRpAhZFi27aj/LuB6C6cKPn54GPxa42LMaxhOg5ZkPBKN0hFSaDeNM72Vuv8mAf7
+	GT1lpHdgJI9NP7my5CYrPT2IL0b3a+QF3AE47ugUF9er3+f2nkyK0d7S+2Wqw+LzmvUg
+	ljl1YrBC0ltNJRY9PpH/EfNRNn1ydVwihvRTJRLH/a+9/fgjLiveBxqaKLb8MzdGTGap
+	OOGA==
+X-Gm-Message-State: APjAAAXPqbrVR51Nx9AvIuJXIpFwKTWUPMX7OA3lc96ACDrNL1qkc0qd
+	W9LHdUMdt340vWf663Iq0sMVv14/Cb1ujsT0R/c=
+X-Google-Smtp-Source: APXvYqzXpXORJLKs0V/ShUTruLgsw//XW7Uq49NxDMTLrq2GZxP/XJ5Z5ZVoIaaFykBx528q87qcem6a7Oo0abNuSOg=
+X-Received: by 2002:a05:6102:1cb:: with SMTP id
+	s11mr10140542vsq.25.1567601497579; 
+	Wed, 04 Sep 2019 05:51:37 -0700 (PDT)
 MIME-Version: 1.0
 References: <FccdzQfHvG4ZvcaMVpyN8tzbQBVkjLqPwkEVc0rvnUUOU4LL_9R5rzs6Ap_SXPo8N4orBveg5fX-ploC3XwWtvadKbUVOKMnTY6xshfOEos=@protonmail.ch>
 In-Reply-To: <FccdzQfHvG4ZvcaMVpyN8tzbQBVkjLqPwkEVc0rvnUUOU4LL_9R5rzs6Ap_SXPo8N4orBveg5fX-ploC3XwWtvadKbUVOKMnTY6xshfOEos=@protonmail.ch>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Wed, 4 Sep 2019 08:48:57 -0400
-Message-ID: <CADkTA4Pjm1P3MhJh5iogYGoo8tTm_YH8qSHo_oN6+qAuaeAoLw@mail.gmail.com>
+From: Alexander Kanavin <alex.kanavin@gmail.com>
+Date: Wed, 4 Sep 2019 14:51:26 +0200
+Message-ID: <CANNYZj9Wz=jC7KQQQJMTAEeksKLDncxA1VdGfwPjp+2bXbpuaQ@mail.gmail.com>
 To: vygu <vygu@protonmail.ch>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: perf.bb on poky master branch
@@ -71,61 +72,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Sep 2019 12:49:11 -0000
+X-List-Received-Date: Wed, 04 Sep 2019 12:51:39 -0000
+Content-Type: multipart/alternative; boundary="00000000000069a50d0591b9aad9"
+
+--00000000000069a50d0591b9aad9
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Sep 4, 2019 at 4:53 AM vygu <vygu@protonmail.ch> wrote:
+On Wed, 4 Sep 2019 at 10:53, vygu <vygu@protonmail.ch> wrote:
+
+> Just to signal there are several mistakes with the recipe "perf.bb" from
+> poky on master (currently: e2bde009b325b40641407ecf50f54ed8c41726d6)
 >
-> Hello,
+> - If "Python 3 is not yet supported" by "perf" sources, it causes an issue
+> during the do_compile task
+> - The last "install" in the do_configure_prepend task about
+> "tools/include/linux/bits.h" does not work with a linux kernel 4.5 to 4.18
+> because this file does not exist
+> [- The usage of _prepend or _append in this bb file does not help to
+> create a bbappend]
 >
-> Just to signal there are several mistakes with the recipe "perf.bb" from poky on master (currently: e2bde009b325b40641407ecf50f54ed8c41726d6)
->
-> - If "Python 3 is not yet supported" by "perf" sources, it causes an issue during the do_compile task
 
-In master the decision was that If you still have a kernel that
-doesn't support python3, you'll need to create your own python2 based
-perf recipe. Or create a patch that makes the version of python
-configurable (I'm doing something for 4.19 at the moment). But in
-master, we need to support the release for a period that is longer
-than the python2 EOL, so the python2 dependencies need to go.
+I think this is expected: perf from oe-core is not guaranteed to work with
+kernels other than those provided by oe-core. If this cannot be solved by
+patching the original recipe (and sending patches to oe-core list), then
+you can probably just make a custom perf recipe instead that works for you.
 
-> - The last "install" in the do_configure_prepend task about "tools/include/linux/bits.h" does not work with a linux kernel 4.5 to 4.18 because this file does not exist
+Alex
 
-Again, those are older kernels that we support in master. Which are
-the only ones we can test. So the copying of that file was tested
-against the versions I could see/support. We can definitely protect
-those copies with conditionals, but someone that is actively using a
-kernel of that vintage, would be better to send the patches.
+--00000000000069a50d0591b9aad9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> [- The usage of _prepend or _append in this bb file does not help to create a bbappend]
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Wed, 4 Sep 2019 at 10:53, vygu &lt;<a href=3D"mailto:vygu@protonm=
+ail.ch">vygu@protonmail.ch</a>&gt; wrote:<br></div><blockquote class=3D"gma=
+il_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,2=
+04,204);padding-left:1ex"><div>Just to signal there are several mistakes wi=
+th the recipe &quot;<a href=3D"http://perf.bb" target=3D"_blank">perf.bb</a=
+>&quot; from poky on master (currently: e2bde009b325b40641407ecf50f54ed8c41=
+726d6)<br><br>- If &quot;Python 3 is not yet supported&quot; by &quot;perf&=
+quot; sources, it causes an issue during the do_compile task<br>- The last =
+&quot;install&quot; in the do_configure_prepend task about &quot;tools/incl=
+ude/linux/bits.h&quot; does not work with a linux kernel 4.5 to 4.18 becaus=
+e this file does not exist</div><div>[- The usage of _prepend or _append in=
+ this bb file does not help to create a bbappend]<br></div></blockquote><di=
+v><br></div><div>I think this is expected: perf from oe-core is not guarant=
+eed to work with kernels other than those provided by oe-core. If this cann=
+ot be solved by patching the original recipe (and sending patches to oe-cor=
+e list), then you can probably just make a custom perf recipe instead that =
+works for you.</div><div><br></div><div>Alex<br></div></div></div>
 
-We don't have a lot of choices for this. The perf recipe is unique in
-that it used to work directly in the kernel source and it has to
-support some undefined set of kernels (hence it can't patch the
-source). We could move some of that work to new tasks and have them
-run before configure, etc, there just hasn't been a need until now.
-
-As usual, patches are welcome (and/or bugzilla entries), since I'm not
-currently the issues it isn't as easy to spin patches.
-
-Cheers,
-
-Bruce
-
->
->
-> Vygu
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
-
--- 
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
-
+--00000000000069a50d0591b9aad9--
