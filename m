@@ -1,47 +1,64 @@
-Return-Path: <jae.hyun.yoo@linux.intel.com>
+Return-Path: <kamal.jagesia@networkmarvels.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 478A1E00890; Tue,  3 Sep 2019 14:16:39 -0700 (PDT)
+	id F3D7CE00DF3; Wed,  4 Sep 2019 01:33:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF64BE00890
-	for <yocto@yoctoproject.org>; Tue,  3 Sep 2019 14:16:38 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	03 Sep 2019 14:16:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,464,1559545200"; d="scan'208";a="187394026"
-Received: from yoojae-mobl1.amr.corp.intel.com (HELO [10.7.153.148])
-	([10.7.153.148])
-	by orsmga006.jf.intel.com with ESMTP; 03 Sep 2019 14:16:38 -0700
-To: Brad Bishop <bradleyb@fuzziesquirrel.com>,
-	akuster808 <akuster808@gmail.com>
-References: <038f49d9-099e-dabd-2957-d31e7b8bbf41@linux.intel.com>
-	<628d5b4c-63d4-78b6-83d8-1781cbc86e0f@linux.intel.com>
-	<7694CCA3-89BD-44FE-90D1-99569476E980@fuzziesquirrel.com>
-	<fbcfc988-687f-55ad-1ca9-ace092f09a99@gmail.com>
-	<68bddbec8c08cbd9d31f561222bb3afde814a94b.camel@fuzziesquirrel.com>
-From: Jae Hyun Yoo <jae.hyun.yoo@linux.intel.com>
-Message-ID: <9e7fa5a8-3ac4-a187-e878-2e6a24b1713d@linux.intel.com>
-Date: Tue, 3 Sep 2019 14:16:38 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.179 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com
+	[209.85.160.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1649E0098A
+	for <yocto@yoctoproject.org>; Wed,  4 Sep 2019 01:33:11 -0700 (PDT)
+Received: by mail-qt1-f179.google.com with SMTP id r15so17789643qtn.12
+	for <yocto@yoctoproject.org>; Wed, 04 Sep 2019 01:33:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=networkmarvels-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
+	bh=26EU5XZV5zLh28dxCmvSamBi8rxtmlc4EmeLrrDdXtE=;
+	b=o28ML9Fs9KOiX8bHlKYdmyKZkOErqhu2YpbnFpJe5t8liDAPuuv1pOLOWNkXpbf6/u
+	hYw3ITR9lQmKRQQJW+gkqHtFkCWz2ABomvJeIfFNZa9pMrekRUksKu38io3NsddiPNyw
+	lFCJY9glTdvVRNi3/EVuLfH2mrhq/RIa/Fm1yhp6XNglJRoldisEAnXkq2PXqbQQmwBt
+	s4HBnBy7Ww/qBDx+BObaMJ9yD1mobagIrd4PqjLbHwlxeco5tR7l2WFGsQyVYJ9oaByw
+	inUaEAKNfICwmSZTddaX1r1Ac5jid0RJlLl5GUwR3BMpSRYUcg4UpZc7/YBACzSkV6Ry
+	BrKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to;
+	bh=26EU5XZV5zLh28dxCmvSamBi8rxtmlc4EmeLrrDdXtE=;
+	b=KvQJROzxRhvG0FIikvBDdKCQPOSAPUIuQonuSmiNmi+GSEDR2tB0D3OIb0EQPGRKVN
+	CSb//l07L9CumjKM85t7kpMOuoYqXt/t4vkMB7/n8lQE69y62FA3woUOzdLwzJg3x4zD
+	Y+B5vW6OBdAp9QdicxTbcpLGgPkNoaPCApIfcW2ueBtPk5F2SutsflYZqRG5rHgdgPnr
+	uDoCB5q/PkAQUSB+Cc9AusrgAWjF5opelwV/SW6/e5VFy0EtNjEUVmYn2G+MxgEAiix9
+	njnGH2rli1AqCuvIiuTWlzF78YldoJJipEd6zR3nZ/xzri/Ls+H8jeXnT5JkG0xzSbyQ
+	zs5A==
+X-Gm-Message-State: APjAAAWOi0+2zaDU2IlSqAv4NFdNuGlNIMhcFN36ljyelTnRWrGznsji
+	Hv+MuFaasC0Oqfnnvk4o7CoaNkELKSQozPA+HjqKdXFzD7U=
+X-Google-Smtp-Source: APXvYqyfF6rC310R7rKQ9jYuK3i6jXXqg0fDWCEB6PQ7sVpm6xXjJ7mkK34Q6RuWcprhSkSnaLbnONglJnFu22MErQk=
+X-Received: by 2002:a0c:d018:: with SMTP id u24mr11325695qvg.202.1567585990912;
+	Wed, 04 Sep 2019 01:33:10 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <68bddbec8c08cbd9d31f561222bb3afde814a94b.camel@fuzziesquirrel.com>
+References: <CAG6kgP4ZgS4gERCqfGUNYJGJ1zD1NDX59UzHLTM_UGq1s1U0Jw@mail.gmail.com>
+	<7597589de33f174bcb4671f3b187f25746fbb354.camel@linuxfoundation.org>
+	<CAJrV_B2DSYCoX23KEBzcfcTEhmrR_aGuJ4QqBdO+wp-aGJ-HBw@mail.gmail.com>
+	<d48535e24f045ea19ed3c9e45277b2ceda39c15e.camel@linuxfoundation.org>
+In-Reply-To: <d48535e24f045ea19ed3c9e45277b2ceda39c15e.camel@linuxfoundation.org>
+From: Kamal Jagesia <kamal.jagesia@networkmarvels.com>
+Date: Wed, 4 Sep 2019 14:03:00 +0530
+Message-ID: <CAJrV_B2tT3o9eX0gTqJqZ=Q6meknu3yW1eUG581CwaJedrux3w@mail.gmail.com>
+To: yocto@yoctoproject.org
 X-Mailman-Approved-At: Mon, 09 Sep 2019 02:06:56 -0700
-Cc: yocto@yoctoproject.org, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-	James Feist <james.feist@linux.intel.com>
-Subject: Re: Build break in the latest openbmc tree.
+Subject: [poky] Want to create a x11 image of less than 100 MB with bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,53 +70,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Sep 2019 21:16:39 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 04 Sep 2019 08:33:13 -0000
+Content-Type: multipart/alternative; boundary="00000000000024bca20591b60ef5"
 
-On 8/27/2019 5:00 PM, Brad Bishop wrote:
-> On Sun, 2019-08-25 at 10:49 -0700, akuster808 wrote:
->> the meta-security layer should be fix now.
->>
->> please update and let me know if not.
-> 
-> Thanks Armin!
-> 
-> Jae, I've pulled this into OpenBMC.  Can you give it a try?
-> 
+--00000000000024bca20591b60ef5
+Content-Type: text/plain; charset="UTF-8"
 
-Thanks Armin, Brad!
+Hi All
+> I need your help to create a small Embedded Linux Image less than 100
+> MB with x11 libraries.
+> I have been trying to do this with core-image-x11 but I need to
+> eliminate packages like bluez5 (Bluetooth) from poky bitbake build.
+> Kindly let me know how to do this .
 
-I tried it using the latest tree and checked that the build breakage has
-gone, but a new issue happened while it's building 'qemu-native'.
+Regards
+Kamal
 
-| ERROR: Execution of 
-'/home/yoojae/workspace/openbmc/build/tmp/work/x86_64-linux/qemu-native/4.1.0-r0/temp/run.do_configure.2396' 
-failed with exit code 1:
-| ERROR: unknown option --disable-libssh
+--00000000000024bca20591b60ef5
+Content-Type: text/html; charset="UTF-8"
 
-So I made a patch to fix the new issue.
+<div dir="ltr"><div class="gmail_quote"><div dir="ltr" class="gmail_attr"><br></div><br>Hi All<br>
+&gt; I need your help to create a small Embedded Linux Image less than 100<br>
+&gt; MB with x11 libraries.<br>
+&gt; I have been trying to do this with core-image-x11 but I need to<br>
+&gt; eliminate packages like bluez5 (Bluetooth) from poky bitbake build.<br>
+&gt; Kindly let me know how to do this .<br><br>Regards<br>Kamal<br>
+<br>
+</div></div>
 
---- a/poky/meta/recipes-devtools/qemu/qemu.inc
-+++ b/poky/meta/recipes-devtools/qemu/qemu.inc
-@@ -137,7 +137,7 @@ PACKAGECONFIG[curses] = 
-"--enable-curses,--disable-curses,ncurses,"
-  PACKAGECONFIG[gtk+] = "--enable-gtk,--disable-gtk,gtk+3 gettext-native"
-  PACKAGECONFIG[vte] = "--enable-vte,--disable-vte,vte gettext-native"
-  PACKAGECONFIG[libcap-ng] = "--enable-cap-ng,--disable-cap-ng,libcap-ng,"
--PACKAGECONFIG[ssh] = "--enable-libssh,--disable-libssh,libssh,"
-+PACKAGECONFIG[ssh] = "--enable-libssh2,--disable-libssh2,libssh2,"
-  PACKAGECONFIG[gcrypt] = "--enable-gcrypt,--disable-gcrypt,libgcrypt,"
-  PACKAGECONFIG[nettle] = "--enable-nettle,--disable-nettle,nettle"
-  PACKAGECONFIG[libusb] = "--enable-libusb,--disable-libusb,libusb1"
-
-Brad,
-Please apply this change into the qemu recipe.
-
-Thanks,
-Jae
-
-
-
-
+--00000000000024bca20591b60ef5--
