@@ -1,51 +1,71 @@
-Return-Path: <bunk@stusta.de>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 40B51E00D1C; Fri,  6 Sep 2019 04:11:57 -0700 (PDT)
+	id 4B4B2E00E12; Fri,  6 Sep 2019 04:32:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	https://www.dnswl.org/, low *      trust
-	*      [141.84.69.5 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (martin.jansa[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.67 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76090E00AE6
-	for <yocto@yoctoproject.org>; Fri,  6 Sep 2019 04:11:56 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 46Pvyg30WWz5c;
-	Fri,  6 Sep 2019 13:11:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
-	s=default; t=1567768315;
-	bh=EzhvnRNoln8VUU6LhRsUr/bD6U13mOG65xzJIRG4kYU=;
-	h=Date:From:To:Subject:References:In-Reply-To:From;
-	b=Xx5MgCeds/TBPIKHshYiiL7zp/NZ2D9dzA2d05Q7VPtlSZrAoZNbFipmEGAqZQ1Pa
-	kB0kSNekKqXyDgIGn0YCNy3xI6ykF8+QTeM6EAb+2mbKXPO8O5u38iGt8nMcInqDf3
-	sC4ooULy/4vqPum0gOUpPUrqg5h9uFSXx1WHBk1toMD0U+b35oSb0wenGFwQAJG0Zz
-	1VLKGwqCJL1zF4m5JVX3kHmjuaQpYygZ99D209z3VjfEpm2HHiCvUZqBapSkqxkaU+
-	6DXlX9ngbKUdyJlmEicnz49h/kM3eeiZ0V9eTCawJtR0GcbKNuZZvO3hTeCeM/yrWB
-	ksynjjlWz3UG42ki4RqteNrrQUG2IlJ3jRRTc/4EGL4iQ7PWWDcs9SOyCbw2w4JLfu
-	qHaG+sxX2EE2ry8kV+mdjGxFfdyC99BIDuyjnGJghhcDXbKvdyM6oF14d9+WL50ct8
-	KkN6KKDXWJnq5BKktSgte45HpJEzRkJYmp049uUODX/hpMdhbWh8zdAOkzuO217tDQ
-	zaHE+un4zLR4plPdW66WIlEiQoC5Uf6sdShAz2cA4WAw3wIA8QpFj562kj/rybRLE8
-	OXNWy5UK/RVEQvRHKE7tuDyT7f4ARkPv2TgekuU/lO+Iv+KxrX+fp1G1ljeTuOPiS6
-	4ctsrM+8CXXtly/Uv+26EbYs=
-Date: Fri, 6 Sep 2019 14:11:53 +0300
-From: Adrian Bunk <bunk@stusta.de>
-To: yocto@yoctoproject.org, Scott Rifenbark <srifenbark@gmail.com>
-Message-ID: <20190906111153.GB7337@localhost>
-References: <20190715084410.12496-1-bunk@stusta.de>
+Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com
+	[209.85.128.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BC7EE00D83
+	for <yocto@yoctoproject.org>; Fri,  6 Sep 2019 04:32:09 -0700 (PDT)
+Received: by mail-wm1-f67.google.com with SMTP id c10so6156442wmc.0
+	for <yocto@yoctoproject.org>; Fri, 06 Sep 2019 04:32:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-disposition:in-reply-to:user-agent;
+	bh=gZ+JVO0ojJEQ2Mq5bkPAGkXP5MSOzxD7Sm/5BEBkfxU=;
+	b=qrfx67TiglB/WDntqaKMEyuc2Y38n8iJV5Cmk3IHRgvc/qxLVbBssd8BCxiEjOjmuh
+	FROZ5mwQSoKNGYHl6mFF8vp/YdEtxOkwmQme+bz0vKLKc0hTQz4Nh+5vgNARq8bWHFHJ
+	WsXWKKJVgdP277O3O1ghZWlmCJOWdadA9n14NTL//AS2EN+NhDxAiS1AtYLXcxc4B4QO
+	bSa7wKgEsXVUFttA25k0khfAvUR1XZl5nMAQH00oNPY2qH63cTqlI2vzf6wyD+iyEIeE
+	udGZgKKVg8nnvVRTWj0cNmDtsiJNdHGwl2pb9CF5GYZzxYlPmqyLor/O5RDrWVkc/ndn
+	8+4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+	:mime-version:content-disposition:in-reply-to:user-agent;
+	bh=gZ+JVO0ojJEQ2Mq5bkPAGkXP5MSOzxD7Sm/5BEBkfxU=;
+	b=jGkfrx2xj0rT0goP6R9usXb4EiblGbi3g7QOmnC1JtooKPO0Hsj39oUUlJ1y+lcpu0
+	tKZyBQjTRmfmYboD8hPMn+I5GMSd3DGLtmq6Xr0lGxXYF6ZBI07lN1Of1MhjkmWGnaTv
+	VRvjlwfpgpTzmpJWa0Aw04zjs9Y2jYUHhP1q0sl1Y42xLNbKQba0lH8SsArj90yduiuf
+	hA5DC5Wu+aojCAPk7mFCb/QN/xzVVrRIqFKtYQHZ+Z3TWP6d9w4gpbaAMH59JZZsOJxB
+	eit00J8xVSLVTzcExXeurdKdE9Wvs7MHGbtqDrLEYhd4jSAdAUDtMmoZiaIY97arbmRi
+	Jryw==
+X-Gm-Message-State: APjAAAWPwXq6h2nuFqkAQUVo2NWi1lyEUx7fbHlel2W667HHD4iVo4cE
+	eQlINdmOSjCex81abO4UUCE6vZHFe14=
+X-Google-Smtp-Source: APXvYqw+FeSIlAL8CqGYREKtd5QWMuQ+XDzfJ75y91cpdS84C7Zd7q6mImiN2xdRmS1P7K+0OBxaTw==
+X-Received: by 2002:a7b:c1cc:: with SMTP id a12mr6533074wmj.73.1567769527972; 
+	Fri, 06 Sep 2019 04:32:07 -0700 (PDT)
+Received: from localhost (ip-217-030-068-212.aim-net.cz. [217.30.68.212])
+	by smtp.gmail.com with ESMTPSA id p8sm3762588wrq.22.2019.09.06.04.32.06
+	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+	Fri, 06 Sep 2019 04:32:06 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Fri, 6 Sep 2019 13:32:10 +0200
+To: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
+Message-ID: <20190906113210.GA1530@jama>
+References: <20190812195140.900-1-Martin.Jansa@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20190715084410.12496-1-bunk@stusta.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Subject: Re: [yocto-docs][PATCH] ref-manual: Remove documentation for the removed bluez5 distro feature
+In-Reply-To: <20190812195140.900-1-Martin.Jansa@gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
+Cc: srifenbark@gmail.com, herb.kuta@lge.com
+Subject: Re: [yocto-docs][PATCH] ref-manual: mention PREPROCESS_RELOCATE_DIRS variable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,95 +77,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Sep 2019 11:11:57 -0000
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Fri, 06 Sep 2019 11:32:11 -0000
+X-Groupsio-MsgNum: 46533
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="yrj/dFKFPuw6o+aM"
 Content-Disposition: inline
+
+--yrj/dFKFPuw6o+aM
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Aug 12, 2019 at 07:51:40PM +0000, Martin Jansa wrote:
+> Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
 
 ping
 
-On Mon, Jul 15, 2019 at 11:44:10AM +0300, Adrian Bunk wrote:
-> bluez4 was removed even from meta-oe 2 years ago,
-> which made made the bluez5 feature for selecting between
-> bluez4 and bluez5 mandatory for using the bluetooth feature.
-> 
-> The backfilled bluez5 feature has been removed,
-> including the bluetooth class that helped recipes
-> for selecting between bluez4/bluez5.
-> Recipes can replace ${BLUEZ} with bluez5.
-> 
-> Signed-off-by: Adrian Bunk <bunk@stusta.de>
 > ---
->  documentation/ref-manual/ref-classes.xml  | 17 -----------------
->  documentation/ref-manual/ref-features.xml | 21 ---------------------
->  2 files changed, 38 deletions(-)
-> 
-> diff --git a/documentation/ref-manual/ref-classes.xml b/documentation/ref-manual/ref-classes.xml
-> index ece47e757b..37619e382d 100644
+>  documentation/ref-manual/ref-classes.xml   |  5 ++++-
+>  documentation/ref-manual/ref-variables.xml | 21 +++++++++++++++++++++
+>  2 files changed, 25 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/documentation/ref-manual/ref-classes.xml b/documentation/ref=
+-manual/ref-classes.xml
+> index ece47e757..159efb3b1 100644
 > --- a/documentation/ref-manual/ref-classes.xml
 > +++ b/documentation/ref-manual/ref-classes.xml
-> @@ -318,23 +318,6 @@
+> @@ -413,7 +413,10 @@
+>          <filename>cross</filename>, and
+>          <filename>cross-canadian</filename> recipes to change
+>          <filename>RPATH</filename> records within binaries in order to m=
+ake
+> -        them relocatable.
+> +        them relocatable. To extend the list of directories where it sea=
+rches
+> +        for binaries to relocate, you can set
+> +        <link linkend=3D'var-PREPROCESS_RELOCATE_DIRS'><filename>PREPROC=
+ESS_RELOCATE_DIRS</filename></link>
+> +        variable in your recipe.
 >      </para>
 >  </section>
->  
-> -<section id='ref-classes-bluetooth'>
-> -    <title><filename>bluetooth.bbclass</filename></title>
-> -
-> -    <para>
-> -        The <filename>bluetooth</filename> class defines a variable that
-> -        expands to the recipe (package) providing core
-> -        bluetooth support on the platform.
-> -    </para>
-> -
-> -    <para>
-> -        For details on how the class works, see the
-> -        <filename>meta/classes/bluetooth.bbclass</filename> file in the Yocto
-> -        Project
-> -        <link linkend='source-directory'>Source Directory</link>.
-> -    </para>
-> -</section>
-> -
->  <section id='ref-classes-buildhistory'>
->      <title><filename>buildhistory.bbclass</filename></title>
->  
-> diff --git a/documentation/ref-manual/ref-features.xml b/documentation/ref-manual/ref-features.xml
-> index b057d2d040..44ba67cf50 100644
-> --- a/documentation/ref-manual/ref-features.xml
-> +++ b/documentation/ref-manual/ref-features.xml
-> @@ -154,27 +154,6 @@
->                      </para></listitem>
->                  <listitem><para><emphasis>bluetooth:</emphasis> Include
->                      bluetooth support (integrated BT only).</para></listitem>
-> -                <listitem><para><emphasis>bluez5:</emphasis> Include
-> -                    BlueZ Version 5, which provides core Bluetooth layers and
-> -                    protocols support.
-> -                    <note>
-> -                        The default value for the
-> -                        <filename>DISTRO FEATURES</filename> variable includes
-> -                        "bluetooth", which causes bluez5 to be backfilled in
-> -                        for bluetooth support.
-> -                        If you do not want bluez5 backfilled and would rather
-> -                        use bluez4, you need to use the
-> -                        <link linkend='var-DISTRO_FEATURES_BACKFILL_CONSIDERED'><filename>DISTRO_FEATURES_BACKFILL_CONSIDERED</filename></link>
-> -                        variable as follows:
-> -                        <literallayout class='monospaced'>
-> -     DISTRO_FEATURES_BACKFILL_CONSIDERED = "bluez5"
-> -                        </literallayout>
-> -                        Setting this variable tells the OpenEmbedded build
-> -                        system that you have considered but ruled
-> -                        out using the bluez5 feature and that bluez4 will be
-> -                        used.
-> -                    </note>
-> -                    </para></listitem>
->                  <listitem><para><emphasis>cramfs:</emphasis> Include CramFS
->                      support.</para></listitem>
->                  <listitem><para><emphasis>directfb:</emphasis>
-> -- 
+> =20
+> diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/r=
+ef-manual/ref-variables.xml
+> index 9470a780a..5ac766658 100644
+> --- a/documentation/ref-manual/ref-variables.xml
+> +++ b/documentation/ref-manual/ref-variables.xml
+> @@ -11424,6 +11424,27 @@
+>              </glossdef>
+>          </glossentry>
+> =20
+> +        <glossentry id=3D'var-PREPROCESS_RELOCATE_DIRS'><glossterm>PREPR=
+OCESS_RELOCATE_DIRS</glossterm>
+> +            <info>
+> +                PREPROCESS_RELOCATE_DIRS[doc] =3D "List of extra directo=
+ries where to search for binaries which should be relocatable."
+> +            </info>
+> +            <glossdef>
+> +                <para role=3D"glossdeffirst">
+> +<!--                <para role=3D"glossdeffirst"><imagedata fileref=3D"f=
+igures/define-generic.png" /> -->
+> +                    List of extra directories with binaries.
+> +                </para>
+> +
+> +                <para>
+> +                    <filename>PREPROCESS_RELOCATE_DIRS</filename> is use=
+d by
+> +                    chrpath.bbclass to allow extending the list where it=
+ searches
+> +                    for binaries. By default it searches in:
+> +                    ${bindir} ${sbindir} ${base_sbindir} ${base_bindir} =
+${libdir} ${base_libdir} ${libexecdir}
+> +                    Thus, <filename>PREPROCESS_RELOCATE_DIRS</filename> =
+usually doesn't
+> +                    need to be set withing recipes.
+> +                </para>
+> +            </glossdef>
+> +        </glossentry>
+> +
+>          <glossentry id=3D'var-PRIORITY'><glossterm>PRIORITY</glossterm>
+>              <info>
+>                  PRIORITY[doc] =3D "Indicates the importance of a package=
+=2E  The default value is 'optional'.  Other standard values are 'required'=
+, 'standard', and 'extra'."
+> --=20
 > 2.17.1
-> 
-> -- 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>=20
 
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
+--yrj/dFKFPuw6o+aM
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQRU+ejDffEzV2Je2oc3VSO3ZXaAHAUCXXJDuQAKCRA3VSO3ZXaA
+HOGQAKCg+y1Nl5AO6hhXavL6vqpqDPPF3gCglk/fvif5foug34jeelIzy1P40kI=
+=xCIy
+-----END PGP SIGNATURE-----
+
+--yrj/dFKFPuw6o+aM--
