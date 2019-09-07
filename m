@@ -1,47 +1,62 @@
-Return-Path: <joe@deserted.net>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 97D72E00DA5; Fri,  6 Sep 2019 10:05:37 -0700 (PDT)
+	id 2B291E00BFF; Sat,  7 Sep 2019 05:06:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jupiter.hce[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [68.232.129.153 listed in list.dnswl.org]
-Received: from esa1.mentor.iphmx.com (esa1.mentor.iphmx.com [68.232.129.153])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88017E00A93
-	for <yocto@yoctoproject.org>; Fri,  6 Sep 2019 10:05:36 -0700 (PDT)
-IronPort-SDR: 32b0gBsANPjVXHq0myeLIersJX6zlDakv33nHTnTV0T72vzMoOyycA6aBFmE8bCdh7rEo5hnPI
-	Vx5x3uAMuueO/oPua00jlmoGlx3sFH2D7cXZPIYdl11Luu8GNocy35Jvv8Cv0EZ6mRnAHpu0lg
-	6CZSqcd6gYGaic/2SsUs/bUgZOtYSPRbWNVKTna2SOO4F3m12274a9ZzkUb5M0gfa0T72EUJ28
-	49b5ydO60u0WEuYVaN2JDp4CRQ6fWwzFI3m3Y2+ln2z+wjEDWyaOK4Ar7Hwmh3iaFzwtkxMO4E
-	/YM=
-X-IronPort-AV: E=Sophos;i="5.64,473,1559548800"; 
-	d="asc'?scan'208";a="42936311"
-Received: from orw-gwy-02-in.mentorg.com ([192.94.38.167])
-	by esa1.mentor.iphmx.com with ESMTP; 06 Sep 2019 09:05:34 -0800
-IronPort-SDR: t9UegqTQqT7+B1942GF0EpVVI5x6N41OINTUN25k+s8KzYG70kV6n4UZD+7WmQhLe7L7XyZJAW
-	y+k/qTkTxqRgW+Y8nMw6QnOe6jIJ0jbD7wBkx3F9urXaravzVK6g6wSVmpthldRSD9lCyN+Map
-	NUETEZsM9JtIHB+gxl4TWjyGX/5sypOXqpO29Xb039YTEDByQEqsiVri2fOcoy6Yje2yfpMt5n
-	TUp8XKwink+jX7iX9ly8LOw73BBc5bhfX10mysF3A0zXimJszDUG39geqUBDlgEp4YTY2v6sr3
-	M0Y=
-Date: Fri, 6 Sep 2019 13:05:30 -0400
-From: Joe MacDonald <joe@deserted.net>
-To: Yi Zhao <yi.zhao@windriver.com>
-Message-ID: <20190906170528.GC37987@deserted.net>
-References: <1567673824-29926-1-git-send-email-yi.zhao@windriver.com>
-	<20190905115704.GA37987@deserted.net>
-	<2606575f-1667-40b6-3611-74cdb8a78388@windriver.com>
+	*      [209.85.166.50 listed in list.dnswl.org]
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com
+	[209.85.166.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2D06E00A93
+	for <yocto@yoctoproject.org>; Sat,  7 Sep 2019 05:06:16 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id r26so18795234ioh.8
+	for <yocto@yoctoproject.org>; Sat, 07 Sep 2019 05:06:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=0W2DVoPMI1Kh7KGw4AC6oQ5s+iFP4roMx6uFZb6wlqE=;
+	b=o43jEQAA+ZQbO242bweRw6goChrX1gWH2KcmYJl5LCcth/J8xzbeHULJl4G49ulP2w
+	kJANwdCC2m/zBwFooOZPOCXG2IpMrvZdEx8rIW1vw2Osktn0/yRe65WqQJ6pzIsh1Ooq
+	GCn8VjbJDNWawM/fys2DFqo2Lv7u1jUn33OXRTxSxIs/4N1h39DLpNTNMNbLyg6C2INm
+	ur/ISeAquyk+5HY5K1h6tijv0nIECRcBMU27grF+OngpZY2FudSV22TEP7QKMjzLAyCx
+	pxLX9hPZJWP6Sme+3ul7QMzPFrbHISF/G5rx3xFvzcVYdj88ehIJI8PjhNLm1GQz4DHX
+	flmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=0W2DVoPMI1Kh7KGw4AC6oQ5s+iFP4roMx6uFZb6wlqE=;
+	b=HYtswb1LJSJqX50kVkdaGMb74csTGC0KC4AmAnZmPqKth+O1uNlo+dFJslUH/Q8xjg
+	+DdTGeLpgBZqvS3Pxj1BXgeGeaaClbhgtGIUTA90/55vvCgXoLSAdBfG5y+POYSStxx1
+	oPxTCt/j1PzSeD4ZkfVICmmES4JKtHB/EUFnt3l4n4RrI6qRl9oxvp9gH1KUYAcjWXOt
+	d8bPRrquoBE4Tgf9PEp9/iNDiG+vwUk0ybQ5Nv6yUGvNrgmnY6Tpn9W/VQtYM+LPElcJ
+	jQIN0tllNlPbIuYKzRwdul6eLcATfQvAOHTnxmzZySm0xX1d+bKqvDvIz9uKBw22MdOr
+	D8qQ==
+X-Gm-Message-State: APjAAAW6/fJRi/cmsk7yDejzJi8I8D4EB4DJWHme72Ie6ntwPzHtKx4k
+	f8Uc+48pphFKB5tNgvy7zuokpSwg8nmWzvkhWBiqqTyj
+X-Google-Smtp-Source: APXvYqwQEkww+VOUcrPEFlF9STAV+lSnERG6RLn+Ay7GnnbTOdhbkylZr4NLAZTSusc++SRsModRExprrUU3j2ftkbg=
+X-Received: by 2002:a5d:9c0b:: with SMTP id 11mr11370774ioe.192.1567857976343; 
+	Sat, 07 Sep 2019 05:06:16 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <2606575f-1667-40b6-3611-74cdb8a78388@windriver.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-User-Agent: Mutt/1.10.1 (2018-07-13)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH] selinux-autorelabel: disable enforcing mode before relabel
+Received: by 2002:ac0:9c85:0:0:0:0:0 with HTTP;
+	Sat, 7 Sep 2019 05:06:15 -0700 (PDT)
+From: JH <jupiter.hce@gmail.com>
+Date: Sat, 7 Sep 2019 22:06:15 +1000
+Message-ID: <CAA=hcWSVaxfwFvA5BYNoCS-6q80N0A__NyE5zLsVfCT3U+ugFA@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Kenel 5.1.0 SRCREV
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,120 +68,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Sep 2019 17:05:37 -0000
-X-Groupsio-MsgNum: 46536
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="5QAgd0e35j3NYeGe"
-Content-Disposition: inline
+X-List-Received-Date: Sat, 07 Sep 2019 12:06:18 -0000
+Content-Type: text/plain; charset="UTF-8"
 
---5QAgd0e35j3NYeGe
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-[Re: [meta-selinux][PATCH] selinux-autorelabel: disable enforcing mode befo=
-re relabel] On 19.09.06 (Fri 11:31) Yi Zhao wrote:
+Anyone know what is the kernel 5.1.0 SRCREV?
 
->=20
-> On 9/5/19 7:57 PM, Joe MacDonald wrote:
-> > [[meta-selinux][PATCH] selinux-autorelabel: disable enforcing mode befo=
-re relabel] On 19.09.05 (Thu 16:57) Yi Zhao wrote:
-> >=20
-> > > The commit b0d31db104d9a4e94bc1409c2ffcc1d82f4a780f introduced an iss=
-ue
-> > > when first boot with bootparams=3D"selinux=3D1 enforcing=3D1". At fir=
-st boot,
-> > > all files are unlabeled including /sbin/fixfiles. The relabel operati=
-on
-> > > is not permitted under enforcing mode. Set /sys/fs/selinux/enforce to=
- 0
-> > > to ensure the enforcing mode is disabled before relabel.
-> > Did you try this with '/usr/sbin/setenforce 0' instead?  The rationale
-> > makes sense but going straight at sysfs like that isn't the right
-> > approach intuitively.  If that's not working, please just include a bit
-> > of an explanation for why this is the best option.
->=20
-> It also works with setenforce.
->=20
-> I referred to the selinux-autorelabel script on Fedora 30, it uses `echo =
-"0"
-> > /sys/fs/selinux/enforce` to disables enforcing mode:
->=20
-> cat /usr/libexec/selinux/selinux-autorelabel
->=20
-> [snip]
-> =A0=A0=A0=A0 32 relabel_selinux() {
-> =A0=A0=A0=A0 33=A0=A0=A0=A0 # if /sbin/init is not labeled correctly this=
- process is running
-> in the
-> =A0=A0=A0=A0 34=A0=A0=A0=A0 # wrong context, so a reboot will be required=
- after relabel
-> =A0=A0=A0=A0 35=A0=A0=A0=A0 AUTORELABEL=3D
-> =A0=A0=A0=A0 36=A0=A0=A0=A0 . /etc/selinux/config
-> =A0=A0=A0=A0 37=A0=A0=A0=A0 echo "0" > /sys/fs/selinux/enforce
-> =A0=A0=A0=A0 38=A0=A0=A0=A0 [ -x /bin/plymouth ] && plymouth --quit
-> =A0=A0=A0=A0 39
-> [snip]
+Thank you
 
-Okay, but our version of the script is much less complex than the Fedora
-one and we already have the precedent of calling fixfiles by full path
-and variable, I'd rather keep the script consistent in style.  If you
-want to propose replacing our selinux-autorelabel.sh with the one from
-Fedora, please submit a patch for that, but for this patch I'd just
-rather see the style remain consistent with what's already there.
-
-Thanks.
--J.
-
->=20
->=20
-> //Yi
->=20
->=20
-> >=20
-> > Thanks.
-> > -J.
-> >=20
-> > > Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-> > > ---
-> > >   recipes-security/selinux/selinux-autorelabel/selinux-autorelabel.sh=
- | 1 +
-> > >   1 file changed, 1 insertion(+)
-> > >=20
-> > > diff --git a/recipes-security/selinux/selinux-autorelabel/selinux-aut=
-orelabel.sh b/recipes-security/selinux/selinux-autorelabel/selinux-autorela=
-bel.sh
-> > > index 154dad1..cb40971 100644
-> > > --- a/recipes-security/selinux/selinux-autorelabel/selinux-autorelabe=
-l.sh
-> > > +++ b/recipes-security/selinux/selinux-autorelabel/selinux-autorelabe=
-l.sh
-> > > @@ -13,6 +13,7 @@ fi
-> > >   # If /.autorelabel placed, the whole file system should be relabeled
-> > >   if [ -f /.autorelabel ]; then
-> > >   	echo "SELinux: /.autorelabel placed, filesystem will be relabeled.=
-=2E."
-> > > +	echo "0" > /sys/fs/selinux/enforce
-> > >   	${FIXFILES} -F -f relabel
-> > >   	/bin/rm -f /.autorelabel
-> > >   	echo " * Relabel done, rebooting the system."
-> > > --=20
-> > > 2.7.4
-> > >=20
-
---=20
--Joe MacDonald.
-Linux Architect | Mentor=AE A Siemens Business
-:wq
-
---5QAgd0e35j3NYeGe
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRjqRhJknEwCqrWVXzAW9yWWiDRfAUCXXKR2AAKCRDAW9yWWiDR
-fIa7AJ4n/xKQfByvEbvyb6Y3ENSj4Eq4qwCfZplfgWuFoNvK/CHHUqf1Yd+hgOM=
-=XsxL
------END PGP SIGNATURE-----
-
---5QAgd0e35j3NYeGe--
