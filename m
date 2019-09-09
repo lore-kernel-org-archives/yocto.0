@@ -1,69 +1,36 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <Yi.Zhao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0F5BE00DFA; Sun,  8 Sep 2019 21:16:36 -0700 (PDT)
+	id 9F485E00DCE; Sun,  8 Sep 2019 23:01:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	SUBJ_OBFU_PUNCT_FEW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.175 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com
-	[209.85.214.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCAD1E00DAE
-	for <yocto@yoctoproject.org>; Sun,  8 Sep 2019 21:16:35 -0700 (PDT)
-Received: by mail-pl1-f175.google.com with SMTP id x20so332167plm.9
-	for <yocto@yoctoproject.org>; Sun, 08 Sep 2019 21:16:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=Huw/sp6cBo7zKpTpPXEo5yId/kVOyGgmZj4nVdw5nlM=;
-	b=koyWdU1sFSwuOzhnuyQX0TOi7vypIWNBzuV0lnHSobWER9MVKAoI0t328Br3hXFHKd
-	OzIu58kZ15rcLjJKt0kNmBuh7EI1QbHJ70LzFP46HgecrzxQA3rKHtYkmkUQ1mAD+nDP
-	697qpo4mlmok82e7F3INfVm05Bt39GiMCJCWggaDQ3w5xQUpzqgfHO6F61zKiAawJh/6
-	RzRKHWmtBL5gfkDEniW9Ppf8pIraiuvsi7v976/yFqH0DqOpATueD8Fz3ApTllpf4aqg
-	JE0OyE9sy2SqRFgqkfpTKiy1U4aiyXftJKwPPS6mf71UNvX/G/hPbRW41auBjs31Emfd
-	97kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-	:references;
-	bh=Huw/sp6cBo7zKpTpPXEo5yId/kVOyGgmZj4nVdw5nlM=;
-	b=LPesNzhg8gA/kf6fSXeQo9EfuCAE9mfzjOWbBg59pWp/Oq+OtNnA6TfkMooDJPWrWa
-	41llvJi0PgYv2KFC6/HH/J8l6biCXAXU3ejBXRGdX5A5itB3xdNgs8MlkwDC2URJ5kGy
-	+6wCVxaP065su0f2CCoSjuHbWLktJqaaIrpHoquuA0GaQ5ug6WHJT+2jfbsmLx9BweA7
-	PN6/1da2BbbiYWl+XIGNZevBGCNK36GVDm+1v90ix6DrzWRSspfmIG+ce8UXIiPM7Ta2
-	LF/GkCOVSUgrrLhB+P4zERHrJIaWx+c07Nj+t8GSAqUE3CtxispXHx6yGx9IDKLBa/V7
-	X/KQ==
-X-Gm-Message-State: APjAAAWL3Gis6b7jEIiBIqSs2A8hC3uOzjCAhZS03Ex0PCJHCntHZC+k
-	CX65HacK7+/RckR2q1UoqP5ACkUd
-X-Google-Smtp-Source: APXvYqz6atyZrR/xGux5F/I/vFuGUDsVs3lD6BdnUJyjs84vZsgxVlnuwAK6xSV3s3gYW5asIR8D/Q==
-X-Received: by 2002:a17:902:bd87:: with SMTP id
-	q7mr22559673pls.57.1568002595254; 
-	Sun, 08 Sep 2019 21:16:35 -0700 (PDT)
-Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
-	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	u11sm5616457pfm.113.2019.09.08.21.16.34 for <yocto@yoctoproject.org>
-	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Sun, 08 Sep 2019 21:16:34 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sun,  8 Sep 2019 21:16:28 -0700
-Message-Id: <20190909041628.7934-8-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190909041628.7934-1-akuster808@gmail.com>
-References: <20190909041628.7934-1-akuster808@gmail.com>
-Subject: [PATCH 8/8] tpm2-pkcs11: update to tip
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* 0.7 SUBJ_OBFU_PUNCT_FEW Possible punctuation-obfuscated Subject:
+	header
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A7E5E00DAA
+	for <yocto@yoctoproject.org>; Sun,  8 Sep 2019 23:01:35 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x8961XT5012262
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 8 Sep 2019 23:01:33 -0700 (PDT)
+Received: from localhost (128.224.162.195) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0;
+	Sun, 8 Sep 2019 23:01:32 -0700
+From: Yi Zhao <yi.zhao@windriver.com>
+To: <yocto@yoctoproject.org>, <joe@deserted.net>, <Joe_MacDonald@mentor.com>
+Date: Mon, 9 Sep 2019 14:01:30 +0800
+Message-ID: <1568008890-8700-1-git-send-email-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
+X-Originating-IP: [128.224.162.195]
+Subject: [meta-selinux][PATCH] conf/layer.conf: use BBFILES_DYNAMIC for dynamic layers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,27 +42,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Sep 2019 04:16:36 -0000
+X-List-Received-Date: Mon, 09 Sep 2019 06:01:36 -0000
+Content-Type: text/plain
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+From: Robert Yang <liezhi.yang@windriver.com>
+
+The previous code add all BBFILE_COLLECTIONS/recipes*/*/*.bbappend to BBFILES,
+which causes the parsing very slow when there are many layers, e.g., I have 87
+layers:
+
+* Before:
+$ rm -fr tmp-glibc/ cache; time bitbake -p
+real    0m45.173s
+user    0m0.560s
+sys     0m0.060s
+
+* After:
+$ rm -fr tmp-glibc/ cache; time bitbake -p
+real    0m25.542s
+user    0m0.572s
+sys     0m0.040s
+
+It wasted 20s which wasn't worth (The host has 128 threads, it should cost more
+time on less power host), use BBFILES_DYNAMIC can fix the problem.
+
+Signed-off-by: Robert Yang <liezhi.yang@windriver.com>
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 ---
- meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ conf/layer.conf                                               | 11 +++++++----
+ .../recipes-daemons/iscsi-initiator-utils/files/initd.debian  |  0
+ .../iscsi-initiator-utils/iscsi-initiator-utils_%.bbappend    |  0
+ .../iscsi-initiator-utils/iscsi-initiator-utils_selinux.inc   |  0
+ .../recipes-support}/augeas/augeas_%.bbappend                 |  0
+ .../recipes-containers/lxc/lxc_%.bbappend                     |  0
+ 6 files changed, 7 insertions(+), 4 deletions(-)
+ rename {networking-layer => dynamic-layers/networking-layer}/recipes-daemons/iscsi-initiator-utils/files/initd.debian (100%)
+ rename {networking-layer => dynamic-layers/networking-layer}/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_%.bbappend (100%)
+ rename {networking-layer => dynamic-layers/networking-layer}/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_selinux.inc (100%)
+ rename {meta-python/recipes-extended/augeas => dynamic-layers/openembedded-layer/recipes-support}/augeas/augeas_%.bbappend (100%)
+ rename {virtualization-layer => dynamic-layers/virtualization-layer}/recipes-containers/lxc/lxc_%.bbappend (100%)
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb
-index 222bb6d..2185749 100644
---- a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb
-@@ -10,7 +10,7 @@ SRC_URI = "git://github.com/tpm2-software/tpm2-pkcs11.git \
-            file://bootstrap_fixup.patch \
-           "
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 9dd34b1..89b9468 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -5,10 +5,13 @@ BBPATH .= ":${LAYERDIR}"
+ BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+             ${LAYERDIR}/recipes-*/*/*.bbappend"
  
--SRCREV = "9eed9df823a960da481327468a73d477241befdb"
-+SRCREV = "caf20c04651029626466c59d88b36c05cc6ea20b"
+-# Let us add layer-specific bbappends which are only applied when that
+-# layer is included in our configuration
+-BBFILES += "${@' '.join('${LAYERDIR}/%s/recipes*/*/*.bbappend' % layer \
+-               for layer in BBFILE_COLLECTIONS.split())}"
++BBFILES_DYNAMIC += "openembedded-layer:${LAYERDIR}/dynamic-layers/openembedded-layer/*/*/*.bb \
++                    openembedded-layer:${LAYERDIR}/dynamic-layers/openembedded-layer/*/*/*.bbappend \
++                    networking-layer:${LAYERDIR}/dynamic-layers/networking-layer/*/*/*.bb \
++                    networking-layer:${LAYERDIR}/dynamic-layers/networking-layer/*/*/*.bbappend \
++                    virtualization-layer:${LAYERDIR}/dynamic-layers/virtualization-layer/recipes*/*/*.bb \
++                    virtualization-layer:${LAYERDIR}/dynamic-layers/virtualization-layer/recipes*/*/*.bbappend \
++                   "
  
- S = "${WORKDIR}/git"
- 
+ BBFILE_COLLECTIONS += "selinux"
+ BBFILE_PATTERN_selinux = "^${LAYERDIR}/"
+diff --git a/networking-layer/recipes-daemons/iscsi-initiator-utils/files/initd.debian b/dynamic-layers/networking-layer/recipes-daemons/iscsi-initiator-utils/files/initd.debian
+similarity index 100%
+rename from networking-layer/recipes-daemons/iscsi-initiator-utils/files/initd.debian
+rename to dynamic-layers/networking-layer/recipes-daemons/iscsi-initiator-utils/files/initd.debian
+diff --git a/networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_%.bbappend b/dynamic-layers/networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_%.bbappend
+similarity index 100%
+rename from networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_%.bbappend
+rename to dynamic-layers/networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_%.bbappend
+diff --git a/networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_selinux.inc b/dynamic-layers/networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_selinux.inc
+similarity index 100%
+rename from networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_selinux.inc
+rename to dynamic-layers/networking-layer/recipes-daemons/iscsi-initiator-utils/iscsi-initiator-utils_selinux.inc
+diff --git a/meta-python/recipes-extended/augeas/augeas/augeas_%.bbappend b/dynamic-layers/openembedded-layer/recipes-support/augeas/augeas_%.bbappend
+similarity index 100%
+rename from meta-python/recipes-extended/augeas/augeas/augeas_%.bbappend
+rename to dynamic-layers/openembedded-layer/recipes-support/augeas/augeas_%.bbappend
+diff --git a/virtualization-layer/recipes-containers/lxc/lxc_%.bbappend b/dynamic-layers/virtualization-layer/recipes-containers/lxc/lxc_%.bbappend
+similarity index 100%
+rename from virtualization-layer/recipes-containers/lxc/lxc_%.bbappend
+rename to dynamic-layers/virtualization-layer/recipes-containers/lxc/lxc_%.bbappend
 -- 
-2.17.1
+2.7.4
 
 
