@@ -1,39 +1,66 @@
-Return-Path: <andreea.volosincu@windriver.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A8647E00D89; Mon,  9 Sep 2019 21:41:20 -0700 (PDT)
+	id E3730E00D84; Mon,  9 Sep 2019 23:15:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B9A0E00CD5
-	for <yocto@yoctoproject.org>; Mon,  9 Sep 2019 21:41:19 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x8A4fJxc027129
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 9 Sep 2019 21:41:19 -0700 (PDT)
-Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.94]) by
-	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.03.0468.000;
-	Mon, 9 Sep 2019 21:41:18 -0700
-From: "Volosincu, Andreea S" <andreea.volosincu@windriver.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Thread-Topic: September Edition - Live Coding with Yocto Project
-Thread-Index: AdVnkd5QWozF3worRyet4qTrsPLSXQ==
-Date: Tue, 10 Sep 2019 04:41:18 +0000
-Message-ID: <A084970538D2234B96D99D06FA9D974FCA8F73EB@ALA-MBD.corp.ad.wrs.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [147.11.117.68]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.54 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com
+	[209.85.221.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5076DE00828
+	for <yocto@yoctoproject.org>; Mon,  9 Sep 2019 23:15:40 -0700 (PDT)
+Received: by mail-wr1-f54.google.com with SMTP id t16so17531905wra.6
+	for <yocto@yoctoproject.org>; Mon, 09 Sep 2019 23:15:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=HfSWgd6Cchr/gL3hFnQH1abXv9zrJCs21KqiniDWa3E=;
+	b=OTJzLhuH8i09ltx97Xop9sI2OSj3Asnh8dMWJXYnwkcB/tNtNtQRzQ77ytjR8wC8zC
+	LtZ6KYGHCIkhDyp8cUkxD2HHjLXFdOsOIR4M6BwF15NmWf1he1rJtSndlFsJ6m2c7ycJ
+	7rASR6RMvVSoIsFG36X6ZEWcm1CvW7rwx8RcI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+	:references:user-agent:mime-version:content-transfer-encoding;
+	bh=HfSWgd6Cchr/gL3hFnQH1abXv9zrJCs21KqiniDWa3E=;
+	b=SWXHp/seg0OkL3lJN40YVHIEqUMqLxrA0hQuzDBedsDBjVhd5HqeWMww863nkbRomr
+	66xQR5rjlLefHxZfI4DMGXiyRnScsPRYSuKM4ZmwgOXCRKJJx10a3aVhO/i7t+pll4zs
+	3TDTOTOv2FwrrptYblDwtMVpB1seJ9mZmuV/NlfOQbi40EI0+sZT6eCDG2uyeGhi8oyZ
+	Grm/GIaQ/a7LRbLubJVjVEgUFHMV0UX61eg28yeQKhxFEbULy5rvZ23OCvayujWEM3OF
+	YCEEA0C4Dc0gvWcTR5n5cVrEHWOtS777NNqp/jGNrigJAHiW1R5x99Uspvthcg5DJGRf
+	F/gw==
+X-Gm-Message-State: APjAAAWWJJHb32NcsW5PcQJ5pOArmLKl9SI0ncuis+6e6hoMdVm0IG5H
+	CGwPNYiPrcfq0PvC7G84mH88bFkcrFBm5w==
+X-Google-Smtp-Source: APXvYqxMlkTe+aus1V9OybABEjQsO1MzsL2Uk+RAsirBTXpNsUEZjWr3FD+2o3EAY0/GOIBazd8IrA==
+X-Received: by 2002:a5d:6648:: with SMTP id f8mr22867914wrw.167.1568096139401; 
+	Mon, 09 Sep 2019 23:15:39 -0700 (PDT)
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+	by smtp.gmail.com with ESMTPSA id
+	w125sm3593891wmg.32.2019.09.09.23.15.38
+	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+	Mon, 09 Sep 2019 23:15:38 -0700 (PDT)
+Message-ID: <c2be75ac2510e8fdf27f046a58754096037a9cc3.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Kaz Kylheku <kaz@kylheku.com>, yocto@yoctoproject.org
+Date: Tue, 10 Sep 2019 07:15:35 +0100
+In-Reply-To: <c0bca2ce55bd713b57c7a92ee3898a19@mail.kylheku.com>
+References: <c0bca2ce55bd713b57c7a92ee3898a19@mail.kylheku.com>
+User-Agent: Evolution 3.32.2-1 
 MIME-Version: 1.0
-Subject: September Edition - Live Coding with Yocto Project
+Subject: Re: Pointless unlink-link in strip_execs?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,133 +72,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Sep 2019 04:41:20 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_A084970538D2234B96D99D06FA9D974FCA8F73EBALAMBDcorpadwrs_"
+X-List-Received-Date: Tue, 10 Sep 2019 06:15:41 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---_000_A084970538D2234B96D99D06FA9D974FCA8F73EBALAMBDcorpadwrs_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Fri, 2019-09-06 at 11:52 -0700, Kaz Kylheku wrote:
+> Hi,
+> 
+> I'm looking at meta/lib/oe/package.py, function strip_execs, under
+> Yocto 
+> 2.5.
+> 
+> It has this tidbit:
+> 
+>                      if s.st_ino in inodes:
+>                          os.unlink(file)                     # <---
+> of 
+> interest
+>                          os.link(inodes[s.st_ino], file)     #
+>                      else:
+>                          # break hardlinks so that we do not strip
+> the 
+> original.
+>                          inodes[s.st_ino] = file
+>                          bb.utils.copyfile(file, file)
+>                          elffiles[file] = elf_file
+> 
+> If s.st_ino is in the inodes dictionary, doesn't that mean that the 
+> paths
+> inodes[s.st_ino] and file are already hard links to the same object?
+> 
+> In other words, those two link and unlink lines don't achieve
+> anything?
 
-This month's live coding session is almost here.
-When: Sep 10, 5:00 PM Europe/Berlin
-Where: Yocto Project Twitch channel - https://www.twitch.tv/yocto_project
-What: Josef will talk about kernel handling and development
-See you there!
-Yocto Project Advocacy Team
+I think its more subtle than this.
+
+It will be in that inodes list if we already want to break hardlinks to
+the copy having gone through the "else" section once before already. We
+want one copy and all the hardlinks pointing to that copy.
+
+The reason is so that we have one stripped copy and in our packaged
+data, all copies hardlink to that copy.
+
+Cheers,
+
+Richard
 
 
 
---_000_A084970538D2234B96D99D06FA9D974FCA8F73EBALAMBDcorpadwrs_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:"Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Segoe UI";
-	panose-1:2 11 5 2 4 2 4 2 2 3;}
-@font-face
-	{font-family:"\@Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:"Segoe UI Symbol";
-	panose-1:2 11 5 2 4 2 4 2 2 3;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin-top:0in;
-	margin-right:0in;
-	margin-bottom:8.0pt;
-	margin-left:0in;
-	line-height:106%;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-span.ember-view
-	{mso-style-name:ember-view;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span class=3D"ember-view"><span style=3D"font-size:=
-10.5pt;line-height:106%;font-family:&quot;Segoe UI&quot;,sans-serif;border:=
-none windowtext 1.0pt;padding:0in;background:white">This month&#8217;s live=
- coding session is almost here.<o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span class=3D"ember-view"><span style=3D"font-size:=
-10.5pt;line-height:106%;font-family:&quot;Segoe UI&quot;,sans-serif;border:=
-none windowtext 1.0pt;padding:0in;background:white">When: Sep 10, 5:00 PM E=
-urope/Berlin<o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span class=3D"ember-view"><span style=3D"font-size:=
-10.5pt;line-height:106%;font-family:&quot;Segoe UI&quot;,sans-serif;border:=
-none windowtext 1.0pt;padding:0in;background:white">Where: Yocto Project Tw=
-itch channel -
-</span></span><span style=3D"font-family:&quot;Segoe UI Symbol&quot;,sans-s=
-erif;background:white"><a href=3D"https://www.twitch.tv/yocto_project">http=
-s://www.twitch.tv/yocto_project</a>
-</span><span class=3D"ember-view"><span style=3D"font-size:10.5pt;line-heig=
-ht:106%;font-family:&quot;Segoe UI&quot;,sans-serif;border:none windowtext =
-1.0pt;padding:0in;background:white"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span class=3D"ember-view"><span style=3D"font-size:=
-10.5pt;line-height:106%;font-family:&quot;Segoe UI&quot;,sans-serif;border:=
-none windowtext 1.0pt;padding:0in;background:white">What: Josef will talk a=
-bout kernel handling and development<o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span class=3D"ember-view"><span style=3D"font-size:=
-10.5pt;line-height:106%;font-family:&quot;Segoe UI&quot;,sans-serif;border:=
-none windowtext 1.0pt;padding:0in;background:white">See you there!<o:p></o:=
-p></span></span></p>
-<p class=3D"MsoNormal"><span class=3D"ember-view"><span style=3D"font-size:=
-10.5pt;line-height:106%;font-family:&quot;Segoe UI&quot;,sans-serif;border:=
-none windowtext 1.0pt;padding:0in;background:white">Yocto Project Advocacy =
-Team<o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span class=3D"ember-view"><span style=3D"font-size:=
-10.5pt;line-height:106%;font-family:&quot;Segoe UI&quot;,sans-serif;border:=
-none windowtext 1.0pt;padding:0in;background:white"><o:p>&nbsp;</o:p></span=
-></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_A084970538D2234B96D99D06FA9D974FCA8F73EBALAMBDcorpadwrs_--
