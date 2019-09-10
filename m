@@ -1,72 +1,67 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BBE6DE00CD5; Tue, 10 Sep 2019 05:56:32 -0700 (PDT)
+	id D204FE00D89; Tue, 10 Sep 2019 06:26:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (martin.jansa[at]gmail.com)
+	provider *      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.53 listed in list.dnswl.org]
+	*      [209.85.222.181 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com
-	[209.85.221.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F24BDE00BA1
-	for <yocto@yoctoproject.org>; Tue, 10 Sep 2019 05:56:31 -0700 (PDT)
-Received: by mail-wr1-f53.google.com with SMTP id w13so20019135wru.7
-	for <yocto@yoctoproject.org>; Tue, 10 Sep 2019 05:56:31 -0700 (PDT)
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com
+	[209.85.222.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B8C6E00CD5
+	for <yocto@yoctoproject.org>; Tue, 10 Sep 2019 06:26:04 -0700 (PDT)
+Received: by mail-qk1-f181.google.com with SMTP id x5so16967565qkh.5
+	for <yocto@yoctoproject.org>; Tue, 10 Sep 2019 06:26:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:date:to:cc:subject:message-id:references:mime-version
-	:content-disposition:in-reply-to:user-agent;
-	bh=t7dLvbv6+gGDILhMZAxVEbkOdzzdFPKtbtausILJmnY=;
-	b=egV440Dulzt4oaGKLqRBdwV4UGLvz0sKlSTHaiYM1Tvrg1J1rxCUaioE2SNycQInvn
-	rVd1l1rQPuUVFTfkNBUqzZHcJm6HeSdooMe1/hw97Q6FkmMv04orTtXOtdzyqwiIfEXv
-	/JvvpXprdKm6gW1q7JmN8wEwZ+f763TzPUPQJw+kRHtU4tBmwDRAOdTZMbgYl4dHreav
-	0CuYsz1GUFuRCq+XXQTJiTJVk2B0QlMKiBwRHt0fo+jsFrOP20W0HeUibYIUa3ByFc7e
-	lCt/x0KfKCq8gHQfjaES8QmeB1D2k+8OQ4mAbTLSaZavgtlqh315ty2qS2Ykw+MXuV8i
-	coaw==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=7fkOPiOnn8T1PiyGVnA5WcxCxLuwkhN+pFbXvQ+ScfA=;
+	b=cdnm5I4e6Tw2C0Noz9J1/tFZzaJvHBBlnM18Sv/e7lZS5f4szNm0R0ztom6c0nCfT5
+	wqyKoUdjRH94Vw4frw0HEg1N8Ns53gCfJWbvIEmwrGfSUiBNVnjTusT5uFJi2dPojkQX
+	iTnVGZnQ0zy9qxSyMQPmZdDXUlItTMdUZAGLKyBbNNw6tEOjbm6C/gTDb5payJmwExJG
+	QdpmM3WAhRQXIY6f/KK/LAh3RJI52pilKQPtNVm4xz6+VfxzI+FzGPUW1ZdvOpRWhcts
+	xebZcwwjYy8/alQfGkuyCIKAmiUFEWbbLJVVD/7JK0TabfuH0d7idH4vqDy+QwIG4AUG
+	ILhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:date:to:cc:subject:message-id:references
-	:mime-version:content-disposition:in-reply-to:user-agent;
-	bh=t7dLvbv6+gGDILhMZAxVEbkOdzzdFPKtbtausILJmnY=;
-	b=mqs69Zmprom9fV3pDeQIuHBKsJa87OYU3nLthcsrG2lhhcdTC4d2VlhqfUpGZmvzsf
-	CIayPjH3FEzCGc/Y2O46kADwsSE8LEtIx2wPeMgV1YKIoR/AbspuCiULg3mdMIEj8q7d
-	732j3pNwkaKm6oLizJr9DNosFwm9KzkUyeshfWzPNCLieSkB9uzIV5OTz3V9ALboZrCB
-	slVbu3vVE6ikU99jGv4PoGY2cGfQyD5pvC5CvJaz+VhCfN6SIcCsDJMXSjKLPCCVtcwl
-	gu++yVqzrDAQDGZM+xUPs5Q6anyq4pOQ8S+ktGbz5DpVZX0ma59sDpEGiQCbh3MEfzBZ
-	gdTQ==
-X-Gm-Message-State: APjAAAXstvQgrulB+LuOXMZNjDFqlpYhqKthEmKcbWtnxlQTkcRkp9xr
-	lnSD35DRJLJwkKnMMXNzYbAZnI9p7y8=
-X-Google-Smtp-Source: APXvYqwbmihUQc8B98un+VRMnTRjIJZ2EVZE/3I0EyN+9boJigx2MtR4eTeOmME5rXOCodwN2jmVUg==
-X-Received: by 2002:a5d:4ac5:: with SMTP id y5mr20592879wrs.179.1568120189852; 
-	Tue, 10 Sep 2019 05:56:29 -0700 (PDT)
-Received: from localhost (ip-217-030-068-212.aim-net.cz. [217.30.68.212])
-	by smtp.gmail.com with ESMTPSA id
-	o193sm2867661wme.39.2019.09.10.05.56.28
-	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Tue, 10 Sep 2019 05:56:28 -0700 (PDT)
-From: Martin Jansa <martin.jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-Date: Tue, 10 Sep 2019 14:56:31 +0200
-To: William Durocher <wdurocher@it-link.ca>
-Message-ID: <20190910125631.GA1532@jama>
-References: <CAJdDtjGzQrCyHAMe7jptVcXZGAmD9QsKR1yrJLG0F_DYe7YjNQ@mail.gmail.com>
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=7fkOPiOnn8T1PiyGVnA5WcxCxLuwkhN+pFbXvQ+ScfA=;
+	b=Bng1ofNpIhUeRkTNJXockOUQ80UW7Fz54UW1d/Ea4hRhPcdbM/GI/t1ydXlrA48T3j
+	94zB/DZ8EzJeJkxw/BckbHn5r+GKCLxAo/N655NhcncdeqHwf8HQrhgx8HQRtGDUeXT0
+	JTdl91ZyhuouSVQFP9c2Guz/xk83jHbu8yTh+iVlADIWieM0tnwNYwiS94WsB73Tv16A
+	iN+2v4iHX7VHjEsIf/o0r5hWmxlQu0wFAoWBnBO+4kxSaud0cOBXDMufUhsKSGRecuVN
+	V3eX2J6PkQ7nZ+0g45t3jC45249mMhlbSL2q8NXuhqQutuwZkUufNjuZn4vbzWTBCYrI
+	iLiw==
+X-Gm-Message-State: APjAAAX4N4gSsSsXzDlI/Zx5shfC6pdtIGM+5kWf60OPxX+WtE+b8Z8Y
+	GCINetW2u4bqKffaXf/RqAWCuKpRN/0v7/fZZsyoqhfB
+X-Google-Smtp-Source: APXvYqxFe0+eQboLARf5WUS/B+EJJGgRRrjdAwXeZyniOU/X2RBHMSa6i95BhMYfwapQKO0hLUaQhMh/ZP3rdZo7C/8=
+X-Received: by 2002:a37:6651:: with SMTP id a78mr16430591qkc.474.1568121963093;
+	Tue, 10 Sep 2019 06:26:03 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAJdDtjGzQrCyHAMe7jptVcXZGAmD9QsKR1yrJLG0F_DYe7YjNQ@mail.gmail.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
-Cc: yocto@yoctoproject.org
-Subject: Re: package_qa fails on copy openssl
+References: <AM0PR09MB4066613CAEC7FB9A7434EECFD7BA0@AM0PR09MB4066.eurprd09.prod.outlook.com>
+	<AM0PR09MB4066729BBE9B88AE768A14E9D7B60@AM0PR09MB4066.eurprd09.prod.outlook.com>
+In-Reply-To: <AM0PR09MB4066729BBE9B88AE768A14E9D7B60@AM0PR09MB4066.eurprd09.prod.outlook.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 10 Sep 2019 06:25:52 -0700
+Message-ID: <CAMKF1sqzgc0xK188z_SCtDGNDF18wzFuZ0iwQ_3JZvOZCn_01g@mail.gmail.com>
+To: =?UTF-8?Q?Mar=C3=ADa_del_Mar_Velasco_AERTEC_Solutions_=E2=80=93_Aerospace_=26_A?=
+	=?UTF-8?Q?viation?= <mvelasco@aertecsolutions.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: incohenrence between defconf, .config and /proc/config.gz
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,69 +73,169 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Sep 2019 12:56:32 -0000
-X-Groupsio-MsgNum: 46562
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="6c2NcOVqGQ03X4Wi"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 10 Sep 2019 13:26:06 -0000
+Content-Type: multipart/alternative; boundary="000000000000932314059232d8a5"
 
---6c2NcOVqGQ03X4Wi
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--000000000000932314059232d8a5
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 10, 2019 at 08:49:35AM -0400, William Durocher wrote:
-> Currently updating a sumo build to warrior. One of our recipe called conf=
-ig
-> server uses nodejs which was updated from 8.9 in sumo to 10.5 in warrior.
-> As an interim solution we decided to keep the version of nodejs to 8.90.
-> However I am getting the following exception in the package_qa step:
->=20
-> "File:
-> '/home/wdurocher/work/gammaip/warrior/sources/meta/meta/classes/staging.b=
-bclass',
-> lineno: 151, function: staging_copyfile
->      0147:        os.symlink(linkto, dest)
->      0148:        #bb.warn(c)
->      0149:    else:
->      0150:        try:
->  *** 0151:            os.link(c, dest)
->      0152:        except OSError as err:
->      0153:            if err.errno =3D=3D errno.EXDEV:
->      0154:                bb.utils.copyfile(c, dest)
->      0155:            else:
-> Exception: FileExistsError: [Errno 17] File exists:
-> '/home/wdurocher/work/gammaip/warrior/build/tmp/sysroots-components/x86_6=
-4/openssl-native/usr/bin/openssl.real'
-> ->
-> '/home/wdurocher/work/gammaip/warrior/build/tmp/work/cortexa8hf-neon-schn=
-eider-linux-gnueabi/config-server/0.0.2-r0/recipe-sysroot-native/usr/bin/op=
-enssl.real'"
->=20
-> Which apparently is related to nodejs(sumo) using openssl 1.0.2p while a
-> few packages use openssl 1.1.0. Hacking staging.bbclass to remove the file
-> did allow package_qa to complete but that is not really a satisfactory
-> solution as 1) I would rather not hack the meta repo directly and
+On Tue, Sep 10, 2019 at 2:45 AM Mar=C3=ADa del Mar Velasco AERTEC Solutions=
+ =E2=80=93
+Aerospace & Aviation <mvelasco@aertecsolutions.com> wrote:
 
-> 2) there
-> has to be a better way to have both openssl 1.0 and openssl 1.1 coexist
-> with the recipes using the correct version.
+> Hello all,
+>
+>
+>
+> I have found that if I write the image using the created *.wic file,
+> kernel config is correctly updated (/proc/config.gz and .config are
+> coherent). However if I use the created *.ext4 file to write a rootfs
+> partition of target, previous kernel config still remains (kernel config
+> used when target was written for first time using *.wic file still remain=
+s).
+>
+>
+>
+> Any idea about how to keep kernel config updates in *.ext4 file?
+>
+>
+>
 
-Unfortunately there isn't, pick one version (preferably 1.1) and use it
-for everything.
+Ext4 is just rootfs without new kernel I think that=E2=80=99s why you see o=
+ld
+.config since it=E2=80=99s bundled into kernel  binary
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+With wic you write full disk along with new kernel
 
---6c2NcOVqGQ03X4Wi
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+> Thanks in advance
+>
+>
+>
+> *De:* Mar=C3=ADa del Mar Velasco AERTEC Solutions =E2=80=93 Aerospace & A=
+viation
+> *Enviado el:* viernes, 6 de septiembre de 2019 10:50
+> *Para:* 'yocto@yoctoproject.org' <yocto@yoctoproject.org>
+> *Asunto:* incohenrence between defconf, .config and /proc/config.gz
+>
+>
+>
+> Dear all,
+>
+>
+>
+> I have built an image after doing changes in kernel config by adding a
+> layer that adds lines in .config file. This changes lead me to an undesir=
+ed
+> configuration, so I decided to undo the last kernel config. When I remove
+> the layer that adds lines in .config file, I ensure that kernel is clean =
+by
+> doing bitbake -c cleanall linux-xxx. Then I build again the image. I can
+> see .config file is exactly equal than defconf kernel file. However, when=
+ I
+> write image into the target, /proc/config.gz file is inconsistent with
+> .config file and it preserves some lines that are missing in .config file=
+.
+>
+>
+>
+> Could somebody give me an advice about this issue? Why /proc/config.gz is
+> not equal than .config file?
+>
+>
+>
+> Thanks in advance
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
------BEGIN PGP SIGNATURE-----
+--000000000000932314059232d8a5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-iF0EARECAB0WIQRU+ejDffEzV2Je2oc3VSO3ZXaAHAUCXXedfwAKCRA3VSO3ZXaA
-HIwGAKCMv7/cftJmOOI4ALqjOZxBke/0LgCeJhsn1vwDjF9zx+ldaD315xV4tZY=
-=tpZw
------END PGP SIGNATURE-----
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Tue, Sep 10, 2019 at 2:45 AM Mar=C3=ADa del Mar Velasco =
+AERTEC Solutions =E2=80=93 Aerospace &amp; Aviation &lt;<a href=3D"mailto:m=
+velasco@aertecsolutions.com">mvelasco@aertecsolutions.com</a>&gt; wrote:<br=
+></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-=
+left:1px #ccc solid;padding-left:1ex">
 
---6c2NcOVqGQ03X4Wi--
+
+
+
+
+<div lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"m_5550558017665677382WordSection1">
+<p class=3D"MsoNormal">Hello all,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I have found that if I write the image using the cre=
+ated *.wic file, kernel config is correctly updated (/proc/config.gz and .c=
+onfig are coherent). However if I use the created *.ext4 file to write a ro=
+otfs partition of target, previous
+ kernel config still remains (kernel config used when target was written fo=
+r first time using *.wic file still remains).<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Any idea about how to keep kernel config updates in =
+*.ext4 file?<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0</p></div></div></blockquote><div dir=
+=3D"auto"><br></div><div dir=3D"auto">Ext4 is just rootfs without new kerne=
+l I think that=E2=80=99s why you see old .config since it=E2=80=99s bundled=
+ into kernel =C2=A0binary=C2=A0</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">With wic you write full disk along with new kernel=C2=A0</div><bl=
+ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
+ccc solid;padding-left:1ex"><div lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#=
+954F72"><div class=3D"m_5550558017665677382WordSection1"><p class=3D"MsoNor=
+mal"><u></u></p>
+<p class=3D"MsoNormal">Thanks in advance<u></u><u></u></p></div></div><div =
+lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72"><div class=3D"m_555055801=
+7665677382WordSection1">
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div style=3D"border:none;border-top:solid #e1e1e1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"ES">De:</span></b><span lang=3D"ES"=
+> Mar=C3=ADa del Mar Velasco AERTEC Solutions =E2=80=93 Aerospace &amp; Avi=
+ation
+<br>
+<b>Enviado el:</b> viernes, 6 de septiembre de 2019 10:50<br>
+<b>Para:</b> &#39;<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blan=
+k">yocto@yoctoproject.org</a>&#39; &lt;<a href=3D"mailto:yocto@yoctoproject=
+.org" target=3D"_blank">yocto@yoctoproject.org</a>&gt;<br>
+<b>Asunto:</b> incohenrence between defconf, .config and /proc/config.gz<u>=
+</u><u></u></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Dear all,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I have built an image after doing changes in kernel =
+config by adding a layer that adds lines in .config file. This changes lead=
+ me to an undesired configuration, so I decided to undo the last kernel con=
+fig. When I remove the layer that
+ adds lines in .config file, I ensure that kernel is clean by doing bitbake=
+ -c cleanall linux-xxx. Then I build again the image. I can see .config fil=
+e is exactly equal than defconf kernel file. However, when I write image in=
+to the target, /proc/config.gz file
+ is inconsistent with .config file and it preserves some lines that are mis=
+sing in .config file.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Could somebody give me an advice about this issue? W=
+hy /proc/config.gz is not equal than .config file?<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Thanks in advance<u></u><u></u></p>
+</div>
+</div>
+
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div></div>
+
+--000000000000932314059232d8a5--
