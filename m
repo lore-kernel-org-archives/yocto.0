@@ -1,59 +1,34 @@
-Return-Path: <jku@goto.fi>
+Return-Path: <Yi.Zhao@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 35E7FE00E11; Thu, 12 Sep 2019 02:06:14 -0700 (PDT)
+	id A97C3E00E44; Thu, 12 Sep 2019 02:07:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	https://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.50 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
-	[209.85.167.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 116B9E00DE4
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2019 02:06:12 -0700 (PDT)
-Received: by mail-lf1-f50.google.com with SMTP id q11so3760657lfc.11
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2019 02:06:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=goto.fi; s=google;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=O5AIjF2x5rICQRgJTBbhPJsfhj1C2lsM2xMYH93VzlA=;
-	b=ZWhfXhAgGZUnfQziTnyNfJ41yFr28eEihqVJaPtSTHf/lGgCSwyxXFZhfmf9UKc4lW
-	BiKtNdoucW2bUOiJupBrVu6qD4oJU0oPuhmTMpZko1dO0PcESFUieg2cRYn7Np8aMaVx
-	8SWutMg+W0NvLKlBqLIl4CsFDwQZnY0rj6ZgQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=O5AIjF2x5rICQRgJTBbhPJsfhj1C2lsM2xMYH93VzlA=;
-	b=MSK4KgYPuVeH0KW28KXp0NbquqxqB/mnXr1ArPGkLNXj69F8nVnsfHUQjNRhLJz/Np
-	aqjpJ0G5oSq3eT3RLDNZ7H58auoOgf+rAJee68cvlfHMhfEqUK8/AQhQ+rUoXPoGWVFr
-	rpuDTGl65CQ7Fer0dOfFYgTbLP3S1grfDj+RZU2faYw7+YOxD5Z1EYRA2AzlTtyZMUP/
-	VQJMpu3xHkvsAzqvTwgNTausGkIzBI+PJAqbNHlaxd4bGt+7XhUib2D6DGuEtB/nxOKK
-	vOyDXvy5PZQ0mDsG1vAEs41RenkkGbWZWOuTXutSxgNn8sjZReFBg9JleF/H7v8ZMIXA
-	rZEA==
-X-Gm-Message-State: APjAAAU0INEE6vjnmJxgwVjKuTOkM34sD5ZUGlzA9bL9mVY1wF/9hX98
-	Ube/fZLCAZDCXqepFakSEfPcF3dusSYlRmtqBkWTgg==
-X-Google-Smtp-Source: APXvYqzsJ5eIvCnzakDfz07ru2xRTjz2/xdw2Zq4y/HENVJYijM9VxHGNkvDRrOWgq2YgLD/FbXKm6WqK30rP3kPSCA=
-X-Received: by 2002:ac2:5c11:: with SMTP id r17mr27458879lfp.61.1568279171887; 
-	Thu, 12 Sep 2019 02:06:11 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44721E00E48
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2019 02:07:42 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com ([147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x8C97c3D003886
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 12 Sep 2019 02:07:38 -0700 (PDT)
+Received: from localhost (128.224.162.195) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0;
+	Thu, 12 Sep 2019 02:07:37 -0700
+From: Yi Zhao <yi.zhao@windriver.com>
+To: <yocto@yoctoproject.org>, <joe@deserted.net>, <Joe_MacDonald@mentor.com>
+Date: Thu, 12 Sep 2019 17:07:35 +0800
+Message-ID: <1568279255-31580-1-git-send-email-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-References: <6F3C5ED776614BD8B5EE2E8DCAFBFAA3@PAULD>
-In-Reply-To: <6F3C5ED776614BD8B5EE2E8DCAFBFAA3@PAULD>
-From: Jussi Kukkonen <jku@goto.fi>
-Date: Thu, 12 Sep 2019 12:05:55 +0300
-Message-ID: <CAD5=o+ostuMAdfPEwvWzo95woVGdEGVY8Ddyp5paaDhYVzhLGA@mail.gmail.com>
-To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: One second timestamp resolution?
+X-Originating-IP: [128.224.162.195]
+Subject: [meta-selinux][PATCH] audit: explicitly disable golang bindings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,22 +40,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Sep 2019 09:06:14 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 12 Sep 2019 09:07:44 -0000
+Content-Type: text/plain
 
-On Wed, 11 Sep 2019 at 08:53, Paul D. DeRocco <pderocco@ix.netcom.com> wrote:
->
-> I just noticed that I'm getting one-second resolution on all my
-> timestamps. This is for both ext4 and vfat partitions, and shows up in ls
-> --full-time and the stat command. What could account for this? My uname -a
-> output is "Linux CHROMA1 4.10.17-yocto-preempt-rt #1 SMP PREEMPT Wed Oct
-> 11 12:33:54 PDT 2017 i686 i686 i386 GNU/Linux" if that's any help. Also,
-> my ext4 mount options are "rw,noatime,nodiratime,data=ordered".
+Disable golang bindings to avoid potential host contamination issue.
+Fixes: https://bugzilla.yoctoproject.org/show_bug.cgi?id=13166
 
-I think file timestamp resolution on ext4 is one of the things that
-depend on inode size (ext4 does not enforce reasonable values because
-of compatibility with earlier versions I guess). So maybe check inode
-size (should be 256 bytes I think?).
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ recipes-security/audit/audit_2.8.5.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-Jussi
+diff --git a/recipes-security/audit/audit_2.8.5.bb b/recipes-security/audit/audit_2.8.5.bb
+index d3b9b51..2b47812 100644
+--- a/recipes-security/audit/audit_2.8.5.bb
++++ b/recipes-security/audit/audit_2.8.5.bb
+@@ -39,6 +39,7 @@ EXTRA_OECONF += "--without-prelude \
+         --libdir=${base_libdir} \
+         --sbindir=${base_sbindir} \
+         --without-python3 \
++        --without-golang \
+         --disable-zos-remote \
+         "
+ EXTRA_OECONF_append_arm = " --with-arm=yes"
+-- 
+2.7.4
+
 
