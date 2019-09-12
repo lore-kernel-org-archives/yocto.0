@@ -1,40 +1,59 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <pderocco@ix.netcom.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 380BBE00DE4; Thu, 12 Sep 2019 03:52:17 -0700 (PDT)
+	id 6BFECE00D83; Thu, 12 Sep 2019 09:58:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2284BE00A5C
-	for <yocto@yoctoproject.org>; Thu, 12 Sep 2019 03:52:15 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	12 Sep 2019 03:52:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,492,1559545200"; d="scan'208";a="197190209"
-Received: from unknown (HELO blackadder.local) ([10.249.39.47])
-	by orsmga002.jf.intel.com with ESMTP; 12 Sep 2019 03:52:13 -0700
-To: yocto@yoctoproject.org
-References: <CAAmVmrpyrf6QhAA85UwWQa1mbrd5D6KmddKndeMqcoGG-YP9mA@mail.gmail.com>
-From: Ross Burton <ross.burton@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
-	Swindon SN3 1RJ
-Message-ID: <fe22ebb4-447c-4f3c-4bec-052f37e38621@intel.com>
-Date: Thu, 12 Sep 2019 11:52:12 +0100
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
-	Gecko/20100101 Thunderbird/60.9.0
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.86.89.61 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from elasmtp-galgo.atl.sa.earthlink.net
+	(elasmtp-galgo.atl.sa.earthlink.net [209.86.89.61])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADFAFE00B65
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2019 09:58:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ix.netcom.com;
+	s=dk12062016; t=1568307527; bh=E9v0Jz8b7XzmCsI21QF2d120B1HJVQq1bfZG
+	1CiI61k=; h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:
+	Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP; b=T
+	QMNQ/7xNlPrsfnXhUFjGX1s571xrpDz81sOqZ9sY9EsbhU4X+DyQZajEFqmM81fd5+E
+	Wkz7VfziOPa0+8Sor18ZkMQl0pIANVFVmzponhL7gVuzqb5GH2rFNmBVRqh1Xb0TNt7
+	JEEu0x+mgVOwrK6DqOyxRY8mvkYi6U9qVBBJUYPt6TKjr8DfjxTkyOShqC5gpiyyWMu
+	x3ZOX9UMtqQPRNBpE20YL4GEvQxcT4u2qXx3Xo4kO2FdT+vcvKwRW8Vn7viM2PuHVYT
+	ZJoYBAxQKvZutacvFpzl8AXSL4BKW9M5WQhNkJBQr5b5OUO5gfnVtRHmUzQV7N/evMk
+	qKh4Qw==
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=dk12062016; d=ix.netcom.com;
+	b=WLiBgihI1DUFQLC4RC8jiUc65jThDRjroUxfshG1cblbX9hB/7VpnpWcpHDbcgRjKslAP4lOdWAQseC0VwcuwhSFuysQI/ImWwWUG0kNoExVbeToDUB4zCQULHM6DTvzKttnpM1emtt3XTpEPjIJHclUnxuQwtEkVs4CdMueBLM95T7C/tcjTgeUzwYxwTYSnzR5wxhrTUpF7+DZka0X3x2nxEIHg3UQjznswoZtV+zd/U9jKkINFe74nZBE9t/dup740FQo6xY6gVxNOUBhO1kIxY/s05A2HRDJj8YWcJbHkcgh/oVQ1PI1sgp0ZLIOQbDhBfywRJoLbh8g4wDeIA==;
+	h=Received:From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:X-Mailer:Thread-Index:X-MimeOLE:X-ELNK-Trace:X-Originating-IP;
+Received: from [108.228.233.89] (helo=PAULD)
+	by elasmtp-galgo.atl.sa.earthlink.net with esmtpa (Exim 4)
+	(envelope-from <pderocco@ix.netcom.com>)
+	id 1i8SQg-000Fbf-6v; Thu, 12 Sep 2019 12:58:46 -0400
+From: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+To: "'Jussi Kukkonen'" <jku@goto.fi>
+References: <6F3C5ED776614BD8B5EE2E8DCAFBFAA3@PAULD>
+	<CAD5=o+ostuMAdfPEwvWzo95woVGdEGVY8Ddyp5paaDhYVzhLGA@mail.gmail.com>
+In-Reply-To: <CAD5=o+ostuMAdfPEwvWzo95woVGdEGVY8Ddyp5paaDhYVzhLGA@mail.gmail.com>
+Date: Thu, 12 Sep 2019 09:58:45 -0700
+Message-ID: <527EBDD9EA054C6B9C6110D2D49FF1F9@PAULD>
 MIME-Version: 1.0
-In-Reply-To: <CAAmVmrpyrf6QhAA85UwWQa1mbrd5D6KmddKndeMqcoGG-YP9mA@mail.gmail.com>
-Subject: Re: Debug-files in SDK
+X-Mailer: Microsoft Office Outlook 11
+Thread-Index: AdVpSVP+FBxgl7/ORSOKkkWIKI/niwAQINCg
+X-MimeOLE: Produced By Microsoft MimeOLE V6.1.7601.24158
+X-ELNK-Trace: bd7d5d4e6f8f652c74cfc7ce3b1ad11381c87f5e519606883d45951eaa9192f8cc10201e0247e122350badd9bab72f9c350badd9bab72f9c350badd9bab72f9c
+X-Originating-IP: 108.228.233.89
+Cc: 'Yocto discussion list' <yocto@yoctoproject.org>
+Subject: Re: One second timestamp resolution?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,40 +65,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Sep 2019 10:52:17 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 12 Sep 2019 16:58:48 -0000
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/09/2019 11:13, Teemu K wrote:
-> Hi,
-> 
-> I'm not entirely sure if this is bug or feature.
-> 
-> I've created sdk to my image with populate_sdk - command. I noticed
-> that in the SDK the x86_64 - directory is 384MB and that contains all
-> the toolchains etc., but the target side
-> (cortexa9hf-neon-poky-linux-gnueabi) is 5.7GB. Majority of it is in
-> .debug - directories.
-> 
-> What causes the confusion here is that I haven't enabled debug-symbols
-> in my local.conf and I don't have any other debug stuff enabled there
-> either. Are those the debug-symbols that can be used to debug software
-> on target with GDB for example? I thought that debug symbol
-> information needs to be separately enabled.
-> 
-> If they are not, then can I get rid of them somehow?
+> From: Jussi Kukkonen [mailto:jku@goto.fi]=20
+>=20
+> I think file timestamp resolution on ext4 is one of the things that
+> depend on inode size (ext4 does not enforce reasonable values because
+> of compatibility with earlier versions I guess). So maybe check inode
+> size (should be 256 bytes I think?).
 
-SDKIMAGE_FEATURES ??= "dev-pkgs dbg-pkgs src-pkgs 
-${@bb.utils.contains('DISTRO_FEATURES', 'api-documentation', 'doc-pkgs', 
-'', d)}"
+I don't have tune2fs on my embedded system, so I can't check, but that =
+sounds like the probable reason. The nanoseconds that ext4 added are in =
+the upper 128 bytes of a 256 byte inode, for compatibility reasons, so =
+somehow I must have ext4 configured to use 128 byte inodes. Where would =
+this be configured in a Yocto build? I'm still on Pyro.
 
-SDKs by default contain debug symbols, and yes they can be used with gdb 
-to debug on target.
+--=20
 
-If you don't want them in the SDK, remove dbg-pkgs (and src-pkgs whilst 
-you're there) from SDKIMAGE_FEATURES.
-
-Ross
+Ciao,               Paul D. DeRocco
+Paul                mailto:pderocco@ix.netcom.com
 
 
