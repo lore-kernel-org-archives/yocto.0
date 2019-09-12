@@ -1,56 +1,65 @@
-Return-Path: <GWilson@sakuraus.com>
+Return-Path: <alex.kiernan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2286CE00E08; Wed, 11 Sep 2019 16:15:44 -0700 (PDT)
+	id 5B005E00E65; Wed, 11 Sep 2019 22:20:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alex.kiernan[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.222.82.68 listed in list.dnswl.org]
-Received: from 14pmail.ess.barracuda.com (14pmail.ess.barracuda.com
-	[209.222.82.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3612E00DA5
-	for <yocto@yoctoproject.org>; Wed, 11 Sep 2019 16:15:41 -0700 (PDT)
-Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
-	mx7.us-east-2b.ess.aws.cudaops.com (version=TLSv1.2
-	cipher=AES256-SHA256 bits=256 verify=NO);
-	Wed, 11 Sep 2019 23:15:40 +0000
-Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
-	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
-	Wed, 11 Sep 2019 16:15:38 -0700
-Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
-	([::1]) with mapi id 15.01.0669.032; Wed, 11 Sep 2019 16:15:38 -0700
-From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Thread-Topic: [meta-raspberrypi][ostree] build errors
-Thread-Index: AQHVaPNxponm5V5gg0Cp38rjpvyqpw==
-Date: Wed, 11 Sep 2019 23:15:38 +0000
-Message-ID: <27002ae78aef4a1e9feb3eea2d788ce3@sakuraus.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.16.5.239]
+	*      [209.85.166.45 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com
+	[209.85.166.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C775E00E11
+	for <yocto@yoctoproject.org>; Wed, 11 Sep 2019 22:20:10 -0700 (PDT)
+Received: by mail-io1-f45.google.com with SMTP id m11so51617128ioo.0
+	for <yocto@yoctoproject.org>; Wed, 11 Sep 2019 22:20:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=bqilxDzynaZAOAz/aglbF+4U+IOrvOmx8qaYM3b1Nc0=;
+	b=uu4b3/QQAICY+ZSk7forh1CvUGUSaWlbZ5waw9VQeI5mOQq+bZsNEXczNABu6FlS89
+	V6304WK4Hy6HNOtqSHA5zQV2o9Zj4LyYnft+5mzsnK1zsmUA1gtQTSAJmvK9ChQdSNHS
+	jodhKiDFqQBA/fD4/rLF9oEi7IKB0BUg0L+JuXIj3QwB9yaXWwvkytgzg/0uhgosT9mi
+	tpMitnGnq1B/qW+bVx6WubRZHSPIxKmvCvz++0C8r/5mquxUgcObWjnFdljk9RNGDO0c
+	MU2cXowmgHr5ArlQ8yBPidcE1RoDBdt5j/G6Pxv+msf+F/KR964Ku54Wo0XIBoiUAWxG
+	SkSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=bqilxDzynaZAOAz/aglbF+4U+IOrvOmx8qaYM3b1Nc0=;
+	b=R7uv+NtvRIS4TLZHLkULhUJyTX46p9FL8gP0bJ6mpGqZi3dK4cmhxUxDo+roRqyx7C
+	PfPzGGK6DlcI2v/h66FzXxAh8gGXE9cpEItDMF4HLKzE4ahaz6zaYXIZyWGkZYwUI3oC
+	NEYFghVviu/B9LQqd3P3nvUv0u1p0e/mPkrc+cZjjIUNLbCZyX/1DLvhG7V3FxUG7Xww
+	EjDPAV/aKcUYFRnjjR9HnoKoqL2trQwSoKwL3fXveloKOyfftTGBf5To+QfYnTrY8Bbt
+	EdH997SJ8nz2mAAc879iQtT1yFlGD9JhD31pVVcxVRSg9onMbbvZZm/kjfBswhGBN5se
+	CJvg==
+X-Gm-Message-State: APjAAAVhD49QDAmTHN1eBxu3ZzPDmoUQPA6WBUoQdo5kcH/FiPQJmm5Q
+	o54Y6mJ6DWDX+sjGWYu31nI5+Z6ZQlD7gEKKesE=
+X-Google-Smtp-Source: APXvYqwkTkmTp9VFVQibpDsO87OyCVsPWoSh9465r6XD7yZM/QjgQcAs2gWaRscLTm8QeaLzZIip8oxFesZtDBS8tc8=
+X-Received: by 2002:a02:c737:: with SMTP id h23mr8808508jao.42.1568265609770; 
+	Wed, 11 Sep 2019 22:20:09 -0700 (PDT)
 MIME-Version: 1.0
-X-BESS-ID: 1568243738-893013-18325-38-5
-X-BESS-VER: 2019.1_20190911.2255
-X-BESS-Apparent-Source-IP: 12.26.104.5
-X-BESS-Outbound-Spam-Score: 0.00
-X-BESS-Outbound-Spam-Report: Code version 3.2,
-	rules version 3.2.2.218314 [from 
-	cloudscan16-96.us-east-2b.ess.aws.cudaops.com]
-	Rule breakdown below
-	pts rule name              description
-	---- ---------------------- --------------------------------
-	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
-X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
-	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND
-X-BESS-BRTS-Status: 1
-Subject: [meta-raspberrypi][ostree] build errors
+References: <27002ae78aef4a1e9feb3eea2d788ce3@sakuraus.com>
+In-Reply-To: <27002ae78aef4a1e9feb3eea2d788ce3@sakuraus.com>
+From: Alex Kiernan <alex.kiernan@gmail.com>
+Date: Thu, 12 Sep 2019 06:19:58 +0100
+Message-ID: <CAO5Uq5QBu3kBVWRCU=XyQdfQE0fk5kf9KTf4uQeSvtoTJo3SFA@mail.gmail.com>
+To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][ostree] build errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,40 +71,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Sep 2019 23:15:44 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Thu, 12 Sep 2019 05:20:12 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-I'm trying to include ostree into a raspberry pi boot2qt build based on thu=
-d.
+On Thu, Sep 12, 2019 at 12:17 AM Greg Wilson-Lindberg
+<GWilson@sakuraus.com> wrote:
+>
+> I'm trying to include ostree into a raspberry pi boot2qt build based on t=
+hud.
+>
+> I'm getting a warning:
+> WARNING: linux-raspberrypi-1_4.14.112+gitAUTOINC+6b5c4a2508-r0 do_kernel_=
+metadata: defconfig detected in WORKDIR. bcm2709_defconfig skipped
+>
+> Which I figure that I can probably ignore, but may find I have a problem =
+with it if it is missing out on my config changes.
+>
+> More concerning is the following error:
+>
+> ERROR: ostree-v2018.9-r0 do_unpack: gitsm: submodule unpack failed: Unpac=
+kError Unpack failure for URL: 'gitsm://gitlab.gnome.org/GNOME/libglnx.git;=
+protocol=3Dhttps;name=3Dlibglnx;subpath=3Dlibglnx;bareclone=3D1;nobranch=3D=
+1'. No up to date source found: clone directory not available or not up to =
+date: /home/gwilson/Qt/Qt-5.13.1/Yocto-build-RPi3/build-raspberrypi3/../dow=
+nloads/git2/gitlab.gnome.org.GNOME.libglnx.git; shallow clone not enabled
+>
+> The 'gitlab.gnome.org/GNOME/libglnx' subdirectory is there, so that would=
+ imply that something is wrong with the initial protocol or other decorator=
+s. I also did a clean on ostree just to make sure there wasn't any problem =
+with git -> gitsm changes.
+>
+> Is there anyone with familiarity with the ostree system that could give m=
+e a hand on this? It is possible that I'm missing some configuration, the d=
+ocs are not the clearest.
+>
 
-I'm getting a warning:
-WARNING: linux-raspberrypi-1_4.14.112+gitAUTOINC+6b5c4a2508-r0 do_kernel_me=
-tadata: defconfig detected in WORKDIR. bcm2709_defconfig skipped
+My immediate thought was add:
 
-Which I figure that I can probably ignore, but may find I have a problem wi=
-th it if it is missing out on my config changes.
+PREMIRRORS =3D ""
 
-More concerning is the following error:
+to your ostree recipe - there's an old copy of the source sitting in
+the yocto mirrors and the gitsm fetcher doesn't update the submodules
+correctly, but looking at the error, I'm not sure if that's actually
+your problem.
 
-ERROR: ostree-v2018.9-r0 do_unpack: gitsm: submodule unpack failed: UnpackE=
-rror Unpack failure for URL: 'gitsm://gitlab.gnome.org/GNOME/libglnx.git;pr=
-otocol=3Dhttps;name=3Dlibglnx;subpath=3Dlibglnx;bareclone=3D1;nobranch=3D1'=
-. No up to date source found: clone directory not available or not up to da=
-te: /home/gwilson/Qt/Qt-5.13.1/Yocto-build-RPi3/build-raspberrypi3/../downl=
-oads/git2/gitlab.gnome.org.GNOME.libglnx.git; shallow clone not enabled
+I'm a couple of upstream patches away from an ostree recipe that's I
+think should be in a fit state to go into meta-oe:
 
-The 'gitlab.gnome.org/GNOME/libglnx' subdirectory is there, so that would i=
-mply that something is wrong with the initial protocol or other decorators.=
- I also did a clean on ostree just to make sure there wasn't any problem wi=
-th git -> gitsm changes.
+https://github.com/akiernan/meta-ostree-core/blob/master/recipes-ostree/ost=
+ree/ostree.inc
 
-Is there anyone with familiarity with the ostree system that could give me =
-a hand on this? It is possible that I'm missing some configuration, the doc=
-s are not the clearest.
-
-Thanks in advance,
-Greg Wilson-Lindberg=A0=20
-=20
+--=20
+Alex Kiernan
 
