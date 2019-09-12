@@ -1,65 +1,59 @@
-Return-Path: <alex.kiernan@gmail.com>
+Return-Path: <jku@goto.fi>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5B005E00E65; Wed, 11 Sep 2019 22:20:12 -0700 (PDT)
+	id 35E7FE00E11; Thu, 12 Sep 2019 02:06:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (alex.kiernan[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.45 listed in list.dnswl.org]
+	*      [209.85.167.50 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com
-	[209.85.166.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C775E00E11
-	for <yocto@yoctoproject.org>; Wed, 11 Sep 2019 22:20:10 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id m11so51617128ioo.0
-	for <yocto@yoctoproject.org>; Wed, 11 Sep 2019 22:20:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com
+	[209.85.167.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 116B9E00DE4
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2019 02:06:12 -0700 (PDT)
+Received: by mail-lf1-f50.google.com with SMTP id q11so3760657lfc.11
+	for <yocto@yoctoproject.org>; Thu, 12 Sep 2019 02:06:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=goto.fi; s=google;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=bqilxDzynaZAOAz/aglbF+4U+IOrvOmx8qaYM3b1Nc0=;
-	b=uu4b3/QQAICY+ZSk7forh1CvUGUSaWlbZ5waw9VQeI5mOQq+bZsNEXczNABu6FlS89
-	V6304WK4Hy6HNOtqSHA5zQV2o9Zj4LyYnft+5mzsnK1zsmUA1gtQTSAJmvK9ChQdSNHS
-	jodhKiDFqQBA/fD4/rLF9oEi7IKB0BUg0L+JuXIj3QwB9yaXWwvkytgzg/0uhgosT9mi
-	tpMitnGnq1B/qW+bVx6WubRZHSPIxKmvCvz++0C8r/5mquxUgcObWjnFdljk9RNGDO0c
-	MU2cXowmgHr5ArlQ8yBPidcE1RoDBdt5j/G6Pxv+msf+F/KR964Ku54Wo0XIBoiUAWxG
-	SkSw==
+	:cc; bh=O5AIjF2x5rICQRgJTBbhPJsfhj1C2lsM2xMYH93VzlA=;
+	b=ZWhfXhAgGZUnfQziTnyNfJ41yFr28eEihqVJaPtSTHf/lGgCSwyxXFZhfmf9UKc4lW
+	BiKtNdoucW2bUOiJupBrVu6qD4oJU0oPuhmTMpZko1dO0PcESFUieg2cRYn7Np8aMaVx
+	8SWutMg+W0NvLKlBqLIl4CsFDwQZnY0rj6ZgQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=bqilxDzynaZAOAz/aglbF+4U+IOrvOmx8qaYM3b1Nc0=;
-	b=R7uv+NtvRIS4TLZHLkULhUJyTX46p9FL8gP0bJ6mpGqZi3dK4cmhxUxDo+roRqyx7C
-	PfPzGGK6DlcI2v/h66FzXxAh8gGXE9cpEItDMF4HLKzE4ahaz6zaYXIZyWGkZYwUI3oC
-	NEYFghVviu/B9LQqd3P3nvUv0u1p0e/mPkrc+cZjjIUNLbCZyX/1DLvhG7V3FxUG7Xww
-	EjDPAV/aKcUYFRnjjR9HnoKoqL2trQwSoKwL3fXveloKOyfftTGBf5To+QfYnTrY8Bbt
-	EdH997SJ8nz2mAAc879iQtT1yFlGD9JhD31pVVcxVRSg9onMbbvZZm/kjfBswhGBN5se
-	CJvg==
-X-Gm-Message-State: APjAAAVhD49QDAmTHN1eBxu3ZzPDmoUQPA6WBUoQdo5kcH/FiPQJmm5Q
-	o54Y6mJ6DWDX+sjGWYu31nI5+Z6ZQlD7gEKKesE=
-X-Google-Smtp-Source: APXvYqwkTkmTp9VFVQibpDsO87OyCVsPWoSh9465r6XD7yZM/QjgQcAs2gWaRscLTm8QeaLzZIip8oxFesZtDBS8tc8=
-X-Received: by 2002:a02:c737:: with SMTP id h23mr8808508jao.42.1568265609770; 
-	Wed, 11 Sep 2019 22:20:09 -0700 (PDT)
+	:message-id:subject:to:cc;
+	bh=O5AIjF2x5rICQRgJTBbhPJsfhj1C2lsM2xMYH93VzlA=;
+	b=MSK4KgYPuVeH0KW28KXp0NbquqxqB/mnXr1ArPGkLNXj69F8nVnsfHUQjNRhLJz/Np
+	aqjpJ0G5oSq3eT3RLDNZ7H58auoOgf+rAJee68cvlfHMhfEqUK8/AQhQ+rUoXPoGWVFr
+	rpuDTGl65CQ7Fer0dOfFYgTbLP3S1grfDj+RZU2faYw7+YOxD5Z1EYRA2AzlTtyZMUP/
+	VQJMpu3xHkvsAzqvTwgNTausGkIzBI+PJAqbNHlaxd4bGt+7XhUib2D6DGuEtB/nxOKK
+	vOyDXvy5PZQ0mDsG1vAEs41RenkkGbWZWOuTXutSxgNn8sjZReFBg9JleF/H7v8ZMIXA
+	rZEA==
+X-Gm-Message-State: APjAAAU0INEE6vjnmJxgwVjKuTOkM34sD5ZUGlzA9bL9mVY1wF/9hX98
+	Ube/fZLCAZDCXqepFakSEfPcF3dusSYlRmtqBkWTgg==
+X-Google-Smtp-Source: APXvYqzsJ5eIvCnzakDfz07ru2xRTjz2/xdw2Zq4y/HENVJYijM9VxHGNkvDRrOWgq2YgLD/FbXKm6WqK30rP3kPSCA=
+X-Received: by 2002:ac2:5c11:: with SMTP id r17mr27458879lfp.61.1568279171887; 
+	Thu, 12 Sep 2019 02:06:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <27002ae78aef4a1e9feb3eea2d788ce3@sakuraus.com>
-In-Reply-To: <27002ae78aef4a1e9feb3eea2d788ce3@sakuraus.com>
-From: Alex Kiernan <alex.kiernan@gmail.com>
-Date: Thu, 12 Sep 2019 06:19:58 +0100
-Message-ID: <CAO5Uq5QBu3kBVWRCU=XyQdfQE0fk5kf9KTf4uQeSvtoTJo3SFA@mail.gmail.com>
-To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][ostree] build errors
+References: <6F3C5ED776614BD8B5EE2E8DCAFBFAA3@PAULD>
+In-Reply-To: <6F3C5ED776614BD8B5EE2E8DCAFBFAA3@PAULD>
+From: Jussi Kukkonen <jku@goto.fi>
+Date: Thu, 12 Sep 2019 12:05:55 +0300
+Message-ID: <CAD5=o+ostuMAdfPEwvWzo95woVGdEGVY8Ddyp5paaDhYVzhLGA@mail.gmail.com>
+To: "Paul D. DeRocco" <pderocco@ix.netcom.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: One second timestamp resolution?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,57 +65,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Sep 2019 05:20:12 -0000
+X-List-Received-Date: Thu, 12 Sep 2019 09:06:14 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 12, 2019 at 12:17 AM Greg Wilson-Lindberg
-<GWilson@sakuraus.com> wrote:
+On Wed, 11 Sep 2019 at 08:53, Paul D. DeRocco <pderocco@ix.netcom.com> wrote:
 >
-> I'm trying to include ostree into a raspberry pi boot2qt build based on t=
-hud.
->
-> I'm getting a warning:
-> WARNING: linux-raspberrypi-1_4.14.112+gitAUTOINC+6b5c4a2508-r0 do_kernel_=
-metadata: defconfig detected in WORKDIR. bcm2709_defconfig skipped
->
-> Which I figure that I can probably ignore, but may find I have a problem =
-with it if it is missing out on my config changes.
->
-> More concerning is the following error:
->
-> ERROR: ostree-v2018.9-r0 do_unpack: gitsm: submodule unpack failed: Unpac=
-kError Unpack failure for URL: 'gitsm://gitlab.gnome.org/GNOME/libglnx.git;=
-protocol=3Dhttps;name=3Dlibglnx;subpath=3Dlibglnx;bareclone=3D1;nobranch=3D=
-1'. No up to date source found: clone directory not available or not up to =
-date: /home/gwilson/Qt/Qt-5.13.1/Yocto-build-RPi3/build-raspberrypi3/../dow=
-nloads/git2/gitlab.gnome.org.GNOME.libglnx.git; shallow clone not enabled
->
-> The 'gitlab.gnome.org/GNOME/libglnx' subdirectory is there, so that would=
- imply that something is wrong with the initial protocol or other decorator=
-s. I also did a clean on ostree just to make sure there wasn't any problem =
-with git -> gitsm changes.
->
-> Is there anyone with familiarity with the ostree system that could give m=
-e a hand on this? It is possible that I'm missing some configuration, the d=
-ocs are not the clearest.
->
+> I just noticed that I'm getting one-second resolution on all my
+> timestamps. This is for both ext4 and vfat partitions, and shows up in ls
+> --full-time and the stat command. What could account for this? My uname -a
+> output is "Linux CHROMA1 4.10.17-yocto-preempt-rt #1 SMP PREEMPT Wed Oct
+> 11 12:33:54 PDT 2017 i686 i686 i386 GNU/Linux" if that's any help. Also,
+> my ext4 mount options are "rw,noatime,nodiratime,data=ordered".
 
-My immediate thought was add:
+I think file timestamp resolution on ext4 is one of the things that
+depend on inode size (ext4 does not enforce reasonable values because
+of compatibility with earlier versions I guess). So maybe check inode
+size (should be 256 bytes I think?).
 
-PREMIRRORS =3D ""
-
-to your ostree recipe - there's an old copy of the source sitting in
-the yocto mirrors and the gitsm fetcher doesn't update the submodules
-correctly, but looking at the error, I'm not sure if that's actually
-your problem.
-
-I'm a couple of upstream patches away from an ostree recipe that's I
-think should be in a fit state to go into meta-oe:
-
-https://github.com/akiernan/meta-ostree-core/blob/master/recipes-ostree/ost=
-ree/ostree.inc
-
---=20
-Alex Kiernan
+Jussi
 
