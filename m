@@ -1,64 +1,47 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <Joe_MacDonald@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA2FAE00DB6; Tue, 17 Sep 2019 06:12:50 -0700 (PDT)
+	id E96ADE00D72; Tue, 17 Sep 2019 07:12:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E234E00DD0
-	for <yocto@yoctoproject.org>; Tue, 17 Sep 2019 06:12:36 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x8HDBsvk011499
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 17 Sep 2019 06:12:10 -0700
-Received: from soho-mhatle-m.local (147.11.117.245) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.468.0;
-	Tue, 17 Sep 2019 06:11:47 -0700
-To: Hongxu Jia <hongxu.jia@windriver.com>, <mark.hatle@kernel.crashing.org>,
-	<jason.wessel@windriver.com>, <yocto@yoctoproject.org>
-References: <1568687654-21734-1-git-send-email-hongxu.jia@windriver.com>
-	<1568702230-38966-1-git-send-email-hongxu.jia@windriver.com>
-From: Mark Hatle <mark.hatle@windriver.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
-	mQENBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
-	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
-	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
-	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
-	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
-	AAG0JU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT6JATcEEwEIACEFAlYK
-	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
-	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
-	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
-	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
-	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
-	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrrkBDQRWCsRYAQgAwK3FuHCE+HW3YWdH
-	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
-	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
-	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
-	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
-	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABiQEfBBgBCAAJBQJWCsRYAhsMAAoJ
-	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
-	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
-	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
-	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
-	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
-Organization: Wind River Systems
-Message-ID: <42bb378d-3f28-0946-60d3-8419b50e748c@windriver.com>
-Date: Tue, 17 Sep 2019 08:11:45 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
-	Gecko/20100101 Thunderbird/60.9.0
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [68.232.137.180 listed in list.dnswl.org]
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Tue, 17 Sep 2019 07:12:22 PDT
+Received: from esa3.mentor.iphmx.com (esa3.mentor.iphmx.com [68.232.137.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 667C4E00C74
+	for <yocto@yoctoproject.org>; Tue, 17 Sep 2019 07:12:21 -0700 (PDT)
+IronPort-SDR: MrE/b62n9qGWBP6gjeJwjyHr5yZW2yXszIbA0iL6AZ4uJSHhNyToluXPOPP4zGVYsyJJjmto0q
+	Hd4XBsYhYs4K6z53jXf8IMQGDtCFf9v2efUx79uz4TLhQuuGaDyV3F03VCXNtap2X6dqi0jypr
+	5yBsRSEJtU7lauTmvc1UeMa5AeDauAW3oNaMXfulycZ2zvrejy+xm8kThdTZhVVpKsRm3YSWKZ
+	BHSE0TNUN89/WFv/4XxFBuGz/GR/ceD/EuMJWnttruTX4SYhYLDEpixt7LrpIPVLa6U3eQAwUi
+	psE=
+X-IronPort-AV: E=Sophos;i="5.64,516,1559548800"; 
+	d="asc'?scan'208";a="41426534"
+Received: from orw-gwy-01-in.mentorg.com ([192.94.38.165])
+	by esa3.mentor.iphmx.com with ESMTP; 17 Sep 2019 06:11:05 -0800
+IronPort-SDR: NSb94kacxFYNcB6mgUL1N37FhrpP3zqQdagCOg6SvNymG/V0TBlHvDTosXni71RRm4i6VyfUxz
+	A/DgPnqVJ08zOjplJPIPNVemSKkmg3E6BhLAgqyp5K0SCJYeM3rpGYZoprE5iuFnVZxnTGLp3W
+	RGcWzUtulrL+iUC0NwkDTSYoT3A0ABA1wS3R4RjNXP5YfmMwTwCxNqJcGTiZCRbfAQatwVoEEe
+	M40/xqUZEP+TesOaiOi0gvZbg/wdTikJB+xDlEvq/B41+hmV2VpIjU/wOx6Qx/fzeLWjxg/rlo
+	504=
+Date: Tue, 17 Sep 2019 10:11:01 -0400
+From: Joe MacDonald <Joe_MacDonald@mentor.com>
+To: Lorenz Kofler <lorenz@sigma-star.at>
+Message-ID: <20190917141101.GC28098@mentor.com>
+References: <1286559489.33897.1568725712049.JavaMail.zimbra@sigma-star.at>
 MIME-Version: 1.0
-In-Reply-To: <1568702230-38966-1-git-send-email-hongxu.jia@windriver.com>
-Subject: Re: [meta-openssl102-fips][PATCH] README.build: add steps to include openssl102
+In-Reply-To: <1286559489.33897.1568725712049.JavaMail.zimbra@sigma-star.at>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Cc: yocto@yoctoproject.org
+Subject: Re: meta-selinux thud compatibility
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,45 +53,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Sep 2019 13:12:50 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 17 Sep 2019 14:12:23 -0000
+X-Groupsio-MsgNum: 46625
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Clx92ZfkiYIKRjnr"
+Content-Disposition: inline
 
-On 9/17/19 1:37 AM, Hongxu Jia wrote:
-> The openssl fips only works with old openssl(<=1.0.2),
-> update steps to clarify it for Yocto and Wind River Linux
+--Clx92ZfkiYIKRjnr
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Merged.
+Hi Lorenz,
 
-> Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
-> ---
->  README.build | 8 +++++---
->  1 file changed, 5 insertions(+), 3 deletions(-)
-> 
-> diff --git a/README.build b/README.build
-> index bc8fcf3..3da03da 100644
-> --- a/README.build
-> +++ b/README.build
-> @@ -40,13 +40,15 @@ The easiest way to do this with Yocto is include this layer [1]
->  and meta-openssl102 [2], and install packagegroup-core-buildessential
->  to image [3]
->  
-> -[1] git://git.yoctoproject.org/meta-openssl102
-> -[2] git://git.yoctoproject.org/meta-openssl102-fips
-> +[1] git://git.yoctoproject.org/meta-openssl102-fips
-> +[2] git://git.yoctoproject.org/meta-openssl102
-> +    Manually set 1.0.2% to openssl preferred version
-> +    echo "PREFERRED_VERSION_openssl = '1.0.2%'" >> conf/local.conf
->  [3] echo "IMAGE_INSTALL += 'packagegroup-core-buildessential'" >> conf/local.conf
->  
->  The easiest way to do this with Wind River Linux is include:
->  
-> -    --templates features/target-toolchain --layers meta-openssl102-fips
-> +    --templates features/target-toolchain --templates feature/openssl102 --layers meta-openssl102-fips
->  
->      Note: do not include template feature/openssl-fips
->  
-> 
+[meta-selinux thud compatibility] On 19.09.17 (Tue 15:08) Lorenz Kofler wro=
+te:
 
+> Hello,
+>=20
+> according to your layer.conf file is the meta-selinux layer compatible wi=
+th
+> thud, however it did not build successfully.
+> I had to revert the patch eafe868098f52b061422bffc13fbc582d687d4ed.
+> Is it possible to make a Yocto version dependent .bbappend file? Or maybe=
+ just
+> remove compatibility for thud.
 
+Thanks for bringing this to our attention.  I haven't built thud in
+ages, so it's definitely helpful to hear about any issues someone may
+be having.
+
+That said, I don't see eafe868098f52b061422bffc13fbc582d687d4ed on the
+'thud' branch.  I did a fresh clone into a new workspace from
+git://git.yoctoproject.org/meta-selinux just to be sure.  Are you sure
+your tree is in sync with the meta-selinux thud brach?  The HEAD commit
+there, as I see it, is:
+
+commit fb6192aa2c5df8e80c5e6d4fa5448d574332f68f (HEAD -> thud,
+origin/thud)
+Author: Khem Raj <raj.khem@gmail.com>
+Date:   Tue Feb 26 11:44:43 2019 -0800
+
+    refpolicy: Forward patch to apply cleanly on thud
+   =20
+    Also fix devtool generated warnings by refreshing patches
+   =20
+    Signed-off-by: Khem Raj <raj.khem@gmail.com>
+    Signed-off-by: Joe MacDonald <joe@deserted.net>
+
+--=20
+-Joe MacDonald.
+Linux Architect | Mentor=AE A Siemens Business
+:wq
+
+--Clx92ZfkiYIKRjnr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEkMd/b97HINT8/zEqSfx99yw59pYFAl2A6WUACgkQSfx99yw5
+9pYPRwf9GBcRMxkPGnwIaL+hiD0f/iI//YZm8wFjnm2guGPern8swIUFIp0Qcfz7
+CHnGNaoq04dvyIwDP2YIh6qYmIYI6XdwV48yAoyWz4mxDSuWeGY+1NPEPFzVXn3h
+yS4w/yCYgwQHAotfRBCx3QMv+Or450LFXfULhkG6ZvUia0opuy4PFOVb5JrlHyf0
+feQTiUqKt2aeGMGkKOr2jMpLNLzrUg2wEysMc4cCAWw538WL1go3AUTL4cdpzPl/
+K/LRFCsy7HqIEhxdrPHeff1jdOLWm1MaElVPYnQlaRlrcDAZX+Duy0WfJ2uUHcag
+DnxBjPlX8J9lkecJVo2ZiwwFj/iBAA==
+=zvUV
+-----END PGP SIGNATURE-----
+
+--Clx92ZfkiYIKRjnr--
