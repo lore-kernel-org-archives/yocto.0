@@ -1,60 +1,63 @@
-Return-Path: <jku@goto.fi>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3AA66E00D47; Tue, 17 Sep 2019 03:49:14 -0700 (PDT)
+	id E69E6E00D59; Tue, 17 Sep 2019 06:05:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.208.169 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com
-	[209.85.208.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D80A2E00CD5
-	for <yocto@yoctoproject.org>; Tue, 17 Sep 2019 03:49:12 -0700 (PDT)
-Received: by mail-lj1-f169.google.com with SMTP id y23so2956575lje.9
-	for <yocto@yoctoproject.org>; Tue, 17 Sep 2019 03:49:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=goto.fi; s=google;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=UGNkLR3HFL2sDUUhmRJCjjqvFluZa5DcXR0p0IOijX0=;
-	b=IW2c4iIz34e1aHjNO6wgqF4EA9bfCjvQp3o3YWymb5MZU2BsLKBlBr4UlccVJ67v0B
-	PpdCtzusb7qEryAFbBQw5f9VU98icAIz8BWsqEKmkCsVPk08nhXZBlB/jZVO7deGe/wO
-	iiRQbZq3glRVucUpOkkFaDsKEEqAjdtaN/Pr8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=UGNkLR3HFL2sDUUhmRJCjjqvFluZa5DcXR0p0IOijX0=;
-	b=WFrhXRcuB1TeM5gqT/u2v7oA7okvNUKPvjfzS3fTN598Ht2Jf93FDgO5I7FbI0NVjO
-	w/qB19aGIaCedvzhlFLcaWw8Ar5TAXVNpyCN6l0QhUiAl+aedVIEznzct8nC3A6mUyRJ
-	TckBatcy3/be3537WnK405Mae23NA6COOBRvZySPzSq4pv5qZ9lApmDFYbZqMerlHxza
-	Mw72RYIhBSJNcmhbtpw+s5dQ4gfIWNXqm8g4/s2m2ohddZ+agJdrbo5VMXbwNn0Rm3Pn
-	YaO6ebD/A4ImAwo9CYlui60c8ANs0YyZH9xhzlI+byFvaEsEoruD631iR2ATKzFweLA4
-	5g2g==
-X-Gm-Message-State: APjAAAUxEodHsNKYFIpU+suyq2/UeO8ZOFUBklTC/Ka52qcYs40Swpab
-	U65YL8JlZGc+JyuKTqomPgba/89e9PfmNi2f74IXNQ==
-X-Google-Smtp-Source: APXvYqxg/tKm9ZlcPWL2QVhJ2kpHD+qPaMfwWjSvVS2o67p3VHKK3RZWumzKoJ22GjukKHJ2sHq1Uv54M2U+C2oI5wI=
-X-Received: by 2002:a2e:b00b:: with SMTP id y11mr1448228ljk.50.1568717351687; 
-	Tue, 17 Sep 2019 03:49:11 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD08AE00CD5
+	for <yocto@yoctoproject.org>; Tue, 17 Sep 2019 06:05:45 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x8HD511I011310
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 17 Sep 2019 06:05:17 -0700
+Received: from soho-mhatle-m.local (147.11.117.245) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.468.0;
+	Tue, 17 Sep 2019 06:05:03 -0700
+To: Hongxu Jia <hongxu.jia@windriver.com>, <mark.hatle@kernel.crashing.org>,
+	<jason.wessel@windriver.com>, <yocto@yoctoproject.org>
+References: <1568687654-21734-1-git-send-email-hongxu.jia@windriver.com>
+From: Mark Hatle <mark.hatle@windriver.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=mark.hatle@windriver.com; prefer-encrypt=mutual; keydata=
+	mQENBFYKxFgBCACt/pzutBp6p/xVKTFJjHbM3KpQKCblyot/YP+bpTr51Hrc5xDXBQhoG7TC
+	aIRvRIvbhEevEQK9y04gW3JK/5lobq5ORebolcsHlYBUvpNeIPjupLQwGvz/TPtrLRNGLqDC
+	rvsM6OA2XbQ2bwzxWaSQS3ImE2O2iXOZn9HhThMGeDB4Nff3fgUvXOTDIrgWOn9K2DgLL7Yc
+	zkUIlFdj+Nraksd/7BSk8oH6tjeBVhFqSFvKta9QxWgdr58oPaTYaW/xNqUjlLrbJuMw/MSe
+	xzuYfdfDfm6J8kRjMOnwQ0n8svJElzqAk+d83ow38gpGQ+LkjGgnf8ZFJ4rUJFADroX3ABEB
+	AAG0JU1hcmsgSGF0bGUgPG1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbT6JATcEEwEIACEFAlYK
+	xFgCGwMFCwkIBwIGFQgJCgsCBBYCAwECHgECF4AACgkQfv796/r0vvlvZAf9Gs+eN320yhRW
+	V/fZCsngKhmOK4v3HrTwFrkSmoD9QHQiE/5IPdNacHwIPwZx07tNBohB8xOeNqCPRYRBwGhA
+	AnxKOPyd0nnm6ZhPzbA57v4x3IGRQr4QzvcBTASJq91l3Ew4lpAslyx5w1DPPqRD7G8ycDKg
+	peKyDwmdkvCunVisSAQI3XIMq2y230biTO98tDPEezg+lg+yTsz9ZT33F5KNuWrpf8VL5fG/
+	mt+kAv7wtsx/KTRbqhH3iFXF6eBSwMjAfTXFlkLfbM9riJGXrWEl9n2S2R3cDHNHug0lb8f4
+	whK370KEO4OwRKIYW/VUBmzk5XZUE9DTlDSV8ycsrrkBDQRWCsRYAQgAwK3FuHCE+HW3YWdH
+	PUjeSn5p//xJ57u8g2rng8zm9zNjmYgpPv5UxozaD9i2jf4mlQLHGGOezhHae8K4Nj70oVcv
+	8AmwcrJa9i9WL1oy/9R3fHMWf/Ctt9VXTO0qlCuq6PDzaUfvsXR61aJIjTKNQTOjCLjY1vXm
+	VSewUgARysmA8WrjTfwGBihMBxAX0+kIjx8nOlam0WvekMBXZ0AbS56oTLRxYao6DI3GeB/N
+	oWPy/5DfuTKaSdM0Pf8al20x9RuNN5/HLMlyDH/k8bIa1xd9aAqW+Feiw5gC107V2E6ULyIy
+	q6em2UrsmIRxrvpHqbNgQKqvTehJ+V/i4g/uOwARAQABiQEfBBgBCAAJBQJWCsRYAhsMAAoJ
+	EH7+/ev69L755XAH/3ZcNhooqd9OBhFkvXm1iWZ8EoC7motWqVn2oEyxoonsg8AD9kFXiN+T
+	dYp7dH99EZu9q4ptj56AXm4uHzOgywL/5/V2TY6twCGAjUGzDjAB5gzoi+JLIBlDiyOip0eL
+	QswIhRk473xy3j8DA4oVamnSPWgyNJ+qsdt37YWDzoDFFvtDoRU7Eb+znfIMDKzlny0XU/8L
+	cW1bNHJlpv/78GPdfP4tjysEd8MuA5jf5o5w4XqcwTqalffEJtQ/s3pbkstEi7qm5uPui5Kt
+	gq6YYLSqcSNe0GWAF9/T+qwyo7burSTxUWCWtMmlXdAQLW9SynLhB3Jbch0nFAh0fCKi6yY=
+Organization: Wind River Systems
+Message-ID: <527e7760-4ac9-1eb7-d335-c9c48403e072@windriver.com>
+Date: Tue, 17 Sep 2019 08:05:02 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
+	Gecko/20100101 Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <CAAmVmrr-EA1B_-SY06s0OP000QXFDWV36j1EDr_+2om-MhAx7A@mail.gmail.com>
-In-Reply-To: <CAAmVmrr-EA1B_-SY06s0OP000QXFDWV36j1EDr_+2om-MhAx7A@mail.gmail.com>
-From: Jussi Kukkonen <jku@goto.fi>
-Date: Tue, 17 Sep 2019 13:48:55 +0300
-Message-ID: <CAD5=o+ohvT6U0KoVNjw81WAGQeevQZ4e7J99oi4RJm87v0nGvw@mail.gmail.com>
-To: Teemu K <maillinglists18@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Wayland-scanner missing from SDK
+In-Reply-To: <1568687654-21734-1-git-send-email-hongxu.jia@windriver.com>
+Subject: Re: [meta-openssl102-fips][PATCH 1/2] README.build: update steps for communtiy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,103 +69,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Sep 2019 10:49:14 -0000
-Content-Type: multipart/alternative; boundary="000000000000802e190592bd78d2"
+X-List-Received-Date: Tue, 17 Sep 2019 13:05:49 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---000000000000802e190592bd78d2
-Content-Type: text/plain; charset="UTF-8"
+On 9/16/19 9:34 PM, Hongxu Jia wrote:
+> Since the layer is now published via the Yocto Project and
+> git.yoctoproject.org, we should update steps in README.build
 
-On Tue, 17 Sep 2019 at 13:23, Teemu K <maillinglists18@gmail.com> wrote:
+Merged.
 
-> Hi,
->
-> I'm trying to create SDK for my image created with Yocto's rocko -
-> branch. It goes fine except wayland-scanner is missing from native
-> toolchain.
->
-> I found this patch and verified those changes are in place:
-> https://patchwork.openembedded.org/patch/126669/
->
-> Still the wayland-scanner is not  appearing to native toolchain side.
-> The target side it is.
->
+> Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> ---
+>  README.build | 21 ++++++++++++++++-----
+>  1 file changed, 16 insertions(+), 5 deletions(-)
+> 
+> diff --git a/README.build b/README.build
+> index df3f4e4..9735028 100644
+> --- a/README.build
+> +++ b/README.build
+> @@ -36,6 +36,14 @@ In order to build a precompiled version of the binary, you must first
+>  construct a target system that includes a target development environment
+>  and meta-openssl102-fips layer without feature/openssl-fips
+>  
+> +The easiest way to do this with Yocto is include this layer [1]
+> +and meta-openssl102 [2], and install packagegroup-core-buildessential
+> +to image [3]
+> +
+> +[1] git://git.yoctoproject.org/meta-openssl102
+> +[2] git://git.yoctoproject.org/meta-openssl102-fips
+> +[3] echo "IMAGE_INSTALL += 'packagegroup-core-buildessential'" >> conf/local.conf
+> +
+>  The easiest way to do this with Wind River Linux is include:
+>  
+>      --templates features/target-toolchain --layers meta-openssl102-fips
+> @@ -112,13 +120,16 @@ Building Steps (based on section 4 of the UsersGuide-2.0.pdf):
+>      Move the tar archive back to your host project into a directory accessable
+>      by the build system.
+>  
+> -5.  Configure the build system to include the template feature/openssl-fips
+> -    and locate your custom prebuilt tar archive:
+> -    In your build directory, edit conf/local.conf, add:
+> +5.  Configure the build system to enable openssl-fips and locate your custom
+> +    prebuilt tar archive.
+>  
+> -    WRTEMPLATE += "feature/openssl-fips"
+> +    For Yocto, in your build directory, edit conf/local.conf, add:
+> +      OPENSSL_FIPS_ENABLED = "1"
+> +      OPENSSL_FIPS_PREBUILT = "<path>"
+>  
+> -    OPENSSL_FIPS_PREBUILT = "<path>"
+> +    For Wind River Linux, in your build directory, edit conf/local.conf, add:
+> +      WRTEMPLATE += "feature/openssl-fips"
+> +      OPENSSL_FIPS_PREBUILT = "<path>"
+>  
+>      Where path is the location on the host with the prebuilt openssl-fips.
+>  
+> 
 
-The scanner is in -dev package IIRC. There was a discussion later last year
-where  someone tried to add -dev for that reason but that received critique
-(because of the heavy price in dependencies).
 
-There was a later attempt at tweaking the packaging (
-https://patchwork.openembedded.org/patch/154282/) but that was not merged
-I guess? I'm guessing that failed on autobuilder because builds that were
-expecting to find the scanner suddenly didn't...
-
-Jussi
-
-
-> I'm using command 'populate_sdk' to create sdk. How do I get
-> wayland-scanner to native toolchain side too?
->
-> I tested with thud-branch and it has same issue.
->
-> Hopefully this comes to correct mailing list.
->
-> -Teemu Keskinarkaus
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
---000000000000802e190592bd78d2
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"></div><div class=3D"gmail_quote"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Tue, 17 Sep 2019 at 13:23, Teemu K &lt;<a =
-href=3D"mailto:maillinglists18@gmail.com">maillinglists18@gmail.com</a>&gt;=
- wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi,<br>
-<br>
-I&#39;m trying to create SDK for my image created with Yocto&#39;s rocko -<=
-br>
-branch. It goes fine except wayland-scanner is missing from native<br>
-toolchain.<br>
-<br>
-I found this patch and verified those changes are in place:<br>
-<a href=3D"https://patchwork.openembedded.org/patch/126669/" rel=3D"norefer=
-rer" target=3D"_blank">https://patchwork.openembedded.org/patch/126669/</a>=
-<br>
-<br>
-Still the wayland-scanner is not=C2=A0 appearing to native toolchain side.<=
-br>
-The target side it is.<br></blockquote><div><br></div><div>The scanner is i=
-n -dev package IIRC. There was a discussion later last year where=C2=A0 som=
-eone tried to add -dev for that reason but that received critique (because =
-of the heavy price in dependencies).=C2=A0=C2=A0</div><div><br></div><div>T=
-here was a later attempt at tweaking the packaging (<a href=3D"https://patc=
-hwork.openembedded.org/patch/154282/">https://patchwork.openembedded.org/pa=
-tch/154282/</a>) but that was not merged=C2=A0 I guess? I&#39;m guessing th=
-at failed on autobuilder because builds that were expecting to find the sca=
-nner suddenly didn&#39;t...</div><div><br></div><div>Jussi</div><div>=C2=A0=
-<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
-ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
-I&#39;m using command &#39;populate_sdk&#39; to create sdk. How do I get<br=
->
-wayland-scanner to native toolchain side too?<br>
-<br>
-I tested with thud-branch and it has same issue.<br>
-<br>
-Hopefully this comes to correct mailing list.<br>
-<br>
--Teemu Keskinarkaus<br>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div></div>
-
---000000000000802e190592bd78d2--
