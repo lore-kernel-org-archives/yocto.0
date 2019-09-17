@@ -1,35 +1,60 @@
-Return-Path: <Changqing.Li@windriver.com>
+Return-Path: <maillinglists18@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 60713E00D4F; Tue, 17 Sep 2019 02:49:09 -0700 (PDT)
+	id E3621E00D47; Tue, 17 Sep 2019 03:21:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-	SUBJ_OBFU_PUNCT_FEW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.7 SUBJ_OBFU_PUNCT_FEW Possible punctuation-obfuscated Subject:
-	header
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDAEFE00D00
-	for <yocto@yoctoproject.org>; Tue, 17 Sep 2019 02:49:07 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.1) with ESMTPS id x8H9n7eJ006506
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 17 Sep 2019 02:49:07 -0700 (PDT)
-Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.468.0; Tue, 17 Sep 2019 02:49:06 -0700
-From: <changqing.li@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 17 Sep 2019 17:49:05 +0800
-Message-ID: <1568713745-37505-1-git-send-email-changqing.li@windriver.com>
-X-Mailer: git-send-email 2.7.4
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (maillinglists18[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.49 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com
+	[209.85.167.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 511A0E00C25
+	for <yocto@yoctoproject.org>; Tue, 17 Sep 2019 03:21:21 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id c195so2411916lfg.9
+	for <yocto@yoctoproject.org>; Tue, 17 Sep 2019 03:21:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=B6+uGoCn7CnkQgQ30BKN9BZwgSCZjGg/0dqzsYMvKRQ=;
+	b=XiQR7krW+pv+HOWlCTJNMUorpyFbkAkP4EbduM9LfI9RAEVpSYwkhUJCUU7393moPm
+	/9BMal03j2p2B+xrIZ35IaFBMNRWeLysX7UTZfnvJaUsM+Jerozo1+yW9RbXWyoR0gcd
+	LPwELdKfaLZ/NwIjo+NAK+KHsxojiaMHbvdbhKQ/hdS2rCEhE5tGlFFd5QlW5odn/YSg
+	NuwXtqcjN+NjuZQWifDaNjrHiMnbXfLvstlVSNRNMEwcFU0GVilRhCuzgeSuUG0F08cs
+	U9i4qRURmEZAax37Trp/9oWUNqZKg9N+kxtHRE5EZUaUyxVvCQqLKFgJBMZbCgpumDNJ
+	Midg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=B6+uGoCn7CnkQgQ30BKN9BZwgSCZjGg/0dqzsYMvKRQ=;
+	b=l6W/x7p0AKSoBe70Ru8IvbeSemi5p+RHMdVe5Yl9RsACUsu7/27pMgxDArRjNa6Z7r
+	fV3C69YlVWOp16cKqwGw/hqHEkm8YVX0F6/2btcGrF11pwdSZbB6rASOOnPLUgV1ET6Y
+	k6biOms1qDmx7wNbpdeM5NPaaQm/xnanOHm7Pe5gawTazSKceYDdFksaFDSbGQWWLpKo
+	+kxs0bHNIsI7Nak0tqSMrK9MigZd+PLfl+dnOdSSX8P4/ZYxenK+d0mY2V4QWIE/erkt
+	ZusZ/PAOyW8qyoTtuQ+1KhDgijfitlTYgZiOThWmDEuAvV6iWiTFCyiS0z2BovKcGeBR
+	sVLQ==
+X-Gm-Message-State: APjAAAW339ttDq1drhkxa0GB2JZW+q5Q8U8RGsRdedd75XWpJL51LVFs
+	iGEttWidXYjvhXf2U4RoUdGN9yAPV1NeQfnUEVBu+LAO
+X-Google-Smtp-Source: APXvYqxhMZciEhLcC8kMDKnm8zh1ah2SFO9gFZ+Cxy23pjTAgAt2j362hTb1p2YhY5RcBeSAWCuTfz+R7ulTOs6qBNU=
+X-Received: by 2002:ac2:4551:: with SMTP id j17mr1655922lfm.81.1568715680307; 
+	Tue, 17 Sep 2019 03:21:20 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [error-report-web][PATCH] add local.conf and auto.conf as error details
+From: Teemu K <maillinglists18@gmail.com>
+Date: Tue, 17 Sep 2019 13:21:08 +0300
+Message-ID: <CAAmVmrr-EA1B_-SY06s0OP000QXFDWV36j1EDr_+2om-MhAx7A@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Wayland-scanner missing from SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,136 +66,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Sep 2019 09:49:09 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 17 Sep 2019 10:21:21 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-From: Changqing Li <changqing.li@windriver.com>
+Hi,
 
-support to display local.conf and auto.conf on error report web,
-this need to work with change in oe-core
+I'm trying to create SDK for my image created with Yocto's rocko -
+branch. It goes fine except wayland-scanner is missing from native
+toolchain.
 
-Signed-off-by: Changqing Li <changqing.li@windriver.com>
----
- Post/0006_auto_20190917_0419.py | 24 ++++++++++++++++++++++++
- Post/models.py                  |  2 ++
- Post/parser.py                  |  2 ++
- Post/test.py                    |  2 ++
- templates/error-details.html    | 10 ++++++++++
- test-data/test-payload.json     |  4 +++-
- 6 files changed, 43 insertions(+), 1 deletion(-)
- create mode 100644 Post/0006_auto_20190917_0419.py
+I found this patch and verified those changes are in place:
+https://patchwork.openembedded.org/patch/126669/
 
-diff --git a/Post/0006_auto_20190917_0419.py b/Post/0006_auto_20190917_0419.py
-new file mode 100644
-index 0000000..827944e
---- /dev/null
-+++ b/Post/0006_auto_20190917_0419.py
-@@ -0,0 +1,24 @@
-+# -*- coding: utf-8 -*-
-+from __future__ import unicode_literals
-+
-+from django.db import migrations, models
-+
-+
-+class Migration(migrations.Migration):
-+
-+    dependencies = [
-+        ('Post', '0005_build_error_type'),
-+    ]
-+
-+    operations = [
-+        migrations.AddField(
-+            model_name='build',
-+            name='AUTO_CONF',
-+            field=models.TextField(default=b'', max_length=5242880),
-+        ),
-+        migrations.AddField(
-+            model_name='build',
-+            name='LOCAL_CONF',
-+            field=models.TextField(default=b'', max_length=5242880),
-+        ),
-+    ]
-diff --git a/Post/models.py b/Post/models.py
-index ddf2fc7..e9fd010 100644
---- a/Post/models.py
-+++ b/Post/models.py
-@@ -43,6 +43,8 @@ class Build(models.Model):
-     LINK_BACK = models.TextField(max_length=300, blank=True, null=True)
-     ERROR_TYPE = models.CharField(max_length=20, choices=ERROR_TYPE_CHOICES,
-                                   default=ErrorType.RECIPE)
-+    LOCAL_CONF = models.TextField(max_length=int(settings.MAX_UPLOAD_SIZE), default="")
-+    AUTO_CONF = models.TextField(max_length=int(settings.MAX_UPLOAD_SIZE), default="")
- 
-     def save(self, *args, **kwargs):
-         if self.ERROR_TYPE not in [e_type[0] for e_type in
-diff --git a/Post/parser.py b/Post/parser.py
-index 9639308..69d43c1 100644
---- a/Post/parser.py
-+++ b/Post/parser.py
-@@ -53,6 +53,8 @@ class Parser:
-             b.EMAIL = str(jsondata['email'])
-             b.LINK_BACK = jsondata.get("link_back", None)
-             b.ERROR_TYPE = jsondata.get("error_type", ErrorType.RECIPE)
-+            b.LOCAL_CONF = str(jsondata['local_conf'])
-+            b.AUTO_CONF = str(jsondata['auto_conf'])
- 
-             # Extract the branch and commit
-             g = re.match(r'(.*): (.*)', jsondata['branch_commit'])
-diff --git a/Post/test.py b/Post/test.py
-index 6dc7878..4fe236c 100755
---- a/Post/test.py
-+++ b/Post/test.py
-@@ -46,6 +46,8 @@ def compare_db_obj_with_payload(self, bf_object):
-     self.assertEqual(bf_object.BUILD.NAME == str(payload['username']), True)
-     self.assertEqual(bf_object.BUILD.EMAIL == str(payload['email']), True)
-     self.assertEqual(bf_object.BUILD.LINK_BACK == payload.get("link_back", None), True)
-+    self.assertEqual(bf_object.BUILD.LOCAL_CONF == payload.get("local_conf", None), True)
-+    self.assertEqual(bf_object.BUILD.AUTO_CONF == payload.get("auto_conf", None), True)
- 
-     g = re.match(r'(.*): (.*)', payload['branch_commit'])
- 
-diff --git a/templates/error-details.html b/templates/error-details.html
-index c30160d..16311c5 100644
---- a/templates/error-details.html
-+++ b/templates/error-details.html
-@@ -81,6 +81,16 @@
-           {% endwith %}
-         </dd>
- 
-+        {% if detail.BUILD.LOCAL_CONF != "" %}
-+        <dt></a>Local Conf:</dt>
-+        <dd style="white-space: pre-wrap;">{{ detail.BUILD.LOCAL_CONF }}</dd>
-+        {% endif %}
-+
-+        {% if detail.BUILD.AUTO_CONF != "" %}
-+        <dt></a>Auto Conf:</dt>
-+        <dd style="white-space: pre-wrap;">{{ detail.BUILD.AUTO_CONF }}</dd>
-+        {% endif %}
-+
-       </dl>
-       <div>
-         <a class="btn btn-block" target="_blank" href="https://bugzilla.yoctoproject.org/enter_bug.cgi?classification=__all" >Open a bug</a>
-diff --git a/test-data/test-payload.json b/test-data/test-payload.json
-index 0428a16..fd21053 100644
---- a/test-data/test-payload.json
-+++ b/test-data/test-payload.json
-@@ -1,4 +1,5 @@
- {
-+    "auto_conf": "",
-     "branch_commit": "(master-test): 736b49449233c936e3099b314a58e91ad17f9774", 
-     "build_sys": "x86_64-linux", 
-     "component": "base-passwd", 
-@@ -11,7 +12,8 @@
-             "package": "base-passwd-3.5.29-r0", 
-             "task": "do_install"
-         }
--    ], 
-+    ],
-+    "local_conf": "",
-     "machine": "qemux86", 
-     "nativelsb": "Ubuntu-14.04", 
-     "target_sys": "i586-poky-linux"
--- 
-2.7.4
+Still the wayland-scanner is not  appearing to native toolchain side.
+The target side it is.
 
+I'm using command 'populate_sdk' to create sdk. How do I get
+wayland-scanner to native toolchain side too?
+
+I tested with thud-branch and it has same issue.
+
+Hopefully this comes to correct mailing list.
+
+-Teemu Keskinarkaus
 
