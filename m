@@ -1,66 +1,48 @@
-Return-Path: <erik.boto@gmail.com>
+Return-Path: <leimaohui@cn.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6A436E00D75; Tue, 17 Sep 2019 21:31:12 -0700 (PDT)
+	id 17A66E00D74; Tue, 17 Sep 2019 23:52:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (erik.boto[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.210.180 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com
-	[209.85.210.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8192DE00D6A
-	for <yocto@yoctoproject.org>; Tue, 17 Sep 2019 21:31:10 -0700 (PDT)
-Received: by mail-pf1-f180.google.com with SMTP id a2so3496373pfo.10
-	for <yocto@yoctoproject.org>; Tue, 17 Sep 2019 21:31:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=kz4L7nlZXS7AdwY91PquCUvn5EPiRnSsD3eqnqL9KuQ=;
-	b=ER31V6F1tl6THgPmUn1qJk0A3jnAGVtq9poVr62MtCoAGAUHz54n78LHgEy1tiNnoq
-	bBbxf2hOFzeBnszJuKWnnQ+h7cdmk5B/qT/5mKNhDyMN0VjOERzQrdezPec/hWyyTtoM
-	JblcJ4B2pKzovZTOkw1unJDip4Vk2wAzqm23q3pJCE2FaEyTbHQjX9lE9Y22KF5sZ0/S
-	WOSQQA5l3NNQIp7T6v2OJ3M9aPBejBJsOaUyhr5QfgRBALp+FMcCijKb+i9DVRqQxDWt
-	3/RhtnU5j+CuZLmV9/QoVEZlWTIhsaBXtn/YlZCl4sWBlMj86lz83faSUjD31IEbLAOp
-	+2gw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=kz4L7nlZXS7AdwY91PquCUvn5EPiRnSsD3eqnqL9KuQ=;
-	b=gGbpGVF6VquCpF5KizKdwT3uKC1MeA/bxG7DlAopdceLyMK3YoYE1qOSC+28e0js3w
-	Qfq3gEzdVw7dyIK5G/4Y5cMC8mscCbc196ys4psemeLQMA3cmvMuRS9sTq4aHfLjxxck
-	3D4iKJi2MrnaTiNtGkdWmcftKcpVCtDd/OVpFigM5EI77195rKTPU/8p7wIGKw0cKT//
-	KsQ5VlObOQRdZUFx32UVHcK0XwakZbLdR5hLi7jrbHIF9BE/eYxSqPsIBwlQdaEQthEI
-	Q6IJXnaCljfHbxujUFLD3RvoaKcP5bkhg5wJDAUZ+cju4SQRKKgNn1aP8sObVNWaNxWQ
-	oRoA==
-X-Gm-Message-State: APjAAAVaXByeKZ4eifcMwvqhhjFbprUXALgpKN7Kp9NaaP3JPHyu1hfi
-	JSCrWAr4r4Bz8UgxdlUaQDb9hcfz9M/18RCMMaU=
-X-Google-Smtp-Source: APXvYqwzGHL7ZAQ4uixfw+n5OfbxPxxpnPZqCXQpKL0dTqRAvMYfbn/v+mgRyVf6pGls58QEUxhdXBxKiPPhSjW5HnI=
-X-Received: by 2002:a62:7597:: with SMTP id q145mr1933996pfc.181.1568781069657;
-	Tue, 17 Sep 2019 21:31:09 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [183.91.158.132 listed in list.dnswl.org]
+Received: from heian.cn.fujitsu.com (mail.cn.fujitsu.com [183.91.158.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1835E00963
+	for <yocto@yoctoproject.org>; Tue, 17 Sep 2019 23:52:57 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.64,519,1559491200"; d="scan'208";a="75637493"
+Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
+	by heian.cn.fujitsu.com with ESMTP; 18 Sep 2019 14:52:56 +0800
+Received: from G08CNEXCHPEKD03.g08.fujitsu.local (unknown [10.167.33.85])
+	by cn.fujitsu.com (Postfix) with ESMTP id 68FA54CE0C9C;
+	Wed, 18 Sep 2019 14:52:53 +0800 (CST)
+Received: from G08CNEXMBPEKD01.g08.fujitsu.local ([10.167.33.81]) by
+	G08CNEXCHPEKD03.g08.fujitsu.local ([10.167.33.85]) with mapi id
+	14.03.0439.000; Wed, 18 Sep 2019 14:52:56 +0800
+From: "Lei, Maohui" <leimaohui@cn.fujitsu.com>
+To: Yi Zhao <yi.zhao@windriver.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>, "Adrian.Dudau@enea.com" <Adrian.Dudau@enea.com>, 
+	"alexandru.vaduva@linux.com" <alexandru.vaduva@linux.com>
+Thread-Topic: [yocto] [meta-cgl][PATCH 3/3] libhtml-tagset-perl: remove recipe
+Thread-Index: AQHVLIEOcLc8w301Bkex/fRrd/aCH6cxgKrA
+Date: Wed, 18 Sep 2019 06:53:00 +0000
+Message-ID: <1B56A49860EB2D45ADE3731B15C959FD01C3071B81@G08CNEXMBPEKD01.g08.fujitsu.local>
+References: <1561595941-25137-1-git-send-email-yi.zhao@windriver.com>
+	<1561595941-25137-3-git-send-email-yi.zhao@windriver.com>
+In-Reply-To: <1561595941-25137-3-git-send-email-yi.zhao@windriver.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.167.225.227]
 MIME-Version: 1.0
-References: <c875b530-6d7e-96c8-f93a-fb6cf801b338@linuxfoundation.org>
-	<CANbFEgR9wSP8ncDp26bUPzio506PDQhCXVR4C3JX-LupF743tw@mail.gmail.com>
-In-Reply-To: <CANbFEgR9wSP8ncDp26bUPzio506PDQhCXVR4C3JX-LupF743tw@mail.gmail.com>
-From: =?UTF-8?Q?Erik_Bot=C3=B6?= <erik.boto@gmail.com>
-Date: Wed, 18 Sep 2019 06:30:58 +0200
-Message-ID: <CALNvYWPgexqJE5_uM7X9iXd-px8RDmmtnpUWS-UKczX07gOQ+g@mail.gmail.com>
-To: Ari-Pekka Sihvonen <asihvo@iki.fi>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Hi, I migrated from sumo to thud an I am having serious difficulties.
+X-yoursite-MailScanner-ID: 68FA54CE0C9C.A02AF
+X-yoursite-MailScanner: Found to be clean
+X-yoursite-MailScanner-From: leimaohui@cn.fujitsu.com
+Subject: Re: [meta-cgl][PATCH 3/3] libhtml-tagset-perl: remove recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,60 +54,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Sep 2019 04:31:12 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 18 Sep 2019 06:52:59 -0000
+Content-Language: zh-CN
+Content-Type: text/plain; charset="shift_jis"
+Content-Transfer-Encoding: base64
 
-Hi,
-
-On Sat, Sep 14, 2019 at 4:48 AM Ari-Pekka Sihvonen <asihvo@iki.fi> wrote:
->
-> i have raspbertyoi3 and I had working sumo build environment. When I chan=
-ged to thud all fell apart. I have custom config.txt and cmdline.txt and at=
- thud I have no possibility to make them custom the baking stops whining th=
-at the file is already there. What evere I do Yocto complains.
->
-> Any ideas.
-
-If you could post a bit more info on the actual errors, and how the
-bbappends you use for adding the custom files look like, people here
-will have a better chance to understand what's wrong.
-
-Cheers,
-Erik
-
->
-> BR AP
->
-> On Sat, 14 Sep 2019, 02:12 Michael Halstead, <mhalstead@linuxfoundation.o=
-rg> wrote:
->>
->> This Sunday I will take the Mailman mailing lists offline for updates in
->> preparation for the platform change. As part of the update I plan to
->> change the list addresses to their new dedicated domain
->> @lists.yoctoproject.org so we can start changing addresses in the
->> MAINTAINERS files and elsewhere.
->>
->> Moderators, thanks for helping by clearing out the queues in advance. If
->> you have outstanding moderation or trouble clearing your queue please
->> reach out to me.
->>
->> I will send a follow up e-mail with a new time line for the platform
->> change after these updates are in place.
->>
->> --
->> Michael Halstead
->> Linux Foundation / Yocto Project
->> Systems Operations Engineer
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+SGkNCg0KSSBtZXQgYSBkZXBlbmQgZXJyb3Igd2hlbiBJIGJ1aWx0IG1ldGEt
+Y2dsKHdhcnJpb3IgYnJhbmNoKSB3aXRoIG1ldGEtb2Uod2FycmlvciBicmFu
+Y2gpLg0KDQpFUlJPUjogTm90aGluZyBQUk9WSURFUyAnbGliaHRtbC10YWdz
+ZXQtcGVybC1uYXRpdmUnLi4uDQoNCkkgZG9uJ3QgdGhpbmsgdGhpcyBwYXRj
+aCBzaG91bGQgYmUgbWVyZ2VkIHRvIHdhcnJpb3IgYnJhbmNoLCBiZWNhdXNl
+IGxpYmh0bWwtdGFnc2V0LXBlcmwgaGFzbid0IGJlZW4gYWRkZWQgaW50byBt
+ZXRhLW9lJ3Mgd2FycmlvciBicmFuY2guDQoNCkJlc3QgcmVnYXJkcw0KTGVp
+DQoNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiB5
+b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1i
+b3VuY2VzQHlvY3RvcHJvamVjdC5vcmddIE9uDQo+IEJlaGFsZiBPZiBZaSBa
+aGFvDQo+IFNlbnQ6IFRodXJzZGF5LCBKdW5lIDI3LCAyMDE5IDg6MzkgQU0N
+Cj4gVG86IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc7IEFkcmlhbi5EdWRhdUBl
+bmVhLmNvbTsgYWxleGFuZHJ1LnZhZHV2YUBsaW51eC5jb20NCj4gU3ViamVj
+dDogW3lvY3RvXSBbbWV0YS1jZ2xdW1BBVENIIDMvM10gbGliaHRtbC10YWdz
+ZXQtcGVybDogcmVtb3ZlIHJlY2lwZQ0KPiANCj4gVGhlIGxpYmh0bWwtdGFn
+c2V0LXBlcmwgcmVjaXBlIHdhcyBhZGRlZCB0byBtZXRhLXBlcmwgbGF5ZXIg
+d2l0aCBjb21taXQ6DQo+IDQwNThlNjVmM2M0ZTE3YWQwNDQyM2Y0YzllZGY4
+NjA3ZmU2ZmRiNGYNCj4gV2UgY2FuIGRyb3AgdGhpcyBkdXBsaWNhdGUgcmVj
+aXBlLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogWWkgWmhhbyA8eWkuemhhb0B3
+aW5kcml2ZXIuY29tPg0KPiAtLS0NCj4gIC4uLi9yZWNpcGVzLXBlcmwvcGVy
+bC9saWJodG1sLXRhZ3NldC1wZXJsXzMuMjAuYmIgICAgICAgfCAxNyAtLS0t
+LS0tLS0tLS0tLS0tLQ0KPiAgMSBmaWxlIGNoYW5nZWQsIDE3IGRlbGV0aW9u
+cygtKQ0KPiAgZGVsZXRlIG1vZGUgMTAwNjQ0IG1ldGEtY2dsLWNvbW1vbi9y
+ZWNpcGVzLXBlcmwvcGVybC9saWJodG1sLXRhZ3NldC0NCj4gcGVybF8zLjIw
+LmJiDQo+IA0KPiBkaWZmIC0tZ2l0IGEvbWV0YS1jZ2wtY29tbW9uL3JlY2lw
+ZXMtcGVybC9wZXJsL2xpYmh0bWwtdGFnc2V0LXBlcmxfMy4yMC5iYg0KPiBi
+L21ldGEtY2dsLWNvbW1vbi9yZWNpcGVzLXBlcmwvcGVybC9saWJodG1sLXRh
+Z3NldC1wZXJsXzMuMjAuYmINCj4gZGVsZXRlZCBmaWxlIG1vZGUgMTAwNjQ0
+DQo+IGluZGV4IDI3NjVjZDIuLjAwMDAwMDANCj4gLS0tIGEvbWV0YS1jZ2wt
+Y29tbW9uL3JlY2lwZXMtcGVybC9wZXJsL2xpYmh0bWwtdGFnc2V0LXBlcmxf
+My4yMC5iYg0KPiArKysgL2Rldi9udWxsDQo+IEBAIC0xLDE3ICswLDAgQEAN
+Cj4gLURFU0NSSVBUSU9OID0gIkhUTUwgVGFnc2V0IGJpdHMuIg0KPiAtSE9N
+RVBBR0UgPSAiaHR0cDovL3NlYXJjaC5jcGFuLm9yZy9kaXN0L0hUTUwtVGFn
+c2V0LyINCj4gLVNFQ1RJT04gPSAibGlicyINCj4gLUxJQ0VOU0UgPSAiQXJ0
+aXN0aWMtMS4wIHwgR1BMLTEuMCsiDQo+IC1MSUNfRklMRVNfQ0hLU1VNID0N
+Cj4gImZpbGU6Ly9SRUFETUU7YmVnaW5saW5lPTYwO21kNT0xNmRkZGEyZDg0
+NWE1NTQ2ZjYxNWU2YjEyMmQxZGJhZCINCj4gLVBSID0gInI0Ig0KPiAtDQo+
+IC1TUkNfVVJJID0gImh0dHA6Ly9zZWFyY2guY3Bhbi5vcmcvQ1BBTi9hdXRo
+b3JzL2lkL1AvUEUvUEVUREFOQ0UvSFRNTC1UYWdzZXQtDQo+ICR7UFZ9LnRh
+ci5neiINCj4gLQ0KPiAtUyA9ICIke1dPUktESVJ9L0hUTUwtVGFnc2V0LSR7
+UFZ9Ig0KPiAtDQo+IC1pbmhlcml0IGNwYW4NCj4gLQ0KPiAtQkJDTEFTU0VY
+VEVORD0ibmF0aXZlIg0KPiAtDQo+IC1TUkNfVVJJW21kNXN1bV0gPSAiZDJi
+ZmExOGZlMTkwNGRmN2Y2ODNlOTY2MTFlODc0MzciDQo+IC1TUkNfVVJJW3No
+YTI1NnN1bV0gPQ0KPiAiYWRiMTdkYWM5ZTM2Y2QwMTFmNTI0Mzg4MWM5NzM5
+NDE3ZmQxMDJmY2U3NjBmOGRlNGU5YmU0YzcxMzExMDhlMiINCj4gLS0NCj4g
+Mi43LjQNCj4gDQo+IC0tDQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fDQo+IHlvY3RvIG1haWxpbmcgbGlzdA0K
+PiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+IGh0dHBzOi8vbGlzdHMueW9j
+dG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KPiANCg0KCgo=
 
