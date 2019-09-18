@@ -1,64 +1,41 @@
-Return-Path: <joe.macdonald@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5AAEEE00D77; Wed, 18 Sep 2019 02:09:07 -0700 (PDT)
+	id 0A0CBE00D74; Wed, 18 Sep 2019 02:20:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.43 listed in list.dnswl.org]
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
-	[209.85.221.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF820E00782
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2019 02:09:06 -0700 (PDT)
-Received: by mail-wr1-f43.google.com with SMTP id h7so6016084wrw.8
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2019 02:09:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=sender:from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=CK+T58JL7iwNZtiYU4fi5J1+qtwpQ2KSKOeVKXASo5A=;
-	b=KZPNZHmpXLGMo+fPkmvudc50Xa1HUnRMixp/+gjtzrD2iYiUpvvHhKZuf7SyW4a8Rg
-	fPRo1zAdKQx6fWl2V7vDp0CMc25NCwCu9AF7HcZ1OB32gqS/kTISrMxrkFRglJxU2Q6Q
-	F8LDj4OttKswvLO1XNYtC/STVdwrSCyCpoFfhsRadxfrB+jCGBITwpoQ5AuH0vOBRC5b
-	izvF3L3bwO2kNK3Hfcwi3XHjP2g75jBSlmmk8V8I71qlr2Mcm+IfzFry8o7JkLgQqEWg
-	lXfa8ch7oRx8BLSAKFf8aABdBC7Iw1o54FsxG/WcAYIc/5jRGYp200I/ThQzdokG/+LS
-	PhTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding;
-	bh=CK+T58JL7iwNZtiYU4fi5J1+qtwpQ2KSKOeVKXASo5A=;
-	b=Kfa905EBWu0g4HFc6Aho+lcoQ8OG4TebwdIZfmwH58a+UGniztoyG5FC6ddHCPRxh4
-	xGH953TZL580++BUsMCWWD9X+H3VJkIguBuAlwmrxEZ6HIt4YV+Ydx1E0Xt3YThT4F73
-	7fRzy4ji8ZHYCH+NSgs+tFd66Vj9WeFgp6ZZU0mn2mUQ0T1jXBk9AUGIWgjSDZr4oQhH
-	gw8ceCXgbO2Xbn1t6pyMXPdTe8rHcXReLyIdxEKpkFui94wRy+bmHZeVNr4kOXp0JmVd
-	dp5Bo7UovVxRPV5CBV8QrBrgbjlR5mnmxaT79PLrwMRnakTxW3w+dYx1O4XAaPwJp1Pc
-	wLgw==
-X-Gm-Message-State: APjAAAVJhETprf4WlydjrhAlemWgPfERTPKiWSGhvA7Dp3O87yKnrOzD
-	f/Y9lPWO6eXlnUMAgYv9JTQijkWmOdk=
-X-Google-Smtp-Source: APXvYqwPpiFS3qxw3xxJaOQtbxtGgTpYvBu+WZUA3GuaP5yQSJGdp8ayAhvBQKvEh8DozNj8cqi9mg==
-X-Received: by 2002:a5d:6951:: with SMTP id r17mr2118657wrw.208.1568797744468; 
-	Wed, 18 Sep 2019 02:09:04 -0700 (PDT)
-Received: from nightwinge.world.mentorg.com (nat-wv.mentorg.com.
-	[192.94.38.34]) by smtp.gmail.com with ESMTPSA id
-	q192sm1698275wme.23.2019.09.18.02.09.02
-	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Wed, 18 Sep 2019 02:09:03 -0700 (PDT)
-Sender: Joe MacDonald <joe.macdonald@gmail.com>
-From: Joe MacDonald <joe_macdonald@mentor.com>
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D0FAE00D74
+	for <yocto@yoctoproject.org>; Wed, 18 Sep 2019 02:20:12 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	18 Sep 2019 02:20:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,520,1559545200"; d="scan'208";a="191663899"
+Received: from abloeckn-mobl.ger.corp.intel.com (HELO blackadder.local)
+	([10.249.38.226])
+	by orsmga006.jf.intel.com with ESMTP; 18 Sep 2019 02:20:09 -0700
 To: yocto@yoctoproject.org
-Date: Wed, 18 Sep 2019 05:08:57 -0400
-Message-Id: <20190918090857.10754-1-joe_macdonald@mentor.com>
-X-Mailer: git-send-email 2.20.1
+References: <CA+FhBv9bStUZ1kMrmxRh7AnxbxT9Uth8Jh1wWtiQ-a9e7SXKPA@mail.gmail.com>
+From: Ross Burton <ross.burton@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+	Swindon SN3 1RJ
+Message-ID: <3805babd-5eda-2fed-f539-3d5defc1bfe2@intel.com>
+Date: Wed, 18 Sep 2019 10:20:08 +0100
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
+	Gecko/20100101 Thunderbird/60.9.0
 MIME-Version: 1.0
-Subject: [meta-selinux][warrior][PATCH] compat: remove thud from warrior layer compatibility list
+In-Reply-To: <CA+FhBv9bStUZ1kMrmxRh7AnxbxT9Uth8Jh1wWtiQ-a9e7SXKPA@mail.gmail.com>
+Subject: Re: Changing HOST_CC_ARCH temporarily in recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,34 +47,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Sep 2019 09:09:07 -0000
+X-List-Received-Date: Wed, 18 Sep 2019 09:20:13 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 8bit
 
-Based on this discussion:
-https://www.mail-archive.com/yocto@yoctoproject.org/msg45785.html the
-warrior branch does not build against oe-core thud any longer.  Since
-that's not really intended to be a supported use caes anyway, remove the
-layer compatibility statement for thud.
+On 18/09/2019 09:26, Damien LEFEVRE wrote:
+> I have a package which requires to first build a x64 binary which is 
+> then used to compile the target platform binaries.
+> 
+> The way I got away with it was to build that host binary from 
+> do_configure_prepend() and then continue with the build procedure.
+> 
+> I recently upgraded to GCC7 + warrior and now building the host binary 
+> from do_configure_prepend fails due to this error:
+> testCCompiler.c:1:0: error: bad value (armv8-a+crc) for -march= switch
+> 
+> I figured that the arch switch (building for tegra) is defined 
+> in HOST_CC_ARCH as:
+> -march=armv8-a+crc -fstack-protector-strong  -D_FORTIFY_SOURCE=2 
+> -Wformat -Wformat-security -Werror=format-security
+> 
+> If I clear HOST_CC_ARCH in my recipe file, do_configure_prepend succeeds 
+> but of course the rest of the build will fail.
+> 
+> So i'm trying to do something like this:
+> do_configure_prepend(){
+>      export HOST_CC_ARCH_BACKUP="${HOST_CC_ARCH}"
+>      HOST_CC_ARCH=""
+>      echo "HOST_CC_ARCH before cmake: ${HOST_CC_ARCH}"
+>      CC="${BUILD_CC}" CXX="${BUILD_CXX}" CCFLAGS="${BUILD_CFLAGS}" 
+>   CXXFLAGS="${BUILD_CPPFLAGS} -std=c++11" LDFLAGS="${BUILD_LDFLAGS}" 
+> cmake ${S}
+>      make
+>      HOST_CC_ARCH="${HOST_CC_ARCH_BACKUP}"
+> }
 
-Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
----
- conf/layer.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Two solutions:
+1) Work around the problem by manually building the tool yourself.  This 
+should be done in do_compile_prepend so that it isn't newer than the 
+makefiles, which would cause it to be regenerated.
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 9dd34b1..b10bd76 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -18,7 +18,7 @@ BBFILE_PRIORITY_selinux = "5"
- # cause compatibility issues with other layers
- LAYERVERSION_selinux = "1"
- 
--LAYERSERIES_COMPAT_selinux = "thud warrior"
-+LAYERSERIES_COMPAT_selinux = "warrior"
- 
- LAYERDEPENDS_selinux = " \
-     core \
--- 
-2.20.1
+There's no need to mess around with HOST_CC_ARCH. That is only used in 
+CC/CXX/FC/CPP, and you should be using BUILD_CC etc anyway.  This 
+*should* work:
 
+do_compile_prepend() {
+   CC="${BUILD_CC}" CPP=... CFLAGS=... CXXFLAGS=... LDFLAGS=... make 
+[target]
+}
+
+(expand the ..., I'm lazy)
+
+If HOST_CC_ARCH is being used then there's only a limited number of 
+variables that use it, so override the right ones. May be CPP, may be 
+CXX. Looking at the makefile will tell you. Always just build exactly 
+what you need with the native compiler, not more.
+
+However the proper solution is
+2) fix the cmakefiles to work in cross builds.  CMake actually makes 
+this even harder than autotools which is quite an achievement: 
+https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/CrossCompiling#using-executables-in-the-build-created-during-the-build. 
+  Quite likely easier to port to Meson, where you just set the native 
+property on a binary target.
+
+Ross
 
