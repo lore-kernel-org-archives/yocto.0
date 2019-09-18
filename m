@@ -1,44 +1,54 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <phodina@protonmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0A0CBE00D74; Wed, 18 Sep 2019 02:20:13 -0700 (PDT)
+	id 0BBBBE00D86; Wed, 18 Sep 2019 06:26:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D0FAE00D74
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2019 02:20:12 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	18 Sep 2019 02:20:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,520,1559545200"; d="scan'208";a="191663899"
-Received: from abloeckn-mobl.ger.corp.intel.com (HELO blackadder.local)
-	([10.249.38.226])
-	by orsmga006.jf.intel.com with ESMTP; 18 Sep 2019 02:20:09 -0700
-To: yocto@yoctoproject.org
-References: <CA+FhBv9bStUZ1kMrmxRh7AnxbxT9Uth8Jh1wWtiQ-a9e7SXKPA@mail.gmail.com>
-From: Ross Burton <ross.burton@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
-	Swindon SN3 1RJ
-Message-ID: <3805babd-5eda-2fed-f539-3d5defc1bfe2@intel.com>
-Date: Wed, 18 Sep 2019 10:20:08 +0100
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
-	Gecko/20100101 Thunderbird/60.9.0
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (phodina[at]protonmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [185.70.40.136 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+X-Greylist: delayed 560 seconds by postgrey-1.32 at yocto-www;
+	Wed, 18 Sep 2019 06:26:30 PDT
+Received: from mail-40136.protonmail.ch (mail-40136.protonmail.ch
+	[185.70.40.136])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F188E00D82
+	for <yocto@yoctoproject.org>; Wed, 18 Sep 2019 06:26:30 -0700 (PDT)
+Date: Wed, 18 Sep 2019 13:17:01 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=default; t=1568812628;
+	bh=sXDWnvgqr2v5EwLRLmvh11zMRjOiw39OEpo+blaLPZg=;
+	h=Date:To:From:Reply-To:Subject:In-Reply-To:References:Feedback-ID:
+	From;
+	b=CmljaiDtA/86w8JRBLw0mmkpIqTd8FTTnxL4htqB0C11VbBErhxUX41X597vOqxac
+	DR8nIRoH747YsJEjuhdJSUuXJ5Z2iRivRa/wlyNFPBvu1qGmAnbZ2Lak/K0UDqM52P
+	Clw1kL8zNOETgFw1nRDcGPjtT0d0qQHCehCYfpPk=
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: phodina <phodina@protonmail.com>
+Message-ID: <wNEOi-_A4sN9BRhUCA6bCldM2iWQIpgYPAYUaT3Gqku16wkJq_fXBk_jlOuoUZpFBv4T7_CqWpoA7Yl0I0rHbvrsYpI5g7FtdjQ36SyI2Xc=@protonmail.com>
+In-Reply-To: <6v81ntCcT70rvm2b8GwiRAeNSZSIEec-hUpr0hIN7HYR9RySExiu50vZaZM0jXSjiu2PYGbQ5mKn1e0cv3q13NlyJ5rwb6cdV0h1mpb9jXc=@protonmail.com>
+References: <iKxrudTDXgn2XHKttVPFe-_xTAbPoQUMbSBzr7r6Xza3vohxh9wPCRrFZo7bf1bgrQj_DKCt-5Ky7-dagX_blQpi_uZbWfnAvp7TDCCbh0U=@protonmail.com>
+	<8bb3f05c-966b-4076-6593-d042bb8240ad@gmail.com>
+	<6v81ntCcT70rvm2b8GwiRAeNSZSIEec-hUpr0hIN7HYR9RySExiu50vZaZM0jXSjiu2PYGbQ5mKn1e0cv3q13NlyJ5rwb6cdV0h1mpb9jXc=@protonmail.com>
+Feedback-ID: WU-00Ahv_QFc-Old2XdUwP9_sGElXtQR31rOJwjYWWqLX_9ex7ByiHdLFjcA-uzDxwcHRsVBm6TqgwWtgB1KAA==:Ext:ProtonMail
 MIME-Version: 1.0
-In-Reply-To: <CA+FhBv9bStUZ1kMrmxRh7AnxbxT9Uth8Jh1wWtiQ-a9e7SXKPA@mail.gmail.com>
-Subject: Re: Changing HOST_CC_ARCH temporarily in recipe
+Subject: Awkward line wrapping in bash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: phodina <phodina@protonmail.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -47,69 +57,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Sep 2019 09:20:13 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 18 Sep 2019 13:26:32 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 18/09/2019 09:26, Damien LEFEVRE wrote:
-> I have a package which requires to first build a x64 binary which is 
-> then used to compile the target platform binaries.
-> 
-> The way I got away with it was to build that host binary from 
-> do_configure_prepend() and then continue with the build procedure.
-> 
-> I recently upgraded to GCC7 + warrior and now building the host binary 
-> from do_configure_prepend fails due to this error:
-> testCCompiler.c:1:0: error: bad value (armv8-a+crc) for -march= switch
-> 
-> I figured that the arch switch (building for tegra) is defined 
-> in HOST_CC_ARCH as:
-> -march=armv8-a+crc -fstack-protector-strong  -D_FORTIFY_SOURCE=2 
-> -Wformat -Wformat-security -Werror=format-security
-> 
-> If I clear HOST_CC_ARCH in my recipe file, do_configure_prepend succeeds 
-> but of course the rest of the build will fail.
-> 
-> So i'm trying to do something like this:
-> do_configure_prepend(){
->      export HOST_CC_ARCH_BACKUP="${HOST_CC_ARCH}"
->      HOST_CC_ARCH=""
->      echo "HOST_CC_ARCH before cmake: ${HOST_CC_ARCH}"
->      CC="${BUILD_CC}" CXX="${BUILD_CXX}" CCFLAGS="${BUILD_CFLAGS}" 
->   CXXFLAGS="${BUILD_CPPFLAGS} -std=c++11" LDFLAGS="${BUILD_LDFLAGS}" 
-> cmake ${S}
->      make
->      HOST_CC_ARCH="${HOST_CC_ARCH_BACKUP}"
-> }
+Hi,
 
-Two solutions:
-1) Work around the problem by manually building the tool yourself.  This 
-should be done in do_compile_prepend so that it isn't newer than the 
-makefiles, which would cause it to be regenerated.
+so I tried the PS1 prompt as suggested by Andr=C3=A9 and it worked at that =
+time on the booted system. So I changed the configuration in /etc/profile, =
+built and flashed the system.
 
-There's no need to mess around with HOST_CC_ARCH. That is only used in 
-CC/CXX/FC/CPP, and you should be using BUILD_CC etc anyway.  This 
-*should* work:
+Unfortunately it=E2=80=99s not working and I get the same issue - the line =
+wrapping.
 
-do_compile_prepend() {
-   CC="${BUILD_CC}" CPP=... CFLAGS=... CXXFLAGS=... LDFLAGS=... make 
-[target]
-}
+Here is the content of the /etc/profile:
 
-(expand the ..., I'm lazy)
+# /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
+# and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
 
-If HOST_CC_ARCH is being used then there's only a limited number of 
-variables that use it, so override the right ones. May be CPP, may be 
-CXX. Looking at the makefile will tell you. Always just build exactly 
-what you need with the native compiler, not more.
+PATH=3D"/usr/local/bin:/usr/bin:/bin"
+EDITOR=3D"vi"                     # needed for packages like cron, git-comm=
+it
+[ "$TERM" ] || TERM=3D"vt100"     # Basic terminal capab. For screen etc.
 
-However the proper solution is
-2) fix the cmakefiles to work in cross builds.  CMake actually makes 
-this even harder than autotools which is quite an achievement: 
-https://gitlab.kitware.com/cmake/community/wikis/doc/cmake/CrossCompiling#using-executables-in-the-build-created-during-the-build. 
-  Quite likely easier to port to Meson, where you just set the native 
-property on a binary target.
+# Add /sbin & co to $PATH for the root user
+[ "$HOME" !=3D "/home/root" ] || PATH=3D$PATH:/usr/local/sbin:/usr/sbin:/sb=
+in
 
-Ross
+# Set the prompt for bash and ash (no other shells known to be in use here)
+[ -z "$PS1" ] || PS1=3D"$(cat /etc/device/hwid)@\h:\w \001\033[96m\002# \00=
+1\033[0m\002"
+
+if [ -d /etc/profile.d ]; then
+        for i in /etc/profile.d/*.sh; do
+                if [ -f $i -a -r $i ]; then
+                        . $i
+                fi
+        done
+        unset i
+fi
+
+# Make sure we are on a serial console (i.e. the device used starts with
+# /dev/tty[A-z]), otherwise we confuse e.g. the eclipse launcher which trie=
+s do
+# use ssh
+case $(tty 2>/dev/null) in
+        /dev/tty[A-z]*) [ -x /usr/bin/resize ] && /usr/bin/resize >/dev/nul=
+l;;
+esac
+
+export PATH PS1 OPIEDIR QPEDIR QTDIR EDITOR TERM
+
+umask 022
+
+
+I also turned on `checkwinsize` using `shopt` but didn=E2=80=99t work.
+
+I also include the output of stty (over serial):
+
+speed 115200 baud; line =3D 0;
+-brkint ixoff iutf8
+-iexten
+
+And over SSH:
+
+speed 38400 baud; line =3D 0;
+eol =3D M-^?; eol2 =3D M-^?;
+-brkint ixany iutf8
+
+I connect to the board over serial using screen on Mac. In minicom I get th=
+e same issue as do my colleagues on Windows using putty or screen on Linux.=
+ Same happens over SSH.
+
+I also checked that the terming package and those files are installed corre=
+ctly in /etc/terminfo.
+
+Kind regards
+Petr Hodina
+
+=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90 Original Me=
+ssage =E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90
+On Monday, September 16, 2019 1:02 PM, phodina <phodina@protonmail.com> wro=
+te:
+
+> Thanks Andr=C3=A9,
+>
+> the PS1 variable has been the cause. Now bash behaves as expected.
+>
+> Petr
+>
+> =E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90 Original =
+Message =E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90
+> On Monday, September 16, 2019 12:14 PM, Andr=C3=A9 Castro andre.castro.sw=
+@gmail.com wrote:
+>
+> > Hi Petr,
+> > On Mon, 16 Sep 2019, at 10:34:33 AM (WEST+0100), Phodina wrote:
+> >
+> > > Hi,
+> > > I would like to ask for a help with an awkward behavior of line wrap =
+in bash
+> > > built using Yocto (thud release). When I connect over serial line, I =
+get strange
+> > > line wrapping.
+> >
+> > This might not be related to Yocto.
+> >
+> > > The line keeps wrapping on the first line. Here is the environment:
+> > > guest@:ebox~ # printenv
+> > > LANG=3DC
+> > > EDITOR=3Dvi
+> > > HZ=3D100
+> > > HUSHLOGIN=3DFALSE
+> > > USER=3Droot
+> > > PWD=3D/home/root
+> > > HOME=3D/home/root
+> > > SHELL=3D/bin/sh
+> > > TERM=3Dlinux
+> > > SHLVL=3D1
+> > > LOGNAME=3Droot
+> > > PATH=3D/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+> > > PS1=3Dguest@:ebox\w \033[96m# \033[0m
+> > > _=3D/bin/printenv
+> > > I looked for solution and the best direction seems to be run with cle=
+an
+> > > environment env -i bash --norc --noprofile
+> > > And the env:
+> > > bash-4.4# printenv
+> > > PWD=3D/home/root
+> > > SHLVL=3D1
+> > > _=3D/bin/printenv
+> >
+> > The probable cause of this is the "PS1" variable definition, specially =
+the
+> > colours part. Have a look at thread [1], maybe [2] answer will help.
+> > My suggestion is:
+> > PS1=3D"guest@:ebox\w \001\033[96m\002# \001\033[0m\002"
+> > [1]
+> > https://unix.stackexchange.com/questions/105958/terminal-prompt-not-wra=
+pping-correctly
+> > [2]
+> > https://unix.stackexchange.com/questions/105958/terminal-prompt-not-wra=
+pping-correctly/447520#447520
+> >
+> > Andr=C3=A9
+
+
 
