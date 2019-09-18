@@ -1,72 +1,64 @@
-Return-Path: <prvs=157cabe6c=Mikko.Rapeli@bmw.de>
+Return-Path: <joe.macdonald@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6B9C7E00D77; Wed, 18 Sep 2019 01:45:49 -0700 (PDT)
+	id 5AAEEE00D77; Wed, 18 Sep 2019 02:09:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [68.232.133.150 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www;
-	Wed, 18 Sep 2019 01:45:48 PDT
-Received: from esa3.bmw.c3s2.iphmx.com (esa3.bmw.c3s2.iphmx.com
-	[68.232.133.150])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D55EEE008D9
-	for <yocto@yoctoproject.org>; Wed, 18 Sep 2019 01:45:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-	t=1568796349; x=1600332349;
-	h=from:to:cc:subject:date:message-id:references:
-	in-reply-to:content-id:content-transfer-encoding: mime-version;
-	bh=TvRIQRmil/TAZUDBfg5VKy6z7RLfumssZTzLuqNcoxs=;
-	b=MdY69hOqt29Ba+uatFGR8dRdSz7t1LIUzdASBQ7t6B9AtgcEnicSokBw
-	8+35gJmtOvhgPJH2KTD02stVwVzCsXNnPfl2H/zpGVJ6v6fusNHQ/sPG2
-	ZdelmG/zYAHjDzAK9xl+TPA2KI7kMpUq+ewRswMYQQyt+pwNW89CEuHgj 8=;
-IronPort-SDR: 8Sp4RROdfJjxAkXM86iid0GplOjgJbPP7XHNW0MadhXcY+g24jWl/4rwCoYpsIuXqYBZbs3QyC
-	jxwreKL4X7I+rdv7RO1Kh16tQMKgwdcI9cC0IIX1X/Fbt9CRFzzqpFUaHF5LLWYEocRJPiTQcw
-	epnmjAwDBsZktyL1ige5myZRwNvoZTzFG3kdpdQV806ctTBsY0jPFszj1L5cj1O1dJKl37P9Ns
-	iXWSStnnGeckfzMe0DNp+llH3zyKHNnAvoMjnexHZGLh3wfgBacKQrnw8HvvcoKXUzLCzbUyhg
-	YdE=
-Received: from esagw3.bmwgroup.com (HELO esagw3.muc) ([160.46.252.35]) by
-	esa3.bmw.c3s2.iphmx.com with ESMTP/TLS; 18 Sep 2019 10:44:46 +0200
-Received: from esabb1.muc ([160.50.100.31])  by esagw3.muc with ESMTP/TLS;
-	18 Sep 2019 10:44:44 +0200
-Received: from smucm10m.bmwgroup.net (HELO smucm10m.europe.bmw.corp)
-	([160.48.96.49])
-	by esabb1.muc with ESMTP/TLS; 18 Sep 2019 10:44:44 +0200
-Received: from smucm10k.europe.bmw.corp (160.48.96.47) by
-	smucm10m.europe.bmw.corp
-	(160.48.96.49) with Microsoft SMTP Server (TLS;
-	Wed, 18 Sep 2019 10:44:43 +0200
-Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
-	smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005;
-	Wed, 18 Sep 2019 10:44:43 +0200
-From: <Mikko.Rapeli@bmw.de>
-To: <lefevre.da@gmail.com>
-Thread-Topic: [yocto] Changing HOST_CC_ARCH temporarily in recipe
-Thread-Index: AQHVbfsq1FK4ShK8PEy5ZNmxpUoabqcw/SKA
-Date: Wed, 18 Sep 2019 08:44:43 +0000
-Message-ID: <20190918084441.GU6154@hiutale>
-References: <CA+FhBv9bStUZ1kMrmxRh7AnxbxT9Uth8Jh1wWtiQ-a9e7SXKPA@mail.gmail.com>
-In-Reply-To: <CA+FhBv9bStUZ1kMrmxRh7AnxbxT9Uth8Jh1wWtiQ-a9e7SXKPA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [192.168.221.37]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.43 listed in list.dnswl.org]
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com
+	[209.85.221.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF820E00782
+	for <yocto@yoctoproject.org>; Wed, 18 Sep 2019 02:09:06 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id h7so6016084wrw.8
+	for <yocto@yoctoproject.org>; Wed, 18 Sep 2019 02:09:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=sender:from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=CK+T58JL7iwNZtiYU4fi5J1+qtwpQ2KSKOeVKXASo5A=;
+	b=KZPNZHmpXLGMo+fPkmvudc50Xa1HUnRMixp/+gjtzrD2iYiUpvvHhKZuf7SyW4a8Rg
+	fPRo1zAdKQx6fWl2V7vDp0CMc25NCwCu9AF7HcZ1OB32gqS/kTISrMxrkFRglJxU2Q6Q
+	F8LDj4OttKswvLO1XNYtC/STVdwrSCyCpoFfhsRadxfrB+jCGBITwpoQ5AuH0vOBRC5b
+	izvF3L3bwO2kNK3Hfcwi3XHjP2g75jBSlmmk8V8I71qlr2Mcm+IfzFry8o7JkLgQqEWg
+	lXfa8ch7oRx8BLSAKFf8aABdBC7Iw1o54FsxG/WcAYIc/5jRGYp200I/ThQzdokG/+LS
+	PhTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding;
+	bh=CK+T58JL7iwNZtiYU4fi5J1+qtwpQ2KSKOeVKXASo5A=;
+	b=Kfa905EBWu0g4HFc6Aho+lcoQ8OG4TebwdIZfmwH58a+UGniztoyG5FC6ddHCPRxh4
+	xGH953TZL580++BUsMCWWD9X+H3VJkIguBuAlwmrxEZ6HIt4YV+Ydx1E0Xt3YThT4F73
+	7fRzy4ji8ZHYCH+NSgs+tFd66Vj9WeFgp6ZZU0mn2mUQ0T1jXBk9AUGIWgjSDZr4oQhH
+	gw8ceCXgbO2Xbn1t6pyMXPdTe8rHcXReLyIdxEKpkFui94wRy+bmHZeVNr4kOXp0JmVd
+	dp5Bo7UovVxRPV5CBV8QrBrgbjlR5mnmxaT79PLrwMRnakTxW3w+dYx1O4XAaPwJp1Pc
+	wLgw==
+X-Gm-Message-State: APjAAAVJhETprf4WlydjrhAlemWgPfERTPKiWSGhvA7Dp3O87yKnrOzD
+	f/Y9lPWO6eXlnUMAgYv9JTQijkWmOdk=
+X-Google-Smtp-Source: APXvYqwPpiFS3qxw3xxJaOQtbxtGgTpYvBu+WZUA3GuaP5yQSJGdp8ayAhvBQKvEh8DozNj8cqi9mg==
+X-Received: by 2002:a5d:6951:: with SMTP id r17mr2118657wrw.208.1568797744468; 
+	Wed, 18 Sep 2019 02:09:04 -0700 (PDT)
+Received: from nightwinge.world.mentorg.com (nat-wv.mentorg.com.
+	[192.94.38.34]) by smtp.gmail.com with ESMTPSA id
+	q192sm1698275wme.23.2019.09.18.02.09.02
+	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+	Wed, 18 Sep 2019 02:09:03 -0700 (PDT)
+Sender: Joe MacDonald <joe.macdonald@gmail.com>
+From: Joe MacDonald <joe_macdonald@mentor.com>
+To: yocto@yoctoproject.org
+Date: Wed, 18 Sep 2019 05:08:57 -0400
+Message-Id: <20190918090857.10754-1-joe_macdonald@mentor.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Changing HOST_CC_ARCH temporarily in recipe
+Subject: [meta-selinux][warrior][PATCH] compat: remove thud from warrior layer compatibility list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,68 +70,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Sep 2019 08:45:49 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <F4D5DD9A816BEB4EB74C6A1D548C0FC7@bmwmail.corp>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 18 Sep 2019 09:09:07 -0000
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Based on this discussion:
+https://www.mail-archive.com/yocto@yoctoproject.org/msg45785.html the
+warrior branch does not build against oe-core thud any longer.  Since
+that's not really intended to be a supported use caes anyway, remove the
+layer compatibility statement for thud.
 
-On Wed, Sep 18, 2019 at 11:26:29AM +0300, Damien LEFEVRE wrote:
-> Hi,
->=20
-> I have a package which requires to first build a x64 binary which is then
-> used to compile the target platform binaries.
->=20
-> The way I got away with it was to build that host binary from
-> do_configure_prepend() and then continue with the build procedure.
->=20
-> I recently upgraded to GCC7 + warrior and now building the host binary
-> from do_configure_prepend fails due to this error:
-> testCCompiler.c:1:0: error: bad value (armv8-a+crc) for -march=3D switch
->=20
-> I figured that the arch switch (building for tegra) is defined
-> in HOST_CC_ARCH as:
-> -march=3Darmv8-a+crc -fstack-protector-strong  -D_FORTIFY_SOURCE=3D2 -Wfo=
-rmat
-> -Wformat-security -Werror=3Dformat-security
->=20
-> If I clear HOST_CC_ARCH in my recipe file, do_configure_prepend succeeds
-> but of course the rest of the build will fail.
->=20
-> So i'm trying to do something like this:
-> do_configure_prepend(){
->     export HOST_CC_ARCH_BACKUP=3D"${HOST_CC_ARCH}"
->     HOST_CC_ARCH=3D""
->     echo "HOST_CC_ARCH before cmake: ${HOST_CC_ARCH}"
->     CC=3D"${BUILD_CC}" CXX=3D"${BUILD_CXX}" CCFLAGS=3D"${BUILD_CFLAGS}"
->  CXXFLAGS=3D"${BUILD_CPPFLAGS} -std=3Dc++11" LDFLAGS=3D"${BUILD_LDFLAGS}"=
- cmake
-> ${S}
->     make
->     HOST_CC_ARCH=3D"${HOST_CC_ARCH_BACKUP}"
-> }
->=20
-> There I still get:
-> HOST_CC_ARCH before cmake:  -march=3Darmv8-a+crc -fstack-protector-strong
->  -D_FORTIFY_SOURCE=3D2 -Wformat -Wformat-security -Werror=3Dformat-securi=
-ty
->=20
-> So HOST_CC_ARCH doesn't get updated.
->=20
-> How can I temporarily reset HOST_CC_ARCH?
+Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
+---
+ conf/layer.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Only clean way to do this is to split the recipe into two parts:
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 9dd34b1..b10bd76 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -18,7 +18,7 @@ BBFILE_PRIORITY_selinux = "5"
+ # cause compatibility issues with other layers
+ LAYERVERSION_selinux = "1"
+ 
+-LAYERSERIES_COMPAT_selinux = "thud warrior"
++LAYERSERIES_COMPAT_selinux = "warrior"
+ 
+ LAYERDEPENDS_selinux = " \
+     core \
+-- 
+2.20.1
 
- * native for the build time tooling
-
- * target for the target only build, which depends on the native build
-   time tooling
-
-Everything else is a hack :)
-
-Hope this helps,
-
--Mikko=
 
