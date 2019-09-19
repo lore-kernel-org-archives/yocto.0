@@ -1,91 +1,54 @@
-Return-Path: <maciej.pijanowski@3mdeb.com>
+Return-Path: <phodina@protonmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 22DB3E00D54; Thu, 19 Sep 2019 08:04:55 -0700 (PDT)
+	id 59E09E00D63; Thu, 19 Sep 2019 08:44:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [87.98.162.229 listed in list.dnswl.org]
-X-Greylist: delayed 3598 seconds by postgrey-1.32 at yocto-www;
-	Thu, 19 Sep 2019 08:04:53 PDT
-Received: from 12.mo1.mail-out.ovh.net (12.mo1.mail-out.ovh.net
-	[87.98.162.229])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E373CE009E2
-	for <yocto@yoctoproject.org>; Thu, 19 Sep 2019 08:04:53 -0700 (PDT)
-Received: from player791.ha.ovh.net (unknown [10.108.54.67])
-	by mo1.mail-out.ovh.net (Postfix) with ESMTP id E285018F59A
-	for <yocto@yoctoproject.org>; Thu, 19 Sep 2019 15:45:18 +0200 (CEST)
-Received: from 3mdeb.com (85-222-117-222.dynamic.chello.pl [85.222.117.222])
-	(Authenticated sender: maciej.pijanowski@3mdeb.com)
-	by player791.ha.ovh.net (Postfix) with ESMTPSA id 389829E2B7B2;
-	Thu, 19 Sep 2019 13:45:17 +0000 (UTC)
-To: Patrick Doyle <wpdster@gmail.com>,
-	Yocto discussion list <yocto@yoctoproject.org>
-References: <CAF_dkJBpgkpBJMTueuiNFNEVDeLy6=ZowViJ-G4QzDBOx=qRZw@mail.gmail.com>
-From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=maciej.pijanowski@3mdeb.com; keydata=
-	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
-	0f2bcrTp9w==
-Message-ID: <17495225-57cc-ead7-d202-0a409d7a7e4f@3mdeb.com>
-Date: Thu, 19 Sep 2019 15:45:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (phodina[at]protonmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [185.70.40.130 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-40130.protonmail.ch (mail-40130.protonmail.ch
+	[185.70.40.130])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 712A9E00D54
+	for <yocto@yoctoproject.org>; Thu, 19 Sep 2019 08:44:05 -0700 (PDT)
+Date: Thu, 19 Sep 2019 15:43:59 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+	s=default; t=1568907842;
+	bh=ndSTut9m/WoCEboMQa/1W7qqPGg7lrc3NvS908jJq08=;
+	h=Date:To:From:Reply-To:Subject:In-Reply-To:References:Feedback-ID:
+	From;
+	b=Kjxa2nQ5pCSkkKwTUHMlFksBCluR5LdQeY5IDtmpXDdV+luimwoZvfEslXXwUODH0
+	AxbBLaTauliTJ1KWVViCFSKySh5N03gjVtHCbrD/KSQEhXCYmu1mqnKFGRIvSPLheP
+	bGRg3i47EuTWglkxx0BqCTzCRHfffRAeAhlbCSRM=
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+From: phodina <phodina@protonmail.com>
+Message-ID: <Ji28AOGAddYhx0MrDU5EjIkRSdwJCwFCsKtxE6zFAllu6lRRNxSKIJd_HoP2gWRr2U6Mkl1i-39AIVXKdnsWpiBIX40FA4DdGUqmy0zOGpA=@protonmail.com>
+In-Reply-To: <bb902393-3fc3-6b68-f418-3c2a4d3b189c@gmail.com>
+References: <iKxrudTDXgn2XHKttVPFe-_xTAbPoQUMbSBzr7r6Xza3vohxh9wPCRrFZo7bf1bgrQj_DKCt-5Ky7-dagX_blQpi_uZbWfnAvp7TDCCbh0U=@protonmail.com>
+	<8bb3f05c-966b-4076-6593-d042bb8240ad@gmail.com>
+	<6v81ntCcT70rvm2b8GwiRAeNSZSIEec-hUpr0hIN7HYR9RySExiu50vZaZM0jXSjiu2PYGbQ5mKn1e0cv3q13NlyJ5rwb6cdV0h1mpb9jXc=@protonmail.com>
+	<wNEOi-_A4sN9BRhUCA6bCldM2iWQIpgYPAYUaT3Gqku16wkJq_fXBk_jlOuoUZpFBv4T7_CqWpoA7Yl0I0rHbvrsYpI5g7FtdjQ36SyI2Xc=@protonmail.com>
+	<bb902393-3fc3-6b68-f418-3c2a4d3b189c@gmail.com>
+Feedback-ID: WU-00Ahv_QFc-Old2XdUwP9_sGElXtQR31rOJwjYWWqLX_9ex7ByiHdLFjcA-uzDxwcHRsVBm6TqgwWtgB1KAA==:Ext:ProtonMail
 MIME-Version: 1.0
-In-Reply-To: <CAF_dkJBpgkpBJMTueuiNFNEVDeLy6=ZowViJ-G4QzDBOx=qRZw@mail.gmail.com>
-X-Ovh-Tracer-Id: 9686679850183962281
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrvddtgdeilecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-Subject: Re: How to share files between recipes?
+Subject: Re: Awkward line wrapping in bash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: phodina <phodina@protonmail.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -94,107 +57,228 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Sep 2019 15:04:55 -0000
-X-Groupsio-MsgNum: 46650
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature";
-	boundary="VqZQUJ1ov26d0Ml9pFyobTar0xRfHGGnr"
-
---VqZQUJ1ov26d0Ml9pFyobTar0xRfHGGnr
-Content-Type: multipart/mixed; boundary="5n9xtwhbPSwDkmHK84XM5lQrf2DgJucqt";
- protected-headers="v1"
-From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
-To: Patrick Doyle <wpdster@gmail.com>,
- Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <17495225-57cc-ead7-d202-0a409d7a7e4f@3mdeb.com>
-Subject: Re: [yocto] How to share files between recipes?
-References: <CAF_dkJBpgkpBJMTueuiNFNEVDeLy6=ZowViJ-G4QzDBOx=qRZw@mail.gmail.com>
-In-Reply-To: <CAF_dkJBpgkpBJMTueuiNFNEVDeLy6=ZowViJ-G4QzDBOx=qRZw@mail.gmail.com>
-
---5n9xtwhbPSwDkmHK84XM5lQrf2DgJucqt
-Content-Type: text/plain; charset=utf-8
+X-List-Received-Date: Thu, 19 Sep 2019 15:44:07 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
+
+Hi,
+
+based on Andr=C3=A9 recommendation I commented out the PS1 variable and now=
+ I get `-sh-4.4#` for the prompt. I also checked and nothing is overwriting=
+ the variable.
+
+But I tried to change the size of the shell by using `stty cols 100 rows 40=
+` as well as different sizes (smaller and bigger than 80 columns), but the =
+amount of characters I get on the line stays at 81 followed by carrige retu=
+rn. However if I record the session with `script` I get the correct amount =
+of characters per line.
+
+Here is my `stty -a` output:
+speed 115200 baud; rows 24; columns 100; line =3D 0;
+intr =3D ^C; quit =3D ^\; erase =3D ^?; kill =3D ^U; eof =3D ^D; eol =3D <u=
+ndef>; eol2 =3D <undef>;
+swtch =3D <undef>; start =3D ^Q; stop =3D ^S; susp =3D ^Z; rprnt =3D ^R; we=
+rase =3D ^W; lnext =3D ^V; discard =3D ^O;
+min =3D 1; time =3D 0;
+-parenb -parodd -cmspar cs8 hupcl -cstopb cread clocal -crtscts
+-ignbrk -brkint -ignpar -parmrk -inpck -istrip -inlcr -igncr icrnl ixon ixo=
+ff -iuclc -ixany imaxbel
+iutf8
+opost -olcuc -ocrnl onlcr -onocr -onlret -ofill -ofdel nl0 cr0 tab0 bs0 vt0=
+ ff0
+isig icanon -iexten echo echoe echok -echonl -noflsh -xcase -tostop -echopr=
+t echoctl echoke -flusho
+-extproc
+
+Best regards
+Petr hodina
 
 
-On 19.09.2019 15:39, Patrick Doyle wrote:
-> I have a set of data files (cryptographic keys) that I would like to
-> share among several recipes in my build.  They won't go into the
-> rootfs, but they will be used by multiple recipes that construct the
-> rootfs.  So, to the best of my understanding, it seems like I should
-> put them in sysroot and somehow access them from there.
->
-> I constructed the following recipe:
-> SUMMARY =3D "Development keys used by my image"
-> DESCRIPTION =3D "Install the development keys in the sysroot so that th=
-ey \
-> can be referenced by other recipes."
->
-> LICENSE =3D "Proprietary"
-> LIC_FILES_CHKSUM =3D
-> "file://${COMMON_LICENSE_DIR}/Proprietary;md5=3D0557f9d92cf58f2ccdd50f6=
-2f8ac0b28"
->
-> SRC_URI =3D "file://keys"
->
-> do_install() {
->     install -d ${D}/${datadir}
->     install -m 755 -d ${WORKDIR}/keys ${D}/${datadir}
-> }
->
-> FILES_${PN} +=3D "${datadir}/keys/"
->
-> But when I attempt to bitbake this recipe, I get the following error:
-> ERROR: development-keys-1.0-r0 do_package: QA Issue: development-keys:
-> Files/directories were installed but not shipped in any package:
->   /usr
->   /usr/share
->
-> Ummm.... I don't put anything in /usr or /usr/share.
-> I don't inherit from anything (other than base.bbclass) that puts
-> anything in /usr or /usr/share.
-You do. datadir is /usr/share.
->
-> Does base.bbclass put anything in /usr or /usr/share?
-> Why?
-> I suppose I could follow the advice given in the error message and
->
-> rm -rf ${D}/usr
->
-> in my do_install() task, but I'd like to understand why and how those
-> directories are being created in the first place?
->
-> --wpd
+=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90 Original Me=
+ssage =E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90
+On Wednesday, September 18, 2019 4:13 PM, Andr=C3=A9 Castro <andre.castro.s=
+w@gmail.com> wrote:
 
---=20
-Maciej Pijanowski
-Embedded Systems Engineer
-https://3mdeb.com | @3mdeb_com
+> Hi Petr,
+>
+> I still don't think this is related to Yocto.
+> Comments below.
+>
+> Best regards,
+> Andr=C3=A9
+> On Wed, 18 Sep 2019, at 02:17:01 PM (WEST+0100), Phodina wrote:
+>
+> > Hi,
+> > so I tried the PS1 prompt as suggested by Andr=C3=A9 and it worked at t=
+hat time
+> > on the booted system. So I changed the configuration in /etc/profile, b=
+uilt
+> > and flashed the system.
+> > Unfortunately it=E2=80=99s not working and I get the same issue - the l=
+ine wrapping.
+>
+> Can you get the value of the 'PS1' variable in the new system that you fl=
+ashed,
+> when you are using it and the problem is happening?
+>
+> Just run "echo $PS1" on the shell.
+>
+> Just want to make sure that nothing is overwriting the 'PS1' variable and
+> causing the issue again. There are lots of scripts that can override it.
+>
+> > Here is the content of the /etc/profile:
+> >
+> > /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
+> >
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >
+> > and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+> >
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >
+> > PATH=3D"/usr/local/bin:/usr/bin:/bin"
+> > EDITOR=3D"vi" # needed for packages like cron, git-commit
+> > [ "$TERM" ] || TERM=3D"vt100" # Basic terminal capab. For screen etc.
+> >
+> > Add /sbin & co to $PATH for the root user
+> >
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >
+> > [ "$HOME" !=3D "/home/root" ] || PATH=3D$PATH:/usr/local/sbin:/usr/sbin=
+:/sbin
+> >
+> > Set the prompt for bash and ash (no other shells known to be in use her=
+e)
+> >
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D
+> >
+> > [ -z "$PS1" ] || PS1=3D"$(cat /etc/device/hwid)@\h:\w \001\033[96m\002#=
+ \001\033[0m\002"
+> > if [ -d /etc/profile.d ]; then
+> > for i in /etc/profile.d/*.sh; do
+> > if [ -f $i -a -r $i ]; then
+> > . $i
+> > fi
+> > done
+> > unset i
+> > fi
+> >
+> > Make sure we are on a serial console (i.e. the device used starts with
+> >
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >
+> > /dev/tty[A-z]), otherwise we confuse e.g. the eclipse launcher which tr=
+ies do
+> >
+> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D
+> >
+> > use ssh
+> >
+> > =3D=3D=3D=3D=3D=3D=3D=3D
+> >
+> > case $(tty 2>/dev/null) in
+> > /dev/tty[A-z]*) [ -x /usr/bin/resize ] && /usr/bin/resize >/dev/null;;
+> > esac
+> > export PATH PS1 OPIEDIR QPEDIR QTDIR EDITOR TERM
+> > umask 022
+> > I also turned on `checkwinsize` using `shopt` but didn=E2=80=99t work.
+> > I also include the output of stty (over serial):
+> > speed 115200 baud; line =3D 0;
+> > -brkint ixoff iutf8
+> > -iexten
+> > And over SSH:
+> > speed 38400 baud; line =3D 0;
+> > eol =3D M-^?; eol2 =3D M-^?;
+> > -brkint ixany iutf8
+> > I connect to the board over serial using screen on Mac. In minicom I ge=
+t the
+> > same issue as do my colleagues on Windows using putty or screen on Linu=
+x.
+> > Same happens over SSH.
+> > I also checked that the terming package and those files are installed
+> > correctly in /etc/terminfo.
+> > Kind regards
+> > Petr Hodina
+> > =E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90 Origina=
+l Message =E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=
+=90
+> > On Monday, September 16, 2019 1:02 PM, phodina phodina@protonmail.com w=
+rote:
+> >
+> > > Thanks Andr=C3=A9,
+> > > the PS1 variable has been the cause. Now bash behaves as expected.
+> > > Petr
+> > > =E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90 Origi=
+nal Message =E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=90=E2=80=
+=90
+> > > On Monday, September 16, 2019 12:14 PM, Andr=C3=A9 Castro andre.castr=
+o.sw@gmail.com wrote:
+> > >
+> > > > Hi Petr,
+> > > > On Mon, 16 Sep 2019, at 10:34:33 AM (WEST+0100), Phodina wrote:
+> > > >
+> > > > > Hi,
+> > > > > I would like to ask for a help with an awkward behavior of line w=
+rap
+> > > > > in bash built using Yocto (thud release). When I connect over ser=
+ial
+> > > > > line, I get strange line wrapping.
+> > > >
+> > > > This might not be related to Yocto.
+> > > >
+> > > > > The line keeps wrapping on the first line. Here is the environmen=
+t:
+> > > > > guest@:ebox~ # printenv
+> > > > > LANG=3DC
+> > > > > EDITOR=3Dvi
+> > > > > HZ=3D100
+> > > > > HUSHLOGIN=3DFALSE
+> > > > > USER=3Droot
+> > > > > PWD=3D/home/root
+> > > > > HOME=3D/home/root
+> > > > > SHELL=3D/bin/sh
+> > > > > TERM=3Dlinux
+> > > > > SHLVL=3D1
+> > > > > LOGNAME=3Droot
+> > > > > PATH=3D/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sb=
+in
+> > > > > PS1=3Dguest@:ebox\w \033[96m# \033[0m
+> > > > > _=3D/bin/printenv
+> > > > > I looked for solution and the best direction seems to be run with=
+ clean
+> > > > > environment env -i bash --norc --noprofile
+> > > > > And the env:
+> > > > > bash-4.4# printenv
+> > > > > PWD=3D/home/root
+> > > > > SHLVL=3D1
+> > > > > _=3D/bin/printenv
+> > > >
+> > > > The probable cause of this is the "PS1" variable definition, specia=
+lly the
+> > > > colours part. Have a look at thread [1], maybe [2] answer will help=
+.
+> > > > My suggestion is:
+> > > > PS1=3D"guest@:ebox\w \001\033[96m\002# \001\033[0m\002"
+> > > > [1]
+> > > > https://unix.stackexchange.com/questions/105958/terminal-prompt-not=
+-wrapping-correctly
+> > > > [2]
+> > > > https://unix.stackexchange.com/questions/105958/terminal-prompt-not=
+-wrapping-correctly/447520#447520
+> > > > Andr=C3=A9
 
 
 
---5n9xtwhbPSwDkmHK84XM5lQrf2DgJucqt--
-
---VqZQUJ1ov26d0Ml9pFyobTar0xRfHGGnr
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIcBAEBCAAGBQJdg4ZrAAoJEPFAHS4cyxnvDAMQAJY8mTF4jI+xnx5xgHLIFGUJ
-A4XzkAgZZm738RgbnqvtWfnXPFGD1+v24SlwzQX/KwXZ6guyNq3VdV7WsjBQeSvA
-nbk/9Dbv7j1ZXwIX923uIZSsuIWxONySS3wZG/q4sq49OdjrU5Lk+35xD0im5WiZ
-0DrlssQLUEP6dw7h4S67jhL6tntj1LaOlqpvmxW+agyOR9HWMbvrJCdsTCWKNuU9
-yUDH9Sz2OV6wXYwtCKAUTZZlnnHRV6wNbzNuXm6F1hf9wve4J43Z0uyyR2vXRsNz
-hgTkeb/UjHQPku2fD9P06aif7TpZQ8ymeG1GxKiw1raup6sCDpnh/QPTZBGy4tKv
-heeu7aSEPEN3Cog2BW1gBi1wciLnKtOsihmQS0Gd9+cvnhX8N7hhfEJ6PgyTq3dV
-BkXAlGSvDryIRnoA66eNxeSIrJnV1WoT9pGCUm17ARP5awA25qnknW/nl5rvep3P
-uTQNFVWsyVMRDEef6YHE5zw+3KxfUKbG6rfBiwV9irjDXBqABdnFJR5wMGPEbj+K
-NSZE0/0drJw73DwLNAGF/auZ0pe8ghf2xhg5O1mwF2ZRY1GlP4mQ3+xp2lQ9N38q
-hArNaxInnDs26fraixoPJqNa7RXU3EgAEsOTnYgXgE8ndGCGIA+1otB0QVOqeNX7
-7HaYjXIWnNRKqWikRXSm
-=A75b
------END PGP SIGNATURE-----
-
---VqZQUJ1ov26d0Ml9pFyobTar0xRfHGGnr--
