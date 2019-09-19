@@ -1,6 +1,6 @@
 Return-Path: <wpdster@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52343E00E0D; Thu, 19 Sep 2019 07:00:41 -0700 (PDT)
+	id 7F064E01066; Thu, 19 Sep 2019 07:04:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,53 +11,55 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (wpdster[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.177 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.222.178 listed in list.dnswl.org]
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com
-	[209.85.222.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D53E2E00CAA
-	for <yocto@yoctoproject.org>; Thu, 19 Sep 2019 07:00:40 -0700 (PDT)
-Received: by mail-qk1-f178.google.com with SMTP id f16so3439358qkl.9
-	for <yocto@yoctoproject.org>; Thu, 19 Sep 2019 07:00:40 -0700 (PDT)
+Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com
+	[209.85.222.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1352AE010B0
+	for <yocto@yoctoproject.org>; Thu, 19 Sep 2019 07:04:19 -0700 (PDT)
+Received: by mail-qk1-f177.google.com with SMTP id y144so3465146qkb.7
+	for <yocto@yoctoproject.org>; Thu, 19 Sep 2019 07:04:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to; 
-	bh=BCn7MXI3wVUNbc7jkZvDxW2tO4DwCB7l2WOqVR1OLMk=;
-	b=QjFhH6dbmUzG4o44zYO720HsykpkSxYIBLh6MPNUxvAsxAzX2S6VvUANlrTbtZVLe5
-	08SZAVuM891ZAKubMkgfRNSGwqZNM3ztSG9e2cjYhxSafIjXCvMikMTeCxnF1ql/IiTf
-	Aopol5Hzy35NLa28bY78vDiPkdy78UA6KRKe/p5S0zQpo3H7GpoTG59dIyn5w4uu2rVs
-	mEgR9yHxn8bPWkDzjVRHpHONaKPU8n0Y0AfNcERdOqFue3BZ36V0DGIZpGlF71pAST8H
-	eXFmQ3DVjGgViIEp2OEvx6LKKo8QJy27fX5R6PyGo/ExkVYGyBmoErtcqy/yM61iAMCJ
-	lA1A==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=RiPXJmJkLH9eDy2fvqloXhuuLtHNrjM+D0peU7iptMg=;
+	b=DLXQx1MW1tf+C0WGlusGk59R/OofDWBPpmxEEVaoS7n7Jp1z6yQlujGk4tbYRrceiX
+	ETHU5TAkEi0wRWYI3C+NMCFDytkx7kBsjFWBwDp6V2e8AxTDa0sr1nTaoszOG1TZ+n9V
+	6Cso5wsEF7pfAxq6Dn9iIKqA4JVVo4VyQn9tIThQ0QeweGFI/lb17bK1ScmZAX44fNka
+	PrHvvT7EPRIpzCAsYctK2shG1dcKdRPI//l9i0a+c1xZV5lZx2KdxkJ2llmoye21gVK8
+	oyqlA7u5HwTumoctnx5dhcl3a7dqNs+7hb0psPfRmK/w/PC/VjdwZwkZkDDAYzgsbB8l
+	z4ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to;
-	bh=BCn7MXI3wVUNbc7jkZvDxW2tO4DwCB7l2WOqVR1OLMk=;
-	b=RrfFgiX25hPK+S0rqzLckM9w74CtOhVUgJw3bBgxK46hTsGCCHXSvd4HXNK9quzcZF
-	cJCavfoTeihAEN9GMKmXl4TdhY7UQpEs84OMKwvBRCBc3XNN8FlAfhV1SII/UadQ/T5K
-	YnshBjFO/fHtlfozz5B9d460+dZ40WFFr5yp1emsJ1CMFKOhxLNX0qbrC9Uw5yA7fms4
-	IixKdMofCV1g0w5fo2UNtUYLATxqxQgrhbbUCld36rfbtABoRYACpUbNqeKMdLTxNeCD
-	F+HpUYfne58K22D5sBmgovTyCUfWgeewWkBcusb+1Nx6S3aqDYSGM91ntrwIDgnbFl7x
-	leWw==
-X-Gm-Message-State: APjAAAXwCGe8k/Sc0B6h0F1DQ8z4KwKp7Jc24IDqgHwuGPa51CLrFcB0
-	eu+jvSsUTZWrpNV2Sdm22vjkb7KcWTh5edFXoX3kcA==
-X-Google-Smtp-Source: APXvYqztKZVN+eOWMASyTtnbMvTChBY/qqHVVJzVnReDIK2tNqxQ573HsH7sEYTJkiSONMAyCA6eeMlkASRRDBiwWqA=
+	:message-id:subject:to:cc;
+	bh=RiPXJmJkLH9eDy2fvqloXhuuLtHNrjM+D0peU7iptMg=;
+	b=fWuGitZhU9Yt34x8hFZhe5nCW9qCIutPebPi7EgLDSm6qJ5qqqrzJ+NMcwaCCCrm4y
+	sP9s4SPdahxBUSYRfls95fWAFqioePQTjcW7NZZozZ0u2K6yvy0iMuGXzWgVo1ikUomw
+	2cXZWEGlWDmAXfkqHDAmErt9ZC2tPsybLoCbp8i0UwFO75fbWSltsVvWcQgHhhE21MZT
+	cGWJx18dfpOCS86dYq7uTxztwf2aIPTGZe11StsTSoJAwaGIy3c6ypjPt2npbb/iIQJn
+	8mJpSQmN4VZfzNSNTgkTvRUcPjzwVQSvpJXj0V6Azzvce7lkgFUppCKvpFpiJ+ZAaAcy
+	Z2sg==
+X-Gm-Message-State: APjAAAURBGnXJE5sWuRdMB+JhU50vAA1tFZNz+KPj5SbsXpt80m7x3VI
+	V14eCn3IQxMQWNcyiKc4NiRu+W8QFDCmNrIU8v1j7vnf
+X-Google-Smtp-Source: APXvYqxfifhRENggbPGMD4068t/SIxV017IgW/MtSHVAThiRuFUkkLpNzHX+HK7iiYmBP2I6TEL9hxDc5auHqYia1Hw=
 X-Received: by 2002:a05:620a:798:: with SMTP id
-	24mr2977705qka.238.1568901639958; 
-	Thu, 19 Sep 2019 07:00:39 -0700 (PDT)
+	24mr2998767qka.238.1568901858491; 
+	Thu, 19 Sep 2019 07:04:18 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAF_dkJBpgkpBJMTueuiNFNEVDeLy6=ZowViJ-G4QzDBOx=qRZw@mail.gmail.com>
-In-Reply-To: <CAF_dkJBpgkpBJMTueuiNFNEVDeLy6=ZowViJ-G4QzDBOx=qRZw@mail.gmail.com>
+	<20190919134820.GI6154@hiutale>
+In-Reply-To: <20190919134820.GI6154@hiutale>
 From: Patrick Doyle <wpdster@gmail.com>
-Date: Thu, 19 Sep 2019 10:00:13 -0400
-Message-ID: <CAF_dkJC-3eSj70O_kNqEonnOyhGBAFamnJQfKsdCw+fzUHSqSg@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
+Date: Thu, 19 Sep 2019 10:03:52 -0400
+Message-ID: <CAF_dkJAbOm6V7fHPKAU8b3xBYzKuEg7K956ahzzsy=ok5=VgwA@mail.gmail.com>
+To: Mikko.Rapeli@bmw.de
+Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: How to share files between recipes?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -70,24 +72,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Sep 2019 14:00:41 -0000
+X-List-Received-Date: Thu, 19 Sep 2019 14:04:51 -0000
 Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Sep 19, 2019 at 9:39 AM Patrick Doyle <wpdster@gmail.com> wrote:
-
-> do_install() {
->     install -d ${D}/${datadir}
->     install -m 755 -d ${WORKDIR}/keys ${D}/${datadir}
-> }
+On Thu, Sep 19, 2019 at 9:48 AM <Mikko.Rapeli@bmw.de> wrote:
+> One possibility is to provide these keys as host native tools and data to
+> build of target recipes. This makes the files available in the build environment
+> but does not expose them to target.
 >
-Oops... I just noticed the typo(s) in my recipe... I wasn't installing
-the contents of my ${WORKDIR} in ${D}${datadir}/keys the way I thought
-I was... all I was doing was creating empty directories.
-
-That's why I ask questions like this... so that right after I ask
-them, I can find the blatantly stupid mistake I made in my code.
-
-Thanks for playing!
+> Create a -native recipe which has and installs the files and use via DEPENDS to
+> the -native recipe.
+>
+> Hope this helps,
+>
+> -Mikko
+Thank you.  That feels like the better answer all around.  Ultimately,
+that's where I was going, but hadn't thought of the fact that I only
+really need this data on my native build environment.
 
 --wpd
 
