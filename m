@@ -1,99 +1,78 @@
-Return-Path: <Vignesh.Rajendran@in.bosch.com>
+Return-Path: <robert.berger.yocto.user@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65BBEE00D82; Thu, 19 Sep 2019 23:22:05 -0700 (PDT)
+	id F0DCEE00D54; Thu, 19 Sep 2019 23:46:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_MED,SPF_HELO_PASS
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [139.15.180.216 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (robert.berger.yocto.user[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.128.66 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 558 seconds by postgrey-1.32 at yocto-www;
-	Thu, 19 Sep 2019 23:22:03 PDT
-Received: from de-deferred1.bosch-org.com (de-deferred1.bosch-org.com
-	[139.15.180.216])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C270EE00D54
-	for <yocto@yoctoproject.org>; Thu, 19 Sep 2019 23:22:03 -0700 (PDT)
-Received: from de-out1.bosch-org.com (unknown [139.15.180.215])
-	by si0vms0224.rbdmz01.com (Postfix) with ESMTPS id 46ZNg03z4mz5H9
-	for <yocto@yoctoproject.org>; Fri, 20 Sep 2019 08:12:44 +0200 (CEST)
-Received: from si0vm1948.rbesz01.com (unknown [139.15.230.188])
-	by fe0vms0187.rbdmz01.com (Postfix) with ESMTPS id 46ZNfz0CS9z1XLDR4
-	for <yocto@yoctoproject.org>; Fri, 20 Sep 2019 08:12:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=in.bosch.com;
-	s=key1-intmail; t=1568959963;
-	bh=YGxKmqefPlJUq5vwY58xdp05tR9k7LUxWxVe/xiqc28=; l=10;
-	h=From:Subject:From:Reply-To:Sender;
-	b=KynPmty47CPt9USvVPMI9ZaaL0I1oFJGwROJPPDs4E1VdZvHAO7Op/x4d7jf7mHNw
-	OpLFgcr4BsbdeA7R1tzN1PxlHpUtkN8IqAi+7zamOfpVqSXAv39x2BNaqU93GcGvy8
-	7D0fSsg8PpIMkQEsP3Tz4oWi8DA4r6/YA9YIAZnQ=
-Received: from fe0vm7918.rbesz01.com (unknown [10.58.172.176])
-	by si0vm1948.rbesz01.com (Postfix) with ESMTPS id 46ZNfy6z4sz1VS
-	for <yocto@yoctoproject.org>; Fri, 20 Sep 2019 08:12:42 +0200 (CEST)
-X-AuditID: 0a3aad10-021ff700000005df-99-5d846dda2e19
-Received: from si0vm1949.rbesz01.com ( [10.58.173.29])
-	(using TLS with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(Client did not present a certificate)
-	by fe0vm7918.rbesz01.com (SMG Outbound) with SMTP id
-	79.29.01503.ADD648D5; Fri, 20 Sep 2019 08:12:42 +0200 (CEST)
-Received: from FE-MBX2026.de.bosch.com (fe-mbx2026.de.bosch.com [10.3.231.36])
-	by si0vm1949.rbesz01.com (Postfix) with ESMTPS id 46ZNfy4FKvz6Cjw3G
-	for <yocto@yoctoproject.org>; Fri, 20 Sep 2019 08:12:42 +0200 (CEST)
-Received: from SGPMBX2020.APAC.bosch.com (10.187.83.43) by
-	FE-MBX2026.de.bosch.com (10.3.231.36) with Microsoft SMTP Server
-	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.1.1713.5; Fri, 20 Sep 2019 08:12:41 +0200
-Received: from SGPMBX2020.APAC.bosch.com (10.187.83.43) by
-	SGPMBX2020.APAC.bosch.com (10.187.83.43) with Microsoft SMTP Server
-	(version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.1.1713.5; Fri, 20 Sep 2019 14:12:38 +0800
-Received: from SGPMBX2020.APAC.bosch.com ([fe80::b526:b737:7eb9:3a96]) by
-	SGPMBX2020.APAC.bosch.com ([fe80::b526:b737:7eb9:3a96%6]) with mapi id
-	15.01.1713.009; Fri, 20 Sep 2019 14:12:38 +0800
-From: "Vignesh Rajendran (RBEI/ECF3)" <Vignesh.Rajendran@in.bosch.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Auto-remove empty package from rootfs
-Thread-Index: AdVvd2Nsory9TtEtRrOg3UbMWzb+3w==
-Date: Fri, 20 Sep 2019 06:12:38 +0000
-Message-ID: <95510d56aa07485880b99348ab9a9f89@in.bosch.com>
-Accept-Language: en-US, en-SG
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.187.56.206]
+Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com
+	[209.85.128.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C41E0E00867
+	for <yocto@yoctoproject.org>; Thu, 19 Sep 2019 23:46:53 -0700 (PDT)
+Received: by mail-wm1-f66.google.com with SMTP id i16so1076499wmd.3
+	for <yocto@yoctoproject.org>; Thu, 19 Sep 2019 23:46:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=subject:to:references:from:message-id:date:user-agent:mime-version
+	:in-reply-to:content-language:content-transfer-encoding;
+	bh=1eVEDNyOvRjuCbvyUM8wI32bCV9ReJu1LltxSSla5rM=;
+	b=SIvK+QptGCUpVNp8W1d2h0ZZlxcGUrMfO0es/j37C0aqqfdsk3rqwXw78te9itvVoa
+	eUu+mRRDlgY5tAYYZ77zgkOM7RHrU9yckG30SgAoqEk8vnnShDI+whvYcMjxrHLyVsXz
+	tKmuKi9uif3dpBkomtGG0E36TwvMqOltmfXMo9VIMtdqBJVmMhj8Tc50Bm28C+I4/8GH
+	KAQMVMsMQXWLHnNKEEVj+znFc5e9J2i1p6Cl3I5c+xP6ycBUiMbtO6TDhb7rw8D9oyyW
+	dVBGMrjbYKJLoXn8Nhkg/W4SS5TWyTrMQcfABKY+scWOX5cJkrjsRNpsRSsZzkh02dGn
+	hGhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language
+	:content-transfer-encoding;
+	bh=1eVEDNyOvRjuCbvyUM8wI32bCV9ReJu1LltxSSla5rM=;
+	b=Wa14i1urkFFm9KYCoFwcMIYYLIBWmzOJPDV3FnUwYGBjMtPUdMvZz4I6SOCug+cRs0
+	DXIRTE5QxOztHjhkm6/xvULbjWNcaEOtu6OpZLFZP382I9jj261Q9BTQ3+8ZEC38fjw0
+	4lxyzU/KzFhh7Ygk+ctSKAMjyKR+XJtAhUOHBUaTN5vrdvvUGw3WEexd5Y/PADFw3TSW
+	fr0l6P6Vdzzh3WggzUVc2acOi8MQRUijs3F+i3qdkCk11tNVyLA9uEmtf/GC2EuVd/E4
+	+7hr8h/tfogXazoZVeNxuuashJztf7pgEhx/mzeytB/8L5/aHoJzdpmOWby7kmN7KS9p
+	QFkQ==
+X-Gm-Message-State: APjAAAX4iL4ID5a+1zP+8vFAtpVy32YSn3e67lCCxnedZNLFNBBjIoyK
+	X2KzRdhLByT1jg0UFUMuOfdxK+MB
+X-Google-Smtp-Source: APXvYqzYia2qQrjpZKHiZvahInXMlM47aNsjUyMqMH/mEmcQP0q5X7KxwVDUqclL/o9KAF1Xp7ZqLQ==
+X-Received: by 2002:a7b:c0cb:: with SMTP id s11mr2040104wmh.177.1568962012650; 
+	Thu, 19 Sep 2019 23:46:52 -0700 (PDT)
+Received: from [192.168.42.52] (business-24-134-70-197.pool2.vodafone-ip.de.
+	[24.134.70.197]) by smtp.gmail.com with ESMTPSA id
+	e20sm2231284wrc.34.2019.09.19.23.46.51
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 19 Sep 2019 23:46:52 -0700 (PDT)
+To: phodina <phodina@protonmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <iKxrudTDXgn2XHKttVPFe-_xTAbPoQUMbSBzr7r6Xza3vohxh9wPCRrFZo7bf1bgrQj_DKCt-5Ky7-dagX_blQpi_uZbWfnAvp7TDCCbh0U=@protonmail.com>
+	<8bb3f05c-966b-4076-6593-d042bb8240ad@gmail.com>
+	<6v81ntCcT70rvm2b8GwiRAeNSZSIEec-hUpr0hIN7HYR9RySExiu50vZaZM0jXSjiu2PYGbQ5mKn1e0cv3q13NlyJ5rwb6cdV0h1mpb9jXc=@protonmail.com>
+	<wNEOi-_A4sN9BRhUCA6bCldM2iWQIpgYPAYUaT3Gqku16wkJq_fXBk_jlOuoUZpFBv4T7_CqWpoA7Yl0I0rHbvrsYpI5g7FtdjQ36SyI2Xc=@protonmail.com>
+	<bb902393-3fc3-6b68-f418-3c2a4d3b189c@gmail.com>
+	<Ji28AOGAddYhx0MrDU5EjIkRSdwJCwFCsKtxE6zFAllu6lRRNxSKIJd_HoP2gWRr2U6Mkl1i-39AIVXKdnsWpiBIX40FA4DdGUqmy0zOGpA=@protonmail.com>
+From: "Robert Berger@yocto.user" <robert.berger.yocto.user@gmail.com>
+Message-ID: <35ecfed1-7e73-fbfd-19b6-d5b4f4eae4be@gmail.com>
+Date: Fri, 20 Sep 2019 08:46:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA21Te0xTdxTmd+9tvTTc7XqhclbHMq/oEocdDMnYmB17ZD424x7/qFuDxV7a
-	sj7YvcUoiUlhiFjEKHFOu1FY1wqCIwbGAmEu2MmihQ2fizymRh6RytQhgiPKdssttn/sn5Pv
-	fOec7zx+95I4c5xUkSarneOtOjMrVxCK175PWtlvKdWmTnakZFaNnZBno7V7zu6Xf4C2KF7X
-	c2bTdo5/SbNVYWwYCGAFdct2fFE8gjlQyxIniiWBXgWumcMyJ1KQDH0Eg+6KakJyBhBU/uUN
-	R+4huN3VF47cRzD+uCvsnEFwt6SRCInJ6Xeh8VAJFsIJdAbc+nVSHsI4vQUa2+7IQjieVsPF
-	KZ9cykmH+kArLmE1fHXy+hwm6GXw26XAnA5FZ4Fn/6M5fUQngaevipA0E6F/uAaTlqDB+1Mv
-	LmEljA3NyiS8BNy+o7iUnwvnb+4lJM2FcO7oMHEAKV1RUq6oNFdUmsSnQG3HhFzCL8Kxb2/j
-	87incwiL5mvRggakzONSt1teeTUtU83nckJRapp6m83SjKQXo9tQeyDPjzAS+VEGibFK6h1N
-	qZZ5Ktem32nUCcYcvtDMCayKak3K1DLxT2ihMNdiEgSTzepHQOJsAvVNRomWofS6nUUcb5PK
-	/GgxSbCJlIHc+ClDG3R27jOOK+D4+WgWSbJA0Wax4UKeM3A78kxm+3yYTaJQTEwMsyg6Et0W
-	I2P9KJ2ME3snhiQooUBnEUyGcPkzUjkzz0ZKA+gT8sBYtQcnT3e5Rft3g1e003O2pdrnwRnC
-	arNyqkTqWr6oS4cUjIXWJ5OpnqVm8WIto4wKRNSDqA+RiI2n4kNDxYm/SGQmoNbc2youGyYj
-	RS/7xBq6iQD3/SsIfrkqfvPlN0/LoKnsogx+vHx1AdyabI6DB4d7EyBYMw1w7VjNYuivrXgO
-	HtZWPy8mTywFt6ssGR75upOh3jGaDPvGZpfD7gfHU6Dt0KVUaLnTlQH+0aEscHt734D2u7PZ
-	MOVvfgsGfh9ZD4Pn/9gI+yqdm+HISG9OyM2By1+f3Qb/njqjhx+CPXpo++dUflA8OCYeXLOp
-	OHRwu87+PwcPs5HtVA5U/uWbBqe1vOf9YUfdjbez13Y+5kGe/p3DPViw6UP6RvDKXmdeXf3o
-	Bb7oIwfVUfznOs3Eqs6R91pzrr+g9/4ciNkwM9r+MO6CfPXB1R+vmdrtajhZlb1nPLhLU1Va
-	xi6fXFnZVPF5/vjmc7ZFJwYPbiiJdT7tWefYFTtT020tmlavMLGEYNSlrcB5QfcfG/JnVLwE
-	AAA=
-Cc: "Jeevarathinam Kaliyaperumal \(RBEI/ECF3\)"
-	<Kaliyaperumal.Jeevarathinam@in.bosch.com>
-Subject: Auto-remove empty package from rootfs
+In-Reply-To: <Ji28AOGAddYhx0MrDU5EjIkRSdwJCwFCsKtxE6zFAllu6lRRNxSKIJd_HoP2gWRr2U6Mkl1i-39AIVXKdnsWpiBIX40FA4DdGUqmy0zOGpA=@protonmail.com>
+Subject: Re: Awkward line wrapping in bash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -105,134 +84,193 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Sep 2019 06:22:05 -0000
+X-List-Received-Date: Fri, 20 Sep 2019 06:46:55 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_95510d56aa07485880b99348ab9a9f89inboschcom_"
+Content-Transfer-Encoding: 8bit
 
---_000_95510d56aa07485880b99348ab9a9f89inboschcom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-Hello All,
+Is your problem of line wrapping only on the serial console, or also on 
+an ssh session?
 
-I have a feeling that the empty packages are really not useful inside rootf=
-s/sysroot either dependency with other packages, isn't it?
+Which version of Yocto do you use?
 
-Is there already a way in Yocto to remove/avoid empty packages from rootfs?
+systemd or sys-v?
 
-PACKAGE_EXCLUDE would do that, but looking for a better option which can au=
-tomatically exclude the empty packages without harming package dependency.
+Regards,
 
-Appreciate your answer.
+Robert
 
-Best regards,
+On 19/09/2019 17:43, phodina wrote:
+> Hi,
+> 
+> based on André recommendation I commented out the PS1 variable and now I get `-sh-4.4#` for the prompt. I also checked and nothing is overwriting the variable.
+> 
+> But I tried to change the size of the shell by using `stty cols 100 rows 40` as well as different sizes (smaller and bigger than 80 columns), but the amount of characters I get on the line stays at 81 followed by carrige return. However if I record the session with `script` I get the correct amount of characters per line.
+> 
+> Here is my `stty -a` output:
+> speed 115200 baud; rows 24; columns 100; line = 0;
+> intr = ^C; quit = ^\; erase = ^?; kill = ^U; eof = ^D; eol = <undef>; eol2 = <undef>;
+> swtch = <undef>; start = ^Q; stop = ^S; susp = ^Z; rprnt = ^R; werase = ^W; lnext = ^V; discard = ^O;
+> min = 1; time = 0;
+> -parenb -parodd -cmspar cs8 hupcl -cstopb cread clocal -crtscts
+> -ignbrk -brkint -ignpar -parmrk -inpck -istrip -inlcr -igncr icrnl ixon ixoff -iuclc -ixany imaxbel
+> iutf8
+> opost -olcuc -ocrnl onlcr -onocr -onlret -ofill -ofdel nl0 cr0 tab0 bs0 vt0 ff0
+> isig icanon -iexten echo echoe echok -echonl -noflsh -xcase -tostop -echoprt echoctl echoke -flusho
+> -extproc
+> 
+> Best regards
+> Petr hodina
+> 
+> 
+> ‐‐‐‐‐‐‐ Original Message ‐‐‐‐‐‐‐
+> On Wednesday, September 18, 2019 4:13 PM, André Castro <andre.castro.sw@gmail.com> wrote:
+> 
+>> Hi Petr,
+>>
+>> I still don't think this is related to Yocto.
+>> Comments below.
+>>
+>> Best regards,
+>> André
+>> On Wed, 18 Sep 2019, at 02:17:01 PM (WEST+0100), Phodina wrote:
+>>
+>>> Hi,
+>>> so I tried the PS1 prompt as suggested by André and it worked at that time
+>>> on the booted system. So I changed the configuration in /etc/profile, built
+>>> and flashed the system.
+>>> Unfortunately it’s not working and I get the same issue - the line wrapping.
+>>
+>> Can you get the value of the 'PS1' variable in the new system that you flashed,
+>> when you are using it and the problem is happening?
+>>
+>> Just run "echo $PS1" on the shell.
+>>
+>> Just want to make sure that nothing is overwriting the 'PS1' variable and
+>> causing the issue again. There are lots of scripts that can override it.
+>>
+>>> Here is the content of the /etc/profile:
+>>>
+>>> /etc/profile: system-wide .profile file for the Bourne shell (sh(1))
+>>>
+>>> =====================================================================
+>>>
+>>> and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+>>>
+>>> =============================================================
+>>>
+>>> PATH="/usr/local/bin:/usr/bin:/bin"
+>>> EDITOR="vi" # needed for packages like cron, git-commit
+>>> [ "$TERM" ] || TERM="vt100" # Basic terminal capab. For screen etc.
+>>>
+>>> Add /sbin & co to $PATH for the root user
+>>>
+>>> ==========================================
+>>>
+>>> [ "$HOME" != "/home/root" ] || PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
+>>>
+>>> Set the prompt for bash and ash (no other shells known to be in use here)
+>>>
+>>> ==========================================================================
+>>>
+>>> [ -z "$PS1" ] || PS1="$(cat /etc/device/hwid)@\h:\w \001\033[96m\002# \001\033[0m\002"
+>>> if [ -d /etc/profile.d ]; then
+>>> for i in /etc/profile.d/*.sh; do
+>>> if [ -f $i -a -r $i ]; then
+>>> . $i
+>>> fi
+>>> done
+>>> unset i
+>>> fi
+>>>
+>>> Make sure we are on a serial console (i.e. the device used starts with
+>>>
+>>> =======================================================================
+>>>
+>>> /dev/tty[A-z]), otherwise we confuse e.g. the eclipse launcher which tries do
+>>>
+>>> ==============================================================================
+>>>
+>>> use ssh
+>>>
+>>> ========
+>>>
+>>> case $(tty 2>/dev/null) in
+>>> /dev/tty[A-z]*) [ -x /usr/bin/resize ] && /usr/bin/resize >/dev/null;;
+>>> esac
+>>> export PATH PS1 OPIEDIR QPEDIR QTDIR EDITOR TERM
+>>> umask 022
+>>> I also turned on `checkwinsize` using `shopt` but didn’t work.
+>>> I also include the output of stty (over serial):
+>>> speed 115200 baud; line = 0;
+>>> -brkint ixoff iutf8
+>>> -iexten
+>>> And over SSH:
+>>> speed 38400 baud; line = 0;
+>>> eol = M-^?; eol2 = M-^?;
+>>> -brkint ixany iutf8
+>>> I connect to the board over serial using screen on Mac. In minicom I get the
+>>> same issue as do my colleagues on Windows using putty or screen on Linux.
+>>> Same happens over SSH.
+>>> I also checked that the terming package and those files are installed
+>>> correctly in /etc/terminfo.
+>>> Kind regards
+>>> Petr Hodina
+>>> ‐‐‐‐‐‐‐ Original Message ‐‐‐‐‐‐‐
+>>> On Monday, September 16, 2019 1:02 PM, phodina phodina@protonmail.com wrote:
+>>>
+>>>> Thanks André,
+>>>> the PS1 variable has been the cause. Now bash behaves as expected.
+>>>> Petr
+>>>> ‐‐‐‐‐‐‐ Original Message ‐‐‐‐‐‐‐
+>>>> On Monday, September 16, 2019 12:14 PM, André Castro andre.castro.sw@gmail.com wrote:
+>>>>
+>>>>> Hi Petr,
+>>>>> On Mon, 16 Sep 2019, at 10:34:33 AM (WEST+0100), Phodina wrote:
+>>>>>
+>>>>>> Hi,
+>>>>>> I would like to ask for a help with an awkward behavior of line wrap
+>>>>>> in bash built using Yocto (thud release). When I connect over serial
+>>>>>> line, I get strange line wrapping.
+>>>>>
+>>>>> This might not be related to Yocto.
+>>>>>
+>>>>>> The line keeps wrapping on the first line. Here is the environment:
+>>>>>> guest@:ebox~ # printenv
+>>>>>> LANG=C
+>>>>>> EDITOR=vi
+>>>>>> HZ=100
+>>>>>> HUSHLOGIN=FALSE
+>>>>>> USER=root
+>>>>>> PWD=/home/root
+>>>>>> HOME=/home/root
+>>>>>> SHELL=/bin/sh
+>>>>>> TERM=linux
+>>>>>> SHLVL=1
+>>>>>> LOGNAME=root
+>>>>>> PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+>>>>>> PS1=guest@:ebox\w \033[96m# \033[0m
+>>>>>> _=/bin/printenv
+>>>>>> I looked for solution and the best direction seems to be run with clean
+>>>>>> environment env -i bash --norc --noprofile
+>>>>>> And the env:
+>>>>>> bash-4.4# printenv
+>>>>>> PWD=/home/root
+>>>>>> SHLVL=1
+>>>>>> _=/bin/printenv
+>>>>>
+>>>>> The probable cause of this is the "PS1" variable definition, specially the
+>>>>> colours part. Have a look at thread [1], maybe [2] answer will help.
+>>>>> My suggestion is:
+>>>>> PS1="guest@:ebox\w \001\033[96m\002# \001\033[0m\002"
+>>>>> [1]
+>>>>> https://unix.stackexchange.com/questions/105958/terminal-prompt-not-wrapping-correctly
+>>>>> [2]
+>>>>> https://unix.stackexchange.com/questions/105958/terminal-prompt-not-wrapping-correctly/447520#447520
+>>>>> André
+> 
+> 
 
-Rajendran Vignesh
-RBEI/ECF3
 
-Tel. +91 422 676-5103 | Threema Work<threemawork://add/?id=3D+914226765103>=
-: +914226765103
-
-
---_000_95510d56aa07485880b99348ab9a9f89inboschcom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Arial",sans-serif;
-	color:windowtext;
-	font-weight:normal;
-	font-style:normal;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">Hello All,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">I have a feeling that the empty packages are really n=
-ot useful inside rootfs/sysroot either dependency with other packages, isn&=
-#8217;t it?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">Is there already a way in Yocto to remove/avoid empty=
- packages from rootfs?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">PACKAGE_EXCLUDE would do that, but looking for a bett=
-er option which can automatically exclude the empty packages without harmin=
-g package dependency.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif">Appreciate your answer.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Ar=
-ial&quot;,sans-serif;color:black">Best regards,
-<br>
-<br>
-<b>Rajendran Vignesh<br>
-RBEI/ECF3<br>
-</b><br>
-Tel. &#43;91 422 676-5103 | <a href=3D"threemawork://add/?id=3D&#43;9142267=
-65103"><span style=3D"color:blue">Threema Work</span></a>: &#43;91422676510=
-3
-</span><span style=3D"font-size:8.0pt;font-family:&quot;Arial&quot;,sans-se=
-rif;color:black"><br>
-<br>
-</span><o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_95510d56aa07485880b99348ab9a9f89inboschcom_--
