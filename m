@@ -1,6 +1,6 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7287FE00D94; Fri, 20 Sep 2019 03:32:01 -0700 (PDT)
+	id 695D7E00D8F; Fri, 20 Sep 2019 04:27:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,32 +10,32 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
 	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B01AE00D82
-	for <yocto@yoctoproject.org>; Fri, 20 Sep 2019 03:32:00 -0700 (PDT)
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AAFEE007E1
+	for <yocto@yoctoproject.org>; Fri, 20 Sep 2019 04:27:12 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	20 Sep 2019 03:31:59 -0700
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	20 Sep 2019 04:27:11 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,528,1559545200"; d="scan'208";a="181769196"
+X-IronPort-AV: E=Sophos;i="5.64,528,1559545200"; d="scan'208";a="217621216"
 Received: from creinhar-mobl.ger.corp.intel.com (HELO blackadder.local)
 	([10.249.39.119])
-	by orsmga008.jf.intel.com with ESMTP; 20 Sep 2019 03:31:58 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 20 Sep 2019 04:27:10 -0700
 To: yocto@yoctoproject.org
-References: <95510d56aa07485880b99348ab9a9f89@in.bosch.com>
+References: <20190918154818.5425-1-pkj@axis.com>
 From: Ross Burton <ross.burton@intel.com>
 Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
 	Swindon SN3 1RJ
-Message-ID: <591be470-53d0-a16b-06b9-6b93fb945d1b@intel.com>
-Date: Fri, 20 Sep 2019 11:31:57 +0100
+Message-ID: <ebecad3b-fe12-a8c5-1621-b031ecd098d5@intel.com>
+Date: Fri, 20 Sep 2019 12:27:09 +0100
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
 	Gecko/20100101 Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <95510d56aa07485880b99348ab9a9f89@in.bosch.com>
-Subject: Re: Auto-remove empty package from rootfs
+In-Reply-To: <20190918154818.5425-1-pkj@axis.com>
+Subject: Re: [meta-gplv2][master][warrior][PATCH] tar: Make it build with GCC 8.3
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,26 +47,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Sep 2019 10:32:01 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Fri, 20 Sep 2019 11:27:13 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 20/09/2019 07:12, Vignesh Rajendran (RBEI/ECF3) wrote:
-> Hello All,
-> 
-> I have a feeling that the empty packages are really not useful inside 
-> rootfs/sysroot either dependency with other packages, isn’t it?
-> 
-> Is there already a way in Yocto to remove/avoid empty packages from rootfs?
-
-An empty package by definition doesn't have any impact on the rootfs, 
-because it's empty.  The majority of empty packages are used for their 
-dependency management: package groups are just empty packages which have 
-dependencies.
-
-If you know of any empty packages which have no dependencies, feel free 
-to submit a patch to remove them from the metadata.
+Missing an upstream-status, but good to push when that's fixed.
 
 Ross
+
+On 18/09/2019 16:48, Peter Kjellerstedt wrote:
+> From: Joakim Roubert <joakimr@axis.com>
+> 
+> This avoids the following error:
+> 
+>    lib/argp-parse.c: In function 'argp_version_parser':
+>    lib/argp-parse.c:158:2: error: format not a string literal and no
+>    format arguments [-Werror=format-security]
+>      __argp_error (state, dgettext (state->root_argp->argp_domain,
+>      ^~~~~~~~~~~~
+> 
+> Signed-off-by: Joakim Roubert <joakim.roubert@axis.com>
+> Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+> ---
+>   ...-lib-argp-parse.c-Fix-compiler-error.patch | 34 +++++++++++++++++++
+>   recipes-extended/tar/tar_1.17.bb              |  1 +
+>   2 files changed, 35 insertions(+)
+>   create mode 100644 recipes-extended/tar/tar/0001-lib-argp-parse.c-Fix-compiler-error.patch
+> 
+> diff --git a/recipes-extended/tar/tar/0001-lib-argp-parse.c-Fix-compiler-error.patch b/recipes-extended/tar/tar/0001-lib-argp-parse.c-Fix-compiler-error.patch
+> new file mode 100644
+> index 0000000..3de9fd1
+> --- /dev/null
+> +++ b/recipes-extended/tar/tar/0001-lib-argp-parse.c-Fix-compiler-error.patch
+> @@ -0,0 +1,34 @@
+> +From 153c0aab9e2a4a97b1a2c6b530594cd9a211e9ec Mon Sep 17 00:00:00 2001
+> +From: Joakim Roubert <joakimr@axis.com>
+> +Date: Thu, 6 Dec 2018 10:33:14 +0100
+> +Subject: [PATCH] lib/argp-parse.c: Fix compiler error
+> +
+> +This avoids the following error:
+> +
+> +  lib/argp-parse.c: In function 'argp_version_parser':
+> +  lib/argp-parse.c:158:2: error: format not a string literal and no
+> +  format arguments [-Werror=format-security]
+> +    __argp_error (state, dgettext (state->root_argp->argp_domain,
+> +    ^~~~~~~~~~~~
+> +
+> +Signed-off-by: Joakim Roubert <joakim.roubert@axis.com>
+> +---
+> + lib/argp-parse.c | 2 +-
+> + 1 file changed, 1 insertion(+), 1 deletion(-)
+> +
+> +diff --git a/lib/argp-parse.c b/lib/argp-parse.c
+> +index a7de729..09511ba 100644
+> +--- a/lib/argp-parse.c
+> ++++ b/lib/argp-parse.c
+> +@@ -155,7 +155,7 @@ argp_version_parser (int key, char *arg, struct argp_state *state)
+> +       else if (argp_program_version)
+> + 	fprintf (state->out_stream, "%s\n", argp_program_version);
+> +       else
+> +-	__argp_error (state, dgettext (state->root_argp->argp_domain,
+> ++	__argp_error (state, "%s", dgettext (state->root_argp->argp_domain,
+> + 				       "(PROGRAM ERROR) No version known!?"));
+> +       if (! (state->flags & ARGP_NO_EXIT))
+> + 	exit (0);
+> +--
+> +2.11.0
+> +
+> diff --git a/recipes-extended/tar/tar_1.17.bb b/recipes-extended/tar/tar_1.17.bb
+> index b9ca206..1ee5e34 100644
+> --- a/recipes-extended/tar/tar_1.17.bb
+> +++ b/recipes-extended/tar/tar_1.17.bb
+> @@ -8,6 +8,7 @@ PR = "r3"
+>   SRC_URI += "file://m4extensions.patch \
+>       file://gcc43build.patch \
+>       file://avoid_heap_overflow.patch \
+> +    file://0001-lib-argp-parse.c-Fix-compiler-error.patch \
+>       "
+>   
+>   SRC_URI[md5sum] = "c6c4f1c075dbf0f75c29737faa58f290"
+> 
+
 
