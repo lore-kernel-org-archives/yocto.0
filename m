@@ -1,6 +1,6 @@
 Return-Path: <naveen.kumar.saini@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4380AE00C5C; Sun, 22 Sep 2019 19:04:26 -0700 (PDT)
+	id 7F184E00D1C; Sun, 22 Sep 2019 19:14:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,26 +10,26 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
 	*      medium trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+	*      [192.55.52.120 listed in list.dnswl.org]
 	*  2.0 AC_FROM_MANY_DOTS Multiple periods in From user name
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F4C1E00929
-	for <yocto@yoctoproject.org>; Sun, 22 Sep 2019 19:04:24 -0700 (PDT)
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A4A9E00C5C
+	for <yocto@yoctoproject.org>; Sun, 22 Sep 2019 19:14:26 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	22 Sep 2019 19:04:23 -0700
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+	by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	22 Sep 2019 19:14:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,538,1559545200"; d="scan'208";a="190517053"
+X-IronPort-AV: E=Sophos;i="5.64,538,1559545200"; d="scan'208";a="389326922"
 Received: from saininav-desk1.png.intel.com ([172.30.199.130])
-	by orsmga003.jf.intel.com with ESMTP; 22 Sep 2019 19:04:22 -0700
+	by fmsmga006.fm.intel.com with ESMTP; 22 Sep 2019 19:14:25 -0700
 From: Naveen Saini <naveen.kumar.saini@intel.com>
 To: yocto@yoctoproject.org
-Date: Mon, 23 Sep 2019 10:07:13 +0800
-Message-Id: <20190923020713.7380-1-naveen.kumar.saini@intel.com>
+Date: Mon, 23 Sep 2019 10:17:16 +0800
+Message-Id: <20190923021716.36438-1-naveen.kumar.saini@intel.com>
 X-Mailer: git-send-email 2.17.1
-Subject: [PATCH] apparmor: suppress appending of installation to perllocal.pod
+Subject: [meta-security][PATCH] apparmor: suppress appending of installation to perllocal.pod
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,7 +41,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Sep 2019 02:04:26 -0000
+X-List-Received-Date: Mon, 23 Sep 2019 02:14:29 -0000
 
 perl modules when gets installed can produce a perllocal.pod
 file for documenting a list of locally installed perl modules.
