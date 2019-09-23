@@ -1,37 +1,35 @@
-Return-Path: <Hongxu.Jia@windriver.com>
+Return-Path: <naveen.kumar.saini@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DBE9EE00D9F; Sun, 22 Sep 2019 08:00:58 -0700 (PDT)
+	id 4380AE00C5C; Sun, 22 Sep 2019 19:04:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.2 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A2B5E00D9B
-	for <yocto@yoctoproject.org>; Sun, 22 Sep 2019 08:00:55 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x8MExNcG027517
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 22 Sep 2019 08:00:34 -0700
-Received: from pek-lpg-core1-vm2.wrs.com (128.224.156.107) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.468.0; Sun, 22 Sep 2019 08:00:10 -0700
-From: Hongxu Jia <hongxu.jia@windriver.com>
-To: <mark.hatle@kernel.crashing.org>, <jason.wessel@windriver.com>,
-	<yocto@yoctoproject.org>
-Date: Sun, 22 Sep 2019 22:57:07 +0800
-Message-ID: <1569164228-26934-15-git-send-email-hongxu.jia@windriver.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1569164228-26934-1-git-send-email-hongxu.jia@windriver.com>
-References: <1569164228-26934-1-git-send-email-hongxu.jia@windriver.com>
-MIME-Version: 1.0
-Subject: [meta-openssl102-fips][PATCH 14/15] openssh: add CAVS tests for FIPS validation
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+	*  2.0 AC_FROM_MANY_DOTS Multiple periods in From user name
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F4C1E00929
+	for <yocto@yoctoproject.org>; Sun, 22 Sep 2019 19:04:24 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	22 Sep 2019 19:04:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,538,1559545200"; d="scan'208";a="190517053"
+Received: from saininav-desk1.png.intel.com ([172.30.199.130])
+	by orsmga003.jf.intel.com with ESMTP; 22 Sep 2019 19:04:22 -0700
+From: Naveen Saini <naveen.kumar.saini@intel.com>
+To: yocto@yoctoproject.org
+Date: Mon, 23 Sep 2019 10:07:13 +0800
+Message-Id: <20190923020713.7380-1-naveen.kumar.saini@intel.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [PATCH] apparmor: suppress appending of installation to perllocal.pod
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,1005 +41,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 22 Sep 2019 15:00:59 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 23 Sep 2019 02:04:26 -0000
 
-Refer the latest Fedora to add cavs test binary for the aes-ctr [1]
-and SSH KDF CAVS test driver [2]
+perl modules when gets installed can produce a perllocal.pod
+file for documenting a list of locally installed perl modules.
+This can conflict if multiple packages generate the file.
 
-[1] http://pkgs.fedoraproject.org/cgit/rpms/openssh.git/plain/openssh-6.6p1-ctr-cavstest.patch
-[2] http://pkgs.fedoraproject.org/cgit/rpms/openssh.git/plain/openssh-6.7p1-kdf-cavs.patch
+Hits the conflict with apparmor & rrdtool packages.
+Error: Transaction check error:
+  file /usr/lib/perl5/5.30.0/x86_64-linux/perllocal.pod conflicts between attempted installs of rrdtool-1.7.2-r0.corei7_64 and apparmor-2.13.3-r0.corei7_64
 
-Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+perllocal.pod files are for documentation purpose, so
+disabling does not harm. Generating perllocal.pod for perl
+module is disabled by passing NO_PERLLOCAL=1
+with ExtUtils::MakeMaker utility.
+
+https://perldoc.perl.org/5.30.0/ExtUtils/MakeMaker.html#Using-Attributes-and-Parameters
+
+[YOCTO #13491]
+
+Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
 ---
- .../openssh/openssh-6.6p1-ctr-cavstest.patch       | 289 +++++++++
- .../openssh/openssh/openssh-6.7p1-kdf-cavs.patch   | 654 +++++++++++++++++++++
- recipes-connectivity/openssh/openssh_fips.inc      |   9 +
- 3 files changed, 952 insertions(+)
- create mode 100644 recipes-connectivity/openssh/openssh/openssh-6.6p1-ctr-cavstest.patch
- create mode 100644 recipes-connectivity/openssh/openssh/openssh-6.7p1-kdf-cavs.patch
+ recipes-mac/AppArmor/apparmor_2.13.3.bb       |  1 +
+ ...1-Makefile.am-suppress-perllocal.pod.patch | 28 +++++++++++++++++++
+ 2 files changed, 29 insertions(+)
+ create mode 100644 recipes-mac/AppArmor/files/0001-Makefile.am-suppress-perllocal.pod.patch
 
-diff --git a/recipes-connectivity/openssh/openssh/openssh-6.6p1-ctr-cavstest.patch b/recipes-connectivity/openssh/openssh/openssh-6.6p1-ctr-cavstest.patch
-new file mode 100644
-index 0000000..038efa0
---- /dev/null
-+++ b/recipes-connectivity/openssh/openssh/openssh-6.6p1-ctr-cavstest.patch
-@@ -0,0 +1,289 @@
-+From a94a3d95439018dc7d276ec72de91af369ea413e Mon Sep 17 00:00:00 2001
-+From: Hongxu Jia <hongxu.jia@windriver.com>
-+Date: Sun, 22 Sep 2019 21:32:18 +0800
-+Subject: [PATCH 1/2] add CAVS test driver for the aes-ctr ciphers
-+
-+Original submission to Fedora, see:
-+   https://lists.fedoraproject.org/pipermail/scm-commits/2012-January/715044.html
-+
-+this version download from:
-+   http://pkgs.fedoraproject.org/cgit/rpms/openssh.git/plain/openssh-6.6p1-ctr-cavstest.patch
-+   (as of commit 991b66246f5151884b63c6d1232610a4569642a5)
-+
-+Makefile.in slightly modified for integration
-+
-+This is the makefile.in change for the normal configuration.
-+
-+Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
-+
-+Upstream-Status: Inappropriate [oe specific]
-+Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
-+---
-+ Makefile.in    |   7 +-
-+ ctr-cavstest.c | 215 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-+ 2 files changed, 221 insertions(+), 1 deletion(-)
-+ create mode 100644 ctr-cavstest.c
-+
-+diff --git a/Makefile.in b/Makefile.in
-+index ddd1804..cb34681 100644
-+--- a/Makefile.in
-++++ b/Makefile.in
-+@@ -23,6 +23,7 @@ SSH_PROGRAM=@bindir@/ssh
-+ ASKPASS_PROGRAM=$(libexecdir)/ssh-askpass
-+ SFTP_SERVER=$(libexecdir)/sftp-server
-+ SSH_KEYSIGN=$(libexecdir)/ssh-keysign
-++CTR_CAVSTEST=$(libexecdir)/ctr-cavstest
-+ SSH_PKCS11_HELPER=$(libexecdir)/ssh-pkcs11-helper
-+ PRIVSEP_PATH=@PRIVSEP_PATH@
-+ SSH_PRIVSEP_USER=@SSH_PRIVSEP_USER@
-+@@ -60,7 +61,7 @@ EXEEXT=@EXEEXT@
-+ MANFMT=@MANFMT@
-+ MKDIR_P=@MKDIR_P@
-+ 
-+-TARGETS=ssh$(EXEEXT) sshd$(EXEEXT) ssh-add$(EXEEXT) ssh-keygen$(EXEEXT) ssh-keyscan${EXEEXT} ssh-keysign${EXEEXT} ssh-pkcs11-helper$(EXEEXT) ssh-agent$(EXEEXT) scp$(EXEEXT) sftp-server$(EXEEXT) sftp$(EXEEXT)
-++TARGETS=ssh$(EXEEXT) sshd$(EXEEXT) ssh-add$(EXEEXT) ssh-keygen$(EXEEXT) ssh-keyscan${EXEEXT} ssh-keysign${EXEEXT} ssh-pkcs11-helper$(EXEEXT) ssh-agent$(EXEEXT) scp$(EXEEXT) sftp-server$(EXEEXT) sftp$(EXEEXT) ctr-cavstest$(EXEEXT)
-+ 
-+ XMSS_OBJS=\
-+ 	ssh-xmss.o \
-+@@ -193,6 +194,9 @@ ssh-keysign$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-keysign.o readconf.o uidswap.o c
-+ ssh-pkcs11-helper$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-pkcs11-helper.o ssh-pkcs11.o
-+ 	$(LD) -o $@ ssh-pkcs11-helper.o ssh-pkcs11.o $(LDFLAGS) -lssh -lopenbsd-compat -lssh -lopenbsd-compat $(LIBS)
-+ 
-++ctr-cavstest$(EXEEXT): $(LIBCOMPAT) libssh.a ctr-cavstest.o
-++	$(LD) -o $@ ctr-cavstest.o $(LDFLAGS) -lssh -lopenbsd-compat -lssh -lfipscheck $(LIBS)
-++
-+ ssh-keyscan$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-keyscan.o
-+ 	$(LD) -o $@ ssh-keyscan.o $(LDFLAGS) -lssh -lopenbsd-compat -lssh -lfipscheck $(LIBS)
-+ 
-+@@ -343,6 +347,7 @@ install-files:
-+ 	$(INSTALL) -m 0755 $(STRIP_OPT) ssh-keyscan$(EXEEXT) $(DESTDIR)$(bindir)/ssh-keyscan$(EXEEXT)
-+ 	$(INSTALL) -m 0755 $(STRIP_OPT) sshd$(EXEEXT) $(DESTDIR)$(sbindir)/sshd$(EXEEXT)
-+ 	$(INSTALL) -m 4711 $(STRIP_OPT) ssh-keysign$(EXEEXT) $(DESTDIR)$(SSH_KEYSIGN)$(EXEEXT)
-++	$(INSTALL) -m 0755 $(STRIP_OPT) ctr-cavstest$(EXEEXT) $(DESTDIR)$(libexecdir)/ctr-cavstest$(EXEEXT)
-+ 	$(INSTALL) -m 0755 $(STRIP_OPT) ssh-pkcs11-helper$(EXEEXT) $(DESTDIR)$(SSH_PKCS11_HELPER)$(EXEEXT)
-+ 	$(INSTALL) -m 0755 $(STRIP_OPT) sftp$(EXEEXT) $(DESTDIR)$(bindir)/sftp$(EXEEXT)
-+ 	$(INSTALL) -m 0755 $(STRIP_OPT) sftp-server$(EXEEXT) $(DESTDIR)$(SFTP_SERVER)$(EXEEXT)
-+diff --git a/ctr-cavstest.c b/ctr-cavstest.c
-+new file mode 100644
-+index 0000000..0d4776b
-+--- /dev/null
-++++ b/ctr-cavstest.c
-+@@ -0,0 +1,215 @@
-++/*
-++ *
-++ * invocation (all of the following are equal):
-++ * ./ctr-cavstest --algo aes128-ctr --key 987212980144b6a632e864031f52dacc --mode encrypt --data a6deca405eef2e8e4609abf3c3ccf4a6
-++ * ./ctr-cavstest --algo aes128-ctr --key 987212980144b6a632e864031f52dacc --mode encrypt --data a6deca405eef2e8e4609abf3c3ccf4a6 --iv 00000000000000000000000000000000
-++ * echo -n a6deca405eef2e8e4609abf3c3ccf4a6 | ./ctr-cavstest --algo aes128-ctr --key 987212980144b6a632e864031f52dacc --mode encrypt
-++ */
-++
-++#include "includes.h"
-++
-++#include <sys/types.h>
-++#include <sys/param.h>
-++#include <stdarg.h>
-++#include <stdio.h>
-++#include <stdlib.h>
-++#include <string.h>
-++#include <ctype.h>
-++
-++#include "xmalloc.h"
-++#include "log.h"
-++#include "ssherr.h"
-++#include "cipher.h"
-++
-++/* compatibility with old or broken OpenSSL versions */
-++#include "openbsd-compat/openssl-compat.h"
-++
-++void usage(void) {
-++        fprintf(stderr, "Usage: ctr-cavstest --algo <ssh-crypto-algorithm>\n"
-++                        "                    --key <hexadecimal-key> --mode <encrypt|decrypt>\n"
-++                        "                    [--iv <hexadecimal-iv>] --data <hexadecimal-data>\n\n"
-++                        "Hexadecimal output is printed to stdout.\n"
-++                        "Hexadecimal input data can be alternatively read from stdin.\n");
-++        exit(1);
-++}
-++
-++void *fromhex(char *hex, size_t *len)
-++{
-++        unsigned char *bin;
-++        char *p;
-++        size_t n = 0;
-++        int shift = 4;
-++        unsigned char out = 0;
-++        unsigned char *optr;
-++
-++        bin = xmalloc(strlen(hex)/2);
-++        optr = bin;
-++
-++        for (p = hex; *p != '\0'; ++p) {
-++                unsigned char c;
-++
-++                c = *p;
-++                if (isspace(c))
-++                        continue;
-++
-++                if (c >= '0' && c <= '9') {
-++                        c = c - '0';
-++                } else if (c >= 'A' && c <= 'F') {
-++                        c = c - 'A' + 10;
-++                } else if (c >= 'a' && c <= 'f') {
-++                        c = c - 'a' + 10;
-++                } else {
-++                        /* truncate on nonhex cipher */
-++                        break;
-++                }
-++
-++                out |= c << shift;
-++                shift = (shift + 4) % 8;
-++
-++                if (shift) {
-++                        *(optr++) = out;
-++                        out = 0;
-++                        ++n;
-++                }
-++        }
-++
-++        *len = n;
-++        return bin;
-++}
-++
-++#define READ_CHUNK 4096
-++#define MAX_READ_SIZE 1024*1024*100
-++char *read_stdin(void)
-++{
-++        char *buf;
-++        size_t n, total = 0;
-++
-++        buf = xmalloc(READ_CHUNK);
-++
-++        do {
-++                n = fread(buf + total, 1, READ_CHUNK, stdin);
-++                if (n < READ_CHUNK) /* terminate on short read */
-++                        break;
-++
-++                total += n;
-++                buf = xreallocarray(buf, total + READ_CHUNK, 1);
-++        } while(total < MAX_READ_SIZE);
-++        return buf;
-++}
-++
-++int main (int argc, char *argv[])
-++{
-++
-++        const struct sshcipher *c;
-++        struct sshcipher_ctx *cc;
-++        char *algo = "aes128-ctr";
-++        char *hexkey = NULL;
-++        char *hexiv = "00000000000000000000000000000000";
-++        char *hexdata = NULL;
-++        char *p;
-++        int i, r;
-++        int encrypt = 1;
-++        void *key;
-++        size_t keylen;
-++        void *iv;
-++        size_t ivlen;
-++        void *data;
-++        size_t datalen;
-++        void *outdata;
-++
-++        for (i = 1; i < argc; ++i) {
-++                if (strcmp(argv[i], "--algo") == 0) {
-++                        algo = argv[++i];
-++                } else if (strcmp(argv[i], "--key") == 0) {
-++                        hexkey = argv[++i];
-++                } else if (strcmp(argv[i], "--mode") == 0) {
-++                        ++i;
-++                        if (argv[i] == NULL) {
-++                                usage();
-++                        }
-++                        if (strncmp(argv[i], "enc", 3) == 0) {
-++                                encrypt = 1;
-++                        } else if (strncmp(argv[i], "dec", 3) == 0) {
-++                                encrypt = 0;
-++                        } else {
-++                                usage();
-++                        }
-++                } else if (strcmp(argv[i], "--iv") == 0) {
-++                        hexiv = argv[++i];
-++                } else if (strcmp(argv[i], "--data") == 0) {
-++                        hexdata = argv[++i];
-++                }
-++        }
-++
-++        if (hexkey == NULL || algo == NULL) {
-++                usage();
-++        }
-++
-++	OpenSSL_add_all_algorithms();
-++
-++	c = cipher_by_name(algo);
-++	if (c == NULL) {
-++		fprintf(stderr, "Error: unknown algorithm\n");
-++		return 2;
-++	}
-++
-++        if (hexdata == NULL) {
-++                hexdata = read_stdin();
-++        } else {
-++                hexdata = xstrdup(hexdata);
-++        }
-++
-++        key = fromhex(hexkey, &keylen);
-++
-++	if (keylen != 16 && keylen != 24 && keylen == 32) {
-++		fprintf(stderr, "Error: unsupported key length\n");
-++		return 2;
-++	}
-++
-++        iv = fromhex(hexiv, &ivlen);
-++
-++        if (ivlen != 16) {
-++		fprintf(stderr, "Error: unsupported iv length\n");
-++		return 2;
-++        }
-++
-++        data = fromhex(hexdata, &datalen);
-++
-++	if (data == NULL || datalen == 0) {
-++		fprintf(stderr, "Error: no data to encrypt/decrypt\n");
-++		return 2;
-++	}
-++
-++	if ((r = cipher_init(&cc, c, key, keylen, iv, ivlen, encrypt)) != 0) {
-++		fprintf(stderr, "Error: cipher_init failed: %s\n", ssh_err(r));
-++		return 2;
-++	}
-++
-++	free(key);
-++	free(iv);
-++
-++	outdata = malloc(datalen);
-++	if(outdata == NULL) {
-++		fprintf(stderr, "Error: memory allocation failure\n");
-++		return 2;
-++	}
-++
-++	if ((r = cipher_crypt(cc, 0, outdata, data, datalen, 0, 0)) != 0) {
-++		fprintf(stderr, "Error: cipher_crypt failed: %s\n", ssh_err(r));
-++		return 2;
-++	}
-++
-++	free(data);
-++
-++	cipher_free(cc);
-++
-++        for (p = outdata; datalen > 0; ++p, --datalen) {
-++		printf("%02X", (unsigned char)*p);
-++	}
-++
-++        free(outdata);
-++
-++        printf("\n");
-++        return 0;
-++}
-++
-+-- 
-+2.7.4
-+
-diff --git a/recipes-connectivity/openssh/openssh/openssh-6.7p1-kdf-cavs.patch b/recipes-connectivity/openssh/openssh/openssh-6.7p1-kdf-cavs.patch
-new file mode 100644
-index 0000000..f49821c
---- /dev/null
-+++ b/recipes-connectivity/openssh/openssh/openssh-6.7p1-kdf-cavs.patch
-@@ -0,0 +1,654 @@
-+From 210d15fd146ff7037f03fff5e0ba6fcf0bfde683 Mon Sep 17 00:00:00 2001
-+From: Hongxu Jia <hongxu.jia@windriver.com>
-+Date: Sun, 22 Sep 2019 21:40:51 +0800
-+Subject: [PATCH 2/2] add KDF CAVS test driver
-+
-+Original submission to Fedora, see:
-+   https://lists.fedoraproject.org/pipermail/scm-commits/Week-of-Mon-20150216/1514788.html
-+
-+this version download from:
-+   http://pkgs.fedoraproject.org/cgit/rpms/openssh.git/plain/openssh-6.7p1-kdf-cavs.patch
-+   (as of commit 991b66246f5151884b63c6d1232610a4569642a5)
-+
-+Makefile.in slightly modified for integration
-+
-+This is the makefile.in change for the normal configuration.
-+
-+Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
-+
-+Upstream-Status: Inappropriate [oe specific]
-+Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
-+---
-+ Makefile.in        |   8 +-
-+ ssh-cavs.c         | 387 +++++++++++++++++++++++++++++++++++++++++++++++++++++
-+ ssh-cavs_driver.pl | 184 +++++++++++++++++++++++++
-+ 3 files changed, 578 insertions(+), 1 deletion(-)
-+ create mode 100644 ssh-cavs.c
-+ create mode 100644 ssh-cavs_driver.pl
-+
-+diff --git a/Makefile.in b/Makefile.in
-+index cb34681..368097e 100644
-+--- a/Makefile.in
-++++ b/Makefile.in
-+@@ -24,6 +24,7 @@ ASKPASS_PROGRAM=$(libexecdir)/ssh-askpass
-+ SFTP_SERVER=$(libexecdir)/sftp-server
-+ SSH_KEYSIGN=$(libexecdir)/ssh-keysign
-+ CTR_CAVSTEST=$(libexecdir)/ctr-cavstest
-++SSH_CAVS=$(libexecdir)/ssh-cavs
-+ SSH_PKCS11_HELPER=$(libexecdir)/ssh-pkcs11-helper
-+ PRIVSEP_PATH=@PRIVSEP_PATH@
-+ SSH_PRIVSEP_USER=@SSH_PRIVSEP_USER@
-+@@ -61,7 +62,7 @@ EXEEXT=@EXEEXT@
-+ MANFMT=@MANFMT@
-+ MKDIR_P=@MKDIR_P@
-+ 
-+-TARGETS=ssh$(EXEEXT) sshd$(EXEEXT) ssh-add$(EXEEXT) ssh-keygen$(EXEEXT) ssh-keyscan${EXEEXT} ssh-keysign${EXEEXT} ssh-pkcs11-helper$(EXEEXT) ssh-agent$(EXEEXT) scp$(EXEEXT) sftp-server$(EXEEXT) sftp$(EXEEXT) ctr-cavstest$(EXEEXT)
-++TARGETS=ssh$(EXEEXT) sshd$(EXEEXT) ssh-add$(EXEEXT) ssh-keygen$(EXEEXT) ssh-keyscan${EXEEXT} ssh-keysign${EXEEXT} ssh-pkcs11-helper$(EXEEXT) ssh-agent$(EXEEXT) scp$(EXEEXT) sftp-server$(EXEEXT) sftp$(EXEEXT) ctr-cavstest$(EXEEXT) ssh-cavs$(EXEEXT)
-+ 
-+ XMSS_OBJS=\
-+ 	ssh-xmss.o \
-+@@ -197,6 +198,9 @@ ssh-pkcs11-helper$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-pkcs11-helper.o ssh-pkcs11
-+ ctr-cavstest$(EXEEXT): $(LIBCOMPAT) libssh.a ctr-cavstest.o
-+ 	$(LD) -o $@ ctr-cavstest.o $(LDFLAGS) -lssh -lopenbsd-compat -lssh -lfipscheck $(LIBS)
-+ 
-++ssh-cavs$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-cavs.o
-++	$(LD) -o $@ ssh-cavs.o $(LDFLAGS) -lssh -lopenbsd-compat $(LIBS)
-++
-+ ssh-keyscan$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-keyscan.o
-+ 	$(LD) -o $@ ssh-keyscan.o $(LDFLAGS) -lssh -lopenbsd-compat -lssh -lfipscheck $(LIBS)
-+ 
-+@@ -348,6 +352,8 @@ install-files:
-+ 	$(INSTALL) -m 0755 $(STRIP_OPT) sshd$(EXEEXT) $(DESTDIR)$(sbindir)/sshd$(EXEEXT)
-+ 	$(INSTALL) -m 4711 $(STRIP_OPT) ssh-keysign$(EXEEXT) $(DESTDIR)$(SSH_KEYSIGN)$(EXEEXT)
-+ 	$(INSTALL) -m 0755 $(STRIP_OPT) ctr-cavstest$(EXEEXT) $(DESTDIR)$(libexecdir)/ctr-cavstest$(EXEEXT)
-++	$(INSTALL) -m 0755 $(STRIP_OPT) ssh-cavs$(EXEEXT) $(DESTDIR)$(libexecdir)/ssh-cavs$(EXEEXT)
-++	$(INSTALL) -m 0755 $(STRIP_OPT) ssh-cavs_driver.pl $(DESTDIR)$(libexecdir)/ssh-cavs_driver.pl
-+ 	$(INSTALL) -m 0755 $(STRIP_OPT) ssh-pkcs11-helper$(EXEEXT) $(DESTDIR)$(SSH_PKCS11_HELPER)$(EXEEXT)
-+ 	$(INSTALL) -m 0755 $(STRIP_OPT) sftp$(EXEEXT) $(DESTDIR)$(bindir)/sftp$(EXEEXT)
-+ 	$(INSTALL) -m 0755 $(STRIP_OPT) sftp-server$(EXEEXT) $(DESTDIR)$(SFTP_SERVER)$(EXEEXT)
-+diff --git a/ssh-cavs.c b/ssh-cavs.c
-+new file mode 100644
-+index 0000000..b74ae7f
-+--- /dev/null
-++++ b/ssh-cavs.c
-+@@ -0,0 +1,387 @@
-++/*
-++ * Copyright (C) 2015, Stephan Mueller <smueller@chronox.de>
-++ *
-++ * Redistribution and use in source and binary forms, with or without
-++ * modification, are permitted provided that the following conditions
-++ * are met:
-++ * 1. Redistributions of source code must retain the above copyright
-++ *    notice, and the entire permission notice in its entirety,
-++ *    including the disclaimer of warranties.
-++ * 2. Redistributions in binary form must reproduce the above copyright
-++ *    notice, this list of conditions and the following disclaimer in the
-++ *    documentation and/or other materials provided with the distribution.
-++ * 3. The name of the author may not be used to endorse or promote
-++ *    products derived from this software without specific prior
-++ *    written permission.
-++ *
-++ * ALTERNATIVELY, this product may be distributed under the terms of
-++ * the GNU General Public License, in which case the provisions of the GPL2
-++ * are required INSTEAD OF the above restrictions.  (This clause is
-++ * necessary due to a potential bad interaction between the GPL and
-++ * the restrictions contained in a BSD-style copyright.)
-++ *
-++ * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED
-++ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
-++ * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ALL OF
-++ * WHICH ARE HEREBY DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE
-++ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-++ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT
-++ * OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
-++ * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
-++ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-++ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
-++ * USE OF THIS SOFTWARE, EVEN IF NOT ADVISED OF THE POSSIBILITY OF SUCH
-++ * DAMAGE.
-++ */
-++
-++#include "includes.h"
-++
-++#include <stdio.h>
-++#include <stdlib.h>
-++#include <errno.h>
-++#include <sys/types.h>
-++#include <string.h>
-++
-++#include <openssl/bn.h>
-++
-++#include "xmalloc.h"
-++#include "sshbuf.h"
-++#include "sshkey.h"
-++#include "cipher.h"
-++#include "kex.h"
-++#include "packet.h"
-++#include "digest.h"
-++
-++static int bin_char(unsigned char hex)
-++{
-++	if (48 <= hex && 57 >= hex)
-++		return (hex - 48);
-++	if (65 <= hex && 70 >= hex)
-++		return (hex - 55);
-++	if (97 <= hex && 102 >= hex)
-++		return (hex - 87);
-++	return 0;
-++}
-++
-++/*
-++ * Convert hex representation into binary string
-++ * @hex input buffer with hex representation
-++ * @hexlen length of hex
-++ * @bin output buffer with binary data
-++ * @binlen length of already allocated bin buffer (should be at least
-++ *	   half of hexlen -- if not, only a fraction of hexlen is converted)
-++ */
-++static void hex2bin(const char *hex, size_t hexlen,
-++		    unsigned char *bin, size_t binlen)
-++{
-++	size_t i = 0;
-++	size_t chars = (binlen > (hexlen / 2)) ? (hexlen / 2) : binlen;
-++
-++	for (i = 0; i < chars; i++) {
-++		bin[i] = bin_char(hex[(i*2)]) << 4;
-++		bin[i] |= bin_char(hex[((i*2)+1)]);
-++	}
-++}
-++
-++/*
-++ * Allocate sufficient space for binary representation of hex
-++ * and convert hex into bin
-++ *
-++ * Caller must free bin
-++ * @hex input buffer with hex representation
-++ * @hexlen length of hex
-++ * @bin return value holding the pointer to the newly allocated buffer
-++ * @binlen return value holding the allocated size of bin
-++ *
-++ * return: 0 on success, !0 otherwise
-++ */
-++static int hex2bin_alloc(const char *hex, size_t hexlen,
-++			 unsigned char **bin, size_t *binlen)
-++{
-++	unsigned char *out = NULL;
-++	size_t outlen = 0;
-++
-++	if (!hexlen)
-++		return -EINVAL;
-++
-++	outlen = (hexlen + 1) / 2;
-++
-++	out = calloc(1, outlen);
-++	if (!out)
-++		return -errno;
-++
-++	hex2bin(hex, hexlen, out, outlen);
-++	*bin = out;
-++	*binlen = outlen;
-++	return 0;
-++}
-++
-++static char hex_char_map_l[] = { '0', '1', '2', '3', '4', '5', '6', '7',
-++				 '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
-++static char hex_char_map_u[] = { '0', '1', '2', '3', '4', '5', '6', '7',
-++				 '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
-++static char hex_char(unsigned int bin, int u)
-++{
-++	if (bin < sizeof(hex_char_map_l))
-++		return (u) ? hex_char_map_u[bin] : hex_char_map_l[bin];
-++	return 'X';
-++}
-++
-++/*
-++ * Convert binary string into hex representation
-++ * @bin input buffer with binary data
-++ * @binlen length of bin
-++ * @hex output buffer to store hex data
-++ * @hexlen length of already allocated hex buffer (should be at least
-++ *	   twice binlen -- if not, only a fraction of binlen is converted)
-++ * @u case of hex characters (0=>lower case, 1=>upper case)
-++ */
-++static void bin2hex(const unsigned char *bin, size_t binlen,
-++		    char *hex, size_t hexlen, int u)
-++{
-++	size_t i = 0;
-++	size_t chars = (binlen > (hexlen / 2)) ? (hexlen / 2) : binlen;
-++
-++	for (i = 0; i < chars; i++) {
-++		hex[(i*2)] = hex_char((bin[i] >> 4), u);
-++		hex[((i*2)+1)] = hex_char((bin[i] & 0x0f), u);
-++	}
-++}
-++
-++struct kdf_cavs {
-++	unsigned char *K;
-++	size_t Klen;
-++	unsigned char *H;
-++	size_t Hlen;
-++	unsigned char *session_id;
-++	size_t session_id_len;
-++
-++	unsigned int iv_len;
-++	unsigned int ek_len;
-++	unsigned int ik_len;
-++};
-++
-++static int sshkdf_cavs(struct kdf_cavs *test)
-++{
-++	int ret = 0;
-++	struct kex kex;
-++	struct sshbuf *Kb = NULL;
-++	BIGNUM *Kbn = NULL;
-++	int mode = 0;
-++	struct newkeys *ctoskeys;
-++	struct newkeys *stockeys;
-++	struct ssh *ssh = NULL;
-++
-++#define HEXOUTLEN 500
-++	char hex[HEXOUTLEN];
-++
-++	memset(&kex, 0, sizeof(struct kex));
-++
-++	Kbn = BN_new();
-++	BN_bin2bn(test->K, test->Klen, Kbn);
-++	if (!Kbn) {
-++		printf("cannot convert K into bignum\n");
-++		ret = 1;
-++		goto out;
-++	}
-++	Kb = sshbuf_new();
-++	if (!Kb) {
-++		printf("cannot convert K into sshbuf\n");
-++		ret = 1;
-++		goto out;
-++	}
-++	sshbuf_put_bignum2(Kb, Kbn);
-++
-++	kex.session_id = test->session_id;
-++	kex.session_id_len = test->session_id_len;
-++
-++	/* setup kex */
-++
-++	/* select the right hash based on struct ssh_digest digests */
-++	switch (test->ik_len) {
-++		case 20:
-++			kex.hash_alg = SSH_DIGEST_SHA1;
-++			break;
-++		case 32:
-++			kex.hash_alg = SSH_DIGEST_SHA256;
-++			break;
-++		case 48:
-++			kex.hash_alg = SSH_DIGEST_SHA384;
-++			break;
-++		case 64:
-++			kex.hash_alg = SSH_DIGEST_SHA512;
-++			break;
-++		default:
-++			printf("Wrong hash type %u\n", test->ik_len);
-++			ret = 1;
-++			goto out;
-++	}
-++
-++	/* implement choose_enc */
-++	for (mode = 0; mode < 2; mode++) {
-++		kex.newkeys[mode] = calloc(1, sizeof(struct newkeys));
-++		if (!kex.newkeys[mode]) {
-++			printf("allocation of newkeys failed\n");
-++			ret = 1;
-++			goto out;
-++		}
-++		kex.newkeys[mode]->enc.iv_len = test->iv_len;
-++		kex.newkeys[mode]->enc.key_len = test->ek_len;
-++		kex.newkeys[mode]->enc.block_size = (test->iv_len == 64) ? 8 : 16;
-++		kex.newkeys[mode]->mac.key_len = test->ik_len;
-++	}
-++
-++	/* implement kex_choose_conf */
-++	kex.we_need = kex.newkeys[0]->enc.key_len;
-++	if (kex.we_need < kex.newkeys[0]->enc.block_size)
-++		kex.we_need = kex.newkeys[0]->enc.block_size;
-++	if (kex.we_need < kex.newkeys[0]->enc.iv_len)
-++		kex.we_need = kex.newkeys[0]->enc.iv_len;
-++	if (kex.we_need < kex.newkeys[0]->mac.key_len)
-++		kex.we_need = kex.newkeys[0]->mac.key_len;
-++
-++	/* MODE_OUT (1) -> server to client
-++	 * MODE_IN (0) -> client to server */
-++	kex.server = 1;
-++
-++	/* do it */
-++	if ((ssh = ssh_packet_set_connection(NULL, -1, -1)) == NULL){
-++		printf("Allocation error\n");
-++		goto out;
-++	}
-++	ssh->kex = &kex;
-++	kex_derive_keys(ssh, test->H, test->Hlen, Kb);
-++
-++	ctoskeys = kex.newkeys[0];
-++	stockeys = kex.newkeys[1];
-++
-++	/* get data */
-++	memset(hex, 0, HEXOUTLEN);
-++	bin2hex(ctoskeys->enc.iv, (size_t)ctoskeys->enc.iv_len,
-++		hex, HEXOUTLEN, 0);
-++	printf("Initial IV (client to server) = %s\n", hex);
-++	memset(hex, 0, HEXOUTLEN);
-++	bin2hex(stockeys->enc.iv, (size_t)stockeys->enc.iv_len,
-++		hex, HEXOUTLEN, 0);
-++	printf("Initial IV (server to client) = %s\n", hex);
-++
-++	memset(hex, 0, HEXOUTLEN);
-++	bin2hex(ctoskeys->enc.key, (size_t)ctoskeys->enc.key_len,
-++		hex, HEXOUTLEN, 0);
-++	printf("Encryption key (client to server) = %s\n", hex);
-++	memset(hex, 0, HEXOUTLEN);
-++	bin2hex(stockeys->enc.key, (size_t)stockeys->enc.key_len,
-++		hex, HEXOUTLEN, 0);
-++	printf("Encryption key (server to client) = %s\n", hex);
-++
-++	memset(hex, 0, HEXOUTLEN);
-++	bin2hex(ctoskeys->mac.key, (size_t)ctoskeys->mac.key_len,
-++		hex, HEXOUTLEN, 0);
-++	printf("Integrity key (client to server) = %s\n", hex);
-++	memset(hex, 0, HEXOUTLEN);
-++	bin2hex(stockeys->mac.key, (size_t)stockeys->mac.key_len,
-++		hex, HEXOUTLEN, 0);
-++	printf("Integrity key (server to client) = %s\n", hex);
-++
-++out:
-++	if (Kbn)
-++		BN_free(Kbn);
-++	if (Kb)
-++		sshbuf_free(Kb);
-++	if (ssh)
-++		ssh_packet_close(ssh);
-++	return ret;
-++}
-++
-++static void usage(void)
-++{
-++	fprintf(stderr, "\nOpenSSH KDF CAVS Test\n\n");
-++	fprintf(stderr, "Usage:\n");
-++	fprintf(stderr, "\t-K\tShared secret string\n");
-++	fprintf(stderr, "\t-H\tHash string\n");
-++	fprintf(stderr, "\t-s\tSession ID string\n");
-++	fprintf(stderr, "\t-i\tIV length to be generated\n");
-++	fprintf(stderr, "\t-e\tEncryption key length to be generated\n");
-++	fprintf(stderr, "\t-m\tMAC key length to be generated\n");
-++}
-++
-++/*
-++ * Test command example:
-++ * ./ssh-cavs -K 0055d50f2d163cc07cd8a93cc7c3430c30ce786b572c01ad29fec7597000cf8618d664e2ec3dcbc8bb7a1a7eb7ef67f61cdaf291625da879186ac0a5cb27af571b59612d6a6e0627344d846271959fda61c78354aa498773d59762f8ca2d0215ec590d8633de921f920d41e47b3de6ab9a3d0869e1c826d0e4adebf8e3fb646a15dea20a410b44e969f4b791ed6a67f13f1b74234004d5fa5e87eff7abc32d49bbdf44d7b0107e8f10609233b7e2b7eff74a4daf25641de7553975dac6ac1e5117df6f6dbaa1c263d23a6c3e5a3d7d49ae8a828c1e333ac3f85fbbf57b5c1a45be45e43a7be1a4707eac779b8285522d1f531fe23f890fd38a004339932b93eda4 -H d3ab91a850febb417a25d892ec48ed5952c7a5de -s d3ab91a850febb417a25d892ec48ed5952c7a5de -i 8 -e 24 -m 20
-++ *
-++ * Initial IV (client to server) = 4bb320d1679dfd3a
-++ * Initial IV (server to client) = 43dea6fdf263a308
-++ * Encryption key (client to server) = 13048cc600b9d3cf9095aa6cf8e2ff9cf1c54ca0520c89ed
-++ * Encryption key (server to client) = 1e483c5134e901aa11fc4e0a524e7ec7b75556148a222bb0
-++ * Integrity key (client to server) = ecef63a092b0dcc585bdc757e01b2740af57d640
-++ * Integrity key (server to client) = 7424b05f3c44a72b4ebd281fb71f9cbe7b64d479
-++ */
-++int main(int argc, char *argv[])
-++{
-++	struct kdf_cavs test;
-++	int ret = 1;
-++	int opt = 0;
-++
-++	memset(&test, 0, sizeof(struct kdf_cavs));
-++	while((opt = getopt(argc, argv, "K:H:s:i:e:m:")) != -1)
-++	{
-++		size_t len = 0;
-++		switch(opt)
-++		{
-++			/*
-++			 * CAVS K is MPINT
-++			 * we want a hex (i.e. the caller must ensure the
-++			 * following transformations already happened):
-++			 * 	1. cut off first four bytes
-++			 * 	2. if most significant bit of value is
-++			 *	   1, prepend 0 byte
-++			 */
-++			case 'K':
-++				len = strlen(optarg);
-++				ret = hex2bin_alloc(optarg, len,
-++						    &test.K, &test.Klen);
-++				if (ret)
-++					goto out;
-++				break;
-++			case 'H':
-++				len = strlen(optarg);
-++				ret = hex2bin_alloc(optarg, len,
-++						    &test.H, &test.Hlen);
-++				if (ret)
-++					goto out;
-++				break;
-++			case 's':
-++				len = strlen(optarg);
-++				ret = hex2bin_alloc(optarg, len,
-++						    &test.session_id,
-++						    &test.session_id_len);
-++				if (ret)
-++					goto out;
-++				break;
-++			case 'i':
-++				test.iv_len = strtoul(optarg, NULL, 10);
-++				break;
-++			case 'e':
-++				test.ek_len = strtoul(optarg, NULL, 10);
-++				break;
-++			case 'm':
-++				test.ik_len = strtoul(optarg, NULL, 10);
-++				break;
-++			default:
-++				usage();
-++				goto out;
-++		}
-++	}
-++
-++	ret = sshkdf_cavs(&test);
-++
-++out:
-++	if (test.session_id)
-++		free(test.session_id);
-++	if (test.K)
-++		free(test.K);
-++	if (test.H)
-++		free(test.H);
-++	return ret;
-++
-++}
-+diff --git a/ssh-cavs_driver.pl b/ssh-cavs_driver.pl
-+new file mode 100644
-+index 0000000..6ed8f26
-+--- /dev/null
-++++ b/ssh-cavs_driver.pl
-+@@ -0,0 +1,184 @@
-++#!/usr/bin/env perl
-++#
-++# CAVS test driver for OpenSSH
-++#
-++# Copyright (C) 2015, Stephan Mueller <smueller@chronox.de>
-++#
-++# Permission is hereby granted, free of charge, to any person obtaining a copy
-++# of this software and associated documentation files (the "Software"), to deal
-++# in the Software without restriction, including without limitation the rights
-++# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-++# copies of the Software, and to permit persons to whom the Software is
-++# furnished to do so, subject to the following conditions:
-++#
-++# The above copyright notice and this permission notice shall be included in
-++# all copies or substantial portions of the Software.
-++#
-++#                            NO WARRANTY
-++#
-++#    BECAUSE THE PROGRAM IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY
-++#    FOR THE PROGRAM, TO THE EXTENT PERMITTED BY APPLICABLE LAW.  EXCEPT WHEN
-++#    OTHERWISE STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES
-++#    PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED
-++#    OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
-++#    MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS
-++#    TO THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU.  SHOULD THE
-++#    PROGRAM PROVE DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING,
-++#    REPAIR OR CORRECTION.
-++#
-++#    IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
-++#    WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR
-++#    REDISTRIBUTE THE PROGRAM AS PERMITTED ABOVE, BE LIABLE TO YOU FOR DAMAGES,
-++#    INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING
-++#    OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT NOT LIMITED
-++#    TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY
-++#    YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER
-++#    PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
-++#    POSSIBILITY OF SUCH DAMAGES.
-++#
-++use strict;
-++use warnings;
-++use IPC::Open2;
-++
-++# Executing a program by feeding STDIN and retrieving
-++# STDOUT
-++# $1: data string to be piped to the app on STDIN
-++# rest: program and args
-++# returns: STDOUT of program as string
-++sub pipe_through_program($@) {
-++	my $in = shift;
-++	my @args = @_;
-++
-++	my ($CO, $CI);
-++	my $pid = open2($CO, $CI, @args);
-++
-++	my $out = "";
-++	my $len = length($in);
-++	my $first = 1;
-++	while (1) {
-++		my $rin = "";
-++		my $win = "";
-++		# Output of prog is FD that we read
-++		vec($rin,fileno($CO),1) = 1;
-++		# Input of prog is FD that we write
-++		# check for $first is needed because we can have NULL input
-++		# that is to be written to the app
-++		if ( $len > 0 || $first) {
-++			(vec($win,fileno($CI),1) = 1);
-++			$first=0;
-++		}
-++		# Let us wait for 100ms
-++		my $nfound = select(my $rout=$rin, my $wout=$win, undef, 0.1);
-++		if ( $wout ) {
-++			my $written = syswrite($CI, $in, $len);
-++			die "broken pipe" if !defined $written;
-++			$len -= $written;
-++			substr($in, 0, $written) = "";
-++			if ($len <= 0) {
-++				close $CI or die "broken pipe: $!";
-++			}
-++		}
-++		if ( $rout ) {
-++			my $tmp_out = "";
-++			my $bytes_read = sysread($CO, $tmp_out, 4096);
-++			$out .= $tmp_out;
-++			last if ($bytes_read == 0);
-++		}
-++	}
-++	close $CO or die "broken pipe: $!";
-++	waitpid $pid, 0;
-++
-++	return $out;
-++}
-++
-++# Parser of CAVS test vector file
-++# $1: Test vector file
-++# $2: Output file for test results
-++# return: nothing
-++sub parse($$) {
-++	my $infile = shift;
-++	my $outfile = shift;
-++
-++	my $out = "";
-++
-++	my $K = "";
-++	my $H = "";
-++	my $session_id = "";
-++	my $ivlen = 0;
-++	my $eklen = "";
-++	my $iklen = "";
-++
-++	open(IN, "<$infile");
-++	while(<IN>) {
-++
-++		my $line = $_;
-++		chomp($line);
-++		$line =~ s/\r//;
-++
-++		if ($line =~ /\[SHA-1\]/) {
-++			$iklen = 20;
-++		} elsif ($line =~ /\[SHA-256\]/) {
-++			$iklen = 32;
-++		} elsif ($line =~ /\[SHA-384\]/) {
-++			$iklen = 48;
-++		} elsif ($line =~ /\[SHA-512\]/) {
-++			$iklen = 64;
-++		} elsif ($line =~ /^\[IV length\s*=\s*(.*)\]/) {
-++			$ivlen = $1;
-++			$ivlen = $ivlen / 8;
-++		} elsif ($line =~ /^\[encryption key length\s*=\s*(.*)\]/) {
-++			$eklen = $1;
-++			$eklen = $eklen / 8;
-++		} elsif ($line =~ /^K\s*=\s*(.*)/) {
-++			$K = $1;
-++			$K = substr($K, 8);
-++			$K = "00" . $K;
-++		} elsif ($line =~ /^H\s*=\s*(.*)/) {
-++			$H = $1;
-++		} elsif ($line =~ /^session_id\s*=\s*(.*)/) {
-++			$session_id = $1;
-++		}
-++		$out .= $line . "\n";
-++
-++		if ($K ne "" && $H ne "" && $session_id ne "" &&
-++		    $ivlen ne "" && $eklen ne "" && $iklen > 0) {
-++			$out .= pipe_through_program("", "./ssh-cavs -H $H -K $K -s $session_id -i $ivlen -e $eklen -m $iklen");
-++
-++			$K = "";
-++			$H = "";
-++			$session_id = "";
-++		}
-++	}
-++	close IN;
-++	$out =~ s/\n/\r\n/g; # make it a dos file
-++	open(OUT, ">$outfile") or die "Cannot create output file $outfile: $?";
-++	print OUT $out;
-++	close OUT;
-++}
-++
-++############################################################
-++#
-++# let us pretend to be C :-)
-++sub main() {
-++
-++	my $infile=$ARGV[0];
-++	die "Error: Test vector file $infile not found" if (! -f $infile);
-++
-++	my $outfile = $infile;
-++	# let us add .rsp regardless whether we could strip .req
-++	$outfile =~ s/\.req$//;
-++	$outfile .= ".rsp";
-++	if (-f $outfile) {
-++		die "Output file $outfile could not be removed: $?"
-++			unless unlink($outfile);
-++	}
-++	print STDERR "Performing tests from source file $infile with results stored in destination file $outfile\n";
-++
-++	# Do the job
-++	parse($infile, $outfile);
-++}
-++
-++###########################################
-++# Call it
-++main();
-++1;
-+-- 
-+2.7.4
-+
-diff --git a/recipes-connectivity/openssh/openssh_fips.inc b/recipes-connectivity/openssh/openssh_fips.inc
-index 33a84c9..5df3106 100644
---- a/recipes-connectivity/openssh/openssh_fips.inc
-+++ b/recipes-connectivity/openssh/openssh_fips.inc
-@@ -6,6 +6,8 @@ DEPENDS += " \
- SRC_URI += " \
-     file://0001-openssh-8.0p1-fips.patch \
-     file://0001-conditional-enable-fips-mode.patch \
-+    file://openssh-6.6p1-ctr-cavstest.patch \
-+    file://openssh-6.7p1-kdf-cavs.patch \
- "
+diff --git a/recipes-mac/AppArmor/apparmor_2.13.3.bb b/recipes-mac/AppArmor/apparmor_2.13.3.bb
+index 8484404..2e5d221 100644
+--- a/recipes-mac/AppArmor/apparmor_2.13.3.bb
++++ b/recipes-mac/AppArmor/apparmor_2.13.3.bb
+@@ -21,6 +21,7 @@ SRC_URI = " \
+ 	file://functions \
+ 	file://apparmor \
+ 	file://apparmor.service \
++	file://0001-Makefile.am-suppress-perllocal.pod.patch \
+ 	file://run-ptest \
+ 	"
  
- do_install_append() {
-@@ -32,4 +34,11 @@ pkg_postinst_append_${PN}-sshd () {
-     fi
- }
- 
-+PACKAGES =+ "${PN}-cavs"
-+SUMMARY_${PN}-cavs = "CAVS tests for FIPS validation"
-+FILES_${PN}-cavs = " \
-+    ${libexecdir}/ctr-cavstest \
-+    ${libexecdir}/ssh-cavs \
-+    ${libexecdir}/ssh-cavs_driver.pl"
+diff --git a/recipes-mac/AppArmor/files/0001-Makefile.am-suppress-perllocal.pod.patch b/recipes-mac/AppArmor/files/0001-Makefile.am-suppress-perllocal.pod.patch
+new file mode 100644
+index 0000000..9807be1
+--- /dev/null
++++ b/recipes-mac/AppArmor/files/0001-Makefile.am-suppress-perllocal.pod.patch
+@@ -0,0 +1,28 @@
++From 9f9cfbf07214ac68a55372a3c2777192765cbeb9 Mon Sep 17 00:00:00 2001
++From: Naveen Saini <naveen.kumar.saini@intel.com>
++Date: Fri, 20 Sep 2019 18:53:53 +0800
++Subject: [PATCH] Makefile.am: suppress perllocal.pod
 +
- FILES_${PN} += "${libdir}/fipscheck"
++Upstream-Status: Inappropriate [OE-Specific]
++
++Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
++---
++ libraries/libapparmor/swig/perl/Makefile.am | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/libraries/libapparmor/swig/perl/Makefile.am b/libraries/libapparmor/swig/perl/Makefile.am
++index 6ae4e30c..be00dc7f 100644
++--- a/libraries/libapparmor/swig/perl/Makefile.am
+++++ b/libraries/libapparmor/swig/perl/Makefile.am
++@@ -11,7 +11,7 @@ MOSTLYCLEANFILES=libapparmor_wrap.c LibAppArmor.pm
++ LibAppArmor.pm: libapparmor_wrap.c
++ 
++ Makefile.perl: Makefile.PL LibAppArmor.pm
++-	$(PERL) $< PREFIX=$(prefix) MAKEFILE=$@
+++	$(PERL) $< PREFIX=$(prefix) MAKEFILE=$@ NO_PERLLOCAL=1
++ 	sed -ie 's/LD_RUN_PATH="\x24(LD_RUN_PATH)"//g' Makefile.perl
++ 	sed -ie 's/^LD_RUN_PATH.*//g' Makefile.perl
++ 
++-- 
++2.17.1
++
 -- 
-2.7.4
+2.17.1
 
 
