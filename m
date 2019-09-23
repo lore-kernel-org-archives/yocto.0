@@ -1,59 +1,39 @@
-Return-Path: <yann.dirson@blade-group.com>
+Return-Path: <paul.eggleton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7367BE00D00; Mon, 23 Sep 2019 14:48:40 -0700 (PDT)
+	id CAEB7E00C87; Mon, 23 Sep 2019 16:06:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.172 listed in list.dnswl.org]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com
-	[209.85.167.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 163DBE00B33
-	for <yocto@yoctoproject.org>; Mon, 23 Sep 2019 14:48:39 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id x3so9015114oig.2
-	for <yocto@yoctoproject.org>; Mon, 23 Sep 2019 14:48:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=blade-group.com; s=google;
-	h=mime-version:from:date:message-id:subject:to:cc;
-	bh=7GJdn2N4oTIVsUbvQsENq5p/zSFAtZAXBMF+raWuZQE=;
-	b=cpQT4dpJ46pm6nKtd7uoxuRnKwH+XHa4+N5JmpFM3HgQZmAEKbf1251g/Dk8wxEr73
-	TQI/q94pqS/iN3R4cROdb9L7FCakRO518JKp+X5MnbWiXUcycjPGPzn3Xdjsudn40LR7
-	xTTNP0xGKfSyQj99EDIojwMb1rze+a5REJHLrIyyRrD/XeCS45Ird4A2jHaCG+v8rN6e
-	FwIsqRh2Kg1WDtqakRWfgzOqBDaAZNTro0vKrwGvQ6gKzlVzIZ1mSlDy96WaVCzLen9b
-	OSYPP85P7jtcC422xQMKlDtLLt0RNPh4YSgd+7ri53vRYbmJs7Azwm9yEuOJP1HYGhns
-	1EJQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-	bh=7GJdn2N4oTIVsUbvQsENq5p/zSFAtZAXBMF+raWuZQE=;
-	b=a/izcVniRSsZuglhjgUEGZgCI+v8Hfg/bPjYHlllgnMLmlBOuvdCM59Rn0qXd7ZyX2
-	TjSJgT9+rtr2KWHxKKxNVEV4hqK+oQ2kVZUV0c/34Q2o1v7Z4xOblTF1LRdo6u1HPWUy
-	eI4cH03ooVa0GQfR2Hun/0iU8JWKYNzn5CaMPkk5bXYPKgFP6+OSGYl9O4QxTPK5ZRi8
-	x1Zzm/m4Xe9wUtQjCOwbZVDybQOHsRYRV2aOSnRkMTFrOxN/Cksvt472GhLMWzQJr6d6
-	E7Ewzb3frPEq7WU8LguvimNFTCty0iSwiN5jN3vtlzO23gBGCkOqhdXHVc17IV+sTbX9
-	3OZQ==
-X-Gm-Message-State: APjAAAWjEzfzWZAhgnL7AV0vOeFNDq6enVs7CjJWaCAVvIN5wcqadBoY
-	V6ixtw0G4S0g2ws1iZlH2ycBWh4ytiLxkIztCs73DGWsYOI=
-X-Google-Smtp-Source: APXvYqwNTof4pje90BejRbolkH8dBK2t4Yp3117AhJrakXv7Uj0SfJZF3+bCQzee2NkHC/m3xn1hXDin/Ke8H0yN0LQ=
-X-Received: by 2002:aca:50ca:: with SMTP id e193mr2057647oib.110.1569275319189;
-	Mon, 23 Sep 2019 14:48:39 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A414E00B33
+	for <yocto@yoctoproject.org>; Mon, 23 Sep 2019 16:06:14 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	23 Sep 2019 16:06:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,542,1559545200"; d="scan'208";a="189196586"
+Received: from arogani-mobl2.gar.corp.intel.com (HELO linux.fritz.box)
+	([10.255.161.197])
+	by fmsmga007.fm.intel.com with ESMTP; 23 Sep 2019 16:06:10 -0700
+From: Paul Eggleton <paul.eggleton@intel.com>
+To: Pranay Mankad <Pranay.Mankad@synopsys.com>
+Date: Tue, 24 Sep 2019 11:06:08 +1200
+Message-ID: <2920538.de2hu5c8aW@linux.fritz.box>
+Organization: Intel Corporation
+In-Reply-To: <2643E093-5797-443F-BC92-04355516688A@synopsys.com>
+References: <2643E093-5797-443F-BC92-04355516688A@synopsys.com>
 MIME-Version: 1.0
-Received: by 2002:a4a:ce8f:0:0:0:0:0 with HTTP; Mon, 23 Sep 2019 14:48:38
-	-0700 (PDT)
-From: Yann Dirson <yann.dirson@blade-group.com>
-Date: Mon, 23 Sep 2019 23:48:38 +0200
-Message-ID: <CA+4=imYTN+JCcHZU4eUfkur1wxwDRNnQzg6Y+W+OUrHar0R9zA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Cc: bunk@stusta.de, Simon Spannagel <simon.spannagel@cern.ch>
-Subject: gitlab-ci helper scripts for OpenEmbedded builds
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [layerindex-web] PR / PE in layer index
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,24 +45,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Sep 2019 21:48:40 -0000
+X-List-Received-Date: Mon, 23 Sep 2019 23:06:14 -0000
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="UTF-8"
 
-Hi all,
+Hi Pranay
 
-We released our scripts to help in setting up continuous integration
-of a yocto-based project
-using Gitlab-CI.  You'll find the repository at
-https://github.com/BladeGroup/gitlab-oe
+On Tuesday, 24 September 2019 10:00:46 AM NZST Pranay Mankad wrote:
+> Thank you for supporting the recipesExtended view over the last couple of
+> days. Here=E2=80=99s a small patch that includes values from two more var=
+iables from
+> the Bitbake cooker =E2=80=93 PR and PE.
+>=20
+> I read through Paul=E2=80=99s explanation of why PE made sense but not PR=
+, and
+> thinking about it, the PR in layerindexs=E2=80=99 case shows if the untou=
+ched recipe
+> had a revision associated with or not. Source metadata is important for
+> information, and hence I=E2=80=99m submitting a change with the same.
 
-Although we're using this in production, it still has a couple of
-rough edges and may need
-tuning for different usages.  We'd love to hear how well it fits (or
-doesn't fit ;) with other use
-cases, and will gladly consider evolutions to make it more generally usable.
+I suppose so yes. Out of interest I did a search of OE-Core and there were=
+=20
+more recipes than I would have guessed that set PR, so it could perhaps be=
+=20
+useful. I'm not sure I'd bother adding it to the UI yet though (and you=20
+haven't, that's fine.)
+=20
+> Here=E2=80=99s the patch (this is my first time submitting one, hopefully=
+ it=E2=80=99s the
+> right way to do it):
 
-Best regards,
--- 
-Yann Dirson <yann@blade-group.com>
-Blade / Shadow -- http://shadow.tech
+So unfortunately no, you need to send it as an actual patch and not just=20
+pasted into an email - git-format-patch / git-send-email are the most=20
+effective ways to do that (though it assumes you are able to send email=20
+directly from your linux system). Here's some info:
+
+http://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
+
+(Of course you'd need to change mailing lists / prefixes in the examples, a=
+nd=20
+some of the metadata requirements don't apply, but the basics are the same.)
+
+One other thing - you're editing the initial migration (layerindex/migratio=
+ns/
+0001_initial.py) - that's not right. You need to undo the change to=20
+0001_initial.py and then generate a new migration using the following comma=
+nd:
+
+=2E/manage.py createmigrations layerindex
+
+That will give you a new migration in layerindex/migrations/. You can then=
+=20
+apply that migration to the database in the normal way:
+
+=2E/manage.py migrate layerindex
+
+Of course if your database already has those new fields the latter will fai=
+l,=20
+in this instance you could simply add --fake since the result would have be=
+en=20
+the same.
+
+Cheers,
+Paul
+
+=2D-=20
+Paul Eggleton
+Intel Open Source Technology Centre
+
+
 
