@@ -1,6 +1,6 @@
-Return-Path: <lefevre.da@gmail.com>
+Return-Path: <ayoub.zaki@googlemail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9B3FDE00D00; Tue, 24 Sep 2019 02:36:13 -0700 (PDT)
+	id 6E73CE00B9E; Tue, 24 Sep 2019 02:57:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,52 +10,53 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (lefevre.da[at]gmail.com)
+	provider *      (ayoub.zaki[at]googlemail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.181 listed in list.dnswl.org]
+	*      [209.85.221.170 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com
-	[209.85.160.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E73CE009E6
-	for <yocto@yoctoproject.org>; Tue, 24 Sep 2019 02:36:12 -0700 (PDT)
-Received: by mail-qt1-f181.google.com with SMTP id j31so1332244qta.5
-	for <yocto@yoctoproject.org>; Tue, 24 Sep 2019 02:36:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com
+	[209.85.221.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37DEEE0049A
+	for <yocto@yoctoproject.org>; Tue, 24 Sep 2019 02:57:33 -0700 (PDT)
+Received: by mail-vk1-f170.google.com with SMTP id 70so269008vkz.8
+	for <yocto@yoctoproject.org>; Tue, 24 Sep 2019 02:57:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=googlemail.com; s=20161025;
 	h=mime-version:from:date:message-id:subject:to;
-	bh=/DruQ9UYNy7VLnR//dq9v2CGjt+UCvgW3b4OFDAdH4c=;
-	b=iZVRFHjcdMSPrKitglYXblIbqMKs/FnXA8NXDFaJzdaQHNBSvWXub+8Z0HJnpZPWKv
-	yMUbPN9pOYpcb05k2VmvsF4d3Y7E1NyOCMSXBSbOrPbo9b+PfowXSrnSlLe5UlRdqM2R
-	+xRTSZeSh6gMyJmO4jH/s0C47NPgGmqQYr+ArNoJLdtDbM6wAWzqK4lTYmuUH+LeVN/s
-	vmrdh24BaIewvsbSUAr4bIGF3swgg1OV2B+PjXPLwZeM8XWXFzjIWqyZpK/T7JdWbXTv
-	Gvm+e3r3vvtJ1fTSaeQlHWOtIVi7n8eaeYnXMi+91dnxP5t/jUikT0dJYSAXRxWIO9+W
-	rwBw==
+	bh=KjoMALbgCPBkYark1P5Y484WcXB5Xp3RFVKSu39xt+s=;
+	b=UrZnn+zbA/rKiZc9di8dYdhQZpZ+7qCZ9zGwVES52n09jd12puturDErAc35M//qAR
+	+QsaLQgaVwD+X5RVws8hLdxFDBSlW7OukLo3ARHQjFKgVci0ZeFLsWgda1ugvLxGVQXG
+	R96eBS16CHdRGFrtReba+T2PyIA0XvhknBvTI0+I6pbOBIs3PFWM0kYalv4ZmX0XwhiT
+	q68sK4IUp5yi6ePj88ZjVvzIC2VlD0YotjQsG8/ShI236gKzSnNglcpiW3Sd/I17i29x
+	3yyxSyoxCtFxje1AQd9LuNuiNMaVKxS1Gz+LBYeKMYiMz+AS91GLykTLSZq1bPIYz+C5
+	kFAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=/DruQ9UYNy7VLnR//dq9v2CGjt+UCvgW3b4OFDAdH4c=;
-	b=U8YHehz8/czGo/wKYATZpLeyyAsVQYQt+j17wsu8dRMRIcvXkmvC8ifOqJ8NqCpTp1
-	ZHagXOR2FTHDLxaLGL5pCCfgdPD4RogqG57eBS9HxR13MVYwTlE3WqR3ryKOJXf244Pc
-	TzShfgvJSi41eAZ2uBeKPSVh7zDxmssDbnE8Cd4Prk6bpqG+cFXwE5dicBNv1A8WFqh+
-	zVBOGLatXY3z+pqjp/LIl0irJNAiOTAN+fgon3uLXlHamU7fBF1R5TUeFapjQ7xndG5p
-	Ye+eqKxs8GqRFikQO7WnEWcOc+GHI89iQOOXTMRcPDtzElTGKP8Pzm90jmaqvxi98dh5
-	4/OA==
-X-Gm-Message-State: APjAAAUushUNhWoFDbNkaUxdKDgrz32yxpdtOmy5kAreCCnNrE0+rspd
-	4KPq91dKL+6EEQSsVOw1j5z3dQkoXFbOEKrDwGUH/5g=
-X-Google-Smtp-Source: APXvYqyTR511I/63JLy/QKvFCoqjlIh7ze0PgJbtrsD3Rjk4mr58tEimHmwx5VQNrV7oIRf1GUkvfmBV6wojd6ttGAc=
-X-Received: by 2002:ac8:2fcb:: with SMTP id m11mr1808207qta.280.1569317771281; 
-	Tue, 24 Sep 2019 02:36:11 -0700 (PDT)
+	bh=KjoMALbgCPBkYark1P5Y484WcXB5Xp3RFVKSu39xt+s=;
+	b=BBFrw0LfQtn1lYrTaOjxfTFX5WIDVnpbSi0jHu9aIxyPUjvCXF5O2ruxHXruCsudu4
+	n2BoGPk/OYX+NynI8vBQLfi8hq2GYMfkzxBQJpVBQ4CCawE5YhEF4geu2kpY3cvkE/OA
+	Zlk7M20v77rtnKKzshHj1DUtj41ebFWGAmiswJJjINiHRbI/hRKh8iP0byotdVqxTCHP
+	BOYxIV3ntWTc4O+zFxstlKzbs+gs0NN7rIAbUK3NHsVpfT+rbK1gqAsocd/qjD6fkGVs
+	AaTqxE1dL2eca28NwXnwUgpNpjeUl3R0A9co7YD5LtEUTyxwp2+SNcJY3Yrheulg1mDi
+	4JDw==
+X-Gm-Message-State: APjAAAWYgwOmctnynJCfrUzkVxnDmF+MCj7zwx/FMm7nqRRWuB9MN74S
+	J0lGzsCHDRx23UVaL8gCEn2obCKm2W/CPN7ICAUBvpjFhX4=
+X-Google-Smtp-Source: APXvYqwtIkqVKrBVCA4z5uzYjKrYXdB0BUih+japTiqHKOkk8Sw4XUC1RTEBjYHVZoeYi6sO6UEllH6QZlesG8VecI0=
+X-Received: by 2002:ac5:cc4a:: with SMTP id l10mr998031vkm.60.1569319052262;
+	Tue, 24 Sep 2019 02:57:32 -0700 (PDT)
 MIME-Version: 1.0
-From: Damien LEFEVRE <lefevre.da@gmail.com>
-Date: Tue, 24 Sep 2019 12:36:00 +0300
-Message-ID: <CA+FhBv_p+063N=qs0Wzo32z1L_evbfP2FEntO=iNMGCwxZ0HSQ@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Nothing PROVIDES 'python3-dev'
+From: Ayoub Zaki <ayoub.zaki@googlemail.com>
+Date: Tue, 24 Sep 2019 11:57:21 +0200
+Message-ID: <CA+-BmJaVhcqxFpWiTSPTA4zdyDqXHsABLa8P2kkztgzyZs9PMQ@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Warrior/ External Kernel Modules Build broken
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,79 +68,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Sep 2019 09:36:13 -0000
-Content-Type: multipart/alternative; boundary="0000000000004c06df059349448a"
+X-List-Received-Date: Tue, 24 Sep 2019 09:57:35 -0000
+Content-Type: multipart/alternative; boundary="000000000000a6426805934990ff"
 
---0000000000004c06df059349448a
+--000000000000a6426805934990ff
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+Hello,
 
-Migrating from poky:pyro to poky:warrior.
+The external kernel modules build is broken :
 
-It looks like the python3-dev package is generated from
-python3-manifest.json:
+# bitbake hello-mod
+| /bin/sh: scripts/basic/fixdep: No such file or directory
+|
+/opt/workspace/build/tmp/work-shared/imx6ul-scu/kernel-source/scripts/Makefile.build:332:
+recipe for target
+'/opt/workspace/build/tmp/work/imx6ul_scu-scu-linux-gnueabi/hello-mod/0.1-r0/hello.o'
+failed
+| make[3]: ***
+[/opt/workspace/build/tmp/work/imx6ul_scu-scu-linux-gnueabi/hello-mod/0.1-r0/hello.o]
+Error 127
+| make[3]: *** Deleting file
+'/opt/workspace/build/tmp/work/imx6ul_scu-scu-linux-gnueabi/hello-mod/0.1-r0/hello.o'
+|
+/opt/workspace/build/tmp/work-shared/imx6ul-scu/kernel-source/Makefile:1535:
+recipe for target
+'_module_/opt/workspace/build/tmp/work/imx6ul_scu-scu-linux-gnueabi/hello-mod/0.1-r0'
+failed
+| make[2]: ***
+[_module_/opt/workspace/build/tmp/work/imx6ul_scu-scu-linux-gnueabi/hello-mod/0.1-r0]
+Error 2
+| make[2]: Leaving directory
+'/opt/workspace/build/tmp/work-shared/imx6ul-scu/kernel-build-artifacts'
+| Makefile:146: recipe for target 'sub-make' failed
+| make[1]: *** [sub-make] Error 2
+| make[1]: Leaving directory
+'/opt/workspace/build/tmp/work-shared/imx6ul-scu/kernel-source'
+| Makefile:6: recipe for target 'all' failed
+| make: *** [all] Error 2
+| ERROR: oe_runmake failed
+| WARNING:
+/opt/workspace/build/tmp/work/imx6ul_scu-scu-linux-gnueabi/hello-mod/0.1-r0/temp/run.do_compile.14301:1
+exit 1 from 'exit 1'
+| ERROR: Function failed: do_compile (log file is located at
+/opt/workspace/build/tmp/work/imx6ul_scu-scu-linux-gnueabi/hello-mod/0.1-r0/temp/log.do_compile.14301)
+ERROR: Task
+(/opt/workspace/meta-skeleton/recipes-kernel/hello-mod/hello-mod_0.1.bb:do_compile)
+failed with exit code '1'
+NOTE: Tasks Summary: Attempted 1481 tasks of which 1473 didn't need to be
+rerun and 1 failed.
 
-    "dev": {
-        "cached": [],
-        "files": [
-            "${base_libdir}/*.a",
-            "${base_libdir}/*.o",
-            "${bindir}/python*-config",
-            "${datadir}/aclocal",
-            "${datadir}/pkgconfig",
-            "${includedir}",
-            "${libdir}/*.a",
-            "${libdir}/*.la",
-            "${libdir}/*.o",
-            "${libdir}/lib*${SOLIBSDEV}",
-            "${libdir}/pkgconfig"
-        ],
-        "rdepends": [
-            "core"
-        ],
-        "summary": "Python development package"
-    },
+Summary: 1 task failed:
+  /opt/workspace/meta-skeleton/recipes-kernel/hello-mod/hello-mod_0.1.bb:
+do_compile
 
-and this is used in python3_3.7.2.bb.
+BR
 
-Still I get this error: Nothing PROVIDES 'python3-dev'
-
-python3 built successfully.
-
-Any idea?
-
-Thanks,
--Damien
-
---0000000000004c06df059349448a
+--000000000000a6426805934990ff
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>Migrating from poky:pyro to poky:wa=
-rrior.</div><div><br></div><div>It looks like the python3-dev package is ge=
-nerated from python3-manifest.json:</div><div><br></div><div>=C2=A0 =C2=A0 =
-&quot;dev&quot;: {<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;cached&quot;: [],<b=
-r>=C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;files&quot;: [<br>=C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 &quot;${base_libdir}/*.a&quot;,<br>=C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 &quot;${base_libdir}/*.o&quot;,<br>=C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;${bindir}/python*-config&quot;,<br>=C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;${datadir}/aclocal&quot;,<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;${datadir}/pkgconfig&quot;,<br=
->=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;${includedir}&quot;,<br>=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;${libdir}/*.a&quot;,<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;${libdir}/*.la&quot;,<br>=C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;${libdir}/*.o&quot;,<br>=C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;${libdir}/lib*${SOLIBSDEV}&quot;,=
-<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;${libdir}/pkgconfig&quo=
-t;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;r=
-depends&quot;: [<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;core&qu=
-ot;<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 ],<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 &quot;=
-summary&quot;: &quot;Python development package&quot;<br>=C2=A0 =C2=A0 },<b=
-r></div><div><br></div><div>and this is used in <a href=3D"http://python3_3=
-.7.2.bb">python3_3.7.2.bb</a>.</div><div><br></div><div>Still I get this er=
-ror: Nothing PROVIDES &#39;python3-dev&#39;</div><div><br></div><div>python=
-3 built successfully.=C2=A0<br></div><div><br></div><div>Any idea?</div><di=
-v><br></div><div>Thanks,</div><div>-Damien</div></div>
+<div dir=3D"ltr"><div>Hello,</div><div><br></div><div>The external kernel m=
+odules build is broken :</div><div><br></div><div># bitbake hello-mod</div>=
+| /bin/sh: scripts/basic/fixdep: No such file or directory<br>| /opt/worksp=
+ace/build/tmp/work-shared/imx6ul-scu/kernel-source/scripts/Makefile.build:3=
+32: recipe for target &#39;/opt/workspace/build/tmp/work/imx6ul_scu-scu-lin=
+ux-gnueabi/hello-mod/0.1-r0/hello.o&#39; failed<br>| make[3]: *** [/opt/wor=
+kspace/build/tmp/work/imx6ul_scu-scu-linux-gnueabi/hello-mod/0.1-r0/hello.o=
+] Error 127<br>| make[3]: *** Deleting file &#39;/opt/workspace/build/tmp/w=
+ork/imx6ul_scu-scu-linux-gnueabi/hello-mod/0.1-r0/hello.o&#39;<br>| /opt/wo=
+rkspace/build/tmp/work-shared/imx6ul-scu/kernel-source/Makefile:1535: recip=
+e for target &#39;_module_/opt/workspace/build/tmp/work/imx6ul_scu-scu-linu=
+x-gnueabi/hello-mod/0.1-r0&#39; failed<br>| make[2]: *** [_module_/opt/work=
+space/build/tmp/work/imx6ul_scu-scu-linux-gnueabi/hello-mod/0.1-r0] Error 2=
+<br>| make[2]: Leaving directory &#39;/opt/workspace/build/tmp/work-shared/=
+imx6ul-scu/kernel-build-artifacts&#39;<br>| Makefile:146: recipe for target=
+ &#39;sub-make&#39; failed<br>| make[1]: *** [sub-make] Error 2<br>| make[1=
+]: Leaving directory &#39;/opt/workspace/build/tmp/work-shared/imx6ul-scu/k=
+ernel-source&#39;<br>| Makefile:6: recipe for target &#39;all&#39; failed<b=
+r>| make: *** [all] Error 2<br>| ERROR: oe_runmake failed<br>| WARNING: /op=
+t/workspace/build/tmp/work/imx6ul_scu-scu-linux-gnueabi/hello-mod/0.1-r0/te=
+mp/run.do_compile.14301:1 exit 1 from &#39;exit 1&#39;<br>| ERROR: Function=
+ failed: do_compile (log file is located at /opt/workspace/build/tmp/work/i=
+mx6ul_scu-scu-linux-gnueabi/hello-mod/0.1-r0/temp/log.do_compile.14301)<br>=
+ERROR: Task (/opt/workspace/meta-skeleton/recipes-kernel/hello-mod/hello-mo=
+d_0.1.bb:do_compile) failed with exit code &#39;1&#39;<br>NOTE: Tasks Summa=
+ry: Attempted 1481 tasks of which 1473 didn&#39;t need to be rerun and 1 fa=
+iled.<br><br>Summary: 1 task failed:<br>=C2=A0 /opt/workspace/meta-skeleton=
+/recipes-kernel/hello-mod/hello-mod_0.1.bb:do_compile<br><div><br></div><di=
+v>BR</div></div>
 
---0000000000004c06df059349448a--
+--000000000000a6426805934990ff--
