@@ -1,33 +1,67 @@
-Return-Path: <Zhe.He@windriver.com>
+Return-Path: <maillinglists18@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4439AE00D00; Mon, 23 Sep 2019 19:40:55 -0700 (PDT)
+	id 1BBDDE00B33; Mon, 23 Sep 2019 22:35:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5767FE00A48
-	for <yocto@yoctoproject.org>; Mon, 23 Sep 2019 19:40:54 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
-	by mail1.windriver.com (8.15.2/8.15.1) with ESMTPS id x8O2emWI011222
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 23 Sep 2019 19:40:48 -0700 (PDT)
-Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.468.0; Mon, 23 Sep 2019 19:40:47 -0700
-From: <zhe.he@windriver.com>
-To: <yocto@yoctoproject.org>, <anuj.mittal@intel.com>
-Date: Tue, 24 Sep 2019 10:40:46 +0800
-Message-ID: <1569292846-12595-1-git-send-email-zhe.he@windriver.com>
-X-Mailer: git-send-email 2.7.4
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (maillinglists18[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.179 listed in list.dnswl.org]
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com
+	[209.85.208.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C447E008C8
+	for <yocto@yoctoproject.org>; Mon, 23 Sep 2019 22:35:42 -0700 (PDT)
+Received: by mail-lj1-f179.google.com with SMTP id f5so505998ljg.8
+	for <yocto@yoctoproject.org>; Mon, 23 Sep 2019 22:35:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=lTBRg4NFkmGD0bgoIE5kdV6fIJWyXlXaOWoaDUYr5zA=;
+	b=gqyWvmZurmTgmwBVZ+WlXIwF4YGJ1D+5rAl2fT+2VjbfZxTh4LjPabZsLx8y5EKRmS
+	J6RguriCHnjhXx+ALcAJv5hM1RzcghjiD1qZDCDZb83nNEmf4Gzwf/JEd7ofkuN4Xk9R
+	sXgiqi5nt2i7fHbTSui4a1vj5nxJZ2L4hBqpogdMfzF4L7s0kiosoE2ohVyirafc/zid
+	bt8ZvR2n9MSjpEXGdX5yO80/NJAYvwoun5ZfYl9x293J1+JGyuCdqjleR8QD6qceppjj
+	DwNslxYl4QKBpumqeI6hvItXOc+z/07h05iQRmKpEj12w0d9Xo+WluJGIigoGt/rw9y+
+	ihmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=lTBRg4NFkmGD0bgoIE5kdV6fIJWyXlXaOWoaDUYr5zA=;
+	b=fIaqWNg7AqfNLT3hXcxH2qChuo3O9G7Hjb5DhsDA2ZaIRduPZqw/NDhzAUHh1Mff9g
+	KfcUZsu6FXF319RiwR3dIZdGKsl6DXX/DpDrvia+UI3k0qY7sqYvljUR2mRDDevVJDL1
+	yc8vRVyWDz9pLQsshp0FTO/JIkFnFNVvHPdepbkweA7mUCvGh7aUWB+c6I2v1DRCyq5y
+	qse3lf6QWtf+55lL0IeTb6bg70R/vr7jt8zkXyzC0RhGRwkCw6jk78J122t6UZdi2Upj
+	S9vbTOceVjymgay2OZmZXAwd7v7CD10jvZbF/XYDSfS3ixYaSap/dsqOh4zIEPZGt1v5
+	c14Q==
+X-Gm-Message-State: APjAAAUyQl92DxEiVWbwGf4s1Z1QYHhJqvAXkH/xrPyKie3hvZdTErj5
+	At2toFF109FTbHt1Tj2Fe0OMRyDYuYDCMPhA+cc=
+X-Google-Smtp-Source: APXvYqwy22hJgCNOIOWXPWYch45+01sTcmOxck8WUUmFFn2GoXEyJKEXnE8v8l90VC9OQK4x2JYtEcrWw6soT8X0TRk=
+X-Received: by 2002:a2e:b4c4:: with SMTP id r4mr672992ljm.69.1569303341419;
+	Mon, 23 Sep 2019 22:35:41 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [meta-dpdk][PATCH] [RFC] dpdk: Remove v17
+References: <CAAmVmrpyrf6QhAA85UwWQa1mbrd5D6KmddKndeMqcoGG-YP9mA@mail.gmail.com>
+	<fe22ebb4-447c-4f3c-4bec-052f37e38621@intel.com>
+	<CAAmVmro9QhrBCxhMHZK656JHC0Cj0gZ+aiK4AaLBSE7cvhs6nw@mail.gmail.com>
+	<e272af8d-8ad0-d964-b9ca-3b96be0155a4@intel.com>
+In-Reply-To: <e272af8d-8ad0-d964-b9ca-3b96be0155a4@intel.com>
+From: Teemu K <maillinglists18@gmail.com>
+Date: Tue, 24 Sep 2019 08:35:29 +0300
+Message-ID: <CAAmVmrpmeDkrW1LrnLNA810adEGRaUSgNHN0je=iH5csFxeQFg@mail.gmail.com>
+To: Ross Burton <ross.burton@intel.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Debug-files in SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,152 +73,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Sep 2019 02:40:55 -0000
+X-List-Received-Date: Tue, 24 Sep 2019 05:35:43 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
 
-From: He Zhe <zhe.he@windriver.com>
+On Mon, Sep 23, 2019 at 12:27 PM Ross Burton <ross.burton@intel.com> wrote:
+>
+> On 23/09/2019 10:19, Teemu K wrote:
+> > One question is that is there a way to make package that would contain
+> > only dpg-pkgs and src-pkgs? Ie. it'd be like 'debug-addition' for SDK?
+> > I know how to install those things to target, but how to get them to a
+> > package (or in separate directory) to host.
+>
+> This is where you'd use an Extensible SDK instead of a traditional SDK,
+> where you can install packages into the sysroot after installation.
 
-openvswith used not to be able to work with dpdk v18. That's one of the reasons
-why we keep v17. Now that openvswitch in meta-virtulization has been upgraded to
-v2.11, officially claimed support of dpdk18, we can drop dpdk v17.
+Okay, I'll have to investigate that more. Last time(quite awhile back)
+I tried the eSDK generation it ended in error if I'm not mistaken.
+Thanks!
 
-Signed-off-by: He Zhe <zhe.he@windriver.com>
----
- ...dk-16.07-dpdk-fix-for-parellel-make-issue.patch | 40 ------------------
- ...disable-warning-for-packed-member-pointer.patch | 48 ----------------------
- recipes-extended/dpdk/dpdk_17.11.6.bb              | 19 ---------
- 3 files changed, 107 deletions(-)
- delete mode 100644 recipes-extended/dpdk/dpdk/dpdk-16.07-dpdk-fix-for-parellel-make-issue.patch
- delete mode 100644 recipes-extended/dpdk/dpdk/dpdk-17.11-mk-disable-warning-for-packed-member-pointer.patch
- delete mode 100644 recipes-extended/dpdk/dpdk_17.11.6.bb
-
-diff --git a/recipes-extended/dpdk/dpdk/dpdk-16.07-dpdk-fix-for-parellel-make-issue.patch b/recipes-extended/dpdk/dpdk/dpdk-16.07-dpdk-fix-for-parellel-make-issue.patch
-deleted file mode 100644
-index 55f0c15..0000000
---- a/recipes-extended/dpdk/dpdk/dpdk-16.07-dpdk-fix-for-parellel-make-issue.patch
-+++ /dev/null
-@@ -1,40 +0,0 @@
--From 4a86048d44cae812b227b857772aeeb839502706 Mon Sep 17 00:00:00 2001
--From: Rahul Kumar Gupta <rahul.kumarxx.gupta@intel.com>
--Date: Fri, 2 Sep 2016 15:48:52 +0800
--Subject: [PATCH] dpdk: fix for parellel make issue
--
--To make sure that the path of libraries should be correct and
--libraries will be build before, And available at the time of
--linking example apps.
--
--Signed-off-by: Rahul Kumar Gupta <rahul.kumarxx.gupta@intel.com>
--
-----
-- examples/Makefile                     | 1 +
-- examples/ethtool/ethtool-app/Makefile | 1 +
-- 2 files changed, 2 insertions(+)
--
--diff --git a/examples/Makefile b/examples/Makefile
--index 17ecf7f64cda..2a8e805b85a7 100644
----- a/examples/Makefile
--+++ b/examples/Makefile
--@@ -41,6 +41,7 @@ DIRS-$(CONFIG_RTE_LIBRTE_BBDEV) += bbdev_app
-- DIRS-$(CONFIG_RTE_LIBRTE_PMD_BOND) += bond
-- DIRS-y += cmdline
-- DIRS-$(CONFIG_RTE_LIBRTE_DISTRIBUTOR) += distributor
--+DEPDIRS-y += examples/ethtool/lib
-- DIRS-y += ethtool
-- DIRS-y += exception_path
-- DIRS-$(CONFIG_RTE_LIBRTE_EFD) += server_node_efd
--diff --git a/examples/ethtool/ethtool-app/Makefile b/examples/ethtool/ethtool-app/Makefile
--index 4cd9efdd574b..d3c709ab2fef 100644
----- a/examples/ethtool/ethtool-app/Makefile
--+++ b/examples/ethtool/ethtool-app/Makefile
--@@ -19,6 +19,7 @@ SRCS-y := main.c ethapp.c
-- CFLAGS += -O3 -D_GNU_SOURCE -pthread -I$(SRCDIR)/../lib
-- CFLAGS += $(WERROR_FLAGS)
-- 
--+LDLIBS += -L$(ETHTOOL_LIB_PATH)/
-- LDLIBS += -L$(subst ethtool-app,lib,$(RTE_OUTPUT))/lib
-- LDLIBS += -lrte_ethtool
-- 
-diff --git a/recipes-extended/dpdk/dpdk/dpdk-17.11-mk-disable-warning-for-packed-member-pointer.patch b/recipes-extended/dpdk/dpdk/dpdk-17.11-mk-disable-warning-for-packed-member-pointer.patch
-deleted file mode 100644
-index 70a8dec..0000000
---- a/recipes-extended/dpdk/dpdk/dpdk-17.11-mk-disable-warning-for-packed-member-pointer.patch
-+++ /dev/null
-@@ -1,48 +0,0 @@
--From a385972c3675dd2b4792ab5b3cf7a536e6f9846c Mon Sep 17 00:00:00 2001
--From: Reshma Pattan <reshma.pattan@intel.com>
--Date: Thu, 2 May 2019 10:33:34 +0100
--Subject: [PATCH] mk: disable warning for packed member pointer
--MIME-Version: 1.0
--Content-Type: text/plain; charset=UTF-8
--Content-Transfer-Encoding: 8bit
--
--gcc 9 on Fedora 30 gives an error
--"taking address of packed member may result in an
--unaligned pointer value" warnings.
--
--For clang builds this warning is already disabled,
--so disable "-Waddress-of-packed-member" for gcc builds
--also.
--
--Snippet of build error:
--lib/librte_eal/linux/eal/eal_memalloc.c: In function ‘alloc_seg_walk’:
--lib/librte_eal/linux/eal/eal_memalloc.c:768:12: error:
--taking address of packed member of ‘struct rte_mem_config’ may result
--in an unaligned pointer value [-Werror=address-of-packed-member]
--  768 |  cur_msl = &mcfg->memsegs[msl_idx];
--      |            ^~~~~~~~~~~~~~~~~~~~~~~
--
--Signed-off-by: Reshma Pattan <reshma.pattan@intel.com>
--Tested-by: David Marchand <david.marchand@redhat.com>
--Upstream-Status: Backport
--Signed-off-by: He Zhe <zhe.he@windriver.com>
-----
-- mk/toolchain/gcc/rte.vars.mk | 3 +++
-- 1 file changed, 3 insertions(+)
--
--diff --git a/mk/toolchain/gcc/rte.vars.mk b/mk/toolchain/gcc/rte.vars.mk
--index d8b99fa..b852fcf 100644
----- a/mk/toolchain/gcc/rte.vars.mk
--+++ b/mk/toolchain/gcc/rte.vars.mk
--@@ -87,5 +87,8 @@ WERROR_FLAGS += -Wimplicit-fallthrough=2
-- WERROR_FLAGS += -Wno-format-truncation
-- endif
-- 
--+# disable packed member unalign warnings
--+WERROR_FLAGS += -Wno-address-of-packed-member
--+
-- export CC AS AR LD OBJCOPY OBJDUMP STRIP READELF
-- export TOOLCHAIN_CFLAGS TOOLCHAIN_LDFLAGS TOOLCHAIN_ASFLAGS
---- 
--2.7.4
--
-diff --git a/recipes-extended/dpdk/dpdk_17.11.6.bb b/recipes-extended/dpdk/dpdk_17.11.6.bb
-deleted file mode 100644
-index 01bacd6..0000000
---- a/recipes-extended/dpdk/dpdk_17.11.6.bb
-+++ /dev/null
-@@ -1,19 +0,0 @@
--include dpdk.inc
--
--STABLE = "-stable"
--BRANCH = "17.11"
--SRCREV = "63d5c53b845d8360c0106374ce76eef9b5478c60"
--
--LICENSE = "LGPLv2 & GPLv2"
--LIC_FILES_CHKSUM = "file://LICENSE.GPL;md5=751419260aa954499f7abaabaa882bbe\
--                    file://LICENSE.LGPL;md5=4fbd65380cdd255951079008b364516c"
--
--SRC_URI += "\
--        file://dpdk-16.07-dpdk-fix-for-parellel-make-issue.patch \
--        file://dpdk-17.11-mk-disable-warning-for-packed-member-pointer.patch \
--"
--
--do_install_append () {
--        # Remove the unneeded dir
--        rm -rf ${D}/${INSTALL_PATH}/${RTE_TARGET}/app
--}
--- 
-2.7.4
-
+-Teemu
 
