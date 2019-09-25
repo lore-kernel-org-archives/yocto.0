@@ -1,63 +1,31 @@
-Return-Path: <yann.dirson@blade-group.com>
+Return-Path: <mark.hatle@kernel.crashing.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BC9B5E00D98; Wed, 25 Sep 2019 02:17:23 -0700 (PDT)
+	id 55BAFE00D63; Wed, 25 Sep 2019 07:33:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.172 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com
-	[209.85.167.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 946B3E00D89
-	for <yocto@yoctoproject.org>; Wed, 25 Sep 2019 02:17:22 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id 83so4282119oii.1
-	for <yocto@yoctoproject.org>; Wed, 25 Sep 2019 02:17:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=blade-group.com; s=google;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=CPNKZFGrR9z0qK+dhGaeBVVzlB1hgM6hEELvQQCEHvM=;
-	b=Brmq58wD4zreTB8YbpyuIeqbd6JmxjmEXeRG1IkUoJyyM74JPegTaBNT7g9a7Dxjx/
-	dqxTvdHJPt7j9GzVZyPwX0q//ua9jp6QnY1FiSkPUJZEXDjpU00ZetV80qRrkSeG0KnZ
-	U1byAchCRA8JbsbL6mvpNRoyf696W37WC4vnbaNd6098DLBAurXv1rF2WxcEOjGO0wmG
-	xzKsLA0zsyDWLTcZmwSSGplcnLx8tbIDsMYyB+4mbd3KinMMKWZGdcH0bivXcK+2Abit
-	bw4+ulMRUgK/Sd+8/tHpIDpOFB0xgWWPlm6q+RiDoyjNXjU1UG1IBUEKZSbVgsDlPlKO
-	J8vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=CPNKZFGrR9z0qK+dhGaeBVVzlB1hgM6hEELvQQCEHvM=;
-	b=ghN57G22RIxP1X+m3VHemud3egjIc1MKfcAKZEYi/tkwLvj3bKTykAmXeq3VGuIFG7
-	PlGJnFRpIrEEpQtpwjZ6uLnY+//vWhgE8TNoZOuARtyjA3MeG83Q24d7wjhjQr2VuT2X
-	4mhD2n7MK1A763N6wHzPZxW4crrgQNO//sg/8qXID7Ajrmwm6joUmjbqDXgTEZyrS6Hz
-	tqfBlxWqalq5CMpRlMdmAATIbAKoPdsveg5Mqwjx+/bmiveKY7hg9xUI/LqXFjMTEgGt
-	wdbp9jBsNsfzNQT8dSMA0uYUbfuxPz6tsZx4y5Brek5rAXk8dA46KuekCEYv1mqfkkrs
-	WuAA==
-X-Gm-Message-State: APjAAAW12R7jOETdO4Y30uEezHBFzSsnU8VbdX+JI2uP3i+Mqa1bxkSs
-	E5Rk0G4Jeh/ukilQHaW7X+bdkj/wUanW3fCXfOxvJA==
-X-Google-Smtp-Source: APXvYqwmbwKYC8Uq8H9fn9olAprhmTdLZyqNqUyhVHrGNKuyaUq6cd3o+M00b9lKszXbqdrSNXP/HJjy1dU+Os9s8WI=
-X-Received: by 2002:aca:645:: with SMTP id 66mr3631168oig.117.1569403041962;
-	Wed, 25 Sep 2019 02:17:21 -0700 (PDT)
+Received: from kernel.crashing.org (kernel.crashing.org [76.164.61.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6457FE00798
+	for <yocto@yoctoproject.org>; Wed, 25 Sep 2019 07:33:18 -0700 (PDT)
+Received: from Marks-MacBook-Pro.local ([76.164.61.198]) (authenticated bits=0)
+	by kernel.crashing.org (8.14.7/8.14.7) with ESMTP id x8PEXDnY023598
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128
+	verify=NO); Wed, 25 Sep 2019 09:33:14 -0500
+To: Hongxu Jia <hongxu.jia@windriver.com>, jason.wessel@windriver.com,
+	yocto@yoctoproject.org
+References: <1569396253-36865-1-git-send-email-hongxu.jia@windriver.com>
+From: Mark Hatle <mark.hatle@kernel.crashing.org>
+Message-ID: <6d024f00-b292-39cf-355d-bec2106d2c55@kernel.crashing.org>
+Date: Wed, 25 Sep 2019 09:33:12 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
+	Gecko/20100101 Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <CA+4=imYTN+JCcHZU4eUfkur1wxwDRNnQzg6Y+W+OUrHar0R9zA@mail.gmail.com>
-	<CABudRdy-ut1=4gReM6TEqwx0NWJT=w7eiCP_DOKQS4qwV_Hpcg@mail.gmail.com>
-In-Reply-To: <CABudRdy-ut1=4gReM6TEqwx0NWJT=w7eiCP_DOKQS4qwV_Hpcg@mail.gmail.com>
-From: Yann Dirson <yann.dirson@blade-group.com>
-Date: Wed, 25 Sep 2019 11:17:10 +0200
-Message-ID: <CA+4=imYcDHCPxtzoNinad3y-t2TuqAbp5=irpeKTvoSF1EzhrQ@mail.gmail.com>
-To: Thomas Goodwin <btgoodwin@geontech.com>
-Cc: yocto@yoctoproject.org, Simon Spannagel <simon.spannagel@cern.ch>,
-	Adrian Bunk <bunk@stusta.de>
-Subject: Re: gitlab-ci helper scripts for OpenEmbedded builds
+In-Reply-To: <1569396253-36865-1-git-send-email-hongxu.jia@windriver.com>
+Subject: Re: Review request V2 0/16: [meta-openssl102-fips] Enable FIPS mode in Kernel and OpenSSH
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,212 +37,311 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Sep 2019 09:17:23 -0000
-Content-Type: multipart/alternative; boundary="000000000000d3732105935d1e87"
-
---000000000000d3732105935d1e87
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Thomas,
-
-Le mar. 24 sept. 2019 =C3=A0 14:36, Thomas Goodwin <btgoodwin@geontech.com>=
- a
-=C3=A9crit :
-
-> Hi Yann,
->
-> Thanks for sharing! We're working through something similar using a tweak
-> to the CROPS docker containers and GitLab-CI (we started with autobuilder
-> 2, so we've actually merged quite a bit of that experience with our GitLa=
-b
-> setup).
->
-
-Thanks for pointing me to CROPS, that will help bringing Docker support
-here :)
+X-List-Received-Date: Wed, 25 Sep 2019 14:33:20 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
 
-> Using docker runners as our cluster, we setup volume mounts to the host
-> system for caching the shared state and downloads directories (as well as
-> other artifacts upon successful build).  As part of the CI setup, we then
-> insert a build/conf/auto.conf file that enforces the usage of that volume
-> (DL_DIR and SSTATE_DIR).  At the deploy stage (package feeds, etc. like
-> you're doing), we did the same thing -- copy out to that path so that it
-> ends up on the network share rather than the container.
->
-> Also like you, we're using the "include" and "extends" instructions
-> throughout so that we have a top-level "common" set of CI YAML includes
-> alongside a growing set of repositories for each machine-specific build.
-> Each of those repositories follows the Yocto release branching style so
-> that we can trace build success to newer releases by simply creating a
-> branch and using the branch name for the initial clone of the layers.
->
-> One thing that came directly from our autobuilder 2 experience is a way t=
-o
-> inject extra variables into the autoconf.  AB2 called this *EXTRAARGS*,
-> which was simply a list of variables to add.  For our common CI "setup"
-> stage, we check for a file of the same name (extraargs.conf) and append i=
-t
-> to the auto.conf if it exists.  In this way our downstream projects can
-> simply include that file if necessary and version control it as new relea=
-se
-> branches are added.
->
-> One of the drawbacks we've seen in going this route is that every
-> repository has its own build timeout limit, which is always laughably
-> small.  There's a backlog issue on GitLab for a global definition of this
-> value, but it's slated for 12.7 (I think).
->
-> I'm hoping to put a write-up out soon with examples for how this all
-> worked together, but I want to hold off until we can get the CROPS change=
-s
-> we needed upstreamed in a way that doesn't break those containers for
-> everyone else (something about the entrypoint doesn't appreciate the
-> runner's bash/shell detection script).
->
 
-Looking forward to this!
+On 9/25/19 2:23 AM, Hongxu Jia wrote:
+> Changed in V1:
+> - Follow Mark H's suggestions
+> 
+> Hi Mark,
+> 
+> Once openssh enables FIPS mode, openssh ptest will fail (mess of failure).
+> It seems the test case of upstream openssh does not consider FIPS mode support.
+> I search fedora, there is nothing about openssh `regress'(test suits) in
+> FIPS mode support
+> 
+> So I do not add additional cavs test to the ptest, just add a note
+> to README.enable_fips
 
+Ok, that is good to know.  I suspect the issue is that many of the tests are
+trying to use unapproved algorithms and should be skipped in FIPS mode.
+Something for a future patch set.  I don't think it's necessary to adjust now.
 
-> Cheers,
->
-> Thomas
->
-> Geon Technologies, LLC
->
->
-> On Mon, Sep 23, 2019 at 5:50 PM Yann Dirson <yann.dirson@blade-group.com>
-> wrote:
->
->> Hi all,
->>
->> We released our scripts to help in setting up continuous integration
->> of a yocto-based project
->> using Gitlab-CI.  You'll find the repository at
->> https://github.com/BladeGroup/gitlab-oe
->>
->> Although we're using this in production, it still has a couple of
->> rough edges and may need
->> tuning for different usages.  We'd love to hear how well it fits (or
->> doesn't fit ;) with other use
->> cases, and will gladly consider evolutions to make it more generally
->> usable.
->>
->> Best regards,
->> --
->> Yann Dirson <yann@blade-group.com>
->> Blade / Shadow -- http://shadow.tech
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->
+I did modify patch 4.  We want to use the more generic IMAGE_POSTPROCESS_COMMAND
+instead.  But otherwise I've taken it as is.  I'm currently running it through a
+test pass, once that is complete I'll push the commits.
 
---=20
-Yann Dirson <yann@blade-group.com>
-Blade / Shadow -- http://shadow.tech
+--Mark
 
---000000000000d3732105935d1e87
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+> //Hongxu
+> 
+> ====== Comments (indicate scope for each "y" above) ======
+> * Git logs
+> [meta-openssl102-fips]
+> commit 38849c1c52ae04eb2a3931624cd2d1446ab389d6
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Wed Sep 25 15:03:24 2019 +0800
+> 
+>     README.enable_fips: openssh ptest failed in fips mode
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> commit f5b8a66c226541e73cc509a73452bbafc59f2555
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Sun Sep 22 22:40:56 2019 +0800
+> 
+>     README.openssh_cavstest: add CAVS tests for FIPS validation
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> commit bd5de039c60fd2ab89f7925d3801520d742ba09a
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Sun Sep 22 21:54:41 2019 +0800
+> 
+>     openssh: add CAVS tests for FIPS validation
+>     
+>     Refer the latest Fedora to add cavs test binary for the aes-ctr [1]
+>     and SSH KDF CAVS test driver [2]
+>     
+>     [1] http://pkgs.fedoraproject.org/cgit/rpms/openssh.git/plain/openssh-6.6p1-ctr-cavstest.patch
+>     [2] http://pkgs.fedoraproject.org/cgit/rpms/openssh.git/plain/openssh-6.7p1-kdf-cavs.patch
+>     (as of commit 0ca1614ae221578b6b57c61d18fda6cc970a19ce)
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> commit b40cef8f89461342da5c6a621d95cdb19a4d8cff
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Sun Sep 22 20:55:30 2019 +0800
+> 
+>     README.enable_fips: add steps to turn system (kernel and user space) into FIPS mode
+>     
+>     Refer RedHat/Fedora/SUSE/Oracle/IBM ways
+>     
+>     1. Add `fips=1' to kernel option to enable FIPS mode in kernel
+>     
+>     2. File /etc/system-fips to determine if a FIPS mode is enabled in user space,
+>     currently openssh only
+>     
+>     Refer:
+>     https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/security_guide/sect-security_guide-federal_standards_and_regulations-federal_information_processing_standard
+>     https://access.redhat.com/discussions/3293631
+>     https://lists.fedoraproject.org/pipermail/scm-commits/Week-of-Mon-20131007/1124363.html
+>     https://www.ibm.com/support/knowledgecenter/en/linuxonibm/com.ibm.linux.z.lgdd/lgdd_r_fipsparm.html
+>     https://support.oracle.com/knowledge/Oracle%20Linux%20and%20Virtualization/2323738_1.html
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> commit a4e3e55688b7a3666bcec95c342dab7984e7e0a3
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Sun Sep 22 19:27:45 2019 +0800
+> 
+>     rng-tools: fix rngd failed in fips mode
+>     
+>     The FIPS test is something done on government or more secure organizations
+>     for extra security check.
+>     ...
+>     root@qemux86-64:~# systemctl status rngd
+>     Unit rngd-tools.service could not be found.
+>     root@qemux86-64:~# systemctl status rngd
+>     rngd.service - Hardware RNG Entropy Gatherer Daemon
+>        Loaded: loaded (/lib/systemd/system/rngd.service; enabled; vendor preset: enabled)
+>        Active: inactive (dead) since Sun 2019-09-22 11:10:41 UTC; 18min ago
+>       Process: 317 ExecStart=/usr/sbin/rngd -f $EXTRA_ARGS (code=exited, status=0/SUCCESS)
+>      Main PID: 317 (code=exited, status=0/SUCCESS)
+>     
+>     Sep 22 11:10:37 qemux86-64 rngd[317]: RNDADDENTROPY failed: Operation not permitted
+>     Sep 22 11:10:37 qemux86-64 rngd[317]: RNDADDENTROPY failed: Operation not permitted
+>     Sep 22 11:10:37 qemux86-64 rngd[317]: too many FIPS failures, disabling entropy source
+>     ...
+>     
+>     From rngd manual, add `-i' to default
+>     ...
+>     -i, --ignorefail
+>       Ignore repeated fips failures
+>     ...
+>     
+>     After applying the fix
+>     ...
+>     rngd.service - Hardware RNG Entropy Gatherer Daemon
+>        Loaded: loaded (/lib/systemd/system/rngd.service; enabled; vendor preset: enabled)
+>        Active: active (running) since Sun 2019-09-22 12:18:31 UTC; 4min 35s ago
+>      Main PID: 121 (rngd)
+>         Tasks: 2
+>        Memory: 1.8M
+>        CGroup: /system.slice/rngd.service
+>                /usr/sbin/rngd -f -r /dev/hwrng -i
+>     
+>     Sep 22 12:23:06 qemux86-64 rngd[121]: RNDADDENTROPY failed: Operation not permitted
+>     ...
+>     
+>     Refer:
+>     https://www.unix.com/unix-for-advanced-and-expert-users/265510-rngd-failed-fips-test.html
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> commit c3224883bec9155fb51686a908c59da31d9918f5
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Sun Sep 22 19:27:01 2019 +0800
+> 
+>     rng-tools bbappend: port a copy of default from oe-core
+>     
+>     Port it at the following commit in oe-core
+>     http://cgit.openembedded.org/openembedded-core/commit/?id=16ced1a253c74c01ca414db2f1a010c083213b91
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> commit aecc01c2e49825dcb2a78875e0562028b2636fab
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Sun Sep 22 18:48:08 2019 +0800
+> 
+>     openssh/sshd_check_keys: don't generate ED25519 host keys in FIPS mode
+>     
+>     Run sshd_check_keys failed:
+>     ...
+>     2019-09-22T09:59:10.878738+00:00 qemux86-64 sshd_check_keys[419]:   generating ssh ED25519 host key...
+>     2019-09-22T09:59:10.897617+00:00 qemux86-64 sshd_check_keys[419]: ED25519 keys are not allowed in FIPS mode
+>     ...
+>     
+>     If fips mode enabled (existence of "/etc/system-fips"), don't generate ED25519 host
+>     keys in FIPS mode
+>     
+>     Refers Fedora:
+>     https://src.fedoraproject.org/rpms/openssh/c/00c7b7543973f237b79ee87ca697c08b71954d35
+>     https://src.fedoraproject.org/rpms/openssh/c/3b7c8620a1df976c1c09553c1c7b99ce492d290b
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> commit 67f47b09f427d9bb8e5db7a587ccc48a66351d13
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Sun Sep 22 18:43:03 2019 +0800
+> 
+>     openssh: port a copy of sshd_check_keys from oe-core
+>     
+>     Port it at the following commit in oe-core
+>     http://cgit.openembedded.org/openembedded-core/commit/?id=2303d795ae96f1a60caf145a0ddf100e89c4b5b0
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> commit ef9cbad4917c9327705a671a812da70659641b34
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Sun Sep 22 14:36:41 2019 +0800
+> 
+>     openssh: conditional enable fips mode
+>     
+>     Enable fips mode according to the existence of "/etc/system-fips"
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> commit f9a362a102afab48a58e35ca482395cb11ce2679
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Sun Sep 22 12:18:02 2019 +0800
+> 
+>     kernel: workaround alg self-tests failure in fips mode
+>     
+>     While kernel enable fips mode, it start alg self-test, and there is
+>     a kernel panic at ecdh-generic
+>     ...
+>     [    0.311313] alg: ecdh: test failed on vector 2, err=-14
+>     [    0.311898] Kernel panic - not syncing: alg: self-tests for ecdh-generic (ecdh) failed in fips mode!
+>     ...
+>     
+>     Continue without Jitter RNG for fips to workaround alg self-tests failure,
+>     after applying the fix:
+>     ...
+>     [    0.306633] DRBG: Continuing without Jitter RNG
+>     [    0.310550] alg: self-tests for ecdh-generic (ecdh) passed
+>     ...
+>     
+>     Refer: https://lore.kernel.org/patchwork/patch/568693/
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> commit ba498f76d6067ce5cf57be037deecde9bb7cf664
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Sat Sep 21 14:43:28 2019 +0800
+> 
+>     add kernel fips mode support
+>     
+>     A kernel compiled with CONFIG_CRYPTO_FIPS=y can be booted in fips mode
+>     by specifying fips=1 as kernel parameter. [1][2]
+>     
+>     /proc/sys/crypto/fips_enabled, that is presumably used by the Red Hat
+>     modified version of OpenSSL.[3]
+>     
+>     [1] https://www.linux.org/docs/man8/fipscheck.html
+>     [2] https://cateee.net/lkddb/web-lkddb/CRYPTO_FIPS.html
+>     [3] https://mta.openssl.org/pipermail/openssl-users/2017-May/005840.html
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> commit 6ead6e738a7da55b123f6c55058259f3df214509
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Sat Sep 21 14:24:51 2019 +0800
+> 
+>     openssh: add generation of HMAC checksums in pkg_postinst
+>     
+>     Refer https://src.fedoraproject.org/rpms/openssh/c/13fa787ecc35d6c9eea9e64c1f42f49e2ee978ce
+>     (See __spec_install_post in openssh.spec for detail)
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> commit d9906e35fcdf60e773d2272117383e3ec7ca9bc0
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Sat Sep 21 12:49:53 2019 +0800
+> 
+>     classes/image-enable-fips.bbclass: enable user space fips mode in image
+>     
+>     Refer Fedora/RedHat's way
+>     https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/6.5_technical_notes/dracut
+>     
+>     To enable user space fips mode in the image recipe as part of an
+>     'IMAGE_CLASSES'. Basically if FIPS-140-2 is enabled, then we can
+>     touch the file as a post image generation activity.
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> commit 2d4d0ad9655b5349815af9f8e6a19830fcf40f02
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Sat Sep 21 12:25:17 2019 +0800
+> 
+>     fipscheck: add generation of the checksums in pkg_postinst
+>     
+>     Refer https://pagure.io/fipscheck/c/489bc3ab3f73707e12b6c2644d80af5ff6fbbf70
+>     (* fipscheck.spec.in: Add generation of the checksums in　__spec_install_post.)
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> commit d915bb67402e504ee8aa47ce988afcb07eb829a4
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Fri Sep 20 22:06:17 2019 +0800
+> 
+>     openssh_8.%.bbappend: support fips 140-2
+>     
+>     Port openssh-7.7p1-fips.patch from Fedora
+>     https://src.fedoraproject.org/rpms/openssh.git
+>     (as of commit 0ca1614ae221578b6b57c61d18fda6cc970a19ce)
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> commit 0516bd7ba43434d8fafb92f5eb3801c726ce1d46
+> Author: Hongxu Jia <hongxu.jia@windriver.com>
+> Date:   Fri Sep 20 15:43:44 2019 +0800
+> 
+>     fipscheck: add 1.5.0
+>     
+>     Port it from fedora:
+>     https://src.fedoraproject.org/rpms/fipscheck
+>     (as of commit 7e44bec705fb2b3263734f30a05c2245738cf01a)
+>     
+>     It is required by openssh fips.
+>     
+>     Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+> 
+> 
+> 
+> ====== Testing ======
+> * Commands
+> See README.build  README.enable_fips  README.openssh_cavstest
+> 
+> * Expected Results
+> See README.build  README.enable_fips  README.openssh_cavstest
+> 
+> * Applicable to
+> qemux86-64
+> 
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi Thomas,<br></div><br><div class=3D"gma=
-il_quote"><div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0mar. 24 sept. 2019 =
-=C3=A0=C2=A014:36, Thomas Goodwin &lt;<a href=3D"mailto:btgoodwin@geontech.=
-com">btgoodwin@geontech.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquot=
-e class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
-olid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr">H=
-i Yann,<input name=3D"virtru-metadata" value=3D"{&quot;email-policy&quot;:{=
-&quot;state&quot;:&quot;closed&quot;,&quot;expirationUnit&quot;:&quot;days&=
-quot;,&quot;disableCopyPaste&quot;:false,&quot;disablePrint&quot;:false,&qu=
-ot;disableForwarding&quot;:false,&quot;enableNoauth&quot;:false,&quot;persi=
-stentProtection&quot;:false,&quot;expandedWatermarking&quot;:false,&quot;ex=
-pires&quot;:false,&quot;isManaged&quot;:false},&quot;attachments&quot;:{},&=
-quot;compose-id&quot;:&quot;21&quot;,&quot;compose-window&quot;:{&quot;secu=
-re&quot;:false}}" type=3D"hidden"><div><br></div><div>Thanks for sharing! W=
-e&#39;re working through something similar using a tweak to the CROPS docke=
-r containers and GitLab-CI (we started with autobuilder 2, so we&#39;ve act=
-ually merged quite a bit of that experience with our GitLab setup).</div></=
-div></div></blockquote><div><br></div><div>Thanks for pointing me to CROPS,=
- that will help bringing Docker support here :)</div><div> <br></div><block=
-quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
-px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"lt=
-r"><div><br></div><div>Using docker runners as our cluster, we setup volume=
- mounts to the host system for caching the shared state and downloads direc=
-tories (as well as other artifacts upon successful build).=C2=A0 As part of=
- the CI setup,=C2=A0we then insert a build/conf/auto.conf file that enforce=
-s the usage of that volume (DL_DIR and SSTATE_DIR).=C2=A0 At the deploy sta=
-ge (package feeds, etc. like you&#39;re doing), we did the same thing -- co=
-py out to that path so that it ends up on the network share rather than the=
- container.</div><div><br></div><div>Also like you, we&#39;re using the &qu=
-ot;include&quot; and &quot;extends&quot; instructions throughout so that we=
- have a top-level &quot;common&quot; set of CI YAML includes alongside a gr=
-owing set of repositories for each machine-specific build.=C2=A0 Each of th=
-ose repositories follows the Yocto release branching style so that we can t=
-race build success to newer releases by simply creating a branch and using =
-the branch name for the initial clone of the layers.</div><div><br></div><d=
-iv>One thing that came directly from our autobuilder 2 experience is a way =
-to inject extra variables into the autoconf.=C2=A0 AB2 called this <i>EXTRA=
-ARGS</i>, which was simply a list of variables to add.=C2=A0 For our common=
- CI &quot;setup&quot; stage, we check for a file of the same name (extraarg=
-s.conf) and append it to the auto.conf if it exists.=C2=A0 In this way our =
-downstream projects can simply include that file if necessary and version c=
-ontrol it as new release branches are added.</div><div><br></div><div>One o=
-f the drawbacks we&#39;ve seen in going this route is that every repository=
- has its own build timeout limit, which is always laughably small.=C2=A0 Th=
-ere&#39;s a backlog issue on GitLab for a global definition of this value, =
-but it&#39;s slated for 12.7 (I think).</div><div><br></div><div>I&#39;m ho=
-ping to put a write-up out soon with examples for how this all worked toget=
-her, but I want to hold off until we can get the CROPS changes we needed up=
-streamed in a way that doesn&#39;t break those containers for everyone else=
- (something about the entrypoint doesn&#39;t appreciate the runner&#39;s ba=
-sh/shell detection script).</div></div></div></blockquote><div><br></div><d=
-iv>Looking forward to this!</div><div> <br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div><br></div><d=
-iv>Cheers,</div><div><br></div><div>Thomas</div><div><br></div><div>Geon Te=
-chnologies, LLC</div><div><br></div><div></div></div><br><div class=3D"gmai=
-l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 23, 2019 at 5:50=
- PM Yann Dirson &lt;<a href=3D"mailto:yann.dirson@blade-group.com" target=
-=3D"_blank">yann.dirson@blade-group.com</a>&gt; wrote:<br></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
-lid rgb(204,204,204);padding-left:1ex">Hi all,<br>
-<br>
-We released our scripts to help in setting up continuous integration<br>
-of a yocto-based project<br>
-using Gitlab-CI.=C2=A0 You&#39;ll find the repository at<br>
-<a href=3D"https://github.com/BladeGroup/gitlab-oe" rel=3D"noreferrer" targ=
-et=3D"_blank">https://github.com/BladeGroup/gitlab-oe</a><br>
-<br>
-Although we&#39;re using this in production, it still has a couple of<br>
-rough edges and may need<br>
-tuning for different usages.=C2=A0 We&#39;d love to hear how well it fits (=
-or<br>
-doesn&#39;t fit ;) with other use<br>
-cases, and will gladly consider evolutions to make it more generally usable=
-.<br>
-<br>
-Best regards,<br>
--- <br>
-Yann Dirson &lt;<a href=3D"mailto:yann@blade-group.com" target=3D"_blank">y=
-ann@blade-group.com</a>&gt;<br>
-Blade / Shadow -- <a href=3D"http://shadow.tech" rel=3D"noreferrer" target=
-=3D"_blank">http://shadow.tech</a><br>
--- <br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
-" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div></div>
-</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"g=
-mail_signature">Yann Dirson &lt;<a href=3D"mailto:yann@blade-group.com" tar=
-get=3D"_blank">yann@blade-group.com</a>&gt;<br>Blade / Shadow -- <a href=3D=
-"http://shadow.tech" target=3D"_blank">http://shadow.tech</a><br><br></div>=
-</div>
-
---000000000000d3732105935d1e87--
