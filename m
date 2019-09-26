@@ -1,40 +1,60 @@
-Return-Path: <leimaohui@cn.fujitsu.com>
+Return-Path: <matous.pokorny@datavision.cz>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34693E00C81; Mon, 30 Sep 2019 00:55:20 -0700 (PDT)
+	id 23366E00DED; Thu, 26 Sep 2019 05:02:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=5.0 tests=BAYES_00, DATE_IN_FUTURE_06_12,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, FROM_EXCESS_BASE64, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [183.91.158.132 listed in list.dnswl.org]
-	* 1.9 DATE_IN_FUTURE_06_12 Date: is 6 to 12 hours after Received: date
-Received: from heian.cn.fujitsu.com (mail.cn.fujitsu.com [183.91.158.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7408E00B65
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2019 00:55:18 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.64,565,1559491200"; d="scan'208";a="76253798"
-Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 30 Sep 2019 15:55:15 +0800
-Received: from G08CNEXCHPEKD01.g08.fujitsu.local (unknown [10.167.33.80])
-	by cn.fujitsu.com (Postfix) with ESMTP id D8F154CE1506
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2019 15:55:18 +0800 (CST)
-Received: from localhost.localdomain (10.167.225.227) by
-	G08CNEXCHPEKD01.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
-	Server (TLS) id 14.3.439.0; Mon, 30 Sep 2019 15:55:22 +0800
-From: Lei Maohui <leimaohui@cn.fujitsu.com>
-To: <yocto@yoctoproject.org>
-Date: Mon, 30 Sep 2019 23:55:08 +0800
-Message-ID: <20190930155508.46292-1-leimaohui@cn.fujitsu.com>
-X-Mailer: git-send-email 2.17.2
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.42 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	*  0.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
+	[209.85.208.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0C88E00782
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2019 05:02:20 -0700 (PDT)
+Received: by mail-ed1-f42.google.com with SMTP id v38so1716296edm.7
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2019 05:02:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=datavision-cz.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=eBZoRYdmFdUw8NZXfvzC0aVuNqbag/Fk6vRzAjypPWM=;
+	b=BmsQnKQj5+ChGqeZYsapvKL0383kfEadG198RTx0lyM/L2DvrFEDwUxRAQMjluCbSI
+	qswi3jnCMAc+MtrYtA9jgXMeSaNdpdHon+hz09RNXWqK2FK+Go7BxDoWrS6IMrJ1xBnr
+	/CRjAZbLsEmWTSzfY0rNBQUeOHMwuINTsi3EqLelfsVOgVoKA51GVJ3/4nEnn2PFHwJk
+	HNH3l6sC5stPfr5nKDHNWn9eCVKWJWpCgx+jkM3SxYLUwga22xlhhIPg/LXrN+y6Z6pb
+	H2iU/sKZei7RW/PGNjN82O29Ja1f5MjLVrQLQfSx5MEiCiex4P7Q12fxfq7372feoEqn
+	GRQQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=eBZoRYdmFdUw8NZXfvzC0aVuNqbag/Fk6vRzAjypPWM=;
+	b=H2A+D37jjUlBK4GwzB+2nZ2tZbMAMt7O2qk2Ov8M8xt9GwEm4OALQns3h0YLRvA+3p
+	JaXBXvUqwUp0k6LdzWqzz/P/ZvIMFBzp1ieO+AHfocrcsDINHXNwaQ9B1LYqQRIu+8HW
+	5cw8uqlVDQ32OgmQjBzdGIPDOyehPcUNNi5kkyNQsm1UiyMvYvuJ02B1/rPnsKRNvK5j
+	/TQ7Bti3VcKRrTp+cAKsfSApB2ELTmDxpDzq0ZKzoQ5Oglickqdw6gT5MzuPSfYiUlnx
+	1MhpmYut+Pu58xpTM9vw8C2ED8sYxHNSpsqlYFsMQ3UajhbYlyhoz/dcDoQM00Ub46yv
+	7hPQ==
+X-Gm-Message-State: APjAAAWXuqucM8/n+3mFmswfXO2zUVQdZgfuH3lLyYbM6Wq/gpRtsIN7
+	AF0o4+VvWLZk6ZKm3+zLzd7nxwXq5lPqtz8mqn48cWLKPnTUyg==
+X-Google-Smtp-Source: APXvYqyfTJFqvTAH6jtrXW7cDGzZee+pQ0PY+cBWQob812XG1elUnG4c1QM7lnXK0RNIkvHcDCCeuG3chXYEt3/obhM=
+X-Received: by 2002:a50:c306:: with SMTP id a6mr3237933edb.108.1569499339234; 
+	Thu, 26 Sep 2019 05:02:19 -0700 (PDT)
 MIME-Version: 1.0
-X-Originating-IP: [10.167.225.227]
-X-yoursite-MailScanner-ID: D8F154CE1506.AD48D
-X-yoursite-MailScanner: Found to be clean
-X-yoursite-MailScanner-From: leimaohui@cn.fujitsu.com
-Subject: [meta-cgl][PATCH] heartbeat:Update the patch for new version.
+From: =?UTF-8?B?TWF0b3XFoSBQb2tvcm7DvQ==?= <matous.pokorny@datavision.cz>
+Date: Thu, 26 Sep 2019 14:02:07 +0200
+Message-ID: <CAD0UrV10JR=vFUKfZCxetCQCx2y=A9gv6YeqtBEMjHYqXLso0w@mail.gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Mon, 30 Sep 2019 02:59:37 -0700
+Subject: Where to get kconfig-frontends package?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,65 +66,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Sep 2019 07:55:20 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 26 Sep 2019 12:02:22 -0000
+Content-Type: multipart/alternative; boundary="0000000000009733a80593738a75"
 
-To fix the patch error as follwing:
+--0000000000009733a80593738a75
+Content-Type: text/plain; charset="UTF-8"
 
-WARNING: heartbeat-3.0.6-r0 do_patch: QA Issue: Patch log indicates that
-patches do not apply cleanly. [patch-fuzz
+Hello!
 
-Signed-off-by: Lei Maohui <leimaohui@cn.fujitsu.com>
----
- ...mbership-ccm-Makefile.am-fix-warning.patch | 19 ++++++++++---------
- 1 file changed, 10 insertions(+), 9 deletions(-)
+I come from NuttX RTOS project (nuttx.org), and we use Kconfig tool for
+configuration. The toolchain build script gets kconfig-frontends source
+code from the same server as Yocto (http://ymorin.is-a-geek.org). The
+server is down for approx. one week and it caused the fail during the
+toolchain building. Have you met this problem as well? We would like to
+switch to another more reliable repository, but I read, the server's owner
+is one of the Linux core developers. So the server is a kind of primary
+source. Do you have a suggestion on how to solve this problem? I would like
+to ask you for help because you know the Linux ecosystem and are in the
+same situation as we are.
 
-diff --git a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat/membership-ccm-Makefile.am-fix-warning.patch b/meta-cgl-common/recipes-cgl/heartbeat/heartbeat/membership-ccm-Makefile.am-fix-warning.patch
-index 19691db..e27ed79 100644
---- a/meta-cgl-common/recipes-cgl/heartbeat/heartbeat/membership-ccm-Makefile.am-fix-warning.patch
-+++ b/meta-cgl-common/recipes-cgl/heartbeat/heartbeat/membership-ccm-Makefile.am-fix-warning.patch
-@@ -1,9 +1,10 @@
--From 30ee44e75da1bc86901b546ea14233d288ce2309 Mon Sep 17 00:00:00 2001
--From: Li xin <lixin.fnst@cn.fujitsu.com>
--Date: Tue, 9 Dec 2014 18:15:51 +0900
-+From a5e1060c233513cdfc494be410032e6d4ed6f916 Mon Sep 17 00:00:00 2001
-+From: Lei Maohui <leimaohui@cn.fujitsu.com>
-+Date: Mon, 30 Sep 2019 12:42:41 +0900
- Subject: [PATCH] membership/ccm/Makefile.am: fix warning
- 
--The compile log indicates that host include and/or library paths were used
-+The compile log indicates that host include and/or library paths were
-+used
- 
- Upstream-Status: pending
- 
-@@ -13,18 +14,18 @@ Signed-off-by: Li Xin <lixin.fnst@cn.fujitsu.com>
-  1 file changed, 1 insertion(+), 1 deletion(-)
- 
- diff --git a/membership/ccm/Makefile.am b/membership/ccm/Makefile.am
--index 105069a..2a89de1 100644
-+index eeb8eee..47a6452 100644
- --- a/membership/ccm/Makefile.am
- +++ b/membership/ccm/Makefile.am
- @@ -22,7 +22,7 @@ MAINTAINERCLEANFILES    = Makefile.in
-- INCLUDES                = -I$(top_builddir)/include -I$(top_srcdir)/include \
-+ AM_CPPFLAGS		= -I$(top_builddir)/include -I$(top_srcdir)/include \
-  			-I$(top_builddir)/linux-ha -I$(top_srcdir)/linux-ha \
-  			-I$(top_builddir)/libltdl -I$(top_srcdir)/libltdl \
- -                        -I$(includedir)/clplumbing
- +                        -I$(lt_sysroot)$(includedir)/clplumbing
-  
-- hadir			= $(sysconfdir)/ha.d
-- halibdir		= $(libdir)/@HB_PKG@
-+ halibexecdir		= $(libexecdir)/@HB_PKG@
-+ ccmlibdir		= $(halibexecdir)
- -- 
--1.8.4.2
-+2.17.1
- 
--- 
-2.17.2
+Thank you.
 
+*Matous Pokorny*
+Embedded System Developer
 
+*DataVision s.r.o.*
+Ukrajinska 2a
+101 00 Praha 10
+Czech Republic
 
+GSM: (+420) 723 280 471
+matous.pokorny@datavision.cz
 
+--0000000000009733a80593738a75
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello!</div><div><br></div><div>I come from NuttX RTO=
+S project (<a href=3D"http://nuttx.org">nuttx.org</a>), and we use Kconfig =
+tool for configuration. The toolchain build script gets kconfig-frontends s=
+ource code from the same server as Yocto (<span style=3D"color:rgb(34,34,34=
+);font-family:Arial,Helvetica,sans-serif;font-size:small;font-style:normal;=
+font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;lett=
+er-spacing:normal;text-align:start;text-indent:0px;text-transform:none;whit=
+e-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-deco=
+ration-style:initial;text-decoration-color:initial;display:inline;float:non=
+e"><span></span></span><a href=3D"http://ymorin.is-a-geek.org/" style=3D"co=
+lor:rgb(17,85,204);font-family:Arial,Helvetica,sans-serif;font-size:small;f=
+ont-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fon=
+t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
+ansform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,2=
+55,255)">http://ymorin.is-a-geek.org</a>). The server is down for approx. o=
+ne week and it caused the fail during the toolchain building. Have you met =
+this problem as well? We would like to switch to another more reliable repo=
+sitory, but I read, the server&#39;s owner is one of the Linux core develop=
+ers. So the server is a kind of primary source. Do you have a suggestion on=
+ how to solve this problem? I would like to ask you for help because you kn=
+ow the Linux ecosystem and are in the same situation as we are.</div><div><=
+br></div><div>Thank you.</div><div><br></div><div><div><div dir=3D"ltr" cla=
+ss=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr">=
+<b>Matous Pokorny</b><div>Embedded System Developer</div><div><br></div><di=
+v><b>DataVision s.r.o.</b></div><div>Ukrajinska 2a</div><div>101 00 Praha 1=
+0</div><div>Czech Republic</div><div><br></div><div>GSM: (+420) 723 280 471=
+</div><div><a href=3D"mailto:matous.pokorny@datavision.cz">matous.pokorny@d=
+atavision.cz</a></div></div></div></div></div></div>
+
+--0000000000009733a80593738a75--
