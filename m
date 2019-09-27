@@ -1,95 +1,39 @@
-Return-Path: <rudolf.streif@ibeeto.com>
+Return-Path: <andreea.volosincu@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BF282E00924; Thu, 26 Sep 2019 20:50:03 -0700 (PDT)
+	id EC99AE0049C; Thu, 26 Sep 2019 21:33:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	https://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.193 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com
-	[209.85.214.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E76DBE0084E
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2019 20:50:02 -0700 (PDT)
-Received: by mail-pl1-f193.google.com with SMTP id f21so502623plj.10
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2019 20:50:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
-	h=subject:to:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to;
-	bh=Jbd+nWBl1rJFV1g48Gzi6TKKG66SxhLdTFeqjKV0NfI=;
-	b=D+2n3yBdP1Gs+l9jjTHjugZ6pTURvD5tb9JgoGqM7GdRRbAzgwMOZ5JNyokHJj9v9G
-	HG6tqAYcbZe3PlVsVmnXZJH6Q+dnE8CkdZNJYDdMlXnedxG0WPKK73w/wOOyu48qwlkW
-	lQPbJgKgZzByIH5qQ8PBHC9rkiuIaqc8MBWNObeQ+48mppA2e8k3XphbTphfrckDD69v
-	+5LZzqO9WcufyzLsAjOV++Xc0vhO9i4aMckHJ3StqgV5Fgvmk0ppI7SJ6AmzdVyyQoC/
-	e0KNsSdl97e1hUQMuLYMAIZmtcPM2WxyqQQmO/SI2a0bat+duAnc+TzXcf/ViylxQi2F
-	XwDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to;
-	bh=Jbd+nWBl1rJFV1g48Gzi6TKKG66SxhLdTFeqjKV0NfI=;
-	b=YeeUK+AfB4q+zVfHv+Tnwdjb7NZPZKsAggtge9YeQiYVhLo4h3Pvs+sAGpqMbibMI+
-	9+Ky1oqW34iUMYKV+nwg+8XXulwsVGkNxmOM8faI+yM9lg9BKIkwa/b1uUjA89yG4Sbc
-	MnfohXNgUhrKCCMZTtwmFf9PEN7Keogk5TM03qWUONsAB5d8a8Hydxq7xROjSplYNUGt
-	Bi4+4ccDYkesGSaBny+6xHWmjgQVDXbQFWSPfodpXpq1iJbEvSXcmfZ1nmLhTCSTA0bG
-	6TTpeO8NfkHg4XX3jHGWI9ixywM8dv3HMl3s/4hIV6X2NSUG9iziXrIo5pzni8q+RAqm
-	JIhA==
-X-Gm-Message-State: APjAAAVOt02JnWxdBWEfbYT+lTl8tpqhXS1kxa6wRY4o4lFJf7BPkOAN
-	BeCKTD7mfBvQ3Ws8kpAi8KWyOsSOOM9kEA==
-X-Google-Smtp-Source: APXvYqzkfhFUkJz3c36BPF9CQBGdBl0yeP1g/8hd+iCIAlSiu4ozJNfLQQspneIpMWnMl2gJr1SWfw==
-X-Received: by 2002:a17:902:9b85:: with SMTP id
-	y5mr2304376plp.104.1569556201800; 
-	Thu, 26 Sep 2019 20:50:01 -0700 (PDT)
-Received: from rjs-zotac.ibeeto.com (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
-	by smtp.gmail.com with ESMTPSA id
-	u3sm717080pfn.134.2019.09.26.20.49.59
-	(version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-	Thu, 26 Sep 2019 20:50:00 -0700 (PDT)
-To: Chuck Wolber <chuckwolber@gmail.com>,
-	Yocto-mailing-list <yocto@yoctoproject.org>
-References: <CAB=6tBRdpccrvRR9fWZW2BwTsgUgggr2KSadK4wB2kmqsaQC+g@mail.gmail.com>
-From: Rudolf J Streif <rudolf.streif@ibeeto.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
-	mQENBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
-	Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
-	/Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
-	cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
-	3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
-	AAG0KlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPokBNwQTAQgA
-	IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
-	3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
-	txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
-	lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
-	Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
-	zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvuQENBFhQFAQBCADXoLKCuF48
-	5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
-	RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
-	w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
-	svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
-	tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAGJAR8EGAEIAAkFAlhQFAQC
-	GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
-	s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
-	fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
-	Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
-	P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
-	ROZj4g==
-Message-ID: <d9a2ad4d-71a5-345e-3212-07415b6ad1c4@ibeeto.com>
-Date: Thu, 26 Sep 2019 20:49:58 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A15A4E0049C
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2019 21:33:14 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com ([147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id x8R4XEcw010917
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 26 Sep 2019 21:33:14 -0700 (PDT)
+Received: from ALA-MBD.corp.ad.wrs.com ([169.254.3.153]) by
+	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.03.0468.000;
+	Thu, 26 Sep 2019 21:33:13 -0700
+From: "Volosincu, Andreea S" <andreea.volosincu@windriver.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Thread-Topic: Schedule Announced for Yocto Project Summit Europe 2019
+Thread-Index: AdV07IjVvotnWt6VTTmhFL2bEs5T9g==
+Date: Fri, 27 Sep 2019 04:33:12 +0000
+Message-ID: <A084970538D2234B96D99D06FA9D974FCA91526E@ALA-MBD.corp.ad.wrs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [147.11.118.227]
 MIME-Version: 1.0
-In-Reply-To: <CAB=6tBRdpccrvRR9fWZW2BwTsgUgggr2KSadK4wB2kmqsaQC+g@mail.gmail.com>
-Subject: Re: Downloading Git Archives
+Subject: Schedule Announced for Yocto Project Summit Europe 2019
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -101,226 +45,249 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Sep 2019 03:50:03 -0000
-X-Groupsio-MsgNum: 46760
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature";
-	boundary="mqP234NW04ZbaTb8Vxg1VwgNTYrjbYq9Y"
-
---mqP234NW04ZbaTb8Vxg1VwgNTYrjbYq9Y
-Content-Type: multipart/mixed; boundary="9loJqbMMuBlj3zS7oicaIyPbYu7HQ7NiS";
- protected-headers="v1"
-From: Rudolf J Streif <rudolf.streif@ibeeto.com>
-To: Chuck Wolber <chuckwolber@gmail.com>,
- Yocto-mailing-list <yocto@yoctoproject.org>
-Message-ID: <d9a2ad4d-71a5-345e-3212-07415b6ad1c4@ibeeto.com>
-Subject: Re: [yocto] Downloading Git Archives
-References: <CAB=6tBRdpccrvRR9fWZW2BwTsgUgggr2KSadK4wB2kmqsaQC+g@mail.gmail.com>
-In-Reply-To: <CAB=6tBRdpccrvRR9fWZW2BwTsgUgggr2KSadK4wB2kmqsaQC+g@mail.gmail.com>
-
---9loJqbMMuBlj3zS7oicaIyPbYu7HQ7NiS
-Content-Type: multipart/alternative;
- boundary="------------B8DD8E6420D07EB025EA50E6"
+X-List-Received-Date: Fri, 27 Sep 2019 04:33:16 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_A084970538D2234B96D99D06FA9D974FCA91526EALAMBDcorpadwrs_"
 
---------------B8DD8E6420D07EB025EA50E6
-Content-Type: text/plain; charset=utf-8
+--_000_A084970538D2234B96D99D06FA9D974FCA91526EALAMBDcorpadwrs_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Chuck,
+We're excited to announce the amazing sessions scheduled for the Yocto Proj=
+ect Summit 2019.
 
-Unless I am missing something (which I cannot entirely rule out), the
-default PREMIRRORS should actually do what you want. For the poky distro
-configuration has this:
+Sessions include:
 
-PREMIRRORS ??=3D "\
-bzr://.*/.*=C2=A0=C2=A0 http://downloads.yoctoproject.org/mirror/sources/=
- \n \
-cvs://.*/.*=C2=A0=C2=A0 http://downloads.yoctoproject.org/mirror/sources/=
- \n \
-git://.*/.*=C2=A0=C2=A0 http://downloads.yoctoproject.org/mirror/sources/=
- \n \
-gitsm://.*/.* http://downloads.yoctoproject.org/mirror/sources/ \n \
-hg://.*/.*=C2=A0=C2=A0=C2=A0 http://downloads.yoctoproject.org/mirror/sou=
-rces/ \n \
-osc://.*/.*=C2=A0=C2=A0 http://downloads.yoctoproject.org/mirror/sources/=
- \n \
-p4://.*/.*=C2=A0=C2=A0=C2=A0 http://downloads.yoctoproject.org/mirror/sou=
-rces/ \n \
-svn://.*/.*=C2=A0=C2=A0 http://downloads.yoctoproject.org/mirror/sources/=
- \n"
+*        Yocto Project and CVEs
 
-This causes the fetcher to intercept and translate all the SCM protocols
-into http downloads from the YP mirror. Since you are saying wget works
-for you this should actually automatically work for you. If you build
-system can at least download using http then
+*        Transitioning from long term stable to CI/CD
 
-bitbake <target> --runall=3Dfetch
+*        Binary package feeds for Yocto Project
 
-should download all the sources for you. Then you can disconnect the box
-from the Internet and start the build offline.
+*        Building container images with the Yocto Project
 
-:rjs
+Additional sessions and the full schedule covering a range of topics includ=
+ing devtool, best practices for building layers, working with/creating BSPs=
+, can be found on the registration page.
+Register today. Pricing increases after September 27.
 
-On 9/26/19 8:06 PM, Chuck Wolber wrote:
-> Hi All,
->
-> Our build environment is stuck behind a firewall with no access to the
-> Internet. When a Yocto build requires a new package, we normally
-> extract the URL from the failed build log and "wget" the package from
-> the upstream source, do our due diligence (checksums, etc), and then
-> add it to the server pointed to by ${LOCAL_MIRROR}.
->
-> Obviously that procedure does not work so well when a git repository
-> needs to be fetched. We have tried various methods, but nothing seems
-> to work reliably. Our current method is an annoying hack involving a
-> virtual machine clone of the build server.
->
-> I have searched far and wide, and cannot find any sort of procedure.
-> Can someone point me at a procedure for translating something like
-> git://git.yoctoproject.org/pseudo <http://git.yoctoproject.org/pseudo>
-> into a file we can store in our ${LOCAL_MIRROR}?
->
-> Thank you,
->
-> ..Ch:W..
->
---=20
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3386 x700
+REGISTER NOW > https://www.yoctoproject.org/yocto-project-summit-2019-2/
+
+The Yocto Project Summit, scheduled for October 31-November 1, 2019 at the =
+Lyon Convention Centre, Lyon, France, is a technical conference for enginee=
+rs, open source technologists, students and academia in the OSS space.  Org=
+anized in conjunction with ELCE 2019, this 2-day event is where individuals=
+ will learn about Yocto Projects' direction -- including, but not limited t=
+o, new releases, development tools, features -- get training on the next wa=
+ve of embedded Linux technologies (segment previously known as Yocto Projec=
+t Developer Day), and network with their industry peers, Yocto Project main=
+tainers and experts.
 
 
---------------B8DD8E6420D07EB025EA50E6
-Content-Type: text/html; charset=utf-8
+
+
+--_000_A084970538D2234B96D99D06FA9D974FCA91526EALAMBDcorpadwrs_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
-    <p>Chuck,</p>
-    <p>Unless I am missing something (which I cannot entirely rule out),
-      the default PREMIRRORS should actually do what you want. For the
-      poky distro configuration has this:</p>
-    <p>PREMIRRORS ??=3D "\<br>
-      bzr://.*/.*=C2=A0=C2=A0 <a class=3D"moz-txt-link-freetext" href=3D"=
-http://downloads.yoctoproject.org/mirror/sources/">http://downloads.yocto=
-project.org/mirror/sources/</a> \n
-      \<br>
-      cvs://.*/.*=C2=A0=C2=A0 <a class=3D"moz-txt-link-freetext" href=3D"=
-http://downloads.yoctoproject.org/mirror/sources/">http://downloads.yocto=
-project.org/mirror/sources/</a> \n
-      \<br>
-      git://.*/.*=C2=A0=C2=A0 <a class=3D"moz-txt-link-freetext" href=3D"=
-http://downloads.yoctoproject.org/mirror/sources/">http://downloads.yocto=
-project.org/mirror/sources/</a> \n
-      \<br>
-      gitsm://.*/.* <a class=3D"moz-txt-link-freetext" href=3D"http://dow=
-nloads.yoctoproject.org/mirror/sources/">http://downloads.yoctoproject.or=
-g/mirror/sources/</a> \n
-      \<br>
-      hg://.*/.*=C2=A0=C2=A0=C2=A0 <a class=3D"moz-txt-link-freetext" hre=
-f=3D"http://downloads.yoctoproject.org/mirror/sources/">http://downloads.=
-yoctoproject.org/mirror/sources/</a> \n
-      \<br>
-      osc://.*/.*=C2=A0=C2=A0 <a class=3D"moz-txt-link-freetext" href=3D"=
-http://downloads.yoctoproject.org/mirror/sources/">http://downloads.yocto=
-project.org/mirror/sources/</a> \n
-      \<br>
-      p4://.*/.*=C2=A0=C2=A0=C2=A0 <a class=3D"moz-txt-link-freetext" hre=
-f=3D"http://downloads.yoctoproject.org/mirror/sources/">http://downloads.=
-yoctoproject.org/mirror/sources/</a> \n
-      \<br>
-      svn://.*/.*=C2=A0=C2=A0 <a class=3D"moz-txt-link-freetext" href=3D"=
-http://downloads.yoctoproject.org/mirror/sources/">http://downloads.yocto=
-project.org/mirror/sources/</a>
-      \n"<br>
-    </p>
-    <p>This causes the fetcher to intercept and translate all the SCM
-      protocols into http downloads from the YP mirror. Since you are
-      saying wget works for you this should actually automatically work
-      for you. If you build system can at least download using http then<=
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1299217449;
+	mso-list-type:hybrid;
+	mso-list-template-ids:-469486864 67698689 67698691 67698693 67698689 67698=
+691 67698693 67698689 67698691 67698693;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:"Courier New";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">We&#8217;re excited to announce the amazing sessions=
+ scheduled for the Yocto Project Summit 2019.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Sessions include:<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Symbol"><span style=
+=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roma=
+n&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Yocto Project and CVEs<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Symbol"><span style=
+=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roma=
+n&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Transitioning from long term stable to CI/CD=
+<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Symbol"><span style=
+=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roma=
+n&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Binary package feeds for Yocto Project<o:p><=
+/o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"font-family:Symbol"><span style=
+=3D"mso-list:Ignore">&middot;<span style=3D"font:7.0pt &quot;Times New Roma=
+n&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]>Building container images with the Yocto Pro=
+ject<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Additional sessions and the full schedule covering a=
+ range of topics including devtool, best practices for building layers, wor=
+king with/creating BSPs, can be found on the registration page.<o:p></o:p><=
 /p>
-    <p>bitbake &lt;target&gt; --runall=3Dfetch</p>
-    <p>should download all the sources for you. Then you can disconnect
-      the box from the Internet and start the build offline.</p>
-    <p>:rjs<br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 9/26/19 8:06 PM, Chuck Wolber wrote=
-:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAB=3D6tBRdpccrvRR9fWZW2BwTsgUgggr2KSadK4wB2kmqsaQC+g@mail.gm=
-ail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">
-        <div>Hi All,</div>
-        <div><br>
-        </div>
-        <div>Our build environment is stuck behind a firewall with no
-          access to the Internet. When a Yocto build requires a new
-          package, we normally extract the URL from the failed build log
-          and "wget" the package from the upstream source, do our due
-          diligence (checksums, etc), and then add it to the server
-          pointed to by ${LOCAL_MIRROR}.</div>
-        <div><br>
-        </div>
-        <div>Obviously that procedure does not work so well when a git
-          repository needs to be fetched. We have tried various methods,
-          but nothing seems to work reliably. Our current method is an
-          annoying hack involving a virtual machine clone of the build
-          server.</div>
-        <div><br>
-        </div>
-        <div>I have searched far and wide, and cannot find any sort of
-          procedure. Can someone point me at a procedure for translating
-          something like git://<a
-            href=3D"http://git.yoctoproject.org/pseudo"
-            moz-do-not-send=3D"true">git.yoctoproject.org/pseudo</a> into=
-
-          a file we can store in our ${LOCAL_MIRROR}?</div>
-        <div><br>
-        </div>
-        <div>Thank you,</div>
-        <div><br>
-        </div>
-        <div>..Ch:W..</div>
-      </div>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-    </blockquote>
-    <pre class=3D"moz-signature" cols=3D"72">--=20
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3386 x700</pre>
-  </body>
+<p class=3D"MsoNormal">Register today. Pricing increases after September 27=
+.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">REGISTER NOW &raquo; <a href=3D"https://www.yoctopro=
+ject.org/yocto-project-summit-2019-2/">
+https://www.yoctoproject.org/yocto-project-summit-2019-2/</a><o:p></o:p></p=
+>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The Yocto Project Summit, scheduled for October 31-N=
+ovember 1, 2019 at the Lyon Convention Centre, Lyon, France, is a technical=
+ conference for engineers, open source technologists, students and academia=
+ in the OSS space.&nbsp; Organized in conjunction
+ with ELCE 2019, this 2-day event is where individuals will learn about Yoc=
+to Projects&#8217; direction -- including, but not limited to, new releases=
+, development tools, features -- get training on the next wave of embedded =
+Linux technologies (segment previously
+ known as Yocto Project Developer Day), and network with their industry pee=
+rs, Yocto Project maintainers and experts.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
 </html>
 
---------------B8DD8E6420D07EB025EA50E6--
-
---9loJqbMMuBlj3zS7oicaIyPbYu7HQ7NiS--
-
---mqP234NW04ZbaTb8Vxg1VwgNTYrjbYq9Y
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAl2NhuYACgkQjYyoKScz
-m3UYxwf/Sij+F+PX9GA9g/4UJRfuQFFNttDCGu751RZH05wE41E1ezSWzWA9CFqf
-4j/xq/l86gEIjxhgSwa805FiafaGFrMYKECXUa5JiSes087VeSfGeBq4pMvOl3xU
-HaRxubSt+kS5JdFMIU2odYmi48ktp5PrUx35X51qzAvOWoKStDbQ5NepJvPF5JUK
-35vttAKnwW6QufoTfiwEsZluVCvfLpznxD3O5gP7ycz2/VCeuJVApuF8SfIEs25o
-kEUqI84Aef/APvJX5QKDmPwXIh4EZIC90iaP6i/BxXafH0SL4G/GZqXGZ9v/DEYN
-YnsL4LaaYBo/B725oSugF2ZpyUhovg==
-=7uu8
------END PGP SIGNATURE-----
-
---mqP234NW04ZbaTb8Vxg1VwgNTYrjbYq9Y--
+--_000_A084970538D2234B96D99D06FA9D974FCA91526EALAMBDcorpadwrs_--
