@@ -1,99 +1,69 @@
-Return-Path: <ckalluri@xilinx.com>
+Return-Path: <dmitry.n.kargin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42268E00BE2; Fri, 27 Sep 2019 13:12:32 -0700 (PDT)
+	id 6314BE007E1; Fri, 27 Sep 2019 14:52:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, FORGED_SPF_HELO, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (dmitry.n.kargin[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [40.107.75.58 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [209.85.222.173 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid *  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
-Received: from NAM02-BL2-obe.outbound.protection.outlook.com
-	(mail-eopbgr750058.outbound.protection.outlook.com [40.107.75.58])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD07CE0091A
-	for <yocto@yoctoproject.org>; Fri, 27 Sep 2019 13:12:30 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
-	b=Dcdsr7yw3tG1ZNj/hb0/gHR6cgqDObaJcueHQOd5maDZPGEh26ggy98CFuzPHOW2Te0dqyQaksILYM6+qwhfE6NF/hU1MCvggF5shJo/znCgUVA2FY80KBlkxY5h+foClzWoF7PTzdI+nT+ETsfZkagXArHprx8u3AD3yIFoXJfy4xfAuVNMy8gjNx0qhYpQsgfIvddjzf7zbgufLJlPfATfQZZ/bll6HR19s53yIji98HnoyfN7vo2sD1TNe4G/V0YtyLcuxqYpNKvpfROxbruFiEQ6XhW1VLV6eIjN2DDMeJNKFe0NKwoa09xRTMQhSnoG40T8/MOkYp+ar0VvUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
-	s=arcselector9901;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=qLXDmunpOdTiOaNRhJAW9WCXJ4g9MOXdeN8b5njamZQ=;
-	b=MHZN41TK6T6GTqKon+s1wPCnPcYkUaE3lr71/aKa0MqHljHLzij7771XDMhzyMZXtkz1U3owbYI7bm7VGKKcVnTUAlQ1keW8Ebv80BSXnwGK4YNiEmiA00d5Cpmep16FScHitTA2IsKnbIw7tfnw9TQj30q8bk9je58Kuigq6/qrKs2JE+aLhygaClrneWaSkeJRHs/m5XIkAAK2/mX6hchOwI2MxnlQgUl1mQ3cabJ8KRA648E/n3JTwlK+hHceFvlZm+0tMihxcASe9yIE7VWdtMgDEun0nnGDjZvx2ah1rS5Brm2N7K0CRfTlfuHZTTL/NZ6nrevFM/a/tUssUQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
-	smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
-	dkim=pass header.d=xilinx.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=qLXDmunpOdTiOaNRhJAW9WCXJ4g9MOXdeN8b5njamZQ=;
-	b=rABMkuJwMP5YJa7bDOXRLZdt0ZMCbOMdBbPGuWVQX1XFiZloeMSK1i+3tfYY/ISN6bA0+QAjUb6w5jwMDvkhrAN1vM5L2TNxpA46tf7FAhGkZHyfgN6rXZxuN8f/2XGXWC5PhWIHKPSzZ5nBjDjGbIUszFPPizhyw/NkHoxrO+E=
-Received: from MWHPR02MB2576.namprd02.prod.outlook.com (10.168.205.142) by
-	MWHPR02MB2878.namprd02.prod.outlook.com (10.175.49.144) with Microsoft
-	SMTP
-	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.2284.21; Fri, 27 Sep 2019 20:12:28 +0000
-Received: from MWHPR02MB2576.namprd02.prod.outlook.com
-	([fe80::f4d9:193b:eb53:e815]) by
-	MWHPR02MB2576.namprd02.prod.outlook.com
-	([fe80::f4d9:193b:eb53:e815%12]) with mapi id 15.20.2284.023;
-	Fri, 27 Sep 2019 20:12:28 +0000
-From: Chandana Kalluri <ckalluri@xilinx.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-Thread-Topic: Xilinx/meta-jupyter layer
-Thread-Index: AdV1b67h6CGmnByNRcSC9yXNlUF9fA==
-Date: Fri, 27 Sep 2019 20:12:28 +0000
-Message-ID: <MWHPR02MB2576ADF2408BAAF0BF27D82BB0810@MWHPR02MB2576.namprd02.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=ckalluri@xilinx.com; 
-x-originating-ip: [149.199.62.133]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ed24965a-baab-4a98-f3d3-08d743870543
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0; PCL:0;
-	RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
-	SRVR:MWHPR02MB2878; 
-x-ms-traffictypediagnostic: MWHPR02MB2878:|MWHPR02MB2878:
-x-ms-exchange-purlcount: 2
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <MWHPR02MB28780695AEE11C84769E3E77B0810@MWHPR02MB2878.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 0173C6D4D5
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(4636009)(346002)(136003)(376002)(396003)(39860400002)(366004)(199004)(189003)(53754006)(486006)(66066001)(33656002)(6306002)(3480700005)(9686003)(6436002)(55016002)(66946007)(66556008)(66476007)(52536014)(305945005)(107886003)(5660300002)(4326008)(476003)(54906003)(76116006)(66446008)(256004)(966005)(14454004)(6506007)(478600001)(2906002)(99286004)(8936002)(316002)(7696005)(25786009)(64756008)(102836004)(71190400001)(71200400001)(2501003)(3846002)(7736002)(86362001)(186003)(6116002)(81166006)(8676002)(74316002)(110136005)(81156014)(26005);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR02MB2878;
-	H:MWHPR02MB2576.namprd02.prod.outlook.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
-received-spf: None (protection.outlook.com: xilinx.com does not designate
-	permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: KQZ42ozXigUgAQ/yRznsMjbOThsBzzTyZcGNvtHtAyJTSl5eeCNZ9xU6dfHtr1qLevRTLGBMQhcXhopO5ZKiGAXibjhyrLvDgORpEpNMCQ5aemy5/qiW4peaB9JvChWLGB7YmKS++9c/YbvWw2Nuhm3z1cWuS4ukmyWogbh51/OSejTFHpfxeUipLhqICAv6IoLn6F65U2fFfm3GoGGh6MJlAsNXJmGr0XPkePSEmgcipi7AhHdUQpJCvOOheGRxvYvXXC62KcUe+mnLtdMTraa1ewIS7dCTWCPgggvGizaAERSo4YFVCTNpjq8qNx8R1M625NUqMU1zyzrMfIozdZ6SGZC2zntLYTKU5mqFqCeHiRyBjEKUFu0jifSe+jnF6+eUJT4hHUr4uMOWUE1qIzcuubxtBSdzyFrYep1WyEhI9MtBuc+pCAEcmC/Y0ks2G2PRcyoQwqw4A5A1ThoheA==
+	*      valid
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com
+	[209.85.222.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D7C8E00890
+	for <yocto@yoctoproject.org>; Fri, 27 Sep 2019 14:52:37 -0700 (PDT)
+Received: by mail-qk1-f173.google.com with SMTP id q203so3245955qke.1
+	for <yocto@yoctoproject.org>; Fri, 27 Sep 2019 14:52:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=PQKI3wc1Of9uim7wfPFwQNR3VeKkdq7LsDwTIP+8hso=;
+	b=Wt/t2cJlcvmlij3XInhfdCpwtj+QYROPdLUULZmNozXtmbLLsUXr2oEJDnr2eMBHVM
+	8NpYI+sKtP3KRcE0S1jf9Kzj7FZPZ1FihG2/F6ynNWc1QTMIkmbV3FYBKBBTzlQhYnhT
+	bVjbQ/aKxSnk7hOoQCKajB5zvC02utC3CQcC6PIGf/hh12YQDvoy7Sgh0huAS4Qs3tzO
+	T3lXnT+gdQr7IJG07E6WHtqImqdSETanAXoo01vs4z5IfP0ix9/Na1bzSeKIq3BS0fuN
+	1nqMy7/UiFfj51OwgSY3bLO5fV4u3ZdgC+GgTg7RjIpzuKPSwfPZL2T/f3oQZ8fOh8JH
+	oJ/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=PQKI3wc1Of9uim7wfPFwQNR3VeKkdq7LsDwTIP+8hso=;
+	b=qjKQxjFQxyQ5OT/mq58d3s30e7NKEW8qeIFu7gj2rqR6nHkVSYl4g5uNVos2aHM++Z
+	YKRsyAkoVeactDJpkw25PeGCDOb/7OBLSGxmLOxbReuGZZCiZ6qIocnta41BwEGBVltp
+	XTk+tR0hRe6tcaKnkhnjHreiuv1ugB+VuhqAo3aB8TmkRwXMlNrXWYQLg8WmK71HxKIY
+	6G3xAHUd5wcBzFGRGhyTD9hbYvnA838u2Xm8juCgj6KxtdbufAz6fg11CEZzMvrwTPGs
+	OzRKvGwJNFzbQ5x4gtISfz35sSQ+GoVTrH3Q3Z3mqp84hPqcqTCfFD8jDImFar4cFPrb
+	kqaA==
+X-Gm-Message-State: APjAAAXiyXVs4eM1elD0FHFvfPwfuksUmZMVR+fzLSIThGJqXnJGuTvu
+	B4Kw1ewJg0RBZCUjnj0ZrZk6bUbpRfV7+RKIsJk=
+X-Google-Smtp-Source: APXvYqxWh383hqYgKmzOz+YxhGM5PKPkjzexD7ndL2v0gLMrLIC+fLOKOJ+96duI8325sD0YF3hCsXcsmwQP+UyNa2E=
+X-Received: by 2002:a37:541:: with SMTP id 62mr7181757qkf.371.1569621157289;
+	Fri, 27 Sep 2019 14:52:37 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed24965a-baab-4a98-f3d3-08d743870543
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2019 20:12:28.2230 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +C8CBmfy7/dkMLQ6VR+L1E8NJCtoffAxUcVF6VfDawUnaE79zrFBuw1GsFWZI3gdYeIfqqLBjXf0mvAHrbyiJg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR02MB2878
+References: <MWHPR02MB2576ADF2408BAAF0BF27D82BB0810@MWHPR02MB2576.namprd02.prod.outlook.com>
+In-Reply-To: <MWHPR02MB2576ADF2408BAAF0BF27D82BB0810@MWHPR02MB2576.namprd02.prod.outlook.com>
+From: Dmitry Kargin <dmitry.n.kargin@gmail.com>
+Date: Sat, 28 Sep 2019 00:52:26 +0300
+Message-ID: <CAFCaPfyh14v2HPZ8vNDoeVM18XtAiK9zOCJT3_1Wrh5BHOpH-w@mail.gmail.com>
+To: Chandana Kalluri <ckalluri@xilinx.com>
 X-Mailman-Approved-At: Mon, 30 Sep 2019 02:59:37 -0700
 Cc: Manjukumar Harthikote Matha <MANJUKUM@xilinx.com>,
-	"dmitry.n.kargin@gmail.com" <dmitry.n.kargin@gmail.com>
-Subject: Xilinx/meta-jupyter layer
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: Xilinx/meta-jupyter layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -105,33 +75,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Sep 2019 20:12:32 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 27 Sep 2019 21:52:39 -0000
+Content-Type: multipart/alternative; boundary="00000000000083240805938fe7c3"
+
+--00000000000083240805938fe7c3
+Content-Type: text/plain; charset="UTF-8"
+
+Nice job!
+
+You have my permission, if it is needed to change
+https://layers.openembedded.org/layerindex/branch/master/layer/meta-jupyter/
+links to your repository.
+
+>Would you recommend maintaining this layer separately or...
+I'd like to keep it separately from meta- and openembedded.
+
+>Would you suggest having a separate mailing list
+meta-jupyter mailing list is fine.
+
+On Fri, 27 Sep 2019 at 23:12, Chandana Kalluri <ckalluri@xilinx.com> wrote:
+
+> Hello all,
+>
+> https://github.com/Xilinx/meta-jupyter is a meta-jupyter layer containing
+> recipes for jupyter notebook. The initial recipes are based of Dmitry
+> Kargin's meta-jupyter layer
+> https://layers.openembedded.org/layerindex/branch/master/layer/meta-jupyter/.
+> This layer has not been updated for a while.
+>
+> The Xilinx/meta-jupyter layer also adds recipes for python3 based
+> notebooks apart from existing python2 based notebooks.
+> This layer has been tested using Yocto thud layer and  by running jupyter
+> notebooks on Ultra96 community boards.
+> We would like to maintain Xilinx/meta-jupyter  layer actively and welcome
+> contributions to this layer either through pull requests or via patches
+> sent to meta-xilinx mailing list until a mailing list for meta-jupyter is
+> in place. In the next cycle we will deprecate python2 recipes.
+>
+> A question to community,
+>  - Would you recommend maintaining this layer separately in the current
+> github.com/Xilinx location or be included under meta- openembedded layers.
+> - Would you suggest having a separate mailing list ?
+>
+> Thanks,
+> Chandana
+>
+>
+
+--00000000000083240805938fe7c3
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello all,
-
-https://github.com/Xilinx/meta-jupyter is a meta-jupyter layer containing r=
-ecipes for jupyter notebook. The initial recipes are based of Dmitry Kargin=
-'s meta-jupyter layer https://layers.openembedded.org/layerindex/branch/mas=
-ter/layer/meta-jupyter/. This layer has not been updated for a while.=20
-
+<div dir=3D"ltr"><div>Nice job!</div><div><br></div><div>You have my permis=
+sion, if it is needed to change <a href=3D"https://layers.openembedded.org/=
+layerindex/branch/master/layer/meta-jupyter/" rel=3D"noreferrer" target=3D"=
+_blank">https://layers.openembedded.org/layerindex/branch/master/layer/meta=
+-jupyter/</a> links to your repository. <br></div><div><br></div><div>&gt;W=
+ould you recommend maintaining this layer separately or...</div><div>I&#39;=
+d like to keep it separately from meta- and openembedded.</div><div><br></d=
+iv><div>&gt;Would you suggest having a separate mailing list</div><div>meta=
+-jupyter mailing list is fine.<br></div></div><br><div class=3D"gmail_quote=
+"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, 27 Sep 2019 at 23:12, Chand=
+ana Kalluri &lt;<a href=3D"mailto:ckalluri@xilinx.com">ckalluri@xilinx.com<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">H=
+ello all,<br>
+<br>
+<a href=3D"https://github.com/Xilinx/meta-jupyter" rel=3D"noreferrer" targe=
+t=3D"_blank">https://github.com/Xilinx/meta-jupyter</a> is a meta-jupyter l=
+ayer containing recipes for jupyter notebook. The initial recipes are based=
+ of Dmitry Kargin&#39;s meta-jupyter layer <a href=3D"https://layers.openem=
+bedded.org/layerindex/branch/master/layer/meta-jupyter/" rel=3D"noreferrer"=
+ target=3D"_blank">https://layers.openembedded.org/layerindex/branch/master=
+/layer/meta-jupyter/</a>. This layer has not been updated for a while. <br>
+<br>
 The Xilinx/meta-jupyter layer also adds recipes for python3 based notebooks=
- apart from existing python2 based notebooks.
-This layer has been tested using Yocto thud layer and  by running jupyter n=
-otebooks on Ultra96 community boards.=20
-We would like to maintain Xilinx/meta-jupyter  layer actively and welcome c=
-ontributions to this layer either through pull requests or via patches sent=
- to meta-xilinx mailing list until a mailing list for meta-jupyter is in pl=
-ace. In the next cycle we will deprecate python2 recipes.=20
+ apart from existing python2 based notebooks.<br>
+This layer has been tested using Yocto thud layer and=C2=A0 by running jupy=
+ter notebooks on Ultra96 community boards. <br>
+We would like to maintain Xilinx/meta-jupyter=C2=A0 layer actively and welc=
+ome contributions to this layer either through pull requests or via patches=
+ sent to meta-xilinx mailing list until a mailing list for meta-jupyter is =
+in place. In the next cycle we will deprecate python2 recipes. <br>
+<br>
+A question to community,<br>
+=C2=A0- Would you recommend maintaining this layer separately in the curren=
+t <a href=3D"http://github.com/Xilinx" rel=3D"noreferrer" target=3D"_blank"=
+>github.com/Xilinx</a> location or be included under meta- openembedded lay=
+ers.<br>
+- Would you suggest having a separate mailing list ?<br>
+<br>
+Thanks,<br>
+Chandana<br>
+<br>
+</blockquote></div>
 
-A question to community,
- - Would you recommend maintaining this layer separately in the current git=
-hub.com/Xilinx location or be included under meta- openembedded layers.
-- Would you suggest having a separate mailing list ?
-
-Thanks,
-Chandana
-
-
+--00000000000083240805938fe7c3--
