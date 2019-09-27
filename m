@@ -1,60 +1,99 @@
-Return-Path: <matous.pokorny@datavision.cz>
+Return-Path: <ckalluri@xilinx.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 23366E00DED; Thu, 26 Sep 2019 05:02:22 -0700 (PDT)
+	id 42268E00BE2; Fri, 27 Sep 2019 13:12:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, FROM_EXCESS_BASE64, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, FORGED_SPF_HELO, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.208.42 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [40.107.75.58 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  0.0 FROM_EXCESS_BASE64 From: base64 encoded unnecessarily
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com
-	[209.85.208.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0C88E00782
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2019 05:02:20 -0700 (PDT)
-Received: by mail-ed1-f42.google.com with SMTP id v38so1716296edm.7
-	for <yocto@yoctoproject.org>; Thu, 26 Sep 2019 05:02:20 -0700 (PDT)
+	*      valid *  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com
+	(mail-eopbgr750058.outbound.protection.outlook.com [40.107.75.58])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD07CE0091A
+	for <yocto@yoctoproject.org>; Fri, 27 Sep 2019 13:12:30 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+	b=Dcdsr7yw3tG1ZNj/hb0/gHR6cgqDObaJcueHQOd5maDZPGEh26ggy98CFuzPHOW2Te0dqyQaksILYM6+qwhfE6NF/hU1MCvggF5shJo/znCgUVA2FY80KBlkxY5h+foClzWoF7PTzdI+nT+ETsfZkagXArHprx8u3AD3yIFoXJfy4xfAuVNMy8gjNx0qhYpQsgfIvddjzf7zbgufLJlPfATfQZZ/bll6HR19s53yIji98HnoyfN7vo2sD1TNe4G/V0YtyLcuxqYpNKvpfROxbruFiEQ6XhW1VLV6eIjN2DDMeJNKFe0NKwoa09xRTMQhSnoG40T8/MOkYp+ar0VvUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+	s=arcselector9901;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=qLXDmunpOdTiOaNRhJAW9WCXJ4g9MOXdeN8b5njamZQ=;
+	b=MHZN41TK6T6GTqKon+s1wPCnPcYkUaE3lr71/aKa0MqHljHLzij7771XDMhzyMZXtkz1U3owbYI7bm7VGKKcVnTUAlQ1keW8Ebv80BSXnwGK4YNiEmiA00d5Cpmep16FScHitTA2IsKnbIw7tfnw9TQj30q8bk9je58Kuigq6/qrKs2JE+aLhygaClrneWaSkeJRHs/m5XIkAAK2/mX6hchOwI2MxnlQgUl1mQ3cabJ8KRA648E/n3JTwlK+hHceFvlZm+0tMihxcASe9yIE7VWdtMgDEun0nnGDjZvx2ah1rS5Brm2N7K0CRfTlfuHZTTL/NZ6nrevFM/a/tUssUQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+	smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
+	dkim=pass header.d=xilinx.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=datavision-cz.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=eBZoRYdmFdUw8NZXfvzC0aVuNqbag/Fk6vRzAjypPWM=;
-	b=BmsQnKQj5+ChGqeZYsapvKL0383kfEadG198RTx0lyM/L2DvrFEDwUxRAQMjluCbSI
-	qswi3jnCMAc+MtrYtA9jgXMeSaNdpdHon+hz09RNXWqK2FK+Go7BxDoWrS6IMrJ1xBnr
-	/CRjAZbLsEmWTSzfY0rNBQUeOHMwuINTsi3EqLelfsVOgVoKA51GVJ3/4nEnn2PFHwJk
-	HNH3l6sC5stPfr5nKDHNWn9eCVKWJWpCgx+jkM3SxYLUwga22xlhhIPg/LXrN+y6Z6pb
-	H2iU/sKZei7RW/PGNjN82O29Ja1f5MjLVrQLQfSx5MEiCiex4P7Q12fxfq7372feoEqn
-	GRQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=eBZoRYdmFdUw8NZXfvzC0aVuNqbag/Fk6vRzAjypPWM=;
-	b=H2A+D37jjUlBK4GwzB+2nZ2tZbMAMt7O2qk2Ov8M8xt9GwEm4OALQns3h0YLRvA+3p
-	JaXBXvUqwUp0k6LdzWqzz/P/ZvIMFBzp1ieO+AHfocrcsDINHXNwaQ9B1LYqQRIu+8HW
-	5cw8uqlVDQ32OgmQjBzdGIPDOyehPcUNNi5kkyNQsm1UiyMvYvuJ02B1/rPnsKRNvK5j
-	/TQ7Bti3VcKRrTp+cAKsfSApB2ELTmDxpDzq0ZKzoQ5Oglickqdw6gT5MzuPSfYiUlnx
-	1MhpmYut+Pu58xpTM9vw8C2ED8sYxHNSpsqlYFsMQ3UajhbYlyhoz/dcDoQM00Ub46yv
-	7hPQ==
-X-Gm-Message-State: APjAAAWXuqucM8/n+3mFmswfXO2zUVQdZgfuH3lLyYbM6Wq/gpRtsIN7
-	AF0o4+VvWLZk6ZKm3+zLzd7nxwXq5lPqtz8mqn48cWLKPnTUyg==
-X-Google-Smtp-Source: APXvYqyfTJFqvTAH6jtrXW7cDGzZee+pQ0PY+cBWQob812XG1elUnG4c1QM7lnXK0RNIkvHcDCCeuG3chXYEt3/obhM=
-X-Received: by 2002:a50:c306:: with SMTP id a6mr3237933edb.108.1569499339234; 
-	Thu, 26 Sep 2019 05:02:19 -0700 (PDT)
+	d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=qLXDmunpOdTiOaNRhJAW9WCXJ4g9MOXdeN8b5njamZQ=;
+	b=rABMkuJwMP5YJa7bDOXRLZdt0ZMCbOMdBbPGuWVQX1XFiZloeMSK1i+3tfYY/ISN6bA0+QAjUb6w5jwMDvkhrAN1vM5L2TNxpA46tf7FAhGkZHyfgN6rXZxuN8f/2XGXWC5PhWIHKPSzZ5nBjDjGbIUszFPPizhyw/NkHoxrO+E=
+Received: from MWHPR02MB2576.namprd02.prod.outlook.com (10.168.205.142) by
+	MWHPR02MB2878.namprd02.prod.outlook.com (10.175.49.144) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.2284.21; Fri, 27 Sep 2019 20:12:28 +0000
+Received: from MWHPR02MB2576.namprd02.prod.outlook.com
+	([fe80::f4d9:193b:eb53:e815]) by
+	MWHPR02MB2576.namprd02.prod.outlook.com
+	([fe80::f4d9:193b:eb53:e815%12]) with mapi id 15.20.2284.023;
+	Fri, 27 Sep 2019 20:12:28 +0000
+From: Chandana Kalluri <ckalluri@xilinx.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: Xilinx/meta-jupyter layer
+Thread-Index: AdV1b67h6CGmnByNRcSC9yXNlUF9fA==
+Date: Fri, 27 Sep 2019 20:12:28 +0000
+Message-ID: <MWHPR02MB2576ADF2408BAAF0BF27D82BB0810@MWHPR02MB2576.namprd02.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=ckalluri@xilinx.com; 
+x-originating-ip: [149.199.62.133]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: ed24965a-baab-4a98-f3d3-08d743870543
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0; PCL:0;
+	RULEID:(2390118)(7020095)(4652040)(8989299)(5600167)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);
+	SRVR:MWHPR02MB2878; 
+x-ms-traffictypediagnostic: MWHPR02MB2878:|MWHPR02MB2878:
+x-ms-exchange-purlcount: 2
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <MWHPR02MB28780695AEE11C84769E3E77B0810@MWHPR02MB2878.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0173C6D4D5
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(4636009)(346002)(136003)(376002)(396003)(39860400002)(366004)(199004)(189003)(53754006)(486006)(66066001)(33656002)(6306002)(3480700005)(9686003)(6436002)(55016002)(66946007)(66556008)(66476007)(52536014)(305945005)(107886003)(5660300002)(4326008)(476003)(54906003)(76116006)(66446008)(256004)(966005)(14454004)(6506007)(478600001)(2906002)(99286004)(8936002)(316002)(7696005)(25786009)(64756008)(102836004)(71190400001)(71200400001)(2501003)(3846002)(7736002)(86362001)(186003)(6116002)(81166006)(8676002)(74316002)(110136005)(81156014)(26005);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:MWHPR02MB2878;
+	H:MWHPR02MB2576.namprd02.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: xilinx.com does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: KQZ42ozXigUgAQ/yRznsMjbOThsBzzTyZcGNvtHtAyJTSl5eeCNZ9xU6dfHtr1qLevRTLGBMQhcXhopO5ZKiGAXibjhyrLvDgORpEpNMCQ5aemy5/qiW4peaB9JvChWLGB7YmKS++9c/YbvWw2Nuhm3z1cWuS4ukmyWogbh51/OSejTFHpfxeUipLhqICAv6IoLn6F65U2fFfm3GoGGh6MJlAsNXJmGr0XPkePSEmgcipi7AhHdUQpJCvOOheGRxvYvXXC62KcUe+mnLtdMTraa1ewIS7dCTWCPgggvGizaAERSo4YFVCTNpjq8qNx8R1M625NUqMU1zyzrMfIozdZ6SGZC2zntLYTKU5mqFqCeHiRyBjEKUFu0jifSe+jnF6+eUJT4hHUr4uMOWUE1qIzcuubxtBSdzyFrYep1WyEhI9MtBuc+pCAEcmC/Y0ks2G2PRcyoQwqw4A5A1ThoheA==
 MIME-Version: 1.0
-From: =?UTF-8?B?TWF0b3XFoSBQb2tvcm7DvQ==?= <matous.pokorny@datavision.cz>
-Date: Thu, 26 Sep 2019 14:02:07 +0200
-Message-ID: <CAD0UrV10JR=vFUKfZCxetCQCx2y=A9gv6YeqtBEMjHYqXLso0w@mail.gmail.com>
-To: yocto@yoctoproject.org
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed24965a-baab-4a98-f3d3-08d743870543
+X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2019 20:12:28.2230 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: +C8CBmfy7/dkMLQ6VR+L1E8NJCtoffAxUcVF6VfDawUnaE79zrFBuw1GsFWZI3gdYeIfqqLBjXf0mvAHrbyiJg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR02MB2878
 X-Mailman-Approved-At: Mon, 30 Sep 2019 02:59:37 -0700
-Subject: Where to get kconfig-frontends package?
+Cc: Manjukumar Harthikote Matha <MANJUKUM@xilinx.com>,
+	"dmitry.n.kargin@gmail.com" <dmitry.n.kargin@gmail.com>
+Subject: Xilinx/meta-jupyter layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,69 +105,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Sep 2019 12:02:22 -0000
-Content-Type: multipart/alternative; boundary="0000000000009733a80593738a75"
-
---0000000000009733a80593738a75
-Content-Type: text/plain; charset="UTF-8"
-
-Hello!
-
-I come from NuttX RTOS project (nuttx.org), and we use Kconfig tool for
-configuration. The toolchain build script gets kconfig-frontends source
-code from the same server as Yocto (http://ymorin.is-a-geek.org). The
-server is down for approx. one week and it caused the fail during the
-toolchain building. Have you met this problem as well? We would like to
-switch to another more reliable repository, but I read, the server's owner
-is one of the Linux core developers. So the server is a kind of primary
-source. Do you have a suggestion on how to solve this problem? I would like
-to ask you for help because you know the Linux ecosystem and are in the
-same situation as we are.
-
-Thank you.
-
-*Matous Pokorny*
-Embedded System Developer
-
-*DataVision s.r.o.*
-Ukrajinska 2a
-101 00 Praha 10
-Czech Republic
-
-GSM: (+420) 723 280 471
-matous.pokorny@datavision.cz
-
---0000000000009733a80593738a75
-Content-Type: text/html; charset="UTF-8"
+X-List-Received-Date: Fri, 27 Sep 2019 20:12:32 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello!</div><div><br></div><div>I come from NuttX RTO=
-S project (<a href=3D"http://nuttx.org">nuttx.org</a>), and we use Kconfig =
-tool for configuration. The toolchain build script gets kconfig-frontends s=
-ource code from the same server as Yocto (<span style=3D"color:rgb(34,34,34=
-);font-family:Arial,Helvetica,sans-serif;font-size:small;font-style:normal;=
-font-variant-ligatures:normal;font-variant-caps:normal;font-weight:400;lett=
-er-spacing:normal;text-align:start;text-indent:0px;text-transform:none;whit=
-e-space:normal;word-spacing:0px;background-color:rgb(255,255,255);text-deco=
-ration-style:initial;text-decoration-color:initial;display:inline;float:non=
-e"><span></span></span><a href=3D"http://ymorin.is-a-geek.org/" style=3D"co=
-lor:rgb(17,85,204);font-family:Arial,Helvetica,sans-serif;font-size:small;f=
-ont-style:normal;font-variant-ligatures:normal;font-variant-caps:normal;fon=
-t-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text-tr=
-ansform:none;white-space:normal;word-spacing:0px;background-color:rgb(255,2=
-55,255)">http://ymorin.is-a-geek.org</a>). The server is down for approx. o=
-ne week and it caused the fail during the toolchain building. Have you met =
-this problem as well? We would like to switch to another more reliable repo=
-sitory, but I read, the server&#39;s owner is one of the Linux core develop=
-ers. So the server is a kind of primary source. Do you have a suggestion on=
- how to solve this problem? I would like to ask you for help because you kn=
-ow the Linux ecosystem and are in the same situation as we are.</div><div><=
-br></div><div>Thank you.</div><div><br></div><div><div><div dir=3D"ltr" cla=
-ss=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr">=
-<b>Matous Pokorny</b><div>Embedded System Developer</div><div><br></div><di=
-v><b>DataVision s.r.o.</b></div><div>Ukrajinska 2a</div><div>101 00 Praha 1=
-0</div><div>Czech Republic</div><div><br></div><div>GSM: (+420) 723 280 471=
-</div><div><a href=3D"mailto:matous.pokorny@datavision.cz">matous.pokorny@d=
-atavision.cz</a></div></div></div></div></div></div>
+Hello all,
 
---0000000000009733a80593738a75--
+https://github.com/Xilinx/meta-jupyter is a meta-jupyter layer containing r=
+ecipes for jupyter notebook. The initial recipes are based of Dmitry Kargin=
+'s meta-jupyter layer https://layers.openembedded.org/layerindex/branch/mas=
+ter/layer/meta-jupyter/. This layer has not been updated for a while.=20
+
+The Xilinx/meta-jupyter layer also adds recipes for python3 based notebooks=
+ apart from existing python2 based notebooks.
+This layer has been tested using Yocto thud layer and  by running jupyter n=
+otebooks on Ultra96 community boards.=20
+We would like to maintain Xilinx/meta-jupyter  layer actively and welcome c=
+ontributions to this layer either through pull requests or via patches sent=
+ to meta-xilinx mailing list until a mailing list for meta-jupyter is in pl=
+ace. In the next cycle we will deprecate python2 recipes.=20
+
+A question to community,
+ - Would you recommend maintaining this layer separately in the current git=
+hub.com/Xilinx location or be included under meta- openembedded layers.
+- Would you suggest having a separate mailing list ?
+
+Thanks,
+Chandana
+
+
