@@ -1,70 +1,41 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <Randy.MacLeod@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4713E00D1C; Sat, 28 Sep 2019 01:14:07 -0700 (PDT)
+	id AE8B8E00AB6; Sat, 28 Sep 2019 15:00:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jupiter.hce[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.67 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f67.google.com (mail-io1-f67.google.com
-	[209.85.166.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BC9BE00C5C
-	for <yocto@yoctoproject.org>; Sat, 28 Sep 2019 01:14:06 -0700 (PDT)
-Received: by mail-io1-f67.google.com with SMTP id r26so23385096ioh.8
-	for <yocto@yoctoproject.org>; Sat, 28 Sep 2019 01:14:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=J6F9/j2SAYot1+UqgiKwYI6geEzzWerlyiMEGsRqFXk=;
-	b=at04rFLmeibXFoGC8BSOzgmI+uwo4j55fT6O+tjDFs409YhhCFABUmTYYBAKfwNwPl
-	/wXyNHcU787j4yP/WSeUDZ24mK+M2WpGkey8t5QtaUYMG+bLyMgtVC9a2HXN/7iJmTs1
-	BFr76UxSy1h5en5Hku64UDqF7PaAWyG8RSuNg/YNTVaT18RkTQMIA0BpYkghy/rOlfaA
-	H8qlCGomr29ben+wFU3jDH4IegmQmnHgtScSpUOTMPK3uNHcsYwj43XmJBjvL20ScMb1
-	rWt/7+C6p1zR5oRoLnxexFFs9fcPNDFRfTBwBl6Ih1MT6gZLH8Mv2HZsAwrdPOb7cLTC
-	5TqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=J6F9/j2SAYot1+UqgiKwYI6geEzzWerlyiMEGsRqFXk=;
-	b=IKwDw4MR9iCmn7RrGIqcqfS67LPp8QoC6lcrnD2i6RjfwZPRfxYuJgigHGrnfacMdh
-	nwhWhzJmkrtpPhJ10Qtoh4IeWTUmClfPxew6Spzl7Hvpn0pou30sgP1U2nv2Es6kHL8E
-	POYrQscP/KwTUwheC6/lZVCT+gWZf7WxCBlieIp5767X5Nk12J1hSbNAgY3R0Siyf+E4
-	A8xWYi20kOG2GhAIFSnMQ3bGBplUs5gGQVmLAKyuEIKpLE/hzVPZ8DXICLALaMkhpiFV
-	8qBlC3oPUf493zigzTU+Z/sinZ/cGasx2BABx84tM1ptAXNXuajxi9wtqFbFVeMFYW6U
-	P00w==
-X-Gm-Message-State: APjAAAW6v+NR9AvAnNxWS8R+hpjcZNN76/JghlBc10agUNsFHQLj/Lnl
-	q/KxlMyTlozWj9ixTTnfGG++ZlTF36qoKBEgO66Hjqbn
-X-Google-Smtp-Source: APXvYqxcKxATHEuRl1Qe0Wvmxi3RbLBl2XvtJG66ZMxUxiDEylljPewrS19ekuFUfPMN1ubXCQGqcp6SVRin3RMpeo4=
-X-Received: by 2002:a5d:9354:: with SMTP id i20mr49904ioo.306.1569658444627;
-	Sat, 28 Sep 2019 01:14:04 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5FE7E00A4C
+	for <yocto@yoctoproject.org>; Sat, 28 Sep 2019 15:00:41 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id x8SM0aCR028041
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sat, 28 Sep 2019 15:00:36 -0700 (PDT)
+Received: from [172.25.44.5] (172.25.44.5) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.468.0;
+	Sat, 28 Sep 2019 15:00:36 -0700
+To: Chandana Kalluri <ckalluri@xilinx.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>, "openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+References: <MWHPR02MB2576ADF2408BAAF0BF27D82BB0810@MWHPR02MB2576.namprd02.prod.outlook.com>
+From: Randy MacLeod <randy.macleod@windriver.com>
+Message-ID: <b02b2cf7-cd9c-5ff5-d3f6-a09f4cdf2b4b@windriver.com>
+Date: Sat, 28 Sep 2019 18:00:34 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
 MIME-Version: 1.0
-Received: by 2002:ac0:9c85:0:0:0:0:0 with HTTP; Sat, 28 Sep 2019 01:14:04
-	-0700 (PDT)
-In-Reply-To: <CAA=hcWSt1B23h31K75yNX9cE=fAG8_7oMAQNpPJbo=g-_JhBfg@mail.gmail.com>
-References: <CAA=hcWSriyGnbRTGjj26ef86-h=ePNWiOxoWU9S=XrDe1y+gtA@mail.gmail.com>
-	<b125be44-41fe-d1a0-374f-c005770734bb@3mdeb.com>
-	<CAA=hcWRCqya18U9L8QxQj502n=ybDwC4CGpN0-kQBFPy52RMbA@mail.gmail.com>
-	<CAA=hcWSiQc3Qtss06ALR8KyYeyzSNYomcaoB5m7ZkH425U2EzA@mail.gmail.com>
-	<CAA=hcWSt1B23h31K75yNX9cE=fAG8_7oMAQNpPJbo=g-_JhBfg@mail.gmail.com>
-From: JH <jupiter.hce@gmail.com>
-Date: Sat, 28 Sep 2019 18:14:04 +1000
-Message-ID: <CAA=hcWT8_fA9n_mALQcL4N5eHCuS8xU1x+nX9JdNPeApx-6GJA@mail.gmail.com>
-To: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: kernel module and drivers missing in final image
+In-Reply-To: <MWHPR02MB2576ADF2408BAAF0BF27D82BB0810@MWHPR02MB2576.namprd02.prod.outlook.com>
+X-Originating-IP: [172.25.44.5]
+Cc: "dmitry.n.kargin@gmail.com" <dmitry.n.kargin@gmail.com>
+Subject: Re: [OE-core] Xilinx/meta-jupyter layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,47 +47,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 28 Sep 2019 08:14:07 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Sat, 28 Sep 2019 22:00:43 -0000
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 
-On 9/28/19, JH <jupiter.hce@gmail.com> wrote:
-> On 9/28/19, JH <jupiter.hce@gmail.com> wrote:
->> On 9/28/19, JH <jupiter.hce@gmail.com> wrote:
->>> On 9/27/19, Maciej Pijanowski <maciej.pijanowski@3mdeb.com> wrote:
->>>>
->>>> On 27.09.2019 14:01, JH wrote:
->>>>> Hi,
->>>>>
->>>>> I included emmy-w1-driver-sdiosdio in packagegroup.bb, but all drivers
->>>>> and kernel modules in emmy-w1-driver-sdiosdio are missing in the
->>>>> deploy image, any clues why, how to debug it, how to fix it?
->>>> It is not clear to me what do you mean by including it in
->>>> packagegroup.bb
->>>> and what stuff are you installing into the image.
->>>
->>> The packagegroup.bb is the one defined in image FEATURE_PACKAGES, that
->>> is usually all package in packagegroup.bb would be included in the
->>> image.
->>>
->>>> If you wish to install all modules which were built, simply add
->>>> kernel-modules to your image via IMAGE_INSTALL variable.
->>>
->>> I added IMAGE_INSTALL += " emmy-w1-driver-sdiosdio" to my image.bb,
->>> but did not work unfortunately.
->>>
->>> Let me clarify it, I can see emmy-w1-driver-sdiosdio and all its
->>> kernel modules are in my build directory, but just could not be added
->>> to the image. How should I add package to the image?
->>
->> Tried to add IMAGE_INSTALL_append = " emmy-w1-driver-sdiosdio" in
->> local.conf, did not work either :-(.
->
-> Sorry IMAGE_INSTALL_append += " emmy-w1-driver-sdiosdio" did not work
-> either.
+On 9/27/19 4:12 PM, Chandana Kalluri wrote:
+> Hello all,
+> 
+> https://github.com/Xilinx/meta-jupyter is a meta-jupyter layer containing recipes for jupyter notebook. The initial recipes are based of Dmitry Kargin's meta-jupyter layer https://layers.openembedded.org/layerindex/branch/master/layer/meta-jupyter/. This layer has not been updated for a while.
+> 
+> The Xilinx/meta-jupyter layer also adds recipes for python3 based notebooks apart from existing python2 based notebooks.
+> This layer has been tested using Yocto thud layer and  by running jupyter notebooks on Ultra96 community boards.
+> We would like to maintain Xilinx/meta-jupyter  layer actively and welcome contributions to this layer either through pull requests or via patches sent to meta-xilinx mailing list until a mailing list for meta-jupyter is in place. In the next cycle we will deprecate python2 recipes.
+> 
+> A question to community,
+>   - Would you recommend maintaining this layer separately in the current github.com/Xilinx location or be included under meta- openembedded layers.
+I suppose a seperate layer since jupyter isn't typically used
+but I don't have a strong opinion either way.
 
-That package emmy-w1-driver-sdiosdio is in a different layer, all
-packages from my image layer work fine, it is the first time to add
-packages from another layer, how could make it work?
+> - Would you suggest having a separate mailing list ?
 
-Thank you.
+Using the Yocto email list would be my preference.
+That way, I'd keep on eye on Jupyter from time to time
+whereas if it's a separate list, I likely would not subscribe.
+I'm assuming that there will be less than few 100 emails per year.
+
+../Randy
+
+
+> 
+> Thanks,
+> Chandana
+> 
+
+
+-- 
+# Randy MacLeod
+# Wind River Linux
 
