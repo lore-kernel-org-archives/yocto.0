@@ -1,62 +1,43 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ACC00E00BF7; Mon, 30 Sep 2019 14:16:59 -0700 (PDT)
+	id 09407E00C46; Mon, 30 Sep 2019 15:36:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jupiter.hce[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.42 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com
-	[209.85.166.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C825E00972
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2019 14:16:58 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id h144so42140781iof.7
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2019 14:16:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=HZPWpzHtxBu7PEpXg2xCOtPQuzHBK7J5UY9PFevlMI8=;
-	b=jdWk8imd4kduv13n78LY2XNxr+iHdhae4n+5HBCTeMQBPJfPTyho5Vc3VWyBGJXvZp
-	O/VJyMhb4g/r3RRR99bJIt6N6Qc0ZY/fFrvkIzVoPPthnOMVLVzlAMqdve0RnkIP9NdE
-	zgkYK3Z2IWkHbyMfp4bJ3qWvfkGqyCacDbH4Iu4zQeHlccOgXrTqmUH2zwGlHy7RTVsW
-	YNRXWcw6nG6sjMX20cc6CSnI2sPvrext1/dTpvcV4fZ0fXKaR+zBd5Vso/MqiP2wceOq
-	gmXeQber+Tz9zcv2/i7tMi+HiskMHHDf5XYgtAtR0hcgM2YXPKAJ0rh2J1TTOWoTFlQc
-	TnTw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=HZPWpzHtxBu7PEpXg2xCOtPQuzHBK7J5UY9PFevlMI8=;
-	b=WaLMrb+IqEjx/DTDzaALZevGaNfL2NvQvEoBU4xMZIFy/PJrMcR4lFF5EgdkSEgBOZ
-	EQ06z3yrkx6WZPUZeaJTkV++9V11LAN4tL4b7k2fLjAug6UBEvSUh5NMwq2cqJSG3G+u
-	rTG9YM2v62t2kS8dUPedesTUTEYYeHpZ0+bE5JWBt7Q6jfcCq2fFFLMio8d8cE3KpsiT
-	mUdmcaLZXvDTOrZr8RZb5nRUsD1zrgppxYAesAMNBHUN8TYkpOlG9xOeYu+5Z4e/PepD
-	IwnKcqm1KKWQMpwnaIwEHYXrDizZaoKqCqv999Iow1eEaVG/iZt+tO8/w0mhToomex0k
-	Dfbg==
-X-Gm-Message-State: APjAAAUAn2gIQ/7IvoVnGj1c4SswCEX+yyYhKeDvQgxprwRcRnFwcESx
-	bv7TMIn7luzlhfV5tcAIEE5MhL9BIt+c6CMr5k68Sl+b
-X-Google-Smtp-Source: APXvYqyLrLGbG6e+kCwDYphsZuJ4/+fUqaYCEBqVAX5XNx4zdXMDPpXPruO2jzcOc6aQNCVzGKHQiVW3vIoRhWoxW6w=
-X-Received: by 2002:a92:91da:: with SMTP id e87mr22682980ill.53.1569878217756; 
-	Mon, 30 Sep 2019 14:16:57 -0700 (PDT)
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D16FE00B33
+	for <yocto@yoctoproject.org>; Mon, 30 Sep 2019 15:36:50 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	30 Sep 2019 15:36:49 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,568,1559545200"; d="scan'208";a="274811257"
+Received: from hanshuan-mobl1.gar.corp.intel.com (HELO linux.fritz.box)
+	([10.249.65.161])
+	by orsmga001.jf.intel.com with ESMTP; 30 Sep 2019 15:36:45 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Dmitry Kargin <dmitry.n.kargin@gmail.com>,
+	Chandana Kalluri <ckalluri@xilinx.com>,
+	Manjukumar Harthikote Matha <MANJUKUM@xilinx.com>
+Date: Tue, 01 Oct 2019 11:36:42 +1300
+Message-ID: <2678038.QAzkJJSIsR@linux.fritz.box>
+Organization: Intel Corporation
+In-Reply-To: <CAFCaPfyh14v2HPZ8vNDoeVM18XtAiK9zOCJT3_1Wrh5BHOpH-w@mail.gmail.com>
+References: <MWHPR02MB2576ADF2408BAAF0BF27D82BB0810@MWHPR02MB2576.namprd02.prod.outlook.com>
+	<CAFCaPfyh14v2HPZ8vNDoeVM18XtAiK9zOCJT3_1Wrh5BHOpH-w@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 2002:ac0:9c85:0:0:0:0:0 with HTTP; Mon, 30 Sep 2019 14:16:57
-	-0700 (PDT)
-From: JH <jupiter.hce@gmail.com>
-Date: Tue, 1 Oct 2019 07:16:57 +1000
-Message-ID: <CAA=hcWQu5_CKpv+iCmMCJQQjgK2UmPyJ0Hf293X+VrRgxsbOVA@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: No rule to make target 'zImage'
+Cc: yocto@yoctoproject.org, "openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: Xilinx/meta-jupyter layer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,38 +49,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Sep 2019 21:16:59 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 30 Sep 2019 22:36:52 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
+FYI I've just changed the layer index entry to point to the new repo. New 
+content should be indexed in a few hours.
 
-I am building Yocto, it stopped at building kernel "No rule to make
-target 'zImage'", what I could be missing?
+Thanks for working this out!
 
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| NOTE: make -j 6 HOSTCC=gcc
--isystem/build/Kernel5.3/build/tmp-glibc/work/yocto-oe-linux-gnueabi/linux-yocto/5.3.0+gitAUTOINC+4d856f72c1-r0/recipe-sysroot-native/usr/include
--O2 -pipe -L/build/Kernel5.3/build/tmp-glibc/work/yocto-oe-linux-gnueabi/linux-yocto/5.3.0+gitAUTOINC+4d856f72c1-r0/recipe-sysroot-native/usr/lib
--L/build/Kernel5.3/build/tmp-glibc/work/yocto-oe-linux-gnueabi/linux-yocto/5.3.0+gitAUTOINC+4d856f72c1-r0/recipe-sysroot-native/lib
--Wl,-rpath-link,/build/Kernel5.3/build/tmp-glibc/work/yocto-oe-linux-gnueabi/linux-yocto/5.3.0+gitAUTOINC+4d856f72c1-r0/recipe-sysroot-native/usr/lib
--Wl,-rpath-link,/build/Kernel5.3/build/tmp-glibc/work/yocto-oe-linux-gnueabi/linux-yocto/5.3.0+gitAUTOINC+4d856f72c1-r0/recipe-sysroot-native/lib
--Wl,-rpath,/build/Kernel5.3/build/tmp-glibc/work/yocto-oe-linux-gnueabi/linux-yocto/5.3.0+gitAUTOINC+4d856f72c1-r0/recipe-sysroot-native/usr/lib
--Wl,-rpath,/build/Kernel5.3/build/tmp-glibc/work/yocto-oe-linux-gnueabi/linux-yocto/5.3.0+gitAUTOINC+4d856f72c1-r0/recipe-sysroot-native/lib
--Wl,-O1 HOSTCPP=gcc  -E zImage CC=arm-oe-linux-gnueabi-gcc
--mno-thumb-interwork -marm -fuse-ld=bfd
--fdebug-prefix-map=/build/Kernel5.3/build/tmp-glibc/work/yocto-oe-linux-gnueabi/linux-yocto/5.3.0+gitAUTOINC+4d856f72c1-r0=/usr/src/debug/linux-yocto/5.3.0+gitAUTOINC+4d856f72c1-r0
--fdebug-prefix-map=/build/Kernel5.3/build/tmp-glibc/work/yocto-oe-linux-gnueabi/linux-yocto/5.3.0+gitAUTOINC+4d856f72c1-r0/recipe-sysroot=
--fdebug-prefix-map=/build/Kernel5.3/build/tmp-glibc/work/yocto-oe-linux-gnueabi/linux-yocto/5.3.0+gitAUTOINC+4d856f72c1-r0/recipe-sysroot-native=
- -fdebug-prefix-map=/build/Kernel5.3/build/tmp-glibc/work-shared/yocto/kernel-source=/usr/src/kernel
-  LD=arm-oe-linux-gnueabi-ld.bfd
-| make: *** No rule to make target 'zImage'.  Stop.
-| ERROR: oe_runmake failed
-| WARNING: exit code 1 from a shell command.
-| ERROR: Function failed: do_compile (log file is located at
-/build/Kernel5.3/build/tmp-glibc/work/yocto-oe-linux-gnueabi/linux-yocto/5.3.0+gitAUTOINC+4d856f72c1-r0/temp/log.do_compile.7842)
+Dmitry: sorry, for clarity did you mean a separate mailing list or one of the 
+YP / OE ones ?
 
-Thank you.
+Cheers,
+Paul
 
-Kind regards.
+On Saturday, 28 September 2019 9:52:26 AM NZDT Dmitry Kargin wrote:
+> Nice job!
+> 
+> You have my permission, if it is needed to change
+> https://layers.openembedded.org/layerindex/branch/master/layer/meta-jupyter/
+> links to your repository.
+> 
+> >Would you recommend maintaining this layer separately or...
+> I'd like to keep it separately from meta- and openembedded.
+> 
+> >Would you suggest having a separate mailing list
+> meta-jupyter mailing list is fine.
+> 
+> On Fri, 27 Sep 2019 at 23:12, Chandana Kalluri <ckalluri@xilinx.com> wrote:
+> 
+> > Hello all,
+> >
+> > https://github.com/Xilinx/meta-jupyter is a meta-jupyter layer containing
+> > recipes for jupyter notebook. The initial recipes are based of Dmitry
+> > Kargin's meta-jupyter layer
+> > https://layers.openembedded.org/layerindex/branch/master/layer/meta-jupyter/.
+> > This layer has not been updated for a while.
+> >
+> > The Xilinx/meta-jupyter layer also adds recipes for python3 based
+> > notebooks apart from existing python2 based notebooks.
+> > This layer has been tested using Yocto thud layer and  by running jupyter
+> > notebooks on Ultra96 community boards.
+> > We would like to maintain Xilinx/meta-jupyter  layer actively and welcome
+> > contributions to this layer either through pull requests or via patches
+> > sent to meta-xilinx mailing list until a mailing list for meta-jupyter is
+> > in place. In the next cycle we will deprecate python2 recipes.
+> >
+> > A question to community,
+> >  - Would you recommend maintaining this layer separately in the current
+> > github.com/Xilinx location or be included under meta- openembedded layers.
+> > - Would you suggest having a separate mailing list ?
+> >
+> > Thanks,
+> > Chandana
+> >
+> >
+> 
+
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
+
+
 
