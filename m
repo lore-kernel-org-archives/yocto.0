@@ -1,6 +1,6 @@
 Return-Path: <pranaymankad@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B8CDDE00CB9; Mon, 30 Sep 2019 19:53:05 -0700 (PDT)
+	id 38B31E00CB9; Mon, 30 Sep 2019 20:21:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -13,57 +13,56 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	provider *      (pranaymankad[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.171 listed in list.dnswl.org]
+	*      [209.85.160.196 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com
-	[209.85.222.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 947A0E00C87
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2019 19:53:03 -0700 (PDT)
-Received: by mail-qk1-f171.google.com with SMTP id 4so9788725qki.6
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2019 19:53:03 -0700 (PDT)
+Received: from mail-qt1-f196.google.com (mail-qt1-f196.google.com
+	[209.85.160.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08A0FE00790
+	for <yocto@yoctoproject.org>; Mon, 30 Sep 2019 20:21:17 -0700 (PDT)
+Received: by mail-qt1-f196.google.com with SMTP id u40so19796680qth.11
+	for <yocto@yoctoproject.org>; Mon, 30 Sep 2019 20:21:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:cc:subject:date:message-id;
-	bh=tc86/UrQ/lneoT0YwkWZpMK7XDBLfW/KIoxmL5bq4KI=;
-	b=RLEdtTDj101jNMdbY+Adto8bOBgYhfOcwyViux0O5vbUPbYCKDdKs4RBZAbj/Bihwu
-	cJhDZXNNueaEoeRTZlyIkJ0eVyyUoOXhtnwswAPT4jzQ8HYgBS74Kd9X1h9hYQ3YGYw3
-	3aFIJwmfV1G0R8QZymURxMdGSazVTQNAlgQm4dncXsDskgV54XjLqH3yMWLbNx1KpW4A
-	Bv9Ul84f62WivvdWmgybbfF+SjJZrjzVFWY4jZXhaAo/IS26MPEnKpMaI98u2yFDSvry
-	q0wDl7avQ6bJqsKU/BOwgLZKvk6QvurkReJ0HbWVQGqqTRtYKbfGjRN/VePvL3uIlrRE
-	CMhg==
+	bh=AdVfiF27sgnH+XNsnWaOnfasy0emJFAEfmgNlYyEEN4=;
+	b=S9oVeUT30MN/dHk7mBCqwAEZm4yc0iNJxz+RJiW7kg8hZYwn6E27+x0pL5PtTyAueZ
+	ReLeu6ovXKtvbB0NC6sf7KrXb6320o9hHcTFmbwOj7emL7a6X39ELgCPrBp6MZ1VvcCk
+	aSvCO4bPgSYJU3qni4FXZQmWW53oCngYqa5nG15ibunDn5wu0wykNL8s80t3jifW3oNn
+	SlUous5mdjP3FJfX/ckwSB63VCHNNE8pLFAh0DKfh9rSHOSmFpf9wsQt7/OM9lGx/0JM
+	bEZ7ECLj9vc/3EfaMFaeZi4B+hxhLp3fL9DJFy5hjCLUyr7XTXNgZKVQCSgqMMAK0t2j
+	dlow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=tc86/UrQ/lneoT0YwkWZpMK7XDBLfW/KIoxmL5bq4KI=;
-	b=aX3JseRCLXjHVVWqEt1HHg9qCLMLL2+tfePFwq7BL4AqDwOBbrsplLFtfXriKRmwPE
-	/ljncxTo8q35h15F15DMFOSAc9iYEgbyR6L/iNTufksM3GANpKfcGA4fHk+AKb50Et9d
-	seBCAurg3zxXj2BKL+JK4U4Sbj/rB8/eSdAl7xTcufVMAwdxSLVxh+UiXgPlbkIoWRmn
-	TOV8RXEITo5ydzZgk94Bi3wafS/Pv0fkwstCWMKPMCvmYLTW7cUtEwVaDQL7mZcQLNCp
-	sTA4dkRN8BGp7WXEBuFqcVNl6JTFnCq4RP/J2wDgl7VDbapy2n6trEMKLcg2cF6SHV7P
-	rVwQ==
-X-Gm-Message-State: APjAAAWnMC28crP0hZB7BdMfGWWpfOGHw07MwcyptSxU2kmzO7ET96WM
-	O8VCTnB3QBfcuUGBokw3NdveIktwq5k=
-X-Google-Smtp-Source: APXvYqwPiT0WqeZXXZoKoWEQnzRQHoIf0qosIa53pQxvQUGaSMBUO2vUbjCJNA6AocwA0Y5xwYynJw==
-X-Received: by 2002:a05:620a:13c5:: with SMTP id
-	g5mr3848120qkl.475.1569898382854; 
-	Mon, 30 Sep 2019 19:53:02 -0700 (PDT)
+	bh=AdVfiF27sgnH+XNsnWaOnfasy0emJFAEfmgNlYyEEN4=;
+	b=KJSBTmuRyzU1KH40shPZFQ9SOy3zQOPQzO1G0AHjiisXWyyZx7aEWfLtP49TfLg4p9
+	CVQoOWHw8VXXOU1vXXPJHRvTlB061DNZLsZeUpJ4kxZ6/PVmd304I52QqdznuTeUoc3q
+	dLIm775K/IENbIFYhjx0dUdrK+vbBX4oxnJFcK6F3ZrtAuNvkE4Kz96fA3/cBIekQqwr
+	XMSdlI9b29jroiD3DSScYv3eTfXw9ojGIBqLadnqTNOMo/dlJ08VpBP7N+Yys1x81jX+
+	sgBtJXLIy2CivvwroKr59srYOnYEnCzW+pVHHCKVBw6jBtIBMbjcsUIU08GgKcruLwd2
+	HbWg==
+X-Gm-Message-State: APjAAAVdZtRmAOuuQqX3JUTedxhLExCCYxrw7q5lZANoHADJ8KbxOLep
+	PbzW1D1F8UdFN76rlPQaDLl2VrZwijc=
+X-Google-Smtp-Source: APXvYqxloSNGbXyR9upXqO1BllAbHwiE4bAXNmDRoqoOAg3M9GeszQiXpx+6mvfTgL4wKCLGiVk7rg==
+X-Received: by 2002:a0c:abcd:: with SMTP id k13mr23569243qvb.69.1569900077067; 
+	Mon, 30 Sep 2019 20:21:17 -0700 (PDT)
 Received: from pranay.local.net (c-66-30-118-236.hsd1.ma.comcast.net.
 	[66.30.118.236])
-	by smtp.gmail.com with ESMTPSA id h68sm6552163qkf.2.2019.09.30.19.53.01
+	by smtp.gmail.com with ESMTPSA id 64sm6584610qkk.63.2019.09.30.20.21.16
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 30 Sep 2019 19:53:02 -0700 (PDT)
+	Mon, 30 Sep 2019 20:21:16 -0700 (PDT)
 From: Pranay Mankad <pranaymankad@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 30 Sep 2019 22:52:59 -0400
-Message-Id: <20191001025259.67179-1-pranaymankad@gmail.com>
+Date: Mon, 30 Sep 2019 23:21:14 -0400
+Message-Id: <20191001032114.67790-1-pranaymankad@gmail.com>
 X-Mailer: git-send-email 2.15.1
 X-Mailman-Approved-At: Fri, 04 Oct 2019 08:37:50 -0700
 Cc: Pranay Mankad <pranaymankad@gmail.com>, mankad@synopsys.com,
 	paul.eggleton@intel.com
-Subject: [layerindex-web][PATCH] These changes will add the metadata for product revision and epoch if present in the bitbake recipe.
+Subject: [layerindex-web][PATCH] Track PE and PR for recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,8 +74,10 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2019 02:53:05 -0000
+X-List-Received-Date: Tue, 01 Oct 2019 03:21:19 -0000
 
+This change is to report PE (epoch) and PR (release) values for recipes from the bitbake cooker. These values will be reflected in the Rest API and will not be exposed on the UI. The aim of this change is to enrich metadata availability to consumers of the feed.
+`
 Signed-off-by: Pranay Mankad <pranaymankad@gmail.com>
 ---
  .../migrations/0042_recipe_property_addition.py      | 20 ++++++++++++++++++++
