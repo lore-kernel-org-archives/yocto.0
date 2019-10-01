@@ -1,66 +1,67 @@
-Return-Path: <stefano.cappa.ks89@gmail.com>
+Return-Path: <lefevre.da@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 95BB7E00D33; Tue,  1 Oct 2019 02:29:15 -0700 (PDT)
+	id 9592FE00D4E; Tue,  1 Oct 2019 02:38:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (stefano.cappa.ks89[at]gmail.com)
+	provider *      (lefevre.da[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.196 listed in list.dnswl.org]
+	*      [209.85.160.170 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-vk1-f196.google.com (mail-vk1-f196.google.com
-	[209.85.221.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7920E00D33
-	for <yocto@yoctoproject.org>; Tue,  1 Oct 2019 02:29:14 -0700 (PDT)
-Received: by mail-vk1-f196.google.com with SMTP id w3so3337705vkm.3
-	for <yocto@yoctoproject.org>; Tue, 01 Oct 2019 02:29:14 -0700 (PDT)
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com
+	[209.85.160.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50613E00D33
+	for <yocto@yoctoproject.org>; Tue,  1 Oct 2019 02:38:03 -0700 (PDT)
+Received: by mail-qt1-f170.google.com with SMTP id c3so20710701qtv.10
+	for <yocto@yoctoproject.org>; Tue, 01 Oct 2019 02:38:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=RZwGzmZawc1bkSETGHOXeKDydvX/JQ079B7Egqi1W+c=;
-	b=KOrOAA7ZwmxtUL1bZDEsbiLTmhciQ9b7QKsR9aottDmwuMqa1F49x+HARsrKVtzrJr
-	duUHBUscydvkOJoLy+HGyoj19kBrJlPPLrEsy6rpSjyGT6fcKa6R1SGuX1nNvaFWykBG
-	W7VSRLHFNtoxjESQc7IfwttveQaQYwolpC3v9SpLGZnscW2/Hgw0jAdpPDMEcaxOsp1H
-	iNcaTcUk13ZfdC25V4Hz3rIqypWNI6BZv0mSafaeGFy6SGsr2CuqmwZ1E6WokGbyqqHI
-	kN3eG6/nMAYSp/r2O7ArvjZL+CJmg+7CUNS5nOec42h4Wx3konl4sxGFaN6XkRssN7r7
-	Sjbg==
+	:cc; bh=is3XKSsy5FAulz6glJ+IS5qTFzffJAJ2ml4iFVDxpBQ=;
+	b=R4lUpWV+Jn8a/OGBdHR8KB/Nmnt6SJ8y2ytSZCjdoiKG0lNr5kqJdoYOLzBw3WHqVC
+	j88UdJcazSUqkPn6g8qrLhBfdw9ukgTRg7DO+YagI75SMeRx2xpFNu0Oas1phr+GmVfW
+	5z1lyAHygtCHm3WPt18DRim4OgoK0BpNlb7KmGN+uAlLxMt04ZIjS34AXPtX46vj+Rne
+	JomV89v+dtyn0IS2mDpwK5paBJF0H8f5Jp/Usq29oaBDI/7y7LyK0LO3HimQNHohp8/7
+	Phd+vrmQrLeioW7WDkruWWaPSl4zgpcbjwyOPAugCazG47ZoaFTdaauss3JFXgO930HM
+	WXMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
 	:message-id:subject:to:cc;
-	bh=RZwGzmZawc1bkSETGHOXeKDydvX/JQ079B7Egqi1W+c=;
-	b=recHo2HNF62mI1nG9v9PBvxl3ZYHDoBrB64Mv3fBXn++Auz+aCEmwvXnPhtzdyiXo9
-	xKnpu5KcnccH+00/xoryDLwNXZXckkMq4/H/dYhExIBMhNi7j6GkZ0zJ98fL4C8b/LM8
-	cI9cm2UuV6QrcNkfoj1flZ5gg7NTGrwxtlLOC+p2cSGcOVbCTiXwjRlJBt7/oyd2KOlx
-	NcDCeWppU7LeFhe2DbaPz/orgP4H/9E3fUIq02uZB5+C49KMcrAvFzhYkEqEvla6Py4V
-	ZPL/yfFdeG9NM2e+xCpYAwzBN8f6wF2fdBc5wmgiuxl8pwnp9Kn9KpiX6tDDo5cYV1RO
-	jgRg==
-X-Gm-Message-State: APjAAAVcc4Qm1LgHPFYFf3OHNjROWXI3iY1L44hCHl3OfrvQ1eIJMeYY
-	kZNRzxqf3vQCYTgOdXglHgkzi/0SP64p3uGxa5g=
-X-Google-Smtp-Source: APXvYqy9TNcM5/soZI+4j//k3ABLVXCn28noPQJlTzKi2sNvzN/vk7g6yscQqjgM9s5Q/UIpED9ACD8kt7V7SKiwzhE=
-X-Received: by 2002:a1f:f445:: with SMTP id s66mr13208857vkh.62.1569922153809; 
-	Tue, 01 Oct 2019 02:29:13 -0700 (PDT)
+	bh=is3XKSsy5FAulz6glJ+IS5qTFzffJAJ2ml4iFVDxpBQ=;
+	b=Yhxwc5HbxXwUZiWzfR0DTheXxUeJcZttzEm6EkM3Edomn6OPPwHoUSmq/E5lpI7AT1
+	Z49x+bPjQWh3T2G8PN2iW4lLiQ0rKH5M447Rh5F2GCf3jWnjiZE1mMc+CIFeJwtDEBvR
+	cQCAAa/RyEIbr86IHAzx7wdGZCvC/VPv+HNuRdJxIL8CBOi4YYCSNarj9clyeaYbyGuK
+	vnRik/xZ27oZ8B1XeM8Ca+Xv3/s9yeycuMw+pyQMsVgcfiyzpjUvhUa3F86eMAwfFTgS
+	pKDve/BLE5xKHVUnP5wH06WOYLuleXMp3LhIfhOBxWf0Aurrt36Q4cbH4hQXdxkbZTmR
+	DzqQ==
+X-Gm-Message-State: APjAAAV+lRR7VydPHrK9jY1wzbpCPxX9FRVCnitNx3fyPB4tRwCMNB/+
+	9aMqLOg12utKh8roWyqvvf6N4uIGumLdTrjAJdfl
+X-Google-Smtp-Source: APXvYqxA1ssuJQcfh/s3tDfJ58jpDKKx2klO1YwWlz1nltlypnft8CLJkjVihd4NwukotXiNsxLaVgCxknS/Eycc6F8=
+X-Received: by 2002:ac8:2fcb:: with SMTP id m11mr29414766qta.280.1569922682628;
+	Tue, 01 Oct 2019 02:38:02 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAKRytNy3XoG8H1R4uZqGFC3Az5WGsE5+zYKRgUepgjBDYxvgXw@mail.gmail.com>
-	<35712e36-d517-2665-fd80-50f4b089b16b@gmail.com>
-In-Reply-To: <35712e36-d517-2665-fd80-50f4b089b16b@gmail.com>
-From: Stefano Cappa <stefano.cappa.ks89@gmail.com>
-Date: Tue, 1 Oct 2019 11:29:03 +0200
-Message-ID: <CAKRytNxGZ02wOuydLdS_pE0MtDRtQi=DSuSsaK0WTtfOqToukw@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Cannot use "LICENSE_CREATE_PACKAGE = 1" when building the image with mdns
+References: <CA+FhBv9rA12ik5StBmeDAD1b8gLy1Si3S-muQNmBqw824VXPXA@mail.gmail.com>
+	<20191001091340.GA1582@jama>
+In-Reply-To: <20191001091340.GA1582@jama>
+From: Damien LEFEVRE <lefevre.da@gmail.com>
+Date: Tue, 1 Oct 2019 12:37:51 +0300
+Message-ID: <CA+FhBv8e_HJDV1RfoS1jJWf_NRXFg+ONFeQs+hswuQwieez_-A@mail.gmail.com>
+To: Martin Jansa <martin.jansa@gmail.com>, nicolas.dechesne@linaro.org
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: do_fetch_append: syntax error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,166 +73,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2019 09:29:16 -0000
-Content-Type: multipart/alternative; boundary="0000000000004d8c5d0593d5fc13"
+X-List-Received-Date: Tue, 01 Oct 2019 09:38:03 -0000
+Content-Type: multipart/alternative; boundary="000000000000d2b1270593d61baa"
 
---0000000000004d8c5d0593d5fc13
+--000000000000d2b1270593d61baa
 Content-Type: text/plain; charset="UTF-8"
 
-Hi thank you for the answer.
+OK understood!
 
-In my rootfs I have this nsswitch.conf:
--------------------------------------------------------
-# /etc/nsswitch.conf
-#
-# Example configuration of GNU Name Service Switch functionality.
-# If you have the `glibc-doc' and `info' packages installed, try:
-# `info libc "Name Service Switch"' for information about this file.
+I'll find another way.
 
-passwd:         compat
-group:          compat
-shadow:         compat
+Thanks,
+-Damien
 
-hosts:          files myhostname  mdns dns
-networks:       files
+On Tue, Oct 1, 2019 at 12:13 PM Martin Jansa <martin.jansa@gmail.com> wrote:
 
-protocols:      db files
-services:       db files
-ethers:         db files
-rpc:            db files
-
-netgroup:       nis
--------------------------------------------------------
-
-I'm not familiar with this file.
-Also changing "hosts: files myhostname  mdns dns" to "hosts: files
-mdns4_minimal [NOTFOUND=return] dns" (copied from a raspberry pi 3) I'm
-still having the same problem.
-
-What should I change to fix this issue?
-
-
-Il lun 30 set 2019, 22:45 Khem Raj <raj.khem@gmail.com> ha scritto:
-
+> On Tue, Oct 01, 2019 at 11:35:21AM +0300, Damien LEFEVRE wrote:
+> > Hi,
+> >
+> > I have the following bbappend
+> >
+> > FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+> > SRC_URI += " \
+> >     file://tegra186_cti_defconfig \
+> > "
+> >
+> > do_fetch_append(){
+> >     mv ${WORKDIR}/tegra186_cti_defconfig ${WORKDIR}/defconfig
+> > }
+> >
+> > For this I get an error:
+> >   File "autogenerated", line 3
+> >     mv ${WORKDIR}/tegra186_cti_defconfig ${WORKDIR}/defconfig
+> >           ^
+> > SyntaxError: invalid syntax
+> >
+> > Can someone explain why? I get the same in do_fetch_append. Starts
+> working
+> > with do_configure_append but that's too late in case of rebuild.
 >
+> do_fetch is python task, you cannot append shell code to it.
 >
-> On 9/30/19 8:17 AM, Stefano Cappa wrote:
-> > I saw your last patch to upgrade mdns, so I'm sending this email also to
-> > you to try to get help.
-> >
-> > mdns is working correctly, however, when I try to build my image with
-> > "LICENSE_CREATE_PACKAGE = "1"" in my local.conf as described
-> > here
-> https://www.yoctoproject.org/docs/2.8/dev-manual/dev-manual.html#providing-license-text
->  I
-> > get this error message:
-> >
-> > ERROR: mydevice-image-1.0-r0 do_rootfs: Postinstall scriptlets of
-> > ['mdns'] have failed. If the intention is to defer them to first boot,
-> > then please place them into pkg_postinst_ontarget_${PN} ().
-> > Deferring to first boot via 'exit 1' is no longer supported.
-> > Details of the failure are in
-> >
-> /home/user/git/poky/build/tmp/work/mydevice1-image-poky-linux-gnueabi/mydevice-image/1.0-r0/temp/log.do_rootfs.
-> > ERROR: mydevice-image-1.0-r0 do_rootfs: Function failed: do_rootfs
-> > ERROR: Logfile of failure stored in:
-> >
-> /home/user/git/poky/build/tmp/work/mydevice1-poky-linux-gnueabi/mydevice-image/1.0-r0/temp/log.do_rootfs.14586
-> > ERROR: Task (MY CUSTOM LAYER
-> > PATH/recipes-core/images/mydevice-image.bb:do_rootfs) failed with exit
-> > code '1'
-> > NOTE: Tasks Summary: Attempted 4871 tasks of which 4654 didn't need to
-> > be rerun and 1 failed.
-> >
-> > Do you have a solution? Why is it happening?
-> >
->
-> see mdns recipe especially
->
-> pkg_postinst_${PN} (), that function is not able to execute offline
-> during build. It could be that nsswitch.conf does not exist in your
-> image rootfs
->
-> > thank u.
+> --
+> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 >
 
---0000000000004d8c5d0593d5fc13
+--000000000000d2b1270593d61baa
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"auto">Hi thank you for the answer.<div dir=3D"=
-auto"><br></div><div dir=3D"auto">In my rootfs I have this nsswitch.conf:</=
-div><div dir=3D"auto">-----------------------------------------------------=
---</div><div dir=3D"auto"># /etc/nsswitch.conf<br>#<br># Example configurat=
-ion of GNU Name Service Switch functionality.<br># If you have the `glibc-d=
-oc&#39; and `info&#39; packages installed, try:<br># `info libc &quot;Name =
-Service Switch&quot;&#39; for information about this file.<br><br>passwd: =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 compat<br>group: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0compat<br>shadow: =C2=A0 =C2=A0 =C2=A0 =C2=A0 compat<br><br>hosts: =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0files myhostname =C2=A0mdns dns<br>networ=
-ks: =C2=A0 =C2=A0 =C2=A0 files<br><br>protocols: =C2=A0 =C2=A0 =C2=A0db fil=
-es<br>services: =C2=A0 =C2=A0 =C2=A0 db files<br>ethers: =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 db files<br>rpc: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0db fil=
-es<br><br>netgroup: =C2=A0 =C2=A0 =C2=A0 nis<br></div><div dir=3D"auto">---=
-----------------------------------------------------<br></div><div dir=3D"a=
-uto"><br></div><div dir=3D"auto">I&#39;m not familiar with this file.</div>=
-<div dir=3D"auto">Also changing &quot;hosts: files myhostname =C2=A0mdns dn=
-s&quot; to &quot;hosts: files mdns4_minimal [NOTFOUND=3Dreturn] dns&quot; (=
-copied from a raspberry pi 3) I&#39;m still having the same=C2=A0problem.<b=
-r></div><div dir=3D"auto"><br></div><div dir=3D"auto">What should I change =
-to fix this issue?</div><div dir=3D"auto"><br></div><div></div></div></div>=
-<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Il lun=
- 30 set 2019, 22:45 Khem Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" targ=
-et=3D"_blank">raj.khem@gmail.com</a>&gt; ha scritto:<br></div><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px soli=
-d rgb(204,204,204);padding-left:1ex"><br>
-<br>
-On 9/30/19 8:17 AM, Stefano Cappa wrote:<br>
-&gt; I saw your last patch to upgrade mdns, so I&#39;m sending this email a=
-lso to<br>
-&gt; you to try to get help.<br>
+<div dir=3D"ltr">OK understood!<div><br></div><div>I&#39;ll find=C2=A0anoth=
+er way.</div><div><br></div><div>Thanks,</div><div>-Damien</div></div><br><=
+div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Oct=
+ 1, 2019 at 12:13 PM Martin Jansa &lt;<a href=3D"mailto:martin.jansa@gmail.=
+com">martin.jansa@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex">On Tue, Oct 01, 2019 at 11:35:21AM +0300, Damien=
+ LEFEVRE wrote:<br>
+&gt; Hi,<br>
 &gt; <br>
-&gt; mdns is working correctly, however, when I try to build my image with<=
-br>
-&gt; &quot;LICENSE_CREATE_PACKAGE =3D &quot;1&quot;&quot; in my local.conf =
-as described<br>
-&gt; here=C2=A0<a href=3D"https://www.yoctoproject.org/docs/2.8/dev-manual/=
-dev-manual.html#providing-license-text" rel=3D"noreferrer noreferrer" targe=
-t=3D"_blank">https://www.yoctoproject.org/docs/2.8/dev-manual/dev-manual.ht=
-ml#providing-license-text</a>=C2=A0I<br>
-&gt; get this error=C2=A0message:<br>
+&gt; I have the following bbappend<br>
 &gt; <br>
-&gt; ERROR: mydevice-image-1.0-r0 do_rootfs: Postinstall scriptlets of<br>
-&gt; [&#39;mdns&#39;] have failed. If the intention is to defer them to fir=
-st boot,<br>
-&gt; then please place them into pkg_postinst_ontarget_${PN} ().<br>
-&gt; Deferring to first boot via &#39;exit 1&#39; is no longer supported.<b=
+&gt; FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/files:&quot;<br>
+&gt; SRC_URI +=3D &quot; \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0file://tegra186_cti_defconfig \<br>
+&gt; &quot;<br>
+&gt; <br>
+&gt; do_fetch_append(){<br>
+&gt;=C2=A0 =C2=A0 =C2=A0mv ${WORKDIR}/tegra186_cti_defconfig ${WORKDIR}/def=
+config<br>
+&gt; }<br>
+&gt; <br>
+&gt; For this I get an error:<br>
+&gt;=C2=A0 =C2=A0File &quot;autogenerated&quot;, line 3<br>
+&gt;=C2=A0 =C2=A0 =C2=A0mv ${WORKDIR}/tegra186_cti_defconfig ${WORKDIR}/def=
+config<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^<br>
+&gt; SyntaxError: invalid syntax<br>
+&gt; <br>
+&gt; Can someone explain why? I get the same in do_fetch_append. Starts wor=
+king<br>
+&gt; with do_configure_append but that&#39;s too late in case of rebuild.<b=
 r>
-&gt; Details of the failure are in<br>
-&gt; /home/user/git/poky/build/tmp/work/mydevice1-image-poky-linux-gnueabi/=
-mydevice-image/1.0-r0/temp/log.do_rootfs.<br>
-&gt; ERROR: mydevice-image-1.0-r0 do_rootfs: Function failed: do_rootfs<br>
-&gt; ERROR: Logfile of failure stored in:<br>
-&gt; /home/user/git/poky/build/tmp/work/mydevice1-poky-linux-gnueabi/mydevi=
-ce-image/1.0-r0/temp/log.do_rootfs.14586<br>
-&gt; ERROR: Task (MY CUSTOM LAYER<br>
-&gt; PATH/recipes-core/images/mydevice-image.bb:do_rootfs) failed with exit=
 <br>
-&gt; code &#39;1&#39;<br>
-&gt; NOTE: Tasks Summary: Attempted 4871 tasks of which 4654 didn&#39;t nee=
-d to<br>
-&gt; be rerun and 1 failed.<br>
-&gt; <br>
-&gt; Do you have a solution? Why is it happening?=C2=A0<br>
-&gt; <br>
+do_fetch is python task, you cannot append shell code to it.<br>
 <br>
-see mdns recipe especially<br>
-<br>
-pkg_postinst_${PN} (), that function is not able to execute offline<br>
-during build. It could be that nsswitch.conf does not exist in your<br>
-image rootfs<br>
-<br>
-&gt; thank u.<br>
+-- <br>
+Martin &#39;JaMa&#39; Jansa=C2=A0 =C2=A0 =C2=A0jabber: <a href=3D"mailto:Ma=
+rtin.Jansa@gmail.com" target=3D"_blank">Martin.Jansa@gmail.com</a><br>
 </blockquote></div>
 
---0000000000004d8c5d0593d5fc13--
+--000000000000d2b1270593d61baa--
