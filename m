@@ -1,41 +1,62 @@
-Return-Path: <lm@zork.pl>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E15C0E00D4E; Tue,  1 Oct 2019 01:40:27 -0700 (PDT)
+	id B0A8AE00D4F; Tue,  1 Oct 2019 02:06:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-X-Greylist: delayed 393 seconds by postgrey-1.32 at yocto-www;
-	Tue, 01 Oct 2019 01:40:24 PDT
-Received: from black.zork.pl (black.zork.pl [178.32.202.57])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B112EE00D33
-	for <yocto@yoctoproject.org>; Tue,  1 Oct 2019 01:40:24 -0700 (PDT)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by black.zork.pl (Postfix) with ESMTP id 96678147412
-	for <yocto@yoctoproject.org>; Tue,  1 Oct 2019 10:33:49 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at zork.pl
-Received: from black.zork.pl ([127.0.0.1])
-	by localhost (black.zork.pl [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id SWiT6l_F-h70 for <yocto@yoctoproject.org>;
-	Tue,  1 Oct 2019 10:33:47 +0200 (CEST)
-Received: from [10.21.42.199] (unknown [91.198.80.161])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest
-	SHA256) (No client certificate requested)
-	by black.zork.pl (Postfix) with ESMTPSA id 2DA51147410
-	for <yocto@yoctoproject.org>; Tue,  1 Oct 2019 10:33:47 +0200 (CEST)
-From: =?UTF-8?Q?=c5=81ukasz_Michalski?= <lm@zork.pl>
-To: yocto@yoctoproject.org
-Message-ID: <a327cddf-067b-f9ed-a069-aec36c2f9fd0@zork.pl>
-Date: Tue, 1 Oct 2019 10:33:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.174 listed in list.dnswl.org]
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com
+	[209.85.208.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45E0BE00D33
+	for <yocto@yoctoproject.org>; Tue,  1 Oct 2019 02:06:48 -0700 (PDT)
+Received: by mail-lj1-f174.google.com with SMTP id d1so12465886ljl.13
+	for <yocto@yoctoproject.org>; Tue, 01 Oct 2019 02:06:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=PrtcFJLOFEwt0zwSmeOzNV68H+gZElIeXSacxG0wcjE=;
+	b=NNk2W9i/WHKcOfkNscYElRIUiTjhpYY9Sk9UC0UyRgEykOR7HgKjmYOGsVsuG++lV9
+	xMdaQk8cc2XHcHJrGM42Fjjzz0e3RktWsYCQzFcwYqHH+6uNFW9eyj7jo7ZHD/91Uz5X
+	ZIaP6PYrJ6hVnISqsSOynK8x2VIgXaIisubiV0LGNcIsN2aYIy0YHWEfJ4+izUC+MDzq
+	ajfDV6NMLgbprFRiof1dQ9sl8gvZqPMPpqNEfRTuGmkiw/pBn9Wu1CtyNZ7uEtKUvJdZ
+	bHGT1oSgXKSXLrnDpYUfteQ7yo7LP+yFKiAOMJhdTZ0x3+rce9zBSt+uG+dTKXn1OrrR
+	B8gQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=PrtcFJLOFEwt0zwSmeOzNV68H+gZElIeXSacxG0wcjE=;
+	b=mxifzSSxLcz7JIKyQJl/ctgN4RrPssSbDqg/EtokgPz4nrIV2lLvAMcSecoHbs3kBA
+	Y39BZjBYb6+gQkiT3X6NCIDvIRR4J7w8EClQH9ucCYwJkqfLJ0mzb0pPgtY+K9mIZrM1
+	1wapuTuG+YqxCs34Z2vOEFIIEGJj5f6YZgzYIdzikJExBmn6j20BB8fcCg4Qy5XG6TFz
+	YcARD1Dgn0mvk7w6HbSJT1l/adeRWKAyIMdkAJkJHa0imLZeswMHKPTn/xgqczjhdhyU
+	65oFaMGw4sDjGUKugd6QXeF3Dg8eYkwWmtz0vucrSLeDsm2bU55vMPxExd56mjlaKKUp
+	kIKg==
+X-Gm-Message-State: APjAAAWipkN978huIh/k7ur7P/YwybuOsIfHEq0qvmqhVRviL4MpxluQ
+	EAOLIk+qLfesY136r8nQ4/m1xPg60cXphcxNoxJKZA==
+X-Google-Smtp-Source: APXvYqxTAfcEl20fOhfYwjbHrUQLbUu/ZuxdSCJivh1stkQd2AMg8YnXmAGBm/nnatbwAgH+OH6it743Pv6+hFAm1dw=
+X-Received: by 2002:a2e:3201:: with SMTP id y1mr15397658ljy.5.1569920807073;
+	Tue, 01 Oct 2019 02:06:47 -0700 (PDT)
 MIME-Version: 1.0
-Subject: RPI Kernel compile error (meta-raspberrypi)
+References: <CA+FhBv9rA12ik5StBmeDAD1b8gLy1Si3S-muQNmBqw824VXPXA@mail.gmail.com>
+In-Reply-To: <CA+FhBv9rA12ik5StBmeDAD1b8gLy1Si3S-muQNmBqw824VXPXA@mail.gmail.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Tue, 1 Oct 2019 11:06:36 +0200
+Message-ID: <CAP71Wjy8pWmwWP7WvOZ+yf7a6Ks9K_UWPrroCpJufgVzJc_=KQ@mail.gmail.com>
+To: Damien LEFEVRE <lefevre.da@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: do_fetch_append: syntax error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,68 +68,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2019 08:40:28 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-PH
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 01 Oct 2019 09:06:49 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+On Tue, Oct 1, 2019 at 10:36 AM Damien LEFEVRE <lefevre.da@gmail.com> wrote:
+>
+> Hi,
+>
+> I have the following bbappend
+>
+> FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+> SRC_URI += " \
+>     file://tegra186_cti_defconfig \
+> "
+>
+> do_fetch_append(){
+>     mv ${WORKDIR}/tegra186_cti_defconfig ${WORKDIR}/defconfig
+> }
+>
+> For this I get an error:
+>   File "autogenerated", line 3
+>     mv ${WORKDIR}/tegra186_cti_defconfig ${WORKDIR}/defconfig
+>           ^
+> SyntaxError: invalid syntax
+>
+> Can someone explain why? I get the same in do_fetch_append. Starts working with do_configure_append but that's too late in case of rebuild.
 
-I am trying to bitbake meta-raspberrypi image from current warrior branch:
+do_fetch is a Python function, not a shell function. See
+meta/classes/base.bbclass
 
-Build Configuration:
-BB_VERSION           = "1.42.0"
-BUILD_SYS            = "x86_64-linux"
-NATIVELSBSTRING      = "universal"
-TARGET_SYS           = "arm-poky-linux-gnueabi"
-MACHINE              = "raspberrypi3"
-DISTRO               = "poky"
-DISTRO_VERSION       = "2.7.1"
-TUNE_FEATURES        = "arm vfp cortexa7 neon vfpv4 thumb callconvention-hard"
-TARGET_FPU           = "hard"
-meta
-meta-poky
-meta-yocto-bsp       = "warrior:6d2e12e79211b31cdf5ea824fb9a8be54ba9a9eb"
-meta-oe
-meta-python
-meta-networking      = "warrior:3bdbf72e3a4bf18a4a2c7afbde4f7ab773aeded9"
-meta-raspberrypi     = "warrior:0750d5d2bc9596f35d5d61bb0ff657be4b02bfdc"
+you can use do_configure_prepend() if you need to do something
+*before* the actual do_configure.
 
-Kernel compilation fails with this error:
-
-| make[3]: *** No rule to make target 'arch/arm/boot/dts/overlays/hifiberry-dacplusdsp.dtbo'.  Stop.
-| make[2]: *** [arch/arm/Makefile:345: overlays/hifiberry-dacplusdsp.dtbo] Error 2
-| make[1]: *** [Makefile:146: sub-make] Error 2
-| make: *** [Makefile:24: __sub-make] Error 2
-| ERROR: oe_runmake failed
-| WARNING: /home/zork/data/yocto-wallscreen-build/tmp/work/raspberrypi3-poky-linux-gnueabi/linux-raspberrypi/1_4.19.71+gitAUTOINC+13ce09db83-r0/temp/run.do_compile.26619:1 exit 1 from 'exit 1'
-| ERROR: Function failed: do_compile (log file is located at /home/zork/data/yocto-wallscreen-build/tmp/work/raspberrypi3-poky-linux-gnueabi/linux-raspberrypi/1_4.19.71+gitAUTOINC+13ce09db83-r0/temp/log.do_compile.26619)
-ERROR: Task (/home/zork/sources/homehq/yocto/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_4.19.bb:do_compile) failed with exit code '1'
-
-I checked BUILD_DIR/work-shared/rasbperrypi3/kernel-source and there is no such file:
-[zork@serenity arm]$ ls -l boot/dts/overlays/hifiberry-*
--rw-r--r-- 1 zork users  575 Sep 30 20:12 boot/dts/overlays/hifiberry-amp-overlay.dts
--rw-r--r-- 1 zork users  490 Sep 30 20:12 boot/dts/overlays/hifiberry-dac-overlay.dts
--rw-r--r-- 1 zork users 1260 Sep 30 20:12 boot/dts/overlays/hifiberry-dacplusadc-overlay.dts
--rw-r--r-- 1 zork users 1198 Sep 30 20:12 boot/dts/overlays/hifiberry-dacplusadcpro-overlay.dts
--rw-r--r-- 1 zork users 1050 Sep 30 20:12 boot/dts/overlays/hifiberry-dacplus-overlay.dts
--rw-r--r-- 1 zork users  639 Sep 30 20:12 boot/dts/overlays/hifiberry-digi-overlay.dts
--rw-r--r-- 1 zork users  705 Sep 30 20:12 boot/dts/overlays/hifiberry-digi-pro-overlay.dts
-
-bitbake checked kernel sources version:
-
-[zork@serenity arm]$ cd yocto-wallscreen-build/tmp/work-shared/raspberrypi3/kernel-source
-[zork@serenity arm]$ git status
-On branch rpi-4.19.y
-Your branch is behind 'origin/rpi-4.19.y' by 413 commits, and can be fast-forwarded.
-
-[zork@serenity arm]$ git rev-parse HEAD
-13ce09db830e0c2fe524460b0673afb974359bc2
-
-So it seems that bitbake checked out old version of rpi-4.19.y branch. In this version there is no hifiberry-dacplusdsp overlay.
-
-I am new to yocto/bitbake and kernel recipe is a complicated one. Anyone can help me fix this error?
-
-Thanks,
-Łukasz
+>
+> Thanks,
+> -Damien
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
