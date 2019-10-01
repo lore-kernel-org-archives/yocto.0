@@ -1,67 +1,43 @@
-Return-Path: <lefevre.da@gmail.com>
+Return-Path: <mauro@faresoftware.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9592FE00D4E; Tue,  1 Oct 2019 02:38:03 -0700 (PDT)
+	id 24AD2E00D67; Tue,  1 Oct 2019 06:18:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (lefevre.da[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.160.170 listed in list.dnswl.org]
+	*      [62.149.156.146 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com
-	[209.85.160.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50613E00D33
-	for <yocto@yoctoproject.org>; Tue,  1 Oct 2019 02:38:03 -0700 (PDT)
-Received: by mail-qt1-f170.google.com with SMTP id c3so20710701qtv.10
-	for <yocto@yoctoproject.org>; Tue, 01 Oct 2019 02:38:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=is3XKSsy5FAulz6glJ+IS5qTFzffJAJ2ml4iFVDxpBQ=;
-	b=R4lUpWV+Jn8a/OGBdHR8KB/Nmnt6SJ8y2ytSZCjdoiKG0lNr5kqJdoYOLzBw3WHqVC
-	j88UdJcazSUqkPn6g8qrLhBfdw9ukgTRg7DO+YagI75SMeRx2xpFNu0Oas1phr+GmVfW
-	5z1lyAHygtCHm3WPt18DRim4OgoK0BpNlb7KmGN+uAlLxMt04ZIjS34AXPtX46vj+Rne
-	JomV89v+dtyn0IS2mDpwK5paBJF0H8f5Jp/Usq29oaBDI/7y7LyK0LO3HimQNHohp8/7
-	Phd+vrmQrLeioW7WDkruWWaPSl4zgpcbjwyOPAugCazG47ZoaFTdaauss3JFXgO930HM
-	WXMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=is3XKSsy5FAulz6glJ+IS5qTFzffJAJ2ml4iFVDxpBQ=;
-	b=Yhxwc5HbxXwUZiWzfR0DTheXxUeJcZttzEm6EkM3Edomn6OPPwHoUSmq/E5lpI7AT1
-	Z49x+bPjQWh3T2G8PN2iW4lLiQ0rKH5M447Rh5F2GCf3jWnjiZE1mMc+CIFeJwtDEBvR
-	cQCAAa/RyEIbr86IHAzx7wdGZCvC/VPv+HNuRdJxIL8CBOi4YYCSNarj9clyeaYbyGuK
-	vnRik/xZ27oZ8B1XeM8Ca+Xv3/s9yeycuMw+pyQMsVgcfiyzpjUvhUa3F86eMAwfFTgS
-	pKDve/BLE5xKHVUnP5wH06WOYLuleXMp3LhIfhOBxWf0Aurrt36Q4cbH4hQXdxkbZTmR
-	DzqQ==
-X-Gm-Message-State: APjAAAV+lRR7VydPHrK9jY1wzbpCPxX9FRVCnitNx3fyPB4tRwCMNB/+
-	9aMqLOg12utKh8roWyqvvf6N4uIGumLdTrjAJdfl
-X-Google-Smtp-Source: APXvYqxA1ssuJQcfh/s3tDfJ58jpDKKx2klO1YwWlz1nltlypnft8CLJkjVihd4NwukotXiNsxLaVgCxknS/Eycc6F8=
-X-Received: by 2002:ac8:2fcb:: with SMTP id m11mr29414766qta.280.1569922682628;
-	Tue, 01 Oct 2019 02:38:02 -0700 (PDT)
+Received: from smtpcmd13146.aruba.it (smtpcmd13146.aruba.it [62.149.156.146])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BB42E006D2
+	for <yocto@yoctoproject.org>; Tue,  1 Oct 2019 06:18:34 -0700 (PDT)
+Received: from [10.0.3.82] ([213.213.6.58])
+	by smtpcmd13.ad.aruba.it with bizsmtp
+	id 8DJY2100l1F741R01DJY0t; Tue, 01 Oct 2019 15:18:33 +0200
+From: Mauro Ziliani <mauro@faresoftware.it>
+To: yocto@yoctoproject.org
+Message-ID: <7c6a6a6d-1d7b-db68-88c0-42675cdca855@faresoftware.it>
+Date: Tue, 1 Oct 2019 15:18:32 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <CA+FhBv9rA12ik5StBmeDAD1b8gLy1Si3S-muQNmBqw824VXPXA@mail.gmail.com>
-	<20191001091340.GA1582@jama>
-In-Reply-To: <20191001091340.GA1582@jama>
-From: Damien LEFEVRE <lefevre.da@gmail.com>
-Date: Tue, 1 Oct 2019 12:37:51 +0300
-Message-ID: <CA+FhBv8e_HJDV1RfoS1jJWf_NRXFg+ONFeQs+hswuQwieez_-A@mail.gmail.com>
-To: Martin Jansa <martin.jansa@gmail.com>, nicolas.dechesne@linaro.org
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: do_fetch_append: syntax error
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1569935913; bh=TdlQUZ8ZgahsBj1e6fO3pKuBikbSi8OUh3e1eW24l28=;
+	h=From:Subject:To:Date:MIME-Version:Content-Type;
+	b=AE/84Zt6Kf7VjQA2jTXMohh4Wl52zO0hMA0RSe7n6MG8o3CrWeRjXSkPpt8c1a4Tq
+	gYP33OeC6XubpGDdORlVretVTQeJeiDLfhKtdSpuWM88sLdNxW4GM08QvUC2H6hdK1
+	NkQjG7x5V1K7DQ4jO+/e4L5j6QaA7agv7aThj6U1t0SBXWukRgCCYt+AR6knLowVs0
+	sRL57INdCzOqJvOsNfZFkpd6e46GuoNIVQe8agKGLMlRNeo2l3wsrMSQ6MCcoKWZkX
+	xjk4eisuQMXMZvuhI6jmJCzcGpIqiyYHdi1z9dlvGWRQ5LR05iSZBgWyk2Ux9nM/xV
+	XVCT1kNANEAmQ==
+Subject: QtCreator, CMake, fsl-imx-x11 toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,94 +49,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2019 09:38:03 -0000
-Content-Type: multipart/alternative; boundary="000000000000d2b1270593d61baa"
+X-List-Received-Date: Tue, 01 Oct 2019 13:18:37 -0000
+Content-Type: multipart/alternative;
+	boundary="------------498DD9B65C32F8C02C7089C3"
+Content-Language: it
 
---000000000000d2b1270593d61baa
-Content-Type: text/plain; charset="UTF-8"
+--------------498DD9B65C32F8C02C7089C3
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Transfer-Encoding: 8bit
 
-OK understood!
+Hi all.
 
-I'll find another way.
+Maybe this is a post I have already sent.
 
-Thanks,
--Damien
+I'm working with
 
-On Tue, Oct 1, 2019 at 12:13 PM Martin Jansa <martin.jansa@gmail.com> wrote:
+imx6dlsabresd,  yocto krogoth/jetro, QtCreator, 
+fsl-imx-x11-glibc-meta-toolchan-qt4
 
-> On Tue, Oct 01, 2019 at 11:35:21AM +0300, Damien LEFEVRE wrote:
-> > Hi,
-> >
-> > I have the following bbappend
-> >
-> > FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-> > SRC_URI += " \
-> >     file://tegra186_cti_defconfig \
-> > "
-> >
-> > do_fetch_append(){
-> >     mv ${WORKDIR}/tegra186_cti_defconfig ${WORKDIR}/defconfig
-> > }
-> >
-> > For this I get an error:
-> >   File "autogenerated", line 3
-> >     mv ${WORKDIR}/tegra186_cti_defconfig ${WORKDIR}/defconfig
-> >           ^
-> > SyntaxError: invalid syntax
-> >
-> > Can someone explain why? I get the same in do_fetch_append. Starts
-> working
-> > with do_configure_append but that's too late in case of rebuild.
->
-> do_fetch is python task, you cannot append shell code to it.
->
-> --
-> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
->
 
---000000000000d2b1270593d61baa
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+I configured qtcreator with a kit for this tool chain using gcc g++ and 
+from the meta-toolchain package.
 
-<div dir=3D"ltr">OK understood!<div><br></div><div>I&#39;ll find=C2=A0anoth=
-er way.</div><div><br></div><div>Thanks,</div><div>-Damien</div></div><br><=
-div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Oct=
- 1, 2019 at 12:13 PM Martin Jansa &lt;<a href=3D"mailto:martin.jansa@gmail.=
-com">martin.jansa@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex">On Tue, Oct 01, 2019 at 11:35:21AM +0300, Damien=
- LEFEVRE wrote:<br>
-&gt; Hi,<br>
-&gt; <br>
-&gt; I have the following bbappend<br>
-&gt; <br>
-&gt; FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/files:&quot;<br>
-&gt; SRC_URI +=3D &quot; \<br>
-&gt;=C2=A0 =C2=A0 =C2=A0file://tegra186_cti_defconfig \<br>
-&gt; &quot;<br>
-&gt; <br>
-&gt; do_fetch_append(){<br>
-&gt;=C2=A0 =C2=A0 =C2=A0mv ${WORKDIR}/tegra186_cti_defconfig ${WORKDIR}/def=
-config<br>
-&gt; }<br>
-&gt; <br>
-&gt; For this I get an error:<br>
-&gt;=C2=A0 =C2=A0File &quot;autogenerated&quot;, line 3<br>
-&gt;=C2=A0 =C2=A0 =C2=A0mv ${WORKDIR}/tegra186_cti_defconfig ${WORKDIR}/def=
-config<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0^<br>
-&gt; SyntaxError: invalid syntax<br>
-&gt; <br>
-&gt; Can someone explain why? I get the same in do_fetch_append. Starts wor=
-king<br>
-&gt; with do_configure_append but that&#39;s too late in case of rebuild.<b=
-r>
-<br>
-do_fetch is python task, you cannot append shell code to it.<br>
-<br>
--- <br>
-Martin &#39;JaMa&#39; Jansa=C2=A0 =C2=A0 =C2=A0jabber: <a href=3D"mailto:Ma=
-rtin.Jansa@gmail.com" target=3D"_blank">Martin.Jansa@gmail.com</a><br>
-</blockquote></div>
 
---000000000000d2b1270593d61baa--
+If I try to run cmake to generate the project cmake fails because it 
+cannot found /lib/ld-linux-armhf.so.3.
+
+This file i in 
+/opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/cortexa9fh-neon-poky-linux/lib
+
+
+Cmake anche make try to find it in /lib
+
+
+Why?
+
+
+MZ
+
+
+
+--------------498DD9B65C32F8C02C7089C3
+Content-Type: text/html; charset=iso-8859-15
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;
+      charset=ISO-8859-15">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p><font size="-1">Hi all.</font></p>
+    <p><font size="-1">Maybe this is a post I have already sent.</font></p>
+    <p><font size="-1">I'm working with</font></p>
+    <p><font size="-1">imx6dlsabresd,  yocto krogoth/jetro, QtCreator,
+        fsl-imx-x11-glibc-meta-toolchan-qt4</font></p>
+    <p><font size="-1"><br>
+      </font></p>
+    <p><font size="-1">I configured qtcreator with a kit for this tool
+        chain using gcc g++ and from the meta-toolchain package.</font></p>
+    <p><font size="-1"><br>
+      </font></p>
+    <p><font size="-1">If I try to run cmake to generate the project
+        cmake fails because it cannot found /lib/ld-linux-armhf.so.3.</font></p>
+    <p><font size="-1">This file i in
+        /opt/fsl-imx-x11/4.1.15-2.0.1/sysroots/cortexa9fh-neon-poky-linux/lib</font></p>
+    <p><font size="-1"><br>
+      </font></p>
+    <p><font size="-1">Cmake anche make try to find it in /lib</font></p>
+    <p><font size="-1"><br>
+      </font></p>
+    <p><font size="-1">Why?</font></p>
+    <p><font size="-1"><br>
+      </font></p>
+    <p><font size="-1">MZ<br>
+      </font></p>
+    <p><font size="-1"><br>
+      </font></p>
+  </body>
+</html>
+
+--------------498DD9B65C32F8C02C7089C3--
