@@ -1,39 +1,62 @@
-Return-Path: <paul.eggleton@intel.com>
+Return-Path: <lefevre.da@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 12128E00D4E; Mon, 30 Sep 2019 20:02:47 -0700 (PDT)
+	id E2B41E00D35; Tue,  1 Oct 2019 01:35:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94E89E00D33
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2019 20:02:46 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	30 Sep 2019 20:02:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,569,1559545200"; d="scan'208";a="191325594"
-Received: from hanshuan-mobl1.gar.corp.intel.com (HELO linux.fritz.box)
-	([10.249.65.161])
-	by fmsmga007.fm.intel.com with ESMTP; 30 Sep 2019 20:02:42 -0700
-From: Paul Eggleton <paul.eggleton@intel.com>
-To: Pranay Mankad <pranaymankad@gmail.com>
-Date: Tue, 01 Oct 2019 16:02:40 +1300
-Message-ID: <13654916.Hyp9vebjCN@linux.fritz.box>
-Organization: Intel Corporation
-In-Reply-To: <20191001025259.67179-1-pranaymankad@gmail.com>
-References: <20191001025259.67179-1-pranaymankad@gmail.com>
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (lefevre.da[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.172 listed in list.dnswl.org]
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com
+	[209.85.160.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CCCC8E00CB9
+	for <yocto@yoctoproject.org>; Tue,  1 Oct 2019 01:35:33 -0700 (PDT)
+Received: by mail-qt1-f172.google.com with SMTP id n1so20541939qtp.8
+	for <yocto@yoctoproject.org>; Tue, 01 Oct 2019 01:35:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=Ij82QzUwwKa1AUnZvxtBRbF2R5GQJ0hC55Rxc9eXUWg=;
+	b=t+0h23YuR8rrC3OE1s0Tji1qwLOKmVGF3nCNl5UMu3rxVmUlBvRY5d7j7NqMVvrGcb
+	8ALUP+10kjRf3XHo3tS+Vw6N9BlbPxeeigyADoehOcY5Ov+t7ewPIbbLBygFJKMfoXw8
+	j3X+RELx0/lUjSxQIAuS+nTWbvFd8e5WuAj0wri2A3duYhXGapRnIHFHQHcPdVChAP//
+	6u3dDMAWHwZLjXk8ajruvwBuELywldlDgkVSDh4M/ONMVM1/NHujVxjkNHcoV3vmFilL
+	OWFvlJPU2aLIbIMJa4H/LBlRYZfjJByKFaBGTewzlLHtFANSMrApkKPa6BAIIWGJ2FUj
+	hoSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=Ij82QzUwwKa1AUnZvxtBRbF2R5GQJ0hC55Rxc9eXUWg=;
+	b=fcEbQZI+QMdQfytKvMt9cZ+g6kYEsbKApr5+wmeeqMkssTqNPPcGXf+zq9tTz2C2GJ
+	V1C/UhDTeAomhVfuEoIpLK+U2ngsjee0JUw6agm9f3meKj1ZmFWDwsXVsvuC3Y692R1H
+	VkHcaF+Zirj/tUsBlBZlfZLuA18SgfQc+RIu+yz2IqvAwrLKJY20SnVTnlORkkVFYHVT
+	u0n5srP9iage8Iniv2Isg566kqm3sWmHjUfbzlxe/t+iNIRa1ylqap4U3uMXa7As8OqH
+	it3gRxff5cXCL2bPQzPsDfPhIPTJfteS1squz0yQVLOEDz7ofz4JiUB7JNJJeqLDP0Zj
+	RVDw==
+X-Gm-Message-State: APjAAAWGcqJFzHgvSVb9P0Q8zee7SCClr7CijjDkmaL9O3unhEWHbvv/
+	aUd+dq1aED6TdxzN2skGSkimMHVkzK1QhnsGZEH23Y4=
+X-Google-Smtp-Source: APXvYqy7HzIXqodFqyOsXHtEPgiF/QLyd445I/n9sKnxVb32umn2COtve2d28rlka0J1AF9qbo8WoEPoP34o7n37uN8=
+X-Received: by 2002:a05:6214:1369:: with SMTP id
+	c9mr24535418qvw.3.1569918932907; 
+	Tue, 01 Oct 2019 01:35:32 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, mankad@synopsys.com
-Subject: Re: [layerindex-web][PATCH] These changes will add the metadata for product revision and epoch if present in the bitbake recipe.
+From: Damien LEFEVRE <lefevre.da@gmail.com>
+Date: Tue, 1 Oct 2019 11:35:21 +0300
+Message-ID: <CA+FhBv9rA12ik5StBmeDAD1b8gLy1Si3S-muQNmBqw824VXPXA@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: do_fetch_append: syntax error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,40 +68,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2019 03:02:47 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 01 Oct 2019 08:35:34 -0000
+Content-Type: multipart/alternative; boundary="000000000000527a580593d53ca6"
 
-Hi Pranay,
+--000000000000527a580593d53ca6
+Content-Type: text/plain; charset="UTF-8"
 
-On Tuesday, 1 October 2019 3:52:59 PM NZDT Pranay Mankad wrote:
-> Signed-off-by: Pranay Mankad <pranaymankad@gmail.com>
-> ---
->  .../migrations/0042_recipe_property_addition.py      | 20 ++++++++++++++++++++
->  layerindex/models.py                                 |  2 ++
->  layerindex/update_layer.py                           |  2 ++
->  3 files changed, 24 insertions(+)
->  create mode 100644 layerindex/migrations/0042_recipe_property_addition.py
+Hi,
 
-So the substance of this change is fine, however the commit message needs a bit of reworking. 
-The shortlog (first line, which is used by git-send-email automatically as the subject) should be shorter and then you can have a fuller explanation of the change after a blank line. It should look something like this:
+I have the following bbappend
 
----------- snip ----------
-Track PE and PR for recipes
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+SRC_URI += " \
+    file://tegra186_cti_defconfig \
+"
 
-This will add the metadata for epoch and revision if present in the
-bitbake recipe. These will be automatically available through the REST
-API but won't (yet) be visible in the UI.
----------- snip ----------
+do_fetch_append(){
+    mv ${WORKDIR}/tegra186_cti_defconfig ${WORKDIR}/defconfig
+}
 
-(Removing snip lines obviously)
+For this I get an error:
+  File "autogenerated", line 3
+    mv ${WORKDIR}/tegra186_cti_defconfig ${WORKDIR}/defconfig
+          ^
+SyntaxError: invalid syntax
+
+Can someone explain why? I get the same in do_fetch_append. Starts working
+with do_configure_append but that's too late in case of rebuild.
 
 Thanks,
-Paul
+-Damien
 
--- 
-Paul Eggleton
-Intel Open Source Technology Centre
+--000000000000527a580593d53ca6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi,<div><br></div><div>I have the following bbappend</div>=
+<div><br></div><div>FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/files:&qu=
+ot;<br></div><div>SRC_URI +=3D &quot; \</div><div>=C2=A0 =C2=A0 file://tegr=
+a186_cti_defconfig \</div><div>&quot;<br></div><div><br></div><div>do_fetch=
+_append(){<br>=C2=A0 =C2=A0 mv ${WORKDIR}/tegra186_cti_defconfig ${WORKDIR}=
+/defconfig<br>}<br></div><div><br></div><div>For this I get an error:</div>=
+<div>=C2=A0 File &quot;autogenerated&quot;, line 3<br>=C2=A0 =C2=A0 mv ${WO=
+RKDIR}/tegra186_cti_defconfig ${WORKDIR}/defconfig<br>=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 ^<br>SyntaxError: invalid syntax<br></div><div><br></div><div=
+>Can someone explain why? I get the same in=C2=A0do_fetch_append. Starts wo=
+rking with do_configure_append but that&#39;s too late in case of rebuild.<=
+/div><div><br></div><div>Thanks,</div><div>-Damien</div></div>
 
-
+--000000000000527a580593d53ca6--
