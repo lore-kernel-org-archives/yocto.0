@@ -1,63 +1,129 @@
-Return-Path: <veerender.s56@gmail.com>
+Return-Path: <Raxeshkumar.Oriya@ncr.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 33567E00D33; Tue,  1 Oct 2019 02:11:33 -0700 (PDT)
+	id 109F8E00D4F; Tue,  1 Oct 2019 03:49:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_WEB autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (veerender.s56[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.167.172 listed in list.dnswl.org]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [148.163.152.55 listed in list.dnswl.org]
+	*  1.5 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable web server
+	*      [165.225.104.81 listed in dnsbl.sorbs.net]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com
-	[209.85.167.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCED4E009E7
-	for <yocto@yoctoproject.org>; Tue,  1 Oct 2019 02:11:31 -0700 (PDT)
-Received: by mail-oi1-f172.google.com with SMTP id t84so13718461oih.10
-	for <yocto@yoctoproject.org>; Tue, 01 Oct 2019 02:11:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=OZG3umVQwugNtYkAP1Vo5dykvkP2A6s6geMtpzs6vhA=;
-	b=E+KtwJA/r3fGGNorGraR284fqYJ4xfiPxtrguIGdHPiAM3gpwkzRoFii2VhQfh6Ake
-	JPfBvdJ4mYMqUt2KNBqBpI1D3FnFHXxXrzuuMpNhZSHD1i4VDgzC4PHi6PmDhDbbRPvw
-	CYV+J1sUyGpY6Edx8zbVbXHr3rHPsAdoodcXUR6/QaggvdSHM9+PjFFSBtHuUiHcLuR/
-	9mO89mfk8syeLrmLzSMnzggygtKAJY8tabqnf8qVEY876fqzVr85eWHiGUpZ0tiCe6+z
-	7NkbxFjoyQqHBowgYFgKpbVkonSwZm3fiomMv670FM9PZVRaxW9/1kcMGyN4giCyr9jN
-	0qOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=OZG3umVQwugNtYkAP1Vo5dykvkP2A6s6geMtpzs6vhA=;
-	b=KqVzDwbfJ9JdeUav45zUNUFX6gSh6cogI+KMFBJ/PRhZMqCWhe/8zVcp2U54LFOphO
-	jMHcmQqkmy3WPU3cwUEX9vxQirqMtDQH2E9l2pVvw8dIf8eGOqqGYQevS/yKXLPkiv00
-	YNQCQzNpVBm6drg6Oi/TdE/y9U+ojyCNgQVjirsSIGlm7hWde8LZGFPcrwFNJBkdt/LE
-	pWy22L7ZxAgJz0gMxXZGbe2anxOxx2SqeGx8Cs4y9Jd6PazqPNG6AFa3BmGJS5Uqvd/w
-	Zwi6+cBXsGrVtAwuZLKz2x/FhUevfWHpEn5P+w6NoI57vI/WV3oQ9Cmbe9kekHsdK1NA
-	7dVg==
-X-Gm-Message-State: APjAAAURGKD6jTXY+S2ssJxTgMwItY0w9jaf/QHi56uw/yY9M7UrdIvJ
-	n8pYXixtR0jbbG2Yi4q2hH1w2jNJXnVFMZKG/7E=
-X-Google-Smtp-Source: APXvYqwck9jPtuFDmCLyb87WglRzA72JMAUsA+s2bmXokl8Lab6dWaXrX3zXsQMd4YRMzwXqgW3hMCHtDpk6yFT71D8=
-X-Received: by 2002:aca:642:: with SMTP id 63mr3049573oig.10.1569921090827;
-	Tue, 01 Oct 2019 02:11:30 -0700 (PDT)
+X-Greylist: delayed 14954 seconds by postgrey-1.32 at yocto-www;
+	Tue, 01 Oct 2019 03:49:04 PDT
+Received: from mx0b-00209e01.pphosted.com (mx0b-00209e01.pphosted.com
+	[148.163.152.55])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A21AE00D35
+	for <yocto@yoctoproject.org>; Tue,  1 Oct 2019 03:49:04 -0700 (PDT)
+Received: from pps.filterd (m0115756.ppops.net [127.0.0.1])
+	by mx0b-00209e01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+	x916cqg0029757
+	for <yocto@yoctoproject.org>; Tue, 1 Oct 2019 02:39:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ncr.com;
+	h=from : to : cc : subject
+	: date : message-id : content-type : mime-version; s=mail;
+	bh=z4yAK5D9F7O+/NRR2T9UUqtt4Vbd+cZSBi86+iyTPiE=;
+	b=OPz4GoLlHCYUUGylRWwSIfThSw65/wRhhI91HHMB4w+3XOe5JYQuz7P30J6KcB079Vkk
+	E8Q9vbNZJhfdqy96IT+Qv7cX//Ks0S4+9JgynAcOp21xRa5lRngiocQ6aHt8Dt8OE4Su
+	ViPEogv0IjbpocEafKFV6kEOLs9O8UY2bvYTJPujfjeyF6+i5XoBEPNyZQ22iLDpGSbA
+	HuswRhjUW7w3LrciUbQud/SB/blmCHA9JTig3k/Md99VYWaD65jBRAa3OySvooW8FPlB
+	O7YiXQEWHVifdl30oiWKJxy6/MiJlZZWeKFubdaVy7E6vp/SjkD1mFLFeiCu7aT2nym0
+	hw== 
+Received: from nam01-sn1-obe.outbound.protection.outlook.com
+	(mail-sn1nam01lp2051.outbound.protection.outlook.com [104.47.32.51])
+	by mx0b-00209e01.pphosted.com with ESMTP id 2vbxsk0p76-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT)
+	for <yocto@yoctoproject.org>; Tue, 01 Oct 2019 02:39:48 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+	b=D9BB7vCv5KSaQ/RSaHznoP77CsLcboKi2cUlAvvpI6Yw+INPVc2LhWc3wOdCnxhKpIjIkFpIYSXh9Oo1BbVMdz9/amI3C0U/PalhU+OlL5QnamUs9u3k3qnAk09vqR5WbCoG3drGvEvvXhzxT//K+j5C6tq/pbyuI9TwAYrBroI3AooGmblX3JGeVYGTxtp8yspcgf3+K27DlXRN+s9THroIYzttnXGV3pm2zoFeW6GqB1T77LTC0bX6Z25zyYGdYCy1UmmLe1JdoeJYFzIMjfsZzBHXRFN8O/z13W0KqsIBoJhTcINWn1tWRFX7gb74OULzUtddlzI0po+rtUWiKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+	s=arcselector9901;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=z4yAK5D9F7O+/NRR2T9UUqtt4Vbd+cZSBi86+iyTPiE=;
+	b=Wrn4kmiVD0/6FbXt9LPxlyIGPjjfJQ9e312VMh9XknBAJBVI8mIa1zbCQC2/0LeTrYR1Tf1fj2ZEFIVcwmG6HrwUYJBF+PqgFOYWhPx7X1RGoGtYItvE6eO+t61/gq1JHI4SgM9ZJ+a5qtZcRLa+J8okmlV7xObtUo+dAY9DKbNN9r4CbhmJ5xU89M1E4N+IKGlClc5rVWnl9G6CNjlxiCetCj1cX5zbnDgiOAm2iDEN6bMYx1/G8H/PzmzDmtFWB9AoqvB6LUOI+oc1XqLgtByeqZKv05OhmT4hy8QfTH2e0MKZbsTaMYURlGooiKWtkBhKjiDi2Rsk6vuSoIpatw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+	smtp.mailfrom=ncr.com; dmarc=pass action=none header.from=ncr.com;
+	dkim=pass header.d=ncr.com; arc=none
+Received: from CY4PR15MB1878.namprd15.prod.outlook.com (10.172.78.151) by
+	CY4PR15MB1656.namprd15.prod.outlook.com (10.175.116.136) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.2305.18; Tue, 1 Oct 2019 06:39:47 +0000
+Received: from CY4PR15MB1878.namprd15.prod.outlook.com
+	([fe80::c50d:31bc:eed2:44b1]) by
+	CY4PR15MB1878.namprd15.prod.outlook.com
+	([fe80::c50d:31bc:eed2:44b1%12]) with mapi id 15.20.2305.022;
+	Tue, 1 Oct 2019 06:39:47 +0000
+From: "Oriya, Raxesh" <Raxeshkumar.Oriya@ncr.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: meta-selinux warrior support
+Thread-Index: AdV4IiC+SI7gd174SwyMV7TSlb7IZg==
+Date: Tue, 1 Oct 2019 06:39:46 +0000
+Message-ID: <CY4PR15MB18783DA507FC9EBF565795B5FD9D0@CY4PR15MB1878.namprd15.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Enabled=True;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_SiteId=ae4df1f7-611e-444f-897e-f964e1205171;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Owner=ro185046@ncr.com; 
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_SetDate=2019-10-01T06:39:44.2516634Z;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Name=Confidential;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Application=Microsoft
+	Azure Information Protection;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_ActionId=c8284f43-c132-48a4-a9aa-82671294b78d;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Extended_MSFT_Method=Manual
+x-originating-ip: [165.225.104.81]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 4267797f-ffbc-48b1-e18b-08d7463a26e1
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: CY4PR15MB1656:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CY4PR15MB16567F21742BF4F8E195EB19FD9D0@CY4PR15MB1656.namprd15.prod.outlook.com>
+x-from-ncr-tenant: Processed
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0177904E6B
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(4636009)(396003)(366004)(346002)(136003)(376002)(39860400002)(199004)(189003)(2501003)(81166006)(7736002)(9686003)(478600001)(81156014)(54906003)(1730700003)(6506007)(26005)(316002)(54896002)(6306002)(256004)(8936002)(14444005)(2351001)(2906002)(6436002)(7696005)(55016002)(5640700003)(86362001)(9326002)(8676002)(6916009)(486006)(476003)(33656002)(25786009)(71200400001)(74316002)(3480700005)(66066001)(14454004)(71190400001)(66476007)(66556008)(64756008)(66946007)(52536014)(66446008)(76116006)(55236004)(102836004)(5660300002)(99286004)(186003)(4326008)(3846002)(6116002)(790700001);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:CY4PR15MB1656;
+	H:CY4PR15MB1878.namprd15.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: ncr.com does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: gRzFykEVUg2cFP+huXaDBW10XIRZ2ASrViAUVGMQ5VKznlmMcKBhzAeiBnVgJx38jhuPNmnVbm070XTAp/I7YL0OXLDp1IAJTe5wEriSs/U2CtWRMnZJHmON0HyYCXOBg0zS7cYd3Cw+PYnsLtetNRYUgJcksnWkfSfqW8O3suSA9UAEeDiCw1Wn7xo/hWjILZJlEtBBvr6+kHBBGFW4KnYKdccBr8AWVOWl77xVnx/I2giiJv3mNqSNJ570jPalOwHboeM540UhB7WqVPS5th5Enj2UCsDbfEiaAvHtXSid+eZ9Y3qgZfMAtaCyThCgy7DDgnRf8lYtVc06Jk2BevpeuvhHKAq8VG7B1Mdp5uGsPhEvzIRBBOjPl6DEvD3zX7DtVJpdwVqIyfu7sfcEh14WRTBaxGbtOUWM+6GIKyY=
 MIME-Version: 1.0
-From: Veerender S <veerender.s56@gmail.com>
-Date: Tue, 1 Oct 2019 14:41:19 +0530
-Message-ID: <CANEY1-AkhqAm7uXyen8nwU+L22bXq=8iZP_oSYv6Yg_b9+H07A@mail.gmail.com>
-To: stefano.cappa.ks89@gmail.com, sscott@san.rr.com, yocto@yoctoproject.org, 
-	okaya@kernel.org
-X-Mailman-Approved-At: Fri, 04 Oct 2019 08:37:49 -0700
-Subject: sumo-2.5 build error with core-image-base ERROR: e2fsprogs-native-1.43.8-r0 do_patch: Command Error: 'quilt --quiltrc
+X-OriginatorOrg: ncr.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4267797f-ffbc-48b1-e18b-08d7463a26e1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Oct 2019 06:39:46.8760 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: ae4df1f7-611e-444f-897e-f964e1205171
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: qYinH/wct9HszT1nzJKheebTegPwkbahT+IWiKn3d1bAIjmeGR5YNGPc/jdeCiWu+MV2D9JRehTrVXXO1X9fvg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR15MB1656
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+	definitions=2019-10-01_03:2019-09-30,2019-10-01 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+	priorityscore=1501
+	suspectscore=0 mlxscore=0 phishscore=0 malwarescore=0 clxscore=1011
+	lowpriorityscore=0 spamscore=0 impostorscore=0 adultscore=0
+	mlxlogscore=999 bulkscore=0 classifier=spam adjust=0 reason=mlx
+	scancount=1 engine=8.12.0-1908290000 definitions=main-1910010063
+X-Mailman-Approved-At: Fri, 04 Oct 2019 08:37:50 -0700
+Cc: "C M, Kiran Reddy" <kiran.reddy@ncr.com>, "Mohammad,
+	Jamal M" <MohammadJamal.Mohiuddin@ncr.com>
+Subject: meta-selinux warrior support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,272 +135,218 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2019 09:11:33 -0000
-Content-Type: multipart/alternative; boundary="000000000000f1bb100593d5bcb2"
+X-List-Received-Date: Tue, 01 Oct 2019 10:49:06 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CY4PR15MB18783DA507FC9EBF565795B5FD9D0CY4PR15MB1878namp_"
 
---000000000000f1bb100593d5bcb2
-Content-Type: text/plain; charset="UTF-8"
-
-Hi scott/stefano,
-
-Please provide your inputs to clear the below issue from yocto- sumo-2.5
-branch( Compiling for iMx8) i am struggling since 2 weeks.
-
-I am building yocto sumo 2.5 branch with below configuration (bblayers.conf
-and local.conf are below the mail. please check ).
-
-Below is the error details while doing Build    $* bitbake core-image-base*
-
-ERROR: e2fsprogs-native-1.43.8-r0 do_patch: Command Error: 'quilt --quiltrc
-/home/e866686/Imx8-Work/imx-yocto-bsp/build/tmp/work/x86_64-linux/e2fsprogs-native/1.43.8-r0/recipe-sysroot-native/etc/quiltrc
-push' exited with 0  Output:
-Applying patch remove.ldconfig.call.patch
-can't find file to patch at input line 24
-Perhaps you used the wrong -p or --strip option?
-The text leading up to this was:
---------------------------
-|From b139e03ac2f72e644e547c7ee9b1514383af4d97 Mon Sep 17 00:00:00 2001
-|From: Andrei Dinu <andrei.adrianx.dinu@intel.com>
-|Date: Wed, 30 Jan 2013 15:22:04 +0200
-|Subject: [PATCH] When /etc/ld.so.cache is writeable by user running bitbake
-| then it creates invalid cache (in my case libstdc++.so
-| cannot be found after building zlib(-native) and I have to
-| call touch */libstdc++.so && /sbin/ldconfig to fix it.
-|
-|So remove ldconfig call from make install-libs
-|
-|Patch authored by Martin Jansa.
-|
-|Upstream-Status: Inappropriate [disable feature]
-|
-|Signed-off-by: Scott Garman <scott.a.garman@intel.com>
-|Signed-off-by: Andrei Dinu <andrei.adrianx.dinu@intel.com>
-|---
-| lib/Makefile.elf-lib |    3 ---
-| 1 file changed, 3 deletions(-)
-|diff --git a/lib/Makefile.elf-lib b/lib/Makefile.elf-lib
-|index 78479d3..4a4a5ac 100644
-|--- a/lib/Makefile.elf-lib
-|+++ b/lib/Makefile.elf-lib
---------------------------
-No file to patch.  Skipping patch.
-2 out of 2 hunks ignored
-Patch remove.ldconfig.call.patch does not apply (enforce with -f)
-ERROR: e2fsprogs-native-1.43.8-r0 do_patch: Function failed: patch_do_patch
-ERROR: Logfile of failure stored in:
-/home/e866686/Imx8-Work/imx-yocto-bsp/build/tmp/work/x86_64-linux/e2fsprogs-native/1.43.8-r0/temp/log.do_patch.30378
-ERROR: Task
-(virtual:native:/home/e866686/Imx8-Work/imx-yocto-bsp/sources/poky/meta/recipes-devtools/e2fsprogs/e2fsprogs_1.43.8.bb:do_patch)
-failed with exit code '1'
-NOTE: Tasks Summary: Attempted 504 tasks of which 501 didn't need to be
-rerun and 1 failed.
-
-configurations:
-
-*build/conf/bblayers.conf*
-BBPATH = "${TOPDIR}"
-BSPDIR := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) +
-'/../..')}"
-
-BBFILES ?= ""
-BBLAYERS = " \
-  ${BSPDIR}/sources/poky/meta \
-  ${BSPDIR}/sources/poky/meta-poky \
-  \
-  ${BSPDIR}/sources/meta-openembedded/meta-oe \
-  ${BSPDIR}/sources/meta-openembedded/meta-multimedia \
-  \
-  ${BSPDIR}/sources/meta-freescale \
-  ${BSPDIR}/sources/meta-freescale-3rdparty \
-  ${BSPDIR}/sources/meta-freescale-distro \
-"
-
-# i.MX Yocto Project Release layers
-BBLAYERS += " ${BSPDIR}/sources/meta-fsl-bsp-release/imx/meta-bsp "
-BBLAYERS += " ${BSPDIR}/sources/meta-fsl-bsp-release/imx/meta-sdk "
-
-BBLAYERS += " ${BSPDIR}/sources/meta-browser "
-BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-gnome "
-BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-networking "
-#BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-iot-cloud"
-BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-python "
-BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-filesystems "
-BBLAYERS += " ${BSPDIR}/sources/meta-openembedded/meta-webserver "
-BBLAYERS += " ${BSPDIR}/sources/meta-qt5 "
-BBLAYERS += " ${BSPDIR}/sources/meta-selinux "
-
-*build/conf/local.conf*
-MACHINE ??= 'imx8mqevk'
-DISTRO ?= 'fsl-imx-wayland'
-PACKAGE_CLASSES ?= "package_rpm"
-EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
-USER_CLASSES ?= "buildstats image-mklibs image-prelink"
-PATCHRESOLVE = "noop"
-BB_DISKMON_DIRS ??= "\
-    STOPTASKS,${TMPDIR},1G,100K \
-    STOPTASKS,${DL_DIR},1G,100K \
-    STOPTASKS,${SSTATE_DIR},1G,100K \
-    STOPTASKS,/tmp,100M,100K \
-    ABORT,${TMPDIR},100M,1K \
-    ABORT,${DL_DIR},100M,1K \
-    ABORT,${SSTATE_DIR},100M,1K \
-    ABORT,/tmp,10M,1K"
-PACKAGECONFIG_append_pn-qemu-native = " sdl"
-PACKAGECONFIG_append_pn-nativesdk-qemu = " sdl"
-CONF_VERSION = "1"
-
-#DISTRO_FEATURES_remove = " sysvinit"
-#DISTRO_FEATURES_append = " systemd"
-#VIRTUAL-RUNTIME_init_manager = "systemd"
-#DISTRO_FEATURES_BACKFILL_CONSIDERED = ""
-
-#DISTRO_FEATURES_append += " alsa bluez5"
-DISTRO_FEATURES_append = "acl xattr pam selinux"
-
-# Srini : Lowered the version to make it compatible with ASTERISK VOIP
-package commandline.
-PREFERRED_VERSION_libedit = "2012*"
-#PREFERRED_VERSION_refpolicy-minimum = "2.20151208"
-#PREFERRED_VERSION_refpolicy = "2.20151208"
- PREFERRED_PROVIDER_virtual/refpolicy ?= "refpolicy-standard"
-
-IMAGE_INSTALL_append += " libedit"
-IMAGE_INSTALL_append += " paho-mqtt-c"
-
-IMAGE_INSTALL_append += " libxml2"
-IMAGE_INSTALL_append += " iptables"
-IMAGE_INSTALL_append += " lksctp-tools"
-#IMAGE_INSTALL_append += " asterisk"
-CORE_IMAGE_EXTRA_INSTALL += "python3 python3-pip"
-#CORE_IMAGE_EXTRA_INSTALL += "packagegroup-cloud-azure"
-IMAGE_INSTALL_append += "packagegroup-core-selinux"
-# Light weight web server. Enabled Python for CGI support
-IMAGE_INSTALL_append += " sthttpd"
-IMAGE_INSTALL_append += " python3"
-
-# To configure Audio
-IMAGE_INSTALL_append += " alsa-utils"
-IMAGE_INSTALL_append += " gstreamer"
-IMAGE_INSTALL_append += " mosquitto"
-IMAGE_INSTALL_append += " e2fsprogs parted"
-#IMAGE_INSTALL_remove += " libedit"
-
-BBMASK += "${BSPDIR}/sources/meta-telephony/recipes-misc/lksctp-tools/"
-BBMASK += "${BSPDIR}/sources/meta-telephony/recipes-devtools/"
-
-DL_DIR ?= "${BSPDIR}/downloads/"
-ACCEPT_FSL_EULA = "1"
-
-
--- 
-Thanks&Regards
-Veerender.
-
---000000000000f1bb100593d5bcb2
-Content-Type: text/html; charset="UTF-8"
+--_000_CY4PR15MB18783DA507FC9EBF565795B5FD9D0CY4PR15MB1878namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi scott/stefano,<div><br></div><div>Please provide your i=
-nputs to clear the below issue from yocto- sumo-2.5 branch( Compiling for i=
-Mx8) i am struggling since 2 weeks.</div><div><br></div><div>I am building =
-yocto sumo 2.5 branch with below configuration (bblayers.conf and local.con=
-f are below the mail. please check ).</div><div><br></div><div>Below is the=
- error details=C2=A0while doing Build=C2=A0 =C2=A0 $<b><font color=3D"#0000=
-ff"> bitbake core-image-base</font></b><br></div><div><div><br></div><div><=
-font color=3D"#ff0000">ERROR: e2fsprogs-native-1.43.8-r0 do_patch: Command =
-Error: &#39;quilt --quiltrc /home/e866686/Imx8-Work/imx-yocto-bsp/build/tmp=
-/work/x86_64-linux/e2fsprogs-native/1.43.8-r0/recipe-sysroot-native/etc/qui=
-ltrc push&#39; exited with 0 =C2=A0Output:<br>Applying patch remove.ldconfi=
-g.call.patch<br>can&#39;t find file to patch at input line 24<br>Perhaps yo=
-u used the wrong -p or --strip option?<br>The text leading up to this was:<=
-br>--------------------------<br>|From b139e03ac2f72e644e547c7ee9b1514383af=
-4d97 Mon Sep 17 00:00:00 2001<br>|From: Andrei Dinu &lt;<a href=3D"mailto:a=
-ndrei.adrianx.dinu@intel.com">andrei.adrianx.dinu@intel.com</a>&gt;<br>|Dat=
-e: Wed, 30 Jan 2013 15:22:04 +0200<br>|Subject: [PATCH] When /etc/ld.so.cac=
-he is writeable by user running bitbake<br>| then it creates invalid cache =
-(in my case libstdc++.so<br>| cannot be found after building zlib(-native) =
-and I have to<br>| call touch */libstdc++.so &amp;&amp; /sbin/ldconfig to f=
-ix it.<br>|<br>|So remove ldconfig call from make install-libs<br>|<br>|Pat=
-ch authored by Martin Jansa.<br>|<br>|Upstream-Status: Inappropriate [disab=
-le feature]<br>|<br>|Signed-off-by: Scott Garman &lt;<a href=3D"mailto:scot=
-t.a.garman@intel.com">scott.a.garman@intel.com</a>&gt;<br>|Signed-off-by: A=
-ndrei Dinu &lt;<a href=3D"mailto:andrei.adrianx.dinu@intel.com">andrei.adri=
-anx.dinu@intel.com</a>&gt;<br>|---<br>| lib/Makefile.elf-lib | =C2=A0 =C2=
-=A03 ---<br>| 1 file changed, 3 deletions(-)<br>|diff --git a/lib/Makefile.=
-elf-lib b/lib/Makefile.elf-lib<br>|index 78479d3..4a4a5ac 100644<br>|--- a/=
-lib/Makefile.elf-lib<br>|+++ b/lib/Makefile.elf-lib<br>--------------------=
-------<br>No file to patch.=C2=A0 Skipping patch.<br>2 out of 2 hunks ignor=
-ed<br>Patch remove.ldconfig.call.patch does not apply (enforce with -f)<br>=
-ERROR: e2fsprogs-native-1.43.8-r0 do_patch: Function failed: patch_do_patch=
-<br>ERROR: Logfile of failure stored in: /home/e866686/Imx8-Work/imx-yocto-=
-bsp/build/tmp/work/x86_64-linux/e2fsprogs-native/1.43.8-r0/temp/log.do_patc=
-h.30378<br>ERROR: Task (virtual:native:/home/e866686/Imx8-Work/imx-yocto-bs=
-p/sources/poky/meta/recipes-devtools/e2fsprogs/e2fsprogs_1.43.8.bb:do_patch=
-) failed with exit code &#39;1&#39;<br>NOTE: Tasks Summary: Attempted 504 t=
-asks of which 501 didn&#39;t need to be rerun and 1 failed.</font><br></div=
-><div><br></div><div>configurations:</div><div><br></div><div><b>build/conf=
-/bblayers.conf</b></div><div><font color=3D"#0000ff">BBPATH =3D &quot;${TOP=
-DIR}&quot;<br>BSPDIR :=3D &quot;${@os.path.abspath(os.path.dirname(d.getVar=
-(&#39;FILE&#39;, True)) + &#39;/../..&#39;)}&quot;<br><br>BBFILES ?=3D &quo=
-t;&quot;<br>BBLAYERS =3D &quot; \<br>=C2=A0 ${BSPDIR}/sources/poky/meta \<b=
-r>=C2=A0 ${BSPDIR}/sources/poky/meta-poky \<br>=C2=A0 \<br>=C2=A0 ${BSPDIR}=
-/sources/meta-openembedded/meta-oe \<br>=C2=A0 ${BSPDIR}/sources/meta-opene=
-mbedded/meta-multimedia \<br>=C2=A0 \<br>=C2=A0 ${BSPDIR}/sources/meta-free=
-scale \<br>=C2=A0 ${BSPDIR}/sources/meta-freescale-3rdparty \<br>=C2=A0 ${B=
-SPDIR}/sources/meta-freescale-distro \<br>&quot;<br><br># i.MX Yocto Projec=
-t Release layers<br>BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-fsl-bsp-rel=
-ease/imx/meta-bsp &quot;<br>BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-fsl=
--bsp-release/imx/meta-sdk &quot;<br><br>BBLAYERS +=3D &quot; ${BSPDIR}/sour=
-ces/meta-browser &quot;<br>BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-open=
-embedded/meta-gnome &quot;<br>BBLAYERS +=3D &quot; ${BSPDIR}/sources/meta-o=
-penembedded/meta-networking &quot;<br>#BBLAYERS +=3D &quot; ${BSPDIR}/sourc=
-es/meta-openembedded/meta-iot-cloud&quot;<br>BBLAYERS +=3D &quot; ${BSPDIR}=
-/sources/meta-openembedded/meta-python &quot;<br>BBLAYERS +=3D &quot; ${BSP=
-DIR}/sources/meta-openembedded/meta-filesystems &quot;<br>BBLAYERS +=3D &qu=
-ot; ${BSPDIR}/sources/meta-openembedded/meta-webserver &quot;<br>BBLAYERS +=
-=3D &quot; ${BSPDIR}/sources/meta-qt5 &quot;<br>BBLAYERS +=3D &quot; ${BSPD=
-IR}/sources/meta-selinux &quot;</font><br></div><div><font color=3D"#0000ff=
-"><br></font></div><div><b style=3D""><font color=3D"#000000" size=3D"4">bu=
-ild/conf/local.conf</font></b></div><div>MACHINE ??=3D &#39;imx8mqevk&#39;<=
-br>DISTRO ?=3D &#39;fsl-imx-wayland&#39;<br>PACKAGE_CLASSES ?=3D &quot;pack=
-age_rpm&quot;<br>EXTRA_IMAGE_FEATURES ?=3D &quot;debug-tweaks&quot;<br>USER=
-_CLASSES ?=3D &quot;buildstats image-mklibs image-prelink&quot;<br>PATCHRES=
-OLVE =3D &quot;noop&quot;<br>BB_DISKMON_DIRS ??=3D &quot;\<br>=C2=A0 =C2=A0=
- STOPTASKS,${TMPDIR},1G,100K \<br>=C2=A0 =C2=A0 STOPTASKS,${DL_DIR},1G,100K=
- \<br>=C2=A0 =C2=A0 STOPTASKS,${SSTATE_DIR},1G,100K \<br>=C2=A0 =C2=A0 STOP=
-TASKS,/tmp,100M,100K \<br>=C2=A0 =C2=A0 ABORT,${TMPDIR},100M,1K \<br>=C2=A0=
- =C2=A0 ABORT,${DL_DIR},100M,1K \<br>=C2=A0 =C2=A0 ABORT,${SSTATE_DIR},100M=
-,1K \<br>=C2=A0 =C2=A0 ABORT,/tmp,10M,1K&quot;<br>PACKAGECONFIG_append_pn-q=
-emu-native =3D &quot; sdl&quot;<br>PACKAGECONFIG_append_pn-nativesdk-qemu =
-=3D &quot; sdl&quot;<br>CONF_VERSION =3D &quot;1&quot;<br><br>#DISTRO_FEATU=
-RES_remove =3D &quot; sysvinit&quot;<br>#DISTRO_FEATURES_append =3D &quot; =
-systemd&quot;<br>#VIRTUAL-RUNTIME_init_manager =3D &quot;systemd&quot;<br>#=
-DISTRO_FEATURES_BACKFILL_CONSIDERED =3D &quot;&quot;<br><br>#DISTRO_FEATURE=
-S_append +=3D &quot; alsa bluez5&quot;<br>DISTRO_FEATURES_append =3D &quot;=
-acl xattr pam selinux&quot;<br><br># Srini : Lowered the version to make it=
- compatible with ASTERISK VOIP package commandline.<br>PREFERRED_VERSION_li=
-bedit =3D &quot;2012*&quot;<br>#PREFERRED_VERSION_refpolicy-minimum =3D &qu=
-ot;2.20151208&quot;<br>#PREFERRED_VERSION_refpolicy =3D &quot;2.20151208&qu=
-ot;<br>=C2=A0PREFERRED_PROVIDER_virtual/refpolicy ?=3D &quot;refpolicy-stan=
-dard&quot;<br></div><br>IMAGE_INSTALL_append +=3D &quot; libedit&quot;<br>I=
-MAGE_INSTALL_append +=3D &quot; paho-mqtt-c&quot;<br><br>IMAGE_INSTALL_appe=
-nd +=3D &quot; libxml2&quot;<br>IMAGE_INSTALL_append +=3D &quot; iptables&q=
-uot;<br>IMAGE_INSTALL_append +=3D &quot; lksctp-tools&quot;<br>#IMAGE_INSTA=
-LL_append +=3D &quot; asterisk&quot;<br>CORE_IMAGE_EXTRA_INSTALL +=3D &quot=
-;python3 python3-pip&quot;<br>#CORE_IMAGE_EXTRA_INSTALL +=3D &quot;packageg=
-roup-cloud-azure&quot;<br>IMAGE_INSTALL_append +=3D &quot;packagegroup-core=
--selinux&quot;<br># Light weight web server. Enabled Python for CGI support=
-<br>IMAGE_INSTALL_append +=3D &quot; sthttpd&quot;<br>IMAGE_INSTALL_append =
-+=3D &quot; python3&quot;<br><br># To configure Audio<br>IMAGE_INSTALL_appe=
-nd +=3D &quot; alsa-utils&quot;<br>IMAGE_INSTALL_append +=3D &quot; gstream=
-er&quot;<br>IMAGE_INSTALL_append +=3D &quot; mosquitto&quot;<br>IMAGE_INSTA=
-LL_append +=3D &quot; e2fsprogs parted&quot;<br>#IMAGE_INSTALL_remove +=3D =
-&quot; libedit&quot;<br><br>BBMASK +=3D &quot;${BSPDIR}/sources/meta-teleph=
-ony/recipes-misc/lksctp-tools/&quot;<br>BBMASK +=3D &quot;${BSPDIR}/sources=
-/meta-telephony/recipes-devtools/&quot;<br><br>DL_DIR ?=3D &quot;${BSPDIR}/=
-downloads/&quot;<br>ACCEPT_FSL_EULA =3D &quot;1&quot;<br><div><br></div><di=
-v><font color=3D"#0000ff"><br></font></div>-- <br><div dir=3D"ltr" class=3D=
-"gmail_signature" data-smartmail=3D"gmail_signature">Thanks&amp;Regards<br>=
-Veerender.</div></div></div>
+Hi,
 
---000000000000f1bb100593d5bcb2--
+
+
+I am getting the below error when I am trying to integrate 'meta-selinux' i=
+nto our yocto solution. This error also happens when I just build 'core-ima=
+ge-selinux' by including the required layers in warrior branch. Can anyone =
+provide a fix for this..
+
+
+
+local.conf contains the following lines:
+
+---------
+
+DISTRO_FEATURES_append =3D " acl xattr pam selinux"
+
+PREFERRED_PROVIDER_virtual/refpolicy ?=3D "refpolicy-mls"
+
+---------
+
+
+
+ERROR: glib-2.0-native-1_2.58.3-r0 do_configure: meson failed
+
+ERROR: glib-2.0-native-1_2.58.3-r0 do_configure: Function failed: do_config=
+ure (log file is located at /home/panther2/warrior/build/tmp/work/x86_64-li=
+nux/glib-2.0-native/1_2.58.3-r0/temp/log.do_configure.34545)
+
+ERROR: Logfile of failure stored in: /home/panther2/warrior/build/tmp/work/=
+x86_64-linux/glib-2.0-native/1_2.58.3-r0/temp/log.do_configure.34545
+
+Log data follows:
+
+| DEBUG: Executing shell function do_configure
+
+| NOTE: Executing meson -Ddtrace=3Dfalse -Dfam=3Dfalse -Dsystemtap=3Dfalse =
+-Dselinux=3Dfalse -Dlibmount=3Dtrue -Dman=3Dfalse -Dselinux=3Ddisabled -Din=
+ternal_pcre=3Dfalse -Dinstalled_tests=3Dfalse...
+
+| The Meson build system
+
+| Version: 0.49.2
+
+| Source dir:
+
+| /home/panther2/warrior/build/tmp/work/x86_64-linux/glib-2.0-native/1_2
+
+| .58.3-r0/glib-2.58.3 Build dir:
+
+| /home/panther2/warrior/build/tmp/work/x86_64-linux/glib-2.0-native/1_2
+
+| .58.3-r0/build
+
+| Build type: native build
+
+|
+
+| meson.build:1:0: ERROR:  Value disabled is not boolean (true or false).
+
+|
+
+| A full log can be found at
+
+| /home/panther2/warrior/build/tmp/work/x86_64-linux/glib-2.0-native/1_2
+
+| .58.3-r0/build/meson-logs/meson-log.txt
+
+| ERROR: meson failed
+
+
+
+Thanks,
+
+Raxesh
+
+
+--_000_CY4PR15MB18783DA507FC9EBF565795B5FD9D0CY4PR15MB1878namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:"Calibri",sans-serif;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoPlainText">Hi,<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">I am getting the below error when I am trying to =
+integrate 'meta-selinux' into our yocto solution. This error also happens w=
+hen I just build 'core-image-selinux' by including the required layers in w=
+arrior branch. Can anyone provide
+ a fix for this.. <o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">local.conf contains the following lines:<o:p></o:=
+p></p>
+<p class=3D"MsoPlainText">---------<o:p></o:p></p>
+<p class=3D"MsoPlainText">DISTRO_FEATURES_append =3D &quot; acl xattr pam s=
+elinux&quot; <o:p></o:p></p>
+<p class=3D"MsoPlainText">PREFERRED_PROVIDER_virtual/refpolicy ?=3D &quot;r=
+efpolicy-mls&quot;<o:p></o:p></p>
+<p class=3D"MsoPlainText">---------<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">ERROR: glib-2.0-native-1_2.58.3-r0 do_configure: =
+meson failed<o:p></o:p></p>
+<p class=3D"MsoPlainText">ERROR: glib-2.0-native-1_2.58.3-r0 do_configure: =
+Function failed: do_configure (log file is located at /home/panther2/warrio=
+r/build/tmp/work/x86_64-linux/glib-2.0-native/1_2.58.3-r0/temp/log.do_confi=
+gure.34545)<o:p></o:p></p>
+<p class=3D"MsoPlainText">ERROR: Logfile of failure stored in: /home/panthe=
+r2/warrior/build/tmp/work/x86_64-linux/glib-2.0-native/1_2.58.3-r0/temp/log=
+.do_configure.34545<o:p></o:p></p>
+<p class=3D"MsoPlainText">Log data follows:<o:p></o:p></p>
+<p class=3D"MsoPlainText">| DEBUG: Executing shell function do_configure<o:=
+p></o:p></p>
+<p class=3D"MsoPlainText">| NOTE: Executing meson -Ddtrace=3Dfalse -Dfam=3D=
+false -Dsystemtap=3Dfalse -Dselinux=3Dfalse -Dlibmount=3Dtrue -Dman=3Dfalse=
+ -Dselinux=3Ddisabled -Dinternal_pcre=3Dfalse -Dinstalled_tests=3Dfalse...<=
+o:p></o:p></p>
+<p class=3D"MsoPlainText">| The Meson build system<o:p></o:p></p>
+<p class=3D"MsoPlainText">| Version: 0.49.2<o:p></o:p></p>
+<p class=3D"MsoPlainText">| Source dir: <o:p></o:p></p>
+<p class=3D"MsoPlainText">| /home/panther2/warrior/build/tmp/work/x86_64-li=
+nux/glib-2.0-native/1_2<o:p></o:p></p>
+<p class=3D"MsoPlainText">| .58.3-r0/glib-2.58.3 Build dir: <o:p></o:p></p>
+<p class=3D"MsoPlainText">| /home/panther2/warrior/build/tmp/work/x86_64-li=
+nux/glib-2.0-native/1_2<o:p></o:p></p>
+<p class=3D"MsoPlainText">| .58.3-r0/build<o:p></o:p></p>
+<p class=3D"MsoPlainText">| Build type: native build<o:p></o:p></p>
+<p class=3D"MsoPlainText">|<o:p></o:p></p>
+<p class=3D"MsoPlainText">| meson.build:1:0: ERROR:&nbsp; Value disabled is=
+ not boolean (true or false).<o:p></o:p></p>
+<p class=3D"MsoPlainText">|<o:p></o:p></p>
+<p class=3D"MsoPlainText">| A full log can be found at <o:p></o:p></p>
+<p class=3D"MsoPlainText">| /home/panther2/warrior/build/tmp/work/x86_64-li=
+nux/glib-2.0-native/1_2<o:p></o:p></p>
+<p class=3D"MsoPlainText">| .58.3-r0/build/meson-logs/meson-log.txt<o:p></o=
+:p></p>
+<p class=3D"MsoPlainText">| ERROR: meson failed<o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Thanks,<o:p></o:p></p>
+<p class=3D"MsoPlainText">Raxesh<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_CY4PR15MB18783DA507FC9EBF565795B5FD9D0CY4PR15MB1878namp_--
