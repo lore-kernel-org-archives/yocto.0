@@ -1,36 +1,46 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <mauro@faresoftware.it>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3661BE00C9B; Wed,  2 Oct 2019 15:20:09 -0700 (PDT)
+	id 91DDFE00D16; Wed,  2 Oct 2019 15:33:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 90076E00C9B
-	for <yocto@yoctoproject.org>; Wed,  2 Oct 2019 15:20:08 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	02 Oct 2019 15:20:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,249,1566889200"; d="scan'208";a="191929011"
-Received: from seok-mobl.gar.corp.intel.com (HELO localhost.localdomain)
-	([10.249.72.235])
-	by fmsmga007.fm.intel.com with ESMTP; 02 Oct 2019 15:20:05 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: openembedded-core@lists.openembedded.org, yocto@yoctoproject.org
-Date: Thu, 03 Oct 2019 11:20:02 +1300
-Message-ID: <4192571.iDR9UPTnyj@localhost.localdomain>
-Organization: Intel Corporation
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [62.149.156.146 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from smtpcmd13146.aruba.it (smtpcmd13146.aruba.it [62.149.156.146])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FD39E00B8A
+	for <yocto@yoctoproject.org>; Wed,  2 Oct 2019 15:32:58 -0700 (PDT)
+Received: from [192.168.24.172] ([93.38.119.136])
+	by smtpcmd13.ad.aruba.it with bizsmtp
+	id 8mYx2100D2wfazh01mYx4Q; Thu, 03 Oct 2019 00:32:57 +0200
+To: Khem Raj <raj.khem@gmail.com>
+References: <57431d78-2438-81da-7972-e93cc91c44c4@faresoftware.it>
+	<CAMKF1soerAwz8qOC0P=aDW0usnbL_rUKAAYNiWKVm4t4x8QOSA@mail.gmail.com>
+From: Mauro Ziliani <mauro@faresoftware.it>
+Message-ID: <7860c471-252c-2097-12b2-b3f3eab400fa@faresoftware.it>
+Date: Thu, 3 Oct 2019 00:32:57 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.9.0
 MIME-Version: 1.0
-Subject: 3.0 release notes / migration guide
+In-Reply-To: <CAMKF1soerAwz8qOC0P=aDW0usnbL_rUKAAYNiWKVm4t4x8QOSA@mail.gmail.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1570055577; bh=NLvLh2pw5RBh94da/Pd5VExbBmp8uGDX/mxgqHwyjQE=;
+	h=Subject:To:From:Date:MIME-Version:Content-Type;
+	b=HXrFfr5FJnsu+/9ymePhfP89LgE6o3gGXDyku2pU9buAhxWpCcJzzZU4SyMPYIc5B
+	tE+MnCmsEqOMqMvy7C1H1EZdkxc6GY4dnwubeUe5Bw/Ik/I/azlT0J0E3HBneC+bon
+	0bczx018f7LFT69i3rmkZE0DbkVnyM+tCWK7kLIldaFD8Oq6vedG6ygCYJpJ4vKJfA
+	brH+Ug1gPPKKhKusCZ7mHg9EDnJ2H7PaajkuOl8gLEPq2N+CNLmR2uRbKdrJuvj8c4
+	vtWwtej58qyjSY2XLKjX6+9AC+fWxwhp/qbpK/it35D+AjFLDF44BnY5dXoQoAV/R/
+	eKpHe1huIipBg==
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: python3 pygame under Pyro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,60 +52,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Oct 2019 22:20:09 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 02 Oct 2019 22:33:00 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: it
 
-Hi folks
+Adding libsdl2 to DEPENDS i get sdl2-config under the folder
 
-So it's that time again - we need to start building up the raw material for 
-the release notes and migration guide for the upcoming 3.0 release, and I'd 
-like to request some help with some parts of it - read on for details.
+tmp/work/armv7at2hf-neon-fslc-linux-gnueabi/python3-pygame/1.9.6-r0/recipe-sysroot/usr/bin/crossscripts/sdl2-config
 
-For the migration guide we have a wiki page serving as a staging area:
-
-  https://wiki.yoctoproject.org/wiki/FutureMigrationGuide
-
-Things that should go in the migration guide: *anything* in the release that 
-would require someone who is upgrading to take some form of action (i.e. 
-change their configuration / recipes / etc.) Help with this from people who 
-implemented the changes or have already thought about / dealt with their 
-impact would be much appreciated.
-
-There is a process where I look through all the commits since the last release 
-and pull out the ones that need to be mentioned in some form - other than the 
-migration guide items, the following needs to be gathered for the release 
-notes:
-
-1) Features - new functionality. We need to capture what the feature is and 
-hopefully express the impact to the user succinctly.
-
-2) Recipe upgrades - straightforward
-
-3) CVE fixes - fairly straightforward, I just look for commits that explicitly 
-mention "CVE". If I can easily do so I'll also note where a recipe upgrade 
-fixes a CVE, but that isn't often readily available information.
-
-4) Known issues - generally this is difficult to get from the commits since we 
-either find out about them after the commit that introduced the issue, or we 
-don't know that they aren't addressed until right at the end of the release. 
-We don't want to note *all* open bugs, but if there's something that the user 
-is likely to hit that wasn't an issue in the previous release then we should 
-note it.
-
-For the release notes I need help with #4 and #1 in particular, so if you know 
-about anything in this release that falls into these categories then let me 
-know - just a pointer to the commit and any extra comments that you would want 
-to make would be helpful. In the mean time I will start the process of looking 
-through the commits and will add things to the migration guide page, but bear 
-in mind I don't always have all of the context for every change.
-
-Thanks!
-Paul
-
--- 
-Paul Eggleton
-Intel Open Source Technology Centre
-
-
+Il 03/10/19 00:01, Khem Raj ha scritto:
+> On Wed, Oct 2, 2019 at 2:46 PM Mauro Ziliani <mauro@faresoftware.it> wrote:
+>> Hi all.
+>>
+>> I'm trying to build python3-pygame for and imx6dl board in Pyro.
+>>
+>> Pygame needs SDL, but I don't know how to tell to bitbake for compile
+>> sdl before pygame.
+>>
+>>
+>> I put libsdl-native into DEPENDS but doesn't work.
+>>
+>>
+>> bitbake try to run sdl-config but it cannot find the file.
+>>
+>>
+>> Any idea?
+>>
+> Does, DEPENDS += "libsdl2" help ?
+>> Best regards,
+>>
+>>     MZ
+>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
