@@ -1,121 +1,126 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <MohammadJamal.Mohiuddin@ncr.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6A782E00D89; Wed,  2 Oct 2019 16:32:15 -0700 (PDT)
+	id F331CE00D5F; Wed,  2 Oct 2019 21:40:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.214.195 listed in list.dnswl.org]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [148.163.152.55 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com
-	[209.85.214.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42A89E00C9B
-	for <yocto@yoctoproject.org>; Wed,  2 Oct 2019 16:32:14 -0700 (PDT)
-Received: by mail-pl1-f195.google.com with SMTP id t10so576399plr.8
-	for <yocto@yoctoproject.org>; Wed, 02 Oct 2019 16:32:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=GgdWbiV2qu5VnO38QIFguys2vfjE+ozXIATN3hCF3hQ=;
-	b=sFwGsxE+tpiEloSXICYuzqBfXX3TOTlNvLkNYHB7GiD05S5qQq1ub/bIOuT8OUvQu2
-	Xp0WnyONkzZnu6067fW3DLfFkjsadWQobGYrMed7TQ274BDd74q0M266bTMvjmW7fPX/
-	Ol9CQ+jeGcSRyhimI5h+4k/rhMIgNCSm6b4Rh0EBikB+qkOi7IAmuQB1QQTVNKgA2rtg
-	sGBFH/UQtHDzxI7T87IbU8iEDWWt7lRuY75MuHCZqsJTMcwPU8OfGi4lgKCJyPkJYMNQ
-	5cZrExw4o0ks6LeloWh5t7xh+SqMqYwfSJaJ4SH1dS3Vdln80gyc5XvZVhK1HjwDxtMJ
-	DNog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-transfer-encoding:content-language;
-	bh=GgdWbiV2qu5VnO38QIFguys2vfjE+ozXIATN3hCF3hQ=;
-	b=DG+RqVkgGzqBLnmr6LmxGxEQA2aFaM4aa3QUUYWC0ZfSiINRJjrUK8mYav0IgbHbrX
-	WK1JJoTj7A8hGl8YqIyo/5zkoyD7wRK/1VW4ppff26j9P/OpEzCwYoizkqdm2EfaN02F
-	yaW0YPLjgSEAViSHlIgMUGPSihXKHY4dJHFXXouV72fnllp6POa3+acCeQQ1CslrWFEb
-	k+Px3hsEixP7Ym4f0BI5VKDPhDwr7ZzCuiI/EiTJTLAin/E0ClhLScKW8YiusEc4Gbuz
-	FIaJ1yl5FlU8Xns39uIa0xdwSHlRNA8bcfxuczmzD+71755L+nFUkfKrc/ExYdwHILEo
-	N+yA==
-X-Gm-Message-State: APjAAAXJa0vtPQ9tAHGrsmhM7sOOwV7SUFIwvNzI8lvoHGBKGVuZP5os
-	Bx9Cr0OOxkJ2DdwPWNQN0mJ0ntZ4Qwo=
-X-Google-Smtp-Source: APXvYqxlBO1XE8mjMhO5OrdWAYWzqTJMG74i2Qgu7rWVWbItpbRXPZq5vl/vNHRxKvTvZ3JZ0pMNsw==
-X-Received: by 2002:a17:902:8e86:: with SMTP id
-	bg6mr6620198plb.212.1570059133529; 
-	Wed, 02 Oct 2019 16:32:13 -0700 (PDT)
-Received: from ?IPv6:2601:202:4180:a5c0:2c5e:3326:62f0:95f9?
-	([2601:202:4180:a5c0:2c5e:3326:62f0:95f9])
-	by smtp.gmail.com with ESMTPSA id c6sm440659pgk.65.2019.10.02.16.32.12
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 02 Oct 2019 16:32:12 -0700 (PDT)
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <4192571.iDR9UPTnyj@localhost.localdomain>
-	<93d8fa4a-c6ee-a529-5dec-f2b9857c0228@gmail.com>
-	<4021250.qhsO4ulJn3@localhost.localdomain>
-From: akuster808 <akuster808@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
-	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
-	8CS2NxU=
-Message-ID: <c00c3fe6-824f-5d97-a228-54a30f8bc5c3@gmail.com>
-Date: Wed, 2 Oct 2019 16:32:11 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+X-Greylist: delayed 4998 seconds by postgrey-1.32 at yocto-www;
+	Wed, 02 Oct 2019 21:40:13 PDT
+Received: from mx0b-00209e01.pphosted.com (mx0b-00209e01.pphosted.com
+	[148.163.152.55])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B95CDE00D38
+	for <yocto@yoctoproject.org>; Wed,  2 Oct 2019 21:40:13 -0700 (PDT)
+Received: from pps.filterd (m0094031.ppops.net [127.0.0.1])
+	by mx0b-00209e01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+	x9338vrq017840
+	for <yocto@yoctoproject.org>; Wed, 2 Oct 2019 23:16:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ncr.com;
+	h=from : to : cc : subject
+	: date : message-id : content-type : mime-version; s=mail;
+	bh=xR0TS+44CTnWef5hjvQbYmNwNaZX6Kdkhu8OmoFyGGE=;
+	b=RLna/E97JtwDKeHNStWUD74DG0r/JEbB4+Q0PUvkO4m+rJvB3ST+OCkomBetU1tgYBA4
+	ZrSMQ25sRELCIqTM6y4fjJGEVdIlrO9lPwXONrzMu4ff8tYjTJDRrBsGJ18zSEEZJJ09
+	Qf/DfgRlLpRvtLBkvnGeqCDg5cnG0w+hpOB+cnlszIPAhcXaRY3c3awgJrOkg3SvmXsW
+	g5f0hjXPliPyto4kv3+LFHMou1IyJRrUZaYf+0weeF50ZQuMxQ4MITjwbg9JQZsioh3D
+	7aJCFT1p79wZnJb6FiuXVhE47QjviMviqcP2sKEeK5kZ7XYbQdtn+aLkmGui23d4rCyP
+	pA== 
+Received: from nam01-by2-obe.outbound.protection.outlook.com
+	(mail-by2nam01lp2050.outbound.protection.outlook.com [104.47.34.50])
+	by mx0b-00209e01.pphosted.com with ESMTP id 2vd31s974j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT)
+	for <yocto@yoctoproject.org>; Wed, 02 Oct 2019 23:16:54 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+	b=hZbzQX+F7hoTK3V6BBQYqUIV0cC9Rp89+Kva4kUKFZd+psYbg+ii3ucbTfyC6txdXQnPtBECk/yKGe5ekLBUfqoOO21XTbIv+R9fp+jkw3i8WiiQqixt+aoLv07HY0eIkUXRD60xnReUzCz+Ce5sHLIXdbll2Nr9Yez2UvFcGf/AZHWxGT/+p7ZVr+vF/MPkELeC+kelRATetrLQkdL8idYZMKd5UXyHZO18wslte77h3gPT3evygMsYm1YEmLRhtXqpWxsGLbZCwPRTmepPTyzO3fSImQ151ziyBXGsDfyNV+voTKlOvKjAbfJXAuHQ+2oTzdVpxOeqv7XkI2eo9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+	s=arcselector9901;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=xR0TS+44CTnWef5hjvQbYmNwNaZX6Kdkhu8OmoFyGGE=;
+	b=Tj2eAjWFytl2RYA30s26YOqxFsLWcBRDsW5GhRi/GIGp0Jo887v8cpLZrZCFODdOVjkCNfuFeTRsNkxbsGs8DJjdEUCOi5TkHKqACSrAk4YvwqTfLIWcSjze6XNioVnVW7qngTjK1xZfrR/sMXeN6SwpVouwjxNllYFkXqcuxP73+FxN0Ka8BGn3q6yg+nTW+hwGBMkDdJtVuY9QZ7pC2Ue0ckeXUysU0zYpw4VlQlC9DX7CgeHzAd1RQrz2yQnpGhG38Q7VHxZSeEX5VfR+JftPQhKuhaHb8d93K2PSgJhWVXBrPJ3yLy+Au+Fgwbsroxsgwnsg+mla8+YTDHNpYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+	smtp.mailfrom=ncr.com; dmarc=pass action=none header.from=ncr.com;
+	dkim=pass header.d=ncr.com; arc=none
+Received: from BYAPR15MB2693.namprd15.prod.outlook.com (20.179.156.222) by
+	BYAPR15MB2615.namprd15.prod.outlook.com (20.179.155.220) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.2305.20; Thu, 3 Oct 2019 03:16:52 +0000
+Received: from BYAPR15MB2693.namprd15.prod.outlook.com
+	([fe80::7ce5:cc64:3200:bbd9]) by
+	BYAPR15MB2693.namprd15.prod.outlook.com
+	([fe80::7ce5:cc64:3200:bbd9%2]) with mapi id 15.20.2305.023;
+	Thu, 3 Oct 2019 03:16:52 +0000
+From: "Mohammad, Jamal M" <MohammadJamal.Mohiuddin@ncr.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Clamav fails at configure stage when including pcre
+Thread-Index: AdV5mPBgLNe+OQogQAKOB+vXpt9jew==
+Date: Thu, 3 Oct 2019 03:16:51 +0000
+Message-ID: <BYAPR15MB26932E8C48A902DEFC4C6D43F09F0@BYAPR15MB2693.namprd15.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Enabled=True;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_SiteId=ae4df1f7-611e-444f-897e-f964e1205171;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Owner=mm185399@ncr.com; 
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_SetDate=2019-10-03T03:16:49.1086231Z;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Name=Confidential;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Application=Microsoft
+	Azure Information Protection;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_ActionId=7275386c-e918-4cc1-99c1-fb9028f9e2e9;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Extended_MSFT_Method=Manual
+x-originating-ip: [165.225.104.86]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 812f32e0-c576-4a13-a443-08d747b02310
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: BYAPR15MB2615:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BYAPR15MB2615754D4AAF6921152E52E2F09F0@BYAPR15MB2615.namprd15.prod.outlook.com>
+x-from-ncr-tenant: Processed
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 01792087B6
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(4636009)(39860400002)(376002)(136003)(396003)(366004)(346002)(199004)(189003)(53754006)(54896002)(6306002)(4744005)(99286004)(55016002)(486006)(66066001)(5640700003)(6916009)(6506007)(5660300002)(52536014)(2906002)(86362001)(9686003)(3846002)(6116002)(790700001)(9326002)(6436002)(2501003)(14454004)(8936002)(316002)(2351001)(81156014)(81166006)(8676002)(1730700003)(4326008)(33656002)(76116006)(14444005)(256004)(54906003)(476003)(7736002)(74316002)(66446008)(64756008)(66556008)(66476007)(66946007)(55236004)(102836004)(25786009)(7696005)(478600001)(71200400001)(71190400001)(26005)(186003);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BYAPR15MB2615;
+	H:BYAPR15MB2693.namprd15.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: ncr.com does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: eJDiUaUZh2U6/8KYISBtTIPQW3ehtqm1yrs/KYmeIKGKbFKkJrd82jsbXcZrw+zYsbXrfxDcg8g2BQBpW7TrxqJjilCIdrIKIvD9g3e6esPcQDmSck3kE0n0Fn7papO87DEPEdx1tiYt/mXpPFJu8IqJkvnFf6Dry6JXiaXi+1PMG2j0KeG8SWNuLUFCqKiTWbbVRlcXJWovCon2PNtOrgEpngnqFgBM/OPBJiRBW1NudEJXLUviBIuBj75Qjw2u6AibH560bvcqdeW5xxQ44GMplSnPDEOzbQAxVWnBreAdx9boEjnBY6SDDFuOWGWgZ+z7idGp2gPaHUmZsqB7+nSIMotP7/SWF1ALrolJxDXo2hxRFx6bt0nQzIvT9Kwdu10rPgOIn5MV7Nb3Bzwm3mKOx40GT92ViYYjG94c1SY=
 MIME-Version: 1.0
-In-Reply-To: <4021250.qhsO4ulJn3@localhost.localdomain>
-Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
-Subject: Re: [OE-core] 3.0 release notes / migration guide
+X-OriginatorOrg: ncr.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 812f32e0-c576-4a13-a443-08d747b02310
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Oct 2019 03:16:52.1555 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: ae4df1f7-611e-444f-897e-f964e1205171
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: NBGxQzq4ivc8n9hB4EW9oPyosPgBA2WBJFxrsqDiD5TUmVTt0Nb4KeprtNlL++rlrjzt3c0ofYUdYqD42QQ4Jw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR15MB2615
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+	definitions=2019-10-03_01:2019-10-01,2019-10-03 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+	mlxscore=0 malwarescore=0
+	spamscore=0 suspectscore=0 clxscore=1011 adultscore=0 impostorscore=0
+	lowpriorityscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=999
+	phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+	engine=8.12.0-1908290000 definitions=main-1910030029
+Cc: "C M, Kiran Reddy" <kiran.reddy@ncr.com>, "Oriya,
+	Raxesh" <Raxeshkumar.Oriya@ncr.com>
+Subject: Clamav fails at configure stage when including pcre
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -127,66 +132,142 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Oct 2019 23:32:15 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 03 Oct 2019 04:40:15 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BYAPR15MB26932E8C48A902DEFC4C6D43F09F0BYAPR15MB2693namp_"
+
+--_000_BYAPR15MB26932E8C48A902DEFC4C6D43F09F0BYAPR15MB2693namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi All,
+
+To avoid lot of PCRE Warning messages which appear when we try to run 'clam=
+scan'.
+
+I have added the following line in my local.conf file to include PCRE suppo=
+rt in clamav.
+
+PACKAGECONFIG_append_pn-clamav =3D " pcre"
+
+When I now build clamav using bitbake, it fails at the configuration stage =
+with the following error:
+
+| checking for X509_VERIFY_PARAM_new in -lssl... yes
+| checking for libjson installation... no
+| checking for pcre2-config... no
+| checking for pcre-config... no
+| configure: error: cannot locate libpcre2 or libpcre at /home/panther2/pan=
+ther2_warrior/build/tmp/work/corei7-64-poky-linux/clamav/0.99.4-r0/recipe-s=
+ysroot/usr/lib64
+| WARNING: exit code 1 from a shell command.
+| ERROR: Function failed: do_configure (log file is located at /home/panthe=
+r2/panther2_warrior/build/tmp/work/corei7-64-poky-linux/clamav/0.99.4-r0/te=
+mp/log.do_configure.81033)
+
+Can you please provide a solution to this problem.
+
+Regards,
+Jamal,
+Software Specialist,
+NCR Corporation
 
 
+--_000_BYAPR15MB26932E8C48A902DEFC4C6D43F09F0BYAPR15MB2693namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/2/19 3:57 PM, Paul Eggleton wrote:
-> On Thursday, 3 October 2019 11:44:53 AM NZDT akuster808 wrote:
->> On 10/2/19 3:20 PM, Paul Eggleton wrote:
->>> So it's that time again - we need to start building up the raw material for 
->>> the release notes and migration guide for the upcoming 3.0 release, and I'd 
->>> like to request some help with some parts of it - read on for details.
->>>
->>> For the migration guide we have a wiki page serving as a staging area:
->>>
->>>   https://wiki.yoctoproject.org/wiki/FutureMigrationGuide
->> Thanks for putting this together.
-> No problem!
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
->>> Things that should go in the migration guide: *anything* in the release that 
->>> would require someone who is upgrading to take some form of action (i.e. 
->>> change their configuration / recipes / etc.) Help with this from people who 
->>> implemented the changes or have already thought about / dealt with their 
->>> impact would be much appreciated.
->>>
->>> There is a process where I look through all the commits since the last release 
->>> and pull out the ones that need to be mentioned in some form - other than the 
->>> migration guide items, the following needs to be gathered for the release 
->>> notes:
->>>
->>> 1) Features - new functionality. We need to capture what the feature is and 
->>> hopefully express the impact to the user succinctly.
->> We remove LSB support.
-> Thanks - I've just added that to the migration guide and will note it in the release notes.
->
->>> 2) Recipe upgrades - straightforward
->>>
->>> 3) CVE fixes - fairly straightforward, I just look for commits that explicitly 
->>> mention "CVE". If I can easily do so I'll also note where a recipe upgrade 
->>> fixes a CVE, but that isn't often readily available information.
->> So how can the community help in this case? Better commit messages?
-> That would be great - but it does require the person doing the upgrade to look
-> upstream, and of course every upstream is different. Unfortunately with some
-> upstreams finding fixed CVE information is quite difficult indeed.
->
->> Well, aren't open defects not fixed by the time we release time but we
->> intend on fixing after release a form of known issues ?
-> Yes, that's true - I will say we haven't been particularly systematic about the
-> known issues in past releases so perhaps we should drive the list from
-> bugzilla. I would want the list to be kept as short as possible though and each
-> item should succinctly describe the issue. 
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi All,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">To avoid lot of PCRE Warning messages which appear w=
+hen we try to run &#8216;clamscan&#8217;.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have added the following line in my local.conf fil=
+e to include PCRE support in clamav.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><i>PACKAGECONFIG_append_pn-clamav =3D &quot; pcre&qu=
+ot;<o:p></o:p></i></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">When I now build clamav using bitbake, it fails at t=
+he configuration stage with the following error:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">| checking for X509_VERIFY_PARAM_new in -lssl... yes=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">| checking for libjson installation... no<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">| checking for pcre2-config... no<o:p></o:p></p>
+<p class=3D"MsoNormal">| checking for pcre-config... no<o:p></o:p></p>
+<p class=3D"MsoNormal">| configure: error: cannot locate libpcre2 or libpcr=
+e at /home/panther2/panther2_warrior/build/tmp/work/corei7-64-poky-linux/cl=
+amav/0.99.4-r0/recipe-sysroot/usr/lib64<o:p></o:p></p>
+<p class=3D"MsoNormal">| WARNING: exit code 1 from a shell command.<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">| ERROR: Function failed: do_configure (log file is =
+located at /home/panther2/panther2_warrior/build/tmp/work/corei7-64-poky-li=
+nux/clamav/0.99.4-r0/temp/log.do_configure.81033)<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Can you please provide a solution to this problem.<o=
+:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Jamal,<o:p></o:p></p>
+<p class=3D"MsoNormal">Software Specialist,<o:p></o:p></p>
+<p class=3D"MsoNormal">NCR Corporation<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-Maybe something the Yocto Bug triage team could possible assist in.   I
-will bring it up tomorrow morning.
-
-- armin
-
-> Cheers
-> Paul
->
-
-
+--_000_BYAPR15MB26932E8C48A902DEFC4C6D43F09F0BYAPR15MB2693namp_--
