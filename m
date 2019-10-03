@@ -1,46 +1,54 @@
-Return-Path: <Randy.MacLeod@windriver.com>
+Return-Path: <vineela.tummalapalli@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3AF6EE00D98; Thu,  3 Oct 2019 11:44:18 -0700 (PDT)
+	id 3EBBEE00D8B; Thu,  3 Oct 2019 15:00:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93A23E00D4A
-	for <yocto@yoctoproject.org>; Thu,  3 Oct 2019 11:44:16 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id x93Ii0js010893
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 3 Oct 2019 11:44:00 -0700 (PDT)
-Received: from [172.25.44.5] (172.25.44.5) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.468.0;
-	Thu, 3 Oct 2019 11:44:00 -0700
-To: phodina <phodina@protonmail.com>
-References: <iKxrudTDXgn2XHKttVPFe-_xTAbPoQUMbSBzr7r6Xza3vohxh9wPCRrFZo7bf1bgrQj_DKCt-5Ky7-dagX_blQpi_uZbWfnAvp7TDCCbh0U=@protonmail.com>
-	<8bb3f05c-966b-4076-6593-d042bb8240ad@gmail.com>
-	<6v81ntCcT70rvm2b8GwiRAeNSZSIEec-hUpr0hIN7HYR9RySExiu50vZaZM0jXSjiu2PYGbQ5mKn1e0cv3q13NlyJ5rwb6cdV0h1mpb9jXc=@protonmail.com>
-	<wNEOi-_A4sN9BRhUCA6bCldM2iWQIpgYPAYUaT3Gqku16wkJq_fXBk_jlOuoUZpFBv4T7_CqWpoA7Yl0I0rHbvrsYpI5g7FtdjQ36SyI2Xc=@protonmail.com>
-	<bb902393-3fc3-6b68-f418-3c2a4d3b189c@gmail.com>
-	<Ji28AOGAddYhx0MrDU5EjIkRSdwJCwFCsKtxE6zFAllu6lRRNxSKIJd_HoP2gWRr2U6Mkl1i-39AIVXKdnsWpiBIX40FA4DdGUqmy0zOGpA=@protonmail.com>
-	<e9a77cdd-8f1a-69d9-2d09-aed56c7d13b3@windriver.com>
-	<22BfbVtjbhONAXnU9qn5Y9CVM7XsrherXE1JZilwa7w2GWJIJOrFBWALmNOl10uWEfKSV99dcRjYTRCmUGPh6OcZbHUv5fyhYxhQw80UQIE=@protonmail.com>
-From: Randy MacLeod <randy.macleod@windriver.com>
-Message-ID: <cfeb299f-82f4-a44f-729b-ae3a796a4739@windriver.com>
-Date: Thu, 3 Oct 2019 14:43:59 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 880E4E00BE2;
+	Thu,  3 Oct 2019 15:00:05 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	03 Oct 2019 15:00:05 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.67,253,1566889200"; d="scan'208";a="392098912"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by fmsmga005.fm.intel.com with ESMTP; 03 Oct 2019 15:00:04 -0700
+Received: from orsmsx157.amr.corp.intel.com (10.22.240.23) by
+	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
+	(TLS) id 14.3.439.0; Thu, 3 Oct 2019 15:00:04 -0700
+Received: from orsmsx107.amr.corp.intel.com ([169.254.1.249]) by
+	ORSMSX157.amr.corp.intel.com ([169.254.9.194]) with mapi id
+	14.03.0439.000; Thu, 3 Oct 2019 15:00:04 -0700
+From: "Tummalapalli, Vineela" <vineela.tummalapalli@intel.com>
+To: "yocto-announce@lists.yoctoproject.org"
+	<yocto-announce@lists.yoctoproject.org>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+Thread-Topic: [yocto-announce] [ANNOUNCEMENT] Milestone 3 for Yocto Project
+	2.8 (yocto-2.8_M3) now available
+Thread-Index: AdV6L0HUHCZgQo0WRB6bJArqtFFv/w==
+Date: Thu, 3 Oct 2019 22:00:03 +0000
+Message-ID: <363DC7214F94884BBF80916755E7D65520773312@ORSMSX107.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMWQxMzRjMWItZjkwMC00YmI3LTliNDAtMmM1YjBjMjI4NzgwIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiWXpSbWh1WEtXcHVvTStaQ0loSTFrem5rNHY3MkcyTGczaGREK3B3TFRxdXpid3JwY3FCdTVXUzYwWjhSOGtRdyJ9
+x-ctpclassification: CTP_NT
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-In-Reply-To: <22BfbVtjbhONAXnU9qn5Y9CVM7XsrherXE1JZilwa7w2GWJIJOrFBWALmNOl10uWEfKSV99dcRjYTRCmUGPh6OcZbHUv5fyhYxhQw80UQIE=@protonmail.com>
-X-Originating-IP: [172.25.44.5]
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Awkward line wrapping in bash
+Subject: [yocto-announce] [ANNOUNCEMENT] Milestone 3 for Yocto Project 2.8 (yocto-2.8_M3) now available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,91 +60,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Oct 2019 18:44:18 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
-
-On 10/3/19 6:54 AM, phodina wrote:
-> Hi,
-> 
-> so I managed to minimize the build image and run it in QEMU. Now I build only poky, open-embedded and our own layer, containing minimal recipes. The problem with the awkward line wrapping is still present. Sometimes it doesn't come up until I change the size of terminal window.
-
-Is that on the master branch?
-
-> 
-> More interesting is that if I run `busybox sh` the issue is not present and the line wraps correctly.
-> 
-> The issue happens with ssh as well as serial.
-
-Interesting.
-
-> 
-> I tried to install the `xterm` pkg which has `resize` binary for changing the terminal window size, but without any luck.
-
-Why not?
-I know that the meta-overc devs added xterm to get resize:
-https://github.com/OverC/meta-overc/commit/729f50aef024db293986ff320713ddf46bcb300b
-
-> 
-> Kind regards
-> Petr
-
-Thanks for simplifying and testing again.
-If you want to continue to debug that would be great but
-you can also open a YP bugzilla defect. Include
-as much info as you can and perhaps a screenshot/image.
-
-../Randy
-> 
-> 
-> Sent with ProtonMail Secure Email.
-> 
-> ‐‐‐‐‐‐‐ Original Message ‐‐‐‐‐‐‐
-> On Thursday, September 19, 2019 8:45 PM, Randy MacLeod <randy.macleod@windriver.com> wrote:
-> 
->> On 9/19/19 11:43 AM, phodina wrote:
->>
->>> Hi,
->>> based on André recommendation I commented out the PS1 variable and now I get `-sh-4.4#` for the prompt. I also checked and nothing is overwriting the variable.
->>> But I tried to change the size of the shell by using `stty cols 100 rows 40` as well as different sizes (smaller and bigger than 80 columns), but the amount of characters I get on the line stays at 81 followed by carrige return. However if I record the session with `script` I get the correct amount of characters per line.
->>
->> If you are able to reproduce this problem on the master, or a
->> stable (1) branch with one of the supported qemu or HW BSPs (2),
->> please open a defect in:
->> https://bugzilla.yoctoproject.org/
->>
->> Please report the branch, what layers you are using (hopefully you
->> can reproduce it with just oe-core/poky + a HW layer) and
->> with a standard image.
->>
->> ../Randy
->>
->> (1) https://wiki.yoctoproject.org/wiki/Releases
->>
->> (2):
->> The list here is a good start, I'm not sure about the FSL support and
->> I suspect that minnow board is no longer relevant.
->>
->> https://bugzilla.yoctoproject.org/describecomponents.cgi?product=BSPs
->>
->> If your hardware isn't listed, and you can't reproduce the issue
->> in qemu or supported HW, you should contact your HW supplier.
->>
->> --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
->>
->> Randy MacLeod
->>
->> ==============
->>
->> Wind River Linux
->>
->> =================
-> 
-> 
+X-List-Received-Date: Thu, 03 Oct 2019 22:00:08 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
 
--- 
-# Randy MacLeod
-# Wind River Linux
+Hello,
+
+We are pleased to announce the third milestone release for Yocto Project 2.=
+8 (yocto-2.8_M3) is now available for download.
+
+Download:
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-2.8_M3
+
+bitbake: 797354d285f6d624d9adb52bab65823572da0e39
+meta-gplv2: 1e2480e50f34e55bdfd5e06f98441e03a3752d5a
+meta-intel: 655dfaec95196b9c0e15d34f490e4a51a7d501e3
+meta-mingw: 9df4e115ab9a7ab23f81fdbcc62b2a0269d6377f
+oecore: 95ad5626296380358c8a502a3e04879dab653d78
+poky: 81f9e815d36848761a9dfa94b00ad998bb39a4a6
+
+Full Test Report:
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-2.8_M3/te=
+streport.txt
+
+Thank you.
+Vineela Tummalapalli
+vineela.tummalapalli@intel.com
+Yocto Project Build and Release
 
