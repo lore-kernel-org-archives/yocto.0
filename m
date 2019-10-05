@@ -1,65 +1,61 @@
-Return-Path: <bruce.ashfield@gmail.com>
+Return-Path: <davis.roman84@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3DC3DE00C5C; Fri,  4 Oct 2019 10:43:12 -0700 (PDT)
+	id B4A32E00AB6; Fri,  4 Oct 2019 17:03:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (bruce.ashfield[at]gmail.com)
+	provider *      (davis.roman84[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.167.51 listed in list.dnswl.org]
+	*      [209.85.160.174 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com
-	[209.85.167.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 636D4E00B1B
-	for <yocto@yoctoproject.org>; Fri,  4 Oct 2019 10:42:56 -0700 (PDT)
-Received: by mail-lf1-f51.google.com with SMTP id y127so5085567lfc.0
-	for <yocto@yoctoproject.org>; Fri, 04 Oct 2019 10:42:56 -0700 (PDT)
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com
+	[209.85.160.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F41E4E0097C
+	for <yocto@yoctoproject.org>; Fri,  4 Oct 2019 17:03:40 -0700 (PDT)
+Received: by mail-qt1-f174.google.com with SMTP id c21so10919579qtj.12
+	for <yocto@yoctoproject.org>; Fri, 04 Oct 2019 17:03:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=TqHhOm0bKyseXkKT2tE0MIpSg0arJmMLKdhUbonBNLY=;
-	b=hbdi/6tGBjec4BGzP/GhN4BTGvvCqprPak1fLmwYc+zOl/Oj7L3VEj3PwtCdHLZ4sg
-	j6YJ3C+NEfIaabCjFwm27OYFT20pmqUTD6BSBxKB6r13/u5SoMhgfcM/EzmwxfmrLgqB
-	l2FPW3FTAUoi3/99y2PNbn23Wnz/yimhHCYcyhxdj+xuuUahP6OPU86H7ZwKouTWSt2g
-	z4BiFLiJQLFAhIzk1HcGZ6xPHM7ylqUbNXU4xuGph6Qe9sR218vnD7BnvuTq+K4qNcwE
-	tdL6+8A5pZ6Tc885a0m2w6lQVQgCfINg5QMUBg/GLQCebZKYVkPjctwfXZCtVkhr1VBu
-	l4Bg==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=gpEmccF7cv93M40Rq9wajlIvKoyTiL66LEqvuiKe0Nk=;
+	b=bgbuhUvoS7luzsQgYm1tWlDY02tC5fwZ4JOQUhvUWlOxG/SxCNxx8n6W5lGJqDramJ
+	o+3fM3zezQMjtzZaUVQqbRevOehc8/j1h6iY5DKLdY6hzEjOS00YmvL2e5UfacjbvwLP
+	7Vcc5aUEpJj6NkJfO8hB0llWgAcdVXMfLKU4yKYs68YsFy4btiMkKxFv8h+oNUW1uW7z
+	M/Gm4igdyn4u+/n/2TPAcq92HEEFHJe1WYgg5MUSg2p6EJ0Cyb0REXX1z/xdmXIsZsIp
+	DJdDeRTOMVns6WiUFIGweV/8IvxHxa0LOMTjGhQYbfUgoqYuOOJnburBOixqTiKpwXfy
+	0+og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=TqHhOm0bKyseXkKT2tE0MIpSg0arJmMLKdhUbonBNLY=;
-	b=cV5gtcoJE5wK5WPx+SJf64G94eQm/hSyWr/gNrGEHd5TvltzQJwv0sSqG3Y3hUl/W0
-	m5UBBEDcI/c8UB2f8PxWrfymR2X72T8I0GxCEFBspHR+EFD54FEnFhzjCAjvtSHd3noN
-	WvDxMmEAo+l4GpiT6BJYwAHOy3tyTbi2jCcVrrSIRrJnSdL7XnLFA6+WfWImwsZnya/g
-	DCXpyPEpCzXy8VWFM4UN/i6d9sjYXBHdfNEsyH5zYtq/wXFXwTBsJL/FAvAUxnuUmBk0
-	XhsdFYbareYwDdAT0mRaBccN/1DPT3DtlNQal2D+8aEs7H+A/YplPm73d0I2rfFJvrSY
-	Ze/A==
-X-Gm-Message-State: APjAAAXVyixS6aoMJb/Q572+gEeag6bvwrfbNbNacZq/BMoanLp+8/dk
-	MIcgx/I5e5+p2/1jmBOC4qKyyHGLwP3PykX03VBn3Anq
-X-Google-Smtp-Source: APXvYqzdVWDm/FWnil6d8eaqMNknbCr5ITY6jqT7afDSU5DeVEeHCl1mT/tVLGmdzBQUq4Spq/nzMBJNx5hVK+sDIBc=
-X-Received: by 2002:ac2:46d2:: with SMTP id p18mr9726639lfo.140.1570210975029; 
-	Fri, 04 Oct 2019 10:42:55 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=gpEmccF7cv93M40Rq9wajlIvKoyTiL66LEqvuiKe0Nk=;
+	b=txLFcQtF9Gv5ZnBrfqWIE64VfxBzNOIV49bEbf1lFiV3WspDvIOrTPTS49a4ZUC2zx
+	hKkegsgq+mhPPS63IVBw/yMOfVf7Z32wSouT4nKitcwIvLgoQNREj9MN+ifsoRnWiVMZ
+	7OxGlorp7lB84rOMs3lid0ett/4Rb9Z7So1uTBE4wgFEWPeFGFSqSUH+UADtJtv0YOFf
+	Sex9MRx5rO5EKQQ4yiw8uR7yGR2nc0fdAAJXOsenkGHESxRhR6eSzcu+407Hv8cX5THd
+	16GG0gtM4e7hl6Iu0ecYcYqZxLhgLGRA1MxVWxfSc0np5OqszJxeieH2ggXQYg6VUbb6
+	4EaQ==
+X-Gm-Message-State: APjAAAW09z1DLiMlr6XQ4qvp538p1ewL7HrrC4mtTHLMn243dXM1wvEZ
+	aN39MZe52opaGLraReurWXM0R6Clr8NIWcgxN37MmQrIHPM=
+X-Google-Smtp-Source: APXvYqzbYahKN6XxKFJkpJdZWvgSLh3xxru1T52a61Z9JldjfJYmpaMDdC9oWkQGfkO0mhywEJWElduK5pCOQhtITSQ=
+X-Received: by 2002:ac8:1302:: with SMTP id e2mr18578123qtj.326.1570233819804; 
+	Fri, 04 Oct 2019 17:03:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <CABjzrPTAFGE8nua4ONh0S_6zrFL38LSojCpFyR_ELp6p3Lcx5w@mail.gmail.com>
-In-Reply-To: <CABjzrPTAFGE8nua4ONh0S_6zrFL38LSojCpFyR_ELp6p3Lcx5w@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-Date: Fri, 4 Oct 2019 13:42:43 -0400
-Message-ID: <CADkTA4M0gW+bRdRLEp8nZ4nS6Z9_q6G3SjBir5+FOOxe3_8BfA@mail.gmail.com>
-To: Shravan Singh <shravan@bluesparq.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: Building a out of tree kernel module on target system
+From: Davis Roman <davis.roman84@gmail.com>
+Date: Fri, 4 Oct 2019 20:03:28 -0400
+Message-ID: <CACfi_Z1EyksY4NrV8iRnRoyMS00qDfFgWdshOwhCd1ohqouL=A@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: using BBMULTICONFIG to create a 32-bit rootfs, kernel, u-boot that also includes a 64-bit kernel, u-boot for NXP i.mx6/i.mx8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,67 +67,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Oct 2019 17:43:12 -0000
+X-List-Received-Date: Sat, 05 Oct 2019 00:03:41 -0000
+Content-Type: multipart/alternative; boundary="0000000000000b371805941e8de2"
+
+--0000000000000b371805941e8de2
 Content-Type: text/plain; charset="UTF-8"
+
+Hello,
+
+We're working on a Linux distro for two systems where one is based on
+NXP i.mx6(32-bit,armv7) and the other i.mx8(64-bit,armv8).
+
+I have two machine types defined in Yocto so individually I can build
+either one however our goal is to create a single distro that can run on
+both processors.
+
+So the idea is to use BBMULTICONFIG(
+https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-BBMULTICONFIG
+)
+to build two separate images,
+
+1) a 32-bit distro for an i.mx6
+2) a 64-bit distro for an i.mx8
+
+and then finally, take the 32-bit distro and add the 64-bit kernel+modules
+and u-boot.
+
+---------------------------------------
+|--------------------------------------|
+||           32-bit rootfs            ||
+|--------------------------------------|
+|-----------------   ----------------- |
+|| 32-bit kernel |   |  64-bit kernel ||
+|-----------------   ----------------- |
+|-----------------   ----------------- |
+|| 32-bit u-boot |   |  64-bit u-boot ||
+|-----------------   ----------------- |
+---------------------------------------
+   i.mx6solo             i.mx8m mini
+
+We've already tried our existing 32-bit rootfs + 64-bit kernel/u-boot on
+the i.mx8 and the system runs.
+So in theory, it should just be a matter of getting yocto to assemble all
+the pieces together.
+
+I don't have much experience with BBMULTICONFIG so any ideas or comments on
+how to proceed would be appreciated.
+
+Thank you,
+
+Davis
+
+--0000000000000b371805941e8de2
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 4, 2019 at 11:40 AM Shravan Singh <shravan@bluesparq.com> wrote=
-:
->
-> Hello,
->
-> I am trying to build an out of tree service module on a yocto raspberry p=
-i image(target system).
-> I am using yocto version warrior
-> and my machine is Raspberrypi-cm3
-> Kernel version is 4.19.58
->
-> I was able to get the build directory by including
->
-> IMAGE_INSTALL_append =3D " kernel-modules kernel-dev kernel-devsrc"
-> After that, I saw a build directory on raspberrypi-image
->
-> Now I am trying to compile my source file with the command
->
-> make ARCH=3Darm CROSS_COMPILE=3Darm-poky-linux-gnueabi- KSRC=3D"/lib/modu=
-les/4.19.58/source" -C /lib/modules/$(shell uname -r)/build M=3D/home/root/=
-tsDriver modules
->
-> After that I get an error saying asm/bitsperlong.h: no such file or direc=
-tory
->
-> Am I missing something in my make command?
+<div dir=3D"ltr"><font face=3D"monospace">Hello,<br><br>We&#39;re working o=
+n a Linux=C2=A0distro for two systems where one is based on<br>NXP i.mx6(32=
+-bit,armv7) and the other i.mx8(64-bit,armv8).</font><div><font face=3D"mon=
+ospace"><br></font></div><div><font face=3D"monospace">I have two machine t=
+ypes defined in Yocto so individually I can build</font></div><div><font fa=
+ce=3D"monospace">either one however our goal is to create a single distro=
+=C2=A0</font><span style=3D"font-family:monospace">that can run on both pro=
+cessors.</span></div><div><font face=3D"monospace"><br>So the idea is to us=
+e BBMULTICONFIG(</font><a href=3D"https://www.yoctoproject.org/docs/latest/=
+ref-manual/ref-manual.html#var-BBMULTICONFIG">https://www.yoctoproject.org/=
+docs/latest/ref-manual/ref-manual.html#var-BBMULTICONFIG</a>)<div><font fac=
+e=3D"monospace">to build two separate=C2=A0images,<br><br></font></div><div=
+><font face=3D"monospace">1) a 32-bit distro for an i.mx6</font></div><div>=
+<font face=3D"monospace">2) a 64-bit distro for an i.mx8</font></div><div><=
+font face=3D"monospace"><br></font></div><div><font face=3D"monospace">and =
+then finally, take the 32-bit distro and add the 64-bit kernel+modules and =
+u-boot.<br><br>---------------------------------------<br>|----------------=
+----------------------|<br>|| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 32-bit roo=
+tfs =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0||<br>|-----------------------=
+---------------|<br>|----------------- =C2=A0 ----------------- |<br>|| 32-=
+bit kernel | =C2=A0 | =C2=A064-bit kernel ||<br>|----------------- =C2=A0 -=
+---------------- |<br>|----------------- =C2=A0 ----------------- |<br>|| 3=
+2-bit u-boot | =C2=A0 | =C2=A064-bit u-boot ||<br>|----------------- =C2=A0=
+ ----------------- |<br>---------------------------------------<br>=C2=A0 =
+=C2=A0i.mx6solo =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 i.mx8m mini<br><b=
+r>We&#39;ve already tried our existing 32-bit rootfs=C2=A0+ 64-bit kernel/u=
+-boot on the i.mx8 and the system runs.</font></div><div><font face=3D"mono=
+space">So in theory,=C2=A0</font><span style=3D"font-family:monospace">it s=
+hould just be a matter of getting yocto to assemble all the pieces</span><s=
+pan style=3D"font-family:monospace">=C2=A0together.</span></div><div><span =
+style=3D"font-family:monospace"><br></span></div><div><span style=3D"font-f=
+amily:monospace">I don&#39;t have much experience with BBMULTICONFIG so a</=
+span><span style=3D"font-family:monospace">ny ideas or comments on how to p=
+roceed would be appreciated.</span></div><div><font face=3D"monospace"><br>=
+Thank you,<br><br>Davis</font></div></div></div>
 
-You need to rebuild/regenerate some file on target (they can't be packaged)=
-.
-So have you gone to /usr/src/kernel and done a "make scripts prepare" ?
-
-Bruce
-
->
->
-> Regards,
-> Shravan Singh
-> (239) 243-0838
->
-> Blue Sparq, Inc.
-> 928 NE 24th Lane unit 4 and 5.
-> Cape Coral, FL 33993
->
-> IMPORTANT: The contents of this email and any attachments are confidentia=
-l. They are intended for the named recipient(s) only. If you have received =
-this email by mistake, please notify the sender immediately and do not disc=
-lose the contents to anyone or make copies thereof.
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
-
---=20
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
-
+--0000000000000b371805941e8de2--
