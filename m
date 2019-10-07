@@ -1,68 +1,55 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <jean-marie.lemetayer@savoirfairelinux.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 32AAFE009AC; Mon,  7 Oct 2019 02:58:00 -0700 (PDT)
+	id 2A0DDE009D4; Mon,  7 Oct 2019 05:16:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jupiter.hce[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.51 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com
-	[209.85.166.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6586E00805
-	for <yocto@yoctoproject.org>; Mon,  7 Oct 2019 02:57:58 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id a1so27160840ioc.6
-	for <yocto@yoctoproject.org>; Mon, 07 Oct 2019 02:57:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=R4h7bzdCH0rJMtRwmMxt4QaBt5fB3W7QHK81g1MZlSw=;
-	b=ZJavBEhXlzwlEFjuR3o/AlmT5DdlEAmY/6Igz7MGymR491yzcWMDMts8ELv4BmvOfq
-	Zvj63vZrpHulFMU1gM2tSEKSlB89L3KQdQgGxHev3NTia5lz2LrbR4M0bjtmZfPL9Ube
-	Xsb6e0HHjvV/aVf6i6R19rX9/29O75fGW8T/7tSiwsZz3T8CRnlmz/nuW7w+uxHj2jmt
-	BlPrmYZO6RO9/DtQqRDDFvr+8l5ru3U+FA/fjfGNLNWtEhXJ97mxwNK4s6M5gT6IdMPm
-	i0Opm+b9AOtOtATeAgIcsOYxzgbSIOIOqPglwJI2gAa+XYq8XiipO3u2VMFe5IPQn9qs
-	qASg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=R4h7bzdCH0rJMtRwmMxt4QaBt5fB3W7QHK81g1MZlSw=;
-	b=rQs8I4cv26iwsKxqP/IoANJ0VrIXii1ssCTTBmtFmeGrX5knf8KzaUj+2WMpXeUzl5
-	pKdfMjhnhwOub2WkP9q90ZU1ttmfk/v3tawk4H7f6FDDhshP14LTUvLJc8AizPboTgWU
-	6K7OlgffIC16jbDzrzERLCQrRbwEVGLZRbzemHoqvZApWWZjsMnuQofDb0fOBRjXmNsr
-	1/QeLNoRm6pWfV+VqlxvlTaFKx++axJOcA4A+VnH9Vra7Gw8BrqiEIevlN2aUX3g5B36
-	4Dt45jEE/cG+Y3xXl6CZh8QisM9pDPAD3T5fR+DoRcF7+V2H6IOvimGEegKqpy/ZQ+b9
-	FcAA==
-X-Gm-Message-State: APjAAAV8Kom70Odi2sxyWPBs8LwyEPRW3ojdgEvueuSbHMSKWHDqqXKU
-	AD9Ztd9tPbVAiCX8Ye+FUtDPbbIl8shrRn0tJBhCsJ2R
-X-Google-Smtp-Source: APXvYqx8HdRvRasF/1ipjxSSAKkLBk4+IZ5e4hw/5Mc0RL78kQ6b3GzEJWwsGV/adwgpfZSUhDQKLLEoaFLq8pfTYyE=
-X-Received: by 2002:a05:6638:73d:: with SMTP id
-	j29mr27246025jad.21.1570442278140; 
-	Mon, 07 Oct 2019 02:57:58 -0700 (PDT)
+	*      [208.88.110.44 listed in list.dnswl.org]
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com
+	[208.88.110.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B280FE007A2
+	for <yocto@yoctoproject.org>; Mon,  7 Oct 2019 05:16:28 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 7C09D9C01F2;
+	Mon,  7 Oct 2019 08:16:27 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+	by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new,
+	port 10032)
+	with ESMTP id IYI5b5ierokC; Mon,  7 Oct 2019 08:16:26 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 75EA19C01F8;
+	Mon,  7 Oct 2019 08:16:26 -0400 (EDT)
+X-Virus-Scanned: amavisd-new at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+	by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new,
+	port 10026)
+	with ESMTP id 7dP_ccWTBakD; Mon,  7 Oct 2019 08:16:26 -0400 (EDT)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com
+	[192.168.48.237])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 504279C01F2;
+	Mon,  7 Oct 2019 08:16:26 -0400 (EDT)
+Date: Mon, 7 Oct 2019 08:16:25 -0400 (EDT)
+From: Jean-marie Lemetayer <jean-marie.lemetayer@savoirfairelinux.com>
+To: Stefan Herbrechtsmeier <stefan@herbrechtsmeier.net>
+Message-ID: <302244287.8695117.1570450585150.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <3faffc0c-a573-0b8b-5915-2619262e7b6e@herbrechtsmeier.net>
+References: <1078346093.8578188.1570117048745.JavaMail.zimbra@savoirfairelinux.com>
+	<51c5973e-2c1a-f212-f963-9a2b321f480d@herbrechtsmeier.net>
+	<967547077.8619660.1570192633081.JavaMail.zimbra@savoirfairelinux.com>
+	<3faffc0c-a573-0b8b-5915-2619262e7b6e@herbrechtsmeier.net>
 MIME-Version: 1.0
-Received: by 2002:ac0:9c85:0:0:0:0:0 with HTTP;
-	Mon, 7 Oct 2019 02:57:57 -0700 (PDT)
-In-Reply-To: <d33f7621-c00f-b8a4-83d5-728444eb8db2@gmx.de>
-References: <CAA=hcWQxUaCcNW2GxyoO6cx1i7OFUip8y-BaBVWtB1-A=OWPRQ@mail.gmail.com>
-	<d33f7621-c00f-b8a4-83d5-728444eb8db2@gmx.de>
-From: JH <jupiter.hce@gmail.com>
-Date: Mon, 7 Oct 2019 20:57:57 +1100
-Message-ID: <CAA=hcWQQPGaRinR8N2A5nt=WNssD3ukUc58aPJ5XkYu61gEW_A@mail.gmail.com>
-To: Moritz Porst <moritz.porst@gmx.de>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: kernel.bbclass do_bundle_initramfs did not work
+X-Mailer: Zimbra 8.8.11_GA_3737 (ZimbraWebClient - GC77 (Linux)/8.8.11_GA_3737)
+Thread-Topic: duplicate code
+Thread-Index: hJRjta2wHfIsIyqEx8zmmuFzSjrFKA==
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
+	Savoir-faire Linux Rennes <rennes@savoirfairelinux.com>
+Subject: Re: [npm] duplicate code
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,81 +61,123 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Oct 2019 09:58:00 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Mon, 07 Oct 2019 12:16:30 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Moritz,
+Hi Stefan,
 
-On 10/4/19, Moritz Porst <moritz.porst@gmx.de> wrote:
-> Hey JH,
+I thought about your idea of using Yocto to manage NPM package dependencies=
+ and I ran into an issue. NPM projects can have multiple dependencies on a =
+single package, and sometimes with multiple versions. NPM will manage this =
+by creating sub 'node_modules' tree.
+
+Here is an example with a newly created angular application. The app depend=
+s on 3 different version of 'ansi-regex'. NPM will install the packages thi=
+s way:
+node_modules/ansi-regex @ 2.1.1
+node_modules/cliui/node_modules/ansi-regex @ 3.0.0
+node_modules/inquirer/node_modules/ansi-regex @ 4.1.0
+node_modules/string-width/node_modules/ansi-regex @ 3.0.0
+node_modules/@angular/compiler-cli/node_modules/ansi-regex @ 4.1.0
+
+How can you handle that with Yocto ? I am not sure but I think it is not po=
+ssible.
+
+For that reason I think I will base my developments on the master branch.
+
+----- Mail original -----
+> De: "Stefan Herbrechtsmeier" <stefan@herbrechtsmeier.net>
+> =C3=80: "Jean-marie Lemetayer" <jean-marie.lemetayer@savoirfairelinux.com=
 >
-> I had a similiar problem before. What branch and revision do you have
-> checked out for your meta-layers ? Mine looks like the following and I
-> get an initramfs built into my image:
->
-> meta-yocto-bsp       = "warrior:01b8a8b54bc569e5ef3f5e6fc6abcee365ab25d9"
-> meta-intel           = "warrior:6bd7b2edafe90e61a3a52cd089432080b82a7891"
-> meta-qt5             = "warrior:2a5f9415e48a38f6f4eb0cf375737a2d8438e2fe"
-> meta-mingw           = "warrior:10695afe8cd406844e0d0dd868c11677e07557d4"
-> meta-initramfs       = "warrior:8d5dcd6522e9d15e68637b6d7dda0401f9bb91d0"
+> Cc: "Yocto-mailing-list" <yocto@yoctoproject.org>, "Savoir-faire Linux Re=
+nnes" <rennes@savoirfairelinux.com>
+> Envoy=C3=A9: Vendredi 4 Octobre 2019 16:55:47
+> Objet: Re: [yocto] [npm] duplicate code
 
-I am using thud, I guess the major problem is how to define the
-variables correctly according to the the class. Correct me if I am
-wrong, but I think the initramfs is implemented in kernel.bbclass, the
-INITRAMFS_IMAGE and INITRAMFS_IMAGE_BUNDLE = "1" need be defined to
-run copy_initramfs() and do_bundle_initramfs (). For some reason, both
-functions were not called. Did you define INITRAMFS_IMAGE and
-INITRAMFS_IMAGE_BUNDLE in local.conf to get it work?
+> Hi Jean-Marie,
+>=20
+> Am 04.10.19 um 14:37 schrieb Jean-marie Lemetayer:
+>> > I have recently worked on a yocto project using npm and I have seen so=
+me issues.
+>> > I have solved a few but only for bitbake:
+>> https://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3Deecba41822e=
+86b69ebdb9cbc8fbfd512ad9a47d7
+>> https://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3Da34d0d539e5=
+fdf341541fb628652d22289e80512
+>> https://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3De90cd2ed61b=
+93ee7e290e7e592f1f0242ab5c281
+>> https://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3Da35abe31dc2=
+3916fd06afdb3a5e22a81ef3df579
+>>=20
+>> As I have more time now, I wanted to continue my work by fixing devtool =
+/
+>> recipetool.
+>>=20
+>> I have also checked the bugzilla for issues that I could fix / that shou=
+ld be
+>> tested again:
+>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10515
+>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D10760
+>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11028
+>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D11029
+>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D12534
+>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13415
+>>=20
+>> I ended up with this todo list:
+>> =C2=A0 - merge the duplicate code between bitbake and recipetool
+>> =C2=A0 - fix the npm package name handling in recipetool
+>> =C2=A0 - fix the npm package version handling in recipetool
+>> =C2=A0 - fix the lockdown.json file generation in recipetool
+>> =C2=A0 - create an example nodejs application to test all these cases
+>> =C2=A0 - update the wiki using this example application:
+>> =C2=A0 =C2=A0 https://wiki.yoctoproject.org/wiki/TipsAndTricks/NPM
+>>=20
+>> Finally, in my recent project, we were using angular (https://angular.io=
+) for
+>> the front-end. I have planned to add the work done to support angular
+>> applications in yocto (angular.bbclass) and update recipetool to handle =
+them.
+>=20
+> Do you want to build an angular application? In this case you have to
+> produce a machine (independent) package via a native npm build because
+> you need to run the angular compiler on the build machine.
 
-> Further more what happens if you build only an initramfs ?
->
-> bitbake core-image-minimal-initramfs
+Yes, I have an 'angular-cli_x.y.z.bb' and an 'angular.bbclass' which depend=
+s on 'angular-cli-native'. I have planned to upstream this work.
 
-That was fine for building it on qemux86, but I could not build for imx6:
+>=20
+>>=20
+>> Your work sounds very interesting. The good point is that npm-shrinkwrap=
+.json
+>> and lockdown.json files (which have generation issues btw) will no longe=
+r be
+>> required. But projects using npm can have a lot of dependencies (e.g. th=
+e
+>> angular example app have 1053 dependencies).
+>=20
+> A lot of dependencies are the problem at the moment. But many
+> dependencies are not update frequently and my current solution assume
+> that I can always use the latest version per major release version
+>=20
+>> Is recipetool will be handling the whole recipes creation in one time ?
+>=20
+> That's the problem at the moment. I don't manage to build multiple
+> recipes from one recipetool run. Therefore I have a two stage approach.
+> I use recipetool to build exact one recipe. A second script generates a
+> list of all dependencies and call recipetool per package if the recipe
+> doesn't already exist. This works but the run time is very high.
+>=20
+>> Is it possible to see your work ? A public fork would be nice. I would g=
+ladly
+>> help you / test your work / add my fixes if needed.
+>=20
+> I only have a unfinished Proof of Concept. If you like I could clean it
+> up a bit and post it on github as a separate layer.
 
-ERROR: Nothing PROVIDES 'core-image-minimal-initramfs'
-core-image-minimal-initramfs was skipped: incompatible with host
-arm-oe-linux-gnueabi (not in COMPATIBLE_HOST)
+Like I said at the start of this email, I will not base my dev on yours. Bu=
+t I am still interested by seeing your work.
 
-I hacked to add arm-oe-linux-gnueabi to COMPATIBLE_HOST in
-core-image-minimal-initramfs.bb, it still got the same error.
-
-> Any error messages ? If not, how is your initramfs =called ? The issue
-> *could* also be a misspelling in zImage-initramfs.
-
-Did you refer the initramfs in core-image-minimal-initramfs qemux86 build?
-
-core-image-minimal-initramfs-qemux86-20191004234320.rootfs.cpio.gz
-core-image-minimal-initramfs-qemux86-20191004234320.qemuboot.conf
-bzImage--4.18.27+git0+9e348b6f9d_62f0a3acff-r0-qemux86-20191004234320.bin
-......
-
-I guess that bzImage--4.18.27+git0+9e348b6f9d_62f0a3acff-r0-qemux86-20191004234320.bin
-should be an initramfs zImage file. If I could build
-core-image-minimal-initramfs for imx, I could verify it in my test
-machine.
-
-Still looking at it.
-
-Thanks Moritz
-
->
-> On 04.10.19 13:26, JH wrote:
->> Hi,
->>
->> It seems to me if both INITRAMFS_IMAGE and INITRAMFS_IMAGE_BUNDLE are
->> set it should generate initramfs, but I did not get. I set up in my
->> image:
->>
->> INITRAMFS_IMAGE = "zImage-initramfs"
->> INITRAMFS_IMAGE_BUNDLE = "1"
->>
->> But it did not build zImage-initramfs, what I could be missing here?
->>
->> Thank you.
->>
->> Kind regards,
->>
->> - jh
->
+Best regards,
+Jean-Marie
 
