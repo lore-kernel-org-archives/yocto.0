@@ -1,6 +1,6 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <maillinglists18@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 456E2E00ADD; Sun,  6 Oct 2019 08:40:46 -0700 (PDT)
+	id 21F8BE00BA1; Mon,  7 Oct 2019 01:53:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,61 +10,52 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+	provider *      (maillinglists18[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.178 listed in list.dnswl.org]
+	*      [209.85.208.174 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com
-	[209.85.210.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45B92E008C8
-	for <yocto@yoctoproject.org>; Sun,  6 Oct 2019 08:40:42 -0700 (PDT)
-Received: by mail-pf1-f178.google.com with SMTP id v4so7026803pff.6
-	for <yocto@yoctoproject.org>; Sun, 06 Oct 2019 08:40:42 -0700 (PDT)
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com
+	[209.85.208.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D09DE00ADD
+	for <yocto@yoctoproject.org>; Mon,  7 Oct 2019 01:53:37 -0700 (PDT)
+Received: by mail-lj1-f174.google.com with SMTP id d1so12676788ljl.13
+	for <yocto@yoctoproject.org>; Mon, 07 Oct 2019 01:53:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:in-reply-to:references;
-	bh=DHCog4Duf/25opNM5dxqJOx4CXRi5cvBKT17FUemR80=;
-	b=qOm+q8jve75lGKgUG/Nn2hNY1Y7/E9PxC2UEvQ4UDmp0wz2ryXSrenlEF+YaxNpF7j
-	W2tq1OFuvT6IHlpeQfWVp3JScXd1mWOcWoFQH9N0T8OIB5jq8VdtZ0BytIEDhhsiS+GA
-	4/TZwxTk8qTVvvqWmPAYAt0+K9WbJSvQG+sEMM6JxZYnB3+kTvZH+kowqwlXtnmgHxrG
-	mRYC2/NWEkUHv5FR8euizVOM/NUQXMIZZoMzBbMcMTPYP3yjZi9dcBAymELE6c8zx9b5
-	GVW7zew/vgGyweKeCahVMtpclPW/xUnDeDfzyoFlW0neqYNwRxJ8wpizS2t991AJYVWc
-	b9Gw==
+	h=mime-version:from:date:message-id:subject:to;
+	bh=GaBAmxW19mPYdbjozBWgeB59xFzJCKPRTAAVIyeLmG0=;
+	b=Bt264h7nts6HcKSnYR1esVQnlaKowb2xhxTAWTFBZ7EiGhbg8S/JkvEkuq3CgSs38P
+	QAEkrN5U1Piy/nPA/Prhnm2zTKr9lXETIg1ehyrbY3WHB2wYhTT8J8GjjC/j852iy3e3
+	7+dJ3HT4fug6UQ54Hzk+JuJuw2GKq/NNvOMmo0thbsFqobHyH2SbE3pkXxr+WE9s0K6y
+	itjZvRww8N3VZYzOI5kduC0Ajb/CmajvJVIMaREjbOOvStQ1z6KVcFirv31e0RgYr3sh
+	lgMFLqQ9NBU0XggUXWjcdEcKDLfIRLS83pJRi96kkadqlcmZymSSjGX7zE4wSSSe+QCe
+	Pcig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-	:references;
-	bh=DHCog4Duf/25opNM5dxqJOx4CXRi5cvBKT17FUemR80=;
-	b=sCYDYiKFtqRWoq3YUzJ00ghMvgwHjT5Dd71NvbYoyO7sQmncmut0IYKQ6Svdr3KfKh
-	rZvnUH4LlJ/bq00dW7/GnTzOl7VVbma9iu6zWx9mnLQEmHCMuXAE6afktGTtfsu64v+C
-	dHpXnziHGrt/1EoB9y3/+h9I5KB3f5UVSWinR5ZHJQs0hGtYANmoQFxQU7nZdkpymGj8
-	oUtCdgCRjD2FkDNSA5IJAA5Z6wUwaJ3BD5KB9YJiG4t/ZjUFtXo6AxCux8Fl2sKs26ts
-	1kvhhieqVBuxonvZxQHrt9fDIeOXdtCWno7hjQNZq7UCD5XQWikw5qhTHDVzsOQCmdGV
-	qOYw==
-X-Gm-Message-State: APjAAAUWt9A87vme9zfQwkdbx7ttI4no5f3LpjOXoK/3t/vYbUTChyYv
-	mB/aM2syLyYk/AihsN9SyD3Cm/lV9nA=
-X-Google-Smtp-Source: APXvYqz82l+RZjGxfGp7wfdtVVw0XmT4mnfayZMy2i/rCSJCcXTtPi6EpztkaYgz408rFEU0iWhuXg==
-X-Received: by 2002:a17:90b:957:: with SMTP id
-	dw23mr29033702pjb.32.1570376441926; 
-	Sun, 06 Oct 2019 08:40:41 -0700 (PDT)
-Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net
-	([2601:202:4180:a5c0:65e8:7322:d189:1d85])
-	by smtp.gmail.com with ESMTPSA id
-	e4sm12226543pff.22.2019.10.06.08.40.41 for <yocto@yoctoproject.org>
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Sun, 06 Oct 2019 08:40:41 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Sun,  6 Oct 2019 08:40:36 -0700
-Message-Id: <71bc73ae48188ee52a40b4f69044f1fd281b4d72.1570376186.git.akuster808@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <cover.1570376186.git.akuster808@gmail.com>
-References: <cover.1570376186.git.akuster808@gmail.com>
-Subject: [warrior 2/3] conf/poky: add debian-10 to the supported distribution list
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=GaBAmxW19mPYdbjozBWgeB59xFzJCKPRTAAVIyeLmG0=;
+	b=sLmEjD40XwidSY5MdupJqTU6Tv7BfmipkFMQ7dKJFPD0r+lr5eowfE2QI2OzpVteSx
+	ZkXVuUgbf9CuIbxHLQoVvP4fGzoejLgHYFgndTsBFMfqrM5ZC+lk/ZNgm8swNTu+VVT6
+	r9T1viqlPx4K7nU78CREwnTUbnmiNRp7M/0en1uvpI/KA3vMRYThWiY/h7yHX999vWLD
+	BCE/2ucOnSv/Bc6wg41xYG5sJnL5UxqMTj3uN97sD1RLk4eccVKUQnWj5EYO9NnN/8JC
+	vm/9DzRYYb1v6VHH9xcwkmVU7aW2+yqKFqYgAJg4Sxo7bmQGyOkEY0YioGBg9r58dgTG
+	H+AA==
+X-Gm-Message-State: APjAAAXsUbeObSvpiec0muYHjczVuUINMDHGG5DJz/LHzgBMyYPUZBJa
+	2CQ029YPJYfRA71+n5WI0lAqhG2/0e4J2RDj1brHPluJ
+X-Google-Smtp-Source: APXvYqwPlheYZBEqHOQdwIj7lE4Q6fdvxTIqaYE4nm4s+9GVMRVEbt4V/ScsUJA4ewqh+A4jq7EgovggOlhHokqqWkU=
+X-Received: by 2002:a05:651c:110f:: with SMTP id
+	d15mr17479858ljo.43.1570438416297; 
+	Mon, 07 Oct 2019 01:53:36 -0700 (PDT)
+MIME-Version: 1.0
+From: Teemu K <maillinglists18@gmail.com>
+Date: Mon, 7 Oct 2019 11:53:24 +0300
+Message-ID: <CAAmVmrp6R39J=2XHh_ASzGcdMJUbOz37RAEU+PLniKUf4Aaa3g@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Extra files to kernel module package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,35 +67,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 06 Oct 2019 15:40:46 -0000
+X-List-Received-Date: Mon, 07 Oct 2019 08:53:38 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-From: Ross Burton <ross.burton@intel.com>
+Hi,
 
-Debian 10 is the new stable release and is being tested on the autobuilder, so
-add this to the supported distribution list.
+I have recipe that compiles kernel module. It works fine ie. the
+module ends up to image.
 
-[ YOCTO #13432 ]
+I also have few configuration files that I'd like to add with the
+package. Earlier version (I'm currently using thud-branch) that was
+done by adding this line to recipe:
 
-Signed-off-by: Ross Burton <ross.burton@intel.com>
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- meta-poky/conf/distro/poky.conf | 1 +
- 1 file changed, 1 insertion(+)
+FILES_${PN} += "${sysconfdir}/udev/*"
 
-diff --git a/meta-poky/conf/distro/poky.conf b/meta-poky/conf/distro/poky.conf
-index 87759b3..f2df2c1 100644
---- a/meta-poky/conf/distro/poky.conf
-+++ b/meta-poky/conf/distro/poky.conf
-@@ -59,6 +59,7 @@ SANITY_TESTED_DISTROS ?= " \
-             centos-7 \n \
-             debian-8 \n \
-             debian-9 \n \
-+            debian-10 \n \
-             opensuse-42.3 \n \
-             "
- #
--- 
-2.7.4
+Then when image - recipe I had
+IMAGE_INSTALL += "<recipe-name>"  all would be installed to image.
 
+Now the sysconfdir files ends up to recipe-name - package and module
+itself ends up to kernel-module-<recipe-name> - package and although
+I"m installing <recipe-name>  - package the one with module ends up to
+image and the <recipe-name> - package is not.
+
+I know that when inheriting module.class it'll rename the package to
+kernel-module-${PN} yet you use the recipe name for installing the
+package.  I tried adding the files to kernel-module-${PN} - package
+instead, but didn't work.
+
+What's the proper way adding extra files to kernel-module-package or
+is it not recommended and I should use separate package instead?
+
+
+-Teemu Keskinarkaus
 
