@@ -1,33 +1,64 @@
-Return-Path: <mark.hatle@kernel.crashing.org>
+Return-Path: <btgoodwin@geontech.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96161E00C74; Mon,  7 Oct 2019 07:54:19 -0700 (PDT)
+	id 15790E00805; Mon,  7 Oct 2019 08:17:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from kernel.crashing.org (kernel.crashing.org [76.164.61.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA5DAE00AD5
-	for <yocto@yoctoproject.org>; Mon,  7 Oct 2019 07:54:17 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local ([76.164.61.198]) (authenticated bits=0)
-	by kernel.crashing.org (8.14.7/8.14.7) with ESMTP id x97EsClU004156
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128
-	verify=NO); Mon, 7 Oct 2019 09:54:13 -0500
-To: "Oriya, Raxesh" <Raxeshkumar.Oriya@ncr.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <CY4PR15MB18783DA507FC9EBF565795B5FD9D0@CY4PR15MB1878.namprd15.prod.outlook.com>
-From: Mark Hatle <mark.hatle@kernel.crashing.org>
-Message-ID: <32b01f41-be72-d9b3-61d6-d3cd843f690a@kernel.crashing.org>
-Date: Mon, 7 Oct 2019 09:54:12 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
-	Gecko/20100101 Thunderbird/60.9.0
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.160.177 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com
+	[209.85.160.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85BAAE00805
+	for <yocto@yoctoproject.org>; Mon,  7 Oct 2019 08:17:34 -0700 (PDT)
+Received: by mail-qt1-f177.google.com with SMTP id o12so19697357qtf.3
+	for <yocto@yoctoproject.org>; Mon, 07 Oct 2019 08:17:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=geontech-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=l1ZstuwCQ8+RYIGyKdJ96rE02HNxyxKKky63lHtcBPA=;
+	b=rj9ITnn+UUIv9euOkrNy4KoOQ9H0ELATN0G5oI2wrGfTFDpdAnBVDHWb/vcdxMcvkC
+	J4qx8GZuAdWE4VYXbP2VCBVC3CSeJ2Oh/AhTI9M7R82TlAWtqmMMKtrV28W1yTshPejc
+	IvLQILo36287R3KAJljQQLUQWAm7tGRCBt8FY1YdLcp2FM1sQrNdW8+QC/GgzIZI+Gl1
+	h6Fvfhmscx+sun7lyt+4nARGaHKOEa8l+sEZLEtwDUOD7cgpppI2FJPwUuESrTb8xy8v
+	0NqQtWIPYjpiwTFFO8Z2H2aj4JVZJ8JJkMv/1yi6jltBev9fg/xNujA+J2YRC/lEIPsz
+	qFfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=l1ZstuwCQ8+RYIGyKdJ96rE02HNxyxKKky63lHtcBPA=;
+	b=r2t8OXZ4keWdb5a/mvMVerGcpG5NlC47HdH4rp4QxRqc9qWIwrUp9BHYSJv02vo/3r
+	jdV/MNUqS+2gZVKLkx69/5UkU8uqbDfdeWI5+hR7MSBQbuEMGQeYTSoX1duFpGmpF8oN
+	yqfk5hvTsr9Na9gCb/OBZ3iyWmAQAcxsrrFxYM41Oqi3QpAav0RFZms/psZtqcOcBZKC
+	l6K1B4qGcVJT1P45FnqJx0o07tMObnX18iWvIaYoY2lnM7OSASjKLETk+1RSD2LMnn2U
+	kYYx/W0hlcnvE+y7AOnrNR3AyPFX4SM5OS6F5pJVDhPubiB/yjshUNpyi+4TEILc40Mr
+	5iVA==
+X-Gm-Message-State: APjAAAV+Kz+DTy4EVyV9nc4NLVpvgZXwBtyhDpa+LQDyeYwT/Pp9PDk6
+	k9nWUXh1t5CvVlnBcnOGuT4MMVU+An5E3Vq11Reu2w==
+X-Google-Smtp-Source: APXvYqwU2WRWoAhSlFGw5xYnhOXLcNSw/Jb59VP+MGtEwPz/wvQd6WXcy19/aMBNZ7lUQzaY0jvPKD0lHowFZFDu8Hg=
+X-Received: by 2002:ac8:2eaa:: with SMTP id h39mr30420164qta.389.1570461453377;
+	Mon, 07 Oct 2019 08:17:33 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CY4PR15MB18783DA507FC9EBF565795B5FD9D0@CY4PR15MB1878.namprd15.prod.outlook.com>
-Cc: "C M, Kiran Reddy" <kiran.reddy@ncr.com>, "Mohammad,
-	Jamal M" <MohammadJamal.Mohiuddin@ncr.com>
-Subject: Re: meta-selinux warrior support
+References: <CA+4=imYTN+JCcHZU4eUfkur1wxwDRNnQzg6Y+W+OUrHar0R9zA@mail.gmail.com>
+	<CABudRdy-ut1=4gReM6TEqwx0NWJT=w7eiCP_DOKQS4qwV_Hpcg@mail.gmail.com>
+	<CA+4=imYcDHCPxtzoNinad3y-t2TuqAbp5=irpeKTvoSF1EzhrQ@mail.gmail.com>
+In-Reply-To: <CA+4=imYcDHCPxtzoNinad3y-t2TuqAbp5=irpeKTvoSF1EzhrQ@mail.gmail.com>
+From: Thomas Goodwin <btgoodwin@geontech.com>
+Date: Mon, 7 Oct 2019 11:17:21 -0400
+Message-ID: <CABudRdz8EfK5_GQCcEDT2+T+5O1wHDFvR_Chx7W4=OY0yi3SWw@mail.gmail.com>
+To: Yann Dirson <yann.dirson@blade-group.com>
+Cc: yocto@yoctoproject.org, Simon Spannagel <simon.spannagel@cern.ch>,
+	Adrian Bunk <bunk@stusta.de>
+Subject: Re: gitlab-ci helper scripts for OpenEmbedded builds
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,102 +70,274 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Oct 2019 14:54:19 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 07 Oct 2019 15:17:36 -0000
+Content-Type: multipart/alternative; boundary="0000000000000ffea00594538d64"
 
-I thought this issue was already fixed:
+--0000000000000ffea00594538d64
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-selinux/commit/?h=warrior&id=bb0c9c3abcb935e4b362eb57985e1ee7fec0bfe0
+The CROPS changes are all upstream now, so I've put up an example gist
+here: https://gist.github.com/btgoodwin/028c3a63315a27cae3c5989455058eef.
 
-This patch is what specifically adds the enabled/disabled that the system is
-saying (in the logs quoted below) is invalid.
+There are comments throughout the files, and I'm still hammering out the
+"deploy" stage.  There are ongoing quirks like in the case of deploying the
+SDK, despite running the populate_sdk task at the start of the stage, the
+related sdk directory doesn't exist or is empty as if it was not unpacked
+from the shared state cache (I could not replicate this behavior at my
+desk).  Another odd behavior was getting a bitbake worker halt error as if
+the container ran out of space or memory, but the server doesn't agree with
+that information.
 
-Can you try changing these to 'true' and 'false' instead?
+One improvement I would suggest for anyone going this route would be to
+have 2 separate definitions for artifacts.  The files only get touched in
+the setup stage, so that should be the long-running artifact to collect
+whereas all others could be trimmed back to perhaps a few minutes of keep
+time.  This would prevent a copy of those artifacts being present at every
+job and retained for a week (which would be a good GB for a whole pipeline
+depending on how many layers and the size of the layer history).
 
-In the file: classes/meson-enable-selinux.bbclass
+Cheers,
 
---Mark
+Thomas
 
-On 10/1/19 1:39 AM, Oriya, Raxesh wrote:
-> Hi,
-> 
->  
-> 
-> I am getting the below error when I am trying to integrate 'meta-selinux' into
-> our yocto solution. This error also happens when I just build
-> 'core-image-selinux' by including the required layers in warrior branch. Can
-> anyone provide a fix for this..
-> 
->  
-> 
-> local.conf contains the following lines:
-> 
-> ---------
-> 
-> DISTRO_FEATURES_append = " acl xattr pam selinux"
-> 
-> PREFERRED_PROVIDER_virtual/refpolicy ?= "refpolicy-mls"
-> 
-> ---------
-> 
->  
-> 
-> ERROR: glib-2.0-native-1_2.58.3-r0 do_configure: meson failed
-> 
-> ERROR: glib-2.0-native-1_2.58.3-r0 do_configure: Function failed: do_configure
-> (log file is located at
-> /home/panther2/warrior/build/tmp/work/x86_64-linux/glib-2.0-native/1_2.58.3-r0/temp/log.do_configure.34545)
-> 
-> ERROR: Logfile of failure stored in:
-> /home/panther2/warrior/build/tmp/work/x86_64-linux/glib-2.0-native/1_2.58.3-r0/temp/log.do_configure.34545
-> 
-> Log data follows:
-> 
-> | DEBUG: Executing shell function do_configure
-> 
-> | NOTE: Executing meson -Ddtrace=false -Dfam=false -Dsystemtap=false
-> -Dselinux=false -Dlibmount=true -Dman=false -Dselinux=disabled
-> -Dinternal_pcre=false -Dinstalled_tests=false...
-> 
-> | The Meson build system
-> 
-> | Version: 0.49.2
-> 
-> | Source dir:
-> 
-> | /home/panther2/warrior/build/tmp/work/x86_64-linux/glib-2.0-native/1_2
-> 
-> | .58.3-r0/glib-2.58.3 Build dir:
-> 
-> | /home/panther2/warrior/build/tmp/work/x86_64-linux/glib-2.0-native/1_2
-> 
-> | .58.3-r0/build
-> 
-> | Build type: native build
-> 
-> |
-> 
-> | meson.build:1:0: ERROR:  Value disabled is not boolean (true or false).
-> 
-> |
-> 
-> | A full log can be found at
-> 
-> | /home/panther2/warrior/build/tmp/work/x86_64-linux/glib-2.0-native/1_2
-> 
-> | .58.3-r0/build/meson-logs/meson-log.txt
-> 
-> | ERROR: meson failed
-> 
->  
-> 
-> Thanks,
-> 
-> Raxesh
-> 
->  
-> 
-> 
 
+On Wed, Sep 25, 2019 at 5:17 AM Yann Dirson <yann.dirson@blade-group.com>
+wrote:
+
+> Hi Thomas,
+>
+> Le mar. 24 sept. 2019 =C3=A0 14:36, Thomas Goodwin <btgoodwin@geontech.co=
+m> a
+> =C3=A9crit :
+>
+>> Hi Yann,
+>>
+>> Thanks for sharing! We're working through something similar using a twea=
+k
+>> to the CROPS docker containers and GitLab-CI (we started with autobuilde=
+r
+>> 2, so we've actually merged quite a bit of that experience with our GitL=
+ab
+>> setup).
+>>
+>
+> Thanks for pointing me to CROPS, that will help bringing Docker support
+> here :)
+>
+>
+>> Using docker runners as our cluster, we setup volume mounts to the host
+>> system for caching the shared state and downloads directories (as well a=
+s
+>> other artifacts upon successful build).  As part of the CI setup, we the=
+n
+>> insert a build/conf/auto.conf file that enforces the usage of that volum=
+e
+>> (DL_DIR and SSTATE_DIR).  At the deploy stage (package feeds, etc. like
+>> you're doing), we did the same thing -- copy out to that path so that it
+>> ends up on the network share rather than the container.
+>>
+>> Also like you, we're using the "include" and "extends" instructions
+>> throughout so that we have a top-level "common" set of CI YAML includes
+>> alongside a growing set of repositories for each machine-specific build.
+>> Each of those repositories follows the Yocto release branching style so
+>> that we can trace build success to newer releases by simply creating a
+>> branch and using the branch name for the initial clone of the layers.
+>>
+>> One thing that came directly from our autobuilder 2 experience is a way
+>> to inject extra variables into the autoconf.  AB2 called this *EXTRAARGS=
+*,
+>> which was simply a list of variables to add.  For our common CI "setup"
+>> stage, we check for a file of the same name (extraargs.conf) and append =
+it
+>> to the auto.conf if it exists.  In this way our downstream projects can
+>> simply include that file if necessary and version control it as new rele=
+ase
+>> branches are added.
+>>
+>> One of the drawbacks we've seen in going this route is that every
+>> repository has its own build timeout limit, which is always laughably
+>> small.  There's a backlog issue on GitLab for a global definition of thi=
+s
+>> value, but it's slated for 12.7 (I think).
+>>
+>> I'm hoping to put a write-up out soon with examples for how this all
+>> worked together, but I want to hold off until we can get the CROPS chang=
+es
+>> we needed upstreamed in a way that doesn't break those containers for
+>> everyone else (something about the entrypoint doesn't appreciate the
+>> runner's bash/shell detection script).
+>>
+>
+> Looking forward to this!
+>
+>
+>> Cheers,
+>>
+>> Thomas
+>>
+>> Geon Technologies, LLC
+>>
+>>
+>> On Mon, Sep 23, 2019 at 5:50 PM Yann Dirson <yann.dirson@blade-group.com=
+>
+>> wrote:
+>>
+>>> Hi all,
+>>>
+>>> We released our scripts to help in setting up continuous integration
+>>> of a yocto-based project
+>>> using Gitlab-CI.  You'll find the repository at
+>>> https://github.com/BladeGroup/gitlab-oe
+>>>
+>>> Although we're using this in production, it still has a couple of
+>>> rough edges and may need
+>>> tuning for different usages.  We'd love to hear how well it fits (or
+>>> doesn't fit ;) with other use
+>>> cases, and will gladly consider evolutions to make it more generally
+>>> usable.
+>>>
+>>> Best regards,
+>>> --
+>>> Yann Dirson <yann@blade-group.com>
+>>> Blade / Shadow -- http://shadow.tech
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>
+>
+> --
+> Yann Dirson <yann@blade-group.com>
+> Blade / Shadow -- http://shadow.tech
+>
+>
+
+--0000000000000ffea00594538d64
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">The CROPS changes are all upstream now, s=
+o I&#39;ve put up an example gist here:=C2=A0<a href=3D"https://gist.github=
+.com/btgoodwin/028c3a63315a27cae3c5989455058eef">https://gist.github.com/bt=
+goodwin/028c3a63315a27cae3c5989455058eef</a>.<div><br></div><div>There are =
+comments throughout the files, and I&#39;m still hammering out the &quot;de=
+ploy&quot; stage.=C2=A0 There are ongoing quirks like in the case of deploy=
+ing the SDK, despite running the populate_sdk task at the start of the stag=
+e, the related sdk directory doesn&#39;t exist or is empty as if it was not=
+ unpacked from the shared state cache (I could not replicate this behavior =
+at my desk).=C2=A0 Another odd behavior was getting a bitbake worker halt e=
+rror as if the container ran out of space or memory, but the server doesn&#=
+39;t agree with that information.<div><br></div><div>One improvement I woul=
+d suggest for anyone going this route would be to have 2 separate definitio=
+ns for artifacts.=C2=A0 The files only get touched in the setup stage, so t=
+hat should be the long-running artifact to collect whereas all others could=
+ be trimmed back to perhaps a few minutes of keep time.=C2=A0 This would pr=
+event a copy of those artifacts being present at every job and retained for=
+ a week (which would be a good GB for a whole pipeline depending on how man=
+y layers and the size of the layer history).</div><div><br></div><div>Cheer=
+s,</div><div><br></div><div>Thomas</div><div><div><br></div></div></div><in=
+put name=3D"virtru-metadata" type=3D"hidden" value=3D"{&quot;email-policy&q=
+uot;:{&quot;state&quot;:&quot;closed&quot;,&quot;expirationUnit&quot;:&quot=
+;days&quot;,&quot;disableCopyPaste&quot;:false,&quot;disablePrint&quot;:fal=
+se,&quot;disableForwarding&quot;:false,&quot;enableNoauth&quot;:false,&quot=
+;persistentProtection&quot;:false,&quot;expandedWatermarking&quot;:false,&q=
+uot;expires&quot;:false,&quot;isManaged&quot;:false},&quot;attachments&quot=
+;:{},&quot;compose-id&quot;:&quot;3&quot;,&quot;compose-window&quot;:{&quot=
+;secure&quot;:false}}"></div><br><div class=3D"gmail_quote" style=3D""><div=
+ dir=3D"ltr" class=3D"gmail_attr">On Wed, Sep 25, 2019 at 5:17 AM Yann Dirs=
+on &lt;<a href=3D"mailto:yann.dirson@blade-group.com">yann.dirson@blade-gro=
+up.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left=
+:1ex"><div dir=3D"ltr"><div dir=3D"ltr">Hi Thomas,<br></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">Le=C2=A0mar. 24 sept=
+. 2019 =C3=A0=C2=A014:36, Thomas Goodwin &lt;<a href=3D"mailto:btgoodwin@ge=
+ontech.com" target=3D"_blank">btgoodwin@geontech.com</a>&gt; a =C3=A9crit=
+=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
+0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
+=3D"ltr"><div dir=3D"ltr">Hi Yann,<div><br></div><div>Thanks for sharing! W=
+e&#39;re working through something similar using a tweak to the CROPS docke=
+r containers and GitLab-CI (we started with autobuilder 2, so we&#39;ve act=
+ually merged quite a bit of that experience with our GitLab setup).</div></=
+div></div></blockquote><div><br></div><div>Thanks for pointing me to CROPS,=
+ that will help bringing Docker support here :)</div><div> <br></div><block=
+quote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div><br></div><div>Using docker runners as our cluster, we setup volume=
+ mounts to the host system for caching the shared state and downloads direc=
+tories (as well as other artifacts upon successful build).=C2=A0 As part of=
+ the CI setup,=C2=A0we then insert a build/conf/auto.conf file that enforce=
+s the usage of that volume (DL_DIR and SSTATE_DIR).=C2=A0 At the deploy sta=
+ge (package feeds, etc. like you&#39;re doing), we did the same thing -- co=
+py out to that path so that it ends up on the network share rather than the=
+ container.</div><div><br></div><div>Also like you, we&#39;re using the &qu=
+ot;include&quot; and &quot;extends&quot; instructions throughout so that we=
+ have a top-level &quot;common&quot; set of CI YAML includes alongside a gr=
+owing set of repositories for each machine-specific build.=C2=A0 Each of th=
+ose repositories follows the Yocto release branching style so that we can t=
+race build success to newer releases by simply creating a branch and using =
+the branch name for the initial clone of the layers.</div><div><br></div><d=
+iv>One thing that came directly from our autobuilder 2 experience is a way =
+to inject extra variables into the autoconf.=C2=A0 AB2 called this <i>EXTRA=
+ARGS</i>, which was simply a list of variables to add.=C2=A0 For our common=
+ CI &quot;setup&quot; stage, we check for a file of the same name (extraarg=
+s.conf) and append it to the auto.conf if it exists.=C2=A0 In this way our =
+downstream projects can simply include that file if necessary and version c=
+ontrol it as new release branches are added.</div><div><br></div><div>One o=
+f the drawbacks we&#39;ve seen in going this route is that every repository=
+ has its own build timeout limit, which is always laughably small.=C2=A0 Th=
+ere&#39;s a backlog issue on GitLab for a global definition of this value, =
+but it&#39;s slated for 12.7 (I think).</div><div><br></div><div>I&#39;m ho=
+ping to put a write-up out soon with examples for how this all worked toget=
+her, but I want to hold off until we can get the CROPS changes we needed up=
+streamed in a way that doesn&#39;t break those containers for everyone else=
+ (something about the entrypoint doesn&#39;t appreciate the runner&#39;s ba=
+sh/shell detection script).</div></div></div></blockquote><div><br></div><d=
+iv>Looking forward to this!</div><div> <br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex"><div dir=3D"ltr"><div dir=3D"ltr"><div><br></div><d=
+iv>Cheers,</div><div><br></div><div>Thomas</div><div><br></div><div>Geon Te=
+chnologies, LLC</div><div><br></div><div></div></div><br><div class=3D"gmai=
+l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, Sep 23, 2019 at 5:50=
+ PM Yann Dirson &lt;<a href=3D"mailto:yann.dirson@blade-group.com" target=
+=3D"_blank">yann.dirson@blade-group.com</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex">Hi all,<br>
+<br>
+We released our scripts to help in setting up continuous integration<br>
+of a yocto-based project<br>
+using Gitlab-CI.=C2=A0 You&#39;ll find the repository at<br>
+<a href=3D"https://github.com/BladeGroup/gitlab-oe" rel=3D"noreferrer" targ=
+et=3D"_blank">https://github.com/BladeGroup/gitlab-oe</a><br>
+<br>
+Although we&#39;re using this in production, it still has a couple of<br>
+rough edges and may need<br>
+tuning for different usages.=C2=A0 We&#39;d love to hear how well it fits (=
+or<br>
+doesn&#39;t fit ;) with other use<br>
+cases, and will gladly consider evolutions to make it more generally usable=
+.<br>
+<br>
+Best regards,<br>
+-- <br>
+Yann Dirson &lt;<a href=3D"mailto:yann@blade-group.com" target=3D"_blank">y=
+ann@blade-group.com</a>&gt;<br>
+Blade / Shadow -- <a href=3D"http://shadow.tech" rel=3D"noreferrer" target=
+=3D"_blank">http://shadow.tech</a><br>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div></div>
+</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr">Yann Dirso=
+n &lt;<a href=3D"mailto:yann@blade-group.com" target=3D"_blank">yann@blade-=
+group.com</a>&gt;<br>Blade / Shadow -- <a href=3D"http://shadow.tech" targe=
+t=3D"_blank">http://shadow.tech</a><br><br></div></div>
+</blockquote></div></div>
+
+--0000000000000ffea00594538d64--
