@@ -1,40 +1,66 @@
-Return-Path: <stefan@herbrechtsmeier.net>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1826AE00D75; Tue,  8 Oct 2019 13:04:29 -0700 (PDT)
+	id BA59BE00D83; Tue,  8 Oct 2019 15:54:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [85.13.157.12 listed in list.dnswl.org]
-Received: from dd41138.kasserver.com (dd41138.kasserver.com [85.13.157.12])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45E11E00942
-	for <yocto@yoctoproject.org>; Tue,  8 Oct 2019 13:04:19 -0700 (PDT)
-Received: from [192.168.178.37] (i59F77E31.versanet.de [89.247.126.49])
-	by dd41138.kasserver.com (Postfix) with ESMTPSA id DF87611A0072;
-	Tue,  8 Oct 2019 22:04:17 +0200 (CEST)
-To: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-References: <1078346093.8578188.1570117048745.JavaMail.zimbra@savoirfairelinux.com>
-	<51c5973e-2c1a-f212-f963-9a2b321f480d@herbrechtsmeier.net>
-	<967547077.8619660.1570192633081.JavaMail.zimbra@savoirfairelinux.com>
-	<3faffc0c-a573-0b8b-5915-2619262e7b6e@herbrechtsmeier.net>
-	<302244287.8695117.1570450585150.JavaMail.zimbra@savoirfairelinux.com>
-	<0c098656-2c99-c6b5-42b1-b0fbd6df5bf3@herbrechtsmeier.net>
-	<20191008051231.23lrbfs2r4h4hocj@jholzmayr.localdomain>
-From: Stefan Herbrechtsmeier <stefan@herbrechtsmeier.net>
-Message-ID: <b0df2d56-0db3-df70-d77b-0a60af29c558@herbrechtsmeier.net>
-Date: Tue, 8 Oct 2019 22:04:17 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20191008051231.23lrbfs2r4h4hocj@jholzmayr.localdomain>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
-	Savoir-faire Linux Rennes <rennes@savoirfairelinux.com>
-Subject: Re: [npm] duplicate code
+	*      [209.85.214.170 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com
+	[209.85.214.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3398AE00D75
+	for <yocto@yoctoproject.org>; Tue,  8 Oct 2019 15:54:38 -0700 (PDT)
+Received: by mail-pl1-f170.google.com with SMTP id f21so57611plj.10
+	for <yocto@yoctoproject.org>; Tue, 08 Oct 2019 15:54:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=from:to:subject:date:message-id;
+	bh=QGrpG5cOcJ7hsRn5bxyCLdKsxJGb9nzPj+1C6hflxCs=;
+	b=QLsipCO1Q8zoeKBu+hlYbfTzg/L2JGL6gPZJJj/++sEMCEVTlaLiQA7KHlaJRhU3v5
+	WzT3kfzZ/C2LDpTTNube6rOnRbILhUS3werGuCBVORofEeik+UqR6b4HhmArDOCH/Tvu
+	lEYZSs2b47zpoRSrFfSeQ+GfpeDrz7TcpjTr5ZuqeIlL+NJpOwCYcR8zZZzi5j1Qhoxo
+	1hvv0liCd6QrCtVdg7E3b0e69Bw1FhF75xAIFYorf6TrtjlS7lWynDtIeTrBrvK7zq+w
+	Dky09JBx84oeWwSXAwMSCQNt2YIWwRKYETznevxliE5EYF4yAuu7xVRXLOCnoq3fy7+p
+	5C4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=QGrpG5cOcJ7hsRn5bxyCLdKsxJGb9nzPj+1C6hflxCs=;
+	b=UPPfsxolT7/iVG91bmgQR455KsqKZwCeUk+hqPQnoLLhH5WTIEyX1cGQ80YfeDCXwu
+	C9WbfB5498zJFwKC21T7lof8yA01gDgU1jMtcq/t5NOVk8cQdyo+t71a72WT3ZKtbW2Z
+	7oHPfINWa/CjeNCknJEFobICNZaM0SBCD8bK3Z5GJX0Y1ETb6iAIJrmoECStNDuDw5TG
+	k3GZ01RHN7xHC0iDnza/osEIaZ919It3F71ZOdZCgZ+WqOpIvAtW8mev/dLv0piaXNG/
+	SYsAHh7aP+DJTHXKK8m8FVi0JPsnPLACH3Jeszunekk3Rrcr7VAGfJaSRy6f5OVv4x/l
+	n+Vw==
+X-Gm-Message-State: APjAAAUTb8XW2EPk3fDbc+bNg9zzG4Uoq8msEWY4AS5kCvIi01ePTaSF
+	buwFlvXyzwcunDTgGvjmvO0VerRLZ1Y=
+X-Google-Smtp-Source: APXvYqza28+obnKPJAFiiwZuxFYAdLoi5DzAAdQRyAjA+1vL/Bwm8Z7kJmxw70WiPbUTCJ8lRIWP1A==
+X-Received: by 2002:a17:902:8e81:: with SMTP id
+	bg1mr23464282plb.137.1570575277358; 
+	Tue, 08 Oct 2019 15:54:37 -0700 (PDT)
+Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
+	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
+	q13sm166870pfn.150.2019.10.08.15.54.36 for <yocto@yoctoproject.org>
+	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+	Tue, 08 Oct 2019 15:54:36 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Date: Tue,  8 Oct 2019 15:54:35 -0700
+Message-Id: <20191008225435.6074-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
+Subject: [meta-security][PATCH] layer.conf: Update for zeus series
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,70 +72,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Oct 2019 20:04:29 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 08 Oct 2019 22:54:38 -0000
 
-Hi Josef,
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ conf/layer.conf                          | 2 +-
+ meta-integrity/conf/layer.conf           | 2 +-
+ meta-security-compliance/conf/layer.conf | 2 +-
+ meta-tpm/conf/layer.conf                 | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
 
-Am 08.10.19 um 07:12 schrieb Josef Holzmayr:
-> On Mon, Oct 07, 2019 at 09:33:46PM +0200, Stefan Herbrechtsmeier wrote:
->> Hi Jean-Marie,
->>
->> Am 07.10.19 um 14:16 schrieb Jean-marie Lemetayer:
->>>> I thought about your idea of using Yocto to manage NPM package dependencies and I ran into an issue. NPM projects can have multiple dependencies on a single package, and sometimes with multiple versions. NPM will manage this by creating sub 'node_modules' tree.
->>>
->>> Here is an example with a newly created angular application. The app depends on 3 different version of 'ansi-regex'. NPM will install the packages this way:
->>> node_modules/ansi-regex @ 2.1.1
->>> node_modules/cliui/node_modules/ansi-regex @ 3.0.0
->>> node_modules/inquirer/node_modules/ansi-regex @ 4.1.0
->>> node_modules/string-width/node_modules/ansi-regex @ 3.0.0
->>> node_modules/@angular/compiler-cli/node_modules/ansi-regex @ 4.1.0
->>
->> I use symbolic links instead of folders, append the major version to the
->> folder name and move the folders into the main node_modules folder. At the
->> moment I use one version per major version or first version unequal to zero:
->>
->> node_modules/ansi-regex-2
->> node_modules/ansi-regex-3
->> node_modules/ansi-regex-4
->> node_modules/cliui-X/node_modules/ansi-regex -> ../../ansi-regex-3
->> node_modules/inquirer-X/node_modules/ansi-regex -> ../../ansi-regex-3
->> node_modules/string-width-X/node_modules/ansi-regex  -> ../../ansi-regex-3
->> node_modules/@angular/compiler-cli-X/node_modules/ansi-regex  ->
->> ../../../ansi-regex-4
->> node_modules/abc-X/node_modules/ansi-regex -> ../../ansi-regex-2
->> node_modules/abc-X/node_modules/cliui -> ../../cliui-X
->> node_modules/abc-X/node_modules/inquirer -> ../../inquirer-X
->> node_modules/abc-X/node_modules/string-width -> ../../string-width
->> node_modules/abc-X/node_modules/@angular/compiler-cli ->
->> ../../../@angular/compiler-cli-X
->>
->>
->>> How can you handle that with Yocto ? I am not sure but I think it is not possible.
->> It is possible and Yocto could do even more. If you take a look at the
->> package ansi-regex you realize that the project increase the major version
->> only because they change the minimum required nodejs version. This means you
->> could replace all ansi-regex version by the last version, add some symbolic
->> links to the ansi-regex package and provide all versions by the same
->> package.
-> 
-> I think it would be dangerous to assume this holds true for other
-> packages too.
+diff --git a/conf/layer.conf b/conf/layer.conf
+index b9a4f25..3e890e1 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -9,6 +9,6 @@ BBFILE_COLLECTIONS += "security"
+ BBFILE_PATTERN_security = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_security = "8"
+ 
+-LAYERSERIES_COMPAT_security = "warrior"
++LAYERSERIES_COMPAT_security = "zeus"
+ 
+ LAYERDEPENDS_security = "core openembedded-layer perl-layer networking-layer meta-python"
+diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
+index 41989da..962424c 100644
+--- a/meta-integrity/conf/layer.conf
++++ b/meta-integrity/conf/layer.conf
+@@ -21,6 +21,6 @@ INTEGRITY_BASE := '${LAYERDIR}'
+ # interactive shell is enough.
+ OE_TERMINAL_EXPORTS += "INTEGRITY_BASE"
+ 
+-LAYERSERIES_COMPAT_integrity = "warrior"
++LAYERSERIES_COMPAT_integrity = "zeus"
+ # ima-evm-utils depends on keyutils from meta-oe
+ LAYERDEPENDS_integrity = "core openembedded-layer"
+diff --git a/meta-security-compliance/conf/layer.conf b/meta-security-compliance/conf/layer.conf
+index 9ccadab..0e93bd0 100644
+--- a/meta-security-compliance/conf/layer.conf
++++ b/meta-security-compliance/conf/layer.conf
+@@ -8,6 +8,6 @@ BBFILE_COLLECTIONS += "scanners-layer"
+ BBFILE_PATTERN_scanners-layer = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_scanners-layer = "10"
+ 
+-LAYERSERIES_COMPAT_scanners-layer = "warrior"
++LAYERSERIES_COMPAT_scanners-layer = "zeus"
+ 
+ LAYERDEPENDS_scanners-layer = "core openembedded-layer meta-python"
+diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
+index cdccc55..3af2d95 100644
+--- a/meta-tpm/conf/layer.conf
++++ b/meta-tpm/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "tpm-layer"
+ BBFILE_PATTERN_tpm-layer = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_tpm-layer = "10"
+ 
+-LAYERSERIES_COMPAT_tpm-layer = "warrior"
++LAYERSERIES_COMPAT_tpm-layer = "zeus"
+ 
+ LAYERDEPENDS_tpm-layer = " \
+     core \
+-- 
+2.17.1
 
-I don't assume this. It is a manual optimization of individual recipes. 
-The OE package name (PN) for a NPM package consists of the NPM package 
-name and the major version. An individual recipe could contain multiple 
-RPROVIDES for different major version if the API is compatible.
-
-In the semantic versioning world as npm packages expectexd
-> to behave - and nodejs itself certainly does! - a change in the major
-> version means a breaking change of some kind.
-
-And one of this breaking change is the update of the minimal Node.js 
-version.
-
-Regards
-   Stefan
 
