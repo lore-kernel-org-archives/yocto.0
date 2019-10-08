@@ -1,62 +1,40 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <stefan@herbrechtsmeier.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B3A75E0074B; Tue,  8 Oct 2019 08:29:06 -0700 (PDT)
+	id 1826AE00D75; Tue,  8 Oct 2019 13:04:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (sjolley.yp.pm[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.50 listed in list.dnswl.org]
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com
-	[209.85.166.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D589E0074B
-	for <yocto@yoctoproject.org>; Tue,  8 Oct 2019 08:29:05 -0700 (PDT)
-Received: by mail-io1-f50.google.com with SMTP id u8so37393526iom.5
-	for <yocto@yoctoproject.org>; Tue, 08 Oct 2019 08:29:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=VbIUI6TCukIVVf16GR0zu8MdQTE8tY3d3JdyIWTmeXg=;
-	b=vMgA5o4pqH7gpArenc12tEfZjVbW5p/ut1dxHvaZAaVQKorlZnRGPO8rs47nRVXEzw
-	+NztMatdC9F+Y6aqdGLeDPuWWGpfRzKBdi7M0q9CmX4Xmg8UQfpCa6a5uzOprABdlqU6
-	rJscFS2B9OrRui04YXyAqtypi7H2hLr/oYp/PAcXZF+sd9pXH8PlkWNM154EfJWB7GMG
-	K7BrglitnNN40bdzZi3/KZjwGqzJ/j6mQDuBJU6vByzc0/LEikyb9fGdBZHKUK9lrhUm
-	8zx9P8iTdSHj2D9VRCBEcKcuhRdH5aRWN8OFZxQZUpsTj3j9eX/KIleGpahcw9w9BkII
-	a4aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=VbIUI6TCukIVVf16GR0zu8MdQTE8tY3d3JdyIWTmeXg=;
-	b=q3amnTbHHCihQ6Nnmu5vkRQa861GAIGIT4KoZvt8ALqK7iMLMmfJV4Tk5cDecHhI7S
-	LbtKUkyRdcoyUznQ4bwC+zatOot1+sABEmoYi2YvUZQWR2wyNxhGsjCqwycroiEaGURf
-	sbpIqYcybvcpGmyDGxVJ6oH6Ixnd9yg6LAcTmXOe6Aqpu/CbyZE2N6qw9B0sIH112cX7
-	j9s2WEXtOPNK6e5cWUK3Y84SB/eizHdBeP+bNXy+u22CY0/Cc6UJRzNvtH95j5qhr+qW
-	LjfrjurHNnVCF4RVnn+CU7gkTzRD7waWCBkGIr8tOcA6Yf7Ym+9zz9e2UvxE+ds0r/fs
-	BZ+Q==
-X-Gm-Message-State: APjAAAXbyTpPIAtSBpR5nsFMQEHP++o2L8C/P749A/v67/CxDWVv13GR
-	BqKVNt1oGFCsdRq27VITlNrf2Pa0cBVwyoy6bzI=
-X-Google-Smtp-Source: APXvYqy4AZ1Rp9AYbQK04IqgwS9uzpvSpdORk5Pim4Vb8EkZaoDlsXFyo8LSi8SlmxirNAT6HVMwwDMtQYspDmFcBIE=
-X-Received: by 2002:a92:d209:: with SMTP id y9mr9695249ily.286.1570548544842; 
-	Tue, 08 Oct 2019 08:29:04 -0700 (PDT)
+	*      [85.13.157.12 listed in list.dnswl.org]
+Received: from dd41138.kasserver.com (dd41138.kasserver.com [85.13.157.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45E11E00942
+	for <yocto@yoctoproject.org>; Tue,  8 Oct 2019 13:04:19 -0700 (PDT)
+Received: from [192.168.178.37] (i59F77E31.versanet.de [89.247.126.49])
+	by dd41138.kasserver.com (Postfix) with ESMTPSA id DF87611A0072;
+	Tue,  8 Oct 2019 22:04:17 +0200 (CEST)
+To: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
+References: <1078346093.8578188.1570117048745.JavaMail.zimbra@savoirfairelinux.com>
+	<51c5973e-2c1a-f212-f963-9a2b321f480d@herbrechtsmeier.net>
+	<967547077.8619660.1570192633081.JavaMail.zimbra@savoirfairelinux.com>
+	<3faffc0c-a573-0b8b-5915-2619262e7b6e@herbrechtsmeier.net>
+	<302244287.8695117.1570450585150.JavaMail.zimbra@savoirfairelinux.com>
+	<0c098656-2c99-c6b5-42b1-b0fbd6df5bf3@herbrechtsmeier.net>
+	<20191008051231.23lrbfs2r4h4hocj@jholzmayr.localdomain>
+From: Stefan Herbrechtsmeier <stefan@herbrechtsmeier.net>
+Message-ID: <b0df2d56-0db3-df70-d77b-0a60af29c558@herbrechtsmeier.net>
+Date: Tue, 8 Oct 2019 22:04:17 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.8.0
 MIME-Version: 1.0
-From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Date: Tue, 8 Oct 2019 08:28:55 -0700
-Message-ID: <CAK5yBb_Q32FsB4x6L4n8mAoYbPajpd8oyb8ipH89Y=2a0hw_aA@mail.gmail.com>
-To: openembedded-core@lists.openembedded.org, yocto@yoctoproject.org
-Subject: Yocto Technical Team Minutes for October 8, 2019
+In-Reply-To: <20191008051231.23lrbfs2r4h4hocj@jholzmayr.localdomain>
+Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
+	Savoir-faire Linux Rennes <rennes@savoirfairelinux.com>
+Subject: Re: [npm] duplicate code
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,93 +46,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Oct 2019 15:29:06 -0000
-Content-Type: multipart/alternative; boundary="0000000000001e365d059467d463"
+X-List-Received-Date: Tue, 08 Oct 2019 20:04:29 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---0000000000001e365d059467d463
-Content-Type: text/plain; charset="UTF-8"
+Hi Josef,
 
-See:
-https://docs.google.com/document/d/1Y5IIuE-z0Ykdl-DwuzUJh52flOZuhN_TSAfw2tdU9pg/edit
+Am 08.10.19 um 07:12 schrieb Josef Holzmayr:
+> On Mon, Oct 07, 2019 at 09:33:46PM +0200, Stefan Herbrechtsmeier wrote:
+>> Hi Jean-Marie,
+>>
+>> Am 07.10.19 um 14:16 schrieb Jean-marie Lemetayer:
+>>>> I thought about your idea of using Yocto to manage NPM package dependencies and I ran into an issue. NPM projects can have multiple dependencies on a single package, and sometimes with multiple versions. NPM will manage this by creating sub 'node_modules' tree.
+>>>
+>>> Here is an example with a newly created angular application. The app depends on 3 different version of 'ansi-regex'. NPM will install the packages this way:
+>>> node_modules/ansi-regex @ 2.1.1
+>>> node_modules/cliui/node_modules/ansi-regex @ 3.0.0
+>>> node_modules/inquirer/node_modules/ansi-regex @ 4.1.0
+>>> node_modules/string-width/node_modules/ansi-regex @ 3.0.0
+>>> node_modules/@angular/compiler-cli/node_modules/ansi-regex @ 4.1.0
+>>
+>> I use symbolic links instead of folders, append the major version to the
+>> folder name and move the folders into the main node_modules folder. At the
+>> moment I use one version per major version or first version unequal to zero:
+>>
+>> node_modules/ansi-regex-2
+>> node_modules/ansi-regex-3
+>> node_modules/ansi-regex-4
+>> node_modules/cliui-X/node_modules/ansi-regex -> ../../ansi-regex-3
+>> node_modules/inquirer-X/node_modules/ansi-regex -> ../../ansi-regex-3
+>> node_modules/string-width-X/node_modules/ansi-regex  -> ../../ansi-regex-3
+>> node_modules/@angular/compiler-cli-X/node_modules/ansi-regex  ->
+>> ../../../ansi-regex-4
+>> node_modules/abc-X/node_modules/ansi-regex -> ../../ansi-regex-2
+>> node_modules/abc-X/node_modules/cliui -> ../../cliui-X
+>> node_modules/abc-X/node_modules/inquirer -> ../../inquirer-X
+>> node_modules/abc-X/node_modules/string-width -> ../../string-width
+>> node_modules/abc-X/node_modules/@angular/compiler-cli ->
+>> ../../../@angular/compiler-cli-X
+>>
+>>
+>>> How can you handle that with Yocto ? I am not sure but I think it is not possible.
+>> It is possible and Yocto could do even more. If you take a look at the
+>> package ansi-regex you realize that the project increase the major version
+>> only because they change the minimum required nodejs version. This means you
+>> could replace all ansi-regex version by the last version, add some symbolic
+>> links to the ansi-regex package and provide all versions by the same
+>> package.
+> 
+> I think it would be dangerous to assume this holds true for other
+> packages too.
 
+I don't assume this. It is a manual optimization of individual recipes. 
+The OE package name (PN) for a NPM package consists of the NPM package 
+name and the major version. An individual recipe could contain multiple 
+RPROVIDES for different major version if the API is compatible.
 
--- 
+In the semantic versioning world as npm packages expectexd
+> to behave - and nodejs itself certainly does! - a change in the major
+> version means a breaking change of some kind.
 
-Thanks,
+And one of this breaking change is the update of the minimal Node.js 
+version.
 
+Regards
+   Stefan
 
-
-*Stephen K. Jolley*
-
-*Yocto Project Program Manager*
-
-*7867 SW Bayberry Dr., Beaverton, OR 97007*
-
-(    *Cell*:                (208) 244-4460
-
-* *Email*:                 *s
-<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>*
-
---0000000000001e365d059467d463
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">See:=C2=A0
-
-<a href=3D"https://docs.google.com/document/d/1Y5IIuE-z0Ykdl-DwuzUJh52flOZu=
-hN_TSAfw2tdU9pg/edit">https://docs.google.com/document/d/1Y5IIuE-z0Ykdl-Dwu=
-zUJh52flOZuhN_TSAfw2tdU9pg/edit</a>=C2=A0=C2=A0<br clear=3D"all"><div><br><=
-/div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gm=
-ail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><p class=3D"MsoNormal=
-" style=3D"background-image:initial;background-position:initial;background-=
-repeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sans-serif"=
->Thanks,<span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
-ily:Arial,sans-serif">=C2=A0<span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
-lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
-ont-family:Arial,sans-serif"><span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
-amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager<spa=
-n></span></span></b></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-family:&quot;Co=
-urier New&quot;;color:fuchsia;background-image:initial;background-position:=
-initial;background-repeat:initial">7867 SW Bayberry Dr., Beaverton, OR 9700=
-7</span></b><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><sp=
-an></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
-&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
-<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
-:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
-s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
-><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
-/span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
-t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
-=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
-color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
-uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
- lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
-erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
-phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
-.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
-u></p></div></div></div></div></div>
-
---0000000000001e365d059467d463--
