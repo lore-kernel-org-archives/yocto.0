@@ -1,67 +1,66 @@
-Return-Path: <zoran.stojsavljevic@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 553F8E00D89; Wed,  9 Oct 2019 05:05:37 -0700 (PDT)
+	id 82F96E00D8B; Wed,  9 Oct 2019 06:02:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.193 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.128.50 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f193.google.com (mail-qk1-f193.google.com
-	[209.85.222.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC410E00C4F
-	for <yocto@yoctoproject.org>; Wed,  9 Oct 2019 05:05:35 -0700 (PDT)
-Received: by mail-qk1-f193.google.com with SMTP id w2so1950858qkf.2
-	for <yocto@yoctoproject.org>; Wed, 09 Oct 2019 05:05:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=efXzzuPWJXlzLBK+sTHd0zlnIRDX7sDHtR2aoEbEAFU=;
-	b=hXZeZpTEGbkMJbdr6mkvxUjvMdCu6h8J4oV7J8P5zOf9PvggR4bLb9dffsfXbrAom/
-	omc+LbRx4BLQTxLyBPvhNazlRvXAqaFJ1aKo3rJrzejFhrBhJYFcRwh24zjw9brh561/
-	oUFxS9em2iSF0eOOy7jCPvbxTqHbsI5RplsbAToh0vaZ1Ax8jpGE8r+HPaeMsWnxsxwO
-	dVtG9DHOkmB6VrZjobUQ9t45Os50UZOonE5BIfQJ53ePXoQtOXhjrDVtOk/3qWWzT1kj
-	/J6ovFLTzP/I+yWULXXWERI7zDyrWpyt2aX1/5lAkP98INgFdECM7FfuF7j+lhYf1uB0
-	w3Zw==
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com
+	[209.85.128.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 366ECE00D89
+	for <yocto@yoctoproject.org>; Wed,  9 Oct 2019 06:02:48 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id 7so2513089wme.1
+	for <yocto@yoctoproject.org>; Wed, 09 Oct 2019 06:02:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=intel-com.20150623.gappssmtp.com; s=20150623;
+	h=from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=nkK3WhFximfgvJEjR0AiW5QMpEwyYBxqNKoao4JzGLA=;
+	b=iO/0j4qu3VcX3n4TuGV115nrzr5BjjhnJRqTDuykaw939ui5EYAE/I7UgMZ7P/Tr30
+	b3lL4lHarA6kwLDA9SU4uoBK3qGlMI6i5yRk3er51UON0k0BSEL9gvgVbDjbVYI0mLs/
+	yVhl6nl3yp7y0+rieNmrDQnTxwz5IyX+e0hM+9+hH4AjEY//1tzz4IKm4EOggBhglV0P
+	QJj1eaxvf3kiDWeWrAbSBJcbJK2zzwAkeio1hh7B6ImU94W/O1kxhtryJuf6HCZnhqG7
+	tG7mfwTzcWcWbShEZd/ByI36jVju0RMvaLnOc3Pi17pBt9XZDUad2bh0Oco7GpkDnvgD
+	F20A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=efXzzuPWJXlzLBK+sTHd0zlnIRDX7sDHtR2aoEbEAFU=;
-	b=db7X78kW0Xxrw+L956DMDTBhOFgjqYEQxaNMMbwNOy5W85EpwlFMPzcgiLVf7NN2hz
-	6YFk/NdJRXYHpsS9Wk5rhmD8lvYzh35Cix2xvpkMBFB5b9KG3lq9SemfEX6RK1g9QDlR
-	u5IhEltvPpIy6MLlkHDUKFRFWRf2MELCr0P+ND/w5efi+N9C7NEym4fE42MObHK2+y6z
-	W69z+NMQDDwaf9bnZEbY3RZCW6wde6XoonYPAnh8fh3i2rDMJLGKC4ydYBn9FgWkXfKW
-	hfVcPXg6ANZOAGn6jeqpYWjvsNii4cl0OVCCvT2IwkAtQxl1aaddPYF4F46DIlnOCibK
-	e61Q==
-X-Gm-Message-State: APjAAAUhMYDwoxtVSz/+hwRQPs7tO6ijXwOSfoVUEnQ4omN4sFsKfK0L
-	Q9hdjxjBei++gzAJfG6e/RPZ99vR7JIAE/L8ChCvCq7EO8L+Xw==
-X-Google-Smtp-Source: APXvYqwkClvnF7mtTFSFTiXcsDu8mll38cxiWaXZbOjz9J6FXx2HRLXLLuIzEOowaAzlirmtE/CCedcY+UsSfeXDJrs=
-X-Received: by 2002:a37:bbc5:: with SMTP id l188mr3075084qkf.118.1570622735073;
-	Wed, 09 Oct 2019 05:05:35 -0700 (PDT)
+	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+	:content-transfer-encoding;
+	bh=nkK3WhFximfgvJEjR0AiW5QMpEwyYBxqNKoao4JzGLA=;
+	b=ecsyQzyCsXCsybnJya8VkWCsLXfqr+4rj1/U2fwITEcUeSx0RvygvAxa51wF8MbwWq
+	lHQqyZJZPyBSCm2hYcP9ctM/QU66qnuY7EISwm/UauKz8OYZ7nDQKhoMR1XTnIGTk9vu
+	99UC5PCzMs6UUY3HaJG4dP6pLQhHkbOOvR9EVzkDBm6V2gv0UXwcrFraONbrRH7WmO5n
+	H41RCtDoCd6PU4CuFt/f/QSOzbOzRNuG1mOA/h3II/BoaPYSwM2ahGl02QMaFWC2y3Ff
+	OUlXRKxFEEGsXG8uADvWdqfO2GJUd8gGzFu1h8J6L5aEyWMhB9rTeEUUCVh/K7BAH0dK
+	EKVA==
+X-Gm-Message-State: APjAAAUEtLz4DRvSY6b3cWDmrtHthYsttsW61YFSdkBlzaQQsrCgRTxk
+	2OAAagguxjsMAlmpss+X/cFDMDsLt3E=
+X-Google-Smtp-Source: APXvYqwRtT6CdAw+KIhptSw9x5eNf4oUWTdNhLsD5BfpWA9NFMi4fPdyIOysALB7SXzcHw/YfHpGTA==
+X-Received: by 2002:a05:600c:143:: with SMTP id
+	w3mr2401601wmm.35.1570626167522; 
+	Wed, 09 Oct 2019 06:02:47 -0700 (PDT)
+Received: from flashheart.burtonini.com (35.106.2.81.in-addr.arpa.
+	[81.2.106.35])
+	by smtp.gmail.com with ESMTPSA id l4sm1681016wrw.6.2019.10.09.06.02.45
+	for <yocto@yoctoproject.org>
+	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+	Wed, 09 Oct 2019 06:02:46 -0700 (PDT)
+From: Ross Burton <ross.burton@intel.com>
+To: yocto@yoctoproject.org
+Date: Wed,  9 Oct 2019 14:02:43 +0100
+Message-Id: <20191009130243.28284-1-ross.burton@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <CABjzrPTAFGE8nua4ONh0S_6zrFL38LSojCpFyR_ELp6p3Lcx5w@mail.gmail.com>
-	<CADkTA4M0gW+bRdRLEp8nZ4nS6Z9_q6G3SjBir5+FOOxe3_8BfA@mail.gmail.com>
-	<CABjzrPS6Lzn2_QRAQu06J=RMNfgbtnMA8a_JrETKEpKRV5U6RQ@mail.gmail.com>
-In-Reply-To: <CABjzrPS6Lzn2_QRAQu06J=RMNfgbtnMA8a_JrETKEpKRV5U6RQ@mail.gmail.com>
-From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
-Date: Wed, 9 Oct 2019 14:05:23 +0200
-Message-ID: <CAGAf8Lwc1A3iLmV-VNgkJG6iFB2++y+eqBzpnafzpZ=g7_5iMw@mail.gmail.com>
-To: Shravan Singh <shravan@bluesparq.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: Building a out of tree kernel module on target system
+Subject: [PATCH][yocto-docs] ref-system-requirements: update support distribution list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,123 +72,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Oct 2019 12:05:37 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 09 Oct 2019 13:02:50 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-I have this all standardized for BBB, and here are pointers how to
-build an out of tree kernel module on BBB target system (with some
-specifics):
-local.conf (with added systemd service):
-https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-releases/bb=
-b-warrior/local.conf_full
+Add Fedora 30 and Ubuntu 19.04.
 
-Compiling out of tree kernel modules:
-https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/Issues/LKM/prep=
-are_modules.log
+Swap openSUSE 42.3 for Leap 15.1.
 
-Zoran
-_______
+Remove huge comment of old distributions.
 
-On Wed, Oct 9, 2019 at 12:48 PM Shravan Singh <shravan@bluesparq.com> wrote=
-:
->
-> Hello Bruce,
->
-> So I was finally able to compile the kernel module by creating a patch an=
-d then applying that patch to linux recipe file.
-> However now, I am facing a different issue and have been trying to figure=
- that one out, Hence the delay in my response.
->
-> After creating an appropriate device tree overlay file. After loading the=
- module, the I2C driver still reads the screen abs_x_max=3D800 and abs_y_ma=
-x=3D480.
-> I have specified the frame_buffer_width and frame_buffer height as 1024 X=
- 600. Also I have specifically provided touchscreen-x-size and touchscreen-=
-y-size in my device tree overlay to match the same.
->
-> Why could this be happening?
->
-> Regards,
-> Shravan Singh
-> (239) 243-0838
->
-> Blue Sparq, Inc.
-> 928 NE 24th Lane unit 4 and 5.
-> Cape Coral, FL 33993
->
-> IMPORTANT: The contents of this email and any attachments are confidentia=
-l. They are intended for the named recipient(s) only. If you have received =
-this email by mistake, please notify the sender immediately and do not disc=
-lose the contents to anyone or make copies thereof.
->
->
-> On Fri, Oct 4, 2019 at 1:42 PM Bruce Ashfield <bruce.ashfield@gmail.com> =
-wrote:
->>
->> On Fri, Oct 4, 2019 at 11:40 AM Shravan Singh <shravan@bluesparq.com> wr=
-ote:
->> >
->> > Hello,
->> >
->> > I am trying to build an out of tree service module on a yocto raspberr=
-y pi image(target system).
->> > I am using yocto version warrior
->> > and my machine is Raspberrypi-cm3
->> > Kernel version is 4.19.58
->> >
->> > I was able to get the build directory by including
->> >
->> > IMAGE_INSTALL_append =3D " kernel-modules kernel-dev kernel-devsrc"
->> > After that, I saw a build directory on raspberrypi-image
->> >
->> > Now I am trying to compile my source file with the command
->> >
->> > make ARCH=3Darm CROSS_COMPILE=3Darm-poky-linux-gnueabi- KSRC=3D"/lib/m=
-odules/4.19.58/source" -C /lib/modules/$(shell uname -r)/build M=3D/home/ro=
-ot/tsDriver modules
->> >
->> > After that I get an error saying asm/bitsperlong.h: no such file or di=
-rectory
->> >
->> > Am I missing something in my make command?
->>
->> You need to rebuild/regenerate some file on target (they can't be packag=
-ed).
->> So have you gone to /usr/src/kernel and done a "make scripts prepare" ?
->>
->> Bruce
->>
->> >
->> >
->> > Regards,
->> > Shravan Singh
->> > (239) 243-0838
->> >
->> > Blue Sparq, Inc.
->> > 928 NE 24th Lane unit 4 and 5.
->> > Cape Coral, FL 33993
->> >
->> > IMPORTANT: The contents of this email and any attachments are confiden=
-tial. They are intended for the named recipient(s) only. If you have receiv=
-ed this email by mistake, please notify the sender immediately and do not d=
-isclose the contents to anyone or make copies thereof.
->> > --
->> > _______________________________________________
->> > yocto mailing list
->> > yocto@yoctoproject.org
->> > https://lists.yoctoproject.org/listinfo/yocto
->>
->>
->>
->> --
->> - Thou shalt not follow the NULL pointer, for chaos and madness await
->> thee at its end
->> - "Use the force Harry" - Gandalf, Star Trek II
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ .../ref-manual/ref-system-requirements.xml    | 54 ++-----------------
+ 1 file changed, 4 insertions(+), 50 deletions(-)
+
+diff --git a/documentation/ref-manual/ref-system-requirements.xml b/documentation/ref-manual/ref-system-requirements.xml
+index 51995309d..9c2198a76 100644
+--- a/documentation/ref-manual/ref-system-requirements.xml
++++ b/documentation/ref-manual/ref-system-requirements.xml
+@@ -89,65 +89,19 @@
+             </note>
+             <itemizedlist>
+                 <listitem><para>Ubuntu 16.04 (LTS)</para></listitem>
+-                <listitem><para>Ubuntu 18.04</para></listitem>
++                <listitem><para>Ubuntu 18.04 (LTS)</para></listitem>
++                <listitem><para>Ubuntu 19.04</para></listitem>
+                 <listitem><para>Fedora 28</para></listitem>
+                 <listitem><para>Fedora 29</para></listitem>
++                <listitem><para>Fedora 30</para></listitem>
+                 <listitem><para>CentOS 7.x</para></listitem>
+                 <listitem><para>Debian GNU/Linux 8.x (Jessie)</para></listitem>
+                 <listitem><para>Debian GNU/Linux 9.x (Stretch)</para></listitem>
+                 <listitem><para>Debian GNU/Linux 10.x (Buster)</para></listitem>
+-                <listitem><para>OpenSUSE 42.3</para></listitem>
++                <listitem><para>OpenSUSE Leap 15.1</para></listitem>
+             </itemizedlist>
+         </para>
+ 
+-
+-<!--            <listitem><para>Ubuntu 10.04</para></listitem>
+-                <listitem><para>Ubuntu 11.10</para></listitem>
+-                <listitem><para>Ubuntu 12.04 (LTS)</para></listitem>
+-                <listitem><para>Ubuntu 13.10</para></listitem>
+-                <listitem><para>Ubuntu 14.04 (LTS)</para></listitem>
+-                <listitem><para>Ubuntu 14.10</para></listitem>
+-                <listitem><para>Ubuntu 15.04</para></listitem>
+-                <listitem><para>Ubuntu 15.10</para></listitem>
+-                <listitem><para>Ubuntu 16.04 (LTS)</para></listitem>
+-                <listitem><para>Ubuntu 16.10 (LTS)</para></listitem>
+-                <listitem><para>Ubuntu 17.04</para></listitem>
+-                <listitem><para>Fedora 16 (Verne)</para></listitem>
+-                <listitem><para>Fedora 17 (Spherical)</para></listitem>
+-                <listitem><para>Fedora 19 (Schrödinger's Cat)</para></listitem>
+-                <listitem><para>Fedora release 20 (Heisenbug)</para></listitem>
+-                <listitem><para>Fedora release 22</para></listitem>
+-                <listitem><para>Fedora release 23</para></listitem>
+-                <listitem><para>Fedora release 24</para></listitem>
+-                <listitem><para>Fedora release 26</para></listitem>
+-                <listitem><para>CentOS release 5.6 (Final)</para></listitem>
+-                <listitem><para>CentOS release 5.7 (Final)</para></listitem>
+-                <listitem><para>CentOS release 5.8 (Final)</para></listitem>
+-                <listitem><para>CentOS release 6.3 (Final)</para></listitem>
+-                <listitem><para>CentOS release 6.x</para></listitem>
+-                <listitem><para>CentOS release 7.x</para></listitem>
+-                <listitem><para>Debian GNU/Linux 6.0 (Squeeze)</para></listitem>
+-                <listitem><para>Debian GNU/Linux 7.x (Wheezy)</para></listitem>
+-                <listitem><para>Debian GNU/Linux 8.x (Jessie)</para></listitem>
+-                <listitem><para>Debian GNU/Linux 9.x (Stretch)</para></listitem>
+-                <listitem><para>Debian GNU/Linux 7.1 (Wheezy)</para></listitem>
+-                <listitem><para>Debian GNU/Linux 7.2 (Wheezy)</para></listitem>
+-                <listitem><para>Debian GNU/Linux 7.3 (Wheezy)</para></listitem>
+-                <listitem><para>Debian GNU/Linux 7.4 (Wheezy)</para></listitem>
+-                <listitem><para>Debian GNU/Linux 7.5 (Wheezy)</para></listitem>
+-                <listitem><para>Debian GNU/Linux 7.6 (Wheezy)</para></listitem>
+-                <listitem><para>openSUSE 11.4</para></listitem>
+-                <listitem><para>openSUSE 12.1</para></listitem>
+-                <listitem><para>openSUSE 12.2</para></listitem>
+-                <listitem><para>openSUSE 12.3</para></listitem>
+-                <listitem><para>openSUSE 13.1</para></listitem>
+-                <listitem><para>openSUSE 13.2</para></listitem>
+-                <listitem><para>openSUSE 42.1</para></listitem>
+-                <listitem><para>openSUSE 42.2</para></listitem>
+-            </itemizedlist>
+--->
+-
+-
+         <note>
+             While the Yocto Project Team attempts to ensure all Yocto Project
+             releases are one hundred percent compatible with each officially
+-- 
+2.20.1
+
 
