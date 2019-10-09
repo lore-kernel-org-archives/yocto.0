@@ -1,105 +1,67 @@
-Return-Path: <aehs29@gmail.com>
+Return-Path: <zoran.stojsavljevic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2EB25E00D75; Tue,  8 Oct 2019 17:40:08 -0700 (PDT)
+	id 553F8E00D89; Wed,  9 Oct 2019 05:05:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: **
-X-Spam-Status: No, score=2.0 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
-	FORGED_SPF_HELO,FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS,SPOOFED_FREEMAIL autolearn=no version=3.3.1
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (aehs29[at]gmail.com)
+	provider *      (zoran.stojsavljevic[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [40.107.69.44 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
-	*      CUSTOM_MED *  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
-	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
-	and not from a mailing list
-	*  2.0 SPOOFED_FREEMAIL SPOOFED_FREEMAIL
-Received: from NAM04-CO1-obe.outbound.protection.outlook.com
-	(mail-eopbgr690044.outbound.protection.outlook.com [40.107.69.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C29DEE00805
-	for <yocto@yoctoproject.org>; Tue,  8 Oct 2019 17:40:06 -0700 (PDT)
-Received: from BN6PR02CA0104.namprd02.prod.outlook.com (2603:10b6:405:60::45)
-	by MN2PR02MB6222.namprd02.prod.outlook.com (2603:10b6:208:186::23)
-	with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2327.24;
-	Wed, 9 Oct 2019 00:40:05 +0000
-Received: from SN1NAM02FT031.eop-nam02.prod.protection.outlook.com
-	(2a01:111:f400:7e44::200) by BN6PR02CA0104.outlook.office365.com
-	(2603:10b6:405:60::45) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2327.25 via
-	Frontend Transport; Wed, 9 Oct 2019 00:40:05 +0000
-Authentication-Results: spf=softfail (sender IP is 149.199.60.83)
-	smtp.mailfrom=gmail.com; yoctoproject.org;
-	dkim=none (message not signed)
-	header.d=none; yoctoproject.org;
-	dmarc=fail action=none header.from=gmail.com; 
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
-	gmail.com discourages use of 149.199.60.83 as permitted sender)
-Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
-	SN1NAM02FT031.mail.protection.outlook.com (10.152.72.116) with
-	Microsoft SMTP Server (version=TLS1_0,
-	cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2327.21
-	via Frontend Transport; Wed, 9 Oct 2019 00:40:05 +0000
-Received: from unknown-38-66.xilinx.com ([149.199.38.66] helo=xsj-pvapsmtp01)
-	by xsj-pvapsmtpgw01 with esmtp (Exim 4.63)
-	(envelope-from <aehs29@gmail.com>)
-	id 1iHzxj-0004SQ-Au; Tue, 08 Oct 2019 17:36:19 -0700
-Received: from [127.0.0.1] (helo=xsj-smtp-dlp1.xlnx.xilinx.com)
-	by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-	(envelope-from <aehs29@gmail.com>)
-	id 1iHzxe-0007Zw-7E; Tue, 08 Oct 2019 17:36:14 -0700
-Received: from xsj-pvapsmtp01 (smtp3.xilinx.com [149.199.38.66])
-	by xsj-smtp-dlp1.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id
-	x990aDBx028690; Tue, 8 Oct 2019 17:36:13 -0700
-Received: from [172.19.2.8] (helo=xsjalejandr50.xilinx.com)
-	by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-	(envelope-from <aehs29@gmail.com>)
-	id 1iHzxd-0007ZW-FD; Tue, 08 Oct 2019 17:36:13 -0700
-From: Alejandro Enedino Hernandez Samaniego <aehs29@gmail.com>
-To: yocto@yoctoproject.org
-Date: Tue,  8 Oct 2019 17:36:11 -0700
-Message-Id: <1570581371-13224-1-git-send-email-aehs29@gmail.com>
-X-Mailer: git-send-email 2.7.4
-X-RCIS-Action: ALLOW
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-Result: No--6.858-7.0-31-1
-X-imss-scan-details: No--6.858-7.0-31-1;No--6.858-5.0-31-1
-X-TM-AS-User-Approved-Sender: No;No
-X-TM-AS-Result-Xfilter: Match text exemption rules:No
-X-EOPAttributedMessage: 0
-X-Matching-Connectors: 132150552053682489;
-	(f9e945fa-a09a-4caa-7158-08d2eb1d8c44); ()
-X-Forefront-Antispam-Report: CIP:149.199.60.83; IPV:NLI; CTRY:US; EFV:NLI;
-	SFV:NSPM;
-	SFS:(10009020)(39860400002)(396003)(346002)(376002)(136003)(189003)(199004)(426003)(2616005)(82202003)(4326008)(5660300002)(6916009)(8936002)(9786002)(305945005)(2906002)(48376002)(107886003)(336012)(50226002)(26005)(55446002)(486006)(16586007)(126002)(476003)(61266001)(36756003)(47776003)(316002)(50466002)(8676002)(70586007)(51416003)(498600001)(86362001)(2351001)(2361001)(76482006)(356004)(70206006)(81156014)(81166006)(73392003);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:MN2PR02MB6222; H:xsj-pvapsmtpgw01;
-	FPR:; SPF:SoftFail; LANG:en; PTR:unknown-60-83.xilinx.com; MX:1;
-	A:1; 
+	*      [209.85.222.193 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qk1-f193.google.com (mail-qk1-f193.google.com
+	[209.85.222.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC410E00C4F
+	for <yocto@yoctoproject.org>; Wed,  9 Oct 2019 05:05:35 -0700 (PDT)
+Received: by mail-qk1-f193.google.com with SMTP id w2so1950858qkf.2
+	for <yocto@yoctoproject.org>; Wed, 09 Oct 2019 05:05:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=efXzzuPWJXlzLBK+sTHd0zlnIRDX7sDHtR2aoEbEAFU=;
+	b=hXZeZpTEGbkMJbdr6mkvxUjvMdCu6h8J4oV7J8P5zOf9PvggR4bLb9dffsfXbrAom/
+	omc+LbRx4BLQTxLyBPvhNazlRvXAqaFJ1aKo3rJrzejFhrBhJYFcRwh24zjw9brh561/
+	oUFxS9em2iSF0eOOy7jCPvbxTqHbsI5RplsbAToh0vaZ1Ax8jpGE8r+HPaeMsWnxsxwO
+	dVtG9DHOkmB6VrZjobUQ9t45Os50UZOonE5BIfQJ53ePXoQtOXhjrDVtOk/3qWWzT1kj
+	/J6ovFLTzP/I+yWULXXWERI7zDyrWpyt2aX1/5lAkP98INgFdECM7FfuF7j+lhYf1uB0
+	w3Zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=efXzzuPWJXlzLBK+sTHd0zlnIRDX7sDHtR2aoEbEAFU=;
+	b=db7X78kW0Xxrw+L956DMDTBhOFgjqYEQxaNMMbwNOy5W85EpwlFMPzcgiLVf7NN2hz
+	6YFk/NdJRXYHpsS9Wk5rhmD8lvYzh35Cix2xvpkMBFB5b9KG3lq9SemfEX6RK1g9QDlR
+	u5IhEltvPpIy6MLlkHDUKFRFWRf2MELCr0P+ND/w5efi+N9C7NEym4fE42MObHK2+y6z
+	W69z+NMQDDwaf9bnZEbY3RZCW6wde6XoonYPAnh8fh3i2rDMJLGKC4ydYBn9FgWkXfKW
+	hfVcPXg6ANZOAGn6jeqpYWjvsNii4cl0OVCCvT2IwkAtQxl1aaddPYF4F46DIlnOCibK
+	e61Q==
+X-Gm-Message-State: APjAAAUhMYDwoxtVSz/+hwRQPs7tO6ijXwOSfoVUEnQ4omN4sFsKfK0L
+	Q9hdjxjBei++gzAJfG6e/RPZ99vR7JIAE/L8ChCvCq7EO8L+Xw==
+X-Google-Smtp-Source: APXvYqwkClvnF7mtTFSFTiXcsDu8mll38cxiWaXZbOjz9J6FXx2HRLXLLuIzEOowaAzlirmtE/CCedcY+UsSfeXDJrs=
+X-Received: by 2002:a37:bbc5:: with SMTP id l188mr3075084qkf.118.1570622735073;
+	Wed, 09 Oct 2019 05:05:35 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0567e722-aabe-4486-6e8f-08d74c513a77
-X-MS-TrafficTypeDiagnostic: MN2PR02MB6222:
-X-Microsoft-Antispam-PRVS: <MN2PR02MB6222BF470F93900A24AC7117CF950@MN2PR02MB6222.namprd02.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-Forefront-PRVS: 018577E36E
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 9LUrtIChS3PeMI/9s1cw2GMPxqRD1NQGFIFfflylHCe94/KHVxWPibg9J3iSKDYL/Oox/wPmiGpR3nBO21++HKedXofALpqo9h50lGOBhODlKGlkqJR3zdB/39y6YVArJ53nOdq5oAPeXkFzJcrGVlqMu6qsoivw1bBziBfj37DIBRDziwfTq0eobT+/3cgcVJDRgFJpZN7kEQgkAQltfScpMhcioTv6QAhpRvJwtv7ztz3HOwhIE8Epv4IppjsmNjtx10TgrtlrQAJo3fjhhj601ym7XSjJ20fr/jGmzErqqqlBLBluFIVi1wFvgHxc+yw7xSO0pNdaI6EQddtvLm/o+UjEemN/G22jgLE3IufkP2LxqgBr+/ohlzSnTL/PNuzaZ+5VBlpQPRoWcYhYMMVHRQ2+daXJsd1Pa2wGsv8=
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2019 00:40:05.1350 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0567e722-aabe-4486-6e8f-08d74c513a77
-X-MS-Exchange-CrossTenant-Id: 5afe0b00-7697-4969-b663-5eab37d5f47e
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=5afe0b00-7697-4969-b663-5eab37d5f47e;
-	Ip=[149.199.60.83]; Helo=[xsj-pvapsmtpgw01]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR02MB6222
-X-Mailman-Approved-At: Wed, 09 Oct 2019 03:45:44 -0700
-Cc: Alejandro Enedino Hernandez Samaniego <aehs29@gmail.com>
-Subject: [PATCH] documentation: Update multiconfig syntax and explanation on BBMULTICONFIG
+References: <CABjzrPTAFGE8nua4ONh0S_6zrFL38LSojCpFyR_ELp6p3Lcx5w@mail.gmail.com>
+	<CADkTA4M0gW+bRdRLEp8nZ4nS6Z9_q6G3SjBir5+FOOxe3_8BfA@mail.gmail.com>
+	<CABjzrPS6Lzn2_QRAQu06J=RMNfgbtnMA8a_JrETKEpKRV5U6RQ@mail.gmail.com>
+In-Reply-To: <CABjzrPS6Lzn2_QRAQu06J=RMNfgbtnMA8a_JrETKEpKRV5U6RQ@mail.gmail.com>
+From: Zoran Stojsavljevic <zoran.stojsavljevic@gmail.com>
+Date: Wed, 9 Oct 2019 14:05:23 +0200
+Message-ID: <CAGAf8Lwc1A3iLmV-VNgkJG6iFB2++y+eqBzpnafzpZ=g7_5iMw@mail.gmail.com>
+To: Shravan Singh <shravan@bluesparq.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: Building a out of tree kernel module on target system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -111,123 +73,123 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Oct 2019 00:40:08 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 09 Oct 2019 12:05:37 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The syntax to use multiconfig builds changed from multiconfig:foo:target
-to mc:foo:target.
+I have this all standardized for BBB, and here are pointers how to
+build an out of tree kernel module on BBB target system (with some
+specifics):
+local.conf (with added systemd service):
+https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/bbb-releases/bb=
+b-warrior/local.conf_full
 
-Clarify that BBMULTICONFIG defines additional configurations along with
-the one coming from local.conf.
+Compiling out of tree kernel modules:
+https://github.com/ZoranStojsavljevic/bbb-yocto/blob/master/Issues/LKM/prep=
+are_modules.log
 
-Fix these changes on both the dev manual and the reference manual.
+Zoran
+_______
 
-Signed-off-by: Alejandro Enedino Hernandez Samaniego <aehs29@gmail.com>
----
- .../dev-manual/dev-manual-common-tasks.xml         | 26 ++++++++++++++--------
- documentation/ref-manual/ref-variables.xml         |  4 ++--
- 2 files changed, 19 insertions(+), 11 deletions(-)
-
-diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
-index 165c3aa..f72f81f 100644
---- a/documentation/dev-manual/dev-manual-common-tasks.xml
-+++ b/documentation/dev-manual/dev-manual-common-tasks.xml
-@@ -5420,26 +5420,34 @@
-                             <literallayout class='monospaced'>
-      BBMULTICONFIG = "x86 arm"
-                             </literallayout>
-+                          </para>
-+
-+                          <para>Please note, that a "default" configuration already exists by definition,
-+                          this configuration is named: "" (empty string) and is defined by the variables
-+                          coming from your local.conf file. So, the previous example actually adds two
-+                          additional configurations to your build "arm" and "x86" along with "".
-                             </para></listitem>
-                         <listitem><para>
-                             <emphasis>Launch BitBake</emphasis>:
-                             Use the following BitBake command form to launch the
-                             multiple configuration build:
-                             <literallayout class='monospaced'>
--     $ bitbake [multiconfig:<replaceable>multiconfigname</replaceable>:]<replaceable>target</replaceable> [[[multiconfig:<replaceable>multiconfigname</replaceable>:]<replaceable>target</replaceable>] ... ]
-+     $ bitbake [mc:<replaceable>multiconfigname</replaceable>:]<replaceable>target</replaceable> [[[mc:<replaceable>multiconfigname</replaceable>:]<replaceable>target</replaceable>] ... ]
-                             </literallayout>
-                             For the example in this section, the following
-                             command applies:
-                             <literallayout class='monospaced'>
--     $ bitbake multiconfig:x86:core-image-minimal multiconfig:arm:core-image-sato
-+     $ bitbake mc:x86:core-image-minimal mc:arm:core-image-sato mc::core-image-base
-                             </literallayout>
-                             The previous BitBake command builds a
-                             <filename>core-image-minimal</filename> image that
-                             is configured through the
--                            <filename>x86.conf</filename> configuration file
--                            and builds a <filename>core-image-sato</filename>
-+                            <filename>x86.conf</filename> configuration file,
-+                            a <filename>core-image-sato</filename>
-                             image that is configured through the
--                            <filename>arm.conf</filename> configuration file.
-+                            <filename>arm.conf</filename> configuration file and a
-+                            <filename>core-image-base</filename> that is configured
-+                            through your <filename>local.conf</filename> configuration file.
-                             </para></listitem>
-                     </itemizedlist>
-                     <note>
-@@ -5479,7 +5487,7 @@
-                     build, you must declare the dependencies in the recipe
-                     using the following statement form:
-                     <literallayout class='monospaced'>
--     <replaceable>task_or_package</replaceable>[mcdepends] = "multiconfig:<replaceable>from_multiconfig</replaceable>:<replaceable>to_multiconfig</replaceable>:<replaceable>recipe_name</replaceable>:<replaceable>task_on_which_to_depend</replaceable>"
-+     <replaceable>task_or_package</replaceable>[mcdepends] = "mc:<replaceable>from_multiconfig</replaceable>:<replaceable>to_multiconfig</replaceable>:<replaceable>recipe_name</replaceable>:<replaceable>task_on_which_to_depend</replaceable>"
-                     </literallayout>
-                     To better show how to use this statement, consider the
-                     example scenario from the first paragraph of this section.
-@@ -5487,7 +5495,7 @@
-                     that builds the <filename>core-image-sato</filename>
-                     image:
-                     <literallayout class='monospaced'>
--     do_image[mcdepends] = "multiconfig:x86:arm:core-image-minimal:do_rootfs"
-+     do_image[mcdepends] = "mc:x86:arm:core-image-minimal:do_rootfs"
-                     </literallayout>
-                     In this example, the
-                     <replaceable>from_multiconfig</replaceable> is "x86".
-@@ -5502,7 +5510,7 @@
-                    Once you set up this dependency, you can build the
-                    "x86" multiconfig using a BitBake command as follows:
-                    <literallayout class='monospaced'>
--     $ bitbake multiconfig:x86:core-image-sato
-+     $ bitbake mc:x86:core-image-sato
-                    </literallayout>
-                    This command executes all the tasks needed to create
-                    the <filename>core-image-sato</filename> image for the
-@@ -5518,7 +5526,7 @@
-                    Consider this change to the statement in the
-                    <filename>core-image-sato</filename> recipe:
-                    <literallayout class='monospaced'>
--     do_image[mcdepends] = "multiconfig:x86:arm:core-image-minimal:do_image"
-+     do_image[mcdepends] = "mc:x86:arm:core-image-minimal:do_image"
-                    </literallayout>
-                    In this case, BitBake must create the
-                    <filename>core-image-minimal</filename> image for the
-diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
-index 93b7588..8ad3f9b 100644
---- a/documentation/ref-manual/ref-variables.xml
-+++ b/documentation/ref-manual/ref-variables.xml
-@@ -1344,12 +1344,12 @@
- 
-         <glossentry id='var-BBMULTICONFIG'><glossterm>BBMULTICONFIG</glossterm>
-             <info>
--                BBMULTICONFIG[doc] = "Specifies each separate configuration when you are building targets with multiple configurations."
-+                BBMULTICONFIG[doc] = "Specifies each additional separate configuration when you are building targets with multiple configurations."
-             </info>
-             <glossdef>
-                 <para role="glossdeffirst">
- <!--                <para role="glossdeffirst"><imagedata fileref="figures/define-generic.png" /> -->
--                    Specifies each separate configuration when you are
-+                    Specifies each additional separate configuration when you are
-                     building targets with multiple configurations.
-                     Use this variable in your
-                     <filename>conf/local.conf</filename> configuration file.
--- 
-2.7.4
-
+On Wed, Oct 9, 2019 at 12:48 PM Shravan Singh <shravan@bluesparq.com> wrote=
+:
+>
+> Hello Bruce,
+>
+> So I was finally able to compile the kernel module by creating a patch an=
+d then applying that patch to linux recipe file.
+> However now, I am facing a different issue and have been trying to figure=
+ that one out, Hence the delay in my response.
+>
+> After creating an appropriate device tree overlay file. After loading the=
+ module, the I2C driver still reads the screen abs_x_max=3D800 and abs_y_ma=
+x=3D480.
+> I have specified the frame_buffer_width and frame_buffer height as 1024 X=
+ 600. Also I have specifically provided touchscreen-x-size and touchscreen-=
+y-size in my device tree overlay to match the same.
+>
+> Why could this be happening?
+>
+> Regards,
+> Shravan Singh
+> (239) 243-0838
+>
+> Blue Sparq, Inc.
+> 928 NE 24th Lane unit 4 and 5.
+> Cape Coral, FL 33993
+>
+> IMPORTANT: The contents of this email and any attachments are confidentia=
+l. They are intended for the named recipient(s) only. If you have received =
+this email by mistake, please notify the sender immediately and do not disc=
+lose the contents to anyone or make copies thereof.
+>
+>
+> On Fri, Oct 4, 2019 at 1:42 PM Bruce Ashfield <bruce.ashfield@gmail.com> =
+wrote:
+>>
+>> On Fri, Oct 4, 2019 at 11:40 AM Shravan Singh <shravan@bluesparq.com> wr=
+ote:
+>> >
+>> > Hello,
+>> >
+>> > I am trying to build an out of tree service module on a yocto raspberr=
+y pi image(target system).
+>> > I am using yocto version warrior
+>> > and my machine is Raspberrypi-cm3
+>> > Kernel version is 4.19.58
+>> >
+>> > I was able to get the build directory by including
+>> >
+>> > IMAGE_INSTALL_append =3D " kernel-modules kernel-dev kernel-devsrc"
+>> > After that, I saw a build directory on raspberrypi-image
+>> >
+>> > Now I am trying to compile my source file with the command
+>> >
+>> > make ARCH=3Darm CROSS_COMPILE=3Darm-poky-linux-gnueabi- KSRC=3D"/lib/m=
+odules/4.19.58/source" -C /lib/modules/$(shell uname -r)/build M=3D/home/ro=
+ot/tsDriver modules
+>> >
+>> > After that I get an error saying asm/bitsperlong.h: no such file or di=
+rectory
+>> >
+>> > Am I missing something in my make command?
+>>
+>> You need to rebuild/regenerate some file on target (they can't be packag=
+ed).
+>> So have you gone to /usr/src/kernel and done a "make scripts prepare" ?
+>>
+>> Bruce
+>>
+>> >
+>> >
+>> > Regards,
+>> > Shravan Singh
+>> > (239) 243-0838
+>> >
+>> > Blue Sparq, Inc.
+>> > 928 NE 24th Lane unit 4 and 5.
+>> > Cape Coral, FL 33993
+>> >
+>> > IMPORTANT: The contents of this email and any attachments are confiden=
+tial. They are intended for the named recipient(s) only. If you have receiv=
+ed this email by mistake, please notify the sender immediately and do not d=
+isclose the contents to anyone or make copies thereof.
+>> > --
+>> > _______________________________________________
+>> > yocto mailing list
+>> > yocto@yoctoproject.org
+>> > https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>>
+>> --
+>> - Thou shalt not follow the NULL pointer, for chaos and madness await
+>> thee at its end
+>> - "Use the force Harry" - Gandalf, Star Trek II
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
