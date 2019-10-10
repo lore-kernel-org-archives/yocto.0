@@ -1,99 +1,130 @@
-Return-Path: <Diego.SantaCruz@spinetix.com>
+Return-Path: <Raxeshkumar.Oriya@ncr.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B2A72E00D7E; Mon, 14 Oct 2019 02:51:02 -0700 (PDT)
+	id DC641E00DA9; Thu, 10 Oct 2019 03:34:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FORGED_SPF_HELO, RCVD_IN_DNSWL_NONE,
-	SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
+	RCVD_IN_SORBS_WEB autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [40.107.8.42 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  1.5 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable web server
+	*      [165.225.104.75 listed in dnsbl.sorbs.net]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [148.163.148.55 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid *  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com
-	(mail-eopbgr80042.outbound.protection.outlook.com [40.107.8.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39A6EE007AA
-	for <yocto@yoctoproject.org>; Mon, 14 Oct 2019 02:50:59 -0700 (PDT)
+	*      valid
+X-Greylist: delayed 1727 seconds by postgrey-1.32 at yocto-www;
+	Thu, 10 Oct 2019 03:34:56 PDT
+Received: from mx0a-00209e01.pphosted.com (mx0a-00209e01.pphosted.com
+	[148.163.148.55])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20E20E00D9D
+	for <yocto@yoctoproject.org>; Thu, 10 Oct 2019 03:34:56 -0700 (PDT)
+Received: from pps.filterd (m0184429.ppops.net [127.0.0.1])
+	by mx0a-00209e01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+	x9AA46t9031187
+	for <yocto@yoctoproject.org>; Thu, 10 Oct 2019 06:06:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ncr.com;
+	h=from : to : cc : subject
+	: date : message-id : content-type : mime-version; s=mail;
+	bh=Vi7hs4hiCNcTKODbF9N7N6uXZ2NegkwaoMVlQN03q6k=;
+	b=nMqeh4HQH/8PY6oGh58m/fKSurFet5yOxkGhF8frP23u72hGSoHicTnzkiv0EJXoHyo6
+	WiNFHXN8k415+ZcPKtrC/jbr7mcfvPqDLhflkq/wYRL9/EASkv9MVuDGAV5qaynCyNIB
+	QuNymh/hfaL3ijInUg/FyKCo8v9/8FQEDVI5+hX2fi+nTN/CEmfFdPDXXmSHThmiCmo0
+	sgykDNv6QIMZr21czMRUDUyd+4GOeYOQiy+H3HKEIlHyyBhyZesLrDy4iiyzu2YPWffF
+	lh3NgPPd1WwmLk+PbWbVSyMa8R/F8EM0G1eCB3wMJoZ+mvUexUweisClcxNHkuP/MQtw
+	PA== 
+Received: from nam03-by2-obe.outbound.protection.outlook.com
+	(mail-by2nam03lp2058.outbound.protection.outlook.com [104.47.42.58])
+	by mx0a-00209e01.pphosted.com with ESMTP id 2vj26yr41a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT)
+	for <yocto@yoctoproject.org>; Thu, 10 Oct 2019 06:06:08 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
-	b=KoMjFQFyK+Uk3sntOw+saj286R9g9LJi4IcGn8TCZwvhah8HqMDkborEOm3uX/nMGaRWTpg5JdgkB/KsLnK65zsyZs0rGy5IPImR2yCfNj2o0JX845D8IfJwqfx9SgM3ZiNKIU4ltmruremCg2Q0HqhRKv5vIsfv5MdfGjLhHN49GeHeTRBIhrAusu9rMtdpwQM1A22nwy7nbqAtkx4XypChjsicU7zE6532UQPJLI4hLj1alxqb5eVdy8TLNF4QgAPGopwjzE3iUmhiciw7Mda2z+Rgbhul2FJn8FmxJPvj2GW8gvUhxi7lLRa0hIP5NQy4efPU73YLSCD6BsBLlQ==
+	b=GNey9nPJLK3iU54borULfwhIOXDA7JGJ6JBaGPUGpb1XA27z3XM0B8MKdv+cI4qF/ID7wDUstfcWgqyZozOj7l1uqkvIzKiPUnG5MpkjZxeqF6FeU34mJ+VoGHM/xD1ge6Kl6jdBRRajIdou5caamDA6GX53bVWVwpAnTMeLCfIK867y+r73Kl6Pykf+zAe6JVIrpjO3JDxnl21kCsM7kxsYbRQWAaf0HB8mNchd5Sc9TG8Kg98aZm/5Lmz/WyMF5CAPRSf4IpwKglyxZlrA+yL20GPR6wrG1B3xzayxBqq7XvncnRRrwZKr8EPUz5CiSS+MuZu4ZgiVGswemIET7g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
 	s=arcselector9901;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=+iU9N8v8duXvZd4iRjqEsd2odgQ8wTNafzrij+RjdnI=;
-	b=Ll3MIImZsSWWnSRgGRSu7QMQ4V8QHXLWwlpYBmAAcRzGBnIDXpWGMtBjihMGMAcpywylDuhQdsfX6i/o0sOgHTksVESE6dIcmpBAty0jxQ8YfrV2vfj1e3nlmsrlRYvn6L1xr8n02ysPw8uS5ZXCf0NfZ1UzfdRx4xd8Io8o6nN4Ftj8yLkTlny1CPHcKKVMfiPmkUII2hwCTOsU8gcfJK71kSSH0ZyTPGIerzAtVKssIZcbflzlKxOW662SJlGImIftZz4gG6rx8TPCqyFSghPzYRNylSkp7xmoB0FsQOmn9hhEtD7vwWfg6GoTI8/fBUJWm5JNKjFyrHnB43lVdw==
+	bh=Vi7hs4hiCNcTKODbF9N7N6uXZ2NegkwaoMVlQN03q6k=;
+	b=kGOYy5nBKJJlWCvxgFmxtuJFArClq/IYcznxtIHlbsTcL9fd6abk3xNCrIcJfPJz7SE4PVRPzEMMiocx1E3m+QJBlvgTXpFYfIaan+DjzBcsScAov9W4Uhf2CPryzhfaAedAw6EKjyorwi+ME8M8+/vBnTRVhRXO+ZXQLMmaBhx0YhBV15KPou+KH/z532/eaSqEB0yMBqKCgwTT91oFBjuCOba3I/p0Gy7PLpskg30+DA5xydwLOwMFYQ5xrXcHlBEQF4Ebr6WWXLS0FL+F8JZqGOgMF9gNaoXl9M3NBlRTmg1X937h8uk72KXY2+hJh6YL0GPTCc/Nhv89MhCQAQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
-	smtp.mailfrom=spinetix.com;
-	dmarc=pass action=none header.from=spinetix.com; 
-	dkim=pass header.d=spinetix.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=spinetix.com;
-	s=selector2;
-	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=+iU9N8v8duXvZd4iRjqEsd2odgQ8wTNafzrij+RjdnI=;
-	b=WkwziniMCxWLUcgy+lqUd2fVZMQwvG7Jb85HfYGpFHpBZsUjliTYalOsuJZw8/aWmgz+8xOgtebrkutxeQFzf51tMgeSKFsL9WxdMayjbLfy6jmfLqYQo2x48F/v0ttRwlnMMIfXRZ7+/vssfxvUOqa5kB/DcKjE6HSdevclZCk=
-Received: from VI1PR01MB5167.eurprd01.prod.exchangelabs.com (20.178.120.225)
-	by VI1PR01MB4638.eurprd01.prod.exchangelabs.com (20.178.10.214) with
-	Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2347.16;
-	Mon, 14 Oct 2019 09:50:56 +0000
-Received: from VI1PR01MB5167.eurprd01.prod.exchangelabs.com
-	([fe80::417e:99a9:a8ed:cc52]) by
-	VI1PR01MB5167.eurprd01.prod.exchangelabs.com
-	([fe80::417e:99a9:a8ed:cc52%7]) with mapi id 15.20.2347.021;
-	Mon, 14 Oct 2019 09:50:56 +0000
-From: Diego Santa Cruz <Diego.SantaCruz@spinetix.com>
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Thread-Topic: [yocto] Kernel patches pulled from BSP definition file are not
-	applied
-Thread-Index: AQHVgKfFiNDOvjl/406VHwnwNZyXcqdXXF2A
-Date: Mon, 14 Oct 2019 09:50:56 +0000
-Message-ID: <VI1PR01MB5167EC235A7240C2A6A40E5688900@VI1PR01MB5167.eurprd01.prod.exchangelabs.com>
-References: <VI1PR01MB51679F138D5E050A2965463688950@VI1PR01MB5167.eurprd01.prod.exchangelabs.com>
-	<VI1PR01MB51672CA4E502C3442E23AFD888970@VI1PR01MB5167.eurprd01.prod.exchangelabs.com>
-	<CADkTA4NXzfpVUeuDTWNeZK8vNipN_=wdzyvUTsYE1+_mwcOB1g@mail.gmail.com>
-In-Reply-To: <CADkTA4NXzfpVUeuDTWNeZK8vNipN_=wdzyvUTsYE1+_mwcOB1g@mail.gmail.com>
-Accept-Language: en-GB, fr-CH, fr-FR, en-US
+	smtp.mailfrom=ncr.com; dmarc=pass action=none header.from=ncr.com;
+	dkim=pass header.d=ncr.com; arc=none
+Received: from CY4PR15MB1878.namprd15.prod.outlook.com (10.172.78.151) by
+	CY4PR15MB1208.namprd15.prod.outlook.com (10.172.177.18) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.2347.16; Thu, 10 Oct 2019 10:06:07 +0000
+Received: from CY4PR15MB1878.namprd15.prod.outlook.com
+	([fe80::c50d:31bc:eed2:44b1]) by
+	CY4PR15MB1878.namprd15.prod.outlook.com
+	([fe80::c50d:31bc:eed2:44b1%12]) with mapi id 15.20.2347.016;
+	Thu, 10 Oct 2019 10:06:07 +0000
+From: "Oriya, Raxesh" <Raxeshkumar.Oriya@ncr.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: No SELinux security context (/etc/crontab)
+Thread-Index: AdV/Uhb3HHP1BMJiQa+eiW5WyNU+RQ==
+Date: Thu, 10 Oct 2019 10:06:07 +0000
+Message-ID: <CY4PR15MB187891A4521D2DE0C68BF9C3FD940@CY4PR15MB1878.namprd15.prod.outlook.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=Diego.SantaCruz@spinetix.com; 
-x-originating-ip: [46.14.255.78]
+msip_labels: MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Enabled=True;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_SiteId=ae4df1f7-611e-444f-897e-f964e1205171;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Owner=ro185046@ncr.com; 
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_SetDate=2019-10-10T10:06:03.4344597Z;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Name=Confidential;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Application=Microsoft
+	Azure Information Protection;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_ActionId=7c894adf-a132-4b87-b702-83a477870c52;
+	MSIP_Label_dc233488-06c6-4c2b-96ac-e256c4376f84_Extended_MSFT_Method=Manual
+x-originating-ip: [165.225.104.75]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f64a3437-8d10-4f5b-f396-08d7508c02d0
-x-ms-traffictypediagnostic: VI1PR01MB4638:
-x-ms-exchange-purlcount: 3
-x-microsoft-antispam-prvs: <VI1PR01MB46383481AB0AE7F1EED23B2C88900@VI1PR01MB4638.eurprd01.prod.exchangelabs.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 01901B3451
+x-ms-office365-filtering-correlation-id: fcbb8855-c312-4058-bd43-08d74d6977db
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: CY4PR15MB1208:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CY4PR15MB1208D3B0F1F9E19D6FA7CDA7FD940@CY4PR15MB1208.namprd15.prod.outlook.com>
+x-from-ncr-tenant: Processed
+x-ms-oob-tlc-oobclassifiers: OLM:3826;
+x-forefront-prvs: 018632C080
 x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009020)(39830400003)(136003)(366004)(376002)(396003)(346002)(51914003)(189003)(199004)(6306002)(14454004)(9686003)(76116006)(66446008)(33656002)(66066001)(2906002)(7696005)(6246003)(11346002)(966005)(74316002)(99286004)(446003)(66476007)(186003)(66946007)(64756008)(66556008)(76176011)(6916009)(26005)(256004)(6436002)(55016002)(25786009)(71200400001)(486006)(229853002)(8676002)(102836004)(81156014)(81166006)(19627235002)(5660300002)(6116002)(71190400001)(8936002)(53546011)(6506007)(316002)(86362001)(4326008)(508600001)(7736002)(476003)(3846002)(305945005)(52536014)(30864003);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:VI1PR01MB4638;
-	H:VI1PR01MB5167.eurprd01.prod.exchangelabs.com; FPR:; SPF:None;
-	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: spinetix.com does not designate
+	SFS:(10009020)(4636009)(376002)(396003)(39860400002)(346002)(366004)(136003)(199004)(189003)(33656002)(71200400001)(71190400001)(4326008)(2351001)(86362001)(81166006)(8936002)(81156014)(1730700003)(8676002)(54906003)(9686003)(6436002)(5640700003)(9326002)(52536014)(66066001)(55016002)(316002)(54896002)(790700001)(6116002)(476003)(3846002)(66476007)(66556008)(64756008)(76116006)(66946007)(2420400007)(15650500001)(478600001)(4744005)(7110500001)(25786009)(14454004)(2501003)(5660300002)(486006)(99286004)(6306002)(7696005)(256004)(14444005)(66446008)(2906002)(186003)(6506007)(55236004)(102836004)(6916009)(26005)(74316002)(7736002)(6606295002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:CY4PR15MB1208;
+	H:CY4PR15MB1878.namprd15.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: ncr.com does not designate
 	permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: mYfrBQGP/tCxQw7MH2wYEgGFGq6TR9S0xDCLBt1jzla9ijCvtGBV9GIgAWWdbW96IiaQG/2Myz6lI9mbLBDNdz7m4ziQ8NhxkM9Vd7p7BGx9SoAaP3W9JnqWmsMUkSefq/X5c7vix60klq1Gxuy5h+iFW49LUUesjl/ttBShz+B62Tw/jtX/s/9bTx3f+s7WXL+wvFTJLWukHpfSXxmKJNz4H3xdLZpJwUfKvbEvOY52oVrLpgXN5JrgD8XDFe7AAompo67wh9zaKb2DSdtO4cDrE+cHPXjkS6SPP5ySUMWbx0oLsJoN86YZn2mamGFOVxZMhZfveoC6+v5VsL0c2JHiGAI45k1VvWGJbAZ133zqgV7ZCfzf45TaHXb6Ph0Pt/gAk5hg0HdMiorkiq5hCXtwHJ9/23k/LEHuIjCENFztDQ2SMBe8X5Wja98TZr9BXLTABB6XHr/uvFyGFGgsmw==
-x-ms-exchange-transport-forked: True
+x-microsoft-antispam-message-info: FqMtVSNoPTMgd4weK0NwvQfu/F98ZxcjVl31L8G2zmfKAuBVwl2SjO3PvTTKfiIM1BD83oKmSiGftO/7wWAMJC+4vsZW8CN8n9JGfaxpSW157D7a38KNkSRJ5qh6CNwkUpHz7zY2r2qlkB2scr053bZHkMnbrZyFAFSadttHzTfNNfMzOU8Gz6AboeI3ZNsPoxmXadPyPGSjHnRNwGV//5oZMYEjnIYrxY2A2F8QBQSSR8bfOgVmEs97acbUe3mV4mz5XvQyfQ0In/AfbZ51U/oxtxbnEvEJ0LydghvEthMY/OVbuxjBnS12AnbCia2PmsMaOsk7spmYOuQdLG4rpEgWj8dbkWNwXbnzoAJnURQI1JNY/oO6+gEUErfbWIW0cZLb+Vft1iNLqXW4fsxshA40+39uSnFpIqNkKB0ZwvE=
 MIME-Version: 1.0
-X-OriginatorOrg: spinetix.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f64a3437-8d10-4f5b-f396-08d7508c02d0
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Oct 2019 09:50:56.7517 (UTC)
+X-OriginatorOrg: ncr.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fcbb8855-c312-4058-bd43-08d74d6977db
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Oct 2019 10:06:07.2509 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 5f4034fa-ed2d-4840-a93f-acb1e9633b93
+X-MS-Exchange-CrossTenant-id: ae4df1f7-611e-444f-897e-f964e1205171
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 41EOGfDEVStpuEyZkQq/FsJ/DCFG9RSi50YqDHRB7TqdUvB05jIEJnMouFt34EDkei0xeeOIuuTyzgJxdhX+vy5emvQDixgiCMrh/dA6qNE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR01MB4638
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Kernel patches pulled from BSP definition file are not applied
+X-MS-Exchange-CrossTenant-userprincipalname: MZH0HboXJTfPjf9tfH8ku1Zb2o/IriFef4BfJWvqkOXiQO3LWviGSqYzGBfP3XqJ4k2FFHGkB4yLewB/nuXkPQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR15MB1208
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+	definitions=2019-10-10_04:2019-10-10,2019-10-10 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+	priorityscore=1501
+	suspectscore=0 lowpriorityscore=0 phishscore=0 adultscore=0 spamscore=0
+	impostorscore=0 mlxlogscore=507 malwarescore=0 bulkscore=0
+	clxscore=1015
+	mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+	engine=8.12.0-1908290000 definitions=main-1910100090
+X-Mailman-Approved-At: Mon, 14 Oct 2019 04:18:56 -0700
+Cc: "C M, Kiran Reddy" <kiran.reddy@ncr.com>, "Mohammad,
+	Jamal M" <MohammadJamal.Mohiuddin@ncr.com>
+Subject: No SELinux security context (/etc/crontab)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -105,197 +136,146 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Oct 2019 09:51:02 -0000
+X-List-Received-Date: Thu, 10 Oct 2019 10:34:58 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: multipart/alternative;
+	boundary="_000_CY4PR15MB187891A4521D2DE0C68BF9C3FD940CY4PR15MB1878namp_"
 
-PiBGcm9tOiBCcnVjZSBBc2hmaWVsZCA8YnJ1Y2UuYXNoZmllbGRAZ21haWwuY29tPg0KPiANCj4g
-T24gRnJpLCBPY3QgMTEsIDIwMTkgYXQgMToxMSBQTSBEaWVnbyBTYW50YSBDcnV6DQo+IDxEaWVn
-by5TYW50YUNydXpAc3BpbmV0aXguY29tPiB3cm90ZToNCj4gPg0KDQo+ID4gQ2FuIGFueW9uZSBw
-cm92aWRlIHNvbWUgYWR2aWNlIGFzIHRvIHdoYXQgd291bGQgYmUgdGhlIHJlY29tbWVuZGVkIHdh
-eQ0KPiB0byBhcHBseSBrZXJuZWwgcGF0Y2hlcyBsaXN0ZWQgaW4gYSBteWJzcC1wYXRjaGVzLnNj
-YyBmaWxlIGZvciBhIEJTUD8NCj4gPg0KPiANCj4gVGhlIHdheSB0byBkbyB0aGlzLCBpcyB0byBw
-dXQgeW91ciBCU1AgZGVmaW5pdGlvbiBmaWxlIG9uIHRoZSBTUkNfVVJJLCBhbmQgaWYgeW91DQo+
-IGFyZSBpbmNsdWRpbmcgdGhlIHN0YW5kYXJkL2t0eXBlIG9yIGFueSBvZiB0aGUgb3RoZXIgY29t
-bW9uIGtlcm5lbCBtZXRhIGRhdGENCj4gZmlsZXMsIHlvdSBuZWVkIHRvIGluaGliaXQgYW55IGlu
-Y2x1ZGVkIG1ldGEgZGF0YSBmcm9tIGFkZGluZyBwYXRjaGVzIHRvIHRoZQ0KPiBwYXRjaCBxdWV1
-ZSAoc2luY2UgdGhleSBhcmUgYWxyZWFkeSBhcHBsaWVkIHRvIHRoZSBrZXJuZWwpLg0KPiANCj4g
-QXMgYW4gZXhhbXBsZSwgaGVyZSdzIGEgJ215cWVtdXg4Ni02NC5zY2MnIGZpbGUgdGhhdCBJIHVz
-ZSBhcyBhIHRlc3Q6DQo+IA0KPiAtLS0tLS0tLS0tLS0tLS0NCj4gZGVmaW5lIEtNQUNISU5FIG15
-cWVtdXg4Ni02NA0KPiBkZWZpbmUgS0FSQ0ggeDg2DQo+IGRlZmluZSBLVFlQRSBzdGFuZGFyZA0K
-PiANCj4gaW5jbHVkZSBrdHlwZXMvc3RhbmRhcmQuc2NjIG5vcGF0Y2gNCj4gDQo+IHBhdGNoIGZv
-by5wYXRjaA0KPiAtLS0tLS0tLS0tLS0tDQo+IA0KPiBXaGVuIHRoYXQgaXMgb24gdGhlIFNSQ19V
-UkksIGl0IHdpbGwgYmUgZm91bmQgYXMgdGhlIEJTUCBkZWZpbml0aW9uLCBhbmQgeW91J2xsIGdl
-dA0KPiAiZm9vLnBhdGNoIiBpbiB0aGUgcGF0Y2ggcXVldWUgLi4gYnV0IGltcG9ydGFudGx5ICpu
-b3QqIGFsbCBvZiB0aGUgcGF0Y2hlcyB0aGF0DQo+IG1ha2UgdXAgdGhlIGt0eXBlcy9zdGFuZGFy
-ZC5zY2MgKGFuZCBpbmNsdWRlcykuIElmIHlvdSBhcmVuJ3QgdXNpbmcgbGludXgteW9jdG8sDQo+
-IG9yIHlvdSBhcmVuJ3QgYnVpbGRpbmcgb24gdG9wIG9mIGEga2VybmVsIHJlcG9zaXRvcnkgd2l0
-aCBpbnRlZ3JhdGVkIHBhdGNoZXMsIHRoZW4NCj4gZG9uJ3QgYWRkIHRoZSAnbm9wYXRjaCcsIHNp
-bmNlIHlvdSdkIHdhbnQgYW55IGZvdW5kIHBhdGNoZXMgdG8gYmUgYXBwbGllZCBhdA0KPiBidWls
-ZCB0aW1lLg0KDQpJJ20gdXNpbmcgbGludXgtaW50ZWwuDQoNCj4gDQo+IEkgdGhvdWdodCB3ZSBo
-YWQgZG9jdW1lbnRlZCB0aGUgbm9wYXRjaCBkaXJlY3RpdmUgaW4gdGhlIHlvY3RvIG1lZ2EgbWFu
-dWFsLA0KPiBidXQgSSBqdXN0IGNoZWNrZWQgdGhlIGtlcm5lbCBtZXRhIGRhdGEgc2VjdGlvbiBh
-bmQgSSBkb24ndCBzZWUgaXQuIEknbGwgZm9sbG93IHVwDQo+IGFuZCB0cnkgdG8gZmlndXJlIG91
-dCB3aGVyZSB0aGF0IGRvY3VtZW50YXRpb24gd2VudCAuLi4gYW5kIGdldCBpdCBhZGRlZCBpZiBp
-dCBpcw0KPiBtaXNzaW5nLg0KPiANCg0KQlRXLCB0aGUgZXhpc3RpbmcgZG9jdW1lbnRhdGlvbiBh
-Ym91dCBub2NmZyB1bmRlciBodHRwczovL3d3dy55b2N0b3Byb2plY3Qub3JnL2RvY3MvbGF0ZXN0
-L21lZ2EtbWFudWFsL21lZ2EtbWFudWFsLmh0bWwja2VybmVsLXR5cGVzICBpcyBub3QgdmVyeSBj
-bGVhciBhbmQgZnJvbSB3aGF0IEkgZ290IGZyb20gdGhlIHNwcCB0b29sJ3MgY29kZSB0aGUgbm9j
-ZmcgZGlyZWN0aXZlIGlzIGFsd2F5cyBpbmhlcml0ZWQgYW5kIHRoZSAiaW5oZXJpdCIga2V5d29y
-ZCBzZWVtcyB0byBiZSBpZ25vcmVkLiBUaGVyZSBpcyBhbHNvIHRoZSAiZm9yY2UiIG9wdGlvbiB0
-byBrY29uZiB3aGljaCBpcyBub3QgZG9jdW1lbnRlZC4NCg0KPiBPdXQgb2YgY3VyaW9zaXR5LCBo
-b3cgd2VyZSB5b3UgZ2V0dGluZyB5b3VyIEJTUCBkZWZpbml0aW9uIHRvIGJlIGxvY2F0ZWQgYnkg
-dGhlDQo+IGRvX21ldGFkYXRhIGZ1bmN0aW9uICh0aGVyZSBhcmUgYSBmZXcgZGlmZmVyZW50IHdh
-eXMpID8NCj4gKHNpbmNlIHlvdSBuZWVkIGF0IGxlYXN0IG9uZSAuc2NjIGZpbGUgb3Iga2VybmVs
-LW1ldGEgc3RydWN0dXJlIG9uIHRoZSBTUkNfVVJJIHRvDQo+IGdldCBpdCBhZGRlZCB0byB0aGUg
-c2VhcmNoIHBhdGgpLiAgSWYgeW91IHdlcmUgYWRkaW5nIGl0IHRvIHRoZSBTUkNfVVJJIGRpcmVj
-dGx5DQo+IGFuZCB0aGUgcGF0Y2hlcyB3ZXJlbid0IGJlaW5nIGFwcGxpZWQsIHRoZW4gdGhhdCdz
-IGEgYnVnLg0KPiANCg0KTXkgZXhwbGFuYXRpb24gd2FzIHByb2JhYmx5IGEgYml0IHNob3J0LiBJ
-J20gdXNpbmcgcmVjaXBlLXNwYWNlIG1ldGFkYXRhIGFzIGV4cGxhaW5lZCBhdCBodHRwczovL3d3
-dy55b2N0b3Byb2plY3Qub3JnL2RvY3MvbGF0ZXN0L21lZ2EtbWFudWFsL21lZ2EtbWFudWFsLmh0
-bWwjcmVjaXBlLXNwYWNlLW1ldGFkYXRhLCBhbHRob3VnaCB0aGUgZXhwbGFuYXRpb24gdGhlcmUg
-aXMgYSBiaXQgc2hvcnQgYW5kIEkgY291bGQgbm90IG1ha2UgaXQgd29yayB1bnRpbCBJIHNhdyB0
-aGUgd29ya2luZyBleGFtcGxlIGluIHRoZSBtZXRhLXhpbGlueCBsYXllciBpZiBJIHJlbWVtYmVy
-IHdlbGwuDQoNCkkgYW0gdXNpbmcgbGludXgtaW50ZWwgKGZyb20gdGhlIG1ldGEtaW50ZWwgbGF5
-ZXIpLCBJIGhhdmUgc2V0IE1BQ0hJTkU9ImZ1a2lyYW4iIChLTUFDSElORSBnZXRzIHRoZSBzYW1l
-IHZhbHVlKSBhbmQgSSBoYXZlIHRoaXMgaW4gbXkgYmJhcHBlbmQuDQoNCkZJTEVTRVhUUkFQQVRI
-U19wcmVwZW5kIDo9ICIke1RISVNESVJ9L2ZpbGVzOiINClNSQ19VUklfYXBwZW5kID0gIiBmaWxl
-Oi8vc3B4LWludGVsLWttZXRhO3R5cGU9a21ldGE7ZGVzdHN1ZmZpeD1zcHgtaW50ZWwta21ldGEi
-DQoNClRoZSByZWNpcGUtc3BhY2UgbWV0YWRhdGEgdHJlZSBpcyBhcyBmb2xsb3dzDQoNCmZpbGVz
-Lw0KYC0tIHNweC1pbnRlbC1rbWV0YQ0KICAgIHwtLSBiYWNrcG9ydHMNCiAgICB8ICAgYC0tIGRy
-aXZlcnMNCiAgICB8ICAgICAgIHwtLSAwMDAxLXR0eS1BZGQtTlVMTC1UVFktZHJpdmVyLnBhdGNo
-DQogICAgfCAgICAgICB8LS0gbnVsbC10dHkuY2ZnDQogICAgfCAgICAgICBgLS0gbnVsbC10dHku
-c2NjDQogICAgfC0tIGJzcA0KICAgIHwgICBgLS0gc3B4LWludGVsDQogICAgfCAgICAgICB8LS0g
-MDAwMS1wbGF0Zm9ybS14ODYtc3B4LWZ1a2lyYW4taW5mby1uZXctZHJpdmVyLWZvci1TcGluZXRp
-LnBhdGNoDQogICAgfCAgICAgICB8LS0gZnVraXJhbi5jZmcNCiAgICB8ICAgICAgIHwtLSBmdWtp
-cmFuLXBhdGNoZXMuc2NjDQogICAgfCAgICAgICB8LS0gZnVraXJhbi5zY2MNCiAgICB8ICAgICAg
-IGAtLSBmdWtpcmFuLXN0YW5kYXJkLnNjYw0KICAgIHwtLSBjZmcNCiAgICB8ICAgYC0tIGZzDQog
-ICAgfCAgICAgICB8LS0gc3F1YXNoZnMuY2ZnDQogICAgfCAgICAgICBgLS0gc3F1YXNoZnMuc2Nj
-DQogICAgYC0tIGZlYXR1cmVzDQogICAgICAgIHwtLSBtZWRpYQ0KICAgICAgICB8ICAgfC0tIG1l
-ZGlhLWNlYy5jZmcNCiAgICAgICAgfCAgIGAtLSBtZWRpYS1jZWMuc2NjDQogICAgICAgIGAtLSB3
-aWZpDQogICAgICAgICAgICB8LS0gYXRoZXJvcy0xMGstcGNpLmNmZw0KICAgICAgICAgICAgYC0t
-IGF0aGVyb3MtMTBrLXBjaS5zY2MNCg0KVGhlIEJTUCBkZWZpbml0aW9uIGZpbGUgZnVraXJhbi1z
-dGFuZGFyZC5zY2Mgd2l0aCB0aGUgY29udGVudCBiZWxvdyBpcyB0aHVzIGxvY2F0ZWQgYXV0b21h
-dGljYWxseSAoSSBmb2xsb3dlZCB0aGUgYmVzdCBJIGNhbiB0aGUgaW5zdHJ1Y3Rpb25zIGluIHRo
-ZSBZb2N0byBkb2NzIHRvIHdyaXRlIHRoZSBCU1AgZGVmaW5pdGlvbiBmaWxlLCBhbHRob3VnaCBJ
-IGRpZCBub3QgcXVpdGUgZ2V0IHdoYXQgaXMgdGhlICJicmFuY2giIGRpcmVjdGl2ZSBmb3IsIEkg
-Z3Vlc3MgaXQgaXMgdXNlZCB3aGVuIGNvbXBvc2luZyBhIGtlcm5lbCByZXBvIHRyZWUpLg0KDQoj
-IGZ1a2lyYW4tc3RhbmRhcmQuc2NjDQojDQojIFN0YW5kYXJkIGt0eXBlIGZvciBGdWtpcmFuIChB
-cG9sbG8gTGFrZSBTb0MpLg0KIw0KDQpkZWZpbmUgS01BQ0hJTkUgZnVraXJhbg0KZGVmaW5lIEtB
-UkNIIHg4Nl82NA0KZGVmaW5lIEtUWVBFIHN0YW5kYXJkDQoNCmluY2x1ZGUga3R5cGVzL3N0YW5k
-YXJkL3N0YW5kYXJkLnNjYw0KYnJhbmNoIGZ1a2lyYW4NCg0KaW5jbHVkZSBic3AvaW50ZWwtY29t
-bW9uL2ludGVsLWNvbW1vbi1kcml2ZXJzLnNjYw0KaW5jbHVkZSBic3AvaW50ZWwtY29tbW9uL2lu
-dGVsLWNvcmVpNy02NC5zY2MNCmluY2x1ZGUgZnVraXJhbi5zY2MNCg0KQW5kIGZ1a2lyYW4uc2Nj
-IGlzDQoNCmtjb25mIGhhcmR3YXJlIGZ1a2lyYW4uY2ZnDQoNCnBhdGNoIDAwMDEtcGxhdGZvcm0t
-eDg2LXNweC1mdWtpcmFuLWluZm8tbmV3LWRyaXZlci1mb3ItU3BpbmV0aS5wYXRjaA0KDQppbmNs
-dWRlIGZlYXR1cmVzL21lZGlhL21lZGlhLWNlYy5zY2MNCg0KPiBBIHNob3J0IGRlc2NyaXB0aW9u
-IG9mIHdoYXQgaXMgaGFwcGVuaW5nIGJlaGluZCB0aGUgc2NlbmVzLiBUaGUga2VybmVsIG1ldGEt
-DQo+IGRhdGEgaXMgdXNlZCBpbiB0d28gd2F5czogdG8gY29uc3RydWN0IGEgbmV3IGtlcm5lbCBy
-ZXBvIGZyb20gc2NyYXRjaCAoaS5lLiB3aGVuDQo+IEkgc3RhcnQgYSBuZXcgcmVmZXJlbmNlIGtl
-cm5lbCB2ZXJzaW9uLCBvciB3aGVuIGJ1aWxkaW5nIG9uIHRvcCBvZiBhIG5vbg0KPiBpbnRlZ3Jh
-dGVkIHJlcG9zaXRvcnkpIGFuZCB0byBjb25zdHJ1Y3QgYSBjb25maWd1cmF0aW9uIGZvciB0aGUg
-a2VybmVsLiBQYXRjaGVzDQo+IGFuZCBjb25maWcgZGF0YSBhcmUga2VwdCB0b2dldGhlciwgc28g
-ZXZlcnl0aGluZyB5b3UgbmVlZCBmb3IgYSBmZWF0dXJlIGlzIGluIG9uZQ0KPiBwbGFjZS4gV2hl
-biB5b3UgYXJlIGJ1aWxkaW5nLCB0aGUgbWV0YSBkYXRhIGdhdGhlcmluZyByb3V0aW5lIGlzIHJ1
-bm5pbmcgaW4gdGhhdA0KPiAybmQgbW9kZS4gSGVuY2Ugd2h5IHRoZSBCU1AgZGVmaW5pdGlvbiBp
-cyBub3QgdXNlZCBmb3IgcGF0Y2hpbmcsIGJ1dCBpcyBvbmx5DQo+IHVzZWQgdG8gZ2VuZXJhdGUg
-dGhlIGNvbmZpZ3VyYXRpb24gcXVldWUuIE9ubHkgZWxlbWVudHMgb24gdGhlIFNSQ19VUkkgYXJl
-DQo+IGFsd2F5cyBhZGRlZCB0byB0aGUgcGF0Y2ggcXVldWUgLi4gc2luY2UgdGhvc2UgcGF0Y2hl
-cyBhcmUgbm90IGFscmVhZHkgYXBwbGllZA0KPiB0byB0aGUgYmFzZSByZXBvIChhbmQgaWYgdGhl
-eSBhcmUsIHlvdSBzaG91bGRuJ3QgaGF2ZSB0aGVtIG9uIHRoZSBTUkNfVVJJIGFuZA0KPiB5b3Un
-bGwgZ2V0IGEgcGF0Y2ggZXJyb3IpIC4uIFRoZXJlJ3MgZXZlbiBhIGxvbmdlciB3aW5kZWQgZXhw
-bGFuYXRpb24gYWJvdXQgaG93DQo+IHRoZSBvcmlnaW5hbCBidWlsZCBwcm9jZXNzaW5nIGF0dGVt
-cHRlZCB0byBkZXRlY3RlZCB3aGljaCBwYXRjaGVzIHdlcmVuJ3QNCj4gYWxyZWFkeSBhcHBsaWVk
-IC4uLiBhbmQgd2FzIGhvcnJpYmx5IGNvbXBsZXggYW5kIGZyYWdpbGUsIGhlbmNlIHdoeSB0aGUN
-Cj4gc2ltcGxlci9zcGxpdCBwcm9jZXNzaW5nIEkgZGVzY3JpYmVkIGlzIHVzZWQuDQo+IA0KDQpJ
-IHNlZSwgdGhhdCB3YXMgdGhlIGtleSBiaXQgb2YgaW5mb3JtYXRpb24gSSB3YXMgbGFja2luZzog
-dGhhdCB0aGUgcGF0Y2hlcyBhcmUgYWxyZWFkeSBhcHBsaWVkIGluIHRoZSBsaW51eC15b2N0byBy
-ZXBvLCBzbyB0aGV5IG5lZWQgdG8gYmUgc2tpcHBlZCB3aGVuIGJ1aWxkaW5nLg0KDQpBcyBpbiBt
-eSBjYXNlIHRoZSBCU1Agc3BlY2lmaWMgcGF0Y2hlcyBhcmUgbm90IGFwcGxpZWQgdG8gdGhlIGtl
-cm5lbCByZXBvIHRoZW4gSSBzaG91bGQgYWRkIHRoZSBCU1AgZGVmaW5pdGlvbiBmaWxlIHRvIFNS
-Q19VUkkuIEkgaGF2ZSB0aHVzIGNoYW5nZWQgbXkgYmJhcHBlbmQgdG8gaGF2ZQ0KDQpGSUxFU0VY
-VFJBUEFUSFNfcHJlcGVuZCA6PSAiJHtUSElTRElSfS9maWxlczoiDQpTUkNfVVJJX2FwcGVuZCA9
-ICIgZmlsZTovL3NweC1pbnRlbC1rbWV0YTt0eXBlPWttZXRhO2Rlc3RzdWZmaXg9c3B4LWludGVs
-LWttZXRhIg0KU1JDX1VSSV9hcHBlbmRfZnVraXJhbiA9ICIgZmlsZTovL3NweC1pbnRlbC1rbWV0
-YS9ic3Avc3B4LWludGVsL2Z1a2lyYW4tJHtMSU5VWF9LRVJORUxfVFlQRX0uc2NjIg0KDQpBbmQg
-YWxzbyB0d2Vha2VkIGZ1a2lyYW4tc3RhbmRhcmQuc2NjIHRvIGhhdmUgdGhpcyBsaW5lDQoNCmlu
-Y2x1ZGUga3R5cGVzL3N0YW5kYXJkL3N0YW5kYXJkLnNjYyBub3BhdGNoDQoNCj4gTGV0IG1lIGtu
-b3cgaWYgdGhhdCB0d2VhayBkb2Vzbid0IHdvcmsgKGFuZCBpZiB5b3UgY2FuLCBzdXBwbHkgeW91
-ciBCU1ANCj4gZGVmaW5pdGlvbiAvIGxheWVyKSAuLiBzaW5jZSB0aGVyZSBtYXkgYmUgYSBidWcg
-KHNlZSBteSBjb21tZW50IG9uIHdoYXQgeW91IGhhZA0KPiBvbiB5b3VyIFNSQ19VUkkgYWJvdmUg
-YW5kIGhvdyB5b3VyIGJzcCBkZWZpbml0aW9uIHdhcyBiZWluZyBsb2NhdGVkKS4NCj4gDQoNCldp
-dGggdGhlIGFib3ZlIHR3ZWFrcyBpdCBkb2VzIHdvcmsgYXMgZXhwZWN0ZWQgYW5kIEkgdW5kZXJz
-dGFuZCB3aHkgOi0pIFRoZXJlJ3Mgbm8gYnVnIEkgY2FuIHNlZSwganVzdCB0aGUgZG9jdW1lbnRh
-dGlvbiB3aGljaCBpcyBhIGJpdCBsYWNraW5nIG9yIGhhcmQgdG8gZm9sbG93Lg0KDQpCVFcsIHRo
-ZSBsaW51eC1pbnRlbCBrZXJuZWwgcmVwbyBkb2VzIG5vdCBoYXZlIHRoZSBwYXRjaGVzIGZyb20g
-a3R5cGVzL3N0YW5kYXJkL3N0YW5kYXJkLnNjYyBhcHBsaWVkIGFuZCB0aGV5IGFyZSBub3QgYmVp
-bmcgYXBwbGllZCBkdXJpbmcgYnVpbGQgZWl0aGVyIChJIGRvIG5vdCBzZWUgYW55IHNjYyBmaWxl
-IHdpdGggcGF0Y2hlcyBiZWluZyBhZGRlZCB0byBTUkNfVVJJIG9yIEtFUk5FTF9GRUFUVVJFUyBp
-biB0aGUgbGludXgtaW50ZWwgcmVjaXBlIGFuZCBpbiBteSB0ZXN0IG5vbmUgYXJlIGFkZGVkIHRv
-IHRoZSBwYXRjaCBxdWV1ZSksIHNvIGl0IGFwcGVhcnMgdGhhdCB0aGUgbWV0YS1pbnRlbCBsYXll
-ciBoYXMgZGVjaWRlZCB0byBidWlsZCB3aXRob3V0IHRob3NlIHBhdGNoZXMuDQoNCk1hbnkgdGhh
-bmtzIGZvciB0aGUgbG9uZyBleHBsYW5hdGlvbiB3aGljaCBtYWRlIHRoaW5ncyBjbGVhciENCg0K
-QmVzdCwNCg0KRGllZ28NCg0KPiBDaGVlcnMsDQo+IA0KPiBCcnVjZQ0KPiANCj4gPg0KPiA+DQo+
-ID4gQWRkaW5nIHRoZSDigJxteWJzcC1wYXRjaGVzLnNjY+KAnSBmaWxlIHRvIEtFUk5FTF9GRUFU
-VVJFUyB3b3JrcyBmb3IgbWUsIGJ1dA0KPiBzZWVtcyBhIGJpdCBhd2t3YXJkIGdpdmVuIHRoYXQg
-dGhlcmUgaXMgYSBCU1AgZGVmaW5pdGlvbiBzY2MgZmlsZS4gSXQgZmVlbHMgbW9yZQ0KPiBuYXR1
-cmFsIHRvIGluY2x1ZGUgdGhlIG15YnNwLXBhdGNoZXMuc2NjIGZyb20gdGhlIEJTUCBkZWZpbml0
-aW9uIHNjYyBmaWxlLCBidXQNCj4gdGhhdCBkb2VzIG5vdCB3b3JrIGZvciBtZSwgdGhlIHBhdGNo
-ZXMgYXJlIGlnbm9yZWQuDQo+ID4NCj4gPg0KPiA+DQo+ID4gVGhhbmtzLA0KPiA+DQo+ID4NCj4g
-Pg0KPiA+IERpZWdvDQo+ID4NCj4gPiAtLQ0KPiA+IERpZWdvIFNhbnRhIENydXosIFBoRA0KPiA+
-IFRlY2hub2xvZ3kgQXJjaGl0ZWN0DQo+ID4gVCArNDEgMjEgMzQxIDE1IDUwDQo+ID4gZGllZ28u
-c2FudGFjcnV6QHNwaW5ldGl4LmNvbQ0KPiA+IHNwaW5ldGl4LmNvbQ0KPiA+DQo+ID4NCj4gPg0K
-PiA+IEZyb206IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyA8eW9jdG8tYm91bmNlc0B5
-b2N0b3Byb2plY3Qub3JnPg0KPiA+IE9uIEJlaGFsZiBPZiBEaWVnbyBTYW50YSBDcnV6DQo+ID4g
-U2VudDogMDkgT2N0b2JlciAyMDE5IDIzOjU4DQo+ID4gVG86IHlvY3RvQHlvY3RvcHJvamVjdC5v
-cmcNCj4gPiBTdWJqZWN0OiBbeW9jdG9dIEtlcm5lbCBwYXRjaGVzIHB1bGxlZCBmcm9tIEJTUCBk
-ZWZpbml0aW9uIGZpbGUgYXJlDQo+ID4gbm90IGFwcGxpZWQNCj4gPg0KPiA+DQo+ID4NCj4gPiBI
-ZWxsbyB0aGVyZSwNCj4gPg0KPiA+DQo+ID4NCj4gPiBJIGFtIHRyeWluZyB0byBhZGQgYSBmZXcg
-QlNQIHNwZWNpZmljIGtlcm5lbCBwYXRjaGVzIGZvciBteSBCU1AgYW5kIEkgd2FudGVkDQo+IHRv
-IHB1bGwgdGhlbSBmcm9tIHRoZSBCU1AgZGVmaW5pdGlvbiBzY2MgZmlsZS4gSG93ZXZlciwgSSBj
-YW5ub3QgZ2V0IHRob3NlDQo+IHBhdGNoZXMgYXBwbGllZCAoSSBhbSB1c2luZyB0aHVkKS4gQWZ0
-ZXIgbG9va2luZyBhcm91bmQgdGhlIGtlcm5lbC15b2N0by5iYmNsYXNzDQo+IGl0IHNlZW1zIHRo
-YXQgcGF0Y2hlcyB3aGljaCBnZXQgcHVsbGVkIGZyb20gdGhlIEJTUCBkZWZpbml0aW9uIGZpbGUg
-YXJlIGlnbm9yZWQuDQo+IFdoYXQgaXMgdGhlIHJhdGlvbmFsZSBiZWhpbmQgdGhhdCBiZWhhdmlv
-cj8gSG93IHNob3VsZCBJIGdvIGFib3V0IGl0Pw0KPiA+DQo+ID4NCj4gPg0KPiA+IFRvIGJlIG1v
-cmUgc3BlY2lmaWMgSSBoYXZlIHRoZSBmb2xsb3dpbmcgc3RydWN0dXJlIHdpdGhpbiBteSAocmVj
-aXBlLXNwYWNlKQ0KPiBrZXJuZWwgbWV0YWRhdGEuDQo+ID4NCj4gPg0KPiA+DQo+ID4gYnNwDQo+
-ID4NCj4gPiBgLS0gbXlic3ANCj4gPg0KPiA+ICAgICB8LS0gbXlwYXRjaC5wYXRjaA0KPiA+DQo+
-ID4gICAgIHwtLSBteWJzcC5jZmcNCj4gPg0KPiA+ICAgICB8LS0gbXNic3Auc2NjDQo+ID4NCj4g
-PiAgICAgYC0tIG15YnNwLXN0YW5kYXJkLnNjYw0KPiA+DQo+ID4NCj4gPg0KPiA+IFRoZSBteWJz
-cC1zdGFuZGFyZC5zY2MgaXMgdGhlIEJTUCBkZWZpbml0aW9uIGZpbGUsIHdoaWNoIGluY2x1ZGVz
-DQo+ID4gbXlic3Auc2NjIChhbW9uZyBvdGhlciB0aGluZ3MpLiBUaGUgbXlic3Auc2NjIGZpbGUg
-bG9va3MgYXMgZm9sbG93cw0KPiA+DQo+ID4NCj4gPg0KPiA+IGtjb25mIGhhcmR3YXJlIG15YnNw
-LmNmZw0KPiA+DQo+ID4gcGF0Y2ggbXlwYXRjaC5wYXRjaA0KPiA+DQo+ID4NCj4gPg0KPiA+IFRo
-ZSBteXBhdGNoLnBhdGNoIGZpbGUgZG9lcyBub3QgZ2V0IGFwcGxpZWQgd2hlbiBidWlsZGluZyB0
-aGUga2VybmVsLA0KPiA+IEkgY2hlY2tlZCBhbmQgaXQgaXMgbm90IGFkZGVkIHRvIHRoZSBwYXRj
-aC5xdWV1ZSBmaWxlLiBCdXQgaWYgSSBhZGQNCj4gPiB0aGUgZm9sbG93aW5nIHRvIHRoZSByZWNp
-cGUNCj4gPg0KPiA+DQo+ID4NCj4gPiBLRVJORUxfRkVBVFVSRVMgKz0gIiBic3AvbXlic3AvbXli
-c3Auc2NjIg0KPiA+DQo+ID4NCj4gPg0KPiA+IFRoZW4gdGhlIHBhdGNoIGlzIGFkZGVkIHRvIHBh
-dGNoLnF1ZXVlIGFuZCBpcyBhcHBsaWVkLg0KPiA+DQo+ID4NCj4gPg0KPiA+IExvb2tpbmcgaW50
-byBkb19rZXJuZWxfbWV0YWRhdGEgaW4ga2VybmVsLXlvY3RvLmJiY2xhc3MgaXQgcGFyc2VzIHRo
-ZSBzY2MgZmlsZXMNCj4gaW4gdHdvIHN0ZXBzLCBydW4xIGFuZCBydW4yLg0KPiA+DQo+ID4NCj4g
-Pg0KPiA+IFRoZSBydW4xIHN0ZXAgdXNlcyBlbGVtZW50cz0iYGVjaG8gLW4gJHtic3BfZGVmaW5p
-dGlvbn0gJHtzY2NzfSAke3BhdGNoZXN9DQo+ICR7S0VSTkVMX0ZFQVRVUkVTfWAiIGFuZCBnZW5l
-cmF0ZXMgY2ZnLCBtZXJnZSBhbmQgbWV0YSwgc28gdGhhdCBwaWNrcyB1cCB0aGUNCj4gbXlic3Au
-c2NjIGZpbGUgY29udGVudHMsIGJ1dCB0aGlzIHN0ZXAgZG9lcyBub3QgZ2VuZXJhdGUgdGhlIHBh
-dGNoIHF1ZXVlLg0KPiA+DQo+ID4NCj4gPg0KPiA+IFRoZSBydW4yIHN0ZXAgdXNlcyBlbGVtZW50
-cz0iYGVjaG8gLW4gJHtzY2NzfSAke3BhdGNoZXN9DQo+ICR7S0VSTkVMX0ZFQVRVUkVTfWAiIGFu
-ZCBnZW5lcmF0ZXMgdGhlIHBhdGNoIHF1ZXVlLCBidXQgdGhpcyBvbmx5IGluY2x1ZGVzDQo+IHRo
-ZSBzY2MgZmlsZXMgaW4gU1JDX1VSSSBhbmQgS0VSTkVMX0ZFQVRVUkVTLCBidXQgc3BlY2lmaWNh
-bGx5IGxlYXZlcyBvdXQgdGhlDQo+IEJTUCBkZWZpbml0aW9uIGZpbGUuDQo+ID4NCj4gPg0KPiA+
-DQo+ID4gQWRkaW5nIHRoZSBteWJzcC5zY2MgZmlsZSB0byBLRVJORUxfRkVBVFVSRVMgdG8gZ2V0
-IHRoaXMgdG8gd29yayBzZWVtcyBhIGJpdA0KPiBvZGQuIFdoYXQgaXMgdGhlIHJlY29tbWVuZGVk
-IHdheSBvZiBhcHBseWluZyBCU1Agc3BlY2lmaWMga2VybmVsIHBhdGNoZXM/DQo+ID4NCj4gPg0K
-PiA+DQo+ID4gVGhhbmtzLA0KPiA+DQo+ID4NCj4gPg0KPiA+IERpZWdvDQo+ID4NCj4gPiAtLQ0K
-PiA+IERpZWdvIFNhbnRhIENydXosIFBoRA0KPiA+IFRlY2hub2xvZ3kgQXJjaGl0ZWN0DQo+ID4g
-c3BpbmV0aXguY29tDQo+ID4NCj4gPg0KPiA+DQo+ID4gLS0NCj4gPiBfX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fXw0KPiA+IHlvY3RvIG1haWxpbmcgbGlzdA0K
-PiA+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gPiBodHRwczovL2xpc3RzLnlvY3RvcHJvamVj
-dC5vcmcvbGlzdGluZm8veW9jdG8NCj4gDQo+IA0KPiANCj4gLS0NCj4gLSBUaG91IHNoYWx0IG5v
-dCBmb2xsb3cgdGhlIE5VTEwgcG9pbnRlciwgZm9yIGNoYW9zIGFuZCBtYWRuZXNzIGF3YWl0IHRo
-ZWUgYXQNCj4gaXRzIGVuZA0KPiAtICJVc2UgdGhlIGZvcmNlIEhhcnJ5IiAtIEdhbmRhbGYsIFN0
-YXIgVHJlayBJSQ0KIA0KLS0gDQpEaWVnbyBTYW50YSBDcnV6LCBQaEQNClRlY2hub2xvZ3kgQXJj
-aGl0ZWN0DQpzcGluZXRpeC5jb20NCiANCg==
+--_000_CY4PR15MB187891A4521D2DE0C68BF9C3FD940CY4PR15MB1878namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+Hi,
+
+I have enabled SELinux in my yocto project(warrior branch) but cron is not =
+functioning because of some SELinux context isuue. I am using minimum SELin=
+ux policy. Here is the error from `/var/log/messages`
+
+    Oct  9 04:50:01 panther2 cron.info crond[261]: ((null)) No SELinux secu=
+rity context (/etc/crontab)
+    Oct  9 04:50:01 panther2 cron.info crond[261]: (root) FAILED (loading c=
+ron table)
+
+Here are some contexts for relevant files,
+
+    root@panther2:~# ps -efZ | grep cron
+    system_u:system_r:kernel_t:s0   root       464     1  0 04:54 ?    00:0=
+0:00 /usr/sbin/crond -n
+
+    root@panther2:~# ls -lZ /etc/crontab
+    -rw-------. 1 root root system_u:object_r:unconfined_t:s0 653 Oct  9  2=
+019 /etc/crontab
+
+    root@panther2:~# ls -lZ /usr/sbin/crond
+    -rwxr-xr-x. 1 root root system_u:object_r:unlabeled_t:s0 68160 Oct  9  =
+2019 /usr/sbin/crond
+
+Any help? Thanks !!
+
+Regards,
+Thanks
+
+--_000_CY4PR15MB187891A4521D2DE0C68BF9C3FD940CY4PR15MB1878namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have enabled SELinux in my yocto project(warrior b=
+ranch) but
+<b>cron </b>is not functioning because of some SELinux context isuue. I am =
+using <b>
+minimum</b> SELinux policy. Here is the error from `/var/log/messages`<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; Oct&nbsp; 9 04:50:01 panther2 cro=
+n.info crond[261]: ((null)) No SELinux security context (/etc/crontab)&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;Oct&nbsp; 9 04:50:01 panther=
+2 cron.info crond[261]: (root) FAILED (loading cron table)&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Here are some contexts for relevant files,<o:p></o:p=
+></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; root@panther2:~# ps -efZ | grep c=
+ron<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; system_u:system_r:kernel_t:s0&nbs=
+p;&nbsp; root&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 464&nbsp;&nbsp;&nbsp;&nbs=
+p; 1&nbsp; 0 04:54 ?&nbsp;&nbsp;&nbsp; 00:00:00 /usr/sbin/crond -n<o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; root@panther2:~# ls -lZ /etc/cron=
+tab <o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;-rw-------. 1 root root syst=
+em_u:object_r:unconfined_t:s0 653 Oct&nbsp; 9&nbsp; 2019 /etc/crontab<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; root@panther2:~# ls -lZ /usr/sbin=
+/crond <o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;-rwxr-xr-x. 1 root root syst=
+em_u:object_r:unlabeled_t:s0 68160 Oct&nbsp; 9&nbsp; 2019 /usr/sbin/crond<o=
+:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Any help? Thanks !!<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Thanks<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_CY4PR15MB187891A4521D2DE0C68BF9C3FD940CY4PR15MB1878namp_--
