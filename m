@@ -1,6 +1,6 @@
 Return-Path: <mark.hatle@kernel.crashing.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E2D0AE00DB7; Sat, 12 Oct 2019 18:56:39 -0700 (PDT)
+	id 03616E00DCE; Sat, 12 Oct 2019 18:56:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,19 +9,19 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from kernel.crashing.org (kernel.crashing.org [76.164.61.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A43F8E00DCE
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECEE9E00DD1
 	for <yocto@yoctoproject.org>; Sat, 12 Oct 2019 18:56:36 -0700 (PDT)
 Received: from lons-builder.int.hatle.net ([192.40.192.88])
-	by kernel.crashing.org (8.14.7/8.14.7) with ESMTP id x9D1uYi7017025
-	for <yocto@yoctoproject.org>; Sat, 12 Oct 2019 20:56:35 -0500
+	by kernel.crashing.org (8.14.7/8.14.7) with ESMTP id x9D1uYi8017025
+	for <yocto@yoctoproject.org>; Sat, 12 Oct 2019 20:56:36 -0500
 From: Mark Hatle <mark.hatle@kernel.crashing.org>
 To: yocto@yoctoproject.org
-Date: Sat, 12 Oct 2019 20:56:32 -0500
-Message-Id: <20191013015633.118339-3-mark.hatle@kernel.crashing.org>
+Date: Sat, 12 Oct 2019 20:56:33 -0500
+Message-Id: <20191013015633.118339-4-mark.hatle@kernel.crashing.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191013015633.118339-1-mark.hatle@kernel.crashing.org>
 References: <20191013015633.118339-1-mark.hatle@kernel.crashing.org>
-Subject: [layerindex-web] [PATCH 2/3] update.py: Allow bitbake to live in a subdirectory of a repository
+Subject: [layerindex-web] [PATCH 3/3] RFC: editlayer: Be more specific on the searches
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,145 +35,131 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Sun, 13 Oct 2019 01:56:40 -0000
 
-Add a new BITBAKE_PATH to the settings file to specify the path within the
-BITBAKE_REPO_URL where bitbake lives.  This is useful when using a combined
-repository, such as poky, that contains bitbake, openembedded-core and other
-layers.
+Just because git.yoctoproject.org is in the URL, doesn't mean we can or
+should force the vcs_web_url to be a specific value.  If it starts with
+git://git.yoctoproject.org then we can do this.  git.openembedded.org
+already did this.
 
-This change also changes the default path, in the fetch directory, for the
-bitbake checkout.  It no longer uses the path 'bitbake', but instead uses the
-same URL processing as the layer fetching.
-
-There is a side effect that, when using a shared fetch, the branch of the
-layer will be used instead of the specified bitbake branch.  Generally this
-is a reasonable compromise, since in a combined repository bitbake and
-openembedded-core component should already match.
+This also changes github, gitlab and bitbucket references.
 
 Signed-off-by: Mark Hatle <mark.hatle@kernel.crashing.org>
 ---
- docker/settings.py           |  3 +++
- layerindex/bulkchange.py     |  8 +++++++-
- layerindex/layerconfparse.py |  8 +++++++-
- layerindex/update.py         | 14 +++++++++++---
- layerindex/update_layer.py   |  6 +++++-
- settings.py                  |  3 +++
- 6 files changed, 36 insertions(+), 6 deletions(-)
+ layerindex/tools/import_layer.py       |  8 ++++----
+ layerindex/tools/import_wiki_layers.py | 13 ++++++++++---
+ templates/layerindex/editlayer.html    |  8 ++++----
+ 3 files changed, 18 insertions(+), 11 deletions(-)
 
-diff --git a/docker/settings.py b/docker/settings.py
-index 616b67b..2821d82 100644
---- a/docker/settings.py
-+++ b/docker/settings.py
-@@ -244,6 +244,9 @@ TEMP_BASE_DIR = "/tmp"
- # Fetch URL of the BitBake repository for the update script
- BITBAKE_REPO_URL = "git://git.openembedded.org/bitbake"
- 
-+# Path within the BITBAKE_REPO_URL, usually empty
-+BITBAKE_PATH = ""
-+
- # Core layer to be used by the update script for basic BitBake configuration
- CORE_LAYER_NAME = "openembedded-core"
- 
-diff --git a/layerindex/bulkchange.py b/layerindex/bulkchange.py
-index f6506ef..ea1f85c 100644
---- a/layerindex/bulkchange.py
-+++ b/layerindex/bulkchange.py
-@@ -98,7 +98,13 @@ def main():
- 
-     branch = utils.get_branch('master')
-     fetchdir = settings.LAYER_FETCH_DIR
--    bitbakepath = os.path.join(fetchdir, 'bitbake')
-+
-+    import layerindex.models import LayerItem
-+    bitbakeitem = LayerItem()
-+    bitbakeitem.vcs_url = settings.BITBAKE_REPO_URL
-+    bitbakepath = os.path.join(fetchdir, bitbakeitem.get_fetch_dir())
-+    if settings.BITBAKE_PATH:
-+        bitbakepath = os.path.join(bitbakepath, settings.BITBAKE_PATH)
- 
-     if not os.path.exists(bitbakepath):
-         sys.stderr.write("Unable to find bitbake checkout at %s" % bitbakepath)
-diff --git a/layerindex/layerconfparse.py b/layerindex/layerconfparse.py
-index 526d2c2..a0b7e1c 100644
---- a/layerindex/layerconfparse.py
-+++ b/layerindex/layerconfparse.py
-@@ -20,7 +20,13 @@ class LayerConfParse:
- 
-         if not bitbakepath:
-             fetchdir = settings.LAYER_FETCH_DIR
--            bitbakepath = os.path.join(fetchdir, 'bitbake')
-+
-+            from layerindex.models import LayerItem
-+            bitbakeitem = LayerItem()
-+            bitbakeitem.vcs_url = settings.BITBAKE_REPO_URL
-+            bitbakepath = os.path.join(fetchdir, bitbakeitem.get_fetch_dir())
-+            if settings.BITBAKE_PATH:
-+                bitbakepath = os.path.join(bitbakepath, settings.BITBAKE_PATH)
-         self.bbpath = bitbakepath
- 
-         # Set up BBPATH.
-diff --git a/layerindex/update.py b/layerindex/update.py
-index 7faf6b5..57dd830 100755
---- a/layerindex/update.py
-+++ b/layerindex/update.py
-@@ -268,8 +268,6 @@ def main():
-             logger.error("Layer index lock timeout expired")
-             sys.exit(1)
-         try:
--            bitbakepath = os.path.join(fetchdir, 'bitbake')
--
-             if not options.nofetch:
-                 # Make sure oe-core is fetched since recipe parsing requires it
-                 layerquery_core = LayerItem.objects.filter(comparison=False).filter(name=settings.CORE_LAYER_NAME)
-@@ -285,7 +283,17 @@ def main():
-                     if layer.vcs_url not in allrepos:
-                         allrepos[layer.vcs_url] = (repodir, urldir, fetchdir, layer.name)
-                 # Add bitbake
--                allrepos[settings.BITBAKE_REPO_URL] = (bitbakepath, "bitbake", fetchdir, "bitbake")
-+                if settings.BITBAKE_REPO_URL not in allrepos:
-+                    bitbakeitem = LayerItem()
-+                    bitbakeitem.vcs_url = settings.BITBAKE_REPO_URL
-+                    bitbakeurldir = bitbakeitem.get_fetch_dir()
-+                    bitbakepath = os.path.join(fetchdir, bitbakeurldir)
-+                    allrepos[settings.BITBAKE_REPO_URL] = (bitbakepath, bitbakeurldir, fetchdir, "bitbake")
-+
-+                (bitbakepath, _, _, _) = allrepos[settings.BITBAKE_REPO_URL]
-+                if settings.BITBAKE_PATH:
-+                    bitbakepath = os.path.join(bitbakepath, settings.BITBAKE_PATH)
-+
-                 # Parallel fetching
-                 pool = multiprocessing.Pool(int(settings.PARALLEL_JOBS))
-                 for url in allrepos:
-diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
-index 7131d70..f4111bd 100644
---- a/layerindex/update_layer.py
-+++ b/layerindex/update_layer.py
-@@ -300,7 +300,11 @@ def main():
-         logger.error("Please set LAYER_FETCH_DIR in settings.py")
-         sys.exit(1)
- 
--    bitbakepath = os.path.join(fetchdir, 'bitbake')
-+    bitbakeitem = LayerItem()
-+    bitbakeitem.vcs_url = settings.BITBAKE_REPO_URL
-+    bitbakepath = os.path.join(fetchdir, bitbakeitem.get_fetch_dir())
-+    if settings.BITBAKE_PATH:
-+        bitbakepath = os.path.join(bitbakepath, settings.BITBAKE_PATH)
- 
-     layer = utils.get_layer(options.layer)
-     urldir = layer.get_fetch_dir()
-diff --git a/settings.py b/settings.py
-index e0f5984..e9bf6cc 100644
---- a/settings.py
-+++ b/settings.py
-@@ -239,6 +239,9 @@ TEMP_BASE_DIR = "/tmp"
- # Fetch URL of the BitBake repository for the update script
- BITBAKE_REPO_URL = "git://git.openembedded.org/bitbake"
- 
-+# Path within the BITBAKE_REPO_URL, usually empty
-+BITBAKE_PATH = ""
-+
- # Core layer to be used by the update script for basic BitBake configuration
- CORE_LAYER_NAME = "openembedded-core"
- 
+diff --git a/layerindex/tools/import_layer.py b/layerindex/tools/import_layer.py
+index 8fcbc15..ace58e5 100755
+--- a/layerindex/tools/import_layer.py
++++ b/layerindex/tools/import_layer.py
+@@ -36,27 +36,27 @@ def set_vcs_fields(layer, repoval):
+         layer.vcs_web_tree_base_url = 'http://cgit.openembedded.org/' + reponame + '/tree/%path%?h=%branch%'
+         layer.vcs_web_file_base_url = 'http://cgit.openembedded.org/' + reponame + '/tree/%path%?h=%branch%'
+         layer.vcs_web_commit_url = 'http://cgit.openembedded.org/' + reponame + '/commit/?id=%hash%'
+-    elif 'git.yoctoproject.org/' in repoval:
++    elif repoval.startswith('git://git.yoctoproject.org/'):
+         reponame = re.sub('^.*/', '', repoval)
+         layer.vcs_web_url = 'http://git.yoctoproject.org/cgit/cgit.cgi/' + reponame
+         layer.vcs_web_tree_base_url = 'http://git.yoctoproject.org/cgit/cgit.cgi/' + reponame + '/tree/%path%?h=%branch%'
+         layer.vcs_web_file_base_url = 'http://git.yoctoproject.org/cgit/cgit.cgi/' + reponame + '/tree/%path%?h=%branch%'
+         layer.vcs_web_commit_url = 'http://git.yoctoproject.org/cgit/cgit.cgi/' + reponame + '/commit/?id=%hash%'
+-    elif 'github.com/' in repoval:
++    elif repoval.startswith('git://github.com/') or repoval.startswith('http://github.com/') or repoval.startswith('https://github.com/'):
+         reponame = re.sub('^.*github.com/', '', repoval)
+         reponame = re.sub('.git$', '', reponame)
+         layer.vcs_web_url = 'http://github.com/' + reponame
+         layer.vcs_web_tree_base_url = 'http://github.com/' + reponame + '/tree/%branch%/'
+         layer.vcs_web_file_base_url = 'http://github.com/' + reponame + '/blob/%branch%/'
+         layer.vcs_web_commit_url = 'http://github.com/' + reponame + '/commit/%hash%'
+-    elif 'gitlab.com/' in repoval:
++    elif repoval.startswith('git://gitlab.com/') or repoval.startswith('http://gitlab.com/') or repoval.startswith('https://gitlab.com/'):
+         reponame = re.sub('^.*gitlab.com/', '', repoval)
+         reponame = re.sub('.git$', '', reponame)
+         layer.vcs_web_url = 'http://gitlab.com/' + reponame
+         layer.vcs_web_tree_base_url = 'http://gitlab.com/' + reponame + '/tree/%branch%/'
+         layer.vcs_web_file_base_url = 'http://gitlab.com/' + reponame + '/blob/%branch%/'
+         layer.vcs_web_commit_url = 'http://gitlab.com/' + reponame + '/commit/%hash%'
+-    elif 'bitbucket.org/' in repoval:
++    elif repoval.startswith('git://bitbucket.org/') or repoval.startswith('http://bitbucket.org/') or repoval.startswith('https://bitbucket.org/'):
+         reponame = re.sub('^.*bitbucket.org/', '', repoval)
+         reponame = re.sub('.git$', '', reponame)
+         layer.vcs_web_url = 'http://bitbucket.org/' + reponame
+diff --git a/layerindex/tools/import_wiki_layers.py b/layerindex/tools/import_wiki_layers.py
+index baf0c71..71f26ea 100755
+--- a/layerindex/tools/import_wiki_layers.py
++++ b/layerindex/tools/import_wiki_layers.py
+@@ -100,20 +100,27 @@ def main():
+                             layer.vcs_web_tree_base_url = 'http://cgit.openembedded.org/' + reponame + '/tree/%path%?h=%branch%'
+                             layer.vcs_web_file_base_url = 'http://cgit.openembedded.org/' + reponame + '/tree/%path%?h=%branch%'
+                             layer.vcs_web_commit_url = 'http://cgit.openembedded.org/' + reponame + '/commit/?id=%hash%'
+-                        elif 'git.yoctoproject.org/' in repoval:
++                        elif repoval.startswith('git://git.yoctoproject.org/'):
+                             reponame = re.sub('^.*/', '', repoval)
+                             layer.vcs_web_url = 'http://git.yoctoproject.org/cgit/cgit.cgi/' + reponame
+                             layer.vcs_web_tree_base_url = 'http://git.yoctoproject.org/cgit/cgit.cgi/' + reponame + '/tree/%path%?h=%branch%'
+                             layer.vcs_web_file_base_url = 'http://git.yoctoproject.org/cgit/cgit.cgi/' + reponame + '/tree/%path%?h=%branch%'
+                             layer.vcs_web_commit_url = 'http://git.yoctoproject.org/cgit/cgit.cgi/' + reponame + '/commit/?id=%hash%'
+-                        elif 'github.com/' in repoval:
++                        elif repoval.startswith('git://github.com/') or repoval.startswith('http://github.com/') or repoval.startswith('https://github.com/'):
+                             reponame = re.sub('^.*github.com/', '', repoval)
+                             reponame = re.sub('.git$', '', reponame)
+                             layer.vcs_web_url = 'http://github.com/' + reponame
+                             layer.vcs_web_tree_base_url = 'http://github.com/' + reponame + '/tree/%branch%/'
+                             layer.vcs_web_file_base_url = 'http://github.com/' + reponame + '/blob/%branch%/'
+                             layer.vcs_web_commit_url = 'http://github.com/' + reponame + '/commit/%hash%'
+-                        elif 'bitbucket.org/' in repoval:
++                        elif repoval.startswith('git://gitlab.com/') or repoval.startswith('http://gitlab.com/') or repoval.startswith('https://gitlab.com/'):
++                            reponame = re.sub('^.*gitlab.com/', '', repoval)
++                            reponame = re.sub('.git$', '', reponame)
++                            layer.vcs_web_url = 'http://gitlab.com/' + reponame
++                            layer.vcs_web_tree_base_url = 'http://gitlab.com/' + reponame + '/tree/%branch%/'
++                            layer.vcs_web_file_base_url = 'http://gitlab.com/' + reponame + '/blob/%branch%/'
++                            layer.vcs_web_commit_url = 'http://gitlab.com/' + reponame + '/commit/%hash%'
++                        elif repoval.startswith('git://bitbucket.org/') or repoval.startswith('http://bitbucket.org/') or repoval.startswith('https://bitbucket.org/'):
+                             reponame = re.sub('^.*bitbucket.org/', '', repoval)
+                             reponame = re.sub('.git$', '', reponame)
+                             layer.vcs_web_url = 'http://bitbucket.org/' + reponame
+diff --git a/templates/layerindex/editlayer.html b/templates/layerindex/editlayer.html
+index a06c317..dd95ea3 100644
+--- a/templates/layerindex/editlayer.html
++++ b/templates/layerindex/editlayer.html
+@@ -204,7 +204,7 @@
+             this.vcs_web_commit_url = 'http://cgit.openembedded.org/' + reponame + '/commit/?id=%hash%'
+             this.vcs_web_type = 'cgit'
+         }
+-        else if( repoval.indexOf('git.yoctoproject.org/') > -1 ) {
++        else if( repoval.startsWith('git://git.yoctoproject.org/') ) {
+             reponame = repoval.replace(/^.*\//, '')
+             this.vcs_web_url = 'http://git.yoctoproject.org/cgit/cgit.cgi/' + reponame
+             this.vcs_web_tree_base_url = 'http://git.yoctoproject.org/cgit/cgit.cgi/' + reponame + '/tree/%path%?h=%branch%'
+@@ -212,7 +212,7 @@
+             this.vcs_web_commit_url = 'http://git.yoctoproject.org/cgit/cgit.cgi/' + reponame + '/commit/?id=%hash%'
+             this.vcs_web_type = 'cgit'
+         }
+-        else if( repoval.indexOf('github.com/') > -1 ) {
++        else if( repoval.startsWith('git://github.com/') ) {
+             reponame = repoval.replace(/^.*github.com\//, '')
+             reponame = reponame.replace(/.git$/, '')
+             this.vcs_web_url = 'http://github.com/' + reponame
+@@ -221,7 +221,7 @@
+             this.vcs_web_commit_url = 'http://github.com/' + reponame + '/commit/%hash%/'
+             this.vcs_web_type = '(custom)'
+         }
+-        else if( repoval.indexOf('gitlab.com/') > -1 ) {
++        else if( repoval.startsWith('git://gitlab.com/') ) {
+             reponame = repoval.replace(/^.*gitlab.com\//, '')
+             reponame = reponame.replace(/.git$/, '')
+             this.vcs_web_url = 'http://gitlab.com/' + reponame
+@@ -230,7 +230,7 @@
+             this.vcs_web_commit_url = 'http://gitlab.com/' + reponame + '/commit/%hash%/'
+             this.vcs_web_type = '(custom)'
+         }
+-        else if( repoval.indexOf('bitbucket.org/') > -1 ) {
++        else if( repoval.startsWith('git://bitbucket.org/') ) {
+             reponame = repoval.replace(/^.*bitbucket.org\//, '')
+             reponame = reponame.replace(/.git$/, '')
+             this.vcs_web_url = 'http://bitbucket.org/' + reponame
 -- 
 2.17.1
 
