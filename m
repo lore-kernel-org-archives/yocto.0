@@ -1,65 +1,70 @@
-Return-Path: <akuster@mvista.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AB7FBE00998; Sun, 13 Oct 2019 12:27:17 -0700 (PDT)
+	id A9341E00E13; Sun, 13 Oct 2019 12:27:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.194 listed in list.dnswl.org]
+	*      [209.85.214.194 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com
-	[209.85.210.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F339DE007C2
-	for <yocto@yoctoproject.org>; Sun, 13 Oct 2019 12:27:16 -0700 (PDT)
-Received: by mail-pf1-f194.google.com with SMTP id q12so9116939pff.9
-	for <yocto@yoctoproject.org>; Sun, 13 Oct 2019 12:27:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=mvista-com.20150623.gappssmtp.com; s=20150623;
+Received: from mail-pl1-f194.google.com (mail-pl1-f194.google.com
+	[209.85.214.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C94A5E00DE5
+	for <yocto@yoctoproject.org>; Sun, 13 Oct 2019 12:27:36 -0700 (PDT)
+Received: by mail-pl1-f194.google.com with SMTP id c3so7030266plo.2
+	for <yocto@yoctoproject.org>; Sun, 13 Oct 2019 12:27:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=subject:to:references:from:openpgp:autocrypt:message-id:date
 	:user-agent:mime-version:in-reply-to:content-transfer-encoding
 	:content-language;
-	bh=0RxQBfB1CxBeAZiqLHpYQQxxZ4yxZuaUwyPQlqH79HI=;
-	b=iTCzUtxHVf7gqp4Ki9pjqHDWQNEmPx273ym00JDgo9AjWSudBAB5QCT6+jqE4M/AX1
-	2RAh8a/jNMWaerRXwqPAS4ZiBMs+zbLVx8xo6QOD5Lxlj89uIqNB7b/SevwRpqZ2mTHG
-	4JrpdPWJcr+NbJVi6MELeUW/pqL5Flt7111zSevEHsl+utRLlUQm2joenodp7ZbCKLTP
-	DXkX3MrRP8IAAL9pZY8qm7DQ7VpnLJJqgp6di3xkchVQy8dRAcbG/GzCaTmCjB60jaF8
-	Lo+xs4h4WCMzZJ5dM4Z73UfvZqQ2nSqh3jT80aOMt/+hKidkL0g8QoHlUEZ5XiolTRqJ
-	nlxw==
+	bh=c7R8HDBVyoIL80vxFSr9lKiHvPRO/ljBE8E/n6+szzw=;
+	b=iAb8zhTlk9GPaK/mTqqvER3EoCmjSOZuQ6Z0rVBO9HdLgAfW7HOmb55+fh/pQxDn3W
+	WZA4abauoIRBYqOYtVCx/lAyNTKFjayd2ra9hL7ODblriEALErB7hnL3KVn50l+0bMdH
+	0cc+YjkdekIxkuJkgmJD94FmJUN1GhI2KG8q87/XtmyApBDriZ6df8DixcRqkZCPYO+c
+	saLn4/V45dXai5Pg/hZjgAFxAbQk5J3bEVnNWz/ws33y7MbNtDzo+FfC68WSbs6hrzBD
+	+5M8NgJLu5G6TPCh017KAwwF42kWImP877TISLv2+MUgyJx49yoD233O8dD6YTBcHkCB
+	qzLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
 	:message-id:date:user-agent:mime-version:in-reply-to
 	:content-transfer-encoding:content-language;
-	bh=0RxQBfB1CxBeAZiqLHpYQQxxZ4yxZuaUwyPQlqH79HI=;
-	b=lCmditIHoRJdGu2z9bh4whU8VQNhHwDZ02mS9kk+yeW3kfXQSzRVFqIXK4GN2Ai1SV
-	7af+RhehuAce4nU6SK5BN09YWaeWoYzEtDFKH7iKm0Dw09sKlfPh54A1qL8qLwwAbCgy
-	jvVR0nW6Lq40uFrHTcRLzeXxjzsIbtx8+v0cUL0aMoAqPEWL7x/X2/+SdUYVJU+WjLTC
-	QmlPO7iEvTU0dnWzaw/msFfGN3ZC3CMkyrCWM3Ci3f307wkwH4/ZOoA+ht5dv3E1+Tld
-	OD9Xm48wS29Pn3ejvq9JGWk0A88ChXWW2NOri3tkNyafjPaNYhq2qnb8Cut2S5rI2P/A
-	vdHQ==
-X-Gm-Message-State: APjAAAVbxY7B0gfoqINmBxL8XWv32ZFo9n+lE6Zz3THt+/oaCjvoVPAh
-	6QsucBk4rGQ64AkTyQBM582F9VRpiKg=
-X-Google-Smtp-Source: APXvYqzozqDTS/AaTgI0+4SUT3f+ZeGYkzduLE1cmmu8hc/WRoHSIou3aoUR4OQlJGlYbj0xeZ+LGg==
-X-Received: by 2002:a63:3d41:: with SMTP id k62mr20660673pga.129.1570994836058;
-	Sun, 13 Oct 2019 12:27:16 -0700 (PDT)
+	bh=c7R8HDBVyoIL80vxFSr9lKiHvPRO/ljBE8E/n6+szzw=;
+	b=PZVrZSEpNowtI0FuTFmHmaoD9LNsGIIGp/DXM/Ai7n+DMnVAMCzdEDGjePvVtnrXSM
+	2T5JBjzIrybliL5vgitk/rjxC3cLhvbREKFYSAvJebCYYW8Y82LF6jSDJdWqi0WNZT9S
+	hWrTTTtpM0fFdGcBZ7PZpKY38bAV6IQrxbJd7yj9HQ/ykolSiVluufs6RaRLjqhCKTMW
+	G1Tb3VnagxYtMfXJtJsS6Vmxoh0yh9kjo0fXTRJFrXeJAevbpqjjFSrJEkcMhC4ESOU+
+	oGS+ajFZ0x+giGOkANK0UAdDRe1sH2oNvJ8qoRWrZmaV50XOZjZuJIznf84cxVosZjkV
+	0mSA==
+X-Gm-Message-State: APjAAAVLJ0y/Gr06YFr6Pz9oKcipUKN40mwXz6MtKxRDuviWxiBchqpV
+	V0j9IOvaEc+ZB9wBRHCs50osMSEQ
+X-Google-Smtp-Source: APXvYqxXJIuDIzdHhtwkhO+Hsy5Yz6K6B5NTO2fn2HgyUpfW3LDkAZ/WHD7Fxqg4ujWYTzOw35h4Zw==
+X-Received: by 2002:a17:902:54c:: with SMTP id
+	70mr27227092plf.192.1570994855804; 
+	Sun, 13 Oct 2019 12:27:35 -0700 (PDT)
 Received: from ?IPv6:2601:202:4180:a5c0:e411:bea0:2b80:fd65?
 	([2601:202:4180:a5c0:e411:bea0:2b80:fd65])
-	by smtp.gmail.com with ESMTPSA id d2sm5225206pgq.74.2019.10.13.12.27.14
-	for <yocto@yoctoproject.org>
+	by smtp.gmail.com with ESMTPSA id
+	c62sm19966269pfa.92.2019.10.13.12.27.34
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 13 Oct 2019 12:27:15 -0700 (PDT)
-To: yocto@yoctoproject.org
-References: <1570633787-11133-1-git-send-email-akuster808@gmail.com>
-From: akuster <akuster@mvista.com>
+	Sun, 13 Oct 2019 12:27:35 -0700 (PDT)
+To: Armin Kuster <akuster808@gmail.com>, yocto@yoctoproject.org
+References: <cover.1570376186.git.akuster808@gmail.com>
+From: akuster808 <akuster808@gmail.com>
 Openpgp: preference=signencrypt
-Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
 	mQINBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
 	Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
 	mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
@@ -102,13 +107,13 @@ Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <6def961e-57c6-21d1-26c5-d8b91564190f@mvista.com>
-Date: Sun, 13 Oct 2019 12:27:13 -0700
+Message-ID: <bb054362-1237-f73f-81f6-98d19cb3f675@gmail.com>
+Date: Sun, 13 Oct 2019 12:27:33 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <1570633787-11133-1-git-send-email-akuster808@gmail.com>
-Subject: Re: [thud][PATCH] linux-yocto/4.14: meta-yocto-bsp update to 143
+In-Reply-To: <cover.1570376186.git.akuster808@gmail.com>
+Subject: Re: [warrior 0/3] Pull request
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -120,56 +125,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 13 Oct 2019 19:27:17 -0000
+X-List-Received-Date: Sun, 13 Oct 2019 19:27:43 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
+ping
 
-ping.
-
-
-
-On 10/9/19 8:09 AM, Armin Kuster wrote:
-> Signed-off-by: Armin Kuster <akuster808@gmail.com>
-> ---
->  .../recipes-kernel/linux/linux-yocto_4.14.bbappend   | 20 ++++++++++----------
->  1 file changed, 10 insertions(+), 10 deletions(-)
+On 10/6/19 8:40 AM, Armin Kuster wrote:
+> Please merge these changes to meta-yocto warrior
 >
-> diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend
-> index 426757e..5277798 100644
-> --- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend
-> +++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend
-> @@ -8,11 +8,11 @@ KMACHINE_genericx86 ?= "common-pc"
->  KMACHINE_genericx86-64 ?= "common-pc-64"
->  KMACHINE_beaglebone-yocto ?= "beaglebone"
->  
-> -SRCREV_machine_genericx86    ?= "5252513a39b4b3773debab1f77071d7c430ecb10"
-> -SRCREV_machine_genericx86-64 ?= "5252513a39b4b3773debab1f77071d7c430ecb10"
-> -SRCREV_machine_edgerouter ?= "d8fb40cd0e99325715c70aed6f361a8318097829"
-> -SRCREV_machine_beaglebone-yocto ?= "c67809688bd22cb4cb909bcf1a1045e6337c3229"
-> -SRCREV_machine_mpc8315e-rdb ?= "258ee8228e0a512c6dbe2a0dadcd9f030ba45964"
-> +SRCREV_machine_genericx86    ?= "bc9d4b045fa0254d14ef3a667a200f02cb9af755"
-> +SRCREV_machine_genericx86-64 ?= "bc9d4b045fa0254d14ef3a667a200f02cb9af755"
-> +SRCREV_machine_edgerouter ?= "326e296f237347e965a38acb34f09e594430b0c6"
-> +SRCREV_machine_beaglebone-yocto ?= "1b8c86329c9dbb10b8fcaeb2dceb75680994cd84"
-> +SRCREV_machine_mpc8315e-rdb ?= "f26672ec1f164b0f2a15d629128a91093f971bdd"
->  
->  COMPATIBLE_MACHINE_genericx86 = "genericx86"
->  COMPATIBLE_MACHINE_genericx86-64 = "genericx86-64"
-> @@ -20,8 +20,8 @@ COMPATIBLE_MACHINE_edgerouter = "edgerouter"
->  COMPATIBLE_MACHINE_beaglebone-yocto = "beaglebone-yocto"
->  COMPATIBLE_MACHINE_mpc8315e-rdb = "mpc8315e-rdb"
->  
-> -LINUX_VERSION_genericx86 = "4.14.98"
-> -LINUX_VERSION_genericx86-64 = "4.14.98"
-> -LINUX_VERSION_edgerouter = "4.14.98"
-> -LINUX_VERSION_beaglebone-yocto = "4.14.98"
-> -LINUX_VERSION_mpc8315e-rdb = "4.14.98"
-> +LINUX_VERSION_genericx86 = "4.14.143"
-> +LINUX_VERSION_genericx86-64 = "4.14.143"
-> +LINUX_VERSION_edgerouter = "4.14.143"
-> +LINUX_VERSION_beaglebone-yocto = "4.14.143"
-> +LINUX_VERSION_mpc8315e-rdb = "4.14.143"
+> The following changes since commit c16082ffa61f485e120670fbdf075f3fa8597494:
+>
+>   poky.conf: Bump version for 2.7.1 warrior release (2019-06-30 22:41:39 +0100)
+>
+> are available in the git repository at:
+>
+>   git://git.yoctoproject.org/poky-contrib meta-yocto/stable/warrior-next
+>   http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=meta-yocto/stable/warrior-next
+>
+> Kevin Hao (1):
+>   meta-yocto-bsp: Bump to the latest stable kernel for all the BSP
+>
+> Ross Burton (2):
+>   conf/poky: add debian-10 to the supported distribution list
+>   conf/poky: add Fedora 30 and Opensuse Leap 15.1 to supported
+>     distributions
+>
+>  meta-poky/conf/distro/poky.conf                      |  3 +++
+>  .../recipes-kernel/linux/linux-yocto_4.19.bbappend   | 20 ++++++++++----------
+>  .../recipes-kernel/linux/linux-yocto_5.0.bbappend    | 20 ++++++++++----------
+>  3 files changed, 23 insertions(+), 20 deletions(-)
+>
 
 
