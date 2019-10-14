@@ -1,39 +1,62 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A2387E00C74; Sun, 13 Oct 2019 13:45:43 -0700 (PDT)
+	id 5C8C1E00D7E; Mon, 14 Oct 2019 02:15:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FFB3E0083A
-	for <yocto@yoctoproject.org>; Sun, 13 Oct 2019 13:45:42 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	13 Oct 2019 13:45:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,293,1566889200"; d="scan'208";a="207829278"
-Received: from rositasu-mobl1.gar.corp.intel.com (HELO linux.fritz.box)
-	([10.255.156.132])
-	by fmsmga001.fm.intel.com with ESMTP; 13 Oct 2019 13:45:39 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Mark Hatle <mark.hatle@kernel.crashing.org>
-Date: Mon, 14 Oct 2019 09:31:36 +1300
-Message-ID: <1682418.DauT7RXp9d@linux.fritz.box>
-Organization: Intel Corporation
-In-Reply-To: <20191013015633.118339-1-mark.hatle@kernel.crashing.org>
-References: <20191013015633.118339-1-mark.hatle@kernel.crashing.org>
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.167.54 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com
+	[209.85.167.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14717E007C2
+	for <yocto@yoctoproject.org>; Mon, 14 Oct 2019 02:15:08 -0700 (PDT)
+Received: by mail-lf1-f54.google.com with SMTP id t8so11220588lfc.13
+	for <yocto@yoctoproject.org>; Mon, 14 Oct 2019 02:15:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linaro.org; s=google;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=g+hzOY36Fepncw+q51aeqew23dmE0ekentOFbOGJ5o8=;
+	b=hgGibNgm6U1U8Wb2fX5LflvNlxXLuf1QfEHR9WyVRlMZiN01dsdDi5luk01uJHD4rZ
+	tZvsxTghwvq5PKUFW1I3zEuPMldN2XRC3NkAC/hZAiRRoNni+o3eFpsLTJm2E91SuW4W
+	7nkObapW1KhtkZG/DAyEONOTYytQh90/VCDEZq3E8H742rMAUetipk6eRie8rlRLFIW8
+	J/xh1rN5IodHY26VJUJpIhYsoAUTbvHI5g70qWeRDyfGRXlPZjhzAQyl+dBgUTrvjnu5
+	oAyZeTcrR1URPInFfJpl1v8kcSYlO9ZPL7llsSDPc7F9hwgUGmydlSd6f+8Sr1hNNgOH
+	2beg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=g+hzOY36Fepncw+q51aeqew23dmE0ekentOFbOGJ5o8=;
+	b=fpogmleKyJDpKIK6P32OJDKaRxaiyz3xCJTZsCg3IMSUzIo4yphDu2eRn/n/kcV2ln
+	wVvue+KHRqOZereU880uyp9RlHWNRM0XVwFq7Ri9tJlv0hNAot/MFhGe2in/sc3M5GGc
+	7m+rW/9pvymGhrSQx6G3zMamw2rfFc/ktQqdkCXwA5NoGJeoqRklDeyTk/5HjtxHoZGe
+	uoO4xkzD+0uHwByuJyKmxEFhVMM7S5mC0kT2PkwIR8VJ9vO6xuWpQDpb5am8Njx6PV2U
+	Y6IzkEpU3FjI4Av8cAPpOzASow8Or1ttxKtXopPT+Y7Gfhpa0H2hrXZc7tJleTuw5Vbw
+	x3Xg==
+X-Gm-Message-State: APjAAAVfU6W2enYJh5u8q4LFIfl1IMeSFgQG9Fsy6a2Pdgor8Rfr5NH3
+	rxqnq6jE19ZT4M8rEsXwxUretQSTjRbnA4e/Z7Tnhg==
+X-Google-Smtp-Source: APXvYqxiw0YYZGcn8QCH5+Wc0z4k8h38Sz7f7EYP4KGnmT/mIV2E/hqKyTxqzan05BQo+D15MMLUnSx2BWx6fzcHyWw=
+X-Received: by 2002:ac2:414f:: with SMTP id c15mr16769887lfi.157.1571044507847;
+	Mon, 14 Oct 2019 02:15:07 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [layerindex-web] [PATCH 0/3] Some misc changes/fixes..
+References: <20191013093004.zxzgukocmkrliu42@laas.fr>
+In-Reply-To: <20191013093004.zxzgukocmkrliu42@laas.fr>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Mon, 14 Oct 2019 11:14:56 +0200
+Message-ID: <CAP71WjxXTjENM2hzM9nzu97r7UXcK5NLK=__ryYBO-Nrmhu23Q@mail.gmail.com>
+To: Guilhem Saurel <guilhem.saurel@laas.fr>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: download.yoctoproject.org - Certificate expired
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,47 +68,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 13 Oct 2019 20:45:43 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 14 Oct 2019 09:15:10 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Mark
+hi Guilhem,
 
-On Sunday, 13 October 2019 2:56:30 PM NZDT Mark Hatle wrote:
-> A few misc changes/fixes.  The first two are well tested.  However, I 
-suspect
-> the 3/3 may be incorrect and I've labeled it an RFC due to this.
-> 
-> 1/3 - '.' wasn't allowed in branch names w/o an error.  This turned out
-> to be a fairly simple fix.
-> 
-> 2/3 - For people who want to use 'poky' repository and not bitbake +
-> openembedded-core.  I've tested this locally in both configurations.
-> 
-> 3/3 - When I was testing, my local git mirror is broken up with
-> directories that are called 'git.openembedded.org' and 
-'git.yoctoproject.org'
-> due to this, the system was matching and locking out the edit layer 
-> vcs_web_url submissions...  so I tried to make it better.. but I'm not
-> sure it's right.
-> 
-> Mark Hatle (3):
->   layerindex/urls.py: Allow branches with a '.' in the name
->   update.py: Allow bitbake to live in a subdirectory of a repository
->   editlayer: Be more specific on the searches
+On Sun, Oct 13, 2019 at 12:00 PM Guilhem Saurel <guilhem.saurel@laas.fr> wrote:
+>
+> Hi,
+>
+> The certificate installed on https://download.yoctoproject.org expired about 4
+> days ago. Is anyone else experiencing the same issue? Is a new certificate going
+> to be installed ?
 
-Thanks, I merged these - I did make a minor change to 2/3 to allow it to work 
-if BITBAKE_PATH doesn't appear in settings.py (I try to do this when adding 
-new settings in case the user doesn't add the default to their edited settings 
-file).
+thanks for reporting the issue. We will be looking into it!
 
-Cheers
-Paul
-
--- 
-
-Paul Eggleton
-Intel System Software Products
-
-
+>
+> Thanks,
+> Guilhem.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
