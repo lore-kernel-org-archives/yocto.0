@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6CAF8E00C9B; Mon, 14 Oct 2019 17:01:40 -0700 (PDT)
+	id 6887CE00D00; Mon, 14 Oct 2019 22:42:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,49 +18,48 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.214.196 listed in list.dnswl.org]
-Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com
-	[209.85.214.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1556E00924
-	for <yocto@yoctoproject.org>; Mon, 14 Oct 2019 17:01:39 -0700 (PDT)
-Received: by mail-pl1-f196.google.com with SMTP id u20so8692628plq.4
-	for <yocto@yoctoproject.org>; Mon, 14 Oct 2019 17:01:39 -0700 (PDT)
+	*      [209.85.215.181 listed in list.dnswl.org]
+Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com
+	[209.85.215.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57F88E00C9B
+	for <yocto@yoctoproject.org>; Mon, 14 Oct 2019 22:41:58 -0700 (PDT)
+Received: by mail-pg1-f181.google.com with SMTP id e15so3407740pgu.13
+	for <yocto@yoctoproject.org>; Mon, 14 Oct 2019 22:41:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:subject:date:message-id;
-	bh=/PgxYiJppLXPCk/9fPyr5bFfpU0+SfzSpts4lKRYtoU=;
-	b=d7T2lIVE8qfZIHIHCPTjLsz08b+KSaprLlH3nvhx6fUsEV/K+WVlp3nE0mcRs0T6O0
-	UAVXBv1DRVgFhXJLhHXxEzDk/TZKqAsCaoEh9eUpGRZAoyzqCUAjSdVWNUz/Kjht1Jgq
-	Vx9lX4IRLy3cgLHpSMrCm40YwMhNEPJgiCDjhrWFd2Ve7TP7ORqZsvzTcCesTXaHICmm
-	mT/BYrsLx2QBRiL7t6Lc3bI8mdND2s/BYJgKdpFBBDSxSx4tl5+DIoSwHrGT/VXzA65j
-	C0Utt7Kt8XCU5dij85w9qj+gkQJH0nMXBg4dvSyii3+nJXKVSh/0b+72X52NgXGdZ04b
-	dVag==
+	bh=xbWMHRuYdwykpHNLzpqaE5z7rmtYKB9S6WK7lr/k8FE=;
+	b=r6+wXBRxqetneFWCt6wNXiWlofCFaFxOsMNylNFg8fmazearV79/bseSvHFvUchyF9
+	eR53JoYf9UsOJiyPb1AxL6fXKm8++U8OTbKOnvImqQup91Rr+dDF1yzz+as9jkjDFH9c
+	L4gCpvGIhR56sg6IrgP8oGPwzDdTsL/cofKDEos9AxKQyydwQX7VF/gBc8UdolscCm/f
+	F7J+87qSpqQrfrTWAg7/oEXhfpF6bcNRl6kd7C/YZGSNHj7QxOuJ2dizEKwlTDN90wXv
+	OYHYN5/6vnU8yS8h8ndmXTba4g2Biehj8Q0c4J4YwZAulsRJMnKflqMYvRoH/d9SZlow
+	Qj7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:subject:date:message-id;
-	bh=/PgxYiJppLXPCk/9fPyr5bFfpU0+SfzSpts4lKRYtoU=;
-	b=HWWRuD86lwXDp794CB1N10l5qH0DO4EHgotUNXCbhYosOtrPXJUbySbrZLLZdzws5m
-	/V1pnFTViToFIw7cPQkXZHCt5EzPXlERMvmwNiNCiLjLqt5sWhaaV2pzVrDYQxtxK7lo
-	6Pf8b18RHOi3KbAo0o4g2wdyrB8BmWLK5c7Il9ZQuSHM/a/eZyxeV1C1hIlEQpFoFp4Q
-	ajFWHaetJeOWTWroNl5aDHuQxiy6MIXuBKxPv058sriiPDSFTV2osYCSjL6A7w955FO6
-	keIiD7k2sdMTmF3XWuBcU507ib6ei5RSGhqoHAMPXONPZAlICpG0fD96B2BEDXxyQf34
-	nZXA==
-X-Gm-Message-State: APjAAAXsROunzDlsqxfxtyFfKqKOcmKTqHD6JRw/1SQvUJFoFoeKskpz
-	S2pGANx7TkVb7uY0IKXj/TZqycwz
-X-Google-Smtp-Source: APXvYqw3c8xvi+mTBQeMpXgXjHtAdNXdpv94GQDproNhXYB4/gSuHMpyo/Uc7msynfvtJByE+FH8bA==
-X-Received: by 2002:a17:902:8c92:: with SMTP id
-	t18mr31150351plo.76.1571097698822; 
-	Mon, 14 Oct 2019 17:01:38 -0700 (PDT)
+	bh=xbWMHRuYdwykpHNLzpqaE5z7rmtYKB9S6WK7lr/k8FE=;
+	b=TeOqm4S88uq19YOS/1t9e9t0csC51HEQjF4lvyIBflDEKR20xNSSTwD0/mn4gU00OU
+	dfzyxI3WOJXUUThBkBXpfz/IzGpr92zvR6uvFD2HXDZzKfs1VQE8ukQD04tuLvsU1gG+
+	JlgD/uJaGeIlp1yqv0IuSpqWv+XkeO54sBlHuEvE4pzVgg5oC4mvTY8+HyxyPw34OgyG
+	lMHCwC6ZK60K4XVYvL1fSwARubZ0MxKwerK95c4gScTE4k8l527W2sfHja3BYX9k/LzL
+	iiO5vLGM+/t/PKhLdJza/7YeoTgN29EVuEEoEZ0MZugfPxjUHvwrjfQ7aQziyeLdZhir
+	4s/w==
+X-Gm-Message-State: APjAAAW4WogvMGVdf+uTCfb2lJt5c7OSPDNaotURcHlMqNEZbIin36ts
+	kQwzj+XqTG2yLtKp/ARjaxkmL81+
+X-Google-Smtp-Source: APXvYqx+zPp13lHNYeSEqzifyTNMrx/9UGHorElLA6ZKPbmP1GOoA5tBzoMCPpef+/XaKErfr0IomQ==
+X-Received: by 2002:a65:67d0:: with SMTP id b16mr37794336pgs.64.1571118117822; 
+	Mon, 14 Oct 2019 22:41:57 -0700 (PDT)
 Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net.
 	[67.181.203.136]) by smtp.gmail.com with ESMTPSA id
-	r18sm25836200pfc.3.2019.10.14.17.01.37 for <yocto@yoctoproject.org>
+	g24sm19987594pfi.81.2019.10.14.22.41.56 for <yocto@yoctoproject.org>
 	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Mon, 14 Oct 2019 17:01:37 -0700 (PDT)
+	Mon, 14 Oct 2019 22:41:57 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon, 14 Oct 2019 17:01:35 -0700
-Message-Id: <20191015000135.32514-1-akuster808@gmail.com>
+Date: Mon, 14 Oct 2019 22:41:55 -0700
+Message-Id: <20191015054155.8219-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
-Subject: [meta-security][PATCH] suricata: fix compile issue
+Subject: [meta-security][PATCH] checksec: add missing rdepends to readelf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,30 +71,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Oct 2019 00:01:40 -0000
+X-List-Received-Date: Tue, 15 Oct 2019 05:42:01 -0000
 
- cp: cannot stat '/...../tmp-glibc/work/core2-32-oe-linux/suricata/4.1.5-r0/rules': No such file or directory
-| WARNING: exit code 1 from a shell command.
+update test to check for depends
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-ids/suricata/suricata_4.1.5.bb | 3 ---
- 1 file changed, 3 deletions(-)
+ lib/oeqa/runtime/cases/checksec.py          | 1 +
+ recipes-security/checksec/checksec_2.1.0.bb | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/recipes-ids/suricata/suricata_4.1.5.bb b/recipes-ids/suricata/suricata_4.1.5.bb
-index cda1c87..e15a9a3 100644
---- a/recipes-ids/suricata/suricata_4.1.5.bb
-+++ b/recipes-ids/suricata/suricata_4.1.5.bb
-@@ -52,9 +52,6 @@ do_install_append () {
+diff --git a/lib/oeqa/runtime/cases/checksec.py b/lib/oeqa/runtime/cases/checksec.py
+index ff6d2f3..e46744c 100644
+--- a/lib/oeqa/runtime/cases/checksec.py
++++ b/lib/oeqa/runtime/cases/checksec.py
+@@ -24,6 +24,7 @@ class CheckSecTest(OERuntimeTestCase):
+         self.assertEqual(status, 0, msg = msg)
  
-     oe_runmake install-conf DESTDIR=${D}
+     @OETestDepends(['checksec.CheckSecTest.test_checksec_xml'])
++    @OEHasPackage(['binutils'])
+     def test_checksec_fortify(self):
+         status, output = self.target.run('checksec --fortify-proc 1')
+         match = re.search('FORTIFY_SOURCE support:', output)
+diff --git a/recipes-security/checksec/checksec_2.1.0.bb b/recipes-security/checksec/checksec_2.1.0.bb
+index 5c6528e..b67c98b 100644
+--- a/recipes-security/checksec/checksec_2.1.0.bb
++++ b/recipes-security/checksec/checksec_2.1.0.bb
+@@ -16,4 +16,4 @@ do_install() {
+     install -m 0755 ${S}/checksec ${D}${bindir}
+ }
  
--    # mimic move of downloaded rules to e_sysconfrulesdir
--    cp -rf  ${WORKDIR}/rules ${D}${sysconfdir}/suricata
--
-     oe_runmake install-rules DESTDIR=${D}
- 
-     install -d ${D}${sysconfdir}/suricata ${D}${sysconfdir}/default/volatiles
+-RDEPENDS_${PN} = "bash openssl-bin"
++RDEPENDS_${PN} = "bash openssl-bin binutils"
 -- 
 2.17.1
 
