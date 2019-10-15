@@ -1,62 +1,66 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <davis.roman84@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 64A9DE00C4F; Tue, 15 Oct 2019 07:55:26 -0700 (PDT)
+	id E45A3E00E27; Tue, 15 Oct 2019 12:04:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (sjolley.yp.pm[at]gmail.com)
+	provider *      (davis.roman84[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.53 listed in list.dnswl.org]
+	*      [209.85.160.171 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com
-	[209.85.166.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4670E007AA
-	for <yocto@yoctoproject.org>; Tue, 15 Oct 2019 07:55:25 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id b136so46526191iof.3
-	for <yocto@yoctoproject.org>; Tue, 15 Oct 2019 07:55:25 -0700 (PDT)
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com
+	[209.85.160.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58988E008D9
+	for <yocto@yoctoproject.org>; Tue, 15 Oct 2019 12:04:04 -0700 (PDT)
+Received: by mail-qt1-f171.google.com with SMTP id j31so32165931qta.5
+	for <yocto@yoctoproject.org>; Tue, 15 Oct 2019 12:04:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=R1pLzC26cbMDAVTOCYSk9WNg1Kbro3JzNcWmN0K5vmM=;
-	b=SyNjY/Kfu8JUuoUmCT3clHI+NStLpu3DFpFgvPasQbuMzB+p0LwfXctxixuSQvSkgn
-	1T5tlrX6xt/Qy1KduzrxBvHPQ5rejtAuOxYrIY9aRbKOQoFBZ9R/2NULKrJeKcMl7ugJ
-	PMtV8nkLJscH9b8cK6Dig7TMqTyjgFbNH/q4Xx5shvu3kUr/RQIMajz9DUgAVqCVl3bv
-	F33y5CK9ziAeR8j6RHOwRBmwkR+uHeQROzz8N+ouqHddWJ5M/si8ouhUNumHLcL4h5DC
-	btYK1HY2l+qiKni/h0Wk/6xrjmSaVQL+sRUVUsOB333QzJzR6SFDvm++PrG+akixiIob
-	iXJA==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=MvW8kHzYm7AVk1FIaanHKn50YAXZ2H2m9x0DDPmaAHs=;
+	b=ZkOacsc5znd1AhIn3ud07DsMpNJQitMZquZKQkPoBqaNh+ptLR5ci18wuauzT6u0sC
+	JLRAa+aJ444t7tR8hZm80W0Bh7s6W2gYqHUo2Z/jv0uIkTx/SEuttL2h7QR4xTF9bdt+
+	0/4ZvUm9EqxUaWlziYuq5MhqF7KpDbDeDt5Pdeu5Q59rPeaShO0fLt3XG5WjIADrH3zL
+	fARKNDKCZ0NuJhvFMPWLZlqcT11G2gtlnqUEVWGA3riK4MWIyqb+Lo/qnOCJ9lY+2drB
+	Q6zNC54h3uEqJm68qLVWa+fyivijqQJLUvGft5PyfuY/Wsl54jWI81hX6Vh/IEb9e9XJ
+	40ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=R1pLzC26cbMDAVTOCYSk9WNg1Kbro3JzNcWmN0K5vmM=;
-	b=h4ex9TFaIQnFTlBZvUd6x590QNW/VdqBp4a5aQOkOVHT4dvxxzaNqmCSXtVA2y2Tk4
-	7W9mk3U9Qv3XAcTNtb2omJmRSyiZ99VKiCXMSzklD5fSYibRDVdYi8OXIVn6GC/5Hn7F
-	0bwtS6E10q2Q7mgY4zKzGl2OPvh7sKBUcrdgkHO12wq710DY6e7Vo1bG6iDel2AjswE4
-	0ea4qrFDlt2viwXAYDPCh6FaH2q0nlLZafuGVkzRPZY4rSSiDiJ26mNZhxFkJ2fZCFjQ
-	RpG+6Rbsa/JTbcX/SZ6IwRZVBteqAt7BjQ4A3zbvczW+GyPPqV11F8RxJVj1arXJ9Wui
-	wvjw==
-X-Gm-Message-State: APjAAAXS308//UgxuQ0ow+YcVClWvb1Nkvthas6fLNh7vozuX7Zk48lK
-	BpF5Lbt/zGV8mLMd9mo2w940VydTx8sDlcSKP8vaFTqs
-X-Google-Smtp-Source: APXvYqxgCGG2qBkTDiEM1bhwIYlwtD7VlvcJkOmPFK4ul2PtifmC4jVhjCu1xXmSF3M2xijS22K4hnnVNgUE4i8ozvE=
-X-Received: by 2002:a92:985d:: with SMTP id l90mr7103489ili.286.1571151324927; 
-	Tue, 15 Oct 2019 07:55:24 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=MvW8kHzYm7AVk1FIaanHKn50YAXZ2H2m9x0DDPmaAHs=;
+	b=B5I/k9gc7K0QS6O7TEZhUa6bvk9dR3KFTvhfNT5M82gls8HkbvF3eVmdYUDmFqrPKN
+	yx+RKudhfoJUMAWPNFCZxu4EHjbMtNPf/f9ua5cp6nIJu3Q9SwkvLGZ0tk8QFPG7+GPz
+	mp5BiDXKvJ371W8aePximWVFzKAlCpH3SCVea88pMzSEmqO6AnCQFhxlPdvQyMIZPcO5
+	UvzDqZXmwnuYrcBjt2lFkCkScEKYnXlRCPt1JrLd3CWQMpwa05EUY0oB0/6wjm5KQeZm
+	SyCtEEwGtWWUy8n4KkiHEwOx+XEoI6ulccpfg3a2++BbFHcPSRyNfNusODBW0xvsZXzw
+	QfdQ==
+X-Gm-Message-State: APjAAAWN2I1JC6hH+cMyz8rHNRe7f5ZAJosDMM4LQaz9KM1qnAymMju3
+	esKIjNBD5O0i6oxHsQu3LFUcDdcj2lGIL+jCMTU=
+X-Google-Smtp-Source: APXvYqyWjyNPKJeezbpzQmy1ZkS14+13m483YEEvKPGAbWIXibBm/2nj//qOuyP33xUtgE79jJeK/5clWHdVj5f+Zx4=
+X-Received: by 2002:ad4:4348:: with SMTP id q8mr39108134qvs.68.1571166243162; 
+	Tue, 15 Oct 2019 12:04:03 -0700 (PDT)
 MIME-Version: 1.0
-From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Date: Tue, 15 Oct 2019 07:55:13 -0700
-Message-ID: <CAK5yBb_idEW-T-ySAh+6+gc_MP-URoJer-sR6BSB6g8bHgOz_g@mail.gmail.com>
-To: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
-Subject: =?UTF-8?B?WW9jdG8gUHJvamVjdCBTdGF0dXMgV1c0MuKAmTE5?=
+References: <CACfi_Z1EyksY4NrV8iRnRoyMS00qDfFgWdshOwhCd1ohqouL=A@mail.gmail.com>
+	<CAJdd5GbogimYgsP4ce6KFgxv_WNqy03AeOR-h=zAM84bhXJgvA@mail.gmail.com>
+In-Reply-To: <CAJdd5GbogimYgsP4ce6KFgxv_WNqy03AeOR-h=zAM84bhXJgvA@mail.gmail.com>
+From: Davis Roman <davis.roman84@gmail.com>
+Date: Tue, 15 Oct 2019 15:03:51 -0400
+Message-ID: <CACfi_Z2r_0b84Vb+5GHyXJNM5nnUcydRqKbJVZo78jL5eaDmYQ@mail.gmail.com>
+To: Joshua Watt <jpewhacker@gmail.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: using BBMULTICONFIG to create a 32-bit rootfs, kernel, u-boot that also includes a 64-bit kernel, u-boot for NXP i.mx6/i.mx8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,506 +72,208 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Oct 2019 14:55:26 -0000
-Content-Type: multipart/alternative; boundary="0000000000009c5c210594f42c34"
+X-List-Received-Date: Tue, 15 Oct 2019 19:04:09 -0000
+Content-Type: multipart/alternative; boundary="000000000000ce90570594f7a5f4"
 
---0000000000009c5c210594f42c34
+--000000000000ce90570594f7a5f4
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Current Dev Position: YP 3.0 Final Release
+Hi Joshua,
 
-Next Deadline: YP 3.0 Final Release 25th Oct
+Thank you for replying.
 
-SWAT Team Rotation:
+Since my last email, I enabled BBMULTICONFIG and was able to build both
+32bit and 64bit machine types successfully and so i have both packages
+available in their corresponding build folders.
 
-   -
+build/tmp-imx6sxsabresd/deploy/rpm/imx6sxsabresd/kernel-4.14.98-r0.imx6sxsabresd.rpm
+build/tmp-imx8mmevk/deploy/rpm/imx8mmevk/kernel-4.14.98-r0.imx8mmevk.rpm
 
-   SWAT lead is currently: Paul
-   -
+I checked out mcdepends however I don't believe this helps me to do the
+last piece which is to pull the 64-bit kernel package into my 32-bit image.
+According to the yocto docs, mcdepends ensures that imageA is built only
+after imageB has finished building (or at least that's how I understand it).
 
-   SWAT team rotation: Paul -> Ross on Oct. 18, 2019
-   -
+In parallel, I'm studying a patch that was upstreamed in 2017 for adding
+support for multiple kernel packages (
+http://lists.openembedded.org/pipermail/openembedded-core/2017-October/143674.html
+)
+This appears to be in line with what I'm looking to do however the wrinkle
+is that I'm dealing with two kernels from two different machine types
+whereas the patch dealt with two kernels of the same machine type.
+I'm still trying to understand the implications of this. My feeling is that
+I need a hybrid approach of bbmulticonfig and the above patch for adding
+multiple kernel packages.
 
-   SWAT team rotation: Ross -> Amanda on Oct. 25, 2019
-   -
-
-   https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-
-Next Team Meetings:
-
-   -
-
-   Bug Triage meeting Thursday Oct. 17th at 7:30am PDT (
-   https://zoom.us/j/454367603)
-   -
-
-   Monthly Project Meeting Tuesday Nov. 5th at 8am PDT (
-   https://zoom.us/j/990892712) <https://zoom.us/j/990892712>
-   -
-
-   Weekly Engineering Sync Tuesday Oct. 15th at 8am PDT (
-   https://zoom.us/j/990892712) <https://zoom.us/j/990892712>
-   -
-
-   Twitch - Next event is Tuesday Nov. 12th at 8am PDT (
-   https://www.twitch.tv/yocto_project)
-
-
-Key Status/Updates:
-
-   -
-
-   YP 3.0 was built and submitted to QA as 3.0 rc2 (rc1 had build failures)=
-.
-   -
-
-   There is a QA report from QA for 3.0 rc2. There were two issues raised
-   from testing but these are both relatively minor issues that are unlikel=
-y
-   to block release.
-   -
-
-   The release is therefore now pending a decision from the TSC on whether
-   we should release.
-   -
-
-   Master has started taking patches for post 3.0 to try and avoid any
-   further backlog buildup.
-   -
-
-   We plan to build 2.7.2, followed by 2.6.4 imminently, Armin has been
-   preparing the branches.
-   -
-
-   We have begun collecting ideas for YP 3.1 in this document:
-   https://docs.google.com/document/d/1UKZIGe88-eq3-pOPtkAvFAegbQDzhy_f4ye6=
-4yjnABc/edit?usp=3Dsharing
-   -
-
-   If anyone has any status items for the project they=E2=80=99d like to ad=
-d to the
-   weekly reports, please email Richard+Stephen.
-
-
-Planned Releases for YP 3.0:
-
-   -
-
-   YP 3.0 Final Release 25th Oct
-
-
-Planned upcoming dot releases:
-
-   -
-
-   YP 2.7.2 (Warrior) is planned this week.
-   -
-
-   YP 2.6.4 (Thud) is planned for after YP 2.7.2  release.
-
-
-Tracking Metrics:
-
-   -
-
-   WDD 2528 (last week 2525) (
-   https://wiki.yoctoproject.org/charts/combo.html)
-   -
-
-   Poky Patch Metrics
-   -
-
-      Total patches found: 1445 (last week 1448)
-      -
-
-      Patches in the Pending State: 586 (41%) [last week 587 (41%)]
-
-
-Key Status Links for YP:
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.8_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.8_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_2.8_Features
-
-The Yocto Project=E2=80=99s technical governance is through its Technical S=
-teering
-Committee, more information is available at:
-
-https://wiki.yoctoproject.org/wiki/TSC
-
-The Status reports are now stored on the wiki at:
-https://wiki.yoctoproject.org/wiki/Weekly_Status
-
-[If anyone has suggestions for other information you=E2=80=99d like to see =
-on this
-weekly status update, let us know!]
-
---=20
+Please let me know if you have any thoughts.
 
 Thanks,
 
+Davis
 
+On Fri, Oct 4, 2019 at 10:59 PM Joshua Watt <jpewhacker@gmail.com> wrote:
 
-*Stephen K. Jolley*
+>
+>
+> On Fri, Oct 4, 2019, 7:04 PM Davis Roman <davis.roman84@gmail.com> wrote:
+>
+>> Hello,
+>>
+>> We're working on a Linux distro for two systems where one is based on
+>> NXP i.mx6(32-bit,armv7) and the other i.mx8(64-bit,armv8).
+>>
+>> I have two machine types defined in Yocto so individually I can build
+>> either one however our goal is to create a single distro that can run on
+>> both processors.
+>>
+>> So the idea is to use BBMULTICONFIG(
+>> https://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-BBMULTICONFIG
+>> )
+>> to build two separate images,
+>>
+>> 1) a 32-bit distro for an i.mx6
+>> 2) a 64-bit distro for an i.mx8
+>>
+>> and then finally, take the 32-bit distro and add the 64-bit
+>> kernel+modules and u-boot.
+>>
+>> ---------------------------------------
+>> |--------------------------------------|
+>> ||           32-bit rootfs            ||
+>> |--------------------------------------|
+>> |-----------------   ----------------- |
+>> || 32-bit kernel |   |  64-bit kernel ||
+>> |-----------------   ----------------- |
+>> |-----------------   ----------------- |
+>> || 32-bit u-boot |   |  64-bit u-boot ||
+>> |-----------------   ----------------- |
+>> ---------------------------------------
+>>    i.mx6solo             i.mx8m mini
+>>
+>> We've already tried our existing 32-bit rootfs + 64-bit kernel/u-boot on
+>> the i.mx8 and the system runs.
+>> So in theory, it should just be a matter of getting yocto to assemble
+>> all the pieces together.
+>>
+>> I don't have much experience with BBMULTICONFIG so any ideas or comments
+>> on how to proceed would be appreciated.
+>>
+>
+> You are on the right track. Create two multiconfig files one for each
+> machine, then user mcdepends (
+> https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#dev-enabling-multiple-configuration-build-dependencies)
+> to pull the 64 bit kernel, etc. into the 32 bit image.
+>
+> BBMULTICONFIG is used in local.conf to select which multiconfigs you want
+> to enable. In your case it would have to list both of the ones that you
+> define.
+>
+>
+>> Thank you,
+>>
+>> Davis
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
 
-*Yocto Project Program Manager*
-
-*7867 SW Bayberry Dr., Beaverton, OR 97007*
-
-(    *Cell*:                (208) 244-4460
-
-* *Email*:                 *s
-<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
-*
-
---0000000000009c5c210594f42c34
+--000000000000ce90570594f7a5f4
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><span id=3D"gmail-docs-internal-guid-9efbad20-7fff-b384-50=
-c8-043a7e875300"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;ma=
-rgin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(=
-0,0,0);background-color:transparent;font-variant-numeric:normal;font-varian=
-t-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Current D=
-ev Position: YP 3.0 Final Release</span></p><p dir=3D"ltr" style=3D"line-he=
-ight:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;f=
-ont-family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant=
--numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;whit=
-e-space:pre-wrap">Next Deadline: YP 3.0 Final Release 25th Oct</span></p><b=
-r><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt=
-"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);backgrou=
-nd-color:transparent;font-variant-numeric:normal;font-variant-east-asian:no=
-rmal;vertical-align:baseline;white-space:pre-wrap">SWAT Team Rotation:</spa=
-n></p><ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=
-=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);=
-background-color:transparent;font-variant-numeric:normal;font-variant-east-=
-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=
-=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-=
-size:11pt;background-color:transparent;font-variant-numeric:normal;font-var=
-iant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">SWAT l=
-ead is currently: Paul</span></p></li><li dir=3D"ltr" style=3D"list-style-t=
-ype:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color=
-:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;ver=
-tical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1=
-.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;backgro=
-und-color:transparent;font-variant-numeric:normal;font-variant-east-asian:n=
-ormal;vertical-align:baseline;white-space:pre-wrap">SWAT team rotation: Pau=
-l -&gt; Ross on Oct. 18, 2019</span></p></li><li dir=3D"ltr" style=3D"list-=
-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);backgroun=
-d-color:transparent;font-variant-numeric:normal;font-variant-east-asian:nor=
-mal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-h=
-eight:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;=
-background-color:transparent;font-variant-numeric:normal;font-variant-east-=
-asian:normal;vertical-align:baseline;white-space:pre-wrap">SWAT team rotati=
-on: Ross -&gt; Amanda on Oct. 25, 2019</span></p></li><li dir=3D"ltr" style=
-=3D"list-style-type:disc;font-size:11pt;font-family:Consolas,sans-serif;col=
-or:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font=
--variant-east-asian:normal;vertical-align:baseline;white-space:pre"><p dir=
-=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><a hre=
-f=3D"https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team" styl=
-e=3D"text-decoration-line:none"><span style=3D"font-size:11pt;background-co=
-lor:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;=
-text-decoration-line:underline;vertical-align:baseline;white-space:pre-wrap=
-">https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team</span></=
-a></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt=
-;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:r=
-gb(0,0,0);background-color:transparent;font-variant-numeric:normal;font-var=
-iant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Next T=
-eam Meetings:</span></p><ul style=3D"margin-top:0px;margin-bottom:0px"><li =
-dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;=
-color:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;f=
-ont-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><p d=
-ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><spa=
-n style=3D"font-size:11pt;background-color:transparent;font-variant-numeric=
-:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space:=
-pre-wrap">Bug Triage meeting Thursday Oct. 17th at 7:30am PDT (</span><a hr=
-ef=3D"https://zoom.us/j/454367603" style=3D"text-decoration-line:none"><spa=
-n style=3D"font-size:10pt;background-color:transparent;font-variant-numeric=
-:normal;font-variant-east-asian:normal;text-decoration-line:underline;verti=
-cal-align:baseline;white-space:pre-wrap">https://zoom.us/j/454367603</span>=
-</a><span style=3D"font-size:11pt;background-color:transparent;font-variant=
--numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;whit=
-e-space:pre-wrap">)</span></p></li><li dir=3D"ltr" style=3D"list-style-type=
-:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:tr=
-ansparent;font-variant-numeric:normal;font-variant-east-asian:normal;vertic=
-al-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38=
-;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background=
--color:transparent;font-variant-numeric:normal;font-variant-east-asian:norm=
-al;vertical-align:baseline;white-space:pre-wrap">Monthly Project Meeting Tu=
-esday Nov. 5th at 8am PDT (</span><a href=3D"https://zoom.us/j/990892712" s=
-tyle=3D"text-decoration-line:none"><span style=3D"font-size:11pt;background=
--color:transparent;font-variant-numeric:normal;font-variant-east-asian:norm=
-al;text-decoration-line:underline;vertical-align:baseline;white-space:pre-w=
-rap">https://zoom.us/j/990892712)</span></a></p></li><li dir=3D"ltr" style=
-=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);=
-background-color:transparent;font-variant-numeric:normal;font-variant-east-=
-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=
-=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-=
-size:11pt;background-color:transparent;font-variant-numeric:normal;font-var=
-iant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Weekly=
- Engineering Sync Tuesday Oct. 15th at 8am PDT (</span><a href=3D"https://z=
-oom.us/j/990892712" style=3D"text-decoration-line:none"><span style=3D"font=
--size:11pt;background-color:transparent;font-variant-numeric:normal;font-va=
-riant-east-asian:normal;text-decoration-line:underline;vertical-align:basel=
-ine;white-space:pre-wrap">https://zoom.us/j/990892712)</span></a></p></li><=
-li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Ari=
-al;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:norma=
-l;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><=
-p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><=
-span style=3D"font-size:11pt;background-color:transparent;font-variant-nume=
-ric:normal;font-variant-east-asian:normal;vertical-align:baseline;white-spa=
-ce:pre-wrap">Twitch - Next event is Tuesday Nov. 12th at 8am PDT (</span><a=
- href=3D"https://www.twitch.tv/yocto_project" style=3D"text-decoration-line=
-:none"><span style=3D"font-size:11pt;background-color:transparent;font-vari=
-ant-numeric:normal;font-variant-east-asian:normal;text-decoration-line:unde=
-rline;vertical-align:baseline;white-space:pre-wrap">https://www.twitch.tv/y=
-octo_project</span></a><span style=3D"font-size:11pt;background-color:trans=
-parent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-=
-align:baseline;white-space:pre-wrap">)</span></p></li></ul><br><p dir=3D"lt=
-r" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=
-=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:tran=
-sparent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical=
--align:baseline;white-space:pre-wrap">Key Status/Updates:</span></p><ul sty=
-le=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style=
--type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-col=
-or:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;v=
-ertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height=
-:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;backg=
-round-color:transparent;font-variant-numeric:normal;font-variant-east-asian=
-:normal;vertical-align:baseline;white-space:pre-wrap">YP 3.0 was built and =
-submitted to QA as 3.0 rc2 (rc1 had build failures).</span></p></li><li dir=
-=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;col=
-or:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font=
--variant-east-asian:normal;vertical-align:baseline;white-space:pre"><p dir=
-=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span =
-style=3D"font-size:11pt;background-color:transparent;font-variant-numeric:n=
-ormal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pr=
-e-wrap">There is a QA report from QA for 3.0 rc2. There were two issues rai=
-sed from testing but these are both relatively minor issues that are unlike=
-ly to block release.</span></p></li><li dir=3D"ltr" style=3D"list-style-typ=
-e:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:t=
-ransparent;font-variant-numeric:normal;font-variant-east-asian:normal;verti=
-cal-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.3=
-8;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;backgroun=
-d-color:transparent;font-variant-numeric:normal;font-variant-east-asian:nor=
-mal;vertical-align:baseline;white-space:pre-wrap">The release is therefore =
-now pending a decision from the TSC on whether we should release.</span></p=
-></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-fam=
-ily:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeri=
-c:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space=
-:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom=
-:0pt"><span style=3D"font-size:11pt;background-color:transparent;font-varia=
-nt-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;wh=
-ite-space:pre-wrap">Master has started taking patches for post 3.0 to try a=
-nd avoid any further backlog buildup.</span></p></li><li dir=3D"ltr" style=
-=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);=
-background-color:transparent;font-variant-numeric:normal;font-variant-east-=
-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=
-=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-=
-size:11pt;background-color:transparent;font-variant-numeric:normal;font-var=
-iant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">We pla=
-n to build 2.7.2, followed by 2.6.4 imminently, Armin has been preparing th=
-e branches.</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;fo=
-nt-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparen=
-t;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-align=
-:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-=
-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background-color:t=
-ransparent;font-variant-numeric:normal;font-variant-east-asian:normal;verti=
-cal-align:baseline;white-space:pre-wrap">We have begun collecting ideas for=
- YP 3.1 in this document: </span><a href=3D"https://docs.google.com/documen=
-t/d/1UKZIGe88-eq3-pOPtkAvFAegbQDzhy_f4ye64yjnABc/edit?usp=3Dsharing" style=
-=3D"text-decoration-line:none"><span style=3D"font-size:11pt;background-col=
-or:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;t=
-ext-decoration-line:underline;vertical-align:baseline;white-space:pre-wrap"=
->https://docs.google.com/document/d/1UKZIGe88-eq3-pOPtkAvFAegbQDzhy_f4ye64y=
-jnABc/edit?usp=3Dsharing</span></a></p></li><li dir=3D"ltr" style=3D"list-s=
-tyle-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background=
--color:transparent;font-variant-numeric:normal;font-variant-east-asian:norm=
-al;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-he=
-ight:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;b=
-ackground-color:transparent;font-variant-numeric:normal;font-variant-east-a=
-sian:normal;vertical-align:baseline;white-space:pre-wrap">If anyone has any=
- status items for the project they=E2=80=99d like to add to the weekly repo=
-rts, please email Richard+Stephen.</span></p></li></ul><br><p dir=3D"ltr" s=
-tyle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"f=
-ont-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transpare=
-nt;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-alig=
-n:baseline;white-space:pre-wrap">Planned Releases for YP 3.0:</span></p><ul=
- style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-s=
-tyle-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background=
--color:transparent;font-variant-numeric:normal;font-variant-east-asian:norm=
-al;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-he=
-ight:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;b=
-ackground-color:transparent;font-variant-numeric:normal;font-variant-east-a=
-sian:normal;vertical-align:baseline;white-space:pre-wrap">YP 3.0 Final Rele=
-ase 25th Oct</span></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.=
-38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-fam=
-ily:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeri=
-c:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space=
-:pre-wrap">Planned upcoming dot releases:</span></p><ul style=3D"margin-top=
-:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:disc;font-=
-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;f=
-ont-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:ba=
-seline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top=
-:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background-color:tran=
-sparent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical=
--align:baseline;white-space:pre-wrap">YP 2.7.2 (Warrior) is planned this we=
-ek.</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:=
-11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-v=
-ariant-numeric:normal;font-variant-east-asian:normal;vertical-align:baselin=
-e;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;=
-margin-bottom:0pt"><span style=3D"font-size:11pt;background-color:transpare=
-nt;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-alig=
-n:baseline;white-space:pre-wrap">YP 2.6.4 (Thud) is planned for after YP 2.=
-7.2=C2=A0 release.</span></p></li></ul><br><p dir=3D"ltr" style=3D"line-hei=
-ght:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;fo=
-nt-family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-=
-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;white=
--space:pre-wrap">Tracking Metrics:</span></p><ul style=3D"margin-top:0px;ma=
-rgin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11=
-pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-var=
-iant-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;=
-white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;ma=
-rgin-bottom:0pt"><span style=3D"font-size:11pt;background-color:transparent=
-;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:=
-baseline;white-space:pre-wrap">WDD 2528 (last week 2525)</span><span style=
-=3D"font-size:11pt;font-family:Consolas,sans-serif;background-color:transpa=
-rent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-al=
-ign:baseline;white-space:pre-wrap"> (</span><a href=3D"https://wiki.yoctopr=
-oject.org/charts/combo.html" style=3D"text-decoration-line:none"><span styl=
-e=3D"font-size:11pt;background-color:transparent;font-variant-numeric:norma=
-l;font-variant-east-asian:normal;text-decoration-line:underline;vertical-al=
-ign:baseline;white-space:pre-wrap">https://wiki.yoctoproject.org/charts/com=
-bo.html</span></a><span style=3D"font-size:11pt;font-family:Consolas,sans-s=
-erif;background-color:transparent;font-variant-numeric:normal;font-variant-=
-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">)</span></p=
-></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-fam=
-ily:Consolas,sans-serif;color:rgb(0,0,0);background-color:transparent;font-=
-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:baseli=
-ne;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt=
-;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;backgro=
-und-color:transparent;font-variant-numeric:normal;font-variant-east-asian:n=
-ormal;vertical-align:baseline;white-space:pre-wrap">Poky Patch Metrics=C2=
-=A0=C2=A0</span></p></li><ul style=3D"margin-top:0px;margin-bottom:0px"><li=
- dir=3D"ltr" style=3D"list-style-type:circle;font-size:11pt;font-family:Ari=
-al;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:norma=
-l;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><=
-p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><=
-span style=3D"font-size:11pt;background-color:transparent;font-variant-nume=
-ric:normal;font-variant-east-asian:normal;vertical-align:baseline;white-spa=
-ce:pre-wrap">Total patches found: 1445 (last week 1448)</span></p></li><li =
-dir=3D"ltr" style=3D"list-style-type:circle;font-size:11pt;font-family:Cons=
-olas,sans-serif;color:rgb(0,0,0);background-color:transparent;font-variant-=
-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;white=
--space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-=
-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;background-colo=
-r:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;ve=
-rtical-align:baseline;white-space:pre-wrap">Patches in the Pending State: 5=
-86 (41%) [last week 587 (41%)]</span></p></li></ul></ul><br><p dir=3D"ltr" =
-style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"=
-font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transpar=
-ent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-ali=
-gn:baseline;white-space:pre-wrap">Key Status Links for YP:</span></p><p dir=
-=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><a hre=
-f=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v2.8_Status" style=3D=
-"text-decoration-line:none"><span style=3D"font-size:11pt;font-family:Conso=
-las,sans-serif;background-color:transparent;font-variant-numeric:normal;fon=
-t-variant-east-asian:normal;text-decoration-line:underline;vertical-align:b=
-aseline;white-space:pre-wrap">https://wiki.yoctoproject.org/wiki/Yocto_Proj=
-ect_v2.8_Status</span></a></p><p dir=3D"ltr" style=3D"line-height:1.38;marg=
-in-top:0pt;margin-bottom:0pt"><a href=3D"https://wiki.yoctoproject.org/wiki=
-/Yocto_2.8_Schedule" style=3D"text-decoration-line:none"><span style=3D"fon=
-t-size:11pt;font-family:Consolas,sans-serif;background-color:transparent;fo=
-nt-variant-numeric:normal;font-variant-east-asian:normal;text-decoration-li=
-ne:underline;vertical-align:baseline;white-space:pre-wrap">https://wiki.yoc=
-toproject.org/wiki/Yocto_2.8_Schedule</span></a></p><p dir=3D"ltr" style=3D=
-"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><a href=3D"https://wiki=
-.yoctoproject.org/wiki/Yocto_2.8_Features" style=3D"text-decoration-line:no=
-ne"><span style=3D"font-size:11pt;font-family:Consolas,sans-serif;backgroun=
-d-color:transparent;font-variant-numeric:normal;font-variant-east-asian:nor=
-mal;text-decoration-line:underline;vertical-align:baseline;white-space:pre-=
-wrap">https://wiki.yoctoproject.org/wiki/Yocto_2.8_Features</span></a></p><=
-br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0p=
-t"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);backgro=
-und-color:transparent;font-variant-numeric:normal;font-variant-east-asian:n=
-ormal;vertical-align:baseline;white-space:pre-wrap">The Yocto Project=E2=80=
-=99s technical governance is through its Technical Steering Committee, more=
- information is available at:</span></p><p dir=3D"ltr" style=3D"line-height=
-:1.38;margin-top:0pt;margin-bottom:0pt"><a href=3D"https://wiki.yoctoprojec=
-t.org/wiki/TSC" style=3D"text-decoration-line:none"><span style=3D"font-siz=
-e:11pt;font-family:Arial;background-color:transparent;font-variant-numeric:=
-normal;font-variant-east-asian:normal;text-decoration-line:underline;vertic=
-al-align:baseline;white-space:pre-wrap">https://wiki.yoctoproject.org/wiki/=
-TSC</span></a></p><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0=
-pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color=
-:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font-v=
-ariant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">The =
-Status reports are now stored on the wiki at: </span><a href=3D"https://wik=
-i.yoctoproject.org/wiki/Weekly_Status" style=3D"text-decoration-line:none">=
-<span style=3D"font-size:11pt;font-family:Arial;background-color:transparen=
-t;font-variant-numeric:normal;font-variant-east-asian:normal;text-decoratio=
-n-line:underline;vertical-align:baseline;white-space:pre-wrap">https://wiki=
-.yoctoproject.org/wiki/Weekly_Status</span></a></p><br><p dir=3D"ltr" style=
-=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-=
-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;f=
-ont-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:ba=
-seline;white-space:pre-wrap">[If anyone has suggestions for other informati=
-on you=E2=80=99d like to see on this weekly status update, let us know!]</s=
-pan></p></span><div><br></div>-- <br><div dir=3D"ltr" class=3D"gmail_signat=
-ure" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"l=
-tr"><p class=3D"MsoNormal" style=3D"background-image:initial;background-pos=
-ition:initial;background-repeat:initial"><span style=3D"font-size:12pt;font=
--family:Arial,sans-serif">Thanks,<span></span></span></p>
+<div dir=3D"ltr">Hi Joshua,<div><br></div><div>Thank you for replying.</div=
+><div><br></div><div>Since my last email, I enabled BBMULTICONFIG and was a=
+ble to build both 32bit and 64bit machine types successfully and so i have =
+both packages available in their corresponding build folders.</div><div><br=
+></div><div>build/tmp-imx6sxsabresd/deploy/rpm/imx6sxsabresd/kernel-4.14.98=
+-r0.imx6sxsabresd.rpm<br></div><div>build/tmp-imx8mmevk/deploy/rpm/imx8mmev=
+k/kernel-4.14.98-r0.imx8mmevk.rpm</div><div><br></div><div>I checked out mc=
+depends however I don&#39;t believe this helps me to do the last piece whic=
+h is to pull the 64-bit kernel package into my 32-bit image.=C2=A0</div><di=
+v>According to the yocto docs, mcdepends ensures that imageA is built only =
+after imageB has finished building (or at least that&#39;s how I understand=
+ it).</div><div><br></div><div>In parallel, I&#39;m studying a patch that w=
+as upstreamed in 2017 for adding support for multiple kernel packages (<a h=
+ref=3D"http://lists.openembedded.org/pipermail/openembedded-core/2017-Octob=
+er/143674.html">http://lists.openembedded.org/pipermail/openembedded-core/2=
+017-October/143674.html</a>)</div><div>This appears to be in line with what=
+ I&#39;m looking to do however the wrinkle is that I&#39;m dealing with two=
+ kernels from two different machine types whereas the patch dealt with two =
+kernels of the same machine type.=C2=A0</div><div>I&#39;m still trying to u=
+nderstand the implications of this. My feeling is that I need a hybrid appr=
+oach of bbmulticonfig and the above patch for adding multiple kernel packag=
+es.</div><div><br></div><div>Please let me know if you have any thoughts.</=
+div><div><br></div><div>Thanks,</div><div><br>Davis</div></div><br><div cla=
+ss=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 4, 201=
+9 at 10:59 PM Joshua Watt &lt;<a href=3D"mailto:jpewhacker@gmail.com">jpewh=
+acker@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
+ding-left:1ex"><div dir=3D"auto"><div><br><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 4, 2019, 7:04 PM Davis Roma=
+n &lt;<a href=3D"mailto:davis.roman84@gmail.com" target=3D"_blank">davis.ro=
+man84@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pad=
+ding-left:1ex"><div dir=3D"ltr"><font face=3D"monospace">Hello,<br><br>We&#=
+39;re working on a Linux=C2=A0distro for two systems where one is based on<=
+br>NXP i.mx6(32-bit,armv7) and the other i.mx8(64-bit,armv8).</font><div><f=
+ont face=3D"monospace"><br></font></div><div><font face=3D"monospace">I hav=
+e two machine types defined in Yocto so individually I can build</font></di=
+v><div><font face=3D"monospace">either one however our goal is to create a =
+single distro=C2=A0</font><span style=3D"font-family:monospace">that can ru=
+n on both processors.</span></div><div><font face=3D"monospace"><br>So the =
+idea is to use BBMULTICONFIG(</font><a href=3D"https://www.yoctoproject.org=
+/docs/latest/ref-manual/ref-manual.html#var-BBMULTICONFIG" rel=3D"noreferre=
+r" target=3D"_blank">https://www.yoctoproject.org/docs/latest/ref-manual/re=
+f-manual.html#var-BBMULTICONFIG</a>)<div><font face=3D"monospace">to build =
+two separate=C2=A0images,<br><br></font></div><div><font face=3D"monospace"=
+>1) a 32-bit distro for an i.mx6</font></div><div><font face=3D"monospace">=
+2) a 64-bit distro for an i.mx8</font></div><div><font face=3D"monospace"><=
+br></font></div><div><font face=3D"monospace">and then finally, take the 32=
+-bit distro and add the 64-bit kernel+modules and u-boot.<br><br>----------=
+-----------------------------<br>|--------------------------------------|<b=
+r>|| =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 32-bit rootfs =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0||<br>|--------------------------------------|<br>|----=
+------------- =C2=A0 ----------------- |<br>|| 32-bit kernel | =C2=A0 | =C2=
+=A064-bit kernel ||<br>|----------------- =C2=A0 ----------------- |<br>|--=
+--------------- =C2=A0 ----------------- |<br>|| 32-bit u-boot | =C2=A0 | =
+=C2=A064-bit u-boot ||<br>|----------------- =C2=A0 ----------------- |<br>=
+---------------------------------------<br>=C2=A0 =C2=A0i.mx6solo =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 i.mx8m mini<br><br>We&#39;ve already tri=
+ed our existing 32-bit rootfs=C2=A0+ 64-bit kernel/u-boot on the i.mx8 and =
+the system runs.</font></div><div><font face=3D"monospace">So in theory,=C2=
+=A0</font><span style=3D"font-family:monospace">it should just be a matter =
+of getting yocto to assemble all the pieces</span><span style=3D"font-famil=
+y:monospace">=C2=A0together.</span></div><div><span style=3D"font-family:mo=
+nospace"><br></span></div><div><span style=3D"font-family:monospace">I don&=
+#39;t have much experience with BBMULTICONFIG so a</span><span style=3D"fon=
+t-family:monospace">ny ideas or comments on how to proceed would be appreci=
+ated.</span></div></div></div></blockquote></div></div><div dir=3D"auto"><b=
+r></div><div dir=3D"auto">You are on the right track. Create two multiconfi=
+g files one for each machine, then user mcdepends (<a href=3D"https://www.y=
+octoproject.org/docs/current/mega-manual/mega-manual.html#dev-enabling-mult=
+iple-configuration-build-dependencies" target=3D"_blank">https://www.yoctop=
+roject.org/docs/current/mega-manual/mega-manual.html#dev-enabling-multiple-=
+configuration-build-dependencies</a>) to pull the 64 bit kernel, etc. into =
+the 32 bit image.</div><div dir=3D"auto"><br></div><div dir=3D"auto">BBMULT=
+ICONFIG is used in local.conf to select which multiconfigs you want to enab=
+le. In your case it would have to list both of the ones that you define.</d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto"><div class=3D"gmail_quote"=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div><d=
+iv><font face=3D"monospace"><br>Thank you,<br><br>Davis</font></div></div><=
+/div>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" rel=3D"noreferrer" target=3D"_bla=
+nk">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+ noreferrer" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yoct=
+o</a><br>
+</blockquote></div></div></div>
+</blockquote></div>
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
-ily:Arial,sans-serif">=C2=A0<span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
-lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
-ont-family:Arial,sans-serif"><span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
-amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager<spa=
-n></span></span></b></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-family:&quot;Co=
-urier New&quot;;color:fuchsia;background-image:initial;background-position:=
-initial;background-repeat:initial">7867 SW Bayberry Dr., Beaverton, OR 9700=
-7</span></b><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><sp=
-an></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
-&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
-<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
-:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
-s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
-><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
-/span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
-t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
-=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
-color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
-uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
- lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
-erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
-phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
-.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
-u></p></div></div></div></div></div>
-
---0000000000009c5c210594f42c34--
+--000000000000ce90570594f7a5f4--
