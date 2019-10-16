@@ -1,69 +1,65 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CF5BAE008D9; Wed, 16 Oct 2019 10:46:16 -0700 (PDT)
+	id CD524E0053F; Wed, 16 Oct 2019 12:09:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	https://www.dnswl.org/, no *      trust
-	*      [209.85.210.196 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.214.182 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com
-	[209.85.210.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5C20E008D9
-	for <yocto@yoctoproject.org>; Wed, 16 Oct 2019 10:46:12 -0700 (PDT)
-Received: by mail-pf1-f196.google.com with SMTP id q12so15172407pff.9
-	for <yocto@yoctoproject.org>; Wed, 16 Oct 2019 10:46:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
+	[209.85.214.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C66E8E0053F
+	for <yocto@yoctoproject.org>; Wed, 16 Oct 2019 12:09:25 -0700 (PDT)
+Received: by mail-pl1-f182.google.com with SMTP id u12so11689302pls.12
+	for <yocto@yoctoproject.org>; Wed, 16 Oct 2019 12:09:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=mvista-com.20150623.gappssmtp.com; s=20150623;
 	h=subject:to:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to:content-transfer-encoding
-	:content-language;
-	bh=E2pXSdt/UQGTDsvqqN/DhEBK1plzkjfBQRPgs05TY30=;
-	b=N4jppdOf3eDHpvOpaOL40awM8tMOzgeGSAATPEha9OWaLt3sdd4MCdbviDwWdzmrpb
-	2JrgAvjXwlT3bZqRzfmBTSsRI6zpjbfOPV6+0qjKf/XaRfilyOFC9FBsKJVDp3jQdD5X
-	mXp2/hIxeCoQCe3HNjxFgKWgLzxE/WuCoU65XsBL5NA86gM3oz6meMgKrwjMJK1YTNLG
-	ThPGR1czlhxE12Maiau/tlmC4ec8nCnclm9jIste1apJjmKtVD1C8Q/L2qBgKTdCpqpq
-	z6ewpD9rH/q0TaKOAsuaq041NCl4pxf/fs+SUfpPkIIOQL8ByWXm6ZXV+emrrYy1fROB
-	7vLw==
+	:user-agent:mime-version:in-reply-to;
+	bh=qiaIk9UMRcNYYkIH7Jy38GoLnyqaRprfOGPKsvwg1rA=;
+	b=GKHNxp87xLxggSb4FWg6ctBMc9psHoRDjw2+KNRfnJromhEdHobOEPIXsQcbdHiXPn
+	5ENXI3x9gwZzgGQI8UcVzmcR8S3IQf+bwNKWJUH57ybNy0mX9IGHo1ecZd4yU9GMq3tN
+	+jovYT2VZzFadTAvvYB47ddAsZ4hyPAdtcPllxUQc/1sgl3dkxW+XVqa8P+jq8Faz5bM
+	FBb3BejO1cyEG+VGO69fiFGoK3qUWIcjvhyZLnTjH7EVFASFSrPat8BRtu17SId+faAa
+	6NsTvPK2Nurj31aXqBUW1Jsh6FuCY4oxEHt0gHRm/pAz8N9Z3aLwIEwJlu5g0gc9LsQ8
+	9hkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-transfer-encoding:content-language;
-	bh=E2pXSdt/UQGTDsvqqN/DhEBK1plzkjfBQRPgs05TY30=;
-	b=a9a2ZGODrFzYETHZZ0+VR40liV7a0ERBGZs8i6wGdQvfaMOaDnq1VmrWIxvr3JxRa0
-	h21nNjFV8TEEUU4m5NE9bCMKHTy6l0OYS7pSw7NiTBzTXzY4EglOOHKelWwUP36NKJS8
-	sUaW5/Hr4SfteRqbSk1hCUiLSGGU6FTFiscknAZ6IY2rSCCrrRPIGYx2Wsan8LaJJmwg
-	+Ly5brUR6GfEOrBwgdetepUyMYHt4l7qH1vi3dOYcZHSv3HL8YdX3UQcs/25lRC2qJiq
-	O1llj/GzmSJoCz8OsHhuCvmfZPjmbWe4v23tKkhvbdGuejETrmkXzElwgzk0b0jQWdf7
-	is3A==
-X-Gm-Message-State: APjAAAXjx8X38HKpYZpDkNgztucMo58b/W7fodLActUxk0UqAHhlzPip
-	KmnnQeAp4vp4qjZnq8qs+8epxvzo
-X-Google-Smtp-Source: APXvYqz4wp4Z4ps+NYFbX+hPinNa7HAcdacpIDPs+p45hm/1sRC8XS7HWVHFX/fsQ7qJ43qR0BVwlw==
-X-Received: by 2002:a63:fe56:: with SMTP id x22mr46309753pgj.282.1571247972176;
-	Wed, 16 Oct 2019 10:46:12 -0700 (PDT)
+	:message-id:date:user-agent:mime-version:in-reply-to;
+	bh=qiaIk9UMRcNYYkIH7Jy38GoLnyqaRprfOGPKsvwg1rA=;
+	b=Z5O7poDKZpnUkrlkIy+o0gJtDsmDNwaplNqthUmAkxVSW5SsEmM1yJadTazl5Wapyt
+	5bLnnphDDb1EB4jtplZbNYj9G7Ue98axCpBQzA4VDFp8kiMpLDqK5atuFgrwXNYFkjfe
+	JMraeiUg9uXGfjPEQiL72FnBh1PSPsmIrwda2zYbkSNBb7u9gYVZ+uCja5+H/nVKtD3x
+	JMmfdOlROMBzT6KkoiioEoeREtc7CIOTkyWABaMMeXFC9Uex1VKvKtDMZmDwE1poqSMW
+	RRbAgX5gj0IlraAYx/jlQ/CZbxurpmN9Z32unoL3+nwclT5ARWkNidkS76GRAi5X9yye
+	1JmA==
+X-Gm-Message-State: APjAAAW/AoqllFeP4PXA5vEvHfxRu2npF+kLD6JG8ewbyNnaErLvcsIS
+	86eBLCVRlis+lMXEZEqIPmQDX82Obe4=
+X-Google-Smtp-Source: APXvYqwop5fA20JxNKqaRzwG0GIYBPAAuJc/+8EUfQGdWSJou6ScrJ5TdHVF/zDsXF0hepVwFa8W7A==
+X-Received: by 2002:a17:902:aa82:: with SMTP id
+	d2mr41760967plr.24.1571252964893; 
+	Wed, 16 Oct 2019 12:09:24 -0700 (PDT)
 Received: from ?IPv6:2601:202:4180:a5c0:8dc1:2952:740a:7402?
 	([2601:202:4180:a5c0:8dc1:2952:740a:7402])
 	by smtp.gmail.com with ESMTPSA id
-	c14sm31079385pfm.179.2019.10.16.10.46.11 for <yocto@yoctoproject.org>
+	q71sm4215151pjb.26.2019.10.16.12.09.23
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 16 Oct 2019 10:46:11 -0700 (PDT)
-To: yocto@yoctoproject.org
-References: <1570633787-11133-1-git-send-email-akuster808@gmail.com>
-From: akuster808 <akuster808@gmail.com>
+	Wed, 16 Oct 2019 12:09:23 -0700 (PDT)
+To: Guilhem Saurel <guilhem.saurel@laas.fr>, yocto@yoctoproject.org
+References: <20191013093004.zxzgukocmkrliu42@laas.fr>
+From: akuster <akuster@mvista.com>
 Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
 	mQINBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
 	Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
 	mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
@@ -106,13 +102,13 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
 	PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
 	ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
 	8CS2NxU=
-Message-ID: <f0e06e02-ef9d-58b2-368e-a100a6d527cb@gmail.com>
-Date: Wed, 16 Oct 2019 10:46:10 -0700
+Message-ID: <e520871b-f98f-90ce-9cc1-402da97251db@mvista.com>
+Date: Wed, 16 Oct 2019 12:09:21 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
 	Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <1570633787-11133-1-git-send-email-akuster808@gmail.com>
-Subject: Re: [thud][PATCH] linux-yocto/4.14: meta-yocto-bsp update to 143
+In-Reply-To: <20191013093004.zxzgukocmkrliu42@laas.fr>
+Subject: Re: download.yoctoproject.org - Certificate expired
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -124,57 +120,121 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Oct 2019 17:46:16 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 16 Oct 2019 19:09:28 -0000
+X-Groupsio-MsgNum: 46952
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature";
+	boundary="odAg5BZdXV3u0tHAB1FGx9t5oYrAZwO2W"
+
+--odAg5BZdXV3u0tHAB1FGx9t5oYrAZwO2W
+Content-Type: multipart/mixed; boundary="RJx8ziVjP5SzV4sJtSVCdskzWoIiLaoOU";
+ protected-headers="v1"
+From: akuster <akuster@mvista.com>
+To: Guilhem Saurel <guilhem.saurel@laas.fr>, yocto@yoctoproject.org
+Message-ID: <e520871b-f98f-90ce-9cc1-402da97251db@mvista.com>
+Subject: Re: [yocto] download.yoctoproject.org - Certificate expired
+References: <20191013093004.zxzgukocmkrliu42@laas.fr>
+In-Reply-To: <20191013093004.zxzgukocmkrliu42@laas.fr>
+
+--RJx8ziVjP5SzV4sJtSVCdskzWoIiLaoOU
+Content-Type: multipart/alternative;
+ boundary="------------D355F5E341F67CDF1C3A2FD3"
 Content-Language: en-US
 
-This appears to have been missed for this round.
+--------------D355F5E341F67CDF1C3A2FD3
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
-maybe next time
+
+
+On 10/13/19 2:30 AM, Guilhem Saurel wrote:
+> Hi,
+>
+> The certificate installed on https://download.yoctoproject.org expired =
+about 4
+> days ago. Is anyone else experiencing the same issue? Is a new certific=
+ate going
+> to be installed ?
+thank you for letting us know. I believe this issue has been addressed.
+Please let us know if you still having issues with the certificate.
 
 - armin
-
-On 10/9/19 8:09 AM, Armin Kuster wrote:
-> Signed-off-by: Armin Kuster <akuster808@gmail.com>
-> ---
->  .../recipes-kernel/linux/linux-yocto_4.14.bbappend   | 20 ++++++++++----------
->  1 file changed, 10 insertions(+), 10 deletions(-)
 >
-> diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend
-> index 426757e..5277798 100644
-> --- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend
-> +++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.14.bbappend
-> @@ -8,11 +8,11 @@ KMACHINE_genericx86 ?= "common-pc"
->  KMACHINE_genericx86-64 ?= "common-pc-64"
->  KMACHINE_beaglebone-yocto ?= "beaglebone"
->  
-> -SRCREV_machine_genericx86    ?= "5252513a39b4b3773debab1f77071d7c430ecb10"
-> -SRCREV_machine_genericx86-64 ?= "5252513a39b4b3773debab1f77071d7c430ecb10"
-> -SRCREV_machine_edgerouter ?= "d8fb40cd0e99325715c70aed6f361a8318097829"
-> -SRCREV_machine_beaglebone-yocto ?= "c67809688bd22cb4cb909bcf1a1045e6337c3229"
-> -SRCREV_machine_mpc8315e-rdb ?= "258ee8228e0a512c6dbe2a0dadcd9f030ba45964"
-> +SRCREV_machine_genericx86    ?= "bc9d4b045fa0254d14ef3a667a200f02cb9af755"
-> +SRCREV_machine_genericx86-64 ?= "bc9d4b045fa0254d14ef3a667a200f02cb9af755"
-> +SRCREV_machine_edgerouter ?= "326e296f237347e965a38acb34f09e594430b0c6"
-> +SRCREV_machine_beaglebone-yocto ?= "1b8c86329c9dbb10b8fcaeb2dceb75680994cd84"
-> +SRCREV_machine_mpc8315e-rdb ?= "f26672ec1f164b0f2a15d629128a91093f971bdd"
->  
->  COMPATIBLE_MACHINE_genericx86 = "genericx86"
->  COMPATIBLE_MACHINE_genericx86-64 = "genericx86-64"
-> @@ -20,8 +20,8 @@ COMPATIBLE_MACHINE_edgerouter = "edgerouter"
->  COMPATIBLE_MACHINE_beaglebone-yocto = "beaglebone-yocto"
->  COMPATIBLE_MACHINE_mpc8315e-rdb = "mpc8315e-rdb"
->  
-> -LINUX_VERSION_genericx86 = "4.14.98"
-> -LINUX_VERSION_genericx86-64 = "4.14.98"
-> -LINUX_VERSION_edgerouter = "4.14.98"
-> -LINUX_VERSION_beaglebone-yocto = "4.14.98"
-> -LINUX_VERSION_mpc8315e-rdb = "4.14.98"
-> +LINUX_VERSION_genericx86 = "4.14.143"
-> +LINUX_VERSION_genericx86-64 = "4.14.143"
-> +LINUX_VERSION_edgerouter = "4.14.143"
-> +LINUX_VERSION_beaglebone-yocto = "4.14.143"
-> +LINUX_VERSION_mpc8315e-rdb = "4.14.143"
+> Thanks,
+> Guilhem.
+>
 
 
+--------------D355F5E341F67CDF1C3A2FD3
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html;
+      charset=3Dwindows-1252">
+  </head>
+  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <br>
+    <br>
+    <div class=3D"moz-cite-prefix">On 10/13/19 2:30 AM, Guilhem Saurel
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:20191013093004.zxzgukocmkrliu42@laas.fr">
+      <pre class=3D"moz-quote-pre" wrap=3D"">Hi,
+
+The certificate installed on <a class=3D"moz-txt-link-freetext" href=3D"h=
+ttps://download.yoctoproject.org">https://download.yoctoproject.org</a> e=
+xpired about 4
+days ago. Is anyone else experiencing the same issue? Is a new certificat=
+e going
+to be installed ?</pre>
+    </blockquote>
+    thank you for letting us know. I believe this issue has been
+    addressed. Please let us know if you still having issues with the
+    certificate.<br>
+    <br>
+    - armin<br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:20191013093004.zxzgukocmkrliu42@laas.fr">
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+
+Thanks,
+Guilhem.
+</pre>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------D355F5E341F67CDF1C3A2FD3--
+
+--RJx8ziVjP5SzV4sJtSVCdskzWoIiLaoOU--
+
+--odAg5BZdXV3u0tHAB1FGx9t5oYrAZwO2W
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQIcBAEBCAAGBQJdp2riAAoJEO6LtJn0Vuf5T7kQALwLUWH3eoXF9kAECYcNlm66
+mR3xc2mbhTwzf7qIClJaH0qkfzeoQSoKuI+Q74Ak3AovPVcn4mk9RQCt49rjFt4K
+eRk2Ux/VdchcB8RnLmVcIvw8oF0l3OkvWth2MJizRADuMk32XFUNmBYeV2xiE6K5
+8PIzkZTiRiZgPgna75WhFpPaeuTWCQDQHOS2CT4zqH5ZzdfXe+SlsqXGoYr5t4wE
+ooqfaZZquyOOgzbNCcKc4wz2G74EJWfIkLouRxhM65Lon3zu37bDWOCqBcl7AwuX
+eZFYA3dikZGLEEskoP3OBtmi3ctngLpvIiq9etMpxVhmW6voyEOCHr0swNqh46Hp
+lhPiQRPbE4UfpoZZzoAqRdAoAi3/57HCfjPQeV9HDfLIRN0otk/S3xMxtki8usDv
+59csSbWoAP1uYaQFVUVxTI/sxHVbqwnD3HNX42Hv/RzI4p0/ajcsb8onKoZdaI3D
+5hGvsz5/VqmOLDuN0wafE7SL/M4JOQ/18+bpGZjQfBmTJivHWQAgj1kZNPYWMOK0
+b+2eKDQZDQUfB4lDJfZWZBR9fq6KxfXyCsqTZcG5QiIXpmHc5TQ9hctQ1wNUHi1t
+PbpcMD9XX7/V4OFwOjuwmateZfAhMQ0rL2pD8+Gldu5Nb+JTh0f6MCLd5Jog/pnG
+Gkhmz42ZyUZFvyUNnYDt
+=N6j0
+-----END PGP SIGNATURE-----
+
+--odAg5BZdXV3u0tHAB1FGx9t5oYrAZwO2W--
