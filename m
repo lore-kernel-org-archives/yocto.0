@@ -1,120 +1,95 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <abhiarora4@live.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 789FFE00DB1; Fri, 18 Oct 2019 13:29:55 -0700 (PDT)
+	id A67E4E00D82; Sat, 19 Oct 2019 05:45:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FORGED_SPF_HELO,FREEMAIL_FROM,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (akuster808[at]gmail.com)
+	provider *      (abhiarora4[at]live.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.210.170 listed in list.dnswl.org]
+	*      [40.92.254.107 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com
-	[209.85.210.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5515CE00AAA
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2019 13:29:54 -0700 (PDT)
-Received: by mail-pf1-f170.google.com with SMTP id v4so4550878pff.6
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2019 13:29:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=subject:to:references:from:openpgp:autocrypt:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language;
-	bh=lf7PTAAkhnHu4BBYPc3EFVyM9uofcMcri/D9OVGwTKw=;
-	b=WerMrWLAfLIm4gfa5GmJPaXpEMSHZjvB6kUzYvzFPvAlQMio87b8NY1JU9Z2LeOKm+
-	jmSx/gWLAzrpZKf3ddJyq+pXBQ5UZMGev5y631Dj83hj2YtSz22hrz8QB1G4Olrn7U12
-	oATCBaj1biZU7uA5jn4uknyK6B5KSKbFmAfkNcXJ+fm6Bgb+cktPw7XikPpun8VdiRsm
-	eJ4FB6j+aFligUINs/eSHfLScyEqSANgKICwG9VlzgeVzkQuetAjkXnj+Dos4iUhf+rV
-	zm95YLwo/wbs+p/Nco5xh7DJuzHYZePpUibdrOhusvDF3xOVoGDexv0BG9Tdd5DnED2s
-	EYCw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-	:message-id:date:user-agent:mime-version:in-reply-to
-	:content-language;
-	bh=lf7PTAAkhnHu4BBYPc3EFVyM9uofcMcri/D9OVGwTKw=;
-	b=a2D97ksg3UFeIcHl2v3mTUehoLmN1KoAETF97wF08EffbbBMDSjcu51PAQ/oT1riuF
-	6HRhAnaQ1FWJ/9He9nntKFzAZCmj/MiXvk0qSYlusY7YMlpnIQWv5oH6toyVMLeXFHrQ
-	AeIPTz9S6n0hlDf2QYgej4u/iQxd+pmoI0WabG04gcvRoyjRv5kuKV6jIFqPCWIXmn1Z
-	1nXIXedgHQNfPyOaw2+TrBkmsQOXqjZtl37tERt71IyWhfb93pYdKaCEa2B1CaZzKFpa
-	fLt1Prs206GNEISdiFe5hhVCQsHbWtgbIXx1RGPa7xiRc9LPLmVPOaOAJ7EhXMRcEcc8
-	9zMQ==
-X-Gm-Message-State: APjAAAUJ8PwZ8ozHqzNg7KnMj2xfGpzNt1XYrJUWrqzoLrjv2/tcX0s0
-	4Iqhnoi6wldBHweEEV9b63suE6JB
-X-Google-Smtp-Source: APXvYqzUOBNdwbK7o80VtxIPMlq4//QRr2Wb21fWQqb8+l8/or9VUGMi9NOPnO1ppLc2LGCtKp6Xfg==
-X-Received: by 2002:a63:f250:: with SMTP id d16mr11915281pgk.165.1571430593757;
-	Fri, 18 Oct 2019 13:29:53 -0700 (PDT)
-Received: from ?IPv6:2601:202:4180:a5c0:80c4:1df3:e700:2539?
-	([2601:202:4180:a5c0:80c4:1df3:e700:2539])
-	by smtp.gmail.com with ESMTPSA id
-	127sm7127380pfy.56.2019.10.18.13.29.52
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 18 Oct 2019 13:29:53 -0700 (PDT)
-To: Marco <cavallini.koan@gmail.com>,
-	Yocto Project Discussion <yocto@yoctoproject.org>,
-	rpurdie@linuxfoundation.org
-References: <CAFQ+DihRstNhn_CXeM2kuJDWp_FFQEu=_e6dd81nsgsrLWPvRQ@mail.gmail.com>
-From: akuster808 <akuster808@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
-	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
-	8CS2NxU=
-Message-ID: <533e2d2d-d7dd-6675-641c-0dce4aa49db6@gmail.com>
-Date: Fri, 18 Oct 2019 13:29:52 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.9.0
+	*      valid *  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
+Received: from APC01-PU1-obe.outbound.protection.outlook.com
+	(mail-oln040092254107.outbound.protection.outlook.com
+	[40.92.254.107])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3934E0098A
+	for <yocto@yoctoproject.org>; Sat, 19 Oct 2019 05:45:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+	b=DckWdxPJSDaTcslTS/aI3Iwq+tZY/YQSVW+BhVTnFFbe690dynAR/Xu/7mCpOpXnzSK8Ba/8hDjqz9TodhMTuZ3OnUfbWUawHX9llxS8/6bODxUleGB3RdAorsIggLt2jyUPuNUPyuw6eKbqplWyr6k5nPHsN/hXjyZWiDo+ScymwmPcxpUX0/Mnl2vtf91pvaXrKjEXyPobPpayHMp9Ub0mbN6071VqSVs2FZ/XyjfNLgFgUTTWxCq8FbtAkSNlAPQD7YlFSQQIHnNk/nzG0/bhzvoke2ETHBxKyNiHBo2cOz7PIT3yRVGZgHNB61JdJ78Y5SaXm9I9t9x6fi6zpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+	s=arcselector9901;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=lxVsAyhn8AF0lF50lVZYCoY9TZqCiT8LLmIFnKdOJwc=;
+	b=e/bIuDcXBLYNKhX55WJOhzm/JxfmC9rKT2kl+hqiO1kMhJyFN3U1wu8Kq93YMPqEpD9yMOPrWA/R2NpiciszrnlJvbxmpUCg4DTK2S/tjnc4obrSQm01pH5SggEgaPKMjzyEkoLd5wP9vZLhaA+F8j9p79sfzC3ccjRnI8Htsa9veWU7fWE5oqO26AeQDM5AbktRxkNHdurlzc9+HK+RtXoWIxP3VfTquLFJA0Z6Obqwu2TfCBs2m639B3q5BAAsNBE6G4oxlmqUYG8BL17EipJDcqOULxpJF/B8ad5RoGuEcytJV4cidBO/Kpu8OJreG1IXS5xQN6qo0EFpQ64Giw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+	dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=live.com; s=selector1; 
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=lxVsAyhn8AF0lF50lVZYCoY9TZqCiT8LLmIFnKdOJwc=;
+	b=SHvk5YOYyvyPB+xc7zBDmP6EulNrpgB2NCACJt0cIXc3aE3OwYXlC72P8XYpCAJgn9SiyBdGOySC/irCBeToUdve95dfi2g0gjO/TD168TUg6N7Juo6zouewzOjOAnVQ0jVp7CcHZuBHf4+LpWiZvnVQBo8NUkKQWuNA2dYmSX3e5PIcZPAosoWD9727uI0hlq3FVWgP460mzPv/Gy1wbEHKTyH++gcQ0nF6DPLolNPUtkXJJ5n+B6B2C1OOHIjxgvs5OU5VD7dKY3O2uM/iScmiQLMWzQZ+TUxSElRNUWGvY/4+U+zu19+8vtvNK5jVlAgyJrcUV9FipCiFWh+sJA==
+Received: from HK2APC01FT024.eop-APC01.prod.protection.outlook.com
+	(10.152.248.51) by HK2APC01HT083.eop-APC01.prod.protection.outlook.com
+	(10.152.249.221) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2367.14;
+	Sat, 19 Oct 2019 12:45:43 +0000
+Received: from MAXPR01MB2206.INDPRD01.PROD.OUTLOOK.COM (10.152.248.53) by
+	HK2APC01FT024.mail.protection.outlook.com (10.152.248.147) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.2367.14 via Frontend Transport; Sat, 19 Oct 2019 12:45:43 +0000
+Received: from MAXPR01MB2206.INDPRD01.PROD.OUTLOOK.COM
+	([fe80::bd9a:baee:a645:4b1c]) by
+	MAXPR01MB2206.INDPRD01.PROD.OUTLOOK.COM
+	([fe80::bd9a:baee:a645:4b1c%6]) with mapi id 15.20.2347.028;
+	Sat, 19 Oct 2019 12:45:43 +0000
+From: Abhi Arora <abhiarora4@live.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] Reducing the size of the image by optimizing python
+Thread-Index: AQHVhYg7Pl6lKyJQokajvwtgB9NFP6dgGVOAgAHQRXQ=
+Date: Sat, 19 Oct 2019 12:45:42 +0000
+Message-ID: <MAXPR01MB2206466821B5D2748ADF3F09FA6F0@MAXPR01MB2206.INDPRD01.PROD.OUTLOOK.COM>
+References: <MAXPR01MB220688520F47DEEC5D530BD9FA6C0@MAXPR01MB2206.INDPRD01.PROD.OUTLOOK.COM>,
+	<CAMKF1sofAn-D104y=Aj2SQuvjrnLqoQjcpRRL3oNjTrXw75d3w@mail.gmail.com>
+In-Reply-To: <CAMKF1sofAn-D104y=Aj2SQuvjrnLqoQjcpRRL3oNjTrXw75d3w@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-incomingtopheadermarker: OriginalChecksum:F9EABF31C540946B9FC30C0F072C9996618D0FF3DBC15218A73D1180FF3A5496;
+	UpperCasedChecksum:633FE32FBC1D1EBE418C2810EFDC5C97EFF23FE2BE29E7F9E7FA87DB77CA746C;
+	SizeAsReceived:7012; Count:45
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tmn: [xFDpnNvmTiletb5vneLnXi6jSadQ7xrH]
+x-ms-publictraffictype: Email
+x-incomingheadercount: 45
+x-eopattributedmessage: 0
+x-ms-traffictypediagnostic: HK2APC01HT083:
+x-ms-exchange-purlcount: 2
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 9sRRmV9EqVUoPH0L66mY6TeLTv/Qp1I3PCy0IfMkXhFW1tYhX+XZXcsemcThkFP7p757pMgbfy3vxqdXN5i/PTXXEWyPwQEXpOjriB5iBX/hZ8M5JNJK3lbdczfDbB2fytcD8iTcvSOSU5DlgrkPHxYAfCmo8Geui02tDpq/vqpjPDnwEDQkm2Mx0EsT+lMI4ikSvapqH5mntsEFHNWnliuI2stNh3Oe4g8yHObesHc=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-In-Reply-To: <CAFQ+DihRstNhn_CXeM2kuJDWp_FFQEu=_e6dd81nsgsrLWPvRQ@mail.gmail.com>
-Subject: Re: [yocto-autobuilder-helper] Replaced hardcoded BASE_HOMEDIR directory
+X-OriginatorOrg: live.com
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3846c87d-c960-4203-caeb-08d754924145
+X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Oct 2019 12:45:42.8138 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Internet
+X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2APC01HT083
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Reducing the size of the image by optimizing python
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -126,66 +101,253 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Oct 2019 20:29:55 -0000
-Content-Type: multipart/alternative;
-	boundary="------------E2C46CD6C4EB9FAB3CC38D94"
+X-List-Received-Date: Sat, 19 Oct 2019 12:45:47 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MAXPR01MB2206466821B5D2748ADF3F09FA6F0MAXPR01MB2206INDP_"
 
---------------E2C46CD6C4EB9FAB3CC38D94
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+--_000_MAXPR01MB2206466821B5D2748ADF3F09FA6F0MAXPR01MB2206INDP_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks for the reply. Can you help me which file to modify to prevent downl=
+oading certain packages and modules using BAD_RECOMMENDATION?
+
+And how to have only pyc files in the final image to improve speed and redu=
+ce footprint?
+
+Following are the lines in my yocto project which install python packages.
+
+IMAGE_INSTALL_append =3D " \
+    python3 \
+    python3-core \
+    python3-misc \
+    python3-async \
+    python3-six \
+    python3-websockets \
+    python3-requests \
+    python3-urllib3 \
+    python3-chardet \
+    python3-websocket-client \
+    python3-pyopenssl \
+    python3-simplejson \
+    python3-cython \
+
+Pardon for some stupid questions as I am new to yocto.
+
+Get Outlook for Android<https://aka.ms/ghei36>
+
+________________________________
+From: Khem Raj <raj.khem@gmail.com>
+Sent: Friday, October 18, 2019 2:28:23 PM
+To: Abhi Arora <abhiarora4@live.com>
+Cc: yocto@yoctoproject.org <yocto@yoctoproject.org>
+Subject: Re: [yocto] Reducing the size of the image by optimizing python
 
 
 
-On 10/18/19 9:55 AM, Marco wrote:
-> Replaced hardcoded BASE_HOMEDIR directory.
-> Please apologize the missing send-email on my machine.
-Thanks Marco,
+On Fri, Oct 18, 2019 at 1:21 PM Abhi Arora <abhiarora4@live.com<mailto:abhi=
+arora4@live.com>> wrote:
+Hello,
+I am having an embedded system. We have bsp with python 3.5 but we want to =
+reduce its size further. I am planning to have only oyc files but not sure =
+how it can be achieved in recipes. Also, I want to know if there is a other=
+ way to reduce the footprint.
 
-Would the be any need to add something to the README regarding the use
-of this variable?
-
-- armin
-> --
-> Marco
->
+Please start by eliminating modules first so find which modules are require=
+d for your workloads and remove all other modules from image by adding them=
+ to BAD_RECOMMENDATIONS from IMAGE_INSTALL
 
 
---------------E2C46CD6C4EB9FAB3CC38D94
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
+Please help.
+
+Get Outlook for Android<https://aka.ms/ghei36>
+
+--
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
+https://lists.yoctoproject.org/listinfo/yocto
+
+--_000_MAXPR01MB2206466821B5D2748ADF3F09FA6F0MAXPR01MB2206INDP_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 10/18/19 9:55 AM, Marco wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAFQ+DihRstNhn_CXeM2kuJDWp_FFQEu=_e6dd81nsgsrLWPvRQ@mail.gmail.com">
-      <pre class="moz-quote-pre" wrap="">Replaced hardcoded BASE_HOMEDIR directory.
-Please apologize the missing send-email on my machine.</pre>
-    </blockquote>
-    Thanks Marco,<br>
-    <br>
-    Would the be any need to add something to the README regarding the
-    use of this variable?<br>
-    <br>
-    - armin<br>
-    <blockquote type="cite"
-cite="mid:CAFQ+DihRstNhn_CXeM2kuJDWp_FFQEu=_e6dd81nsgsrLWPvRQ@mail.gmail.com">
-      <pre class="moz-quote-pre" wrap="">
---
-Marco
-</pre>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-    </blockquote>
-    <br>
-  </body>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+Thanks for the reply. Can you help me which file to modify to prevent downl=
+oading certain packages and modules using BAD_RECOMMENDATION?
+<br>
+<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+And how to have only pyc files in the final image to improve speed and redu=
+ce footprint?<br>
+<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+Following are the lines in my yocto project which install python packages.<=
+br>
+<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+IMAGE_INSTALL_append =3D &quot; \<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+&nbsp;&nbsp;&nbsp; python3 \<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+&nbsp;&nbsp;&nbsp; python3-core \<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+&nbsp;&nbsp;&nbsp; python3-misc \<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+&nbsp;&nbsp;&nbsp; python3-async \<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+&nbsp;&nbsp;&nbsp; python3-six \<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+&nbsp;&nbsp;&nbsp; python3-websockets \<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+&nbsp;&nbsp;&nbsp; python3-requests \<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+&nbsp;&nbsp;&nbsp; python3-urllib3 \<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+&nbsp;&nbsp;&nbsp; python3-chardet \<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+&nbsp;&nbsp;&nbsp; python3-websocket-client \<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+&nbsp;&nbsp;&nbsp; python3-pyopenssl \<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+&nbsp;&nbsp;&nbsp; python3-simplejson \<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+&nbsp;&nbsp;&nbsp; python3-cython \<br>
+<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+Pardon for some stupid questions as I am new to yocto.<br>
+<br>
+</div>
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+<span id=3D"OutlookSignature">
+<div dir=3D"auto" style=3D"direction: ltr; margin: 0; padding: 0; font-fami=
+ly: sans-serif; font-size: 11pt; color: black; ">
+Get <a href=3D"https://aka.ms/ghei36">Outlook for Android</a></div>
+</span><br>
+</div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Khem Raj &lt;raj.khem=
+@gmail.com&gt;<br>
+<b>Sent:</b> Friday, October 18, 2019 2:28:23 PM<br>
+<b>To:</b> Abhi Arora &lt;abhiarora4@live.com&gt;<br>
+<b>Cc:</b> yocto@yoctoproject.org &lt;yocto@yoctoproject.org&gt;<br>
+<b>Subject:</b> Re: [yocto] Reducing the size of the image by optimizing py=
+thon</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<div><br>
+</div>
+<div><br>
+<div class=3D"gmail_quote">
+<div dir=3D"ltr" class=3D"gmail_attr">On Fri, Oct 18, 2019 at 1:21 PM Abhi =
+Arora &lt;<a href=3D"mailto:abhiarora4@live.com">abhiarora4@live.com</a>&gt=
+; wrote:<br>
+</div>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<div>
+<div dir=3D"auto" style=3D"direction:ltr;margin:0;padding:0;font-family:san=
+s-serif;font-size:11pt;color:black">
+Hello,<br>
+</div>
+<div dir=3D"auto" style=3D"direction:ltr;margin:0;padding:0;font-family:san=
+s-serif;font-size:11pt;color:black">
+I am having an embedded system. We have bsp with python 3.5 but we want to =
+reduce its size further. I am planning to have only oyc files but not sure =
+how it can be achieved in recipes. Also, I want to know if there is a other=
+ way to reduce the footprint.</div>
+</div>
+</blockquote>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Please start by eliminating modules first so find which m=
+odules are required for your workloads and remove all other modules from im=
+age by adding them to BAD_RECOMMENDATIONS from IMAGE_INSTALL&nbsp;</div>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+<div>
+<div dir=3D"auto" style=3D"direction:ltr;margin:0;padding:0;font-family:san=
+s-serif;font-size:11pt;color:black">
+<br>
+<br>
+</div>
+<div dir=3D"auto" style=3D"direction:ltr;margin:0;padding:0;font-family:san=
+s-serif;font-size:11pt;color:black">
+Please help.<br>
+<br>
+</div>
+<div dir=3D"auto" style=3D"direction:ltr;margin:0;padding:0;font-family:san=
+s-serif;font-size:11pt;color:black">
+<span id=3D"m_2312087401660911697OutlookSignature">
+<div dir=3D"auto" style=3D"direction:ltr;margin:0;padding:0;font-family:san=
+s-serif;font-size:11pt;color:black">
+Get <a href=3D"https://aka.ms/ghei36" target=3D"_blank">Outlook for Android=
+</a></div>
+</span></div>
+</div>
+<div>
+<div dir=3D"auto" style=3D"direction:ltr;margin:0;padding:0;font-family:san=
+s-serif;font-size:11pt;color:black">
+<span id=3D"m_2312087401660911697OutlookSignature"></span><br>
+</div>
+</div>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote>
+</div>
+</div>
+</div>
+</body>
 </html>
 
---------------E2C46CD6C4EB9FAB3CC38D94--
+--_000_MAXPR01MB2206466821B5D2748ADF3F09FA6F0MAXPR01MB2206INDP_--
