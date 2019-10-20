@@ -1,36 +1,38 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 581F4E00AE6; Sun, 20 Oct 2019 15:50:16 -0700 (PDT)
+	id 6C56EE00998; Sun, 20 Oct 2019 15:50:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	https://www.dnswl.org/, *      medium trust
 	*      [134.134.136.20 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB38AE0097C
-	for <yocto@yoctoproject.org>; Sun, 20 Oct 2019 15:50:13 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B7D9E0098A
+	for <yocto@yoctoproject.org>; Sun, 20 Oct 2019 15:50:15 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga006.fm.intel.com ([10.253.24.20])
 	by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	20 Oct 2019 15:50:12 -0700
+	20 Oct 2019 15:50:15 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.67,320,1566889200"; d="scan'208";a="398487173"
+X-IronPort-AV: E=Sophos;i="5.67,320,1566889200"; d="scan'208";a="398487178"
 Received: from tchoongs-mobl.gar.corp.intel.com (HELO linux.fritz.box)
 	([10.255.184.244])
-	by fmsmga006.fm.intel.com with ESMTP; 20 Oct 2019 15:50:10 -0700
+	by fmsmga006.fm.intel.com with ESMTP; 20 Oct 2019 15:50:12 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-Date: Mon, 21 Oct 2019 11:49:49 +1300
-Message-Id: <cover.1571611698.git.paul.eggleton@linux.intel.com>
+Date: Mon, 21 Oct 2019 11:49:50 +1300
+Message-Id: <73656432b21dae2fce914c1649421036b2e54d2b.1571611698.git.paul.eggleton@linux.intel.com>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <cover.1571611698.git.paul.eggleton@linux.intel.com>
+References: <cover.1571611698.git.paul.eggleton@linux.intel.com>
 MIME-Version: 1.0
-Subject: [layerindex-web][PATCH 0/3] Branch comparison functionality
+Subject: [layerindex-web][PATCH 1/3] Track SRCREV for each recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,41 +47,85 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 X-List-Received-Date: Sun, 20 Oct 2019 22:50:16 -0000
 Content-Transfer-Encoding: 8bit
 
-Add the ability to compare the available recipes and their versions in
-two different branches, plus one unrelated patch to fix an issue I
-noticed recently with cgit URLs.
+For the purposes of the branch comparison function I'm about to add it
+would be useful to track the value of SRCREV, so we can see if it has
+changed even if PV hasn't.
 
-
-The following changes since commit 1ce4a85d257ac928307ac0de6edf4cb80b50adce:
-
-  editlayer: Be more specific on the searches (2019-10-14 09:20:33 +1300)
-
-are available in the Git repository at:
-
-  git://git.yoctoproject.org/layerindex-web paule/branch_comparison
-  http://git.yoctoproject.org/cgit.cgi/layerindex-web/log/?h=paule/branch_comparison
-
-Paul Eggleton (3):
-  Track SRCREV for each recipe
-  Add branch comparison function
-  Fix cgit commit URL setting
-
- layerindex/forms.py                          |  19 ++
- layerindex/migrations/0043_recipe_srcrev.py  |  20 ++
- layerindex/models.py                         |   1 +
- layerindex/update_layer.py                   |   4 +
- layerindex/urls.py                           |  12 +-
- layerindex/views.py                          | 113 +++++++++-
- templates/base.html                          |   1 +
- templates/layerindex/branchcompare.html      | 214 +++++++++++++++++++
- templates/layerindex/branchcompare_plain.txt |  17 ++
- templates/layerindex/editlayer.html          |   2 +-
- templates/layerindex/recipedetail.html       |   2 +-
- 11 files changed, 401 insertions(+), 4 deletions(-)
+Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+---
+ layerindex/migrations/0043_recipe_srcrev.py | 20 ++++++++++++++++++++
+ layerindex/models.py                        |  1 +
+ layerindex/update_layer.py                  |  4 ++++
+ templates/layerindex/recipedetail.html      |  2 +-
+ 4 files changed, 26 insertions(+), 1 deletion(-)
  create mode 100644 layerindex/migrations/0043_recipe_srcrev.py
- create mode 100644 templates/layerindex/branchcompare.html
- create mode 100644 templates/layerindex/branchcompare_plain.txt
 
+diff --git a/layerindex/migrations/0043_recipe_srcrev.py b/layerindex/migrations/0043_recipe_srcrev.py
+new file mode 100644
+index 00000000..64293767
+--- /dev/null
++++ b/layerindex/migrations/0043_recipe_srcrev.py
+@@ -0,0 +1,20 @@
++# -*- coding: utf-8 -*-
++# Generated by Django 1.11.22 on 2019-10-20 22:15
++from __future__ import unicode_literals
++
++from django.db import migrations, models
++
++
++class Migration(migrations.Migration):
++
++    dependencies = [
++        ('layerindex', '0042_recipe_pe_pr'),
++    ]
++
++    operations = [
++        migrations.AddField(
++            model_name='recipe',
++            name='srcrev',
++            field=models.CharField(blank=True, max_length=64),
++        ),
++    ]
+diff --git a/layerindex/models.py b/layerindex/models.py
+index 332ba39e..253c725c 100644
+--- a/layerindex/models.py
++++ b/layerindex/models.py
+@@ -475,6 +475,7 @@ class Recipe(models.Model):
+     updated = models.DateTimeField(auto_now=True)
+     blacklisted = models.CharField(max_length=255, blank=True)
+     configopts = models.CharField(max_length=4096, blank=True)
++    srcrev = models.CharField(max_length=64, blank=True)
+ 
+     def vcs_web_url(self):
+         url = self.layerbranch.file_url(os.path.join(self.filepath, self.filename))
+diff --git a/layerindex/update_layer.py b/layerindex/update_layer.py
+index fcae54f8..17098379 100644
+--- a/layerindex/update_layer.py
++++ b/layerindex/update_layer.py
+@@ -110,6 +110,10 @@ def update_recipe_file(tinfoil, data, path, recipe, layerdir_start, repodir, sto
+         recipe.pv = envdata.getVar("PV", True)
+         recipe.pr = envdata.getVar("PR", True) or ""
+         recipe.pe = envdata.getVar("PE", True) or ""
++        recipe.srcrev = envdata.getVar('SRCREV', True) or ''
++        if recipe.srcrev == 'INVALID':
++            # INVALID is the default from bitbake.conf, but we don't want to see it
++            recipe.srcrev = ''
+         recipe.summary = envdata.getVar("SUMMARY", True)
+         recipe.description = envdata.getVar("DESCRIPTION", True)
+         recipe.section = envdata.getVar("SECTION", True)
+diff --git a/templates/layerindex/recipedetail.html b/templates/layerindex/recipedetail.html
+index b3ba65eb..64463863 100644
+--- a/templates/layerindex/recipedetail.html
++++ b/templates/layerindex/recipedetail.html
+@@ -54,7 +54,7 @@
+                         </tr>
+                         <tr>
+                             <th>Version</th>
+-                            <td>{{ recipe.pv }}</td>
++                            <td>{{ recipe.pv }}{% if recipe.srcrev %} ({{ recipe.srcrev }}){% endif %}</td>
+                         </tr>
+                         <tr>
+                             <th>Summary</th>
 -- 
 2.20.1
 
