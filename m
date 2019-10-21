@@ -1,60 +1,96 @@
-Return-Path: <yann.cardaillac@smile.fr>
+Return-Path: <lewis.muhlenkamp@stryker.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A49C7E00DA5; Mon, 21 Oct 2019 05:46:32 -0700 (PDT)
+	id 8A95DE00C4F; Mon, 21 Oct 2019 06:23:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	T_REMOTE_IMAGE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FORGED_SPF_HELO, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE, SPF_HELO_PASS autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.53 listed in list.dnswl.org]
+	*      [40.107.72.87 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  0.0 T_REMOTE_IMAGE Message contains an external image
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com
-	[209.85.221.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A06BE00BA2
-	for <yocto@yoctoproject.org>; Mon, 21 Oct 2019 05:46:28 -0700 (PDT)
-Received: by mail-wr1-f53.google.com with SMTP id w18so13282504wrt.3
-	for <yocto@yoctoproject.org>; Mon, 21 Oct 2019 05:46:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=smile-fr.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:from:date:message-id:subject:to:cc;
-	bh=UzDFklVJ4tA3E+Zz/Q1Jc4Z/9/R7JZIL1z86ZoCAzYQ=;
-	b=Y650hL+ZVWtvNaU+fWIPVq5WVQ58GUzzXGzs0GlaJgvAbPq9RXeP8uhdVkChxbckch
-	192jUo3LDpT0iTnrdI9wke5//EP6YCH/lYP27QCOcBfs0Lz59O8EvrT4ZebDbLa5auiC
-	q78wZtnWhvyEC7aHEK4KLszkPEj85aFxy9M17VXgnojEeWqSTTT5V/MGUwsZv2JnF2/7
-	qdF9Nxm5M1PgW1l6X6FXPYZELr/0Q6nKYMwBZ6ImJdL7PsLkOq6JBBHilRzDdha/4XZU
-	cVM0Wc7GUkCSuZwGfKUBx5zDxuOJHg8I1Y1itjDMZpwrqtavVC66JhXaosBSbl3TS63t
-	6TZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-	bh=UzDFklVJ4tA3E+Zz/Q1Jc4Z/9/R7JZIL1z86ZoCAzYQ=;
-	b=Tt+Zz7J4syGCT+IKPhIldDWHJ9ne9rbV0kKrXPIJcFSKElSM6pLyRhxwFS5VfHsncA
-	fn08wr7SDAA6ZgxRPL9KRIcnf2cYqUKhddWb94W9XPCmtyuoUAwlenYDEgNh4GafI12d
-	d41urivX+75cbViecgqqiEFBrKvdDcqZGvvMALvpf1g+hQauI9JZgvqehbtlXmuCx3RV
-	1LNs+9N6HPCaypCpo3XxGOHj/JKuVVFhpJBqkKOFyIyVNc4M16krp0OZYifZsXsYStvg
-	dN4Pkkh0Hsr6mkFkwPIl5jZM4DDjdCCHhxjLm2ea4gmaD89mJcQZ+IunJLWy3xETgJ40
-	WzPQ==
-X-Gm-Message-State: APjAAAUahlVVxeivszDCkX9UMPuCxicEihUxiAamwUDKjaZ9JG/0NA9R
-	vpJZynILeCqJ6cJRkbr15xqOyUhv5NrrYViQIObuhW9IGa0=
-X-Google-Smtp-Source: APXvYqz/Cd9X2A3UeoPDsluhq+4eq6p597JLqKgg9GaqipKW1QoX/8RPaC+20nE2/u6ZpK1uPul+mD1ObIyV9cjmQMk=
-X-Received: by 2002:a05:6000:11c5:: with SMTP id
-	i5mr14971331wrx.303.1571661986094; 
-	Mon, 21 Oct 2019 05:46:26 -0700 (PDT)
+	*      valid *  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
+Received: from NAM05-CO1-obe.outbound.protection.outlook.com
+	(mail-eopbgr720087.outbound.protection.outlook.com [40.107.72.87])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84B4AE00AE6
+	for <yocto@yoctoproject.org>; Mon, 21 Oct 2019 06:23:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+	b=HZopWZpZfIJSIOSo6+ka1QVR4Cz5c/kWQs5HwtcbAZT7ztV56g4nbGMaRFUuw7FRvx5XGvpiGDEhSqR9XXovmXG1E9fGnyAjp76y2N4BUOcRapc461Nl4HBUa2qz15zSHiqSI580aIuzxafU4xgflqITvTR8R56Vok99ukQM4d2Hrp0G1b/Hx0Y56D+xACb/yne/HcZhSmCaAhTNrDFz4MtStvZatejdr/vCB1qTBGLCM6HxYHguCNZVz3/Tz0kLyTtoqA/oBDtAFH+f4gWyY3cPPaUMP9jC975kgv38/BJwA20iIodjxBDDJ5LA7E74esgoacXqBMAPcI5oI/MeVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+	s=arcselector9901;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=WXUOOLY4RrIerUroWh4QO1jp1kWT+3FmlzCVKaN6HTw=;
+	b=n0qftzZvKiKfmzqk8EfMYYA5JimMHK/CvdP5Q8TrAHHFl1Hv1H5NnjAQwcL9yqj8x8VWoZqpLBt+zVX+S4jU+FJMzvZU8nAvVOYkUXyrDhzTFZ1zwmUsk0oU6JazI0APJnsU2eEf2DO4SEm9D0BGm0LIUKA3ArsYgpvxzyRA1c9ZWDBVJuobeEW/06HkHEwcpbJGUQzyXIFOlEBANWslx/U1w8+auHZ2Xs4PxVLj9Gojmz7uUHd8qG9byfwPLhMRzgK2PymN5zhAn3Vc+sVTOk7iD4TwirKx5uyTO6aBfcbobIJ3kfDsMs5GnDdwE8fY5u0jrNrdJhBbe1AZ/7E2mA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+	smtp.mailfrom=stryker.com;
+	dmarc=pass action=none header.from=stryker.com; 
+	dkim=pass header.d=stryker.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stryker.com;
+	s=selector1;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=WXUOOLY4RrIerUroWh4QO1jp1kWT+3FmlzCVKaN6HTw=;
+	b=GzckmLRWWFFV24h5CRDTNHh9+nPifZAKxbxiyWmhrR2waP0oT4IEmyKhh2np1Dg/nK7JKQgKeiynBF3zBZSHBrSyC6CA3MVun4+N3HlU3YZXq0gaqTqVP8cNpgkG/188g7ALiWLutlJMi14lDh3W5wnXZ7M9+VYztuXMItnla7g=
+Received: from BN6PR0101MB2914.prod.exchangelabs.com (10.174.88.139) by
+	BN6PR0101MB2993.prod.exchangelabs.com (10.174.87.144) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.2347.22; Mon, 21 Oct 2019 13:23:26 +0000
+Received: from BN6PR0101MB2914.prod.exchangelabs.com
+	([fe80::8d2d:4a8a:9c10:b95f]) by BN6PR0101MB2914.prod.exchangelabs.com
+	([fe80::8d2d:4a8a:9c10:b95f%7]) with mapi id 15.20.2347.029;
+	Mon, 21 Oct 2019 13:23:26 +0000
+From: "Muhlenkamp, Lewis" <lewis.muhlenkamp@stryker.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>, openembedded-devel
+	<openembedded-devel@lists.openembedded.org>
+Thread-Topic: Ext4 filesystem name does not exist
+Thread-Index: AdWIDVkTsL1UE6iPQ9GeZbQhPOw2Xw==
+Date: Mon, 21 Oct 2019 13:23:26 +0000
+Message-ID: <BN6PR0101MB2914D42404393531264E9DB18F690@BN6PR0101MB2914.prod.exchangelabs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=lewis.muhlenkamp@stryker.com; 
+x-originating-ip: [165.225.32.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: a37d8a64-3adc-4ca7-b506-08d75629db34
+x-ms-office365-filtering-ht: Tenant
+x-ms-traffictypediagnostic: BN6PR0101MB2993:
+x-microsoft-antispam-prvs: <BN6PR0101MB2993E3D68FA661FC756F7CB38F690@BN6PR0101MB2993.prod.exchangelabs.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0197AFBD92
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009020)(366004)(376002)(346002)(39860400002)(136003)(396003)(199004)(189003)(26005)(102836004)(486006)(5660300002)(186003)(6506007)(7696005)(66476007)(66556008)(99286004)(76116006)(71200400001)(71190400001)(55236004)(64756008)(66446008)(66066001)(52536014)(2906002)(476003)(55016002)(6306002)(54896002)(9686003)(86362001)(33656002)(66946007)(74316002)(7736002)(6116002)(236005)(110136005)(790700001)(3846002)(316002)(8676002)(6436002)(25786009)(478600001)(606006)(14454004)(8936002)(81166006)(9326002)(81156014)(2501003)(256004)(14444005);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BN6PR0101MB2993;
+	H:BN6PR0101MB2914.prod.exchangelabs.com; FPR:; SPF:None; LANG:en;
+	PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: stryker.com does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: kegtSVX6i7ML1PRGd5ZMfQMk3s/wVLFHcQ6T6vkQpKV/0cLtqC2f5iwLiwmavltmOxzlkiI4WDz7Ww6GyPNaw49n0fgF50IytBNP5SvTGQYosrFPu2YSOlMhECVaMR9JP32B7uEg2u3k5H3+cId2vyafnnkEZZIP4l3A2PSAqAIvM2LfL9mKBtObFhlOJNuffIdxft042mqIhsr926mDfdm1IxP31h0hnu/t/R4Ud01NZ7eGApE4hmERYFI24gWLuGMTRZud/Gwq+hVUVdbyLLbfFGvf1JU2vI+fZEYdox2jvKQGyws9f68+/ULuVCc9NtgS0qg7b/eyKz8lwEolKm8iWZCeTrwOXzdKT9Z3g9wOqtSzAvS9s1+xz1XpsOa+jjFfP2S11746d+eOE7XciJOQsbm25aog8RKldKwBflg=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-From: Yann CARDAILLAC <yann.cardaillac@smile.fr>
-Date: Mon, 21 Oct 2019 14:46:15 +0200
-Message-ID: <CAA984JVLuoFG_60hnUgmuaf4gQ=HrWEiBHpC=Vt2MpKZyPEXdw@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: [PATCH] [auto-upgrade-helper] Add SPDX identifier to auto-upgrade-helper
+X-OriginatorOrg: stryker.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a37d8a64-3adc-4ca7-b506-08d75629db34
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Oct 2019 13:23:26.6077 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 4e9dbbfb-394a-4583-8810-53f81f819e3b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 4N/PZqNI9CdCLPje7FQEizOmxm2Xy581j/czBcZynkwmKrZlv/hiawJvD2UvQGkWxcySrS7Iwbiez3dDhDHXrbjbgnxZLmsoEoJFWnkem30=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR0101MB2993
+Subject: Ext4 filesystem name does not exist
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -66,219 +102,341 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Oct 2019 12:46:34 -0000
-X-Groupsio-MsgNum: 46998
-Content-Type: multipart/mixed; boundary="0000000000006386f205956b127a"
+X-List-Received-Date: Mon, 21 Oct 2019 13:23:35 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR0101MB2914D42404393531264E9DB18F690BN6PR0101MB2914_"
 
---0000000000006386f205956b127a
-Content-Type: multipart/alternative; boundary="0000000000006386f005956b1278"
-
---0000000000006386f005956b1278
-Content-Type: text/plain; charset="UTF-8"
+--_000_BN6PR0101MB2914D42404393531264E9DB18F690BN6PR0101MB2914_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi guys,
+Hello,
 
-I'm working on bug :
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13531
+I have been doing builds using a Docker setup on a VMware ESXi 6.5 virtual =
+machine running Ubuntu 18.04 for the past year.  I have been asked to move =
+to building on a VM in Azure.  I created a VM in Azure using the Ubuntu 18.=
+04 image from Canonical.  When I try to do the same build in Azure, I get t=
+he following error messages:
 
-I've add GPLV2-or-later to all the sources, is there any modification you
-want to add?
+=3D=3D=3D Start ERROR messages =3D=3D=3D
+ERROR: docker-base-image-1.0-r0 do_image_wic: Function failed: do_image_wic=
+ (log file is located at /home/blah/build-0.0.13/tmp-glibc/work/intel_corei=
+7_64-oe-linux/foo/1.0-r0/temp/log.do_image_wic.44033)
+ERROR: Logfile of failure stored in: /home/blah/build-0.0.13/tmp-glibc/work=
+/intel_corei7_64-oe-linux/foo/1.0-r0/temp/log.do_image_wic.44033
+| OSError: [Errno 22] Invalid argument
+| wic.filemap.Error: cannot get block size for '/home/blah/build-0.0.13/tmp=
+-glibc/work/intel_corei7_64-oe-linux/foo/1.0-r0/deploy-foo-image-complete/f=
+oo-intel-corei7-64-0.0.13/tmp.wic.5lmon88k/boot.img': [Errno 22] Invalid ar=
+gument
+| ERROR: Function failed: do_image_wic (log file is located at /home/blah/b=
+uild-0.0.13/tmp-glibc/work/intel_corei7_64-oe-linux/foo/1.0-r0/temp/log.do_=
+image_wic.44033)
+ERROR: Task (/home/blah/meta-stryker/common/recipes-common/images/foo.bb:do=
+_image_wic) failed with exit code '1'
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+ERROR:   Ext4 filesystem name (/home/blah/build-0.0.13/tmp-glibc/deploy/ima=
+ges/intel-corei7-64/foo-intel-corei7-64-0.0.13.rootfs.ext4) does not exist.
+=3D=3D=3D End ERROR messages =3D=3D=3D
 
-Best regards,
+The log.do_image_wic.44033 has the following stack trace.
 
-Yann CARDAILLAC
---=20
-[image: SMILE] <http://www.smile.eu/>
+=3D=3D=3D Start log.do_image_wic.44033 stack trace =3D=3D=3D
+DEBUG: Python function extend_recipe_sysroot finished
+DEBUG: Executing shell function do_image_wic
+INFO: Creating image(s)...
 
-20 rue des Jardins
-92600 Asni=C3=A8res-sur-Seine
-*Yann CARDAILLAC*
-Ing=C3=A9nieur Syst=C3=A8mes Embarqu=C3=A9s
+WARNING: overhead-factor was specified, but size was not, so bitbake variab=
+les will be used for the size. In this case both IMAGE_OVERHEAD_FACTOR and =
+--overhead-factor will be applied
+Traceback (most recent call last):
+  File "/home/blah/oe-core/scripts/lib/wic/filemap.py", line 97, in __init_=
+_
+    self.block_size =3D get_block_size(self._f_image)
+  File "/home/bruce/oe-core/scripts/lib/wic/filemap.py", line 40, in get_bl=
+ock_size
+    binary_data =3D fcntl.ioctl(file_obj, 2, struct.pack('I', 0))
+OSError: [Errno 22] Invalid argument
 
-[image: email] yann.cardaillac@smile.fr
-[image: url] http://www.smile.eu
+During handling of the above exception, another exception occurred:
 
-[image: Twitter] <https://twitter.com/GroupeSmile> [image: Facebook]
-<https://www.facebook.com/smileopensource> [image: LinkedIn]
-<https://www.linkedin.com/company/smile> [image: Github]
-<https://github.com/Smile-SA>
+Traceback (most recent call last):
+  File "/home/blah/oe-core/scripts/wic", line 534, in <module>
+    sys.exit(main(sys.argv[1:]))
+  File "/home/blah/oe-core/scripts/wic", line 529, in main
+    return hlp.invoke_subcommand(args, parser, hlp.wic_help_usage, subcomma=
+nds)
+  File "/home/blah/oe-core/scripts/lib/wic/help.py", line 98, in invoke_sub=
+command
+    subcmd[0](args, usage)
+  File "/home/blah/oe-core/scripts/wic", line 234, in wic_create_subcommand
+    native_sysroot, options)
+  File "/home/blah/oe-core/scripts/lib/wic/engine.py", line 202, in wic_cre=
+ate
+    plugin.do_create()
+  File "/home/blah/oe-core/scripts/lib/wic/plugins/imager/direct.py", line =
+101, in do_create
+    self.assemble()
+  File "/home/blah/oe-core/scripts/lib/wic/plugins/imager/direct.py", line =
+218, in assemble
+    self._image.assemble()
+  File "/home/blah/oe-core/scripts/lib/wic/plugins/imager/direct.py", line =
+605, in assemble
+    sparse_copy(source, self.path, seek=3Dpart.start * self.sector_size)
+  File "/home/blah/oe-core/scripts/lib/wic/filemap.py", line 552, in sparse=
+_copy
+    fmap =3D api(src_fname)
+  File "/home/blah/oe-core/scripts/lib/wic/filemap.py", line 534, in filema=
+p
+    return FilemapFiemap(image, log)
+  File "/home/blah/oe-core/scripts/lib/wic/filemap.py", line 352, in __init=
+__
+    _FilemapBase.__init__(self, image, log)
+  File "/home/blah/oe-core/scripts/lib/wic/filemap.py", line 100, in __init=
+__
+    % (self._image_path, err))
+wic.filemap.Error: cannot get block size for '/home/blah/build-0.0.13/tmp-g=
+libc/work/intel_corei7_64-oe-linux/foo/1.0-r0/deploy-foo-image-complete/foo=
+-intel-corei7-64-0.0.13/tmp.wic.5lmon88k/boot.img': [Errno 22] Invalid argu=
+ment
+WARNING: exit code 1 from a shell command.
+ERROR: Function failed: do_image_wic (log file is located at /home/blah/bui=
+ld-0.0.13/tmp-glibc/work/intel_corei7_64-oe-linux/foo/1.0-r0/temp/log.do_im=
+age_wic.44033)
+=3D=3D=3D End log.do_image_wic.44033 stack trace =3D=3D=3D
 
+For some reason, it looks like it appears on the Azure VM the build is look=
+ing for boot.img in a temporary directory, .../tmp-glibc/work/intel_corei7_=
+64-oe-linux/foo/1.0-r0/deploy-foo-complete/foo-intel-corei7-64-0.0.13/tmp.w=
+ic.5lmon88k.  The tmp.wic.5lmon88k does not exist.  However, in the .../foo=
+-intel-corei7-64-0.0.13 there is a boot.img file.
 
-[image: eco] Pour la plan=C3=A8te, n'imprimez ce mail que si c'est n=C3=A9c=
-essaire
+So, I'm very confused as to why my build works on my VMware ESXi 6.5 VM but=
+ not on the Azure VM.  I'm using docker-ce 18.09.1 on my VMware ESXi 6.5 VM=
+.  I am using docker-ce 19.03.3 on my Azure VM.  The Dockerfile and all of =
+the files I'm copying into the Docker image are the same.  I've done side b=
+y side builds.  So, I'm very confident I'm downloading the same OpenEmbedde=
+d GIT repos.  I'm guessing I'm missing something somewhere, but I do not kn=
+ow where.
 
---0000000000006386f005956b1278
-Content-Type: text/html; charset="UTF-8"
+If anyone can help me understand this, and give me guidance on how to fix t=
+his, it would be greatly appreciated.
+
+Thank you
+
+Lewis Muhlenkamp
+
+Follow this link to read our Privacy Statement<https://www.stryker.com/cont=
+ent/stryker/gb/en/legal/global-policy-statement.html/>
+
+--_000_BN6PR0101MB2914D42404393531264E9DB18F690BN6PR0101MB2914_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi guys, <br></div><div><br></div><div>I&#39;m workin=
-g on bug :<br></div><div><a href=3D"https://bugzilla.yoctoproject.org/show_=
-bug.cgi?id=3D13531">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D135=
-31</a></div><div><br></div><div>I&#39;ve add GPLV2-or-later to all the sour=
-ces, is there any modification you want to add?</div><div><br></div><div>Be=
-st regards,</div><div><br></div><div>Yann CARDAILLAC<br></div>-- <br><div d=
-ir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><di=
-v dir=3D"ltr"><div><div dir=3D"ltr">
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have been doing builds using a Docker setup on a V=
+Mware ESXi 6.5 virtual machine running Ubuntu 18.04 for the past year.&nbsp=
+; I have been asked to move to building on a VM in Azure.&nbsp; I created a=
+ VM in Azure using the Ubuntu 18.04 image from
+ Canonical.&nbsp; When I try to do the same build in Azure, I get the follo=
+wing error messages:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">=3D=3D=3D Start ERROR messages =3D=3D=3D<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">ERROR: docker-base-image-1.0-r0 do_image_wic: Functi=
+on failed: do_image_wic (log file is located at /home/blah/build-0.0.13/tmp=
+-glibc/work/intel_corei7_64-oe-linux/foo/1.0-r0/temp/log.do_image_wic.44033=
+)<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Logfile of failure stored in: /home/blah/buil=
+d-0.0.13/tmp-glibc/work/intel_corei7_64-oe-linux/foo/1.0-r0/temp/log.do_ima=
+ge_wic.44033<o:p></o:p></p>
+<p class=3D"MsoNormal">| OSError: [Errno 22] Invalid argument<o:p></o:p></p=
+>
+<p class=3D"MsoNormal">| wic.filemap.Error: cannot get block size for '/hom=
+e/blah/build-0.0.13/tmp-glibc/work/intel_corei7_64-oe-linux/foo/1.0-r0/depl=
+oy-foo-image-complete/foo-intel-corei7-64-0.0.13/tmp.wic.5lmon88k/boot.img'=
+: [Errno 22] Invalid argument<o:p></o:p></p>
+<p class=3D"MsoNormal">| ERROR: Function failed: do_image_wic (log file is =
+located at /home/blah/build-0.0.13/tmp-glibc/work/intel_corei7_64-oe-linux/=
+foo/1.0-r0/temp/log.do_image_wic.44033)<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task (/home/blah/meta-stryker/common/recipes-=
+common/images/foo.bb:do_image_wic) failed with exit code '1'<o:p></o:p></p>
+<p class=3D"MsoNormal">Summary: There was 1 ERROR message shown, returning =
+a non-zero exit code.<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR:&nbsp;&nbsp; Ext4 filesystem name (/home/blah/=
+build-0.0.13/tmp-glibc/deploy/images/intel-corei7-64/foo-intel-corei7-64-0.=
+0.13.rootfs.ext4) does not exist.<o:p></o:p></p>
+<p class=3D"MsoNormal">=3D=3D=3D End ERROR messages =3D=3D=3D<o:p></o:p></p=
+>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The log.do_image_wic.44033 has the following stack t=
+race.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">=3D=3D=3D Start log.do_image_wic.44033 stack trace =
+=3D=3D=3D<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Python function extend_recipe_sysroot finishe=
+d<o:p></o:p></p>
+<p class=3D"MsoNormal">DEBUG: Executing shell function do_image_wic<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">INFO: Creating image(s)...<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">WARNING: overhead-factor was specified, but size was=
+ not, so bitbake variables will be used for the size. In this case both IMA=
+GE_OVERHEAD_FACTOR and --overhead-factor will be applied<o:p></o:p></p>
+<p class=3D"MsoNormal">Traceback (most recent call last):<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; File &quot;/home/blah/oe-core/scripts/lib/wic=
+/filemap.py&quot;, line 97, in __init__<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; self.block_size =3D get_block_siz=
+e(self._f_image)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; File &quot;/home/bruce/oe-core/scripts/lib/wi=
+c/filemap.py&quot;, line 40, in get_block_size<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; binary_data =3D fcntl.ioctl(file_=
+obj, 2, struct.pack('I', 0))<o:p></o:p></p>
+<p class=3D"MsoNormal">OSError: [Errno 22] Invalid argument<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">During handling of the above exception, another exce=
+ption occurred:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Traceback (most recent call last):<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; File &quot;/home/blah/oe-core/scripts/wic&quo=
+t;, line 534, in &lt;module&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; sys.exit(main(sys.argv[1:]))<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal">&nbsp; File &quot;/home/blah/oe-core/scripts/wic&quo=
+t;, line 529, in main<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; return hlp.invoke_subcommand(args=
+, parser, hlp.wic_help_usage, subcommands)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; File &quot;/home/blah/oe-core/scripts/lib/wic=
+/help.py&quot;, line 98, in invoke_subcommand<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; subcmd[0](args, usage)<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">&nbsp; File &quot;/home/blah/oe-core/scripts/wic&quo=
+t;, line 234, in wic_create_subcommand<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; native_sysroot, options)<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">&nbsp; File &quot;/home/blah/oe-core/scripts/lib/wic=
+/engine.py&quot;, line 202, in wic_create<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; plugin.do_create()<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; File &quot;/home/blah/oe-core/scripts/lib/wic=
+/plugins/imager/direct.py&quot;, line 101, in do_create<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; self.assemble()<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; File &quot;/home/blah/oe-core/scripts/lib/wic=
+/plugins/imager/direct.py&quot;, line 218, in assemble<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; self._image.assemble()<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">&nbsp; File &quot;/home/blah/oe-core/scripts/lib/wic=
+/plugins/imager/direct.py&quot;, line 605, in assemble<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; sparse_copy(source, self.path, se=
+ek=3Dpart.start * self.sector_size)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; File &quot;/home/blah/oe-core/scripts/lib/wic=
+/filemap.py&quot;, line 552, in sparse_copy<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; fmap =3D api(src_fname)<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">&nbsp; File &quot;/home/blah/oe-core/scripts/lib/wic=
+/filemap.py&quot;, line 534, in filemap<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; return FilemapFiemap(image, log)<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; File &quot;/home/blah/oe-core/scripts/lib/wic=
+/filemap.py&quot;, line 352, in __init__<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; _FilemapBase.__init__(self, image=
+, log)<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; File &quot;/home/blah/oe-core/scripts/lib/wic=
+/filemap.py&quot;, line 100, in __init__<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; % (self._image_path, err))<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">wic.filemap.Error: cannot get block size for '/home/=
+blah/build-0.0.13/tmp-glibc/work/intel_corei7_64-oe-linux/foo/1.0-r0/deploy=
+-foo-image-complete/foo-intel-corei7-64-0.0.13/tmp.wic.5lmon88k/boot.img': =
+[Errno 22] Invalid argument<o:p></o:p></p>
+<p class=3D"MsoNormal">WARNING: exit code 1 from a shell command.<o:p></o:p=
+></p>
+<p class=3D"MsoNormal">ERROR: Function failed: do_image_wic (log file is lo=
+cated at /home/blah/build-0.0.13/tmp-glibc/work/intel_corei7_64-oe-linux/fo=
+o/1.0-r0/temp/log.do_image_wic.44033)<o:p></o:p></p>
+<p class=3D"MsoNormal">=3D=3D=3D End log.do_image_wic.44033 stack trace =3D=
+=3D=3D<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">For some reason, it looks like it appears on the Azu=
+re VM the build is looking for boot.img in a temporary directory, &#8230;/t=
+mp-glibc/work/intel_corei7_64-oe-linux/foo/1.0-r0/deploy-foo-complete/foo-i=
+ntel-corei7-64-0.0.13/tmp.wic.5lmon88k.&nbsp;
+ The tmp.wic.5lmon88k does not exist.&nbsp; However, in the &#8230;/foo-int=
+el-corei7-64-0.0.13 there is a boot.img file.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">So, I&#8217;m very confused as to why my build works=
+ on my VMware ESXi 6.5 VM but not on the Azure VM.&nbsp; I&#8217;m using do=
+cker-ce 18.09.1 on my VMware ESXi 6.5 VM.&nbsp; I am using docker-ce 19.03.=
+3 on my Azure VM.&nbsp; The Dockerfile and all of the files I&#8217;m
+ copying into the Docker image are the same.&nbsp; I&#8217;ve done side by =
+side builds.&nbsp; So, I&#8217;m very confident I&#8217;m downloading the s=
+ame OpenEmbedded GIT repos.&nbsp; I&#8217;m guessing I&#8217;m missing some=
+thing somewhere, but I do not know where.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">If anyone can help me understand this, and give me g=
+uidance on how to fix this, it would be greatly appreciated.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thank you<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Lewis Muhlenkamp<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+Follow this link to read our <a href=3D"https://www.stryker.com/content/str=
+yker/gb/en/legal/global-policy-statement.html/">
+Privacy Statement</a>
+</body>
+</html>
 
-                    <div style=3D"display:block"><div>
-   =20
-    <font face=3D"Raleway, regular">
-    <table style=3D"padding:20px" border=3D"0">
-        <tbody>
-        <tr>
-            <td style=3D"font-size:13px;color:rgb(255,128,84);text-align:ce=
-nter;padding-right:30px">
-                <a href=3D"http://www.smile.eu/" target=3D"_blank">
-                    <img style=3D"max-width:100%;height:auto" src=3D"http:/=
-/ftp.smile.fr/client/Communication/signature/img/Logo-new.png" alt=3D"SMILE=
-">
-                </a><br><br>
-                    <p>20 rue des Jardins<br>
-92600 Asni=C3=A8res-sur-Seine</p>
-            </td>
-            <td style=3D"border-left:1px solid rgb(59,127,254);padding-left=
-:20px;font-size:13px;color:rgb(255,128,84)">
-                <div style=3D"color:rgb(255,128,84);font-size:14px">
-                    <b>Yann CARDAILLAC</b>
-                </div>
-                <div style=3D"color:rgb(59,127,254);font-size:13px">
-                    Ing=C3=A9nieur Syst=C3=A8mes Embarqu=C3=A9s<br>
-                   =20
-                </div><br>
-                <div style=3D"color:rgb(59,127,254);font-size:13px">
-                    <span style=3D"white-space:nowrap"><img style=3D"margin=
--right:5px" src=3D"http://ftp.smile.fr/client/Communication/signature/img/m=
-ail.png" alt=3D"email" width=3D"12" height=3D"10">
-                        <a href=3D"mailto:yann.cardaillac@smile.fr" style=
-=3D"color:rgb(59,127,254);font-size:13px;text-decoration:none" target=3D"_b=
-lank">yann.cardaillac@smile.fr</a>
-                    </span>
-                     <br>
-                                                    <span style=3D"white-sp=
-ace:nowrap"><img style=3D"margin-right:5px" src=3D"http://ftp.smile.fr/clie=
-nt/Communication/signature/img/web.png" alt=3D"url" width=3D"12" height=3D"=
-12">
-<a href=3D"http://www.smile.eu" style=3D"color:rgb(59,127,254);font-size:13=
-px;text-decoration:none" target=3D"_blank">http://www.smile.eu</a> =20
-                  </span>
-                                </div>
-
-                <br>
-                <div>
-                    <span><a style=3D"margin-right:5px" href=3D"https://twi=
-tter.com/GroupeSmile" target=3D"_blank"><img src=3D"http://ftp.smile.fr/cli=
-ent/Communication/signature/img/rs-twitter.png" alt=3D"Twitter" style=3D"ma=
-x-width:100%;height:auto"></a></span>
-                    <span><a style=3D"margin-right:5px" href=3D"https://www=
-.facebook.com/smileopensource" target=3D"_blank"><img src=3D"http://ftp.smi=
-le.fr/client/Communication/signature/img/rs-facebook.png" alt=3D"Facebook" =
-style=3D"max-width:100%;height:auto"></a></span>
-                    <span><a style=3D"margin-right:5px" href=3D"https://www=
-.linkedin.com/company/smile" target=3D"_blank"><img src=3D"http://ftp.smile=
-.fr/client/Communication/signature/img/rs-linkedin.png" alt=3D"LinkedIn" st=
-yle=3D"max-width:100%;height:auto"></a></span>
-                    <span><a style=3D"margin-right:5px" href=3D"https://git=
-hub.com/Smile-SA" target=3D"_blank"><img src=3D"http://ftp.smile.fr/client/=
-Communication/signature/img/rs-github.png" alt=3D"Github" style=3D"max-widt=
-h:100%;height:auto"></a></span>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <br>
-   =20
-    <br>
-    <div style=3D"color:rgb(163,172,181);font-size:10px">
-        <img src=3D"http://ftp.smile.fr/client/Communication/signature/img/=
-eco.png" alt=3D"eco" width=3D"13" height=3D"11">
-            Pour la plan=C3=A8te, n&#39;imprimez ce mail que si c&#39;est n=
-=C3=A9cessaire
-    </div>
-    </font>
-</div></div></div></div></div></div></div>
-
---0000000000006386f005956b1278--
-
---0000000000006386f205956b127a
-Content-Type: text/x-patch; charset="US-ASCII"; name="0001-add-SPDX-Licence-identifier.patch"
-Content-Disposition: attachment; 
-	filename="0001-add-SPDX-Licence-identifier.patch"
-Content-Transfer-Encoding: base64
-Content-ID: <f_k20exwf70>
-X-Attachment-Id: f_k20exwf70
-
-RnJvbSBkOTAzMTZhMjM4MzRjNTYzMWIzNTJlMTIzZWJmYmZiM2IxYmQwMmU1IE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiBZYW5uIENBUkRBSUxMQUMgPHlhbm4uY2FyZGFpbGxhY0BzbWls
-ZS5mcj4KRGF0ZTogTW9uLCAyMSBPY3QgMjAxOSAxNDo0MDozNSArMDIwMApTdWJqZWN0OiBbUEFU
-Q0hdIGFkZCBTUERYIExpY2VuY2UgaWRlbnRpZmllcgoKU2lnbmVkLW9mZi1ieTogWWFubiBDQVJE
-QUlMTEFDIDx5YW5uLmNhcmRhaWxsYWNAc21pbGUuZnI+Ci0tLQogbW9kdWxlcy9idWlsZGhpc3Rv
-cnkucHkgICAgICAgfCAxICsKIG1vZHVsZXMvZXJyb3JzLnB5ICAgICAgICAgICAgIHwgMSArCiBt
-b2R1bGVzL3N0YXRpc3RpY3MucHkgICAgICAgICB8IDEgKwogbW9kdWxlcy9zdGVwcy5weSAgICAg
-ICAgICAgICAgfCAxICsKIG1vZHVsZXMvdGVzdGltYWdlLnB5ICAgICAgICAgIHwgMSArCiBtb2R1
-bGVzL3V0aWxzL19faW5pdF9fLnB5ICAgICB8IDEgKwogbW9kdWxlcy91dGlscy9iaXRiYWtlLnB5
-ICAgICAgfCAxICsKIG1vZHVsZXMvdXRpbHMvZGV2dG9vbC5weSAgICAgIHwgMSArCiBtb2R1bGVz
-L3V0aWxzL2VtYWlsaGFuZGxlci5weSB8IDEgKwogbW9kdWxlcy91dGlscy9naXQucHkgICAgICAg
-ICAgfCAxICsKIHVwZ3JhZGVoZWxwZXIucHkgICAgICAgICAgICAgIHwgMSArCiAxMSBmaWxlcyBj
-aGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspCiBtb2RlIGNoYW5nZSAxMDA3NTUgPT4gMTAwNjQ0IHVw
-Z3JhZGVoZWxwZXIucHkKCmRpZmYgLS1naXQgYS9tb2R1bGVzL2J1aWxkaGlzdG9yeS5weSBiL21v
-ZHVsZXMvYnVpbGRoaXN0b3J5LnB5CmluZGV4IGU3OGRhMDUuLjRmZGMzNmMgMTAwNjQ0Ci0tLSBh
-L21vZHVsZXMvYnVpbGRoaXN0b3J5LnB5CisrKyBiL21vZHVsZXMvYnVpbGRoaXN0b3J5LnB5CkBA
-IC0xLDQgKzEsNSBAQAogIyEvdXNyL2Jpbi9lbnYgcHl0aG9uCisjIFNQRFgtTGljZW5zZS1JZGVu
-dGlmaWVyOiBHUEwtMi4wLW9yLWxhdGVyCiAjIHZpbTogc2V0IHRzPTQgc3c9NCBldDoKICMKICMg
-Q29weXJpZ2h0IChjKSAyMDE1IEludGVsIENvcnBvcmF0aW9uCmRpZmYgLS1naXQgYS9tb2R1bGVz
-L2Vycm9ycy5weSBiL21vZHVsZXMvZXJyb3JzLnB5CmluZGV4IGFkNTYyMTUuLmZhNTQzZjcgMTAw
-NjQ0Ci0tLSBhL21vZHVsZXMvZXJyb3JzLnB5CisrKyBiL21vZHVsZXMvZXJyb3JzLnB5CkBAIC0x
-LDQgKzEsNSBAQAogIyEvdXNyL2Jpbi9lbnYgcHl0aG9uCisjIFNQRFgtTGljZW5zZS1JZGVudGlm
-aWVyOiBHUEwtMi4wLW9yLWxhdGVyCiAjIHZpbTogc2V0IHRzPTQgc3c9NCBldDoKICMKICMgQ29w
-eXJpZ2h0IChjKSAyMDEzIC0gMjAxNCBJbnRlbCBDb3Jwb3JhdGlvbgpkaWZmIC0tZ2l0IGEvbW9k
-dWxlcy9zdGF0aXN0aWNzLnB5IGIvbW9kdWxlcy9zdGF0aXN0aWNzLnB5CmluZGV4IGRiODNjNWIu
-LjMyM2QwNDIgMTAwNjQ0Ci0tLSBhL21vZHVsZXMvc3RhdGlzdGljcy5weQorKysgYi9tb2R1bGVz
-L3N0YXRpc3RpY3MucHkKQEAgLTEsNCArMSw1IEBACiAjIS91c3IvYmluL2VudiBweXRob24KKyMg
-U1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb3ItbGF0ZXIKICMgdmltOiBzZXQgdHM9
-NCBzdz00IGV0OgogIwogIyBDb3B5cmlnaHQgKGMpIDIwMTMgLSAyMDE0IEludGVsIENvcnBvcmF0
-aW9uCmRpZmYgLS1naXQgYS9tb2R1bGVzL3N0ZXBzLnB5IGIvbW9kdWxlcy9zdGVwcy5weQppbmRl
-eCA4N2Q3NTg0Li4xNDY1Yjc4IDEwMDY0NAotLS0gYS9tb2R1bGVzL3N0ZXBzLnB5CisrKyBiL21v
-ZHVsZXMvc3RlcHMucHkKQEAgLTEsNCArMSw1IEBACiAjIS91c3IvYmluL2VudiBweXRob24KKyMg
-U1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb3ItbGF0ZXIKICMgdmltOiBzZXQgdHM9
-NCBzdz00IGV0OgogIwogIyBDb3B5cmlnaHQgKGMpIDIwMTMgLSAyMDE1IEludGVsIENvcnBvcmF0
-aW9uCmRpZmYgLS1naXQgYS9tb2R1bGVzL3Rlc3RpbWFnZS5weSBiL21vZHVsZXMvdGVzdGltYWdl
-LnB5CmluZGV4IDM1ZTIzYzkuLjQyNzJjODQgMTAwNjQ0Ci0tLSBhL21vZHVsZXMvdGVzdGltYWdl
-LnB5CisrKyBiL21vZHVsZXMvdGVzdGltYWdlLnB5CkBAIC0xLDMgKzEsNCBAQAorIyBTUERYLUxp
-Y2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMC1vci1sYXRlcgogIyB2aW06IHNldCB0cz00IHN3PTQg
-ZXQ6CiAjCiAjIENvcHlyaWdodCAoYykgMjAxNSBJbnRlbCBDb3Jwb3JhdGlvbgpkaWZmIC0tZ2l0
-IGEvbW9kdWxlcy91dGlscy9fX2luaXRfXy5weSBiL21vZHVsZXMvdXRpbHMvX19pbml0X18ucHkK
-aW5kZXggZTY5ZGUyOS4uMzE1YzA2YiAxMDA2NDQKLS0tIGEvbW9kdWxlcy91dGlscy9fX2luaXRf
-Xy5weQorKysgYi9tb2R1bGVzL3V0aWxzL19faW5pdF9fLnB5CkBAIC0wLDAgKzEgQEAKKyMgU1BE
-WC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb3ItbGF0ZXIKZGlmZiAtLWdpdCBhL21vZHVs
-ZXMvdXRpbHMvYml0YmFrZS5weSBiL21vZHVsZXMvdXRpbHMvYml0YmFrZS5weQppbmRleCAyYWUz
-YTFjLi40ODM1Y2E2IDEwMDY0NAotLS0gYS9tb2R1bGVzL3V0aWxzL2JpdGJha2UucHkKKysrIGIv
-bW9kdWxlcy91dGlscy9iaXRiYWtlLnB5CkBAIC0xLDQgKzEsNSBAQAogIyEvdXNyL2Jpbi9lbnYg
-cHl0aG9uCisjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9yLWxhdGVyCiAjIHZp
-bTogc2V0IHRzPTQgc3c9NCBldDoKICMKICMgQ29weXJpZ2h0IChjKSAyMDEzIC0gMjAxNCBJbnRl
-bCBDb3Jwb3JhdGlvbgpkaWZmIC0tZ2l0IGEvbW9kdWxlcy91dGlscy9kZXZ0b29sLnB5IGIvbW9k
-dWxlcy91dGlscy9kZXZ0b29sLnB5CmluZGV4IDdmNWI1ZDQuLjBkMjdiYjAgMTAwNjQ0Ci0tLSBh
-L21vZHVsZXMvdXRpbHMvZGV2dG9vbC5weQorKysgYi9tb2R1bGVzL3V0aWxzL2RldnRvb2wucHkK
-QEAgLTEsMyArMSw0IEBACisjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9yLWxh
-dGVyCiBpbXBvcnQgb3MKIGltcG9ydCBsb2dnaW5nIGFzIGxvZwogZnJvbSBsb2dnaW5nIGltcG9y
-dCBkZWJ1ZyBhcyBECmRpZmYgLS1naXQgYS9tb2R1bGVzL3V0aWxzL2VtYWlsaGFuZGxlci5weSBi
-L21vZHVsZXMvdXRpbHMvZW1haWxoYW5kbGVyLnB5CmluZGV4IDg0MzYzNjQuLjA2NmYwMTMgMTAw
-NjQ0Ci0tLSBhL21vZHVsZXMvdXRpbHMvZW1haWxoYW5kbGVyLnB5CisrKyBiL21vZHVsZXMvdXRp
-bHMvZW1haWxoYW5kbGVyLnB5CkBAIC0xLDQgKzEsNSBAQAogIyEvdXNyL2Jpbi9lbnYgcHl0aG9u
-CisjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9yLWxhdGVyCiAjIHZpbTogc2V0
-IHRzPTQgc3c9NCBldDoKICMKICMgQ29weXJpZ2h0IChjKSAyMDEzIC0gMjAxNCBJbnRlbCBDb3Jw
-b3JhdGlvbgpkaWZmIC0tZ2l0IGEvbW9kdWxlcy91dGlscy9naXQucHkgYi9tb2R1bGVzL3V0aWxz
-L2dpdC5weQppbmRleCA3NDlkMjRkLi5hYmRjYzQ3IDEwMDY0NAotLS0gYS9tb2R1bGVzL3V0aWxz
-L2dpdC5weQorKysgYi9tb2R1bGVzL3V0aWxzL2dpdC5weQpAQCAtMSw0ICsxLDUgQEAKICMhL3Vz
-ci9iaW4vZW52IHB5dGhvbgorIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMC1vci1s
-YXRlcgogIyB2aW06IHNldCB0cz00IHN3PTQgZXQ6CiAjCiAjIENvcHlyaWdodCAoYykgMjAxMyAt
-IDIwMTQgSW50ZWwgQ29ycG9yYXRpb24KZGlmZiAtLWdpdCBhL3VwZ3JhZGVoZWxwZXIucHkgYi91
-cGdyYWRlaGVscGVyLnB5Cm9sZCBtb2RlIDEwMDc1NQpuZXcgbW9kZSAxMDA2NDQKaW5kZXggYmRk
-NmQ0ZS4uMmNmYTk0YQotLS0gYS91cGdyYWRlaGVscGVyLnB5CisrKyBiL3VwZ3JhZGVoZWxwZXIu
-cHkKQEAgLTEsNCArMSw1IEBACiAjIS91c3IvYmluL2VudiBweXRob24zCisjIFNQRFgtTGljZW5z
-ZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9yLWxhdGVyCiAjIHZpbTogc2V0IHRzPTQgc3c9NCBldDoK
-ICMKICMgQ29weXJpZ2h0IChjKSAyMDEzIC0gMjAxNCBJbnRlbCBDb3Jwb3JhdGlvbgotLSAKMi43
-LjQKCg==
-
---0000000000006386f205956b127a--
+--_000_BN6PR0101MB2914D42404393531264E9DB18F690BN6PR0101MB2914_--
