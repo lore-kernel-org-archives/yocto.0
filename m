@@ -1,6 +1,6 @@
 Return-Path: <yann.cardaillac@smile.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6524E00BA2; Mon, 21 Oct 2019 02:43:19 -0700 (PDT)
+	id A49C7E00DA5; Mon, 21 Oct 2019 05:46:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,52 +11,50 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.47 listed in list.dnswl.org]
+	*      [209.85.221.53 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	*  0.0 T_REMOTE_IMAGE Message contains an external image
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com
-	[209.85.128.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CE61E00BA2
-	for <yocto@yoctoproject.org>; Mon, 21 Oct 2019 02:43:18 -0700 (PDT)
-Received: by mail-wm1-f47.google.com with SMTP id v3so1265541wmh.1
-	for <yocto@yoctoproject.org>; Mon, 21 Oct 2019 02:43:18 -0700 (PDT)
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com
+	[209.85.221.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A06BE00BA2
+	for <yocto@yoctoproject.org>; Mon, 21 Oct 2019 05:46:28 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id w18so13282504wrt.3
+	for <yocto@yoctoproject.org>; Mon, 21 Oct 2019 05:46:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=smile-fr.20150623.gappssmtp.com; s=20150623;
 	h=mime-version:from:date:message-id:subject:to:cc;
-	bh=FPXgx47sGTYerDtvBTi7Qm/GjF1nVueOrzS135/6EnA=;
-	b=ZvYr5BMy6Q9KxgUxBLtRWbn+WsC6cpJ70tetuHiEwMos9gxRZCRHYlyspXtL2XXE/I
-	STpCjf5i/IabhthcKJh1kSdihpY0NCEb40lEEg+6L5fKnFG7q+yOIdhdtZqB307uvlci
-	ZWgvlDNsuWXYpIdM2Uu0T1OWJmyQaphtL8GxD+HvhBI9NVwqetzQIQ5sH5mCGVkrm7VY
-	7VZa3CfWZBm3IgBChJ5XfrFGUbZgLtuC/kr5cnd6Wft+V+SXmBNmyPmPlYlalzEuDjoH
-	aS/L17EvO2RXRs5IbwHoUBpUSyd+ONmDVhS6b6KccXJVrQ7Ce2cVZo4SIg4zBkrFyb2k
-	33dg==
+	bh=UzDFklVJ4tA3E+Zz/Q1Jc4Z/9/R7JZIL1z86ZoCAzYQ=;
+	b=Y650hL+ZVWtvNaU+fWIPVq5WVQ58GUzzXGzs0GlaJgvAbPq9RXeP8uhdVkChxbckch
+	192jUo3LDpT0iTnrdI9wke5//EP6YCH/lYP27QCOcBfs0Lz59O8EvrT4ZebDbLa5auiC
+	q78wZtnWhvyEC7aHEK4KLszkPEj85aFxy9M17VXgnojEeWqSTTT5V/MGUwsZv2JnF2/7
+	qdF9Nxm5M1PgW1l6X6FXPYZELr/0Q6nKYMwBZ6ImJdL7PsLkOq6JBBHilRzDdha/4XZU
+	cVM0Wc7GUkCSuZwGfKUBx5zDxuOJHg8I1Y1itjDMZpwrqtavVC66JhXaosBSbl3TS63t
+	6TZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-	bh=FPXgx47sGTYerDtvBTi7Qm/GjF1nVueOrzS135/6EnA=;
-	b=MYO7bLljaFGRKnUxsI7ERIGCkuSdob74YBrCLWEAV999tth/g2h6hsef1AMCjchyPI
-	MpruFs7gdkuLXf/l1SfqFRxYusfk+U26r6+jKzEkExsMU/CfmO4bFh5iCeL02RrKFQHj
-	UMRsNvYsRs7PoqpblsprYEsdA6MV2fCeKvsWRhouCxBZu8eMND/irw/gbFGWgqPf7Gnz
-	KSvaVDZ5m4vyH6KSL2eUrgOlJBIBBYRj01y/lSRqiBP0JYn4XmDZAt9a7sLKGNbowH8x
-	VLN6mN0lhtXltvjHiasrfkxGDkIA6Mss1d2H/Y4T77rmkRxuP4ncMWEhOpgPo7ZbDmDi
-	yluw==
-X-Gm-Message-State: APjAAAVSwG89PU/DNONiZhaVMfxmljaIyPzZbh5aTkKs6I5TiKz7R0c2
-	PNn8Vwc90wQtqhAs/QbcVXw+DLlFTG5YqU/q/4XvviOUPf0=
-X-Google-Smtp-Source: APXvYqzJyaqs1EI9yB5cs6pWNY9Pt3agu4M3mVgayuaFG6bKpkBRvvSG69YgFDgdbA6TwVkyjlJfo/HmeXP/S8iPtd0=
-X-Received: by 2002:a05:600c:2247:: with SMTP id
-	a7mr3230910wmm.19.1571650997903; 
-	Mon, 21 Oct 2019 02:43:17 -0700 (PDT)
+	bh=UzDFklVJ4tA3E+Zz/Q1Jc4Z/9/R7JZIL1z86ZoCAzYQ=;
+	b=Tt+Zz7J4syGCT+IKPhIldDWHJ9ne9rbV0kKrXPIJcFSKElSM6pLyRhxwFS5VfHsncA
+	fn08wr7SDAA6ZgxRPL9KRIcnf2cYqUKhddWb94W9XPCmtyuoUAwlenYDEgNh4GafI12d
+	d41urivX+75cbViecgqqiEFBrKvdDcqZGvvMALvpf1g+hQauI9JZgvqehbtlXmuCx3RV
+	1LNs+9N6HPCaypCpo3XxGOHj/JKuVVFhpJBqkKOFyIyVNc4M16krp0OZYifZsXsYStvg
+	dN4Pkkh0Hsr6mkFkwPIl5jZM4DDjdCCHhxjLm2ea4gmaD89mJcQZ+IunJLWy3xETgJ40
+	WzPQ==
+X-Gm-Message-State: APjAAAUahlVVxeivszDCkX9UMPuCxicEihUxiAamwUDKjaZ9JG/0NA9R
+	vpJZynILeCqJ6cJRkbr15xqOyUhv5NrrYViQIObuhW9IGa0=
+X-Google-Smtp-Source: APXvYqz/Cd9X2A3UeoPDsluhq+4eq6p597JLqKgg9GaqipKW1QoX/8RPaC+20nE2/u6ZpK1uPul+mD1ObIyV9cjmQMk=
+X-Received: by 2002:a05:6000:11c5:: with SMTP id
+	i5mr14971331wrx.303.1571661986094; 
+	Mon, 21 Oct 2019 05:46:26 -0700 (PDT)
 MIME-Version: 1.0
 From: Yann CARDAILLAC <yann.cardaillac@smile.fr>
-Date: Mon, 21 Oct 2019 11:43:07 +0200
-Message-ID: <CAA984JUdZZ7d6pnpeddtSSR_XkPfxsUw-8e3AsLPjyiXzvJd0w@mail.gmail.com>
-To: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
-Cc: jakub@redhat.com, Romain Naour <romain.naour@smile.fr>,
-	mark.hatle@windriver.co
-Subject: [prelink-cross] Bug 13529 add SPDX identifier
+Date: Mon, 21 Oct 2019 14:46:15 +0200
+Message-ID: <CAA984JVLuoFG_60hnUgmuaf4gQ=HrWEiBHpC=Vt2MpKZyPEXdw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: [PATCH] [auto-upgrade-helper] Add SPDX identifier to auto-upgrade-helper
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,38 +66,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Oct 2019 09:43:19 -0000
-Content-Type: multipart/alternative; boundary="00000000000070f4340595688337"
+X-List-Received-Date: Mon, 21 Oct 2019 12:46:34 -0000
+X-Groupsio-MsgNum: 46998
+Content-Type: multipart/mixed; boundary="0000000000006386f205956b127a"
 
---00000000000070f4340595688337
+--0000000000006386f205956b127a
+Content-Type: multipart/alternative; boundary="0000000000006386f005956b1278"
+
+--0000000000006386f005956b1278
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Mark Hatle, Jakub Jelinek,
+Hi guys,
 
-I'm currently beginning the work on bug 13529:
+I'm working on bug :
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13531
 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13529
+I've add GPLV2-or-later to all the sources, is there any modification you
+want to add?
 
-The purpose is to add SPDX identifier to scripts and sources.
-
-Most of the sources have licences on the sources, however some of them
-don't, and I've question about others :
-
-- src/sha.c do not shall it be GPLV2-or-later as most of the other?
-- how to licence m4/libelf.m4 ? I'd prefer you to tell me exactly what to
-add in order to avoid errors
-- what about *.C files ? They don't have licence header, they look like C
-file to me so I'd probably add :
-// SPDX-License-Identifier: GPL-2.0-or-later
-- what about testsuite/ files ?
-
-Shall every thing just be GPL-2.0-or-later?
-
-Best Regards,
+Best regards,
 
 Yann CARDAILLAC
-
 --=20
 [image: SMILE] <http://www.smile.eu/>
 
@@ -120,27 +108,18 @@ Ing=C3=A9nieur Syst=C3=A8mes Embarqu=C3=A9s
 [image: eco] Pour la plan=C3=A8te, n'imprimez ce mail que si c'est n=C3=A9c=
 essaire
 
---00000000000070f4340595688337
+--0000000000006386f005956b1278
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi Mark Hatle, Jakub Jelinek,</div><div><br></div><di=
-v>I&#39;m currently beginning the work on bug 13529:</div><div><br></div><d=
-iv><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13529">ht=
-tps://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13529</a></div><div><br><=
-/div><div>The purpose is to add SPDX identifier to scripts and sources.</di=
-v><div><br></div><div>Most of the sources have licences on the sources, how=
-ever some of them don&#39;t, and I&#39;ve question about others :<br></div>=
-<div><br></div><div>- src/sha.c do not shall it be GPLV2-or-later as most o=
-f the other? <br></div><div>- how to licence m4/libelf.m4 ? I&#39;d prefer =
-you to tell me exactly what to add in order to avoid errors</div><div>- wha=
-t about *.C files ? They don&#39;t have licence header, they look like C fi=
-le to me so I&#39;d probably add :</div><div>// SPDX-License-Identifier: GP=
-L-2.0-or-later<br></div><div>- what about testsuite/ files ? <br></div><div=
-><br></div><div>Shall every thing just be GPL-2.0-or-later?<br></div><div><=
-br></div><div>Best Regards,</div><div><br></div><div>Yann CARDAILLAC<br></d=
-iv><div><br></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature" data-sm=
-artmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr">
+<div dir=3D"ltr"><div>Hi guys, <br></div><div><br></div><div>I&#39;m workin=
+g on bug :<br></div><div><a href=3D"https://bugzilla.yoctoproject.org/show_=
+bug.cgi?id=3D13531">https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D135=
+31</a></div><div><br></div><div>I&#39;ve add GPLV2-or-later to all the sour=
+ces, is there any modification you want to add?</div><div><br></div><div>Be=
+st regards,</div><div><br></div><div>Yann CARDAILLAC<br></div>-- <br><div d=
+ir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><di=
+v dir=3D"ltr"><div><div dir=3D"ltr">
 
                     <div style=3D"display:block"><div>
    =20
@@ -220,4 +199,86 @@ eco.png" alt=3D"eco" width=3D"13" height=3D"11">
     </font>
 </div></div></div></div></div></div></div>
 
---00000000000070f4340595688337--
+--0000000000006386f005956b1278--
+
+--0000000000006386f205956b127a
+Content-Type: text/x-patch; charset="US-ASCII"; name="0001-add-SPDX-Licence-identifier.patch"
+Content-Disposition: attachment; 
+	filename="0001-add-SPDX-Licence-identifier.patch"
+Content-Transfer-Encoding: base64
+Content-ID: <f_k20exwf70>
+X-Attachment-Id: f_k20exwf70
+
+RnJvbSBkOTAzMTZhMjM4MzRjNTYzMWIzNTJlMTIzZWJmYmZiM2IxYmQwMmU1IE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQpGcm9tOiBZYW5uIENBUkRBSUxMQUMgPHlhbm4uY2FyZGFpbGxhY0BzbWls
+ZS5mcj4KRGF0ZTogTW9uLCAyMSBPY3QgMjAxOSAxNDo0MDozNSArMDIwMApTdWJqZWN0OiBbUEFU
+Q0hdIGFkZCBTUERYIExpY2VuY2UgaWRlbnRpZmllcgoKU2lnbmVkLW9mZi1ieTogWWFubiBDQVJE
+QUlMTEFDIDx5YW5uLmNhcmRhaWxsYWNAc21pbGUuZnI+Ci0tLQogbW9kdWxlcy9idWlsZGhpc3Rv
+cnkucHkgICAgICAgfCAxICsKIG1vZHVsZXMvZXJyb3JzLnB5ICAgICAgICAgICAgIHwgMSArCiBt
+b2R1bGVzL3N0YXRpc3RpY3MucHkgICAgICAgICB8IDEgKwogbW9kdWxlcy9zdGVwcy5weSAgICAg
+ICAgICAgICAgfCAxICsKIG1vZHVsZXMvdGVzdGltYWdlLnB5ICAgICAgICAgIHwgMSArCiBtb2R1
+bGVzL3V0aWxzL19faW5pdF9fLnB5ICAgICB8IDEgKwogbW9kdWxlcy91dGlscy9iaXRiYWtlLnB5
+ICAgICAgfCAxICsKIG1vZHVsZXMvdXRpbHMvZGV2dG9vbC5weSAgICAgIHwgMSArCiBtb2R1bGVz
+L3V0aWxzL2VtYWlsaGFuZGxlci5weSB8IDEgKwogbW9kdWxlcy91dGlscy9naXQucHkgICAgICAg
+ICAgfCAxICsKIHVwZ3JhZGVoZWxwZXIucHkgICAgICAgICAgICAgIHwgMSArCiAxMSBmaWxlcyBj
+aGFuZ2VkLCAxMSBpbnNlcnRpb25zKCspCiBtb2RlIGNoYW5nZSAxMDA3NTUgPT4gMTAwNjQ0IHVw
+Z3JhZGVoZWxwZXIucHkKCmRpZmYgLS1naXQgYS9tb2R1bGVzL2J1aWxkaGlzdG9yeS5weSBiL21v
+ZHVsZXMvYnVpbGRoaXN0b3J5LnB5CmluZGV4IGU3OGRhMDUuLjRmZGMzNmMgMTAwNjQ0Ci0tLSBh
+L21vZHVsZXMvYnVpbGRoaXN0b3J5LnB5CisrKyBiL21vZHVsZXMvYnVpbGRoaXN0b3J5LnB5CkBA
+IC0xLDQgKzEsNSBAQAogIyEvdXNyL2Jpbi9lbnYgcHl0aG9uCisjIFNQRFgtTGljZW5zZS1JZGVu
+dGlmaWVyOiBHUEwtMi4wLW9yLWxhdGVyCiAjIHZpbTogc2V0IHRzPTQgc3c9NCBldDoKICMKICMg
+Q29weXJpZ2h0IChjKSAyMDE1IEludGVsIENvcnBvcmF0aW9uCmRpZmYgLS1naXQgYS9tb2R1bGVz
+L2Vycm9ycy5weSBiL21vZHVsZXMvZXJyb3JzLnB5CmluZGV4IGFkNTYyMTUuLmZhNTQzZjcgMTAw
+NjQ0Ci0tLSBhL21vZHVsZXMvZXJyb3JzLnB5CisrKyBiL21vZHVsZXMvZXJyb3JzLnB5CkBAIC0x
+LDQgKzEsNSBAQAogIyEvdXNyL2Jpbi9lbnYgcHl0aG9uCisjIFNQRFgtTGljZW5zZS1JZGVudGlm
+aWVyOiBHUEwtMi4wLW9yLWxhdGVyCiAjIHZpbTogc2V0IHRzPTQgc3c9NCBldDoKICMKICMgQ29w
+eXJpZ2h0IChjKSAyMDEzIC0gMjAxNCBJbnRlbCBDb3Jwb3JhdGlvbgpkaWZmIC0tZ2l0IGEvbW9k
+dWxlcy9zdGF0aXN0aWNzLnB5IGIvbW9kdWxlcy9zdGF0aXN0aWNzLnB5CmluZGV4IGRiODNjNWIu
+LjMyM2QwNDIgMTAwNjQ0Ci0tLSBhL21vZHVsZXMvc3RhdGlzdGljcy5weQorKysgYi9tb2R1bGVz
+L3N0YXRpc3RpY3MucHkKQEAgLTEsNCArMSw1IEBACiAjIS91c3IvYmluL2VudiBweXRob24KKyMg
+U1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb3ItbGF0ZXIKICMgdmltOiBzZXQgdHM9
+NCBzdz00IGV0OgogIwogIyBDb3B5cmlnaHQgKGMpIDIwMTMgLSAyMDE0IEludGVsIENvcnBvcmF0
+aW9uCmRpZmYgLS1naXQgYS9tb2R1bGVzL3N0ZXBzLnB5IGIvbW9kdWxlcy9zdGVwcy5weQppbmRl
+eCA4N2Q3NTg0Li4xNDY1Yjc4IDEwMDY0NAotLS0gYS9tb2R1bGVzL3N0ZXBzLnB5CisrKyBiL21v
+ZHVsZXMvc3RlcHMucHkKQEAgLTEsNCArMSw1IEBACiAjIS91c3IvYmluL2VudiBweXRob24KKyMg
+U1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb3ItbGF0ZXIKICMgdmltOiBzZXQgdHM9
+NCBzdz00IGV0OgogIwogIyBDb3B5cmlnaHQgKGMpIDIwMTMgLSAyMDE1IEludGVsIENvcnBvcmF0
+aW9uCmRpZmYgLS1naXQgYS9tb2R1bGVzL3Rlc3RpbWFnZS5weSBiL21vZHVsZXMvdGVzdGltYWdl
+LnB5CmluZGV4IDM1ZTIzYzkuLjQyNzJjODQgMTAwNjQ0Ci0tLSBhL21vZHVsZXMvdGVzdGltYWdl
+LnB5CisrKyBiL21vZHVsZXMvdGVzdGltYWdlLnB5CkBAIC0xLDMgKzEsNCBAQAorIyBTUERYLUxp
+Y2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMC1vci1sYXRlcgogIyB2aW06IHNldCB0cz00IHN3PTQg
+ZXQ6CiAjCiAjIENvcHlyaWdodCAoYykgMjAxNSBJbnRlbCBDb3Jwb3JhdGlvbgpkaWZmIC0tZ2l0
+IGEvbW9kdWxlcy91dGlscy9fX2luaXRfXy5weSBiL21vZHVsZXMvdXRpbHMvX19pbml0X18ucHkK
+aW5kZXggZTY5ZGUyOS4uMzE1YzA2YiAxMDA2NDQKLS0tIGEvbW9kdWxlcy91dGlscy9fX2luaXRf
+Xy5weQorKysgYi9tb2R1bGVzL3V0aWxzL19faW5pdF9fLnB5CkBAIC0wLDAgKzEgQEAKKyMgU1BE
+WC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0yLjAtb3ItbGF0ZXIKZGlmZiAtLWdpdCBhL21vZHVs
+ZXMvdXRpbHMvYml0YmFrZS5weSBiL21vZHVsZXMvdXRpbHMvYml0YmFrZS5weQppbmRleCAyYWUz
+YTFjLi40ODM1Y2E2IDEwMDY0NAotLS0gYS9tb2R1bGVzL3V0aWxzL2JpdGJha2UucHkKKysrIGIv
+bW9kdWxlcy91dGlscy9iaXRiYWtlLnB5CkBAIC0xLDQgKzEsNSBAQAogIyEvdXNyL2Jpbi9lbnYg
+cHl0aG9uCisjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9yLWxhdGVyCiAjIHZp
+bTogc2V0IHRzPTQgc3c9NCBldDoKICMKICMgQ29weXJpZ2h0IChjKSAyMDEzIC0gMjAxNCBJbnRl
+bCBDb3Jwb3JhdGlvbgpkaWZmIC0tZ2l0IGEvbW9kdWxlcy91dGlscy9kZXZ0b29sLnB5IGIvbW9k
+dWxlcy91dGlscy9kZXZ0b29sLnB5CmluZGV4IDdmNWI1ZDQuLjBkMjdiYjAgMTAwNjQ0Ci0tLSBh
+L21vZHVsZXMvdXRpbHMvZGV2dG9vbC5weQorKysgYi9tb2R1bGVzL3V0aWxzL2RldnRvb2wucHkK
+QEAgLTEsMyArMSw0IEBACisjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9yLWxh
+dGVyCiBpbXBvcnQgb3MKIGltcG9ydCBsb2dnaW5nIGFzIGxvZwogZnJvbSBsb2dnaW5nIGltcG9y
+dCBkZWJ1ZyBhcyBECmRpZmYgLS1naXQgYS9tb2R1bGVzL3V0aWxzL2VtYWlsaGFuZGxlci5weSBi
+L21vZHVsZXMvdXRpbHMvZW1haWxoYW5kbGVyLnB5CmluZGV4IDg0MzYzNjQuLjA2NmYwMTMgMTAw
+NjQ0Ci0tLSBhL21vZHVsZXMvdXRpbHMvZW1haWxoYW5kbGVyLnB5CisrKyBiL21vZHVsZXMvdXRp
+bHMvZW1haWxoYW5kbGVyLnB5CkBAIC0xLDQgKzEsNSBAQAogIyEvdXNyL2Jpbi9lbnYgcHl0aG9u
+CisjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9yLWxhdGVyCiAjIHZpbTogc2V0
+IHRzPTQgc3c9NCBldDoKICMKICMgQ29weXJpZ2h0IChjKSAyMDEzIC0gMjAxNCBJbnRlbCBDb3Jw
+b3JhdGlvbgpkaWZmIC0tZ2l0IGEvbW9kdWxlcy91dGlscy9naXQucHkgYi9tb2R1bGVzL3V0aWxz
+L2dpdC5weQppbmRleCA3NDlkMjRkLi5hYmRjYzQ3IDEwMDY0NAotLS0gYS9tb2R1bGVzL3V0aWxz
+L2dpdC5weQorKysgYi9tb2R1bGVzL3V0aWxzL2dpdC5weQpAQCAtMSw0ICsxLDUgQEAKICMhL3Vz
+ci9iaW4vZW52IHB5dGhvbgorIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMC1vci1s
+YXRlcgogIyB2aW06IHNldCB0cz00IHN3PTQgZXQ6CiAjCiAjIENvcHlyaWdodCAoYykgMjAxMyAt
+IDIwMTQgSW50ZWwgQ29ycG9yYXRpb24KZGlmZiAtLWdpdCBhL3VwZ3JhZGVoZWxwZXIucHkgYi91
+cGdyYWRlaGVscGVyLnB5Cm9sZCBtb2RlIDEwMDc1NQpuZXcgbW9kZSAxMDA2NDQKaW5kZXggYmRk
+NmQ0ZS4uMmNmYTk0YQotLS0gYS91cGdyYWRlaGVscGVyLnB5CisrKyBiL3VwZ3JhZGVoZWxwZXIu
+cHkKQEAgLTEsNCArMSw1IEBACiAjIS91c3IvYmluL2VudiBweXRob24zCisjIFNQRFgtTGljZW5z
+ZS1JZGVudGlmaWVyOiBHUEwtMi4wLW9yLWxhdGVyCiAjIHZpbTogc2V0IHRzPTQgc3c9NCBldDoK
+ICMKICMgQ29weXJpZ2h0IChjKSAyMDEzIC0gMjAxNCBJbnRlbCBDb3Jwb3JhdGlvbgotLSAKMi43
+LjQKCg==
+
+--0000000000006386f205956b127a--
