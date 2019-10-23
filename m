@@ -1,40 +1,44 @@
 Return-Path: <vineela.tummalapalli@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 39BAAE00BFF; Wed, 23 Oct 2019 16:46:36 -0700 (PDT)
+	id DB013E00DF0; Wed, 23 Oct 2019 16:51:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F19BE00B7A;
-	Wed, 23 Oct 2019 16:46:32 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [192.55.52.136 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2D4EE00DF0;
+	Wed, 23 Oct 2019 16:51:13 -0700 (PDT)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-	by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	23 Oct 2019 16:46:31 -0700
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	23 Oct 2019 16:51:13 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,222,1569308400"; d="scan'208";a="197570412"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga007.fm.intel.com with ESMTP; 23 Oct 2019 16:46:30 -0700
+X-IronPort-AV: E=Sophos;i="5.68,222,1569308400"; d="scan'208";a="281771948"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by orsmga001.jf.intel.com with ESMTP; 23 Oct 2019 16:51:12 -0700
+Received: from orsmsx154.amr.corp.intel.com (10.22.226.12) by
+	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
+	(TLS) id 14.3.439.0; Wed, 23 Oct 2019 16:51:12 -0700
 Received: from orsmsx107.amr.corp.intel.com ([169.254.1.115]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.4.167]) with mapi id
-	14.03.0439.000; Wed, 23 Oct 2019 16:46:30 -0700
+	ORSMSX154.amr.corp.intel.com ([169.254.11.174]) with mapi id
+	14.03.0439.000; Wed, 23 Oct 2019 16:51:12 -0700
 From: "Tummalapalli, Vineela" <vineela.tummalapalli@intel.com>
 To: "yocto-announce@lists.yoctoproject.org"
 	<yocto-announce@lists.yoctoproject.org>, "yocto@lists.yoctoproject.org"
 	<yocto@lists.yoctoproject.org>
-Thread-Topic: [yocto-announce] [ANNOUNCEMENT] Yocto Project 3.0 (warrior
+Thread-Topic: [yocto-announce] [ANNOUNCEMENT] Yocto Project 3.0 (Zeus
 	22.0.0) Released
-Thread-Index: AdWJ8VB7dmWtEi0vSC2DF2o8DK05yQ==
-Date: Wed, 23 Oct 2019 23:46:29 +0000
-Message-ID: <363DC7214F94884BBF80916755E7D655207936A8@ORSMSX107.amr.corp.intel.com>
+Thread-Index: AdWJ/Jhz/8rqdYbjQQ2n1BKJq6+hkQ==
+Date: Wed, 23 Oct 2019 23:51:11 +0000
+Message-ID: <363DC7214F94884BBF80916755E7D655207936C9@ORSMSX107.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -45,7 +49,7 @@ dlp-version: 11.2.0.6
 dlp-reaction: no-action
 x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Subject: [yocto-announce] [ANNOUNCEMENT] Yocto Project 3.0 (warrior 22.0.0) Released
+Subject: Re: [yocto-announce] [ANNOUNCEMENT] Yocto Project 3.0 (Zeus 22.0.0) Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,10 +61,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Oct 2019 23:46:36 -0000
+X-List-Received-Date: Wed, 23 Oct 2019 23:51:49 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+Changing the subject..
 
 Hello,
 
@@ -81,7 +87,7 @@ http://downloads.yoctoproject.org/releases/yocto/yocto-3.0/testreport.txt
 
 Thank you for everyone's contributions to this release.
 
-Vineela Tummalapalli=20
+Vineela Tummalapalli
 Yocto Project Build and Release
 vineela.tummalapalli@intel.com
 
@@ -370,10 +376,9 @@ the test timeouts we had previously.
 https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13595
 
 *The build/hash equivalency code is considered to be at beta testing level.=
- When used in large scale deployment
-like the project autobuilder some task migration issues have been noticed. =
-Work is ongoing to debug and address
-those issues. Individual developer testing seems to be stable.
+ When used in large scale deployment like the project autobuilder some task=
+ migration issues have been noticed. Work is ongoing to debug and address t=
+hose issues. Individual developer testing seems to be stable.
 
 - ---------------
 Recipe Licenses
@@ -397,8 +402,8 @@ Migration instructions
 - ----------------------
 
 For details on changes that you might need to make when migrating to the Yo=
-cto Project 3.0
-release from previous releases, please see the following manual section:
+cto Project 3.0 release from previous releases, please see the following ma=
+nual section:
 
 http://www.yoctoproject.org/docs/3.0/ref-manual/ref-manual.html#moving-to-t=
 he-yocto-project-3.0-release
