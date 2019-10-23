@@ -1,125 +1,114 @@
-Return-Path: <christian.lohr.ext@zeiss.com>
+Return-Path: <sangeeta.jain@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 56012E00D97; Wed, 23 Oct 2019 00:38:15 -0700 (PDT)
+	id C68B9E00D85; Wed, 23 Oct 2019 01:00:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_HI,
-	RCVD_IN_SBL_CSS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  3.3 RCVD_IN_SBL_CSS RBL: Received via a relay in Spamhaus SBL-CSS
-	*      [165.225.72.134 listed in zen.spamhaus.org]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [194.8.120.226 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [134.134.136.31 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 122 seconds by postgrey-1.32 at yocto-www;
-	Wed, 23 Oct 2019 00:38:12 PDT
-Received: from msgsrv4.atosorigin.de (msgsrv4.atosorigin.de [194.8.120.226])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21EAAE00BE2
-	for <yocto@yoctoproject.org>; Wed, 23 Oct 2019 00:38:11 -0700 (PDT)
-Received: from julia-mo2.my-it-solutions.net (HELO
-	julia-mo2.ccsn.de.ao-srv.com) ([194.8.124.179])
-	by msgsrv-out2.atosorigin.de with ESMTP; 23 Oct 2019 09:36:04 +0200
-Received: from julia-mo2.ccsn.de.ao-srv.com (unknown [194.8.124.179]) by
-	MCS01-MA1.atosorigin.de with smtp
-	id 57cf_05c1_5ca61784_d737_4189_bd2d_da5ab367c173;
-	Wed, 23 Oct 2019 09:36:04 +0200
-Received: from julia-mo2 (localhost [127.0.0.1])
-	by julia-mo2.ccsn.de.ao-srv.com (Postfix) with ESMTP id ACE0012011C2
-	for <yocto@yoctoproject.org>; Wed, 23 Oct 2019 09:36:04 +0200 (CEST)
-Received: from ADEFTH01IMS011.zeiss.org (ADEFTH01IMS011.zeiss.org
-	[10.193.156.179])
-	by julia-mo2.ccsn.de.ao-srv.com (Postfix) with ESMTP id 8C81312011C1
-	for <yocto@yoctoproject.org>; Wed, 23 Oct 2019 09:36:04 +0200 (CEST)
-Received: from ADEFTH01IMS011.cznet.zeiss.org (localhost [127.0.0.1])
-	by ADEFTH01IMS011.zeiss.org (Postfix) with ESMTP id 7FFA38DE9D
-	for <yocto@yoctoproject.org>; Wed, 23 Oct 2019 07:36:04 +0000 (GMT)
-Received: from ADEFUE01SMS004.cznet.zeiss.org (adefue01sms004.zeiss.org
-	[10.167.4.49])
-	by ADEFTH01IMS011.zeiss.org (Postfix) with ESMTP id 74CC18DDE9
-	for <yocto@yoctoproject.org>; Wed, 23 Oct 2019 07:36:04 +0000 (GMT)
-Received: from ADEFUE01IUCC23.zeiss.org (10.167.12.168) by
-	adefue01sms004.cznet.zeiss.org (10.167.4.49) with Microsoft SMTP Server
-	(TLS) id 14.3.468.0; Wed, 23 Oct 2019 09:36:04 +0200
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (104.47.13.56) by
-	hybrid.ext.smtp.zeiss.com (217.115.69.78) with Microsoft SMTP Server
-	(version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id
-	15.1.845.34; Wed, 23 Oct 2019 09:36:03 +0200
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 709BEE00D85
+	for <yocto@yoctoproject.org>; Wed, 23 Oct 2019 01:00:51 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	23 Oct 2019 01:00:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,220,1569308400"; d="scan'208";a="196704383"
+Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
+	by fmsmga008.fm.intel.com with ESMTP; 23 Oct 2019 01:00:49 -0700
+Received: from fmsmsx113.amr.corp.intel.com (10.18.116.7) by
+	fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server
+	(TLS) id 14.3.439.0; Wed, 23 Oct 2019 01:00:49 -0700
+Received: from FMSEDG001.ED.cps.intel.com (10.1.192.133) by
+	FMSMSX113.amr.corp.intel.com (10.18.116.7) with Microsoft SMTP Server
+	(TLS) id 14.3.439.0; Wed, 23 Oct 2019 01:00:49 -0700
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com (104.47.38.59) by
+	edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server
+	(TLS) id 14.3.439.0; Wed, 23 Oct 2019 01:00:49 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
-	b=XM4aFjpjl+WDnPswQfBXhJiPe4zCc1LcIMmsZh9dI1UP559HqBShan04KKO5+hh9re6p9wHMzqwg+tPSGt33RgewlGQPWcIy9fnDiKhYQOG3/4qvtTsyuKh33SCzlSrdHQL7sfjURaNcrIC0axMfa/yev+EnhDWdCH7blHtbS6n1haAcmbmdMTZ5HkOOS8S9hr96B0KKK/Mh/EiAHETSEeA0nSrlV+Zk5AqzhGUG5SaxGL1N3ZNkWjpWaCO+dxm/S5xbMo2FyEfz3/R6QowSrZpV7wZ2kOp1wPmhzeJF9A9UB3qsTJacsbmh4/ogVUWe3TMlifVjc19cHY6MiG2ZcA==
+	b=YKggz9BvBXNBXxrgJI5eh/sOq6rUceKAOU/Dl/g7PBxWzCgk5lcF3M1qkNIxk7MuuB5QWOvBbHZ/6uvk1ga2kIHnC9+sPELVfHsoM6XNne3t5amHswOV1xeTVGsdUl6ZgeVyAGxlejzmwHF2rKuFuJlxw2Jav74hW3Q/WRu0Fd/j1IoyvY37w1OS2CRCURcR2NXmkl5zJXVPlOKkjntw8E2GjYr83nFinhqMvFSWlUW36ywL7OFkVXdn/LcS16lLSvf3hJK/SsoaiErxq/tQgEgsh6cYh2jt5oexyxVdDzhn4Iws/o/NiCqLTVQyDOpIpFucTB3j7Db7n0EUukjB0w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
 	s=arcselector9901;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=vmmDZU3SNxgGQ9Q+fejqJBxbjh8hsK1yk0mW5+i+8Qw=;
-	b=Kiuifk/BL277H+SoMuzUvFSdADYWdjtgtzwfYnR02TemBqChGNnIFpne5HIG+aVzsTtLDvPJkdnEbeoa4VPHhEqqVVnBDZfbRGXUkDIjaBu2Hd29grt6Sh6qSJzNSQcfev/TXeFz/89qFusBKpflr5Uvr6Qy5a5lzjwxyznh9S/4fZX1HKcx6Xtble0dq8iS1iqu7iVARAhqIHY5d4p5Cu/G1Br5R1XaPe9esKDrc02sxYfKDNpm8hJlvwAoW+r+hat151TrSMazbpB5t8nlxVyIFRgR2o1hFUtKqSI6vs81AumW9pFpWlw5mhc/pQ3w3LOEOADzZ6yeMDhaNw1MWg==
+	bh=PYCEsCG/VLvaTaVaFziEpadgrY17O4Ao4D1rz3KTWqE=;
+	b=I+2DDdLCX9u7h6PF52wMT7A9EPy8WN1B/itjVLrwZF9CRdfRMVE2SwTP1aEfo1CR5vA9CDsf8y0jiTzJGKECAGN0b90FJnyn8k8gxs9LD/njGxqnffcuJPU9oJ/+IqWw3/AljEO7Bp0JQU/sDxTEOVgw2EsFbu0DhwPmzEQaqkVfqHXvek4HMNiipX84atp+q1yBWinH1cqM3GodarD1xMhKoVPS994dSzB1tAYjS+r++SjiyAkIyqtCgWjyyeH6yN/GPvFa6t9xGRK45IstHgW9+VLkv2V4S64KAQhY1i8o/gA7Wc9BVgkoCGZF1PtOLCcQZbrnllrnbdCITjVWKg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
-	smtp.mailfrom=zeiss.com; dmarc=pass action=none header.from=zeiss.com; 
-	dkim=pass header.d=zeiss.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=zeiss.onmicrosoft.com; 
-	s=selector2-zeiss-onmicrosoft-com;
+	smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com; 
+	dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com; 
+	s=selector2-intel-onmicrosoft-com;
 	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
-	bh=vmmDZU3SNxgGQ9Q+fejqJBxbjh8hsK1yk0mW5+i+8Qw=;
-	b=f0kIj/Rl2IwmBa0jqhU+8J0UxP6WjXHrMGvpBPi30TF4wHHGEEIC5eGXBumUFQ1Svqkbzunb+qgrGgdTVutvGGMI5pn8mz/RZIcvGETPa9tFbna0qkEWDL7pYbWCxdeYke/zkUBFzVYJRaIY1tPS0H31beWDEA5w/Z1/8Oe6Q1w=
-Received: from AM7P190MB0791.EURP190.PROD.OUTLOOK.COM (52.135.58.200) by
-	AM7P190MB0630.EURP190.PROD.OUTLOOK.COM (52.135.56.139) with Microsoft
+	bh=PYCEsCG/VLvaTaVaFziEpadgrY17O4Ao4D1rz3KTWqE=;
+	b=wF+6SCiHDW4Sv5XHNJ2VujHP/a5yKVJoZ/5Yad79++oHg0MI3Zo0n825+GSawAQDBgmPSPYBzW3Gdi2g+PGEr9M7hY1HAICd6myP2nXV+vMhldHav0sUIyOg3yzP97jkUrJgTYKQSGFb20M94yY7H0fo5z6cyGclJNgQHZzk6X4=
+Received: from CY4PR11MB1879.namprd11.prod.outlook.com (10.175.60.137) by
+	CY4PR11MB1766.namprd11.prod.outlook.com (10.175.59.23) with Microsoft
 	SMTP
 	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
-	15.20.2367.24; Wed, 23 Oct 2019 07:36:03 +0000
-Received: from AM7P190MB0791.EURP190.PROD.OUTLOOK.COM
-	([fe80::cc68:36ba:8da5:4acf]) by AM7P190MB0791.EURP190.PROD.OUTLOOK.COM
-	([fe80::cc68:36ba:8da5:4acf%7]) with mapi id 15.20.2347.030;
-	Wed, 23 Oct 2019 07:36:03 +0000
-From: "Lohr, Christian [ext]" <christian.lohr.ext@zeiss.com>
+	15.20.2387.20; Wed, 23 Oct 2019 08:00:47 +0000
+Received: from CY4PR11MB1879.namprd11.prod.outlook.com
+	([fe80::581b:6fbf:a761:35e9]) by
+	CY4PR11MB1879.namprd11.prod.outlook.com
+	([fe80::581b:6fbf:a761:35e9%11]) with mapi id 15.20.2367.022;
+	Wed, 23 Oct 2019 08:00:47 +0000
+From: "Jain, Sangeeta" <sangeeta.jain@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: TFS Urls with Git in Recipes
-Thread-Index: AdWJcfsFXK9EtXrKREuYUA6hsP/MZQ==
-Date: Wed, 23 Oct 2019 07:36:03 +0000
-Message-ID: <AM7P190MB079129F3F34E6A01826C34EFC26B0@AM7P190MB0791.EURP190.PROD.OUTLOOK.COM>
-Accept-Language: de-DE, en-US
+Thread-Topic: QA notification for completed autobuilder build (yocto-2.6.4.rc2)
+Thread-Index: AQHVhTBiIbcNDF3K20uAc6lqLYj3RKdfldgAgAhPHsA=
+Date: Wed, 23 Oct 2019 08:00:47 +0000
+Message-ID: <CY4PR11MB1879D36BFFD921ECB8929D57E36B0@CY4PR11MB1879.namprd11.prod.outlook.com>
+References: <20191017211733.34EB81C0386@ubuntu1604-ty-1.yocto.io>
+	<BN7PR11MB2721D442E4925D6788AC41E6C86C0@BN7PR11MB2721.namprd11.prod.outlook.com>
+In-Reply-To: <BN7PR11MB2721D442E4925D6788AC41E6C86C0@BN7PR11MB2721.namprd11.prod.outlook.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZmM4MmI1YTEtNDllNC00NjgyLWFiMDEtMmNmMzg2MzViNDFiIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiZGxjcEZjUlNRMUE1ZnhUeEVQWXJZVnpCSTlFazF4cmRKa3JsUWdjMzJGeWNYK1ZRY3VYN0loVnhhOWJ1WE9MSiJ9
+dlp-reaction: no-action
+dlp-version: 11.2.0.6
+dlp-product: dlpe-windows
+x-ctpclassification: CTP_NT
 authentication-results: spf=none (sender IP is )
-	smtp.mailfrom=christian.lohr.ext@zeiss.com; 
-x-originating-ip: [165.225.72.134]
+	smtp.mailfrom=sangeeta.jain@intel.com; 
+x-originating-ip: [192.198.147.208]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ee98aea9-3a55-4aec-c9a1-08d7578ba84c
-x-ms-traffictypediagnostic: AM7P190MB0630:
-x-microsoft-antispam-prvs: <AM7P190MB063003BD221B737F8F4E486FC26B0@AM7P190MB0630.EURP190.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-office365-filtering-correlation-id: 672a123f-a135-4f1e-d5c9-08d7578f1d17
+x-ms-traffictypediagnostic: CY4PR11MB1766:
+x-ms-exchange-purlcount: 3
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CY4PR11MB17661F531A61D0F4A6441898E36B0@CY4PR11MB1766.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
 x-forefront-prvs: 019919A9E4
 x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10019020)(396003)(136003)(39860400002)(366004)(346002)(376002)(189003)(199004)(5660300002)(33656002)(26005)(6506007)(9686003)(2501003)(66066001)(55236004)(186003)(6916009)(81156014)(8936002)(5640700003)(8676002)(1730700003)(55016002)(81166006)(6306002)(476003)(6436002)(52536014)(14454004)(19627235002)(71190400001)(256004)(102836004)(7696005)(486006)(71200400001)(25786009)(54896002)(99286004)(478600001)(66476007)(316002)(64756008)(66556008)(7736002)(2906002)(74316002)(76116006)(790700001)(3846002)(86362001)(6116002)(66946007)(2351001)(66446008);
-	DIR:OUT; SFP:1102; SCL:1; SRVR:AM7P190MB0630;
-	H:AM7P190MB0791.EURP190.PROD.OUTLOOK.COM; FPR:; SPF:None;
+	SFS:(10019020)(366004)(39860400002)(396003)(376002)(346002)(136003)(53754006)(189003)(199004)(13464003)(4326008)(6436002)(6246003)(5640700003)(55016002)(9686003)(6306002)(8936002)(966005)(81156014)(81166006)(1730700003)(14454004)(25786009)(33656002)(8676002)(478600001)(316002)(54906003)(256004)(14444005)(6916009)(71190400001)(71200400001)(229853002)(305945005)(74316002)(66066001)(7736002)(86362001)(5660300002)(446003)(11346002)(486006)(476003)(76116006)(64756008)(66556008)(66476007)(15650500001)(66946007)(2351001)(6506007)(52536014)(3846002)(76176011)(7696005)(26005)(2906002)(2501003)(186003)(102836004)(6116002)(99286004)(66446008);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:CY4PR11MB1766;
+	H:CY4PR11MB1879.namprd11.prod.outlook.com; FPR:; SPF:None;
 	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
-received-spf: None (protection.outlook.com: zeiss.com does not designate
-	permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: p1xaq0MSDmvEv1CyLSJNNiaB/7t1wqKkiTwqOxb9Z7J++lzyy6nS1voiToeE4lnyZQkBdCoHr1yuKdo1SrjdE+t1TAuOsTS0vF1Z3sjzPJDTSrUxcomw+OJsRtAM0qs2jKBFdhmvQrsuJnflJy31+l0gOmJYJXdoY+g9qUswPZEONKtX9cFJqo6wr8S+61URlICFAYgjnIG098kQK53ltLPWYw2tOZavRYpH3cLW6NmiSPV3Llgf9VgWA3b8qvMkOGjqLfAGqqSNpeek6aft17bar2mJ4I3KCEpb87DkG6PxPMFDbyHoJ/9EjUi/7NVZtaa963dqCV5DVg0mQQvUiNBdevgs4sQYMYyHk5tHD5V1IUnpSLixqZioY72unpEeW5fS9Zj0f3OBF8HfOzv1R8WMB0UNEL0U8VgsI+JDmGIc/DQdt0Hp4sjHPZiFrXdf
-x-ms-exchange-transport-forked: True
+x-microsoft-antispam-message-info: WQ9XbHjnLYLcpIKKgL1+M0QBUPqwPhLerGQhm+7ei23RRdqsDlu0ABjxJmB106UutjGCj6gkRSv7gUo1yrmT+39U0ZZWDfn82C6itrz2is8GpjE3hwfjZFuoAYoit+hAIplug8UMwLtYKQJsvBg5awAqdnGHSbZkb8RImCQKfLSQYHBbixtY7FhhY0t1rbET78xOMzh+AtNbs8PJZSBjFEGBMCoMlbCm04UD6j+HXpoEami8XIxFovtpaOdivMpu+UEWd4T9SZClB01QIl/kHKQId40i0C+tS+rBOSdxA1CLbHBX4u3Rs+z4hu3bx36u6QsVpahq6qYbesMrwDrcrJdnOVABNtdRi7cVHV1Y39RIRvA9xoz93FmwLEHh9baRVMBkkkhTRk+mIy3+FVQA753Yp8+p92+c22NyAQjIRy4fLBZcDWR9eSuT6il9kJXJLken4a4eZ7JWK18wijqryTJNYRfdzXegOtVls7kukDo=
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: ee98aea9-3a55-4aec-c9a1-08d7578ba84c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Oct 2019 07:36:03.0844 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 672a123f-a135-4f1e-d5c9-08d7578f1d17
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Oct 2019 08:00:47.3117 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 28042244-bb51-4cd6-8034-7776fa3703e8
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qFoVvnEpS3NyPJB43++Qy5Lbinon3L4iSps48hINqLQuMQ8zrJ61MnwMJh/2heZ6JzHdkL7LZln5QXEaq9jgv+nO29dSYtBhM5+mtQ2M3U0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7P190MB0630
-X-OriginatorOrg: zeiss.com
-X-NAI-Spam-Flag: NO
-X-NAI-Spam-Threshold: 8
-X-NAI-Spam-Score: 0
-X-NAI-Spam-Version: 2.3.0.9418 : core <6660> : inlines <7155> : streams
-	<1836437> : uri <2926414>
-Subject: TFS Urls with Git in Recipes
+X-MS-Exchange-CrossTenant-userprincipalname: YKztoV4zQ8ME4VV6bcjuKz8DfuV/sRpgKKJIADTzRgy/bSuDrDtsob5AAuDBU3xHvQAfarYot2jczjbrvpWqOg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1766
+X-OriginatorOrg: intel.com
+Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>, "Chan,
+	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
+	"akuster808@gmail.com" <akuster808@gmail.com>
+Subject: Re: QA notification for completed autobuilder build (yocto-2.6.4.rc2)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -131,308 +120,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Oct 2019 07:38:15 -0000
-Content-Language: de-DE
-Content-Type: multipart/alternative;
-	boundary="_000_AM7P190MB079129F3F34E6A01826C34EFC26B0AM7P190MB0791EURP_"
-
---_000_AM7P190MB079129F3F34E6A01826C34EFC26B0AM7P190MB0791EURP_
+X-List-Received-Date: Wed, 23 Oct 2019 08:00:52 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hello all,
 
-I'm using the following:
-Yocto Release 2.4 (Rocko), and Bitbake 1.9.x
+This is the full report for 2.6.4 RC2: =20
+https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
+h=3Dintel-yocto-testresults
 
-My problem is the following url (actually the "%20" is the problem in bitba=
-ke):
-ssh://tfs-my-company.org:22/tfs/OWN_Projects/FooBar%20500/_git/DummyApplica=
-tionForYocto
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+No high milestone defects. =20
+No new defect found in this cycle.
+The stap test case failure on beaglebone still exists in this release (BUG =
+id:13273).=20
 
-I can do a "git clone <url>" without any problems. Now I wanted to create a=
- Yocto recipe similar to this:
+=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13273
 
----------------------------------------------------------------------------=
----------------------------------------------------------------
-SUMMARY =3D "A demo application"
-DESCRIPTION =3D "This application is just for demo purpose and should be se=
-en as Hello World"
-LICENSE =3D "CLOSED"
-#LIC_FILES_CHKSUM =3D ""
+Thanks & Regards,
+Sangeeta Jain
 
-PROJECT_URL =3D "tfs-my-company.org:22/tfs/OWN_Projects"
-PROJECT_NAME =3D "FooBar%20500"
-
-SRC_URI =3D "git://${PROJECT_URL}/${PROJECT_NAME}/_git/DummyApplicationForY=
-octo;protocol=3Dssh"
-SRCREV =3D "${AUTOREV}"
-PV =3D "1.0+git${SRCPV}"
-
-DEPENDS =3D "qtbase"
----------------------------------------------------------------------------=
------------------------------------------------------------------
-
-The "%20" sign will be replaced with a space " " in some cases:
-When I try to run "bitbake dummyapp", the following happens:
-"FooBar%20500" will be transformed to "FooBar 500"
-
----------------------------------------------------------------------------=
------------------------------------------------------------------
-git -c core.fsyncobjectfiles=3D0 ls-remote ssh:// tfs-my-company.org:22/tfs=
-/OWN_Projects/FooBar 500/_git/DummyApplicationForYocto  failed with exit co=
-de 128, output:
-remote: Command git-upload-pack '/tfs/OWN_Projects/FooBar' is not in expect=
-ed format.
-fatal: Could not read from remote repository.
-
-Is it possible to prevent this because if it would leave the "%20" the comm=
-and would work.
-
-Kind regards,
-
-Christian Lohr
-
-
---_000_AM7P190MB079129F3F34E6A01826C34EFC26B0AM7P190MB0791EURP_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>-----Original Message-----
+>From: Poky Build User <pokybuild@ubuntu1604-ty-1.yocto.io>
+>Sent: Friday, October 18, 2019 5:18 AM
+>To: yocto@yoctoproject.org
+>Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; Sangal, Apoorv
+><apoorv.sangal@intel.com>; Yeoh, Ee Peng <ee.peng.yeoh@intel.com>; Chan,
+>Aaron Chun Yew <aaron.chun.yew.chan@intel.com>; Ang, Chin Huat
+><chin.huat.ang@intel.com>; richard.purdie@linuxfoundation.org;
+>akuster808@gmail.com; sjolley.yp.pm@gmail.com; Jain, Sangeeta
+><sangeeta.jain@intel.com>
+>Subject: QA notification for completed autobuilder build (yocto-2.6.4.rc2)
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0cm;
-	margin-right:0cm;
-	margin-bottom:0cm;
-	margin-left:36.0pt;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-span.E-MailFormatvorlage17
-	{mso-style-type:personal-compose;
-	font-family:"Arial",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;
-	mso-fareast-language:EN-US;}
-@page WordSection1
-	{size:612.0pt 792.0pt;
-	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:1166747788;
-	mso-list-type:hybrid;
-	mso-list-template-ids:128762984 -2001852722 67567619 67567621 67567617 675=
-67619 67567621 67567617 67567619 67567621;}
-@list l0:level1
-	{mso-level-start-at:0;
-	mso-level-number-format:bullet;
-	mso-level-text:-;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Arial",sans-serif;
-	mso-fareast-font-family:Calibri;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Symbol;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:"Courier New";}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-18.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0cm;}
-ul
-	{margin-bottom:0cm;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"DE" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I&#8216;m using the following:<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Yocto Release 2.4 (Rocko), and =
-Bitbake 1.9.x<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">My problem is the following url=
- (actually the &#8220;%20&#8221; is the problem in bitbake):<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">ssh://tfs-my-company.org:22/tfs=
-/OWN_Projects/FooBar%20500/_git/DummyApplicationForYocto<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">I can do a &#8220;git clone &lt=
-;url&gt;&#8221; without any problems. Now I wanted to create a Yocto recipe=
- similar to this:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">-------------------------------=
----------------------------------------------------------------------------=
---------------------------------<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">SUMMARY =3D &quot;A demo applic=
-ation&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">DESCRIPTION =3D &quot;This appl=
-ication is just for demo purpose and should be seen as Hello World&quot;<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">LICENSE =3D &quot;CLOSED&quot;<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">#LIC_FILES_CHKSUM =3D &quot;&qu=
-ot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">PROJECT_URL =3D &quot;tfs-my-co=
-mpany.org:22/tfs/OWN_Projects&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">PROJECT_NAME =3D &quot;FooBar%2=
-0500&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">SRC_URI =3D &quot;git://${PROJE=
-CT_URL}/${PROJECT_NAME}/_git/DummyApplicationForYocto;protocol=3Dssh&quot;<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">SRCREV =3D &quot;${AUTOREV}&quo=
-t;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">PV =3D &quot;1.0&#43;git${SRCPV=
-}&quot;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal">DEPENDS =3D &quot;qtbase&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">----------------------------------------------------=
----------------------------------------------------------------------------=
--------------<o:p></o:p></p>
-<p class=3D"MsoNormal"><span style=3D"color:black;mso-fareast-language:DE">=
-<o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:black;mso-fareas=
-t-language:DE">The &#8222;%20&#8220; sign will be replaced with a space &#8=
-220; &#8220; in some cases:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:black;mso-fareas=
-t-language:DE">When I try to run &#8220;bitbake dummyapp&#8221;, the follow=
-ing happens:<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:black;mso-fareas=
-t-language:DE">&#8220;FooBar%20500&#8221; will be transformed to &#8220;Foo=
-Bar 500&#8221;<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:black;mso-fareas=
-t-language:DE"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">-------------------------------=
----------------------------------------------------------------------------=
-----------------------------------<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:black;mso-fareas=
-t-language:DE">git -c core.fsyncobjectfiles=3D0 ls-remote ssh://</span><spa=
-n lang=3D"EN-US"> tfs-my-company.org</span><span lang=3D"EN-US" style=3D"co=
-lor:black;mso-fareast-language:DE">:22/tfs/OWN_Projects/FooBar
- 500/_git/DummyApplicationForYocto&nbsp; failed with exit code 128, output:=
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"color:black;mso-fareas=
-t-language:DE">remote: Command git-upload-pack '/tfs/OWN_Projects/FooBar' i=
-s not in expected format.<o:p></o:p></span></p>
-<div style=3D"mso-element:para-border-div;border:none;border-bottom:solid w=
-indowtext 1.0pt;padding:0cm 0cm 1.0pt 0cm">
-<p class=3D"MsoNormal" style=3D"border:none;padding:0cm"><span lang=3D"EN-U=
-S" style=3D"color:black;mso-fareast-language:DE">fatal: Could not read from=
- remote repository.<o:p></o:p></span></p>
-</div>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Is it possible to prevent this =
-because if it would leave the &#8220;%20&#8221; the command would work.<o:p=
-></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Kind regards,<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Christian Lohr<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt;text-autospace:none"><=
-span lang=3D"EN-US" style=3D"font-size:10.0pt;color:black;mso-fareast-langu=
-age:DE"><o:p>&nbsp;</o:p></span></p>
-</div>
-</body>
-</html>
+>
+>A build flagged for QA (yocto-2.6.4.rc2) was completed on the autobuilder =
+and is
+>available at:
+>
+>
+>    https://autobuilder.yocto.io/pub/releases/yocto-2.6.4.rc2
+>
+>
+>Build hash information:
+>
+>bitbake: 6b045e074c6fea97d4e305a5a3c8bf82135d95eb
+>meta-gplv2: aabc30f3bd03f97326fb8596910b94639fea7575
+>meta-intel: c200851435f39acd2fe4abbf7a05fbf617833964
+>meta-mingw: 6556cde16fbdf42c7edae89bb186e5ae4982eff5
+>oecore: cd7cf933b3235560ec71576d8f3836dff736a39f
+>poky: 51f6145f8f99a02df1dad937684f014b0172e72a
+>
+>
+>
+>This is an automated message from the Yocto Project Autobuilder
+>Git: git://git.yoctoproject.org/yocto-autobuilder2
+>Email: richard.purdie@linuxfoundation.org
+>
+>
+>
 
---_000_AM7P190MB079129F3F34E6A01826C34EFC26B0AM7P190MB0791EURP_--
