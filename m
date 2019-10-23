@@ -1,6 +1,6 @@
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5E31FE00BFF; Wed, 23 Oct 2019 15:29:52 -0700 (PDT)
+	id EB086E00571; Wed, 23 Oct 2019 15:34:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,62 +11,57 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.52 listed in list.dnswl.org]
+	*      [209.85.221.50 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com
-	[209.85.128.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBA7EE00BA2
-	for <yocto@yoctoproject.org>; Wed, 23 Oct 2019 15:29:50 -0700 (PDT)
-Received: by mail-wm1-f52.google.com with SMTP id r141so511160wme.4
-	for <yocto@yoctoproject.org>; Wed, 23 Oct 2019 15:29:50 -0700 (PDT)
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
+	[209.85.221.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98FF0E00571
+	for <yocto@yoctoproject.org>; Wed, 23 Oct 2019 15:34:06 -0700 (PDT)
+Received: by mail-wr1-f50.google.com with SMTP id t16so18644396wrr.1
+	for <yocto@yoctoproject.org>; Wed, 23 Oct 2019 15:34:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:user-agent:mime-version:content-transfer-encoding;
-	bh=4SGHUyHIbaanIopX2XdRK1316CgKcnWpzafHnb3gRo4=;
-	b=RoWWIrPFy055Y68Ea1qT44b/BYBHYyhjI8DLAMHilb6IMtfCPTRhJ0oXT4UZZZ97JW
-	nKPEkaFN4oMCPzb+3VIvfE5MSZ1o37WB+O9wO6qBbpOnYCjvKv82CkFeebzTxnLlEnW0
-	bFStKUCcASjmsYfkDwjpNKUJHRx0VKGPYgk0s=
+	h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+	:mime-version:content-transfer-encoding;
+	bh=3vvkAA+IG7P677iLi1k5U+lX7WGqQcR0oo/IKTVwnT0=;
+	b=GTKPco36eNSOPq/z17xBQpwf8KS+TMZHMx//Xn9M075icJAEvvT21szcAWQ9nSlE4Z
+	DobBIvc3D+nNepNA9/nO5QWQ/r8Fz9s8xqyJB/KPiHT2/p1+fLzLhdTNLa/k5H+fLBZI
+	Q+Y6lFAffBFyxdFHCgAdOl6OezQ7RS/vYB5pU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+	h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
 	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=4SGHUyHIbaanIopX2XdRK1316CgKcnWpzafHnb3gRo4=;
-	b=oviK3+p2xdw4URPUO2dZ3/sG0WVODySckFoo+212thoLyKR5XdSKn3Nt75DpzgwTid
-	2ihRRU17nJ4DJn5RI/CyEr6jLqY9GfZjXJr1BO751Jt/tvozoh0NMouIYO0sOhlpbHSH
-	CYItGA3UETwpSryt8mUsNzH7hjA4fYc6IfYxnRsyhl178XxMhn0cIVBFYoF955d71T7P
-	pXTG1BQJ6f707RaTC8O4QO1tQns2U7ZuUU5TtP5o/nQSY0/QllM8JNGhZw50BB+K3oA8
-	QHOeik9Ne3up+vI5GnP/5PAk+oPtpgIhN5PkUF6FjyclCvaVGPqMtDnPsveqkDGP18VM
-	fHTw==
-X-Gm-Message-State: APjAAAVVxQN+q8DjQNLMlWzDIUdkxzQfBGCyMu0/YTaFLxcIQh/rongB
-	/TVX67709/LJxSP9fys8xxB9VA==
-X-Google-Smtp-Source: APXvYqyAsrppgBNO2yqPWDpZMnX4Oy6V/15eSyZ6SoMgN2MYMA0p6ZxblabEeKk6puYgjCQS2BJe3g==
-X-Received: by 2002:a1c:a516:: with SMTP id o22mr2042745wme.116.1571869790150; 
-	Wed, 23 Oct 2019 15:29:50 -0700 (PDT)
+	bh=3vvkAA+IG7P677iLi1k5U+lX7WGqQcR0oo/IKTVwnT0=;
+	b=qpVn9BBwAyfM8f98ZX9AT2jbRmz646u4ID7eW03q2FzeHc8C+8ZJdqNShqDqEVQ9SV
+	+t04K8kw8Nfav8kDblF8Y63ktH9AwFyH+UroN51qrct5JZJUC+RDrQIR9dZQ25MMikUq
+	IukvmfW2tmHHGsWD+c5EPVt8R86ywKP/2hmEabOBIaqHNMcE2gjju5vwq+4PBFBSVjBi
+	FVVh4l2OVbTldcnhDSJXxQaG4N3Txy6s4HhoknZOcFT0uWWegs4IaziRlY0uV3ctP/w/
+	T6n1XTz7wpnLNC9jCCxX+kg8ig/nTZe/SeBgna4V55uVP4cqDxDfdAng03jHLlj0THBn
+	oMeA==
+X-Gm-Message-State: APjAAAXd+XcnNzscmtFcUhEmjqAmVL3B717SjIv23pB7M7rILnUN1Db0
+	bXHVIagBhSD45nNzFLgi1srlig==
+X-Google-Smtp-Source: APXvYqzqXkoEhmYSXbl8TJ6Z+0WMSgPVS6N4PnJ/ha0E5LKhlhQ2lgjUz521pjBoOaODSZbgYJYAwg==
+X-Received: by 2002:adf:a506:: with SMTP id i6mr817533wrb.159.1571870045742;
+	Wed, 23 Oct 2019 15:34:05 -0700 (PDT)
 Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
 	by smtp.gmail.com with ESMTPSA id
-	t123sm736356wma.40.2019.10.23.15.29.48
+	b196sm960498wmd.24.2019.10.23.15.34.04
 	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Wed, 23 Oct 2019 15:29:49 -0700 (PDT)
-Message-ID: <f341de689b79396ee9d405ce52baace0ab83206f.camel@linuxfoundation.org>
-From: richard.purdie@linuxfoundation.org
-To: "Jain, Sangeeta" <sangeeta.jain@intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Wed, 23 Oct 2019 23:29:47 +0100
-In-Reply-To: <CY4PR11MB1879D36BFFD921ECB8929D57E36B0@CY4PR11MB1879.namprd11.prod.outlook.com>
-References: <20191017211733.34EB81C0386@ubuntu1604-ty-1.yocto.io>
-	<BN7PR11MB2721D442E4925D6788AC41E6C86C0@BN7PR11MB2721.namprd11.prod.outlook.com>
-	<CY4PR11MB1879D36BFFD921ECB8929D57E36B0@CY4PR11MB1879.namprd11.prod.outlook.com>
+	Wed, 23 Oct 2019 15:34:05 -0700 (PDT)
+Message-ID: <9856cb73d6b59b77d4d0682dfd2bead31d26ba2c.camel@linuxfoundation.org>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Westermann, Oliver" <Oliver.Westermann@cognex.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Wed, 23 Oct 2019 23:34:04 +0100
+In-Reply-To: <BN6PR06MB313849AD19D69C793421AE90866B0@BN6PR06MB3138.namprd06.prod.outlook.com>
+References: <BN6PR06MB313849AD19D69C793421AE90866B0@BN6PR06MB3138.namprd06.prod.outlook.com>
 User-Agent: Evolution 3.34.1-2 
 MIME-Version: 1.0
-Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>, "Chan,
-	Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
-	"akuster808@gmail.com" <akuster808@gmail.com>
-Subject: Re: QA notification for completed autobuilder build (yocto-2.6.4.rc2)
+Subject: Re: Issues adding bare meta toolchain to yocto build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,40 +73,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Oct 2019 22:29:52 -0000
+X-List-Received-Date: Wed, 23 Oct 2019 22:34:08 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Wed, 2019-10-23 at 08:00 +0000, Jain, Sangeeta wrote:
-> Hello all,
+On Wed, 2019-10-23 at 11:23 +0000, Westermann, Oliver wrote:
+> Hey,
 > 
-> This is the full report for 2.6.4 RC2:  
-> https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?h=intel-yocto-testresults
+> I'm having issues adding a build for a bare metal target to my yocto
+> toolchain. I've a NXP SoC with a M4 core and I would like to
+> integrate the M4 binary build into yocto.
+> My M4 binary has a CMAKE file that depends on ARMGCC_DIR being set to
+> locate the toolchain and everything works fine locally.
 > 
-> ======= Summary ========
-> No high milestone defects.  
-> No new defect found in this cycle.
-> The stap test case failure on beaglebone still exists in this release
-> (BUG id:13273). 
+> I've create a recipe for the toolchain that is heavily inspired by a
+> TI recipe for the gcc-arm-none-eabi (available here: 
+> http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/tree/recipes-ti/devtools/gcc-arm-none-eabi_7-2018-q2-update.bb?h=master
+> ).
+> I've made sure that GCC_ARM_NONE_TOOLCHAIN_RECIPE is set.
 > 
-> ======= Bugs ========
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=13273
+> After calling bitbake -cpopulate-sysroot gcc-arm-none-eabi-native the
+> image/${GCC_ARM_NONE_TOOLCHAIN_RECIPE} path contains the complete
+> toolchain.
 > 
-> Thanks & Regards,
-> Sangeeta Jain
+> My M4 recipe looks like this (plus SUMMARY, LICENSE, SRC_URI, ...):
+> 
+> inherit pkgconfig cmake
+> DEPENDS = "gcc-arm-none-eabi-native"
+> 
+> S = "${WORKDIR}/git "
+> 
+> EXTRA_OECMAKE = '-DCMAKE_TOOLCHAIN_FILE="../armgcc.cmake" \
+>                  -G "Unix Makefiles" \
+>                  -DCMAKE_BUILD_TYPE=release'
+> 
+> From my understanding depending on gcc-arm-none-eabi-native should
+> result in the native toolchain being installed into the m4's recipe-
+> sysroot-native folder.
+> The sysroot-providers in the recipe-sysroot-native folder does list
+> gcc-arm-none-eabi-native, but I don't get the files and therefore
+> have no toolchain.
+> 
+> Any suggestions on what I'm doing wrong or how to debug this further?
 
-Thanks Sangeeta and team!
+Sounds like the sysroot filtering code doesn't know about this
+directory and therefore doesn't pass it through to the recipe sysroot?
 
-Rather than respin the release we're thinking we should perhaps release
-and then add the fix for the stap issue to the branch. The TSC will
-make a decision on that, hopefully tomorrow. We're hoping to get the
-warrior point release sorted ASAP but the remaining issue is proving
-tricky to resolve.
+The recipe you link to is for an on target compiler, not one in the
+sysroot.
+
+I'm actually a little surprised you can't use our standard cross
+compiler assuming this M4 core is on an ARM chip? It should be a case
+of passing the right options to the compiler to target the M4?
 
 Cheers,
 
 Richard
-
-
 
 
