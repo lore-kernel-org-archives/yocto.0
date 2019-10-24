@@ -1,75 +1,115 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <prvs=12000eacd9=alejandro.delcastillo@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65073E00E3B; Thu, 24 Oct 2019 08:56:22 -0700 (PDT)
+	id 99A50E00DFC; Thu, 24 Oct 2019 12:39:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	https://www.dnswl.org/, no *      trust
-	*      [209.85.221.68 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,RCVD_IN_DNSWL_LOW,URI_NOVOWEL autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [148.163.156.75 listed in list.dnswl.org]
+	*  0.5 URI_NOVOWEL URI: URI hostname has long non-vowel sequence
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com
-	[209.85.221.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64E42E00E25
-	for <yocto@yoctoproject.org>; Thu, 24 Oct 2019 08:56:03 -0700 (PDT)
-Received: by mail-wr1-f68.google.com with SMTP id z11so3307042wro.11
-	for <yocto@yoctoproject.org>; Thu, 24 Oct 2019 08:56:03 -0700 (PDT)
+	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
+Received: from mx0b-00010702.pphosted.com (mx0a-00010702.pphosted.com
+	[148.163.156.75])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E54AFE00BF7
+	for <yocto@yoctoproject.org>; Thu, 24 Oct 2019 12:39:54 -0700 (PDT)
+Received: from pps.filterd (m0098780.ppops.net [127.0.0.1])
+	by mx0a-00010702.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id
+	x9OJZP28012526; Thu, 24 Oct 2019 14:39:49 -0500
+Received: from nam03-dm3-obe.outbound.protection.outlook.com
+	(mail-dm3nam03lp2052.outbound.protection.outlook.com [104.47.41.52])
+	by mx0a-00010702.pphosted.com with ESMTP id 2vt9s8fb5m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
+	Thu, 24 Oct 2019 14:39:49 -0500
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+	b=Lm0WXan1DnZ2F7mcW7hTh9cyjc+KKRFuFB+WnsSyMb/9VqemYoByx45zXeDWcyWeIqBStmsLZYnBassF/oEmOl9EQc6ca86tS8I7+i3H7CvsjP5zeFC/KukLVfNsrm7Eb+Vtnm+B99Jna8IvyLVtv8gcGcvQMLByn1u3mapGa3v5hCmUJXQn6qvCPPjW048nrP7oEOUDgUPkRGcpuJS3Lm1IQtsCyM4fVPcbmao9B12Qvc7Gj64+sFCFzafpe3ISybXItTqLf0eh4GG9Pqx/VqLlZqjaZ2D1tN0a7yo+wA3rjRo7v1lfpqbMYMULnRcJ+Q+VaPoHyQFwAvYho5sRCQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+	s=arcselector9901;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=gN88IEgpthqgLYvdfS935cqkcFLfnle67PX/AsgqKGc=;
+	b=bkZVqvUXlDf+RwwI4n1n0YDPJPdpWTFESQMD2zD74Uz7wNjFEqtG7Blzl/REwUV5P2SKUBDAUOzDeZnCYWlVOkrox4QDclGCxIFQ5UWwPeDZDQQBO1JgjRPi7XK2O3KcZUws2sOv4UGZBB2nI4VXBTszBeJVGxoIxqJyJCR/+q/oA1XXsh6Vi7LJ01zAkoupa3PrntVGAtIEsqHoS4QyZp0aqyD6GL/KfwFdf+bo2n/Z0mWWFB+QZzTMPZHCb4zq/JjFOQQf5K3pkYe+PmYjCuyFG/I/JzV/utpymKx2hiMjXKteYchNY06EgaoRg7X4c9iqiXTlBjbMhFRzSg/nVg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+	smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com;
+	dkim=pass header.d=ni.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:user-agent:mime-version:content-transfer-encoding;
-	bh=6nOTKSblgXNZiLwGZb8gYsA+L1vYzkWig512/nXbFUw=;
-	b=YuUine/JjKB2ni5u0IqOTMg6I6/BSrn6APY53JKgYb8jkKS0Lo/I6C1Z4Ns0NiMgqU
-	YcnMj8P0Nm9Pizc06Vtz60Id5LSt7iy0yEHMzhflCvVfngDsCExpRyGEuYdukKZfTUSn
-	ZL+8QuET8q7kyLCtcI2fCeSCD97tdxixAZIuo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=6nOTKSblgXNZiLwGZb8gYsA+L1vYzkWig512/nXbFUw=;
-	b=FeAwcdOLF5D8YEwSHjvrD5MIm14eH0pQZUFArAXES5TMkQSRhvqfEH0hs3FzwjSA+h
-	lnNm13DN+hFKFVu9PCoVCabuGa8g5oI+7HqDswUB6rV9D4rzT5xUSa5n5U4XwkQXC7gh
-	O4WXNUUmLoO8699CCzynmvpWKKPDFMYTz8Jhm0aAIHwOziZVkjN81HKBqqE3lV0EgTSd
-	LuBpKVHlK6xHecl+VJYbSNHYDKWQBCKkwLeyCTQ70nNtiPpBD9Z12Ky5lUeoKDziN43Y
-	m97QbIy/AfuSD/9xBY88sryEgCytqUrMU9Wz5HT/GE5ulchSxNUou9+gn9D/e2riyAPk
-	g+Vg==
-X-Gm-Message-State: APjAAAWB4hKt0ig37tkxOzY3jAQxEI/2VvnCGqDG4E9Atm2WGOAfevcD
-	+T75ghtAVKlLs/5uaENu47dGtw==
-X-Google-Smtp-Source: APXvYqz6Xf8Tb0U/YK9UJ1W6xCLciRPMSDJrlNQCgCQ5X0Y6HfBonsJsL8jmsYsjj8rNKnCZPOpLlw==
-X-Received: by 2002:a5d:5222:: with SMTP id i2mr4480261wra.271.1571932562632; 
-	Thu, 24 Oct 2019 08:56:02 -0700 (PDT)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id
-	p12sm13493574wrt.7.2019.10.24.08.56.01
-	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Thu, 24 Oct 2019 08:56:02 -0700 (PDT)
-Message-ID: <65bf32790a18301a58e7d5f515e5e1320bb162f4.camel@linuxfoundation.org>
-From: richard.purdie@linuxfoundation.org
-To: "Westermann, Oliver" <Oliver.Westermann@cognex.com>, William Mills
-	<wmills@ti.com>, "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	"Dmytriyenko, Denys" <denys@ti.com>
-Date: Thu, 24 Oct 2019 16:55:59 +0100
-In-Reply-To: <BN6PR06MB3138924730BC280E950B0549866A0@BN6PR06MB3138.namprd06.prod.outlook.com>
-References: <BN6PR06MB313849AD19D69C793421AE90866B0@BN6PR06MB3138.namprd06.prod.outlook.com>
-	<9856cb73d6b59b77d4d0682dfd2bead31d26ba2c.camel@linuxfoundation.org>
-	<BN6PR06MB313818F72FAB043D8AB49765866A0@BN6PR06MB3138.namprd06.prod.outlook.com>
-	<e0e504f3013981d9dfb31ef0428cdf8f1aabb22b.camel@linuxfoundation.org>
-	<95316727-6a1c-42fa-5cb3-f6d79ee4edf6@ti.com>
-	<f95fb29cf51372495e0a604b5e830a0152dbdd13.camel@linuxfoundation.org>
-	<03c8c0c5-c897-acd7-4236-00cd384c9162@ti.com>
-	<BN6PR06MB3138924730BC280E950B0549866A0@BN6PR06MB3138.namprd06.prod.outlook.com>
-User-Agent: Evolution 3.34.1-2 
+	d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=gN88IEgpthqgLYvdfS935cqkcFLfnle67PX/AsgqKGc=;
+	b=pHkAN8j8wSDno7723DLhDjllUnDASsOeIM18CrM6a+SzwbahPG7E9O1soFBC5Jql3ou++hQRzo4QpnGKCs7jMaUE1nhvaVBghEMWIJ09FSEdfUy0hDwW12tIS5EZARmUNAG4GQjKtGT8PrWbpfX9PwjOzSGg4Rgm133BGdzIdXg=
+Received: from MWHPR0401MB3658.namprd04.prod.outlook.com (10.167.163.20) by
+	MWHPR0401MB3593.namprd04.prod.outlook.com (10.167.162.160) with
+	Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.2387.22; Thu, 24 Oct 2019 19:39:47 +0000
+Received: from MWHPR0401MB3658.namprd04.prod.outlook.com
+	([fe80::b930:8014:da3b:898a]) by
+	MWHPR0401MB3658.namprd04.prod.outlook.com
+	([fe80::b930:8014:da3b:898a%6]) with mapi id 15.20.2347.030;
+	Thu, 24 Oct 2019 19:39:47 +0000
+From: Alejandro Del Castillo <alejandro.delcastillo@ni.com>
+To: "opkg-devel@googlegroups.com" <opkg-devel@googlegroups.com>, Yann
+	CARDAILLAC <yann.cardaillac@smile.fr>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>, "openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Thread-Topic: [EXTERNAL] [opkg-devel] [yocto][PATCH][opkg] bug 13528 add SPDX
+	id to opkg
+Thread-Index: AQHViOjAlVrmRtBbWkenM5UCYmJ5G6dqM8AA
+Date: Thu, 24 Oct 2019 19:39:47 +0000
+Message-ID: <0d017fc3-b00b-cfeb-2b35-267b894e7d25@ni.com>
+References: <CAA984JWqcX5oDhumXYBom+ZyxD+bo7oGmTzLx_tXejvPaR1UKQ@mail.gmail.com>
+In-Reply-To: <CAA984JWqcX5oDhumXYBom+ZyxD+bo7oGmTzLx_tXejvPaR1UKQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: SN6PR01CA0007.prod.exchangelabs.com (2603:10b6:805:b6::20)
+	To MWHPR0401MB3658.namprd04.prod.outlook.com
+	(2603:10b6:301:79::20)
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [130.164.62.197]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: df87c5f7-c268-456a-f886-08d758b9ed4f
+x-ms-traffictypediagnostic: MWHPR0401MB3593:
+x-ms-exchange-purlcount: 11
+x-microsoft-antispam-prvs: <MWHPR0401MB3593BBAECB6EE76438433590866A0@MWHPR0401MB3593.namprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3826;
+x-forefront-prvs: 0200DDA8BE
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(346002)(39860400002)(136003)(396003)(366004)(376002)(189003)(199004)(14454004)(229853002)(3846002)(6116002)(6246003)(6486002)(561944003)(76176011)(256004)(71200400001)(71190400001)(52116002)(102836004)(26005)(53546011)(6506007)(386003)(31696002)(7736002)(31686004)(305945005)(486006)(186003)(446003)(11346002)(86362001)(2906002)(99286004)(2616005)(2201001)(476003)(5660300002)(66446008)(64756008)(45080400002)(66556008)(66476007)(36756003)(6436002)(66946007)(4326008)(81156014)(66066001)(81166006)(8676002)(478600001)(25786009)(110136005)(8936002)(966005)(316002)(6306002)(2501003)(6512007);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:MWHPR0401MB3593;
+	H:MWHPR0401MB3658.namprd04.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; MX:1; A:1; 
+received-spf: None (protection.outlook.com: ni.com does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: PYdN1YIJoDdgBPEo1qiPD8BIO9VBubekDGN0kJNBIK8k5DfJvp2e0+zEmhpqTirAkBmj6YZeIPWRQyJ2RoVD8zCeQYUqNqPuFBInrdc41s4d7RovNn+P0nrUYXpZ1bVuhPoPdUmyashTVnMa3AWvH98UE07QFcG11YPYiyOsGlA5Gjx446heiVy/lXmFZwIZyZrLTr+BR7so18wY19ay+XUaezNjxxXu3CD0E9X+yqjookM73piqdoMrdpB+yLKh0Lmn7adCojSDDNRB2FY827gx1hC7tbcSpl1pUxpZ7fHg9SezkU+P5Z9c54EWa10v4dbM2G0FFVyYi7vhD6E3QBy68qrHgjL+t4++Ok8i0w5/WwXI+3VZVtU2jj4JTD+lOloscdOa58BGbJTsw1DGZzixoTTeUUeuwZCM3YaOiOhCQFlcOQRk/aayZiEfiMiLMXOOhrwZA9mraMq/e8S5+z0L9X3TfI5tF9s5MoQxHOA=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Subject: Re: [EXTERNAL] Re: Issues adding bare meta toolchain to yocto build
+X-OriginatorOrg: ni.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: df87c5f7-c268-456a-f886-08d758b9ed4f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Oct 2019 19:39:47.2038 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DJ0LUVCG/q7/8UA718z/pTktUiTpGxDvKgloK/Pc2KfeyA29W1uBaGrlGVtxPoovEO4wNckbsog5YSuyM32PPqA+Fae8aEws8tBnA0ZenPU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR0401MB3593
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.95,1.0.8
+	definitions=2019-10-24_11:2019-10-23,2019-10-24 signatures=0
+X-Proofpoint-Spam-Details: rule=inbound_policy_notspam policy=inbound_policy
+	score=30
+	lowpriorityscore=0 adultscore=0 priorityscore=1501 bulkscore=0
+	phishscore=0 mlxscore=0 clxscore=1011 impostorscore=0 malwarescore=0
+	suspectscore=0 spamscore=0 mlxlogscore=999 classifier=spam adjust=30
+	reason=mlx scancount=1 engine=8.12.0-1908290000
+	definitions=main-1910240184
+Cc: Romain Naour <romain.naour@smile.fr>
+Subject: Re: [opkg-devel] [PATCH][opkg] bug 13528 add SPDX id to opkg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -81,70 +121,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Oct 2019 15:56:32 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 24 Oct 2019 19:39:55 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <320DA9440F965143907245FC4C1AE5BC@namprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
-On Thu, 2019-10-24 at 15:37 +0000, Westermann, Oliver wrote:
-> > On Thu, 2019-10-24 at 04:01 +0000, Richard Purdie wrote:
-> > If its a native recipe, there are no packages and therefore FILES
-> > doesn't make sense.
-> 
-> Oh, I have to admit I'm pretty new to the concept of the native
-> packages.
-> Where can I find the list of files that are considered to be
-> installed into a "native" packages sysroot?
-
-http://git.yoctoproject.org/cgit.cgi/poky/tree/meta/classes/staging.bbclass
-
-SYSROOT_DIRS_NATIVE vs. just SYSROOT_DIRS
-(at the top of the file)
-
-The code which uses these is below in that file and handles which files
-get "staged". We stage a different set for native and target.
-
-> An good option for me would be to eg. install the toolchain into the
-> native sysroots /opt/ dir for usage by other recipes.
-
-You can probably do that by extending SYSROOT_DIRS in the recipe.
-
-> > Can you confirm that recipe does work?
-> 
-> For the TI recipe, no, I can't. I found it online and used it as a
-> guide for my first steps on the topic.
->
-> 
-> > If you install the binaries into ${bindir} they will. If you place
-> > them
-> > somewhere else which the system doesn't know about, they probably
-> > won't.
-> > 
-> > There are ways to make alternative locations work but I don't see
-> > any
-> > of that in the above recipe.
-> 
-> Can you point me to these ways? :)
-
-See above, easiest is extending SYSROOT_DIRS.
-
-> > There isn't anything that special about a baremetal compiler except
-> > it sets some different default flags and is missing the library
-> > support.
-> 
-> I agree, though using linaro has the benefit that we would use the
-> same toolchain in yocto as in "regular development" of the m4
-> functionality.
-
-Agreed. If you want a newlib compiler (which is a bit more than
-baremetal as I understand the term) you'd need a multiconfig build to
-generate one too as discussed in the other part of the thread.
-
-Cheers,
-
-Richard
-
-
-
-
-
+SGkgWWFubiwNCg0KVGhhbmtzIGFnYWluIGZvciBhZGRpbmcgdGhlIGhlYWRlcnMuIFlvdXIgcGF0
+Y2ggbG9va3MgZ29vZCwgZXhjZXB0IGZvcg0Kb25lIGxpbmUgdGhhdCBoYXMgYSBkdXBsaWNhdGVk
+IGhlYWRlcjoNCg0KL2NvcmUvMjZfcHJlZmVyX2FyY2hfdG9fdmVyc2lvbi5weQ0KaW5kZXggMGEw
+ZDY2Yi4uODI5MzRjMSAxMDA3NTUNCi0tLSBhL3Rlc3RzL2NvcmUvMjZfcHJlZmVyX2FyY2hfdG9f
+dmVyc2lvbi5weQ0KKysrIGIvdGVzdHMvY29yZS8yNl9wcmVmZXJfYXJjaF90b192ZXJzaW9uLnB5
+DQpAQCAtMSw0ICsxLDUgQEANCi0jISAvdXNyL2Jpbi9lbnYgcHl0aG9uMw0KKyMhIC91c3IvYmlu
+L2VudiBweXRob24zIyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMC1vbmx5DQorIyBT
+UERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMC1vbmx5DQogICMNCg0KY291bGQgeW91IHNl
+bmQgYSB2Mj8gcmVnYXJkaW5nIG00IGZpbGVzLCBJIGxvb2tlZCBhcm91bmQgYSBiaXQgYW5kIA0K
+ZGlkbid0IGZpbmQgcHJvamVjdCBhZGRpbmcgU1BEWCBpZGVudGlmaWVycyB0byB0aGVtLi4uLg0K
+DQpDaGVlcnMsDQoNCkFsZWphbmRybw0KDQpPbiAxMC8yMi8xOSA5OjU1IEFNLCBZYW5uIENBUkRB
+SUxMQUMgd3JvdGU6DQo+IEhpLA0KPiANCj4gSSdtIHdvcmtpbmcgb24gYnVnIDogDQo+IGh0dHBz
+Oi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTM1MjggDQo+IDxo
+dHRwczovL3VybGRlZmVuc2UuY29tL3YzL19faHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qu
+b3JnL3Nob3dfYnVnLmNnaT9pZD0xMzUyOF9fOyFmcVdKY25sVGtqTSE0RFZEOWxQMlVkQ0Y1VWVk
+SThKLVhqaFFRdXlEaG1BaUxhT1hrOE9XNUtNQ0ZSekcyQVNQX0JkcnhudkJuQ25iMFR5WU5RJD4N
+Cj4NCj4gIEkndmUgYSBmaXJzdCBwYXRjaCBwcm9wb3NhbC4gTm90ZSB0aGF0IEkgZGlkbid0IGtu
+ZXcgd2hhdCB0byBkbyB3aXRoDQo+ICBtNC9ncGdtZS5tNCB0aGUgbGljZW5zZSBoZWFkZXIgc2Vl
+bXMgcHJldHR5IHdlaXJkIHRvIG1lLi4uDQo+IA0KPiBSZWdhcmRzLA0KPiANCj4gLS0gU01JTEUg
+DQo+IDxodHRwczovL3VybGRlZmVuc2UuY29tL3YzL19faHR0cDovL3d3dy5zbWlsZS5ldS9fXzsh
+ZnFXSmNubFRrak0hNERWRDlsUDJVZENGNVVlZEk4Si1YamhRUXV5RGhtQWlMYU9YazhPVzVLTUNG
+UnpHMkFTUF9CZHJ4bnZCbkNuZmJEQ0hZdyQ+DQo+DQo+ICAyMCBydWUgZGVzIEphcmRpbnMgOTI2
+MDAgQXNuacOocmVzLXN1ci1TZWluZQ0KPiANCj4gICpZYW5uIENBUkRBSUxMQUMqIEluZ8Opbmll
+dXIgU3lzdMOobWVzIEVtYmFycXXDqXMNCj4gDQo+IGVtYWlsIHlhbm4uY2FyZGFpbGxhY0BzbWls
+ZS5mciA8bWFpbHRvOnlhbm4uY2FyZGFpbGxhY0BzbWlsZS5mcj4gdXJsDQo+IGh0dHA6Ly93d3cu
+c21pbGUuZXUgDQo+IDxodHRwczovL3VybGRlZmVuc2UuY29tL3YzL19faHR0cDovL3d3dy5zbWls
+ZS5ldV9fOyFmcVdKY25sVGtqTSE0RFZEOWxQMlVkQ0Y1VWVkSThKLVhqaFFRdXlEaG1BaUxhT1hr
+OE9XNUtNQ0ZSekcyQVNQX0JkcnhudkJuQ21WOVI0alBBJD4NCj4gDQo+IA0KPiANCj4gVHdpdHRl
+ciANCj4gPGh0dHBzOi8vdXJsZGVmZW5zZS5jb20vdjMvX19odHRwczovL3R3aXR0ZXIuY29tL0dy
+b3VwZVNtaWxlX187IWZxV0pjbmxUa2pNITREVkQ5bFAyVWRDRjVVZWRJOEotWGpoUVF1eURobUFp
+TGFPWGs4T1c1S01DRlJ6RzJBU1BfQmRyeG52Qm5Da3EtbUZ6Y3ckPg0KPiAgRmFjZWJvb2sgDQo+
+IDxodHRwczovL3VybGRlZmVuc2UuY29tL3YzL19faHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL3Nt
+aWxlb3BlbnNvdXJjZV9fOyFmcVdKY25sVGtqTSE0RFZEOWxQMlVkQ0Y1VWVkSThKLVhqaFFRdXlE
+aG1BaUxhT1hrOE9XNUtNQ0ZSekcyQVNQX0JkcnhudkJuQ2s4THhXMDhBJD4NCj4gIExpbmtlZElu
+IA0KPiA8aHR0cHM6Ly91cmxkZWZlbnNlLmNvbS92My9fX2h0dHBzOi8vd3d3LmxpbmtlZGluLmNv
+bS9jb21wYW55L3NtaWxlX187IWZxV0pjbmxUa2pNITREVkQ5bFAyVWRDRjVVZWRJOEotWGpoUVF1
+eURobUFpTGFPWGs4T1c1S01DRlJ6RzJBU1BfQmRyeG52Qm5DazUtM3kwOHckPg0KPiAgR2l0aHVi
+IA0KPiA8aHR0cHM6Ly91cmxkZWZlbnNlLmNvbS92My9fX2h0dHBzOi8vZ2l0aHViLmNvbS9TbWls
+ZS1TQV9fOyFmcVdKY25sVGtqTSE0RFZEOWxQMlVkQ0Y1VWVkSThKLVhqaFFRdXlEaG1BaUxhT1hr
+OE9XNUtNQ0ZSekcyQVNQX0JkcnhudkJuQ2xFT3hVem9BJD4NCj4gDQo+IA0KPiANCj4gDQo+IA0K
+PiBlY28gUG91ciBsYSBwbGFuw6h0ZSwgbidpbXByaW1leiBjZSBtYWlsIHF1ZSBzaSBjJ2VzdCBu
+w6ljZXNzYWlyZQ0KPiANCj4gLS0gWW91IHJlY2VpdmVkIHRoaXMgbWVzc2FnZSBiZWNhdXNlIHlv
+dSBhcmUgc3Vic2NyaWJlZCB0byB0aGUgR29vZ2xlDQo+ICBHcm91cHMgIm9wa2ctZGV2ZWwiIGdy
+b3VwLiBUbyB1bnN1YnNjcmliZSBmcm9tIHRoaXMgZ3JvdXAgYW5kIHN0b3ANCj4gcmVjZWl2aW5n
+IGVtYWlscyBmcm9tIGl0LCBzZW5kIGFuIGVtYWlsIHRvDQo+IG9wa2ctZGV2ZWwrdW5zdWJzY3Jp
+YmVAZ29vZ2xlZ3JvdXBzLmNvbSANCj4gPG1haWx0bzpvcGtnLWRldmVsK3Vuc3Vic2NyaWJlQGdv
+b2dsZWdyb3Vwcy5jb20+LiBUbyB2aWV3IHRoaXMNCj4gZGlzY3Vzc2lvbiBvbiB0aGUgd2ViIHZp
+c2l0IA0KPiBodHRwczovL2dyb3Vwcy5nb29nbGUuY29tL2QvbXNnaWQvb3BrZy1kZXZlbC9DQUE5
+ODRKV3FjWDVvRGh1bVhZQm9tJTJCWnl4RCUyQmJvN29HbVR6THhfdFhlanZQYVIxVUtRJTQwbWFp
+bC5nbWFpbC5jb20NCj4gIA0KPiA8aHR0cHM6Ly91cmxkZWZlbnNlLmNvbS92My9fX2h0dHBzOi8v
+Z3JvdXBzLmdvb2dsZS5jb20vZC9tc2dpZC9vcGtnLWRldmVsL0NBQTk4NEpXcWNYNW9EaHVtWFlC
+b20qMkJaeXhEKjJCYm83b0dtVHpMeF90WGVqdlBhUjFVS1EqNDBtYWlsLmdtYWlsLmNvbT91dG1f
+bWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9Zm9vdGVyX187SlNVbCFmcVdKY25sVGtqTSE0RFZEOWxQ
+MlVkQ0Y1VWVkSThKLVhqaFFRdXlEaG1BaUxhT1hrOE9XNUtNQ0ZSekcyQVNQX0JkcnhudkJuQ243
+YmV6OFRnJD4uDQoNCi0tDQo+IA0KQ2hlZXJzLA0KDQpBbGVqYW5kcm8NCg==
 
