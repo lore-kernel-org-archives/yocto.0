@@ -1,67 +1,91 @@
-Return-Path: <wmills@ti.com>
+Return-Path: <Oliver.Westermann@cognex.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0A5DE00D6A; Thu, 24 Oct 2019 07:30:39 -0700 (PDT)
+	id F03E0E00D6A; Thu, 24 Oct 2019 07:48:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, FORGED_SPF_HELO, RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [198.47.19.141 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [40.107.79.128 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B179CE00C46
-	for <yocto@yoctoproject.org>; Thu, 24 Oct 2019 07:30:38 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x9OEUaF3082290;
-	Thu, 24 Oct 2019 09:30:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1571927436;
-	bh=fxK4j/RzwAhuEe02HmFvBKF+x1DnX3HdsfchwjGVQdM=;
-	h=Subject:To:CC:References:From:Date:In-Reply-To;
-	b=PPOE6V3GmET1XTX4ZZrqrpTuktSlU00BFBghY1P+JtIqYR8249+2dYPAREu1Ok/FX
-	wiysh9Kf5zW+byDYG6CtpMq7YBTLG+wZdXT4cCpYJZmwjF2pzw6WTvZjfkNR7+CBUi
-	Co33fZWaA+ZZZ3tlmNvJohtg5g4orppx8xPed8xk=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x9OEUZZu114098
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 24 Oct 2019 09:30:36 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE112.ent.ti.com
-	(10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5;
-	Thu, 24 Oct 2019 09:30:25 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
-	(10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
-	cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
-	Frontend Transport; Thu, 24 Oct 2019 09:30:25 -0500
-Received: from [158.218.117.100] (ileax41-snat.itg.ti.com [10.172.224.153])
-	by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x9OEUZcm111082;
-	Thu, 24 Oct 2019 09:30:35 -0500
-To: <richard.purdie@linuxfoundation.org>, "Westermann, Oliver"
-	<Oliver.Westermann@cognex.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "Dmytriyenko, Denys" <denys@ti.com>
-References: <BN6PR06MB313849AD19D69C793421AE90866B0@BN6PR06MB3138.namprd06.prod.outlook.com>
-	<9856cb73d6b59b77d4d0682dfd2bead31d26ba2c.camel@linuxfoundation.org>
-	<BN6PR06MB313818F72FAB043D8AB49765866A0@BN6PR06MB3138.namprd06.prod.outlook.com>
-	<e0e504f3013981d9dfb31ef0428cdf8f1aabb22b.camel@linuxfoundation.org>
-	<95316727-6a1c-42fa-5cb3-f6d79ee4edf6@ti.com>
-	<f95fb29cf51372495e0a604b5e830a0152dbdd13.camel@linuxfoundation.org>
-From: William Mills <wmills@ti.com>
-Message-ID: <03c8c0c5-c897-acd7-4236-00cd384c9162@ti.com>
-Date: Thu, 24 Oct 2019 10:30:34 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.9.0
+	*      valid *  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
+Received: from NAM03-CO1-obe.outbound.protection.outlook.com
+	(mail-eopbgr790128.outbound.protection.outlook.com [40.107.79.128])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B56E8E00571
+	for <yocto@yoctoproject.org>; Thu, 24 Oct 2019 07:48:40 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+	b=KXP1XMKLWIgt8ObjQxnGOPxcq2CFTTdlkO68HMGgQtOYK/2m6oDV2xtgOvX5z4jXkHg4+T0FnEVUGW2W/t9wohltmk2HGa+1oXKnicMvwkqX85DVpiafe/lt1Hdp4Um+/p8LdvXjdhpKPphsoBe5r6OuYLNifUDHoY48H413cjCqao1DCcNafldA4JvUUjQw91oC9YadNt1Z9B3OEl5t2QurfXRtlCDJPPkV9CjW1D+LMRnNkpRCaOMZoG7SbSZkOr8qGAlrj6z0YhtLk7xMle+vWzby9c840MmcoiBrAwvhztIwZw4pu8xV0vezmMBNQprP9UjE3LCvSO60UMNRsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+	s=arcselector9901;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=KIoPKXKzE1e9BPgcv8TPCoPLMp2VMjTLVO7VS2ZvKbc=;
+	b=ky0+VnEh45K8yOe6CmH1Eq+7ork0LWaD1136avRf9D1jDrXpbhSbnqfu6xM9JEFkmC6tYDUI9/H7sHmX5kpvpQU80IHtK2fkJd+zBKvaINT7ENCUIFvH2Jklg6Ua6iDjXvwcZSIEktU3XYlLifqFkTx91/PIoJB6Fk+EgPYv855bpDnYME1rsWXeqOPv1hsLcJtKJpULMtPs7shgtzayHPRAbWpDGL/tM/G6rXUmEFusB2WGu8ewQ7gl/gbeLkku58/+rfMTccSNose8eswlhUVzRFqyTD0wKVyc/9rT9t3lx6fREtizuAnlVuJ27Dx65RZ7LxVNoZpdfCEZQev7ww==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+	smtp.mailfrom=cognex.com; dmarc=pass action=none header.from=cognex.com;
+	dkim=pass header.d=cognex.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=cognexcorporation.onmicrosoft.com;
+	s=selector2-cognexcorporation-onmicrosoft-com;
+	h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+	bh=KIoPKXKzE1e9BPgcv8TPCoPLMp2VMjTLVO7VS2ZvKbc=;
+	b=RYjgsh7yh+RRwdTmN86vkNUOwH2XX7Ny3rk/QWkHPFU6FdgsK8izg/bQ90R66/E8VUwoxh+qfOOWTFjaKk/UXPH3FXQBOTi1kDnVqm8z7V+9NtsQthMvATQ5M9uizCJHtEEhpqWn0YvYtS5x+na8yNoXatiSiVv+0skpvolEk7o=
+Received: from BN6PR06MB3138.namprd06.prod.outlook.com (10.174.95.141) by
+	BN6PR06MB2530.namprd06.prod.outlook.com (10.173.19.8) with Microsoft
+	SMTP
+	Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+	15.20.2387.20; Thu, 24 Oct 2019 14:48:38 +0000
+Received: from BN6PR06MB3138.namprd06.prod.outlook.com
+	([fe80::9041:9ac4:2630:4791]) by
+	BN6PR06MB3138.namprd06.prod.outlook.com
+	([fe80::9041:9ac4:2630:4791%5]) with mapi id 15.20.2387.023;
+	Thu, 24 Oct 2019 14:48:38 +0000
+From: "Westermann, Oliver" <Oliver.Westermann@cognex.com>
+To: "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Issues adding bare meta toolchain to yocto build
+Thread-Index: AdWKehcoHvv5+TR7Q1y2ythJ3+Jxyw==
+Date: Thu, 24 Oct 2019 14:48:37 +0000
+Message-ID: <BN6PR06MB31380A486EF6F6A6967622F9866A0@BN6PR06MB3138.namprd06.prod.outlook.com>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=Oliver.Westermann@cognex.com; 
+x-originating-ip: [212.117.79.11]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b6445ce1-842b-474f-c1df-08d758914114
+x-ms-traffictypediagnostic: BN6PR06MB2530:
+x-microsoft-antispam-prvs: <BN6PR06MB2530CAE4FCED67EE7257FBDD866A0@BN6PR06MB2530.namprd06.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 0200DDA8BE
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019020)(4636009)(346002)(396003)(39860400002)(366004)(376002)(136003)(199004)(189003)(478600001)(64756008)(66446008)(66476007)(66556008)(55016002)(2906002)(76116006)(9686003)(3846002)(14444005)(6116002)(6506007)(25786009)(26005)(71190400001)(256004)(7696005)(71200400001)(2501003)(99286004)(66946007)(6436002)(52536014)(102836004)(14454004)(8936002)(86362001)(316002)(110136005)(81166006)(81156014)(8676002)(66066001)(5660300002)(33656002)(476003)(4001150100001)(305945005)(486006)(7736002)(74316002)(186003);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BN6PR06MB2530;
+	H:BN6PR06MB3138.namprd06.prod.outlook.com; FPR:; SPF:None;
+	LANG:en; PTR:InfoNoRecords; A:1; MX:1; 
+received-spf: None (protection.outlook.com: cognex.com does not designate
+	permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: CTx+yLzxOVLp6NtwpSIFhVeUcG2VENVTM/gg5De6MMX5Uzd2xdFAgOuD2kl6kOjnwHT3svzxITUgtzkJPg4SdcBhyKsAeuu3YkZI3zqKCkSxVSjXWDlsghG9IplPNGIY8+fJd7KS5ReFX9hSen/459Hn/ZUA00KOl6BVpI5ZkxRZz/4esxw83WE53ZKKvEyg3DM0UkyRkAmQ0SCdZKOy0LZN6uE2N4RkADZw6Ux8IOLnXxA61LM21UgOdptv1d+ycxMIG6/PUyCBMfcuEssO3G6LNqGgDwM5EDl1izMU9MY4seUeu5a6vtgnW8AnnaIxeXYs9zplSBuMFbVEi1lGpH+ObVfjftGKkbwKtXAu12UeYRR+VcwWr53u8Fj2HLyGFDH8uPGb7VnUjoYsPbu+jacPyFlSwVCF/TVi8TqbO5N04gxYi9m1j+Ev7FhhWEP2
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-In-Reply-To: <f95fb29cf51372495e0a604b5e830a0152dbdd13.camel@linuxfoundation.org>
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Subject: Re: [EXTERNAL] Re: Issues adding bare meta toolchain to yocto build
+X-OriginatorOrg: cognex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b6445ce1-842b-474f-c1df-08d758914114
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Oct 2019 14:48:38.0206 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c12007a4-882b-4381-b05a-b783431570c7
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: aYuCVpLzk4I2qLH4FmXRWdWfhEpAlqBQIX532A6YXg84GH/x/BfHpoMf48DvKpgIGZuwkImdL41vaN/jUEqp8gaSBFUqjLVez7jnHx56N2c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR06MB2530
+Subject: Issues adding bare meta toolchain to yocto build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,134 +97,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Oct 2019 14:30:40 -0000
+X-List-Received-Date: Thu, 24 Oct 2019 14:48:42 -0000
+Content-Language: de-DE
 Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
 
-
-
-On 10/24/19 10:02 AM, richard.purdie@linuxfoundation.org wrote:
-> Hi Bill,
-> 
-> On Thu, 2019-10-24 at 09:43 -0400, William Mills wrote:
->> I started looking at this thread because I had the same
->> questions.  Is it possible to make a recipe depend on another version
->> of GCC and restart the whole GCC build process again with a different
->> config.
->>
->> Or does this need multi-config?
-> 
-> A different version of gcc would be most easily handled with
-> multiconfig, yes.
-> 
->> This is the question I was trying to ask the other day.
->>
->>> I'm saying I don't think you need a second toolchain. I think you
->>> could
->>> use your existing arm toolchain with the right compiler options.
->>>
->>> See 
->>> https://stackoverflow.com/questions/28514507/what-makes-bare-metal-tool-chains-special
->>>
->>> So you'd just add the right flags to the compiler, something like:
->>>
->>> XXX-gcc -mcpu=cortex-m4 -march=armv7e-m -ffreestanding -nostdlib
->>> -nostdinc
->>>
->>> i.e. tell it which processor to target and not to use standard
->>> libraries/includes.
->>>
->>> There isn't anything that special about a baremetal compiler except
->>> it
->>> sets some different default flags and is missing the library
->>> support.
->>>
->>
->> Really??
-> 
-> As I understand it. I'm by no means an expert but I do my best with the
-> OE toolchain recipes.
-> 
->> Lets start with the fact that the ARM binary toolchain has been
->> tested with M4 cores.
-> 
-> Sure, I'm not claiming this is a well travelled path. I don't see why
-> it shouldn't work though, or why it makes much difference with the
-> right compiler options.
-> 
->> Then understand that you will need to supply your own gcc compiler
->> helpers and all stdc functions even the ones that port well like
->> strlen and memcpy.  (Because everyone should embedded their own
->> unoptimized memcpy in their projects.)
-> 
-> Right, that is by definition baremetal.
-> 
-
-Well not really.  All the "bare-metal" toolchains I have used come with
-a proper libgcc and some conig of newlib that at least gets you usable
-strlen and memcpy etc.  How much of the rest of it is usable on your
-platform is variable.
-
-This is true of the toolchain Oliver is pointing at and has been true
-back to 2007 when I was using codesourcery releases.
-
->> This works for the kernel and u-boot but they were designed for this
->> and have many eyes on their version of memcpy etc.  They are also
->> running on the same CPU core as the Linux user space.
->>
->> Given this I can believe this would work for CLang/LLVM if M4 support
->> was enabled at build time.  I am not convinced for GCC.
->>
->> If the above really works then why does gcc insist on being compiled
->> again after the c library has been compiled?  I have asked and never
->> got an answer that I understood.  I have been told that it looks at
->> the c library headers and changes what it builds into the compiler.
-> 
-> I've never understood that either and looked into it. Back in December
-> last year, we dropped gcc-cross-initial:
-> 
-> http://git.yoctoproject.org/cgit.cgi/poky/commit/meta/recipes-devtools/gcc?id=0afd3ac3ada35dd986aaf3be41d7177dc6b71ade
-> 
-
-Cool, good to know.
-
-> After that, YP does no longer rebuild gcc after building the c library,
-> there is one cross toolchain. That one toolchain is used for all
-> different arm targets, its only architecture specific.
-> 
-> The only thing we do rebuild is libgcc, which is why there is still a
-> libgcc-initial and a libgcc, the latter being built after libc. That
-> much kind of makes sense.
-> 
->>   Does all that magic go away with just -nostdinc and -nostdlib?
-> 
-> I believe so, yes.
-> 
->> I know this works for the kernel but targeting an RTOS or bare-metal
->> for a very different core would make me nervous.  Especially true if
->> the M4 would need to link libraries that were built outside of OE.
->>
->> I know I am pushing back hard but I am also hoping you will convince
->> me I am wrong.
-> 
-> You're probably right to have some concerns in that its not a well
-> travelled path. There are libc specifics encoded into libgcc but I
-> can't quite see where they change how gcc behaves other that the
-> default option selection.
-> 
-> Equally there may be something I'm missing.
-> 
-> For full disclosure, gcc is built against linux-libc-headers wherease
-> with baremetal it would be built without headers. I believe that
-> changes the default options gcc uses for compiling but not the way the
-> compiler itself works.
-
-"baremetal" would be compiled against some config of newlib headers.
-newlib has its own issues and many config choices (you get to pick your
-threading model: none, bad, or hacky).  For TI-RTOS I think we rebuild
-it with a different thread model.
-
-Thanks,
-Bill
+PiBPbiBUaHUsIDIwMTktMTAtMjQgYXQgMDQ6MDEgKzAwMDAsIFJpY2hhcmQgUHVyZGllIHdyb3Rl
+Og0KPiBJZiBpdHMgYSBuYXRpdmUgcmVjaXBlLCB0aGVyZSBhcmUgbm8gcGFja2FnZXMgYW5kIHRo
+ZXJlZm9yZSBGSUxFUw0KPiBkb2Vzbid0IG1ha2Ugc2Vuc2UuDQoNCk9oLCBJIGhhdmUgdG8gYWRt
+aXQgSSdtIHByZXR0eSBuZXcgdG8gdGhlIGNvbmNlcHQgb2YgdGhlIG5hdGl2ZSBwYWNrYWdlcy4N
+CldoZXJlIGNhbiBJIGZpbmQgdGhlIGxpc3Qgb2YgZmlsZXMgdGhhdCBhcmUgY29uc2lkZXJlZCB0
+byBiZSBpbnN0YWxsZWQgaW50bw0KYSAibmF0aXZlIiBwYWNrYWdlcyBzeXNyb290Pw0KDQpBbiBn
+b29kIG9wdGlvbiBmb3IgbWUgd291bGQgYmUgdG8gZWcuIGluc3RhbGwgdGhlIHRvb2xjaGFpbiBp
+bnRvIHRoZSBuYXRpdmUNCnN5c3Jvb3RzIC9vcHQvIGRpciBmb3IgdXNhZ2UgYnkgb3RoZXIgcmVj
+aXBlcy4NCg0KPiBDYW4geW91IGNvbmZpcm0gdGhhdCByZWNpcGUgZG9lcyB3b3JrPw0KDQpGb3Ig
+dGhlIFRJIHJlY2lwZSwgbm8sIEkgY2FuJ3QuIEkgZm91bmQgaXQgb25saW5lIGFuZCB1c2VkIGl0
+IGFzIGEgZ3VpZGUgZm9yDQpteSBmaXJzdCBzdGVwcyBvbiB0aGUgdG9waWMuDQoNCg0KPiBJZiB5
+b3UgaW5zdGFsbCB0aGUgYmluYXJpZXMgaW50byAke2JpbmRpcn0gdGhleSB3aWxsLiBJZiB5b3Ug
+cGxhY2UgdGhlbQ0KPiBzb21ld2hlcmUgZWxzZSB3aGljaCB0aGUgc3lzdGVtIGRvZXNuJ3Qga25v
+dyBhYm91dCwgdGhleSBwcm9iYWJseQ0KPiB3b24ndC4NCj4gDQo+IFRoZXJlIGFyZSB3YXlzIHRv
+IG1ha2UgYWx0ZXJuYXRpdmUgbG9jYXRpb25zIHdvcmsgYnV0IEkgZG9uJ3Qgc2VlIGFueQ0KPiBv
+ZiB0aGF0IGluIHRoZSBhYm92ZSByZWNpcGUuDQoNCkNhbiB5b3UgcG9pbnQgbWUgdG8gdGhlc2Ug
+d2F5cz8gOikNCg0KPiBUaGVyZSBpc24ndCBhbnl0aGluZyB0aGF0IHNwZWNpYWwgYWJvdXQgYSBi
+YXJlbWV0YWwgY29tcGlsZXIgZXhjZXB0IGl0DQo+IHNldHMgc29tZSBkaWZmZXJlbnQgZGVmYXVs
+dCBmbGFncyBhbmQgaXMgbWlzc2luZyB0aGUgbGlicmFyeSBzdXBwb3J0Lg0KDQpJIGFncmVlLCB0
+aG91Z2ggdXNpbmcgbGluYXJvIGhhcyB0aGUgYmVuZWZpdCB0aGF0IHdlIHdvdWxkIHVzZSB0aGUg
+c2FtZQ0KdG9vbGNoYWluIGluIHlvY3RvIGFzIGluICJyZWd1bGFyIGRldmVsb3BtZW50IiBvZiB0
+aGUgbTQgZnVuY3Rpb25hbGl0eS4NCg0KQmVzdCByZWdhcmRzLCBPbGxpDQoNCg==
 
