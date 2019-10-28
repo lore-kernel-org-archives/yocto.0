@@ -1,38 +1,46 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <Anders.Montonen@iki.fi>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B2B62E00E0D; Mon, 28 Oct 2019 14:27:08 -0700 (PDT)
+	id 01AADE00D98; Mon, 28 Oct 2019 15:06:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [134.134.136.126 listed in list.dnswl.org]
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E011E00D98
-	for <yocto@yoctoproject.org>; Mon, 28 Oct 2019 14:27:05 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	28 Oct 2019 14:27:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,241,1569308400"; d="scan'208";a="210962225"
-Received: from mng-mobl.gar.corp.intel.com (HELO shodan.fritz.box)
-	([10.249.76.230])
-	by fmsmga001.fm.intel.com with ESMTP; 28 Oct 2019 14:27:03 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [83.102.40.152 listed in list.dnswl.org]
+X-Greylist: delayed 426 seconds by postgrey-1.32 at yocto-www;
+	Mon, 28 Oct 2019 15:06:54 PDT
+Received: from sinikuusama2.dnainternet.net (sinikuusama2.dnainternet.net
+	[83.102.40.152])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86EC6E00D85
+	for <yocto@yoctoproject.org>; Mon, 28 Oct 2019 15:06:54 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by sinikuusama2.dnainternet.net (Postfix) with ESMTP id 740EC10EA0;
+	Tue, 29 Oct 2019 00:00:16 +0200 (EET)
+X-Virus-Scanned: DNA Internet at dnainternet.net
+Received: from sinikuusama2.dnainternet.net ([83.102.40.152])
+	by localhost (sinikuusama2.dnainternet.net [127.0.0.1]) (DNA Internet,
+	port 10041)
+	with ESMTP id r3jUDmEqrME4; Tue, 29 Oct 2019 00:00:16 +0200 (EET)
+Received: from omenapuu2.dnainternet.net (omenapuu2.dnainternet.net
+	[83.102.40.54])
+	by sinikuusama2.dnainternet.net (Postfix) with ESMTP id F318B10D1E;
+	Tue, 29 Oct 2019 00:00:15 +0200 (EET)
+Received: from localhost.localdomain (178-75-137-78.bb.dnainternet.fi
+	[178.75.137.78])
+	by omenapuu2.dnainternet.net (Postfix) with ESMTP id 75F912CE;
+	Tue, 29 Oct 2019 00:00:12 +0200 (EET)
+From: Anders Montonen <Anders.Montonen@iki.fi>
 To: yocto@yoctoproject.org
-Date: Tue, 29 Oct 2019 10:26:51 +1300
-Message-Id: <50fc6780e022a95b452fdb6f57b4e1c6b37084f2.1572297910.git.paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <cover.1572297910.git.paul.eggleton@linux.intel.com>
-References: <cover.1572297910.git.paul.eggleton@linux.intel.com>
-MIME-Version: 1.0
-Subject: [layerindex-web][PATCH 2/2] requirements.txt: bump a couple more versions
+Date: Mon, 28 Oct 2019 23:59:27 +0200
+Message-Id: <20191028215927.25625-4-Anders.Montonen@iki.fi>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20191028215927.25625-1-Anders.Montonen@iki.fi>
+References: <20191028215927.25625-1-Anders.Montonen@iki.fi>
+Subject: [meta-security][thud][PATCH 3/3] apparmor: Fix xargs error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,37 +52,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Oct 2019 21:27:08 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 28 Oct 2019 22:06:56 -0000
 
-Update pytz and beautifulsoup4.
+The functions script uses flags specific to GNU xargs.
+Add findutils to RDEPENDS.
+Fixes: /lib/apparmor/functions: line 92: echo: write error: Broken pipe
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+Signed-off-by: Anders Montonen <Anders.Montonen@iki.fi>
 ---
- requirements.txt | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ recipes-security/AppArmor/apparmor_2.12.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/requirements.txt b/requirements.txt
-index 84f2ea54..07d8495e 100644
---- a/requirements.txt
-+++ b/requirements.txt
-@@ -1,5 +1,5 @@
- amqp==2.5.2
--beautifulsoup4==4.8.0
-+beautifulsoup4==4.8.1
- billiard==3.6.1.0
- celery==4.3.0
- confusable-homoglyphs==3.2.0
-@@ -20,7 +20,7 @@ GitPython==2.1.13
- kombu==4.6.3
- mysqlclient==1.4.4
- Pillow==6.2.1
--pytz==2019.2
-+pytz==2019.3
- six==1.12.0
- smmap2==2.0.5
- soupsieve==1.9.4
+diff --git a/recipes-security/AppArmor/apparmor_2.12.bb b/recipes-security/AppArmor/apparmor_2.12.bb
+index ad7f94e..d2d83ca 100644
+--- a/recipes-security/AppArmor/apparmor_2.12.bb
++++ b/recipes-security/AppArmor/apparmor_2.12.bb
+@@ -177,7 +177,7 @@ FILES_mod-${PN} = "${libdir}/apache2/modules/*"
+ 
+ ALLOW_EMPTY_${PN} = "1"
+ 
+-RDEPENDS_${PN} += "bash lsb"
++RDEPENDS_${PN} += "bash lsb findutils"
+ RDEPENDS_${PN} += "${@bb.utils.contains('PACKAGECONFIG','python','python3 python3-modules','', d)}"
+ RDEPENDS_${PN}_remove += "${@bb.utils.contains('PACKAGECONFIG','perl','','perl', d)}"
+ RDEPENDS_${PN}-ptest += "perl coreutils dbus-lib"
 -- 
-2.20.1
+2.17.1
 
 
