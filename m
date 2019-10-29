@@ -1,41 +1,38 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <robert.joslyn@redrectangle.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7C9D0E00D7E; Mon, 28 Oct 2019 20:27:45 -0700 (PDT)
+	id EA1DFE00D68; Mon, 28 Oct 2019 21:41:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [134.134.136.100 listed in list.dnswl.org]
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2733FE009E7
-	for <yocto@yoctoproject.org>; Mon, 28 Oct 2019 20:27:43 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-	by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	28 Oct 2019 20:27:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,242,1569308400"; d="scan'208";a="198800618"
-Received: from mng-mobl.gar.corp.intel.com (HELO shodan.localnet)
-	([10.249.76.230])
-	by fmsmga007.fm.intel.com with ESMTP; 28 Oct 2019 20:27:39 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Yann CARDAILLAC <yann.cardaillac@smile.fr>
-Date: Tue, 29 Oct 2019 16:27:37 +1300
-Message-ID: <3141867.2GmitW1KQV@shodan>
-Organization: Intel Corporation
-In-Reply-To: <CAA984JVPt_iwehB6EjcWBC507Efkjgs0Muz0g6Hczw_3mVygGA@mail.gmail.com>
-References: <CAA984JVEEC2F9EQ7jOiZsVVwFEcgMYWKnUxfnGEN0dUXPHti1g@mail.gmail.com>
-	<2189115.Upo427RBWa@linux.fritz.box>
-	<CAA984JVPt_iwehB6EjcWBC507Efkjgs0Muz0g6Hczw_3mVygGA@mail.gmail.com>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [217.70.183.193 listed in list.dnswl.org]
+X-Greylist: delayed 44164 seconds by postgrey-1.32 at yocto-www;
+	Mon, 28 Oct 2019 21:41:39 PDT
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net
+	[217.70.183.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71669E00B7A
+	for <yocto@yoctoproject.org>; Mon, 28 Oct 2019 21:41:38 -0700 (PDT)
+X-Originating-IP: 173.197.191.182
+Received: from xps13.localdomain (rrcs-173-197-191-182.west.biz.rr.com
+	[173.197.191.182])
+	(Authenticated sender: robert.joslyn@redrectangle.org)
+	by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id E989A240005;
+	Tue, 29 Oct 2019 04:41:36 +0000 (UTC)
+Message-ID: <d88b9f08c99863d5479e5c9c98a83c991da22d12.camel@redrectangle.org>
+From: Robert Joslyn <robert.joslyn@redrectangle.org>
+To: Ross Burton <ross.burton@intel.com>, yocto@yoctoproject.org
+Date: Mon, 28 Oct 2019 21:41:32 -0700
+In-Reply-To: <acd179f3-b31e-905d-81e6-bb9f8f4a58c3@intel.com>
+References: <5ed5-5db71680-7f-1be36200@40858189>
+	<acd179f3-b31e-905d-81e6-bb9f8f4a58c3@intel.com>
+User-Agent: Evolution 3.30.5 
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [layerindex-web] Add SPDX Identifier
+Subject: Re: systemd Version Going Backwards on Warrior
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,57 +44,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Oct 2019 03:27:45 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 29 Oct 2019 04:41:42 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi Yann
-
-On Wednesday, 23 October 2019 2:25:48 AM NZDT Yann CARDAILLAC wrote:
-> On Mon, Oct 21, 2019 at 9:37 PM Paul Eggleton <paul.eggleton@linux.intel.com>
-> wrote:
-> > On Tuesday, 22 October 2019 4:15:03 AM NZDT Yann CARDAILLAC wrote:
-> > > https://bugzilla.yoctoproject.org/show_bug.cgi?id=13527
-> > >
-> > > I'm beginning the work of updating the layerindex-web repo, this one is a
-> > > bit tricky, how should I treat the files generated using Django ?
-> >
-> > I believe the correct license for Django-derived files is BSD-3-Clause:
-> >
-> >   https://github.com/django/django/blob/master/LICENSE
-> >
-> > > I've yet to do html, txt and sh files, do you have any advices before I
-> > > start?
-> >
-> > Note that some of the templates used for authentication originally came
-> > from
-> > here:
-> >
-> >   https://github.com/macdhuibh/django-registration-templates
-> >
-> > The LICENSE file indicates MIT for those though.
-> >
-> > The txt files are tricky because any stray newlines will affect
-> > formatting. I would probably avoid touching them.
->
-> I did not yet add MIT to html files, I don't really know if that makes
-> sense or not?  I didn't do that because it seemed a bit weird to me, but I
-> don't know what to think of that. Most of the time you'll find copyright on
-> the footer of the page, but I'm not sure about Licensing those.
+On Mon, 2019-10-28 at 19:06 +0000, Ross Burton wrote:
+> On 28/10/2019 16:25, robert.joslyn@redrectangle.org wrote:
+> > I'm using buildhistory in one of my builds that creates a package
+> > feed, and a recent update to systemd on warrior triggered version-
+> > going-backwards errors:
+> > 
+> > ERROR: systemd-conf-241+AUTOINC+511646b8ac-r0 do_packagedata: QA
+> > Issue: Package version for package systemd-conf-src went backwards
+> > which would break package feeds from (0:241+0+c1f8ff8d0d-r0 to
+> > 0:241+0+511646b8ac-r0) [version-going-backwards]
+> > 
+> > Should PE have been updated at the same time due to the hash making
+> > the version number go backwards? I can send a patch if that's all
+> > that's missing. Or is a PR server enough to prevent this? My debug
+> > builds do not use a PR server, but my production builds do use a PR
+> > server.
 > 
-> So here is a first iteration of the patch without htmls file licensed.
+> If you're using feeds, you need to use a PR server.  This is *exactly* 
+> what they are for.
+> 
+> Ross
 
-I think it's fine to add to the HTML as long as you add it as part of the Django template comment at the top and not in the actual text that gets rendered.
+The part I wasn't sure about was if the PR server helped in the case where
+PV went backwards. I know it works when PV stays the same but the package
+was rebuilt. But if it keeps the versions going forward no matter how PV
+changes, then I should be good. I should probably setup a separate PR
+server on my debug builds to avoid this kind of error.
 
-Looking over the license definitions they look fine, except the migrations - if these are considered derived from Django (which is fine) then they should all be BSD-3-Clause rather than some being MIT. It looks like some of the earlier ones don't have a "generated by django" comment, but they were all initially generated with ./manage.py makemigrations; some then had additional code added to them.
-
-Cheers
-Paul
-
--- 
-
-Paul Eggleton
-Intel System Software Products
-
+Thanks,
+Robert
 
 
