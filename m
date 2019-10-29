@@ -1,63 +1,70 @@
-Return-Path: <sjolley.yp.pm@gmail.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0263CE00DD5; Tue, 29 Oct 2019 09:13:10 -0700 (PDT)
+	id 282C3E00DF0; Tue, 29 Oct 2019 12:31:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (sjolley.yp.pm[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.53 listed in list.dnswl.org]
+	*      [209.85.208.45 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (martin.jansa[at]gmail.com)
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  1.0 FREEMAIL_REPLY From and body contain different freemails
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com
-	[209.85.166.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2972E00D47
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2019 09:13:08 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id k1so6412352iom.9
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2019 09:13:08 -0700 (PDT)
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com
+	[209.85.208.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29769E00DD5
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2019 12:31:01 -0700 (PDT)
+Received: by mail-ed1-f45.google.com with SMTP id bm15so11682651edb.3
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2019 12:31:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=jzgrG5hcOyN4qKV5zGcK/XhLhoHuBHRVvs30yvwqUZ4=;
-	b=Zgmf6OUaR2Vv1XIgp4fY9nc+O20Ys0gENPg0Dbf4dKE9nUp/T9XwqYEAeppHDwZYDq
-	hjhhwsCEajxH61g4f1h0DYst5ZeJtS8ScUxw1Og8BD8nJxnODw14XGJ8bpFdcTYsUnlW
-	Z4r3RElRl4WX8pvx+GRhVzzKofbycd/KyWhPYs6cYMQ64emTG51SgIDslW1Rx6/bSIMC
-	F50lirxcjwTPkqFP3rfT5Am5zc8FpFYi0oGGjk7sPATeaZjB1w7SlfVEvfuxd/VVRjmS
-	wI1mdppKNvbtpb6o5id0tqWozvRC4j2SLAzjtg+OQlJ4TPy8jSzE3ZhU8ZkSTh7W8u8q
-	QszA==
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=x28S6TceGis74BNeMN/vzo+hOvbQDJbwJiOGwHPSnmU=;
+	b=DPdDtnO/Ynwl+x0A1MZcSczIHZpFy/WVmo6tR4S2Ujlw/Z81rvJYW/MOgeMywnsesR
+	xpgIyJ9ohOIqfGMYHSEj7Qsfoa4JWQ27y7TbTY+w3dBRVrP+3jx+L28gOImighqGaA/D
+	PFJp7gGRYBBWVqph7ClA1Qz+n5WTwXCaqvglujWXr3hAUC3hQ2DIfkMCw3IpefQs/hyS
+	p3fMxN2dgCeDbG2YGrvcJzLz2MyLjRXGT64wJqcai9DAPYEAHeqe9QkDIsJKC9QEgtiX
+	gzQCLUFpHNfx1Z1blonjYBgJb+f1JVwbGpsbdRn0czgqSuW8D6w4LHn67rJRI5Rh+5Wk
+	OsFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=jzgrG5hcOyN4qKV5zGcK/XhLhoHuBHRVvs30yvwqUZ4=;
-	b=sEv7ORQfq0kLJTY4MHOcm7VE6PZAQHQxrJtcrhc4DKHx2+OKk91vG3PHKG8OuhzDPg
-	NdCSfcL0ZQVQzeYGNQ1mRyNB/RX2wNqmg9tVAS+nBzWm9CZtQwNIVMLhlX/0//1JAWcm
-	x9yvHCROMjyhZzFH1jF6oBnglBpxPNpbI6c+KIGKhC7yT6q9WdZWQ7zwd7mq5QExLIsc
-	WdjVs3+nr8cuzeCu3t9gljN2haBm1xscopFr7Ac8XgApAFgvgTOrPMAWGAa4CH3ZzytC
-	E8h8KuME+Qbk6xxJnavM/p9FOV5VLJdmJtC0ZalzYIkJYZ8zFU1GTzas4kOgnr6dQV7z
-	dBVg==
-X-Gm-Message-State: APjAAAXIegjTJjVsOGRESuzL1CDYBUVuGsdbkaJiy2BDDJmVpNal41Ss
-	rgpmwOWEQ9/5hXVR3+WQqMW3JHKZwuwyIrsbh3Swk3aZ
-X-Google-Smtp-Source: APXvYqxvbHNlBLP+Rjx2kOi3mv2RGnOA4UfkrNZcyWrDUibpCF0+V0ybBtjvFp+C0RtuDU4qAwKi0ijAac5nWSNfs0c=
-X-Received: by 2002:a05:6602:1c4:: with SMTP id
-	w4mr4670284iot.286.1572365587846; 
-	Tue, 29 Oct 2019 09:13:07 -0700 (PDT)
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=x28S6TceGis74BNeMN/vzo+hOvbQDJbwJiOGwHPSnmU=;
+	b=DzOOgdKXCFwY6jWpYtah3PlxHHNgG+wifoCAWsCbmiLB7eUTadFv3lr0UzGSraHXj+
+	B5ersZqyEN8aXQ7jiqXh4B1TFZ/xTwQj9SQmDq4B1evlrIVZ0aZynSVpzhZEr1lWbpef
+	vHGHcMOTpQzhXusJclaxFm2XZB44miMCEloFyTRNF79Wwo70SbUMf0w/LKzKNjPO3Ym7
+	ZseiYnlNXWrEql96KHj5hJv4XZchWtnGhpExuaLJ8Z9tshrlPmcRI95j0Y6k0Gmzv7Mn
+	Xk5bwRI8VP+KcKBDKiInchoPXjY80ZaefTdcWiT7A7C+QoW2Yly0p9K8CKGR27fI0PI6
+	bNCQ==
+X-Gm-Message-State: APjAAAUUfktd7VXRifvq4M9CCwUFbCTYJjQGYBFoOyv9Gfo+XUR5qMFp
+	v5X6/35bprQYBQgX0wvq0fYCI4kSbOqVA7B04gg=
+X-Google-Smtp-Source: APXvYqxxnMPKTlBWVeI4nhra/xaqZ5ac5p+2XHaMXRS6hup+Tm56li/rdFbyQ5ujAHrTu1qKxoqJ3LZG0YavoBllZ5g=
+X-Received: by 2002:a17:906:3ca:: with SMTP id
+	c10mr4975371eja.140.1572377460136; 
+	Tue, 29 Oct 2019 12:31:00 -0700 (PDT)
 MIME-Version: 1.0
-From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Date: Tue, 29 Oct 2019 09:12:57 -0700
-Message-ID: <CAK5yBb8MbsFAmkG3gDLwTdNDYhb1AyQGX2iqCEKhrXo3NJ_FMw@mail.gmail.com>
-To: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
-Subject: =?UTF-8?B?WW9jdG8gUHJvamVjdCBTdGF0dXMgV1c0NOKAmTE5?=
+References: <5ed5-5db71680-7f-1be36200@40858189>
+	<acd179f3-b31e-905d-81e6-bb9f8f4a58c3@intel.com>
+	<d88b9f08c99863d5479e5c9c98a83c991da22d12.camel@redrectangle.org>
+	<3cb7a48c-fdd6-5fc8-ab7f-e93c6cf3482e@intel.com>
+	<e82f1125-b9dc-fa79-008a-30f8a74866ac@mvista.com>
+In-Reply-To: <e82f1125-b9dc-fa79-008a-30f8a74866ac@mvista.com>
+From: Martin Jansa <martin.jansa@gmail.com>
+Date: Tue, 29 Oct 2019 20:30:49 +0100
+Message-ID: <CA+chaQdeYS3+wQEBdK-EDOEPbauz88YQ0VsPgSdT7N8vZ3gXqg@mail.gmail.com>
+To: akuster <akuster@mvista.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: systemd Version Going Backwards on Warrior
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,487 +76,270 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Oct 2019 16:13:10 -0000
-Content-Type: multipart/alternative; boundary="000000000000521bd205960ee445"
+X-List-Received-Date: Tue, 29 Oct 2019 19:31:03 -0000
+Content-Type: multipart/alternative; boundary="000000000000f6e11f059611a774"
 
---000000000000521bd205960ee445
+--000000000000f6e11f059611a774
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Current Dev Position: YP 3.1 M1
+PR server never knows which one is really newer (in git).
 
-Next Deadline: YP 3.1 M1 build Dec. 2, 2019
+It just returns max(LOCALCOUNT)+1 when it gets query for hash which isn't
+stored in the database yet.
 
-SWAT Team Rotation:
+Either the build in question didn't use PRserv at all or PRserv's cache was
+deleted between builds or the builds were using the same buildhistory but
+different PRserv's or the first systemd SRCREV was reused from sstate
+created on another server which doesn't share the PRserv (so it didn't
+build it locally to query local PRserv to store 511646b8ac as LOCALCOUNT).
 
-   -
+e.g. I've just built systemd with 511646b8ac hash as:
+systemd_241+0+511646b8ac-r0.0webos4_qemux86.ipk
+but reusing it from sstate created on another jenkins server as shown by
+buildstats-summary:
 
-   SWAT lead is currently: Amanda
-   -
+NOTE: Build completion summary:
+NOTE:   do_populate_sysroot: 100.0% sstate reuse(124 setscene, 0 scratch)
+NOTE:   do_package_qa: 100.0% sstate reuse(10 setscene, 0 scratch)
+NOTE:   do_packagedata: 100.0% sstate reuse(51 setscene, 0 scratch)
+NOTE:   do_package_write_ipk: 100.0% sstate reuse(10 setscene, 0 scratch)
+NOTE:   do_populate_lic: 100.0% sstate reuse(17 setscene, 0 scratch)
 
-   SWAT team rotation: Amanda -> Armin on Nov. 1, 2019
-   -
+Then I've reverted oe-core commit 8b9703454cb2a8a0aa6b7942498f191935d547ea
+to go back to c1f8ff8d0de7e303b8004b02a0a47d4cc103a7f8 systemd revision.
 
-   SWAT team rotation: Armin-> Anuj on Nov. 8, 2019
-   -
+This time it haven't found valid sstate archive for it:
+NOTE: Build completion summary:
+NOTE:   do_populate_sysroot: 0.0% sstate reuse(0 setscene, 16 scratch)
+NOTE:   do_package_qa: 0.0% sstate reuse(0 setscene, 19 scratch)
+NOTE:   do_package: 15.8% sstate reuse(3 setscene, 16 scratch)
+NOTE:   do_packagedata: 0.0% sstate reuse(0 setscene, 16 scratch)
+NOTE:   do_package_write_ipk: 0.0% sstate reuse(0 setscene, 19 scratch)
+NOTE:   do_populate_lic: 100.0% sstate reuse(2 setscene, 0 scratch)
 
-   https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+and resulting .ipk has also +0:
+systemd_241+0+c1f8ff8d0d-r0.0webos4_qemux86.ipk
+but no warning is shown, because in this case it went from 511 to c1f.
 
+Removing the revert again, doesn't trigger the warning again, because it
+will be again reused from sstate (and QA checks won't get executed):
+NOTE: Build completion summary:
+NOTE:   do_populate_sysroot: 100.0% sstate reuse(16 setscene, 0 scratch)
+NOTE:   do_package_qa: 100.0% sstate reuse(19 setscene, 0 scratch)
+NOTE:   do_packagedata: 100.0% sstate reuse(16 setscene, 0 scratch)
+NOTE:   do_package_write_ipk: 100.0% sstate reuse(19 setscene, 0 scratch)
+NOTE:   do_populate_lic: 100.0% sstate reuse(2 setscene, 0 scratch)
 
-Next Team Meetings:
+And the local PRserv database still has only the c1f8ff8d0d hash,
+because 511646b8ac was never really queried against this local PRserv.
 
-   -
+cache$ sqlite3 prserv.sqlite3 "select * from PRMAIN_nohist where version
+like 'AUTOINC-systemd-1%'"
+AUTOINC-systemd-1_241+|qemux86|AUTOINC+c1f8ff8d0d|0
 
-   Bug Triage meeting Thursday Nov. 7th at 7:30am PDT (
-   https://zoom.us/j/454367603)
-   -
+Also systemd recipe is using strange format with:
+PV_append = "+${SRCPV}"
 
-   Monthly Project Meeting Tuesday Nov. 5th at 8am PDT (
-   https://zoom.us/j/990892712) <https://zoom.us/j/990892712>
-   -
+most recipes use "+git${SRCPV}" or "+gitr${SRCPV} to make it more clear
+where this +0+hash came from.
 
-   Weekly Engineering Sync Tuesday Nov. 12th at 8am PDT (
-   https://zoom.us/j/990892712) <https://zoom.us/j/990892712>
-   -
+So long story short: the change is correct, PRserv should handle this, but
+there are many cases where it will fail (e.g.
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=5399), but that's not a
+reason to start PE bumps everywhere.
 
-   Twitch - Next event is Tuesday Nov. 12th at 8am PDT (
-   https://www.twitch.tv/yocto_project)
+Cheers,
 
+On Tue, Oct 29, 2019 at 12:57 PM akuster <akuster@mvista.com> wrote:
 
-Key Status/Updates:
+>
+>
+> On 10/29/19 11:50 AM, Ross Burton wrote:
+> > On 29/10/2019 04:41, Robert Joslyn wrote:
+> >> On Mon, 2019-10-28 at 19:06 +0000, Ross Burton wrote:
+> >>> On 28/10/2019 16:25, robert.joslyn@redrectangle.org wrote:
+> >>>> I'm using buildhistory in one of my builds that creates a package
+> >>>> feed, and a recent update to systemd on warrior triggered version-
+> >>>> going-backwards errors:
+> >>>>
+> >>>> ERROR: systemd-conf-241+AUTOINC+511646b8ac-r0 do_packagedata: QA
+> >>>> Issue: Package version for package systemd-conf-src went backwards
+> >>>> which would break package feeds from (0:241+0+c1f8ff8d0d-r0 to
+> >>>> 0:241+0+511646b8ac-r0) [version-going-backwards]
+>
+> Isn't this do to the hashes being different and the PR server can't
+> really tell which one is newer?
+>
+>
+> >>>>
+> >>>> Should PE have been updated at the same time due to the hash making
+> >>>> the version number go backwards? I can send a patch if that's all
+> >>>> that's missing. Or is a PR server enough to prevent this? My debug
+> >>>> builds do not use a PR server, but my production builds do use a PR
+> >>>> server.
+> >>>
+> >>> If you're using feeds, you need to use a PR server.  This is *exactly*
+> >>> what they are for.
+> > >
+> >
+> >> The part I wasn't sure about was if the PR server helped in the case
+> >> where
+> >> PV went backwards. I know it works when PV stays the same but the
+> >> package
+> >> was rebuilt. But if it keeps the versions going forward no matter how PV
+> >> changes, then I should be good. I should probably setup a separate PR
+> >> server on my debug builds to avoid this kind of error.
+> >
+> > If the PV actually goes backwards then the PR service isn't useful, as
+> > PV sorts before PR.
+> >
+> > However in this case the problem is that SRCREV should have a
+> > incrementing counter (the +0+ should be +1+ in the rebuild) which I
+> > believe comes from the PR service.  I may be wrong...
+> >
+> > Ross
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-   -
-
-   Yocto Project =E2=80=9CZeus=E2=80=9D 3.0 has been released!  Thank you t=
-o everyone who
-   contributed patches, bugs, feedback and testing.  Some very rough git
-   metrics say that 182 different people have contributed patches to this
-   cycle.
-   -
-
-   This week is ELC-E in Lyon, so meetings are limited.  If anyone reading
-   this is there please do visit the Yocto Project booth and say hello!
-   -
-
-   Patches have been flowing fast into master.  Due to ELC-E this will slow
-   down this week, but Ross will continue to collect patches for testing in
-   ross/mut.
-   -
-
-   There are ongoing intermittent autobuilder failures, particularly in
-   selftest but in other areas too. There is a separate email about this an=
-d
-   we could do with help in debugging and resolving those issues.
-   -
-
-   YP 2.6.4 was built and has passed QA, will be released imminently.
-   -
-
-   YP 2.7.2 was held due to an unexplained test failure but will now be
-   built in the next few days.
-   -
-
-   Armin and Anuj have volunteered to maintain Zeus and they plan to work
-   out the maintainership between them, thanks!
-   -
-
-   We have begun collecting ideas for YP 3.1 in this document:
-   https://docs.google.com/document/d/1UKZIGe88-eq3-pOPtkAvFAegbQDzhy_f4ye6=
-4yjnABc/edit?usp=3Dsharing
-   -
-
-   If anyone has any status items for the project they=E2=80=99d like to ad=
-d to the
-   weekly reports, please email Richard and Stephen.
-
-
-Planned upcoming dot releases:
-
-   -
-
-   YP 2.7.2 (Warrior) is planned this week.
-   -
-
-   YP 2.6.4 (Thud) is is to be released shortly.
-
-
-Tracking Metrics:
-
-   -
-
-   WDD 2493 (last week 2498) (
-   https://wiki.yoctoproject.org/charts/combo.html)
-   -
-
-   Poky Patch Metrics
-   -
-
-      Total patches found: 1441 (last week 1432)
-      -
-
-      Patches in the Pending State: 579 (40%) [last week 578 (41%)]
-
-
-The Yocto Project=E2=80=99s technical governance is through its Technical S=
-teering
-Committee, more information is available at:
-
-https://wiki.yoctoproject.org/wiki/TSC
-
-The Status reports are now stored on the wiki at:
-https://wiki.yoctoproject.org/wiki/Weekly_Status
-
-[If anyone has suggestions for other information you=E2=80=99d like to see =
-on this
-weekly status update, let us know!]
-
---=20
-
-Thanks,
-
-
-
-*Stephen K. Jolley*
-
-*Yocto Project Program Manager*
-
-*7867 SW Bayberry Dr., Beaverton, OR 97007*
-
-(    *Cell*:                (208) 244-4460
-
-* *Email*:                 *s
-<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
-*
-
---000000000000521bd205960ee445
+--000000000000f6e11f059611a774
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><span id=3D"gmail-docs-internal-guid-d6fb0ecf-7fff-51f4-17=
-92-69ae392f70e3"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;ma=
-rgin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(=
-0,0,0);background-color:transparent;font-variant-numeric:normal;font-varian=
-t-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Current D=
-ev Position: YP 3.1 M1=C2=A0</span></p><p dir=3D"ltr" style=3D"line-height:=
-1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-f=
-amily:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-nume=
-ric:normal;font-variant-east-asian:normal;vertical-align:baseline;white-spa=
-ce:pre-wrap">Next Deadline: YP 3.1 M1 build Dec. 2, 2019</span></p><br><p d=
-ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><spa=
-n style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-col=
-or:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;v=
-ertical-align:baseline;white-space:pre-wrap">SWAT Team Rotation:</span></p>=
-<ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"lis=
-t-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);backgro=
-und-color:transparent;font-variant-numeric:normal;font-variant-east-asian:n=
-ormal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line=
--height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11p=
-t;background-color:transparent;font-variant-numeric:normal;font-variant-eas=
-t-asian:normal;vertical-align:baseline;white-space:pre-wrap">SWAT lead is c=
-urrently: Amanda</span></p></li><li dir=3D"ltr" style=3D"list-style-type:di=
-sc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:trans=
-parent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-=
-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;ma=
-rgin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background-co=
-lor:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;=
-vertical-align:baseline;white-space:pre-wrap">SWAT team rotation: Amanda -&=
-gt; Armin on Nov. 1, 2019</span></p></li><li dir=3D"ltr" style=3D"list-styl=
-e-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-co=
-lor:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;=
-vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-heigh=
-t:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;back=
-ground-color:transparent;font-variant-numeric:normal;font-variant-east-asia=
-n:normal;vertical-align:baseline;white-space:pre-wrap">SWAT team rotation: =
-Armin-&gt; Anuj on Nov. 8, 2019</span></p></li><li dir=3D"ltr" style=3D"lis=
-t-style-type:disc;font-size:11pt;font-family:Consolas,sans-serif;color:rgb(=
-0,0,0);background-color:transparent;font-variant-numeric:normal;font-varian=
-t-east-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr"=
- style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><a href=3D"htt=
-ps://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team" style=3D"tex=
-t-decoration-line:none"><span style=3D"font-size:11pt;background-color:tran=
-sparent;font-variant-numeric:normal;font-variant-east-asian:normal;text-dec=
-oration-line:underline;vertical-align:baseline;white-space:pre-wrap">https:=
-//wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team</span></a></p></=
-li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-=
-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0=
-);background-color:transparent;font-variant-numeric:normal;font-variant-eas=
-t-asian:normal;vertical-align:baseline;white-space:pre-wrap">Next Team Meet=
-ings:</span></p><ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"l=
-tr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rg=
-b(0,0,0);background-color:transparent;font-variant-numeric:normal;font-vari=
-ant-east-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"lt=
-r" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=
-=3D"font-size:11pt;background-color:transparent;font-variant-numeric:normal=
-;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre-wra=
-p">Bug Triage meeting Thursday Nov. 7th at 7:30am PDT (</span><a href=3D"ht=
-tps://zoom.us/j/454367603" style=3D"text-decoration-line:none"><span style=
-=3D"font-size:10pt;background-color:transparent;font-variant-numeric:normal=
-;font-variant-east-asian:normal;text-decoration-line:underline;vertical-ali=
-gn:baseline;white-space:pre-wrap">https://zoom.us/j/454367603</span></a><sp=
-an style=3D"font-size:11pt;background-color:transparent;font-variant-numeri=
-c:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space=
-:pre-wrap">)</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;f=
-ont-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transpare=
-nt;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-alig=
-n:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin=
--top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background-color:=
-transparent;font-variant-numeric:normal;font-variant-east-asian:normal;vert=
-ical-align:baseline;white-space:pre-wrap">Monthly Project Meeting Tuesday N=
-ov. 5th at 8am PDT (</span><a href=3D"https://zoom.us/j/990892712" style=3D=
-"text-decoration-line:none"><span style=3D"font-size:11pt;background-color:=
-transparent;font-variant-numeric:normal;font-variant-east-asian:normal;text=
--decoration-line:underline;vertical-align:baseline;white-space:pre-wrap">ht=
-tps://zoom.us/j/990892712)</span></a></p></li><li dir=3D"ltr" style=3D"list=
--style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);backgrou=
-nd-color:transparent;font-variant-numeric:normal;font-variant-east-asian:no=
-rmal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-=
-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt=
-;background-color:transparent;font-variant-numeric:normal;font-variant-east=
--asian:normal;vertical-align:baseline;white-space:pre-wrap">Weekly Engineer=
-ing Sync Tuesday Nov. 12th at 8am PDT (</span><a href=3D"https://zoom.us/j/=
-990892712" style=3D"text-decoration-line:none"><span style=3D"font-size:11p=
-t;background-color:transparent;font-variant-numeric:normal;font-variant-eas=
-t-asian:normal;text-decoration-line:underline;vertical-align:baseline;white=
--space:pre-wrap">https://zoom.us/j/990892712)</span></a></p></li><li dir=3D=
-"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:=
-rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font-va=
-riant-east-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"=
-ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span styl=
-e=3D"font-size:11pt;background-color:transparent;font-variant-numeric:norma=
-l;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre-wr=
-ap">Twitch - Next event is Tuesday Nov. 12th at 8am PDT (</span><a href=3D"=
-https://www.twitch.tv/yocto_project" style=3D"text-decoration-line:none"><s=
-pan style=3D"font-size:11pt;background-color:transparent;font-variant-numer=
-ic:normal;font-variant-east-asian:normal;text-decoration-line:underline;ver=
-tical-align:baseline;white-space:pre-wrap">https://www.twitch.tv/yocto_proj=
-ect</span></a><span style=3D"font-size:11pt;background-color:transparent;fo=
-nt-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:bas=
-eline;white-space:pre-wrap">)</span></p></li></ul><br><p dir=3D"ltr" style=
-=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-=
-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;f=
-ont-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:ba=
-seline;white-space:pre-wrap">Key Status/Updates:</span></p><ul style=3D"mar=
-gin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:dis=
-c;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transp=
-arent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-a=
-lign:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;mar=
-gin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background-col=
-or:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;v=
-ertical-align:baseline;white-space:pre-wrap">Yocto Project =E2=80=9CZeus=E2=
-=80=9D 3.0 has been released!=C2=A0 Thank you to everyone who contributed p=
-atches, bugs, feedback and testing.=C2=A0 Some very rough git metrics say t=
-hat 182 different people have contributed patches to this cycle.</span></p>=
-</li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-fami=
-ly:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric=
-:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space:=
-pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:=
-0pt"><span style=3D"font-size:11pt;background-color:transparent;font-varian=
-t-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;whi=
-te-space:pre-wrap">This week is ELC-E in Lyon, so meetings are limited.=C2=
-=A0 If anyone reading this is there please do visit the Yocto Project booth=
- and say hello!</span></p></li><li dir=3D"ltr" style=3D"list-style-type:dis=
-c;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transp=
-arent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-a=
-lign:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;mar=
-gin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background-col=
-or:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;v=
-ertical-align:baseline;white-space:pre-wrap">Patches have been flowing fast=
- into master.=C2=A0 Due to ELC-E this will slow down this week, but Ross wi=
-ll continue to collect patches for testing in ross/mut.</span></p></li><li =
-dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;=
-color:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;f=
-ont-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><p d=
-ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><spa=
-n style=3D"font-size:11pt;background-color:transparent;font-variant-numeric=
-:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space:=
-pre-wrap">There are ongoing intermittent autobuilder failures, particularly=
- in selftest but in other areas too. There is a separate email about this a=
-nd we could do with help in debugging and resolving those issues.</span></p=
-></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-fam=
-ily:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeri=
-c:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space=
-:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom=
-:0pt"><span style=3D"font-size:11pt;background-color:transparent;font-varia=
-nt-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;wh=
-ite-space:pre-wrap">YP 2.6.4 was built and has passed QA, will be released =
-imminently.</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;fo=
-nt-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparen=
-t;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-align=
-:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-=
-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background-color:t=
-ransparent;font-variant-numeric:normal;font-variant-east-asian:normal;verti=
-cal-align:baseline;white-space:pre-wrap">YP 2.7.2 was held due to an unexpl=
-ained test failure but will now be built in the next few days.</span></p></=
-li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family=
-:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:n=
-ormal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pr=
-e"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0p=
-t"><span style=3D"font-size:11pt;background-color:transparent;font-variant-=
-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;white=
--space:pre-wrap">Armin and Anuj have volunteered to maintain Zeus and they =
-plan to work out the maintainership between them, thanks!</span></p></li><l=
-i dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Aria=
-l;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal=
-;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><p=
- dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><s=
-pan style=3D"font-size:11pt;background-color:transparent;font-variant-numer=
-ic:normal;font-variant-east-asian:normal;vertical-align:baseline;white-spac=
-e:pre-wrap">We have begun collecting ideas for YP 3.1 in this document: </s=
-pan><a href=3D"https://docs.google.com/document/d/1UKZIGe88-eq3-pOPtkAvFAeg=
-bQDzhy_f4ye64yjnABc/edit?usp=3Dsharing" style=3D"text-decoration-line:none"=
-><span style=3D"font-size:11pt;background-color:transparent;font-variant-nu=
-meric:normal;font-variant-east-asian:normal;text-decoration-line:underline;=
-vertical-align:baseline;white-space:pre-wrap">https://docs.google.com/docum=
-ent/d/1UKZIGe88-eq3-pOPtkAvFAegbQDzhy_f4ye64yjnABc/edit?usp=3Dsharing</span=
-></a></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;=
-font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-varian=
-t-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;whi=
-te-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margi=
-n-bottom:0pt"><span style=3D"font-size:11pt;background-color:transparent;fo=
-nt-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:bas=
-eline;white-space:pre-wrap">If anyone has any status items for the project =
-they=E2=80=99d like to add to the weekly reports, please email Richard and =
-Stephen.</span></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;m=
-argin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:=
-Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:no=
-rmal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre=
--wrap">Planned upcoming dot releases:</span></p><ul style=3D"margin-top:0px=
-;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:disc;font-size=
-:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-=
-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:baseli=
-ne;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt=
-;margin-bottom:0pt"><span style=3D"font-size:11pt;background-color:transpar=
-ent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-ali=
-gn:baseline;white-space:pre-wrap">YP 2.7.2 (Warrior) is planned this week.<=
-/span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt=
-;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-varia=
-nt-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;wh=
-ite-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;marg=
-in-bottom:0pt"><span style=3D"font-size:11pt;background-color:transparent;f=
-ont-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:ba=
-seline;white-space:pre-wrap">YP 2.6.4 (Thud) is is to be released shortly.<=
-/span></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top=
-:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;col=
-or:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font=
--variant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Tr=
-acking Metrics:</span></p><ul style=3D"margin-top:0px;margin-bottom:0px"><l=
-i dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Aria=
-l;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal=
-;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><p=
- dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><s=
-pan style=3D"font-size:11pt;background-color:transparent;font-variant-numer=
-ic:normal;font-variant-east-asian:normal;vertical-align:baseline;white-spac=
-e:pre-wrap">WDD 2493 (last week 2498)</span><span style=3D"font-size:11pt;f=
-ont-family:Consolas,sans-serif;background-color:transparent;font-variant-nu=
-meric:normal;font-variant-east-asian:normal;vertical-align:baseline;white-s=
-pace:pre-wrap"> (</span><a href=3D"https://wiki.yoctoproject.org/charts/com=
-bo.html" style=3D"text-decoration-line:none"><span style=3D"font-size:11pt;=
-background-color:transparent;font-variant-numeric:normal;font-variant-east-=
-asian:normal;text-decoration-line:underline;vertical-align:baseline;white-s=
-pace:pre-wrap">https://wiki.yoctoproject.org/charts/combo.html</span></a><s=
-pan style=3D"font-size:11pt;font-family:Consolas,sans-serif;background-colo=
-r:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;ve=
-rtical-align:baseline;white-space:pre-wrap">)</span></p></li><li dir=3D"ltr=
-" style=3D"list-style-type:disc;font-size:11pt;font-family:Consolas,sans-se=
-rif;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:norm=
-al;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre">=
-<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt">=
-<span style=3D"font-size:11pt;font-family:Arial;background-color:transparen=
-t;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-align=
-:baseline;white-space:pre-wrap">Poky Patch Metrics=C2=A0=C2=A0</span></p></=
-li><ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"=
-list-style-type:circle;font-size:11pt;font-family:Arial;color:rgb(0,0,0);ba=
-ckground-color:transparent;font-variant-numeric:normal;font-variant-east-as=
-ian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D=
-"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-siz=
-e:11pt;background-color:transparent;font-variant-numeric:normal;font-varian=
-t-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Total pat=
-ches found: 1441 (last week 1432)</span></p></li><li dir=3D"ltr" style=3D"l=
-ist-style-type:circle;font-size:11pt;font-family:Consolas,sans-serif;color:=
-rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font-va=
-riant-east-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"=
-ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span styl=
-e=3D"font-size:11pt;font-family:Arial;background-color:transparent;font-var=
-iant-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;=
-white-space:pre-wrap">Patches in the Pending State: 579 (40%) [last week 57=
-8 (41%)]</span></p></li></ul></ul><br><p dir=3D"ltr" style=3D"line-height:1=
-.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-fa=
-mily:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numer=
-ic:normal;font-variant-east-asian:normal;vertical-align:baseline;white-spac=
-e:pre-wrap">The Yocto Project=E2=80=99s technical governance is through its=
- Technical Steering Committee, more information is available at:</span></p>=
-<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt">=
-<a href=3D"https://wiki.yoctoproject.org/wiki/TSC" style=3D"text-decoration=
--line:none"><span style=3D"font-size:11pt;font-family:Arial;background-colo=
-r:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;te=
-xt-decoration-line:underline;vertical-align:baseline;white-space:pre-wrap">=
-https://wiki.yoctoproject.org/wiki/TSC</span></a></p><br><p dir=3D"ltr" sty=
-le=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"fon=
-t-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent=
-;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:=
-baseline;white-space:pre-wrap">The Status reports are now stored on the wik=
-i at: </span><a href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status" s=
-tyle=3D"text-decoration-line:none"><span style=3D"font-size:11pt;font-famil=
-y:Arial;background-color:transparent;font-variant-numeric:normal;font-varia=
-nt-east-asian:normal;text-decoration-line:underline;vertical-align:baseline=
-;white-space:pre-wrap">https://wiki.yoctoproject.org/wiki/Weekly_Status</sp=
-an></a></p><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;marg=
-in-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,=
-0,0);background-color:transparent;font-variant-numeric:normal;font-variant-=
-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">[If anyone =
-has suggestions for other information you=E2=80=99d like to see on this wee=
-kly status update, let us know!]</span></p></span><div><br></div>-- <br><di=
-v dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature">=
-<div dir=3D"ltr"><div><div dir=3D"ltr"><p class=3D"MsoNormal" style=3D"back=
-ground-image:initial;background-position:initial;background-repeat:initial"=
-><span style=3D"font-size:12pt;font-family:Arial,sans-serif">Thanks,<span><=
-/span></span></p>
+<div dir=3D"ltr">PR server never knows which one is really newer (in git).<=
+div><br></div><div>It just returns max(LOCALCOUNT)+1 when it gets query for=
+ hash which isn&#39;t stored in the database yet.</div><div><br></div><div>=
+Either the build in question didn&#39;t use PRserv at all or PRserv&#39;s c=
+ache was deleted between builds or the builds were using the same buildhist=
+ory but different PRserv&#39;s or the first systemd SRCREV was reused from =
+sstate created on another server which doesn&#39;t share the PRserv (so it =
+didn&#39;t build it locally to query local PRserv to store=C2=A0<span style=
+=3D"color:rgb(80,0,80)">51164</span><span style=3D"color:rgb(80,0,80)">6b8a=
+c as LOCALCOUNT).</span></div><div><br></div><div>e.g. I&#39;ve just built =
+systemd with=C2=A0511646b8ac hash as:</div><div>systemd_241+0+511646b8ac-r0=
+.0webos4_qemux86.ipk<br></div><div>but reusing it from sstate created on an=
+other jenkins server as shown by buildstats-summary:</div><div><br></div><d=
+iv>NOTE: Build completion summary:<br>NOTE: =C2=A0 do_populate_sysroot: 100=
+.0% sstate reuse(124 setscene, 0 scratch)<br>NOTE: =C2=A0 do_package_qa: 10=
+0.0% sstate reuse(10 setscene, 0 scratch)<br>NOTE: =C2=A0 do_packagedata: 1=
+00.0% sstate reuse(51 setscene, 0 scratch)<br>NOTE: =C2=A0 do_package_write=
+_ipk: 100.0% sstate reuse(10 setscene, 0 scratch)<br>NOTE: =C2=A0 do_popula=
+te_lic: 100.0% sstate reuse(17 setscene, 0 scratch)<br></div><div><br></div=
+><div>Then I&#39;ve reverted oe-core commit=C2=A08b9703454cb2a8a0aa6b794249=
+8f191935d547ea to go back to=C2=A0c1f8ff8d0de7e303b8004b02a0a47d4cc103a7f8 =
+systemd revision.</div><div><br></div><div>This time it haven&#39;t found v=
+alid sstate archive for it:</div><div>NOTE: Build completion summary:<br>NO=
+TE: =C2=A0 do_populate_sysroot: 0.0% sstate reuse(0 setscene, 16 scratch)<b=
+r>NOTE: =C2=A0 do_package_qa: 0.0% sstate reuse(0 setscene, 19 scratch)<br>=
+NOTE: =C2=A0 do_package: 15.8% sstate reuse(3 setscene, 16 scratch)<br>NOTE=
+: =C2=A0 do_packagedata: 0.0% sstate reuse(0 setscene, 16 scratch)<br>NOTE:=
+ =C2=A0 do_package_write_ipk: 0.0% sstate reuse(0 setscene, 19 scratch)<br>=
+NOTE: =C2=A0 do_populate_lic: 100.0% sstate reuse(2 setscene, 0 scratch)<br=
+></div><div><br></div><div>and resulting .ipk has also=C2=A0+0:</div><div>s=
+ystemd_241+0+c1f8ff8d0d-r0.0webos4_qemux86.ipk<br></div><div>but no warning=
+ is shown, because in this case it went from 511 to c1f.</div><div><br></di=
+v><div>Removing the revert again, doesn&#39;t trigger the warning again, be=
+cause it will be again reused from sstate (and QA checks won&#39;t get exec=
+uted):</div><div>NOTE: Build completion summary:<br>NOTE: =C2=A0 do_populat=
+e_sysroot: 100.0% sstate reuse(16 setscene, 0 scratch)<br>NOTE: =C2=A0 do_p=
+ackage_qa: 100.0% sstate reuse(19 setscene, 0 scratch)<br>NOTE: =C2=A0 do_p=
+ackagedata: 100.0% sstate reuse(16 setscene, 0 scratch)<br>NOTE: =C2=A0 do_=
+package_write_ipk: 100.0% sstate reuse(19 setscene, 0 scratch)<br>NOTE: =C2=
+=A0 do_populate_lic: 100.0% sstate reuse(2 setscene, 0 scratch)<br></div><d=
+iv><br></div><div>And the local PRserv database still has only the c1f8ff8d=
+0d hash, because=C2=A0511646b8ac was never really queried against this loca=
+l PRserv.</div><div><br></div><div>cache$ sqlite3 prserv.sqlite3 &quot;sele=
+ct * from PRMAIN_nohist where version like &#39;AUTOINC-systemd-1%&#39;&quo=
+t;<br>AUTOINC-systemd-1_241+|qemux86|AUTOINC+c1f8ff8d0d|0<br></div><div><br=
+></div><div>Also systemd recipe is using strange format with:<br></div><div=
+>PV_append =3D &quot;+${SRCPV}&quot;</div><div><br></div><div>most recipes =
+use &quot;+git${SRCPV}&quot; or &quot;+gitr${SRCPV} to make it more clear w=
+here this=C2=A0+0+hash came from.</div><div><br></div><div>So long story sh=
+ort: the change is correct, PRserv should handle this, but there are many c=
+ases where it will fail (e.g.=C2=A0<a href=3D"https://bugzilla.yoctoproject=
+.org/show_bug.cgi?id=3D5399">https://bugzilla.yoctoproject.org/show_bug.cgi=
+?id=3D5399</a>), but that&#39;s not a reason to start PE bumps everywhere.<=
+/div><div><br></div><div>Cheers,</div></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Tue, Oct 29, 2019 at 12:57 PM akus=
+ter &lt;<a href=3D"mailto:akuster@mvista.com" target=3D"_blank">akuster@mvi=
+sta.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex"><br>
+<br>
+On 10/29/19 11:50 AM, Ross Burton wrote:<br>
+&gt; On 29/10/2019 04:41, Robert Joslyn wrote:<br>
+&gt;&gt; On Mon, 2019-10-28 at 19:06 +0000, Ross Burton wrote:<br>
+&gt;&gt;&gt; On 28/10/2019 16:25, <a href=3D"mailto:robert.joslyn@redrectan=
+gle.org" target=3D"_blank">robert.joslyn@redrectangle.org</a> wrote:<br>
+&gt;&gt;&gt;&gt; I&#39;m using buildhistory in one of my builds that create=
+s a package<br>
+&gt;&gt;&gt;&gt; feed, and a recent update to systemd on warrior triggered =
+version-<br>
+&gt;&gt;&gt;&gt; going-backwards errors:<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; ERROR: systemd-conf-241+AUTOINC+511646b8ac-r0 do_packageda=
+ta: QA<br>
+&gt;&gt;&gt;&gt; Issue: Package version for package systemd-conf-src went b=
+ackwards<br>
+&gt;&gt;&gt;&gt; which would break package feeds from (0:241+0+c1f8ff8d0d-r=
+0 to<br>
+&gt;&gt;&gt;&gt; 0:241+0+511646b8ac-r0) [version-going-backwards]<br>
+<br>
+Isn&#39;t this do to the hashes being different and the PR server can&#39;t=
+<br>
+really tell which one is newer?<br>
+<br>
+<br>
+&gt;&gt;&gt;&gt;<br>
+&gt;&gt;&gt;&gt; Should PE have been updated at the same time due to the ha=
+sh making<br>
+&gt;&gt;&gt;&gt; the version number go backwards? I can send a patch if tha=
+t&#39;s all<br>
+&gt;&gt;&gt;&gt; that&#39;s missing. Or is a PR server enough to prevent th=
+is? My debug<br>
+&gt;&gt;&gt;&gt; builds do not use a PR server, but my production builds do=
+ use a PR<br>
+&gt;&gt;&gt;&gt; server.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; If you&#39;re using feeds, you need to use a PR server.=C2=A0 =
+This is *exactly*<br>
+&gt;&gt;&gt; what they are for.<br>
+&gt; &gt;<br>
+&gt;<br>
+&gt;&gt; The part I wasn&#39;t sure about was if the PR server helped in th=
+e case<br>
+&gt;&gt; where<br>
+&gt;&gt; PV went backwards. I know it works when PV stays the same but the<=
+br>
+&gt;&gt; package<br>
+&gt;&gt; was rebuilt. But if it keeps the versions going forward no matter =
+how PV<br>
+&gt;&gt; changes, then I should be good. I should probably setup a separate=
+ PR<br>
+&gt;&gt; server on my debug builds to avoid this kind of error.<br>
+&gt;<br>
+&gt; If the PV actually goes backwards then the PR service isn&#39;t useful=
+, as<br>
+&gt; PV sorts before PR.<br>
+&gt;<br>
+&gt; However in this case the problem is that SRCREV should have a<br>
+&gt; incrementing counter (the +0+ should be +1+ in the rebuild) which I<br=
+>
+&gt; believe comes from the PR service.=C2=A0 I may be wrong...<br>
+&gt;<br>
+&gt; Ross<br>
+<br>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>
 
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
-ily:Arial,sans-serif">=C2=A0<span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
-lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
-ont-family:Arial,sans-serif"><span></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
-amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager<spa=
-n></span></span></b></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><b><span style=3D"font-family:&quot;Co=
-urier New&quot;;color:fuchsia;background-image:initial;background-position:=
-initial;background-repeat:initial">7867 SW Bayberry Dr., Beaverton, OR 9700=
-7</span></b><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><sp=
-an></span></span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
-&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
-<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
-:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
-s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
--size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
-><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
-/span></p>
-
-<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
-n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
-ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
-t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
-=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
-color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
-uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
- lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
-erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
-phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
-.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
-u></p></div></div></div></div></div>
-
---000000000000521bd205960ee445--
+--000000000000f6e11f059611a774--
