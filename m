@@ -1,45 +1,41 @@
-Return-Path: <Anders.Montonen@iki.fi>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2A4DE006D2; Mon, 28 Oct 2019 15:09:45 -0700 (PDT)
+	id 7C9D0E00D7E; Mon, 28 Oct 2019 20:27:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [83.102.40.154 listed in list.dnswl.org]
-Received: from sypressi2.dnainternet.net (sypressi2.dnainternet.net
-	[83.102.40.154])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1BFAE00EAB
-	for <yocto@yoctoproject.org>; Mon, 28 Oct 2019 15:09:42 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by sypressi2.dnainternet.net (Postfix) with ESMTP id 84CB91511C;
-	Tue, 29 Oct 2019 00:00:07 +0200 (EET)
-X-Virus-Scanned: DNA Internet at dnainternet.net
-Received: from sypressi2.dnainternet.net ([83.102.40.154])
-	by localhost (sypressi2.dnainternet.net [127.0.0.1]) (DNA Internet,
-	port 10041)
-	with ESMTP id nbdQEiSOvQT6; Tue, 29 Oct 2019 00:00:07 +0200 (EET)
-Received: from omenapuu2.dnainternet.net (omenapuu2.dnainternet.net
-	[83.102.40.54])
-	by sypressi2.dnainternet.net (Postfix) with ESMTP id 330A4150E9;
-	Tue, 29 Oct 2019 00:00:07 +0200 (EET)
-Received: from localhost.localdomain (178-75-137-78.bb.dnainternet.fi
-	[178.75.137.78])
-	by omenapuu2.dnainternet.net (Postfix) with ESMTP id 3B0032E9;
-	Tue, 29 Oct 2019 00:00:01 +0200 (EET)
-From: Anders Montonen <Anders.Montonen@iki.fi>
-To: yocto@yoctoproject.org
-Date: Mon, 28 Oct 2019 23:59:25 +0200
-Message-Id: <20191028215927.25625-2-Anders.Montonen@iki.fi>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191028215927.25625-1-Anders.Montonen@iki.fi>
-References: <20191028215927.25625-1-Anders.Montonen@iki.fi>
-Cc: Armin Kuster <akuster808@gmail.com>
-Subject: [meta-security][thud][PATCH 1/3] apparmor: ptest fail to build on arm
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2733FE009E7
+	for <yocto@yoctoproject.org>; Mon, 28 Oct 2019 20:27:43 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+	by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	28 Oct 2019 20:27:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,242,1569308400"; d="scan'208";a="198800618"
+Received: from mng-mobl.gar.corp.intel.com (HELO shodan.localnet)
+	([10.249.76.230])
+	by fmsmga007.fm.intel.com with ESMTP; 28 Oct 2019 20:27:39 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Yann CARDAILLAC <yann.cardaillac@smile.fr>
+Date: Tue, 29 Oct 2019 16:27:37 +1300
+Message-ID: <3141867.2GmitW1KQV@shodan>
+Organization: Intel Corporation
+In-Reply-To: <CAA984JVPt_iwehB6EjcWBC507Efkjgs0Muz0g6Hczw_3mVygGA@mail.gmail.com>
+References: <CAA984JVEEC2F9EQ7jOiZsVVwFEcgMYWKnUxfnGEN0dUXPHti1g@mail.gmail.com>
+	<2189115.Upo427RBWa@linux.fritz.box>
+	<CAA984JVPt_iwehB6EjcWBC507Efkjgs0Muz0g6Hczw_3mVygGA@mail.gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [layerindex-web] Add SPDX Identifier
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,60 +47,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Oct 2019 22:09:55 -0000
+X-List-Received-Date: Tue, 29 Oct 2019 03:27:45 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-From: Armin Kuster <akuster808@gmail.com>
+Hi Yann
 
-exclude arm and aarch64 ptest tasks
+On Wednesday, 23 October 2019 2:25:48 AM NZDT Yann CARDAILLAC wrote:
+> On Mon, Oct 21, 2019 at 9:37 PM Paul Eggleton <paul.eggleton@linux.intel.com>
+> wrote:
+> > On Tuesday, 22 October 2019 4:15:03 AM NZDT Yann CARDAILLAC wrote:
+> > > https://bugzilla.yoctoproject.org/show_bug.cgi?id=13527
+> > >
+> > > I'm beginning the work of updating the layerindex-web repo, this one is a
+> > > bit tricky, how should I treat the files generated using Django ?
+> >
+> > I believe the correct license for Django-derived files is BSD-3-Clause:
+> >
+> >   https://github.com/django/django/blob/master/LICENSE
+> >
+> > > I've yet to do html, txt and sh files, do you have any advices before I
+> > > start?
+> >
+> > Note that some of the templates used for authentication originally came
+> > from
+> > here:
+> >
+> >   https://github.com/macdhuibh/django-registration-templates
+> >
+> > The LICENSE file indicates MIT for those though.
+> >
+> > The txt files are tricky because any stray newlines will affect
+> > formatting. I would probably avoid touching them.
+>
+> I did not yet add MIT to html files, I don't really know if that makes
+> sense or not?  I didn't do that because it seemed a bit weird to me, but I
+> don't know what to think of that. Most of the time you'll find copyright on
+> the footer of the page, but I'm not sure about Licensing those.
+> 
+> So here is a first iteration of the patch without htmls file licensed.
 
-[v2&3]
+I think it's fine to add to the HTML as long as you add it as part of the Django template comment at the top and not in the actual text that gets rendered.
 
-Sent before committing.
+Looking over the license definitions they look fine, except the migrations - if these are considered derived from Django (which is fine) then they should all be BSD-3-Clause rather than some being MIT. It looks like some of the earlier ones don't have a "generated by django" comment, but they were all initially generated with ./manage.py makemigrations; some then had additional code added to them.
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
-(cherry picked from commit 27ddb455543b670097e252ba0d0ad5b7e4101748)
-Signed-off-by: Anders Montonen <Anders.Montonen@iki.fi>
----
- recipes-security/AppArmor/apparmor_2.12.bb | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+Cheers
+Paul
 
-diff --git a/recipes-security/AppArmor/apparmor_2.12.bb b/recipes-security/AppArmor/apparmor_2.12.bb
-index e3f8dc9..377d918 100644
---- a/recipes-security/AppArmor/apparmor_2.12.bb
-+++ b/recipes-security/AppArmor/apparmor_2.12.bb
-@@ -111,6 +111,15 @@ do_install () {
- 	fi
- }
- 
-+#Building ptest on arm fails.
-+do_compile_ptest_aarch64 () {
-+  :
-+}
-+
-+do_compile_ptest_arm () {
-+  :
-+}
-+
- do_compile_ptest () {
-         oe_runmake -C ${B}/tests/regression/apparmor
-         oe_runmake -C ${B}/parser/tst
-@@ -138,6 +147,15 @@ do_install_ptest () {
- 	cp -rf ${B}/binutils ${t}
- }
- 
-+#Building ptest on arm fails.
-+do_install_ptest_aarch64 () {
-+  :
-+}
-+
-+do_install_ptest_arm() {
-+  :
-+}
-+
- INITSCRIPT_PACKAGES = "${PN}"
- INITSCRIPT_NAME = "apparmor"
- INITSCRIPT_PARAMS = "start 16 2 3 4 5 . stop 35 0 1 6 ."
 -- 
-2.17.1
+
+Paul Eggleton
+Intel System Software Products
+
 
 
