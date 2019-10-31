@@ -1,43 +1,61 @@
-Return-Path: <kaz@kylheku.com>
+Return-Path: <star@gmx.li>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 80D68E00DA3; Tue, 29 Oct 2019 11:03:13 -0700 (PDT)
+	id 881D8E00E5A; Thu, 31 Oct 2019 02:20:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, FREEMAIL_FROM, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [64.59.136.139 listed in list.dnswl.org]
-X-Greylist: delayed 60 seconds by postgrey-1.32 at yocto-www;
-	Tue, 29 Oct 2019 11:03:13 PDT
-Received: from smtp-out-so.shaw.ca (smtp-out-so.shaw.ca [64.59.136.139])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E0CEE00805
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2019 11:03:13 -0700 (PDT)
-Received: from kylheku.com ([70.79.163.252]) by shaw.ca with ESMTPA
-	id PVooiaKYBIhW9PVoqiUIz1; Tue, 29 Oct 2019 12:02:12 -0600
-X-Authority-Analysis: v=2.3 cv=FcFJO626 c=1 sm=1 tr=0
-	a=95A0EdhkF1LMGt25d7h1IQ==:117 a=95A0EdhkF1LMGt25d7h1IQ==:17
-	a=IkcTkHD0fZMA:10 a=SMorJkV_YP8A:10 a=XobE76Q3jBoA:10
-	a=GgWmRhubfEUHAQ_U3EUA:9 a=QEXdDO2ut3YA:10 a=Z5ABNNGmrOfJ6cZ5bIyy:22
-	a=UDnyf2zBuKT2w-IlGP_r:22
-Received: from www-data by kylheku.com with local (Exim 4.72)
-	(envelope-from <kaz@kylheku.com>) id 1iPVoo-0002sL-Rm
-	for yocto@yoctoproject.org; Tue, 29 Oct 2019 11:02:10 -0700
-To: yocto@yoctoproject.org
-X-PHP-Originating-Script: 501:rcmail.php
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (star[at]gmx.li)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [212.227.17.20 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA2DDE00DF1
+	for <yocto@yoctoproject.org>; Thu, 31 Oct 2019 02:20:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+	s=badeba3b8450; t=1572513600;
+	bh=wc0r9FtXQn9jWJZgcv7FsUWkpVpyDemr8ave5ef0CaA=;
+	h=X-UI-Sender-Class:From:To:Subject:Date;
+	b=aHHKErLJu46JGhHXnvuUXlh/bdbS/p2Mxep3LuzE6OxMBWi26nJL4rKhJJmlhOOSz
+	JcyGS0hKAGwrBhv/NrPSBnzPQfhGDKHxVwMWz4DNw9k55tg0D2oFJHL1JFd0paTZTG
+	KcJjjtjtZfItjByYy/G+GcSXfqH5LzcS9Rfcgk7k=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [62.225.157.196] ([62.225.157.196]) by web-mail.gmx.net
+	(3c-app-gmx-bap75.server.lan [172.19.172.175]) (via HTTP);
+	Thu, 31 Oct 2019 10:20:00 +0100
 MIME-Version: 1.0
-Date: Tue, 29 Oct 2019 11:02:10 -0700
-From: Kaz Kylheku <kaz@kylheku.com>
-Message-ID: <7c6faff5d4114d16522262d8716e1c7a@mail.kylheku.com>
-X-Sender: kaz@kylheku.com
-User-Agent: Roundcube Webmail/0.9.2
-X-CMAE-Envelope: MS4wfJavBnunGH5msca1R2+LSO2fwpA3xjCVqekRTf/TtiKppu/ST5+HdaP12r80nLVxjHmdMSt1Ne8H5obq5e4XAV0xcBmcTKpRIsrtdaXxQOMzQyI90p3i
-	wX5gVL/ZVLHMAtVuAEsy5fGv6vNaJvsr/1zM3LOlMJ2+HTQAFilqfLP2
-X-Mailman-Approved-At: Fri, 01 Nov 2019 12:07:53 -0700
-Subject: [yocto-2.7, nativesdk-diffutils]: patched-away problem intermittently persists.
+Message-ID: <trinity-77cb5fbf-c8b7-4560-bd1b-e770272b1559-1572513600056@3c-app-gmx-bap75>
+From: "Arno Steffens" <star@gmx.li>
+To: ross.burton@intel.com
+Date: Thu, 31 Oct 2019 10:20:00 +0100
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K1:WGcTmQaWeoaoRTp/tiEz6PWjXE6qiP/t6cr5OkksMFpobK96RIYYuOHtWx722mDQ1Xndl
+	0+g+XeQfQ+qcz/XlN1SS7F5qICnuHWZ2kMAKaytz/hW0fnJ8A0UcPmQJWM2lQfkC6ZC7aUPg6Zrp
+	fkSqdW1wB7FFHO+PJDF7ZP54rOPYyNzdeBNHdIKBaJnFe7vyNKo6Q83Ab2mLm89YzUz2b9q0gMkL
+	r0DgGJZqksH35zBn1CNMm82xe11dpzbhDFO52EZQyQ7KDGnW5of5an08NxcLIhREXBe80vTW8QHU
+	xc=
+X-UI-Out-Filterresults: notjunk:1;V03:K0:89SLStoZwbg=:RbwtLlRbD3X8j6ldjcdHE7
+	4pJogm5WJtpxA174FP3tmPTUctPNxvKamXO7dYk4GWIGeCms+AYR/75Bbo/vtB2ZckYdzV6yE
+	OtXiMPCvOgqjo9gg81ZDJI+R+ktuwsXAYuAecwikxRQBRpag8KbShmniv3d25sh//Z/OCSAfN
+	tiX2fds/eccm7l2p4DxRzhzy1rB4YtBoV13dTsjILVXVjvOcCWkq4xtmvIEyApUsA9SYcBRDX
+	OtGk2WQNpbWB4O2KR9IfHokPeG0zDjmOGXFS9Po8AfXNXJElOx+y4shBXq4P/NnIwt+HNMcmb
+	gvV23oIyVAJPkQqjtvsBi6H47QuZXfjb2KbBBA6pRlybgreXjM37ItYlXJBkuBCIi50ayQSZq
+	aYEHrrHS/XaoK/hy++71UDlzmI+WGMYgh435ZUYZpzXDysvGLfxIKuJfcOPZolf/oLMrZuUt/
+	MGHHllufqdb/pO0VR4PNGhexx2ulW1zMfxgZUd6dHTjmkjDJUrQ7QsLEYg4r2GicWbouGkO9R
+	Yz3/+FZ9mOBvy7qBBoNvy3pJ/RwTZiosfVoCIXl9t9JhACWT6zwzgxEf8Wr5ovfannPPOlV9z
+	NpKHy6aCdfWVA81tjxmK5OlNOHyFhMtrxoZDIFHMU6jb3V/aO30C7nluqfnY2z5GRoGXq0kxo
+	ZwxdzmNLBlIEbY4ttzp9f38aT85crPCs5k0h93t3oMkm+QQ==
+X-Mailman-Approved-At: Fri, 01 Nov 2019 12:07:52 -0700
+Subject: Re: [zeus] icu-native-64.2-r0 do_configure: configure failed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,37 +67,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Oct 2019 18:03:13 -0000
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+X-List-Received-Date: Thu, 31 Oct 2019 09:20:09 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,
-
-I have seen the nativesdk-diffutils compilation fail with the exact=20
-problem
-that is supposed to be solved by:
-
-file://0001-explicitly-disable-replacing-getopt.patch
-
-The build failure which occurs is 100% identical in all its symptoms
-to what happens if we remove this patch:
-
-In file included from ./getopt.h:85:0,
-                  from ../../diffutils-3.6/lib/xstrtol.h:22,
-                  from ../../diffutils-3.6/lib/xstrtol-error.c:20:
-=2E/config.h:2072:25: warning: 'struct rpl_option' declared inside=20
-parameter list
-will not be visible outside of this definition or declaration
-  #define __GETOPT_PREFIX rpl_
-                          ^
-=2E./../diffutils-3.6/lib/getopt-pfx-core.h:38:44: note: in expansion of=20
-macro '__
-GETOPT_PREFIX'
-  #  define __GETOPT_ID(y) __GETOPT_XCONCAT (__GETOPT_PREFIX, y)
-                                             ^~~~~~~~~~~~~~~
-
-I don't know if it's a problem with the patch, or if somehow it's not
-getting applied; next time it happens I will have more info.
-
+Thanks Ross, that was a great help! Not sure I would found it...
+Indeed python3 was installed but not all required elements:
+sudo apt-get install python3-distutils was my friend.
+Best regards
+Arno
 
