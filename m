@@ -1,70 +1,69 @@
-Return-Path: <jupiter.hce@gmail.com>
+Return-Path: <pwr@iae.nl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 30834E00DA9; Thu, 31 Oct 2019 00:15:17 -0700 (PDT)
+	id 16D83E00D77; Thu, 31 Oct 2019 03:36:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (jupiter.hce[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.178 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [213.75.39.13 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com
-	[209.85.166.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8F7EE00571
-	for <yocto@yoctoproject.org>; Thu, 31 Oct 2019 00:15:16 -0700 (PDT)
-Received: by mail-il1-f178.google.com with SMTP id a13so4485745ilp.1
-	for <yocto@yoctoproject.org>; Thu, 31 Oct 2019 00:15:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc; bh=Hc7iE/ITZlRStr0wdx8mWXay9qs1hqhgPU1upXujMJk=;
-	b=Y3WuIPfMH6ouNX5+5h9I3vAd7LWtHB/skYpvWYsGWG5djXNpRZhouBvesP959F1gcH
-	s5NN1p5m4Oq5uQCEy3wdokYvKPoBLRGDSl7r3v7nY+sUr0h4OKpt/fM8AHlqvvpiIMAt
-	flwFO3oiZZxao2mHfwcBe0IsecYQN1EEFl+TNDaMKixvrzWNP+nwf8aiMRslpq3Kmkqr
-	EgsErEkGqxg97dFchUlEx4yFIz5t04Gcz9nnBz8Bsaj/c2uxRUKsJqnYRU5kc7lcBO+g
-	9mcetH2dQ9lJuADD5G5iocf27kR6cFkbikZA5oHwI+C0F9L8CuEUWEygUGkeM8W5KOhr
-	3bWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc;
-	bh=Hc7iE/ITZlRStr0wdx8mWXay9qs1hqhgPU1upXujMJk=;
-	b=fQVIY8FtWFimpl1gRE2V56+24GJYh7TfYxIkOsL6okk1DwuZP26gqeWQM62Y+rBM6V
-	/vis6PZCw2mMh3emuzHeqBUamEPdjfOELyt1RHFZpE2re+NTMBGUqNXVzxz0eVYt7twG
-	HC+oNBWycFUT0MqEC+I09wnNIe4J44Grj2RjVpakzLKroxjqMN7RGPNOPi9R1xI5xTy3
-	2nUom7iGN2WsWZpoqq/85HbLpicVAUEjdehi7oc7yHYYUYp/tCubUcRQ3iCxE8rRKmt0
-	hKsmRQOusEvfR+0tKoeeZbejVR3wtNWcGufLV9SkFWl/JNswlMJKwETRmfP5wnIwttnk
-	QlFA==
-X-Gm-Message-State: APjAAAVeziQdK0hgvCSzA4IBVmFMkDLAz2K0KysXuI3MHu5luUXZV043
-	2l6CBUd8Wbtak1O6FfhdROdUb6sYIK0tFm7wYs0=
-X-Google-Smtp-Source: APXvYqyQ8+N/JNo88UGj/9FUapU9cKuQPd6krQyKnUlJVeVccG+euESt79xnh8IGJhAWIbkLVNuyCdnyyIO6P1rxm1w=
-X-Received: by 2002:a92:d5cf:: with SMTP id d15mr4555026ilq.302.1572506115441; 
-	Thu, 31 Oct 2019 00:15:15 -0700 (PDT)
+Received: from cpsmtpb-ews08.kpnxchange.com (cpsmtpb-ews08.kpnxchange.com
+	[213.75.39.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADA1BE00ADD
+	for <yocto@yoctoproject.org>; Thu, 31 Oct 2019 03:36:39 -0700 (PDT)
+Received: from cpsps-ews30.kpnxchange.com ([10.94.84.196]) by
+	cpsmtpb-ews08.kpnxchange.com with Microsoft SMTPSVC(7.5.7601.17514); 
+	Thu, 31 Oct 2019 11:36:37 +0100
+X-Brand: /q/rzKX13g==
+X-KPN-SpamVerdict: e1=0;e2=0;e3=0;e4=(e1=10;e3=10;e2=11;e4=10);EVW:Whi
+	te;BM:NotScanned;FinalVerdict:Clean
+X-CMAE-Analysis: v=2.3 cv=OKhZIhSB c=1 sm=1 tr=0 cx=a_idp_e
+	a=WB5lYbMG1jvHJ1f8o08CVQ==:117 a=WB5lYbMG1jvHJ1f8o08CVQ==:17
+	a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=8SZ6bD3cDFYA:10 a=IkcTkHD0fZMA:10
+	a=XobE76Q3jBoA:10 a=iGHA9ds3AAAA:8 a=JMnnF-g5AAAA:8
+	a=4fIyOY1WsNlD_WVDqLgA:9 a=QEXdDO2ut3YA:10 a=opEhNme9xScA:10
+	a=Ztq6F2bf3zEA:10 a=nM-MV4yxpKKO9kiQg6Ot:22 a=MIlUOSWcqtxlsnWNI7We:22
+X-CM-AcctID: kpn@feedback.cloudmark.com
+Received: from smtp.kpnmail.nl ([195.121.84.14]) by cpsps-ews30.kpnxchange.com
+	over TLS secured channel with Microsoft SMTPSVC(8.5.9600.16384);
+	Thu, 31 Oct 2019 11:36:37 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=kpnmail.nl; s=kpnmail01;
+	h=content-type:mime-version:date:message-id:from:to:subject;
+	bh=C+tWzG41qwOf2jS0TwR2Fn6Jajgt5WFIQhIKy1Ktvlc=;
+	b=Uzo1ZExVNbXn2Pc++CYG6bI5SXu01oj0aDW3EeaSmbB4vCdb4LpfR9Wve98Gz80N11GQL0Q1Etvvd
+	ok+C2xMqLsoTZQhXHm/Bq0HEygVJTJoCvpUIRYQd+u4X9QQ3PmrAJkAJhrldNflMzh6RfgQn67W2vC
+	dlBjpTtqb3dUZ6yk=
+X-Originating-IP: 86.89.1.39
+Received: from [192.168.2.198] (unknown [86.89.1.39])
+	by smtp.kpnmail.nl (Halon) with ESMTP
+	id 5135fee2-fbca-11e9-876f-00505699d6e5;
+	Thu, 31 Oct 2019 11:36:37 +0100 (CET)
+To: yocto@yoctoproject.org
+References: <111d936e-8879-6190-9287-32fcc5b192b5@iae.nl>
+	<1b104a0b-55e8-4b9e-91bc-cadbefebe442@windriver.com>
+From: R <pwr@iae.nl>
+Message-ID: <0f14685e-8b77-8fe2-06a5-ed165a57b88c@iae.nl>
+Date: Thu, 31 Oct 2019 11:36:37 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+	Thunderbird/68.2.0
 MIME-Version: 1.0
-Received: by 2002:ac0:aa09:0:0:0:0:0 with HTTP; Thu, 31 Oct 2019 00:15:14
-	-0700 (PDT)
-In-Reply-To: <CAP71Wjwk-X6Aa+KsZjTwf-JnoKjwZPHnE0ctTYxEGzn8kSDskw@mail.gmail.com>
-References: <CAA=hcWQgrC0LGdejAEP=i9pnR4BS3q5XqnqBYbwD9221wkGA2Q@mail.gmail.com>
-	<CAP71Wjwk-X6Aa+KsZjTwf-JnoKjwZPHnE0ctTYxEGzn8kSDskw@mail.gmail.com>
-From: JH <jupiter.hce@gmail.com>
-Date: Thu, 31 Oct 2019 18:15:14 +1100
-Message-ID: <CAA=hcWT96ARhR-StpS-=rUF5D3B9tgv=kh2h=Q8FUWWB9qZLvA@mail.gmail.com>
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Which recipe for qmicli?
+In-Reply-To: <1b104a0b-55e8-4b9e-91bc-cadbefebe442@windriver.com>
+X-OriginalArrivalTime: 31 Oct 2019 10:36:37.0702 (UTC)
+	FILETIME=[13034660:01D58FD7]
+X-RcptDomain: yoctoproject.org
+Subject: Re: NooB: applying new patches to older files, where do I find the older files?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: pwr@iae.nl
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -73,33 +72,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Oct 2019 07:15:17 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 31 Oct 2019 10:36:41 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-GB
 
-Thank you very much Nicolas.
+On 31-10-2019 01:52, Randy MacLeod wrote:
+> On 10/30/19 8:16 AM, R wrote:
+>> Hello List,
+>>
+>> First I'm working on a unsupported distro (Manjaro) and try to get an =
 
-On 10/31/19, Nicolas Dechesne <nicolas.dechesne@linaro.org> wrote:
-> On Thu, Oct 31, 2019 at 7:26 AM JH <jupiter.hce@gmail.com> wrote:
+>> older version (2.7.1) of poky working. I have ask a question before=20
+>> and Ross Burton pointed me in the direction of a patch.
+>> Now I'm trying to apply that patch, however the patch is for a newer=20
+>> version of the original files, so I need to make my own patch for the =
+
+>> older version of these files.
+>> (reason: WARNING: Some of the context lines in patches were ignored.=20
+>> This can lead to incorrectly applied patches.)
 >>
->> Hi,
->>
->> The qmicli is in libqmi-utils in Ubuntu package, but I could not find
->> Yocto libqmi-utils, only libqmi recipe, is qmicli in libqmi?
+>> The patch says: the file to be patch is e.g. /linux-user/syscall.c
+>> My question is where can I find the original syscall.c before any=20
+>> patches are applied to it?
 >
-> yes, it is there. There isn't a 1 to 1 mapping between debian and OE
-> package names. But if you build libqmi recipe, you will see that the
-> libqmi package includes qmicli.
+> Hi Robert,
+>
+> This file and the patch are for the qemu package.
+>
+> You can run:
+> $ bitbake -c patch qemu-native <--- host build
+> or
+> $ bitbake -c patch qemu <--- target build
+> to get all the patches that are listed in the qemu recipe in poky:
+> =C2=A0=C2=A0 meta/recipes-devtools/qemu/qemu_3.1.1.1.bb
+> and
+> =C2=A0=C2=A0 meta/recipes-devtools/qemu/qemu.inc
+> applied to unpacked source.
+>
+> The patched source will be in (this is on master branch):
+>
+> <build_area>/tmp-glibc/work/x86_64-linux/qemu-native/4.1.0-r0/qemu-4.1.=
+0/linux-user/syscall.c=20
+>
+>
+> poky might just be /tmp/ instead of /tmp-glibc/
+>
+> In my case the log of the patching is in:
+> tmp-glibc/work/x86_64-linux/qemu-native/4.1.0-r0/temp/log.do_patch
 >
 >>
->> Thank you.
->>
->> Kind regards,
->>
->> - jh
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+>> Just to be complete: I have tried the latest warrior branch and that=20
+>> worked fine. My objective is not just to get it working be also to=20
+>> get a grip on how the system works :-)
 >
+> Super.
+>
+> Have you looked at:
+> https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html
+>
+> and perhaps:
+>
+> https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#fi=
+nding-the-temporary-source-code=20
+>
+>
+> will be useful now.
+>
+> Manipulating patches by hand can be tedious. There's a tool
+> called wiggle:
+> =C2=A0=C2=A0 https://linux.die.net/man/1/wiggle
+> which can help but may be too much for you to deal with initially.
+>
+> Actually, I suggest that you build on a supported distro initially
+> to understand the basic workflow and then decide if you want to figure
+> out how to make Arch/Manjaro work.
+>
+> ../Randy
+>
+>> Thanks,
+>> Robert.
+
+Thanks Randy,
+Very helpful, especially the trigger to look into the development manual.=
+
+I know starting with a supported distro would be the smarter choice. But =
+
+then it would just work and I would probably make tiny steps in changes, =
+
+this way I'm pulled right into the belly of the "beast" and I will learn =
+
+much faster how it works :-) Disadvantage is that I maybe overwhelmed,=20
+so I will ask a question like this one, occasionally.
+Robert
+
+
+
 
