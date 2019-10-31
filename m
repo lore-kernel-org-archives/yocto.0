@@ -1,40 +1,54 @@
-Return-Path: <Randy.MacLeod@windriver.com>
+Return-Path: <vineela.tummalapalli@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D797FE00DB1; Thu, 31 Oct 2019 10:07:51 -0700 (PDT)
+	id C7306E00DB1; Thu, 31 Oct 2019 11:51:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2AB9E00DA7
-	for <yocto@yoctoproject.org>; Thu, 31 Oct 2019 10:07:50 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id x9VH7gs3015859
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 31 Oct 2019 10:07:43 -0700
-Received: from [147.11.119.104] (147.11.119.104) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.468.0;
-	Thu, 31 Oct 2019 10:07:42 -0700
-To: <pwr@iae.nl>, <yocto@yoctoproject.org>
-References: <111d936e-8879-6190-9287-32fcc5b192b5@iae.nl>
-	<1b104a0b-55e8-4b9e-91bc-cadbefebe442@windriver.com>
-	<0f14685e-8b77-8fe2-06a5-ed165a57b88c@iae.nl>
-From: Randy MacLeod <randy.macleod@windriver.com>
-Message-ID: <d315d3e0-add0-423a-915c-d5cc7d627404@windriver.com>
-Date: Thu, 31 Oct 2019 10:07:41 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.1.2
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 893A7E008D9;
+	Thu, 31 Oct 2019 11:51:39 -0700 (PDT)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	31 Oct 2019 11:51:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,252,1569308400"; d="scan'208";a="194413246"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by orsmga008.jf.intel.com with ESMTP; 31 Oct 2019 11:51:38 -0700
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.3.439.0; Thu, 31 Oct 2019 11:51:37 -0700
+Received: from orsmsx107.amr.corp.intel.com ([169.254.1.115]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.12.244]) with mapi id
+	14.03.0439.000; Thu, 31 Oct 2019 11:51:37 -0700
+From: "Tummalapalli, Vineela" <vineela.tummalapalli@intel.com>
+To: "yocto-announce@lists.yoctoproject.org"
+	<yocto-announce@lists.yoctoproject.org>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
+Thread-Topic: [yocto-announce] [ANNOUNCEMENT] Yocto Project 2.6.4 (thud
+	20.0.4)	Released
+Thread-Index: AdWQFZ+SMQSBXrtUR2CBFvNFthnRhQ==
+Date: Thu, 31 Oct 2019 18:51:37 +0000
+Message-ID: <363DC7214F94884BBF80916755E7D6552079ABB8@ORSMSX107.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZjQzMDYzOWEtY2UxMi00NGQ1LWEyMDYtOTUwZmM5MGNiN2YyIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiOFwvMytGNzhZZ0Q0bkZHdjhqd3dYNWhGMHM1SUlLNDZFQW5mMHY0VEtsSmRCYmd4Z1JZNXNEdWpORkt1UDRRcjMifQ==
+x-ctpclassification: CTP_NT
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-In-Reply-To: <0f14685e-8b77-8fe2-06a5-ed165a57b88c@iae.nl>
-X-Originating-IP: [147.11.119.104]
-Subject: Re: NooB: applying new patches to older files, where do I find the older files?
+Subject: [yocto-announce] [ANNOUNCEMENT] Yocto Project 2.6.4 (thud 20.0.4)	Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,106 +60,183 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Oct 2019 17:07:51 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-CA
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 31 Oct 2019 18:51:40 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/31/19 6:36 AM, R wrote:
-> On 31-10-2019 01:52, Randy MacLeod wrote:
->> On 10/30/19 8:16 AM, R wrote:
->>> Hello List,
->>>
->>> First I'm working on a unsupported distro (Manjaro) and try to get an 
->>> older version (2.7.1) of poky working. I have ask a question before 
->>> and Ross Burton pointed me in the direction of a patch.
->>> Now I'm trying to apply that patch, however the patch is for a newer 
->>> version of the original files, so I need to make my own patch for the 
->>> older version of these files.
->>> (reason: WARNING: Some of the context lines in patches were ignored. 
->>> This can lead to incorrectly applied patches.)
->>>
->>> The patch says: the file to be patch is e.g. /linux-user/syscall.c
->>> My question is where can I find the original syscall.c before any 
->>> patches are applied to it?
->>
->> Hi Robert,
->>
->> This file and the patch are for the qemu package.
->>
->> You can run:
->> $ bitbake -c patch qemu-native <--- host build
->> or
->> $ bitbake -c patch qemu <--- target build
->> to get all the patches that are listed in the qemu recipe in poky:
->>    meta/recipes-devtools/qemu/qemu_3.1.1.1.bb
->> and
->>    meta/recipes-devtools/qemu/qemu.inc
->> applied to unpacked source.
->>
->> The patched source will be in (this is on master branch):
->>
->> <build_area>/tmp-glibc/work/x86_64-linux/qemu-native/4.1.0-r0/qemu-4.1.0/linux-user/syscall.c 
->>
->>
->> poky might just be /tmp/ instead of /tmp-glibc/
->>
->> In my case the log of the patching is in:
->> tmp-glibc/work/x86_64-linux/qemu-native/4.1.0-r0/temp/log.do_patch
->>
->>>
->>> Just to be complete: I have tried the latest warrior branch and that 
->>> worked fine. My objective is not just to get it working be also to 
->>> get a grip on how the system works :-)
->>
->> Super.
->>
->> Have you looked at:
->> https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html
->>
->> and perhaps:
->>
->> https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#finding-the-temporary-source-code 
->>
->>
->> will be useful now.
->>
->> Manipulating patches by hand can be tedious. There's a tool
->> called wiggle:
->>    https://linux.die.net/man/1/wiggle
->> which can help but may be too much for you to deal with initially.
->>
->> Actually, I suggest that you build on a supported distro initially
->> to understand the basic workflow and then decide if you want to figure
->> out how to make Arch/Manjaro work.
->>
->> ../Randy
->>
->>> Thanks,
->>> Robert.
-> 
-> Thanks Randy,
-> Very helpful, especially the trigger to look into the development manual.
-> I know starting with a supported distro would be the smarter choice. But 
-> then it would just work and I would probably make tiny steps in changes, 
-> this way I'm pulled right into the belly of the "beast" and I will learn 
-> much faster how it works :-) Disadvantage is that I maybe overwhelmed, 
-> so I will ask a question like this one, occasionally.
-> Robert
+Hello,
 
-Makes sense I suppose, good luck, questioned welcomed.
-There are also people on freenode IRC #oe if you are interested.
+We are pleased to announce the Yocto Project 2.6.4 (thud-20.0.4) Release is=
+ now available for download.
 
-A few Yocto devs have used ArchLinux so you're not breaking completely
-new ground, FYI.
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.6.4/poky-thud-20.0=
+.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.6.4/poky-thud-20.0.4.tar.bz2
 
-../Randy
-> 
-> 
-> 
+A gpg signed version of these release notes is available at:
+
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.6.4/RELEASENOTES
+
+Full Test Report:
+
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.6.4/testreport.txt
+
+Thank you for everyone's contributions to this release.
+
+Note: Yocto Project has updated the expiration date on the release signing =
+key.=20
+Please import https://downloads.yoctoproject.org/releases/yocto/keys/yocto-=
+release-key.asc to verify RELEASENOTES and git tags.
+
+Sincerely,
+
+Vineela Tummalapalli
+Yocto Project Build and Release
+vineela.tummalapalli@intel.com
 
 
--- 
-# Randy MacLeod
-# Wind River Linux
+- -------------------------
+yocto-2.6.4 Release Notes
+- -------------------------
+
+- -----------------------
+Repositories/Downloads
+- -----------------------
+
+Repository Name: poky
+Repository Location: https://git.yoctoproject.org/git/poky
+Branch: thud
+Tag: yocto-2.6.4
+Git revision: 51f6145f8f99a02df1dad937684f014b0172e72a
+Release Artefact: poky-thud-20.0.4
+md5: 9859b2ac90ced909bdd7293125295348
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.6.4/poky-thud-20.0=
+.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.6.4/poky-thud-20.0.4.tar.bz2
+
+Repository Name: openembedded-core
+Repository Location: https://git.openembedded.org/openembedded-core
+Branch: thud
+Tag: yocto-2.6.4
+Git revision: cd7cf933b3235560ec71576d8f3836dff736a39f
+Release Artefact: oecore-thud-20.0.4
+md5: a2f1d7fa021ca3d37c5c3a65ea27b2d7
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.6.4/oecore-thud-20=
+.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.6.4/oecore-thud-20.0.4.tar.bz=
+2
+
+Repository Name: meta-mingw
+Repository Location: https://git.yoctoproject.org/git/meta-mingw
+Branch: thud
+Tag: yocto-2.6.4
+Git revision: 6556cde16fbdf42c7edae89bb186e5ae4982eff5
+Release Artefact: meta-mingw-thud-20.0.4
+md5: 8e20b388086db80a1420cfa5be5f5573
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.6.4/meta-mingw-thu=
+d-20.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.6.4/meta-mingw-thud-20.0.4.ta=
+r.bz2
+
+Repository Name: meta-intel
+Repository Location: https://git.yoctoproject.org/git/meta-intel
+Branch: thud
+Tag: yocto-2.6.4
+Git revision: c200851435f39acd2fe4abbf7a05fbf617833964
+Release Artefact: meta-intel-thud-20.0.4
+md5: 4696150e7676a926baf0975e252f0964
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.6.4/meta-intel-thu=
+d-20.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.6.4/meta-intel-thud-20.0.4.ta=
+r.bz2
+
+Repository Name: meta-gplv2
+Repository Location: https://git.yoctoproject.org/git/meta-gplv2
+Branch: thud
+Tag: yocto-2.6.4
+Git revision: aabc30f3bd03f97326fb8596910b94639fea7575
+Release Artefact: meta-gplv2-thud-20.0.4
+md5: 478bd5348e9b64fde6df18a82f691fd3
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-2.6.4/meta-gplv2-thu=
+d-20.0.4.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-2.6.4/meta-gplv2-thud-20.0.4.ta=
+r.bz2
+
+- ---------------
+ Known Issues
+- ---------------
+Bug 13273 - Systemtap doesn't work on beaglebone
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13273
+
+- ---------------
+Security Fixes
+- ---------------
+curl: Security fix for CVE-2019-5482
+libsolv: Security fix for CVEs: <CVE-2018-20532, CVE-2018-20533, CVE-2018-2=
+0534>
+gnutls: Fix CVE-2019-3829 and CVE-2019-3836
+glibc: Security fix for cve <CVE-2019-6488, CVE-2019-7309>
+wget: Security fixes CVE-2018-20483
+sqlite3: Security fix for CVE-2019-8457
+perl: Fix CVE-2018-18311 to 18314
+unzip: fix CVE-2019-13232
+elfutils: CVE fix for elfutils
+qemu: Fix 4 CVEs
+pango: fix CVE-2019-1010238
+patch: fix CVE-2019-13638
+libxslt: fix CVE-2019-13117 CVE-2019-13118
+libxslt: Cve fix CVE-2019-11068
+python3: Fix CVEs
+python: Fix 3 CVEs
+binutils: Fix 4 CVEs
+binutils: Security fix for CVE-2019-12972
+binutils: Security fix for CVE-2019-14444
+gcc: Security fix for CVE-2019-14250
+libcomps: fix CVE-2019-3817
+glib-2.0: fix CVE-2019-13012
+dbus: fix CVE-2019-12749
+curl: fix CVE-2018-16890 CVE-2019-3822 CVE-2019-3823
+python3: fix CVE-2019-9740
+patch: fix CVE-2019-13636
+
+
+- ---------------
+Fixes
+- ---------------
+build-appliance-image: Update to thud head revision
+Revert "OpkgPM: use --add-ignore-recommends to process BAD_RECOMMENDATIONS"
+build-appliance-image: Update to thud head revision
+poky.conf: Bump version for 2.6.4 thud release
+kernel-devsrc: check for localversion files in the kernel source tree
+arch-arm64.inc: Lower the priority of aarch64 in MACHINEOVERRIDES
+kernel.bbclass: fix installation of modules signing certificates
+bitbake: cookerdata: Add mc conffiles hashes to cache hash
+uninative: Update to 2.7 release
+gnupg: Do not apply -Woverride-init guard for gcc >=3D 9
+libgpg-error: Fix build with gawk 5.x
+qemu: fix build issue on new hosts with glibc 2.30
+json-c: Don't --enable-rdrand
+oeqa/selftest/context: ensure log directory exists
+linux-yocto/4.14: update to v4.14.143
+patch: backport fixes
+dhcp: Replace OE specific patch for compatibility with latest bind with ups=
+tream patch
+dhcp: drop lost patch
+dhcp: fix issue with new bind changes
+go: update to 1.11.13, minor updates
+bind: upgrade 9.11.5 -> 9.11.5-P4
+bind: update to latest LTS 9.11.5
+qemu: add a patch fixing the native build on newer kernels
+buildhistory: call a dependency parser only on actual dependency lists
+bitbake: tests/fetch: Resolve fetch error in bitbake-selftest
+YP Docs: Set up the August 2019 date for 2.6.3 release.
+bitbake: fetch2: show warning when renaming the archive with bad checksum f=
+ailed
+bitbake: utils: Fix movefile() exception handling with python3
 
