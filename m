@@ -1,38 +1,62 @@
-Return-Path: <Randy.MacLeod@windriver.com>
+Return-Path: <jupiter.hce@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CB676E00D99; Wed, 30 Oct 2019 17:52:11 -0700 (PDT)
+	id 6DBC4E00DF1; Wed, 30 Oct 2019 23:25:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7715E00D00
-	for <yocto@yoctoproject.org>; Wed, 30 Oct 2019 17:52:10 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id x9V0q29Y028652
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 30 Oct 2019 17:52:02 -0700 (PDT)
-Received: from [147.11.119.146] (147.11.119.146) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.468.0;
-	Wed, 30 Oct 2019 17:52:01 -0700
-To: <pwr@iae.nl>, <yocto@yoctoproject.org>
-References: <111d936e-8879-6190-9287-32fcc5b192b5@iae.nl>
-From: Randy MacLeod <randy.macleod@windriver.com>
-Message-ID: <1b104a0b-55e8-4b9e-91bc-cadbefebe442@windriver.com>
-Date: Wed, 30 Oct 2019 17:52:00 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.1.2
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (jupiter.hce[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.172 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com
+	[209.85.166.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F54EE00DA9
+	for <yocto@yoctoproject.org>; Wed, 30 Oct 2019 23:25:53 -0700 (PDT)
+Received: by mail-il1-f172.google.com with SMTP id p8so4380963ilp.2
+	for <yocto@yoctoproject.org>; Wed, 30 Oct 2019 23:25:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=PsfuB3UsKNFMWdrG3c/IOfYVx6aggScaaduz5/0X2gE=;
+	b=D0hiUNNJPkmvDfHUcaPJrg9wU4RzU63nXebZyVk41ZvxCPZGHwBx/E6IV8TtvUuEHV
+	p1oXid9FOiL1XfhcObwCs/tjZgwiUWguWYKDF3qXW+UhN71r9HoJwMEGHmI/TYdBrfBn
+	nzqh1C24nS/iTmslf9M/IMP8DMfQN6RGOtEX1d26oKheuvTZ2uvK4DM9cJCsDY3LgVto
+	7oWAARBFzuQOlZuhbbbTrl4PQPoV1UAcUO0reMlgpKQGf7TFTkC0TnpBomdINWxxw6ws
+	h8lDP3Oaq6nlxn5ciHHnudaeFVuDj41S33q/hufIesPQO0P3ks5OQoButahC7ExW/mX5
+	g+hg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=PsfuB3UsKNFMWdrG3c/IOfYVx6aggScaaduz5/0X2gE=;
+	b=q2sfIYoTC7I5WAuluS5Lae1bXRvRLW8BTpQvXoygFsemq4GEZIy7Qnt6kyjOX6+8f5
+	x2RXwCgr3OSb0HBpfiN/H/MR8/8CvvzzJYuUyJTlFtflqL7UIAb3EwxwznABmYC0UDG3
+	aAebJGmaQohOv0kO4InKu+8Fawi7LeBlohR1aXPiqMudYy4ZJSb6BMAeslOCbFzr9wqU
+	Ism8HJ6ax1ka7YIfWsUPCwj3hPHbrj0r+ZZQl/AI09L4nGKu6nFKclEst7O4gK9Ahoaa
+	J2nlu6yYO7S6uOFuYVlqoQTb8HuAzn+BMzMDb3nPYvMjhzHv9Dc3RntIbPDMo6Fdav7/
+	wB2g==
+X-Gm-Message-State: APjAAAW+F2VBUAz9gedrvVVEoJ6PJVckYJ1mu2FWwmX9P/HuF4mn8uqY
+	42RyFtM6c9QEJ5V50hjotZg8zOOieLBSGvYQLcYIna7r
+X-Google-Smtp-Source: APXvYqyKJy0Pq+/qeJIU/NfbEemF2c16ykUyO6C0mPCoCIwVl/89wzRxh5GtZjiFj5OBjEEqz4OAjEykPr/kds0igmk=
+X-Received: by 2002:a92:c991:: with SMTP id y17mr4320053iln.306.1572503152406; 
+	Wed, 30 Oct 2019 23:25:52 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <111d936e-8879-6190-9287-32fcc5b192b5@iae.nl>
-X-Originating-IP: [147.11.119.146]
-Subject: Re: NooB: applying new patches to older files, where do I find the older files?
+Received: by 2002:ac0:aa09:0:0:0:0:0 with HTTP; Wed, 30 Oct 2019 23:25:51
+	-0700 (PDT)
+From: JH <jupiter.hce@gmail.com>
+Date: Thu, 31 Oct 2019 17:25:51 +1100
+Message-ID: <CAA=hcWQgrC0LGdejAEP=i9pnR4BS3q5XqnqBYbwD9221wkGA2Q@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Which recipe for qmicli?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,82 +68,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Oct 2019 00:52:11 -0000
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-CA
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 31 Oct 2019 06:25:54 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On 10/30/19 8:16 AM, R wrote:
-> Hello List,
-> 
-> First I'm working on a unsupported distro (Manjaro) and try to get an 
-> older version (2.7.1) of poky working. I have ask a question before and 
-> Ross Burton pointed me in the direction of a patch.
-> Now I'm trying to apply that patch, however the patch is for a newer 
-> version of the original files, so I need to make my own patch for the 
-> older version of these files.
-> (reason: WARNING: Some of the context lines in patches were ignored. 
-> This can lead to incorrectly applied patches.)
-> 
-> The patch says: the file to be patch is e.g. /linux-user/syscall.c
-> My question is where can I find the original syscall.c before any 
-> patches are applied to it?
+Hi,
 
-Hi Robert,
+The qmicli is in libqmi-utils in Ubuntu package, but I could not find
+Yocto libqmi-utils, only libqmi recipe, is qmicli in libqmi?
 
-This file and the patch are for the qemu package.
+Thank you.
 
-You can run:
-$ bitbake -c patch qemu-native <--- host build
-or
-$ bitbake -c patch qemu <--- target build
-to get all the patches that are listed in the qemu recipe in poky:
-    meta/recipes-devtools/qemu/qemu_3.1.1.1.bb
-and
-    meta/recipes-devtools/qemu/qemu.inc
-applied to unpacked source.
+Kind regards,
 
-The patched source will be in (this is on master branch):
- 
-<build_area>/tmp-glibc/work/x86_64-linux/qemu-native/4.1.0-r0/qemu-4.1.0/linux-user/syscall.c
-
-poky might just be /tmp/ instead of /tmp-glibc/
-
-In my case the log of the patching is in:
-    tmp-glibc/work/x86_64-linux/qemu-native/4.1.0-r0/temp/log.do_patch
-
-> 
-> Just to be complete: I have tried the latest warrior branch and that 
-> worked fine. My objective is not just to get it working be also to get a 
-> grip on how the system works :-)
-
-Super.
-
-Have you looked at:
-    https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html
-
-and perhaps:
- 
-https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#finding-the-temporary-source-code
-
-will be useful now.
-
-Manipulating patches by hand can be tedious. There's a tool
-called wiggle:
-    https://linux.die.net/man/1/wiggle
-which can help but may be too much for you to deal with initially.
-
-Actually, I suggest that you build on a supported distro initially
-to understand the basic workflow and then decide if you want to figure
-out how to make Arch/Manjaro work.
-
-../Randy
-
-> Thanks,
-> Robert.
-
-
--- 
-# Randy MacLeod
-# Wind River Linux
+- jh
 
