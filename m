@@ -1,41 +1,65 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <alan.martinovic@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A8117E00BA2; Fri,  1 Nov 2019 14:14:26 -0700 (PDT)
+	id D3ABEE00BA2; Fri,  1 Nov 2019 14:30:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5184FE0053F
-	for <yocto@yoctoproject.org>; Fri,  1 Nov 2019 14:14:25 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	01 Nov 2019 14:14:24 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,257,1569308400"; d="scan'208";a="212893300"
-Received: from koernerm-mobl.ger.corp.intel.com (HELO blackadder.local)
-	([10.249.41.216])
-	by orsmga002.jf.intel.com with ESMTP; 01 Nov 2019 14:14:23 -0700
-To: =?UTF-8?Q?Alan_Martinovi=c4=87?= <alan.martinovic@gmail.com>,
-	yocto@yoctoproject.org
-References: <CAHTPtPFJqQnPrH3WwKetfU8GN3YD6okYK=R-HyMPzQ9Ym44JTA@mail.gmail.com>
-From: Ross Burton <ross.burton@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
-	Swindon SN3 1RJ
-Message-ID: <313f9bdb-d016-5701-00cf-8f3dccbf211d@intel.com>
-Date: Fri, 1 Nov 2019 21:14:22 +0000
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
-	Gecko/20100101 Thunderbird/60.9.0
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (alan.martinovic[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.208.173 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com
+	[209.85.208.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51273E0083D
+	for <yocto@yoctoproject.org>; Fri,  1 Nov 2019 14:30:48 -0700 (PDT)
+Received: by mail-lj1-f173.google.com with SMTP id m9so11575311ljh.8
+	for <yocto@yoctoproject.org>; Fri, 01 Nov 2019 14:30:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=zuSokRmMMwcPe/DtpGKgM/B1s2kFALS3BOrX5ybzvtU=;
+	b=Eg/Oouvx91ePritI4UfQn4KeqZAav+joxRLQvznoSrFOyJkxvlfog1TmbMQy1WWJIX
+	zE6QmgghN+HOwOBBYv8/cQZH9Vf5YnSUma+aLb8eyHu/C+y9OJ/R+SqyLq+iPf0GB5VN
+	4LgZ7e7bYAogT/vF5CJqHLxt7gZxnJcFlUVRe+EaGnDQIVfBv0MelVrgxFwUtNPg0QCp
+	/xFX251vrQnw0jBDlSsZVPFOR2jy7SFup6l5hr1KREJJ8C8WFK+QAJ06DXRkIxLEQqEs
+	SOipp0f7A8o5uhuqFPDkLQ6r9KdXSLMoGPfsj/X2JWi1FBM750hhbMEiBOlUm4YFpDMB
+	Ajqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=zuSokRmMMwcPe/DtpGKgM/B1s2kFALS3BOrX5ybzvtU=;
+	b=TbfudwyWIQmE6NpxC3vsVxCzasOQxj3cEmnT4XC5QpzogtmMYDBQOo4Zy3U41ca2Vz
+	UVdG0bhhKKKhr9DDRW9LIDEOaXg+AVDp6xHDWg3zi577YsYuJpSaaCuFNiVOaXlFD93i
+	yOhOljCE/XTJSfcT6H+4jf/+48csm4Z6ZQ++nL04x8g5FfVaanUWR1UFnqvvV6SLqR1G
+	eLp+NuQjmerTX0PFdh8v+QrWwrvU1nswe6aqaCG6frF+NSEZcWpGJyeFju0tfulovYZ+
+	8gbuWJtngiWjTZ8Kt5R/rbWZSwGxvBq9z+scewGuLtQp+Uc+afcsXOSg0ZS/kevzTQ/R
+	S76w==
+X-Gm-Message-State: APjAAAVNWpBzZCEE7BrDiORex0rlNz8nRoqXWbm5M1GWMnMQXCaBDRAJ
+	e2VoQFCbDnBVuNX3uAuTCKlBfMQDbIF1tDftihZFsIDfXjU=
+X-Google-Smtp-Source: APXvYqwFQGMQAzZYN0OUjmEay4NW+A7vz3UHUJaxIDZE+mqJVNf3BBWkBfQwWHteqbOCXMA0IjLzQ3jrL3ObdnjbWkE=
+X-Received: by 2002:a2e:9595:: with SMTP id w21mr9637134ljh.181.1572643847209; 
+	Fri, 01 Nov 2019 14:30:47 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAHTPtPFJqQnPrH3WwKetfU8GN3YD6okYK=R-HyMPzQ9Ym44JTA@mail.gmail.com>
+References: <CAHTPtPFJqQnPrH3WwKetfU8GN3YD6okYK=R-HyMPzQ9Ym44JTA@mail.gmail.com>
+	<313f9bdb-d016-5701-00cf-8f3dccbf211d@intel.com>
+In-Reply-To: <313f9bdb-d016-5701-00cf-8f3dccbf211d@intel.com>
+From: =?UTF-8?Q?Alan_Martinovi=C4=87?= <alan.martinovic@gmail.com>
+Date: Fri, 1 Nov 2019 22:30:35 +0100
+Message-ID: <CAHTPtPGqQCu7XY3KaYZGojtfRHdWxi-LFh9noPSGBiNrk9yu8w@mail.gmail.com>
+To: Ross Burton <ross.burton@intel.com>
+Cc: yocto@yoctoproject.org
 Subject: Re: Debugging custom python code in recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -48,21 +72,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Nov 2019 21:14:26 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 01 Nov 2019 21:30:48 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 01/11/2019 20:44, Alan Martinović wrote:
-> Hey,
-> there was a question today about options for debugging python scripts in yocto.
-> I've patched up this PoC for remote debugging.
+Cool, thanks.
 
-FWIW, I've done something similar using bare pdb.
+This one seems to be the most up to date from the python debugger wrappers:
+https://github.com/ionelmc/python-remote-pdb
 
-https://github.com/rossburton/meta-ross/blob/master/classes/pdb.bbclass
+The `shell_wait()` in your bbclass is related to the pdb() functionality?
 
-Just call pdb() from Python context.  Not as neat as epdb though.
-
-Ross
+On Fri, Nov 1, 2019 at 10:14 PM Ross Burton <ross.burton@intel.com> wrote:
+>
+> On 01/11/2019 20:44, Alan Martinovi=C4=87 wrote:
+> > Hey,
+> > there was a question today about options for debugging python scripts i=
+n yocto.
+> > I've patched up this PoC for remote debugging.
+>
+> FWIW, I've done something similar using bare pdb.
+>
+> https://github.com/rossburton/meta-ross/blob/master/classes/pdb.bbclass
+>
+> Just call pdb() from Python context.  Not as neat as epdb though.
+>
+> Ross
 
