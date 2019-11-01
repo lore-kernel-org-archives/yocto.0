@@ -1,75 +1,64 @@
-Return-Path: <prvs=12077f25f8=holzmayr@rsi-elektrotechnik.de>
+Return-Path: <stevep@korgrd.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2D99CE00DAF; Thu, 31 Oct 2019 15:07:38 -0700 (PDT)
+	id 97694E00DAF; Thu, 31 Oct 2019 22:32:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [81.169.146.220 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.219.176 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 183 seconds by postgrey-1.32 at yocto-www;
-	Thu, 31 Oct 2019 15:07:35 PDT
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
-	[81.169.146.220])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD5ECE00ADD
-	for <yocto@yoctoproject.org>; Thu, 31 Oct 2019 15:07:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1572559654;
-	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
-	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-	bh=LT2jJTX1muc10YDtFEQ0CU76k4UL0kaZuUwqupMk3kg=;
-	b=MYkqp1IQZMzee/5dwUcFMpreXwjbphxr0RkowxbKrbmGwTkkW1loxYNP4fPbplkoaO
-	n0lyD6YatKG7PH0gVQX4XR3/D80dCGqe5wAKmsPixQ5DELAhLHPw2C9icJDc0TNrwKlE
-	FF5d47krq+sFYzYbP6u7ajxcYvnPWmUuh1qdWX+Otaz0L3ufVkPKjfJczuIGds9jdHR6
-	6u3554WuFBaXYsvXTG+SDpIxgTfWSsiJf+FnGWxYJnJie9NP7Uk4jbnTsnPD9/wEssmH
-	rMyjjiyWNgedmrZhpKgw39LVQ6YQcCUX/h2z0d20pgkcNXmUyHz4lrJt6UPfCSG2EFau
-	ohgg==
-X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/KqCOd+ZZzzoK8epFp9XQIUl6aPGQL"
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	by smtp.strato.de (RZmta 44.29.0 AUTH)
-	with ESMTPSA id 6029d5v9VM4U7vb
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp384r1
-	with 384 ECDH bits, eq. 7680 bits RSA))
-	(Client did not present a certificate);
-	Thu, 31 Oct 2019 23:04:30 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1572559469; x=1573164269;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
-	Subject:Message-ID:References:MIME-Version:Content-Type:
-	Content-Disposition:Content-Transfer-Encoding:In-Reply-To; bh=LT
-	2jJTX1muc10YDtFEQ0CU76k4UL0kaZuUwqupMk3kg=; b=xKr7LOCprFcGUZbVvb
-	tNJrVYLkfuhVM19BoZnDjNa/ko4KTJLxfRijWjKsuO20oIJuCWMBd+D8vLmvGmD9
-	f0yOTgfFiL7xN9OlYj0h2uCLoJW0CIKGMsnIid4Eq9epV66q5dDS+5ojVefQoQX5
-	a3OMpghJNwYj0i5R207rPB9R0=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v19.5.0) with ESMTPSA id
-	md50000213661.msg; Thu, 31 Oct 2019 23:04:29 +0100
-X-MDRemoteIP: 77.158.50.100
-X-MDHelo: jholzmayr.localdomain
-X-MDArrival-Date: Thu, 31 Oct 2019 23:04:29 +0100
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=12077f25f8=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-Date: Thu, 31 Oct 2019 23:04:15 +0100
-From: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-To: "Bishop ." <m.bishop2@gmail.com>
-Message-ID: <20191031220415.3ulpjsb5lja5tuzn@jholzmayr.localdomain>
-References: <CAMdxf7veSHDxNm6=azcAUf8S83EU5ZeCrfgECzKrPzXhFsrLXg@mail.gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <CAMdxf7veSHDxNm6=azcAUf8S83EU5ZeCrfgECzKrPzXhFsrLXg@mail.gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: GCC version 8 upgrade
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com
+	[209.85.219.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 569CAE00ADD
+	for <yocto@yoctoproject.org>; Thu, 31 Oct 2019 22:32:27 -0700 (PDT)
+Received: by mail-yb1-f176.google.com with SMTP id e14so3491489ybk.0
+	for <yocto@yoctoproject.org>; Thu, 31 Oct 2019 22:32:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=korgrd-com.20150623.gappssmtp.com; s=20150623;
+	h=from:mime-version:date:subject:message-id:to;
+	bh=0ZnEpLHlXHsnFWEJUJyeyALc9lJyh68umUGv0g9lqts=;
+	b=y4c4Lfg5MV5HQDIFpS+DgSfVQsVjMOwMVXlQFOMWOBsvJnAMUMgw6TVUkNwhwUgtI4
+	IeFR3+ASr1ICI7wT5DCQCf6qY4ye7Ej3BSZQnUnuuTUF8TaI2zhWwC43Lk8ACZ5Mr6RR
+	pJAbUGsHq5GcQsQj+htUZjLTjq1DszFP3mQKgOU6275oafO3q0pFX6AKkCrScJbmL0nx
+	gawYeHbcOV2qVHJZXwlEKUPE07ye5RjIZoECw05BqSmdtvB8AJgcWRqFqnHjZMa0wivn
+	VfPzeqKq7sISHH6wmYFgBz+ChuCY+wRs62njI5raXWorqwAGHWh21EcJdZgvHLRFo4Nx
+	wOLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:from:mime-version:date:subject:message-id:to;
+	bh=0ZnEpLHlXHsnFWEJUJyeyALc9lJyh68umUGv0g9lqts=;
+	b=EwP9I3YqmAIenSAvJXbNq4azova05NkyRBMpGirATt4x46BX0nw+gRXnypejAGEg0+
+	dQTtgZMFUjXYLMg4kWYf0Yuqm3hsx7xzCva/kjdpyNU7OdbyhijyArFYDfcBLSFrQjoc
+	wvmzYA3DJea8DxYdyRP77dSMM9NLGkOTmXv8A9CgU9yrQJweTPkYHtqFlFG4jeL4nBT3
+	W+y5671qgAjN7jnibaErXAmi9luNKnZbLdoECFKUT1sNP982RDF004Ybbx2BB7JdNyOU
+	AQ+0Hy1BU1srX6Z9xE0+4q8RDzbodg2NCAFh92gvOzchy2O1r1cNfmVCu83gf7VOzdTH
+	NxcA==
+X-Gm-Message-State: APjAAAXU+V8aWbiDbHbULyHiKnxWusFki0tJJnLyjGH2IyVX5c5dcQoo
+	s9qcq2RpRDVooIJm1I80DnQsvhOnndny7g==
+X-Google-Smtp-Source: APXvYqzCG4qB5Dj3IfJ/d2u3lqSEHdsEpwi7eWNT3zsxTYjRBS/jRX9zsCVW8u82GULkzcz7BdkcJw==
+X-Received: by 2002:a25:3f45:: with SMTP id m66mr7586327yba.97.1572586346258; 
+	Thu, 31 Oct 2019 22:32:26 -0700 (PDT)
+Received: from ?IPv6:2600:6c64:6780:170b:126:48e3:618c:c072?
+	([2600:6c64:6780:170b:126:48e3:618c:c072])
+	by smtp.gmail.com with ESMTPSA id
+	a6sm2665966ywh.106.2019.10.31.22.32.25
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 31 Oct 2019 22:32:25 -0700 (PDT)
+From: Steve Pavao <stevep@korgrd.com>
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
+Date: Fri, 1 Nov 2019 01:32:17 -0400
+Message-Id: <7D6FCC3C-A8B1-4EE7-875F-E544DCC3B44A@korgrd.com>
+To: yocto@yoctoproject.org
+X-Mailer: Apple Mail (2.3445.104.11)
+Subject: [meta-raspberrypi] poky linux build fails if ARM erratum mfix linker switch is specified
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -81,46 +70,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Oct 2019 22:07:38 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 01 Nov 2019 05:32:28 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_ED5A0B2B-4EB5-4883-B849-5EBC9394395B"
 
-On Thu, Oct 31, 2019 at 11:49:38AM -0400, Bishop . wrote:
-> How silly would it be to try and get GCC sdk v8 complied and installed for
-> Jethro?
+--Apple-Mail=_ED5A0B2B-4EB5-4883-B849-5EBC9394395B
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-Lets call it "quite demanding" instead of "outright silly", ok?
+poky linux build fails when ARM erratum mfix linker switch is specified =
+in local.conf:
 
-Greetz
+TARGET_LD_ARCH_append +=3D " -mfix-cortex-a53-843419=E2=80=9D
 
-> -- 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+causes build failure.
 
+Please advise how to use this switch successfully.  I am synced current =
+in master branch in all layers as of today.  The switch causes libtool =
+link to fail due to missing libbz2.so.  If I don=E2=80=99t specify the =
+switch, the build completes without errors.
 
--- 
-———————————————
-Josef Holzmayr
-Software Developer Embedded Systems
+It is important to be able to build poky linux with this switch to avoid =
+certain crash conditions as described in the ARM errata document.
 
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
+Steve Pavao
+Korg R&D=
 
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548 
+--Apple-Mail=_ED5A0B2B-4EB5-4883-B849-5EBC9394395B
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
 
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" class=3D"">poky =
+linux build fails when ARM erratum mfix linker switch is specified in =
+local.conf:<div class=3D""><br class=3D""></div><div =
+class=3D"">TARGET_LD_ARCH_append +=3D "&nbsp;<span style=3D"color: =
+rgb(29, 28, 29); orphans: 2; white-space: pre-wrap; widows: 2; =
+background: rgba(var(--sk_foreground_min,29,28,29),0.04); =
+background-color: rgb(255, 255, 255);" =
+class=3D"">-mfix-cortex-a53-843419=E2=80=9D</span></div><div =
+class=3D""><span style=3D"color: rgb(29, 28, 29); orphans: 2; =
+white-space: pre-wrap; widows: 2; background: =
+rgba(var(--sk_foreground_min,29,28,29),0.04); background-color: rgb(255, =
+255, 255);" class=3D""><br class=3D""></span></div><div class=3D""><span =
+style=3D"color: rgb(29, 28, 29); orphans: 2; white-space: pre-wrap; =
+widows: 2; background: rgba(var(--sk_foreground_min,29,28,29),0.04); =
+background-color: rgb(255, 255, 255);" class=3D"">causes build =
+failure.</span></div><div class=3D""><span style=3D"color: rgb(29, 28, =
+29); orphans: 2; white-space: pre-wrap; widows: 2; background: =
+rgba(var(--sk_foreground_min,29,28,29),0.04); background-color: rgb(255, =
+255, 255);" class=3D""><br class=3D""></span></div><div class=3D"">Please =
+advise how to use this switch successfully. &nbsp;I am synced current in =
+master branch in all layers as of today. &nbsp;The switch causes libtool =
+link to fail due to missing libbz2.so. &nbsp;If I don=E2=80=99t specify =
+the switch, the build completes without errors.</div><div class=3D""><br =
+class=3D""></div><div class=3D""><div class=3D""><span style=3D"color: =
+rgb(29, 28, 29); orphans: 2; white-space: pre-wrap; widows: 2; =
+background: rgba(var(--sk_foreground_min,29,28,29),0.04); =
+background-color: rgb(255, 255, 255);" class=3D"">It is important to be =
+able to build poky linux with this switch to avoid certain crash =
+conditions as described in the ARM errata =
+document.</span></div></div><div class=3D""><span style=3D"color: =
+rgb(29, 28, 29); orphans: 2; white-space: pre-wrap; widows: 2; =
+background: rgba(var(--sk_foreground_min,29,28,29),0.04); =
+background-color: rgb(255, 255, 255);" class=3D""><br =
+class=3D""></span></div><div class=3D"">Steve Pavao</div><div =
+class=3D"">Korg R&amp;D</div></body></html>=
 
-
+--Apple-Mail=_ED5A0B2B-4EB5-4883-B849-5EBC9394395B--
