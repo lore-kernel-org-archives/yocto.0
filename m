@@ -1,42 +1,67 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 29CECE0083D; Fri,  1 Nov 2019 09:51:56 -0700 (PDT)
+	id 40921E00DE6; Fri,  1 Nov 2019 10:18:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [134.134.136.31 listed in list.dnswl.org]
-Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17112E0049C
-	for <yocto@yoctoproject.org>; Fri,  1 Nov 2019 09:51:51 -0700 (PDT)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-	by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	01 Nov 2019 09:51:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,256,1569308400"; d="scan'208";a="204548085"
-Received: from koernerm-mobl.ger.corp.intel.com (HELO blackadder.local)
-	([10.249.41.216])
-	by orsmga006.jf.intel.com with ESMTP; 01 Nov 2019 09:51:50 -0700
-To: Aaron Solochek <aaron.solochek@sri.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <2d1e4508-35e4-3754-3592-6c555e01a177@sri.com>
-From: Ross Burton <ross.burton@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
-	Swindon SN3 1RJ
-Message-ID: <b796ff6c-a14c-ece3-40f5-713241386cda@intel.com>
-Date: Fri, 1 Nov 2019 16:51:49 +0000
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
-	Gecko/20100101 Thunderbird/60.9.0
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.222.173 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com
+	[209.85.222.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B026E00D94
+	for <yocto@yoctoproject.org>; Fri,  1 Nov 2019 10:18:52 -0700 (PDT)
+Received: by mail-qk1-f173.google.com with SMTP id q70so11316723qke.12
+	for <yocto@yoctoproject.org>; Fri, 01 Nov 2019 10:18:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc:content-transfer-encoding;
+	bh=Dw9edNDMJ4jFLc8JQl+Yn4+E7WzzbCJTsHJNsJpZP78=;
+	b=S86ngnM8NeibZ02MHehi+2An3L+5PknLKE78CzGK7qkyTIHmFYQmHj8jy2HCTESBMr
+	yTeU9rZQFF7ryIKsqTPM6tjYZ3AJD6WP3VBptB9gXGaYJoW0PsaIfbwsyIL9P/WOjfIb
+	J8jSKlckG1yi0Xl0V5/1ojiP2kC09z4KH3onmxHEDmyWd5o9roYpmFXzEtQ9HzWgvWyB
+	uJBp2wnEIwsJVGCfZJPkqjG6qQTC934JNv8Dcx8HxslpH39BhtSorMvQw1pgNagIGb2T
+	X4USA6gi6CKC4VAUFyR6Ljcv2rEDFv4IPZaR2PLFZRbGm/8wMXUj8phxTYKMIGI7cgH/
+	7pjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc:content-transfer-encoding;
+	bh=Dw9edNDMJ4jFLc8JQl+Yn4+E7WzzbCJTsHJNsJpZP78=;
+	b=tnvspV2+3GL6FfM5/i3Ei34EoW3vN/peDlBuzOiQixrvpl21nKPoV/5LffSjyl/OrH
+	FK6hqXG2KQKAE2cdb9veai5iqi2SAlB1bJhlbTSsGSfOLUxbzCQfBDc/MrnGXC30iAu5
+	5RinrWlOHxBmOTtV54fD95schc8avyrhXyNMXeRQgpUiuzc+EUG6kqzLayqCcJ5wkWPv
+	puXJu8sE5uVQfmj2T9pzmRx2LWm4HOH5Ix0IYo2YAsSdGJk3h3RRRQe7LmA+WqWT8f1j
+	7GA5pgRKrrqzueMtEUCBidlhXYEf2qcFw3BwpO/iNAmyMeW/16HRWJF9WX3kTaadu+Ye
+	bcLA==
+X-Gm-Message-State: APjAAAW888yHgGtlByecJCn0pyXvizG4l93Tky2BGsFstNnV1/azUFl0
+	8D9FNUHVs7lnJ1C2D/rTmqbWwMiF0GI1QlabX475nLaZuac=
+X-Google-Smtp-Source: APXvYqzdoLVITvHsIuzQX2nYmTejZt/TgUSPZ0Sf+LVave+d6nIlrNtraDZQ/wlGBNnNNMG/qCFV5jheUJVPnkFB4Gc=
+X-Received: by 2002:a05:620a:a9a:: with SMTP id
+	v26mr6680472qkg.71.1572628731225; 
+	Fri, 01 Nov 2019 10:18:51 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <2d1e4508-35e4-3754-3592-6c555e01a177@sri.com>
-Subject: Re: visual studio code packages or building instructions?
+References: <7D6FCC3C-A8B1-4EE7-875F-E544DCC3B44A@korgrd.com>
+	<d6a7e59a-cc6a-aa34-21a5-47c73062f9e1@gherzan.ro>
+In-Reply-To: <d6a7e59a-cc6a-aa34-21a5-47c73062f9e1@gherzan.ro>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 1 Nov 2019 10:18:24 -0700
+Message-ID: <CAMKF1srHdfY1=Qbb7vURbMauc5VcPiKzH6_AGht86ChoJKvDZQ@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: Yocto Project <yocto@yoctoproject.org>, Steve Pavao <stevep@korgrd.com>
+Subject: Re: [meta-raspberrypi] poky linux build fails if ARM erratum mfix linker switch is specified
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,28 +73,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Nov 2019 16:51:56 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 01 Nov 2019 17:18:53 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 01/11/2019 16:35, Aaron Solochek wrote:
-> I would like to get visual studio code on my NXP i.MX8. If someone is
-> aware of a aarch64 rpm of it, that would be the easiest. Alternatively,
-> if anyone knows how to build it using bitbake, I can build it myself.
+On Fri, Nov 1, 2019 at 1:28 AM Andrei Gherzan <andrei@gherzan.ro> wrote:
+>
+> Hi Steve,
+>
+> On 01/11/2019 05:32, Steve Pavao wrote:
+> > poky linux build fails when ARM erratum mfix linker switch is specified
+> > in local.conf:
+> >
+> > TARGET_LD_ARCH_append +=3D " -mfix-cortex-a53-843419=E2=80=9D
+> >
+> > causes build failure.
+> >
+> > Please advise how to use this switch successfully.  I am synced current
+> > in master branch in all layers as of today.  The switch causes libtool
+> > link to fail due to missing libbz2.so.  If I don=E2=80=99t specify the =
+switch,
+> > the build completes without errors.
+> >
+> > It is important to be able to build poky linux with this switch to avoi=
+d
+> > certain crash conditions as described in the ARM errata document.
+>
+> I haven't tried this erratum fix. It is indeed implemented at the
+> linker's lever. It's curious though to see the bz2 dependency. Can you
+> share the specific error? I assume you are doing this on RPi3.
+>
 
-Well Microsoft only make x86 binaries available:
+this will impact rpi3 in 64bit mode, don't think 32bit needs this. I
+think its best to
+add this option in raspberrypi3-64.conf perhaps via TUNE_CCARGS
 
-https://code.visualstudio.com/#alt-downloads
-
-So you'll have to follow the instructions at 
-https://github.com/Microsoft/vscode/wiki/How-to-Contribute#build-and-run
-
-They use Yarn, so you'll have to package that first.
-
-Comments like 
-https://github.com/microsoft/vscode/issues/6442#issuecomment-509605292 
-on the bug asking for RPi support isn't exactly encouraging though.
-
-Ross
+> --
+> Andrei Gherzan
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
