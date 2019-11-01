@@ -1,66 +1,60 @@
-Return-Path: <tanuk@iki.fi>
+Return-Path: <vincent.prince.fr@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E8DC0E00DAF; Fri,  1 Nov 2019 03:01:24 -0700 (PDT)
+	id 15246E00E0F; Fri,  1 Nov 2019 06:02:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_LOW, SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [66.111.4.221 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (vincent.prince.fr[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.166.176 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 379 seconds by postgrey-1.32 at yocto-www;
-	Fri, 01 Nov 2019 03:01:23 PDT
-Received: from new1-smtp.messagingengine.com (new1-smtp.messagingengine.com
-	[66.111.4.221])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8708E008D9
-	for <yocto@yoctoproject.org>; Fri,  1 Nov 2019 03:01:23 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailnew.nyi.internal (Postfix) with ESMTP id 3E30665BB
-	for <yocto@yoctoproject.org>; Fri,  1 Nov 2019 05:55:01 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-	by compute5.internal (MEProxy); Fri, 01 Nov 2019 05:55:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=content-transfer-encoding:content-type
-	:date:from:message-id:mime-version:subject:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=XahPcV
-	PXGiRk8A2dS1lYhj6vFfL9ith4S4aHjnQGvEY=; b=WaHEiGzZffObeAN32oJI0E
-	v7uj22MD86cfD7HQDhSszUQaRy+cCwDaGmjK0a7aINUm09j1nkoeAWYMAK/vHeqi
-	7GH2cp7U/9FvpmiD6Zih9kel9aXAkSA4Iu6uFw5GV4fbPdVqmvGcouJMkdyk5qvS
-	7PibqDyEiX6ujuU9dGla1UFsVW9KK3CjEmJulJM5mOoJqZZeU5k9w3ZbeW4O3YKw
-	mTvECc6anJhNYgXJVVkLv2hrbga6Me0B2zAGK4SeIyt+I243hlNvYBbwt3bYODjA
-	AEhXC8qzQzyi0srPdsiJpbI6UKAzY9DjrePu8WuliVL185FjhCOWYW6H1x4ShHkw
-	==
-X-ME-Sender: <xms:9AC8XSVyotM2rP8P5nLOrRck5Eobnor2IVzlk6x4qDfPoNrxBzMX9Q>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedruddtjedgtdekucetufdoteggodetrfdotf
-	fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-	uceurghilhhouhhtmecufedttdenucgorfhhihhshhhinhhgqdfkphfpvghtfihorhhkuc
-	dlfedttddmnecujfgurhepkffuhffvffgtfggggfesthejredttderjeenucfhrhhomhep
-	vfgrnhhuucfmrghskhhinhgvnhcuoehtrghnuhhksehikhhirdhfiheqnecuffhomhgrih
-	hnpehlihgsvghrrghprgihrdgtohhmpdhgihhthhhusgdrtghomhdpqhhtqdhprhhojhgv
-	tghtrdhorhhgpdhprghtrhgvohhnrdgtohhmnecukfhppeduleeirddvgeegrdduledurd
-	dutdeinecurfgrrhgrmhepmhgrihhlfhhrohhmpehtrghnuhhksehikhhirdhfihenucev
-	lhhushhtvghrufhiiigvpedt
-X-ME-Proxy: <xmx:9AC8XS3N-P9G-4f9X8WiBE-Ek5RI-XpQE4NPpvWL84FOhHxbFHdGrw>
-	<xmx:9AC8XRa3bHJdw9ddVaeToLE0W6oCWYkvFDc1NjTszWP7_WxoIFWwoA>
-	<xmx:9AC8XdrBDlAKRg6ixIlDsBvSAt3gr2dBNprnABpSYbX_qWH0wfdiVQ>
-	<xmx:9QC8XUBx36h-0wVyJuq7j1CtVfNq457f48GfqIhCGbHH3roLAEqwgg>
-Received: from laptop (unknown [196.244.191.106])
-	by mail.messagingengine.com (Postfix) with ESMTPA id 58F3180064
-	for <yocto@yoctoproject.org>; Fri,  1 Nov 2019 05:55:00 -0400 (EDT)
-Message-ID: <02e3bc7898c8e67ff58c0a2c6816d7cb2b6fb0ef.camel@iki.fi>
-From: Tanu Kaskinen <tanuk@iki.fi>
-To: yocto@yoctoproject.org
-Date: Fri, 01 Nov 2019 11:54:56 +0200
-User-Agent: Evolution 3.30.5-1.1 
+Received: from mail-il1-f176.google.com (mail-il1-f176.google.com
+	[209.85.166.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F12D4E0097D
+	for <yocto@yoctoproject.org>; Fri,  1 Nov 2019 06:02:47 -0700 (PDT)
+Received: by mail-il1-f176.google.com with SMTP id s75so8629946ilc.3
+	for <yocto@yoctoproject.org>; Fri, 01 Nov 2019 06:02:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to:cc;
+	bh=P4oy2c+ym9tjxMkEZMIKB+DQqcpSkh8aodxx4Zp72Oc=;
+	b=Wq29LYWcDaQO0KHvwpnnTlNHWtVgE7h2/JM6tvRYzTE6aDYm/7QZbEV8PA77/CgcsB
+	kHEVC+pQeZx4sd1qeC/xoFGutXjVB12fcA7Qc5E5PdKoE0annO7bi1X/leH/2yLKx0b4
+	QV5j+OJfiByUB3zlbTBB9WgV9K60vsxm7ktKTXsI7Imp3XGJ6Vd6eV+hJu95JIkYKa5E
+	e6jl7cisk6OdzEnpbKsO3VedE8OU7b0lt19HnQ8dQpA0OvO7+U5b53/hqHuRcfYiLjxA
+	k7Mk7ovMeHq10OilG4HOCCfd9f6NcOZkfuF7DWE6KnCc9nChELKN3J1MfRS0YWTjT7kq
+	gvjw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+	bh=P4oy2c+ym9tjxMkEZMIKB+DQqcpSkh8aodxx4Zp72Oc=;
+	b=aJRs4quYsJ52txtZI6/7D58Wyk7C0qc0ioubj8htgJWwfBHNyphX1e2iZHZ0m0H/tB
+	VRb9YRkoPC+Xjzg1LOUoWi17qCAHwNwFy6OwsyN6xZ5LLyritfQzMkRDOlF+Ef4iMz+H
+	1Ef89nUNVXrBxTHQ48hEuIASvu7hUBHDzC4xE4m6CxqkXWlOfkK34senwjW/z6E3lTR5
+	y3QZ5Q5MepIWZU+cvYC2JHd7BnINMk2tmT+fQAY+s4Yfs59+P0Dp/Jm/+vkckOi19KvK
+	ekkVObBV8fwUCzgZcu+NQvC1PFxlfVBGByBYZBa1OafAeB5gvaCWYpK8wIZekJBImvQQ
+	2AHg==
+X-Gm-Message-State: APjAAAXUeZujQyZnYsIkDobqSFFGafSj6jEtOkE6zP3hqaHciTpWlz8L
+	v0HQEQnQqjT4lM5PwTVxZGprNryaIhU7vs8RtCC69QUh
+X-Google-Smtp-Source: APXvYqz5KWvdFtPRVq+D1oIgAn9i2gV6Lw2fPMfccldjZYB7t5VQ/nqkgUpOR5qpdmNNKJl3zwlanU0pHhrTnCAjUaA=
+X-Received: by 2002:a92:700f:: with SMTP id l15mr12264395ilc.121.1572613365713;
+	Fri, 01 Nov 2019 06:02:45 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [meta-qt5] How to contribute patches for qtwebengine in meta-qt5?
+From: Vincent Prince <vincent.prince.fr@gmail.com>
+Date: Fri, 1 Nov 2019 14:02:08 +0100
+Message-ID: <CAB2nKc--FGmKF4SACSOFZxFob=NYSVU=g8g-+qJGGyYzAmHSgg@mail.gmail.com>
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+Subject: [meta-selinux] zeus branch creation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -72,30 +66,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Nov 2019 10:01:25 -0000
+X-List-Received-Date: Fri, 01 Nov 2019 13:02:49 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
 
-Hi all!
+Hi team,
 
-The meta-qt5 readme says that contributions should be made by forking
-the meta-qt5 repository on GitHub, but when I look at the qtwebengine
-recipe, it looks like patches are pulled from
-https://github.com/meta-qt5/qtwebengine-chromium, and that repository
-looks like the patches are kept in a particular order so adding a patch
-at the top is perhaps not what I should do.
+Would it be possible to create zeus branch for meta-selinux layer?
 
-It's not clear to me how I should submit a patch in this case. The
-patch in question would be a simple backport of this upstream commit:
-https://codereview.qt-project.org/gitweb?p=qt/qtwebengine-chromium.git;a=commitdiff;h=b84e8682b312fb16b16ffb9591415067ceae69f8
-
-It's needed for not breaking qtwebengine when upgrading PulseAudio to
-13.0.
-
--- 
-Tanu
-
-https://www.patreon.com/tanuk
-https://liberapay.com/tanuk
-
+Kind regards,
+Vincent
 
