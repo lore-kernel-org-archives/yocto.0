@@ -1,68 +1,73 @@
-Return-Path: <tanuk@iki.fi>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 175F2E00D60; Sun,  3 Nov 2019 01:16:09 -0700 (PDT)
+	id CA2E2E00D75; Sun,  3 Nov 2019 02:46:50 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, RCVD_IN_DNSWL_LOW, SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
-	low *      trust
-	*      [66.111.4.28 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.47 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com
-	[66.111.4.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D60B3E00A07
-	for <yocto@yoctoproject.org>; Sun,  3 Nov 2019 01:16:07 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-	by mailout.nyi.internal (Postfix) with ESMTP id BA99D20B2D;
-	Sun,  3 Nov 2019 03:16:06 -0500 (EST)
-Received: from mailfrontend2 ([10.202.2.163])
-	by compute5.internal (MEProxy); Sun, 03 Nov 2019 03:16:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:content-transfer-encoding:content-type
-	:date:from:in-reply-to:message-id:mime-version:references
-	:subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-	:x-sasl-enc; s=fm1; bh=Els+AvT5LssMCFeebGrFbUYmQdGOX6yToDxk6b6Ck
-	40=; b=KxmU9ApSBASqyy7AI4S80NnwFd53Lz5Gdz212ntrJlWQ4bsz0YODDDG+Q
-	gfljl2zahNwh/57vVmzXPYLlwvZJ6Due5BC4MVDEwJepv7vT5Q5gaN7fGUBcBtyO
-	FVEhCy8Bqgw7ZfrCUDob6Xe3mr52DuO4MZZBAAWC/ZtGNRbZd8qrLFAFnDyo/M5y
-	Pwcv2r2izf6fnOVu43+uoiQ2VX9X9C+V/HtQA4uTKTEqjrUkXsJIwHEjQr+61iX3
-	G39tjMeNdNdUCMW4rKnwt3toeG0y/pWTcgRXRPSp24vZSrvBy5J2kLDEc9zwpKU2
-	+it+EuyzrQbzqdsKO9km3TCApquDw==
-X-ME-Sender: <xms:xoy-Xd7qOuUnozKCEjUlZ3HhJBArxoZVNeSYSm88WMSVknBA-NvXLg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedruddutddgkeegucetufdoteggodetrfdotf
-	fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-	uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-	cujfgurhepkffuhffvffgjfhgtfggggfesthejredttderjeenucfhrhhomhepvfgrnhhu
-	ucfmrghskhhinhgvnhcuoehtrghnuhhksehikhhirdhfiheqnecuffhomhgrihhnpehlih
-	gsvghrrghprgihrdgtohhmpdhgihhthhhusgdrtghomhdpqhhtqdhprhhojhgvtghtrdho
-	rhhgpdhprghtrhgvohhnrdgtohhmnecukfhppeduleeirddvgeegrdduledurddutdeine
-	curfgrrhgrmhepmhgrihhlfhhrohhmpehtrghnuhhksehikhhirdhfihenucevlhhushht
-	vghrufhiiigvpedt
-X-ME-Proxy: <xmx:xoy-XVYcfTy_vo0aWaIbC3W3fhLQ3SJRwllycaWdMHtJAgy-lJEF5w>
-	<xmx:xoy-XRbyJyLw6qrwszkLRdpMX2KGFH7wPT2gebecQ4BjMr6p5_700w>
-	<xmx:xoy-XY2eNsrJdQzfjj9uiVPf7S6akzNQxgn6oJ1grDkXy562XR6Uzg>
-	<xmx:xoy-XT38tNGc6-kerGvq93PpGOkbQjPJNpCS4Y0G3rfHbnYYRDjazg>
-Received: from laptop (unknown [196.244.191.106])
-	by mail.messagingengine.com (Postfix) with ESMTPA id BAAF63060060;
-	Sun,  3 Nov 2019 03:16:05 -0500 (EST)
-Message-ID: <229733c0a11026c952eb6493d0ae26b08a6cd39a.camel@iki.fi>
-From: Tanu Kaskinen <tanuk@iki.fi>
-To: Martin Jansa <martin.jansa@gmail.com>
-Date: Sun, 03 Nov 2019 10:16:01 +0200
-In-Reply-To: <CA+chaQddw2aLFfh3GkATAjuj6Y5O26BMaoGduAKJnPikjCv2Ew@mail.gmail.com>
-References: <02e3bc7898c8e67ff58c0a2c6816d7cb2b6fb0ef.camel@iki.fi>
-	<CA+chaQddw2aLFfh3GkATAjuj6Y5O26BMaoGduAKJnPikjCv2Ew@mail.gmail.com>
-User-Agent: Evolution 3.30.5-1.1 
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com
+	[209.85.221.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DE20E00BFF
+	for <yocto@yoctoproject.org>; Sun,  3 Nov 2019 02:46:49 -0800 (PST)
+Received: by mail-wr1-f47.google.com with SMTP id v9so13861327wrq.5
+	for <yocto@yoctoproject.org>; Sun, 03 Nov 2019 02:46:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.ro; s=google;
+	h=subject:to:cc:references:from:message-id:date:user-agent
+	:mime-version:in-reply-to:content-language:content-transfer-encoding;
+	bh=oyjDdPQf+wlcl/DZ425FtGoy9oj2dGYqPNabWSN10B4=;
+	b=m61lrdAKIOXZcFFL7AnHeMwVk7Ro02VN9sE8eMsgmkRUkXf//67XD8VJ/QR9/ddoJ9
+	6sUiQngd2d7ZpJLnsi5m1AHgKO7oRg31aaik9Dube5Yhq/Rzqt0jdmE9IXCZaOq5Yk3G
+	jSCjG4EQUsGC52rNoA/fy5FXcueTYK2KF2CoqdfzXdcmsuQe4ysZZuZ6TvYZEQz3kF4G
+	d1yZUdHIIt4CVoFAv/2qPYGeRkD2TEF7FkH3vgsBJE47b/phdt+Q1HR6PLzfnzUJwxTh
+	CJUMKHjNXRMT/oLYY3L9Y9q8EF/w3yionseey9E3kKcBvrhKmCO+MS8h8EvQWxwZ90Tg
+	Qc8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+	:user-agent:mime-version:in-reply-to:content-language
+	:content-transfer-encoding;
+	bh=oyjDdPQf+wlcl/DZ425FtGoy9oj2dGYqPNabWSN10B4=;
+	b=Fwsa4HFwHDiJsCSej13gqni6qceJvBjVFwR2ky3WWlTVDZRf/2AjUDxixxAVAEP7I3
+	UKLLTyMcltHmc9D9pHW2uJ1bOg6Qlvums2f8jTco40tlRhert7D9Z56R83Rat+ZbItdz
+	qXyVS+lGNUFB7BLrUzWN2Ia8IDxivbVa+Rz2ltJyVaI4Qf0cb69z2Rj6UABErOKMRI9x
+	eCl4l3st3c1dNBpIck4Rx42DnLg7RCKomayVYbIyniRGbaOsk09aRN32FTUjs68BSNu2
+	T2YU3LK0lRLGivSLKgDai6v4PZSkJUQTTZna47YlwGZgzlSmB4yS6POwm16IQ2+O6vD+
+	HIxw==
+X-Gm-Message-State: APjAAAWxUmPiEiNg1mvMgzsKysiKMwlydVn7yNMRyXrTBZysvfN8wDPi
+	3QN7TFwPRFp6etCzE0T2VpLCJEF5HtDkGg==
+X-Google-Smtp-Source: APXvYqwU5+XcOzZiJKStHXcifZOuTH6K5aUaxgqWxRR0M8N3ADm+k35ZQ661Lc6/VcObPlTmEyLS7A==
+X-Received: by 2002:adf:9ec7:: with SMTP id b7mr18914849wrf.221.1572778007961; 
+	Sun, 03 Nov 2019 02:46:47 -0800 (PST)
+Received: from [192.168.17.155]
+	(host81-154-22-156.range81-154.btcentralplus.com. [81.154.22.156])
+	by smtp.gmail.com with ESMTPSA id m3sm9481444wrw.20.2019.11.03.02.46.46
+	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 03 Nov 2019 02:46:47 -0800 (PST)
+To: Khem Raj <raj.khem@gmail.com>
+References: <7D6FCC3C-A8B1-4EE7-875F-E544DCC3B44A@korgrd.com>
+	<d6a7e59a-cc6a-aa34-21a5-47c73062f9e1@gherzan.ro>
+	<CAMKF1srHdfY1=Qbb7vURbMauc5VcPiKzH6_AGht86ChoJKvDZQ@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Message-ID: <097a8fe9-979d-aa3f-68ad-2c9e0bea6853@gherzan.ro>
+Date: Sun, 3 Nov 2019 10:46:45 +0000
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+	Thunderbird/60.9.0
 MIME-Version: 1.0
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-qt5] How to contribute patches for qtwebengine in meta-qt5?
+In-Reply-To: <CAMKF1srHdfY1=Qbb7vURbMauc5VcPiKzH6_AGht86ChoJKvDZQ@mail.gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>, Steve Pavao <stevep@korgrd.com>
+Subject: Re: [meta-raspberrypi] poky linux build fails if ARM erratum mfix linker switch is specified
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,51 +79,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 03 Nov 2019 08:16:09 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 03 Nov 2019 10:46:50 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-On Fri, 2019-11-01 at 13:24 +0100, Martin Jansa wrote:
-> This patch is already included in 5.13.2 upgrade (ready in zeus-next
-> and master-next branches), so you don't need to do anything.
-
-Okay, that's great!
-
-> Otherwise like Khem says, submit the change for meta-qt5 repository
-> like any other layer.
+On 01/11/2019 17:18, Khem Raj wrote:
+> On Fri, Nov 1, 2019 at 1:28 AM Andrei Gherzan <andrei@gherzan.ro> wrote:
+>>
+>> Hi Steve,
+>>
+>> On 01/11/2019 05:32, Steve Pavao wrote:
+>>> poky linux build fails when ARM erratum mfix linker switch is specified
+>>> in local.conf:
+>>>
+>>> TARGET_LD_ARCH_append += " -mfix-cortex-a53-843419”
+>>>
+>>> causes build failure.
+>>>
+>>> Please advise how to use this switch successfully.  I am synced current
+>>> in master branch in all layers as of today.  The switch causes libtool
+>>> link to fail due to missing libbz2.so.  If I don’t specify the switch,
+>>> the build completes without errors.
+>>>
+>>> It is important to be able to build poky linux with this switch to avoid
+>>> certain crash conditions as described in the ARM errata document.
+>>
+>> I haven't tried this erratum fix. It is indeed implemented at the
+>> linker's lever. It's curious though to see the bz2 dependency. Can you
+>> share the specific error? I assume you are doing this on RPi3.
+>>
 > 
-> The meta-qt5/qt* repositories are used to maintain the patches, but
-> usually only me is updating them to keep in sync with meta-qt5 and
-> then syncing from them to meta-qt5 with git format-patch --no-
-> numbered --no-signature when doing bigger rebase like when upgrading
-> to newer Qt version.
+> this will impact rpi3 in 64bit mode, don't think 32bit needs this. I
+> think its best to
+> add this option in raspberrypi3-64.conf perhaps via TUNE_CCARGS
 
-Thanks for the information!
+I was thinking about this. The erratum seems to show that this applies 
+to all revisions of a53. So it sounds like we should add it in 
+`tune-cortexa53.inc`.
 
--- Tanu
-
-
-> On Fri, Nov 1, 2019 at 11:02 AM Tanu Kaskinen <tanuk@iki.fi> wrote:
-> > Hi all!
-> > 
-> > The meta-qt5 readme says that contributions should be made by forking
-> > the meta-qt5 repository on GitHub, but when I look at the qtwebengine
-> > recipe, it looks like patches are pulled from
-> > https://github.com/meta-qt5/qtwebengine-chromium, and that repository
-> > looks like the patches are kept in a particular order so adding a patch
-> > at the top is perhaps not what I should do.
-> > 
-> > It's not clear to me how I should submit a patch in this case. The
-> > patch in question would be a simple backport of this upstream commit:
-> > https://codereview.qt-project.org/gitweb?p=qt/qtwebengine-chromium.git;a=commitdiff;h=b84e8682b312fb16b16ffb9591415067ceae69f8
-> > 
-> > It's needed for not breaking qtwebengine when upgrading PulseAudio to
-> > 13.0.
-> > 
-> > -- 
-> > Tanu
-> > 
-> > https://www.patreon.com/tanuk
-> > https://liberapay.com/tanuk
-
+-- 
+Andrei Gherzan
 
