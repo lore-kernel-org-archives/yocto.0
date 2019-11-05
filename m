@@ -1,78 +1,62 @@
-Return-Path: <stevep@korgrd.com>
+Return-Path: <sjolley.yp.pm@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CB8D7E00D8F; Mon,  4 Nov 2019 13:26:58 -0800 (PST)
+	id 937F9E00D9F; Mon,  4 Nov 2019 20:46:22 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (sjolley.yp.pm[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.161.48 listed in list.dnswl.org]
+	*      [209.85.166.42 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-yw1-f48.google.com (mail-yw1-f48.google.com
-	[209.85.161.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40527E0078F
-	for <yocto@yoctoproject.org>; Mon,  4 Nov 2019 13:26:56 -0800 (PST)
-Received: by mail-yw1-f48.google.com with SMTP id q140so2305096ywg.0
-	for <yocto@yoctoproject.org>; Mon, 04 Nov 2019 13:26:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=korgrd-com.20150623.gappssmtp.com; s=20150623;
-	h=mime-version:subject:from:in-reply-to:date:cc:message-id:references
-	:to; bh=llN37gGfkB13aWfKKzXY4UpYLo+tJVSFp7/0vO/J3uo=;
-	b=UMNWdp4Gv1iylfMocZk5i3m4pC/0bkTA5Y7c/V1doaQAGzAsqTYpxz8pX36fklyV4J
-	XsXvwR1IP9brhyf+spUNL7nO9xcnlf0RD+fV7DVPNYQmAUHhhqPQL15jowyJ4dztLuM8
-	QVIZy2l9hmI3zO7iUzm1BPZUJ4+6cofPSboXTQbOiRbWEtiMHic1XAaltp6Z98McmXNa
-	+HohOR2A3sggEQaLxT1snxkHqIL5QZdBaFcAd4oHbsbqa7Z4mKQYRS7MuFm/rcBtt2XV
-	eMFndmQMe0NnW8kAy8m91vEU3xb+RgL6LH5eBTAaBf+Z9oBFFEOT6Rbnsr3lGEsS1BIw
-	/FpQ==
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com
+	[209.85.166.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F43AE00D00
+	for <yocto@yoctoproject.org>; Mon,  4 Nov 2019 20:46:21 -0800 (PST)
+Received: by mail-io1-f42.google.com with SMTP id x21so5487015iol.2
+	for <yocto@yoctoproject.org>; Mon, 04 Nov 2019 20:46:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=5vdE9fZhceM4HmVu9JUKb3aNRgeDK9BAyAjFWnnW1Tg=;
+	b=mCnPMZYZj7nq4pFgIDFtm//xdRjfjA4BlAsW5YK5H4e3h/f6hMLtoEfCSoy8KWjlMM
+	wPfrZBqkGNdAxAHvGCgB8+WiA2Bn6U2h0YxPIW7WudWK8Gq/IT8OMNqyeBJZYrgQw9+W
+	Cdr4BKaOryXvbqBdlaEvITQORKGVCZuNliX50ixT23AcCiL4Dzg1pXNQ31WoYBNRQK4l
+	MnhB0PWdIbvXTnInZr/yf65TF0qQMFWtYTueitHgFEzS1cbWyVPUZTKTejpJoFzB/l4Y
+	jzNtTi0hp0AzNcqtLrD3WQI35baWmAwWjDjB9qUZh+zGNURA8UGDTFNOACPVLgNxdC07
+	SJEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:subject:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=llN37gGfkB13aWfKKzXY4UpYLo+tJVSFp7/0vO/J3uo=;
-	b=tmdaKcHnpC4f1Kwlu0vpiVGMEDwwa1IujOTPKBJpQQlrhPg1wvOc9MgslnWHvuBxq6
-	PMmh3De9sgfryGgdFxdmoM8Ol2ki7rtzDOpfu+IE9tsRC8EBcU8LfcLwZU8h39bxnNDW
-	AVEEco2sOOaf1oxwfSFMSuwmC5gTdVqYkUGU0kz8XZ7/GYv/JQF2P0BeNubgFdLJjYpE
-	ir/vKCLQzQPO/tHSttTOA5/YbLOk+cbKAI7AoTF5OH/EdjPzy8IrtKZQaUozVn7Cdjvw
-	0pJQwkt28vjcRAXnnLP9AzR6CnmQvpVF9Lkw9xELA6oPL8iHOrSCzSp3l0GuVv7a9yKT
-	66FA==
-X-Gm-Message-State: APjAAAWRlo38E93rRqitkndzKOkMk5hQZIfdN6bBWhuYfx2sPhsF4MUp
-	cVIIcLn0uENemALTogh06ZSCW0LfeaKLSA==
-X-Google-Smtp-Source: APXvYqxqjfV0kYjdWRlYKm5y+eMb7NQXDf3P85Xrhz0pWp2l5fV85+PBu9NNA0Ka7Gq8sINzBM2PRw==
-X-Received: by 2002:a0d:dcc7:: with SMTP id f190mr3726801ywe.65.1572902815481; 
-	Mon, 04 Nov 2019 13:26:55 -0800 (PST)
-Received: from ?IPv6:2600:6c64:6780:170b:a4c5:e905:53b0:1bba?
-	([2600:6c64:6780:170b:a4c5:e905:53b0:1bba])
-	by smtp.gmail.com with ESMTPSA id
-	j79sm3703010ywa.100.2019.11.04.13.26.54
-	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 04 Nov 2019 13:26:55 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
-From: Steve Pavao <stevep@korgrd.com>
-In-Reply-To: <F621167E-B505-491A-ABD2-1ED5600129F8@korgrd.com>
-Date: Mon, 4 Nov 2019 16:26:47 -0500
-Message-Id: <86097C68-F833-4B01-8EE0-177BD9D26D76@korgrd.com>
-References: <7D6FCC3C-A8B1-4EE7-875F-E544DCC3B44A@korgrd.com>
-	<d6a7e59a-cc6a-aa34-21a5-47c73062f9e1@gherzan.ro>
-	<CAMKF1srHdfY1=Qbb7vURbMauc5VcPiKzH6_AGht86ChoJKvDZQ@mail.gmail.com>
-	<097a8fe9-979d-aa3f-68ad-2c9e0bea6853@gherzan.ro>
-	<CAMKF1sq39xefZFVEVafJ6yuRuinUtZ8odrPSJ4POiq49zevwPw@mail.gmail.com>
-	<352DF122-AE8C-4549-A04B-27EEF9A73AE5@gherzan.ro>
-	<20191103182512.GA28946@localhost>
-	<9F6E6EE0-4FF9-4251-9B7B-37A734DA4824@korgrd.com>
-	<20191104161127.GC5390@localhost>
-	<3DE4E470-5A63-4B19-A587-49A771B96850@korgrd.com>
-	<F621167E-B505-491A-ABD2-1ED5600129F8@korgrd.com>
-To: Adrian Bunk <bunk@stusta.de>
-X-Mailer: Apple Mail (2.3445.104.11)
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] poky linux build fails if ARM erratum mfix linker switch is specified
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=5vdE9fZhceM4HmVu9JUKb3aNRgeDK9BAyAjFWnnW1Tg=;
+	b=WgyFqHdhEqMRXgv25VIJ2Ux6Pz1PiT8YZKqalcyNmQtEmWwplEOc0VOmd8UQrpRizH
+	lArHbmPbfFtYJOJvs/CTItCVQaE9XA6rOeIsh4aRhicJjcVr/RAwYbMVaMzf7pf3IOIt
+	0BN4McsvCw1j8AO6Dg5k00UPrwdVFUT6iAqKdHEOvSI9jMyL1rcW1chx219UuD4jmQmm
+	sFfwbU1dyC7gWZpvUOhlt78qcfaP2B7yFBNkWEroe4Piqg9WKXOblfESWDttU5+B6jB9
+	1sdlBncnQR2Cw1Ua/SpWFtm9TlBfU+KcE/pqOmwmDeyx3+9ReiCoc853qSP5qOKojfH7
+	/3PA==
+X-Gm-Message-State: APjAAAUXc91huz1FO4Gwy4yIDDrmKUbmunnok+FZRc2IVvT+mmsa+5bt
+	htEJbcQZMRlW/dLJwfQz+Cl2tlw78zNhz/SoDQzWiQMM
+X-Google-Smtp-Source: APXvYqyhNgFeNoQzTPvchl3H1Cj7wRVMV4hps6xms6oYA5XdmPLL2XUwXRQ8QrEQFxP80sSF7YH3nPxD1KhA82vDFAw=
+X-Received: by 2002:a02:c98e:: with SMTP id b14mr17295572jap.133.1572929180704;
+	Mon, 04 Nov 2019 20:46:20 -0800 (PST)
+MIME-Version: 1.0
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Mon, 4 Nov 2019 20:46:10 -0800
+Message-ID: <CAK5yBb_8tMwFP1bgYk46XXm2oCrO4Oac-hmVAFJgSFRzMdXjhA@mail.gmail.com>
+To: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -84,282 +68,212 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Nov 2019 21:26:58 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_BBA052BD-2F6A-4239-9F7B-510005A8E27E"
+X-List-Received-Date: Tue, 05 Nov 2019 04:46:22 -0000
+Content-Type: multipart/alternative; boundary="00000000000012a3e80596921d74"
 
---Apple-Mail=_BBA052BD-2F6A-4239-9F7B-510005A8E27E
+--00000000000012a3e80596921d74
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=utf-8
+
+All,
 
 
 
-> On Nov 4, 2019, at 11:32 AM, Steve Pavao <stevep@korgrd.com> wrote:
->=20
->>=20
->> On Nov 4, 2019, at 11:16 AM, Steve Pavao <stevep@korgrd.com =
-<mailto:stevep@korgrd.com>> wrote:
->>=20
->>>=20
->>> On Nov 4, 2019, at 11:11 AM, Adrian Bunk <bunk@stusta.de =
-<mailto:bunk@stusta.de>> wrote:
->>>=20
->>> On Mon, Nov 04, 2019 at 10:48:57AM -0500, Steve Pavao wrote:
->>>>=20
->>>>> On Nov 3, 2019, at 1:25 PM, Adrian Bunk <bunk@stusta.de =
-<mailto:bunk@stusta.de>> wrote:
->>>>>=20
->>>>> On Sun, Nov 03, 2019 at 05:56:45PM +0000, Andrei Gherzan wrote:
->>>>>> On 3 November 2019 13:18:53 GMT, Khem Raj <raj.khem@gmail.com =
-<mailto:raj.khem@gmail.com>> wrote:
->>>>>>> On Sun, Nov 3, 2019 at 2:46 AM Andrei Gherzan <andrei@gherzan.ro =
-<mailto:andrei@gherzan.ro>>
->>>>>>> wrote:
->>>>>>>> I was thinking about this. The erratum seems to show that this
->>>>>>> applies
->>>>>>>> to all revisions of a53. So it sounds like we should add it in
->>>>>>>> `tune-cortexa53.inc`.
->>>>>>>>=20
->>>>>>>=20
->>>>>>> Up to r0b4 only so maybe not all a53 implementations are =
-impacted
->>>>>>>=20
->>>>>>=20
->>>>>> As far as I know that is the latest revision. Do you mean that =
-newer revision might come up with this fixed?=20
->>>>>=20
->>>>> It is fixed in some r0p4 implementations, indicated in REVIDR[8].
->>>>=20
->>>> I am closer to understanding why I experience an error when =
-building with the ARM errata switches.
->>>>=20
->>>> I believe it is related to 32-bit app support in my poky Linux =
-64-bit build (I add this to support vcgencmd and vcdbg 32-bit apps.)
->>>>=20
->>>> When I remove the 32-bit support, the build completes OK.  As of =
-now, adding the following seems to work fine to acheive this:
->>>>=20
->>>> TARGET_CC_ARCH_append +=3D " -mfix-cortex-a53-843419 =
--mfix-cortex-a53-835769=E2=80=9D
->>>>=20
->>>> Something in the following block seems to be the culprit.:
->>>>=20
->>>> # for vcgencmd and vcdbg 32-bit executable support in the OS image =
-(comment out for -c populate_sdk)
->>>> require conf/multilib.conf
->>>> MULTILIBS =3D "multilib:lib32"
->>>> DEFAULTTUNE_virtclass-multilib-lib32 =3D "armv7a"
->>>> IMAGE_INSTALL_append +=3D " vcgencmd lib32-glibc lib32-libgcc =
-lib32-libstdc++ vcdbg rpi-setup \
->>>> =E2=80=9C
->>>>=20
->>>> I will post again when I have localized the build problem further.  =
-Maybe there=E2=80=99s some 64-bit vs. 32-bit build confusion going on, =
-and the armv7a default tune switch for 32-bits is colliding with the =
-errata switches.
->>>=20
->>> The errata switches are only valid for aarch64, not for armv7a.
->>> There is likely some kind of "invalid option" earlier in your build.
->>=20
->> To conitnue to be able to use the 32-bit app support, perhaps I must =
-do this:
->>=20
->> DEFAULTTUNE_virtclass-multilib-lib32 =3D =E2=80=9Carmv7a =
--mno-fix-cortex-a53-843419 -mno-fix-cortex-a53-835769=E2=80=9D
->=20
-> This doesn=E2=80=99t work.
->=20
-> If I wish to keep the 32-bit app support in my build, I=E2=80=99ll =
-need to devise a way to make sure those ARM errata flags are only =
-applied to the aarch64 portion of the compile/link for the target, not =
-to the multilib 32-bit app support portion.
-
-Andrei and/or Khem,
-
-Could you advise an approach that allows to use the ARM errata switches =
-for the aarch64 portion of the build for the target, but which will NOT =
-specify the ARM errata switches for our supplementary 32-bit portion of =
-the build for the target?  (This supplementary 32-bit portion of the =
-build is to support the 32-bit vcgencmd app, and contains multilib and =
-some additional 32-bit libraires.  Please see earlier post for the =
-syntax we use in our local.conf.)
-
-Steve Pavao
-Korg R&D
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means
+people can find them. They're being listed on the triage page under the
+appropriate heading:
 
 
 
---Apple-Mail=_BBA052BD-2F6A-4239-9F7B-510005A8E27E
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
+
+
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 298
+unassigned or newcomer bugs.
+
+
+
+We're hoping people may be able to spare some time now and again to help
+out with these.  Bugs are split into two types, "true bugs" where things
+don't work as they should and "enhancements" which are features we'd want
+to add to the system.  There are also roughly four different "priority"
+classes right now, =E2=80=9C3.1=E2=80=9D, =E2=80=9C3.2, "3.99" and "Future"=
+, the more
+pressing/urgent issues being in "3.1" and then =E2=80=9C3.2=E2=80=9D.
+
+
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com)
+an e-mail with the bug number you would like and I will assign it to you
+(please make sure you have a Bugzilla account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newcomer_Bugs
+
+Thanks,
+
+
+
+*Stephen K. Jolley*
+
+*Yocto Project Program Manager*
+
+*7867 SW Bayberry Dr., Beaverton, OR 97007*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--00000000000012a3e80596921d74
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=utf-8
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
-charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; line-break: after-white-space;" class=3D""><br =
-class=3D""><div><br class=3D""><blockquote type=3D"cite" class=3D""><div =
-class=3D"">On Nov 4, 2019, at 11:32 AM, Steve Pavao &lt;<a =
-href=3D"mailto:stevep@korgrd.com" class=3D"">stevep@korgrd.com</a>&gt; =
-wrote:</div><br class=3D"Apple-interchange-newline"><div class=3D""><div =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: =
-normal; letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none;" =
-class=3D""><blockquote type=3D"cite" class=3D""><div class=3D""><br =
-class=3D"Apple-interchange-newline">On Nov 4, 2019, at 11:16 AM, Steve =
-Pavao &lt;<a href=3D"mailto:stevep@korgrd.com" =
-class=3D"">stevep@korgrd.com</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><div class=3D"" =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: =
-normal; letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none;"><blockquote =
-type=3D"cite" class=3D""><div class=3D""><br =
-class=3D"Apple-interchange-newline">On Nov 4, 2019, at 11:11 AM, Adrian =
-Bunk &lt;<a href=3D"mailto:bunk@stusta.de" =
-class=3D"">bunk@stusta.de</a>&gt; wrote:</div><br =
-class=3D"Apple-interchange-newline"><div class=3D""><span class=3D"" =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: =
-normal; letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none; float: none; =
-display: inline !important;">On Mon, Nov 04, 2019 at 10:48:57AM -0500, =
-Steve Pavao wrote:</span><br class=3D"" style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;"><blockquote type=3D"cite" class=3D"" =
-style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;"><br class=3D""><blockquote type=3D"cite" =
-class=3D"">On Nov 3, 2019, at 1:25 PM, Adrian Bunk &lt;<a =
-href=3D"mailto:bunk@stusta.de" class=3D"">bunk@stusta.de</a>&gt; =
-wrote:<br class=3D""><br class=3D"">On Sun, Nov 03, 2019 at 05:56:45PM =
-+0000, Andrei Gherzan wrote:<br class=3D""><blockquote type=3D"cite" =
-class=3D"">On 3 November 2019 13:18:53 GMT, Khem Raj &lt;<a =
-href=3D"mailto:raj.khem@gmail.com" class=3D"">raj.khem@gmail.com</a>&gt; =
-wrote:<br class=3D""><blockquote type=3D"cite" class=3D"">On Sun, Nov 3, =
-2019 at 2:46 AM Andrei Gherzan &lt;<a href=3D"mailto:andrei@gherzan.ro" =
-class=3D"">andrei@gherzan.ro</a>&gt;<br class=3D"">wrote:<br =
-class=3D""><blockquote type=3D"cite" class=3D"">I was thinking about =
-this. The erratum seems to show that this<br =
-class=3D""></blockquote>applies<br class=3D""><blockquote type=3D"cite" =
-class=3D"">to all revisions of a53. So it sounds like we should add it =
-in<br class=3D"">`tune-cortexa53.inc`.<br class=3D""><br =
-class=3D""></blockquote><br class=3D"">Up to r0b4 only so maybe not all =
-a53 implementations are impacted<br class=3D""><br =
-class=3D""></blockquote><br class=3D"">As far as I know that is the =
-latest revision. Do you mean that newer revision might come up with this =
-fixed?<span class=3D"Apple-converted-space">&nbsp;</span><br =
-class=3D""></blockquote><br class=3D"">It is fixed in some r0p4 =
-implementations, indicated in REVIDR[8].<br class=3D""></blockquote><br =
-class=3D"">I am closer to understanding why I experience an error when =
-building with the ARM errata switches.<br class=3D""><br class=3D"">I =
-believe it is related to 32-bit app support in my poky Linux 64-bit =
-build (I add this to support vcgencmd and vcdbg 32-bit apps.)<br =
-class=3D""><br class=3D"">When I remove the 32-bit support, the build =
-completes OK. &nbsp;As of now, adding the following seems to work fine =
-to acheive this:<br class=3D""><br class=3D"">TARGET_CC_ARCH_append +=3D =
-" -mfix-cortex-a53-843419 -mfix-cortex-a53-835769=E2=80=9D<br =
-class=3D""><br class=3D"">Something in the following block seems to be =
-the culprit.:<br class=3D""><br class=3D""># for vcgencmd and vcdbg =
-32-bit executable support in the OS image (comment out for -c =
-populate_sdk)<br class=3D"">require conf/multilib.conf<br =
-class=3D"">MULTILIBS =3D "multilib:lib32"<br =
-class=3D"">DEFAULTTUNE_virtclass-multilib-lib32 =3D "armv7a"<br =
-class=3D"">IMAGE_INSTALL_append +=3D " vcgencmd lib32-glibc lib32-libgcc =
-lib32-libstdc++ vcdbg rpi-setup \<br class=3D"">=E2=80=9C<br =
-class=3D""><br class=3D"">I will post again when I have localized the =
-build problem further. &nbsp;Maybe there=E2=80=99s some 64-bit vs. =
-32-bit build confusion going on, and the armv7a default tune switch for =
-32-bits is colliding with the errata switches.<br =
-class=3D""></blockquote><br class=3D"" style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;"><span class=3D"" style=3D"caret-color: rgb(0, 0, =
-0); font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none; float: none; display: inline !important;">The =
-errata switches are only valid for aarch64, not for armv7a.</span><br =
-class=3D"" style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; =
-font-size: 12px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;"><span class=3D"" style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none; float: none; display: inline !important;">There is likely some =
-kind of "invalid option" earlier in your build.</span><br class=3D"" =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: =
-normal; letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: =
-none;"></div></blockquote><br class=3D""></div><div class=3D"" =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: =
-normal; letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none;">To conitnue to =
-be able to use the 32-bit app support, perhaps I must do this:</div><div =
-class=3D"" style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; =
-font-size: 12px; font-style: normal; font-variant-caps: normal; =
-font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;"><br class=3D""></div><div class=3D"" style=3D"caret-color: rgb(0, =
-0, 0); font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; =
-text-decoration: none;"><div =
-class=3D"">DEFAULTTUNE_virtclass-multilib-lib32 =3D =E2=80=9Carmv7a =
--mno-fix-cortex-a53-843419 =
--mno-fix-cortex-a53-835769=E2=80=9D</div></div></div></blockquote><br =
-class=3D""></div><div style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D"">This doesn=E2=80=99t work.</div><div =
-style=3D"caret-color: rgb(0, 0, 0); font-family: Helvetica; font-size: =
-12px; font-style: normal; font-variant-caps: normal; font-weight: =
-normal; letter-spacing: normal; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; word-spacing: 0px; =
--webkit-text-stroke-width: 0px; text-decoration: none;" class=3D""><br =
-class=3D""></div><div style=3D"caret-color: rgb(0, 0, 0); font-family: =
-Helvetica; font-size: 12px; font-style: normal; font-variant-caps: =
-normal; font-weight: normal; letter-spacing: normal; text-align: start; =
-text-indent: 0px; text-transform: none; white-space: normal; =
-word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: =
-none;" class=3D"">If I wish to keep the 32-bit app support in my build, =
-I=E2=80=99ll need to devise a way to make sure those ARM errata flags =
-are only applied to the aarch64 portion of the compile/link for the =
-target, not to the multilib 32-bit app support =
-portion.</div></div></blockquote><br class=3D""></div><div>Andrei and/or =
-Khem,</div><div><br class=3D""></div><div>Could you advise an approach =
-that allows to use the ARM errata switches for the aarch64 portion of =
-the build for the target, but which will NOT specify the ARM errata =
-switches for our supplementary 32-bit portion of the build for the =
-target? &nbsp;(This supplementary 32-bit portion of the build is to =
-support the 32-bit vcgencmd app, and contains multilib and some =
-additional 32-bit libraires. &nbsp;Please see earlier post for the =
-syntax we use in our local.conf.)</div><div><br =
-class=3D""></div><div>Steve Pavao</div><div>Korg R&amp;D</div><div><br =
-class=3D""></div><br class=3D""></body></html>=
+<div dir=3D"ltr"><p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;fo=
+nt-size:11pt;font-family:Calibri,sans-serif">All,</p>
 
---Apple-Mail=_BBA052BD-2F6A-4239-9F7B-510005A8E27E--
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
+-family:Calibri,sans-serif">=C2=A0</p>
+
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
+-family:Calibri,sans-serif">The triage team is starting to try and
+collect up and classify bugs which a newcomer to the project would be able =
+to
+work on in a way which means people can find them. They&#39;re being listed=
+ on the
+triage page under the appropriate heading:</p>
+
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
+-family:Calibri,sans-serif">=C2=A0</p>
+
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
+-family:Calibri,sans-serif"><a href=3D"https://wiki.yoctoproject.org/wiki/B=
+ug_Triage#Newcomer_Bugs" style=3D"font-family:&quot;Times New Roman&quot;,s=
+erif;color:rgb(5,99,193)">https://wiki.yoctoproject.org/wiki/Bug_Triage#New=
+comer_Bugs</a></p>
+
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
+-family:Calibri,sans-serif">=C2=A0</p>
+
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
+-family:Calibri,sans-serif">The idea is these bugs should be straight
+forward for a person to help work on who doesn&#39;t have deep experience w=
+ith the
+project.=C2=A0 If anyone can help, please take ownership of the bug and sen=
+d
+patches!=C2=A0 If anyone needs help/advice there are people on irc who can
+likely do so, or some of the more experienced contributors will likely be h=
+appy
+to help too.</p>
+
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
+-family:Calibri,sans-serif">=C2=A0</p>
+
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
+-family:Calibri,sans-serif">Also, the triage team meets weekly and
+does its best to handle the bugs reported into the Bugzilla. The number of
+people attending that meeting has fallen, as have the number of people
+available to help fix bugs. One of the things we hear users report is they
+don&#39;t know how to help. We (the triage team) are therefore going to sta=
+rt
+reporting out the currently 298 unassigned or newcomer bugs.</p>
+
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
+-family:Calibri,sans-serif">=C2=A0</p>
+
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
+-family:Calibri,sans-serif">We&#39;re hoping people may be able to spare
+some time now and again to help out with these.=C2=A0 Bugs are split into t=
+wo
+types, &quot;true bugs&quot; where things don&#39;t work as they should and
+&quot;enhancements&quot; which are features we&#39;d want to add to the
+system.=C2=A0 There are also roughly four different &quot;priority&quot;
+classes right now, =E2=80=9C3.1=E2=80=9D, =E2=80=9C3.2, &quot;3.99&quot; an=
+d &quot;Future&quot;, the
+more pressing/urgent issues being in &quot;3.1&quot; and then =E2=80=9C3.2=
+=E2=80=9D.</p>
+
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
+-family:Calibri,sans-serif">=C2=A0</p>
+
+<p class=3D"MsoNormal" style=3D"margin:0in 0in 0.0001pt;font-size:11pt;font=
+-family:Calibri,sans-serif">Please review this link and if a bug is
+something you would be able to help with either take ownership of the bug, =
+or
+send me (<a href=3D"mailto:sjolley.yp.pm@gmail.com" style=3D"font-family:&q=
+uot;Times New Roman&quot;,serif;color:rgb(5,99,193)">sjolley.yp.pm@gmail.co=
+m</a>) an e-mail with the bug number you
+would like and I will assign it to you (please make sure you have a Bugzill=
+a
+account).=C2=A0 The list is at: <a href=3D"https://wiki.yoctoproject.org/wi=
+ki/Bug_Triage#Unassigned_or_Newcomer_Bugs" style=3D"font-family:&quot;Times=
+ New Roman&quot;,serif;color:rgb(5,99,193)">https://wiki.yoctoproject.org/w=
+iki/Bug_Triage#Unassigned_or_Newcomer_Bugs</a></p><div><br></div><div dir=
+=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div =
+dir=3D"ltr"><div><div dir=3D"ltr"><p class=3D"MsoNormal" style=3D"backgroun=
+d-image:initial;background-position:initial;background-repeat:initial"><spa=
+n style=3D"font-size:12pt;font-family:Arial,sans-serif">Thanks,<span></span=
+></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager<spa=
+n></span></span></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-family:&quot;Co=
+urier New&quot;;color:fuchsia;background-image:initial;background-position:=
+initial;background-repeat:initial">7867 SW Bayberry Dr., Beaverton, OR 9700=
+7</span></b><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><sp=
+an></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div></div>
+
+--00000000000012a3e80596921d74--
