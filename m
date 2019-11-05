@@ -1,72 +1,62 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <sjolley.yp.pm@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0E077E00DB7; Tue,  5 Nov 2019 07:30:10 -0800 (PST)
+	id C169AE00D9E; Tue,  5 Nov 2019 08:02:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (sjolley.yp.pm[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.128.53 listed in list.dnswl.org]
+	*      [209.85.166.44 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com
-	[209.85.128.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B259CE00D9E
-	for <yocto@yoctoproject.org>; Tue,  5 Nov 2019 07:30:08 -0800 (PST)
-Received: by mail-wm1-f53.google.com with SMTP id c22so20629121wmd.1
-	for <yocto@yoctoproject.org>; Tue, 05 Nov 2019 07:30:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:user-agent:mime-version:content-transfer-encoding;
-	bh=gvULalKCcXaJflBHQV27RWAqcQ2EmVkkT9w+QhbRo+4=;
-	b=MzEzc7HKLMklbA654WCNce7ROtVhYHpgl762huGk7HK2/bGpAsQJF4O14r8upzf9+c
-	23+U4XtUXqNLpZn0j/3nsqr6E2IFSbwdh+m7ZfpPR5GCLn64+pA8QBQ3yAK90Y3Zq8lX
-	AMId+fdF8E1M7IWDpOECkSufPD17ENvqn8Q7w=
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com
+	[209.85.166.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1914E00D9E
+	for <yocto@yoctoproject.org>; Tue,  5 Nov 2019 08:02:15 -0800 (PST)
+Received: by mail-io1-f44.google.com with SMTP id p6so23195407iod.7
+	for <yocto@yoctoproject.org>; Tue, 05 Nov 2019 08:02:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=emJ9zKK2PXUF6L5oTJUVtcOo9+8xPVFePOWjZggMZBY=;
+	b=TQTTDJkxo6me70bbet/XetH+EutWZFonoVl7cZujx8iWx7miUjn73cfSbb/QO7u5CO
+	EQSkyaZAS8v/yZCxTmAdvjWAQev/pGtb8TtXhTeEcIPTKsO94zLgpyf5GtRw/liWhGxA
+	LjAKXq3aN1sUWbhDAcRudgG3mejsK/PZxw0cJlKl4rsIhh14mUECkVWmamTzTXEZtVSz
+	kGwSMkcJvrA2a36xFT6KLag/ZyWhAI7tXm+EFd6yXcUUU/VWvq796vok3loE2lPcrZhb
+	rA5RTfkWzOwWZtu0QrNxRzdBQT3HFbel1A5t3KTVSqfSddNPDJPo8K7PGuMyAcZH8Pil
+	k+Hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=gvULalKCcXaJflBHQV27RWAqcQ2EmVkkT9w+QhbRo+4=;
-	b=Gco3dQhzmWBfRbgARPE8z9d4XLlLT1ebTRW8uZe2xjXWEXHuM2507cOgnJzF1SO678
-	6FD8jCB2VzHFbe+wi2/C5eGzwQ9Nw0wvgtbDsG5gIGcFde5FeSvQyT3Tb5/8QWhigA9v
-	wrSi0Dzn8wHAIxgJckFJ3H7nRSV1lIXQm/Rf1hx1iF4sFL5OzjqcixMjH+GOx1XYeQcx
-	NTdVz1CaBTeiElXEYB3S/E+cqqP9ah52qlkFTXg2UFKmkPDzwvUQjipWy9n39TAa1RDQ
-	F/8sSapiLc86vX/f5rd6Y2pf845uyjqSaf3W4NXtAjCb0Hy3QJIhbQxUr/5uqzX8tI9z
-	jYJg==
-X-Gm-Message-State: APjAAAVZ7+XNPKLEhBOXMBpVOrLhOTEH5qjCWjn8CvGe+Qu0MRl4fbDJ
-	qzaF1W6jxp5F/V2d7aVprqXvgw==
-X-Google-Smtp-Source: APXvYqx1VnrrBY8iVFj+oCuGa16pqixMlwlF22b24WUgYYcQnSC2yaaugvgabv6OYgUxB1907Huu0w==
-X-Received: by 2002:a1c:b404:: with SMTP id d4mr5059847wmf.9.1572967807448;
-	Tue, 05 Nov 2019 07:30:07 -0800 (PST)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id 205sm147068wmb.3.2019.11.05.07.30.06
-	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Tue, 05 Nov 2019 07:30:06 -0800 (PST)
-Message-ID: <a2982b3de70f74fd787b45b06711437afd2ae98e.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Samuel Jiang =?UTF-8?Q?=28=E6=B1=9F=E9=A8=8F=E5=85=88=29?=
-	<Samuel.Jiang@quantatw.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Tue, 05 Nov 2019 15:30:05 +0000
-In-Reply-To: <9e5ccabd-03be-410b-bd43-1f7ba45dff31@Spark>
-References: <489934f9-1420-40b0-a74a-54b71633bbed@SINGMEHUB07.gme.gbl>
-	<KL1P15301MB03443E265CCD3E6492C091CF80630@KL1P15301MB0344.APCP153.PROD.OUTLOOK.COM>
-	<a1ef7037a6a94e518fcef16502c67585@quantatw.com>
-	<SG2P153MB0349D0EFB059BC372C86528880630@SG2P153MB0349.APCP153.PROD.OUTLOOK.COM>
-	<9e5ccabd-03be-410b-bd43-1f7ba45dff31@Spark>
-User-Agent: Evolution 3.34.1-2 
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=emJ9zKK2PXUF6L5oTJUVtcOo9+8xPVFePOWjZggMZBY=;
+	b=XMHbx4mu14sFmwl2xcourkZnMncmvYknkFRySer9377KXJQyuaGMsvxT0F2ZTPvWaT
+	Vpv4+k5ZPu9QcrF73NIBjcLqK3CrQcHWQmsO1fosM14HlRLwlcA8QQIUxemY+pNHTf6O
+	pNlfVo/eNESsEFgD7K5XxRNauM8xW8PkRGIkh0KzndPyWX9lI26n1Td2D/8oUzBhsEzH
+	PzpK/gqw5ts3oxKLA5Qh0rXTtAo9KwjkjtYFGKD0ywPZYTLc3JtSj+c1YfcuH5lnQR4Y
+	GK9PDAQ19wy81+Sz//Oms530N0Y2+XZJk/ljok3UvBfEb5SnLQAwssVk5Ozxr0wCuQ1h
+	nxEw==
+X-Gm-Message-State: APjAAAXq7J6eqQaV5wX9pVm98Q+pO0mr2w84MfUTl6xlS7KIMzeHjHLr
+	sAjmgUnqntnS+N2R1VwD9C7v3taQIo/UFX8DHPXDY9Wd
+X-Google-Smtp-Source: APXvYqz3qvQ5VcYOhn1gxZUYWjDoISL0vR7cPslM3P9KNnqP/RIHJ8QBvOtsmakRhD/HEaoBqNWZqz9hethDFh36cyI=
+X-Received: by 2002:a02:3804:: with SMTP id b4mr21871191jaa.79.1572969734491; 
+	Tue, 05 Nov 2019 08:02:14 -0800 (PST)
 MIME-Version: 1.0
-Cc: Alex Chong <v-chucho@microsoft.com>
-Subject: Re: bitbake SRC_URI fetch Azure DevOps repository Azure DevOps Services Basic
+From: Stephen K Jolley <sjolley.yp.pm@gmail.com>
+Date: Tue, 5 Nov 2019 08:02:04 -0800
+Message-ID: <CAK5yBb-Y+KOR_L6VELGQ-YFZU9FzXp5XosrKpL+znhLOhNDWsg@mail.gmail.com>
+To: openembedded-core@lists.openembedded.org, yocto@yoctoproject.org
+Subject: =?UTF-8?B?WW9jdG8gUHJvamVjdCBTdGF0dXMgV1c0NeKAmTE5?=
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -78,375 +68,577 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Nov 2019 15:30:10 -0000
+X-List-Received-Date: Tue, 05 Nov 2019 16:02:17 -0000
+Content-Type: multipart/alternative; boundary="000000000000445c7805969b8e40"
+
+--000000000000445c7805969b8e40
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2019-11-04 at 02:52 +0000, Samuel Jiang (江騏先) wrote:
-> Dear yocto developer,
-> The below disscussed about azure devops clone issue including test
-> result with Microsoft support team member.
-> We wonder know how Bitbake access repository through SSH. Does it
-> different between git and Azue DevOps?
+Current Dev Position: YP 3.1 M1
 
+Next Deadline: YP 3.1 M1 build Dec. 2, 2019
 
-Try:
+SWAT Team Rotation:
 
-SRC_URI = "git://quanta01@vs-ssh.visualstudio.com/v3/quanta01/OpenBMC/crashdump;protocol=ssh;nobranch=1"
+   -
 
-as I think you didn't convert the url to our syntax correctly.
+   SWAT lead is currently: Armin
+   -
 
-Cheers,
+   SWAT team rotation: Armin-> Anuj on Nov. 8, 2019
+   -
 
-Richard
+   SWAT team rotation: Anuj -> Chen on Nov. 15, 2019
+   -
 
-
-> Thanks,
-> 
-> Samuel Jiang
-> ---------- Forwarded message ----------
-> From: Alex Chong (Shanghai Wicresoft Co,.Ltd.) <
-> v-chucho@microsoft.com>
-> Date: 2019年10月31日 PM5:39 [+0800]
-> To: Samuel Jiang (江騏先) <Samuel.Jiang@quantatw.com>
-> Cc: support <support@mail.support.microsoft.com>, Alex Chong
-> (Shanghai Wicresoft Co,.Ltd.) <v-chucho@microsoft.com>
-> Subject: RE: 119102923000220 use yocto bitbake SRC_URI fetch Azure
-> DevOps repository Azure DevOps Services Basic
-> 
-> > Hi Samuel,
-> > 
-> >  
-> > 
-> > Thank you for reply.
-> > 
-> >  
-> > 
-> > I test and read the BitBake doc, let me share with you my finding
-> > and analysis.
-> > 
-> > I have verified that our Azure DevOps Organization Repo could be
-> > clone through SSH authentication successfully.
-> > I create a new SSH key and add it to Azure DevOps SSH public keys.
-> >  
-> > 
-> > Then I use git clone command and clone this repo successfully. The
-> > url is “v-chucho-microsoft@vs-ssh.visualstudio.com:v3/v-chucho-
-> > microsoft/testCodeCoverage/testCodeCoverage”
-> > 
-> > 
-> > My testing verify that SSH Authentication is available, and the url
-> > given by Azure DevOps is correct.
-> > 
-> >  
-> > 
-> > Then I also test it in GitHub, and succeed. The only difference is
-> > the url of GitHub is “git@github.com:xxxxxxxxxxxxxxxxxx.git”
-> >  
-> > 
-> > So let’s come back to BitBake. I read more of the BitBake doc.( 
-> > https://www.yoctoproject.org/docs/1.8/bitbake-user-manual/bitbake-user-manual.html#bb-fetchers
-> > ) . Your command SRC_URI = "git://quanta01@vs-
-> > ssh.visualstudio.com:v3/quanta01/OpenBMC/crashdump;protocol=ssh;nob
-> > ranch=1". The BitBake example is below.
-> > 
-> > 
-> > We can see that the BitBake syntax is like git SSH but not Azure
-> > DevOps SSH. Do you try to use this command clone a repo from
-> > GitHub?
-> > 
-> >  
-> > 
-> > Then I read the doc you shared. The customer also met your issue
-> > when trying to clone Azure DevOps repo with SSH url. In my
-> > understanding, seems BitBake Git fetcher is good for Git SSH but
-> > not ready to access the Azure DevOps SSH.
-> > 
-> > 
-> >  
-> > 
-> > Action Plan
-> > 
-> > Could you involve BitBake support team? We can deliver this testing
-> > result and consult them how BitBake access Azure DevOps through
-> > SSH.
-> > 
-> >  
-> > 
-> > If you have any conern or query, please feel free to let me know.
-> > 
-> >  
-> > 
-> > Best Regards,
-> > 
-> >  
-> > 
-> > Alex Chong
-> > 
-> >  
-> > 
-> > 
-> > 
-> > Support Engineer
-> > 
-> > Microsoft APAC Developer Support Team
-> > 
-> > Customer Service & Support (CSS)
-> > 
-> > Email: v-chucho@microsoft.com
-> > 
-> > Office: +86 (21) 52638610
-> > 
-> > Time zone: (UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi
-> > 
-> > Working time: 9:00am-6:00pm, Mon-Tue-Wed-Thu-Fri
-> > 
-> >  
-> > 
-> > From: Samuel Jiang (江騏先) <Samuel.Jiang@quantatw.com>
-> > Sent: Thursday, October 31, 2019 12:16 PM
-> > To: Alex Chong (Shanghai Wicresoft Co,.Ltd.) <
-> > v-chucho@microsoft.com>
-> > Cc: support <support@mail.support.microsoft.com>
-> > Subject: RE: 119102923000220 use yocto bitbake SRC_URI fetch Azure
-> > DevOps repository Azure DevOps Services Basic
-> > 
-> >  
-> > 
-> > Hi Alex,
-> > 
-> > I catch same problem on the yocto mail list
-> > link: 
-> > https://lists.yoctoproject.org/pipermail/yocto/2018-October/042736.html
-> > 
-> > when I use SRC_URI = "git://quanta01@vs-
-> > ssh.visualstudio.com:v3/quanta01/OpenBMC/crashdump;protocol=ssh;nob
-> > ranch=1"
-> > 
-> > the bitbake response below error message:
-> > git -c core.fsyncobjectfiles=0 ls-remote 
-> > ssh://quanta01@vs-ssh.visualstudio.com:v3/quanta01/OpenBMC/crashdump
-> >   failed with exit code 128, output:
-> > 
-> > ssh: Could not resolve hostname vs-ssh.visualstudio.com:v3: Name or
-> > service not known
-> > 
-> > fatal: Could not read from remote repository.
-> > 
-> > I think the bitbake call “git ls-remote” command however it could
-> > not parser below host vs-ssh.visualstudio.com:v3
-> > 
-> > Could you help confirm the  “git ls-remote”command could work on
-> > ssh method clone with ssh:// prefix?
-> > 
-> > BTW, the protocol will define the uri prefix, I didn’t find any way
-> > removing this prefix.
-> > 
-> > Thanks,
-> > Samuel Jiang
-> > 
-> >  
-> > 
-> > From: Alex Chong (Shanghai Wicresoft Co,.Ltd.) <
-> > v-chucho@microsoft.com>
-> > Sent: Thursday, October 31, 2019 10:32 AM
-> > To: Samuel Jiang (江騏先) <Samuel.Jiang@quantatw.com>
-> > Cc: Alex Chong (Shanghai Wicresoft Co,.Ltd.) <
-> > v-chucho@microsoft.com>; support <
-> > support@mail.support.microsoft.com>
-> > Subject: RE: 119102923000220 use yocto bitbake SRC_URI fetch Azure
-> > DevOps repository Azure DevOps Services Basic
-> > 
-> >  
-> > 
-> > Hi Samuel,
-> > 
-> >  
-> > 
-> > How are you?
-> > 
-> >  
-> > 
-> > Do you try our Azure DevOps SSH authentication? Do you contact
-> > BitBake support for help? Is there any suggestion or new issue?
-> > Please feel free to contact me if there is something I can do for
-> > you.
-> > 
-> >  
-> > 
-> > Best Regards,
-> > 
-> >  
-> > 
-> > Alex Chong
-> > 
-> >  
-> > 
-> > 
-> > 
-> > Support Engineer
-> > 
-> > Microsoft APAC Developer Support Team
-> > 
-> > Customer Service & Support (CSS)
-> > 
-> > Email: v-chucho@microsoft.com
-> > 
-> > Office: +86 (21) 52638610
-> > 
-> > Time zone: (UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi
-> > 
-> > Working time: 9:00am-6:00pm, Mon-Tue-Wed-Thu-Fri
-> > 
-> >  
-> > 
-> > From: Alex Chong (Shanghai Wicresoft Co,.Ltd.) <
-> > v-chucho@microsoft.com>
-> > Sent: Tuesday, October 29, 2019 3:50 PM
-> > To: Samuel.Jiang@quantatw.com
-> > Cc: Alex Chong (Shanghai Wicresoft Co,.Ltd.) <
-> > v-chucho@microsoft.com>
-> > Subject: 119102923000220 use yocto bitbake SRC_URI fetch Azure
-> > DevOps repository Azure DevOps Services Basic
-> > 
-> >  
-> > 
-> >  
-> > 
-> >  
-> > 
-> > 
-> > 
-> >  
-> > 
-> > Hi Samuel,
-> > 
-> >  
-> > 
-> > Thank you for contacting Microsoft.
-> > 
-> >  
-> > 
-> > My name is Alex and I am the Microsoft Support Engineer from APGC
-> > who will be working with you on this support request . You can
-> > reach me using the contact information in my signature.
-> > 
-> >  
-> > 
-> > I just called you at +886 3 327 2345 and had a quick discussion.
-> > 
-> > Issue Description
-> > 
-> > 1.Customer is using a 3rd-party application BitBake to clone Azure
-> > DevOps repo. 
-> > 
-> > 2.Customer could fetch file from https url successfully.
-> > 
-> > 3.Customer wants to know whether Azure DevOps support SSH
-> > authentication method.
-> > 
-> >  
-> > 
-> > Analysis
-> > 
-> > 1.Yes, Azure DevOps has SSH authentication method. (Reference: 
-> > https://docs.microsoft.com/en-us/azure/devops/repos/git/use-ssh-keys-to-authenticate?view=azure-devops
-> > )
-> > 
-> >  Create your SSH keys
-> >     Create your SSH keys with the ssh-keygen command from
-> > the bash prompt.
-> > 
-> >  Add the public key to your Azure DevOps Organization
-> > Open your security settings by browsing to the web portal and
-> > selecting your avatar in the upper right of the user interface.
-> > Select Security in the menu that appears.
-> > 
-> > 
-> > 
-> > Select SSH public keys , then select +New Key.
-> > 
-> > 
-> > 
-> > Copy the contents of the public key (for example, id_rsa.pub) that
-> > you generated into the Public Key Data field.
-> > 
-> >  
-> > 
-> > 
-> > 
-> >  
-> > 
-> >  Clone the Git repository with SSH
-> > Copy the SSH clone URL from the web portal. In this example the SSL
-> > clone URL is for a repo in an organization named fabrikam-fiber, as
-> > indicated by the first part of the URL after dev.azure.com.
-> > 
-> > 
-> > 
-> > Run git clone from the command prompt.
-> > 
-> > My example is git clone v-chucho-microsoft@vs-ssh.visualstudio.com:
-> > v3/v-chucho-microsoft/testCodeCoverage/testCodeCoverage
-> > 
-> >  
-> > 
-> > 2.Regarding to BitBake. (Reference: 
-> > https://www.yoctoproject.org/docs/1.8/bitbake-user-manual/bitbake-user-manual.html#bb-fetchers
-> > )
-> > 
-> > This is a 3rd-party application which is out of our Microsoft
-> > support. Our Azure DevOps has SSH authentication method. But I have
-> > no experience whether there is such option in BitBake. 
-> > 
-> > I did some research on this application and find Git fetcher and
-> > ssh:// fetcher functionalities. In my understanding, it should
-> > support git with SSH or SSH fecher directly. It's suggested to
-> > consult BitBake support for more details of these 2 fetchers. If
-> > there is something our Microsoft could help, please feel free to
-> > involve me directly.
-> > 
-> > 
-> > 
-> > 
-> > 
-> >  
-> > 
-> > If you have any concern or query, please feel free to contact me.
-> > 
-> >  
-> > 
-> > Best Regards,
-> > 
-> >  
-> > 
-> > Alex Chong
-> > 
-> >  
-> > 
-> > Support Engineer
-> > 
-> > Microsoft APAC Developer Support Team
-> > 
-> > Customer Service & Support (CSS)
-> > 
-> > Email: v-chucho@microsoft.com
-> > 
-> > Office: +86 (21) 52638610
-> > 
-> > Time zone: (UTC+08:00) Beijing, Chongqing, Hong Kong, Urumqi
-> > 
-> > Working time: 9:00am-6:00pm, Mon-Tue-Wed-Thu-Fri
-> > 
-> >  
-> > 
-> > 這則來自 Microsoft 的訊息是您或貴公司所購買或參與之計畫、服務或產品的重要部分。請檢閱我們的線上隱私權聲明
-> > 
-> > Microsoft Corporation
-> > One Microsoft Way
-> > Redmond, WA, USA 98052
-> > 
-> > 
-> > 
+   https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
 
 
+Next Team Meetings:
+
+   -
+
+   Bug Triage meeting Thursday Nov. 7th at 7:30am PDT (
+   https://zoom.us/j/454367603)
+   -
+
+   Monthly Project Meeting Tuesday Nov. 5th at 8am PDT (
+   https://zoom.us/j/990892712) <https://zoom.us/j/990892712>
+   -
+
+   Weekly Engineering Sync Tuesday Nov. 12th at 8am PDT (
+   https://zoom.us/j/990892712) <https://zoom.us/j/990892712>
+   -
+
+   Twitch - Next event is Tuesday Nov. 12th at 8am PDT (
+   https://www.twitch.tv/yocto_project)
+
+
+Key Status/Updates:
+
+   -
+
+   The project presence at ELC-E in Lyon was strong, thanks to everyone who
+   contributed, be it through presentations, helping with the booth, visiti=
+ng
+   the booth or attending or assisting with the summit!
+   -
+
+   YP 2.6.4 was released
+   -
+
+   Patches have continued to merge and master is staying roughly current
+   with the pending patch queue. The autobuilder is still suffering a numbe=
+r
+   of intermittent failures which will start to hamper future development.
+   We=E2=80=99re likely going to have to pause and address those before oth=
+er
+   development can continue.
+   -
+
+   In particular, issues with pseudo on fedora30 have become apparent due
+   to its use of the new statx() syscall.
+   -
+
+   YP 2.7.2 has been built and is now in QA
+   -
+
+   The YP TSC worked on and shared a proposal on how an LTS release could
+   work which is available at:
+   https://docs.google.com/document/d/1AwAFDf52f_FoXksbHEVUMlu4hpcI0JMGVG-K=
+j_sUkyc/
+   -
+
+   We are continuing to collect ideas for YP 3.1 in this document:
+   https://docs.google.com/document/d/1UKZIGe88-eq3-pOPtkAvFAegbQDzhy_f4ye6=
+4yjnABc/edit?usp=3Dsharing
+   -
+
+   If anyone has any status items for the project they=E2=80=99d like to ad=
+d to the
+   weekly reports, please email Richard and Stephen.
+
+
+Proposed YP 3.1 Milestone Dates:
+
+   -
+
+   YP 3.1 M1 Proposed build date 12/2/2019
+   -
+
+   YP 3.1 M1 Proposed release date 12/13/2019
+   -
+
+   YP 3.1 M2 Proposed build date 1/20/2020
+   -
+
+   YP 3.1 M2 Proposed release date 1/31/2020
+   -
+
+   YP 3.1 M3 Proposed build date 2/24/2020
+   -
+
+   YP 3.1 M3 Proposed release date 3/6/2020
+   -
+
+   YP 3.1 M4 Proposed build date  3/30/2020
+   -
+
+   YP 3.1 M4 Proposed release date  4/24/2020
+
+
+Planned upcoming dot releases:
+
+   -
+
+   YP 3.0.1 has patches being queued in poky-contrib
+   -
+
+   YP 2.7.2 (Warrior) is in QA.
+   -
+
+   YP 2.6.4 (Thud) was released.
+
+
+Tracking Metrics:
+
+   -
+
+   WDD 2518 (last week 2493) (
+   https://wiki.yoctoproject.org/charts/combo.html)
+   -
+
+   Poky Patch Metrics
+   -
+
+      Total patches found: 1446 (last week 1441)
+      -
+
+      Patches in the Pending State: 579 (40%) [last week 579 (40%)]
+
+
+The Yocto Project=E2=80=99s technical governance is through its Technical S=
+teering
+Committee, more information is available at:
+
+https://wiki.yoctoproject.org/wiki/TSC
+
+The Status reports are now stored on the wiki at:
+https://wiki.yoctoproject.org/wiki/Weekly_Status
+
+[If anyone has suggestions for other information you=E2=80=99d like to see =
+on this
+weekly status update, let us know!]
+
+Thanks,
+
+
+
+*Stephen K. Jolley*
+
+*Yocto Project Program Manager*
+
+*7867 SW Bayberry Dr., Beaverton, OR 97007*
+
+(    *Cell*:                (208) 244-4460
+
+* *Email*:                 *s
+<stephen.k.jolley@intel.com>jolley.yp.pm@gmail.com <jolley.yp.pm@gmail.com>=
+*
+
+--000000000000445c7805969b8e40
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><span id=3D"gmail-docs-internal-guid-aaa53fff-7fff-ec25-20=
+e0-af46745d94ce"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;ma=
+rgin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(=
+0,0,0);background-color:transparent;font-variant-numeric:normal;font-varian=
+t-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Current D=
+ev Position: YP 3.1 M1=C2=A0</span></p><p dir=3D"ltr" style=3D"line-height:=
+1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-f=
+amily:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-nume=
+ric:normal;font-variant-east-asian:normal;vertical-align:baseline;white-spa=
+ce:pre-wrap">Next Deadline: YP 3.1 M1 build Dec. 2, 2019</span></p><br><p d=
+ir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><spa=
+n style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-col=
+or:transparent;font-variant-numeric:normal;font-variant-east-asian:normal;v=
+ertical-align:baseline;white-space:pre-wrap">SWAT Team Rotation:</span></p>=
+<ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"lis=
+t-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);backgro=
+und-color:transparent;font-variant-numeric:normal;font-variant-east-asian:n=
+ormal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line=
+-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11p=
+t;background-color:transparent;font-variant-numeric:normal;font-variant-eas=
+t-asian:normal;vertical-align:baseline;white-space:pre-wrap">SWAT lead is c=
+urrently: Armin=C2=A0</span></p></li><li dir=3D"ltr" style=3D"list-style-ty=
+pe:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:=
+transparent;font-variant-numeric:normal;font-variant-east-asian:normal;vert=
+ical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.=
+38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;backgrou=
+nd-color:transparent;font-variant-numeric:normal;font-variant-east-asian:no=
+rmal;vertical-align:baseline;white-space:pre-wrap">SWAT team rotation: Armi=
+n-&gt; Anuj on Nov. 8, 2019</span></p></li><li dir=3D"ltr" style=3D"list-st=
+yle-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-=
+color:transparent;font-variant-numeric:normal;font-variant-east-asian:norma=
+l;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-hei=
+ght:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;ba=
+ckground-color:transparent;font-variant-numeric:normal;font-variant-east-as=
+ian:normal;vertical-align:baseline;white-space:pre-wrap">SWAT team rotation=
+: Anuj -&gt; Chen on Nov. 15, 2019</span></p></li><li dir=3D"ltr" style=3D"=
+list-style-type:disc;font-size:11pt;font-family:Consolas,sans-serif;color:r=
+gb(0,0,0);background-color:transparent;font-variant-numeric:normal;font-var=
+iant-east-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"l=
+tr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><a href=3D"=
+https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team" style=3D"=
+text-decoration-line:none"><span style=3D"font-size:11pt;background-color:t=
+ransparent;font-variant-numeric:normal;font-variant-east-asian:normal;text-=
+decoration-line:underline;vertical-align:baseline;white-space:pre-wrap">htt=
+ps://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team</span></a></p=
+></li></ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;marg=
+in-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,=
+0,0);background-color:transparent;font-variant-numeric:normal;font-variant-=
+east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Next Team M=
+eetings:</span></p><ul style=3D"margin-top:0px;margin-bottom:0px"><li dir=
+=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;col=
+or:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font=
+-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span =
+style=3D"font-size:11pt;background-color:transparent;font-variant-numeric:n=
+ormal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pr=
+e-wrap">Bug Triage meeting Thursday Nov. 7th at 7:30am PDT (</span><a href=
+=3D"https://zoom.us/j/454367603" style=3D"text-decoration-line:none"><span =
+style=3D"font-size:10pt;background-color:transparent;font-variant-numeric:n=
+ormal;font-variant-east-asian:normal;text-decoration-line:underline;vertica=
+l-align:baseline;white-space:pre-wrap">https://zoom.us/j/454367603</span></=
+a><span style=3D"font-size:11pt;background-color:transparent;font-variant-n=
+umeric:normal;font-variant-east-asian:normal;vertical-align:baseline;white-=
+space:pre-wrap">)</span></p></li><li dir=3D"ltr" style=3D"list-style-type:d=
+isc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:tran=
+sparent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical=
+-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;m=
+argin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background-c=
+olor:transparent;font-variant-numeric:normal;font-variant-east-asian:normal=
+;vertical-align:baseline;white-space:pre-wrap">Monthly Project Meeting Tues=
+day Nov. 5th at 8am PDT (</span><a href=3D"https://zoom.us/j/990892712" sty=
+le=3D"text-decoration-line:none"><span style=3D"font-size:11pt;background-c=
+olor:transparent;font-variant-numeric:normal;font-variant-east-asian:normal=
+;text-decoration-line:underline;vertical-align:baseline;white-space:pre-wra=
+p">https://zoom.us/j/990892712)</span></a></p></li><li dir=3D"ltr" style=3D=
+"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);bac=
+kground-color:transparent;font-variant-numeric:normal;font-variant-east-asi=
+an:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"=
+line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size=
+:11pt;background-color:transparent;font-variant-numeric:normal;font-variant=
+-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">Weekly Eng=
+ineering Sync Tuesday Nov. 12th at 8am PDT (</span><a href=3D"https://zoom.=
+us/j/990892712" style=3D"text-decoration-line:none"><span style=3D"font-siz=
+e:11pt;background-color:transparent;font-variant-numeric:normal;font-varian=
+t-east-asian:normal;text-decoration-line:underline;vertical-align:baseline;=
+white-space:pre-wrap">https://zoom.us/j/990892712)</span></a></p></li><li d=
+ir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;c=
+olor:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;fo=
+nt-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><p di=
+r=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span=
+ style=3D"font-size:11pt;background-color:transparent;font-variant-numeric:=
+normal;font-variant-east-asian:normal;vertical-align:baseline;white-space:p=
+re-wrap">Twitch - Next event is Tuesday Nov. 12th at 8am PDT (</span><a hre=
+f=3D"https://www.twitch.tv/yocto_project" style=3D"text-decoration-line:non=
+e"><span style=3D"font-size:11pt;background-color:transparent;font-variant-=
+numeric:normal;font-variant-east-asian:normal;text-decoration-line:underlin=
+e;vertical-align:baseline;white-space:pre-wrap">https://www.twitch.tv/yocto=
+_project</span></a><span style=3D"font-size:11pt;background-color:transpare=
+nt;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-alig=
+n:baseline;white-space:pre-wrap">)</span></p></li></ul><br><p dir=3D"ltr" s=
+tyle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"f=
+ont-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transpare=
+nt;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-alig=
+n:baseline;white-space:pre-wrap">Key Status/Updates:</span></p><ul style=3D=
+"margin-top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type=
+:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:tr=
+ansparent;font-variant-numeric:normal;font-variant-east-asian:normal;vertic=
+al-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38=
+;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background=
+-color:transparent;font-variant-numeric:normal;font-variant-east-asian:norm=
+al;vertical-align:baseline;white-space:pre-wrap">The project presence at EL=
+C-E in Lyon was strong, thanks to everyone who contributed, be it through p=
+resentations, helping with the booth, visiting the booth or attending or as=
+sisting with the summit!=C2=A0</span></p></li><li dir=3D"ltr" style=3D"list=
+-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);backgrou=
+nd-color:transparent;font-variant-numeric:normal;font-variant-east-asian:no=
+rmal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-=
+height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt=
+;background-color:transparent;font-variant-numeric:normal;font-variant-east=
+-asian:normal;vertical-align:baseline;white-space:pre-wrap">YP 2.6.4 was re=
+leased</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-si=
+ze:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;fon=
+t-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:base=
+line;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0=
+pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background-color:transp=
+arent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-a=
+lign:baseline;white-space:pre-wrap">Patches have continued to merge and mas=
+ter is staying roughly current with the pending patch queue. The autobuilde=
+r is still suffering a number of intermittent failures which will start to =
+hamper future development. We=E2=80=99re likely going to have to pause and =
+address those before other development can continue.</span></p></li><li dir=
+=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;col=
+or:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;font=
+-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><p dir=
+=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span =
+style=3D"font-size:11pt;background-color:transparent;font-variant-numeric:n=
+ormal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pr=
+e-wrap">In particular, issues with pseudo on fedora30 have become apparent =
+due to its use of the new statx() syscall.</span></p></li><li dir=3D"ltr" s=
+tyle=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0=
+,0);background-color:transparent;font-variant-numeric:normal;font-variant-e=
+ast-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" st=
+yle=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"fo=
+nt-size:11pt;background-color:transparent;font-variant-numeric:normal;font-=
+variant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">YP =
+2.7.2 has been built and is now in QA</span></p></li><li dir=3D"ltr" style=
+=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,0);=
+background-color:transparent;font-variant-numeric:normal;font-variant-east-=
+asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" style=
+=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-=
+size:11pt;background-color:transparent;font-variant-numeric:normal;font-var=
+iant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">The YP=
+ TSC worked on and shared a proposal on how an LTS release could work which=
+ is available at: </span><a href=3D"https://docs.google.com/document/d/1AwA=
+FDf52f_FoXksbHEVUMlu4hpcI0JMGVG-Kj_sUkyc/" style=3D"text-decoration-line:no=
+ne"><span style=3D"font-size:11pt;background-color:transparent;font-variant=
+-numeric:normal;font-variant-east-asian:normal;text-decoration-line:underli=
+ne;vertical-align:baseline;white-space:pre-wrap">https://docs.google.com/do=
+cument/d/1AwAFDf52f_FoXksbHEVUMlu4hpcI0JMGVG-Kj_sUkyc/</span></a></p></li><=
+li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Ari=
+al;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:norma=
+l;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><=
+p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><=
+span style=3D"font-size:11pt;background-color:transparent;font-variant-nume=
+ric:normal;font-variant-east-asian:normal;vertical-align:baseline;white-spa=
+ce:pre-wrap">We are continuing to collect ideas for YP 3.1 in this document=
+: </span><a href=3D"https://docs.google.com/document/d/1UKZIGe88-eq3-pOPtkA=
+vFAegbQDzhy_f4ye64yjnABc/edit?usp=3Dsharing" style=3D"text-decoration-line:=
+none"><span style=3D"font-size:11pt;background-color:transparent;font-varia=
+nt-numeric:normal;font-variant-east-asian:normal;text-decoration-line:under=
+line;vertical-align:baseline;white-space:pre-wrap">https://docs.google.com/=
+document/d/1UKZIGe88-eq3-pOPtkAvFAegbQDzhy_f4ye64yjnABc/edit?usp=3Dsharing<=
+/span></a></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:=
+11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-v=
+ariant-numeric:normal;font-variant-east-asian:normal;vertical-align:baselin=
+e;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;=
+margin-bottom:0pt"><span style=3D"font-size:11pt;background-color:transpare=
+nt;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-alig=
+n:baseline;white-space:pre-wrap">If anyone has any status items for the pro=
+ject they=E2=80=99d like to add to the weekly reports, please email Richard=
+ and Stephen.</span></p></li></ul><br><p dir=3D"ltr" style=3D"line-height:1=
+.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-fa=
+mily:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numer=
+ic:normal;font-variant-east-asian:normal;vertical-align:baseline;white-spac=
+e:pre-wrap">Proposed YP 3.1 Milestone Dates:</span></p><ul style=3D"margin-=
+top:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:disc;fo=
+nt-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparen=
+t;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-align=
+:baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-=
+top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background-color:t=
+ransparent;font-variant-numeric:normal;font-variant-east-asian:normal;verti=
+cal-align:baseline;white-space:pre-wrap">YP 3.1 M1 Proposed build date 12/2=
+/2019</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-siz=
+e:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font=
+-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:basel=
+ine;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0p=
+t;margin-bottom:0pt"><span style=3D"font-size:11pt;background-color:transpa=
+rent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-al=
+ign:baseline;white-space:pre-wrap">YP 3.1 M1 Proposed release date 12/13/20=
+19</span></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:1=
+1pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-va=
+riant-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline=
+;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;m=
+argin-bottom:0pt"><span style=3D"font-size:11pt;background-color:transparen=
+t;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-align=
+:baseline;white-space:pre-wrap">YP 3.1 M2 Proposed build date 1/20/2020</sp=
+an></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;fo=
+nt-family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-=
+numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;white=
+-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-=
+bottom:0pt"><span style=3D"font-size:11pt;background-color:transparent;font=
+-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:basel=
+ine;white-space:pre-wrap">YP 3.1 M2 Proposed release date 1/31/2020</span><=
+/p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-f=
+amily:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-nume=
+ric:normal;font-variant-east-asian:normal;vertical-align:baseline;white-spa=
+ce:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bott=
+om:0pt"><span style=3D"font-size:11pt;background-color:transparent;font-var=
+iant-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;=
+white-space:pre-wrap">YP 3.1 M3 Proposed build date 2/24/2020</span></p></l=
+i><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:=
+Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:no=
+rmal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre=
+"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt=
+"><span style=3D"font-size:11pt;background-color:transparent;font-variant-n=
+umeric:normal;font-variant-east-asian:normal;vertical-align:baseline;white-=
+space:pre-wrap">YP 3.1 M3 Proposed release date 3/6/2020</span></p></li><li=
+ dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial=
+;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;=
+font-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><p =
+dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><sp=
+an style=3D"font-size:11pt;background-color:transparent;font-variant-numeri=
+c:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space=
+:pre-wrap">YP 3.1 M4 Proposed build date=C2=A0 3/30/2020</span></p></li><li=
+ dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial=
+;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;=
+font-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><p =
+dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><sp=
+an style=3D"font-size:11pt;background-color:transparent;font-variant-numeri=
+c:normal;font-variant-east-asian:normal;vertical-align:baseline;white-space=
+:pre-wrap">YP 3.1 M4 Proposed release date=C2=A0 4/24/2020</span></p></li><=
+/ul><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bott=
+om:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);ba=
+ckground-color:transparent;font-variant-numeric:normal;font-variant-east-as=
+ian:normal;vertical-align:baseline;white-space:pre-wrap">Planned upcoming d=
+ot releases:</span></p><ul style=3D"margin-top:0px;margin-bottom:0px"><li d=
+ir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Arial;c=
+olor:rgb(0,0,0);background-color:transparent;font-variant-numeric:normal;fo=
+nt-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><p di=
+r=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span=
+ style=3D"font-size:11pt;background-color:transparent;font-variant-numeric:=
+normal;font-variant-east-asian:normal;vertical-align:baseline;white-space:p=
+re-wrap">YP 3.0.1 has patches being queued in poky-contrib</span></p></li><=
+li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;font-family:Ari=
+al;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:norma=
+l;font-variant-east-asian:normal;vertical-align:baseline;white-space:pre"><=
+p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><=
+span style=3D"font-size:11pt;background-color:transparent;font-variant-nume=
+ric:normal;font-variant-east-asian:normal;vertical-align:baseline;white-spa=
+ce:pre-wrap">YP 2.7.2 (Warrior) is in QA.</span></p></li><li dir=3D"ltr" st=
+yle=3D"list-style-type:disc;font-size:11pt;font-family:Arial;color:rgb(0,0,=
+0);background-color:transparent;font-variant-numeric:normal;font-variant-ea=
+st-asian:normal;vertical-align:baseline;white-space:pre"><p dir=3D"ltr" sty=
+le=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"fon=
+t-size:11pt;background-color:transparent;font-variant-numeric:normal;font-v=
+ariant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">YP 2=
+.6.4 (Thud) was released.</span></p></li></ul><br><p dir=3D"ltr" style=3D"l=
+ine-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:=
+11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;font-v=
+ariant-numeric:normal;font-variant-east-asian:normal;vertical-align:baselin=
+e;white-space:pre-wrap">Tracking Metrics:</span></p><ul style=3D"margin-top=
+:0px;margin-bottom:0px"><li dir=3D"ltr" style=3D"list-style-type:disc;font-=
+size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:transparent;f=
+ont-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:ba=
+seline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top=
+:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;background-color:tran=
+sparent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical=
+-align:baseline;white-space:pre-wrap">WDD 2518 (last week 2493)</span><span=
+ style=3D"font-size:11pt;font-family:Consolas,sans-serif;background-color:t=
+ransparent;font-variant-numeric:normal;font-variant-east-asian:normal;verti=
+cal-align:baseline;white-space:pre-wrap"> (</span><a href=3D"https://wiki.y=
+octoproject.org/charts/combo.html" style=3D"text-decoration-line:none"><spa=
+n style=3D"font-size:11pt;background-color:transparent;font-variant-numeric=
+:normal;font-variant-east-asian:normal;text-decoration-line:underline;verti=
+cal-align:baseline;white-space:pre-wrap">https://wiki.yoctoproject.org/char=
+ts/combo.html</span></a><span style=3D"font-size:11pt;font-family:Consolas,=
+sans-serif;background-color:transparent;font-variant-numeric:normal;font-va=
+riant-east-asian:normal;vertical-align:baseline;white-space:pre-wrap">)</sp=
+an></p></li><li dir=3D"ltr" style=3D"list-style-type:disc;font-size:11pt;fo=
+nt-family:Consolas,sans-serif;color:rgb(0,0,0);background-color:transparent=
+;font-variant-numeric:normal;font-variant-east-asian:normal;vertical-align:=
+baseline;white-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-t=
+op:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;b=
+ackground-color:transparent;font-variant-numeric:normal;font-variant-east-a=
+sian:normal;vertical-align:baseline;white-space:pre-wrap">Poky Patch Metric=
+s=C2=A0=C2=A0</span></p></li><ul style=3D"margin-top:0px;margin-bottom:0px"=
+><li dir=3D"ltr" style=3D"list-style-type:circle;font-size:11pt;font-family=
+:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-numeric:n=
+ormal;font-variant-east-asian:normal;vertical-align:baseline;white-space:pr=
+e"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0p=
+t"><span style=3D"font-size:11pt;background-color:transparent;font-variant-=
+numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;white=
+-space:pre-wrap">Total patches found: 1446 (last week 1441)</span></p></li>=
+<li dir=3D"ltr" style=3D"list-style-type:circle;font-size:11pt;font-family:=
+Consolas,sans-serif;color:rgb(0,0,0);background-color:transparent;font-vari=
+ant-numeric:normal;font-variant-east-asian:normal;vertical-align:baseline;w=
+hite-space:pre"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;mar=
+gin-bottom:0pt"><span style=3D"font-size:11pt;font-family:Arial;background-=
+color:transparent;font-variant-numeric:normal;font-variant-east-asian:norma=
+l;vertical-align:baseline;white-space:pre-wrap">Patches in the Pending Stat=
+e: 579 (40%) [last week 579 (40%)]</span></p></li></ul></ul><br><p dir=3D"l=
+tr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt"><span style=
+=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);background-color:tran=
+sparent;font-variant-numeric:normal;font-variant-east-asian:normal;vertical=
+-align:baseline;white-space:pre-wrap">The Yocto Project=E2=80=99s technical=
+ governance is through its Technical Steering Committee, more information i=
+s available at:</span></p><p dir=3D"ltr" style=3D"line-height:1.38;margin-t=
+op:0pt;margin-bottom:0pt"><a href=3D"https://wiki.yoctoproject.org/wiki/TSC=
+" style=3D"text-decoration-line:none"><span style=3D"font-size:11pt;font-fa=
+mily:Arial;background-color:transparent;font-variant-numeric:normal;font-va=
+riant-east-asian:normal;text-decoration-line:underline;vertical-align:basel=
+ine;white-space:pre-wrap">https://wiki.yoctoproject.org/wiki/TSC</span></a>=
+</p><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bott=
+om:0pt"><span style=3D"font-size:11pt;font-family:Arial;color:rgb(0,0,0);ba=
+ckground-color:transparent;font-variant-numeric:normal;font-variant-east-as=
+ian:normal;vertical-align:baseline;white-space:pre-wrap">The Status reports=
+ are now stored on the wiki at: </span><a href=3D"https://wiki.yoctoproject=
+.org/wiki/Weekly_Status" style=3D"text-decoration-line:none"><span style=3D=
+"font-size:11pt;font-family:Arial;background-color:transparent;font-variant=
+-numeric:normal;font-variant-east-asian:normal;text-decoration-line:underli=
+ne;vertical-align:baseline;white-space:pre-wrap">https://wiki.yoctoproject.=
+org/wiki/Weekly_Status</span></a></p><br><p dir=3D"ltr" style=3D"line-heigh=
+t:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:11pt;font=
+-family:Arial;color:rgb(0,0,0);background-color:transparent;font-variant-nu=
+meric:normal;font-variant-east-asian:normal;vertical-align:baseline;white-s=
+pace:pre-wrap">[If anyone has suggestions for other information you=E2=80=
+=99d like to see on this weekly status update, let us know!]</span></p></sp=
+an><div><br></div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=
+=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><p class=3D"Mso=
+Normal" style=3D"background-image:initial;background-position:initial;backg=
+round-repeat:initial"><span style=3D"font-size:12pt;font-family:Arial,sans-=
+serif">Thanks,<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:12pt;font-fam=
+ily:Arial,sans-serif">=C2=A0<span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><i><span style=3D"font-size:16pt;co=
+lor:purple">Stephen K. Jolley</span></i></b><span style=3D"font-size:12pt;f=
+ont-family:Arial,sans-serif"><span></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-size:8pt;font-f=
+amily:&quot;Courier New&quot;;color:blue">Yocto Project Program Manager<spa=
+n></span></span></b></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><b><span style=3D"font-family:&quot;Co=
+urier New&quot;;color:fuchsia;background-image:initial;background-position:=
+initial;background-repeat:initial">7867 SW Bayberry Dr., Beaverton, OR 9700=
+7</span></b><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><sp=
+an></span></span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings;color:black">(</span><span style=3D"font-size:9pt;font-family:=
+&quot;MS Sans Serif&quot;,serif;color:teal">=C2=A0=C2=A0=C2=A0=C2=A0</span>=
+<b><span style=3D"font-size:8pt;font-family:&quot;Comic Sans MS&quot;;color=
+:teal">Cell</span></b><span style=3D"font-size:9pt;font-family:&quot;MS San=
+s Serif&quot;,serif;color:teal">:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 </span><span style=3D"font=
+-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif">(208) 244-4460</span=
+><span style=3D"font-size:12pt;font-family:Arial,sans-serif"><span></span><=
+/span></p>
+
+<p class=3D"MsoNormal" style=3D"background-image:initial;background-positio=
+n:initial;background-repeat:initial"><span style=3D"font-size:9pt;font-fami=
+ly:Wingdings">*=C2=A0</span><b><span lang=3D"FR" style=3D"font-size:8pt;fon=
+t-family:&quot;Comic Sans MS&quot;;color:teal">Email</span></b><span lang=
+=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,serif;=
+color:teal">:</span><span lang=3D"FR" style=3D"font-size:9pt;font-family:&q=
+uot;MS Sans Serif&quot;,serif">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</span><u><span=
+ lang=3D"FR" style=3D"font-size:9pt;font-family:&quot;MS Sans Serif&quot;,s=
+erif;color:blue"><span style=3D"color:rgb(17,85,204)"><a href=3D"mailto:ste=
+phen.k.jolley@intel.com" target=3D"_blank">s</a><a href=3D"mailto:jolley.yp=
+.pm@gmail.com" target=3D"_blank">jolley.yp.pm@gmail.com</a></span></span></=
+u></p></div></div></div></div></div>
+
+--000000000000445c7805969b8e40--
