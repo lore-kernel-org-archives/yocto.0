@@ -1,69 +1,64 @@
-Return-Path: <berthold-yocto@xn--hllmanns-n4a.de>
+Return-Path: <rudolf.streif@ibeeto.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4F6CBE0084E; Thu,  7 Nov 2019 12:03:17 -0800 (PST)
+	id BC850E00BA1; Thu,  7 Nov 2019 13:36:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [213.133.104.48 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+	*      [209.85.208.169 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 1281 seconds by postgrey-1.32 at yocto-www;
-	Thu, 07 Nov 2019 12:03:15 PST
-Received: from www48.your-server.de (www48.your-server.de [213.133.104.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BF6CE006D2
-	for <yocto@yoctoproject.org>; Thu,  7 Nov 2019 12:03:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=xn--hllmanns-n4a.de; s=default1910;
-	h=Content-Type:MIME-Version:Message-ID:
-	Date:Reply-To:Subject:To:From:Sender:Cc:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=lxJOjiAHCGZbsvF9LOsHVBvgOV6vVXImiAS6PQTjfOY=;
-	b=UzaRBxyl/oRW5Qcaqo1vuXaiw4
-	wmD0LZGR5f9As6uXgyNaz6U39CMM8WKnJ/tknsrejk425c8ZG2QnVEB416g6RNiUd9AHnX2hitGXo
-	ohexmwsfC9CaZsjvkKEUaXaMyOhUlXN4dLsBEFONalEkbwJOXmGUl88PP7DzpBVVlWu+8hgL/JkW1
-	NIk8YRDPXUNLGwgnhswgUHdMBWKica/1GpJJJ0FxvEq7u9qUbVtVXqCe+kLLisXltTKeMLBHuEHot
-	kQv444F9ZW1HHGGyx8JMGtkBCRg3qbjX1BV1eeVKqy/6RDhYa8V+t9YlNSLeDPbsu4SH+/LDY/uQj
-	nOGXlDMA==;
-Received: from sslproxy06.your-server.de ([78.46.172.3])
-	by www48.your-server.de with esmtpsa
-	(TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256) (Exim 4.89_1)
-	(envelope-from <berthold-yocto@xn--hllmanns-n4a.de>)
-	id 1iSnfF-00051F-Fu
-	for yocto@yoctoproject.org; Thu, 07 Nov 2019 20:41:53 +0100
-Received: from [77.10.119.27] (helo=pchoel.xn--hllmanns-n4a.de)
-	by sslproxy06.your-server.de with esmtpsa
-	(TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256) (Exim 4.89)
-	(envelope-from <berthold-yocto@xn--hllmanns-n4a.de>)
-	id 1iSnfF-000Ve5-8j
-	for yocto@yoctoproject.org; Thu, 07 Nov 2019 20:41:53 +0100
-Received: from pchoel (localhost [127.0.0.1])
-	by pchoel.xn--hllmanns-n4a.de (Postfix) with ESMTP id BF89E664BA
-	for <yocto@yoctoproject.org>; Thu,  7 Nov 2019 20:41:52 +0100 (CET)
-From: berthold-yocto@xn--hllmanns-n4a.de (Berthold =?utf-8?Q?H=C3=B6llmann?=)
-To: yocto@yoctoproject.org
-Date: Thu, 07 Nov 2019 20:41:47 +0100
-Message-ID: <87wocb79tw.fsf@xn--hllmanns-n4a.de>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.3 (gnu/linux)
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com
+	[209.85.208.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E482E00B65
+	for <yocto@yoctoproject.org>; Thu,  7 Nov 2019 13:36:21 -0800 (PST)
+Received: by mail-lj1-f169.google.com with SMTP id v8so3933414ljh.5
+	for <yocto@yoctoproject.org>; Thu, 07 Nov 2019 13:36:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=ewUMIwh9RbRM/Qsps+MJbkU/ys07qzePobKZNTHn4wc=;
+	b=JKQfe3JCQk+SHsVWO1korROU49cUIV2yXViyzE/Ap2UPzdzIaWWltHTuCjACuFwiI+
+	MiXXZkBCv/HbvgUEul0qVzzW58koBv2ovEI+ybYh3e+TFUS6uC0OwWPeK76uvA3VuUhn
+	5HQWCW0XeKALa4jGRpEU3i7JlqG9YZ6qCRBVxOjgNISESEuGBGVY64DQhsuYu9bUzVfO
+	tWDvjVbe+cEcPG20qOP4Dku3CH32IFiExOw4wuz+78CsVCUmFN+AVBKWpHQdaUys6duk
+	zvN+2u/WCzlJc5QmffhLZ0I1jUnFvVh2nnfSu3bhkknPnbHZ23M6k/WgQd78LWAcWVMK
+	pGow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=ewUMIwh9RbRM/Qsps+MJbkU/ys07qzePobKZNTHn4wc=;
+	b=Req7JTiZWbxnG/oSGfxvb1R9R1sTLELLEgyZWyH8sonBxJyi2L53GgMS+w6XUatLy7
+	cpkZTqbh4i6moxmcFmFeVvHKItXHpnv4B6zJGfqjWex5Zd3FI/QsSKOMC86i0M5CfKKi
+	ca2eBv0ZVTDkBWVxbdFS5767rWTakoY7XQpkxI36ubUOA2DHgAlen8ieyZ/1RXD2deRm
+	YgXaUK/SufH9obaFr5YrD5F09dIxaC1a6zMfJwCq5QmThna+7L5oFCXNpGOvsoWvnUHP
+	VJMnL6vp2U+YXcZIabsINLDimkBOHNmzqDyJ8aq5I8T8kDsEid7ipZ4Vg01ruRVyfTzs
+	kUJA==
+X-Gm-Message-State: APjAAAXUmbanEACQU8WibEElYQz10cohp5GQzEYzhf6TzqcqAPplqmP3
+	uF5PogmRaH/ULxaIF+3TS1UcZQuXyybEGTEMxB+rZe5ksxHJIo2L
+X-Google-Smtp-Source: APXvYqwOwaLFG/Jec7cIZVZaZOkh7zQthAyLOzhOQKl9zGoE8bVxbMwAr9mWhxaHSEi35ogv0UAJ9foj+wZM8TW+RDI=
+X-Received: by 2002:a2e:3c08:: with SMTP id j8mr4021090lja.28.1573162580175;
+	Thu, 07 Nov 2019 13:36:20 -0800 (PST)
 MIME-Version: 1.0
-X-Authenticated-Sender: berthold@xn--hllmanns-n4a.de
-X-Virus-Scanned: Clear (ClamAV 0.101.4/25626/Thu Nov  7 10:50:48 2019)
-Subject: Yocto newbie: Need help with recipe
+References: <87wocb79tw.fsf@xn--hllmanns-n4a.de>
+In-Reply-To: <87wocb79tw.fsf@xn--hllmanns-n4a.de>
+From: Rudolf Streif <rudolf.streif@ibeeto.com>
+Date: Thu, 7 Nov 2019 13:36:08 -0800
+Message-ID: <CAPxNcndkjjW_EEnxWuLN1n8q9TskWW-gngTRkcamJtRf=cfppw@mail.gmail.com>
+To: berthold-yocto@xn--hllmanns-n4a.de
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: Yocto newbie: Need help with recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: berthold-yocto@xn--hllmanns-n4a.de
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -72,117 +67,275 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Nov 2019 20:03:17 -0000
-X-Groupsio-MsgNum: 47177
-Content-Type: multipart/signed; boundary="=-=-=";
-	micalg=pgp-sha256; protocol="application/pgp-signature"
+X-List-Received-Date: Thu, 07 Nov 2019 21:36:23 -0000
+Content-Type: multipart/alternative; boundary="000000000000c401230596c874e5"
 
---=-=-=
-Content-Type: text/plain
+--000000000000c401230596c874e5
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
+Hi Berthold,
 
-Hello,
+Welcome to the Yocto Project.
 
-I'm trying my way around yocto. I thought I try adding a small project
-of mine to a Raspberry Pi image as a first try in writing recipes. At
-least I managed to get the project compiling, but the generation of the
-packages is failing:
-
-$ bitbake  qtlissajous
-...
-ERROR: qtlissajous-git-r0 do_package_qa: QA Issue: non debug package contai=
-ns .debug directory: qtlissajous path /work/cortexa7t2hf-neon-vfpv4-poky-li=
-nux-gnueabi/qtlissajous/git-r0/packages-split/qtlissajous/usr/bin/.debug/li=
-ssajous_explorer [debug-files]
-ERROR: qtlissajous-git-r0 do_package_qa: QA run found fatal errors. Please =
-consider fixing them.
-ERROR: qtlissajous-git-r0 do_package_qa:=20
-ERROR: qtlissajous-git-r0 do_package_qa: Function failed: do_package_qa
-ERROR: Logfile of failure stored in: /home/build/shared/rpi/rpi2-build/tmp/=
-work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/qtlissajous/git-r0/temp/log=
-.do_package_qa.4823
-ERROR: Task (/home/build/shared/rpi/meta-qtlissajous/recipes-qtlissajous/qt=
-lissajous/qtlissajous_git.bb:do_package_qa) failed with exit code '1'
-...
-
-$ (cd /home/build/shared/rpi/rpi2-build/tmp/work/cortexa7t2hf-neon-vfpv4-po=
-ky-linux-gnueabi/qtlissajous/git-r0/packages-split/;find  -type f)
-./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/build/moc_doubleslider.c=
-pp
-./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/build/moc_phaselabel.cpp
-./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/doubleslider.cpp
-./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/doubleslider.h
-./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_explorer.c=
-pp
-./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_explorer.h
-./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_grid.cpp
-./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_grid.h
-./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/main.cpp
-./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/phaselabel.cpp
-./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/phaselabel.h
-./qtlissajous-tools/usr/bin/lissajous_explorer
-./qtlissajous/usr/bin/.debug/lissajous_explorer
-./qtlissajous-tools.shlibdeps
-
-My qtlissajous_git.gg file is:
-
-=2D------------------------------------------------------
-DESCRIPTION =3D "Explore Lissajous figures for Raspberry Pi"
-SECTION =3D "games"
-DEPENDS +=3D "qtbase"
+This line is the problem with your recipe:
 
 PACKAGES =3D "${PN}"
 
-LICENSE =3D "MIT"
-LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D7e26fc87b2c255632232dc535ed2700b=
-;sha256=3Dc8ea5a5ce0ef734ec1d0be3e214bed71673f1ffc628fe86bbd055d61abd52cc8"
+This tells the build system to only create one package, the default
+package. Because this line FILES_${PN} =3D "${bindir}" tells the build syst=
+em
+to include everything in ${bindir} into that package the package also
+includes the .debug directory which is then flagged by the QA checker. To
+fix this:
 
-FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"
+PACKAGES =3D "${PN}-dbg ${PN}"
 
-SRCREV =3D "${AUTOREV}"
-SRC_URI =3D "git://gitlab.com/bhoel/qlissajousexplorer.git;protocol=3Dhttps"
+You have to specify the debug package before the default package as the
+variable is processed from left to right and whatever is consumed by a
+package will not be packaged anymore. However, even simpler is to remove
+the PACKAGES line altogether as the default already does it correctly.
 
-S =3D "${WORKDIR}/git"
+Best regards,
+:rjs
 
-require recipes-qt/qt5/qt5.inc
 
-FILES_${PN} =3D "${bindir}"
-FILES_${PN}-dbg +=3D "${bindir}/.debug"
 
-do_install() {
-      install -d ${D}/usr/bin
-      install -m 0755 lissajous_explorer ${D}/usr/bin
-}
+On Thu, Nov 7, 2019 at 12:04 PM Berthold H=C3=B6llmann <
+berthold-yocto@h=C3=B6llmanns.de> wrote:
 
-RDEPENDS_${PN} =3D "qtbase-plugins"
-=2D------------------------------------------------------
+>
+> Hello,
+>
+> I'm trying my way around yocto. I thought I try adding a small project
+> of mine to a Raspberry Pi image as a first try in writing recipes. At
+> least I managed to get the project compiling, but the generation of the
+> packages is failing:
+>
+> $ bitbake  qtlissajous
+> ...
+> ERROR: qtlissajous-git-r0 do_package_qa: QA Issue: non debug package
+> contains .debug directory: qtlissajous path
+> /work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/qtlissajous/git-r0/packa=
+ges-split/qtlissajous/usr/bin/.debug/lissajous_explorer
+> [debug-files]
+> ERROR: qtlissajous-git-r0 do_package_qa: QA run found fatal errors. Pleas=
+e
+> consider fixing them.
+> ERROR: qtlissajous-git-r0 do_package_qa:
+> ERROR: qtlissajous-git-r0 do_package_qa: Function failed: do_package_qa
+> ERROR: Logfile of failure stored in:
+> /home/build/shared/rpi/rpi2-build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-l=
+inux-gnueabi/qtlissajous/git-r0/temp/log.do_package_qa.4823
+> ERROR: Task
+> (/home/build/shared/rpi/meta-qtlissajous/recipes-qtlissajous/qtlissajous/=
+qtlissajous_git.bb:do_package_qa)
+> failed with exit code '1'
+> ...
+>
+> $ (cd
+> /home/build/shared/rpi/rpi2-build/tmp/work/cortexa7t2hf-neon-vfpv4-poky-l=
+inux-gnueabi/qtlissajous/git-r0/packages-split/;find
+> -type f)
+>
+> ./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/build/moc_doubleslider=
+.cpp
+> ./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/build/moc_phaselabel.c=
+pp
+> ./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/doubleslider.cpp
+> ./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/doubleslider.h
+>
+> ./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_explorer=
+.cpp
+> ./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_explorer=
+.h
+> ./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_grid.cpp
+> ./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_grid.h
+> ./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/main.cpp
+> ./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/phaselabel.cpp
+> ./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/phaselabel.h
+> ./qtlissajous-tools/usr/bin/lissajous_explorer
+> ./qtlissajous/usr/bin/.debug/lissajous_explorer
+> ./qtlissajous-tools.shlibdeps
+>
+> My qtlissajous_git.gg file is:
+>
+> -------------------------------------------------------
+> DESCRIPTION =3D "Explore Lissajous figures for Raspberry Pi"
+> SECTION =3D "games"
+> DEPENDS +=3D "qtbase"
+>
+> PACKAGES =3D "${PN}"
+>
+> LICENSE =3D "MIT"
+> LIC_FILES_CHKSUM =3D
+> "file://LICENSE;md5=3D7e26fc87b2c255632232dc535ed2700b;sha256=3Dc8ea5a5ce=
+0ef734ec1d0be3e214bed71673f1ffc628fe86bbd055d61abd52cc8"
+>
+> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"
+>
+> SRCREV =3D "${AUTOREV}"
+> SRC_URI =3D "git://gitlab.com/bhoel/qlissajousexplorer.git;protocol=3Dhtt=
+ps"
+>
+> S =3D "${WORKDIR}/git"
+>
+> require recipes-qt/qt5/qt5.inc
+>
+> FILES_${PN} =3D "${bindir}"
+> FILES_${PN}-dbg +=3D "${bindir}/.debug"
+>
+> do_install() {
+>       install -d ${D}/usr/bin
+>       install -m 0755 lissajous_explorer ${D}/usr/bin
+> }
+>
+> RDEPENDS_${PN} =3D "qtbase-plugins"
+> -------------------------------------------------------
+>
+> Why is the release executable ending up in the tools tree?
+> Why is the debug executable ending up in the release tree?
+> Is this the right place to ask this kind of questions?
+>
+> Thank you
+> Berthold
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Why is the release executable ending up in the tools tree?
-Why is the debug executable ending up in the release tree?
-Is this the right place to ask this kind of questions?
 
-Thank you
-Berthold
+--=20
+Rudolf J Streif
+CEO/CTO
+ibeeto, Streif Enterprises Inc.
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+--000000000000c401230596c874e5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
------BEGIN PGP SIGNATURE-----
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">Hi Bert=
+hold,<div><br></div><div>Welcome to the Yocto Project.</div><div><br></div>=
+<div>This line is the problem with your recipe:</div><div><br></div><div>PA=
+CKAGES =3D &quot;${PN}&quot;<br></div><div><br></div><div>This tells the bu=
+ild system to only create one package, the default package. Because this li=
+ne FILES_${PN} =3D &quot;${bindir}&quot; tells the build system to include =
+everything in ${bindir} into that package the package also includes the .de=
+bug directory which is then flagged by the QA checker. To fix this:</div><d=
+iv><br></div><div>PACKAGES =3D &quot;${PN}-dbg ${PN}&quot;<br></div><div><b=
+r></div><div>You have to specify the debug package before the default packa=
+ge as the variable is processed from left to right and whatever is consumed=
+ by a package will not be packaged anymore. However, even simpler is to rem=
+ove the PACKAGES line altogether as the default already does it correctly.<=
+/div><div><br></div><div>Best=C2=A0regards,</div><div>:rjs</div><div><br></=
+div><div><br></div></div></div></div></div><br><div class=3D"gmail_quote"><=
+div dir=3D"ltr" class=3D"gmail_attr">On Thu, Nov 7, 2019 at 12:04 PM Bertho=
+ld H=C3=B6llmann &lt;<a href=3D"mailto:berthold-yocto@h%C3%B6llmanns.de">be=
+rthold-yocto@h=C3=B6llmanns.de</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex"><br>
+Hello,<br>
+<br>
+I&#39;m trying my way around yocto. I thought I try adding a small project<=
+br>
+of mine to a Raspberry Pi image as a first try in writing recipes. At<br>
+least I managed to get the project compiling, but the generation of the<br>
+packages is failing:<br>
+<br>
+$ bitbake=C2=A0 qtlissajous<br>
+...<br>
+ERROR: qtlissajous-git-r0 do_package_qa: QA Issue: non debug package contai=
+ns .debug directory: qtlissajous path /work/cortexa7t2hf-neon-vfpv4-poky-li=
+nux-gnueabi/qtlissajous/git-r0/packages-split/qtlissajous/usr/bin/.debug/li=
+ssajous_explorer [debug-files]<br>
+ERROR: qtlissajous-git-r0 do_package_qa: QA run found fatal errors. Please =
+consider fixing them.<br>
+ERROR: qtlissajous-git-r0 do_package_qa: <br>
+ERROR: qtlissajous-git-r0 do_package_qa: Function failed: do_package_qa<br>
+ERROR: Logfile of failure stored in: /home/build/shared/rpi/rpi2-build/tmp/=
+work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/qtlissajous/git-r0/temp/log=
+.do_package_qa.4823<br>
+ERROR: Task (/home/build/shared/rpi/meta-qtlissajous/recipes-qtlissajous/qt=
+lissajous/qtlissajous_git.bb:do_package_qa) failed with exit code &#39;1&#3=
+9;<br>
+...<br>
+<br>
+$ (cd /home/build/shared/rpi/rpi2-build/tmp/work/cortexa7t2hf-neon-vfpv4-po=
+ky-linux-gnueabi/qtlissajous/git-r0/packages-split/;find=C2=A0 -type f)<br>
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/build/moc_doubleslider.c=
+pp<br>
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/build/moc_phaselabel.cpp=
+<br>
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/doubleslider.cpp<br>
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/doubleslider.h<br>
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_explorer.c=
+pp<br>
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_explorer.h=
+<br>
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_grid.cpp<b=
+r>
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_grid.h<br>
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/main.cpp<br>
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/phaselabel.cpp<br>
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/phaselabel.h<br>
+./qtlissajous-tools/usr/bin/lissajous_explorer<br>
+./qtlissajous/usr/bin/.debug/lissajous_explorer<br>
+./qtlissajous-tools.shlibdeps<br>
+<br>
+My <a href=3D"http://qtlissajous_git.gg" rel=3D"noreferrer" target=3D"_blan=
+k">qtlissajous_git.gg</a> file is:<br>
+<br>
+-------------------------------------------------------<br>
+DESCRIPTION =3D &quot;Explore Lissajous figures for Raspberry Pi&quot;<br>
+SECTION =3D &quot;games&quot;<br>
+DEPENDS +=3D &quot;qtbase&quot;<br>
+<br>
+PACKAGES =3D &quot;${PN}&quot;<br>
+<br>
+LICENSE =3D &quot;MIT&quot;<br>
+LIC_FILES_CHKSUM =3D &quot;file://LICENSE;md5=3D7e26fc87b2c255632232dc535ed=
+2700b;sha256=3Dc8ea5a5ce0ef734ec1d0be3e214bed71673f1ffc628fe86bbd055d61abd5=
+2cc8&quot;<br>
+<br>
+FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}-${PV}:&quot;<br>
+<br>
+SRCREV =3D &quot;${AUTOREV}&quot;<br>
+SRC_URI =3D &quot;git://<a href=3D"http://gitlab.com/bhoel/qlissajousexplor=
+er.git;protocol=3Dhttps" rel=3D"noreferrer" target=3D"_blank">gitlab.com/bh=
+oel/qlissajousexplorer.git;protocol=3Dhttps</a>&quot;<br>
+<br>
+S =3D &quot;${WORKDIR}/git&quot;<br>
+<br>
+require recipes-qt/qt5/qt5.inc<br>
+<br>
+FILES_${PN} =3D &quot;${bindir}&quot;<br>
+FILES_${PN}-dbg +=3D &quot;${bindir}/.debug&quot;<br>
+<br>
+do_install() {<br>
+=C2=A0 =C2=A0 =C2=A0 install -d ${D}/usr/bin<br>
+=C2=A0 =C2=A0 =C2=A0 install -m 0755 lissajous_explorer ${D}/usr/bin<br>
+}<br>
+<br>
+RDEPENDS_${PN} =3D &quot;qtbase-plugins&quot;<br>
+-------------------------------------------------------<br>
+<br>
+Why is the release executable ending up in the tools tree?<br>
+Why is the debug executable ending up in the release tree?<br>
+Is this the right place to ask this kind of questions?<br>
+<br>
+Thank you<br>
+Berthold<br>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+ class=3D"gmail_signature"><div dir=3D"ltr">Rudolf J Streif<div>CEO/CTO</di=
+v><div>ibeeto, Streif Enterprises Inc.</div></div></div>
 
-iQIzBAEBCAAdFiEETnL22cPTRrjJNs5xt04tZQJrm0UFAl3Ec3wACgkQt04tZQJr
-m0UWUhAAklVHJu3RCfNMlykfudYgcLZsxhX3iAZDAXFcfFIx3g7bNLfkIsMjEifi
-ZBmrz9nX5EDVMn2fg1vzoQzPjl9AonYrN72DttbTkg2ODMmCHO3DOKYov3H5+Dju
-GhOHUfFV56c4uTKJRbbWoUDpE5QEDi20xlvfiCbqYjUIVFAgENS9vtnvkfv+Pq9m
-kll8ZNplGTDreLwjjjf7WtYIFohzT6b4bUO3eNDJgST8jYiEZyA/6DcrwgUD8uAn
-KuG8A2lUZdA9s8LZjdXUYOk0VYgyQUF1wXU6Rt7Ib+xmTqOqZCxGk0zhISo1885z
-gWUS2f0gE194xBmAPNjQnvXucJUfEJ8/9jwc8jTULaiZV/2qJiyujSoj/EBYOlZJ
-x0KKxDkfzcAJFY2FhEDivet13IXhx/nUWxiQ4PgbJY2sMAgIjpxy2h4evxIw346E
-r2xCNyA+ERiSlDb1AoAd7a83pWBcQETAlTvGkvmgjOyOognIvXUeUgIsfIr7cg04
-qR3esRH9WvK/PImIqHF47oe4JyV2/3A3mwOlCpmDMUTLJshMyKKfr8GrYmHlfmDz
-pv5osIpWKJrNARMAb0yG4dT8ZlNYgiBKPyHdq/+GVMkEN0+alR2hu70JiH2tuRnN
-u3g7ZeXMGW8IyWVvz1FwZtyKDJtjt2xkBrcPY0an8LKyMZAu2Vg=
-=TLt6
------END PGP SIGNATURE-----
-
---=-=-=--
+--000000000000c401230596c874e5--
