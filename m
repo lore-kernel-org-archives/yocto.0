@@ -1,77 +1,69 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <berthold-yocto@xn--hllmanns-n4a.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 69AE3E00D77; Thu,  7 Nov 2019 11:03:59 -0800 (PST)
+	id 4F6CBE0084E; Thu,  7 Nov 2019 12:03:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE autolearn=ham
-	version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [213.133.104.48 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com
-	[209.85.219.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27B47E007E1
-	for <yocto@yoctoproject.org>; Thu,  7 Nov 2019 11:03:58 -0800 (PST)
-Received: by mail-qv1-f41.google.com with SMTP id f12so1251275qvu.3
-	for <yocto@yoctoproject.org>; Thu, 07 Nov 2019 11:03:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=Rj6fyZZuAhcNFYNEqIYHG4uE7aO+WusUQwt30N4+AFw=;
-	b=ok2XSpTQFYIcOkfPwiErLsbRAHjuAUcQa9c6T8gmuQYbt1d6qtBU2rE6RVJukloIEa
-	YnTP3tnoIzda4N8r9LfmFm5u1KL97sP22Zq+2XbggPMhuFbZILDzQfO62ln7qBowN/Z/
-	1N24IU7TWCFjeUHR8j8Lu8Cvk+I0PIXeKEtEvljbpH11Bg6GSHtjPk50UP2aBoPTvwq/
-	NVddNfqSgKp/i3NuaM3lu94DqA1+urek0ubW8nwC75kk6AWedKap6/RIKyo8d7jTV36f
-	YFpvef8ex09A+9Ae5W+xczr4gCH3DDHzOyXtHPLRN3WdF1uLnKBs510zCnGRfnK04Wqy
-	aUHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=Rj6fyZZuAhcNFYNEqIYHG4uE7aO+WusUQwt30N4+AFw=;
-	b=MXJfef4dCPCrTnbUs7id7Cvg7FxlGXN55Ao9xlY06rb3zzqYR0j/gyStGJPW2HwMQz
-	fmM0OSg4a10aX1iGC3k7rZb4aYttz/ORqHkyjeNl+zjC4Z9aCn880jAQKFhEoRl+6ASX
-	QwSkFVXi2rEQeA9HYxZNkFf238PZgXnKOQZqsFF9jL+GN3u/e7/1JTIXrxXwpfD3TgDU
-	yJqxgicniYmh1bms5ZKzGnODwoMZl/VlFmT5Cd/RV+tlBqrzX5PkUtDdnqXm1OoyeD/s
-	115EvR7MrWvA2KakG9zdXJO49pETEk2fXnY8r4BSAsoOCQzdsY7oki7t58B887YXKoa1
-	8LzQ==
-X-Gm-Message-State: APjAAAWIV2em+sfMlCB+j0mQclepHeMoedTNBXfqSWskn3MN8RBol8uo
-	szeKpUDXTRGm8WBUWhCcJjnmrrFzl5mWViC3VjfSeKLg
-X-Google-Smtp-Source: APXvYqzJSpaeBK8QZnzX1YBzlpXZsi3m3624sO46vvTilI6L78vA03YM9iIeGNaTKtl/HxTS5ZWBxafUMViu/hqR0p8=
-X-Received: by 2002:ad4:4dce:: with SMTP id cw14mr5063388qvb.185.1573153436817;
-	Thu, 07 Nov 2019 11:03:56 -0800 (PST)
+X-Greylist: delayed 1281 seconds by postgrey-1.32 at yocto-www;
+	Thu, 07 Nov 2019 12:03:15 PST
+Received: from www48.your-server.de (www48.your-server.de [213.133.104.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6BF6CE006D2
+	for <yocto@yoctoproject.org>; Thu,  7 Nov 2019 12:03:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=xn--hllmanns-n4a.de; s=default1910;
+	h=Content-Type:MIME-Version:Message-ID:
+	Date:Reply-To:Subject:To:From:Sender:Cc:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=lxJOjiAHCGZbsvF9LOsHVBvgOV6vVXImiAS6PQTjfOY=;
+	b=UzaRBxyl/oRW5Qcaqo1vuXaiw4
+	wmD0LZGR5f9As6uXgyNaz6U39CMM8WKnJ/tknsrejk425c8ZG2QnVEB416g6RNiUd9AHnX2hitGXo
+	ohexmwsfC9CaZsjvkKEUaXaMyOhUlXN4dLsBEFONalEkbwJOXmGUl88PP7DzpBVVlWu+8hgL/JkW1
+	NIk8YRDPXUNLGwgnhswgUHdMBWKica/1GpJJJ0FxvEq7u9qUbVtVXqCe+kLLisXltTKeMLBHuEHot
+	kQv444F9ZW1HHGGyx8JMGtkBCRg3qbjX1BV1eeVKqy/6RDhYa8V+t9YlNSLeDPbsu4SH+/LDY/uQj
+	nOGXlDMA==;
+Received: from sslproxy06.your-server.de ([78.46.172.3])
+	by www48.your-server.de with esmtpsa
+	(TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256) (Exim 4.89_1)
+	(envelope-from <berthold-yocto@xn--hllmanns-n4a.de>)
+	id 1iSnfF-00051F-Fu
+	for yocto@yoctoproject.org; Thu, 07 Nov 2019 20:41:53 +0100
+Received: from [77.10.119.27] (helo=pchoel.xn--hllmanns-n4a.de)
+	by sslproxy06.your-server.de with esmtpsa
+	(TLSv1.2:DHE-RSA-AES256-GCM-SHA384:256) (Exim 4.89)
+	(envelope-from <berthold-yocto@xn--hllmanns-n4a.de>)
+	id 1iSnfF-000Ve5-8j
+	for yocto@yoctoproject.org; Thu, 07 Nov 2019 20:41:53 +0100
+Received: from pchoel (localhost [127.0.0.1])
+	by pchoel.xn--hllmanns-n4a.de (Postfix) with ESMTP id BF89E664BA
+	for <yocto@yoctoproject.org>; Thu,  7 Nov 2019 20:41:52 +0100 (CET)
+From: berthold-yocto@xn--hllmanns-n4a.de (Berthold =?utf-8?Q?H=C3=B6llmann?=)
+To: yocto@yoctoproject.org
+Date: Thu, 07 Nov 2019 20:41:47 +0100
+Message-ID: <87wocb79tw.fsf@xn--hllmanns-n4a.de>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.3 (gnu/linux)
 MIME-Version: 1.0
-References: <7D6FCC3C-A8B1-4EE7-875F-E544DCC3B44A@korgrd.com>
-	<d6a7e59a-cc6a-aa34-21a5-47c73062f9e1@gherzan.ro>
-	<CAMKF1srHdfY1=Qbb7vURbMauc5VcPiKzH6_AGht86ChoJKvDZQ@mail.gmail.com>
-	<097a8fe9-979d-aa3f-68ad-2c9e0bea6853@gherzan.ro>
-	<CAMKF1sq39xefZFVEVafJ6yuRuinUtZ8odrPSJ4POiq49zevwPw@mail.gmail.com>
-	<352DF122-AE8C-4549-A04B-27EEF9A73AE5@gherzan.ro>
-	<20191103182512.GA28946@localhost>
-	<9F6E6EE0-4FF9-4251-9B7B-37A734DA4824@korgrd.com>
-	<20191104161127.GC5390@localhost>
-	<3DE4E470-5A63-4B19-A587-49A771B96850@korgrd.com>
-	<F621167E-B505-491A-ABD2-1ED5600129F8@korgrd.com>
-	<86097C68-F833-4B01-8EE0-177BD9D26D76@korgrd.com>
-	<E49C09B9-FF9C-42E7-BFD9-CA55D367AFF6@korgrd.com>
-In-Reply-To: <E49C09B9-FF9C-42E7-BFD9-CA55D367AFF6@korgrd.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 7 Nov 2019 10:58:44 -0800
-Message-ID: <CAMKF1spV20XYyTXkeXus7gJNReJQDBQARJbzd5CBsWURDwLSVQ@mail.gmail.com>
-To: Steve Pavao <stevep@korgrd.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] poky linux build fails if ARM erratum mfix linker switch is specified
+X-Authenticated-Sender: berthold@xn--hllmanns-n4a.de
+X-Virus-Scanned: Clear (ClamAV 0.101.4/25626/Thu Nov  7 10:50:48 2019)
+Subject: Yocto newbie: Need help with recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: berthold-yocto@xn--hllmanns-n4a.de
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -80,265 +72,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Nov 2019 19:03:59 -0000
-Content-Type: multipart/alternative; boundary="000000000000c75dec0596c6533e"
+X-List-Received-Date: Thu, 07 Nov 2019 20:03:17 -0000
+X-Groupsio-MsgNum: 47177
+Content-Type: multipart/signed; boundary="=-=-=";
+	micalg=pgp-sha256; protocol="application/pgp-signature"
 
---000000000000c75dec0596c6533e
-Content-Type: text/plain; charset="UTF-8"
+--=-=-=
+Content-Type: text/plain
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Nov 7, 2019 at 10:42 AM Steve Pavao <stevep@korgrd.com> wrote:
 
-> > On Nov 4, 2019, at 4:26 PM, Steve Pavao <stevep@korgrd.com> wrote:
-> >
-> >> On Nov 4, 2019, at 11:32 AM, Steve Pavao <stevep@korgrd.com> wrote:
-> >>>
-> >>> On Nov 4, 2019, at 11:16 AM, Steve Pavao <stevep@korgrd.com> wrote:
-> >>>>
-> >>>> On Nov 4, 2019, at 11:11 AM, Adrian Bunk <bunk@stusta.de> wrote:
-> >>>>
-> >>>> On Mon, Nov 04, 2019 at 10:48:57AM -0500, Steve Pavao wrote:
-> >>>>>
-> >>>>>> On Nov 3, 2019, at 1:25 PM, Adrian Bunk <bunk@stusta.de> wrote:
-> >>>>>>
-> >>>>>> On Sun, Nov 03, 2019 at 05:56:45PM +0000, Andrei Gherzan wrote:
-> >>>>>>> On 3 November 2019 13:18:53 GMT, Khem Raj <raj.khem@gmail.com>
-> wrote:
-> >>>>>>>> On Sun, Nov 3, 2019 at 2:46 AM Andrei Gherzan <andrei@gherzan.ro=
->
-> >>>>>>>> wrote:
-> >>>>>>>>> I was thinking about this. The erratum seems to show that this
-> >>>>>>>> applies
-> >>>>>>>>> to all revisions of a53. So it sounds like we should add it in
-> >>>>>>>>> `tune-cortexa53.inc`.
-> >>>>>>>>>
-> >>>>>>>>
-> >>>>>>>> Up to r0b4 only so maybe not all a53 implementations are impacte=
-d
-> >>>>>>>>
-> >>>>>>>
-> >>>>>>> As far as I know that is the latest revision. Do you mean that
-> newer revision might come up with this fixed?
-> >>>>>>
-> >>>>>> It is fixed in some r0p4 implementations, indicated in REVIDR[8].
-> >>>>>
-> >>>>> I am closer to understanding why I experience an error when buildin=
-g
-> with the ARM errata switches.
-> >>>>>
-> >>>>> I believe it is related to 32-bit app support in my poky Linux
-> 64-bit build (I add this to support vcgencmd and vcdbg 32-bit apps.)
-> >>>>>
-> >>>>> When I remove the 32-bit support, the build completes OK.  As of
-> now, adding the following seems to work fine to acheive this:
-> >>>>>
-> >>>>> TARGET_CC_ARCH_append +=3D " -mfix-cortex-a53-843419
-> -mfix-cortex-a53-835769=E2=80=9D
-> >>>>>
-> >>>>> Something in the following block seems to be the culprit.:
-> >>>>>
-> >>>>> # for vcgencmd and vcdbg 32-bit executable support in the OS image
-> (comment out for -c populate_sdk)
-> >>>>> require conf/multilib.conf
-> >>>>> MULTILIBS =3D "multilib:lib32"
-> >>>>> DEFAULTTUNE_virtclass-multilib-lib32 =3D "armv7a"
-> >>>>> IMAGE_INSTALL_append +=3D " vcgencmd lib32-glibc lib32-libgcc
-> lib32-libstdc++ vcdbg rpi-setup \
-> >>>>> =E2=80=9C
-> >>>>>
-> >>>>> I will post again when I have localized the build problem further.
-> Maybe there=E2=80=99s some 64-bit vs. 32-bit build confusion going on, an=
-d the
-> armv7a default tune switch for 32-bits is colliding with the errata
-> switches.
-> >>>>
-> >>>> The errata switches are only valid for aarch64, not for armv7a.
-> >>>> There is likely some kind of "invalid option" earlier in your build.
-> >>>
-> >>> To conitnue to be able to use the 32-bit app support, perhaps I must
-> do this:
-> >>>
-> >>> DEFAULTTUNE_virtclass-multilib-lib32 =3D =E2=80=9Carmv7a
-> -mno-fix-cortex-a53-843419 -mno-fix-cortex-a53-835769=E2=80=9D
-> >>
-> >> This doesn=E2=80=99t work.
-> >>
-> >> If I wish to keep the 32-bit app support in my build, I=E2=80=99ll nee=
-d to
-> devise a way to make sure those ARM errata flags are only applied to the
-> aarch64 portion of the compile/link for the target, not to the multilib
-> 32-bit app support portion.
-> >
-> > Andrei and/or Khem,
-> >
-> > Could you advise an approach that allows to use the ARM errata switches
-> for the aarch64 portion of the build for the target, but which will NOT
-> specify the ARM errata switches for our supplementary 32-bit portion of t=
-he
-> build for the target?  (This supplementary 32-bit portion of the build is
-> to support the 32-bit vcgencmd app, and contains multilib and some
-> additional 32-bit libraires.  Please see earlier post for the syntax we u=
-se
-> in our local.conf.)
->
->
-> I've been able to rebuild 64-bit Linux code with the ARM errata switches,
-> by adding the following line to the end of
-> /meta/conf/machine/include/arm/arch-arm64.inc,
->
-> TUNE_CCARGS +=3D "${@bb.utils.contains("TUNE_FEATURES", "aarch64", "
-> -mfix-cortex-a53-843419 -mfix-cortex-a53-835769", "" ,d)}=E2=80=9D
+Hello,
 
+I'm trying my way around yocto. I thought I try adding a small project
+of mine to a Raspberry Pi image as a first try in writing recipes. At
+least I managed to get the project compiling, but the generation of the
+packages is failing:
 
-This should be in tune-cortexa53.inc
+$ bitbake  qtlissajous
+...
+ERROR: qtlissajous-git-r0 do_package_qa: QA Issue: non debug package contai=
+ns .debug directory: qtlissajous path /work/cortexa7t2hf-neon-vfpv4-poky-li=
+nux-gnueabi/qtlissajous/git-r0/packages-split/qtlissajous/usr/bin/.debug/li=
+ssajous_explorer [debug-files]
+ERROR: qtlissajous-git-r0 do_package_qa: QA run found fatal errors. Please =
+consider fixing them.
+ERROR: qtlissajous-git-r0 do_package_qa:=20
+ERROR: qtlissajous-git-r0 do_package_qa: Function failed: do_package_qa
+ERROR: Logfile of failure stored in: /home/build/shared/rpi/rpi2-build/tmp/=
+work/cortexa7t2hf-neon-vfpv4-poky-linux-gnueabi/qtlissajous/git-r0/temp/log=
+.do_package_qa.4823
+ERROR: Task (/home/build/shared/rpi/meta-qtlissajous/recipes-qtlissajous/qt=
+lissajous/qtlissajous_git.bb:do_package_qa) failed with exit code '1'
+...
 
->
->
-> Please let me know if you have any thoughts about this approach.
->
-> Steve Pavao
-> Korg R&D
->
->
->
->
->
+$ (cd /home/build/shared/rpi/rpi2-build/tmp/work/cortexa7t2hf-neon-vfpv4-po=
+ky-linux-gnueabi/qtlissajous/git-r0/packages-split/;find  -type f)
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/build/moc_doubleslider.c=
+pp
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/build/moc_phaselabel.cpp
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/doubleslider.cpp
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/doubleslider.h
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_explorer.c=
+pp
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_explorer.h
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_grid.cpp
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/lissajous_grid.h
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/main.cpp
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/phaselabel.cpp
+./qtlissajous-src/usr/src/debug/qtlissajous/git-r0/git/phaselabel.h
+./qtlissajous-tools/usr/bin/lissajous_explorer
+./qtlissajous/usr/bin/.debug/lissajous_explorer
+./qtlissajous-tools.shlibdeps
 
---000000000000c75dec0596c6533e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+My qtlissajous_git.gg file is:
 
-<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Thu, Nov 7, 2019 at 10:42 AM Steve Pavao &lt;<a href=3D"=
-mailto:stevep@korgrd.com">stevep@korgrd.com</a>&gt; wrote:<br></div><blockq=
-uote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc =
-solid;padding-left:1ex">&gt; On Nov 4, 2019, at 4:26 PM, Steve Pavao &lt;<a=
- href=3D"mailto:stevep@korgrd.com" target=3D"_blank">stevep@korgrd.com</a>&=
-gt; wrote:<br>
-&gt; <br>
-&gt;&gt; On Nov 4, 2019, at 11:32 AM, Steve Pavao &lt;<a href=3D"mailto:ste=
-vep@korgrd.com" target=3D"_blank">stevep@korgrd.com</a>&gt; wrote:<br>
-&gt;&gt;&gt; <br>
-&gt;&gt;&gt; On Nov 4, 2019, at 11:16 AM, Steve Pavao &lt;<a href=3D"mailto=
-:stevep@korgrd.com" target=3D"_blank">stevep@korgrd.com</a>&gt; wrote:<br>
-&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt; On Nov 4, 2019, at 11:11 AM, Adrian Bunk &lt;<a href=3D"ma=
-ilto:bunk@stusta.de" target=3D"_blank">bunk@stusta.de</a>&gt; wrote:<br>
-&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt; On Mon, Nov 04, 2019 at 10:48:57AM -0500, Steve Pavao wrot=
-e:<br>
-&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt;&gt; On Nov 3, 2019, at 1:25 PM, Adrian Bunk &lt;<a hre=
-f=3D"mailto:bunk@stusta.de" target=3D"_blank">bunk@stusta.de</a>&gt; wrote:=
-<br>
-&gt;&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt;&gt; On Sun, Nov 03, 2019 at 05:56:45PM +0000, Andrei G=
-herzan wrote:<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; On 3 November 2019 13:18:53 GMT, Khem Raj &lt;=
-<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com<=
-/a>&gt; wrote:<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; On Sun, Nov 3, 2019 at 2:46 AM Andrei Gher=
-zan &lt;<a href=3D"mailto:andrei@gherzan.ro" target=3D"_blank">andrei@gherz=
-an.ro</a>&gt;<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; wrote:<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; I was thinking about this. The erratum=
- seems to show that this<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; applies<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; to all revisions of a53. So it sounds =
-like we should add it in<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; `tune-cortexa53.inc`.<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; Up to r0b4 only so maybe not all a53 imple=
-mentations are impacted<br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt;&gt;&gt; As far as I know that is the latest revision. =
-Do you mean that newer revision might come up with this fixed? <br>
-&gt;&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt;&gt; It is fixed in some r0p4 implementations, indicate=
-d in REVIDR[8].<br>
-&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt; I am closer to understanding why I experience an error=
- when building with the ARM errata switches.<br>
-&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt; I believe it is related to 32-bit app support in my po=
-ky Linux 64-bit build (I add this to support vcgencmd and vcdbg 32-bit apps=
-.)<br>
-&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt; When I remove the 32-bit support, the build completes =
-OK.=C2=A0 As of now, adding the following seems to work fine to acheive thi=
-s:<br>
-&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt; TARGET_CC_ARCH_append +=3D &quot; -mfix-cortex-a53-843=
-419 -mfix-cortex-a53-835769=E2=80=9D<br>
-&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt; Something in the following block seems to be the culpr=
-it.:<br>
-&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt; # for vcgencmd and vcdbg 32-bit executable support in =
-the OS image (comment out for -c populate_sdk)<br>
-&gt;&gt;&gt;&gt;&gt; require conf/multilib.conf<br>
-&gt;&gt;&gt;&gt;&gt; MULTILIBS =3D &quot;multilib:lib32&quot;<br>
-&gt;&gt;&gt;&gt;&gt; DEFAULTTUNE_virtclass-multilib-lib32 =3D &quot;armv7a&=
-quot;<br>
-&gt;&gt;&gt;&gt;&gt; IMAGE_INSTALL_append +=3D &quot; vcgencmd lib32-glibc =
-lib32-libgcc lib32-libstdc++ vcdbg rpi-setup \<br>
-&gt;&gt;&gt;&gt;&gt; =E2=80=9C<br>
-&gt;&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt;&gt; I will post again when I have localized the build prob=
-lem further.=C2=A0 Maybe there=E2=80=99s some 64-bit vs. 32-bit build confu=
-sion going on, and the armv7a default tune switch for 32-bits is colliding =
-with the errata switches.<br>
-&gt;&gt;&gt;&gt; <br>
-&gt;&gt;&gt;&gt; The errata switches are only valid for aarch64, not for ar=
-mv7a.<br>
-&gt;&gt;&gt;&gt; There is likely some kind of &quot;invalid option&quot; ea=
-rlier in your build.<br>
-&gt;&gt;&gt; <br>
-&gt;&gt;&gt; To conitnue to be able to use the 32-bit app support, perhaps =
-I must do this:<br>
-&gt;&gt;&gt; <br>
-&gt;&gt;&gt; DEFAULTTUNE_virtclass-multilib-lib32 =3D =E2=80=9Carmv7a -mno-=
-fix-cortex-a53-843419 -mno-fix-cortex-a53-835769=E2=80=9D<br>
-&gt;&gt; <br>
-&gt;&gt; This doesn=E2=80=99t work.<br>
-&gt;&gt; <br>
-&gt;&gt; If I wish to keep the 32-bit app support in my build, I=E2=80=99ll=
- need to devise a way to make sure those ARM errata flags are only applied =
-to the aarch64 portion of the compile/link for the target, not to the multi=
-lib 32-bit app support portion.<br>
-&gt; <br>
-&gt; Andrei and/or Khem,<br>
-&gt; <br>
-&gt; Could you advise an approach that allows to use the ARM errata switche=
-s for the aarch64 portion of the build for the target, but which will NOT s=
-pecify the ARM errata switches for our supplementary 32-bit portion of the =
-build for the target?=C2=A0 (This supplementary 32-bit portion of the build=
- is to support the 32-bit vcgencmd app, and contains multilib and some addi=
-tional 32-bit libraires.=C2=A0 Please see earlier post for the syntax we us=
-e in our local.conf.)<br>
-<br>
-<br>
-I&#39;ve been able to rebuild 64-bit Linux code with the ARM errata switche=
-s, by adding the following line to the end of /meta/conf/machine/include/ar=
-m/arch-arm64.inc, <br>
-<br>
-TUNE_CCARGS +=3D &quot;${@bb.utils.contains(&quot;TUNE_FEATURES&quot;, &quo=
-t;aarch64&quot;, &quot; -mfix-cortex-a53-843419 -mfix-cortex-a53-835769&quo=
-t;, &quot;&quot; ,d)}=E2=80=9D</blockquote><div dir=3D"auto"><br></div><div=
- dir=3D"auto">This should be in tune-cortexa53.inc=C2=A0</div><blockquote c=
-lass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;=
-padding-left:1ex"><br>
-<br>
-Please let me know if you have any thoughts about this approach.<br>
-<br>
-Steve Pavao<br>
-Korg R&amp;D<br>
-<br>
-<br>
-<br>
-<br>
-</blockquote></div></div>
+=2D------------------------------------------------------
+DESCRIPTION =3D "Explore Lissajous figures for Raspberry Pi"
+SECTION =3D "games"
+DEPENDS +=3D "qtbase"
 
---000000000000c75dec0596c6533e--
+PACKAGES =3D "${PN}"
+
+LICENSE =3D "MIT"
+LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D7e26fc87b2c255632232dc535ed2700b=
+;sha256=3Dc8ea5a5ce0ef734ec1d0be3e214bed71673f1ffc628fe86bbd055d61abd52cc8"
+
+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"
+
+SRCREV =3D "${AUTOREV}"
+SRC_URI =3D "git://gitlab.com/bhoel/qlissajousexplorer.git;protocol=3Dhttps"
+
+S =3D "${WORKDIR}/git"
+
+require recipes-qt/qt5/qt5.inc
+
+FILES_${PN} =3D "${bindir}"
+FILES_${PN}-dbg +=3D "${bindir}/.debug"
+
+do_install() {
+      install -d ${D}/usr/bin
+      install -m 0755 lissajous_explorer ${D}/usr/bin
+}
+
+RDEPENDS_${PN} =3D "qtbase-plugins"
+=2D------------------------------------------------------
+
+Why is the release executable ending up in the tools tree?
+Why is the debug executable ending up in the release tree?
+Is this the right place to ask this kind of questions?
+
+Thank you
+Berthold
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEETnL22cPTRrjJNs5xt04tZQJrm0UFAl3Ec3wACgkQt04tZQJr
+m0UWUhAAklVHJu3RCfNMlykfudYgcLZsxhX3iAZDAXFcfFIx3g7bNLfkIsMjEifi
+ZBmrz9nX5EDVMn2fg1vzoQzPjl9AonYrN72DttbTkg2ODMmCHO3DOKYov3H5+Dju
+GhOHUfFV56c4uTKJRbbWoUDpE5QEDi20xlvfiCbqYjUIVFAgENS9vtnvkfv+Pq9m
+kll8ZNplGTDreLwjjjf7WtYIFohzT6b4bUO3eNDJgST8jYiEZyA/6DcrwgUD8uAn
+KuG8A2lUZdA9s8LZjdXUYOk0VYgyQUF1wXU6Rt7Ib+xmTqOqZCxGk0zhISo1885z
+gWUS2f0gE194xBmAPNjQnvXucJUfEJ8/9jwc8jTULaiZV/2qJiyujSoj/EBYOlZJ
+x0KKxDkfzcAJFY2FhEDivet13IXhx/nUWxiQ4PgbJY2sMAgIjpxy2h4evxIw346E
+r2xCNyA+ERiSlDb1AoAd7a83pWBcQETAlTvGkvmgjOyOognIvXUeUgIsfIr7cg04
+qR3esRH9WvK/PImIqHF47oe4JyV2/3A3mwOlCpmDMUTLJshMyKKfr8GrYmHlfmDz
+pv5osIpWKJrNARMAb0yG4dT8ZlNYgiBKPyHdq/+GVMkEN0+alR2hu70JiH2tuRnN
+u3g7ZeXMGW8IyWVvz1FwZtyKDJtjt2xkBrcPY0an8LKyMZAu2Vg=
+=TLt6
+-----END PGP SIGNATURE-----
+
+--=-=-=--
