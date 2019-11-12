@@ -1,65 +1,70 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <gholhakiii@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1AB4CE00D60; Tue, 12 Nov 2019 08:48:03 -0800 (PST)
+	id 2836BE0085D; Tue, 12 Nov 2019 08:53:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
+	provider *      (gholhakiii[at]yahoo.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.222.175 listed in list.dnswl.org]
+	*      [74.6.135.41 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com
-	[209.85.222.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00C61E00D46
-	for <yocto@yoctoproject.org>; Tue, 12 Nov 2019 08:48:00 -0800 (PST)
-Received: by mail-qk1-f175.google.com with SMTP id m125so15014272qkd.8
-	for <yocto@yoctoproject.org>; Tue, 12 Nov 2019 08:48:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc:content-transfer-encoding;
-	bh=12MZe1VeLZ/3HVYOFPEQrzfs7q83bZAkF+5iEzzWJ5k=;
-	b=k+oLtae1iLz+Xir+f/Z6h8ZokHTtYLfc8jfEo8MQopHFoc3qT88QIc3IZ0civZugXW
-	s2PgxAGiRugnD54iUoV3WHyGg542BHzlTofBML5D3FEcBBEOKG7pBrf+/Mhy85VFqsoa
-	0MZos/cxgbeTAS5OHT3xXWeZlsYuR4PnJZzVML/E/0qlXWRtRE6WrGsbOjw/FgakiWgq
-	VUqDfbtZH7KxfA/acWEZ4DovSVPpFEJeZRhNNqGJUED4FtPxa4Zax+Tz1In7XTNmzNH5
-	EOyn8n7IeI6etjK6yST9EdVlkSdNDatHe1AfkkJLXfhLd0sTjRiBlM6CSupyMOacl01x
-	BnzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc:content-transfer-encoding;
-	bh=12MZe1VeLZ/3HVYOFPEQrzfs7q83bZAkF+5iEzzWJ5k=;
-	b=quDWJSMp71w3k/ZwQSDfVMgovk0dwwpWepKjaohpNMsC++No/ia+y2+DsW7t1aMXkz
-	aI8NrvtJKFyluOcU2j1Jw5cMY7NiGYeQFrJK0w1x3XKI10NKIWdfuH80OlHZV9YtRQ+9
-	D0q5g5TRbFJ/upHs8BmsgfQK3qiQeYr/5klS2D2ZKwI0SsTiNJRPmGPHGEdyw3UeMD8j
-	oYjJ9gCu0mGf32i16QmekhROCFLPpXhVmQTWPEcIKe5AGn14xUe6AOQVMKnAgN+2Fdwv
-	t/WdXLdbMl4j3XvqIw8HxaF5j+LJ1tuNYUv8qP8AkX9+LlbwInBd6Gd0F8OOxDw9qbgd
-	JREw==
-X-Gm-Message-State: APjAAAVT7uvrhlH4bw2D2RktEDzEVfUDoc85J2vMHRz55a+0bdQXCsz8
-	HSSQq0NEZPAwkhfmVJhvKheD+6SK9U4OLpMKUqqi7QZnEtc=
-X-Google-Smtp-Source: APXvYqzgmuD22RAYmKM2F3Pds/J9DJni3l5qbhIHbOCI6+DURmzogqTMq4CzpA+wiR9hJeVH0vKxwgGYkfVxkHkucW8=
-X-Received: by 2002:a37:a2c3:: with SMTP id l186mr6589528qke.337.1573577279813;
-	Tue, 12 Nov 2019 08:47:59 -0800 (PST)
+Received: from sonic302-2.consmr.mail.bf2.yahoo.com
+	(sonic302-2.consmr.mail.bf2.yahoo.com [74.6.135.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF35FE007AA
+	for <yocto@yoctoproject.org>; Tue, 12 Nov 2019 08:52:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1573577579; bh=b3XScAs4zuWKEs0nkcNEfxNr7BrZcUmWEvhvBuZ0F7U=;
+	h=Date:From:To:In-Reply-To:References:Subject:From:Subject;
+	b=pLJGHVnGafFguQtQK1RGFroQYsoAgebIIF97R5PqE0Ojf1qEi7vRAwcyeUyCp5POfzQXYo28Y+jqKYYCJamn6VqyBqCAwHJyC2DcqdB+vJqD7X5S0wAh5O5oBi2vd/GIstSmSaikmmhsyWeyiu6Bu8/Q1F1keA6pGW4iRP1+sNQSQWyuYCtPPcq2tHK+r6HS4u5BFqfO5cKOid76UCF3qktUFyyB9viKAz5NnufF0MIszz09qU7YRLk8prJma1rSrYgDu2nOahvlv2PusmuqJYhpnd23XOcljcHG1NjA8oXe8G0PUtx73q2NUHwpgWGkqGDmNiOYjbfAVaVoiDbTZQ==
+X-YMail-OSG: yJVJDmsVM1lAuM8Zvj0d8rS.GnLAug11VyM742XxvQpI1yZHuoAB3etRyy.igvX
+	cImSSn3UFCxTulHP61kx9Qbppx6mVfyygjuLFtUd0.3XDEghJOTRaXsCPXOtJuoEFPdhypMr_eBN
+	_WBb89kbJXckjFiT43Ik5iHc6x3t_kRQjwE24wcIsY1GoGoL0H75zcsbNcjP9NS7ugnLoOjE5lHA
+	eVHzRTcwIb7Pv7D35ohjUzEBfa9G0c7O.kLKdCrFkKmI3OCeTHgvLDUrN1lRopOomsZ4MU_XLyV9
+	E8hRWo1c6co.ys_thqgWSIdkCBTSmnCBG6z0DZWr4NDpVyWkOYBegb2kQRCALIVOuVemYI2Okpp_
+	5hfVvUx5QZCYlcfb_VI.VKMdrVxtaIolsrivTNA0EsRrNNyKZQlaBQW9GrZpaO9LHnOp9LWS1ws6
+	vzbV75vBru0v3SuKL84pchQLHg4yG1VZWc507BjtVVcQ0UfxAo7mcCAwm2rzq64psbKnf8dTDpn9
+	ODxer3dtO1zOt1IdlOaU.9ZLbmEeb12uc0bCxt.GF3yDC9.8vOwY1nx1DEvJLVAyypl0qO7B7YJP
+	m2ZPOUZU5aGEb9HRXX6lLE74FsFvZ6Jn_bjS14VQ_S.fx4DSeKvct26zhUtBICytHC4QtsxJwq8e
+	BLwG6oiPIkz3cVkV6sthx4AIlAHn9Qlibd6ddr5zu9u1Wo223_W72KlglLZeOxlnNCyL1HXR3Lb.
+	zD7mlZm2qtYA3LRIqQux7TXZMOxULGJXprz78EbmCphl4aTTKgT160HI6TA9pElmE53ffHzOoj5h
+	7G7DFnYqg7IZQLoZ7tHkCYivMYXRQpUXB4Sm6y2smU.gIjv_d3uAZK3gINwbBGG54POfnx9WQJL2
+	U_ud5_HiWRGYmNwSCIUoGzdNDKkVPHcrTVgp9twJ__GnfSCdXnyk9yHHX55rCx46Vv_BjwQ.d7XV
+	T5KqaClJ3_IqKZYDI.lYbKPUG23ZuIFW1Lrch1Lks6KXkRihKhR2m7QIXwJOeEgLZ6LflioflgaG
+	Rey8eiGmOLfy.fyihYrwgjdSyCHsSEhqIzwV0iapSXHc7787VMmUiZu4cZDNSKO3HEQIIIFtsi.v
+	JGZ0pNxzBYlB6oEtaZE8pBAaZo1oyRuaJaPdMZVfpLplxJ0naqkMYR3VjoNyKokZFEEc.WAm8ueP
+	L7E7z6SqY.zjWRACgsj.v.bIc.Gj6r55jEriLYD2FJ4mPSJZTpJa3q4NOGRSOMDa4xTuXnKYcPFv
+	dGplglXUlfcQNF7QXqI8Y.QYNHmwx1Chr18WMlC5oc6PRDP4.d2.B47JL6HLK1SzcWPsOivYAK2T
+	yWKNW4sllbywm0SRv5S.y8IE-
+Received: from sonic.gate.mail.ne1.yahoo.com by
+	sonic302.consmr.mail.bf2.yahoo.com with HTTP;
+	Tue, 12 Nov 2019 16:52:59 +0000
+Date: Tue, 12 Nov 2019 16:52:56 +0000 (UTC)
+From: "gholhakiii@yahoo.com" <gholhakiii@yahoo.com>
+To: Yocto discussion list <yocto@yoctoproject.org>, 
+	Paul Barker <paul@betafive.co.uk>, Ross Burton <ross.burton@intel.com>
+Message-ID: <1602777216.2063025.1573577576252@mail.yahoo.com>
+In-Reply-To: <412525dd-238f-dc9f-af9a-f7ef186059a3@intel.com>
+References: <37113658.2021239.1573572818816.ref@mail.yahoo.com>
+	<37113658.2021239.1573572818816@mail.yahoo.com>
+	<509b816d-82e8-4ca6-ade7-f8f0370f3060@www.fastmail.com>
+	<1118649944.2067878.1573575470930@mail.yahoo.com>
+	<412525dd-238f-dc9f-af9a-f7ef186059a3@intel.com>
 MIME-Version: 1.0
-References: <9753c692-17c9-3b27-8c3f-2fdfeac869e6@iwave.net>
-In-Reply-To: <9753c692-17c9-3b27-8c3f-2fdfeac869e6@iwave.net>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 12 Nov 2019 08:47:28 -0800
-Message-ID: <CAMKF1sqypzRHXp7-JbumAoSY6rYQRg7o3QPgjcukqrVdqHwD9A@mail.gmail.com>
-To: Sheraz Ali <sheraz.ali@iwave.net>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Error Building Valgrind_3.15 for yocto
+X-Mailer: WebService/1.1.14680 YMailNorrin Mozilla/5.0 (X11; Linux x86_64;
+	rv:60.0) Gecko/20100101 Firefox/60.0
+Subject: Re: Building only the app and not the Linux core
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -71,89 +76,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Nov 2019 16:48:03 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 12 Nov 2019 16:53:01 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2063024_958554492.1573577576250"
+
+------=_Part_2063024_958554492.1573577576250
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Nov 12, 2019 at 5:26 AM Sheraz Ali <sheraz.ali@iwave.net> wrote:
->
-> Hi Sir,
->
->         I want to add valgrind to my yocto i am using valgrind version (3=
-.15.0-r0 ) i have attached the valgrind source and error log for your refer=
-ence.
->
-> This is the Build Configuration for which i am trying to build valgrind
->
-> Build Configuration:
-> BB_VERSION        =3D "1.22.0"
-> BUILD_SYS         =3D "x86_64-linux"
-> NATIVELSBSTRING   =3D "Ubuntu-14.04"
-> TARGET_SYS        =3D "arm-poky-linux-gnueabi"
-> MACHINE           =3D "iwg22m"
-> DISTRO            =3D "poky"
-> DISTRO_VERSION    =3D "1.6.1"
-> TUNE_FEATURES     =3D "armv7a vfp neon callconvention-hard cortexa7"
-> TARGET_FPU        =3D "vfp-neon"
-> meta
-> meta-yocto
-> meta-yocto-bsp    =3D "tmp:c4f1f0f491f988901bfd6965f7d10f60cb94a76f"
-> meta-renesas
-> meta-rzg1         =3D "tmp:19bf1ed97d04009722bb88a780268822ee60ff83"
-> meta-oe
-> meta-multimedia   =3D "tmp:dca466c074c9a35bc0133e7e0d65cca0731e2acf"
-> meta-linaro-toolchain =3D "tmp:8a0601723c06fdb75e62aa0f0cf15fc9d7d90167"
-> meta-networking   =3D "tmp:dca466c074c9a35bc0133e7e0d65cca0731e2acf"
->
-> I am getting the following error can you suggest me what to do
->
-> arm-poky-linux-gnueabi-gcc: error: unrecognized argument in option '-marc=
-h=3Darmv7ve'
-> arm-poky-linux-gnueabi-gcc: note: valid arguments to '-march=3D' are: arm=
-v2 armv2a armv3 armv3m armv4 armv4t armv5 armv5e armv5t armv5te armv6 armv6=
--m armv6j armv6k armv6s-m armv6t2 armv6z armv6zk armv7 armv7-a armv7-m armv=
-7-r armv7e-m armv8-a armv8-a+crc iwmmxt iwmmxt2 native
-> make[5]: *** [intdiv-intdiv.o] Error 1
-> make[5]: Leaving directory `/home/sarjoodeen/Project/2018/Nippon/YOCTO/iw=
-G22M-release-bsp/build/tmp/work/cortexa7hf-vfp-neon-poky-linux-gnueabi/valg=
-rind/3.15.0-r0/build/none/tests/arm'
-> make[4]: *** [check-am] Error 2
-> make[4]: Leaving directory `/home/sarjoodeen/Project/2018/Nippon/YOCTO/iw=
-G22M-release-bsp/build/tmp/work/cortexa7hf-vfp-neon-poky-linux-gnueabi/valg=
-rind/3.15.0-r0/build/none/tests/arm'
-> make[3]: *** [check-recursive] Error 1
-> make[3]: Leaving directory `/home/sarjoodeen/Project/2018/Nippon/YOCTO/iw=
-G22M-release-bsp/build/tmp/work/cortexa7hf-vfp-neon-poky-linux-gnueabi/valg=
-rind/3.15.0-r0/build/none/tests'
-> make[2]: *** [check-recursive] Error 1
-> make[2]: Leaving directory `/home/sarjoodeen/Project/2018/Nippon/YOCTO/iw=
-G22M-release-bsp/build/tmp/work/cortexa7hf-vfp-neon-poky-linux-gnueabi/valg=
-rind/3.15.0-r0/build/none'
-> make[1]: *** [check-recursive] Error 1
-> make[1]: Leaving directory `/home/sarjoodeen/Project/2018/Nippon/YOCTO/iw=
-G22M-release-bsp/build/tmp/work/cortexa7hf-vfp-neon-poky-linux-gnueabi/valg=
-rind/3.15.0-r0/build'
-> make: *** [check] Error 2
-> make: Leaving directory `/home/sarjoodeen/Project/2018/Nippon/YOCTO/iwG22=
-M-release-bsp/build/tmp/work/cortexa7hf-vfp-neon-poky-linux-gnueabi/valgrin=
-d/3.15.0-r0/build'
-> ERROR: oe_runmake failed
-> WARNING: exit code 1 from a shell command.
-> ERROR: Function failed: do_compile_ptest_base (log file is located at /ho=
-me/sarjoodeen/Project/2018/Nippon/YOCTO/iwG22M-release-bsp/build/tmp/work/c=
-ortexa7hf-vfp-neon-poky-linux-gnueabi/valgrind/3.15.0-r0/temp/log.do_compil=
-e_ptest_base.29480)
->
+ Hi Ross,
+so you mean there is no way not to build them? I don't need any native tool=
+.I define my cross-compilation toolchain in my layer.=C2=A0I asked you in t=
+witter, you said "Use multiconfig to split the Linux and=C2=A0 rtos entirel=
+y". I could not figure it, so I decided not to bother you in twitter and as=
+k it here :)
+Em
 
-somewhere, its messing up compiler flags -march=3Darmv7ve
--mcpu=3Dcortex-a15 -mthumb is being added can you check if you have
-bbapends or other places modifying it
 
-> Thanks and Regards
-> Sheraz Ali Shah
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+    On Tuesday, November 12, 2019, 5:24:10 PM GMT+1, Ross Burton <ross.burt=
+on@intel.com> wrote: =20
+=20
+ On 12/11/2019 16:17, gholhakiii@yahoo.com wrote:
+> My question now is, how can I avoid hassle of building the x86_64-linux?=
+=20
+> I just need my test.elf file.
 
+Have a look in that folder to see what it is building.=C2=A0 That directory=
+=20
+is for native tools, like GCC.
+
+Ross
+ =20
+
+------=_Part_2063024_958554492.1573577576250
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html><head></head><body><div class="ydp7b616453yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div></div>
+        <div dir="ltr" data-setdir="false">Hi Ross,</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">so you mean there is no way not to build them? I don't need any native tool.</div><div dir="ltr" data-setdir="false">I define my cross-compilation toolchain in my layer.&nbsp;</div><div dir="ltr" data-setdir="false">I asked you in twitter, you said "<span>Use multiconfig to split the Linux and&nbsp; rtos entirely". I could not figure it, so I decided not to bother you in twitter and ask it here :)</span></div><div dir="ltr" data-setdir="false"><span><br></span></div><div dir="ltr" data-setdir="false"><span>Em</span><br></div><div dir="ltr" data-setdir="false"><br></div><div><br></div>
+        
+        </div><div id="yahoo_quoted_4061641543" class="yahoo_quoted">
+            <div style="font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:13px;color:#26282a;">
+                
+                <div>
+                    On Tuesday, November 12, 2019, 5:24:10 PM GMT+1, Ross Burton &lt;ross.burton@intel.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div dir="ltr">On 12/11/2019 16:17, <a shape="rect" ymailto="mailto:gholhakiii@yahoo.com" href="mailto:gholhakiii@yahoo.com">gholhakiii@yahoo.com</a> wrote:<div class="yqt2894169687" id="yqtfd19641"><br clear="none">&gt; My question now is, how can I avoid hassle of building the x86_64-linux? <br clear="none">&gt; I just need my test.elf file.</div><br clear="none"><br clear="none">Have a look in that folder to see what it is building.&nbsp; That directory <br clear="none">is for native tools, like GCC.<br clear="none"><br clear="none">Ross<div class="yqt2894169687" id="yqtfd73792"><br clear="none"></div></div></div>
+            </div>
+        </div></body></html>
+
+------=_Part_2063024_958554492.1573577576250--
