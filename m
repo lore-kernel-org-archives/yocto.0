@@ -1,57 +1,36 @@
-Return-Path: <john.mcgehee@mediatek.com>
+Return-Path: <Changqing.Li@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EE89AE00DE6; Mon, 11 Nov 2019 15:54:19 -0800 (PST)
+	id 56D0DE00DFB; Tue, 12 Nov 2019 00:32:57 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,UNPARSEABLE_RELAY autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	SUBJ_OBFU_PUNCT_FEW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-X-Greylist: delayed 60 seconds by postgrey-1.32 at yocto-www;
-	Mon, 11 Nov 2019 15:54:19 PST
-Received: from mailgw02.mediatek.com (mailgw02.mediatek.com [216.200.240.185])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A153E009D4
-	for <yocto@yoctoproject.org>; Mon, 11 Nov 2019 15:54:19 -0800 (PST)
-X-UUID: 9366d786ee62468995e10100ff279868-20191111
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com;
-	s=dk; 
-	h=MIME-Version:Content-Type:Message-ID:Date:Subject:To:From;
-	bh=aB5T25lftVkXh5PM9yBoPi9uimnGtNo+n1+slApmjfA=; 
-	b=uSUDRg3GrLO2mWmUSKdFTf/M+AzAgHBpkEOJrQ20gRvfOmCeCtUU8nusXgc2vARSp8NW5RyuHwodTGwLfzC2Yvqygg7e+Gc13AQ5kwlXcLrFVMlv+A2trgvAcuuSH1cNMZnhDnBck5HD6PiUg+AOXmuxTAwZ8gx60WkSC/uPh2c=;
-X-UUID: 9366d786ee62468995e10100ff279868-20191111
-Received: from mtkcas66.mediatek.inc [(172.29.193.44)] by mailgw02.mediatek.com
-	(envelope-from <john.mcgehee@mediatek.com>)
-	(musrelay.mediatek.com ESMTP with TLS)
-	with ESMTP id 1470229249; Mon, 11 Nov 2019 15:52:50 -0800
-Received: from MTKMBS62N1.mediatek.inc (172.29.193.41) by
-	MTKMBS62N2.mediatek.inc (172.29.193.42) with Microsoft SMTP Server
-	(TLS) id 15.0.1395.4; Mon, 11 Nov 2019 15:53:04 -0800
-Received: from MTKMBS62N1.mediatek.inc ([fe80::697c:586d:7cff:34e7]) by
-	MTKMBS62N1.mediatek.inc ([fe80::697c:586d:7cff:34e7%12]) with mapi id
-	15.00.1395.000; Mon, 11 Nov 2019 15:52:58 -0800
-From: John McGehee <John.McGehee@mediatek.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Public cloud provider for Yocto builds
-Thread-Index: AQHVmOrUo7Sq89tg4kKNL/vz7lFkWA==
-Date: Mon, 11 Nov 2019 23:52:58 +0000
-Message-ID: <1573516378223.29405@mediatek.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [172.29.193.239]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	* 0.7 SUBJ_OBFU_PUNCT_FEW Possible punctuation-obfuscated Subject:
+	header
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BE2DE00D8E
+	for <yocto@yoctoproject.org>; Tue, 12 Nov 2019 00:32:56 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id xAC8WtPq007004
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 12 Nov 2019 00:32:55 -0800 (PST)
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.3.468.0; Tue, 12 Nov 2019 00:32:54 -0800
+From: <changqing.li@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 12 Nov 2019 16:32:53 +0800
+Message-ID: <1573547573-352969-1-git-send-email-changqing.li@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Subject: Public cloud provider for Yocto builds
+Subject: [error-report-web][PATCH V2] Add local.conf and auto.conf into error details
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,52 +42,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Nov 2019 23:54:20 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_157351637822329405mediatekcom_"
+X-List-Received-Date: Tue, 12 Nov 2019 08:32:57 -0000
+Content-Type: text/plain
 
---_000_157351637822329405mediatekcom_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: base64
+From: Changqing Li <changqing.li@windriver.com>
 
-P0kgYW0gbG9va2luZyBhdCBidWlsZGluZyBvbiBhIHB1YmxpYyBjbG91ZCBwcm92aWRlciBsaWtl
-IEFXUywgR29vZ2xlIG9yIEF6dXJlLiBJcyB0aGVyZSBhbnkgY2xvdWQgcHJvdmlkZXIgdGhhdCBp
-cyBiZXR0ZXIgdGhhbiB0aGUgb3RoZXJzIGZvciBZb2N0byBidWlsZCBhbmQgQ0k/DQoNCg0KSXMg
-dGhlcmUgYW55dGhpbmcgZWxzZSB0aGF0IEkgc2hvdWxkIHVzZSB0byBnZXQgdGhlIG1vc3Qgb3Vy
-IG9mIGNsb3VkLWJhc2VkIGJ1aWxkcz8NCg==
+Support to display local.conf and auto.conf on error report web.
+Here is commit in oe-core, which add local.conf/auto.conf into error report
+https://git.openembedded.org/openembedded-core/commit/?id=7adf9707c04d8ef6bcd8d8bda555687f705e6ee6
 
---_000_157351637822329405mediatekcom_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: base64
+This commit is related to YOCTO #13252
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PWlzby04ODU5LTEiPg0KPHN0eWxlIHR5cGU9InRleHQvY3NzIiBz
-dHlsZT0iZGlzcGxheTpub25lIj48IS0tIHAgeyBtYXJnaW4tdG9wOiAwcHg7IG1hcmdpbi1ib3R0
-b206IDBweDsgfS0tPjwvc3R5bGU+DQo8L2hlYWQ+DQo8Ym9keSBkaXI9Imx0ciIgc3R5bGU9ImZv
-bnQtc2l6ZToxMnB0O2NvbG9yOiMwMDAwMDA7YmFja2dyb3VuZC1jb2xvcjojRkZGRkZGO2ZvbnQt
-ZmFtaWx5OkNhbGlicmksQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7Ij4NCjxwPiYjODIwMztJ
-IGFtIGxvb2tpbmcgYXQgYnVpbGRpbmcgb24gYSBwdWJsaWMgY2xvdWQgcHJvdmlkZXIgbGlrZSBB
-V1MsIEdvb2dsZSBvciBBenVyZS4gSXMgdGhlcmUmbmJzcDthbnkgY2xvdWQgcHJvdmlkZXIgdGhh
-dCBpcyZuYnNwO2JldHRlciB0aGFuIHRoZSBvdGhlcnMmbmJzcDtmb3IgWW9jdG8gYnVpbGQgYW5k
-IENJPzxicj4NCjwvcD4NCjxwPjxicj4NCjwvcD4NCjxwPklzIHRoZXJlIGFueXRoaW5nIGVsc2Ug
-dGhhdCBJIHNob3VsZCB1c2UgdG8gZ2V0IHRoZSBtb3N0IG91ciBvZiBjbG91ZC1iYXNlZCBidWls
-ZHM/PGJyPg0KPC9wPg0KPC9ib2R5Pg0KPC9odG1sPg0KPCEtLXR5cGU6dGV4dC0tPjwhLS17LS0+
-PHByZT4qKioqKioqKioqKiBNRURJQVRFSyBDb25maWRlbnRpYWxpdHkgTm90aWNlICoqKioqKioq
-KioqDQpUaGUgaW5mb3JtYXRpb24gY29udGFpbmVkIGluIHRoaXMgZS1tYWlsIG1lc3NhZ2UgKGlu
-Y2x1ZGluZyBhbnkgDQphdHRhY2htZW50cykgbWF5IGJlIGNvbmZpZGVudGlhbCwgcHJvcHJpZXRh
-cnksIHByaXZpbGVnZWQsIG9yIA0Kb3RoZXJ3aXNlIGV4ZW1wdCBmcm9tIGRpc2Nsb3N1cmUgdW5k
-ZXIgYXBwbGljYWJsZSBsYXdzLiBJdCBpcyANCmludGVuZGVkIHRvIGJlIGNvbnZleWVkIG9ubHkg
-dG8gdGhlIGRlc2lnbmF0ZWQgcmVjaXBpZW50KHMpLiBBbnkgDQp1c2UsIGRpc3NlbWluYXRpb24s
-IGRpc3RyaWJ1dGlvbiwgcHJpbnRpbmcsIHJldGFpbmluZyBvciBjb3B5aW5nIA0Kb2YgdGhpcyBl
-LW1haWwgKGluY2x1ZGluZyBpdHMgYXR0YWNobWVudHMpIGJ5IHVuaW50ZW5kZWQgcmVjaXBpZW50
-KHMpIA0KaXMgc3RyaWN0bHkgcHJvaGliaXRlZCBhbmQgbWF5IGJlIHVubGF3ZnVsLiBJZiB5b3Ug
-YXJlIG5vdCBhbiANCmludGVuZGVkIHJlY2lwaWVudCBvZiB0aGlzIGUtbWFpbCwgb3IgYmVsaWV2
-ZSB0aGF0IHlvdSBoYXZlIHJlY2VpdmVkIA0KdGhpcyBlLW1haWwgaW4gZXJyb3IsIHBsZWFzZSBu
-b3RpZnkgdGhlIHNlbmRlciBpbW1lZGlhdGVseSANCihieSByZXBseWluZyB0byB0aGlzIGUtbWFp
-bCksIGRlbGV0ZSBhbnkgYW5kIGFsbCBjb3BpZXMgb2YgdGhpcyANCmUtbWFpbCAoaW5jbHVkaW5n
-IGFueSBhdHRhY2htZW50cykgZnJvbSB5b3VyIHN5c3RlbSwgYW5kIGRvIG5vdCANCmRpc2Nsb3Nl
-IHRoZSBjb250ZW50IG9mIHRoaXMgZS1tYWlsIHRvIGFueSBvdGhlciBwZXJzb24uIFRoYW5rIHlv
-dSENCjwvcHJlPjwhLS19LS0+
+Signed-off-by: Changqing Li <changqing.li@windriver.com>
+---
+ Post/0006_auto_20190917_0419.py | 24 ++++++++++++++++++++++++
+ Post/models.py                  |  2 ++
+ Post/parser.py                  |  2 ++
+ Post/test.py                    |  2 ++
+ templates/error-details.html    | 10 ++++++++++
+ test-data/test-payload.json     |  4 +++-
+ 6 files changed, 43 insertions(+), 1 deletion(-)
+ create mode 100644 Post/0006_auto_20190917_0419.py
 
---_000_157351637822329405mediatekcom_--
+diff --git a/Post/0006_auto_20190917_0419.py b/Post/0006_auto_20190917_0419.py
+new file mode 100644
+index 0000000..827944e
+--- /dev/null
++++ b/Post/0006_auto_20190917_0419.py
+@@ -0,0 +1,24 @@
++# -*- coding: utf-8 -*-
++from __future__ import unicode_literals
++
++from django.db import migrations, models
++
++
++class Migration(migrations.Migration):
++
++    dependencies = [
++        ('Post', '0005_build_error_type'),
++    ]
++
++    operations = [
++        migrations.AddField(
++            model_name='build',
++            name='AUTO_CONF',
++            field=models.TextField(default=b'', max_length=5242880),
++        ),
++        migrations.AddField(
++            model_name='build',
++            name='LOCAL_CONF',
++            field=models.TextField(default=b'', max_length=5242880),
++        ),
++    ]
+diff --git a/Post/models.py b/Post/models.py
+index ddf2fc7..e9fd010 100644
+--- a/Post/models.py
++++ b/Post/models.py
+@@ -43,6 +43,8 @@ class Build(models.Model):
+     LINK_BACK = models.TextField(max_length=300, blank=True, null=True)
+     ERROR_TYPE = models.CharField(max_length=20, choices=ERROR_TYPE_CHOICES,
+                                   default=ErrorType.RECIPE)
++    LOCAL_CONF = models.TextField(max_length=int(settings.MAX_UPLOAD_SIZE), default="")
++    AUTO_CONF = models.TextField(max_length=int(settings.MAX_UPLOAD_SIZE), default="")
+ 
+     def save(self, *args, **kwargs):
+         if self.ERROR_TYPE not in [e_type[0] for e_type in
+diff --git a/Post/parser.py b/Post/parser.py
+index 9639308..69d43c1 100644
+--- a/Post/parser.py
++++ b/Post/parser.py
+@@ -53,6 +53,8 @@ class Parser:
+             b.EMAIL = str(jsondata['email'])
+             b.LINK_BACK = jsondata.get("link_back", None)
+             b.ERROR_TYPE = jsondata.get("error_type", ErrorType.RECIPE)
++            b.LOCAL_CONF = str(jsondata['local_conf'])
++            b.AUTO_CONF = str(jsondata['auto_conf'])
+ 
+             # Extract the branch and commit
+             g = re.match(r'(.*): (.*)', jsondata['branch_commit'])
+diff --git a/Post/test.py b/Post/test.py
+index 6dc7878..4fe236c 100755
+--- a/Post/test.py
++++ b/Post/test.py
+@@ -46,6 +46,8 @@ def compare_db_obj_with_payload(self, bf_object):
+     self.assertEqual(bf_object.BUILD.NAME == str(payload['username']), True)
+     self.assertEqual(bf_object.BUILD.EMAIL == str(payload['email']), True)
+     self.assertEqual(bf_object.BUILD.LINK_BACK == payload.get("link_back", None), True)
++    self.assertEqual(bf_object.BUILD.LOCAL_CONF == payload.get("local_conf", None), True)
++    self.assertEqual(bf_object.BUILD.AUTO_CONF == payload.get("auto_conf", None), True)
+ 
+     g = re.match(r'(.*): (.*)', payload['branch_commit'])
+ 
+diff --git a/templates/error-details.html b/templates/error-details.html
+index c30160d..c8fce05 100644
+--- a/templates/error-details.html
++++ b/templates/error-details.html
+@@ -81,6 +81,16 @@
+           {% endwith %}
+         </dd>
+ 
++        {% if detail.BUILD.LOCAL_CONF != "" %}
++        <dt></a>Local Conf:</dt>
++        <dd style="white-space: pre-wrap;">{{ detail.BUILD.LOCAL_CONF | safe }}</dd>
++        {% endif %}
++
++        {% if detail.BUILD.AUTO_CONF != "" %}
++        <dt></a>Auto Conf:</dt>
++        <dd style="white-space: pre-wrap;">{{ detail.BUILD.AUTO_CONF | safe }}</dd>
++        {% endif %}
++
+       </dl>
+       <div>
+         <a class="btn btn-block" target="_blank" href="https://bugzilla.yoctoproject.org/enter_bug.cgi?classification=__all" >Open a bug</a>
+diff --git a/test-data/test-payload.json b/test-data/test-payload.json
+index 0428a16..fd21053 100644
+--- a/test-data/test-payload.json
++++ b/test-data/test-payload.json
+@@ -1,4 +1,5 @@
+ {
++    "auto_conf": "",
+     "branch_commit": "(master-test): 736b49449233c936e3099b314a58e91ad17f9774", 
+     "build_sys": "x86_64-linux", 
+     "component": "base-passwd", 
+@@ -11,7 +12,8 @@
+             "package": "base-passwd-3.5.29-r0", 
+             "task": "do_install"
+         }
+-    ], 
++    ],
++    "local_conf": "",
+     "machine": "qemux86", 
+     "nativelsb": "Ubuntu-14.04", 
+     "target_sys": "i586-poky-linux"
+-- 
+2.7.4
+
+
