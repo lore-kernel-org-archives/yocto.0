@@ -1,48 +1,36 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <bradleyb@fuzziesquirrel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6F43AE00D60; Tue, 12 Nov 2019 09:00:35 -0800 (PST)
+	id 84A5BE00D82; Tue, 12 Nov 2019 10:12:28 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
-	*      medium trust
-	*      [134.134.136.126 listed in list.dnswl.org]
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EEF06E00D46
-	for <yocto@yoctoproject.org>; Tue, 12 Nov 2019 09:00:34 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	12 Nov 2019 09:00:34 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,297,1569308400"; d="scan'208";a="214118105"
-Received: from bhatavin-mobl1.ger.corp.intel.com (HELO blackadder.local)
-	([10.249.42.178])
-	by fmsmga001.fm.intel.com with ESMTP; 12 Nov 2019 09:00:32 -0800
-To: "gholhakiii@yahoo.com" <gholhakiii@yahoo.com>,
-	Yocto discussion list <yocto@yoctoproject.org>,
-	Paul Barker <paul@betafive.co.uk>
-References: <37113658.2021239.1573572818816.ref@mail.yahoo.com>
-	<37113658.2021239.1573572818816@mail.yahoo.com>
-	<509b816d-82e8-4ca6-ade7-f8f0370f3060@www.fastmail.com>
-	<1118649944.2067878.1573575470930@mail.yahoo.com>
-	<412525dd-238f-dc9f-af9a-f7ef186059a3@intel.com>
-	<1602777216.2063025.1573577576252@mail.yahoo.com>
-From: Ross Burton <ross.burton@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
-	Swindon SN3 1RJ
-Message-ID: <84bc6a35-69b6-b777-1ddf-793891c8b4f1@intel.com>
-Date: Tue, 12 Nov 2019 17:00:32 +0000
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:60.0)
-	Gecko/20100101 Thunderbird/60.9.1
-MIME-Version: 1.0
-In-Reply-To: <1602777216.2063025.1573577576252@mail.yahoo.com>
-Subject: Re: Building only the app and not the Linux core
+	*  0.4 KHOP_HELO_FCRDNS Relay HELO differs from its IP's reverse DNS
+X-Greylist: delayed 421 seconds by postgrey-1.32 at yocto-www;
+	Tue, 12 Nov 2019 10:12:27 PST
+Received: from bajor.fuzziesquirrel.com (mail.fuzziesquirrel.com
+	[173.167.31.197])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69865E00D4F
+	for <yocto@yoctoproject.org>; Tue, 12 Nov 2019 10:12:27 -0800 (PST)
+X-Virus-Scanned: amavisd-new at fuzziesquirrel.com
+Received: from [192.168.253.30] (unknown [192.168.253.30])
+	by bajor.fuzziesquirrel.com (Postfix) with ESMTPSA id C53ED6E223;
+	Tue, 12 Nov 2019 13:05:24 -0500 (EST)
+Mime-Version: 1.0 (Mac OS X Mail 13.0 \(3601.0.10\))
+From: Brad Bishop <bradleyb@fuzziesquirrel.com>
+In-Reply-To: <CAGMNF6W8bWD_2Zpynz9vcVdGA9d8B+QfbA=oau2zQj+xpf9NEw@mail.gmail.com>
+Date: Tue, 12 Nov 2019 13:05:24 -0500
+Message-Id: <CEB2088C-C91F-46ED-9FC1-2480893767E0@fuzziesquirrel.com>
+References: <CAGMNF6U81+d9wz4h_TiPBA0EoxC6bhiUZ67mozWWwwT4GTVMCg@mail.gmail.com>
+	<9AC7EF7E-3FFF-4855-B9DE-80F3B68236E0@fuzziesquirrel.com>
+	<CAGMNF6W8bWD_2Zpynz9vcVdGA9d8B+QfbA=oau2zQj+xpf9NEw@mail.gmail.com>
+To: Kun Yi <kunyi@google.com>
+X-Mailer: Apple Mail (2.3601.0.10)
+Cc: yocto@yoctoproject.org, OpenBMC Maillist <openbmc@lists.ozlabs.org>
+Subject: Re: Yocto/bitbake recipe 'diff test'?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,23 +42,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Nov 2019 17:00:35 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 12 Nov 2019 18:12:28 -0000
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 12/11/2019 16:52, gholhakiii@yahoo.com wrote:
-> so you mean there is no way not to build them? I don't need any native tool.
-> I define my cross-compilation toolchain in my layer.
-> I asked you in twitter, you said "Use multiconfig to split the Linux 
-> and  rtos entirely". I could not figure it, so I decided not to bother 
-> you in twitter and ask it here :)
 
-Have a look and you'll see what it is building.  If you can remove those 
-dependencies from your build then it won't build them...
 
-I suspect you can't.  Your cross compiler will be built in the 
-x86-64_linux folder for a start.
+> On Nov 12, 2019, at 1:55 AM, Kun Yi <kunyi@google.com> wrote:
+> =20
+> Sure, it's partially due to how we set up the build downstream. Our =
+downstream would put all the needed layers in one bblayers file, so we =
+would have something like:
+>=20
+>   ##OEROOT##/meta \
+>   ##OEROOT##/meta-poky \
+>   ##OEROOT##/meta-openembedded/meta-oe \
+>   ##OEROOT##/meta-openembedded/meta-networking \
+>   ##OEROOT##/meta-openembedded/meta-python \
+>   ##OEROOT##/meta-phosphor \
+>   ##OEROOT##/meta-google \
+>   ##OEROOT##/meta-google-gbmc \
+>   ##OEROOT##/meta-aspeed \
+>   ##OEROOT##/meta-nuvoton \
+>   ##OEROOT##/meta-openpower \
+>   ##OEROOT##/meta-ingrasys \
+>   ##OEROOT##/meta-ingrasys/meta-zaius \
+>   ##OEROOT##/meta-quanta \
+>   ##OEROOT##/meta-quanta/meta-gsj \
+> ...
+>=20
+> The distinct advantage of this approach is that we would be able to =
+build images for different machine types using the same layer conf, so =
+the build doesn't need to be reconfigured if you were to test on another =
+platform.
+>=20
+> The challenge, as you can imagine, is that each meta layer now cannot =
+'leak' any variable. e.g. if some recipe in meta-quanta sets a variable =
+for quanta systems only, then it must specify "_quanta" or a similar =
+suffix to prevent the variable expansion to apply to other systems. I =
+think this rule is generally preferred upstream, but not sure whether it =
+is an official guideline.
+>=20
+> With my proposal, it would be much easier for a multi-system layer =
+setup like ours to work. Not only that, it would benefit the most common =
+use cases: moving variable definitions in bitbake recipes, or even just =
+adding a variable for a particular machine feature. Having a visible =
+diff would make reviewing the changes so much easier.
 
-Ross
+Thanks for the background Kun.
+
+I know yocto has a concept of Q&A checks that can be run - would it make =
+sense to try something like this via that mechanism?  Emit warnings =
+(which we can elevate to build failures in CI) if variables aren=E2=80=99t=
+ properly overriden?  That is nice because it doesn=E2=80=99t require =
+any changes to our CI system.
+
+I=E2=80=99ve cross posted to the yocto mailing list in case there is any =
+interest or ideas there.  Here is a link to the entire thread as I =
+remove a little too much context I think=E2=80=A6
+
+https://lists.ozlabs.org/pipermail/openbmc/2019-November/019409.html
+
+-brad=
 
