@@ -1,37 +1,41 @@
-Return-Path: <bradleyb@fuzziesquirrel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EA257E00DFC; Wed, 13 Nov 2019 07:29:02 -0800 (PST)
+	id EBD36E00DE3; Wed, 13 Nov 2019 07:59:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,KHOP_HELO_FCRDNS
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.4 KHOP_HELO_FCRDNS Relay HELO differs from its IP's reverse DNS
-Received: from bajor.fuzziesquirrel.com (mail.fuzziesquirrel.com
-	[173.167.31.197])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99F41E00D86
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2019 07:29:02 -0800 (PST)
-X-Virus-Scanned: amavisd-new at fuzziesquirrel.com
-Received: from [192.168.253.30] (unknown [192.168.253.30])
-	by bajor.fuzziesquirrel.com (Postfix) with ESMTPSA id A80AE6E23C;
-	Wed, 13 Nov 2019 10:29:00 -0500 (EST)
-Mime-Version: 1.0 (Mac OS X Mail 13.0 \(3601.0.10\))
-From: Brad Bishop <bradleyb@fuzziesquirrel.com>
-In-Reply-To: <8fe3f80a-5b5c-4474-bb18-98c19fad29cd@www.fastmail.com>
-Date: Wed, 13 Nov 2019 10:29:00 -0500
-Message-Id: <AF52C0E6-80F6-4E31-AB9D-57061ED7104F@fuzziesquirrel.com>
-References: <CAGMNF6U81+d9wz4h_TiPBA0EoxC6bhiUZ67mozWWwwT4GTVMCg@mail.gmail.com>
-	<9AC7EF7E-3FFF-4855-B9DE-80F3B68236E0@fuzziesquirrel.com>
-	<CAGMNF6W8bWD_2Zpynz9vcVdGA9d8B+QfbA=oau2zQj+xpf9NEw@mail.gmail.com>
-	<CEB2088C-C91F-46ED-9FC1-2480893767E0@fuzziesquirrel.com>
-	<8fe3f80a-5b5c-4474-bb18-98c19fad29cd@www.fastmail.com>
-To: Paul Barker <paul@betafive.co.uk>
-X-Mailer: Apple Mail (2.3601.0.10)
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	OpenBMC Maillist <openbmc@lists.ozlabs.org>, Kun Yi <kunyi@google.com>
-Subject: Re: Yocto/bitbake recipe 'diff test'?
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [192.55.52.43 listed in list.dnswl.org]
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8155AE00DAF
+	for <yocto@yoctoproject.org>; Wed, 13 Nov 2019 07:59:33 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+	by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	13 Nov 2019 07:59:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,300,1569308400"; d="scan'208";a="229786990"
+Received: from bhatavin-mobl1.ger.corp.intel.com (HELO blackadder.local)
+	([10.249.42.178])
+	by fmsmga004.fm.intel.com with ESMTP; 13 Nov 2019 07:59:29 -0800
+To: yocto@yoctoproject.org
+References: <CAEEV9O3FJLe8kuGWXRYUTHSJL6WY7tLzxuHouCUFtG5e2pFhkg@mail.gmail.com>
+From: Ross Burton <ross.burton@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+	Swindon SN3 1RJ
+Message-ID: <ef8d315c-2258-a523-6b81-2d6baf4266dd@intel.com>
+Date: Wed, 13 Nov 2019 15:59:29 +0000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:60.0)
+	Gecko/20100101 Thunderbird/60.9.1
+MIME-Version: 1.0
+In-Reply-To: <CAEEV9O3FJLe8kuGWXRYUTHSJL6WY7tLzxuHouCUFtG5e2pFhkg@mail.gmail.com>
+Subject: Re: pkg-config not found
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,18 +47,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Nov 2019 15:29:03 -0000
-Content-Type: text/plain;
-	charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 13 Nov 2019 15:59:34 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 
+On 12/11/2019 21:06, Mark Hawthorne wrote:
+> I have an autotools build that uses the following autoconfig file:
+> --------------------
+> AC_INIT([my-program], [1])
+> AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+> AC_LANG(C++)
+> AC_PROG_CXX
+> AX_PTHREAD()
+> PKG_CHECK_MODULES(LIBPNG, libpng >= 1.6.34)
+> PKG_CHECK_MODULES(FREETYPE2, freetype2 >= 21.0.15)
+> PKG_CHECK_MODULES(EGL, egl > 0)
+> PKG_CHECK_MODULES(GLES2, glesv2 > 0)
+> PKG_CHECK_MODULES(GLM, glm >= 0.9.9)
+> PKG_CHECK_MODULES(SPATIALITE, spatialite >= 4.3.0)
+> AC_CONFIG_FILES([Makefile])
+> AC_OUTPUT
+> --------------------
+> 
+> I have made the following bitbake recipe file
+> 
+> --------------------
+> SUMMARY = "my program"
+> HOMEPAGE = ""
+> DESCRIPTION = ""
+> LICENSE = "MIT"
+> LIC_FILES_CHKSUM = 
+> "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+> 
+> SRC_URI = "git://user@bitbucket.org/user/myrepo.git 
+> <http://user@bitbucket.org/user/myrepo.git>"
+> 
+> SRCREV = "dc1391dbc82702fd0126d4156d4ab59571427efe"
+> 
+> DEPENDS_${PN} = "libpng freetype glm libegl libgles2 libspatialite"
+> 
+> S = "${WORKDIR}/git"
+> 
+> inherit pkgconfig autotools
+> --------------------
+> 
+> The build fails with this error:
+> --------------------
+> configure: error: in 
+> `/home/user/Documents/tisdk/build/arago-tmp-external-arm-toolchain/work/armv7at2hf-neon-linux-gnueabi/my-program/1.0-r0/build':
+> configure: error: The pkg-config script could not be found or is too 
+> old.  Make sure it is in your PATH or set the PKG_CONFIG environment 
+> variable to the full path to pkg-config.
+> 
+> Alternatively, you may set the environment variables LIBPNG_CFLAGS and 
+> LIBPNG_LIBS to avoid the need to call pkg-config.
+> --------------------
 
-> On Nov 12, 2019, at 1:41 PM, Paul Barker <paul@betafive.co.uk> wrote:
->=20
-> have a look at my slides at the start of the Day 1 slide deck at =
-https://wiki.yoctoproject.org/wiki/YP_Summit_Lyon_2019.
+That *should* work.  The config.log in the build directory might have 
+more useful information.
 
-This is a great resource for layer best practices.  Thanks Paul!
-
--brad=
+Ross
 
