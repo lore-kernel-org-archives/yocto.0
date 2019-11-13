@@ -1,69 +1,56 @@
-Return-Path: <kunyi@google.com>
+Return-Path: <ouyangxuan10@163.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6E54E00D82; Tue, 12 Nov 2019 10:14:32 -0800 (PST)
+	id B6A54E00E0A; Tue, 12 Nov 2019 19:24:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-9.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE, RCVD_IN_DNSWL_NONE,
-	USER_IN_DEF_DKIM_WL autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HEXHASH_WORD,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (ouyangxuan10[at]163.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.166.43 listed in list.dnswl.org]
-	* -7.5 USER_IN_DEF_DKIM_WL From: address is in the default DKIM
-	white-list
+	*      [220.181.13.138 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com
-	[209.85.166.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C8E8E00839
-	for <yocto@yoctoproject.org>; Tue, 12 Nov 2019 10:14:32 -0800 (PST)
-Received: by mail-io1-f43.google.com with SMTP id k1so19796185ioj.6
-	for <yocto@yoctoproject.org>; Tue, 12 Nov 2019 10:14:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=U+JIRvPsGEmIOYp4z5p7tSnf9H+CVT8P6zkE/Rwq4Bk=;
-	b=e8G3h7RKDkHY8cgqS5c5B6u5PogbALAx/SH1Ch+uN/DLdYya+tIKr+0+MThHFggnyo
-	gQ6jRx5DjfFTO8nVVtLvvwlUJqC1huQ/qDu5nLdBko5RA2ozZIzNSAgduSIzi7x0todT
-	9LxkfNJpjLz6JDYeqXsjZSi6LWQc/mAKTTxkHOcdhDCF2uPcmuy2If4fZkB4MXC24vyK
-	Cim09pwUsefuQzpnJyIUyeQyfKkj+imcJuM5cA1J90rK8EbOeygzPCVNsfEIYMsXXJRD
-	d+j5Jcpwls5I3nqpHUotupYgCmqTCrY3nxndW+GnzLMug0UQlpBetFoa75fc5Y8j7Tcc
-	XrNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=U+JIRvPsGEmIOYp4z5p7tSnf9H+CVT8P6zkE/Rwq4Bk=;
-	b=eDKGNz0quw7lSL3WF8hR9N9tQ3+R5uVjNtcfaAPo/UUMBgj3mPgvG0S1E6QC5cB5JZ
-	CP4WjWv3Ca2xG4/roleVT6v7HM0xnaTWU0jiNhEP1G6k/PK0Tru9j4z7iaVZZKz9jp5X
-	VUzRBwh5SkgE2lxy+h7zsApjwtIOloLyNIpTNJAiVVZbs05fKPesc9TjcMclkvRIsESK
-	nNOG69fMdDiLyp2C6UoVdeZiTBG4YV9uhBlqc8nhgerCZxL2vOkPplgte54he2VTi1co
-	GL41oMm/sGkCI24YosYwkCgHSRaZcMr7A3X+VjAbX1SkSKJEMdeVIcOwbrTNfPQL8kJ8
-	jqmw==
-X-Gm-Message-State: APjAAAWcrqLoXfIYFiEHnV87CoQE9Euk/5XRBNrO/rRtOw0ohImW5LzG
-	+Q9WNGOgIW65oAPy54dP80xNVe5x1jBaiDNdMmX3yXJlOpQ=
-X-Google-Smtp-Source: APXvYqzL8UDsJDHmALp+rpDQfm53dssq+ayOX9bQhto/z2KaE0ILPeYWU934mzAxGOXS90UMAqsGZC7nLo7nnhovms0=
-X-Received: by 2002:a6b:18c1:: with SMTP id 184mr7339907ioy.40.1573582471216; 
-	Tue, 12 Nov 2019 10:14:31 -0800 (PST)
+	*  1.0 HEXHASH_WORD Multiple instances of word + hexadecimal hash
+X-Greylist: delayed 910 seconds by postgrey-1.32 at yocto-www;
+	Tue, 12 Nov 2019 19:24:35 PST
+Received: from m13-138.163.com (m13-138.163.com [220.181.13.138])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 147FFE00DCE;
+	Tue, 12 Nov 2019 19:24:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=rckuo
+	dwnJ5aT6fkz+5+1FlqMFC2LfJTdZbhwp6maiaE=; b=Bqrh9xIGjenU6qFOp+RUT
+	H4YJem+EZAcqhmIpjdn3Fyl1KNNESh025hmYnjc7pqCZb+48IWKOJ1qpoi19NE37
+	X7oE7DBbbI0U9IHrSbrTeyVy/C5m8XTxYYuYUv6+uWR9F37WfTgxWJkTZ4/6d1fc
+	EvCyGA0nw/yPDii5uj3jxU=
+Received: from ouyangxuan10$163.com ( [106.120.127.15] ) by
+	ajax-webmail-wmsvr138 (Coremail) ; Wed, 13 Nov 2019 11:09:15 +0800 (CST)
+X-Originating-IP: [106.120.127.15]
+Date: Wed, 13 Nov 2019 11:09:15 +0800 (CST)
+From: www <ouyangxuan10@163.com>
+To: "yocto-bounces@yoctoproject.org" <yocto-bounces@yoctoproject.org>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.10 build 20190724(ac680a23)
+	Copyright (c) 2002-2019 www.mailtech.cn 163com
+X-CM-CTRLDATA: kMQG02Zvb3Rlcl9odG09MjM5Nzo1Ng==
 MIME-Version: 1.0
-References: <CAGMNF6U81+d9wz4h_TiPBA0EoxC6bhiUZ67mozWWwwT4GTVMCg@mail.gmail.com>
-	<9AC7EF7E-3FFF-4855-B9DE-80F3B68236E0@fuzziesquirrel.com>
-	<CAGMNF6W8bWD_2Zpynz9vcVdGA9d8B+QfbA=oau2zQj+xpf9NEw@mail.gmail.com>
-	<CEB2088C-C91F-46ED-9FC1-2480893767E0@fuzziesquirrel.com>
-In-Reply-To: <CEB2088C-C91F-46ED-9FC1-2480893767E0@fuzziesquirrel.com>
-From: Kun Yi <kunyi@google.com>
-Date: Tue, 12 Nov 2019 10:14:05 -0800
-Message-ID: <CAGMNF6WLawVcR0hH+Mg=2=zSXJ9120GkMzYkhHrOQXL--xjfrw@mail.gmail.com>
-To: Brad Bishop <bradleyb@fuzziesquirrel.com>
+Message-ID: <1f16aed3.34f0.16e62bc914f.Coremail.ouyangxuan10@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: isGowAC3xwPbc8tdTJSaAQ--.27370W
+X-CM-SenderInfo: prx1t0pj0xt0irq6il2tof0z/1tbiLgZs2lSIlQlCNwACsp
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 X-Mailman-Approved-At: Mon, 18 Nov 2019 01:40:04 -0800
-Cc: yocto@yoctoproject.org, OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Subject: Re: Yocto/bitbake recipe 'diff test'?
+Subject: :how to solve the basehash value changed from 'xxx' to 'aaaa' ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,172 +62,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Nov 2019 18:14:32 -0000
-Content-Type: multipart/alternative; boundary="000000000000394c9205972a389a"
+X-List-Received-Date: Wed, 13 Nov 2019 03:24:36 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_51531_1040916157.1573614555471"
 
---000000000000394c9205972a389a
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+------=_Part_51531_1040916157.1573614555471
+Content-Type: text/plain; charset=GBK
+Content-Transfer-Encoding: base64
 
-On Tue, Nov 12, 2019 at 10:05 AM Brad Bishop <bradleyb@fuzziesquirrel.com>
-wrote:
+RGVhciBhbGwsCgoKV2hlbiBJIG1vZGlmeSB0aGUgb3MtcmVsZWFzZSBmaWxlIGluIG15IHlvY3Rv
+IHByb2plY3QsIGl0IGFwcGVhciBzb21lIGVycm9yLCBhbmQgaG93IGNhbiBJIHNvbHZlIGl0ID8g
+V2hvIGNhbiBnaXZlIG1lIHNvbWUgaGVscCBvciBhZHZpY2U/IFRoYW5rIHlvdaOhCkkgY2Fycmll
+ZCBvdXQgdGhlIHJlY29tbWVuZGVkIG9yZGVyIGFuZCBpdCBkaWRuJ3Qgd29yay4KCgpFUlJPUjog
+b3MtcmVsZWFzZS0xLjAtcjAgZG9fY29tcGlsZTogVGFza2hhc2ggbWlzbWF0Y2ggY2UxMzNmMDQ1
+ODYwOGUwM2FhNTUyMjRkZjI4MTU2ZTUyM2U1NDkwMzExNWVmYmJjZDYyOTQ2Zjg0YTg2NzIwMSB2
+ZXJzdXMgNzI2OTg4MWYwZWIxNzU5ZWQ0MjBhMmRiNGMwNGZiNDc3Y2Q4YzEyODhiYzVmODJkZjVj
+ODE2MWJiOTI2ZWExZiBmb3IgL2hvbWUvdGVtcC93YW5naHAvd3NwL2dpdF9zL2xvY2FsLXNvdXJj
+ZS9vYm1jLXN1Z29uL2VudGl0eV9mcnV1L21ldGEvcmVjaXBlcy1jb3JlL29zLXJlbGVhc2Uvb3Mt
+cmVsZWFzZS5iYi5kb19jb21waWxlCkVSUk9SOiBUYXNraGFzaCBtaXNtYXRjaCBjZTEzM2YwNDU4
+NjA4ZTAzYWE1NTIyNGRmMjgxNTZlNTIzZTU0OTAzMTE1ZWZiYmNkNjI5NDZmODRhODY3MjAxIHZl
+cnN1cyA3MjY5ODgxZjBlYjE3NTllZDQyMGEyZGI0YzA0ZmI0NzdjZDhjMTI4OGJjNWY4MmRmNWM4
+MTYxYmI5MjZlYTFmIGZvciAvaG9tZS90ZW1wL3dhbmdocC93c3AvZ2l0X3MvbG9jYWwtc291cmNl
+L29ibWMtc3Vnb24vZW50aXR5X2ZydXUvbWV0YS9yZWNpcGVzLWNvcmUvb3MtcmVsZWFzZS9vcy1y
+ZWxlYXNlLmJiLmRvX2NvbXBpbGUKRVJST1I6IFdoZW4gcmVwYXJzaW5nIC9ob21lL3RlbXAvd2Fu
+Z2hwL3dzcC9naXRfcy9sb2NhbC1zb3VyY2Uvb2JtYy1zdWdvbi9lbnRpdHlfZnJ1dS9tZXRhL3Jl
+Y2lwZXMtY29yZS9vcy1yZWxlYXNlL29zLXJlbGVhc2UuYmIuZG9fY29tcGlsZSwgdGhlIGJhc2Vo
+YXNoIHZhbHVlIGNoYW5nZWQgZnJvbSA5OWE0MmExYTNiMWExNTFkZTYwNDI2N2IxNTk1NThlY2Fm
+MTAzMWEzYmVjODkxN2RmMTMyYzgxMzAyZTcyOWE1IHRvIDRmMzI4OGE4NzYzZTJlMWFmNzhlNGIz
+Y2RkOWMwYzBjY2IzYjBkNWM3OGEzMDczYzE4OGIyMjIwMGRmMmE5YjAuIFRoZSBtZXRhZGF0YSBp
+cyBub3QgZGV0ZXJtaW5pc3RpYyBhbmQgdGhpcyBuZWVkcyB0byBiZSBmaXhlZC4KRVJST1I6IFRo
+ZSBmb2xsb3dpbmcgY29tbWFuZHMgbWF5IGhlbHA6CkVSUk9SOiAkIGJpdGJha2Ugb3MtcmVsZWFz
+ZSAtY2RvX2NvbXBpbGUgLVNub25lCkVSUk9SOiBUaGVuOgpFUlJPUjogJCBiaXRiYWtlIG9zLXJl
+bGVhc2UgLWNkb19jb21waWxlIC1TcHJpbnRkaWZmCgoKRVJST1I6IFdoZW4gcmVwYXJzaW5nIC9o
+b21lL3RlbXAvd2FuZ2hwL3dzcC9naXRfcy9sb2NhbC1zb3VyY2Uvb2JtYy1zdWdvbi9lbnRpdHlf
+ZnJ1dS9tZXRhL3JlY2lwZXMtY29yZS9vcy1yZWxlYXNlL29zLXJlbGVhc2UuYmIuZG9fY29tcGls
+ZSwgdGhlIGJhc2VoYXNoIHZhbHVlIGNoYW5nZWQgZnJvbSA5OWE0MmExYTNiMWExNTFkZTYwNDI2
+N2IxNTk1NThlY2FmMTAzMWEzYmVjODkxN2RmMTMyYzgxMzAyZTcyOWE1IHRvIDQ3YzMwMDEyZGFh
+NmFhNzdiZTA5YTkzZmUyMWU2Njk5NTM2MWVmMjZiNDQ4NzExMTAwNTYxN2RiOGNiNGRlNTkuIFRo
+ZSBtZXRhZGF0YSBpcyBub3QgZGV0ZXJtaW5pc3RpYyBhbmQgdGhpcyBuZWVkcyB0byBiZSBmaXhl
+ZC4KRVJST1I6IFRoZSBmb2xsb3dpbmcgY29tbWFuZHMgbWF5IGhlbHA6CkVSUk9SOiAkIGJpdGJh
+a2Ugb3MtcmVsZWFzZSAtY2RvX2NvbXBpbGUgLVNub25lCkVSUk9SOiBUaGVuOgpFUlJPUjogJCBi
+aXRiYWtlIG9zLXJlbGVhc2UgLWNkb19jb21waWxlIC1TcHJpbnRkaWZmCgoKdGhhbmtzLApCeXJv
+bg==
 
->
->
-> > On Nov 12, 2019, at 1:55 AM, Kun Yi <kunyi@google.com> wrote:
-> >
-> > Sure, it's partially due to how we set up the build downstream. Our
-> downstream would put all the needed layers in one bblayers file, so we
-> would have something like:
-> >
-> >   ##OEROOT##/meta \
-> >   ##OEROOT##/meta-poky \
-> >   ##OEROOT##/meta-openembedded/meta-oe \
-> >   ##OEROOT##/meta-openembedded/meta-networking \
-> >   ##OEROOT##/meta-openembedded/meta-python \
-> >   ##OEROOT##/meta-phosphor \
-> >   ##OEROOT##/meta-google \
-> >   ##OEROOT##/meta-google-gbmc \
-> >   ##OEROOT##/meta-aspeed \
-> >   ##OEROOT##/meta-nuvoton \
-> >   ##OEROOT##/meta-openpower \
-> >   ##OEROOT##/meta-ingrasys \
-> >   ##OEROOT##/meta-ingrasys/meta-zaius \
-> >   ##OEROOT##/meta-quanta \
-> >   ##OEROOT##/meta-quanta/meta-gsj \
-> > ...
-> >
-> > The distinct advantage of this approach is that we would be able to
-> build images for different machine types using the same layer conf, so th=
-e
-> build doesn't need to be reconfigured if you were to test on another
-> platform.
-> >
-> > The challenge, as you can imagine, is that each meta layer now cannot
-> 'leak' any variable. e.g. if some recipe in meta-quanta sets a variable f=
-or
-> quanta systems only, then it must specify "_quanta" or a similar suffix t=
-o
-> prevent the variable expansion to apply to other systems. I think this ru=
-le
-> is generally preferred upstream, but not sure whether it is an official
-> guideline.
-> >
-> > With my proposal, it would be much easier for a multi-system layer setu=
-p
-> like ours to work. Not only that, it would benefit the most common use
-> cases: moving variable definitions in bitbake recipes, or even just addin=
-g
-> a variable for a particular machine feature. Having a visible diff would
-> make reviewing the changes so much easier.
->
-> Thanks for the background Kun.
->
-> I know yocto has a concept of Q&A checks that can be run - would it make
-> sense to try something like this via that mechanism?  Emit warnings (whic=
-h
-> we can elevate to build failures in CI) if variables aren=E2=80=99t prope=
-rly
-> overriden?  That is nice because it doesn=E2=80=99t require any changes t=
-o our CI
-> system.
->
-> That's an approach I haven't thought of. Thanks Brad! I'm a little worrie=
-d
-that it would incur more bitbake changes, but let's see if the Yocto folks
-have ideas.
+------=_Part_51531_1040916157.1573614555471
+Content-Type: text/html; charset=GBK
+Content-Transfer-Encoding: base64
 
+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
+Zm9udC1mYW1pbHk6QXJpYWwiPjxkaXY+RGVhciBhbGwsPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRp
+dj5XaGVuIEkgbW9kaWZ5IHRoZSBvcy1yZWxlYXNlIGZpbGUgaW4gbXkgeW9jdG8gcHJvamVjdCwg
+aXQgYXBwZWFyIHNvbWUgZXJyb3IsIGFuZCBob3cgY2FuIEkgc29sdmUgaXQgPyZuYnNwO1dobyBj
+YW4gZ2l2ZSBtZSBzb21lIGhlbHAgb3IgYWR2aWNlPyBUaGFuayB5b3WjoTwvZGl2PjxkaXY+SSBj
+YXJyaWVkIG91dCB0aGUgcmVjb21tZW5kZWQgb3JkZXIgYW5kIGl0IGRpZG4ndCB3b3JrLjwvZGl2
+PjxkaXY+PGJyPjwvZGl2PjxkaXY+PGRpdj48aT5FUlJPUjogb3MtcmVsZWFzZS0xLjAtcjAgZG9f
+Y29tcGlsZTogVGFza2hhc2ggbWlzbWF0Y2ggY2UxMzNmMDQ1ODYwOGUwM2FhNTUyMjRkZjI4MTU2
+ZTUyM2U1NDkwMzExNWVmYmJjZDYyOTQ2Zjg0YTg2NzIwMSB2ZXJzdXMgNzI2OTg4MWYwZWIxNzU5
+ZWQ0MjBhMmRiNGMwNGZiNDc3Y2Q4YzEyODhiYzVmODJkZjVjODE2MWJiOTI2ZWExZiBmb3IgL2hv
+bWUvdGVtcC93YW5naHAvd3NwL2dpdF9zL2xvY2FsLXNvdXJjZS9vYm1jLXN1Z29uL2VudGl0eV9m
+cnV1L21ldGEvcmVjaXBlcy1jb3JlL29zLXJlbGVhc2Uvb3MtcmVsZWFzZS5iYi5kb19jb21waWxl
+PC9pPjwvZGl2PjxkaXY+PGk+RVJST1I6IFRhc2toYXNoIG1pc21hdGNoIGNlMTMzZjA0NTg2MDhl
+MDNhYTU1MjI0ZGYyODE1NmU1MjNlNTQ5MDMxMTVlZmJiY2Q2Mjk0NmY4NGE4NjcyMDEgdmVyc3Vz
+IDcyNjk4ODFmMGViMTc1OWVkNDIwYTJkYjRjMDRmYjQ3N2NkOGMxMjg4YmM1ZjgyZGY1YzgxNjFi
+YjkyNmVhMWYgZm9yIC9ob21lL3RlbXAvd2FuZ2hwL3dzcC9naXRfcy9sb2NhbC1zb3VyY2Uvb2Jt
+Yy1zdWdvbi9lbnRpdHlfZnJ1dS9tZXRhL3JlY2lwZXMtY29yZS9vcy1yZWxlYXNlL29zLXJlbGVh
+c2UuYmIuZG9fY29tcGlsZTwvaT48L2Rpdj48ZGl2PjxpPkVSUk9SOiBXaGVuIHJlcGFyc2luZyAv
+aG9tZS90ZW1wL3dhbmdocC93c3AvZ2l0X3MvbG9jYWwtc291cmNlL29ibWMtc3Vnb24vZW50aXR5
+X2ZydXUvbWV0YS9yZWNpcGVzLWNvcmUvb3MtcmVsZWFzZS9vcy1yZWxlYXNlLmJiLmRvX2NvbXBp
+bGUsIDwvaT48c3BhbiBzdHlsZT0iY29sb3I6IHJnYigyNTUsIDIwNCwgMCk7Ij48aT50aGUgYmFz
+ZWhhc2ggdmFsdWUgY2hhbmdlZCBmcm9tIDk5YTQyYTFhM2IxYTE1MWRlNjA0MjY3YjE1OTU1OGVj
+YWYxMDMxYTNiZWM4OTE3ZGYxMzJjODEzMDJlNzI5YTUgdG8gNGYzMjg4YTg3NjNlMmUxYWY3OGU0
+YjNjZGQ5YzBjMGNjYjNiMGQ1Yzc4YTMwNzNjMTg4YjIyMjAwZGYyYTliMC4gPC9pPjwvc3Bhbj48
+aT5UaGUgbWV0YWRhdGEgaXMgbm90IGRldGVybWluaXN0aWMgYW5kIHRoaXMgbmVlZHMgdG8gYmUg
+Zml4ZWQuPC9pPjwvZGl2PjxkaXY+PGk+RVJST1I6IFRoZSBmb2xsb3dpbmcgY29tbWFuZHMgbWF5
+IGhlbHA6PC9pPjwvZGl2PjxkaXY+PGk+RVJST1I6ICQgYml0YmFrZSBvcy1yZWxlYXNlIC1jZG9f
+Y29tcGlsZSAtU25vbmU8L2k+PC9kaXY+PGRpdj48aT5FUlJPUjogVGhlbjo8L2k+PC9kaXY+PGRp
+dj48aT5FUlJPUjogJCBiaXRiYWtlIG9zLXJlbGVhc2UgLWNkb19jb21waWxlIC1TcHJpbnRkaWZm
+PC9pPjwvZGl2PjxkaXY+PGJyPjwvZGl2PjxkaXY+PGk+RVJST1I6IFdoZW4gcmVwYXJzaW5nIC9o
+b21lL3RlbXAvd2FuZ2hwL3dzcC9naXRfcy9sb2NhbC1zb3VyY2Uvb2JtYy1zdWdvbi9lbnRpdHlf
+ZnJ1dS9tZXRhL3JlY2lwZXMtY29yZS9vcy1yZWxlYXNlL29zLXJlbGVhc2UuYmIuZG9fY29tcGls
+ZSwgPC9pPjxzcGFuIHN0eWxlPSJjb2xvcjogcmdiKDAsIDI1NSwgMCk7Ij48aT50aGUgYmFzZWhh
+c2ggdmFsdWUgY2hhbmdlZCBmcm9tIDk5YTQyYTFhM2IxYTE1MWRlNjA0MjY3YjE1OTU1OGVjYWYx
+MDMxYTNiZWM4OTE3ZGYxMzJjODEzMDJlNzI5YTUgdG8gNDdjMzAwMTJkYWE2YWE3N2JlMDlhOTNm
+ZTIxZTY2OTk1MzYxZWYyNmI0NDg3MTExMDA1NjE3ZGI4Y2I0ZGU1OS4gVGhlIG1ldGFkYXRhIGlz
+IG5vdCBkZXRlcm1pbmlzdGljIGFuZCB0aGlzIG5lZWRzIHRvIGJlIGZpeGVkLjwvaT48L3NwYW4+
+PC9kaXY+PGRpdj48aT5FUlJPUjogVGhlIGZvbGxvd2luZyBjb21tYW5kcyBtYXkgaGVscDo8L2k+
+PC9kaXY+PGRpdj48aT5FUlJPUjogJCBiaXRiYWtlIG9zLXJlbGVhc2UgLWNkb19jb21waWxlIC1T
+bm9uZTwvaT48L2Rpdj48ZGl2PjxpPkVSUk9SOiBUaGVuOjwvaT48L2Rpdj48ZGl2PjxpPkVSUk9S
+OiAkIGJpdGJha2Ugb3MtcmVsZWFzZSAtY2RvX2NvbXBpbGUgLVNwcmludGRpZmY8L2k+PC9kaXY+
+PC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj50aGFua3MsPC9kaXY+PGRpdj5CeXJvbjwvZGl2Pjwv
+ZGl2Pjxicj48YnI+PHNwYW4gdGl0bGU9Im5ldGVhc2Vmb290ZXIiPjxwPiZuYnNwOzwvcD48L3Nw
+YW4+
 
-> I=E2=80=99ve cross posted to the yocto mailing list in case there is any =
-interest
-> or ideas there.  Here is a link to the entire thread as I remove a little
-> too much context I think=E2=80=A6
->
-> https://lists.ozlabs.org/pipermail/openbmc/2019-November/019409.html
->
-> -brad
-
-
-
---=20
-Regards,
-Kun
-
---000000000000394c9205972a389a
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"></div><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">On Tue, Nov 12, 2019 at 10:05 AM Brad Bis=
-hop &lt;<a href=3D"mailto:bradleyb@fuzziesquirrel.com">bradleyb@fuzziesquir=
-rel.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex"><br>
-<br>
-&gt; On Nov 12, 2019, at 1:55 AM, Kun Yi &lt;<a href=3D"mailto:kunyi@google=
-.com" target=3D"_blank">kunyi@google.com</a>&gt; wrote:<br>
-&gt;=C2=A0 <br>
-&gt; Sure, it&#39;s partially due to how we set up the build downstream. Ou=
-r downstream would put all the needed layers in one bblayers file, so we wo=
-uld have something like:<br>
-&gt; <br>
-&gt;=C2=A0 =C2=A0##OEROOT##/meta \<br>
-&gt;=C2=A0 =C2=A0##OEROOT##/meta-poky \<br>
-&gt;=C2=A0 =C2=A0##OEROOT##/meta-openembedded/meta-oe \<br>
-&gt;=C2=A0 =C2=A0##OEROOT##/meta-openembedded/meta-networking \<br>
-&gt;=C2=A0 =C2=A0##OEROOT##/meta-openembedded/meta-python \<br>
-&gt;=C2=A0 =C2=A0##OEROOT##/meta-phosphor \<br>
-&gt;=C2=A0 =C2=A0##OEROOT##/meta-google \<br>
-&gt;=C2=A0 =C2=A0##OEROOT##/meta-google-gbmc \<br>
-&gt;=C2=A0 =C2=A0##OEROOT##/meta-aspeed \<br>
-&gt;=C2=A0 =C2=A0##OEROOT##/meta-nuvoton \<br>
-&gt;=C2=A0 =C2=A0##OEROOT##/meta-openpower \<br>
-&gt;=C2=A0 =C2=A0##OEROOT##/meta-ingrasys \<br>
-&gt;=C2=A0 =C2=A0##OEROOT##/meta-ingrasys/meta-zaius \<br>
-&gt;=C2=A0 =C2=A0##OEROOT##/meta-quanta \<br>
-&gt;=C2=A0 =C2=A0##OEROOT##/meta-quanta/meta-gsj \<br>
-&gt; ...<br>
-&gt; <br>
-&gt; The distinct advantage of this approach is that we would be able to bu=
-ild images for different machine types using the same layer conf, so the bu=
-ild doesn&#39;t need to be reconfigured if you were to test on another plat=
-form.<br>
-&gt; <br>
-&gt; The challenge, as you can imagine, is that each meta layer now cannot =
-&#39;leak&#39; any variable. e.g. if some recipe in meta-quanta sets a vari=
-able for quanta systems only, then it must specify &quot;_quanta&quot; or a=
- similar suffix to prevent the variable expansion to apply to other systems=
-. I think this rule is generally preferred upstream, but not sure whether i=
-t is an official guideline.<br>
-&gt; <br>
-&gt; With my proposal, it would be much easier for a multi-system layer set=
-up like ours to work. Not only that, it would benefit the most common use c=
-ases: moving variable definitions in bitbake recipes, or even just adding a=
- variable for a particular machine feature. Having a visible diff would mak=
-e reviewing the changes so much easier.<br>
-<br>
-Thanks for the background Kun.<br>
-<br>
-I know yocto has a concept of Q&amp;A checks that can be run - would it mak=
-e sense to try something like this via that mechanism?=C2=A0 Emit warnings =
-(which we can elevate to build failures in CI) if variables aren=E2=80=99t =
-properly overriden?=C2=A0 That is nice because it doesn=E2=80=99t require a=
-ny changes to our CI system.<br>
-<br></blockquote><div>That&#39;s an approach I haven&#39;t thought of. Than=
-ks Brad! I&#39;m a little worried that it would incur more bitbake changes,=
- but let&#39;s see if the Yocto folks have ideas.<br></div><div>=C2=A0</div=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left:1px solid rgb(204,204,204);padding-left:1ex">
-I=E2=80=99ve cross posted to the yocto mailing list in case there is any in=
-terest or ideas there.=C2=A0 Here is a link to the entire thread as I remov=
-e a little too much context I think=E2=80=A6<br>
-<br>
-<a href=3D"https://lists.ozlabs.org/pipermail/openbmc/2019-November/019409.=
-html" rel=3D"noreferrer" target=3D"_blank">https://lists.ozlabs.org/piperma=
-il/openbmc/2019-November/019409.html</a><br>
-<br>
--brad</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D=
-"ltr" class=3D"gmail_signature"><div dir=3D"ltr">Regards,<div>Kun</div></di=
-v></div></div>
-
---000000000000394c9205972a389a--
+------=_Part_51531_1040916157.1573614555471--
