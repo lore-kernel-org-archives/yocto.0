@@ -1,76 +1,74 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <waynli329@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4061E00DFC; Wed, 13 Nov 2019 10:52:10 -0800 (PST)
+	id 360A8E00E23; Wed, 13 Nov 2019 11:44:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLY,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.65 listed in list.dnswl.org]
+	*      [209.85.166.54 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (waynli329[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com
-	[209.85.221.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 207D0E00BF7
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2019 10:52:10 -0800 (PST)
-Received: by mail-wr1-f65.google.com with SMTP id t1so3627070wrv.4
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2019 10:52:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=message-id:subject:from:to:cc:date:in-reply-to:references
-	:user-agent:mime-version:content-transfer-encoding;
-	bh=dfZgRRWj5H72M2eVhwCS1LcWxti2hKetJL+cMtlwD/Q=;
-	b=e6VRkWDYC/mgCDPi74nHEfxADnHIIF6uAaIevXfR8NzDDmrE7cSskTu5fYprbW7zpF
-	4clX0aSQc9h1XrEVihY/Z6/1ZL7gF0GBSubwoiONay0GOiW6q2Lf03KVrgMKXRI4fGqy
-	Rvm+4InzFu/gtqd+TiAwzXgE/Gk32sckUDgkQ=
+	*  1.0 FREEMAIL_REPLY From and body contain different freemails
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com
+	[209.85.166.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2B5FE00E12
+	for <yocto@yoctoproject.org>; Wed, 13 Nov 2019 11:43:58 -0800 (PST)
+Received: by mail-io1-f54.google.com with SMTP id i13so3933875ioj.5
+	for <yocto@yoctoproject.org>; Wed, 13 Nov 2019 11:43:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=gZJYYavGSLnPHmi8xYT5E8QTDTeiwtEtL3ghZOE2bbc=;
+	b=oIO57x5/Y0GzAJQ1vr332Q7A+5StkTgx/jOlDpA3OuNUPBOq3XQ/Ms92jeuh5HCWL5
+	CKHPtifjaIHOCZeOBzXXojxD50ZRJIEd7/rjYfcIDlJuLjGaxDdzECdSjPs+alI8hcTU
+	3RQa+ezX5zGco+v+tstVIwdm7nrOaVf6hroobXRCvIr0e6Mm+8DfUdkMReVYdj9+XohQ
+	isQZrY5T7msf4ZE9EbZpcjoX/qt7JZWX2mQdAzCD2dUTREgkZPEacG3YF8Tvna4mpcn3
+	kKwc9Fg6SXFYmgDqhp2b+/reQ+8UYeyCgggIZFj1Kc7tnUoUz8XDXIzgY0EOuXWOeE6h
+	Twuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-	:references:user-agent:mime-version:content-transfer-encoding;
-	bh=dfZgRRWj5H72M2eVhwCS1LcWxti2hKetJL+cMtlwD/Q=;
-	b=Ss2jB3Ur+7XoMNNrDMETubCwjzEjiVgSMS1sNu9hByij5lAB3lHQIdTuogqSVL72nH
-	nqOLT/uJ8cDUDB+hjN5YNp2le2eBa7+Uz8eWnxkR9XPsH9TXbUzw+6Cr2zOiZSRfHao3
-	mIW8nuzbOg5g7vJgt2GUKkSVgmwXI63H8chAZd8djdN/6OOOXT79BKMozbB6Z02LuX0l
-	A4TlJNBApBB6pWY/Gx6okkWTbu37wKbTNBOwbVuRPDJGHZw3MLFJhwvZeG2Ht02SMPli
-	Q3S88rMTvse/2olNJte0SNmgzjwArIb4/gHbSW13wNGI8Dr5UJD6VNZ85991ZopalthF
-	4WpQ==
-X-Gm-Message-State: APjAAAV9qTpGN9sK5BG1YY7qkkX8LLsTbOSXHxZyr1EOiQ3/uNkobK7X
-	VabT2ENMUsrN2E6IegLInLVV7g==
-X-Google-Smtp-Source: APXvYqwe/Nufx7w+WMCuXZFSVZz5nh4UxFUzSbiVKiJMpTpGtPPXz+ApB2mHPGpY2xibo5+7om9S4w==
-X-Received: by 2002:adf:dc06:: with SMTP id t6mr4423601wri.378.1573671129274; 
-	Wed, 13 Nov 2019 10:52:09 -0800 (PST)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-	by smtp.gmail.com with ESMTPSA id z9sm3921740wrv.35.2019.11.13.10.52.08
-	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Wed, 13 Nov 2019 10:52:08 -0800 (PST)
-Message-ID: <fddb0eb4c0392f0ae427f458cc9684b02444e403.camel@linuxfoundation.org>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Samuel Jiang =?UTF-8?Q?=28=E6=B1=9F=E9=A8=8F=E5=85=88=29?=
-	<Samuel.Jiang@quantatw.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Wed, 13 Nov 2019 18:52:06 +0000
-In-Reply-To: <e5a5b73ee91c491086f8ec17fa764507@quantatw.com>
-References: <489934f9-1420-40b0-a74a-54b71633bbed@SINGMEHUB07.gme.gbl>
-	<KL1P15301MB03443E265CCD3E6492C091CF80630@KL1P15301MB0344.APCP153.PROD.OUTLOOK.COM>
-	<a1ef7037a6a94e518fcef16502c67585@quantatw.com>
-	<SG2P153MB0349D0EFB059BC372C86528880630@SG2P153MB0349.APCP153.PROD.OUTLOOK.COM>
-	<9e5ccabd-03be-410b-bd43-1f7ba45dff31@Spark>
-	<a2982b3de70f74fd787b45b06711437afd2ae98e.camel@linuxfoundation.org>
-	<a066f24b71df426db88ce23b46331a36@quantatw.com>
-	<85cc536d4ce5de2606d48aba4b813fa96be1f6f9.camel@linuxfoundation.org>
-	<e5a5b73ee91c491086f8ec17fa764507@quantatw.com>
-User-Agent: Evolution 3.34.1-2 
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=gZJYYavGSLnPHmi8xYT5E8QTDTeiwtEtL3ghZOE2bbc=;
+	b=F/GnLNLxWffYjz8mEWE1vOK/4WmcMNXB9vFjb0mszoUA8W19R9oFf00f9XTVejBREW
+	fByM48oi3vD9+2AfFJXJ7Ljc08NvfT11hA9pwN+rdqTbbbKMp+pdROqkj5GvP1NwARx7
+	4Vixcwe3B8sPei/69ekGiLlyAy0z7hO2d7t1+mfVdULqEEeDwi8ZOJ+oVSTBYM6qUeLt
+	RQtlt5cZRYII1cMzacy8znAqvaZovFo2aFC1XisLMdPY+n2hfY08SfCMP/AltZT8J5BA
+	jB6OCOaz3vNCWAGc5EY1Puvb4Du7QMgvKKUEQneheL7nw89yURcEHhOphdK8Dp0XertN
+	6+vQ==
+X-Gm-Message-State: APjAAAVEsPhXmyP212dw4GE+Q5/AN9q1ttDklS1gBIyVaVsqlGNWEKSZ
+	q2UVwN3E+5bec0JdOE27F8lcsezan5BvvgxaIOA7QeY9
+X-Google-Smtp-Source: APXvYqxSz/2a2cTXb7ZENGmw1SRLXYftzIC0Y1weSocrGMhgkoyW+KZkaP1jntylYFMtHyatC48umLruwmZy4unpcP0=
+X-Received: by 2002:a6b:f60f:: with SMTP id n15mr2874493ioh.263.1573674237998; 
+	Wed, 13 Nov 2019 11:43:57 -0800 (PST)
 MIME-Version: 1.0
-Cc: Alex Chong <v-chucho@microsoft.com>
-Subject: Re: bitbake SRC_URI fetch Azure DevOps repository Azure DevOps Services Basic
+References: <CAM2K0nqA0QGCcaN8z=qvtVu-U_aHswjqKTbZJ0YoCXE6OsvzQw@mail.gmail.com>
+	<20191113083317.GA7340@localhost>
+	<83ee3505594a6b5cb00eb643ece131c85aedeea0.camel@gmail.com>
+	<CAM2K0nr_gPrDtx5QLz6x74a2CnDb8kERKcYu5bMJi8sg5PE62A@mail.gmail.com>
+	<CAM2K0nrhK-z1M9uFzxVOrsk0s4+npm3KX0rDh6dx+SOs6sn_gQ@mail.gmail.com>
+	<CAM2K0npPofZEYUSjBvUXUN8TjpE_JaHZFr7EAdE=i2wSQVCQ8Q@mail.gmail.com>
+	<698c95f2-4784-f7de-7a4b-2283a3b2f16e@kernel.crashing.org>
+In-Reply-To: <698c95f2-4784-f7de-7a4b-2283a3b2f16e@kernel.crashing.org>
+From: Wayne Li <waynli329@gmail.com>
+Date: Wed, 13 Nov 2019 13:43:46 -0600
+Message-ID: <CAM2K0nrUOPhVTVi0r=ni=kN1YcgaEeiPKyW9q7KBqA-c8EfwxQ@mail.gmail.com>
+To: Mark Hatle <mark.hatle@kernel.crashing.org>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
+	bitbake-devel <bitbake-devel@lists.openembedded.org>,
+	Adrian Bunk <bunk@stusta.de>
+Subject: Re: No Package Provides /bin/awk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -82,51 +80,495 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Nov 2019 18:52:10 -0000
+X-List-Received-Date: Wed, 13 Nov 2019 19:44:01 -0000
+Content-Type: multipart/alternative; boundary="000000000000f2bb8d05973f95c6"
+
+--000000000000f2bb8d05973f95c6
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
 
-On Wed, 2019-11-13 at 09:02 +0000, Samuel Jiang (江騏先) wrote:
-> I got below error message:
-> crashdump-git-r0 do_fetch: Fetcher failure: Fetch command export PSEUDO_DISABLED=1; unset _PYTHON_SYSCONFIGDATA_NAME; export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"; export SSH_AGENT_PID="2255"; export SSH_AUTH_SOCK="/run/user/1000/keyring/ssh"; export PATH="[private_data]"; export HOME="/home/samueljiang";
-> git -c core.fsyncobjectfiles=0 ls-remote git://quanta01.visualstudio.com/OpenBMC/_git/crashdump  failed with exit code 128, output:
-> fatal: unable to connect to quanta01.visualstudio.com:
-> quanta01.visualstudio.com[0: 2620:1ec:21::18]: errno=Network is unreachable
-> quanta01.visualstudio.com[1: 13.107.42.18]: errno=Connection timed out
-> 
-> Seems this url with git:// prefix could not connect in Azure DevOps 
-> 
-> Document[https://docs.microsoft.com/en-us/azure/devops/repos/git/use-ssh-keys-to-authenticate?view=azure-devops].
+Sorry I am fairly new to bitbake.  How do I apply a patch?  Why do I have
+to apply a patch as opposed to just editing corresponding files (I know
+that is probably a dumb question but again I am very new to bitbake)?  Khem
+Raj did mention a patch to fix the problem:
 
-I now realise what the problem is. Whatever this git server you're
-talking to is, it does not work the same as is documented for the "git
-clone" manpage.
+https://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto/commit/?id=8af11c1cdd8fa08217e702b57cf96e9030db52b2
 
-There is no option to force bitbake to use the syntax you're asking for
-since the manpage says the synax its using is valid. You could patch
-bitbake to force it to use that syntax with a patch like:
+Would I be able to somehow take the patch from that website and apply it to
+my project?  Though I'd like to mention again it seems like that patch is
+trying to change  "#!/bin/awk -f" to "#!/usr/bin/awk -f" in the ver_linux
+file.  But the ver_linux files in my project look very different from the
+ver_linux file in the patch (see example of my ver_linux file:
+https://gist.github.com/WayneZhenLi/c7475cf382a80bfd2de31e82c40c1677) and
+has "#!/bin/sh" for its #! line instead.  In that case, would the patch
+Khem Raj mentioned even work for my project?  Again I'm new to bitbake so I
+apologize for my questions being naive.
 
-diff --git a/bitbake/lib/bb/fetch2/git.py b/bitbake/lib/bb/fetch2/git.py
-index fa41b078f12..f20c1f36b82 100644
---- a/bitbake/lib/bb/fetch2/git.py
-+++ b/bitbake/lib/bb/fetch2/git.py
-@@ -588,6 +588,8 @@ class Git(FetchMethod):
-             username = ud.user + '@'
-         else:
-             username = ""
-+        if ud.proto == "ssh":
-+            return "%s%s:%s" % (username, ud.host, ud.path[1:])
-         return "%s://%s%s%s" % (ud.proto, username, ud.host, ud.path)
- 
-     def _revision_key(self, ud, d, name):
+On Wed, Nov 13, 2019 at 12:31 PM Mark Hatle <mark.hatle@kernel.crashing.org>
+wrote:
 
+> Bitbake inspects the binaries and looks at the #! line.  You need to
+> change the
+> line itself (via a patch) to /usr/bin/awk, and then it will pick up the
+> dependency automatically on a rebuild.
+>
+> --Mark
+>
+> On 11/13/19 12:14 PM, Wayne Li wrote:
+> > On further inspection of the older image my coworker made, it looks like
+> awk is
+> > located at "/usr/bin/awk".  I see this by just doing a "which awk" in the
+> > console of the T4240 RDB when the old image is loaded.  So it looks like
+> the
+> > most likely case is that Khem Raj is correct and that bitbake is
+> expecting awk
+> > to be in "/bin" when awk is actually in "/usr/bin".  In that case, I
+> need to
+> > know where the line telling bitbake to look for awk in the "/bin"
+> directory is.
+> >
+> > On Wed, Nov 13, 2019 at 12:02 PM Wayne Li <waynli329@gmail.com
+> > <mailto:waynli329@gmail.com>> wrote:
+> >
+> >     I'd like also like to mention that my main concern with the
+> ver_linux files
+> >     that I found in my project was that the shebang line was " #!/bin/sh"
+> >     instead of "#!/bin/awk -f" which is the shebang line in the
+> ver_linux file
+> >     in the patch.  The patch wants to change the shebang line from
+> "#!/bin/awk
+> >     -f" to  "#!/usr/bin/awk -f" so I'm not sure how that change would
+> translate
+> >     when I'm working with the shebang line "#!/bin/sh".  Or perhaps
+> Yocto has
+> >     changed since that patch was posted and maybe the place /bin/awk is
+> >     specified is different?
+> >
+> >     On Wed, Nov 13, 2019 at 11:51 AM Wayne Li <waynli329@gmail.com
+> >     <mailto:waynli329@gmail.com>> wrote:
+> >
+> >         So after further investigation, I'm fairly sure awk is actually
+> present
+> >         in the target image.  Here are my reasons why I feel that this
+> is the case:
+> >
+> >         -I looked at the busybox menuconfig GUI that comes up when I run
+> >         "bitbake -c menuconfig busybox" and it says awk is built-in.
+> >         -I looked at various def-config files I found by just doing a
+> "grep -rn
+> >         "CONFIG_AWK"" and found that CONFIG_AWK seems to have been
+> enabled
+> >         throughout the project (there was the line CONFIG_AWK=y
+> uncommented in
+> >         the various def-config files I mentioned).
+> >         -I have an older version of the target image that my coworker
+> (who has
+> >         since left the company) created.  I just need to rebuild this
+> image
+> >         because I am trying to add some kernel modules to the image.
+> When I run
+> >         the command "awk" in the console for the T4240 RDB when the older
+> >         version of the image is loaded, I do see the gawk help info come
+> up.
+> >         This shows awk is present in the older image.
+> >
+> >         But looking at what Khem Raj mentioned, perhaps bitbake is just
+> not
+> >         finding the awk because it's actually in /usr/bin when bitbake
+> expects
+> >         it to be in /bin?  Though I am a little confused about the link
+> you
+> >         sent, Khem Raj.  How do exactly do I apply this patch?  I'm
+> assuming we
+> >         have to change the file ver_linux?  I did a "find . -name
+> "ver_linux""
+> >         and I see multiple results:
+> >
+> >         bash-4.2$ find . -name "ver_linux"
+> >
+>  ./build_t4240rdb-64b/tmp/work/ppc64e6500-fsl-linux/linux-libc-headers/4.1-r0/linux-4.1/scripts/ver_linux
+> >
+>  ./build_t4240rdb-64b/tmp/work/ppce6500-fslmllib32-linux/lib32-linux-libc-headers/4.1-r0/linux-4.1/scripts/ver_linux
+> >
+>  ./build_t4240rdb-64b/tmp/work/t4240rdb_64b-fsl-linux/kernel-devsrc/1.0-r0/package/usr/src/kernel/scripts/ver_linux
+> >
+>  ./build_t4240rdb-64b/tmp/work/t4240rdb_64b-fsl-linux/kernel-devsrc/1.0-r0/image/usr/src/kernel/scripts/ver_linux
+> >
+>  ./build_t4240rdb-64b/tmp/work/t4240rdb_64b-fsl-linux/kernel-devsrc/1.0-r0/packages-split/kernel-devsrc/usr/src/kernel/scripts/ver_linux
+> >
+>  ./build_t4240rdb-64b/tmp/work-shared/t4240rdb-64b/kernel-source/scripts/ver_linux
+> >
+>  ./build_t4240rdb/tmp/work/ppc64e6500-fslmllib64-linux/lib64-linux-libc-headers/4.1-r0/linux-4.1/scripts/ver_linux
+> >
+>  ./build_t4240rdb/tmp/work/ppce6500-fsl-linux/linux-libc-headers/4.1-r0/linux-4.1/scripts/ver_linux
+> >
+>  ./build_t4240rdb/tmp/work-shared/t4240rdb/kernel-source/scripts/ver_linux
+> >
+> >         Now the build I'm working on is build_t4240rdb-64b so the last
+> three
+> >         results in that search probably don't matter.  Though there are
+> still
+> >         six more results for when I search ver_linux.  So I'm not sure
+> which one
+> >         I need to change.  Moreover, all of the ver_linux files I found
+> more or
+> >         less look like the following:
+> >
+> >
+> https://gist.github.com/WayneZhenLi/c7475cf382a80bfd2de31e82c40c1677
+> >
+> >         Which seems to be very different from the ver_linux file
+> mentioned in
+> >         the patch.  This further confuses me on how to apply the patch.
+> >
+> >         Or maybe do you guys think maybe the patch isn't the solution
+> here?
+> >         Maybe there's some other reason bitbake isn't finding the awk?
+> >
+> >         -Thanks!, Wayne Li
+> >
+> >         On Wed, Nov 13, 2019 at 10:57 AM Khem Raj <raj.khem@gmail.com
+> >         <mailto:raj.khem@gmail.com>> wrote:
+> >
+> >             On Wed, 2019-11-13 at 10:33 +0200, Adrian Bunk wrote:
+> >             > On Tue, Nov 12, 2019 at 04:08:48PM -0600, Wayne Li wrote:
+> >             > > Dear Yocto Developers,
+> >             > >
+> >             > > I'm trying to to build a Yocto kernel for a T4240 RDB.
+> When I run
+> >             > > "bitbake
+> >             > > fsl-image-full" to build the entire linux image, I get
+> an error
+> >             > > that says
+> >             > > "Can't install kernel-devsrc-1.0-r0@t4240rdb_64b: no
+> package
+> >             > > provides
+> >             > > /bin/awk".  Here's the entire error print that I see:
+> >             > >
+> >             > >
+> https://gist.github.com/WayneZhenLi/e35f65081092cf1f24df29ec369c701c
+> >             > >
+> >             > > Anyway I'm confused about this error because /bin/awk
+> does
+> >             > > exist.  Like if
+> >             > > I run "/bin/awk" in the console I see help info come up
+> describing
+> >             > > how to
+> >             > > use a program called "gawk".  Why can't bitbake find
+> /bin/awk
+> >             > > then?  Or am
+> >             > > I misunderstanding what this error is trying to say?  I
+> mean I'm
+> >             > > assuming
+> >             > > it's just not able to find /bin/awk but maybe the error
+> means
+> >             > > something
+> >             > > else?  Or maybe /bin/awk is actually relative to some
+> path?  Let me
+> >             > > know
+> >             > > your thoughts.
+> >             >
+> >             > /bin/awk is missing on your target image that will run on
+> the T4240
+> >             > RDB.
+> >             >
+> >             > The smallest implementation is to enable CONFIG_AWK in
+> your busybox
+> >             > config.
+> >             >
+> >
+> >             import something like below patch into your kernel will help
+> too
+> >
+> >
+> https://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto/commit/?id=8af11c1cdd8fa08217e702b57cf96e9030db52b2
+> >
+> >             > > -Thanks!, Wayne Li
+> >             >
+> >             > cu
+> >             > Adrian
+> >             >
+> >             > --
+> >             >
+> >             >        "Is there not promise of rain?" Ling Tan asked
+> suddenly out
+> >             >         of the darkness. There had been need of rain for
+> many days.
+> >             >        "Only a promise," Lao Er said.
+> >             >                                        Pearl S. Buck -
+> Dragon Seed
+> >             >
+> >
+> >
+>
 
-which in my local tests appeared to give the result you're asking for
-but that shouldn't be required with a server that adheres to what the
-git manual says is supported.
+--000000000000f2bb8d05973f95c6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Cheers,
+<div dir=3D"ltr"><div>Sorry I am fairly new to bitbake.=C2=A0 How do I appl=
+y a patch?=C2=A0 Why do I have to apply a patch as opposed to just editing =
+corresponding files (I know that is probably a dumb question but again I am=
+ very new to bitbake)?=C2=A0 Khem Raj did mention a patch to fix the proble=
+m:</div><div><br></div><div><a href=3D"https://git.yoctoproject.org/cgit/cg=
+it.cgi/linux-yocto/commit/?id=3D8af11c1cdd8fa08217e702b57cf96e9030db52b2">h=
+ttps://git.yoctoproject.org/cgit/cgit.cgi/linux-yocto/commit/?id=3D8af11c1c=
+dd8fa08217e702b57cf96e9030db52b2</a></div><div><br></div><div>Would I be ab=
+le to somehow take the patch from that website and apply it to my project?=
+=C2=A0 Though I&#39;d like to mention again it seems like that patch is try=
+ing to change=C2=A0
+<span>&quot;#!/bin/awk -f&quot;</span> to=20
+<span>&quot;#!/usr/bin/awk -f&quot; in the ver_linux file.=C2=A0 But the ve=
+r_linux files in my project look very different from the ver_linux file in =
+the patch (see example of my ver_linux file: <a href=3D"https://gist.github=
+.com/WayneZhenLi/c7475cf382a80bfd2de31e82c40c1677">https://gist.github.com/=
+WayneZhenLi/c7475cf382a80bfd2de31e82c40c1677</a>) and has <span>&quot;<span=
+><span>#!</span>/bin/sh&quot;</span></span> for its #! line instead.=C2=A0 =
+In that case, would the patch Khem Raj mentioned even work for my project?=
+=C2=A0 Again I&#39;m new to bitbake so I apologize for my questions being n=
+aive.</span>
 
-Richard
+</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_=
+attr">On Wed, Nov 13, 2019 at 12:31 PM Mark Hatle &lt;<a href=3D"mailto:mar=
+k.hatle@kernel.crashing.org">mark.hatle@kernel.crashing.org</a>&gt; wrote:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex">Bitbake inspects=
+ the binaries and looks at the #! line.=C2=A0 You need to change the<br>
+line itself (via a patch) to /usr/bin/awk, and then it will pick up the<br>
+dependency automatically on a rebuild.<br>
+<br>
+--Mark<br>
+<br>
+On 11/13/19 12:14 PM, Wayne Li wrote:<br>
+&gt; On further inspection of the older image my coworker made, it looks li=
+ke awk is<br>
+&gt; located at &quot;/usr/bin/awk&quot;.=C2=A0 I see this by just doing a =
+&quot;which awk&quot; in the<br>
+&gt; console of the T4240 RDB when the old image is loaded.=C2=A0 So it loo=
+ks like the<br>
+&gt; most likely case is that Khem Raj is correct and that bitbake is expec=
+ting awk<br>
+&gt; to be in &quot;/bin&quot; when awk is actually in &quot;/usr/bin&quot;=
+.=C2=A0 In that case, I need to<br>
+&gt; know where the line telling bitbake to look for awk in the &quot;/bin&=
+quot; directory is.<br>
+&gt; <br>
+&gt; On Wed, Nov 13, 2019 at 12:02 PM Wayne Li &lt;<a href=3D"mailto:waynli=
+329@gmail.com" target=3D"_blank">waynli329@gmail.com</a><br>
+&gt; &lt;mailto:<a href=3D"mailto:waynli329@gmail.com" target=3D"_blank">wa=
+ynli329@gmail.com</a>&gt;&gt; wrote:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0I&#39;d like also like to mention that my main conc=
+ern with the ver_linux files<br>
+&gt;=C2=A0 =C2=A0 =C2=A0that I found in my project was that the shebang lin=
+e was &quot; #!/bin/sh&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0instead of &quot;#!/bin/awk -f&quot; which is the s=
+hebang line in the ver_linux file<br>
+&gt;=C2=A0 =C2=A0 =C2=A0in the patch.=C2=A0 The patch wants to change the s=
+hebang line from &quot;#!/bin/awk<br>
+&gt;=C2=A0 =C2=A0 =C2=A0-f&quot; to=C2=A0 &quot;#!/usr/bin/awk -f&quot; so =
+I&#39;m not sure how that change would translate<br>
+&gt;=C2=A0 =C2=A0 =C2=A0when I&#39;m working with the shebang line &quot;#!=
+/bin/sh&quot;.=C2=A0 Or perhaps Yocto has<br>
+&gt;=C2=A0 =C2=A0 =C2=A0changed since that patch was posted and maybe the p=
+lace /bin/awk is<br>
+&gt;=C2=A0 =C2=A0 =C2=A0specified is different?<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0On Wed, Nov 13, 2019 at 11:51 AM Wayne Li &lt;<a hr=
+ef=3D"mailto:waynli329@gmail.com" target=3D"_blank">waynli329@gmail.com</a>=
+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:waynli329@gmail.com" t=
+arget=3D"_blank">waynli329@gmail.com</a>&gt;&gt; wrote:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0So after further investigation, I&#39=
+;m fairly sure awk is actually present<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0in the target image.=C2=A0 Here are m=
+y reasons why I feel that this is the case:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0-I looked at the busybox menuconfig G=
+UI that comes up when I run<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;bitbake -c menuconfig busybox&q=
+uot; and it says awk is built-in.=C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0-I looked at various def-config files=
+ I found by just doing a &quot;grep -rn<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;CONFIG_AWK&quot;&quot; and foun=
+d that CONFIG_AWK seems to have been enabled<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0throughout the project (there was the=
+ line CONFIG_AWK=3Dy uncommented in<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0the various def-config files I mentio=
+ned).=C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0-I have an older version of the targe=
+t image that my coworker (who has<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0since left the company) created.=C2=
+=A0 I just need to rebuild this image<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0because I am trying to add some kerne=
+l modules to the image.=C2=A0 When I run<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0the command &quot;awk&quot; in the co=
+nsole for the T4240 RDB when the older<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0version of the image is loaded, I do =
+see the gawk help info come up.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0This shows awk is present in the olde=
+r image.<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0But looking at what Khem Raj mentione=
+d, perhaps bitbake is just not<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0finding the awk because it&#39;s actu=
+ally in /usr/bin when bitbake expects<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0it to be in /bin?=C2=A0 Though I am a=
+ little confused about the link you<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0sent, Khem Raj.=C2=A0 How do exactly =
+do I apply this patch?=C2=A0 I&#39;m assuming we<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0have to change the file ver_linux?=C2=
+=A0 I did a &quot;find . -name &quot;ver_linux&quot;&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0and I see multiple results:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0bash-4.2$ find . -name &quot;ver_linu=
+x&quot;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0./build_t4240rdb-64b/tmp/work/ppc64e6=
+500-fsl-linux/linux-libc-headers/4.1-r0/linux-4.1/scripts/ver_linux<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0./build_t4240rdb-64b/tmp/work/ppce650=
+0-fslmllib32-linux/lib32-linux-libc-headers/4.1-r0/linux-4.1/scripts/ver_li=
+nux<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0./build_t4240rdb-64b/tmp/work/t4240rd=
+b_64b-fsl-linux/kernel-devsrc/1.0-r0/package/usr/src/kernel/scripts/ver_lin=
+ux<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0./build_t4240rdb-64b/tmp/work/t4240rd=
+b_64b-fsl-linux/kernel-devsrc/1.0-r0/image/usr/src/kernel/scripts/ver_linux=
+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0./build_t4240rdb-64b/tmp/work/t4240rd=
+b_64b-fsl-linux/kernel-devsrc/1.0-r0/packages-split/kernel-devsrc/usr/src/k=
+ernel/scripts/ver_linux<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0./build_t4240rdb-64b/tmp/work-shared/=
+t4240rdb-64b/kernel-source/scripts/ver_linux<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0./build_t4240rdb/tmp/work/ppc64e6500-=
+fslmllib64-linux/lib64-linux-libc-headers/4.1-r0/linux-4.1/scripts/ver_linu=
+x<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0./build_t4240rdb/tmp/work/ppce6500-fs=
+l-linux/linux-libc-headers/4.1-r0/linux-4.1/scripts/ver_linux<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0./build_t4240rdb/tmp/work-shared/t424=
+0rdb/kernel-source/scripts/ver_linux<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Now the build I&#39;m working on is b=
+uild_t4240rdb-64b so the last three<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0results in that search probably don&#=
+39;t matter.=C2=A0 Though there are still<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0six more results for when I search ve=
+r_linux.=C2=A0 So I&#39;m not sure which one<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0I need to change.=C2=A0 Moreover, all=
+ of the ver_linux files I found more or<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0less look like the following:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"https://gist.github.com/Wa=
+yneZhenLi/c7475cf382a80bfd2de31e82c40c1677" rel=3D"noreferrer" target=3D"_b=
+lank">https://gist.github.com/WayneZhenLi/c7475cf382a80bfd2de31e82c40c1677<=
+/a><br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Which seems to be very different from=
+ the ver_linux file mentioned in<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0the patch.=C2=A0 This further confuse=
+s me on how to apply the patch.=C2=A0<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Or maybe do you guys think maybe the =
+patch isn&#39;t the solution here?=C2=A0<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0Maybe there&#39;s some other reason b=
+itbake isn&#39;t finding the awk?<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0-Thanks!, Wayne Li<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0On Wed, Nov 13, 2019 at 10:57 AM Khem=
+ Raj &lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@g=
+mail.com</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&lt;mailto:<a href=3D"mailto:raj.khem=
+@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;&gt; wrote:<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0On Wed, 2019-11-13 at 1=
+0:33 +0200, Adrian Bunk wrote:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; On Tue, Nov 12, 20=
+19 at 04:08:48PM -0600, Wayne Li wrote:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; Dear Yocto De=
+velopers,<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; I&#39;m tryin=
+g to to build a Yocto kernel for a T4240 RDB.=C2=A0 When I run<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; &quot;bitbake=
+<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; fsl-image-ful=
+l&quot; to build the entire linux image, I get an error<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; that says<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; &quot;Can&#39=
+;t install kernel-devsrc-1.0-r0@t4240rdb_64b: no package<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; provides<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; /bin/awk&quot=
+;.=C2=A0 Here&#39;s the entire error print that I see:<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; <a href=3D"ht=
+tps://gist.github.com/WayneZhenLi/e35f65081092cf1f24df29ec369c701c" rel=3D"=
+noreferrer" target=3D"_blank">https://gist.github.com/WayneZhenLi/e35f65081=
+092cf1f24df29ec369c701c</a><br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; Anyway I&#39;=
+m confused about this error because /bin/awk does<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; exist.=C2=A0 =
+Like if<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; I run &quot;/=
+bin/awk&quot; in the console I see help info come up describing<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; how to<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; use a program=
+ called &quot;gawk&quot;.=C2=A0 Why can&#39;t bitbake find /bin/awk<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; then?=C2=A0 O=
+r am<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; I misundersta=
+nding what this error is trying to say?=C2=A0 I mean I&#39;m<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; assuming<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; it&#39;s just=
+ not able to find /bin/awk but maybe the error means<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; something<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; else?=C2=A0 O=
+r maybe /bin/awk is actually relative to some path?=C2=A0 Let me<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; know<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; your thoughts=
+.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; /bin/awk is missin=
+g on your target image that will run on the T4240<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; RDB.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; The smallest imple=
+mentation is to enable CONFIG_AWK in your busybox<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; config.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0import something like b=
+elow patch into your kernel will help too<br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<a href=3D"https://git.=
+yoctoproject.org/cgit/cgit.cgi/linux-yocto/commit/?id=3D8af11c1cdd8fa08217e=
+702b57cf96e9030db52b2" rel=3D"noreferrer" target=3D"_blank">https://git.yoc=
+toproject.org/cgit/cgit.cgi/linux-yocto/commit/?id=3D8af11c1cdd8fa08217e702=
+b57cf96e9030db52b2</a><br>
+&gt; <br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; &gt; -Thanks!, Way=
+ne Li<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; cu<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; Adrian<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt; --<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 &quot;Is there not promise of rain?&quot; Ling Tan asked suddenl=
+y out<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0of the darkness. There had been need of rain for many days=
+.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 &quot;Only a promise,&quot; Lao Er said.<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Pearl S. Buck - Dragon See=
+d<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&gt;<br>
+&gt; <br>
+&gt; <br>
+</blockquote></div>
 
-
+--000000000000f2bb8d05973f95c6--
