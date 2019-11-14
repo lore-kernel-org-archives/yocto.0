@@ -1,43 +1,69 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <vladimir.molokov@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 957AFE00E4F; Thu, 14 Nov 2019 11:05:59 -0800 (PST)
+	id AA506E00E3B; Thu, 14 Nov 2019 15:05:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [192.55.52.43 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E85A3E00E24
-	for <yocto@yoctoproject.org>; Thu, 14 Nov 2019 11:05:55 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
-	14 Nov 2019 11:05:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.68,304,1569308400"; d="scan'208";a="214600175"
-Received: from bhatavin-mobl1.ger.corp.intel.com (HELO blackadder.local)
-	([10.249.42.178])
-	by fmsmga001.fm.intel.com with ESMTP; 14 Nov 2019 11:05:54 -0800
-To: yocto@yoctoproject.org
-References: <edcdaba6-5163-418b-ea0f-0ae4a0896651@gmail.com>
-	<CAMKF1sp32eek6prtbubAB46hpz4jG9UviPgJ3wBzi4jBfwArmw@mail.gmail.com>
-	<5fc26e48-9555-bd75-1ce5-4023162e6154@gmail.com>
-From: Ross Burton <ross.burton@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
-	Swindon SN3 1RJ
-Message-ID: <81cf1717-fef5-4691-ba4f-887515d1f4b3@intel.com>
-Date: Thu, 14 Nov 2019 19:05:53 +0000
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:60.0)
-	Gecko/20100101 Thunderbird/60.9.1
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (vladimir.molokov[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.219.177 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com
+	[209.85.219.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DA9CE00E0F
+	for <yocto@yoctoproject.org>; Thu, 14 Nov 2019 15:05:15 -0800 (PST)
+Received: by mail-yb1-f177.google.com with SMTP id q7so3292849ybk.4
+	for <yocto@yoctoproject.org>; Thu, 14 Nov 2019 15:05:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+	:cc; bh=6cjjuxfYJECYHMvn8w9Cq5FPUJt3bm0VSbLYDApNM1E=;
+	b=aFtuF7IUliDmsM4eZXoc86vHjF1sP+JwYWjWM92p6shb6tanuudCAqAwjyu6nuSM+J
+	zhnU9Xe7rqTv22dlY22oID1Qho2BtBezae7q2cESEADYeqqdoClYdDQRQhcsip7KsIVX
+	P7fZIIckyPo6oAFiMh8MHYyRMPmge8+7AFZInlpl/FC7wyp61AX3pZABoYU7FfY1km5v
+	+ukmoVApZClIxY21kdQh5JxavvKqgM4d2+3SduQH+t+aoFKFvx5kMLKr67qQDbTBL1Ha
+	nnkCdpig+szijEzIAsuhw7K66tt+R3RH2UKRov3fFkrmVAlFrnY48kOykzxHTcHBvAiL
+	oMxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+	:message-id:subject:to:cc;
+	bh=6cjjuxfYJECYHMvn8w9Cq5FPUJt3bm0VSbLYDApNM1E=;
+	b=ACO6tu3K17eYzjaREWzsnqB85l8TvDndR4f/tOaeGoKun+ux0Pj8esoR1H3eOAdotV
+	zhJbW6CBSB82qKeRfbTeAyhNvQgZdiG8QWlFPXrzrf54IeHU1UpgXGU6XQGtl3bbdrMS
+	6/lipxEB7s/w4oWopjmc5jVv6uarQYltydtgWBP3PlE2rzQvyNNW9VHfDSLuWU9bUkEz
+	2MADNw0Ucx2eWFKNO7N8MEMWyiWWdzKlkXcSG+M5OturFzGSJtGJ6cqhrBI2EJE9MBe7
+	eSVu9NcihluYPx/NnJbHAX1K4VKRtJHjU514G1KmncLFPNfTXFSHWXCnP9/UTIp2Z1gH
+	JcoQ==
+X-Gm-Message-State: APjAAAWj+YD8/edOKRiRc6NNINDKwzzb8Z3cuBH6Ow4uzT4ljS0NoPhU
+	vbqizUuOpEpfMegQdvmaK9S13Om1VzarTiK3kwqz2efu
+X-Google-Smtp-Source: APXvYqy3mPoeFWGDo85hzHKosnXvgrU+6mOFspQjWSdGAN780Ml+2Tv9LT1EXk8ERVxVuw3+v8xN7iiUuUoltYbYHoE=
+X-Received: by 2002:a25:cc91:: with SMTP id l139mr9803719ybf.271.1573772714198;
+	Thu, 14 Nov 2019 15:05:14 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <5fc26e48-9555-bd75-1ce5-4023162e6154@gmail.com>
-Subject: Re: Collaboration on Testing GCC/LLVM Toolchains
+References: <CAE2LOAyv6+=fpMXEGBrA9nv4No9EaXT3HFffuJTd0zn8+cAkJg@mail.gmail.com>
+	<CAE2LOAzK316nQE_BU9HvqAX4kNbVjhJcDn9ZqP2itLvzrwteKQ@mail.gmail.com>
+	<7077004d7c363f729d9fd23ed6b2095592406d6c.camel@gmail.com>
+	<CAE2LOAybX7ThQosx6D6g+V3WJcpfF8n4M8D_QXJxfvDV9trBKA@mail.gmail.com>
+	<CAMKF1srbgzwxZmQiHhKSnPSdUxNKZEDtE_MfYyOHBwaNGvSAQg@mail.gmail.com>
+	<CAE2LOAwsSwEebW1UcJgxqG79cv3De6cbTvqRw66zUeAwTGHpzQ@mail.gmail.com>
+	<CAMKF1sr6RbqCK2oMM7f34ZJe9_DjxdDMXN-a4wqQK4KrYnwEmg@mail.gmail.com>
+In-Reply-To: <CAMKF1sr6RbqCK2oMM7f34ZJe9_DjxdDMXN-a4wqQK4KrYnwEmg@mail.gmail.com>
+From: Vladimir Molokov <vladimir.molokov@gmail.com>
+Date: Fri, 15 Nov 2019 00:05:03 +0100
+Message-ID: <CAE2LOAzZhO63A=FsxAC9EPA2561wXAo9J5NnkUr6xLEp1oYHBA@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: puzzle: simple recipe gets image dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,31 +75,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Nov 2019 19:05:59 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 Nov 2019 23:05:15 -0000
+Content-Type: text/plain; charset="UTF-8"
 
-On 14/11/2019 18:05, Nicholas Krause wrote:
->> I think its a good idea. Currently, we test released versions mostly,
->> however, there is
->> a class to switch to git versions and primarily be able to use tip of
->> master for a given
->> recipe, this would be something I wish we had but so far we have not
->> fully completed it
->> I know Ross had started this work and created initial skeleton, So
->> step one would be to
->> complete that class so we can easily switch recipes to use dev
->> versions of packages
->> this will go beyond GCC but certainly will be a tremendous achievement.
-> 
-> Does Ross have a copy of the skeleton or someone else as I would
-> 
-> like to take a look at it. Don't think I will be much help writing it as
-> 
-> I'm not too familiar with bitbake recipes or classes themselves.
-Fixing devupstream.bbclass (already integrated into oe-core) to also 
-extend native recipes is a non-trivial engineering effort sadly.
+> Possible that attr dependencies traverse down to kernel
 
-Ross
+So it's attr.. I wonder how it gets those dependencies
+
+"attr.do_build" -> "linux-yocto.do_deploy"
+"attr.do_build" -> "linux-yocto.do_package_write_ipk"
+
+Recipe .inc summary says "Utilities for manipulating filesystem
+extended attributes"
+And no visible deps on kernel..
 
