@@ -1,67 +1,66 @@
-Return-Path: <vladimir.molokov@gmail.com>
+Return-Path: <xerofoify@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CA24EE00E2F; Wed, 13 Nov 2019 15:42:04 -0800 (PST)
+	id 874E7E00E32; Wed, 13 Nov 2019 16:01:51 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (vladimir.molokov[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.161.48 listed in list.dnswl.org]
+	provider *      (xerofoify[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-yw1-f48.google.com (mail-yw1-f48.google.com
-	[209.85.161.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B24DEE00D86
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2019 15:42:03 -0800 (PST)
-Received: by mail-yw1-f48.google.com with SMTP id d80so1253331ywa.6
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2019 15:42:03 -0800 (PST)
+Received: from mail-qv1-f50.google.com (mail-qv1-f50.google.com
+	[209.85.219.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E26B6E00DAF
+	for <yocto@yoctoproject.org>; Wed, 13 Nov 2019 16:01:50 -0800 (PST)
+Received: by mail-qv1-f50.google.com with SMTP id w11so1616853qvu.13
+	for <yocto@yoctoproject.org>; Wed, 13 Nov 2019 16:01:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-	:cc; bh=sPxofHEiOyKNyDc2YdtxVQhPz41BuQ6MCKGL9UoDSC0=;
-	b=h0fd9dXsWErhZrbmZ5YF5NIzh/hKpHEyPnuMbtzSDkZjwN3vBbJ4St552AQA2NvmXW
-	fIGPvZB+wbfIi4RsThG38RGeUxeYz/4EgVfWRj9Zs3999cVOGVyDUN/XcXo5xnyURqZR
-	Qfb+nlJihhA5PJSb5EMctPmgW8Fkst92b5d9ekxbvKyJY/rhRtBVAWwohcg1I3nXsDGt
-	faDQ+6JwR+vR/osgO4s/GC5pe6YekCkm16FTsMWzlShCcUjuB+euVAleFbTPEjnQjCEx
-	utg2L3676Iu4/Dj+Nt4rSIMXd30M95KTSaB519BIhLeDLLllTKkMBR9rq362ke0yxb1m
-	jXPA==
+	h=to:from:subject:message-id:date:user-agent:mime-version
+	:content-transfer-encoding:content-language;
+	bh=ad6hIrk5th/kcLHeJ+qiGbxjIjJmjS25xAEqIppIh0E=;
+	b=H5GhEgoWtAwIIUgPNg+lUHAL/3MoLfcOokFcfFJquO+/y2ilr4SW27Snb4iehm7NiN
+	dtbmjD4RSjqL2JMafFr8kWML00Ltj/iLydeiqdP+S8pYxvNr6Hi/DJNvQ9PGhaAVX1bT
+	XD9hSelhliOSmI+0xS9BuYtWOLJKwRlCMCjBrO/NCnEREYScZJ6VnEJ4kZ2iqKeA5jt/
+	g94sryqgH/gsC0Rsc4HvI/t2y6A6m4V62UO7gKMufEhoAq86hfG4K00Udp/S96U2l/Ob
+	J1EIBqdfNRaDz4cg6Q2N4gVhb2veTqY8VfZU6t/9x0ZiU8duamyWnSf99qOqJKJYGjcB
+	kaTg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-	:message-id:subject:to:cc;
-	bh=sPxofHEiOyKNyDc2YdtxVQhPz41BuQ6MCKGL9UoDSC0=;
-	b=uTzAnWmdLUJSFbpNcIWzm8l1guU/KdJFHelMpkc2QqLfMeprOqowQlAZvqqFysqeRo
-	ygJBVifAfR1xw1x8X2PXBDgrZ+0C5nepWWUb63zxNjmjSXnbZEczBBmo6V1On7DN9uTk
-	1Ba+PVRGM0g9b/TrTzu4jKOmnAnPXeSexOawwo2FVhXGYk1pmP5fPU7x9YcvipiQW6F9
-	fKBdDliGcBWJFxwUA8ojrgkZmhUUv+zr8x4y4Srj58yoyffn5JneWbjW4YlIMtslw7w+
-	Sa59sJba4VrONSJ0RX6mhFmWnZdsdOLr0ZchQfsjO8qUUlKF+ijT4zpR9COYpLYQuDZM
-	SKJQ==
-X-Gm-Message-State: APjAAAXIk3IGTYFzRBsa2jNI9GpDqLiG82MhhDFQPdvboq0pv3jaocxy
-	o8M1yEgVaIQrOvrdvPWFX5m8IhrKnPXx6q/NEqGxhx5+
-X-Google-Smtp-Source: APXvYqxQffkywkKXKg/iCPhKEqV+qzfbsOfx2ctT87+sfABt5+wwJBUvPqHJdWQn/thg6pL6wme5M4aVja+4kOeFF6k=
-X-Received: by 2002:a81:9144:: with SMTP id i65mr4017247ywg.173.1573688522179; 
-	Wed, 13 Nov 2019 15:42:02 -0800 (PST)
+	h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+	:mime-version:content-transfer-encoding:content-language;
+	bh=ad6hIrk5th/kcLHeJ+qiGbxjIjJmjS25xAEqIppIh0E=;
+	b=QJVK40+L6lMJ711G8tujxxzlElTk5PBpjJXxGiJrtdoN07c21c7HapYONOTUtDLukt
+	L45uGHxuEPA3Snuj+XQ81EduS0r5+JNTYigiJEKTRjPr8hyFr7gki7gzVdIoJHF1xpS+
+	xx6NbLLyWo0E+npgJYOn6xYKc3tuHxSM5JBeWmagdt3nJM+6ekZYD7wv6ozdfXE/ux6j
+	+5Ptf24l7AlN8YmXPvKhWDCuAvkWeGricqgoIwdBmCbi0R7z7CK1LuI/Urqa1yoEq9M2
+	cyJQ5DOzV8qGW7n/1dOVIhcvYR37YjEWPxnYM0C/+seB2qo/T2+YFy+tTEFvRDBvQGZW
+	NgyQ==
+X-Gm-Message-State: APjAAAWtvCG4rdfnTUwLKnVH/JqaQQoaWX6SjCU1szSkA188Nt//FF61
+	Du+AzvHB2mR8qRFludFHs4YsvjEq
+X-Google-Smtp-Source: APXvYqzGkNJSueVIcT0bU2cVflP0LxdYzvBQyww0kciv0a6p2TSzn2R/Q2Zp7fF/1cOzGsPSBm/UYw==
+X-Received: by 2002:a0c:edaa:: with SMTP id h10mr5414988qvr.245.1573689709109; 
+	Wed, 13 Nov 2019 16:01:49 -0800 (PST)
+Received: from [192.168.1.103] (173-230-163-230.cable.teksavvy.com.
+	[173.230.163.230])
+	by smtp.gmail.com with ESMTPSA id z7sm2475843qth.85.2019.11.13.16.01.48
+	for <yocto@yoctoproject.org>
+	(version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+	Wed, 13 Nov 2019 16:01:48 -0800 (PST)
+To: yocto@yoctoproject.org
+From: Nicholas Krause <xerofoify@gmail.com>
+Message-ID: <edcdaba6-5163-418b-ea0f-0ae4a0896651@gmail.com>
+Date: Wed, 13 Nov 2019 19:01:46 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+	Thunderbird/68.1.2
 MIME-Version: 1.0
-References: <CAE2LOAyv6+=fpMXEGBrA9nv4No9EaXT3HFffuJTd0zn8+cAkJg@mail.gmail.com>
-	<CAE2LOAzK316nQE_BU9HvqAX4kNbVjhJcDn9ZqP2itLvzrwteKQ@mail.gmail.com>
-	<7077004d7c363f729d9fd23ed6b2095592406d6c.camel@gmail.com>
-	<CAE2LOAybX7ThQosx6D6g+V3WJcpfF8n4M8D_QXJxfvDV9trBKA@mail.gmail.com>
-	<CAMKF1srbgzwxZmQiHhKSnPSdUxNKZEDtE_MfYyOHBwaNGvSAQg@mail.gmail.com>
-In-Reply-To: <CAMKF1srbgzwxZmQiHhKSnPSdUxNKZEDtE_MfYyOHBwaNGvSAQg@mail.gmail.com>
-From: Vladimir Molokov <vladimir.molokov@gmail.com>
-Date: Thu, 14 Nov 2019 00:41:49 +0100
-Message-ID: <CAE2LOAwsSwEebW1UcJgxqG79cv3De6cbTvqRw66zUeAwTGHpzQ@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: puzzle: simple recipe gets image dependencies
+Subject: Collaboration on Testing GCC/LLVM Toolchains
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -73,35 +72,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Nov 2019 23:42:04 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 14 Nov 2019 00:01:51 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-thank you for your answer!
+Greetings All,
 
-when I comment out DEPENDS = "attr" line in "example" recipe
-then there is no "bad-example" dependency:
-https://gitlab.com/morokov/build/raw/master/task-depends-without-attr.dot
+I'm a student working on multi-threading GCC and researching it. Seems 
+that it my
 
-> Alright, so you have initramfs enabled it seems. Which means kernel
-> will first try to build designated
-> initramfs image which in your case is
->
-> "linux-yocto.do_bundle_initramfs" -> "core-image-minimal.do_image_complete"
->
-> and then core-image-minimal includes bad-example
->
-> "core-image-minimal.do_image_complete" -> "bad-example.do_populate_sysroot"
->
-> and example does ask kernel to be deployed
->
-> "example.do_build" -> "linux-yocto.do_deploy"
->
->
-> so that completes the chain.
+time doing it and other things with the project it would be great to 
+start collaborating
 
-"example" is just a simple recipe, it doesn't inherit image class
-it doesn't even belong to any image, just standalone recipe.
-I don't quite get the logic around initramfs
-why does it add those dependencies to "example" recipe?
-it doesn't if "attr" is commented out.
+on testing gcc/llvm upstream with Yocto. Granted there is a testsuite 
+for both but it
+
+would be great to also test it against a build system that builds real 
+world software.
+
+Furthermore I'm aware that this is done for Yocto toolchain selection 
+internally but it
+
+would be great if we can start collaborating on testing upstream 
+toolchains if
+
+possible.
+
+
+Not sure if that's done already so sorry for the noise if it is,
+
+Nick
+
 
