@@ -1,36 +1,41 @@
-Return-Path: <Hongxu.Jia@windriver.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4E424E00E43; Wed, 13 Nov 2019 23:34:54 -0800 (PST)
+	id AA39DE00E4B; Thu, 14 Nov 2019 02:49:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	https://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5FD5E00E32
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2019 23:34:52 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id xAE7YoYu014541
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 13 Nov 2019 23:34:50 -0800 (PST)
-Received: from 41ce8e763d5a.wrs.com (128.224.153.74) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.468.0; Wed, 13 Nov 2019 23:34:49 -0800
-From: Hongxu Jia <hongxu.jia@windriver.com>
-To: <yocto@yoctoproject.org>, <raj.khem@gmail.com>, <pjtexier@koncepto.io>
-Date: Thu, 14 Nov 2019 07:33:23 +0000
-Message-ID: <20191114073323.250920-1-hongxu.jia@windriver.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <9b25d589f66bb9a4a7850e089a5828b62ddb0bde.camel@gmail.com>
-References: <9b25d589f66bb9a4a7850e089a5828b62ddb0bde.camel@gmail.com>
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C2A1E00E43
+	for <yocto@yoctoproject.org>; Thu, 14 Nov 2019 02:49:22 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+	by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384;
+	14 Nov 2019 02:49:21 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.68,304,1569308400"; d="scan'208";a="355760300"
+Received: from bhatavin-mobl1.ger.corp.intel.com (HELO blackadder.local)
+	([10.249.42.178])
+	by orsmga004.jf.intel.com with ESMTP; 14 Nov 2019 02:49:20 -0800
+To: yocto@yoctoproject.org
+References: <20191112194806.1281210-1-JPEWhacker@gmail.com>
+From: Ross Burton <ross.burton@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+	Swindon SN3 1RJ
+Message-ID: <debaef2b-d288-074c-6fe0-166afe5b729c@intel.com>
+Date: Thu, 14 Nov 2019 10:49:19 +0000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:60.0)
+	Gecko/20100101 Thunderbird/60.9.1
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH V3] wic: support to set /root size and add extra partition
+In-Reply-To: <20191112194806.1281210-1-JPEWhacker@gmail.com>
+Subject: Re: [meta-mingw][PATCH] Add sdktest image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,58 +47,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Nov 2019 07:34:54 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 14 Nov 2019 10:49:23 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 
-- Support to add extra partition, such as add swap partition
-  to workaround memory limitation
+On 12/11/2019 19:48, Joshua Watt wrote:
+> Adds a specific image that can be used to build MinGW SDKs. This image
+> includes extra recipes that are know to build for MinGW so that they can
+> be tested on the autobuilder.
 
-- Support to set /root size
++1 feel free to merge.
 
-Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
----
- conf/machine/include/rpi-base.inc                     | 11 ++++++++++-
- ...age-raspberrypi.wks => sdimage-raspberrypi.wks.in} |  3 ++-
- 2 files changed, 12 insertions(+), 2 deletions(-)
- rename wic/{sdimage-raspberrypi.wks => sdimage-raspberrypi.wks.in} (85%)
-
-diff --git a/conf/machine/include/rpi-base.inc b/conf/machine/include/rpi-base.inc
-index af1418d..c4dffd3 100644
---- a/conf/machine/include/rpi-base.inc
-+++ b/conf/machine/include/rpi-base.inc
-@@ -6,7 +6,16 @@ SOC_FAMILY = "rpi"
- include conf/machine/include/soc-family.inc
- 
- IMAGE_FSTYPES ?= "tar.bz2 ext3 rpi-sdimg"
--WKS_FILE ?= "sdimage-raspberrypi.wks"
-+
-+# Set size of /root partition, such as 4G
-+# PI_WKS_ROOT_SIZE ?= "--size=4096M --overhead-factor 1"
-+PI_WKS_ROOT_SIZE ?= ""
-+
-+# Add extra partition, such as 1G size /swap
-+# PI_WKS_EXTRA_PARTTION = "part swap --ondisk mmcblk0 --label swap --fstype=swap --size=1024M --overhead-factor 1"
-+PI_WKS_EXTRA_PARTTION ?= ""
-+
-+WKS_FILE ?= "sdimage-raspberrypi.wks.in"
- 
- XSERVER = " \
-     xserver-xorg \
-diff --git a/wic/sdimage-raspberrypi.wks b/wic/sdimage-raspberrypi.wks.in
-similarity index 85%
-rename from wic/sdimage-raspberrypi.wks
-rename to wic/sdimage-raspberrypi.wks.in
-index 01fbaea..743d757 100644
---- a/wic/sdimage-raspberrypi.wks
-+++ b/wic/sdimage-raspberrypi.wks.in
-@@ -3,4 +3,5 @@
- # Raspberry Pi. Boot files are located in the first vfat partition.
- 
- part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 4096 --size 20
--part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label root --align 4096
-+part / --source rootfs --ondisk mmcblk0 --fstype=ext4 --label root --align 4096 ${PI_WKS_ROOT_SIZE}
-+${PI_WKS_EXTRA_PARTTION}
--- 
-2.17.1
-
+Ross
 
