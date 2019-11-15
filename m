@@ -1,73 +1,67 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <david.churchill@thingtech.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0D2CCE00D9D; Fri, 15 Nov 2019 09:34:37 -0800 (PST)
+	id EE02BE00E7B; Fri, 15 Nov 2019 13:00:24 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU,
+	DKIM_VALID, DKIM_VALID_AU, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.161.66 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.65 listed in list.dnswl.org]
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
-	[209.85.128.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 771F1E00D16
-	for <yocto@yoctoproject.org>; Fri, 15 Nov 2019 09:34:36 -0800 (PST)
-Received: by mail-wm1-f65.google.com with SMTP id 8so11311465wmo.0
-	for <yocto@yoctoproject.org>; Fri, 15 Nov 2019 09:34:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gherzan.ro; s=google;
-	h=subject:to:references:from:message-id:date:user-agent:mime-version
-	:in-reply-to:content-language:content-transfer-encoding;
-	bh=ih/T3fJtAiRGmadjnowyXbNQipXPYaMY3b3DibWpILM=;
-	b=joJmq+6O9OwDpYT4EQRNXNm7JMm6kF0LWACJ0GoUriSZNpIBasTbjnD9AMhUhdcwR3
-	GivQ1mRuFWYtsfuRSXePwOZ0vVDfnHHfjmoUI+yVHjO3C+yBjOBQTbxqj0L5qXrXbaIo
-	t8x/m+FcsCHO89FQT6n5nWC/WfFT4oIeZMpc+APICBxPYRHamkhU8CduMX04pZE8iBP4
-	7gKqQjEbKgJ19QxZI1D/OHMBDsPGlIgdgUFOZ0GD6l5AUmHFGbfjQQQ9fqrG3xG4mLdz
-	yk2VcNpJmyPIT5PAh5itxPVrmcok9c4dIyo2kd9RBHIAp2IOWaTdWk5uPGdzwSrUPYGv
-	lPKA==
+Received: from mail-yw1-f66.google.com (mail-yw1-f66.google.com
+	[209.85.161.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 966E7E00E6A
+	for <yocto@yoctoproject.org>; Fri, 15 Nov 2019 13:00:23 -0800 (PST)
+Received: by mail-yw1-f66.google.com with SMTP id p128so3557465ywc.11
+	for <yocto@yoctoproject.org>; Fri, 15 Nov 2019 13:00:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=thingtech.com; s=google;
+	h=from:mime-version:subject:message-id:date:to;
+	bh=HHXrCM6ZbKnxbPpjQvMBsQaR+ei967zqvPHHKbVvP/s=;
+	b=S+SZ7YvXYe4chvYxNg8WMvq+LgTTV0mLfwQHgXEYmWBR7zj0vmDnIN8pr0L2D7U4bx
+	D6C7aYZZB9qxRirI9rBbBbLuUmIWzcwkKz+VbAyEq+2TOZK5bTxl+eFNjZnIduwqznFn
+	x+4rAHona2beYQ0nN0xxVUiZjBVgazxMMNgFDy8yA+hH/7JrXijNdH9zF+jWmlVTn5Zs
+	wXr/moqkfO4pHguSEId5Mp4pZe2iGzU3hAY/auJKVpZDQzjMVtGRbLZZjj09ONg/MC/p
+	9MTSDVhJeBiH6EhgjB//G20BVikv270tkNzximcdoeC9ysgcDHIs10z9IKivrMXljW9D
+	ysIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
-	h=x-gm-message-state:subject:to:references:from:message-id:date
-	:user-agent:mime-version:in-reply-to:content-language
-	:content-transfer-encoding;
-	bh=ih/T3fJtAiRGmadjnowyXbNQipXPYaMY3b3DibWpILM=;
-	b=dVOy/lYhGfvdZcVjiDi8PFMQFXX15GPn3gnHvzUb8/BwG9DZKBpJ1c9SyjtZqHHZn7
-	6YKaPzLc+yZK3BFzoZBMGmbvySnItnspZ6uI+JvoNqRg5hcQcDUPrf/kuv5B2Us/HI0Z
-	s1OjBN8aMKQnmRCcJSjkFonEFjEMusAGNdMOHBrqRPLMaojHjSJ46APTHz/PszJK2S1O
-	zh8qdM/keHYeyPe8wGRWp6fom1y9c9aM8Akv/GB/K7gH2hKfutKVFCiqY/o65hxUAJqJ
-	6athu5Lnn9fzPxQ5GLADrQ5+wXwIao6ZNfV2uQ+7U2Dx4Nkp+mooFvsLdIZsEbzwJYlz
-	j11A==
-X-Gm-Message-State: APjAAAWpRTy9Ap5MQAha0LqUssbw70g4CjN3HVv/tzqBwDYXuByEi+rY
-	Rxcl4Vyw4xbPHws43ItHZnSGyg==
-X-Google-Smtp-Source: APXvYqxhEGWeViSsCf+rnDj34zYj3sYjeJbcXz3PfVtr/BnkImrSOfUnGzp2vBwH3skn9tsnbOvSuA==
-X-Received: by 2002:a05:600c:2105:: with SMTP id
-	u5mr15442979wml.47.1573839275581; 
-	Fri, 15 Nov 2019 09:34:35 -0800 (PST)
-Received: from [10.13.0.37] ([81.145.148.228])
+	h=x-gm-message-state:from:mime-version:subject:message-id:date:to;
+	bh=HHXrCM6ZbKnxbPpjQvMBsQaR+ei967zqvPHHKbVvP/s=;
+	b=EMawye9LfWqqpPvW1rgs5zgKvvJK/0WBDiCrXyyaBIfIAx+GrAQKtzWT1CVdX3tBtA
+	oY8mdzYAaH20I8nFKQJ6V+pO0ZI2DRx09e9io49ESS1KGxrXoAK7eNZhLb+I8Iycjm/a
+	FoA+8kGcWRSUcKGP2I0yk9/20WhvijpTh4wk76JqX/ifUMlJ/xmQ4o1IT9DFuv8uMB+p
+	bpf77hAi6a4uSHCc+RdYmeGGqKmp12FUHtL0vqPU9/zJfkww8Jas6lPh1uJ8nrU/bAr8
+	N/kmWCOU8xuWg1d9ATDmokIkCDx4dHCAeQUroCqDHpzwLcpcQGBkJWucUF6omgb2q1/3
+	Aing==
+X-Gm-Message-State: APjAAAVIGReFncr4AHIJMI0VEbJ5/xpV7JAOwddARhEtN8to9Ehy1kzx
+	w3QkcWmuco++BdfloGsgzXbCMkP0zaw=
+X-Google-Smtp-Source: APXvYqxv9nikf5oHSBUXM9O4YewLyBisi/CV84he8zlD7OkiHG2pluuWNgzmV/AMDNRK0ImB6p/o+Q==
+X-Received: by 2002:a81:c54c:: with SMTP id o12mr11141128ywj.93.1573851622425; 
+	Fri, 15 Nov 2019 13:00:22 -0800 (PST)
+Received: from ?IPv6:2601:c3:4280:1b24:c45b:1d83:24fd:508b?
+	([2601:c3:4280:1b24:c45b:1d83:24fd:508b])
 	by smtp.gmail.com with ESMTPSA id
-	j63sm10741031wmj.46.2019.11.15.09.34.34
+	204sm4555574ywm.49.2019.11.15.13.00.21 for <yocto@yoctoproject.org>
 	(version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 15 Nov 2019 09:34:34 -0800 (PST)
-To: Paul Barker <paul@betafive.co.uk>, Hongxu Jia <hongxu.jia@windriver.com>, 
-	Yocto discussion list <yocto@yoctoproject.org>, pjtexier@koncepto.io
-References: <20191114060410.37069-1-hongxu.jia@windriver.com>
-	<b8da947b-b904-4f54-9b61-39a6ff395ad1@www.fastmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Message-ID: <eaedb235-13fa-1fef-b142-b64b2820e9db@gherzan.ro>
-Date: Fri, 15 Nov 2019 17:34:34 +0000
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-	Thunderbird/60.9.0
-MIME-Version: 1.0
-In-Reply-To: <b8da947b-b904-4f54-9b61-39a6ff395ad1@www.fastmail.com>
-Subject: Re: [meta-raspberrypi][PATCH] wic: add swap partition and set /root and /swap size
+	Fri, 15 Nov 2019 13:00:21 -0800 (PST)
+From: David Churchill <david.churchill@thingtech.com>
+Mime-Version: 1.0 (Mac OS X Mail 13.0 \(3601.0.10\))
+Message-Id: <B793512E-D26B-4CDA-A4FF-8056BC1849AB@thingtech.com>
+Date: Fri, 15 Nov 2019 16:00:21 -0500
+To: yocto@yoctoproject.org
+X-Mailer: Apple Mail (2.3601.0.10)
+Subject: Cannot install package SMBNETFS Build Error Configuring CUPS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -79,27 +73,91 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Nov 2019 17:34:37 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 15 Nov 2019 21:00:25 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_C1C6DC75-7E10-4505-9D04-BBB3E96FC491"
 
-Hi,
+--Apple-Mail=_C1C6DC75-7E10-4505-9D04-BBB3E96FC491
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
 
-On 14/11/2019 11:11, Paul Barker wrote:
-> On Thu, 14 Nov 2019, at 06:04, Hongxu Jia wrote:
->> - Add swap partition to workaround memory limitation
->>
->> - Support to set /root and /swap size, 4G /root and 1G /swap by default
->>
->> Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
-> 
-> These settings feel distro-specific to me. They're not required for how many of us use the Raspberry Pi so it's best not to force them on everyone.
+Hello, new to Yocto.  I=E2=80=99m trying to add SMB/CIFS support to the =
+Linux Distribution on a WP77xx based Sierra Wireless FX30 so I can mount =
+windows network shares.  It seems that a  recipe exists for this in my =
+source tree for my device at=20
 
-I tend to agree with Paul. The final SD card configuration is generally 
-a per project decision (more or less). The BSP provides a bootable 
-reference and from there sky is the limit.
+	=
+/yocto/meta-openembedded/meta-filesystems/recipes-filesystems/smbnetfs
 
--- 
-Andrei Gherzan
+I=E2=80=99ve edited my =
+/yocto/meta-swi/meta-swi-mdm9x28/recipes-core/images/mdm9x28-image.inc =
+file and added the lines:
 
+	# Add smbnetfs package
+	IMAGE_INSTALL_append =3D " smbnetfs=E2=80=9D
+
+But when I type make in my /yocto directory the image fails to build =
+with:
+
+	ERROR: cups-2.1.4-r0 do_configure: configure failed
+	configure: error: Unable to enable SSL support.
+	ERROR: Task =
+(/home/myUserName/yocto/poky/meta/recipes-extended/cups/cups_2.1.4.bb:do_c=
+onfigure) failed with exit code =E2=80=981'
+
+I can=E2=80=99t figure out how to get past this error,  I would greatly =
+appreciate any help in resolving this.
+
+Thanks in advance,
+
+David=
+
+--Apple-Mail=_C1C6DC75-7E10-4505-9D04-BBB3E96FC491
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;" =
+class=3D"">Hello, new to Yocto. &nbsp;I=E2=80=99m trying to add SMB/CIFS =
+support to the Linux Distribution on a WP77xx based Sierra Wireless FX30 =
+so I can mount windows network shares. &nbsp;It seems that a =
+&nbsp;recipe exists for this in my source tree for my device =
+at&nbsp;<div class=3D""><br class=3D""></div><div class=3D""><span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">	=
+</span>/yocto/meta-openembedded/meta-filesystems/recipes-filesystems/smbne=
+tfs</div><div class=3D""><br class=3D""></div><div class=3D"">I=E2=80=99ve=
+ edited =
+my&nbsp;/yocto/meta-swi/meta-swi-mdm9x28/recipes-core/images/mdm9x28-image=
+.inc file and added the lines:</div><div class=3D""><br =
+class=3D""></div><div class=3D""><div class=3D""><span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">	</span># Add =
+smbnetfs package</div><div class=3D""><span class=3D"Apple-tab-span" =
+style=3D"white-space:pre">	</span>IMAGE_INSTALL_append =3D " =
+smbnetfs=E2=80=9D</div><div class=3D""><br class=3D""></div><div =
+class=3D"">But when I type make in my /yocto directory the image fails =
+to build with:</div><div class=3D""><br class=3D""></div><div =
+class=3D""><font color=3D"#000000" class=3D""><span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>ERROR: =
+cups-2.1.4-r0 do_configure: configure failed<br class=3D""><span =
+class=3D"Apple-tab-span" style=3D"white-space:pre">	=
+</span>configure: error: Unable to enable SSL support.<br class=3D""><span=
+ class=3D"Apple-tab-span" style=3D"white-space:pre">	</span>ERROR: =
+Task =
+(/home/myUserName/yocto/poky/meta/recipes-extended/cups/cups_2.1.4.bb:do_c=
+onfigure) failed with&nbsp;exit code&nbsp;=E2=80=981'</font></div></div><d=
+iv class=3D""><font color=3D"#000000" class=3D""><span =
+style=3D"caret-color: rgb(0, 0, 0);" class=3D""><br =
+class=3D""></span></font></div><div class=3D""><font color=3D"#000000" =
+class=3D"">I can=E2=80=99t figure out how to get past this error, =
+&nbsp;I would greatly appreciate any help in resolving =
+this.</font></div><div class=3D""><font color=3D"#000000" class=3D""><br =
+class=3D""></font></div><div class=3D""><font color=3D"#000000" =
+class=3D"">Thanks in advance,</font></div><div class=3D""><font =
+color=3D"#000000" class=3D""><br class=3D""></font></div><div =
+class=3D""><font color=3D"#000000" =
+class=3D"">David</font></div></body></html>=
+
+--Apple-Mail=_C1C6DC75-7E10-4505-9D04-BBB3E96FC491--
