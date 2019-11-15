@@ -1,61 +1,74 @@
-Return-Path: <deepteriar@gmail.com>
+Return-Path: <paul@betafive.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4E243E00E5E; Fri, 15 Nov 2019 03:30:00 -0800 (PST)
+	id D34DBE00E51; Fri, 15 Nov 2019 05:09:40 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (deepteriar[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
+	low *      trust
+	*      [64.147.123.21 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.166.47 listed in list.dnswl.org]
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com
-	[209.85.166.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B7FBFE00DEE
-	for <yocto@yoctoproject.org>; Fri, 15 Nov 2019 03:29:59 -0800 (PST)
-Received: by mail-io1-f47.google.com with SMTP id j13so10099741ioe.0
-	for <yocto@yoctoproject.org>; Fri, 15 Nov 2019 03:29:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=mime-version:from:date:message-id:subject:to;
-	bh=GeBlaCJUhX9HSbmsLVDnX5wbw2/W9ZIdt4r0QGuKjq4=;
-	b=lB7qDR0lZ2fx2/Vl64JksnyYlyHiBIayqSZz7znma9sGeXjxRKMlKLigEvH6+HkELJ
-	A4jgpBMgVjCdtmZgBhhlysv2ExRjHWa8TEbSdJtMmXnlVyrUEHGNldisE0XdZk+140gf
-	bwAHRF6Fknpiz8t/CKAGIiXjmFobDqcikCXLkNJ955QSku4jeGXv03CvWu3eWtyziNRc
-	0sndLiwygbhTkPFBR+56cxMGsA/8dzp9U32MNhZJkKY2qFRzxIQmtm6mtauNCfjeLjTf
-	C96NPKh3XqKIYBjDr7iwrxxJg73RrDV8uPyzBFEksQqo0UQFpb8OXtRoz6wFhtjHgJaL
-	01QA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-	bh=GeBlaCJUhX9HSbmsLVDnX5wbw2/W9ZIdt4r0QGuKjq4=;
-	b=OLdHv4xOgFHP2eWQdu7GqtAGRAOoi/c9Q71Fuk5NWjWSqD1gU0X+7ocqD+FcbsSW6E
-	nySpIq3hXhCIsgC1OtrwFMdBXpcZ5zWfr0YbLyY0lk1EqPanEYiRu3FkjJXrlMHhNIJ1
-	RyP+qcMfwa/fJEOjzhIimxD2H4ZU40SVMATiEJfaA0+NVnt2akmkQ1ZpygvufwiVs/7D
-	uEY+Gs9Cag8b0za0MSho4qPK0sfcIT3h+OapipF9F04MpoZC09RcXnXCevtVDeL7emuZ
-	ys45SGYx4gHaZhO5GdEbEMMgN8FsUFW/OTCXLp51y8ho8FxPVC6yLH7vgUMDTbCDrMW0
-	C6JA==
-X-Gm-Message-State: APjAAAWrzSJomUg9VtxbPCK79nZTiUfzvwsnyyIr67Tk9TprRw4a1gu8
-	xVhGLll3mRmBPw5vRLu8swDGnTbaLV9YfFcz4+oLw+UU
-X-Google-Smtp-Source: APXvYqwddZN33zQjb1kEDEg4VL+RwnwT8mYm9dD2j4LOlIZ+XlgSG9X1tlVYTrW6GQmhFd05Q7V9pOPxW/LRPtCRT7Y=
-X-Received: by 2002:a05:6638:9:: with SMTP id z9mr170186jao.35.1573817398932; 
-	Fri, 15 Nov 2019 03:29:58 -0800 (PST)
-MIME-Version: 1.0
-From: Deepika Teriar <deepteriar@gmail.com>
-Date: Fri, 15 Nov 2019 12:29:47 +0100
-Message-ID: <CAM_pFj-xRKHu6YsDRgi0e6RiPZU6rWbhpnS0MCTkk6JS4cJ5ig@mail.gmail.com>
+Received: from wout5-smtp.messagingengine.com (wout5-smtp.messagingengine.com
+	[64.147.123.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 180D1E00C5C
+	for <yocto@yoctoproject.org>; Fri, 15 Nov 2019 05:09:39 -0800 (PST)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailout.west.internal (Postfix) with ESMTP id 793323A9;
+	Fri, 15 Nov 2019 08:09:39 -0500 (EST)
+Received: from mailfrontend1 ([10.202.2.162])
+	by compute1.internal (MEProxy); Fri, 15 Nov 2019 08:09:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=betafive.co.uk;
+	h=from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding; s=fm3; bh=jRLShrejMNo0srvQsLfCPmb7NK
+	vdICTaucpzw2I890I=; b=agKr5FEg1KDhjfBHbvdqJYh/m0jxBpHy2eiMb3sdUU
+	he53b5lagHSTP0+QnhJoK/qY630VwrAZJJGk1MuzBkl+fID1Ij/0DSo1db7m7zAn
+	iS9pBLdYJ+f5MBMRUaG1Mu9SNASgnaASZAz9+SzIpvZpEeEAIfcX7emolkkkt9sr
+	4EgGSFjx9vh3FRt3EsGZAQ9AA9Gz9tnuRY5XuR/D2LJmnZ3RoTHge0EgfIhK11In
+	1H02cvnFBbut8HoaanH+5rxNOBGKIGKw1yS0+tixJzrk7xRTh2lCsUVImtjYlNQ7
+	FWQm2V4C28O86nBAmKp6g5MKHRj+WERtqNoAL5NuN57w==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:content-transfer-encoding:date:from
+	:message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=jRLShrejMNo0srvQs
+	LfCPmb7NKvdICTaucpzw2I890I=; b=UYrMENDQ5R1lxR8ZUgaE+npQkNLXHpMWc
+	kxplbXc2uM1bZaf5U458UVfsChRwVE6KK3aJ7IXCRlQanGqUOzEqJO6AMwKrBKsF
+	ZF2PgqCEDovYtrYq2/jqFl1hl4W0W88t2QduSjDMFoR/GsGa4ZozQg9FT2TFH07D
+	MNhENdMwmeY7Pr+Uk/RxrZ4s997ekmv2+EAHrufZBNbYSuQrpdjtyOlkUP5uGau6
+	+FDPYsVI/P7jPOm5wSRtLC0h3BPQ9pIcL7+YrTookVUOBCy3do2JXUk9x1SdYRtm
+	gKYOWQs2hNVnhH9/KpJ7bJmiD3SoNQ6At1t4xm868857AQfQnE4yQ==
+X-ME-Sender: <xms:kqPOXXTCykADO2lQNWFYUGYDXpmT0_JzT2tHPtl2O2cSCv42qyRFqg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrudefhedggeelucetufdoteggodetrfdotf
+	fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+	uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
+	dttdenucfhrhhomheprfgruhhluceurghrkhgvrhcuoehprghulhessggvthgrfhhivhgv
+	rdgtohdruhhkqeenucfkphepkedvrdegrddvtdejrdeivdenucfrrghrrghmpehmrghilh
+	hfrhhomhepphgruhhlsegsvghtrghfihhvvgdrtghordhukhenucevlhhushhtvghrufhi
+	iigvpedt
+X-ME-Proxy: <xmx:kqPOXT_3Eyyf908lVLGPNcAz23DQ-3hQ2OLeRB58nOh1_JgSx2Xktw>
+	<xmx:kqPOXb86zVgA04XyujbO2vaY1wVIULKt8_84VrqRkH5VIARyFBWKYQ>
+	<xmx:kqPOXXRb1cks2fs88WwmA-NeopGbIKWiKGdTJkF_RyPPabAK3CaC1A>
+	<xmx:k6POXZZUjOsiJVs8vUMKQ0rG1omHk77X3kG8MLyFAD69dWYZmnCENg>
+Received: from arch-laptop.roaming.b5net.uk
+	(cpc86219-nott20-2-0-cust829.12-2.cable.virginm.net [82.4.207.62])
+	by mail.messagingengine.com (Postfix) with ESMTPA id 478EC8005C;
+	Fri, 15 Nov 2019 08:09:38 -0500 (EST)
+From: Paul Barker <paul@betafive.co.uk>
 To: yocto@yoctoproject.org
-Subject: Adding a custom environment variable
+Date: Fri, 15 Nov 2019 13:09:31 +0000
+Message-Id: <20191115130931.47159-1-paul@betafive.co.uk>
+X-Mailer: git-send-email 2.24.0
+MIME-Version: 1.0
+Subject: [patchtest-oe][PATCH] test_patch_upstream_status: Be explicit about case sensitivity
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,29 +80,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Nov 2019 11:30:00 -0000
-Content-Type: multipart/alternative; boundary="000000000000013bab059760ebfe"
+X-List-Received-Date: Fri, 15 Nov 2019 13:09:41 -0000
+Content-Transfer-Encoding: 8bit
 
---000000000000013bab059760ebfe
-Content-Type: text/plain; charset="UTF-8"
+The case sensitivity of the checks for the "Upstream-Status" label
+should match so that failure messages make sense. The checks in the
+parse_upstream_status module are case sensitive and so the initial regex
+check should also be made case sensitive.
 
-Hi,
+A quick note about case sensitivity is added to the advice given if
+"Upstream-Status" is not found.
 
-I have a module called unit-tests.
-I want to create an environment variable so that at compile time I can
-select whether to add or remove the module from build.
+Signed-off-by: Paul Barker <paul@betafive.co.uk>
+---
+ tests/test_patch_upstream_status.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Thanks
-Deepika
+diff --git a/tests/test_patch_upstream_status.py b/tests/test_patch_upstream_status.py
+index a477dfb..ecccc58 100644
+--- a/tests/test_patch_upstream_status.py
++++ b/tests/test_patch_upstream_status.py
+@@ -23,7 +23,7 @@ import os
+ 
+ class PatchUpstreamStatus(base.Base):
+ 
+-    upstream_status_regex = re.compile("(?<=\+)Upstream.Status", re.IGNORECASE)
++    upstream_status_regex = re.compile("(?<=\+)Upstream.Status")
+ 
+     @classmethod
+     def setUpClassLocal(cls):
+@@ -47,7 +47,7 @@ class PatchUpstreamStatus(base.Base):
+             payload = newpatch.__str__()
+             if not self.upstream_status_regex.search(payload):
+                 self.fail('Added patch file is missing Upstream-Status in the header',
+-                          'Add Upstream-Status: <Valid status> to the header of %s' % newpatch.path,
++                          'Add Upstream-Status: <Valid status> (case sensitive) to the header of %s' % newpatch.path,
+                           data=[('Standard format', self.standard_format), ('Valid status', self.valid_status)])
+             for line in payload.splitlines():
+                 if self.patchmetadata_regex.match(line):
+-- 
+2.17.1
 
---000000000000013bab059760ebfe
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Hi,<div dir=3D"auto"><br></div><div dir=3D"auto">I have a=
- module called unit-tests.</div><div dir=3D"auto">I want to create an envir=
-onment variable so that at compile time I can select whether to add or remo=
-ve the module from build.</div><div dir=3D"auto"><br></div><div dir=3D"auto=
-">Thanks</div><div dir=3D"auto">Deepika</div></div>
-
---000000000000013bab059760ebfe--
