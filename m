@@ -1,50 +1,62 @@
-Return-Path: <ouyangxuan10@163.com>
+Return-Path: <majchrzycki.mateusz@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E2E7E00E01; Fri, 15 Nov 2019 19:07:54 -0800 (PST)
+	id 6D262E00D6A; Sun, 17 Nov 2019 11:44:23 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE autolearn=ham
-	version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (ouyangxuan10[at]163.com)
+	provider *      (majchrzycki.mateusz[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.210.46 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 909 seconds by postgrey-1.32 at yocto-www;
-	Fri, 15 Nov 2019 19:07:50 PST
-Received: from m13-86.163.com (m13-86.163.com [220.181.13.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5A92E00D99
-	for <yocto@yoctoproject.org>; Fri, 15 Nov 2019 19:07:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=OtBD8
-	ewZgrT44iz5OP2Xki4O4wUVU2Ukxol3rBQbm9E=; b=WV2mSqpPOXcBSZu2J9n2B
-	H+6M1OJCj8KLi/C/JTmNejAngo3Qza4xxrQ+ahht9keLXAPeBrFFQDxjl9wZLZpH
-	SlUMNix/y1gsM5S5v9G/8wN16qY6S+PbZrdEXuqWoluSKhgfLA0AiTzHqdhqaYe8
-	H0tyUKQZnQWT4g8h7GN/6A=
-Received: from ouyangxuan10$163.com ( [106.120.127.15] ) by
-	ajax-webmail-wmsvr86 (Coremail) ; Sat, 16 Nov 2019 10:52:32 +0800 (CST)
-X-Originating-IP: [106.120.127.15]
-Date: Sat, 16 Nov 2019 10:52:32 +0800 (CST)
-From: www <ouyangxuan10@163.com>
-To: yocto@yoctoproject.org
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.10 build 20190724(ac680a23)
-	Copyright (c) 2002-2019 www.mailtech.cn 163com
-X-CM-CTRLDATA: jOT4wWZvb3Rlcl9odG09MzY4OjU2
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com
+	[209.85.210.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7D8EE00852
+	for <yocto@yoctoproject.org>; Sun, 17 Nov 2019 11:44:22 -0800 (PST)
+Received: by mail-ot1-f46.google.com with SMTP id 94so12619063oty.8
+	for <yocto@yoctoproject.org>; Sun, 17 Nov 2019 11:44:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
+	h=mime-version:from:date:message-id:subject:to;
+	bh=9NrY3F3+59txhw7djEiru4eV1Fgy3cVVcuZLBxQrVLU=;
+	b=pDpaKXTcBm4jO74lQEau8YnBDOxgDtzf0hsx7H0Kz+DHW4GdMAmnLFblmtgCy5WNEf
+	MN3eEn4Jks0Z/GJT5pbSns7C8Tk+4CsdAaD15KJsLWG9ayj6ypaOWgyPgOmQy71I7v21
+	ygYU2asw6nkRB8puBFettjs0QfAz+4wBsr/Kmo6FoZ2iZ8m5S3roh7MXbroZ61PA27OD
+	xp8oBM6ToAjrdcVzunAct02Q1fxcxqx01gB4GRVB/nsamuRs2H6JY+DDx6zr2c/Bmy0a
+	CwINf5b3lmgrf3YC8eh150ALcGGtvrsDhJuDEr7rpVgf1LyDRKzxW6M0BOCe5qYJKpnL
+	ze/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20161025;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+	bh=9NrY3F3+59txhw7djEiru4eV1Fgy3cVVcuZLBxQrVLU=;
+	b=V1jU56pYOSVf4qrXH4IOgSO6Gd+wxKWuhwwea4yKZ8X+cTpAK3FR3xmzs6SSyIRwDz
+	MMQj+8wKKkZ4NAQ+AmZBA/BvXdKa3WSw9q80iOM/mdQ/+boSTJTc6bUhHx67UlUsKECZ
+	eif5z8vTRuev/HjdDJkkkCX47Q+k+anrcm11KLegiwS0+K05I3EpbhBU6EG287/hIuMU
+	LzfahbNhTGNvzURYwuenNtdAT8Za2FZsFg3+SinhZUGoZOXsSB75FyxefVq2P1phWRit
+	pTspyg1W/TdC3yh87O8Gjr1q9nMW+xxWTtZxgwSlR325V2/X1QFm6radgAhdmZeiKd01
+	RPbQ==
+X-Gm-Message-State: APjAAAWNOvAnuLHTMFuhP0OJOlXOLAc+HVKWbKxp68I2QDInCSagEV4k
+	/qC4aNLuLPlc1gAr+VB5agpGYdxF9AnC+0k9Y5u2/bJHGQQ=
+X-Google-Smtp-Source: APXvYqyCA0rsG2PurbifpUgIJQhSc+dNmkW8M+kzRdtoR6qVUuxhiYRVEeUP5swF9IPE7wOWPZ8/AWcLwUa3O44G8nw=
+X-Received: by 2002:a05:6830:c2:: with SMTP id
+	x2mr18617969oto.257.1574019861749; 
+	Sun, 17 Nov 2019 11:44:21 -0800 (PST)
 MIME-Version: 1.0
-Message-ID: <6f2e7261.2256.16e722057bc.Coremail.ouyangxuan10@163.com>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: VsGowABndnZwZM9d7kUyAQ--.64761W
-X-CM-SenderInfo: prx1t0pj0xt0irq6il2tof0z/1tbiLhhu2lSIlUwPQQADsK
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
-Subject: how to compile a task every time?
+From: Mateusz Majchrzycki <majchrzycki.mateusz@gmail.com>
+Date: Sun, 17 Nov 2019 20:44:10 +0100
+Message-ID: <CADQzoRtS-ksG19HM-i1t+dS7Z+pKP7VW+Xru7uoSCKWX9KGnHg@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Enable systemd service with parameter
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,30 +68,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 16 Nov 2019 03:07:54 -0000
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_34402_1517120498.1573872752572"
+X-List-Received-Date: Sun, 17 Nov 2019 19:44:23 -0000
+Content-Type: multipart/alternative; boundary="000000000000baa5920597900ea5"
 
-------=_Part_34402_1517120498.1573872752572
-Content-Type: text/plain; charset=GBK
-Content-Transfer-Encoding: base64
+--000000000000baa5920597900ea5
+Content-Type: text/plain; charset="UTF-8"
 
-RGVhciBhbGwsCgoKSSB3YW50IHRvIGFkZCBhIKGwQlVJTERfVElNRaGxIHZhcmlhYmxlIHRvIGlt
-YWdlLCBzbyBJIG5lZWQgdG8gY29tcGlsZSBhIHRhc2sgZXZlcnkgdGltZSwgZXZlbiBpZiB0aGUg
-cGFja2FnZSBoYXMgbm8gbW9kaWZpY2F0aW9uLiBXaG8gY2FuIHRlbGwgbWUsIGhvdyBjYW4gSSBz
-ZXQgaXQgdG8gdGhlIHBhY2thZ2U/IHRoYW5rcy4KCgp0aGFua3MsCkJ5cm9u
+Hi!
+I have a pretty unusual problem. I need to enable a systemd service
+(openvpn) with a profile as a parameter (typically you do it by 'systemctl
+enable openvpn@profile'). But the profile on build time doesn't exist (it
+is just symlink to non existing file).
+My recipe bb looks like (I'm omitting SUMMARY etc.):
 
-------=_Part_34402_1517120498.1573872752572
-Content-Type: text/html; charset=GBK
-Content-Transfer-Encoding: base64
+inherit systemd
+SYSTEMD_SERVICE_${PN} = "openvpn@clientprofile.service"
+SYSTEMD_AUTO_ENABLE = "enable"
+DEPENDS = "openvpn"
+SYSTEMD_PACKAGES = "${PN}"
 
-PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
-Zm9udC1mYW1pbHk6QXJpYWwiPjxkaXY+RGVhciBhbGwsPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRp
-dj5JIHdhbnQgdG8gYWRkIGEgobBCVUlMRF9USU1FobEgdmFyaWFibGUgdG8gaW1hZ2UsIHNvIEkg
-bmVlZCB0byBjb21waWxlIGEgdGFzayBldmVyeSB0aW1lLCBldmVuIGlmIHRoZSBwYWNrYWdlIGhh
-cyBubyBtb2RpZmljYXRpb24uJm5ic3A7V2hvIGNhbiB0ZWxsIG1lLCBob3cgY2FuIEkgc2V0IGl0
-IHRvIHRoZSBwYWNrYWdlPyB0aGFua3MuPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj50aGFua3Ms
-PC9kaXY+PGRpdj5CeXJvbjwvZGl2PjwvZGl2Pjxicj48YnI+PHNwYW4gdGl0bGU9Im5ldGVhc2Vm
-b290ZXIiPjxwPiZuYnNwOzwvcD48L3NwYW4+
+do_install() {
+install -d ${D}${sysconfdir}/openvpn/
+ln -sf /data/etc/openvpn/clientprofile.conf
+${D}${sysconfdir}/openvpn/clientprofile.conf
+}
 
-------=_Part_34402_1517120498.1573872752572--
+Unfortunately, on build I get the following error:
+ERROR: openvpn-client-1.0-r3 do_package: SYSTEMD_SERVICE_openvpn-client
+value openvpn@clientprofile.service does not exist
+ERROR: openvpn-client-1.0-r3 do_package: Function failed:
+systemd_populate_packages
+
+What am I doing wrong? I suppose the symlink is not a problem as normally
+systemctl enables service with non-existent file as a parameter (it fails
+on start, but not enabling).
+
+Best regards,
+Mateusz
+
+--000000000000baa5920597900ea5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:monospac=
+e,monospace"><span style=3D"font-family:Arial,Helvetica,sans-serif">Hi!</sp=
+an><br></div>I have a pretty unusual problem. I need to enable a systemd se=
+rvice (openvpn) with a profile as a parameter (typically you do it by &#39;=
+systemctl enable openvpn@profile&#39;). But the profile on build time doesn=
+&#39;t exist (it is just symlink to non existing file).<br>My recipe bb loo=
+ks like (I&#39;m omitting SUMMARY etc.):<br><div class=3D"gmail_default" st=
+yle=3D""><br>inherit systemd<br>SYSTEMD_SERVICE_${PN} =3D &quot;openvpn@cli=
+entprofile.service&quot;<br>SYSTEMD_AUTO_ENABLE =3D &quot;enable&quot;<br>D=
+EPENDS =3D &quot;openvpn&quot;<br>SYSTEMD_PACKAGES =3D &quot;${PN}&quot;<br=
+><br>do_install() {<br>install -d ${D}${sysconfdir}/openvpn/<br>ln -sf /dat=
+a/etc/openvpn/clientprofile.conf ${D}${sysconfdir}/openvpn/clientprofile.co=
+nf<br>}<br></div><br>Unfortunately, on build I get the following error:<br>=
+ERROR: openvpn-client-1.0-r3 do_package: SYSTEMD_SERVICE_openvpn-client val=
+ue openvpn@clientprofile.service does not exist<br>ERROR: openvpn-client-1.=
+0-r3 do_package: Function failed: systemd_populate_packages<br><br>What am =
+I doing wrong? I suppose the symlink is not a problem as normally systemctl=
+ enables service with non-existent file as a parameter (it fails on start, =
+but not enabling).<br><br>Best regards,<br>Mateusz<div><br></div></div>
+
+--000000000000baa5920597900ea5--
