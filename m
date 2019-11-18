@@ -1,6 +1,6 @@
-Return-Path: <maciej.pijanowski@3mdeb.com>
+Return-Path: <GWilson@sakuraus.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1DF7CE00875; Mon, 18 Nov 2019 13:45:54 -0800 (PST)
+	id B08C1E00D33; Mon, 18 Nov 2019 15:25:32 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,32 +10,49 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [46.105.35.72 listed in list.dnswl.org]
-X-Greylist: delayed 2343 seconds by postgrey-1.32 at yocto-www;
-	Mon, 18 Nov 2019 13:45:50 PST
-Received: from 18.mo1.mail-out.ovh.net (18.mo1.mail-out.ovh.net [46.105.35.72])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C452FE007D4
-	for <yocto@yoctoproject.org>; Mon, 18 Nov 2019 13:45:50 -0800 (PST)
-Received: from player756.ha.ovh.net (unknown [10.108.57.188])
-	by mo1.mail-out.ovh.net (Postfix) with ESMTP id 6416119A38A
-	for <yocto@yoctoproject.org>; Mon, 18 Nov 2019 22:06:46 +0100 (CET)
-Received: from 3mdeb.com (89-66-81-201.dynamic.chello.pl [89.66.81.201])
-	(Authenticated sender: maciej.pijanowski@3mdeb.com)
-	by player756.ha.ovh.net (Postfix) with ESMTPSA id A85C9B6F4B74;
-	Mon, 18 Nov 2019 21:06:44 +0000 (UTC)
-To: yocto@yoctoproject.org
-From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
-Message-ID: <ba34dac7-a925-6ceb-b98f-5cf5c527a45f@3mdeb.com>
-Date: Mon, 18 Nov 2019 22:06:43 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-	Thunderbird/68.1.2
+	*      [209.222.82.84 listed in list.dnswl.org]
+X-Greylist: delayed 902 seconds by postgrey-1.32 at yocto-www;
+	Mon, 18 Nov 2019 15:25:29 PST
+Received: from 22pmail.ess.barracuda.com (22pmail.ess.barracuda.com
+	[209.222.82.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6692CE00875
+	for <yocto@yoctoproject.org>; Mon, 18 Nov 2019 15:25:29 -0800 (PST)
+Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by
+	mx15.us-east-2b.ess.aws.cudaops.com (version=TLSv1.2
+	cipher=AES256-SHA256 bits=256 verify=NO);
+	Mon, 18 Nov 2019 23:25:28 +0000
+Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
+	(10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
+	cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32;
+	Mon, 18 Nov 2019 15:10:25 -0800
+Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
+	([::1]) with mapi id 15.01.0669.032; Mon, 18 Nov 2019 15:10:25 -0800
+From: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Thread-Topic: [qemu] can't find qemu-native recipe
+Thread-Index: AQHVnmFF+6AkGs2DrkitseZ3jhVh3g==
+Date: Mon, 18 Nov 2019 23:10:25 +0000
+Message-ID: <dc5da77587ca49fbba4b37f2e6b28028@sakuraus.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.5.155]
 MIME-Version: 1.0
-X-Ovh-Tracer-Id: 569142403616288460
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrudegiedguddvfecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjqdffgfeufgfipdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhepvffhuffkffgfgggtgfesthejredttdefjeenucfhrhhomhepofgrtghivghjucfrihhjrghnohifshhkihcuoehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmqeenucffohhmrghinhepfehmuggvsgdrtghomhdphihotghtohhprhhojhgvtghtrdhorhhgnecukfhppedtrddtrddtrddtpdekledrieeirdekuddrvddtudenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeehiedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmpdhrtghpthhtohephihotghtoheshihotghtohhprhhojhgvtghtrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
-Cc: "piotr.krol@3mdeb.com" <piotr.krol@3mdeb.com>
-Subject: GRUB without UEFI
+X-BESS-ID: 1574119527-893029-12051-12325-1
+X-BESS-VER: 2019.1_20191118.1732
+X-BESS-Apparent-Source-IP: 12.26.104.5
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2,
+	rules version 3.2.2.220449 [from 
+	cloudscan10-30.us-east-2a.ess.aws.cudaops.com]
+	Rule breakdown below
+	pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of
+	KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status: 1
+Subject: [qemu] can't find qemu-native recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,31 +64,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Nov 2019 21:45:54 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 18 Nov 2019 23:25:32 -0000
 Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+I'm building thud for the raspberry pi3 for boot2qt on Ubuntu 18.04.
+I've got a patch that I need to apply to to fix an include file problem and=
+ I can't find the qemu-native recipe. I can find a number of recipes that d=
+epend in one way or another on 'qemu-native', but I can't find a recipe, cl=
+ass for it or anything that provides it. I can see it being built, and I ge=
+t an error that indicates that the patch that I have needs to be applied. I=
+ can find tmp/work/x86_64-linux/qemu-native/.=20
 
-I'm wondering whether anyone here uses Yocto to build images
-for legacy x86 systems (without UEFI) with GRUB as a bootloader.
-I know that the GRUB with UEFI is well supported in Yocto.
+In the cooker log I see:
+task qemu_3.0.0
+recipe qemu-native-3.0.0
 
-I'm looking for a way to create a bootable disk (ideally using WIC)
-for legacy BIOS with GRUB preinstalled.
+But I can't find a qemu-native.bb file,or bbclass.
 
-i know there is a bootimg-pcbios wic plugin:
-http://git.yoctoproject.org/cgit.cgi/poky/tree/scripts/lib/wic/plugins/source/bootimg-pcbios.py?id=38125456ffa6112941a3608fcba9ed2032353740
-which uses SYSLINUX.
+I'm rather confused at this point, can someone shed a bit of light on what =
+I'm missing?
 
-Thoughts welcome.
-
-Thanks
-
--- 
-Maciej Pijanowski
-Embedded Systems Engineer
-https://3mdeb.com | @3mdeb_com
-
+Regards,
+Greg Wilson-Lindberg=A0=20
+=20
 
