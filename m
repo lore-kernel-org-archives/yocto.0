@@ -1,6 +1,6 @@
 Return-Path: <quentin.schulz@streamunlimited.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5657EE00DAF; Tue, 19 Nov 2019 05:22:26 -0800 (PST)
+	id 3B8DCE00DD9; Tue, 19 Nov 2019 05:49:18 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,26 +10,21 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/,
 	low *      trust
-	*      [213.33.87.17 listed in list.dnswl.org]
-X-Greylist: delayed 2629 seconds by postgrey-1.32 at yocto-www;
-	Tue, 19 Nov 2019 05:22:23 PST
-Received: from bsmtp3.bon.at (bsmtp3.bon.at [213.33.87.17])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BEA4EE00B65
-	for <yocto@yoctoproject.org>; Tue, 19 Nov 2019 05:22:23 -0800 (PST)
-Received: from bsmtp2.bon.at (unknown [192.168.181.107])
-	by bsmtp3.bon.at (Postfix) with ESMTPS id 47HQNW27zgz5v5d
-	for <yocto@yoctoproject.org>; Tue, 19 Nov 2019 13:38:35 +0100 (CET)
-Received: from qschulz.suevie (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp2.bon.at (Postfix) with ESMTPSA id 47HQNT1nVgz5tlB;
-	Tue, 19 Nov 2019 13:38:33 +0100 (CET)
+	*      [213.33.87.16 listed in list.dnswl.org]
+Received: from bsmtp2.bon.at (bsmtp2.bon.at [213.33.87.16])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 565D2E00D4F
+	for <yocto@yoctoproject.org>; Tue, 19 Nov 2019 05:49:17 -0800 (PST)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp2.bon.at (Postfix) with ESMTPSA id 47HRy40lTNz5tl9;
+	Tue, 19 Nov 2019 14:49:15 +0100 (CET)
+Date: Tue, 19 Nov 2019 14:49:14 +0100
 From: Quentin Schulz <quentin.schulz@streamunlimited.com>
 To: yocto@yoctoproject.org
-Date: Tue, 19 Nov 2019 13:37:55 +0100
-Message-Id: <20191119123755.2526-1-quentin.schulz@streamunlimited.com>
-X-Mailer: git-send-email 2.17.1
-Cc: radek.dostal@streamunlimited.com, paul.eggleton@linux.intel.com,
-	andriy.danylovskyy@streamunlimited.com
-Subject: [warrior] [meta-qt4] 3rdparty: javascriptcore: JITStubs.cpp: allow builds of JavaScriptCore with gcc v8
+Message-ID: <20191119134914.kmtaxt36tze4hx45@qschulz>
+MIME-Version: 1.0
+User-Agent: NeoMutt/20180716
+Cc: paul.eggleton@linux.intel.com
+Subject: [meta-qt4] [BUG] qt4-embedded broken on warrior for qemux86-64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,262 +36,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Nov 2019 13:22:26 -0000
+X-List-Received-Date: Tue, 19 Nov 2019 13:49:18 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-At least since gcc v8, source code with asm volatile won't compile
-anymore.
+Hi all,
 
-The volatile qualifier anyway is a no-op since asm blocks are implicitly
-volatile as written in the documentation[1].
+Just to let you know that qt4-embedded on qemux86-64 in warrior is
+broken with the following message during the do_compile task:
 
-Let's get rid of this redundant qualifier so we can build with newer
-GCCs.
+| make[1]: Leaving directory '/tmp/poky/build/workspace/sources/qt4-embedded/tools'
+| cd translations/ && make -e -f Makefile
+| make[1]: Entering directory '/tmp/poky/build/workspace/sources/qt4-embedded/translations'
+| lrelease assistant_cs.ts
+| /bin/sh: 1: /tmp/poky/build/tmp/work/i586-poky-linux/qt4-embedded/4.8.7-r0/recipe-sysroot-native/usr/bin/lrelease4: not found
+| lrelease assistant_da.ts
+| /bin/sh: 1: /tmp/poky/build/tmp/work/i586-poky-linux/qt4-embedded/4.8.7-r0/recipe-sysroot-native/usr/bin/lrelease4: not found
+| Makefile:582: recipe for target 'assistant_cs.qm' failed
+| make[1]: *** [assistant_cs.qm] Error 127
+| make[1]: *** Waiting for unfinished jobs....
+| Makefile:585: recipe for target 'assistant_da.qm' failed
+| make[1]: *** [assistant_da.qm] Error 127
+| lrelease assistant_de.ts
+| /bin/sh: 1: /tmp/poky/build/tmp/work/i586-poky-linux/qt4-embedded/4.8.7-r0/recipe-sysroot-native/usr/bin/lrelease4: not found
+| Makefile:588: recipe for target 'assistant_de.qm' failed
+| make[1]: *** [assistant_de.qm] Error 127
+| make[1]: Leaving directory '/tmp/poky/build/workspace/sources/qt4-embedded/translations'
+| Makefile:892: recipe for target 'sub-translations-make_default-ordered' failed
+| make: *** [sub-translations-make_default-ordered] Error 2
 
-The resulting error message is the following (note that there is a
-bunch of them):
-../3rdparty/javascriptcore/JavaScriptCore/jit/JITStubs.cpp:617:5: error: expected '(' before 'volatile'
-asm volatile (
- ^~~~~~~~
- (
-../3rdparty/javascriptcore/JavaScriptCore/jit/JITStubs.cpp:618:1: error: expected unqualified-id before string constant
-".text\n"
-^~~~~~~~~
-../3rdparty/javascriptcore/JavaScriptCore/jit/JITStubs.cpp:617:15: error: expected ')' before string constant
-asm volatile (
-	  ~^
-	   )
-".text\n"
-~~~~~~~~~
+meta-qt4: 144ae1b3892ad38d212c69186e429c874357af4a
+poky: d0f73121551dc98f6924cd77952bf9ebf5ef3dd7
 
-[1] https://gcc.gnu.org/onlinedocs/gcc/Basic-Asm.html#Basic-Asm
+Building on Ubuntu 18.04.3. Only those two layers, source
+oe-init-buil-denv and change MACHINE to qemux86-64 in conf/local.conf.
 
-Upstream-Status: Inappropriate
-Signed-off-by: Quentin Schulz <quentin.schulz@streamunlimited.com>
----
- .../JavaScriptCore/jit/JITStubs.cpp           | 48 +++++++++----------
- 1 file changed, 24 insertions(+), 24 deletions(-)
+I doubt it has any impact but I also have INHERIT += "rm_work" in
+conf/local.conf.
 
-diff --git a/src/3rdparty/javascriptcore/JavaScriptCore/jit/JITStubs.cpp b/src/3rdparty/javascriptcore/JavaScriptCore/jit/JITStubs.cpp
-index d8027ff2..dcead6d0 100644
---- a/src/3rdparty/javascriptcore/JavaScriptCore/jit/JITStubs.cpp
-+++ b/src/3rdparty/javascriptcore/JavaScriptCore/jit/JITStubs.cpp
-@@ -116,7 +116,7 @@ COMPILE_ASSERT(offsetof(struct JITStackFrame, savedEBX) == 0x3c, JITStackFrame_s
- COMPILE_ASSERT(offsetof(struct JITStackFrame, callFrame) == 0x58, JITStackFrame_callFrame_offset_matches_ctiTrampoline);
- COMPILE_ASSERT(offsetof(struct JITStackFrame, code) == 0x50, JITStackFrame_code_offset_matches_ctiTrampoline);
- 
--asm volatile (
-+asm (
- ".text\n"
- ".globl " SYMBOL_STRING(ctiTrampoline) "\n"
- HIDE_SYMBOL(ctiTrampoline) "\n"
-@@ -138,7 +138,7 @@ SYMBOL_STRING(ctiTrampoline) ":" "\n"
-     "ret" "\n"
- );
- 
--asm volatile (
-+asm (
- ".globl " SYMBOL_STRING(ctiVMThrowTrampoline) "\n"
- HIDE_SYMBOL(ctiVMThrowTrampoline) "\n"
- SYMBOL_STRING(ctiVMThrowTrampoline) ":" "\n"
-@@ -154,7 +154,7 @@ SYMBOL_STRING(ctiVMThrowTrampoline) ":" "\n"
-     "ret" "\n"
- );
-     
--asm volatile (
-+asm (
- ".globl " SYMBOL_STRING(ctiOpThrowNotCaught) "\n"
- HIDE_SYMBOL(ctiOpThrowNotCaught) "\n"
- SYMBOL_STRING(ctiOpThrowNotCaught) ":" "\n"
-@@ -179,7 +179,7 @@ COMPILE_ASSERT(offsetof(struct JITStackFrame, savedRBX) == 0x48, JITStackFrame_s
- COMPILE_ASSERT(offsetof(struct JITStackFrame, callFrame) == 0x90, JITStackFrame_callFrame_offset_matches_ctiTrampoline);
- COMPILE_ASSERT(offsetof(struct JITStackFrame, code) == 0x80, JITStackFrame_code_offset_matches_ctiTrampoline);
- 
--asm volatile (
-+asm (
- ".globl " SYMBOL_STRING(ctiTrampoline) "\n"
- HIDE_SYMBOL(ctiTrampoline) "\n"
- SYMBOL_STRING(ctiTrampoline) ":" "\n"
-@@ -206,7 +206,7 @@ SYMBOL_STRING(ctiTrampoline) ":" "\n"
-     "ret" "\n"
- );
- 
--asm volatile (
-+asm (
- ".globl " SYMBOL_STRING(ctiVMThrowTrampoline) "\n"
- HIDE_SYMBOL(ctiVMThrowTrampoline) "\n"
- SYMBOL_STRING(ctiVMThrowTrampoline) ":" "\n"
-@@ -222,7 +222,7 @@ SYMBOL_STRING(ctiVMThrowTrampoline) ":" "\n"
-     "ret" "\n"
- );
- 
--asm volatile (
-+asm (
- ".globl " SYMBOL_STRING(ctiOpThrowNotCaught) "\n"
- HIDE_SYMBOL(ctiOpThrowNotCaught) "\n"
- SYMBOL_STRING(ctiOpThrowNotCaught) ":" "\n"
-@@ -242,7 +242,7 @@ SYMBOL_STRING(ctiOpThrowNotCaught) ":" "\n"
- #error "JIT_STUB_ARGUMENT_VA_LIST not supported on ARMv7."
- #endif
- 
--asm volatile (
-+asm (
- ".text" "\n"
- ".align 2" "\n"
- ".globl " SYMBOL_STRING(ctiTrampoline) "\n"
-@@ -269,7 +269,7 @@ SYMBOL_STRING(ctiTrampoline) ":" "\n"
-     "bx lr" "\n"
- );
- 
--asm volatile (
-+asm (
- ".text" "\n"
- ".align 2" "\n"
- ".globl " SYMBOL_STRING(ctiVMThrowTrampoline) "\n"
-@@ -287,7 +287,7 @@ SYMBOL_STRING(ctiVMThrowTrampoline) ":" "\n"
-     "bx lr" "\n"
- );
- 
--asm volatile (
-+asm (
- ".text" "\n"
- ".align 2" "\n"
- ".globl " SYMBOL_STRING(ctiOpThrowNotCaught) "\n"
-@@ -305,7 +305,7 @@ SYMBOL_STRING(ctiOpThrowNotCaught) ":" "\n"
- 
- #elif COMPILER(GCC) && CPU(ARM_TRADITIONAL)
- 
--asm volatile (
-+asm (
- ".globl " SYMBOL_STRING(ctiTrampoline) "\n"
- HIDE_SYMBOL(ctiTrampoline) "\n"
- SYMBOL_STRING(ctiTrampoline) ":" "\n"
-@@ -323,7 +323,7 @@ SYMBOL_STRING(ctiTrampoline) ":" "\n"
-     "mov pc, lr" "\n"
- );
- 
--asm volatile (
-+asm (
- ".globl " SYMBOL_STRING(ctiVMThrowTrampoline) "\n"
- HIDE_SYMBOL(ctiVMThrowTrampoline) "\n"
- SYMBOL_STRING(ctiVMThrowTrampoline) ":" "\n"
-@@ -418,7 +418,7 @@ COMPILE_ASSERT(offsetof(struct JITStackFrame, callFrame) == 0x38, JITStackFrame_
- COMPILE_ASSERT(offsetof(struct JITStackFrame, code) == 0x30, JITStackFrame_code_offset_matches_ctiTrampoline);
- COMPILE_ASSERT(offsetof(struct JITStackFrame, savedEBX) == 0x1c, JITStackFrame_stub_argument_space_matches_ctiTrampoline);
- 
--asm volatile (
-+asm (
- ".text\n"
- ".globl " SYMBOL_STRING(ctiTrampoline) "\n"
- HIDE_SYMBOL(ctiTrampoline) "\n"
-@@ -440,7 +440,7 @@ SYMBOL_STRING(ctiTrampoline) ":" "\n"
-     "ret" "\n"
- );
- 
--asm volatile (
-+asm (
- ".globl " SYMBOL_STRING(ctiVMThrowTrampoline) "\n"
- HIDE_SYMBOL(ctiVMThrowTrampoline) "\n"
- SYMBOL_STRING(ctiVMThrowTrampoline) ":" "\n"
-@@ -456,7 +456,7 @@ SYMBOL_STRING(ctiVMThrowTrampoline) ":" "\n"
-     "ret" "\n"
- );
-     
--asm volatile (
-+asm (
- ".globl " SYMBOL_STRING(ctiOpThrowNotCaught) "\n"
- HIDE_SYMBOL(ctiOpThrowNotCaught) "\n"
- SYMBOL_STRING(ctiOpThrowNotCaught) ":" "\n"
-@@ -480,7 +480,7 @@ COMPILE_ASSERT(offsetof(struct JITStackFrame, callFrame) == 0x58, JITStackFrame_
- COMPILE_ASSERT(offsetof(struct JITStackFrame, code) == 0x48, JITStackFrame_code_offset_matches_ctiTrampoline);
- COMPILE_ASSERT(offsetof(struct JITStackFrame, savedRBX) == 0x78, JITStackFrame_stub_argument_space_matches_ctiTrampoline);
- 
--asm volatile (
-+asm (
- ".text\n"
- ".globl " SYMBOL_STRING(ctiTrampoline) "\n"
- HIDE_SYMBOL(ctiTrampoline) "\n"
-@@ -515,7 +515,7 @@ SYMBOL_STRING(ctiTrampoline) ":" "\n"
-     "ret" "\n"
- );
- 
--asm volatile (
-+asm (
- ".globl " SYMBOL_STRING(ctiVMThrowTrampoline) "\n"
- HIDE_SYMBOL(ctiVMThrowTrampoline) "\n"
- SYMBOL_STRING(ctiVMThrowTrampoline) ":" "\n"
-@@ -531,7 +531,7 @@ SYMBOL_STRING(ctiVMThrowTrampoline) ":" "\n"
-     "ret" "\n"
- );
- 
--asm volatile (
-+asm (
- ".globl " SYMBOL_STRING(ctiOpThrowNotCaught) "\n"
- HIDE_SYMBOL(ctiOpThrowNotCaught) "\n"
- SYMBOL_STRING(ctiOpThrowNotCaught) ":" "\n"
-@@ -551,7 +551,7 @@ SYMBOL_STRING(ctiOpThrowNotCaught) ":" "\n"
- #error "JIT_STUB_ARGUMENT_VA_LIST not supported on ARMv7."
- #endif
- 
--asm volatile (
-+asm (
- ".text" "\n"
- ".align 2" "\n"
- ".globl " SYMBOL_STRING(ctiTrampoline) "\n"
-@@ -578,7 +578,7 @@ SYMBOL_STRING(ctiTrampoline) ":" "\n"
-     "bx lr" "\n"
- );
- 
--asm volatile (
-+asm (
- ".text" "\n"
- ".align 2" "\n"
- ".globl " SYMBOL_STRING(ctiVMThrowTrampoline) "\n"
-@@ -596,7 +596,7 @@ SYMBOL_STRING(ctiVMThrowTrampoline) ":" "\n"
-     "bx lr" "\n"
- );
- 
--asm volatile (
-+asm (
- ".text" "\n"
- ".align 2" "\n"
- ".globl " SYMBOL_STRING(ctiOpThrowNotCaught) "\n"
-@@ -614,7 +614,7 @@ SYMBOL_STRING(ctiOpThrowNotCaught) ":" "\n"
- 
- #elif COMPILER(GCC) && CPU(ARM_TRADITIONAL)
- 
--asm volatile (
-+asm (
- ".text\n"
- ".globl " SYMBOL_STRING(ctiTrampoline) "\n"
- HIDE_SYMBOL(ctiTrampoline) "\n"
-@@ -632,7 +632,7 @@ SYMBOL_STRING(ctiTrampoline) ":" "\n"
-     "mov pc, lr" "\n"
- );
- 
--asm volatile (
-+asm (
- ".globl " SYMBOL_STRING(ctiVMThrowTrampoline) "\n"
- HIDE_SYMBOL(ctiVMThrowTrampoline) "\n"
- SYMBOL_STRING(ctiVMThrowTrampoline) ":" "\n"
-@@ -1024,7 +1024,7 @@ static NEVER_INLINE void throwStackOverflowError(CallFrame* callFrame, JSGlobalD
-     extern "C" { \
-         rtype JITStubThunked_##op(STUB_ARGS_DECLARATION); \
-     }; \
--    asm volatile ( \
-+    asm ( \
-         ".text" "\n" \
-         ".align 2" "\n" \
-         ".globl " SYMBOL_STRING(cti_##op) "\n" \
-@@ -1053,7 +1053,7 @@ COMPILE_ASSERT(offsetof(struct JITStackFrame, thunkReturnAddress) == THUNK_RETUR
-     extern "C" { \
-         rtype JITStubThunked_##op(STUB_ARGS_DECLARATION); \
-     }; \
--    asm volatile ( \
-+    asm ( \
-         ".globl " SYMBOL_STRING(cti_##op) "\n" \
-         HIDE_SYMBOL(cti_##op) "\n"             \
-         SYMBOL_STRING(cti_##op) ":" "\n" \
+usr/bin/lrelease4 is in recipe-sysroot-native for other machines and it
+is provided by qt4-native.
+
+There is no qt4-native WORKDIR available in BUILDDIR for qemux86-64
+AFAICT.
+
+This is kind of a bug report, I am not working with this machine or
+any x86-64 machine.
+I was just trying to see if basic different architectures for another
+bug (asm volatile, patch sent earlier today) were impacted and would
+build with the fix I was working on.
+
+Thanks for maintaining meta-qt4, much appreciated that we still can use
+it with warrior.
+
+Best regards,
+Quentin
 -- 
-2.17.1
-
+StreamUnlimited Engineering GmbH
+High Tech Campus Vienna, Gutheil-Schoder-Gasse 10, 1100 Vienna, Austria
+Fax: +43 1 667 20 02 4401
+quentin.schulz@streamunlimited.com, www.streamunlimited.com
 
