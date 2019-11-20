@@ -1,68 +1,43 @@
-Return-Path: <nick83ola@gmail.com>
+Return-Path: <Randy.MacLeod@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 46F72E00B5E; Wed, 20 Nov 2019 10:59:21 -0800 (PST)
+	id 32A0FE00B7A; Wed, 20 Nov 2019 12:20:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (nick83ola[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.221.67 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
-	[209.85.221.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D2D0E00B5E
-	for <yocto@yoctoproject.org>; Wed, 20 Nov 2019 10:59:17 -0800 (PST)
-Received: by mail-wr1-f67.google.com with SMTP id b18so1173391wrj.8
-	for <yocto@yoctoproject.org>; Wed, 20 Nov 2019 10:59:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=DRkbfzDeoIbLAqy4sjqvwNbIFBqHapmpir/DlOFCbrU=;
-	b=I3H2KiEZr8INqlXLUFg/4JGv0z6ae4T6bYqo6pGkfnhTYTG0bxu44uppodSRYoNV3T
-	K4CghjBbfR5JCW19C/ZToiEvGz0RiSlBQzix+dDSld9zOukxgRv7R+yvtbcsXEVtvZJ2
-	CaoOV+juxz+zfFBFd3g17dkX55LBLgJPT4bZ2XHVznoWm2uBQW6SABiLJ73cc9h9Wqn5
-	Srr+uW0J8jtABIkOylHxckt1neDhmtxL/ysyFPEZ1XTVy5I5Wv0EAs/hWnqfPftmIzOD
-	2pXciyoYOtGQnQ1D2DiHRcozMCiT9+ohCQWYD/9YG2VKGJ89+xmhT8+6vkQlCWxK0ToD
-	6KLw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=DRkbfzDeoIbLAqy4sjqvwNbIFBqHapmpir/DlOFCbrU=;
-	b=bSRSjCWWFpuODJXZ7Ghqueu4U2BCCo/MVRu/bTm/wJAusrbXIsfcvZHVJInA7jkYnu
-	nuydBA3jtv+sVFZ0EDe0/I/hDz16mtYJ6jTYAUiEW60S12ZxxwJC19Xunv05R/I2+E89
-	k6k9aC3h8VK5HFlW0JqaOa0+c2jsu7XlGsO4eP+/ZngOQNkGyE0MWIhuILTXvtb8B2WY
-	UAfoMDFLa0LnFIfX9bnUe5SrFb2GERvDfhTpwPTQe70J6p2EEuCjRbiXYf2UvMiYKhGf
-	kDuZCdT1IjmU906XLvmEi1wxuBxChAqpNLgixtAlmQiOMWSt6xcnT/LiuWTymkX5R1zf
-	11lA==
-X-Gm-Message-State: APjAAAXaphCWC9qAcCaUhjeoe55Uu9dlnmd9yik93wL6qsWXk0efXtBO
-	NLdKdC0lLxXT68mGxml0cj3lKjryEiY=
-X-Google-Smtp-Source: APXvYqwvOA9GkrLGYw6P5yeaHlIId+TdiDtO1iKWCLb6N/0RXMG9eY8T7vmM2FrNw/0mb09NUZ65Kg==
-X-Received: by 2002:adf:d4d0:: with SMTP id w16mr5629295wrk.184.1574276355943; 
-	Wed, 20 Nov 2019 10:59:15 -0800 (PST)
-Received: from nick-bbestie.garage.tyco.com ([77.107.218.170])
-	by smtp.gmail.com with ESMTPSA id x7sm251118wrg.63.2019.11.20.10.59.14
-	for <yocto@yoctoproject.org>
-	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Wed, 20 Nov 2019 10:59:14 -0800 (PST)
-From: Nicola Lunghi <nick83ola@gmail.com>
-To: yocto@yoctoproject.org
-Date: Wed, 20 Nov 2019 18:59:10 +0000
-Message-Id: <20191120185910.39228-1-nick83ola@gmail.com>
-X-Mailer: git-send-email 2.20.1
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/, 
+	*      medium trust
+	*      [192.103.53.11 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6258BE00AAA
+	for <yocto@yoctoproject.org>; Wed, 20 Nov 2019 12:20:56 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id xAKKKois006411
+	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 20 Nov 2019 12:20:50 -0800
+Received: from [128.224.56.217] (128.224.56.217) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.468.0;
+	Wed, 20 Nov 2019 12:20:49 -0800
+To: Mauro Ziliani <mauro@faresoftware.it>, <yocto@yoctoproject.org>, "Jia,
+	Hongxu" <Hongxu.Jia@windriver.com>
+References: <1550749039-67320-1-git-send-email-hongxu.jia@windriver.com>
+	<785af76f-c9e0-7457-3f1a-8f3a9525806c@faresoftware.it>
+	<da766e05-d447-7dfa-1a25-5eabe7ad16c9@faresoftware.it>
+	<c9b3cab6-e041-1583-13ca-8bed344b88ca@faresoftware.it>
+From: Randy MacLeod <randy.macleod@windriver.com>
+Message-ID: <2ddc5d6c-7c92-be1a-8152-d8bf9a198c76@windriver.com>
+Date: Wed, 20 Nov 2019 15:20:49 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+	Thunderbird/68.1.2
 MIME-Version: 1.0
-Subject: [meta-gplv2][PATCH] diffutils: fix the build with musl
+In-Reply-To: <c9b3cab6-e041-1583-13ca-8bed344b88ca@faresoftware.it>
+X-Originating-IP: [128.224.56.217]
+Subject: Re: Review request 0/13: Contribute meta-tensorflow to Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,118 +49,189 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Nov 2019 18:59:21 -0000
+X-List-Received-Date: Wed, 20 Nov 2019 20:20:59 -0000
+Content-Type: multipart/alternative;
+	boundary="------------6C944D8466BE92E83D065BF7"
+Content-Language: en-CA
+
+--------------6C944D8466BE92E83D065BF7
+Content-Type: text/plain; charset="iso-8859-15"; format=flowed
 Content-Transfer-Encoding: 8bit
 
-This patch fixes the build with musl using the included regex library.
-It follows a similar patch applied to grep (uclibc-fix.patch)
+On 11/20/19 11:56 AM, Mauro Ziliani wrote:
+>
+> Is it possible to compile tensorflow against python2.7?
+>
+I doubt that it's easy/supported but Hongxu, who lives in China, will 
+reply later today to explain.
+Btw, Krogoth has python3, why not use it?
 
-Signed-off-by: Nicola Lunghi <nick83ola@gmail.com>
----
- .../0002-uclibc-use-mempcpy-instead-of.patch  | 53 +++++++++++++++++++
- recipes-extended/diffutils/diffutils.inc      |  8 ---
- recipes-extended/diffutils/diffutils_2.8.1.bb |  4 ++
- 3 files changed, 57 insertions(+), 8 deletions(-)
- create mode 100644 recipes-extended/diffutils/diffutils-2.8.1/0002-uclibc-use-mempcpy-instead-of.patch
+../Randy
 
-diff --git a/recipes-extended/diffutils/diffutils-2.8.1/0002-uclibc-use-mempcpy-instead-of.patch b/recipes-extended/diffutils/diffutils-2.8.1/0002-uclibc-use-mempcpy-instead-of.patch
-new file mode 100644
-index 0000000..a07fec7
---- /dev/null
-+++ b/recipes-extended/diffutils/diffutils-2.8.1/0002-uclibc-use-mempcpy-instead-of.patch
-@@ -0,0 +1,53 @@
-+From 61db4da387676690c0f731ef2eccc014d85c23a6 Mon Sep 17 00:00:00 2001
-+From: Nicola Lunghi <nicola.lunghi@jci.com>
-+Date: Wed, 20 Nov 2019 18:30:10 +0000
-+Subject: [PATCH] uclibc: use mempcpy instead of __mempcpy
-+
-+Fix to use mempcpy instead of __mempcpy. This is needed for uclibc which
-+doesn't define __mempcpy, only mempcpy. Since both uclibc and glibc have
-+mempcpy, we'll just use that instead.
-+Patch source: OpenEmbedded (grep)
-+Upstream-Status: Inappropriate [licensing]
-+---
-+ lib/getopt.c | 4 ++--
-+ lib/regex.c  | 2 +-
-+ 2 files changed, 3 insertions(+), 3 deletions(-)
-+
-+diff --git a/lib/getopt.c b/lib/getopt.c
-+index ed32692..6626f5e 100644
-+--- a/lib/getopt.c
-++++ b/lib/getopt.c
-+@@ -334,7 +334,7 @@ exchange (argv)
-+ 	nonoption_flags_len = nonoption_flags_max_len = 0;
-+       else
-+ 	{
-+-	  memset (__mempcpy (new_str, __getopt_nonoption_flags,
-++	  memset (mempcpy (new_str, __getopt_nonoption_flags,
-+ 			     nonoption_flags_max_len),
-+ 		  '\0', top + 1 - nonoption_flags_max_len);
-+ 	  nonoption_flags_max_len = top + 1;
-+@@ -445,7 +445,7 @@ _getopt_initialize (argc, argv, optstring)
-+ 	      if (__getopt_nonoption_flags == NULL)
-+ 		nonoption_flags_max_len = -1;
-+ 	      else
-+-		memset (__mempcpy (__getopt_nonoption_flags, orig_str, len),
-++		memset (mempcpy (__getopt_nonoption_flags, orig_str, len),
-+ 			'\0', nonoption_flags_max_len - len);
-+ 	    }
-+ 	}
-+diff --git a/lib/regex.c b/lib/regex.c
-+index 6daec76..797b20a 100644
-+--- a/lib/regex.c
-++++ b/lib/regex.c
-+@@ -8314,7 +8314,7 @@ regerror (errcode, preg, errbuf, errbuf_size)
-+       if (msg_size > errbuf_size)
-+         {
-+ #if defined HAVE_MEMPCPY || defined _LIBC
-+-	  *((char *) __mempcpy (errbuf, msg, errbuf_size - 1)) = '\0';
-++	  *((char *) mempcpy (errbuf, msg, errbuf_size - 1)) = '\0';
-+ #else
-+           memcpy (errbuf, msg, errbuf_size - 1);
-+           errbuf[errbuf_size - 1] = 0;
-+-- 
-+2.20.1
-+
-diff --git a/recipes-extended/diffutils/diffutils.inc b/recipes-extended/diffutils/diffutils.inc
-index 243341a..5e82b81 100644
---- a/recipes-extended/diffutils/diffutils.inc
-+++ b/recipes-extended/diffutils/diffutils.inc
-@@ -6,13 +6,5 @@ SECTION = "base"
- 
- inherit autotools texinfo update-alternatives gettext
- 
--# diffutils assumes non-glibc compilation with uclibc and
--# this causes it to generate its own implementations of
--# standard functionality.  regex.c actually breaks compilation
--# because it uses __mempcpy, there are other things (TBD:
--# see diffutils.mk in buildroot)
--EXTRA_OECONF_libc-uclibc = "--without-included-regex"
--
- ALTERNATIVE_${PN} = "diff cmp"
- ALTERNATIVE_PRIORITY = "100"
--
-diff --git a/recipes-extended/diffutils/diffutils_2.8.1.bb b/recipes-extended/diffutils/diffutils_2.8.1.bb
-index 466bf28..931c973 100644
---- a/recipes-extended/diffutils/diffutils_2.8.1.bb
-+++ b/recipes-extended/diffutils/diffutils_2.8.1.bb
-@@ -9,11 +9,15 @@ SRC_URI = "${GNU_MIRROR}/diffutils/diffutils-${PV}.tar.gz \
-            file://diffutils_fix_for_automake-1.12.patch \
-            file://fix_gcc6.patch \
-            file://0001-Make-it-build-with-compile-time-hardening-enabled.patch \
-+           file://0002-uclibc-use-mempcpy-instead-of.patch \
-            "
- 
- SRC_URI[md5sum] = "71f9c5ae19b60608f6c7f162da86a428"
- SRC_URI[sha256sum] = "c5001748b069224dd98bf1bb9ee877321c7de8b332c8aad5af3e2a7372d23f5a"
- 
-+EXTRA_OECONF = "--without-included-regex"
-+EXTRA_OECONF_libc-musl = "--with-included-regex"
-+
- do_configure_prepend () {
- 	chmod u+w ${S}/po/Makefile.in.in
- }
+
+> Il 20/11/19 16:40, Mauro Ziliani ha scritto:
+>>
+>> I forked the repository and I'm tryng to port the layer for Krogoth
+>>
+>> M
+>>
+>> Il 20/11/19 15:37, Mauro Ziliani ha scritto:
+>>>
+>>> Hi all.
+>>>
+>>> There a port for meta-tensorflow for Krogoth or Sumo?
+>>>
+>>> Mayabe I need to use it on this distribution
+>>>
+>>> Thaks
+>>>
+>>>  M
+>>>
+>>> Il 21/02/19 12:37, Hongxu Jia ha scritto:
+>>>> Hi RP and Yocto folks,
+>>>>
+>>>> Currently AI on IoT edge becomes more and more popular, but there is no
+>>>> machine learning framework in Yocto/OE. With the support of Eric
+>>>> <Zhangle.Yang@windriver.com>, Robert<liezhi.yang@windriver.com>
+>>>> and Randy<randy.macleod@windriver.com>, after two months effort, I've
+>>>> integrated TensorFlow to Yocto.
+>>>>
+>>>> Now, I contribute the patches to Yocto for review, and apply for creating
+>>>> a layer named `meta-tensorflow' on Yocto.
+>>>>
+>>>> For test convenient, there is a fork on github:
+>>>> https://github.com/hongxu-jia/meta-tensorflow
+>>>>
+>>>> BTW, I have contributed other 11 fundamental recipes to meta-openembedded
+>>>> and all of them have been merged to master branch.
+>>>>
+>>>> Please no hesitate to share your suggestion.
+>>>>
+>>>> //Hongxu
+>>>>
+>>>> Testing Commands:
+>>>> -----------------
+>>>> See README
+>>>>
+>>>> Testing, Expected Results:
+>>>> --------------------------
+>>>> See README
+>>>>
+>>>
+>>
+>
+
 -- 
-2.20.1
+# Randy MacLeod
+# Wind River Linux
 
 
+--------------6C944D8466BE92E83D065BF7
+Content-Type: text/html; charset="iso-8859-15"
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=ISO-8859-15">
+  </head>
+  <body>
+    <div class="moz-cite-prefix">On 11/20/19 11:56 AM, Mauro Ziliani
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:c9b3cab6-e041-1583-13ca-8bed344b88ca@faresoftware.it">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=ISO-8859-15">
+      <p><font size="-1">Is it possible to compile tensorflow against
+          python2.7?</font><br>
+      </p>
+    </blockquote>
+    <p><font size="-1">I doubt that it's easy/supported but Hongxu, who
+        lives in China, will reply later today to explain.<br>
+        Btw, Krogoth has python3, why not use it?<br>
+      </font></p>
+    <p><font size="-1">../Randy</font></p>
+    <p><font size="-1"><br>
+      </font></p>
+    <blockquote type="cite"
+      cite="mid:c9b3cab6-e041-1583-13ca-8bed344b88ca@faresoftware.it">
+      <p> </p>
+      <div class="moz-cite-prefix">Il 20/11/19 16:40, Mauro Ziliani ha
+        scritto:<br>
+      </div>
+      <blockquote type="cite"
+        cite="mid:da766e05-d447-7dfa-1a25-5eabe7ad16c9@faresoftware.it">
+        <p><font size="-1">I forked the repository and I'm tryng to port
+            the layer for Krogoth</font></p>
+        <p><font size="-1">M</font><br>
+        </p>
+        <div class="moz-cite-prefix">Il 20/11/19 15:37, Mauro Ziliani ha
+          scritto:<br>
+        </div>
+        <blockquote type="cite"
+          cite="mid:785af76f-c9e0-7457-3f1a-8f3a9525806c@faresoftware.it">
+          <p><font size="-1">Hi all.</font></p>
+          <p><font size="-1">There a port for meta-tensorflow for
+              Krogoth or Sumo?<br>
+            </font></p>
+          <p><font size="-1">Mayabe I need to use it on this
+              distribution</font></p>
+          <p><font size="-1">Thaks</font></p>
+          <p><font size="-1"> M</font><br>
+          </p>
+          <div class="moz-cite-prefix">Il 21/02/19 12:37, Hongxu Jia ha
+            scritto:<br>
+          </div>
+          <blockquote type="cite"
+            cite="mid:1550749039-67320-1-git-send-email-hongxu.jia@windriver.com">
+            <pre class="moz-quote-pre" wrap="">Hi RP and Yocto folks,
+
+Currently AI on IoT edge becomes more and more popular, but there is no
+machine learning framework in Yocto/OE. With the support of Eric
+<a class="moz-txt-link-rfc2396E" href="mailto:Zhangle.Yang@windriver.com" moz-do-not-send="true">&lt;Zhangle.Yang@windriver.com&gt;</a>, Robert <a class="moz-txt-link-rfc2396E" href="mailto:liezhi.yang@windriver.com" moz-do-not-send="true">&lt;liezhi.yang@windriver.com&gt;</a>
+and Randy <a class="moz-txt-link-rfc2396E" href="mailto:randy.macleod@windriver.com" moz-do-not-send="true">&lt;randy.macleod@windriver.com&gt;</a>, after two months effort, I've
+integrated TensorFlow to Yocto.
+
+Now, I contribute the patches to Yocto for review, and apply for creating
+a layer named `meta-tensorflow' on Yocto.
+
+For test convenient, there is a fork on github:
+<a class="moz-txt-link-freetext" href="https://github.com/hongxu-jia/meta-tensorflow" moz-do-not-send="true">https://github.com/hongxu-jia/meta-tensorflow</a>
+
+BTW, I have contributed other 11 fundamental recipes to meta-openembedded
+and all of them have been merged to master branch.
+
+Please no hesitate to share your suggestion.
+
+//Hongxu
+
+Testing Commands:
+-----------------
+See README
+
+Testing, Expected Results:
+--------------------------
+See README
+
+</pre>
+          </blockquote>
+          <br>
+          <fieldset class="mimeAttachmentHeader"></fieldset>
+        </blockquote>
+        <br>
+        <fieldset class="mimeAttachmentHeader"></fieldset>
+      </blockquote>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+    </blockquote>
+    <p><br>
+    </p>
+    <pre class="moz-signature" cols="72">-- 
+# Randy MacLeod
+# Wind River Linux
+</pre>
+  </body>
+</html>
+
+--------------6C944D8466BE92E83D065BF7--
