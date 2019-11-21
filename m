@@ -1,6 +1,6 @@
 Return-Path: <nick83ola@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 471B9E00B65; Thu, 21 Nov 2019 04:49:49 -0800 (PST)
+	id 892ECE009D4; Thu, 21 Nov 2019 04:57:34 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,60 +9,61 @@ X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
-	no *      trust
-	*      [209.85.128.65 listed in list.dnswl.org]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (nick83ola[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
+	no *      trust
+	*      [209.85.221.67 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com
-	[209.85.128.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0D31E009D4
-	for <yocto@yoctoproject.org>; Thu, 21 Nov 2019 04:49:47 -0800 (PST)
-Received: by mail-wm1-f65.google.com with SMTP id j18so7648439wmk.1
-	for <yocto@yoctoproject.org>; Thu, 21 Nov 2019 04:49:47 -0800 (PST)
+Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
+	[209.85.221.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96E6BE007D4
+	for <yocto@yoctoproject.org>; Thu, 21 Nov 2019 04:57:32 -0800 (PST)
+Received: by mail-wr1-f67.google.com with SMTP id t1so4308325wrv.4
+	for <yocto@yoctoproject.org>; Thu, 21 Nov 2019 04:57:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
 	h=from:to:subject:date:message-id:mime-version
 	:content-transfer-encoding;
-	bh=/QBbZVaX18djD0hI/A1RvtXunx104j2floJA1HyNbDA=;
-	b=mCU8WhPgqCDhOFF2t6MeWF0D6me9y7t/tj6YphYQlRTh345fQiIBbFvYC9otg8LWuR
-	7E7+m1ZopYgT/EJnoBpwtMQlIiSfpm1L9/RFaHizsWoyUSwKn3w3CEWOfVoBQ0F6SPWk
-	oBDzPHqmEOAz9aAmSppAGLjb34xMVNDTQSmakLi5y7zCBZFMY5wFpmgDttBgUHzDJhRO
-	q7vc/DphyOQ7q+OCmYhFVLGNTq4FrK9ujKHZVZEQPcfNFp1H0JxR+xYYswRHS6Y6+xyK
-	mjo5X5XJh1dICk1+8+VM4f/nxFzXWl3wnl0fsHQFCrauHrQC2lE30MpESyFcsj/jFo9Q
-	UNQQ==
+	bh=FaNLk1yUf2OnIg00GVBpr1o2uvxC+VvIw8jmk5aDWe4=;
+	b=kNpTQHyl9UdrmaugKOXQKJDXDW/MT5n5NfSTMpxq8Ln3Pm62GvdzPLfI+b6u28I8eI
+	+QqnPwOBxcgEgJkcLN8wO0I9yU3nGtlYleu2R+aK7sVqZPArDlyRK4I5OnGFDCSegOaY
+	Op/P9pry5teSRi5/oxC/aK4rzyVHpflPx4CYJ83BTGyxMzB8d3M9nTSinjMCA7w5O/jS
+	OTMFyDR/j4XySQjNVR8USrizwDGVLWCc5qy572kVH4Ts3xAI80mri18ZabocAkLZOS4s
+	aen9PHVwUg3QaRi3kPM1Mjwdu9UOA72/D2u7AkIU2LZ2XhUALf5LSNSqSUj1Gdc+ZChd
+	iggA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20161025;
 	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
 	:content-transfer-encoding;
-	bh=/QBbZVaX18djD0hI/A1RvtXunx104j2floJA1HyNbDA=;
-	b=cRzWWFITKYGJLhSVNbxtKkT+hfA2fpiv+BnoeY1rvYOYjir9qPQMhSmfwDH+83jz4i
-	sYn+YrqJ4OPXUAJXOjUz8MpRHrcd9tRsvAugBscmQ13iI0UVyhUbOpePUprqh/lp+6ZP
-	ibohgW5SZNefN5xktUwa+Gd1et+1+gTm8hzEyTPMZLriQeEvYCat5Yx/P4j/tYQEWe8P
-	F7qp8twrmSSeV7Y9O5aGEot7ZdctOKhbXujIuELPHKa+qp19dLxiRAAh14XnqYnPnhWl
-	ragNDoW5vd75liLEFm7gA9nTxRliys9M86J9uQW02nIJdpz3qdztdtvx1q+y2SDqdd+t
-	iryg==
-X-Gm-Message-State: APjAAAVL0UECqq4MwlcEpAii06fpNc2vxPR1Xzc2JTfWE1/dWVtM4HGc
-	PCR/ZU74Rv4ha6C+k3VWchKShrLK+FE=
-X-Google-Smtp-Source: APXvYqyao3HDqgUKN1dYaLROzcPXifeVt3Z2nrI639G8i9pwtRHyY5LjKJ2CqzXVcV9NMHIXuxznSA==
-X-Received: by 2002:a7b:cf14:: with SMTP id l20mr9431734wmg.172.1574340586340; 
-	Thu, 21 Nov 2019 04:49:46 -0800 (PST)
+	bh=FaNLk1yUf2OnIg00GVBpr1o2uvxC+VvIw8jmk5aDWe4=;
+	b=kEeUuM9Y1f40Zt5K642zHx9jEq/iZOOZjEMFungKXv+AXZV1pDGg6ojduzQ/z3dt0x
+	I7P/qfai3KhUg1kQIDVkcIaT4M/qoCofrQT45c6Inz+l+vqaEijHlEWwptOCOA/B+yJL
+	FscFHdeOrML2PXgPMQSGORJ/0BvlmBL6S37JG6wQdHnM7zM5L2hhl7wslSShPl3rj4G3
+	691GLpBJNyeFJZyBavvd8ooNy8TUKwu9F4822lzZxfsUN8pLpMmcyN4SEdi7JNw7vUWI
+	BkvPZ7dO7uVoweqOT+ZCuJQp/oI5c4jPtle+9Ff+BwLQov9tqJbQK1AKZ5WmaA0J/Y4w
+	VOgA==
+X-Gm-Message-State: APjAAAWWwcD895iE06A1c7dYUIDpa4bw9iGMkAlwArYxtRJa8Vod18Vz
+	iv2NnNYUiFvf2OeRwTZnOoTPuHDBqpY=
+X-Google-Smtp-Source: APXvYqxPBowx2tnIrqAyuwiC0GkRJy0PnBMdoLzwAzSgTjloMzZDu+XF3EQb2GiX3mrB2g7sec0Clw==
+X-Received: by 2002:adf:e803:: with SMTP id o3mr10543177wrm.326.1574341051138; 
+	Thu, 21 Nov 2019 04:57:31 -0800 (PST)
 Received: from nick-bbestie.garage.tyco.com ([77.107.218.170])
-	by smtp.gmail.com with ESMTPSA id d20sm3291880wra.4.2019.11.21.04.49.45
+	by smtp.gmail.com with ESMTPSA id
+	b196sm2990425wmd.24.2019.11.21.04.57.30
 	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Thu, 21 Nov 2019 04:49:45 -0800 (PST)
+	Thu, 21 Nov 2019 04:57:30 -0800 (PST)
 From: Nicola Lunghi <nick83ola@gmail.com>
 To: yocto@yoctoproject.org,
 	Andre Draszik <git@andred.net>
-Date: Thu, 21 Nov 2019 12:49:21 +0000
-Message-Id: <20191121124920.18110-1-nick83ola@gmail.com>
+Date: Thu, 21 Nov 2019 12:57:11 +0000
+Message-Id: <20191121125711.32336-1-nick83ola@gmail.com>
 X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Subject: [meta-gplv2][PATCH v2] diffutils: use mempcpy instead of __mempcpy
+Subject: [meta-gplv2][PATCH v3] diffutils: use mempcpy instead of __mempcpy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -74,7 +75,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Nov 2019 12:49:49 -0000
+X-List-Received-Date: Thu, 21 Nov 2019 12:57:34 -0000
 Content-Transfer-Encoding: 8bit
 
 musl (like uclibc) doesn't define __mempcpy.
@@ -90,18 +91,18 @@ not needed anymore so it drops it.
 
 Signed-off-by: Nicola Lunghi <nick83ola@gmail.com>
 ---
- ...included-libc-use-mempcpy-instead-of.patch | 54 +++++++++++++++++++
+ ...included-libc-use-mempcpy-instead-of.patch | 56 +++++++++++++++++++
  recipes-extended/diffutils/diffutils.inc      |  7 ---
  recipes-extended/diffutils/diffutils_2.8.1.bb |  1 +
- 3 files changed, 55 insertions(+), 7 deletions(-)
+ 3 files changed, 57 insertions(+), 7 deletions(-)
  create mode 100644 recipes-extended/diffutils/diffutils-2.8.1/0002-included-libc-use-mempcpy-instead-of.patch
 
 diff --git a/recipes-extended/diffutils/diffutils-2.8.1/0002-included-libc-use-mempcpy-instead-of.patch b/recipes-extended/diffutils/diffutils-2.8.1/0002-included-libc-use-mempcpy-instead-of.patch
 new file mode 100644
-index 0000000..4bbc864
+index 0000000..6994ec7
 --- /dev/null
 +++ b/recipes-extended/diffutils/diffutils-2.8.1/0002-included-libc-use-mempcpy-instead-of.patch
-@@ -0,0 +1,54 @@
+@@ -0,0 +1,56 @@
 +From 61db4da387676690c0f731ef2eccc014d85c23a6 Mon Sep 17 00:00:00 2001
 +From: Nicola Lunghi <nicola.lunghi@jci.com>
 +Date: Wed, 20 Nov 2019 18:30:10 +0000
@@ -110,6 +111,8 @@ index 0000000..4bbc864
 +Fix to use mempcpy instead of __mempcpy. This is needed for uclibc and musl
 +which doesn't define __mempcpy, only mempcpy. Since they all have
 +mempcpy, we'll just use that instead.
++
++Signed-off-by: Nicola Lunghi <nick83ola@gmail.com>
 +
 +Patch source: OpenEmbedded (grep)
 +Upstream-Status: Inappropriate [licensing]
