@@ -1,69 +1,57 @@
-Return-Path: <nick83ola@gmail.com>
+Return-Path: <ouyangxuan10@163.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 892ECE009D4; Thu, 21 Nov 2019 04:57:34 -0800 (PST)
+	id 6C81EE00B0B; Thu, 21 Nov 2019 06:15:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
 	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (nick83ola[at]gmail.com)
+	provider *      (ouyangxuan10[at]163.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/,
 	no *      trust
-	*      [209.85.221.67 listed in list.dnswl.org]
+	*      [220.181.13.138 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com
-	[209.85.221.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96E6BE007D4
-	for <yocto@yoctoproject.org>; Thu, 21 Nov 2019 04:57:32 -0800 (PST)
-Received: by mail-wr1-f67.google.com with SMTP id t1so4308325wrv.4
-	for <yocto@yoctoproject.org>; Thu, 21 Nov 2019 04:57:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20161025;
-	h=from:to:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=FaNLk1yUf2OnIg00GVBpr1o2uvxC+VvIw8jmk5aDWe4=;
-	b=kNpTQHyl9UdrmaugKOXQKJDXDW/MT5n5NfSTMpxq8Ln3Pm62GvdzPLfI+b6u28I8eI
-	+QqnPwOBxcgEgJkcLN8wO0I9yU3nGtlYleu2R+aK7sVqZPArDlyRK4I5OnGFDCSegOaY
-	Op/P9pry5teSRi5/oxC/aK4rzyVHpflPx4CYJ83BTGyxMzB8d3M9nTSinjMCA7w5O/jS
-	OTMFyDR/j4XySQjNVR8USrizwDGVLWCc5qy572kVH4Ts3xAI80mri18ZabocAkLZOS4s
-	aen9PHVwUg3QaRi3kPM1Mjwdu9UOA72/D2u7AkIU2LZ2XhUALf5LSNSqSUj1Gdc+ZChd
-	iggA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20161025;
-	h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-	:content-transfer-encoding;
-	bh=FaNLk1yUf2OnIg00GVBpr1o2uvxC+VvIw8jmk5aDWe4=;
-	b=kEeUuM9Y1f40Zt5K642zHx9jEq/iZOOZjEMFungKXv+AXZV1pDGg6ojduzQ/z3dt0x
-	I7P/qfai3KhUg1kQIDVkcIaT4M/qoCofrQT45c6Inz+l+vqaEijHlEWwptOCOA/B+yJL
-	FscFHdeOrML2PXgPMQSGORJ/0BvlmBL6S37JG6wQdHnM7zM5L2hhl7wslSShPl3rj4G3
-	691GLpBJNyeFJZyBavvd8ooNy8TUKwu9F4822lzZxfsUN8pLpMmcyN4SEdi7JNw7vUWI
-	BkvPZ7dO7uVoweqOT+ZCuJQp/oI5c4jPtle+9Ff+BwLQov9tqJbQK1AKZ5WmaA0J/Y4w
-	VOgA==
-X-Gm-Message-State: APjAAAWWwcD895iE06A1c7dYUIDpa4bw9iGMkAlwArYxtRJa8Vod18Vz
-	iv2NnNYUiFvf2OeRwTZnOoTPuHDBqpY=
-X-Google-Smtp-Source: APXvYqxPBowx2tnIrqAyuwiC0GkRJy0PnBMdoLzwAzSgTjloMzZDu+XF3EQb2GiX3mrB2g7sec0Clw==
-X-Received: by 2002:adf:e803:: with SMTP id o3mr10543177wrm.326.1574341051138; 
-	Thu, 21 Nov 2019 04:57:31 -0800 (PST)
-Received: from nick-bbestie.garage.tyco.com ([77.107.218.170])
-	by smtp.gmail.com with ESMTPSA id
-	b196sm2990425wmd.24.2019.11.21.04.57.30
-	(version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-	Thu, 21 Nov 2019 04:57:30 -0800 (PST)
-From: Nicola Lunghi <nick83ola@gmail.com>
-To: yocto@yoctoproject.org,
-	Andre Draszik <git@andred.net>
-Date: Thu, 21 Nov 2019 12:57:11 +0000
-Message-Id: <20191121125711.32336-1-nick83ola@gmail.com>
-X-Mailer: git-send-email 2.20.1
+Received: from m13-138.163.com (m13-138.163.com [220.181.13.138])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11A8DE00839
+	for <yocto@yoctoproject.org>; Thu, 21 Nov 2019 06:15:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=ajuAr
+	z7GI6I2JQcNcUaZf5UZ4FfFL6SwLc2jsZyGzB4=; b=O8Hfuz8xXYW972SpM0XB6
+	TCwUxxu3/7BwZ80iEZjJ3UHy4VS1ZPu5toK6j+el+LwwwB9gd9lvlfng89h2Vrjw
+	lmWl7bYVs7tlwRIaKp+hQN1nxJQyvdR2eZon+nIxtOTeQQgHdDRNi3C2jC9x1f8H
+	U9eryvSCHw6MrQjrU+cTRI=
+Received: from ouyangxuan10$163.com ( [223.72.98.144] ) by
+	ajax-webmail-wmsvr138 (Coremail) ; Thu, 21 Nov 2019 22:15:06 +0800 (CST)
+X-Originating-IP: [223.72.98.144]
+Date: Thu, 21 Nov 2019 22:15:06 +0800 (CST)
+From: www  <ouyangxuan10@163.com>
+To: "Mike Looijmans" <mike.looijmans@topicproducts.com>
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.10 build 20190724(ac680a23)
+	Copyright (c) 2002-2019 www.mailtech.cn 163com
+In-Reply-To: <bfe41df9-ccaf-dbf0-0250-d76d04f4b92f@topicproducts.com>
+References: <1f16aed3.34f0.16e62bc914f.Coremail.ouyangxuan10@163.com>
+	<1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.937f51ed-079c-466a-ad63-84b226977b38@emailsignatures365.codetwo.com>
+	<1b153bce-a66a-45ee-a5c6-963ea6fb1c82.0d2bd5fa-15cc-4b27-b94e-83614f9e5b38.a7a4e13e-2941-4bd4-89d1-e2bfc50e1d1a@emailsignatures365.codetwo.com>
+	<bfe41df9-ccaf-dbf0-0250-d76d04f4b92f@topicproducts.com>
+X-CM-CTRLDATA: vnf6mWZvb3Rlcl9odG09MzUxNDo1Ng==
 MIME-Version: 1.0
-Subject: [meta-gplv2][PATCH v3] diffutils: use mempcpy instead of __mempcpy
+Message-ID: <c001b55.a0fb.16e8e510be7.Coremail.ouyangxuan10@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID: isGowAA3WHHqm9ZdfumiAQ--.21945W
+X-CM-SenderInfo: prx1t0pj0xt0irq6il2tof0z/1tbitw102laEBBZPWwABsB
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: :how to solve the basehash value changed from 'xxx' to 'aaaa' ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -75,121 +63,133 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Nov 2019 12:57:34 -0000
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 21 Nov 2019 14:15:35 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_155910_1206832523.1574345706471"
 
-musl (like uclibc) doesn't define __mempcpy.
-This patch will replace __mempcpy with mempcpy in the internal regex.c and
-getopt.c implementation (similar to what is done in grep in this same repo
-with the uclibc-fix.patch
+------=_Part_155910_1206832523.1574345706471
+Content-Type: text/plain; charset=GBK
+Content-Transfer-Encoding: base64
 
-This also render the line:
+CgpUaGFua3MsIApUaGUgY2F1c2Ugb2YgdGhlIGVycm9yIGNvbWVzIGZyb20gdGhlIGNhY2hlIG9m
+IHRoZSB5b2N0byBwcm9qZWN0LgoKClRoYW5rcywKQnlyb24KCgoKCgpBdCAyMDE5LTExLTIxIDE3
+OjEzOjU0LCAiTWlrZSBMb29pam1hbnMiIDxtaWtlLmxvb2lqbWFuc0B0b3BpY3Byb2R1Y3RzLmNv
+bT4gd3JvdGU6Cj5XaXRob3V0IHlvdXIgcmVjaXBlIHNvdXJjZSBjb2RlLCBubyBvbmUgY2FuIHRl
+bGwgZm9yIHN1cmUsIGJ1dCBJIHN1c3BlY3QgeW91IAo+aGF2ZSBzb21ldGhpbmcgbGlrZSBhICJE
+QVRFIiBpbiB0aGVyZSB0aGF0IGV2YXVsYXRlcyB0byBhIGRpZmZlcmVudCB2YWx1ZSBpZiAKPnlv
+dSBydW4gaXQgYSBzZWNvbmQgbGF0ZXIuCj4KPgo+TWV0IHZyaWVuZGVsaWprZSBncm9ldCAvIGtp
+bmQgcmVnYXJkcywKPgo+TWlrZSBMb29pam1hbnMKPlN5c3RlbSBFeHBlcnQKPgo+Cj5UT1BJQyBF
+bWJlZGRlZCBQcm9kdWN0cyBCLlYuCj5NYXRlcmlhYWx3ZWcgNCwgNTY4MSBSSiBCZXN0Cj5Qb3N0
+YnVzIDQ0MCwgNTY4MCBBSyBCZXN0Cj5UaGUgTmV0aGVybGFuZHMKPgo+VDogKzMxICgwKSA0OTkg
+MzMgNjkgNjkKPkU6IG1pa2UubG9vaWptYW5zQHRvcGljcHJvZHVjdHMuY29tCj5XOiB3d3cudG9w
+aWNwcm9kdWN0cy5jb20KPgo+UGxlYXNlIGNvbnNpZGVyIHRoZSBlbnZpcm9ubWVudCBiZWZvcmUg
+cHJpbnRpbmcgdGhpcyBlLW1haWwKPk9uIDEzLTExLTE5IDA0OjA5LCB3d3cgd3JvdGU6Cj4+IERl
+YXIgYWxsLAo+PiAKPj4gV2hlbiBJIG1vZGlmeSB0aGUgb3MtcmVsZWFzZSBmaWxlIGluIG15IHlv
+Y3RvIHByb2plY3QsIGl0IGFwcGVhciBzb21lIGVycm9yLCAKPj4gYW5kIGhvdyBjYW4gSSBzb2x2
+ZSBpdCA/IFdobyBjYW4gZ2l2ZSBtZSBzb21lIGhlbHAgb3IgYWR2aWNlPyBUaGFuayB5b3WjoQo+
+PiBJIGNhcnJpZWQgb3V0IHRoZSByZWNvbW1lbmRlZCBvcmRlciBhbmQgaXQgZGlkbid0IHdvcmsu
+Cj4+IAo+PiAvRVJST1I6IG9zLXJlbGVhc2UtMS4wLXIwIGRvX2NvbXBpbGU6IFRhc2toYXNoIG1p
+c21hdGNoIAo+PiBjZTEzM2YwNDU4NjA4ZTAzYWE1NTIyNGRmMjgxNTZlNTIzZTU0OTAzMTE1ZWZi
+YmNkNjI5NDZmODRhODY3MjAxIHZlcnN1cyAKPj4gNzI2OTg4MWYwZWIxNzU5ZWQ0MjBhMmRiNGMw
+NGZiNDc3Y2Q4YzEyODhiYzVmODJkZjVjODE2MWJiOTI2ZWExZiBmb3IgCj4+IC9ob21lL3RlbXAv
+d2FuZ2hwL3dzcC9naXRfcy9sb2NhbC1zb3VyY2Uvb2JtYy1zdWdvbi9lbnRpdHlfZnJ1dS9tZXRh
+L3JlY2lwZXMtY29yZS9vcy1yZWxlYXNlL29zLXJlbGVhc2UuYmIuZG9fY29tcGlsZS8KPj4gL0VS
+Uk9SOiBUYXNraGFzaCBtaXNtYXRjaCAKPj4gY2UxMzNmMDQ1ODYwOGUwM2FhNTUyMjRkZjI4MTU2
+ZTUyM2U1NDkwMzExNWVmYmJjZDYyOTQ2Zjg0YTg2NzIwMSB2ZXJzdXMgCj4+IDcyNjk4ODFmMGVi
+MTc1OWVkNDIwYTJkYjRjMDRmYjQ3N2NkOGMxMjg4YmM1ZjgyZGY1YzgxNjFiYjkyNmVhMWYgZm9y
+IAo+PiAvaG9tZS90ZW1wL3dhbmdocC93c3AvZ2l0X3MvbG9jYWwtc291cmNlL29ibWMtc3Vnb24v
+ZW50aXR5X2ZydXUvbWV0YS9yZWNpcGVzLWNvcmUvb3MtcmVsZWFzZS9vcy1yZWxlYXNlLmJiLmRv
+X2NvbXBpbGUvCj4+IC9FUlJPUjogV2hlbiByZXBhcnNpbmcgCj4+IC9ob21lL3RlbXAvd2FuZ2hw
+L3dzcC9naXRfcy9sb2NhbC1zb3VyY2Uvb2JtYy1zdWdvbi9lbnRpdHlfZnJ1dS9tZXRhL3JlY2lw
+ZXMtY29yZS9vcy1yZWxlYXNlL29zLXJlbGVhc2UuYmIuZG9fY29tcGlsZSwgCj4+IC8vdGhlIGJh
+c2VoYXNoIHZhbHVlIGNoYW5nZWQgZnJvbSAKPj4gOTlhNDJhMWEzYjFhMTUxZGU2MDQyNjdiMTU5
+NTU4ZWNhZjEwMzFhM2JlYzg5MTdkZjEzMmM4MTMwMmU3MjlhNSB0byAKPj4gNGYzMjg4YTg3NjNl
+MmUxYWY3OGU0YjNjZGQ5YzBjMGNjYjNiMGQ1Yzc4YTMwNzNjMTg4YjIyMjAwZGYyYTliMC4gLy9U
+aGUgCj4+IG1ldGFkYXRhIGlzIG5vdCBkZXRlcm1pbmlzdGljIGFuZCB0aGlzIG5lZWRzIHRvIGJl
+IGZpeGVkLi8KPj4gL0VSUk9SOiBUaGUgZm9sbG93aW5nIGNvbW1hbmRzIG1heSBoZWxwOi8KPj4g
+L0VSUk9SOiAkIGJpdGJha2Ugb3MtcmVsZWFzZSAtY2RvX2NvbXBpbGUgLVNub25lLwo+PiAvRVJS
+T1I6IFRoZW46Lwo+PiAvRVJST1I6ICQgYml0YmFrZSBvcy1yZWxlYXNlIC1jZG9fY29tcGlsZSAt
+U3ByaW50ZGlmZi8KPj4gCj4+IC9FUlJPUjogV2hlbiByZXBhcnNpbmcgCj4+IC9ob21lL3RlbXAv
+d2FuZ2hwL3dzcC9naXRfcy9sb2NhbC1zb3VyY2Uvb2JtYy1zdWdvbi9lbnRpdHlfZnJ1dS9tZXRh
+L3JlY2lwZXMtY29yZS9vcy1yZWxlYXNlL29zLXJlbGVhc2UuYmIuZG9fY29tcGlsZSwgCj4+IC8v
+dGhlIGJhc2VoYXNoIHZhbHVlIGNoYW5nZWQgZnJvbSAKPj4gOTlhNDJhMWEzYjFhMTUxZGU2MDQy
+NjdiMTU5NTU4ZWNhZjEwMzFhM2JlYzg5MTdkZjEzMmM4MTMwMmU3MjlhNSB0byAKPj4gNDdjMzAw
+MTJkYWE2YWE3N2JlMDlhOTNmZTIxZTY2OTk1MzYxZWYyNmI0NDg3MTExMDA1NjE3ZGI4Y2I0ZGU1
+OS4gVGhlIG1ldGFkYXRhIAo+PiBpcyBub3QgZGV0ZXJtaW5pc3RpYyBhbmQgdGhpcyBuZWVkcyB0
+byBiZSBmaXhlZC4vCj4+IC9FUlJPUjogVGhlIGZvbGxvd2luZyBjb21tYW5kcyBtYXkgaGVscDov
+Cj4+IC9FUlJPUjogJCBiaXRiYWtlIG9zLXJlbGVhc2UgLWNkb19jb21waWxlIC1Tbm9uZS8KPj4g
+L0VSUk9SOiBUaGVuOi8KPj4gL0VSUk9SOiAkIGJpdGJha2Ugb3MtcmVsZWFzZSAtY2RvX2NvbXBp
+bGUgLVNwcmludGRpZmYvCj4+IAo+PiB0aGFua3MsCj4+IEJ5cm9uCj4+IAo+PiAKPj4gCj4KPi0t
+IAo+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18KPnlvY3Rv
+IG1haWxpbmcgbGlzdAo+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZwo+aHR0cHM6Ly9saXN0cy55b2N0
+b3Byb2plY3Qub3JnL2xpc3RpbmZvL3lvY3RvCg==
 
-  EXTRA_OECONF_libc-uclibc = "--without-included-regex"
+------=_Part_155910_1206832523.1574345706471
+Content-Type: text/html; charset=GBK
+Content-Transfer-Encoding: base64
 
-not needed anymore so it drops it.
+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS43O2NvbG9yOiMwMDAwMDA7Zm9udC1zaXplOjE0cHg7
+Zm9udC1mYW1pbHk6QXJpYWwiPjxicj48ZGl2PlRoYW5rcywmbmJzcDs8L2Rpdj48ZGl2PlRoZSBj
+YXVzZSBvZiB0aGUgZXJyb3IgY29tZXMgZnJvbSB0aGUgY2FjaGUgb2YgdGhlIHlvY3RvIHByb2pl
+Y3QuPC9kaXY+PGRpdj48YnI+PC9kaXY+PGRpdj5UaGFua3MsPC9kaXY+PGRpdj5CeXJvbjwvZGl2
+Pjxicj48ZGl2IHN0eWxlPSJwb3NpdGlvbjpyZWxhdGl2ZTt6b29tOjEiPjwvZGl2PjxkaXYgaWQ9
+ImRpdk5ldGVhc2VNYWlsQ2FyZCI+PC9kaXY+PGJyPjxwcmU+PGJyPkF0IDIwMTktMTEtMjEgMTc6
+MTM6NTQsICJNaWtlIExvb2lqbWFucyIgJmx0O21pa2UubG9vaWptYW5zQHRvcGljcHJvZHVjdHMu
+Y29tJmd0OyB3cm90ZToKJmd0O1dpdGhvdXQgeW91ciByZWNpcGUgc291cmNlIGNvZGUsIG5vIG9u
+ZSBjYW4gdGVsbCBmb3Igc3VyZSwgYnV0IEkgc3VzcGVjdCB5b3UgCiZndDtoYXZlIHNvbWV0aGlu
+ZyBsaWtlIGEgIkRBVEUiIGluIHRoZXJlIHRoYXQgZXZhdWxhdGVzIHRvIGEgZGlmZmVyZW50IHZh
+bHVlIGlmIAomZ3Q7eW91IHJ1biBpdCBhIHNlY29uZCBsYXRlci4KJmd0OwomZ3Q7CiZndDtNZXQg
+dnJpZW5kZWxpamtlIGdyb2V0IC8ga2luZCByZWdhcmRzLAomZ3Q7CiZndDtNaWtlIExvb2lqbWFu
+cwomZ3Q7U3lzdGVtIEV4cGVydAomZ3Q7CiZndDsKJmd0O1RPUElDIEVtYmVkZGVkIFByb2R1Y3Rz
+IEIuVi4KJmd0O01hdGVyaWFhbHdlZyA0LCA1NjgxIFJKIEJlc3QKJmd0O1Bvc3RidXMgNDQwLCA1
+NjgwIEFLIEJlc3QKJmd0O1RoZSBOZXRoZXJsYW5kcwomZ3Q7CiZndDtUOiArMzEgKDApIDQ5OSAz
+MyA2OSA2OQomZ3Q7RTogbWlrZS5sb29pam1hbnNAdG9waWNwcm9kdWN0cy5jb20KJmd0O1c6IHd3
+dy50b3BpY3Byb2R1Y3RzLmNvbQomZ3Q7CiZndDtQbGVhc2UgY29uc2lkZXIgdGhlIGVudmlyb25t
+ZW50IGJlZm9yZSBwcmludGluZyB0aGlzIGUtbWFpbAomZ3Q7T24gMTMtMTEtMTkgMDQ6MDksIHd3
+dyB3cm90ZToKJmd0OyZndDsgRGVhciBhbGwsCiZndDsmZ3Q7IAomZ3Q7Jmd0OyBXaGVuIEkgbW9k
+aWZ5IHRoZSBvcy1yZWxlYXNlIGZpbGUgaW4gbXkgeW9jdG8gcHJvamVjdCwgaXQgYXBwZWFyIHNv
+bWUgZXJyb3IsIAomZ3Q7Jmd0OyBhbmQgaG93IGNhbiBJIHNvbHZlIGl0ID8mbmJzcDtXaG8gY2Fu
+IGdpdmUgbWUgc29tZSBoZWxwIG9yIGFkdmljZT8gVGhhbmsgeW91o6EKJmd0OyZndDsgSSBjYXJy
+aWVkIG91dCB0aGUgcmVjb21tZW5kZWQgb3JkZXIgYW5kIGl0IGRpZG4ndCB3b3JrLgomZ3Q7Jmd0
+OyAKJmd0OyZndDsgL0VSUk9SOiBvcy1yZWxlYXNlLTEuMC1yMCBkb19jb21waWxlOiBUYXNraGFz
+aCBtaXNtYXRjaCAKJmd0OyZndDsgY2UxMzNmMDQ1ODYwOGUwM2FhNTUyMjRkZjI4MTU2ZTUyM2U1
+NDkwMzExNWVmYmJjZDYyOTQ2Zjg0YTg2NzIwMSB2ZXJzdXMgCiZndDsmZ3Q7IDcyNjk4ODFmMGVi
+MTc1OWVkNDIwYTJkYjRjMDRmYjQ3N2NkOGMxMjg4YmM1ZjgyZGY1YzgxNjFiYjkyNmVhMWYgZm9y
+IAomZ3Q7Jmd0OyAvaG9tZS90ZW1wL3dhbmdocC93c3AvZ2l0X3MvbG9jYWwtc291cmNlL29ibWMt
+c3Vnb24vZW50aXR5X2ZydXUvbWV0YS9yZWNpcGVzLWNvcmUvb3MtcmVsZWFzZS9vcy1yZWxlYXNl
+LmJiLmRvX2NvbXBpbGUvCiZndDsmZ3Q7IC9FUlJPUjogVGFza2hhc2ggbWlzbWF0Y2ggCiZndDsm
+Z3Q7IGNlMTMzZjA0NTg2MDhlMDNhYTU1MjI0ZGYyODE1NmU1MjNlNTQ5MDMxMTVlZmJiY2Q2Mjk0
+NmY4NGE4NjcyMDEgdmVyc3VzIAomZ3Q7Jmd0OyA3MjY5ODgxZjBlYjE3NTllZDQyMGEyZGI0YzA0
+ZmI0NzdjZDhjMTI4OGJjNWY4MmRmNWM4MTYxYmI5MjZlYTFmIGZvciAKJmd0OyZndDsgL2hvbWUv
+dGVtcC93YW5naHAvd3NwL2dpdF9zL2xvY2FsLXNvdXJjZS9vYm1jLXN1Z29uL2VudGl0eV9mcnV1
+L21ldGEvcmVjaXBlcy1jb3JlL29zLXJlbGVhc2Uvb3MtcmVsZWFzZS5iYi5kb19jb21waWxlLwom
+Z3Q7Jmd0OyAvRVJST1I6IFdoZW4gcmVwYXJzaW5nIAomZ3Q7Jmd0OyAvaG9tZS90ZW1wL3dhbmdo
+cC93c3AvZ2l0X3MvbG9jYWwtc291cmNlL29ibWMtc3Vnb24vZW50aXR5X2ZydXUvbWV0YS9yZWNp
+cGVzLWNvcmUvb3MtcmVsZWFzZS9vcy1yZWxlYXNlLmJiLmRvX2NvbXBpbGUsIAomZ3Q7Jmd0OyAv
+L3RoZSBiYXNlaGFzaCB2YWx1ZSBjaGFuZ2VkIGZyb20gCiZndDsmZ3Q7IDk5YTQyYTFhM2IxYTE1
+MWRlNjA0MjY3YjE1OTU1OGVjYWYxMDMxYTNiZWM4OTE3ZGYxMzJjODEzMDJlNzI5YTUgdG8gCiZn
+dDsmZ3Q7IDRmMzI4OGE4NzYzZTJlMWFmNzhlNGIzY2RkOWMwYzBjY2IzYjBkNWM3OGEzMDczYzE4
+OGIyMjIwMGRmMmE5YjAuIC8vVGhlIAomZ3Q7Jmd0OyBtZXRhZGF0YSBpcyBub3QgZGV0ZXJtaW5p
+c3RpYyBhbmQgdGhpcyBuZWVkcyB0byBiZSBmaXhlZC4vCiZndDsmZ3Q7IC9FUlJPUjogVGhlIGZv
+bGxvd2luZyBjb21tYW5kcyBtYXkgaGVscDovCiZndDsmZ3Q7IC9FUlJPUjogJCBiaXRiYWtlIG9z
+LXJlbGVhc2UgLWNkb19jb21waWxlIC1Tbm9uZS8KJmd0OyZndDsgL0VSUk9SOiBUaGVuOi8KJmd0
+OyZndDsgL0VSUk9SOiAkIGJpdGJha2Ugb3MtcmVsZWFzZSAtY2RvX2NvbXBpbGUgLVNwcmludGRp
+ZmYvCiZndDsmZ3Q7IAomZ3Q7Jmd0OyAvRVJST1I6IFdoZW4gcmVwYXJzaW5nIAomZ3Q7Jmd0OyAv
+aG9tZS90ZW1wL3dhbmdocC93c3AvZ2l0X3MvbG9jYWwtc291cmNlL29ibWMtc3Vnb24vZW50aXR5
+X2ZydXUvbWV0YS9yZWNpcGVzLWNvcmUvb3MtcmVsZWFzZS9vcy1yZWxlYXNlLmJiLmRvX2NvbXBp
+bGUsIAomZ3Q7Jmd0OyAvL3RoZSBiYXNlaGFzaCB2YWx1ZSBjaGFuZ2VkIGZyb20gCiZndDsmZ3Q7
+IDk5YTQyYTFhM2IxYTE1MWRlNjA0MjY3YjE1OTU1OGVjYWYxMDMxYTNiZWM4OTE3ZGYxMzJjODEz
+MDJlNzI5YTUgdG8gCiZndDsmZ3Q7IDQ3YzMwMDEyZGFhNmFhNzdiZTA5YTkzZmUyMWU2Njk5NTM2
+MWVmMjZiNDQ4NzExMTAwNTYxN2RiOGNiNGRlNTkuIFRoZSBtZXRhZGF0YSAKJmd0OyZndDsgaXMg
+bm90IGRldGVybWluaXN0aWMgYW5kIHRoaXMgbmVlZHMgdG8gYmUgZml4ZWQuLwomZ3Q7Jmd0OyAv
+RVJST1I6IFRoZSBmb2xsb3dpbmcgY29tbWFuZHMgbWF5IGhlbHA6LwomZ3Q7Jmd0OyAvRVJST1I6
+ICQgYml0YmFrZSBvcy1yZWxlYXNlIC1jZG9fY29tcGlsZSAtU25vbmUvCiZndDsmZ3Q7IC9FUlJP
+UjogVGhlbjovCiZndDsmZ3Q7IC9FUlJPUjogJCBiaXRiYWtlIG9zLXJlbGVhc2UgLWNkb19jb21w
+aWxlIC1TcHJpbnRkaWZmLwomZ3Q7Jmd0OyAKJmd0OyZndDsgdGhhbmtzLAomZ3Q7Jmd0OyBCeXJv
+bgomZ3Q7Jmd0OyAKJmd0OyZndDsgCiZndDsmZ3Q7IAomZ3Q7CiZndDstLSAKJmd0O19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fCiZndDt5b2N0byBtYWlsaW5n
+IGxpc3QKJmd0O3lvY3RvQHlvY3RvcHJvamVjdC5vcmcKJmd0O2h0dHBzOi8vbGlzdHMueW9jdG9w
+cm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bwo8L3ByZT48L2Rpdj48YnI+PGJyPjxzcGFuIHRpdGxl
+PSJuZXRlYXNlZm9vdGVyIj48cD4mbmJzcDs8L3A+PC9zcGFuPg==
 
-Signed-off-by: Nicola Lunghi <nick83ola@gmail.com>
----
- ...included-libc-use-mempcpy-instead-of.patch | 56 +++++++++++++++++++
- recipes-extended/diffutils/diffutils.inc      |  7 ---
- recipes-extended/diffutils/diffutils_2.8.1.bb |  1 +
- 3 files changed, 57 insertions(+), 7 deletions(-)
- create mode 100644 recipes-extended/diffutils/diffutils-2.8.1/0002-included-libc-use-mempcpy-instead-of.patch
-
-diff --git a/recipes-extended/diffutils/diffutils-2.8.1/0002-included-libc-use-mempcpy-instead-of.patch b/recipes-extended/diffutils/diffutils-2.8.1/0002-included-libc-use-mempcpy-instead-of.patch
-new file mode 100644
-index 0000000..6994ec7
---- /dev/null
-+++ b/recipes-extended/diffutils/diffutils-2.8.1/0002-included-libc-use-mempcpy-instead-of.patch
-@@ -0,0 +1,56 @@
-+From 61db4da387676690c0f731ef2eccc014d85c23a6 Mon Sep 17 00:00:00 2001
-+From: Nicola Lunghi <nicola.lunghi@jci.com>
-+Date: Wed, 20 Nov 2019 18:30:10 +0000
-+Subject: [PATCH] included libc: use mempcpy instead of __mempcpy
-+
-+Fix to use mempcpy instead of __mempcpy. This is needed for uclibc and musl
-+which doesn't define __mempcpy, only mempcpy. Since they all have
-+mempcpy, we'll just use that instead.
-+
-+Signed-off-by: Nicola Lunghi <nick83ola@gmail.com>
-+
-+Patch source: OpenEmbedded (grep)
-+Upstream-Status: Inappropriate [licensing]
-+---
-+ lib/getopt.c | 4 ++--
-+ lib/regex.c  | 2 +-
-+ 2 files changed, 3 insertions(+), 3 deletions(-)
-+
-+diff --git a/lib/getopt.c b/lib/getopt.c
-+index ed32692..6626f5e 100644
-+--- a/lib/getopt.c
-++++ b/lib/getopt.c
-+@@ -334,7 +334,7 @@ exchange (argv)
-+ 	nonoption_flags_len = nonoption_flags_max_len = 0;
-+       else
-+ 	{
-+-	  memset (__mempcpy (new_str, __getopt_nonoption_flags,
-++	  memset (mempcpy (new_str, __getopt_nonoption_flags,
-+ 			     nonoption_flags_max_len),
-+ 		  '\0', top + 1 - nonoption_flags_max_len);
-+ 	  nonoption_flags_max_len = top + 1;
-+@@ -445,7 +445,7 @@ _getopt_initialize (argc, argv, optstring)
-+ 	      if (__getopt_nonoption_flags == NULL)
-+ 		nonoption_flags_max_len = -1;
-+ 	      else
-+-		memset (__mempcpy (__getopt_nonoption_flags, orig_str, len),
-++		memset (mempcpy (__getopt_nonoption_flags, orig_str, len),
-+ 			'\0', nonoption_flags_max_len - len);
-+ 	    }
-+ 	}
-+diff --git a/lib/regex.c b/lib/regex.c
-+index 6daec76..797b20a 100644
-+--- a/lib/regex.c
-++++ b/lib/regex.c
-+@@ -8314,7 +8314,7 @@ regerror (errcode, preg, errbuf, errbuf_size)
-+       if (msg_size > errbuf_size)
-+         {
-+ #if defined HAVE_MEMPCPY || defined _LIBC
-+-	  *((char *) __mempcpy (errbuf, msg, errbuf_size - 1)) = '\0';
-++	  *((char *) mempcpy (errbuf, msg, errbuf_size - 1)) = '\0';
-+ #else
-+           memcpy (errbuf, msg, errbuf_size - 1);
-+           errbuf[errbuf_size - 1] = 0;
-+-- 
-+2.20.1
-+
-diff --git a/recipes-extended/diffutils/diffutils.inc b/recipes-extended/diffutils/diffutils.inc
-index 243341a..c81348b 100644
---- a/recipes-extended/diffutils/diffutils.inc
-+++ b/recipes-extended/diffutils/diffutils.inc
-@@ -6,13 +6,6 @@ SECTION = "base"
- 
- inherit autotools texinfo update-alternatives gettext
- 
--# diffutils assumes non-glibc compilation with uclibc and
--# this causes it to generate its own implementations of
--# standard functionality.  regex.c actually breaks compilation
--# because it uses __mempcpy, there are other things (TBD:
--# see diffutils.mk in buildroot)
--EXTRA_OECONF_libc-uclibc = "--without-included-regex"
--
- ALTERNATIVE_${PN} = "diff cmp"
- ALTERNATIVE_PRIORITY = "100"
- 
-diff --git a/recipes-extended/diffutils/diffutils_2.8.1.bb b/recipes-extended/diffutils/diffutils_2.8.1.bb
-index 466bf28..5a71c94 100644
---- a/recipes-extended/diffutils/diffutils_2.8.1.bb
-+++ b/recipes-extended/diffutils/diffutils_2.8.1.bb
-@@ -9,6 +9,7 @@ SRC_URI = "${GNU_MIRROR}/diffutils/diffutils-${PV}.tar.gz \
-            file://diffutils_fix_for_automake-1.12.patch \
-            file://fix_gcc6.patch \
-            file://0001-Make-it-build-with-compile-time-hardening-enabled.patch \
-+           file://0002-included-libc-use-mempcpy-instead-of.patch \
-            "
- 
- SRC_URI[md5sum] = "71f9c5ae19b60608f6c7f162da86a428"
--- 
-2.20.1
-
-
+------=_Part_155910_1206832523.1574345706471--
