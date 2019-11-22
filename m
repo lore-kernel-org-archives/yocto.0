@@ -1,11 +1,11 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.988.1574436006296130705
+ by mx.groups.io with SMTP id smtpd.web11.1205.1574436962305434459
  for <yocto@lists.yoctoproject.org>;
- Fri, 22 Nov 2019 07:20:06 -0800
+ Fri, 22 Nov 2019 07:36:02 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: randy.macleod@windriver.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 22794E00D8D; Fri, 22 Nov 2019 07:20:06 -0800 (PST)
+	id 6F584E00C5C; Fri, 22 Nov 2019 07:36:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -16,59 +16,78 @@ X-Spam-HAM-Report:
 	*      [score: 0.0000]
 	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
 	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2390E00C46
-	for <yocto@yoctoproject.org>; Fri, 22 Nov 2019 07:20:04 -0800 (PST)
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3BCDE00BDC
+	for <yocto@yoctoproject.org>; Fri, 22 Nov 2019 07:36:00 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id xAMFK0nm007240
+	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id xAMFZbIt027814
 	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 22 Nov 2019 07:20:00 -0800
+	Fri, 22 Nov 2019 07:35:37 -0800 (PST)
 Received: from [172.25.44.8] (172.25.44.8) by ALA-HCA.corp.ad.wrs.com
  (147.11.189.50) with Microsoft SMTP Server id 14.3.468.0; Fri, 22 Nov 2019
- 07:19:59 -0800
-Subject: Re: [yocto] Warning message after building recipe:
-To: pavan <pawan4749@gmail.com>, <yocto@yoctoproject.org>
-References: <CALd6x_siiqxqhC4n4Ynf45tT0LiaTUdy-T48mTuGZT=e9mDsXw@mail.gmail.com>
+ 07:35:36 -0800
+Subject: Re: [yocto] Memory Tests in U-Boot
+To: <devendra.devadiga@iwavesystems.com>, <yocto@yoctoproject.org>
+References: <26fca14f1bd94e8d285c466d4f98f731@iwavesystems.com>
 From: "Randy MacLeod" <randy.macleod@windriver.com>
-Message-ID: <90748801-76f5-7807-1f2c-141bd1caa06a@windriver.com>
-Date: Fri, 22 Nov 2019 10:19:58 -0500
+Message-ID: <74ffdd81-43cf-5f75-c929-a2692a684900@windriver.com>
+Date: Fri, 22 Nov 2019 10:35:36 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.1.2
 MIME-Version: 1.0
-In-Reply-To: <CALd6x_siiqxqhC4n4Ynf45tT0LiaTUdy-T48mTuGZT=e9mDsXw@mail.gmail.com>
+In-Reply-To: <26fca14f1bd94e8d285c466d4f98f731@iwavesystems.com>
 X-Originating-IP: [172.25.44.8]
 Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-CA
 Content-Transfer-Encoding: 7bit
 
-On 11/22/19 8:38 AM, pavan wrote:
-> Hi All,
+On 11/19/19 7:28 AM, devendra.devadiga@iwavesystems.com wrote:
+> Hi,
 > 
-> After building the recipe, I'm getting warning message:
-> "Warning: do_package_qa QA Issue: <recipe-dbg>: found library in wrong 
-> location.
-> Any suggestion to resolve this issue?
+> In U-Boot I found some generic memory tests commands like mtest and post 
+> tests. But I need complete DDR4 memory test with below algorithms:
+> 
+> * Checkerboard Test
+> * March C- Test
+> * Neighborhood Pattern Sensitive Fault
+> 
+> Can I get any reference code for these algorithms in U-Boot ?
+> Implementation for these algorithms available in any of U-Boot version ?
 
-It looks like your question is covered here:
- 
-https://forums.xilinx.com/t5/Embedded-Linux/Bitbake-recipe-help/td-p/773151
+I don't know if any of the (too many) versions of u-boot have that
+feature. If you are willing to test from userspace, there is memtester:
+
+https://layers.openembedded.org/layerindex/recipe/863/
+
+I don't think it has all of the tests you asked for but
+it would be good if you could take a look and report back here
+for those interested.
+
+Here's a test run that a web search returned:
+https://www.lightsoftai.com/?p=113
+
+
+Also, the stress-ng has some memory tests including one that tests
+neighbour sensitivity:
+   https://layers.openembedded.org/layerindex/recipe/104982/
+
+man stress-ng:
+
+galpat-0
+
+galloping  pattern  zeros. This sets all bits to 0 and flips just 1
+in 4096 bits to 1. It then checks to see  if the 1s are pulled down
+to 0 by their neighbours or of the neighbours have been pulled up
+to 1.
+
+Good luck and please let us know what you find,
 
 ../Randy
+
 > 
-> 
-> Regards,
-> Pavan
-> 
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
-> 
-> View/Reply Online (#47381): https://lists.yoctoproject.org/g/yocto/message/47381
-> Mute This Topic: https://lists.yoctoproject.org/mt/61661954/3616765
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [randy.macleod@windriver.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-> 
+> Thanks and Regards,
+> Devendra
 
 
 -- 
