@@ -1,128 +1,162 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.1183.1574442228384538619
+ by mx.groups.io with SMTP id smtpd.web12.1920.1574445462689783984
  for <yocto@lists.yoctoproject.org>;
- Fri, 22 Nov 2019 09:03:48 -0800
+ Fri, 22 Nov 2019 09:57:42 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 140.211.169.56, mailfrom: rpjday@crashcourse.ca)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=WjTqjU4c;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: raj.khem@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 27A6EE00E42; Fri, 22 Nov 2019 09:03:48 -0800 (PST)
+	id 3D0FCE00E45; Fri, 22 Nov 2019 09:57:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,FORGED_SPF_HELO,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: 
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [199.212.143.9 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
-Received: from northernsuncreative.com (cpanel4.indieserve.net [199.212.143.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A7BDE007D4
-	for <yocto@yoctoproject.org>; Fri, 22 Nov 2019 09:03:47 -0800 (PST)
-Received: from [216.208.232.130] (port=33516 helo=localhost.localdomain)
-	by cpanel4.indieserve.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-	(Exim 4.92)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1iYCLR-000784-M3
-	for yocto@yoctoproject.org; Fri, 22 Nov 2019 12:03:46 -0500
-Date: Fri, 22 Nov 2019 12:03:44 -0500 (EST)
-From: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: repost: how to create a SPDX "notice file" from a build?
-In-Reply-To: <alpine.LFD.2.21.1911220952340.7502@localhost.localdomain>
-Message-ID: <alpine.LFD.2.21.1911221159250.14879@localhost.localdomain>
-References: <alpine.LFD.2.21.1911220952340.7502@localhost.localdomain>
-User-Agent: Alpine 2.21 (LFD 202 2017-01-01)
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.222.193 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qk1-f193.google.com (mail-qk1-f193.google.com [209.85.222.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8317E00E42
+	for <yocto@yoctoproject.org>; Fri, 22 Nov 2019 09:57:39 -0800 (PST)
+Received: by mail-qk1-f193.google.com with SMTP id m16so7004974qki.11
+        for <yocto@yoctoproject.org>; Fri, 22 Nov 2019 09:57:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TQTkCjCodDna3xLC7tPt8kmqiXKKhpgXUlyBGc914jI=;
+        b=WjTqjU4c+tl7AErdU15z6hq31cXEue5jzp786RACH8vmzmZqc/N6ijLSfYbb0f1zZN
+         PPhf5nC822WE8nLp9x1mgX7A90DMQh1W+XXjc3W7fWaxfxT8tI2uOCKZHUImXovo46Ae
+         A59Ms0xgF5V0waiLiWDFx+l9bAnphIZyhVsl40sgCsiUhj6okiee5FDCn8dvVxQJ7YOZ
+         wEZee46HIe+hMpt+CaA+m5feJTtjTueWXg1tT8sQJYGfPnyD8Aocdh0btFNv74j8mSwm
+         rpogdbMgnJh8uO8GbD4AyU4oWh4QKzwRMNFeKfYJgrJxwawDCi59CxEamDY4Knv11fNE
+         GDPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TQTkCjCodDna3xLC7tPt8kmqiXKKhpgXUlyBGc914jI=;
+        b=UedmeU2H5ffa/liygEQWOP7MgTjwxGlQu9iiBstCpWhjz9pVpKUTdGNVt3krmiv/d0
+         0TmroqeLIO6fnTnOYKBf0m5MDYczncFq4eDpzMsRryj5LJpdzRP7IRN9pMaxm3LkRgF8
+         P+723Z5NYXw5uIMwWFwlrpFQzFcwEY8ZJxs0TWCspxilGbn7Tdx56yPpB0lpVXNPDP6f
+         FSOXLKL56Et3hN+oaDrU9mz/1nPA0Tm7UpoxUEjwiZxOKZIEIN9+nP8PVSEiR5CdBqHk
+         cKRP6agxIwC+LwgoGbA/D/Y7HdhldzF4ATjYC80HTywAkp2RlRyBJm7RdTzwDNkBsuPD
+         P/VQ==
+X-Gm-Message-State: APjAAAUNfDW44hHsMXy/TYt8oDWKS0Gy7UivPGYtqwrTQUaVi1w9uOKZ
+	TEb+J97pRYpTRAlZvV267tk82rxJDQ5/oWetzjo=
+X-Google-Smtp-Source: APXvYqyAwjeYyP1FDgwAQ22jDdQFBe9RuC+w1zP5/gCebG5+X6VH4CDVh5otM5x6gXL3m9jnNIsXz018rPZIrB/1m/o=
+X-Received: by 2002:a37:4bc2:: with SMTP id y185mr14875398qka.474.1574445458640;
+ Fri, 22 Nov 2019 09:57:38 -0800 (PST)
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-0.2
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel4.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel4.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel4.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+References: <alpine.LFD.2.21.1911220952340.7502@localhost.localdomain> <alpine.LFD.2.21.1911221159250.14879@localhost.localdomain>
+In-Reply-To: <alpine.LFD.2.21.1911221159250.14879@localhost.localdomain>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Fri, 22 Nov 2019 09:57:07 -0800
+Message-ID: <CAMKF1srcYC=EcAN4azt0VPXx2cw3chMK4V-6qoS6DpXcVgbx9Q@mail.gmail.com>
+Subject: Re: [yocto] repost: how to create a SPDX "notice file" from a build?
+To: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, 22 Nov 2019, Robert P. J. Day wrote:
-
->   i asked about this a couple months ago but didn't see any replies,
-> so i'll ask again with a little more detail.
+On Fri, Nov 22, 2019 at 9:03 AM rpjday@crashcourse.ca
+<rpjday@crashcourse.ca> wrote:
 >
->   colleague wants to, from YP (actually petalinux but should be
-> irrelevant), some sort of SPDX "notice file", along the lines of what
-> can be generated by black duck. it doesn't need to be identical, but
-> it would be useful to at least have a first pass that people can look
-> at and say what they want tweaked.
+> On Fri, 22 Nov 2019, Robert P. J. Day wrote:
 >
->   is there an example of how to (using the spdx.bbclass class file, i
-> assume) do something like this? thanks.
+> >   i asked about this a couple months ago but didn't see any replies,
+> > so i'll ask again with a little more detail.
+> >
+> >   colleague wants to, from YP (actually petalinux but should be
+> > irrelevant), some sort of SPDX "notice file", along the lines of what
+> > can be generated by black duck. it doesn't need to be identical, but
+> > it would be useful to at least have a first pass that people can look
+> > at and say what they want tweaked.
+> >
+> >   is there an example of how to (using the spdx.bbclass class file, i
+> > assume) do something like this? thanks.
+>
+>   a lilttle more progress, and then an error -- i installed fossology
+> on my ubuntu 18.04 dev box, then added
+>
+>   INHERIT += "spdx"
+>
+> to local.conf, and tried to build a simple qemuarmx86-64, and very
+> quickly had a number of native packages fail with:
+>
+> //////////// start //////////
+>
+> DEBUG: Executing python function do_spdx
+> ERROR: Error executing a python function in exec_python_func() autogenerated:
+>
+> The stack trace of python calls that resulted in this exception/failure was:
+> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+>      0001:
+>  *** 0002:do_spdx(d)
+>      0003:
+> File: '/home/rpjday/oe/dist/layers/poky/meta/classes/spdx.bbclass', lineno: 83, function: do_spdx
+>      0079:        foss_full_spdx = d.getVar('FOSS_FULL_SPDX') == "true" or False
+>      0080:        foss_command = "wget %s --post-file=%s %s"\
+>      0081:            % (foss_flags, info['tar_file'], foss_server)
+>      0082:
+>  *** 0083:        foss_result = run_fossology(foss_command, foss_full_spdx)
+>      0084:        if foss_result is not None:
+>      0085:            (foss_package_info, foss_file_info, foss_license_info) = foss_result
+>      0086:            spdx_file_info = create_spdx_doc(local_file_info, foss_file_info)
+>      0087:            ## write to cache
+> File: '/home/rpjday/oe/dist/layers/poky/meta/classes/spdx.bbclass', lineno: 230, function: run_fossology
+>      0226:    # Package info
+>      0227:    package_info = {}
+>      0228:    if full_spdx:
+>      0229:        # All mandatory, only one occurrence
+>  *** 0230:        package_info['PackageCopyrightText'] = re.findall('PackageCopyrightText: (.*?</text>)', foss_output, re.S)[0]
+>      0231:        package_info['PackageLicenseDeclared'] = re.findall('PackageLicenseDeclared: (.*)', foss_output)[0]
+>      0232:        package_info['PackageLicenseConcluded'] = re.findall('PackageLicenseConcluded: (.*)', foss_output)[0]
+>      0233:        # These may be more than one
+>      0234:        package_info['PackageLicenseInfoFromFiles'] = re.findall('PackageLicenseInfoFromFiles: (.*)', foss_output)
+> Exception: IndexError: list index out of range
+>
+> ERROR: list index out of range
+> DEBUG: Python function do_spdx finished
+> ERROR: Function failed: do_spdx
+>
+> /////////// end /////////
+>
+>   i have absolutely no idea what to think of this, and am open to
+> suggestions. does anyone have a working scenario to simply demonstrate
+> the usage of spdx.bbclass?
 
-  a lilttle more progress, and then an error -- i installed fossology
-on my ubuntu 18.04 dev box, then added
+it once generated SPDX manifest from patched sources for package and
+file level it has sadly regressed, so would need some love as you see
+above.
 
-  INHERIT += "spdx"
-
-to local.conf, and tried to build a simple qemuarmx86-64, and very
-quickly had a number of native packages fail with:
-
-//////////// start //////////
-
-DEBUG: Executing python function do_spdx
-ERROR: Error executing a python function in exec_python_func() autogenerated:
-
-The stack trace of python calls that resulted in this exception/failure was:
-File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
-     0001:
- *** 0002:do_spdx(d)
-     0003:
-File: '/home/rpjday/oe/dist/layers/poky/meta/classes/spdx.bbclass', lineno: 83, function: do_spdx
-     0079:        foss_full_spdx = d.getVar('FOSS_FULL_SPDX') == "true" or False
-     0080:        foss_command = "wget %s --post-file=%s %s"\
-     0081:            % (foss_flags, info['tar_file'], foss_server)
-     0082:
- *** 0083:        foss_result = run_fossology(foss_command, foss_full_spdx)
-     0084:        if foss_result is not None:
-     0085:            (foss_package_info, foss_file_info, foss_license_info) = foss_result
-     0086:            spdx_file_info = create_spdx_doc(local_file_info, foss_file_info)
-     0087:            ## write to cache
-File: '/home/rpjday/oe/dist/layers/poky/meta/classes/spdx.bbclass', lineno: 230, function: run_fossology
-     0226:    # Package info
-     0227:    package_info = {}
-     0228:    if full_spdx:
-     0229:        # All mandatory, only one occurrence
- *** 0230:        package_info['PackageCopyrightText'] = re.findall('PackageCopyrightText: (.*?</text>)', foss_output, re.S)[0]
-     0231:        package_info['PackageLicenseDeclared'] = re.findall('PackageLicenseDeclared: (.*)', foss_output)[0]
-     0232:        package_info['PackageLicenseConcluded'] = re.findall('PackageLicenseConcluded: (.*)', foss_output)[0]
-     0233:        # These may be more than one
-     0234:        package_info['PackageLicenseInfoFromFiles'] = re.findall('PackageLicenseInfoFromFiles: (.*)', foss_output)
-Exception: IndexError: list index out of range
-
-ERROR: list index out of range
-DEBUG: Python function do_spdx finished
-ERROR: Function failed: do_spdx
-
-/////////// end /////////
-
-  i have absolutely no idea what to think of this, and am open to
-suggestions. does anyone have a working scenario to simply demonstrate
-the usage of spdx.bbclass?
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                         http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+>
+> rday
+>
+> --
+>
+> ========================================================================
+> Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                          http://crashcourse.ca
+>
+> Twitter:                                       http://twitter.com/rpjday
+> LinkedIn:                               http://ca.linkedin.com/in/rpjday
+> ========================================================================
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+>
+> View/Reply Online (#47387): https://lists.yoctoproject.org/g/yocto/message/47387
+> Mute This Topic: https://lists.yoctoproject.org/mt/61664060/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
