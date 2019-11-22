@@ -1,154 +1,183 @@
-Received: from APC01-HK2-obe.outbound.protection.outlook.com (APC01-HK2-obe.outbound.protection.outlook.com [40.107.130.100])
- by mx.groups.io with SMTP id smtpd.web11.5868.1574426400344640291
- for <Yocto@lists.yoctoproject.org>;
- Fri, 22 Nov 2019 04:40:02 -0800
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.6513.1574429872524032614
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 22 Nov 2019 05:37:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@hcl.com header.s=selector2 header.b=TMcvfOwk;
- spf=pass (domain: hcl.com, ip: 40.107.130.100, mailfrom: agnes.amree@hcl.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=HCL.COM; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IH1K5vENwJt9oMEbh2KGdWA8YghZywt7eecOhV0FBG8=;
- b=TMcvfOwkWNbo5LTFajnwYZauMHRFNMebsZWIQvu+qKSWNiJxIAfdDd1d2tqW12iZQk89FC54L59bumLfvcx2tq8/5QqovMU23w2PN7083G7osojR6jLlPsC8syfpIb5s/T0j555/XPOjrs7mFXP6f5Z5X9hTSLHbKP/CNns0XUM=
-Received: from TY2PR04CA0013.apcprd04.prod.outlook.com (2603:1096:404:f6::25)
- by PS1PR0401MB1996.apcprd04.prod.outlook.com (2603:1096:803:a::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2474.18; Fri, 22 Nov
- 2019 12:39:56 +0000
-Received: from HK2APC01FT115.eop-APC01.prod.protection.outlook.com
- (2a01:111:f400:7ebc::204) by TY2PR04CA0013.outlook.office365.com
- (2603:1096:404:f6::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2474.17 via Frontend
- Transport; Fri, 22 Nov 2019 12:39:55 +0000
-Authentication-Results: spf=fail (sender IP is 192.8.245.51)
- smtp.mailfrom=hcl.com; lists.yoctoproject.org; dkim=pass (signature was
- verified) header.d=HCL.COM;lists.yoctoproject.org; dmarc=pass action=none
- header.from=hcl.com;
-Received-SPF: Fail (protection.outlook.com: domain of hcl.com does not
- designate 192.8.245.51 as permitted sender) receiver=protection.outlook.com;
- client-ip=192.8.245.51; helo=APC01-PU1-obe.outbound.protection.outlook.com;
-Received: from APC01-PU1-obe.outbound.protection.outlook.com (192.8.245.51) by
- HK2APC01FT115.mail.protection.outlook.com (10.152.248.194) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2474.17 via Frontend Transport; Fri, 22 Nov 2019 12:39:53 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KetsrgCO4/steCMfz3OpnEJgw1NbU4VPkR4gOY2jGMQgMk5xMsIZYQ16yBWT8osj5HEYL/ddJbfblbA3J00oR770nTSu8SDEyaKSlcH8L+u2zDJFBlcNrQmNum9oJ1DpNybf9WJZPTwr1K7G7FCypvEwjRH6FGl9nafdWsXCFPp0sE1zbsWruM66GxYUfUPjyZY8caBucog3TLyZIJ0oR5sszo0gHI8/AB8c852XBpyftPQHkR5U5YwIWdd6WNCm0hXjRom6nWMwgS/PKO1XZMvHwDMvu1SoPsne0qoOMjpEu4cWr0Tt64g9Z17Bqh7AUOUURN9y+Rkfg0swrpBhyA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IH1K5vENwJt9oMEbh2KGdWA8YghZywt7eecOhV0FBG8=;
- b=IIPBoS06Jo+NxaoED/1yuAMr8hxxSmxrwv78EEuhVJDBfIotuXnQlx/DyrAWsHumfJTofeMziC3sEHKK1NL9uZVazwDbr59ormzZ3uEq4Gdq6JJJ2JCgZd9b2Wthjh+cdCMauZCAz/QsrX80tbPbfPpKMOFf+PfSnhWWF55xMGOQC/LiqrhDO9PH/6a5YnEVVkrkd9XqnyTbBQOuHnyoI6Kkmg/vZkUED9/HtLGt0vUj5gN9Ezc06oqdM8EAR6TNiqGvB808MjLx8BSsQAESaC3hlq22wEXx8ecIJmHhfExBr2ApPEeQaK7LsngInyaCnAGDdU92B8rykGJuhIbJWg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hcl.com; dmarc=pass action=none header.from=hcl.com; dkim=pass
- header.d=hcl.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=HCL.COM; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IH1K5vENwJt9oMEbh2KGdWA8YghZywt7eecOhV0FBG8=;
- b=TMcvfOwkWNbo5LTFajnwYZauMHRFNMebsZWIQvu+qKSWNiJxIAfdDd1d2tqW12iZQk89FC54L59bumLfvcx2tq8/5QqovMU23w2PN7083G7osojR6jLlPsC8syfpIb5s/T0j555/XPOjrs7mFXP6f5Z5X9hTSLHbKP/CNns0XUM=
-Received: from SG2PR04MB2876.apcprd04.prod.outlook.com (20.177.17.148) by
- SG2PR04MB3221.apcprd04.prod.outlook.com (20.177.90.144) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2451.30; Fri, 22 Nov 2019 12:39:50 +0000
-Received: from SG2PR04MB2876.apcprd04.prod.outlook.com
- ([fe80::79e1:f838:1b7e:793a]) by SG2PR04MB2876.apcprd04.prod.outlook.com
- ([fe80::79e1:f838:1b7e:793a%7]) with mapi id 15.20.2451.032; Fri, 22 Nov 2019
- 12:39:50 +0000
-From: agnes.amree@hcl.com
-To: "Yocto@lists.yoctoproject.org" <Yocto@lists.yoctoproject.org>
-Subject: Coreutils missing in Yocto 2.6.3 sdk
-Thread-Topic: Coreutils missing in Yocto 2.6.3 sdk
-Thread-Index: AdWhMIN9Uu7mL5sIRb2NDE9RcYkXkQ==
-Date: Fri, 22 Nov 2019 12:39:50 +0000
-Message-ID: 
- <SG2PR04MB2876A7AD2E90AAFB6DE9074EFC490@SG2PR04MB2876.apcprd04.prod.outlook.com>
-Accept-Language: en-US
+ dkim=fail reason="unable to parse pub key" header.i=@ifm.com header.s=pps header.b=zgssNfFA;
+ spf=fail (domain: ifm.com, ip: 140.211.169.56, mailfrom: kamal.pandey@ifm.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id B7330E00BB5; Fri, 22 Nov 2019 05:37:51 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
+	*      trust
+	*      [91.90.150.80 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+X-Greylist: delayed 1695 seconds by postgrey-1.32 at yocto-www; Fri, 22 Nov 2019 05:37:49 PST
+Received: from s2080.ppsmtp.net (s2080.ppsmtp.net [91.90.150.80])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08B72E00A9A
+	for <yocto@yoctoproject.org>; Fri, 22 Nov 2019 05:37:49 -0800 (PST)
+Received: from pps.filterd (s2080.ppsmtp.net [127.0.0.1])
+	by s2080.ppsmtp.net (8.16.0.27/8.16.0.27) with SMTP id xAMD8Osi017129
+	for <yocto@yoctoproject.org>; Fri, 22 Nov 2019 14:09:33 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ifm.com; h=from : to : subject :
+ date : message-id : mime-version : content-type; s=pps;
+ bh=LUF5DbNyS2VSHGJmenG3VV+68TV9LQO8F9c0WlIMSN4=;
+ b=zgssNfFAgcI3InVd9j7tQ59C+7ttWYMLFFwlYas3zrDiA1LStaDRpn6zFZR7i7EZbIxi
+ fCHTHNKxFdzZjyNd3N1lnkoxVpFvofn4eop2eq6sllSO1sZPBVNr7J+jaJ1YZ/1gYy3y
+ vyvHonAvNE7UgXm2Yg+uJtN/qzoywp3871+uNb2095M5h2xHJ20sxp67mg0YlLI+t/3l
+ Gs6CfZOkalD09tfKsj2M28qu2Cn/6lCJkTahrddsbttCSzZ0Syy2P1Tb9ekJYVDu4HsI
+ Di4ugRG8rcz2wYzcnqOA3zTKE333McHTi5j+16zslOQ35XNAqr/9Fv0tqOmMFaRwAwEE Dg== 
+Received: from deesdmz226.dmz.es.de.ifm (mail26.ifm.com [194.156.152.226])
+	by s2080.ppsmtp.net with ESMTP id 2wdqrvbghr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO)
+	for <yocto@yoctoproject.org>; Fri, 22 Nov 2019 14:09:33 +0100
+Received: from deesdmz226.dmz.es.de.ifm (localhost.localdomain [127.0.0.1])
+	by deesdmz226.dmz.es.de.ifm (Postfix) with ESMTP id DC5C3703856
+	for <yocto@yoctoproject.org>; Fri, 22 Nov 2019 14:09:32 +0100 (CET)
+From: "kamal pandey" <kamal.pandey@ifm.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Regarding esdk build error error
+Thread-Topic: Regarding esdk build error error
+Thread-Index: AdWhNLwquUZgry4CQUqvHb5nusIMKA==
+Date: Fri, 22 Nov 2019 13:09:20 +0000
+Message-ID: <1aeed09a83af40cb8d07801567d3bc14@ifm.com>
+Accept-Language: de-DE, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-titus-metadata-40: 
- eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL2hjbCIsImlkIjoiOTc5MjgzMTQtMjU3ZS00M2VmLTg3YjAtOWM3NjkzMjY3ZGY1IiwicHJvcHMiOlt7Im4iOiJIQ0xDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoibnVsbCJ9XX1dfSwiU3ViamVjdExhYmVscyI6W10sIlRNQ1ZlcnNpb24iOiIxOC40LjE4NDMuMTIzIiwiVHJ1c3RlZExhYmVsSGFzaCI6ImlEZlwvTE1kd0JLaFh3SWhvTzZvdXJnVSswY2FvRmtEb1dGZzBYNlRTRW8rR0RjdUtOazJqWWFyOVo0SEZEV2pwIn0=
-x-hclclassification: null
-Authentication-Results-Original: spf=none (sender IP is )
- smtp.mailfrom=agnes.amree@hcl.com; 
-x-originating-ip: [203.105.191.68]
-x-ms-publictraffictype: Email
-X-MS-Office365-Filtering-Correlation-Id: 1c2afd6c-dba6-412e-dabf-08d76f49138b
-X-MS-TrafficTypeDiagnostic: SG2PR04MB3221:|PS1PR0401MB1996:
-X-Microsoft-Antispam-PRVS: 
-	<PS1PR0401MB1996198D426E88734853272EFC490@PS1PR0401MB1996.apcprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;OLM:7691;
-x-forefront-prvs: 02296943FF
-X-Forefront-Antispam-Report-Untrusted: 
- SFV:NSPM;SFS:(10019020)(4636009)(396003)(136003)(346002)(376002)(39860400002)(366004)(38564003)(199004)(189003)(74316002)(7736002)(186003)(5660300002)(86362001)(5640700003)(7696005)(3846002)(81166006)(81156014)(54896002)(8676002)(26005)(55016002)(6306002)(9686003)(8936002)(99286004)(71200400001)(71190400001)(102836004)(9326002)(14454004)(6506007)(2351001)(2906002)(14444005)(316002)(256004)(5024004)(52536014)(790700001)(25786009)(478600001)(33656002)(66446008)(76116006)(6436002)(66556008)(66946007)(66476007)(64756008)(6916009)(6116002)(2501003)(66066001);DIR:OUT;SFP:1102;SCL:1;SRVR:SG2PR04MB3221;H:SG2PR04MB2876.apcprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: hcl.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 
- ciMRxJCl9XZxCt7b0+WegF4Wr2Jgx1UtC9/aJZPQNT93RXfYtq0sEUVGtQ8cjr6s4szm8M0dj5pNtQIcLK+MO/bpFMK9RgQ79Fq8mZFzio8JF/X7/MQhvcBQWsS6Ne6PKIOzNVOeQJYZ/7kH955Qc7/+Fy/RIt4jcFLSg7xG3Z+dbFNPsAdA/cgMkyuoJ1KenmmTsR/3u5w3sV7WJemGfetqyaydHA0GM4uV131Vh8CsA2dwzh9sbCODhWhZaz+rnmn9U/wMmt1LdW+VwiUowGgVWzvq6ssD07Mvuw9P7WJ3KvUcS7pL/HPhhi1fQDvZ/oboD+yWuqBU4+C7DkkNrJugmr3EluWm1yVomWTC2ndaFAIFLm5cD/nw6LDNeg2W5j+lf+piICzglRHSaTMLfKgdTcMxPvwt9tKe3K8ZPFbQCPiEaQk/b5Hc/T2fwlW0
-x-ms-exchange-transport-forked: True
+x-originating-ip: [172.29.169.94]
+X-TM-AS-Product-Ver: SMEX-12.5.0.2039-8.5.1020-25058.007
+X-TM-AS-Result: No-21.253700-5.000000-10
+X-TMASE-MatchedRID: bho5G9zErimMl+8vxKB9T+W9J5hJgRQsRDIePNhxjQp65yXsx03DxO+P
+	mftbFr5Lcgg5XwDP6GMtMWKNQFviV7zcY1SfTOSvB0c2kG7Gs6jMqev3OPqHcRLf1vz7ecPHFPD
+	BkzH87467I5aeKVVjnoFHACWsU4r15e6oBw0mel9Nq5/Y+tFvW34JYJwdJw4T+nlefiwGml+SN5
+	t8Lx0BlrlFLYp4Dg2+ne5o1ye7TJNpt0p5Gy2a+mFdfLBMkul89eu/O7xbKnR2ugWlXLnD6bg1x
+	ZVpHEW+qMlm1+4tGhT3WQ9OipOPPD13WcdbGR6QCLQsumV/5S8uszU67KeD1wzvg1/q1MH25TL6
+	apB3DsoyNg/2RUKcT7CiODxH42wUVHgNee60Sg+cxB01DrjF9xfbPFE2GHrVR9PBe5SQbhCOJmp
+	FkiF2w8CXvTLIV1Xw9TqroYxZtD7fEVvwXlyVJPVY7U3NX8Jgnghuxea6bsZ0PA/ki2kI7LnqJN
+	XIccKryd44Sucb673niZuiwpS5hx6kTThkAlz/gRTWSf0X8xmOz/LLJUcaHsmqrXFLFjsW6aX8T
+	YIrj1uFZCZln65Hjr+9aYYmK0YhTAvAYK7U1zNFH6oTiImwh4ZS+fz1TDISe7ijHq7g9obtlVVS
+	1CM0MNl9DHcHloy40AAj4Lcjr8VlP5MblRjjHmhQCsqhuTNi1ViV5EWK7TubKItl61J/yc8943o
+	c3p3s50uNBT3t7RbgBQgR5erAmouSE4o9kUbbj+dhVbkVw4FlY7WsDsIcD6gUJlM0xSGs
+X-TM-AS-User-Approved-Sender: Yes
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--21.253700-5.000000
+X-TMASE-Version: SMEX-12.5.0.2039-8.5.1020-25058.007
+X-TM-SNTS-SMTP: 
+	64864C337BC9C529314C69549681F2C1F5275C6F4646EDF37CE7C2D70A11B1AD2002:9
+x-c2processedorg: 02c94ccb-b9eb-40fe-af38-4bcaa8aaafa4
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR04MB3221
-X-DLP: MSGProcess
-Return-Path: agnes.amree@hcl.com
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- HK2APC01FT115.eop-APC01.prod.protection.outlook.com
-X-Forefront-Antispam-Report: 
-	CIP:192.8.245.51;IPV:CAL;CTRY:IN;EFV:NLI;SFV:NSPM;SFS:(10019020)(4636009)(376002)(346002)(39860400002)(136003)(396003)(1110001)(339900001)(38564003)(199004)(189003)(8676002)(81156014)(7736002)(2351001)(33656002)(8936002)(9686003)(356004)(81166006)(71190400001)(2501003)(336012)(9326002)(7696005)(74316002)(186003)(6306002)(26826003)(55016002)(478600001)(54896002)(16586007)(86362001)(36906005)(790700001)(316002)(6506007)(76130400001)(6436002)(5640700003)(52536014)(5660300002)(26005)(70206006)(25786009)(2906002)(5024004)(14444005)(14454004)(105606002)(3846002)(6916009)(70586007)(6116002)(102836004)(66066001)(99286004);DIR:OUT;SFP:1102;SCL:1;SRVR:PS1PR0401MB1996;H:APC01-PU1-obe.outbound.protection.outlook.com;FPR:;SPF:Fail;LANG:en;PTR:InfoDomainNonexistent;A:1;MX:1;
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 
-	d97f1f5c-24cb-4126-eefe-08d76f491136
-X-Forefront-PRVS: 02296943FF
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	+vqIBdpV8q7981kJDe1/Ss2IJP4g9oDwbW4sQ5ZY/52WztzMLD/+Ywk5tEHGF1xZ/icMrwg0Et/0wzs2imwZDcO4ZgO+wxHC80iF3+wmY8FaaSwsfaUg9bqFTOxCha0HxMSRldgHDiGwsNKltJQN8w/WZDsCygNUr9KhXAG12EDc52xbaJUXV1Nlt3bwD2fb5IFJl+9Mil/gbAQ+enUjoKEGXozjkAZOrYTfoJqtXHhWcYmmBwWRhcx4Z0Chhq4piG/Fq2fSzCMHRE0F58/cQodUZz+CLxtOLUbdzuQ0NU41XH2Eg2FnPz+D2NzcTD9xfjcR6fpJhtPoikn5s86z8cPahXipEWn+sfTOQMbFvqOHB+UBNYF6XUGGJ4nBlGKe9dYuEGDRtiI2wBzsJEsRZlBvueBBVsNtd4BCJz56wknbVUXXsNOAHIxH8CUL6QDF
-X-OriginatorOrg: HCL.COM
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Nov 2019 12:39:53.8976
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1c2afd6c-dba6-412e-dabf-08d76f49138b
-X-MS-Exchange-CrossTenant-Id: 189de737-c93a-4f5a-8b68-6f4ca9941912
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=189de737-c93a-4f5a-8b68-6f4ca9941912;Ip=[192.8.245.51];Helo=[APC01-PU1-obe.outbound.protection.outlook.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PS1PR0401MB1996
+X-CompuMailGateway: Version: 7.00.0.19367.x86_64 COMPUMAIL Date: 20191122130932Z
+X-Proofpoint-ID: SID=2wdqrvbghr QID=2wdqrvbghr-1
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-11-22_02:,,
+ signatures=0
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_SG2PR04MB2876A7AD2E90AAFB6DE9074EFC490SG2PR04MB2876apcp_"
+	boundary="_000_1aeed09a83af40cb8d07801567d3bc14ifmcom_"
 
---_000_SG2PR04MB2876A7AD2E90AAFB6DE9074EFC490SG2PR04MB2876apcp_
+--_000_1aeed09a83af40cb8d07801567d3bc14ifmcom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 Hi,
+I tried building extended SDK using the command $bitbake  <custom-core-imag=
+e>  -c populate_sdk_ext,  but got errors which are as follows:
 
-We are working on Yocto 2.6.3. We are generating the sdk using "bitbake cor=
-e-image-sato-sdk -c populate_sdk".
-After installation of sdk, we observed, usr/bin/*.coreutils are not availab=
-le.
-However, in the build directory, rpm's are generated in deploy-rpms. And co=
-reutils are present there, but they are not shipped into the sdk.
+ERROR: Task xilinx-r5-bsp.do_fetch attempted to execute unexpectedly
+ERROR: Task xilinx-r5-bsp.do_prepare_recipe_sysroot attempted to execute un=
+expectedly
+ERROR: Task xilinx-r5-bsp.do_unpack attempted to execute unexpectedly
+ERROR: Task xilinx-r5-bsp.do_patch attempted to execute unexpectedly
+ERROR: Task xilinx-r5-bsp.do_create_yaml attempted to execute unexpectedly
+ERROR: Task xilinx-r5-bsp.do_configure attempted to execute unexpectedly
+ERROR: Task xilinx-r5-bsp.do_compile attempted to execute unexpectedly
+ERROR: Task layer-r5-firmware.do_fetch attempted to execute unexpectedly
+ERROR: Task xilinx-r5-bsp.do_deploy attempted to execute unexpectedly and s=
+hould have been setscened
+ERROR: Task layer-r5-firmware.do_unpack attempted to execute unexpectedly
+ERROR: Task layer-r5-firmware.do_patch attempted to execute unexpectedly
+ERROR: Task xilinx-r5-bsp.do_populate_sysroot attempted to execute unexpect=
+edly and should have been setscened
+ERROR: Task layer-r5-firmware.do_prepare_recipe_sysroot attempted to execut=
+e unexpectedly
+ERROR: Task layer-r5-firmware.do_configure attempted to execute unexpectedl=
+y
+ERROR: Task layer-r5-firmware.do_compile attempted to execute unexpectedly
+ERROR: Task layer-r5-firmware.do_deploy attempted to execute unexpectedly a=
+nd should have been setscened
+ERROR: Task xilinx-r5-bsp.do_package attempted to execute unexpectedly and =
+should have been setscened
+ERROR: Task xilinx-bootbin.do_prepare_recipe_sysroot attempted to execute u=
+nexpectedly
+ERROR: Task xilinx-bootbin.do_configure attempted to execute unexpectedly
+ERROR: Task xilinx-bootbin.do_compile attempted to execute unexpectedly
+ERROR: Task xilinx-bootbin.do_install attempted to execute unexpectedly
+ERROR: Task xilinx-bootbin.do_package attempted to execute unexpectedly and=
+ should have been setscened
+ERROR: Task xilinx-r5-bsp.do_packagedata attempted to execute unexpectedly =
+and should have been setscened
+ERROR: Task xilinx-bootbin.do_packagedata attempted to execute unexpectedly=
+ and should have been setscened
+ERROR: Task xilinx-r5-bsp.do_package_write_rpm attempted to execute unexpec=
+tedly and should have been setscened
+ERROR: Task xilinx-bootbin.do_populate_sysroot attempted to execute unexpec=
+tedly and should have been setscened
+ERROR: Task xilinx-bootbin.do_deploy attempted to execute unexpectedly and =
+should have been setscened
+ERROR: Task xilinx-bootbin.do_package_qa attempted to execute unexpectedly =
+and should have been setscened
+ERROR: Task xilinx-r5-bsp.do_package_qa attempted to execute unexpectedly a=
+nd should have been setscened
+ERROR: Task xilinx-bootbin.do_package_write_rpm attempted to execute unexpe=
+ctedly and should have been setscened
+ERROR: Task layer-r5-firmware.do_populate_sysroot attempted to execute unex=
+pectedly and should have been setscened
+NOTE: Tasks Summary: Attempted 6604 tasks of which 6604 didn't need to be r=
+erun and all succeeded.
 
-Could you guide us in this ASAP. This will help us in proceeding.
+Summary: There was 1 WARNING message shown.
+Summary: There were 31 ERROR messages shown, returning a non-zero exit code=
+.
+----------
 
-Thanks & Regards,
-J. Agnes Amreetha
+NOTE: "attempted to execute unexpectedly and should have been setscened" er=
+rors indicate this may be caused by missing sstate artifacts that were like=
+ly produced in earlier builds, but have been subsequently deleted for some =
+reason.
 
-::DISCLAIMER::
-________________________________
-The contents of this e-mail and any attachment(s) are confidential and inte=
-nded for the named recipient(s) only. E-mail transmission is not guaranteed=
- to be secure or error-free as information could be intercepted, corrupted,=
- lost, destroyed, arrive late or incomplete, or may contain viruses in tran=
-smission. The e mail and its contents (with or without referred errors) sha=
-ll therefore not attach any liability on the originator or HCL or its affil=
-iates. Views or opinions, if any, presented in this email are solely those =
-of the author and may not necessarily reflect the views or opinions of HCL =
-or its affiliates. Any form of reproduction, dissemination, copying, disclo=
-sure, modification, distribution and / or publication of this message witho=
-ut the prior written consent of authorized representative of HCL is strictl=
-y prohibited. If you have received this email in error please delete it and=
- notify the sender immediately. Before opening any email and/or attachments=
-, please check them for viruses and other defects.
-________________________________
+ERROR: core-image-special-custom3-1.0-r0 do_populate_sdk_ext: Function fail=
+ed: copy_buildsystem
+ERROR: Logfile of failure stored in: /home/iepl007/yocto_build/build_dir/tm=
+p/work/custom3_zynqmp-custom3-linux/core-image-special-custom3/1.0-r0/temp/=
+log.do_populate_sdk_ext.31041
+ERROR: Task (/home/iepl007/yocto_build/poky/../meta-custom3-dev/meta-layer-=
+custom3/recipes-core/images/core-image-special-custom3.bb:do_populate_sdk_e=
+xt) failed with exit code '1'
 
---_000_SG2PR04MB2876A7AD2E90AAFB6DE9074EFC490SG2PR04MB2876apcp_
+Please suggest me how to fix this issue. Also if I want to make a sdk from =
+the beginning i.e cleaning previous build and creating new one. What steps =
+do I need to follow.
+I am seeing the sstate-cache entries for above mentioned packages. How come=
+ it is not picking them.
+
+Thanks and regards
+Kamal Pandey
+
+
+
+--_000_1aeed09a83af40cb8d07801567d3bc14ifmcom_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -166,20 +195,15 @@ xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
 	{font-family:"Cambria Math";
 	panose-1:2 4 5 3 5 4 6 3 2 4;}
 @font-face
-	{font-family:DengXian;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
 	{font-family:Calibri;
 	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"\@DengXian";
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
+	{margin:0cm;
 	margin-bottom:.0001pt;
 	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
 a:link, span.MsoHyperlink
 	{mso-style-priority:99;
 	color:#0563C1;
@@ -188,16 +212,26 @@ a:visited, span.MsoHyperlinkFollowed
 	{mso-style-priority:99;
 	color:#954F72;
 	text-decoration:underline;}
-span.EmailStyle17
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman",serif;}
+span.EmailStyle18
 	{mso-style-type:personal-compose;
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
+	font-size:10.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
 @page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
 div.WordSection1
 	{page:WordSection1;}
 --></style><!--[if gte mso 9]><xml>
@@ -207,48 +241,111 @@ div.WordSection1
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]-->
 </head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<body lang=3D"EN-IN" link=3D"#0563C1" vlink=3D"#954F72">
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal">I tried building extended SDK using the command $bit=
+bake&nbsp; &lt;custom-core-image&gt;&nbsp; -c populate_sdk_ext,&nbsp; but g=
+ot errors which are as follows:<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">We are working on Yocto 2.6.3. We are generating the=
- sdk using
-<b>&#8220;bitbake core-image-sato-sdk -c populate_sdk&#8221;.<o:p></o:p></b=
-></p>
-<p class=3D"MsoNormal">After installation of sdk, we observed, <b>usr/bin/*=
-.coreutils</b> are not available.<o:p></o:p></p>
-<p class=3D"MsoNormal">However, in the build directory, rpm&#8217;s are gen=
-erated in deploy-rpms. And coreutils are present there, but they are not sh=
-ipped into the sdk.<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-r5-bsp.do_fetch attempted to exec=
+ute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-r5-bsp.do_prepare_recipe_sysroot =
+attempted to execute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-r5-bsp.do_unpack attempted to exe=
+cute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-r5-bsp.do_patch attempted to exec=
+ute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-r5-bsp.do_create_yaml attempted t=
+o execute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-r5-bsp.do_configure attempted to =
+execute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-r5-bsp.do_compile attempted to ex=
+ecute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task layer-r5-firmware.do_fetch attempted to =
+execute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-r5-bsp.do_deploy attempted to exe=
+cute unexpectedly and should have been setscened<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task layer-r5-firmware.do_unpack attempted to=
+ execute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task layer-r5-firmware.do_patch attempted to =
+execute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-r5-bsp.do_populate_sysroot attemp=
+ted to execute unexpectedly and should have been setscened<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task layer-r5-firmware.do_prepare_recipe_sysr=
+oot attempted to execute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task layer-r5-firmware.do_configure attempted=
+ to execute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task layer-r5-firmware.do_compile attempted t=
+o execute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task layer-r5-firmware.do_deploy attempted to=
+ execute unexpectedly and should have been setscened<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-r5-bsp.do_package attempted to ex=
+ecute unexpectedly and should have been setscened<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-bootbin.do_prepare_recipe_sysroot=
+ attempted to execute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-bootbin.do_configure attempted to=
+ execute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-bootbin.do_compile attempted to e=
+xecute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-bootbin.do_install attempted to e=
+xecute unexpectedly<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-bootbin.do_package attempted to e=
+xecute unexpectedly and should have been setscened<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-r5-bsp.do_packagedata attempted t=
+o execute unexpectedly and should have been setscened<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-bootbin.do_packagedata attempted =
+to execute unexpectedly and should have been setscened<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-r5-bsp.do_package_write_rpm attem=
+pted to execute unexpectedly and should have been setscened<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-bootbin.do_populate_sysroot attem=
+pted to execute unexpectedly and should have been setscened<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-bootbin.do_deploy attempted to ex=
+ecute unexpectedly and should have been setscened<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-bootbin.do_package_qa attempted t=
+o execute unexpectedly and should have been setscened<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-r5-bsp.do_package_qa attempted to=
+ execute unexpectedly and should have been setscened<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task xilinx-bootbin.do_package_write_rpm atte=
+mpted to execute unexpectedly and should have been setscened<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task layer-r5-firmware.do_populate_sysroot at=
+tempted to execute unexpectedly and should have been setscened<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">NOTE: Tasks Summary: Attempted 6604 tasks of which 6=
+604 didn't need to be rerun and all succeeded.<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Could you guide us in this ASAP. This will help us i=
-n proceeding.<o:p></o:p></p>
+<p class=3D"MsoNormal">Summary: There was 1 WARNING message shown.<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">Summary: There were 31 ERROR messages shown, returni=
+ng a non-zero exit code.<o:p></o:p></p>
+<p class=3D"MsoNormal">----------<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks &amp; Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">J. Agnes Amreetha<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: &quot;attempted to execute unexpectedly and sh=
+ould have been setscened&quot; errors indicate this may be caused by missin=
+g sstate artifacts that were likely produced in earlier builds, but have be=
+en subsequently deleted for some reason.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">ERROR: core-image-special-custom3-1.0-r0 do_populate=
+_sdk_ext: Function failed: copy_buildsystem<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Logfile of failure stored in: /home/iepl007/y=
+octo_build/build_dir/tmp/work/custom3_zynqmp-custom3-linux/core-image-speci=
+al-custom3/1.0-r0/temp/log.do_populate_sdk_ext.31041<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Task (/home/iepl007/yocto_build/poky/../meta-=
+custom3-dev/meta-layer-custom3/recipes-core/images/core-image-special-custo=
+m3.bb:do_populate_sdk_ext) failed with exit code '1'<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Please suggest me how to fix this issue. Also if I w=
+ant to make a sdk from the beginning i.e cleaning previous build and creati=
+ng new one. What steps do I need to follow.<o:p></o:p></p>
+<p class=3D"MsoNormal">I am seeing the sstate-cache entries for above menti=
+oned packages. How come it is not picking them.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks and regards<o:p></o:p></p>
+<p class=3D"MsoNormal">Kamal Pandey<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 </div>
-<font face=3D"Arial" color=3D"Gray" size=3D"1">::DISCLAIMER::<br>
-<hr>
-The contents of this e-mail and any attachment(s) are confidential and inte=
-nded for the named recipient(s) only. E-mail transmission is not guaranteed=
- to be secure or error-free as information could be intercepted, corrupted,=
- lost, destroyed, arrive late or
- incomplete, or may contain viruses in transmission. The e mail and its con=
-tents (with or without referred errors) shall therefore not attach any liab=
-ility on the originator or HCL or its affiliates. Views or opinions, if any=
-, presented in this email are solely
- those of the author and may not necessarily reflect the views or opinions =
-of HCL or its affiliates. Any form of reproduction, dissemination, copying,=
- disclosure, modification, distribution and / or publication of this messag=
-e without the prior written consent
- of authorized representative of HCL is strictly prohibited. If you have re=
-ceived this email in error please delete it and notify the sender immediate=
-ly. Before opening any email and/or attachments, please check them for viru=
-ses and other defects.<br>
-<hr>
-</font>
 </body>
 </html>
 
---_000_SG2PR04MB2876A7AD2E90AAFB6DE9074EFC490SG2PR04MB2876apcp_--
+--_000_1aeed09a83af40cb8d07801567d3bc14ifmcom_--
