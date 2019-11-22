@@ -1,95 +1,128 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.1205.1574436962305434459
+ by mx.groups.io with SMTP id smtpd.web09.1183.1574442228384538619
  for <yocto@lists.yoctoproject.org>;
- Fri, 22 Nov 2019 07:36:02 -0800
+ Fri, 22 Nov 2019 09:03:48 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: randy.macleod@windriver.com)
+ dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 140.211.169.56, mailfrom: rpjday@crashcourse.ca)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6F584E00C5C; Fri, 22 Nov 2019 07:36:01 -0800 (PST)
+	id 27A6EE00E42; Fri, 22 Nov 2019 09:03:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,FORGED_SPF_HELO,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
 X-Spam-HAM-Report: 
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [199.212.143.9 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3BCDE00BDC
-	for <yocto@yoctoproject.org>; Fri, 22 Nov 2019 07:36:00 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id xAMFZbIt027814
-	(version=TLSv1 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 22 Nov 2019 07:35:37 -0800 (PST)
-Received: from [172.25.44.8] (172.25.44.8) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server id 14.3.468.0; Fri, 22 Nov 2019
- 07:35:36 -0800
-Subject: Re: [yocto] Memory Tests in U-Boot
-To: <devendra.devadiga@iwavesystems.com>, <yocto@yoctoproject.org>
-References: <26fca14f1bd94e8d285c466d4f98f731@iwavesystems.com>
-From: "Randy MacLeod" <randy.macleod@windriver.com>
-Message-ID: <74ffdd81-43cf-5f75-c929-a2692a684900@windriver.com>
-Date: Fri, 22 Nov 2019 10:35:36 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.1.2
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
+Received: from northernsuncreative.com (cpanel4.indieserve.net [199.212.143.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A7BDE007D4
+	for <yocto@yoctoproject.org>; Fri, 22 Nov 2019 09:03:47 -0800 (PST)
+Received: from [216.208.232.130] (port=33516 helo=localhost.localdomain)
+	by cpanel4.indieserve.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+	(Exim 4.92)
+	(envelope-from <rpjday@crashcourse.ca>)
+	id 1iYCLR-000784-M3
+	for yocto@yoctoproject.org; Fri, 22 Nov 2019 12:03:46 -0500
+Date: Fri, 22 Nov 2019 12:03:44 -0500 (EST)
+From: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: repost: how to create a SPDX "notice file" from a build?
+In-Reply-To: <alpine.LFD.2.21.1911220952340.7502@localhost.localdomain>
+Message-ID: <alpine.LFD.2.21.1911221159250.14879@localhost.localdomain>
+References: <alpine.LFD.2.21.1911220952340.7502@localhost.localdomain>
+User-Agent: Alpine 2.21 (LFD 202 2017-01-01)
 MIME-Version: 1.0
-In-Reply-To: <26fca14f1bd94e8d285c466d4f98f731@iwavesystems.com>
-X-Originating-IP: [172.25.44.8]
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-CA
-Content-Transfer-Encoding: 7bit
+X-OutGoing-Spam-Status: No, score=-0.2
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel4.indieserve.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel4.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: cpanel4.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Content-Type: text/plain; charset=US-ASCII
 
-On 11/19/19 7:28 AM, devendra.devadiga@iwavesystems.com wrote:
-> Hi,
-> 
-> In U-Boot I found some generic memory tests commands like mtest and post 
-> tests. But I need complete DDR4 memory test with below algorithms:
-> 
-> * Checkerboard Test
-> * March C- Test
-> * Neighborhood Pattern Sensitive Fault
-> 
-> Can I get any reference code for these algorithms in U-Boot ?
-> Implementation for these algorithms available in any of U-Boot version ?
+On Fri, 22 Nov 2019, Robert P. J. Day wrote:
 
-I don't know if any of the (too many) versions of u-boot have that
-feature. If you are willing to test from userspace, there is memtester:
+>   i asked about this a couple months ago but didn't see any replies,
+> so i'll ask again with a little more detail.
+>
+>   colleague wants to, from YP (actually petalinux but should be
+> irrelevant), some sort of SPDX "notice file", along the lines of what
+> can be generated by black duck. it doesn't need to be identical, but
+> it would be useful to at least have a first pass that people can look
+> at and say what they want tweaked.
+>
+>   is there an example of how to (using the spdx.bbclass class file, i
+> assume) do something like this? thanks.
 
-https://layers.openembedded.org/layerindex/recipe/863/
+  a lilttle more progress, and then an error -- i installed fossology
+on my ubuntu 18.04 dev box, then added
 
-I don't think it has all of the tests you asked for but
-it would be good if you could take a look and report back here
-for those interested.
+  INHERIT += "spdx"
 
-Here's a test run that a web search returned:
-https://www.lightsoftai.com/?p=113
+to local.conf, and tried to build a simple qemuarmx86-64, and very
+quickly had a number of native packages fail with:
 
+//////////// start //////////
 
-Also, the stress-ng has some memory tests including one that tests
-neighbour sensitivity:
-   https://layers.openembedded.org/layerindex/recipe/104982/
+DEBUG: Executing python function do_spdx
+ERROR: Error executing a python function in exec_python_func() autogenerated:
 
-man stress-ng:
+The stack trace of python calls that resulted in this exception/failure was:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+     0001:
+ *** 0002:do_spdx(d)
+     0003:
+File: '/home/rpjday/oe/dist/layers/poky/meta/classes/spdx.bbclass', lineno: 83, function: do_spdx
+     0079:        foss_full_spdx = d.getVar('FOSS_FULL_SPDX') == "true" or False
+     0080:        foss_command = "wget %s --post-file=%s %s"\
+     0081:            % (foss_flags, info['tar_file'], foss_server)
+     0082:
+ *** 0083:        foss_result = run_fossology(foss_command, foss_full_spdx)
+     0084:        if foss_result is not None:
+     0085:            (foss_package_info, foss_file_info, foss_license_info) = foss_result
+     0086:            spdx_file_info = create_spdx_doc(local_file_info, foss_file_info)
+     0087:            ## write to cache
+File: '/home/rpjday/oe/dist/layers/poky/meta/classes/spdx.bbclass', lineno: 230, function: run_fossology
+     0226:    # Package info
+     0227:    package_info = {}
+     0228:    if full_spdx:
+     0229:        # All mandatory, only one occurrence
+ *** 0230:        package_info['PackageCopyrightText'] = re.findall('PackageCopyrightText: (.*?</text>)', foss_output, re.S)[0]
+     0231:        package_info['PackageLicenseDeclared'] = re.findall('PackageLicenseDeclared: (.*)', foss_output)[0]
+     0232:        package_info['PackageLicenseConcluded'] = re.findall('PackageLicenseConcluded: (.*)', foss_output)[0]
+     0233:        # These may be more than one
+     0234:        package_info['PackageLicenseInfoFromFiles'] = re.findall('PackageLicenseInfoFromFiles: (.*)', foss_output)
+Exception: IndexError: list index out of range
 
-galpat-0
+ERROR: list index out of range
+DEBUG: Python function do_spdx finished
+ERROR: Function failed: do_spdx
 
-galloping  pattern  zeros. This sets all bits to 0 and flips just 1
-in 4096 bits to 1. It then checks to see  if the 1s are pulled down
-to 0 by their neighbours or of the neighbours have been pulled up
-to 1.
+/////////// end /////////
 
-Good luck and please let us know what you find,
+  i have absolutely no idea what to think of this, and am open to
+suggestions. does anyone have a working scenario to simply demonstrate
+the usage of spdx.bbclass?
 
-../Randy
-
-> 
-> Thanks and Regards,
-> Devendra
-
+rday
 
 -- 
-# Randy MacLeod
-# Wind River Linux
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                         http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
