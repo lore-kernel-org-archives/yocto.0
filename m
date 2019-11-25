@@ -1,104 +1,209 @@
-Received: from JPN01-TY1-obe.outbound.protection.outlook.com (JPN01-TY1-obe.outbound.protection.outlook.com [40.107.140.120])
- by mx.groups.io with SMTP id smtpd.web10.792.1574667308577335922
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web09.1702.1574673297767294258
  for <yocto@lists.yoctoproject.org>;
- Sun, 24 Nov 2019 23:35:09 -0800
+ Mon, 25 Nov 2019 01:14:57 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@renesasgroup.onmicrosoft.com header.s=selector2-renesasgroup-onmicrosoft-com header.b=YPsfZoYi;
- spf=pass (domain: renesas.com, ip: 40.107.140.120, mailfrom: stephen.lawrence@renesas.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=CE70gw299baorV4/vBkKniHiLeKTr7KglBvivxflYyxrrjhdQY//W/B8kL+lx7EisI39bLoVrFCvy+shqgsbrEB0VKByLEjV6XSjHN3X0ijaB/RAomxWj3Ncoye7HxZSR5R9BZsNR4kAkBX8Z5dm6pfEvqbzK8XW2ZIonE6DkFTxHkUYIZRHIjqG7A6MnxP43Jrg4kBf3ZvaBlWDdK8vGGQXpZnbiI4hc1zDJEM3imfjlsuKGSW8T98LPSUY6Knxy+q47Hzpm42C9yd2qGFMRVJqM5PD8+6ZjZe40mwj/p0CIZ8SNElYjFrXYNhaOIqVgnOqkiK62bbcDKxDduKvaw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kEfC0BhfWq2lqmPZLTtjkXv6Bh4euZjyXYB8H2Ko3p8=;
- b=nktIihmsF03t5S1/gqnjpyjGFWj+tGgi/7RBkwGKABMaFY9h9wrkQm53gugQ33fZ/3wqBB23H7V3N52LATHbZYIyUJpYelq3ulzNUgLbOcDpPW7OWC4D2bIAJGrc9kL8ebc7uHmgKnV/C2zZmm6oElEz1WuIK6zapo7NCAcZ3g9WlSG1cKR8uHoVjuA7jmS9Z5vCo8eNEkvucpRyzjX7MbxdUDI9PoG7w8emZ5SGrBHUwd2XJquu2RUuJ/K0/3jfCrg/pBmwLWnIbSqVxpHRsNpK727J184j8K2bY/Rl3v5Ggl2cRLWHRppAtXZUTSg9qg2n1FYzo2ChuqOw5U00sQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=daPj9ICd;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: gabbla.malist@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 49D96E00E23; Mon, 25 Nov 2019 01:14:57 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (gabbla.malist[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.208.172 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34388E0079A
+	for <yocto@yoctoproject.org>; Mon, 25 Nov 2019 01:14:56 -0800 (PST)
+Received: by mail-lj1-f172.google.com with SMTP id d5so14904471ljl.4
+        for <yocto@yoctoproject.org>; Mon, 25 Nov 2019 01:14:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kEfC0BhfWq2lqmPZLTtjkXv6Bh4euZjyXYB8H2Ko3p8=;
- b=YPsfZoYiFgNuVbBpRs/DRcQbBxVwmFKLBef9AeNycUhHAFA0UDvuI3jNgmKqS93/kKn8o9c+7LUowAdPpFuDS0Vofep5mxPTVTxDgf7gdc9TI6PFzN3uBG1zkzH8mDIvarR8bzQ0ER5LDfLJ69UjNRiEVy7MiD+qanuVKUtTnRw=
-Received: from TYAPR01MB2031.jpnprd01.prod.outlook.com (52.133.177.12) by
- TYAPR01MB3840.jpnprd01.prod.outlook.com (20.178.138.203) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2474.17; Mon, 25 Nov 2019 07:35:06 +0000
-Received: from TYAPR01MB2031.jpnprd01.prod.outlook.com
- ([fe80::9c3f:d3fb:ef6e:5f05]) by TYAPR01MB2031.jpnprd01.prod.outlook.com
- ([fe80::9c3f:d3fb:ef6e:5f05%4]) with mapi id 15.20.2474.022; Mon, 25 Nov 2019
- 07:35:06 +0000
-From: "Stephen Lawrence" <stephen.lawrence@renesas.com>
-To: "aaron.chun.yew.chan@intel.com" <aaron.chun.yew.chan@intel.com>, Anibal
- Limon <anibal.limon@linaro.org>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] [RFC] Yocto Autobuilder and LAVA Integration
-Thread-Topic: [yocto] [RFC] Yocto Autobuilder and LAVA Integration
-Thread-Index: AQHUd9bxZiLKOOeFGku4+/lZBuNDjaVH7moAglN8zQCAAgo1gIAAXKEg
-Date: Mon, 25 Nov 2019 07:35:05 +0000
-Message-ID: 
- <TYAPR01MB203104BB8D1C28FD3C64DD2C924A0@TYAPR01MB2031.jpnprd01.prod.outlook.com>
-References: 
- <CA+_Aqivq7XN8Q_fu43EFwhWs377vduoR9D5gVGBqS7gJgzKxNw@mail.gmail.com>
- <446afa92a1440c604e2074ab70f506fe3e46a0d5.camel@linuxfoundation.org>
- <AA9B40170ABA1047B45E714CB2B866B7069B514E@PGSMSX103.gar.corp.intel.com>
- <CA+_Aqis35mG154_4Jzhk_o0txdri=otjfqq678nBSpRNEx-xUA@mail.gmail.com>
- <CA+_AqivQ-4E+AMaSr07sPM8EqkwfMkiKYn4=m3jsSVQ_iESnBw@mail.gmail.com>
- <MN2PR11MB449328BB3D241C45B5578F90ED4A0@MN2PR11MB4493.namprd11.prod.outlook.com>
-In-Reply-To: 
- <MN2PR11MB449328BB3D241C45B5578F90ED4A0@MN2PR11MB4493.namprd11.prod.outlook.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=stephen.lawrence@renesas.com; 
-x-originating-ip: [87.74.75.201]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 14e34b5e-40cb-4144-5a42-08d77179fdde
-x-ms-traffictypediagnostic: TYAPR01MB3840:
-x-ms-exchange-purlcount: 2
-x-microsoft-antispam-prvs: 
- <TYAPR01MB3840BA09AA6B24DCEB006DDE924A0@TYAPR01MB3840.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 0232B30BBC
-x-forefront-antispam-report: 
- SFV:NSPM;SFS:(10019020)(4636009)(39860400002)(346002)(376002)(396003)(366004)(136003)(199004)(189003)(11346002)(71190400001)(6506007)(478600001)(6306002)(446003)(256004)(71200400001)(2906002)(14454004)(44832011)(102836004)(9686003)(14444005)(4744005)(52536014)(66066001)(8936002)(99286004)(110136005)(7736002)(186003)(6246003)(305945005)(66446008)(4326008)(81166006)(81156014)(64756008)(26005)(5660300002)(3846002)(966005)(316002)(74316002)(66556008)(66476007)(76176011)(55016002)(7696005)(229853002)(66946007)(6436002)(25786009)(76116006)(86362001)(8676002)(2501003)(33656002)(6116002);DIR:OUT;SFP:1102;SCL:1;SRVR:TYAPR01MB3840;H:TYAPR01MB2031.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- FSYNOjM5wA7+Aam3Tg3bKJR8KacbqCAZCtw3Q7q2KpuA+DAnFd5QbpQ1veRXZkZBgFFFpadLj1ildsbBLKtrB3XyYv5Ar2VG4OAbKQarQYJFDaC+6x/755RvyU7EardCdgzbRkeBHx1EJDK8kw9275SNYlORQD1bizOJ2AwJwAZW50R74onko2Olvh4OOK4XxbSi8yB8ylj7XYycYhmmpRojofOQXugVLeYplM8Rc20GdAby2RQsXd3OaggxF2Bc85qcTsKsgYw/O+9be1KvKG2vHUOin6XRAjizqg3fvPH28r5FxkwHYt9k3spMBjFh7MUKWCqRT+g8tpGIYhsGti2gC5nk89ns3jN2QV+Hy7CpgHasSf0qKcmFe9EOx9O0eRRog6cllI9kGMqBA6EO1PngMS3ENEQT1+bUWIX/vrbWqGnFjA+euHt9tX8n5wBcdDjNVB19KElLUGY6Lu8i37u88h67zhLAFrK4ta5vKfs=
-x-ms-exchange-transport-forked: True
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=DvqdjRLmyTda828xCZEQvyRIdVSJHFWVc8Rtc0EBhmM=;
+        b=daPj9ICdtWaQcGyhKA2mtrdxPvbWPML4/H//fdcRYHrui+VQ7W8HYA5ZFXTB4WSoSL
+         c9qmVnRcHy1kKiyB0/3KL0LRAGWQnMUTtRBBxUWJajePR+TaALOpa355EM5GDKz/4beM
+         gjAoBrfJKU4uNCOxmHpm2zSYBIomiS6uhA5Z7EQG3oGzpArCR9eNGzTiEdeBd1VpOnrW
+         w8XcwFOtlQp4PL9kVFgG5km9EWdgUDgbK0g2jefHONEEbZscUxfeUq+Fa9hcdZAp1ohl
+         hNbnejvNcIh0cQSLvITek2vFJMD/xXa3RP33H8oTzbSijcZRcfamQKbV9clRrX0DaK/1
+         t1/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=DvqdjRLmyTda828xCZEQvyRIdVSJHFWVc8Rtc0EBhmM=;
+        b=svFFAwT1NDLV4s3TsZEdi8dA6RlPFmukyq9OFoZSCm7HeAz2cISQtUaTde/ZigVqtJ
+         /EP5KRWkqRze8OgoT5YDaQhEfYR/NPI9tdU2hW6z6C/fXhgCopuTieCIoXt/2PTL073n
+         yXWzPcPvvkYU2veyHbSrCghasrG9/TWFCFNyLD54gRzMEVA/HviFKA8n78hMRAt91CX6
+         5qxRNnfl27KtN+OPLEtYUxYmkRRrZArbyD9VGqRUpAwZ3kf1jCFx914Kc8+D+0IKc6of
+         VWFUNMTRHz+gAX8ovkGGbZmDAMZJtV5jpja6CWi1L49hv3lAKcGPhIzB2R88hK6qrWL6
+         CWGA==
+X-Gm-Message-State: APjAAAXx8hxXwirTyQWOFPrQWj3VUaIHnPrZmf4uJ+qolPMtnAAp2KCO
+	jk27YhglnTW07kVVs9Pmn3MNxi7XLJ29u1KxJMU=
+X-Google-Smtp-Source: APXvYqwWrQbyFbB+1zBFMLYA+ueUWYFnYIGDyFw4y9ZlUSQ2gBIwN4AG0FXJTpxPvXtQGgMSxdHGMWMSAcFA0jhYYNo=
+X-Received: by 2002:a2e:99c5:: with SMTP id l5mr13839317ljj.229.1574673294845;
+ Mon, 25 Nov 2019 01:14:54 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 14e34b5e-40cb-4144-5a42-08d77179fdde
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Nov 2019 07:35:05.9414
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: jOeByZyoqzCo2Zktzb5Bc2buLA+nlg9QmuCqHPAu4BupBv7ToxW9eZ67o/Tniql08SkKLAy0VE8lFEgJDZQXFj/BlAF0CC31d15K3I6fLiM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYAPR01MB3840
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+References: <CABjzrPSGSdztQvLcQTsqs_vU+SaxQ9cCuTL2ceyHcq7eYuD_Yg@mail.gmail.com>
+In-Reply-To: <CABjzrPSGSdztQvLcQTsqs_vU+SaxQ9cCuTL2ceyHcq7eYuD_Yg@mail.gmail.com>
+From: "Gabriele" <gabbla.malist@gmail.com>
+Date: Mon, 25 Nov 2019 10:14:43 +0100
+Message-ID: <CAAx3WaCJFhg0MGJtHQyX=2ToAmBLm4uvARcDTTn+bZfOVEifwA@mail.gmail.com>
+Subject: Re: [yocto] Installing a Kernel module.
+To: Shravan Singh <shravan@bluesparq.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000608f7a059828321d"
 
-SGksDQoNCj5Gcm9tOiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIDx5b2N0b0BsaXN0cy55
-b2N0b3Byb2plY3Qub3JnPiBPbiBCZWhhbGYgT2YgQWFyb24gQ2hhbiB2aWEgTGlzdHMuWW9jdG9w
-cm9qZWN0Lk9yZw0KPlNlbnQ6IDI1IE5vdmVtYmVyIDIwMTkgMDE6NDkNCj5UbzogQW5pYmFsIExp
-bW9uIDxhbmliYWwubGltb25AbGluYXJvLm9yZz4NCj5DYzogeW9jdG9AbGlzdHMueW9jdG9wcm9q
-ZWN0Lm9yZw0KPlN1YmplY3Q6IFJlOiBbeW9jdG9dIFtSRkNdIFlvY3RvIEF1dG9idWlsZGVyIGFu
-ZCBMQVZBIEludGVncmF0aW9uDQoNCj5PbiBhbm90aGVyIGFwcHJvYWNoIHlvdSBjYW4gYnJpbmcg
-dXAgeW91ciBvd24gTEFWQSBzZXJ2ZXIgdGhydSBEb2NrZXIgLSBodHRwczovL2h1Yi5kb2NrZXIu
-Y29tL3IvbGF2YXNvZnR3YXJlL2xhdmEtc2VydmVyDQo+V2UgaGFkIGFsc28gZXhwbG9yZSB0aGlz
-IG9wdGlvbiBpbiB0aGUgcGFzdCBhbmQgaXRzIHdvcmtpbmcgZm9yIHVzLiBUaGlzIHdheSB5b3Ug
-Y2FuIGhhdmUgYWNjZXNzIGNvbnRyb2wgYW5kIG1pbml0dXJlIGJvYXJkIGZhcm0gd2hpY2ggeW91
-DQo+Y2FuIHJ1biB0ZXN0cyBvbiwgaWYgd2UgZG8gbm90IGhhdmUgdGhlIGhhcmR3YXJlIHdoaWNo
-IHlvdSByZXF1aXJlIHlvdSBtYXkgc3RpbGwgbmVlZCB0byBoYXZlIGFjY2VzcyB0byBzdGFnaW5n
-IGxpbmFybyBMQVZBIHNlcnZlci4NCg0KSW4gdGhlIGNhc2Ugb2YgdGhlIERvY2tlciByb3V0ZSB0
-aGVyZSBpcyBhbm90aGVyIG9wdGlvbi4gS2VybmVsQ0kgbWFpbnRhaW4gbGF2YS1kb2NrZXIgWzFd
-IGZvciB0aGUgY3JlYXRpb24gb2YgTWFzdGVyIGFuZCBXb3JrZXIgaW5zdGFuY2VzIHZpYSBEb2Nr
-ZXIuIEl0IHdvcmtzIGFuZCBpdHMgYWN0aXZlbHkgbWFpbnRhaW5lZC4NCg0KWzFdIGh0dHBzOi8v
-Z2l0aHViLmNvbS9rZXJuZWxjaS9sYXZhLWRvY2tlciANCg0KUmVnYXJkcw0KDQpTdGV2ZQ0KDQo=
+--000000000000608f7a059828321d
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Shravan,
+
+as pointed out in the documentation [1], you need to specify   module_conf_*
+and KERNEL_MODULE_PROBECONF.
+Here is an example coming from one of my machine:
+
+# g_multi: serial, RNDIS and sotrage over usbKERNEL_MODULE_PROBECONF
++= " g_multi"KERNEL_MODULE_AUTOLOAD += " g_multi"module_conf_g_multi =
+"options g_multi file=/dev/mtdblock9"
+
+Gabriele
+[1]
+https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#migration-1.7-kernel-module-autoloading
+
+On Thu, Nov 21, 2019 at 10:15 AM Shravan Singh <shravan@bluesparq.com>
+wrote:
+
+> Hello All,
+>
+> So I am having a little problem in understanding why I am unable to
+> autoload a module in my image.
+>
+> So I made modifications to
+> 1. KCONFIG, MAKEFILE
+> 2. Added a source and header file to driver/input/touchscreen
+> 3. Added a file in /boot/arm/dts/overlays
+> 4. Created a patch and added that patch in
+> /meta-raspberrypi-warrior/recipes/kernel/linux/linux-raspberrypi_4.19.bb
+> 5. Added the overlay file in rpi_base.inc
+> 6. In my local.conf added it under KERNEL_MODULE_AUTOLOAD_append
+>
+> created the image without any issues. But after I install that Image I do
+> not see the module anymore?
+>
+> Why Is that Am I missing something?
+>
+>
+> Regards,
+> Shravan Singh
+> (239) 243-0838
+>
+> Blue Sparq, Inc.
+> 928 NE 24th Lane unit 4 and 5.
+> Cape Coral, FL 33993
+>
+> IMPORTANT: The contents of this email and any attachments are
+> confidential. They are intended for the named recipient(s) only. If you
+> have received this email by mistake, please notify the sender immediately
+> and do not disclose the contents to anyone or make copies thereof.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--000000000000608f7a059828321d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Shravan,</div><div><br></div><div>as pointed out i=
+n the documentation [1], you need to specify=C2=A0=C2=A0
+<font size=3D"4"><span style=3D"font-family:arial,sans-serif">            <=
+font size=3D"2"><code class=3D"gmail-filename"><span style=3D"font-family:a=
+rial,sans-serif">module_conf_*</span> <span style=3D"font-family:arial,sans=
+-serif">and</span> <span style=3D"font-family:arial,sans-serif"><code class=
+=3D"gmail-filename"><span style=3D"font-family:arial,sans-serif">KERNEL_MOD=
+ULE_PROBECONF</span>.</code></span></code></font></span></font></div><div><=
+font size=3D"4"><span style=3D"font-family:arial,sans-serif"><font size=3D"=
+2"><code class=3D"gmail-filename"><span style=3D"font-family:arial,sans-ser=
+if"><code class=3D"gmail-filename"><font face=3D"arial,sans-serif">Here is =
+an example coming from one of my machine:</font></code></span></code></font=
+></span></font></div><div><pre class=3D"gmail-code gmail-highlight" lang=3D=
+"conf"><span id=3D"gmail-LC19" class=3D"gmail-line" lang=3D"conf"><span cla=
+ss=3D"gmail-c"># g_multi: serial, RNDIS and sotrage over usb</span></span>
+<span id=3D"gmail-LC20" class=3D"gmail-line" lang=3D"conf"><span class=3D"g=
+mail-n">KERNEL_MODULE_PROBECONF</span> +=3D <span class=3D"gmail-s2">&quot;=
+ g_multi&quot;</span></span>
+<span id=3D"gmail-LC21" class=3D"gmail-line" lang=3D"conf"><span class=3D"g=
+mail-n">KERNEL_MODULE_AUTOLOAD</span> +=3D <span class=3D"gmail-s2">&quot; =
+g_multi&quot;</span></span>
+<span id=3D"gmail-LC22" class=3D"gmail-line" lang=3D"conf"><span class=3D"g=
+mail-n">module_conf_g_multi</span> =3D <span class=3D"gmail-s2">&quot;optio=
+ns g_multi file=3D/dev/mtdblock9&quot;</span></span>
+</pre><font size=3D"4"><span style=3D"font-family:arial,sans-serif"><font s=
+ize=3D"2"><code class=3D"gmail-filename"><span style=3D"font-family:arial,s=
+ans-serif"><code class=3D"gmail-filename"></code></span></code></font></spa=
+n></font></div><div><font size=3D"4"><span style=3D"font-family:arial,sans-=
+serif"><font size=3D"2"><code class=3D"gmail-filename"><span style=3D"font-=
+family:arial,sans-serif"><code class=3D"gmail-filename"><font face=3D"arial=
+,sans-serif">Gabriele</font><br></code></span></code></font></span></font><=
+/div><div><span style=3D"font-family:arial,sans-serif"><font size=3D"4"><fo=
+nt size=3D"2"><code class=3D"gmail-filename"><code class=3D"gmail-filename"=
+>[1] <a href=3D"https://www.yoctoproject.org/docs/latest/mega-manual/mega-m=
+anual.html#migration-1.7-kernel-module-autoloading">https://www.yoctoprojec=
+t.org/docs/latest/mega-manual/mega-manual.html#migration-1.7-kernel-module-=
+autoloading</a></code></code></font></font></span></div><div><span style=3D=
+"font-family:arial,sans-serif"></span></div></div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Nov 21, 2019 at 10:15 A=
+M Shravan Singh &lt;<a href=3D"mailto:shravan@bluesparq.com">shravan@bluesp=
+arq.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex"><div dir=3D"ltr"><div>Hello All,</div><div><br></div><div>So I am ha=
+ving a little problem in understanding why I am unable to autoload a module=
+ in my image.</div><div><br></div><div>So I made modifications to <br></div=
+><div>1. KCONFIG, MAKEFILE <br></div><div>2. Added a source and header file=
+ to driver/input/touchscreen <br></div><div>3. Added a file in /boot/arm/dt=
+s/overlays</div><div>4. Created a patch and added that patch in /meta-raspb=
+errypi-warrior/recipes/kernel/linux/<a href=3D"http://linux-raspberrypi_4.1=
+9.bb" target=3D"_blank">linux-raspberrypi_4.19.bb</a></div><div>5. Added th=
+e overlay file in rpi_base.inc</div><div>6. In my local.conf added it under=
+ KERNEL_MODULE_AUTOLOAD_append</div><div><br></div><div>created the image w=
+ithout any issues. But after I install that Image I do not see the module a=
+nymore?</div><div><br></div><div>Why Is that Am I missing something?</div><=
+div><br></div><div><br></div><div><div dir=3D"ltr"><div dir=3D"ltr"><div><d=
+iv dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><span style=3D"b=
+ackground-color:rgba(255,255,255,0)"></span>Regards,<br>Shravan Singh<br>(2=
+39) 243-0838<br><br>Blue Sparq, Inc.<br>928 NE 24th Lane unit 4 and 5.<br>C=
+ape Coral, FL 33993<br><font size=3D"1"><br>IMPORTANT: The contents of this=
+ email and any attachments are confidential. They are intended for the name=
+d recipient(s) only. If you have received this email by mistake, please not=
+ify the sender immediately and do not disclose the contents to anyone or ma=
+ke copies thereof.</font><br></div></div></div></div></div></div></div></di=
+v></div></div>
+-- <br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" rel=3D"noreferrer=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div>
+
+--000000000000608f7a059828321d--
