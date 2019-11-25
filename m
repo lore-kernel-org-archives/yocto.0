@@ -1,237 +1,714 @@
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
- by mx.groups.io with SMTP id smtpd.web12.6536.1574699069725684194
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.6678.1574699873844289259
  for <yocto@lists.yoctoproject.org>;
- Mon, 25 Nov 2019 08:24:30 -0800
+ Mon, 25 Nov 2019 08:37:54 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ibeeto-com.20150623.gappssmtp.com header.s=20150623 header.b=1ObCLwHn;
- spf=neutral (domain: ibeeto.com, ip: 209.85.215.173, mailfrom: rudolf.streif@ibeeto.com)
-Received: by mail-pg1-f173.google.com with SMTP id q17so7417840pgt.9
-        for <yocto@lists.yoctoproject.org>; Mon, 25 Nov 2019 08:24:29 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=EKX63qff;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: kergoth@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 91A5BE00F45; Mon, 25 Nov 2019 08:37:53 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (kergoth[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.128.48 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3628E00F22
+	for <yocto@yoctoproject.org>; Mon, 25 Nov 2019 08:37:50 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id j18so296208wmk.1
+        for <yocto@yoctoproject.org>; Mon, 25 Nov 2019 08:37:50 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to;
-        bh=5kGTnFlaSC9+rze4+uXoj0ZQA8RAw5sag29LgvvOHkE=;
-        b=1ObCLwHnvknZp0gJFbYz6qLZ1QvLj8C57Oi3+clDtmn3OPwquIXUSOD3bZeYxOcJ2m
-         d8a4QW8wJvLjzYYmp7pH928FY/G9zc+G0XDcxDqHQK+A22ye5Ro6cP5O21IiEg3UIFeR
-         7ePsgITs9RpdLOV3l/eVEWq3G0sfr4pMlG50CsD+EzRihEwt4WrVjuRgRc0h8+WFyqMX
-         X4g572BXi6tmF9thsVshtOycwcr1V4r0LfH8UzoUiVwqNmDAYJBTSVNu3cR2lAdckTbg
-         f7ochuAu2LEG3qMeD2IEGNaARi5ZOHXKs5dVFz/ykiUS7cxvxEzUTmsI+d0PGoSbRSPB
-         KnAQ==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=sCSbTD/07R+PJxAbREObxV2vsUj941ddV1iLSGGX3ck=;
+        b=EKX63qffs2+8LdCyWZhx3L4IJXw0w8c4ctX65TQgkrwhJvzJO/vA7gggQKe5YB/GlE
+         hHakKP0m1h/ZldmcEmiOYdXv67IhnVFSmXkXEcllFF63SxGX3Ehb8sGKaN9bRok4/8ZW
+         FA52jdP8uGC9a09YWiirEdpuzLNUMIjQj1SGR8TLGJz2rfSVIffq4uVUx9qklKhZa1Mx
+         +TDHAelGO4IOGiZEHn4CSTz1dKWCXClMfuGbHE+0dIw+4jHHQysLaD8wYT+ExUdVDS5k
+         r/QM72Ts/Lu2Z8/Y1K3Z4dz+5KnNqKOyOB8zUCdBSRSJToExpkYzZI7uW+YToX2pcsp5
+         d8Ew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
-         :date:user-agent:mime-version:in-reply-to;
-        bh=5kGTnFlaSC9+rze4+uXoj0ZQA8RAw5sag29LgvvOHkE=;
-        b=jp0s5flBQ7UC9uqJq7iCkIONgRJ/X4MePZ+vXPYrT4LVVBsIGbLZ0Y9RFKArCmuEST
-         nOTSNwz63PhEhYmZ6Eb8C+aHmFcUkW4qWuk9K5QmxBoGoOTtPwMvlbMG4Ygbo6SVoyto
-         fZwbws8pPbLmqjos+D36MFiHug2leDxxkKA+gJ58Cn9ITS5Asi1Z86mY8Re5cYx6LQKg
-         Ixn/YctV1UYSItpMtSlDj3D6Cad0IJexLqNPamkVCVE5u8fU03UtudTdzv3KA5yTDWu6
-         YcyqUF3a+vaa/Yg40sOpaOfElgIxruORcmA++aL+AjPlDYT74gNnk6812QM8sLDDP3dx
-         +EZQ==
-X-Gm-Message-State: APjAAAUJPLtSHnBkHx6CIXVCl/l5xGpu4+0rWKslCdDDZDLQw0uhZjlq
-	+//W/UGAUXYhSFj6mNRGdQbIQ5M+G0LEdYps
-X-Google-Smtp-Source: APXvYqx9szPKC5YY3qfnNQbVPnDz7XIOXf/IbdCmkIlCkRbOPCea3/xjPEClmpnvxH5ZAnXIPv5eFw==
-X-Received: by 2002:a65:62cc:: with SMTP id m12mr13735815pgv.397.1574699068780;
-        Mon, 25 Nov 2019 08:24:28 -0800 (PST)
-Return-Path: <rudolf.streif@ibeeto.com>
-Received: from rjs-zotac.ibeeto.com (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
-        by smtp.gmail.com with ESMTPSA id h3sm9230318pgr.81.2019.11.25.08.24.26
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 25 Nov 2019 08:24:27 -0800 (PST)
-Subject: Re: [yocto] Yocto build to add root password
-To: yocto@lists.yoctoproject.org
-References: <CAA=hcWR3Vhfc9H3VRf-Q1m44rX_ox2J-LjuPWHsB1Rrq-yrVTg@mail.gmail.com>
-From: "Rudolf J Streif" <rudolf.streif@ibeeto.com>
-Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
- mQENBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
- Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
- /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
- cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
- 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
- AAG0KlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPokBNwQTAQgA
- IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
- 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
- txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
- lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
- Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
- zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvuQENBFhQFAQBCADXoLKCuF48
- 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
- RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
- w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
- svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
- tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAGJAR8EGAEIAAkFAlhQFAQC
- GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
- s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
- fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
- Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
- P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
- ROZj4g==
-Message-ID: <bc70cb07-37c8-3078-7c02-d7be487035fd@ibeeto.com>
-Date: Mon, 25 Nov 2019 08:24:25 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
-MIME-Version: 1.0
-In-Reply-To: <CAA=hcWR3Vhfc9H3VRf-Q1m44rX_ox2J-LjuPWHsB1Rrq-yrVTg@mail.gmail.com>
-X-Groupsio-MsgNum: 47408
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="UoxBcnJU8AemhxuLVcQO6XmC3wFuBSmMT"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=sCSbTD/07R+PJxAbREObxV2vsUj941ddV1iLSGGX3ck=;
+        b=tGBLd9oA6uL1AC+j1RJRyF6N4WUlCNtjZN4ksgz/tZjgxl5kREhN3E0dsEF+8mXVDk
+         pmXUBuUo5sOQaYsu9vTUvv7ESkcD6X9yTibw4fEnOu4JP2Qn3m0LPmz8XPI+0j4WMkV6
+         AgbelByRRfy26jX8jXojTeqh+T+cV/D3MZDqNyQ0fz1XH3jUDhGiYNnbBdGBH+IKj0zr
+         4lVLgOiLN77QA0BVVs/CeYZ1m2U8hBLxgSDq5IEvkSChjtwWYR2d/NQ+lcPs0KqmQzZ1
+         iVFj+faMypdKS/9qFFVP6PREU2++6dAZNfkUNnY0ErSZ7ean5IC3CKLunz4dBiBUBDKl
+         afKw==
+X-Gm-Message-State: APjAAAWkjZ6XM4L5kDbprgI/KVU6kZrUd4SmoM1kGo3x9M4Hs/7EVgVR
+	9nEoe/PVl4I5X5hqQJ/JJDf5muJ+
+X-Google-Smtp-Source: APXvYqxQiVUdDkPxf1qu+b84wiyW3Y0Nsjq/tofp2Rda4HpCNBKC1wVITUkUSjXl2EvC0ph3PWn42Q==
+X-Received: by 2002:a7b:ce95:: with SMTP id q21mr21729800wmj.137.1574699869194;
+        Mon, 25 Nov 2019 08:37:49 -0800 (PST)
+Received: from svr-pkl-eng-07.mgc.mentorg.com ([110.93.212.98])
+        by smtp.gmail.com with ESMTPSA id t185sm9400479wmf.45.2019.11.25.08.37.46
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 25 Nov 2019 08:37:48 -0800 (PST)
+From: Christopher Larson <kergoth@gmail.com>
+To: yocto@yoctoproject.org
+Cc: Christopher Larson <chris_larson@mentor.com>
+Subject: [meta-gplv2][patch 2/2] rsync: update to latest gplv2 git version + fixes
+Date: Mon, 25 Nov 2019 21:39:28 +0500
+Message-Id: <20191125163928.4685-2-kergoth@gmail.com>
+X-Mailer: git-send-email 2.11.1
+In-Reply-To: <20191125163928.4685-1-kergoth@gmail.com>
+References: <20191125163928.4685-1-kergoth@gmail.com>
 
---UoxBcnJU8AemhxuLVcQO6XmC3wFuBSmMT
-Content-Type: multipart/mixed; boundary="VDGrpzltaZyNJQ1SOM9ZPHlELO4A0J0k9"
+From: Christopher Larson <chris_larson@mentor.com>
 
---VDGrpzltaZyNJQ1SOM9ZPHlELO4A0J0k9
-Content-Type: multipart/alternative;
- boundary="------------7C8620F678E01C4BB7622F59"
-Content-Language: en-US
+This fixes some issues with the gplv2 version that we ran into at Mentor.
 
---------------7C8620F678E01C4BB7622F59
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Christopher Larson <chris_larson@mentor.com>
+---
+ ...oss-compiling-tell-the-user-to-run-mkroun.patch |  71 +++++++++++
+ ...-creation-of-rounding.h-to-use-a-set-of-c.patch | 142 +++++++++++++++++++++
+ .../0003-Renamed-mkrounding.c-to-rounding.c.patch  | 104 +++++++++++++++
+ .../0004-Improved-the-manpage-install-rules.patch  |  31 +++++
+ recipes-devtools/rsync/rsync-2.6.9/addrinfo.h      | 115 +++++++++++++++++
+ .../rsync-2.6.9/force-protocol-version-29.patch    |  12 ++
+ recipes-devtools/rsync/rsync.inc                   |  20 ---
+ recipes-devtools/rsync/rsync_2.6.9+git.bb          |  47 +++++++
+ recipes-devtools/rsync/rsync_2.6.9.bb              |  16 ---
+ 9 files changed, 522 insertions(+), 36 deletions(-)
+ create mode 100644 recipes-devtools/rsync/rsync-2.6.9/0001-If-we-re-cross-compiling-tell-the-user-to-run-mkroun.patch
+ create mode 100644 recipes-devtools/rsync/rsync-2.6.9/0002-Changed-the-creation-of-rounding.h-to-use-a-set-of-c.patch
+ create mode 100644 recipes-devtools/rsync/rsync-2.6.9/0003-Renamed-mkrounding.c-to-rounding.c.patch
+ create mode 100644 recipes-devtools/rsync/rsync-2.6.9/0004-Improved-the-manpage-install-rules.patch
+ create mode 100644 recipes-devtools/rsync/rsync-2.6.9/addrinfo.h
+ create mode 100644 recipes-devtools/rsync/rsync-2.6.9/force-protocol-version-29.patch
+ delete mode 100644 recipes-devtools/rsync/rsync.inc
+ create mode 100644 recipes-devtools/rsync/rsync_2.6.9+git.bb
+ delete mode 100644 recipes-devtools/rsync/rsync_2.6.9.bb
 
-Hi,
+diff --git a/recipes-devtools/rsync/rsync-2.6.9/0001-If-we-re-cross-compiling-tell-the-user-to-run-mkroun.patch b/recipes-devtools/rsync/rsync-2.6.9/0001-If-we-re-cross-compiling-tell-the-user-to-run-mkroun.patch
+new file mode 100644
+index 00000000..1542f193
+--- /dev/null
++++ b/recipes-devtools/rsync/rsync-2.6.9/0001-If-we-re-cross-compiling-tell-the-user-to-run-mkroun.patch
+@@ -0,0 +1,71 @@
++From 32da44bde46b8b78b25d37a172e7a57257ca5b8b Mon Sep 17 00:00:00 2001
++From: Wayne Davison <wayned@samba.org>
++Date: Tue, 1 Jan 2008 08:59:26 -0800
++Subject: [PATCH 1/4] If we're cross-compiling, tell the user to run
++ mkrounding on the target machine to build the
++ rounding.h file. (cherry picked from commit
++ f859d3ded6285c499898540ca4fb16f1e1a7d26b)
++
++Conflicts:
++
++	NEWS
++	configure.in
++---
++ Makefile.in  |    9 ++++++++-
++ NEWS         |    6 ++++++
++ configure.in |    2 ++
++ 3 files changed, 16 insertions(+), 1 deletion(-)
++
++diff --git a/Makefile.in b/Makefile.in
++index e9bd2c1..c2f779f 100644
++--- a/Makefile.in
+++++ b/Makefile.in
++@@ -77,7 +77,14 @@ $(OBJS): $(HEADERS)
++ flist.o: rounding.h
++ 
++ rounding.h: mkrounding$(EXEEXT)
++-	./mkrounding$(EXEEXT) >rounding.h
+++	@if test x@cross_compiling@ = xno; then \
+++	    ./mkrounding$(EXEEXT) >rounding.h; \
+++	else \
+++	    echo "Copy the mkrounding$(EXEEXT) command to the target machine and run it like this:"; \
+++	    echo "    ./mkrounding$(EXEEXT) >rounding.h"; \
+++	    echo "Then copy the resulting rounding.h file to this build machine and rerun \"make\"."; \
+++	    exit 1; \
+++	fi
++ 
++ mkrounding$(EXEEXT): mkrounding.c rsync.h
++ 	@sed '1,/^struct file_struct/d; /^}/,$$d' <$(srcdir)/rsync.h >mkrounding.h
++diff --git a/NEWS b/NEWS
++index 9d23af0..bf6067e 100644
++--- a/NEWS
+++++ b/NEWS
++@@ -4,6 +4,12 @@ Changes since 2.6.9:
++ 
++   BUG FIXES:
++ 
+++    - If a file's data arrived successfully on the receiving side but the
+++      rename of the tempory file to the destination file failed AND the
+++      --remove-souce-files (or the deprecated --remove-sent-files) option
+++      was specified, rsync no longer erroneously removes the associated
+++      source file.
+++
++     - Fixed the output of -ii when combined with one of the --*-dest options:
++       it now itemizes all the items, not just the changed ones.
++ 
++diff --git a/configure.in b/configure.in
++index 890a76b..aee2693 100644
++--- a/configure.in
+++++ b/configure.in
++@@ -805,6 +805,8 @@ AC_SUBST(OBJ_SAVE)
++ AC_SUBST(OBJ_RESTORE)
++ AC_SUBST(CC_SHOBJ_FLAG)
++ AC_SUBST(BUILD_POPT)
+++AC_SUBST(cross_compiling)
+++
++ 
++ AC_CONFIG_FILES([Makefile lib/dummy zlib/dummy popt/dummy shconfig])
++ AC_OUTPUT
++-- 
++1.7.9.5
++
+diff --git a/recipes-devtools/rsync/rsync-2.6.9/0002-Changed-the-creation-of-rounding.h-to-use-a-set-of-c.patch b/recipes-devtools/rsync/rsync-2.6.9/0002-Changed-the-creation-of-rounding.h-to-use-a-set-of-c.patch
+new file mode 100644
+index 00000000..438f12d6
+--- /dev/null
++++ b/recipes-devtools/rsync/rsync-2.6.9/0002-Changed-the-creation-of-rounding.h-to-use-a-set-of-c.patch
+@@ -0,0 +1,142 @@
++From 30932a3a7a3843c23577d0fdc6d61311b0454766 Mon Sep 17 00:00:00 2001
++From: Wayne Davison <wayned@samba.org>
++Date: Tue, 1 Jan 2008 10:27:19 -0800
++Subject: [PATCH 2/4] Changed the creation of rounding.h to use a set of
++ compile-time checks similar to how configure determines
++ the size of variables.
++
++Conflicts:
++
++	.gitignore
++	Makefile.in
++	configure.in
++---
++ Makefile.in  |   27 ++++++++++++++-------------
++ configure.in |    1 -
++ mkrounding.c |   46 +++++++++-------------------------------------
++ 3 files changed, 23 insertions(+), 51 deletions(-)
++
++diff --git a/Makefile.in b/Makefile.in
++index c2f779f..a660a75 100644
++--- a/Makefile.in
+++++ b/Makefile.in
++@@ -76,21 +76,22 @@ $(OBJS): $(HEADERS)
++ 
++ flist.o: rounding.h
++ 
++-rounding.h: mkrounding$(EXEEXT)
++-	@if test x@cross_compiling@ = xno; then \
++-	    ./mkrounding$(EXEEXT) >rounding.h; \
++-	else \
++-	    echo "Copy the mkrounding$(EXEEXT) command to the target machine and run it like this:"; \
++-	    echo "    ./mkrounding$(EXEEXT) >rounding.h"; \
++-	    echo "Then copy the resulting rounding.h file to this build machine and rerun \"make\"."; \
+++rounding.h: mkrounding.c rsync.h
+++	@for r in 0 1 3; do \
+++	    if $(CC) $(CFLAGS) $(LDFLAGS) -o mkrounding -DEXTRA_ROUNDING=$$r -I. $(srcdir)/mkrounding.c >/dev/null 2>&1; then \
+++		echo "#define EXTRA_ROUNDING $$r" >rounding.h; \
+++		if test -f "$$HOME/build_farm/build_test.fns"; then \
+++		    echo "EXTRA_ROUNDING is $$r" >&2; \
+++		fi; \
+++		break; \
+++	    fi; \
+++	done
+++	@rm -f mkrounding
+++	@if test -f rounding.h; then : ; else \
+++	    echo "Failed to create rounding.h!"; \
++ 	    exit 1; \
++ 	fi
++ 
++-mkrounding$(EXEEXT): mkrounding.c rsync.h
++-	@sed '1,/^struct file_struct/d; /^}/,$$d' <$(srcdir)/rsync.h >mkrounding.h
++-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ -I. $(srcdir)/mkrounding.c
++-	@rm mkrounding.h
++-
++ tls$(EXEEXT): $(TLS_OBJ)
++ 	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(TLS_OBJ) $(LIBS)
++ 
++@@ -119,7 +120,7 @@ proto:
++ 
++ clean: cleantests
++ 	rm -f *~ $(OBJS) $(TLS_OBJ) $(CHECK_PROGS) $(CHECK_OBJS) \
++-		mkrounding mkrounding.h rounding.h
+++		mkrounding rounding.h
++ 
++ cleantests:
++ 	rm -rf ./testtmp*
++diff --git a/configure.in b/configure.in
++index aee2693..61458cf 100644
++--- a/configure.in
+++++ b/configure.in
++@@ -805,7 +805,6 @@ AC_SUBST(OBJ_SAVE)
++ AC_SUBST(OBJ_RESTORE)
++ AC_SUBST(CC_SHOBJ_FLAG)
++ AC_SUBST(BUILD_POPT)
++-AC_SUBST(cross_compiling)
++ 
++ 
++ AC_CONFIG_FILES([Makefile lib/dummy zlib/dummy popt/dummy shconfig])
++diff --git a/mkrounding.c b/mkrounding.c
++index a5a5229..ec0f277 100644
++--- a/mkrounding.c
+++++ b/mkrounding.c
++@@ -1,47 +1,19 @@
++ #include "rsync.h"
++ 
++-struct test1 {
++-    union file_extras extras1[1];
++-    struct {
++-#	include "mkrounding.h"
++-    } file;
++-};
++-
++-struct test2 {
++-    union file_extras extras2[2];
++-    struct {
++-#	include "mkrounding.h"
++-    } file;
++-};
+++#define ARRAY_LEN (EXTRA_ROUNDING+1)
+++#define SIZEOF(x) ((long int)sizeof (x))
++ 
++-struct test4 {
++-    union file_extras extras4[4];
++-    struct {
++-#	include "mkrounding.h"
++-    } file;
+++struct test {
+++    union file_extras extras[ARRAY_LEN];
+++    struct file_struct file;
++ };
++ 
++-#define SIZE_TEST(n) (sizeof (struct test ## n) == EXTRA_LEN * n + sizeof (struct file_struct))
+++#define ACTUAL_SIZE	SIZEOF(struct test)
+++#define EXPECTED_SIZE	(SIZEOF(union file_extras) * ARRAY_LEN + SIZEOF(struct file_struct))
++ 
++  int main(UNUSED(int argc), UNUSED(char *argv[]))
++ {
++-    int cnt;
++-    if (SIZE_TEST(1))
++-	cnt = 0;
++-    else if (SIZE_TEST(2))
++-	cnt = 1;
++-    else if (SIZE_TEST(4))
++-	cnt = 3;
++-    else {
++-	fprintf(stderr, "Unable to determine required file_extras rounding!\n");
++-	cnt = 3;
++-    }
++-    if (cnt)
++-	fprintf(stderr, "Rounding file_extras in multiples of %d", cnt + 1);
++-    else
++-	fprintf(stderr, "No rounding needed for file_extras");
++-    fprintf(stderr, " (EXTRA_LEN=%d, FILE_STRUCT_LEN=%d)\n",
++-	    (int)EXTRA_LEN, (int)FILE_STRUCT_LEN);
++-    printf("#define EXTRA_ROUNDING %d\n", cnt);
+++    static int test_array[1 - 2 * (ACTUAL_SIZE != EXPECTED_SIZE)];
+++    test_array[0] = 0;
++     return 0;
++ }
++-- 
++1.7.9.5
++
+diff --git a/recipes-devtools/rsync/rsync-2.6.9/0003-Renamed-mkrounding.c-to-rounding.c.patch b/recipes-devtools/rsync/rsync-2.6.9/0003-Renamed-mkrounding.c-to-rounding.c.patch
+new file mode 100644
+index 00000000..60d718e8
+--- /dev/null
++++ b/recipes-devtools/rsync/rsync-2.6.9/0003-Renamed-mkrounding.c-to-rounding.c.patch
+@@ -0,0 +1,104 @@
++From f41f666ea6b6bec85b40d4abb483b55438897f62 Mon Sep 17 00:00:00 2001
++From: Wayne Davison <wayned@samba.org>
++Date: Tue, 1 Jan 2008 10:34:27 -0800
++Subject: [PATCH 3/4] Renamed mkrounding.c to rounding.c. (cherry picked from
++ commit a5fd4b6e6e3d4649f0f65cd4a0385283fe69154c)
++
++Conflicts:
++
++	Makefile.in
++---
++ Makefile.in  |    8 ++++----
++ mkrounding.c |   19 -------------------
++ rounding.c   |   19 +++++++++++++++++++
++ 3 files changed, 23 insertions(+), 23 deletions(-)
++ delete mode 100644 mkrounding.c
++ create mode 100644 rounding.c
++
++diff --git a/Makefile.in b/Makefile.in
++index a660a75..8b5e2f1 100644
++--- a/Makefile.in
+++++ b/Makefile.in
++@@ -76,9 +76,9 @@ $(OBJS): $(HEADERS)
++ 
++ flist.o: rounding.h
++ 
++-rounding.h: mkrounding.c rsync.h
+++rounding.h: rounding.c rsync.h
++ 	@for r in 0 1 3; do \
++-	    if $(CC) $(CFLAGS) $(LDFLAGS) -o mkrounding -DEXTRA_ROUNDING=$$r -I. $(srcdir)/mkrounding.c >/dev/null 2>&1; then \
+++	    if $(CC) $(CFLAGS) $(LDFLAGS) -o rounding -DEXTRA_ROUNDING=$$r -I. $(srcdir)/rounding.c >/dev/null 2>&1; then \
++ 		echo "#define EXTRA_ROUNDING $$r" >rounding.h; \
++ 		if test -f "$$HOME/build_farm/build_test.fns"; then \
++ 		    echo "EXTRA_ROUNDING is $$r" >&2; \
++@@ -86,7 +86,7 @@ rounding.h: mkrounding.c rsync.h
++ 		break; \
++ 	    fi; \
++ 	done
++-	@rm -f mkrounding
+++	@rm -f rounding
++ 	@if test -f rounding.h; then : ; else \
++ 	    echo "Failed to create rounding.h!"; \
++ 	    exit 1; \
++@@ -120,7 +120,7 @@ proto:
++ 
++ clean: cleantests
++ 	rm -f *~ $(OBJS) $(TLS_OBJ) $(CHECK_PROGS) $(CHECK_OBJS) \
++-		mkrounding rounding.h
+++		rounding rounding.h
++ 
++ cleantests:
++ 	rm -rf ./testtmp*
++diff --git a/mkrounding.c b/mkrounding.c
++deleted file mode 100644
++index ec0f277..0000000
++--- a/mkrounding.c
+++++ /dev/null
++@@ -1,19 +0,0 @@
++-#include "rsync.h"
++-
++-#define ARRAY_LEN (EXTRA_ROUNDING+1)
++-#define SIZEOF(x) ((long int)sizeof (x))
++-
++-struct test {
++-    union file_extras extras[ARRAY_LEN];
++-    struct file_struct file;
++-};
++-
++-#define ACTUAL_SIZE	SIZEOF(struct test)
++-#define EXPECTED_SIZE	(SIZEOF(union file_extras) * ARRAY_LEN + SIZEOF(struct file_struct))
++-
++- int main(UNUSED(int argc), UNUSED(char *argv[]))
++-{
++-    static int test_array[1 - 2 * (ACTUAL_SIZE != EXPECTED_SIZE)];
++-    test_array[0] = 0;
++-    return 0;
++-}
++diff --git a/rounding.c b/rounding.c
++new file mode 100644
++index 0000000..ec0f277
++--- /dev/null
+++++ b/rounding.c
++@@ -0,0 +1,19 @@
+++#include "rsync.h"
+++
+++#define ARRAY_LEN (EXTRA_ROUNDING+1)
+++#define SIZEOF(x) ((long int)sizeof (x))
+++
+++struct test {
+++    union file_extras extras[ARRAY_LEN];
+++    struct file_struct file;
+++};
+++
+++#define ACTUAL_SIZE	SIZEOF(struct test)
+++#define EXPECTED_SIZE	(SIZEOF(union file_extras) * ARRAY_LEN + SIZEOF(struct file_struct))
+++
+++ int main(UNUSED(int argc), UNUSED(char *argv[]))
+++{
+++    static int test_array[1 - 2 * (ACTUAL_SIZE != EXPECTED_SIZE)];
+++    test_array[0] = 0;
+++    return 0;
+++}
++-- 
++1.7.9.5
++
+diff --git a/recipes-devtools/rsync/rsync-2.6.9/0004-Improved-the-manpage-install-rules.patch b/recipes-devtools/rsync/rsync-2.6.9/0004-Improved-the-manpage-install-rules.patch
+new file mode 100644
+index 00000000..83163713
+--- /dev/null
++++ b/recipes-devtools/rsync/rsync-2.6.9/0004-Improved-the-manpage-install-rules.patch
+@@ -0,0 +1,31 @@
++From ae41600a129cc0ada5ce33b1c5c1afc8c3c9cb63 Mon Sep 17 00:00:00 2001
++From: Wayne Davison <wayned@samba.org>
++Date: Fri, 9 Nov 2007 18:12:40 +0000
++Subject: [PATCH 4/4] Improved the manpage install rules. (cherry picked from
++ commit c8dccf8fb4949ad8f2c25f86808b517a5b30faf9)
++
++Conflicts:
++
++	Makefile.in
++---
++ Makefile.in |    4 ++--
++ 1 file changed, 2 insertions(+), 2 deletions(-)
++
++diff --git a/Makefile.in b/Makefile.in
++index 8b5e2f1..de37ddc 100644
++--- a/Makefile.in
+++++ b/Makefile.in
++@@ -63,8 +63,8 @@ install: all
++ 	${INSTALLCMD} ${INSTALL_STRIP} -m 755 rsync$(EXEEXT) ${DESTDIR}${bindir}
++ 	-mkdir -p ${DESTDIR}${mandir}/man1
++ 	-mkdir -p ${DESTDIR}${mandir}/man5
++-	${INSTALLMAN} -m 644 $(srcdir)/rsync.1 ${DESTDIR}${mandir}/man1
++-	${INSTALLMAN} -m 644 $(srcdir)/rsyncd.conf.5 ${DESTDIR}${mandir}/man5
+++	if test -f $(srcdir)/rsync.1; then ${INSTALLMAN} -m 644 $(srcdir)/rsync.1 ${DESTDIR}${mandir}/man1; fi
+++	if test -f $(srcdir)/rsyncd.conf.5; then ${INSTALLMAN} -m 644 $(srcdir)/rsyncd.conf.5 ${DESTDIR}${mandir}/man5; fi
++ 
++ install-strip:
++ 	$(MAKE) INSTALL_STRIP='-s' install
++-- 
++1.7.9.5
++
+diff --git a/recipes-devtools/rsync/rsync-2.6.9/addrinfo.h b/recipes-devtools/rsync/rsync-2.6.9/addrinfo.h
+new file mode 100644
+index 00000000..1cf241f6
+--- /dev/null
++++ b/recipes-devtools/rsync/rsync-2.6.9/addrinfo.h
+@@ -0,0 +1,115 @@
++/*
++ * Copyright (C) 1995, 1996, 1997, 1998, and 1999 WIDE Project.
++ * All rights reserved.
++ * 
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions
++ * are met:
++ * 1. Redistributions of source code must retain the above copyright
++ *    notice, this list of conditions and the following disclaimer.
++ * 2. Redistributions in binary form must reproduce the above copyright
++ *    notice, this list of conditions and the following disclaimer in the
++ *    documentation and/or other materials provided with the distribution.
++ * 3. Neither the name of the project nor the names of its contributors
++ *    may be used to endorse or promote products derived from this software
++ *    without specific prior written permission.
++ * 
++ * THIS SOFTWARE IS PROVIDED BY THE PROJECT AND CONTRIBUTORS ``AS IS'' AND
++ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
++ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
++ * ARE DISCLAIMED.  IN NO EVENT SHALL THE PROJECT OR CONTRIBUTORS BE LIABLE
++ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
++ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
++ * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
++ * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
++ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
++ * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
++ * SUCH DAMAGE.
++ */
++
++/**
++ * @file addrinfo.h
++ *
++ * Replacement getaddrinfo() for machines that don't have it.  The new
++ * getaddrinfo()/getnameinfo() interface is implemented on top of the
++ * traditional resolver calls.
++ **/
++
++#ifndef HAVE_GETADDRINFO
++
++#ifndef EAI_ADDRFAMILY
++/*
++ * Error return codes from getaddrinfo()
++ */
++#define	EAI_ADDRFAMILY	 1	/* address family for hostname not supported */
++#define	EAI_AGAIN	 2	/* temporary failure in name resolution */
++#define	EAI_BADFLAGS	 3	/* invalid value for ai_flags */
++#define	EAI_FAIL	 4	/* non-recoverable failure in name resolution */
++#define	EAI_FAMILY	 5	/* ai_family not supported */
++#define	EAI_MEMORY	 6	/* memory allocation failure */
++#define	EAI_NODATA	 7	/* no address associated with hostname */
++#define	EAI_NONAME	 8	/* hostname nor servname provided, or not known */
++#define	EAI_SERVICE	 9	/* servname not supported for ai_socktype */
++#define	EAI_SOCKTYPE	10	/* ai_socktype not supported */
++#define	EAI_SYSTEM	11	/* system error returned in errno */
++#define EAI_BADHINTS	12
++#define EAI_PROTOCOL	13
++#define EAI_MAX		14
++#endif /* ndef EAI_ADDRFAMILY */
++
++/*
++ * Flag values for getaddrinfo()
++ */
++
++#ifndef AI_PASSIVE
++
++#define	AI_PASSIVE	0x00000001 /* get address to use bind() */
++#define	AI_CANONNAME	0x00000002 /* fill ai_canonname */
++#define	AI_NUMERICHOST	0x00000004 /* prevent name resolution */
++/* valid flags for addrinfo */
++#define	AI_MASK		(AI_PASSIVE | AI_CANONNAME | AI_NUMERICHOST)
++
++#define	AI_ALL		0x00000100 /* IPv6 and IPv4-mapped (with AI_V4MAPPED) */
++#define	AI_V4MAPPED_CFG	0x00000200 /* accept IPv4-mapped if kernel supports */
++#define	AI_ADDRCONFIG	0x00000400 /* only if any address is assigned */
++#define	AI_V4MAPPED	0x00000800 /* accept IPv4-mapped IPv6 address */
++/* special recommended flags for getipnodebyname */
++#define	AI_DEFAULT	(AI_V4MAPPED_CFG | AI_ADDRCONFIG)
++
++/*
++ * Constants for getnameinfo()
++ */
++#define	NI_MAXHOST	1025
++#define	NI_MAXSERV	32
++
++/*
++ * Flag values for getnameinfo()
++ */
++#define	NI_NOFQDN	0x00000001
++#define	NI_NUMERICHOST	0x00000002
++#define	NI_NAMEREQD	0x00000004
++#define	NI_NUMERICSERV	0x00000008
++#define	NI_DGRAM	0x00000010
++
++struct addrinfo {
++	int	ai_flags;	/* AI_PASSIVE, AI_CANONNAME */
++	int	ai_family;	/* PF_xxx */
++	int	ai_socktype;	/* SOCK_xxx */
++	int	ai_protocol;	/* 0 or IPPROTO_xxx for IPv4 and IPv6 */
++	size_t	ai_addrlen;	/* length of ai_addr */
++	char	*ai_canonname;	/* canonical name for hostname */
++	struct sockaddr *ai_addr;	/* binary address */
++	struct addrinfo *ai_next;	/* next structure in linked list */
++};
++
++extern void freehostent(struct hostent *);
++extern char *gai_strerror(int);
++#endif /* AI_PASSIVE */
++#endif /* HAVE_GETADDRINFO */
++
++#ifndef HAVE_SOCKADDR_STORAGE
++struct sockaddr_storage {
++	unsigned long	align;
++	unsigned char	fill[128 - sizeof (unsigned long)];
++};
++#endif
+diff --git a/recipes-devtools/rsync/rsync-2.6.9/force-protocol-version-29.patch b/recipes-devtools/rsync/rsync-2.6.9/force-protocol-version-29.patch
+new file mode 100644
+index 00000000..ec198748
+--- /dev/null
++++ b/recipes-devtools/rsync/rsync-2.6.9/force-protocol-version-29.patch
+@@ -0,0 +1,12 @@
++diff -Naur old/rsync.h new/rsync.h
++--- old/rsync.h	2014-04-08 18:21:34.000000000 +1100
+++++ new/rsync.h	2014-04-15 20:28:02.000000000 +1100
++@@ -82,7 +82,7 @@
++ 			     == ((unsigned)(b2) & (unsigned)(mask)))
++ 
++ /* update this if you make incompatible changes */
++-#define PROTOCOL_VERSION 30
+++#define PROTOCOL_VERSION 29
++ 
++ /* We refuse to interoperate with versions that are not in this range.
++  * Note that we assume we'll work with later versions: the onus is on
+diff --git a/recipes-devtools/rsync/rsync.inc b/recipes-devtools/rsync/rsync.inc
+deleted file mode 100644
+index 26c023af..00000000
+--- a/recipes-devtools/rsync/rsync.inc
++++ /dev/null
+@@ -1,20 +0,0 @@
+-SUMMARY = "File synchronization tool"
+-HOMEPAGE = "http://rsync.samba.org/"
+-BUGTRACKER = "http://rsync.samba.org/bugzilla.html"
+-SECTION = "console/network"
+-
+-DEPENDS = "popt"
+-
+-SRC_URI = "https://download.samba.org/pub/${BPN}/src/${BP}.tar.gz \
+-           file://rsyncd.conf"
+-
+-inherit autotools
+-
+-do_install_append() {
+-	install -d ${D}${sysconfdir}
+-	install -m 0644 ${WORKDIR}/rsyncd.conf ${D}${sysconfdir}
+-}
+-
+-EXTRA_OEMAKE='STRIP=""'
+-
+-PACKAGECONFIG[ipv6] = "--enable-ipv6,--disable-ipv6,"
+diff --git a/recipes-devtools/rsync/rsync_2.6.9+git.bb b/recipes-devtools/rsync/rsync_2.6.9+git.bb
+new file mode 100644
+index 00000000..2f428efb
+--- /dev/null
++++ b/recipes-devtools/rsync/rsync_2.6.9+git.bb
+@@ -0,0 +1,47 @@
++SUMMARY = "File synchronization tool"
++HOMEPAGE = "http://rsync.samba.org/"
++BUGTRACKER = "http://rsync.samba.org/bugzilla.html"
++SECTION = "console/network"
++
++DEPENDS = "popt"
++
++SRC_URI = "git://git.samba.org/rsync.git;protocol=https \
++           file://rsyncd.conf \
++           file://addrinfo.h \
++           file://rsync-2.6.9-fname-obo.patch \
++           file://0001-Make-it-build-with-compile-time-hardening-enabled.patch \
++           file://0001-If-we-re-cross-compiling-tell-the-user-to-run-mkroun.patch \
++           file://0002-Changed-the-creation-of-rounding.h-to-use-a-set-of-c.patch \
++           file://0003-Renamed-mkrounding.c-to-rounding.c.patch \
++           file://0004-Improved-the-manpage-install-rules.patch \
++           file://force-protocol-version-29.patch \
++"
++FILESPATH =. "${@base_set_filespath(["${FILE_DIRNAME}/${BPN}-2.6.9"], d)}:"
++
++LICENSE = "GPLv2+"
++LIC_FILES_CHKSUM = "file://COPYING;md5=6d5a9d4c4d3af25cd68fd83e8a8cb09c"
++
++SRCREV = "496c809f8cf529c5a95f9578b34a9299b0d92ffb"
++PV .= "${SRCPV}"
++
++S = "${WORKDIR}/git"
++
++inherit autotools
++
++EXTRA_OEMAKE = 'STRIP=""'
++
++PACKAGECONFIG ?= "${@bb.utils.filter('DISTRO_FEATURES', 'ipv6', d)}"
++PACKAGECONFIG[ipv6] = "--enable-ipv6,--disable-ipv6,"
++
++do_configure_prepend () {
++	install ${WORKDIR}/addrinfo.h ${S}/lib/
++}
++
++do_configure_append () {
++	oe_runmake proto
++}
++
++do_install_append() {
++	install -d ${D}${sysconfdir}
++	install -m 0644 ${WORKDIR}/rsyncd.conf ${D}${sysconfdir}
++}
+diff --git a/recipes-devtools/rsync/rsync_2.6.9.bb b/recipes-devtools/rsync/rsync_2.6.9.bb
+deleted file mode 100644
+index 5c6c9d9a..00000000
+--- a/recipes-devtools/rsync/rsync_2.6.9.bb
++++ /dev/null
+@@ -1,16 +0,0 @@
+-require rsync.inc
+-
+-SRC_URI += "file://rsync-2.6.9-fname-obo.patch \
+-            file://0001-Make-it-build-with-compile-time-hardening-enabled.patch \
+-            file://rsyncd.conf \
+-"
+-
+-SRC_URI[md5sum] = "996d8d8831dbca17910094e56dcb5942"
+-SRC_URI[sha256sum] = "ca437301becd890e73300bc69a39189ff1564baa761948ff149b3dd7bde633f9"
+-
+-LICENSE = "GPLv2+"
+-LIC_FILES_CHKSUM = "file://COPYING;md5=6d5a9d4c4d3af25cd68fd83e8a8cb09c"
+-
+-PR = "r4"
+-
+-PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'ipv6', d)}"
+-- 
+2.11.1
 
-That's done via the extrausers class in an image recipe. Add this to
-your image recipe:
-
->>>>>>
-inherit extrausers
-
-ROOT_PASSWORD =3D "secret"
-
-EXTRA_USERS_PARAMS =3D "usermod -p `openssl passwd ${ROOT_PASSWORD}` root=
-;"
-
-<<<<<<
-
-Make sure you use the backticks (`).
-
-:rjs
-
-On 11/23/19 2:25 PM, JH wrote:
-
-> Hi,
->
-> I built a Yocto image and I could log into the root without password,
-> how could I set up the Yocto build in a receipt to set password for
-> logging?
->
-> Thank you.
->
-> Kind regards,
->
-> - jh
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
->
-> View/Reply Online (#47404): https://lists.yoctoproject.org/g/yocto/mess=
-age/47404
-> Mute This Topic: https://lists.yoctoproject.org/mt/61917008/3617932
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [rudolf.stre=
-if@ibeeto.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-
---=20
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3386 x700
-
-
---------------7C8620F678E01C4BB7622F59
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <p>Hi,</p>
-    <p>That's done via the extrausers class in an image recipe. Add this
-      to your image recipe:<br>
-    </p>
-    <p>&gt;&gt;&gt;&gt;&gt;&gt;<br>
-      inherit extrausers</p>
-    <p>ROOT_PASSWORD =3D "secret"<br>
-    </p>
-    <p>EXTRA_USERS_PARAMS =3D "usermod -p `openssl passwd
-      ${ROOT_PASSWORD}` root;"<br>
-    </p>
-    <p>&lt;&lt;&lt;&lt;&lt;&lt;</p>
-    <p>Make sure you use the backticks (`).<br>
-    </p>
-    <p>:rjs<br>
-    </p>
-    <p>On 11/23/19 2:25 PM, JH wrote:</p>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAA=3DhcWR3Vhfc9H3VRf-Q1m44rX_ox2J-LjuPWHsB1Rrq-yrVTg@mail.gm=
-ail.com">
-      <pre class=3D"moz-quote-pre" wrap=3D"">Hi,
-
-I built a Yocto image and I could log into the root without password,
-how could I set up the Yocto build in a receipt to set password for
-logging?
-
-Thank you.
-
-Kind regards,
-
-- jh
-</pre>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">-=3D-=3D-=3D-=3D-=3D-=3D-=3D=
--=3D-=3D-=3D-=3D-
-Links: You receive all messages sent to this group.
-
-View/Reply Online (#47404): <a class=3D"moz-txt-link-freetext" href=3D"ht=
-tps://lists.yoctoproject.org/g/yocto/message/47404">https://lists.yoctopr=
-oject.org/g/yocto/message/47404</a>
-Mute This Topic: <a class=3D"moz-txt-link-freetext" href=3D"https://lists=
-=2Eyoctoproject.org/mt/61917008/3617932">https://lists.yoctoproject.org/m=
-t/61917008/3617932</a>
-Group Owner: <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:yocto+o=
-wner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
-Unsubscribe: <a class=3D"moz-txt-link-freetext" href=3D"https://lists.yoc=
-toproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub=
-</a>  [<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:rudolf.streif=
-@ibeeto.com">rudolf.streif@ibeeto.com</a>]
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-</pre>
-    </blockquote>
-    <pre class=3D"moz-signature" cols=3D"72">--=20
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3386 x700</pre>
-  </body>
-</html>
-
---------------7C8620F678E01C4BB7622F59--
-
---VDGrpzltaZyNJQ1SOM9ZPHlELO4A0J0k9--
-
---UoxBcnJU8AemhxuLVcQO6XmC3wFuBSmMT
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAl3cADoACgkQjYyoKScz
-m3X62wgAkODgCoStGeb703ktQhB/p4p5yRgfE8b6Ga7LhfopcsVKLTsaqpoaHyNv
-HH+7sV5xSElGjHCdF4HQHMRPDG3Dqk9x/RBm58egJ7W9wtTMJaKxPS7F4PEpyh/V
-z8rJFmDkm4X/rJ7JTPv5/Asm7sZoT0JUqALtk3mLL65beYnJrX+gHnObfNld6hF9
-6sb5j+cuWkfmKPDfSlAEBF0g9y3H/Jx2TunWp69ggmZzWKp3sd3Xn/ATAQZ0zDOW
-waLRN5gxQ4DweooS4d2eiyzeNX+8YdbbODc9fSlK1mhaMiRmERubWoHt7aL9kSDG
-tkrdgmZktpbgVuMTQm1JR6Rr12XUIA==
-=rIwC
------END PGP SIGNATURE-----
-
---UoxBcnJU8AemhxuLVcQO6XmC3wFuBSmMT--
