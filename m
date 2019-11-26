@@ -1,67 +1,92 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.9349.1574760598646747895
+ by mx.groups.io with SMTP id smtpd.web12.11058.1574773393121415433
  for <yocto@lists.yoctoproject.org>;
- Tue, 26 Nov 2019 01:29:59 -0800
+ Tue, 26 Nov 2019 05:03:13 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=permerror, err=parse error for token &{10 18 sendgrid.net}: limit exceeded (domain: streamunlimited.com, ip: 140.211.169.56, mailfrom: quentin.schulz@streamunlimited.com)
+ dkim=pass header.i=@aruba.it header.s=a1 header.b=R/Snp4KD;
+ spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 140.211.169.56, mailfrom: mauro@faresoftware.it)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 239B2E00E8F; Tue, 26 Nov 2019 01:29:58 -0800 (PST)
+	id 02DA2E00E8F; Tue, 26 Nov 2019 05:03:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [213.33.87.16 listed in list.dnswl.org]
-Received: from bsmtp2.bon.at (bsmtp2.bon.at [213.33.87.16])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 636D3E00E46
-	for <yocto@yoctoproject.org>; Tue, 26 Nov 2019 01:29:57 -0800 (PST)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp2.bon.at (Postfix) with ESMTPSA id 47Mdsb6NCjz5tlX;
-	Tue, 26 Nov 2019 10:29:55 +0100 (CET)
-Date: Tue, 26 Nov 2019 10:29:54 +0100
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org, andriy.danylovskyy@streamunlimited.com,
-	radek.dostal@streamunlimited.com
-Subject: Re: [yocto] [warrior] [meta-qt4] recipes-qt4: qt4-embedded: fix build on GCC v8
-Message-ID: <20191126092954.b6radogeclqwnvto@qschulz>
-References: <20191119160617.8085-1-quentin.schulz@streamunlimited.com>
- <2328670.R456RZBiVa@shodan>
+	*      [62.149.156.146 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from smtpcmd13146.aruba.it (smtpcmd13146.aruba.it [62.149.156.146])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17552E0079A
+	for <yocto@yoctoproject.org>; Tue, 26 Nov 2019 05:03:10 -0800 (PST)
+Received: from [10.0.3.95] ([213.213.6.58])
+	by smtpcmd13.ad.aruba.it with bizsmtp
+	id Wd372100A1F741R01d37wb; Tue, 26 Nov 2019 14:03:07 +0100
+To: yocto@yoctoproject.org
+From: "Mauro Ziliani" <mauro@faresoftware.it>
+Subject: Adding python3-compile-native
+Message-ID: <d257b4e4-165b-da06-f988-58621366a309@faresoftware.it>
+Date: Tue, 26 Nov 2019 14:03:06 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
 MIME-Version: 1.0
-In-Reply-To: <2328670.R456RZBiVa@shodan>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1574773387; bh=o9MZIKPfhupkDVlnRzo5SiTA5okpItLxnQfpd9MeCWc=;
+	h=To:From:Subject:Date:MIME-Version:Content-Type;
+	b=R/Snp4KDC4ehwo9Yl7hB3tF7j3KhzbtCOW7h1FbbnHpC4jZeN9FZ3Z/SJWWIR9F1b
+	 Anxr1ChiQWO92RYOZwrDK2A8MdH+CEHGs81lsxLvm7rEt2DaFEv61GuIbdveO2Sf0/
+	 CDe5RKzNSp3FHyTDDBJ0kNaNjefHQlDo1g6xUGz0q6VcqWsV2bYh927B85NIdFzBDW
+	 KYxXXCb/0l1CqtaNTx7G5NrnBCBVD/1W4rM0uC78q2JHTbBJji7kkq8yj+U8+ABapY
+	 YCuh4pIyZer5Fs1H9im/rAPv2hat1c0KplvcJtOL2o7IR3vv3rZQe0CAh1CO41LZnu
+	 wNJ/zeu0a7+Rg==
+Content-Type: multipart/alternative;
+ boundary="------------93043B0291EA4B982053E47E"
+Content-Language: it
 
-Hi Paul,
+--------------93043B0291EA4B982053E47E
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Nov 26, 2019 at 03:44:40PM +1300, Paul Eggleton wrote:
-> Hi Quentin
-> 
-> On Wednesday, 20 November 2019 5:06:17 AM NZDT Quentin Schulz wrote:
-> > At least since gcc v8, source code with asm volatile won't compile
-> > anymore.
-> > 
-> > The volatile qualifier anyway is a no-op since asm blocks are implicitly
-> > volatile as written in the documentation[1].
-> > 
-> > Let's get rid of this redundant qualifier so we can build with newer
-> > GCCs.
-> 
-> So I tested this and the name of the patch doesn't match up with the change to 
-> SRC_URI. I have however gone ahead and fixed it and merged it to warrior, but 
-> if you could please ensure you test future patches that would be much 
-> appreciated.
-> 
+Hi all.
 
-*sigh* Guilty of "last minute renaming and not retesting".
+How can I add python3-compile-native to my bsp?
 
-Thanks for taking care of it, will make sure I'll be more careful before
-sending patches.
+I working with Krogoth, I llok python-3.5-manifest.inc where 
+FILES_${PN}-compile is defined.
 
-Quentin
+I think I need to define FILES_${PN}-compile-native in some way
+
+
+M
+
+
+--------------93043B0291EA4B982053E47E
+Content-Type: text/html; charset=iso-8859-15
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-15">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <p><font size="-1">Hi all.</font></p>
+    <p><font size="-1">How can I add python3-compile-native to my bsp?</font></p>
+    <p><font size="-1">I working with Krogoth, I llok
+        python-3.5-manifest.inc where FILES_${PN}-compile is defined.</font></p>
+    <p><font size="-1">I think I need to define
+        FILES_${PN}-compile-native in some way</font></p>
+    <p><font size="-1"><br>
+      </font></p>
+    <p><font size="-1">M</font><br>
+    </p>
+  </body>
+</html>
+
+--------------93043B0291EA4B982053E47E--
