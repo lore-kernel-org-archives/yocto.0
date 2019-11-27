@@ -1,94 +1,86 @@
-Received: from smtprelay.hostedemail.com (smtprelay.hostedemail.com [216.40.44.196])
- by mx.groups.io with SMTP id smtpd.web11.4583.1574852799900300115
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.4636.1574853136732798485
  for <yocto@lists.yoctoproject.org>;
- Wed, 27 Nov 2019 03:06:40 -0800
+ Wed, 27 Nov 2019 03:12:16 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: sdcsystems.com, ip: 216.40.44.196, mailfrom: andy.pont@sdcsystems.com)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-	by smtprelay06.hostedemail.com (Postfix) with ESMTP id C2557180275AF;
-	Wed, 27 Nov 2019 11:06:38 +0000 (UTC)
-X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
-X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,andy.pont@sdcsystems.com,:::,RULES_HIT:41:152:355:379:421:599:962:968:973:988:989:1189:1221:1256:1260:1261:1313:1314:1345:1359:1437:1516:1517:1518:1535:1542:1575:1588:1589:1594:1711:1730:1775:1792:2198:2199:2527:2557:2559:2562:2693:2731:2893:3138:3139:3140:3141:3142:3352:3865:3866:3867:3868:3870:3871:3872:3873:3874:5007:6119:6657:7652:7903:8603:9010:10004:10400:11026:11232:11473:11656:11658:11914:12043:12296:12663:12679:13061:13139:13618:14181:14659:14721:21080:21325:21433:21451:21627:21740:21795:21796:30037:30051:30054:30069,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:5,LUA_SUMMARY:none
-X-HE-Tag: girls23_741d35d372831
-X-Filterd-Recvd-Size: 5098
-Received: from [192.168.10.100] (unknown [5.133.40.160])
-	(Authenticated sender: andy.pont@sdcsystems.com)
-	by omf06.hostedemail.com (Postfix) with ESMTPA;
-	Wed, 27 Nov 2019 11:06:37 +0000 (UTC)
-From: "andy.pont@sdcsystems.com" <andy.pont@sdcsystems.com>
-To: Mauro <m.salvini@koansoftware.com>
-Subject: Re: [yocto] Yocto build to add root password
-Cc: yocto@lists.yoctoproject.org
-Date: Wed, 27 Nov 2019 11:06:36 +0000
-Message-Id: <em055836fc-7045-483e-85dc-61bedfdb14e9@andys-imac.leeshillfarm.local>
-In-Reply-To: <cb99f223-9a19-3c88-b1a3-e67d6b7a6654@koansoftware.com>
-References: <CAA=hcWR3Vhfc9H3VRf-Q1m44rX_ox2J-LjuPWHsB1Rrq-yrVTg@mail.gmail.com>
- <bc70cb07-37c8-3078-7c02-d7be487035fd@ibeeto.com>
- <cb99f223-9a19-3c88-b1a3-e67d6b7a6654@koansoftware.com>
-Reply-To: "Andy Pont" <andy.pont@sdcsystems.com>
-User-Agent: eM_Client/7.2.35700.0
-Mime-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="------=_MB05529711-CD9D-4DBE-98B3-1A6107150FA2"
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=OGDSJ8Zs;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 63F21E00EF7; Wed, 27 Nov 2019 03:12:16 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (jupiter.hce[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.166.47 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED9E7E00D00
+	for <yocto@yoctoproject.org>; Wed, 27 Nov 2019 03:12:15 -0800 (PST)
+Received: by mail-io1-f47.google.com with SMTP id k13so24362314ioa.9
+        for <yocto@yoctoproject.org>; Wed, 27 Nov 2019 03:12:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=zYztn+sWv0WVMgGuVwzwaJy44qMoV6dgq8wXLE+JQ8E=;
+        b=OGDSJ8ZsS70Le2j7TwMkib+IlSjssba1qIBH3LuBERoYzU2zEI7mBkLGv6t6nJomyO
+         JJohVYfH0mkotkV8aj/cHpJyuGkDdn1JNkosW6d0TBBckOb/u10JFEzBaD4wuW5hUf3R
+         GSU+/s0MVo7u+/bqWd6bwASpcFcQxuyZExMqoPR9er/lFT0dxdR7XxiT7yAyAe9uIzLO
+         2Um8wyyRGalQwRJxoPKwT2gCFkEJW+Q0faEHIslKyhXN4PL69QN+CdqVeFA67/o0bOzt
+         L4nXbnH9Bv+hBvJhDlbz1QMLwhK9oFADY+x/Nn4BiBEsVWjfaQaU107QoD0XEJiuW6rn
+         8HJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=zYztn+sWv0WVMgGuVwzwaJy44qMoV6dgq8wXLE+JQ8E=;
+        b=bEGE0AC01J7uQRfHKSkA7VaZraqUdfsTTJuhcynMlYgJwfdSQGOFW8XzCbs8HWpNY5
+         ip1Ioah95FTlcHZt1K/50b26C/nwcF5zU3V8jsj1XxVYLRW6HrQMIzoNlox5uBKc9s+I
+         nC5r2uUBAzYuRjx9lElpdT+8mRYc3+/eK58xMc9m97yyqemnNo/UV8OQhLVQCt7pOlv0
+         njwa5duzmZ4f0yjgtREc/lK1QtXJ3RPvSr1KfAWXKYBiILOQVLqASihneYnaRHScdy16
+         x+ctcbTAUTeX7Cph54YRnzQEHhc6tT0FyCaYbCfMSaZHo4sT1w8CeHSI7K10uWhn8HHk
+         MffQ==
+X-Gm-Message-State: APjAAAXtiRrSx4bfVPInu8zyBIlvwof/b5wJ9JOVyxPylXazY7JRfdqA
+	4on40NJzpKD9SWt6lVTG2DDAkHbq4TzD8WZD9HVXr+84
+X-Google-Smtp-Source: APXvYqxJcUFNA9FBdCgCh2fICAvK+YjVfH+buxuupyfftsYivg/qAMEuWps03Nzot49CdvoGb6Lycg/krsLJQTKMtcM=
+X-Received: by 2002:a02:95c3:: with SMTP id b61mr3918779jai.21.1574853134597;
+ Wed, 27 Nov 2019 03:12:14 -0800 (PST)
+MIME-Version: 1.0
+Received: by 2002:ac0:f24e:0:0:0:0:0 with HTTP; Wed, 27 Nov 2019 03:12:13
+ -0800 (PST)
+From: "JH" <jupiter.hce@gmail.com>
+Date: Wed, 27 Nov 2019 22:12:13 +1100
+Message-ID: <CAA=hcWSLMGabXY8pKZpNzoYhcZMGJU6T5awJr88_NTKP6xWaLQ@mail.gmail.com>
+Subject: How to reduce rootfs image size?
+To: Yocto discussion list <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
---------=_MB05529711-CD9D-4DBE-98B3-1A6107150FA2
-Content-Type: text/plain; format=flowed; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-Mauro wrote...=0A=0A>pay attention that "openssl passwd ${ROOT_PASSWORD}" c=
-ommand handles only passwords up to 8 characters (the extra characters will =
-be truncated and the generated hash is for the first eight).=0A>=0A>If you =
-want to use more than 8 characters in the password, use another password a=
-lgorithm instead of the default one. You can see other supported algorithms =
-typing "openssl help passwd".=0A>=0A>For example, command could become=0A>=
-=0A>     openssl passwd -6 ${ROOT_PASSWORD}=0A>=0AI tried this out on a bui=
-ld that I am working on for which I needed to =0Aadd a root password and to =
-create a non-root user with a password.=0A=0AIf I use:=0A=0AEXTRA_USERS_PA=
-RAMS +=3D "usermod -p `openssl passwd -6 ${ROOT_PASSWORD}` =0Aroot;=E2=80=
-=9D=0A=0AWhen I try to login to the device it rejects the password that was =
-=0Adefined as ROOT_PASSWORD.  If I remove the =E2=80=9C-6=E2=80=9D from th=
-e openssl command =0Aand rebuild/deploy the image then I can login to the t=
-arget as expected. =0A  Is there something else that needs to be defined/in=
-cluded in the Yocto =0Aconfiguration in order for the =E2=80=9C-6=E2=80=9D=
- option to work?=0A=0A-Andy.=0A
+Does the Yocto rootfs image size is based on real contents included in
+the image-rootfs.tar.gz?
 
---------=_MB05529711-CD9D-4DBE-98B3-1A6107150FA2
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+When I build the image with very large size of applications and
+libraries such as boost, I have my image-rootfs.tr.gz about 44 MB,
+then I removed all large size of applications and libraries, I changed
+IMAGE_ROOTFS_SIZE to a small size IMAGE_ROOTFS_SIZE = 20000, I thought
+the image-rootfs.tar.gz should be reduced to a small size, but it is
+still 43 MB I don't believe it is that big, which variable I should
+use to reduce the image size?
 
-<html><head><style id=3D"css_styles">blockquote.cite { margin-left: 5px; ma=
-rgin-right: 0px; padding-left: 10px; padding-right:0px; border-left: 1px so=
-lid #cccccc }=0Ablockquote.cite2 {margin-left: 5px; margin-right: 0px; padd=
-ing-left: 10px; padding-right:0px; border-left: 1px solid #cccccc; margin-t=
-op: 3px; padding-top: 0px; }=0Aa img { border: 0px; }=0Ali[style=3D'text-al=
-ign: center;'], li[style=3D'text-align: right;'] {  list-style-position: in=
-side;}=0Abody { font-family: Verdana; font-size: 12px;   }</style></head><b=
-ody class=3D"plain"><div><div>Mauro wrote...</div>=0A</div><div><br /></div=
->=0A<div id=3D"x153ab6d1c27d495"><blockquote type=3D"cite" class=3D"cite2">=
-<div class=3D"plain_line">pay attention that "openssl passwd ${ROOT_PASSWOR=
-D}" command handles only passwords up to 8 characters (the extra characters =
-will be truncated and the generated hash is for the first eight).</div>=0A=
-<div class=3D"plain_line">=C2=A0</div>=0A<div class=3D"plain_line">If you w=
-ant to use more than 8 characters in the password, use another password alg=
-orithm instead of the default one. You can see other supported algorithms t=
-yping "openssl help passwd".</div>=0A<div class=3D"plain_line">=C2=A0</div>=
-=0A<div class=3D"plain_line">For example, command could become</div>=0A<div =
-class=3D"plain_line">=C2=A0</div>=0A<div class=3D"plain_line">    openssl=
- passwd -6 ${ROOT_PASSWORD}</div>=0A<div class=3D"plain_line">=C2=A0</div></=
-blockquote>I tried this out on a build that I=C2=A0am working on for which=
- I needed to add a root password and to create a non-root user with a passwo=
-rd.</div><div id=3D"x153ab6d1c27d495"><br /></div><div id=3D"x153ab6d1c27d4=
-95">If I use:</div><div id=3D"x153ab6d1c27d495"><br /></div><div id=3D"x153=
-ab6d1c27d495">EXTRA_USERS_PARAMS +=3D "usermod -p `openssl passwd -6 ${ROOT=
-_PASSWORD}` root;=E2=80=9D</div><div id=3D"x153ab6d1c27d495"><br /></div><d=
-iv id=3D"x153ab6d1c27d495">When I try to login to the device it rejects the =
-password that was defined as ROOT_PASSWORD. =C2=A0If I remove the =E2=80=
-=9C-6=E2=80=9D from the openssl command and rebuild/deploy the image then I =
-can login to the target as expected. =C2=A0Is there something else that ne=
-eds to be defined/included in the Yocto configuration in order for the =E2=
-=80=9C-6=E2=80=9D option to work?</div><div id=3D"x153ab6d1c27d495"><br /><=
-/div><div id=3D"x153ab6d1c27d495">-Andy.</div><div id=3D"x153ab6d1c27d495">=
-<br /><blockquote type=3D"cite" class=3D"cite2">=0A</blockquote></div>=0A=
-=0A=0A</body></html>
+Thank you.
 
---------=_MB05529711-CD9D-4DBE-98B3-1A6107150FA2--
+Kind regards,
+
+- jh
