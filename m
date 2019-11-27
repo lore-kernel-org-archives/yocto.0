@@ -1,89 +1,94 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.490.1574809509949945236
+Received: from smtprelay.hostedemail.com (smtprelay.hostedemail.com [216.40.44.196])
+ by mx.groups.io with SMTP id smtpd.web11.4583.1574852799900300115
  for <yocto@lists.yoctoproject.org>;
- Tue, 26 Nov 2019 15:05:10 -0800
+ Wed, 27 Nov 2019 03:06:40 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=MI7EBWwF;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7AA1BE00C9B; Tue, 26 Nov 2019 15:05:09 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (jupiter.hce[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.166.50 listed in list.dnswl.org]
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB739E0091A
-	for <yocto@yoctoproject.org>; Tue, 26 Nov 2019 15:05:06 -0800 (PST)
-Received: by mail-io1-f50.google.com with SMTP id b26so20693331ion.7
-        for <yocto@yoctoproject.org>; Tue, 26 Nov 2019 15:05:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:in-reply-to:references:from:date:message-id:subject:to;
-        bh=hVcNB0yP0UDS2uRePz36wNEEZU/fdkMnO75EKVL+t0A=;
-        b=MI7EBWwFLIyTlxx+KmgcmZurHn3LSKBWy8FE9CwE+rEyZmCkSbBDWY3xIwtAmdCcpN
-         rqe4NgqxR4PeFhRhCw0S9DGD3tqxe2VIBiUymgUcKHKKG+wPfZ7DatJCnCm/zjyXBevi
-         rv2gpEk2/akwA+H9dvbCRqEQfil/fSPO8ag4KrTBE0FnQOdmdly2QRL1NCsX3SSXrgJD
-         SUAK/eoXTkwd67Za+a6GcpOH/2yxN92L73/p4W34u8Sl3W7pziXJXugKC7g23rFEiq73
-         khCrAKCmv8AZkSjgU+GbQ2HcpBOtapUq6ZLuPx9ToBvGT4fsbFNLjoqUAbgsCvkKXeDg
-         T8/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-         :message-id:subject:to;
-        bh=hVcNB0yP0UDS2uRePz36wNEEZU/fdkMnO75EKVL+t0A=;
-        b=MaYLHgs6jAzdqLsKYsQfCFPzmx2q2H0D/5k6aJEfUUGwX9NIJUSYD3MeGXYj3KXDEt
-         iPfG60yiknUmCxszCWPLLHidx7hHHhiMQqXPWGz0W6hZBahWOrLwjFornri1U4mCcQ/i
-         HVTSQIunU/NM6dOGz8hOrJEE3s2KdQfzl0xTsRchpC5T7BMhuXTi6IWx0lQEj25hIDMj
-         k5V77h/uz92UJ7WvvMz/GRZGvkJ0ALnT0wXY7OT5YXRkzPLpvTowex9CHWT82fmtGrpx
-         EIR/29Tz8n/fs/eZ/fQVY4PNUq9PHoIJNZ0EvJOnIpDC4OX2sGfinC9xn2RCk7OWGZuM
-         nyGQ==
-X-Gm-Message-State: APjAAAU4J/QFLJUznYKwDfJx4Qhb3OFZW9jQ542ND6/YZ4EBx9wxPluZ
-	gc5hLN/YCX9XiVe+J3B7caPR/kb9B06BW7rBbchdK4AM
-X-Google-Smtp-Source: APXvYqyvmpPJn71wifTdrJRApMnOcs0bU8h/8WrSQ7SCLO8hfwJ6KQIVEzsYPcKRBMN32wWdq7KFJ0npmTELjE3mXnw=
-X-Received: by 2002:a05:6602:251a:: with SMTP id i26mr33212010ioe.302.1574809506209;
- Tue, 26 Nov 2019 15:05:06 -0800 (PST)
-MIME-Version: 1.0
-Received: by 2002:ac0:f24e:0:0:0:0:0 with HTTP; Tue, 26 Nov 2019 15:05:05
- -0800 (PST)
-In-Reply-To: <CAA=hcWRAe4gHBs6gZ3f9kUWu-N_oFEtKy2j2y2UB4aYuXY8kWg@mail.gmail.com>
-References: <CAA=hcWRAe4gHBs6gZ3f9kUWu-N_oFEtKy2j2y2UB4aYuXY8kWg@mail.gmail.com>
-From: "JH" <jupiter.hce@gmail.com>
-Date: Wed, 27 Nov 2019 10:05:05 +1100
-Message-ID: <CAA=hcWSmL1FDb-nN_r_Mpryynjpy5cscJT3BjXoZmYAZQVveRg@mail.gmail.com>
-Subject: Re: What signal type from DBUS query to get 4G LTE singaling strenth level, RSSI?
-To: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+ dkim=missing; spf=none, err=SPF record not found (domain: sdcsystems.com, ip: 216.40.44.196, mailfrom: andy.pont@sdcsystems.com)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+	by smtprelay06.hostedemail.com (Postfix) with ESMTP id C2557180275AF;
+	Wed, 27 Nov 2019 11:06:38 +0000 (UTC)
+X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,andy.pont@sdcsystems.com,:::,RULES_HIT:41:152:355:379:421:599:962:968:973:988:989:1189:1221:1256:1260:1261:1313:1314:1345:1359:1437:1516:1517:1518:1535:1542:1575:1588:1589:1594:1711:1730:1775:1792:2198:2199:2527:2557:2559:2562:2693:2731:2893:3138:3139:3140:3141:3142:3352:3865:3866:3867:3868:3870:3871:3872:3873:3874:5007:6119:6657:7652:7903:8603:9010:10004:10400:11026:11232:11473:11656:11658:11914:12043:12296:12663:12679:13061:13139:13618:14181:14659:14721:21080:21325:21433:21451:21627:21740:21795:21796:30037:30051:30054:30069,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:5,LUA_SUMMARY:none
+X-HE-Tag: girls23_741d35d372831
+X-Filterd-Recvd-Size: 5098
+Received: from [192.168.10.100] (unknown [5.133.40.160])
+	(Authenticated sender: andy.pont@sdcsystems.com)
+	by omf06.hostedemail.com (Postfix) with ESMTPA;
+	Wed, 27 Nov 2019 11:06:37 +0000 (UTC)
+From: "andy.pont@sdcsystems.com" <andy.pont@sdcsystems.com>
+To: Mauro <m.salvini@koansoftware.com>
+Subject: Re: [yocto] Yocto build to add root password
+Cc: yocto@lists.yoctoproject.org
+Date: Wed, 27 Nov 2019 11:06:36 +0000
+Message-Id: <em055836fc-7045-483e-85dc-61bedfdb14e9@andys-imac.leeshillfarm.local>
+In-Reply-To: <cb99f223-9a19-3c88-b1a3-e67d6b7a6654@koansoftware.com>
+References: <CAA=hcWR3Vhfc9H3VRf-Q1m44rX_ox2J-LjuPWHsB1Rrq-yrVTg@mail.gmail.com>
+ <bc70cb07-37c8-3078-7c02-d7be487035fd@ibeeto.com>
+ <cb99f223-9a19-3c88-b1a3-e67d6b7a6654@koansoftware.com>
+Reply-To: "Andy Pont" <andy.pont@sdcsystems.com>
+User-Agent: eM_Client/7.2.35700.0
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------=_MB05529711-CD9D-4DBE-98B3-1A6107150FA2"
 
-Apology, wrong mailing list.
+--------=_MB05529711-CD9D-4DBE-98B3-1A6107150FA2
+Content-Type: text/plain; format=flowed; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 11/27/19, JH <jupiter.hce@gmail.com> wrote:
-> Hi,
->
-> I am using dbus to query 4G LTE signaling strength level from
-> "Strength" and get -80 or -100, is it from RSSI?
->
-> dbus_message_new_method_call("net.connman", "/",
-> "net.connman.Manager", "GetServices");
-> ....
->
-> Thank you.
->
-> Kind regards,
->
-> - jh
->
+Mauro wrote...=0A=0A>pay attention that "openssl passwd ${ROOT_PASSWORD}" c=
+ommand handles only passwords up to 8 characters (the extra characters will =
+be truncated and the generated hash is for the first eight).=0A>=0A>If you =
+want to use more than 8 characters in the password, use another password a=
+lgorithm instead of the default one. You can see other supported algorithms =
+typing "openssl help passwd".=0A>=0A>For example, command could become=0A>=
+=0A>     openssl passwd -6 ${ROOT_PASSWORD}=0A>=0AI tried this out on a bui=
+ld that I am working on for which I needed to =0Aadd a root password and to =
+create a non-root user with a password.=0A=0AIf I use:=0A=0AEXTRA_USERS_PA=
+RAMS +=3D "usermod -p `openssl passwd -6 ${ROOT_PASSWORD}` =0Aroot;=E2=80=
+=9D=0A=0AWhen I try to login to the device it rejects the password that was =
+=0Adefined as ROOT_PASSWORD.  If I remove the =E2=80=9C-6=E2=80=9D from th=
+e openssl command =0Aand rebuild/deploy the image then I can login to the t=
+arget as expected. =0A  Is there something else that needs to be defined/in=
+cluded in the Yocto =0Aconfiguration in order for the =E2=80=9C-6=E2=80=9D=
+ option to work?=0A=0A-Andy.=0A
+
+--------=_MB05529711-CD9D-4DBE-98B3-1A6107150FA2
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><style id=3D"css_styles">blockquote.cite { margin-left: 5px; ma=
+rgin-right: 0px; padding-left: 10px; padding-right:0px; border-left: 1px so=
+lid #cccccc }=0Ablockquote.cite2 {margin-left: 5px; margin-right: 0px; padd=
+ing-left: 10px; padding-right:0px; border-left: 1px solid #cccccc; margin-t=
+op: 3px; padding-top: 0px; }=0Aa img { border: 0px; }=0Ali[style=3D'text-al=
+ign: center;'], li[style=3D'text-align: right;'] {  list-style-position: in=
+side;}=0Abody { font-family: Verdana; font-size: 12px;   }</style></head><b=
+ody class=3D"plain"><div><div>Mauro wrote...</div>=0A</div><div><br /></div=
+>=0A<div id=3D"x153ab6d1c27d495"><blockquote type=3D"cite" class=3D"cite2">=
+<div class=3D"plain_line">pay attention that "openssl passwd ${ROOT_PASSWOR=
+D}" command handles only passwords up to 8 characters (the extra characters =
+will be truncated and the generated hash is for the first eight).</div>=0A=
+<div class=3D"plain_line">=C2=A0</div>=0A<div class=3D"plain_line">If you w=
+ant to use more than 8 characters in the password, use another password alg=
+orithm instead of the default one. You can see other supported algorithms t=
+yping "openssl help passwd".</div>=0A<div class=3D"plain_line">=C2=A0</div>=
+=0A<div class=3D"plain_line">For example, command could become</div>=0A<div =
+class=3D"plain_line">=C2=A0</div>=0A<div class=3D"plain_line">    openssl=
+ passwd -6 ${ROOT_PASSWORD}</div>=0A<div class=3D"plain_line">=C2=A0</div></=
+blockquote>I tried this out on a build that I=C2=A0am working on for which=
+ I needed to add a root password and to create a non-root user with a passwo=
+rd.</div><div id=3D"x153ab6d1c27d495"><br /></div><div id=3D"x153ab6d1c27d4=
+95">If I use:</div><div id=3D"x153ab6d1c27d495"><br /></div><div id=3D"x153=
+ab6d1c27d495">EXTRA_USERS_PARAMS +=3D "usermod -p `openssl passwd -6 ${ROOT=
+_PASSWORD}` root;=E2=80=9D</div><div id=3D"x153ab6d1c27d495"><br /></div><d=
+iv id=3D"x153ab6d1c27d495">When I try to login to the device it rejects the =
+password that was defined as ROOT_PASSWORD. =C2=A0If I remove the =E2=80=
+=9C-6=E2=80=9D from the openssl command and rebuild/deploy the image then I =
+can login to the target as expected. =C2=A0Is there something else that ne=
+eds to be defined/included in the Yocto configuration in order for the =E2=
+=80=9C-6=E2=80=9D option to work?</div><div id=3D"x153ab6d1c27d495"><br /><=
+/div><div id=3D"x153ab6d1c27d495">-Andy.</div><div id=3D"x153ab6d1c27d495">=
+<br /><blockquote type=3D"cite" class=3D"cite2">=0A</blockquote></div>=0A=
+=0A=0A</body></html>
+
+--------=_MB05529711-CD9D-4DBE-98B3-1A6107150FA2--
