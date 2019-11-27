@@ -1,75 +1,84 @@
-Received: from mail.koansoftware.com (mail.koansoftware.com [178.79.174.16])
- by mx.groups.io with SMTP id smtpd.web11.4865.1574854900097526316
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.4984.1574855835560727182
  for <yocto@lists.yoctoproject.org>;
- Wed, 27 Nov 2019 03:41:40 -0800
+ Wed, 27 Nov 2019 03:57:15 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: koansoftware.com, ip: 178.79.174.16, mailfrom: m.salvini@koansoftware.com)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.koansoftware.com (Postfix) with ESMTP id E1FCD3E9C3;
-	Wed, 27 Nov 2019 12:41:38 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at mail
-Received: from mail.koansoftware.com ([127.0.0.1])
-	by localhost (mail.koansoftware.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 72ae9khhnNQJ; Wed, 27 Nov 2019 12:41:37 +0100 (CET)
-Subject: Re: [yocto] Yocto build to add root password
-To: Andy Pont <andy.pont@sdcsystems.com>
-Cc: yocto@lists.yoctoproject.org
-References: <CAA=hcWR3Vhfc9H3VRf-Q1m44rX_ox2J-LjuPWHsB1Rrq-yrVTg@mail.gmail.com>
- <bc70cb07-37c8-3078-7c02-d7be487035fd@ibeeto.com>
- <cb99f223-9a19-3c88-b1a3-e67d6b7a6654@koansoftware.com>
- <em055836fc-7045-483e-85dc-61bedfdb14e9@andys-imac.leeshillfarm.local>
-From: "Mauro" <m.salvini@koansoftware.com>
-Message-ID: <49c4847e-7bcc-b3b1-f6f5-8ab0a7b3fec1@koansoftware.com>
-Date: Wed, 27 Nov 2019 12:41:35 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.1
+ dkim=missing; spf=neutral (domain: collabora.com, ip: 140.211.169.56, mailfrom: fabien.lahoudere@collabora.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 203EEE00D00; Wed, 27 Nov 2019 03:57:15 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [46.235.227.227 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay lines
+X-Greylist: delayed 443 seconds by postgrey-1.32 at yocto-www; Wed, 27 Nov 2019 03:57:12 PST
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [46.235.227.227])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 159B6E00852
+	for <yocto@yoctoproject.org>; Wed, 27 Nov 2019 03:57:12 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	(Authenticated sender: aragua)
+	with ESMTPSA id 93D9B2915B2
+Message-ID: <8aaca8ba05591626cdac7dd386c3d50ba33c0dda.camel@collabora.com>
+Subject: Re: [yocto] How to reduce rootfs image size?
+From: "Fabien Lahoudere" <fabien.lahoudere@collabora.com>
+To: JH <jupiter.hce@gmail.com>, Yocto discussion list
+ <yocto@yoctoproject.org>
+Date: Wed, 27 Nov 2019 12:49:45 +0100
+In-Reply-To: <CAA=hcWSLMGabXY8pKZpNzoYhcZMGJU6T5awJr88_NTKP6xWaLQ@mail.gmail.com>
+References: 
+	<CAA=hcWSLMGabXY8pKZpNzoYhcZMGJU6T5awJr88_NTKP6xWaLQ@mail.gmail.com>
+User-Agent: Evolution 3.30.5 (3.30.5-1.fc29) 
 MIME-Version: 1.0
-In-Reply-To: <em055836fc-7045-483e-85dc-61bedfdb14e9@andys-imac.leeshillfarm.local>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On 27/11/19 12:06, Andy Pont wrote:
-> I tried this out on a build that I=C2=A0am working on for which I neede=
-d to=20
-> add a root password and to create a non-root user with a password.
+Hi
+
+If you want to reduce the size of your root filesystem, you have to
+remove software you don't need. IMAGE_ROOTFS_SIZE has no effect on the
+size of your image-rootfs.tar.gz. Putting a smaller size will just lead
+to a rootfs that don't fit in the expected IMAGE_ROOTFS_SIZE.
+
+Fabien
+
+Le mercredi 27 novembre 2019 =C3=A0 22:12 +1100, JH a =C3=A9crit :
+> Hi,
 >=20
-> If I use:
+> Does the Yocto rootfs image size is based on real contents included
+> in
+> the image-rootfs.tar.gz?
 >=20
-> EXTRA_USERS_PARAMS +=3D "usermod -p `openssl passwd -6 ${ROOT_PASSWORD}=
-`=20
-> root;=E2=80=9D
+> When I build the image with very large size of applications and
+> libraries such as boost, I have my image-rootfs.tr.gz about 44 MB,
+> then I removed all large size of applications and libraries, I
+> changed
+> IMAGE_ROOTFS_SIZE to a small size IMAGE_ROOTFS_SIZE =3D 20000, I
+> thought
+> the image-rootfs.tar.gz should be reduced to a small size, but it is
+> still 43 MB I don't believe it is that big, which variable I should
+> use to reduce the image size?
 >=20
-> When I try to login to the device it rejects the password that was=20
-> defined as ROOT_PASSWORD. =C2=A0If I remove the =E2=80=9C-6=E2=80=9D fr=
-om the openssl command=20
-> and rebuild/deploy the image then I can login to the target as expected=
-.=20
->  =C2=A0Is there something else that needs to be defined/included in the=
- Yocto=20
-> configuration in order for the =E2=80=9C-6=E2=80=9D option to work?
+> Thank you.
 >=20
-> -Andy.
+> Kind regards,
 >=20
-
-Actually I'm using:
-
-EXTRA_USERS_PARAMS =3D " usermod -p '$(openssl passwd -6 myrootpassword)'=
-=20
-root;"
-
-with success on warrior.
-
-Sorry, I forgot to mention that with password algorithms like the -6 we=20
-need the two ' ' around the openssl command, because the generated hash=20
-contains the "$" character, that is resolved as a bash variable=20
-somewhere in the process.
-
-But at this point I'm not sure if ${ROOT_PASSWORD} works (I'm using the=20
-password wrote on the command, not passed by variable).
-
-Regards
-
---=20
-Mauro
+> - jh
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+>=20
+> View/Reply Online (#47433):=20
+> https://lists.yoctoproject.org/g/yocto/message/47433
+> Mute This Topic: https://lists.yoctoproject.org/mt/62495609/3618224
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [fabien.la
+> houdere@collabora.co.uk]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 
