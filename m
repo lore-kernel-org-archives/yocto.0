@@ -1,124 +1,75 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.4767.1574854097756799392
+Received: from mail.koansoftware.com (mail.koansoftware.com [178.79.174.16])
+ by mx.groups.io with SMTP id smtpd.web11.4865.1574854900097526316
  for <yocto@lists.yoctoproject.org>;
- Wed, 27 Nov 2019 03:28:20 -0800
+ Wed, 27 Nov 2019 03:41:40 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@rsi-elektrotechnik.de header.s=strato-dkim-0002 header.b=DAPX4l3E;
- spf=none, err=permanent DNS error (domain: rsi-elektrotechnik.de, ip: 140.211.169.56, mailfrom: prvs=1234a5d44c=holzmayr@rsi-elektrotechnik.de)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9DC63E00ECC; Wed, 27 Nov 2019 03:28:17 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [81.169.146.163 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [81.169.146.163])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65EFAE00BA2
-	for <yocto@yoctoproject.org>; Wed, 27 Nov 2019 03:28:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1574854093;
-	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
-	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-	bh=Av3u63wk7NJsoHmX+E/H/M80HrJ35RugZL1o0UJWLhY=;
-	b=DAPX4l3EsV3xjZMTxhUAiThalvIStLkQMFrvZvCsCp7coEbz5PDkpOOMLw7jYlG5oU
-	cSiYSom+bJ1qcXZPQoNsECLnlhpkPzi0nVDxzfagLBfhA0fz1FOaFvRYq/v9S2UMoVU5
-	DmWUXARxpR443UluwUVi8Eii8FA9OMTV1BpC4psyM8r5ZkPZxC+R2ZIjuhRP8268bsmU
-	ddCFPOM1ZULFgiUrYXx03o0VhMmdJS0Aau6dXi+rAqzkarSLL8PIezUIm20CFd2dTFV4
-	jrdJMckY6Ble/M4d710yRYr7qsXzPzmI3k5hRwrZHzUkxooQ4xIrgsG8O6HjoaqBjfLj
-	TW0Q==
-X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/KqCOd+ZZzzoK8epFp9XQIUl6aPGQL"
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	by smtp.strato.de (RZmta 45.0.2 AUTH)
-	with ESMTPSA id h03537vARBSD8NX
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits))
-	(Client did not present a certificate);
-	Wed, 27 Nov 2019 12:28:13 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1574854092; x=1575458892;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
-	Subject:Message-ID:References:MIME-Version:Content-Type:
-	Content-Disposition:Content-Transfer-Encoding:In-Reply-To; bh=Av
-	3u63wk7NJsoHmX+E/H/M80HrJ35RugZL1o0UJWLhY=; b=dr6hOS0xMBq3OgVg85
-	ZCt8YWI7pHHTyFVpGjqWkMfubea34boY2vrCW/AfTxI6Rc/qcXtyYL/ajcsI1T/l
-	dSaKBudfi0PjzL5frq8YabLWono6ANyTJB1LfArCsbSalTU1ctM8twBEkRKUbSqP
-	CNhaSWuWc3M32+ZyP5jYB0G+U=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v19.5.1) with ESMTPSA id md50000222127.msg; 
-	Wed, 27 Nov 2019 12:28:12 +0100
-X-MDArrival-Date: Wed, 27 Nov 2019 12:28:12 +0100
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=1234a5d44c=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-Date: Wed, 27 Nov 2019 12:28:07 +0100
-From: "Josef Holzmayr" <holzmayr@rsi-elektrotechnik.de>
-To: JH <jupiter.hce@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [yocto] How to reduce rootfs image size?
-Message-ID: <20191127112807.6n5d3s7cjbkvolsh@jholzmayr.localdomain>
-References: <CAA=hcWSLMGabXY8pKZpNzoYhcZMGJU6T5awJr88_NTKP6xWaLQ@mail.gmail.com>
+ dkim=missing; spf=pass (domain: koansoftware.com, ip: 178.79.174.16, mailfrom: m.salvini@koansoftware.com)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.koansoftware.com (Postfix) with ESMTP id E1FCD3E9C3;
+	Wed, 27 Nov 2019 12:41:38 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at mail
+Received: from mail.koansoftware.com ([127.0.0.1])
+	by localhost (mail.koansoftware.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 72ae9khhnNQJ; Wed, 27 Nov 2019 12:41:37 +0100 (CET)
+Subject: Re: [yocto] Yocto build to add root password
+To: Andy Pont <andy.pont@sdcsystems.com>
+Cc: yocto@lists.yoctoproject.org
+References: <CAA=hcWR3Vhfc9H3VRf-Q1m44rX_ox2J-LjuPWHsB1Rrq-yrVTg@mail.gmail.com>
+ <bc70cb07-37c8-3078-7c02-d7be487035fd@ibeeto.com>
+ <cb99f223-9a19-3c88-b1a3-e67d6b7a6654@koansoftware.com>
+ <em055836fc-7045-483e-85dc-61bedfdb14e9@andys-imac.leeshillfarm.local>
+From: "Mauro" <m.salvini@koansoftware.com>
+Message-ID: <49c4847e-7bcc-b3b1-f6f5-8ab0a7b3fec1@koansoftware.com>
+Date: Wed, 27 Nov 2019 12:41:35 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
 MIME-Version: 1.0
-In-Reply-To: <CAA=hcWSLMGabXY8pKZpNzoYhcZMGJU6T5awJr88_NTKP6xWaLQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+In-Reply-To: <em055836fc-7045-483e-85dc-61bedfdb14e9@andys-imac.leeshillfarm.local>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Nov 27, 2019 at 10:12:13PM +1100, JH wrote:
-> Hi,
+On 27/11/19 12:06, Andy Pont wrote:
+> I tried this out on a build that I=C2=A0am working on for which I neede=
+d to=20
+> add a root password and to create a non-root user with a password.
 >=20
-> Does the Yocto rootfs image size is based on real contents included in
-> the image-rootfs.tar.gz?
+> If I use:
 >=20
-> When I build the image with very large size of applications and
-> libraries such as boost, I have my image-rootfs.tr.gz about 44 MB,
-> then I removed all large size of applications and libraries, I changed
-> IMAGE_ROOTFS_SIZE to a small size IMAGE_ROOTFS_SIZE =3D 20000, I though=
-t
-> the image-rootfs.tar.gz should be reduced to a small size, but it is
-> still 43 MB I don't believe it is that big, which variable I should
-> use to reduce the image size?
+> EXTRA_USERS_PARAMS +=3D "usermod -p `openssl passwd -6 ${ROOT_PASSWORD}=
+`=20
+> root;=E2=80=9D
+>=20
+> When I try to login to the device it rejects the password that was=20
+> defined as ROOT_PASSWORD. =C2=A0If I remove the =E2=80=9C-6=E2=80=9D fr=
+om the openssl command=20
+> and rebuild/deploy the image then I can login to the target as expected=
+.=20
+>  =C2=A0Is there something else that needs to be defined/included in the=
+ Yocto=20
+> configuration in order for the =E2=80=9C-6=E2=80=9D option to work?
+>=20
+> -Andy.
+>=20
 
-tar.gz ist a content-based format, not a filesystem based one. So if the
-tarball is that big, then you certainly have all those things in your
-rootfs. Look at the manifest files to find out that goes in there, and
-use buildhistory to find out the sizes of the things.
+Actually I'm using:
 
-Greetz
+EXTRA_USERS_PARAMS =3D " usermod -p '$(openssl passwd -6 myrootpassword)'=
+=20
+root;"
+
+with success on warrior.
+
+Sorry, I forgot to mention that with password algorithms like the -6 we=20
+need the two ' ' around the openssl command, because the generated hash=20
+contains the "$" character, that is resolved as a bash variable=20
+somewhere in the process.
+
+But at this point I'm not sure if ${ROOT_PASSWORD} works (I'm using the=20
+password wrote on the command, not passed by variable).
+
+Regards
 
 --=20
-=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
-=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
-Josef Holzmayr
-Software Developer Embedded Systems
-
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
-
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
-=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
-Amtsgericht Ingolstadt =E2=80=93 GmbH: HRB 191328 =E2=80=93 KG: HRA 17039=
-3
-Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548=20
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
+Mauro
 
