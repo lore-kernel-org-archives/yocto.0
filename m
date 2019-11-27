@@ -1,86 +1,124 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.4636.1574853136732798485
+ by mx.groups.io with SMTP id smtpd.web11.4767.1574854097756799392
  for <yocto@lists.yoctoproject.org>;
- Wed, 27 Nov 2019 03:12:16 -0800
+ Wed, 27 Nov 2019 03:28:20 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=OGDSJ8Zs;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
+ dkim=fail reason="body hash did not verify" header.i=@rsi-elektrotechnik.de header.s=strato-dkim-0002 header.b=DAPX4l3E;
+ spf=none, err=permanent DNS error (domain: rsi-elektrotechnik.de, ip: 140.211.169.56, mailfrom: prvs=1234a5d44c=holzmayr@rsi-elektrotechnik.de)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 63F21E00EF7; Wed, 27 Nov 2019 03:12:16 -0800 (PST)
+	id 9DC63E00ECC; Wed, 27 Nov 2019 03:28:17 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (jupiter.hce[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.166.47 listed in list.dnswl.org]
+	*      [81.169.146.163 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED9E7E00D00
-	for <yocto@yoctoproject.org>; Wed, 27 Nov 2019 03:12:15 -0800 (PST)
-Received: by mail-io1-f47.google.com with SMTP id k13so24362314ioa.9
-        for <yocto@yoctoproject.org>; Wed, 27 Nov 2019 03:12:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=zYztn+sWv0WVMgGuVwzwaJy44qMoV6dgq8wXLE+JQ8E=;
-        b=OGDSJ8ZsS70Le2j7TwMkib+IlSjssba1qIBH3LuBERoYzU2zEI7mBkLGv6t6nJomyO
-         JJohVYfH0mkotkV8aj/cHpJyuGkDdn1JNkosW6d0TBBckOb/u10JFEzBaD4wuW5hUf3R
-         GSU+/s0MVo7u+/bqWd6bwASpcFcQxuyZExMqoPR9er/lFT0dxdR7XxiT7yAyAe9uIzLO
-         2Um8wyyRGalQwRJxoPKwT2gCFkEJW+Q0faEHIslKyhXN4PL69QN+CdqVeFA67/o0bOzt
-         L4nXbnH9Bv+hBvJhDlbz1QMLwhK9oFADY+x/Nn4BiBEsVWjfaQaU107QoD0XEJiuW6rn
-         8HJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=zYztn+sWv0WVMgGuVwzwaJy44qMoV6dgq8wXLE+JQ8E=;
-        b=bEGE0AC01J7uQRfHKSkA7VaZraqUdfsTTJuhcynMlYgJwfdSQGOFW8XzCbs8HWpNY5
-         ip1Ioah95FTlcHZt1K/50b26C/nwcF5zU3V8jsj1XxVYLRW6HrQMIzoNlox5uBKc9s+I
-         nC5r2uUBAzYuRjx9lElpdT+8mRYc3+/eK58xMc9m97yyqemnNo/UV8OQhLVQCt7pOlv0
-         njwa5duzmZ4f0yjgtREc/lK1QtXJ3RPvSr1KfAWXKYBiILOQVLqASihneYnaRHScdy16
-         x+ctcbTAUTeX7Cph54YRnzQEHhc6tT0FyCaYbCfMSaZHo4sT1w8CeHSI7K10uWhn8HHk
-         MffQ==
-X-Gm-Message-State: APjAAAXtiRrSx4bfVPInu8zyBIlvwof/b5wJ9JOVyxPylXazY7JRfdqA
-	4on40NJzpKD9SWt6lVTG2DDAkHbq4TzD8WZD9HVXr+84
-X-Google-Smtp-Source: APXvYqxJcUFNA9FBdCgCh2fICAvK+YjVfH+buxuupyfftsYivg/qAMEuWps03Nzot49CdvoGb6Lycg/krsLJQTKMtcM=
-X-Received: by 2002:a02:95c3:: with SMTP id b61mr3918779jai.21.1574853134597;
- Wed, 27 Nov 2019 03:12:14 -0800 (PST)
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [81.169.146.163])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65EFAE00BA2
+	for <yocto@yoctoproject.org>; Wed, 27 Nov 2019 03:28:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1574854093;
+	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
+	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
+	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+	bh=Av3u63wk7NJsoHmX+E/H/M80HrJ35RugZL1o0UJWLhY=;
+	b=DAPX4l3EsV3xjZMTxhUAiThalvIStLkQMFrvZvCsCp7coEbz5PDkpOOMLw7jYlG5oU
+	cSiYSom+bJ1qcXZPQoNsECLnlhpkPzi0nVDxzfagLBfhA0fz1FOaFvRYq/v9S2UMoVU5
+	DmWUXARxpR443UluwUVi8Eii8FA9OMTV1BpC4psyM8r5ZkPZxC+R2ZIjuhRP8268bsmU
+	ddCFPOM1ZULFgiUrYXx03o0VhMmdJS0Aau6dXi+rAqzkarSLL8PIezUIm20CFd2dTFV4
+	jrdJMckY6Ble/M4d710yRYr7qsXzPzmI3k5hRwrZHzUkxooQ4xIrgsG8O6HjoaqBjfLj
+	TW0Q==
+X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/KqCOd+ZZzzoK8epFp9XQIUl6aPGQL"
+X-RZG-CLASS-ID: mo00
+Received: from mail.rsi-elektrotechnik.de
+	by smtp.strato.de (RZmta 45.0.2 AUTH)
+	with ESMTPSA id h03537vARBSD8NX
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits))
+	(Client did not present a certificate);
+	Wed, 27 Nov 2019 12:28:13 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
+	d=rsi-elektrotechnik.de; s=MDaemon; t=1574854092; x=1575458892;
+	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
+	Subject:Message-ID:References:MIME-Version:Content-Type:
+	Content-Disposition:Content-Transfer-Encoding:In-Reply-To; bh=Av
+	3u63wk7NJsoHmX+E/H/M80HrJ35RugZL1o0UJWLhY=; b=dr6hOS0xMBq3OgVg85
+	ZCt8YWI7pHHTyFVpGjqWkMfubea34boY2vrCW/AfTxI6Rc/qcXtyYL/ajcsI1T/l
+	dSaKBudfi0PjzL5frq8YabLWono6ANyTJB1LfArCsbSalTU1ctM8twBEkRKUbSqP
+	CNhaSWuWc3M32+ZyP5jYB0G+U=
+Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v19.5.1) with ESMTPSA id md50000222127.msg; 
+	Wed, 27 Nov 2019 12:28:12 +0100
+X-MDArrival-Date: Wed, 27 Nov 2019 12:28:12 +0100
+X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
+X-Return-Path: prvs=1234a5d44c=holzmayr@rsi-elektrotechnik.de
+X-Envelope-From: holzmayr@rsi-elektrotechnik.de
+Date: Wed, 27 Nov 2019 12:28:07 +0100
+From: "Josef Holzmayr" <holzmayr@rsi-elektrotechnik.de>
+To: JH <jupiter.hce@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [yocto] How to reduce rootfs image size?
+Message-ID: <20191127112807.6n5d3s7cjbkvolsh@jholzmayr.localdomain>
+References: <CAA=hcWSLMGabXY8pKZpNzoYhcZMGJU6T5awJr88_NTKP6xWaLQ@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 2002:ac0:f24e:0:0:0:0:0 with HTTP; Wed, 27 Nov 2019 03:12:13
- -0800 (PST)
-From: "JH" <jupiter.hce@gmail.com>
-Date: Wed, 27 Nov 2019 22:12:13 +1100
-Message-ID: <CAA=hcWSLMGabXY8pKZpNzoYhcZMGJU6T5awJr88_NTKP6xWaLQ@mail.gmail.com>
-Subject: How to reduce rootfs image size?
-To: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAA=hcWSLMGabXY8pKZpNzoYhcZMGJU6T5awJr88_NTKP6xWaLQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Wed, Nov 27, 2019 at 10:12:13PM +1100, JH wrote:
+> Hi,
+>=20
+> Does the Yocto rootfs image size is based on real contents included in
+> the image-rootfs.tar.gz?
+>=20
+> When I build the image with very large size of applications and
+> libraries such as boost, I have my image-rootfs.tr.gz about 44 MB,
+> then I removed all large size of applications and libraries, I changed
+> IMAGE_ROOTFS_SIZE to a small size IMAGE_ROOTFS_SIZE =3D 20000, I though=
+t
+> the image-rootfs.tar.gz should be reduced to a small size, but it is
+> still 43 MB I don't believe it is that big, which variable I should
+> use to reduce the image size?
 
-Does the Yocto rootfs image size is based on real contents included in
-the image-rootfs.tar.gz?
+tar.gz ist a content-based format, not a filesystem based one. So if the
+tarball is that big, then you certainly have all those things in your
+rootfs. Look at the manifest files to find out that goes in there, and
+use buildhistory to find out the sizes of the things.
 
-When I build the image with very large size of applications and
-libraries such as boost, I have my image-rootfs.tr.gz about 44 MB,
-then I removed all large size of applications and libraries, I changed
-IMAGE_ROOTFS_SIZE to a small size IMAGE_ROOTFS_SIZE = 20000, I thought
-the image-rootfs.tar.gz should be reduced to a small size, but it is
-still 43 MB I don't believe it is that big, which variable I should
-use to reduce the image size?
+Greetz
 
-Thank you.
+--=20
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+Josef Holzmayr
+Software Developer Embedded Systems
 
-Kind regards,
+Tel: +49 8444 9204-48
+Fax: +49 8444 9204-50
 
-- jh
+R-S-I Elektrotechnik GmbH & Co. KG
+Woelkestrasse 11
+D-85301 Schweitenkirchen
+www.rsi-elektrotechnik.de
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+Amtsgericht Ingolstadt =E2=80=93 GmbH: HRB 191328 =E2=80=93 KG: HRA 17039=
+3
+Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+Ust-IdNr: DE 128592548=20
+
+_____________________________________________________________
+Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+USt-IdNr.: DE 128592548
+
