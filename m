@@ -1,199 +1,171 @@
-Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
- by mx.groups.io with SMTP id smtpd.web11.4391.1574931789997722332
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.4852.1574935669300383032
  for <yocto@lists.yoctoproject.org>;
- Thu, 28 Nov 2019 01:03:10 -0800
+ Thu, 28 Nov 2019 02:07:49 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@soccasys-com.20150623.gappssmtp.com header.s=20150623 header.b=TKBFCiOl;
- spf=pass (domain: soccasys.com, ip: 209.85.217.41, mailfrom: laurent.gauthier@soccasys.com)
-Received: by mail-vs1-f41.google.com with SMTP id x123so5423279vsc.2
-        for <yocto@lists.yoctoproject.org>; Thu, 28 Nov 2019 01:03:09 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=qLtXg8cI;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id D72A2E0108B; Thu, 28 Nov 2019 02:07:48 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (jupiter.hce[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.166.182 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAFACE00E8D
+	for <yocto@yoctoproject.org>; Thu, 28 Nov 2019 02:07:47 -0800 (PST)
+Received: by mail-il1-f182.google.com with SMTP id y16so16218268iln.0
+        for <yocto@yoctoproject.org>; Thu, 28 Nov 2019 02:07:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=soccasys-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=SrfjhD5IuHyuI4VLxBKZbd8InuakZ3jVGNoFjmF18d4=;
-        b=TKBFCiOlRpjG7kv8NMm8d32ImJCeXhypjou1Vr0xEDjwor7zt8E6aOGTytQppKDeQJ
-         O93YBkLUmTLgi9nQbpGV/ER+r3kUoKvwm2OkICcqDj927ZmMu3KcpdxT1bLgBU7o0c/C
-         fLOaSiMd9+eMzBL9oWngkQlczNRlleyXhCEkW+HI2CWXjRxx3BoLM63APyoMaaLE16OB
-         CTkutPU8p0+acVqfOlc0GH4jpgVQT8r0ZgqFrVfFw5DKyjh7iS5PWYQHsCHtYUu1nkas
-         Z2PnI766BAtAv6m9mfWH5bR0p5Lf+9sLHsrELW0ftPtAVA5d1fjYB1zwVf75l2lObuNT
-         BXTw==
+        d=gmail.com; s=20161025;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=ndZs/mS2jLtzWag4vz2zU1dYPXwnwoCM9l5R3DDj+jM=;
+        b=qLtXg8cIcd2SeZkXbjCSOuJUYbnmEesbdWroszreVlxLLpQvUhy0DfIZYL/7OE6BCl
+         yQ9mDUYe5ULvfxWQGwXLYhiNHhr8tpEGQgfiL0Rum6u6AOqCy83IQnMsaqA8i+assuBY
+         geGU4sUlqGGxyMsGd5s8wwvnaNytlMZ//SV4F9j3waJebvSSLWNSR3HFMMEeRDvBpYlg
+         ODCLrKXG64eLKnsdgn7ZVgbip10h30tjMZ4ch0q98c5E7a0iDQJi/AVolKf6v4P/viK6
+         Zj8w4CIRwwmynpq/I123pwYH9OpIDYhckplU2s0/WteAx6iDa8O1qNQkwPLg9E2KliWj
+         BAkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:content-transfer-encoding;
-        bh=SrfjhD5IuHyuI4VLxBKZbd8InuakZ3jVGNoFjmF18d4=;
-        b=mfpr7eQqMZ50TVKhDoF/GiT2hcyaXZCgYpfhVrAmS9Qkv1zsntYJ/QY0d2z8tyXCt0
-         QUMA+0o142uwsx+uMoIcvj5E9pDvOI//yEqAaOQVUcy5VwndY8eyDqvP2m0BiJbvHVN+
-         A3X1VpgOtFJZWK4GSnPRib3FBDbtecltTURnUN8DXYdPB7Az1d7n0hJld1prV3VAoBSA
-         aea9XznPcUxwcnUGZEl2me/5snupiMqX9/2TPv7W1BGVTKI8bwXqk7bOnPdfcM7yVqZN
-         1axUXaDv1gK4gYJC5OPwslZhu50DWGbwyD/OpQ6dULkUqd4aDJqAjKwsjdikj7kBnefo
-         JH2w==
-X-Gm-Message-State: APjAAAVyAv/Vy4rkexrLmdSNp01sh5LZy+hUZ639XbdKIYTAYPGWun7K
-	bMKaKPGfXl+CP4PVxvyGOnK3YRtTSoF7La5jQS4tL3ybr+Y=
-X-Google-Smtp-Source: APXvYqzg/guEH5tfvJy77DUCXwkd7N0M3getY4pQ4Upu4CE+2VuECtvidoahyeyrnFwB4rmtpIHervr1ls+97xiOUNg=
-X-Received: by 2002:a05:6102:3093:: with SMTP id l19mr27497384vsb.211.1574931788488;
- Thu, 28 Nov 2019 01:03:08 -0800 (PST)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=ndZs/mS2jLtzWag4vz2zU1dYPXwnwoCM9l5R3DDj+jM=;
+        b=R+U4DwIiUnMqn7asmJLRRWAusD5FHbimpRb2V2BelrC6MX30/QpDTnSoovwRs+XhbI
+         czmRh5c7U0W+3sbRd9fJGQeknvSRLEQkkGeZ7VMY48WOJlk8UApci4Vj5BLGe/HUNNcC
+         8g5YArm59ncrr0cNCDUFBzoTMIO+Zorx2JUQjaqHnjsSriaBotNusUIgmCeO4nqHwJ69
+         fxqceQ0iivSG8rGy7NQ5xeQ/ntMLSjNH96LzpniNa5+f90NwT1ybKs1vVpnIjvpt8GJY
+         sBACeNEL8RMzkYy5vBZJbsJrVQ3GX8mGgfOOa0YMjBeR7mF5ne/O9Ee+WayutwTk5EUs
+         xh5A==
+X-Gm-Message-State: APjAAAUBF7cA/eWOmKCA0LDfYmkH2/Y4P9E9btiOw1ImFDCiGgEx9EeQ
+	xDmr9UXofLNfERa3qtZ8bkJWnt5462BXuR5qDQNQzdmw
+X-Google-Smtp-Source: APXvYqxzkatZkKOwvrWzk4qNXowfDnllOx2duv/aMsWW1QXKCGgqut3xMvxJ+wGSuxu7UBkms0t/vWX5yfy9gV9eNZo=
+X-Received: by 2002:a92:d7c1:: with SMTP id g1mr5728274ilq.192.1574935667210;
+ Thu, 28 Nov 2019 02:07:47 -0800 (PST)
 MIME-Version: 1.0
-References: <CALSaBR8uTFeGqBeOCDan4Sjo=1Dh+1GnpanKZfB03+j0sSMuuA@mail.gmail.com>
- <CALSaBR_YY=7FnN2ngLwL-gVEiQWYqkFGmCUoPNp1Hi0AaWsOEg@mail.gmail.com> <20191128085252.ch5dmsqxdut5vsih@jholzmayr.localdomain>
-In-Reply-To: <20191128085252.ch5dmsqxdut5vsih@jholzmayr.localdomain>
-From: "Laurent Gauthier" <laurent.gauthier@soccasys.com>
-Date: Thu, 28 Nov 2019 10:00:01 +0100
-Message-ID: <CAGbd71QweQW0Bnmj7EEuW57J71Hug6dA-1AE+GQ0hfTK=Sd5Tg@mail.gmail.com>
-Subject: Re: [yocto] Yocto Image Build for NXP i.MX8M
-To: yocto@lists.yoctoproject.org
+Received: by 2002:ac0:f24e:0:0:0:0:0 with HTTP; Thu, 28 Nov 2019 02:07:46
+ -0800 (PST)
+In-Reply-To: <adab910e-0212-239a-0eda-8857affe85dd@ibeeto.com>
+References: <CAA=hcWSLMGabXY8pKZpNzoYhcZMGJU6T5awJr88_NTKP6xWaLQ@mail.gmail.com>
+ <adab910e-0212-239a-0eda-8857affe85dd@ibeeto.com>
+From: "JH" <jupiter.hce@gmail.com>
+Date: Thu, 28 Nov 2019 21:07:46 +1100
+Message-ID: <CAA=hcWSv5q7HFHtgx0hey8zhGhYVKK2JrH5x4RUJjpt+A5Uh-Q@mail.gmail.com>
+Subject: Re: [yocto] How to reduce rootfs image size?
+To: Rudolf J Streif <rudolf.streif@ibeeto.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-[ all: Let me share the replay I made in private to Ajit. ]
+Thanks Josef, Fabien and Rudolf, it's been great help to clarify it,
+very appreciated.
 
-Hi Ajith,
-
-Unfortunately because you do not provide much information about the
-"some error" you are seeing there is not much that can be done right
-away to support you.
-
-Here is a useful article on how to ask technical questions.
-
-* https://opensource.com/life/16/10/how-ask-technical-questions
-
-And here is a relevant quote from it that should help you increase
-your chances of getting an answer:
-
-> You should include a clear description of the issue you're facing or goal=
- you're trying to achieve. Include as
-> much specific relevant information as you can:
+On 11/28/19, Rudolf J Streif <rudolf.streif@ibeeto.com> wrote:
+> Hi JH,
 >
-> * If the problem is reproducible, what are the exact steps to do so?
-> * If you're getting an error message or debugging information, make sure =
-you include it verbatim.
-> * Have you made any recent changes?
-> * What Linux distribution and version are you using?
-> * Is the hardware you're using a factor?
+> The image root file system size is based on the actual content of the
+> root file system. Besides ROOTFS_SIZE there are other variables that
+> control how the root file system is sized:
 >
-> The more relevant information you include, the more likely you'll receive=
- a solution that actually works.
+> IMAGE_ROOTFS_SIZE: Defines the size in kilobytes of the created root
+> filesystem image. The
+> build system uses this value as a request or recommendation. The final
+> root filesystem
+> image size may be larger depending on the actual space required. The
+> default value is
+> 65536.
 >
-> You should also include any research you've done and steps you've already=
- taken
-> to try to solve the issue. This not only prevents receiving a solution yo=
-u've already
-> tried, but shows that you've already put effort into solving the issue yo=
-urself.
-
-Generic answer about your question based on the information you provided:
-
-* NXP i.MX8M is supported in Yocto through NXP's own Yocto BSP (not
-just base Yocto) and your question
-  is probably more likely to get an answer on NXP's community forums
-at https://community.nxp.com/
-
-Kind Regards, Laurent.
---
-https://soccasys.com
-
-On Thu, Nov 28, 2019 at 9:53 AM Josef Holzmayr
-<holzmayr@rsi-elektrotechnik.de> wrote:
+> IMAGE_ROOTFS_ALIGNMENT: Defines the alignment of the root filesystem
+> image in
+> kilobytes. If the final size of the root filesystem image is not a
+> multiple of this value, it is
+> rounded up to the nearest multiple of it. The default value is 1.
 >
-> On Thu, Nov 28, 2019 at 02:02:29PM +0530, Aj Cit wrote:
-> > I've followed the instruction from the yocto project:
-> > https://www.yoctoproject.org/docs/3.0/brief-yoctoprojectqs/brief-yoctop=
-rojectqs.html
+> IMAGE_ROOTFS_EXTRA_SPACE: Adds extra free space to the root filesystem
+> image. The
+> variable specifies the value in kilobytes. For example, to add an
+> additional 4 GB of space, set
+> the variable to IMAGE_ROOTFS_EXTRA_SPACE =3D "4194304". The default value
+> is 0.
 >
-> This can not be exactly true, as this guide certainly does not include
-> anything related to the imx8. So you are either still building for qemu
-> (as it defaults to), or using seomthing additional that you're not
-> mentioning.
+> IMAGE_OVERHEAD_FACTOR: This variable specifies a multiplicator for the
+> root filesystem
+> image. The factor is applied after the actual space required by the root
+> filesystem has been
+> determined. The default value is 1.3.
 >
-> >
-> >
-> > till the bitbake command. However, I'm getting the following error:
-> > ERROR:  OE-core's config sanity checker detected a potential
-> > misconfiguration.
-> >     Either fix the cause of this error or at your own risk disable the
-> > checker (see sanity.conf).
-> >     Following is the list of potential problems / advisories:
-> >
-> >     Do not use Bitbake as root.
 >
-> Here is your answer: do not run botbake as the root user :)
+> Here is some pseudo code on how these variables are used to determine
+> the final root file system size:
 >
-> In a nutshell, I recommend watching at least the first couple of videos
-> here:
-> https://www.youtube.com/playlist?list=3DPLD4M5FoHz-TxMfBFrDKfIS_GLY25Qsfy=
-j
+> _get_rootfs_size():
+>     ROOTFS_SIZE =3D`du -ks IMAGE_ROOTFS`
+>     BASE_SIZE =3D ROOTFS_SIZE * IMAGE_OVERHEAD_FACTOR
 >
-> Greetz
-> >
-> >
-> > On Thu, Nov 28, 2019 at 12:29 PM Aj Cit <aj.ci.01.239@gmail.com> wrote:
-> >
-> > > Hello,
-> > >
-> > > I'm trying to build a Yocto image for NXP i.MX8M (4 core 64-bit A53s)=
-. I
-> > > am getting some error when I execute the bitmake command.
-> > >
-> > > I'd appreciate if you could guide me with next steps. Any Guide or ur=
-l
-> > > will be helpful.
-> > >
-> > > Thanks
-> > > Ajith
-> > >
+>     if (BASE_SIZE < IMAGE_ROOTFS_SIZE):
+>         IMG_SIZE =3D IMAGE_ROOTFS_SIZE + IMAGE_ROOTFS_EXTRA_SPACE
+>     else:
+>         IMG_SIZE =3D BASE_SIZE + IMAGE_ROOTFS_EXTRA_SPACE
 >
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> > Links: You receive all messages sent to this group.
-> >
-> > View/Reply Online (#47444): https://lists.yoctoproject.org/g/yocto/mess=
-age/47444
-> > Mute This Topic: https://lists.yoctoproject.org/mt/63894854/3618269
-> > Group Owner: yocto+owner@lists.yoctoproject.org
-> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [holzmayr@rs=
-i-elektrotechnik.de]
-> > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>     IMG_SIZE =3D IMG_SIZE + IMAGE_ROOTFS_ALIGNMENT =E2=80=93 1
+>     IMG_SIZE =3D IMG_SIZE % IMAGE_ROOTFS_ALIGNMENT
 >
+>     return IMG_SIZE
+>
+>
+> :rjs
+>
+> On 11/27/19 3:12 AM, JH wrote:
+>> Hi,
+>>
+>> Does the Yocto rootfs image size is based on real contents included in
+>> the image-rootfs.tar.gz?
+>>
+>> When I build the image with very large size of applications and
+>> libraries such as boost, I have my image-rootfs.tr.gz about 44 MB,
+>> then I removed all large size of applications and libraries, I changed
+>> IMAGE_ROOTFS_SIZE to a small size IMAGE_ROOTFS_SIZE =3D 20000, I thought
+>> the image-rootfs.tar.gz should be reduced to a small size, but it is
+>> still 43 MB I don't believe it is that big, which variable I should
+>> use to reduce the image size?
+>>
+>> Thank you.
+>>
+>> Kind regards,
+>>
+>> - jh
+>>
+>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>> Links: You receive all messages sent to this group.
+>>
+>> View/Reply Online (#47433):
+>> https://lists.yoctoproject.org/g/yocto/message/47433
+>> Mute This Topic: https://lists.yoctoproject.org/mt/62495609/3617932
+>> Group Owner: yocto+owner@lists.yoctoproject.org
+>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub
+>> [rudolf.streif@ibeeto.com]
+>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 >
 > --
-> =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
-=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
-> Josef Holzmayr
-> Software Developer Embedded Systems
+> -----
+> Rudolf J Streif
+> CEO/CTO ibeeto
+> +1.855.442.3386 x700
 >
-> Tel: +49 8444 9204-48
-> Fax: +49 8444 9204-50
 >
-> R-S-I Elektrotechnik GmbH & Co. KG
-> Woelkestrasse 11
-> D-85301 Schweitenkirchen
-> www.rsi-elektrotechnik.de
-> =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
-=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
-> Amtsgericht Ingolstadt =E2=80=93 GmbH: HRB 191328 =E2=80=93 KG: HRA 17039=
-3
-> Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-> Ust-IdNr: DE 128592548
->
-> _____________________________________________________________
-> Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-> Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-> USt-IdNr.: DE 128592548
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
->
-> View/Reply Online (#47447): https://lists.yoctoproject.org/g/yocto/messag=
-e/47447
-> Mute This Topic: https://lists.yoctoproject.org/mt/63894854/3618354
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [laurent.gauth=
-ier@soccasys.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-
-
-
---=20
-Laurent Gauthier
-Phone: +33 630 483 429
-http://soccasys.com
