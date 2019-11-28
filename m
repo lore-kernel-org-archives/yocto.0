@@ -1,152 +1,151 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.6404.1574948265305155159
+Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com [209.85.128.67])
+ by mx.groups.io with SMTP id smtpd.web11.1784.1574963266367814319
  for <yocto@lists.yoctoproject.org>;
- Thu, 28 Nov 2019 05:37:46 -0800
+ Thu, 28 Nov 2019 09:47:46 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sidebranch-com.20150623.gappssmtp.com header.s=20150623 header.b=HYVqRrzG;
- spf=softfail (domain: sidebranch.com, ip: 140.211.169.56, mailfrom: leon@sidebranch.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D63B0E0108E; Thu, 28 Nov 2019 05:37:44 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.217.48 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A806E00E85
-	for <yocto@yoctoproject.org>; Thu, 28 Nov 2019 05:37:43 -0800 (PST)
-Received: by mail-vs1-f48.google.com with SMTP id y13so5073173vsd.9
-        for <yocto@yoctoproject.org>; Thu, 28 Nov 2019 05:37:43 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Z68wBUzw;
+ spf=pass (domain: gmail.com, ip: 209.85.128.67, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-wm1-f67.google.com with SMTP id l17so11804366wmh.0
+        for <yocto@lists.yoctoproject.org>; Thu, 28 Nov 2019 09:47:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sidebranch-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TeNdP/cszoaaRdj0sAoRhng4/wbvX3OGtzdJQtY63hE=;
-        b=HYVqRrzGwQcLqt0gJRthWWnAfgbpsDI9j3elL0cGVUlpeDr8/gu4GdHqi/pz0ot9LP
-         e2ZSSzmKl4nx8DycocNnpr8wcQhfPPD06tjYUrPJA/ubS9ccMDoF9ZkeR8A/WYzXcDSk
-         2MDjSoDyzc8sZF+g180R3fopkZfMeqX9Won4d5Aa2u5E2CaV6RDUeMNSa6c9qKhCHPXx
-         yldPaFW6jflqlNLzM/7OspEvIUViQDG85SOQFENASPP+jbNamqPzCebDXuTkKuUErs0J
-         YGA+cWeY2fFEH/3k+TPW83yt4kaohcXLPAjIZxpdMwMKQELPO0nSt9ve0cRwVNd71MG0
-         AbqA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=2m6TlX6pL6OzGhuE0UAPPHnifJcu5WBV1y5G+vaZx6s=;
+        b=Z68wBUzwWz2ATohgp7VfNYM4ebSIVazaxIbMp5NJxsYEIoSYgm+zOQZfRlnQQFDRJL
+         hEWEJ6qUcfzsiLcx1i28qOlhpyl/wydkqQtjWDXQDyvGupwFzzMcpOG/WSLknYbLa4us
+         IvqpaW0syFYCUGky6/nMHBy2a+ZkXRAsDejJH3ROL04eX53m8ePMZO5QZV3HhYsdo3zw
+         //7jMsV9X7Lgj+91JUMW6yoNNQy56S1Bjk/DlzXUfxbL4Eg5cxCOiSMDs+kOpOSYaicD
+         of9rjI9XDPFsKERwpizTuv6l/hROFor1LbqIvFoE1rnR/g2guCaZHCx//Pk8TKsyETIk
+         Z+mQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TeNdP/cszoaaRdj0sAoRhng4/wbvX3OGtzdJQtY63hE=;
-        b=nEMyEPBSsgdHvjOUBCrnWI7iMoVjTfVoXiH/7ilibUo5hebObAM7GVXpByU5u6HM1x
-         4Ax4qSRNvt9FHes6Dngh8eZ18NxzrQc6LI7aCNvBSe656eRzX95L+J9xsdr+RKypCd0q
-         tJoU0Eb6MWKKRtR3E/kIvHgo+4fT9lcJ3Vw++IYN9jI8nhezubbJWfvEMGf2aQb+549k
-         XzkIqc3MJnbOxthzuTKNq12tDOxOApHIXbueXTp6JGQXU6c/E3qUO98rmDf8/j8JCR56
-         2hPxzfxupWcLiQmtYANif8pBjHwGf2JHsW5xxcDKchX853P6zQ6lXpBVmk99ZWnGCVBF
-         ynww==
-X-Gm-Message-State: APjAAAUnqTgYnofvfqcTRKI/AdJyuenO2hJeLC9nzOepfeGo3hObs1y3
-	U3y8jdWvs+cbVkoeXUZzIl/XLzhuIHIOkON141OAu85TyKvd4w==
-X-Google-Smtp-Source: APXvYqwFk6Ws2+wQJp1Yuq6bvEAJo++qNAI07spqGqDMkPLnOsgHZ84QtmnwB6EDI4Gu87hJimYAW4SJJHwfiPoC3pY=
-X-Received: by 2002:a67:bb18:: with SMTP id m24mr3965908vsn.92.1574948262511;
- Thu, 28 Nov 2019 05:37:42 -0800 (PST)
-MIME-Version: 1.0
-References: <CAMjhiJi45vpJ-vCuqdbFKv8gmR=XLgDLz9z=ViFvoV7SDOUMqA@mail.gmail.com>
- <20191128090141.5pxiunxtz5uscnpb@jholzmayr.localdomain>
-In-Reply-To: <20191128090141.5pxiunxtz5uscnpb@jholzmayr.localdomain>
-From: "Leon Woestenberg" <leon@sidebranch.com>
-Date: Thu, 28 Nov 2019 14:37:30 +0100
-Message-ID: <CAMjhiJh2Qhc=OdjPB-x4nrBGnnFmiDkP4gf5qo1aGi5koVGvhQ@mail.gmail.com>
-Subject: Re: [yocto] Architecture of .wic approach; image of images
-To: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-Cc: Yocto List <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000ba1a4305986837ff"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=2m6TlX6pL6OzGhuE0UAPPHnifJcu5WBV1y5G+vaZx6s=;
+        b=KNIGEYn+EYilQfuvVsOLTT5YdfUJA8dvtgI1WSFsfdQ3qAy7DktsgOlMZZyyKrtSOi
+         B2ZDpfx+ghe8r7zxPC2apj2qmj5oL2HNZg3Gn6k1XGCnqP0FKdhqHYXvcLWPo/HaFoLQ
+         sTYGDecVAPBtH/fx+mv9MFqJAEwqA9WqE+PS3nsOPZQhyILDDmFBSFr1LEryOFQHPq8Z
+         00gxf5e3WL5q60OErCjYB0zeyi+SjDltE8EB9eUbEuHdOlFyS952YPsXYXWyCqVlOfwA
+         FDyXGsrYHYpt51VfOp2ppEUp5qt8pgwJ/kyuUiNr8osxB03opxNxNitPSffoH01U7mTf
+         5cHg==
+X-Gm-Message-State: APjAAAXu2LikUTVIYsefb+tAd6dciwseUEXvuLdS3lnZntSPZc2a3DrL
+	EUqcEcpJxdtobFwwOhE/Zqxtd7hz
+X-Google-Smtp-Source: APXvYqyUc1SdXdG2sxoRPGlHjSEphRMtKSCs7dA7xEHWjeT0jUWeKV0x1YwgBLU4YPHUa7Kq0ApdwQ==
+X-Received: by 2002:a1c:750f:: with SMTP id o15mr10230185wmc.161.1574963264476;
+        Thu, 28 Nov 2019 09:47:44 -0800 (PST)
+Return-Path: <alex.kanavin@gmail.com>
+Received: from alexander-box.rd.corpintra.net ([141.113.66.202])
+        by smtp.gmail.com with ESMTPSA id u14sm24506727wrm.51.2019.11.28.09.47.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 28 Nov 2019 09:47:44 -0800 (PST)
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>
+Subject: [meta-mingw][PATCH] gettext: adapt for version 0.20
+Date: Thu, 28 Nov 2019 18:47:39 +0100
+Message-Id: <20191128174739.101631-1-alex.kanavin@gmail.com>
+X-Mailer: git-send-email 2.17.1
 
---000000000000ba1a4305986837ff
-Content-Type: text/plain; charset="UTF-8"
+Drop backported patch (new gettext includes the updates).
 
-On Thu, Nov 28, 2019 at 10:01 AM Josef Holzmayr <
-holzmayr@rsi-elektrotechnik.de> wrote:
+Drop version from the .bbappend (hopefully no version-specific
+tweaks will be needed going forward).
 
-> On Thu, Nov 28, 2019 at 09:37:12AM +0100, Leon Woestenberg wrote:
->
-> > The .wic image type however, builds an image from *images* rather than
-> > packages.
->
-> Thats *almost* correct. It builds an image from a *artifacts*.
->
+Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+---
+ .../fix-gl_cv_prog_as_underscore-test.patch   | 67 -------------------
+ ...ext_0.19.%.bbappend => gettext_%.bbappend} |  1 -
+ 2 files changed, 68 deletions(-)
+ delete mode 100644 recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore-test.patch
+ rename recipes-core/gettext/{gettext_0.19.%.bbappend => gettext_%.bbappend} (87%)
 
-My finding is: ...only if *artifacts* (also) includes a rootfs.
+diff --git a/recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore-test.patch b/recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore-test.patch
+deleted file mode 100644
+index 636789f..0000000
+--- a/recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore-test.patch
++++ /dev/null
+@@ -1,67 +0,0 @@
+-Backport gnulib fix for mingw into gettext's included version of gnulib
+-
+-http://git.savannah.gnu.org/cgit/gnulib.git/commit/?id=68b6adebef05670a312fb92b05e7bd089d2ed43a
+-
+-Upstream-Status: Backport
+-Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
+-
+---- a/gettext-runtime/gnulib-m4/asm-underscore.m4
+-+++ b/gettext-runtime/gnulib-m4/asm-underscore.m4
+-@@ -27,11 +27,11 @@
+- #endif
+- int foo(void) { return 0; }
+- EOF
+-      # Look for the assembly language name in the .s file.
+-      AC_TRY_COMMAND(${CC-cc} $CFLAGS $CPPFLAGS $gl_c_asm_opt conftest.c) >/dev/null 2>&1
+--     if LC_ALL=C grep -E '(^|[^a-zA-Z0-9_])_foo([^a-zA-Z0-9_]|$)' conftest.$gl_asmext >/dev/null; then
+-+     if LC_ALL=C grep -E '(^|[[^a-zA-Z0-9_]])_foo([[^a-zA-Z0-9_]]|$)' conftest.$gl_asmext >/dev/null; then
+-        gl_cv_prog_as_underscore=yes
+-      else
+-        gl_cv_prog_as_underscore=no
+-      fi
+-      rm -f conftest*
+---- a/gettext-runtime/configure
+-+++ b/gettext-runtime/configure
+-@@ -24601,11 +24601,11 @@
+-   { { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$ac_try\""; } >&5
+-   (eval $ac_try) 2>&5
+-   ac_status=$?
+-   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+-   test $ac_status = 0; }; } >/dev/null 2>&1
+--     if LC_ALL=C grep -E '(^|^a-zA-Z0-9_)_foo(^a-zA-Z0-9_|$)' conftest.$gl_asmext >/dev/null; then
+-+     if LC_ALL=C grep -E '(^|[^a-zA-Z0-9_])_foo([^a-zA-Z0-9_]|$)' conftest.$gl_asmext >/dev/null; then
+-        gl_cv_prog_as_underscore=yes
+-      else
+-        gl_cv_prog_as_underscore=no
+-      fi
+-      rm -f conftest*
+---- a/gettext-tools/gnulib-m4/asm-underscore.m4
+-+++ b/gettext-tools/gnulib-m4/asm-underscore.m4
+-@@ -27,11 +27,11 @@
+- #endif
+- int foo(void) { return 0; }
+- EOF
+-      # Look for the assembly language name in the .s file.
+-      AC_TRY_COMMAND(${CC-cc} $CFLAGS $CPPFLAGS $gl_c_asm_opt conftest.c) >/dev/null 2>&1
+--     if LC_ALL=C grep -E '(^|[^a-zA-Z0-9_])_foo([^a-zA-Z0-9_]|$)' conftest.$gl_asmext >/dev/null; then
+-+     if LC_ALL=C grep -E '(^|[[^a-zA-Z0-9_]])_foo([[^a-zA-Z0-9_]]|$)' conftest.$gl_asmext >/dev/null; then
+-        gl_cv_prog_as_underscore=yes
+-      else
+-        gl_cv_prog_as_underscore=no
+-      fi
+-      rm -f conftest*
+---- a/gettext-tools/configure
+-+++ b/gettext-tools/configure
+-@@ -32284,11 +32284,11 @@
+-   { { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$ac_try\""; } >&5
+-   (eval $ac_try) 2>&5
+-   ac_status=$?
+-   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+-   test $ac_status = 0; }; } >/dev/null 2>&1
+--     if LC_ALL=C grep -E '(^|^a-zA-Z0-9_)_foo(^a-zA-Z0-9_|$)' conftest.$gl_asmext >/dev/null; then
+-+     if LC_ALL=C grep -E '(^|[^a-zA-Z0-9_])_foo([^a-zA-Z0-9_]|$)' conftest.$gl_asmext >/dev/null; then
+-        gl_cv_prog_as_underscore=yes
+-      else
+-        gl_cv_prog_as_underscore=no
+-      fi
+-      rm -f conftest*
+diff --git a/recipes-core/gettext/gettext_0.19.%.bbappend b/recipes-core/gettext/gettext_%.bbappend
+similarity index 87%
+rename from recipes-core/gettext/gettext_0.19.%.bbappend
+rename to recipes-core/gettext/gettext_%.bbappend
+index 21749f3..d518698 100644
+--- a/recipes-core/gettext/gettext_0.19.%.bbappend
++++ b/recipes-core/gettext/gettext_%.bbappend
+@@ -2,7 +2,6 @@ EXTRA_OECONF_append_mingw32 = " --enable-static"
+ 
+ FILESEXTRAPATHS_prepend_mingw32 := "${THISDIR}/${BPN}:"
+ SRC_URI_append_mingw32 = " \
+-		file://fix-gl_cv_prog_as_underscore-test.patch \
+ 		"
+ 
+ FILES_libgettextlib_mingw32 = "${bindir}/libgettextlib-*.dll"
+-- 
+2.17.1
 
-The image class dependency on rootfs seems very hardcoded. I cannot create
-a recipe that works without *creating* a rootfs.
-(even though I have no rootfs other than the initramfs image which is
-already there, as an *artifact*).
-
-inherit image
-
-IMAGE_FSTYPES = "wic"
-DEPENDS += "my-initramfs"
-
-IMAGE_FEATURES = ""
-IMAGE_INSTALL = ""
-
-# This image does not generate its own root filesystem
-# I have tried to exclude it, but it's hardcoded even in buildhistory.
-#do_rootfs[noexec] = "1"
-#do_image[noexec] = "1"
-#do_image_wic[noexec] = "1"
-#do_rootfs_wicenv[noexec] = "1"
-
-
-WKS_FILE = "my-disk-image.wks"
-my-disk-image.wks:
-part /boot --source bootimg-efi
---sourceparams="loader=grub-efi,initrd=my-initramfs.cpio.gz" --ondisk
-sda --label msdos --active --align 1024 --use-uuid
-bootloader --ptable gpt --timeout=1
-
---000000000000ba1a4305986837ff
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">On Thu, Nov 28, 2019 at 10:01 AM Josef Ho=
-lzmayr &lt;<a href=3D"mailto:holzmayr@rsi-elektrotechnik.de">holzmayr@rsi-e=
-lektrotechnik.de</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
-style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
-dding-left:1ex">On Thu, Nov 28, 2019 at 09:37:12AM +0100, Leon Woestenberg =
-wrote:<br><br>
-&gt; The .wic image type however, builds an image from *images* rather than=
-<br>
-&gt; packages.<br>
-<br>
-Thats *almost* correct. It builds an image from a *artifacts*.<br>
-</blockquote></div><div><br></div><div>My finding is: ...only if *artifacts=
-* (also) includes a rootfs.<br></div><div><br></div><div>The image class de=
-pendency on rootfs seems very hardcoded. I cannot create a recipe that work=
-s without *creating* a rootfs.</div><div>(even though I have no rootfs othe=
-r than the initramfs image which is already there, as an *artifact*).<br></=
-div><div><br></div><div>inherit image<br><br>IMAGE_FSTYPES =3D &quot;wic&qu=
-ot;<br>DEPENDS +=3D &quot;my-initramfs&quot;<br><br>IMAGE_FEATURES =3D &quo=
-t;&quot;<br>IMAGE_INSTALL =3D &quot;&quot;<br><br># This image does not gen=
-erate its own root filesystem</div><div># I have tried to exclude it, but i=
-t&#39;s hardcoded even in buildhistory.<br></div><div>#do_rootfs[noexec] =
-=3D &quot;1&quot;<br>#do_image[noexec] =3D &quot;1&quot;<br>#do_image_wic[n=
-oexec] =3D &quot;1&quot;<br>#do_rootfs_wicenv[noexec] =3D &quot;1&quot;</di=
-v><div></div><div><br></div><div><br></div><div>WKS_FILE =3D &quot;my-disk-=
-image.wks&quot;<br>
-
-my-disk-image.wks:<br>
-part /boot --source bootimg-efi<br>
---sourceparams=3D&quot;loader=3Dgrub-efi,initrd=3Dmy-initramfs.cpio.gz&quot=
-; --ondisk<br>
-sda --label msdos --active --align 1024 --use-uuid<br>
-bootloader --ptable gpt --timeout=3D1</div><div><br></div><div><br></div></=
-div>
-
---000000000000ba1a4305986837ff--
