@@ -1,208 +1,148 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.5349.1574939977110435945
+ by mx.groups.io with SMTP id smtpd.web11.5494.1574941282768861759
  for <yocto@lists.yoctoproject.org>;
- Thu, 28 Nov 2019 03:19:37 -0800
+ Thu, 28 Nov 2019 03:41:25 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: 3mdeb.com, ip: 140.211.169.56, mailfrom: maciej.pijanowski@3mdeb.com)
+ dkim=fail reason="body hash did not verify" header.i=@rsi-elektrotechnik.de header.s=strato-dkim-0002 header.b=B+IajQc8;
+ spf=none, err=permanent DNS error (domain: rsi-elektrotechnik.de, ip: 140.211.169.56, mailfrom: prvs=123500ab67=holzmayr@rsi-elektrotechnik.de)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B44C5E0108D; Thu, 28 Nov 2019 03:19:36 -0800 (PST)
+	id 52FE6E0108C; Thu, 28 Nov 2019 03:41:22 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [178.33.251.53 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from 1.mo178.mail-out.ovh.net (1.mo178.mail-out.ovh.net [178.33.251.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61C4BE0108B
-	for <yocto@yoctoproject.org>; Thu, 28 Nov 2019 03:19:35 -0800 (PST)
-Received: from player728.ha.ovh.net (unknown [10.108.54.133])
-	by mo178.mail-out.ovh.net (Postfix) with ESMTP id B97667A622
-	for <yocto@yoctoproject.org>; Thu, 28 Nov 2019 09:54:48 +0100 (CET)
-Received: from 3mdeb.com (85-222-117-222.dynamic.chello.pl [85.222.117.222])
-	(Authenticated sender: maciej.pijanowski@3mdeb.com)
-	by player728.ha.ovh.net (Postfix) with ESMTPSA id ADB8CC908FD0;
-	Thu, 28 Nov 2019 08:54:46 +0000 (UTC)
+	*      [85.215.255.23 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [85.215.255.23])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0302BE00AC8
+	for <yocto@yoctoproject.org>; Thu, 28 Nov 2019 03:41:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1574941278;
+	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
+	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
+	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+	bh=sjVKCWXC7EIqSF9dXZrlgdd3RQ7VSBo0IPTzANqiqAE=;
+	b=B+IajQc8+7tD1njUWh17duMv8KweAjlyD1nBl4l/6QI/rPdhaiv8dMm8d5GAUgMf3x
+	ExDBIiZG6X3h0PCyd7nLRqUCXthGEaOkp+foGuIXsmG2i3ABsboEgKj5bQC4AhNBCtbN
+	qgXjPho16l0sOGbi9lNy3tRUppWAZitDzM2HiUeS/4fmpfSKHIkWyPIgUhfPR1bZJFT/
+	IqSs1lzlf7a0T/FEU9o9FJ7lUDz/7SKIxH2NLSOQ3PRXgVwkXteCPwz2dQ3a80S8feMc
+	foCfAdXzwQZdbiPggpVojdLkGtDjIhoZVliYAYi2xtOmfLaS1a7PdKKJIBzRYs+JUmsC
+	lS1g==
+X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/KqCOd+ZZzzoK8epFp9XQIUl6aPGQL"
+X-RZG-CLASS-ID: mo00
+Received: from mail.rsi-elektrotechnik.de
+	by smtp.strato.de (RZmta 45.0.2 AUTH)
+	with ESMTPSA id h03537vASBfICIU
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits))
+	(Client did not present a certificate);
+	Thu, 28 Nov 2019 12:41:18 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
+	d=rsi-elektrotechnik.de; s=MDaemon; t=1574941277; x=1575546077;
+	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
+	Subject:Message-ID:References:MIME-Version:Content-Type:
+	Content-Disposition:Content-Transfer-Encoding:In-Reply-To; bh=sj
+	VKCWXC7EIqSF9dXZrlgdd3RQ7VSBo0IPTzANqiqAE=; b=px/bbGNiDWVeusIVcq
+	rAerO/KYZAJ7CMI1gC9XvXVyInBYxQ8KhHBi76SDE57CgzBYyfAFp3eA+kFJyI+M
+	xRqyYmsAhp4J2nAAmkktv6WqKvOcqhflHkyiQP8DRTcURDevuMivU0W2b3RWFX8Y
+	xMZrRGw2LCYMmN3ILyLXlgQbw=
+Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v19.5.1) with ESMTPSA id md50000222506.msg; 
+	Thu, 28 Nov 2019 12:41:17 +0100
+X-MDRemoteIP: 178.27.65.232
+X-MDHelo: jholzmayr.localdomain
+X-MDArrival-Date: Thu, 28 Nov 2019 12:41:17 +0100
+X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
+X-Return-Path: prvs=123500ab67=holzmayr@rsi-elektrotechnik.de
+X-Envelope-From: holzmayr@rsi-elektrotechnik.de
+Date: Thu, 28 Nov 2019 12:41:04 +0100
+From: "Josef Holzmayr" <holzmayr@rsi-elektrotechnik.de>
+To: Leon Woestenberg <leon@sidebranch.com>
+Cc: Yocto List <yocto@yoctoproject.org>
 Subject: Re: [yocto] Architecture of .wic approach; image of images
-To: Leon Woestenberg <leon@sidebranch.com>,
- Yocto List <yocto@yoctoproject.org>
+Message-ID: <20191128114104.vgrmyherbnrkiqtd@jholzmayr.localdomain>
 References: <CAMjhiJi45vpJ-vCuqdbFKv8gmR=XLgDLz9z=ViFvoV7SDOUMqA@mail.gmail.com>
-From: "Maciej Pijanowski" <maciej.pijanowski@3mdeb.com>
-Message-ID: <8d6041c4-7f20-0b84-fd1a-da0bd1fd5135@3mdeb.com>
-Date: Thu, 28 Nov 2019 09:54:45 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.1
+ <20191128090141.5pxiunxtz5uscnpb@jholzmayr.localdomain>
+ <CAMjhiJg4YMUjn6WhTHYjAX07mF6s33EtjPiD-w95ucYCEmQPsg@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAMjhiJi45vpJ-vCuqdbFKv8gmR=XLgDLz9z=ViFvoV7SDOUMqA@mail.gmail.com>
-X-Ovh-Tracer-Id: 10040775373107375785
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrudeiiedguddviecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjqdffgfeufgfipdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefuvfhfhffkffgfgggjtgesrgdtreertdefjeenucfhrhhomhepofgrtghivghjucfrihhjrghnohifshhkihcuoehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmqeenucffohhmrghinhepfehmuggvsgdrtghomhdphihotghtohhprhhojhgvtghtrdhorhhgnecukfhppedtrddtrddtrddtpdekhedrvddvvddruddujedrvddvvdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjedvkedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmpdhrtghpthhtohephihotghtoheshihotghtohhprhhojhgvtghtrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
-Content-Type: multipart/alternative;
- boundary="------------BAB63DE01E46C8711FFE059C"
-Content-Language: en-US
+In-Reply-To: <CAMjhiJg4YMUjn6WhTHYjAX07mF6s33EtjPiD-w95ucYCEmQPsg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
---------------BAB63DE01E46C8711FFE059C
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+On Thu, Nov 28, 2019 at 12:11:52PM +0100, Leon Woestenberg wrote:
+> Let me then first describe the issue I am having, which I think
+> results from my misunderstanding then.
+>=20
+> I would like to package a UEFI bootloader (GRUB), bzImage and
+> initramfs.cpio.gz into an FAT partition using WIC.
+>=20
+> 1) Should I adapt my existing my-initramfs recipe as follows:
+>=20
+> IMAGE_FSTYPES +=3D "wic"
+> WKS_FILE =3D "my-disk-image.wks"
 
+I think I'm starting to see the problem. Do you set those things in your
+image recipe? If thats the case, this is where the misunderstandings
+happen. An image file is meant to define what goes *into* the image, not
+how its gonna look like for a specific hardware incarnation. Think about
+core-image-minimal. If it included things like that, how could we use it
+as a "hello world"-style image for about every platform?
 
-On 28.11.2019 09:37, Leon Woestenberg wrote:
-> Hello all,
->
-> What is the intended approach of building images using WIC?
->
-> Most image types (except .wic) build a (root or initial ram) 
-> filesystem from *packages*, then create the respective archive or 
-> filesystem from it.
-I think the rootfs is *always* assembled in the workdir (no matter which 
-IMAGE_FSTYPES you choose.
->
-> The .wic image type however, builds an image from *images* rather than 
-> packages.
-I'm not sure if this is correct. WIC is just one of the IMAGE_FSTYPES to 
-choose from.
-It does a little bit more then the tar.gz FSTYPE. The tar.gz just 
-compresses the content
-of rootfs. The WIC FSTYPE creates a disk image and installs the rootfs 
-on a given
-partition (depends on the WKS file chosen). The rootfs source is the same in
-those both cases, no matter which FSTYPES you choose. It is made up of 
-packages.
->
-> It therefore seems incorrect we can just add IMAGE_FSTYPES += "wic", 
-> because the corresponding .wks might depend on multiple other images 
-> than just ${PN}.
->
-> Should we, or do we have a recipe example that builds only a .wic 
-> image, based on one or more other existing images? (and thus not 
-> populate a filesystem itself)
-I have not seen such case yet. IIUC, rootfs in the workdir is always 
-populated when the image is built.
->
-> Regards,
->
-> Leon.
->
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
->
-> View/Reply Online (#47445): https://lists.yoctoproject.org/g/yocto/message/47445
-> Mute This Topic: https://lists.yoctoproject.org/mt/63986097/3616795
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [maciej.pijanowski@3mdeb.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
+So, those are things that are hardware, and therefore MACHINE specific.
+And thats where they should end up, in your machine config. Thats the
+way things are meant:
+- the image recipe defines the contents.
+- the machine configuration defines the "shape" (binary, partitions,
+  layout, whatever) that your specific platform can use.
 
--- 
-Maciej Pijanowski
-Embedded Systems Engineer
-https://3mdeb.com | @3mdeb_com
+Greetz
 
+>=20
+> my-disk-image.wks:
+> part /boot --source bootimg-efi-initramfs
+> --sourceparams=3D"loader=3Dgrub-efi,initrd=3Dmy-initramfs.cpio.gz" --on=
+disk
+> sda --label msdos --active --align 1024 --use-uuid
+> bootloader --ptable gpt --timeout=3D1
+>=20
+> 2) Or should I create a new recipe that builds the WIC and depends on
+> the initramfs?
+>=20
+> Remember, I have no rootfs other than the (non-bundled) initramfs.
+> Depending on the answers, I will come up with the issues I see.
 
---------------BAB63DE01E46C8711FFE059C
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
+--=20
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+Josef Holzmayr
+Software Developer Embedded Systems
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 28.11.2019 09:37, Leon Woestenberg
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAMjhiJi45vpJ-vCuqdbFKv8gmR=XLgDLz9z=ViFvoV7SDOUMqA@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="ltr">Hello all,
-        <div><br>
-        </div>
-        <div>What is the intended approach of building images using WIC?</div>
-        <div><br>
-        </div>
-        <div>Most image types (except .wic) build a (root or initial
-          ram) filesystem from *packages*, then create the respective
-          archive or filesystem from it.</div>
-      </div>
-    </blockquote>
-    I think the rootfs is *always* assembled in the workdir (no matter
-    which IMAGE_FSTYPES you choose.<br>
-    <blockquote type="cite"
-cite="mid:CAMjhiJi45vpJ-vCuqdbFKv8gmR=XLgDLz9z=ViFvoV7SDOUMqA@mail.gmail.com">
-      <div dir="ltr">
-        <div><br>
-        </div>
-        <div>The .wic image type however, builds an image from *images*
-          rather than packages.</div>
-      </div>
-    </blockquote>
-    I'm not sure if this is correct. WIC is just one of the
-    IMAGE_FSTYPES to choose from.<br>
-    It does a little bit more then the tar.gz FSTYPE. The tar.gz just
-    compresses the content<br>
-    of rootfs. The WIC FSTYPE creates a disk image and installs the
-    rootfs on a given<br>
-    partition (depends on the WKS file chosen). The rootfs source is the
-    same in<br>
-    those both cases, no matter which FSTYPES you choose. It is made up
-    of packages.<br>
-    <blockquote type="cite"
-cite="mid:CAMjhiJi45vpJ-vCuqdbFKv8gmR=XLgDLz9z=ViFvoV7SDOUMqA@mail.gmail.com">
-      <div dir="ltr">
-        <div><br>
-        </div>
-        <div>It therefore seems incorrect we can just add IMAGE_FSTYPES
-          += "wic", because the corresponding .wks might depend on
-          multiple other images than just ${PN}.<br>
-        </div>
-        <div><br>
-        </div>
-        <div>Should we, or do we have a recipe example that builds only
-          a .wic image, based on one or more other existing images? (and
-          thus not populate a filesystem itself)<br>
-        </div>
-      </div>
-    </blockquote>
-    I have not seen such case yet. IIUC, rootfs in the workdir is always
-    populated when the image is built.<br>
-    <blockquote type="cite"
-cite="mid:CAMjhiJi45vpJ-vCuqdbFKv8gmR=XLgDLz9z=ViFvoV7SDOUMqA@mail.gmail.com">
-      <div dir="ltr">
-        <div><br>
-        </div>
-        <div>Regards,</div>
-        <div><br>
-        </div>
-        <div>Leon.<br>
-        </div>
-        <div><br>
-        </div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">-=-=-=-=-=-=-=-=-=-=-=-
-Links: You receive all messages sent to this group.
+Tel: +49 8444 9204-48
+Fax: +49 8444 9204-50
 
-View/Reply Online (#47445): <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/message/47445">https://lists.yoctoproject.org/g/yocto/message/47445</a>
-Mute This Topic: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/mt/63986097/3616795">https://lists.yoctoproject.org/mt/63986097/3616795</a>
-Group Owner: <a class="moz-txt-link-abbreviated" href="mailto:yocto+owner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
-Unsubscribe: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub</a>  [<a class="moz-txt-link-abbreviated" href="mailto:maciej.pijanowski@3mdeb.com">maciej.pijanowski@3mdeb.com</a>]
--=-=-=-=-=-=-=-=-=-=-=-
-</pre>
-    </blockquote>
-    <pre class="moz-signature" cols="72">-- 
-Maciej Pijanowski
-Embedded Systems Engineer
-<a class="moz-txt-link-freetext" href="https://3mdeb.com">https://3mdeb.com</a> | @3mdeb_com</pre>
-  </body>
-</html>
+R-S-I Elektrotechnik GmbH & Co. KG
+Woelkestrasse 11
+D-85301 Schweitenkirchen
+www.rsi-elektrotechnik.de
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+Amtsgericht Ingolstadt =E2=80=93 GmbH: HRB 191328 =E2=80=93 KG: HRA 17039=
+3
+Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+Ust-IdNr: DE 128592548=20
 
---------------BAB63DE01E46C8711FFE059C--
+_____________________________________________________________
+Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+USt-IdNr.: DE 128592548
+
