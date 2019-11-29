@@ -1,352 +1,706 @@
-Received: from EUR02-VE1-obe.outbound.protection.outlook.com (EUR02-VE1-obe.outbound.protection.outlook.com [40.107.2.73])
- by mx.groups.io with SMTP id smtpd.web11.6570.1575021723996552486
+Received: from 4.mo173.mail-out.ovh.net (4.mo173.mail-out.ovh.net [46.105.34.219])
+ by mx.groups.io with SMTP id smtpd.web12.6580.1575021928541042623
  for <yocto@lists.yoctoproject.org>;
- Fri, 29 Nov 2019 02:02:05 -0800
+ Fri, 29 Nov 2019 02:05:29 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@spinetix.com header.s=selector2 header.b=PxY1Xv/L;
- spf=pass (domain: spinetix.com, ip: 40.107.2.73, mailfrom: diego.santacruz@spinetix.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=diM0k120NLtwEmwPkhzChZO0nUtybK/I3/7NDTV05Ry3KIa8TFU6U3NUnaSo/rXAp5JroATsaRjDqar7unkfigmy/mdtTsjw9QmvwGKW2JVXhudSjIYkBuEqrkv7WYbPHprHL+SmU35Kf3xkTBiVTV5dKnU/UnEyFx1+YbxRnlO4XFy+uITffi1N2c77Mrd/gUHRc1NUN3IsTrIKTNC6DcW0PY1FIW2WHMZ3y66HBmCND8A2Lg6lJEmBp1wiiHilMZSvo6vvg8mASRH1Dw2f82N5wRvSXsNDatoC6xttLdYkDWNLhMhIkGRfkfMR3xTCXWOHhYntJm6JQrq/1fyCmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I4Yt4LdII84OQK2QKCBc8laxEbDZnG2xSXtlRI8XH6Y=;
- b=SNy6uVDLgfdoo+wYC8H6s2wRLs5AfW2evwlsb126Pe643amxzfcFxE6zcgp91XN87oaZou5cLG9X3eYUvycA77pB4Q7bFemvxtziJC6vQsP8JEpwRhVC0MMmm4YZupXAXX9vX4TfWSvlgLc4TxqfKjDCmH9cgQ2UROfMVPWX4F9+0aO8GQuWvVL+6nMj4yqAJs3+FPelBYLQ+YXRXqNq/K6kEkTNf4WzOd8wYVe6IJWfe3UW9VLO43HqnjFP27zEMKE9vdfZ4mF0W54OwzgPHYSAV8BlJWXLzJ/JjeXS0z1JoxKvK0Iu3q0HjZKtqdWb9aztHmq/sIyen2cWGdwdWQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=spinetix.com; dmarc=pass action=none header.from=spinetix.com;
- dkim=pass header.d=spinetix.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=spinetix.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=I4Yt4LdII84OQK2QKCBc8laxEbDZnG2xSXtlRI8XH6Y=;
- b=PxY1Xv/LII2ymIrljrjoVXAmD4NQTXr6XWZsfQzJGrsXINc0a8L4VIzlhDPETYcQBGljwacXcuxrLPnzZXSOXm3eIX4Pk+Cej7bG/cWEfIKWtVv/TaXP3UN9LUAPKg/kw2tehMbDbPQDP/dYrzgkDUfYTpkktd5yTbFWWxQFdI4=
-Received: from VI1PR01MB5167.eurprd01.prod.exchangelabs.com (20.178.120.225)
- by VI1PR01MB6286.eurprd01.prod.exchangelabs.com (10.141.210.148) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2495.21; Fri, 29 Nov
- 2019 10:01:59 +0000
-Received: from VI1PR01MB5167.eurprd01.prod.exchangelabs.com
- ([fe80::6d7a:666f:b19e:685d]) by VI1PR01MB5167.eurprd01.prod.exchangelabs.com
- ([fe80::6d7a:666f:b19e:685d%3]) with mapi id 15.20.2495.014; Fri, 29 Nov 2019
- 10:01:59 +0000
-From: "Diego Santa Cruz" <diego.santacruz@spinetix.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-CC: "dan@emutex.com" <dan@emutex.com>
+ dkim=missing; spf=softfail (domain: 3mdeb.com, ip: 46.105.34.219, mailfrom: maciej.pijanowski@3mdeb.com)
+Received: from player726.ha.ovh.net (unknown [10.108.1.121])
+	by mo173.mail-out.ovh.net (Postfix) with ESMTP id B699B124967
+	for <yocto@lists.yoctoproject.org>; Fri, 29 Nov 2019 11:05:26 +0100 (CET)
+Received: from 3mdeb.com (85-222-117-222.dynamic.chello.pl [85.222.117.222])
+	(Authenticated sender: maciej.pijanowski@3mdeb.com)
+	by player726.ha.ovh.net (Postfix) with ESMTPSA id 8CC12CA10E03;
+	Fri, 29 Nov 2019 10:05:24 +0000 (UTC)
 Subject: Re: Private: Re: [yocto] Which layer is best for tpm2 stack
-Thread-Topic: Private: Re: [yocto] Which layer is best for tpm2 stack
-Thread-Index: AdWlcj+pFY+xnJxWQbad3tCR4DjgXwAaMFOAADAJYkA=
-Date: Fri, 29 Nov 2019 10:01:59 +0000
-Message-ID: 
- <VI1PR01MB51673C82AC57A3DEB911070588460@VI1PR01MB5167.eurprd01.prod.exchangelabs.com>
-References: 
- <DB7PR01MB5161A4966BAC929095385B4488440@DB7PR01MB5161.eurprd01.prod.exchangelabs.com>
+To: diego.santacruz@spinetix.com,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <DB7PR01MB5161A4966BAC929095385B4488440@DB7PR01MB5161.eurprd01.prod.exchangelabs.com>
  <25293.1574938811729379315@lists.yoctoproject.org>
-In-Reply-To: <25293.1574938811729379315@lists.yoctoproject.org>
-Accept-Language: en-GB, fr-CH, fr-FR, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Diego.SantaCruz@spinetix.com; 
-x-originating-ip: [46.14.255.78]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7ca77e81-a2b1-4e6b-a805-08d774b32cdd
-x-ms-traffictypediagnostic: VI1PR01MB6286:
-x-microsoft-antispam-prvs: 
- <VI1PR01MB6286E6B11422E8FA3BA80E8288460@VI1PR01MB6286.eurprd01.prod.exchangelabs.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 0236114672
-x-forefront-antispam-report: 
- SFV:NSPM;SFS:(10009020)(366004)(396003)(346002)(39840400004)(376002)(136003)(199004)(189003)(11346002)(446003)(71190400001)(71200400001)(790700001)(14454004)(3846002)(508600001)(2351001)(14444005)(413944005)(606006)(52536014)(66066001)(316002)(6916009)(76116006)(25786009)(6116002)(256004)(2906002)(66946007)(66476007)(66556008)(64756008)(66446008)(5660300002)(54896002)(6246003)(8936002)(6436002)(86362001)(74316002)(8676002)(1730700003)(81156014)(81166006)(9686003)(5640700003)(16119065003)(6306002)(55016002)(4326008)(229853002)(76176011)(102836004)(26005)(6506007)(7696005)(53546011)(99286004)(186003)(2501003)(7736002)(33656002)(236005);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR01MB6286;H:VI1PR01MB5167.eurprd01.prod.exchangelabs.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: spinetix.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- yZ53QR+s+RMOGbSUVDRq/gzoi5lRD8gn2kfoGS94PZc6OXfGG8FnxKF44VImgvbYx0gq7yh96cg7/pH9OPBPmb7ZTaaXFS3PxNTvpERB1jKjvvDyybn6pchNoW6tkwYlKDZM+C9uAgw/Y0nz59wdWfyWRdjGzrtNLjqiUGU4tn4j8LUaSv0v/DoGDvrdxzq6Tsv9D/NU1OLjC+rOlbEyrvYdOui4zSmM4+aXoSwfVhWltUlPs2iRHjnjbMcTosVQEdaXRB8TVqnsfXbLNp2G73BiWXaEB/nhoBfYzrFvtz5wc4epJxm97q7ZN2l4RrT1j7xeqxwpxRC/TKcITK+dmz+j8MLyoN1qdeJVcaup6BbF2YV/2++++5uGaysCdoWdTJTrjKI2jTMKF0sYXVj3Vj9L1/xr78jvT+wN0NHfyxIJdtWM6zbqaDOLbwWdZNJntI3/2NSJdGNMS4qjrAPusNGTOcNIHpeJsQabuqIaLNg=
-x-ms-exchange-transport-forked: True
+ <VI1PR01MB51673C82AC57A3DEB911070588460@VI1PR01MB5167.eurprd01.prod.exchangelabs.com>
+From: "Maciej Pijanowski" <maciej.pijanowski@3mdeb.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=maciej.pijanowski@3mdeb.com; keydata=
+ mQINBFy+vRwBEACs+tNUJ4aKRaJm4BDZxCRBTMRS/ng8XT9yEkH6xnaOroLtYM7Uwb2QqvtN
+ uBR6Q6adYF/IcnzOuJeIlVEHloU+GyihHq1U4kJH6qI4FnnjjDhC3g7Tpms+R+yLGI1/lQ4x
+ 4wA7m1Mm1oNBF7ry+p640/1rj3xxa6UEv387/coVWNP6scxhcff+rYPCkquViKob96VF/XeY
+ vav+DrBK96v9VyR3EK2DQjmw2FY/0Q95bOZ/CcfbmhIe4rCcRuZECR5zyvPVdTLtgfVJIteG
+ bhHXDLXaKVXtshdUrAPiqY6Cd0alRjEnXi9QNoyx/Vcl8ChpYTLHYqZSfsjpJhnpXSfgS6YH
+ iOhViUP5IB0kDvnDl/8fbUiBeUgXZqY4+j3NsL6FkbNch+7zMShj1cZwr0u5dO2MzcmLuYJm
+ JwMM1dE9hwRTfPPQfagGfiAcLt6IuK0cVygU7WOtAVbBXgoqTE76qbAc3qmdSiSmVL53AK76
+ meVEtt15lIZClulAMMqb23x0D+/bFCgmyywGjpWEyZA4q7ZRZomWxFr9BxKVQAyKGM5d6gQP
+ lsFFFCbuDr/gOsrXg6DTUm3amEMwGobbtU/ZWzn8OW8wjNeQnB5efJBhzt/ORihaE+5KXfq5
+ CwX9rurlIlUDT/t96VoBkYDeg36M0f7sP+7SVyPi1Qpum66h4wARAQABtC9NYWNpZWogUGlq
+ YW5vd3NraSA8bWFjaWVqLnBpamFub3dza2lAM21kZWIuY29tPokCNwQTAQgAIQUCXL69HAIb
+ AwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRDxQB0uHMsZ70SVEACI+qknq7ZImBXu7ha3
+ mQ6IJwxa9UgDwExbDGdUv6OeHAV6fGoyRsKE7mV1Q1y/coJd4vQlQBTKT7sJFlIGcSmtcjPS
+ 2OShHy8IiNf1Hy/7juV2Oxs3fv1f9cdLIzLe/oF2uRdKRRM2pgYiz8SeS6Q+MPUmXN1qOpmD
+ glvf6ODhAiTj84RaeR5ikmW+9/Ldpt2PAUKT2PkHTQOKTkAkE9w+VTxdo+bmj//QIJtFT41f
+ 2A7nDESzSo38Jw91jXdNb8f7lOd+RCl1hlf09agbQnKFB1LFdbGsLvYLUjIgvMF+rOOGjeXR
+ WOqo8WoowA/FfJYC9Rw+9qqAJ6TvjkxeZrhXxCxgHuA60mWxn/NofbxtZSYuHw6Abwg71Nta
+ SJ07qCCaSHlwouYcGgSatg1mmqqOkOPbp0sls54Go1FR3R9yJJR5fBJEl1amiu/ytLCbdEVT
+ Y8bE6bcgwBk7mWzNmdmf/EykaNIPbwnPDtLIQ+9rDX34ACIJNbxdMCjmrocKVBTJ9cSOlOuQ
+ xlQrrmdFKAnz0exvvE9YACgmlZ0LjzGFwm4U9G5BdJDkAeNQfbRs4CkCPgBpInmMjoelpFTW
+ dCDoGilLikNjGfgfCc8ENccw9rZndmbuWKixVMRXU3R/Fxjc0xtJvL5Iz7HLxzvtmN/OBShG
+ +iFROS+HC6tAkVYC1rkCDQRcvr0cARAAuQDEynwHXPMV54ZoBfLxURH63RzhIjYlX88HnqEn
+ /mNY2FIwUtKS73LLl7ljH4XLFDGZCEFgYttddc9wwJXw9pDvVxLICV3nTKNyBipShj/LOGbf
+ B4Pk0qlkKx5KpqSmVFZRM7mwK88tGhAILfu9IBSk/QOS1QRFztB0L2kkU/UslyJqoMD4qJqI
+ QGwPf5drfK6c685yFhdDcHcXeNgnTap68wviPLBAhRPMd8qDxMIZMARi+wxb5w6OwDxetSJn
+ kNkxCtMpiXbna/hTMIvRqC9VgwBrAINzsJMk4qVqy5CYXNJ/tkHAtTIHISliRkaZYBDdXCo9
+ SltNctQGIK1IaqTf8iLq4pehm252NTVw8QYw2usErsHp3fZLNTcJhpr4prq4aIP8ERzbaBb/
+ 02i6VXAjVS5LNrIqXvkJkOeLfLRC2Fwbj6sdK5maRBGmtkGvhXJYIUlbQchY83dbQziQoMxM
+ 97ZQO0l5QZRJAIjIyYXx4AaZBxoHXr9jdle54Rj/+Lru54/yDT8zWxzO+PaotQxykgEsDTXv
+ T8+kfpGOfd3ojfrKhX+bTym0TT/MVMI5CYqllQ3wF9QZFchj0I//8148Fanezj8sHbGNdNi6
+ 4mpKGpEBpaLBwySx+o7SaxLvlD4GbqETIwoOxMcpvo7nQKpgHeOEu81+SDc+9KKSFjEAEQEA
+ AYkCHwQYAQgACQUCXL69HAIbDAAKCRDxQB0uHMsZ70tNEACA0ZKeJYPUHy+95d20N/i31Oze
+ BzbMksMrd/j+qPOgeTjEytxrfeOVQY/gok0sOvhDYoFvLiip0lxrIS/tHZcaH/CQn0jZkaHA
+ tGWy4hrb7wKnUEpAAwepYQyxxPy/upliLwmLX7oxdvJIY0A3T/m+8gLzR+OEJB4MfGUypSzT
+ N2RY2xTyvXUQYgw/iRHucduCYv0ZNHCzs2CtKeZpcuuozClAjPywwItn0o3YJDdZWShd6WmO
+ cOnklq9XjwxTOYWxn2i/NGv/BY7DOALzrFbp66hjMa0Vz7lCGKvSDVDcJLBnNd4Jf69DB1Ie
+ pHx5jdJHqk61DZq4yYQBh/MM4oAP7MsUE02rnp+pXqAjJUhFp6+wLP1irRL+SzdYGdda1uio
+ lhfvd/icZAEuMUnnaSkA28NjoIVwI5YmdDKuqmFWCA8PSHY8k+LLxuk/AZdV862OYCb1+r7l
+ sc1l7tHAPHGGjG3i7Hh89FdAMQ0vSGTkGuOZIAKF7atKf7TVc7M3PPT3RACCXx0ABRA3/FqR
+ lX18nOduQOSYS5LGRg4dHv5m9kgu6asXmwDP82sg8ca1RsxXuTLCrIYpGlGkThnzgqWxlC7M
+ Ridv3wyyJp8CIgdeYl4oZaSFhz12B+VaM1n8y8Nsg1e9oHHNdEWT1/S5QJRb4Ig3LQOmUhZw
+ 0f2bcrTp9w==
+Message-ID: <2b4e22cb-1e21-4bde-fd31-defebc02d347@3mdeb.com>
+Date: Fri, 29 Nov 2019 11:05:22 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-X-OriginatorOrg: spinetix.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7ca77e81-a2b1-4e6b-a805-08d774b32cdd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Nov 2019 10:01:59.5757
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 5f4034fa-ed2d-4840-a93f-acb1e9633b93
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Ez0D4YDVMFGJr9pvkE+yVANLQp/XU4yXfo0LYhRIQC24wAx59C0zdI1Qd28+qZGADCgXunCn5xXMfkOi6QMgstkwv+Z6mBcxcsjEoogSUwo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR01MB6286
-Content-Language: en-US
+In-Reply-To: <VI1PR01MB51673C82AC57A3DEB911070588460@VI1PR01MB5167.eurprd01.prod.exchangelabs.com>
+X-Ovh-Tracer-Id: 17106360234706087430
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 49
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrudeiledgtdelucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdqfffguegfifdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucgoufhushhpvggtthffohhmrghinhculdegledmnecujfgurhepuffvfhfhkffffgggjggtsehgtderofdtfeejnecuhfhrohhmpeforggtihgvjhcurfhijhgrnhhofihskhhiuceomhgrtghivghjrdhpihhjrghnohifshhkihesfehmuggvsgdrtghomheqnecuffhomhgrihhnpegvvghpuhhrlhdrtghomhdpfehmuggvsgdrtghomhdpshhpihhnvghtihigrdgtohhmpdihohgtthhophhrohhjvggtthdrohhrghdpghhithhhuhgsrdgtohhmnecukfhppedtrddtrddtrddtpdekhedrvddvvddruddujedrvddvvdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjedviedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmpdhrtghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
+X-Groupsio-MsgNum: 47464
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="NUzQ04zIgHNTGCQFTaAw1PRSH4nsK3y43"
+
+--NUzQ04zIgHNTGCQFTaAw1PRSH4nsK3y43
+Content-Type: multipart/mixed; boundary="zSUj2iybXY6fW776eMsmlMWdlBvk2Mtzc";
+ protected-headers="v1"
+From: Maciej Pijanowski <maciej.pijanowski@3mdeb.com>
+To: diego.santacruz@spinetix.com,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Message-ID: <2b4e22cb-1e21-4bde-fd31-defebc02d347@3mdeb.com>
+Subject: Re: Private: Re: [yocto] Which layer is best for tpm2 stack
+References: <DB7PR01MB5161A4966BAC929095385B4488440@DB7PR01MB5161.eurprd01.prod.exchangelabs.com>
+ <25293.1574938811729379315@lists.yoctoproject.org>
+ <VI1PR01MB51673C82AC57A3DEB911070588460@VI1PR01MB5167.eurprd01.prod.exchangelabs.com>
+In-Reply-To: <VI1PR01MB51673C82AC57A3DEB911070588460@VI1PR01MB5167.eurprd01.prod.exchangelabs.com>
+
+--zSUj2iybXY6fW776eMsmlMWdlBvk2Mtzc
 Content-Type: multipart/alternative;
-	boundary="_000_VI1PR01MB51673C82AC57A3DEB911070588460VI1PR01MB5167eurp_"
+ boundary="------------63C29FEE6F7C5C11509B7213"
+Content-Language: en-US
 
---_000_VI1PR01MB51673C82AC57A3DEB911070588460VI1PR01MB5167eurp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--------------63C29FEE6F7C5C11509B7213
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-RGVhciBhbGwsDQoNCkkgZ290IHRoZSBmZWVkYmFjayBiZWxvdyBieSBwcml2YXRlIGVtYWlsICh3
-YXMgbWVhbnQgdG8gYmUgc2VudCB0byB0aGUgbS1sKSwgc28gSSB0aGluayBJ4oCZbGwgZ28gd2l0
-aCBtZXRhLXRtcDIgZnJvbSBtZXRhLXNlY3VyZS1jb3JlIGZvciBub3cuDQoNCkJ1dCBJIG1heSBz
-d2l0Y2ggdG8gbWV0YS10cG0gZnJvbSBtZXRhLXNlY3VyaXR5IGluIHRoZSBmdXR1cmUgYXMgaXQg
-c2VlbXMgdG8gaGF2ZSBtb3JlIHRwbTIgcmVsYXRlZCByZWNpcGVzIChJ4oCZbSBvbiB0aHVkIGZv
-ciBub3cgYW5kIHRoZSB0cG0yLXRvb2xzIGluIHRodWQgYnJhbmNoIG9mIG1ldGEtc2VjdXJpdHkg
-aXMgdG9vIG9sZCkuDQoNCkFueSBvdGhlciBmZWVkYmFjayBmcm9tIHRoZSBjb21tdW5pdHk/DQoN
-ClRoYW5rcywNCg0KRGllZ28NCg0KLS0NCkRpZWdvIFNhbnRhIENydXosIFBoRA0KVGVjaG5vbG9n
-eSBBcmNoaXRlY3QNClQgKzQxIDIxIDM0MSAxNSA1MA0KZGllZ28uc2FudGFjcnV6QHNwaW5ldGl4
-LmNvbTxtYWlsdG86ZGllZ28uc2FudGFjcnV6QHNwaW5ldGl4LmNvbT4gfCBTdWJzY3JpYmUgdG8g
-b3VyIE5ld2xzZXR0ZXI8aHR0cDovL2VlcHVybC5jb20vZGdzODJQPg0Kc3BpbmV0aXguY29tDQoN
-CkZyb206IERhbiBPJ0Rvbm92YW4gdmlhIExpc3RzLllvY3RvcHJvamVjdC5PcmcgPGRhbj1lbXV0
-ZXguY29tQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+DQpTZW50OiAyOCBOb3ZlbWJlciAyMDE5IDEy
-OjAwDQpUbzogRGllZ28gU2FudGEgQ3J1eiA8RGllZ28uU2FudGFDcnV6QHNwaW5ldGl4LmNvbT4N
-ClN1YmplY3Q6IFByaXZhdGU6IFJlOiBbeW9jdG9dIFdoaWNoIGxheWVyIGlzIGJlc3QgZm9yIHRw
-bTIgc3RhY2sNCg0KT24gV2VkLCBOb3YgMjcsIDIwMTkgYXQgMDI6NTYgUE0sIERpZWdvIFNhbnRh
-IENydXogd3JvdGU6DQoNCkhlbGxvLA0KDQoNCg0KSSBuZWVkIHRvIHVzZSBhIFRQTTIgc29mdHdh
-cmUgc3RhY2sgZm9yIG15IHByb2plY3QgKHRwbTItdG9vbHMsIHRwbTItYWJybWQsIHRwbTItdHNz
-LCBldGMuKSwgd2hlcmUgSSBhbSBhbHJlYWR5IHVzaW5nIFlvY3RvLCBtZXRhLWludGVsLCBtZXRh
-LW9lLCBtZXRhLW5ldHdvcmtpbmcsIGV0Yy4NCg0KDQoNCkkgc2VlIHRoZXJlIGFyZSBhdCBsZWFz
-dCB0aGUgZm9sbG93aW5nIHRocmVlIGxheWVycyB0aGF0IGNhcnJ5IHRoZSBuZWNlc3NhcnkgVFBN
-MiBiaXRzLCB3aXRoIHZhcnlpbmcgcmVjaXBlIHZlcnNpb25zLg0KDQogICogICBtZXRhLXRwbSBp
-biBtZXRhLXNlY3VyaXR5IHJlcG8gKGh0dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvY2dpdC9j
-Z2l0LmNnaS9tZXRhLXNlY3VyaXR5LykNCiAgKiAgIG1ldGEtdHBtMiBpbiBtZXRhLXNlY3VyZS1j
-b3JlIHJlcG8gKGh0dHBzOi8vZ2l0aHViLmNvbS9qaWF6aGFuZzAvbWV0YS1zZWN1cmUtY29yZSkN
-CiAgKiAgIG1ldGEtbWVhc3VyZWQgKGh0dHBzOi8vZ2l0aHViLmNvbS9mbGlocC9tZXRhLW1lYXN1
-cmVkKQ0KDQoNCg0KTXkgY3VycmVudCBvYmplY3RpdmUgaXMgdG8gdXNlIHRoZSBUUE0yIGFzIGEg
-c2VjdXJpdHkgY2hpcCBmcm9tIG91ciBzb2Z0d2FyZSAoaW4gdGhlIGZ1dHVyZSB3ZSBtYXkgZXh0
-ZW5kIGl0cyB1c2UgdG8gcm9vdCBmcyBlbmNyeXB0aW9uIGtleXMgYW5kIHRoZSBsaWtlKS4gQXJl
-IHRoZXJlIGFueSByZWNvbW1lbmRhdGlvbnMgYXMgdG8gd2hpY2ggb2YgdGhlc2UgbGF5ZXJzIHdv
-dWxkIGJlIG1vcmUgYXBwcm9wcmlhdGUsIGlzIGJldHRlciBtYWludGFpbmVkLCBldGMuPw0KSSd2
-ZSBwZXJzb25hbGx5IHVzZWQgdGhlIG1ldGEtdHBtMiBsYXllciBpbiBtZXRhLXNlY3VyZS1jb3Jl
-IHJlcG8gd2l0aCBnb29kIHN1Y2Nlc3Mgb24gYm90aCBJbnRlbCBhbmQgQVJNIHBsYXRmb3JtcyB3
-aXRoIEluZmluZW9uIFRQTSBjaGlwcy4gIEluIHBhcnRpY3VsYXIsIEkgdXNlZCB0aGUgY3J5cHRm
-cy10cG0yIGFuZCBzZWN1cmUtY29yZSBpbml0cmFtZnMgcmVjaXBlcyBmcm9tIHRoYXQgbGF5ZXIg
-Zm9yIG1hbmFnaW5nIHJvb3QgZnMgZW5jcnlwdGlvbi4gIElJUkMsIHRoaXMgbGF5ZXIgc2VlbWVk
-IHRvIG9mZmVyIHRoZSBiZXN0IHN1cHBvcnQgZm9yIHdoYXQgd2UgbmVlZGVkIHJlZ2FyZGluZyBU
-UE0yIG9uIFlvY3RvICdTdW1vJyBhdCB0aGUgdGltZS4NCg0KSSBoYXZlbid0IHJlYWxseSBsb29r
-ZWQgYXQgdGhlIG90aGVyIGxheWVycyByZWNlbnRseSBzbyBJIGNhbid0IGdpdmUgYSBjb21wYXJp
-c29uIHdpdGggdGhvc2UuICBIb3dldmVyLCBJIGRpZCBub3RpY2UgYSBzaWduaWZpY2FudCBhbW91
-bnQgb2YgYWN0aXZpdHkgdmlhIHRoZSBtYWlsaW5nIGxpc3QgcmVsYXRlZCB0byBUUE0yIHN1cHBv
-cnQgZm9yIHRoZSBtZXRhLXNlY3VyaXR5IHJlcG8gaW4gcmVjZW50IHdlZWtzLCBzbyB0aGF0J3Mg
-cHJvYmFibHkgd29ydGggYSBsb29rIHRvby4NCg0KDQoNCg0KDQpCVFcsIHRoZSBtZXRhLXRwbSBs
-YXllciBpbiBtZXRhLXNlY3VyaXR5IHJlcG8gaXMgbm90IGxpc3RlZCBpbiB0aGUgT3BlbkVtYmVk
-ZGVkIExheWVyIGluZGV4LCBhbHRob3VnaCBtZXRhLXNlY3VyaXR5IGl0c2VsZiBhbmQgc29tZSBv
-ZiB0aGUgb3RoZXIgbGF5ZXJzIGluIHRoYXQgcmVwbyBhcmUgbGlzdGVkLiBJcyB0aGF0IGJlY2F1
-c2Ugb2YgYSBuYW1lIGNsYXNoIHdpdGggdGhlIG9uZXMgdW5kZXIgdGhlIG1ldGEtc2VjdXJlLWNv
-cmUgcmVwbywgd2hpY2ggYWxzbyBjYXJyaWVzIGxheWVycyBuYW1lZCBtZXRhLXRwbSBhbmQgbWV0
-YS1pbnRlZ3JpdHk/DQoNCg0KDQpUaGFua3MsDQoNCg0KDQpEaWVnbw0KDQotLQ0KRGllZ28gU2Fu
-dGEgQ3J1eiwgUGhEDQpUZWNobm9sb2d5IEFyY2hpdGVjdA0Kc3BpbmV0aXguY29tDQoNCg0K
 
---_000_VI1PR01MB51673C82AC57A3DEB911070588460VI1PR01MB5167eurp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+On 29.11.2019 11:01, Diego Santa Cruz via Lists.Yoctoproject.Org wrote:
+>
+> Dear all,
+>
+> =C2=A0
+>
+> I got the feedback below by private email (was meant to be sent to the
+> m-l), so I think I=E2=80=99ll go with meta-tmp2 from meta-secure-core f=
+or now.
+>
+> =C2=A0
+>
+> But I may switch to meta-tpm from meta-security in the future as it
+> seems to have more tpm2 related recipes (I=E2=80=99m on thud for now an=
+d the
+> tpm2-tools in thud branch of meta-security is too old).
+>
+> =C2=A0
+>
+> Any other feedback from the community?
+>
+I'm currently using meta-tpm from meta-security for tpm2-tools.
+My reasoning was that this one will likely be the one to go in the long
+run since it's hosted on the poky git (?).
+>
+> =C2=A0
+>
+> Thanks,
+>
+> =C2=A0
+>
+> Diego
+>
+> =C2=A0
+>
+> --
+> *Diego Santa Cruz, PhD*
+> Technology Architect
+> T +41 21 341 15 50
+> diego.santacruz@spinetix.com <mailto:diego.santacruz@spinetix.com>|
+> Subscribe to our Newlsetter <http://eepurl.com/dgs82P>
+>
+> spinetix.com
+>
+> =C2=A0
+>
+> *From:*Dan O'Donovan via Lists.Yoctoproject.Org
+> <dan=3Demutex.com@lists.yoctoproject.org>
+> *Sent:* 28 November 2019 12:00
+> *To:* Diego Santa Cruz <Diego.SantaCruz@spinetix.com>
+> *Subject:* Private: Re: [yocto] Which layer is best for tpm2 stack
+>
+> =C2=A0
+>
+> On Wed, Nov 27, 2019 at 02:56 PM, Diego Santa Cruz wrote:
+>
+>     Hello,
+>
+>     =C2=A0
+>
+>     I need to use a TPM2 software stack for my project (tpm2-tools,
+>     tpm2-abrmd, tpm2-tss, etc.), where I am already using Yocto,
+>     meta-intel, meta-oe, meta-networking, etc.
+>
+>     =C2=A0
+>
+>     I see there are at least the following three layers that carry the
+>     necessary TPM2 bits, with varying recipe versions.
+>
+>       * meta-tpm in meta-security repo
+>         (https://git.yoctoproject.org/cgit/cgit.cgi/meta-security/)
+>       * meta-tpm2 in meta-secure-core repo
+>         (https://github.com/jiazhang0/meta-secure-core)
+>       * meta-measured (https://github.com/flihp/meta-measured)
+>
+>     =C2=A0
+>
+>     My current objective is to use the TPM2 as a security chip from
+>     our software (in the future we may extend its use to root fs
+>     encryption keys and the like). Are there any recommendations as to
+>     which of these layers would be more appropriate, is better
+>     maintained, etc.?
+>
+> I've personally used the meta-tpm2 layer in meta-secure-core repo with
+> good success on both Intel and ARM platforms with Infineon TPM chips.=C2=
+=A0
+> In particular, I used the cryptfs-tpm2 and secure-core initramfs
+> recipes from that layer for managing root fs encryption.=C2=A0 IIRC, th=
+is
+> layer seemed to offer the best support for what we needed regarding
+> TPM2 on Yocto 'Sumo' at the time.
+>
+> I haven't really looked at the other layers recently so I can't give a
+> comparison with those.=C2=A0 However, I did notice a significant amount=
+ of
+> activity via the mailing list related to TPM2 support for the
+> meta-security repo in recent weeks, so that's probably worth a look too=
+=2E
+>
+>     =C2=A0
+>
+>     =C2=A0
+>
+>     BTW, the meta-tpm layer in meta-security repo is not listed in the
+>     OpenEmbedded Layer index, although meta-security itself and some
+>     of the other layers in that repo are listed. Is that because of a
+>     name clash with the ones under the meta-secure-core repo, which
+>     also carries layers named meta-tpm and meta-integrity?
+>
+>     =C2=A0
+>
+>     Thanks,
+>
+>     =C2=A0
+>
+>     Diego
+>
+>     --=20
+>     *Diego Santa Cruz, PhD**
+>     *Technology Architect
+>     spinetix.com
+>
+>     =C2=A0
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+>
+> View/Reply Online (#47463): https://lists.yoctoproject.org/g/yocto/mess=
+age/47463
+> Mute This Topic: https://lists.yoctoproject.org/mt/64331549/3616795
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [maciej.pija=
+nowski@3mdeb.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
-IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
-Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
-OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
-cjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1z
-b0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjpwdXJw
-bGU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLk1zb0xpc3RQYXJhZ3JhcGgsIGxp
-Lk1zb0xpc3RQYXJhZ3JhcGgsIGRpdi5Nc29MaXN0UGFyYWdyYXBoDQoJe21zby1zdHlsZS1wcmlv
-cml0eTozNDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGNtOw0K
-CW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsNCglmb250LXNp
-emU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCnAubXNvbm9y
-bWFsMCwgbGkubXNvbm9ybWFsMCwgZGl2Lm1zb25vcm1hbDANCgl7bXNvLXN0eWxlLW5hbWU6bXNv
-bm9ybWFsOw0KCW1zby1tYXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdpbi1yaWdodDowY207DQoJ
-bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6MGNtOw0KCWZvbnQtc2l6
-ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KcC5kZWZhbmdl
-ZG1zb25vcm1hbCwgbGkuZGVmYW5nZWRtc29ub3JtYWwsIGRpdi5kZWZhbmdlZG1zb25vcm1hbA0K
-CXttc28tc3R5bGUtbmFtZTpkZWZhbmdlZG1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6
-YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0K
-CW1hcmdpbi1sZWZ0OjBjbTsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxp
-YnJpIixzYW5zLXNlcmlmO30NCnNwYW4uRW1haWxTdHlsZTIxDQoJe21zby1zdHlsZS10eXBlOnBl
-cnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9y
-OndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9u
-bHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJbXNvLWZhcmVhc3QtbGFu
-Z3VhZ2U6RU4tVVM7fQ0KQHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0
-Ow0KCW1hcmdpbjo3Mi4wcHQgNzIuMHB0IDcyLjBwdCA3Mi4wcHQ7fQ0KZGl2LldvcmRTZWN0aW9u
-MQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQovKiBMaXN0IERlZmluaXRpb25zICovDQpAbGlzdCBs
-MA0KCXttc28tbGlzdC1pZDoxOTQ4OTI5Mjk4Ow0KCW1zby1saXN0LXRlbXBsYXRlLWlkczotODQ0
-NzAxNjc2O30NCkBsaXN0IGwwOmxldmVsMQ0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxs
-ZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDozNi4wcHQ7DQoJ
-bXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJ
-bXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsNCglmb250LWZhbWlseTpTeW1ib2w7fQ0KQGxpc3Qg
-bDA6bGV2ZWwyDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwt
-dGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOjcyLjBwdDsNCgltc28tbGV2ZWwtbnVtYmVy
-LXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCgltc28tYW5zaS1mb250LXNp
-emU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlzdCBsMDpsZXZlbDMNCgl7bXNv
-LWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CtzsNCgltc28t
-bGV2ZWwtdGFiLXN0b3A6MTA4LjBwdDsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7
-DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZv
-bnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlzdCBsMDpsZXZlbDQNCgl7bXNvLWxldmVsLW51bWJlci1m
-b3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CtzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6
-MTQ0LjBwdDsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6
-LTE4LjBwdDsNCgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OlN5bWJv
-bDt9DQpAbGlzdCBsMDpsZXZlbDUNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0K
-CW1zby1sZXZlbC10ZXh0Ou+CtzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6MTgwLjBwdDsNCgltc28t
-bGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCgltc28t
-YW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlzdCBsMDps
-ZXZlbDYNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0
-Ou+CtzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6MjE2LjBwdDsNCgltc28tbGV2ZWwtbnVtYmVyLXBv
-c2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCgltc28tYW5zaS1mb250LXNpemU6
-MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlzdCBsMDpsZXZlbDcNCgl7bXNvLWxl
-dmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CtzsNCgltc28tbGV2
-ZWwtdGFiLXN0b3A6MjUyLjBwdDsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJ
-dGV4dC1pbmRlbnQ6LTE4LjBwdDsNCgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQt
-ZmFtaWx5OlN5bWJvbDt9DQpAbGlzdCBsMDpsZXZlbDgNCgl7bXNvLWxldmVsLW51bWJlci1mb3Jt
-YXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CtzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6Mjg4
-LjBwdDsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4
-LjBwdDsNCgltc28tYW5zaS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9
-DQpAbGlzdCBsMDpsZXZlbDkNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1z
-by1sZXZlbC10ZXh0Ou+CtzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6MzI0LjBwdDsNCgltc28tbGV2
-ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCgltc28tYW5z
-aS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpvbA0KCXttYXJnaW4t
-Ym90dG9tOjBjbTt9DQp1bA0KCXttYXJnaW4tYm90dG9tOjBjbTt9DQotLT48L3N0eWxlPjwhLS1b
-aWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1h
-eD0iMTAyNiIgLz4NCjwveG1sPjwhW2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
-PG86c2hhcGVsYXlvdXQgdjpleHQ9ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9
-IjEiIC8+DQo8L286c2hhcGVsYXlvdXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9k
-eSBsYW5nPSJFTi1HQiIgbGluaz0iYmx1ZSIgdmxpbms9InB1cnBsZSI+DQo8ZGl2IGNsYXNzPSJX
-b3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
-eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+RGVhciBhbGwsPG86cD48L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJt
-c28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJtc28tZmFyZWFz
-dC1sYW5ndWFnZTpFTi1VUyI+SSBnb3QgdGhlIGZlZWRiYWNrIGJlbG93IGJ5IHByaXZhdGUgZW1h
-aWwgKHdhcyBtZWFudCB0byBiZSBzZW50IHRvIHRoZSBtLWwpLCBzbyBJIHRoaW5rIEnigJlsbCBn
-byB3aXRoIG1ldGEtdG1wMiBmcm9tIG1ldGEtc2VjdXJlLWNvcmUgZm9yIG5vdy48bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5
-bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9Im1zby1m
-YXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5CdXQgSSBtYXkgc3dpdGNoIHRvIG1ldGEtdHBtIGZyb20g
-bWV0YS1zZWN1cml0eSBpbiB0aGUgZnV0dXJlIGFzIGl0IHNlZW1zIHRvIGhhdmUgbW9yZSB0cG0y
-IHJlbGF0ZWQgcmVjaXBlcyAoSeKAmW0gb24gdGh1ZCBmb3Igbm93IGFuZCB0aGUgdHBtMi10b29s
-cyBpbiB0aHVkIGJyYW5jaCBvZiBtZXRhLXNlY3VyaXR5IGlzDQogdG9vIG9sZCkuPG86cD48L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
-eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJtc28t
-ZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+QW55IG90aGVyIGZlZWRiYWNrIGZyb20gdGhlIGNvbW11
-bml0eT88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBs
-YW5nPSJFTi1VUyIgc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNw
-OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1V
-UyIgc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5UaGFua3MsPG86cD48L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxl
-PSJtc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJtc28tZmFy
-ZWFzdC1sYW5ndWFnZTpFTi1VUyI+RGllZ288bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1
-YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFs
-JnF1b3Q7LHNhbnMtc2VyaWYiPi0tPGJyPg0KPGI+RGllZ28gU2FudGEgQ3J1eiwgUGhEPC9iPjxi
-cj4NClRlY2hub2xvZ3kgQXJjaGl0ZWN0PGJyPg0KPHNwYW4gc3R5bGU9ImNvbG9yOmdyYXkiPlQg
-JiM0Mzs0MSAyMSAzNDEgMTUgNTA8YnI+DQo8L3NwYW4+PC9zcGFuPjxzcGFuIGxhbmc9IkZSIiBz
-dHlsZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNhbnMt
-c2VyaWY7Y29sb3I6Z3JheSI+PGEgaHJlZj0ibWFpbHRvOmRpZWdvLnNhbnRhY3J1ekBzcGluZXRp
-eC5jb20iPjxzcGFuIGxhbmc9IkVOLUdCIiBzdHlsZT0iY29sb3I6IzA1NjNDMSI+ZGllZ28uc2Fu
-dGFjcnV6QHNwaW5ldGl4LmNvbTwvc3Bhbj48L2E+PC9zcGFuPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6OS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZjtjb2xvcjpn
-cmF5Ij4NCiB8IDwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyI+PGEgaHJlZj0iaHR0cDovL2VlcHVy
-bC5jb20vZGdzODJQIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQtZmFtaWx5OiZx
-dW90O0FyaWFsJnF1b3Q7LHNhbnMtc2VyaWY7Y29sb3I6IzA1NjNDMSI+U3Vic2NyaWJlIHRvIG91
-ciBOZXdsc2V0dGVyPC9zcGFuPjwvYT48L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJm
-b250LXNpemU6OS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssc2Fucy1zZXJpZiI+
-PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9
-ImZvbnQtc2l6ZTo5LjBwdDtmb250LWZhbWlseTomcXVvdDtBcmlhbCZxdW90OyxzYW5zLXNlcmlm
-Ij5zcGluZXRpeC5jb208bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48
-bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3Jk
-ZXItbGVmdDpzb2xpZCBibHVlIDEuNXB0O3BhZGRpbmc6MGNtIDBjbSAwY20gNC4wcHQiPg0KPGRp
-dj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBw
-dDtwYWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxz
-cGFuIGxhbmc9IkVOLVVTIj5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gbGFuZz0iRU4tVVMiPiBEYW4g
-TydEb25vdmFuIHZpYSBMaXN0cy5Zb2N0b3Byb2plY3QuT3JnICZsdDtkYW49ZW11dGV4LmNvbUBs
-aXN0cy55b2N0b3Byb2plY3Qub3JnJmd0Ow0KPGJyPg0KPGI+U2VudDo8L2I+IDI4IE5vdmVtYmVy
-IDIwMTkgMTI6MDA8YnI+DQo8Yj5Ubzo8L2I+IERpZWdvIFNhbnRhIENydXogJmx0O0RpZWdvLlNh
-bnRhQ3J1ekBzcGluZXRpeC5jb20mZ3Q7PGJyPg0KPGI+U3ViamVjdDo8L2I+IFByaXZhdGU6IFJl
-OiBbeW9jdG9dIFdoaWNoIGxheWVyIGlzIGJlc3QgZm9yIHRwbTIgc3RhY2s8bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJz
-cDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBXZWQsIE5vdiAyNywgMjAxOSBh
-dCAwMjo1NiBQTSwgRGllZ28gU2FudGEgQ3J1eiB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjxibG9j
-a3F1b3RlIHN0eWxlPSJtYXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPGRp
-dj4NCjxwIGNsYXNzPSJkZWZhbmdlZG1zb25vcm1hbCIgc3R5bGU9Im1hcmdpbjowY207bWFyZ2lu
-LWJvdHRvbTouMDAwMXB0Ij5IZWxsbyw8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJkZWZhbmdl
-ZG1zb25vcm1hbCIgc3R5bGU9Im1hcmdpbjowY207bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij4mbmJz
-cDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJkZWZhbmdlZG1zb25vcm1hbCIgc3R5bGU9Im1h
-cmdpbjowY207bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij5JIG5lZWQgdG8gdXNlIGEgVFBNMiBzb2Z0
-d2FyZSBzdGFjayBmb3IgbXkgcHJvamVjdCAodHBtMi10b29scywgdHBtMi1hYnJtZCwgdHBtMi10
-c3MsIGV0Yy4pLCB3aGVyZSBJIGFtIGFscmVhZHkgdXNpbmcgWW9jdG8sIG1ldGEtaW50ZWwsIG1l
-dGEtb2UsIG1ldGEtbmV0d29ya2luZywgZXRjLjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9ImRl
-ZmFuZ2VkbXNvbm9ybWFsIiBzdHlsZT0ibWFyZ2luOjBjbTttYXJnaW4tYm90dG9tOi4wMDAxcHQi
-PiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9ImRlZmFuZ2VkbXNvbm9ybWFsIiBzdHls
-ZT0ibWFyZ2luOjBjbTttYXJnaW4tYm90dG9tOi4wMDAxcHQiPkkgc2VlIHRoZXJlIGFyZSBhdCBs
-ZWFzdCB0aGUgZm9sbG93aW5nIHRocmVlIGxheWVycyB0aGF0IGNhcnJ5IHRoZSBuZWNlc3Nhcnkg
-VFBNMiBiaXRzLCB3aXRoIHZhcnlpbmcgcmVjaXBlIHZlcnNpb25zLjxvOnA+PC9vOnA+PC9wPg0K
-PHVsIHR5cGU9ImRpc2MiPg0KPGxpIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibXNv
-LWxpc3Q6bDAgbGV2ZWwxIGxmbzEiPm1ldGEtdHBtIGluIG1ldGEtc2VjdXJpdHkgcmVwbyAoPGEg
-aHJlZj0iaHR0cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9jZ2l0L2NnaXQuY2dpL21ldGEtc2Vj
-dXJpdHkvIj5odHRwczovL2dpdC55b2N0b3Byb2plY3Qub3JnL2NnaXQvY2dpdC5jZ2kvbWV0YS1z
-ZWN1cml0eS88L2E+KTxvOnA+PC9vOnA+PC9saT48bGkgY2xhc3M9Ik1zb0xpc3RQYXJhZ3JhcGgi
-IHN0eWxlPSJtc28tbGlzdDpsMCBsZXZlbDEgbGZvMSI+bWV0YS10cG0yIGluIG1ldGEtc2VjdXJl
-LWNvcmUgcmVwbyAoPGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL2ppYXpoYW5nMC9tZXRhLXNl
-Y3VyZS1jb3JlIj5odHRwczovL2dpdGh1Yi5jb20vamlhemhhbmcwL21ldGEtc2VjdXJlLWNvcmU8
-L2E+KTxvOnA+PC9vOnA+PC9saT48bGkgY2xhc3M9Ik1zb0xpc3RQYXJhZ3JhcGgiIHN0eWxlPSJt
-c28tbGlzdDpsMCBsZXZlbDEgbGZvMSI+bWV0YS1tZWFzdXJlZCAoPGEgaHJlZj0iaHR0cHM6Ly9n
-aXRodWIuY29tL2ZsaWhwL21ldGEtbWVhc3VyZWQiPmh0dHBzOi8vZ2l0aHViLmNvbS9mbGlocC9t
-ZXRhLW1lYXN1cmVkPC9hPik8bzpwPjwvbzpwPjwvbGk+PC91bD4NCjxwIGNsYXNzPSJkZWZhbmdl
-ZG1zb25vcm1hbCIgc3R5bGU9Im1hcmdpbjowY207bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij4mbmJz
-cDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJkZWZhbmdlZG1zb25vcm1hbCIgc3R5bGU9Im1h
-cmdpbjowY207bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij5NeSBjdXJyZW50IG9iamVjdGl2ZSBpcyB0
-byB1c2UgdGhlIFRQTTIgYXMgYSBzZWN1cml0eSBjaGlwIGZyb20gb3VyIHNvZnR3YXJlIChpbiB0
-aGUgZnV0dXJlIHdlIG1heSBleHRlbmQgaXRzIHVzZSB0byByb290IGZzIGVuY3J5cHRpb24ga2V5
-cyBhbmQgdGhlIGxpa2UpLiBBcmUgdGhlcmUgYW55IHJlY29tbWVuZGF0aW9ucyBhcw0KIHRvIHdo
-aWNoIG9mIHRoZXNlIGxheWVycyB3b3VsZCBiZSBtb3JlIGFwcHJvcHJpYXRlLCBpcyBiZXR0ZXIg
-bWFpbnRhaW5lZCwgZXRjLj88bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9ibG9ja3F1b3RlPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+SSd2ZSBwZXJzb25hbGx5IHVzZWQgdGhlIG1ldGEtdHBtMiBs
-YXllciBpbiBtZXRhLXNlY3VyZS1jb3JlIHJlcG8gd2l0aCBnb29kIHN1Y2Nlc3Mgb24gYm90aCBJ
-bnRlbCBhbmQgQVJNIHBsYXRmb3JtcyB3aXRoIEluZmluZW9uIFRQTSBjaGlwcy4mbmJzcDsgSW4g
-cGFydGljdWxhciwgSSB1c2VkIHRoZSBjcnlwdGZzLXRwbTIgYW5kIHNlY3VyZS1jb3JlIGluaXRy
-YW1mcyByZWNpcGVzIGZyb20gdGhhdCBsYXllciBmb3IgbWFuYWdpbmcNCiByb290IGZzIGVuY3J5
-cHRpb24uJm5ic3A7IElJUkMsIHRoaXMgbGF5ZXIgc2VlbWVkIHRvIG9mZmVyIHRoZSBiZXN0IHN1
-cHBvcnQgZm9yIHdoYXQgd2UgbmVlZGVkIHJlZ2FyZGluZyBUUE0yIG9uIFlvY3RvICdTdW1vJyBh
-dCB0aGUgdGltZS48YnI+DQo8YnI+DQpJIGhhdmVuJ3QgcmVhbGx5IGxvb2tlZCBhdCB0aGUgb3Ro
-ZXIgbGF5ZXJzIHJlY2VudGx5IHNvIEkgY2FuJ3QgZ2l2ZSBhIGNvbXBhcmlzb24gd2l0aCB0aG9z
-ZS4mbmJzcDsgSG93ZXZlciwgSSBkaWQgbm90aWNlIGEgc2lnbmlmaWNhbnQgYW1vdW50IG9mIGFj
-dGl2aXR5IHZpYSB0aGUgbWFpbGluZyBsaXN0IHJlbGF0ZWQgdG8gVFBNMiBzdXBwb3J0IGZvciB0
-aGUgbWV0YS1zZWN1cml0eSByZXBvIGluIHJlY2VudCB3ZWVrcywgc28gdGhhdCdzIHByb2JhYmx5
-DQogd29ydGggYSBsb29rIHRvby48bzpwPjwvbzpwPjwvcD4NCjxibG9ja3F1b3RlIHN0eWxlPSJt
-YXJnaW4tdG9wOjUuMHB0O21hcmdpbi1ib3R0b206NS4wcHQiPg0KPGRpdj4NCjxwIGNsYXNzPSJk
-ZWZhbmdlZG1zb25vcm1hbCIgc3R5bGU9Im1hcmdpbjowY207bWFyZ2luLWJvdHRvbTouMDAwMXB0
-Ij4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJkZWZhbmdlZG1zb25vcm1hbCIgc3R5
-bGU9Im1hcmdpbjowY207bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij4mbmJzcDs8bzpwPjwvbzpwPjwv
-cD4NCjxwIGNsYXNzPSJkZWZhbmdlZG1zb25vcm1hbCIgc3R5bGU9Im1hcmdpbjowY207bWFyZ2lu
-LWJvdHRvbTouMDAwMXB0Ij5CVFcsIHRoZSBtZXRhLXRwbSBsYXllciBpbiBtZXRhLXNlY3VyaXR5
-IHJlcG8gaXMgbm90IGxpc3RlZCBpbiB0aGUgT3BlbkVtYmVkZGVkIExheWVyIGluZGV4LCBhbHRo
-b3VnaCBtZXRhLXNlY3VyaXR5IGl0c2VsZiBhbmQgc29tZSBvZiB0aGUgb3RoZXIgbGF5ZXJzIGlu
-IHRoYXQgcmVwbyBhcmUgbGlzdGVkLiBJcyB0aGF0IGJlY2F1c2UNCiBvZiBhIG5hbWUgY2xhc2gg
-d2l0aCB0aGUgb25lcyB1bmRlciB0aGUgbWV0YS1zZWN1cmUtY29yZSByZXBvLCB3aGljaCBhbHNv
-IGNhcnJpZXMgbGF5ZXJzIG5hbWVkIG1ldGEtdHBtIGFuZCBtZXRhLWludGVncml0eT88bzpwPjwv
-bzpwPjwvcD4NCjxwIGNsYXNzPSJkZWZhbmdlZG1zb25vcm1hbCIgc3R5bGU9Im1hcmdpbjowY207
-bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJk
-ZWZhbmdlZG1zb25vcm1hbCIgc3R5bGU9Im1hcmdpbjowY207bWFyZ2luLWJvdHRvbTouMDAwMXB0
-Ij5UaGFua3MsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iZGVmYW5nZWRtc29ub3JtYWwiIHN0
-eWxlPSJtYXJnaW46MGNtO21hcmdpbi1ib3R0b206LjAwMDFwdCI+Jm5ic3A7PG86cD48L286cD48
-L3A+DQo8cCBjbGFzcz0iZGVmYW5nZWRtc29ub3JtYWwiIHN0eWxlPSJtYXJnaW46MGNtO21hcmdp
-bi1ib3R0b206LjAwMDFwdCI+RGllZ288bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJkZWZhbmdl
-ZG1zb25vcm1hbCIgc3R5bGU9Im1hcmdpbjowY207bWFyZ2luLWJvdHRvbTouMDAwMXB0Ij48c3Bh
-biBzdHlsZT0iZm9udC1zaXplOjkuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0FyaWFsJnF1b3Q7LHNh
-bnMtc2VyaWYiPi0tDQo8YnI+DQo8c3Ryb25nPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVv
-dDtBcmlhbCZxdW90OyxzYW5zLXNlcmlmIj5EaWVnbyBTYW50YSBDcnV6LCBQaEQ8L3NwYW4+PC9z
-dHJvbmc+PGI+PGJyPg0KPC9iPjxzcGFuIHN0eWxlPSJjb2xvcjpncmF5Ij5UZWNobm9sb2d5IEFy
-Y2hpdGVjdDxicj4NCnNwaW5ldGl4LmNvbTwvc3Bhbj48L3NwYW4+PG86cD48L286cD48L3A+DQo8
-cCBjbGFzcz0iZGVmYW5nZWRtc29ub3JtYWwiIHN0eWxlPSJtYXJnaW46MGNtO21hcmdpbi1ib3R0
-b206LjAwMDFwdCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvYmxvY2txdW90ZT4N
-CjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+--=20
+Maciej Pijanowski
+Embedded Systems Engineer
+GPG: F1401D2E1CCB19EF
+https://3mdeb.com | @3mdeb_com
 
---_000_VI1PR01MB51673C82AC57A3DEB911070588460VI1PR01MB5167eurp_--
+
+--------------63C29FEE6F7C5C11509B7213
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <p><br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 29.11.2019 11:01, Diego Santa Cruz
+      via Lists.Yoctoproject.Org wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:VI1PR01MB51673C82AC57A3DEB911070588460@VI1PR01MB5167.eurprd01=
+=2Eprod.exchangelabs.com">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      <meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+p.defangedmsonormal, li.defangedmsonormal, div.defangedmsonormal
+	{mso-style-name:defangedmsonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle21
+	{mso-style-type:personal-reply;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+=2EMsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:1948929298;
+	mso-list-template-ids:-844701676;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:36.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:72.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:108.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:144.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:180.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:216.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:252.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:288.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:=EF=82=B7;
+	mso-level-tab-stop:324.0pt;
+	mso-level-number-position:left;
+	text-indent:-18.0pt;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"=
+
+            lang=3D"EN-US">Dear all,<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"=
+
+            lang=3D"EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"=
+
+            lang=3D"EN-US">I got the feedback below by private email (was=
+
+            meant to be sent to the m-l), so I think I=E2=80=99ll go with=
+
+            meta-tmp2 from meta-secure-core for now.<o:p></o:p></span></p=
+>
+        <p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"=
+
+            lang=3D"EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"=
+
+            lang=3D"EN-US">But I may switch to meta-tpm from meta-securit=
+y
+            in the future as it seems to have more tpm2 related recipes
+            (I=E2=80=99m on thud for now and the tpm2-tools in thud branc=
+h of
+            meta-security is too old).<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"=
+
+            lang=3D"EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"=
+
+            lang=3D"EN-US">Any other feedback from the community?</span><=
+/p>
+      </div>
+    </blockquote>
+    I'm currently using meta-tpm from meta-security for tpm2-tools.<br>
+    My reasoning was that this one will likely be the one to go in the
+    long run since it's hosted on the poky git (?).<br>
+    <blockquote type=3D"cite"
+cite=3D"mid:VI1PR01MB51673C82AC57A3DEB911070588460@VI1PR01MB5167.eurprd01=
+=2Eprod.exchangelabs.com">
+      <div class=3D"WordSection1">
+        <p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"=
+
+            lang=3D"EN-US"><o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"=
+
+            lang=3D"EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"=
+
+            lang=3D"EN-US">Thanks,<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"=
+
+            lang=3D"EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"=
+
+            lang=3D"EN-US">Diego<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"=
+
+            lang=3D"EN-US"><o:p>=C2=A0</o:p></span></p>
+        <p class=3D"MsoNormal"><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;,sans-s=
+erif">--<br>
+            <b>Diego Santa Cruz, PhD</b><br>
+            Technology Architect<br>
+            <span style=3D"color:gray">T +41 21 341 15 50<br>
+            </span></span><span
+style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:g=
+ray"
+            lang=3D"FR"><a href=3D"mailto:diego.santacruz@spinetix.com"
+              moz-do-not-send=3D"true"><span style=3D"color:#0563C1"
+                lang=3D"EN-GB">diego.santacruz@spinetix.com</span></a></s=
+pan><span
+style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:g=
+ray">
+            | </span><span lang=3D"EN-US"><a
+              href=3D"http://eepurl.com/dgs82P" moz-do-not-send=3D"true">=
+<span
+style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;,sans-serif;color:#=
+0563C1">Subscribe
+                to our Newlsetter</span></a></span><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;,sans-s=
+erif"
+            lang=3D"EN-US"><o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span
+            style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;,sans-s=
+erif">spinetix.com<o:p></o:p></span></p>
+        <p class=3D"MsoNormal"><span style=3D"mso-fareast-language:EN-US"=
+
+            lang=3D"EN-US"><o:p>=C2=A0</o:p></span></p>
+        <div style=3D"border:none;border-left:solid blue 1.5pt;padding:0c=
+m
+          0cm 0cm 4.0pt">
+          <div>
+            <div style=3D"border:none;border-top:solid #E1E1E1
+              1.0pt;padding:3.0pt 0cm 0cm 0cm">
+              <p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span>=
+</b><span
+                  lang=3D"EN-US"> Dan O'Donovan via Lists.Yoctoproject.Or=
+g
+                  <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:dan=3D=
+emutex.com@lists.yoctoproject.org">&lt;dan=3Demutex.com@lists.yoctoprojec=
+t.org&gt;</a>
+                  <br>
+                  <b>Sent:</b> 28 November 2019 12:00<br>
+                  <b>To:</b> Diego Santa Cruz
+                  <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:Diego=
+=2ESantaCruz@spinetix.com">&lt;Diego.SantaCruz@spinetix.com&gt;</a><br>
+                  <b>Subject:</b> Private: Re: [yocto] Which layer is
+                  best for tpm2 stack<o:p></o:p></span></p>
+            </div>
+          </div>
+          <p class=3D"MsoNormal"><o:p>=C2=A0</o:p></p>
+          <p class=3D"MsoNormal">On Wed, Nov 27, 2019 at 02:56 PM, Diego
+            Santa Cruz wrote:<o:p></o:p></p>
+          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+            <div>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt">Hello,<o:p></o=
+:p></p>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt">=C2=A0<o:p></o=
+:p></p>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt">I need to use =
+a
+                TPM2 software stack for my project (tpm2-tools,
+                tpm2-abrmd, tpm2-tss, etc.), where I am already using
+                Yocto, meta-intel, meta-oe, meta-networking, etc.<o:p></o=
+:p></p>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt">=C2=A0<o:p></o=
+:p></p>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt">I see there ar=
+e
+                at least the following three layers that carry the
+                necessary TPM2 bits, with varying recipe versions.<o:p></=
+o:p></p>
+              <ul type=3D"disc">
+                <li class=3D"MsoListParagraph" style=3D"mso-list:l0 level=
+1
+                  lfo1">meta-tpm in meta-security repo (<a
+                    href=3D"https://git.yoctoproject.org/cgit/cgit.cgi/me=
+ta-security/"
+                    moz-do-not-send=3D"true">https://git.yoctoproject.org=
+/cgit/cgit.cgi/meta-security/</a>)<o:p></o:p></li>
+                <li class=3D"MsoListParagraph" style=3D"mso-list:l0 level=
+1
+                  lfo1">meta-tpm2 in meta-secure-core repo (<a
+                    href=3D"https://github.com/jiazhang0/meta-secure-core=
+"
+                    moz-do-not-send=3D"true">https://github.com/jiazhang0=
+/meta-secure-core</a>)<o:p></o:p></li>
+                <li class=3D"MsoListParagraph" style=3D"mso-list:l0 level=
+1
+                  lfo1">meta-measured (<a
+                    href=3D"https://github.com/flihp/meta-measured"
+                    moz-do-not-send=3D"true">https://github.com/flihp/met=
+a-measured</a>)<o:p></o:p></li>
+              </ul>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt">=C2=A0<o:p></o=
+:p></p>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt">My current
+                objective is to use the TPM2 as a security chip from our
+                software (in the future we may extend its use to root fs
+                encryption keys and the like). Are there any
+                recommendations as to which of these layers would be
+                more appropriate, is better maintained, etc.?<o:p></o:p><=
+/p>
+            </div>
+          </blockquote>
+          <p class=3D"MsoNormal">I've personally used the meta-tpm2 layer=
+
+            in meta-secure-core repo with good success on both Intel and
+            ARM platforms with Infineon TPM chips.=C2=A0 In particular, I=
+
+            used the cryptfs-tpm2 and secure-core initramfs recipes from
+            that layer for managing root fs encryption.=C2=A0 IIRC, this
+            layer seemed to offer the best support for what we needed
+            regarding TPM2 on Yocto 'Sumo' at the time.<br>
+            <br>
+            I haven't really looked at the other layers recently so I
+            can't give a comparison with those.=C2=A0 However, I did noti=
+ce a
+            significant amount of activity via the mailing list related
+            to TPM2 support for the meta-security repo in recent weeks,
+            so that's probably worth a look too.<o:p></o:p></p>
+          <blockquote style=3D"margin-top:5.0pt;margin-bottom:5.0pt">
+            <div>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt">=C2=A0<o:p></o=
+:p></p>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt">=C2=A0<o:p></o=
+:p></p>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt">BTW, the
+                meta-tpm layer in meta-security repo is not listed in
+                the OpenEmbedded Layer index, although meta-security
+                itself and some of the other layers in that repo are
+                listed. Is that because of a name clash with the ones
+                under the meta-secure-core repo, which also carries
+                layers named meta-tpm and meta-integrity?<o:p></o:p></p>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt">=C2=A0<o:p></o=
+:p></p>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt">Thanks,<o:p></=
+o:p></p>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt">=C2=A0<o:p></o=
+:p></p>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt">Diego<o:p></o:=
+p></p>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt"><span
+                  style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;,=
+sans-serif">--
+                  <br>
+                  <strong><span
+                      style=3D"font-family:&quot;Arial&quot;,sans-serif">=
+Diego
+                      Santa Cruz, PhD</span></strong><b><br>
+                  </b><span style=3D"color:gray">Technology Architect<br>=
+
+                    spinetix.com</span></span><o:p></o:p></p>
+              <p class=3D"defangedmsonormal"
+                style=3D"margin:0cm;margin-bottom:.0001pt">=C2=A0<o:p></o=
+:p></p>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">-=3D-=3D-=3D-=3D-=3D-=3D-=3D=
+-=3D-=3D-=3D-=3D-
+Links: You receive all messages sent to this group.
+
+View/Reply Online (#47463): <a class=3D"moz-txt-link-freetext" href=3D"ht=
+tps://lists.yoctoproject.org/g/yocto/message/47463">https://lists.yoctopr=
+oject.org/g/yocto/message/47463</a>
+Mute This Topic: <a class=3D"moz-txt-link-freetext" href=3D"https://lists=
+=2Eyoctoproject.org/mt/64331549/3616795">https://lists.yoctoproject.org/m=
+t/64331549/3616795</a>
+Group Owner: <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:yocto+o=
+wner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
+Unsubscribe: <a class=3D"moz-txt-link-freetext" href=3D"https://lists.yoc=
+toproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub=
+</a>  [<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:maciej.pijano=
+wski@3mdeb.com">maciej.pijanowski@3mdeb.com</a>]
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+</pre>
+    </blockquote>
+    <pre class=3D"moz-signature" cols=3D"72">--=20
+Maciej Pijanowski
+Embedded Systems Engineer
+GPG: F1401D2E1CCB19EF
+<a class=3D"moz-txt-link-freetext" href=3D"https://3mdeb.com">https://3md=
+eb.com</a> | @3mdeb_com</pre>
+  </body>
+</html>
+
+--------------63C29FEE6F7C5C11509B7213--
+
+--zSUj2iybXY6fW776eMsmlMWdlBvk2Mtzc--
+
+--NUzQ04zIgHNTGCQFTaAw1PRSH4nsK3y43
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIcBAEBCAAGBQJd4O1iAAoJEPFAHS4cyxnvgP8QAJnh6x+Dnl0403vgCT8ia/Ww
+E+CmB3AtyCAjOlZh2o7ersnztvwedHtuoK8eGet+z/oBH+bkL3SuC+v8J0bEUi3H
+lhhnCXi0tQoW/jaQfD7Q0YyUZt023jnp1sia4YJ4hg1Jjop3LLzNF8gqm8FeRsmN
+XNZVlxtlIB1axKGvqD1eZKlZDG1dm3gFtpKImhGBJ5oL3r1C6kUBsKOuaP8j6sim
+8khqjOrVxpEYWOC2PCKOvwxBxN6VLqDem4YNEPa4NGI0ggx2yX0GztCVvR1kcXqk
+dXboH1IkuPqUnobtiKN2+5Yy2WPJHxV3Fjd9HIxtgA6HZ/l1spKLr/iYQSjX2yHA
+d+V+GY48q8lFMhMq82Rqa3A8M5QmbPwI2hrVVtQyaGSNXyiR3RQCW7grPMPmJNxm
+tmXkHUTaHNUSy/x5Mkou71PaliTLFqAKaJj+hDhQv8u1zWgbsztqx70XNjahk8TQ
+JnuBRMTFOROSq9mtR7PxOrVJAWaRK+oHnmAi2Bg4F35iAbncTUt5vIr9i1Gd6LRy
+ETNXqQ4CYh30i7sHCAK3l7NPfd6RxHL7VYet8D/5JiMXND/IyZV/coS0dyFb83UN
++IitiyK2JPvxLnRdfFzx1pxA8dNNZ1VeijNvsktVg8jYLcjlllwgCSW6qJbTt3iU
+O5JYR9yc+oMIGR043Bvn
+=LtgY
+-----END PGP SIGNATURE-----
+
+--NUzQ04zIgHNTGCQFTaAw1PRSH4nsK3y43--
