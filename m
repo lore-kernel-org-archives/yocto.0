@@ -1,119 +1,81 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.10414.1575047635732236644
+Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
+ by mx.groups.io with SMTP id smtpd.web10.1499.1575060847389368877
  for <yocto@lists.yoctoproject.org>;
- Fri, 29 Nov 2019 09:13:55 -0800
+ Fri, 29 Nov 2019 12:54:07 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Z8JQHkto;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sgujic@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6039BE010CC; Fri, 29 Nov 2019 09:13:55 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (sgujic[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.167.52 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B232CE010CA
-	for <yocto@yoctoproject.org>; Fri, 29 Nov 2019 09:13:54 -0800 (PST)
-Received: by mail-lf1-f52.google.com with SMTP id v201so22097729lfa.11
-        for <yocto@yoctoproject.org>; Fri, 29 Nov 2019 09:13:54 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=JidvUczX;
+ spf=pass (domain: gmail.com, ip: 209.85.221.67, mailfrom: simon.haggett@gmail.com)
+Received: by mail-wr1-f67.google.com with SMTP id g17so4615755wro.2
+        for <yocto@lists.yoctoproject.org>; Fri, 29 Nov 2019 12:54:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=xXJ2taDAjToZN3Ng88nFQHaoZOI1y2AIp8SfumBzcPA=;
-        b=Z8JQHktoQRX7zwPFzNA+HDsstWP7pWZ0rnSjwSYm8ebrZlzPAcohfQ72JVHOADP+Ae
-         TnHh/UW8nJ3Z/2w8NAbjJVszNPmiI9hzLGicFwdQE9ftbm/+jqKbvh5RvGlGVtQhbKSJ
-         BqlCLOnoiIU3G/oyRwPW/20xNbPDtwoCk58z2F+BEwnoaSAs+oVSeUKpa2jO58JcgltB
-         pTg/J4rDgQuUdwuYEiMCWcuFdJJcXvnk+Gd+bQPfgLJDD73uo3FgDrbpDgoSJIheok+M
-         Eij3H/bX9HMtvib784RxFUcoTCkpGdpN/wkk/UWSW/YEG6VvRcmaEfQjq8NmJpugv1Wf
-         a8Hw==
+        h=from:to:subject:date:message-id;
+        bh=FI237RLYHSmuKF/tsmMBf94CDe+r2gfxiniVmDVp6ro=;
+        b=JidvUczXF40CXmgrjjsd0oVqWhQWJSQkbNxD4l0YciO82+INDe1hAKryc1TwI6xaMu
+         o3j+1rVhDncxBI31VcoPOAYvXI+Kzj9SSDpnw1qjgmC2j2hARM+9PbzZ+wOmk/AY4jr1
+         ZMcqAt7j2tK6bvUTp6xoqn/S9qtUTe4lBA+PeEi8M4sIbbJwPkDFHE0kileW6OCchBJR
+         hihoaYHpJ0rlw2N3I4/AlgC5i1MTg8rCQHNYI1mYw53WwCQJjauDSJqrplTu5oeR3S8w
+         /8oaHopmpu+5SNSiykurFJI3AKHyRZDXPoXDpQPRvL3fZQoFR4r3LbDABrLvswbDFax4
+         qrzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=xXJ2taDAjToZN3Ng88nFQHaoZOI1y2AIp8SfumBzcPA=;
-        b=PuU4CsbQ96vpV9ycfZoUnITPdNIT/Mrx0PraczcqcC/BDqExbQsFVkFDZhl4m8XzEY
-         RWTRpTxweQfxrlEu6Udu+FcaD9SV161RwmJf2cD+nwfLwy9t3MtjnZOJ3bWwgh0xUT5h
-         uVsIE9LFJqaiSk3ieIAdlPM/erACgQ+aalnsduWTv05V1dCZNcBgOwVYl2F2otW3yI/C
-         4M/TSQAl3cr92HLx0LLTm3WLV3mIDI8vXF82GdLF5hGLP5cU+DKHFQHLZT4PxkUf9IqE
-         U0k4GlTuFJZ3/iYZdYlEV1ICjfaAgGdCmJdbu9mrgkao6W8rpetRQxsV84YNDBkV6Wbe
-         oKAQ==
-X-Gm-Message-State: APjAAAUACB2ufbyZC7Y/nmVpFNQDP+Yxjcpo7vGpB9WzCFRL8HhNunJo
-	UOQLX3ldYFdqKHO9c0jTMlCrPPlF2qP0cISsNezO95ZDfIE=
-X-Google-Smtp-Source: APXvYqxuIJydRcsuI6R3fXdECFo0e3Y9Wbpfer/j9I871xzZ2wgXupnDVzpFFu4a5Z8UhMKQtoizSjrpjMrK61SJWUs=
-X-Received: by 2002:ac2:5975:: with SMTP id h21mr31128053lfp.165.1575047633083;
- Fri, 29 Nov 2019 09:13:53 -0800 (PST)
-MIME-Version: 1.0
-From: "Sinisa" <sgujic@gmail.com>
-Date: Fri, 29 Nov 2019 18:13:41 +0100
-Message-ID: <CA+OPWonYggtzzacbBJD4cgVuoA7NsaLLgubNqMxLFQtv8CVe1g@mail.gmail.com>
-Subject: Copy initramfs to rootfs
-To: yocto@yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=FI237RLYHSmuKF/tsmMBf94CDe+r2gfxiniVmDVp6ro=;
+        b=mZhkXwPNhQBSShoPHRZEX3fX4d02pVnc5Qz+SksdJbA6U0mNpfw2xPyCDxCSP7WrpZ
+         hWNhliLJd4bX2fs1J7c/bYCkikZZTsdxHNCEHkfK+Bx1uharIQHSZqfHRfoYm33SHmuw
+         3Vo+q+9OCnL3e9rrgFf8rP7LFj9cl6ClLfOqTW6/DNF5kNf/cm9KxKchzDC/BSJJPOXi
+         koFYZ/Ae4NvpzZPX6vGFkUb77VngXzTObl0NQBPV54NTs1pS5CsdH9WLUSngbF2y8nRE
+         TPQG+fNH9LqwL7ngEJKIOrJtrdLg1fHQEuQ2R7z+6Yb6oMT+Ie/wr+2XsjNyyBlPfabs
+         5aDw==
+X-Gm-Message-State: APjAAAXyM3JyvEJgJVqqE3XbljLRyUVpOAzqL/w/e0iiOBsg5Ealj6P2
+	r3pRJLrcrUiHnKTmF7ISqC5b/RoBRZc=
+X-Google-Smtp-Source: APXvYqzEvMnacNlVhw0hbbWWCwEC3GTxQSVuz0CnmTJRCHajX8yGlmcQvXmekgI5X3bp/TyUnHjDrw==
+X-Received: by 2002:adf:cd92:: with SMTP id q18mr44694560wrj.261.1575060845669;
+        Fri, 29 Nov 2019 12:54:05 -0800 (PST)
+Return-Path: <simon.haggett@gmail.com>
+Received: from localhost.localdomain (cpc92322-cmbg19-2-0-cust145.5-4.cable.virginm.net. [86.26.32.146])
+        by smtp.gmail.com with ESMTPSA id i8sm6177951wro.47.2019.11.29.12.54.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Nov 2019 12:54:05 -0800 (PST)
+From: simon.haggett@gmail.com
+To: yocto@lists.yoctoproject.org
+Subject: [matchbox-wm][PATCH] keys: Avoid freeing Wm_config member pointer in keys_load_config().
+Date: Fri, 29 Nov 2019 20:53:50 +0000
+Message-Id: <20191129205350.25448-1-simon.haggett@gmail.com>
+X-Mailer: git-send-email 2.17.1
 
-Hello everyone,
+If the Wm_config instance contains a non-NULL pointer in its kbd_conf_file
+member, then (in a build that does not use gconf) keys_load_config() will
+assign that pointer to a local conf_path variable. However, keys_load_config()
+later calls free() on this conf_path variable (since it may instead have been
+assigned a malloc'd buffer). This can therefore leave Wm_config::kbd_conf_file
+as a dangling pointer. Furthermore, if the user has specified the -kbdconfig
+argument when starting matchbox-window-manager then this pointer comes from argv
+and so the call to free() can lead to a segmentation fault.
 
-I started to build kernel with initramfs, and so far all that works
-great. I got my new shiny zImage-initramfs--4.1.14..xxx.bin. I can
-boot it over tftp, its does exactly what i want.
+This patch fixes the issue by using strdup() to make a copy of the string
+pointed to by the Wm_config::kbd_conf_file member pointer. This matches the
+approach used when conf_path is required to take the value of a string literal,
+and ensures that free() can safely be called on conf_path.
 
-Problem im facing is, how do i put this new zImage instead of
-originally built zImage in final rootfs archive (tar.gz).
+Signed-off-by: Simon Haggett <simon.haggett@gmail.com>
+---
+ src/keys.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-To clarify, upon a "bitbake create-my-fancy-image" i got in
-tmp/deploy/images two zImage files, one without initramfs and one with
-initramfs. When i inspect my rootfs.tar.gz /boot folder, i have zImage
-inisde (symlink and DTB also).
+diff --git a/src/keys.c b/src/keys.c
+index bc83bd4..ca77f81 100644
+--- a/src/keys.c
++++ b/src/keys.c
+@@ -326,7 +326,7 @@ keys_load_config(Wm *w)
+   };
+ 
+   if (w->config->kbd_conf_file != NULL)
+-    conf_path = w->config->kbd_conf_file;
++    conf_path = strdup(w->config->kbd_conf_file);
+ 
+   if (conf_path == NULL && getenv("HOME"))
+     {
+-- 
+2.17.1
 
-I would like to replace somehow this zImage with initramfs version.
-How do i do that?
-
-Documentations talks only about this IMAGE_BUNDLE that is going to
-merge kernel with initramfs, but i cant find any obvious way to get
-this into rootfs, to replace somehow original zImage.
-
-The best idea i have so far (that does not work) is to do something like this:
-
-initramfs_postprocess() {
-   # NOTE: pseudo code
-   rm ${IMAGE_ROOTFS}/boot/zImage-custom*
-   unlink ${IMAGE_ROOTFS}/boot/zImage
-   # Im not sure how do i reference file from tmp/deploy/images, which
-is my question number 2
-   cp zImage-initramfs-* to ${WORKDIR}/boot/zImage
-}
-
-ROOTFS_POSTPROCESS_COMMAND += "initramfs_postprocess; "
-
-This above looks very dirty to me, but its best "idea" i have atm.
-
-So, in my local.conf i have:
-INITRAMFS_IMAGE_BUNDLE = "1" # means fuse kernel + initramfs
-
-And in my main image recipe i have:
-INITRAMFS_IMAGE = "initramfs-custom" #name of the recipe that provides
-some custom /init
-INITRAMFS_FSTYPES = "cpio.gz" # make a compressed cpio out of initramfs
-
-One thing to note, im trying to avoid doing this with wks and creating
-a special /boot partition. This is not something im really targeting,
-i know its possible, but i want to have my kernel inside rootfs.tar.gz
-in /boot from single image recipe due the various reasons.
-
-Any suggestion is much appreciated.
-
-Regards,
-Sinisa
