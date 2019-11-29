@@ -1,115 +1,383 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.9744.1575043820726049715
+Received: from mail-ua1-f66.google.com (mail-ua1-f66.google.com [209.85.222.66])
+ by mx.groups.io with SMTP id smtpd.web09.10095.1575045926511059919
  for <yocto@lists.yoctoproject.org>;
- Fri, 29 Nov 2019 08:10:20 -0800
+ Fri, 29 Nov 2019 08:45:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@betafive.co.uk header.s=fm3 header.b=oFue4EvM;
- spf=softfail (domain: betafive.co.uk, ip: 140.211.169.56, mailfrom: paul@betafive.co.uk)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8E002E010C7; Fri, 29 Nov 2019 08:10:20 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
-	*      trust
-	*      [66.111.4.27 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B21BE00BF7
-	for <yocto@yoctoproject.org>; Fri, 29 Nov 2019 08:10:18 -0800 (PST)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailout.nyi.internal (Postfix) with ESMTP id 0BDF4229AF
-	for <yocto@yoctoproject.org>; Fri, 29 Nov 2019 11:10:18 -0500 (EST)
-Received: from imap2 ([10.202.2.52])
-  by compute1.internal (MEProxy); Fri, 29 Nov 2019 11:10:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=betafive.co.uk;
-	 h=mime-version:message-id:in-reply-to:references:date:from:to
-	:subject:content-type; s=fm3; bh=FdUStfqCPy3i7ACHZkxKnwU/DtSz0ru
-	TzHYmSvL9hkA=; b=oFue4EvMm3YpJjfyKF4NWMyFAmXrrQRqRTJFzeMee0YD2kp
-	qAD0uX2IxHPs29ate9xjw5ELVTi8Curz24aRupWweMf/LRiVN4phZp8azYv3gEYl
-	gN0ZiMoTkPyocQD5seFQExc39kNvDophSaeDmlBaPMwaLQucf/HU44D/6L6cPClb
-	J4vBZQaJPZtAcuK81/3JPYGwoVVv5b+VrU4TqoVQX3Xb6NSqHVXgQKgdlkrW2SvA
-	OHfhYGEHCIM2h+SpGT0VVRLvs2g5iFg/WJs93bavuSZkmYAV7VhIJNiVzqIuuXHZ
-	y4Y5nttGC2JejVlZEOdvtlQ24NTcIN6NrpVclsQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=FdUStf
-	qCPy3i7ACHZkxKnwU/DtSz0ruTzHYmSvL9hkA=; b=oCvT/16IxCuDSjXTasCLaH
-	IWS0T7FRV97cTXPnUPIHAkUtfRdDMshsgris2Hor/c/Es/QHH2UfTsxEN4W+vvvN
-	4nf15bwbZFluWKBlblLdlcSld9+kQQXK4FSvqVMUba3xVWdYJ6ZOXD85NGxJrPZo
-	1b/7OVwN8TIh85OZ94kXfzNgwICWgYBhTxFRjlNhRCztzBE3+XO+JpUkw9GIgDcd
-	V4zXT7Bf07b0hTCmjeOje3D4u/14DI9Z4sqcFrQ8SpKKHTdOFpza/X47vrtq6tE7
-	6Hm+VpR3DbJbdtyBk22Mz96PYrLR67rAcd5Y2zBHuhPVVRFsWPc5lrm/F1WDX+vw
-	==
-X-ME-Sender: <xms:6ULhXSV790LYPv8sZKs1qR8ko8y0lp_PDo-f4M21EXa459-xyuPglQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrudeiledgkedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdfrrghu
-    lhcuuegrrhhkvghrfdcuoehprghulhessggvthgrfhhivhgvrdgtohdruhhkqeenucfrrg
-    hrrghmpehmrghilhhfrhhomhepphgruhhlsegsvghtrghfihhvvgdrtghordhukhenucev
-    lhhushhtvghrufhiiigvpedu
-X-ME-Proxy: <xmx:6ULhXe9gLUIjB0Cm3I_6jo3xzJMyxJ_R1ttjPP7LipkI8-b1PRtf3A>
-    <xmx:6ULhXXgNdw8Ai8sM9Dl23LuK7QFpbnoBs6KUU2YNQrc5YX0rdYZ1Mg>
-    <xmx:6ULhXVU9PKQRIMVXErOGmxK4hnW3y1dq7xVd18XLCQ4mX6YLmGXGUQ>
-    <xmx:6kLhXc4Si6C1ZQ8AT8jCj6N2Jfm3WqQhOFqshWOc9YURGv6kEbWq2w>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id D3FFAE00A2; Fri, 29 Nov 2019 11:10:17 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.7-578-g826f590-fmstable-20191119v1
-Mime-Version: 1.0
-Message-Id: <c172b0d3-1be5-4b96-9123-47c9db2ed848@www.fastmail.com>
-In-Reply-To: <20191115132324.47411-1-paul@betafive.co.uk>
-References: <20191115132324.47411-1-paul@betafive.co.uk>
-Date: Fri, 29 Nov 2019 16:09:57 +0000
-From: "Paul Barker" <paul@betafive.co.uk>
-To: "Yocto discussion list" <yocto@yoctoproject.org>
-Subject: Re: [patchtest][PATCH 1/2] patchtest: Fix printing of exception tracebacks
-Content-Type: text/plain
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Mw7Er3/f;
+ spf=pass (domain: gmail.com, ip: 209.85.222.66, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-ua1-f66.google.com with SMTP id d6so6446281uam.11
+        for <yocto@lists.yoctoproject.org>; Fri, 29 Nov 2019 08:45:26 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Ir9ECfS4xOM2/iDsUzqNWs0p0ASOvmkn5BNsLybAIwA=;
+        b=Mw7Er3/fTYrALkK0H3IISP8V8sT5RfqyR2G2xskGFGtOCQgHqftBQdWigaftH1oWkc
+         rg0/o59dWafydu3hFr6M3Eapnq6+QMVQamY26ZMQ3AJ1HgS/r1mvWhaTWv9ueAx6HKSh
+         JSdyWBReqBTx8L9MW/JtIRwIqGgrg3Gt4u2U4VQncbmZ383DXSTkHtYj2MMQBI3aFWjg
+         zkhJNiGdkt1Gfxp0DLTwAxFQNFIF2+kxD8qsKcyFu3DFncDJ9zbA+GXH/H0x3fpdd6eD
+         x9PtqsrTUmeMMqn+KjyDsLEiVzzl1iZ/2dS+xv4MB5tDHZeVvSNsfeVYCkWfKLyvAqPT
+         WkXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Ir9ECfS4xOM2/iDsUzqNWs0p0ASOvmkn5BNsLybAIwA=;
+        b=KJexdndFrbk/QsC0gBHg5J5nV/dIp+QFgQxvPdSiUBk70vs8Lemj0cXnrJxPbFwepP
+         b05quBFsJKWfLDgcQ7OOGD50dFDlJignwh2xmW2En+OZh1HVG4t3aS9vmTrLygU9KVi+
+         mJ1JSTb0y2HWhMFJ4n68+SP7ITqf6RXv5JU+dFJElDp4VBgNUGya3Zv5PwRD9Tzp9PZY
+         ayV1utlv4GozPCWtMx0eCoSOT2yg+PsprQXifnswQWl1SDpOR414FBjRi2lbtsn9rpVV
+         sEpwTg4+rYEfowgKiDuqAt4WfxFnweeSwtElz2YEKUr9PHcpXXpgk2tKp59AOp9H4PpE
+         WRxg==
+X-Gm-Message-State: APjAAAUtCS9WlMFHO+ruiuWgOFTPAGN7ZcnEDltp2xmfXBPpk3Zibj4R
+	1kmdFqRBWb/V7U8S4SP6Fo8RnuRTUEKDXynV2UA=
+X-Google-Smtp-Source: APXvYqxzYjyw5e2inHpNEnoM012b+6aOO/skL5JEv/5Q54NR07ILJNaEVi9Eewpyi9lvyE6s/7shc84CP6+SgbFSnAE=
+X-Received: by 2002:ab0:681:: with SMTP id g1mr9694699uag.93.1575045925453;
+ Fri, 29 Nov 2019 08:45:25 -0800 (PST)
+MIME-Version: 1.0
+References: <20191128174739.101631-1-alex.kanavin@gmail.com> <CAJdd5Ga-11TNZxHnBmmRg3wnn273myiEHjJYXxdXuC0MfeWAAA@mail.gmail.com>
+In-Reply-To: <CAJdd5Ga-11TNZxHnBmmRg3wnn273myiEHjJYXxdXuC0MfeWAAA@mail.gmail.com>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Fri, 29 Nov 2019 17:45:14 +0100
+Message-ID: <CANNYZj8zZBiWaQ5=g=H8CXzAg=ToKdMQSLR3va8jR+5W4AfbXA@mail.gmail.com>
+Subject: Re: [yocto] [meta-mingw][PATCH] gettext: adapt for version 0.20
+To: Joshua Watt <jpewhacker@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000e4438e05987ef422"
 
-On Fri, 15 Nov 2019, at 13:23, Paul Barker wrote:
-> The addError() handler is called outside of an actual exception handler
-> so sys.exc_info() doesn't actually return an exception. This means that
-> traceback.print_exc() doesn't know what to print. Instead we need to use
-> traceback.print_exception() with the err object we've been given.
-> 
-> Signed-off-by: Paul Barker <paul@betafive.co.uk>
-> ---
->  patchtest | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
-> 
-> diff --git a/patchtest b/patchtest
-> index 592f73e..59b19f5 100755
-> --- a/patchtest
-> +++ b/patchtest
-> @@ -101,8 +101,7 @@ def getResult(patch, mergepatch):
->  
->          def addError(self, test, err):
->              self.test_error = True
-> -            (ty, va, trace) = err
-> -            logger.error(traceback.print_exc())
-> +            logger.error(traceback.print_exception(*err))
->  
->          def addFailure(self, test, err):
->              self.test_failure = True
-> -- 
-> 2.17.1
-> 
+--000000000000e4438e05987ef422
+Content-Type: text/plain; charset="UTF-8"
+
+On Fri, 29 Nov 2019 at 16:24, Joshua Watt <jpewhacker@gmail.com> wrote:
+
+> On Thu, Nov 28, 2019 at 11:47 AM Alexander Kanavin
+> <alex.kanavin@gmail.com> wrote:
+> >
+> > Drop backported patch (new gettext includes the updates).
+> >
+> > Drop version from the .bbappend (hopefully no version-specific
+> > tweaks will be needed going forward).
+>
+> I've applied this to master-next, we can pull up master once the
+> oe-core patch lands. I'm assuming this will break the current master
+> AB builds if it's applied to master without the oe-core patch?
 >
 
-Ping on this and the following patch.
+It probably will, yes (I didn't test, but it drops a patch that's
+apparently needed in 0.19).
 
--- 
-Paul Barker
+Alex
+
+
+
+> >
+> > Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+> > ---
+> >  .../fix-gl_cv_prog_as_underscore-test.patch   | 67 -------------------
+> >  ...ext_0.19.%.bbappend => gettext_%.bbappend} |  1 -
+> >  2 files changed, 68 deletions(-)
+> >  delete mode 100644
+> recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore-test.patch
+> >  rename recipes-core/gettext/{gettext_0.19.%.bbappend =>
+> gettext_%.bbappend} (87%)
+> >
+> > diff --git
+> a/recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore-test.patch
+> b/recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore-test.patch
+> > deleted file mode 100644
+> > index 636789f..0000000
+> > ---
+> a/recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore-test.patch
+> > +++ /dev/null
+> > @@ -1,67 +0,0 @@
+> > -Backport gnulib fix for mingw into gettext's included version of gnulib
+> > -
+> > -
+> http://git.savannah.gnu.org/cgit/gnulib.git/commit/?id=68b6adebef05670a312fb92b05e7bd089d2ed43a
+> > -
+> > -Upstream-Status: Backport
+> > -Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
+> > -
+> > ---- a/gettext-runtime/gnulib-m4/asm-underscore.m4
+> > -+++ b/gettext-runtime/gnulib-m4/asm-underscore.m4
+> > -@@ -27,11 +27,11 @@
+> > - #endif
+> > - int foo(void) { return 0; }
+> > - EOF
+> > -      # Look for the assembly language name in the .s file.
+> > -      AC_TRY_COMMAND(${CC-cc} $CFLAGS $CPPFLAGS $gl_c_asm_opt
+> conftest.c) >/dev/null 2>&1
+> > --     if LC_ALL=C grep -E '(^|[^a-zA-Z0-9_])_foo([^a-zA-Z0-9_]|$)'
+> conftest.$gl_asmext >/dev/null; then
+> > -+     if LC_ALL=C grep -E '(^|[[^a-zA-Z0-9_]])_foo([[^a-zA-Z0-9_]]|$)'
+> conftest.$gl_asmext >/dev/null; then
+> > -        gl_cv_prog_as_underscore=yes
+> > -      else
+> > -        gl_cv_prog_as_underscore=no
+> > -      fi
+> > -      rm -f conftest*
+> > ---- a/gettext-runtime/configure
+> > -+++ b/gettext-runtime/configure
+> > -@@ -24601,11 +24601,11 @@
+> > -   { { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$ac_try\""; } >&5
+> > -   (eval $ac_try) 2>&5
+> > -   ac_status=$?
+> > -   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+> > -   test $ac_status = 0; }; } >/dev/null 2>&1
+> > --     if LC_ALL=C grep -E '(^|^a-zA-Z0-9_)_foo(^a-zA-Z0-9_|$)'
+> conftest.$gl_asmext >/dev/null; then
+> > -+     if LC_ALL=C grep -E '(^|[^a-zA-Z0-9_])_foo([^a-zA-Z0-9_]|$)'
+> conftest.$gl_asmext >/dev/null; then
+> > -        gl_cv_prog_as_underscore=yes
+> > -      else
+> > -        gl_cv_prog_as_underscore=no
+> > -      fi
+> > -      rm -f conftest*
+> > ---- a/gettext-tools/gnulib-m4/asm-underscore.m4
+> > -+++ b/gettext-tools/gnulib-m4/asm-underscore.m4
+> > -@@ -27,11 +27,11 @@
+> > - #endif
+> > - int foo(void) { return 0; }
+> > - EOF
+> > -      # Look for the assembly language name in the .s file.
+> > -      AC_TRY_COMMAND(${CC-cc} $CFLAGS $CPPFLAGS $gl_c_asm_opt
+> conftest.c) >/dev/null 2>&1
+> > --     if LC_ALL=C grep -E '(^|[^a-zA-Z0-9_])_foo([^a-zA-Z0-9_]|$)'
+> conftest.$gl_asmext >/dev/null; then
+> > -+     if LC_ALL=C grep -E '(^|[[^a-zA-Z0-9_]])_foo([[^a-zA-Z0-9_]]|$)'
+> conftest.$gl_asmext >/dev/null; then
+> > -        gl_cv_prog_as_underscore=yes
+> > -      else
+> > -        gl_cv_prog_as_underscore=no
+> > -      fi
+> > -      rm -f conftest*
+> > ---- a/gettext-tools/configure
+> > -+++ b/gettext-tools/configure
+> > -@@ -32284,11 +32284,11 @@
+> > -   { { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$ac_try\""; } >&5
+> > -   (eval $ac_try) 2>&5
+> > -   ac_status=$?
+> > -   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+> > -   test $ac_status = 0; }; } >/dev/null 2>&1
+> > --     if LC_ALL=C grep -E '(^|^a-zA-Z0-9_)_foo(^a-zA-Z0-9_|$)'
+> conftest.$gl_asmext >/dev/null; then
+> > -+     if LC_ALL=C grep -E '(^|[^a-zA-Z0-9_])_foo([^a-zA-Z0-9_]|$)'
+> conftest.$gl_asmext >/dev/null; then
+> > -        gl_cv_prog_as_underscore=yes
+> > -      else
+> > -        gl_cv_prog_as_underscore=no
+> > -      fi
+> > -      rm -f conftest*
+> > diff --git a/recipes-core/gettext/gettext_0.19.%.bbappend
+> b/recipes-core/gettext/gettext_%.bbappend
+> > similarity index 87%
+> > rename from recipes-core/gettext/gettext_0.19.%.bbappend
+> > rename to recipes-core/gettext/gettext_%.bbappend
+> > index 21749f3..d518698 100644
+> > --- a/recipes-core/gettext/gettext_0.19.%.bbappend
+> > +++ b/recipes-core/gettext/gettext_%.bbappend
+> > @@ -2,7 +2,6 @@ EXTRA_OECONF_append_mingw32 = " --enable-static"
+> >
+> >  FILESEXTRAPATHS_prepend_mingw32 := "${THISDIR}/${BPN}:"
+> >  SRC_URI_append_mingw32 = " \
+> > -               file://fix-gl_cv_prog_as_underscore-test.patch \
+> >                 "
+> >
+> >  FILES_libgettextlib_mingw32 = "${bindir}/libgettextlib-*.dll"
+> > --
+> > 2.17.1
+> >
+> > -=-=-=-=-=-=-=-=-=-=-=-
+> > Links: You receive all messages sent to this group.
+> >
+> > View/Reply Online (#47462):
+> https://lists.yoctoproject.org/g/yocto/message/47462
+> > Mute This Topic: https://lists.yoctoproject.org/mt/64260047/3616693
+> > Group Owner: yocto+owner@lists.yoctoproject.org
+> > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [
+> JPEWhacker@gmail.com]
+> > -=-=-=-=-=-=-=-=-=-=-=-
+>
+
+--000000000000e4438e05987ef422
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">On Fri, 29 Nov 2019 at 16:24, Joshua Watt=
+ &lt;<a href=3D"mailto:jpewhacker@gmail.com">jpewhacker@gmail.com</a>&gt; w=
+rote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote"=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex">On Thu, Nov 28, 2019 at 11:47 AM Alexander Kanavin<br>
+&lt;<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">alex.kanavi=
+n@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Drop backported patch (new gettext includes the updates).<br>
+&gt;<br>
+&gt; Drop version from the .bbappend (hopefully no version-specific<br>
+&gt; tweaks will be needed going forward).<br>
+<br>
+I&#39;ve applied this to master-next, we can pull up master once the<br>
+oe-core patch lands. I&#39;m assuming this will break the current master<br=
+>
+AB builds if it&#39;s applied to master without the oe-core patch?<br></blo=
+ckquote><div><br></div><div>It probably will, yes (I didn&#39;t test, but i=
+t drops a patch that&#39;s apparently needed in 0.19).<br></div><div><br></=
+div><div>Alex<br></div><div><br></div><div>=C2=A0</div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(2=
+04,204,204);padding-left:1ex">
+&gt;<br>
+&gt; Signed-off-by: Alexander Kanavin &lt;<a href=3D"mailto:alex.kanavin@gm=
+ail.com" target=3D"_blank">alex.kanavin@gmail.com</a>&gt;<br>
+&gt; ---<br>
+&gt;=C2=A0 .../fix-gl_cv_prog_as_underscore-test.patch=C2=A0 =C2=A0| 67 ---=
+----------------<br>
+&gt;=C2=A0 ...ext_0.19.%.bbappend =3D&gt; gettext_%.bbappend} |=C2=A0 1 -<b=
+r>
+&gt;=C2=A0 2 files changed, 68 deletions(-)<br>
+&gt;=C2=A0 delete mode 100644 recipes-core/gettext/gettext/fix-gl_cv_prog_a=
+s_underscore-test.patch<br>
+&gt;=C2=A0 rename recipes-core/gettext/{gettext_0.19.%.bbappend =3D&gt; get=
+text_%.bbappend} (87%)<br>
+&gt;<br>
+&gt; diff --git a/recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore=
+-test.patch b/recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore-tes=
+t.patch<br>
+&gt; deleted file mode 100644<br>
+&gt; index 636789f..0000000<br>
+&gt; --- a/recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore-test.p=
+atch<br>
+&gt; +++ /dev/null<br>
+&gt; @@ -1,67 +0,0 @@<br>
+&gt; -Backport gnulib fix for mingw into gettext&#39;s included version of =
+gnulib<br>
+&gt; -<br>
+&gt; -<a href=3D"http://git.savannah.gnu.org/cgit/gnulib.git/commit/?id=3D6=
+8b6adebef05670a312fb92b05e7bd089d2ed43a" rel=3D"noreferrer" target=3D"_blan=
+k">http://git.savannah.gnu.org/cgit/gnulib.git/commit/?id=3D68b6adebef05670=
+a312fb92b05e7bd089d2ed43a</a><br>
+&gt; -<br>
+&gt; -Upstream-Status: Backport<br>
+&gt; -Signed-off-by: Nathan Rossi &lt;<a href=3D"mailto:nathan@nathanrossi.=
+com" target=3D"_blank">nathan@nathanrossi.com</a>&gt;<br>
+&gt; -<br>
+&gt; ---- a/gettext-runtime/gnulib-m4/asm-underscore.m4<br>
+&gt; -+++ b/gettext-runtime/gnulib-m4/asm-underscore.m4<br>
+&gt; -@@ -27,11 +27,11 @@<br>
+&gt; - #endif<br>
+&gt; - int foo(void) { return 0; }<br>
+&gt; - EOF<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 # Look for the assembly language name in the .s =
+file.<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 AC_TRY_COMMAND(${CC-cc} $CFLAGS $CPPFLAGS $gl_c_=
+asm_opt conftest.c) &gt;/dev/null 2&gt;&amp;1<br>
+&gt; --=C2=A0 =C2=A0 =C2=A0if LC_ALL=3DC grep -E &#39;(^|[^a-zA-Z0-9_])_foo=
+([^a-zA-Z0-9_]|$)&#39; conftest.$gl_asmext &gt;/dev/null; then<br>
+&gt; -+=C2=A0 =C2=A0 =C2=A0if LC_ALL=3DC grep -E &#39;(^|[[^a-zA-Z0-9_]])_f=
+oo([[^a-zA-Z0-9_]]|$)&#39; conftest.$gl_asmext &gt;/dev/null; then<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 gl_cv_prog_as_underscore=3Dyes<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 else<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 gl_cv_prog_as_underscore=3Dno<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 fi<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 rm -f conftest*<br>
+&gt; ---- a/gettext-runtime/configure<br>
+&gt; -+++ b/gettext-runtime/configure<br>
+&gt; -@@ -24601,11 +24601,11 @@<br>
+&gt; -=C2=A0 =C2=A0{ { eval echo &quot;\&quot;\$as_me\&quot;:${as_lineno-$L=
+INENO}: \&quot;$ac_try\&quot;&quot;; } &gt;&amp;5<br>
+&gt; -=C2=A0 =C2=A0(eval $ac_try) 2&gt;&amp;5<br>
+&gt; -=C2=A0 =C2=A0ac_status=3D$?<br>
+&gt; -=C2=A0 =C2=A0$as_echo &quot;$as_me:${as_lineno-$LINENO}: \$? =3D $ac_=
+status&quot; &gt;&amp;5<br>
+&gt; -=C2=A0 =C2=A0test $ac_status =3D 0; }; } &gt;/dev/null 2&gt;&amp;1<br=
+>
+&gt; --=C2=A0 =C2=A0 =C2=A0if LC_ALL=3DC grep -E &#39;(^|^a-zA-Z0-9_)_foo(^=
+a-zA-Z0-9_|$)&#39; conftest.$gl_asmext &gt;/dev/null; then<br>
+&gt; -+=C2=A0 =C2=A0 =C2=A0if LC_ALL=3DC grep -E &#39;(^|[^a-zA-Z0-9_])_foo=
+([^a-zA-Z0-9_]|$)&#39; conftest.$gl_asmext &gt;/dev/null; then<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 gl_cv_prog_as_underscore=3Dyes<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 else<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 gl_cv_prog_as_underscore=3Dno<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 fi<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 rm -f conftest*<br>
+&gt; ---- a/gettext-tools/gnulib-m4/asm-underscore.m4<br>
+&gt; -+++ b/gettext-tools/gnulib-m4/asm-underscore.m4<br>
+&gt; -@@ -27,11 +27,11 @@<br>
+&gt; - #endif<br>
+&gt; - int foo(void) { return 0; }<br>
+&gt; - EOF<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 # Look for the assembly language name in the .s =
+file.<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 AC_TRY_COMMAND(${CC-cc} $CFLAGS $CPPFLAGS $gl_c_=
+asm_opt conftest.c) &gt;/dev/null 2&gt;&amp;1<br>
+&gt; --=C2=A0 =C2=A0 =C2=A0if LC_ALL=3DC grep -E &#39;(^|[^a-zA-Z0-9_])_foo=
+([^a-zA-Z0-9_]|$)&#39; conftest.$gl_asmext &gt;/dev/null; then<br>
+&gt; -+=C2=A0 =C2=A0 =C2=A0if LC_ALL=3DC grep -E &#39;(^|[[^a-zA-Z0-9_]])_f=
+oo([[^a-zA-Z0-9_]]|$)&#39; conftest.$gl_asmext &gt;/dev/null; then<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 gl_cv_prog_as_underscore=3Dyes<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 else<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 gl_cv_prog_as_underscore=3Dno<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 fi<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 rm -f conftest*<br>
+&gt; ---- a/gettext-tools/configure<br>
+&gt; -+++ b/gettext-tools/configure<br>
+&gt; -@@ -32284,11 +32284,11 @@<br>
+&gt; -=C2=A0 =C2=A0{ { eval echo &quot;\&quot;\$as_me\&quot;:${as_lineno-$L=
+INENO}: \&quot;$ac_try\&quot;&quot;; } &gt;&amp;5<br>
+&gt; -=C2=A0 =C2=A0(eval $ac_try) 2&gt;&amp;5<br>
+&gt; -=C2=A0 =C2=A0ac_status=3D$?<br>
+&gt; -=C2=A0 =C2=A0$as_echo &quot;$as_me:${as_lineno-$LINENO}: \$? =3D $ac_=
+status&quot; &gt;&amp;5<br>
+&gt; -=C2=A0 =C2=A0test $ac_status =3D 0; }; } &gt;/dev/null 2&gt;&amp;1<br=
+>
+&gt; --=C2=A0 =C2=A0 =C2=A0if LC_ALL=3DC grep -E &#39;(^|^a-zA-Z0-9_)_foo(^=
+a-zA-Z0-9_|$)&#39; conftest.$gl_asmext &gt;/dev/null; then<br>
+&gt; -+=C2=A0 =C2=A0 =C2=A0if LC_ALL=3DC grep -E &#39;(^|[^a-zA-Z0-9_])_foo=
+([^a-zA-Z0-9_]|$)&#39; conftest.$gl_asmext &gt;/dev/null; then<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 gl_cv_prog_as_underscore=3Dyes<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 else<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 gl_cv_prog_as_underscore=3Dno<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 fi<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 rm -f conftest*<br>
+&gt; diff --git a/recipes-core/gettext/gettext_0.19.%.bbappend b/recipes-co=
+re/gettext/gettext_%.bbappend<br>
+&gt; similarity index 87%<br>
+&gt; rename from recipes-core/gettext/gettext_0.19.%.bbappend<br>
+&gt; rename to recipes-core/gettext/gettext_%.bbappend<br>
+&gt; index 21749f3..d518698 100644<br>
+&gt; --- a/recipes-core/gettext/gettext_0.19.%.bbappend<br>
+&gt; +++ b/recipes-core/gettext/gettext_%.bbappend<br>
+&gt; @@ -2,7 +2,6 @@ EXTRA_OECONF_append_mingw32 =3D &quot; --enable-static=
+&quot;<br>
+&gt;<br>
+&gt;=C2=A0 FILESEXTRAPATHS_prepend_mingw32 :=3D &quot;${THISDIR}/${BPN}:&qu=
+ot;<br>
+&gt;=C2=A0 SRC_URI_append_mingw32 =3D &quot; \<br>
+&gt; -=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0file://fix-gl_=
+cv_prog_as_underscore-test.patch \<br>
+&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;<br=
+>
+&gt;<br>
+&gt;=C2=A0 FILES_libgettextlib_mingw32 =3D &quot;${bindir}/libgettextlib-*.=
+dll&quot;<br>
+&gt; --<br>
+&gt; 2.17.1<br>
+&gt;<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+&gt; Links: You receive all messages sent to this group.<br>
+&gt;<br>
+&gt; View/Reply Online (#47462): <a href=3D"https://lists.yoctoproject.org/=
+g/yocto/message/47462" rel=3D"noreferrer" target=3D"_blank">https://lists.y=
+octoproject.org/g/yocto/message/47462</a><br>
+&gt; Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/64260047=
+/3616693" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.o=
+rg/mt/64260047/3616693</a><br>
+&gt; Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" t=
+arget=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+&gt; Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" =
+rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto=
+/unsub</a>=C2=A0 [<a href=3D"mailto:JPEWhacker@gmail.com" target=3D"_blank"=
+>JPEWhacker@gmail.com</a>]<br>
+&gt; -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+</blockquote></div></div>
+
+--000000000000e4438e05987ef422--
