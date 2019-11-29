@@ -1,167 +1,131 @@
-Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com [209.85.221.66])
- by mx.groups.io with SMTP id smtpd.web11.9218.1575041074933396962
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.9611.1575043801319992710
  for <yocto@lists.yoctoproject.org>;
- Fri, 29 Nov 2019 07:24:35 -0800
+ Fri, 29 Nov 2019 08:10:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=SrQaUhVW;
- spf=pass (domain: gmail.com, ip: 209.85.221.66, mailfrom: jpewhacker@gmail.com)
-Received: by mail-wr1-f66.google.com with SMTP id i12so35564709wrn.11
-        for <yocto@lists.yoctoproject.org>; Fri, 29 Nov 2019 07:24:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OPtnlPweY9DRZcai89bLa4nZHaXxBzxSNNmXBPRPuyQ=;
-        b=SrQaUhVWa8qZm8m8iC6aYOBZl+XvE1QB15IfI+oPtjj75kBzHaFtH4bJkHnekrOnEh
-         LzHznpUsgI6b/Ig5y7UhGyHBlpHsrKkBhcWgKHup7LxHOaSeTIcov9CTtbdIxAGvdWve
-         t0jheZlxd0Av5lOi7D0VtbRH6XfX7NGo/B2TgkKLJxR9tuqvtFQU3mbMOSkS2rDuqh6j
-         WJrNCNDe9VGmIOCWC/8u4PtbfxcE5PZSNvC9Nnz/A9ybKnqBddlsy+0iTD8HV4Fe5hbE
-         nyBK347I/QXEjkDthHg13VosDRZCZ9uLj7XVQIRWGxzfqLe/Z93z0LnRY8asConOwtJK
-         fJ8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OPtnlPweY9DRZcai89bLa4nZHaXxBzxSNNmXBPRPuyQ=;
-        b=n+nFN8axN396EcQvoW/7HoH92pbhR8lA605HXiXDp4e9HnRDZwJK0t6T9Ae50dJUVS
-         xWvVvZvn0A5JF8C/HzroLS8y60gH58LEqy8QdT0qb+I6GHHxQxm3Uk2DLwNv9nKjImHq
-         OpmmqLNk0f3W9aIqZ4RtLas9o8rUZ0m7ornJH9mLHz/Nhfebf+gWyVRDawxEtfMG7EVa
-         jNnoqB6DovqhK3jO5zMFqGynHP87pEWancpJuCjHqn5c1MTen7iCWCtow5VQX2PlRgdZ
-         j9qlYidIvZPQe9HLJmgx6Z/LmK6DlV8sr+wZpKIS/7iXPamA8dteCoRlxUKcBoHjZdAF
-         8GYw==
-X-Gm-Message-State: APjAAAV9wCyeJvURoqwC/glJotgxqCK/ecuEvLxNYqASYCDHNBaC3Ys1
-	3LTV0vlHdGZWvgefi4Nckh95Ta5jzx32RmruvQ0=
-X-Google-Smtp-Source: APXvYqzMryAkvK8QGrsYR0ILb68ueZjkYxGJft1T+fYy+CuQkhiYLXGyD37mgK9+RkeyGCg6/2CKZleY5S2VV3lULvg=
-X-Received: by 2002:a5d:6b45:: with SMTP id x5mr41022222wrw.16.1575041073203;
- Fri, 29 Nov 2019 07:24:33 -0800 (PST)
-MIME-Version: 1.0
-References: <20191128174739.101631-1-alex.kanavin@gmail.com>
-In-Reply-To: <20191128174739.101631-1-alex.kanavin@gmail.com>
-From: "Joshua Watt" <JPEWhacker@gmail.com>
-Date: Fri, 29 Nov 2019 09:24:21 -0600
-Message-ID: <CAJdd5Ga-11TNZxHnBmmRg3wnn273myiEHjJYXxdXuC0MfeWAAA@mail.gmail.com>
-Subject: Re: [yocto] [meta-mingw][PATCH] gettext: adapt for version 0.20
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+ dkim=pass header.i=@betafive.co.uk header.s=fm3 header.b=CwmpaV+m;
+ spf=softfail (domain: betafive.co.uk, ip: 140.211.169.56, mailfrom: paul@betafive.co.uk)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 2A457E010C7; Fri, 29 Nov 2019 08:10:01 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
+	*      trust
+	*      [66.111.4.27 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11D7BE0097D
+	for <yocto@yoctoproject.org>; Fri, 29 Nov 2019 08:09:58 -0800 (PST)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailout.nyi.internal (Postfix) with ESMTP id 6A0D422803
+	for <yocto@yoctoproject.org>; Fri, 29 Nov 2019 11:09:56 -0500 (EST)
+Received: from imap2 ([10.202.2.52])
+  by compute1.internal (MEProxy); Fri, 29 Nov 2019 11:09:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=betafive.co.uk;
+	 h=mime-version:message-id:in-reply-to:references:date:from:to
+	:subject:content-type; s=fm3; bh=Jw/kCY3WzmmvUnZLvoSLu3701wuPaZL
+	rUAcKboWSZ2U=; b=CwmpaV+m/zinoIhtN9sG0oS/ZYAbAjnC1ui23QCRecn/1yR
+	kev45lycOGsu/YhKeqApC+ZTg8c+/VuJOy+zdSJWPnE9MCCrdULfbxN2YFCEGt9L
+	nRxrQPlsMVTyMd7+5BwP1SM5eF8Ut4H9nEoaqPw4hi/7f8g58vASOnxj88t8om8w
+	FlWawCrpcvfwOOX5aZ6d5QtAvDcvjcRti939WwJvRSwGDAtP9ugJfkl2lsg0Dk+U
+	DYtKyFghA9vAsFj6xhys0I2BNlLTCjyHmrAwU8uF4ltmA+0YPHI5AYQs07QvwWr3
+	w3UUyU+RqPM/Y1LyH+q8aZXoelmGRgoKKjDOLDg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=Jw/kCY
+	3WzmmvUnZLvoSLu3701wuPaZLrUAcKboWSZ2U=; b=EkWmVd4S8kwVulEiUWHXnw
+	vR9CUhiQvKBt/mDUs0JAo6RU/aBAbr+u9+pvqRiDnBdCD3OfqgPyboGIITZDabGD
+	xcUewEg/9g664oxDr7ZACYjmUzVCJQCuEIQttgQogFdYhAC8UUqC4vla2wdGe0Yc
+	R6bXZGE40EMqtTLG4y4NHYJWpausX5O4LDv2yoB7Z9zOqD9xvqY0IMdzBHo7TMih
+	FGCW3y5NvgnT6NA7AxdzAGObBqR+lhTKUDcLmp8WIabPSqP9jUJxJsFbF1N+CeHa
+	lLGvA1TH1kGffEMbJI1WYaXo6w2y3mPHIz/8UURSL0KSu1n2mxYf4JMlsbb+tmYQ
+	==
+X-ME-Sender: <xms:00LhXVmWXINHtR06VfkbvuO6fW8dkijOE5PzNdj1f3svcUF1PfH1wg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrudeiledgkedvucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdfrrghu
+    lhcuuegrrhhkvghrfdcuoehprghulhessggvthgrfhhivhgvrdgtohdruhhkqeenucfrrg
+    hrrghmpehmrghilhhfrhhomhepphgruhhlsegsvghtrghfihhvvgdrtghordhukhenucev
+    lhhushhtvghrufhiiigvpedt
+X-ME-Proxy: <xmx:00LhXY6fFlUKFT4KuksjTBaz-prbn3jCnhYS-lpscWmvlSuTpIZPPg>
+    <xmx:00LhXQw5Qg4V-rLqFPPlM8sLcccnXIzCf1x0rfGh2LGbOKV-c4vw-w>
+    <xmx:00LhXRKkqTlGEbpL6EFN7p8XypzVKQJhkRgocLXcTq5GEW9O8ZTYXw>
+    <xmx:1ELhXX9DOsGPc-2PdZZCDZ12KUhoB6Pg3v7lRkUdFrVrV-tTgAa21A>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id 948CBE00A2; Fri, 29 Nov 2019 11:09:55 -0500 (EST)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.7-578-g826f590-fmstable-20191119v1
+Mime-Version: 1.0
+Message-Id: <f8cce366-e61c-46a0-b0e9-b23df55c5198@www.fastmail.com>
+In-Reply-To: <20191115130931.47159-1-paul@betafive.co.uk>
+References: <20191115130931.47159-1-paul@betafive.co.uk>
+Date: Fri, 29 Nov 2019 16:09:35 +0000
+From: "Paul Barker" <paul@betafive.co.uk>
+To: "Yocto discussion list" <yocto@yoctoproject.org>
+Subject: Re: [patchtest-oe][PATCH] test_patch_upstream_status: Be explicit about case sensitivity
+Content-Type: text/plain
 
-On Thu, Nov 28, 2019 at 11:47 AM Alexander Kanavin
-<alex.kanavin@gmail.com> wrote:
->
-> Drop backported patch (new gettext includes the updates).
->
-> Drop version from the .bbappend (hopefully no version-specific
-> tweaks will be needed going forward).
-
-I've applied this to master-next, we can pull up master once the
-oe-core patch lands. I'm assuming this will break the current master
-AB builds if it's applied to master without the oe-core patch?
-
->
-> Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
+On Fri, 15 Nov 2019, at 13:09, Paul Barker wrote:
+> The case sensitivity of the checks for the "Upstream-Status" label
+> should match so that failure messages make sense. The checks in the
+> parse_upstream_status module are case sensitive and so the initial regex
+> check should also be made case sensitive.
+> 
+> A quick note about case sensitivity is added to the advice given if
+> "Upstream-Status" is not found.
+> 
+> Signed-off-by: Paul Barker <paul@betafive.co.uk>
 > ---
->  .../fix-gl_cv_prog_as_underscore-test.patch   | 67 -------------------
->  ...ext_0.19.%.bbappend => gettext_%.bbappend} |  1 -
->  2 files changed, 68 deletions(-)
->  delete mode 100644 recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore-test.patch
->  rename recipes-core/gettext/{gettext_0.19.%.bbappend => gettext_%.bbappend} (87%)
->
-> diff --git a/recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore-test.patch b/recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore-test.patch
-> deleted file mode 100644
-> index 636789f..0000000
-> --- a/recipes-core/gettext/gettext/fix-gl_cv_prog_as_underscore-test.patch
-> +++ /dev/null
-> @@ -1,67 +0,0 @@
-> -Backport gnulib fix for mingw into gettext's included version of gnulib
-> -
-> -http://git.savannah.gnu.org/cgit/gnulib.git/commit/?id=68b6adebef05670a312fb92b05e7bd089d2ed43a
-> -
-> -Upstream-Status: Backport
-> -Signed-off-by: Nathan Rossi <nathan@nathanrossi.com>
-> -
-> ---- a/gettext-runtime/gnulib-m4/asm-underscore.m4
-> -+++ b/gettext-runtime/gnulib-m4/asm-underscore.m4
-> -@@ -27,11 +27,11 @@
-> - #endif
-> - int foo(void) { return 0; }
-> - EOF
-> -      # Look for the assembly language name in the .s file.
-> -      AC_TRY_COMMAND(${CC-cc} $CFLAGS $CPPFLAGS $gl_c_asm_opt conftest.c) >/dev/null 2>&1
-> --     if LC_ALL=C grep -E '(^|[^a-zA-Z0-9_])_foo([^a-zA-Z0-9_]|$)' conftest.$gl_asmext >/dev/null; then
-> -+     if LC_ALL=C grep -E '(^|[[^a-zA-Z0-9_]])_foo([[^a-zA-Z0-9_]]|$)' conftest.$gl_asmext >/dev/null; then
-> -        gl_cv_prog_as_underscore=yes
-> -      else
-> -        gl_cv_prog_as_underscore=no
-> -      fi
-> -      rm -f conftest*
-> ---- a/gettext-runtime/configure
-> -+++ b/gettext-runtime/configure
-> -@@ -24601,11 +24601,11 @@
-> -   { { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$ac_try\""; } >&5
-> -   (eval $ac_try) 2>&5
-> -   ac_status=$?
-> -   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-> -   test $ac_status = 0; }; } >/dev/null 2>&1
-> --     if LC_ALL=C grep -E '(^|^a-zA-Z0-9_)_foo(^a-zA-Z0-9_|$)' conftest.$gl_asmext >/dev/null; then
-> -+     if LC_ALL=C grep -E '(^|[^a-zA-Z0-9_])_foo([^a-zA-Z0-9_]|$)' conftest.$gl_asmext >/dev/null; then
-> -        gl_cv_prog_as_underscore=yes
-> -      else
-> -        gl_cv_prog_as_underscore=no
-> -      fi
-> -      rm -f conftest*
-> ---- a/gettext-tools/gnulib-m4/asm-underscore.m4
-> -+++ b/gettext-tools/gnulib-m4/asm-underscore.m4
-> -@@ -27,11 +27,11 @@
-> - #endif
-> - int foo(void) { return 0; }
-> - EOF
-> -      # Look for the assembly language name in the .s file.
-> -      AC_TRY_COMMAND(${CC-cc} $CFLAGS $CPPFLAGS $gl_c_asm_opt conftest.c) >/dev/null 2>&1
-> --     if LC_ALL=C grep -E '(^|[^a-zA-Z0-9_])_foo([^a-zA-Z0-9_]|$)' conftest.$gl_asmext >/dev/null; then
-> -+     if LC_ALL=C grep -E '(^|[[^a-zA-Z0-9_]])_foo([[^a-zA-Z0-9_]]|$)' conftest.$gl_asmext >/dev/null; then
-> -        gl_cv_prog_as_underscore=yes
-> -      else
-> -        gl_cv_prog_as_underscore=no
-> -      fi
-> -      rm -f conftest*
-> ---- a/gettext-tools/configure
-> -+++ b/gettext-tools/configure
-> -@@ -32284,11 +32284,11 @@
-> -   { { eval echo "\"\$as_me\":${as_lineno-$LINENO}: \"$ac_try\""; } >&5
-> -   (eval $ac_try) 2>&5
-> -   ac_status=$?
-> -   $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-> -   test $ac_status = 0; }; } >/dev/null 2>&1
-> --     if LC_ALL=C grep -E '(^|^a-zA-Z0-9_)_foo(^a-zA-Z0-9_|$)' conftest.$gl_asmext >/dev/null; then
-> -+     if LC_ALL=C grep -E '(^|[^a-zA-Z0-9_])_foo([^a-zA-Z0-9_]|$)' conftest.$gl_asmext >/dev/null; then
-> -        gl_cv_prog_as_underscore=yes
-> -      else
-> -        gl_cv_prog_as_underscore=no
-> -      fi
-> -      rm -f conftest*
-> diff --git a/recipes-core/gettext/gettext_0.19.%.bbappend b/recipes-core/gettext/gettext_%.bbappend
-> similarity index 87%
-> rename from recipes-core/gettext/gettext_0.19.%.bbappend
-> rename to recipes-core/gettext/gettext_%.bbappend
-> index 21749f3..d518698 100644
-> --- a/recipes-core/gettext/gettext_0.19.%.bbappend
-> +++ b/recipes-core/gettext/gettext_%.bbappend
-> @@ -2,7 +2,6 @@ EXTRA_OECONF_append_mingw32 = " --enable-static"
->
->  FILESEXTRAPATHS_prepend_mingw32 := "${THISDIR}/${BPN}:"
->  SRC_URI_append_mingw32 = " \
-> -               file://fix-gl_cv_prog_as_underscore-test.patch \
->                 "
->
->  FILES_libgettextlib_mingw32 = "${bindir}/libgettextlib-*.dll"
-> --
+>  tests/test_patch_upstream_status.py | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/tests/test_patch_upstream_status.py 
+> b/tests/test_patch_upstream_status.py
+> index a477dfb..ecccc58 100644
+> --- a/tests/test_patch_upstream_status.py
+> +++ b/tests/test_patch_upstream_status.py
+> @@ -23,7 +23,7 @@ import os
+>  
+>  class PatchUpstreamStatus(base.Base):
+>  
+> -    upstream_status_regex = re.compile("(?<=\+)Upstream.Status", re.IGNORECASE)
+> +    upstream_status_regex = re.compile("(?<=\+)Upstream.Status")
+>  
+>      @classmethod
+>      def setUpClassLocal(cls):
+> @@ -47,7 +47,7 @@ class PatchUpstreamStatus(base.Base):
+>              payload = newpatch.__str__()
+>              if not self.upstream_status_regex.search(payload):
+>                  self.fail('Added patch file is missing Upstream-Status 
+> in the header',
+> -                          'Add Upstream-Status: <Valid status> to the 
+> header of %s' % newpatch.path,
+> +                          'Add Upstream-Status: <Valid status> (case 
+> sensitive) to the header of %s' % newpatch.path,
+>                            data=[('Standard format', 
+> self.standard_format), ('Valid status', self.valid_status)])
+>              for line in payload.splitlines():
+>                  if self.patchmetadata_regex.match(line):
+> -- 
 > 2.17.1
+> 
 >
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
->
-> View/Reply Online (#47462): https://lists.yoctoproject.org/g/yocto/message/47462
-> Mute This Topic: https://lists.yoctoproject.org/mt/64260047/3616693
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [JPEWhacker@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
+
+Ping.
+
+-- 
+Paul Barker
