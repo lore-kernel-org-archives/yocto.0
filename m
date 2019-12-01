@@ -1,99 +1,89 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.14198.1575154836729309703
+Received: from mailrelay2-2.pub.mailoutpod1-cph3.one.com (mailrelay2-2.pub.mailoutpod1-cph3.one.com [46.30.212.1])
+ by mx.groups.io with SMTP id smtpd.web09.3254.1575237438486415945
  for <yocto@lists.yoctoproject.org>;
- Sat, 30 Nov 2019 15:00:36 -0800
+ Sun, 01 Dec 2019 13:57:19 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=q2F5VRf6;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 29D98E010D7; Sat, 30 Nov 2019 15:00:36 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (jupiter.hce[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.166.42 listed in list.dnswl.org]
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7644DE00E0F
-	for <yocto@yoctoproject.org>; Sat, 30 Nov 2019 15:00:33 -0800 (PST)
-Received: by mail-io1-f42.google.com with SMTP id i11so36099014iol.13
-        for <yocto@yoctoproject.org>; Sat, 30 Nov 2019 15:00:33 -0800 (PST)
+ dkim=pass header.i=@berginkonsult.se header.s=20191106 header.b=wudg99Bb;
+ spf=none, err=permanent DNS error (domain: berginkonsult.se, ip: 46.30.212.1, mailfrom: peter@berginkonsult.se)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-         :cc;
-        bh=W/QSaV3IpkMQUXE7+xuy1Llb1McOW/NHdl/7xdTB2rI=;
-        b=q2F5VRf6AvMF540EDXt0O11AHY0inxucQBB5FKUNEwHV5coMoEXSUMocZRl7VqPydv
-         FEjrDAO/7/mSDfbQttF7RCq107PdgsU+9QlvAoXnyGH9sjpiT9xwKv0eyOAPNxZh5BGd
-         U2cY23QK9DGTnf8I/si+oWl+UaUwiFuRrF/+TZ9v427PbXo6d5fNNfyH97BNjiRdKfV+
-         ILafnp4ZowDk53C30yWqXdxfJakDsxxGdPa5C1bap987+nOCTJ+hviY7w9NzYl5d0CKY
-         7WnD5qGJPWBnO2IDIer9lEf0WU9u4qKljussbfD9Ofq9WjoyLtKI8bTsigqZeb6mM1/e
-         ka9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-         :message-id:subject:to:cc;
-        bh=W/QSaV3IpkMQUXE7+xuy1Llb1McOW/NHdl/7xdTB2rI=;
-        b=WqIVYwDoMc8OtAn0LiIv2gMHGSCuXdiI9j8c8Q/t+it1eXxXHoqTswpAQTRkxqt+z+
-         n8+rtwmxsN8+gqyiRqwS1nc72IdniPVWFckJnph4XkipgyT4WQU83Qt2jBAWjDIjaX+C
-         a1J4WV2IsTQ+ZMcUlb0kIlYi0QlE5IuP/P6sJFcILM5gtZEdIdMa+xUt7ErsqWvWciyM
-         O4/J0D1zB5BNO0bSz7OaDoVraYAf6DPnIrNs8SxkMeRwgfx0iqb8MYk3B6EOk+wtcuJ1
-         FdTAXja7VzjacGL5Ehzq/BvuExZaQ2QaQnsV1pNl8HN26uJs7+lhzWZRtvlQm68cJ84g
-         GISQ==
-X-Gm-Message-State: APjAAAUuQqCmKAPm2wPFoOQgdx1btBbudcmy8N8Ul/cl8w0JYoai5rNi
-	uOD+OA9XfNc1KLZ9W1O2CMRB/SyAv/Wm4jL4wYeNNg==
-X-Google-Smtp-Source: APXvYqxX4dXBHwMUNXz2rkAbhVFK7/dqeMogL5U9fGTguQInHJ1qVeWzKsTQa+Z5r+uj8/2aJGQ2Ylpx+DYq4Fyh2Qs=
-X-Received: by 2002:a05:6602:251a:: with SMTP id i26mr11612806ioe.302.1575154832805;
- Sat, 30 Nov 2019 15:00:32 -0800 (PST)
+	d=berginkonsult.se; s=20191106;
+	h=content-transfer-encoding:content-type:mime-version:date:message-id:subject:
+	 from:to:from;
+	bh=/HJYxx8sKX8h24nD8dQBFFsUhoUdXZ+nNtmxktyDi9w=;
+	b=wudg99Bbp8wtqN7kTJ7AJlaFo2gG7Ok2lgmxJRD2atQV57QThtEEXGoTwMmIumWN6Es/0xpiyPpI9
+	 QjuFIdi394EUXorWaSRFvDKlSetBk590u35G/BZdY2z8mRzzafEhUqWCTCoL7DM6PVCmq8ADW3UNHC
+	 tll7AQ9benNnUs0ZPB532dXGoGsCSu+Ty2ohn12f2/HbIrbe3U1HXNjW3b7I5z3Se37quZGke0+khP
+	 aBZm/WsuRcnmhPUv3fikTieZA6EOVsDWeqzS89C1gIKnG8r4MZrDzcp06hgMnRG/iaQn3et7KpFn3/
+	 PvnAY9fojf6FBJcl9xjFv8eZ6Le93Lg==
+X-HalOne-Cookie: f7e2ba4503e880de8e250766f392dabb894e3b48
+X-HalOne-ID: 891872cd-1485-11ea-ba02-d0431ea8a290
+Received: from [192.168.100.119] (unknown [83.250.5.252])
+	by mailrelay2.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
+	id 891872cd-1485-11ea-ba02-d0431ea8a290;
+	Sun, 01 Dec 2019 21:57:15 +0000 (UTC)
+To: yocto@lists.yoctoproject.org
+From: "Peter Bergin" <peter@berginkonsult.se>
+Subject: linux-libc-headers - how to handle for older kernels?
+Message-ID: <93249840-e25f-bb2d-39af-325c15ae7afe@berginkonsult.se>
+Date: Sun, 1 Dec 2019 22:57:15 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Received: by 2002:ac0:f24e:0:0:0:0:0 with HTTP; Sat, 30 Nov 2019 15:00:32
- -0800 (PST)
-In-Reply-To: <d9a95079-1039-443e-87ec-b2d9c27e7296@www.fastmail.com>
-References: <CAA=hcWQnC_W636fec-dk5HBqTZDkfa0cWCbBrkV6YwnJG+NMfA@mail.gmail.com>
- <d9a95079-1039-443e-87ec-b2d9c27e7296@www.fastmail.com>
-From: "JH" <jupiter.hce@gmail.com>
-Date: Sun, 1 Dec 2019 10:00:32 +1100
-Message-ID: <CAA=hcWRBF1SbeFRpPvkAA1yynAHsMsAaAxJrNAEvOdzrCTAhHA@mail.gmail.com>
-Subject: Re: [yocto] Mising init and systemd binary files
-To: Paul Barker <paul@betafive.co.uk>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-Thanks Paul, indeed, what was I missing.
+Hi,
 
-Kind regards,
+I'm currently working in a project using Yocto 2.6 (thud) release. It 
+has default kernel v4.18 and also linux-libc-headers from kernel v4.18. 
+In my project we will use kernel v4.1. I would like advice how to handle 
+the linux-libc-headers package for my project, should I use the v4.18 
+headers or should I use the v4.1 header files which matches the running 
+kernel?
 
-- jh
+From https://www.kernel.org/doc/html/latest/kbuild/headers_install.html:
+"Kernel headers are backwards compatible, but not forwards compatible. 
+This means that a program built against a C library using older kernel 
+headers should run on a newer kernel (although it may not have access to 
+new features), but a program built against newer kernel headers may not 
+work on an older kernel."
 
-On 11/30/19, Paul Barker <paul@betafive.co.uk> wrote:
-> On Sat, 30 Nov 2019, at 11:28, JH wrote:
->> Hi,
->>
->> I built a Yocto image, but could not find /init, usually it should be
->> a symbolic link in /init->/sbin/init->/lib/systemd/systemd, In
->> /lib/systemd directory, it only contains a subdirectory system, all
->> other systemd binaries are missing, many system commands in /sbin are
->> also missing. What could I get wrong here to miss out all systemd
->> files?
->
-> Are you using an existing image recipe or writing your own? If it's your
-> own, do you have packagegroup-core-boot included?
->
-> Thanks,
->
-> --
-> Paul Barker
->
+With the information from the quote above I would directly use v4.1 
+headers as my linux-libc-headers. But then reading the information in 
+the file meta/recipes-kernel/linux-libc-headers/linux-libc-headers.inc 
+makes me think another round. It states:
+
+"
+# You're probably looking here thinking you need to create some new copy
+# of linux-libc-headers since you have your own custom kernel. To put
+# this simply, you DO NOT.
+...
+# There can also be a case where your kernel extremely old and you want
+# an older libc ABI for that old kernel. The headers installed by this
+# recipe should still be a standard mainline kernel, not your own custom
+# one.
+"
+
+The first part states that I should not change linux-libc-headers. But 
+when I read the last part I'm not sure about the interpretation and it 
+could be for my case. Just a matter of definition if v4.1 is extremely 
+old compared to v4.18.
+
+Then another thing comes in to the equation; the LIBC ABI. When I look 
+into the configuration of the glibc package it uses the configure switch 
+"--enable-kernel=3.2" which means it shall be compatible with all kernel 
+newer than v3.2. Then probably glibc is fine if it is compiled with 
+v4.18 and run on v4.1?
+
+If building all applications against v4.18 headers but run on v4.1 
+kernel. I have a feeling that there potentially can be problems here.
+
+Please help me with some information about this and share your opinions? 
+Are there any risks at all to use v4.1 as linux-libc-headers in my Yocto 
+build? The only drawback I see is that it will be a new configuration 
+not well tested by the community. Are there other risks or drawbacks 
+using your own version of linux-libc-headers?
+
+Best regards,
+/Peter
