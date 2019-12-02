@@ -1,148 +1,149 @@
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
- by mx.groups.io with SMTP id smtpd.web12.532.1575290636554323682
+Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
+ by mx.groups.io with SMTP id smtpd.web09.1259.1575294264592614350
  for <yocto@lists.yoctoproject.org>;
- Mon, 02 Dec 2019 04:43:56 -0800
+ Mon, 02 Dec 2019 05:44:24 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=LaLV+VHb;
- spf=pass (domain: gmail.com, ip: 209.85.167.43, mailfrom: sgujic@gmail.com)
-Received: by mail-lf1-f43.google.com with SMTP id r14so11599809lfm.5
-        for <yocto@lists.yoctoproject.org>; Mon, 02 Dec 2019 04:43:56 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=SgqmMLTu;
+ spf=pass (domain: gmail.com, ip: 209.85.208.65, mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-ed1-f65.google.com with SMTP id s10so32189216edi.5
+        for <yocto@lists.yoctoproject.org>; Mon, 02 Dec 2019 05:44:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=WZM3KxQ0QygiQnG+S0zGFn8+30n8UsBvRLTmK0V67SY=;
-        b=LaLV+VHbpcmaAA1T7kwJ7R1otLX9l6yq5TE8hV35/3JSjxs2cqsJsz+/EMg9DknI4A
-         55WsCKtkz3E6cnqZ4Z7/lsQf+0jrZyN6joB9h0Ee/dRjsRMBpCLpRTb1v89kcTZk2zPT
-         RRSHRaPDWodsYAVRN/M7AMYVUsEZkFmlhhHmSuAj+fY63m/x02zroqUYNdZbd6Eg8G2n
-         t51n88M/p9nUIFfsnzYN/Ww05eIN2xptv9iNW9gn3crCZWs/Ob6jWuj0Y6ZiOh/TQs0U
-         P0BHfcW2EvE0HcJ6ahOL9p6ZKiB67qP5YumLSZWMoKxUjOGUPuCHPsT1QKJhFVPXg+y2
-         t+Yg==
+        bh=KmBxykxCOoJUeFHgPkoUivxnamcjgU8/G+dBMDUu2Ts=;
+        b=SgqmMLTuCwrlvfBNfSq/h4e5u+HQbBLuSKbLev6ugIKS1mnQXBrBIOMwkqx2PjdDZ4
+         kCVZ2gWcIS1q5B+muGgrE6btcTP/6WgGms4nDzohx/p8sPRkj9dXNWarggc/+CFlgrBm
+         356/AeaxfpBO31fHHTO9+H4wPuxSFcs1skfSq2qRYIMevMjMweHrZ0TJnpD0U/GOjhHq
+         CBuZErjDgL/snvKlxuNdctIKMgT/2FIRGowLV5gXvWZbyVwRp4d3VXJHZzzxqMh1+Obd
+         Ii4Sjqs8FFljCIQnFky+SnQ4qSol08CkBm8w42uCei02q8n39TucQPunecCC8zOVR0vj
+         ljRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=WZM3KxQ0QygiQnG+S0zGFn8+30n8UsBvRLTmK0V67SY=;
-        b=FHLRKc0WiUusD/ll1jMlXpwFNjppkJKbkRuBqszXJnpcSU58K6dc2VWQAYez/8B8HV
-         qZk8iIW8mfJdFJV+gpS1e/rra7tnBXPD1DpFC5UK8ls3CGBnUnK9uG9pX353Mdhp2epQ
-         7KGRXoaSy2kIEX93f+dI5MIYWBCw1AwGItZLI8Tmizh9e67qoMifnzNLVaEYPlCScPaX
-         cP9rQnrqbmUEWObmNd1wAUl4mTPslgtvu51vzNr3h4iX60i8BEdQ5jhgIZ6Y1nJzPjef
-         lqCTa1nvIPZ9PvhkMzOrIbQ2LA/W0K9qKQA1LlzEzNgIIE8IhEERAnTApMt8nBNb6zRa
-         hsOg==
-X-Gm-Message-State: APjAAAXfq5f/84l2ptUYaVWfyx9kqqrb5hx7kHMmVSFP9szN86rQCFD4
-	dumX+C4XIwy8DWm6xXsXl2uhncsQo6L58/0DCMM=
-X-Google-Smtp-Source: APXvYqx9gz3ZTwDUdRXqNoZc9i2rxS7oSR/2eT0f2joTnO2BI0AZ9VgV3QS2ILy/syO0wHYqS/I8XUkIaLWYP/rwUYY=
-X-Received: by 2002:a19:84d:: with SMTP id 74mr42166078lfi.122.1575290634492;
- Mon, 02 Dec 2019 04:43:54 -0800 (PST)
+        bh=KmBxykxCOoJUeFHgPkoUivxnamcjgU8/G+dBMDUu2Ts=;
+        b=lDQdWPHALtd0PdOUvGe+dAuP+M+A/RFX6vg0D9vKY1hqG2u79O+ktJWgPnIXZRvRIm
+         SH/0fik6b7VuS8HRBJg3P9DFHckJh1HYgY6G+m5NTL80uqt796FauZixYNqKJe2O9kGC
+         OWtJ9OQQWQ3myoU/nq0rLBYnIb/9L4GTv5D9mOAnt0HQAUNuaToPtt4QAv3UA4sS5ubb
+         AxmEpY8nDT8CuWBqp/Qmabo9hllpvhi3kKBF1uUUAl/93EwXBvt4MuWU4a3KDnlspjsP
+         3HHXti8BTHkPf+UmQvO8N1NjOaPWhNAjuP0CLzg52ykmowGBTh2ttwsqMUNebuQBqBUP
+         6KdQ==
+X-Gm-Message-State: APjAAAWkHcdzHcccD5rm3NOBaXiIyjeReNkOGg/xg3s7BpbqYVWlXDvW
+	+aykjU2uH6MRNMQcuyx7TbL2iXJCiNIvHEiHpsA=
+X-Google-Smtp-Source: APXvYqyKHcAz/yrLZsOipYKCvIX+s6yj+gmlwQbh4cD62u/mQvKcU4tkwN6P711wQZsUvGRHty9q3EXPgp3YJ+moJtA=
+X-Received: by 2002:a05:6402:711:: with SMTP id w17mr27220135edx.122.1575294262407;
+ Mon, 02 Dec 2019 05:44:22 -0800 (PST)
 MIME-Version: 1.0
-References: <15DBB17AE3A7E664.7552@lists.yoctoproject.org>
-In-Reply-To: <15DBB17AE3A7E664.7552@lists.yoctoproject.org>
-From: "Sinisa" <sgujic@gmail.com>
-Date: Mon, 2 Dec 2019 13:44:58 +0100
-Message-ID: <CA+OPWonuBa2NUy=40aPehPMEz7=-ww_5TuR83qDkCShNzPe0Yw@mail.gmail.com>
-Subject: Re: [yocto] Copy initramfs to rootfs
-To: Sinisa Gujic <sgujic@gmail.com>
-Cc: yocto@yoctoproject.org, yocto@lists.yoctoproject.org
+References: <93249840-e25f-bb2d-39af-325c15ae7afe@berginkonsult.se> <dcb9a8b4-88c5-5b1e-00ba-4b89f809e3d3@topic.nl>
+In-Reply-To: <dcb9a8b4-88c5-5b1e-00ba-4b89f809e3d3@topic.nl>
+From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
+Date: Mon, 2 Dec 2019 08:44:11 -0500
+Message-ID: <CADkTA4O_vBgX-PRssZbCgzMDsyVr6LyoscXEAe5qyHFCJPu+rw@mail.gmail.com>
+Subject: Re: [yocto] linux-libc-headers - how to handle for older kernels?
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Cc: "peter@berginkonsult.se" <peter@berginkonsult.se>, 
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+On Mon, Dec 2, 2019 at 4:14 AM Mike Looijmans <mike.looijmans@topic.nl> wrote:
+>
+> On 01-12-19 22:57, Peter Bergin via Lists.Yoctoproject.Org wrote:
+> > Hi,
+> >
+> > I'm currently working in a project using Yocto 2.6 (thud) release. It has
+> > default kernel v4.18 and also linux-libc-headers from kernel v4.18. In my
+> > project we will use kernel v4.1. I would like advice how to handle the
+> > linux-libc-headers package for my project, should I use the v4.18 headers or
+> > should I use the v4.1 header files which matches the running kernel?
+> >
+> >  From https://www.kernel.org/doc/html/latest/kbuild/headers_install.html:
+> > "Kernel headers are backwards compatible, but not forwards compatible. This
+> > means that a program built against a C library using older kernel headers
+> > should run on a newer kernel (although it may not have access to new
+> > features), but a program built against newer kernel headers may not work on an
+> > older kernel."
+> >
+> > With the information from the quote above I would directly use v4.1 headers as
+> > my linux-libc-headers. But then reading the information in the file
+> > meta/recipes-kernel/linux-libc-headers/linux-libc-headers.inc makes me think
+> > another round. It states:
+> >
+> > "
+> > # You're probably looking here thinking you need to create some new copy
+> > # of linux-libc-headers since you have your own custom kernel. To put
+> > # this simply, you DO NOT.
+> > ...
+> > # There can also be a case where your kernel extremely old and you want
+> > # an older libc ABI for that old kernel. The headers installed by this
+> > # recipe should still be a standard mainline kernel, not your own custom
+> > # one.
+> > "
+> >
+> > The first part states that I should not change linux-libc-headers. But when I
+> > read the last part I'm not sure about the interpretation and it could be for
+> > my case. Just a matter of definition if v4.1 is extremely old compared to v4.18.
+> >
+> > Then another thing comes in to the equation; the LIBC ABI. When I look into
+> > the configuration of the glibc package it uses the configure switch
+> > "--enable-kernel=3.2" which means it shall be compatible with all kernel newer
+> > than v3.2. Then probably glibc is fine if it is compiled with v4.18 and run on
+> > v4.1?
+> >
+> > If building all applications against v4.18 headers but run on v4.1 kernel. I
+> > have a feeling that there potentially can be problems here.
+> >
+> > Please help me with some information about this and share your opinions? Are
+> > there any risks at all to use v4.1 as linux-libc-headers in my Yocto build?
+> > The only drawback I see is that it will be a new configuration not well tested
+> > by the community. Are there other risks or drawbacks using your own version of
+> > linux-libc-headers?
+>
+>
+> It is not broken, so please don't fix it.
+>
+> OpenPLi has been using kernels way older than 4.1 with the kernel-headers
+> generated by OE/yocto and did not experience any problems with that. There's
+> about 50+ machines in there that have pre-built binary drivers that only work
+> with a particular kernel config and hence the old stuff.
+>
+> There are some corner-cases with exotic kernels and exotic exports and exotic
+> boot executables that use the kernel compiler, but I doubt that you're in there...
+>
+> If you have a kernel that exports something that's not in the regular headers,
+> it's way better to solve that using a syscall than trying to poke in low level
+> libc stuff.
+>
+> So again, if you don't experience problems, please don't try to fix it...
 
-I figured out the way to do this, im not sure if this is the good
-approach, but so far it works for me. So ill just post it here if
-someone else stumbles upon this issue.
+This has been my experience as well.
 
-I was on good track with ROOTFS_POSTPROCESS_COMMAND, so i did this in
-my image recipe.
+I've run a really wide set of BSP kernel's against the various "much
+newer" yocto/OE libc-headers over the years, and I've never hit an ABI
+or otherwise incompatibility.
 
-In recipe called my-fancy-image.bb
+Like Mike is saying, if you probably have a feeling if your BSP is
+doing anything exotic and can explicitly test those problem areas, or
+put in place some specific workarounds if there are some changed or
+different interfaces.
 
-INITRAMFS_IMAGE = "initramfs-image-recipe"
-INITRAMFS_FSTYPES = "cpio.gz"
+Cheers,
 
-initramfs_postprocess() {
-  rm ${IMAGE_ROOTFS}/boot/zImage-*
-  cp ${DEPLOY_DIR_IMAGE}/zImage-initramfs--* ${IMAGE_ROOTFS}/boot/zImage
-}
+Bruce
 
-ROOTFS_POSTPROCESS_COMMAND += "initramfs_postprocess; "
-
-And in my local.conf
-
-INITRAMFS_IMAGE_BUNDLE = "1"
-
-Then, call bitbake my-fancy-image and in /boot you will get your
-zImage-initramfs (named zImage).
-
-It surely does look like a little bit hackish way to do things, but
-yocto documentation does not provide any better solution as far as i
-can tell.
-
-Feel free to post here if you have or know a better solution.
-
-Regards,
-Sinisa
-
-On Fri, Nov 29, 2019 at 6:14 PM Sinisa via Lists.Yoctoproject.Org
-<sgujic=gmail.com@lists.yoctoproject.org> wrote:
 >
-> Hello everyone,
->
-> I started to build kernel with initramfs, and so far all that works
-> great. I got my new shiny zImage-initramfs--4.1.14..xxx.bin. I can
-> boot it over tftp, its does exactly what i want.
->
-> Problem im facing is, how do i put this new zImage instead of
-> originally built zImage in final rootfs archive (tar.gz).
->
-> To clarify, upon a "bitbake create-my-fancy-image" i got in
-> tmp/deploy/images two zImage files, one without initramfs and one with
-> initramfs. When i inspect my rootfs.tar.gz /boot folder, i have zImage
-> inisde (symlink and DTB also).
->
-> I would like to replace somehow this zImage with initramfs version.
-> How do i do that?
->
-> Documentations talks only about this IMAGE_BUNDLE that is going to
-> merge kernel with initramfs, but i cant find any obvious way to get
-> this into rootfs, to replace somehow original zImage.
->
-> The best idea i have so far (that does not work) is to do something like this:
->
-> initramfs_postprocess() {
->    # NOTE: pseudo code
->    rm ${IMAGE_ROOTFS}/boot/zImage-custom*
->    unlink ${IMAGE_ROOTFS}/boot/zImage
->    # Im not sure how do i reference file from tmp/deploy/images, which
-> is my question number 2
->    cp zImage-initramfs-* to ${WORKDIR}/boot/zImage
-> }
->
-> ROOTFS_POSTPROCESS_COMMAND += "initramfs_postprocess; "
->
-> This above looks very dirty to me, but its best "idea" i have atm.
->
-> So, in my local.conf i have:
-> INITRAMFS_IMAGE_BUNDLE = "1" # means fuse kernel + initramfs
->
-> And in my main image recipe i have:
-> INITRAMFS_IMAGE = "initramfs-custom" #name of the recipe that provides
-> some custom /init
-> INITRAMFS_FSTYPES = "cpio.gz" # make a compressed cpio out of initramfs
->
-> One thing to note, im trying to avoid doing this with wks and creating
-> a special /boot partition. This is not something im really targeting,
-> i know its possible, but i want to have my kernel inside rootfs.tar.gz
-> in /boot from single image recipe due the various reasons.
->
-> Any suggestion is much appreciated.
->
-> Regards,
-> Sinisa
 > -=-=-=-=-=-=-=-=-=-=-=-
 > Links: You receive all messages sent to this group.
 >
-> View/Reply Online (#47472): https://lists.yoctoproject.org/g/yocto/message/47472
-> Mute This Topic: https://lists.yoctoproject.org/mt/64383719/3618560
+> View/Reply Online (#47483): https://lists.yoctoproject.org/g/yocto/message/47483
+> Mute This Topic: https://lists.yoctoproject.org/mt/64460477/1050810
 > Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [sgujic@gmail.com]
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [bruce.ashfield@gmail.com]
 > -=-=-=-=-=-=-=-=-=-=-=-
+
+
+
+-- 
+- Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end
+- "Use the force Harry" - Gandalf, Star Trek II
