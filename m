@@ -1,102 +1,92 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.7265.1575386125314402396
+ by mx.groups.io with SMTP id smtpd.web09.7133.1575386400617962826
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 Dec 2019 07:15:25 -0800
+ Tue, 03 Dec 2019 07:20:00 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=OZWFA0MW;
- spf=softfail (domain: linuxfoundation.org, ip: 140.211.169.56, mailfrom: richard.purdie@linuxfoundation.org)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=pkE+KMgW;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: gabbla.malist@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DA98CE01105; Tue,  3 Dec 2019 07:15:24 -0800 (PST)
+	id 6E380E01104; Tue,  3 Dec 2019 07:20:00 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (gabbla.malist[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.221.49 listed in list.dnswl.org]
+	*      [209.85.208.169 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83D9AE00B5E
-	for <yocto@yoctoproject.org>; Tue,  3 Dec 2019 07:15:22 -0800 (PST)
-Received: by mail-wr1-f49.google.com with SMTP id w15so4147409wru.4
-        for <yocto@yoctoproject.org>; Tue, 03 Dec 2019 07:15:22 -0800 (PST)
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDA6BE00848
+	for <yocto@yoctoproject.org>; Tue,  3 Dec 2019 07:19:59 -0800 (PST)
+Received: by mail-lj1-f169.google.com with SMTP id u17so4288925lja.4
+        for <yocto@yoctoproject.org>; Tue, 03 Dec 2019 07:19:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=Yupnb9WXjizUWkxZAU8ueH1/nrAoGdKe3dTzrZQMup0=;
-        b=OZWFA0MW31TbwDY2/K+IR3jT7z6cCvanF2DEtYjTFUyPX2cI/G9KbCeMsY0hgJKqRA
-         g5ai5W4h4clrm/sL3Bumzsm14NU4Da7mpfeor1QE/UI/uCHtgfxoO9D6uqI8RouKd9MD
-         EyAKjiFVcxEr6lX6D26rkDU/AZzxmQUH30yIY=
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=HCiLbGimwPplqL1vwLsIW/m5xxI5sUmkJjXYPlJudZU=;
+        b=pkE+KMgWZZ9f5fHwihYnIiyBYDE3OV6+MwlPYXmiix1UNaw/VzRR51nXIJ8p6wKmed
+         yDMKKEUMqCCNUeD9OYL83P/eGDc44pQbxkOqh4YoFOoorzBzeL+v4FcYs6pLVQeHoiR5
+         do52a40IMbGHKhNx5D/TPhP8/nPbeVVeYxOD79Xk7NNLbo4eXnBF1fdLcyx9WM2qH3dd
+         0Y7KnnaGd+AiLxPsEeyQB/RzKszBkoshB8vDncFKqN82bGrOIGM5J83OlqovcWnem8/7
+         z5uM3N8dK0kHJaG9qN1bT8tJ6PE8X3QAy/0xRTfgeEQv5ue8kOKczectITTDOda37T72
+         qD6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=Yupnb9WXjizUWkxZAU8ueH1/nrAoGdKe3dTzrZQMup0=;
-        b=c3DMd78BhV2+fxSJClnpUosIWjWqWIAsQOOuwdNdnv6p86kkdUzmVtrAYlxPZU4xFr
-         C9ty6BYamBYkOG8HCLtHY7F1OMGLrc9NjvZ5nBMEm/7GrmcUKndOGq14UWFmb2LH8uT4
-         Q6ehX2mf0G+1H4Ak+amxFMgg2VIdQOnWJxQTIF7BlIddnW7vkU4UmvnhB/LiQ19cPyiJ
-         cEpISpfG96gFwgpI4i0cnycKsOZaVVh9laXmuGX4VG/6tpIwYRRKlfP8/70GAVjp9X98
-         8y/5zRu9FBCQHpN/CZF3vuDUOkNrE7vOx6az1GCXDfPMLDeG0Hf9/I7K2zP1E1KJsVaF
-         tQ+g==
-X-Gm-Message-State: APjAAAUXj/aZ8R2U8xBVD5z5bDg9jPO02iQk4dRsUNH9LA63+tdSy7V+
-	ra/NVJWoFHdS728QmnbnR56Ahw==
-X-Google-Smtp-Source: APXvYqxBmxdXFHm55+A4uFyuCiWWWb4NZ1Bj07ieZUiLRLbUz9aayzT4iZPD9R0CGbrLGnnAEr8lVQ==
-X-Received: by 2002:adf:fe8c:: with SMTP id l12mr3851799wrr.215.1575386121470;
-        Tue, 03 Dec 2019 07:15:21 -0800 (PST)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-        by smtp.gmail.com with ESMTPSA id 60sm4385165wrn.86.2019.12.03.07.15.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2019 07:15:20 -0800 (PST)
-Message-ID: <7c2a2254b38a1ddc3d67560c8f7d942f7cfd7612.camel@linuxfoundation.org>
-Subject: Re: [yocto] QA cycle report for yocto-3.0.1.rc3
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: "Jain, Sangeeta" <sangeeta.jain@intel.com>, "yocto@yoctoproject.org"
-	 <yocto@yoctoproject.org>, Yocto TSC <tsc@yoctoproject.org>, "Tummalapalli,
-	Vineela" <vineela.tummalapalli@intel.com>
-Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>, 
- "yi.zhao@windriver.com" <yi.zhao@windriver.com>, "Sangal, Apoorv"
- <apoorv.sangal@intel.com>, "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "Chan,
- Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,  "akuster808@gmail.com"
- <akuster808@gmail.com>, "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>
-Date: Tue, 03 Dec 2019 15:15:19 +0000
-In-Reply-To: <CY4PR11MB1879465B598CFC79F8EDF1CDE3420@CY4PR11MB1879.namprd11.prod.outlook.com>
-References: 
-	<CY4PR11MB1879465B598CFC79F8EDF1CDE3420@CY4PR11MB1879.namprd11.prod.outlook.com>
-User-Agent: Evolution 3.34.1-2 
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=HCiLbGimwPplqL1vwLsIW/m5xxI5sUmkJjXYPlJudZU=;
+        b=Ag3URZ/2dv8JdL0FhzeKYc3OSfjupySts9dDFdXdTXtYYtHhednYxhDctR6tszFFYQ
+         i1rFZBUJuz7q9wzjYkrWJel5vof4E/DfyxrM/sihuY0nq8EFFijx2vlYM3RQ76dDqdl3
+         bjPcs8M4R285OovYiiMsISpZ2DA9+Sz14gvQZThfNjimZK4So5O0G9zLtkteR+caFg86
+         RmRBArIFc/Ja7kwBgw+Zy4/QbNE1POb5uqZqD9Cmo0FXbmj70nc9Uh6Qf7ZB6GJp//DA
+         ZGfs6ToFXiY+d8gpvQkOEA3h2TvEg+Hkgcj3Q3tO/25xEDSqlMyl7guncijyFK6zY1QV
+         K3AQ==
+X-Gm-Message-State: APjAAAUGS1S67PQhEJYPjzCtMdIajtpTDq6diUCyxOppQhowBKK8rGIW
+	b6kNvSe3qfR5GidfpVJVqSUg315AGLnJ+e7ga0Z/pw==
+X-Google-Smtp-Source: APXvYqx29/wUw3DM8qmJ3oRs9K/1wvLfy2QelQt0ZeIEsSIIFrwVgSHIz5wcev+h8xy25/gFrajJQkpn39FvGbQrW2U=
+X-Received: by 2002:a2e:b4c7:: with SMTP id r7mr2979162ljm.82.1575386398630;
+ Tue, 03 Dec 2019 07:19:58 -0800 (PST)
 MIME-Version: 1.0
+From: "Gabriele" <gabbla.malist@gmail.com>
+Date: Tue, 3 Dec 2019 16:19:47 +0100
+Message-ID: <CAAx3WaBX_iQnL88kjH300CrjwmbdCZYHixYzJ=1s1iZ4xD1mEw@mail.gmail.com>
+Subject: Getting linux kernel version
+To: Yocto discussion list <yocto@yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000aca9470598ce3abb"
+
+--000000000000aca9470598ce3abb
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
 
-On Tue, 2019-12-03 at 07:15 +0000, Jain, Sangeeta wrote:
-> This is the full report for 3.0.1 RC3:  
-> https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?h=intel-yocto-testresults
-> 
-> ======= Summary ========
-> No high milestone defects.  
-> No new defects are found in this cycle.
-> valgrind ptest failed (BUG id:13666). 
-> 
-> ======= Bugs ========
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=13666
+Hi all,
 
-Thanks!
+is there a standard way to get the Linux kernel version (output of `uname
+-r`)? I'm using a custom kernel recipe that inherit from kernel class. I
+need to get that version in a task executed after do_rootfs.
 
-Looking at the bug, it seems only one of the tests within the ptest
-regressed. Whilst that does need looking into, I'd say it isn't a
-release blocker and I'd propose we release 3.0.1 rc3.
+Any help would be appreciated,
+best regards,
+Gabriele
 
-What does the rest of the TSC say?
+--000000000000aca9470598ce3abb
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Cheers,
+<div dir=3D"ltr"><div>Hi all,</div><div><br></div><div>is there a standard =
+way to get the Linux kernel version (output of `uname -r`)? I&#39;m using a=
+ custom kernel recipe that inherit from kernel class. I need to get that ve=
+rsion in a task executed after do_rootfs. <br></div><div><br></div><div>Any=
+ help would be appreciated,</div><div>best regards, <br></div><div>Gabriele=
+</div><div><br></div></div>
 
-Richard
-
+--000000000000aca9470598ce3abb--
