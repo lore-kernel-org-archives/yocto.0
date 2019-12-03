@@ -1,136 +1,308 @@
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
- by mx.groups.io with SMTP id smtpd.web10.9454.1575327100583976550
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+ by mx.groups.io with SMTP id smtpd.web09.291.1575338899422413700
  for <yocto@lists.yoctoproject.org>;
- Mon, 02 Dec 2019 14:51:40 -0800
+ Mon, 02 Dec 2019 18:08:19 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Hhzln7ch;
- spf=pass (domain: gmail.com, ip: 209.85.216.47, mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f47.google.com with SMTP id s8so511013pji.2
-        for <yocto@lists.yoctoproject.org>; Mon, 02 Dec 2019 14:51:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=NgT65rqBXWFWiykUt/5o6eIc1kh3/cmgfpKXbIs63vg=;
-        b=Hhzln7chxtB+Nf9WpQSaMb7sOH2BehT4oMjd6Cx/4DkPWl4aQsUQOhIYMlUJ1Tw7Yg
-         jurCyifbPqA4JsZ8vblfESlnmUV3krRFbVPilel2E8qVU0yRs2o9o5uYNG5rrroUYIJh
-         Nmy5QMMxDWLbZWHFI/vcaYx4ORuom6EobRCinskZvX90PhQg7GrGi7ZiLlZxlah25Tc4
-         NaH3NjJPiMlRnQCuWBj9e6UDkpKd5P+NWcJp+DVqQ14dHzROx+LG/Eck+30aifjGJmSE
-         q8nJ7sICfX4JprepI6ufKkpikX7CR5F0aWY/kYpwcDFXBCLS4Udqay+ilLd6sFeqnp4w
-         kELQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-transfer-encoding:content-language;
-        bh=NgT65rqBXWFWiykUt/5o6eIc1kh3/cmgfpKXbIs63vg=;
-        b=WprT+6RDNCi7oW9At93pVbylNj/dZ7EEnIOVPX5NVL/9du9LIzLEiWK1jd0UGGJyPd
-         iOaGdlhUfyKZn/9tCqW2/p7mfM7vaWfW0lzjyRf4rUevqwgqjrcJeN252/lUtWwpEkHW
-         9g/qt833i1r0wUi8Kqb8vX0eJrs83afStm24gpFSMPRj1iDDlD+7d7RSlR0I8fumB612
-         oL+FYZeuNOlO3PQ2dRdc9+Ih9DbnsnwzrknszPZQHkWzve/C+CS1pfD0nj8EgyXtVcQJ
-         YJW/8C4FRdivrzJcEjWIsEz5jGFg+6B1+44QcDxPHLM964JJVUPEtLZQcrjaGgvgbqXK
-         5jNA==
-X-Gm-Message-State: APjAAAUWbjpPdla6l48byO8ELknGJdT+jLrTD0xm7EdUZlEjrHGeRt4q
-	cCtuIRFv4gyI7XUJm7Le1m59tnk3
-X-Google-Smtp-Source: APXvYqwqGhvGJSbeAF9r1Gqm+7ngY/YKQBsK3OIMEF+NWhlsLdRuKvSNWxM3bHFwmpuuqKo5gxaA1w==
-X-Received: by 2002:a17:90a:86c7:: with SMTP id y7mr1768358pjv.102.1575327099914;
-        Mon, 02 Dec 2019 14:51:39 -0800 (PST)
-Return-Path: <akuster808@gmail.com>
-Received: from ?IPv6:2601:202:4180:a5c0:51a5:502e:8fc:9836? ([2601:202:4180:a5c0:51a5:502e:8fc:9836])
-        by smtp.gmail.com with ESMTPSA id h2sm650709pgj.45.2019.12.02.14.51.39
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 02 Dec 2019 14:51:39 -0800 (PST)
-Subject: Re: [OE-core] Removal of Python 2 from oe-core
-To: Ross Burton <ross.burton@intel.com>,
- oe-core <openembedded-core@lists.openembedded.org>,
- openembeded-devel <openembedded-devel@lists.openembedded.org>,
- Yocto-mailing-list <yocto@lists.yoctoproject.org>
-References: <7ae3e998-5fd8-7d40-bdad-a3558b172f78@intel.com>
-From: "Armpit" <akuster808@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <a04b5f90-3492-7f2b-1e7a-0222e1727ad4@gmail.com>
-Date: Mon, 2 Dec 2019 14:51:38 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+ dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.1.11, mailfrom: randy.macleod@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id xB328Eai004804
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
+	Mon, 2 Dec 2019 18:08:14 -0800 (PST)
+Received: from [172.25.44.8] (172.25.44.8) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server id 14.3.468.0; Mon, 2 Dec 2019
+ 18:08:13 -0800
+Subject: Re: [yocto] Yocto Image Build for NXP i.MX8M
+To: Aj Cit <aj.ci.01.239@gmail.com>,
+        Josef Holzmayr
+	<holzmayr@rsi-elektrotechnik.de>
+CC: <yocto@lists.yoctoproject.org>
+References: <CALSaBR8uTFeGqBeOCDan4Sjo=1Dh+1GnpanKZfB03+j0sSMuuA@mail.gmail.com>
+ <CALSaBR_YY=7FnN2ngLwL-gVEiQWYqkFGmCUoPNp1Hi0AaWsOEg@mail.gmail.com>
+ <20191128085252.ch5dmsqxdut5vsih@jholzmayr.localdomain>
+ <CALSaBR_Z5GpPA03w0nerSzA2bR5mRDP12Zp3YNrij89y3Nbvfw@mail.gmail.com>
+ <20191128090438.aih26zwmmtmzwviu@jholzmayr.localdomain>
+ <CALSaBR8-X6JMfCHq=RbuTngEutGGcZ-jyzsb6nRk615YCbYunw@mail.gmail.com>
+From: "Randy MacLeod" <randy.macleod@windriver.com>
+Message-ID: <b28f7b71-be2c-3d6e-a632-a43ba960f4e8@windriver.com>
+Date: Mon, 2 Dec 2019 21:08:12 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
 MIME-Version: 1.0
-In-Reply-To: <7ae3e998-5fd8-7d40-bdad-a3558b172f78@intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+In-Reply-To: <CALSaBR8-X6JMfCHq=RbuTngEutGGcZ-jyzsb6nRk615YCbYunw@mail.gmail.com>
+X-Originating-IP: [172.25.44.8]
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail.windriver.com id xB328Eai004804
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-CA
+Content-Transfer-Encoding: quoted-printable
+
+On 11/28/19 7:02 AM, Aj Cit wrote:
+>=20
+> Dear Josef,
+>=20
+> I've managed to run build command to generate OS image for the target,=20
+> which is |core-image-sato|=C2=A0by executing the following command:
+>=20
+>       $ bitbake core-image-sato
+>=20
+> Can I know how to proceed further?
+>=20
+> I'm getting the following response from the Ubuntu 18.04.1 LTS
+>=20
+> Loading cache: 100%=20
+> |######################################################################=
+###################################|=20
+> Time: 0:00:00
+> Loaded 1264 entries from dependency cache.
+> NOTE: Resolving any missing task queue dependencies
+>=20
+> Build Configuration:
+> BB_VERSION =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "1.40.0"
+> BUILD_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "x86_64-linux"
+> NATIVELSBSTRING =C2=A0 =C2=A0 =C2=A0=3D "universal"
+> TARGET_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "x86_64-poky-linux"
+> MACHINE =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "qemux86-64=
+"
+> DISTRO =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "poky"
+> DISTRO_VERSION =C2=A0 =C2=A0 =C2=A0 =3D "2.6.2"
+> TUNE_FEATURES =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "m64 core2"
+> TARGET_FPU =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D ""
+> meta
+> meta-poky
+> meta-yocto-bsp =C2=A0 =C2=A0 =C2=A0 =3D "HEAD:e7f0177ef3b6e06b8bc1722fc=
+a0241fef08a1530"
+>=20
+> Initialising tasks: 100%=20
+> |######################################################################=
+###################################|=20
+> Time: 0:00:02
+> Checking sstate mirror object availability: 100%=20
+> |######################################################################=
+################|=20
+> Time: 0:05:55
+> Sstate summary: Wanted 1402 Found 329 Missed 2146 Current 708 (23%=20
+> match, 49% complete)
+> NOTE: Executing SetScene Tasks
+> NOTE: Executing RunQueue Tasks
+> WARNING: sudo-1.8.23-r0 do_fetch: Failed to fetch URL=20
+> http://ftp.sudo.ws/sudo/dist/sudo-1.8.23.tar.gz, attempting MIRRORS if=20
+> available
+> NOTE: Tasks Summary: Attempted 5774 tasks of which 2941 didn't need to=20
+> be rerun and all succeeded.
+>=20
+> Summary: There was 1 WARNING message shown.
+> adminuser@verathon:~/poky/build$ ls
+> bitbake-cookerdaemon.log =C2=A0cache =C2=A0conf =C2=A0downloads =C2=A0s=
+state-cache =C2=A0tmp
+> adminuser@verathon:~/poky/build$ runqemu qemux86
+> runqemu - INFO - Running MACHINE=3Dqemux86 bitbake -e...
+> runqemu - ERROR - /home/adminuser/poky/build/tmp/deploy/images/qemux86=20
+> not a directory valid DEPLOY_DIR_IMAGE
+> ls: cannot access=20
+> '/home/adminuser/poky/build/tmp/deploy/images/qemux86/*.qemuboot.conf':=
+=20
+> No such file or directory
+> runqemu - ERROR - Command 'ls -t=20
+> /home/adminuser/poky/build/tmp/deploy/images/qemux86/*.qemuboot.conf'=20
+> returned non-zero exit status 2.
+> runqemu - INFO - Cleaning up
+> adminuser@verathon:~/poky/build$
+>=20
+>=20
+Run:
+$ runqemu qemux86-64
+
+since your machine is:
+ > MACHINE              =3D "qemux86-64"
+
+above.
+
+I see that the 'quick start' guide says to use "qemux86"
+=20
+https://www.yoctoproject.org/docs/2.0/yocto-project-qs/yocto-project-qs.h=
+tml
+
+Did you change the machine or is the documentation out of date?
+
+../Randy
 
 
+> Thanks,
+>=20
+> Ajith
+>=20
+> On Thu, Nov 28, 2019 at 2:34 PM Josef Holzmayr=20
+> <holzmayr@rsi-elektrotechnik.de <mailto:holzmayr@rsi-elektrotechnik.de>=
+>=20
+> wrote:
+>=20
+>     On Thu, Nov 28, 2019 at 02:29:08PM +0530, Aj Cit wrote:
+>      > Hi Josef,
+>      >
+>      > Is there specific steps to be followed to build an image for iMX=
+8M?
+>=20
+>     You need at least a board support (BSP) layer. As I have no clue ab=
+out
+>     your board, I can only guess that it will probably something freesc=
+ale
+>     related, mabye https://git.yoctoproject.org/cgit.cgi/meta-freescale=
+/
+>=20
+>     But first and absolutely foremost:
+>     1) watch the introductory videos
+>     2) consult the documentation of your board vendor.
+>=20
+>     Greetz
+>=20
+>      >
+>      > Tnx
+>      > Ajith
+>      >
+>      > On Thu, Nov 28, 2019 at 2:23 PM Josef Holzmayr <
+>      > holzmayr@rsi-elektrotechnik.de
+>     <mailto:holzmayr@rsi-elektrotechnik.de>> wrote:
+>      >
+>      > > On Thu, Nov 28, 2019 at 02:02:29PM +0530, Aj Cit wrote:
+>      > > > I've followed the instruction from the yocto project:
+>      > > >
+>      > >
+>     https://www.yoctoproject.org/docs/3.0/brief-yoctoprojectqs/brief-yo=
+ctoprojectqs.html
+>      > >
+>      > > This can not be exactly true, as this guide certainly does not
+>     include
+>      > > anything related to the imx8. So you are either still building
+>     for qemu
+>      > > (as it defaults to), or using seomthing additional that you're=
+ not
+>      > > mentioning.
+>      > >
+>      > > >
+>      > > >
+>      > > > till the bitbake command. However, I'm getting the following
+>     error:
+>      > > > ERROR:=C2=A0 OE-core's config sanity checker detected a pote=
+ntial
+>      > > > misconfiguration.
+>      > > >=C2=A0 =C2=A0 =C2=A0Either fix the cause of this error or at =
+your own risk
+>     disable the
+>      > > > checker (see sanity.conf).
+>      > > >=C2=A0 =C2=A0 =C2=A0Following is the list of potential proble=
+ms / advisories:
+>      > > >
+>      > > >=C2=A0 =C2=A0 =C2=A0Do not use Bitbake as root.
+>      > >
+>      > > Here is your answer: do not run botbake as the root user :)
+>      > >
+>      > > In a nutshell, I recommend watching at least the first couple
+>     of videos
+>      > > here:
+>      > >
+>     https://www.youtube.com/playlist?list=3DPLD4M5FoHz-TxMfBFrDKfIS_GLY=
+25Qsfyj
+>      > >
+>      > > Greetz
+>      > > >
+>      > > >
+>      > > > On Thu, Nov 28, 2019 at 12:29 PM Aj Cit
+>     <aj.ci.01.239@gmail.com <mailto:aj.ci.01.239@gmail.com>> wrote:
+>      > > >
+>      > > > > Hello,
+>      > > > >
+>      > > > > I'm trying to build a Yocto image for NXP i.MX8M (4 core
+>     64-bit A53s).
+>      > > I
+>      > > > > am getting some error when I execute the bitmake command.
+>      > > > >
+>      > > > > I'd appreciate if you could guide me with next steps. Any
+>     Guide or url
+>      > > > > will be helpful.
+>      > > > >
+>      > > > > Thanks
+>      > > > > Ajith
+>      > > > >
+>      > >
+>      > > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>      > > > Links: You receive all messages sent to this group.
+>      > > >
+>      > > > View/Reply Online (#47444):
+>      > > https://lists.yoctoproject.org/g/yocto/message/47444
+>      > > > Mute This Topic:
+>     https://lists.yoctoproject.org/mt/63894854/3618269
+>      > > > Group Owner: yocto+owner@lists.yoctoproject.org
+>     <mailto:yocto%2Bowner@lists.yoctoproject.org>
+>      > > > Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub=C2=
+=A0 [
+>      > > holzmayr@rsi-elektrotechnik.de
+>     <mailto:holzmayr@rsi-elektrotechnik.de>]
+>      > > > -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>      > >
+>      > >
+>      > > --
+>      > > =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+>      > > Josef Holzmayr
+>      > > Software Developer Embedded Systems
+>      > >
+>      > > Tel: +49 8444 9204-48
+>      > > Fax: +49 8444 9204-50
+>      > >
+>      > > R-S-I Elektrotechnik GmbH & Co. KG
+>      > > Woelkestrasse 11
+>      > > D-85301 Schweitenkirchen
+>      > > www.rsi-elektrotechnik.de <http://www.rsi-elektrotechnik.de>
+>      > > =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+>      > > Amtsgericht Ingolstadt =E2=80=93 GmbH: HRB 191328 =E2=80=93 KG=
+: HRA 170393
+>      > > Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. F=
+ranz Sorg
+>      > > Ust-IdNr: DE 128592548
+>      > >
+>      > > _____________________________________________________________
+>      > > Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+>      > > Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. F=
+ranz Sorg
+>      > > USt-IdNr.: DE 128592548
+>      > >
+>      > >
+>=20
+>     --=20
+>     =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+>     Josef Holzmayr
+>     Software Developer Embedded Systems
+>=20
+>     Tel: +49 8444 9204-48
+>     Fax: +49 8444 9204-50
+>=20
+>     R-S-I Elektrotechnik GmbH & Co. KG
+>     Woelkestrasse 11
+>     D-85301 Schweitenkirchen
+>     www.rsi-elektrotechnik.de <http://www.rsi-elektrotechnik.de>
+>     =E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=
+=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+>     Amtsgericht Ingolstadt =E2=80=93 GmbH: HRB 191328 =E2=80=93 KG: HRA=
+ 170393
+>     Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz =
+Sorg
+>     Ust-IdNr: DE 128592548
+>=20
+>=20
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+>=20
+> View/Reply Online (#47455): https://lists.yoctoproject.org/g/yocto/mess=
+age/47455
+> Mute This Topic: https://lists.yoctoproject.org/mt/63894854/3616765
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [randy.macle=
+od@windriver.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>=20
 
-On 12/2/19 2:27 PM, Ross Burton wrote:
-> At the time of writing, pythonclock.org tells me that Python 2.7 will
-> retire in 29 days and 1 hour.
->
-> This means no more releases of Python 2.  No more security fixes.  No
-> critical bug fixes.  No support at all.
->
-> As such, we're removing Python 2 from openembedded-core on Monday 9th
-> December.  Python 2 isn't required by anything else in oe-core so if
-> you just use oe-core this won't have any impact on you.  If you use
-> other layers, then these layers may need to be updated.
->
-> The recipe will be moved to the newly created meta-python2
-> repository[1] for anyone who needs to continue to use Python 2, but
-> remember that from 2020 it will not be supported upstream so please do
-> simply use Python 2 as a stop-gap before migrating to Python 3.
->
-> If you have any questions about this, feel free to ask.
 
-If folks do have security or bug fixes against 2.7.17 for zeus or
-warrior branches, you are welcome to send them for possible inclusion
-for the stable branches.
-
-- armin
->
-> Regards,
-> Ross
->
-> [1] https://git.openembedded.org/meta-python2/
-
+--=20
+# Randy MacLeod
+# Wind River Linux
