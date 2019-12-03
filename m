@@ -1,70 +1,107 @@
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
- by mx.groups.io with SMTP id smtpd.web10.3329.1575363069296516837
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.4178.1575369890503667631
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 Dec 2019 00:51:09 -0800
+ Tue, 03 Dec 2019 02:44:51 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@melangex-com.20150623.gappssmtp.com header.s=20150623 header.b=fEFxBv1C;
- spf=none, err=permanent DNS error (domain: melangex.com, ip: 209.85.167.50, mailfrom: morne.lamprecht@melangex.com)
-Received: by mail-lf1-f50.google.com with SMTP id r14so2245296lfm.5
-        for <yocto@lists.yoctoproject.org>; Tue, 03 Dec 2019 00:51:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=melangex-com.20150623.gappssmtp.com; s=20150623;
-        h=sender:date:from:to:subject:message-id:mail-followup-to:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=iRyg/wgmsyJvdV+6o/vG7C2oXLUrUP13qlrLlEH+Dt0=;
-        b=fEFxBv1ChINLYld1jlTnXU3Vi2mi4zzoVhCYcZcG74lOUF+01WAFW2/NMVE+M9Qdsa
-         wZAuOMA5E6Go9FmAa6wPoX1D5wJ5OYHvB5Gtcf7Ij1Zhs4NKlfgGrZftBxf73o0FufHw
-         ix0mJIU3G+7MGen2oK0sXnMyiOVSHo4E3ApbS5nitFUjZhOeKbyFAnjn9s9/2mrD0uun
-         52PtSLFK+T9EpkOuc466XDxoXMd5K/vxM2UbsKF4BBcu0hkb83XZVheD6rbkXCVn7a3t
-         xQ9V1fylUzcjfnK3KneKVxQf12u1gkjtzXvBctTjjbFozANG382mOjdljo0Rd73Nq7FY
-         8j2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:subject:message-id
-         :mail-followup-to:references:mime-version:content-disposition
-         :content-transfer-encoding:in-reply-to:user-agent;
-        bh=iRyg/wgmsyJvdV+6o/vG7C2oXLUrUP13qlrLlEH+Dt0=;
-        b=ru5fFWMSE6JFwm5LRd1vFuNQHTThDnwe7ty3wbXgVnx+MKvlagL64Z+8usKVVf2Z5m
-         IOAzIaeuKKiWZA3wwqcTNaKOwBsakBsI39qXVKhMDUJ+g7/Fl687gQGn2aPBIWyK9UUF
-         LtVHgyITi38fYXTqif1J+yq505e1fmUBm9WM7FVEmDbiJ6P3QseomTF1RrYYJi9s/evk
-         QcU0Ik87sH+n5rXhKNbvyhmCGU1MkdkTKHkPSG9+AWnnuKN3Jnr/xVLccj1a51JH8Rz4
-         kRW2Smpi5ZzP5NogWbJfMKsu6r/I/FygCRVPn5gnRRKFkkDrl58X3Uh8zYz1d8hLg8S1
-         xzyg==
-X-Gm-Message-State: APjAAAUJoPX/fom5Zzabzch8lgSJidzNHJF6oYUGOSKEEe7pyRQzabBu
-	jp/tL3r4ky+imIQrtqXmXSq4MDp+QaE=
-X-Google-Smtp-Source: APXvYqxJL1HuRM5Y3VdkT6qeYmqCFrVz9ePV6bfem0AfUKNm+++BexTeaSyIaNKtj0v391V0uIWyEw==
-X-Received: by 2002:ac2:44a2:: with SMTP id c2mr2034305lfm.105.1575363066850;
-        Tue, 03 Dec 2019 00:51:06 -0800 (PST)
-Return-Path: <morne.lamprecht@melangex.com>
-Received: from localhost ([209.203.60.70])
-        by smtp.gmail.com with ESMTPSA id o8sm881830lfb.89.2019.12.03.00.51.04
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2019 00:51:05 -0800 (PST)
-Sender: =?UTF-8?Q?Morn=C3=A9_Lamprecht?= <morne.lamprecht@melangex.com>
-Date: Tue, 3 Dec 2019 10:51:02 +0200
-From: "Morne" <morne@linux.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Are both TFTPd and TFTPd-HPA handled in one YP version ?
-Message-ID: <20191203085102.GE1625@archworkstation>
-Mail-Followup-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-References: <Rp01.1575302414514166788.jCsI@lists.yoctoproject.org>
- <20191202200153.GD1625@archworkstation>
- <MRXP264MB0807D883F3D9EC4C43CC23D385420@MRXP264MB0807.FRAP264.PROD.OUTLOOK.COM>
+ dkim=fail reason="body hash did not verify" header.i=@aruba.it header.s=a1 header.b=b004LU13;
+ spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 140.211.169.56, mailfrom: mauro@faresoftware.it)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 1A396E0108A; Tue,  3 Dec 2019 02:44:50 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [62.149.156.146 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from smtpcmd13146.aruba.it (smtpcmd13146.aruba.it [62.149.156.146])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89975E00736
+	for <yocto@yoctoproject.org>; Tue,  3 Dec 2019 02:44:46 -0800 (PST)
+Received: from [10.0.3.99] ([213.213.6.58])
+	by smtpcmd13.ad.aruba.it with bizsmtp
+	id ZNkl2100U1F741R01NklY1; Tue, 03 Dec 2019 11:44:45 +0100
+To: yocto@yoctoproject.org
+From: "Mauro Ziliani" <mauro@faresoftware.it>
+Subject: Adding libstdc++-dev path?
+Message-ID: <fd9a0cae-b45c-dcdd-1b5b-1c67904a3eec@faresoftware.it>
+Date: Tue, 3 Dec 2019 11:44:45 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
 MIME-Version: 1.0
-In-Reply-To: <MRXP264MB0807D883F3D9EC4C43CC23D385420@MRXP264MB0807.FRAP264.PROD.OUTLOOK.COM>
-User-Agent: Mutt/1.12.2 (2019-09-21)
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
+	t=1575369885; bh=ltmTlVVqdfj7PcHe4DQXc36i0wqrNF7bYZW516kbUvI=;
+	h=To:From:Subject:Date:MIME-Version:Content-Type;
+	b=b004LU13lAVe7L2C5FJ33u7rEBRC64MqnDjmMpAYpJDP9T/G9eWY7ePEoQ/yjHHvK
+	 6aUVsF/fnN71S/mumZmwpJhLssjnLznWzkqCt2RCXsPgD2CkkiYqa6CsFNxP99jurY
+	 hwaGTylH5RI0N4bu7vYu2x2PKw9u6dytrZ00/wy5yh56Kv/0uP8XNuRy7FQ2vx0mHO
+	 YXkxhAl9fWTfNnSOcenOdYx/cDtqtApYfj4v/AY1Em1Ji1/Ab2nIng6nor7ck1zYp0
+	 iDjEF3gt4IZPpI8kHDsbhODDAi2p37DJvYsXnaWCuE8Ha3uI7HbyhTBg0n8BC9DFce
+	 YOsKG0bi54HDA==
+Content-Type: multipart/alternative;
+ boundary="------------8A60AC481FDD5D51C1785E2F"
+Content-Language: it
 
->I'm looking for a trigger to handle both tftp deamons (tftpd and tftp-hpa) but 
->could we have an YP image embedding these 2 tftp servers ? You said Yes.
->If it's handling could be done through a simple U-Boot configuration then 
->itanswers to my question, but what could this trigger be at the runtime ?
+--------------8A60AC481FDD5D51C1785E2F
+Content-Type: text/plain; charset=iso-8859-15; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I think I misunderstood your original question...Can you explain in detail again 
-exactly what you are trying to accomplish ?
+Hi all
 
-		- Morné
+I'm trying to compile a library which need cstdio.
+
+The file is in ${STAGING_INCDIR}/c++/5.3.0 and in 
+${STAGING_INCDIR}/c++/5.3.0/tr1
+
+I think I need to "include" in my recipe all libstdc++dev package
+
+Looking on ${CXX} -v I get 
+--with-gxx-include-dir=/not/exist/usr/include/c++/5.3.0
+
+
+How can I use stdc by recipe?
+
+
+Mauro
+
+
+--------------8A60AC481FDD5D51C1785E2F
+Content-Type: text/html; charset=iso-8859-15
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DISO=
+-8859-15">
+  </head>
+  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <p><font size=3D"-1">Hi all</font></p>
+    <p><font size=3D"-1">I'm trying to compile a library which need
+        cstdio.</font></p>
+    <p><font size=3D"-1">The file is in ${STAGING_INCDIR}/c++/5.3.0 and
+        in=A0 </font><font size=3D"-1"> ${STAGING_INCDIR}/c++/5.3.0/tr1</=
+font></p>
+    <p><font size=3D"-1">I think I need to "include" in my recipe all
+        libstdc++dev package</font></p>
+    <p><font size=3D"-1">Looking on ${CXX} -v I get
+        --with-gxx-include-dir=3D/not/exist/usr/include/c++/5.3.0</font><=
+/p>
+    <p><font size=3D"-1"><br>
+      </font></p>
+    <p><font size=3D"-1">How can I use stdc by recipe?</font></p>
+    <p><font size=3D"-1"><br>
+      </font></p>
+    <p><font size=3D"-1">Mauro<br>
+      </font></p>
+  </body>
+</html>
+
+--------------8A60AC481FDD5D51C1785E2F--
