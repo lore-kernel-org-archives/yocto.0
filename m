@@ -1,174 +1,143 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.2703.1575357348980346772
+Received: from mailrelay2-2.pub.mailoutpod1-cph3.one.com (mailrelay2-2.pub.mailoutpod1-cph3.one.com [46.30.212.1])
+ by mx.groups.io with SMTP id smtpd.web11.3136.1575360000692652892
  for <yocto@lists.yoctoproject.org>;
- Mon, 02 Dec 2019 23:15:49 -0800
+ Tue, 03 Dec 2019 00:00:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=TqdPeGwi;
- spf=fail (domain: intel.com, ip: 140.211.169.56, mailfrom: sangeeta.jain@intel.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 73A2CE01085; Mon,  2 Dec 2019 23:15:48 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_MED,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [192.55.52.136 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F3D4E00B65
-	for <yocto@yoctoproject.org>; Mon,  2 Dec 2019 23:15:45 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 02 Dec 2019 23:15:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,272,1571727600"; 
-   d="scan'208";a="412076393"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
-  by fmsmga006.fm.intel.com with ESMTP; 02 Dec 2019 23:15:45 -0800
-Received: from fmsmsx156.amr.corp.intel.com (10.18.116.74) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 2 Dec 2019 23:15:45 -0800
-Received: from FMSEDG001.ED.cps.intel.com (10.1.192.133) by
- fmsmsx156.amr.corp.intel.com (10.18.116.74) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 2 Dec 2019 23:15:44 -0800
-Received: from NAM02-CY1-obe.outbound.protection.outlook.com (104.47.37.58) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server (TLS) id
- 14.3.439.0; Mon, 2 Dec 2019 23:15:44 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FYHzDYLw1Pmx5P9QHPiIr8X3hSzv7TCc3emZcOJLGBBu13jyyuGdpD+ILJHzIuPElJd4OC6rXg+SQuHpaAqBuFYQSUSV4fttpceYaPxgaP8+tMydpudXG/RO3sAb1PhOS0+skDDE8dcm0x85fkFhrU6GvGGGvmtbJCsRTZMXq56SVcjX1so4D2zwRPlYXFcIoTtbEc4aHjFfW0LVfYyR1b2mEdC/c4KgUMjFWf+li0ln3KNwXDI85CbqyLKKlE0rqwYCyMErS+r/0FEXXGI2IHh9lFqkJaKSu7kt+sBDsFog/VhW+ySusUJ4/T7Fk+jhdtn8Hb5R60YXhKtL4ObIOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s5tMAQ5UT8xUsO4LxE78wS/UeXmbB1i8EVjkwNP6RcE=;
- b=ogxvZTPUhV+FkqJbpwpT1UtE/LG+R5qG8GoMEYNAOh825LX86X/1+RGvD8MKwCkRpJUEYxIFntVDu3ashEKC9c9k8KXm5QWBUj6Ti7B8aUIjStqyA+DK1LxfMonuqQBcjzdgNGaVzboXejj63VJgMMMJXbBYg1O4NN0vEN6lkUEEM1skE5bz99D+2l6LUwsDMplU3kIJw0AiCGs6hC+YC6ZMqkKM8kxlc1pXxw8xYeD2xqkSSGdNkr9JgVAfoHbrPk5dnM4QEEZSxT4CQvhn/ZrpTKKnxWsSs2nBh07QC0CA51LuHFAPDk+Zdn2WQg6JxoB2e6RHfw7+x9lQcl7MYw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s5tMAQ5UT8xUsO4LxE78wS/UeXmbB1i8EVjkwNP6RcE=;
- b=TqdPeGwi39Khy2Gr7s37/+m/Vxx/DnbuYHbXevTqHnuxsovl6q9lmvnj2g3xrCgsN6+EuVUSSJbxZ20DtW+/XTXg/ohCkijtw1WI7t6jJ7Yxjl+Kxrc7oK6E0TcyHXgzjcdela6lMJhjfQs4QvTR0GHXspfGK01WJXo5Un2SvGo=
-Received: from CY4PR11MB1879.namprd11.prod.outlook.com (10.175.60.137) by
- CY4PR11MB1864.namprd11.prod.outlook.com (10.175.61.138) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2495.21; Tue, 3 Dec 2019 07:15:44 +0000
-Received: from CY4PR11MB1879.namprd11.prod.outlook.com
- ([fe80::48d3:627c:7ffe:a558]) by CY4PR11MB1879.namprd11.prod.outlook.com
- ([fe80::48d3:627c:7ffe:a558%5]) with mapi id 15.20.2495.014; Tue, 3 Dec 2019
- 07:15:44 +0000
-From: "Sangeeta Jain" <sangeeta.jain@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-CC: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
-	"yi.zhao@windriver.com" <yi.zhao@windriver.com>, "Sangal, Apoorv"
-	<apoorv.sangal@intel.com>, "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "Chan,
- Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
-	"richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>,
-	"akuster808@gmail.com" <akuster808@gmail.com>, "sjolley.yp.pm@gmail.com"
-	<sjolley.yp.pm@gmail.com>
-Subject: [yocto] QA cycle report for yocto-3.0.1.rc3
-Thread-Topic: [yocto] QA cycle report for yocto-3.0.1.rc3
-Thread-Index: AdWpqXLNzTAIBwTgTfa1+mSdG/Xc2Q==
-Date: Tue, 3 Dec 2019 07:15:43 +0000
-Message-ID: <CY4PR11MB1879465B598CFC79F8EDF1CDE3420@CY4PR11MB1879.namprd11.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMmM1NmUwNDctNDU1Yy00Zjk2LTkwODgtYjQ5MWM4MGYxNDc5IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiT2RXWGZMYTdpeGZ6N0cxVUhDcHh5S3hEcENxUHRNNzRsV1J4NDVGaHVCWkxLaGk3OUZxUkZmSUY3KzlOaGJ6bCJ9
-dlp-reaction: no-action
-dlp-version: 11.2.0.6
-dlp-product: dlpe-windows
-x-ctpclassification: CTP_NT
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=sangeeta.jain@intel.com; 
-x-originating-ip: [192.198.147.215]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d19952d4-4379-4ac3-bbae-08d777c09c93
-x-ms-traffictypediagnostic: CY4PR11MB1864:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CY4PR11MB18643D07F36DE39B7F195640E3420@CY4PR11MB1864.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5516;
-x-forefront-prvs: 02408926C4
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(376002)(366004)(396003)(346002)(136003)(39860400002)(13464003)(189003)(199004)(53754006)(53546011)(33656002)(1730700003)(81166006)(8676002)(64756008)(66446008)(71200400001)(71190400001)(66066001)(2906002)(4326008)(7696005)(66946007)(6436002)(7736002)(2351001)(305945005)(6116002)(5640700003)(66556008)(9686003)(76116006)(6306002)(3846002)(55016002)(66476007)(74316002)(316002)(6916009)(186003)(52536014)(5660300002)(102836004)(54906003)(26005)(86362001)(14444005)(256004)(966005)(14454004)(25786009)(2501003)(6506007)(478600001)(99286004)(8936002)(81156014);DIR:OUT;SFP:1102;SCL:1;SRVR:CY4PR11MB1864;H:CY4PR11MB1879.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: u5k41M2nqMansxz+3J71EkXJBsMXyENOlzqz9VR5lrqo0x2qpah6luqBV15KH47MUm2Xb9G/z8nFn4TvbLtrA74GXZzXLj4SLDOpLIIzzNyXM3X6HVu/zf7osxLUjf6HKgRIj2dGF0axQDjnTXXwPE/5/F7YNrfX6fq81cXoOvRdfG9GYqf+Z/Rq+T7AThf0BDsbe8eCcG1okwDbMZadGE42P3HSxwto89qaz3z7/Mp+vz5c2DJqPNW73tFixPN57rjl0xkzPDXUoYBHEA2CNfbDB44pQ5g2TEygBwTvImv4iI4hgIZ33UzqZL01Ck3of8BoF1eXNvI4U57JYhE5XTFpQZqICCpIzm52JBhqAgP9rSCdFzvX33+TtC6tUvgLFXIAnD/CmyMdVrXr5IDWq9ws+kncTEdy8HOccFExl6dxN7V9nTOBtzfzty8KVPORXjmXWM8R1C7GzacFH2MnOZCndbr52qQ/Xo1VH+lsxyg=
+ dkim=pass header.i=@berginkonsult.se header.s=20191106 header.b=olLOM/9z;
+ spf=none, err=permanent DNS error (domain: berginkonsult.se, ip: 46.30.212.1, mailfrom: peter@berginkonsult.se)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=berginkonsult.se; s=20191106;
+	h=content-transfer-encoding:content-type:in-reply-to:mime-version:date:
+	 message-id:from:references:cc:to:subject:from;
+	bh=OqM19LtXYtHRXZY6sLUanfXfH3gJbp8OElVOqGC4EVc=;
+	b=olLOM/9zbpnxrlthLlQCr2bM8bPFARZUU1r+BABcWsMPx+P+UqwcrqHOw5cjlsgXQGXl04XEFdzla
+	 ioUETqvwdNChSqgYnthxnJ+zuArnGaqRtF2RXk7LxjiEzLAwb/geauLzw41EYNUHdjLfxo64EYDoDd
+	 f92a0ylSMMM8IgRVw8IhNqCDspID3NojSAGRtrJ71L9HKd+lYn5KFX9EUOsZe51MCkK+/C3jEvXAPj
+	 8wvVi0Pi9Jg6qHHOMtSSaREcf/RTu8YxPPIyvBp08wuJ16bKOpg6Gi0z/Q3VYgySHmzkHMpOaz1h1t
+	 DNrqUeWbwyxOYrO+o/JzBXfBXq3tDiA==
+X-HalOne-Cookie: 14cf2658820f089f3cab234af218f8010af1c60c
+X-HalOne-ID: e51d02b9-15a2-11ea-ba02-d0431ea8a290
+Received: from [IPv6:2a00:801:42c:c51a:659f:e981:c76b:e4a9] (unknown [2a00:801:42c:c51a:659f:e981:c76b:e4a9])
+	by mailrelay2.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
+	id e51d02b9-15a2-11ea-ba02-d0431ea8a290;
+	Tue, 03 Dec 2019 07:59:57 +0000 (UTC)
+Subject: Re: [yocto] linux-libc-headers - how to handle for older kernels?
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
+Cc: Mike Looijmans <mike.looijmans@topic.nl>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <93249840-e25f-bb2d-39af-325c15ae7afe@berginkonsult.se>
+ <dcb9a8b4-88c5-5b1e-00ba-4b89f809e3d3@topic.nl>
+ <CADkTA4O_vBgX-PRssZbCgzMDsyVr6LyoscXEAe5qyHFCJPu+rw@mail.gmail.com>
+From: "Peter Bergin" <peter@berginkonsult.se>
+Message-ID: <25ffb320-1366-369c-c9f1-302fb8bcc07b@berginkonsult.se>
+Date: Tue, 3 Dec 2019 08:59:55 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: d19952d4-4379-4ac3-bbae-08d777c09c93
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Dec 2019 07:15:43.8399
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: sZA2zoGg2vT9vonFykz1mws+MjkF6ltmMxkzlG/4LDaPEZkrWc22oQP2zFA1uC6yD0siDu9j1eCZ9yZZzm0VNg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1864
-X-OriginatorOrg: intel.com
+In-Reply-To: <CADkTA4O_vBgX-PRssZbCgzMDsyVr6LyoscXEAe5qyHFCJPu+rw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Hello all,
+On 2019-12-02 14:44, Bruce Ashfield wrote:
+> On Mon, Dec 2, 2019 at 4:14 AM Mike Looijmans <mike.looijmans@topic.nl> wrote:
+>> On 01-12-19 22:57, Peter Bergin via Lists.Yoctoproject.Org wrote:
+>>> Hi,
+>>>
+>>> I'm currently working in a project using Yocto 2.6 (thud) release. It has
+>>> default kernel v4.18 and also linux-libc-headers from kernel v4.18. In my
+>>> project we will use kernel v4.1. I would like advice how to handle the
+>>> linux-libc-headers package for my project, should I use the v4.18 headers or
+>>> should I use the v4.1 header files which matches the running kernel?
+>>>
+>>>   From https://www.kernel.org/doc/html/latest/kbuild/headers_install.html:
+>>> "Kernel headers are backwards compatible, but not forwards compatible. This
+>>> means that a program built against a C library using older kernel headers
+>>> should run on a newer kernel (although it may not have access to new
+>>> features), but a program built against newer kernel headers may not work on an
+>>> older kernel."
+>>>
+>>> With the information from the quote above I would directly use v4.1 headers as
+>>> my linux-libc-headers. But then reading the information in the file
+>>> meta/recipes-kernel/linux-libc-headers/linux-libc-headers.inc makes me think
+>>> another round. It states:
+>>>
+>>> "
+>>> # You're probably looking here thinking you need to create some new copy
+>>> # of linux-libc-headers since you have your own custom kernel. To put
+>>> # this simply, you DO NOT.
+>>> ...
+>>> # There can also be a case where your kernel extremely old and you want
+>>> # an older libc ABI for that old kernel. The headers installed by this
+>>> # recipe should still be a standard mainline kernel, not your own custom
+>>> # one.
+>>> "
+>>>
+>>> The first part states that I should not change linux-libc-headers. But when I
+>>> read the last part I'm not sure about the interpretation and it could be for
+>>> my case. Just a matter of definition if v4.1 is extremely old compared to v4.18.
+>>>
+>>> Then another thing comes in to the equation; the LIBC ABI. When I look into
+>>> the configuration of the glibc package it uses the configure switch
+>>> "--enable-kernel=3.2" which means it shall be compatible with all kernel newer
+>>> than v3.2. Then probably glibc is fine if it is compiled with v4.18 and run on
+>>> v4.1?
+>>>
+>>> If building all applications against v4.18 headers but run on v4.1 kernel. I
+>>> have a feeling that there potentially can be problems here.
+>>>
+>>> Please help me with some information about this and share your opinions? Are
+>>> there any risks at all to use v4.1 as linux-libc-headers in my Yocto build?
+>>> The only drawback I see is that it will be a new configuration not well tested
+>>> by the community. Are there other risks or drawbacks using your own version of
+>>> linux-libc-headers?
+>>
+>> It is not broken, so please don't fix it.
+>>
+>> OpenPLi has been using kernels way older than 4.1 with the kernel-headers
+>> generated by OE/yocto and did not experience any problems with that. There's
+>> about 50+ machines in there that have pre-built binary drivers that only work
+>> with a particular kernel config and hence the old stuff.
+>>
+>> There are some corner-cases with exotic kernels and exotic exports and exotic
+>> boot executables that use the kernel compiler, but I doubt that you're in there...
+>>
+>> If you have a kernel that exports something that's not in the regular headers,
+>> it's way better to solve that using a syscall than trying to poke in low level
+>> libc stuff.
+>>
+>> So again, if you don't experience problems, please don't try to fix it...
+> This has been my experience as well.
+That's appealing approach. The part with the custom kernel headers is in 
+my case solved that we have separate kernel headers that we add to the 
+SDK. It is how I have understood the recommendation to solve this.
 
-This is the full report for 3.0.1 RC3: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
+> I've run a really wide set of BSP kernel's against the various "much
+> newer" yocto/OE libc-headers over the years, and I've never hit an ABI
+> or otherwise incompatibility.
+Actually there are issues with Yocto 2.6 together with v4.1 headers. I 
+did an experiment to use v4.1 as linux-libc-headers. For my image i hit 
+build failures in two packages, systemd and iptables. Those were easily 
+fixed by upstream commits referenced below. I can not by a quick review 
+say that those should cause run-time issues, probably not, but just 
+showing that there are cases where packages not is fully aligned with 
+all versions of kernel headers.
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects. =20
-No new defects are found in this cycle.
-valgrind ptest failed (BUG id:13666).=20
+systemd:
+https://github.com/systemd/systemd/commit/9c869d08d82c73f62ab3527567858ce4b0cf1257
+iptables:
+https://git.netfilter.org/iptables/commit/?id=5beb1582d13d3bfdd0d2b277f5f3154b2fbf4a8e
 
-=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13666
+If you want the most deterministic build for one system and one setup I 
+can not see any other option than using the same version for the kernel 
+headers in both virtual/kernel and linux-libc-headers. Then if you want 
+flexibility and possibility to support many builds it is better to have 
+one common linux-libc-header version. Also from a test and validation 
+point of view it is better if many people using the same version of 
+linux-libc-headers instead of their own combination as we have a 
+situation where this works almost all the time. Can anyone comment on 
+this analyze, is it valid?
 
 Thanks,
-Sangeeta
+/Peter
 
-> -----Original Message-----
-> From: Poky Build User <pokybuild@ubuntu1604-ty-1.yocto.io>
-> Sent: Thursday, 28 November, 2019 11:56 AM
-> To: yocto@yoctoproject.org
-> Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; Sangal, Apoorv
-> <apoorv.sangal@intel.com>; Yeoh, Ee Peng <ee.peng.yeoh@intel.com>; Chan,
-> Aaron Chun Yew <aaron.chun.yew.chan@intel.com>; Ang, Chin Huat
-> <chin.huat.ang@intel.com>; richard.purdie@linuxfoundation.org;
-> akuster808@gmail.com; sjolley.yp.pm@gmail.com; Jain, Sangeeta
-> <sangeeta.jain@intel.com>
-> Subject: QA notification for completed autobuilder build (yocto-3.0.1.rc3=
-)
->=20
->=20
-> A build flagged for QA (yocto-3.0.1.rc3) was completed on the autobuilder=
- and is
-> available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-3.0.1.rc3
->=20
->=20
-> Build hash information:
->=20
-> bitbake: 8569ccb5e9fbdeaaf96b78bd02a263b26de54059
-> meta-gplv2: 0f4eecc000f66d114ad258fa31aed66afa292166
-> meta-intel: dc1fcaa858e85273676f4363a645661b5f1fb6e5
-> meta-mingw: 756963cc28ebc163df7d7f4b4ee004c18d3d3260
-> oecore: 75a4cabf55e13e6714c0fdb229cd51b5184ddbef
-> poky: 12a4c177bb541b3187c7a54d5804f30c35f22d8c
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
