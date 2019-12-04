@@ -1,80 +1,126 @@
-Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
- by mx.groups.io with SMTP id smtpd.web09.2237.1575426968484465680
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+ by mx.groups.io with SMTP id smtpd.web09.2238.1575426969848544892
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 Dec 2019 18:36:08 -0800
+ Tue, 03 Dec 2019 18:36:09 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=nBfCKKMT;
- spf=pass (domain: gmail.com, ip: 209.85.214.195, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f195.google.com with SMTP id ay6so2500000plb.0
-        for <yocto@lists.yoctoproject.org>; Tue, 03 Dec 2019 18:36:08 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=cUaXGBRc;
+ spf=pass (domain: gmail.com, ip: 209.85.216.48, mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f48.google.com with SMTP id t21so2331657pjq.1
+        for <yocto@lists.yoctoproject.org>; Tue, 03 Dec 2019 18:36:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=z9eAxZ1TWCeQuHZoMT/C5maAdb99NV/Tv0jWQqWpRfg=;
-        b=nBfCKKMTfjNSs+10poAdEw1J3v0EWx6XvYjrYzR8b63qS1Kc2IdbyJVAaZmUcrMMIC
-         LpeHssFJmBvAPsadAPfMTXLqMy3fwGW3l63QS8hUTP3cECvE6G/s0oDU8v/GwjdIIJ9u
-         OYTYmFT4/3KqDS3RdraBTsCzvSdo1TIlwvVj3BrKD5pqgW99tl+MGtY+Q05OuF4x3hRL
-         23mL8CI1V34uEoZe4BKoTp8IKLizxKLV0gF8pByGEppOroV2hVBq2EdoEYM12jinpa3r
-         ozqjvo0rYoBnmV6EzXLDvCAfy4T+f7Yy0rUTsFhF4V8XpOJNGv2KKnI7Qjbcjxz3inag
-         xO/w==
+        bh=oGq4eHgt7YFcTqL8uRBMbVlTjXkFvXX+g6lflG4N7Ts=;
+        b=cUaXGBRcXJimDV8Q3hAPsLt2pWYuAKdCHrIAwZNPoNV6sGEfR60fV1U+eRrux1PXww
+         eyaqzy7HrGMuNlnFzdYBSR1yMhqtrTFjsPihxZJSDYJNmuPb6xzTLBZIZMQOMGmEHAKg
+         IM6V0FmqfJVQhaNDWgcyyGYFjq8Okr6oylHPIjXD8IirpM9r324faGJ/G9nIWbyQdhw1
+         U+DNztHl3F+xmbkWlcaZLCtuvqsEEucFwtvwQ/4N6VwJsCQMdKpdOE8BLLcqGHPc991B
+         b5WsBr4AVY0/loZddwufmUpDdOCeCN1xFkqy2uec8rxIPoBJ5wC36oh1xVSBYVY9dwka
+         +RFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references;
-        bh=z9eAxZ1TWCeQuHZoMT/C5maAdb99NV/Tv0jWQqWpRfg=;
-        b=U7V91d2gO3f/FssZfSvV0nG5SWaNl3n7344AQJbWVnNX5cyQdWBytb+u8dhMKLnI9n
-         8DIGzEbpzoefVC7wAGSIy0rC08G8idHYtYm2GsK7x+8UBHGkzc2hE2AD8gOGEdbW4ooL
-         4TAlkbemxZEjz08j+PAWWu38N363nLheP+y6HnAXs2Pv5n+WOTeUEI59+ME3E8E0Jzv+
-         MBXBgO6YcesS/tctb7jGfmVA6ERSQVpDivZZmltHBJN9wqWzxKSMr6Y3OYHm4IaGiYac
-         FHwJ4RJbx1lOvCJH1YL09hxSRMi2BfJTrmMkpLARFhnvA42zZyVBQGO4co5zgOOMLJqa
-         riqw==
-X-Gm-Message-State: APjAAAXk10YexoeIlJdTE0MP2crplRzLFBKKj25IFBSupp6uQaOsUKji
-	Gb6Px6rwwJpeBjJSwvOuJk0wqH4r
-X-Google-Smtp-Source: APXvYqwFmP7ktACpEYCM3yg648lBuOTRqToWLVqpy+qhBlz0rKrnw1aMkkDNTKurfZQBd9S870x4Rg==
-X-Received: by 2002:a17:902:a615:: with SMTP id u21mr1271631plq.44.1575426967767;
-        Tue, 03 Dec 2019 18:36:07 -0800 (PST)
+        bh=oGq4eHgt7YFcTqL8uRBMbVlTjXkFvXX+g6lflG4N7Ts=;
+        b=WhhKn3CvNEUkcw3EgN1WHXP6uyes/elOAqkdifsIHBwU+Jji50oraVrmzA2+APEfaC
+         MIGwPEd6YDubqPubVVWKk/19m+T7j1Nct5WWaNaPx3ebhaOxA/fHMU6ZiGo127YQZT9q
+         CeNxkJLtAT5/KfyX/GqkEKoDZJ9yIkLlDl1WRvI6gU0t/3OL+zA2ANnnGdwfRudltFwy
+         SxDAZFWHNAEyNSC0far5iBWedM0PA/0xH7E2KJvmzMmlsDuMen5Ce24eMDMhs/o/+CpC
+         ifc5z1MwwZ4yQrELd2ARbQFNQbNLbwykD7YQDeRYEj2wPhMwzswSH9YVXjPsqpCdvVR5
+         fOeg==
+X-Gm-Message-State: APjAAAWrHw+FSHki6fm/ZxE992Wr7reZZCIrC54tvkdv9t3RKaKHpQRZ
+	n+oEL6HWB7ziQDlchi4BTj+ppUG6
+X-Google-Smtp-Source: APXvYqwezAftbfIV+pkmD1rKaRHNmwLgGpueoeAPuxP8G34ccQDskbx4+/BtmhvFwAYIO01eYeJlpQ==
+X-Received: by 2002:a17:902:b70b:: with SMTP id d11mr1204416pls.48.1575426968712;
+        Tue, 03 Dec 2019 18:36:08 -0800 (PST)
 Return-Path: <akuster808@gmail.com>
 Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
         by smtp.gmail.com with ESMTPSA id o31sm2466366pgb.56.2019.12.03.18.36.07
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2019 18:36:07 -0800 (PST)
+        Tue, 03 Dec 2019 18:36:08 -0800 (PST)
 From: "Armpit" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 4/6] tpm2-tss-engine: update to tip to us tss-tools 4.0.x
-Date: Tue,  3 Dec 2019 18:36:00 -0800
-Message-Id: <20191204023602.31748-4-akuster808@gmail.com>
+Subject: [meta-security][PATCH 5/6] tpm2-totp: update to 0.2.0
+Date: Tue,  3 Dec 2019 18:36:01 -0800
+Message-Id: <20191204023602.31748-5-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191204023602.31748-1-akuster808@gmail.com>
 References: <20191204023602.31748-1-akuster808@gmail.com>
 
 LIC_FILES_CHKSUM update to be true BSD-3-clause text
+Drop patch included
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb     | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../files/litpm2_totp_build_fix.patch         | 36 -------------------
+ ...{tpm2-totp_0.1.2.bb => tpm2-totp_0.2.0.bb} |  6 ++--
+ 2 files changed, 3 insertions(+), 39 deletions(-)
+ delete mode 100644 meta-tpm/recipes-tpm2/tpm2-totp/files/litpm2_totp_build_fix.patch
+ rename meta-tpm/recipes-tpm2/tpm2-totp/{tpm2-totp_0.1.2.bb => tpm2-totp_0.2.0.bb} (79%)
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb
-index 8825737..3641b1b 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb
-@@ -2,13 +2,13 @@ SUMMARY = "The tpm2-tss-engine project implements a cryptographic engine for Ope
- DESCRIPTION = "The tpm2-tss-engine project implements a cryptographic engine for OpenSSL for Trusted Platform Module (TPM 2.0) using the tpm2-tss software stack that follows the Trusted Computing Groups (TCG) TPM Software Stack (TSS 2.0). It uses the Enhanced System API (ESAPI) interface of the TSS 2.0 for downwards communication. It supports RSA decryption and signatures as well as ECDSA signatures."
+diff --git a/meta-tpm/recipes-tpm2/tpm2-totp/files/litpm2_totp_build_fix.patch b/meta-tpm/recipes-tpm2/tpm2-totp/files/litpm2_totp_build_fix.patch
+deleted file mode 100644
+index c147054..0000000
+--- a/meta-tpm/recipes-tpm2/tpm2-totp/files/litpm2_totp_build_fix.patch
++++ /dev/null
+@@ -1,36 +0,0 @@
+-C99 fixes:
+-
+- src/libtpm2-totp.c:172:13: error: format '%li' expects argument of type 'long int', but argument 3 has type 'size_t' {aka 'unsigned int'} [-Werror=format=]
+-|          dbg("Calling Esys_GetRandom for %li bytes", SECRETLEN - *secret_size);
+-
+-src/tpm2-totp.c:343:23: error: format '%ld' expects argument of type 'long int', but argument 3 has type 'uint64_t' {aka 'long long unsigned int'} [-Werror=format=]
+-
+-Upstream-Status: Pending
+-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+-
+-Index: git/src/libtpm2-totp.c
+-===================================================================
+---- git.orig/src/libtpm2-totp.c
+-+++ git/src/libtpm2-totp.c
+-@@ -169,7 +169,7 @@ tpm2totp_generateKey(uint32_t pcrs, uint
+-     if (rc != TPM2_RC_INITIALIZE) chkrc(rc, goto error);
+- 
+-     while (*secret_size < SECRETLEN) {
+--        dbg("Calling Esys_GetRandom for %li bytes", SECRETLEN - *secret_size);
+-+        dbg("Calling Esys_GetRandom for %li bytes", (long int) (SECRETLEN - *secret_size));
+-         rc = Esys_GetRandom(ctx,
+-                             ESYS_TR_NONE, ESYS_TR_NONE, ESYS_TR_NONE,
+-                             SECRETLEN - *secret_size, &t);
+-Index: git/src/tpm2-totp.c
+-===================================================================
+---- git.orig/src/tpm2-totp.c
+-+++ git/src/tpm2-totp.c
+-@@ -340,7 +340,7 @@ main(int argc, char **argv)
+-                             localtime (&now));
+-             chkrc(rc, exit(1));
+-         }
+--        printf("%s%06ld", timestr, totp);
+-+        printf("%s%06ld", timestr, (long int)totp);
+-         break;
+-     case CMD_RESEAL:
+-         rc = tpm2totp_loadKey_nv(opt.nvindex, &keyBlob, &keyBlob_size);
+diff --git a/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.1.2.bb b/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.2.0.bb
+similarity index 79%
+rename from meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.1.2.bb
+rename to meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.2.0.bb
+index 8a2504d..0dad673 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.1.2.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.2.0.bb
+@@ -9,9 +9,9 @@ DEPENDS = "autoconf-archive libtss2-dev qrencode"
  
- LICENSE = "BSD-2-Clause"
--LIC_FILES_CHKSUM = "file://LICENSE;md5=3fb0047fd29391478a71e8e6101c76eb"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=7b3ab643b9ce041de515d1ed092a36d4"
+ PE = "1"
  
- SECTION = "security/tpm"
+-SRCREV = "15cc8fbc8fe71be9c04c3169ee1f70450d52a51a"
+-SRC_URI = "git://github.com/tpm2-software/tpm2-totp.git;branch=v0.1.x \
+-           file://litpm2_totp_build_fix.patch "
++SRCREV = "994b4203e4769baefa6e7719915629bc8210e90a"
++SRC_URI = "git://github.com/tpm2-software/tpm2-totp.git;branch=v0.2.x \
++          "
  
- DEPENDS = "autoconf-archive-native bash-completion libtss2 libgcrypt openssl"
+ inherit autotools-brokensep pkgconfig
  
--SRCREV = "e1bbabe29377e45282d753a1b103625c420a19cf"
-+SRCREV = "fdc8f65dfc8bad8b5a3aed181fae338267308f70"
- SRC_URI = "git://github.com/tpm2-software/tpm2-tss-engine.git"
- 
- inherit autotools-brokensep pkgconfig systemd
 -- 
 2.17.1
 
