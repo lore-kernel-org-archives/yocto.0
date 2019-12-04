@@ -1,75 +1,56 @@
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
- by mx.groups.io with SMTP id smtpd.web11.657.1575443892752725122
+Received: from mailrelay2-2.pub.mailoutpod1-cph3.one.com (mailrelay2-2.pub.mailoutpod1-cph3.one.com [46.30.212.1])
+ by mx.groups.io with SMTP id smtpd.web12.875.1575445600496057478
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 Dec 2019 23:18:13 -0800
+ Tue, 03 Dec 2019 23:46:41 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@melangex-com.20150623.gappssmtp.com header.s=20150623 header.b=oDYbe80z;
- spf=none, err=permanent DNS error (domain: melangex.com, ip: 209.85.208.181, mailfrom: morne.lamprecht@melangex.com)
-Received: by mail-lj1-f181.google.com with SMTP id e10so6810404ljj.6
-        for <yocto@lists.yoctoproject.org>; Tue, 03 Dec 2019 23:18:12 -0800 (PST)
+ dkim=pass header.i=@berginkonsult.se header.s=20191106 header.b=r+fU0oj1;
+ spf=none, err=permanent DNS error (domain: berginkonsult.se, ip: 46.30.212.1, mailfrom: peter@berginkonsult.se)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=melangex-com.20150623.gappssmtp.com; s=20150623;
-        h=sender:date:from:to:subject:message-id:mail-followup-to:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=KOKUmQA/9oWWCKNFzcKOammtJuGKQRWWBV8Qgcnr9rU=;
-        b=oDYbe80zRE/DtGrehhI9YlMKm/QxP7M+6lLQNdh0q9SwSPHgH5MSlfRwEnPHp0eb/O
-         o7JnzVOxp0FXWH+UAqgZ9pKiUnEKfiSHg17mrSGFh5wS3sj6AJa4u2yNvDwfwE9SOgFi
-         BwBqyeCEdzLy+WIjeU71Lzf0kVoWQAP4CtwxQq5ZQA3fJCP6RUXfxEL4TuFdiw2+56bW
-         f8TD9mvsRRHlQw5oTolTIGWTK1G5F1HsSMzRE6Lq7+MicXu0IJsRWa1ygf1n73u2p585
-         x3KG4QhGxTqu2mvCOqsJ3LREkCfev8SlBKpapkTZblM2Jua+GsJX9gi+FIp4x11FpYut
-         t31Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:subject:message-id
-         :mail-followup-to:references:mime-version:content-disposition
-         :content-transfer-encoding:in-reply-to:user-agent;
-        bh=KOKUmQA/9oWWCKNFzcKOammtJuGKQRWWBV8Qgcnr9rU=;
-        b=C74P23gy6mC5CXlki23OCBuTlbeREYWAWWcNcDRopaZMqG95sy7DfQz0vPc2Gsj4wc
-         V8/cmI7Vr+n2GF8MjMG2r2Mvtf3N6iMalBwupmtWfreHCF6Y5udOYjthmThQTZ4HfBgg
-         z9cwCfcT3Ybwb/jPh++i2cLJ3n4qUFJE4BPEmr91Su4xHEHaaKnTXj1ea1GoUjjzV70L
-         x393R1yWKwCpAU3U1ySaQvJlH1XvQ0IZE2unSS06U64IWH9/JtDZuHggrCXqZ/EX4Gpx
-         sWT560/WKJdXqtky4Rdm6Jrr76LGqVvxNtKo6fS9ZQ0/ZgHr88UUHkS99ywsc2Xmjhpw
-         tznw==
-X-Gm-Message-State: APjAAAXISezAmNBeyCOQE8r8vCM6NMJXXmBvhwQU+N1zDke726LSr74I
-	oRvv1XTTIfdCTVXqxATDv6XyTBHq7+A=
-X-Google-Smtp-Source: APXvYqygFwxxAF6wydgRaXCqycjZLvpJ+kVMZElpGWRlp/isi20glhL4NuNdUP5vuJLrSqyhB+w4ZQ==
-X-Received: by 2002:a05:651c:cd:: with SMTP id 13mr998811ljr.63.1575443890348;
-        Tue, 03 Dec 2019 23:18:10 -0800 (PST)
-Return-Path: <morne.lamprecht@melangex.com>
-Received: from localhost ([209.203.60.70])
-        by smtp.gmail.com with ESMTPSA id 144sm2722745lfi.67.2019.12.03.23.18.08
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2019 23:18:09 -0800 (PST)
-Sender: =?UTF-8?Q?Morn=C3=A9_Lamprecht?= <morne.lamprecht@melangex.com>
-Date: Wed, 4 Dec 2019 09:18:04 +0200
-From: "Morne" <morne@linux.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Are both TFTPd and TFTPd-HPA handled in one YP version ?
-Message-ID: <20191204071804.GA132527@archworkstation>
-Mail-Followup-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-References: <Rp01.1575302414514166788.jCsI@lists.yoctoproject.org>
- <20191202200153.GD1625@archworkstation>
- <MRXP264MB0807D883F3D9EC4C43CC23D385420@MRXP264MB0807.FRAP264.PROD.OUTLOOK.COM>
- <20191203085102.GE1625@archworkstation>
- <MRXP264MB0807FCAAB8A4877A750DCA4785420@MRXP264MB0807.FRAP264.PROD.OUTLOOK.COM>
+	d=berginkonsult.se; s=20191106;
+	h=content-transfer-encoding:content-type:in-reply-to:mime-version:date:
+	 message-id:from:references:cc:to:subject:from;
+	bh=byO9w3Mok9Z5ZIBS+HXihePdLfUsAB+CiSR8/iVLRBs=;
+	b=r+fU0oj1u5vsnzCHYfKriu7eA3jwdUt4g3kGoN75z5pqWXWp3yQFzXIVHtDpBjGY4+gL3FP2kM6GK
+	 ZpHHjFvfgDcSVhCvw6qL/rLNxGYo9a2IpKT67tf9DITRtNJhk8Ps/8ghhngDGgAKhqr8OanMdl5IV4
+	 C1TaF1lDJn8UUr73+DVVlMyhtKBq1mq50aNBx6enNivhVeNp/zMUSztGeh17Iq0RMh0H1YNBs9cUVB
+	 7dyBiK1rthj99oTQQqO7boSYyGGHDM2qrmBY7zF+8CVUOwY4Ahu91ytjSJXCkRNvkk8YthtubUycdF
+	 KKS0j8B23HbctOKg587gXiWbDGsFa0Q==
+X-HalOne-Cookie: 4b00d6c4b1b53b8025827ce6929ccd2dfe216f9f
+X-HalOne-ID: 332e96ba-166a-11ea-ba02-d0431ea8a290
+Received: from [IPv6:2a00:801:250:52b2:3cfd:a524:6a2e:8f7f] (unknown [2a00:801:250:52b2:3cfd:a524:6a2e:8f7f])
+	by mailrelay2.pub.mailoutpod1-cph3.one.com (Halon) with ESMTPSA
+	id 332e96ba-166a-11ea-ba02-d0431ea8a290;
+	Wed, 04 Dec 2019 07:46:37 +0000 (UTC)
+Subject: Re: [yocto] linux-libc-headers - how to handle for older kernels?
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
+Cc: Mike Looijmans <mike.looijmans@topic.nl>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <93249840-e25f-bb2d-39af-325c15ae7afe@berginkonsult.se>
+ <dcb9a8b4-88c5-5b1e-00ba-4b89f809e3d3@topic.nl>
+ <CADkTA4O_vBgX-PRssZbCgzMDsyVr6LyoscXEAe5qyHFCJPu+rw@mail.gmail.com>
+ <25ffb320-1366-369c-c9f1-302fb8bcc07b@berginkonsult.se>
+ <CADkTA4MPb9zU4mDr=Mn-3p_axr_uYrcvGaaMH5PSxoCcW3X1cw@mail.gmail.com>
+From: "Peter Bergin" <peter@berginkonsult.se>
+Message-ID: <3a920499-aa9b-acce-7bae-c6a566ac2367@berginkonsult.se>
+Date: Wed, 4 Dec 2019 08:46:36 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <MRXP264MB0807FCAAB8A4877A750DCA4785420@MRXP264MB0807.FRAP264.PROD.OUTLOOK.COM>
-User-Agent: Mutt/1.12.2 (2019-09-21)
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CADkTA4MPb9zU4mDr=Mn-3p_axr_uYrcvGaaMH5PSxoCcW3X1cw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
->I've got 1 YP image with tftpd and another one with tftp-hpa daemon
->I'd like to merge these 2 YP images embedding the both tftp deamons in a single 
->YP image, Is it possible ?
+On 2019-12-03 16:28, Bruce Ashfield wrote:
+> I'm assuming that you mean those headers are in a separate package and
+> are installed into the dependent packages sysroot (or the SDK in your
+> descriptin) via other means that linux-libc-headers .. if so, yes,
+> that is the right thing to do.
+Thanks Bruce!
 
-I suggest having a look at the relevant recipes at the openembedded layer index.
-You can filter per yocto version. Check if the either of the two recipes list 
-any conflicts. If not, it should be possible, although you would have to make 
-sure you config them not to listen on the same port.
+Yes my plan is to create a new package in the 'virtual/kernel' recipe 
+where I add the additional files to '/usr/include/linux/' and then add 
+that new package to my SDK (or the sysroot if needed).
 
-https://layers.openembedded.org/layerindex/branch/master/layers/
-
-		- Morné
+Best regards,
+/Peter
