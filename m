@@ -1,149 +1,113 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.2305.1575427205714221625
+Received: from mail-io1-f65.google.com (mail-io1-f65.google.com [209.85.166.65])
+ by mx.groups.io with SMTP id smtpd.web09.2778.1575430243915411296
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 Dec 2019 18:40:05 -0800
+ Tue, 03 Dec 2019 19:30:44 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Vi5SdSXd;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: akuster808@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8F1B4E010AA; Tue,  3 Dec 2019 18:40:05 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (akuster808[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.214.176 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA8A4E0085D
-	for <yocto@yoctoproject.org>; Tue,  3 Dec 2019 18:40:04 -0800 (PST)
-Received: by mail-pl1-f176.google.com with SMTP id w7so2481017plz.12
-        for <yocto@yoctoproject.org>; Tue, 03 Dec 2019 18:40:04 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=fo/2xbV0;
+ spf=pass (domain: gmail.com, ip: 209.85.166.65, mailfrom: jpewhacker@gmail.com)
+Received: by mail-io1-f65.google.com with SMTP id c16so6376942ioh.6
+        for <yocto@lists.yoctoproject.org>; Tue, 03 Dec 2019 19:30:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=oGq4eHgt7YFcTqL8uRBMbVlTjXkFvXX+g6lflG4N7Ts=;
-        b=Vi5SdSXdmozJyOQjCJLEN+xiUk2Cv44GeDuPtXE0DpNM67gUmSux83WSEXOVaFzrIq
-         K3/OK+cBB6hauOZ6SByxuoUgK7Jhmv9GeubMp0tY2xh7F9Xoe1xCklEbMzMUIzp43ufg
-         frM3QZuX6k+TNQhJ0eYVWgBun/BLOpcNOcNmmfUlbEkXACH+KA1Rgw/rhfmuTLVFuZ2C
-         G9yr8xrD+U6UxIpbsZB/uo9B2KQewcqODQ1egpDQg/siagPUfH3WYj9HcRo7pnlzrMoC
-         ysg3kMGqhS8A5KEIzcjUDM4pTEAY4wWDrJ3WfDNJD8fwXrayGAlcJCpv/7HLNd+0AM4M
-         twzg==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4dRb3x7gIp18H0Z77AfkxppQAWAGViwypbZMUphxU0o=;
+        b=fo/2xbV0IW7wkqUsMUZEjhGs6u5LIpTKG2Q4sL/OOQvU9VfP63gNcCpkz7ohITfA+M
+         vAVYYwy23zIXwVwRodv0+zA6P1pwUiSJjCwU+IC4ZuX/oW4Er8K2ksoLCCIB4CM/8+LX
+         EyagHWMCD6W9qlN5niUSDasbj2F+T7bCYmjJeuuba3UgPR6zNr/I5VrXggdydsi3zAJ7
+         EfxhmAMGjofuuDwRgAox+EMRgKBGTRs5lZimQKtc4U2iY2PwVxsrlJXrJC2WW+te3vlg
+         Zo2ulUTey2Krl2mw/vkC1IaeZKabYhcMNFFTr9AtAhuYPpVjO+VlWLRSnX5bnGT2eT7q
+         03Hg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references;
-        bh=oGq4eHgt7YFcTqL8uRBMbVlTjXkFvXX+g6lflG4N7Ts=;
-        b=I3sMSggJs7fgYxiSq77eYWKmPfey4MCuDwdV4J2MPZ/6FSlnqmY/ZblaBzCqxK4FYP
-         37sB9muMfr5blC1LO9dkymwtUewjzd8N3KfZyPgmbXYEqfQtDle4Dl3saMYjIRyFMQ2M
-         YpJUXyJTvA5KlSaMxi9Ug77OozOP2V/U4QJGNvY/4Dj/jJLRQeyczK52ptzdC5H97BYW
-         gaDFUQ47ZR9ffJbVsBKyYPMgue+Oki96rs3FiREILrXN85qsuAw7LhPnRc3JXu46nVCy
-         YF39At0yyUAUSgirBEebmSqLeM8h77yTnQGjrrnan7ywreluPSL0CDkRwuE7VlFZdtHo
-         XmWQ==
-X-Gm-Message-State: APjAAAW03XIiEzmiqoBaFjnkG9m++geMKPvqmpS327uVseFwicv8e4Wm
-	4HtV4unjIAzNzHDX5nK7I91R6tl7
-X-Google-Smtp-Source: APXvYqwXwUMAZbJuKeH5/W83YL3rGNskxXUBq9R19UNle69G0gxOHYu7jkriDKOFI2YbLqXqRUn+SQ==
-X-Received: by 2002:a17:902:104:: with SMTP id 4mr1271429plb.130.1575427204173;
-        Tue, 03 Dec 2019 18:40:04 -0800 (PST)
-Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id w4sm4316863pjt.21.2019.12.03.18.40.03
-        for <yocto@yoctoproject.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=4dRb3x7gIp18H0Z77AfkxppQAWAGViwypbZMUphxU0o=;
+        b=c8GGCLj4C71MMSPIYubQBgxbDh3HivZVgQDUH80CracOf99nIBTTMPiiKMj4IPcsyE
+         5TETLy9k5UV5BghrfYE8U0NlJB+PAMrIy4Ma9Ad3DbzgvW9U+5BU8StjujDnZOc+WHfx
+         FN9nKReq5uG2kqaNF0ipgtOGvtckoN9LCXjWjKEzLNXgOa1LCAP/A+7y0LRabVRw0Kgv
+         Rr+LjzdeJBbJZ2bH1ofNEfO113QM/QybGyOouBo5ql7JtC6MKP2pEK07fk77icUZOcPi
+         6eBgNjWQKnB9wFfe17m/JVMhlBUZlLPSor3wj98F1P+0tikwFBoBDBpq8DOLrXtbDp1e
+         WIdQ==
+X-Gm-Message-State: APjAAAVuF1y9KeZmVAhMbUdiVM2Nr0reY8Jp3/CjsD6DHcAVvJXPNzxG
+	LI25a8PIemMzYKa5W7bImR6E61WT8Ds=
+X-Google-Smtp-Source: APXvYqx2CRhH17j5vje6jHLeKzGY/PmeQiR/pKI42bc+ztKRs2JpZRAbj46G5IN5DOjJGxcRxOSZiA==
+X-Received: by 2002:a6b:6217:: with SMTP id f23mr628530iog.177.1575430242879;
+        Tue, 03 Dec 2019 19:30:42 -0800 (PST)
+Return-Path: <jpewhacker@gmail.com>
+Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
+        by smtp.gmail.com with ESMTPSA id e15sm1382281ile.28.2019.12.03.19.30.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2019 18:40:03 -0800 (PST)
-From: "Armpit" <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Subject: [meta-security][PATCH 5/5] tpm2-totp: update to 0.2.0
-Date: Tue,  3 Dec 2019 18:39:58 -0800
-Message-Id: <20191204023958.31799-5-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191204023958.31799-1-akuster808@gmail.com>
-References: <20191204023958.31799-1-akuster808@gmail.com>
+        Tue, 03 Dec 2019 19:30:42 -0800 (PST)
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: twoerner@gmail.com,
+	Joshua Watt <JPEWhacker@gmail.com>
+Subject: [yocto][meta-rockchip][PATCH] Fix rk3288 bootloader
+Date: Tue,  3 Dec 2019 21:30:34 -0600
+Message-Id: <20191204033034.2004660-1-JPEWhacker@gmail.com>
+X-Mailer: git-send-email 2.23.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-LIC_FILES_CHKSUM update to be true BSD-3-clause text
-Drop patch included
+Recent versions of u-boot use a combined SPL/TPL (called idbloader.img)
+in the loader1 partition, which then loads the full u-boot from the
+loader2 partition. Update the GPT partition class to reflect this
+change. Additionally, remove the u-boot bbappend since it is no longer
+needed.
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
 ---
- .../files/litpm2_totp_build_fix.patch         | 36 -------------------
- ...{tpm2-totp_0.1.2.bb => tpm2-totp_0.2.0.bb} |  6 ++--
- 2 files changed, 3 insertions(+), 39 deletions(-)
- delete mode 100644 meta-tpm/recipes-tpm2/tpm2-totp/files/litpm2_totp_build_fix.patch
- rename meta-tpm/recipes-tpm2/tpm2-totp/{tpm2-totp_0.1.2.bb => tpm2-totp_0.2.0.bb} (79%)
+ classes/rockchip-gpt-img.bbclass     | 6 ++----
+ conf/machine/include/rk3288.inc      | 2 +-
+ recipes-bsp/u-boot/u-boot_%.bbappend | 8 --------
+ 3 files changed, 3 insertions(+), 13 deletions(-)
+ delete mode 100644 recipes-bsp/u-boot/u-boot_%.bbappend
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-totp/files/litpm2_totp_build_fix.patch b/meta-tpm/recipes-tpm2/tpm2-totp/files/litpm2_totp_build_fix.patch
+diff --git a/classes/rockchip-gpt-img.bbclass b/classes/rockchip-gpt-img.bbclass
+index 5e545bf..f40cf36 100644
+--- a/classes/rockchip-gpt-img.bbclass
++++ b/classes/rockchip-gpt-img.bbclass
+@@ -135,9 +135,7 @@ EOF
+ 
+ generate_rk3288_loader1_image () {
+ 
+-	# Burn bootloader
+-	mkimage -n rk3288 -T rksd -d ${DEPLOY_DIR_IMAGE}/${SPL_BINARY} ${WORKDIR}/${UBOOT}
+-	cat ${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.bin >>  ${WORKDIR}/${UBOOT}
+-	dd if=${WORKDIR}/${UBOOT} of=${GPTIMG} conv=notrunc,fsync seek=64
++	dd if=${DEPLOY_DIR_IMAGE}/idbloader.img-${MACHINE} of=${GPTIMG} conv=notrunc,fsync seek=64
++	dd if=${DEPLOY_DIR_IMAGE}/u-boot-${MACHINE}.bin of=${GPTIMG} conv=notrunc,fsync seek=16384
+ 
+ }
+diff --git a/conf/machine/include/rk3288.inc b/conf/machine/include/rk3288.inc
+index 0528e8a..08cb561 100644
+--- a/conf/machine/include/rk3288.inc
++++ b/conf/machine/include/rk3288.inc
+@@ -10,7 +10,7 @@ require conf/machine/include/rockchip-defaults.inc
+ SERIAL_CONSOLES = "115200;ttyS2"
+ 
+ PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot"
+-SPL_BINARY ?= "u-boot-spl-dtb.bin"
++SPL_BINARY ?= "idbloader.img"
+ 
+ IMAGE_FSTYPES = "rockchip-gpt-img"
+ IMAGE_CLASSES += "rockchip-gpt-img"
+diff --git a/recipes-bsp/u-boot/u-boot_%.bbappend b/recipes-bsp/u-boot/u-boot_%.bbappend
 deleted file mode 100644
-index c147054..0000000
---- a/meta-tpm/recipes-tpm2/tpm2-totp/files/litpm2_totp_build_fix.patch
+index b9ee8af..0000000
+--- a/recipes-bsp/u-boot/u-boot_%.bbappend
 +++ /dev/null
-@@ -1,36 +0,0 @@
--C99 fixes:
+@@ -1,8 +0,0 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 -
-- src/libtpm2-totp.c:172:13: error: format '%li' expects argument of type 'long int', but argument 3 has type 'size_t' {aka 'unsigned int'} [-Werror=format=]
--|          dbg("Calling Esys_GetRandom for %li bytes", SECRETLEN - *secret_size);
--
--src/tpm2-totp.c:343:23: error: format '%ld' expects argument of type 'long int', but argument 3 has type 'uint64_t' {aka 'long long unsigned int'} [-Werror=format=]
--
--Upstream-Status: Pending
--Signed-off-by: Armin Kuster <akuster808@gmail.com>
--
--Index: git/src/libtpm2-totp.c
--===================================================================
----- git.orig/src/libtpm2-totp.c
--+++ git/src/libtpm2-totp.c
--@@ -169,7 +169,7 @@ tpm2totp_generateKey(uint32_t pcrs, uint
--     if (rc != TPM2_RC_INITIALIZE) chkrc(rc, goto error);
-- 
--     while (*secret_size < SECRETLEN) {
---        dbg("Calling Esys_GetRandom for %li bytes", SECRETLEN - *secret_size);
--+        dbg("Calling Esys_GetRandom for %li bytes", (long int) (SECRETLEN - *secret_size));
--         rc = Esys_GetRandom(ctx,
--                             ESYS_TR_NONE, ESYS_TR_NONE, ESYS_TR_NONE,
--                             SECRETLEN - *secret_size, &t);
--Index: git/src/tpm2-totp.c
--===================================================================
----- git.orig/src/tpm2-totp.c
--+++ git/src/tpm2-totp.c
--@@ -340,7 +340,7 @@ main(int argc, char **argv)
--                             localtime (&now));
--             chkrc(rc, exit(1));
--         }
---        printf("%s%06ld", timestr, totp);
--+        printf("%s%06ld", timestr, (long int)totp);
--         break;
--     case CMD_RESEAL:
--         rc = tpm2totp_loadKey_nv(opt.nvindex, &keyBlob, &keyBlob_size);
-diff --git a/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.1.2.bb b/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.2.0.bb
-similarity index 79%
-rename from meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.1.2.bb
-rename to meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.2.0.bb
-index 8a2504d..0dad673 100644
---- a/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.1.2.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-totp/tpm2-totp_0.2.0.bb
-@@ -9,9 +9,9 @@ DEPENDS = "autoconf-archive libtss2-dev qrencode"
- 
- PE = "1"
- 
--SRCREV = "15cc8fbc8fe71be9c04c3169ee1f70450d52a51a"
--SRC_URI = "git://github.com/tpm2-software/tpm2-totp.git;branch=v0.1.x \
--           file://litpm2_totp_build_fix.patch "
-+SRCREV = "994b4203e4769baefa6e7719915629bc8210e90a"
-+SRC_URI = "git://github.com/tpm2-software/tpm2-totp.git;branch=v0.2.x \
-+          "
- 
- inherit autotools-brokensep pkgconfig
- 
+-do_compile_append_rk3288 () {
+-	# copy to default search path
+-	if [ ${SPL_BINARY} ]; then
+-		cp ${B}/spl/${SPL_BINARY} ${B}/
+-	fi
+-}
 -- 
-2.17.1
+2.23.0
 
