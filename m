@@ -1,119 +1,115 @@
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by mx.groups.io with SMTP id smtpd.web11.627.1575418482262644104
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.786.1575419078419724966
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 Dec 2019 16:14:42 -0800
+ Tue, 03 Dec 2019 16:24:38 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=tfsbcgZT;
- spf=pass (domain: intel.com, ip: 192.55.52.88, mailfrom: vineela.tummalapalli@intel.com)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 03 Dec 2019 16:14:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,275,1571727600"; 
-   d="scan'208";a="385530012"
-Received: from fmsmsx106.amr.corp.intel.com ([10.18.124.204])
-  by orsmga005.jf.intel.com with ESMTP; 03 Dec 2019 16:14:41 -0800
-Received: from FMSMSX110.amr.corp.intel.com (10.18.116.10) by
- FMSMSX106.amr.corp.intel.com (10.18.124.204) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 3 Dec 2019 16:14:40 -0800
-Received: from FMSEDG001.ED.cps.intel.com (10.1.192.133) by
- fmsmsx110.amr.corp.intel.com (10.18.116.10) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 3 Dec 2019 16:14:40 -0800
-Received: from NAM03-CO1-obe.outbound.protection.outlook.com (104.47.40.59) by
- edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server (TLS) id
- 14.3.439.0; Tue, 3 Dec 2019 16:14:40 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=h5Blf+1k+XUpaEsKFw/4bK5OKnOR5Lg729vqQGUoD7FG7RO6Cwbdj06ikD8iAco7n9Z0IB/zoOpF8q87mN28uevLkYQa5DWGHd2K78Wu4fXhdx8bMY+/NHq9ZoPMlD0YF20C5VUof+RwrdX2G5C4f3yVc783U/Ms5Sw6ZyuRlqPijWO4BF5/YFzQeOAWWuOYw75dp35+QkdSQ6iZZZ8tZlphT9oVNLr0mAotR++y91brW74Jl1ODUI0fuzTBOp4xJzGR9xVkX3/dwaBJy2vbV0aJ5NMF/CgC6C7YRlPEnZcUF+Pflt+LCaPpbT2uqADLrIEkODDAKVptQyzCoQOOgg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g4OyNUo89YcDigp9CBfHGOXaUOQ1EUgv74qW1/f9nVE=;
- b=gIDIZ3kUsDIWoGddbIQYJeK8qCYmxZaavR7EH6bsR/peEdVvziY3sFw+nEbiRxPqPgLuEHgNRHDI2mbKjk9kfHzZTL+CEJ/pLHRTOtixv/scXpyCl/1VJLPnWBIOyhfPaZCVl4E6i8DbORIYrTsD9P8kJ89IarJcC89kICPKz4h8TqMmaDzr/BLMva1AGdXA7Fk1dOu2qHvXK9axsSBhcQOsa1jZ0AzKoEs6j8vNQaCaf6+hilibnxjOw+3Y7ecNg2FTHOlPnqbs0FDQRhO47ZEhVxDBDDDVFlr0SeasgYqttcTbW/n+HGDtmVFFQUKKWH5EGr6PiFEYXhU4YjJ20Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g4OyNUo89YcDigp9CBfHGOXaUOQ1EUgv74qW1/f9nVE=;
- b=tfsbcgZTuKeL6RShaKNb9Ox/alOMU3r6MvY0XAR/OmrIYNXtk+7p9jbsNJrD2yOtoAkaPqF6myMUkH0281HPViuhAP/CXImce5LdDzzI1h3YPBTfm9vRf0NY+c7GOXftq8xW+TUb2vRsEHlPYTcuTJ+7GEI1Cdx3iCKenGe7cn0=
-Received: from BN8PR11MB3809.namprd11.prod.outlook.com (20.178.221.91) by
- BN8PR11MB3537.namprd11.prod.outlook.com (20.178.219.210) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2495.22; Wed, 4 Dec 2019 00:14:38 +0000
-Received: from BN8PR11MB3809.namprd11.prod.outlook.com
- ([fe80::f01a:8c50:2f6f:e49d]) by BN8PR11MB3809.namprd11.prod.outlook.com
- ([fe80::f01a:8c50:2f6f:e49d%6]) with mapi id 15.20.2495.014; Wed, 4 Dec 2019
- 00:14:38 +0000
-From: "Vineela" <vineela.tummalapalli@intel.com>
-To: "yocto-announce@lists.yoctoproject.org"
-	<yocto-announce@lists.yoctoproject.org>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>, "yocto-request@eclists.intel.com"
-	<yocto-request@eclists.intel.com>
-Subject: [yocto-announce] [ANNOUNCEMENT] Yocto Project 3.0.1 (zeus 22.0.1) Released
-Thread-Topic: [yocto-announce] [ANNOUNCEMENT] Yocto Project 3.0.1 (zeus
- 22.0.1) Released
-Thread-Index: AdWqN9AAluctPR2TRqaRXzBxB/jVZQ==
-Date: Wed, 4 Dec 2019 00:14:38 +0000
-Message-ID: <BN8PR11MB38095012022D8F39111CEDBE885D0@BN8PR11MB3809.namprd11.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMTMwOTFhZGItYmFmYS00OGFiLWI5ODItZTAwMDU4ZjU4YWQxIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiMUhJczZrVnBJaExabm5nVUF0K21HVEtSWnp5XC9jWGNZTWVGT0Z1SkxEM3UxXC9HYjdUS2F2bGxpdUlabW11RmtxIn0=
-x-ctpclassification: CTP_NT
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-dlp-product: dlpe-windows
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=vineela.tummalapalli@intel.com; 
-x-originating-ip: [192.55.52.214]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: dcfb2fcf-7471-4ba4-e66f-08d7784ef3c9
-x-ms-traffictypediagnostic: BN8PR11MB3537:
-x-microsoft-antispam-prvs: <BN8PR11MB35372A293F5CB6872BCB40FF885D0@BN8PR11MB3537.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 0241D5F98C
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(39860400002)(136003)(366004)(346002)(376002)(189003)(199004)(33656002)(966005)(5660300002)(14454004)(52536014)(478600001)(6506007)(256004)(71190400001)(71200400001)(102836004)(7696005)(86362001)(2201001)(76116006)(25786009)(66946007)(26005)(66476007)(66556008)(64756008)(66446008)(2906002)(186003)(81166006)(81156014)(4744005)(8676002)(8936002)(6436002)(99286004)(110136005)(6306002)(55016002)(3846002)(2501003)(74316002)(316002)(6116002)(7736002)(305945005)(9686003);DIR:OUT;SFP:1102;SCL:1;SRVR:BN8PR11MB3537;H:BN8PR11MB3809.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: rWMnRYkAShaAnBWUyV1ORb2brh520ZSRcTvR/6MIH8MllHhrIcnK5IMmBY4j5UHMivZpKP4Sa3hMpz7JYjQM3N91RoVRvAAn9k6n2P2DX9emVKF8Ml2OwAtyZ0a9r0+J42ySgdEY+Svo38DuQ6/zd6/wdhb7ie5QkkV1cj1DKovN5QKLSDNJHrfw087aTXaSE4F9FaEZ69HqzHSptcqJZvYhy1PcaAPtsxoEwTYNZMnlFLMOo+U9m0v5r281XBOlDzW3HRvdAolJwuGvKRTtDAsQSbTD6P4S0rn9Q6z0SWXRHFTTmYszOEtyZKMY1/B4MRE1G8BJN0MMrAcC3LV9WJ8bE+sS8loyI9cdu/yv0QuYikPJ5eBZ3qa5fVhAN6Qh0+nfC47gLZrf4MjMasEqIMD1FC3GtySKFlUjwHcFLpP2a6TI8JBaEOA0meP4Pr3Scv8hxYJ3vOZQi7RrIOyJ8m2Bd5at8aVQ7n/cljEwtTg=
-x-ms-exchange-transport-forked: True
+ dkim=pass header.i=@sbcglobal.net header.s=s2048 header.b=hLIKwKPi;
+ spf=none, err=permanent DNS error (domain: sbcglobal.net, ip: 140.211.169.56, mailfrom: develone@sbcglobal.net)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 12139E00EBF; Tue,  3 Dec 2019 16:24:38 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [74.6.130.125 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from sonic316-15.consmr.mail.bf2.yahoo.com (sonic316-15.consmr.mail.bf2.yahoo.com [74.6.130.125])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54399E00EBB
+	for <yocto@yoctoproject.org>; Tue,  3 Dec 2019 16:24:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048; t=1575419074; bh=uDJLyWbtuU+KSXvDCjGLjV7jurFMx3leIqOykMGpfoI=; h=Date:From:To:Subject:References:From:Subject; b=hLIKwKPiBQUzvh5j9VrrtjVGPByoDhy7M/2toTiZbE42aeTafMlvBbVBfODO/Qhlgp1CYejTECg1CvBncCb4dZeKovBaHzlz10lKiA8K5VoPYlImdoaXvQpQDtZHYCDIp82hHOBMXJkWk2ky4ZeTQ3Z5hzNsmjomIY5lACiKAkKPdlC/g61Zm3wn+oNm9KIKSLcu7jZLtPly4z5WI4+knc/Sr0naZyQKDVklCkUt/7kmNFOthhlEnRdR9Z+exfIp9tMKmKzk04Vb/Yk8P+rSPtXAYhCddkI9pggtfqJ9To6qeRXuabXZkGM35fBjY5voWRqUAlPDq6ihC7nbX9bIfA==
+X-YMail-OSG: TC9wVfsVM1nU668YOy6hxg3tmcUTiNULuTyiObKmUfa0y75WeRHnNpRLcqu1qR1
+ Z9QXwiJSqKZSgQpq_zLer.EQz3TkL1Uu0hD85Xn1jACrbobbmrnlLjE2nfA3TJew.Lj2OiXj0lGZ
+ OB8dibTV4lxD4Ke.4gjOuYcJcZoa3i1ru7ab.92xfyTo8mBpESVh0Uxk3ZNq8tGRVrXAaAUtm.1d
+ 4RIgSl.Nk3vf6gh0RnHDVKJ4gvJAcACeL9Ngp0t5s2VzOg3_jTCfsJ4PXhEE8wotlLmCswsAkSxH
+ 1Y9JIx0bwxlB24Ol0PYJr_yQI35RpfH35jwOm6AJr0ZLU9G764Qg.EUz3SA9jL9CKOFsaPhTludx
+ fj5SBCsdkU6dIhnrzK1tjwGEAglAwHQyWwAnuk_KjlwkvbSoYwe.Kpx2d_.Ss9m69QxHJWHPUKIk
+ i6PbGoNMseVUbo3DoYkeVQwPWdqIlOxpxTV0_04ZxK96NXEZJZU_DvGALuUudiElRgHoBPb48kPc
+ uVWCGqdSF.CypmaqVRWv7GB4R3n6I5XW_ePGCCpyuwJGFdrzQ.KFUdTiu_zl5EVaKHkje3FHVqew
+ XPfiyafZUmsF9GjiYwL6e.mAmOfJbq2rlo77ln59JPFSl3IoH9PgXSUbLpx5R6H_w1doD0JaRGM8
+ 5KyVWP096NEGqKM_WXGmAyS3OEckEIsoFbcjmzmwsevU.6MBDIP0HgumAFzkM.ogNQVx6Onef8Zt
+ 7ACYBVDH3Ez0x7tp1iLDM._9a85j4Ag_LcE5GJCW4hPQ7qr8nlvPChsYmQeLlR1XjmoX57yFMeSJ
+ Sgz1A7YPrnSXQ9BWFVBPUSIFXrYW8hjnV9OcCaBrzBx7NNKnfZGrHDttGw9IHnyEYSR5jv.kVPMY
+ prXCjkeUl_aQofZadkkK3e0dzeMZ4peiDjj258VII0hyXDcixdGsEBFe_59hFwLRaO9FCm4Vz3Va
+ ptSeYL3Gl.uXtO9RyrVCgivcSVLIS.w4ZU6WMqoA6LGxh1kntZQGey3G5.frpp6Cpt9qIixMNmpe
+ 5GjpQT9FYjX3hA6WEeY3WoMwG9tqRJNYZfnU.gSB7C9cYarpveKt7bLnkPRKIJnci14M4GN9Uz94
+ wek3XrhOr0YMZJOdtRNQfRfZfATU5kN1z_FpBx.GrcusnREsUDWYcS6U8aIiOqNrJ2hd9PODtwSZ
+ JYe25DFQDVMrBa.EpWmH5qaM_CR16LvavPb1THaEMQ3Y05KgWPn1nK3jIQ7qSqOrgStxL7hYYCf8
+ BZzpK5UibBW4uj7jSuKwvhRYnhs1O9V6kjjk3QkEl33uLvcrZV7Q40bvHEmZhCV3WiqfnkKCLyvv
+ c68MmYTASznSwBDk0NWWc3Ic-
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic316.consmr.mail.bf2.yahoo.com with HTTP; Wed, 4 Dec 2019 00:24:34 +0000
+Date: Wed, 4 Dec 2019 00:24:31 +0000 (UTC)
+From: "Ed Vidal" <develone@sbcglobal.net>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <477398133.5584303.1575419071624@mail.yahoo.com>
+Subject: raspberry pi Rpi3 does not boot to login prompt.
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: dcfb2fcf-7471-4ba4-e66f-08d7784ef3c9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Dec 2019 00:14:38.6953
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3mOM6ZWNdZc9BDBUY/W4oJ9mEHygkynbx8t3HY2OclBEZlRDFjrQMO3ZPe/rdSmzi0yRVxG6lnG21MbTpTD9hIoq4633FVUecTJcOSprEjk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR11MB3537
-Return-Path: vineela.tummalapalli@intel.com
-X-OriginatorOrg: intel.com
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+References: <477398133.5584303.1575419071624.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.14728 YMailNorrin Mozilla/5.0 (X11; Linux armv7l) AppleWebKit/537.36 (KHTML, like Gecko) Raspbian Chromium/74.0.3729.157 Chrome/74.0.3729.157 Safari/537.36
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_5584302_100273013.1575419071622"
+
+------=_Part_5584302_100273013.1575419071622
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+Hello all,I am testing a zeus rpi3.=C2=A0 Any and all help is appreciated.
+I created a rpi2 core-image-minimal and built a micro sd card.which booted =
+okay.I then modified the build/conf/local.conf file for a raspberrypi3.
+The rpi3 core-image-minimal does not boot to login prompt.This is the outpu=
+t as it is booting[=C2=A0 =C2=A0 =C2=A03.27169] lan78xx 1-1.1.1:-mdiobus: p=
+robed[=C2=A0 =C2=A020.921838] raddom: crng init done[=C2=A0 =C2=A020.926490=
+] radom: 3 urandom warning(s) missed due to ratelimiting
+see the jpeg file doc/rpi3fails.jpeg in repo=C2=A0https://github.com/develo=
+ne/raspberrypi2_yocto-zeus
+devel@mypi3-15:~/raspberrypi2_yocto-zeus $ diff raspberrypi2/conf/local.con=
+f raspberrypi3/conf/local.conf=C2=A039c39< MACHINE ??=3D "raspberrypi2"--->=
+ MACHINE ??=3D "raspberrypi3"
+devel@mypi3-15:~/raspberrypi2_yocto-zeus $ diff raspberrypi2/conf/bblayers.=
+conf raspberrypi3/conf/bblayers.conf
+Let me know if I can provide any additional information.
+Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595-1613
 
-We are pleased to announce the Yocto Project 3.0.1 (zeus-22.0.1) Release is=
- now available for download.
+------=_Part_5584302_100273013.1575419071622
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-http://downloads.yoctoproject.org/releases/yocto/yocto-3.0.1/poky-zeus-22.0=
-.1.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-3.0.1/poky-zeus-22.0.1.tar.bz2
+<html><head></head><body><div class=3D"ydpf61a27c4yahoo-style-wrap" style=
+=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 1=
+3px;"><div><div dir=3D"ltr" data-setdir=3D"false"><div><div dir=3D"ltr" dat=
+a-setdir=3D"false">Hello all,</div><div dir=3D"ltr" data-setdir=3D"false">I=
+ am testing a zeus rpi3.&nbsp; Any and all help is appreciated.</div><div d=
+ir=3D"ltr" data-setdir=3D"false"><br></div><div>I created a rpi2 core-image=
+-minimal and built a micro sd card.</div><div>which booted okay.</div><div>=
+I then modified the build/conf/local.conf file for a raspberrypi3.</div><di=
+v><br></div><div>The rpi3 core-image-minimal does not boot to login prompt.=
+</div><div>This is the output as it is booting</div><div>[&nbsp; &nbsp; &nb=
+sp;3.27169] lan78xx 1-1.1.1:-mdiobus: probed</div><div>[&nbsp; &nbsp;20.921=
+838] raddom: crng init done</div><div>[&nbsp; &nbsp;20.926490] radom: 3 ura=
+ndom warning(s) missed due to ratelimiting</div><div><br></div><div dir=3D"=
+ltr" data-setdir=3D"false">see the jpeg file doc/rpi3fails.jpeg in repo&nbs=
+p;<span><a href=3D"https://github.com/develone/raspberrypi2_yocto-zeus" rel=
+=3D"nofollow" target=3D"_blank" class=3D"">https://github.com/develone/rasp=
+berrypi2_yocto-zeus</a></span><div><br></div></div><div>devel@mypi3-15:~/ra=
+spberrypi2_yocto-zeus $ diff raspberrypi2/conf/local.conf raspberrypi3/conf=
+/local.conf&nbsp;</div><div>39c39</div><div>&lt; MACHINE ??=3D "raspberrypi=
+2"</div><div>---</div><div>&gt; MACHINE ??=3D "raspberrypi3"</div><div><br>=
+</div><div>devel@mypi3-15:~/raspberrypi2_yocto-zeus $ diff raspberrypi2/con=
+f/bblayers.conf raspberrypi3/conf/bblayers.conf</div></div><br></div><div d=
+ir=3D"ltr" data-setdir=3D"false">Let me know if I can provide any additiona=
+l information.</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div c=
+lass=3D"ydpf61a27c4signature">Edward Vidal Jr. e-mail develone@sbcglobal.ne=
+t 915-595-1613</div></div></div></body></html>
 
-A gpg signed version of these release notes is available at:
-
-http://downloads.yoctoproject.org/releases/yocto/yocto-3.0.1/RELEASENOTES
-
-Full Test Report:
-
-http://downloads.yoctoproject.org/releases/yocto/yocto-3.0.1/testreport.txt
-
-Thank you for everyone's contributions to this release.
-
-Sincerely,
-Vineela Tummalapalli=20
-Yocto Project Build and Release
-<vineela.tummalapalli@intel.com>
+------=_Part_5584302_100273013.1575419071622--
