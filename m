@@ -1,80 +1,91 @@
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
- by mx.groups.io with SMTP id smtpd.web11.2259.1575426970284492666
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.2238.1575427202150256750
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 Dec 2019 18:36:10 -0800
+ Tue, 03 Dec 2019 18:40:02 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=YaqOAKsb;
- spf=pass (domain: gmail.com, ip: 209.85.214.180, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f180.google.com with SMTP id w7so2477416plz.12
-        for <yocto@lists.yoctoproject.org>; Tue, 03 Dec 2019 18:36:10 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=uaxUnKOM;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: akuster808@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 04ECFE010AA; Tue,  3 Dec 2019 18:40:02 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.210.173 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3670E0085D
+	for <yocto@yoctoproject.org>; Tue,  3 Dec 2019 18:40:00 -0800 (PST)
+Received: by mail-pf1-f173.google.com with SMTP id d199so2820119pfd.11
+        for <yocto@yoctoproject.org>; Tue, 03 Dec 2019 18:40:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=jrKoIn9pqmJRyXsiO8deDPYtNqRMQPV1iCc6NeSSPXw=;
-        b=YaqOAKsbdSLAvHHTLcH7l7fsEwBVFS6b3IvHThYHfqSGIO+DUPdAfsDN3mUQut8A/1
-         mpSiAH/ASympPNxcbjQQOt++uWKTppAJXMiJv0kiwI7oIkNQBgN+TurXXKDzIfYwp6/m
-         ckt2/03GOqAqfEE/QO7CE3C7LP7X+6JZeE8Dlez6AgZbpcNrDZoNK7GqJVg8odE1waGb
-         Y0BCQLVF0lmBHBQJl16XrGkw+FuC5v1ECvzdY5wcr4dmJU52K5zvNB7cBoI6tX/izKy9
-         ogvgzDLXU2q3nfWDeuvRcf+tTQsU1AciqEGCqhu/1tFXzuhRmBcIOrfiMX2EEHGAlOiA
-         Suug==
+        h=from:to:subject:date:message-id;
+        bh=HRIkf/XLojNT2WHcDbLTPKBfnTW9c/mG4x/UQ25g98Q=;
+        b=uaxUnKOMzJXSEzIp7AqEs+k4hmXICS2HBqNhS/axemb6yqfbKXX8HEz/8D+3KCpBZm
+         WfJVKo/84oMI0Hs1bfBaPwFcqy1c9jrP6Pb8mn3C8E1J5M4jb3ArVMOAqkqXd0o/xYUM
+         KKHZhm1VGAQG1dR4b2AP3i7xZrsAURKl3609uJrxgGB1kP6NlyVHuo+i7o4CsAlld/AJ
+         shxNzbM2s583X8wku5P0gQ3b8HkElPXffQmhkFP7jusjBy8PE25dUVsiZQuBYxcDkp9M
+         X/a8PLnfSOQZNc1BxNLVzp2I3hGVJnd7HKNwJn0M3gGjQlACsJbEbrb4VxWGVOWgC/7A
+         JmeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references;
-        bh=jrKoIn9pqmJRyXsiO8deDPYtNqRMQPV1iCc6NeSSPXw=;
-        b=f1dttvGPFbnu/6CSe/JbVXdUobJHSIJ5V0VUe3rtbnJFuKSxbvoSUzFVVVQOWU/Sar
-         w5ZjbwkfBysWfpd6/JCRtR6WLYdK+laSkd9UYGPQNtfgSx3rEkJnKnl7qi9U+kooH3vi
-         DfXN7eYsIFcgMKn3RhTVEDOGelD18JIEOiwEKRY+4pbOk6SnaBtzKnrwt42I5Yu/wedC
-         Fx3UU4HX0ZxnWe2WQKu5Q9HeBmYRigYyP0KkoPT3xYyjPlzs4bms7tnm5dgAcS7wimrK
-         U1TpvAy6qgIk5G3USBkQScC6gpwhZvg3fOylNMBgGtKdk4OFt+XjiHX7HeiQxvtoA7I2
-         /dzQ==
-X-Gm-Message-State: APjAAAXOBGXwL0NZ97uFBtleUIZjWBPMK9EfLcc31rLWbltfzSZ/vXbp
-	JyviYGwGfJl/C9nTs744X+ZEtdKy
-X-Google-Smtp-Source: APXvYqyKxuXl26wtME1+Nwizqi7VAyPVRpYmzol1ugpZghxYb/MlCTosPrh1aC+xBhti0CocaImZCw==
-X-Received: by 2002:a17:902:9682:: with SMTP id n2mr1175209plp.336.1575426969630;
-        Tue, 03 Dec 2019 18:36:09 -0800 (PST)
-Return-Path: <akuster808@gmail.com>
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=HRIkf/XLojNT2WHcDbLTPKBfnTW9c/mG4x/UQ25g98Q=;
+        b=ZSY7CJL5zKpAmzrMyPNmAgm4cyqwslpc8r+CI56aVJd+vEcOYce5V0jzVd6Ocug+xo
+         lyBDApYlPI0fcTqOVOzQ0SBBsp+UDMzKdxF/GcwG67TLu1hg5jaYtej2C+CIkMFJ94mK
+         b0sJNMmiYuGsUgbslouBD9fdLCygdKoYi0jZ122rdLOer+unoGQCeII6fewiE6Ya9m3d
+         MPzOx+mmW68dAZa3RS59N+1Zc7wEqea4AL3hIXmsdiO/FMLzft1S6zSTRduaWwUJqAgh
+         IJaMMDmWtCkKfEryi8DdJkdL7iqTSVyrvlrWsR1L+UgYhSR4ompeJBuphBAkYC9EdyVm
+         fgpA==
+X-Gm-Message-State: APjAAAUL+gClnpfRhrkiO5ZnDkMBx8xZQBQ8tCZddzG5UNQtrjPjEXOY
+	Yy8O+JH/kxVLPIx3QOwHZQJqTrmX
+X-Google-Smtp-Source: APXvYqwgGs27N0N/88OJJLRjL5SKC+doGyS4Lxs7POaLzUH8rKw94NES/CQVruYh8b29wnm8XxaMoA==
+X-Received: by 2002:a62:2cd7:: with SMTP id s206mr1217939pfs.106.1575427200407;
+        Tue, 03 Dec 2019 18:40:00 -0800 (PST)
 Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id o31sm2466366pgb.56.2019.12.03.18.36.08
-        for <yocto@lists.yoctoproject.org>
+        by smtp.gmail.com with ESMTPSA id w4sm4316863pjt.21.2019.12.03.18.39.59
+        for <yocto@yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2019 18:36:09 -0800 (PST)
+        Tue, 03 Dec 2019 18:39:59 -0800 (PST)
 From: "Armpit" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 6/6] README: update mailing list to new groups.io
-Date: Tue,  3 Dec 2019 18:36:02 -0800
-Message-Id: <20191204023602.31748-6-akuster808@gmail.com>
+To: yocto@yoctoproject.org
+Subject: [meta-security][PATCH 1/5] tpm2-pkcs11: update to tip
+Date: Tue,  3 Dec 2019 18:39:54 -0800
+Message-Id: <20191204023958.31799-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191204023602.31748-1-akuster808@gmail.com>
-References: <20191204023602.31748-1-akuster808@gmail.com>
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- README | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/README b/README
-index 5abb0e2..c419d50 100644
---- a/README
-+++ b/README
-@@ -52,14 +52,14 @@ other layers needed. e.g.:
- Maintenance
- -----------
+diff --git a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb
+index 2185749..351e03e 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-pkcs11/tpm2-pkcs11_0.9.9.bb
+@@ -10,7 +10,7 @@ SRC_URI = "git://github.com/tpm2-software/tpm2-pkcs11.git \
+            file://bootstrap_fixup.patch \
+           "
  
--Send pull requests, patches, comments or questions to yocto@yoctoproject.org
-+Send pull requests, patches, comments or questions to yocto@lists.yoctoproject.org
+-SRCREV = "caf20c04651029626466c59d88b36c05cc6ea20b"
++SRCREV = "6de3f6f9c6e0a4983f3fb90e35feb34906f8aea7"
  
- When sending single patches, please using something like:
--'git send-email -1 --to yocto@yoctoproject.org --subject-prefix=meta-security][PATCH'
-+'git send-email -1 --to yocto@lists.yoctoproject.org --subject-prefix=meta-security][PATCH'
+ S = "${WORKDIR}/git"
  
- These values can be set as defaults for this repository:
- 
--$ git config sendemail.to yocto@yoctoproject.org
-+$ git config sendemail.to yocto@lists.yoctoproject.org
- $ git config format.subjectPrefix meta-security][PATCH
- 
- Now you can just do 'git send-email origin/master' to send all local patches.
 -- 
 2.17.1
 
