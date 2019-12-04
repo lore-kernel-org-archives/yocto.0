@@ -1,12 +1,12 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.2290.1575427203607553683
+ by mx.groups.io with SMTP id smtpd.web09.2291.1575427204458487474
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 Dec 2019 18:40:03 -0800
+ Tue, 03 Dec 2019 18:40:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=qPTNqwmP;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=lMhPbXZs;
  spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: akuster808@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78220E00EBC; Tue,  3 Dec 2019 18:40:03 -0800 (PST)
+	id 50DFFE010AA; Tue,  3 Dec 2019 18:40:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -20,110 +20,84 @@ X-Spam-HAM-Report:
 	*      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.215.177 listed in list.dnswl.org]
+	*      [209.85.216.67 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E544AE00EBC
-	for <yocto@yoctoproject.org>; Tue,  3 Dec 2019 18:40:02 -0800 (PST)
-Received: by mail-pg1-f177.google.com with SMTP id k25so2574682pgt.7
-        for <yocto@yoctoproject.org>; Tue, 03 Dec 2019 18:40:02 -0800 (PST)
+Received: from mail-pj1-f67.google.com (mail-pj1-f67.google.com [209.85.216.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBFFDE0085D
+	for <yocto@yoctoproject.org>; Tue,  3 Dec 2019 18:40:03 -0800 (PST)
+Received: by mail-pj1-f67.google.com with SMTP id w23so1243302pjd.2
+        for <yocto@yoctoproject.org>; Tue, 03 Dec 2019 18:40:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=hSIGhe+VfQFh+XF3W1YxdxH0qzKb1D7poS6H2Kt5qCI=;
-        b=qPTNqwmPbcuO5qbD946LP+vYBkznOXDnn+wpJM/5o+SoYLzrI3XuxDxmW8MMXaARFY
-         WM0K9Kzii9wQXrRffFOewwY0VwSuv1HGuFnUhxK0f2YSZJum5BkbLKv3J+ZKSQewf5rV
-         j5ZuDX9BGcOoxRX0c2NuzFbw0vP3eHE59L2CzTpyJMaUoboFa7LesQLfKvzUaAxWF3TU
-         jm2NMwriR+7Ctry2uX8HFU85DwGUpC/ca0Zsg78XYuuciy85GBCPqgpM35SzY/nPOlhQ
-         w/BTGfd61vpEea6PhLK/QDmtlhtxwfDpvzoh1CQMgmZ08Mzdhtp/8mcG9wJSXZ20TvRH
-         f8Ww==
+        bh=z9eAxZ1TWCeQuHZoMT/C5maAdb99NV/Tv0jWQqWpRfg=;
+        b=lMhPbXZs/dlXkFAFZz9Z0IeqRtdSph2I9zsBxKQZF0bbVte0AUMStERMOOyLqOLBuN
+         OfZbl8WsZM85157LdzIgAT3r9xXJkujR0h40oPOUR0JyotxPoOEff/4Ca4cdEbhQNFVl
+         5/+srrBYTtVeXJbCSS+LwQH8eUgC4MMqJ1FFNpL2yCcde+CHV9Uj+7D/KLijSUm/4HHn
+         j8stBwgbzoIFWI/FaelVxk+0hsEKXTvaKSRWWuAJZ4PqJeThCqi96di8+mbG99DnoQe+
+         Sa0DfcGdhmzvmpMgNCqRVhcSw87mU0i2kJLfFyax62sWhkp3YHF48uC1f0ROfVbDsyI1
+         uOkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
          :references;
-        bh=hSIGhe+VfQFh+XF3W1YxdxH0qzKb1D7poS6H2Kt5qCI=;
-        b=mOqnMjIyhHnvg6j2JxcsUlJuCn5F9tDPUJV546vFSyNQt3giWMG1Xh4XQKNfrn0kfk
-         terjTl0ACdUB3wtAqns9sODbD5xFn3hsCBHG2IywHPxFI72U961wHJ4eev2x0TPsXnJQ
-         RIoNGCXL8ZF8NurjQYMSISz0eeC8zT9NDgNmt345UXoJpw/pwOgtfIDE1H4p+2/LVhch
-         aYpKyXZwKqdvEmKmxTNQ/DpgSDh0ey0fkpjGtJfOx+MSn8za1i1e1E36fTFP2hHgea/Y
-         70wKBAwCL4F242IUqzYan5otIVuRtNiF0ZR1Vm/IYy580eYQYSfyrbPGvy6pobECJhNS
-         o+Xw==
-X-Gm-Message-State: APjAAAVlgZeO/xyFWoiIL4mu1WgQrt7D9mg83IE4ml7YzkCAqGtrC42X
-	E/736B512J+YYKgPv6mvRiGie1Ge
-X-Google-Smtp-Source: APXvYqwCF5EJUXNFFI1Ch53v3KeDgXA5CXCFgxCS0Akeu00A895SWKUfzBlM5Kpg4lcbphQ8mSY1yw==
-X-Received: by 2002:a63:6787:: with SMTP id b129mr1023678pgc.103.1575427202265;
-        Tue, 03 Dec 2019 18:40:02 -0800 (PST)
+        bh=z9eAxZ1TWCeQuHZoMT/C5maAdb99NV/Tv0jWQqWpRfg=;
+        b=jW8AwxuPQpZ2BZ5Ogt5719dvNeSMrS17VUVLQC90WhRQHSHRI/I8AC4uvOZmOIGISP
+         RlcoW9PlCOYM+kjeyyQCGo9pTzkte2yh9yAXtUqP9T3o/VRHEgCGR0NBTEY4Q3bo+5Z5
+         vMtrQ8pmwuPiC9g5VZPbCm05YRU9JX26L5vQFWVUz2UiWmx0sV3MhGCuISIueppRdhPH
+         LOYo17qI4y3cxDOrSLI9zbpF8HtlJKKXtxbVYcsZ2NFwz+JJVpgzWGDn90lsaExKYwW7
+         4xuPgZpNBTIW6SY6FXNOpbNr345aS01CQmY0z3jODtUqQlvcOIiOir0MHaTBxKwtgezz
+         B8pg==
+X-Gm-Message-State: APjAAAVPgvT++UAA5jHSusUfQAFWwuTRoIBUjkRkqg7phKHSVEACEVYU
+	9Xm+iMFwX9oUL8LbEdDwDWOPE9yV
+X-Google-Smtp-Source: APXvYqxAiFsZYFuGC19wo6yARFxH+FtVYdHQPbtHVHPPUFQaI6oq/PoXOrstP3SuSl6G9TPrE0WUxw==
+X-Received: by 2002:a17:90a:e2d4:: with SMTP id fr20mr787645pjb.85.1575427203096;
+        Tue, 03 Dec 2019 18:40:03 -0800 (PST)
 Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id w4sm4316863pjt.21.2019.12.03.18.40.01
+        by smtp.gmail.com with ESMTPSA id w4sm4316863pjt.21.2019.12.03.18.40.02
         for <yocto@yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Dec 2019 18:40:01 -0800 (PST)
+        Tue, 03 Dec 2019 18:40:02 -0800 (PST)
 From: "Armpit" <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Subject: [meta-security][PATCH 3/5] tpm2-tools: update to 4.0.1
-Date: Tue,  3 Dec 2019 18:39:56 -0800
-Message-Id: <20191204023958.31799-3-akuster808@gmail.com>
+Subject: [meta-security][PATCH 4/5] tpm2-tss-engine: update to tip to us tss-tools 4.0.x
+Date: Tue,  3 Dec 2019 18:39:57 -0800
+Message-Id: <20191204023958.31799-4-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191204023958.31799-1-akuster808@gmail.com>
 References: <20191204023958.31799-1-akuster808@gmail.com>
 
-LIC_FILES_CHKSUM added new copyrights
-
-Migrate to https d/l from git clone
+LIC_FILES_CHKSUM update to be true BSD-3-clause text
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../recipes-tpm2/tpm2-tools/tpm2-tools_3.2.0.bb   | 15 ---------------
- .../recipes-tpm2/tpm2-tools/tpm2-tools_4.0.1.bb   | 14 ++++++++++++++
- 2 files changed, 14 insertions(+), 15 deletions(-)
- delete mode 100644 meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_3.2.0.bb
- create mode 100644 meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.0.1.bb
+ .../recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb     | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_3.2.0.bb b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_3.2.0.bb
-deleted file mode 100644
-index b6f1be0..0000000
---- a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_3.2.0.bb
-+++ /dev/null
-@@ -1,15 +0,0 @@
--SUMMARY = "Tools for TPM2."
--DESCRIPTION = "tpm2-tools"
--LICENSE = "BSD"
--LIC_FILES_CHKSUM = "file://LICENSE;md5=91b7c548d73ea16537799e8060cea819"
--SECTION = "tpm"
--
--DEPENDS = "pkgconfig tpm2-tss openssl curl autoconf-archive"
--
--SRCREV = "a17daa948fc67685651bf3b7a589ed341080ddd3"
--
--SRC_URI = "git://github.com/tpm2-software/tpm2-tools.git;branch=3.X"
--
--S = "${WORKDIR}/git"
--
--inherit autotools pkgconfig
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.0.1.bb b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.0.1.bb
-new file mode 100644
-index 0000000..8f94972
---- /dev/null
-+++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.0.1.bb
-@@ -0,0 +1,14 @@
-+SUMMARY = "Tools for TPM2."
-+DESCRIPTION = "tpm2-tools"
-+LICENSE = "BSD"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=0eb1216e46938bd723098d93a23c3bcc"
-+SECTION = "tpm"
-+
-+DEPENDS = "tpm2-abrmd tpm2-tss openssl curl autoconf-archive"
-+
-+SRC_URI = "https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN}-${PV}.tar.gz"
-+
-+SRC_URI[md5sum] = "071aa40bc8721700ea4ed19cc2fdeabf"
-+SRC_URI[sha256sum] = "ccec3fca6370341a102c5c2ef1ddb4e5cd242bf1bbc6c51d969f77fc78ca67d1"
-+
-+inherit autotools pkgconfig bash-completion
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb
+index 8825737..3641b1b 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-tss-engine/tpm2-tss-engine_1.0.1.bb
+@@ -2,13 +2,13 @@ SUMMARY = "The tpm2-tss-engine project implements a cryptographic engine for Ope
+ DESCRIPTION = "The tpm2-tss-engine project implements a cryptographic engine for OpenSSL for Trusted Platform Module (TPM 2.0) using the tpm2-tss software stack that follows the Trusted Computing Groups (TCG) TPM Software Stack (TSS 2.0). It uses the Enhanced System API (ESAPI) interface of the TSS 2.0 for downwards communication. It supports RSA decryption and signatures as well as ECDSA signatures."
+ 
+ LICENSE = "BSD-2-Clause"
+-LIC_FILES_CHKSUM = "file://LICENSE;md5=3fb0047fd29391478a71e8e6101c76eb"
++LIC_FILES_CHKSUM = "file://LICENSE;md5=7b3ab643b9ce041de515d1ed092a36d4"
+ 
+ SECTION = "security/tpm"
+ 
+ DEPENDS = "autoconf-archive-native bash-completion libtss2 libgcrypt openssl"
+ 
+-SRCREV = "e1bbabe29377e45282d753a1b103625c420a19cf"
++SRCREV = "fdc8f65dfc8bad8b5a3aed181fae338267308f70"
+ SRC_URI = "git://github.com/tpm2-software/tpm2-tss-engine.git"
+ 
+ inherit autotools-brokensep pkgconfig systemd
 -- 
 2.17.1
 
