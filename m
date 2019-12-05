@@ -1,98 +1,110 @@
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web09.12200.1575563938573267330
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.12435.1575564706171279411
  for <yocto@lists.yoctoproject.org>;
- Thu, 05 Dec 2019 08:38:59 -0800
+ Thu, 05 Dec 2019 08:51:46 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id C5E2F40C2E;
-	Thu,  5 Dec 2019 16:38:57 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id y5lWUflE5eXa; Thu,  5 Dec 2019 16:38:57 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 363D040BD2;
-	Thu,  5 Dec 2019 16:38:51 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 70DF8174336; Thu,  5 Dec 2019 11:38:51 -0500 (EST)
-Date: Thu, 5 Dec 2019 11:38:51 -0500
-From: "Denys Dmytriyenko" <denis@denix.org>
-To: Paul Barker <paul@betafive.co.uk>
+ dkim=missing; spf=none, err=permanent DNS error (domain: linux.intel.com, ip: 140.211.169.56, mailfrom: leonardo.sandoval.gonzalez@linux.intel.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 0A319E00D16; Thu,  5 Dec 2019 08:51:46 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
+	*      medium trust
+	*      [192.55.52.151 listed in list.dnswl.org]
+Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C675E007EE
+	for <yocto@yoctoproject.org>; Thu,  5 Dec 2019 08:51:43 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Dec 2019 08:51:42 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,282,1571727600"; 
+   d="scan'208";a="263331691"
+Received: from unknown (HELO [10.219.4.36]) ([10.219.4.36])
+  by FMSMGA003.fm.intel.com with ESMTP; 05 Dec 2019 08:51:41 -0800
+Subject: Re: [yocto] [patchtest-oe][PATCH] test_patch_upstream_status: Be explicit about case sensitivity
+To: Paul Barker <paul@betafive.co.uk>,
+ Yocto discussion list <yocto@yoctoproject.org>
 Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	Nicolas Dechesne <nicolas.dechesne@linaro.org>,
-	Yocto discussion list <yocto@yoctoproject.org>,
-	yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Missing layer in the layer index
-Message-ID: <20191205163851.GV4735@denix.org>
-References: <04e3ffe3-4733-4010-ac76-29b72ae20c89@www.fastmail.com>
- <1725959.xBGxL0dlV4@shodan>
- <717103ea-e4b3-4e9e-88eb-e31f80eb1cb3@www.fastmail.com>
- <2549390.Jah5HLDfuQ@shodan>
- <246218da-6308-4f5e-ad7d-c203e4d44c92@www.fastmail.com>
+ Daniela Plascencia <daniela.plascencia@linux.intel.com>,
+ Changqing Li <changqing.li@windriver.com>
+References: <20191115130931.47159-1-paul@betafive.co.uk>
+ <15DBADFE51BB7B5E.20368@lists.yoctoproject.org>
+ <2345c284-9cb3-487b-bb02-d6bf0dafc250@www.fastmail.com>
+From: "Leonardo Sandoval" <leonardo.sandoval.gonzalez@linux.intel.com>
+Message-ID: <3550f653-cfd9-fb83-12df-b9e7c90cff8b@linux.intel.com>
+Date: Thu, 5 Dec 2019 10:51:41 -0600
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.1
 MIME-Version: 1.0
-In-Reply-To: <246218da-6308-4f5e-ad7d-c203e4d44c92@www.fastmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+In-Reply-To: <2345c284-9cb3-487b-bb02-d6bf0dafc250@www.fastmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-On Thu, Dec 05, 2019 at 11:18:22AM +0000, Paul Barker wrote:
-> On Thu, 5 Dec 2019, at 10:07, Paul Eggleton wrote:
-> > On Thursday, 5 December 2019 9:48:48 PM NZDT Paul Barker wrote:
-> > > On Thu, 5 Dec 2019, at 01:37, Paul Eggleton wrote:
-> > > > On Wednesday, 4 December 2019 11:10:49 PM NZDT Nicolas Dechesne wrote:
-> > > > > > I'd like to make sure meta-sancloud (https://github.com/SanCloudLtd/meta-> > sancloud) is listed in the layer index. I can't see it listed for either
-> > > > > > of the branches we support (thud & rocko). However, when I try to add the
-> > > > > > layer I get the error message "Layer with this Layer name already exists."
-> > > > > >
-> > > > > > Perhaps this was already added with an old URL. Is there any way to get
-> > > > > > this fixed up?
-> > > > > 
-> > > > > yes, this is the reason. It exists with the following URL:
-> > > > > https://bitbucket.sancloud.co.uk/scm/yb/meta-sancloud.git
-> > > > > 
-> > > > > The maintainer for that layer is not listed.. was it you?
-> > > > 
-> > > > Oddly there are no maintainer records and no layer branch records either, 
-> > > > hence why the layer doesn't show up properly. I'm unsure how it would have got 
-> > > > into that state or how long it's been there, but since it's pretty much 
-> > > > useless I have gone ahead and deleted it - Paul, could you please file your 
-> > > > submission again?
-> > > 
-> > > Thanks for that, it may have got broken in the layer index when we moved the repo from our private Bitbucket instance over to GitHub. I've resubmitted now.
-> > 
-> > Actually looking at the new repo I think I know what might have 
-> > happened. The layer index does not currently handle layers that don't 
-> > have a master branch perfectly; it could be that the original repo went 
-> > away and that caused it to remove all the layerbranches, and since 
-> > maintainers are per layerbranch they also got removed. (If a master 
-> > layerbranch is there it is protected from deletion even if upstream 
-> > master goes away, you just get a warning during parsing.)
-> > 
-> > I can understand why people don't want to have a master branch if they 
-> > aren't using it; that most layers have it was an assumption I made in 
-> > the earlier design. It's fixable but will take a bit of work to ensure 
-> > the correct behaviour. (This assumption is also reflected in the 
-> > submission process - by default a master layerbranch is created, but 
-> > for layers without a master branch as the approver you then have to go 
-> > in and switch the master branch to whatever the "main" branch is - I 
-> > just did that for this layer.)
-> 
-> Ah ok. I have a pet hate of layers with a master branch that doesn't 
-> actually work with master of oe-core and other layers. I'd rather see a 
-> repository with no master branch!
-> 
-> In this case we're building with meta-ti & meta-arago which only support 
-> every other release. I know they also have a master branch but it's always 
-> been broken when I've tried to use it in the past. I may see if I can give 
-> it another try.
 
-FWIW, both of those have been getting some love lately to at least build 
-against master, so you might want to try again. But in general, at least 
-meta-arago depends on other layers and components that are always lagging 
-behind and hence it's rather difficult to keep everything working with 
-rapidly changing master...
+On 12/5/2019 6:55 AM, Paul Barker wrote:
+> On Fri, 29 Nov 2019, at 16:09, Paul Barker wrote:
+>> On Fri, 15 Nov 2019, at 13:09, Paul Barker wrote:
+>>> The case sensitivity of the checks for the "Upstream-Status" label
+>>> should match so that failure messages make sense. The checks in the
+>>> parse_upstream_status module are case sensitive and so the initial regex
+>>> check should also be made case sensitive.
+>>>
+>>> A quick note about case sensitivity is added to the advice given if
+>>> "Upstream-Status" is not found.
+>>>
+>>> Signed-off-by: Paul Barker <paul@betafive.co.uk>
+>>> ---
+>>> tests/test_patch_upstream_status.py | 4 ++--
+>>> 1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/tests/test_patch_upstream_status.py
+>>> b/tests/test_patch_upstream_status.py
+>>> index a477dfb..ecccc58 100644
+>>> --- a/tests/test_patch_upstream_status.py
+>>> +++ b/tests/test_patch_upstream_status.py
+>>> @@ -23,7 +23,7 @@ import os
+>>>
+>>> class PatchUpstreamStatus(base.Base):
+>>>
+>>> - upstream_status_regex = re.compile("(?<=\+)Upstream.Status", re.IGNORECASE)
+>>> + upstream_status_regex = re.compile("(?<=\+)Upstream.Status")
+>>>
+>>> @classmethod
+>>> def setUpClassLocal(cls):
+>>> @@ -47,7 +47,7 @@ class PatchUpstreamStatus(base.Base):
+>>> payload = newpatch.__str__()
+>>> if not self.upstream_status_regex.search(payload):
+>>> self.fail('Added patch file is missing Upstream-Status
+>>> in the header',
+>>> - 'Add Upstream-Status: <Valid status> to the
+>>> header of %s' % newpatch.path,
+>>> + 'Add Upstream-Status: <Valid status> (case
+>>> sensitive) to the header of %s' % newpatch.path,
+>>> data=[('Standard format',
+>>> self.standard_format), ('Valid status', self.valid_status)])
+>>> for line in payload.splitlines():
+>>> if self.patchmetadata_regex.match(line):
+>>> -- 
+>>> 2.17.1
+>>>
+>>>
+>> Ping.
+> Cc'ing the maintainers listed in the readme along with Changqing Li as discussed during the Yocto Project call on Tuesday.
 
--- 
-Denys
+Sorry for the delay Paul. Together with Paul E., we started the 
+patchtest but since late 2017 I am not longer maintaining it. I 
+definitely can help review patches and enhancements.
+
+>
+> Could you confirm who's maintaining patchtest-oe these days and update the readme? I've got a few ideas for enhancements and I may be able to assist with maintaining these repositories after the new year but I'd like to get these initial changes in first.
+
+>
