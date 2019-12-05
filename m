@@ -1,11 +1,11 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.12435.1575564706171279411
+ by mx.groups.io with SMTP id smtpd.web11.12482.1575564807794535914
  for <yocto@lists.yoctoproject.org>;
- Thu, 05 Dec 2019 08:51:46 -0800
+ Thu, 05 Dec 2019 08:53:27 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=none, err=permanent DNS error (domain: linux.intel.com, ip: 140.211.169.56, mailfrom: leonardo.sandoval.gonzalez@linux.intel.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0A319E00D16; Thu,  5 Dec 2019 08:51:46 -0800 (PST)
+	id 4ACFEE01137; Thu,  5 Dec 2019 08:53:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -16,19 +16,19 @@ X-Spam-HAM-Report:
 	*      [score: 0.0000]
 	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
 	*      medium trust
-	*      [192.55.52.151 listed in list.dnswl.org]
-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C675E007EE
-	for <yocto@yoctoproject.org>; Thu,  5 Dec 2019 08:51:43 -0800 (PST)
+	*      [134.134.136.100 listed in list.dnswl.org]
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE8F2E00A4C
+	for <yocto@yoctoproject.org>; Thu,  5 Dec 2019 08:53:26 -0800 (PST)
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
 Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Dec 2019 08:51:42 -0800
+  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Dec 2019 08:53:26 -0800
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.69,282,1571727600"; 
-   d="scan'208";a="263331691"
+   d="scan'208";a="263332192"
 Received: from unknown (HELO [10.219.4.36]) ([10.219.4.36])
-  by FMSMGA003.fm.intel.com with ESMTP; 05 Dec 2019 08:51:41 -0800
+  by FMSMGA003.fm.intel.com with ESMTP; 05 Dec 2019 08:53:25 -0800
 Subject: Re: [yocto] [patchtest-oe][PATCH] test_patch_upstream_status: Be explicit about case sensitivity
 To: Paul Barker <paul@betafive.co.uk>,
  Yocto discussion list <yocto@yoctoproject.org>
@@ -39,8 +39,8 @@ References: <20191115130931.47159-1-paul@betafive.co.uk>
  <15DBADFE51BB7B5E.20368@lists.yoctoproject.org>
  <2345c284-9cb3-487b-bb02-d6bf0dafc250@www.fastmail.com>
 From: "Leonardo Sandoval" <leonardo.sandoval.gonzalez@linux.intel.com>
-Message-ID: <3550f653-cfd9-fb83-12df-b9e7c90cff8b@linux.intel.com>
-Date: Thu, 5 Dec 2019 10:51:41 -0600
+Message-ID: <0314c3ba-8502-1339-d994-cfbc3e514484@linux.intel.com>
+Date: Thu, 5 Dec 2019 10:53:25 -0600
 User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
  Thunderbird/60.9.1
 MIME-Version: 1.0
@@ -49,6 +49,7 @@ Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
+LGTM
 
 On 12/5/2019 6:55 AM, Paul Barker wrote:
 > On Fri, 29 Nov 2019, at 16:09, Paul Barker wrote:
@@ -99,12 +100,6 @@ On 12/5/2019 6:55 AM, Paul Barker wrote:
 >>>
 >> Ping.
 > Cc'ing the maintainers listed in the readme along with Changqing Li as discussed during the Yocto Project call on Tuesday.
-
-Sorry for the delay Paul. Together with Paul E., we started the 
-patchtest but since late 2017 I am not longer maintaining it. I 
-definitely can help review patches and enhancements.
-
 >
 > Could you confirm who's maintaining patchtest-oe these days and update the readme? I've got a few ideas for enhancements and I may be able to assist with maintaining these repositories after the new year but I'd like to get these initial changes in first.
-
 >
