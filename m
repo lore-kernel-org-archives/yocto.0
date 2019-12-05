@@ -1,56 +1,99 @@
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
- by mx.groups.io with SMTP id smtpd.web12.2740.1575509834848671023
- for <yocto@lists.yoctoproject.org>;
- Wed, 04 Dec 2019 17:37:14 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: linux.intel.com, ip: 192.55.52.120, mailfrom: paul.eggleton@linux.intel.com)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 04 Dec 2019 17:37:14 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,279,1571727600"; 
-   d="scan'208";a="361759950"
-Received: from lokx-mobl1.gar.corp.intel.com (HELO shodan.localnet) ([10.249.69.245])
-  by orsmga004.jf.intel.com with ESMTP; 04 Dec 2019 17:37:10 -0800
-From: "Paul Eggleton" <paul.eggleton@linux.intel.com>
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>, Paul Barker <paul@betafive.co.uk>
-Cc: yocto@yoctoproject.org, yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Missing layer in the layer index
-Date: Thu, 05 Dec 2019 14:37:07 +1300
-Message-ID: <1725959.xBGxL0dlV4@shodan>
-Organization: Intel Corporation
-In-Reply-To: <CAP71Wjw=1yz2_hbZHCmeCyHTaBqTfWjpHEkBARf+eXbnNtZB3g@mail.gmail.com>
-References: <04e3ffe3-4733-4010-ac76-29b72ae20c89@www.fastmail.com> <CAP71Wjw=1yz2_hbZHCmeCyHTaBqTfWjpHEkBARf+eXbnNtZB3g@mail.gmail.com>
+Subject: http2 support issue in curl #yocto #raspberrypi
+To: yocto@lists.yoctoproject.org
+From: "Uzair Mazhar" <uzair.mazhar@emumba.com>
+X-Originating-Location: Islamabad, PK (203.99.49.142)
+X-Originating-Platform: Linux Chrome 78
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Date: Wed, 04 Dec 2019 23:32:41 -0800
+Message-ID: <CLAP.1575531161135737416.olxy@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="P5g1UJfUlwSqPdePL3jB"
 
-On Wednesday, 4 December 2019 11:10:49 PM NZDT Nicolas Dechesne wrote:
-> > I'd like to make sure meta-sancloud (https://github.com/SanCloudLtd/meta-> > sancloud) is listed in the layer index. I can't see it listed for either
-> > of the branches we support (thud & rocko). However, when I try to add the
-> > layer I get the error message "Layer with this Layer name already exists."
-> >
-> > Perhaps this was already added with an old URL. Is there any way to get
-> > this fixed up?
-> 
-> yes, this is the reason. It exists with the following URL:
-> https://bitbucket.sancloud.co.uk/scm/yb/meta-sancloud.git
-> 
-> The maintainer for that layer is not listed.. was it you?
+--P5g1UJfUlwSqPdePL3jB
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Oddly there are no maintainer records and no layer branch records either, 
-hence why the layer doesn't show up properly. I'm unsure how it would have got 
-into that state or how long it's been there, but since it's pretty much 
-useless I have gone ahead and deleted it - Paul, could you please file your 
-submission again?
+Hi All,
+While testing my image on raspberry pi3b, I found that curl doesn=E2=80=99=
+t have http2 support.
+$ curl --http2 -I https://nghttp2.org/ ( https://nghttp2.org/ )
+# Unsupported protocol
 
-Thanks
-Paul
+I tried to search for the solution and one of the possible answer [1][2] w=
+ere adding --with-nghttp2 flag to curl. For that I modified curl recipes (c=
+url_7.64.1.bb) and added =E2=80=9CEXTRA_OECONF =3D --with-nghttp2 =E2=80=9C=
+ along with default parameter already set in this block but it again shows =
+the same error.
 
--- 
+After That I have been trying to resolve this issue from over a week now a=
+s per my understanding of this issue but I am not able to solve this.
 
-Paul Eggleton
-Intel System Software Products
+I generated rpi image by following these steps:
+Cloned warrior branch of poky, meta-raspberrypi and meta-openembedded
+Edited conf/local.conf to add,
+LICENSE_FLAGS_WHITELIST_append =3D " commercial_faad2 commercial_gstreamer=
+1.0-plugins-ugly "
+IMAGE_INSTALL_append +=3D " avs-device-sdk curl=E2=80=9D
+Edited conf/bblayer.conf to add all relevant layers (meta-raspberrypi, met=
+a-networking etc.)
+Generate image using =E2=80=9Cbitbake -k core-image-base=E2=80=9D
 
+I have tried to replicate whole procedure with poky =E2=80=9CThud=E2=80=9D=
+ branch but in vain.
 
+My Environment setup:
+Yocto version is 2.7.0
+Ubuntu~18.04.1
+Linux kernel 4.15.0-66-generic
+Python3 version 3.6.8
+gcc/g++ 7.4.0
+Git 2.17.1
+[1] https://github.com/alexa/avs-device-sdk/wiki/Ubuntu-Linux-Quick-Start-=
+Guide#authorization
+[2]https://serversforhackers.com/c/curl-with-http2-support
+
+Any help in this matter will be appreciated.
+Thanks,
+Uzair Mazhar Awan
+Design and Verification Engineer | www.Emumba.com Office: 3rd Floor, B-Blo=
+ck, STP-3, I9/3, Islamabad,Pakistan
+
+--P5g1UJfUlwSqPdePL3jB
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi All,&nbsp; <br />&nbsp;While testing my image on raspberry pi3b, I found=
+ that curl doesn&rsquo;t have http2 support.<br />&nbsp; &nbsp;$ curl --htt=
+p2 -I <a href=3D"https://nghttp2.org/" target=3D"_blank" rel=3D"noopener">h=
+ttps://nghttp2.org/&nbsp;</a><br />&nbsp;# Unsupported protocol&nbsp; &nbsp=
+;<br /><br />I tried to search for the solution and one of the possible ans=
+wer [1][2] were adding --with-nghttp2 flag to curl. For that I modified cur=
+l recipes (curl_7.64.1.bb) and added &ldquo;EXTRA_OECONF =3D --with-nghttp2=
+ &ldquo; along with default parameter already set in this block but it agai=
+n shows the same error.<br /><br />After That I have been trying to resolve=
+ this issue from over a week now as per my understanding of this issue but =
+I am not able to solve this.&nbsp; <br /><br />I generated rpi image by fol=
+lowing these steps:&nbsp;<br />Cloned warrior branch of poky, meta-raspberr=
+ypi and meta-openembedded&nbsp; <br />&nbsp;Edited conf/local.conf to add,&=
+nbsp; &nbsp;<br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; LICENSE_FLAGS_W=
+HITELIST_append =3D " commercial_faad2 commercial_gstreamer1.0-plugins-ugly=
+ "&nbsp; <br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;IMAGE_INSTALL_appen=
+d +=3D " avs-device-sdk curl&rdquo;&nbsp;<br />Edited conf/bblayer.conf to =
+add all relevant layers (meta-raspberrypi, meta-networking etc.)&nbsp; <br =
+/>Generate image using &ldquo;bitbake -k core-image-base&rdquo;&nbsp; <br /=
+><br />&nbsp;I have tried to replicate whole procedure with poky &ldquo;Thu=
+d&rdquo; branch but in vain.&nbsp; &nbsp; &nbsp;<br /><br />My Environment =
+setup:&nbsp;<br />&nbsp; &nbsp; &nbsp; Yocto version is 2.7.0<br />&nbsp; &=
+nbsp; &nbsp; Ubuntu~18.04.1&nbsp; &nbsp;<br />&nbsp; &nbsp; &nbsp; Linux ke=
+rnel 4.15.0-66-generic&nbsp; &nbsp;<br />&nbsp; &nbsp; &nbsp;Python3 versio=
+n 3.6.8&nbsp; <br />&nbsp; &nbsp; &nbsp;gcc/g++ 7.4.0<span style=3D"white-s=
+pace: pre;"> </span>&nbsp;<br />&nbsp; &nbsp; &nbsp;Git 2.17.1&nbsp; <br />=
+&nbsp;[1] https://github.com/alexa/avs-device-sdk/wiki/Ubuntu-Linux-Quick-S=
+tart-Guide#authorization&nbsp; <br />&nbsp;[2]https://serversforhackers.com=
+/c/curl-with-http2-support&nbsp; &nbsp; &nbsp;<br /><br />Any help in this =
+matter will be appreciated.&nbsp; &nbsp;<br />&nbsp;Thanks,&nbsp; &nbsp;<br=
+ />&nbsp;Uzair Mazhar Awan&nbsp; &nbsp;<br />&nbsp;Design and Verification =
+Engineer | www.Emumba.com Office: 3rd Floor, B-Block, STP-3, I9/3, Islamaba=
+d,Pakistan
+
+--P5g1UJfUlwSqPdePL3jB--
