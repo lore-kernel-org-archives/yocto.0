@@ -1,75 +1,56 @@
-Received: from mail-io1-f66.google.com (mail-io1-f66.google.com [209.85.166.66])
- by mx.groups.io with SMTP id smtpd.web10.5697.1575472517492992080
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+ by mx.groups.io with SMTP id smtpd.web12.2740.1575509834848671023
  for <yocto@lists.yoctoproject.org>;
- Wed, 04 Dec 2019 07:15:17 -0800
+ Wed, 04 Dec 2019 17:37:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=TteTVob+;
- spf=pass (domain: gmail.com, ip: 209.85.166.66, mailfrom: jpewhacker@gmail.com)
-Received: by mail-io1-f66.google.com with SMTP id i11so8323783ioi.12
-        for <yocto@lists.yoctoproject.org>; Wed, 04 Dec 2019 07:15:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=opjK/jrlxJuo/iwzKco5iJAWpLN8HZo5cpFGAdVm9jQ=;
-        b=TteTVob+zjfbSnulmGAAdoIQL/uTS3oPCyk/CNXKKskU7S1ZUUt8+gMRS6NVZp9i+O
-         CVzk0itlOgDcF0fq8lJwsDeZmEjNFp9lsVt0HXogwVCfsbA/J3m7Zf7wamYqBkRLLgj1
-         tW0+qIlR2WJN3ZxtDYmycKmD9Mf8w0s7IoB8V8+nG+wfN5kkHI+DfWD4zPhfAAd72TXS
-         q5y8PYBq7PZWkSvQgkoK1HUmjYkZ0f7zwiD3/p8cbIepl55ZZQ/2LDxochKZ/6NMfQjU
-         3+Tiegudv8fo9HJ6unqNUC4roF+91/Vjw32gtOpmBYfTHeh0FGC3Jfzat03gaPeMSEsp
-         8sRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=opjK/jrlxJuo/iwzKco5iJAWpLN8HZo5cpFGAdVm9jQ=;
-        b=tfwrRtD/o2umPgFPQLWTJDYdf66u9OiRCHlZC26/XeQTqYvNNN074/hikxwOSewevQ
-         fox73pLdttpfkZCJu6pZum6hIXst/Jl2duC1+gDMvOB5wYPDQ0BME2LSZqmd9FN65rqD
-         6qWG9WIoj5ebc77Um94T0zy0utKA7FzHTsjmebrpbilO22ilV9vJykP3OkpEO3AeGqAW
-         /LoDLkonU3OSq5OJS0fpstcX0ksTiqpmyGRzxUgHcJpsa/begIFU2/uqTYQhYDgEoWl/
-         bvHSsg48dAwrxgPAsMEDFZHhiIe4RbZsxgA7NnFu2H3Cgm16fB7rzfM2ECLlLWN4Yqhf
-         SYvQ==
-X-Gm-Message-State: APjAAAWd213kAxSZQ/NFrRGJrIJM3JOJMkyWXJ9J9NdyaVmPLnUqAKGv
-	p9a9rI7WwzF8aoBeKt8E7f6yS+9xexo=
-X-Google-Smtp-Source: APXvYqyv5e8mvi9/0614lAccxMEsbEK2gyklU3jthziAiN0d5kOi5Sf67OSzjMwoE6z7FrSckemxNg==
-X-Received: by 2002:a6b:f60e:: with SMTP id n14mr2377339ioh.147.1575472516092;
-        Wed, 04 Dec 2019 07:15:16 -0800 (PST)
-Return-Path: <jpewhacker@gmail.com>
-Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
-        by smtp.gmail.com with ESMTPSA id u25sm1527585iob.86.2019.12.04.07.15.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 04 Dec 2019 07:15:12 -0800 (PST)
-From: "Joshua Watt" <JPEWhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: twoerner@gmail.com,
-	Joshua Watt <JPEWhacker@gmail.com>
-Subject: [yocto][meta-rockchip][PATCH] mesa: Enable panfrost for rk3288 SOC
-Date: Wed,  4 Dec 2019 09:15:05 -0600
-Message-Id: <20191204151505.2289576-1-JPEWhacker@gmail.com>
-X-Mailer: git-send-email 2.23.0
+ dkim=missing; spf=none, err=permanent DNS error (domain: linux.intel.com, ip: 192.55.52.120, mailfrom: paul.eggleton@linux.intel.com)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 04 Dec 2019 17:37:14 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,279,1571727600"; 
+   d="scan'208";a="361759950"
+Received: from lokx-mobl1.gar.corp.intel.com (HELO shodan.localnet) ([10.249.69.245])
+  by orsmga004.jf.intel.com with ESMTP; 04 Dec 2019 17:37:10 -0800
+From: "Paul Eggleton" <paul.eggleton@linux.intel.com>
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>, Paul Barker <paul@betafive.co.uk>
+Cc: yocto@yoctoproject.org, yocto@lists.yoctoproject.org
+Subject: Re: [yocto] Missing layer in the layer index
+Date: Thu, 05 Dec 2019 14:37:07 +1300
+Message-ID: <1725959.xBGxL0dlV4@shodan>
+Organization: Intel Corporation
+In-Reply-To: <CAP71Wjw=1yz2_hbZHCmeCyHTaBqTfWjpHEkBARf+eXbnNtZB3g@mail.gmail.com>
+References: <04e3ffe3-4733-4010-ac76-29b72ae20c89@www.fastmail.com> <CAP71Wjw=1yz2_hbZHCmeCyHTaBqTfWjpHEkBARf+eXbnNtZB3g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Configures mesa to build in the panfrost and render-only KMS driver
-when building for the rk3288 SOC. The panfrost kernel module is already
-compiled as a module by default for armv7.
+On Wednesday, 4 December 2019 11:10:49 PM NZDT Nicolas Dechesne wrote:
+> > I'd like to make sure meta-sancloud (https://github.com/SanCloudLtd/meta-> > sancloud) is listed in the layer index. I can't see it listed for either
+> > of the branches we support (thud & rocko). However, when I try to add the
+> > layer I get the error message "Layer with this Layer name already exists."
+> >
+> > Perhaps this was already added with an old URL. Is there any way to get
+> > this fixed up?
+> 
+> yes, this is the reason. It exists with the following URL:
+> https://bitbucket.sancloud.co.uk/scm/yb/meta-sancloud.git
+> 
+> The maintainer for that layer is not listed.. was it you?
 
-Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
----
- recipes-graphics/mesa/mesa_%.bbappend | 3 +++
- 1 file changed, 3 insertions(+)
- create mode 100644 recipes-graphics/mesa/mesa_%.bbappend
+Oddly there are no maintainer records and no layer branch records either, 
+hence why the layer doesn't show up properly. I'm unsure how it would have got 
+into that state or how long it's been there, but since it's pretty much 
+useless I have gone ahead and deleted it - Paul, could you please file your 
+submission again?
 
-diff --git a/recipes-graphics/mesa/mesa_%.bbappend b/recipes-graphics/mesa/mesa_%.bbappend
-new file mode 100644
-index 0000000..7fa978d
---- /dev/null
-+++ b/recipes-graphics/mesa/mesa_%.bbappend
-@@ -0,0 +1,3 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-+
-+PACKAGECONFIG_append_rk3288 = " kmsro panfrost"
+Thanks
+Paul
+
 -- 
-2.23.0
+
+Paul Eggleton
+Intel System Software Products
+
 
