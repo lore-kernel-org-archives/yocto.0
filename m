@@ -1,88 +1,86 @@
 Received: from wout3-smtp.messagingengine.com (wout3-smtp.messagingengine.com [64.147.123.19])
- by mx.groups.io with SMTP id smtpd.web09.6520.1575535753111412842
+ by mx.groups.io with SMTP id smtpd.web09.6546.1575536051703082133
  for <yocto@lists.yoctoproject.org>;
- Thu, 05 Dec 2019 00:49:13 -0800
+ Thu, 05 Dec 2019 00:54:11 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@betafive.co.uk header.s=fm3 header.b=Fn8N/zag;
+ dkim=pass header.i=@betafive.co.uk header.s=fm3 header.b=JEYtvB7U;
  spf=pass (domain: betafive.co.uk, ip: 64.147.123.19, mailfrom: paul@betafive.co.uk)
 Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailout.west.internal (Postfix) with ESMTP id 0C9489BE;
-	Thu,  5 Dec 2019 03:49:11 -0500 (EST)
+	by mailout.west.internal (Postfix) with ESMTP id C8A869A2;
+	Thu,  5 Dec 2019 03:54:10 -0500 (EST)
 Received: from imap2 ([10.202.2.52])
-  by compute1.internal (MEProxy); Thu, 05 Dec 2019 03:49:12 -0500
+  by compute1.internal (MEProxy); Thu, 05 Dec 2019 03:54:10 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=betafive.co.uk;
 	 h=mime-version:message-id:in-reply-to:references:date:from:to
-	:cc:subject:content-type; s=fm3; bh=m16cT5GKCC2NFuz1fvkttIBuy8cS
-	ZDB7Y85zQlyaTug=; b=Fn8N/zagkI05cqHVnqDeUZvoJjgH6DI60P0iQHzNYXnB
-	KMbD+x276BQsfiL564wJJ7K1DVblzT/lwWf1SVaWt0R1mBQtb5bOx8yziEUpZZIM
-	GtLs+VFAeqbsrz8IEbLHvVxBJQLd7bankgoJljoJTymmuerlz0nAbat64NUwho6d
-	SByPbhAIBsvmmxz63ilUcHKkoHVcoEb9RcVgSlZUpxhEq0J/PXedROZRENkBIKcw
-	qxbzFYvuZlRKsR3x2rhx0z+E510/FDsscEL9IcLQCcTVu3fHYF+XklYMYcpdNgGT
-	BaufYD8t0spuVqRKY/gmWIM9QN88TnJ5ASb0pjHw/w==
+	:subject:content-type:content-transfer-encoding; s=fm3; bh=iCpER
+	PWiX8JYk4x8PFSeTSR0DHlHwIMtgg14Q6O9nDU=; b=JEYtvB7UgsR9NGOMO+Dlm
+	EIBH1cmFiR8qU7Z8odsoQrMn9ZHAmZ7sh/EOaNlrN57otzISQEsR8R22z1LM1kTn
+	KJ+SIJIGnkxdMHraRqk/sO5SGZzzS5O760d4xrEjPnbvd6YuXBt0BQA3uH50VRN4
+	M9IIjlEd/bEKXFsDM/tZzAPC5PWVI1mznTMOCWk3+nvV6tUfdALa6USBDh9KgFoR
+	3Xi/5T0Tc0ABl/jCaAZ+nAOaORZ2J+26yMZUXm9WDBBTxBEkx1Nd90E5tZHhZKDk
+	644Ac3GhcCAakVMcK1RFupo9HITa901W2u3AShxhBB2bDFOcdUBNyZwOyYqAsLUS
+	g==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to:x-me-proxy
-	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=m16cT5
-	GKCC2NFuz1fvkttIBuy8cSZDB7Y85zQlyaTug=; b=YCs+pnyanq9uJN74UPfLZO
-	8LOB1BtxnQrhxjG6c9YKcqORzBo9mYW+fxhGed/FfD2F/qARLbpuWUpMK5mnPmT1
-	xH1WTtE8jUvRJB73l7DAo9TIyisTjetvA6eDZT8SpMGMSrv44aNNCzqw4t9QVsVK
-	g9Q79ySDMR389zi8WW7549Utnble3tk6wyqDTV8hCPKe/AXc7i5mW/2AdVjTWcKW
-	ZLLtUHbgJR782onAJ3KEh2Z4Vr7vmYEARFTfSQDPJ+hlyp55BzfSPfDegsMCePav
-	p5odQbUryR0rVtqrfwcFF73aN3JzNxk9ysoVbMw5YjJw5eM6ghr+I1dWSvyjhu2w
-	==
-X-ME-Sender: <xms:h8ToXQhN9wdSlfSaWpxzoGYNvCr8ByvbYXhYBN5KK-iTAThdbfJvQA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrudektddguddvfecutefuodetggdotefrod
+	messagingengine.com; h=content-transfer-encoding:content-type
+	:date:from:in-reply-to:message-id:mime-version:references
+	:subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+	:x-sasl-enc; s=fm1; bh=iCpERPWiX8JYk4x8PFSeTSR0DHlHwIMtgg14Q6O9n
+	DU=; b=AQtrTpiJNI7iJ/E3aKmQ0hHJUdn5+2WVJEzt1W5mh/72Futs7OcaGZH+z
+	KzFmkQOxKmyFRgZ0J6KyPqXS5ykJ/am5XuSATLL2qBZG63ZyVqjrM+hDA9eHS2+E
+	hJwGXD9FwcM/n3gQi/8fDr2IhIBlFd6Au8mdtt8crN+lj+kYnv1ObeaTzp7BGEVv
+	mVnfee4SC36AuRMpecoCDoUjtv2HW7x4Nx8hXxPgB8D/PvUhpi5zWqLkFY+y4Jjs
+	gY9U6Xfquv6T8GAq+jBJMt+gVoBqx+0U2UODTzyX+I66MThmFuxbIYYq1b2Y5Wfo
+	ZuZ/etcGzcUurg1H2iycBuNjwbQRA==
+X-ME-Sender: <xms:scXoXUVQtDx6MXSzEhudZPuJ-TmfxLkg8gMVQS6F-hPfNhjrbi9vzA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrudektddguddvgecutefuodetggdotefrod
     ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
     necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedfrfgr
-    uhhluceurghrkhgvrhdfuceophgruhhlsegsvghtrghfihhvvgdrtghordhukheqnecuff
-    homhgrihhnpehgihhthhhusgdrtghomhdpshgrnhgtlhhouhgurdgtohdruhhknecurfgr
-    rhgrmhepmhgrihhlfhhrohhmpehprghulhessggvthgrfhhivhgvrdgtohdruhhknecuve
-    hluhhsthgvrhfuihiivgeptd
-X-ME-Proxy: <xmx:h8ToXSVszmryLfk69FY4JcA_IuQuWAaOWq4JDknyVT7SRXRAaEPg4Q>
-    <xmx:h8ToXfUYnx35NxgO1gMZSTy4achghgjFbP3YHy0Ew3_lrIxhO7aRqw>
-    <xmx:h8ToXSjdNZSX_gc96cT9m760-6JdutkEAwvtqsB4yyVPe0ZRUT-5Gw>
-    <xmx:h8ToXVa88ZA8Y4qCcPZNosl6-T-UkIsjm-cv3ogdF2ZveZSLAgPqZQ>
+    enucfjughrpefofgggkfgjfhffhffvufgtgfesthhqredtreerjeenucfhrhhomhepfdfr
+    rghulhcuuegrrhhkvghrfdcuoehprghulhessggvthgrfhhivhgvrdgtohdruhhkqeenuc
+    ffohhmrghinhepshgvrhhvvghrshhfohhrhhgrtghkvghrshdrtghomhdpnhhghhhtthhp
+    vddrohhrghenucfrrghrrghmpehmrghilhhfrhhomhepphgruhhlsegsvghtrghfihhvvg
+    drtghordhukhenucevlhhushhtvghrufhiiigvpedt
+X-ME-Proxy: <xmx:ssXoXcWSTtPwp7zpVqAykA4CV94ItWC1E8Tc0dE-hNmcd89SRW-bDg>
+    <xmx:ssXoXYJoXI4ivTBXOrL6DfHtBAggnZwHfli0KO-9I0YqnyHbdIiENQ>
+    <xmx:ssXoXSpiIFlTVTqRF0expxYZjjqPjJyuXgpuQDIobCc-6DZJKFiiTQ>
+    <xmx:ssXoXeDszUhl7ElXHEUL7a0_nvSXwIiBIa9uWij4LjkfqDvRskqJhA>
 Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 26C78E00A2; Thu,  5 Dec 2019 03:49:11 -0500 (EST)
+	id E2FA7E00A2; Thu,  5 Dec 2019 03:54:09 -0500 (EST)
 X-Mailer: MessagingEngine.com Webmail Interface
 User-Agent: Cyrus-JMAP/3.1.7-612-g13027cc-fmstable-20191203v1
 Mime-Version: 1.0
-Message-Id: <717103ea-e4b3-4e9e-88eb-e31f80eb1cb3@www.fastmail.com>
-In-Reply-To: <1725959.xBGxL0dlV4@shodan>
-References: <04e3ffe3-4733-4010-ac76-29b72ae20c89@www.fastmail.com>
- <CAP71Wjw=1yz2_hbZHCmeCyHTaBqTfWjpHEkBARf+eXbnNtZB3g@mail.gmail.com>
- <1725959.xBGxL0dlV4@shodan>
-Date: Thu, 05 Dec 2019 08:48:48 +0000
+Message-Id: <51ac1f70-332b-4557-823b-931918fcbbb4@www.fastmail.com>
+In-Reply-To: <CLAP.1575531161135737416.olxy@lists.yoctoproject.org>
+References: <CLAP.1575531161135737416.olxy@lists.yoctoproject.org>
+Date: Thu, 05 Dec 2019 08:53:50 +0000
 From: "Paul Barker" <paul@betafive.co.uk>
-To: "Paul Eggleton" <paul.eggleton@linux.intel.com>,
- "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
-Cc: "Yocto discussion list" <yocto@yoctoproject.org>,
- yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Missing layer in the layer index
-Content-Type: text/plain
+To: "Uzair Mazhar" <uzair.mazhar@emumba.com>, yocto@lists.yoctoproject.org
+Subject: Re: [yocto] http2 support issue in curl #yocto #raspberrypi
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 5 Dec 2019, at 01:37, Paul Eggleton wrote:
-> On Wednesday, 4 December 2019 11:10:49 PM NZDT Nicolas Dechesne wrote:
-> > > I'd like to make sure meta-sancloud (https://github.com/SanCloudLtd/meta-> > sancloud) is listed in the layer index. I can't see it listed for either
-> > > of the branches we support (thud & rocko). However, when I try to add the
-> > > layer I get the error message "Layer with this Layer name already exists."
-> > >
-> > > Perhaps this was already added with an old URL. Is there any way to get
-> > > this fixed up?
-> > 
-> > yes, this is the reason. It exists with the following URL:
-> > https://bitbucket.sancloud.co.uk/scm/yb/meta-sancloud.git
-> > 
-> > The maintainer for that layer is not listed.. was it you?
-> 
-> Oddly there are no maintainer records and no layer branch records either, 
-> hence why the layer doesn't show up properly. I'm unsure how it would have got 
-> into that state or how long it's been there, but since it's pretty much 
-> useless I have gone ahead and deleted it - Paul, could you please file your 
-> submission again?
+On Thu, 5 Dec 2019, at 07:32, Uzair Mazhar wrote:
+> Hi All,=20
+>  While testing my image on raspberry pi3b, I found that curl doesn=E2=80=
+=99t=20
+> have http2 support.
+>  $ curl --http2 -I https://nghttp2.org/=20
+>  # Unsupported protocol=20
+>=20
+> I tried to search for the solution and one of the possible answer=20
+> [1][2] were adding --with-nghttp2 flag to curl. For that I modified=20=
 
-Thanks for that, it may have got broken in the layer index when we moved the repo from our private Bitbucket instance over to GitHub. I've resubmitted now.
+> curl recipes (curl_7.64.1.bb) and added =E2=80=9CEXTRA_OECONF =3D --wi=
+th-nghttp2=20
+> =E2=80=9C along with default parameter already set in this block but i=
+t again=20
+> shows the same error.
 
--- 
+Looking at the link you gave [1], you probably need to use "--with-nghtt=
+p2=3D<PATH>" and add nghttp2 to DEPENDS. You may need to find or write a=
+ recipe for that library.
+
+[1]: https://serversforhackers.com/c/curl-with-http2-support
+
+--=20
 Paul Barker
