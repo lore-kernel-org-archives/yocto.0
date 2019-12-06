@@ -1,105 +1,638 @@
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (EUR04-VI1-obe.outbound.protection.outlook.com [])
- by mx.groups.io with SMTP id smtpd.web10.1811.1575627229314498659
- for <yocto@lists.yoctoproject.org>;
- Fri, 06 Dec 2019 02:13:52 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@spinetix.com header.s=selector2 header.b=hFS53RH9;
- spf=softfail (domain: spinetix.com, ip: <nil>, mailfrom: diego.santacruz@spinetix.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L5zN4qDJmwyZZdrgx9O3yJGxWInELhIh5Z2hr1BdM4bxgELYN7+VyMPZ+f45bCt/2d8GS6L6weiqrzcHyCDXRI3X2wjwDyt67dTOE/K0+JGpl0/7fgc1uNR7mYJ7DeyVlHmkN2XAVw79vg4kvgL3ODYn1vKZS9GQIbQjKh49+quuzmMHZKgLz938mS7uf58GoDBeesV6Kb+ZArIb52/IOREuygfALM3MiRfv76OWnVcUQeuBEDj1smix80uRaLyVsi2udJUuWmgH1zbSkZk0n/45ZdcFhYp6yzKmuiwFNqSaQeGGaCguzX5UVZeE/vGEGK1RZrzqVP4cuxY+eh0BtA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3DvXBqwNsgdvzlDqosddofctu8BKIZ1r7IEuy9VMF58=;
- b=R45ox0KgPZRZafqShT4QPdXoy6ZDadDSITh2CV4mcEnG2hMKzuk2XKzuBHcNd2vX/rvDE+esZte0GJCtPKN/5mwnsp8WuIrZVXPt53yhhq80auMqn7DDsDQIF6utsO5aZ1r7DMmPM57vOPMM2P3yu8b6U4/ncEQm+btv8BHW2cys+ALt1NCkg98JeqdvWJ54TTIW1KXHEj0v6+cX4YWsoYGFVbi1G4xnbUxnSRv0R41RqQmahSYBayyelpOqvHJR7VBN5BF17zhyEJF2kPM6qtIOD3PtbgDtP8H9HZK2FN4DpT36p23PvMwxxGDx1Bp2osT5OXlGBYRO3v0Gs644Iw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=spinetix.com; dmarc=pass action=none header.from=spinetix.com;
- dkim=pass header.d=spinetix.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=spinetix.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3DvXBqwNsgdvzlDqosddofctu8BKIZ1r7IEuy9VMF58=;
- b=hFS53RH9zPl++arc8J840pI/Y69fQpp3eXlIf6ySxn3EwW680rSDQ9NkPxOwoBNv31NzaLR1V2tp7vHDnIjTbZKUP9qOzea2yeibTeONjIw/UXrvsCggixIRZe6gjNCJ4jCWtJl4uWIf5s4WvOqzAMZg6QihnBov0Anw2ydRYj8=
-Received: from VI1PR01MB5167.eurprd01.prod.exchangelabs.com (20.178.120.225)
- by VI1PR01MB4317.eurprd01.prod.exchangelabs.com (20.177.54.148) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2495.18; Fri, 6 Dec
- 2019 10:13:48 +0000
-Received: from VI1PR01MB5167.eurprd01.prod.exchangelabs.com
- ([fe80::6d7a:666f:b19e:685d]) by VI1PR01MB5167.eurprd01.prod.exchangelabs.com
- ([fe80::6d7a:666f:b19e:685d%3]) with mapi id 15.20.2516.017; Fri, 6 Dec 2019
- 10:13:48 +0000
-From: "Diego Santa Cruz" <diego.santacruz@spinetix.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: [meta-security][PATCH 2/2] tpm2-abrmd: Port command line options to new version.
-Thread-Topic: [meta-security][PATCH 2/2] tpm2-abrmd: Port command line options
- to new version.
-Thread-Index: AQHVrB3ZR81SKVArY0icFQCzTv2L3Q==
-Date: Fri, 6 Dec 2019 10:13:48 +0000
-Message-ID: <20191206101334.18436-3-Diego.SantaCruz@spinetix.com>
-References: <20191206101334.18436-1-Diego.SantaCruz@spinetix.com>
-In-Reply-To: <20191206101334.18436-1-Diego.SantaCruz@spinetix.com>
-Accept-Language: en-GB, fr-CH, fr-FR, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [46.14.255.78]
-x-mailer: git-send-email 2.18.1
-x-clientproxiedby: PR0P264CA0222.FRAP264.PROD.OUTLOOK.COM
- (2603:10a6:100:1e::18) To VI1PR01MB5167.eurprd01.prod.exchangelabs.com
- (2603:10a6:803:cb::33)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Diego.SantaCruz@spinetix.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: baa5bc9e-4114-4d02-44f9-08d77a34fbdf
-x-ms-traffictypediagnostic: VI1PR01MB4317:
-x-microsoft-antispam-prvs: 
- <VI1PR01MB4317C1F623D770CF171F5756885F0@VI1PR01MB4317.eurprd01.prod.exchangelabs.com>
-x-ms-oob-tlc-oobclassifiers: OLM:330;
-x-forefront-prvs: 0243E5FD68
-x-forefront-antispam-report: 
- SFV:NSPM;SFS:(10009020)(39840400004)(396003)(376002)(366004)(346002)(136003)(199004)(189003)(2616005)(36756003)(81156014)(26005)(102836004)(8676002)(25786009)(71190400001)(76176011)(1730700003)(52116002)(81166006)(11346002)(71200400001)(316002)(50226002)(66476007)(5640700003)(5660300002)(305945005)(6512007)(8936002)(14444005)(6916009)(66446008)(64756008)(66946007)(1076003)(66556008)(14454004)(6506007)(4744005)(6486002)(99286004)(186003)(2906002)(508600001)(86362001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR01MB4317;H:VI1PR01MB5167.eurprd01.prod.exchangelabs.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: spinetix.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- 49wNzhWn9F8qVaUkizzRFuF8W6v2++77fErAsmpa4j5J6t8yyxaN3MjAL/jMbu1osaZpOfrbp0nyy86tPnfKM7up1dkZphnTOXZ1RZhZTocUNS+zU/7jbxAAggMe5cAVqwmdzyATZQ05URijTc63sdVqHklVqs1BJjQTEj2Y/+zH8GiRQ3JX7itX+A1StKZ8iEGf4zO5WWSwqZ8nCiKvqx61VdGOJwp4fDlefwpvXkQuFGbzD5DcflBJsX2Hb8C9tHyfL4PLJKjIIFAuFHm4OG5wgCQIcMeu6eBFWuio/AypTm+0PaWOSible1EcyXFJ3sv+dXxbitxfG4sAUOB0XEDzIdWcRb9wnxUkGo2PP5QYKvkoppUmdWC+ZW9I51r6eENaRWTjYhYI+XdmLjrbAulb5GErJYPhMFRoXxQWp1Boi+AjEQuLY4gKfSuTqOY8
-x-ms-exchange-transport-forked: True
+Subject: How to integrate Python monorepo application? #yocto #python #monorepo
+To: yocto@lists.yoctoproject.org
+From: georgii.staroselskii@emlid.com
+X-Originating-Location: CZ (93.170.14.130)
+X-Originating-Platform: Mac Chrome 78
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-OriginatorOrg: spinetix.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: baa5bc9e-4114-4d02-44f9-08d77a34fbdf
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Dec 2019 10:13:48.3823
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 5f4034fa-ed2d-4840-a93f-acb1e9633b93
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: P4VKwLpxwm1qGQoUwhXQBLd3GLK7Y8eUXw21OfwvunKs442CgzsBM5Oalixjn17LiVM4i0i+61ojBXADFwpdjTGNCh2hMMs1tuT2/AHvcSQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR01MB4317
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
+Date: Fri, 06 Dec 2019 04:51:35 -0800
+Message-ID: <kL2z.1575636695202287626.aUFH@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="vz0krO99ClQwCffUCj7r"
+
+--vz0krO99ClQwCffUCj7r
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-From: Philip Tricca <flihp@twobit.org>
+A little context before the actual questions. As a project that I have work=
+ed on grew, the number of repositories used for the application we're devel=
+oping grew as well. To the point that it's gotten unbearable to keep making=
+ modifications to the codebase: when something is changed in the core libra=
+ry in one repository we need to make adjustments to other Python middleware=
+ projects that use this library. Whereas this sounds not that terrifying, m=
+anaging this in Yocto has become a burden: on every version bump of the Pyt=
+hon library we need to bump all of the dependant projects as well. After so=
+me thinking, we decided to try a monorepo approach to deal with the complex=
+ity. I'm omitting the logic behind choosing this approach but I can delve i=
+nto it if you think this is wrong.
 
-These have changed upstream.
+1) Phase 1 was easy. Just bring every component of our middleware to one r=
+epository. Right now we have a big repository with more than git 20 submodu=
+les. Submodules will be gone once we finish the transition but as the proje=
+ct doesn't stop while we're doing the transition, submodules were chosen to=
+ track the changes and keep the monorepo up to date. Every submodule is a P=
+ython code with a setup.py/Pipfile et al. that does the bootstrapping.
 
-Signed-off-by: Philip Tricca <flihp@twobit.org>
-Signed-off-by: Diego Santa Cruz <Diego.SantaCruz@spinetix.com>
----
- meta-tpm/recipes-tpm2/tpm2-abrmd/files/tpm2-abrmd.default | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+2) Phase 2 is to integrate everything in Yocto. It has turned out to be mo=
+re difficult than I had anticipated.
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-abrmd/files/tpm2-abrmd.default b/me=
-ta-tpm/recipes-tpm2/tpm2-abrmd/files/tpm2-abrmd.default
-index 987978a..b4b3c20 100644
---- a/meta-tpm/recipes-tpm2/tpm2-abrmd/files/tpm2-abrmd.default
-+++ b/meta-tpm/recipes-tpm2/tpm2-abrmd/files/tpm2-abrmd.default
-@@ -1 +1 @@
--DAEMON_OPTS=3D"--tcti=3Ddevice --logger=3Dsyslog --max-connections=3D20 --=
-max-transient-objects=3D20 --fail-on-loaded-trans"
-+DAEMON_OPTS=3D"--tcti=3Ddevice --logger=3Dsyslog --max-connections=3D20 --=
-max-transients=3D20 --flush-all"
---=20
-2.18.1
+Right now we have this:
 
+*Application monorepo*
+
+Pipfile
+python - library1 / setup. py
+python - library1 / Makefile
+python - library1 / python - library1 /< code >
+
+python - library2 / setup. py
+python - library2 / Makefile
+python - library2 / python - library2 /< code >
+
+...
+python - libraryN / setup. py
+python - libraryN / Makefile
+python - libraryN / python - libraryN /< code >
+
+Naturally, right now we have python-library1_<some_version>.bb , python-li=
+brary2_<some_other_version>.bb in Yocto. Now we want to get rid of this ver=
+sion hell and stick to monorepo versions so that we could have just monorep=
+o_1.0.bb that is to be updated when anything changes in any part.
+
+Right now I have the layout described below.
+
+*monorepo.inc* is as follows:
+
+SRC_URI =3D< gitsm :// the location of the monorepo , branch =3D...,>
+S =3D "${WORKDIR}/git"
+SRCREV =3D <hash>
+
+*python-libraryN.inc:*
+
+require monorepo.inc
+S =3D "${WORKDIR}/git/python-libraryN"
+inherit setuptools
+
+#some=C2=A0libraries=C2=A0also=C2=A0use=C2=A0entry=C2=A0points=C2=A0and=C2=
+=
+=A0the=C2=A0recipe=C2=A0needs=C2=A0to=C2=A0inherit=C2=A0systemd=C2=A0to=C2=
+=
+=A0enable=C2=A0some=C2=A0services.
+
+This approach works. But it has a very significant drawback I can't ignore=
+. Every time SRCREV (or PV/tag in the future) is changed every recipe downl=
+oads the whole repository that is quite big.
+
+So, well, the question is how to structure the Yocto recipes for Python mo=
+norepo manipulation? I'm looking for a way to trick do_unpack and do_fetch =
+to their thing on the monorepo basis.
+
+This ( https://www.yoctoproject.org/docs/current/bitbake-user-manual/bitba=
+ke-user-manual.html#ref-bitbake-tasklist ) section of the documentation mak=
+es me think that I'm approaching this task wrong. I was trying to decipher =
+gcc-source.inc and gcc-shared-source.inc files in the poky but they are out=
+ of my depth for now and look a little bit overcomplicated for my use-case.=
+ So basically my question boils down to how to deal with multiple recipes r=
+eferencing the same source. Any structural change to either the monorepo or=
+ the recipe structure can be done now, so I would be very grateful for any =
+feedback.
+
+P.S. 1) The monorepo structure is not set in stone so if you have any sugg=
+estions, I'm more than open to any criticism 2) The.inc file structure migh=
+t not be suitable for another reason. This stack is deployed across a dozen=
+ of different devices and some of those python-library_N.bb have.bbappends =
+in other layers that are custom for the devices. I mean that some of them m=
+ight require different components of the system installed or some configs a=
+nd files/ modifications.
+
+Any suggestion on how to deal with the complexity of a big Python applicat=
+ion in Yocto will be welcome. Thanks in advance.
+
+--vz0krO99ClQwCffUCj7r
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-num=
+eric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; lin=
+e-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-se=
+rif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear:=
+ both; color: #242729;">A little context before the actual questions. As a =
+project that I have worked on grew, the number of repositories used for the=
+ application we're developing grew as well. To the point that it's gotten u=
+nbearable to keep making modifications to the codebase: when something is c=
+hanged in the core library in one repository we need to make adjustments to=
+ other Python middleware projects that use this library. Whereas this sound=
+s not that terrifying, managing this in Yocto has become a burden: on every=
+ version bump of the Python library we need to bump all of the dependant pr=
+ojects as well. After some thinking, we decided to try a monorepo approach =
+to deal with the complexity. I'm omitting the logic behind choosing this ap=
+proach but I can delve into it if you think this is wrong.</p>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;">1) Phase 1 was easy. Just bring every component of=
+ our middleware to one repository. Right now we have a big repository with =
+more than git 20 submodules. Submodules will be gone once we finish the tra=
+nsition but as the project doesn't stop while we're doing the transition, s=
+ubmodules were chosen to track the changes and keep the monorepo up to date=
+. Every submodule is a Python code with a setup.py/Pipfile et al. that does=
+ the bootstrapping.</p>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;">2) Phase 2 is to integrate everything in Yocto. It=
+ has turned out to be more difficult than I had anticipated.</p>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;">Right now we have this:</p>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;"><strong style=3D"margin: 0px; padding: 0px; border=
+: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; l=
+ine-height: inherit; font-family: inherit; vertical-align: baseline; box-si=
+zing: inherit;">Application monorepo</strong></p>
+<pre class=3D"lang-py prettyprint prettyprinted" style=3D"margin-bottom: 1=
+em; padding: 12px 8px; font-variant-numeric: inherit; font-variant-east-asi=
+an: inherit; font-stretch: inherit; line-height: inherit; font-family: Cons=
+olas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono=
+', 'Bitstream Vera Sans Mono', 'Courier New', monospace, sans-serif; vertic=
+al-align: baseline; box-sizing: inherit; width: auto; max-height: 600px; ba=
+ckground-color: #eff0f1; border-radius: 3px; color: #393318; overflow-wrap:=
+ normal; border: 0px initial initial;"><code style=3D"margin: 0px; border: =
+0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font=
+-stretch: inherit; line-height: inherit; font-family: Consolas, Menlo, Mona=
+co, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Ver=
+a Sans Mono', 'Courier New', monospace, sans-serif; font-size: 13px; vertic=
+al-align: baseline; box-sizing: inherit; background-color: #eff0f1; white-s=
+pace: inherit;"><span class=3D"typ" style=3D"margin: 0px; padding: 0px; bor=
+der: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit;=
+ font-stretch: inherit; line-height: inherit; font-family: inherit; vertica=
+l-align: baseline; box-sizing: inherit; color: #2b91af;">Pipfile</span><spa=
+n class=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0px; font-style=
+: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inher=
+it; line-height: inherit; font-family: inherit; vertical-align: baseline; b=
+ox-sizing: inherit; color: #303336;">
+python</span><span class=3D"pun" style=3D"margin: 0px; padding: 0px; borde=
+r: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; f=
+ont-stretch: inherit; line-height: inherit; font-family: inherit; vertical-=
+align: baseline; box-sizing: inherit; color: #303336;">-</span><span class=
+=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0px; font-style: inhe=
+rit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: inherit; vertical-align: baseline; box-siz=
+ing: inherit; color: #303336;">library1</span><span class=3D"pun" style=3D"=
+margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: =
+inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit;=
+ font-family: inherit; vertical-align: baseline; box-sizing: inherit; color=
+: #303336;">/</span><span class=3D"pln" style=3D"margin: 0px; padding: 0px;=
+ border: 0px; font-style: inherit; font-variant: inherit; font-weight: inhe=
+rit; font-stretch: inherit; line-height: inherit; font-family: inherit; ver=
+tical-align: baseline; box-sizing: inherit; color: #303336;">setup</span><s=
+pan class=3D"pun" style=3D"margin: 0px; padding: 0px; border: 0px; font-sty=
+le: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inh=
+erit; line-height: inherit; font-family: inherit; vertical-align: baseline;=
+ box-sizing: inherit; color: #303336;">.</span><span class=3D"pln" style=3D=
+"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant:=
+ inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit=
+; font-family: inherit; vertical-align: baseline; box-sizing: inherit; colo=
+r: #303336;">py
+python</span><span class=3D"pun" style=3D"margin: 0px; padding: 0px; borde=
+r: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; f=
+ont-stretch: inherit; line-height: inherit; font-family: inherit; vertical-=
+align: baseline; box-sizing: inherit; color: #303336;">-</span><span class=
+=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0px; font-style: inhe=
+rit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: inherit; vertical-align: baseline; box-siz=
+ing: inherit; color: #303336;">library1</span><span class=3D"pun" style=3D"=
+margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: =
+inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit;=
+ font-family: inherit; vertical-align: baseline; box-sizing: inherit; color=
+: #303336;">/</span><span class=3D"typ" style=3D"margin: 0px; padding: 0px;=
+ border: 0px; font-style: inherit; font-variant: inherit; font-weight: inhe=
+rit; font-stretch: inherit; line-height: inherit; font-family: inherit; ver=
+tical-align: baseline; box-sizing: inherit; color: #2b91af;">Makefile</span=
+><span class=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0px; font-=
+style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: =
+inherit; line-height: inherit; font-family: inherit; vertical-align: baseli=
+ne; box-sizing: inherit; color: #303336;">
+python</span><span class=3D"pun" style=3D"margin: 0px; padding: 0px; borde=
+r: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; f=
+ont-stretch: inherit; line-height: inherit; font-family: inherit; vertical-=
+align: baseline; box-sizing: inherit; color: #303336;">-</span><span class=
+=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0px; font-style: inhe=
+rit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: inherit; vertical-align: baseline; box-siz=
+ing: inherit; color: #303336;">library1</span><span class=3D"pun" style=3D"=
+margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: =
+inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit;=
+ font-family: inherit; vertical-align: baseline; box-sizing: inherit; color=
+: #303336;">/</span><span class=3D"pln" style=3D"margin: 0px; padding: 0px;=
+ border: 0px; font-style: inherit; font-variant: inherit; font-weight: inhe=
+rit; font-stretch: inherit; line-height: inherit; font-family: inherit; ver=
+tical-align: baseline; box-sizing: inherit; color: #303336;">python</span><=
+span class=3D"pun" style=3D"margin: 0px; padding: 0px; border: 0px; font-st=
+yle: inherit; font-variant: inherit; font-weight: inherit; font-stretch: in=
+herit; line-height: inherit; font-family: inherit; vertical-align: baseline=
+; box-sizing: inherit; color: #303336;">-</span><span class=3D"pln" style=
+=3D"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-vari=
+ant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inh=
+erit; font-family: inherit; vertical-align: baseline; box-sizing: inherit; =
+color: #303336;">library1</span><span class=3D"pun" style=3D"margin: 0px; p=
+adding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-=
+weight: inherit; font-stretch: inherit; line-height: inherit; font-family: =
+inherit; vertical-align: baseline; box-sizing: inherit; color: #303336;">/&=
+lt;</span><span class=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0=
+px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-=
+stretch: inherit; line-height: inherit; font-family: inherit; vertical-alig=
+n: baseline; box-sizing: inherit; color: #303336;">code</span><span class=
+=3D"pun" style=3D"margin: 0px; padding: 0px; border: 0px; font-style: inhe=
+rit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: inherit; vertical-align: baseline; box-siz=
+ing: inherit; color: #303336;">&gt;</span><span class=3D"pln" style=3D"marg=
+in: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inhe=
+rit; font-weight: inherit; font-stretch: inherit; line-height: inherit; fon=
+t-family: inherit; vertical-align: baseline; box-sizing: inherit; color: #3=
+03336;">
+
+
+python</span><span class=3D"pun" style=3D"margin: 0px; padding: 0px; borde=
+r: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; f=
+ont-stretch: inherit; line-height: inherit; font-family: inherit; vertical-=
+align: baseline; box-sizing: inherit; color: #303336;">-</span><span class=
+=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0px; font-style: inhe=
+rit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: inherit; vertical-align: baseline; box-siz=
+ing: inherit; color: #303336;">library2</span><span class=3D"pun" style=3D"=
+margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: =
+inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit;=
+ font-family: inherit; vertical-align: baseline; box-sizing: inherit; color=
+: #303336;">/</span><span class=3D"pln" style=3D"margin: 0px; padding: 0px;=
+ border: 0px; font-style: inherit; font-variant: inherit; font-weight: inhe=
+rit; font-stretch: inherit; line-height: inherit; font-family: inherit; ver=
+tical-align: baseline; box-sizing: inherit; color: #303336;">setup</span><s=
+pan class=3D"pun" style=3D"margin: 0px; padding: 0px; border: 0px; font-sty=
+le: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inh=
+erit; line-height: inherit; font-family: inherit; vertical-align: baseline;=
+ box-sizing: inherit; color: #303336;">.</span><span class=3D"pln" style=3D=
+"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant:=
+ inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit=
+; font-family: inherit; vertical-align: baseline; box-sizing: inherit; colo=
+r: #303336;">py
+python</span><span class=3D"pun" style=3D"margin: 0px; padding: 0px; borde=
+r: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; f=
+ont-stretch: inherit; line-height: inherit; font-family: inherit; vertical-=
+align: baseline; box-sizing: inherit; color: #303336;">-</span><span class=
+=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0px; font-style: inhe=
+rit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: inherit; vertical-align: baseline; box-siz=
+ing: inherit; color: #303336;">library2</span><span class=3D"pun" style=3D"=
+margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: =
+inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit;=
+ font-family: inherit; vertical-align: baseline; box-sizing: inherit; color=
+: #303336;">/</span><span class=3D"typ" style=3D"margin: 0px; padding: 0px;=
+ border: 0px; font-style: inherit; font-variant: inherit; font-weight: inhe=
+rit; font-stretch: inherit; line-height: inherit; font-family: inherit; ver=
+tical-align: baseline; box-sizing: inherit; color: #2b91af;">Makefile</span=
+><span class=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0px; font-=
+style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: =
+inherit; line-height: inherit; font-family: inherit; vertical-align: baseli=
+ne; box-sizing: inherit; color: #303336;">
+python</span><span class=3D"pun" style=3D"margin: 0px; padding: 0px; borde=
+r: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; f=
+ont-stretch: inherit; line-height: inherit; font-family: inherit; vertical-=
+align: baseline; box-sizing: inherit; color: #303336;">-</span><span class=
+=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0px; font-style: inhe=
+rit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: inherit; vertical-align: baseline; box-siz=
+ing: inherit; color: #303336;">library2</span><span class=3D"pun" style=3D"=
+margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: =
+inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit;=
+ font-family: inherit; vertical-align: baseline; box-sizing: inherit; color=
+: #303336;">/</span><span class=3D"pln" style=3D"margin: 0px; padding: 0px;=
+ border: 0px; font-style: inherit; font-variant: inherit; font-weight: inhe=
+rit; font-stretch: inherit; line-height: inherit; font-family: inherit; ver=
+tical-align: baseline; box-sizing: inherit; color: #303336;">python</span><=
+span class=3D"pun" style=3D"margin: 0px; padding: 0px; border: 0px; font-st=
+yle: inherit; font-variant: inherit; font-weight: inherit; font-stretch: in=
+herit; line-height: inherit; font-family: inherit; vertical-align: baseline=
+; box-sizing: inherit; color: #303336;">-</span><span class=3D"pln" style=
+=3D"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-vari=
+ant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inh=
+erit; font-family: inherit; vertical-align: baseline; box-sizing: inherit; =
+color: #303336;">library2</span><span class=3D"pun" style=3D"margin: 0px; p=
+adding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-=
+weight: inherit; font-stretch: inherit; line-height: inherit; font-family: =
+inherit; vertical-align: baseline; box-sizing: inherit; color: #303336;">/&=
+lt;</span><span class=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0=
+px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-=
+stretch: inherit; line-height: inherit; font-family: inherit; vertical-alig=
+n: baseline; box-sizing: inherit; color: #303336;">code</span><span class=
+=3D"pun" style=3D"margin: 0px; padding: 0px; border: 0px; font-style: inhe=
+rit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: inherit; vertical-align: baseline; box-siz=
+ing: inherit; color: #303336;">&gt;</span><span class=3D"pln" style=3D"marg=
+in: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inhe=
+rit; font-weight: inherit; font-stretch: inherit; line-height: inherit; fon=
+t-family: inherit; vertical-align: baseline; box-sizing: inherit; color: #3=
+03336;">
+
+
+</span><span class=3D"pun" style=3D"margin: 0px; padding: 0px; border: 0px=
+; font-style: inherit; font-variant: inherit; font-weight: inherit; font-st=
+retch: inherit; line-height: inherit; font-family: inherit; vertical-align:=
+ baseline; box-sizing: inherit; color: #303336;">...</span><span class=3D"p=
+ln" style=3D"margin: 0px; padding: 0px; border: 0px; font-style: inherit; f=
+ont-variant: inherit; font-weight: inherit; font-stretch: inherit; line-hei=
+ght: inherit; font-family: inherit; vertical-align: baseline; box-sizing: i=
+nherit; color: #303336;">
+python</span><span class=3D"pun" style=3D"margin: 0px; padding: 0px; borde=
+r: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; f=
+ont-stretch: inherit; line-height: inherit; font-family: inherit; vertical-=
+align: baseline; box-sizing: inherit; color: #303336;">-</span><span class=
+=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0px; font-style: inhe=
+rit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: inherit; vertical-align: baseline; box-siz=
+ing: inherit; color: #303336;">libraryN</span><span class=3D"pun" style=3D"=
+margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: =
+inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit;=
+ font-family: inherit; vertical-align: baseline; box-sizing: inherit; color=
+: #303336;">/</span><span class=3D"pln" style=3D"margin: 0px; padding: 0px;=
+ border: 0px; font-style: inherit; font-variant: inherit; font-weight: inhe=
+rit; font-stretch: inherit; line-height: inherit; font-family: inherit; ver=
+tical-align: baseline; box-sizing: inherit; color: #303336;">setup</span><s=
+pan class=3D"pun" style=3D"margin: 0px; padding: 0px; border: 0px; font-sty=
+le: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inh=
+erit; line-height: inherit; font-family: inherit; vertical-align: baseline;=
+ box-sizing: inherit; color: #303336;">.</span><span class=3D"pln" style=3D=
+"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant:=
+ inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit=
+; font-family: inherit; vertical-align: baseline; box-sizing: inherit; colo=
+r: #303336;">py
+python</span><span class=3D"pun" style=3D"margin: 0px; padding: 0px; borde=
+r: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; f=
+ont-stretch: inherit; line-height: inherit; font-family: inherit; vertical-=
+align: baseline; box-sizing: inherit; color: #303336;">-</span><span class=
+=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0px; font-style: inhe=
+rit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: inherit; vertical-align: baseline; box-siz=
+ing: inherit; color: #303336;">libraryN</span><span class=3D"pun" style=3D"=
+margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: =
+inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit;=
+ font-family: inherit; vertical-align: baseline; box-sizing: inherit; color=
+: #303336;">/</span><span class=3D"typ" style=3D"margin: 0px; padding: 0px;=
+ border: 0px; font-style: inherit; font-variant: inherit; font-weight: inhe=
+rit; font-stretch: inherit; line-height: inherit; font-family: inherit; ver=
+tical-align: baseline; box-sizing: inherit; color: #2b91af;">Makefile</span=
+><span class=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0px; font-=
+style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: =
+inherit; line-height: inherit; font-family: inherit; vertical-align: baseli=
+ne; box-sizing: inherit; color: #303336;">
+python</span><span class=3D"pun" style=3D"margin: 0px; padding: 0px; borde=
+r: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; f=
+ont-stretch: inherit; line-height: inherit; font-family: inherit; vertical-=
+align: baseline; box-sizing: inherit; color: #303336;">-</span><span class=
+=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0px; font-style: inhe=
+rit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: inherit; vertical-align: baseline; box-siz=
+ing: inherit; color: #303336;">libraryN</span><span class=3D"pun" style=3D"=
+margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: =
+inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit;=
+ font-family: inherit; vertical-align: baseline; box-sizing: inherit; color=
+: #303336;">/</span><span class=3D"pln" style=3D"margin: 0px; padding: 0px;=
+ border: 0px; font-style: inherit; font-variant: inherit; font-weight: inhe=
+rit; font-stretch: inherit; line-height: inherit; font-family: inherit; ver=
+tical-align: baseline; box-sizing: inherit; color: #303336;">python</span><=
+span class=3D"pun" style=3D"margin: 0px; padding: 0px; border: 0px; font-st=
+yle: inherit; font-variant: inherit; font-weight: inherit; font-stretch: in=
+herit; line-height: inherit; font-family: inherit; vertical-align: baseline=
+; box-sizing: inherit; color: #303336;">-</span><span class=3D"pln" style=
+=3D"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-vari=
+ant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inh=
+erit; font-family: inherit; vertical-align: baseline; box-sizing: inherit; =
+color: #303336;">libraryN</span><span class=3D"pun" style=3D"margin: 0px; p=
+adding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-=
+weight: inherit; font-stretch: inherit; line-height: inherit; font-family: =
+inherit; vertical-align: baseline; box-sizing: inherit; color: #303336;">/&=
+lt;</span><span class=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0=
+px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-=
+stretch: inherit; line-height: inherit; font-family: inherit; vertical-alig=
+n: baseline; box-sizing: inherit; color: #303336;">code</span><span class=
+=3D"pun" style=3D"margin: 0px; padding: 0px; border: 0px; font-style: inhe=
+rit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: inherit; vertical-align: baseline; box-siz=
+ing: inherit; color: #303336;">&gt;</span></code></pre>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;">Naturally, right now we have&nbsp;<code style=3D"m=
+argin: 0px; padding: 1px 5px; border: 0px; font-style: inherit; font-varian=
+t: inherit; font-weight: inherit; font-stretch: inherit; line-height: inher=
+it; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mon=
+o', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospac=
+e, sans-serif; font-size: 13px; vertical-align: baseline; box-sizing: inher=
+it; background-color: #eff0f1; white-space: pre-wrap;">python-library1_&lt;=
+some_version&gt;.bb</code>,&nbsp;<code style=3D"margin: 0px; padding: 1px 5=
+px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: i=
+nherit; font-stretch: inherit; line-height: inherit; font-family: Consolas,=
+ Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'B=
+itstream Vera Sans Mono', 'Courier New', monospace, sans-serif; font-size: =
+13px; vertical-align: baseline; box-sizing: inherit; background-color: #eff=
+0f1; white-space: pre-wrap;">python-library2_&lt;some_other_version&gt;.bb<=
+/code>&nbsp;in Yocto. Now we want to get rid of this version hell and stick=
+ to monorepo versions so that we could have just monorepo_1.0.bb that is to=
+ be updated when anything changes in any part.</p>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;">Right now I have the layout described below.<br />=
+<br /><strong style=3D"font-family: inherit; margin: 0px; padding: 0px; bor=
+der: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit=
+; line-height: inherit; vertical-align: baseline; box-sizing: inherit;">mon=
+orepo.inc</strong>&nbsp;is as follows:</p>
+<pre class=3D"lang-py prettyprint prettyprinted" style=3D"margin-bottom: 1=
+em; padding: 12px 8px; font-variant-numeric: inherit; font-variant-east-asi=
+an: inherit; font-stretch: inherit; line-height: inherit; font-family: Cons=
+olas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono=
+', 'Bitstream Vera Sans Mono', 'Courier New', monospace, sans-serif; vertic=
+al-align: baseline; box-sizing: inherit; width: auto; max-height: 600px; ba=
+ckground-color: #eff0f1; border-radius: 3px; color: #393318; overflow-wrap:=
+ normal; border: 0px initial initial;"><code style=3D"margin: 0px; border: =
+0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font=
+-stretch: inherit; line-height: inherit; font-family: Consolas, Menlo, Mona=
+co, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Ver=
+a Sans Mono', 'Courier New', monospace, sans-serif; font-size: 13px; vertic=
+al-align: baseline; box-sizing: inherit; background-color: #eff0f1; white-s=
+pace: inherit;"><span class=3D"pln" style=3D"margin: 0px; padding: 0px; bor=
+der: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit;=
+ font-stretch: inherit; line-height: inherit; font-family: inherit; vertica=
+l-align: baseline; box-sizing: inherit; color: #303336;">SRC_URI</span><spa=
+n class=3D"pun" style=3D"margin: 0px; padding: 0px; border: 0px; font-style=
+: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inher=
+it; line-height: inherit; font-family: inherit; vertical-align: baseline; b=
+ox-sizing: inherit; color: #303336;">=3D&lt;</span><span class=3D"pln" styl=
+e=3D"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-vari=
+ant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inh=
+erit; font-family: inherit; vertical-align: baseline; box-sizing: inherit; =
+color: #303336;">gitsm</span><span class=3D"pun" style=3D"margin: 0px; padd=
+ing: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-wei=
+ght: inherit; font-stretch: inherit; line-height: inherit; font-family: inh=
+erit; vertical-align: baseline; box-sizing: inherit; color: #303336;">://</=
+span><span class=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0px; f=
+ont-style: inherit; font-variant: inherit; font-weight: inherit; font-stret=
+ch: inherit; line-height: inherit; font-family: inherit; vertical-align: ba=
+seline; box-sizing: inherit; color: #303336;">the location of the monorepo<=
+/span><span class=3D"pun" style=3D"margin: 0px; padding: 0px; border: 0px; =
+font-style: inherit; font-variant: inherit; font-weight: inherit; font-stre=
+tch: inherit; line-height: inherit; font-family: inherit; vertical-align: b=
+aseline; box-sizing: inherit; color: #303336;">,</span><span class=3D"pln" =
+style=3D"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-=
+variant: inherit; font-weight: inherit; font-stretch: inherit; line-height:=
+ inherit; font-family: inherit; vertical-align: baseline; box-sizing: inher=
+it; color: #303336;">branch</span><span class=3D"pun" style=3D"margin: 0px;=
+ padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; fon=
+t-weight: inherit; font-stretch: inherit; line-height: inherit; font-family=
+: inherit; vertical-align: baseline; box-sizing: inherit; color: #303336;">=
+=
+=3D...,&gt;</span><span class=3D"pln" style=3D"margin: 0px; padding: 0px; =
+border: 0px; font-style: inherit; font-variant: inherit; font-weight: inher=
+it; font-stretch: inherit; line-height: inherit; font-family: inherit; vert=
+ical-align: baseline; box-sizing: inherit; color: #303336;">
+S </span><span class=3D"pun" style=3D"margin: 0px; padding: 0px; border: 0=
+px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-=
+stretch: inherit; line-height: inherit; font-family: inherit; vertical-alig=
+n: baseline; box-sizing: inherit; color: #303336;">=3D</span><span class=3D=
+"pln" style=3D"margin: 0px; padding: 0px; border: 0px; font-style: inherit;=
+ font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-h=
+eight: inherit; font-family: inherit; vertical-align: baseline; box-sizing:=
+ inherit; color: #303336;"> </span><span class=3D"str" style=3D"margin: 0px=
+; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; fo=
+nt-weight: inherit; font-stretch: inherit; line-height: inherit; font-famil=
+y: inherit; vertical-align: baseline; box-sizing: inherit; color: #7d2727;"=
+>"${WORKDIR}/git"<br /></span><span class=3D"pln" style=3D"margin: 0px; pad=
+ding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-we=
+ight: inherit; font-stretch: inherit; line-height: inherit; font-family: in=
+herit; vertical-align: baseline; box-sizing: inherit; color: #303336;">SRCR=
+EV =3D &lt;hash&gt;</span><span class=3D"pln" style=3D"margin: 0px; padding=
+: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight=
+: inherit; font-stretch: inherit; line-height: inherit; font-family: inheri=
+t; vertical-align: baseline; box-sizing: inherit; color: #303336;">
+</span></code></pre>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;"><strong style=3D"margin: 0px; padding: 0px; border=
+: 0px; font-style: inherit; font-variant: inherit; font-stretch: inherit; l=
+ine-height: inherit; font-family: inherit; vertical-align: baseline; box-si=
+zing: inherit;">python-libraryN.inc:</strong></p>
+<pre class=3D"lang-py prettyprint prettyprinted" style=3D"margin-bottom: 1=
+em; padding: 12px 8px; font-variant-numeric: inherit; font-variant-east-asi=
+an: inherit; font-stretch: inherit; line-height: inherit; font-family: Cons=
+olas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono=
+', 'Bitstream Vera Sans Mono', 'Courier New', monospace, sans-serif; vertic=
+al-align: baseline; box-sizing: inherit; width: auto; max-height: 600px; ba=
+ckground-color: #eff0f1; border-radius: 3px; color: #393318; overflow-wrap:=
+ normal; border: 0px initial initial;"><code style=3D"margin: 0px; border: =
+0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font=
+-stretch: inherit; line-height: inherit; font-family: Consolas, Menlo, Mona=
+co, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Ver=
+a Sans Mono', 'Courier New', monospace, sans-serif; font-size: 13px; vertic=
+al-align: baseline; box-sizing: inherit; background-color: #eff0f1; white-s=
+pace: inherit;"><span class=3D"pln" style=3D"margin: 0px; padding: 0px; bor=
+der: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit;=
+ font-stretch: inherit; line-height: inherit; font-family: inherit; vertica=
+l-align: baseline; box-sizing: inherit; color: #303336;">require monorepo.i=
+nc<br />S </span><span class=3D"pun" style=3D"margin: 0px; padding: 0px; bo=
+rder: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit=
+; font-stretch: inherit; line-height: inherit; font-family: inherit; vertic=
+al-align: baseline; box-sizing: inherit; color: #303336;">=3D</span><span c=
+lass=3D"pln" style=3D"margin: 0px; padding: 0px; border: 0px; font-style: i=
+nherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit;=
+ line-height: inherit; font-family: inherit; vertical-align: baseline; box-=
+sizing: inherit; color: #303336;"> </span><span class=3D"str" style=3D"marg=
+in: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inhe=
+rit; font-weight: inherit; font-stretch: inherit; line-height: inherit; fon=
+t-family: inherit; vertical-align: baseline; box-sizing: inherit; color: #7=
+d2727;">"${WORKDIR}/git/python-libraryN"</span><span class=3D"pln" style=3D=
+"margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant:=
+ inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit=
+; font-family: inherit; vertical-align: baseline; box-sizing: inherit; colo=
+r: #303336;">
+inherit setuptools<br /><br />#some&nbsp;libraries&nbsp;also&nbsp;use&nbsp=
+;entry&nbsp;points&nbsp;and&nbsp;the&nbsp;recipe&nbsp;needs&nbsp;to&nbsp;in=
+herit&nbsp;systemd&nbsp;to&nbsp;enable&nbsp;some&nbsp;services.</span></cod=
+e></pre>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;">This approach works. But it has a very significant=
+ drawback I can't ignore. Every time SRCREV (or PV/tag in the future) is ch=
+anged every recipe downloads the whole repository that is quite big.</p>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;">So, well, the question is how to structure the Yoc=
+to recipes for Python monorepo manipulation? I'm looking for a way to trick=
+ do_unpack and do_fetch to their thing on the monorepo basis.<br /><br /><a=
+ href=3D"https://www.yoctoproject.org/docs/current/bitbake-user-manual/bitb=
+ake-user-manual.html#ref-bitbake-tasklist" target=3D"_blank" rel=3D"noopene=
+r">This</a> section of the documentation makes me think that I'm approachin=
+g this task wrong. I was trying to decipher gcc-source.inc and gcc-shared-s=
+ource.inc files in the poky but they are out of my depth for now and look a=
+ little bit overcomplicated for my use-case. So basically my question boils=
+ down to how to deal with multiple recipes referencing the same source. Any=
+ structural change to either the monorepo or the recipe structure can be do=
+ne now, so I would be very grateful for any feedback.</p>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;">P.S. 1) The monorepo structure is not set in stone=
+ so if you have any suggestions, I'm more than open to any criticism 2) The=
+&nbsp;<code style=3D"margin: 0px; padding: 1px 5px; border: 0px; font-style=
+: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inher=
+it; line-height: inherit; font-family: Consolas, Menlo, Monaco, 'Lucida Con=
+sole', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', '=
+Courier New', monospace, sans-serif; font-size: 13px; vertical-align: basel=
+ine; box-sizing: inherit; background-color: #eff0f1; white-space: pre-wrap;=
+">.inc</code>&nbsp;file structure might not be suitable for another reason.=
+ This stack is deployed across a dozen of different devices and some of tho=
+se&nbsp;<code style=3D"margin: 0px; padding: 1px 5px; border: 0px; font-sty=
+le: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inh=
+erit; line-height: inherit; font-family: Consolas, Menlo, Monaco, 'Lucida C=
+onsole', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono',=
+ 'Courier New', monospace, sans-serif; font-size: 13px; vertical-align: bas=
+eline; box-sizing: inherit; background-color: #eff0f1; white-space: pre-wra=
+p;">python-library_N.bb</code>&nbsp;have&nbsp;<code style=3D"margin: 0px; p=
+adding: 1px 5px; border: 0px; font-style: inherit; font-variant: inherit; f=
+ont-weight: inherit; font-stretch: inherit; line-height: inherit; font-fami=
+ly: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu S=
+ans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, sans-serif=
+; font-size: 13px; vertical-align: baseline; box-sizing: inherit; backgroun=
+d-color: #eff0f1; white-space: pre-wrap;">.bbappends</code>&nbsp;in other l=
+ayers that are custom for the devices. I mean that some of them might requi=
+re different components of the system installed or some configs and&nbsp;<c=
+ode style=3D"margin: 0px; padding: 1px 5px; border: 0px; font-style: inheri=
+t; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line=
+-height: inherit; font-family: Consolas, Menlo, Monaco, 'Lucida Console', '=
+Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier =
+New', monospace, sans-serif; font-size: 13px; vertical-align: baseline; box=
+-sizing: inherit; background-color: #eff0f1; white-space: pre-wrap;">files/=
+</code>&nbsp;modifications.</p>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;">Any suggestion on how to deal with the complexity =
+of a big Python application in Yocto will be welcome. Thanks in advance.</p=
+>
+
+--vz0krO99ClQwCffUCj7r--
