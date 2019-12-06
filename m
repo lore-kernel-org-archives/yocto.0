@@ -1,88 +1,107 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.3303.1575637682466101615
+ by mx.groups.io with SMTP id smtpd.web12.5781.1575648433006572181
  for <yocto@lists.yoctoproject.org>;
- Fri, 06 Dec 2019 05:08:02 -0800
+ Fri, 06 Dec 2019 08:07:13 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=VXqiGy1c;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: mans.zigher@gmail.com)
+ dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1 header.b=nJ3qUiV0;
+ spf=neutral (domain: bmw.de, ip: 140.211.169.56, mailfrom: prvs=236fbe635=mikko.rapeli@bmw.de)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 025B7E00E4C; Fri,  6 Dec 2019 05:08:02 -0800 (PST)
+	id 8270DE01158; Fri,  6 Dec 2019 08:07:12 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (mans.zigher[at]gmail.com)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
+	*      medium trust
+	*      [68.232.139.67 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.167.42 listed in list.dnswl.org]
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14A69E00E0F
-	for <yocto@yoctoproject.org>; Fri,  6 Dec 2019 05:07:59 -0800 (PST)
-Received: by mail-lf1-f42.google.com with SMTP id n12so5229569lfe.3
-        for <yocto@yoctoproject.org>; Fri, 06 Dec 2019 05:07:59 -0800 (PST)
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www; Fri, 06 Dec 2019 08:07:11 PST
+Received: from esa5.bmw.c3s2.iphmx.com (esa5.bmw.c3s2.iphmx.com [68.232.139.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B4D9E01156
+	for <yocto@yoctoproject.org>; Fri,  6 Dec 2019 08:07:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=qRmVIyDtkGgGRstthxL8RIKww0B5N6tigytKKRYyFTY=;
-        b=VXqiGy1cOSqsTLnPGFalHitA+RBu0hmpM2D2oGyK8W3rLwsmHJ0FpWhQfr186End5C
-         C5GxtspaXAXtfvrVyPgFegXdGw+z/kb3e0Bl/MnA4YG7xkpWFXRtYKVqWAXfUmfIxsA9
-         6djDvhRp/qoReh17b4afptsGmyLXWvWimY9z8Zl/vbCUKMnJrwcmbGTt+nLGqbFEw2xK
-         g6hUgEf0OlIxiRhP/OpMq8Yt3sMzpgtjU7JGeGlS5ptHBc85zljH8nZHq0JIwkf1gjOg
-         VzZxvFohCjNw5NNDQ2U5QZAin26CA9x6jDISoge2kInLTtqWaPbgkP0G87FGFIpD3GYZ
-         UuSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=qRmVIyDtkGgGRstthxL8RIKww0B5N6tigytKKRYyFTY=;
-        b=mNgYtPPg912HW+YQcxAJow3uiszmcK8hCA2I7+85Fzx2+p2k3j2QvX6RgwwBIYpvny
-         ULkc7k1QgBDdrnzbra2N8r5uWfKg421RfOajSHfMhSRRk7B1UsirkDaAJOXnh56GEvfY
-         wzClm+0gVW522IHWlFm54cMY+odt4S+/lfWWpxWokMKFGsifgPm8CIXvZSbayUIEdF9e
-         jaWbX1gbwf0vR/TBXptw83Nxh8LZUMbcFrug95QB1a/YrUSOuebuFe89bTmlmZGFGz5D
-         kjj53CcldY84QcaB0EWudKNpGAC2Acpu5Zrry7C6AKTd6Vhw3doOh5JyR4xiXXgGEK28
-         zuTA==
-X-Gm-Message-State: APjAAAVBNg/ck5HsEEmKsi7OfD9Yrdigk0jks/QmyWEXySrclqkLrs8c
-	0mhxyHGfbXgSoJa3SCbX17mn2N98HswrUR/cEOM3aX21TbM=
-X-Google-Smtp-Source: APXvYqzNiuI7VVWDSVkHub+QftVKxqGBY5Bu3/JPtCnPjtVtxbuVWVohmo5i02HGaTUc1V6tpb1/muqabwomOId70rU=
-X-Received: by 2002:a19:888:: with SMTP id 130mr8114370lfi.167.1575637678493;
- Fri, 06 Dec 2019 05:07:58 -0800 (PST)
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1575648432; x=1607184432;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=svJ8ztyrCp+o2Ne48i/nAtbebrlLno5Gp6IRxj13MUw=;
+  b=nJ3qUiV0ortNmoA8GicVgmhFTdPTGxdLbrjBJWDqxmQv9TRFpupqYRP7
+   RW8ouUm9aicuHLnxq8JmdhWSbyc/6JLi4knV1yGzyfJsER3C6O0ThxLy1
+   jXbRMdz2rh3Ce7kdJnfjsn+RKb3qE5RI4d7S6lJUtuqC2xF46/iuOx+Dx
+   E=;
+IronPort-SDR: eFHdK9698SowBaBIvIGWvl6+EPyoZOzrOMYqZ2jjIimuBcgPZ6kLzF10FGRBJ7ZPB2HuPKE4Ek
+ 6Lb7WMCyuAtVEDIOcGwOUfoxim6liQMHHBY9+nTyuFPq+4C1+4U1gQVbSRZcy7O/3hLNit/qwa
+ 5XgBwXFPl8a3i8fzAugcHWAWFx9dJ6c1fOdZ/2H1K67ArpUSFBdgpoYB0G46Zc2SbUGilsmiwn
+ jC5lGg+v3sJ6Uhhbud0j8Kr8KjKUK0izVxWiwObj9Bt5sp7W+xwlRHAw7tlE9Y1u4T3ddMRmJt
+ SdI=
+Received: from esagw1.bmwgroup.com (HELO esagw1.muc) ([160.46.252.34]) by
+ esa5.bmw.c3s2.iphmx.com with ESMTP/TLS; 06 Dec 2019 17:06:07 +0100
+Received: from esabb4.muc ([160.50.100.33])  by esagw1.muc with ESMTP/TLS;
+ 06 Dec 2019 17:06:06 +0100
+Received: from smucm10k.bmwgroup.net (HELO smucm10k.europe.bmw.corp) ([160.48.96.47])
+ by esabb4.muc with ESMTP/TLS; 06 Dec 2019 17:06:05 +0100
+Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10k.europe.bmw.corp
+ (160.48.96.47) with Microsoft SMTP Server (TLS;
+ Fri, 6 Dec 2019 17:06:05 +0100
+Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
+ smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Fri, 6
+ Dec 2019 17:06:05 +0100
+From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
+To: <mans.zigher@gmail.com>
+CC: <yocto@yoctoproject.org>
+Subject: Re: [yocto] What should I expect when using SSTATE_MIRROR?
+Thread-Topic: [yocto] What should I expect when using SSTATE_MIRROR?
+Thread-Index: AQHVrDY1GI10gFSdLkeY679dPLT/cqetNPCA
+Date: Fri, 6 Dec 2019 16:06:05 +0000
+Message-ID: <20191206160605.GD3527@hiutale>
+References: <CAEhQi8n1NL+e+dhPGK_94stmXhE-H6+F3NHm=u10ACgSJ2wMsQ@mail.gmail.com>
+In-Reply-To: <CAEhQi8n1NL+e+dhPGK_94stmXhE-H6+F3NHm=u10ACgSJ2wMsQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
 MIME-Version: 1.0
-From: "Mans Zigher" <mans.zigher@gmail.com>
-Date: Fri, 6 Dec 2019 14:07:47 +0100
-Message-ID: <CAEhQi8n1NL+e+dhPGK_94stmXhE-H6+F3NHm=u10ACgSJ2wMsQ@mail.gmail.com>
-Subject: What should I expect when using SSTATE_MIRROR?
-To: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <3BC2114E7E0B32439A42D0406C8E83B5@bmwmail.corp>
 Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
-I am trying to use the sstate cache by using a SSTATE_MIRROR. I have
-built everything from scratch once and pushed my sstate-cache
-directory to the server. I then wen't over to another machine and did
-a clean build but this time I made sure it used SSTATE_MIRROR but the
-result was not what I expected
+On Fri, Dec 06, 2019 at 02:07:47PM +0100, Mans Zigher wrote:
+> Hi,
+>=20
+> I am trying to use the sstate cache by using a SSTATE_MIRROR. I have
+> built everything from scratch once and pushed my sstate-cache
+> directory to the server. I then wen't over to another machine and did
+> a clean build but this time I made sure it used SSTATE_MIRROR but the
+> result was not what I expected
+>=20
+> Sstate summary: Wanted 1255 Found 233 Missed 2044 Current 0 (18%
+> match, 0% complete)
+>=20
+> I have tried it multiple times on different machines with the same
+> result the only time it works as expect is when running the build on
+> the first machine from which the sstate cache was originally coming
+> from. Am I missing something? Or is this expected?
 
-Sstate summary: Wanted 1255 Found 233 Missed 2044 Current 0 (18%
-match, 0% complete)
+Maybe host tool versions differ which trigger recompilation of things
+like gcc and thus everything gets recompiled. You can use bitbake-diffsigs
+to figure out why rebuild was triggered.
 
-I have tried it multiple times on different machines with the same
-result the only time it works as expect is when running the build on
-the first machine from which the sstate cache was originally coming
-from. Am I missing something? Or is this expected?
+I work around this by using a build container based on LXC and Debian stabl=
+e
+everywhere, in CI and on developer machines with various Linux distros.
 
-Thanks
+Hope this helps,
 
-/M=C3=A5ns Zigher
+-Mikko=
