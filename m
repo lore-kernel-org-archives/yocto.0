@@ -1,137 +1,86 @@
-Subject: Unable to build core-image-full-cmdline on openSUSE Leap 15.1: dnf can't find _curses module in do_rootfs task
-To: yocto@lists.yoctoproject.org
-From: "Rebecca Cran" <rebecca@bsdio.com>
-X-Originating-Location: US (65.103.231.193)
-X-Originating-Platform: Linux Firefox 71
-User-Agent: GROUPS.IO Web Poster
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web09.3488.1575845015045415790
+ for <yocto@lists.yoctoproject.org>;
+ Sun, 08 Dec 2019 14:43:35 -0800
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=none, err=permanent DNS error (domain: linux.intel.com, ip: 140.211.169.56, mailfrom: paul.eggleton@linux.intel.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 8FB4CE011A9; Sun,  8 Dec 2019 14:43:34 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/, high
+	*      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5772E010A5
+	for <yocto@yoctoproject.org>; Sun,  8 Dec 2019 14:43:32 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga004.jf.intel.com ([10.7.209.38])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 08 Dec 2019 14:43:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,293,1571727600"; 
+   d="scan'208";a="362753613"
+Received: from ntruong2-mobl.ccr.corp.intel.com (HELO shodan.fritz.box) ([10.255.170.244])
+  by orsmga004.jf.intel.com with ESMTP; 08 Dec 2019 14:43:30 -0800
+From: "Paul Eggleton" <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Subject: [layerindex-web][PATCH 0/5] Misc bug fixes [cover letter only]
+Date: Mon,  9 Dec 2019 11:43:17 +1300
+Message-Id: <cover.1575844900.git.paul.eggleton@linux.intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Date: Sun, 08 Dec 2019 13:33:22 -0800
-Message-ID: <98NB.1575840802217143019.f9l4@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="94QHUWovPdpvCnd9ZktP"
-
---94QHUWovPdpvCnd9ZktP
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-I recently switched from Ubuntu 19.10 to openSUSE Leap 15.1, but I'm having=
- problems building core-image-full-cmdline on it. I've installed all the ho=
-st packages I can think of, including python-curses and python3-curses, wit=
-h no success.
+Updates some bundled components (jQuery, Chart.js, Bootstrap) and fixes
+a couple of bugs in the layer update script and background task display
+for admins.
 
-I'm on the zeus branch, and running "bitbake core-image-full-cmdline" resu=
-lts in the following error when running the do_rootfs task:
 
-ERROR: core-image-full-cmdline-1.0-r0 do_rootfs: Could not invoke dnf. Com=
-mand '/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-=
-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr=
-/bin/dnf -v --rpmverbosity=3Dinfo -y -c /home/bcran/src/fsl-community-bsp/b=
-uild-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdlin=
-e/1.0-r0/rootfs/etc/dnf/dnf.conf --setopt=3Dreposdir=3D/home/bcran/src/fsl-=
-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-im=
-age-full-cmdline/1.0-r0/rootfs/etc/yum.repos.d --installroot=3D/home/bcran/=
-src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi=
-/core-image-full-cmdline/1.0-r0/rootfs --setopt=3Dlogdir=3D/home/bcran/src/=
-fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/cor=
-e-image-full-cmdline/1.0-r0/temp --repofrompath=3Doe-repo,/home/bcran/src/f=
-sl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core=
--image-full-cmdline/1.0-r0/oe-rootfs-repo makecache --refresh' returned 1:
-Traceback (most recent call last):
-File "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk=
--fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/us=
-r/bin/dnf.real", line 57, in <module>
-from dnf.cli import main
-File "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk=
--fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/us=
-r/lib/python3.7/site-packages/dnf/cli/__init__.py", line 30, in <module>
-from dnf.cli.cli import Cli=C2=A0 # :api
-File "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk=
--fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/us=
-r/lib/python3.7/site-packages/dnf/cli/cli.py", line 44, in <module>
-from . import output
-File "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk=
--fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/us=
-r/lib/python3.7/site-packages/dnf/cli/output.py", line 34, in <module>
-import dnf.cli.progress
-File "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk=
--fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/us=
-r/lib/python3.7/site-packages/dnf/cli/progress.py", line 19, in <module>
-from dnf.cli.term import _term_width
-File "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk=
--fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/us=
-r/lib/python3.7/site-packages/dnf/cli/term.py", line 21, in <module>
-import curses
-File "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk=
--fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/us=
-r/lib/python3.7/curses/__init__.py", line 13, in <module>
-from _curses import *
-ModuleNotFoundError: No module named '_curses'
+The following changes since commit f84223f4730cd171d25c980b43f07d89950f46=
+bd:
 
-ERROR: Logfile of failure stored in: /home/bcran/src/fsl-community-bsp/bui=
-ld-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/=
-1.0-r0/temp/log.do_rootfs.40254
-ERROR: Task (/home/bcran/src/fsl-community-bsp/sources/poky/meta/recipes-e=
-xtended/images/core-image-full-cmdline.bb:do_rootfs) failed with exit code =
-'1'
+  README.devel: mention python SMTP server (2019-11-26 10:44:37 +1300)
 
---
-Rebecca Cran
+are available in the Git repository at:
 
---94QHUWovPdpvCnd9ZktP
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+  git://git.yoctoproject.org/layerindex-web paule/fixes15
+  http://git.yoctoproject.org/cgit.cgi/layerindex-web/log/?h=3Dpaule/fixe=
+s15
 
-I recently switched from Ubuntu 19.10 to openSUSE Leap 15.1, but I'm having=
- problems building core-image-full-cmdline on it. I've installed all the ho=
-st packages I can think of, including python-curses and python3-curses, wit=
-h no success.<br /><br />I'm on the zeus branch, and running "bitbake core-=
-image-full-cmdline" results in the following error when running the do_root=
-fs task:<br /><br />ERROR: core-image-full-cmdline-1.0-r0 do_rootfs: Could =
-not invoke dnf. Command '/home/bcran/src/fsl-community-bsp/build-imx6slevk/=
-tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe=
--sysroot-native/usr/bin/dnf -v --rpmverbosity=3Dinfo -y -c /home/bcran/src/=
-fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/cor=
-e-image-full-cmdline/1.0-r0/rootfs/etc/dnf/dnf.conf --setopt=3Dreposdir=3D/=
-home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-li=
-nux-gnueabi/core-image-full-cmdline/1.0-r0/rootfs/etc/yum.repos.d --install=
-root=3D/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk=
--fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/rootfs --setopt=3Dlogdir=
-=
-=3D/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fs=
-lc-linux-gnueabi/core-image-full-cmdline/1.0-r0/temp --repofrompath=3Doe-re=
-po,/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fsl=
-c-linux-gnueabi/core-image-full-cmdline/1.0-r0/oe-rootfs-repo makecache --r=
-efresh' returned 1:<br />Traceback (most recent call last):<br />&nbsp; Fil=
-e "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fsl=
-c-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/bi=
-n/dnf.real", line 57, in &lt;module&gt;<br />&nbsp;&nbsp;&nbsp; from dnf.cl=
-i import main<br />&nbsp; File "/home/bcran/src/fsl-community-bsp/build-imx=
-6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0=
-/recipe-sysroot-native/usr/lib/python3.7/site-packages/dnf/cli/__init__.py"=
-, line 30, in &lt;module&gt;<br />&nbsp;&nbsp;&nbsp; from dnf.cli.cli impor=
-t Cli&nbsp; # :api<br />&nbsp; File "/home/bcran/src/fsl-community-bsp/buil=
-d-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1=
-.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-packages/dnf/cli/cli.py"=
-, line 44, in &lt;module&gt;<br />&nbsp;&nbsp;&nbsp; from . import output<b=
-r />&nbsp; File "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work=
-/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot=
--native/usr/lib/python3.7/site-packages/dnf/cli/output.py", line 34, in &lt=
-;module&gt;<br />&nbsp;&nbsp;&nbsp; import dnf.cli.progress<br />&nbsp; Fil=
-e "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fsl=
-c-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/li=
-b/python3.7/site-packages/dnf/cli/progress.py", line 19, in &lt;module&gt;<=
-br />&nbsp;&nbsp;&nbsp; from dnf.cli.term import _term_width<br />&nbsp; Fi=
-le "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fs=
-lc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/l=
-ib/python3.7/site-packages/dnf/cli/term.py", line 21, in &lt;module&gt;<br =
-/>&nbsp;&nbsp;&nbsp; import curses<br />&nbsp; File "/home/bcran/src/fsl-co=
-mmunity-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-imag=
-e-full-cmdline/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/curses/__init=
-__.py", line 13, in &lt;module&gt;<br />&nbsp;&nbsp;&nbsp; from _curses imp=
-ort *<br />ModuleNotFoundError: No module named '_curses'<br /><br />ERROR:=
- Logfile of failure stored in: /home/bcran/src/fsl-community-bsp/build-imx6=
-slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/=
-temp/log.do_rootfs.40254<br />ERROR: Task (/home/bcran/src/fsl-community-bs=
-p/sources/poky/meta/recipes-extended/images/core-image-full-cmdline.bb:do_r=
-ootfs) failed with exit code '1'<br /><br />-- <br />Rebecca Cran
+Paul Eggleton (5):
+  Upgrade Bootstrap to 3.4.1
+  Upgrade jquery to 3.4.1
+  Upgrade Chart.js to 2.9.3
+  update: ensure removed recipe dependencies are removed from db
+  tasks: squash out CRs in task logs to avoid huge transfers
 
---94QHUWovPdpvCnd9ZktP--
+ layerindex/recipeparse.py                     |    12 +-
+ layerindex/static/css/bootstrap-theme.css     |   200 +-
+ layerindex/static/css/bootstrap-theme.css.map |     2 +-
+ layerindex/static/css/bootstrap-theme.min.css |     6 +-
+ .../static/css/bootstrap-theme.min.css.map    |     2 +-
+ layerindex/static/css/bootstrap.css           |   985 +-
+ layerindex/static/css/bootstrap.css.map       |     2 +-
+ layerindex/static/css/bootstrap.min.css       |     6 +-
+ layerindex/static/css/bootstrap.min.css.map   |     2 +-
+ layerindex/static/js/Chart.js                 | 25319 +++++++++-------
+ layerindex/static/js/Chart.min.js             |    13 +-
+ layerindex/static/js/bootstrap.js             |   397 +-
+ layerindex/static/js/bootstrap.min.js         |     7 +-
+ .../js/{jquery-3.3.1.js =3D> jquery-3.4.1.js}   |   596 +-
+ layerindex/update_layer.py                    |     2 +-
+ layerindex/views.py                           |     7 +-
+ templates/base.html                           |     2 +-
+ 17 files changed, 14925 insertions(+), 12635 deletions(-)
+ rename layerindex/static/js/{jquery-3.3.1.js =3D> jquery-3.4.1.js} (94%)
+
+--=20
+2.20.1
+
