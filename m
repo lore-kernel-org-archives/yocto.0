@@ -1,133 +1,82 @@
-Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com [209.85.208.193])
- by mx.groups.io with SMTP id smtpd.web11.11626.1575902251722394233
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web09.12001.1575904045858415439
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 Dec 2019 06:37:32 -0800
+ Mon, 09 Dec 2019 07:07:25 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=COJJTa3Z;
- spf=pass (domain: gmail.com, ip: 209.85.208.193, mailfrom: dimtass@gmail.com)
-Received: by mail-lj1-f193.google.com with SMTP id z17so15847581ljk.13
-        for <yocto@lists.yoctoproject.org>; Mon, 09 Dec 2019 06:37:31 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=H3mQpqb9;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: vashok890@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 6C0A9E00ECC; Mon,  9 Dec 2019 07:07:25 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (vashok890[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.215.175 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52673E0049C
+	for <yocto@yoctoproject.org>; Mon,  9 Dec 2019 07:07:24 -0800 (PST)
+Received: by mail-pg1-f175.google.com with SMTP id k3so6618945pgc.3
+        for <yocto@yoctoproject.org>; Mon, 09 Dec 2019 07:07:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=dRJ+UI0zDNx7UfrzfdEtUDY/j4nUVBKMgd8G5ylZu8k=;
-        b=COJJTa3ZHcY3mXv2C2Xg/RkRsXUhxantXb9VH6ylbht0ShiYJN+VC0Noyap70DXj4P
-         2TV+ZseErWh+tjsRYL2ZBnY6ga0d0/R1Ok+TcsUjZJB2SoauS1NV0oOycnG7Bp5TJOvo
-         RKI06AY+xN4M46+qTCxgWJFs5E0jEBWM0oKJEhHqTmle1eyL9qTsNJj1bK/cpfBHOzFt
-         e3P+7G9DVKRPJ58/df4gmpdZZpNnaZzcfflXloGoHmPkakWKTKFT4Cvs+7dTVqOOQ5mq
-         sYXjzQ4hbI+wdWabPY9eomlYJNEapRaCA25xDZX/VyV8CXwCn39DmflYCBYmhq6mk0tB
-         2LPQ==
+        h=from:content-transfer-encoding:mime-version:subject:message-id:date
+         :to;
+        bh=f4rIc+BjW5QNTn71N9L2zEHrOeumtqH2ezsUxcBb5fA=;
+        b=H3mQpqb9YqJ995FvbuH93KeP5afO9XnmPS9He2x24VGw1Xz4v/O/8MEbdUlXHIHHXx
+         mv+y287Li24VaGc3bvZUKi2s5XDcbT1VOwpFIOM8jNoVclJw7nvy6jbXZXsvMdubuWFy
+         +2XQJvMNm8QtbGAaQQR6tj5+efsS9JiKqKnLkerA2VfQXWjEXw+u38wqL0g98/9/MqaV
+         AxbkrjQYHBNb9j/Xnt+o1UUzukDvIvrgiK0vLMZscTYRHDS2Mk1F76+wKPPEQSW3q10o
+         P5XJL2/VmEziDkafVI3Gam5EZQKfNJUhBu2aWpavsRoabJnI4en4wGnzMHqfLizSEpaO
+         bISQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=dRJ+UI0zDNx7UfrzfdEtUDY/j4nUVBKMgd8G5ylZu8k=;
-        b=mjlOgI3mxcEY3RXMQ2UoDMmQ5DT4WbGdapD/SjuBcviZMWHvSrF3bCADBfYkg1DGQm
-         u7EBepGAamSpyRBkqjhnIm5lhxCrWTAexKCHJSQBdm8P5kMP/5HM+vGNx6YLb605ObCb
-         +LTagk8aWcV/Kd0a6HMzMIkTgL/AWQUbiAZCd+ct7M7yS3E118nQ/kQ7Pj/hV3u/HU4d
-         HE5TMHtKlTIfh5xWf14CHj8wqImCJmf2y41x6e5ZbuB8O2uz5+NJ2+sCSo79it4pzl5J
-         ofggm5bhB9bZ9HW0C48nNkRJ6oZE/vfhtw99Do17CaF+AlHAODYy5H20mlZxu6X/qmuU
-         yNGg==
-X-Gm-Message-State: APjAAAXTayGrWw5dDzhpcrK1XNVdRUJvkfRHaaoKfo3DJlqVdkHk6Q8N
-	g4LpWFMUXyRswwBmC2ZDLUdJoZHjU+gTxt6x/KrvIpzVyCk=
-X-Google-Smtp-Source: APXvYqwMHSrpLzHBwU3Sm4HryhMuFu3cRWFKAxBC92OztfCp31oDd7Nxfv3X9zoLPxumorlPEG7+Uq6oFxfjLMTyNOA=
-X-Received: by 2002:a05:651c:204f:: with SMTP id t15mr17861685ljo.240.1575902249151;
- Mon, 09 Dec 2019 06:37:29 -0800 (PST)
-MIME-Version: 1.0
-From: dimtass@gmail.com
-Date: Mon, 9 Dec 2019 15:37:18 +0100
-Message-ID: <CACKFPN2CqV_hDFJXZmtEcHC_tcoBTSUv4jpdprq=8E1OLviKEw@mail.gmail.com>
-Subject: Kernel modules build fails with bitbake but not host toolchain
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000c2f09a05994655c5"
-
---000000000000c2f09a05994655c5
-Content-Type: text/plain; charset="UTF-8"
-
-Hi all.
-
-I'm having difficult to debug an issue I have.
-Although I'm able to build my kernel, overlays, dtb and modules without any
-errors using a specific git repo and my toolchain on my host, the bitbake
-fails to build in the `do_compile_kernelmodules` step and the error I get
-is:
-
-```
-|
-/docker/build/tmp/work-shared/nanopi-duo2/kernel-source/drivers/net/wireless/realtek/rtl8189fs/core/rtw_cmd.c:22:10:
-fatal error: drv_types.h: No such file or directory
-|    22 | #include <drv_types.h>
-|       |          ^~~~~~~~~~~~~
-| compilation terminated.
-|
-/docker/build/tmp/work-shared/nanopi-duo2/kernel-source/scripts/Makefile.build:280:
-recipe for target 'drivers/net/wireless/realtek/rtl8189fs/core/rtw_cmd.o'
-failed
-| make[6]: *** [drivers/net/wireless/realtek/rtl8189fs/core/rtw_cmd.o]
-Error 1
-|
-/docker/build/tmp/work-shared/nanopi-duo2/kernel-source/scripts/Makefile.build:497:
-recipe for target 'drivers/net/wireless/realtek/rtl8189fs' failed
-| make[5]: *** [drivers/net/wireless/realtek/rtl8189fs] Error 2
-|
-/docker/build/tmp/work-shared/nanopi-duo2/kernel-source/scripts/Makefile.build:497:
-recipe for target 'drivers/net/wireless/realtek' failed
-| make[4]: *** [drivers/net/wireless/realtek] Error 2
-| make[4]: *** Waiting for unfinished jobs....
-```
-
-Of course the drv_types.h file is there and I've said the kernel builds
-fine using any toolchain from version 7.2 up to 8, I've tried locally on my
-workstation.
-
-The kernel recipe is located here:
-https://bitbucket.org/dimtass/meta-allwinner-hx/src/a168d58cb142e246b3185b920552ac5e7f7afc0c/recipes-kernel/linux/linux-megous_5.3.bb?at=feature%2Fupgrade-to-kernel-5.3.y
-
-I've also tried to override the default do_compile_kernelmodules and
-simplify it down to this, but it still fails with the same error:
-```
-oe_runmake modules
-```
-
-Any good ideas?
-
-Thanks!
-
---000000000000c2f09a05994655c5
-Content-Type: text/html; charset="UTF-8"
+        h=x-gm-message-state:from:content-transfer-encoding:mime-version
+         :subject:message-id:date:to;
+        bh=f4rIc+BjW5QNTn71N9L2zEHrOeumtqH2ezsUxcBb5fA=;
+        b=WT0WW7hxGt7uCrL891uFSNC4kN9HzDOAF+maozlBaDpcivdlKPgn98oec29zYZUPmR
+         52MA2VyCxO5tGLKWjYtK1y78/L0H7xrGsYoWAZuQss5a5j7JKMjRrJG+8zXhGzZkxQP6
+         tivKkljYfSLIg4NBSav1f032tkIug2e8hLgP43Mf/T6PvkHAC/9+5G/UHeS7Q2f2Dj+f
+         7tLGXzB8c6B7Ez79Zk9LtSxBSiLHeP28MXNhQRg50vL3Gqzni7AhUdt7QDF8Hq+n+ks8
+         A8RemrDqOpfa4XyWb/PzgozU+gYDUubBrA3shrPhjyXSq5IaMTOOAXSHOBz0gjyRrllW
+         18tg==
+X-Gm-Message-State: APjAAAWhiAameDe58fPgZDV7pawl1zr2Z4R80TtrKLHHaDe0yquN62T3
+	/8uB7lvBFok5vyXwbohxIpLTnrRkMOY=
+X-Google-Smtp-Source: APXvYqzrS0+LWyRytDfbcjqovShKFJgCdKGLZZL3S4UEA6GCCi7Q0BRsJfc2ZE+5YWopg4nFqsexDg==
+X-Received: by 2002:aa7:9351:: with SMTP id 17mr29204403pfn.16.1575904043554;
+        Mon, 09 Dec 2019 07:07:23 -0800 (PST)
+Received: from ?IPv6:2001:420:c0c8:1002::4d7? ([2001:420:c0c8:1002::4d7])
+        by smtp.gmail.com with ESMTPSA id 133sm27245487pfy.14.2019.12.09.07.07.21
+        for <yocto@yoctoproject.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 09 Dec 2019 07:07:22 -0800 (PST)
+From: "Varun A" <vashok890@gmail.com>
+Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
+Subject: [OE-core] [PATCH 0/2] fix can't login when debug-tweaks is not in IMAGE_FEATURES
+Message-Id: <31B379FD-E470-4CBA-B18A-C42294A6DB07@gmail.com>
+Date: Mon, 9 Dec 2019 20:37:15 +0530
+To: yocto@yoctoproject.org
+X-Mailer: Apple Mail (2.3445.9.1)
+Content-Type: text/plain;
+	charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi all.<div><br></div><div>I&#39;m having difficult=C2=A0t=
-o debug an issue I have.</div><div>Although=C2=A0I&#39;m able to build my k=
-ernel, overlays, dtb and modules without=C2=A0any errors using a specific g=
-it repo and my toolchain on my host, the bitbake fails to build in the `do_=
-compile_kernelmodules` step and the error I get is:</div><div><br></div><di=
-v>```</div><div>| /docker/build/tmp/work-shared/nanopi-duo2/kernel-source/d=
-rivers/net/wireless/realtek/rtl8189fs/core/rtw_cmd.c:22:10: fatal error: dr=
-v_types.h: No such file or directory<br>| =C2=A0 =C2=A022 | #include &lt;dr=
-v_types.h&gt;<br>| =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0^~~~~~~~~~~~~<br>| compilation terminated.<br>| /docker/build/tmp/work-s=
-hared/nanopi-duo2/kernel-source/scripts/Makefile.build:280: recipe for targ=
-et &#39;drivers/net/wireless/realtek/rtl8189fs/core/rtw_cmd.o&#39; failed<b=
-r>| make[6]: *** [drivers/net/wireless/realtek/rtl8189fs/core/rtw_cmd.o] Er=
-ror 1<br>| /docker/build/tmp/work-shared/nanopi-duo2/kernel-source/scripts/=
-Makefile.build:497: recipe for target &#39;drivers/net/wireless/realtek/rtl=
-8189fs&#39; failed<br>| make[5]: *** [drivers/net/wireless/realtek/rtl8189f=
-s] Error 2<br>| /docker/build/tmp/work-shared/nanopi-duo2/kernel-source/scr=
-ipts/Makefile.build:497: recipe for target &#39;drivers/net/wireless/realte=
-k&#39; failed<br>| make[4]: *** [drivers/net/wireless/realtek] Error 2<br>|=
- make[4]: *** Waiting for unfinished jobs....<br></div><div>```</div><div><=
-br></div><div>Of course the drv_types.h file is there and I&#39;ve said the=
- kernel builds fine using any toolchain from version 7.2 up to 8, I&#39;ve =
-tried locally on my workstation.</div><div><br></div><div>The kernel recipe=
- is located here:</div><div><a href=3D"https://bitbucket.org/dimtass/meta-a=
-llwinner-hx/src/a168d58cb142e246b3185b920552ac5e7f7afc0c/recipes-kernel/lin=
-ux/linux-megous_5.3.bb?at=3Dfeature%2Fupgrade-to-kernel-5.3.y">https://bitb=
-ucket.org/dimtass/meta-allwinner-hx/src/a168d58cb142e246b3185b920552ac5e7f7=
-afc0c/recipes-kernel/linux/linux-megous_5.3.bb?at=3Dfeature%2Fupgrade-to-ke=
-rnel-5.3.y</a><br></div><div><br></div><div>I&#39;ve also tried to override=
- the default=C2=A0do_compile_kernelmodules and simplify it down to this, bu=
-t it still fails with the same error:</div><div>```</div><div>oe_runmake mo=
-dules</div><div>```</div><div><br></div><div>Any good ideas?</div><div><br>=
-</div><div>Thanks!</div></div>
+Was going through this thread. I see root password defined as root =
+explicitly in the base-passwd master file I am using which is of =
+security concern. Has any development come about this?Is there a patch =
+to get around this issue?
 
---000000000000c2f09a05994655c5--
+
