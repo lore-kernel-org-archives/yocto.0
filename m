@@ -1,93 +1,163 @@
-Subject: Fixing vulnerabilities in glibc #yocto
-To: yocto@lists.yoctoproject.org
-From: milunj@yahoo.com
-X-Originating-Location: Hickory, North Carolina, US (198.90.66.177)
-X-Originating-Platform: Windows Firefox 57
-User-Agent: GROUPS.IO Web Poster
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.11353.1575901840129719213
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 09 Dec 2019 06:30:40 -0800
+Authentication-Results: mx.groups.io;
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=HoXrUA+4;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: joe.macdonald@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id A4987E010A9; Mon,  9 Dec 2019 06:30:39 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,URI_HEX autolearn=no version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.214.195 listed in list.dnswl.org]
+	*  0.1 URI_HEX URI: URI hostname has long hexadecimal sequence
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1195AE00D33
+	for <yocto@yoctoproject.org>; Mon,  9 Dec 2019 06:30:38 -0800 (PST)
+Received: by mail-pl1-f195.google.com with SMTP id x17so625220pln.1
+        for <yocto@yoctoproject.org>; Mon, 09 Dec 2019 06:30:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=p4pQMGuWREXVl+nRQlPlrJjWI+asS2wsZbq9dS0RtLI=;
+        b=HoXrUA+4GqxDk//mShHfZpZLzL7h/31vpQx4D60R+L7F1x332EEoIBtIIYwgV58UGg
+         U1LoyyPer9BqwJul3vVGtetDXRx8e2GG776zBnVFdIf9cQhkbKkBwXcsWIrOcPhfb72h
+         a/mfa7qYcy360KuWUvLIYaB7MhZl8bNVJ3BBiZjlx4C7bVW6JDJzyp3JkPdb3HOwuYJm
+         R66S+ruHhncxUwM/iCQR7M1p45QKzLZnCLxjEf7jwmTQsCuwXmatVCNIHwOs1UlkQ1pD
+         X9n1TmoejoKGxxVtldGQKyvYw8H2xvlCWBYzWbaChUtyHa+IcpI7RcGXD/3mffgvRH3C
+         qlsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=p4pQMGuWREXVl+nRQlPlrJjWI+asS2wsZbq9dS0RtLI=;
+        b=MhpwsTmJ+G+H6Jm/jxH8n5f6XdI65Hg1aj6B1dkngFYo28hEsdCv3MRuDma+6opUQ1
+         qXgaeh18N0KkLxzhj9kAzcBknoo4M1lPPYXsfs/obkYH8elVOJ4XCYBSoWAOtdSR4vaa
+         ZO9H5CQ1SyfPWwc7lxEqQMqE3w1UwcObtPUcDZ6ecosCCiUDzGKGn1TAVdDECUL98vMO
+         vdr2lP7Xyyb0bHHATGbumjLepk+26N2zFHsfQPTqyehxDvxM7PKx+iKxEl/Mjtw1s0A/
+         Zg8scvMjTpz+4gTR7XKiFfGLYsUZl2lxnYa35tK41opXImJca3WhLzEynrrOTr42ZIfF
+         Tn1Q==
+X-Gm-Message-State: APjAAAWUSwMJndIULoZyDSblaYGHnyz6NWR+eIw5C24/kurvEioVxlaC
+	3tAnMa8LywAWVwb7TJnfODLCbMCrArk=
+X-Google-Smtp-Source: APXvYqzCuTCnJBeDaiHuXj0Aslt6EfNFyRngWXDtP/uCmbpyPSdGHPG9kCi2jpEs2c4IVgP31kS64Q==
+X-Received: by 2002:a17:90b:46cf:: with SMTP id jx15mr33532904pjb.2.1575901837762;
+        Mon, 09 Dec 2019 06:30:37 -0800 (PST)
+Received: from nightwinge.world.mentorg.com (nat-wv.mentorg.com. [192.94.38.34])
+        by smtp.gmail.com with ESMTPSA id a2sm29318386pfg.90.2019.12.09.06.30.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 09 Dec 2019 06:30:37 -0800 (PST)
+Sender: Joe MacDonald <joe.macdonald@gmail.com>
+From: "Joe MacDonald" <joe_macdonald@mentor.com>
+To: yocto@yoctoproject.org
+Cc: mark.hatle@kernel.crashing.org,
+	flihp@twobit.us
+Subject: [meta-selinux][PATCH] support policy module configuration at recipe level
+Date: Mon,  9 Dec 2019 09:30:28 -0500
+Message-Id: <20191209143028.39685-1-joe_macdonald@mentor.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Date: Mon, 09 Dec 2019 05:48:02 -0800
-Message-ID: <R19L.1575899282432368398.77t7@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="a1bCypXTUbcd3kh5jadQ"
-
---a1bCypXTUbcd3kh5jadQ
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-My greeting to all
-I am new on yocto project and yocto build environment is also new to me ..=
-.
-My working task is removing=C2=A0 vulnerabilities from libc library...
-The processor is based on arm5 while newer yoctos 2.7.x and 3.x. do not pr=
-ovide environment support for arm5 based processors.
+On highly storage-limited machines it may be beneficial to completely
+remove some or all non-essential policy modules.  refpolicy already
+supports this with the 'no' option in modules.conf, so we'll just expose
+this feature (with an appropriate warning) at the recipe-level.
 
-The glibc vulnerabilities are fixed in the latest glibc 2.30 released. ( h=
-ttps://sourceware.org/ml/libc-alpha/2019-08/msg00029.html ) package while y=
-octo 2.6.x=C2=A0 includes 2.28 package.
-Also some of glibc vulnerabilities are patched in 2.6.4 (\oecore-thud-20.0=
-.4.tar\oecore-thud-20.0.4\meta\recipes-core\glibc\glibc):
+Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
+---
+ .../refpolicy/refpolicy-minimum_2.20190201.bb         | 10 ++++++++++
+ recipes-security/refpolicy/refpolicy-minimum_git.bb   | 11 +++++++++++
+ recipes-security/refpolicy/refpolicy_common.inc       | 10 ++++++++++
+ 3 files changed, 31 insertions(+)
 
-CVE-2016-10739
-CVE-2018-19591
-CVE-2019-6488
-CVE-2019-7309
-CVE-2019-9169
-while there are some others those have not been patched:
-https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2005-3590
-https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2006-7254
-https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2018-20796
-https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2019-9192
+diff --git a/recipes-security/refpolicy/refpolicy-minimum_2.20190201.bb b=
+/recipes-security/refpolicy/refpolicy-minimum_2.20190201.bb
+index 40abe35..01c9fc0 100644
+--- a/recipes-security/refpolicy/refpolicy-minimum_2.20190201.bb
++++ b/recipes-security/refpolicy/refpolicy-minimum_2.20190201.bb
+@@ -44,6 +44,16 @@ EXTRA_POLICY_MODULES +=3D "mta"
+ # hostname_t, ping_t, netutils_t) from modules:
+ EXTRA_POLICY_MODULES +=3D "modutils consoletype hostname netutils"
+=20
++# Add specific policy modules here that should be purged from the system
++# policy.  Purged modules will not be built and will not be installed on=
+ the
++# target.  To use them at some later time you must specifically build an=
+d load
++# the modules by hand on the target.
++#
++# USE WITH CARE!  With this feature it is easy to break your policy by p=
+urging
++# core modules (eg.  userdomain)
++#=20
++# PURGE_POLICY_MODULES +=3D "xdg xen"
++
+ POLICY_MODULES_MIN =3D "${CORE_POLICY_MODULES} ${EXTRA_POLICY_MODULES}"
+=20
+ # re-write the same func from refpolicy_common.inc
+diff --git a/recipes-security/refpolicy/refpolicy-minimum_git.bb b/recipe=
+s-security/refpolicy/refpolicy-minimum_git.bb
+index 40abe35..3b3ca15 100644
+--- a/recipes-security/refpolicy/refpolicy-minimum_git.bb
++++ b/recipes-security/refpolicy/refpolicy-minimum_git.bb
+@@ -44,6 +44,17 @@ EXTRA_POLICY_MODULES +=3D "mta"
+ # hostname_t, ping_t, netutils_t) from modules:
+ EXTRA_POLICY_MODULES +=3D "modutils consoletype hostname netutils"
+=20
++# Add specific policy modules here that should be purged from the system
++# policy.  Purged modules will not be built and will not be installed on=
+ the
++# target.  To use them at some later time you must specifically build an=
+d load
++# the modules by hand on the target.
++#
++# USE WITH CARE!  With this feature it is easy to break your policy by p=
+urging
++# core modules (eg.  userdomain)
++#=20
++# PURGE_POLICY_MODULES +=3D "xdg xen"
++
++
+ POLICY_MODULES_MIN =3D "${CORE_POLICY_MODULES} ${EXTRA_POLICY_MODULES}"
+=20
+ # re-write the same func from refpolicy_common.inc
+diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-se=
+curity/refpolicy/refpolicy_common.inc
+index 137ccee..2d9ace5 100644
+--- a/recipes-security/refpolicy/refpolicy_common.inc
++++ b/recipes-security/refpolicy/refpolicy_common.inc
+@@ -122,8 +122,18 @@ python __anonymous () {
+         d.setVar('DEFAULT_ENFORCING', 'permissive')
+ }
+=20
++disable_policy_modules () {
++	for module in ${PURGE_POLICY_MODULES} ; do
++		sed -i "s/^\(\<${module}\>\) *=3D *.*$/\1 =3D off/" ${S}/policy/module=
+s.conf
++	done
++}
++
+ do_compile() {
++	if [ -f "${WORKDIR}/modules.conf" ] ; then
++		cp -f ${WORKDIR}/modules.conf ${S}/policy/modules.conf
++	fi
+ 	oe_runmake conf
++	disable_policy_modules
+ 	oe_runmake policy
+ }
+=20
+--=20
+2.20.1
 
-Does anyone know whether new vulnerability patches will be applied for yoc=
-to 2.6.5 and=C2=A0 when will be released yocto 2.6.5 ?
-Thank you in advance
-Milun
-
---a1bCypXTUbcd3kh5jadQ
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-My greeting to all<br />I am new on yocto project and yocto build environme=
-nt is also new to me ...<br />My working task is removing&nbsp; vulnerabili=
-ties from libc library...<br />The processor is based on arm5 while newer y=
-octos 2.7.x and 3.x. do not provide environment support for arm5 based proc=
-essors.<br /><br />The glibc vulnerabilities are fixed in the latest <a hre=
-f=3D"https://sourceware.org/ml/libc-alpha/2019-08/msg00029.html">glibc 2.30=
- released.</a> package while yocto 2.6.x&nbsp; includes 2.28 package.<br />=
-Also some of glibc vulnerabilities are patched in 2.6.4 (\oecore-thud-20.0.=
-4.tar\oecore-thud-20.0.4\meta\recipes-core\glibc\glibc):<br /><br />CVE-201=
-6-10739<br />CVE-2018-19591<br />CVE-2019-6488<br />CVE-2019-7309<br />CVE-=
-2019-9169<br />while there are some others those have not been patched:<br =
-/>
-<div id=3D"polarion-dle-clipboard-container" class=3D"polarion-dle-clipboa=
-rd-container" contenteditable=3D"true"><span id=3D"polarion_source=3DVulnDB=
-/VUL-9899" data-prototype=3D"WorkItem"></span><a href=3D"https://web.nvd.ni=
-st.gov/view/vuln/detail?vulnId=3DCVE-2005-3590" target=3D"_blank" rel=3D"no=
-opener">https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2005-3590</a=
-><br />
-<div id=3D"polarion-dle-clipboard-container" class=3D"polarion-dle-clipboa=
-rd-container" contenteditable=3D"true"><span id=3D"polarion_source=3DVulnDB=
-/VUL-9901" data-prototype=3D"WorkItem"></span><a href=3D"https://web.nvd.ni=
-st.gov/view/vuln/detail?vulnId=3DCVE-2006-7254" target=3D"_blank" rel=3D"no=
-opener">https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2006-7254</a=
-><br />
-<div id=3D"polarion-dle-clipboard-container" class=3D"polarion-dle-clipboa=
-rd-container" contenteditable=3D"true"><span id=3D"polarion_source=3DVulnDB=
-/VUL-9066" data-prototype=3D"WorkItem"></span><a href=3D"https://web.nvd.ni=
-st.gov/view/vuln/detail?vulnId=3DCVE-2018-20796" target=3D"_blank" rel=3D"n=
-oopener">https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2018-20796<=
-/a><br />
-<div id=3D"polarion-dle-clipboard-container" class=3D"polarion-dle-clipboa=
-rd-container" contenteditable=3D"true"><span id=3D"polarion_source=3DVulnDB=
-/VUL-9068" data-prototype=3D"WorkItem"></span><a href=3D"https://web.nvd.ni=
-st.gov/view/vuln/detail?vulnId=3DCVE-2019-9192" target=3D"_blank" rel=3D"no=
-opener">https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2019-9192</a=
-><br /><br />Does anyone know whether new vulnerability patches will be app=
-lied for yocto 2.6.5 and&nbsp; when will be released yocto 2.6.5 ?<br />Tha=
-nk you in advance<br />Milun</div>
-</div>
-<div id=3D"polarion-dle-clipboard-container" class=3D"polarion-dle-clipboa=
-rd-container" contenteditable=3D"true">&nbsp;</div>
-</div>
-<br /><br /></div>
-
---a1bCypXTUbcd3kh5jadQ--
