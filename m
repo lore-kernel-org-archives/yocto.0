@@ -1,57 +1,76 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.5858.1575858074960002522
- for <yocto@lists.yoctoproject.org>;
- Sun, 08 Dec 2019 18:21:15 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: hongxu.jia@windriver.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83088E010A3; Sun,  8 Dec 2019 18:21:14 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 098B6E00BA1
-	for <yocto@yoctoproject.org>; Sun,  8 Dec 2019 18:21:13 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com [147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id xB92LCt9010965
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
-	Sun, 8 Dec 2019 18:21:12 -0800
-Received: from ala-lpggp7.wrs.com (147.11.105.171) by ALA-HCB.corp.ad.wrs.com
- (147.11.189.41) with Microsoft SMTP Server id 14.3.468.0; Sun, 8 Dec 2019
- 18:21:11 -0800
-From: "hongxu" <hongxu.jia@windriver.com>
-To: <yocto@yoctoproject.org>, <joe_macdonald@mentor.com>
-Subject: [meta-selinux][PATCH] rename sed_4.2.2.bbappend to sed_4.%.bbappend
-Date: Sun, 8 Dec 2019 18:21:11 -0800
-Message-ID: <20191209022111.113292-1-hongxu.jia@windriver.com>
-X-Mailer: git-send-email 2.21.0
+Subject: [ Error ] python3-psycopg2-native recipe build error #python #yocto
+To: yocto@lists.yoctoproject.org
+From: dishant.arora1996@gmail.com
+X-Originating-Location: New Delhi, National Capital Territory of Delhi, IN (49.207.108.22)
+X-Originating-Platform: Linux Chrome 78
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: text/plain
+Date: Sun, 08 Dec 2019 21:47:18 -0800
+Message-ID: <Hhck.1575870438804375389.WJ7X@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="RUZUMAdXUMKuTOdCyk9s"
+
+--RUZUMAdXUMKuTOdCyk9s
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Since upstream oe-core [bd40260cba sed: upgrade to 4.7],
-renme bbappend to match the new version
+Recipe --> python3-psycopg2-native --> https://layers.openembedded.org/laye=
+rindex/recipe/72275/
+Added this recipe using `IMAGE_INSTALL` variable in `sjpl-image.bb` file
 
-Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
----
- recipes-extended/sed/{sed_4.2.2.bbappend =3D> sed_4.%.bbappend} | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- rename recipes-extended/sed/{sed_4.2.2.bbappend =3D> sed_4.%.bbappend} (=
-100%)
+Got following errors while building the image :
 
-diff --git a/recipes-extended/sed/sed_4.2.2.bbappend b/recipes-extended/s=
-ed/sed_4.%.bbappend
-similarity index 100%
-rename from recipes-extended/sed/sed_4.2.2.bbappend
-rename to recipes-extended/sed/sed_4.%.bbappend
---=20
-2.21.0
+>=20
+>=20
+>=20
+> ERROR: Task do_populate_sdk in
+> /home/ubuntu/build-torizon/meta-sjpl/recipes-sjpl/images/sjpl-image.bb
+> rdepends upon non-existent task do_package_write_ipk in
+> /home/ubuntu/layers/openembedded-core/meta-spdxscanner/recipes-devtools/=
+python/python3-psycopg2-native_2.6.1.bb
+>=20
+>=20
+>=20
+>=20
+> ERROR: Command execution failed: 1
+>=20
+>=20
+>=20
 
+How can this error be resolved ?
+
+--RUZUMAdXUMKuTOdCyk9s
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Recipe --&gt; python3-psycopg2-native --&gt;&nbsp;<a href=3D"https://layers=
+.openembedded.org/layerindex/recipe/72275/">https://layers.openembedded.org=
+/layerindex/recipe/72275/</a><br />
+<div>Added this recipe using `IMAGE_INSTALL` variable in `sjpl-image.bb` f=
+ile&nbsp;</div>
+<br />Got following errors while building the image :&nbsp;&nbsp;<br /><br=
+ />
+<blockquote>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;"><span style=3D"background-color: #ffff00;">ERROR: =
+Task do_populate_sdk in /home/ubuntu/build-torizon/meta-sjpl/recipes-sjpl/i=
+mages/sjpl-image.bb rdepends upon non-existent task do_package_write_ipk in=
+ /home/ubuntu/layers/openembedded-core/meta-spdxscanner/recipes-devtools/py=
+thon/python3-psycopg2-native_2.6.1.bb</span></p>
+<p style=3D"margin-bottom: 0px; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;"><span style=3D"background-color: #ffff00;">ERROR: =
+Command execution failed: 1<br /></span></p>
+</blockquote>
+<p style=3D"margin-bottom: 0px; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;"><span style=3D"background-color: #ffffff;">How can=
+ this error be resolved ? </span></p>
+
+--RUZUMAdXUMKuTOdCyk9s--
