@@ -1,305 +1,321 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.13778.1575910902126661066
+Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
+ by mx.groups.io with SMTP id smtpd.web09.13995.1575912295469464498
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 Dec 2019 09:01:42 -0800
+ Mon, 09 Dec 2019 09:24:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ui9Uyqu7;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A6395E011C0; Mon,  9 Dec 2019 09:01:41 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (sjolley.yp.pm[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.214.169 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C948E01127
-	for <yocto@yoctoproject.org>; Mon,  9 Dec 2019 09:01:38 -0800 (PST)
-Received: by mail-pl1-f169.google.com with SMTP id x17so792299pln.1
-        for <yocto@yoctoproject.org>; Mon, 09 Dec 2019 09:01:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version:content-language
-         :thread-index;
-        bh=pCieNeaDgXYzjDmlhMBIW2P3OHHLVHdm8dg8gWb9+zA=;
-        b=ui9Uyqu7cGXzlDC7lTCEqG8xnLldKAaQCQ+AuaEarDg3d27uKEaWY5iXQJumvh3Z1T
-         2UmfGEqjnyt9t8VRNhLlN/Lx9C1Au98McFTK49suY8JozgBOqRzn8Q0UhIM/Wdw1t81w
-         KlflMNLV9ITMHo3KD521XvXC47UwdRwKntZ2l9OPCY4jV6hu71+9I5QXme4C5lHxEqxB
-         8YEbkSqOKTvGdYGVetGWwups5Y0fdj+liW4Kglf50r0oBVnsW2hex9n+omM0Y4BcZpY+
-         LwId2Y+BPl/ZK2pOcHFoITLxfuvAf2v1TISKMxRBVMFztprJLzKXEDOF83E9hVHF/FOy
-         Qocg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-language:thread-index;
-        bh=pCieNeaDgXYzjDmlhMBIW2P3OHHLVHdm8dg8gWb9+zA=;
-        b=jAWrP6fZIeA0NXIn3TGZVaj7VB6VzQBnbUrJlg6e3qE5ldZR15g0TtZvJb4hadcwef
-         s49uHFgpByVgsrBYFmYLAq+93ayCnXWioo3SSR3Vx+zGepE86wKWUM1p5yT0Fq9NC0UG
-         xx9yoE9VEb0Qmvk78UDN/9z32cKqkuczdn9O3vwTQ9w4iJ3zTqohvxS/PCkb7GUCLaDV
-         R+8f8sjNoM9ObCQfY3tF1QRZ2Jrf7890FLzMP9Ktimbsamfk5EzJrlKbHfkscuGbtATc
-         nrotS4rz6pgWX4nq1QJU3VElP+57uKnlFxOireSDdclF68/F7qScxNvcpTV1VRRXOBAm
-         dHQg==
-X-Gm-Message-State: APjAAAXLDjXJ9EjadNNfQXmBzWreJon4JGzTfPOAmOInrx8LLYvu2gPE
-	R7yUgvQL5WKWOhxy7gAMJxM=
-X-Google-Smtp-Source: APXvYqwqUPR5KyzVT76HAo7zao3xRAbnl36zYGF96mHh6b6MY8FPr3eU/Hk8HPBJA8iDcQAMTDXFYw==
-X-Received: by 2002:a17:902:aa04:: with SMTP id be4mr29814703plb.311.1575910898104;
-        Mon, 09 Dec 2019 09:01:38 -0800 (PST)
-Received: from sjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
-        by smtp.gmail.com with ESMTPSA id j22sm253784pji.16.2019.12.09.09.01.37
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 09 Dec 2019 09:01:37 -0800 (PST)
-From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>,
-	<openembedded-core@lists.openembedded.org>
-Cc: <sjolley.yp.pm@gmail.com>
-Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
-Date: Mon, 9 Dec 2019 09:01:37 -0800
-Message-ID: <023701d5aeb2$51d457e0$f57d07a0$@gmail.com>
+ dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: randy.macleod@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id xB9HOqpm000980
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
+	Mon, 9 Dec 2019 09:24:52 -0800
+Received: from [172.25.44.8] (172.25.44.8) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server id 14.3.468.0; Mon, 9 Dec 2019
+ 09:24:51 -0800
+Subject: Re: [yocto] Fixing vulnerabilities in glibc #yocto
+To: <milunj@yahoo.com>, <yocto@lists.yoctoproject.org>,
+        Armin Kuster
+	<akuster808@gmail.com>
+References: <R19L.1575899282432368398.77t7@lists.yoctoproject.org>
+From: "Randy MacLeod" <randy.macleod@windriver.com>
+Message-ID: <03db9b27-a262-a756-b275-16a0b5a1d195@windriver.com>
+Date: Mon, 9 Dec 2019 12:24:50 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.1
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJFjYNHrBK3hyElqE87p6TmYAOHCg==
+In-Reply-To: <R19L.1575899282432368398.77t7@lists.yoctoproject.org>
+X-Originating-IP: [172.25.44.8]
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0238_01D5AE6F.43B2C590"
-Content-Language: en-us
+	boundary="------------52353943815958525F3BEA89"
+Content-Language: en-CA
 
-------=_NextPart_000_0238_01D5AE6F.43B2C590
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-All,
-
- 
-
-The triage team is starting to try and collect up and classify bugs which a
-newcomer to the project would be able to work on in a way which means people
-can find them. They're being listed on the triage page under the appropriate
-heading:
-
- 
-
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
-
- 
-
-The idea is these bugs should be straight forward for a person to help work
-on who doesn't have deep experience with the project.  If anyone can help,
-please take ownership of the bug and send patches!  If anyone needs
-help/advice there are people on irc who can likely do so, or some of the
-more experienced contributors will likely be happy to help too.
-
- 
-
-Also, the triage team meets weekly and does its best to handle the bugs
-reported into the Bugzilla. The number of people attending that meeting has
-fallen, as have the number of people available to help fix bugs. One of the
-things we hear users report is they don't know how to help. We (the triage
-team) are therefore going to start reporting out the currently 296
-unassigned or newcomer bugs.
-
- 
-
-We're hoping people may be able to spare some time now and again to help out
-with these.  Bugs are split into two types, "true bugs" where things don't
-work as they should and "enhancements" which are features we'd want to add
-to the system.  There are also roughly four different "priority" classes
-right now, "3.1", "3.2, "3.99" and "Future", the more pressing/urgent issues
-being in "3.1" and then "3.2".
-
- 
-
-Please review this link and if a bug is something you would be able to help
-with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
-like and I will assign it to you (please make sure you have a Bugzilla
-account).  The list is at:
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newcomer_Bugs
-
- 
-
-Thanks,
-
- 
-
-Stephen K. Jolley
-
-Yocto Project Project Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
-
- 
-
-
-------=_NextPart_000_0238_01D5AE6F.43B2C590
-Content-Type: text/html;
-	boundary="----=_NextPart_000_05E6_01D5A8EE.2E589DE0";
-	charset="us-ascii"
+--------------52353943815958525F3BEA89
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail5.wrs.com id xB9HOqpm000980
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
-starting to try and collect up and classify bugs which a newcomer to the =
-project would be able to work on in a way which means people can find =
-them. They're being listed on the triage page under the appropriate =
-heading:<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
-s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
-><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>The idea is these bugs should be straight =
-forward for a person to help work on who doesn't have deep experience =
-with the project.&nbsp; If anyone can help, please take ownership of the =
-bug and send patches!&nbsp; If anyone needs help/advice there are people =
-on irc who can likely do so, or some of the more experienced =
-contributors will likely be happy to help too.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
-meets weekly and does its best to handle the bugs reported into the =
-Bugzilla. The number of people attending that meeting has fallen, as =
-have the number of people available to help fix bugs. One of the things =
-we hear users report is they don't know how to help. We (the triage =
-team) are therefore going to start reporting out the currently 296 =
-unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>We're hoping people may be able to spare =
-some time now and again to help out with these.&nbsp; Bugs are split =
-into two types, &quot;true bugs&quot; where things don't work as they =
-should and &quot;enhancements&quot; which are features we'd want to add =
-to the system.&nbsp; There are also roughly four different =
-&quot;priority&quot; classes right now, &#8220;3.1&#8221;, &#8220;3.2, =
-&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
-being in &quot;3.1&quot; and then &#8220;3.2&#8221;.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
-and if a bug is something you would be able to help with either take =
-ownership of the bug, or send me (<a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
-e-mail with the bug number you would like and I will assign it to you =
-(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newco=
-mer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_New=
-comer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Project Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+On 12/9/19 8:48 AM, milunj via Lists.Yoctoproject.Org wrote:
+> My greeting to all
+> I am new on yocto project and yocto build environment is also new to=20
+> me ...
+> My working task is removing=C2=A0 vulnerabilities from libc library...
+> The processor is based on arm5 while newer yoctos 2.7.x and 3.x. do=20
+> not provide environment support for arm5 based processors.
+>
+> The glibc vulnerabilities are fixed in the latest glibc 2.30 released.=20
+> <https://sourceware.org/ml/libc-alpha/2019-08/msg00029.html> package=20
+> while yocto 2.6.x=C2=A0 includes 2.28 package.
+> Also some of glibc vulnerabilities are patched in 2.6.4=20
+> (\oecore-thud-20.0.4.tar\oecore-thud-20.0.4\meta\recipes-core\glibc\gli=
+bc):
+>
+> CVE-2016-10739
+> CVE-2018-19591
+> CVE-2019-6488
+> CVE-2019-7309
+> CVE-2019-9169
+> while there are some others those have not been patched:
+> https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2005-3590
+> https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2006-7254
+> https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2018-20796
+> https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2019-9192
+>
+> Does anyone know whether new vulnerability patches will be applied for=20
+> yocto 2.6.5 and=C2=A0 when will be released yocto 2.6.5 ?
 
-------=_NextPart_000_0238_01D5AE6F.43B2C590--
+
+Welcome Milun,
+
+The 2.6.4 was released in early November 2019 and
+I don't see any plans to ever release 2.6.5 but I've
+CCed Armin to confirm if this is the official YP plan.
+
+As for patches to the 'thud' branch after 2.6.4:
+ =C2=A0 ( see also: http://git.yoctoproject.org/cgit/cgit.cgi/poky/log/?h=
+=3Dthud )
+
+$ cd ../poky.git; git checkout thud; git pull
+
+$ git branch --contains yocto-2.6.4
+* thud
+
+$ git log --oneline yocto-2.6.4...
+8cd3ee6e1a (HEAD -> thud, origin/thud) linux-yocto/4.14: meta-yocto-bsp=20
+update to 143
+5bb142d7dd meta-yocto-bsp: Bump to the latest stable kernel for the BSPs
+a8640d9a60 bitbake: fetch2: Ensure cached url data is matched to a datast=
+ore
+3e42c33da5 documentation: Setup for 2.6.4 release
+532f2df770 bitbake: bitbake-worker child process create group before=20
+registering SIGTERM handler
+
+So it doesn't look like there are any CVE fixes there.
+
+If you prefer not to do such work yourself, there are consultants and=20
+support organizations
+that provide support for much longer than the ~1 year YP timeline. See=20
+the list of companies on:
+https://www.yoctoproject.org/ecosystem/yocto-project-compatible-product-s=
+howcase/
+The supported releases listed on page is out of date and I'll get it=20
+updated.
+
+Good luck,
+
+../Randy
+
+
+> Thank you in advance
+> Milun
+>
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+>
+> View/Reply Online (#47603): https://lists.yoctoproject.org/g/yocto/mess=
+age/47603
+> Mute This Topic: https://lists.yoctoproject.org/mt/67793912/3616765
+> Mute #yocto: https://lists.yoctoproject.org/mk?hashtag=3Dyocto&subid=3D=
+6692177
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [randy.macle=
+od@windriver.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+
+
+--=20
+# Randy MacLeod
+# Wind River Linux
+
+
+--------------52353943815958525F3BEA89
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail5.wrs.com id xB9HOqpm000980
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 12/9/19 8:48 AM, milunj via
+      Lists.Yoctoproject.Org wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:R19L.1575899282432368398.77t7@lists.yoctoproject.org">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DU=
+TF-8">
+      My greeting to all<br>
+      I am new on yocto project and yocto build environment is also new
+      to me ...<br>
+      My working task is removing=C2=A0 vulnerabilities from libc library=
+...<br>
+      The processor is based on arm5 while newer yoctos 2.7.x and 3.x.
+      do not provide environment support for arm5 based processors.<br>
+      <br>
+      The glibc vulnerabilities are fixed in the latest <a
+        href=3D"https://sourceware.org/ml/libc-alpha/2019-08/msg00029.htm=
+l"
+        moz-do-not-send=3D"true">glibc 2.30 released.</a> package while
+      yocto 2.6.x=C2=A0 includes 2.28 package.<br>
+      Also some of glibc vulnerabilities are patched in 2.6.4
+(\oecore-thud-20.0.4.tar\oecore-thud-20.0.4\meta\recipes-core\glibc\glibc=
+):<br>
+      <br>
+      CVE-2016-10739<br>
+      CVE-2018-19591<br>
+      CVE-2019-6488<br>
+      CVE-2019-7309<br>
+      CVE-2019-9169<br>
+      while there are some others those have not been patched:<br>
+      <div id=3D"polarion-dle-clipboard-container"
+        class=3D"polarion-dle-clipboard-container" contenteditable=3D"tru=
+e"><span
+          id=3D"polarion_source=3DVulnDB/VUL-9899" data-prototype=3D"Work=
+Item"></span><a
+href=3D"https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2005-3590"
+          target=3D"_blank" rel=3D"noopener" moz-do-not-send=3D"true">htt=
+ps://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2005-3590</a><br>
+        <div id=3D"polarion-dle-clipboard-container"
+          class=3D"polarion-dle-clipboard-container"
+          contenteditable=3D"true"><span
+            id=3D"polarion_source=3DVulnDB/VUL-9901"
+            data-prototype=3D"WorkItem"></span><a
+            href=3D"https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCV=
+E-2006-7254"
+            target=3D"_blank" rel=3D"noopener" moz-do-not-send=3D"true">h=
+ttps://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2006-7254</a><br>
+          <div id=3D"polarion-dle-clipboard-container"
+            class=3D"polarion-dle-clipboard-container"
+            contenteditable=3D"true"><span
+              id=3D"polarion_source=3DVulnDB/VUL-9066"
+              data-prototype=3D"WorkItem"></span><a
+              href=3D"https://web.nvd.nist.gov/view/vuln/detail?vulnId=3D=
+CVE-2018-20796"
+              target=3D"_blank" rel=3D"noopener" moz-do-not-send=3D"true"=
+>https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2018-20796</a><br=
+>
+            <div id=3D"polarion-dle-clipboard-container"
+              class=3D"polarion-dle-clipboard-container"
+              contenteditable=3D"true"><span
+                id=3D"polarion_source=3DVulnDB/VUL-9068"
+                data-prototype=3D"WorkItem"></span><a
+                href=3D"https://web.nvd.nist.gov/view/vuln/detail?vulnId=3D=
+CVE-2019-9192"
+                target=3D"_blank" rel=3D"noopener" moz-do-not-send=3D"tru=
+e">https://web.nvd.nist.gov/view/vuln/detail?vulnId=3DCVE-2019-9192</a><b=
+r>
+              <br>
+              Does anyone know whether new vulnerability patches will be
+              applied for yocto 2.6.5 and=C2=A0 when will be released yoc=
+to
+              2.6.5 ?<br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>Welcome Milun,</p>
+    <p>The 2.6.4 was released in early November 2019 and <br>
+      I don't see any plans to ever release 2.6.5 but I've<br>
+      CCed Armin to confirm if this is the official YP plan.</p>
+    <p>As for patches to the 'thud' branch after 2.6.4:<br>
+      =C2=A0 ( see also:
+      <a class=3D"moz-txt-link-freetext" href=3D"http://git.yoctoproject.=
+org/cgit/cgit.cgi/poky/log/?h=3Dthud">http://git.yoctoproject.org/cgit/cg=
+it.cgi/poky/log/?h=3Dthud</a> )<br>
+    </p>
+    <p>$ cd ../poky.git; git checkout thud; git pull<br>
+    </p>
+    <p>$ git branch --contains yocto-2.6.4<br>
+      * thud<br>
+    </p>
+    <p>$ git log --oneline yocto-2.6.4...<br>
+      8cd3ee6e1a (HEAD -&gt; thud, origin/thud) linux-yocto/4.14:
+      meta-yocto-bsp update to 143<br>
+      5bb142d7dd meta-yocto-bsp: Bump to the latest stable kernel for
+      the BSPs<br>
+      a8640d9a60 bitbake: fetch2: Ensure cached url data is matched to a
+      datastore<br>
+      3e42c33da5 documentation: Setup for 2.6.4 release<br>
+      532f2df770 bitbake: bitbake-worker child process create group
+      before registering SIGTERM handler<br>
+      <br>
+    </p>
+    <p>So it doesn't look like there are any CVE fixes there.</p>
+    <p>If you prefer not to do such work yourself, there are consultants
+      and support organizations<br>
+      that provide support for much longer than the ~1 year YP timeline.
+      See the list of companies on:<br>
+      =C2=A0=C2=A0
+<a class=3D"moz-txt-link-freetext" href=3D"https://www.yoctoproject.org/e=
+cosystem/yocto-project-compatible-product-showcase/">https://www.yoctopro=
+ject.org/ecosystem/yocto-project-compatible-product-showcase/</a><br>
+      The supported releases listed on page is out of date and I'll get
+      it updated.<br>
+    </p>
+    <p>Good luck,<br>
+    </p>
+    <p>../Randy</p>
+    <p><br>
+    </p>
+    <blockquote type=3D"cite"
+      cite=3D"mid:R19L.1575899282432368398.77t7@lists.yoctoproject.org">
+      <div id=3D"polarion-dle-clipboard-container"
+        class=3D"polarion-dle-clipboard-container" contenteditable=3D"tru=
+e">
+        <div id=3D"polarion-dle-clipboard-container"
+          class=3D"polarion-dle-clipboard-container"
+          contenteditable=3D"true">
+          <div id=3D"polarion-dle-clipboard-container"
+            class=3D"polarion-dle-clipboard-container"
+            contenteditable=3D"true">
+            <div id=3D"polarion-dle-clipboard-container"
+              class=3D"polarion-dle-clipboard-container"
+              contenteditable=3D"true">Thank you in advance<br>
+              Milun</div>
+          </div>
+          <div id=3D"polarion-dle-clipboard-container"
+            class=3D"polarion-dle-clipboard-container"
+            contenteditable=3D"true">=C2=A0</div>
+        </div>
+        <br>
+        <br>
+      </div>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">-=3D-=3D-=3D-=3D-=3D-=3D-=3D=
+-=3D-=3D-=3D-=3D-
+Links: You receive all messages sent to this group.
+
+View/Reply Online (#47603): <a class=3D"moz-txt-link-freetext" href=3D"ht=
+tps://lists.yoctoproject.org/g/yocto/message/47603">https://lists.yoctopr=
+oject.org/g/yocto/message/47603</a>
+Mute This Topic: <a class=3D"moz-txt-link-freetext" href=3D"https://lists=
+.yoctoproject.org/mt/67793912/3616765">https://lists.yoctoproject.org/mt/=
+67793912/3616765</a>
+Mute #yocto: <a class=3D"moz-txt-link-freetext" href=3D"https://lists.yoc=
+toproject.org/mk?hashtag=3Dyocto&amp;subid=3D6692177">https://lists.yocto=
+project.org/mk?hashtag=3Dyocto&amp;subid=3D6692177</a>
+Group Owner: <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:yocto+o=
+wner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
+Unsubscribe: <a class=3D"moz-txt-link-freetext" href=3D"https://lists.yoc=
+toproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub=
+</a>  [<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:randy.macleod=
+@windriver.com">randy.macleod@windriver.com</a>]
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+</pre>
+    </blockquote>
+    <p><br>
+    </p>
+    <pre class=3D"moz-signature" cols=3D"72">--=20
+# Randy MacLeod
+# Wind River Linux
+</pre>
+  </body>
+</html>
+
+--------------52353943815958525F3BEA89--
