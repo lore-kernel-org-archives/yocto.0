@@ -1,163 +1,133 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.11353.1575901840129719213
+Received: from mail-lj1-f193.google.com (mail-lj1-f193.google.com [209.85.208.193])
+ by mx.groups.io with SMTP id smtpd.web11.11626.1575902251722394233
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 Dec 2019 06:30:40 -0800
+ Mon, 09 Dec 2019 06:37:32 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=HoXrUA+4;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: joe.macdonald@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4987E010A9; Mon,  9 Dec 2019 06:30:39 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE,URI_HEX autolearn=no version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.214.195 listed in list.dnswl.org]
-	*  0.1 URI_HEX URI: URI hostname has long hexadecimal sequence
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1195AE00D33
-	for <yocto@yoctoproject.org>; Mon,  9 Dec 2019 06:30:38 -0800 (PST)
-Received: by mail-pl1-f195.google.com with SMTP id x17so625220pln.1
-        for <yocto@yoctoproject.org>; Mon, 09 Dec 2019 06:30:38 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=COJJTa3Z;
+ spf=pass (domain: gmail.com, ip: 209.85.208.193, mailfrom: dimtass@gmail.com)
+Received: by mail-lj1-f193.google.com with SMTP id z17so15847581ljk.13
+        for <yocto@lists.yoctoproject.org>; Mon, 09 Dec 2019 06:37:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=p4pQMGuWREXVl+nRQlPlrJjWI+asS2wsZbq9dS0RtLI=;
-        b=HoXrUA+4GqxDk//mShHfZpZLzL7h/31vpQx4D60R+L7F1x332EEoIBtIIYwgV58UGg
-         U1LoyyPer9BqwJul3vVGtetDXRx8e2GG776zBnVFdIf9cQhkbKkBwXcsWIrOcPhfb72h
-         a/mfa7qYcy360KuWUvLIYaB7MhZl8bNVJ3BBiZjlx4C7bVW6JDJzyp3JkPdb3HOwuYJm
-         R66S+ruHhncxUwM/iCQR7M1p45QKzLZnCLxjEf7jwmTQsCuwXmatVCNIHwOs1UlkQ1pD
-         X9n1TmoejoKGxxVtldGQKyvYw8H2xvlCWBYzWbaChUtyHa+IcpI7RcGXD/3mffgvRH3C
-         qlsA==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=dRJ+UI0zDNx7UfrzfdEtUDY/j4nUVBKMgd8G5ylZu8k=;
+        b=COJJTa3ZHcY3mXv2C2Xg/RkRsXUhxantXb9VH6ylbht0ShiYJN+VC0Noyap70DXj4P
+         2TV+ZseErWh+tjsRYL2ZBnY6ga0d0/R1Ok+TcsUjZJB2SoauS1NV0oOycnG7Bp5TJOvo
+         RKI06AY+xN4M46+qTCxgWJFs5E0jEBWM0oKJEhHqTmle1eyL9qTsNJj1bK/cpfBHOzFt
+         e3P+7G9DVKRPJ58/df4gmpdZZpNnaZzcfflXloGoHmPkakWKTKFT4Cvs+7dTVqOOQ5mq
+         sYXjzQ4hbI+wdWabPY9eomlYJNEapRaCA25xDZX/VyV8CXwCn39DmflYCBYmhq6mk0tB
+         2LPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=p4pQMGuWREXVl+nRQlPlrJjWI+asS2wsZbq9dS0RtLI=;
-        b=MhpwsTmJ+G+H6Jm/jxH8n5f6XdI65Hg1aj6B1dkngFYo28hEsdCv3MRuDma+6opUQ1
-         qXgaeh18N0KkLxzhj9kAzcBknoo4M1lPPYXsfs/obkYH8elVOJ4XCYBSoWAOtdSR4vaa
-         ZO9H5CQ1SyfPWwc7lxEqQMqE3w1UwcObtPUcDZ6ecosCCiUDzGKGn1TAVdDECUL98vMO
-         vdr2lP7Xyyb0bHHATGbumjLepk+26N2zFHsfQPTqyehxDvxM7PKx+iKxEl/Mjtw1s0A/
-         Zg8scvMjTpz+4gTR7XKiFfGLYsUZl2lxnYa35tK41opXImJca3WhLzEynrrOTr42ZIfF
-         Tn1Q==
-X-Gm-Message-State: APjAAAWUSwMJndIULoZyDSblaYGHnyz6NWR+eIw5C24/kurvEioVxlaC
-	3tAnMa8LywAWVwb7TJnfODLCbMCrArk=
-X-Google-Smtp-Source: APXvYqzCuTCnJBeDaiHuXj0Aslt6EfNFyRngWXDtP/uCmbpyPSdGHPG9kCi2jpEs2c4IVgP31kS64Q==
-X-Received: by 2002:a17:90b:46cf:: with SMTP id jx15mr33532904pjb.2.1575901837762;
-        Mon, 09 Dec 2019 06:30:37 -0800 (PST)
-Received: from nightwinge.world.mentorg.com (nat-wv.mentorg.com. [192.94.38.34])
-        by smtp.gmail.com with ESMTPSA id a2sm29318386pfg.90.2019.12.09.06.30.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 09 Dec 2019 06:30:37 -0800 (PST)
-Sender: Joe MacDonald <joe.macdonald@gmail.com>
-From: "Joe MacDonald" <joe_macdonald@mentor.com>
-To: yocto@yoctoproject.org
-Cc: mark.hatle@kernel.crashing.org,
-	flihp@twobit.us
-Subject: [meta-selinux][PATCH] support policy module configuration at recipe level
-Date: Mon,  9 Dec 2019 09:30:28 -0500
-Message-Id: <20191209143028.39685-1-joe_macdonald@mentor.com>
-X-Mailer: git-send-email 2.20.1
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=dRJ+UI0zDNx7UfrzfdEtUDY/j4nUVBKMgd8G5ylZu8k=;
+        b=mjlOgI3mxcEY3RXMQ2UoDMmQ5DT4WbGdapD/SjuBcviZMWHvSrF3bCADBfYkg1DGQm
+         u7EBepGAamSpyRBkqjhnIm5lhxCrWTAexKCHJSQBdm8P5kMP/5HM+vGNx6YLb605ObCb
+         +LTagk8aWcV/Kd0a6HMzMIkTgL/AWQUbiAZCd+ct7M7yS3E118nQ/kQ7Pj/hV3u/HU4d
+         HE5TMHtKlTIfh5xWf14CHj8wqImCJmf2y41x6e5ZbuB8O2uz5+NJ2+sCSo79it4pzl5J
+         ofggm5bhB9bZ9HW0C48nNkRJ6oZE/vfhtw99Do17CaF+AlHAODYy5H20mlZxu6X/qmuU
+         yNGg==
+X-Gm-Message-State: APjAAAXTayGrWw5dDzhpcrK1XNVdRUJvkfRHaaoKfo3DJlqVdkHk6Q8N
+	g4LpWFMUXyRswwBmC2ZDLUdJoZHjU+gTxt6x/KrvIpzVyCk=
+X-Google-Smtp-Source: APXvYqwMHSrpLzHBwU3Sm4HryhMuFu3cRWFKAxBC92OztfCp31oDd7Nxfv3X9zoLPxumorlPEG7+Uq6oFxfjLMTyNOA=
+X-Received: by 2002:a05:651c:204f:: with SMTP id t15mr17861685ljo.240.1575902249151;
+ Mon, 09 Dec 2019 06:37:29 -0800 (PST)
 MIME-Version: 1.0
+From: dimtass@gmail.com
+Date: Mon, 9 Dec 2019 15:37:18 +0100
+Message-ID: <CACKFPN2CqV_hDFJXZmtEcHC_tcoBTSUv4jpdprq=8E1OLviKEw@mail.gmail.com>
+Subject: Kernel modules build fails with bitbake but not host toolchain
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000c2f09a05994655c5"
+
+--000000000000c2f09a05994655c5
+Content-Type: text/plain; charset="UTF-8"
+
+Hi all.
+
+I'm having difficult to debug an issue I have.
+Although I'm able to build my kernel, overlays, dtb and modules without any
+errors using a specific git repo and my toolchain on my host, the bitbake
+fails to build in the `do_compile_kernelmodules` step and the error I get
+is:
+
+```
+|
+/docker/build/tmp/work-shared/nanopi-duo2/kernel-source/drivers/net/wireless/realtek/rtl8189fs/core/rtw_cmd.c:22:10:
+fatal error: drv_types.h: No such file or directory
+|    22 | #include <drv_types.h>
+|       |          ^~~~~~~~~~~~~
+| compilation terminated.
+|
+/docker/build/tmp/work-shared/nanopi-duo2/kernel-source/scripts/Makefile.build:280:
+recipe for target 'drivers/net/wireless/realtek/rtl8189fs/core/rtw_cmd.o'
+failed
+| make[6]: *** [drivers/net/wireless/realtek/rtl8189fs/core/rtw_cmd.o]
+Error 1
+|
+/docker/build/tmp/work-shared/nanopi-duo2/kernel-source/scripts/Makefile.build:497:
+recipe for target 'drivers/net/wireless/realtek/rtl8189fs' failed
+| make[5]: *** [drivers/net/wireless/realtek/rtl8189fs] Error 2
+|
+/docker/build/tmp/work-shared/nanopi-duo2/kernel-source/scripts/Makefile.build:497:
+recipe for target 'drivers/net/wireless/realtek' failed
+| make[4]: *** [drivers/net/wireless/realtek] Error 2
+| make[4]: *** Waiting for unfinished jobs....
+```
+
+Of course the drv_types.h file is there and I've said the kernel builds
+fine using any toolchain from version 7.2 up to 8, I've tried locally on my
+workstation.
+
+The kernel recipe is located here:
+https://bitbucket.org/dimtass/meta-allwinner-hx/src/a168d58cb142e246b3185b920552ac5e7f7afc0c/recipes-kernel/linux/linux-megous_5.3.bb?at=feature%2Fupgrade-to-kernel-5.3.y
+
+I've also tried to override the default do_compile_kernelmodules and
+simplify it down to this, but it still fails with the same error:
+```
+oe_runmake modules
+```
+
+Any good ideas?
+
+Thanks!
+
+--000000000000c2f09a05994655c5
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On highly storage-limited machines it may be beneficial to completely
-remove some or all non-essential policy modules.  refpolicy already
-supports this with the 'no' option in modules.conf, so we'll just expose
-this feature (with an appropriate warning) at the recipe-level.
+<div dir=3D"ltr">Hi all.<div><br></div><div>I&#39;m having difficult=C2=A0t=
+o debug an issue I have.</div><div>Although=C2=A0I&#39;m able to build my k=
+ernel, overlays, dtb and modules without=C2=A0any errors using a specific g=
+it repo and my toolchain on my host, the bitbake fails to build in the `do_=
+compile_kernelmodules` step and the error I get is:</div><div><br></div><di=
+v>```</div><div>| /docker/build/tmp/work-shared/nanopi-duo2/kernel-source/d=
+rivers/net/wireless/realtek/rtl8189fs/core/rtw_cmd.c:22:10: fatal error: dr=
+v_types.h: No such file or directory<br>| =C2=A0 =C2=A022 | #include &lt;dr=
+v_types.h&gt;<br>| =C2=A0 =C2=A0 =C2=A0 | =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0^~~~~~~~~~~~~<br>| compilation terminated.<br>| /docker/build/tmp/work-s=
+hared/nanopi-duo2/kernel-source/scripts/Makefile.build:280: recipe for targ=
+et &#39;drivers/net/wireless/realtek/rtl8189fs/core/rtw_cmd.o&#39; failed<b=
+r>| make[6]: *** [drivers/net/wireless/realtek/rtl8189fs/core/rtw_cmd.o] Er=
+ror 1<br>| /docker/build/tmp/work-shared/nanopi-duo2/kernel-source/scripts/=
+Makefile.build:497: recipe for target &#39;drivers/net/wireless/realtek/rtl=
+8189fs&#39; failed<br>| make[5]: *** [drivers/net/wireless/realtek/rtl8189f=
+s] Error 2<br>| /docker/build/tmp/work-shared/nanopi-duo2/kernel-source/scr=
+ipts/Makefile.build:497: recipe for target &#39;drivers/net/wireless/realte=
+k&#39; failed<br>| make[4]: *** [drivers/net/wireless/realtek] Error 2<br>|=
+ make[4]: *** Waiting for unfinished jobs....<br></div><div>```</div><div><=
+br></div><div>Of course the drv_types.h file is there and I&#39;ve said the=
+ kernel builds fine using any toolchain from version 7.2 up to 8, I&#39;ve =
+tried locally on my workstation.</div><div><br></div><div>The kernel recipe=
+ is located here:</div><div><a href=3D"https://bitbucket.org/dimtass/meta-a=
+llwinner-hx/src/a168d58cb142e246b3185b920552ac5e7f7afc0c/recipes-kernel/lin=
+ux/linux-megous_5.3.bb?at=3Dfeature%2Fupgrade-to-kernel-5.3.y">https://bitb=
+ucket.org/dimtass/meta-allwinner-hx/src/a168d58cb142e246b3185b920552ac5e7f7=
+afc0c/recipes-kernel/linux/linux-megous_5.3.bb?at=3Dfeature%2Fupgrade-to-ke=
+rnel-5.3.y</a><br></div><div><br></div><div>I&#39;ve also tried to override=
+ the default=C2=A0do_compile_kernelmodules and simplify it down to this, bu=
+t it still fails with the same error:</div><div>```</div><div>oe_runmake mo=
+dules</div><div>```</div><div><br></div><div>Any good ideas?</div><div><br>=
+</div><div>Thanks!</div></div>
 
-Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
----
- .../refpolicy/refpolicy-minimum_2.20190201.bb         | 10 ++++++++++
- recipes-security/refpolicy/refpolicy-minimum_git.bb   | 11 +++++++++++
- recipes-security/refpolicy/refpolicy_common.inc       | 10 ++++++++++
- 3 files changed, 31 insertions(+)
-
-diff --git a/recipes-security/refpolicy/refpolicy-minimum_2.20190201.bb b=
-/recipes-security/refpolicy/refpolicy-minimum_2.20190201.bb
-index 40abe35..01c9fc0 100644
---- a/recipes-security/refpolicy/refpolicy-minimum_2.20190201.bb
-+++ b/recipes-security/refpolicy/refpolicy-minimum_2.20190201.bb
-@@ -44,6 +44,16 @@ EXTRA_POLICY_MODULES +=3D "mta"
- # hostname_t, ping_t, netutils_t) from modules:
- EXTRA_POLICY_MODULES +=3D "modutils consoletype hostname netutils"
-=20
-+# Add specific policy modules here that should be purged from the system
-+# policy.  Purged modules will not be built and will not be installed on=
- the
-+# target.  To use them at some later time you must specifically build an=
-d load
-+# the modules by hand on the target.
-+#
-+# USE WITH CARE!  With this feature it is easy to break your policy by p=
-urging
-+# core modules (eg.  userdomain)
-+#=20
-+# PURGE_POLICY_MODULES +=3D "xdg xen"
-+
- POLICY_MODULES_MIN =3D "${CORE_POLICY_MODULES} ${EXTRA_POLICY_MODULES}"
-=20
- # re-write the same func from refpolicy_common.inc
-diff --git a/recipes-security/refpolicy/refpolicy-minimum_git.bb b/recipe=
-s-security/refpolicy/refpolicy-minimum_git.bb
-index 40abe35..3b3ca15 100644
---- a/recipes-security/refpolicy/refpolicy-minimum_git.bb
-+++ b/recipes-security/refpolicy/refpolicy-minimum_git.bb
-@@ -44,6 +44,17 @@ EXTRA_POLICY_MODULES +=3D "mta"
- # hostname_t, ping_t, netutils_t) from modules:
- EXTRA_POLICY_MODULES +=3D "modutils consoletype hostname netutils"
-=20
-+# Add specific policy modules here that should be purged from the system
-+# policy.  Purged modules will not be built and will not be installed on=
- the
-+# target.  To use them at some later time you must specifically build an=
-d load
-+# the modules by hand on the target.
-+#
-+# USE WITH CARE!  With this feature it is easy to break your policy by p=
-urging
-+# core modules (eg.  userdomain)
-+#=20
-+# PURGE_POLICY_MODULES +=3D "xdg xen"
-+
-+
- POLICY_MODULES_MIN =3D "${CORE_POLICY_MODULES} ${EXTRA_POLICY_MODULES}"
-=20
- # re-write the same func from refpolicy_common.inc
-diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-se=
-curity/refpolicy/refpolicy_common.inc
-index 137ccee..2d9ace5 100644
---- a/recipes-security/refpolicy/refpolicy_common.inc
-+++ b/recipes-security/refpolicy/refpolicy_common.inc
-@@ -122,8 +122,18 @@ python __anonymous () {
-         d.setVar('DEFAULT_ENFORCING', 'permissive')
- }
-=20
-+disable_policy_modules () {
-+	for module in ${PURGE_POLICY_MODULES} ; do
-+		sed -i "s/^\(\<${module}\>\) *=3D *.*$/\1 =3D off/" ${S}/policy/module=
-s.conf
-+	done
-+}
-+
- do_compile() {
-+	if [ -f "${WORKDIR}/modules.conf" ] ; then
-+		cp -f ${WORKDIR}/modules.conf ${S}/policy/modules.conf
-+	fi
- 	oe_runmake conf
-+	disable_policy_modules
- 	oe_runmake policy
- }
-=20
---=20
-2.20.1
-
+--000000000000c2f09a05994655c5--
