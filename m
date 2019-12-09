@@ -1,80 +1,138 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.8381.1575881651204577652
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (EUR01-VE1-obe.outbound.protection.outlook.com [40.107.14.47])
+ by mx.groups.io with SMTP id smtpd.web09.8821.1575884851205571357
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 Dec 2019 00:54:11 -0800
+ Mon, 09 Dec 2019 01:47:32 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=D/o9sdtT;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: vashok890@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B9584E010AC; Mon,  9 Dec 2019 00:54:10 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (vashok890[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.210.194 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com [209.85.210.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9371DE00ED2
-	for <yocto@yoctoproject.org>; Mon,  9 Dec 2019 00:54:09 -0800 (PST)
-Received: by mail-pf1-f194.google.com with SMTP id y206so6878188pfb.0
-        for <yocto@yoctoproject.org>; Mon, 09 Dec 2019 00:54:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:content-transfer-encoding:mime-version:subject:message-id:date
-         :to;
-        bh=uO0+a6Isg7gb0ZT1HcS7nt2J2jT/e7QFFpDaKT76EH8=;
-        b=D/o9sdtTYfyZtEwKDUEA76bTxnjD+OgaEYiB73cDoqbmxISdj4vSjgfBxUsIUuqk+8
-         8W1BkzPVtoSnBeDm0Of963PoP6Xk685DUbTrg+2nfN3fGJCega6Zw0h4AbW/FcE5Z/jn
-         oWRmaOGqRdzjy+RIH3oqh6Ff7yMOYgY+NxTewytnzEgXxmwg5kQEIfc5MfO7Rh8sDyOi
-         BvapFzBBqYhjKeBnMGbOck8/LiUpxUXSSXHnSDVouPuaMDe03tKODvgqR2Hir/GwndXU
-         AQnA1iNQg4npKqUe44exfxB5TUlAsgVAgY2jtjAVOhc86UlYyCnGCfFxDTZWGM8w/Gj1
-         QFEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:content-transfer-encoding:mime-version
-         :subject:message-id:date:to;
-        bh=uO0+a6Isg7gb0ZT1HcS7nt2J2jT/e7QFFpDaKT76EH8=;
-        b=k2mjKJehip1+n1cstGje5064PoThvKr1E4byClqbRu0e8M3vZ89PQ2WWpCPE3qungx
-         hv3AHcCeVo6p6q/utDiKujWlJHeg6FktfwW6PrdVPkSWht24xlrWGYdBeLraCGgYL4O6
-         KOia/ag3/9/RE79CLVvFSbtoWmzSebmG2IEp3QX81sON9kCIgEznm8HLNRnsIQc2VgAg
-         qyaluGbwyi3DWG27z7C03zsa8gCFx3j5Zf+8isI7pYRF+cam/Xs/YeVVMuv8fm67J9lh
-         Za3X/heewm0OD5VTTGkFXXXnCy0iuqmRtpipkKpnw3yYnktf016xxmJTMcJ9PcDOoyN7
-         utZg==
-X-Gm-Message-State: APjAAAVp4/KqBvrRUkgWnv0/tJlGW281K2ZwHTVaCZdeZcXDOC7BvF4+
-	LSY+qE9CPOoeelyZHwnuCxElCsmKgK6MkQ==
-X-Google-Smtp-Source: APXvYqxrFhRwF/LxJnukkgxcAUXI7/qTKPVTIhrqmGw7VCwLbK1t6SM4zK5jlk07H5KDpQBP03xPcw==
-X-Received: by 2002:a62:ea19:: with SMTP id t25mr28461614pfh.74.1575881648809;
-        Mon, 09 Dec 2019 00:54:08 -0800 (PST)
-Received: from [10.232.24.27] ([72.163.220.3])
-        by smtp.gmail.com with ESMTPSA id f24sm11661673pjp.12.2019.12.09.00.54.07
-        for <yocto@yoctoproject.org>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 09 Dec 2019 00:54:08 -0800 (PST)
-From: "Varun A" <vashok890@gmail.com>
-Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
-Subject: Dhcp-server rpm dependent on base-passwd rpm
-Message-Id: <8E3A550B-2E68-4A43-A028-F5BFB9F6A816@gmail.com>
-Date: Mon, 9 Dec 2019 14:24:05 +0530
-To: yocto@yoctoproject.org
-X-Mailer: Apple Mail (2.3445.9.1)
-Content-Type: text/plain;
-	charset=us-ascii
+ dkim=pass header.i=@spinetix.com header.s=selector2 header.b=Jd7irwzx;
+ spf=pass (domain: spinetix.com, ip: 40.107.14.47, mailfrom: diego.santacruz@spinetix.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EWTW3quhW2mh7Ky6oU2iwvIUX+ogO2MWl4cmFEPwQH2f8c/YyYVEyg6QJlncQ7Ih6z4BNuLpvQwr6RLggl4kkFB3qL77iwAGILyTJis6crINoObWoy1WjTrRF3rnfx0BmKfrWzX6PJgNePYDK0Phdrd8xSb9RBu7VG8x4HNgSBTkv4SWPCw1RU96BUiMF/PaV1zJht96r0NCdzM4ZDHiRuPIPn05asiiBZdeJ8eTMYHkyhDWe5h1S3e16k7mbyBNahCmSVF7wzPI7iD5Yv13gFQyi//jB4vnKIYm84uu+8YUsDRCEdlt64Ql5hAzD+C+cLKOfn5YqXxxvOHW1DzFXQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rToCPtZHrwOyRlJ0dIxowFxnqqmTjiLeQksOeItKolI=;
+ b=iHYm/ZtB8J7N2ADhJztTxcfRqt/qbqcSLtl/LsogFJA7Tc/CoGz64d+t2Ah5itSWyZRsHhzhvXVlHHlRdbji/hgQL+29HvWPBsV79SvtfKszNmGOT8Nm3pxE7+fErBgAoiaWSgOqXF6u/122qSY2wz6EBBjQBRkr0pnNAWnAe0ipCPvUVAU1iRRsdKrHxPmkfjnZcxzGKs0CHkrkzDyDiuzbWY6KwBkEAC0TkBUT0UCD1EODdG4jBY3eNeRegAp3+3njUIkkzRayqH8R4KzaLLqRDi3JodX0KSPtZVsC3oN1o1DKbYdSaflP2Buip4SjJxfCfKFMBpnV7wsFqNf7dA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=spinetix.com; dmarc=pass action=none header.from=spinetix.com;
+ dkim=pass header.d=spinetix.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=spinetix.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rToCPtZHrwOyRlJ0dIxowFxnqqmTjiLeQksOeItKolI=;
+ b=Jd7irwzxyp26X8+JU0mz6x16EqVJ8hIjoVmTQRZNGyA50bWaUcW9ttpeq9aCsTfVcm0V1nJWSzxo6yCOB7GZ2RzCqoAfDHv3IuNGqMxxfI+reJTlgzoJPso6YNE6cCmay4cEQ7wFr4eiEczAGS8wfWE1gqyNGNkd+n0lR7TBoxY=
+Received: from VI1PR01MB5167.eurprd01.prod.exchangelabs.com (20.178.120.225)
+ by VI1PR01MB4014.eurprd01.prod.exchangelabs.com (20.177.54.153) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2516.16; Mon, 9 Dec
+ 2019 09:47:28 +0000
+Received: from VI1PR01MB5167.eurprd01.prod.exchangelabs.com
+ ([fe80::6d7a:666f:b19e:685d]) by VI1PR01MB5167.eurprd01.prod.exchangelabs.com
+ ([fe80::6d7a:666f:b19e:685d%3]) with mapi id 15.20.2516.018; Mon, 9 Dec 2019
+ 09:47:28 +0000
+From: "Diego Santa Cruz" <diego.santacruz@spinetix.com>
+To: "akuster808@gmail.com" <akuster808@gmail.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] [meta-security][PATCH] meta-security: add layer index callouts
+Thread-Topic: [yocto] [meta-security][PATCH] meta-security: add layer index
+ callouts
+Thread-Index: AQHVrFvbC67vlf18kk+sqMO0KEtrIqexketw
+Date: Mon, 9 Dec 2019 09:47:28 +0000
+Message-ID: 
+ <VI1PR01MB5167EFB04ADDF84335E36AA688580@VI1PR01MB5167.eurprd01.prod.exchangelabs.com>
+References: <20191206173731.2563-1-akuster808@gmail.com>
+In-Reply-To: <20191206173731.2563-1-akuster808@gmail.com>
+Accept-Language: en-GB, fr-CH, fr-FR, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Diego.SantaCruz@spinetix.com; 
+x-originating-ip: [46.14.255.78]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f6333614-4604-4c00-c3cb-08d77c8ccd9c
+x-ms-traffictypediagnostic: VI1PR01MB4014:
+x-microsoft-antispam-prvs: 
+ <VI1PR01MB4014446CDBF97DBEE8FE868A88580@VI1PR01MB4014.eurprd01.prod.exchangelabs.com>
+x-ms-oob-tlc-oobclassifiers: OLM:513;
+x-forefront-prvs: 02462830BE
+x-forefront-antispam-report: 
+ SFV:NSPM;SFS:(10009020)(39830400003)(366004)(396003)(376002)(346002)(136003)(13464003)(189003)(199004)(71200400001)(186003)(52536014)(81156014)(33656002)(81166006)(8936002)(8676002)(9686003)(26005)(55016002)(71190400001)(110136005)(6506007)(53546011)(7696005)(86362001)(66476007)(66446008)(64756008)(66556008)(76116006)(66946007)(229853002)(316002)(508600001)(2906002)(305945005)(15650500001)(5660300002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR01MB4014;H:VI1PR01MB5167.eurprd01.prod.exchangelabs.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: spinetix.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ J6O141SmmdO0IqxIj1N6DwXhOX5xDdJ83FktI/rOErwTq/If1f9pPediIyNV0agJLuDcwG/oAcEioIyXISdkvlSsljJ8YOutsjvak3k88mB6QZcf78FhqZWNbVf8+st4Gt9SnR+ZHmRrgKN9d1HLEFZqZDLyhm020gbL6dysrzn68YoKrHL7aAf6glrEWit1fTiPMVqsG7e1JBjU4PW82YF+ee/alJ7lqeuYI6q03l5Fg3kY/ES7mmFcFXa/upC+89EjIPkv/dLQZg3jgEJ7gcp6s7ND++BQU8Fpsp5LxjzayjWVWccPWwmhloxV5TdZlm3QooTuNMgwa9yotJXHZEMNY4fb2cAnIDzAbNhbgJzFzXekpzUm6xd25MevtJHxvNs4WO2b9peiJ4JC+xDj5iYior5FcJKnxtnh4x2gtOw4ZTT977Sm2xpFEG1yUfJRCcWs0MK0dh6i5lfk0DbLZeJlpWOHTFFPkLHjij68gI+Y5B2h3bi56l+2Q8/5vIgj
+x-ms-exchange-transport-forked: True
+MIME-Version: 1.0
+X-OriginatorOrg: spinetix.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6333614-4604-4c00-c3cb-08d77c8ccd9c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Dec 2019 09:47:28.2253
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 5f4034fa-ed2d-4840-a93f-acb1e9633b93
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dnPatSbluOmy/VEnOtxKhSuRZHztLpogfcBJAXmY8MxisboEPeNcAfshKeAvHxg2QxAsdJZDk0dyb8P25gUt/jaK9wqjC8KQrmdlRvZX7X4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR01MB4014
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Wanted to know if dhcp-server has an actual dependency with base-passwd =
-rpm or is it an optional dependency. I am using dhcp-server 4.3.2 rpm =
-and when I try rpm -qpR dhcp-server 4.3.2.rpm  I see base-passwd in it. =
-Can I remove the dependency using a bbappend file?=
+> -----Original Message-----
+> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Beha=
+lf
+> Of Armpit via Lists.Yoctoproject.Org
+> Sent: 06 December 2019 18:38
+> To: yocto@lists.yoctoproject.org
+> Cc: yocto@lists.yoctoproject.org
+> Subject: [yocto] [meta-security][PATCH] meta-security: add layer index ca=
+llouts
+>=20
+> Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> ---
+>  meta-integrity/conf/layer.conf           | 2 ++
+>  meta-security-compliance/conf/layer.conf | 2 ++
+>  meta-tpm/conf/layer.conf                 | 1 +
+>  3 files changed, 5 insertions(+)
+>=20
+> diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.c=
+onf
+> index 962424c..bfc9c6f 100644
+> --- a/meta-integrity/conf/layer.conf
+> +++ b/meta-integrity/conf/layer.conf
+> @@ -24,3 +24,5 @@ OE_TERMINAL_EXPORTS +=3D "INTEGRITY_BASE"
+>  LAYERSERIES_COMPAT_integrity =3D "zeus"
+>  # ima-evm-utils depends on keyutils from meta-oe
+>  LAYERDEPENDS_integrity =3D "core openembedded-layer"
+> +
+> +BBLAYERS_LAYERINDEX_NAME_integrity =3D "meta-integrity"
+> diff --git a/meta-security-compliance/conf/layer.conf b/meta-security-
+> compliance/conf/layer.conf
+> index 0e93bd0..e346bf3 100644
+> --- a/meta-security-compliance/conf/layer.conf
+> +++ b/meta-security-compliance/conf/layer.conf
+> @@ -11,3 +11,5 @@ BBFILE_PRIORITY_scanners-layer =3D "10"
+>  LAYERSERIES_COMPAT_scanners-layer =3D "zeus"
+>=20
+>  LAYERDEPENDS_scanners-layer =3D "core openembedded-layer meta-python"
+> +
+> +BBLAYERS_LAYERINDEX_NAME_integrity =3D "meta-security-compliance"
+
+This looks like a copy & paste typo, shouldn't this be
+
++BBLAYERS_LAYERINDEX_NAME_scanners-layer =3D "meta-security-compliance"
+
+> diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
+> index 3af2d95..175eba8 100644
+> --- a/meta-tpm/conf/layer.conf
+> +++ b/meta-tpm/conf/layer.conf
+> @@ -14,3 +14,4 @@ LAYERDEPENDS_tpm-layer =3D " \
+>      core \
+>      openembedded-layer \
+>  "
+> +BBLAYERS_LAYERINDEX_NAME_tpm-layer =3D "meta-tpm"
+> --
+> 2.17.1
+--=20
+Diego Santa Cruz, PhD
+Technology Architect
+spinetix.com
