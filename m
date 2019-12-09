@@ -1,214 +1,81 @@
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
- by mx.groups.io with SMTP id smtpd.web12.9678.1575890286219846503
+Received: from smtprelay.hostedemail.com (smtprelay.hostedemail.com [216.40.44.247])
+ by mx.groups.io with SMTP id smtpd.web12.9939.1575892283084902844
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 Dec 2019 03:18:06 -0800
+ Mon, 09 Dec 2019 03:51:23 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=SUoifr9K;
- spf=pass (domain: gmail.com, ip: 209.85.222.51, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ua1-f51.google.com with SMTP id d6so5381544uam.11
-        for <yocto@lists.yoctoproject.org>; Mon, 09 Dec 2019 03:18:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hoU+QZgHxGWfWWgoIXQrtp6n3zIfeV+mYR9TUDFBy0U=;
-        b=SUoifr9Kcx2qWAbe5tH7D+0CWCQRslYLYOiwa7gUYWk9r7/45egwr88mJ99y4q1u4s
-         ESojhrd/A0Qxwgvr5qCxyYWwToRSj82HRX2VcIcUUBl4ZXNGhsYTgRIYfA4QCiQwiRZz
-         FD+0Ge7FtYaWjoyBEjza3csKwxW+G758GLirngPUJsVHfYK1UEJNWAro4ZzD1pYGa31V
-         5cbwqpmRfoLUyw7GOGmJbroqccyBCi5pZ38BXntRO1NPAcODjU3+0a5eMHHUW6cbOCwj
-         r/H010v+lRVSMFH0Ln640SUt2aEUXWJxpnU7DUvGmbzTOhJGk7Al7OgiNNPdVvynL296
-         2xNQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hoU+QZgHxGWfWWgoIXQrtp6n3zIfeV+mYR9TUDFBy0U=;
-        b=CRQBrUZFiqP6I83eEe202MrUZBl0CaJR1syGISr1wcFgXeF91l0DQUYO+NLJbf6Bkw
-         nWtJRukD94rpuTxtTS9v65eYhofHrWUFFLVbcMQ77n9S0q0X5+4qtC8kLXq8jj1058fo
-         jJEX6jjVoRpuQAkEnWc5YDa+zNd0dQ40ftjq5NSs+BfRKVB5/rOagxOxdoNn7Y7fJrOD
-         3hoAB0/PkCMp303fTIgFZeVzl31dmaYzXw4bB47oLbu6U/9HX7SCZGnoYAGS/SEZLazd
-         zw0MhKrP2gPDJUsKNEHI4/sCDwHXDmLaiafoZvjS5/SzEAwkElavIX22fhoV+l1XAQ3r
-         /r+w==
-X-Gm-Message-State: APjAAAXKgBySLx0pI9sQBdfI/q9D9bx5FHM8qMl5bLjRYNYR5aVbO+SR
-	JyjjMXS48c7l6Jw1W79ofXe2P96SE+CaXofvWXE=
-X-Google-Smtp-Source: APXvYqw2jl4WNJkGnABmVaF2Jn2mr3N7yVZyDtb6sf+EobLNeU6eq21v6S+80RGvTnLx9PJSjLe19wS9H99eh8pPLNg=
-X-Received: by 2002:ab0:6894:: with SMTP id t20mr24057712uar.100.1575890285281;
- Mon, 09 Dec 2019 03:18:05 -0800 (PST)
-MIME-Version: 1.0
-References: <98NB.1575840802217143019.f9l4@lists.yoctoproject.org>
-In-Reply-To: <98NB.1575840802217143019.f9l4@lists.yoctoproject.org>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Mon, 9 Dec 2019 12:17:54 +0100
-Message-ID: <CANNYZj85keN+CBps7-ooqwYcAGhS+oOx0E-RrTtpq1Ga8bHLQg@mail.gmail.com>
-Subject: Re: [yocto] Unable to build core-image-full-cmdline on openSUSE Leap 15.1: dnf can't find _curses module in do_rootfs task
-To: Rebecca Cran <rebecca@bsdio.com>
+ dkim=missing; spf=none, err=SPF record not found (domain: sdcsystems.com, ip: 216.40.44.247, mailfrom: andy.pont@sdcsystems.com)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+	by smtprelay02.hostedemail.com (Postfix) with ESMTP id 212614421;
+	Mon,  9 Dec 2019 11:51:22 +0000 (UTC)
+X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,andy.pont@sdcsystems.com,:::,RULES_HIT:41:152:355:379:599:962:988:989:1189:1221:1260:1261:1313:1314:1345:1359:1437:1516:1517:1518:1534:1541:1575:1588:1589:1594:1711:1730:1774:1792:2198:2199:2527:2557:2559:2562:3138:3139:3140:3141:3142:3352:3865:3866:3867:3870:3872:3873:3874:4362:5007:6657:7652:7903:8603:9010:10004:10214:10848:11026:11656:11658:11914:12043:12438:13139:13161:13184:13229:14093:14181:14659:14721:21080:21095:21324:21433:21451:21627:21740:21939:30045:30054,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:2,LUA_SUMMARY:none
+X-HE-Tag: badge28_28f27a4edc130
+X-Filterd-Recvd-Size: 4073
+Received: from [192.168.10.100] (unknown [5.133.40.160])
+	(Authenticated sender: andy.pont@sdcsystems.com)
+	by omf15.hostedemail.com (Postfix) with ESMTPA;
+	Mon,  9 Dec 2019 11:51:21 +0000 (UTC)
+From: "Andy Pont" <andy.pont@sdcsystems.com>
+To: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+Subject: Re: [yocto] Issues with alsa-state
 Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000a8c7440599438c1d"
+Date: Mon, 09 Dec 2019 11:51:19 +0000
+Message-Id: <emb6f9ebf4-7201-4f14-b49e-feea7f5c6799@andys-imac.leeshillfarm.local>
+In-Reply-To: <20191209104908.z3dowyjqv45rqw3q@qschulz>
+References: <em1763c91f-0c32-4204-a356-e16cc8d266ad@andys-imac.leeshillfarm.local>
+ <20191209104908.z3dowyjqv45rqw3q@qschulz>
+Reply-To: "Andy Pont" <andy.pont@sdcsystems.com>
+User-Agent: eM_Client/7.2.35700.0
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------=_MB8C0772DE-A3A7-43B0-9DAF-4A5F2EF2D2C9"
 
---000000000000a8c7440599438c1d
-Content-Type: text/plain; charset="UTF-8"
-
-This error means native python3 was somehow built without curses, or isn't
-able to use the curses module that was built, so installing host packages
-isn't going to help. You need to look into how python3 was built and
-installed into recipe-sysroot-native. I can't offer more specific guidance
-than that unfortunately.
-
-Alex
-
-On Sun, 8 Dec 2019 at 22:33, Rebecca Cran <rebecca@bsdio.com> wrote:
-
-> I recently switched from Ubuntu 19.10 to openSUSE Leap 15.1, but I'm
-> having problems building core-image-full-cmdline on it. I've installed all
-> the host packages I can think of, including python-curses and
-> python3-curses, with no success.
->
-> I'm on the zeus branch, and running "bitbake core-image-full-cmdline"
-> results in the following error when running the do_rootfs task:
->
-> ERROR: core-image-full-cmdline-1.0-r0 do_rootfs: Could not invoke dnf.
-> Command
-> '/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/bin/dnf
-> -v --rpmverbosity=info -y -c
-> /home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/rootfs/etc/dnf/dnf.conf
-> --setopt=reposdir=/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/rootfs/etc/yum.repos.d
-> --installroot=/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/rootfs
-> --setopt=logdir=/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/temp
-> --repofrompath=oe-repo,/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/oe-rootfs-repo
-> makecache --refresh' returned 1:
-> Traceback (most recent call last):
->   File
-> "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/bin/dnf.real",
-> line 57, in <module>
->     from dnf.cli import main
->   File
-> "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-packages/dnf/cli/__init__.py",
-> line 30, in <module>
->     from dnf.cli.cli import Cli  # :api
->   File
-> "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-packages/dnf/cli/cli.py",
-> line 44, in <module>
->     from . import output
->   File
-> "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-packages/dnf/cli/output.py",
-> line 34, in <module>
->     import dnf.cli.progress
->   File
-> "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-packages/dnf/cli/progress.py",
-> line 19, in <module>
->     from dnf.cli.term import _term_width
->   File
-> "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-packages/dnf/cli/term.py",
-> line 21, in <module>
->     import curses
->   File
-> "/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/curses/__init__.py",
-> line 13, in <module>
->     from _curses import *
-> ModuleNotFoundError: No module named '_curses'
->
-> ERROR: Logfile of failure stored in:
-> /home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/temp/log.do_rootfs.40254
-> ERROR: Task
-> (/home/bcran/src/fsl-community-bsp/sources/poky/meta/recipes-extended/images/core-image-full-cmdline.bb:do_rootfs)
-> failed with exit code '1'
->
-> --
-> Rebecca Cran -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
->
-> View/Reply Online (#47593):
-> https://lists.yoctoproject.org/g/yocto/message/47593
-> Mute This Topic: https://lists.yoctoproject.org/mt/67777408/1686489
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [
-> alex.kanavin@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
-
---000000000000a8c7440599438c1d
-Content-Type: text/html; charset="UTF-8"
+--------=_MB8C0772DE-A3A7-43B0-9DAF-4A5F2EF2D2C9
+Content-Type: text/plain; format=flowed; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>This error means native python3 was somehow built wit=
-hout curses, or isn&#39;t able to use the curses module that was built, so =
-installing host packages isn&#39;t going to help. You need to look into how=
- python3 was built and installed into recipe-sysroot-native. I can&#39;t of=
-fer more specific guidance than that unfortunately.</div><div><br></div><di=
-v>Alex<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Sun, 8 Dec 2019 at 22:33, Rebecca Cran &lt;<a href=3D"ma=
-ilto:rebecca@bsdio.com">rebecca@bsdio.com</a>&gt; wrote:<br></div><blockquo=
-te class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
-solid rgb(204,204,204);padding-left:1ex">I recently switched from Ubuntu 19=
-.10 to openSUSE Leap 15.1, but I&#39;m having problems building core-image-=
-full-cmdline on it. I&#39;ve installed all the host packages I can think of=
-, including python-curses and python3-curses, with no success.<br><br>I&#39=
-;m on the zeus branch, and running &quot;bitbake core-image-full-cmdline&qu=
-ot; results in the following error when running the do_rootfs task:<br><br>=
-ERROR: core-image-full-cmdline-1.0-r0 do_rootfs: Could not invoke dnf. Comm=
-and &#39;/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6sle=
-vk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/=
-usr/bin/dnf -v --rpmverbosity=3Dinfo -y -c /home/bcran/src/fsl-community-bs=
-p/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmd=
-line/1.0-r0/rootfs/etc/dnf/dnf.conf --setopt=3Dreposdir=3D/home/bcran/src/f=
-sl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core=
--image-full-cmdline/1.0-r0/rootfs/etc/yum.repos.d --installroot=3D/home/bcr=
-an/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnue=
-abi/core-image-full-cmdline/1.0-r0/rootfs --setopt=3Dlogdir=3D/home/bcran/s=
-rc/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/=
-core-image-full-cmdline/1.0-r0/temp --repofrompath=3Doe-repo,/home/bcran/sr=
-c/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/c=
-ore-image-full-cmdline/1.0-r0/oe-rootfs-repo makecache --refresh&#39; retur=
-ned 1:<br>Traceback (most recent call last):<br>=C2=A0 File &quot;/home/bcr=
-an/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnue=
-abi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/bin/dnf.real&q=
-uot;, line 57, in &lt;module&gt;<br>=C2=A0=C2=A0=C2=A0 from dnf.cli import =
-main<br>=C2=A0 File &quot;/home/bcran/src/fsl-community-bsp/build-imx6slevk=
-/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recip=
-e-sysroot-native/usr/lib/python3.7/site-packages/dnf/cli/__init__.py&quot;,=
- line 30, in &lt;module&gt;<br>=C2=A0=C2=A0=C2=A0 from dnf.cli.cli import C=
-li=C2=A0 # :api<br>=C2=A0 File &quot;/home/bcran/src/fsl-community-bsp/buil=
-d-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1=
-.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-packages/dnf/cli/cli.py&=
-quot;, line 44, in &lt;module&gt;<br>=C2=A0=C2=A0=C2=A0 from . import outpu=
-t<br>=C2=A0 File &quot;/home/bcran/src/fsl-community-bsp/build-imx6slevk/tm=
-p/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-s=
-ysroot-native/usr/lib/python3.7/site-packages/dnf/cli/output.py&quot;, line=
- 34, in &lt;module&gt;<br>=C2=A0=C2=A0=C2=A0 import dnf.cli.progress<br>=C2=
-=A0 File &quot;/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/i=
-mx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-n=
-ative/usr/lib/python3.7/site-packages/dnf/cli/progress.py&quot;, line 19, i=
-n &lt;module&gt;<br>=C2=A0=C2=A0=C2=A0 from dnf.cli.term import _term_width=
-<br>=C2=A0 File &quot;/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp=
-/work/imx6slevk-fslc-linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sy=
-sroot-native/usr/lib/python3.7/site-packages/dnf/cli/term.py&quot;, line 21=
-, in &lt;module&gt;<br>=C2=A0=C2=A0=C2=A0 import curses<br>=C2=A0 File &quo=
-t;/home/bcran/src/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc=
--linux-gnueabi/core-image-full-cmdline/1.0-r0/recipe-sysroot-native/usr/lib=
-/python3.7/curses/__init__.py&quot;, line 13, in &lt;module&gt;<br>=C2=A0=
-=C2=A0=C2=A0 from _curses import *<br>ModuleNotFoundError: No module named =
-&#39;_curses&#39;<br><br>ERROR: Logfile of failure stored in: /home/bcran/s=
-rc/fsl-community-bsp/build-imx6slevk/tmp/work/imx6slevk-fslc-linux-gnueabi/=
-core-image-full-cmdline/1.0-r0/temp/log.do_rootfs.40254<br>ERROR: Task (/ho=
-me/bcran/src/fsl-community-bsp/sources/poky/meta/recipes-extended/images/co=
-re-image-full-cmdline.bb:do_rootfs) failed with exit code &#39;1&#39;<br><b=
-r>-- <br>Rebecca Cran
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-<br>
-View/Reply Online (#47593): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/47593" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/47593</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/67777408/1686=
-489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/67777408/1686489</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a>=C2=A0 [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">=
-alex.kanavin@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-</blockquote></div>
+Quentin wrote...=0A=0A>Have a look at the paths traversed by Yocto to find=
+ your asound.state in=0A>log.do_fetch in the WORKDIR.=0A>=0A>You'll have the =
+following:=0A>DEBUG: Searching for asound.state in paths:=0AThere are a lo=
+t of paths that it searched in for the file. I=E2=80=99ve moved =0Athe file =
+in the file system changed the value of =0AFILESEXTRAPATHS_prepend_mx6 fro=
+m:=0A=0AFILESEXTRAPATHS_prepend_mx6 :=3D "${THISDIR}/${PN}/imx:=E2=80=9D=0A=
+=0Ato:=0A=0AFILESEXTRAPATHS_prepend_mx6 :=3D "${THISDIR}/${PN}:=E2=80=9D=0A=
+=0AThat has made the build process find my version of asound.state first.=
+=0A=0AThanks,=0A=0A-Andy.
 
---000000000000a8c7440599438c1d--
+--------=_MB8C0772DE-A3A7-43B0-9DAF-4A5F2EF2D2C9
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head>=0A=0A<style id=3D"css_styles" type=3D"text/css">blockquote.cit=
+e { margin-left: 5px; margin-right: 0px; padding-left: 10px; padding-right:=
+0px; border-left: 1px solid #cccccc }=0Ablockquote.cite2 {margin-left: 5px; =
+margin-right: 0px; padding-left: 10px; padding-right:0px; border-left: 1px =
+solid #cccccc; margin-top: 3px; padding-top: 0px; }=0Aa img { border: 0px; =
+}=0Ali[style=3D'text-align: center;'], li[style=3D'text-align: right;'] {  =
+list-style-position: inside;}=0Abody { font-family: Verdana; font-size: 12=
+px;   }</style></head><body class=3D"plain" style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;"><div><div>Quenti=
+n wrote...</div>=0A</div><div><br /></div>=0A<div id=3D"x0d9ef5cdb1ac489"><=
+blockquote type=3D"cite" class=3D"cite2"><div class=3D"plain_line">Have a l=
+ook at the paths traversed by Yocto to find your asound.state in</div>=0A<d=
+iv class=3D"plain_line">log.do_fetch in the WORKDIR.</div>=0A<div class=3D"=
+plain_line">=C2=A0</div>=0A<div class=3D"plain_line">You'll have the follow=
+ing:</div>=0A<div class=3D"plain_line">DEBUG: Searching for asound.state in =
+paths:</div></blockquote>There are a lot of paths that it searched in for=
+ the file.  I=E2=80=99ve moved the file in the file system changed the value =
+of FILESEXTRAPATHS_prepend_mx6 from:=C2=A0</div><div id=3D"x0d9ef5cdb1ac48=
+9"><br /></div><div id=3D"x0d9ef5cdb1ac489">FILESEXTRAPATHS_prepend_mx6 :=
+=3D "${THISDIR}/${PN}/imx:=E2=80=9D</div><div id=3D"x0d9ef5cdb1ac489"><br /=
+></div><div id=3D"x0d9ef5cdb1ac489">to:</div><div id=3D"x0d9ef5cdb1ac489"><=
+br /></div><div id=3D"x0d9ef5cdb1ac489">FILESEXTRAPATHS_prepend_mx6 :=3D "$=
+{THISDIR}/${PN}:=E2=80=9D</div><div id=3D"x0d9ef5cdb1ac489"><br /></div><di=
+v id=3D"x0d9ef5cdb1ac489">That has made the build process find my version o=
+f asound.state first.</div><div id=3D"x0d9ef5cdb1ac489"><br /></div><div id=
+=3D"x0d9ef5cdb1ac489">Thanks,</div><div id=3D"x0d9ef5cdb1ac489"><br /></div=
+><div id=3D"x0d9ef5cdb1ac489">-Andy.</div><div id=3D"x0d9ef5cdb1ac489"><blo=
+ckquote type=3D"cite" class=3D"cite2">=0A</blockquote></div>=0A</body></htm=
+l>
+
+--------=_MB8C0772DE-A3A7-43B0-9DAF-4A5F2EF2D2C9--
