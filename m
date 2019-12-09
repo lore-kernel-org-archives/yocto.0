@@ -1,82 +1,75 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.12001.1575904045858415439
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+ by mx.groups.io with SMTP id smtpd.web12.13335.1575909061213182609
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 Dec 2019 07:07:25 -0800
+ Mon, 09 Dec 2019 08:31:01 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=H3mQpqb9;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: vashok890@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6C0A9E00ECC; Mon,  9 Dec 2019 07:07:25 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (vashok890[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.215.175 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52673E0049C
-	for <yocto@yoctoproject.org>; Mon,  9 Dec 2019 07:07:24 -0800 (PST)
-Received: by mail-pg1-f175.google.com with SMTP id k3so6618945pgc.3
-        for <yocto@yoctoproject.org>; Mon, 09 Dec 2019 07:07:24 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=p30q5MfA;
+ spf=pass (domain: gmail.com, ip: 209.85.222.182, mailfrom: wpdster@gmail.com)
+Received: by mail-qk1-f182.google.com with SMTP id c17so3629616qkg.7
+        for <yocto@lists.yoctoproject.org>; Mon, 09 Dec 2019 08:31:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:content-transfer-encoding:mime-version:subject:message-id:date
-         :to;
-        bh=f4rIc+BjW5QNTn71N9L2zEHrOeumtqH2ezsUxcBb5fA=;
-        b=H3mQpqb9YqJ995FvbuH93KeP5afO9XnmPS9He2x24VGw1Xz4v/O/8MEbdUlXHIHHXx
-         mv+y287Li24VaGc3bvZUKi2s5XDcbT1VOwpFIOM8jNoVclJw7nvy6jbXZXsvMdubuWFy
-         +2XQJvMNm8QtbGAaQQR6tj5+efsS9JiKqKnLkerA2VfQXWjEXw+u38wqL0g98/9/MqaV
-         AxbkrjQYHBNb9j/Xnt+o1UUzukDvIvrgiK0vLMZscTYRHDS2Mk1F76+wKPPEQSW3q10o
-         P5XJL2/VmEziDkafVI3Gam5EZQKfNJUhBu2aWpavsRoabJnI4en4wGnzMHqfLizSEpaO
-         bISQ==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=RPkqTc/YFJPtvt5ro6TcvAMD+ux2/E53idZhOmBWCo0=;
+        b=p30q5MfAZp5nwdX110dULsSORYf9Np0CrDLQT+Ig+T70wtbJvCAmFCtUrfPWr+Sb7l
+         zTFBt3m4RrgRm65qm1RhkAjHI6ZFb3m+j646tmKJvrJWjQ2O1QtqyYOgC4WhYKTsra5K
+         tmDo/SkYUyfsj+jSg9IoNyu8WOjorwN4gVMCIzEZagfeTwAm3Jx7c17aVVDtiIUD5yoj
+         Q0pUJE4I6tpNKjGEGqgU2Ycenia86Br9D19u3jrj5TlJL09gfYrj3vQEEETnbhqcjwGC
+         F7zpQLB3m+C+BecwcMJNmkGsXR2cQ82Q3uCeUF/MpneygUn08N3J8ASh/jsLYlQ0TNzi
+         Pb7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:content-transfer-encoding:mime-version
-         :subject:message-id:date:to;
-        bh=f4rIc+BjW5QNTn71N9L2zEHrOeumtqH2ezsUxcBb5fA=;
-        b=WT0WW7hxGt7uCrL891uFSNC4kN9HzDOAF+maozlBaDpcivdlKPgn98oec29zYZUPmR
-         52MA2VyCxO5tGLKWjYtK1y78/L0H7xrGsYoWAZuQss5a5j7JKMjRrJG+8zXhGzZkxQP6
-         tivKkljYfSLIg4NBSav1f032tkIug2e8hLgP43Mf/T6PvkHAC/9+5G/UHeS7Q2f2Dj+f
-         7tLGXzB8c6B7Ez79Zk9LtSxBSiLHeP28MXNhQRg50vL3Gqzni7AhUdt7QDF8Hq+n+ks8
-         A8RemrDqOpfa4XyWb/PzgozU+gYDUubBrA3shrPhjyXSq5IaMTOOAXSHOBz0gjyRrllW
-         18tg==
-X-Gm-Message-State: APjAAAWhiAameDe58fPgZDV7pawl1zr2Z4R80TtrKLHHaDe0yquN62T3
-	/8uB7lvBFok5vyXwbohxIpLTnrRkMOY=
-X-Google-Smtp-Source: APXvYqzrS0+LWyRytDfbcjqovShKFJgCdKGLZZL3S4UEA6GCCi7Q0BRsJfc2ZE+5YWopg4nFqsexDg==
-X-Received: by 2002:aa7:9351:: with SMTP id 17mr29204403pfn.16.1575904043554;
-        Mon, 09 Dec 2019 07:07:23 -0800 (PST)
-Received: from ?IPv6:2001:420:c0c8:1002::4d7? ([2001:420:c0c8:1002::4d7])
-        by smtp.gmail.com with ESMTPSA id 133sm27245487pfy.14.2019.12.09.07.07.21
-        for <yocto@yoctoproject.org>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 09 Dec 2019 07:07:22 -0800 (PST)
-From: "Varun A" <vashok890@gmail.com>
-Mime-Version: 1.0 (Mac OS X Mail 11.5 \(3445.9.1\))
-Subject: [OE-core] [PATCH 0/2] fix can't login when debug-tweaks is not in IMAGE_FEATURES
-Message-Id: <31B379FD-E470-4CBA-B18A-C42294A6DB07@gmail.com>
-Date: Mon, 9 Dec 2019 20:37:15 +0530
-To: yocto@yoctoproject.org
-X-Mailer: Apple Mail (2.3445.9.1)
-Content-Type: text/plain;
-	charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=RPkqTc/YFJPtvt5ro6TcvAMD+ux2/E53idZhOmBWCo0=;
+        b=ahGkjd60vx8wTyT061rwB9bCUHHRE8zsg/gHckUY3+eR40Z/VKAwoUHnws4Ck4NxNA
+         iBnE6lkAqTjBe0lL8q9tHN/dkbjjEyaVB+r9rek8ze3S+EFA6/NhI7TgUxfFM7PyM/zq
+         qLZcvapsIyjexRtU9Xpg8BNxMwsFSyC19Ky53dQB2909ksE8Rujdhl78DtHuTiFudT40
+         oLZ4nVRDC43JX2iRKnoo65KO98YslujrVd2f9SzKZQM4axoc89cunuXS8G0I5fx3z562
+         kFKKfDXb5wJInAMBdJ0ElWnWZDU16QIZML0dZwZk7uKZqh1q+25XlFs19XJeatJQelxg
+         wNRg==
+X-Gm-Message-State: APjAAAU7C+K4qZs7I5/2Ihyl5DZVvkcFmssU+Mefxnlo8A5KKz4fccRf
+	jpJcp0eX2Skngx6OB1Tpb4V6OTy1Ef1JlS0M2hwWWxqS
+X-Google-Smtp-Source: APXvYqxdjDKvTFcGZjaJd36ux4Yte2XLFabOBrFDMpzRqEdJukEsK66I8Tu6oD+sALJzIPqRbWQMqu4iNDn3+Z1fKiU=
+X-Received: by 2002:ae9:f711:: with SMTP id s17mr27763391qkg.238.1575909059731;
+ Mon, 09 Dec 2019 08:30:59 -0800 (PST)
+MIME-Version: 1.0
+From: "Patrick Doyle" <wpdster@gmail.com>
+Date: Mon, 9 Dec 2019 11:30:32 -0500
+Message-ID: <CAF_dkJB25g1wT87bvbotOjQVLUBqiLJFoqcd9NunEH-Wu6aB6Q@mail.gmail.com>
+Subject: Writing do_compile in python and importing modules
+To: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-Was going through this thread. I see root password defined as root =
-explicitly in the base-passwd master file I am using which is of =
-security concern. Has any development come about this?Is there a patch =
-to get around this issue?
+i was just reviewing a recipe I wrote a month or two ago and saw that I wrote:
 
+do_compile() {
+    python3 ${WORKDIR}/assemble-tsk-blob.py -o tsk-blob -d
+${DEPLOY_DIR_IMAGE}/foo -t ${DEPLOY_DIR_IMAGE}/bar
+}
 
+and I thought to myself, why did I write assemble-tsk-blob.py (which
+is a fairly trivial python 10 line script) instead of embedding it
+inline in my bitbake recipe?
+
+The answer is: because I could iterate on that 10 line script and test
+it much more quickly as a standalone python script than I could if I
+embedded it in a recipe.  (There are another 10-15 lines of argparse
+and if __name__ == '__main__' stuff beyond the 10 lines of actual
+code).
+
+Since I'm in a cleaning-up mood, I started wondering if I could change
+my do_compile() function to a python function and then embed the 10
+lines in there.  Of course I can.
+
+But then I started wondering if I could change do_compile to python,
+have it import assemble-tsk-blob, and get the best of both worlds --
+the ability to test assemble-tsk-blob outside of bitbake, and the
+efficiency of including its core operation directly within
+do_compile() and not requring that I spin up another python instance.
+
+Aside... there is nothing python3-ish about this code, I am just in
+the habit of unquestioningly using python3 for all new development.
+
+Any thoughts?
+
+--wpd
