@@ -1,270 +1,265 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.7013.1576085869697434545
+Received: from mail-io1-f66.google.com (mail-io1-f66.google.com [209.85.166.66])
+ by mx.groups.io with SMTP id smtpd.web12.8671.1576092993096945855
  for <yocto@lists.yoctoproject.org>;
- Wed, 11 Dec 2019 09:37:50 -0800
+ Wed, 11 Dec 2019 11:36:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=rpwOGTu+;
- spf=softfail (domain: linaro.org, ip: 140.211.169.56, mailfrom: nicolas.dechesne@linaro.org)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5B4B4E01205; Wed, 11 Dec 2019 09:37:49 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.167.52 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E34E6E010DD
-	for <yocto@yoctoproject.org>; Wed, 11 Dec 2019 09:37:47 -0800 (PST)
-Received: by mail-lf1-f52.google.com with SMTP id i23so4898816lfo.7
-        for <yocto@yoctoproject.org>; Wed, 11 Dec 2019 09:37:47 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=TifbcxT2;
+ spf=pass (domain: gmail.com, ip: 209.85.166.66, mailfrom: jpewhacker@gmail.com)
+Received: by mail-io1-f66.google.com with SMTP id v3so48737ioj.5
+        for <yocto@lists.yoctoproject.org>; Wed, 11 Dec 2019 11:36:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=NdHsPDk+3Iojn/QVQdoQdHEo/6EtHXbUkwsYbYhtREE=;
-        b=rpwOGTu+mWHbILLY3Y0U3Ov8fdUiTZX64neauDo/J1jtj8aRJN1vVwJ+Mmg04rcejI
-         lph1GPkptvkIPYFcbzs8A1mRjuBsnpmkADJ7OB9c5VxPG2h13dqTh8kL/AwcJQMBb5WH
-         SU02yqQm0H9bU4Y28DSzbV4DsS2UDfCsRtVPTOrxa0xGYWbGMmyqsVX6Ss8TdxtCcPrO
-         ji33wJJvjnvYObHe6cIhKllAxq+chx180k5j/BWlXfQTnXW6czN0m+sgPdgPomQzfxEi
-         7AGf481wKYlhpuHEcFM7t7ZCQQflazTqRqxqymkCwL2+jseFsaV+KbsJY/r4DldipING
-         8D4Q==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nPeVv9AJ3kNDciOEKWImnyE31ynDG4ecc65PAvjET2I=;
+        b=TifbcxT2cdy/cyL74FR7i5cLpfFVO4P40zcM+RH5UrDmTfY6MwaUocvG9U2Q9Zgn15
+         gWs7Ik+xIlTMp6VXvbY4qMbt2ZUjNqq0KLbnCjDAt6fCOLeYnRS28S/tI8kBYwfsfsIy
+         jxj5w8aorePkpCZLRdD0lG9K7jvUBdZw5Nwb3P7So8lbCq5ZSEkwkgLHZuktkaWIkaOW
+         np6BTSU75wmt72GQggBIoBE0IBK6p+4ZY1AdZHGf5wK4hWNMBVA3imqkJtcSp8hAE7It
+         NoDIFzQsh46MuiOe5aQgC+bs4DlxyL7UIG2XeAMsSr/BINvR38ZZ2VA0qdEGY8Js/qDy
+         60iQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=NdHsPDk+3Iojn/QVQdoQdHEo/6EtHXbUkwsYbYhtREE=;
-        b=Ati8EQFW1jJUDSeKmv3nN9wV3kaRedH+436XwyqMsFPz4aE1fvKK7LwvjQEYsf0l74
-         d3jAGyaxSqvzXqNJE4N4yszV80QZfxtmOI7qT2tjtuVE0guSk1tC4kleSs1xEZv7ZsuJ
-         vRrlUrDIIVJ8Wd/uIPX6Jgg8vW84i3FwSbp05AHzgNwtqqX2sZxl9peWjwu9AOe8J9so
-         2zcJrYLgZu/IzpRb9ix1Qa8WPzWfXhw2/nXPuCkRoAqTR+x4dn+3VuzE1iDVBG+8nXct
-         KMYBWMr1uX68Uu40JqlWH1U1BaImnabxU1b9hqt7dyeyPdr5zEM+i7IrWiLgFb8jCPeO
-         Z3pA==
-X-Gm-Message-State: APjAAAXyUGTYTmD6xfoC4cJJDEYWJ6sBpXiX0l/DG3X9Pt8M27EX4UPx
-	X+RLgaB9icQWLlQ0nWC3yt8AOChUfukom86u2ezmcVGbwI0K0A==
-X-Google-Smtp-Source: APXvYqyoxZ2HKmBHx8hpTICTSL3rh9ynx36Pi6OyhQ/3BvLJZFoCjG7iQB8mEl0beE1nRWvTxoeC+iZu8Muvsy6h57A=
-X-Received: by 2002:a19:6a06:: with SMTP id u6mr3049165lfu.187.1576085866481;
- Wed, 11 Dec 2019 09:37:46 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nPeVv9AJ3kNDciOEKWImnyE31ynDG4ecc65PAvjET2I=;
+        b=CB3+Bzg4ihks1+vZFuudBVOo27dSp65TwYINKVY5ateBoRxvRhxdyF80Lf5t+fr4Ix
+         ezXKQf9cDbiCbyfCexZpo2K0oEBicY2Dr3C8r8oUX/JH6ewQth+sAia6/IuiRfG/Av1z
+         wWFlyRt+PkkJU1pJ3iSyNcEPdiMD7S5QhdBpTt521FCqaYAcRVI6Mg7Q6da2yCOBD/bK
+         1aqFIYwQnQ1KwPgU/ahtWK4TZLHsZx+W8bOBQQNNHEmQgiFC8+Jh2w7A/UlsZT793o+t
+         /lXIv98PHdpx6VXuyZoXm/3IrSKQsHfHZaN5syLWMhdvygBUagzKxBVZQyqgbSxtPltM
+         ygDA==
+X-Gm-Message-State: APjAAAWhuzs8nbDo1muN9bOkEw5exrRdceorShA1EAqx6zkt2xvUTAYS
+	kNrGZU5zIh+w7DeETgR71FdEB6smgYY=
+X-Google-Smtp-Source: APXvYqzj5HQn24utKZYay30lnHxnHlyTiFGwiZqlhF8uP+prb93v34bu53CfFrzbJCZCGXmZDTy6UQ==
+X-Received: by 2002:a5e:c314:: with SMTP id a20mr4017365iok.300.1576092992121;
+        Wed, 11 Dec 2019 11:36:32 -0800 (PST)
+Return-Path: <jpewhacker@gmail.com>
+Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
+        by smtp.gmail.com with ESMTPSA id t3sm987826ilf.53.2019.12.11.11.36.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 11 Dec 2019 11:36:31 -0800 (PST)
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: twoerner@gmail.com,
+	Joshua Watt <JPEWhacker@gmail.com>
+Subject: [yocto][meta-rockchip][PATCH] rk3288: Convert to using wic
+Date: Wed, 11 Dec 2019 13:36:07 -0600
+Message-Id: <20191211193607.38084-1-JPEWhacker@gmail.com>
+X-Mailer: git-send-email 2.23.0
 MIME-Version: 1.0
-References: <20191211071807.GA32639@linux-uys3> <CAP71Wjz6BvcW5Ct1o2tHJyzND5ZtYfwMz6Vhmdk7prsbm=27ZA@mail.gmail.com>
- <20191211153955.GA5676@linux-uys3> <CAP71WjyTvBT_XxUoZAVcdEzKZP0p1OKq62jF9zWfU7Y=pXfWEA@mail.gmail.com>
- <20191211164132.GB13170@linux-uys3>
-In-Reply-To: <20191211164132.GB13170@linux-uys3>
-From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
-Date: Wed, 11 Dec 2019 18:37:35 +0100
-Message-ID: <CAP71Wjz+sHYpkOKhHUdGoQ2WPdgGqwosRC-zmfTHEVXW9XSF3w@mail.gmail.com>
-Subject: Re: [yocto] variable and task/function timing
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Dec 11, 2019 at 5:41 PM Trevor Woerner <twoerner@gmail.com> wrote:
->
-> On Wed 2019-12-11 @ 04:49:27 PM, Nicolas Dechesne wrote:
-> > right.. I was confused, I missed a few things in your email (well, it
-> > was really long ;).
->
-> lol
-> Apparently writing long emails is therapeutic for me.
->
-> > > I'm sure some will say "there's your solution, do it that way, proble=
-m
-> > > solved". However, I think "debug/release" are much more natural than
-> > > "plain/debugoptimized". I can't change the MESON_BUILDTYPE strings,
-> > > they have to be one of those two, so I introduced MESA_BUILD_TYPE as =
-a
-> > > level-of-indirection above MESON_BUILDTYPE to allow the user to use t=
-he more
-> > > natural "debug/release" wording.
-> > >
-> > > So my real question is (and maybe I'm just yak shaving at this point)=
-: given
-> > > the row/column view of variable setting, how do we factor in the elem=
-ent of
-> > > time? For example, *when* do the variables referenced by anonymous py=
-thon
-> > > functions and by tasks get set?
-> > >
-> > > This works (but doesn't allow me the space for nice error checking):
-> > >
-> > >         MESON_BUILDTYPE =3D "${@bb.utils.contains('MESA_BUILD_TYPE', =
-'debug', 'debugoptimized', 'plain', d)}"
-> > >
-> > > and this doesn't:
-> > >
-> > >         python do_check_build_type() {
-> > >             _buildtype =3D d.getVar('MESA_BUILD_TYPE')
-> > >             if _buildtype not in ['release', 'debug']:
-> > >                 bb.fatal("unknown build type (%s), please set to eith=
-er 'release' or 'debug'" % _buildtype)
-> > >             if _buildtype =3D=3D 'debug':
-> > >                 d.setVar('MESON_BUILDTYPE', 'debugoptimized')
-> > >                 bb.plain("setting meson build type to debugoptimized"=
-)
-> > >         }
-> > >         addtask check_build_type before do_configure
-> >
-> > I missed the fact that you were using a task.
-> > You can probably call do_check_build_type() when setting
-> > MESON_BUILDTYPE instead of using a task, e.g. something like this:
-> > MESON_BUILDTYPE =3D "${@do_check_build_type(d.getVar('MESA_BUILD_TYPE')=
-)}"
->
-> I did propose a 3rd way (in the original email) which does work which is =
-very
-> similar to what you're suggesting:
->
->         # set the build type to either 'release' or 'debug'
->         # the upstream mesa sources actually build a debug release by def=
-ault
->         # but here we assume the user will want a release build by defaul=
-t
->         MESA_BUILD_TYPE ?=3D "release"
->         def check_buildtype(d):
->             _buildtype =3D d.getVar('MESA_BUILD_TYPE')
->             if _buildtype not in ['release', 'debug']:
->                 bb.fatal("unknown build type (%s), please set to either '=
-release' or 'debug'" % _buildtype)
->             if _buildtype =3D=3D 'debug':
->                 #bb.plain("setting meson build type to debugoptimized")
->                 return 'debugoptimized'
->             return 'plain'
->         MESON_BUILDTYPE =3D "${@check_buildtype(d)}"
->
-> The user experience is rather different though. Let's say the user sets t=
-he
-> following in conf/local.conf:
->
->         MESA_BUILD_TYPE =3D "hello"
->
-> Using the "addtask" method (which doesn't work) produces a very nice erro=
-r
-> message:
->
->         $ bitbake mesa -c configure
->         Loading cache: 100% |############################################=
-###########################################################################=
-##| Time: 0:00:00
->         Loaded 2257 entries from dependency cache.
->         Parsing recipes: 100% |##########################################=
-###########################################################################=
-##| Time: 0:00:01
->         Parsing of 1528 .bb files complete (1524 cached, 4 parsed). 2259 =
-targets, 103 skipped, 0 masked, 0 errors.
->         NOTE: Resolving any missing task queue dependencies
->
->         Build Configuration:
->         BB_VERSION           =3D "1.44.0"
->         BUILD_SYS            =3D "x86_64-linux"
->         NATIVELSBSTRING      =3D "opensuseleap-15.1"
->         TARGET_SYS           =3D "arm-oe-linux-gnueabi"
->         MACHINE              =3D "tinker-rk3288"
->         DISTRO               =3D "nodistro"
->         DISTRO_VERSION       =3D "nodistro.0"
->         TUNE_FEATURES        =3D "arm armv7ve vfp thumb neon callconventi=
-on-hard"
->         TARGET_FPU           =3D "hard"
->         meta-rockchip        =3D "master:e8fd1f92ed59e0e71a7418779b912c5d=
-a342495c"
->         meta-tweaks          =3D "master:b9184893949356a2da43bb2b5ec88dd5=
-73a5db0d"
->         meta                 =3D "master:093a1971f2ae12e1f514598da984f268=
-607e550b"
->         meta-oe              =3D "master:851321744e17e51aeb822a8d88c3532d=
-ffdf1cef"
->
->         Initialising tasks: 100% |#######################################=
-###########################################################################=
-##| Time: 0:00:00
->         Sstate summary: Wanted 0 Found 0 Missed 0 Current 77 (0% match, 1=
-00% complete)
->         NOTE: Executing Tasks
->         NOTE: Setscene tasks completed
->         ERROR: mesa-2_19.2.4-r0 do_check_build_type: unknown build type (=
-hello), please set to either 'release' or 'debug'
->         ERROR: Logfile of failure stored in: /z/build-master/tinker-rk328=
-8/build/tmp-glibc/work/armv7vet2hf-neon-oe-linux-gnueabi/mesa/2_19.2.4-r0/t=
-emp/log.do_check_build_type.12869
->         ERROR: Task (/opt/oe/configs/z/build-master/tinker-rk3288/layers/=
-openembedded-core/meta/recipes-graphics/mesa/mesa_19.2.4.bb:do_check_build_=
-type) failed with exit code '1'
->         NOTE: Tasks Summary: Attempted 606 tasks of which 603 didn't need=
- to be rerun and 1 failed.
->
-> Using the method proposed above produces:
->
->         $ bitbake mesa -c configure
->         Loading cache: 100% |############################################=
-###########################################################################=
-##| Time: 0:00:00
->         Loaded 2257 entries from dependency cache.
->         ERROR: /opt/oe/configs/z/build-master/tinker-rk3288/layers/openem=
-bedded-core/meta/recipes-graphics/mesa/mesa-gl_19.2.4.bb: unknown build typ=
-e (hello), please set to either 'release' or 'debug' ETA:  --:--:--
->         WARNING: /opt/oe/configs/z/build-master/tinker-rk3288/layers/open=
-embedded-core/meta/recipes-graphics/mesa/mesa-gl_19.2.4.bb: Exception durin=
-g build_dependencies for meson_do_configure
->         WARNING: /opt/oe/configs/z/build-master/tinker-rk3288/layers/open=
-embedded-core/meta/recipes-graphics/mesa/mesa-gl_19.2.4.bb: Error during fi=
-nalise of /opt/oe/configs/z/build-master/tinker-rk3288/layers/openembedded-=
-core/meta/recipes-graphics/mesa/mesa-gl_19.2.4.bb
->         ERROR: /opt/oe/configs/z/build-master/tinker-rk3288/layers/openem=
-bedded-core/meta/recipes-graphics/mesa/mesa_19.2.4.bb: unknown build type (=
-hello), please set to either 'release' or 'debug'
->         WARNING: /opt/oe/configs/z/build-master/tinker-rk3288/layers/open=
-embedded-core/meta/recipes-graphics/mesa/mesa_19.2.4.bb: Exception during b=
-uild_dependencies for meson_do_configure
->         WARNING: /opt/oe/configs/z/build-master/tinker-rk3288/layers/open=
-embedded-core/meta/recipes-graphics/mesa/mesa_19.2.4.bb: Error during final=
-ise of /opt/oe/configs/z/build-master/tinker-rk3288/layers/openembedded-cor=
-e/meta/recipes-graphics/mesa/mesa_19.2.4.bb
->         ERROR: ExpansionError during parsing /opt/oe/configs/z/build-mast=
-er/tinker-rk3288/layers/openembedded-core/meta/recipes-graphics/mesa/mesa-g=
-l_19.2.4.bb
->         Traceback (most recent call last):
->           File "Var <MESON_BUILDTYPE>", line 1, in <module>
->           File "/opt/oe/configs/z/build-master/tinker-rk3288/layers/opene=
-mbedded-core/meta/recipes-graphics/mesa/mesa.inc", line 56, in check_buildt=
-ype(d=3D<bb.data_smart.DataSmart object at 0x7ffac8d0f4a8>):
->                  if _buildtype not in ['release', 'debug']:
->             >        bb.fatal("unknown build type (%s), please set to eit=
-her 'release' or 'debug'" % _buildtype)
->                  if _buildtype =3D=3D 'debug':
->           File "/opt/oe/configs/z/build-master/tinker-rk3288/layers/bitba=
-ke/lib/bb/__init__.py", line 108, in fatal:
->                  mainlogger.critical(''.join(args), extra=3Dkwargs)
->             >    raise BBHandledException()
->
->         bb.data_smart.ExpansionError: Failure expanding variable MESON_BU=
-ILDTYPE, expression was ${@check_buildtype(d)} which triggered exception BB=
-HandledException:
->
->
->         Summary: There were 4 WARNING messages shown.
->         Summary: There were 3 ERROR messages shown, returning a non-zero =
-exit code.
+Coverts the firefly-rk3288, tinker-rk3288, and vyasa-rk3288 machines to
+use wic instead of the rockchip-gpt-img class. The rock2-squared machine
+has to keep the older image class because u-boot doesn't provided a
+combined idbloader for it.
 
-then you could use an anonymous python function instead.
+Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
+---
+ conf/machine/firefly-rk3288.conf | 15 ++++++++++++++-
+ conf/machine/include/rk3288.inc  |  2 --
+ conf/machine/rock2-square.conf   |  6 ++++++
+ conf/machine/tinker-rk3288.conf  | 15 ++++++++++++++-
+ conf/machine/vyasa-rk3288.conf   | 14 ++++++++++++++
+ wic/firefly-rk3288.wks           | 26 ++++++++++++++++++++++++++
+ wic/tinker-rk3288.wks            | 26 ++++++++++++++++++++++++++
+ wic/vyasa-rk3288.wks             | 27 +++++++++++++++++++++++++++
+ 8 files changed, 127 insertions(+), 4 deletions(-)
+ create mode 100644 wic/firefly-rk3288.wks
+ create mode 100644 wic/tinker-rk3288.wks
+ create mode 100644 wic/vyasa-rk3288.wks
 
-python () {
-             _buildtype =3D d.getVar('MESA_BUILD_TYPE')
-             if _buildtype not in ['release', 'debug']:
-                 bb.fatal("unknown build type (%s), please set to
-either 'release' or 'debug'" % _buildtype)
-             if _buildtype =3D=3D 'debug':
-                 d.setVar('MESON_BUILDTYPE', 'debugoptimized')
-}
+diff --git a/conf/machine/firefly-rk3288.conf b/conf/machine/firefly-rk3288.conf
+index 0900440..71e0bc3 100644
+--- a/conf/machine/firefly-rk3288.conf
++++ b/conf/machine/firefly-rk3288.conf
+@@ -10,4 +10,17 @@ require conf/machine/include/rk3288.inc
+ 
+ KERNEL_DEVICETREE = "rk3288-firefly.dtb"
+ UBOOT_MACHINE = "firefly-rk3288_defconfig"
+-GPTIMG_APPEND = "console=tty1 console=ttyS2,115200n8 rw root=/dev/mmcblk0p7 rootfstype=ext4 init=/sbin/init"
++
++WKS_FILE = "firefly-rk3288.wks"
++IMAGE_FSTYPES += "wic"
++
++WKS_FILE_DEPENDS ?= " \
++    mtools-native \
++    dosfstools-native \
++    virtual/bootloader \
++    virtual/kernel \
++    "
++IMAGE_BOOT_FILES ?= "\
++    ${KERNEL_IMAGETYPE} \
++    ${KERNEL_DEVICETREE} \
++    "
+diff --git a/conf/machine/include/rk3288.inc b/conf/machine/include/rk3288.inc
+index 6e9a09a..b261692 100644
+--- a/conf/machine/include/rk3288.inc
++++ b/conf/machine/include/rk3288.inc
+@@ -12,5 +12,3 @@ SERIAL_CONSOLES = "115200;ttyS2"
+ PREFERRED_PROVIDER_virtual/bootloader ?= "u-boot"
+ SPL_BINARY ?= "idbloader.img"
+ 
+-IMAGE_FSTYPES += "rockchip-gpt-img"
+-IMAGE_CLASSES += "rockchip-gpt-img"
+diff --git a/conf/machine/rock2-square.conf b/conf/machine/rock2-square.conf
+index 737d3ae..46064ee 100644
+--- a/conf/machine/rock2-square.conf
++++ b/conf/machine/rock2-square.conf
+@@ -11,3 +11,9 @@ require conf/machine/include/rk3288.inc
+ SPL_BINARY = "u-boot-spl-dtb.bin"
+ KERNEL_DEVICETREE = "rk3288-rock2-square.dtb"
+ UBOOT_MACHINE = "rock2_defconfig"
++
++# This board doesn't support the combined idbloader, so resort to the older
++# image class
++IMAGE_FSTYPES += "rockchip-gpt-img"
++IMAGE_CLASSES += "rockchip-gpt-img"
++
+diff --git a/conf/machine/tinker-rk3288.conf b/conf/machine/tinker-rk3288.conf
+index 9e23f8d..e460d43 100644
+--- a/conf/machine/tinker-rk3288.conf
++++ b/conf/machine/tinker-rk3288.conf
+@@ -9,4 +9,17 @@ require conf/machine/include/rk3288.inc
+ 
+ KERNEL_DEVICETREE = "rk3288-tinker.dtb"
+ UBOOT_MACHINE = "tinker-rk3288_defconfig"
+-GPTIMG_APPEND = "console=tty1 console=ttyS2,115200n8 rw root=/dev/mmcblk0p7 rootfstype=ext4 init=/sbin/init"
++
++WKS_FILE = "tinker-rk3288.wks"
++IMAGE_FSTYPES += "wic"
++
++WKS_FILE_DEPENDS ?= " \
++    mtools-native \
++    dosfstools-native \
++    virtual/bootloader \
++    virtual/kernel \
++    "
++IMAGE_BOOT_FILES ?= "\
++    ${KERNEL_IMAGETYPE} \
++    ${KERNEL_DEVICETREE} \
++    "
+diff --git a/conf/machine/vyasa-rk3288.conf b/conf/machine/vyasa-rk3288.conf
+index bfbd09b..03a436a 100644
+--- a/conf/machine/vyasa-rk3288.conf
++++ b/conf/machine/vyasa-rk3288.conf
+@@ -12,3 +12,17 @@ KERNEL_DEVICETREE = "rk3288-vyasa.dtb"
+ KERNEL_EXTRA_ARGS += "LOADADDR=0x02000000"
+ 
+ UBOOT_MACHINE = "vyasa-rk3288_defconfig"
++
++WKS_FILE = "vyasa-rk3288.wks"
++IMAGE_FSTYPES += "wic"
++
++WKS_FILE_DEPENDS ?= " \
++    mtools-native \
++    dosfstools-native \
++    virtual/bootloader \
++    virtual/kernel \
++    "
++IMAGE_BOOT_FILES ?= "\
++    ${KERNEL_IMAGETYPE} \
++    ${KERNEL_DEVICETREE} \
++    "
+diff --git a/wic/firefly-rk3288.wks b/wic/firefly-rk3288.wks
+new file mode 100644
+index 0000000..5013aea
+--- /dev/null
++++ b/wic/firefly-rk3288.wks
+@@ -0,0 +1,26 @@
++# Copyright (C) 2019 Garmin Ltd. or its subsidiaries
++# Released under the MIT license (see COPYING.MIT for the terms)
++#
++# Disk layout
++# Note that the reference documentation refers to 512 byte disk sectors, but
++# wic uses 1KB blocks
++#
++#   Partition   Start Sector    Number of Sectors
++#   loader1     64              8000
++#   reserved1   8064            128
++#   reserved2   8192            8192
++#   loader2     16384           8192
++#   atf         24576           8192
++#   boot        32768           229376
++#   root        262144          -
++#
++
++part loader1    --ondisk mmcblk0 --align 32     --size 4000K            --source rawcopy --sourceparams="file=idbloader.img"
++part reserved1  --ondisk mmcblk0 --align 4032   --size 64K
++part reserved2  --ondisk mmcblk0 --align 4096   --size 4096K
++part loader2    --ondisk mmcblk0 --align 8192   --size 4096K            --source rawcopy --sourceparams="file=u-boot.bin"
++part atf        --ondisk mmcblk0 --align 12288  --size 4096K
++part /boot      --ondisk mmcblk0 --align 16384  --size=114688K --active --source bootimg-partition --fstype=vfat --label boot --sourceparams="loader=u-boot"
++part /          --ondisk mmcblk0 --align 131072                         --source rootfs            --fstype=ext4 --label root
++
++bootloader --ptable gpt --append="console=tty1 console=ttyS2,115200n8 rw root=/dev/mmcblk0p7 rootfstype=ext4 init=/sbin/init"
+diff --git a/wic/tinker-rk3288.wks b/wic/tinker-rk3288.wks
+new file mode 100644
+index 0000000..5013aea
+--- /dev/null
++++ b/wic/tinker-rk3288.wks
+@@ -0,0 +1,26 @@
++# Copyright (C) 2019 Garmin Ltd. or its subsidiaries
++# Released under the MIT license (see COPYING.MIT for the terms)
++#
++# Disk layout
++# Note that the reference documentation refers to 512 byte disk sectors, but
++# wic uses 1KB blocks
++#
++#   Partition   Start Sector    Number of Sectors
++#   loader1     64              8000
++#   reserved1   8064            128
++#   reserved2   8192            8192
++#   loader2     16384           8192
++#   atf         24576           8192
++#   boot        32768           229376
++#   root        262144          -
++#
++
++part loader1    --ondisk mmcblk0 --align 32     --size 4000K            --source rawcopy --sourceparams="file=idbloader.img"
++part reserved1  --ondisk mmcblk0 --align 4032   --size 64K
++part reserved2  --ondisk mmcblk0 --align 4096   --size 4096K
++part loader2    --ondisk mmcblk0 --align 8192   --size 4096K            --source rawcopy --sourceparams="file=u-boot.bin"
++part atf        --ondisk mmcblk0 --align 12288  --size 4096K
++part /boot      --ondisk mmcblk0 --align 16384  --size=114688K --active --source bootimg-partition --fstype=vfat --label boot --sourceparams="loader=u-boot"
++part /          --ondisk mmcblk0 --align 131072                         --source rootfs            --fstype=ext4 --label root
++
++bootloader --ptable gpt --append="console=tty1 console=ttyS2,115200n8 rw root=/dev/mmcblk0p7 rootfstype=ext4 init=/sbin/init"
+diff --git a/wic/vyasa-rk3288.wks b/wic/vyasa-rk3288.wks
+new file mode 100644
+index 0000000..3fc9a5b
+--- /dev/null
++++ b/wic/vyasa-rk3288.wks
+@@ -0,0 +1,27 @@
++# Copyright (C) 2019 Garmin Ltd. or its subsidiaries
++# Released under the MIT license (see COPYING.MIT for the terms)
++#
++# Disk layout
++# Note that the reference documentation refers to 512 byte disk sectors, but
++# wic uses 1KB blocks
++#
++#   Partition   Start Sector    Number of Sectors
++#   loader1     64              8000
++#   reserved1   8064            128
++#   reserved2   8192            8192
++#   loader2     16384           8192
++#   atf         24576           8192
++#   boot        32768           229376
++#   root        262144          -
++#
++
++part loader1    --ondisk mmcblk2 --align 32     --size 4000K            --source rawcopy --sourceparams="file=idbloader.img"
++part reserved1  --ondisk mmcblk2 --align 4032   --size 64K
++part reserved2  --ondisk mmcblk2 --align 4096   --size 4096K
++part loader2    --ondisk mmcblk2 --align 8192   --size 4096K            --source rawcopy --sourceparams="file=u-boot.bin"
++part atf        --ondisk mmcblk2 --align 12288  --size 4096K
++part /boot      --ondisk mmcblk2 --align 16384  --size=114688K --active --source bootimg-partition --fstype=vfat --label boot --sourceparams="loader=u-boot"
++part /          --ondisk mmcblk2 --align 131072                         --source rootfs            --fstype=ext4 --label root
++
++bootloader --ptable gpt --append="console=tty1 console=ttyS2,115200n8 rw root=/dev/mmcblk2p7 rootfstype=ext4 init=/sbin/init"
++                                  
+-- 
+2.23.0
 
-or something along these lines. that would be done during parsing, so
-the variable should be set for all tasks.
