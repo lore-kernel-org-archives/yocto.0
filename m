@@ -1,487 +1,332 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.395.1576012143209290610
+Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
+ by mx.groups.io with SMTP id smtpd.web12.1475.1576030697565573811
  for <yocto@lists.yoctoproject.org>;
- Tue, 10 Dec 2019 13:09:03 -0800
+ Tue, 10 Dec 2019 18:18:17 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=vhqO1ngy;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: waynli329@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C0ACDE011EC; Tue, 10 Dec 2019 13:09:02 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (waynli329[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.166.44 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32D6CE00736
-	for <yocto@yoctoproject.org>; Tue, 10 Dec 2019 13:08:59 -0800 (PST)
-Received: by mail-io1-f44.google.com with SMTP id i11so20297884ioi.12
-        for <yocto@yoctoproject.org>; Tue, 10 Dec 2019 13:08:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hh7wpWcxjHloxCDngpv5IIHsM5p6Ae22z1DuDLZckW4=;
-        b=vhqO1ngy/Q4AbgKRhyun5IXhJppgqeKeKDZJ+WqPNoVyh9Vootsb0AuOWmC08Eb0tZ
-         av3OIebE5h9EQCPItpBlsbNjIpknJ8kiF0A7GjINiAwJuCAjhDCcv4ywn7bbPoirQjh4
-         C/BQ1O7zH0eenyCg7eANmYr1t6Kghj0N0cH9SleTKBlAzolDieaFZZ2Sl2N9YGScI9FC
-         MtV/ozyi1ErCJQzs+AEM1Fmc0lS7QfN8vUsCn15n3o8zquX6pzX0LlJ8LsyCFScqBTdA
-         AwM97EruswI47FOxIiK8VZuNfUo9tvat+sltUTq+T8oo/XcyQp5KzfQaLDY34bdrerhN
-         xuNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hh7wpWcxjHloxCDngpv5IIHsM5p6Ae22z1DuDLZckW4=;
-        b=r/Rev4DMdjUUOPpGwyNYTsCLOTfRCVZ50QFGHf1MN/imoZBKCllUsTkqlGYKUbPR45
-         pKDBu0OrLskR02QlFYYBdTFoi2zFWgh/e/Ac3r7ENI2YaDRInlIosuqjSS1KRqliZxQ2
-         n4SbilnjxsqCA3vs7jqU4l1iSfd16S5In1rmmj2vbrKTL3YiOLhSqcUtjSdJz4/D55WE
-         v7DQBXE3YZEyBtWRx9xZuEijru5TB7/FQSfswyvDRl+WfF1N8v1AzRURvli/g0XoB75B
-         jHXVPDP9FZouJaUJo7PCXOOxT4rJldNLcvSJuahvGdNJInUlnQ+VGyNU7wtLDozdd/Vx
-         uFcw==
-X-Gm-Message-State: APjAAAUU/mXftmb81LOK4LHrfUkEIAOW8arBzmi5BcOiIouu5qhIie3M
-	ouU0+NrIzOHi5EBp4MNluM+vGPLx9T9OjbTR+8eY64nm
-X-Google-Smtp-Source: APXvYqwdmglKgoMH8M/tAHhUIYGn+QQ4BpQKUGUjw4U5Gad9f0eBTF4hYf3wibK+lLdKYeqiiSlQXRPI8OjIMEBb8aM=
-X-Received: by 2002:a02:aa10:: with SMTP id r16mr9643360jam.48.1576012138684;
- Tue, 10 Dec 2019 13:08:58 -0800 (PST)
+ dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: yi.zhao@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id xBB2IGsF018567
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
+	Tue, 10 Dec 2019 18:18:16 -0800
+Received: from [128.224.162.174] (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0; Tue, 10 Dec
+ 2019 18:18:15 -0800
+Subject: Re: [yocto] [meta-selinux] Dependency loop help with selinux userspace/python3/util-linux
+To: <peter.morrow@microsoft.com>,
+        "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+CC: <yocto@lists.yoctoproject.org>
+References: <e95481c9b63c68e8545662310bf6cbd2f4bd6f71.camel@microsoft.com>
+From: "Yi Zhao" <yi.zhao@windriver.com>
+Message-ID: <52cc753c-0a76-88c1-f65c-eb15ce6a4475@windriver.com>
+Date: Wed, 11 Dec 2019 10:18:11 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-References: <CAM2K0nr6suFCaV-Ne7zv7ukyiXh4BG5H0Y6S6UkS5h08x8aGAg@mail.gmail.com>
- <CS1PR8401MB0568A3D49346083E949FA11C825C0@CS1PR8401MB0568.NAMPRD84.PROD.OUTLOOK.COM>
- <CAM2K0nrFdGNsU=BxEDV9nPj0W0zqKTogq9RXoBofiQYKGGCuqA@mail.gmail.com> <CS1PR8401MB0568292C74FD3BC61A690DC3825B0@CS1PR8401MB0568.NAMPRD84.PROD.OUTLOOK.COM>
-In-Reply-To: <CS1PR8401MB0568292C74FD3BC61A690DC3825B0@CS1PR8401MB0568.NAMPRD84.PROD.OUTLOOK.COM>
-From: "Wayne Li" <waynli329@gmail.com>
-Date: Tue, 10 Dec 2019 21:08:47 +0000
-Message-ID: <CAM2K0nqnEyUMg_RBd1QY=4VACtdXogJg=5dq3n-GE=DK+39EEQ@mail.gmail.com>
-Subject: Re: [yocto] Question about shipping files to package.
-To: "McKay, Sean" <sean.mckay@hpe.com>
-Cc: bitbake-devel <bitbake-devel@lists.openembedded.org>, 
-	Yocto Project Discussion <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000b024f405995feb1f"
+In-Reply-To: <e95481c9b63c68e8545662310bf6cbd2f4bd6f71.camel@microsoft.com>
+X-Originating-IP: [128.224.162.174]
+Content-Type: multipart/alternative;
+	boundary="------------658A431C8943E437DB06B4D3"
+Content-Language: en-US
 
---000000000000b024f405995feb1f
-Content-Type: text/plain; charset="UTF-8"
+--------------658A431C8943E437DB06B4D3
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail5.wrs.com id xBB2IGsF018567
 
-That makes a lot of sense.  The version I'm on is: PV=3D"4.1" (I just ran
-bitbake -e virtual/kernel | grep "^PV").
 
-On Tue, Dec 10, 2019 at 8:54 PM McKay, Sean <sean.mckay@hpe.com> wrote:
+On 12/5/19 9:46 PM, Peter Morrow via Lists.Yoctoproject.Org wrote:
+> Hi Folks,
+>
+> I'm trying to upgrade the meta-selinux layer to use a newer version of
+> the selinux userspace tools (from 2.8 to 2.9), in doing so these newer
+> userspace tools now depend on python3 instead of python2.  This
+> unfortunately has created a build time dependency loop in yocto:
+>
+> python3 --> util-linux --> libselinux --> python3 (used to be python2
+> with 2.8 selinux userspace).
 
-> If the issue were *just* that your FILES_* variables were set
-> incorrectly, you=E2=80=99d at least end up with the .ko file somewhere in=
- your
-> ${WORKDIR}/image (${D}) directory. You=E2=80=99d almost certainly find an=
-other one
-> in the build or source directory as well (depending on how your .bb/bbcla=
-ss
-> files define the location of the compilation).
->
->
->
-> The fact that you don=E2=80=99t have one anywhere seems to indicate that =
-your
-> do_compile step isn=E2=80=99t actually generating the .ko that you expect=
- it to, so
-> you=E2=80=99ll need to rewind your recipe creation to working on that ste=
-p and
-> debug there.
->
->
->
-> Assuming you=E2=80=99re using poky as a base, what version are you on so =
-I can go
-> read the .bbclass you=E2=80=99re using?
->
->
->
-> -Sean
->
->
->
-> *From:* Wayne Li <waynli329@gmail.com>
-> *Sent:* Tuesday, December 10, 2019 12:23 PM
-> *To:* McKay, Sean <sean.mckay@hpe.com>
-> *Cc:* bitbake-devel <bitbake-devel@lists.openembedded.org>; Yocto Project
-> Discussion <yocto@yoctoproject.org>
-> *Subject:* Re: [yocto] Question about shipping files to package.
->
->
->
-> I did a find for any files with a kvm and a .ko in its name throughout my
-> entire workspace and nothing came up.  But anyway, thanks for the
-> explanation.  Could packaging the files wrong (i.e. setting the FILES
-> variable wrong) cause the kvm.ko file to never show up at all?  I guess
-> that couldn't be the case though because the .ko files are created first
-> before it gets packaged up so if they were created in the first place a
-> search through my entire workspace would turn them up.  Is that correct?
->
->
->
-> On Thu, Dec 5, 2019 at 11:14 PM McKay, Sean <sean.mckay@hpe.com> wrote:
->
-> I=E2=80=99m not an expert on compiling kernel modules, but I can at least=
- answer
-> some of your questions to get started. I=E2=80=99m also not an actual exp=
-ert, but
-> just another user, so it=E2=80=99s entirely possible that someone more
-> knowledgeable will come along and tell us that I=E2=80=99m wrong.
->
->
->
-> With that said, first, I have to ask the simple stuff: when you say that
-> no .ko is being created, where are you looking? If you=E2=80=99re not sur=
-e where
-> you should be looking, I=E2=80=99d recommend by doing a find inside of yo=
-ur
-> ${WORKDIR} to see whether or not you=E2=80=99ve got any .ko files. They w=
-on=E2=80=99t quite
-> be out in plain sight.
->
->
->
-> In general (though again, I can=E2=80=99t speak for the module class),
-> compilations take place in a build directory inside of the recipe=E2=80=
-=99s workdir
-> (${B} in bitbake parlance). The install process then copies the created
-> files to a staging directory (${D} in bitbake parlance) that=E2=80=99s us=
-ually
-> ${WORKDIR}/image.
->
->
->
-> Packaging is the process of taking those output files from ${D} and
-> packaging them into one of a few well defined packaging formats. If you=
-=E2=80=99re
-> using the defaults, this would be RPM. A single recipe can (and often doe=
-s)
-> produce multiple packages. When bitbake moves onto the packaging step (I=
-=E2=80=99m
-> simplifying a bit), it creates directories for each package that=E2=80=99=
-s going to
-> be generated inside of ${WORKDIR}/packages-split. It then looks at the
-> FILES variable for the particular package it=E2=80=99s working on and cop=
-ies any
-> files that match the patterns in that variable into that package=E2=80=99=
-s
-> directory in packages-split. When it=E2=80=99s done copying files, each o=
-f those
-> directories are turned into the appropriate package (probably .rpm) file.
->
-> So, for a somewhat more concrete example, when you said =E2=80=98FILES_${=
-PN} +=3D
-> "/lib/modules/4.1.8-rt8+gbd51baf"=E2=80=99, you told bitbake that anythin=
-g that
-> matched /lib/modules/4.1.8-rt8+gbd51baf should get put in the ${PN} (main=
-)
-> package.
->
->
->
-> In the context of the error message you were previously receiving,
-> =E2=80=9Cinstalled=E2=80=9D is the do_install step, which is referring to=
- that staging
-> process (analogous to running =E2=80=98make install=E2=80=99 on something=
- you just
-> downloaded from the internet). Something is =E2=80=98shipped=E2=80=99 if =
-it is packaged
-> into one of the final rpm files.
->
->
->
-> Cheers!
->
-> -Sean McKay
->
->
->
-> *From:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> *On
-> Behalf Of *Wayne Li
-> *Sent:* Thursday, December 5, 2019 2:26 PM
-> *To:* bitbake-devel <bitbake-devel@lists.openembedded.org>; Yocto Project
-> Discussion <yocto@yoctoproject.org>
-> *Subject:* [yocto] Question about shipping files to package.
->
->
->
-> Dear Yocto Developers,
->
->
->
-> So I created a bitbake recipe to integrate kvm into my image as an
-> out-of-tree kernel module.  Here's my recipe right now:
->
->
->
-> LICENSE =3D "GPLv2"
-> LIC_FILES_CHKSUM =3D "file://COPYING;md5=3Dc616d0e7924e9e78ee192d99a3b26f=
-bd"
->
-> inherit module
->
-> SRC_URI =3D "
-> file:///homead/QorIQ-SDK-V2.0-20160527-yocto/sources/meta-virtualization/=
-recipes-kernel/kvm-kmodule/kvm-kmod-3.10.21.tar.bz2
-> "
->
-> S =3D "${WORKDIR}/kvm-kmod-3.10.21"
->
-> do_configure() {
->     ./configure --arch=3Dppc64
-> --kerneldir=3D/homead/QorIQ-SDK-V2.0-20160527-yocto/build_t4240rdb-64b/tm=
-p/work/t4240rdb_64b-fsl-linux/kernel-devsrc/1.0-r0/image/usr/src/kernel
-> }
->
-> FILES_${PN} +=3D "/lib/modules/4.1.8-rt8+gbd51baf"
->
->
->
-> Bitbaking this recipe completes with no problems but no kernel module is
-> created (compiling the source code should create a kernel module file
-> kvm.ko).  I was wondering if the problem might be because of what I set
-> FILES_${PN} to be.  Before I set the FILES variable I was getting an erro=
-r
-> saying something along the lines of, "Files/directories were installed bu=
-t
-> not shipped."  Then I more or less just guessed a directory and set my
-> FILES variable to it and then the recipe finished bitbaking with no error=
-s.
->
->
->
-> But now that the kvm.ko file isn't even being created, I am wondering if
-> it might be because I set the FILES variable wrong?  What does the word
-> "ship" mean?  And along those lines what exactly is a "package" in the
-> setting of Yocto project?
->
->
->
-> -Thanks!, Wayne Li
->
->
 
---000000000000b024f405995feb1f
-Content-Type: text/html; charset="UTF-8"
+Hi Peter,
+
+I had sent a series patches to update selinux usersapce tools from 2.8=20
+ot 2.9:=20
+https://www.yoctoproject.org/pipermail/yocto/2019-November/047329.html
+
+After switch to python3, there is a loop dependency error with=20
+libselinux-python package when build libselinux. So I split the original=20
+libselinux recipe into=C2=A0 libselinux and libselinux-python. You can re=
+fer=20
+my patchset.
+
+
+//Yi
+
+
+> Running "bitbake libselinux" results in a pile of loops, the one below
+> illustrates the point.
+>
+> ERROR:
+> Dependency loop #1 found:
+>    Task /workspace/git/yocto-selinux/meta-selinux/recipes-
+> security/selinux/libselinux_2.9.bb:do_package (dependent Tasks ['gcc-
+> runtime_9.2.bb:do_packagedata', 'libsepol_2.9.bb:do_packagedata',
+> 'rpm_4.14.2.1.bb:do_populate_sysroot', 'glibc_2.30.bb:do_packagedata',
+> 'python3_3.7.5.bb:do_packagedata', 'libpcre_8.43.bb:do_packagedata',
+> 'pseudo_git.bb:do_populate_sysroot',
+> 'dwarfsrcfiles.bb:do_populate_sysroot',
+> 'libselinux_2.9.bb:do_install'])
+>    Task /workspace/git/yocto-selinux/meta-selinux/recipes-
+> security/selinux/libselinux_2.9.bb:do_packagedata (dependent Tasks
+> ['libselinux_2.9.bb:do_package'])
+>    Task /workspace/git/yocto-selinux/poky/meta/recipes-
+> extended/pam/libpam_1.3.1.bb:do_package (dependent Tasks ['gcc-
+> runtime_9.2.bb:do_packagedata', 'rpm_4.14.2.1.bb:do_populate_sysroot',
+> 'glibc_2.30.bb:do_packagedata', 'libselinux_2.9.bb:do_packagedata',
+> 'flex_2.6.0.bb:do_packagedata', 'pseudo_git.bb:do_populate_sysroot',
+> 'libxcrypt_4.4.8.bb:do_packagedata', 'libpam_1.3.1.bb:do_install',
+> 'dwarfsrcfiles.bb:do_populate_sysroot',
+> 'cracklib_2.9.5.bb:do_packagedata', 'libtool-
+> cross_2.4.6.bb:do_packagedata'])
+>    Task /workspace/git/yocto-selinux/poky/meta/recipes-
+> extended/pam/libpam_1.3.1.bb:do_packagedata (dependent Tasks
+> ['libpam_1.3.1.bb:do_package'])
+>    Task /workspace/git/yocto-selinux/poky/meta/recipes-core/util-
+> linux/util-linux_2.34.bb:do_package (dependent Tasks ['gcc-
+> runtime_9.2.bb:do_packagedata', 'rpm_4.14.2.1.bb:do_populate_sysroot',
+> 'bash-completion_2.9.bb:do_packagedata',
+> 'zlib_1.2.11.bb:do_packagedata', 'glibc_2.30.bb:do_packagedata',
+> 'libselinux_2.9.bb:do_packagedata',
+> 'pseudo_git.bb:do_populate_sysroot',
+> 'ncurses_6.1+20190803.bb:do_packagedata',
+> 'libxcrypt_4.4.8.bb:do_packagedata', 'libcap-
+> ng_0.7.9.bb:do_packagedata', 'opkg-utils_0.4.1.bb:do_packagedata',
+> 'libpam_1.3.1.bb:do_packagedata', 'util-
+> linux_2.34.bb:do_install_ptest_base',
+> 'dwarfsrcfiles.bb:do_populate_sysroot', 'util-
+> linux_2.34.bb:do_install', 'libtool-cross_2.4.6.bb:do_packagedata'])
+>    Task /workspace/git/yocto-selinux/poky/meta/recipes-core/util-
+> linux/util-linux_2.34.bb:do_packagedata (dependent Tasks ['util-
+> linux_2.34.bb:do_package'])
+>    Task /workspace/git/yocto-selinux/poky/meta/recipes-
+> devtools/python/python3_3.7.5.bb:do_package (dependent Tasks
+> ['xz_5.2.4.bb:do_packagedata', 'bzip2_1.0.8.bb:do_packagedata',
+> 'gdbm_1.18.1.bb:do_packagedata', 'libnsl2_git.bb:do_packagedata', 'gcc-
+> runtime_9.2.bb:do_packagedata', 'rpm_4.14.2.1.bb:do_populate_sysroot',
+> 'python3_3.7.5.bb:do_install', 'libffi_3.3~rc0.bb:do_packagedata',
+> 'pseudo_git.bb:do_populate_sysroot',
+> 'sqlite3_3.29.0.bb:do_packagedata', 'openssl_1.1.1d.bb:do_packagedata',
+> 'libtirpc_1.1.4.bb:do_packagedata', 'zlib_1.2.11.bb:do_packagedata',
+> 'glibc_2.30.bb:do_packagedata', 'libxcrypt_4.4.8.bb:do_packagedata',
+> 'python3_3.7.5.bb:do_install_ptest_base', 'util-
+> linux_2.34.bb:do_packagedata', 'opkg-utils_0.4.1.bb:do_packagedata',
+> 'readline_8.0.bb:do_packagedata',
+> 'dwarfsrcfiles.bb:do_populate_sysroot', 'libtool-
+> cross_2.4.6.bb:do_packagedata'])
+>    Task /workspace/git/yocto-selinux/poky/meta/recipes-
+> devtools/python/python3_3.7.5.bb:do_packagedata (dependent Tasks
+> ['python3_3.7.5.bb:do_package'])
+>
+> Python3 (3.7.5) appears to depend on util-linux for libuuid support, so
+> I don't think anything can be done with regards to this.  libselinux
+> now depends on python3 as of 2.9, so again not much can be done here.
+> It's proving a bit harder to track down the util-linux dependency on
+> libselinux but I believe this is a hard depdency as well.
+>
+> I'm using the master branch of both poky and meta-selinux for testing,
+> my local.conf file has the following to enable testing:
+>
+> DISTRO_FEATURES_append=3D" acl xattr pam selinux"
+>
+> The crux of the libselinux recipe change is really just changing the
+> python2 deps over to python3 ones in meta-selinux/recipes-
+> security/selinux/libselinux.inc.
+>
+> At this point I'd be trying to look for places where recipes can be
+> split out to remove the loop, but nothing jumps out at me.
+>
+> Can anyone offer any advice or pointers on how to get around this?  Or
+> am I just stuffed?
+>
+> Many Thanks,
+> Peter.
+>
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+>
+> View/Reply Online (#47570): https://lists.yoctoproject.org/g/yocto/mess=
+age/47570
+> Mute This Topic: https://lists.yoctoproject.org/mt/66953299/3616783
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [yi.zhao@win=
+driver.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+
+--------------658A431C8943E437DB06B4D3
+Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail5.wrs.com id xBB2IGsF018567
 
-<div dir=3D"ltr">That makes a lot of sense.=C2=A0 The version I&#39;m on is=
-: PV=3D&quot;4.1&quot; (I just ran bitbake -e virtual/kernel | grep &quot;^=
-PV&quot;).<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Tue, Dec 10, 2019 at 8:54 PM McKay, Sean &lt;<a href=3D"=
-mailto:sean.mckay@hpe.com">sean.mckay@hpe.com</a>&gt; wrote:<br></div><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:=
-1px solid rgb(204,204,204);padding-left:1ex">
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <p><br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 12/5/19 9:46 PM, Peter Morrow via
+      Lists.Yoctoproject.Org wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:e95481c9b63c68e8545662310bf6cbd2f4bd6f71.camel@microsof=
+t.com">
+      <pre class=3D"moz-quote-pre" wrap=3D"">Hi Folks,
 
+I'm trying to upgrade the meta-selinux layer to use a newer version of
+the selinux userspace tools (from 2.8 to 2.9), in doing so these newer
+userspace tools now depend on python3 instead of python2.  This
+unfortunately has created a build time dependency loop in yocto:
 
+python3 --&gt; util-linux --&gt; libselinux --&gt; python3 (used to be py=
+thon2
+with 2.8 selinux userspace).
+</pre>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>Hi Peter,</p>
+    <p>I had sent a series patches to update selinux usersapce tools
+      from 2.8 ot 2.9:
+      <a class=3D"moz-txt-link-freetext" href=3D"https://www.yoctoproject=
+.org/pipermail/yocto/2019-November/047329.html">https://www.yoctoproject.=
+org/pipermail/yocto/2019-November/047329.html</a></p>
+    <p>After switch to python3, there is a loop dependency error with
+      libselinux-python package when build libselinux. So I split the
+      original libselinux recipe into=C2=A0 libselinux and libselinux-pyt=
+hon.
+      You can refer my patchset.</p>
+    <p><br>
+    </p>
+    <p>//Yi</p>
+    <p><br>
+    </p>
+    <blockquote type=3D"cite"
+      cite=3D"mid:e95481c9b63c68e8545662310bf6cbd2f4bd6f71.camel@microsof=
+t.com">
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+Running "bitbake libselinux" results in a pile of loops, the one below
+illustrates the point.
 
+ERROR:
+Dependency loop #1 found:
+  Task /workspace/git/yocto-selinux/meta-selinux/recipes-
+security/selinux/libselinux_2.9.bb:do_package (dependent Tasks ['gcc-
+runtime_9.2.bb:do_packagedata', 'libsepol_2.9.bb:do_packagedata',
+'rpm_4.14.2.1.bb:do_populate_sysroot', 'glibc_2.30.bb:do_packagedata',
+'python3_3.7.5.bb:do_packagedata', 'libpcre_8.43.bb:do_packagedata',
+'pseudo_git.bb:do_populate_sysroot',
+'dwarfsrcfiles.bb:do_populate_sysroot',
+'libselinux_2.9.bb:do_install'])
+  Task /workspace/git/yocto-selinux/meta-selinux/recipes-
+security/selinux/libselinux_2.9.bb:do_packagedata (dependent Tasks
+['libselinux_2.9.bb:do_package'])
+  Task /workspace/git/yocto-selinux/poky/meta/recipes-
+extended/pam/libpam_1.3.1.bb:do_package (dependent Tasks ['gcc-
+runtime_9.2.bb:do_packagedata', 'rpm_4.14.2.1.bb:do_populate_sysroot',
+'glibc_2.30.bb:do_packagedata', 'libselinux_2.9.bb:do_packagedata',
+'flex_2.6.0.bb:do_packagedata', 'pseudo_git.bb:do_populate_sysroot',
+'libxcrypt_4.4.8.bb:do_packagedata', 'libpam_1.3.1.bb:do_install',
+'dwarfsrcfiles.bb:do_populate_sysroot',
+'cracklib_2.9.5.bb:do_packagedata', 'libtool-
+cross_2.4.6.bb:do_packagedata'])
+  Task /workspace/git/yocto-selinux/poky/meta/recipes-
+extended/pam/libpam_1.3.1.bb:do_packagedata (dependent Tasks
+['libpam_1.3.1.bb:do_package'])
+  Task /workspace/git/yocto-selinux/poky/meta/recipes-core/util-
+linux/util-linux_2.34.bb:do_package (dependent Tasks ['gcc-
+runtime_9.2.bb:do_packagedata', 'rpm_4.14.2.1.bb:do_populate_sysroot',
+'bash-completion_2.9.bb:do_packagedata',
+'zlib_1.2.11.bb:do_packagedata', 'glibc_2.30.bb:do_packagedata',
+'libselinux_2.9.bb:do_packagedata',
+'pseudo_git.bb:do_populate_sysroot',
+'ncurses_6.1+20190803.bb:do_packagedata',
+'libxcrypt_4.4.8.bb:do_packagedata', 'libcap-
+ng_0.7.9.bb:do_packagedata', 'opkg-utils_0.4.1.bb:do_packagedata',
+'libpam_1.3.1.bb:do_packagedata', 'util-
+linux_2.34.bb:do_install_ptest_base',
+'dwarfsrcfiles.bb:do_populate_sysroot', 'util-
+linux_2.34.bb:do_install', 'libtool-cross_2.4.6.bb:do_packagedata'])
+  Task /workspace/git/yocto-selinux/poky/meta/recipes-core/util-
+linux/util-linux_2.34.bb:do_packagedata (dependent Tasks ['util-
+linux_2.34.bb:do_package'])
+  Task /workspace/git/yocto-selinux/poky/meta/recipes-
+devtools/python/python3_3.7.5.bb:do_package (dependent Tasks
+['xz_5.2.4.bb:do_packagedata', 'bzip2_1.0.8.bb:do_packagedata',
+'gdbm_1.18.1.bb:do_packagedata', 'libnsl2_git.bb:do_packagedata', 'gcc-
+runtime_9.2.bb:do_packagedata', 'rpm_4.14.2.1.bb:do_populate_sysroot',
+'python3_3.7.5.bb:do_install', 'libffi_3.3~rc0.bb:do_packagedata',
+'pseudo_git.bb:do_populate_sysroot',
+'sqlite3_3.29.0.bb:do_packagedata', 'openssl_1.1.1d.bb:do_packagedata',
+'libtirpc_1.1.4.bb:do_packagedata', 'zlib_1.2.11.bb:do_packagedata',
+'glibc_2.30.bb:do_packagedata', 'libxcrypt_4.4.8.bb:do_packagedata',
+'python3_3.7.5.bb:do_install_ptest_base', 'util-
+linux_2.34.bb:do_packagedata', 'opkg-utils_0.4.1.bb:do_packagedata',
+'readline_8.0.bb:do_packagedata',
+'dwarfsrcfiles.bb:do_populate_sysroot', 'libtool-
+cross_2.4.6.bb:do_packagedata'])
+  Task /workspace/git/yocto-selinux/poky/meta/recipes-
+devtools/python/python3_3.7.5.bb:do_packagedata (dependent Tasks
+['python3_3.7.5.bb:do_package'])
 
+Python3 (3.7.5) appears to depend on util-linux for libuuid support, so
+I don't think anything can be done with regards to this.  libselinux
+now depends on python3 as of 2.9, so again not much can be done here.=20
+It's proving a bit harder to track down the util-linux dependency on
+libselinux but I believe this is a hard depdency as well.
 
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_-3875789674800328248WordSection1">
-<p class=3D"MsoNormal">If the issue were <i>just</i> that your FILES_* vari=
-ables were set incorrectly, you=E2=80=99d at least end up with the .ko file=
- somewhere in your ${WORKDIR}/image (${D}) directory. You=E2=80=99d almost =
-certainly find another one in the build or source
- directory as well (depending on how your .bb/bbclass files define the loca=
-tion of the compilation).<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">The fact that you don=E2=80=99t have one anywhere se=
-ems to indicate that your do_compile step isn=E2=80=99t actually generating=
- the .ko that you expect it to, so you=E2=80=99ll need to rewind your recip=
-e creation to working on that step and debug there.<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">Assuming you=E2=80=99re using poky as a base, what v=
-ersion are you on so I can go read the .bbclass you=E2=80=99re using?<u></u=
-><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal">-Sean<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<p class=3D"MsoNormal"><b>From:</b> Wayne Li &lt;<a href=3D"mailto:waynli32=
-9@gmail.com" target=3D"_blank">waynli329@gmail.com</a>&gt; <br>
-<b>Sent:</b> Tuesday, December 10, 2019 12:23 PM<br>
-<b>To:</b> McKay, Sean &lt;<a href=3D"mailto:sean.mckay@hpe.com" target=3D"=
-_blank">sean.mckay@hpe.com</a>&gt;<br>
-<b>Cc:</b> bitbake-devel &lt;<a href=3D"mailto:bitbake-devel@lists.openembe=
-dded.org" target=3D"_blank">bitbake-devel@lists.openembedded.org</a>&gt;; Y=
-octo Project Discussion &lt;<a href=3D"mailto:yocto@yoctoproject.org" targe=
-t=3D"_blank">yocto@yoctoproject.org</a>&gt;<br>
-<b>Subject:</b> Re: [yocto] Question about shipping files to package.<u></u=
-><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<p class=3D"MsoNormal">I did a find for any files with a kvm and a .ko in i=
-ts name throughout my entire workspace and nothing came up.=C2=A0 But anywa=
-y, thanks for the explanation.=C2=A0 Could packaging the files wrong (i.e. =
-setting the FILES variable wrong) cause the
- kvm.ko file to never show up at all?=C2=A0 I guess that couldn&#39;t be th=
-e case though because the .ko files are created first before it gets packag=
-ed up so if they were created in the first place a search through my entire=
- workspace would turn them up.=C2=A0 Is that correct?<u></u><u></u></p>
-</div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal">On Thu, Dec 5, 2019 at 11:14 PM McKay, Sean &lt;<a h=
-ref=3D"mailto:sean.mckay@hpe.com" target=3D"_blank">sean.mckay@hpe.com</a>&=
-gt; wrote:<u></u><u></u></p>
-</div>
-<blockquote style=3D"border-color:currentcolor currentcolor currentcolor rg=
-b(204,204,204);border-style:none none none solid;border-width:medium medium=
- medium 1pt;padding:0in 0in 0in 6pt;margin-left:4.8pt;margin-right:0in">
-<div>
-<div>
-<p class=3D"MsoNormal">I=E2=80=99m not an expert on compiling kernel module=
-s, but I can at least answer some of your questions to get started. I=E2=80=
-=99m also not an actual expert, but just another user, so it=E2=80=99s enti=
-rely
- possible that someone more knowledgeable will come along and tell us that =
-I=E2=80=99m wrong.<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">With that said, first, I have to ask the simple stuf=
-f: when you say that no .ko is being created, where are you looking? If you=
-=E2=80=99re not sure where you should be looking, I=E2=80=99d recommend
- by doing a find inside of your ${WORKDIR} to see whether or not you=E2=80=
-=99ve got any .ko files. They won=E2=80=99t quite be out in plain sight.<u>=
-</u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">In general (though again, I can=E2=80=99t speak for =
-the module class), compilations take place in a build directory inside of t=
-he recipe=E2=80=99s workdir (${B} in bitbake parlance). The install
- process then copies the created files to a staging directory (${D} in bitb=
-ake parlance) that=E2=80=99s usually ${WORKDIR}/image.<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">Packaging is the process of taking those output file=
-s from ${D} and packaging them into one of a few well defined packaging for=
-mats. If you=E2=80=99re using the defaults, this would be
- RPM. A single recipe can (and often does) produce multiple packages. When =
-bitbake moves onto the packaging step (I=E2=80=99m simplifying a bit), it c=
-reates directories for each package that=E2=80=99s going to be generated in=
-side of ${WORKDIR}/packages-split. It then looks
- at the FILES variable for the particular package it=E2=80=99s working on a=
-nd copies any files that match the patterns in that variable into that pack=
-age=E2=80=99s directory in packages-split. When it=E2=80=99s done copying f=
-iles, each of those directories are turned into the appropriate
- package (probably .rpm) file.<u></u><u></u></p>
-<p class=3D"MsoNormal">So, for a somewhat more concrete example, when you s=
-aid =E2=80=98FILES_${PN} +=3D &quot;/lib/modules/4.1.8-rt8+gbd51baf&quot;=
-=E2=80=99, you told bitbake that anything that matched /lib/modules/4.1.8-r=
-t8+gbd51baf
- should get put in the ${PN} (main) package.<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">In the context of the error message you were previou=
-sly receiving, =E2=80=9Cinstalled=E2=80=9D is the do_install step, which is=
- referring to that staging process (analogous to running =E2=80=98make inst=
-all=E2=80=99
- on something you just downloaded from the internet). Something is =E2=80=
-=98shipped=E2=80=99 if it is packaged into one of the final rpm files.
-<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal">Cheers!<u></u><u></u></p>
-<p class=3D"MsoNormal">-Sean McKay<u></u><u></u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<p class=3D"MsoNormal"><b>From:</b>
-<a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank">yocto@lis=
-ts.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.yoctoproject.org"=
- target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt;
-<b>On Behalf Of </b>Wayne Li<br>
-<b>Sent:</b> Thursday, December 5, 2019 2:26 PM<br>
-<b>To:</b> bitbake-devel &lt;<a href=3D"mailto:bitbake-devel@lists.openembe=
-dded.org" target=3D"_blank">bitbake-devel@lists.openembedded.org</a>&gt;; Y=
-octo Project Discussion &lt;<a href=3D"mailto:yocto@yoctoproject.org" targe=
-t=3D"_blank">yocto@yoctoproject.org</a>&gt;<br>
-<b>Subject:</b> [yocto] Question about shipping files to package.<u></u><u>=
-</u></p>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-<div>
-<div>
-<p class=3D"MsoNormal">Dear Yocto Developers,<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">So I created a bitbake recipe to integrate kvm into =
-my image as an out-of-tree kernel module.=C2=A0 Here&#39;s my recipe right =
-now:<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-</div>
-<div style=3D"margin-left:30pt">
-<p class=3D"MsoNormal">LICENSE =3D &quot;GPLv2&quot;<br>
-LIC_FILES_CHKSUM =3D &quot;<a>file://COPYING;md5=3Dc616d0e7924e9e78ee192d99=
-a3b26fbd</a>&quot;<br>
-<br>
-inherit module<br>
-<br>
-SRC_URI =3D &quot;<a>file:///homead/QorIQ-SDK-V2.0-20160527-yocto/sources/m=
-eta-virtualization/recipes-kernel/kvm-kmodule/kvm-kmod-3.10.21.tar.bz2</a>&=
-quot;<br>
-<br>
-S =3D &quot;${WORKDIR}/kvm-kmod-3.10.21&quot;<br>
-<br>
-do_configure() {<br>
-=C2=A0 =C2=A0 ./configure --arch=3Dppc64 --kerneldir=3D/homead/QorIQ-SDK-V2=
-.0-20160527-yocto/build_t4240rdb-64b/tmp/work/t4240rdb_64b-fsl-linux/kernel=
--devsrc/1.0-r0/image/usr/src/kernel<br>
-}<br>
-<br>
-FILES_${PN} +=3D &quot;/lib/modules/4.1.8-rt8+gbd51baf&quot;<u></u><u></u><=
-/p>
-</div>
-<div style=3D"margin-left:30pt">
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">Bitbaking this recipe completes with no problems but=
- no kernel module is created (compiling the source code should create a ker=
-nel module file kvm.ko).=C2=A0 I was wondering if the problem
- might be because of what I set FILES_${PN} to be.=C2=A0 Before I set the F=
-ILES variable I was getting an error saying something along the lines of, &=
-quot;Files/directories were installed but not shipped.&quot;=C2=A0 Then I m=
-ore or less just guessed a directory and set my FILES
- variable to it and then the recipe finished bitbaking with no errors.<u></=
-u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">But now that the kvm.ko file isn&#39;t even being cr=
-eated, I am wondering if it might be because I set the FILES variable wrong=
-?=C2=A0 What does the word &quot;ship&quot; mean?=C2=A0 And along those lin=
-es
- what exactly is a &quot;package&quot; in the setting of Yocto project?<u><=
-/u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal">-Thanks!, Wayne Li<u></u><u></u></p>
-</div>
-</div>
-</div>
-</div>
-</blockquote>
-</div>
-</div>
-</div>
+I'm using the master branch of both poky and meta-selinux for testing,
+my local.conf file has the following to enable testing:
 
-</blockquote></div>
+DISTRO_FEATURES_append=3D" acl xattr pam selinux"
 
---000000000000b024f405995feb1f--
+The crux of the libselinux recipe change is really just changing the
+python2 deps over to python3 ones in meta-selinux/recipes-
+security/selinux/libselinux.inc.
+
+At this point I'd be trying to look for places where recipes can be
+split out to remove the loop, but nothing jumps out at me.
+
+Can anyone offer any advice or pointers on how to get around this?  Or
+am I just stuffed?
+
+Many Thanks,
+Peter.
+
+</pre>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">-=3D-=3D-=3D-=3D-=3D-=3D-=3D=
+-=3D-=3D-=3D-=3D-
+Links: You receive all messages sent to this group.
+
+View/Reply Online (#47570): <a class=3D"moz-txt-link-freetext" href=3D"ht=
+tps://lists.yoctoproject.org/g/yocto/message/47570">https://lists.yoctopr=
+oject.org/g/yocto/message/47570</a>
+Mute This Topic: <a class=3D"moz-txt-link-freetext" href=3D"https://lists=
+.yoctoproject.org/mt/66953299/3616783">https://lists.yoctoproject.org/mt/=
+66953299/3616783</a>
+Group Owner: <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:yocto+o=
+wner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
+Unsubscribe: <a class=3D"moz-txt-link-freetext" href=3D"https://lists.yoc=
+toproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub=
+</a>  [<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:yi.zhao@windr=
+iver.com">yi.zhao@windriver.com</a>]
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------658A431C8943E437DB06B4D3--
