@@ -1,145 +1,99 @@
-Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
- by mx.groups.io with SMTP id smtpd.web09.6555.1576084344886486038
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+ by mx.groups.io with SMTP id smtpd.web10.6716.1576084348543309105
  for <yocto@lists.yoctoproject.org>;
- Wed, 11 Dec 2019 09:12:25 -0800
+ Wed, 11 Dec 2019 09:12:29 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: axis.com, ip: 195.60.68.17, mailfrom: peter.kjellerstedt@axis.com)
-IronPort-SDR: N0clwLnP+VB+UYhRWzKlGygmWNhLidzvwjzYfnFeLYuMaN8kTSyXNzye2AMOxoG7or+EmpV/1L
- qXF+UobcfYu3jlw77ELF/FhRUuBV0UGLzamgIX09rQHhzrHfbVGQG7wTSZE9HcnlTwD9/ITmOV
- Aw07bdLJVHbk+KTpUW+qSTy/HMyMWiittNVZtJr0F0NtW8P9p3IMj4YOCi+AjG2XU7vAqNAWOP
- APScE2hijF/nUQ4RhtB7vx69QuRTZ5OLeKby/QuH6bxjMF1gQxEdXtD8U9iSyZBcD7Z36BBsXx
- aH0=
+ dkim=missing; spf=pass (domain: axis.com, ip: 195.60.68.18, mailfrom: peter.kjellerstedt@axis.com)
+IronPort-SDR: 37QwHIsoli7xcF/K6Yvm1sNVs9rnPEdpB7/3LvWg3ozcB8WVVHTkEh5qO1Pheud3TENH0bg+la
+ fl8psIWL98q6s8iL8j7jBG4j3qiwAIpD4cfQW3LuuMggJ8Bnc6m/qZhP4aOxnvCtPnTuVl6xSh
+ dSqRVUmCQ6ZJu6XrLEGqHJKDzbUnep7YGDrWn9ucHjMOXbQZGw4qdT47uljwCXPD4H6DcnJsRu
+ Bjdm25Mb7frdK+OjnVBz8d0xirdLe6VN051KPVZJkbjy3pM3w+tnTblMiNhMcbL688Tf0gVEvq
+ PNM=
 X-IronPort-AV: E=Sophos;i="5.69,302,1571695200"; 
-   d="scan'208";a="3495885"
+   d="scan'208";a="3391174"
 X-Axis-User: NO
 X-Axis-NonUser: YES
 X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
 From: "Peter Kjellerstedt" <peter.kjellerstedt@axis.com>
 To: yocto@lists.yoctoproject.org
 Cc: Scott Rifenbark <srifenbark@gmail.com>
-Subject: [PATCH 1/2] ref-manual: Add missing/remove extraneous quotes
-Date: Wed, 11 Dec 2019 18:12:16 +0100
-Message-Id: <20191211171217.408-1-pkj@axis.com>
+Subject: [PATCH 2/2] ref-manual: Update the documentation for USERADD_ERROR_DYNAMIC
+Date: Wed, 11 Dec 2019 18:12:17 +0100
+Message-Id: <20191211171217.408-2-pkj@axis.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20191211171217.408-1-pkj@axis.com>
+References: <20191211171217.408-1-pkj@axis.com>
 MIME-Version: 1.0
 X-TM-AS-GCONF: 00
 Content-Transfer-Encoding: 8bit
 
+* Update USERADD_ERROR_DYNAMIC[doc] and the first paragraph to match
+  the definition in meta/conf/documentation.conf.
+* Add a note explaining the differences in behavior when setting
+  USERADD_ERROR_DYNAMIC to "warn" and "error" respectively.
+
+[YOCTO #12932]
+
 Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
 ---
- documentation/ref-manual/migration.xml     |  4 ++--
- documentation/ref-manual/ref-variables.xml | 20 +++++++++-----------
- 2 files changed, 11 insertions(+), 13 deletions(-)
+ documentation/ref-manual/ref-variables.xml | 33 ++++++++++++++++------
+ 1 file changed, 25 insertions(+), 8 deletions(-)
 
-diff --git a/documentation/ref-manual/migration.xml b/documentation/ref-manual/migration.xml
-index 8d50ab9133..2052188b6b 100644
---- a/documentation/ref-manual/migration.xml
-+++ b/documentation/ref-manual/migration.xml
-@@ -2110,7 +2110,7 @@
-             such as the following:
-             <literallayout class='monospaced'>
-      inherit bluetooth
--     PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', '${BLUEZ}', '', d)}
-+     PACKAGECONFIG ??= "${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', '${BLUEZ}', '', d)}"
-      PACKAGECONFIG[bluez4] = "--enable-bluetooth,--disable-bluetooth,bluez4"
-      PACKAGECONFIG[bluez5] = "--enable-bluez5,--disable-bluez5,bluez5"
-             </literallayout>
-@@ -3624,7 +3624,7 @@ $ runqemu qemux86-64 tmp/deploy/images/qemux86-64/core-image-minimal-qemux86-64.
-             image types, this part of the kernel image base name as been
-             removed leaving only the following:
-             <literallayout class='monospaced'>
--     KERNEL_IMAGE_BASE_NAME ?= "${PKGE}-${PKGV}-${PKGR}-${MACHINE}-${DATETIME}
-+     KERNEL_IMAGE_BASE_NAME ?= "${PKGE}-${PKGV}-${PKGR}-${MACHINE}-${DATETIME}"
-             </literallayout>
-             If you have recipes or classes that use
-             <filename>KERNEL_IMAGE_BASE_NAME</filename> directly, you might
 diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
-index 02abc590cd..e6009926be 100644
+index e6009926be..c8ece0c579 100644
 --- a/documentation/ref-manual/ref-variables.xml
 +++ b/documentation/ref-manual/ref-variables.xml
-@@ -367,7 +367,7 @@
+@@ -16770,18 +16770,21 @@
  
-         <glossentry id='var-ASSUME_SHLIBS'><glossterm>ASSUME_SHLIBS</glossterm>
+         <glossentry id='var-USERADD_ERROR_DYNAMIC'><glossterm>USERADD_ERROR_DYNAMIC</glossterm>
              <info>
--                ASSUME_SHLIBS[doc] = Provides additional shlibs provider mapping information, which adds to or overwrites the information provided automatically by the system."
-+                ASSUME_SHLIBS[doc] = "Provides additional shlibs provider mapping information, which adds to or overwrites the information provided automatically by the system."
+-               USERADD_ERROR_DYNAMIC[doc] = "If set to 'error', forces the OpenEmbedded build system to produce an error if the user identification (uid) and group identification (gid) values are not defined in files/passwd and files/group files. If set to 'warn', a warning will be issued instead."
++               USERADD_ERROR_DYNAMIC[doc] = "If set to 'error', forces the OpenEmbedded build system to produce an error if the user identification (uid) and group identification (gid) values are not defined in any of the files listed in USERADD_UID_TABLES and USERADD_GID_TABLES. If set to 'warn', a warning will be issued instead."
              </info>
              <glossdef>
                  <para role="glossdeffirst">
-@@ -1423,7 +1423,7 @@
-                     Use the following format to export the variable to the
-                     BitBake environment:
-                     <literallayout class='monospaced'>
--     export BBSERVER=localhost:$port"
-+     export BBSERVER=localhost:$port
-                     </literallayout>
+ <!--                <para role="glossdeffirst"><imagedata fileref="figures/define-generic.png" /> -->
+-                    If set to "error", forces the OpenEmbedded build system to
+-                    produce an error if the user identification
+-                    (<filename>uid</filename>) and group identification
+-                    (<filename>gid</filename>) values are not defined
+-                    in <filename>files/passwd</filename>
+-                    and <filename>files/group</filename> files.
+-                    If set to "warn", a warning will be issued instead.
++
++                    If set to <filename>error</filename>, forces the
++                    OpenEmbedded build system to produce an error if the user
++                    identification (<filename>uid</filename>) and group
++                    identification (<filename>gid</filename>) values are not
++                    defined in any of the files listed
++                    in <link linkend='var-USERADD_UID_TABLES'><filename>USERADD_UID_TABLES</filename></link>
++                    and <link linkend='var-USERADD_GID_TABLES'><filename>USERADD_GID_TABLES</filename></link>. If
++                    set to <filename>warn</filename>, a warning will be issued
++                    instead.
                  </para>
  
-@@ -3786,7 +3786,7 @@
-                     It is not intended to be user-configurable.
-                     It is best to just reference the variable to see which distro features are
-                     being backfilled for all distro configurations.
--                    See the <link linkend='ref-features-backfill'>Feature Backfilling</link> section for
-+                    See the "<link linkend='ref-features-backfill'>Feature Backfilling</link>" section for
-                     more information.
+                 <para>
+@@ -16808,6 +16811,20 @@
+                     <link linkend='var-USERADD_GID_TABLES'><filename>USERADD_GID_TABLES</filename></link>
+                     variables.
                  </para>
++
++                <note>
++                    There is a difference in behavior between
++                    setting <filename>USERADD_ERROR_DYNAMIC</filename>
++                    to <filename>error</filename> and setting it
++                    to <filename>warn</filename>. When it is set
++                    to <filename>warn</filename>, the build system will report a
++                    warning for every undefined <filename>uid</filename> and
++                    <filename>gid</filename> in any recipe. But when it is set
++                    to <filename>error</filename>, it will only report errors
++                    for recipes that are actually built. This saves you from
++                    having to add static IDs for recipes that you know will
++                    never be built.
++                </note>
              </glossdef>
-@@ -11054,7 +11054,7 @@
+         </glossentry>
  
-         <glossentry id='var-PN'><glossterm>PN</glossterm>
-             <info>
--                PN[doc] = "PN refers to a recipe name in the context of a file used by the OpenEmbedded build system as input to create a package.
-+                PN[doc] = "PN refers to a recipe name in the context of a file used by the OpenEmbedded build system as input to create a package."
-             </info>
-             <glossdef>
-                 <para role="glossdeffirst">
-@@ -13383,8 +13383,7 @@
- 
-         <glossentry id='var-SKIP_FILEDEPS'><glossterm>SKIP_FILEDEPS</glossterm>
-             <info>
--                SKIP_FILEDEPS[doc] = "Enables you to remove all files from
--                the "Provides" section of an RPM package."
-+                SKIP_FILEDEPS[doc] = "Enables you to remove all files from the 'Provides' section of an RPM package."
-             </info>
-             <glossdef>
-                 <para role="glossdeffirst">
-@@ -15331,7 +15330,7 @@
- 
-         <glossentry id='var-TCLIBC'><glossterm>TCLIBC</glossterm>
-             <info>
--                TCLIBC[doc] = "Specifies GNU standard C library (libc) variant to use during the build process. You can select 'glibc', 'musl' or "newlib."
-+                TCLIBC[doc] = "Specifies GNU standard C library (libc) variant to use during the build process. You can select 'glibc', 'musl' or 'newlib'."
-             </info>
-             <glossdef>
-                 <para role="glossdeffirst">
-@@ -16473,7 +16472,7 @@
-                     Appends a string to the name of the local version of the
-                     U-Boot image.
-                     For example, assuming the version of the U-Boot image
--                    built was "2013.10, the full version string reported by
-+                    built was "2013.10", the full version string reported by
-                     U-Boot would be "2013.10-yocto" given the following
-                     statement:
-                     <literallayout class='monospaced'>
-@@ -17108,7 +17107,7 @@
-                     "<ulink url='&YOCTO_DOCS_DEV_URL;#creating-partitioned-images-using-wic'>Creating Partitioned Images Using Wic</ulink>"
-                     section in the Yocto Project Development Tasks Manual.
-                     For details on the kickstart file format, see the
--                    "<link linkend='ref-kickstart'>OpenEmbedded Kickstart (<filename>.wks</filename>) Reference</link>
-+                    "<link linkend='ref-kickstart'>OpenEmbedded Kickstart (<filename>.wks</filename>) Reference</link>"
-                     Chapter.
-                 </para>
-             </glossdef>
-@@ -17178,8 +17177,7 @@
- 
-         <glossentry id='var-XSERVER'><glossterm>XSERVER</glossterm>
-             <info>
--               XSERVER[doc] = "Specifies the packages that should be installed
--               to provide an X server and drivers for the current machine."
-+               XSERVER[doc] = "Specifies the packages that should be installed to provide an X server and drivers for the current machine."
-             </info>
-             <glossdef>
-                 <para role="glossdeffirst">
 -- 
 2.21.0
 
