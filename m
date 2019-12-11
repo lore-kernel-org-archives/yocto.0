@@ -1,248 +1,218 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.579.1576048696022856851
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (EUR04-HE1-obe.outbound.protection.outlook.com [40.107.7.118])
+ by mx.groups.io with SMTP id smtpd.web10.1437.1576056097954039387
  for <yocto@lists.yoctoproject.org>;
- Tue, 10 Dec 2019 23:18:16 -0800
+ Wed, 11 Dec 2019 01:21:38 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=my569lWr;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: twoerner@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4A81E01149; Tue, 10 Dec 2019 23:18:15 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (twoerner[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.160.175 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37305E010D7
-	for <yocto@yoctoproject.org>; Tue, 10 Dec 2019 23:18:13 -0800 (PST)
-Received: by mail-qt1-f175.google.com with SMTP id t17so5388953qtr.7
-        for <yocto@yoctoproject.org>; Tue, 10 Dec 2019 23:18:13 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:subject:message-id:mime-version:content-disposition
-         :user-agent;
-        bh=JNbP1yDgMI2CD1e7nkx0ONsUYdvBsuSU29XZ13zNXkA=;
-        b=my569lWr/aGDKsm/1uFfu7sgfsZXr6vn/h5nszlUaklANYNYSjjNCzKAvnVY1k3k4P
-         umzIBL79yXoBbtf5vdTlAreYMCw1mb8ZcVKybORXI4KoMcTTIBjODtZMNpiPzhiPX9pk
-         GUgmufcG0x0L678z3kYvDDSoN1ALtTAkS9lUdllAPs4geqzNyZqRyYB1FKSKjnUSQubC
-         S0D+o63a12yy9JAFVJVeNtiPSM9zP0cPRK5aPAHOwnmzYFMG/aaNw7ix3+QV9XdRvPyG
-         cKmxku4VvoHXGp1cTO0DZ3mNqCwekZo6Iw0Vo7WjryNJrR/xGfD8AMm4KyvM6NaCG9kC
-         6kxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:mime-version
-         :content-disposition:user-agent;
-        bh=JNbP1yDgMI2CD1e7nkx0ONsUYdvBsuSU29XZ13zNXkA=;
-        b=alp/BPciBedYfA7wfhvkVsdeYmiygWT21proFr/1oToindI2dsCde/IrmbSe+wRqm7
-         djQ7gWKrKFlr7oxThJjfVZVem3pj4oRAQgo/x31jf+uB77Ppl0hiCbOexR1iVWg2EeV6
-         P4VRc5v1MUlqiiKT8eLomrWshKCTdQpaP2wDYD/Bso6XsnRtOkYegZA2OMDzxToNoGt8
-         bXLH8ARDUWh9MWL6gXJmZ0L7dQ+mIk8vqU6rCXHOEQpqoFSswZI19AdM0VoltDVpswyz
-         wFKZ5pTQaBK3TJGnPVffB3nKs0hMspXULqG9V95WoFLcMAiXVUu17smWLPwNoddhfhNm
-         kU0w==
-X-Gm-Message-State: APjAAAV9xzx7eqkiLzVkELQc+2W+NKt3EKqiR20XpQXCTpJTjjg+M05Q
-	DkBkcNlorIvlFtCRt4KpBGb3i4qq
-X-Google-Smtp-Source: APXvYqz0Ha2GSS9jwUWveKOPzSaXnajIcbcNGezRDIWuKK6hHwGxa4GHPs9nQYjACBSnkzuh4d5j5A==
-X-Received: by 2002:ac8:27ab:: with SMTP id w40mr1526698qtw.18.1576048692946;
-        Tue, 10 Dec 2019 23:18:12 -0800 (PST)
-Received: from linux-uys3 ([206.248.190.95])
-        by smtp.gmail.com with ESMTPSA id o19sm612256qtb.43.2019.12.10.23.18.11
-        for <yocto@yoctoproject.org>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 10 Dec 2019 23:18:12 -0800 (PST)
-Date: Wed, 11 Dec 2019 02:18:07 -0500
-From: "Trevor Woerner" <twoerner@gmail.com>
-To: yocto@yoctoproject.org
-Subject: variable and task/function timing
-Message-ID: <20191211071807.GA32639@linux-uys3>
+ dkim=pass header.i=@microsoft.com header.s=selector2 header.b=hVp0DLi0;
+ spf=pass (domain: microsoft.com, ip: 40.107.7.118, mailfrom: peter.morrow@microsoft.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=X/QT5XL2esRMhQLzcOt1cILR8k6OV9H5CURE2S1ksRq9UM5vUxwaXQhyCINv7KMxuzh/EMvzXoAUOqLEODxDFczAfUDGVSMpMKDXNx928Q+BMk+Mps4P8Ni+arRxz551JoNx53Cb+Ua7gsy95E83E3S/bV6ISiHBGn0KZxXwrsYoXejNH+7QMuNmv5T1YVsBrtuPRK+AFAYLgTaMB1F7TeKRwDpnb64em2gK49nGwDQCdUSuEetBiktTps/0OENGEah4yt8ma4LapHF7IuHtvUIwlfYK6fOlM3bdKkBD88VolyZnNyAIku+yuclnWRo6l+YQ/l9Wabz2V1/yAbYvVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kLR3ueUCeQhdVRrmhzSCcaSVNE6JmaWzsM3q2pkdCHo=;
+ b=Q70yZch9cwwx0e0P1HfoPb27fxQOLTz7ZbaBN7Ga5/ko3fyxhxj44benRNQllx7/bLNWU0Wd/vPHYg/vov9S8CXh5wzu5Wc5K5vk0raA+IsvKi71Wzhu2yYqOnm7+LvN19CjpWZItHQVEugqeDkEeIz+DWMEYSBQ08E+mgdeViFjvwnr2zgMxinZTW68ursKS4sJS8rFMaeS81I4ttFN1bvz5Smb9pXUvRLOSTp5WFY6VI9adUEakEdldGw2pP6SWdxLCzMPvoXWVyZ4PEtRkrbly9tWYP+kYzGvOVHvJTpg0V6j4UEkuoTSOW4Faf5B4rYzv5aNCKTtkxQJTqOFHw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microsoft.com; dmarc=pass action=none
+ header.from=microsoft.com; dkim=pass header.d=microsoft.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kLR3ueUCeQhdVRrmhzSCcaSVNE6JmaWzsM3q2pkdCHo=;
+ b=hVp0DLi0V3btH9G+5mMMA247SSgdtKQ8C2n2UroA1EyrNvwLPWEfpn6h/hwiGY9+OWap+mHfef93KAtcxTD/TDShN9TSIuw70DuwASIV2xcFHpVw5NKR9pj/WUTlAfubZ8iNZMWUzu9junw3WsYzDtEi2zh8bDMi0Yjcr2FZ/NI=
+Received: from AM5PR83MB0355.EURPRD83.prod.outlook.com (10.161.103.152) by
+ AM5PR83MB0353.EURPRD83.prod.outlook.com (10.161.103.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2538.3; Wed, 11 Dec 2019 09:21:33 +0000
+Received: from AM5PR83MB0355.EURPRD83.prod.outlook.com
+ ([fe80::6c1f:fb9d:e475:fd38]) by AM5PR83MB0355.EURPRD83.prod.outlook.com
+ ([fe80::6c1f:fb9d:e475:fd38%9]) with mapi id 15.20.2538.016; Wed, 11 Dec 2019
+ 09:21:33 +0000
+From: "Peter Morrow" <peter.morrow@microsoft.com>
+To: "yi.zhao@windriver.com" <yi.zhao@windriver.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] [meta-selinux] Dependency loop help with selinux userspace/python3/util-linux
+Thread-Topic: [yocto] [meta-selinux] Dependency loop help with selinux
+ userspace/python3/util-linux
+Thread-Index: AQHVq3J2j7IF4Kn6F0iNftUEISkeRae0O5OAgAB2WoA=
+Date: Wed, 11 Dec 2019 09:21:32 +0000
+Message-ID: <4ebd6f6e2b7b514cb9b075897ae21f8f32be8db7.camel@microsoft.com>
+References: <e95481c9b63c68e8545662310bf6cbd2f4bd6f71.camel@microsoft.com>
+	 <52cc753c-0a76-88c1-f65c-eb15ce6a4475@windriver.com>
+In-Reply-To: <52cc753c-0a76-88c1-f65c-eb15ce6a4475@windriver.com>
+Reply-To: Peter Morrow <Peter.Morrow@microsoft.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Peter.Morrow@microsoft.com; 
+x-originating-ip: [88.215.3.59]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 186ea06c-a153-4651-c399-08d77e1b8387
+x-ms-traffictypediagnostic: AM5PR83MB0353:
+x-microsoft-antispam-prvs: 
+ <AM5PR83MB03536A55AA95965602D92833835A0@AM5PR83MB0353.EURPRD83.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 024847EE92
+x-forefront-antispam-report: 
+ SFV:NSPM;SFS:(10019020)(366004)(136003)(39860400002)(346002)(376002)(396003)(189003)(199004)(26005)(6506007)(10290500003)(478600001)(186003)(110136005)(966005)(64756008)(2616005)(71200400001)(66446008)(53546011)(316002)(8676002)(8936002)(36756003)(6512007)(3450700001)(6486002)(76116006)(5660300002)(91956017)(66556008)(66476007)(81156014)(4001150100001)(66946007)(4326008)(81166006)(2906002)(86362001)(72063004);DIR:OUT;SFP:1102;SCL:1;SRVR:AM5PR83MB0353;H:AM5PR83MB0355.EURPRD83.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: microsoft.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ 0ay1NRHqhvUoyxuTZ+ZglfJHCnTqP8LOUcRgJdTL70Gc8zyjz8dFBEo8+sWZSyqXQT/iKm+EnWC3yQhfLhnfotfgI/vlSzZEavlddLmAkpnYbMmkcfgPhNq+nzbuUKs3GfJqDVcXDlvuHURGc+V5M4wcXYHLvIWjF3+H6/4I+TRiawWZfGtaF+jBsqv6kaFSOaS/XF7JOlRjBjBUMt7tkmpE5l+RWa5jIANyCEqTGlfFr6D0d3IMIZN2/fo8oQyh0DOFe3Bno6rjQkMQLmEp8bglXlkKukiroDWF1dRnldpLPTcueDyWNNYL3hc7H56VVG5a2jvmrfcoozSBuboqkePljs0APvQtDxgB3rAdc4scY6lCQgXKh8TIZ7KUmXwAYCN66Pstltx9OmgQR9z2RTN7elXT46Kr2ydk00rd5hFfp8T7kffSQvruubX3AjSKTh4qtCcX8f2AD5zzR+mUT/ZDY3Byy6cJ2Fb+Hcih9i8AVuHhKp91pp3sp0eS9cYuviHe/jp6Dvs9QJJjoa4oVg==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-User-Agent: Mutt/1.6.0 (2016-04-01)
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-OriginatorOrg: microsoft.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 186ea06c-a153-4651-c399-08d77e1b8387
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Dec 2019 09:21:32.9175
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 72f988bf-86f1-41af-91ab-2d7cd011db47
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: iBO6NbP8U4H43zVv4uxj4AebUtAunAtDuvzVf76qUuzFbwT9nlcNqcFjkf4odIiCKObEOMlrWWU3CmKJGd5bmg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR83MB0353
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <EF0881703FDE594CBA0C7BCDFD235400@EURPRD83.prod.outlook.com>
+Content-Transfer-Encoding: base64
 
-Is there a document, or better yet a diagram, showing the order in which
-various config files, recipes, tasks, etc are parsed?
-
-Figuring out the order of the config files is easy enough (bitbake.conf), but
-trying to figure out when various other parts are processed is just a guess
-for me right now.
-
-Conceptually this is what I want to do:
-
-	Currently the meson build system (class) is hard-coded to always produce
-	a buildtype of "plain", which are (basically) production builds. But
-	there are other buildtypes that can be specified; such as
-	"debugoptimized". I want a recipe to be able to influence the meson
-	buildtype, and I want the user to be able to tweak this parameter from
-	their conf/local.conf.
-
-Here's what I want to do:
-
-	diff --git a/meta/classes/meson.bbclass b/meta/classes/meson.bbclass
-	index dc8c28963c..e1a13bbbf7 100644
-	--- a/meta/classes/meson.bbclass
-	+++ b/meta/classes/meson.bbclass
-	@@ -12,8 +12,9 @@ MESON_SOURCEPATH = "${S}"
-	 def noprefix(var, d):
-	     return d.getVar(var).replace(d.getVar('prefix') + '/', '', 1)
-
-	+MESON_BUILDTYPE ?= "plain"
-	 MESONOPTS = " --prefix ${prefix} \
-	-              --buildtype plain \
-	+              --buildtype ${MESON_BUILDTYPE} \
-		       --bindir ${@noprefix('bindir', d)} \
-		       --sbindir ${@noprefix('sbindir', d)} \
-		       --datadir ${@noprefix('datadir', d)} \
-	diff --git a/meta/recipes-graphics/mesa/mesa.inc b/meta/recipes-graphics/mesa/mesa.inc
-	index 5838207e6b..fb232d414e 100644
-	--- a/meta/recipes-graphics/mesa/mesa.inc
-	+++ b/meta/recipes-graphics/mesa/mesa.inc
-	@@ -46,6 +46,20 @@ export WANT_LLVM_RELEASE = "${MESA_LLVM_RELEASE}"
-
-	 MESA_LLVM_RELEASE ?= "${LLVMVERSION}"
-
-	+# set the build type to either 'release' or 'debug'
-	+# the upstream mesa sources actually build a debug release by default
-	+# but here we assume the user will want a release build by default
-	+MESA_BUILD_TYPE ?= "release"
-	+python do_check_build_type() {
-	+    _buildtype = d.getVar('MESA_BUILD_TYPE')
-	+    if _buildtype not in ['release', 'debug']:
-	+        bb.fatal("unknown build type (%s), please set to either 'release' or 'debug'" % _buildtype)
-	+    if _buildtype == 'debug':
-	+        d.setVar('MESON_BUILDTYPE', 'debugoptimized')
-	+        bb.plain("setting meson build type to debugoptimized")
-	+}
-	+addtask check_build_type before do_configure
-	+
-	 EXTRA_OEMESON = " \
-	     -Dshared-glapi=true \
-	     -Dgallium-opencl=disabled \
-
-Therefore if the user doesn't do anything explicitly, a production buildtype
-will be produced. However, if the user were to specify the following in their
-conf/local.conf:
-
-	MESA_BUILD_TYPE = "debug"
-
-I want mesa's buildtype to be "debugoptimized".
-
-I don't want the user to specify the following in their conf/local.conf:
-
-	MESON_BUILDTYPE = "debugoptimized"
-
-because that would cause *all* meson-built packages to switch to the
-debugoptimized buildtype. I only want mesa's build to be debugoptimized.
-
-However, the above doesn't work. If I set MESA_BUILD_TYPE to "hello" in my
-conf/local.conf, then the build will flag it and error out asking me to
-specify either 'release' or 'debug', which is great. But if I set
-MESA_BUILD_TYPE to 'debug' the MESON_BUILDTYPE variable is always set to
-"plain" regardless. So this task runs, but I guess it runs too late to
-influence the MESON_BUILDTYPE variable?
-
-So, how can I run this function earlier (?) so that it can set the
-MESON_BUILDTYPE variable correctly? I tried the following:
-
-	diff --git a/meta/classes/meson.bbclass b/meta/classes/meson.bbclass
-	index dc8c28963c..e1a13bbbf7 100644
-	--- a/meta/classes/meson.bbclass
-	+++ b/meta/classes/meson.bbclass
-	@@ -12,8 +12,9 @@ MESON_SOURCEPATH = "${S}"
-	 def noprefix(var, d):
-	     return d.getVar(var).replace(d.getVar('prefix') + '/', '', 1)
-
-	+MESON_BUILDTYPE ?= "plain"
-	 MESONOPTS = " --prefix ${prefix} \
-	-              --buildtype plain \
-	+              --buildtype ${MESON_BUILDTYPE} \
-		       --bindir ${@noprefix('bindir', d)} \
-		       --sbindir ${@noprefix('sbindir', d)} \
-		       --datadir ${@noprefix('datadir', d)} \
-	diff --git a/meta/recipes-graphics/mesa/mesa.inc b/meta/recipes-graphics/mesa/mesa.inc
-	index 5838207e6b..b302f8ee55 100644
-	--- a/meta/recipes-graphics/mesa/mesa.inc
-	+++ b/meta/recipes-graphics/mesa/mesa.inc
-	@@ -46,6 +46,20 @@ export WANT_LLVM_RELEASE = "${MESA_LLVM_RELEASE}"
-
-	 MESA_LLVM_RELEASE ?= "${LLVMVERSION}"
-
-	+# set the build type to either 'release' or 'debug'
-	+# the upstream mesa sources actually build a debug release by default
-	+# but here we assume the user will want a release build by default
-	+MESA_BUILD_TYPE ?= "release"
-	+def check_buildtype(d):
-	+    _buildtype = d.getVar('MESA_BUILD_TYPE')
-	+    if _buildtype not in ['release', 'debug']:
-	+        bb.fatal("unknown build type (%s), please set to either 'release' or 'debug'" % _buildtype)
-	+    if _buildtype == 'debug':
-	+        bb.plain("setting meson build type to debugoptimized")
-	+        return 'debugoptimized'
-	+    return 'plain'
-	+MESON_BUILDTYPE = "${@check_buildtype(d)}"
-	+
-	 EXTRA_OEMESON = " \
-	     -Dshared-glapi=true \
-	     -Dgallium-opencl=disabled \
-
-This will print out the bb.plain() message 16 times during parsing etc, it
-will fail out if MESA_BUILD_TYPE is not one of 'release' or 'debug' (which is
-good), but if this occurs, the error message is printed out twice plus a
-python traceback, which might be scary to users.
-
-The last thing I tried was the following:
-
-	diff --git a/meta/classes/meson.bbclass b/meta/classes/meson.bbclass
-	index dc8c28963c..e1a13bbbf7 100644
-	--- a/meta/classes/meson.bbclass
-	+++ b/meta/classes/meson.bbclass
-	@@ -12,8 +12,9 @@ MESON_SOURCEPATH = "${S}"
-	 def noprefix(var, d):
-	     return d.getVar(var).replace(d.getVar('prefix') + '/', '', 1)
-
-	+MESON_BUILDTYPE ?= "plain"
-	 MESONOPTS = " --prefix ${prefix} \
-	-              --buildtype plain \
-	+              --buildtype ${MESON_BUILDTYPE} \
-		       --bindir ${@noprefix('bindir', d)} \
-		       --sbindir ${@noprefix('sbindir', d)} \
-		       --datadir ${@noprefix('datadir', d)} \
-	diff --git a/meta/recipes-graphics/mesa/mesa.inc b/meta/recipes-graphics/mesa/mesa.inc
-	index 5838207e6b..c265ffc246 100644
-	--- a/meta/recipes-graphics/mesa/mesa.inc
-	+++ b/meta/recipes-graphics/mesa/mesa.inc
-	@@ -46,6 +46,12 @@ export WANT_LLVM_RELEASE = "${MESA_LLVM_RELEASE}"
-
-	 MESA_LLVM_RELEASE ?= "${LLVMVERSION}"
-
-	+# set the build type to either 'release' or 'debug'
-	+# the upstream mesa sources actually build a debug release by default
-	+# but here we assume the user will want a release build by default
-	+MESA_BUILD_TYPE ?= "release"
-	+MESON_BUILDTYPE = "${@bb.utils.contains('MESA_BUILD_TYPE', 'debug', 'debugoptimized', 'plain', d)}"
-	+
-	 EXTRA_OEMESON = " \
-	     -Dshared-glapi=true \
-	     -Dgallium-opencl=disabled \
-
-This works perfectly, but it lacks the error checking and helpful messages of
-the previous attempts.
-
-Any thoughts on how I can have it all? (i.e. nice error checking and error
-messages with the variable tweakable from conf/local.conf?
-
-Best regards,
-	Trevor
+T24gV2VkLCAyMDE5LTEyLTExIGF0IDEwOjE4ICswODAwLCBZaSBaaGFvIHZpYSBMaXN0cy5Zb2N0
+b3Byb2plY3QuT3JnDQp3cm90ZToNCj4gDQo+IA0KPiBPbiAxMi81LzE5IDk6NDYgUE0sIFBldGVy
+IE1vcnJvdyB2aWEgTGlzdHMuWW9jdG9wcm9qZWN0Lk9yZyB3cm90ZToNCj4gDQo+ID4gSGkgRm9s
+a3MsDQo+ID4gDQo+ID4gSSdtIHRyeWluZyB0byB1cGdyYWRlIHRoZSBtZXRhLXNlbGludXggbGF5
+ZXIgdG8gdXNlIGEgbmV3ZXIgdmVyc2lvbg0KPiA+IG9mDQo+ID4gdGhlIHNlbGludXggdXNlcnNw
+YWNlIHRvb2xzIChmcm9tIDIuOCB0byAyLjkpLCBpbiBkb2luZyBzbyB0aGVzZQ0KPiA+IG5ld2Vy
+DQo+ID4gdXNlcnNwYWNlIHRvb2xzIG5vdyBkZXBlbmQgb24gcHl0aG9uMyBpbnN0ZWFkIG9mIHB5
+dGhvbjIuICBUaGlzDQo+ID4gdW5mb3J0dW5hdGVseSBoYXMgY3JlYXRlZCBhIGJ1aWxkIHRpbWUg
+ZGVwZW5kZW5jeSBsb29wIGluIHlvY3RvOg0KPiA+IA0KPiA+IHB5dGhvbjMgLS0+IHV0aWwtbGlu
+dXggLS0+IGxpYnNlbGludXggLS0+IHB5dGhvbjMgKHVzZWQgdG8gYmUNCj4gPiBweXRob24yDQo+
+ID4gd2l0aCAyLjggc2VsaW51eCB1c2Vyc3BhY2UpLg0KPiANCj4gDQo+IEhpIFBldGVyLA0KPiBJ
+IGhhZCBzZW50IGEgc2VyaWVzIHBhdGNoZXMgdG8gdXBkYXRlIHNlbGludXggdXNlcnNhcGNlIHRv
+b2xzIGZyb20NCj4gMi44IG90IDIuOTogDQo+IGh0dHBzOi8vd3d3LnlvY3RvcHJvamVjdC5vcmcv
+cGlwZXJtYWlsL3lvY3RvLzIwMTktTm92ZW1iZXIvMDQ3MzI5Lmh0bWwNCj4gQWZ0ZXIgc3dpdGNo
+IHRvIHB5dGhvbjMsIHRoZXJlIGlzIGEgbG9vcCBkZXBlbmRlbmN5IGVycm9yIHdpdGgNCj4gbGli
+c2VsaW51eC1weXRob24gcGFja2FnZSB3aGVuIGJ1aWxkIGxpYnNlbGludXguIFNvIEkgc3BsaXQg
+dGhlDQo+IG9yaWdpbmFsIGxpYnNlbGludXggcmVjaXBlIGludG8gIGxpYnNlbGludXggYW5kIGxp
+YnNlbGludXgtcHl0aG9uLg0KPiBZb3UgY2FuIHJlZmVyIG15IHBhdGNoc2V0Lg0KDQpIaSBZaSwN
+Cg0KR3JlYXQhICBJcyB0aGVyZSBhbnl0aGluZyBzdG9wcGluZyB0aGVzZSBwYXRjaGVzIGJlaW5n
+IG1lcmdlZD8NCg0KVGhhbmtzLA0KUGV0ZXIuDQoNCg0KPiANCj4gDQo+IC8vWWkNCj4gDQo+IA0K
+PiA+IFJ1bm5pbmcgImJpdGJha2UgbGlic2VsaW51eCIgcmVzdWx0cyBpbiBhIHBpbGUgb2YgbG9v
+cHMsIHRoZSBvbmUNCj4gPiBiZWxvdw0KPiA+IGlsbHVzdHJhdGVzIHRoZSBwb2ludC4NCj4gPiAN
+Cj4gPiBFUlJPUjoNCj4gPiBEZXBlbmRlbmN5IGxvb3AgIzEgZm91bmQ6DQo+ID4gICBUYXNrIC93
+b3Jrc3BhY2UvZ2l0L3lvY3RvLXNlbGludXgvbWV0YS1zZWxpbnV4L3JlY2lwZXMtDQo+ID4gc2Vj
+dXJpdHkvc2VsaW51eC9saWJzZWxpbnV4XzIuOS5iYjpkb19wYWNrYWdlIChkZXBlbmRlbnQgVGFz
+a3MNCj4gPiBbJ2djYy0NCj4gPiBydW50aW1lXzkuMi5iYjpkb19wYWNrYWdlZGF0YScsICdsaWJz
+ZXBvbF8yLjkuYmI6ZG9fcGFja2FnZWRhdGEnLA0KPiA+ICdycG1fNC4xNC4yLjEuYmI6ZG9fcG9w
+dWxhdGVfc3lzcm9vdCcsDQo+ID4gJ2dsaWJjXzIuMzAuYmI6ZG9fcGFja2FnZWRhdGEnLA0KPiA+
+ICdweXRob24zXzMuNy41LmJiOmRvX3BhY2thZ2VkYXRhJywNCj4gPiAnbGlicGNyZV84LjQzLmJi
+OmRvX3BhY2thZ2VkYXRhJywNCj4gPiAncHNldWRvX2dpdC5iYjpkb19wb3B1bGF0ZV9zeXNyb290
+JywNCj4gPiAnZHdhcmZzcmNmaWxlcy5iYjpkb19wb3B1bGF0ZV9zeXNyb290JywNCj4gPiAnbGli
+c2VsaW51eF8yLjkuYmI6ZG9faW5zdGFsbCddKQ0KPiA+ICAgVGFzayAvd29ya3NwYWNlL2dpdC95
+b2N0by1zZWxpbnV4L21ldGEtc2VsaW51eC9yZWNpcGVzLQ0KPiA+IHNlY3VyaXR5L3NlbGludXgv
+bGlic2VsaW51eF8yLjkuYmI6ZG9fcGFja2FnZWRhdGEgKGRlcGVuZGVudCBUYXNrcw0KPiA+IFsn
+bGlic2VsaW51eF8yLjkuYmI6ZG9fcGFja2FnZSddKQ0KPiA+ICAgVGFzayAvd29ya3NwYWNlL2dp
+dC95b2N0by1zZWxpbnV4L3Bva3kvbWV0YS9yZWNpcGVzLQ0KPiA+IGV4dGVuZGVkL3BhbS9saWJw
+YW1fMS4zLjEuYmI6ZG9fcGFja2FnZSAoZGVwZW5kZW50IFRhc2tzIFsnZ2NjLQ0KPiA+IHJ1bnRp
+bWVfOS4yLmJiOmRvX3BhY2thZ2VkYXRhJywNCj4gPiAncnBtXzQuMTQuMi4xLmJiOmRvX3BvcHVs
+YXRlX3N5c3Jvb3QnLA0KPiA+ICdnbGliY18yLjMwLmJiOmRvX3BhY2thZ2VkYXRhJywgJ2xpYnNl
+bGludXhfMi45LmJiOmRvX3BhY2thZ2VkYXRhJywNCj4gPiAnZmxleF8yLjYuMC5iYjpkb19wYWNr
+YWdlZGF0YScsDQo+ID4gJ3BzZXVkb19naXQuYmI6ZG9fcG9wdWxhdGVfc3lzcm9vdCcsDQo+ID4g
+J2xpYnhjcnlwdF80LjQuOC5iYjpkb19wYWNrYWdlZGF0YScsICdsaWJwYW1fMS4zLjEuYmI6ZG9f
+aW5zdGFsbCcsDQo+ID4gJ2R3YXJmc3JjZmlsZXMuYmI6ZG9fcG9wdWxhdGVfc3lzcm9vdCcsDQo+
+ID4gJ2NyYWNrbGliXzIuOS41LmJiOmRvX3BhY2thZ2VkYXRhJywgJ2xpYnRvb2wtDQo+ID4gY3Jv
+c3NfMi40LjYuYmI6ZG9fcGFja2FnZWRhdGEnXSkNCj4gPiAgIFRhc2sgL3dvcmtzcGFjZS9naXQv
+eW9jdG8tc2VsaW51eC9wb2t5L21ldGEvcmVjaXBlcy0NCj4gPiBleHRlbmRlZC9wYW0vbGlicGFt
+XzEuMy4xLmJiOmRvX3BhY2thZ2VkYXRhIChkZXBlbmRlbnQgVGFza3MNCj4gPiBbJ2xpYnBhbV8x
+LjMuMS5iYjpkb19wYWNrYWdlJ10pDQo+ID4gICBUYXNrIC93b3Jrc3BhY2UvZ2l0L3lvY3RvLXNl
+bGludXgvcG9reS9tZXRhL3JlY2lwZXMtY29yZS91dGlsLQ0KPiA+IGxpbnV4L3V0aWwtbGludXhf
+Mi4zNC5iYjpkb19wYWNrYWdlIChkZXBlbmRlbnQgVGFza3MgWydnY2MtDQo+ID4gcnVudGltZV85
+LjIuYmI6ZG9fcGFja2FnZWRhdGEnLA0KPiA+ICdycG1fNC4xNC4yLjEuYmI6ZG9fcG9wdWxhdGVf
+c3lzcm9vdCcsDQo+ID4gJ2Jhc2gtY29tcGxldGlvbl8yLjkuYmI6ZG9fcGFja2FnZWRhdGEnLA0K
+PiA+ICd6bGliXzEuMi4xMS5iYjpkb19wYWNrYWdlZGF0YScsICdnbGliY18yLjMwLmJiOmRvX3Bh
+Y2thZ2VkYXRhJywNCj4gPiAnbGlic2VsaW51eF8yLjkuYmI6ZG9fcGFja2FnZWRhdGEnLA0KPiA+
+ICdwc2V1ZG9fZ2l0LmJiOmRvX3BvcHVsYXRlX3N5c3Jvb3QnLA0KPiA+ICduY3Vyc2VzXzYuMSsy
+MDE5MDgwMy5iYjpkb19wYWNrYWdlZGF0YScsDQo+ID4gJ2xpYnhjcnlwdF80LjQuOC5iYjpkb19w
+YWNrYWdlZGF0YScsICdsaWJjYXAtDQo+ID4gbmdfMC43LjkuYmI6ZG9fcGFja2FnZWRhdGEnLCAn
+b3BrZy11dGlsc18wLjQuMS5iYjpkb19wYWNrYWdlZGF0YScsDQo+ID4gJ2xpYnBhbV8xLjMuMS5i
+Yjpkb19wYWNrYWdlZGF0YScsICd1dGlsLQ0KPiA+IGxpbnV4XzIuMzQuYmI6ZG9faW5zdGFsbF9w
+dGVzdF9iYXNlJywNCj4gPiAnZHdhcmZzcmNmaWxlcy5iYjpkb19wb3B1bGF0ZV9zeXNyb290Jywg
+J3V0aWwtDQo+ID4gbGludXhfMi4zNC5iYjpkb19pbnN0YWxsJywgJ2xpYnRvb2wtDQo+ID4gY3Jv
+c3NfMi40LjYuYmI6ZG9fcGFja2FnZWRhdGEnXSkNCj4gPiAgIFRhc2sgL3dvcmtzcGFjZS9naXQv
+eW9jdG8tc2VsaW51eC9wb2t5L21ldGEvcmVjaXBlcy1jb3JlL3V0aWwtDQo+ID4gbGludXgvdXRp
+bC1saW51eF8yLjM0LmJiOmRvX3BhY2thZ2VkYXRhIChkZXBlbmRlbnQgVGFza3MgWyd1dGlsLQ0K
+PiA+IGxpbnV4XzIuMzQuYmI6ZG9fcGFja2FnZSddKQ0KPiA+ICAgVGFzayAvd29ya3NwYWNlL2dp
+dC95b2N0by1zZWxpbnV4L3Bva3kvbWV0YS9yZWNpcGVzLQ0KPiA+IGRldnRvb2xzL3B5dGhvbi9w
+eXRob24zXzMuNy41LmJiOmRvX3BhY2thZ2UgKGRlcGVuZGVudCBUYXNrcw0KPiA+IFsneHpfNS4y
+LjQuYmI6ZG9fcGFja2FnZWRhdGEnLCAnYnppcDJfMS4wLjguYmI6ZG9fcGFja2FnZWRhdGEnLA0K
+PiA+ICdnZGJtXzEuMTguMS5iYjpkb19wYWNrYWdlZGF0YScsICdsaWJuc2wyX2dpdC5iYjpkb19w
+YWNrYWdlZGF0YScsDQo+ID4gJ2djYy0NCj4gPiBydW50aW1lXzkuMi5iYjpkb19wYWNrYWdlZGF0
+YScsDQo+ID4gJ3JwbV80LjE0LjIuMS5iYjpkb19wb3B1bGF0ZV9zeXNyb290JywNCj4gPiAncHl0
+aG9uM18zLjcuNS5iYjpkb19pbnN0YWxsJywgJ2xpYmZmaV8zLjN+cmMwLmJiOmRvX3BhY2thZ2Vk
+YXRhJywNCj4gPiAncHNldWRvX2dpdC5iYjpkb19wb3B1bGF0ZV9zeXNyb290JywNCj4gPiAnc3Fs
+aXRlM18zLjI5LjAuYmI6ZG9fcGFja2FnZWRhdGEnLA0KPiA+ICdvcGVuc3NsXzEuMS4xZC5iYjpk
+b19wYWNrYWdlZGF0YScsDQo+ID4gJ2xpYnRpcnBjXzEuMS40LmJiOmRvX3BhY2thZ2VkYXRhJywN
+Cj4gPiAnemxpYl8xLjIuMTEuYmI6ZG9fcGFja2FnZWRhdGEnLA0KPiA+ICdnbGliY18yLjMwLmJi
+OmRvX3BhY2thZ2VkYXRhJywNCj4gPiAnbGlieGNyeXB0XzQuNC44LmJiOmRvX3BhY2thZ2VkYXRh
+JywNCj4gPiAncHl0aG9uM18zLjcuNS5iYjpkb19pbnN0YWxsX3B0ZXN0X2Jhc2UnLCAndXRpbC0N
+Cj4gPiBsaW51eF8yLjM0LmJiOmRvX3BhY2thZ2VkYXRhJywgJ29wa2ctDQo+ID4gdXRpbHNfMC40
+LjEuYmI6ZG9fcGFja2FnZWRhdGEnLA0KPiA+ICdyZWFkbGluZV84LjAuYmI6ZG9fcGFja2FnZWRh
+dGEnLA0KPiA+ICdkd2FyZnNyY2ZpbGVzLmJiOmRvX3BvcHVsYXRlX3N5c3Jvb3QnLCAnbGlidG9v
+bC0NCj4gPiBjcm9zc18yLjQuNi5iYjpkb19wYWNrYWdlZGF0YSddKQ0KPiA+ICAgVGFzayAvd29y
+a3NwYWNlL2dpdC95b2N0by1zZWxpbnV4L3Bva3kvbWV0YS9yZWNpcGVzLQ0KPiA+IGRldnRvb2xz
+L3B5dGhvbi9weXRob24zXzMuNy41LmJiOmRvX3BhY2thZ2VkYXRhIChkZXBlbmRlbnQgVGFza3MN
+Cj4gPiBbJ3B5dGhvbjNfMy43LjUuYmI6ZG9fcGFja2FnZSddKQ0KPiA+IA0KPiA+IFB5dGhvbjMg
+KDMuNy41KSBhcHBlYXJzIHRvIGRlcGVuZCBvbiB1dGlsLWxpbnV4IGZvciBsaWJ1dWlkDQo+ID4g
+c3VwcG9ydCwgc28NCj4gPiBJIGRvbid0IHRoaW5rIGFueXRoaW5nIGNhbiBiZSBkb25lIHdpdGgg
+cmVnYXJkcyB0bw0KPiA+IHRoaXMuICBsaWJzZWxpbnV4DQo+ID4gbm93IGRlcGVuZHMgb24gcHl0
+aG9uMyBhcyBvZiAyLjksIHNvIGFnYWluIG5vdCBtdWNoIGNhbiBiZSBkb25lDQo+ID4gaGVyZS4g
+DQo+ID4gSXQncyBwcm92aW5nIGEgYml0IGhhcmRlciB0byB0cmFjayBkb3duIHRoZSB1dGlsLWxp
+bnV4IGRlcGVuZGVuY3kNCj4gPiBvbg0KPiA+IGxpYnNlbGludXggYnV0IEkgYmVsaWV2ZSB0aGlz
+IGlzIGEgaGFyZCBkZXBkZW5jeSBhcyB3ZWxsLg0KPiA+IA0KPiA+IEknbSB1c2luZyB0aGUgbWFz
+dGVyIGJyYW5jaCBvZiBib3RoIHBva3kgYW5kIG1ldGEtc2VsaW51eCBmb3INCj4gPiB0ZXN0aW5n
+LA0KPiA+IG15IGxvY2FsLmNvbmYgZmlsZSBoYXMgdGhlIGZvbGxvd2luZyB0byBlbmFibGUgdGVz
+dGluZzoNCj4gPiANCj4gPiBESVNUUk9fRkVBVFVSRVNfYXBwZW5kPSIgYWNsIHhhdHRyIHBhbSBz
+ZWxpbnV4Ig0KPiA+IA0KPiA+IFRoZSBjcnV4IG9mIHRoZSBsaWJzZWxpbnV4IHJlY2lwZSBjaGFu
+Z2UgaXMgcmVhbGx5IGp1c3QgY2hhbmdpbmcNCj4gPiB0aGUNCj4gPiBweXRob24yIGRlcHMgb3Zl
+ciB0byBweXRob24zIG9uZXMgaW4gbWV0YS1zZWxpbnV4L3JlY2lwZXMtDQo+ID4gc2VjdXJpdHkv
+c2VsaW51eC9saWJzZWxpbnV4LmluYy4NCj4gPiANCj4gPiBBdCB0aGlzIHBvaW50IEknZCBiZSB0
+cnlpbmcgdG8gbG9vayBmb3IgcGxhY2VzIHdoZXJlIHJlY2lwZXMgY2FuIGJlDQo+ID4gc3BsaXQg
+b3V0IHRvIHJlbW92ZSB0aGUgbG9vcCwgYnV0IG5vdGhpbmcganVtcHMgb3V0IGF0IG1lLg0KPiA+
+IA0KPiA+IENhbiBhbnlvbmUgb2ZmZXIgYW55IGFkdmljZSBvciBwb2ludGVycyBvbiBob3cgdG8g
+Z2V0IGFyb3VuZA0KPiA+IHRoaXM/ICBPcg0KPiA+IGFtIEkganVzdCBzdHVmZmVkPw0KPiA+IA0K
+PiA+IE1hbnkgVGhhbmtzLA0KPiA+IFBldGVyLg0KPiA+IA0KPiA+IA0KPiA+IA0KPiA+IC09LT0t
+PS09LT0tPS09LT0tPS09LT0tDQo+ID4gTGlua3M6IFlvdSByZWNlaXZlIGFsbCBtZXNzYWdlcyBz
+ZW50IHRvIHRoaXMgZ3JvdXAuDQo+ID4gDQo+ID4gVmlldy9SZXBseSBPbmxpbmUgKCM0NzU3MCk6
+IA0KPiA+IGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9nL3lvY3RvL21lc3NhZ2UvNDc1
+NzANCj4gPiANCj4gPiBNdXRlIFRoaXMgVG9waWM6IA0KPiA+IGh0dHBzOi8vbGlzdHMueW9jdG9w
+cm9qZWN0Lm9yZy9tdC82Njk1MzI5OS8zNjE2NzgzDQo+ID4gDQo+ID4gR3JvdXAgT3duZXI6IA0K
+PiA+IHlvY3RvK293bmVyQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNCj4gPiANCj4gPiBVbnN1YnNj
+cmliZTogDQo+ID4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2cveW9jdG8vdW5zdWIN
+Cj4gPiAgIFsNCj4gPiB5aS56aGFvQHdpbmRyaXZlci5jb20NCj4gPiBdDQo+ID4gLT0tPS09LT0t
+PS09LT0tPS09LT0tPS0NCj4gDQo+IC09LT0tPS09LT0tPS09LT0tPS09LT0tDQo+IExpbmtzOiBZ
+b3UgcmVjZWl2ZSBhbGwgbWVzc2FnZXMgc2VudCB0byB0aGlzIGdyb3VwLg0KPiANCj4gVmlldy9S
+ZXBseSBPbmxpbmUgKCM0NzYyMyk6IA0KPiBodHRwczovL25hbTA2LnNhZmVsaW5rcy5wcm90ZWN0
+aW9uLm91dGxvb2suY29tLz91cmw9aHR0cHMlM0ElMkYlMkZsaXN0cy55b2N0b3Byb2plY3Qub3Jn
+JTJGZyUyRnlvY3RvJTJGbWVzc2FnZSUyRjQ3NjIzJmFtcDtkYXRhPTAyJTdDMDElN0NwZXRlci5t
+b3Jyb3clNDBtaWNyb3NvZnQuY29tJTdDZjNiMmE5Yzg1YWU5NDViM2EwZTAwOGQ3N2RlMDY0YzIl
+N0M3MmY5ODhiZjg2ZjE0MWFmOTFhYjJkN2NkMDExZGI0NyU3QzElN0MwJTdDNjM3MTE2Mjc1MDMz
+MzU5NDI1JmFtcDtzZGF0YT10STc4NFpxJTJCbm9EJTJCR1ZNamFXT2ZqUmtxbzVwSk1ONzRSR2ZL
+NGs5dFFMSSUzRCZhbXA7cmVzZXJ2ZWQ9MA0KPiANCj4gTXV0ZSBUaGlzIFRvcGljOiANCj4gaHR0
+cHM6Ly9uYW0wNi5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNvbS8/dXJsPWh0dHBzJTNB
+JTJGJTJGbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyUyRm10JTJGNjY5NTMyOTklMkYzNjE4NDk5JmFt
+cDtkYXRhPTAyJTdDMDElN0NwZXRlci5tb3Jyb3clNDBtaWNyb3NvZnQuY29tJTdDZjNiMmE5Yzg1
+YWU5NDViM2EwZTAwOGQ3N2RlMDY0YzIlN0M3MmY5ODhiZjg2ZjE0MWFmOTFhYjJkN2NkMDExZGI0
+NyU3QzElN0MwJTdDNjM3MTE2Mjc1MDMzMzU5NDI1JmFtcDtzZGF0YT1JV3p2OG9LTlVFUnpSZ1dX
+d1JhQmtoN2ZXd3JRTjE0S0oxcmhSNzNXNDg0JTNEJmFtcDtyZXNlcnZlZD0wDQo+IA0KPiBHcm91
+cCBPd25lcjogDQo+IHlvY3RvK293bmVyQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNCj4gDQo+IFVu
+c3Vic2NyaWJlOiANCj4gaHR0cHM6Ly9uYW0wNi5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXRsb29r
+LmNvbS8/dXJsPWh0dHBzJTNBJTJGJTJGbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyUyRmclMkZ5b2N0
+byUyRnVuc3ViJmFtcDtkYXRhPTAyJTdDMDElN0NwZXRlci5tb3Jyb3clNDBtaWNyb3NvZnQuY29t
+JTdDZjNiMmE5Yzg1YWU5NDViM2EwZTAwOGQ3N2RlMDY0YzIlN0M3MmY5ODhiZjg2ZjE0MWFmOTFh
+YjJkN2NkMDExZGI0NyU3QzElN0MwJTdDNjM3MTE2Mjc1MDMzMzU5NDI1JmFtcDtzZGF0YT1tQTlv
+ZUtYNSUyRnE4QjFXaVVQNmF2V0hQMyUyQkJZOE9GY0VIViUyQmZxYUptQ2xvJTNEJmFtcDtyZXNl
+cnZlZD0wDQo+ICAgWw0KPiBwZXRlci5tb3Jyb3dAbWljcm9zb2Z0LmNvbQ0KPiBdDQo+IC09LT0t
+PS09LT0tPS09LT0tPS09LT0tDQo+IA0KDQo=
