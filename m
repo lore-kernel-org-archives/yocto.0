@@ -1,148 +1,196 @@
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
- by mx.groups.io with SMTP id smtpd.web12.4824.1576077058002677394
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.5304.1576078801133816410
  for <yocto@lists.yoctoproject.org>;
- Wed, 11 Dec 2019 07:10:58 -0800
+ Wed, 11 Dec 2019 07:40:01 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=lQJP4J0f;
- spf=pass (domain: gmail.com, ip: 209.85.208.173, mailfrom: dimtass@gmail.com)
-Received: by mail-lj1-f173.google.com with SMTP id u17so24472790lja.4
-        for <yocto@lists.yoctoproject.org>; Wed, 11 Dec 2019 07:10:57 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=I9d32Qvl;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: twoerner@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id B039DE00F02; Wed, 11 Dec 2019 07:40:00 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (twoerner[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.219.41 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE5ACE00E0D
+	for <yocto@yoctoproject.org>; Wed, 11 Dec 2019 07:39:59 -0800 (PST)
+Received: by mail-qv1-f41.google.com with SMTP id p2so5893271qvo.10
+        for <yocto@yoctoproject.org>; Wed, 11 Dec 2019 07:39:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QZk5cG4qiQxL15QKgAWpmvdygEkTyxD6A8FPc7LI0C0=;
-        b=lQJP4J0fZnJ1nQWqpOr/MjShE25Pc4NZ8SPc764GIu60TNPlLyWGjDv+O1yHwuug+d
-         aYT+9zEJ0x0MWaE1UWzYU5SAE5NQ9P0UiD1vohkvlIj23ydQeT0M3jCYnmQaWOmlpJhk
-         2/W8/LpuaoyTXO3GevvroOHOjmJYMf8u4w2j6gGUZwtYGUn+Uhk+BcUtQio0SNvFK47o
-         dHRfOXafdypxSGtbwhsSMbPvUIwPeFl6LJWgucjuzwr3ZO0fu2/Ulab0G5l6hhsCfeyb
-         aArDMIt8mWsNXgiYC4BJQAcYEjjqShskTFQdcH2q+N0l3LUdMXKv/cU/cSPYzj47iC/F
-         8vTg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=bvaXyevt0vF8k9RjI9iLzJxHYh8D79bGKGBf0b2m1To=;
+        b=I9d32QvltVapEsUtaWgyF/dGU/XUQoxyxjHxz9iKEKPg1TDcHrKDDyfLvhQbDzOJ5/
+         cSnVOSYM0v/xZE6K8KsevxSGnv03t0Q6Zq2+7TVoMokPXv/9LOjbDEgDazNlJOyI6Rgt
+         F+12dnGLW87xXv0dcnu8F7BM+F8wxQ0Yy1JHUO4mlews3Z6FXjKRem7XfHqtCjarxVHD
+         6GiiIeDqeWlyNZv8RFpsVQhkoKgNW3VMQLr4HHsLU7/7EEVLm5vHiXNIIiNywg0d+M14
+         FY+urtva6NebYP0WnpU6rWTm25bdYt8h0S9fnOqotph5sju/b01sIJn/jojXaXkv/L1i
+         YIdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QZk5cG4qiQxL15QKgAWpmvdygEkTyxD6A8FPc7LI0C0=;
-        b=YXEo43HI5/MtxWZWrjSQ/t4Stly5btUk5Ydks/8hl7hv8qFTV+ItG1LCth10gr8jIf
-         OqxWusIYi6PnBpsbDv6BGNtfr64ztQ5QE1aK+b7/kZkXk/eWCm13sj+pt5A6w2wQSq79
-         J1AQZAu7WdSW2h+IMYkxYiV3vh5C/OCyAtSgDDocNp2SC7LU3aLdcxT9Jsi1di37g1hc
-         Lr4tTgU7jyS5+ocmMstPN5ewVMCsd19EQ49C/PhuAYbV7RudY6qECtfcwcN98IilOxlQ
-         9Ss7ZECNSN7nXbzjB8EofmVg45oq5PLK15FUzpH0JKKlB1Ab86Mp5qQ4EEDg7xP2e2m1
-         lW2A==
-X-Gm-Message-State: APjAAAUpIMMRd0RQ0qEfIAVUfIWwY8+zQDGyah8X2xoT+yVRD4k9jMaI
-	fWrFashI+FhpjMIBep/48M8JbW65uaVkFVzhIJE=
-X-Google-Smtp-Source: APXvYqwbU7n0PCIp/la41jKNTT86idAGGMIzklRVEgi2wgCCf6V0SfoAl5FQ7hEAClaHX2k/s0yWcUoQnH96JGCO42w=
-X-Received: by 2002:a2e:9741:: with SMTP id f1mr2343496ljj.123.1576077056162;
- Wed, 11 Dec 2019 07:10:56 -0800 (PST)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=bvaXyevt0vF8k9RjI9iLzJxHYh8D79bGKGBf0b2m1To=;
+        b=mol/ZksTorcqDe5mGG6XeHOOD0Z9r6rNydTVALBMG7Jb3EPbZARljRKk8CP8Fy6Q5P
+         wOygJXDV5NZ4NGcaNKYVxY5sQJbUr3z8oG27JPRMtk6ckkcPH78+audvOVQxS3VA0YF+
+         1AY0ZW01uCM3NcDUqi+tJIo7a1P+pH5HsxADveC6x9wW4RjGLi7xUDTnb61bswUDRMmd
+         P2ZYG2lABqysBqGoEV+MMnqYaWW5u37G7hCNmFsDVqfF4E91NSCUJkG0vX/23lISglN2
+         KleBKPfMXwbch4RPRKn1GhGwCDaQZ0SErxOVsEJ26AwIieWDLcz3ViSMQTkf5tj0iHXi
+         7E9w==
+X-Gm-Message-State: APjAAAWvf3Zb3tYEFajMjakSyydHXYX9iOzRfIzxooYaFrWdt2gRpyO9
+	qt739JPcqFar8tVB7p5zVvc=
+X-Google-Smtp-Source: APXvYqxzWEysa0DpRxN8OMOM6wexf+jxEhN4qNoE5e8ANbJXLLCrYMe4x70HDxoSwijhtvIsmC/0GA==
+X-Received: by 2002:a0c:aacc:: with SMTP id g12mr3608495qvb.217.1576078799000;
+        Wed, 11 Dec 2019 07:39:59 -0800 (PST)
+Received: from linux-uys3 ([206.248.190.95])
+        by smtp.gmail.com with ESMTPSA id b7sm761641qkh.106.2019.12.11.07.39.57
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 11 Dec 2019 07:39:58 -0800 (PST)
+Date: Wed, 11 Dec 2019 10:39:55 -0500
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: [yocto] variable and task/function timing
+Message-ID: <20191211153955.GA5676@linux-uys3>
+References: <20191211071807.GA32639@linux-uys3>
+ <CAP71Wjz6BvcW5Ct1o2tHJyzND5ZtYfwMz6Vhmdk7prsbm=27ZA@mail.gmail.com>
 MIME-Version: 1.0
-References: <3uWx.1576070177005275968.UQCr@lists.yoctoproject.org>
-In-Reply-To: <3uWx.1576070177005275968.UQCr@lists.yoctoproject.org>
-From: "Dimitris Tassopoulos" <dimtass@gmail.com>
-Date: Wed, 11 Dec 2019 16:10:44 +0100
-Message-ID: <CACKFPN0qnwf5oTK99i1gYTSOoC6-PPqd09cfg57Mx12LMBemCg@mail.gmail.com>
-Subject: Re: [yocto] meta-intel stuck on bootup #yocto
-To: eph_pendragon <leocorp96@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000123e8f05996f09a7"
+In-Reply-To: <CAP71Wjz6BvcW5Ct1o2tHJyzND5ZtYfwMz6Vhmdk7prsbm=27ZA@mail.gmail.com>
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
---000000000000123e8f05996f09a7
-Content-Type: text/plain; charset="UTF-8"
-
-Hi, I don't is alsa is your actual issue, even if the kernel seems that
-it's stuck there,
-but in any case you can remove the alsa from your distro. I guess you're
-using poky
-as base distro, so add this line to your tmp/conf/local.conf file.
-
-DISTRO_FEATURES_remove = "alsa"
-
-then rebuild.
-
-Regards.
-
-On Wed, Dec 11, 2019 at 2:16 PM eph_pendragon <leocorp96@gmail.com> wrote:
-
-> Hi everyone,
-> So I am relatively new to the project and I have successfully been a able
-> to make a few builds following the really well crafted documentation.
+On Wed 2019-12-11 @ 11:06:44 AM, Nicolas Dechesne wrote:
+> On Wed, Dec 11, 2019 at 8:18 AM Trevor Woerner <twoerner@gmail.com> wrote:
+> >
+> > Is there a document, or better yet a diagram, showing the order in which
+> > various config files, recipes, tasks, etc are parsed?
+> >
+> > Figuring out the order of the config files is easy enough (bitbake.conf), but
+> > trying to figure out when various other parts are processed is just a guess
+> > for me right now.
+> 
+> well the easiest way to visualize it is to think about all variables
+> being in a large array. Each variable (each row) having a different
+> 'value' for each 'column' and each column representing a recipe. When
+> bitbake references a variable it is always in the context of a given
+> recipe, so you are looking at a specific 'column'. Initially this
+> array is filled with default values resulting from the parsing of all
+> global .conf files, as you noticed the list of conf files and the
+> order is set in bitbake.conf (which itself is hardcoded in bitbake,
+> and the first file to parse).
 >
-> I however have a few issues regarding my target system, an IPC (Simatic
-> Nanobox) with a quad-core Intel celeron processor. Since there's no Bsp
-> that I am aware of, building an image with "genericx86-64" everything boots
-> up alright but I am unable to reboot or shutdown the target system
-> successfully.
->
-> I later on added the "meta-intel" layer but up to no avail. The image gets
-> stuck indefinitely on boot-up at: "listing ALSA devices ...".
->
-> 1. Since I am not really interested in sound for my project, could someone
-> point me to how to remove, fix or skip this step in the boot process
-> altogether?
->
-> 2. Also, what configuration should I make to my kernel or Bsp layer in
-> order to achieve a successful reboot and shutdown on my target machine when
-> using the bare yocto core-image-minimal?
->
-> Thanks. -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
->
-> View/Reply Online (#47631):
-> https://lists.yoctoproject.org/g/yocto/message/47631
-> Mute This Topic: https://lists.yoctoproject.org/mt/68149279/3958120
-> Mute #yocto: https://lists.yoctoproject.org/mk?hashtag=yocto&subid=7196821
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [
-> dimtass@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+> then bitbake will parse each recipe, one by one, and update each
+> variable's value in that array (in the relevant column). At the end of
+> the parsing, you have all variables which are known.
+> 
+> you can use bitbake -e to print variables value:
+> 
+> bitbake -e | grep ^MESON_BUILDTYPE
+> 
+> it will show you the default value (if it is set) outside the context
+> of any recipe.
+> 
+> bitbake -e <bar> | grep ^MESON_BUILDTYPE
+> 
+> will give you the value of this variable as it is set in <bar> recipe
 
---000000000000123e8f05996f09a7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Ooh, I like this already! Your row/column concept is a good mental map of the
+process. Your explanation cleared up the "bitbake -e" vs "bitbake -e <bar>"
+case for me too!
 
-<div dir=3D"ltr">Hi, I don&#39;t is alsa is your actual issue, even if the =
-kernel seems that it&#39;s stuck there,<div>but in any case you can remove =
-the alsa from your distro. I guess you&#39;re using poky</div><div>as base =
-distro, so add this line to your tmp/conf/local.conf file.</div><div><br></=
-div><div>DISTRO_FEATURES_remove =3D &quot;alsa&quot;<br></div><div><br></di=
-v><div>then rebuild.</div><div><br></div><div>Regards.</div></div><br><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Dec 11,=
- 2019 at 2:16 PM eph_pendragon &lt;<a href=3D"mailto:leocorp96@gmail.com">l=
-eocorp96@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">Hi everyone,<br>So I am relatively new to the project and=
- I have successfully been a able to make a few builds following the really =
-well crafted documentation.<br><br>I however have a few issues regarding my=
- target system, an IPC (Simatic Nanobox) with a quad-core Intel celeron pro=
-cessor. Since there&#39;s no Bsp that I am aware of, building an image with=
- &quot;genericx86-64&quot; everything boots up alright but I am unable to r=
-eboot or shutdown the target system successfully.=C2=A0<br><br>I later on a=
-dded the &quot;meta-intel&quot; layer but up to no avail. The image gets st=
-uck indefinitely on boot-up at: &quot;listing ALSA devices ...&quot;.<br><b=
-r>1. Since I am not really interested in sound for my project, could someon=
-e point me to how to remove, fix or skip this step in the boot process alto=
-gether?<br><br>2. Also, what configuration should I make to my kernel or Bs=
-p layer in order to achieve a successful reboot and shutdown on my target m=
-achine when using the bare yocto core-image-minimal?<br><br>Thanks.
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-<br>
-View/Reply Online (#47631): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/47631" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/47631</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/68149279/3958=
-120" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/68149279/3958120</a><br>
-Mute #yocto: <a href=3D"https://lists.yoctoproject.org/mk?hashtag=3Dyocto&a=
-mp;subid=3D7196821" rel=3D"noreferrer" target=3D"_blank">https://lists.yoct=
-oproject.org/mk?hashtag=3Dyocto&amp;subid=3D7196821</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a>=C2=A0 [<a href=3D"mailto:dimtass@gmail.com" target=3D"_blank">dimta=
-ss@gmail.com</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-</blockquote></div>
+> The content of the class is parsed when it is inherited. So you need
+> to initialize class variables *before* you inherit the class. e.g.
+> 
+> MESA_BUILD_TYPE ?= "release"
+> ...
+> inherit meson
+> 
+> in your case is very different from
+> inherit meson
+> ...
+> MESA_BUILD_TYPE ?= "release"
+> 
+> >         +python do_check_build_type() {
+> >         +    _buildtype = d.getVar('MESA_BUILD_TYPE')
+> >         +    if _buildtype not in ['release', 'debug']:
+> >         +        bb.fatal("unknown build type (%s), please set to either 'release' or 'debug'" % _buildtype)
+> >         +    if _buildtype == 'debug':
+> >         +        d.setVar('MESON_BUILDTYPE', 'debugoptimized')
+> >         +        bb.plain("setting meson build type to debugoptimized")
+> >         +}
+> >         +addtask check_build_type before do_configure
+> >         +
+> >          EXTRA_OEMESON = " \
+> >              -Dshared-glapi=true \
+> >              -Dgallium-opencl=disabled \
 
---000000000000123e8f05996f09a7--
+Whether I move the above to before or after the "inherit meson..." line makes
+no difference. Probably because the variable is being set by a task (which, I
+assume, is too late to have any effect, which is a large part of why I wrote
+this email: when do these tasks get called with respect to how variable are
+being set by all the different ways they're being set?)
+
+> You are
+> mixing BUILD_TYPE and BUILDTYPE in your email.. maybe you are mixing
+> that in your testing as well? What is set in local.conf will be parsed
+> first, so if you set a variable there, it will be 'set' when you parse
+> the recipe, so when you use ?= it should be a no-op.
+
+Notice, though, that I'm using two different variables:
+
+1) MESA_BUILD_TYPE: which can be set to "debug" or "release"
+2) MESON_BUILDTYPE: which can be set to "plain" or "debugoptimized"
+
+MESA_BUILD_TYPE is how the user tweaks the MESON_BUILDTYPE from the mesa
+recipe. Given what you've said above, however, I can see now that (as you say)
+setting:
+
+	MESON_BUILDTYPE_pn-mesa = ...
+
+in conf/local.conf will do what I want since this variable is recipe-specific
+and setting it in one recipe this way won't affect it in others.
+
+I'm sure some will say "there's your solution, do it that way, problem
+solved". However, I think "debug/release" are much more natural than
+"plain/debugoptimized". I can't change the MESON_BUILDTYPE strings,
+they have to be one of those two, so I introduced MESA_BUILD_TYPE as a
+level-of-indirection above MESON_BUILDTYPE to allow the user to use the more
+natural "debug/release" wording.
+
+So my real question is (and maybe I'm just yak shaving at this point): given
+the row/column view of variable setting, how do we factor in the element of
+time? For example, *when* do the variables referenced by anonymous python
+functions and by tasks get set?
+
+This works (but doesn't allow me the space for nice error checking):
+
+	MESON_BUILDTYPE = "${@bb.utils.contains('MESA_BUILD_TYPE', 'debug', 'debugoptimized', 'plain', d)}"
+
+and this doesn't:
+
+	python do_check_build_type() {
+	    _buildtype = d.getVar('MESA_BUILD_TYPE')
+	    if _buildtype not in ['release', 'debug']:
+	        bb.fatal("unknown build type (%s), please set to either 'release' or 'debug'" % _buildtype)
+	    if _buildtype == 'debug':
+	        d.setVar('MESON_BUILDTYPE', 'debugoptimized')
+	        bb.plain("setting meson build type to debugoptimized")
+	}
+	addtask check_build_type before do_configure
