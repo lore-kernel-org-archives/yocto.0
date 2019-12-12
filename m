@@ -1,55 +1,92 @@
-Received: from mail-qt1-f194.google.com (mail-qt1-f194.google.com [209.85.160.194])
- by mx.groups.io with SMTP id smtpd.web10.3226.1576131754616677237
+Received: from mail-il1-f172.google.com (mail-il1-f172.google.com [209.85.166.172])
+ by mx.groups.io with SMTP id smtpd.web12.3236.1576132281362786853
  for <yocto@lists.yoctoproject.org>;
- Wed, 11 Dec 2019 22:22:34 -0800
+ Wed, 11 Dec 2019 22:31:21 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=T9R+FGl3;
- spf=pass (domain: gmail.com, ip: 209.85.160.194, mailfrom: twoerner@gmail.com)
-Received: by mail-qt1-f194.google.com with SMTP id v2so1329729qtv.8
-        for <yocto@lists.yoctoproject.org>; Wed, 11 Dec 2019 22:22:34 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=m2II7Vbc;
+ spf=pass (domain: gmail.com, ip: 209.85.166.172, mailfrom: raj.khem@gmail.com)
+Received: by mail-il1-f172.google.com with SMTP id b15so1046527ila.7
+        for <yocto@lists.yoctoproject.org>; Wed, 11 Dec 2019 22:31:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=y/Jx5SN0MJ9eLojGU7E1PE8QjytLldPoSXn1RxnYLjc=;
-        b=T9R+FGl3UT9Cx53qJW6LqTZhSSbLHPzG60ABl6uCxWmtGsWgnKkkh1Owl8PLz/aGA0
-         qO/bvqE3dq5BUf4nuNMEq+/nyB/IP+Ktl/iqTxmciyNNwZYxU2eMTxpOs91X15etdAf/
-         CEo82xuJ8geiKojYKCcs3D9Y6jUS5S+wG3e7GfBuuX7b0x2iGpzFpmItbQCTqq4qsviL
-         ya3WYZ0/Ebte35iiYJ90i7E+r9bjTihabeMbVCsD9kW7AqDEW2B5bNpfcaExB0+rS+46
-         z31ggZB+NL4BdFd1eKem4SLUmcXSC5KQSX8j1UXFE7Gpbg1AMh5Ak/D5mkYQXXD5+SXB
-         Ml0w==
+        h=subject:to:references:from:organization:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=eAYvaDCaxssLmWR1suIgWRI6FBwUYO3lkcbh5KxGmGE=;
+        b=m2II7VbcmY6wXyzfl7wBOJZn19ZXKUa7lNh+Y2lpq/f4iVylCvLfjNufLT57yvX1FV
+         o2iJVNMpvQtV1ggjxjCmO52Cao1CRYXHmTSALHuAg5RbGoPltvOxg/cIAfYNEzP+2uSk
+         2S97yAhpSBwqJDl9p3yERcB7jLzfAfwpfITa6ZW8RN5BVVj22oJMwq5kS6aocHJRMzgC
+         aPApWpJtnTZOFIA1mImjpjdR3CjmIqVkZQnOg9tkZBc8qfBJ6QSOuwDcn8GrliR7e6c8
+         IAsqfJoELsDkzBaC1C7JXM2mGU8M4BP/Oi+9qBCjbRB9mHMVu8xacNEqpT7w3vHve4O7
+         IzJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=y/Jx5SN0MJ9eLojGU7E1PE8QjytLldPoSXn1RxnYLjc=;
-        b=R00U1i7rWk6WdFvy2DM8wahIEjA6ycwnFUIWwEdsNfRuguiE0j0tQpq6WOnEZwREbm
-         1PGXfZmHjexGkX3eE4eA+aJF9Y0VfSqZk74itV/7ahF8YIw3pe9zTv8sfZW44JBCJv83
-         pLZcxD5EhnwuzXPkFmP39488mMlaN5sUFZ2Z0gWyGGMfKblVVQP+tF3Ln/zaDw8hE7Hy
-         4wcyo/TbeWcnb/uOsVRXEYlumb0rblPRlZ8BebWD35bfskIcrYZ7mntVH2fG7CTKwmxw
-         y21fl5MUsxWBB2Cwktx/hXNCR82ul00fVCs7T5Ww+FQKOP6nLNQRaZy72vQbjAnVKTG5
-         HHCg==
-X-Gm-Message-State: APjAAAWZ93OO/JlBzidq+mie0CVhjrm9Ob7wnTaIxw6SaFxBPWGb17zR
-	L4XaSM+uZ5MSUnxLng2EArI=
-X-Google-Smtp-Source: APXvYqxcmsg+CvU6gW9wqf5N5/PKD5geK9GMw+Qb9hBTquC3nQRr1C+rtMXfexoWlvHhwjn7TjBYLg==
-X-Received: by 2002:ac8:1e90:: with SMTP id c16mr3925136qtm.265.1576131753821;
-        Wed, 11 Dec 2019 22:22:33 -0800 (PST)
-Return-Path: <twoerner@gmail.com>
-Received: from linux-uys3 ([206.248.190.95])
-        by smtp.gmail.com with ESMTPSA id 53sm1887066qtu.40.2019.12.11.22.22.32
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 11 Dec 2019 22:22:33 -0800 (PST)
-Date: Thu, 12 Dec 2019 01:22:30 -0500
-From: "Trevor Woerner" <twoerner@gmail.com>
-To: Joshua Watt <jpewhacker@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto][meta-rockchip][PATCH] rk3288: Convert to using wic
-Message-ID: <20191212062230.GA17257@linux-uys3>
-References: <20191211193607.38084-1-JPEWhacker@gmail.com>
+        h=x-gm-message-state:subject:to:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=eAYvaDCaxssLmWR1suIgWRI6FBwUYO3lkcbh5KxGmGE=;
+        b=XIY40F2GdoT0pj+WZfz8VbK6bppQkQIwk11a6OzEVTRqMfDjo0uDxUbSswjUEi0lmy
+         +gdJQ4cCzFjsAIAh2osAR/nQoo39cgAN+fWwHhgDG9+SjqcVasKknCBHi35pVxmfeTEC
+         wEzOGNeFSZ310RY2qLjkjDj51mBRYySLJ+5fBfMG/o7oYp6QCLtHmwRyVf9X+W3QBIK3
+         e76mLqF90305NfZLcHZB4wgZihh+bmyhA78AtY5rj5zVpS80YWRXBKwmIITtAOfZJ2k8
+         KEqL162nQSMORct2OmxS4UbrKNi6z16DtdnSsY4A8qFVL3U919oFwb6tztRJ/PtQXHks
+         PpFg==
+X-Gm-Message-State: APjAAAVP7mERAg4VZfs5zrMrYF31ZFUe927rVr3WvDQaK8ifEPSd+dDC
+	cvQ+Ec2T4QDEc1KJJkz4RPpmYqYdRho=
+X-Google-Smtp-Source: APXvYqyvANi3k/dcsdWkfPpiXC+IVnGrOfRxvGjHIeNvt9prVs9c2bimkMbZ1C+WK/5aXF9jGio5kw==
+X-Received: by 2002:a92:8995:: with SMTP id w21mr7020706ilk.231.1576132280165;
+        Wed, 11 Dec 2019 22:31:20 -0800 (PST)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:4e0:9937:f7df:9687:6369? ([2601:646:9200:4e0:9937:f7df:9687:6369])
+        by smtp.gmail.com with ESMTPSA id t88sm1430408ill.51.2019.12.11.22.31.19
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Dec 2019 22:31:19 -0800 (PST)
+Subject: Re: [yocto] Build issue - newbie
+To: yocto@lists.yoctoproject.org
+References: <9izc.1576130373846027647.fA8A@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <c866ace5-04bc-fa47-5010-627f815cb12b@gmail.com>
+Date: Wed, 11 Dec 2019 22:31:18 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
+ Gecko/20100101 Thunderbird/68.3.0
 MIME-Version: 1.0
-In-Reply-To: <20191211193607.38084-1-JPEWhacker@gmail.com>
-User-Agent: Mutt/1.6.0 (2016-04-01)
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+In-Reply-To: <9izc.1576130373846027647.fA8A@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-Super awesome! Applied, thanks :-)
+On 12/11/19 9:59 PM, Sujoy Ray wrote:
+> Hello,
+> I am trying to build yocto project and having following error:
+> ==========================
+> ERROR: Unable to start bitbake server (None)
+> ERROR: Server log for this session 
+> (/home/sujoy/OpenBMC/openbmc/build/bitbake-cookerdaemon.log):
+> --- Starting bitbake server pid 2104 at 2019-12-11 19:23:03.474760 ---
+> ERROR: Layer microsoft-layer is not compatible with the core layer which 
+> only supports these series: zeus (layer is compatible with warrior)
+> =============================================
+> The above error happens when I run /bitbake obmc-phosphor-image/ in 
+> Ubuntu 16.04 running in VMwarer ( Windows 10 as HOST).
+> The above command succeeds when I use Ubuntu native installation.
+> 
+> Could anybody please help?
+
+it seems your project has mixed releases of different layers. So please 
+describe how you setup your project. Usually you should be using same 
+release/branch for all layers, unless a layer states otherwise
+
+> Thanks,
+> Sujoy.
+> 
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> 
+> View/Reply Online (#47646): https://lists.yoctoproject.org/g/yocto/message/47646
+> Mute This Topic: https://lists.yoctoproject.org/mt/68263780/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+> 
+
