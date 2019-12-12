@@ -1,81 +1,55 @@
-Subject: Build issue - newbie
-To: yocto@lists.yoctoproject.org
-From: "Sujoy Ray" <raysujoy@gmail.com>
-X-Originating-Location: Surrey, British Columbia, CA (75.156.18.198)
-X-Originating-Platform: Windows Chrome 79
-User-Agent: GROUPS.IO Web Poster
+Received: from mail-qt1-f194.google.com (mail-qt1-f194.google.com [209.85.160.194])
+ by mx.groups.io with SMTP id smtpd.web10.3226.1576131754616677237
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 11 Dec 2019 22:22:34 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=T9R+FGl3;
+ spf=pass (domain: gmail.com, ip: 209.85.160.194, mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f194.google.com with SMTP id v2so1329729qtv.8
+        for <yocto@lists.yoctoproject.org>; Wed, 11 Dec 2019 22:22:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=y/Jx5SN0MJ9eLojGU7E1PE8QjytLldPoSXn1RxnYLjc=;
+        b=T9R+FGl3UT9Cx53qJW6LqTZhSSbLHPzG60ABl6uCxWmtGsWgnKkkh1Owl8PLz/aGA0
+         qO/bvqE3dq5BUf4nuNMEq+/nyB/IP+Ktl/iqTxmciyNNwZYxU2eMTxpOs91X15etdAf/
+         CEo82xuJ8geiKojYKCcs3D9Y6jUS5S+wG3e7GfBuuX7b0x2iGpzFpmItbQCTqq4qsviL
+         ya3WYZ0/Ebte35iiYJ90i7E+r9bjTihabeMbVCsD9kW7AqDEW2B5bNpfcaExB0+rS+46
+         z31ggZB+NL4BdFd1eKem4SLUmcXSC5KQSX8j1UXFE7Gpbg1AMh5Ak/D5mkYQXXD5+SXB
+         Ml0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=y/Jx5SN0MJ9eLojGU7E1PE8QjytLldPoSXn1RxnYLjc=;
+        b=R00U1i7rWk6WdFvy2DM8wahIEjA6ycwnFUIWwEdsNfRuguiE0j0tQpq6WOnEZwREbm
+         1PGXfZmHjexGkX3eE4eA+aJF9Y0VfSqZk74itV/7ahF8YIw3pe9zTv8sfZW44JBCJv83
+         pLZcxD5EhnwuzXPkFmP39488mMlaN5sUFZ2Z0gWyGGMfKblVVQP+tF3Ln/zaDw8hE7Hy
+         4wcyo/TbeWcnb/uOsVRXEYlumb0rblPRlZ8BebWD35bfskIcrYZ7mntVH2fG7CTKwmxw
+         y21fl5MUsxWBB2Cwktx/hXNCR82ul00fVCs7T5Ww+FQKOP6nLNQRaZy72vQbjAnVKTG5
+         HHCg==
+X-Gm-Message-State: APjAAAWZ93OO/JlBzidq+mie0CVhjrm9Ob7wnTaIxw6SaFxBPWGb17zR
+	L4XaSM+uZ5MSUnxLng2EArI=
+X-Google-Smtp-Source: APXvYqxcmsg+CvU6gW9wqf5N5/PKD5geK9GMw+Qb9hBTquC3nQRr1C+rtMXfexoWlvHhwjn7TjBYLg==
+X-Received: by 2002:ac8:1e90:: with SMTP id c16mr3925136qtm.265.1576131753821;
+        Wed, 11 Dec 2019 22:22:33 -0800 (PST)
+Return-Path: <twoerner@gmail.com>
+Received: from linux-uys3 ([206.248.190.95])
+        by smtp.gmail.com with ESMTPSA id 53sm1887066qtu.40.2019.12.11.22.22.32
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 11 Dec 2019 22:22:33 -0800 (PST)
+Date: Thu, 12 Dec 2019 01:22:30 -0500
+From: "Trevor Woerner" <twoerner@gmail.com>
+To: Joshua Watt <jpewhacker@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto][meta-rockchip][PATCH] rk3288: Convert to using wic
+Message-ID: <20191212062230.GA17257@linux-uys3>
+References: <20191211193607.38084-1-JPEWhacker@gmail.com>
 MIME-Version: 1.0
-Date: Wed, 11 Dec 2019 21:59:33 -0800
-Message-ID: <9izc.1576130373846027647.fA8A@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="8MSPQmMWBdPPGYwXdU5J"
+In-Reply-To: <20191211193607.38084-1-JPEWhacker@gmail.com>
+User-Agent: Mutt/1.6.0 (2016-04-01)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
---8MSPQmMWBdPPGYwXdU5J
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-I am trying to build yocto project and having following error:
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D
-ERROR: Unable to start bitbake server (None)
-ERROR: Server log for this session (/home/sujoy/OpenBMC/openbmc/ build/bit=
-bake-cookerdaemon. log):
---- Starting bitbake server pid 2104 at 2019-12-11 19:23:03.474760 ---
-ERROR: Layer microsoft-layer is not compatible with the core layer which o=
-nly supports these series: zeus (layer is compatible with warrior)
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
-The above error happens when I run bitbake obmc-phosphor-image in Ubuntu 1=
-6.04 running in VMwarer ( Windows 10 as HOST).
-
-The above command succeeds=C2=A0when I use Ubuntu native installation.
-
-Could anybody please help?
-Thanks,
-Sujoy.
-
---8MSPQmMWBdPPGYwXdU5J
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<span style=3D"color: #222222; font-family: Arial, Helvetica, sans-serif; f=
-ont-size: small;">Hello,</span>
-<div style=3D"color: #222222; font-family: Arial, Helvetica, sans-serif; f=
-ont-size: small;">I am trying to build yocto project and having following e=
-rror:</div>
-<div style=3D"color: #222222; font-family: Arial, Helvetica, sans-serif; f=
-ont-size: small;">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=
-=3D=3D=3D=3D=3D=3D=3D</div>
-<div style=3D"color: #222222; font-family: Arial, Helvetica, sans-serif; f=
-ont-size: small;">ERROR: Unable to start bitbake server (None)<br />ERROR: =
-Server log for this session (/home/sujoy/OpenBMC/openbmc/<wbr />build/bitba=
-ke-cookerdaemon.<wbr />log):<br />--- Starting bitbake server pid 2104 at 2=
-019-12-11 19:23:03.474760 ---<br />ERROR: Layer microsoft-layer is not comp=
-atible with the core layer which only supports these series: zeus (layer is=
- compatible with warrior)</div>
-<div style=3D"color: #222222; font-family: Arial, Helvetica, sans-serif; f=
-ont-size: small;">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<wbr />=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D</div>
-<div style=3D"color: #222222; font-family: Arial, Helvetica, sans-serif; f=
-ont-size: small;">&nbsp;</div>
-<div style=3D"color: #222222; font-family: Arial, Helvetica, sans-serif; f=
-ont-size: small;">The above error happens when I run&nbsp;<em>bitbake obmc-=
-phosphor-image</em>&nbsp;in Ubuntu 16.04 running in VMwarer ( Windows 10 as=
- HOST).</div>
-<div style=3D"color: #222222; font-family: Arial, Helvetica, sans-serif; f=
-ont-size: small;">&nbsp;</div>
-<div style=3D"color: #222222; font-family: Arial, Helvetica, sans-serif; f=
-ont-size: small;">The above command succeeds&nbsp;when I use Ubuntu native =
-installation.&nbsp;<br /><br /></div>
-<div style=3D"color: #222222; font-family: Arial, Helvetica, sans-serif; f=
-ont-size: small;">Could anybody please help?</div>
-<div style=3D"color: #222222; font-family: Arial, Helvetica, sans-serif; f=
-ont-size: small;">Thanks,</div>
-<div style=3D"color: #222222; font-family: Arial, Helvetica, sans-serif; f=
-ont-size: small;">Sujoy.</div>
-
---8MSPQmMWBdPPGYwXdU5J--
+Super awesome! Applied, thanks :-)
