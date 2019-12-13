@@ -1,171 +1,72 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.8597.1576226096876951214
+Received: from smtprelay.hostedemail.com (smtprelay.hostedemail.com [216.40.44.175])
+ by mx.groups.io with SMTP id smtpd.web09.9273.1576232604330627806
  for <yocto@lists.yoctoproject.org>;
- Fri, 13 Dec 2019 00:34:57 -0800
+ Fri, 13 Dec 2019 02:23:24 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: hongxu.jia@windriver.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 60447E010FD; Fri, 13 Dec 2019 00:34:56 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63218E0083D
-	for <yocto@yoctoproject.org>; Fri, 13 Dec 2019 00:34:54 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id xBD8YpdS003288
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
-	Fri, 13 Dec 2019 00:34:51 -0800
-Received: from ala-lpggp7.wrs.com (147.11.105.171) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.40) with Microsoft SMTP Server id 14.3.468.0; Fri, 13 Dec 2019
- 00:34:51 -0800
-From: "hongxu" <hongxu.jia@windriver.com>
-To: <yocto@yoctoproject.org>, <joe_macdonald@mentor.com>
-Subject: [meta-selinux][PATCH] sysvinit: sync bbappend to 2.96
-Date: Fri, 13 Dec 2019 00:34:51 -0800
-Message-ID: <20191213083451.63150-1-hongxu.jia@windriver.com>
-X-Mailer: git-send-email 2.21.0
-MIME-Version: 1.0
-Content-Type: text/plain
+ dkim=missing; spf=none, err=SPF record not found (domain: sdcsystems.com, ip: 216.40.44.175, mailfrom: andy.pont@sdcsystems.com)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+	by smtprelay08.hostedemail.com (Postfix) with ESMTP id 15FDE182CF666
+	for <yocto@lists.yoctoproject.org>; Fri, 13 Dec 2019 10:23:23 +0000 (UTC)
+X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
+X-Spam-Summary: 13,1.2,0,,d41d8cd98f00b204,andy.pont@sdcsystems.com,:,RULES_HIT:41:152:355:379:962:988:989:1189:1221:1260:1261:1313:1314:1345:1381:1437:1516:1517:1518:1534:1541:1575:1588:1589:1594:1711:1730:1775:1792:2198:2199:2527:2551:2559:2562:3138:3139:3140:3141:3142:3352:3622:3865:3867:3868:3870:3872:3874:5007:6117:6670:7652:8603:9010:10008:10215:10400:10848:11026:11473:11656:11658:11914:12043:12050:12296:12438:13061:13071:13139:13161:13184:13229:13618:14180:14181:14659:14721:21080:21324:21433:21451:21627:21740:21990:30054:30091,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:1:0,LFtime:6,LUA_SUMMARY:none
+X-HE-Tag: heart74_5787858cb2f24
+X-Filterd-Recvd-Size: 3548
+Received: from [192.168.10.100] (unknown [5.133.40.160])
+	(Authenticated sender: andy.pont@sdcsystems.com)
+	by omf03.hostedemail.com (Postfix) with ESMTPA
+	for <yocto@lists.yoctoproject.org>; Fri, 13 Dec 2019 10:23:21 +0000 (UTC)
+From: "Andy Pont" <andy.pont@sdcsystems.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Write contents of recipe variable into a configuration file
+Date: Fri, 13 Dec 2019 10:23:18 +0000
+Message-Id: <em8cb12e6d-6bb4-4ea9-a205-cc8d621fe53e@andys-imac.leeshillfarm.local>
+Reply-To: "Andy Pont" <andy.pont@sdcsystems.com>
+User-Agent: eM_Client/7.2.35700.0
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------=_MB7680ED58-DA6B-4C0C-AD91-0DD3596507AD"
+
+--------=_MB7680ED58-DA6B-4C0C-AD91-0DD3596507AD
+Content-Type: text/plain; format=flowed; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Since oe-core upgrades sysvinit to 2.96, wildcard its bbappend and
-drop the backported patch
+Hello,=0A=0AI=E2=80=99m having a Friday, brain-fade moment.  I want to defi=
+ne a variable =0Awithin the wpa_supplicant.bbappend file:=0A=0AWPA_GROUP_NA=
+ME =3D value=0A=0AThis value needs to be propagated into the wpa_supplicant=
+.conf =0Aconfiguration file for the =E2=80=9Cctrl_interface_group=E2=80=9D=
+ setting before the =0Afile gets written into the target file system.=0A=0A  =
+I once saw a recipe that defined something similar as an arbitrary =0Avalu=
+e in the configuration file i.e. in this case we would use:=0A=0Actrl_inter=
+face_group=3D$xxxx=0A=0A...and then used file and string manipulation to pu=
+t the correct value =0Athere during the do_install() phase.=0A=0AI now can=
+=E2=80=99t find that recipe to see how it was done nor can I work out =0Aho=
+w it was done.=0A=0A-Andy.=0A=0A
 
-Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
----
- .../sysvinit-fix-is_selinux_enabled.patch     | 71 -------------------
- ....88dsf.bbappend =3D> sysvinit_2.9%.bbappend} |  2 +-
- ...88dsf_selinux.inc =3D> sysvinit_selinux.inc} |  2 -
- 3 files changed, 1 insertion(+), 74 deletions(-)
- delete mode 100644 recipes-core/sysvinit/files/sysvinit-fix-is_selinux_e=
-nabled.patch
- rename recipes-core/sysvinit/{sysvinit_2.88dsf.bbappend =3D> sysvinit_2.=
-9%.bbappend} (64%)
- rename recipes-core/sysvinit/{sysvinit-2.88dsf_selinux.inc =3D> sysvinit=
-_selinux.inc} (74%)
+--------=_MB7680ED58-DA6B-4C0C-AD91-0DD3596507AD
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/recipes-core/sysvinit/files/sysvinit-fix-is_selinux_enabled.=
-patch b/recipes-core/sysvinit/files/sysvinit-fix-is_selinux_enabled.patch
-deleted file mode 100644
-index 62703b1..0000000
---- a/recipes-core/sysvinit/files/sysvinit-fix-is_selinux_enabled.patch
-+++ /dev/null
-@@ -1,71 +0,0 @@
--From 0db0276202094c8d902fc93a18eca453b6211f8a Mon Sep 17 00:00:00 2001
--From: Xin Ouyang <Xin.Ouyang@windriver.com>
--Date: Thu, 12 Apr 2012 10:48:04 +0800
--Subject: [PATCH] sysvinit: Fix is_selinux_enabled() for libselinux
--
--is_selinux_enabled()!=3D1 means SELinux is disabled by kernel
--or SELinux is enabled but policy is not loaded.
--Only at this time, /sbin/init program should call
--selinux_init_load_policy() to detect whether SELinux is enabled
--and to load SELinux policy.
--
--This is fixed already in the upstream sysvinit,
--http://svn.savannah.nongnu.org/viewvc/sysvinit/trunk/src/init.c?root=3Ds=
-ysvinit&r1=3D72&r2=3D90
-----
-- src/init.c |   33 +++++++++++++--------------------
-- 1 files changed, 13 insertions(+), 20 deletions(-)
--
--diff --git a/src/init.c b/src/init.c
--index 27532ad..75ccf25 100644
----- a/src/init.c
--+++ b/src/init.c
--@@ -54,10 +54,6 @@
--=20
-- #ifdef WITH_SELINUX
-- #  include <selinux/selinux.h>
---#  include <sys/mount.h>
---#  ifndef MNT_DETACH /* present in glibc 2.10, missing in 2.7 */
---#    define MNT_DETACH 2
---#  endif
-- #endif
--=20
-- #ifdef __i386__
--@@ -2869,22 +2865,19 @@ int main(int argc, char **argv)
--=20
-- #ifdef WITH_SELINUX
-- 	if (getenv("SELINUX_INIT") =3D=3D NULL) {
---	  const int rc =3D mount("proc", "/proc", "proc", 0, 0);
---	  if (is_selinux_enabled() > 0) {
---	    putenv("SELINUX_INIT=3DYES");
---	    if (rc =3D=3D 0) umount2("/proc", MNT_DETACH);
---	    if (selinux_init_load_policy(&enforce) =3D=3D 0) {
---	      execv(myname, argv);
---	    } else {
---	      if (enforce > 0) {
---		/* SELinux in enforcing mode but load_policy failed */
---		/* At this point, we probably can't open /dev/console, so log() won't=
- work */
---		fprintf(stderr,"Unable to load SELinux Policy. Machine is in enforcin=
-g mode. Halting now.\n");
---		exit(1);
---	      }
---	    }
---	  }
---	  if (rc =3D=3D 0) umount2("/proc", MNT_DETACH);
--+		if (is_selinux_enabled() !=3D 1) {
--+			if (selinux_init_load_policy(&enforce) =3D=3D 0) {
--+				putenv("SELINUX_INIT=3DYES");
--+				execv(myname, argv);
--+			} else {
--+				if (enforce > 0) {
--+					/* SELinux in enforcing mode but load_policy failed */
--+					/* At this point, we probably can't open /dev/console, so log() wo=
-n't work */
--+					fprintf(stderr,"Unable to load SELinux Policy. Machine is in enfor=
-cing mode. Halting now.\n");
--+					exit(1);
--+				}
--+			}
--+		}
-- 	}
-- #endif =20
-- 	/* Start booting. */
----=20
--1.7.5.4
--
-diff --git a/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend b/recipes-co=
-re/sysvinit/sysvinit_2.9%.bbappend
-similarity index 64%
-rename from recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
-rename to recipes-core/sysvinit/sysvinit_2.9%.bbappend
-index 9df30b6..4ec2267 100644
---- a/recipes-core/sysvinit/sysvinit_2.88dsf.bbappend
-+++ b/recipes-core/sysvinit/sysvinit_2.9%.bbappend
-@@ -1 +1 @@
--require ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'sysvinit-2.8=
-8dsf_selinux.inc', '', d)}
-+require ${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'sysvinit_sel=
-inux.inc', '', d)}
-diff --git a/recipes-core/sysvinit/sysvinit-2.88dsf_selinux.inc b/recipes=
--core/sysvinit/sysvinit_selinux.inc
-similarity index 74%
-rename from recipes-core/sysvinit/sysvinit-2.88dsf_selinux.inc
-rename to recipes-core/sysvinit/sysvinit_selinux.inc
-index fcfbdb7..2e54330 100644
---- a/recipes-core/sysvinit/sysvinit-2.88dsf_selinux.inc
-+++ b/recipes-core/sysvinit/sysvinit_selinux.inc
-@@ -2,8 +2,6 @@ FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
-=20
- B =3D "${S}"
-=20
--SRC_URI +=3D "file://sysvinit-fix-is_selinux_enabled.patch"
--
- inherit selinux
-=20
- DEPENDS +=3D "${LIBSELINUX}"
---=20
-2.21.0
+<html><head><style id=3D"css_styles">blockquote.cite { margin-left: 5px; ma=
+rgin-right: 0px; padding-left: 10px; padding-right:0px; border-left: 1px so=
+lid #cccccc }=0Ablockquote.cite2 {margin-left: 5px; margin-right: 0px; padd=
+ing-left: 10px; padding-right:0px; border-left: 1px solid #cccccc; margin-t=
+op: 3px; padding-top: 0px; }=0Aa img { border: 0px; }=0Ali[style=3D'text-al=
+ign: center;'], li[style=3D'text-align: right;'] {  list-style-position: in=
+side;}=0Abody { font-family: Verdana; font-size: 12px;   }</style></head><b=
+ody class=3D"plain"><div>Hello,</div><div><br /></div><div>I=E2=80=99m havi=
+ng a Friday, brain-fade moment. =C2=A0I want to define a variable within th=
+e wpa_supplicant.bbappend file:</div><div><br /></div><div>WPA_GROUP_NAME =
+=3D value</div><div><br /></div><div>This value needs to be propagated int=
+o the wpa_supplicant.conf configuration file for the =E2=80=9Cctrl_interfac=
+e_group=E2=80=9D setting before the file gets written into the target file=
+ system.</div><div><br /></div><div>=C2=A0I once saw a recipe that defined s=
+omething similar as an arbitrary value in the configuration file i.e. in th=
+is case we would use:</div><div><br /></div><div>ctrl_interface_group=3D$xx=
+xx</div><div><br /></div><div>...and then used file and string manipulation =
+to put the correct value there during the do_install() phase.</div><div><b=
+r /></div><div>I now can=E2=80=99t find that recipe to see how it was done=
+ nor can I work out how it was done.</div><div><br /></div><div>-Andy.</div>=
+<div id=3D"signature_old"><div>=C2=A0</div></div><div><br /></div>=0A</body=
+></html>
 
+--------=_MB7680ED58-DA6B-4C0C-AD91-0DD3596507AD--
