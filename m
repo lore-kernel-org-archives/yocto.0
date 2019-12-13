@@ -1,112 +1,82 @@
-Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
- by mx.groups.io with SMTP id smtpd.web10.1914.1576269810806933929
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.2050.1576270387660219430
  for <yocto@lists.yoctoproject.org>;
- Fri, 13 Dec 2019 12:43:30 -0800
+ Fri, 13 Dec 2019 12:53:08 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=MbhvA/9Q;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.210.48, mailfrom: mhalstead@linuxfoundation.org)
-Received: by mail-ot1-f48.google.com with SMTP id h20so590446otn.5
-        for <yocto@lists.yoctoproject.org>; Fri, 13 Dec 2019 12:43:30 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=gaUoq30R;
+ spf=softfail (domain: linuxfoundation.org, ip: 140.211.169.56, mailfrom: mhalstead@linuxfoundation.org)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 0BD2FE01126; Fri, 13 Dec 2019 12:53:07 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.210.53 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86B87E010A4
+	for <yocto@yoctoproject.org>; Fri, 13 Dec 2019 12:53:05 -0800 (PST)
+Received: by mail-ot1-f53.google.com with SMTP id a15so648757otf.1
+        for <yocto@yoctoproject.org>; Fri, 13 Dec 2019 12:53:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=p7e/v8D13WZPgQLOoH87gBDuefrfiIltvQRyugwCs6M=;
-        b=MbhvA/9QohmWNAWvIIMoqXK4UZ4KwgeAyV0QXl/G5kD7Wo7VVBgE2Z2QKYhZdNC42S
-         LUm9/vVvP7rfWnlfHI+GxkKRUMiCai1G+w7aHat/V+/yPdbrcgoZsE7DcWXbIZpvh+Y+
-         +pRGJC5UB9/vUp61/wA6IgJjtYY7Utr5UKvJw=
+        bh=uJTu64lYAcM0t+TubR3JGXmA4oPu4449QLjDUEx4TFY=;
+        b=gaUoq30ROf68lkY0N0gTXoXJt8cBgIrvmwBw3N3VPLPjMAobmzuztWatzNha/h4DnH
+         DYq2AxQgEqt+qXPk4DsEsPd0K81U8eSvuHZgAJR3TFX8Os/dKw/zQRG2selGzmddbmiy
+         +2UlC6RvtA0WjCAekaFLe0G6ji9NTFm+lKFoE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=p7e/v8D13WZPgQLOoH87gBDuefrfiIltvQRyugwCs6M=;
-        b=cAeJhhHcO46opOpyAkJDXKc5tpzTj5IE53fGGkKjM4TOohncUJ14DHLIM4P1j9fiBE
-         6c96YmXdVoqum1MjMHEQpqOb/rzU3LB8ASeaYKBAlFRZnbOZz4+0kASyOcCAKHl06ynu
-         5EPN1+TGF94rZy/jwJThWk0hVYELuSg6oBA0NXostAyGr0ji/IWa7AH1x4vQLhKf0dMX
-         p+8kwobh6aRG8rS0ndjqWh10vOgHzd+BF9uR+ZOLaex5epqfyKFf4B8WnkoZdCOGPLQM
-         s1gihCJgueAJvA0SDQ17SBMP9aHAtDya2HwyyPnRVhInT2c4FLN8q4DT14AjZD8dc/Bf
-         QhdA==
-X-Gm-Message-State: APjAAAUqgb5Me4BNj92aQMJGh31gcGc8AVqbM5F0B8IiZZG1Iflo4+Xn
-	mU0fryJ9OTksP1xdx9Z+cgEPcnujJSfDOKNovhwqjw==
-X-Google-Smtp-Source: APXvYqwuACceYYY8d2tK8kzrL3nqEJf6npD130sfuzGqYZfTqUBe0iYgF1wOzjFoBJJRdidE/aboNaai4pJ9uSr1JrA=
-X-Received: by 2002:a9d:518b:: with SMTP id y11mr15976479otg.349.1576269810056;
- Fri, 13 Dec 2019 12:43:30 -0800 (PST)
+        bh=uJTu64lYAcM0t+TubR3JGXmA4oPu4449QLjDUEx4TFY=;
+        b=C+E9ICsIps5QA/0aL209mhJjqjRo1gewJ0hfl2AGVbpPIyspmfZevVqSsluNoiuhJg
+         WS8ik56VFr5u0tIgIdywspHMH1bJyCAY+jnaxIr1dTFwOcRUpANz85ni+bd7JBvf1niW
+         P3ddDmL06AMILXqXHwiEMDhm8XxjIdmjfnC0XhuvCf/hwc/SrdyJVtKZZXKEEPk5I75a
+         wOkoVsQLe3A332nY4lfPj3Cco5a2LjER7WBZ70koo5YZZGiEvX4EtdtGw+iAHe/gS+dY
+         WBuKfiNrQWW2wAK/5JTskg3ck/+PmxWnhsvLaeicXwWHyFWmz6aNfh+NVid4/ONvIY/l
+         VnNA==
+X-Gm-Message-State: APjAAAXaRys4je1sITky/Bsd5VUeV9Q3sx0J9mI4Nv/fp6Wb59fsd7SK
+	Fu56aLPAUpKQ7uoQLwnNxavwdzyal8T3QOi3wz4FqA==
+X-Google-Smtp-Source: APXvYqzWjdJS6DdLO5wk6ZR8oGvjHAYr2elRVZcGJ3Yo4x5mSf+5c6wSb7joUW6FbWJ9orBDZpz7dt5gEAq8Kzm1l2k=
+X-Received: by 2002:a05:6830:1e8a:: with SMTP id n10mr15922403otr.228.1576270385066;
+ Fri, 13 Dec 2019 12:53:05 -0800 (PST)
 MIME-Version: 1.0
-References: <CAGhBkzwu3B2PWu4FZexiYxcnnKpZLjJaMohm85MKGz9Gur9T+g@mail.gmail.com>
- <48c351bc-7116-e7d7-bad8-9d595eedbcdf@mvista.com> <CAGhBkzzSOPkOW2LHjhh4P0_By3CB9Ev9R+vDa=naB2JEBpCVBA@mail.gmail.com>
- <CADfgfoYzGW5jGKd2ru1wKsomuFbSgOthPhGGRYQ8g7tBavp8zw@mail.gmail.com> <CAGhBkzxH3c_mUtdJF2wYRe3ovdb4TO73T6wYM1vPZZWvAbsw9w@mail.gmail.com>
-In-Reply-To: <CAGhBkzxH3c_mUtdJF2wYRe3ovdb4TO73T6wYM1vPZZWvAbsw9w@mail.gmail.com>
+References: <CADfgfoaRizwCAC6GadRLfFcaGQ-uGzyEqwTB_mdD2SeHCC07Tw@mail.gmail.com>
+ <5f35c463-1c98-f2b1-38c9-5b4b5401a7fc@gmail.com>
+In-Reply-To: <5f35c463-1c98-f2b1-38c9-5b4b5401a7fc@gmail.com>
 From: "Michael Halstead" <mhalstead@linuxfoundation.org>
-Date: Fri, 13 Dec 2019 12:43:18 -0800
-Message-ID: <CADfgfobNxJMcdBLPoXCFRavt5tA0PshHR+fTKhiZtZZVATx_3g@mail.gmail.com>
-Subject: Re: [yocto] Yocto server is down
-To: FLoraVLogs <eripflo@gmail.com>
-Cc: akuster <akuster@mvista.com>, yocto@lists.yoctoproject.org
+Date: Fri, 13 Dec 2019 12:52:52 -0800
+Message-ID: <CADfgfoYTRYZ+P94WAEA8d3phPDUyE3p8Cg4fyVijMg=vixHdTQ@mail.gmail.com>
+Subject: Re: [yocto-infrastructure] Data center routing issue affecting downloads.yoctoproject.org and Autobuilder
+To: yocto-infrastructure@yoctoproject.org, 
+	Yocto Project Discussion <yocto@yoctoproject.org>
+Cc: akuster808 <akuster808@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 
-Configuration is complete and these services are online.
+Networking is restored in the Portland Oregon data center.
 
-On Fri, Dec 13, 2019 at 11:55 AM FLoraVLogs <eripflo@gmail.com> wrote:
->
-> Ok, thanks for the update :)
->
-> On Fri., Dec. 13, 2019, 2:43 p.m. Michael Halstead, <mhalstead@linuxfoundation.org> wrote:
->>
->> Update: Spare hardware is racked and cabled. Data center staff is beginning configuration. I expect service to be restored in 30 to 40 minutes.
->>
->> On Fri, Dec 13, 2019 at 10:53 AM FLoraVLogs <eripflo@gmail.com> wrote:
->>>
->>> Thank you for your response. Kindly keep me posted.
->>>
->>> Regards,
->>> Ripu
->>>
->>> On Fri., Dec. 13, 2019, 12:36 p.m. akuster, <akuster@mvista.com> wrote:
->>>>
->>>>
->>>>
->>>> On 12/13/19 7:46 AM, FLoraVLogs wrote:
->>>>
->>>> Hi,
->>>>
->>>> I went to "http://downloads.yoctoproject.org/" and I get the following message:
->>>>
->>>> Gateway Timeout
->>>>
->>>> Server error - server 198.145.29.63 is unreachable at this moment.
->>>>
->>>> Please retry the request or contact your administrator.
->>>>
->>>> Kindly assist here.
->>>>
->>>>
->>>> Thanks. The LF IT department is aware of  this and working towards a solution.
->>>>
->>>> No ETA.
->>>>
->>>> Regards,
->>>> Armin
->>>>
->>>> Regards,
->>>>
->>>> Ripu
->>>>
->>>>
->>>> -=-=-=-=-=-=-=-=-=-=-=-
->>>> Links: You receive all messages sent to this group.
->>>>
->>>> View/Reply Online (#47662): https://lists.yoctoproject.org/g/yocto/message/47662
->>>> Mute This Topic: https://lists.yoctoproject.org/mt/68533979/1024635
->>>> Group Owner: yocto+owner@lists.yoctoproject.org
->>>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [akuster@mvista.com]
->>>> -=-=-=-=-=-=-=-=-=-=-=-
->>>>
->>>>
->>> -=-=-=-=-=-=-=-=-=-=-=-
->>> Links: You receive all messages sent to this group.
->>>
->>> View/Reply Online (#47670): https://lists.yoctoproject.org/g/yocto/message/47670
->>> Mute This Topic: https://lists.yoctoproject.org/mt/68533979/1003190
->>> Group Owner: yocto+owner@lists.yoctoproject.org
->>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [mhalstead@linuxfoundation.org]
->>> -=-=-=-=-=-=-=-=-=-=-=-
+Down 2019-12-13  03:07 PST
+Up at  2019-12-13  12:37 PST
+
+We are currently online using a spare router. We will remove this
+single point of failure when we transition off of this spare
+equipment. We will announce the planned downtime for the move in the
+coming weeks.
+
+--
+
+Michael Halstead
+Linux Foundation / Yocto Project
+Systems Operations Engineer
