@@ -1,117 +1,166 @@
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
- by mx.groups.io with SMTP id smtpd.web10.14470.1576259679683863706
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+ by mx.groups.io with SMTP id smtpd.web11.14473.1576259755018791726
  for <yocto@lists.yoctoproject.org>;
- Fri, 13 Dec 2019 09:54:39 -0800
+ Fri, 13 Dec 2019 09:55:55 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=kPlNr6yh;
- spf=pass (domain: gmail.com, ip: 209.85.166.42, mailfrom: eripflo@gmail.com)
-Received: by mail-io1-f42.google.com with SMTP id b10so446539iof.11
-        for <yocto@lists.yoctoproject.org>; Fri, 13 Dec 2019 09:54:39 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=CeLjZPqU;
+ spf=pass (domain: gmail.com, ip: 209.85.166.179, mailfrom: eripflo@gmail.com)
+Received: by mail-il1-f179.google.com with SMTP id w13so152007ilo.1
+        for <yocto@lists.yoctoproject.org>; Fri, 13 Dec 2019 09:55:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=PEUzrpC0QQAks/BRG8+n3x3KH4ZaaTV0hZ073HBVQ+0=;
-        b=kPlNr6yhc/iV1qT5eebrnTFAs6GkQHP1XJI+TK3kSRD0PhPfWu6A1lKQk/dEhuhZ44
-         Sjo+Tnhf+58Cg0LksXY9WA9gwtsrJyT/j7vmClBgxAPh7iTGyKQmqj/tMPAoIeRtYxNI
-         vK1pG2omkdaVNH4yW/fikXZ4WRXx04l1lamPfH8eBrbT9CSE4BPxZRrDNcGr6CDWzBlA
-         JZfjBQq9zmYzmxxej2ndXoZZdYsm3laz9EUpBpSXHw53L2YWuJ6RcJ4dPeE+Vhv24xAo
-         wLhkkkno8a7+OYv2FSIFko4jGwxKFUZ4DMQXFOJxf0DN6SNG/n1LH21Sx0505deVZQ4l
-         PhcQ==
+        bh=osV9QGxdDbqsgwhpV/MoOqTuHFVdgvlgbZdhdO1CTXU=;
+        b=CeLjZPqUb/uEGzoYLSALwXyJ9lQp0UYJgQOTv5I9qY/8UcZnIsnVV1iRMd58q3KnwK
+         kzEXnzWwhxMnSv5GI/u4QfrQkTGxoak03FwKdouEYX7wuEteIglYDX08VxxEm+fsR7wC
+         eONNVp8bGQQOWV4pdnZI5OOLuTLZDrNXXdST9vaoByMfAs29wkjTooymMj3n3nx/5aIX
+         dZpr+3ELxIhXPBqlL36uz09iM2PiENRbRdhgDb5VYohGjDqVcIahS5Ox2qK+CgeLSxvH
+         GVlc2qgRksGFb/HknHbi/ZHMiDENnITNTSm+vFItP9fYRKS3AyUeTQoYlUjUbA6pZYU1
+         A+7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=PEUzrpC0QQAks/BRG8+n3x3KH4ZaaTV0hZ073HBVQ+0=;
-        b=q3uwsenSMNI1jMQTgAzVhyH8gN13XvK1EgdZlbxlbeixpiH4uzHk7jHu9Lxkr7+FSR
-         1abaN8uTUWOXXlon3S0v6CV4CSFJYZ859pIEuOP8bhSuyEh0mbqUe3xVKvGwLSyV8I7g
-         +IM7DSg2xQX1unqS00p2twVnrK17q36/S3+cH+Lmy9o1S+uVG5JnoFatB1hzDrj/C0jJ
-         AuLq3zmOcfVrmIW3MEbJXTBeTMxb4NGLIxUwK4+s35iapkT9jjd+wrxl0fwAp/32Q7fH
-         rdMfModJ6SVBpTHRmv3YvXHnymbPrQiDAhQ5FpbucSTmNBaOGo0RHTzaNyunQHOPi8Sl
-         Of+A==
-X-Gm-Message-State: APjAAAUnvPDzM4ACltwCchqMmIPYLYJlcQvPTIHk9f9JO0kal37rlrdr
-	c/QaOzHT7pyzAvedqacfVApD2fmA8b881wXnHhZ7VXZJ
-X-Google-Smtp-Source: APXvYqwlkL77yoEWQedGvQ8cOIsFnePpQ1C6Umgn5RXlot/kcabdnVFvUKbE8JgDS9DEq/RBcLjLJ8R/7KOZPjMoWaw=
-X-Received: by 2002:a02:b38f:: with SMTP id p15mr613726jan.56.1576259679041;
- Fri, 13 Dec 2019 09:54:39 -0800 (PST)
+        bh=osV9QGxdDbqsgwhpV/MoOqTuHFVdgvlgbZdhdO1CTXU=;
+        b=KtjO1tTQ1s4k8Qz+ekr62+QeEmXW6FnyeGsypyIwXIS4Ssg8iEbiVQcGY7jaUCZgjV
+         Eh1BvDrn2HMxXsiAggFG78PUUH5C3ytH41TMiMd65VoQq8IiaRHn8QoL2QrzZYpT/qrg
+         IuIaTsY9OoNVMasv70RKb5Q/1No6iuMqGweBCj8K2lcIJMP98V0764UndY+PhUUaw+X7
+         CpLEUJTNe0BcrypJnfJcs8eU5QvCM2lbrgRZpW7z6YiczAPzyhHkolwgh7OYidJVsISD
+         iIYvb3Zxp0aThR52NPxYBCm+qg48Hcy4c9c5nvPFNx7kuNCQbJBaz2+TegzAyNW8ncwi
+         7vsQ==
+X-Gm-Message-State: APjAAAWzfjWi+BeTNnRVaRWe0s4Xb7yVxqcNL0R75dZY4Jta/ui+JEB9
+	/lVpyxpVnoMAOCXUHylqtED+3LgdrWI/BJUWlbk=
+X-Google-Smtp-Source: APXvYqxtwL4FdVOr2Mru2ySctyzQEBk2mjrDc/g47IVVVZvedFYY1FIJ+1uqWvc1zLAYr4Nw5Bt6ombVAS+jR1kcNdY=
+X-Received: by 2002:a92:89c2:: with SMTP id w63mr519537ilk.252.1576259754414;
+ Fri, 13 Dec 2019 09:55:54 -0800 (PST)
 MIME-Version: 1.0
 References: <CAGhBkzwu3B2PWu4FZexiYxcnnKpZLjJaMohm85MKGz9Gur9T+g@mail.gmail.com>
- <48c351bc-7116-e7d7-bad8-9d595eedbcdf@mvista.com>
-In-Reply-To: <48c351bc-7116-e7d7-bad8-9d595eedbcdf@mvista.com>
+ <48c351bc-7116-e7d7-bad8-9d595eedbcdf@mvista.com> <CADfgfoZFn--AUG+cKr_wcn5zyyyG4AUbJj6jf1BsUj4HZQzUPA@mail.gmail.com>
+In-Reply-To: <CADfgfoZFn--AUG+cKr_wcn5zyyyG4AUbJj6jf1BsUj4HZQzUPA@mail.gmail.com>
 From: "FLoraVLogs" <eripflo@gmail.com>
-Date: Fri, 13 Dec 2019 12:54:30 -0500
-Message-ID: <CAGhBkzzSOPkOW2LHjhh4P0_By3CB9Ev9R+vDa=naB2JEBpCVBA@mail.gmail.com>
+Date: Fri, 13 Dec 2019 12:55:45 -0500
+Message-ID: <CAGhBkzx-AynnVFXjMQv_wySFEWD8KxF0DrLCvQyz6d5C73yK6w@mail.gmail.com>
 Subject: Re: [yocto] Yocto server is down
-To: akuster <akuster@mvista.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000003e3c740599998e5e"
+To: Michael Halstead <mhalstead@linuxfoundation.org>
+Cc: Armin Kuster <akuster@mvista.com>, yocto@lists.yoctoproject.org, 
+	yocto-infrastructure@yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000bc5abb05999992d1"
 
---0000000000003e3c740599998e5e
+--000000000000bc5abb05999992d1
 Content-Type: text/plain; charset="UTF-8"
 
-Thank you for your response. Kindly keep me posted.
+Thanks for the update.
 
-Regards,
-Ripu
+On Fri., Dec. 13, 2019, 12:54 p.m. Michael Halstead, <
+mhalstead@linuxfoundation.org> wrote:
 
-On Fri., Dec. 13, 2019, 12:36 p.m. akuster, <akuster@mvista.com> wrote:
+> The router provided by our colocation provider went offline December 13 at
+> 3:07am PST. I've been working with them since to restore service. I'm now
+> on site at the data center with a senior network tech. We should have a
+> timeline for the repair soon.
+>
+> Until the repair is complete downloads.yoctoproject.org,
+> state.yoctoproject.org, autobuilder.yocto.io, and the typhoon autobulder
+> workers are not available.
+>
+>
+> --
+> Michael Halstead
+> Linux Foundation / Yocto Project
+> Systems Operations Engineer
+>
+>
+> On Fri, Dec 13, 2019 at 9:36 AM Armin Kuster <akuster@mvista.com> wrote:
+>
+>>
+>>
+>> On 12/13/19 7:46 AM, FLoraVLogs wrote:
+>>
+>> Hi,
+>>
+>> I went to "http://downloads.yoctoproject.org/" and I get the
+>> following message:
+>> Gateway Timeout
+>>
+>> Server error - server 198.145.29.63 is unreachable at this moment.
+>>
+>> Please retry the request or contact your administrator.
+>>
+>> Kindly assist here.
+>>
+>>
+>> Thanks. The LF IT department is aware of  this and working towards a
+>> solution.
+>>
+>> No ETA.
+>>
+>> Regards,
+>> Armin
+>>
+>> Regards,
+>>
+>> Ripu
+>>
+>> -=-=-=-=-=-=-=-=-=-=-=-
+>> Links: You receive all messages sent to this group.
+>>
+>> View/Reply Online (#47662): https://lists.yoctoproject.org/g/yocto/message/47662
+>> Mute This Topic: https://lists.yoctoproject.org/mt/68533979/1024635
+>> Group Owner: yocto+owner@lists.yoctoproject.org
+>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [akuster@mvista.com]
+>> -=-=-=-=-=-=-=-=-=-=-=-
+>>
+>>
+>> -=-=-=-=-=-=-=-=-=-=-=-
+>> Links: You receive all messages sent to this group.
+>>
+>> View/Reply Online (#47663):
+>> https://lists.yoctoproject.org/g/yocto/message/47663
+>> Mute This Topic: https://lists.yoctoproject.org/mt/68533979/1003190
+>> Group Owner: yocto+owner@lists.yoctoproject.org
+>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [
+>> mhalstead@linuxfoundation.org]
+>> -=-=-=-=-=-=-=-=-=-=-=-
+>>
+>
 
->
->
-> On 12/13/19 7:46 AM, FLoraVLogs wrote:
->
-> Hi,
->
-> I went to "http://downloads.yoctoproject.org/" and I get the
-> following message:
-> Gateway Timeout
->
-> Server error - server 198.145.29.63 is unreachable at this moment.
->
-> Please retry the request or contact your administrator.
->
-> Kindly assist here.
->
->
-> Thanks. The LF IT department is aware of  this and working towards a
-> solution.
->
-> No ETA.
->
-> Regards,
-> Armin
->
-> Regards,
->
-> Ripu
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
->
-> View/Reply Online (#47662): https://lists.yoctoproject.org/g/yocto/message/47662
-> Mute This Topic: https://lists.yoctoproject.org/mt/68533979/1024635
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [akuster@mvista.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
->
->
-
---0000000000003e3c740599998e5e
+--000000000000bc5abb05999992d1
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Thank you=C2=A0for your response. Kindly keep me posted.=
-=C2=A0<div dir=3D"auto"><br></div><div dir=3D"auto">Regards,</div><div dir=
-=3D"auto">Ripu=C2=A0</div></div><br><div class=3D"gmail_quote"><div dir=3D"=
-ltr" class=3D"gmail_attr">On Fri., Dec. 13, 2019, 12:36 p.m. akuster, &lt;<=
-a href=3D"mailto:akuster@mvista.com">akuster@mvista.com</a>&gt; wrote:<br><=
-/div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-le=
-ft:1px #ccc solid;padding-left:1ex">
+<div dir=3D"auto">Thanks for the update.=C2=A0</div><br><div class=3D"gmail=
+_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Fri., Dec. 13, 2019, 12:54=
+ p.m. Michael Halstead, &lt;<a href=3D"mailto:mhalstead@linuxfoundation.org=
+">mhalstead@linuxfoundation.org</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex"><div dir=3D"ltr">The router provided by our colocation provid=
+er went offline December=C2=A013 at 3:07am PST. I&#39;ve been working with =
+them since to restore service. I&#39;m now on site at the data center with =
+a senior network tech. We should have a timeline for the repair soon.<div><=
+br></div><div>Until the repair is complete <a href=3D"http://downloads.yoct=
+oproject.org" target=3D"_blank" rel=3D"noreferrer">downloads.yoctoproject.o=
+rg</a>, <a href=3D"http://state.yoctoproject.org" target=3D"_blank" rel=3D"=
+noreferrer">state.yoctoproject.org</a>, <a href=3D"http://autobuilder.yocto=
+.io" target=3D"_blank" rel=3D"noreferrer">autobuilder.yocto.io</a>, and the=
+ typhoon autobulder workers are not available.</div><div><br></div><div><br=
+></div><div><blockquote type=3D"cite"><font size=3D"2" face=3D"Calibri"><sp=
+an style=3D"font-size:11pt"><div></div>
+        </span></font>
+    </blockquote>
+    <pre cols=3D"72">--=20
+Michael Halstead
+Linux Foundation / Yocto Project
+Systems Operations Engineer</pre></div></div><br><div class=3D"gmail_quote"=
+><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Dec 13, 2019 at 9:36 AM Armi=
+n Kuster &lt;<a href=3D"mailto:akuster@mvista.com" target=3D"_blank" rel=3D=
+"noreferrer">akuster@mvista.com</a>&gt; wrote:<br></div><blockquote class=
+=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex">
  =20
    =20
  =20
-  <div text=3D"#000000" bgcolor=3D"#FFFFFF">
+  <div bgcolor=3D"#FFFFFF">
     <br>
     <br>
     <div>On 12/13/19 7:46 AM, FLoraVLogs wrote:<br>
@@ -178,6 +227,23 @@ ferrer">akuster@mvista.com</a>]
     <br>
   </div>
 
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+<br>
+View/Reply Online (#47663): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/47663" rel=3D"noreferrer noreferrer" target=3D"_blank">https://l=
+ists.yoctoproject.org/g/yocto/message/47663</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/68533979/1003=
+190" rel=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctopro=
+ject.org/mt/68533979/1003190</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank" rel=3D"noreferrer">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer noreferrer" target=3D"_blank">https://lists.yoctoproject.org=
+/g/yocto/unsub</a>=C2=A0 [<a href=3D"mailto:mhalstead@linuxfoundation.org" =
+target=3D"_blank" rel=3D"noreferrer">mhalstead@linuxfoundation.org</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+</blockquote></div>
 </blockquote></div>
 
---0000000000003e3c740599998e5e--
+--000000000000bc5abb05999992d1--
