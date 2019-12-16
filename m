@@ -1,154 +1,169 @@
-Received: from mail-lj1-f194.google.com (mail-lj1-f194.google.com [209.85.208.194])
- by mx.groups.io with SMTP id smtpd.web12.3672.1576434744884883938
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+ by mx.groups.io with SMTP id smtpd.web10.3456.1576477351554893794
  for <yocto@lists.yoctoproject.org>;
- Sun, 15 Dec 2019 10:32:25 -0800
+ Sun, 15 Dec 2019 22:22:31 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@goto.fi header.s=google header.b=a27jgqhf;
- spf=none, err=permanent DNS error (domain: goto.fi, ip: 209.85.208.194, mailfrom: jku@goto.fi)
-Received: by mail-lj1-f194.google.com with SMTP id u17so4276321lja.4
-        for <yocto@lists.yoctoproject.org>; Sun, 15 Dec 2019 10:32:24 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=pFFspuhC;
+ spf=pass (domain: gmail.com, ip: 209.85.166.44, mailfrom: aatreyamit@gmail.com)
+Received: by mail-io1-f44.google.com with SMTP id i11so2575529ioi.12
+        for <yocto@lists.yoctoproject.org>; Sun, 15 Dec 2019 22:22:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=goto.fi; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1L65PfZH4wLkhZ3IkZJXnEveco+fS+zTwYwW28YRLz8=;
-        b=a27jgqhfIqaUmwwJsBsKvg3FMkLXRTe1s0604lno1OtmB48g9msROEF4ZFWVj9clZP
-         htGNlNAEC1bXwoQ5e+svCFKY1HqBqWuDYPcjJbbcNm97XZNhWuC+E5dknfsdNgecpKOK
-         d96EvMEnHGCDrfHGCnnj4wf/0VkFgydJUO168=
+        d=gmail.com; s=20161025;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to;
+        bh=mjJvkSB6dc3UdpEHx53pR2EWSOaLiH0/gtjaxpRsOeM=;
+        b=pFFspuhCBAzeEIGjaL9uYbJS8PnDSdVRcCx9+CQ2QEYaa/T/o3LuwQO9JtFIcEaoXN
+         IO/5ZZiPpB/QwuWpK7c5GTfPYcqoDpyp4kEpGRL3sGI19FHI/Nhx4a21sr1YIvDaUKP8
+         Bz5HvdJlSUwIHOAXKk90RVRkQdYZUeJtBu2aEPk2Q9PXTNfqmeJPFj2UP+kgPS4+Me7q
+         fnxqMvAf4G2gNnp2wyhYrgykRTTQ/NB0FiXRYin1IIl8pafFX9HNqo1rcoaHii4dRXa2
+         Y5qQ2vNvBRDqazVern1BgwzDEHwknvb83bWNqHXre12m5jPrdPBsnCQj3nBQ2bWt1ZCx
+         8LOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1L65PfZH4wLkhZ3IkZJXnEveco+fS+zTwYwW28YRLz8=;
-        b=Hq+I0AoDIfaIEqaXJj2MHG8BsJvjgA5vhmdV+uezb/GqQlttuaL/RnqU8ppSDdrFgo
-         4V4ai6AZqB/WH/V2Fyyp3TUV4YmrRsM1FYP9XIYvtxl1aE7x0SmZWIdYntpa7n5SOtii
-         giaZB/FGLL91lMIbRn7PekzhDUup4JTu3gc42ehHC+CVPG+vROBgrIsPmGNdHB24zeNj
-         FH0VCO+j5b9+diDn+1oA5cpbhl6VEGAoXHSeTebAwNi0afLaPlZ6s3B+jBqJGeX8nDz1
-         vmiFHX7qsCPeaOYBVI1e9DrRylCuvCdVJBLhU75RJ+D9x1yvq2wbsnrn9AsJPRcbo9hK
-         e5oA==
-X-Gm-Message-State: APjAAAVn0qtxqb9lkenxxjKwMNhBgdJ/3XihhrPzdmyO4Ce+UECIRBp3
-	erFGZn/XMaQIo0Y8fW0g4auUMFqO2KRPr9iWs32IxOG9kQY=
-X-Google-Smtp-Source: APXvYqxykQgNZJMS/07csDrIUQQuxXon5PXg8C8b1krPcO2pMq/5iFGNO90vO5zEivemLXCmTFG/aJIjpH0NwVo68TQ=
-X-Received: by 2002:a2e:898f:: with SMTP id c15mr16434614lji.41.1576434742714;
- Sun, 15 Dec 2019 10:32:22 -0800 (PST)
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to;
+        bh=mjJvkSB6dc3UdpEHx53pR2EWSOaLiH0/gtjaxpRsOeM=;
+        b=LvtKAO2Y0tlJQEOZH9JHrYiAIkHoBrtxMPtE3dkfsrka4YOpKE0+rv3m9w6NKz2twy
+         bC6OJ0+1ZPd4FyJ+XGHpmn7jXvXroLcgsLfMJO1eM2hKalNJur6lPh3azLXJOf9//djt
+         mF6TkMvC96dJ6sF5fR0Txo9Gn9IsoPOfFUKkOEvHzxeWx7MVp+pvsPBS9CUaLW/fWlMe
+         xccaNEsEdK3yjtJDejpdZU5vfMxAHjqUbvZ9S3kxOMh0WsJ6OwK18lp4UnNL3BL/q4/2
+         g+OdGh4Ob/OXWtPxJ7BRmMGLcR2Lut13m2CjifRyylSlViBQTnIyoo4dSCD7kLYOGjHx
+         sa4w==
+X-Gm-Message-State: APjAAAWAURMmKPnVTKH8XfHPk5FBHOdhx4nR/LrAZ/Bd+9mVsW7trHJU
+	hbHT4MRMlWbYR4sBf/3QQpIJLeOUtGkYfzIKow1UMg==
+X-Google-Smtp-Source: APXvYqwAj/Ie0yPJM7hUlNBQFkFJl50UQRZrZleCD7025Wgfrdgj33J5+OGz7wLXpas9mOXEM2wUlLuPIxCw2dz1Ciw=
+X-Received: by 2002:a6b:ab81:: with SMTP id u123mr3310054ioe.214.1576477350790;
+ Sun, 15 Dec 2019 22:22:30 -0800 (PST)
 MIME-Version: 1.0
-References: <Hhck.1575870438804375389.WJ7X@lists.yoctoproject.org>
-In-Reply-To: <Hhck.1575870438804375389.WJ7X@lists.yoctoproject.org>
-From: "Jussi Kukkonen" <jku@goto.fi>
-Date: Sun, 15 Dec 2019 20:32:06 +0200
-Message-ID: <CAD5=o+q_qYSBT2ft184dMZW-63ZdiS0fC60VBYvwHjBYqL8YSw@mail.gmail.com>
-Subject: Re: [yocto] [ Error ] python3-psycopg2-native recipe build error #python #yocto
+Received: by 2002:a92:d64b:0:0:0:0:0 with HTTP; Sun, 15 Dec 2019 22:22:30
+ -0800 (PST)
+Received: by 2002:a92:d64b:0:0:0:0:0 with HTTP; Sun, 15 Dec 2019 22:22:30
+ -0800 (PST)
+In-Reply-To: <CAEe7cvBOCpQbEAE0=XrcS8LWxNBqn-XT+LDBi6ZFt8P+PBH-2A@mail.gmail.com>
+References: <CAEe7cvAH9c3VQp2rHE01e8h4kMY-ESZ66YeqxE0sCfuoHaxfdQ@mail.gmail.com>
+ <CAEe7cvBOCpQbEAE0=XrcS8LWxNBqn-XT+LDBi6ZFt8P+PBH-2A@mail.gmail.com>
+From: aatreyamit@gmail.com
+Date: Mon, 16 Dec 2019 11:52:30 +0530
+Message-ID: <CAEe7cvCvDpXSmPdrYqCkPp1g0N=m7sMKtRUFT=EGwqyhHZWOWA@mail.gmail.com>
+Subject: gstreamer bitbake introspection issue
 To: yocto@lists.yoctoproject.org
-Cc: dishant.arora1996@gmail.com
-Content-Type: multipart/alternative; boundary="000000000000d9f8160599c2500e"
+Content-Type: multipart/alternative; boundary="0000000000007d8c500599cc3cc9"
 
---000000000000d9f8160599c2500e
+--0000000000007d8c500599cc3cc9
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 9 Dec 2019 at 07:47, <dishant.arora1996@gmail.com> wrote:
+Hi,
+I am building gstreamer 1.12 for aarch64, with poky and need immediate
+help.
+bitbake gobject-introspection is success and package is built successfully,
+still I get this error on bitbake gstreamer1.0
+=C3=97***=C3=97*******=C3=97***************
 
-> Recipe --> python3-psycopg2-native -->
-> https://layers.openembedded.org/layerindex/recipe/72275/
-> Added this recipe using `IMAGE_INSTALL` variable in `sjpl-image.bb` file
->
-
-Adding a native package into a target image does not make sense. What are
-you trying to achieve?
-
- - Jussi
+ERROR: gstreamer1.0-1.12.2-r0 do_configure: Function failed: do_configure
+(log file /poky/build/tmp-glibc/work/aarch64-oe-linux/
+gstreamer1.0/1.12.2-r0/temp/log.do_configure.14926)
+ERROR: Logfile of failure stored in:
 
 
-> Got following errors while building the image :
->
-> ERROR: Task do_populate_sdk in
-> /home/ubuntu/build-torizon/meta-sjpl/recipes-sjpl/images/sjpl-image.bb
-> rdepends upon non-existent task do_package_write_ipk in
-> /home/ubuntu/layers/openembedded-core/meta-spdxscanner/recipes-devtools/python/
-> python3-psycopg2-native_2.6.1.bb
->
-> ERROR: Command execution failed: 1
->
-> How can this error be resolved ?
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
->
-> View/Reply Online (#47596):
-> https://lists.yoctoproject.org/g/yocto/message/47596
-> Mute This Topic: https://lists.yoctoproject.org/mt/67787853/3618313
-> Mute #yocto: https://lists.yoctoproject.org/mk?hashtag=yocto&subid=6691875
-> Mute #python:
-> https://lists.yoctoproject.org/mk?hashtag=python&subid=6691875
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [jku@goto.fi]
-> -=-=-=-=-=-=-=-=-=-=-=-
->
+/poky/build/tmp-glibc/work/aarch64-oe-linux/gstreamer1.0/1.12.2-r0/temp/
+log.do_configure.14926
+Log data follows:
+| DEBUG: SITE files ['endian-little', 'bit-64', 'arm-common', 'arm-64',
+'common-linux', 'common-glibc', 'aarch64-linux', 'common']
+| DEBUG: Executing shell function autotools_preconfigure
+| DEBUG: Shell function autotools_preconfigure finished
+| DEBUG: Executing python function autotools_aclocals
+| DEBUG: SITE files ['endian-little', 'bit-64', 'arm-common', 'arm-64',
+'common-linux', 'common-glibc', 'aarch64-linux', 'common']
+| DEBUG: Python function autotools_aclocals finished
+| DEBUG: Executing shell function delete_pkg_m4_file
+| DEBUG: Shell function delete_pkg_m4_file finished
+| DEBUG: Executing shell function patch_gtk_doc_makefiles
+| DEBUG: Shell function patch_gtk_doc_makefiles finished
+| DEBUG: Executing shell function do_configure
+| cp: cannot stat '/poky/build/tmp-glibc/work/aarch64-oe-linux/
+gstreamer1.0/1.12.2-r0/recipe-sysroot//usr/share/aclocal/introspection.m4=
+=E2=80=99:
+No such file or directory
+| WARNING: /poky/build/tmp-glibc/work/aarch64-oe-linux/
+gstreamer1.0/1.12.2-r0/temp/run.do_configure.14926:1 exit 1 /poky/build/tmp=
+-
+glibc/work/aarch64-oe-linux/gstreamer1.0/1.12.2-r0/recipe-
+sysroot//usr/share/aclocal/introspection.m4 /poky/build/tmp-
+glibc/work/aarch64-oe-linux/gstreamer1.0/1.12.2-r0/gstreamer-1.12.2/m4'
+*************************************
 
---000000000000d9f8160599c2500e
+Thanks,
+Amit
+
+--0000000000007d8c500599cc3cc9
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Mon, 9 Dec 2019 at 07:47, &lt;<a href=
-=3D"mailto:dishant.arora1996@gmail.com">dishant.arora1996@gmail.com</a>&gt;=
- wrote:<br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quot=
-e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
-;padding-left:1ex">Recipe --&gt; python3-psycopg2-native --&gt;=C2=A0<a hre=
-f=3D"https://layers.openembedded.org/layerindex/recipe/72275/" target=3D"_b=
-lank">https://layers.openembedded.org/layerindex/recipe/72275/</a><br>
-<div>Added this recipe using `IMAGE_INSTALL` variable in `<a href=3D"http:/=
-/sjpl-image.bb" target=3D"_blank">sjpl-image.bb</a>` file=C2=A0</div></bloc=
-kquote><div><br></div><div>Adding a native=C2=A0package into a target image=
- does not make sense. What are you trying to achieve?<br></div><div><br></d=
-iv><div>=C2=A0- Jussi</div><div><br></div><blockquote class=3D"gmail_quote"=
- style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
-adding-left:1ex">
-<br>Got following errors while building the image :=C2=A0=C2=A0<br><br>
-<blockquote>
-<p style=3D"margin-bottom:1em;padding:0px;border:0px;font-variant-numeric:i=
-nherit;font-variant-east-asian:inherit;font-stretch:inherit;line-height:inh=
-erit;font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;font=
--size:15px;vertical-align:baseline;box-sizing:inherit;clear:both;color:rgb(=
-36,39,41)"><span style=3D"background-color:rgb(255,255,0)">ERROR: Task do_p=
-opulate_sdk in /home/ubuntu/build-torizon/meta-sjpl/recipes-sjpl/images/<a =
-href=3D"http://sjpl-image.bb" target=3D"_blank">sjpl-image.bb</a> rdepends =
-upon non-existent task do_package_write_ipk in /home/ubuntu/layers/openembe=
-dded-core/meta-spdxscanner/recipes-devtools/python/<a href=3D"http://python=
-3-psycopg2-native_2.6.1.bb" target=3D"_blank">python3-psycopg2-native_2.6.1=
-.bb</a></span></p>
-<p style=3D"margin-bottom:0px;padding:0px;border:0px;font-variant-numeric:i=
-nherit;font-variant-east-asian:inherit;font-stretch:inherit;line-height:inh=
-erit;font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;font=
--size:15px;vertical-align:baseline;box-sizing:inherit;clear:both;color:rgb(=
-36,39,41)"><span style=3D"background-color:rgb(255,255,0)">ERROR: Command e=
-xecution failed: 1<br></span></p>
-</blockquote>
-<p style=3D"margin-bottom:0px;padding:0px;border:0px;font-variant-numeric:i=
-nherit;font-variant-east-asian:inherit;font-stretch:inherit;line-height:inh=
-erit;font-family:Arial,&quot;Helvetica Neue&quot;,Helvetica,sans-serif;font=
--size:15px;vertical-align:baseline;box-sizing:inherit;clear:both;color:rgb(=
-36,39,41)"><span style=3D"background-color:rgb(255,255,255)">How can this e=
-rror be resolved ? </span></p>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-Links: You receive all messages sent to this group.<br>
-<br>
-View/Reply Online (#47596): <a href=3D"https://lists.yoctoproject.org/g/yoc=
-to/message/47596" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
-roject.org/g/yocto/message/47596</a><br>
-Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/67787853/3618=
-313" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
-/67787853/3618313</a><br>
-Mute #yocto: <a href=3D"https://lists.yoctoproject.org/mk?hashtag=3Dyocto&a=
-mp;subid=3D6691875" rel=3D"noreferrer" target=3D"_blank">https://lists.yoct=
-oproject.org/mk?hashtag=3Dyocto&amp;subid=3D6691875</a><br>
-Mute #python: <a href=3D"https://lists.yoctoproject.org/mk?hashtag=3Dpython=
-&amp;subid=3D6691875" rel=3D"noreferrer" target=3D"_blank">https://lists.yo=
-ctoproject.org/mk?hashtag=3Dpython&amp;subid=3D6691875</a><br>
-Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
-=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
-Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
-=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
-sub</a>=C2=A0 [<a href=3D"mailto:jku@goto.fi" target=3D"_blank">jku@goto.fi=
-</a>]<br>
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
-</blockquote></div></div>
+<div dir=3D"auto"><div><div class=3D"gmail_quote">Hi,=C2=A0</div><div class=
+=3D"gmail_quote" dir=3D"auto">I am building gstreamer 1.12 for aarch64, wit=
+h poky and need immediate help.=C2=A0</div><div class=3D"gmail_quote" dir=
+=3D"auto">bitbake gobject-introspection is success and package is built suc=
+cessfully, still I get this error on bitbake gstreamer1.0</div><div class=
+=3D"gmail_quote" dir=3D"auto">=C3=97***=C3=97*******=C3=97***************</=
+div><div class=3D"gmail_quote" dir=3D"auto"><blockquote class=3D"quote" sty=
+le=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div d=
+ir=3D"ltr"><div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif;fon=
+t-size:12pt;color:rgb(0,0,0)"><span>ERROR: gstreamer1.0-1.12.2-r0 do_config=
+ure: Function failed: do_configure (log file /poky/build/tmp-<wbr>glibc/wor=
+k/aarch64-oe-linux/<wbr>gstreamer1.0/1.12.2-r0/temp/<wbr>log.do_configure.1=
+4926)<br>
+</span>
+<div>ERROR: Logfile of failure stored in:</div></div></div></blockquote></d=
+iv></div><div dir=3D"auto"><br></div><div dir=3D"auto"><div class=3D"gmail_=
+quote" dir=3D"auto"><blockquote class=3D"quote" style=3D"margin:0 0 0 .8ex;=
+border-left:1px #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div style=3D=
+"font-family:Calibri,Arial,Helvetica,sans-serif;font-size:12pt;color:rgb(0,=
+0,0)"><div>/poky/build/tmp-<wbr>glibc/work/aarch64-oe-linux/<wbr>gstreamer1=
+.0/1.12.2-r0/temp/<wbr>log.do_configure.14926<br>
+</div>
+<div>Log data follows:<br>
+</div>
+<div>| DEBUG: SITE files [&#39;endian-little&#39;, &#39;bit-64&#39;, &#39;a=
+rm-common&#39;, &#39;arm-64&#39;, &#39;common-linux&#39;, &#39;common-glibc=
+&#39;, &#39;aarch64-linux&#39;, &#39;common&#39;]<br>
+</div>
+<div>| DEBUG: Executing shell function autotools_preconfigure<br>
+</div>
+<div>| DEBUG: Shell function autotools_preconfigure finished<br>
+</div>
+<div>| DEBUG: Executing python function autotools_aclocals<br>
+</div>
+<div>| DEBUG: SITE files [&#39;endian-little&#39;, &#39;bit-64&#39;, &#39;a=
+rm-common&#39;, &#39;arm-64&#39;, &#39;common-linux&#39;, &#39;common-glibc=
+&#39;, &#39;aarch64-linux&#39;, &#39;common&#39;]<br>
+</div>
+<div>| DEBUG: Python function autotools_aclocals finished<br>
+</div>
+<div>| DEBUG: Executing shell function delete_pkg_m4_file<br>
+</div>
+<div>| DEBUG: Shell function delete_pkg_m4_file finished<br>
+</div>
+<div>| DEBUG: Executing shell function patch_gtk_doc_makefiles<br>
+</div>
+<div>| DEBUG: Shell function patch_gtk_doc_makefiles finished<br>
+</div>
+<div>| DEBUG: Executing shell function do_configure<br>
+</div>
+<div>| cp: cannot stat &#39;/poky/build/tmp-<wbr>glibc/work/aarch64-oe-linu=
+x/<wbr>gstreamer1.0/1.12.2-r0/recipe-<wbr>sysroot//usr/share/aclocal/<wbr>i=
+ntrospection.m4=E2=80=99: No such file or
+ directory<br>
+</div>
+<span>| WARNING: /poky/build/tmp-<wbr>glibc/work/aarch64-oe-linux/<wbr>gstr=
+eamer1.0/1.12.2-r0/temp/<wbr>run.do_configure.14926:1 exit 1 /poky/build/tm=
+p-<wbr>glibc/work/aarch64-oe-linux/<wbr>gstreamer1.0/1.12.2-r0/recipe-<wbr>=
+sysroot//usr/share/aclocal/<wbr>introspection.m4
+/poky/build/tmp-<wbr>glibc/work/aarch64-oe-linux/<wbr>gstreamer1.0/1.12.2-r=
+0/<wbr>gstreamer-1.12.2/m4&#39;</span><br>
+</div>******************************<wbr>*******
+</div>
 
---000000000000d9f8160599c2500e--
+</blockquote></div>Thanks,=C2=A0</div><div dir=3D"auto">Amit</div></div>
+
+--0000000000007d8c500599cc3cc9--
