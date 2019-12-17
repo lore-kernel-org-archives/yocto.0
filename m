@@ -1,12 +1,12 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.1808.1576577986675014149
+ by mx.groups.io with SMTP id smtpd.web12.1839.1576578162318756497
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Dec 2019 02:19:46 -0800
+ Tue, 17 Dec 2019 02:22:42 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gherzan.ro header.s=google header.b=Db9AlrcW;
+ dkim=pass header.i=@gherzan.ro header.s=google header.b=gPcPkc+8;
  spf=none, err=SPF record not found (domain: gherzan.ro, ip: 140.211.169.56, mailfrom: andrei@gherzan.ro)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8590AE01261; Tue, 17 Dec 2019 02:19:46 -0800 (PST)
+	id 33B54E0125D; Tue, 17 Dec 2019 02:22:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -17,126 +17,129 @@ X-Spam-HAM-Report:
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.128.65 listed in list.dnswl.org]
+	*      [209.85.221.68 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B00A6E0125D
-	for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 02:19:42 -0800 (PST)
-Received: by mail-wm1-f65.google.com with SMTP id f129so2448157wmf.2
-        for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 02:19:42 -0800 (PST)
+Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com [209.85.221.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9517FE007E1
+	for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 02:22:41 -0800 (PST)
+Received: by mail-wr1-f68.google.com with SMTP id j42so6462145wrj.12
+        for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 02:22:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gherzan.ro; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=nGCraLU4Q/x1+gyR2T6uHwtwDIt3fv2HTwk+gvxi22A=;
-        b=Db9AlrcWa27Dj6jgnMltuWuXfP/mYVkd3PxuuWa97KlcM117YcSGztVzZDfV4VqBU0
-         YsxSx7GNxPe7cmmaocHaAQvT+GWoLRNjsyfepW76FTOW2bfuBsVfotzZ7K3edjKBAMec
-         Fh5p9Yvu9zaCQKWW1p0SYHmvnZtOfaY2clFPXt5xmMYzpUXy3BwLwokxoSlKuXMncWrg
-         p9IxsV10TOMqPVL6kcPYz0mGq2msnPqs2A/b98iORtVJ4KZion32n9Or76989wt3w1VD
-         kvgYQktzv1S0Uf8rhR9lC3dphYV+loDDwkW0wILw5++DxuJ4yYbNh/FseK1pLRVe/KHH
-         BpBQ==
+        h=from:to:cc:subject:date:message-id;
+        bh=c3wgxV+jVYmzeITt9wqGvb8218yk0usD1J4bFfk63cs=;
+        b=gPcPkc+8eqkdODVOCGZRzrvT6EXWqdbvwPdZQzHHi1R2xB1z8ZT3KtLSczrzsIR8cx
+         Q27SmW/qH5fV85omYvv5DAlLQGFM/DTBLg6WtKIwR20Aimaet2wTren5stZ6W7s6fRTR
+         vJczpQAAcS9yMaHzMSVdFiR1aam/vevdc+48tTNzuWRkMaC4BhSi2cfehwrfBl9b0BVG
+         xp5gu6UXAwIQyqgcuUdPNcegLu3/rvduAHRyN1XJhIyHGHtDtWf/4/mC96W8djISsHYT
+         PAa96qcYC+ObtAlC5lrLumA9d0J1U07V2FxK40CmvXydZ9TSwBs8fZ3ATyui5JaYe7gH
+         UpbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=nGCraLU4Q/x1+gyR2T6uHwtwDIt3fv2HTwk+gvxi22A=;
-        b=JjFj40jt1OKCLSxR8LKGbrMLuvF1rjddZLS8oX74tneOzMduBeiz6/JOH3x2k6+f9k
-         XPSrT/EH7cwMYsQGb3xqOppSeHF/kmn5c2fZNBMRbbf0zA/WwmYjVznRkfC3RmJ395BJ
-         LJdDFxMwQElHh0HwM8B+UG2CQjYoHKo1RlVflBkf+oWQYJqv6borW5dOKuy6tCGcRjOD
-         eXYP2Ct8yZ4TteW+wXjytClDVdSsZnDtFhiCMBRrWPNac2wMxbNsPyAnXb6250U/Xn+V
-         C/FXcJ7fSN+CjSIOtsL9NBEZp+ovykGm6V/QX+ZZS8Lt/S7pX/AEqxHawY/KGq38pOOv
-         /GFg==
-X-Gm-Message-State: APjAAAVXpT25eBtbmWZKKmjCxZDOEkVysN6tvy26njrJirg7LEKOCgQj
-	rfGXgzLrfp8j8To9VyiEnneSu+J0BLk=
-X-Google-Smtp-Source: APXvYqz1Jj/E5LFPqHA/NmV/vP5KYcoJ32TcH4PpWPg038LgM8NvwzLdAukLuYjdtnd0Egn03frDCw==
-X-Received: by 2002:a05:600c:145:: with SMTP id w5mr4784318wmm.157.1576577981619;
-        Tue, 17 Dec 2019 02:19:41 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=c3wgxV+jVYmzeITt9wqGvb8218yk0usD1J4bFfk63cs=;
+        b=oNVVhzuiVQSxEXpEqG/hBfsnQTJDMnheCjNqZMjCiWGmVQgNRXKpOzyOELFxFAZFzg
+         amtvzzq03wAbq5Iyg71OKC52L7sw1BIBxcGHXZgezZshmlmbHSRLiyEwPElesP5mat5n
+         b/pjFdHPu78FqF3SVDicAYIR4u25GkS27RMAh+AT7UGgsZR+mtS7MDE9ORwCWgubK/kV
+         C9PwW40v0/0eRW0qhW4dDfMo1hkj4pNy4ORdm0uJwuAIbMwBnw3KHsdQW+XcP5RSoE1j
+         h8NCgV9TQVYXvp8Z8kqsBM1M5HCffhu2431sIRZM7pIEwVs+5fUctsuJdOXXBWO3bFGR
+         SBUA==
+X-Gm-Message-State: APjAAAUuTxscbv27k8d09wPTMz07jmQ+V+2wjLRbihKUbbTqgLGMDdMA
+	zTOYQNfgRedvWx7wgrt5zmoiBkRtoCc=
+X-Google-Smtp-Source: APXvYqybkotg1saoKClnxzsnvdSKKRRIzN16Tvd7Pb0311y0C67pp8E24NhCIN5knLD39IdPsUPg9w==
+X-Received: by 2002:adf:f2d0:: with SMTP id d16mr37621211wrp.314.1576578160381;
+        Tue, 17 Dec 2019 02:22:40 -0800 (PST)
 Received: from agherzan-lnxU.hanover.local ([81.145.148.228])
-        by smtp.gmail.com with ESMTPSA id d8sm24759223wre.13.2019.12.17.02.19.40
+        by smtp.gmail.com with ESMTPSA id c17sm24566978wrr.87.2019.12.17.02.22.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Dec 2019 02:19:41 -0800 (PST)
+        Tue, 17 Dec 2019 02:22:39 -0800 (PST)
 From: "Andrei Gherzan" <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Cc: Andrei Gherzan <agherzan@hanoverdisplays.com>
-Subject: [PATCH 3/3] Add configure flags for fullscreen logo and no startup message
-Date: Tue, 17 Dec 2019 10:19:17 +0000
-Message-Id: <20191217101917.29395-3-andrei@gherzan.ro>
+Cc: David Steinberg <david@sonabuzz.com>
+Subject: [psplash][PATCH 1/3] Support --with-font configure option to use other font headers
+Date: Tue, 17 Dec 2019 10:22:35 +0000
+Message-Id: <20191217102237.29511-1-andrei@gherzan.ro>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191217101917.29395-1-andrei@gherzan.ro>
-References: <20191217101917.29395-1-andrei@gherzan.ro>
 
-From: Andrei Gherzan <agherzan@hanoverdisplays.com>
+From: David Steinberg <david@sonabuzz.com>
 
-Signed-off-by: Andrei Gherzan <agherzan@hanoverdisplays.com>
+Signed-off-by: David Steinberg <david@sonabuzz.com>
 ---
- Makefile.am      |  2 +-
- configure.ac     | 18 ++++++++++++++++++
- psplash-config.h |  4 ++++
- 3 files changed, 23 insertions(+), 1 deletion(-)
+ Makefile.am  | 4 ++--
+ configure.ac | 6 ++++++
+ psplash.c    | 6 +++---
+ 3 files changed, 11 insertions(+), 5 deletions(-)
 
 diff --git a/Makefile.am b/Makefile.am
-index 3721a6e..3f1cfc2 100644
+index a14152a..3721a6e 100644
 --- a/Makefile.am
 +++ b/Makefile.am
-@@ -1,6 +1,6 @@
+@@ -1,11 +1,11 @@
  bin_PROGRAMS=psplash psplash-write
  
--AM_CFLAGS = $(GCC_FLAGS) -D_GNU_SOURCE -DFONT_HEADER=\"$(FONT_NAME)-font.h\" -DFONT_DEF=$(FONT_NAME)_font
-+AM_CFLAGS = $(GCC_FLAGS) $(EXTRA_GCC_FLAGS) -D_GNU_SOURCE -DFONT_HEADER=\"$(FONT_NAME)-font.h\" -DFONT_DEF=$(FONT_NAME)_font
+-AM_CFLAGS = $(GCC_FLAGS) -D_GNU_SOURCE
++AM_CFLAGS = $(GCC_FLAGS) -D_GNU_SOURCE -DFONT_HEADER=\"$(FONT_NAME)-font.h\" -DFONT_DEF=$(FONT_NAME)_font
  
  psplash_SOURCES = psplash.c psplash.h psplash-fb.c psplash-fb.h \
                    psplash-console.c psplash-console.h           \
+ 		  psplash-colors.h psplash-config.h		\
+-		  psplash-poky-img.h psplash-bar-img.h radeon-font.h
++		  psplash-poky-img.h psplash-bar-img.h $(FONT_NAME)-font.h
+ 
+ psplash_write_SOURCES = psplash-write.c psplash.h
+ 
 diff --git a/configure.ac b/configure.ac
-index 9e78ac0..e2b7f58 100644
+index 1c4d919..9e78ac0 100644
 --- a/configure.ac
 +++ b/configure.ac
-@@ -20,6 +20,24 @@ AC_ARG_WITH([font],
-     [FONT_NAME=radeon])
- AC_SUBST([FONT_NAME])
+@@ -14,6 +14,12 @@ fi
  
-+AC_ARG_ENABLE([startup-msg],
-+    AS_HELP_STRING([--disable-startup-msg], [Disable text banner output on startup]),
-+    [disable_startup_msg=true],
-+    [disable_startup_msg=false])
-+AS_IF([test x$disable_startup_msg = xtrue], [
-+    EXTRA_GCC_FLAGS="$EXTRA_GCC_FLAGS -DPSPLASH_DISABLE_STARTUP_MSG"
-+])
-+
-+AC_ARG_ENABLE([img-fullscreen],
-+    AS_HELP_STRING([--enable-img-fullscreen], [Enable the logo image in fullscreen mode)]),
-+    [img_fullscreen=true],
-+    [img_fullscreen=false])
-+AS_IF([test x$img_fullscreen = xtrue], [
-+    EXTRA_GCC_FLAGS="$EXTRA_GCC_FLAGS -DPSPLASH_IMG_FULLSCREEN=1"
-+])
-+
-+AC_SUBST(EXTRA_GCC_FLAGS)
+ AC_SUBST(GCC_FLAGS)
+ 
++AC_ARG_WITH([font],
++    AS_HELP_STRING([--with-font], [Set font to use (default is 'radeon')]),
++    [FONT_NAME=$withval],
++    [FONT_NAME=radeon])
++AC_SUBST([FONT_NAME])
 +
  AC_OUTPUT([
  Makefile
  ])
-diff --git a/psplash-config.h b/psplash-config.h
-index 82bb76d..ecbf3df 100644
---- a/psplash-config.h
-+++ b/psplash-config.h
-@@ -20,10 +20,14 @@
- #define _HAVE_PSPLASH_CONFIG_H
+diff --git a/psplash.c b/psplash.c
+index 992e199..f6442f1 100644
+--- a/psplash.c
++++ b/psplash.c
+@@ -23,7 +23,7 @@
+ #include "psplash-colors.h"
+ #include "psplash-poky-img.h"
+ #include "psplash-bar-img.h"
+-#include "radeon-font.h"
++#include FONT_HEADER
  
- /* Text to output on program start; if undefined, output nothing */
-+#ifndef PSPLASH_DISABLE_STARTUP_MSG
- #define PSPLASH_STARTUP_MSG ""
-+#endif
+ #define SPLIT_LINE_POS(fb)                                  \
+ 	(  (fb)->height                                     \
+@@ -45,7 +45,7 @@ psplash_draw_msg (PSplashFB *fb, const char *msg)
+ {
+   int w, h;
  
- /* Bool indicating if the image is fullscreen, as opposed to split screen */
-+#ifndef PSPLASH_IMG_FULLSCREEN
- #define PSPLASH_IMG_FULLSCREEN 0
-+#endif
+-  psplash_fb_text_size (&w, &h, &radeon_font, msg);
++  psplash_fb_text_size (&w, &h, &FONT_DEF, msg);
  
- /* Position of the image split from top edge, numerator of fraction */
- #define PSPLASH_IMG_SPLIT_NUMERATOR 5
+   DBG("displaying '%s' %ix%i\n", msg, w, h);
+ 
+@@ -62,7 +62,7 @@ psplash_draw_msg (PSplashFB *fb, const char *msg)
+ 			(fb->width-w)/2, 
+ 			SPLIT_LINE_POS(fb) - h,
+ 			PSPLASH_TEXT_COLOR,
+-			&radeon_font,
++			&FONT_DEF,
+ 			msg);
+ }
+ 
 -- 
 2.17.1
 
