@@ -1,305 +1,168 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.1050.1576546884910514155
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+ by mx.groups.io with SMTP id smtpd.web12.2347.1576554515073239988
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Dec 2019 17:41:25 -0800
+ Mon, 16 Dec 2019 19:48:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=sd+tKCWm;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3C88FE011FF; Mon, 16 Dec 2019 17:41:24 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (sjolley.yp.pm[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.214.173 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11DEBE00E1F
-	for <yocto@yoctoproject.org>; Mon, 16 Dec 2019 17:41:20 -0800 (PST)
-Received: by mail-pl1-f173.google.com with SMTP id x17so5324692pln.1
-        for <yocto@yoctoproject.org>; Mon, 16 Dec 2019 17:41:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version:thread-index
-         :content-language;
-        bh=A2xKgBT+u784SS4lWHpUsR7H9BtVZk+adZEXJVIS8hI=;
-        b=sd+tKCWm/k9EjNbsn0FM5oCZIEpSYH4Lau1xyOHN+zu/I1nGEhQG0SFDiFUFVBVODF
-         tzc3ToGQEacjNTdMfjnKFMGoxZWvuK38S/cTqoBem7jKAfr7e2dhTo0b4fhfOlXdm/io
-         VlbtRNNg8MP/LDB3vR1J87X21HDzLoPyA4SfcC+4zHTmv8drXgAW38hvvQrdc5X7ka5E
-         k8qLWrelJ8o0mtGgm2XG5EqIh4BGKHiNUy6d683YaDOrvFcFUs+tPudGC3FZ4XPuK7zu
-         ZYOdCrsUicbJ5V48Vs3XzXuu7h2dM8p303o0Z8H36o609/IkMUBQoLj6XI35Wzj0bWyu
-         1vBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :thread-index:content-language;
-        bh=A2xKgBT+u784SS4lWHpUsR7H9BtVZk+adZEXJVIS8hI=;
-        b=f4/kfDV2J0QLc2UHQ+QX7j5WRE+siCNlP2iXDnZ2bcl742/T3uPKWzVIDqtv1Hlar6
-         9y19X4mufIzDjxzrAuWlkJGAWHAt8FNbPyqGXQOHO/T6mBfT9EXsUXdoaXUORx60PbTs
-         Zjreo6TWQOmyw1mSr29jJfdsgbXE3NsbGHx6dhAX/NZPVAgEy1qIsgZeP0omzY9tOjBM
-         b3Ce/BBv9hRsE/28ft8+30gsTZOO+fr5E2lSsVireF2NO4WIZhYiPuXdl5NXWkqGy7Ea
-         Q6j2gq4kHAO5Ulb13es0KJ8La8+ctUaBHAUhN/T9MEprvAjPhecmzrAIPHCcltLE16qc
-         q33g==
-X-Gm-Message-State: APjAAAVQmb72tiahiMtzi4BJFJzdCqMZJb68txFGy0kk3/NtVDKCSo5+
-	aq1hKm/SwfqxjV0Kuc+8p598xh9B
-X-Google-Smtp-Source: APXvYqw+Dt9UerTaX9VkLBpRHvuTAHrWvSLPpUV5iN60ps+ijkl4l4Ofhslwq0LDkb4iM1TF33Xn0g==
-X-Received: by 2002:a17:90b:90e:: with SMTP id bo14mr3075293pjb.17.1576546880522;
-        Mon, 16 Dec 2019 17:41:20 -0800 (PST)
-Received: from DESKTOP2AADOIF (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
-        by smtp.gmail.com with ESMTPSA id w11sm23206715pgs.60.2019.12.16.17.41.19
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 16 Dec 2019 17:41:19 -0800 (PST)
-From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>,
-	<openembedded-core@lists.openembedded.org>
-Cc: <sjolley.yp.pm@gmail.com>
-Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
-Date: Mon, 16 Dec 2019 17:41:19 -0800
-Message-ID: <f54e01d5b47b$14dde080$3e99a180$@gmail.com>
+ dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.1.11, mailfrom: changqing.li@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id xBH3mXWU014424
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
+	Mon, 16 Dec 2019 19:48:33 -0800 (PST)
+Received: from [128.224.162.189] (128.224.162.189) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0; Mon, 16 Dec
+ 2019 19:48:32 -0800
+Subject: Re: [yocto] [error-report-web][PATCH V2] Add local.conf and auto.conf into error details
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+CC: <yocto@lists.yoctoproject.org>
+References: <1573547573-352969-1-git-send-email-changqing.li@windriver.com>
+ <9315981.NtHHCumI8A@shodan>
+ <5af91cd5-9249-e236-480b-fb3b4962bc0b@windriver.com>
+From: "Changqing Li" <changqing.li@windriver.com>
+Message-ID: <b0968d53-5b8b-c3dc-d0cd-07ab0e817f01@windriver.com>
+Date: Tue, 17 Dec 2019 11:48:30 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFsZc+eSWC0eA6OhoPPCaUWyQLdhQ==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_F54F_01D5B438.06BB8AE0"
-Content-Language: en-us
-
-------=_NextPart_000_F54F_01D5B438.06BB8AE0
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-All,
-
- 
-
-The triage team is starting to try and collect up and classify bugs which a
-newcomer to the project would be able to work on in a way which means people
-can find them. They're being listed on the triage page under the appropriate
-heading:
-
- 
-
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
-
- 
-
-The idea is these bugs should be straight forward for a person to help work
-on who doesn't have deep experience with the project.  If anyone can help,
-please take ownership of the bug and send patches!  If anyone needs
-help/advice there are people on irc who can likely do so, or some of the
-more experienced contributors will likely be happy to help too.
-
- 
-
-Also, the triage team meets weekly and does its best to handle the bugs
-reported into the Bugzilla. The number of people attending that meeting has
-fallen, as have the number of people available to help fix bugs. One of the
-things we hear users report is they don't know how to help. We (the triage
-team) are therefore going to start reporting out the currently 298
-unassigned or newcomer bugs.
-
- 
-
-We're hoping people may be able to spare some time now and again to help out
-with these.  Bugs are split into two types, "true bugs" where things don't
-work as they should and "enhancements" which are features we'd want to add
-to the system.  There are also roughly four different "priority" classes
-right now, "3.1", "3.2, "3.99" and "Future", the more pressing/urgent issues
-being in "3.1" and then "3.2".
-
- 
-
-Please review this link and if a bug is something you would be able to help
-with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
-like and I will assign it to you (please make sure you have a Bugzilla
-account).  The list is at:
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newcomer_Bugs
-
- 
-
-Thanks,
-
- 
-
-Stephen K. Jolley
-
-Yocto Project Project Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
-
- 
-
-
-------=_NextPart_000_F54F_01D5B438.06BB8AE0
-Content-Type: text/html;
-	boundary="----=_NextPart_000_0238_01D5AE6F.43B2C590";
-	charset="us-ascii"
+In-Reply-To: <5af91cd5-9249-e236-480b-fb3b4962bc0b@windriver.com>
+X-Originating-IP: [128.224.162.189]
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail.windriver.com id xBH3mXWU014424
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
-starting to try and collect up and classify bugs which a newcomer to the =
-project would be able to work on in a way which means people can find =
-them. They're being listed on the triage page under the appropriate =
-heading:<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
-s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
-><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>The idea is these bugs should be straight =
-forward for a person to help work on who doesn't have deep experience =
-with the project.&nbsp; If anyone can help, please take ownership of the =
-bug and send patches!&nbsp; If anyone needs help/advice there are people =
-on irc who can likely do so, or some of the more experienced =
-contributors will likely be happy to help too.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
-meets weekly and does its best to handle the bugs reported into the =
-Bugzilla. The number of people attending that meeting has fallen, as =
-have the number of people available to help fix bugs. One of the things =
-we hear users report is they don't know how to help. We (the triage =
-team) are therefore going to start reporting out the currently 298 =
-unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>We're hoping people may be able to spare =
-some time now and again to help out with these.&nbsp; Bugs are split =
-into two types, &quot;true bugs&quot; where things don't work as they =
-should and &quot;enhancements&quot; which are features we'd want to add =
-to the system.&nbsp; There are also roughly four different =
-&quot;priority&quot; classes right now, &#8220;3.1&#8221;, &#8220;3.2, =
-&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
-being in &quot;3.1&quot; and then &#8220;3.2&#8221;.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
-and if a bug is something you would be able to help with either take =
-ownership of the bug, or send me (<a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
-e-mail with the bug number you would like and I will assign it to you =
-(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newco=
-mer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_New=
-comer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Project Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+correct the mail list to yocto@lists.yoctoproject.org
 
-------=_NextPart_000_F54F_01D5B438.06BB8AE0--
+On 12/11/19 1:45 PM, Changqing Li wrote:
+>
+> On 11/13/19 6:36 PM, Paul Eggleton wrote:
+>> Hi Changqing,
+>>
+>> Some comments below.
+>>
+>> On Tuesday, 12 November 2019 9:32:53 PM NZDT=20
+>> changqing.li@windriver.com wrote:
+>>> From: Changqing Li <changqing.li@windriver.com>
+>>>
+>>> Support to display local.conf and auto.conf on error report web.
+>>> Here is commit in oe-core, which add local.conf/auto.conf into error=20
+>>> report
+>>> https://git.openembedded.org/openembedded-core/commit/?id=3D7adf9707c=
+04d8ef6bcd8d8bda555687f705e6ee6=20
+>>>
+>>>
+>>> This commit is related to YOCTO #13252
+>>>
+>>> Signed-off-by: Changqing Li <changqing.li@windriver.com>
+>>> ---
+>>> =C2=A0 Post/0006_auto_20190917_0419.py | 24 ++++++++++++++++++++++++
+>>> =C2=A0 Post/models.py=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 ++
+>>> =C2=A0 Post/parser.py=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 ++
+>>> =C2=A0 Post/test.py=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2=
+ ++
+>>> =C2=A0 templates/error-details.html=C2=A0=C2=A0=C2=A0 | 10 ++++++++++
+>>> =C2=A0 test-data/test-payload.json=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 =
++++-
+>>> =C2=A0 6 files changed, 43 insertions(+), 1 deletion(-)
+>>> =C2=A0 create mode 100644 Post/0006_auto_20190917_0419.py
+>>>
+>>> diff --git a/Post/0006_auto_20190917_0419.py=20
+>>> b/Post/0006_auto_20190917_0419.py
+>>> new file mode 100644
+>>> index 0000000..827944e
+>>> --- /dev/null
+>>> +++ b/Post/0006_auto_20190917_0419.py
+>> Could you please give the migration a proper name (-n option to=20
+>> makemigrations) e.g. local_conf_auto_conf
+> OK, thanks
+>>
+>>> --- a/Post/models.py
+>>> +++ b/Post/models.py
+>>> @@ -43,6 +43,8 @@ class Build(models.Model):
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 LINK_BACK =3D models.TextField(max_len=
+gth=3D300, blank=3DTrue,=20
+>>> null=3DTrue)
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ERROR_TYPE =3D models.CharField(max_le=
+ngth=3D20,=20
+>>> choices=3DERROR_TYPE_CHOICES,
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 defaul=
+t=3DErrorType.RECIPE)
+>>> +=C2=A0=C2=A0=C2=A0 LOCAL_CONF =3D=20
+>>> models.TextField(max_length=3Dint(settings.MAX_UPLOAD_SIZE), default=3D=
+"")
+>>> +=C2=A0=C2=A0=C2=A0 AUTO_CONF =3D=20
+>>> models.TextField(max_length=3Dint(settings.MAX_UPLOAD_SIZE), default=3D=
+"")
+>> I'm not sure this is practical, for two reasons:
+>>
+>> 1) Field sizes should not be variable like this; changing the=20
+>> MAX_UPLOAD_SIZE value after the fact would not change the database=20
+>> structure
+>> 2) The value could never actually reach MAX_UPLOAD_SIZE because the=20
+>> overhead of the surrounding JSON would block it from being uploaded=20
+>> if it did
+>>
+>> However, since this is a TextField we don't actually have to specify=20
+>> a max_length (for a TextField max_length only actually affects the=20
+>> frontend, and we don't expose this field in a form) so it can just be=20
+>> removed.
+>>
+>> Another thing, instead of default=3D"" you should use blank=3DTrue.
+> OK,=C2=A0 I will fix this.
+>>
+>>
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {% if detail.BUILD.LOCAL_=
+CONF !=3D "" %}
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <dt></a>Local Conf:</dt>
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <dd style=3D"white-space:=
+ pre-wrap;">{{=20
+>>> detail.BUILD.LOCAL_CONF | safe }}</dd>
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {% endif %}
+>>> +
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {% if detail.BUILD.AUTO_C=
+ONF !=3D "" %}
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <dt></a>Auto Conf:</dt>
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <dd style=3D"white-space:=
+ pre-wrap;">{{=20
+>>> detail.BUILD.AUTO_CONF | safe }}</dd>
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {% endif %}
+>> We cannot use the safe filter here - doing so could open up an XSS=20
+>> vulnerability, since anyone can upload anything to the error-report=20
+>> application and the content could include links or other malicious=20
+>> HTML data. We should allow it to be auto-escaped. Is there a=20
+>> particular issue you were using this to solve?
+>
+> This is for resolve a problem when there is angle brackets in=20
+> local.conf/auto.conf.
+>
+> I have a patch in oe-core [OE-core] [PATCH] report-error.bbclass:=20
+> replace angle brackets with &lt; and &gt;]
+>
+> when we have below content in local.conf or auto.conf:
+> BUILDHISTORY_COMMIT_AUTHOR ?=3D "Khem Raj<raj.khem@gmail.com>"
+> send-error-report will fail with "HTTP Error 500: OK"
+>
+> error-report-web do rudimentary check on all fields that are
+> passed to the graphs page to avoid any XSS happening, if contains
+> '<', the server will return error(Invalid characters in json).
+> fixed by use escape of <> to replace it.
+>
+> NOTE: with this change, error-report-web need to add filter 'safe'
+> for the string wanted to display to avoid further HTML escaping
+> prior to output. Below is how the content displayed on webpage:
+> with the filter 'safe':
+> BUILDHISTORY_COMMIT_AUTHOR ?=3D "Khem Raj<raj.khem@gmail.com>"
+> without the filter 'safe':
+> BUILDHISTORY_COMMIT_AUTHOR ?=3D "Khem Raj &lt;raj.khem@gmail.com&gt;"
+>
+> Do you have good idea to resolve this? Thanks.
+>
+>>
+>> Cheers
+>> Paul
+>>
+>
