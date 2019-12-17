@@ -1,371 +1,66 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.479.1576564182754134054
+Received: from smtprelay.hostedemail.com (smtprelay.hostedemail.com [216.40.44.239])
+ by mx.groups.io with SMTP id smtpd.web12.1407.1576574100482125896
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Dec 2019 22:29:43 -0800
+ Tue, 17 Dec 2019 01:15:01 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: changqing.li@windriver.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9B8A9E01259; Mon, 16 Dec 2019 22:29:42 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 767BBE010E8
-	for <yocto@yoctoproject.org>; Mon, 16 Dec 2019 22:29:40 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com [147.11.189.41])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id xBH6TdGA014360
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 16 Dec 2019 22:29:39 -0800
-Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
- ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
- 14.3.468.0; Mon, 16 Dec 2019 22:29:32 -0800
-From: "Changqing Li" <changqing.li@windriver.com>
-To: <yocto@yoctoproject.org>
-Subject: [patchest-oe][PATCH] Add SPDX-License-Identifier: GPL-2.0-or-later to source files
-Date: Tue, 17 Dec 2019 14:29:31 +0800
-Message-ID: <1576564171-447350-1-git-send-email-changqing.li@windriver.com>
-X-Mailer: git-send-email 2.7.4
-MIME-Version: 1.0
-Content-Type: text/plain
+ dkim=missing; spf=none, err=SPF record not found (domain: sdcsystems.com, ip: 216.40.44.239, mailfrom: andy.pont@sdcsystems.com)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+	by smtprelay08.hostedemail.com (Postfix) with ESMTP id 62AB3182CED34
+	for <yocto@lists.yoctoproject.org>; Tue, 17 Dec 2019 09:14:59 +0000 (UTC)
+X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,andy.pont@sdcsystems.com,:,RULES_HIT:41:152:355:379:960:962:988:989:1189:1221:1260:1261:1313:1314:1345:1381:1437:1516:1517:1518:1534:1541:1575:1588:1589:1594:1711:1730:1774:1792:2198:2199:2527:2559:2562:2687:2827:3138:3139:3140:3141:3142:3352:3622:3865:3867:3868:3871:3872:3874:4250:5007:6119:6670:7652:7903:8603:9010:9707:10004:10214:10848:11656:11658:11783:11914:12043:13015:13016:13139:14180:14181:14659:14721:21080:21325:21433:21451:21627:21740:30054,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:1,LUA_SUMMARY:none
+X-HE-Tag: cave20_e6417adee706
+X-Filterd-Recvd-Size: 3128
+Received: from [192.168.10.100] (unknown [5.133.40.160])
+	(Authenticated sender: andy.pont@sdcsystems.com)
+	by omf14.hostedemail.com (Postfix) with ESMTPA
+	for <yocto@lists.yoctoproject.org>; Tue, 17 Dec 2019 09:14:58 +0000 (UTC)
+From: "Andy Pont" <andy.pont@sdcsystems.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Dynamic layer or recipe not working
+Date: Tue, 17 Dec 2019 09:14:54 +0000
+Message-Id: <em9bff856e-cbee-41f7-ad79-8d077357740d@andys-imac.leeshillfarm.local>
+Reply-To: "Andy Pont" <andy.pont@sdcsystems.com>
+User-Agent: eM_Client/7.2.35700.0
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------=_MB8474BF53-1B12-401A-A1B4-0928F6CA0A1B"
 
-From: Changqing Li <changqing.li@windriver.com>
+--------=_MB8474BF53-1B12-401A-A1B4-0928F6CA0A1B
+Content-Type: text/plain; format=flowed; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-[YOCTO #13532]
+Hello,=0A=0AI have created a new dynamic layer within my projects custom me=
+ta-layer =0Aand have added a new recipe to it.  When I try to build the ima=
+ge it =0Atells me that nothing RPROVIDES the recipe and if I try to build t=
+he =0Arecipe on its own it says =E2=80=9CNothing PROVIDES=E2=80=A6=E2=80=9D=
+.=0A=0AI have tried running:=0A=0A$ bitbake-layers show-recipes | grep <rec=
+ipe_name>=0A=0A=E2=80=A6and nothing is returned.=0A=0AHow do I determine wh=
+ether it is the dynamic layer that isn=E2=80=99t being =0Afound or the reci=
+pe itself that isn=E2=80=99t correct.=0A=0A-Andy.=0A=0A=0A=0A=0A
 
-Signed-off-by: Changqing Li <changqing.li@windriver.com>
----
- selftest/selftest                        | 2 ++
- tests/base.py                            | 2 ++
- tests/pyparsing/common.py                | 2 ++
- tests/pyparsing/parse_shortlog.py        | 2 ++
- tests/pyparsing/parse_signed_off_by.py   | 2 ++
- tests/pyparsing/parse_upstream_status.py | 2 ++
- tests/test_mbox_author.py                | 2 ++
- tests/test_mbox_bugzilla.py              | 2 ++
- tests/test_mbox_description.py           | 2 ++
- tests/test_mbox_format.py                | 2 ++
- tests/test_mbox_mailinglist.py           | 2 ++
- tests/test_mbox_merge.py                 | 2 ++
- tests/test_mbox_shortlog.py              | 2 ++
- tests/test_mbox_signed_off_by.py         | 2 ++
- tests/test_metadata_lic_files_chksum.py  | 2 ++
- tests/test_metadata_license.py           | 2 ++
- tests/test_metadata_max_length.py        | 2 ++
- tests/test_metadata_src_uri.py           | 2 ++
- tests/test_metadata_summary.py           | 2 ++
- tests/test_patch_cve.py                  | 2 ++
- tests/test_patch_signed_off_by.py        | 2 ++
- tests/test_patch_upstream_status.py      | 2 ++
- tests/test_python_pylint.py              | 2 ++
- 23 files changed, 46 insertions(+)
+--------=_MB8474BF53-1B12-401A-A1B4-0928F6CA0A1B
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/selftest/selftest b/selftest/selftest
-index f42045b..b6db621 100755
---- a/selftest/selftest
-+++ b/selftest/selftest
-@@ -17,6 +17,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import os
- import subprocess
- 
-diff --git a/tests/base.py b/tests/base.py
-index 3810a67..ca40d3d 100644
---- a/tests/base.py
-+++ b/tests/base.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import unittest
- import logging
- import json
-diff --git a/tests/pyparsing/common.py b/tests/pyparsing/common.py
-index 04a4fde..7ac23f7 100644
---- a/tests/pyparsing/common.py
-+++ b/tests/pyparsing/common.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import pyparsing
- 
- # general
-diff --git a/tests/pyparsing/parse_shortlog.py b/tests/pyparsing/parse_shortlog.py
-index 8e67bcc..ecd008c 100644
---- a/tests/pyparsing/parse_shortlog.py
-+++ b/tests/pyparsing/parse_shortlog.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- # NOTE:This is an oversimplified syntax of the mbox's summary
- 
- import pyparsing
-diff --git a/tests/pyparsing/parse_signed_off_by.py b/tests/pyparsing/parse_signed_off_by.py
-index db12b83..fc39a6c 100644
---- a/tests/pyparsing/parse_signed_off_by.py
-+++ b/tests/pyparsing/parse_signed_off_by.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- 
- import pyparsing
- import common
-diff --git a/tests/pyparsing/parse_upstream_status.py b/tests/pyparsing/parse_upstream_status.py
-index 232e617..c846fcb 100644
---- a/tests/pyparsing/parse_upstream_status.py
-+++ b/tests/pyparsing/parse_upstream_status.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- 
- import common
- import pyparsing
-diff --git a/tests/test_mbox_author.py b/tests/test_mbox_author.py
-index 5f3d74e..b5f7908 100644
---- a/tests/test_mbox_author.py
-+++ b/tests/test_mbox_author.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import base
- import re
- 
-diff --git a/tests/test_mbox_bugzilla.py b/tests/test_mbox_bugzilla.py
-index bb2e0bf..66ccbe8 100644
---- a/tests/test_mbox_bugzilla.py
-+++ b/tests/test_mbox_bugzilla.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import re
- import base
- 
-diff --git a/tests/test_mbox_description.py b/tests/test_mbox_description.py
-index a5b322d..237290b 100644
---- a/tests/test_mbox_description.py
-+++ b/tests/test_mbox_description.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import base
- 
- class CommitMessage(base.Base):
-diff --git a/tests/test_mbox_format.py b/tests/test_mbox_format.py
-index 11467bd..fde1938 100644
---- a/tests/test_mbox_format.py
-+++ b/tests/test_mbox_format.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import base
- import re
- 
-diff --git a/tests/test_mbox_mailinglist.py b/tests/test_mbox_mailinglist.py
-index e5700b4..36c0c1e 100644
---- a/tests/test_mbox_mailinglist.py
-+++ b/tests/test_mbox_mailinglist.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import subprocess
- import collections
- import base
-diff --git a/tests/test_mbox_merge.py b/tests/test_mbox_merge.py
-index 76eef62..6c30db8 100644
---- a/tests/test_mbox_merge.py
-+++ b/tests/test_mbox_merge.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import subprocess
- import base
- from patchtestdata import PatchTestInput as pti
-diff --git a/tests/test_mbox_shortlog.py b/tests/test_mbox_shortlog.py
-index 94f78f8..e6a4410 100644
---- a/tests/test_mbox_shortlog.py
-+++ b/tests/test_mbox_shortlog.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import base
- import parse_shortlog
- import pyparsing
-diff --git a/tests/test_mbox_signed_off_by.py b/tests/test_mbox_signed_off_by.py
-index efb9e35..e50bb8e 100644
---- a/tests/test_mbox_signed_off_by.py
-+++ b/tests/test_mbox_signed_off_by.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import base
- import parse_signed_off_by
- import re
-diff --git a/tests/test_metadata_lic_files_chksum.py b/tests/test_metadata_lic_files_chksum.py
-index 28a8ae6..da4598e 100644
---- a/tests/test_metadata_lic_files_chksum.py
-+++ b/tests/test_metadata_lic_files_chksum.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import base
- import re
- import patchtestdata
-diff --git a/tests/test_metadata_license.py b/tests/test_metadata_license.py
-index 5721f28..ed98cea 100644
---- a/tests/test_metadata_license.py
-+++ b/tests/test_metadata_license.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import base
- import os
- from patchtestdata import PatchTestInput as pti
-diff --git a/tests/test_metadata_max_length.py b/tests/test_metadata_max_length.py
-index eaf58b2..e31181a 100644
---- a/tests/test_metadata_max_length.py
-+++ b/tests/test_metadata_max_length.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import base
- import re
- 
-diff --git a/tests/test_metadata_src_uri.py b/tests/test_metadata_src_uri.py
-index a4c5caa..c0e8145 100644
---- a/tests/test_metadata_src_uri.py
-+++ b/tests/test_metadata_src_uri.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import patchtestdata
- import subprocess
- import base
-diff --git a/tests/test_metadata_summary.py b/tests/test_metadata_summary.py
-index f820f5d..c7ee24b 100644
---- a/tests/test_metadata_summary.py
-+++ b/tests/test_metadata_summary.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import base
- from patchtestdata import PatchTestInput as pti
- 
-diff --git a/tests/test_patch_cve.py b/tests/test_patch_cve.py
-index df6fe46..46ed9ef 100644
---- a/tests/test_patch_cve.py
-+++ b/tests/test_patch_cve.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import base
- import os
- import re
-diff --git a/tests/test_patch_signed_off_by.py b/tests/test_patch_signed_off_by.py
-index b620cd4..c26759e 100644
---- a/tests/test_patch_signed_off_by.py
-+++ b/tests/test_patch_signed_off_by.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import base
- import parse_signed_off_by
- import re
-diff --git a/tests/test_patch_upstream_status.py b/tests/test_patch_upstream_status.py
-index a477dfb..2179764 100644
---- a/tests/test_patch_upstream_status.py
-+++ b/tests/test_patch_upstream_status.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import base
- import parse_upstream_status
- import pyparsing
-diff --git a/tests/test_python_pylint.py b/tests/test_python_pylint.py
-index df6a5de..fe24d69 100644
---- a/tests/test_python_pylint.py
-+++ b/tests/test_python_pylint.py
-@@ -15,6 +15,8 @@
- # with this program; if not, write to the Free Software Foundation, Inc.,
- # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
- 
-+# SPDX-License-Identifier: GPL-2.0-or-later
-+
- import base
- import patchtestdata
- import pylint.epylint as lint
--- 
-2.7.4
+<html><head><style id=3D"css_styles">blockquote.cite { margin-left: 5px; ma=
+rgin-right: 0px; padding-left: 10px; padding-right:0px; border-left: 1px so=
+lid #cccccc }=0Ablockquote.cite2 {margin-left: 5px; margin-right: 0px; padd=
+ing-left: 10px; padding-right:0px; border-left: 1px solid #cccccc; margin-t=
+op: 3px; padding-top: 0px; }=0Aa img { border: 0px; }=0Ali[style=3D'text-al=
+ign: center;'], li[style=3D'text-align: right;'] {  list-style-position: in=
+side;}=0Abody { font-family: Verdana; font-size: 12px;   }</style></head><b=
+ody class=3D"plain"><div>Hello,</div><div><br /></div><div>I have created a =
+new dynamic layer within my projects custom meta-layer and have added a ne=
+w recipe to it. =C2=A0When I try to build the image it tells me that nothin=
+g RPROVIDES the recipe and if I try to build the recipe on its own it says =
+=E2=80=9CNothing PROVIDES=E2=80=A6=E2=80=9D.</div><div><br /></div><div>I=
+ have tried running:</div><div><br /></div><div>$ bitbake-layers show-recipe=
+s | grep &lt;recipe_name&gt;</div><div><br /></div><div>=E2=80=A6and nothin=
+g is returned.</div><div><br /></div><div>How do I determine whether it is=
+ the dynamic layer that isn=E2=80=99t being found or the recipe itself that=
+ isn=E2=80=99t correct.</div><div><br /></div><div>-Andy.</div><div><br /></=
+div><div id=3D"signature_old"><div>=C2=A0</div><div>=C2=A0</div><div>=C2=A0=
+</div></div><div><br /></div>=0A</body></html>
 
+--------=_MB8474BF53-1B12-401A-A1B4-0928F6CA0A1B--
