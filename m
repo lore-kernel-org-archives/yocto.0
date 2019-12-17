@@ -1,142 +1,107 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.1875.1576578164032764628
+ by mx.groups.io with SMTP id smtpd.web09.1980.1576578991396851530
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Dec 2019 02:22:44 -0800
+ Tue, 17 Dec 2019 02:36:31 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gherzan.ro header.s=google header.b=dTcHaEgM;
+ dkim=pass header.i=@gherzan.ro header.s=google header.b=SNyaiCPp;
  spf=none, err=SPF record not found (domain: gherzan.ro, ip: 140.211.169.56, mailfrom: andrei@gherzan.ro)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DFD3FE0125E; Tue, 17 Dec 2019 02:22:43 -0800 (PST)
+	id C54B1E0125E; Tue, 17 Dec 2019 02:36:30 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: 
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.221.67 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.217.65 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 191A7E00E1F
-	for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 02:22:43 -0800 (PST)
-Received: by mail-wr1-f67.google.com with SMTP id c9so10663351wrw.8
-        for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 02:22:42 -0800 (PST)
+Received: from mail-vs1-f65.google.com (mail-vs1-f65.google.com [209.85.217.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CD22E00736
+	for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 02:36:30 -0800 (PST)
+Received: by mail-vs1-f65.google.com with SMTP id g15so6168196vsf.1
+        for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 02:36:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gherzan.ro; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=nGCraLU4Q/x1+gyR2T6uHwtwDIt3fv2HTwk+gvxi22A=;
-        b=dTcHaEgMXXsMcqvh09uRMDXghldCzaXs2eExEKSWOtpf7qMWY6rO3n/E7hA61AB89v
-         oCCzwNO+EDzHpAIngBUKxYPaY4jwuHHyxHXQ7lhBCk/XcWNBPsbHpgw8VjCUYFQRsBhW
-         iKBlxZUqyJB9SWHh/HEA4vOymR+85hWnge7IN9WtQ6pscsVUvmOr3XF5gZ5NgXWOUGwu
-         /e2MZ2bt8CqM66B+rc7nA8pEkIUu06Ef0gkavMHpTVKZE2LzUUeWp3vAySgZ2oigG2Nj
-         iEbbAky2r7uJY4aX5w/bqGxCmXGJeDLl8pHjlULS8lGTMwNRiCvMPg8+tdoVDYUo/lI3
-         0IRQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=99sRR9rHbQA6aFoOJ2Px8+CsL1mXdtL73it8y5gVGck=;
+        b=SNyaiCPpi13iSfcsnfpuEKkveyPFTksAgCDTDRDeUaPBrx0AAZqjldhnB5cZa9InLx
+         9YAQ1YBw4JIEJXpuASaO+aTAUK2nfAuqN6nq+WyE5GAf/NPcFUA9xI+qsC2GNh6Vyw31
+         U1bhjY+eNDCljJIgiZLr25V6S0XeBbnhlY3svidhAssn9a7Z2qFf71J92aMvEJ+cWUL0
+         n6cAf1Tpb0/vEVXelnByb/Wm8PVASX7/n+BUbeXFpj46LJM8YtvxtPlejtCoqQQtoHo1
+         os3Y7yC9BHqnfRoMJrGCiuF4rklzuVgReER65Ts3IKU5m8iZIVWkgvK+ddYAcqQixjzg
+         lV0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=nGCraLU4Q/x1+gyR2T6uHwtwDIt3fv2HTwk+gvxi22A=;
-        b=SgjoCtRAZFxYKyFY2QCGO1fZPn9KN8/voNhOq8CXG7x09pHdAA+b8LpEAWO1egJ8q2
-         LJrmrRQ3/QlgYnB94sPHbgMTisceCZbAjOfoYQ81TMrRpNMW0PlFcj9OWvmSyfrbKh7/
-         HmkzeA2l2XxlyOeQbbf7j9tiZPpLnrWQoltYwBSS9nstgKbEyNtO5enfVcLdSQTL/ugw
-         zOLdPrVkmIxKHgbn6Ne/t7XX4ql4CimwbnUh0AEU7/8WpUlNNxy+vzr4qv1RCe/9zcFH
-         n06UJHtNnCKCo8JM2nUqogc88foseLxftw5XSMfHvvLc6X7M7L/tOZPHq8WyK6Y9ft7K
-         XwHQ==
-X-Gm-Message-State: APjAAAWtOKxlqz7f/xHJceOSdvFuQN/pmYDqFJNZMjeNH7UvHW1Xe+8e
-	f00rYqOMt9qIXWeuOHRAi9MjaT28OF0=
-X-Google-Smtp-Source: APXvYqx5Kp9naOAgG9P5DuPs6p69u0op011l4diALFauEluKzD2VzjYjLBoElbzsTC7Pi1OqSXN8lg==
-X-Received: by 2002:adf:e3d0:: with SMTP id k16mr37003879wrm.241.1576578161978;
-        Tue, 17 Dec 2019 02:22:41 -0800 (PST)
-Received: from agherzan-lnxU.hanover.local ([81.145.148.228])
-        by smtp.gmail.com with ESMTPSA id c17sm24566978wrr.87.2019.12.17.02.22.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Dec 2019 02:22:41 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=99sRR9rHbQA6aFoOJ2Px8+CsL1mXdtL73it8y5gVGck=;
+        b=NYtK45qm3D0fMc8q4Iuu9MmGhuXhXmw50hfi0PDVviG4VlowbpP0ujGIhSI6dajXdE
+         XRsybdZsXg+SDwKgTBrYiJBzhoIZqsbPjdt7Xln7sBIAArMSKeKBJmkU5YvhQEwbyVnB
+         b3lHm5R/qndSavj2jXUXzVRHfq0GPE0pBq6j7hE3cQld8Oha1EcoUlbhoIUxNinyQjZ7
+         jGuvrMxsVhhW6kef+Y7pJDXi8uCccqn8vno+UwsFANp0RPNw++na39FfwE9CaRofXCg9
+         IyfWPc+8eEgas0TetfkmyqYS5SK7yk/H5gGVFr8xlJ+269teGuOH81tXNIGfF6botZya
+         bqfA==
+X-Gm-Message-State: APjAAAWgZwjL706iSyRwsLoNMrx27EdMxy2ZCJuLouzqBM2eT1602QWM
+	xSyASCWAi9IFIYd3vf4BAm1k837Mq5JsfD5TqJqSU85p
+X-Google-Smtp-Source: APXvYqwAl8CHCW7CzxqpJq1QPvnL/yg+7wWFdb6BP8wTqk7TMJCMbp/D3gGIwnZ/NTarJKOMEjsxpIXARwzAfJt+Quk=
+X-Received: by 2002:a05:6102:5f7:: with SMTP id w23mr2425691vsf.122.1576578989529;
+ Tue, 17 Dec 2019 02:36:29 -0800 (PST)
+MIME-Version: 1.0
+References: <20191217101917.29395-1-andrei@gherzan.ro>
+In-Reply-To: <20191217101917.29395-1-andrei@gherzan.ro>
 From: "Andrei Gherzan" <andrei@gherzan.ro>
+Date: Tue, 17 Dec 2019 10:35:53 +0000
+Message-ID: <CAK18fxGQ=CwV43ETPOQXW1YYi=5tw2Z6fG1vYw4UsAOGwDkLgg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] Support --with-font configure option to use other font headers
 To: yocto@yoctoproject.org
-Cc: Andrei Gherzan <agherzan@hanoverdisplays.com>
-Subject: [psplash][PATCH 3/3] Add configure flags for fullscreen logo and no startup message
-Date: Tue, 17 Dec 2019 10:22:37 +0000
-Message-Id: <20191217102237.29511-3-andrei@gherzan.ro>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191217102237.29511-1-andrei@gherzan.ro>
-References: <20191217102237.29511-1-andrei@gherzan.ro>
+Cc: David Steinberg <david@sonabuzz.com>
+Content-Type: multipart/alternative; boundary="000000000000a1b2f80599e3e61a"
 
-From: Andrei Gherzan <agherzan@hanoverdisplays.com>
+--000000000000a1b2f80599e3e61a
+Content-Type: text/plain; charset="UTF-8"
 
-Signed-off-by: Andrei Gherzan <agherzan@hanoverdisplays.com>
----
- Makefile.am      |  2 +-
- configure.ac     | 18 ++++++++++++++++++
- psplash-config.h |  4 ++++
- 3 files changed, 23 insertions(+), 1 deletion(-)
+Hello,
 
-diff --git a/Makefile.am b/Makefile.am
-index 3721a6e..3f1cfc2 100644
---- a/Makefile.am
-+++ b/Makefile.am
-@@ -1,6 +1,6 @@
- bin_PROGRAMS=psplash psplash-write
- 
--AM_CFLAGS = $(GCC_FLAGS) -D_GNU_SOURCE -DFONT_HEADER=\"$(FONT_NAME)-font.h\" -DFONT_DEF=$(FONT_NAME)_font
-+AM_CFLAGS = $(GCC_FLAGS) $(EXTRA_GCC_FLAGS) -D_GNU_SOURCE -DFONT_HEADER=\"$(FONT_NAME)-font.h\" -DFONT_DEF=$(FONT_NAME)_font
- 
- psplash_SOURCES = psplash.c psplash.h psplash-fb.c psplash-fb.h \
-                   psplash-console.c psplash-console.h           \
-diff --git a/configure.ac b/configure.ac
-index 9e78ac0..e2b7f58 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -20,6 +20,24 @@ AC_ARG_WITH([font],
-     [FONT_NAME=radeon])
- AC_SUBST([FONT_NAME])
- 
-+AC_ARG_ENABLE([startup-msg],
-+    AS_HELP_STRING([--disable-startup-msg], [Disable text banner output on startup]),
-+    [disable_startup_msg=true],
-+    [disable_startup_msg=false])
-+AS_IF([test x$disable_startup_msg = xtrue], [
-+    EXTRA_GCC_FLAGS="$EXTRA_GCC_FLAGS -DPSPLASH_DISABLE_STARTUP_MSG"
-+])
-+
-+AC_ARG_ENABLE([img-fullscreen],
-+    AS_HELP_STRING([--enable-img-fullscreen], [Enable the logo image in fullscreen mode)]),
-+    [img_fullscreen=true],
-+    [img_fullscreen=false])
-+AS_IF([test x$img_fullscreen = xtrue], [
-+    EXTRA_GCC_FLAGS="$EXTRA_GCC_FLAGS -DPSPLASH_IMG_FULLSCREEN=1"
-+])
-+
-+AC_SUBST(EXTRA_GCC_FLAGS)
-+
- AC_OUTPUT([
- Makefile
- ])
-diff --git a/psplash-config.h b/psplash-config.h
-index 82bb76d..ecbf3df 100644
---- a/psplash-config.h
-+++ b/psplash-config.h
-@@ -20,10 +20,14 @@
- #define _HAVE_PSPLASH_CONFIG_H
- 
- /* Text to output on program start; if undefined, output nothing */
-+#ifndef PSPLASH_DISABLE_STARTUP_MSG
- #define PSPLASH_STARTUP_MSG ""
-+#endif
- 
- /* Bool indicating if the image is fullscreen, as opposed to split screen */
-+#ifndef PSPLASH_IMG_FULLSCREEN
- #define PSPLASH_IMG_FULLSCREEN 0
-+#endif
- 
- /* Position of the image split from top edge, numerator of fraction */
- #define PSPLASH_IMG_SPLIT_NUMERATOR 5
--- 
-2.17.1
+On Tue, Dec 17, 2019 at 10:19 AM <andrei@gherzan.ro> wrote:
 
+> From: David Steinberg <david@sonabuzz.com>
+>
+> Signed-off-by: David Steinberg <david@sonabuzz.com>
+>
+
+Please ignore this series. I've re-sent it with the correct "psplash" email
+subject tag. Sorry for the extra noise.
+
+Regards,
+Andrei
+
+--000000000000a1b2f80599e3e61a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello,</div><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr"><br></div><div dir=3D"ltr" class=3D"gmail_attr">On =
+Tue, Dec 17, 2019 at 10:19 AM &lt;<a href=3D"mailto:andrei@gherzan.ro">andr=
+ei@gherzan.ro</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex">From: David Steinberg &lt;<a href=3D"mailto:david@sonabuzz.com=
+" target=3D"_blank">david@sonabuzz.com</a>&gt;<br>
+<br>
+Signed-off-by: David Steinberg &lt;<a href=3D"mailto:david@sonabuzz.com" ta=
+rget=3D"_blank">david@sonabuzz.com</a>&gt;<br></blockquote><div><br></div><=
+div>Please ignore this series. I&#39;ve re-sent it with the correct &quot;p=
+splash&quot; email subject tag. Sorry for the extra noise.</div><div><br></=
+div><div>Regards,</div><div>Andrei<br></div></div></div>
+
+--000000000000a1b2f80599e3e61a--
