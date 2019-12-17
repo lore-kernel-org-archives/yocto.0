@@ -1,146 +1,105 @@
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
- by mx.groups.io with SMTP id smtpd.web12.2802.1576558115399173800
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+ by mx.groups.io with SMTP id smtpd.web09.2783.1576558154441136326
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Dec 2019 20:48:35 -0800
+ Mon, 16 Dec 2019 20:49:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Uk2QldgL;
- spf=pass (domain: gmail.com, ip: 209.85.210.172, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f172.google.com with SMTP id h14so4936482pfe.10
-        for <yocto@lists.yoctoproject.org>; Mon, 16 Dec 2019 20:48:35 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=DtyFNCr3;
+ spf=pass (domain: gmail.com, ip: 209.85.160.177, mailfrom: raj.khem@gmail.com)
+Received: by mail-qt1-f177.google.com with SMTP id k40so1837862qtk.8
+        for <yocto@lists.yoctoproject.org>; Mon, 16 Dec 2019 20:49:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=gjMMYKOaWmGCCfQkwTlEqZBD5x4Nyimn5Mk2igP+RmY=;
-        b=Uk2QldgLh2Uuk0VVBtsdQb+kwqvDIr6kbHCYWKD/I1tKwsY0cpK9f0KiDuCUQcPMyB
-         KMpL+swkIimAPIN9Nc9+niWiyhhydvQcIm7+/JZO1j2bjYwidGj4rKFAorqod75DKjqZ
-         CzVs6ErVXJRe8Sw6uNm/taRQt+1R5YPvCqtdktPaCRdMhjdWDoksGRrc+0uuBA5f+Zg8
-         LaURil/RmRmo3GVuDosCHlhEJP6SiPwgcsFUmdK0C0Ib3DreUWhKjiYB9rSz+55zsniW
-         gYYvrkRQxovb19HtDfm1MFF6IJARsbgGPJ2wJ+oR0J8o4yd6o3LcS1aGLRdO+CUjueO5
-         AuoA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xR//UNZFGi8moLZhqPEp4y3CJJ4RlUbUda6c0vOYVio=;
+        b=DtyFNCr3uf0dqh04k3GFOtE9wjuH9BPiBGWXRG3ZgJs+VVJY7spqsf/GdHnZSzDai4
+         dozdGliVN6TCXdIq+9n5asflHEoBunV01Ad99K7NGHTPotKZHiKC+uCIcJmaBu8zZLAo
+         obyYWUWQKu55jVFnYY6ZImIXc7tb+s4po/dioZPx4oQTa3Y9xmqYkKItfqiFWU2NfLoS
+         ncsTt0rmK8+8Tsmi1zMmCHw8GwiHC7CVt+6svuhFWVy90KdVlO9FUVj/J2UJjevdnzXo
+         2PdlCh4kZRGwGonqw+BUi+6gR50/hACMbZ/Nq/HP4t1ZCb10f9joJLenubMvKA7T6hvi
+         CPeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references;
-        bh=gjMMYKOaWmGCCfQkwTlEqZBD5x4Nyimn5Mk2igP+RmY=;
-        b=gNNIQnSSJlOeuFnOhI8MX5oSka5WBWle1gkszVKGyxWNRYilLdnN2X/PiZYFwVeQiO
-         z2wVrEq2Pztkqe0V/m3gwZ8MgibAqzJSxM5dkvSPFU/d5ZkdtrBGI3yxJLmZPrM0LxVq
-         UBAdKDjShR9LAew/YbGtCQKchC5nsWkZtQ67Ejen0iSVzEqVY8bedeGuupOAXu1yG1Qh
-         XkM0TEKp5sawtD49Zi2Nbjs0GI5nCVmeg4OaS2t4udzXIMJljpFAvmADpZiQ7EHMq+8e
-         BYIPskP1zDm/Lrg67HVlIk84aDrhPlGixBk+mlU7bl1xKECEWYt9SSpqiraR9SD3G2ed
-         gtLQ==
-X-Gm-Message-State: APjAAAXaQbB9JGQkoR5NBEauPJSytae6WdWNrdY3Kk0TfutyWjDy8fig
-	rBDiesBRbIrSfa0o+Mb9zfucI4hCAjA=
-X-Google-Smtp-Source: APXvYqxsl7ZVgET6gXaock7WAkd6l1AgHyMvw0wJ22B97Ps7lzepoWpz0Bio/La5d3z/AFZdyuceEw==
-X-Received: by 2002:a63:6b8a:: with SMTP id g132mr22688199pgc.127.1576558114740;
-        Mon, 16 Dec 2019 20:48:34 -0800 (PST)
-Return-Path: <akuster808@gmail.com>
-Received: from pahoa2.kama-aina.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id 17sm25209378pfv.142.2019.12.16.20.48.34
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 16 Dec 2019 20:48:34 -0800 (PST)
-From: "Armpit" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 3/3] lib/oeqa/runtime: suricata add tests
-Date: Mon, 16 Dec 2019 20:48:31 -0800
-Message-Id: <20191217044831.2080-3-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191217044831.2080-1-akuster808@gmail.com>
-References: <20191217044831.2080-1-akuster808@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xR//UNZFGi8moLZhqPEp4y3CJJ4RlUbUda6c0vOYVio=;
+        b=or64QVkNmieWaW2kGC3kYP5wRzpbH0Swwz4bt6CKb0bxtovStLIkz9lWPlzWe3Ad8S
+         k0ZIxv0W2PXcD100exCj/8O8zqW2u+yEmNIQQzPvSyr/o04WelMg8VFjoY3P2J3A2xV9
+         Wspcsxr61Hylhwgn/H56W/yT8vWf6pSEkwlkxtcUGBVHizZRrAlpgi5QPOPHhCP9cGpK
+         Ai7MUJCL8ar7M5GnPHb1HtvZcjMxVXeZBA/C7sj9PtmGHB1OCNzorvxTv9E+nhhZmbFF
+         bPQ7ekRoiKtEdKG4nzgpe1qPbwVG3TSDM0aXEg5uIVPENhidEU+OVyuc8TDzXHhN54kK
+         sicw==
+X-Gm-Message-State: APjAAAUMKUJyWSBXGtOcUfiXZsQqpK4fSUoJsp3sozpTJpim9Wr+IxzH
+	+/1LumX6fvNmnCkvAb/pIfAlkmgD5BuCYZqXYW8=
+X-Google-Smtp-Source: APXvYqzZIOLgxVblv0Zahq+Z1kSpt/l7MsTGI3jS0TgG+7syctCpPZnUTQ7T67H/IDHCHGr6qZTPI7t7zi0J6DiJYtc=
+X-Received: by 2002:ac8:145:: with SMTP id f5mr2793132qtg.194.1576558153155;
+ Mon, 16 Dec 2019 20:49:13 -0800 (PST)
+MIME-Version: 1.0
+References: <W5UD.1576533409237003637.6umO@lists.yoctoproject.org>
+In-Reply-To: <W5UD.1576533409237003637.6umO@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Mon, 16 Dec 2019 20:48:46 -0800
+Message-ID: <CAMKF1sqYnuJ_QY6uyw1jTrVwni=oeOECrtx7LJVvVFnEq3xsFA@mail.gmail.com>
+Subject: Re: [yocto] #raspberrypi
+To: wojciech.st@tutanota.com
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-drop the unit test as it should be run via ptest
-add more tests for python3-suricata-update
+On Mon, Dec 16, 2019 at 1:56 PM <wojciech.st@tutanota.com> wrote:
+>
+> Problem with rootfs boot on my raspberrypi.
+>
+> Hi
+> I am building simple image for my raspbery pi 3 A+ and connect to the pi via USB-UART converter and see the following in the console
+> ...
+> [ 2.071459] Run /bin/init as init process
+> [ 2.076507] Run /bin/sh as init process
+> sh: cannot set terminal process group (-1): Inappropriate ioctl for device
+> sh: no job control in this shell
+> sh-4.4#
+>
+>
+>
+> I build with the "bitbake core-image-base" and tried to run it on rpi 3A+, 3B, 3B+ and the problem is always the same it cannot switch to the rootfs on the sd card it seem like it stack at initramfs or some middle ground.
+>
+> I burn the *.rpi-sdimg image to SD card with dd from my Ubuntu16.04 host machine.
+> I tried with two branches thud and warrior and the problem is exactly the same.
+> The strange thing is that in this initramfs there are no tools like find grep modprobe etc. but I see my extra tools "i2c-tools vim"
+>
+> Here is my local.conf adjustments:
+> MACHINE ?= "raspberrypi3"
+> ENABLE_I2C = "1"
+> ENABLE_UART = "1"
+> IMAGE_INSTALL += "i2c-tools vim"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- lib/oeqa/runtime/cases/suricata.py | 63 ++++++++++++++++++++++++++----
- 1 file changed, 56 insertions(+), 7 deletions(-)
+Can you turn this into
+IMAGE_INSTALL_append = " i2c-tools vim"
 
-diff --git a/lib/oeqa/runtime/cases/suricata.py b/lib/oeqa/runtime/cases/suricata.py
-index 17fc8c5..7f052ec 100644
---- a/lib/oeqa/runtime/cases/suricata.py
-+++ b/lib/oeqa/runtime/cases/suricata.py
-@@ -1,6 +1,7 @@
- # Copyright (C) 2019 Armin Kuster <akuster808@gmail.com>
- #
- import re
-+from tempfile import mkstemp
- 
- from oeqa.runtime.case import OERuntimeTestCase
- from oeqa.core.decorator.depends import OETestDepends
-@@ -9,6 +10,22 @@ from oeqa.runtime.decorator.package import OEHasPackage
- 
- class SuricataTest(OERuntimeTestCase):
- 
-+    @classmethod
-+    def setUpClass(cls):
-+        cls.tmp_fd, cls.tmp_path = mkstemp()
-+        with os.fdopen(cls.tmp_fd, 'w') as f:
-+            # use google public dns
-+            f.write("nameserver 8.8.8.8")
-+            f.write(os.linesep)
-+            f.write("nameserver 8.8.4.4")
-+            f.write(os.linesep)
-+            f.write("nameserver 127.0.0.1")
-+            f.write(os.linesep)
-+
-+    @classmethod
-+    def tearDownClass(cls):
-+        os.remove(cls.tmp_path)
-+
-     @OEHasPackage(['suricata'])
-     @OETestDepends(['ssh.SSHTest.test_ssh'])
-     def test_suricata_help(self):
-@@ -18,10 +35,42 @@ class SuricataTest(OERuntimeTestCase):
-         self.assertEqual(status, 1, msg = msg)
- 
-     @OETestDepends(['suricata.SuricataTest.test_suricata_help'])
--    def test_suricata_unittest(self):
--        status, output = self.target.run('suricata -u')
--        match = re.search('FAILED: 0 ', output)
--        if not match:
--            msg = ('suricata unittest had an unexpected failure. '
--               'Status and output:%s and %s' % (status, output))
--            self.assertEqual(status, 0, msg = msg)
-+    def test_ping_openinfosecfoundation_org(self):
-+        dst = '/etc/resolv.conf'
-+        self.tc.target.run('rm -f %s' % dst)
-+        (status, output) = self.tc.target.copyTo(self.tmp_path, dst)
-+        msg = 'File could not be copied. Output: %s' % output
-+        self.assertEqual(status, 0, msg=msg)
-+
-+        status, output = self.target.run('ping -c 1 openinfosecfoundation.org')
-+        msg = ('ping openinfosecfoundation.org failed: output is:\n%s' % output)
-+        self.assertEqual(status, 0, msg = msg)
-+
-+    @OEHasPackage(['python3-suricata-update'])
-+    @OETestDepends(['suricata.SuricataTest.test_ping_openinfosecfoundation_org'])
-+    def test_suricata_update(self):
-+        status, output = self.tc.target.run('suricata-update')
-+        msg = ('suricata-update had an unexpected failure. '
-+           'Status and output:%s and %s' % (status, output))
-+        self.assertEqual(status, 0, msg = msg)
-+
-+    @OETestDepends(['suricata.SuricataTest.test_suricata_update'])
-+    def test_suricata_update_sources_list(self):
-+        status, output = self.tc.target.run('suricata-update list-sources')
-+        msg = ('suricata-update list-sources had an unexpected failure. '
-+           'Status and output:%s and %s' % (status, output))
-+        self.assertEqual(status, 0, msg = msg)
-+
-+    @OETestDepends(['suricata.SuricataTest.test_suricata_update_sources_list'])
-+    def test_suricata_update_sources(self):
-+        status, output = self.tc.target.run('suricata-update update-sources')
-+        msg = ('suricata-update update-sources had an unexpected failure. '
-+           'Status and output:%s and %s' % (status, output))
-+        self.assertEqual(status, 0, msg = msg)
-+
-+    @OETestDepends(['suricata.SuricataTest.test_suricata_update_sources'])
-+    def test_suricata_update_enable_source(self):
-+        status, output = self.tc.target.run('suricata-update enable-source oisf/trafficid')
-+        msg = ('suricata-update enable-source oisf/trafficid  had an unexpected failure. '
-+           'Status and output:%s and %s' % (status, output))
-+        self.assertEqual(status, 0, msg = msg)
--- 
-2.17.1
-
+>
+> and the bblayer.conf
+> BBLAYERS ?= " \
+>   /media/dave/Develop/yoctopi/warrior/sources/poky/meta \
+>   /media/dave/Develop/yoctopi/warrior/sources/poky/meta-poky \
+>   /media/dave/Develop/yoctopi/warrior/sources/poky/meta-yocto-bsp \
+>   /media/dave/Develop/yoctopi/warrior/sources/meta-openembedded/meta-oe \
+>   /media/dave/Develop/yoctopi/warrior/sources/meta-raspberrypi \
+>   "
+>
+> I tried also to build with the deprecated image "bitbake rpi-basic-image" but then I did not get my extra tools "i2c-tools vim".
+>
+> Anyone have any idea what can be wrong with my approach ?
+>
+> Regards,
+>
+> Wojciech
+>
+>
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+>
+> View/Reply Online (#47702): https://lists.yoctoproject.org/g/yocto/message/47702
+> Mute This Topic: https://lists.yoctoproject.org/mt/68744766/1997914
+> Mute #raspberrypi: https://lists.yoctoproject.org/mk?hashtag=raspberrypi&subid=6692173
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
