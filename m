@@ -1,12 +1,12 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.1805.1576577975759575682
+ by mx.groups.io with SMTP id smtpd.web10.1808.1576577986675014149
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Dec 2019 02:19:35 -0800
+ Tue, 17 Dec 2019 02:19:46 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gherzan.ro header.s=google header.b=TSUy+NE9;
+ dkim=pass header.i=@gherzan.ro header.s=google header.b=Db9AlrcW;
  spf=none, err=SPF record not found (domain: gherzan.ro, ip: 140.211.169.56, mailfrom: andrei@gherzan.ro)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9DCDBE01261; Tue, 17 Dec 2019 02:19:35 -0800 (PST)
+	id 8590AE01261; Tue, 17 Dec 2019 02:19:46 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -17,332 +17,126 @@ X-Spam-HAM-Report:
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.128.68 listed in list.dnswl.org]
+	*      [209.85.128.65 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f68.google.com (mail-wm1-f68.google.com [209.85.128.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2801FE0125D
-	for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 02:19:34 -0800 (PST)
-Received: by mail-wm1-f68.google.com with SMTP id p17so2459283wma.1
-        for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 02:19:33 -0800 (PST)
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B00A6E0125D
+	for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 02:19:42 -0800 (PST)
+Received: by mail-wm1-f65.google.com with SMTP id f129so2448157wmf.2
+        for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 02:19:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gherzan.ro; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=st8rD9F17hJbP+fBfC31Sr8aOINNitL9wgwgajb2oHo=;
-        b=TSUy+NE9+nbPhnQDRULqiy36Sp/gDJ2R572Ouvj0gQ9LuHKJuN9MboEWsQJnfnd8ay
-         qhnHMQfg3bwNYdyPZVIY9mk9PXoN/QVOYJUBpYQVpyYovbZlwrCcwuWFB+N/lTlU91gP
-         43r2CBV7bvfyE7bbBEScRgF34QQVNcPwqthAzGRFVam75FLevp/r8bwAUPyzFC+wj43Y
-         EzUb8jbx/sk56njLa5eO8g+6k5M2uIrOeCkAGDXtvnVbkf83HixbkEwSf9oPycC9P2ze
-         Q0iqMlYBWHOMR+iLI3bMby9zEJQb5BJz974he/SNE8RzaKa1Kz1mqWVo2mhfjt5vu70C
-         n9FQ==
+        bh=nGCraLU4Q/x1+gyR2T6uHwtwDIt3fv2HTwk+gvxi22A=;
+        b=Db9AlrcWa27Dj6jgnMltuWuXfP/mYVkd3PxuuWa97KlcM117YcSGztVzZDfV4VqBU0
+         YsxSx7GNxPe7cmmaocHaAQvT+GWoLRNjsyfepW76FTOW2bfuBsVfotzZ7K3edjKBAMec
+         Fh5p9Yvu9zaCQKWW1p0SYHmvnZtOfaY2clFPXt5xmMYzpUXy3BwLwokxoSlKuXMncWrg
+         p9IxsV10TOMqPVL6kcPYz0mGq2msnPqs2A/b98iORtVJ4KZion32n9Or76989wt3w1VD
+         kvgYQktzv1S0Uf8rhR9lC3dphYV+loDDwkW0wILw5++DxuJ4yYbNh/FseK1pLRVe/KHH
+         BpBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=st8rD9F17hJbP+fBfC31Sr8aOINNitL9wgwgajb2oHo=;
-        b=LJ1m2s1acgA5n5pUSpr/3zSPWbsWCQtCoMQ65RMutl6G7ZlQKjIZHNzlTlTRFDgaYv
-         7BDeYezU0W9FQOP03NC/Z6mlB13rx6aVqqTZB6nX6h/9bYVvQFrCTS1TvERAwqXuanoH
-         CONqEYL9n7nWK5uydp7bVMx+XWxxEbE14/yisTG7YgZOniB8jElqLXVsdBzuKvTIQOHq
-         xY27D1+Vb/QVSg8G86I50+bfrVXCZre3+ALOUoAi41DHwhHG0o7h21Xp7GLfJmeZV3ef
-         OTawsjrpcu1aO9uQo80lmNWYZJODoE0OEvJDhyZ3mHEkR3lfeAN2frd+zSk6CZiity4q
-         byXA==
-X-Gm-Message-State: APjAAAUlzZeYUM6LRd+pn1mOC8nWZb4RLmYGL7lZP+xTTRmFHjOb+Put
-	G7KM3aOf9p5mVGgvOuWzLeQoxB4hMg4=
-X-Google-Smtp-Source: APXvYqyHeJXWBDwXA9LcmOd0QXTPUXGiFQ8ZRPFC2jky0xL6z2hnQHZp8ah7mNu5UfTNjXZ/ryLuFg==
-X-Received: by 2002:a1c:7dc4:: with SMTP id y187mr4380530wmc.161.1576577972929;
-        Tue, 17 Dec 2019 02:19:32 -0800 (PST)
+        bh=nGCraLU4Q/x1+gyR2T6uHwtwDIt3fv2HTwk+gvxi22A=;
+        b=JjFj40jt1OKCLSxR8LKGbrMLuvF1rjddZLS8oX74tneOzMduBeiz6/JOH3x2k6+f9k
+         XPSrT/EH7cwMYsQGb3xqOppSeHF/kmn5c2fZNBMRbbf0zA/WwmYjVznRkfC3RmJ395BJ
+         LJdDFxMwQElHh0HwM8B+UG2CQjYoHKo1RlVflBkf+oWQYJqv6borW5dOKuy6tCGcRjOD
+         eXYP2Ct8yZ4TteW+wXjytClDVdSsZnDtFhiCMBRrWPNac2wMxbNsPyAnXb6250U/Xn+V
+         C/FXcJ7fSN+CjSIOtsL9NBEZp+ovykGm6V/QX+ZZS8Lt/S7pX/AEqxHawY/KGq38pOOv
+         /GFg==
+X-Gm-Message-State: APjAAAVXpT25eBtbmWZKKmjCxZDOEkVysN6tvy26njrJirg7LEKOCgQj
+	rfGXgzLrfp8j8To9VyiEnneSu+J0BLk=
+X-Google-Smtp-Source: APXvYqz1Jj/E5LFPqHA/NmV/vP5KYcoJ32TcH4PpWPg038LgM8NvwzLdAukLuYjdtnd0Egn03frDCw==
+X-Received: by 2002:a05:600c:145:: with SMTP id w5mr4784318wmm.157.1576577981619;
+        Tue, 17 Dec 2019 02:19:41 -0800 (PST)
 Received: from agherzan-lnxU.hanover.local ([81.145.148.228])
-        by smtp.gmail.com with ESMTPSA id d8sm24759223wre.13.2019.12.17.02.19.32
+        by smtp.gmail.com with ESMTPSA id d8sm24759223wre.13.2019.12.17.02.19.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Dec 2019 02:19:32 -0800 (PST)
+        Tue, 17 Dec 2019 02:19:41 -0800 (PST)
 From: "Andrei Gherzan" <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
 Cc: Andrei Gherzan <agherzan@hanoverdisplays.com>
-Subject: [PATCH 2/3] Double buffering support
-Date: Tue, 17 Dec 2019 10:19:16 +0000
-Message-Id: <20191217101917.29395-2-andrei@gherzan.ro>
+Subject: [PATCH 3/3] Add configure flags for fullscreen logo and no startup message
+Date: Tue, 17 Dec 2019 10:19:17 +0000
+Message-Id: <20191217101917.29395-3-andrei@gherzan.ro>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191217101917.29395-1-andrei@gherzan.ro>
 References: <20191217101917.29395-1-andrei@gherzan.ro>
 
 From: Andrei Gherzan <agherzan@hanoverdisplays.com>
 
-'psplash' uses only one buffer which can cause tearing artifacts. This
-change uses the FBIOPAN_DISPLAY ioctl as a way to handle page flipping
-and also does that after a vsync interrupt to remove any tearing issues.
-
 Signed-off-by: Andrei Gherzan <agherzan@hanoverdisplays.com>
 ---
- psplash-fb.c | 121 ++++++++++++++++++++++++++++++++++++++++++---------
- psplash-fb.h |   8 ++++
- psplash.c    |  10 ++++-
- 3 files changed, 118 insertions(+), 21 deletions(-)
+ Makefile.am      |  2 +-
+ configure.ac     | 18 ++++++++++++++++++
+ psplash-config.h |  4 ++++
+ 3 files changed, 23 insertions(+), 1 deletion(-)
 
-diff --git a/psplash-fb.c b/psplash-fb.c
-index c064d18..3cb5d2d 100644
---- a/psplash-fb.c
-+++ b/psplash-fb.c
-@@ -18,6 +18,46 @@
- #include <endian.h>
- #include "psplash.h"
+diff --git a/Makefile.am b/Makefile.am
+index 3721a6e..3f1cfc2 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -1,6 +1,6 @@
+ bin_PROGRAMS=psplash psplash-write
  
-+static void
-+psplash_wait_for_vsync(PSplashFB *fb)
-+{
-+  int err = ioctl(fb->fd, FBIO_WAITFORVSYNC, 0);
-+  if (err != 0)
-+    fprintf(stderr, "Error, FB vsync ioctl [%d]\n", err);
-+}
+-AM_CFLAGS = $(GCC_FLAGS) -D_GNU_SOURCE -DFONT_HEADER=\"$(FONT_NAME)-font.h\" -DFONT_DEF=$(FONT_NAME)_font
++AM_CFLAGS = $(GCC_FLAGS) $(EXTRA_GCC_FLAGS) -D_GNU_SOURCE -DFONT_HEADER=\"$(FONT_NAME)-font.h\" -DFONT_DEF=$(FONT_NAME)_font
+ 
+ psplash_SOURCES = psplash.c psplash.h psplash-fb.c psplash-fb.h \
+                   psplash-console.c psplash-console.h           \
+diff --git a/configure.ac b/configure.ac
+index 9e78ac0..e2b7f58 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -20,6 +20,24 @@ AC_ARG_WITH([font],
+     [FONT_NAME=radeon])
+ AC_SUBST([FONT_NAME])
+ 
++AC_ARG_ENABLE([startup-msg],
++    AS_HELP_STRING([--disable-startup-msg], [Disable text banner output on startup]),
++    [disable_startup_msg=true],
++    [disable_startup_msg=false])
++AS_IF([test x$disable_startup_msg = xtrue], [
++    EXTRA_GCC_FLAGS="$EXTRA_GCC_FLAGS -DPSPLASH_DISABLE_STARTUP_MSG"
++])
 +
-+void
-+psplash_fb_flip(PSplashFB *fb, int sync)
-+{
-+  char *tmp;
++AC_ARG_ENABLE([img-fullscreen],
++    AS_HELP_STRING([--enable-img-fullscreen], [Enable the logo image in fullscreen mode)]),
++    [img_fullscreen=true],
++    [img_fullscreen=false])
++AS_IF([test x$img_fullscreen = xtrue], [
++    EXTRA_GCC_FLAGS="$EXTRA_GCC_FLAGS -DPSPLASH_IMG_FULLSCREEN=1"
++])
 +
-+  if (fb->double_buffering) {
++AC_SUBST(EXTRA_GCC_FLAGS)
 +
-+    /* Carry out the flip after a vsync */
-+    psplash_wait_for_vsync(fb);
-+
-+    /* Switch the current activate area in fb */
-+    if (fb->fb_var.yoffset == 0 ) {
-+      fb->fb_var.yoffset = fb->real_height;
-+    } else {
-+      fb->fb_var.yoffset = 0;
-+    }
-+    if (ioctl(fb->fd, FBIOPAN_DISPLAY, &fb->fb_var) == -1 ) {
-+      fprintf(stderr, "psplash_fb_flip: FBIOPAN_DISPLAY failed\n");
-+    }
-+
-+    /* Switch the front and back data pointers */
-+    tmp = fb->fdata;
-+    fb->fdata = fb->bdata;
-+    fb->bdata = tmp;
-+
-+    /* Sync new front to new back when requested */
-+    if (sync) {
-+      memcpy(fb->bdata, fb->fdata, fb->stride * fb->real_height);
-+    }
-+  }
-+}
-+
- void
- psplash_fb_destroy (PSplashFB *fb)
- {
-@@ -163,6 +203,29 @@ psplash_fb_new (int angle, int fbdev_id)
-       goto fail;
-     }
+ AC_OUTPUT([
+ Makefile
+ ])
+diff --git a/psplash-config.h b/psplash-config.h
+index 82bb76d..ecbf3df 100644
+--- a/psplash-config.h
++++ b/psplash-config.h
+@@ -20,10 +20,14 @@
+ #define _HAVE_PSPLASH_CONFIG_H
  
-+  /* Setup double virtual resolution for double buffering */
-+  if (ioctl(fb->fd, FBIOPAN_DISPLAY, &fb_var) == -1) {
-+    fprintf(stderr, "FBIOPAN_DISPLAY not supported, double buffering disabled");
-+  } else {
-+    if (fb_var.yres_virtual == fb_var.yres * 2) {
-+      DBG("Virtual resolution already double");
-+      fb->double_buffering = 1;
-+    } else {
-+      fb_var.yres_virtual = fb_var.yres * 2;
-+      if (ioctl(fb->fd, FBIOPUT_VSCREENINFO, &fb_var) == -1) {
-+        fprintf(stderr, "FBIOPUT_VSCREENINFO failed, double buffering disabled");
-+      } else {
-+        if (ioctl(fb->fd, FBIOGET_FSCREENINFO, &fb_fix) == -1) {
-+          perror(" Error getting the fixed framebuffer info");
-+          goto fail;
-+        } else {
-+          DBG("Virtual resolution set to double");
-+          fb->double_buffering = 1;
-+        }
-+      }
-+    }
-+  }
-+
-   fb->real_width  = fb->width  = fb_var.xres;
-   fb->real_height = fb->height = fb_var.yres;
-   fb->bpp    = fb_var.bits_per_pixel;
-@@ -201,8 +264,7 @@ psplash_fb_new (int angle, int fbdev_id)
-       fb->width, fb->height, fb->bpp, fb->stride);
+ /* Text to output on program start; if undefined, output nothing */
++#ifndef PSPLASH_DISABLE_STARTUP_MSG
+ #define PSPLASH_STARTUP_MSG ""
++#endif
  
-   fb->base = (char *) mmap ((caddr_t) NULL,
--			    /*fb_fix.smem_len */
--			    fb->stride * fb->height,
-+			    fb_fix.smem_len,
- 			    PROT_READ|PROT_WRITE,
- 			    MAP_SHARED,
- 			    fb->fd, 0);
-@@ -217,6 +279,23 @@ psplash_fb_new (int angle, int fbdev_id)
+ /* Bool indicating if the image is fullscreen, as opposed to split screen */
++#ifndef PSPLASH_IMG_FULLSCREEN
+ #define PSPLASH_IMG_FULLSCREEN 0
++#endif
  
-   fb->data = fb->base + off;
- 
-+  if (fb->double_buffering) {
-+    /* fb_var is needed when flipping the buffers */
-+    memcpy(&fb->fb_var, &fb_var, sizeof(struct fb_var_screeninfo));
-+    if (fb->fb_var.yoffset == 0) {
-+      printf("to back\n");
-+      fb->fdata = fb->data;
-+      fb->bdata = fb->data + fb->stride * fb->height;
-+    } else {
-+      printf("to front\n");
-+      fb->fdata = fb->data + fb->stride * fb->height;
-+      fb->bdata = fb->data;
-+    }
-+  } else {
-+    fb->fdata = fb->data;
-+    fb->bdata = fb->data;
-+  }
-+
- #if 0
-   /* FIXME: No support for 8pp as yet  */
-   if (visual == FB_VISUAL_PSEUDOCOLOR
-@@ -274,6 +353,8 @@ psplash_fb_plot_pixel (PSplashFB    *fb,
- 		       uint8        green,
- 		       uint8        blue)
- {
-+  /* Always write to back data (bdata) which points to the right data with or
-+   * without double buffering support */
-   int off;
- 
-   if (x < 0 || x > fb->width-1 || y < 0 || y > fb->height-1)
-@@ -301,22 +382,22 @@ psplash_fb_plot_pixel (PSplashFB    *fb,
-       {
-       case 24:
- #if __BYTE_ORDER == __BIG_ENDIAN
--        *(fb->data + off + 0) = red;
--        *(fb->data + off + 1) = green;
--        *(fb->data + off + 2) = blue;
-+        *(fb->bdata + off + 0) = red;
-+        *(fb->bdata + off + 1) = green;
-+        *(fb->bdata + off + 2) = blue;
- #else
--        *(fb->data + off + 0) = blue;
--        *(fb->data + off + 1) = green;
--        *(fb->data + off + 2) = red;
-+        *(fb->bdata + off + 0) = blue;
-+        *(fb->bdata + off + 1) = green;
-+        *(fb->bdata + off + 2) = red;
- #endif
-         break;
-       case 32:
--        *(volatile uint32_t *) (fb->data + off)
-+        *(volatile uint32_t *) (fb->bdata + off)
-           = (red << 16) | (green << 8) | (blue);
-         break;
- 
-       case 16:
--        *(volatile uint16_t *) (fb->data + off)
-+        *(volatile uint16_t *) (fb->bdata + off)
- 	  = ((red >> 3) << 11) | ((green >> 2) << 5) | (blue >> 3);
-         break;
-       default:
-@@ -328,21 +409,21 @@ psplash_fb_plot_pixel (PSplashFB    *fb,
-       {
-       case 24:
- #if __BYTE_ORDER == __BIG_ENDIAN
--        *(fb->data + off + 0) = blue;
--        *(fb->data + off + 1) = green;
--        *(fb->data + off + 2) = red;
-+        *(fb->bdata + off + 0) = blue;
-+        *(fb->bdata + off + 1) = green;
-+        *(fb->bdata + off + 2) = red;
- #else
--        *(fb->data + off + 0) = red;
--        *(fb->data + off + 1) = green;
--        *(fb->data + off + 2) = blue;
-+        *(fb->bdata + off + 0) = red;
-+        *(fb->bdata + off + 1) = green;
-+        *(fb->bdata + off + 2) = blue;
- #endif
-         break;
-       case 32:
--        *(volatile uint32_t *) (fb->data + off)
-+        *(volatile uint32_t *) (fb->bdata + off)
-           = (blue << 16) | (green << 8) | (red);
-         break;
-       case 16:
--        *(volatile uint16_t *) (fb->data + off)
-+        *(volatile uint16_t *) (fb->bdata + off)
- 	  = ((blue >> 3) << 11) | ((green >> 2) << 5) | (red >> 3);
-         break;
-       default:
-@@ -353,13 +434,13 @@ psplash_fb_plot_pixel (PSplashFB    *fb,
-     switch (fb->bpp)
-       {
-       case 32:
--        *(volatile uint32_t *) (fb->data + off)
-+        *(volatile uint32_t *) (fb->bdata + off)
- 	  = ((red >> (8 - fb->red_length)) << fb->red_offset) 
- 	      | ((green >> (8 - fb->green_length)) << fb->green_offset)
- 	      | ((blue >> (8 - fb->blue_length)) << fb->blue_offset);
-         break;
-       case 16:
--        *(volatile uint16_t *) (fb->data + off)
-+        *(volatile uint16_t *) (fb->bdata + off)
- 	  = ((red >> (8 - fb->red_length)) << fb->red_offset) 
- 	      | ((green >> (8 - fb->green_length)) << fb->green_offset)
- 	      | ((blue >> (8 - fb->blue_length)) << fb->blue_offset);
-diff --git a/psplash-fb.h b/psplash-fb.h
-index d0dce10..2f0cdff 100644
---- a/psplash-fb.h
-+++ b/psplash-fb.h
-@@ -29,6 +29,7 @@ enum RGBMode {
- typedef struct PSplashFB
- {
-   int            fd;			
-+  struct fb_var_screeninfo fb_var;
-   struct termios save_termios;	        
-   int            type;		        
-   int            visual;		
-@@ -38,6 +39,11 @@ typedef struct PSplashFB
-   char		*data;
-   char		*base;
- 
-+  /* Support for double buffering */
-+  int		double_buffering;
-+  char		*bdata;
-+  char		*fdata;
-+
-   int            angle, fbdev_id;
-   int            real_width, real_height;
- 
-@@ -93,5 +99,7 @@ psplash_fb_draw_text (PSplashFB         *fb,
- 		      const PSplashFont *font,
- 		      const char        *text);
- 
-+void
-+psplash_fb_flip(PSplashFB *fb, int sync);
- 
- #endif
-diff --git a/psplash.c b/psplash.c
-index f6442f1..61122fc 100644
---- a/psplash.c
-+++ b/psplash.c
-@@ -126,6 +126,7 @@ parse_command (PSplashFB *fb, char *string)
-       return 1;
-     }
- 
-+  psplash_fb_flip(fb, 0);
-   return 0;
- }
- 
-@@ -309,8 +310,15 @@ main (int argc, char** argv)
-   psplash_draw_msg (fb, PSPLASH_STARTUP_MSG);
- #endif
- 
--  psplash_main (fb, pipe_fd, 0);
-+  /* Scene set so let's flip the buffers. */
-+  /* The first time we also synchronize the buffers so we can build on an
-+   * existing scene. After the first scene is set in both buffers, only the
-+   * text and progress bar change which overwrite the specific areas with every
-+   * update.
-+   */
-+  psplash_fb_flip(fb, 1);
- 
-+  psplash_main (fb, pipe_fd, 0);
- 
-   psplash_fb_destroy (fb);
- 
+ /* Position of the image split from top edge, numerator of fraction */
+ #define PSPLASH_IMG_SPLIT_NUMERATOR 5
 -- 
 2.17.1
 
