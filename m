@@ -1,160 +1,169 @@
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
- by mx.groups.io with SMTP id smtpd.web11.1396.1576574134219475270
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com (NAM02-BL2-obe.outbound.protection.outlook.com [40.107.75.41])
+ by mx.groups.io with SMTP id smtpd.web09.1522.1576574826598972408
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Dec 2019 01:15:34 -0800
+ Tue, 17 Dec 2019 01:27:07 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denx.de, ip: 212.18.0.9, mailfrom: sbabic@denx.de)
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-	by mail-out.m-online.net (Postfix) with ESMTP id 47cXYJ4Ww0z1qv2l;
-	Tue, 17 Dec 2019 10:15:32 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-	by mail.m-online.net (Postfix) with ESMTP id 47cXYJ4BpBz1r0n8;
-	Tue, 17 Dec 2019 10:15:32 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-	with ESMTP id 2TlHY2qSnrFj; Tue, 17 Dec 2019 10:15:30 +0100 (CET)
-Received: from babic.homelinux.org (host-88-217-136-221.customer.m-online.net [88.217.136.221])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail.mnet-online.de (Postfix) with ESMTPS;
-	Tue, 17 Dec 2019 10:15:30 +0100 (CET)
-Received: from localhost (mail.babic.homelinux.org [127.0.0.1])
-	by babic.homelinux.org (Postfix) with ESMTP id C9F6A4540332;
-	Tue, 17 Dec 2019 10:15:30 +0100 (CET)
-X-Virus-Scanned: Debian amavisd-new at babic.homelinux.org
-Received: from babic.homelinux.org ([IPv6:::1])
-	by localhost (mail.babic.homelinux.org [IPv6:::1]) (amavisd-new, port 10024)
-	with ESMTP id lvOffsvavgCd; Tue, 17 Dec 2019 10:15:27 +0100 (CET)
-Received: from [192.168.178.132] (papero.fritz.box [192.168.178.132])
-	by babic.homelinux.org (Postfix) with ESMTP id AE8464540331;
-	Tue, 17 Dec 2019 10:15:27 +0100 (CET)
-Subject: Re: [yocto] #raspberrypi
-To: Khem Raj <raj.khem@gmail.com>, wojciech.st@tutanota.com
-Cc: yocto@lists.yoctoproject.org
-References: <W5UD.1576533409237003637.6umO@lists.yoctoproject.org>
- <CAMKF1sqYnuJ_QY6uyw1jTrVwni=oeOECrtx7LJVvVFnEq3xsFA@mail.gmail.com>
-From: "Stefano Babic" <sbabic@denx.de>
-Autocrypt: addr=sbabic@denx.de; prefer-encrypt=mutual; keydata=
- xsDiBEfdB5IRBADkpYcnh2BoAkGD5p186ysEkWlcp5DU07m7BKzvkEMRhFjeFUOU0klKNmh0
- ZM6rKpYpAYPYBm9YahMyqvj9DmLrZ4yfJ5MssvW9SRETmHpva+h1rN+DzmEcwrqZmLG1JWGy
- LA5ruJaFSzxJHBoROoog1NDMbNDB8A9F7VKrePfkVwCgmODpW/uh2IuMYLVidzDeuvo7alED
- /iV8rwU7C+eBcKy2htuDsEmsqlkBxIDM7IO6h5XxdyqbZOYizuBP3Ksb6xK54weEaB5aQs7S
- 8N9Soi0p1Xh0LMWj6PBCzTC4LF+OCGEMBPc6bBHNzivChgztJlUMioCDSVpOXB/QpBaK302G
- yP5WdmcB1Jn6neq/YRlxHN38MV2yA/46jnzeUotL9LliVZKA/ql4GmyWg2Ae1BUiCqEJQNwl
- knGJOmIS4uABLArB5HjsfDU5hA9FORaNGCIiZlezBkZ3JXA2uQMQhfgqBXrZt4j1fcw9I7E+
- 7IZ2kSCeTPZFLd5FiGQPDOm3Z9eHrpK6pmBGMeBG0pDgUEbN9awyLNBLj80eU3RlZmFubyBC
- YWJpYyA8c2JhYmljQGRlbnguZGU+wmMEExECACMCGwMGCwkIBwMCBBUCCAMEFgIDAQIeAQIX
- gAUCT9deSgIZAQAKCRD09WXkmmjvppF1AKCRl8d49K4yxWzdBVRTTWG55cyo/gCfRD1RAttl
- R1ofs2wGLHNtXousyL3OwU0ER90HmBAIAIFfX4bKnOmCyB3nPh+jbXZuBSMZTuyDEnguRxl5
- N8Q0ayofQwucCBjXYv65sQ9Rq6FNhEnWqUZBu8A5CwvSakOFOGNC5ta/8VxVRLh0Z0ZTgEep
- SKiPonJyacCbmgWDECdVrKowV7QB9be3Wu67uAZ74rPw2Kd7f0FKnL3djvVRMaBWFIpyQ6SE
- bGOCJjhRQ5L1pIM1Soko+reU7eO+1g6IBw6YkFJisdQE6fzTwaSqUKPPsQLz/W03invQltOb
- Eg7ZwtFs0DFonr1DMm57ksiEhW6SN1wylRO/JzRYG1Qe7u1EVln6iV3ilBvbbfkyRssk4/0e
- kicpSnQknA72YOMAAwYH+QGpAiQ4hAMHrp1bUrtyGXYdeQpYufIZAM4etOnBy/G+e1nfu6y+
- jH4SN9sVK7bwBBAbhEJqkqR5LVsFIRapThJQOWB11rQxLpwkBU9wao/pRM+o95ujGo32WUzf
- wWrzWrkTDy7vMCZuUOLVi4n1GZlUAwpG4rzb6UxPC6GWymkVWGgXp1NC58og5i3Y+rKT7+Xi
- XT2BtvC6PDepoH4JhD+9OkHQO6UfTxPSmtgNbTgtl6L6tj+bm5dOHgkPJFMkEiG8qhUZYQzb
- bYz37orRbA72M2bxK76e9QKn0mVu+d/YCd8wRcvvJbGsozpzcxPvD5Wy5RNJCES8McPtAseU
- tMfCSQQYEQIACQUCR90HmAIbDAAKCRD09WXkmmjvpv+3AJ9RakBsH1j0X/Kxp6t2lf0VUfS2
- qACfZ+J6ktk8PKNuyHf0J/I0mbCrhV4=
-Message-ID: <9676c51d-3efa-f465-8505-9bf1280b8829@denx.de>
-Date: Tue, 17 Dec 2019 10:15:27 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=KGVRB9gu;
+ spf=pass (domain: windriver.com, ip: 40.107.75.41, mailfrom: andreea.volosincu@windriver.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=F3iOo+Sj+3xkSY0o9j9lRIuRHPAtSfWRXoISFkPpsViatE/xQd5NTrs+M3roUmB7hI2zeKrhTlPowHpL3i9ajcwbfQ7RfBXZ7DBc3NPb0FQ2YOblbTWvgD1ynx3DHRQigDEHWKBdNwhYVC0Zk09+DDazNJm12UMze67uD5K6WeaopZU8UysLMYxa/oOrFSb2WTEMwcadJ4e4wcm9mJM9e9ecSbyPo8lpcbfEQl/Q52txsUMfAEIXZQlBEXlA+/uSj0b/xOvJmu2zWvA9FLc+suCtCZOo1nIBsq+295XtgtYgMsmV1fCPP8eGxgvHNsb8QAqTkaDSBwHQ6TtrhDbHww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GNNhdgaqZPAUV4c9znLwn14nY7hKYtmTSfTuL6VVsho=;
+ b=lrwo/yphqv5c8I4bmTmDrDA8nhahdq+OYlQcm7qJTDugySOcE2XCUKMv7rq8JuB7t/MYLqGf7X+gGRAJpR92SG+IPbpsFkTYJemU1Mp1OZMRUBWLDxzzk7OVePlu4WQJUOkZkHJKnpmPS92nJk1ybwLvhwoPiHAm0lY5DZyA/iVFeD8b/zNUAAJBFDe+nnGskM2IC3mib9x193pWmbYAAa7GeYIIZQ0AnuwarGTE/HzCPN5ldC62+pFICBD4T/EBImQalE92zso28mWtlaF6Lxlc9iZc1dOkobcvcq38MBVLvoLy0KU98C3Z7ijMlEhTtaGhsBHHS/zqGGc974tNkg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GNNhdgaqZPAUV4c9znLwn14nY7hKYtmTSfTuL6VVsho=;
+ b=KGVRB9gutHpkTmrIa9gmrmqA4tyTqqijSWl+zaOfnfW3Op8RiErmvPpydVU/uJ74hmSAHfzKdrtXg/IgXW/cJoRcvkeNFwFG+Ue2mo3+I957cxuBfp9l2vPVAGwTPf3tE+EEq7+Yh15mTm4VwR2F4azBdVvWn2lh4Wes2f5tAHE=
+Received: from BN6PR11MB1617.namprd11.prod.outlook.com (10.172.23.142) by
+ BN6PR11MB1746.namprd11.prod.outlook.com (10.175.95.148) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2559.13; Tue, 17 Dec 2019 09:27:04 +0000
+Received: from BN6PR11MB1617.namprd11.prod.outlook.com
+ ([fe80::e888:7f10:d52b:ee7c]) by BN6PR11MB1617.namprd11.prod.outlook.com
+ ([fe80::e888:7f10:d52b:ee7c%12]) with mapi id 15.20.2538.019; Tue, 17 Dec
+ 2019 09:27:04 +0000
+From: "Volosincu, Andreea S" <Andreea.volosincu@windriver.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Last Live Coding with Yocto Project session in 2019
+Thread-Topic: Last Live Coding with Yocto Project session in 2019
+Thread-Index: AdW0vAfhrrnVSktbQzCl35Yyd7Lv0A==
+Date: Tue, 17 Dec 2019 09:27:03 +0000
+Message-ID: 
+ <BN6PR11MB161705E4BBDA58FCB6F85EA9F5500@BN6PR11MB1617.namprd11.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=andreea.volosincu@windriver.com; 
+x-originating-ip: [99.88.44.18]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c321d477-6cfc-467c-ac5a-08d782d34734
+x-ms-traffictypediagnostic: BN6PR11MB1746:
+x-microsoft-antispam-prvs: 
+ <BN6PR11MB174639BEA87544FE0A047A3FF5500@BN6PR11MB1746.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3173;
+x-forefront-prvs: 02543CD7CD
+x-forefront-antispam-report: 
+ SFV:NSPM;SFS:(10009020)(366004)(39850400004)(396003)(376002)(136003)(346002)(199004)(189003)(6506007)(7696005)(26005)(186003)(66476007)(64756008)(66946007)(66446008)(33656002)(71200400001)(66556008)(76116006)(6916009)(4744005)(52536014)(5660300002)(86362001)(966005)(8936002)(8676002)(55016002)(81166006)(81156014)(9686003)(478600001)(2906002)(316002);DIR:OUT;SFP:1101;SCL:1;SRVR:BN6PR11MB1746;H:BN6PR11MB1617.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: windriver.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ CiyAg+s49fKIhI5xPzcmq19+XYXjzMkUCMLUP+2F33fWRgb22fyX31bJUIS25ABqW7j7w0RuHAXCjctVH1StuT5eeRG+pVCecCVkDrdWnFeS6vIuJVjz01QXKS6mqEjKy/eZwIa188H4sIcAhK+dYX4ZKtPppwS015aVdmJAMgCn3IFTkIKLAtKVLTXtv16f+sCjFux8EJFQmCK/e3C6VJdnEWZGL0XC/R2/rrD4qTuWB/OLsXr+wvAkrb2SkNWM8WJHqiTdKgCLeoZg5tUDiVxqz4ITSin5YBJjZmvr+oWreZ23YgJBJuYoA6guyM/ZajBAljWaAK62InH9dPO3Q7K4Yp4+0DJ+xQrZ+Q7koyI2BjrPit880Xu0hAI1IZCqBB+HDI7//Zj4MjUFF8/gKEkaZDkWW1v75X9E/5LzoTN1wugXIWRWDzvNbvfBc157u1Wgjkx3xc9lTjO23ZlQwnteUW+MeYHNhgAt/XahF5k=
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1sqYnuJ_QY6uyw1jTrVwni=oeOECrtx7LJVvVFnEq3xsFA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: de-DE
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c321d477-6cfc-467c-ac5a-08d782d34734
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Dec 2019 09:27:03.9569
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: vNA2ukT1Ht/fUNP2VRu+t1h3G5MO0QBBYNS0wXQHsbF03CKX6TfkJOIkSbWP9+Kf+TME9gMUC23uYUfdNtIEVhUq/ip46wdHKGjuQdGJpmY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR11MB1746
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR11MB161705E4BBDA58FCB6F85EA9F5500BN6PR11MB1617namp_"
 
-Hi Khem, Wojciech,
+--_000_BN6PR11MB161705E4BBDA58FCB6F85EA9F5500BN6PR11MB1617namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 17/12/19 05:48, Khem Raj wrote:
-> On Mon, Dec 16, 2019 at 1:56 PM <wojciech.st@tutanota.com> wrote:
->>
->> Problem with rootfs boot on my raspberrypi.
->>
->> Hi
->> I am building simple image for my raspbery pi 3 A+ and connect to the pi via USB-UART converter and see the following in the console
->> ...
->> [ 2.071459] Run /bin/init as init process
->> [ 2.076507] Run /bin/sh as init process
->> sh: cannot set terminal process group (-1): Inappropriate ioctl for device
->> sh: no job control in this shell
->> sh-4.4#
->>
->>
->>
->> I build with the "bitbake core-image-base" and tried to run it on rpi 3A+, 3B, 3B+ and the problem is always the same it cannot switch to the rootfs on the sd card it seem like it stack at initramfs or some middle ground.
->>
->> I burn the *.rpi-sdimg image to SD card with dd from my Ubuntu16.04 host machine.
->> I tried with two branches thud and warrior and the problem is exactly the same.
->> The strange thing is that in this initramfs there are no tools like find grep modprobe etc. but I see my extra tools "i2c-tools vim"
->>
->> Here is my local.conf adjustments:
->> MACHINE ?= "raspberrypi3"
->> ENABLE_I2C = "1"
->> ENABLE_UART = "1"
->> IMAGE_INSTALL += "i2c-tools vim"
-> 
-> Can you turn this into
-> IMAGE_INSTALL_append = " i2c-tools vim"
-> 
->>
->> and the bblayer.conf
->> BBLAYERS ?= " \
->>   /media/dave/Develop/yoctopi/warrior/sources/poky/meta \
->>   /media/dave/Develop/yoctopi/warrior/sources/poky/meta-poky \
->>   /media/dave/Develop/yoctopi/warrior/sources/poky/meta-yocto-bsp \
->>   /media/dave/Develop/yoctopi/warrior/sources/meta-openembedded/meta-oe \
->>   /media/dave/Develop/yoctopi/warrior/sources/meta-raspberrypi \
->>   "
->>
->> I tried also to build with the deprecated image "bitbake rpi-basic-image" but then I did not get my extra tools "i2c-tools vim".
->>
->> Anyone have any idea what can be wrong with my approach ?
->>
+Today, wrapping up the year with another live coding session.
 
-Strange enough, I had the same behaviour a couple of days ago but I
-thought it was something on my setup. I built core-iage-full-cmdline on
-TOT, and systemd as init manager. The issue was due because adding
-"userland", bash was added due RDEPENDS to the image and busybox with
-all related tools was dropped. After removing bash from image, it works
-again - but I have not git-bisect to check which is the cause.
+When: Dec 17, 2019, 4:00 PM CET/Berlin
+Where: Yocto Project Twitch channel - https://www.twitch.tv/yocto_project
+What: Yocto Project developer, Josef Holzmayr, will talk about build inspec=
+tion, diagnosing recipe builds, dependencies, and package sizes
 
-Regards,
-Stefano
-
->> Regards,
->>
->> Wojciech
->>
->>
->> -=-=-=-=-=-=-=-=-=-=-=-
->> Links: You receive all messages sent to this group.
->>
->> View/Reply Online (#47702): https://lists.yoctoproject.org/g/yocto/message/47702
->> Mute This Topic: https://lists.yoctoproject.org/mt/68744766/1997914
->> Mute #raspberrypi: https://lists.yoctoproject.org/mk?hashtag=raspberrypi&subid=6692173
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [raj.khem@gmail.com]
->> -=-=-=-=-=-=-=-=-=-=-=-
->>
->> -=-=-=-=-=-=-=-=-=-=-=-
->> Links: You receive all messages sent to this group.
->>
->> View/Reply Online (#47712): https://lists.yoctoproject.org/g/yocto/message/47712
->> Mute This Topic: https://lists.yoctoproject.org/mt/68752649/3618551
->> Mute #raspberrypi: https://lists.yoctoproject.org/mk?hashtag=raspberrypi&subid=6692235
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [sbabic@denx.de]
->> -=-=-=-=-=-=-=-=-=-=-=-
+Best,
+Yocto Project Advocacy Team
 
 
--- 
-=====================================================================
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
-=====================================================================
+--_000_BN6PR11MB161705E4BBDA58FCB6F85EA9F5500BN6PR11MB1617namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"\@Malgun Gothic";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Today, wrapping up the year with another live coding=
+ session.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">When: Dec 17, 2019, 4:00 PM CET/Berlin<o:p></o:p></p=
+>
+<p class=3D"MsoNormal">Where: Yocto Project Twitch channel - https://www.tw=
+itch.tv/yocto_project<o:p></o:p></p>
+<p class=3D"MsoNormal">What: Yocto Project developer, Josef Holzmayr, will =
+talk about build inspection, diagnosing recipe builds, dependencies, and pa=
+ckage sizes<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Best,<o:p></o:p></p>
+<p class=3D"MsoNormal">Yocto Project Advocacy Team<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_BN6PR11MB161705E4BBDA58FCB6F85EA9F5500BN6PR11MB1617namp_--
