@@ -1,130 +1,119 @@
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
- by mx.groups.io with SMTP id smtpd.web12.509.1576598376915849098
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+ by mx.groups.io with SMTP id smtpd.web11.517.1576598377853133558
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Dec 2019 07:59:37 -0800
+ Tue, 17 Dec 2019 07:59:38 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Jf4J5jHX;
- spf=pass (domain: gmail.com, ip: 209.85.128.46, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-wm1-f46.google.com with SMTP id b19so3449855wmj.4
-        for <yocto@lists.yoctoproject.org>; Tue, 17 Dec 2019 07:59:36 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=LhaiJCSH;
+ spf=pass (domain: gmail.com, ip: 209.85.221.54, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-wr1-f54.google.com with SMTP id z3so4348619wru.3
+        for <yocto@lists.yoctoproject.org>; Tue, 17 Dec 2019 07:59:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=EvooyCJ1ogFMgAAywY4UMNI6LLigZcchFgjVIH0fb9c=;
-        b=Jf4J5jHXz/OaJKSqjkATnOLhRB57OhqRRbj9o6OfaKenzSYGmeEbz8AapMCHoaJNj2
-         4XFi511ySskJAhTU0fhSMLs22w42fPOde/1KLTwlb3ETkNBe3ZnHqbt15TuWxRf3cUSC
-         6ZmV9T927wPNu58dzxp37OSmKuyncYS1RinUW6O8FGixddBVC2jZP81DVf/8HyjzUzEN
-         Ubx10ucP9KxP2Y2m7yKtRY2/MluG/e1PCwkeFEVdk9OOIMgTBaDPS+oBXtLseJEYY8in
-         tGhLB0D5sjrAi8YY4ZW8C2OhjjhW4nDNXj6cXpjTVDcALOYuPdu+y1+vMuQXhqXt+vNE
-         CslQ==
+        bh=NAy9RFoovFxQtLwMai/F4zLgjW6LTfPw96P//EoovJs=;
+        b=LhaiJCSH97XaOTh+qTllAD54PXQwoewHegiKK67mV/jjCDnnmHItxCA5akomesgbVt
+         o1bU5twf29iEn4laKhPT8rIdMAqraF8nQp/jG5+wpARubG6qs8byMSKK8LtACHK1V1mt
+         tRl5v64WOM1KuhY6+LmxR18Q1JxKjp7mqKi4IC82/zBEgTQxRRcV7QZtFXSHqQ8+FM3V
+         t8OG2kgQqLYve4cYHm7jxUQQqIEBeDDYy/+wlpPUO+SoYD3kivbG93HmzkZolf0ZIjsT
+         8PxwLszx3q1+R8BKFDREkHZ4C0AIXpYRyqw/837bzbipDZMaKyHGJQzydN2baU3wyLtl
+         uSYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=EvooyCJ1ogFMgAAywY4UMNI6LLigZcchFgjVIH0fb9c=;
-        b=iQswk540pd2Sn2nSBqkmxphZdUtACXhmXNn7vss67EdbDWT3rg1jfURJj17fzS6o8E
-         HtF+OKk2GLP90tEPVhk1ayKeZ87OIFTKt8QkrW3offNMS4NYtal7LWC8rLIW8v+lTbc7
-         RJaxqq0TRcelR/mJtkDzrvXWQCqSXcKszxs6vO8eM71Jt6aD0GTuu5EkzGNG3876UciH
-         fjrXAVJlT0HvRrVBhS2ITjYDHuHqVR2jsNOEv+csoOCVRBenyTIn/l5vWVG0FwFDSspa
-         RzYZPYK8RIU33yrrHn32ICjKFkYLeg3Nu3xrGBRNGqLYtP3Eq8gPRzElW0cjgEbunBPR
-         tlJA==
-X-Gm-Message-State: APjAAAXmQMmNxeiGPuIjQzNMf9GARbFBPGIniSquq3iStgG+u1uxTzW0
-	fNdXq8QkfAB+VkjJOWorcYIUkhvv6rs=
-X-Google-Smtp-Source: APXvYqwuH0QvUYwhx0gq7DHm0ONUFcqlrJsu50bwelQrIKn/THxmNcun8sTxVqb0+NclLBTQBCh5kg==
-X-Received: by 2002:a1c:2504:: with SMTP id l4mr6360478wml.134.1576598375270;
-        Tue, 17 Dec 2019 07:59:35 -0800 (PST)
+        bh=NAy9RFoovFxQtLwMai/F4zLgjW6LTfPw96P//EoovJs=;
+        b=a9HU2vb4XdzK7IMZEG7J1V1/OFe+XFy5sqVMYHTXIy2C6luq82lUs0kCPDTYhlP+hO
+         LNwpQLPhMbrkAaUx1qhecxr/oYVCgC34ecUTp2lfKM899lkXHqkHwXzt/MsHUFQPnrXD
+         COXxoJf7deiKrnPViT3ZYUu7pJF/k98MWkOpDycEH5jssgC68yzci+4IIMkLLo6rXUDm
+         PJvE/nuos7K65z2BoBsLUVmqnRvc3s4yOhWs8mhLyc+aoswk27vijQNTELbmjRyRzxNK
+         kOUswa6Un56W2XrVRT/aTgDUAlTM0CByaxoE//pqkBf7p6jjc8/Jlb57UvsrHn6JQMsd
+         7ZIA==
+X-Gm-Message-State: APjAAAUcYF1PcIw7CgaQaPdFEDERMH5fPeD7NmMegDmyjhYmvq587go/
+	KSKukcvT1lEcUVrvbCb/hQYkMNErFRY=
+X-Google-Smtp-Source: APXvYqyzN+5v/v9YEHViWGNY/v+XK6sIdFaA0KPWLseCQ7so+fGl+NjdWZT66/wb+BJIOV/+j96BIQ==
+X-Received: by 2002:a5d:530d:: with SMTP id e13mr37713838wrv.125.1576598376154;
+        Tue, 17 Dec 2019 07:59:36 -0800 (PST)
 Return-Path: <alex.kanavin@gmail.com>
 Received: from alexander-box.rd.corpintra.net ([141.113.66.202])
-        by smtp.gmail.com with ESMTPSA id o194sm3576879wme.45.2019.12.17.07.59.34
+        by smtp.gmail.com with ESMTPSA id o194sm3576879wme.45.2019.12.17.07.59.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Dec 2019 07:59:34 -0800 (PST)
+        Tue, 17 Dec 2019 07:59:35 -0800 (PST)
 From: "Alexander Kanavin" <alex.kanavin@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: Alexander Kanavin <alex.kanavin@gmail.com>
-Subject: [meta-gplv2][PATCH 2/3] mc: fix builds with gettext 0.20
-Date: Tue, 17 Dec 2019 16:59:28 +0100
-Message-Id: <20191217155929.3178-2-alex.kanavin@gmail.com>
+Subject: [meta-gplv2][PATCH 3/3] sed: fix builds with gettext 0.20.x
+Date: Tue, 17 Dec 2019 16:59:29 +0100
+Message-Id: <20191217155929.3178-3-alex.kanavin@gmail.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20191217155929.3178-1-alex.kanavin@gmail.com>
 References: <20191217155929.3178-1-alex.kanavin@gmail.com>
 
 Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
 ---
- ...0001-Fix-builds-wit-the-gettext-0.20.patch | 52 +++++++++++++++++++
- recipes-extended/mc/mc_4.7.5.2.bb             |  1 +
- 2 files changed, 53 insertions(+)
- create mode 100644 recipes-extended/mc/mc/0001-Fix-builds-wit-the-gettext-0.20.patch
+ .../0001-Fix-builds-with-gettext-0.20.patch   | 38 +++++++++++++++++++
+ recipes-extended/sed/sed_4.1.2.bb             |  4 +-
+ 2 files changed, 41 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-extended/sed/sed-4.1.2/0001-Fix-builds-with-gettext-0.20.patch
 
-diff --git a/recipes-extended/mc/mc/0001-Fix-builds-wit-the-gettext-0.20.patch b/recipes-extended/mc/mc/0001-Fix-builds-wit-the-gettext-0.20.patch
+diff --git a/recipes-extended/sed/sed-4.1.2/0001-Fix-builds-with-gettext-0.20.patch b/recipes-extended/sed/sed-4.1.2/0001-Fix-builds-with-gettext-0.20.patch
 new file mode 100644
-index 0000000..dbf18ca
+index 0000000..e366b5a
 --- /dev/null
-+++ b/recipes-extended/mc/mc/0001-Fix-builds-wit-the-gettext-0.20.patch
-@@ -0,0 +1,52 @@
-+From 56aef108be94019c7828c14f0c4849336f811847 Mon Sep 17 00:00:00 2001
++++ b/recipes-extended/sed/sed-4.1.2/0001-Fix-builds-with-gettext-0.20.patch
+@@ -0,0 +1,38 @@
++From 2792bccbfd41427a79edd462906aba78144b8c6a Mon Sep 17 00:00:00 2001
 +From: Alexander Kanavin <alex.kanavin@gmail.com>
-+Date: Tue, 17 Dec 2019 16:34:06 +0100
-+Subject: [PATCH] Fix builds wit the gettext 0.20
++Date: Tue, 17 Dec 2019 16:40:58 +0100
++Subject: [PATCH] Fix builds with gettext 0.20
 +
 +Upstream-Status: Inappropriate [fixing an old version]
 +Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
 +---
-+ Makefile.am     | 2 +-
-+ configure.ac    | 2 +-
-+ src/Makefile.am | 2 +-
-+ 3 files changed, 3 insertions(+), 3 deletions(-)
++ Makefile.am  | 2 +-
++ configure.ac | 2 +-
++ 2 files changed, 2 insertions(+), 2 deletions(-)
 +
 +diff --git a/Makefile.am b/Makefile.am
-+index ab4f9b7..b27ab4a 100644
++index f0aaa7f..1ebc805 100644
 +--- a/Makefile.am
 ++++ b/Makefile.am
-+@@ -1,7 +1,7 @@
-+ ## Process this file with automake to create Makefile.in.
-+ AUTOMAKE_OPTIONS = 1.5
++@@ -6,7 +6,7 @@ ACLOCAL_AMFLAGS = -I config
 + 
-+-SUBDIRS = intl po lib src doc contrib misc
-++SUBDIRS = po lib src doc contrib misc
++ PACKAGE = sed
 + 
-+ EXTRA_DIST = 
++-SUBDIRS = intl lib po sed doc testsuite
+++SUBDIRS = lib po sed testsuite
 + 
++ noinst_DATA = bootstrap.sh
++ noinst_HEADERS = basicdefs.h
 +diff --git a/configure.ac b/configure.ac
-+index c05902d..0430714 100644
++index e08c9a3..df20044 100644
 +--- a/configure.ac
 ++++ b/configure.ac
-+@@ -88,7 +88,7 @@ fi
-+ dnl
-+ dnl Internationalization
-+ dnl
-+-AM_GNU_GETTEXT(no-libtool, need-ngettext)
-++AM_GNU_GETTEXT([external],no-libtool, need-ngettext)
-+ AM_GNU_GETTEXT_VERSION(0.14.3)
++@@ -130,7 +130,7 @@ AM_CONDITIONAL(TEXI2HTML_HTML, test "x$enable_html" = xtexi2html)
 + 
-+ if test "x$USE_INCLUDED_LIBINTL" = xyes; then
-+diff --git a/src/Makefile.am b/src/Makefile.am
-+index 2da86c3..1859f0d 100644
-+--- a/src/Makefile.am
-++++ b/src/Makefile.am
-+@@ -52,7 +52,7 @@ else
-+ mc_LDADD += $(GLIB_LIBS)
-+ endif
++ ALL_LINGUAS="af ca cs da de el eo es et fi fr ga gl he hr hu id it ja ko nl pl pt_BR ro ru sk sl sr sv tr zh_CN"
++ AM_GNU_GETTEXT_VERSION(0.11)
++-AM_GNU_GETTEXT(, need-ngettext)
+++AM_GNU_GETTEXT([external], need-ngettext)
 + 
-+-mc_LDADD += $(PCRE_LIBS) $(LIBICONV) $(INTLLIBS)
-++mc_LDADD += $(PCRE_LIBS) $(INTLLIBS)
-+ 
-+ SRC_mc_conssaver = \
-+ 	cons.handler.c consaver/cons.saver.h
-diff --git a/recipes-extended/mc/mc_4.7.5.2.bb b/recipes-extended/mc/mc_4.7.5.2.bb
-index ca84966..e26bfd9 100644
---- a/recipes-extended/mc/mc_4.7.5.2.bb
-+++ b/recipes-extended/mc/mc_4.7.5.2.bb
-@@ -11,6 +11,7 @@ PR = "r3"
- SRC_URI = "http://www.midnight-commander.org/downloads/${BPN}-${PV}.tar.bz2 \
-            file://mc-CTRL.patch \
-            file://0001-disable-Ctrl-g-key-and-Ctrl-key.patch \
-+           file://0001-Fix-builds-wit-the-gettext-0.20.patch \
-            "
++ AC_CONFIG_FILES([bootstrap.sh], chmod +x bootstrap.sh)
++ AC_CONFIG_FILES([Makefile doc/Makefile \
+diff --git a/recipes-extended/sed/sed_4.1.2.bb b/recipes-extended/sed/sed_4.1.2.bb
+index 40e3a53..4a58442 100644
+--- a/recipes-extended/sed/sed_4.1.2.bb
++++ b/recipes-extended/sed/sed_4.1.2.bb
+@@ -9,7 +9,9 @@ PR = "r7"
+ SRC_URI = "${GNU_MIRROR}/sed/sed-${PV}.tar.gz \
+            file://fix_return_type.patch \
+            file://sed-4.1.2_fix_for_automake-1.12.patch \
+-           file://Makevars"
++           file://Makevars \
++           file://0001-Fix-builds-with-gettext-0.20.patch \
++           "
  
- SRC_URI[md5sum] = "bdae966244496cd4f6d282d80c9cf3c6"
+ SRC_URI[md5sum] = "928f0e06422f414091917401f1a834d0"
+ SRC_URI[sha256sum] = "638e837ba765d5da0a30c98b57c2953cecea96827882f594612acace93ceeeab"
 -- 
 2.17.1
 
