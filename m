@@ -1,168 +1,85 @@
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
- by mx.groups.io with SMTP id smtpd.web12.2347.1576554515073239988
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+ by mx.groups.io with SMTP id smtpd.web12.2375.1576554742381337860
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Dec 2019 19:48:35 -0800
+ Mon, 16 Dec 2019 19:52:22 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.1.11, mailfrom: changqing.li@windriver.com)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id xBH3mXWU014424
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
-	Mon, 16 Dec 2019 19:48:33 -0800 (PST)
-Received: from [128.224.162.189] (128.224.162.189) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0; Mon, 16 Dec
- 2019 19:48:32 -0800
-Subject: Re: [yocto] [error-report-web][PATCH V2] Add local.conf and auto.conf into error details
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-CC: <yocto@lists.yoctoproject.org>
-References: <1573547573-352969-1-git-send-email-changqing.li@windriver.com>
- <9315981.NtHHCumI8A@shodan>
- <5af91cd5-9249-e236-480b-fb3b4962bc0b@windriver.com>
-From: "Changqing Li" <changqing.li@windriver.com>
-Message-ID: <b0968d53-5b8b-c3dc-d0cd-07ab0e817f01@windriver.com>
-Date: Tue, 17 Dec 2019 11:48:30 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=eQt3Ud5o;
+ spf=pass (domain: gmail.com, ip: 209.85.210.171, mailfrom: raj.khem@gmail.com)
+Received: by mail-pf1-f171.google.com with SMTP id q8so6763038pfh.7
+        for <yocto@lists.yoctoproject.org>; Mon, 16 Dec 2019 19:52:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ssEitTkBdWJD3T2+AmBqnbwF+Pq+3mIuHUIKbBtL/K4=;
+        b=eQt3Ud5o3fC4yQDMtvDw3bq66sB9SjJFzZjfagMV0Fk09GDNkZzVRtEXf+x0tCWM45
+         OV/dwrwRSqhisC+ZCMGJhWhOdfOQQyFk4ypOMSWmXdH0Bp+dADjqb6ITM/TAoenLi8V8
+         N2edvywigbHDO8qZol6Y714ttcFFPA9cuUrH/uKpPlF3kog++gL44J6aSNtyf70WLLxq
+         rVHUlwwT4j/h4BK85Av0pOnL3XP9lNklvk5qiClCyqOT4+NeeJg7msuKkOKJzdZU4I+1
+         T9DMWIB4Qtm33ZClZCXHPGXfQ34d+rD5jvCtsfaAQuMDK8aeGdYL+9d0VsU9rA19p9MF
+         BgtA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ssEitTkBdWJD3T2+AmBqnbwF+Pq+3mIuHUIKbBtL/K4=;
+        b=cI8F/Cl4L5VVSybO/pyDZpIx3BdK56SiRcenOTJKY153dAhIQx96qslCTC0S1cRSbV
+         Yf+3lqU83UAUNjJ++H8tO3H6tKrfWwhGMy4B3VvdrQ4MQ2Jl8PMiz+6Qh+7nYhm+ZBUM
+         XDlPBbNEgJHpEhRdM5tCvyttTOso2+0RxepvoGxw17MdlwDlWxwNYTJ9QVCj5wBZKQSS
+         Uc1tT3Vfvnf42sZ7bUL2spalJApCwP8+Fbaf0WquJbccZtD0dmPAkFeWDfA+I4gwltDG
+         pe4eZD2u4p0hX++X+CpznOGXF2p4ZFJjxCg4I3sXT8lZsLfG0S05ZWl9U8bd4bJnIa5U
+         zzZw==
+X-Gm-Message-State: APjAAAX8Nv61gZwZrAsrcEXUkKb61sRf6yKBwoA49QiA265q0Ltv0Nfg
+	Et/H23gxwl5Sz1oBPHGq2ykgVzG+k40=
+X-Google-Smtp-Source: APXvYqzSEPpljPdKQgwzXt2AyNz4gXPAYWXncORsSZkko88fTJwIs6kdn4QSUP6FXb5NxIK8HOtq4Q==
+X-Received: by 2002:aa7:954d:: with SMTP id w13mr20189325pfq.176.1576554739150;
+        Mon, 16 Dec 2019 19:52:19 -0800 (PST)
+Return-Path: <raj.khem@gmail.com>
+Received: from apollo.hsd1.ca.comcast.net ([2601:646:9200:4e0::2ebb])
+        by smtp.gmail.com with ESMTPSA id a17sm1055604pjv.6.2019.12.16.19.52.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 16 Dec 2019 19:52:18 -0800 (PST)
+From: "Khem Raj" <raj.khem@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: Khem Raj <raj.khem@gmail.com>,
+	Armin Kuster <akuster808@gmail.com>
+Subject: [yocto-autobuilder-helper][PATCH] config.json: Add meta-multimedia to meta-oe job
+Date: Mon, 16 Dec 2019 19:52:10 -0800
+Message-Id: <20191217035210.3237811-1-raj.khem@gmail.com>
+X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
-In-Reply-To: <5af91cd5-9249-e236-480b-fb3b4962bc0b@windriver.com>
-X-Originating-IP: [128.224.162.189]
-X-MIME-Autoconverted: from 8bit to quoted-printable by mail.windriver.com id xBH3mXWU014424
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-correct the mail list to yocto@lists.yoctoproject.org
+meta-oe recipes/packagegroups needs meta-multimedia packagegroups
+Whitelist ffmpeg so packages depending on it can be tested
 
-On 12/11/19 1:45 PM, Changqing Li wrote:
->
-> On 11/13/19 6:36 PM, Paul Eggleton wrote:
->> Hi Changqing,
->>
->> Some comments below.
->>
->> On Tuesday, 12 November 2019 9:32:53 PM NZDT=20
->> changqing.li@windriver.com wrote:
->>> From: Changqing Li <changqing.li@windriver.com>
->>>
->>> Support to display local.conf and auto.conf on error report web.
->>> Here is commit in oe-core, which add local.conf/auto.conf into error=20
->>> report
->>> https://git.openembedded.org/openembedded-core/commit/?id=3D7adf9707c=
-04d8ef6bcd8d8bda555687f705e6ee6=20
->>>
->>>
->>> This commit is related to YOCTO #13252
->>>
->>> Signed-off-by: Changqing Li <changqing.li@windriver.com>
->>> ---
->>> =C2=A0 Post/0006_auto_20190917_0419.py | 24 ++++++++++++++++++++++++
->>> =C2=A0 Post/models.py=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 ++
->>> =C2=A0 Post/parser.py=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 ++
->>> =C2=A0 Post/test.py=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2=
- ++
->>> =C2=A0 templates/error-details.html=C2=A0=C2=A0=C2=A0 | 10 ++++++++++
->>> =C2=A0 test-data/test-payload.json=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 4 =
-+++-
->>> =C2=A0 6 files changed, 43 insertions(+), 1 deletion(-)
->>> =C2=A0 create mode 100644 Post/0006_auto_20190917_0419.py
->>>
->>> diff --git a/Post/0006_auto_20190917_0419.py=20
->>> b/Post/0006_auto_20190917_0419.py
->>> new file mode 100644
->>> index 0000000..827944e
->>> --- /dev/null
->>> +++ b/Post/0006_auto_20190917_0419.py
->> Could you please give the migration a proper name (-n option to=20
->> makemigrations) e.g. local_conf_auto_conf
-> OK, thanks
->>
->>> --- a/Post/models.py
->>> +++ b/Post/models.py
->>> @@ -43,6 +43,8 @@ class Build(models.Model):
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 LINK_BACK =3D models.TextField(max_len=
-gth=3D300, blank=3DTrue,=20
->>> null=3DTrue)
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ERROR_TYPE =3D models.CharField(max_le=
-ngth=3D20,=20
->>> choices=3DERROR_TYPE_CHOICES,
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 defaul=
-t=3DErrorType.RECIPE)
->>> +=C2=A0=C2=A0=C2=A0 LOCAL_CONF =3D=20
->>> models.TextField(max_length=3Dint(settings.MAX_UPLOAD_SIZE), default=3D=
-"")
->>> +=C2=A0=C2=A0=C2=A0 AUTO_CONF =3D=20
->>> models.TextField(max_length=3Dint(settings.MAX_UPLOAD_SIZE), default=3D=
-"")
->> I'm not sure this is practical, for two reasons:
->>
->> 1) Field sizes should not be variable like this; changing the=20
->> MAX_UPLOAD_SIZE value after the fact would not change the database=20
->> structure
->> 2) The value could never actually reach MAX_UPLOAD_SIZE because the=20
->> overhead of the surrounding JSON would block it from being uploaded=20
->> if it did
->>
->> However, since this is a TextField we don't actually have to specify=20
->> a max_length (for a TextField max_length only actually affects the=20
->> frontend, and we don't expose this field in a form) so it can just be=20
->> removed.
->>
->> Another thing, instead of default=3D"" you should use blank=3DTrue.
-> OK,=C2=A0 I will fix this.
->>
->>
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {% if detail.BUILD.LOCAL_=
-CONF !=3D "" %}
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <dt></a>Local Conf:</dt>
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <dd style=3D"white-space:=
- pre-wrap;">{{=20
->>> detail.BUILD.LOCAL_CONF | safe }}</dd>
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {% endif %}
->>> +
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {% if detail.BUILD.AUTO_C=
-ONF !=3D "" %}
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <dt></a>Auto Conf:</dt>
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <dd style=3D"white-space:=
- pre-wrap;">{{=20
->>> detail.BUILD.AUTO_CONF | safe }}</dd>
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {% endif %}
->> We cannot use the safe filter here - doing so could open up an XSS=20
->> vulnerability, since anyone can upload anything to the error-report=20
->> application and the content could include links or other malicious=20
->> HTML data. We should allow it to be auto-escaped. Is there a=20
->> particular issue you were using this to solve?
->
-> This is for resolve a problem when there is angle brackets in=20
-> local.conf/auto.conf.
->
-> I have a patch in oe-core [OE-core] [PATCH] report-error.bbclass:=20
-> replace angle brackets with &lt; and &gt;]
->
-> when we have below content in local.conf or auto.conf:
-> BUILDHISTORY_COMMIT_AUTHOR ?=3D "Khem Raj<raj.khem@gmail.com>"
-> send-error-report will fail with "HTTP Error 500: OK"
->
-> error-report-web do rudimentary check on all fields that are
-> passed to the graphs page to avoid any XSS happening, if contains
-> '<', the server will return error(Invalid characters in json).
-> fixed by use escape of <> to replace it.
->
-> NOTE: with this change, error-report-web need to add filter 'safe'
-> for the string wanted to display to avoid further HTML escaping
-> prior to output. Below is how the content displayed on webpage:
-> with the filter 'safe':
-> BUILDHISTORY_COMMIT_AUTHOR ?=3D "Khem Raj<raj.khem@gmail.com>"
-> without the filter 'safe':
-> BUILDHISTORY_COMMIT_AUTHOR ?=3D "Khem Raj &lt;raj.khem@gmail.com&gt;"
->
-> Do you have good idea to resolve this? Thanks.
->
->>
->> Cheers
->> Paul
->>
->
+Fixes
+ERROR: Nothing PROVIDES 'ffmpeg' (but /home/pokybuild/yocto-worker/meta-oe/build/meta-openembedded/meta-oe/recipes-graphics/libvncserver/libvncserver_0.9.12.bb DEPENDS on or otherwise requires it)
+ffmpeg was skipped: because it has a restricted license 'commercial'. Which is not whitelisted in LICENSE_FLAGS_WHITELIST
+
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+Cc: Armin Kuster <akuster808@gmail.com>
+---
+ config.json | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/config.json b/config.json
+index b0856a0..a790d08 100644
+--- a/config.json
++++ b/config.json
+@@ -729,8 +729,12 @@
+             "ADDLAYER" : [
+                 "${BUILDDIR}/../meta-openembedded/meta-oe",
+                 "${BUILDDIR}/../meta-openembedded/meta-python",
++                "${BUILDDIR}/../meta-openembedded/meta-multimedia",
+                 "${BUILDDIR}/../meta-openembedded/meta-networking",
+                 "${BUILDDIR}/../meta-openembedded/meta-filesystems"
++            ],
++            "extravars" : [
++                "LICENSE_FLAGS_WHITELIST_append = ' commercial_ffmpeg commercial_x264 '"
+             ]
+         },
+         "meta-virt" : {
+-- 
+2.24.0
+
