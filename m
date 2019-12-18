@@ -1,873 +1,225 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.2156.1576617586910723008
+ by mx.groups.io with SMTP id smtpd.web12.4908.1576630545507453944
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Dec 2019 13:19:47 -0800
+ Tue, 17 Dec 2019 16:55:45 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: joe.slater@windriver.com)
+ dkim=pass header.i=@sbcglobal.net header.s=s2048 header.b=tCoMFiwS;
+ spf=none, err=permanent DNS error (domain: sbcglobal.net, ip: 140.211.169.56, mailfrom: develone@sbcglobal.net)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 51CBDE0122C; Tue, 17 Dec 2019 13:19:46 -0800 (PST)
+	id D1163E0122A; Tue, 17 Dec 2019 16:55:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FF10E01164
-	for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 13:19:43 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com [147.11.189.41])
-	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id xBHLJg4b023607
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 13:19:43 -0800 (PST)
-Received: from ala-lpggp5.wrs.com (147.11.105.121) by ALA-HCB.corp.ad.wrs.com
- (147.11.189.41) with Microsoft SMTP Server id 14.3.468.0; Tue, 17 Dec 2019
- 13:19:42 -0800
-From: "Joe Slater" <joe.slater@windriver.com>
-To: <yocto@yoctoproject.org>
-CC: <joe.slater@windriver.com>, <randy.macleod@windriver.com>
-Subject: [meta-openssl102][PATCH 1/1] openssl: Fix CVE-2019-1551
-Date: Tue, 17 Dec 2019 13:19:42 -0800
-Message-ID: <20191217211942.7148-1-joe.slater@windriver.com>
-X-Mailer: git-send-email 2.24.1
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [74.6.134.45 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from sonic307-6.consmr.mail.bf2.yahoo.com (sonic307-6.consmr.mail.bf2.yahoo.com [74.6.134.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AE73E01163
+	for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 16:55:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048; t=1576630542; bh=WPvPkmXMXpdDHak//KwQUprbYlgbR5qwrzVcIuvUO/U=; h=Date:From:To:Subject:References:From:Subject; b=tCoMFiwSIMPcyja2w0eKl9QGE7qdgWul6Pvp+S4E6tAk5yXUQWbtMLYZj581seXJPdxTWLCBYyqyQ97tDWsaP13ug7s3wufUmRVOff0C3jVQ124cKLqmmahGQ9EGR8di0rmHtknPxj4jbK9bOBNoFmPDlP3lfx9swCh45/b+c6Skj2PLC4j0+vvbFCoTwPYIHx5A3oyLUSGBtbAxfEA9lZblScyT1T5jL6/xCuMHJSYYqbFQlCA47IriPNnOSf4d8h06o62+PRak7NjxEZTyepNfkof8AKxAjbyEaZTdFMI5ZSXQ8/FtEIPs5LHli7GkaMUXP2WYoOfWCPuatL7Sqg==
+X-YMail-OSG: n7XQkjEVM1nC4sGRPRwZ3xY8Huhi8pGBbkrOI8ecCScAOpr07aVnBdSE2rS5D8x
+ c1YkhTTbKOuW9pkHCVLDSogbg1LrWvhvoT7YtxTGv.5aSHO34FcH_Kkx9AJYpH7mU0Zj65xiz7Hg
+ AaM7v5zsyGWuHrH6_xRQD1hT_pvqf5BE3Gv5k_1JslB4GyHoa.kAWmUgvnG6WM8vwLyg_Z.zHTDT
+ crA7l6ZH32295DucFd.4tzN4aWwVKZjHuIi7ozUz5nJYIXLeyFSDQTyCqhbCVK33vhcGqnmH8ub0
+ A2Hg.BjAS7WYCgTMS7M6JehFbq4_B02nPB7Rf5OLJstmhuze9tcCHdav5_9Y2heW5Qcg0kecKkpS
+ .VBCfj1mJShG6w6UHgsx2zJbg.WvVzDL.jdM577JyR0R.obQn1YarqsLQripIBfXL9UZUuaMxIAr
+ kG2NNZMxpZIlFbnAug2iZYTLA1wjfwsQDPe7FjpMNPCOQ9inXCGv08FHNqS1LuwKML0h8TrRk1q0
+ PJ7SzfuCSP.QMWWTWsRWM8KrMPkLuk96eUrhIN7cyzMhukXIzNpfg_fK0NDyA.EkLFRuZXsFFwig
+ 0vbI0LKjU.2eod6MfKv4zF78ffdpk7rpNHK23jZX4nUJF5.FR_Z4sLQbkT1ClWE8n9HCck8gqndO
+ StZqcAeouOQfHs7Y5JqNmZ3ZAiyM9HSR2pAoQUwjHKGgaf5g6S_tzN7ixwHfAf1afXnSzFF3ZfMG
+ Rw2dGDyv23Xm2g_G6QU39avdFK0ZfDnKlsjlOursboHEJI6beUtPel5p7hgw.KWZ.dheWUDl.2nl
+ 9690KmY_q419cwFv_9uR6eYxKTZ1AoqnpEcKGJwVGnnbQfIFXFXdkJYtkJRFqQ75gOx8wGspVvIP
+ OJOqtGGSiCzXaWkTb1Zs.l0El4XomoL7uf1Y9UddioE_3CQxoZ8jHbSF_hddSv.jvZuxqJ_wX_HO
+ GQTXCn5FQ.N1uNi4Pi8sl0IIsh9Zezgx7OxA58KYvazl6ffmSAx2adduKiVgJr6ZHS4v8mQhX3bA
+ 9Vy3SfYYG.Y36oG3bidaTl9NCUi8PXEB86vNnzAbmK61YBkBwWAm_eIA3qM4Fxa9WrEcvSXI1wS1
+ hL1GBU.vA44.e6hEyFSuiMoUSwnE8vGXcWJe5uLslku8x4HueKIDhm0TCRc8ALgYYy0uvChJbxda
+ Tt.6c53DEzjlY.kLdfgyM435i1zq8Lc7lfbs0JvCe_20CAr.v9IBTmDi7O5qebEXcTs7eq0i2A.G
+ mnN8f5M7FGMDGAEST8EHfoiiM3BawExWT7dSZDqqMwXBl9t8b2UVDurFOre7_Bdr7k3gb1llEwIS
+ JY3X4Xan5UdiYRh6D.QDHoiNSMouLNSDm
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic307.consmr.mail.bf2.yahoo.com with HTTP; Wed, 18 Dec 2019 00:55:42 +0000
+Date: Wed, 18 Dec 2019 00:55:38 +0000 (UTC)
+From: "Ed Vidal" <develone@sbcglobal.net>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <2003464481.391462.1576630538725@mail.yahoo.com>
+Subject: Re: Raspberry pi 4 recipe and layer issues.
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <2003464481.391462.1576630538725.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.14873 YMailNorrin Mozilla/5.0 (X11; Linux armv7l) AppleWebKit/537.36 (KHTML, like Gecko) Raspbian Chromium/74.0.3729.157 Chrome/74.0.3729.157 Safari/537.36
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_391461_79389214.1576630538723"
+
+------=_Part_391461_79389214.1576630538723
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Apply patch from openssl dated after the 1.0.2t release.
+Hi All
+This is the error that I see bitbake -DDD arachne-pnr in log.do_compile
+My recipe is found at=C2=A0https://github.com/develone/meta-yosys-tools/blo=
+b/master/recipes-arachne-pnr/arachne-pnr/arachne-pnr_0.1.bb
 
-Signed-off-by: Joe Slater <joe.slater@windriver.com>
----
- .../openssl/openssl/cve-2019-1551_102.patch        | 778 +++++++++++++++=
-++++++
- recipes-connectivity/openssl/openssl_1.0.2t.bb     |   1 +
- 2 files changed, 779 insertions(+)
- create mode 100644 recipes-connectivity/openssl/openssl/cve-2019-1551_10=
-2.patch
 
-diff --git a/recipes-connectivity/openssl/openssl/cve-2019-1551_102.patch=
- b/recipes-connectivity/openssl/openssl/cve-2019-1551_102.patch
-new file mode 100644
-index 0000000..311c742
---- /dev/null
-+++ b/recipes-connectivity/openssl/openssl/cve-2019-1551_102.patch
-@@ -0,0 +1,778 @@
-+openssl: Fix CVE-2019-1551
-+
-+CVE: CVE-2019-1551
-+
-+Unmodified.  On OpenSSL_1_0_2-stable after OpenSSL_1_0_2t tag.
-+
-+Upstream-status -- Backport [git://git.openssl.org/openssl.git]
-+
-+Signed-off-by -- Joe Slater <joe.slater@windriver.com>
-+
-+=3D=3D=3D
-+
-+From f1c5eea8a817075d31e43f5876993c6710238c98 Mon Sep 17 00:00:00 2001
-+From: Andy Polyakov <appro@openssl.org>
-+Date: Wed, 4 Dec 2019 12:48:21 +0100
-+Subject: [oe-core][PATCH 1/1] Fix an overflow bug in rsaz_512_sqr
-+
-+There is an overflow bug in the x64_64 Montgomery squaring procedure use=
-d in
-+exponentiation with 512-bit moduli. No EC algorithms are affected. Analy=
-sis
-+suggests that attacks against 2-prime RSA1024, 3-prime RSA1536, and DSA1=
-024 as a
-+result of this defect would be very difficult to perform and are not bel=
-ieved
-+likely. Attacks against DH512 are considered just feasible. However, for=
- an
-+attack the target would have to re-use the DH512 private key, which is n=
-ot
-+recommended anyway. Also applications directly using the low level API
-+BN_mod_exp may be affected if they use BN_FLG_CONSTTIME.
-+
-+CVE-2019-1551
-+
-+Reviewed-by: Paul Dale <paul.dale@oracle.com>
-+Reviewed-by: Bernd Edlinger <bernd.edlinger@hotmail.de>
-+(Merged from https://github.com/openssl/openssl/pull/10576)
-+---
-+ crypto/bn/asm/rsaz-x86_64.pl | 399 ++++++++++++++++++++++--------------=
--------
-+ 1 file changed, 206 insertions(+), 193 deletions(-)
-+
-+diff --git a/crypto/bn/asm/rsaz-x86_64.pl b/crypto/bn/asm/rsaz-x86_64.pl
-+index 87ce2c3..e0da6d9 100755
-+--- a/crypto/bn/asm/rsaz-x86_64.pl
-++++ b/crypto/bn/asm/rsaz-x86_64.pl
-+@@ -140,7 +140,7 @@ rsaz_512_sqr:				# 25-29% faster than rsaz_512_mul
-+=20
-+ 	subq	\$128+24, %rsp
-+ .Lsqr_body:
-+-	movq	$mod, %rbp		# common argument
-++	movq	$mod, %xmm1		# common off-load
-+ 	movq	($inp), %rdx
-+ 	movq	8($inp), %rax
-+ 	movq	$n0, 128(%rsp)
-+@@ -158,7 +158,8 @@ $code.=3D<<___;
-+ .Loop_sqr:
-+ 	movl	$times,128+8(%rsp)
-+ #first iteration
-+-	movq	%rdx, %rbx
-++	movq	%rdx, %rbx		# 0($inp)
-++	mov	%rax, %rbp		# 8($inp)
-+ 	mulq	%rdx
-+ 	movq	%rax, %r8
-+ 	movq	16($inp), %rax
-+@@ -197,31 +198,29 @@ $code.=3D<<___;
-+ 	mulq	%rbx
-+ 	addq	%rax, %r14
-+ 	movq	%rbx, %rax
-+-	movq	%rdx, %r15
-+-	adcq	\$0, %r15
-++	adcq	\$0, %rdx
-+=20
-+-	addq	%r8, %r8		#shlq	\$1, %r8
-+-	movq	%r9, %rcx
-+-	adcq	%r9, %r9		#shld	\$1, %r8, %r9
-++	xorq	%rcx,%rcx		# rcx:r8 =3D r8 << 1
-++	addq	%r8, %r8
-++	 movq	%rdx, %r15
-++	adcq	\$0, %rcx
-+=20
-+ 	mulq	%rax
-+-	movq	%rax, (%rsp)
-+-	addq	%rdx, %r8
-+-	adcq	\$0, %r9
-++	addq	%r8, %rdx
-++	adcq	\$0, %rcx
-+=20
-+-	movq	%r8, 8(%rsp)
-+-	shrq	\$63, %rcx
-++	movq	%rax, (%rsp)
-++	movq	%rdx, 8(%rsp)
-+=20
-+ #second iteration
-+-	movq	8($inp), %r8
-+ 	movq	16($inp), %rax
-+-	mulq	%r8
-++	mulq	%rbp
-+ 	addq	%rax, %r10
-+ 	movq	24($inp), %rax
-+ 	movq	%rdx, %rbx
-+ 	adcq	\$0, %rbx
-+=20
-+-	mulq	%r8
-++	mulq	%rbp
-+ 	addq	%rax, %r11
-+ 	movq	32($inp), %rax
-+ 	adcq	\$0, %rdx
-+@@ -229,7 +228,7 @@ $code.=3D<<___;
-+ 	movq	%rdx, %rbx
-+ 	adcq	\$0, %rbx
-+=20
-+-	mulq	%r8
-++	mulq	%rbp
-+ 	addq	%rax, %r12
-+ 	movq	40($inp), %rax
-+ 	adcq	\$0, %rdx
-+@@ -237,7 +236,7 @@ $code.=3D<<___;
-+ 	movq	%rdx, %rbx
-+ 	adcq	\$0, %rbx
-+=20
-+-	mulq	%r8
-++	mulq	%rbp
-+ 	addq	%rax, %r13
-+ 	movq	48($inp), %rax
-+ 	adcq	\$0, %rdx
-+@@ -245,7 +244,7 @@ $code.=3D<<___;
-+ 	movq	%rdx, %rbx
-+ 	adcq	\$0, %rbx
-+=20
-+-	mulq	%r8
-++	mulq	%rbp
-+ 	addq	%rax, %r14
-+ 	movq	56($inp), %rax
-+ 	adcq	\$0, %rdx
-+@@ -253,39 +252,39 @@ $code.=3D<<___;
-+ 	movq	%rdx, %rbx
-+ 	adcq	\$0, %rbx
-+=20
-+-	mulq	%r8
-++	mulq	%rbp
-+ 	addq	%rax, %r15
-+-	movq	%r8, %rax
-++	movq	%rbp, %rax
-+ 	adcq	\$0, %rdx
-+ 	addq	%rbx, %r15
-+-	movq	%rdx, %r8
-+-	movq	%r10, %rdx
-+-	adcq	\$0, %r8
-++	adcq	\$0, %rdx
-+=20
-+-	add	%rdx, %rdx
-+-	lea	(%rcx,%r10,2), %r10	#shld	\$1, %rcx, %r10
-+-	movq	%r11, %rbx
-+-	adcq	%r11, %r11		#shld	\$1, %r10, %r11
-++	xorq	%rbx, %rbx		# rbx:r10:r9 =3D r10:r9 << 1
-++	addq	%r9, %r9
-++	 movq	%rdx, %r8
-++	adcq	%r10, %r10
-++	adcq	\$0, %rbx
-+=20
-+ 	mulq	%rax
-++	addq	%rcx, %rax
-++	 movq	16($inp), %rbp
-++	adcq	\$0, %rdx
-+ 	addq	%rax, %r9
-++	 movq	24($inp), %rax
-+ 	adcq	%rdx, %r10
-+-	adcq	\$0, %r11
-++	adcq	\$0, %rbx
-+=20
-+ 	movq	%r9, 16(%rsp)
-+ 	movq	%r10, 24(%rsp)
-+-	shrq	\$63, %rbx
-+-=09
-++
-+ #third iteration
-+-	movq	16($inp), %r9=09
-+-	movq	24($inp), %rax
-+-	mulq	%r9
-++	mulq	%rbp
-+ 	addq	%rax, %r12
-+ 	movq	32($inp), %rax
-+ 	movq	%rdx, %rcx
-+ 	adcq	\$0, %rcx
-+=20
-+-	mulq	%r9
-++	mulq	%rbp
-+ 	addq	%rax, %r13
-+ 	movq	40($inp), %rax
-+ 	adcq	\$0, %rdx
-+@@ -293,7 +292,7 @@ $code.=3D<<___;
-+ 	movq	%rdx, %rcx
-+ 	adcq	\$0, %rcx
-+=20
-+-	mulq	%r9
-++	mulq	%rbp
-+ 	addq	%rax, %r14
-+ 	movq	48($inp), %rax
-+ 	adcq	\$0, %rdx
-+@@ -301,9 +300,7 @@ $code.=3D<<___;
-+ 	movq	%rdx, %rcx
-+ 	adcq	\$0, %rcx
-+=20
-+-	mulq	%r9
-+-	 movq	%r12, %r10
-+-	 lea	(%rbx,%r12,2), %r12	#shld	\$1, %rbx, %r12
-++	mulq	%rbp
-+ 	addq	%rax, %r15
-+ 	movq	56($inp), %rax
-+ 	adcq	\$0, %rdx
-+@@ -311,36 +308,40 @@ $code.=3D<<___;
-+ 	movq	%rdx, %rcx
-+ 	adcq	\$0, %rcx
-+=20
-+-	mulq	%r9
-+-	 shrq	\$63, %r10
-++	mulq	%rbp
-+ 	addq	%rax, %r8
-+-	movq	%r9, %rax
-++	movq	%rbp, %rax
-+ 	adcq	\$0, %rdx
-+ 	addq	%rcx, %r8
-+-	movq	%rdx, %r9
-+-	adcq	\$0, %r9
-++	adcq	\$0, %rdx
-+=20
-+-	movq	%r13, %rcx
-+-	leaq	(%r10,%r13,2), %r13	#shld	\$1, %r12, %r13
-++	xorq	%rcx, %rcx		# rcx:r12:r11 =3D r12:r11 << 1
-++	addq	%r11, %r11
-++	 movq	%rdx, %r9
-++	adcq	%r12, %r12
-++	adcq	\$0, %rcx
-+=20
-+ 	mulq	%rax
-++	addq	%rbx, %rax
-++	 movq	24($inp), %r10
-++	adcq	\$0, %rdx
-+ 	addq	%rax, %r11
-++	 movq	32($inp), %rax
-+ 	adcq	%rdx, %r12
-+-	adcq	\$0, %r13
-++	adcq	\$0, %rcx
-+=20
-+ 	movq	%r11, 32(%rsp)
-+ 	movq	%r12, 40(%rsp)
-+-	shrq	\$63, %rcx
-+=20
-+ #fourth iteration
-+-	movq	24($inp), %r10
-+-	movq	32($inp), %rax
-++	mov	%rax, %r11		# 32($inp)
-+ 	mulq	%r10
-+ 	addq	%rax, %r14
-+ 	movq	40($inp), %rax
-+ 	movq	%rdx, %rbx
-+ 	adcq	\$0, %rbx
-+=20
-++	mov	%rax, %r12		# 40($inp)
-+ 	mulq	%r10
-+ 	addq	%rax, %r15
-+ 	movq	48($inp), %rax
-+@@ -349,9 +350,8 @@ $code.=3D<<___;
-+ 	movq	%rdx, %rbx
-+ 	adcq	\$0, %rbx
-+=20
-++	mov	%rax, %rbp		# 48($inp)
-+ 	mulq	%r10
-+-	 movq	%r14, %r12
-+-	 leaq	(%rcx,%r14,2), %r14	#shld	\$1, %rcx, %r14
-+ 	addq	%rax, %r8
-+ 	movq	56($inp), %rax
-+ 	adcq	\$0, %rdx
-+@@ -360,32 +360,33 @@ $code.=3D<<___;
-+ 	adcq	\$0, %rbx
-+=20
-+ 	mulq	%r10
-+-	 shrq	\$63, %r12
-+ 	addq	%rax, %r9
-+ 	movq	%r10, %rax
-+ 	adcq	\$0, %rdx
-+ 	addq	%rbx, %r9
-+-	movq	%rdx, %r10
-+-	adcq	\$0, %r10
-++	adcq	\$0, %rdx
-+=20
-+-	movq	%r15, %rbx
-+-	leaq	(%r12,%r15,2),%r15	#shld	\$1, %r14, %r15
-++	xorq	%rbx, %rbx		# rbx:r13:r14 =3D r13:r14 << 1
-++	addq	%r13, %r13
-++	 movq	%rdx, %r10
-++	adcq	%r14, %r14
-++	adcq	\$0, %rbx
-+=20
-+ 	mulq	%rax
-++	addq	%rcx, %rax
-++	adcq	\$0, %rdx
-+ 	addq	%rax, %r13
-++	 movq	%r12, %rax		# 40($inp)
-+ 	adcq	%rdx, %r14
-+-	adcq	\$0, %r15
-++	adcq	\$0, %rbx
-+=20
-+ 	movq	%r13, 48(%rsp)
-+ 	movq	%r14, 56(%rsp)
-+-	shrq	\$63, %rbx
-+=20
-+ #fifth iteration
-+-	movq	32($inp), %r11
-+-	movq	40($inp), %rax
-+ 	mulq	%r11
-+ 	addq	%rax, %r8
-+-	movq	48($inp), %rax
-++	movq	%rbp, %rax		# 48($inp)
-+ 	movq	%rdx, %rcx
-+ 	adcq	\$0, %rcx
-+=20
-+@@ -393,97 +394,99 @@ $code.=3D<<___;
-+ 	addq	%rax, %r9
-+ 	movq	56($inp), %rax
-+ 	adcq	\$0, %rdx
-+-	 movq	%r8, %r12
-+-	 leaq	(%rbx,%r8,2), %r8	#shld	\$1, %rbx, %r8
-+ 	addq	%rcx, %r9
-+ 	movq	%rdx, %rcx
-+ 	adcq	\$0, %rcx
-+=20
-++	mov	%rax, %r14		# 56($inp)
-+ 	mulq	%r11
-+-	 shrq	\$63, %r12
-+ 	addq	%rax, %r10
-+ 	movq	%r11, %rax
-+ 	adcq	\$0, %rdx
-+ 	addq	%rcx, %r10
-+-	movq	%rdx, %r11
-+-	adcq	\$0, %r11
-++	adcq	\$0, %rdx
-+=20
-+-	movq	%r9, %rcx
-+-	leaq	(%r12,%r9,2), %r9	#shld	\$1, %r8, %r9
-++	xorq	%rcx, %rcx		# rcx:r8:r15 =3D r8:r15 << 1
-++	addq	%r15, %r15
-++	 movq	%rdx, %r11
-++	adcq	%r8, %r8
-++	adcq	\$0, %rcx
-+=20
-+ 	mulq	%rax
-++	addq	%rbx, %rax
-++	adcq	\$0, %rdx
-+ 	addq	%rax, %r15
-++	 movq	%rbp, %rax		# 48($inp)
-+ 	adcq	%rdx, %r8
-+-	adcq	\$0, %r9
-++	adcq	\$0, %rcx
-+=20
-+ 	movq	%r15, 64(%rsp)
-+ 	movq	%r8, 72(%rsp)
-+-	shrq	\$63, %rcx
-+=20
-+ #sixth iteration
-+-	movq	40($inp), %r12
-+-	movq	48($inp), %rax
-+ 	mulq	%r12
-+ 	addq	%rax, %r10
-+-	movq	56($inp), %rax
-++	movq	%r14, %rax		# 56($inp)
-+ 	movq	%rdx, %rbx
-+ 	adcq	\$0, %rbx
-+=20
-+ 	mulq	%r12
-+ 	addq	%rax, %r11
-+ 	movq	%r12, %rax
-+-	 movq	%r10, %r15
-+-	 leaq	(%rcx,%r10,2), %r10	#shld	\$1, %rcx, %r10
-+ 	adcq	\$0, %rdx
-+-	 shrq	\$63, %r15
-+ 	addq	%rbx, %r11
-+-	movq	%rdx, %r12
-+-	adcq	\$0, %r12
-++	adcq	\$0, %rdx
-+=20
-+-	movq	%r11, %rbx
-+-	leaq	(%r15,%r11,2), %r11	#shld	\$1, %r10, %r11
-++	xorq	%rbx, %rbx		# rbx:r10:r9 =3D r10:r9 << 1
-++	addq	%r9, %r9
-++	 movq	%rdx, %r12
-++	adcq	%r10, %r10
-++	adcq	\$0, %rbx
-+=20
-+ 	mulq	%rax
-++	addq	%rcx, %rax
-++	adcq	\$0, %rdx
-+ 	addq	%rax, %r9
-++	 movq	%r14, %rax		# 56($inp)
-+ 	adcq	%rdx, %r10
-+-	adcq	\$0, %r11
-++	adcq	\$0, %rbx
-+=20
-+ 	movq	%r9, 80(%rsp)
-+ 	movq	%r10, 88(%rsp)
-+=20
-+ #seventh iteration
-+-	movq	48($inp), %r13
-+-	movq	56($inp), %rax
-+-	mulq	%r13
-++	mulq	%rbp
-+ 	addq	%rax, %r12
-+-	movq	%r13, %rax
-+-	movq	%rdx, %r13
-+-	adcq	\$0, %r13
-++	movq	%rbp, %rax
-++	adcq	\$0, %rdx
-+=20
-+-	xorq	%r14, %r14
-+-	shlq	\$1, %rbx
-+-	adcq	%r12, %r12		#shld	\$1, %rbx, %r12
-+-	adcq	%r13, %r13		#shld	\$1, %r12, %r13
-+-	adcq	%r14, %r14		#shld	\$1, %r13, %r14
-++	xorq	%rcx, %rcx		# rcx:r12:r11 =3D r12:r11 << 1
-++	addq	%r11, %r11
-++	 movq	%rdx, %r13
-++	adcq	%r12, %r12
-++	adcq	\$0, %rcx
-+=20
-+ 	mulq	%rax
-++	addq	%rbx, %rax
-++	adcq	\$0, %rdx
-+ 	addq	%rax, %r11
-++	 movq	%r14, %rax		# 56($inp)
-+ 	adcq	%rdx, %r12
-+-	adcq	\$0, %r13
-++	adcq	\$0, %rcx
-+=20
-+ 	movq	%r11, 96(%rsp)
-+ 	movq	%r12, 104(%rsp)
-+=20
-+ #eighth iteration
-+-	movq	56($inp), %rax
-++	xorq	%rbx, %rbx		# rbx:r13 =3D r13 << 1
-++	addq	%r13, %r13
-++	adcq	\$0, %rbx
-++
-+ 	mulq	%rax
-+-	addq	%rax, %r13
-++	addq	%rcx, %rax
-+ 	adcq	\$0, %rdx
-+-
-+-	addq	%rdx, %r14
-+-
-+-	movq	%r13, 112(%rsp)
-+-	movq	%r14, 120(%rsp)
-++	addq	%r13, %rax
-++	adcq	%rbx, %rdx
-+=20
-+ 	movq	(%rsp), %r8
-+ 	movq	8(%rsp), %r9
-+@@ -493,6 +496,10 @@ $code.=3D<<___;
-+ 	movq	40(%rsp), %r13
-+ 	movq	48(%rsp), %r14
-+ 	movq	56(%rsp), %r15
-++	movq	%xmm1, %rbp
-++
-++	movq	%rax, 112(%rsp)
-++	movq	%rdx, 120(%rsp)
-+=20
-+ 	call	__rsaz_512_reduce
-+=20
-+@@ -524,9 +531,9 @@ $code.=3D<<___;
-+ .Loop_sqrx:
-+ 	movl	$times,128+8(%rsp)
-+ 	movq	$out, %xmm0		# off-load
-+-	movq	%rbp, %xmm1		# off-load
-+-#first iteration=09
-++#first iteration
-+ 	mulx	%rax, %r8, %r9
-++	mov	%rax, %rbx
-+=20
-+ 	mulx	16($inp), %rcx, %r10
-+ 	xor	%rbp, %rbp		# cf=3D0, of=3D0
-+@@ -534,40 +541,39 @@ $code.=3D<<___;
-+ 	mulx	24($inp), %rax, %r11
-+ 	adcx	%rcx, %r9
-+=20
-+-	mulx	32($inp), %rcx, %r12
-++	.byte	0xc4,0x62,0xf3,0xf6,0xa6,0x20,0x00,0x00,0x00	# mulx	32($inp), %r=
-cx, %r12
-+ 	adcx	%rax, %r10
-+=20
-+-	mulx	40($inp), %rax, %r13
-++	.byte	0xc4,0x62,0xfb,0xf6,0xae,0x28,0x00,0x00,0x00	# mulx	40($inp), %r=
-ax, %r13
-+ 	adcx	%rcx, %r11
-+=20
-+-	.byte	0xc4,0x62,0xf3,0xf6,0xb6,0x30,0x00,0x00,0x00	# mulx	48($inp), %r=
-cx, %r14
-++	mulx	48($inp), %rcx, %r14
-+ 	adcx	%rax, %r12
-+ 	adcx	%rcx, %r13
-+=20
-+-	.byte	0xc4,0x62,0xfb,0xf6,0xbe,0x38,0x00,0x00,0x00	# mulx	56($inp), %r=
-ax, %r15
-++	mulx	56($inp), %rax, %r15
-+ 	adcx	%rax, %r14
-+ 	adcx	%rbp, %r15		# %rbp is 0
-+=20
-+-	mov	%r9, %rcx
-+-	shld	\$1, %r8, %r9
-+-	shl	\$1, %r8
-+-
-+-	xor	%ebp, %ebp
-+-	mulx	%rdx, %rax, %rdx
-+-	adcx	%rdx, %r8
-+-	 mov	8($inp), %rdx
-+-	adcx	%rbp, %r9
-++	mulx	%rdx, %rax, $out
-++	 mov	%rbx, %rdx		# 8($inp)
-++	xor	%rcx, %rcx
-++	adox	%r8, %r8
-++	adcx	$out, %r8
-++	adox	%rbp, %rcx
-++	adcx	%rbp, %rcx
-+=20
-+ 	mov	%rax, (%rsp)
-+ 	mov	%r8, 8(%rsp)
-+=20
-+-#second iteration=09
-+-	mulx	16($inp), %rax, %rbx
-++#second iteration
-++	.byte	0xc4,0xe2,0xfb,0xf6,0x9e,0x10,0x00,0x00,0x00	# mulx	16($inp), %r=
-ax, %rbx
-+ 	adox	%rax, %r10
-+ 	adcx	%rbx, %r11
-+=20
-+-	.byte	0xc4,0x62,0xc3,0xf6,0x86,0x18,0x00,0x00,0x00	# mulx	24($inp), $o=
-ut, %r8
-++	mulx	24($inp), $out, %r8
-+ 	adox	$out, %r11
-++	.byte	0x66
-+ 	adcx	%r8, %r12
-+=20
-+ 	mulx	32($inp), %rax, %rbx
-+@@ -585,24 +591,25 @@ $code.=3D<<___;
-+ 	.byte	0xc4,0x62,0xc3,0xf6,0x86,0x38,0x00,0x00,0x00	# mulx	56($inp), $o=
-ut, %r8
-+ 	adox	$out, %r15
-+ 	adcx	%rbp, %r8
-++	 mulx	%rdx, %rax, $out
-+ 	adox	%rbp, %r8
-++	 .byte	0x48,0x8b,0x96,0x10,0x00,0x00,0x00		# mov	16($inp), %rdx
-+=20
-+-	mov	%r11, %rbx
-+-	shld	\$1, %r10, %r11
-+-	shld	\$1, %rcx, %r10
-+-
-+-	xor	%ebp,%ebp
-+-	mulx	%rdx, %rax, %rcx
-+-	 mov	16($inp), %rdx
-++	xor	%rbx, %rbx
-++	adcx	%rcx, %rax
-++	adox	%r9, %r9
-++	adcx	%rbp, $out
-++	adox	%r10, %r10
-+ 	adcx	%rax, %r9
-+-	adcx	%rcx, %r10
-+-	adcx	%rbp, %r11
-++	adox	%rbp, %rbx
-++	adcx	$out, %r10
-++	adcx	%rbp, %rbx
-+=20
-+ 	mov	%r9, 16(%rsp)
-+ 	.byte	0x4c,0x89,0x94,0x24,0x18,0x00,0x00,0x00		# mov	%r10, 24(%rsp)
-+-=09
-+-#third iteration=09
-+-	.byte	0xc4,0x62,0xc3,0xf6,0x8e,0x18,0x00,0x00,0x00	# mulx	24($inp), $o=
-ut, %r9
-++
-++#third iteration
-++	mulx	24($inp), $out, %r9
-+ 	adox	$out, %r12
-+ 	adcx	%r9, %r13
-+=20
-+@@ -610,7 +617,7 @@ $code.=3D<<___;
-+ 	adox	%rax, %r13
-+ 	adcx	%rcx, %r14
-+=20
-+-	mulx	40($inp), $out, %r9
-++	.byte	0xc4,0x62,0xc3,0xf6,0x8e,0x28,0x00,0x00,0x00	# mulx	40($inp), $o=
-ut, %r9
-+ 	adox	$out, %r14
-+ 	adcx	%r9, %r15
-+=20
-+@@ -618,27 +625,28 @@ $code.=3D<<___;
-+ 	adox	%rax, %r15
-+ 	adcx	%rcx, %r8
-+=20
-+-	.byte	0xc4,0x62,0xc3,0xf6,0x8e,0x38,0x00,0x00,0x00	# mulx	56($inp), $o=
-ut, %r9
-++	mulx	56($inp), $out, %r9
-+ 	adox	$out, %r8
-+ 	adcx	%rbp, %r9
-++	 mulx	%rdx, %rax, $out
-+ 	adox	%rbp, %r9
-++	 mov	24($inp), %rdx
-+=20
-+-	mov	%r13, %rcx
-+-	shld	\$1, %r12, %r13
-+-	shld	\$1, %rbx, %r12
-+-
-+-	xor	%ebp, %ebp
-+-	mulx	%rdx, %rax, %rdx
-++	xor	%rcx, %rcx
-++	adcx	%rbx, %rax
-++	adox	%r11, %r11
-++	adcx	%rbp, $out
-++	adox	%r12, %r12
-+ 	adcx	%rax, %r11
-+-	adcx	%rdx, %r12
-+-	 mov	24($inp), %rdx
-+-	adcx	%rbp, %r13
-++	adox	%rbp, %rcx
-++	adcx	$out, %r12
-++	adcx	%rbp, %rcx
-+=20
-+ 	mov	%r11, 32(%rsp)
-+-	.byte	0x4c,0x89,0xa4,0x24,0x28,0x00,0x00,0x00		# mov	%r12, 40(%rsp)
-+-=09
-+-#fourth iteration=09
-+-	.byte	0xc4,0xe2,0xfb,0xf6,0x9e,0x20,0x00,0x00,0x00	# mulx	32($inp), %r=
-ax, %rbx
-++	mov	%r12, 40(%rsp)
-++
-++#fourth iteration
-++	mulx	32($inp), %rax, %rbx
-+ 	adox	%rax, %r14
-+ 	adcx	%rbx, %r15
-+=20
-+@@ -653,25 +661,25 @@ $code.=3D<<___;
-+ 	mulx	56($inp), $out, %r10
-+ 	adox	$out, %r9
-+ 	adcx	%rbp, %r10
-++	 mulx	%rdx, %rax, $out
-+ 	adox	%rbp, %r10
-++	 mov	32($inp), %rdx
-+=20
-+-	.byte	0x66
-+-	mov	%r15, %rbx
-+-	shld	\$1, %r14, %r15
-+-	shld	\$1, %rcx, %r14
-+-
-+-	xor	%ebp, %ebp
-+-	mulx	%rdx, %rax, %rdx
-++	xor	%rbx, %rbx
-++	adcx	%rcx, %rax
-++	adox	%r13, %r13
-++	adcx	%rbp, $out
-++	adox	%r14, %r14
-+ 	adcx	%rax, %r13
-+-	adcx	%rdx, %r14
-+-	 mov	32($inp), %rdx
-+-	adcx	%rbp, %r15
-++	adox	%rbp, %rbx
-++	adcx	$out, %r14
-++	adcx	%rbp, %rbx
-+=20
-+ 	mov	%r13, 48(%rsp)
-+ 	mov	%r14, 56(%rsp)
-+-=09
-+-#fifth iteration=09
-+-	.byte	0xc4,0x62,0xc3,0xf6,0x9e,0x28,0x00,0x00,0x00	# mulx	40($inp), $o=
-ut, %r11
-++
-++#fifth iteration
-++	mulx	40($inp), $out, %r11
-+ 	adox	$out, %r8
-+ 	adcx	%r11, %r9
-+=20
-+@@ -682,18 +690,19 @@ $code.=3D<<___;
-+ 	mulx	56($inp), $out, %r11
-+ 	adox	$out, %r10
-+ 	adcx	%rbp, %r11
-++	 mulx	%rdx, %rax, $out
-++	 mov	40($inp), %rdx
-+ 	adox	%rbp, %r11
-+=20
-+-	mov	%r9, %rcx
-+-	shld	\$1, %r8, %r9
-+-	shld	\$1, %rbx, %r8
-+-
-+-	xor	%ebp, %ebp
-+-	mulx	%rdx, %rax, %rdx
-++	xor	%rcx, %rcx
-++	adcx	%rbx, %rax
-++	adox	%r15, %r15
-++	adcx	%rbp, $out
-++	adox	%r8, %r8
-+ 	adcx	%rax, %r15
-+-	adcx	%rdx, %r8
-+-	 mov	40($inp), %rdx
-+-	adcx	%rbp, %r9
-++	adox	%rbp, %rcx
-++	adcx	$out, %r8
-++	adcx	%rbp, %rcx
-+=20
-+ 	mov	%r15, 64(%rsp)
-+ 	mov	%r8, 72(%rsp)
-+@@ -706,18 +715,19 @@ $code.=3D<<___;
-+ 	.byte	0xc4,0x62,0xc3,0xf6,0xa6,0x38,0x00,0x00,0x00	# mulx	56($inp), $o=
-ut, %r12
-+ 	adox	$out, %r11
-+ 	adcx	%rbp, %r12
-++	 mulx	%rdx, %rax, $out
-+ 	adox	%rbp, %r12
-++	 mov	48($inp), %rdx
-+=20
-+-	mov	%r11, %rbx
-+-	shld	\$1, %r10, %r11
-+-	shld	\$1, %rcx, %r10
-+-
-+-	xor	%ebp, %ebp
-+-	mulx	%rdx, %rax, %rdx
-++	xor	%rbx, %rbx
-++	adcx	%rcx, %rax
-++	adox	%r9, %r9
-++	adcx	%rbp, $out
-++	adox	%r10, %r10
-+ 	adcx	%rax, %r9
-+-	adcx	%rdx, %r10
-+-	 mov	48($inp), %rdx
-+-	adcx	%rbp, %r11
-++	adcx	$out, %r10
-++	adox	%rbp, %rbx
-++	adcx	%rbp, %rbx
-+=20
-+ 	mov	%r9, 80(%rsp)
-+ 	mov	%r10, 88(%rsp)
-+@@ -727,31 +737,31 @@ $code.=3D<<___;
-+ 	adox	%rax, %r12
-+ 	adox	%rbp, %r13
-+=20
-+-	xor	%r14, %r14
-+-	shld	\$1, %r13, %r14
-+-	shld	\$1, %r12, %r13
-+-	shld	\$1, %rbx, %r12
-+-
-+-	xor	%ebp, %ebp
-+-	mulx	%rdx, %rax, %rdx
-+-	adcx	%rax, %r11
-+-	adcx	%rdx, %r12
-++	mulx	%rdx, %rax, $out
-++	xor	%rcx, %rcx
-+ 	 mov	56($inp), %rdx
-+-	adcx	%rbp, %r13
-++	adcx	%rbx, %rax
-++	adox	%r11, %r11
-++	adcx	%rbp, $out
-++	adox	%r12, %r12
-++	adcx	%rax, %r11
-++	adox	%rbp, %rcx
-++	adcx	$out, %r12
-++	adcx	%rbp, %rcx
-+=20
-+ 	.byte	0x4c,0x89,0x9c,0x24,0x60,0x00,0x00,0x00		# mov	%r11, 96(%rsp)
-+ 	.byte	0x4c,0x89,0xa4,0x24,0x68,0x00,0x00,0x00		# mov	%r12, 104(%rsp)
-+=20
-+ #eighth iteration
-+ 	mulx	%rdx, %rax, %rdx
-+-	adox	%rax, %r13
-+-	adox	%rbp, %rdx
-++	xor	%rbx, %rbx
-++	adcx	%rcx, %rax
-++	adox	%r13, %r13
-++	adcx	%rbp, %rdx
-++	adox	%rbp, %rbx
-++	adcx	%r13, %rax
-++	adcx	%rdx, %rbx
-+=20
-+-	.byte	0x66
-+-	add	%rdx, %r14
-+-
-+-	movq	%r13, 112(%rsp)
-+-	movq	%r14, 120(%rsp)
-+ 	movq	%xmm0, $out
-+ 	movq	%xmm1, %rbp
-+=20
-+@@ -765,6 +775,9 @@ $code.=3D<<___;
-+ 	movq	48(%rsp), %r14
-+ 	movq	56(%rsp), %r15
-+=20
-++	movq	%rax, 112(%rsp)
-++	movq	%rbx, 120(%rsp)
-++
-+ 	call	__rsaz_512_reducex
-+=20
-+ 	addq	64(%rsp), %r8
-+--=20
-+2.7.4
-+
-diff --git a/recipes-connectivity/openssl/openssl_1.0.2t.bb b/recipes-con=
-nectivity/openssl/openssl_1.0.2t.bb
-index 151f321..db1e770 100644
---- a/recipes-connectivity/openssl/openssl_1.0.2t.bb
-+++ b/recipes-connectivity/openssl/openssl_1.0.2t.bb
-@@ -42,6 +42,7 @@ SRC_URI =3D "http://www.openssl.org/source/openssl-${PV=
-}.tar.gz \
-            file://0001-allow-manpages-to-be-disabled.patch \
-            file://0001-Fix-BN_LLONG-breakage.patch \
-            file://0001-Fix-DES_LONG-breakage.patch \
-+           file://cve-2019-1551_102.patch \
-            "
-=20
- SRC_URI_append_class-target =3D " \
---=20
-2.7.4
 
+
+I have added to the depends DEPENDS =3D " icestorm busybox" no help
+/bin/sh: 1: sum: not found
+I did a search for does busybox provide sumhttps://busybox.net/BusyBox.html=
+It provides both sh & sum
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 [, [[, acpid, add-shell, addgroup, adduser, adj=
+timex, ar, arp,=C2=A0 =C2=A0 =C2=A0 =C2=A0 arping, awk, base64, basename, b=
+bconfig, beep, blkid, blockdev,=C2=A0 =C2=A0 =C2=A0 =C2=A0 bootchartd, brct=
+l, bunzip2, bzcat, bzip2, cal, cat, catv, chat,=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+chattr, chgrp, chmod, chown, chpasswd, chpst, chroot, chrt, chvt,=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 cksum, clear, cmp, comm, conspy, cp, cpio, crond, crontab=
+, cryptpw,=C2=A0 =C2=A0 =C2=A0 =C2=A0 cttyhack, cut, date, dc, dd, deallocv=
+t, delgroup, deluser, depmod,=C2=A0 =C2=A0 =C2=A0 =C2=A0 devfsd, devmem, df=
+, dhcprelay, diff, dirname, dmesg, dnsd,=C2=A0 =C2=A0 =C2=A0 =C2=A0 dnsdoma=
+inname, dos2unix, dpkg, dpkg-deb, du, dumpkmap, dumpleases,=C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 echo, ed, egrep, eject, env, envdir, envuidgid, ether-wake, e=
+xpand,=C2=A0 =C2=A0 =C2=A0 =C2=A0 expr, fakeidentd, false, fbset, fbsplash,=
+ fdflush, fdformat, fdisk,=C2=A0 =C2=A0 =C2=A0 =C2=A0 fgconsole, fgrep, fin=
+d, findfs, flash_eraseall, flash_lock,=C2=A0 =C2=A0 =C2=A0 =C2=A0 flash_unl=
+ock, flashcp, flock, fold, free, freeramdisk, fsck,=C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 fsck.minix, fsync, ftpd, ftpget, ftpput, fuser, getopt, getty, grep,=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 gunzip, gzip, halt, hd, hdparm, head, hexdump, hos=
+tid, hostname,=C2=A0 =C2=A0 =C2=A0 =C2=A0 httpd, hush, hwclock, id, ifconfi=
+g, ifdown, ifenslave, ifplugd,=C2=A0 =C2=A0 =C2=A0 =C2=A0 ifup, inetd, init=
+, inotifyd, insmod, install, ionice, iostat, ip,=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ ipaddr, ipcalc, ipcrm, ipcs, iplink, iproute, iprule, iptunnel,=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 kbd_mode, kill, killall, killall5, klogd, last, length, l=
+ess,=C2=A0 =C2=A0 =C2=A0 =C2=A0 linux32, linux64, linuxrc, ln, loadfont, lo=
+adkmap, logger, login,=C2=A0 =C2=A0 =C2=A0 =C2=A0 logname, logread, losetup=
+, lpd, lpq, lpr, ls, lsattr, lsmod, lspci,=C2=A0 =C2=A0 =C2=A0 =C2=A0 lsusb=
+, lzcat, lzma, lzop, lzopcat, makedevs, makemime, man, md5sum,=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 mdev, mesg, microcom, mkdir, mkdosfs, mke2fs, mkfifo, mkfs.e=
+xt2,=C2=A0 =C2=A0 =C2=A0 =C2=A0 mkfs.minix, mkfs.reiser, mkfs.vfat, mknod, =
+mkpasswd, mkswap, mktemp,=C2=A0 =C2=A0 =C2=A0 =C2=A0 modinfo, modprobe, mor=
+e, mount, mountpoint, mpstat, msh, mt, mv,=C2=A0 =C2=A0 =C2=A0 =C2=A0 namei=
+f, nanddump, nandwrite, nbd-client, nc, netstat, nice, nmeter,=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 nohup, nslookup, ntpd, od, openvt, passwd, patch, pgrep, pid=
+of,=C2=A0 =C2=A0 =C2=A0 =C2=A0 ping, ping6, pipe_progress, pivot_root, pkil=
+l, pmap, popmaildir,=C2=A0 =C2=A0 =C2=A0 =C2=A0 poweroff, powertop, printen=
+v, printf, ps, pscan, pwd, raidautorun,=C2=A0 =C2=A0 =C2=A0 =C2=A0 rdate, r=
+dev, readahead, readlink, readprofile, realpath, reboot,=C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 reformime, remove-shell, renice, reset, resize, rev, rfkill, rm,=
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 rmdir, rmmod, route, rpm, rpm2cpio, rtcwake, ru=
+n-parts, runlevel,=C2=A0 =C2=A0 =C2=A0 =C2=A0 runsv, runsvdir, rx, script, =
+scriptreplay, sed, sendmail, seq,=C2=A0 =C2=A0 =C2=A0 =C2=A0 setarch, setco=
+nsole, setfont, setkeycodes, setlogcons, setsid,=C2=A0 =C2=A0 =C2=A0 =C2=A0=
+ setuidgid, sh, sha1sum, sha256sum, sha512sum, showkey, slattach,=C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 sleep, smemcap, softlimit, sort, split, start-stop-daemon=
+, stat,=C2=A0 =C2=A0 =C2=A0 =C2=A0 strings, stty, su, sulogin, sum, sv, svl=
+ogd, swapoff, swapon,=C2=A0 =C2=A0 =C2=A0 =C2=A0 switch_root, sync, sysctl,=
+ syslogd, tac, tail, tar, taskset, tcpsvd,=C2=A0 =C2=A0 =C2=A0 =C2=A0 tee, =
+telnet, telnetd, test, tftp, tftpd, time, timeout, top, touch,=C2=A0 =C2=A0=
+ =C2=A0 =C2=A0 tr, traceroute, traceroute6, true, tty, ttysize, tunctl, tun=
+e2fs,=C2=A0 =C2=A0 =C2=A0 =C2=A0 ubiattach, ubidetach, udhcpc, udhcpd, udps=
+vd, umount, uname,=C2=A0 =C2=A0 =C2=A0 =C2=A0 uncompress, unexpand, uniq, u=
+nix2dos, unlzma, unlzop, unxz, unzip,=C2=A0 =C2=A0 =C2=A0 =C2=A0 uptime, us=
+leep, uudecode, uuencode, vconfig, vi, vlock, volname,=C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 wall, watch, watchdog, wc, wget, which, who, whoami, xargs, xz,=C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 xzcat, yes, zcat, zcip
+
+Thanks in advance.
+Best Regards
+Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595-1613
+
+------=_Part_391461_79389214.1576630538723
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydpffea4004yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
+;"><div><div dir=3D"ltr" data-setdir=3D"false"><div><div dir=3D"ltr" data-s=
+etdir=3D"false">Hi All</div><div dir=3D"ltr" data-setdir=3D"false"><br></di=
+v><div dir=3D"ltr" data-setdir=3D"false">This is the error that I see bitba=
+ke -DDD arachne-pnr in log.do_compile</div><div><br></div><div dir=3D"ltr" =
+data-setdir=3D"false">My recipe is found at&nbsp;</div><div dir=3D"ltr" dat=
+a-setdir=3D"false"><span><a href=3D"https://github.com/develone/meta-yosys-=
+tools/blob/master/recipes-arachne-pnr/arachne-pnr/arachne-pnr_0.1.bb" rel=
+=3D"nofollow" target=3D"_blank" class=3D"">https://github.com/develone/meta=
+-yosys-tools/blob/master/recipes-arachne-pnr/arachne-pnr/arachne-pnr_0.1.bb=
+</a></span><div><br></div><div><br></div><div><br></div><br></div><div><br>=
+</div><div>I have added to the depends DEPENDS =3D " icestorm busybox" no h=
+elp</div><div><br></div><div>/bin/sh: 1: sum: not found</div><div><br></div=
+><div>I did a search for does busybox provide sum</div><div>https://busybox=
+.net/BusyBox.html</div><div>It provides both sh &amp; sum</div><div><br></d=
+iv><div>&nbsp; &nbsp; &nbsp; &nbsp; [, [[, acpid, add-shell, addgroup, addu=
+ser, adjtimex, ar, arp,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; arping, awk, =
+base64, basename, bbconfig, beep, blkid, blockdev,</div><div>&nbsp; &nbsp; =
+&nbsp; &nbsp; bootchartd, brctl, bunzip2, bzcat, bzip2, cal, cat, catv, cha=
+t,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; chattr, chgrp, chmod, chown, chpas=
+swd, chpst, chroot, chrt, chvt,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; cksum=
+, clear, cmp, comm, conspy, cp, cpio, crond, crontab, cryptpw,</div><div>&n=
+bsp; &nbsp; &nbsp; &nbsp; cttyhack, cut, date, dc, dd, deallocvt, delgroup,=
+ deluser, depmod,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; devfsd, devmem, df,=
+ dhcprelay, diff, dirname, dmesg, dnsd,</div><div>&nbsp; &nbsp; &nbsp; &nbs=
+p; dnsdomainname, dos2unix, dpkg, dpkg-deb, du, dumpkmap, dumpleases,</div>=
+<div>&nbsp; &nbsp; &nbsp; &nbsp; echo, ed, egrep, eject, env, envdir, envui=
+dgid, ether-wake, expand,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; expr, fakei=
+dentd, false, fbset, fbsplash, fdflush, fdformat, fdisk,</div><div>&nbsp; &=
+nbsp; &nbsp; &nbsp; fgconsole, fgrep, find, findfs, flash_eraseall, flash_l=
+ock,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; flash_unlock, flashcp, flock, fo=
+ld, free, freeramdisk, fsck,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; fsck.min=
+ix, fsync, ftpd, ftpget, ftpput, fuser, getopt, getty, grep,</div><div>&nbs=
+p; &nbsp; &nbsp; &nbsp; gunzip, gzip, halt, hd, hdparm, head, hexdump, host=
+id, hostname,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; httpd, hush, hwclock, i=
+d, ifconfig, ifdown, ifenslave, ifplugd,</div><div>&nbsp; &nbsp; &nbsp; &nb=
+sp; ifup, inetd, init, inotifyd, insmod, install, ionice, iostat, ip,</div>=
+<div>&nbsp; &nbsp; &nbsp; &nbsp; ipaddr, ipcalc, ipcrm, ipcs, iplink, iprou=
+te, iprule, iptunnel,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; kbd_mode, kill,=
+ killall, killall5, klogd, last, length, less,</div><div>&nbsp; &nbsp; &nbs=
+p; &nbsp; linux32, linux64, linuxrc, ln, loadfont, loadkmap, logger, login,=
+</div><div>&nbsp; &nbsp; &nbsp; &nbsp; logname, logread, losetup, lpd, lpq,=
+ lpr, ls, lsattr, lsmod, lspci,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; lsusb=
+, lzcat, lzma, lzop, lzopcat, makedevs, makemime, man, md5sum,</div><div>&n=
+bsp; &nbsp; &nbsp; &nbsp; mdev, mesg, microcom, mkdir, mkdosfs, mke2fs, mkf=
+ifo, mkfs.ext2,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; mkfs.minix, mkfs.reis=
+er, mkfs.vfat, mknod, mkpasswd, mkswap, mktemp,</div><div>&nbsp; &nbsp; &nb=
+sp; &nbsp; modinfo, modprobe, more, mount, mountpoint, mpstat, msh, mt, mv,=
+</div><div>&nbsp; &nbsp; &nbsp; &nbsp; nameif, nanddump, nandwrite, nbd-cli=
+ent, nc, netstat, nice, nmeter,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; nohup=
+, nslookup, ntpd, od, openvt, passwd, patch, pgrep, pidof,</div><div>&nbsp;=
+ &nbsp; &nbsp; &nbsp; ping, ping6, pipe_progress, pivot_root, pkill, pmap, =
+popmaildir,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; poweroff, powertop, print=
+env, printf, ps, pscan, pwd, raidautorun,</div><div>&nbsp; &nbsp; &nbsp; &n=
+bsp; rdate, rdev, readahead, readlink, readprofile, realpath, reboot,</div>=
+<div>&nbsp; &nbsp; &nbsp; &nbsp; reformime, remove-shell, renice, reset, re=
+size, rev, rfkill, rm,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; rmdir, rmmod, =
+route, rpm, rpm2cpio, rtcwake, run-parts, runlevel,</div><div>&nbsp; &nbsp;=
+ &nbsp; &nbsp; runsv, runsvdir, rx, script, scriptreplay, sed, sendmail, se=
+q,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; setarch, setconsole, setfont, setk=
+eycodes, setlogcons, setsid,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; setuidgi=
+d, sh, sha1sum, sha256sum, sha512sum, showkey, slattach,</div><div>&nbsp; &=
+nbsp; &nbsp; &nbsp; sleep, smemcap, softlimit, sort, split, start-stop-daem=
+on, stat,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; strings, stty, su, sulogin,=
+ sum, sv, svlogd, swapoff, swapon,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; sw=
+itch_root, sync, sysctl, syslogd, tac, tail, tar, taskset, tcpsvd,</div><di=
+v>&nbsp; &nbsp; &nbsp; &nbsp; tee, telnet, telnetd, test, tftp, tftpd, time=
+, timeout, top, touch,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; tr, traceroute=
+, traceroute6, true, tty, ttysize, tunctl, tune2fs,</div><div>&nbsp; &nbsp;=
+ &nbsp; &nbsp; ubiattach, ubidetach, udhcpc, udhcpd, udpsvd, umount, uname,=
+</div><div>&nbsp; &nbsp; &nbsp; &nbsp; uncompress, unexpand, uniq, unix2dos=
+, unlzma, unlzop, unxz, unzip,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; uptime=
+, usleep, uudecode, uuencode, vconfig, vi, vlock, volname,</div><div>&nbsp;=
+ &nbsp; &nbsp; &nbsp; wall, watch, watchdog, wc, wget, which, who, whoami, =
+xargs, xz,</div><div>&nbsp; &nbsp; &nbsp; &nbsp; xzcat, yes, zcat, zcip</di=
+v></div><br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=
+=3D"ltr" data-setdir=3D"false">Thanks in advance.</div><div dir=3D"ltr" dat=
+a-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Best Re=
+gards</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div class=3D"y=
+dpffea4004signature">Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595=
+-1613</div></div></div></body></html>
+
+------=_Part_391461_79389214.1576630538723--
