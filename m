@@ -1,109 +1,73 @@
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
- by mx.groups.io with SMTP id smtpd.web10.8462.1576662570886127396
+Received: from smtprelay.hostedemail.com (smtprelay.hostedemail.com [216.40.44.59])
+ by mx.groups.io with SMTP id smtpd.web10.8609.1576664178013680739
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 Dec 2019 01:49:31 -0800
+ Wed, 18 Dec 2019 02:16:18 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=BCJwROZ4;
- spf=pass (domain: gmail.com, ip: 209.85.167.174, mailfrom: learning.yocto@gmail.com)
-Received: by mail-oi1-f174.google.com with SMTP id h19so565855oih.4;
-        Wed, 18 Dec 2019 01:49:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nqYg0F5z54+14JVPw3m56nX7xxhSbbyYqilArZEUJQk=;
-        b=BCJwROZ47IwRf1RDJqjgkjnqUkF/lpkl5MIt17M6vnBIFweyUhy5zrFIprNf6ISdQD
-         GkyG/cUnVtv7SfsUShydodEozAXe0AgCr7kx3xFi6PAiP8wHPhDP4jbjIDGU2Owdl4gd
-         9NKclMzz7lzGyCaqalFH5n/7aBDnMxZbqLO9fFurc9hzZ33FJYnglJPVuEZaEaz0Ss/K
-         2bU4rowrJdCPPz/2MM0SqgIZKQAZGvL/LZ5MWx6AZ8XurOwec4eGPmV36pZYvx76MYl5
-         rXp6EY5yYpGwGhFbbm/WUM5hrGUNsBuuTWwQCqQTEdoDq/ZJcZ6mY3h700sVNwMFbxek
-         0s5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nqYg0F5z54+14JVPw3m56nX7xxhSbbyYqilArZEUJQk=;
-        b=XeyCJWJeDEL7XvWK5AYuwYKUeRiuhoUgeBA5W2VCbF3r3XVVoPzplhvWB8fMj2xxx9
-         4h1xs1Bsw+VsHsW4SZBpm1+Hz9TZ1nANikAYXCEBITdZ24g3fEkb130WFlk6KGxjyLTs
-         PVZlW9F5BKpdfVP2KZ0JbzLDFtRbYVrfZnOtkwkM/9LRZMMWT8I3b67XvJWQDrHY/6hb
-         SDUqcTYZnePw3Tnhb33bTuxtqFq6wdRxm1mfBf5qatU7kiZtmLQId4in3V2+rfBorCg0
-         H5GFiLCbB83B3gAHQmeCU52gTlhBwSi5SVKESJGpVWmduL3gypyxv/Q4g+sQ+picG5y4
-         kCMg==
-X-Gm-Message-State: APjAAAWBm7LJ8qZ0U6vYzZiYaCGQc4kT+7Gpmqc7/XvQyHexG5spBb7f
-	fhdy+Tv43rjJ7u6ptP6VqTuHMhkQqDPRVH3h5RXBr6ZNUYrNUw==
-X-Google-Smtp-Source: APXvYqxnJ+WKT+oA2pv+OFy4ZQtxVRincAgzL6VQf6lkdKlKgRywqGX0JKenRX3ooYx0v2o4VI2hUomOIqzwoTftY7Q=
-X-Received: by 2002:a05:6808:a8a:: with SMTP id q10mr94416oij.66.1576662569348;
- Wed, 18 Dec 2019 01:49:29 -0800 (PST)
-MIME-Version: 1.0
-References: <15E15F75E87A3A54.14752@lists.yoctoproject.org>
-In-Reply-To: <15E15F75E87A3A54.14752@lists.yoctoproject.org>
-From: "learning yocto" <learning.yocto@gmail.com>
-Date: Wed, 18 Dec 2019 09:49:16 +0000
-Message-ID: <CAGWAjas1j+-imALC3Ggc_hLAnd4a8cqPv-kiftfTLObQ3bjZnw@mail.gmail.com>
-Subject: Re: [yocto] go tool dist: unknown architecture: aarch64
-To: yocto@lists.yoctoproject.org, meta-virtualization@lists.yoctoproject.org
-Cc: learning.yocto@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+ dkim=missing; spf=none, err=SPF record not found (domain: sdcsystems.com, ip: 216.40.44.59, mailfrom: andy.pont@sdcsystems.com)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+	by smtprelay01.hostedemail.com (Postfix) with ESMTP id 1C383100E7B48;
+	Wed, 18 Dec 2019 10:16:17 +0000 (UTC)
+X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,andy.pont@sdcsystems.com,:::,RULES_HIT:41:152:355:379:599:962:966:988:989:1189:1221:1260:1261:1313:1314:1345:1359:1437:1516:1517:1518:1534:1541:1575:1588:1589:1594:1711:1730:1775:1792:2196:2198:2199:2200:2527:2559:2562:3138:3139:3140:3141:3142:3352:3586:3865:3866:3867:3868:3870:3871:3872:3873:3874:4385:5007:6657:7652:7903:8603:9010:9707:10004:10214:10400:10848:11656:11658:11914:12043:12555:13061:13139:13161:13229:14181:14659:14721:21080:21433:21451:21627:21740:21790:21939:30054,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:1,LUA_SUMMARY:none
+X-HE-Tag: line22_19abff5340c33
+X-Filterd-Recvd-Size: 3605
+Received: from [192.168.10.100] (unknown [5.133.40.160])
+	(Authenticated sender: andy.pont@sdcsystems.com)
+	by omf17.hostedemail.com (Postfix) with ESMTPA;
+	Wed, 18 Dec 2019 10:16:16 +0000 (UTC)
+From: "Andy Pont" <andy.pont@sdcsystems.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: Dynamic layer or recipe not working
+Cc: "Konrad Weihmann" <kweihmann@outlook.com>
+Date: Wed, 18 Dec 2019 10:16:14 +0000
+Message-Id: <em761d403c-94ca-4dda-8f99-ea67785c6246@andys-imac.leeshillfarm.local>
+In-Reply-To: <AM4PR05MB338059F95752682309FBE09AA8500@am4pr05mb3380.eurprd05.prod.outlook.com>
+References: <em9bff856e-cbee-41f7-ad79-8d077357740d@andys-imac.leeshillfarm.local>
+ <AM4PR05MB338059F95752682309FBE09AA8500@am4pr05mb3380.eurprd05.prod.outlook.com>
+Reply-To: "Andy Pont" <andy.pont@sdcsystems.com>
+User-Agent: eM_Client/7.2.35700.0
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="------=_MB7C66D443-1EC4-4E6E-B8D4-BCB22E6124F5"
 
-A bit debug, found out that the go-native.inc depends on
-go1.4-bootstrap which does not have arm64/aarch64 support.
-Found out a reference on
-- https://golang.org/doc/install/source#bootstrapFromSource
-- https://golang.org/doc/install/source#bootstrapFromCrosscompiledSource
+--------=_MB7C66D443-1EC4-4E6E-B8D4-BCB22E6124F5
+Content-Type: text/plain; format=flowed; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-To cross-compile a bootstrap toolchain from source, which is necessary
-on systems Go 1.4 did not target (for example, linux/ppc64le), install
-Go on a different system and run
-bootstrap.bash(https://golang.org/src/bootstrap.bash)
+Konrad wrote=E2=80=A6=0A=0A>I don=E2=80=99t fully get what you trying to ac=
+hieve, but the from my point of =0A>view dynamic layers (BBFILES_DYNAMIC) a=
+re mainly used for bbappends =0A>only.=0A>They prevent bitbake from parsing =
+a bbappend in case the layer with the =0A>original bb file is absent.=0AI=
+ was trying to follow the example of the meta-freescale layer which has =0Ab=
+oth .bb and .bbappend files within dynamic layers.=0A=0AHaving thought abou=
+t it some more I realise that it could just be in one =0Aof the regular rec=
+ipe-xxxxx directories and didn=E2=80=99t need to be in a =0Adynamic layer a=
+fter all.=0A=0A-Andy.=0A
 
-When run as (for example)
+--------=_MB7C66D443-1EC4-4E6E-B8D4-BCB22E6124F5
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-$ GOOS=linux GOARCH=ppc64 ./bootstrap.bash
+<html><head><style id=3D"css_styles">blockquote.cite { margin-left: 5px; ma=
+rgin-right: 0px; padding-left: 10px; padding-right:0px; border-left: 1px so=
+lid #cccccc }=0Ablockquote.cite2 {margin-left: 5px; margin-right: 0px; padd=
+ing-left: 10px; padding-right:0px; border-left: 1px solid #cccccc; margin-t=
+op: 3px; padding-top: 0px; }=0Aa img { border: 0px; }=0Ali[style=3D'text-al=
+ign: center;'], li[style=3D'text-align: right;'] {  list-style-position: in=
+side;}=0Abody { font-family: Verdana; font-size: 12px;   }</style></head><b=
+ody class=3D"plain"><div><div>Konrad wrote=E2=80=A6</div><div><br /></div><=
+/div>=0A<div id=3D"xe1c43153c8af40a"><blockquote type=3D"cite" class=3D"cit=
+e2"><div>I don=E2=80=99t fully get what you trying to achieve, but the from =
+my point of view dynamic layers (BBFILES_DYNAMIC) are mainly used for bbap=
+pends only.<br />=0AThey prevent bitbake from parsing a bbappend in case th=
+e layer with the original bb file is absent.</div></blockquote>I was trying =
+to follow the example of the meta-freescale layer which has both .bb and .=
+bbappend files within dynamic layers. =C2=A0</div><div id=3D"xe1c43153c8af4=
+0a"><br /></div><div id=3D"xe1c43153c8af40a">Having thought about it some m=
+ore I realise that it could just be in one of the regular recipe-xxxxx dire=
+ctories and didn=E2=80=99t need to be in a dynamic layer after all.</div><d=
+iv id=3D"xe1c43153c8af40a"><br /></div><div id=3D"xe1c43153c8af40a">-Andy.<=
+br /><br /><blockquote type=3D"cite" class=3D"cite2"><div><div>=0A</div>=0A=
+</div>=0A</blockquote></div>=0A=0A=0A</body></html>
 
-How to add this in yocto I am not sure...
-any pointers please help
-
-On Wed, 18 Dec 2019 at 05:18, learning yocto via
-Lists.Yoctoproject.Org
-<learning.yocto=gmail.com@lists.yoctoproject.org> wrote:
->
-> Hello List,
->
-> I am a newbie to yocto world, trying to build poky (zeus) for
->  qemuarm64 machine on an arm64 board.
->
-> When I included meta-virtualization layer and add docker-ce
->
-> local.conf
-> -----------
-> DISTRO_FEATURES_append = " virtualization"
-> IMAGE_INSTALL_append = " docker"
-> -----------
->
-> bitbake core-image-minimal / bitbake -c configure go-native
-> throws the error
->
-> ---------------
-> DEBUG: Executing shell function do_configure
-> # Building C bootstrap tool.
-> cmd/dist
-> go tool dist: unknown architecture: aarch64
-> WARNING: exit code 1 from a shell command.
-> ERROR: Execution of
-> '/mnt1/yocto_kb/build-rpi/tmp/work/aarch64-linux/go-native/1.12.9-r0/temp/run.do_configure.31724'
-> failed with exit code 1:
-> # Building C bootstrap tool.
-> cmd/dist
-> go tool dist: unknown architecture: aarch64
-> WARNING: exit code 1 from a shell command.
-> ---------
->
-> Not sure how to fix this error.  Please advice
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
->
-> View/Reply Online (#47741): https://lists.yoctoproject.org/g/yocto/message/47741
-> Mute This Topic: https://lists.yoctoproject.org/mt/68784558/4043142
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [learning.yocto@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
+--------=_MB7C66D443-1EC4-4E6E-B8D4-BCB22E6124F5--
