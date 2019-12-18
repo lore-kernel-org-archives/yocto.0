@@ -1,145 +1,158 @@
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
- by mx.groups.io with SMTP id smtpd.web09.932.1576701508444159841
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.1090.1576701995214665573
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 Dec 2019 12:38:28 -0800
+ Wed, 18 Dec 2019 12:46:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=m6xPw40b;
- spf=pass (domain: gmail.com, ip: 209.85.215.173, mailfrom: raj.khem@gmail.com)
-Received: by mail-pg1-f173.google.com with SMTP id a33so1885968pgm.5;
-        Wed, 18 Dec 2019 12:38:28 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=BrQpNQBJ;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: raj.khem@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id ACE0EE01270; Wed, 18 Dec 2019 12:46:34 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.210.196 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com [209.85.210.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FC4EE0091A
+	for <yocto@yoctoproject.org>; Wed, 18 Dec 2019 12:46:33 -0800 (PST)
+Received: by mail-pf1-f196.google.com with SMTP id z16so1889554pfk.0
+        for <yocto@yoctoproject.org>; Wed, 18 Dec 2019 12:46:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:organization:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=vtufXY0TbIGbaxGEkx5OH5hd7Nx/gG4eu/ROqFLQ4vY=;
-        b=m6xPw40b2uIDcKmVwVRBydkUGa5rnR2aVx3D9QqhZo3IenGqoGaX53kOnSicREptBt
-         r//eAiYMPVJb4bph9eOmwTv0ft1ae+iljWY1o5nGlUDIDahX1qdItPwJ6ELnqGuU0YG0
-         V7bbdNcEeSyhFi4+FyB9hVPGeAZDIN+dhNblp2y2h/rtphIwI/cdbyiwZX/Cd4I88eky
-         j/z2tASNaqd13eN/URAuxQJ5uieRx1vdnIV9U5CHVjsHHYtmKURQP2IFYL2d+HIgCPwM
-         FEWLGvWydI8E9AycJ9mxWlyHN7FNqr2bbNGRxIEWxPz2tIh3W8XKLL3sP3IbIWlqKrx5
-         AhjQ==
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=CtBM7AHTjBsEnWhw1g8d0R3sbcN8+wATRdXHfP/O/1M=;
+        b=BrQpNQBJOADllBzJZGYNsMDr4UN8tnRgoN7arZlc+WZly2g3i+52hl64qO1YAYpWV5
+         vTSYR/7nS5W6Atm6IIAiTNpQ3SRvWwz1k4CQIBMEFuUVKw4zobB9NuyO3N1KzwCm89+I
+         zBixzybIZZQmUP1Az1RIr3sXmQYJvq1CeTcFphaKa+bHCmIttZheRQ7ajM2EJbDuDqKZ
+         VwvQn00cKYfBgWlQFJ/+IB6eACBSu4zT/0IFjoWohgMjtbdWpyk39jjHoPU4N9MB88rQ
+         8naHXCbpDCEtKd02mo4XsEHim2eZgg32FtN4oeIGk8/wBh/y+ZG9vKhKva1cfG2y/9DE
+         KwJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:organization
+        h=x-gm-message-state:subject:to:cc:references:from:organization
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=vtufXY0TbIGbaxGEkx5OH5hd7Nx/gG4eu/ROqFLQ4vY=;
-        b=H/BxTx2vcNaA5+sTvqXx+JDXYKp0OC3skVqlOSTHhQf1BZqEUhDvc5oAySMEgSgsoj
-         wPtavA1OyOV0VMr0NuGYxllT/tCTBqlDc6rkZwizlmhxN14B/woCBneQ1Hie1/tBB7Ti
-         KIO9fbluutxag4Gzms5ljA62CEiMHCN3AFojlipIAmKZLTExN6hxx9/0kVhOZM37ThiB
-         BfXt1vR3JqHAhwPwfbTpPS4VBa6SIiC5ojArPRhw7u5ZrWRGYe4Qzy5lD14r3TiK8lt3
-         H+RgZ+F9BgpFUecTLGDfpUzr4wswdtt1eeoFRQG++UXPtSKKy/st1zgT4Pv7WwINHqdF
-         k7jQ==
-X-Gm-Message-State: APjAAAVhI0ZSrxbdMjht+oqc9tQOebun4yb8cwlXOsOefbtg/pIZq27c
-	6iupzb+ha+OMMoU7ccBjiHxYShMQ6zM=
-X-Google-Smtp-Source: APXvYqx0U6ZbGqaDgk3ssQUjDp3SD1LvHVTyZoOVJUemyX2GDz/+Dkb6oyUUGaTtWZKs2zEIIGcj6g==
-X-Received: by 2002:a63:604:: with SMTP id 4mr5315794pgg.406.1576701507155;
-        Wed, 18 Dec 2019 12:38:27 -0800 (PST)
-Return-Path: <raj.khem@gmail.com>
+        bh=CtBM7AHTjBsEnWhw1g8d0R3sbcN8+wATRdXHfP/O/1M=;
+        b=oho2hieGMrMYUWGeBhV2JNtr6X/YGEAyUIjrMq0SY6N227Pzm4NmZ6GcTpiOQLljo6
+         l4wSHACLaS6YB2S0Y+/AhtyQCG91rY9C0Hnv97OTWZ/UizIW+yzhi9uRdUUTyvzM7AKY
+         MQzhxdEXDfv7GoNjPZ667VQWBGI0HlImDcXnjjNXF2c1OySLyb0RxzzahyImN0tuczbT
+         pI7m/wtcYcZ7FnGnCqSyNjlXHKqXOxft0cXgPd1sgjeK8kjZzmzyShnxrKSObbBZFuac
+         nvwr1ewVY31DCI8Ll64j2NurR2nRQJsyJIvd3W9ub8t50iEvg28eygXHKwVjwdftPVUV
+         JfsQ==
+X-Gm-Message-State: APjAAAU//Z5xjQK145UrZ8q21n00UaaJCsz3zhnx0i+BYLkcbLqbQKiI
+	CiOOhFOCFLxkzBf8M0cAzM0=
+X-Google-Smtp-Source: APXvYqxx1KzsVNgDmn+mThYJ/h9BsLBLsNNM8pNA8ndQFHGgMeHN84yzgZ0rcKtNRcJSOuRuNwxcnw==
+X-Received: by 2002:a65:5bc3:: with SMTP id o3mr5088652pgr.226.1576701992755;
+        Wed, 18 Dec 2019 12:46:32 -0800 (PST)
 Received: from ?IPv6:2601:646:9200:4e0:dd5b:acf6:7dd2:90d0? ([2601:646:9200:4e0:dd5b:acf6:7dd2:90d0])
-        by smtp.gmail.com with ESMTPSA id i2sm4135416pgi.94.2019.12.18.12.38.26
+        by smtp.gmail.com with ESMTPSA id r37sm2529532pjb.7.2019.12.18.12.46.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Dec 2019 12:38:26 -0800 (PST)
-Subject: Re: [yocto] go tool dist: unknown architecture: aarch64
-To: learning yocto <learning.yocto@gmail.com>, yocto@lists.yoctoproject.org,
- meta-virtualization@lists.yoctoproject.org
-References: <15E15F75E87A3A54.14752@lists.yoctoproject.org>
- <CAGWAjas1j+-imALC3Ggc_hLAnd4a8cqPv-kiftfTLObQ3bjZnw@mail.gmail.com>
+        Wed, 18 Dec 2019 12:46:32 -0800 (PST)
+Subject: Re: [tsc] QA Cycle report for build (yocto-3.1_M1.rc8)
+To: Armpit <akuster808@gmail.com>,
+ Richard Purdie <richard.purdie@linuxfoundation.org>,
+ "Jain, Sangeeta" <sangeeta.jain@intel.com>,
+ "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+ Yocto TSC <tsc@lists.yoctoproject.org>,
+ "Tummalapalli, Vineela" <vineela.tummalapalli@intel.com>
+Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
+ "yi.zhao@windriver.com" <yi.zhao@windriver.com>,
+ "Sangal, Apoorv" <apoorv.sangal@intel.com>,
+ "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>,
+ "Chan, Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
+ "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>
+References: <CY4PR11MB1879E2568F55FFDDB413B54FE3530@CY4PR11MB1879.namprd11.prod.outlook.com>
+ <6ef53298d27a12c5dc99cc985ea0fae147438f63.camel@linuxfoundation.org>
+ <758d70c1-e964-483a-a0ee-69763fea3d9c@gmail.com>
 From: "Khem Raj" <raj.khem@gmail.com>
 Organization: HIMVIS LLC
-Message-ID: <749af202-7f4a-39ca-3168-025b4b4d8614@gmail.com>
-Date: Wed, 18 Dec 2019 12:38:25 -0800
+Message-ID: <f6dc629b-a1d7-76cf-25f8-dccdae0f0902@gmail.com>
+Date: Wed, 18 Dec 2019 12:46:30 -0800
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
  Gecko/20100101 Thunderbird/68.3.1
 MIME-Version: 1.0
-In-Reply-To: <CAGWAjas1j+-imALC3Ggc_hLAnd4a8cqPv-kiftfTLObQ3bjZnw@mail.gmail.com>
+In-Reply-To: <758d70c1-e964-483a-a0ee-69763fea3d9c@gmail.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 
-On 12/18/19 1:49 AM, learning yocto wrote:
-> A bit debug, found out that the go-native.inc depends on
-> go1.4-bootstrap which does not have arm64/aarch64 support.
-> Found out a reference on
-> - https://golang.org/doc/install/source#bootstrapFromSource
-> - https://golang.org/doc/install/source#bootstrapFromCrosscompiledSource
+On 12/18/19 7:38 AM, Armpit wrote:
 > 
-> To cross-compile a bootstrap toolchain from source, which is necessary
-> on systems Go 1.4 did not target (for example, linux/ppc64le), install
-> Go on a different system and run
-> bootstrap.bash(https://golang.org/src/bootstrap.bash)
 > 
-> When run as (for example)
+> On 12/18/19 2:46 AM, Richard Purdie wrote:
+>> On Wed, 2019-12-18 at 03:32 +0000, Jain, Sangeeta wrote:
+>>> Hello all,
+>>>
+>>> This is the full report for 3.1_M1.rc8:
+>>> https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?h=intel-yocto-testresults
+>>>
+>>>
+>>> ======= Summary ========
+>>> No high milestone defects.
+>>> No new defects are found in this cycle.
+>>> glib and valgrind ptest failed (BUG id:13713).
 > 
-> $ GOOS=linux GOARCH=ppc64 ./bootstrap.bash
+> The Valgrind is a known issue:
 > 
-> How to add this in yocto I am not sure...
-> any pointers please help
-
-
-this is a bit more involved issue since go compiler needs go compiler to 
-build, since 1.4 is where it has to start and that means you have to 
-create a bootsrap go cross compiler for aarch64 using go 1.5 first on 
-x86 host. once you have this distribution for aarch64, it should then be 
-installed on your aarch64 host and used to bootstrap the full compiler.
-
-perhaps add it to uninative tarball for aarch64 then or host it somewhere.
-
-another option is to require host to have go compiler and use that to 
-bootstrap the version of go we want to use for OE.
-
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=13666
 > 
-> On Wed, 18 Dec 2019 at 05:18, learning yocto via
-> Lists.Yoctoproject.Org
-> <learning.yocto=gmail.com@lists.yoctoproject.org> wrote:
+>>>
+>>> ======= Bugs ========
+>>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=13713
+>> Thanks Sangeeta.
 >>
->> Hello List,
+>> Adding TSC to CC.
 >>
->> I am a newbie to yocto world, trying to build poky (zeus) for
->>   qemuarm64 machine on an arm64 board.
+>> We have the bugs above but they're minor ptest issues (small
+>> regressions).
 >>
->> When I included meta-virtualization layer and add docker-ce
+>> We have performance problems in certain world build cases but we need
+>> to work through those issues in master.
 >>
->> local.conf
->> -----------
->> DISTRO_FEATURES_append = " virtualization"
->> IMAGE_INSTALL_append = " docker"
->> -----------
+>> We also have reproducibile build issues but those are in theory fixed
+>> in master.
 >>
->> bitbake core-image-minimal / bitbake -c configure go-native
->> throws the error
+>> I think we should ship this as I can't see any huge improvements from
+>> any further respins, it just collides with vactions. We should move
+>> forward to M2 after the holidays.
+> 
+> I would make these blockers for M2/M3 and approve shipping M1
+> 
+
+I would also agree to ship M1 without this.
+
+> - armin
 >>
->> ---------------
->> DEBUG: Executing shell function do_configure
->> # Building C bootstrap tool.
->> cmd/dist
->> go tool dist: unknown architecture: aarch64
->> WARNING: exit code 1 from a shell command.
->> ERROR: Execution of
->> '/mnt1/yocto_kb/build-rpi/tmp/work/aarch64-linux/go-native/1.12.9-r0/temp/run.do_configure.31724'
->> failed with exit code 1:
->> # Building C bootstrap tool.
->> cmd/dist
->> go tool dist: unknown architecture: aarch64
->> WARNING: exit code 1 from a shell command.
->> ---------
+>> Cheers,
 >>
->> Not sure how to fix this error.  Please advice
->> -=-=-=-=-=-=-=-=-=-=-=-
->> Links: You receive all messages sent to this group.
+>> Richard
 >>
->> View/Reply Online (#47741): https://lists.yoctoproject.org/g/yocto/message/47741
->> Mute This Topic: https://lists.yoctoproject.org/mt/68784558/4043142
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [learning.yocto@gmail.com]
->> -=-=-=-=-=-=-=-=-=-=-=-
 >>
->> -=-=-=-=-=-=-=-=-=-=-=-
->> Links: You receive all messages sent to this group.
->>
->> View/Reply Online (#47746): https://lists.yoctoproject.org/g/yocto/message/47746
->> Mute This Topic: https://lists.yoctoproject.org/mt/68784558/1997914
->> Group Owner: yocto+owner@lists.yoctoproject.org
->> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [raj.khem@gmail.com]
->> -=-=-=-=-=-=-=-=-=-=-=-
+> 
+> 
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+> 
+> View/Reply Online (#247): https://lists.yoctoproject.org/g/tsc/message/247
+> Mute This Topic: https://lists.yoctoproject.org/mt/68790744/1997914
+> Group Owner: tsc+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/tsc/unsub  [raj.khem@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
+> 
 
