@@ -1,181 +1,201 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.6110.1576639954994464512
+ by mx.groups.io with SMTP id smtpd.web11.6601.1576642270060067472
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Dec 2019 19:32:36 -0800
+ Tue, 17 Dec 2019 20:11:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=EMs0nZmG;
- spf=fail (domain: intel.com, ip: 140.211.169.56, mailfrom: sangeeta.jain@intel.com)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=hdw29xg6;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: akuster808@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6F4ACE01233; Tue, 17 Dec 2019 19:32:34 -0800 (PST)
+	id 91BD2E0122A; Tue, 17 Dec 2019 20:11:09 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/, high
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+	*      [209.85.215.194 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F301E0122F
-	for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 19:32:33 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 17 Dec 2019 19:32:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,328,1571727600"; 
-   d="scan'208";a="212781531"
-Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
-  by fmsmga008.fm.intel.com with ESMTP; 17 Dec 2019 19:32:31 -0800
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
- fmsmsx104.amr.corp.intel.com (10.18.124.202) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 17 Dec 2019 19:32:31 -0800
-Received: from fmsmsx608.amr.corp.intel.com (10.18.126.88) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Tue, 17 Dec 2019 19:32:31 -0800
-Received: from FMSEDG002.ED.cps.intel.com (10.1.192.134) by
- fmsmsx608.amr.corp.intel.com (10.18.126.88) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Tue, 17 Dec 2019 19:32:31 -0800
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.176)
- by edgegateway.intel.com (192.55.55.69) with Microsoft SMTP Server (TLS) id
- 14.3.439.0; Tue, 17 Dec 2019 19:32:30 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=T0p3TLIMQXO3SibtE7OrHpn1xSY8CYimR4IV/V7Mc2vGP0VRu+qeQlPDe13if43HF0ZBmo71Mzpd1CaW/VWFiJcf9OyBklFz3a4aniyx0DwxsD6Q9HdJHgCdUZBn6wZEJ+kmd6pic2T8UrLYZYswTP7mkQ++qK1o9hGN4JBILUmTWetInYvjvNkiSpvBykvQpe+73+E8gMwHwm1/7H0JF589Ipe+IY7nzE5v1MF7IcFGZvdEu/wXQ7hSLQRR1/8FoiKfQQzHwAv4RPwpimVq1YrYCh3U3MLGo/hM8FN4PALhmZnrz6831HobTdI1byXAfXmYIN+t2seYrttqCthubA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q6VwAX2Dr6yxsu9MVTaOOtvVk5KUiloYD4fjAcaPzMw=;
- b=XG50gyGRiBmKQDDXQ9woIShEQW47UphamZw//BO8g+QBFouPvHRr3C4Q5mlIgz/vlcnJOn71AT6G+26voMnB2rrMcInt3+KVs2NXvAwEgQBLLoGRaT3lqVeqMHDdlBm5F6voKcG8MJf9wXoikvY9teXPhCkvMsx5VuKATiOtUucqDssWOnP1vybToMwMaRX6fkAttXgsPdhP8Ulv0RVeDVzF3dxjZr9QxnZNVPH4Wa0a6cjFc0LQs8lKkR9VUg77X+tBJrdhwq+BcER4I2631yjrNA4dSufBXSJHJ0pOwFkNHlD+7k8A7zV3S+6yMk8B7lHho6DNe+zjX04m4L//Nw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=q6VwAX2Dr6yxsu9MVTaOOtvVk5KUiloYD4fjAcaPzMw=;
- b=EMs0nZmGOKehKWQsi3s5xjQOQ1aAQQQsUv2EpIpxZesOUJIG2ME014wbjqOis57eLNuAy+bpt1yz9EmICZNihuY0DWusZJwgbaHo268NcYe30vegBH0Ejn/tdEXBxMHBQPXAPftJClwEQ8Bkt6sywr3fV8bGtHRHfNt//SsZLCA=
-Received: from CY4PR11MB1879.namprd11.prod.outlook.com (10.175.60.137) by
- CY4PR11MB2006.namprd11.prod.outlook.com (10.173.17.23) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2538.17; Wed, 18 Dec 2019 03:32:15 +0000
-Received: from CY4PR11MB1879.namprd11.prod.outlook.com
- ([fe80::48d3:627c:7ffe:a558]) by CY4PR11MB1879.namprd11.prod.outlook.com
- ([fe80::48d3:627c:7ffe:a558%5]) with mapi id 15.20.2538.019; Wed, 18 Dec 2019
- 03:32:15 +0000
-From: "Sangeeta Jain" <sangeeta.jain@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-CC: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
-	"yi.zhao@windriver.com" <yi.zhao@windriver.com>, "Sangal, Apoorv"
-	<apoorv.sangal@intel.com>, "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "Chan,
- Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
-	"richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>,
-	"akuster808@gmail.com" <akuster808@gmail.com>, "sjolley.yp.pm@gmail.com"
-	<sjolley.yp.pm@gmail.com>
-Subject: QA Cycle report for build (yocto-3.1_M1.rc8)
-Thread-Topic: QA  Cycle report for build (yocto-3.1_M1.rc8)
-Thread-Index: AdW1UyKljDyWDoJ/Sei6YnM1iwR8/Q==
-Date: Wed, 18 Dec 2019 03:32:15 +0000
-Message-ID: <CY4PR11MB1879E2568F55FFDDB413B54FE3530@CY4PR11MB1879.namprd11.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNTUzNjc0NTItN2E3MC00N2NmLTg2ZDMtZTFjZmYxZjljZWY4IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiVU41T2VrWkkzOWozZ3M5cG03MkZVd0tjNmJxSTNub0lzSDJXRGVLNmM5ckhzeGs5T29CUDdvUXNBYXdMU3ZZaiJ9
-dlp-reaction: no-action
-dlp-version: 11.2.0.6
-dlp-product: dlpe-windows
-x-ctpclassification: CTP_NT
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=sangeeta.jain@intel.com; 
-x-originating-ip: [192.198.147.208]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 1890fc0f-f99a-4cd0-4f5d-08d7836ae0a5
-x-ms-traffictypediagnostic: CY4PR11MB2006:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CY4PR11MB20069BE8F74B1390E22CAD02E3530@CY4PR11MB2006.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 0255DF69B9
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(376002)(396003)(346002)(136003)(39860400002)(366004)(189003)(199004)(53754006)(13464003)(7696005)(33656002)(5660300002)(26005)(86362001)(52536014)(186003)(66556008)(64756008)(66446008)(66476007)(81166006)(66946007)(8936002)(71200400001)(4326008)(55016002)(9686003)(53546011)(76116006)(6506007)(81156014)(966005)(6916009)(478600001)(54906003)(2906002)(316002)(8676002);DIR:OUT;SFP:1102;SCL:1;SRVR:CY4PR11MB2006;H:CY4PR11MB1879.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Y6RM6r7ZvKnOUQUhUFFMwcSWnvElffRlvYkxx26Pd62d+nKynEn2tLlLKXhdXnB7WeeA7Eow8mNCTCfaTIfvrMEQlysHfE1KcZ6yFzXt8r4kcNkop2k/a8IkyaroGGKs0mwLJRmZCVVUzpd4X8NUiodWAtFww3WBkRYP8qE/Wp+1BexV33p7V5b1ut2Zc+syHlkx+mKTJ+ncTcFLo8PZ842Hhx3ieJ+uJDanKuU6wn7rAnUazp2DMnfPTvaNZD1VHKYsnS3VEqxSLpZ/C1cTyxDuAzb/3rXO7hLpASB7lJG+rcyceg+RQ2Z4jSjza84pBUd6IZqrHvF+vnjNlBDW05p9wlnyOlI2tDCITRNlNMkVnsO7hD695JDC5afk425kDmN1QN+niLy/AzS+QEkBIENkGW38CT7nMijifCvA5o5QXPCUD6198N60mzpC2L/84RFlcvYyVbj7IPxBXv/0i8B0Rbb9duAYp6qLpxrG7QaGJGyqto14Ou2bnQCDLMS9i2rAaRVAwYRmRIfxcBY1C8zbSjZuDj5eAN0sy6AgA+OL7NNlfYEpNBdsQk+Kw1MR
+Received: from mail-pg1-f194.google.com (mail-pg1-f194.google.com [209.85.215.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68142E0107E
+	for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 20:11:08 -0800 (PST)
+Received: by mail-pg1-f194.google.com with SMTP id b137so513123pga.6
+        for <yocto@yoctoproject.org>; Tue, 17 Dec 2019 20:11:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=1xZQT1d/4+9BmdMP21l4e1cAnJstKObsk0WM0PTrEjE=;
+        b=hdw29xg61UqJsuvGAuIbGarRcVSCBMTGSzoo3BayebRrvt2WdRPewggNslnD6qQSUJ
+         Rz4PTyWtaaqfPVzjEzyR4Gh/tb8ykNTFDRtisYrwRR5qCvLcTAvIdFv6E/DLERcpe1fn
+         gEjSLr/i0op3lDT/zdxc3cgqKxRUmZY7h2Yaw/+p4ajnf1zaalURb2eJV2ZI0rk5D8wl
+         NEJnRMaT6XEefMq/s9i4KW26mtmR47uJjTbrT+uwAijdc0pYpTtm9veJzmZgsu53n57b
+         YMouDGtMKcjmiXgYJrPtNhdZRV5NEBzQo8Ix67t1AkPqCjgRCSYQDzPCy/3MPaaAc6De
+         rOBg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-transfer-encoding:content-language;
+        bh=1xZQT1d/4+9BmdMP21l4e1cAnJstKObsk0WM0PTrEjE=;
+        b=m3JCYKhW7MSX0kJJEkrDDD6XrBL3dDvtYcfX48+YV7NpwNvHY+ldYBCjPh8yhJuIz5
+         nNKkvX+39c64E2InmqDsdbgb9mOw/h9y8I3M6azSYjMmVQ2iTwed0+RvKmjbVV2mV9D0
+         VoCOdc4+Igxbah/h6SOvlKv7bQ8+WzuDgnyUYHpc+gLE5gORxiX/emyhLmV5Lnh4wHZv
+         881QYbpylCjGdQzM5dEsrjsgdwxUsSLjMgXYrOawNd8NLewMAYWk+kj5E2uS07zU09+9
+         LLXjbMymv7l0HIzCLeMBZDVgkff/ww8nSv7wJH1aoAl5uHJdgqSoE8By8FoQdQxoyiFE
+         jFiA==
+X-Gm-Message-State: APjAAAUPWsRvRsywY9nXXgAUTpeVuL6l5OZQaREW5B8lfPMK0z0XOpQg
+	1FVOj2epomQ3gNEXnP+s5ww=
+X-Google-Smtp-Source: APXvYqz/JUpBlzT7vXlRzqpogXHogZvNkV7C3jRhIPTvbmvjcb9nzx6prMS9JeMgZBefDxzQSJOmkQ==
+X-Received: by 2002:aa7:9111:: with SMTP id 17mr672298pfh.57.1576642268023;
+        Tue, 17 Dec 2019 20:11:08 -0800 (PST)
+Received: from ?IPv6:2601:202:4180:a5c0:65af:eb70:9d7f:1668? ([2601:202:4180:a5c0:65af:eb70:9d7f:1668])
+        by smtp.gmail.com with ESMTPSA id z64sm725947pfz.23.2019.12.17.20.11.06
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 17 Dec 2019 20:11:07 -0800 (PST)
+Subject: Re: QA Cycle report for build (yocto-3.1_M1.rc8)
+To: "Jain, Sangeeta" <sangeeta.jain@intel.com>,
+ "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
+ "yi.zhao@windriver.com" <yi.zhao@windriver.com>,
+ "Sangal, Apoorv" <apoorv.sangal@intel.com>,
+ "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>,
+ "Chan, Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
+ "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>,
+ "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>
+References: <CY4PR11MB1879E2568F55FFDDB413B54FE3530@CY4PR11MB1879.namprd11.prod.outlook.com>
+From: "Armpit" <akuster808@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ 8CS2NxU=
+Message-ID: <b909f574-7cb4-0e89-d49d-4a34da778786@gmail.com>
+Date: Tue, 17 Dec 2019 20:11:06 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1890fc0f-f99a-4cd0-4f5d-08d7836ae0a5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Dec 2019 03:32:15.2577
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mkH7kDl1oakLkJsvwrByeVvKFwQ1SorYu7lHJt5gDSoV2Hih7p1zG0gvBcUcdcuwJCfCrFVJWeqVPnS/mBAAgQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB2006
-X-OriginatorOrg: intel.com
+In-Reply-To: <CY4PR11MB1879E2568F55FFDDB413B54FE3530@CY4PR11MB1879.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hello all,
-
-This is the full report for 3.1_M1.rc8: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
 
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects. =20
-No new defects are found in this cycle.
-glib and valgrind ptest failed (BUG id:13713).=20
 
-=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13713
+On 12/17/19 7:32 PM, Jain, Sangeeta wrote:
+> Hello all,
+>
+> This is the full report for 3.1_M1.rc8:  
+> https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?h=intel-yocto-testresults
 
+Thanks.
 
-Thanks,
-Sangeeta
-> -----Original Message-----
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Beha=
-lf
-> Of pokybuild@ubuntu1804-ty-1.yocto.io
-> Sent: Friday, 13 December, 2019 3:15 PM
-> To: yocto@yoctoproject.org
-> Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; Sangal, Apoorv
-> <apoorv.sangal@intel.com>; Yeoh, Ee Peng <ee.peng.yeoh@intel.com>; Chan,
-> Aaron Chun Yew <aaron.chun.yew.chan@intel.com>; Ang, Chin Huat
-> <chin.huat.ang@intel.com>; richard.purdie@linuxfoundation.org;
-> akuster808@gmail.com; sjolley.yp.pm@gmail.com; Jain, Sangeeta
-> <sangeeta.jain@intel.com>
-> Subject: [yocto] QA notification for completed autobuilder build (yocto-
-> 3.1_M1.rc8)
->=20
->=20
-> A build flagged for QA (yocto-3.1_M1.rc8) was completed on the autobuilde=
-r
-> and is available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-3.1_M1.rc8
->=20
->=20
-> Build hash information:
->=20
-> bitbake: 99d46107ccfcec576238d32cfe7903440857038d
-> meta-gplv2: a67a5fd160f97129a6afd65f107cd2cbdfec41e7
-> meta-intel: e1b373f3cbb9acd71efe84d782675025d59b6035
-> meta-mingw: 126efdad243e1a3bead5b695df6656e94353dd46
-> oecore: 0f04e81c797d5d337ece4e8638a6b71c75bc0a00
-> poky: 1abffc542a0571f0d1512b92c1a59d138cf3ea6a
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
+>
+>
+> ======= Summary ========
+> No high milestone defects.  
+> No new defects are found in this cycle.
+> glib and valgrind ptest failed (BUG id:13713). 
+
+I believe the valgrid failure is a known issue:
+
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=13666
+
+- armin
+>
+> ======= Bugs ========
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=13713
+>
+>
+> Thanks,
+> Sangeeta
+>> -----Original Message-----
+>> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Behalf
+>> Of pokybuild@ubuntu1804-ty-1.yocto.io
+>> Sent: Friday, 13 December, 2019 3:15 PM
+>> To: yocto@yoctoproject.org
+>> Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; Sangal, Apoorv
+>> <apoorv.sangal@intel.com>; Yeoh, Ee Peng <ee.peng.yeoh@intel.com>; Chan,
+>> Aaron Chun Yew <aaron.chun.yew.chan@intel.com>; Ang, Chin Huat
+>> <chin.huat.ang@intel.com>; richard.purdie@linuxfoundation.org;
+>> akuster808@gmail.com; sjolley.yp.pm@gmail.com; Jain, Sangeeta
+>> <sangeeta.jain@intel.com>
+>> Subject: [yocto] QA notification for completed autobuilder build (yocto-
+>> 3.1_M1.rc8)
+>>
+>>
+>> A build flagged for QA (yocto-3.1_M1.rc8) was completed on the autobuilder
+>> and is available at:
+>>
+>>
+>>     https://autobuilder.yocto.io/pub/releases/yocto-3.1_M1.rc8
+>>
+>>
+>> Build hash information:
+>>
+>> bitbake: 99d46107ccfcec576238d32cfe7903440857038d
+>> meta-gplv2: a67a5fd160f97129a6afd65f107cd2cbdfec41e7
+>> meta-intel: e1b373f3cbb9acd71efe84d782675025d59b6035
+>> meta-mingw: 126efdad243e1a3bead5b695df6656e94353dd46
+>> oecore: 0f04e81c797d5d337ece4e8638a6b71c75bc0a00
+>> poky: 1abffc542a0571f0d1512b92c1a59d138cf3ea6a
+>>
+>>
+>>
+>> This is an automated message from the Yocto Project Autobuilder
+>> Git: git://git.yoctoproject.org/yocto-autobuilder2
+>> Email: richard.purdie@linuxfoundation.org
+>>
+>>
+>>
+
