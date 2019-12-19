@@ -1,109 +1,136 @@
-Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
- by mx.groups.io with SMTP id smtpd.web12.9385.1576761462117147718
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web09.10493.1576767850193651247
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Dec 2019 05:17:42 -0800
+ Thu, 19 Dec 2019 07:04:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=dudmMclJ;
- spf=pass (domain: gmail.com, ip: 209.85.208.65, mailfrom: marek.belisko@gmail.com)
-Received: by mail-ed1-f65.google.com with SMTP id t17so4837432eds.6
-        for <yocto@lists.yoctoproject.org>; Thu, 19 Dec 2019 05:17:41 -0800 (PST)
+ dkim=pass header.i=@assonance-org.20150623.gappssmtp.com header.s=20150623 header.b=sPQrUbSL;
+ spf=softfail (domain: assonance.org, ip: 140.211.169.56, mailfrom: aaron@assonance.org)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 8D487E00942; Thu, 19 Dec 2019 07:04:09 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.210.46 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA745E0079A
+	for <yocto@yoctoproject.org>; Thu, 19 Dec 2019 07:04:08 -0800 (PST)
+Received: by mail-ot1-f46.google.com with SMTP id c22so7540736otj.13
+        for <yocto@yoctoproject.org>; Thu, 19 Dec 2019 07:04:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cSObWk4dbO8spgH7l0TfpyL/zZu0owTwsK1XS9nMYg8=;
-        b=dudmMclJUqPEvQTxsHb//yCpR+hS2Ll1N21OEijNqoPQNlMgtIJI2AZISFwG3jsgkD
-         d7zwF+jt8ag9jtLZRD1YtRZe1XZHf7FZFQxD8eZYbhrI4UNdVZ/G5ZTa/M/9Ck/ZxnuH
-         Ro0yAN8h7WpW0dq6RAlRwA76JqInCJ4xcsMH4IqYzcXxR+L+QNfRZ9BWjwA0m/VriNE5
-         MUchvEw11/B4/Nefqq9dOa7vNg8bpYXVXwuFjTMa5XIz8ZCKMlyqaCbl2ZW7Y4qcVE3W
-         mSDOZ+741s4tiaqxuLfO+ef3+z5nAMdgjDBSNjdVQYrnMWcWcxAmloARY0pW8tS05wum
-         AePw==
+        d=assonance-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=XzujrHkq2/do7cvgQ2hGx7WMQfCQA+zZwXbh3gVfWac=;
+        b=sPQrUbSLFbCqklD+Txdx9H5nzSnAOnMEQLlrLO2CsIDLVnmQ2L6gxdRG7ip460cf6l
+         FfCyFNBLnjYKcfaez3iul4fMZ+3aB2R4w6+Lv5SiWhyTUrjW0q69SrTfbSn8oLRbuC55
+         81mCH+eJNqsUiJrZFO7bX7w4rLnTLkaE594Ai3/+xO8jZh4RKVCKgs7LqvvQNDJj8Bav
+         zwRkfzx2S/Hi/EU5gutV0qFNtJMSQkDLhGCf5z7Xkv9ZuqQmnJyGs5npcxkr+h/N/4c9
+         PzMiTtvCGHIBEWxjDYHBPQc49lFsikorsJu0D+j1SWl3pOXvq3FEKiH2lJ1cA5LSiaKV
+         lFZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cSObWk4dbO8spgH7l0TfpyL/zZu0owTwsK1XS9nMYg8=;
-        b=oq6cgzxb4ZtAy9brI/Ho+F/q/t3G47BrAOaCFRwTrVCh1jAxEbtRKT9gpdut0Foy/R
-         IKknJhhgxb3dEWTO711oV7XoM9H8OOiMLZ1zEhkd7Je1bjJZbsUb6qDMZjSIsLLovrTz
-         m1+VkY+5kVeNyIStnAMNbjun/Ff3mX5RYufqcQ+UeiZiehZgIgFskUOGcIP70BxtclNE
-         nXCuQgBHt6Llyo7zSGeSX3LVMjIMlA5n6IKDY9978UanwZh+FVPFLQyk757coF8c0g8a
-         uKGfKUjoOPSswLr7vhl/ThYomQ1X7k+2zqSkH3jLYG7FmfnkJMjc054rEOnxBkbqHYzz
-         Ud8A==
-X-Gm-Message-State: APjAAAXoJ3iZYsMvRZvOJmea3vzyKAMYXquQlloKn9UGbyOVYY1mbjLZ
-	jRd5YhWqFtxBvOl4ZiuFAC6RK7p73Fhydhncf2o=
-X-Google-Smtp-Source: APXvYqzesAp+QXcLr5/6VHiXhLiu3zGQZBNZuoncjCGshXCdUEOAR8ObGdG3YiVpzXC1icP1QgYF3pP4xZe3YdzEBxw=
-X-Received: by 2002:a17:906:a3d3:: with SMTP id ca19mr9486140ejb.136.1576761460610;
- Thu, 19 Dec 2019 05:17:40 -0800 (PST)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=XzujrHkq2/do7cvgQ2hGx7WMQfCQA+zZwXbh3gVfWac=;
+        b=EL4/qwoh5hcTDg6JF/QvUew5m9D5TeW1CYf4vMsstESbBdOq2cVMk8Ab5GqPo6QYRY
+         vSyeA6+DsL+CexAgPrsPpGsHQNIkwzkVXfG1l1nUhxaF6SFkF4zYS6NxykDxDTCCrgyu
+         KDPABI4a95VXZ1YkJiiZcGQoJ1SNKkqxHV2s4WVUWdHmdM10HpFWG2vjr1OmTn7iSKr0
+         NP0VJlWpTe2fKYLMEJYnY0gvlURilT8nVHl1x715IqF1FZ0Y/K/lkNSKchTDtAu+I3qm
+         Mg3SjwWCryE+1ZgreHGIYdPqXasJ/+Zc/ccQyJhqUylZuqjMusE8TAUVuu4h/k0f6js3
+         Ylvw==
+X-Gm-Message-State: APjAAAWtd/u1b27K71cIgb78+f0GmvUkK878Ndh53tzyk9YfzpOREaGD
+	88KJn8zMJTimSoJuxlPXt8WbUbInPUnpUkXBsWVGRa8d58Q=
+X-Google-Smtp-Source: APXvYqx+2qnDt6z80u1/Eem19Q0KAxmirs58yo2P5STPG3UXO0NemG3KubHXlHB5JNhJ92ru/GAengOTNJG6m4WcZ7A=
+X-Received: by 2002:a05:6830:154c:: with SMTP id l12mr9219485otp.275.1576767847287;
+ Thu, 19 Dec 2019 07:04:07 -0800 (PST)
 MIME-Version: 1.0
-References: <15E1C77B4FBAA4EC.30484@lists.yoctoproject.org>
-In-Reply-To: <15E1C77B4FBAA4EC.30484@lists.yoctoproject.org>
-From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Thu, 19 Dec 2019 14:17:29 +0100
-Message-ID: <CAAfyv35X+K6ne7DSrYBdV1+mLhnNhjpPytgSHyzPnSfCjCPheg@mail.gmail.com>
-Subject: Re: [yocto] mc fails to start with readonly rootfs
-To: JA <marek.belisko@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>, yocto@lists.yoctoproject.org
+From: "Joel A Cohen" <aaron@assonance.org>
+Date: Thu, 19 Dec 2019 10:03:56 -0500
+Message-ID: <CAFSZm+giT64Fn93BWQc24NaPp6cr-tTo9z+hpqRzy=2p5GgPxg@mail.gmail.com>
+Subject: Skipping network-required recipes automatically?
+To: yocto@yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000006e600c059a0fdfd7"
+
+--0000000000006e600c059a0fdfd7
 Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Dec 19, 2019 at 2:04 PM Marek Belisko via
-Lists.Yoctoproject.Org
-<marek.belisko=gmail.com@lists.yoctoproject.org> wrote:
->
-> Hi,
->
-> when enable readonly rootfs mc fails to start because cannot write to
-> directory: /home/root/.config/mc
->
-> I've created volatile-bindd to this directory (to be able to write
-> something) and extend mc using below bbappend:
->
-> do_install_append () {
->         install -d ${D}/home/root/.config/mc
-> }
->
-> FILES_${PN} += "/home/root/.config/mc/*"
->
-> But now I got QA issue:
->
-> ERROR: mc-4.8.22-r0 do_package: QA Issue: mc: Files/directories were
-> installed but not shipped in any package:
->   /home
->   /home/root
->   /home/root/.config
->   /home/root/.config/mc
-> Please set FILES such that these items are packaged. Alternatively if
-> they are unneeded, avoid installing them or delete them within
-> do_install.
+Hi all,
 
-QA issue is resolved by adding: FILES_${PN} += "/home/root/.config/mc/"
-Is this patch welcomed to upstream to overcome same problem?
->
-> Checked FILES_mc and path is there. Am I missing anything obvious? Thanks.
->
-> BR,
->
-> marek
->
-> --
-> as simple and primitive as possible
-> -------------------------------------------------
-> Marek Belisko - OPEN-NANDRA
-> Freelance Developer
->
-> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-> Tel: +421 915 052 184
-> skype: marekwhite
-> twitter: #opennandra
-> web: http://open-nandra.com
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
->
-> View/Reply Online (#47771): https://lists.yoctoproject.org/g/yocto/message/47771
-> Mute This Topic: https://lists.yoctoproject.org/mt/68830517/900721
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [marek.belisko@gmail.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
+My layer has a bunch of "development" recipes that contain something like:
 
-BR,
+PV = "1.1.2+git${SRCPV}"
+SRCREV = "${AUTOREV}"
+DEFAULT_PREFERENCE = "-1"
 
-marek
+
+In these cases, my recipes have a "known good" version that has a specific
+known-good version number (recipe_1.1.2.bb), and then the "recipe_git.bb"
+file that I only enable using PREFERRED_VERSION when I'm wanting to use the
+latest source code.
+
+My problem with this is that it seems to defeat BB_NO_NETWORK, and I'm not
+sure how to handle it. I would like my layer to work correctly with no
+network, but the mere presence of these development recipes causes my build
+to fail during parsing if the network is not available.
+
+My last failed attempt was to create a "skip-git" class that I inherit in
+local.conf with the following:
+
+python () {
+    no_network = d.getVar('BB_NO_NETWORK')
+    pn = d.getVar('PN')
+    pv = d.getVar('PV')
+
+    if no_network and 'git' in pv:
+        raise bb.parse.SkipRecipe("Recipe requires git, but no network:
+%s-%s" % (pn, pv))
+}
+
+
+Unfortunately, bitbake seems to fail in data_smart.py before my class
+actually has a chance to skip the recipe even in this case.
+
+Is there a better way to handle this?
+
+Thanks,
+Aaron
+
+--0000000000006e600c059a0fdfd7
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi all,<div><br></div><div>My layer has a bunch of &quot;d=
+evelopment&quot; recipes that contain something like:</div><div><br></div><=
+div>PV =3D &quot;1.1.2+git${SRCPV}&quot;</div><div>SRCREV =3D &quot;${AUTOR=
+EV}&quot;</div><div>DEFAULT_PREFERENCE =3D &quot;-1&quot;</div><div><br></d=
+iv><div><br></div><div>In these cases, my recipes have a &quot;known good&q=
+uot; version that has a specific known-good version number (<a href=3D"http=
+://recipe_1.1.2.bb">recipe_1.1.2.bb</a>), and then the &quot;<a href=3D"htt=
+p://recipe_git.bb">recipe_git.bb</a>&quot; file that I only enable using PR=
+EFERRED_VERSION when I&#39;m wanting to use the latest source code.</div><d=
+iv><br></div><div>My problem with this is that it seems to defeat BB_NO_NET=
+WORK, and I&#39;m not sure how to handle it. I would like my layer to work =
+correctly with no network, but the mere presence of these development recip=
+es causes my build to fail during parsing if the network is not available.<=
+/div><div><br></div><div>My last failed attempt was to create a &quot;skip-=
+git&quot; class that I inherit in local.conf with the following:</div><div>=
+<br></div><div>python () {<br>=C2=A0 =C2=A0 no_network =3D d.getVar(&#39;BB=
+_NO_NETWORK&#39;)<br>=C2=A0 =C2=A0 pn =3D d.getVar(&#39;PN&#39;)<br>=C2=A0 =
+=C2=A0 pv =3D d.getVar(&#39;PV&#39;)<br><br>=C2=A0 =C2=A0 if no_network and=
+ &#39;git&#39; in pv:<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 raise bb.parse.SkipRec=
+ipe(&quot;Recipe requires git, but no network: %s-%s&quot; % (pn, pv))<br>}=
+<br></div><div><br></div><div><br></div><div>Unfortunately, bitbake seems t=
+o fail in data_smart.py before my class actually has a chance to skip the r=
+ecipe even in this case.</div><div><br></div><div>Is there a better way to =
+handle this?</div><div><br></div><div>Thanks,</div><div>Aaron</div></div>
+
+--0000000000006e600c059a0fdfd7--
