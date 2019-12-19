@@ -1,111 +1,109 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.9259.1576760676702971203
+Received: from mail-ed1-f65.google.com (mail-ed1-f65.google.com [209.85.208.65])
+ by mx.groups.io with SMTP id smtpd.web12.9385.1576761462117147718
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Dec 2019 05:04:36 -0800
+ Thu, 19 Dec 2019 05:17:42 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=eVHYtErh;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: marek.belisko@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52B6CE01102; Thu, 19 Dec 2019 05:04:36 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,
-	T_FILL_THIS_FORM_SHORT autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (marek.belisko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.208.49 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  0.0 T_FILL_THIS_FORM_SHORT Fill in a short form with personal
-	*      information
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA95EE010A4
-	for <yocto@yoctoproject.org>; Thu, 19 Dec 2019 05:04:34 -0800 (PST)
-Received: by mail-ed1-f49.google.com with SMTP id f8so4813241edv.2
-        for <yocto@yoctoproject.org>; Thu, 19 Dec 2019 05:04:34 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=dudmMclJ;
+ spf=pass (domain: gmail.com, ip: 209.85.208.65, mailfrom: marek.belisko@gmail.com)
+Received: by mail-ed1-f65.google.com with SMTP id t17so4837432eds.6
+        for <yocto@lists.yoctoproject.org>; Thu, 19 Dec 2019 05:17:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=GICVSS52qwM5q4Mtp+BphN9jX3v1fukiJ8kvQnfuyuY=;
-        b=eVHYtErhmyciy5OkbehDMJQmfq0D4/SkBJtYEKIWrVwpBCB7zxGsfPHkW4JjNxd9XL
-         iLjhDK5wDeY8T2kw4S/9MaZTHVsWe2yug+JBzUSwR7gqh2ySsEuf1FvmS8RRofIb+bQD
-         iPo6HBdyc9hTnkj5iY02AE+s5ygEHxIyDcD1vZDG/EHgADmy9tXOgFSJFpTFmatS0sXw
-         RIFimY3FQCI6P9PQ9G1hz8xRyVrUuRmEAv9ka0BheK5NsYWoFf80w+SD+BgsD1Dmcq+n
-         Yshb0uOlTR4FdioqVFrHGF8uLUhnIZIFeFQjRd17WJpxDWyEB/XIyfrkbPQcRmQHdiSp
-         Qjcg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cSObWk4dbO8spgH7l0TfpyL/zZu0owTwsK1XS9nMYg8=;
+        b=dudmMclJUqPEvQTxsHb//yCpR+hS2Ll1N21OEijNqoPQNlMgtIJI2AZISFwG3jsgkD
+         d7zwF+jt8ag9jtLZRD1YtRZe1XZHf7FZFQxD8eZYbhrI4UNdVZ/G5ZTa/M/9Ck/ZxnuH
+         Ro0yAN8h7WpW0dq6RAlRwA76JqInCJ4xcsMH4IqYzcXxR+L+QNfRZ9BWjwA0m/VriNE5
+         MUchvEw11/B4/Nefqq9dOa7vNg8bpYXVXwuFjTMa5XIz8ZCKMlyqaCbl2ZW7Y4qcVE3W
+         mSDOZ+741s4tiaqxuLfO+ef3+z5nAMdgjDBSNjdVQYrnMWcWcxAmloARY0pW8tS05wum
+         AePw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=GICVSS52qwM5q4Mtp+BphN9jX3v1fukiJ8kvQnfuyuY=;
-        b=j/MK1c8RbkJJRTSxbpe1K7YvrP44pL3aLOI1XpJo55sRdZukw5PcZuVMwaPWDImwSm
-         HxZNjkRT1P54LvftR/8KacxW1SUGCDxxqnm6sN3S5SKWMdV6c/a02VSZ35ovEaLdSpKD
-         EzhSFHTW1/nyt2jJstUau/d1G4KaeB0giApGbEzCUwDSC+rhzIZSJIrCcfHg4npLGoHQ
-         yE3aUMAVqJKxii847Z9P58q28wd59z/kbj6EDd+04nO7Rfp9o9xW1BtCl8I0hcvxBqO7
-         0JqBeZr7a/zMKDLuSu3SIehXBluVtDE3UMItF4fePC0heJJ5CnRizsoV589GUmBl4zcd
-         1NUw==
-X-Gm-Message-State: APjAAAX5BcWPz73sTUOGLge/Lpg4NT/45Swp54r9Ih6jZS2JH2Q3svlG
-	g4iehoOtZAa1g943PJ8IRJ2TT+zd9oVj5bTl4F4o3kuB4LM=
-X-Google-Smtp-Source: APXvYqy6LsJNu2ndRKN217Ne18AL5cbkgRaWKRzGo49GCeRKR1U8C8J+xFuK/tsyQLLI+klDVcw0L9uJVQ33AECEJdQ=
-X-Received: by 2002:a17:906:49cd:: with SMTP id w13mr8936642ejv.324.1576760673144;
- Thu, 19 Dec 2019 05:04:33 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cSObWk4dbO8spgH7l0TfpyL/zZu0owTwsK1XS9nMYg8=;
+        b=oq6cgzxb4ZtAy9brI/Ho+F/q/t3G47BrAOaCFRwTrVCh1jAxEbtRKT9gpdut0Foy/R
+         IKknJhhgxb3dEWTO711oV7XoM9H8OOiMLZ1zEhkd7Je1bjJZbsUb6qDMZjSIsLLovrTz
+         m1+VkY+5kVeNyIStnAMNbjun/Ff3mX5RYufqcQ+UeiZiehZgIgFskUOGcIP70BxtclNE
+         nXCuQgBHt6Llyo7zSGeSX3LVMjIMlA5n6IKDY9978UanwZh+FVPFLQyk757coF8c0g8a
+         uKGfKUjoOPSswLr7vhl/ThYomQ1X7k+2zqSkH3jLYG7FmfnkJMjc054rEOnxBkbqHYzz
+         Ud8A==
+X-Gm-Message-State: APjAAAXoJ3iZYsMvRZvOJmea3vzyKAMYXquQlloKn9UGbyOVYY1mbjLZ
+	jRd5YhWqFtxBvOl4ZiuFAC6RK7p73Fhydhncf2o=
+X-Google-Smtp-Source: APXvYqzesAp+QXcLr5/6VHiXhLiu3zGQZBNZuoncjCGshXCdUEOAR8ObGdG3YiVpzXC1icP1QgYF3pP4xZe3YdzEBxw=
+X-Received: by 2002:a17:906:a3d3:: with SMTP id ca19mr9486140ejb.136.1576761460610;
+ Thu, 19 Dec 2019 05:17:40 -0800 (PST)
 MIME-Version: 1.0
+References: <15E1C77B4FBAA4EC.30484@lists.yoctoproject.org>
+In-Reply-To: <15E1C77B4FBAA4EC.30484@lists.yoctoproject.org>
 From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Thu, 19 Dec 2019 14:04:22 +0100
-Message-ID: <CAAfyv36YqTJDAcCbf3xmsA2Ka+3U9c0ZbnsR4VarLXYptej4XQ@mail.gmail.com>
-Subject: mc fails to start with readonly rootfs
-To: yocto <yocto@yoctoproject.org>
+Date: Thu, 19 Dec 2019 14:17:29 +0100
+Message-ID: <CAAfyv35X+K6ne7DSrYBdV1+mLhnNhjpPytgSHyzPnSfCjCPheg@mail.gmail.com>
+Subject: Re: [yocto] mc fails to start with readonly rootfs
+To: JA <marek.belisko@gmail.com>
+Cc: yocto <yocto@yoctoproject.org>, yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+On Thu, Dec 19, 2019 at 2:04 PM Marek Belisko via
+Lists.Yoctoproject.Org
+<marek.belisko=gmail.com@lists.yoctoproject.org> wrote:
+>
+> Hi,
+>
+> when enable readonly rootfs mc fails to start because cannot write to
+> directory: /home/root/.config/mc
+>
+> I've created volatile-bindd to this directory (to be able to write
+> something) and extend mc using below bbappend:
+>
+> do_install_append () {
+>         install -d ${D}/home/root/.config/mc
+> }
+>
+> FILES_${PN} += "/home/root/.config/mc/*"
+>
+> But now I got QA issue:
+>
+> ERROR: mc-4.8.22-r0 do_package: QA Issue: mc: Files/directories were
+> installed but not shipped in any package:
+>   /home
+>   /home/root
+>   /home/root/.config
+>   /home/root/.config/mc
+> Please set FILES such that these items are packaged. Alternatively if
+> they are unneeded, avoid installing them or delete them within
+> do_install.
 
-when enable readonly rootfs mc fails to start because cannot write to
-directory: /home/root/.config/mc
-
-I've created volatile-bindd to this directory (to be able to write
-something) and extend mc using below bbappend:
-
-do_install_append () {
-        install -d ${D}/home/root/.config/mc
-}
-
-FILES_${PN} += "/home/root/.config/mc/*"
-
-But now I got QA issue:
-
-ERROR: mc-4.8.22-r0 do_package: QA Issue: mc: Files/directories were
-installed but not shipped in any package:
-  /home
-  /home/root
-  /home/root/.config
-  /home/root/.config/mc
-Please set FILES such that these items are packaged. Alternatively if
-they are unneeded, avoid installing them or delete them within
-do_install.
-
-Checked FILES_mc and path is there. Am I missing anything obvious? Thanks.
+QA issue is resolved by adding: FILES_${PN} += "/home/root/.config/mc/"
+Is this patch welcomed to upstream to overcome same problem?
+>
+> Checked FILES_mc and path is there. Am I missing anything obvious? Thanks.
+>
+> BR,
+>
+> marek
+>
+> --
+> as simple and primitive as possible
+> -------------------------------------------------
+> Marek Belisko - OPEN-NANDRA
+> Freelance Developer
+>
+> Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+> Tel: +421 915 052 184
+> skype: marekwhite
+> twitter: #opennandra
+> web: http://open-nandra.com
+> -=-=-=-=-=-=-=-=-=-=-=-
+> Links: You receive all messages sent to this group.
+>
+> View/Reply Online (#47771): https://lists.yoctoproject.org/g/yocto/message/47771
+> Mute This Topic: https://lists.yoctoproject.org/mt/68830517/900721
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [marek.belisko@gmail.com]
+> -=-=-=-=-=-=-=-=-=-=-=-
 
 BR,
 
 marek
-
--- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
-
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
