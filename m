@@ -1,106 +1,61 @@
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
- by mx.groups.io with SMTP id smtpd.web12.8359.1576754203115445993
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+ by mx.groups.io with SMTP id smtpd.web11.8364.1576754987042189401
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Dec 2019 03:16:43 -0800
+ Thu, 19 Dec 2019 03:29:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=K7imts1U;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.44, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f44.google.com with SMTP id d16so5544305wre.10
-        for <yocto@lists.yoctoproject.org>; Thu, 19 Dec 2019 03:16:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=IZXYfBUHp3SPapre1O7PyVKL1xHvD6u8z9a0UXZFy7E=;
-        b=K7imts1UD6OKNrXmHyxjnIO7Hah0OrhjmsBYZ8Mz8PTCfTEuJAT5gstME/FDzT9EHl
-         2MulK9xp4Eqmx+7q3PFWSxPaW9sB74VBn/cX6DmGCkrYiLQ/iLucUenEJwAhHcVsEppR
-         La5y2i/yIOrPIZXpW4oqFAOYvJRuiFyfI2olw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=IZXYfBUHp3SPapre1O7PyVKL1xHvD6u8z9a0UXZFy7E=;
-        b=NwURjh63nFqXXo9RnL0ci6b4EbDUtRBecHkYsfxckZChX8hvuVQvy6WQMRKHO5NPmn
-         jM95n5Ht4ySNl0FYVj+QqWnj3fbKcrl1s5YrKL2nUgf82+T0bopfQTHETLWMNStZ5iOt
-         yS9bWAbQgRr4bQQmd2Gleyl1g+o93O76qcqaOyTXeyqKieV1aPkjb0MLc2FD00S2TB59
-         MhZXf58L7HGeTlrjPaFwGuGzjTLStWSmw3U54J5SmZRc/qrFlo0q1n0EGW1iXBa+j/f1
-         kCa/x7zOS/N6sZmBl2Cat8cZHVDyIBgE+B/PKU31amz5dtZGisog0C4hDCSYS65S44ed
-         g4fA==
-X-Gm-Message-State: APjAAAVCKILTDS8bXJfZ5ON2tlPn63OcCQ5cMy8q5amEdXlpjDcspamV
-	AOKcBDGx/ofe29dI0Pqz8To8kQ==
-X-Google-Smtp-Source: APXvYqyTAEq6Col1hBJRmBjDRh7sGO3qdYwwTOIDkSdxyKZ7iDvAIrgoL4PpfzeHe5MQ9NoDhxLKAA==
-X-Received: by 2002:adf:f70b:: with SMTP id r11mr9347453wrp.388.1576754201531;
-        Thu, 19 Dec 2019 03:16:41 -0800 (PST)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-        by smtp.gmail.com with ESMTPSA id g23sm5792934wmk.14.2019.12.19.03.16.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Dec 2019 03:16:40 -0800 (PST)
-Message-ID: <9cb0a929b4b74c114156ad5fd1731b4bd16e8e5d.camel@linuxfoundation.org>
+ dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.93, mailfrom: ross.burton@intel.com)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 19 Dec 2019 03:29:46 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,331,1571727600"; 
+   d="scan'208";a="298687857"
+Received: from brzodkie-mobl.ger.corp.intel.com (HELO blackadder.local) ([10.249.32.172])
+  by orsmga001.jf.intel.com with ESMTP; 19 Dec 2019 03:29:45 -0800
 Subject: Re: [yocto] SSTATE_MIRRORS with ssh/sftp fetchers #yocto
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: angeal1105@gmail.com, yocto@lists.yoctoproject.org
-Date: Thu, 19 Dec 2019 11:16:39 +0000
-In-Reply-To: <OmzH.1576751850923597182.4rq4@lists.yoctoproject.org>
+To: yocto@lists.yoctoproject.org
 References: <OmzH.1576751850923597182.4rq4@lists.yoctoproject.org>
-User-Agent: Evolution 3.34.1-2 
+ <9cb0a929b4b74c114156ad5fd1731b4bd16e8e5d.camel@linuxfoundation.org>
+From: "Ross Burton" <ross.burton@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <78ef180e-e66b-07e6-6c57-b106561560ec@intel.com>
+Date: Thu, 19 Dec 2019 11:29:45 +0000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:60.0)
+ Gecko/20100101 Thunderbird/60.9.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <9cb0a929b4b74c114156ad5fd1731b4bd16e8e5d.camel@linuxfoundation.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
 
-On Thu, 2019-12-19 at 02:37 -0800, angeal1105@gmail.com wrote:
-> Hi everyone,
+On 19/12/2019 11:16, Richard Purdie wrote:
+>> Do you have any idea on how to use these fetchers (or other SSH keys-
+>> based secure fetcher) to share sstate cache ?
 > 
-> Recently, I tried to use the SSTATE_MIRRORS variable to get back
-> sstate cache from a build machine shared amongst developers.
-> When I tried with the simple FILE fetcher, it worked great and
-> resumed the work where the build machine stopped.
-> But when I tried to replace it with SSH and/or SFTP fetchers (setup
-> to connect on my own machine), I had no errors or warnings, but the
-> steps started from scratch, ignoring the sstate cache mirror.
+> I think this is a "not implemented" problem.
 > 
-> The thing is that we can't use unauthenticated HTTP/FTP fetchers for
-> corporate security reasons. 
-> SSH and SFTP are convenients as we use crops and mount ssh keys
-> inside to authenticate ourselves on corporate git servers.
+> If you look at bitbake/lib/bb/fetch2/ssh.py or sftp.py, they don't have
+> a checkstatus() method that local.py or wget.py has.
 > 
-> Environment:
+> I think the sstate code relies on the checkstatus method working to
+> know know if an sstate artefact is present.
 > 
-> I'm using Yocto 2.6 (Thud) and CROPS.
-> I've set up my machine as SSH/SFTP server, and I tried it manually,
-> it works: the connection is established (even in CROPS).
-> 
-> I defined the SSTATE_MIRRORS variable in the build/conf/local.conf
-> file.
-> Working:        SSTATE_MIRRORS = "file://.*
-> file://{COMMON_PATH}/sstate-cache/PATH"
-> Not working:  SSTATE_MIRRORS = "file://.* 
-> ssh://user@my-machine-ip/{COMMON_PATH}/sstate-cache/PATH"
-> Notworking:  SSTATE_MIRRORS = "file://.* 
-> sftp://user@my-machine-ip/{COMMON_PATH}/sstate-cache/PATH"
-> 
-> Do you have any idea on how to use these fetchers (or other SSH keys-
-> based secure fetcher) to share sstate cache ?
+> Performance of that function is key and creating a new ssh connection
+> to check for each sstate artefact may make the build prohibitively
+> slow. There are some connection caching mechanisms present which may
+> help with that.
 
-I think this is a "not implemented" problem.
+I actually started implementing this a while ago:
 
-If you look at bitbake/lib/bb/fetch2/ssh.py or sftp.py, they don't have
-a checkstatus() method that local.py or wget.py has.
+http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=ross/mut2&id=42bdcd8181d2826a5a5dff6803958a900c0c4a2d
 
-I think the sstate code relies on the checkstatus method working to
-know know if an sstate artefact is present.
+I *think* that worked but I can't be sure, it was a while ago and 
+typically I forgot to put notes to my future self in the commit message.
 
-Performance of that function is key and creating a new ssh connection
-to check for each sstate artefact may make the build prohibitively
-slow. There are some connection caching mechanisms present which may
-help with that.
+As RP says, you'll want to use connection sharing: this is configured 
+using ControlMaster and friends in the ssh configuration.  That should 
+make the performance reasonable.
 
-Probably not the answer you wanted, sorry but at least it might explain
-why its not working.
-
-Cheers,
-
-Richard
-
-
-
+Ross
