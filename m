@@ -1,126 +1,121 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.2033.1576795282930444963
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+ by mx.groups.io with SMTP id smtpd.web10.2362.1576795858287102043
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Dec 2019 14:41:23 -0800
+ Thu, 19 Dec 2019 14:50:58 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@sbcglobal.net header.s=s2048 header.b=a+4E49ve;
- spf=none, err=permanent DNS error (domain: sbcglobal.net, ip: 140.211.169.56, mailfrom: develone@sbcglobal.net)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 784D6E011C0; Thu, 19 Dec 2019 14:41:22 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [74.6.128.86 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from sonic312-24.consmr.mail.bf2.yahoo.com (sonic312-24.consmr.mail.bf2.yahoo.com [74.6.128.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D7A8E00D00
-	for <yocto@yoctoproject.org>; Thu, 19 Dec 2019 14:41:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048; t=1576795280; bh=8lXHtT29sBej++J21HL2dxM+yfUxPsPZI8HOIItMAMc=; h=Date:From:To:Cc:Subject:References:From:Subject; b=a+4E49veLnjismomFNa9n4/lJkU14OQ+HsbPOmQFcsf9gJIUjtP4eqEJeHUQQ9XxYYTnVvKiyqI6qLyCW7Q/nLzIB4AiXVQdxWJBYWLP5aETCNshb5WEqLHXurhaUulUXpBki+K5o+QsiuX6y83yJusfCrhFnSCTgELzZELwCWyOhgU+tH6DqLluRBBmV9hStWwZtdLSPRcMnxw6AHlLsYJdjUvYC1Ih/uoU+UtadWQj7w2MWmityhbYWJoHoc957MLusvDTT9VgjOdMuEgS3nqEnrXJQCswZsgV9kECweHBTTbbgEjUy1PVGDfM4qb7QD+799wfdTQVbWoSndYDTA==
-X-YMail-OSG: N3ZI.eAVM1kY.gkqj7CpUtZ0udX4SBnPDHhOlqgmvrx9xap2ankp5KguLUkjW8T
- RNgwHU4A6eR81l3Xy9_2GOo3Zfr0cKPGoytOK_HcaqM2U4QF4rNeYQD7kCmrSN4gE_moC7pdwoTq
- pC7b9eb1hRaWBq9ygTh.kc8to18UVSSF241l_eYrkZ2Xi3vTSm.iUds5Q7euKsA0TM82PwJJAMYP
- W.hsSPUvIqoV3s2DJRbT8Yzgv4t5mZTlKSo3PbXPElp5xjEVlofevvA6aQsRnnNQkHZzKnSf88zF
- tKmYXYyWOacVeJMZJaapSo.XHKr4A5XG6f3DFgmN430zEdQxoSj4V4jRkLLDF_xhbz7CnRJ6_R4L
- WHiaCjMfLT_5s6bPH31_tZFzc7EtO_KivcX9IrN364wRqc_J6wnN0yNRiO4QeZb0mO7r0DGtUHFL
- ZmxOs4g1wFzKcERMN.ThRjoSGg3UzaY5b1VOkCj1c1MUWy89xWtCNmDiHGI1kgIRg.kgt96zQ7Ll
- QsOpauY7vw1Ikts.LfnUsoiwOD6Yj6B.Yc.rLe3XPvaTjaN3Od5wn0ac2sVuMCrUzLo5jjT0AfEP
- GzOspKL2WzQvKfBbyu2JqLv0eVDFiCXAKQ9ACa6v9eF6M7M38LFtBM7UkH6WtjCub_WT341YsBGu
- deU3Mo8xZquXQxyA16vCo9286YRXbCIuB7PqptjqAOXmy4XgTQTg4Ph1y1CkMb7J_kM23iLGUOZK
- dsm0uKlAWQgl3EDPL6NuiEsMXi2KHtruwtKZcYe_UTQgxcIkkoCSSWNFYbD7q75BfB.CZVa7oQzd
- _iRibz9pIt2ieRw_UcPfeZNgRB3kXWTJTNPc5i8DIEGmG6ihX_YcgweWZ1mt8yo0X3CBjy86POC7
- 0aZ6h3W.iCo6TrXZBYRnpKHvPoGy4GwhUZRaD2NbvKB7GzFZcvjsiRZvXB3UEvVhuRLI13mdAYoU
- dCGPsWXo_qPPOleIKsPp7I3trQZDkm8w_GOppSlH3YpGElNNOEjzbln_nDdyTH..erT7BDWxLHgU
- SXOzC8efhyBUqgGLOuOslNh8XFktLaqDMFlSGTMUnr8DmbGpVT8enQCuPQfSbRDd7QcK8nXc.sxu
- hxR3TWqDY5XMrARNJkcufNQdI3EiA5Mfx2.06WcoAfdr2YrQp2cFfqGZARNnm7MbmXFI026oe6by
- DVlyNgEF9r8ojumiO.aUMoi.QKrdx853vF8TfeKjTSJSm4S8NgQ_S5ZX984GrzScbgsEApKujJE0
- DRY2HMP2YagMuacqkfOS4oNAzPjIA2dvkYdXXzfHLTI20Ycg_C_kpBqif.lg7ikA3ZY1caRBiSLB
- PrhLzYYlS3Oi_yhrHi0SYZLOkwwXEDqybIodz5SpoeN.AmIQ-
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic312.consmr.mail.bf2.yahoo.com with HTTP; Thu, 19 Dec 2019 22:41:20 +0000
-Date: Thu, 19 Dec 2019 22:41:18 +0000 (UTC)
-From: "Ed Vidal" <develone@sbcglobal.net>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Cc: Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
-Message-ID: <332010843.999023.1576795278177@mail.yahoo.com>
-Subject: Re: [yocto] Raspberry pi 4 recipe and layer issues.
+ dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=Zujtk6g+;
+ spf=pass (domain: intel.com, ip: 192.55.52.88, mailfrom: vineela.tummalapalli@intel.com)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 19 Dec 2019 14:50:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,333,1571727600"; 
+   d="scan'208";a="267353707"
+Received: from fmsmsx103.amr.corp.intel.com ([10.18.124.201])
+  by FMSMGA003.fm.intel.com with ESMTP; 19 Dec 2019 14:50:57 -0800
+Received: from fmsmsx126.amr.corp.intel.com (10.18.125.43) by
+ FMSMSX103.amr.corp.intel.com (10.18.124.201) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 19 Dec 2019 14:50:57 -0800
+Received: from FMSEDG002.ED.cps.intel.com (10.1.192.134) by
+ FMSMSX126.amr.corp.intel.com (10.18.125.43) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Thu, 19 Dec 2019 14:50:57 -0800
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (104.47.66.44) by
+ edgegateway.intel.com (192.55.55.69) with Microsoft SMTP Server (TLS) id
+ 14.3.439.0; Thu, 19 Dec 2019 14:50:56 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BoF+7+pAVwazOUo0ZFoQa+IrR7bSN/enaFMx/+I0OKIaR8a+ChrHgQttuTLuA5a7ps739mdYaOZ1q7NQm7N5OSaxhukrEY5eOHz7C4L8NZNpljOWLyJ+leK0BCyU/+vcphr2aoDHD58l0wI7CjLOdXzH3+ARQklgun2KbnDiUfpMrkArO6ngoPN27Y8QGi+GCgSah3GvnDXUc0cY4NMUERRXpnGEberqN5OkPkee0H8FoH++e+1Kr/eU/nMHDi/XpRV+c0kX05ACjGks/kBoDZGH/60G8q73IOCK6AhD7W9BJbe1DJ9IEQmUeNkW4+qwnDSmtmX3y/lRURr2fjykhw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OGBBMgTFwE4ITdtA23JYvyaE5jDFwRSjLnepHQ4dP/s=;
+ b=GHME7Owxro6b4PSAiKX864auQhOP166TYXNJviEnDmWlRcpGEY7mgFPCBO4GO5zzjt6lDDz3DlwjDIKHRVPon+k3bF7uqNP7gHbgvL0xn6Q+3Pf3nG6otIeJ+1Z7bWkj2K11NJTCJ/8m2bHNkPvGA2SWfI8+XwUvt0JWjzvDDCKJ2E7E+upFZn06t7cWewk7c9J6K7csXP5Nxdr+QPgvgVZI0riqO8BedFoO+FES8QJvSl7EbAa1aSlHTUnXbwEra8C16+av4evF7uFOXhof7tVDEcmpxQTkGxGXmUJa0AYdUm5mkhGeRnW12nh+ucr65QTlbnoP2qAlRcAkSe9c3g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OGBBMgTFwE4ITdtA23JYvyaE5jDFwRSjLnepHQ4dP/s=;
+ b=Zujtk6g+B0+3FfiMB+icn/xKLGHiIEjFikIXjhJn7MqSZXvKGs4F+iDK+j/5QMEb96kxeNW1D2kdi8znPpSylEKrIPCSgqEgZz45nrRyDpkE6yW1xzSputRgUtoICqh2NXdcluwIYJtNboJCh/j8Yg/7OUJUqd2OGRKjVjzUuyg=
+Received: from BN8PR11MB3809.namprd11.prod.outlook.com (20.178.221.91) by
+ BN8PR11MB3812.namprd11.prod.outlook.com (20.178.222.11) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2559.14; Thu, 19 Dec 2019 22:50:42 +0000
+Received: from BN8PR11MB3809.namprd11.prod.outlook.com
+ ([fe80::d840:7fa0:2766:2fc6]) by BN8PR11MB3809.namprd11.prod.outlook.com
+ ([fe80::d840:7fa0:2766:2fc6%7]) with mapi id 15.20.2559.012; Thu, 19 Dec 2019
+ 22:50:42 +0000
+From: "Vineela" <vineela.tummalapalli@intel.com>
+To: "yocto-announce@lists.yoctoproject.org"
+	<yocto-announce@lists.yoctoproject.org>, "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>, "'yocto-request@eclists.intel.com'"
+	<yocto-request@eclists.intel.com>
+Subject: [ANNOUNCEMENT] Milestone 1 for Yocto Project 3.1 (yocto-3.1_M1) now available
+Thread-Topic: [ANNOUNCEMENT] Milestone 1 for Yocto Project 3.1 (yocto-3.1_M1)
+ now available
+Thread-Index: AdW2vfXEjYtg6wtbQwaLHG+O9wnbZg==
+Date: Thu, 19 Dec 2019 22:50:41 +0000
+Message-ID: <BN8PR11MB3809B48BDB19473D156B7A9B88520@BN8PR11MB3809.namprd11.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMWJiYjgwZjUtZjYyNy00NjhkLTk1NDAtZDhmMGZjYzE5ZTJiIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoia1BtQmNpeUNXbEpaSlZicEVQdVZxYWhmMVhZNTlZV1dkS0ZjMEtiRGN3dnY4eTJlMFNcL2gra2hDdWZScVpIRFgifQ==
+x-ctpclassification: CTP_NT
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+dlp-product: dlpe-windows
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=vineela.tummalapalli@intel.com; 
+x-originating-ip: [192.55.52.210]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: dea5d6e2-45ed-4dbd-7828-08d784d5e02d
+x-ms-traffictypediagnostic: BN8PR11MB3812:
+x-microsoft-antispam-prvs: <BN8PR11MB3812E86BD797E0702750DA0C88520@BN8PR11MB3812.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5797;
+x-forefront-prvs: 0256C18696
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(366004)(396003)(136003)(376002)(39860400002)(346002)(189003)(199004)(8936002)(2906002)(66476007)(8676002)(81166006)(81156014)(7696005)(5660300002)(110136005)(55016002)(52536014)(66556008)(9686003)(66946007)(76116006)(4744005)(66446008)(64756008)(316002)(26005)(186003)(86362001)(478600001)(33656002)(6506007)(71200400001)(966005)(491001);DIR:OUT;SFP:1102;SCL:1;SRVR:BN8PR11MB3812;H:BN8PR11MB3809.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 4BMZZ4cvtot6Z2LAn2nF/1jT63ydqn5UXK3NjeVsYwS9GyHS8rSY1EjzecQ5gya1auaDGw1yVoWVsZQZln8W4/oGcl/ayPjHnzZDdzljjhnzvWm2DKDkiNMiOmGHu4jxg1DoKW/4StBx7HSDNU105SP7ptLxTKa8NXdNgVWmgrBxzwalFzWbp5izxiqRtdM+PWXakKoVHcFN7gycZIJxlFIpPa3iA7ZccpfP7GHuBfF+jLVDpVMG+43zwmu0ZlDu/MJwspFqe6+bls2dvWmm/K88rEzRZDm1Hc1NQtwUxa0ThUlIIZoIgQTTHbDMc0IV+v8j3D0uAnvnhuBTN7hlZZf6e0/0nPoVtSNISrp6WiLcOkhKk7f8O2MLhX5wA/O/+jZatDm8ZTcu+dCBKFBuGjQyN8OTKSpnpH9Z0jGcFHWdaW3EcgYp+mW9MI1FHBwc2/uWQwQcbdM6QBzDhffdSrLTE068hWZ9mEb9otZTBB+T1tBDOF/NL7Wod3kyjC28caIG52lIJdDP52GwLwQERQ==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-References: <332010843.999023.1576795278177.ref@mail.yahoo.com>
-X-Mailer: WebService/1.1.14873 YMailNorrin Mozilla/5.0 (X11; Linux armv7l) AppleWebKit/537.36 (KHTML, like Gecko) Raspbian Chromium/74.0.3729.157 Chrome/74.0.3729.157 Safari/537.36
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_999022_1431740903.1576795278176"
-
-------=_Part_999022_1431740903.1576795278176
-Content-Type: text/plain; charset=UTF-8
+X-MS-Exchange-CrossTenant-Network-Message-Id: dea5d6e2-45ed-4dbd-7828-08d784d5e02d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Dec 2019 22:50:41.8782
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9QwxpU53bsXYqiATde00x1KrSyWzgbpbf5kpf/cbogIEllA8lCmkxjCKkVptJMojWAn0eMeg9ZclLwbh3RiNBUf4sIKwn50IbnVpDnf9OBY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN8PR11MB3812
+Return-Path: vineela.tummalapalli@intel.com
+X-OriginatorOrg: intel.com
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi All,
-This is the error, that I was getting with meta-yosys-tools/recipes-yosys/y=
-osys/yosys_0.1.bb,found at github.com/develone.
-The strip command fails, both on raspberrypi4-64 target and during the "bit=
-bake yosys" build.During the do_install which returns an error.strip: Unabl=
-e to recognise the format of the input file `yosys'
-This above error was happening during do_install.Made some chgs to the Make=
-file=C2=A0chg'ed prefix from /usr/local to /optadded a variable=C2=A0YOCTO =
-:=3D "--input-target=3Delf64-littleaarch64"added $(YOCTO) to lines 763, 765=
-, and 769 of yosys Makefile
-Now, my build for the rpi4-64 gets to the do_package step.NOTE: Skipping fi=
-le /opt/bin/yosys-abc from yosys for already-stripped QA testNOTE: Skipping=
- file /opt/bin/yosys-filterlib from yosys for already-stripped QA testERROR=
-: Fatal errors occurred in subprocesses:
-ls tmp/work/aarch64-poky-linux/yosys/0.1+gitAUTOINC+d406f2ffd7-r0/image/opt=
-/bin=C2=A0 share
-Where the desired, files are located, in the /opt/bin & /opt/share/yosys fo=
-lders.
-I tested these files on rpi4-64 target.=C2=A0 I am getting an error on rpi4=
--64 target./opt/bin/yosys: cannot execute binary file: Exec format error.
-All help is appreciated.Best Regards
-=C2=A0
+Hello,
 
-Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595-1613
+We are pleased to announce the first milestone release for Yocto Project 3.=
+1 (yocto-3.1_M1) is now available for download.
 
-------=_Part_999022_1431740903.1576795278176
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Download:
 
-<html><head></head><body><div class=3D"ydpa6301966yahoo-style-wrap" style=
-=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:13px=
-;"><div dir=3D"ltr" data-setdir=3D"false"><div><div>Hi All,</div><div dir=
-=3D"ltr" data-setdir=3D"false"><br></div><div>This is the error, that I was=
- getting with meta-yosys-tools/recipes-yosys/yosys/yosys_0.1.bb,</div><div>=
-found at github.com/develone.</div><div><br></div><div>The strip command fa=
-ils, both on raspberrypi4-64 target and during the "bitbake yosys" build.</=
-div><div>During the do_install which returns an error.</div><div>strip: Una=
-ble to recognise the format of the input file `yosys'</div><div><br></div><=
-div>This above error was happening during do_install.</div><div>Made some c=
-hgs to the Makefile&nbsp;</div><div>chg'ed prefix from /usr/local to /opt</=
-div><div>added a variable&nbsp;</div><div>YOCTO :=3D "--input-target=3Delf6=
-4-littleaarch64"</div><div>added $(YOCTO) to lines 763, 765, and 769 of yos=
-ys Makefile</div><div><br></div><div>Now, my build for the rpi4-64 gets to =
-the do_package step.</div><div>NOTE: Skipping file /opt/bin/yosys-abc from =
-yosys for already-stripped QA test</div><div>NOTE: Skipping file /opt/bin/y=
-osys-filterlib from yosys for already-stripped QA test</div><div>ERROR: Fat=
-al errors occurred in subprocesses:</div><div><br></div><div>ls tmp/work/aa=
-rch64-poky-linux/yosys/0.1+gitAUTOINC+d406f2ffd7-r0/image/opt/</div><div>bi=
-n&nbsp; share</div><div><br></div><div>Where the desired, files are located=
-, in the /opt/bin &amp; /opt/share/yosys folders.</div><div><br></div><div>=
-I tested these files on rpi4-64 target.&nbsp; I am getting an error on rpi4=
--64 target.</div><div>/opt/bin/yosys: cannot execute binary file: Exec form=
-at error.</div><div><br></div><div dir=3D"ltr" data-setdir=3D"false">All he=
-lp is appreciated.</div><div>Best Regards</div><div><br></div><div>&nbsp;</=
-div></div><br></div><div><br></div><div class=3D"ydpa6301966signature">Edwa=
-rd Vidal Jr. e-mail develone@sbcglobal.net 915-595-1613</div></div></body><=
-/html>
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.1_M1
 
-------=_Part_999022_1431740903.1576795278176--
+bitbake: 99d46107ccfcec576238d32cfe7903440857038d
+meta-gplv2: a67a5fd160f97129a6afd65f107cd2cbdfec41e7
+meta-intel: e1b373f3cbb9acd71efe84d782675025d59b6035
+meta-mingw: 126efdad243e1a3bead5b695df6656e94353dd46
+oecore: 0f04e81c797d5d337ece4e8638a6b71c75bc0a00
+poky: 1abffc542a0571f0d1512b92c1a59d138cf3ea6a
+
+Full Test Report:
+
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-3.1_M1/te=
+streport.txt
+
+Thank you.
+Vineela Tummalapalli
+vineela.tummalapalli@intel.com
+Yocto Project Build and Release
