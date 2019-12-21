@@ -1,833 +1,473 @@
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
- by mx.groups.io with SMTP id smtpd.web12.13873.1576873595433924706
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.3969.1576905443389473834
  for <yocto@lists.yoctoproject.org>;
- Fri, 20 Dec 2019 12:26:35 -0800
+ Fri, 20 Dec 2019 21:17:23 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=qKt1DR0s;
- spf=pass (domain: gmail.com, ip: 209.85.210.175, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f175.google.com with SMTP id l127so5836099pfl.1
-        for <yocto@lists.yoctoproject.org>; Fri, 20 Dec 2019 12:26:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language;
-        bh=kFXPvZglUNzs2H3bq6CHd2TRA8clsI5RsydHANILoss=;
-        b=qKt1DR0skPVOS5MTxjrQGRIE1njLg4u/XeFs2X0NFpqWrqbViAVdPWY/NO3h/iwWs4
-         X2tnNl5VwN5usNmEtsxhNPyvvJriox2wRKXpH2IhQnm9klLeNK1XX/xPMngSViTrJ/qA
-         r0UoH4Uoe/oqI3feWE4AWRrJ9XexmeoT3YQyEZ3/NnmQdY7WZ+Tlw5BHo7s9Y4I9+g3l
-         NKiLF5EthBv9hB9sx0qu9LEn4biUfSJOwAbIP9FXInYuSw98q4l8rjDRfmJo+3PSc3G+
-         klLxWWzvxFa5qT8sRzk/C/+9lA65rlkKcy8u4rKxbdrucQf4iSzAAnOpgGRlz2gG/8wI
-         6dkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language;
-        bh=kFXPvZglUNzs2H3bq6CHd2TRA8clsI5RsydHANILoss=;
-        b=N2C/GsUE4nzEgHyB35oMFgchNeHmIU9QhkEhUCnAi6gKKAEi1u5cbwDfCrtsdgPc44
-         wHf4TdLc+GFGMv+r30Mrn6adEI1PL5Lxs91sruO68G09a/vzhitvmYBv5zayr31A8dTr
-         D7XqbEsoDH4XgFQiBrMc/nSDJgbaDgHQJerNFO1OtauxYDvzeTngelAuW1TE97pIqfUD
-         fnyTzZtLuwsD/wXIIZkUAyjrgNg6BEebl8dvyJYxaTtwiw8CIcKcegmWqY5e1hcgrEMP
-         pbKkEBGEj1FvcVGWikTRqWBlhg1Ix87eGXVeGjd6LCbyQ/jipWy1xeaYkzoU1uMc7FBK
-         Dpfg==
-X-Gm-Message-State: APjAAAU2QQeyROfqOg0CSZVGAijOuFl32bsNUkm6R/KVMukeTPd6oqah
-	Dj52kaBsAp+LmnVDjYwL85H6R+9hW4c=
-X-Google-Smtp-Source: APXvYqzRCdmQgdLuPhEpJoGoHFtlaMUzvBB6JJP525KLxMudn2tgQtMpY0Nj4PfTL2KqMcSgx6w3KA==
-X-Received: by 2002:a62:a11e:: with SMTP id b30mr17742207pff.149.1576873594667;
-        Fri, 20 Dec 2019 12:26:34 -0800 (PST)
-Return-Path: <akuster808@gmail.com>
-Received: from ?IPv6:2601:202:4180:a5c0:1dfc:3910:e3ef:464b? ([2601:202:4180:a5c0:1dfc:3910:e3ef:464b])
-        by smtp.gmail.com with ESMTPSA id g19sm14388489pfh.134.2019.12.20.12.26.33
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 20 Dec 2019 12:26:34 -0800 (PST)
-Subject: Re: [yocto] [PATCH yocto-autobuilder-helper] Add a detailed README file for yocto-autobuilder-helper scripts
-To: Peiran <peiran1997@gmail.com>, yocto@lists.yoctoproject.org
-References: <20191220201128.20373-1-peiran1997@gmail.com>
-From: "Armpit" <akuster808@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <2f561dea-3149-42c5-e5a3-d2dd5c1e3aec@gmail.com>
-Date: Fri, 20 Dec 2019 12:26:32 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+ dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: hongxu.jia@windriver.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id B7AAAE011DB; Fri, 20 Dec 2019 21:17:22 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50AEFE01144
+	for <yocto@yoctoproject.org>; Fri, 20 Dec 2019 21:17:20 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id xBL5HHeK010200
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
+	Fri, 20 Dec 2019 21:17:18 -0800 (PST)
+Received: from pek-lpg-core1-vm2.wrs.com (128.224.156.107) by
+ ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+ 14.3.468.0; Fri, 20 Dec 2019 21:17:17 -0800
+From: "hongxu" <hongxu.jia@windriver.com>
+To: <yocto@yoctoproject.org>, <mark.hatle@kernel.crashing.org>
+Subject: [meta-openssl102-fips][PATCH] openssh bbappend: refresh local patches to 8.1p1
+Date: Sat, 21 Dec 2019 13:17:15 +0800
+Message-ID: <1576905435-12024-1-git-send-email-hongxu.jia@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <20191220201128.20373-1-peiran1997@gmail.com>
-Content-Type: multipart/alternative;
- boundary="------------2E7973AF333938322DD72A90"
-Content-Language: en-US
+Content-Type: text/plain
 
---------------2E7973AF333938322DD72A90
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+Since upstream oe-core upgraded openssh to 8.1p1,
+refresh local patches of fips
 
+Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+---
+ .../0001-conditional-enable-fips-mode.patch        |  26 +++---
+ .../openssh/openssh/0001-openssh-8.0p1-fips.patch  | 100 ++++++++++++---------
+ .../openssh/openssh-6.6p1-ctr-cavstest.patch       |  14 +--
+ .../openssh/openssh/openssh-6.7p1-kdf-cavs.patch   |  15 ++--
+ 4 files changed, 91 insertions(+), 64 deletions(-)
 
+diff --git a/recipes-connectivity/openssh/openssh/0001-conditional-enable-fips-mode.patch b/recipes-connectivity/openssh/openssh/0001-conditional-enable-fips-mode.patch
+index b47e184..705d4be 100644
+--- a/recipes-connectivity/openssh/openssh/0001-conditional-enable-fips-mode.patch
++++ b/recipes-connectivity/openssh/openssh/0001-conditional-enable-fips-mode.patch
+@@ -1,6 +1,6 @@
+-From ea3e5eceab28ad2c00d438efbcea2be37a1b2969 Mon Sep 17 00:00:00 2001
++From fac114e44c00382af087fec04cd4c2fbd144d759 Mon Sep 17 00:00:00 2001
+ From: Hongxu Jia <hongxu.jia@windriver.com>
+-Date: Sun, 22 Sep 2019 14:31:51 +0800
++Date: Sat, 21 Dec 2019 13:03:23 +0800
+ Subject: [PATCH] conditional enable fips mode
+ 
+ Insert ssh_enable_fips_mode to ssh_malloc_init where each main app will invoke,
+@@ -14,10 +14,10 @@ Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+  1 file changed, 24 insertions(+)
+ 
+ diff --git a/xmalloc.c b/xmalloc.c
+-index 5cc0310..0218ccd 100644
++index 9cd0127..75d5018 100644
+ --- a/xmalloc.c
+ +++ b/xmalloc.c
+-@@ -23,12 +23,20 @@
++@@ -23,6 +23,10 @@
+  #include <stdlib.h>
+  #include <string.h>
+  
+@@ -28,17 +28,23 @@ index 5cc0310..0218ccd 100644
+  #include "xmalloc.h"
+  #include "log.h"
+  
++@@ -30,11 +34,15 @@
++ char *malloc_options = "S";
++ #endif /* __OpenBSD__ */
++ 
+ +void ssh_enable_fips_mode(void);
+ +
+- void
+- ssh_malloc_init(void)
++ void *
++ xmalloc(size_t size)
+  {
++ 	void *ptr;
++ 
+ +	ssh_enable_fips_mode();
+ +
+- #if defined(__OpenBSD__)
+- 	extern char *malloc_options;
+- 
+-@@ -116,3 +124,19 @@ xasprintf(char **ret, const char *fmt, ...)
++ 	if (size == 0)
++ 		fatal("xmalloc: zero size");
++ 	ptr = malloc(size);
++@@ -110,3 +118,19 @@ xasprintf(char **ret, const char *fmt, ...)
+  
+  	return (i);
+  }
+diff --git a/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.patch b/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.patch
+index a4b5836..0e35e31 100644
+--- a/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.patch
++++ b/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.patch
+@@ -1,6 +1,6 @@
+-From 255e5dcdec36df7222f69b253dfc05be63927ed2 Mon Sep 17 00:00:00 2001
++From 511f5dfb3e22d30a7d573313fa88a063f1d49753 Mon Sep 17 00:00:00 2001
+ From: Hongxu Jia <hongxu.jia@windriver.com>
+-Date: Fri, 20 Sep 2019 17:59:00 +0800
++Date: Sat, 21 Dec 2019 11:45:38 +0800
+ Subject: [PATCH] openssh 8.0p1 fips
+ 
+ Port openssh-7.7p1-fips.patch from Fedora
+@@ -22,18 +22,18 @@ Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+  readconf.c               | 17 +++++++++--------
+  sandbox-seccomp-filter.c |  3 +++
+  servconf.c               | 19 ++++++++++---------
+- ssh-keygen.c             |  6 ++++++
++ ssh-keygen.c             | 17 ++++++++++++++++-
+  ssh.c                    | 16 ++++++++++++++++
+  sshconnect2.c            | 11 ++++++++---
+  sshd.c                   | 19 +++++++++++++++++++
+  sshkey.c                 |  4 ++++
+- 16 files changed, 176 insertions(+), 30 deletions(-)
++ 16 files changed, 186 insertions(+), 31 deletions(-)
+ 
+ diff --git a/Makefile.in b/Makefile.in
+-index 6f001bb..ddd1804 100644
++index adb1977..37aec69 100644
+ --- a/Makefile.in
+ +++ b/Makefile.in
+-@@ -170,31 +170,31 @@ libssh.a: $(LIBSSH_OBJS)
++@@ -175,31 +175,31 @@ libssh.a: $(LIBSSH_OBJS)
+  	$(RANLIB) $@
+  
+  ssh$(EXEEXT): $(LIBCOMPAT) libssh.a $(SSHOBJS)
+@@ -55,9 +55,9 @@ index 6f001bb..ddd1804 100644
+ -	$(LD) -o $@ ssh-agent.o ssh-pkcs11-client.o $(LDFLAGS) -lssh -lopenbsd-compat $(LIBS)
+ +	$(LD) -o $@ ssh-agent.o ssh-pkcs11-client.o $(LDFLAGS) -lssh -lopenbsd-compat -lfipscheck $(LIBS)
+  
+- ssh-keygen$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-keygen.o
+--	$(LD) -o $@ ssh-keygen.o $(LDFLAGS) -lssh -lopenbsd-compat $(LIBS)
+-+	$(LD) -o $@ ssh-keygen.o $(LDFLAGS) -lssh -lopenbsd-compat -lfipscheck $(LIBS)
++ ssh-keygen$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-keygen.o sshsig.o
++-	$(LD) -o $@ ssh-keygen.o sshsig.o $(LDFLAGS) -lssh -lopenbsd-compat $(LIBS)
+++	$(LD) -o $@ ssh-keygen.o sshsig.o $(LDFLAGS) -lssh -lopenbsd-compat -lfipscheck $(LIBS)
+  
+  ssh-keysign$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-keysign.o readconf.o uidswap.o compat.o
+ -	$(LD) -o $@ ssh-keysign.o readconf.o uidswap.o $(LDFLAGS) -lssh -lopenbsd-compat $(LIBS)
+@@ -68,10 +68,10 @@ index 6f001bb..ddd1804 100644
+  
+  ssh-keyscan$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-keyscan.o
+ -	$(LD) -o $@ ssh-keyscan.o $(LDFLAGS) -lssh -lopenbsd-compat -lssh $(LIBS)
+-+	$(LD) -o $@ ssh-keyscan.o $(LDFLAGS) -lssh -lopenbsd-compat -lssh -lfipscheck $(LIBS)
+++	$(LD) -o $@ ssh-keyscan.o $(LDFLAGS) -lssh -lopenbsd-compat -lfipscheck -lssh $(LIBS)
+  
+- sftp-server$(EXEEXT): $(LIBCOMPAT) libssh.a sftp.o sftp-common.o sftp-server.o sftp-server-main.o
+- 	$(LD) -o $@ sftp-server.o sftp-common.o sftp-server-main.o $(LDFLAGS) -lssh -lopenbsd-compat $(LIBS)
++ sftp-server$(EXEEXT): $(LIBCOMPAT) libssh.a sftp.o sftp-common.o sftp-server.o sftp-realpath.o sftp-server-main.o
++ 	$(LD) -o $@ sftp-server.o sftp-common.o sftp-realpath.o sftp-server-main.o $(LDFLAGS) -lssh -lopenbsd-compat $(LIBS)
+ diff --git a/cipher-ctr.c b/cipher-ctr.c
+ index 32771f2..74fac3b 100644
+ --- a/cipher-ctr.c
+@@ -87,10 +87,10 @@ index 32771f2..74fac3b 100644
+  	return (&aes_ctr);
+  }
+ diff --git a/clientloop.c b/clientloop.c
+-index 086c0df..0b308d4 100644
++index b5a1f70..0b675fe 100644
+ --- a/clientloop.c
+ +++ b/clientloop.c
+-@@ -2036,7 +2036,8 @@ key_accepted_by_hostkeyalgs(const struct sshkey *key)
++@@ -2035,7 +2035,8 @@ key_accepted_by_hostkeyalgs(const struct sshkey *key)
+  {
+  	const char *ktype = sshkey_ssh_name(key);
+  	const char *hostkeyalgs = options.hostkeyalgorithms != NULL ?
+@@ -101,7 +101,7 @@ index 086c0df..0b308d4 100644
+  	if (key == NULL || key->type == KEY_UNSPEC)
+  		return 0;
+ diff --git a/dh.c b/dh.c
+-index a98d39e..92e800a 100644
++index 7cb135d..306f1bc 100644
+ --- a/dh.c
+ +++ b/dh.c
+ @@ -152,6 +152,12 @@ choose_dh(int min, int wantbits, int max)
+@@ -157,10 +157,10 @@ index a98d39e..92e800a 100644
+ +
+  #endif /* WITH_OPENSSL */
+ diff --git a/dh.h b/dh.h
+-index adb643a..5d1cad5 100644
++index 5d6df62..54c7aa2 100644
+ --- a/dh.h
+ +++ b/dh.h
+-@@ -43,6 +43,7 @@ DH	*dh_new_group_fallback(int);
++@@ -45,6 +45,7 @@ DH	*dh_new_group_fallback(int);
+  
+  int	 dh_gen_key(DH *, int);
+  int	 dh_pub_is_valid(const DH *, const BIGNUM *);
+@@ -169,7 +169,7 @@ index adb643a..5d1cad5 100644
+  u_int	 dh_estimate(int);
+  
+ diff --git a/kex.c b/kex.c
+-index 34808b5..b356a26 100644
++index 49d7015..f1f982d 100644
+ --- a/kex.c
+ +++ b/kex.c
+ @@ -161,7 +161,10 @@ kex_names_valid(const char *names)
+@@ -208,7 +208,7 @@ index 1c65b8a..b6b25bf 100644
+  
+  	/* generate and send 'e', client DH public key */
+ diff --git a/myproposal.h b/myproposal.h
+-index f167298..812d9a2 100644
++index 34bd10c..a3ae74b 100644
+ --- a/myproposal.h
+ +++ b/myproposal.h
+ @@ -111,6 +111,14 @@
+@@ -264,12 +264,12 @@ index f167298..812d9a2 100644
+ +
+  /* Not a KEX value, but here so all the algorithm defaults are together */
+  #define	SSH_ALLOWED_CA_SIGALGS	\
+- 	"ecdsa-sha2-nistp256," \
++ 	HOSTKEY_ECDSA_METHODS \
+ diff --git a/readconf.c b/readconf.c
+-index ec497e7..1f1a16d 100644
++index f78b4d6..2f56ed2 100644
+ --- a/readconf.c
+ +++ b/readconf.c
+-@@ -2116,18 +2116,19 @@ fill_default_options(Options * options)
++@@ -2125,18 +2125,19 @@ fill_default_options(Options * options)
+  	all_kex = kex_alg_list(',');
+  	all_key = sshkey_alg_list(0, 0, 1, ',');
+  	all_sig = sshkey_alg_list(0, 1, 1, ',');
+@@ -298,10 +298,10 @@ index ec497e7..1f1a16d 100644
+  	free(all_cipher);
+  	free(all_mac);
+ diff --git a/sandbox-seccomp-filter.c b/sandbox-seccomp-filter.c
+-index 5edbc69..3c40136 100644
++index b5cda70..f0607a3 100644
+ --- a/sandbox-seccomp-filter.c
+ +++ b/sandbox-seccomp-filter.c
+-@@ -137,6 +137,9 @@ static const struct sock_filter preauth_insns[] = {
++@@ -156,6 +156,9 @@ static const struct sock_filter preauth_insns[] = {
+  #ifdef __NR_open
+  	SC_DENY(__NR_open, EACCES),
+  #endif
+@@ -312,7 +312,7 @@ index 5edbc69..3c40136 100644
+  	SC_DENY(__NR_openat, EACCES),
+  #endif
+ diff --git a/servconf.c b/servconf.c
+-index ffac5d2..7ad0e4e 100644
++index e76f9c3..591d437 100644
+ --- a/servconf.c
+ +++ b/servconf.c
+ @@ -200,18 +200,19 @@ assemble_algorithms(ServerOptions *o)
+@@ -345,13 +345,13 @@ index ffac5d2..7ad0e4e 100644
+  	free(all_cipher);
+  	free(all_mac);
+ diff --git a/ssh-keygen.c b/ssh-keygen.c
+-index 3898b28..f3f4975 100644
++index 8c829ca..cb4982d 100644
+ --- a/ssh-keygen.c
+ +++ b/ssh-keygen.c
+-@@ -199,6 +199,12 @@ type_bits_valid(int type, const char *name, u_int32_t *bitsp)
+- 	    OPENSSL_DSA_MAX_MODULUS_BITS : OPENSSL_RSA_MAX_MODULUS_BITS;
+- 	if (*bitsp > maxbits)
+- 		fatal("key bits exceeds maximum %d", maxbits);
++@@ -201,6 +201,12 @@ type_bits_valid(int type, const char *name, u_int32_t *bitsp)
++ #endif
++ 	}
++ #ifdef WITH_OPENSSL
+ +	if (FIPS_mode()) {
+ +		if (type == KEY_DSA)
+ +			fatal("DSA keys are not allowed in FIPS mode");
+@@ -361,8 +361,28 @@ index 3898b28..f3f4975 100644
+  	switch (type) {
+  	case KEY_DSA:
+  		if (*bitsp != 1024)
++@@ -1061,9 +1067,18 @@ do_gen_all_hostkeys(struct passwd *pw)
++ 			first = 1;
++ 			printf("%s: generating new host keys: ", __progname);
++ 		}
+++
+++		type = sshkey_type_from_name(key_types[i].key_type);
+++
+++		/* Skip the keys that are not supported in FIPS mode */
+++		if (FIPS_mode() && (type == KEY_DSA || type == KEY_ED25519)) {
+++			logit("Skipping %s key in FIPS mode",
+++				key_types[i].key_type_display);
+++			goto next;
+++		}
+++
++ 		printf("%s ", key_types[i].key_type_display);
++ 		fflush(stdout);
++-		type = sshkey_type_from_name(key_types[i].key_type);
++ 		if ((fd = mkstemp(prv_tmp)) == -1) {
++ 			error("Could not save your public key in %s: %s",
++ 			    prv_tmp, strerror(errno));
+ diff --git a/ssh.c b/ssh.c
+-index 91e7c35..1cf14f6 100644
++index ee51823..0724df4 100644
+ --- a/ssh.c
+ +++ b/ssh.c
+ @@ -76,6 +76,8 @@
+@@ -403,7 +423,7 @@ index 91e7c35..1cf14f6 100644
+  	 * Discard other fds that are hanging around. These can cause problem
+  	 * with backgrounded ssh processes started by ControlPersist.
+ diff --git a/sshconnect2.c b/sshconnect2.c
+-index dffee90..28b2554 100644
++index 87fa70a..a42aacb 100644
+ --- a/sshconnect2.c
+ +++ b/sshconnect2.c
+ @@ -44,6 +44,8 @@
+@@ -445,7 +465,7 @@ index dffee90..28b2554 100644
+  		myproposal[PROPOSAL_SERVER_HOST_KEY_ALGS] =
+  		    compat_pkalg_proposal(
+ diff --git a/sshd.c b/sshd.c
+-index a3c1975..bf25d76 100644
++index f8dee0f..2bf8939 100644
+ --- a/sshd.c
+ +++ b/sshd.c
+ @@ -66,6 +66,7 @@
+@@ -465,7 +485,7 @@ index a3c1975..bf25d76 100644
+  #include "openbsd-compat/openssl-compat.h"
+  #endif
+  
+-@@ -1447,6 +1450,18 @@ main(int ac, char **av)
++@@ -1445,6 +1448,18 @@ main(int ac, char **av)
+  #endif
+  	__progname = ssh_get_progname(av[0]);
+  
+@@ -484,7 +504,7 @@ index a3c1975..bf25d76 100644
+  	/* Save argv. Duplicate so setproctitle emulation doesn't clobber it */
+  	saved_argc = ac;
+  	rexec_argc = ac;
+-@@ -1905,6 +1920,10 @@ main(int ac, char **av)
++@@ -1910,6 +1925,10 @@ main(int ac, char **av)
+  	/* Reinitialize the log (because of the fork above). */
+  	log_init(__progname, options.log_level, options.log_facility, log_stderr);
+  
+@@ -496,7 +516,7 @@ index a3c1975..bf25d76 100644
+  	   unmounted if desired. */
+  	if (chdir("/") == -1)
+ diff --git a/sshkey.c b/sshkey.c
+-index ad19577..18906cb 100644
++index ef90563..1b1ba01 100644
+ --- a/sshkey.c
+ +++ b/sshkey.c
+ @@ -34,6 +34,7 @@
+@@ -508,14 +528,14 @@ index ad19577..18906cb 100644
+  
+  #include "crypto_api.h"
+ @@ -57,6 +58,7 @@
++ #define SSHKEY_INTERNAL
+  #include "sshkey.h"
+- #include "sshkey-xmss.h"
+  #include "match.h"
+ +#include "log.h"
+  
+- #include "xmss_fast.h"
+- 
+-@@ -1481,6 +1483,8 @@ rsa_generate_private_key(u_int bits, RSA **rsap)
++ #ifdef WITH_XMSS
++ #include "sshkey-xmss.h"
++@@ -1491,6 +1493,8 @@ rsa_generate_private_key(u_int bits, RSA **rsap)
+  	}
+  	if (!BN_set_word(f4, RSA_F4) ||
+  	    !RSA_generate_key_ex(private, bits, f4, NULL)) {
+diff --git a/recipes-connectivity/openssh/openssh/openssh-6.6p1-ctr-cavstest.patch b/recipes-connectivity/openssh/openssh/openssh-6.6p1-ctr-cavstest.patch
+index 29371f8..8b74451 100644
+--- a/recipes-connectivity/openssh/openssh/openssh-6.6p1-ctr-cavstest.patch
++++ b/recipes-connectivity/openssh/openssh/openssh-6.6p1-ctr-cavstest.patch
+@@ -1,7 +1,7 @@
+-From a94a3d95439018dc7d276ec72de91af369ea413e Mon Sep 17 00:00:00 2001
++From 6d65893a85bddfc543ce894ee4940bd0d5ab368e Mon Sep 17 00:00:00 2001
+ From: Hongxu Jia <hongxu.jia@windriver.com>
+-Date: Sun, 22 Sep 2019 21:32:18 +0800
+-Subject: [PATCH 1/2] add CAVS test driver for the aes-ctr ciphers
++Date: Sat, 21 Dec 2019 13:05:19 +0800
++Subject: [PATCH] add CAVS test driver for the aes-ctr ciphers
+ 
+ Original submission to Fedora, see:
+    https://lists.fedoraproject.org/pipermail/scm-commits/2012-January/715044.html
+@@ -25,7 +25,7 @@ Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+  create mode 100644 ctr-cavstest.c
+ 
+ diff --git a/Makefile.in b/Makefile.in
+-index ddd1804..cb34681 100644
++index 37aec69..1d6e298 100644
+ --- a/Makefile.in
+ +++ b/Makefile.in
+ @@ -23,6 +23,7 @@ SSH_PROGRAM=@bindir@/ssh
+@@ -45,7 +45,7 @@ index ddd1804..cb34681 100644
+  
+  XMSS_OBJS=\
+  	ssh-xmss.o \
+-@@ -193,6 +194,9 @@ ssh-keysign$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-keysign.o readconf.o uidswap.o c
++@@ -198,6 +199,9 @@ ssh-keysign$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-keysign.o readconf.o uidswap.o c
+  ssh-pkcs11-helper$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-pkcs11-helper.o ssh-pkcs11.o
+  	$(LD) -o $@ ssh-pkcs11-helper.o ssh-pkcs11.o $(LDFLAGS) -lssh -lopenbsd-compat -lssh -lopenbsd-compat $(LIBS)
+  
+@@ -53,9 +53,9 @@ index ddd1804..cb34681 100644
+ +	$(LD) -o $@ ctr-cavstest.o $(LDFLAGS) -lssh -lopenbsd-compat -lssh -lfipscheck $(LIBS)
+ +
+  ssh-keyscan$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-keyscan.o
+- 	$(LD) -o $@ ssh-keyscan.o $(LDFLAGS) -lssh -lopenbsd-compat -lssh -lfipscheck $(LIBS)
++ 	$(LD) -o $@ ssh-keyscan.o $(LDFLAGS) -lssh -lopenbsd-compat -lfipscheck -lssh $(LIBS)
+  
+-@@ -343,6 +347,7 @@ install-files:
++@@ -348,6 +352,7 @@ install-files:
+  	$(INSTALL) -m 0755 $(STRIP_OPT) ssh-keyscan$(EXEEXT) $(DESTDIR)$(bindir)/ssh-keyscan$(EXEEXT)
+  	$(INSTALL) -m 0755 $(STRIP_OPT) sshd$(EXEEXT) $(DESTDIR)$(sbindir)/sshd$(EXEEXT)
+  	$(INSTALL) -m 4711 $(STRIP_OPT) ssh-keysign$(EXEEXT) $(DESTDIR)$(SSH_KEYSIGN)$(EXEEXT)
+diff --git a/recipes-connectivity/openssh/openssh/openssh-6.7p1-kdf-cavs.patch b/recipes-connectivity/openssh/openssh/openssh-6.7p1-kdf-cavs.patch
+index 7ac881f..0cbccd7 100644
+--- a/recipes-connectivity/openssh/openssh/openssh-6.7p1-kdf-cavs.patch
++++ b/recipes-connectivity/openssh/openssh/openssh-6.7p1-kdf-cavs.patch
+@@ -1,7 +1,7 @@
+-From 210d15fd146ff7037f03fff5e0ba6fcf0bfde683 Mon Sep 17 00:00:00 2001
++From 6b6e0f7d4a517378a8d53b84fbef2cfc78c42f46 Mon Sep 17 00:00:00 2001
+ From: Hongxu Jia <hongxu.jia@windriver.com>
+-Date: Sun, 22 Sep 2019 21:40:51 +0800
+-Subject: [PATCH 2/2] add KDF CAVS test driver
++Date: Sat, 21 Dec 2019 13:08:52 +0800
++Subject: [PATCH] add KDF CAVS test driver
+ 
+ Original submission to Fedora, see:
+    https://lists.fedoraproject.org/pipermail/scm-commits/Week-of-Mon-20150216/1514788.html
+@@ -17,6 +17,7 @@ This is the makefile.in change for the normal configuration.
+ Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
+ 
+ Upstream-Status: Inappropriate [oe specific]
++
+ Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+ ---
+  Makefile.in        |   8 +-
+@@ -27,7 +28,7 @@ Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+  create mode 100644 ssh-cavs_driver.pl
+ 
+ diff --git a/Makefile.in b/Makefile.in
+-index cb34681..368097e 100644
++index 1d6e298..be28411 100644
+ --- a/Makefile.in
+ +++ b/Makefile.in
+ @@ -24,6 +24,7 @@ ASKPASS_PROGRAM=$(libexecdir)/ssh-askpass
+@@ -47,7 +48,7 @@ index cb34681..368097e 100644
+  
+  XMSS_OBJS=\
+  	ssh-xmss.o \
+-@@ -197,6 +198,9 @@ ssh-pkcs11-helper$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-pkcs11-helper.o ssh-pkcs11
++@@ -202,6 +203,9 @@ ssh-pkcs11-helper$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-pkcs11-helper.o ssh-pkcs11
+  ctr-cavstest$(EXEEXT): $(LIBCOMPAT) libssh.a ctr-cavstest.o
+  	$(LD) -o $@ ctr-cavstest.o $(LDFLAGS) -lssh -lopenbsd-compat -lssh -lfipscheck $(LIBS)
+  
+@@ -55,9 +56,9 @@ index cb34681..368097e 100644
+ +	$(LD) -o $@ ssh-cavs.o $(LDFLAGS) -lssh -lopenbsd-compat $(LIBS)
+ +
+  ssh-keyscan$(EXEEXT): $(LIBCOMPAT) libssh.a ssh-keyscan.o
+- 	$(LD) -o $@ ssh-keyscan.o $(LDFLAGS) -lssh -lopenbsd-compat -lssh -lfipscheck $(LIBS)
++ 	$(LD) -o $@ ssh-keyscan.o $(LDFLAGS) -lssh -lopenbsd-compat -lfipscheck -lssh $(LIBS)
+  
+-@@ -348,6 +352,8 @@ install-files:
++@@ -353,6 +357,8 @@ install-files:
+  	$(INSTALL) -m 0755 $(STRIP_OPT) sshd$(EXEEXT) $(DESTDIR)$(sbindir)/sshd$(EXEEXT)
+  	$(INSTALL) -m 4711 $(STRIP_OPT) ssh-keysign$(EXEEXT) $(DESTDIR)$(SSH_KEYSIGN)$(EXEEXT)
+  	$(INSTALL) -m 0755 $(STRIP_OPT) ctr-cavstest$(EXEEXT) $(DESTDIR)$(libexecdir)/ctr-cavstest$(EXEEXT)
+-- 
+2.7.4
 
-On 12/20/19 12:11 PM, Peiran wrote:
-> The new README file adds information to build a
-> target on a local machine, explains the scripts,
-> parameters, and configuration files in more detail,
-> and provides some notes on limitations and possible
-> improvements that can be made to the autobuilder-helper
-> scripts.
->
-> Signed-off-by: Peiran Hong <peiran1997@gmail.com>
-
-Thank you very much for taking the time to documenting this.
-
-- armin
->  README.md | 317 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 317 insertions(+)
->  create mode 100644 README.md
->
-> diff --git a/README.md b/README.md
-> new file mode 100644
-> index 0000000..b50061d
-> --- /dev/null
-> +++ b/README.md
-> @@ -0,0 +1,317 @@
-> +## Directories
-> +
-> +- `git/trash`: Directory for storing successfully finished and not
-> +  published builds.
-> +
-> +- `git/mirror`: *Optional*, directory for storing repo mirrors. If
-> +  repos are present in this directory, `git config` will do a local
-> +  clone on the repo instead of fetching from remote.
-> +
-> +## Json File Containing Repository Data
-> +
-> +In order to build a target, user needs to create a json file to hold
-> +the data of the repos that are required by the target (e.g. poky,
-> +bitbake, meta-openembbeded, etc.). All available repo data can be
-> +found in the `repo-defaults` entry in the `config.json` file. User can
-> +then copy the desired repo data and create a new json file consisting
-> +of only the repo data. An example of this would be:
-> +
-> +```json
-> +{
-> +	"poky" : {
-> +		"url" : "git://git.yoctoproject.org/poky",
-> +		"branch" : "master",
-> +		"revision" : "HEAD",
-> +		"checkout-dirname" : ".",
-> +		"no-layer-add" : true,
-> +		"call-init" : true
-> +	},
-> +	"bitbake" : {
-> +		"url" : "git://git.openembedded.org/bitbake",
-> +		"branch" : "master",
-> +		"revision" : "HEAD",
-> +		"no-layer-add" : true
-> +	}
-> +}
-> +```
-> +
-> +In the subsequent sections, this file will be referred to as **`repos.json`**.
-> +
-> +## Entry Point Scripts and Usage
-> +
-> +### `scripts/prepare-shared-repos`
-> +
-> +This script will fetch repos specified by `repos.json` and cache them
-> +in a custom directory. The cached repos can then be reused for future
-> +builds.
-> +
-> +Args:
-> +
-> +1. `repojson`: The path to `repos.json` containing repository data
-> +   explained in the previous section.
-> +
-> +2. `sharedsrcdir`: The directory where the repos will be cached.
-> +
-> +3. `-p`, `--publish-dir`: *Optional*, where to publish artefacts
-> +   to. Fetched repos would be archived as tarball and stored in this
-> +   directory. This procedure will not happen if `publish-dir` is not
-> +   specified.
-> +
-> +### `scripts/shared-repo-unpack`
-> +
-> +This script first fetches repos specified by `repos.json` *as well as*
-> +specified in the `NEEDREPOS` entry of the target in `config.json` to
-> +the autobuilder working directory given by user, then calls another
-> +script `scripts/layer-config`.
-> +
-> +`scripts/layer-config` will source `oe-init-build-env` file and
-> +execute `bitbake-layers add-layer` to add necessary layers (the
-> +`call-init` entry in `repos.json` for each repository will determine
-> +if `oe-init-build-env` is sourced, the `no-layer-add` entry will
-> +determine if `bitbake add-layer` should be run on this repo). Note
-> +that if `NEEDREPOS` is not set for the specific build target,
-> +`NEEDREPOS` in target `defaults` is checked and added. refer to
-> +`getconfigvar()` function in `scripts/utils.py` for details.
-> +
-> +Args:
-> +
-> +1. `repojson`: Same as in `scripts/prepare-shared-repos`.
-> +
-> +2. `abworkdir`: The autobuilder working directory which will resemble
-> +   the look of `poky` or `openembbeded-core` repo with build
-> +   directory, `oe-init-build-env`, etc.
-> +
-> +3. `target`: The target name defined under the `overrides` entry in
-> +   `config.json`.
-> +
-> +4. `-c`, `--cache-dir`: *Optional*, path to the directory caching the
-> +   repos fetch by `scripts/prepare-shared-repos`. If this argument is
-> +   not set, fetched repos will be stored in the `repos` directory
-> +   inside `abworkdir`.
-> +
-> +5. `-p`, `--publish-dir`: *Optional*, same as in
-> +   `scripts/prepare-shared-repos`.
-> +
-> +### `scripts/run-config`
-> +
-> +This script is the command responsible for sourcing the
-> +`oe-init-build-env` file, preparing for and executing `bitbake` to
-> +start the build, and running any sanity checks and extra commands
-> +specified by the target.
-> +
-> +First, build history related tasks are done. Build history related
-> +entries in `config.json` are checked. Specifically, it checks if the
-> +`BUILDHISTORY` entry is set to `true` for the target, and if the
-> +`reponame:branchname` argument passed into `run-config` is present in
-> +the `BUILD_HISTORY_DIRECTPUSH` or the `BUILD_HISTORY_FORKPUSH` entry
-> +in `config.json`. Then `scripts/buildhistory-init` script is executed
-> +to fetch the build history repo specified in the `BUILD_HISTORY_REPO`
-> +entry in `config.json`. However, the default build history repo given
-> +in `config.json` requires permission to clone.
-> +
-> +Then for each `step` of the target, the following tasks are run in
-> +sequence:
-> +
-> +1. `bitbake-layers addlayer` is run for all the layers present in the
-> +   `ADDLAYER` entry of the target in `config.json`. Note that these
-> +   layers are different from the ones added in the previous step by
-> +   `scripts/layer-config`.
-> +
-> +2. `scripts/setup-config` generates an `auto.conf` under
-> +   `abworkdir/build/conf` and writes to it the extra configs specified
-> +   by the `extravars` entry of the target in `config.json`. It also
-> +   generates a `sdk-extra.conf` file and writes to it the items
-> +   specified by the `SDKEXTRAS` entry of the target in `config.json`.
-> +
-> +3. `bitbake` command is run on the `BBTARGET` specified in the current
-> +   step with `-k` option.
-> +
-> +4. `SANITYTARGETS` of the step is run.
-> +
-> +5. `EXTRACMDS` and `EXTRAPLAINCMDS` of the step is run.
-> +
-> +6. Remove all layers added in reverse order using `bitbake-layers
-> +   remove-layer`.
-> +
-> +After the build is finished, publish artefacts (copy generated images
-> +and sdks to the user-defined publish directory. Refer to
-> +`scripts/publish-artefacts`), collect build results (copy
-> +`build_directory/tmp/log/oeqa/testresults.json` to the user-defined
-> +results directory and also compare the current build with previous
-> +ones. `buildhistory` is being run, refer to `scripts/collect-results`)
-> +and send error report if and error occurred and the `SENDERRORS` entry
-> +for the target is set in `config.json` (`send-error-report` is being
-> +run, refer to `scripts/upload-error-reports`).
-> +
-> +Lastly, everything is cleaned up. If there is any error during the
-> +build or the build is published (i.e. the `--publish-dir` argument is
-> +specified), the build directory is renamed by appending `-renamed`
-> +after the original build directory name and the script
-> +exits. Otherwise, `janitor/clobberdir` script is run to try to move
-> +the build directory to the trash directory set in `config.json` by the
-> +`TRASH_DIR` entry.  `janitor/clobberdir` first checks if trash
-> +directory is present and is valid, then it checks if the trash
-> +directory is on the same file system with the build directory. If it
-> +is, move the build directory to trash directory, else delete it.
-> +
-> +Args:
-> +
-> +1. `target`: Same as in `scripts/shared-repo-unpack`
-> +
-> +2. `builddir`: The build directory created by the sourcing of
-> +   `oe-init-build-env`, **This directory is not the autobuilder
-> +   working `abworkdir`**, but rather the `build` directory inside it,
-> +   i.e. it is something like `abworkdir/build`.
-> +
-> +3. `branchname`: The branch the build is running on. However, **This
-> +   does not set the branch the build is running**, it is only used for
-> +   build history. To change the branch of the build, modify the
-> +   `branch` entry in `repos.json`.
-> +
-> +4. `reponame`: The repo the build is running on. Again, **This does
-> +   not set the repo the build is running**, it is only used for build
-> +   history.
-> +
-> +5. `-s`, `--sstateprefix`: *Defaults to empty*, the directory prefix
-> +   to publish sstate into.
-> +
-> +6. `-b`, `--buildappsrcrev`: *Defaults to empty*, a build appliance
-> +   SRCREV to use.
-> +
-> +7. `-p`, `--publish-dir`: *Optional*, sets the directory
-> +   `scripts/publish-artefacts` script will be copying to.
-> +
-> +8. `-r`, `--results-dir`: *Optional*, sets the directory
-> +   `scripts/collect-results` script will be copying to.
-> +
-> +9. `-u`, `--build-url`: *Optional*, sets the url to link back to this
-> +   build from the error report server.
-> +
-> +10. `--build-type`: *Defaults to `quick`*, can be either `quick` or
-> +    `full`. For `quick` type, toolchain tests are skipped.
-> +
-> +11. `-t`, `--test`: *Defaults to `false`*, if set to `true`, only
-> +    `scripts/setup-config` is executed and the commands are dry-run.
-> +
-> +12. `-q`, `--quietlogging`: *Defaults to `false`*, prevents the
-> +    flushing of `bitbake` stdout output.
-> +
-> +## Steps to build a target
-> +
-> +Suppose we are now in the `scripts` directory. We want to build the
-> +target `poky-tiny` and work in the directory `$HOME/workdir` and want
-> +to cache all the repos in the directory `$HOME/cache` for future use.
-> +
-> +1. Modify the `BASE_HOMEDIR` in `config.json` to a valid directory for the build to happen. Here we use `$HOME`
-> +
-> +```json
-> +{
-> +    "BASE_HOMEDIR" : "/home/usr"
-> +    ...
-> +}
-> +```
-> +
-> +2. Create required directory `git/trash`. Here we create it under `$HOME`:
-> +
-> +```bash
-> +$ mkdir -p $HOME/git/trash
-> +```
-> +
-> +3. Check the `NEEDREPOS` entry for corresponding build targets in
-> +   `config.json` and create the `repos.json` file according to the
-> +   [Json File Containing Repository
-> +   Data](##{Json-File-Containing-Repository-Data}) section above. In
-> +   this case `poky` and `bitbake` are needed, so the `repos.json` file
-> +   should look like:
-> +
-> +```json
-> +{
-> +	"poky" : {
-> +		"url" : "git://git.yoctoproject.org/poky",
-> +		"branch" : "",
-> +		"revision" : "HEAD",
-> +		"checkout-dirname" : ".",
-> +		"no-layer-add" : true,
-> +		"call-init" : true
-> +	},
-> +	"bitbake" : {
-> +		"url" : "git://git.openembedded.org/bitbake",
-> +		"branch" : "master",
-> +		"revision" : "HEAD",
-> +		"no-layer-add" : true
-> +	}
-> +}
-> +```
-> +
-> +4. Run `scripts/prepare-shared-repos` and point to the `repos.json`
-> +   file as well as the cache directory. In this case we want:
-> +
-> +```bash
-> +$ ./prepare-shared-repos $HOME/repos.json $HOME/cache
-> +```
-> +
-> +5. Run `scripts/shared-repo-unpack` and point to the `repos.json` file
-> +   as well as the autobuilder's working directory, `-c` or the
-> +   `--cache-dir` argument can be set since we have already fetched the
-> +   repos in the previous step:
-> +
-> +```bash
-> +$ ./shared-repo-unpack -c $HOME/cache $HOME/repos.json $HOME/workdir poky-tiny
-> +```
-> +
-> +Now the `$HOME/workdir` should be created and `oe-init-build-env` should be
-> +sourced, which creates a `build` directory inside `$HOME/workdir`.
-> +
-> +6. Run `scripts/run-config` with the target to build, the build
-> +   directory (**Not the autobuilder working directory**), the branch
-> +   and the repo we are building on ([**The last two arguments does not
-> +   affect build**](##`scripts/run-config`)).
-> +
-> +```bash
-> +$ ./run-config poky-tiny $HOME/workdir/build master poky
-> +```
-> +
-> +7. If the build finished without error and is not published, the build
-> +   directory should be rsynced to the `git/trash` directory. If the
-> +   build failed, the `build` directory will be renamed to
-> +   `build-renamed` and stay inside the working directory.
-> +
-> +## Notes
-> +
-> +1. Instead of asking user for the `config.json` file, all the entry
-> +   point scripts referred to the file through function
-> +   `util.loadconfig()`, which first finds out the absolute path of the
-> +   current executing script (i.e. `scripts/prepare-shared-repos`) and
-> +   then append `../config.json` to it. This is probably not a good
-> +   idea.
-> +
-> +2. All the copy of the repos are done using `rsync`, `git clone
-> +   --reference or git clone --shared` may be better.
-> +
-> +3. Using `rsync` also caused `prepare-shared-repos` and
-> +   `shared-repo-unpack` script to do `git clone` and overwrite repo
-> +   content every time they are being called, even when the repo
-> +   content is exactly the same. We should probably only be doing `git
-> +   clone` for new repos and do `git checkout` or `git pull` for
-> +   existing repos.
-> +
-> +4. After a failed or published `scripts/run-config`, the build
-> +   directory is simply appended with `-renamed` to avoid distracting
-> +   other builds, this is probably not a good idea (Maybe append random
-> +   string or build ID type of string after each build directory?).
-> +
-> +5. The path specified for `git clone` in function `fetchgitrepo()` in
-> +   `scripts/utils.py` append `/` directly and causes the path to have
-> +   two `/` if 'abworkdir' is passed in with a `/` at the end
-> +   (e.g. `/home/workdir/` instead of `/home/workdir`), this does not
-> +   have any effect on `git clone` but maybe an extra parsing/formating
-> +   of the path is better.
-> +
-> +6. Feeding an incorrect target name into `scripts/shared-repo-unpack`
-> +   and `scripts/run-config` will not result in an error. The scripts
-> +   will instead use configurations in the `defaults` target and
-> +   `scripts/run-config` will simply skip the bitbake command and exit
-> +   normally with an exit code 0.
-> +
-> +7. `checkvnc` script tries to call `-kill` only on the first display,
-> +   there should be more flexibility on this.
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
->
-> View/Reply Online (#47784): https://lists.yoctoproject.org/g/yocto/message/47784
-> Mute This Topic: https://lists.yoctoproject.org/mt/68855528/1024635
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [akuster@mvista.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-
-
---------------2E7973AF333938322DD72A90
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 12/20/19 12:11 PM, Peiran wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:20191220201128.20373-1-peiran1997@gmail.com">
-      <pre class="moz-quote-pre" wrap="">The new README file adds information to build a
-target on a local machine, explains the scripts,
-parameters, and configuration files in more detail,
-and provides some notes on limitations and possible
-improvements that can be made to the autobuilder-helper
-scripts.
-
-Signed-off-by: Peiran Hong <a class="moz-txt-link-rfc2396E" href="mailto:peiran1997@gmail.com">&lt;peiran1997@gmail.com&gt;</a></pre>
-    </blockquote>
-    <br>
-    Thank you very much for taking the time to documenting this.<br>
-    <br>
-    - armin<br>
-    <blockquote type="cite"
-      cite="mid:20191220201128.20373-1-peiran1997@gmail.com">
-      <pre class="moz-quote-pre" wrap="">
- README.md | 317 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 317 insertions(+)
- create mode 100644 README.md
-
-diff --git a/README.md b/README.md
-new file mode 100644
-index 0000000..b50061d
---- /dev/null
-+++ b/README.md
-@@ -0,0 +1,317 @@
-+## Directories
-+
-+- `git/trash`: Directory for storing successfully finished and not
-+  published builds.
-+
-+- `git/mirror`: *Optional*, directory for storing repo mirrors. If
-+  repos are present in this directory, `git config` will do a local
-+  clone on the repo instead of fetching from remote.
-+
-+## Json File Containing Repository Data
-+
-+In order to build a target, user needs to create a json file to hold
-+the data of the repos that are required by the target (e.g. poky,
-+bitbake, meta-openembbeded, etc.). All available repo data can be
-+found in the `repo-defaults` entry in the `config.json` file. User can
-+then copy the desired repo data and create a new json file consisting
-+of only the repo data. An example of this would be:
-+
-+```json
-+{
-+	"poky" : {
-+		"url" : "git://git.yoctoproject.org/poky",
-+		"branch" : "master",
-+		"revision" : "HEAD",
-+		"checkout-dirname" : ".",
-+		"no-layer-add" : true,
-+		"call-init" : true
-+	},
-+	"bitbake" : {
-+		"url" : "git://git.openembedded.org/bitbake",
-+		"branch" : "master",
-+		"revision" : "HEAD",
-+		"no-layer-add" : true
-+	}
-+}
-+```
-+
-+In the subsequent sections, this file will be referred to as **`repos.json`**.
-+
-+## Entry Point Scripts and Usage
-+
-+### `scripts/prepare-shared-repos`
-+
-+This script will fetch repos specified by `repos.json` and cache them
-+in a custom directory. The cached repos can then be reused for future
-+builds.
-+
-+Args:
-+
-+1. `repojson`: The path to `repos.json` containing repository data
-+   explained in the previous section.
-+
-+2. `sharedsrcdir`: The directory where the repos will be cached.
-+
-+3. `-p`, `--publish-dir`: *Optional*, where to publish artefacts
-+   to. Fetched repos would be archived as tarball and stored in this
-+   directory. This procedure will not happen if `publish-dir` is not
-+   specified.
-+
-+### `scripts/shared-repo-unpack`
-+
-+This script first fetches repos specified by `repos.json` *as well as*
-+specified in the `NEEDREPOS` entry of the target in `config.json` to
-+the autobuilder working directory given by user, then calls another
-+script `scripts/layer-config`.
-+
-+`scripts/layer-config` will source `oe-init-build-env` file and
-+execute `bitbake-layers add-layer` to add necessary layers (the
-+`call-init` entry in `repos.json` for each repository will determine
-+if `oe-init-build-env` is sourced, the `no-layer-add` entry will
-+determine if `bitbake add-layer` should be run on this repo). Note
-+that if `NEEDREPOS` is not set for the specific build target,
-+`NEEDREPOS` in target `defaults` is checked and added. refer to
-+`getconfigvar()` function in `scripts/utils.py` for details.
-+
-+Args:
-+
-+1. `repojson`: Same as in `scripts/prepare-shared-repos`.
-+
-+2. `abworkdir`: The autobuilder working directory which will resemble
-+   the look of `poky` or `openembbeded-core` repo with build
-+   directory, `oe-init-build-env`, etc.
-+
-+3. `target`: The target name defined under the `overrides` entry in
-+   `config.json`.
-+
-+4. `-c`, `--cache-dir`: *Optional*, path to the directory caching the
-+   repos fetch by `scripts/prepare-shared-repos`. If this argument is
-+   not set, fetched repos will be stored in the `repos` directory
-+   inside `abworkdir`.
-+
-+5. `-p`, `--publish-dir`: *Optional*, same as in
-+   `scripts/prepare-shared-repos`.
-+
-+### `scripts/run-config`
-+
-+This script is the command responsible for sourcing the
-+`oe-init-build-env` file, preparing for and executing `bitbake` to
-+start the build, and running any sanity checks and extra commands
-+specified by the target.
-+
-+First, build history related tasks are done. Build history related
-+entries in `config.json` are checked. Specifically, it checks if the
-+`BUILDHISTORY` entry is set to `true` for the target, and if the
-+`reponame:branchname` argument passed into `run-config` is present in
-+the `BUILD_HISTORY_DIRECTPUSH` or the `BUILD_HISTORY_FORKPUSH` entry
-+in `config.json`. Then `scripts/buildhistory-init` script is executed
-+to fetch the build history repo specified in the `BUILD_HISTORY_REPO`
-+entry in `config.json`. However, the default build history repo given
-+in `config.json` requires permission to clone.
-+
-+Then for each `step` of the target, the following tasks are run in
-+sequence:
-+
-+1. `bitbake-layers addlayer` is run for all the layers present in the
-+   `ADDLAYER` entry of the target in `config.json`. Note that these
-+   layers are different from the ones added in the previous step by
-+   `scripts/layer-config`.
-+
-+2. `scripts/setup-config` generates an `auto.conf` under
-+   `abworkdir/build/conf` and writes to it the extra configs specified
-+   by the `extravars` entry of the target in `config.json`. It also
-+   generates a `sdk-extra.conf` file and writes to it the items
-+   specified by the `SDKEXTRAS` entry of the target in `config.json`.
-+
-+3. `bitbake` command is run on the `BBTARGET` specified in the current
-+   step with `-k` option.
-+
-+4. `SANITYTARGETS` of the step is run.
-+
-+5. `EXTRACMDS` and `EXTRAPLAINCMDS` of the step is run.
-+
-+6. Remove all layers added in reverse order using `bitbake-layers
-+   remove-layer`.
-+
-+After the build is finished, publish artefacts (copy generated images
-+and sdks to the user-defined publish directory. Refer to
-+`scripts/publish-artefacts`), collect build results (copy
-+`build_directory/tmp/log/oeqa/testresults.json` to the user-defined
-+results directory and also compare the current build with previous
-+ones. `buildhistory` is being run, refer to `scripts/collect-results`)
-+and send error report if and error occurred and the `SENDERRORS` entry
-+for the target is set in `config.json` (`send-error-report` is being
-+run, refer to `scripts/upload-error-reports`).
-+
-+Lastly, everything is cleaned up. If there is any error during the
-+build or the build is published (i.e. the `--publish-dir` argument is
-+specified), the build directory is renamed by appending `-renamed`
-+after the original build directory name and the script
-+exits. Otherwise, `janitor/clobberdir` script is run to try to move
-+the build directory to the trash directory set in `config.json` by the
-+`TRASH_DIR` entry.  `janitor/clobberdir` first checks if trash
-+directory is present and is valid, then it checks if the trash
-+directory is on the same file system with the build directory. If it
-+is, move the build directory to trash directory, else delete it.
-+
-+Args:
-+
-+1. `target`: Same as in `scripts/shared-repo-unpack`
-+
-+2. `builddir`: The build directory created by the sourcing of
-+   `oe-init-build-env`, **This directory is not the autobuilder
-+   working `abworkdir`**, but rather the `build` directory inside it,
-+   i.e. it is something like `abworkdir/build`.
-+
-+3. `branchname`: The branch the build is running on. However, **This
-+   does not set the branch the build is running**, it is only used for
-+   build history. To change the branch of the build, modify the
-+   `branch` entry in `repos.json`.
-+
-+4. `reponame`: The repo the build is running on. Again, **This does
-+   not set the repo the build is running**, it is only used for build
-+   history.
-+
-+5. `-s`, `--sstateprefix`: *Defaults to empty*, the directory prefix
-+   to publish sstate into.
-+
-+6. `-b`, `--buildappsrcrev`: *Defaults to empty*, a build appliance
-+   SRCREV to use.
-+
-+7. `-p`, `--publish-dir`: *Optional*, sets the directory
-+   `scripts/publish-artefacts` script will be copying to.
-+
-+8. `-r`, `--results-dir`: *Optional*, sets the directory
-+   `scripts/collect-results` script will be copying to.
-+
-+9. `-u`, `--build-url`: *Optional*, sets the url to link back to this
-+   build from the error report server.
-+
-+10. `--build-type`: *Defaults to `quick`*, can be either `quick` or
-+    `full`. For `quick` type, toolchain tests are skipped.
-+
-+11. `-t`, `--test`: *Defaults to `false`*, if set to `true`, only
-+    `scripts/setup-config` is executed and the commands are dry-run.
-+
-+12. `-q`, `--quietlogging`: *Defaults to `false`*, prevents the
-+    flushing of `bitbake` stdout output.
-+
-+## Steps to build a target
-+
-+Suppose we are now in the `scripts` directory. We want to build the
-+target `poky-tiny` and work in the directory `$HOME/workdir` and want
-+to cache all the repos in the directory `$HOME/cache` for future use.
-+
-+1. Modify the `BASE_HOMEDIR` in `config.json` to a valid directory for the build to happen. Here we use `$HOME`
-+
-+```json
-+{
-+    "BASE_HOMEDIR" : "/home/usr"
-+    ...
-+}
-+```
-+
-+2. Create required directory `git/trash`. Here we create it under `$HOME`:
-+
-+```bash
-+$ mkdir -p $HOME/git/trash
-+```
-+
-+3. Check the `NEEDREPOS` entry for corresponding build targets in
-+   `config.json` and create the `repos.json` file according to the
-+   [Json File Containing Repository
-+   Data](##{Json-File-Containing-Repository-Data}) section above. In
-+   this case `poky` and `bitbake` are needed, so the `repos.json` file
-+   should look like:
-+
-+```json
-+{
-+	"poky" : {
-+		"url" : "git://git.yoctoproject.org/poky",
-+		"branch" : "",
-+		"revision" : "HEAD",
-+		"checkout-dirname" : ".",
-+		"no-layer-add" : true,
-+		"call-init" : true
-+	},
-+	"bitbake" : {
-+		"url" : "git://git.openembedded.org/bitbake",
-+		"branch" : "master",
-+		"revision" : "HEAD",
-+		"no-layer-add" : true
-+	}
-+}
-+```
-+
-+4. Run `scripts/prepare-shared-repos` and point to the `repos.json`
-+   file as well as the cache directory. In this case we want:
-+
-+```bash
-+$ ./prepare-shared-repos $HOME/repos.json $HOME/cache
-+```
-+
-+5. Run `scripts/shared-repo-unpack` and point to the `repos.json` file
-+   as well as the autobuilder's working directory, `-c` or the
-+   `--cache-dir` argument can be set since we have already fetched the
-+   repos in the previous step:
-+
-+```bash
-+$ ./shared-repo-unpack -c $HOME/cache $HOME/repos.json $HOME/workdir poky-tiny
-+```
-+
-+Now the `$HOME/workdir` should be created and `oe-init-build-env` should be
-+sourced, which creates a `build` directory inside `$HOME/workdir`.
-+
-+6. Run `scripts/run-config` with the target to build, the build
-+   directory (**Not the autobuilder working directory**), the branch
-+   and the repo we are building on ([**The last two arguments does not
-+   affect build**](##`scripts/run-config`)).
-+
-+```bash
-+$ ./run-config poky-tiny $HOME/workdir/build master poky
-+```
-+
-+7. If the build finished without error and is not published, the build
-+   directory should be rsynced to the `git/trash` directory. If the
-+   build failed, the `build` directory will be renamed to
-+   `build-renamed` and stay inside the working directory.
-+
-+## Notes
-+
-+1. Instead of asking user for the `config.json` file, all the entry
-+   point scripts referred to the file through function
-+   `util.loadconfig()`, which first finds out the absolute path of the
-+   current executing script (i.e. `scripts/prepare-shared-repos`) and
-+   then append `../config.json` to it. This is probably not a good
-+   idea.
-+
-+2. All the copy of the repos are done using `rsync`, `git clone
-+   --reference or git clone --shared` may be better.
-+
-+3. Using `rsync` also caused `prepare-shared-repos` and
-+   `shared-repo-unpack` script to do `git clone` and overwrite repo
-+   content every time they are being called, even when the repo
-+   content is exactly the same. We should probably only be doing `git
-+   clone` for new repos and do `git checkout` or `git pull` for
-+   existing repos.
-+
-+4. After a failed or published `scripts/run-config`, the build
-+   directory is simply appended with `-renamed` to avoid distracting
-+   other builds, this is probably not a good idea (Maybe append random
-+   string or build ID type of string after each build directory?).
-+
-+5. The path specified for `git clone` in function `fetchgitrepo()` in
-+   `scripts/utils.py` append `/` directly and causes the path to have
-+   two `/` if 'abworkdir' is passed in with a `/` at the end
-+   (e.g. `/home/workdir/` instead of `/home/workdir`), this does not
-+   have any effect on `git clone` but maybe an extra parsing/formating
-+   of the path is better.
-+
-+6. Feeding an incorrect target name into `scripts/shared-repo-unpack`
-+   and `scripts/run-config` will not result in an error. The scripts
-+   will instead use configurations in the `defaults` target and
-+   `scripts/run-config` will simply skip the bitbake command and exit
-+   normally with an exit code 0.
-+
-+7. `checkvnc` script tries to call `-kill` only on the first display,
-+   there should be more flexibility on this.
-</pre>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">-=-=-=-=-=-=-=-=-=-=-=-
-Links: You receive all messages sent to this group.
-
-View/Reply Online (#47784): <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/message/47784">https://lists.yoctoproject.org/g/yocto/message/47784</a>
-Mute This Topic: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/mt/68855528/1024635">https://lists.yoctoproject.org/mt/68855528/1024635</a>
-Group Owner: <a class="moz-txt-link-abbreviated" href="mailto:yocto+owner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
-Unsubscribe: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub</a>  [<a class="moz-txt-link-abbreviated" href="mailto:akuster@mvista.com">akuster@mvista.com</a>]
--=-=-=-=-=-=-=-=-=-=-=-
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------2E7973AF333938322DD72A90--
