@@ -1,91 +1,171 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.4572.1576912830321490123
+ by mx.groups.io with SMTP id smtpd.web11.5590.1576924130002786780
  for <yocto@lists.yoctoproject.org>;
- Fri, 20 Dec 2019 23:20:30 -0800
+ Sat, 21 Dec 2019 02:28:50 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=TTKRicyG;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: balazovic.peter@gmail.com)
+ dkim=missing; spf=softfail (domain: 3mdeb.com, ip: 140.211.169.56, mailfrom: maciej.pijanowski@3mdeb.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D94C6E012C2; Fri, 20 Dec 2019 23:20:29 -0800 (PST)
+	id 6CA5AE01148; Sat, 21 Dec 2019 02:28:49 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (balazovic.peter[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.166.178 listed in list.dnswl.org]
+	*      [178.33.253.128 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE897E01145
-	for <yocto@yoctoproject.org>; Fri, 20 Dec 2019 23:20:28 -0800 (PST)
-Received: by mail-il1-f178.google.com with SMTP id c4so9959179ilo.7
-        for <yocto@yoctoproject.org>; Fri, 20 Dec 2019 23:20:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=Vqb20YShfVxSrcp+qGpsGxJ40aReOAph02pXrryA6kc=;
-        b=TTKRicyGRnPXRYRnl0tHSfs1mZoMBJSwkIIOLztWja29PQ+xk1sko0dlC4xNrgbJE4
-         uk/BIUGmMaSWNiB+UKIC0g71kTfik3n6LB587a2ZEsE/75RiwKaOGOm2OT3FklfeL+IB
-         9RPuojy4UMJOtaqmUnrv3Z1kr77DA3HJQfzoD2oip58j1rwzcibhqYssGeA6g9B43OVM
-         9aLFEywqtZt8Q8lrBeSgyFJp2ZLmgUkGuK99UE7H+LTEcJhHTExwljs8lCQXyuqGLESV
-         MAGA15FNzlegK9IbzOrdbHC1kKCZCclbihk+hFk4zJHD5ZYeKVqIHX2TsKeAEZSbgaNG
-         rsOA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=Vqb20YShfVxSrcp+qGpsGxJ40aReOAph02pXrryA6kc=;
-        b=W7DA7GhaLHtYSbP+u2gkufZGyo8KpMdZfbIIR8qzfX13uF5F7u2QUQA8b2OrOatbMr
-         qZuRYB66xQNsqIax6BBaeBHtpADgJHICddqCFiSvD+aA43FL4eMLDG7hch51hMoJeT4S
-         /K6PSGhLEPnBiMAPvSRcvqdRHhVyDVkFLWnb5jJ7pJgeO2PFG2DSlmmBksp3jcz9xdKi
-         8j5fxj2sbSKeuKDJLeTDRlYA5nLIlAl/mw6CCdjNOYUxwVBG1VkAKbuO/JNZRnUvBxUI
-         i2D4ATFLOOhQrLsAYTO4wXlMWlgLlfqCXojfDvHc16+8AfsMWmMghsDzn9Up+Jnf3MDA
-         X6Ww==
-X-Gm-Message-State: APjAAAV4ims/wdeKY8VmXMmHdW59X+627HPT0jwhhczXSXzQsJjWPmMM
-	dtFygOi3WMbvDvThGRRYAe45KPpOI/8YpSmbMMFmS3bb
-X-Google-Smtp-Source: APXvYqxYb72kLOp/BZwsrCIsERGXYo2mIWKDZnJfaboHj9hwukDan2Qtb8j1si7tE/7K6sydQJPkkKSG+t3PCQSLzZo=
-X-Received: by 2002:a92:5a45:: with SMTP id o66mr15299790ilb.67.1576912828127;
- Fri, 20 Dec 2019 23:20:28 -0800 (PST)
+X-Greylist: delayed 2398 seconds by postgrey-1.32 at yocto-www; Sat, 21 Dec 2019 02:28:47 PST
+Received: from 13.mo1.mail-out.ovh.net (13.mo1.mail-out.ovh.net [178.33.253.128])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CC06E01143
+	for <yocto@yoctoproject.org>; Sat, 21 Dec 2019 02:28:47 -0800 (PST)
+Received: from player786.ha.ovh.net (unknown [10.108.35.240])
+	by mo1.mail-out.ovh.net (Postfix) with ESMTP id 196A71A54DD
+	for <yocto@yoctoproject.org>; Sat, 21 Dec 2019 10:12:16 +0100 (CET)
+Received: from 3mdeb.com (89-66-81-201.dynamic.chello.pl [89.66.81.201])
+	(Authenticated sender: maciej.pijanowski@3mdeb.com)
+	by player786.ha.ovh.net (Postfix) with ESMTPSA id A22F2DA28EF1;
+	Sat, 21 Dec 2019 09:12:14 +0000 (UTC)
+Subject: Re: [yocto] ubuntu from Yocto
+To: Peter Balazovic <balazovic.peter@gmail.com>,
+ Yocto list discussion <yocto@yoctoproject.org>
+References: <CAFq4t4hjJV396RJpkaY1CW4VMefv5c0JnRac6SaLkRt+20R=2w@mail.gmail.com>
+From: "Maciej Pijanowski" <maciej.pijanowski@3mdeb.com>
+Message-ID: <be126980-9cb4-ad0f-2eb1-d78d93bf9e6f@3mdeb.com>
+Date: Sat, 21 Dec 2019 10:12:13 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-From: "Peter Balazovic" <balazovic.peter@gmail.com>
-Date: Sat, 21 Dec 2019 08:20:16 +0100
-Message-ID: <CAFq4t4hjJV396RJpkaY1CW4VMefv5c0JnRac6SaLkRt+20R=2w@mail.gmail.com>
-Subject: ubuntu from Yocto
-To: Yocto list discussion <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000f65f32059a31a046"
+In-Reply-To: <CAFq4t4hjJV396RJpkaY1CW4VMefv5c0JnRac6SaLkRt+20R=2w@mail.gmail.com>
+X-Ovh-Tracer-Id: 16280231179569802921
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrvddugedguddvvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefuvfhfhffkffgfgggjtgesrgdtreertdefjeenucfhrhhomhepofgrtghivghjucfrihhjrghnohifshhkihcuoehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmqeenucffohhmrghinhepfehmuggvsgdrtghomhdphihotghtohhprhhojhgvtghtrdhorhhgpdhgihhthhhusgdrtghomhenucfkpheptddrtddrtddrtddpkeelrdeiiedrkedurddvtddunecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejkeeirdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepmhgrtghivghjrdhpihhjrghnohifshhkihesfehmuggvsgdrtghomhdprhgtphhtthhopeihohgtthhoseihohgtthhophhrohhjvggtthdrohhrghenucevlhhushhtvghrufhiiigvpedt
+Content-Type: multipart/alternative;
+ boundary="------------2E2923B32F0A0CBE56E1B8E1"
+Content-Language: en-US
 
---000000000000f65f32059a31a046
-Content-Type: text/plain; charset="UTF-8"
-
-Hello guys
-
-Is there a way how to prepare "Ubuntu distribution" from Yocto project. It
-means to create a standard Ubuntu (or other standard distribution).
-I am looking for a procedure for it.
-Please, can you point/link me?
-
-Thank you.
-Peter
-
---000000000000f65f32059a31a046
-Content-Type: text/html; charset="UTF-8"
+--------------2E2923B32F0A0CBE56E1B8E1
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello guys<br><div><br></div><div>Is there a way how to pr=
-epare &quot;Ubuntu distribution&quot; from Yocto project. It means to creat=
-e a standard=C2=A0Ubuntu (or other standard distribution).</div><div>I am l=
-ooking for a procedure for it.</div><div>Please, can you point/link me?=C2=
-=A0</div><div><br></div><div>Thank you.</div><div>Peter</div></div>
 
---000000000000f65f32059a31a046--
+On 21.12.2019 08:20, Peter Balazovic wrote:
+> Hello guys
+>
+> Is there a way how to prepare "Ubuntu distribution" from Yocto=20
+> project. It means to create a standard=C2=A0Ubuntu (or other standard=20
+> distribution).
+There is not. With Yocto you create your own distribution.
+> I am looking for a procedure for it.
+> Please, can you point/link me?
+You may be interested in isar then: https://github.com/ilbers/isar
+It also uses OpenEmbedded but takes advantage of Debian binary
+packages instead of building everything from source.
+>
+> Thank you.
+> Peter
+>
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+>
+> View/Reply Online (#47787): https://lists.yoctoproject.org/g/yocto/mess=
+age/47787
+> Mute This Topic: https://lists.yoctoproject.org/mt/68963464/3616795
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [maciej.pija=
+nowski@3mdeb.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+
+--=20
+Maciej Pijanowski
+Embedded Systems Engineer
+https://3mdeb.com | @3mdeb_com
+
+
+--------------2E2923B32F0A0CBE56E1B8E1
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 21.12.2019 08:20, Peter Balazovic
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAFq4t4hjJV396RJpkaY1CW4VMefv5c0JnRac6SaLkRt+20R=3D2w@mail.gm=
+ail.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
+TF-8">
+      <div dir=3D"ltr">Hello guys<br>
+        <div><br>
+        </div>
+        <div>Is there a way how to prepare "Ubuntu distribution" from
+          Yocto project. It means to create a standard=C2=A0Ubuntu (or ot=
+her
+          standard distribution).</div>
+      </div>
+    </blockquote>
+    There is not. With Yocto you create your own distribution.<br>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAFq4t4hjJV396RJpkaY1CW4VMefv5c0JnRac6SaLkRt+20R=3D2w@mail.gm=
+ail.com">
+      <div dir=3D"ltr">
+        <div>I am looking for a procedure for it.</div>
+        <div>Please, can you point/link me? <br>
+        </div>
+      </div>
+    </blockquote>
+    You may be interested in isar then: <a class=3D"moz-txt-link-freetext=
+" href=3D"https://github.com/ilbers/isar">https://github.com/ilbers/isar<=
+/a><br>
+    It also uses OpenEmbedded but takes advantage of Debian binary<br>
+    packages instead of building everything from source.<br>
+    <blockquote type=3D"cite"
+cite=3D"mid:CAFq4t4hjJV396RJpkaY1CW4VMefv5c0JnRac6SaLkRt+20R=3D2w@mail.gm=
+ail.com">
+      <div dir=3D"ltr">
+        <div><br>
+        </div>
+        <div>Thank you.</div>
+        <div>Peter</div>
+      </div>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">-=3D-=3D-=3D-=3D-=3D-=3D-=3D=
+-=3D-=3D-=3D-=3D-
+Links: You receive all messages sent to this group.
+
+View/Reply Online (#47787): <a class=3D"moz-txt-link-freetext" href=3D"ht=
+tps://lists.yoctoproject.org/g/yocto/message/47787">https://lists.yoctopr=
+oject.org/g/yocto/message/47787</a>
+Mute This Topic: <a class=3D"moz-txt-link-freetext" href=3D"https://lists=
+.yoctoproject.org/mt/68963464/3616795">https://lists.yoctoproject.org/mt/=
+68963464/3616795</a>
+Group Owner: <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:yocto+o=
+wner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
+Unsubscribe: <a class=3D"moz-txt-link-freetext" href=3D"https://lists.yoc=
+toproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub=
+</a>  [<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:maciej.pijano=
+wski@3mdeb.com">maciej.pijanowski@3mdeb.com</a>]
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+</pre>
+    </blockquote>
+    <pre class=3D"moz-signature" cols=3D"72">--=20
+Maciej Pijanowski
+Embedded Systems Engineer
+<a class=3D"moz-txt-link-freetext" href=3D"https://3mdeb.com">https://3md=
+eb.com</a> | @3mdeb_com</pre>
+  </body>
+</html>
+
+--------------2E2923B32F0A0CBE56E1B8E1--
