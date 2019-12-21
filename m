@@ -1,171 +1,124 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.5590.1576924130002786780
+ by mx.groups.io with SMTP id smtpd.web10.6230.1576930168645112792
  for <yocto@lists.yoctoproject.org>;
- Sat, 21 Dec 2019 02:28:50 -0800
+ Sat, 21 Dec 2019 04:09:31 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: 3mdeb.com, ip: 140.211.169.56, mailfrom: maciej.pijanowski@3mdeb.com)
+ dkim=fail reason="body hash did not verify" header.i=@rsi-elektrotechnik.de header.s=strato-dkim-0002 header.b=ODF0IVTb;
+ spf=none, err=permanent DNS error (domain: rsi-elektrotechnik.de, ip: 140.211.169.56, mailfrom: prvs=1258157787=holzmayr@rsi-elektrotechnik.de)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6CA5AE01148; Sat, 21 Dec 2019 02:28:49 -0800 (PST)
+	id C1570E01148; Sat, 21 Dec 2019 04:09:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [178.33.253.128 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 2398 seconds by postgrey-1.32 at yocto-www; Sat, 21 Dec 2019 02:28:47 PST
-Received: from 13.mo1.mail-out.ovh.net (13.mo1.mail-out.ovh.net [178.33.253.128])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CC06E01143
-	for <yocto@yoctoproject.org>; Sat, 21 Dec 2019 02:28:47 -0800 (PST)
-Received: from player786.ha.ovh.net (unknown [10.108.35.240])
-	by mo1.mail-out.ovh.net (Postfix) with ESMTP id 196A71A54DD
-	for <yocto@yoctoproject.org>; Sat, 21 Dec 2019 10:12:16 +0100 (CET)
-Received: from 3mdeb.com (89-66-81-201.dynamic.chello.pl [89.66.81.201])
-	(Authenticated sender: maciej.pijanowski@3mdeb.com)
-	by player786.ha.ovh.net (Postfix) with ESMTPSA id A22F2DA28EF1;
-	Sat, 21 Dec 2019 09:12:14 +0000 (UTC)
+	*      [85.215.255.20 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [85.215.255.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CE7EE01140
+	for <yocto@yoctoproject.org>; Sat, 21 Dec 2019 04:09:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1576930163;
+	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
+	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
+	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+	bh=lY3Yl5pHgEIFU7JcdVu2AeStEZM0UJ11t56ddpsqrjc=;
+	b=ODF0IVTbg89Dup7Y8iD+VC2qcMmXYxMABmloKHi0ynZIa/5Phhx3ezje+9CGHNGrpr
+	5C5hhH/ybLg2KAcN7D3IxUwDZ2IQ01nn3g5pRyhNOCrQ2nP23IqQGlXF1sEOZImO28Au
+	VWuybgTO1jt+Cll8miruaMmL5QIjWECXgjkkP3Zst2h0UaPUPYI+gOFtCGJ+Pt2jkl6f
+	ePhHs642hBPi+BNcPJIKWapKg3m6XCERAZ5Q3Yd/eZjr+GXuYN8wQJH5+c3dJ4jASK5f
+	E9bdt+g8gc4NiltK1kI3Z03MySZhJ4oAX9/rFru8LdG9Xa41rzc9ZBJ7RyS+COxQ56yj
+	SHhw==
+X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/KqCOd+ZZzzoK8epFp9XQIUl6aPGQL"
+X-RZG-CLASS-ID: mo00
+Received: from mail.rsi-elektrotechnik.de
+	by smtp.strato.de (RZmta 46.1.1 AUTH)
+	with ESMTPSA id t07db7vBLC9M5uh
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits))
+	(Client did not present a certificate);
+	Sat, 21 Dec 2019 13:09:22 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
+	d=rsi-elektrotechnik.de; s=MDaemon; t=1576930162; x=1577534962;
+	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
+	Subject:Message-ID:References:MIME-Version:Content-Type:
+	Content-Disposition:Content-Transfer-Encoding:In-Reply-To; bh=lY
+	3Yl5pHgEIFU7JcdVu2AeStEZM0UJ11t56ddpsqrjc=; b=iTmgJiS6RvBvFI52S+
+	cGZQEwB2C6nqW5vb2X/4EqBD2NF6/VeDdOTf55+HsJ25ZLTMXvho+rLUegQV5wmN
+	wlc1f2Vo9WbEYe/+IDEUeLDGCk8byb1kxwRvHOxUd70PgnxUhdnYi0Oui9fR2mdx
+	BwK6wk50CgCM9bMpBSewOk5xE=
+Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v19.5.3) with ESMTPSA id md50000229972.msg; 
+	Sat, 21 Dec 2019 13:09:21 +0100
+X-MDRemoteIP: 178.27.65.232
+X-MDHelo: jholzmayr.localdomain
+X-MDArrival-Date: Sat, 21 Dec 2019 13:09:21 +0100
+X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
+X-Return-Path: prvs=1258157787=holzmayr@rsi-elektrotechnik.de
+X-Envelope-From: holzmayr@rsi-elektrotechnik.de
+Date: Sat, 21 Dec 2019 13:09:09 +0100
+From: "Josef Holzmayr" <holzmayr@rsi-elektrotechnik.de>
+To: Peter Balazovic <balazovic.peter@gmail.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
 Subject: Re: [yocto] ubuntu from Yocto
-To: Peter Balazovic <balazovic.peter@gmail.com>,
- Yocto list discussion <yocto@yoctoproject.org>
+Message-ID: <20191221120909.qbn5fucudbk5lqjl@jholzmayr.localdomain>
 References: <CAFq4t4hjJV396RJpkaY1CW4VMefv5c0JnRac6SaLkRt+20R=2w@mail.gmail.com>
-From: "Maciej Pijanowski" <maciej.pijanowski@3mdeb.com>
-Message-ID: <be126980-9cb4-ad0f-2eb1-d78d93bf9e6f@3mdeb.com>
-Date: Sat, 21 Dec 2019 10:12:13 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
 MIME-Version: 1.0
 In-Reply-To: <CAFq4t4hjJV396RJpkaY1CW4VMefv5c0JnRac6SaLkRt+20R=2w@mail.gmail.com>
-X-Ovh-Tracer-Id: 16280231179569802921
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedufedrvddugedguddvvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefuvfhfhffkffgfgggjtgesrgdtreertdefjeenucfhrhhomhepofgrtghivghjucfrihhjrghnohifshhkihcuoehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmqeenucffohhmrghinhepfehmuggvsgdrtghomhdphihotghtohhprhhojhgvtghtrdhorhhgpdhgihhthhhusgdrtghomhenucfkpheptddrtddrtddrtddpkeelrdeiiedrkedurddvtddunecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopehplhgrhigvrhejkeeirdhhrgdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepmhgrtghivghjrdhpihhjrghnohifshhkihesfehmuggvsgdrtghomhdprhgtphhtthhopeihohgtthhoseihohgtthhophhrohhjvggtthdrohhrghenucevlhhushhtvghrufhiiigvpedt
-Content-Type: multipart/alternative;
- boundary="------------2E2923B32F0A0CBE56E1B8E1"
-Content-Language: en-US
-
---------------2E2923B32F0A0CBE56E1B8E1
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
+Howdy!
 
-On 21.12.2019 08:20, Peter Balazovic wrote:
+On Sat, Dec 21, 2019 at 08:20:16AM +0100, Peter Balazovic wrote:
 > Hello guys
->
-> Is there a way how to prepare "Ubuntu distribution" from Yocto=20
-> project. It means to create a standard=C2=A0Ubuntu (or other standard=20
-> distribution).
-There is not. With Yocto you create your own distribution.
+>=20
+> Is there a way how to prepare "Ubuntu distribution" from Yocto project.=
+ It
+> means to create a standard Ubuntu (or other standard distribution).
 > I am looking for a procedure for it.
 > Please, can you point/link me?
-You may be interested in isar then: https://github.com/ilbers/isar
-It also uses OpenEmbedded but takes advantage of Debian binary
-packages instead of building everything from source.
->
-> Thank you.
-> Peter
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
->
-> View/Reply Online (#47787): https://lists.yoctoproject.org/g/yocto/mess=
-age/47787
-> Mute This Topic: https://lists.yoctoproject.org/mt/68963464/3616795
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [maciej.pija=
-nowski@3mdeb.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+
+Sorry, but there is no such thing. Yocto respectively OpenEmbedded
+technology can build a custom distribution that suits a lot of cases,
+but not being a drop-in replacement for general distributions. You might
+have better luck asking the ubuntu folks if they offer customization
+tooling.
+
+Greetz
+
 
 --=20
-Maciej Pijanowski
-Embedded Systems Engineer
-https://3mdeb.com | @3mdeb_com
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+Josef Holzmayr
+Software Developer Embedded Systems
 
+Tel: +49 8444 9204-48
+Fax: +49 8444 9204-50
 
---------------2E2923B32F0A0CBE56E1B8E1
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+R-S-I Elektrotechnik GmbH & Co. KG
+Woelkestrasse 11
+D-85301 Schweitenkirchen
+www.rsi-elektrotechnik.de
+=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
+=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
+Amtsgericht Ingolstadt =E2=80=93 GmbH: HRB 191328 =E2=80=93 KG: HRA 17039=
+3
+Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+Ust-IdNr: DE 128592548=20
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <p><br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 21.12.2019 08:20, Peter Balazovic
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAFq4t4hjJV396RJpkaY1CW4VMefv5c0JnRac6SaLkRt+20R=3D2w@mail.gm=
-ail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">Hello guys<br>
-        <div><br>
-        </div>
-        <div>Is there a way how to prepare "Ubuntu distribution" from
-          Yocto project. It means to create a standard=C2=A0Ubuntu (or ot=
-her
-          standard distribution).</div>
-      </div>
-    </blockquote>
-    There is not. With Yocto you create your own distribution.<br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAFq4t4hjJV396RJpkaY1CW4VMefv5c0JnRac6SaLkRt+20R=3D2w@mail.gm=
-ail.com">
-      <div dir=3D"ltr">
-        <div>I am looking for a procedure for it.</div>
-        <div>Please, can you point/link me? <br>
-        </div>
-      </div>
-    </blockquote>
-    You may be interested in isar then: <a class=3D"moz-txt-link-freetext=
-" href=3D"https://github.com/ilbers/isar">https://github.com/ilbers/isar<=
-/a><br>
-    It also uses OpenEmbedded but takes advantage of Debian binary<br>
-    packages instead of building everything from source.<br>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAFq4t4hjJV396RJpkaY1CW4VMefv5c0JnRac6SaLkRt+20R=3D2w@mail.gm=
-ail.com">
-      <div dir=3D"ltr">
-        <div><br>
-        </div>
-        <div>Thank you.</div>
-        <div>Peter</div>
-      </div>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">-=3D-=3D-=3D-=3D-=3D-=3D-=3D=
--=3D-=3D-=3D-=3D-
-Links: You receive all messages sent to this group.
+_____________________________________________________________
+Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+USt-IdNr.: DE 128592548
 
-View/Reply Online (#47787): <a class=3D"moz-txt-link-freetext" href=3D"ht=
-tps://lists.yoctoproject.org/g/yocto/message/47787">https://lists.yoctopr=
-oject.org/g/yocto/message/47787</a>
-Mute This Topic: <a class=3D"moz-txt-link-freetext" href=3D"https://lists=
-.yoctoproject.org/mt/68963464/3616795">https://lists.yoctoproject.org/mt/=
-68963464/3616795</a>
-Group Owner: <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:yocto+o=
-wner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
-Unsubscribe: <a class=3D"moz-txt-link-freetext" href=3D"https://lists.yoc=
-toproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub=
-</a>  [<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:maciej.pijano=
-wski@3mdeb.com">maciej.pijanowski@3mdeb.com</a>]
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-</pre>
-    </blockquote>
-    <pre class=3D"moz-signature" cols=3D"72">--=20
-Maciej Pijanowski
-Embedded Systems Engineer
-<a class=3D"moz-txt-link-freetext" href=3D"https://3mdeb.com">https://3md=
-eb.com</a> | @3mdeb_com</pre>
-  </body>
-</html>
-
---------------2E2923B32F0A0CBE56E1B8E1--
