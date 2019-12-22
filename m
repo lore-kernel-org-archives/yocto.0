@@ -1,73 +1,132 @@
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
- by mx.groups.io with SMTP id smtpd.web10.1527.1577041827342738666
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.1635.1577042894396334000
  for <yocto@lists.yoctoproject.org>;
- Sun, 22 Dec 2019 11:10:27 -0800
+ Sun, 22 Dec 2019 11:28:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=jUQOG39A;
- spf=pass (domain: gmail.com, ip: 209.85.216.44, mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f44.google.com with SMTP id d5so6497637pjz.5
-        for <yocto@lists.yoctoproject.org>; Sun, 22 Dec 2019 11:10:27 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=CZtSlTWv;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: raj.khem@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id D9949E0122B; Sun, 22 Dec 2019 11:28:11 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (raj.khem[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.222.174 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 503A3E00E1F
+	for <yocto@yoctoproject.org>; Sun, 22 Dec 2019 11:28:10 -0800 (PST)
+Received: by mail-qk1-f174.google.com with SMTP id w127so11972775qkb.11
+        for <yocto@yoctoproject.org>; Sun, 22 Dec 2019 11:28:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=C2Is5LYI+MH4Qwd0OJWAIFSK+957UvMrzebQ01nzdCA=;
-        b=jUQOG39AN4vVsZ+G2muEKHRbEABEHwNVjak3zGi54H4PmC8jRP9+QLSbhcMz0vqLQ3
-         9tGPv1jqz0oSHfPZCVRbBvZht7CVNzWSXRcpAsnl5UUnKbU1XnYuLaiP8iXEMyubqESg
-         CxThhc4QPXbi/jAG6VuFluL1ueMJkG6FFn//GZcIcdkmAxPpM7NuXG0kJVtz3Dt7POkG
-         dbo/8HHa9dJ55kuy0DkUMABnIuosRxGD6ytZeV7eku6xqK6c69W31TRVTywK1rEpN42G
-         4Z6eLzO1eXiysxVXtU6dBAthxTSWAoX6aTzyUfGuftS9oE2rtbYzuEdNwvDVhJW6/2Ud
-         MffQ==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=antv2Lsejo7BPXnN7TfNUzckT5/at3d6KAsJGIVtatk=;
+        b=CZtSlTWvdgfE28usMOafnh7FbM5Mlud/niEazoW+HO+9JIDLB4kKtk9tmP0WRd7qPC
+         6I4fSnnnh74F9XdXoHxELkgmhWamjRcfxLo1GV3KhbZxocbr9nXb+GY9p31m99ezWH/z
+         4GNn49fhLx1QgGicPxCLLxbdNOSguIUyua7cSDwTDxBeDyB6S8XjBxQNKAv64DeymS8R
+         LgKf6OtjINeKi+aMVBi/Am5+7ZJJYsK67YJnH5hLj9eWSCKMUxfkuszfDUBZdAuuY0Yy
+         ADWnvxlNb53qsIHfi7UZhHvvRxLhiv6nL/KpOqgDXfeSoYSXjyxrbAVtxEFIne0QoxOk
+         5A8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references;
-        bh=C2Is5LYI+MH4Qwd0OJWAIFSK+957UvMrzebQ01nzdCA=;
-        b=KRI083Y87O0+Mr//kb3IFOKxikRCNz4fXkZ2BcOkFzDd5ipgnWR5BMxdCk1Lz7I0mt
-         A6F7W5fMwKYrrwd7AqXsFadO7fVv+9PmGMlx2zH91bpDGc78YxA7Ni82av/aNXMVn6y9
-         Evqz1a4zgNY9M591GfIqt2vqJd+P7jNQCStwBO7mKeu9Wj5NJW6mdvKjBTHY5Ev0IcQ3
-         oaYFRe6ahTxjG7s0/T3bDRwSThxy2oVT086pmLcrFxg2L2oawNOXUwGWesfnG1EQoFn7
-         soC+4ojZ+81NcYPa7dr79KWMfdNiZTI/wwzU8KPWQ1ZglpS0v1S7KtpYrn+0gllS4L/r
-         0e6w==
-X-Gm-Message-State: APjAAAUd7426Q4YkiquyZy8ErWc9kL4HbPgSTp50DyEjQX+TPmoOEtfi
-	ECmUY2q1es7bqLX6094jPVNQTK/jmpY=
-X-Google-Smtp-Source: APXvYqxFlbkYtGKOXCH2uvTvGZfHf2fBDAFkgKWb/NEwvhTv5YscvpB7cAACLMRIoy1ydAB+7DhKuA==
-X-Received: by 2002:a17:90a:b102:: with SMTP id z2mr30061226pjq.120.1577041826750;
-        Sun, 22 Dec 2019 11:10:26 -0800 (PST)
-Return-Path: <akuster808@gmail.com>
-Received: from localhost.localdomain (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id y6sm19338974pgc.10.2019.12.22.11.10.26
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 22 Dec 2019 11:10:26 -0800 (PST)
-From: "Armpit" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 3/3] smack-test: add feature check for smack
-Date: Sun, 22 Dec 2019 19:10:23 +0000
-Message-Id: <20191222191023.3913-3-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20191222191023.3913-1-akuster808@gmail.com>
-References: <20191222191023.3913-1-akuster808@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=antv2Lsejo7BPXnN7TfNUzckT5/at3d6KAsJGIVtatk=;
+        b=Jo+hKfPmnxpwtZnk+Se3CyRseoUTp4PQeumC5zQYwG0XaU2pjmziFXhbCF2222Ovbm
+         WqJUx5NGClBtCQJef8ISItlcY37c3x0AlF0bOdqvrz2Xea9ur2x6/iaMlbLy7G2xlc29
+         EhmfG6OCbIf4NppdKLeyCj+RGKQ1xmp9tmKpv7QN6ovlAU4uE8lkKwidyujFFuqkO77q
+         PUHQaR9UJqS4VNOjQDnIC7fzXWGMcrmlVUdGZTu94LerPh648txwekUOSIA/ZELAG8DA
+         p3xXtMG9VBIQ3z6Cnsh/T2JSNPKN1JLoJScZdxFEN21Inn1icdcy4ag76DgyvmGE2LTJ
+         8JzA==
+X-Gm-Message-State: APjAAAUsAd0OM1xmrFDJon1i2tlba+H5Ms56nAq1wBZpSwtVuENpvVIC
+	DzniFIc1zfgB4kGGJ81eyXuf9CqI5Wj9Yq0Hpzk=
+X-Google-Smtp-Source: APXvYqzYSXdQHbES1veF0IPzL08vqZmgtaS3F7RZ3R0imvaZZs9RBHt5tnIukkokeMyUxlLyMlqi2YNdvc+jufvM0Mw=
+X-Received: by 2002:a05:620a:6b8:: with SMTP id i24mr23566519qkh.9.1577042889356;
+ Sun, 22 Dec 2019 11:28:09 -0800 (PST)
+MIME-Version: 1.0
+References: <509597146.1609359.1577035309915.ref@mail.yahoo.com> <509597146.1609359.1577035309915@mail.yahoo.com>
+In-Reply-To: <509597146.1609359.1577035309915@mail.yahoo.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Date: Sun, 22 Dec 2019 11:27:43 -0800
+Message-ID: <CAMKF1srJV2UFsspUSxbRmOLzkY8u8FYBEB_BWsjaPx-ymamuOw@mail.gmail.com>
+Subject: Re: [yocto] Raspberry pi 4 recipe and layer issues.
+To: Ed Vidal <develone@sbcglobal.net>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, Josef Holzmayr <holzmayr@rsi-elektrotechnik.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-mac/smack/smack-test_1.0.bb | 4 ++++
- 1 file changed, 4 insertions(+)
+Hi Ed
 
-diff --git a/recipes-mac/smack/smack-test_1.0.bb b/recipes-mac/smack/smack-test_1.0.bb
-index 7cf8f2e..d5de607 100644
---- a/recipes-mac/smack/smack-test_1.0.bb
-+++ b/recipes-mac/smack/smack-test_1.0.bb
-@@ -12,6 +12,10 @@ SRC_URI = " \
- 
- S = "${WORKDIR}"
- 
-+inherit features_check
-+
-+REQUIRED_DISTRO_FEATURES = "smack"
-+
- do_install() {
-     install -d ${D}${sbindir}
-     install -m 0755 notroot.py ${D}${sbindir}
--- 
-2.17.1
+if you are building on target, you need to install glibc-dev package
+on your target as well. or perhaps you can build your image for target
+with
 
+IMAGE_INSTALL_append =3D " packagegroup-core-buildessential"
+
+added to local.conf
+
+On Sun, Dec 22, 2019 at 9:22 AM Ed Vidal <develone@sbcglobal.net> wrote:
+>
+> Hi,
+> Testing 1 of the 4 recipes in meta-yosys-tools nextpnr_0.1.bb.
+> I tried testing on target rpi4-64 to determine, EXTRA_OECMAKE =3D "-DARCH=
+=3Dice40 -DBUILD_GUI=3DOFF  ${S} "
+> variable.  In yocto this uses the build directory.  On the target, "cmake=
+ -DARACH=3Dice40 -DBUILD_GUI=3DOFF ."
+> which is the nextpnr directory.  It appears that yocto uses ninja, while =
+the target uses make.  I have copies of both
+> CMakeError.log files for target & yocto at the links below.
+>
+> https://github.com/develone/meta-yosys-tools/blob/master/doc-recipes/targ=
+et/CMakeFiles/CMakeError.log
+>
+> & https://github.com/develone/meta-yosys-tools/blob/master/doc-recipes/yo=
+cto/CMakeFiles/CMakeError.log
+>
+>
+> The target builds and installs while yocto fails do_configure step.
+>
+> The recipe I am testing with the cmd "bitbake -DDD nextpnr" is
+>
+> https://github.com/develone/meta-yosys-tools/blob/master/recipes-nextpnr/=
+nextpnr/nextpnr_0.1.bb
+>
+>
+> This recipe nextpnr_0.1.bb is dependent on a 2nd recipe in meta-yosys-too=
+ls layer icestorm_0.1.bb in the same layer.  This recipe creates the RPMs, =
+but is failing in QA step.  I use the "rpm -i icestorm-0.1+git0+041c075e4a-=
+r0.aarch64.rpm" to test on the target.
+>
+> Let me know if I can provide any additional information.
+> Thanks
+>
+> Regards
+>
+>
+> Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595-1613
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+> You automatically follow any topics you start or reply to.
+>
+> View/Reply Online (#47795): https://lists.yoctoproject.org/g/yocto/messag=
+e/47795
+> Mute This Topic: https://lists.yoctoproject.org/mt/68293684/1997914
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [raj.khem@gmai=
+l.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
