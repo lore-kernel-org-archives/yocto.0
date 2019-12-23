@@ -1,271 +1,305 @@
-Received: from mail-pf1-f194.google.com (mail-pf1-f194.google.com [209.85.210.194])
- by mx.groups.io with SMTP id smtpd.web11.612.1577125945801133343
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web09.1913.1577133102069030313
  for <yocto@lists.yoctoproject.org>;
- Mon, 23 Dec 2019 10:32:34 -0800
+ Mon, 23 Dec 2019 12:31:42 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=OVziCW2K;
- spf=temperror, err=temporary DNS error (domain: mvista.com, ip: 209.85.210.194, mailfrom: akuster@mvista.com)
-Received: by mail-pf1-f194.google.com with SMTP id 195so8693323pfw.11
-        for <yocto@lists.yoctoproject.org>; Mon, 23 Dec 2019 10:32:25 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=NT3Bu3op;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 7795FE0130A; Mon, 23 Dec 2019 12:31:41 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (sjolley.yp.pm[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.210.172 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B252EE01275
+	for <yocto@yoctoproject.org>; Mon, 23 Dec 2019 12:31:39 -0800 (PST)
+Received: by mail-pf1-f172.google.com with SMTP id w62so9694416pfw.8
+        for <yocto@yoctoproject.org>; Mon, 23 Dec 2019 12:31:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language;
-        bh=brNRAgOklnr5qY1oByeuB0Qfc9nmiuIPmwTlsIhzIxk=;
-        b=OVziCW2Kebw/q5zvyN+erbelFngIKie5Fdv6Tez1vUbeEWJtqJZGqqLE3i9I5434d+
-         T6aeeV9j9FIU3bQSmaOVabONYraweNn9JiEV5us1sIUKD8Njn0NPyHEmsG+xfCp8B/wD
-         wupsbJrgRmgqyJhqIwBF54tvy4eolsHSAUEsEsSAeClyUwFYhDwxKJK7c52O8RcKW7Fo
-         GpvBY/B9/khPx8LlthS7uOGRe2XWG4KXFsosNP/L8DwBcAV+weXN+p0uWG6LfJDr4PVd
-         hAfI+fXzMwsqPSimcwgn0kAc68JVM1BB6ANuuFhAWk4JAooEKA87oy+33Qse1vGRSpZe
-         6+HQ==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version:content-language
+         :thread-index;
+        bh=yF+VTO+PwwG6BbtKLc2pCbsnh16ozesUB4mMsR8Crus=;
+        b=NT3Bu3opkL1RH7ZUOpe0r+4xe07JFWs8TReV3R2rFWdZtb5AOmbYXLr622JV564zdC
+         oS3gObSjqorE67mQvdPT8rD87McjxAdD2TTGFXBuO/DLNnQZgVzXAlvH6iDpymxZ/fKc
+         Y1/3Ev2/KI2mACj63+tfwGKvoZfgU6FX51S80BrpjlwTG5VYXuqO2Ija6iQ6Webq3UQS
+         JLqS2zq4TYOv4IxuezVsz9lAEP2jsFI6PWm6l/RKIFNDHaVDuQL5oAvxf2k7MMgUss8/
+         G56ZjaWl2HcCcRNsTgDUAmZhqECNf9lT/oRFuaAh2O5CyUWS0cUb1Y1t/Ueg+VLNSS3w
+         ShUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language;
-        bh=brNRAgOklnr5qY1oByeuB0Qfc9nmiuIPmwTlsIhzIxk=;
-        b=dWBkV5iCIOIJQ4IPnxDWe8qYd+MoaYUX4PMZ3rlY6vsVDNMBtNhFYsH4K/zFVFDKAc
-         d5qRo4aWuiD8f5aY25DL/fZswURz+1Yl25TwDoI8Ly5mxeQIWJ/mOs+Ttg5b1Y7IRwcP
-         1vJ0CqkqTBFK0wTcNwRQ+G0Aibv78iPwcbYt2lqzgqc/lhJ0VijRJm2GcoBcyiqHaUBP
-         2NOHQgrON7+ifCPpP/n5Nnd8aJBLPiH8gpRBWQJkrkBiqlGiUmnOHthwsWwBYs79U+f6
-         sy5k3C6OXftjGkv3ATOWV7miDiut4MBGJx7pfJO18cjCZD6jNJ03ZBLXhH7jz3mdCxyK
-         y0hQ==
-X-Gm-Message-State: APjAAAULfSFraaJCZ/VIOzTOW0pK/mNmmmfWYYK3osFSCWINAPNUcgSs
-	VwEQ2n5kCNfRLyat9IfYH3zofX+ZS10=
-X-Google-Smtp-Source: APXvYqyrZFrnYdRYYANfrt5mb1fk0u7p3iTAiD51LLfwXMYs4f29FDnWSgpAPaUVm3yDvs9uoEUFCA==
-X-Received: by 2002:a62:7711:: with SMTP id s17mr32613465pfc.157.1577125944854;
-        Mon, 23 Dec 2019 10:32:24 -0800 (PST)
-Return-Path: <akuster@mvista.com>
-Received: from ?IPv6:2601:202:4180:a5c0:30f1:af1:c5e0:a746? ([2601:202:4180:a5c0:30f1:af1:c5e0:a746])
-        by smtp.gmail.com with ESMTPSA id p21sm25342357pfn.103.2019.12.23.10.32.23
-        for <yocto@lists.yoctoproject.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-language:thread-index;
+        bh=yF+VTO+PwwG6BbtKLc2pCbsnh16ozesUB4mMsR8Crus=;
+        b=fOfktFoUACdVLJ4kClgy1TrZJ9+3kZ9C6tGMx+ytPkbLLTzprNnksiBYPCnYLMU5ol
+         7IZyQhwJAiDZwPCtsrUN1uu2EmkYjZigeuY1WfCyy4qFXQ4r5s1wKbPz79kVMgnHzgc1
+         Bv1T/qjQnzvESscKBObaiwD2QhBPSNVDY04rNYKjcZy/iKX+sRLn1rwZ3QtU9HtrQslR
+         B8MT78rSIWf3cBnZh0UjGVTpJQ1srawunfMCZHgwPjMnf+oVr7XU9OHf3KTQGADjD6db
+         WIc4pJOgTcTawIpouDy9z9TECYmORdkRSnrvZda6A/u9cvgvUJWPGZ2VF6HPUXRUl+b3
+         l+Hw==
+X-Gm-Message-State: APjAAAUwNWvLXSzzRnCrMIeItbi2Qav8KRIQEglJJJa3y0Am/mQ8vd/w
+	QAyHso7+So9rz4NrDoQAdwk=
+X-Google-Smtp-Source: APXvYqyn5BYaLD2aky8n5w//pqkisFRAdxIZs/FGQlDmfAXzzFf5+oCvLWkmA8aV+jgGjDp8V4ze8A==
+X-Received: by 2002:aa7:8191:: with SMTP id g17mr34789300pfi.25.1577133099201;
+        Mon, 23 Dec 2019 12:31:39 -0800 (PST)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id i9sm25211174pfk.24.2019.12.23.12.31.38
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 23 Dec 2019 10:32:24 -0800 (PST)
-Subject: Re: [yocto] [meta-security][PATCH] meta-integrity/../systemd: fix pollution issue
-To: yocto@lists.yoctoproject.org
-References: <20191223171834.30244-1-akuster808@gmail.com>
- <DE34DAAB-1CB4-48CD-B51A-F6510C1CA115@iki.fi>
-From: "Armin Kuster" <akuster@mvista.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <36a6851a-8544-6ada-53fc-4b64217ae56d@mvista.com>
-Date: Mon, 23 Dec 2019 10:32:22 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        Mon, 23 Dec 2019 12:31:38 -0800 (PST)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Cc: <sjolley.yp.pm@gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 23 Dec 2019 12:31:37 -0800
+Message-ID: <034701d5b9cf$fa648c40$ef2da4c0$@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <DE34DAAB-1CB4-48CD-B51A-F6510C1CA115@iki.fi>
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQHw4VDiXsf4J9QpqW1xRPd6IUC0bQ==
 Content-Type: multipart/alternative;
- boundary="------------D933117CAC78638A0D35CE19"
-Content-Language: en-US
+	boundary="----=_NextPart_000_0348_01D5B98C.EC41E880"
+Content-Language: en-us
 
---------------D933117CAC78638A0D35CE19
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+------=_NextPart_000_0348_01D5B98C.EC41E880
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+ 
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
+
+ 
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 301
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.1", "3.2, "3.99" and "Future", the more pressing/urgent issues
+being in "3.1" and then "3.2".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newcomer_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Project Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
 
 
+------=_NextPart_000_0348_01D5B98C.EC41E880
+Content-Type: text/html;
+	boundary="----=_NextPart_000_F54F_01D5B438.06BB8AE0";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 12/23/19 10:18 AM, Anders Montonen wrote:
-> Hi,
->
-> These look like typos:
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p.msonormal0, li.msonormal0, div.msonormal0
+	{mso-style-name:msonormal;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
+starting to try and collect up and classify bugs which a newcomer to the =
+project would be able to work on in a way which means people can find =
+them. They're being listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
+><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 301 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.1&#8221;, &#8220;3.2, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.1&quot; and then &#8220;3.2&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newco=
+mer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_New=
+comer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Project Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-thanks.
-
-will fix and send v2
-
-- armin
->
-> On 23 Dec 2019, at 19:18, Armpit <akuster808@gmail.com> wrote:
->> only include changes of systemd is enabled.
-> of -> if
->
->> Signed-off-by: Armin Kuster <akuster808@gmail.com>
->> ---
->> meta-integrity/recipes-core/systemd/systemd_%.bbappend | 6 +++---
->> 1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/meta-integrity/recipes-core/systemd/systemd_%.bbappend b/meta-integrity/recipes-core/systemd/systemd_%.bbappend
->> index 3b45541..f33e563 100644
->> --- a/meta-integrity/recipes-core/systemd/systemd_%.bbappend
->> +++ b/meta-integrity/recipes-core/systemd/systemd_%.bbappend
->> @@ -1,11 +1,11 @@
->> -FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
->> +FILESEXTRAPATHS_prepend_ima := "${THISDIR}/files:"
->>
->> -SRC_URI += " \
->> +SRC_URI_iam += “ \
-> iam -> ima
->
->>     file://machine-id-commit-sync.conf \
->>     file://random-seed-sync.conf \
->> "
->>
->> -do_install_append () {
->> +do_install_append_iam () {
-> iam -> ima
->
->>     for i in machine-id-commit random-seed; do
->>         install -d ${D}/${systemd_system_unitdir}/systemd-$i.service.d
->>         install -m 0644 ${WORKDIR}/$i-sync.conf ${D}/${systemd_system_unitdir}/systemd-$i.service.d
->> -- 
->> 2.17.1
-> Regards,
-> Anders
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
->
-> View/Reply Online (#47810): https://lists.yoctoproject.org/g/yocto/message/47810
-> Mute This Topic: https://lists.yoctoproject.org/mt/69235591/1024635
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [akuster@mvista.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
-
-
---------------D933117CAC78638A0D35CE19
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 12/23/19 10:18 AM, Anders Montonen
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:DE34DAAB-1CB4-48CD-B51A-F6510C1CA115@iki.fi">
-      <pre class="moz-quote-pre" wrap="">Hi,
-
-These look like typos:</pre>
-    </blockquote>
-    <br>
-    thanks.<br>
-    <br>
-    will fix and send v2<br>
-    <br>
-    - armin<br>
-    <blockquote type="cite"
-      cite="mid:DE34DAAB-1CB4-48CD-B51A-F6510C1CA115@iki.fi">
-      <pre class="moz-quote-pre" wrap="">
-
-On 23 Dec 2019, at 19:18, Armpit <a class="moz-txt-link-rfc2396E" href="mailto:akuster808@gmail.com">&lt;akuster808@gmail.com&gt;</a> wrote:
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">
-only include changes of systemd is enabled.
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-of -&gt; if
-
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">
-Signed-off-by: Armin Kuster <a class="moz-txt-link-rfc2396E" href="mailto:akuster808@gmail.com">&lt;akuster808@gmail.com&gt;</a>
----
-meta-integrity/recipes-core/systemd/systemd_%.bbappend | 6 +++---
-1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/meta-integrity/recipes-core/systemd/systemd_%.bbappend b/meta-integrity/recipes-core/systemd/systemd_%.bbappend
-index 3b45541..f33e563 100644
---- a/meta-integrity/recipes-core/systemd/systemd_%.bbappend
-+++ b/meta-integrity/recipes-core/systemd/systemd_%.bbappend
-@@ -1,11 +1,11 @@
--FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-+FILESEXTRAPATHS_prepend_ima := "${THISDIR}/files:"
-
--SRC_URI += " \
-+SRC_URI_iam += “ \
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-iam -&gt; ima
-
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">    <a class="moz-txt-link-freetext" href="file://machine-id-commit-sync.conf">file://machine-id-commit-sync.conf</a> \
-    <a class="moz-txt-link-freetext" href="file://random-seed-sync.conf">file://random-seed-sync.conf</a> \
-"
-
--do_install_append () {
-+do_install_append_iam () {
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-iam -&gt; ima
-
-</pre>
-      <blockquote type="cite">
-        <pre class="moz-quote-pre" wrap="">    for i in machine-id-commit random-seed; do
-        install -d ${D}/${systemd_system_unitdir}/systemd-$i.service.d
-        install -m 0644 ${WORKDIR}/$i-sync.conf ${D}/${systemd_system_unitdir}/systemd-$i.service.d
--- 
-2.17.1
-</pre>
-      </blockquote>
-      <pre class="moz-quote-pre" wrap="">
-Regards,
-Anders</pre>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">-=-=-=-=-=-=-=-=-=-=-=-
-Links: You receive all messages sent to this group.
-
-View/Reply Online (#47810): <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/message/47810">https://lists.yoctoproject.org/g/yocto/message/47810</a>
-Mute This Topic: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/mt/69235591/1024635">https://lists.yoctoproject.org/mt/69235591/1024635</a>
-Group Owner: <a class="moz-txt-link-abbreviated" href="mailto:yocto+owner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
-Unsubscribe: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub</a>  [<a class="moz-txt-link-abbreviated" href="mailto:akuster@mvista.com">akuster@mvista.com</a>]
--=-=-=-=-=-=-=-=-=-=-=-
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------D933117CAC78638A0D35CE19--
+------=_NextPart_000_0348_01D5B98C.EC41E880--
