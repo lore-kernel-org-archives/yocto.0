@@ -1,305 +1,135 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.1913.1577133102069030313
+ by mx.groups.io with SMTP id smtpd.web12.2298.1577135520035030018
  for <yocto@lists.yoctoproject.org>;
- Mon, 23 Dec 2019 12:31:42 -0800
+ Mon, 23 Dec 2019 13:12:00 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=NT3Bu3op;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
+ dkim=pass header.i=@sbcglobal.net header.s=s2048 header.b=Kxgxj5Ej;
+ spf=none, err=permanent DNS error (domain: sbcglobal.net, ip: 140.211.169.56, mailfrom: develone@sbcglobal.net)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7795FE0130A; Mon, 23 Dec 2019 12:31:41 -0800 (PST)
+	id 9DFDAE01308; Mon, 23 Dec 2019 13:11:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (sjolley.yp.pm[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.210.172 listed in list.dnswl.org]
+	*      [74.6.132.193 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B252EE01275
-	for <yocto@yoctoproject.org>; Mon, 23 Dec 2019 12:31:39 -0800 (PST)
-Received: by mail-pf1-f172.google.com with SMTP id w62so9694416pfw.8
-        for <yocto@yoctoproject.org>; Mon, 23 Dec 2019 12:31:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version:content-language
-         :thread-index;
-        bh=yF+VTO+PwwG6BbtKLc2pCbsnh16ozesUB4mMsR8Crus=;
-        b=NT3Bu3opkL1RH7ZUOpe0r+4xe07JFWs8TReV3R2rFWdZtb5AOmbYXLr622JV564zdC
-         oS3gObSjqorE67mQvdPT8rD87McjxAdD2TTGFXBuO/DLNnQZgVzXAlvH6iDpymxZ/fKc
-         Y1/3Ev2/KI2mACj63+tfwGKvoZfgU6FX51S80BrpjlwTG5VYXuqO2Ija6iQ6Webq3UQS
-         JLqS2zq4TYOv4IxuezVsz9lAEP2jsFI6PWm6l/RKIFNDHaVDuQL5oAvxf2k7MMgUss8/
-         G56ZjaWl2HcCcRNsTgDUAmZhqECNf9lT/oRFuaAh2O5CyUWS0cUb1Y1t/Ueg+VLNSS3w
-         ShUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-language:thread-index;
-        bh=yF+VTO+PwwG6BbtKLc2pCbsnh16ozesUB4mMsR8Crus=;
-        b=fOfktFoUACdVLJ4kClgy1TrZJ9+3kZ9C6tGMx+ytPkbLLTzprNnksiBYPCnYLMU5ol
-         7IZyQhwJAiDZwPCtsrUN1uu2EmkYjZigeuY1WfCyy4qFXQ4r5s1wKbPz79kVMgnHzgc1
-         Bv1T/qjQnzvESscKBObaiwD2QhBPSNVDY04rNYKjcZy/iKX+sRLn1rwZ3QtU9HtrQslR
-         B8MT78rSIWf3cBnZh0UjGVTpJQ1srawunfMCZHgwPjMnf+oVr7XU9OHf3KTQGADjD6db
-         WIc4pJOgTcTawIpouDy9z9TECYmORdkRSnrvZda6A/u9cvgvUJWPGZ2VF6HPUXRUl+b3
-         l+Hw==
-X-Gm-Message-State: APjAAAUwNWvLXSzzRnCrMIeItbi2Qav8KRIQEglJJJa3y0Am/mQ8vd/w
-	QAyHso7+So9rz4NrDoQAdwk=
-X-Google-Smtp-Source: APXvYqyn5BYaLD2aky8n5w//pqkisFRAdxIZs/FGQlDmfAXzzFf5+oCvLWkmA8aV+jgGjDp8V4ze8A==
-X-Received: by 2002:aa7:8191:: with SMTP id g17mr34789300pfi.25.1577133099201;
-        Mon, 23 Dec 2019 12:31:39 -0800 (PST)
-Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
-        by smtp.gmail.com with ESMTPSA id i9sm25211174pfk.24.2019.12.23.12.31.38
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 23 Dec 2019 12:31:38 -0800 (PST)
-From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>,
-	<openembedded-core@lists.openembedded.org>
-Cc: <sjolley.yp.pm@gmail.com>
-Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
-Date: Mon, 23 Dec 2019 12:31:37 -0800
-Message-ID: <034701d5b9cf$fa648c40$ef2da4c0$@gmail.com>
+Received: from sonic314-19.consmr.mail.bf2.yahoo.com (sonic314-19.consmr.mail.bf2.yahoo.com [74.6.132.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84A85E01272
+	for <yocto@yoctoproject.org>; Mon, 23 Dec 2019 13:11:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sbcglobal.net; s=s2048; t=1577135516; bh=elgGc6lt2QGf1UPiy0FJr+G1bSTQPTZmeDEfr4wDGvU=; h=Date:From:To:Subject:References:From:Subject; b=Kxgxj5EjZw/moqhWWYPc9X0UzvJpXAJ0yj6K/wsJn0CKrvR3UeXkhUM15QiX7WN44w8l5cUvHDT+zYj7qrBQevttpqfA4YPkuvakwki/tMhwjREuCsFdgb02BvLxhNouSoN0VV2I5rn9gUmqVnlapBEa3BXdDIGli6VGoJxLDQSpwEYwUL4UFinpAnDmkkPzodE2x2+2dwvdV2uWAfgL7bffhpSQ9xQA209s38qc2kkukSvmvrv4GgkGtqoy4hXFXvKDJZi8gISQJ6zoiIGrsgs4PxeYh0/+8fFQl1UWiCBugow/BjQgdROx7ECT8p7e6flgFSWjMUCVYvk/55BHvw==
+X-YMail-OSG: Yzrds4AVM1lo3e.q69ZawBlbfGOExxXBfa9T5FrU8Fmb1CgmqOzu5TPBJo0CTgK
+ fsxzg99rQVdxTj0FXjC36PFvxyZrCJ6T1MH6iCBOIdny3IyE6vKeTbbPh1eRJ.LwYb63lfmE7xVr
+ ij1WCGBuGzATHGGSREK.FHFA4AzZ349vYwfG0obAUoBesAiCt69AwV_gfoYy2u1pRC4LL.s33xjh
+ uvYQGMNMJsoHvf2bPYur9S_xpLJ9EI3ZB8o.mESL3KUUpPT3QSAWondihfxnzbMPoy0Hnml1RDrA
+ SJZoGiRHuv3CdrG6pLss0wV759JjN.ulsiuSZ285TJAiKHNKYLeH6ZM3.TaoY8KqoigquL0jHP15
+ qHis5brNllOPOguuTccsRc1Ksceoj_lD.m_QSFH9G3r0gCccD0f1u1pTrwEnNzhQnLFp4gl0Tlcy
+ UqbSMVkmlknYWIoROqVIsuDS6mXL8Ti84DNRPTqaNDxHmlE9HDTSKejeIGmxzg1ykWQtowFyfbSk
+ oWrW0hD.RPG8dj8xBa1Vl_ZgGTVit17GQIz_kmhwo9KtAoWGXTWIlXjT262D9VMcVfi2fPnKrh5q
+ turvrPjMAsw7wpXrB_TQ.iqxC0OS3mgjkIkTiu_4Q0zf2RvzaEM8Y9NvbW1vKjZgldBuUjqXtEb7
+ nduTwz6QKGUKKKuyzPN93bW0oRKEcfgkFWlfR184_Wjn94a_6dUpFNYf8xHTH79rmXHI1hxDuUun
+ Ofbf04WzuAhS_Uj_X.DLLJdeSj0gzv2dTky3CLdrB7ILp1Zf6VT3ifuc6ecIWlJRcUjo6hBd0a7m
+ STNYVfMS_vL26PkTckI0dEj7ZDx3mytPU9q0m2WeJ3PzV2YA5XGVQc3G5fvHf4YAwkL6g3dJdqkQ
+ k1BB68GOnTr2_mLARu2gb1YDAIByp8tOfrGrcAQ4s5klKw6JF2o1SIaDsq1Up9WRBXCVfAOAX.SE
+ Tv6wi3PRVg1s4eTnnq7CbQ4YA1oj49SAMDTXNB.BR0wuneSFjOMeQBdg.emz9lbX17oNOxMXrpnC
+ ZCaLFOr_QVe85e0biemONC9OvYO5gZCSQOb.nCwzHGCnORGeQHRPmZ2hr.bVgZy6CSbfyCuuuA6V
+ ABKIMh..N_ahBfLn1vWB36JPsyuDGexMfi7Hudh_ll2khldFN7eL7WMysIul07ZJu2Zg9DAdrFuN
+ JkuEB63JbvmdklluiVFzNazroEkkmTOf93_XP_HyeCFgDeFUyRjnEQzvvdvC19MIy7x5DerTA9XG
+ OgDn3fA.JE8v72JGHM66QzMPXA1hBpxKm7CDPH_5mJLJs2_9wXYNecWSLpYjveF_0JFnsFAsW6Ag
+ 4gQHNnE.s2WfOd2u8e0I4iJYgj7WYWZ0-
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic314.consmr.mail.bf2.yahoo.com with HTTP; Mon, 23 Dec 2019 21:11:56 +0000
+Date: Mon, 23 Dec 2019 21:11:07 +0000 (UTC)
+From: "Ed Vidal" <develone@sbcglobal.net>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Message-ID: <1603144693.1899827.1577135467329@mail.yahoo.com>
+Subject: Re: Raspberry pi 4 recipe and layer issues.
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQHw4VDiXsf4J9QpqW1xRPd6IUC0bQ==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0348_01D5B98C.EC41E880"
-Content-Language: en-us
+References: <1603144693.1899827.1577135467329.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.14873 YMailNorrin Mozilla/5.0 (X11; Linux armv7l) AppleWebKit/537.36 (KHTML, like Gecko) Raspbian Chromium/74.0.3729.157 Chrome/74.0.3729.157 Safari/537.36
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1899826_930176670.1577135467327"
 
-------=_NextPart_000_0348_01D5B98C.EC41E880
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-All,
-
- 
-
-The triage team is starting to try and collect up and classify bugs which a
-newcomer to the project would be able to work on in a way which means people
-can find them. They're being listed on the triage page under the appropriate
-heading:
-
- 
-
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
-
- 
-
-The idea is these bugs should be straight forward for a person to help work
-on who doesn't have deep experience with the project.  If anyone can help,
-please take ownership of the bug and send patches!  If anyone needs
-help/advice there are people on irc who can likely do so, or some of the
-more experienced contributors will likely be happy to help too.
-
- 
-
-Also, the triage team meets weekly and does its best to handle the bugs
-reported into the Bugzilla. The number of people attending that meeting has
-fallen, as have the number of people available to help fix bugs. One of the
-things we hear users report is they don't know how to help. We (the triage
-team) are therefore going to start reporting out the currently 301
-unassigned or newcomer bugs.
-
- 
-
-We're hoping people may be able to spare some time now and again to help out
-with these.  Bugs are split into two types, "true bugs" where things don't
-work as they should and "enhancements" which are features we'd want to add
-to the system.  There are also roughly four different "priority" classes
-right now, "3.1", "3.2, "3.99" and "Future", the more pressing/urgent issues
-being in "3.1" and then "3.2".
-
- 
-
-Please review this link and if a bug is something you would be able to help
-with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
-like and I will assign it to you (please make sure you have a Bugzilla
-account).  The list is at:
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newcomer_Bugs
-
- 
-
-Thanks,
-
- 
-
-Stephen K. Jolley
-
-Yocto Project Project Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
-
- 
-
-
-------=_NextPart_000_0348_01D5B98C.EC41E880
-Content-Type: text/html;
-	boundary="----=_NextPart_000_F54F_01D5B438.06BB8AE0";
-	charset="us-ascii"
+------=_Part_1899826_930176670.1577135467327
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-p.msonormal0, li.msonormal0, div.msonormal0
-	{mso-style-name:msonormal;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
-starting to try and collect up and classify bugs which a newcomer to the =
-project would be able to work on in a way which means people can find =
-them. They're being listed on the triage page under the appropriate =
-heading:<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
-s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
-><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>The idea is these bugs should be straight =
-forward for a person to help work on who doesn't have deep experience =
-with the project.&nbsp; If anyone can help, please take ownership of the =
-bug and send patches!&nbsp; If anyone needs help/advice there are people =
-on irc who can likely do so, or some of the more experienced =
-contributors will likely be happy to help too.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
-meets weekly and does its best to handle the bugs reported into the =
-Bugzilla. The number of people attending that meeting has fallen, as =
-have the number of people available to help fix bugs. One of the things =
-we hear users report is they don't know how to help. We (the triage =
-team) are therefore going to start reporting out the currently 301 =
-unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>We're hoping people may be able to spare =
-some time now and again to help out with these.&nbsp; Bugs are split =
-into two types, &quot;true bugs&quot; where things don't work as they =
-should and &quot;enhancements&quot; which are features we'd want to add =
-to the system.&nbsp; There are also roughly four different =
-&quot;priority&quot; classes right now, &#8220;3.1&#8221;, &#8220;3.2, =
-&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
-being in &quot;3.1&quot; and then &#8220;3.2&#8221;.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
-and if a bug is something you would be able to help with either take =
-ownership of the bug, or send me (<a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
-e-mail with the bug number you would like and I will assign it to you =
-(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newco=
-mer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_New=
-comer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Project Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+Hi=C2=A0
 
-------=_NextPart_000_0348_01D5B98C.EC41E880--
+The Makefile executes several lines, which set variables=C2=A0ARACHNE_VER,=
+=C2=A0GIT_REV, and=C2=A0VER_HASH.=C2=A0 =C2=A0These are used in the rule wh=
+ich creates a file=C2=A0src/version_$(VER_HASH).cc.The line below appears t=
+o be the one that causes the error.VER_HASH =3D $(shell echo "$(ARACHNE_VER=
+) $(GIT_REV)" | sum | cut -d ' ' -f -1)
+src/version_$(VER_HASH).cc: echo "const char *version_str =3D \"arachne-pnr=
+ $(ARACHNE_VER) (git sha1 $(GIT_REV), $(notdir $(CXX)) `$(CXX) --version | =
+tr ' ()' '\n' | grep '^[0-9]' | head -n1` $(filter -f% -m% -O% -DNDEBUG,$(C=
+XXFLAGS)))\";" > src/version_$(VER_HASH).cc
+bin/arachne-pnr$(EXE): src/arachne-pnr.o src/netlist.o src/blif.o src/pack.=
+o src/place.o src/util.o src/io.o src/route.o src/chipdb.o src/location.o s=
+rc/configuration.o src/line_parser.o src/pcf.o src/global.o src/constant.o =
+src/designstate.o src/version_$(VER_HASH).o $(CXX) $(CXXFLAGS) $(LDFLAGS) -=
+o $@ $^ $(LIBS)
+These variables are based on git revision.=C2=A0 =C2=A0So I can not hard co=
+de them.This is the error that I get.
+/bin/sh: 1: sum: not found
+
+I have tried adding busybox & coreutils to=C2=A0DEPENDS=C2=A0Thanks=C2=A0Be=
+st Regards,
+Edward Vidal Jr. e-mail develone@sbcglobal.net 915-595-1613
+
+------=_Part_1899826_930176670.1577135467327
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp627c2d19yahoo-style-wrap" style=
+=3D"font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 1=
+3px;"><div dir=3D"ltr" data-setdir=3D"false">Hi&nbsp;</div><div dir=3D"ltr"=
+ data-setdir=3D"false"><br></div><div><br></div><div dir=3D"ltr" data-setdi=
+r=3D"false">The Makefile executes several lines, which set variables&nbsp;<=
+span><span style=3D"color: rgb(0, 0, 0); font-family: Helvetica Neue, Helve=
+tica, Arial, sans-serif;">ARACHNE_VER,&nbsp;<span><span style=3D"color: rgb=
+(0, 0, 0); font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">GIT_=
+REV, and&nbsp;</span></span><span><span style=3D"color: rgb(0, 0, 0); font-=
+family: Helvetica Neue, Helvetica, Arial, sans-serif;">VER_HASH.&nbsp; &nbs=
+p;These are used in the rule which creates a file&nbsp;<span><span style=3D=
+"color: rgb(0, 0, 0); font-family: Helvetica Neue, Helvetica, Arial, sans-s=
+erif;">src/version_$(VER_HASH).cc.</span></span></span></span></span></span=
+></div><div dir=3D"ltr" data-setdir=3D"false">The line below appears to be =
+the one that causes the error.</div><div dir=3D"ltr" data-setdir=3D"false">=
+<div><div>VER_HASH =3D $(shell echo "$(ARACHNE_VER) $(GIT_REV)" | sum | cut=
+ -d ' ' -f -1)</div><div><br></div><div>src/version_$(VER_HASH).cc:</div><d=
+iv><span style=3D"white-space: pre-wrap;">=09</span>echo "const char *versi=
+on_str =3D \"arachne-pnr $(ARACHNE_VER) (git sha1 $(GIT_REV), $(notdir $(CX=
+X)) `$(CXX) --version | tr ' ()' '\n' | grep '^[0-9]' | head -n1` $(filter =
+-f% -m% -O% -DNDEBUG,$(CXXFLAGS)))\";" &gt; src/version_$(VER_HASH).cc</div=
+><div><br></div><div>bin/arachne-pnr$(EXE): src/arachne-pnr.o src/netlist.o=
+ src/blif.o src/pack.o src/place.o src/util.o src/io.o src/route.o src/chip=
+db.o src/location.o src/configuration.o src/line_parser.o src/pcf.o src/glo=
+bal.o src/constant.o src/designstate.o src/version_$(VER_HASH).o</div><div>=
+<span style=3D"white-space: pre-wrap;">=09</span>$(CXX) $(CXXFLAGS) $(LDFLA=
+GS) -o $@ $^ $(LIBS)</div><div><br></div></div>These variables are based on=
+ git revision.&nbsp; &nbsp;So I can not hard code them.</div><div dir=3D"lt=
+r" data-setdir=3D"false">This is the error that I get.</div><div dir=3D"ltr=
+" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"><s=
+pan>/bin/sh: 1: sum: not found</span><br></div><div dir=3D"ltr" data-setdir=
+=3D"false"><span><br></span></div><div dir=3D"ltr" data-setdir=3D"false"><s=
+pan>I have tried adding busybox &amp; <span>coreutils to&nbsp;<span>DEPENDS=
+&nbsp;</span></span></span></div><div dir=3D"ltr" data-setdir=3D"false"><sp=
+an><span><span>Thanks&nbsp;</span></span></span></div><div dir=3D"ltr" data=
+-setdir=3D"false"><span><span><span>Best Regards,</span></span></span></div=
+><div dir=3D"ltr" data-setdir=3D"false"><span><span><span><br></span></span=
+></span></div><div class=3D"ydp627c2d19signature">Edward Vidal Jr. e-mail d=
+evelone@sbcglobal.net 915-595-1613</div></div></body></html>
+
+------=_Part_1899826_930176670.1577135467327--
