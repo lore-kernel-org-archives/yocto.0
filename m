@@ -1,56 +1,44 @@
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
- by mx.groups.io with SMTP id smtpd.web11.3489.1577111902555855624
+Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
+ by mx.groups.io with SMTP id smtpd.web12.4140.1577115646113394450
  for <yocto@lists.yoctoproject.org>;
- Mon, 23 Dec 2019 06:38:22 -0800
+ Mon, 23 Dec 2019 07:40:46 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=pUuxDteL;
- spf=pass (domain: gmail.com, ip: 209.85.166.179, mailfrom: learning.yocto@gmail.com)
-Received: by mail-il1-f179.google.com with SMTP id v15so14202040iln.0
-        for <yocto@lists.yoctoproject.org>; Mon, 23 Dec 2019 06:38:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=Je/TAOR+nxBehOtFTGWXtMoFA7eBza2mBUmQOFf/eV8=;
-        b=pUuxDteL8OJo7pxq7gFjUzgJqkhENeW8/VmZLDRTLF1a55sE1l1mvPRGGfPIHDNQ8B
-         lUslMkAegdHsfD71KHnP9EwKeLGRMefXEE48G2Tcs+/ZyjjV6P9ijGEkpoq9Y8Y+DBzF
-         NDa/JWQp9zWAA3YY9PfeE7y6uD6m2B/l9rjYqNSHX2JcmwhxVCePu/Nhga/uXfnvC9zZ
-         NntEkuhYfQo7TYo/77hZc9FnQDT7HvGQ2c6up+ngGWxz+azdrr/Ho44ixE2UmNLAlXkL
-         1b6DQTwKFVvx+yD4dLt9aTPieho4cytotnaca/RC8JwXxBOcZ+mv0cQnzfm8qUSgQnBP
-         OTgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=Je/TAOR+nxBehOtFTGWXtMoFA7eBza2mBUmQOFf/eV8=;
-        b=L9nCdJjwbgK9JLKGrVwy52qYmx2WbwdhQJ9w3rVQFyrW2wDMFS5JMYDAE8nfPyE2I9
-         zdSm3j/Pr4Gj7GfvcIyXSroVxccdw+yMLRzOMsYNBQksKb/BJwXeRCU0v8Gx+kXV4pNR
-         FQCsgbsa8LHo1Nzd+qxH2hGqZWxgK3yeYNtB4uvthkogDzgytSf4e+27OSCmG7KaNhOl
-         pFbLvPsIq+ODnsGh/y4VK0VltBJI6vG2vqlbvqDvdM+QYUG9Xefhn86M+uYdklDfBp9G
-         7WPfELLReAQukqdj8URYnisrxsuqFSFazzodd3uyOGpm3ULS7xI5OQjk+Fu76miM6QIU
-         DpCg==
-X-Gm-Message-State: APjAAAWAs9GvQrXppYCm0lSJ6QippiWcXaWeleIeynOtx+KI7G1N2s9G
-	d3lQibrWt4CPwjP5c52J3/huj1egVs7SDRYHPHhqk/q3
-X-Google-Smtp-Source: APXvYqy/KYsJXgYQYpWPb8OQaT02vDoyrtUcsRT8WMcYjVLrCFH/iyGCENjO8YcU6/yB79CxWF8mDdB2Hsjzfsz3gzg=
-X-Received: by 2002:a92:ba8d:: with SMTP id t13mr25193735ill.207.1577111901935;
- Mon, 23 Dec 2019 06:38:21 -0800 (PST)
+ dkim=missing; spf=pass (domain: intel.com, ip: 134.134.136.126, mailfrom: ross.burton@intel.com)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 23 Dec 2019 07:40:45 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,348,1571727600"; 
+   d="scan'208";a="242244411"
+Received: from ansethi-mobl.ger.corp.intel.com (HELO rburton-mac01.local) ([10.252.36.195])
+  by fmsmga004.fm.intel.com with ESMTP; 23 Dec 2019 07:40:44 -0800
+Subject: Re: [yocto] installing and rolling back packages in yocto at runtime
+To: yocto@lists.yoctoproject.org
+References: <CAGWAjas7jQtoQYX6wGz=Z3AXhq6RDFvFqCxHSGRDksV2QaTN2Q@mail.gmail.com>
+From: "Ross Burton" <ross.burton@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <0ca762ba-4dd0-a2f4-a5e5-641264eac00a@intel.com>
+Date: Mon, 23 Dec 2019 15:40:43 +0000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:60.0)
+ Gecko/20100101 Thunderbird/60.9.1
 MIME-Version: 1.0
-From: "learning yocto" <learning.yocto@gmail.com>
-Date: Mon, 23 Dec 2019 14:38:10 +0000
-Message-ID: <CAGWAjas7jQtoQYX6wGz=Z3AXhq6RDFvFqCxHSGRDksV2QaTN2Q@mail.gmail.com>
-Subject: installing and rolling back packages in yocto at runtime
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAGWAjas7jQtoQYX6wGz=Z3AXhq6RDFvFqCxHSGRDksV2QaTN2Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 
-Hi List,
+On 23/12/2019 14:38, learning yocto wrote:
+> Is it possible to ftp the image to the board and then do something
+> like dpkg -i, this would help in deinstall as well?
 
-This must be a trivial thing, since am a newbie and couldnt find
-googling the same in the archive, please pardon my ignorance.
+Yes.  By default rpm/smart is used, but you can use apt/dpkg or opkg if 
+you prefer.
 
-I have created a thin rootfs using yocto which works well on my board.
-Suppose now I have to add a package, I can add using
-IMAGE_INSTALL_append but that would create a new image.
-I dont want to upload a complete image, it seems like an overkill.
+You can either copy packages onto the target and use the tool to install 
+directly (dpkg -i for example), or use a HTTP daemon to share your 
+tmp/deploy/deb folder and set PACKAGE_FEED_URIS to configure the feed in 
+your images.
 
-Is it possible to ftp the image to the board and then do something
-like dpkg -i, this would help in deinstall as well?
-
-thanks
+Ross
