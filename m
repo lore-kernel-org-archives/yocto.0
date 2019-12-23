@@ -1,44 +1,76 @@
-Received: from mga18.intel.com (mga18.intel.com [134.134.136.126])
- by mx.groups.io with SMTP id smtpd.web12.4140.1577115646113394450
+Received: from mail-pg1-f194.google.com (mail-pg1-f194.google.com [209.85.215.194])
+ by mx.groups.io with SMTP id smtpd.web11.5158.1577121518056978427
  for <yocto@lists.yoctoproject.org>;
- Mon, 23 Dec 2019 07:40:46 -0800
+ Mon, 23 Dec 2019 09:18:38 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: intel.com, ip: 134.134.136.126, mailfrom: ross.burton@intel.com)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 23 Dec 2019 07:40:45 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,348,1571727600"; 
-   d="scan'208";a="242244411"
-Received: from ansethi-mobl.ger.corp.intel.com (HELO rburton-mac01.local) ([10.252.36.195])
-  by fmsmga004.fm.intel.com with ESMTP; 23 Dec 2019 07:40:44 -0800
-Subject: Re: [yocto] installing and rolling back packages in yocto at runtime
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ghrN87CW;
+ spf=pass (domain: gmail.com, ip: 209.85.215.194, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f194.google.com with SMTP id k3so9129212pgc.3
+        for <yocto@lists.yoctoproject.org>; Mon, 23 Dec 2019 09:18:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id;
+        bh=DCxPPXVPPyCaXdqKuAAc0Nl0m6hOI/LkwPXyyemdZ2k=;
+        b=ghrN87CWzwg2jtciEg2kgjClpitKTAYh3Pxy5FZtof5SYCc0Cc0Euf5buedzcoZr/3
+         Sii2bf0x5Z00u2QJgIa7UZXknwrgzEPlcUBX5DTr+lZfoUNZ6ljVDSJtHDJ8i10b+mbR
+         pCXU22sW9MBjHa1GCh/cb4kIDRSE11QvwJun5lMWcdJ7OvPKj4Pnd7mdmtwhoWQCA+01
+         u20au6371LjYvnrb6lSUx3IMjYyhnTHnncBTvD6UdF/Z2FXbf7vy3K9pSuHu3yLN/jyH
+         X2TYmTMazFo4aJSbNlUsjCtEWjduRb9GXcbEsSz91Zw5xOnyaY8hRg2nFknvmZdQRAf8
+         Lcyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=DCxPPXVPPyCaXdqKuAAc0Nl0m6hOI/LkwPXyyemdZ2k=;
+        b=TqS6bK6KepYmkA4pu/4JX0m9nx1aLAZAd7yHCT0gjNcBkHeaVCDKqtDTc3iSZ2X6Cu
+         n9tA2vQzvp145vfyCxdhJI52F8OUJfsSEpbIhHyqOpSpBR/2+XIvaWos8Zwi9JeCjYqf
+         UWtX4jzyzsPn+u0jsqFYEz1IWzK0AitUWzqRRpMzQ10XV5OhGAHljwarPzSzGE7Yox8I
+         SfXN9zI/obi327uayMEmwVSjDajIm68XC5ovsjh0Iik5ppQG9DHI8pIy/0TeahjNWLRy
+         xhrf8qVyL0QHeKgWU9Z716ukpPiXd5Zzvs91W1GcmJ2cgWLPIp//y8eKPXFApbqnuZW7
+         VynA==
+X-Gm-Message-State: APjAAAURIj1vUsZ+xT8x5n+eTRjlL8Zkaq2b23+N898llB1yzGYH8MPt
+	oOxGKfgH/Ff+RrIZOUFk/kbGyJac61w=
+X-Google-Smtp-Source: APXvYqzWIZMuNtP74xhNgdDHBXM9l9Jtrl5Kbo5/P4ldPpIQn84joQEWGpb0Q7+ep+9hbucZINqBug==
+X-Received: by 2002:aa7:914b:: with SMTP id 11mr34263164pfi.69.1577121517218;
+        Mon, 23 Dec 2019 09:18:37 -0800 (PST)
+Return-Path: <akuster808@gmail.com>
+Received: from localhost.localdomain (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
+        by smtp.gmail.com with ESMTPSA id g18sm23945870pfi.80.2019.12.23.09.18.35
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 23 Dec 2019 09:18:35 -0800 (PST)
+From: "Armpit" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-References: <CAGWAjas7jQtoQYX6wGz=Z3AXhq6RDFvFqCxHSGRDksV2QaTN2Q@mail.gmail.com>
-From: "Ross Burton" <ross.burton@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <0ca762ba-4dd0-a2f4-a5e5-641264eac00a@intel.com>
-Date: Mon, 23 Dec 2019 15:40:43 +0000
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:60.0)
- Gecko/20100101 Thunderbird/60.9.1
-MIME-Version: 1.0
-In-Reply-To: <CAGWAjas7jQtoQYX6wGz=Z3AXhq6RDFvFqCxHSGRDksV2QaTN2Q@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Subject: [meta-security][PATCH] meta-integrity/../systemd: fix pollution issue
+Date: Mon, 23 Dec 2019 17:18:34 +0000
+Message-Id: <20191223171834.30244-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
 
-On 23/12/2019 14:38, learning yocto wrote:
-> Is it possible to ftp the image to the board and then do something
-> like dpkg -i, this would help in deinstall as well?
+only include changes of systemd is enabled.
 
-Yes.  By default rpm/smart is used, but you can use apt/dpkg or opkg if 
-you prefer.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ meta-integrity/recipes-core/systemd/systemd_%.bbappend | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-You can either copy packages onto the target and use the tool to install 
-directly (dpkg -i for example), or use a HTTP daemon to share your 
-tmp/deploy/deb folder and set PACKAGE_FEED_URIS to configure the feed in 
-your images.
+diff --git a/meta-integrity/recipes-core/systemd/systemd_%.bbappend b/meta-integrity/recipes-core/systemd/systemd_%.bbappend
+index 3b45541..f33e563 100644
+--- a/meta-integrity/recipes-core/systemd/systemd_%.bbappend
++++ b/meta-integrity/recipes-core/systemd/systemd_%.bbappend
+@@ -1,11 +1,11 @@
+-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++FILESEXTRAPATHS_prepend_ima := "${THISDIR}/files:"
+ 
+-SRC_URI += " \
++SRC_URI_iam += " \
+     file://machine-id-commit-sync.conf \
+     file://random-seed-sync.conf \
+ "
+ 
+-do_install_append () {
++do_install_append_iam () {
+     for i in machine-id-commit random-seed; do
+         install -d ${D}/${systemd_system_unitdir}/systemd-$i.service.d
+         install -m 0644 ${WORKDIR}/$i-sync.conf ${D}/${systemd_system_unitdir}/systemd-$i.service.d
+-- 
+2.17.1
 
-Ross
