@@ -1,135 +1,159 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.1110.1577179432264554995
+ by mx.groups.io with SMTP id smtpd.web12.2286.1577190689752065309
  for <yocto@lists.yoctoproject.org>;
- Tue, 24 Dec 2019 01:23:55 -0800
+ Tue, 24 Dec 2019 04:31:30 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@rsi-elektrotechnik.de header.s=strato-dkim-0002 header.b=JauuUR79;
- spf=none, err=permanent DNS error (domain: rsi-elektrotechnik.de, ip: 140.211.169.56, mailfrom: prvs=1261e0fa79=holzmayr@rsi-elektrotechnik.de)
+ dkim=fail reason="body hash did not verify" header.i=@iwavesystems.com header.s=default header.b=oRPWkMbm;
+ spf=permerror, err=parse error for token &{10 18 _spf.mailspamprotection.com}: parse error for token &{10 18 _nb5.mailspamprotection.com}: limit exceeded (domain: iwavesystems.com, ip: 140.211.169.56, mailfrom: sheraz.ali@iwavesystems.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DD1F8E01117; Tue, 24 Dec 2019 01:23:51 -0800 (PST)
+	id 2DB67E011A6; Tue, 24 Dec 2019 04:31:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham
-	version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [81.169.146.160 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [81.169.146.160])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22ADCE00A0A
-	for <yocto@yoctoproject.org>; Tue, 24 Dec 2019 01:23:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1577179427;
-	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
-	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-	bh=pbj531x7uuKC4nuyvwOqzcnklo2SO5OzLYlvl7HlRpk=;
-	b=JauuUR79WqiFOELgvZMY9ePvTJX4LplIcV5XZurJkbZbfKAQ3MoHmzgdy9ou+lXnY4
-	yIVL8vkQXrGvc7xgkfU00KvP6QpPFnVXOdMOGPqNA8TUaqodjbwXRVxoDTXj5VA1uP1o
-	YCHTbv2BILjtKbb2BNSORqQpByb5Z6NqFsmXCWcXo4+4waspOBnB7IlWCvylgmkuxyIx
-	+s2a4ygp/11n+7mlCDHb60MjQwITGbYlxDmwfARafG0pRC3UXjnGHx1xQ5nODCysyfmM
-	fvPoXpyV8kbSGOjN1VAwEBVnGbrawc3ehAroaygaZ8ZCSi+TDL1p3+KVAvW95mO7Plkt
-	44mA==
-X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/KqCOd+ZZzzoK8epFp9XQIUl6aPGQL"
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	by smtp.strato.de (RZmta 46.1.3 AUTH)
-	with ESMTPSA id v0563bvBO9Nl1or
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits))
-	(Client did not present a certificate);
-	Tue, 24 Dec 2019 10:23:47 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1577179427; x=1577784227;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
-	Subject:Message-ID:References:MIME-Version:Content-Type:
-	Content-Disposition:Content-Transfer-Encoding:In-Reply-To; bh=pb
-	j531x7uuKC4nuyvwOqzcnklo2SO5OzLYlvl7HlRpk=; b=IDcTpsQ8fVw2rQVCoT
-	F9quQxW+TIVCR7BmcIGFbyF4i2kcx/y/49phddH6yw/3qsKUK4Tc0wN4qHLazLtl
-	s5/S6N5p+TBsqM1/wgFI7N/QiNt5wSjxKYzuIDIAvgzePwIpn/M2HKnSGBJk5fM7
-	PQswQ6k1m6B9BTNt6DSbuPKLk=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v19.5.3) with ESMTPSA id md50000230171.msg; 
-	Tue, 24 Dec 2019 10:23:45 +0100
-X-MDRemoteIP: 178.27.65.232
-X-MDHelo: jholzmayr.localdomain
-X-MDArrival-Date: Tue, 24 Dec 2019 10:23:45 +0100
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=1261e0fa79=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-Date: Tue, 24 Dec 2019 10:23:28 +0100
-From: "Josef Holzmayr" <holzmayr@rsi-elektrotechnik.de>
-To: Ed Vidal <develone@sbcglobal.net>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [yocto] Raspberry pi 4 recipe and layer issues.
-Message-ID: <20191224092328.kzx5fgf7322jzmlw@jholzmayr.localdomain>
-References: <1603144693.1899827.1577135467329.ref@mail.yahoo.com>
- <1603144693.1899827.1577135467329@mail.yahoo.com>
+Received: from c57603.sgvps.net (c57603.sgvps.net [109.199.122.162])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74CFEE003E1
+	for <yocto@yoctoproject.org>; Tue, 24 Dec 2019 04:31:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=iwavesystems.com; s=default; h=Content-Type:MIME-Version:Date:Message-ID:
+	Subject:From:To:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=b9pNN0M31St+amSaT8r2X3JahjGXNV1bw9+gutYt5cA=; b=oRPWkMbmdA5mUPMMj2gqLNLGMH
+	EP0NTy8W44iXBjony7t+YiyeMI3FzJ+fzvU50I37YH8xcZUHZ1FLSKbsBz4nALyNhVW2I/iaH8Rxe
+	fC9ewdmdrF+MF7sIKjcnv5/ylHbY452ZSI+ScHiroFvvTCi7qR3AkKhpStlbV7TqJERssXAetsBPo
+	oXE8CalopYpywlIX1YtrXz/NBj2xNPhOzWHcBZ1XEYmX3iZawXqd05/gw7ib6LAst4Q2QGhYlSPOB
+	Rsof909KjHTd7SL4zanG7wRyQYXfdXpZ7oJ0X/u80cttslH/hYk1sS+eAUJz1PitHvq5KSev9kWMO
+	KHzqfg5A==;
+Received: from [124.124.219.230] (port=9177 helo=[192.168.1.131])
+	by c57603.sgvps.net with esmtpsa  tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(Exim 4.90devstart-1178-b07e68e5-XX)
+	(envelope-from <sheraz.ali@iwavesystems.com>)
+	id 1ijjLT-000DsD-E3
+	for yocto@yoctoproject.org; Tue, 24 Dec 2019 06:31:27 -0600
+To: Yocto <yocto@yoctoproject.org>
+From: "Sheraz Ali" <sheraz.ali@iwavesystems.com>
+Subject: building vlc
+Message-ID: <bd578e85-f9f0-51c4-052f-eca47d95b508@iwavesystems.com>
+Date: Tue, 24 Dec 2019 18:01:25 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <1603144693.1899827.1577135467329@mail.yahoo.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - c57603.sgvps.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - iwavesystems.com
+X-Get-Message-Sender-Via: c57603.sgvps.net: authenticated_id: sheraz.ali@iwavesystems.com
+X-Authenticated-Sender: c57603.sgvps.net: sheraz.ali@iwavesystems.com
+Content-Type: multipart/alternative;
+ boundary="------------B6AAD855B08A53E9A92DC486"
+Content-Language: en-US
+
+--------------B6AAD855B08A53E9A92DC486
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 
-Howdy.
+Hi,
 
-On Mon, Dec 23, 2019 at 09:11:07PM +0000, Ed Vidal wrote:
-> The Makefile executes several lines, which set variables=C2=A0ARACHNE_V=
-ER,=C2=A0GIT_REV, and=C2=A0VER_HASH.=C2=A0 =C2=A0These are used in the ru=
-le which creates a file=C2=A0src/version_$(VER_HASH).cc.The line below ap=
-pears to be the one that causes the error.VER_HASH =3D $(shell echo "$(AR=
-ACHNE_VER) $(GIT_REV)" | sum | cut -d ' ' -f -1)
-> src/version_$(VER_HASH).cc: echo "const char *version_str =3D \"arachne=
--pnr $(ARACHNE_VER) (git sha1 $(GIT_REV), $(notdir $(CXX)) `$(CXX) --vers=
-ion | tr ' ()' '\n' | grep '^[0-9]' | head -n1` $(filter -f% -m% -O% -DND=
-EBUG,$(CXXFLAGS)))\";" > src/version_$(VER_HASH).cc
-> bin/arachne-pnr$(EXE): src/arachne-pnr.o src/netlist.o src/blif.o src/p=
-ack.o src/place.o src/util.o src/io.o src/route.o src/chipdb.o src/locati=
-on.o src/configuration.o src/line_parser.o src/pcf.o src/global.o src/con=
-stant.o src/designstate.o src/version_$(VER_HASH).o $(CXX) $(CXXFLAGS) $(=
-LDFLAGS) -o $@ $^ $(LIBS)
-> These variables are based on git revision.=C2=A0 =C2=A0So I can not har=
-d code them.This is the error that I get.
-> /bin/sh: 1: sum: not found
+ =C2=A0=C2=A0=C2=A0 I am trying to build vlc,
 
-If a Makefile does such _stupid_ things, then better patch it. An
-example of patching something like this is
+I have added vlc to rootfs by adding following line in conf/local.conf
 
-https://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-core/ut=
-il-linux/util-linux/configure-sbindir.patch
+    IMAGE_INSTALL_append =3D " vlc //"
 
-which targets configure.ac, but hey, little difference to a Makefile.
+    CORE_IMAGE_EXTRA_INSTALL +=3D"vlc"
 
-Greetz
+    In both the cases i was getting the following error when i was try
+    to start the vlc player
+
+root@iWave-G15:~# vlc -vvv
+VLC media player 2.2.2 Weatherwax (revision 2.2.2-0-g6259d80)
+[001450d0] core libvlc debug: VLC media player - 2.2.2 Weatherwax
+[001450d0] core libvlc debug: Copyright =EF=BF=BD=C2=A9 1996-2016 the Vid=
+eoLAN team
+[001450d0] core libvlc debug: revision 2.2.2-0-g6259d80
+[001450d0] core libvlc debug: configured with ../vlc-2.2.2/configure=20
+'--build=3Dx86_64-linux' '--host=3Darm-poky-linux-gnueabi'=20
+'--target=3Darm-poky-linux-gnueabi' '--prefix=3D/usr' '
+[001450d0] core libvlc debug: searching plug-in modules
+[001450d0] core libvlc debug: loading plugins cache file=20
+/usr/lib/vlc/plugins/plugins.dat
+[001450d0] core libvlc warning: cannot read=20
+/usr/lib/vlc/plugins/plugins.dat: No such file or directory
+[001450d0] core libvlc debug: recursively browsing `/usr/lib/vlc/plugins'
+Segmentation fault
+
+Am i missing any steps?
+
 --=20
-=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
-=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
-Josef Holzmayr
-Software Developer Embedded Systems
+Thanks and Regards
+Sheraz Ali Shah
 
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
 
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=
-=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
-Amtsgericht Ingolstadt =E2=80=93 GmbH: HRB 191328 =E2=80=93 KG: HRA 17039=
-3
-Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548=20
+--------------B6AAD855B08A53E9A92DC486
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
+<html>
+  <head>
 
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF=
+-8">
+  </head>
+  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <div class=3D"moz-text-html" lang=3D"x-unicode">
+      <p>Hi,</p>
+      <p>=C2=A0=C2=A0=C2=A0 I am trying to build vlc,</p>
+      <p>I have added vlc to rootfs by adding following line in
+        conf/local.conf</p>
+      <blockquote class=3D"jive-quote">
+        <p>IMAGE_INSTALL_append =3D " vlc <span style=3D"color: #0000ff;"=
+><em></em></span>"</p>
+        <p>CORE_IMAGE_EXTRA_INSTALL +=3D"vlc"</p>
+        <p>In both the cases i was getting the following error when i
+          was try to start the vlc player<br>
+        </p>
+      </blockquote>
+      <p>root@iWave-G15:~# vlc -vvv<br>
+        VLC media player 2.2.2 Weatherwax (revision 2.2.2-0-g6259d80)<br>
+        [001450d0] core libvlc debug: VLC media player - 2.2.2
+        Weatherwax<br>
+        [001450d0] core libvlc debug: Copyright =EF=BF=BD=C2=A9 1996-2016=
+ the
+        VideoLAN team<br>
+        [001450d0] core libvlc debug: revision 2.2.2-0-g6259d80<br>
+        [001450d0] core libvlc debug: configured with
+        ../vlc-2.2.2/configure '--build=3Dx86_64-linux'
+        '--host=3Darm-poky-linux-gnueabi'
+        '--target=3Darm-poky-linux-gnueabi' '--prefix=3D/usr' '<br>
+        [001450d0] core libvlc debug: searching plug-in modules<br>
+        [001450d0] core libvlc debug: loading plugins cache file
+        /usr/lib/vlc/plugins/plugins.dat<br>
+        [001450d0] core libvlc warning: cannot read
+        /usr/lib/vlc/plugins/plugins.dat: No such file or directory<br>
+        [001450d0] core libvlc debug: recursively browsing
+        `/usr/lib/vlc/plugins'<br>
+        Segmentation fault</p>
+      <p>Am i missing any steps?<br>
+      </p>
+      <pre class=3D"moz-signature" cols=3D"72">--=20
+Thanks and Regards
+Sheraz Ali Shah
+</pre>
+    </div>
+  </body>
+</html>
+
+--------------B6AAD855B08A53E9A92DC486--
