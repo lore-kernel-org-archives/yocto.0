@@ -1,159 +1,147 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.2286.1577190689752065309
+ by mx.groups.io with SMTP id smtpd.web12.3189.1577197429273935900
  for <yocto@lists.yoctoproject.org>;
- Tue, 24 Dec 2019 04:31:30 -0800
+ Tue, 24 Dec 2019 06:23:49 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@iwavesystems.com header.s=default header.b=oRPWkMbm;
- spf=permerror, err=parse error for token &{10 18 _spf.mailspamprotection.com}: parse error for token &{10 18 _nb5.mailspamprotection.com}: limit exceeded (domain: iwavesystems.com, ip: 140.211.169.56, mailfrom: sheraz.ali@iwavesystems.com)
+ dkim=missing; spf=none, err=permanent DNS error (domain: deserted.net, ip: 140.211.169.56, mailfrom: joe@deserted.net)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2DB67E011A6; Tue, 24 Dec 2019 04:31:29 -0800 (PST)
+	id C1436E01117; Tue, 24 Dec 2019 06:23:48 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	SUBJ_OBFU_PUNCT_FEW,SUBJ_OBFU_PUNCT_MANY autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from c57603.sgvps.net (c57603.sgvps.net [109.199.122.162])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74CFEE003E1
-	for <yocto@yoctoproject.org>; Tue, 24 Dec 2019 04:31:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=iwavesystems.com; s=default; h=Content-Type:MIME-Version:Date:Message-ID:
-	Subject:From:To:Sender:Reply-To:Cc:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=b9pNN0M31St+amSaT8r2X3JahjGXNV1bw9+gutYt5cA=; b=oRPWkMbmdA5mUPMMj2gqLNLGMH
-	EP0NTy8W44iXBjony7t+YiyeMI3FzJ+fzvU50I37YH8xcZUHZ1FLSKbsBz4nALyNhVW2I/iaH8Rxe
-	fC9ewdmdrF+MF7sIKjcnv5/ylHbY452ZSI+ScHiroFvvTCi7qR3AkKhpStlbV7TqJERssXAetsBPo
-	oXE8CalopYpywlIX1YtrXz/NBj2xNPhOzWHcBZ1XEYmX3iZawXqd05/gw7ib6LAst4Q2QGhYlSPOB
-	Rsof909KjHTd7SL4zanG7wRyQYXfdXpZ7oJ0X/u80cttslH/hYk1sS+eAUJz1PitHvq5KSev9kWMO
-	KHzqfg5A==;
-Received: from [124.124.219.230] (port=9177 helo=[192.168.1.131])
-	by c57603.sgvps.net with esmtpsa  tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.90devstart-1178-b07e68e5-XX)
-	(envelope-from <sheraz.ali@iwavesystems.com>)
-	id 1ijjLT-000DsD-E3
-	for yocto@yoctoproject.org; Tue, 24 Dec 2019 06:31:27 -0600
-To: Yocto <yocto@yoctoproject.org>
-From: "Sheraz Ali" <sheraz.ali@iwavesystems.com>
-Subject: building vlc
-Message-ID: <bd578e85-f9f0-51c4-052f-eca47d95b508@iwavesystems.com>
-Date: Tue, 24 Dec 2019 18:01:25 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
+	*      medium trust
+	*      [68.232.141.98 listed in list.dnswl.org]
+	*  0.7 SUBJ_OBFU_PUNCT_FEW Possible punctuation-obfuscated Subject: header
+	*  0.0 SUBJ_OBFU_PUNCT_MANY Punctuation-obfuscated Subject: header
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www; Tue, 24 Dec 2019 06:23:47 PST
+Received: from esa2.mentor.iphmx.com (esa2.mentor.iphmx.com [68.232.141.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83A95E00A0A
+	for <yocto@yoctoproject.org>; Tue, 24 Dec 2019 06:23:47 -0800 (PST)
+IronPort-SDR: UAePDfoRDFp4iOcQpwTumXnRF89kBN/m+WbEXUQ/xjHbLE3t7YYr5+P+1QEZ+Og1zYK+0RP4bH
+ kKSTS4xmCp9PYol1vrwv4MAkCgWBe/5SIKbDYmFza6P+CSQS1SBXKfl60wqtAftGruKOvouYCj
+ gmoTdaizzJuKk6p1n4d0zJX/csvpT4gtPJMe3Gb/I7kZBVjv3E3ypTfaCOgha/fCZf2qd8RSq4
+ rp3gqaUDhw1uCkJj9uWln+XOjNQSekTQdEyPJblMhAthbwXPFMtCl9NdTWXBLjLRKgnnbX25LP
+ BUQ=
+X-IronPort-AV: E=Sophos;i="5.69,351,1571731200"; 
+   d="asc'?scan'208";a="44328805"
+Received: from orw-gwy-01-in.mentorg.com ([192.94.38.165])
+  by esa2.mentor.iphmx.com with ESMTP; 24 Dec 2019 06:22:44 -0800
+IronPort-SDR: iX+4auZM0WW9/GXjdWabaDqq6788AdJ7+XIXB6UL9Nln1+ktWHmfJpwoP9dJ0C+d59Rt8rLLLh
+ etLpXEGYx4dC6qQcmPdOfFSVMQn9+eGY1EyTJJ10E9zpzsuqDsWoZ1mi+c7HF0E0EIezyUlbO+
+ 28jw1WOwze+HJveY5u6GaMof3K5JwNMr9JM9qtieoE9IQA6iZMm/7zBRwhv1sTRzY0hM/qew+N
+ yMPwDivehr3V2y0cNyTHA4pEI89dxbu+Bu+Sx39htyI/iWOyd/kV7LkgMTfRL8/rFn/uQFDtgF
+ X1A=
+Date: Tue, 24 Dec 2019 09:22:40 -0500
+From: "Joe MacDonald" <joe@deserted.net>
+To: Yi Zhao <yi.zhao@windriver.com>
+CC: <yocto@yoctoproject.org>
+Subject: Re: [meta-selinux][PATCH 4/6] selinux-initsh.inc: install selinux-init.sh and selinux-labeldev.sh when using systemd
+Message-ID: <20191224142238.GA39081@deserted.net>
+References: <20191223082152.7706-1-yi.zhao@windriver.com>
+ <20191223082152.7706-4-yi.zhao@windriver.com>
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - c57603.sgvps.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - iwavesystems.com
-X-Get-Message-Sender-Via: c57603.sgvps.net: authenticated_id: sheraz.ali@iwavesystems.com
-X-Authenticated-Sender: c57603.sgvps.net: sheraz.ali@iwavesystems.com
-Content-Type: multipart/alternative;
- boundary="------------B6AAD855B08A53E9A92DC486"
-Content-Language: en-US
+In-Reply-To: <20191223082152.7706-4-yi.zhao@windriver.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Groupsio-MsgNum: 47816
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="cNdxnHkX5QqsyA0e"
+Content-Disposition: inline
 
---------------B6AAD855B08A53E9A92DC486
-Content-Type: text/plain; charset=utf-8; format=flowed
+--cNdxnHkX5QqsyA0e
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Yi,
 
- =C2=A0=C2=A0=C2=A0 I am trying to build vlc,
+I've merged the others in this series, can you elaborate a bit on how
+this ensures we don't have a problem coming back that 5fd3c5b71 was
+intended to address?
 
-I have added vlc to rootfs by adding following line in conf/local.conf
+Thanks,
+-J.
 
-    IMAGE_INSTALL_append =3D " vlc //"
+[[meta-selinux][PATCH 4/6] selinux-initsh.inc: install selinux-init.sh and =
+selinux-labeldev.sh when using systemd] On 19.12.23 (Mon 16:21) Yi Zhao wro=
+te:
 
-    CORE_IMAGE_EXTRA_INSTALL +=3D"vlc"
-
-    In both the cases i was getting the following error when i was try
-    to start the vlc player
-
-root@iWave-G15:~# vlc -vvv
-VLC media player 2.2.2 Weatherwax (revision 2.2.2-0-g6259d80)
-[001450d0] core libvlc debug: VLC media player - 2.2.2 Weatherwax
-[001450d0] core libvlc debug: Copyright =EF=BF=BD=C2=A9 1996-2016 the Vid=
-eoLAN team
-[001450d0] core libvlc debug: revision 2.2.2-0-g6259d80
-[001450d0] core libvlc debug: configured with ../vlc-2.2.2/configure=20
-'--build=3Dx86_64-linux' '--host=3Darm-poky-linux-gnueabi'=20
-'--target=3Darm-poky-linux-gnueabi' '--prefix=3D/usr' '
-[001450d0] core libvlc debug: searching plug-in modules
-[001450d0] core libvlc debug: loading plugins cache file=20
-/usr/lib/vlc/plugins/plugins.dat
-[001450d0] core libvlc warning: cannot read=20
-/usr/lib/vlc/plugins/plugins.dat: No such file or directory
-[001450d0] core libvlc debug: recursively browsing `/usr/lib/vlc/plugins'
-Segmentation fault
-
-Am i missing any steps?
+> The commit 5fd3c5b71edb99659aeb5cb5903088d84517382e introduced an issue
+> that selinux-init.sh and selinux-labeldev.sh are not installed when
+> using systemd which will cause the selinux-ini.service and
+> selinux-labeldev.service fail to startup. Move the do_install codes from
+> selinux-autorelabel to selinux-initsh.inc to make sure install these
+> scripts when using systemd.
+>=20
+> Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+> ---
+>  recipes-security/selinux/selinux-autorelabel_0.1.bb | 3 ---
+>  recipes-security/selinux/selinux-initsh.inc         | 9 +++++++--
+>  2 files changed, 7 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/recipes-security/selinux/selinux-autorelabel_0.1.bb b/recipe=
+s-security/selinux/selinux-autorelabel_0.1.bb
+> index 7e7d08c..b898c3b 100644
+> --- a/recipes-security/selinux/selinux-autorelabel_0.1.bb
+> +++ b/recipes-security/selinux/selinux-autorelabel_0.1.bb
+> @@ -21,9 +21,6 @@ require selinux-initsh.inc
+> =20
+>  do_install_append() {
+>  	if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', =
+d)}; then
+> -		install -d ${D}${bindir}
+> -		install -m 0755 ${WORKDIR}/${SELINUX_SCRIPT_SRC}.sh ${D}${bindir}
+> -		sed -i -e '/.*HERE$/d' ${D}${bindir}/${SELINUX_SCRIPT_SRC}.sh
+>  		echo "# first boot relabelling" > ${D}/.autorelabel
+>  	fi
+>  }
+> diff --git a/recipes-security/selinux/selinux-initsh.inc b/recipes-securi=
+ty/selinux/selinux-initsh.inc
+> index 6084762..0a6cf4b 100644
+> --- a/recipes-security/selinux/selinux-initsh.inc
+> +++ b/recipes-security/selinux/selinux-initsh.inc
+> @@ -27,8 +27,13 @@ do_install () {
+>  	       -e '/.*HERE$/d' -e '/.*Contents.*sysvinit/d' \
+>  	       ${D}${sysconfdir}/init.d/${SELINUX_SCRIPT_DST}
+> =20
+> -	install -d ${D}${systemd_unitdir}/system
+> -	install -m 0644 ${WORKDIR}/${SELINUX_SCRIPT_SRC}.service ${D}${systemd_=
+unitdir}/system
+> +    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false=
+', d)}; then
+> +        install -d ${D}${systemd_unitdir}/system
+> +        install -m 0644 ${WORKDIR}/${SELINUX_SCRIPT_SRC}.service ${D}${s=
+ystemd_unitdir}/system
+> +        install -d ${D}${bindir}
+> +        install -m 0755 ${WORKDIR}/${SELINUX_SCRIPT_SRC}.sh ${D}${bindir}
+> +        sed -i -e '/.*HERE$/d' ${D}${bindir}/${SELINUX_SCRIPT_SRC}.sh
+> +    fi
+>  }
+> =20
+>  sysroot_stage_all_append () {
+> --=20
+> 2.17.1
+>=20
 
 --=20
-Thanks and Regards
-Sheraz Ali Shah
+-Joe MacDonald.
+:wq
 
+--cNdxnHkX5QqsyA0e
+Content-Type: application/pgp-signature; name="signature.asc"
 
---------------B6AAD855B08A53E9A92DC486
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+-----BEGIN PGP SIGNATURE-----
 
-<html>
-  <head>
+iF0EABECAB0WIQRjqRhJknEwCqrWVXzAW9yWWiDRfAUCXgIfIgAKCRDAW9yWWiDR
+fKlxAJ478Gzt05fGKSyY4PimbHjatng2AACgrN/VPV/aftZGPOVDC3Wo6cZcTfQ=
+=dbvW
+-----END PGP SIGNATURE-----
 
-    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
-    <div class=3D"moz-text-html" lang=3D"x-unicode">
-      <p>Hi,</p>
-      <p>=C2=A0=C2=A0=C2=A0 I am trying to build vlc,</p>
-      <p>I have added vlc to rootfs by adding following line in
-        conf/local.conf</p>
-      <blockquote class=3D"jive-quote">
-        <p>IMAGE_INSTALL_append =3D " vlc <span style=3D"color: #0000ff;"=
-><em></em></span>"</p>
-        <p>CORE_IMAGE_EXTRA_INSTALL +=3D"vlc"</p>
-        <p>In both the cases i was getting the following error when i
-          was try to start the vlc player<br>
-        </p>
-      </blockquote>
-      <p>root@iWave-G15:~# vlc -vvv<br>
-        VLC media player 2.2.2 Weatherwax (revision 2.2.2-0-g6259d80)<br>
-        [001450d0] core libvlc debug: VLC media player - 2.2.2
-        Weatherwax<br>
-        [001450d0] core libvlc debug: Copyright =EF=BF=BD=C2=A9 1996-2016=
- the
-        VideoLAN team<br>
-        [001450d0] core libvlc debug: revision 2.2.2-0-g6259d80<br>
-        [001450d0] core libvlc debug: configured with
-        ../vlc-2.2.2/configure '--build=3Dx86_64-linux'
-        '--host=3Darm-poky-linux-gnueabi'
-        '--target=3Darm-poky-linux-gnueabi' '--prefix=3D/usr' '<br>
-        [001450d0] core libvlc debug: searching plug-in modules<br>
-        [001450d0] core libvlc debug: loading plugins cache file
-        /usr/lib/vlc/plugins/plugins.dat<br>
-        [001450d0] core libvlc warning: cannot read
-        /usr/lib/vlc/plugins/plugins.dat: No such file or directory<br>
-        [001450d0] core libvlc debug: recursively browsing
-        `/usr/lib/vlc/plugins'<br>
-        Segmentation fault</p>
-      <p>Am i missing any steps?<br>
-      </p>
-      <pre class=3D"moz-signature" cols=3D"72">--=20
-Thanks and Regards
-Sheraz Ali Shah
-</pre>
-    </div>
-  </body>
-</html>
-
---------------B6AAD855B08A53E9A92DC486--
+--cNdxnHkX5QqsyA0e--
