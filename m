@@ -1,138 +1,90 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.10649.1577259875341440855
- for <yocto@lists.yoctoproject.org>;
- Tue, 24 Dec 2019 23:44:36 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: yi.zhao@windriver.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D8F1CE011C2; Tue, 24 Dec 2019 23:44:34 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2038FE011B6
-	for <yocto@yoctoproject.org>; Tue, 24 Dec 2019 23:44:34 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id xBP7iWYO016998
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
-	Tue, 24 Dec 2019 23:44:32 -0800 (PST)
-Received: from [128.224.162.174] (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0; Tue, 24 Dec
- 2019 23:44:31 -0800
-Subject: Re: [meta-selinux][PATCH 4/6] selinux-initsh.inc: install selinux-init.sh and selinux-labeldev.sh when using systemd
-To: Joe MacDonald <joe@deserted.net>
-CC: <yocto@yoctoproject.org>
-References: <20191223082152.7706-1-yi.zhao@windriver.com>
- <20191223082152.7706-4-yi.zhao@windriver.com>
- <20191224142238.GA39081@deserted.net>
-From: "Yi Zhao" <yi.zhao@windriver.com>
-Message-ID: <7b1eb6f6-d106-47d8-8750-72e2bb1d261a@windriver.com>
-Date: Wed, 25 Dec 2019 15:44:28 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+Subject: [meson][PATCH] meson: Allow for llvm-native tools to be used
+To: yocto@lists.yoctoproject.org
+From: fdk17@ftml.net
+X-Originating-Location: Ann Arbor, Michigan, US (68.40.190.43)
+X-Originating-Platform: Linux Firefox 71
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <20191224142238.GA39081@deserted.net>
-X-Originating-IP: [128.224.162.174]
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Language: en-US
+Date: Wed, 25 Dec 2019 03:24:27 -0800
+Message-ID: <l4HO.1577273067981893969.30G2@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="f1SWVKlXfJaZymc3wzl8"
+
+--f1SWVKlXfJaZymc3wzl8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
+I created a bbappend to build the LLVM recipe so that all the libraries wer=
+e available for use on the host.
+These libraries are then used by a host/sdk tool to prepare binary files f=
+or use by an application on the target.
+When building our tool using meson it wasn't able to find the Yocto built =
+LLLVM libraries.
+This fixes the issue so meson uses the correct llvm-config tool.
 
-On 12/24/19 10:22 PM, Joe MacDonald wrote:
-> Hi Yi,
->
-> I've merged the others in this series, can you elaborate a bit on how
-> this ensures we don't have a problem coming back that 5fd3c5b71 was
-> intended to address?
+Author: Fred Baksik <fred.baksik@mrcy.com>
+Date:=C2=A0=C2=A0 Tue Dec 24 20:38:47 2019 -0500
 
+meson: Allow for llvm-native tools to be used
 
-There are 3 recipes require selinux-initsh.inc: selinux-init_0.1.bb,=20
-selinux-labeldev_0.1.bb and selinux-autorelabel_0.1.bb. The=20
-${SELINUX_SCRIPT_SRC}.sh will expand to different script name=A0 in each=20
-of recipes: selinux-init.sh, selinux-labeldev.sh and=20
-selinux-autorelabel.sh. These scripts will be invoked by systemd=20
-services. The commit 5fd3c5b71edb99659aeb5cb5903088d84517382e move all=20
-installation codes to selinux-autorelabel_0.1.bb which make the=20
-selinux-init.sh and selinux-labeldev.sh will be not installed. This=20
-patch keeps the touching .autorelabel code in the selinux-autorelabel=20
-recipe and move the rest codes back to selinux-initsh.inc.
+Signed-off-by: Fred Baksik <fred.baksik@mrcy.com>
 
+diff --git a/meta/classes/meson.bbclass b/meta/classes/meson.bbclass
+index e1a13bbbf7..b5cd2ee8c4 100644
+--- a/meta/classes/meson.bbclass
++++ b/meta/classes/meson.bbclass
+@@ -33,6 +33,7 @@ EXTRA_OEMESON_append =3D " ${PACKAGECONFIG_CONFARGS}"
+MESON_CROSS_FILE =3D ""
+MESON_CROSS_FILE_class-target =3D "--cross-file ${WORKDIR}/meson.cross"
+MESON_CROSS_FILE_class-nativesdk =3D "--cross-file ${WORKDIR}/meson.cross"
++MESON_CROSS_FILE_class-native =3D "--native-file ${WORKDIR}/meson.native"
 
-//Yi
+def meson_array(var, d):
+items =3D d.getVar(var).split()
+@@ -110,6 +111,14 @@ endian =3D '${@meson_endian('TARGET', d)}'
+EOF
+}
 
++do_write_config_class-native() {
++=C2=A0=C2=A0=C2=A0 # This needs to be Py to split the args into single-el=
+ement lists
++=C2=A0=C2=A0=C2=A0 cat >${WORKDIR}/meson.native <<EOF
++[binaries]
++llvm-config =3D 'llvm-config${LLVMVERSION}'
++EOF
++}
++
+CONFIGURE_FILES =3D "meson.build"
 
->
-> Thanks,
-> -J.
->
-> [[meta-selinux][PATCH 4/6] selinux-initsh.inc: install selinux-init.sh =
-and selinux-labeldev.sh when using systemd] On 19.12.23 (Mon 16:21) Yi Zh=
-ao wrote:
->
->> The commit 5fd3c5b71edb99659aeb5cb5903088d84517382e introduced an issu=
-e
->> that selinux-init.sh and selinux-labeldev.sh are not installed when
->> using systemd which will cause the selinux-ini.service and
->> selinux-labeldev.service fail to startup. Move the do_install codes fr=
-om
->> selinux-autorelabel to selinux-initsh.inc to make sure install these
->> scripts when using systemd.
->>
->> Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
->> ---
->>   recipes-security/selinux/selinux-autorelabel_0.1.bb | 3 ---
->>   recipes-security/selinux/selinux-initsh.inc         | 9 +++++++--
->>   2 files changed, 7 insertions(+), 5 deletions(-)
->>
->> diff --git a/recipes-security/selinux/selinux-autorelabel_0.1.bb b/rec=
-ipes-security/selinux/selinux-autorelabel_0.1.bb
->> index 7e7d08c..b898c3b 100644
->> --- a/recipes-security/selinux/selinux-autorelabel_0.1.bb
->> +++ b/recipes-security/selinux/selinux-autorelabel_0.1.bb
->> @@ -21,9 +21,6 @@ require selinux-initsh.inc
->>  =20
->>   do_install_append() {
->>   	if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'fals=
-e', d)}; then
->> -		install -d ${D}${bindir}
->> -		install -m 0755 ${WORKDIR}/${SELINUX_SCRIPT_SRC}.sh ${D}${bindir}
->> -		sed -i -e '/.*HERE$/d' ${D}${bindir}/${SELINUX_SCRIPT_SRC}.sh
->>   		echo "# first boot relabelling" > ${D}/.autorelabel
->>   	fi
->>   }
->> diff --git a/recipes-security/selinux/selinux-initsh.inc b/recipes-sec=
-urity/selinux/selinux-initsh.inc
->> index 6084762..0a6cf4b 100644
->> --- a/recipes-security/selinux/selinux-initsh.inc
->> +++ b/recipes-security/selinux/selinux-initsh.inc
->> @@ -27,8 +27,13 @@ do_install () {
->>   	       -e '/.*HERE$/d' -e '/.*Contents.*sysvinit/d' \
->>   	       ${D}${sysconfdir}/init.d/${SELINUX_SCRIPT_DST}
->>  =20
->> -	install -d ${D}${systemd_unitdir}/system
->> -	install -m 0644 ${WORKDIR}/${SELINUX_SCRIPT_SRC}.service ${D}${syste=
-md_unitdir}/system
->> +    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'fa=
-lse', d)}; then
->> +        install -d ${D}${systemd_unitdir}/system
->> +        install -m 0644 ${WORKDIR}/${SELINUX_SCRIPT_SRC}.service ${D}=
-${systemd_unitdir}/system
->> +        install -d ${D}${bindir}
->> +        install -m 0755 ${WORKDIR}/${SELINUX_SCRIPT_SRC}.sh ${D}${bin=
-dir}
->> +        sed -i -e '/.*HERE$/d' ${D}${bindir}/${SELINUX_SCRIPT_SRC}.sh
->> +    fi
->>   }
->>  =20
->>   sysroot_stage_all_append () {
->> --=20
->> 2.17.1
->>
+meson_do_configure() {
+
+--f1SWVKlXfJaZymc3wzl8
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+I created a bbappend to build the LLVM recipe so that all the libraries wer=
+e available for use on the host.<br />These libraries are then used by a ho=
+st/sdk tool to prepare binary files for use by an application on the target=
+.<br />When building our tool using meson it wasn't able to find the Yocto =
+built LLLVM libraries.<br />This fixes the issue so meson uses the correct =
+llvm-config tool.<br /><br />Author: Fred Baksik &lt;fred.baksik@mrcy.com&g=
+t;<br />Date:&nbsp;&nbsp; Tue Dec 24 20:38:47 2019 -0500<br /><br />&nbsp;&=
+nbsp;&nbsp; meson: Allow for llvm-native tools to be used<br />&nbsp;&nbsp;=
+&nbsp; <br />&nbsp;&nbsp;&nbsp; Signed-off-by: Fred Baksik &lt;fred.baksik@=
+mrcy.com&gt;<br /><br />diff --git a/meta/classes/meson.bbclass b/meta/clas=
+ses/meson.bbclass<br />index e1a13bbbf7..b5cd2ee8c4 100644<br />--- a/meta/=
+classes/meson.bbclass<br />+++ b/meta/classes/meson.bbclass<br />@@ -33,6 +=
+33,7 @@ EXTRA_OEMESON_append =3D " ${PACKAGECONFIG_CONFARGS}"<br />&nbsp;ME=
+SON_CROSS_FILE =3D ""<br />&nbsp;MESON_CROSS_FILE_class-target =3D "--cross=
+-file ${WORKDIR}/meson.cross"<br />&nbsp;MESON_CROSS_FILE_class-nativesdk =
+=3D "--cross-file ${WORKDIR}/meson.cross"<br />+MESON_CROSS_FILE_class-nat=
+ive =3D "--native-file ${WORKDIR}/meson.native"<br />&nbsp;<br />&nbsp;def =
+meson_array(var, d):<br />&nbsp;&nbsp;&nbsp;&nbsp; items =3D d.getVar(var).=
+split()<br />@@ -110,6 +111,14 @@ endian =3D '${@meson_endian('TARGET', d)}=
+'<br />&nbsp;EOF<br />&nbsp;}<br />&nbsp;<br />+do_write_config_class-nativ=
+e() {<br />+&nbsp;&nbsp;&nbsp; # This needs to be Py to split the args into=
+ single-element lists<br />+&nbsp;&nbsp;&nbsp; cat &gt;${WORKDIR}/meson.nat=
+ive &lt;&lt;EOF<br />+[binaries]<br />+llvm-config =3D 'llvm-config${LLVMVE=
+RSION}'<br />+EOF<br />+}<br />+<br />&nbsp;CONFIGURE_FILES =3D "meson.buil=
+d"<br />&nbsp;<br />&nbsp;meson_do_configure() {
+
+--f1SWVKlXfJaZymc3wzl8--
