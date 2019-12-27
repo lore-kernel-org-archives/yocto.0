@@ -1,133 +1,137 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.27386.1577414681936279240
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43])
+ by mx.groups.io with SMTP id smtpd.web11.42.1577466015317069875
  for <yocto@lists.yoctoproject.org>;
- Thu, 26 Dec 2019 18:44:42 -0800
+ Fri, 27 Dec 2019 09:00:15 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: yi.zhao@windriver.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 72183E012F6; Thu, 26 Dec 2019 18:44:41 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01787E01157
-	for <yocto@yoctoproject.org>; Thu, 26 Dec 2019 18:44:39 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id xBR2hf6p014380
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
-	Thu, 26 Dec 2019 18:43:51 -0800
-Received: from localhost (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0; Thu, 26 Dec
- 2019 18:43:30 -0800
-From: "Yi Zhao" <yi.zhao@windriver.com>
-To: <yocto@yoctoproject.org>, <joe@deserted.net>, <Joe_MacDonald@mentor.com>
-Subject: [meta-selinux][PATCH] audit: fix host contamination for swig
-Date: Fri, 27 Dec 2019 10:43:27 +0800
-Message-ID: <20191227024327.19833-1-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=RZBSpzfc;
+ spf=pass (domain: gmail.com, ip: 209.85.222.43, mailfrom: kent.dorfman766@gmail.com)
+Received: by mail-ua1-f43.google.com with SMTP id y23so9233484ual.2
+        for <yocto@lists.yoctoproject.org>; Fri, 27 Dec 2019 09:00:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=NQK0F+Z3gzxsJjttqaO0yWdm6cgfTr9R2D4+SLhkmHA=;
+        b=RZBSpzfcZ1/uiTXeziaGNdHLYTwJ9NDHw2kbV3Oiw5AQNgXkCerfyy8G6k/EjWYLQU
+         NnBzabH0AAADN20r2IUV9bXREj25NI2JgWma1T/D/WcQw/BATtUxV2YJ2NdiQ8oFOzIT
+         bOZo/zeYIzMeFpRNTtafYRBmgpIFB4cjCucZ8U2zAoCBYIHBlZ3o6JOyneo7KEYQYAMG
+         ROJm9ioHsztm4NrID7uKTitr+CkwTVXVixubgw3JW+Qlv9v8fZSW2qHh3wxxSTO2FqYH
+         bYJP8E0pdpeq4j0YRbp6cKzx+G7p2D7RJycbAsLRheisEgMff3KoDrX32IkVTlMAvf26
+         2I6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=NQK0F+Z3gzxsJjttqaO0yWdm6cgfTr9R2D4+SLhkmHA=;
+        b=Hac/GS7RmAQICuTNJOop+f9TwuGRHaJmorlAFIt/H0dJigVSx/prMGy0NyedDSGvRG
+         bVxwBLopHT+MIVJDGQfe36vFNAAus+Ed9xJ4P7oi+Ja3rFNZtdAFeTd5Gc5erCsP2955
+         XL8mti6PIvZraKghL7oTOTig9MsGN31aDi16vddbKpPyMGqhi5nLlQDVYkjZIO9BaWlN
+         pwoJHO7211EpK/Tbn4bWSu+CwTP5I9gUthK+dTUxLyIY1yKcElY/UAkNKPiEzxzIWyRY
+         WPCySQmWdXvqTpEJGELyvs+bgyEEP3xpizgaV6wE+CgoR7zu/Ity6UNjkztA13N1u/dC
+         Sbsw==
+X-Gm-Message-State: APjAAAWXQVTrwjneJRpQY4CHc8TLIzk+yAcGIaBdS/8Gci91afnsIF+y
+	aBx1pEdhg7z6AJWugtEmjG8GCtdGDukNHfzp99iIcw==
+X-Google-Smtp-Source: APXvYqwA6aeHxFhlegFH9zNhK+Zh0aeYAqJeKDWFjJjeyiPyitcfC7AQ8dVTm+GOuHFoP4KXhfamRtjMWx4Vl3vbbZA=
+X-Received: by 2002:ab0:69c9:: with SMTP id u9mr10252143uaq.80.1577466013959;
+ Fri, 27 Dec 2019 09:00:13 -0800 (PST)
 MIME-Version: 1.0
-X-Originating-IP: [128.224.162.174]
-Content-Type: text/plain
+Received: by 2002:ab0:4186:0:0:0:0:0 with HTTP; Fri, 27 Dec 2019 09:00:13
+ -0800 (PST)
+From: "Kent Dorfman" <kent.dorfman766@gmail.com>
+Date: Fri, 27 Dec 2019 12:00:13 -0500
+Message-ID: <CAK4PFCUfSofY8JoK_QNhRA1ThTGVCKJM187BepSkXR4aypG-pQ@mail.gmail.com>
+Subject: OEM supplied yocto image is impossible to work with
+To: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-The audit build uses swig to generate a python wrapper. But there is a
-hardcoded include directory in auditswig.i, which causes header files on
-the host to be used when building. This will cause build error on some
-old systems. e.g. on CentOS7 with buildtools:
-  audit_wrap.c: In function '_wrap_audit_rule_flags_set':
-  audit_wrap.c:5018:19: error: dereferencing pointer to incomplete type 'struct audit_rule'
-  5018  if (arg1) (arg1)->flags = arg2;
-        ^~
+Oh, and this is the THIRD time I've tried posting this...you certainly
+don't make the yocto mailing lists easy to subscribe to.
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- .../Fixed-swig-host-contamination-issue.patch | 57 +++++++++++++++++++
- recipes-security/audit/audit_2.8.5.bb         |  1 +
- 2 files changed, 58 insertions(+)
- create mode 100644 recipes-security/audit/audit/Fixed-swig-host-contamination-issue.patch
+Lemme appologize in avance because parts of this are going to come
+across as rants directed at both our OEM and yocto.  Hopefully "yinz"
+have thick skins.
 
-diff --git a/recipes-security/audit/audit/Fixed-swig-host-contamination-issue.patch b/recipes-security/audit/audit/Fixed-swig-host-contamination-issue.patch
-new file mode 100644
-index 0000000..7c26995
---- /dev/null
-+++ b/recipes-security/audit/audit/Fixed-swig-host-contamination-issue.patch
-@@ -0,0 +1,57 @@
-+From a07271f1cce82122610b622bcea4a8a37528f321 Mon Sep 17 00:00:00 2001
-+From: Li xin <lixin.fnst@cn.fujitsu.com>
-+Date: Sun, 19 Jul 2015 02:42:58 +0900
-+Subject: [PATCH] audit: Fixed swig host contamination issue
-+
-+The audit build uses swig to generate a python wrapper.
-+Unfortunately, the swig info file references host include
-+directories.  Some of these were previously noticed and
-+eliminated, but the one fixed here was not.
-+
-+Upstream-Status: Inappropriate [embedded specific]
-+
-+Signed-off-by: Anders Hedlund <anders.hedlund@windriver.com>
-+Signed-off-by: Joe Slater <jslater@windriver.com>
-+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-+---
-+ bindings/swig/python3/Makefile.am | 3 ++-
-+ bindings/swig/src/auditswig.i     | 2 +-
-+ 2 files changed, 3 insertions(+), 2 deletions(-)
-+
-+diff --git a/bindings/swig/python3/Makefile.am b/bindings/swig/python3/Makefile.am
-+index 9938418..fa46aac 100644
-+--- a/bindings/swig/python3/Makefile.am
-++++ b/bindings/swig/python3/Makefile.am
-+@@ -22,6 +22,7 @@
-+ CONFIG_CLEAN_FILES = *.loT *.rej *.orig
-+ AM_CFLAGS = -fPIC -DPIC -fno-strict-aliasing $(PYTHON3_CFLAGS)
-+ AM_CPPFLAGS = -I. -I$(top_builddir) -I${top_srcdir}/lib $(PYTHON3_INCLUDES)
-++STDINC ?= /usr/include
-+ LIBS = $(top_builddir)/lib/libaudit.la
-+ SWIG_FLAGS = -python -py3 -modern
-+ SWIG_INCLUDES = -I. -I$(top_builddir) -I${top_srcdir}/lib $(PYTHON3_INCLUDES)
-+@@ -37,7 +38,7 @@ _audit_la_DEPENDENCIES =${top_srcdir}/lib/libaudit.h ${top_builddir}/lib/libaudi
-+ _audit_la_LIBADD = ${top_builddir}/lib/libaudit.la
-+ nodist__audit_la_SOURCES  = audit_wrap.c
-+ audit.py audit_wrap.c: ${srcdir}/../src/auditswig.i 
-+-	swig -o audit_wrap.c ${SWIG_FLAGS} ${SWIG_INCLUDES} ${srcdir}/../src/auditswig.i 
-++	swig -o audit_wrap.c ${SWIG_FLAGS} ${SWIG_INCLUDES} -I$(STDINC) ${srcdir}/../src/auditswig.i
-+ 
-+ CLEANFILES = audit.py* audit_wrap.c *~
-+ 
-+diff --git a/bindings/swig/src/auditswig.i b/bindings/swig/src/auditswig.i
-+index 7ebb373..424fb68 100644
-+--- a/bindings/swig/src/auditswig.i
-++++ b/bindings/swig/src/auditswig.i
-+@@ -39,7 +39,7 @@ signed
-+ #define __attribute(X) /*nothing*/
-+ typedef unsigned __u32;
-+ typedef unsigned uid_t;
-+-%include "/usr/include/linux/audit.h"
-++%include "linux/audit.h"
-+ #define __extension__ /*nothing*/
-+ #include <stdint.h>
-+ %include "../lib/libaudit.h"
-+-- 
-+2.7.4
-+
-diff --git a/recipes-security/audit/audit_2.8.5.bb b/recipes-security/audit/audit_2.8.5.bb
-index 1e76d5f..ee3b3b5 100644
---- a/recipes-security/audit/audit_2.8.5.bb
-+++ b/recipes-security/audit/audit_2.8.5.bb
-@@ -9,6 +9,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
- 
- SRC_URI = "git://github.com/linux-audit/${BPN}-userspace.git;branch=2.8_maintenance \
-            file://Add-substitue-functions-for-strndupa-rawmemchr.patch \
-+           file://Fixed-swig-host-contamination-issue.patch \
-            file://auditd \
-            file://auditd.service \
-            file://audit-volatile.conf \
--- 
-2.17.1
+I've been doing embedded system design since the beginning of the
+millenium (mostly VXworks, with some linux intel embedded, PPC
+cross-dev chain stuff, and bare metal C/C++ microcontrollers) and now
+I'm tasked with implementing a very mission critical set of embedded
+processors in an aerospace project.  I've not used yocto before.  The
+closest thing being buildroot.
 
+Anyway, the OEM for our boards was chosen before I came on board and
+while I can find no fault with the zynq based hardware, their software
+SDK and support is fracking terrible.
+
+Like most OEMs, their prefered model is to give the customer just
+enough information to try and force us to pay them to build a turnkey
+solution on our behalf, which is not an option in our enterprise.
+
+Their minimal yocto based SDK and reference implementation:
+
+1) as is, isn't suitable for our mission needs, where we must make
+changes to the base image,  kernel, and initramfs.  They seem to
+expect customers to only add on apps to the UBI rootfs and not screw
+with anything else.
+
+2) has many closed source packages in it that will only build from
+source when in their local intranet.  Deleting the cache and
+attempting a complete source level rebuild consistently fails.
+
+3) isn't documented at all, and they will only answer direct, well
+phrased questions, instead of volunteering information that meets our
+stated goals.
+
+4) them being a multinational company causes additional legal,
+information sharing, and logistical problems
+
+Questions/problems in yocto where the documentation kind of sucks, are:
+
+1) the necessity to "clean build" is inherent in any software
+endeavour, yet the simple equivalent of "make clean && make image" is
+nowhere to be easily found in yocto.  It is implied that deleting the
+tmp/ and sstate_cache/ directories should have the same affect, but is
+that safe?  What will it break?  I need to be confident in the process
+when I go scream at the OEM, telling them that their build tool is
+incomplete for our air-gapped environment.
+
+2) related to above, yocto needs a much better description of the
+expected directory tree within a project.
+
+3) the relationship between bitbake and devtool needs to be better
+documented and both utilities need to be better documented themselves.
+trying to run bitbake manually causes path errors (null entry in path)
+when in fact, bitbake itself is setting a path somewhere incorrectly.
+my path has no null entries or "." in it.
+
+4) yocto documentation fails in presenting a good explanation of the
+difference between packages, layers, recipes, and images.  Also, I've
+seen cases where virtual/kernel is used to check-out the kernel to
+work on it, yet no virtual/kernel directory exists in the layers
+directory tree, so a better explanation of the mapping between real
+directories and virtual names is warranted. ... and yes, I know what
+BB files are for.
+
+5) a big area that seems to be lacking is the ability to inquire in a
+yocto build as to what is included in it.  This is especially
+important if the responsible party didn't actually create the build,
+as is our case.  We're left with trying to guess what the OEM did, and
+why.
+
+6) the seeming inability of yocto to build reproducable binary images
+is a serious shortcoming in IA environments.  The first step in
+development for us is to baseline the reference build provided by the
+OEM and then make incremental changes to it, but yocto doesn't seem to
+have a way to validate that the build done in-house is identical to
+the pre-built images supplied on the board.  Is there a way to "forced
+sequentialize" the yocto process so that images can be reproducable?
+
+7) a large part of me wants to throw away the OEM build and start from
+scratch, but I have no information about how to correctly import their
+"blob only" packages into a separate yocto project.  Hell, I am not
+convinced that their blobs will remain persistent if I delete the
+cache because I don't know whether they were created in their network
+and  expected to always live in the cache, thus negating the ability
+of a customer to do a "clean build"
+
+Anyway, yes, I've read what docs I can find on yocto, and aside from
+falling asleep several times in the process, the docs really are not
+helping me with the problem at hand: using an existing yocto build
+provided by a possibly unscrupulous vendor.
