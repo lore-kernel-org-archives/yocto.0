@@ -1,141 +1,109 @@
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [85.215.255.20])
- by mx.groups.io with SMTP id smtpd.web10.2076.1577477812752766666
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+ by mx.groups.io with SMTP id smtpd.web12.2088.1577478618407709228
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Dec 2019 12:16:55 -0800
+ Fri, 27 Dec 2019 12:30:18 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@rsi-elektrotechnik.de header.s=strato-dkim-0002 header.b=NhbPjniN;
- spf=none, err=permanent DNS error (domain: rsi-elektrotechnik.de, ip: 85.215.255.20, mailfrom: prvs=12645a6e24=holzmayr@rsi-elektrotechnik.de)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1577477811;
-	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
-	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-	bh=TZ5P/HbIUN+SuceBi9QgecNmVZHYBfmZaUZarr7T/KY=;
-	b=NhbPjniNmx3nWfaefzKmflO+gwbR3M8A3vOz96Jd7RjJyf5LfWiAR9ERjuQPcHZCDq
-	bzZasQrLPmVVNBSao0ceZ3ad6GiEKArEaGJ26HkP3WSwf9AingjANbIVSFBZFDEimujt
-	09usJ+NHf4Zujgf4V+D7Nv8iFzUZRIG68TaNU6nWVeGTUSdwSTInOVsHqkEyEinjHUnD
-	Y0Kxij1w+XFu89K7SHYeYWWiYXCs9CZSCbXOetCNk7XOaAT0M1W7S+XQ9zJeNGGbPEvZ
-	fxceZz7i5IPnt4M4rCTTkk12PbFCx22JqfAg2X7VNWdFg83QpNUj5LlPxEJ/uhDtkI3j
-	GKeA==
-X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/KqCOd+ZZzzoK8epFp9XQIUl6aPGQL"
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	by smtp.strato.de (RZmta 46.1.3 AUTH)
-	with ESMTPSA id v0563bvBRKGo6iD
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits))
-	(Client did not present a certificate);
-	Fri, 27 Dec 2019 21:16:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1577477810; x=1578082610;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
-	Subject:Message-ID:References:MIME-Version:Content-Type:
-	Content-Disposition:Content-Transfer-Encoding:In-Reply-To; bh=TZ
-	5P/HbIUN+SuceBi9QgecNmVZHYBfmZaUZarr7T/KY=; b=ydETjLm1N2LVkvDzmB
-	Z5zb8v+1g/tlPn7fImsoGRrdnmOTJ9O1JFDG50hjct0fm6th98aD+9srp715ePc1
-	6bbqS+fyJ49rhoUVM/baIQGltNNq9G8XwVQUPxev2UehT6fe8yaLYKD/Ce2ytcF3
-	CA8Zz7dKO9ZxXh3Wj6L7xhRC0=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v19.5.3) with ESMTPSA id md50000230334.msg; 
-	Fri, 27 Dec 2019 21:16:49 +0100
-X-Spam-Processed: mail.rsi-elektrotechnik.de, Fri, 27 Dec 2019 21:16:49 +0100
-	(not processed: message from trusted or authenticated source)
-X-MDRemoteIP: 178.27.65.232
-X-MDHelo: jholzmayr.localdomain
-X-MDArrival-Date: Fri, 27 Dec 2019 21:16:49 +0100
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=12645a6e24=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-Date: Fri, 27 Dec 2019 21:16:34 +0100
-From: "Josef Holzmayr" <holzmayr@rsi-elektrotechnik.de>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=nMg1m6hC;
+ spf=pass (domain: gmail.com, ip: 209.85.221.169, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-vk1-f169.google.com with SMTP id u6so7027040vkn.13
+        for <yocto@lists.yoctoproject.org>; Fri, 27 Dec 2019 12:30:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=mxUXS07ZKHe6+cjKu+cB+5XQfNdZG4PXaxkZFFYncaY=;
+        b=nMg1m6hCK8tO90U5casBSi1tXLVLdEASBQH5yBdnVXSgROxnn5/3fG+uKTjYb97IMv
+         D0umNkoi/PydrG4buIpQEhkenGFGNO+KPFHXs+ai5w2qRDbvh8rdVehu69FNXhB+tHmk
+         u5as+GAv5I1ZZM2X0bowhSe624/dkEp6mNe3cSotjpWuc0+DjMy81/nz/Wvwgwo9vrhH
+         rMQDB2fkiOyfRmcVKl/yD9pc++8dhaT4UAoH/N7y2HG8k+SiDpy60c0/FFw3rNmJLnA7
+         Jk25FAp6ibek1IjoqY/BoJ2D3apqrTNvG0PV31+g2Dk8vCKW+f5/8JJGIkDqIA+c3KuZ
+         ovPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=mxUXS07ZKHe6+cjKu+cB+5XQfNdZG4PXaxkZFFYncaY=;
+        b=s/Ybb4hYSFJCX1IlCnJiDaXM36JB7BTV1q756smvc0o7KKgGapcRcR5/vHAthlWB5N
+         soD8lVgHez1VqJHZqdkrgAJMiQvsmUR00EljkZtHLCs6V8it1VfgjPhqYUGAT4vA6Rdl
+         DZ7pahGOeVoIW0ARwGDJKvjjit7DnAKvkQCpzuw9ZNbTTJzpCc7DTQNtEBqZgkquD4PC
+         hHM2JsV9iV4R7OKaUuMXb5EoTI+dF1hDVkfwoU75DbhiNs7648b7wuDhSbrTeajJUZUP
+         Nxc2e1cV9fhtlSj3gctgdvgeuzzRFwNO4nbx6cH7gIImgVWMXyp1G348iIg+JdYGQWdp
+         FAiw==
+X-Gm-Message-State: APjAAAUCixCaEl8A9avsACz+3YZEnjikCDQIzRrK6lUsSYOUm+VQBN4D
+	spV8vDbhF9AbQUN/XkDOxELwdOWqEyq9DSusEfk=
+X-Google-Smtp-Source: APXvYqzsuSZupasoy9XP+40+XwpdkSG2fwFGUN2aTKjDZGEyx3A7FYzNknzGFmfU7gCfvaOxrbGNiwm9XsuEyFs21J0=
+X-Received: by 2002:a05:6122:2b6:: with SMTP id 22mr30928842vkq.49.1577478617507;
+ Fri, 27 Dec 2019 12:30:17 -0800 (PST)
+MIME-Version: 1.0
+References: <CAK4PFCUfSofY8JoK_QNhRA1ThTGVCKJM187BepSkXR4aypG-pQ@mail.gmail.com>
+In-Reply-To: <CAK4PFCUfSofY8JoK_QNhRA1ThTGVCKJM187BepSkXR4aypG-pQ@mail.gmail.com>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Fri, 27 Dec 2019 23:30:06 +0300
+Message-ID: <CANNYZj90A1EorADV7eVOZkc1NdoEkxW+Ms1rrzOS6aEKkhki_w@mail.gmail.com>
+Subject: Re: [yocto] OEM supplied yocto image is impossible to work with
 To: Kent Dorfman <kent.dorfman766@gmail.com>
 Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] OEM supplied yocto image is impossible to work with
-Message-ID: <20191227201634.7lcmxythihq3nzvh@jholzmayr.localdomain>
-References: <CAK4PFCUfSofY8JoK_QNhRA1ThTGVCKJM187BepSkXR4aypG-pQ@mail.gmail.com>
-MIME-Version: 1.0
-In-Reply-To: <CAK4PFCUfSofY8JoK_QNhRA1ThTGVCKJM187BepSkXR4aypG-pQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/alternative; boundary="000000000000a32eff059ab55c21"
 
-Hello Kent!
+--000000000000a32eff059ab55c21
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Sorry to hear that your presumably first contact with Yocto respectively
-OpenEmbedded technology is being so painful. Please find some thought
-and comments inline.
+I would like to add that it helps enormously if you introduce yourself to
+the community properly. When you do not state what your company is, who is
+your OEM, and write from a gmail account using what looks like a pseudonym,
+I personally wasn=E2=80=99t entirely sure if you honestly are seeking help =
+or just
+aiming to start a flame war, and so abstained from answering. Just my two
+euro cents.
 
-On Fri, Dec 27, 2019 at 12:00:13PM -0500, Kent Dorfman wrote:
+Alex
+
+On Fri, 27 Dec 2019 at 20.00, Kent Dorfman <kent.dorfman766@gmail.com>
+wrote:
+
 > Oh, and this is the THIRD time I've tried posting this...you certainly
 > don't make the yocto mailing lists easy to subscribe to.
-> 
+>
 > Lemme appologize in avance because parts of this are going to come
 > across as rants directed at both our OEM and yocto.  Hopefully "yinz"
 > have thick skins.
-
-We have, by now.
-
+>
 > I've been doing embedded system design since the beginning of the
 > millenium (mostly VXworks, with some linux intel embedded, PPC
 > cross-dev chain stuff, and bare metal C/C++ microcontrollers) and now
 > I'm tasked with implementing a very mission critical set of embedded
 > processors in an aerospace project.  I've not used yocto before.  The
 > closest thing being buildroot.
-
-"close" is really somewhat relative here. The words that trigger my
-alarm here are "mission critical" and "aerospace". Anything that I will
-write below is no legal advice, and not fit for any form of
-certification or audit. If these are your requirements, then there are
-companies in the Yocto ecosystem that are willing to offer their
-services.
- 
+>
 > Anyway, the OEM for our boards was chosen before I came on board and
 > while I can find no fault with the zynq based hardware, their software
 > SDK and support is fracking terrible.
-
-BSPs are a constant cause of pain for us giving Yocto support too. If
-a board vendor screws up, we get to pick up the pieces too many times.
-
+>
 > Like most OEMs, their prefered model is to give the customer just
 > enough information to try and force us to pay them to build a turnkey
 > solution on our behalf, which is not an option in our enterprise.
-
-Little to add, besides... that it might have been a bad choice or
-negotiation, if you're only now learning that they want to charge you
-additionally. Thats something we obviously can't help you with.
- 
+>
 > Their minimal yocto based SDK and reference implementation:
-> 
+>
 > 1) as is, isn't suitable for our mission needs, where we must make
 > changes to the base image,  kernel, and initramfs.  They seem to
 > expect customers to only add on apps to the UBI rootfs and not screw
 > with anything else.
-
-If they are not willing to hand out all sources plus metadata layers,
-then thats a total red flag. Yet again, not something we could change.
-
+>
 > 2) has many closed source packages in it that will only build from
 > source when in their local intranet.  Deleting the cache and
 > attempting a complete source level rebuild consistently fails.
-
-Red flag. Once again.
-
+>
 > 3) isn't documented at all, and they will only answer direct, well
 > phrased questions, instead of volunteering information that meets our
 > stated goals.
-
-And another one.
-
+>
 > 4) them being a multinational company causes additional legal,
 > information sharing, and logistical problems
-
-Sorry, I mean... didn't you request at least some form of eval kit? Demo
-boards? To actually understand what you are buying?
-
-Up to this point, yes, I can feel your frustration, but there's little
-to say other than that you probably have a bad partnership by now.
-
-So now, on to things that I can hopefully say more positive things.
-
+>
 > Questions/problems in yocto where the documentation kind of sucks, are:
-> 
+>
 > 1) the necessity to "clean build" is inherent in any software
 > endeavour, yet the simple equivalent of "make clean && make image" is
 > nowhere to be easily found in yocto.  It is implied that deleting the
@@ -143,39 +111,16 @@ So now, on to things that I can hopefully say more positive things.
 > that safe?  What will it break?  I need to be confident in the process
 > when I go scream at the OEM, telling them that their build tool is
 > incomplete for our air-gapped environment.
-
-The cleanest without throwing away the whole build that you can do is
-remove everything in the build directory besides "conf". Yet there are
-probably two sides to your actual question. a "bitbake -c clean
-$YOURRECIPE" is the perfect equivalent to make clean, "bitbake
-$YOURRECIPE" equivalates to "make". Wiping tmp and sstate cache is
-pretty close to a full clean rebuild of the whole system, and no, it
-shall not break. If it does, there is either something wrong with your
-build setup (can happen) or you hit a bug (happens less often, but
-happens too). The second side is actually running a full system rebuild,
-which includes the complete build setup. Actually there is no
-Yocto-inhernt way to do it, as different people have different needs -
-and nobody managed a one size fits all solution until now. You can look
-at the autobuilder as provided by the Yocto Project, and at the various
-approaches here [1];
-
+>
 > 2) related to above, yocto needs a much better description of the
 > expected directory tree within a project.
-
-Within a project? Could you please elaborate? 
- 
+>
 > 3) the relationship between bitbake and devtool needs to be better
 > documented and both utilities need to be better documented themselves.
 > trying to run bitbake manually causes path errors (null entry in path)
 > when in fact, bitbake itself is setting a path somewhere incorrectly.
 > my path has no null entries or "." in it.
-
-bitbake and devtool can and should be used side by side. Running bitbake
-manually, as you put it, is the definitively primary way of doing
-things. So if that eeks out for, there is probably something strange
-with your setup. If you can provide a more extensive log or error
-message, we will happily...erm, at least honestly try to help.
-
+>
 > 4) yocto documentation fails in presenting a good explanation of the
 > difference between packages, layers, recipes, and images.  Also, I've
 > seen cases where virtual/kernel is used to check-out the kernel to
@@ -183,28 +128,13 @@ message, we will happily...erm, at least honestly try to help.
 > directory tree, so a better explanation of the mapping between real
 > directories and virtual names is warranted. ... and yes, I know what
 > BB files are for.
-
-I tend to agree on the mapping part.
-
+>
 > 5) a big area that seems to be lacking is the ability to inquire in a
 > yocto build as to what is included in it.  This is especially
 > important if the responsible party didn't actually create the build,
 > as is our case.  We're left with trying to guess what the OEM did, and
 > why.
-
-Now this is certainly not true. Even in the utmost default setup, a
-manifest file will be created along the image which tells you which
-packages including version and license that went into it.
-
-bitbake -g $TARGETOFYOURCHOICE will give you a dot file to inspect the
-complete dependency graph of your chosen target. This is a bit too much
-in-depth at times, but extremely powerful.
-
-And last but not least, its a good practise to have buildhistory enabled
-[2]. This offers extremely detailed information about each and every
-package and dependency that went into your build, down to each single
-file, package size,...
-
+>
 > 6) the seeming inability of yocto to build reproducable binary images
 > is a serious shortcoming in IA environments.  The first step in
 > development for us is to baseline the reference build provided by the
@@ -212,11 +142,7 @@ file, package size,...
 > have a way to validate that the build done in-house is identical to
 > the pre-built images supplied on the board.  Is there a way to "forced
 > sequentialize" the yocto process so that images can be reproducable?
-
-There is work being done on reproductible builds, but we're not there
-yet. Might not be the answer you want or need, but the honest state of
-affairs.
-
+>
 > 7) a large part of me wants to throw away the OEM build and start from
 > scratch, but I have no information about how to correctly import their
 > "blob only" packages into a separate yocto project.  Hell, I am not
@@ -224,68 +150,164 @@ affairs.
 > cache because I don't know whether they were created in their network
 > and  expected to always live in the cache, thus negating the ability
 > of a customer to do a "clean build"
-
-Including pre-produced blobs in a Yocto build is not pretty, but often
-handy or impossible to avoid. Please see [3] for the documentation on
-it.
- 
+>
 > Anyway, yes, I've read what docs I can find on yocto, and aside from
 > falling asleep several times in the process, the docs really are not
 > helping me with the problem at hand: using an existing yocto build
 > provided by a possibly unscrupulous vendor.
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+> Links: You receive all messages sent to this group.
+>
+> View/Reply Online (#47824):
+> https://lists.yoctoproject.org/g/yocto/message/47824
+> Mute This Topic: https://lists.yoctoproject.org/mt/69288358/1686489
+> Group Owner: yocto+owner@lists.yoctoproject.org
+> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [
+> alex.kanavin@gmail.com]
+> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>
 
-In a nutshell: whenever somebody hands you a binary build, without the
-corresponding set of sources and metadata, then you are out of luck and
-in for a lot of pain. That exactly the way of how to NOT use yocto when
-selling hardware. Some do, and unfortunately we, as the Yocto community
-can't do much about it, other than try and help the folks who struggle
-with it. And go buy our hardware in another place.
+--000000000000a32eff059ab55c21
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Having said all this. Yes, we know that we have a very steep learning
-curve and lots of places to go wrong - yet on the other hand if you make
-it through *AND* if it fits your needs, then you are awarded with an
-amount of power that is beyond comparison to about any other build
-system. But those are two big ifs, yes, and the latter we cannot answer
-for you. Only help in the first one.
+<div><div dir=3D"auto">I would like to add that it helps enormously if you =
+introduce yourself to the community properly. When you do not state what yo=
+ur company is, who is your OEM, and write from a gmail account using what l=
+ooks like a pseudonym, I personally wasn=E2=80=99t entirely sure if you hon=
+estly are seeking help or just aiming to start a flame war, and so abstaine=
+d from answering. Just my two euro cents.</div></div><div dir=3D"auto"><br>=
+</div><div dir=3D"auto">Alex</div><div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Fri, 27 Dec 2019 at 20.00, Kent Dorfman=
+ &lt;<a href=3D"mailto:kent.dorfman766@gmail.com">kent.dorfman766@gmail.com=
+</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:=
+0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Oh, and this is the=
+ THIRD time I&#39;ve tried posting this...you certainly<br>
+don&#39;t make the yocto mailing lists easy to subscribe to.<br>
+<br>
+Lemme appologize in avance because parts of this are going to come<br>
+across as rants directed at both our OEM and yocto.=C2=A0 Hopefully &quot;y=
+inz&quot;<br>
+have thick skins.<br>
+<br>
+I&#39;ve been doing embedded system design since the beginning of the<br>
+millenium (mostly VXworks, with some linux intel embedded, PPC<br>
+cross-dev chain stuff, and bare metal C/C++ microcontrollers) and now<br>
+I&#39;m tasked with implementing a very mission critical set of embedded<br=
+>
+processors in an aerospace project.=C2=A0 I&#39;ve not used yocto before.=
+=C2=A0 The<br>
+closest thing being buildroot.<br>
+<br>
+Anyway, the OEM for our boards was chosen before I came on board and<br>
+while I can find no fault with the zynq based hardware, their software<br>
+SDK and support is fracking terrible.<br>
+<br>
+Like most OEMs, their prefered model is to give the customer just<br>
+enough information to try and force us to pay them to build a turnkey<br>
+solution on our behalf, which is not an option in our enterprise.<br>
+<br>
+Their minimal yocto based SDK and reference implementation:<br>
+<br>
+1) as is, isn&#39;t suitable for our mission needs, where we must make<br>
+changes to the base image,=C2=A0 kernel, and initramfs.=C2=A0 They seem to<=
+br>
+expect customers to only add on apps to the UBI rootfs and not screw<br>
+with anything else.<br>
+<br>
+2) has many closed source packages in it that will only build from<br>
+source when in their local intranet.=C2=A0 Deleting the cache and<br>
+attempting a complete source level rebuild consistently fails.<br>
+<br>
+3) isn&#39;t documented at all, and they will only answer direct, well<br>
+phrased questions, instead of volunteering information that meets our<br>
+stated goals.<br>
+<br>
+4) them being a multinational company causes additional legal,<br>
+information sharing, and logistical problems<br>
+<br>
+Questions/problems in yocto where the documentation kind of sucks, are:<br>
+<br>
+1) the necessity to &quot;clean build&quot; is inherent in any software<br>
+endeavour, yet the simple equivalent of &quot;make clean &amp;&amp; make im=
+age&quot; is<br>
+nowhere to be easily found in yocto.=C2=A0 It is implied that deleting the<=
+br>
+tmp/ and sstate_cache/ directories should have the same affect, but is<br>
+that safe?=C2=A0 What will it break?=C2=A0 I need to be confident in the pr=
+ocess<br>
+when I go scream at the OEM, telling them that their build tool is<br>
+incomplete for our air-gapped environment.<br>
+<br>
+2) related to above, yocto needs a much better description of the<br>
+expected directory tree within a project.<br>
+<br>
+3) the relationship between bitbake and devtool needs to be better<br>
+documented and both utilities need to be better documented themselves.<br>
+trying to run bitbake manually causes path errors (null entry in path)<br>
+when in fact, bitbake itself is setting a path somewhere incorrectly.<br>
+my path has no null entries or &quot;.&quot; in it.<br>
+<br>
+4) yocto documentation fails in presenting a good explanation of the<br>
+difference between packages, layers, recipes, and images.=C2=A0 Also, I&#39=
+;ve<br>
+seen cases where virtual/kernel is used to check-out the kernel to<br>
+work on it, yet no virtual/kernel directory exists in the layers<br>
+directory tree, so a better explanation of the mapping between real<br>
+directories and virtual names is warranted. ... and yes, I know what<br>
+BB files are for.<br>
+<br>
+5) a big area that seems to be lacking is the ability to inquire in a<br>
+yocto build as to what is included in it.=C2=A0 This is especially<br>
+important if the responsible party didn&#39;t actually create the build,<br=
+>
+as is our case.=C2=A0 We&#39;re left with trying to guess what the OEM did,=
+ and<br>
+why.<br>
+<br>
+6) the seeming inability of yocto to build reproducable binary images<br>
+is a serious shortcoming in IA environments.=C2=A0 The first step in<br>
+development for us is to baseline the reference build provided by the<br>
+OEM and then make incremental changes to it, but yocto doesn&#39;t seem to<=
+br>
+have a way to validate that the build done in-house is identical to<br>
+the pre-built images supplied on the board.=C2=A0 Is there a way to &quot;f=
+orced<br>
+sequentialize&quot; the yocto process so that images can be reproducable?<b=
+r>
+<br>
+7) a large part of me wants to throw away the OEM build and start from<br>
+scratch, but I have no information about how to correctly import their<br>
+&quot;blob only&quot; packages into a separate yocto project.=C2=A0 Hell, I=
+ am not<br>
+convinced that their blobs will remain persistent if I delete the<br>
+cache because I don&#39;t know whether they were created in their network<b=
+r>
+and=C2=A0 expected to always live in the cache, thus negating the ability<b=
+r>
+of a customer to do a &quot;clean build&quot;<br>
+<br>
+Anyway, yes, I&#39;ve read what docs I can find on yocto, and aside from<br=
+>
+falling asleep several times in the process, the docs really are not<br>
+helping me with the problem at hand: using an existing yocto build<br>
+provided by a possibly unscrupulous vendor.<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+Links: You receive all messages sent to this group.<br>
+<br>
+View/Reply Online (#47824): <a href=3D"https://lists.yoctoproject.org/g/yoc=
+to/message/47824" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctop=
+roject.org/g/yocto/message/47824</a><br>
+Mute This Topic: <a href=3D"https://lists.yoctoproject.org/mt/69288358/1686=
+489" rel=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/mt=
+/69288358/1686489</a><br>
+Group Owner: <a href=3D"mailto:yocto%2Bowner@lists.yoctoproject.org" target=
+=3D"_blank">yocto+owner@lists.yoctoproject.org</a><br>
+Unsubscribe: <a href=3D"https://lists.yoctoproject.org/g/yocto/unsub" rel=
+=3D"noreferrer" target=3D"_blank">https://lists.yoctoproject.org/g/yocto/un=
+sub</a>=C2=A0 [<a href=3D"mailto:alex.kanavin@gmail.com" target=3D"_blank">=
+alex.kanavin@gmail.com</a>]<br>
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-<br>
+</blockquote></div></div>
 
-This might not be the best time of the year as most of us are on
-vacation, but feel free to head into #yocto on the freenode network,
-where you can easily get in touch with us directly, and we really try to
-offer good help and advice. Starting from Jan 7th, you can also expect
-better response times :)
-
-And while maybe not an exact fit for you, there still might be
-interesting sessions in this playlist for you [4].
-
-With that, I hope I could give a somewhat helpful but certainly
-honest answer.
-
-Greetz
-
-[1] https://stackoverflow.com/questions/58863254/how-to-manage-meta-layers-for-a-yocto-project-build-configs-in-git/58865947#58865947
-[2] https://www.yoctoproject.org/docs/3.0.1/dev-manual/dev-manual.html#maintaining-build-output-quality
-[3] https://www.yoctoproject.org/docs/3.0.1/dev-manual/dev-manual.html#packaging-externally-produced-binaries
-[4] https://www.youtube.com/playlist?list=PLD4M5FoHz-TxMfBFrDKfIS_GLY25Qsfyj
-
--- 
-———————————————
-Josef Holzmayr
-Software Developer Embedded Systems
-
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
-
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548 
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
-
+--000000000000a32eff059ab55c21--
