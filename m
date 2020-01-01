@@ -1,187 +1,206 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.435.1577773232354935771
+Received: from mail-pg1-f196.google.com (mail-pg1-f196.google.com [209.85.215.196])
+ by mx.groups.io with SMTP id smtpd.web09.12605.1577854721004856255
  for <yocto@lists.yoctoproject.org>;
- Mon, 30 Dec 2019 22:20:32 -0800
+ Tue, 31 Dec 2019 20:58:41 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: yi.zhao@windriver.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EE615E01336; Mon, 30 Dec 2019 22:20:31 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41A54E01287
-	for <yocto@yoctoproject.org>; Mon, 30 Dec 2019 22:20:31 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id xBV6KPOl014316
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
-	Mon, 30 Dec 2019 22:20:26 -0800 (PST)
-Received: from [128.224.162.174] (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0; Mon, 30 Dec
- 2019 22:20:24 -0800
-Subject: Re: [meta-selinux][PATCH] audit: fix host contamination for swig
-To: Joe MacDonald <joe@deserted.net>
-CC: <yocto@yoctoproject.org>
-References: <20191227024327.19833-1-yi.zhao@windriver.com>
- <20191231042439.GB39081@deserted.net>
-From: "Yi Zhao" <yi.zhao@windriver.com>
-Message-ID: <56e99bdd-8d6f-0da4-9f58-8468d7d8d715@windriver.com>
-Date: Tue, 31 Dec 2019 14:20:22 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
-MIME-Version: 1.0
-In-Reply-To: <20191231042439.GB39081@deserted.net>
-X-Originating-IP: [128.224.162.174]
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=l1L++7ET;
+ spf=pass (domain: gmail.com, ip: 209.85.215.196, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f196.google.com with SMTP id x8so20247256pgk.8
+        for <yocto@lists.yoctoproject.org>; Tue, 31 Dec 2019 20:58:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id;
+        bh=hV3Y9FL53/cLCddpkhT3PSIiFyF80UG2FL4wluVkusg=;
+        b=l1L++7ET39W5F8VqQQTuMu9N+9udzL7yf7q6cnPItVx+NsWxDMQbkFR3zEZxw0DIIx
+         ydtlG7kpXLe8b7qYt6n5ETJ0QRF1BxUN6ij9OXX+WwKxcYV2UnfpXovscgxXC7JhQjRe
+         3t+VGiVgQFJbz1yYb9zKHj050STCPk+k2gV8Agq+g60Ys2jBatmXv+wCDEvIPA+8yEyD
+         vLmSeLdCvP9uvJf37LmgGKwW6WY5tT4PLfuOTW1o40seAUz3V18DLk2b1zEU2PpkgMt3
+         zOytrEPnxXeJQZrgDseazE9ZjiOzIS9a5D6ZP66Jj7c9x2NB8g7VN9L0KFYIg70Uh623
+         SN/Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=hV3Y9FL53/cLCddpkhT3PSIiFyF80UG2FL4wluVkusg=;
+        b=dGDtVEFgcT2LuroEEsGsIMiGeqfc+9/UWXvc3jRJIA2tqiWFSu9YF1KsC43zmcxFTr
+         xdPpJkWJqAPzWIPGv4nVnVRFvaLyuCqByk4TURUqJ8FkMtH463VY9giRVVcxTQtiiQsn
+         mLhOE6b8i8mt6vsnJMAh0joXCtLZGYTZKbJlihgoY+eLG6Dz/wg7uz0SVWF3SXDwNuLe
+         Ce8BfnCG03BvkM2wQFuJJv8NpPqeUi8gUuIfhYSWougLklloHwO1jJhRdfYaB2upuOh0
+         wDvhv9eKUvWf445oF/iL9mZaQhiPcg4JkBMyR5NY7UwQIVtIwn0DWUE49h6uDL24d+0d
+         A1Ng==
+X-Gm-Message-State: APjAAAUbI7Q1in5ZOcRhpdk1DMue82vAmxg2Ivc0OTECdj57fQJRv93J
+	iD3KfqwRmlS74IeZpaEeokCtdZQq8OA=
+X-Google-Smtp-Source: APXvYqx7iNivtZhs0i+bcx77QkG0Q/IliOYR1bIL+toRVK5CApbkrazzwugbO6EiB+BprsCAG4ESVA==
+X-Received: by 2002:a63:5a64:: with SMTP id k36mr84108958pgm.323.1577854720139;
+        Tue, 31 Dec 2019 20:58:40 -0800 (PST)
+Return-Path: <akuster808@gmail.com>
+Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net ([2601:202:4180:a5c0:7152:582:136c:6dbf])
+        by smtp.gmail.com with ESMTPSA id a26sm49203306pfo.27.2019.12.31.20.58.38
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 31 Dec 2019 20:58:39 -0800 (PST)
+From: "Armpit" <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH] clamav: update to 0.101.5
+Date: Tue, 31 Dec 2019 20:58:37 -0800
+Message-Id: <20200101045837.28062-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
 
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ .../{clamav_0.99.4.bb => clamav_0.101.5.bb}   | 63 +++++++------------
+ 1 file changed, 24 insertions(+), 39 deletions(-)
+ rename recipes-security/clamav/{clamav_0.99.4.bb => clamav_0.101.5.bb} (76%)
 
-On 12/31/19 12:24 PM, Joe MacDonald wrote:
-> Hi Yi,
->
-> So, just to confirm, this is needed in your experience (I don't have any
-> builders that are that old, so I haven't verified).  I just ask because
-> we only just dropped this patch to begin with:
->
-> commit 6edbe15c3dba7da0cffc1c11099867553e9d5570
-> Author: Yi Zhao <yi.zhao@windriver.com>
-> Date:   Thu Nov 14 09:49:01 2019 +0800
->
->      audit: switch to python3
->      
->      * Switch to python3
->      
->      * Drop patches:
->        audit-python-configure.patch
->        audit-python.patch
->        fix-swig-host-contamination.patch
->      
->      Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
->      Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
->
-> If we need to bring it back, though, obviously no concerns about it since the
-> last time I did and update I carried it along.  :-)
+diff --git a/recipes-security/clamav/clamav_0.99.4.bb b/recipes-security/clamav/clamav_0.101.5.bb
+similarity index 76%
+rename from recipes-security/clamav/clamav_0.99.4.bb
+rename to recipes-security/clamav/clamav_0.101.5.bb
+index a340b48..a4c32e1 100644
+--- a/recipes-security/clamav/clamav_0.99.4.bb
++++ b/recipes-security/clamav/clamav_0.101.5.bb
+@@ -4,14 +4,14 @@ HOMEPAGE = "http://www.clamav.net/index.html"
+ SECTION = "security"
+ LICENSE = "LGPL-2.1"
+ 
+-DEPENDS = "libtool db libmspack openssl zlib llvm chrpath-replacement-native clamav-native"
+-DEPENDS_class-native = "db-native openssl-native zlib-native"
++DEPENDS = "libtool db libxml2 openssl zlib curl llvm clamav-native libmspack"
++DEPENDS_class-native = "db-native openssl-native zlib-native llvm-native curl-native"
+  
+ LIC_FILES_CHKSUM = "file://COPYING.LGPL;beginline=2;endline=3;md5=4b89c05acc71195e9a06edfa2fa7d092"
+ 
+-SRCREV = "b66e5e27b48c0a07494f9df9b809ed933cede047"
++SRCREV = "482fcd413b07e9fd3ef9850e6d01a45f4e187108"
+ 
+-SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=rel/0.99 \
++SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=rel/0.101 \
+     file://clamd.conf \
+     file://freshclam.conf \
+     file://volatiles.03_clamav \
+@@ -23,20 +23,14 @@ SRC_URI = "git://github.com/vrtadmin/clamav-devel;branch=rel/0.99 \
+ S = "${WORKDIR}/git"
+ 
+ LEAD_SONAME = "libclamav.so"
+-SO_VER = "7.1.1"
++SO_VER = "9.0.2"
+ 
+-EXTRANATIVEPATH += "chrpath-native"
++inherit autotools pkgconfig useradd systemd
+ 
+-inherit autotools-brokensep pkgconfig useradd systemd
+-
+-UID = "clamav"
+-GID = "clamav"
++CLAMAV_UID ?= "clamav"
++CLAMAV_GID ?= "clamav"
+ INSTALL_CLAMAV_CVD ?= "1"
+ 
+-# Clamav has a built llvm version 2 but does not build with gcc 6.x,
+-# disable the internal one. This is a known issue
+-# If you want LLVM support, use the one in core
+-
+ CLAMAV_USR_DIR = "${STAGING_DIR_NATIVE}/usr"
+ CLAMAV_USR_DIR_class-target = "${STAGING_DIR_HOST}/usr"
+ 
+@@ -45,49 +39,40 @@ PACKAGECONFIG_class-target += " ${@bb.utils.contains("DISTRO_FEATURES", "ipv6",
+ PACKAGECONFIG_class-target += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
+ 
+ PACKAGECONFIG[pcre] = "--with-pcre=${STAGING_LIBDIR},  --without-pcre, libpcre"
+-PACKAGECONFIG[xml] = "--with-xml=${CLAMAV_USR_DIR}, --disable-xml, libxml2,"
+-PACKAGECONFIG[json] = "--with-libjson=${STAGING_LIBDIR}, --without-libjson, json,"
+-PACKAGECONFIG[curl] = "--with-libcurl=${STAGING_LIBDIR}, --without-libcurl, curl,"
++PACKAGECONFIG[json] = "--with-libjson=${STAGING_LIBDIR}, --without-libjson, json-c,"
+ PACKAGECONFIG[ipv6] = "--enable-ipv6, --disable-ipv6"
+-PACKAGECONFIG[bz2] = "--with-libbz2-prefix=${CLAMAV_USR_DIR}, --without-libbz2-prefix, "
++PACKAGECONFIG[bz2] = "--with-libbz2-prefix=${CLAMAV_USR_DIR}, --disable-bzip2, bzip2"
+ PACKAGECONFIG[ncurses] = "--with-libncurses-prefix=${CLAMAV_USR_DIR}, --without-libncurses-prefix, ncurses, "
+ PACKAGECONFIG[systemd] = "--with-systemdsystemunitdir=${systemd_unitdir}/system/, --without-systemdsystemunitdir, "
+ 
+ EXTRA_OECONF_CLAMAV = "--without-libcheck-prefix --disable-unrar \
+-            --with-system-llvm --with-llvm-linking=dynamic --disable-llvm \
+             --disable-mempool \
+             --program-prefix="" \
+-            --disable-yara \
+-            --disable-xml \
++            --disable-zlib-vcheck \
++            --with-xml=${CLAMAV_USR_DIR} \
++            --with-zlib=${CLAMAV_USR_DIR} \
+             --with-openssl=${CLAMAV_USR_DIR} \
+-            --with-zlib=${CLAMAV_USR_DIR} --disable-zlib-vcheck \
++            --with-libcurl=${CLAMAV_USR_DIR} \
++            --with-system-libmspack=${CLAMAV_USR_DIR} \
++            --with-iconv=no \
++            --enable-check=no \
+             "
+ 
+ EXTRA_OECONF_class-native += "${EXTRA_OECONF_CLAMAV}"
+-EXTRA_OECONF_class-target += "--with-user=${UID}  --with-group=${GID} --disable-rpath ${EXTRA_OECONF_CLAMAV}"
++EXTRA_OECONF_class-target += "--with-user=${CLAMAV_UID}  --with-group=${CLAMAV_GID} ${EXTRA_OECONF_CLAMAV}"
+ 
+ do_configure () {
+     ${S}/configure ${CONFIGUREOPTS} ${EXTRA_OECONF} 
+-    install -d ${S}/clamav_db
+ }
+ 
+ do_configure_class-native () {
+     ${S}/configure ${CONFIGUREOPTS} ${EXTRA_OECONF} 
+ }
+ 
+-
+ do_compile_append_class-target() {
+-    # brute force removing RPATH
+-    chrpath -d  ${B}/libclamav/.libs/libclamav.so.${SO_VER}
+-    chrpath -d  ${B}/sigtool/.libs/sigtool
+-    chrpath -d  ${B}/clambc/.libs/clambc
+-    chrpath -d  ${B}/clamscan/.libs/clamscan
+-    chrpath -d  ${B}/clamconf/.libs/clamconf
+-    chrpath -d  ${B}/clamd/.libs/clamd
+-    chrpath -d  ${B}/freshclam/.libs/freshclam
+-
+     if [ "${INSTALL_CLAMAV_CVD}" = "1" ]; then
+         bbnote "CLAMAV creating cvd"
++        install -d ${S}/clamav_db
+         ${STAGING_BINDIR_NATIVE}/freshclam --datadir=${S}/clamav_db --config=${WORKDIR}/freshclam-native.conf
+     fi
+ }
+@@ -117,7 +102,7 @@ pkg_postinst_ontarget_${PN} () {
+         ${sysconfdir}/init.d/populate-volatile.sh update
+     fi
+     mkdir -p ${localstatedir}/lib/clamav
+-    chown -R ${UID}:${GID} ${localstatedir}/lib/clamav
++    chown -R ${CLAMAV_UID}:${CLAMAV_GID} ${localstatedir}/lib/clamav
+ }
+ 
+ 
+@@ -158,7 +143,7 @@ FILES_${PN}-dev = " ${bindir}/clamav-config ${libdir}/*.la \
+ 
+ FILES_${PN}-staticdev = "${libdir}/*.a"
+ 
+-FILES_${PN}-libclamav = "${libdir}/libclamav.so* ${libdir}/libmspack.so*\
++FILES_${PN}-libclamav = "${libdir}/libclamav.so* ${libdir}/libclammspack.so*\
+                           ${docdir}/libclamav/* "
+ 
+ FILES_${PN}-doc = "${mandir}/man/* \
+@@ -168,8 +153,8 @@ FILES_${PN}-doc = "${mandir}/man/* \
+ FILES_${PN}-cvd =  "${localstatedir}/lib/clamav/*.cvd ${localstatedir}/lib/clamav/*.dat"
+ 
+ USERADD_PACKAGES = "${PN}"
+-GROUPADD_PARAM_${PN} = "--system ${UID}"
+-USERADD_PARAM_${PN} = "--system -g ${GID} --home-dir  \
++GROUPADD_PARAM_${PN} = "--system ${CLAMAV_UID}"
++USERADD_PARAM_${PN} = "--system -g ${CLAMAV_GID} --home-dir  \
+     ${localstatedir}/spool/${BPN} \
+     --no-create-home  --shell /bin/false ${BPN}"
+ 
+@@ -178,7 +163,7 @@ RREPLACES_${PN} += "${PN}-systemd"
+ RCONFLICTS_${PN} += "${PN}-systemd"
+ SYSTEMD_SERVICE_${PN} = "${BPN}.service"
+ 
+-RDEPENDS_${PN} = "openssl ncurses-libncurses libbz2 ncurses-libtinfo clamav-freshclam clamav-libclamav"
++RDEPENDS_${PN} = "openssl ncurses-libncurses libxml2 libbz2 ncurses-libtinfo curl libpcre2 clamav-freshclam clamav-libclamav"
+ RDEPENDS_${PN}_class-native = ""
+ 
+ BBCLASSEXTEND = "native"
+-- 
+2.17.1
 
-
-When I dropped it in my previous patch I just tested it on some modern 
-Linux distributions (e.g. Ubuntu 16.04/18.04 Fedora 31). There is no 
-such error because the audit.h on the host is matched to our audit 
-recipe. Then we found the build failure on some old distros (e.g. CentOS 
-7) because of the old version autdit.h on host. The CentOS7 is still on 
-Yocto support distros list. See: meta-poky/conf/distro/poky.conf. I'm 
-afraid we should bring it back.
-
-
-Thanks,
-
-Yi
-
-
->
-> -J.
->
-> [[meta-selinux][PATCH] audit: fix host contamination for swig] On 19.12.27 (Fri 10:43) Yi Zhao wrote:
->
->> The audit build uses swig to generate a python wrapper. But there is a
->> hardcoded include directory in auditswig.i, which causes header files on
->> the host to be used when building. This will cause build error on some
->> old systems. e.g. on CentOS7 with buildtools:
->>    audit_wrap.c: In function '_wrap_audit_rule_flags_set':
->>    audit_wrap.c:5018:19: error: dereferencing pointer to incomplete type 'struct audit_rule'
->>    5018  if (arg1) (arg1)->flags = arg2;
->>          ^~
->>
->> Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
->> ---
->>   .../Fixed-swig-host-contamination-issue.patch | 57 +++++++++++++++++++
->>   recipes-security/audit/audit_2.8.5.bb         |  1 +
->>   2 files changed, 58 insertions(+)
->>   create mode 100644 recipes-security/audit/audit/Fixed-swig-host-contamination-issue.patch
->>
->> diff --git a/recipes-security/audit/audit/Fixed-swig-host-contamination-issue.patch b/recipes-security/audit/audit/Fixed-swig-host-contamination-issue.patch
->> new file mode 100644
->> index 0000000..7c26995
->> --- /dev/null
->> +++ b/recipes-security/audit/audit/Fixed-swig-host-contamination-issue.patch
->> @@ -0,0 +1,57 @@
->> +From a07271f1cce82122610b622bcea4a8a37528f321 Mon Sep 17 00:00:00 2001
->> +From: Li xin <lixin.fnst@cn.fujitsu.com>
->> +Date: Sun, 19 Jul 2015 02:42:58 +0900
->> +Subject: [PATCH] audit: Fixed swig host contamination issue
->> +
->> +The audit build uses swig to generate a python wrapper.
->> +Unfortunately, the swig info file references host include
->> +directories.  Some of these were previously noticed and
->> +eliminated, but the one fixed here was not.
->> +
->> +Upstream-Status: Inappropriate [embedded specific]
->> +
->> +Signed-off-by: Anders Hedlund <anders.hedlund@windriver.com>
->> +Signed-off-by: Joe Slater <jslater@windriver.com>
->> +Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
->> +---
->> + bindings/swig/python3/Makefile.am | 3 ++-
->> + bindings/swig/src/auditswig.i     | 2 +-
->> + 2 files changed, 3 insertions(+), 2 deletions(-)
->> +
->> +diff --git a/bindings/swig/python3/Makefile.am b/bindings/swig/python3/Makefile.am
->> +index 9938418..fa46aac 100644
->> +--- a/bindings/swig/python3/Makefile.am
->> ++++ b/bindings/swig/python3/Makefile.am
->> +@@ -22,6 +22,7 @@
->> + CONFIG_CLEAN_FILES = *.loT *.rej *.orig
->> + AM_CFLAGS = -fPIC -DPIC -fno-strict-aliasing $(PYTHON3_CFLAGS)
->> + AM_CPPFLAGS = -I. -I$(top_builddir) -I${top_srcdir}/lib $(PYTHON3_INCLUDES)
->> ++STDINC ?= /usr/include
->> + LIBS = $(top_builddir)/lib/libaudit.la
->> + SWIG_FLAGS = -python -py3 -modern
->> + SWIG_INCLUDES = -I. -I$(top_builddir) -I${top_srcdir}/lib $(PYTHON3_INCLUDES)
->> +@@ -37,7 +38,7 @@ _audit_la_DEPENDENCIES =${top_srcdir}/lib/libaudit.h ${top_builddir}/lib/libaudi
->> + _audit_la_LIBADD = ${top_builddir}/lib/libaudit.la
->> + nodist__audit_la_SOURCES  = audit_wrap.c
->> + audit.py audit_wrap.c: ${srcdir}/../src/auditswig.i
->> +-	swig -o audit_wrap.c ${SWIG_FLAGS} ${SWIG_INCLUDES} ${srcdir}/../src/auditswig.i
->> ++	swig -o audit_wrap.c ${SWIG_FLAGS} ${SWIG_INCLUDES} -I$(STDINC) ${srcdir}/../src/auditswig.i
->> +
->> + CLEANFILES = audit.py* audit_wrap.c *~
->> +
->> +diff --git a/bindings/swig/src/auditswig.i b/bindings/swig/src/auditswig.i
->> +index 7ebb373..424fb68 100644
->> +--- a/bindings/swig/src/auditswig.i
->> ++++ b/bindings/swig/src/auditswig.i
->> +@@ -39,7 +39,7 @@ signed
->> + #define __attribute(X) /*nothing*/
->> + typedef unsigned __u32;
->> + typedef unsigned uid_t;
->> +-%include "/usr/include/linux/audit.h"
->> ++%include "linux/audit.h"
->> + #define __extension__ /*nothing*/
->> + #include <stdint.h>
->> + %include "../lib/libaudit.h"
->> +--
->> +2.7.4
->> +
->> diff --git a/recipes-security/audit/audit_2.8.5.bb b/recipes-security/audit/audit_2.8.5.bb
->> index 1e76d5f..ee3b3b5 100644
->> --- a/recipes-security/audit/audit_2.8.5.bb
->> +++ b/recipes-security/audit/audit_2.8.5.bb
->> @@ -9,6 +9,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
->>   
->>   SRC_URI = "git://github.com/linux-audit/${BPN}-userspace.git;branch=2.8_maintenance \
->>              file://Add-substitue-functions-for-strndupa-rawmemchr.patch \
->> +           file://Fixed-swig-host-contamination-issue.patch \
->>              file://auditd \
->>              file://auditd.service \
->>              file://audit-volatile.conf \
->> -- 
->> 2.17.1
->>
