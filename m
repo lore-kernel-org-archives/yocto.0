@@ -1,91 +1,103 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.13358.1577981658862021276
+Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
+ by mx.groups.io with SMTP id smtpd.web11.1388.1577995269341714431
  for <yocto@lists.yoctoproject.org>;
- Thu, 02 Jan 2020 08:14:19 -0800
+ Thu, 02 Jan 2020 12:01:09 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@betafive.co.uk header.s=fm3 header.b=vNprZ5VE;
- spf=softfail (domain: betafive.co.uk, ip: 140.211.169.56, mailfrom: paul@betafive.co.uk)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 675FBE013DA; Thu,  2 Jan 2020 08:14:18 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
-	*      trust
-	*      [64.147.123.24 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from wout1-smtp.messagingengine.com (wout1-smtp.messagingengine.com [64.147.123.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 930A2E013D7
-	for <yocto@yoctoproject.org>; Thu,  2 Jan 2020 08:14:17 -0800 (PST)
-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
-	by mailout.west.internal (Postfix) with ESMTP id 24FDD5E7
-	for <yocto@yoctoproject.org>; Thu,  2 Jan 2020 11:14:15 -0500 (EST)
-Received: from imap2 ([10.202.2.52])
-  by compute1.internal (MEProxy); Thu, 02 Jan 2020 11:14:15 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=betafive.co.uk;
-	 h=mime-version:message-id:date:from:to:subject:content-type; s=
-	fm3; bh=U0ndl0ooaw7nfB7mtzryZzDWm6vWryJRJkYZjJS/tP4=; b=vNprZ5VE
-	QHhNponhJVOJJdaN2DgZ8VNMbvl6/XdnQV4efmeCBaqzE3nlpqjAJAMqIH7/8+/C
-	rYXC58HJdF/+qljNY2gEsq1Xu5HI1AwIZXg197s37J1sYi0tf4AlUkCaaPk5D1cu
-	6EbsILyrKmrLuzqCEMwdr5BM9OrIh7N6EjfFErcMK0V5sG95WdTWL/1bWkC4hEiu
-	l6K6A4j4vrNdYPCRrPOlQlZnhmBa43huZxKJO7HLERFbpsHRUYeLN+/mdJBFpJOJ
-	h/i4OL+4Dp6wc4vrMp/kaPUW/22hcKj3ULndK/md+8pkZytCdMTwA6kjtyc2aSQf
-	yu6GQZIHBWLqjw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=content-type:date:from:message-id
-	:mime-version:subject:to:x-me-proxy:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm1; bh=U0ndl0ooaw7nfB7mtzryZzDWm6vWr
-	yJRJkYZjJS/tP4=; b=S8C69Gzf97vqWtepCwvXg9xbWKra2z6aOwZU0DRRvP4CX
-	z/pf7wjpzNMFiZuLqLUT3fX6W3Na7AyHjZAJhNYvbJF3Cmdg1+vN5UXbpeFRt3N8
-	De6Va4nh3vszOj5boN21cXwBM7Tq66Qa5ak2SqkzbbcEEY3+gAsz6z10Kl74Dkue
-	863ZfQjSb5fhWZZPlwXUOaf0gCTOhW9zV21OGtIEUiwHeKimOu+rCUjhqERJUQjx
-	yJLpaPJ30rymWZtGJAm8eQc28agKChLpb/udPmGBLTHQ3yqsnXKM1JEVALJOwy4M
-	OCmAaV79OkSwA+eJ02OSQ5MRbYLqz0dgATCyT+fvw==
-X-ME-Sender: <xms:1hYOXkP8VwyedGtlhO1v4YuKRRYt2z-8RXH1jpTrwzzx66NF13fwgw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedufedrvdeguddgkeejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkfffhvffutgesthdtredtreertdenucfhrhhomhepfdfrrghulhcu
-    uegrrhhkvghrfdcuoehprghulhessggvthgrfhhivhgvrdgtohdruhhkqeenucffohhmrg
-    hinhepghhoohhglhgvrdgtohhmpdihohgtthhophhrohhjvggtthdrohhrghenucfrrghr
-    rghmpehmrghilhhfrhhomhepphgruhhlsegsvghtrghfihhvvgdrtghordhukhenucevlh
-    hushhtvghrufhiiigvpedt
-X-ME-Proxy: <xmx:1hYOXjUjPPt2jfQUB72CLGyBzGfGDFe6S-8EEckUIoWm5yWJ3A_38Q>
-    <xmx:1hYOXljhTwya_WS-gd2kQdVvw75lNuwrKWsdhXV5cFjdq3Xv7KaI1w>
-    <xmx:1hYOXhQMdyeQHD-fgPEbolEJC-WkN1vDE51ivcD2aaEKvw_tiBWg0A>
-    <xmx:1hYOXj41LOAn_GcPHlKI1rsKtWjE0_9uuAnej378OkyyOqIIr30h2g>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 8B066E00A2; Thu,  2 Jan 2020 11:14:14 -0500 (EST)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.7-694-gd5bab98-fmstable-20191218v1
-Mime-Version: 1.0
-Message-Id: <4da12490-f369-4b10-aeee-5dd1e2f88b30@www.fastmail.com>
-Date: Thu, 02 Jan 2020 16:13:33 +0000
-From: "Paul Barker" <paul@betafive.co.uk>
-To: "Yocto discussion list" <yocto@yoctoproject.org>
-Subject: Yocto technical call times
-Content-Type: text/plain
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=tV6psKTj;
+ spf=pass (domain: gmail.com, ip: 209.85.219.52, mailfrom: darthtyranus666666@gmail.com)
+Received: by mail-qv1-f52.google.com with SMTP id u10so15351443qvi.2
+        for <yocto@lists.yoctoproject.org>; Thu, 02 Jan 2020 12:01:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=VhE9auf3mmzyhO+sKclicW6ybGikHKsGa/jEqlM1l1Q=;
+        b=tV6psKTjKvXlqQWpTi6xujXuHIWlKcqB937EZsskCdwIyfsN3tCg3TiIfxDrAq5ens
+         qGMqJ5LLs+ShkjItBHwwnSMuGd7FXShp5poj0xkdTQU3newjcURqSLCY5qSY+d7qdQ/y
+         8KZiSj/xGXGmcS1+8v/Xm0PVE2dHjKdORWhrAVp+YKlvpQc+fOpOUkGU8eMm9lJH7tLu
+         u3Dh4uu199C6zw+z84e4X61GzXXZ/KGWUgsYopofSknuni8JS0tFYLhJy3FgerHyxMQn
+         5jaWfK+gH+xLT71w5x2NSYQD7bHkBAUoFYG5jUjqT4Z4Ta61HQYspJLTP0+gFWiHJ+4N
+         rNqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=VhE9auf3mmzyhO+sKclicW6ybGikHKsGa/jEqlM1l1Q=;
+        b=fpB9WKhAeNTjlImxaIjHBLZLtP8Ilxpm1lkWEnw6qsuJR0ixOnixPhc+Gf3s466Xve
+         YZc3f8iEYkUgIqcVt+9TLLaCxDJTBcEKqFNuOq42gHYzL72AryCHehvVCroZp27Xlm76
+         vVXUDMcP5x0Ow5FD0M80/V18R63+dMHTdePrRDtX7WNqOTB+Ua/aEIcfHI7YVLZniCby
+         V6mVY/krIRBj81x+MsUR3O6ZEB7ky2MPeLgJIwvhokdqFSNiL/9tRuqfy/mx/IX2hgOX
+         wiMOk1BysPGJ/VepvSsTM/JG6RYQtBqaY5na7spjs0JXj9GRE4UdtqReyQlxQR3JXo5t
+         5dWg==
+X-Gm-Message-State: APjAAAXibC6zyqbhCf8ptDnFNqAMLQFU9Al4dOMwqnMAZg1PROsv8IsP
+	pP6LqImgUuDuxabQISEwdJsuYbZr7USlSSVuIJhDp+ff
+X-Google-Smtp-Source: APXvYqxUbJE+LbSewkp0RXNTDpgk1n+Gx0EKPk+Qnikq2GWifsrmm+qQJGjhQkyUs7vjSUOYQSRAxcg49i9QvQoPlt0=
+X-Received: by 2002:ad4:51cc:: with SMTP id p12mr63143184qvq.113.1577995268237;
+ Thu, 02 Jan 2020 12:01:08 -0800 (PST)
+MIME-Version: 1.0
+References: <CAAdfB0+SdCsHwdu2y41aYs7AU4c3ojzm3WO20uZi62RZCXphYA@mail.gmail.com>
+In-Reply-To: <CAAdfB0+SdCsHwdu2y41aYs7AU4c3ojzm3WO20uZi62RZCXphYA@mail.gmail.com>
+From: darthtyranus666666@gmail.com
+Date: Thu, 2 Jan 2020 21:00:56 +0100
+Message-ID: <CAAdfB0LXBeP6BOsEdud+k+=W3_Ae3gJj7HUfbrAfGwDrw_rHtA@mail.gmail.com>
+Subject: Completely disabling packages generation (ipk)
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000006bae4c059b2da72c"
 
-Hey,
+--0000000000006bae4c059b2da72c
+Content-Type: text/plain; charset="UTF-8"
 
-I'm just updating my calendar for the new year and spotted a bit of confusion.
+Hi,
 
-The website page https://www.yoctoproject.org/public-virtual-meetings/ shows the meeting times an hour earlier than the Google Calendar at https://calendar.google.com/calendar/b/2?cid=dGhleW9jdG9wcm9qZWN0QGdtYWlsLmNvbQ. I'm guessing the Google calendar is correct so the public virtual meetings page probably needs an update.
+in my current Yocto flow, I test and build recipes locally on my dev
+machine (I usually test changes on one architecture) and if the build
+finishes succesfully, I push changes to git repo. My Jenkins CI is then
+responsible for building recipes and providing SDKs for all supported
+architectures (they are built simultaenously).
 
-Thanks,
+While developing changes, I often have to edit recipes, which are
+dependencies and that causes rebuild and regeneration of packages (ipk) for
+all dependent recipes. Generated packages are not used later, because the
+sole purpose of dev build is to just make sure it finishes without any
+problems, specific tests are run on CI for all architectures.
 
--- 
-Paul Barker
-Managing Director & Principal Engineer
-Beta Five Ltd
+My question is, is there a simple way to completely disable packages
+generation, unless that package is a dependency for a different recipe?
+
+e.g. I believe that ipk generated by glibc is later used in building,
+however most of my own recipes are used only in SDK and it should be
+possible to turn off generation of these.
+
+I've tried removing do_package_write_ipk globally, by setting it as
+"noexec", but that caused problems with beforementioned glibc dependent
+recipes.
+
+Best Regards,
+Jakub
+
+--0000000000006bae4c059b2da72c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr"><div>Hi,<br></=
+div><div><br></div><div>in my current Yocto flow, I test and build recipes =
+locally on my dev machine (I usually test changes on one architecture) and =
+if the build finishes succesfully, I push changes to git repo. My Jenkins C=
+I is then responsible for building recipes and providing SDKs for all suppo=
+rted architectures (they are built simultaenously).<br></div><div><br></div=
+><div>While developing changes, I often have to edit recipes, which are dep=
+endencies and that causes rebuild and regeneration of packages (ipk) for al=
+l dependent recipes. Generated packages are not used later, because the sol=
+e purpose of dev build is to just make sure it finishes without any problem=
+s, specific tests are run on CI for all architectures.<br><br></div><div>My=
+ question is, is there a simple way to completely disable packages generati=
+on, unless that package is a dependency for a different recipe?</div><div><=
+br></div><div>e.g. I believe that ipk generated by glibc is later used in b=
+uilding, however most of my own recipes are used only in SDK and it should =
+be possible to turn off generation of these.</div><div><br></div><div>I&#39=
+;ve tried removing do_package_write_ipk globally, by setting it as &quot;no=
+exec&quot;, but that caused problems with beforementioned glibc dependent r=
+ecipes.<br></div><div><br></div><div>Best Regards,</div><div>Jakub<br></div=
+></div>
+</div></div>
+
+--0000000000006bae4c059b2da72c--
