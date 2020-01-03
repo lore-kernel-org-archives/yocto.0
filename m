@@ -1,642 +1,398 @@
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
- by mx.groups.io with SMTP id smtpd.web11.127.1578077148555066086
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.1452.1578084245165153340
  for <yocto@lists.yoctoproject.org>;
- Fri, 03 Jan 2020 10:45:48 -0800
+ Fri, 03 Jan 2020 12:44:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ibeeto-com.20150623.gappssmtp.com header.s=20150623 header.b=WANJ3FwX;
- spf=neutral (domain: ibeeto.com, ip: 209.85.214.169, mailfrom: rudolf.streif@ibeeto.com)
-Received: by mail-pl1-f169.google.com with SMTP id g6so16388928plp.6
-        for <yocto@lists.yoctoproject.org>; Fri, 03 Jan 2020 10:45:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to;
-        bh=m6YLupl55dY7elAREC3yw3hhohlQMH2jAY6WhmwDvWU=;
-        b=WANJ3FwXcAFKB3TBcE9LBLE+/xvEr6s1qtjEjxb7jrlWf2M/PZYQfwPp8lMPUDkVEC
-         AEX+2GjK7ud7+H1klbpu+/MdGzI2tr3iMoYV0kMAzbVRJP7qi4ID9pNEI0QbqBpI/5TQ
-         A4sYHba0zJmPDx82t+zsnMUC1PD2zkvrPFkpzBXYt72yZOmBtAlE34uknfYtEpDCJcsl
-         HsIAsXGfO0qeqG3wezfiOzDgPeqxP8grfiUpRjWZrMYl6WgGHRel7NyeB5onN/k7KVaE
-         A3vNjz8kXsWTrFWQWDjkkk7Mfln6Ije+kApmdCx1rca+zxcTPDVJb+zojDXvGK4MxAxv
-         2u7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
-         :date:user-agent:mime-version:in-reply-to;
-        bh=m6YLupl55dY7elAREC3yw3hhohlQMH2jAY6WhmwDvWU=;
-        b=nYRhFK7sC+GognrCaYucot5iQGC1Id/znWqORrYW3DV9ePZaETGDGmp7FRkf9U8BuC
-         LVgJN7FN6rOJuaudJVRSLg0cqDhGvd+1Z9nLUU5aq1fnwEE4F1R9O6BMh0mWTBTEvJiO
-         pTuCr8Mt5f3B491/HMWgE835BpsZZslSaC3RBHpn9UFYfOpiclO/p3nAA4NF5P4DxQOx
-         +ERereHSIdk1Dz59x4Ch8QI13eACBZpuxHydokaXZSUPjECAvxzKLLvtp39yJKyMxfYv
-         /dLpQ55Mw7XqoHjFjAJzvIG7Z0XYw3ak/qevevlFLgCR3kTBDVRgbK1VzpFVQYoh6SKD
-         zR9A==
-X-Gm-Message-State: APjAAAVTrMAZVqQy9S4v1ZpAIavrFLGP4cwqp1DaE/+WG+sEdGyzafIB
-	52AafGUKYDUxUv3MI9fo7bF1rJpnhuotQQ==
-X-Google-Smtp-Source: APXvYqzPeRcWzFlTIZpZy5nguQHfqJnGU3XIg0kyLd5QcG4KTQ25rGMTy0lYExmWGArpkotY50Tf8g==
-X-Received: by 2002:a17:902:728b:: with SMTP id d11mr79434840pll.49.1578077147387;
-        Fri, 03 Jan 2020 10:45:47 -0800 (PST)
-Return-Path: <rudolf.streif@ibeeto.com>
-Received: from rjs-zotac.ibeeto.com (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
-        by smtp.gmail.com with ESMTPSA id k44sm15587616pjb.20.2020.01.03.10.45.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Jan 2020 10:45:46 -0800 (PST)
-Subject: Re: [yocto] First time reaching out, having issue building standalone out-of-tree kernel module - help?
-To: Jeff Schuler <jschuler16@gmail.com>, yocto@lists.yoctoproject.org
-References: <CAB_3WH5Yg6iQ2-t9j7-2xHJBXyYBHeVJhY=qUTaWURFbi0uSng@mail.gmail.com>
-From: "Rudolf J Streif" <rudolf.streif@ibeeto.com>
-Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
- mQENBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
- Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
- /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
- cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
- 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
- AAG0KlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPokBNwQTAQgA
- IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
- 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
- txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
- lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
- Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
- zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvuQENBFhQFAQBCADXoLKCuF48
- 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
- RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
- w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
- svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
- tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAGJAR8EGAEIAAkFAlhQFAQC
- GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
- s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
- fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
- Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
- P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
- ROZj4g==
-Message-ID: <0f428df2-d34a-d237-a561-237c2e7f1ef5@ibeeto.com>
-Date: Fri, 3 Jan 2020 10:45:44 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+ dkim=pass header.i=@sierrawireless.com header.s=selector1 header.b=CIhoNurP;
+ spf=softfail (domain: sierrawireless.com, ip: 140.211.169.56, mailfrom: dwatkins@sierrawireless.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 8C958E013FF; Fri,  3 Jan 2020 12:44:04 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FORGED_SPF_HELO,HTML_MESSAGE,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [40.107.92.69 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	*  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2069.outbound.protection.outlook.com [40.107.92.69])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23C97E01387
+	for <yocto@yoctoproject.org>; Fri,  3 Jan 2020 12:44:00 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=UbKsggfFNHr/FNJfkrwjduIFIM54zndYrGikmKjnR2INlk4GDzyuEdLyXEDPWLFxzGDzuXVpYvp3cNRZD43bYdO8RbIea5yhm+sA6LmdlFn7Egrn0omCJMeQhK+nKnDCXuth+2O6quSdxRrjvS0D860tSkg8DICpPyCKOKZyFdyaApj1QHfSyzXX0Ikbm+p9WFana5+svqV3lOtxk/GHIsv0aPuvB54f/Nop6CdgxnAKktcxBHFTWRy/RTbyTMTSdwCd46jH+t8BSikGnCfcoODsInprOaoMNVIpYM8ejxrQKB2NIsHZQbaXb9VO6Tjov5cce91jQhTzLTS/9Ud1Kw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PZQMekEwBM5joaX+vztG+fQfOPAtTxZBtT5a3+0L2xM=;
+ b=IyoixOR5oLYPan/HNWOMgA6TrErcM0tLtI7BWzePEc0bVF7b5O7Y4FsQgez5V/A2mw9Dbkn7KWU5orGsRGb/6JNiZMORrBLzcapW1qlshhDPJIuYRj8nJ28Hpvo4mdgt8FFyv057bb97fX6aPPdG+mIjFq8ro+tSZ8q1FcWS4+eDV4HJwc8zIAhzMnNREfElc67W+IWg62tgdrfvwDtPzi4cQI80e6Ie25ssVL6lMshKH3sLON7UbsE+x0LIyXVUTEnnKzuz4vlp96rvf1zQsdCDX//Ze5Y6S8Y6MH/B1lYTwFbUE8tlNOfQQHQwl5xmzOwDEy0H6+72mmaEeQIiKw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=sierrawireless.com; dmarc=pass action=none
+ header.from=sierrawireless.com; dkim=pass header.d=sierrawireless.com;
+ arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sierrawireless.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PZQMekEwBM5joaX+vztG+fQfOPAtTxZBtT5a3+0L2xM=;
+ b=CIhoNurPygy048ahr3CdrxemWR1veAKftxAoavsQMqsHgVd+bY5h1fzud2AlU/fG1T9IBW/InaWFIOZChRzO9ct9SP+0WdCpQN8gjl7q+Xli6KGpSbbaLUAJ6Gdfi7rHjtErtXQq1k7U/dRgbgLrzaN9PRHeacDwD4LKIhawH1c=
+Received: from MWHPR02MB2463.namprd02.prod.outlook.com (10.168.204.145) by
+ MWHPR02MB3373.namprd02.prod.outlook.com (10.164.205.142) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2602.13; Fri, 3 Jan 2020 20:43:57 +0000
+Received: from MWHPR02MB2463.namprd02.prod.outlook.com
+ ([fe80::b502:13ea:55a7:9cf7]) by MWHPR02MB2463.namprd02.prod.outlook.com
+ ([fe80::b502:13ea:55a7:9cf7%11]) with mapi id 15.20.2581.014; Fri, 3 Jan 2020
+ 20:43:57 +0000
+From: "Darcy Watkins" <dwatkins@sierrawireless.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: meta-java / openjdk-8-native spontaneously broken in warrior on CentOS7
+Thread-Topic: meta-java / openjdk-8-native spontaneously broken in warrior on
+ CentOS7
+Thread-Index: AdXCdoRk40GdJvA+TXWv8P2Qtzirrg==
+Date: Fri, 3 Jan 2020 20:43:57 +0000
+Message-ID: 
+ <MWHPR02MB2463ECAC0C98AF970B2EC44FB2230@MWHPR02MB2463.namprd02.prod.outlook.com>
+Accept-Language: en-CA, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=dwatkins@sierrawireless.com; 
+x-originating-ip: [208.81.120.1]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 1a3e8ded-fb61-4d0c-5625-08d7908da7dd
+x-ms-traffictypediagnostic: MWHPR02MB3373:|MWHPR02MB3373:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: 
+ <MWHPR02MB3373AF0A6635DB28BDE6F51CB2230@MWHPR02MB3373.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:4714;
+x-forefront-prvs: 0271483E06
+x-forefront-antispam-report: 
+ SFV:NSPM;SFS:(10009020)(346002)(396003)(39860400002)(136003)(366004)(376002)(189003)(199004)(71200400001)(81156014)(81166006)(8676002)(186003)(2906002)(8936002)(26005)(6506007)(9686003)(66446008)(55016002)(33656002)(86362001)(316002)(64756008)(6916009)(66476007)(5660300002)(66556008)(478600001)(7696005)(76116006)(66946007)(52536014);DIR:OUT;SFP:1101;SCL:1;SRVR:MWHPR02MB3373;H:MWHPR02MB2463.namprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: sierrawireless.com does not
+ designate permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ HFTaRmxVBchWyhxF+9afZlDIywPSxVi2cZ7Gr72r4R/fOfpEfJxnTGuc/eqYQlMsBwb7opmJWIKosxmFyQYpIqOSt/AZP5Yf0oEiTpwM8Ca1wk/QcWh4tQoE5Whf5QvrgiBABvVhFWmX0IL7YYW4SFQwB044NOa9DZ51mU4Q+V72ctseETST8krqDoCBAwaFmDbeWySCWCKoqXN2Bp9LQFFrRAFq8spw0w2pwlnBUJlOdZlUGKGYfJTMnaJnNsaZlHt24OzN2J/nA4/P/1F/f6YywCFo2cYymdGwWEP+b6mhRJWs+ZOQTatNIrIrOznZDenuL3ZjTGzapYaTIP7kbDo87wALdO9IhB0mfB1KvbhkZaYQ0KwzE/Lkc4+U2RJBI2VC9crLovAE8+Y1o86DM5TCAe50dqTNnZNKX0Dwa/eIlWy0gzMuQKzNDwx1EQ9T4h21nKQaJebzPSGfEIm2gBZOeexoC7M2yuBSl/ktwlA=
 MIME-Version: 1.0
-In-Reply-To: <CAB_3WH5Yg6iQ2-t9j7-2xHJBXyYBHeVJhY=qUTaWURFbi0uSng@mail.gmail.com>
-X-Groupsio-MsgNum: 47849
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="KYaKWulXrCmJzDzFDUQQFp84W1ryuLCqS"
-
---KYaKWulXrCmJzDzFDUQQFp84W1ryuLCqS
-Content-Type: multipart/mixed; boundary="oDxdY3hwA0TKpqgOGradhev56kYnH9yom"
-
---oDxdY3hwA0TKpqgOGradhev56kYnH9yom
-Content-Type: multipart/alternative;
- boundary="------------E97A0E93C55B7E08A978AF0F"
+X-OriginatorOrg: sierrawireless.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1a3e8ded-fb61-4d0c-5625-08d7908da7dd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jan 2020 20:43:57.5224
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 08059a4c-2486-43dd-89e3-3a747e0dcbe8
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: +csi/LGaRzaHmgaDvoYwhM/H4oTTmMDJpZKJj81bm4e1CGWISkYQiC29Jm4QxyjzoRgeOWUFjDFFcMYt6TAcPVamPXBOdRGG6LMwbtiaIEg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR02MB3373
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_MWHPR02MB2463ECAC0C98AF970B2EC44FB2230MWHPR02MB2463namp_"
 
---------------E97A0E93C55B7E08A978AF0F
-Content-Type: text/plain; charset=utf-8
+--_000_MWHPR02MB2463ECAC0C98AF970B2EC44FB2230MWHPR02MB2463namp_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Jeff,
+Happy New Year
 
-Looks like modpost was not built yet. Did you build the kernel first or
-at least ran
+Hi,
 
-bitbake virtual/kernel -c kernel_configme
+My warrior build with meta-java spontaneously broke over the holidays...
 
-:rjs
+...
+checking if Boot JDK is 32 or 64 bits... 64
+checking flags for boot jdk java command ...
+checking flags for boot jdk java command for big workloads...  -Xms64M -Xmx=
+1600M -XX:ThreadStackSize=3D1536 -XX:PermSize=3D32m -XX:MaxPermSize=3D160m
+checking flags for boot jdk java command for small workloads...  -XX:+UseSe=
+rialGC -Xms32M -Xmx512M
+checking for jtreg... no
+configure: Rewriting FOUND_CC to "/home/dwatkins/workspace/zeta/upgrade-yoc=
+to_mg90-MG-os/build/tmp/hosttools/gcc "
+configure: Using gcc (GCC) 4.8.5 20150623 (Red Hat-39) C compiler version 4=
+.8.5 (located at /home/dwatkins/workspace/zeta/upgrade-yocto_mg90-MG-os/bui=
+ld/tmp/hosttools/gcc )
+checking for x86_64-linux-/home/dwatkins/workspace/zeta/upgrade-yocto_mg90-=
+MG-os/build/tmp/hosttools/gcc... /home/dwatkins/workspace/zeta/upgrade-yoct=
+o_mg90-MG-os/build/tmp/hosttools/gcc
+checking whether the C compiler works... no
+configure: error: in `/home/dwatkins/workspace/zeta/upgrade-yocto_mg90-MG-o=
+s/build/tmp/work/x86_64-linux/openjdk-8-native/172b11-r0/build':
+configure: error: C compiler cannot create executables
+See `config.log' for more details
+NOTE: The following config.log files may provide further information.
+NOTE: /home/dwatkins/workspace/zeta/upgrade-yocto_mg90-MG-os/build/tmp/work=
+/x86_64-linux/openjdk-8-native/172b11-r0/build/config.log
+ERROR: configure failed
+WARNING: /home/dwatkins/workspace/zeta/upgrade-yocto_mg90-MG-os/build/tmp/w=
+ork/x86_64-linux/openjdk-8-native/172b11-r0/temp/run.do_configure.7614:1 ex=
+it 1 from 'exit 1'
+ERROR: Function failed: do_configure (log file is located at /home/dwatkins=
+/workspace/zeta/upgrade-yocto_mg90-MG-os/build/tmp/work/x86_64-linux/openjd=
+k-8-native/172b11-r0/temp/log.do_configure.7614)
 
-On 1/3/20 9:39 AM, Jeff Schuler wrote:
-> Hello!
->
-> I was not sure who or what to reach out to with this question, so I'm
-> hoping this lands in the hands of the correct person. I've been using
-> Yocto for many years for our ARM embedded system builds, and have
-> recently upgraded our kernel version from 4.18 to 5.1 (details below).
-> I am working on patching now, and getting our out-of-tree modules
-> ported to build with the 5.1 kernel source. I'm able to build the
-> kernel using bitbake virtual/kernel, and boot the kernel=C2=A0+ dtb=C2=A0=
-no
-> problem, however, my kernel's out-of-tree modules are having trouble
-> building for reasons that I cannot seem to figure out. I have a very
-> simple kernel module, called a10id-kmod that I'm trying to build.
-> Forgive me if this is not the correct information to send over, this
-> is my first time seeking support and am not sure what to send, happy
-> to send any additional logs needed. The bitbake output shows the
-> following:=C2=A0
->
->     bitbake -c compile a10id-kmod
->     Loading cache: 100%
->     |##################################################################=
-#########################################################################=
-##################################|
->     ETA: =C2=A000:00:00
->     Loaded 2352 entries from dependency cache.
->     NOTE: Resolving any missing task queue dependencies
->
->     Build Configuration:
->     BB_VERSION =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "1.28.0"
->     BUILD_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "x86_64-linux"
->     NATIVELSBSTRING =C2=A0 =3D "Ubuntu-14.04"
->     TARGET_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "arm-poky-linux-gnueabi"
->     MACHINE =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "sensor-chevy"
->     DISTRO =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "poky"
->     DISTRO_VERSION =C2=A0 =C2=A0=3D "2.0.3"
->     TUNE_FEATURES =C2=A0 =C2=A0 =3D "arm armv7a vfp neon"
->     TARGET_FPU =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "vfp-neon"
->     meta =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
->     meta-yocto =C2=A0 =C2=A0 =C2=A0 =C2=A0
->     meta-yocto-bsp =C2=A0 =C2=A0=3D "HEAD:e08994ce953ff5ab49b260e7763a4=
-0bfad4285ca"
->     meta-oe =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0
->     meta-python =C2=A0 =C2=A0 =C2=A0
->     meta-filesystems =C2=A0
->     meta-networking =C2=A0 =3D "HEAD:2ea8d7f54a061e902657c4f8ea1f7f7c25=
-c6c4e1"
->     meta-custom =C2=A0 =C2=A0 =3D
->     "schuler/a200-kernel-5.1:71b47d97e2412192ba5027090513b457a8c0e835"
->
->     NOTE: Preparing RunQueue
->     NOTE: Executing SetScene Tasks
->     NOTE: Executing RunQueue Tasks
->     ERROR: oe_runmake failed
->     ERROR: Function failed: do_compile (log file is located at
->     /home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/senso=
-r-chevy/tmp/work/sensor_chevy-poky-linux-gnueabi/a10id-kmod/0.1.1-r0/temp=
-/log.do_compile.12208)
->     ERROR: Logfile of failure stored in:
->     /home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/senso=
-r-chevy/tmp/work/sensor_chevy-poky-linux-gnueabi/a10id-kmod/0.1.1-r0/temp=
-/log.do_compile.12208
->     Log data follows:
->     | DEBUG: Executing shell function do_compile
->     | NOTE: make -j 27 -e MAKEFLAGS=3D
->     KERNEL_SRC=3D/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0=
-/builds/sensor-chevy/tmp/work-shared/sensor-chevy/kernel-source
->     KERNEL_PATH=3D/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.=
-0/builds/sensor-chevy/tmp/work-shared/sensor-chevy/kernel-source
->     KERNEL_VERSION=3D5.1.0 CC=3Darm-poky-linux-gnueabi-gcc =C2=A0 -fuse=
--ld=3Dbfd
->     LD=3Darm-poky-linux-gnueabi-ld.bfd =C2=A0 AR=3Darm-poky-linux-gnuea=
-bi-ar
->     =C2=A0O=3D/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/bu=
-ilds/sensor-chevy/tmp/work-shared/sensor-chevy/kernel-build-artifacts
->     | make -C
->     /home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/senso=
-r-chevy/tmp/work-shared/sensor-chevy/kernel-source
->     M=3D/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/s=
-ensor-chevy/tmp/work/sensor_chevy-poky-linux-gnueabi/a10id-kmod/0.1.1-r0/=
-git/soc/platforms/sensor-common/host/a10_id
->     =C2=A0modules
->     | make[1]: Entering directory
->     `/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/sens=
-or-chevy/tmp/work-shared/sensor-chevy/kernel-source'
->     | make[2]: Entering directory
->     `/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/sens=
-or-chevy/tmp/work-shared/sensor-chevy/kernel-build-artifacts'
->     | =C2=A0 CC [M]
->     =C2=A0/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds=
-/sensor-chevy/tmp/work/sensor_chevy-poky-linux-gnueabi/a10id-kmod/0.1.1-r=
-0/git/soc/platforms/sensor-common/host/a10_id/a10-id.o
->     *| =C2=A0 Building modules, stage 2.
->     | =C2=A0 MODPOST 1 modules
->     | /bin/sh: 1: scripts/mod/modpost: not found
->     | make[3]: *** [__modpost] Error 127
->     | make[2]: *** [modules] Error 2*
->     | make[2]: Leaving directory
->     `/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/sens=
-or-chevy/tmp/work-shared/sensor-chevy/kernel-build-artifacts'
->     | make[1]: *** [sub-make] Error 2
->     | make[1]: Leaving directory
->     `/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/sens=
-or-chevy/tmp/work-shared/sensor-chevy/kernel-source'
->     | make: *** [all] Error 2
->     | ERROR: oe_runmake failed
->     | ERROR: Function failed: do_compile (log file is located at
->     /home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/senso=
-r-chevy/tmp/work/sensor_chevy-poky-linux-gnueabi/a10id-kmod/0.1.1-r0/temp=
-/log.do_compile.12208)
->     ERROR: Task 5
->     (/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/meta-custom=
-/recipes-kernel/a10id-kmod/a10id-kmod_0.1.1.bb
->     <http://a10id-kmod_0.1.1.bb/>, do_compile) failed with exit code '1=
-'
->     NOTE: Tasks Summary: Attempted 261 tasks of which 252 didn't need
->     to be rerun and 1 failed.
->
->     Summary: 1 task failed:
->     =C2=A0
->     /home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/meta-custom/=
-recipes-kernel/a10id-kmod/a10id-kmod_0.1.1.bb
->     <http://a10id-kmod_0.1.1.bb/>, do_compile
->     Summary: There were 2 ERROR messages shown, returning a non-zero
->     exit code.
->
->
-> I'm using the jethro poky branch,
-> commit=C2=A0e08994ce953ff5ab49b260e7763a40bfad4285ca and meta-openembed=
-ded
-> branch jethro as well, commit=C2=A02ea8d7f54a061e902657c4f8ea1f7f7c25c6=
-c4e1
->
-> When building with the 4.18 kernel, this .ko module builds just
-> fine...and doesn't have this scripts/mod/modpost not found issue.
->
-> Here's some more info if it helps. These are the relevant kernel
-> module recipe files:
->
->     jschuler@kuro:~/bn-bsp/host/build/yocto/poky-jethro-2.0/meta-custom=
-/recipes-kernel/a10id-kmod$
->     cat a10id-kmod.inc
->     SUMMARY =3D "A Linux kernel module for A10ID reading"
->     HOMEPAGE =3D "https://google.com <https://google.com/>"
->     LICENSE =3D "MIT & GPLv2"
->
->     inherit module
->     inherit no-mirror
->
->     SRC_URI =3D
->     "git://git@github.com/MyOrganization/bn-bsp.git;protocol=3Dssh
->     <http://git@github.com/MyOrganization/bn-bsp.git;protocol=3Dssh>"
->
->     S =3D "${WORKDIR}/git/soc/platforms/sensor-common/host/a10_id"
->     LIC_FILES_CHKSUM =3D
->     "file://${S}/a10-id.c;beginline=3D1;endline=3D21;md5=3D75828e2af878=
-241ad612f8a8ad1310f9"
->
->     COMPATIBLE_MACHINE =3D "(sensor-adi|sensor-chevy)"
->     jschuler@kuro:~/bn-bsp/host/build/yocto/poky-jethro-2.0/meta-custom=
-/recipes-kernel/a10id-kmod$
->     cat=C2=A0a10id-kmod_0.1.1.bb <http://a10id-kmod_0.1.1.bb/>
->     require a10id-kmod.inc
->     SRCREV =3D "58076f4e91376df74da7509cc397b71b084f77a4"
->
->
-> And the kernel recipe:
->
->     jschuler@kuro:~/bn-bsp/host/build/yocto/poky-jethro-2.0/meta-custom=
-/recipes-kernel/linux$
->     cat=C2=A0linux-socfpga_5.1.bb <http://linux-socfpga_5.1.bb/>
->     require recipes-kernel/linux/linux-socfpga.inc
->
->     ### Branch socfpga-5.1 GITSHA CHECKSUM
->     LIC_FILES_CHKSUM =3D
->     "file://${S}/COPYING;md5=3Dbbea815ee2795b2f4230826c0c6b8814"
->
->     ### Tied to socfpga-5.1 at this =C2=A0GITSHA:
->     SOCFPGA_KERNEL_BRANCH ?=3D "socfpga-${PV}"
->     SRCREV ?=3D "5c21be71d13b64bc4cce9b1bd8411d41d15b1a6a"
->
->     SRC_URI =3D "\
->     =C2=A0 =C2=A0
->     git://github.com/altera-opensource/linux-socfpga.git;protocol=3Dhtt=
-ps;branch=3D${SOCFPGA_KERNEL_BRANCH}
->     <http://github.com/altera-opensource/linux-socfpga.git;protocol=3Dh=
-ttps;branch=3D$%7BSOCFPGA_KERNEL_BRANCH%7D>=C2=A0\
->     =C2=A0 =C2=A0 file://${MACHINE}/defconfig \
->     =C2=A0 =C2=A0 file://${MACHINE}/${DTS_FILE} \
->     "
->
->
-> Can anyone advise as to what might be the issue? Just being pointed in
-> the correct direction would be a major help to me!
->
-> HAPPY NEW YEAR :-)
->
-> Cheers,
-> J
->
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-> Links: You receive all messages sent to this group.
->
-> View/Reply Online (#47848): https://lists.yoctoproject.org/g/yocto/mess=
-age/47848
-> Mute This Topic: https://lists.yoctoproject.org/mt/69402554/3617932
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [rudolf.stre=
-if@ibeeto.com]
-> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+For some reason, it has decided that the CentOS GCC compiler doesn't genera=
+te executable code any more.
 
---=20
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3386 x700
+I inspected the git logs of meta-java along with other layers (OE and Yocto=
+) and there doesn't appear to be any changes since October.
+
+This failed same way both when resuming a build that worked in early to mid=
+ December, and when building from scratch.
+
+CentOS 7.7.1908
+Intel i9
+32G DRAM
+Target: NXP Layerscape LS1021A (but the build is failing during "-native" s=
+tage so target isn't really that relevant yet).
+
+I inspected build/tmp/work/x86_64-linux/ and found numerous built "-native"=
+ packages built OK (including python-native and python3-native).
+
+After inspecting the config.log, it appears that "-Wno-error=3Dstringop-ove=
+rflow" was among the BUILD_CFLAGS.  The old GCC 4.8.5 provided by CentOS di=
+d not like this.  My workaround was:
+
+local.conf:
+   BUILD_CFLAGS_remove =3D "-Wno-error=3Dstringop-overflow"
+
+I still haven't a clue why this only shows up now when the commit that chan=
+ged openjdk-8-release-172b11-common.inc is dated June 25, 2019 "openjdk-8: =
+disable stringop-overflow compiler errors".
 
 
---------------E97A0E93C55B7E08A978AF0F
-Content-Type: text/html; charset=utf-8
+
+Regards,
+
+Darcy
+
+Darcy Watkins ::  Senior Staff Engineer, Firmware
+
+SIERRA WIRELESS
+Direct  +1 604 233 7989   ::  Fax  +1 604 231 1109  ::  Main  +1 604 231 11=
+00
+13811 Wireless Way  :: Richmond, BC Canada V6V 3A4
+[P2]
+dwatkins@sierrawireless.com<mailto:dwatkins@sierrawireless.com> :: www.sier=
+rawireless.com<http://www.sierrawireless.com/>
+
+
+--_000_MWHPR02MB2463ECAC0C98AF970B2EC44FB2230MWHPR02MB2463namp_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body>
-    <p>Jeff,</p>
-    <p>Looks like modpost was not built yet. Did you build the kernel
-      first or at least ran</p>
-    <p>bitbake virtual/kernel -c kernel_configme</p>
-    <p>:rjs<br>
-    </p>
-    <div class=3D"moz-cite-prefix">On 1/3/20 9:39 AM, Jeff Schuler wrote:=
-<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAB_3WH5Yg6iQ2-t9j7-2xHJBXyYBHeVJhY=3DqUTaWURFbi0uSng@mail.gm=
-ail.com">
-      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DU=
-TF-8">
-      <div dir=3D"ltr">Hello!
-        <div><br>
-        </div>
-        <div>I was not sure who or what to reach out to with this
-          question, so I'm hoping this lands in the hands of the correct
-          person. I've been using Yocto for many years for our ARM
-          embedded system builds, and have recently upgraded our kernel
-          version from 4.18 to 5.1 (details below). I am working on
-          patching now, and getting our out-of-tree modules ported to
-          build with the 5.1 kernel source. I'm able to build the kernel
-          using bitbake virtual/kernel, and boot the kernel=C2=A0+ dtb=C2=
-=A0no
-          problem, however, my kernel's out-of-tree modules are having
-          trouble building for reasons that I cannot seem to figure out.
-          I have a very simple kernel module, called a10id-kmod that I'm
-          trying to build. Forgive me if this is not the correct
-          information to send over, this is my first time seeking
-          support and am not sure what to send, happy to send any
-          additional logs needed. The bitbake output shows the
-          following:=C2=A0</div>
-        <div><br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-bitbake
-          -c compile a10id-kmod<br>
-          Loading cache: 100%
-|########################################################################=
-#########################################################################=
-############################|
-          ETA: =C2=A000:00:00<br>
-          Loaded 2352 entries from dependency cache.<br>
-          NOTE: Resolving any missing task queue dependencies<br>
-          <br>
-          Build Configuration:<br>
-          BB_VERSION =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "1.28.0"<br>
-          BUILD_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "x86_64-linux"<br>
-          NATIVELSBSTRING =C2=A0 =3D "Ubuntu-14.04"<br>
-          TARGET_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "arm-poky-linux-gnuea=
-bi"<br>
-          MACHINE =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "sensor-chevy"<b=
-r>
-          DISTRO =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "poky"<br>
-          DISTRO_VERSION =C2=A0 =C2=A0=3D "2.0.3"<br>
-          TUNE_FEATURES =C2=A0 =C2=A0 =3D "arm armv7a vfp neon"<br>
-          TARGET_FPU =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "vfp-neon"<br>
-          meta =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
-          meta-yocto =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
-          meta-yocto-bsp =C2=A0 =C2=A0=3D
-          "HEAD:e08994ce953ff5ab49b260e7763a40bfad4285ca"<br>
-          meta-oe =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
-          meta-python =C2=A0 =C2=A0 =C2=A0<br>
-          meta-filesystems =C2=A0<br>
-          meta-networking =C2=A0 =3D
-          "HEAD:2ea8d7f54a061e902657c4f8ea1f7f7c25c6c4e1"<br>
-          meta-custom =C2=A0 =C2=A0 =3D
-          "schuler/a200-kernel-5.1:71b47d97e2412192ba5027090513b457a8c0e8=
-35"<br>
-          <br>
-          NOTE: Preparing RunQueue<br>
-          NOTE: Executing SetScene Tasks<br>
-          NOTE: Executing RunQueue Tasks<br>
-          ERROR: oe_runmake failed<br>
-          ERROR: Function failed: do_compile (log file is located at
-/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/sensor-chev=
-y/tmp/work/sensor_chevy-poky-linux-gnueabi/a10id-kmod/0.1.1-r0/temp/log.d=
-o_compile.12208)<br>
-          ERROR: Logfile of failure stored in:
-/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/sensor-chev=
-y/tmp/work/sensor_chevy-poky-linux-gnueabi/a10id-kmod/0.1.1-r0/temp/log.d=
-o_compile.12208<br>
-          Log data follows:<br>
-          | DEBUG: Executing shell function do_compile<br>
-          | NOTE: make -j 27 -e MAKEFLAGS=3D
-KERNEL_SRC=3D/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/build=
-s/sensor-chevy/tmp/work-shared/sensor-chevy/kernel-source
-KERNEL_PATH=3D/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/buil=
-ds/sensor-chevy/tmp/work-shared/sensor-chevy/kernel-source
-          KERNEL_VERSION=3D5.1.0 CC=3Darm-poky-linux-gnueabi-gcc =C2=A0
-          -fuse-ld=3Dbfd LD=3Darm-poky-linux-gnueabi-ld.bfd =C2=A0
-          AR=3Darm-poky-linux-gnueabi-ar
-=C2=A0O=3D/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/s=
-ensor-chevy/tmp/work-shared/sensor-chevy/kernel-build-artifacts<br>
-          | make -C
-/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/sensor-chev=
-y/tmp/work-shared/sensor-chevy/kernel-source
-M=3D/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/sensor-=
-chevy/tmp/work/sensor_chevy-poky-linux-gnueabi/a10id-kmod/0.1.1-r0/git/so=
-c/platforms/sensor-common/host/a10_id
-          =C2=A0modules<br>
-          | make[1]: Entering directory
-`/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/sensor-che=
-vy/tmp/work-shared/sensor-chevy/kernel-source'<br>
-          | make[2]: Entering directory
-`/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/sensor-che=
-vy/tmp/work-shared/sensor-chevy/kernel-build-artifacts'<br>
-          | =C2=A0 CC [M]
-=C2=A0/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/senso=
-r-chevy/tmp/work/sensor_chevy-poky-linux-gnueabi/a10id-kmod/0.1.1-r0/git/=
-soc/platforms/sensor-common/host/a10_id/a10-id.o<br>
-          <b>| =C2=A0 Building modules, stage 2.<br>
-            | =C2=A0 MODPOST 1 modules<br>
-            | /bin/sh: 1: scripts/mod/modpost: not found<br>
-            | make[3]: *** [__modpost] Error 127<br>
-            | make[2]: *** [modules] Error 2</b><br>
-          | make[2]: Leaving directory
-`/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/sensor-che=
-vy/tmp/work-shared/sensor-chevy/kernel-build-artifacts'<br>
-          | make[1]: *** [sub-make] Error 2<br>
-          | make[1]: Leaving directory
-`/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/sensor-che=
-vy/tmp/work-shared/sensor-chevy/kernel-source'<br>
-          | make: *** [all] Error 2<br>
-          | ERROR: oe_runmake failed<br>
-          | ERROR: Function failed: do_compile (log file is located at
-/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/builds/sensor-chev=
-y/tmp/work/sensor_chevy-poky-linux-gnueabi/a10id-kmod/0.1.1-r0/temp/log.d=
-o_compile.12208)<br>
-          ERROR: Task 5
-(/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/meta-custom/recip=
-es-kernel/a10id-kmod/<a
-            href=3D"http://a10id-kmod_0.1.1.bb/" target=3D"_blank"
-            moz-do-not-send=3D"true">a10id-kmod_0.1.1.bb</a>, do_compile)=
-
-          failed with exit code '1'<br>
-          NOTE: Tasks Summary: Attempted 261 tasks of which 252 didn't
-          need to be rerun and 1 failed.<br>
-          <br>
-          Summary: 1 task failed:<br>
-          =C2=A0
-/home/jschuler/bn-bsp/host/build/yocto/poky-jethro-2.0/meta-custom/recipe=
-s-kernel/a10id-kmod/<a
-            href=3D"http://a10id-kmod_0.1.1.bb/" target=3D"_blank"
-            moz-do-not-send=3D"true">a10id-kmod_0.1.1.bb</a>, do_compile<=
-br>
-          Summary: There were 2 ERROR messages shown, returning a
-          non-zero exit code.<br>
-        </blockquote>
-        <div><br>
-        </div>
-        <div>I'm using the jethro poky branch,
-          commit=C2=A0e08994ce953ff5ab49b260e7763a40bfad4285ca and
-          meta-openembedded branch jethro as well,
-          commit=C2=A02ea8d7f54a061e902657c4f8ea1f7f7c25c6c4e1</div>
-        <div><br>
-        </div>
-        <div>When building with the 4.18 kernel, this .ko module builds
-          just fine...and doesn't have this scripts/mod/modpost not
-          found issue.</div>
-        <div><br>
-        </div>
-        <div>Here's some more info if it helps. These are the relevant
-          kernel module recipe files:</div>
-        <div><br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:jschuler@kuro:~/bn-b=
-sp/host/build/yocto/poky-jethro-2.0/meta-custom/recipes-kernel/a10id-kmod=
-$">jschuler@kuro:~/bn-bsp/host/build/yocto/poky-jethro-2.0/meta-custom/re=
-cipes-kernel/a10id-kmod$</a>
-          cat a10id-kmod.inc<br>
-          SUMMARY =3D "A Linux kernel module for A10ID reading"<br>
-          HOMEPAGE =3D "<a href=3D"https://google.com/" target=3D"_blank"=
-
-            moz-do-not-send=3D"true">https://google.com</a>"<br>
-          LICENSE =3D "MIT &amp; GPLv2"<br>
-          <br>
-          inherit module<br>
-          inherit no-mirror<br>
-          <br>
-          SRC_URI =3D "git://<a
-            href=3D"http://git@github.com/MyOrganization/bn-bsp.git;proto=
-col=3Dssh"
-            target=3D"_blank" moz-do-not-send=3D"true">git@github.com/MyO=
-rganization/bn-bsp.git;protocol=3Dssh</a>"<br>
-          <br>
-          S =3D "${WORKDIR}/git/soc/platforms/sensor-common/host/a10_id"<=
-br>
-          LIC_FILES_CHKSUM =3D
-<a class=3D"moz-txt-link-rfc2396E" href=3D"file://${S}/a10-id.c;beginline=
-=3D1;endline=3D21;md5=3D75828e2af878241ad612f8a8ad1310f9">"file://${S}/a1=
-0-id.c;beginline=3D1;endline=3D21;md5=3D75828e2af878241ad612f8a8ad1310f9"=
-</a><br>
-          <br>
-          COMPATIBLE_MACHINE =3D "(sensor-adi|sensor-chevy)"<br>
-<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:jschuler@kuro:~/bn-b=
-sp/host/build/yocto/poky-jethro-2.0/meta-custom/recipes-kernel/a10id-kmod=
-$">jschuler@kuro:~/bn-bsp/host/build/yocto/poky-jethro-2.0/meta-custom/re=
-cipes-kernel/a10id-kmod$</a>
-          cat=C2=A0<a href=3D"http://a10id-kmod_0.1.1.bb/" target=3D"_bla=
-nk"
-            moz-do-not-send=3D"true">a10id-kmod_0.1.1.bb</a><br>
-          require a10id-kmod.inc<br>
-          SRCREV =3D "58076f4e91376df74da7509cc397b71b084f77a4"<br>
-        </blockquote>
-        <div><br>
-        </div>
-        <div>And the kernel recipe:</div>
-        <div><br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">=
-<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:jschuler@kuro:~/bn-b=
-sp/host/build/yocto/poky-jethro-2.0/meta-custom/recipes-kernel/linux$">js=
-chuler@kuro:~/bn-bsp/host/build/yocto/poky-jethro-2.0/meta-custom/recipes=
--kernel/linux$</a>
-          cat=C2=A0<a href=3D"http://linux-socfpga_5.1.bb/" target=3D"_bl=
-ank"
-            moz-do-not-send=3D"true">linux-socfpga_5.1.bb</a><br>
-          require recipes-kernel/linux/linux-socfpga.inc<br>
-          <br>
-          ### Branch socfpga-5.1 GITSHA CHECKSUM<br>
-          LIC_FILES_CHKSUM =3D
-          <a class=3D"moz-txt-link-rfc2396E" href=3D"file://${S}/COPYING;=
-md5=3Dbbea815ee2795b2f4230826c0c6b8814">"file://${S}/COPYING;md5=3Dbbea81=
-5ee2795b2f4230826c0c6b8814"</a><br>
-          <br>
-          ### Tied to socfpga-5.1 at this =C2=A0GITSHA:<br>
-          SOCFPGA_KERNEL_BRANCH ?=3D "socfpga-${PV}"<br>
-          SRCREV ?=3D "5c21be71d13b64bc4cce9b1bd8411d41d15b1a6a"<br>
-          <br>
-          SRC_URI =3D "\<br>
-          =C2=A0 =C2=A0 git://<a
-href=3D"http://github.com/altera-opensource/linux-socfpga.git;protocol=3D=
-https;branch=3D$%7BSOCFPGA_KERNEL_BRANCH%7D"
-            target=3D"_blank" moz-do-not-send=3D"true">github.com/altera-=
-opensource/linux-socfpga.git;protocol=3Dhttps;branch=3D${SOCFPGA_KERNEL_B=
-RANCH}</a>=C2=A0\<br>
-          =C2=A0 =C2=A0 <a class=3D"moz-txt-link-freetext" href=3D"file:/=
-/$">file://$</a>{MACHINE}/defconfig \<br>
-          =C2=A0 =C2=A0 <a class=3D"moz-txt-link-freetext" href=3D"file:/=
-/$">file://$</a>{MACHINE}/${DTS_FILE} \<br>
-          "<br>
-        </blockquote>
-        <div><br>
-        </div>
-        <div>Can anyone advise as to what might be the issue? Just being
-          pointed in the correct direction would be a major help to me!</=
-div>
-        <div><br>
-        </div>
-        <div>HAPPY NEW YEAR :-)</div>
-        <div><br>
-        </div>
-        <div>Cheers,</div>
-        <div>J</div>
-      </div>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">-=3D-=3D-=3D-=3D-=3D-=3D-=3D=
--=3D-=3D-=3D-=3D-
-Links: You receive all messages sent to this group.
-
-View/Reply Online (#47848): <a class=3D"moz-txt-link-freetext" href=3D"ht=
-tps://lists.yoctoproject.org/g/yocto/message/47848">https://lists.yoctopr=
-oject.org/g/yocto/message/47848</a>
-Mute This Topic: <a class=3D"moz-txt-link-freetext" href=3D"https://lists=
-=2Eyoctoproject.org/mt/69402554/3617932">https://lists.yoctoproject.org/m=
-t/69402554/3617932</a>
-Group Owner: <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:yocto+o=
-wner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
-Unsubscribe: <a class=3D"moz-txt-link-freetext" href=3D"https://lists.yoc=
-toproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub=
-</a>  [<a class=3D"moz-txt-link-abbreviated" href=3D"mailto:rudolf.streif=
-@ibeeto.com">rudolf.streif@ibeeto.com</a>]
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
-</pre>
-    </blockquote>
-    <pre class=3D"moz-signature" cols=3D"72">--=20
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3386 x700</pre>
-  </body>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri",sans-serif;
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-CA" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Happy New Year<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">My warrior build with meta-java spontaneously broke =
+over the holidays&#8230;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&#8230;<o:p></o:p></p>
+<p class=3D"MsoNormal">checking if Boot JDK is 32 or 64 bits... 64<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">checking flags for boot jdk java command ...&nbsp; <=
+o:p></o:p></p>
+<p class=3D"MsoNormal">checking flags for boot jdk java command for big wor=
+kloads...&nbsp; -Xms64M -Xmx1600M -XX:ThreadStackSize=3D1536 -XX:PermSize=
+=3D32m -XX:MaxPermSize=3D160m<o:p></o:p></p>
+<p class=3D"MsoNormal">checking flags for boot jdk java command for small w=
+orkloads...&nbsp; -XX:&#43;UseSerialGC -Xms32M -Xmx512M<o:p></o:p></p>
+<p class=3D"MsoNormal">checking for jtreg... no<o:p></o:p></p>
+<p class=3D"MsoNormal">configure: Rewriting FOUND_CC to &quot;/home/dwatkin=
+s/workspace/zeta/upgrade-yocto_mg90-MG-os/build/tmp/hosttools/gcc &quot;<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">configure: Using gcc (GCC) 4.8.5 20150623 (Red Hat-3=
+9) C compiler version 4.8.5 (located at /home/dwatkins/workspace/zeta/upgra=
+de-yocto_mg90-MG-os/build/tmp/hosttools/gcc )<o:p></o:p></p>
+<p class=3D"MsoNormal">checking for x86_64-linux-/home/dwatkins/workspace/z=
+eta/upgrade-yocto_mg90-MG-os/build/tmp/hosttools/gcc... /home/dwatkins/work=
+space/zeta/upgrade-yocto_mg90-MG-os/build/tmp/hosttools/gcc
+<o:p></o:p></p>
+<p class=3D"MsoNormal">checking whether the C compiler works... no<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">configure: error: in `/home/dwatkins/workspace/zeta/=
+upgrade-yocto_mg90-MG-os/build/tmp/work/x86_64-linux/openjdk-8-native/172b1=
+1-r0/build':<o:p></o:p></p>
+<p class=3D"MsoNormal">configure: error: C compiler cannot create executabl=
+es<o:p></o:p></p>
+<p class=3D"MsoNormal">See `config.log' for more details<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: The following config.log files may provide fur=
+ther information.<o:p></o:p></p>
+<p class=3D"MsoNormal">NOTE: /home/dwatkins/workspace/zeta/upgrade-yocto_mg=
+90-MG-os/build/tmp/work/x86_64-linux/openjdk-8-native/172b11-r0/build/confi=
+g.log<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: configure failed<o:p></o:p></p>
+<p class=3D"MsoNormal">WARNING: /home/dwatkins/workspace/zeta/upgrade-yocto=
+_mg90-MG-os/build/tmp/work/x86_64-linux/openjdk-8-native/172b11-r0/temp/run=
+.do_configure.7614:1 exit 1 from 'exit 1'<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Function failed: do_configure (log file is lo=
+cated at /home/dwatkins/workspace/zeta/upgrade-yocto_mg90-MG-os/build/tmp/w=
+ork/x86_64-linux/openjdk-8-native/172b11-r0/temp/log.do_configure.7614)<o:p=
+></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">For some reason, it has decided that the CentOS GCC =
+compiler doesn&#8217;t generate executable code any more.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I inspected the git logs of meta-java along with oth=
+er layers (OE and Yocto) and there doesn&#8217;t appear to be any changes s=
+ince October.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">This failed same way both when resuming a build that=
+ worked in early to mid December, and when building from scratch.<o:p></o:p=
+></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">CentOS 7.7.1908<o:p></o:p></p>
+<p class=3D"MsoNormal">Intel i9<o:p></o:p></p>
+<p class=3D"MsoNormal">32G DRAM<o:p></o:p></p>
+<p class=3D"MsoNormal">Target: NXP Layerscape LS1021A (but the build is fai=
+ling during &#8220;-native&#8221; stage so target isn&#8217;t really that r=
+elevant yet).<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I inspected build/tmp/work/x86_64-linux/ and found n=
+umerous built &#8220;-native&#8221; packages built OK (including python-nat=
+ive and python3-native).<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">After inspecting the config.log, it appears that &#8=
+220;-Wno-error=3Dstringop-overflow&#8221; was among the BUILD_CFLAGS.&nbsp;=
+ The old GCC 4.8.5 provided by CentOS did not like this.&nbsp; My workaroun=
+d was:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">local.conf:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp; BUILD_CFLAGS_remove =3D &#8220;-Wno-err=
+or=3Dstringop-overflow&#8221;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I still haven&#8217;t a clue why this only shows up =
+now when the commit that changed openjdk-8-release-172b11-common.inc is dat=
+ed June 25, 2019 &#8220;openjdk-8: disable stringop-overflow compiler error=
+s&#8221;.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
+" style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+#656565;mso-fareast-language:EN-CA"><o:p>&nbsp;</o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
+" style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+#656565;mso-fareast-language:EN-CA">Regards,<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
+" style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+#656565;mso-fareast-language:EN-CA"><o:p>&nbsp;</o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
+" style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+#656565;mso-fareast-language:EN-CA">Darcy<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
+" style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,sans-serif;color:=
+#656565;mso-fareast-language:EN-CA"><o:p>&nbsp;</o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
+" style=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#=
+656565;mso-fareast-language:EN-CA">Darcy Watkins ::&nbsp;&nbsp;Senior Staff=
+ Engineer, Firmware<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
+" style=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#=
+E33A2F;mso-fareast-language:EN-CA"><o:p>&nbsp;</o:p></span></b></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><b><span lang=3D"EN-US=
+" style=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#=
+E33A2F;mso-fareast-language:EN-CA">SIERRA WIRELESS<o:p></o:p></span></b></p=
+>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
+tyle=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#E33=
+A2F;mso-fareast-language:EN-CA">Direct</span><span lang=3D"EN-US" style=3D"=
+font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#656565;mso-=
+fareast-language:EN-CA">&nbsp;
+ &#43;1 604 233 7989&nbsp; &nbsp;::&nbsp; </span><span lang=3D"EN-US" style=
+=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#E33A2F;=
+mso-fareast-language:EN-CA">Fax&nbsp;
+</span><span lang=3D"EN-US" style=3D"font-size:7.5pt;font-family:&quot;Aria=
+l&quot;,sans-serif;color:#656565;mso-fareast-language:EN-CA">&#43;1 604 231=
+ 1109&nbsp; ::&nbsp;
+</span><span lang=3D"EN-US" style=3D"font-size:7.5pt;font-family:&quot;Aria=
+l&quot;,sans-serif;color:#C00000;mso-fareast-language:EN-CA">Main</span><sp=
+an lang=3D"EN-US" style=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sa=
+ns-serif;mso-fareast-language:EN-CA">&nbsp;
+<span style=3D"color:#656565">&#43;1 604 231 1100</span><o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
+tyle=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#656=
+565;mso-fareast-language:EN-CA">13811 Wireless Way&nbsp; ::&nbsp;Richmond, =
+BC Canada V6V 3A4<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span lang=3D"EN-US" s=
+tyle=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:#656=
+565;mso-fareast-language:EN-CA">[P2]<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><u><span lang=3D"EN-US=
+" style=3D"font-size:7.5pt;font-family:&quot;Arial&quot;,sans-serif;color:b=
+lue;mso-fareast-language:EN-CA"><a href=3D"mailto:dwatkins@sierrawireless.c=
+om"><span style=3D"color:blue">dwatkins@sierrawireless.com</span></a></span=
+></u><span lang=3D"EN-US" style=3D"font-size:7.5pt;font-family:&quot;Arial&=
+quot;,sans-serif;color:#E43B30;mso-fareast-language:EN-CA">
+ :: <a href=3D"http://www.sierrawireless.com/"><span style=3D"color:blue">w=
+ww.sierrawireless.com</span></a><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
 </html>
 
---------------E97A0E93C55B7E08A978AF0F--
-
---oDxdY3hwA0TKpqgOGradhev56kYnH9yom--
-
---KYaKWulXrCmJzDzFDUQQFp84W1ryuLCqS
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAl4Pi9gACgkQjYyoKScz
-m3Xb6Qf/dvBiUqsweDIOC46i1SFHw6xgTiwYIBnGFUV4qxNcyD0JIXxlHb29euaH
-C8WZhUqmaTfxUK0G2foCy8Jmpfod+czwPJt0LXHsqjdBfLLlGnfVVgYeTMKjvaTo
-xAR1SYr1a58YERvBJp9DsprZqAabZ/rvBlHUNU6voymdQo9poemtzZt4WDnjBKFe
-IiyD19vtHanbs76Fd08VFEa1akIOJzfl+JfO5UpMRpZ2mwlsAipwuvuCOkKOEXI7
-HctwCl8pshPvj8C0MHW61tWMZagnZiN53eXdjwhiHC6YKeQpiBcjtj51E7SC9HUb
-zfrTi+Xw8RKQtj8ATJau/cOeNHy49A==
-=TEWD
------END PGP SIGNATURE-----
-
---KYaKWulXrCmJzDzFDUQQFp84W1ryuLCqS--
+--_000_MWHPR02MB2463ECAC0C98AF970B2EC44FB2230MWHPR02MB2463namp_--
