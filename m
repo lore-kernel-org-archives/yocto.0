@@ -1,73 +1,71 @@
-Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
- by mx.groups.io with SMTP id smtpd.web12.5240.1578127037222427094
- for <yocto@lists.yoctoproject.org>;
- Sat, 04 Jan 2020 00:37:17 -0800
+Received: from mail-io1-f65.google.com (mail-io1-f65.google.com [209.85.166.65])
+ by mx.groups.io with SMTP id smtpd.web10.7053.1578144997082603643
+ for <Yocto@lists.yoctoproject.org>;
+ Sat, 04 Jan 2020 05:36:37 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=gEPRQ4Fg;
- spf=pass (domain: gmail.com, ip: 209.85.222.175, mailfrom: vinay.m.engg@gmail.com)
-Received: by mail-qk1-f175.google.com with SMTP id c17so35615001qkg.7
-        for <yocto@lists.yoctoproject.org>; Sat, 04 Jan 2020 00:37:17 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=l3qnSa+S;
+ spf=pass (domain: gmail.com, ip: 209.85.166.65, mailfrom: rajraja123447@gmail.com)
+Received: by mail-io1-f65.google.com with SMTP id t26so44097941ioi.13
+        for <Yocto@lists.yoctoproject.org>; Sat, 04 Jan 2020 05:36:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:from:date:message-id:subject:to;
-        bh=POKWcrzeZ61lw8Hlu/1si6IMb3QQfDog5XngSATJsW0=;
-        b=gEPRQ4FgQYhfEU+GsCwlFex//DgaYb6HlzEmG6wNFyvnWZabxUQ34O+n269AaeNshS
-         p4K4douHPSkuW8lNNi/K80THbHLpblFzi8MwIIOCYaxAIKFNL2n5EodhM6LNfds8Ccy6
-         cIQENSPl8QIlCcCvVqToQDJ5w1LAwXKHlwmmQHVf1WFcziXE5sBU7LoMLbNy4y6nXFr1
-         LfMDMw53zi2KqodVA6ychSqAmP1io+zWqUDIUw2dR1iUlgCjoSc4AttNb5I4w5kuzzc8
-         ENs3hJvDKTI2OytVkjuZFpzcoL0RB7Dz4j3uzUYvKl2Ry01WlmuTm6qcpuxlFFloEYTp
-         lgQw==
+        bh=pZ+Ltfo7B90faXJfYiQUVbNkeGgicjdhRel7aexYM2w=;
+        b=l3qnSa+SJsRAbbWN9a7HQwvYCJza6QOBg1q4MTaqtH09anLhd4FkpMK2kk93r7ekbI
+         +ktQ06i2aS3A5czF3cJ/4vUa+OZsa0QjusyiUUk1Akfbl3QRuXr8zdVlmUrC4Pqx42Y+
+         PtFwSRZHraEgPeDBB6DA/gFevM0qyeMbHsnatTu3qTKAHNvUR1NnR9c+7gyvAU2/b44S
+         69aXvegMo4YLdBMcFRYqn4z+1/EtNCAof1FJeDpWqgoiwqCs4xfG/5ShuRl28VSMjx4g
+         TCs05FxKq6TuQcRe9cQd/aTk92tVzQ6LqApzdMCAjU1Y8lKJzgKx3xUNl0Kk2wr1xLvb
+         UZ/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=POKWcrzeZ61lw8Hlu/1si6IMb3QQfDog5XngSATJsW0=;
-        b=r0MyUHo/a29X39weHr94VTHT+EQTCtLy+wqXO/hHdhTzo1rCvVajsBNJ6Bn5hU7PXa
-         n90q+FxPG7kMZmIUkRFHHGSbfG7DwNjOTi04VAUwmcqu1ptuDLWo/GJ7hoQGZTxsj7aN
-         xDfgchw2WHD3iw8/9vnueMbr9CsSBjPrW3iym8ZIBts4Ve2aYW8v+51q9Zb7LmnKm3he
-         PrSqCfgMj8DLiwsjYY2lgTkd01WVfEtaNxdMikcfX/tqaGKNvwACDHxRIU9dpMklQrN1
-         FehtLt13qgaM4nFWNXMoa0+Ua6RJRbbqEYRajMXRwy027Ya+o740l11qh8kuuBnoY3D0
-         VZjw==
-X-Gm-Message-State: APjAAAWa1k3wrAyo2eA0AiuNMWcZU9ETWySZtIDzP079j8LSE5rW2GXT
-	Wf/1RHWsuBv11JXe8zAbYoAB9qt3+sVwvBdpWlYWuouLQ7E=
-X-Google-Smtp-Source: APXvYqyeOCUi9EcbKbsPNPC4tT3ptyTOwSzkK96p+AmMElVSR4EYkhQc2VXbLH6LYFOGwxdbwUgid7/z6JEv2LuJM3M=
-X-Received: by 2002:a37:7005:: with SMTP id l5mr64008706qkc.334.1578127036205;
- Sat, 04 Jan 2020 00:37:16 -0800 (PST)
+        bh=pZ+Ltfo7B90faXJfYiQUVbNkeGgicjdhRel7aexYM2w=;
+        b=aGak2XaWZBcql/Y0N6jaxHi263hSnBNE+nhsdO/T2yB0GXTzlyId+dLc0mMWD36rDu
+         8rCPpvHOTiBplLeJMt/oVznB1S5xqZ5vsQj6xaPx5b1Dw9Yvzmhz90uFIkVJGZ7ZOI2I
+         Gp/sxBHOCfNJtmXeS80D2EQQ7yYZR3M6NvjclKl3fR5vzE+B547SQdjaw5oGipCCGO24
+         mVnpn8weY/8EmZAqgey2t3c5ISNPVuBnFUMCqjNImXCpUx0rbJ5rTWhsUKs472Y+VDgW
+         lwha0uF/YO7dJQoHkHPIkgqS5HuQJnZ86FVoCKWO1ToBk49rn5zRi1y0lRV5sw93RIVR
+         v5fQ==
+X-Gm-Message-State: APjAAAXO0cLSWiqM3JFDxjjzPDzyDX7RX+m+JkKkR2tobRbw0aZEfVVT
+	z5XTMgzh5wN6GkY/AKjoPm6wVIdxKmecViBKixroZQ==
+X-Google-Smtp-Source: APXvYqxpSa/yYvwvReedBhw7CeMuP05/KQBEx2stT1p7a1tqcGRU2yh0unlwEbv4V1SnUnKvj6gXVdJHbb87epNj0GU=
+X-Received: by 2002:a5d:844d:: with SMTP id w13mr64147703ior.83.1578144996405;
+ Sat, 04 Jan 2020 05:36:36 -0800 (PST)
 MIME-Version: 1.0
-From: vinay.m.engg@gmail.com
-Date: Sat, 4 Jan 2020 03:37:05 -0500
-Message-ID: <CANUMPcU4zsSOOOid1Xkt+J2MSD1xVZq+DXFzwfhoCvhO=KGDAQ@mail.gmail.com>
-Subject: Glibc-locale installation image.
-To: yocto@lists.yoctoproject.org
+Received: by 2002:a02:6d4b:0:0:0:0:0 with HTTP; Sat, 4 Jan 2020 05:36:36 -0800 (PST)
+From: rajraja123447@gmail.com
+Date: Sat, 4 Jan 2020 19:06:36 +0530
+Message-ID: <CAJsjG0QfUxsPFFC_QuZEp67_mCpVTCN92U2V6eH++GX3x=mgsA@mail.gmail.com>
+Subject: Question on How to add legacy Perl modules
+To: Yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000ea36ac059b508329"
+
+--000000000000ea36ac059b508329
 Content-Type: text/plain; charset="UTF-8"
 
 Hi,
 
-Trying to include glibc locale in qemux86 (poky-rocko)  image.
+I want to add getopts.pl which is legacy library into my system .  in
+Ubuntu 16 it comes from libperl4-corelibs-perl. How can I add the same into
+my system? Is there any receipe already available? I couldn't find it in
+open embedded ..
 
-$cat conf/local.conf
+Thanks,
+Raja
 
-ENABLE_BINARY_LOCALE_GENERATION = "1"
-LOCALE_GENERATION_WITH_CROSS-LOCALEDEF_forcevariable = "0"
-DISTRO_FEATURES = " ${DISTRO_FEATURES_LIBC}"
+--000000000000ea36ac059b508329
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Added above components.
+<span style=3D"color:rgb(34,34,34);font-size:14px">Hi,</span><div style=3D"=
+color:rgb(34,34,34);font-size:14px"><br></div><div style=3D"color:rgb(34,34=
+,34);font-size:14px">I want to add=C2=A0<a href=3D"http://getopts.pl/" targ=
+et=3D"_blank">getopts.pl</a>=C2=A0which is legacy library into my system .=
+=C2=A0 in Ubuntu 16 it comes from libperl4-corelibs-perl. How can I add the=
+ same into my system? Is there any receipe already available? I couldn&#39;=
+t find it in open embedded ..</div><div style=3D"color:rgb(34,34,34);font-s=
+ize:14px"><br></div><div style=3D"color:rgb(34,34,34);font-size:14px">Thank=
+s,</div><div style=3D"color:rgb(34,34,34);font-size:14px">Raja</div>
 
-Getting warnings as below and not getting locales installed in  the image.
-$bitbake core-image-minimal
-WARNING: glibc-locale-2.26-r0 do_package_qa: QA
-Issue:locale-base-de-ch.iso-8859-1 rdepends on
-glibc-binary-localedata-de-ch.iso-8859-1, but it isn't a build
-dependency? [build-deps]
-WARNING: glibc-locale-2.26-r0 do_package_qa: QA
-Issue:locale-base-gl-es.iso-8859-1 rdepends on
-glibc-binary-localedata-gl-es.iso-8859-1, but it isn't a build
-dependency? [build-deps]
-WARNING: glibc-locale-2.26-r0 do_package_qa: QA
-Issue:locale-base-tr-cy.iso-8859-9 rdepends on
-glibc-binary-localedata-tr-cy.iso-8859-9, but it isn't a build
-dependency? [build-deps]
-
-Please help in including the glibc-locales (all) in the image.
-
-Regards,
-Vinay
+--000000000000ea36ac059b508329--
