@@ -1,48 +1,48 @@
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
- by mx.groups.io with SMTP id smtpd.web12.4158.1578266054994402153
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+ by mx.groups.io with SMTP id smtpd.web09.4162.1578266312986510777
  for <yocto@lists.yoctoproject.org>;
- Sun, 05 Jan 2020 15:14:15 -0800
+ Sun, 05 Jan 2020 15:18:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=RRZPAkuM;
- spf=pass (domain: gmail.com, ip: 209.85.210.171, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f171.google.com with SMTP id 2so26078074pfg.12
-        for <yocto@lists.yoctoproject.org>; Sun, 05 Jan 2020 15:14:14 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=AC7rIBzW;
+ spf=pass (domain: gmail.com, ip: 209.85.215.178, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f178.google.com with SMTP id 6so26007837pgk.0
+        for <yocto@lists.yoctoproject.org>; Sun, 05 Jan 2020 15:18:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id;
         bh=+Eva4i3yTXGsRHncQqeJmBZ2EP1rRSWFpU4QeQ2tuxs=;
-        b=RRZPAkuM+s1brP4eA3Wqa0UTKlRRghEQMWjjgivXQ4tmvovi9dIiniUeoFMnW8FLeM
-         x5GGlVFGpAYiOUg4ZHwkIHLT9xq7nGMBMk2YWGsgbmYCq26M8Sydsjhpg4oPJNsJVmyD
-         lJa2luKCl97Pg/ZQtTEu5NPa8D6FSdRh2mmrHwuzGSzXLwnAhcf4XrKVOyT5ZIgnISDO
-         JWTwcPwI8B6fHdPdMvlrfTMU76rgNu8rYrK66FB0bv4boDcFUIpOzP+LuB0++lEzJp0D
-         WtjSwdrxFbPQKtIYb9l3Xkn2AcLtl+cLFkETGz92YM56DSDrgAES+8uvPAiUxAf7SDzp
-         eM9A==
+        b=AC7rIBzW5O/CSxjyY2KiGaBPixmywSnqW3pxKRLHfh8RV+KJOqRiOY3pNpBUBBb+EN
+         O3rOFrgGuta9FVGFJk6T2NsVGase5uPg5McTCdxZA2c3bcSg0/omow/T4xVHwpkHLa4h
+         tdDZVboiq1LEvqTzxFODvsu79l38YY2PG0sXHAgvgkzMlKJGvsyKlM/Y7ZdYuJ0eETrT
+         2AS0Xrx26FSZLSyNtfuCvPBHEQjFJSSLOzvz1FwkvTfjqbqgjARnaDm9dXOV1XwSQgnp
+         R8QqH0zQYj3EOhRmbG3w2SWPp58NnRMFVJ3PunlbrJAkPHilQhbOJMZd7SB0DI8UtlG0
+         QrZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id;
         bh=+Eva4i3yTXGsRHncQqeJmBZ2EP1rRSWFpU4QeQ2tuxs=;
-        b=TGgLhw/INBF5vn/8AFPz1ly0osG5MVgeOaKsviG6PnYw0s0+rYcKJhxz598XRDaAVM
-         tdmz/VDukPVYO34z7C6XmGpOJQhvHGdFlvX+3qvoXijkCO+9HreYnKKDb60elEQHOCEF
-         Pi2euSV/sKc3Y84KnaPyv53e56ev4+UXDURKCinFTKNjQCAQsYOoGoG4CrKgZCVcyhmo
-         NvqPC7mIH1j3q2jqjeNgrTGtARQOkORJyTu1zapaOXL6Z37+Dl93V49nHYECoIYxImwY
-         R3w/6gdob5uduJMUQbPWBnUAyipqP1o0wvS746qJyfXgDJfrsAbOwt6fDqIUJw2/uRIL
-         DILQ==
-X-Gm-Message-State: APjAAAWHVFzuj46KwaSrMnxiVZ6milKnlwe0d23TdsskOOHDnEs3+xPw
-	ZkCWamT8IZ4WfEYj737a74Gr8CwJ
-X-Google-Smtp-Source: APXvYqzJztGTYsOCnb4a6w/zHlzIcIXowKZAmNS4uOcRaGUwJ2zlBueim8mBMkQUxqJg5BhM+H6hgg==
-X-Received: by 2002:aa7:9354:: with SMTP id 20mr81927043pfn.40.1578266054270;
-        Sun, 05 Jan 2020 15:14:14 -0800 (PST)
+        b=EdguAll1Z7qZJ7zQi3tr+0dyqg4HB7cC3ObY181krLvvATIvWcgdQWwC/9msZ5bWrU
+         VPnpE0l5tmNnAkadyEXLz56jta3fokUD/zvnDKuBJNibMYm7EjNJ+cHMPmCzSBSjuE06
+         WVfHE2EvI82H/XtnZGZ/gchNVWcO37ogJMIIMWUWdq4oEsre4goDcPiZSQKd/J8zm9WQ
+         T2spDrIQDSxQ+iJKvSYCqk4BKyY7+RvqhouE7mW10SLYpsRIBZElzKZRumEmOZEAzSTb
+         Lx2jAzyr214l4qhu3qkhsLKX5Kh5Ytg/W4eBLGts0uAg2HNDhEaJGnpy544Hvzf7/q5f
+         Lo7Q==
+X-Gm-Message-State: APjAAAXnxM0heDnzt0dphE7DoV/WyJYB0ru+1AnMqBp8aT/zdAoAwLAy
+	F9RRGg0/OINeL7HeBCSx/mRY10qp
+X-Google-Smtp-Source: APXvYqwNZROi/L7g6UUQ4Js8Qj1Z6EdrWP18iTnlu8DLQRMGPKG4iTEVFSymXrVW8rRl+D9j59XNvA==
+X-Received: by 2002:a62:ac08:: with SMTP id v8mr108320418pfe.83.1578266312433;
+        Sun, 05 Jan 2020 15:18:32 -0800 (PST)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:24ce:b2a3:bac9:47a9])
-        by smtp.gmail.com with ESMTPSA id a4sm390636pjh.32.2020.01.05.15.14.13
+        by smtp.gmail.com with ESMTPSA id v4sm50705947pff.174.2020.01.05.15.18.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jan 2020 15:14:13 -0800 (PST)
+        Sun, 05 Jan 2020 15:18:31 -0800 (PST)
 From: "Armpit" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: Christophe PRIOUZEAU <christophe.priouzeau@st.com>
 Subject: [meta-security][zeus][PATCH 1/9] cryptsetup tpm incubator: fix installed vs shipped
-Date: Sun,  5 Jan 2020 15:14:04 -0800
-Message-Id: <20200105231412.4995-1-akuster808@gmail.com>
+Date: Sun,  5 Jan 2020 15:18:22 -0800
+Message-Id: <20200105231830.5281-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 
 From: Christophe PRIOUZEAU <christophe.priouzeau@st.com>
