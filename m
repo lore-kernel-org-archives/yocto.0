@@ -1,80 +1,183 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.5058.1578271462180054251
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+ by mx.groups.io with SMTP id smtpd.web09.5247.1578272558952820711
  for <yocto@lists.yoctoproject.org>;
- Sun, 05 Jan 2020 16:44:22 -0800
+ Sun, 05 Jan 2020 17:02:39 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: linux.intel.com, ip: 140.211.169.56, mailfrom: paul.eggleton@linux.intel.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AD0FBE013BB; Sun,  5 Jan 2020 16:44:21 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/, high
-	*      trust
-	*      [134.134.136.65 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 983FBE013BA
-	for <yocto@yoctoproject.org>; Sun,  5 Jan 2020 16:44:20 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Jan 2020 16:44:19 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,400,1571727600"; 
-   d="scan'208";a="271058331"
-Received: from zaihazle-mobl.gar.corp.intel.com (HELO shodan.fritz.box) ([10.255.167.138])
-  by FMSMGA003.fm.intel.com with ESMTP; 05 Jan 2020 16:44:17 -0800
-From: "Paul Eggleton" <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Subject: [layerindex-web][PATCH] Fix parsing after AVAILABLE_LICENSES change
-Date: Mon,  6 Jan 2020 13:44:10 +1300
-Message-Id: <20200106004410.13687-1-paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 2.20.1
+ dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.1.11, mailfrom: changqing.li@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 00612Zk7010431
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
+	Sun, 5 Jan 2020 17:02:35 -0800 (PST)
+Received: from [128.224.162.189] (128.224.162.189) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0; Sun, 5 Jan
+ 2020 17:02:34 -0800
+Subject: Re: [yocto] [error-report-web][PATCH V2] Add local.conf and auto.conf into error details
+To: Khem Raj <raj.khem@gmail.com>,
+        Paul Eggleton
+	<paul.eggleton@linux.intel.com>
+CC: <yocto@lists.yoctoproject.org>
+References: <1573547573-352969-1-git-send-email-changqing.li@windriver.com>
+ <9315981.NtHHCumI8A@shodan>
+ <5af91cd5-9249-e236-480b-fb3b4962bc0b@windriver.com>
+ <b0968d53-5b8b-c3dc-d0cd-07ab0e817f01@windriver.com>
+ <CAMKF1sr-yXjSDwP-kby1u=iYUmMXa0wmYsDqau=smcTM_f+knA@mail.gmail.com>
+From: "Changqing Li" <changqing.li@windriver.com>
+Message-ID: <6b00037b-f162-21b7-c072-1e439acc8db7@windriver.com>
+Date: Mon, 6 Jan 2020 09:02:31 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
+In-Reply-To: <CAMKF1sr-yXjSDwP-kby1u=iYUmMXa0wmYsDqau=smcTM_f+knA@mail.gmail.com>
+X-Originating-IP: [128.224.162.189]
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail.windriver.com id 00612Zk7010431
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: quoted-printable
 
-In OE-Core commit 8c9ef587fe499c612a878a1ab42092eb79b334ef an
-AVAILABLE_LICENSES variable was added in license.bbclass where its value
-is assigned with immediate expansion ( :=3D ) with the result that it
-looks in LICENSE_PATH for licenses; in turn LICENSE_PATH refers to
-COREBASE. You might assume that COREBASE is always set, and normally it
-is (since it's set OE-Core's layer.conf) - but in the layer index
-context we do not parse layer.conf until a bit later, so it immediately
-fails. The quick way to fix this is just to set our own (correct) value
-for COREBASE and then AVAILABLE_LICENSES can be expanded successfully.
+On 1/5/20 5:06 AM, Khem Raj wrote:
+> has this resolved on server side ? since I see that
+> patch to report-error.bbclass is still not applied in
+> oe-core
 
-You might ask why we don't instead just set BBLAYERS such that we *do*
-parse OE-Core's layer.conf - the answer is that that can have other
-effects such as BBFILE_COLLECTIONS being set, and at least at the moment
-the rest of the code isn't expecting that.
+V2 patches is for resolve this problem,=C2=A0 and Paul have 3 comments.
 
-Fixes [YOCTO #13723].
+so I need to send a V3 for fix the comments.=C2=A0 It is easy to fix firs=
+t 2=20
+comments,
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
- layerindex/recipeparse.py | 3 +++
- 1 file changed, 3 insertions(+)
+but the last comments,=C2=A0 I don't have more proper way.
 
-diff --git a/layerindex/recipeparse.py b/layerindex/recipeparse.py
-index 162cf62c..35867adb 100644
---- a/layerindex/recipeparse.py
-+++ b/layerindex/recipeparse.py
-@@ -74,6 +74,9 @@ def init_parser(settings, branch, bitbakepath, enable_t=
-racking=3DFalse, nocheckout
-     # (see findTopdir() in bitbake/lib/bb/cookerdata.py)
-     os.mkdir(os.path.join(tempdir, 'conf'))
-     with open(os.path.join(tempdir, 'conf', 'bblayers.conf'), 'w') as f:
-+        if not classic:
-+            # We need this to avoid problems with AVAILABLE_LICENSES
-+            f.write('COREBASE =3D "%s"\n' % core_repodir)
-         pass
-=20
-     if logger:
---=20
-2.20.1
+@Paul,=C2=A0 could you check my reply of comments #3?=C2=A0 Thanks.
 
+>
+> On Mon, Dec 16, 2019 at 7:48 PM Changqing Li <changqing.li@windriver.co=
+m> wrote:
+>> correct the mail list to yocto@lists.yoctoproject.org
+>>
+>> On 12/11/19 1:45 PM, Changqing Li wrote:
+>>> On 11/13/19 6:36 PM, Paul Eggleton wrote:
+>>>> Hi Changqing,
+>>>>
+>>>> Some comments below.
+>>>>
+>>>> On Tuesday, 12 November 2019 9:32:53 PM NZDT
+>>>> changqing.li@windriver.com wrote:
+>>>>> From: Changqing Li <changqing.li@windriver.com>
+>>>>>
+>>>>> Support to display local.conf and auto.conf on error report web.
+>>>>> Here is commit in oe-core, which add local.conf/auto.conf into erro=
+r
+>>>>> report
+>>>>> https://git.openembedded.org/openembedded-core/commit/?id=3D7adf970=
+7c04d8ef6bcd8d8bda555687f705e6ee6
+>>>>>
+>>>>>
+>>>>> This commit is related to YOCTO #13252
+>>>>>
+>>>>> Signed-off-by: Changqing Li <changqing.li@windriver.com>
+>>>>> ---
+>>>>>    Post/0006_auto_20190917_0419.py | 24 ++++++++++++++++++++++++
+>>>>>    Post/models.py                  |  2 ++
+>>>>>    Post/parser.py                  |  2 ++
+>>>>>    Post/test.py                    |  2 ++
+>>>>>    templates/error-details.html    | 10 ++++++++++
+>>>>>    test-data/test-payload.json     |  4 +++-
+>>>>>    6 files changed, 43 insertions(+), 1 deletion(-)
+>>>>>    create mode 100644 Post/0006_auto_20190917_0419.py
+>>>>>
+>>>>> diff --git a/Post/0006_auto_20190917_0419.py
+>>>>> b/Post/0006_auto_20190917_0419.py
+>>>>> new file mode 100644
+>>>>> index 0000000..827944e
+>>>>> --- /dev/null
+>>>>> +++ b/Post/0006_auto_20190917_0419.py
+>>>> Could you please give the migration a proper name (-n option to
+>>>> makemigrations) e.g. local_conf_auto_conf
+>>> OK, thanks
+>>>>> --- a/Post/models.py
+>>>>> +++ b/Post/models.py
+>>>>> @@ -43,6 +43,8 @@ class Build(models.Model):
+>>>>>        LINK_BACK =3D models.TextField(max_length=3D300, blank=3DTru=
+e,
+>>>>> null=3DTrue)
+>>>>>        ERROR_TYPE =3D models.CharField(max_length=3D20,
+>>>>> choices=3DERROR_TYPE_CHOICES,
+>>>>>                                      default=3DErrorType.RECIPE)
+>>>>> +    LOCAL_CONF =3D
+>>>>> models.TextField(max_length=3Dint(settings.MAX_UPLOAD_SIZE), defaul=
+t=3D"")
+>>>>> +    AUTO_CONF =3D
+>>>>> models.TextField(max_length=3Dint(settings.MAX_UPLOAD_SIZE), defaul=
+t=3D"")
+>>>> I'm not sure this is practical, for two reasons:
+>>>>
+>>>> 1) Field sizes should not be variable like this; changing the
+>>>> MAX_UPLOAD_SIZE value after the fact would not change the database
+>>>> structure
+>>>> 2) The value could never actually reach MAX_UPLOAD_SIZE because the
+>>>> overhead of the surrounding JSON would block it from being uploaded
+>>>> if it did
+>>>>
+>>>> However, since this is a TextField we don't actually have to specify
+>>>> a max_length (for a TextField max_length only actually affects the
+>>>> frontend, and we don't expose this field in a form) so it can just b=
+e
+>>>> removed.
+>>>>
+>>>> Another thing, instead of default=3D"" you should use blank=3DTrue.
+>>> OK,  I will fix this.
+>>>>
+>>>>> +        {% if detail.BUILD.LOCAL_CONF !=3D "" %}
+>>>>> +        <dt></a>Local Conf:</dt>
+>>>>> +        <dd style=3D"white-space: pre-wrap;">{{
+>>>>> detail.BUILD.LOCAL_CONF | safe }}</dd>
+>>>>> +        {% endif %}
+>>>>> +
+>>>>> +        {% if detail.BUILD.AUTO_CONF !=3D "" %}
+>>>>> +        <dt></a>Auto Conf:</dt>
+>>>>> +        <dd style=3D"white-space: pre-wrap;">{{
+>>>>> detail.BUILD.AUTO_CONF | safe }}</dd>
+>>>>> +        {% endif %}
+>>>> We cannot use the safe filter here - doing so could open up an XSS
+>>>> vulnerability, since anyone can upload anything to the error-report
+>>>> application and the content could include links or other malicious
+>>>> HTML data. We should allow it to be auto-escaped. Is there a
+>>>> particular issue you were using this to solve?
+>>> This is for resolve a problem when there is angle brackets in
+>>> local.conf/auto.conf.
+>>>
+>>> I have a patch in oe-core [OE-core] [PATCH] report-error.bbclass:
+>>> replace angle brackets with &lt; and &gt;]
+>>>
+>>> when we have below content in local.conf or auto.conf:
+>>> BUILDHISTORY_COMMIT_AUTHOR ?=3D "Khem Raj<raj.khem@gmail.com>"
+>>> send-error-report will fail with "HTTP Error 500: OK"
+>>>
+>>> error-report-web do rudimentary check on all fields that are
+>>> passed to the graphs page to avoid any XSS happening, if contains
+>>> '<', the server will return error(Invalid characters in json).
+>>> fixed by use escape of <> to replace it.
+>>>
+>>> NOTE: with this change, error-report-web need to add filter 'safe'
+>>> for the string wanted to display to avoid further HTML escaping
+>>> prior to output. Below is how the content displayed on webpage:
+>>> with the filter 'safe':
+>>> BUILDHISTORY_COMMIT_AUTHOR ?=3D "Khem Raj<raj.khem@gmail.com>"
+>>> without the filter 'safe':
+>>> BUILDHISTORY_COMMIT_AUTHOR ?=3D "Khem Raj &lt;raj.khem@gmail.com&gt;"
+>>>
+>>> Do you have good idea to resolve this? Thanks.
+>>>
+>>>> Cheers
+>>>> Paul
+>>>>
+>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+>> Links: You receive all messages sent to this group.
+>>
+>> View/Reply Online (#47707): https://lists.yoctoproject.org/g/yocto/mes=
+sage/47707
+>> Mute This Topic: https://lists.yoctoproject.org/mt/61340472/1997914
+>> Group Owner: yocto+owner@lists.yoctoproject.org
+>> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [raj.khem@g=
+mail.com]
+>> -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
