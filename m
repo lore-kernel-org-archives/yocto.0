@@ -1,91 +1,80 @@
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
- by mx.groups.io with SMTP id smtpd.web09.4166.1578266320173210821
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.5058.1578271462180054251
  for <yocto@lists.yoctoproject.org>;
- Sun, 05 Jan 2020 15:18:40 -0800
+ Sun, 05 Jan 2020 16:44:22 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=uAavJU+e;
- spf=pass (domain: gmail.com, ip: 209.85.216.41, mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f41.google.com with SMTP id m13so6985565pjb.2
-        for <yocto@lists.yoctoproject.org>; Sun, 05 Jan 2020 15:18:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=lIu+ggrd7I7eRgKZ8gBOZbRX8Sp16wLsYBNJLllYMaw=;
-        b=uAavJU+eDEFJ2OE/RlSdm4JezPQLwYwacBmsS410PiIO5PYIdIifAtyW0KbowYcfHL
-         3DEUfvt1yzTrLPkWiqdqZdTkl82HD65nZuQaIaPISWR1nLXr/RcGuQ4F6opb5wVpC8sh
-         toM+acbZT26/XX2PIk5rNF6g17Z9WbEdAxY/uBst9iy5H2PaSHE3eYqx3qAiUomYqcxE
-         RRD7UwZsncUUMr9kdjIvT+mg1wSkld1G9kPyTtt9ZYr2j+/KbS5kitRC4OQE8YZM2oFQ
-         JGKsCAqOmuRcsdJq0iWksQ7yrzkLHEm3l6cxQOFkwtgnHVw90S/yzoyxNbZN47anCD8T
-         LOqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references;
-        bh=lIu+ggrd7I7eRgKZ8gBOZbRX8Sp16wLsYBNJLllYMaw=;
-        b=LZxGt1G2niNZjFqcl6JNz7iCtp5au+fVRYNEVfSOoT0WIgXJUzY/leAwz4+9WInklm
-         kdRfpeazMiPz/x6F7FWZ8Wh/rWaVRHBwJRMA4d7y1RYiNTUAMu82HpiGRG8avl/YU5CF
-         ktzLpGQnIMV6lZ7Nc1mxlggcD3vkhKxKqbD53M+Z19YaKkcLfyFGcV4OIAJCj21XT/mw
-         /bYF7ztHmqK9IJ6Pf6Tm2mQw5RnD7aKtoU5RBhLeho+sHCBX8DMb/ZDbcCngok2ZMjir
-         o7nj37LB0bDpzKMubPh1QrQ9YljpAO733xhl7dyWCupip2IjjMz/qfO6Z82TQa3sKt4K
-         aMBw==
-X-Gm-Message-State: APjAAAVciDy0M4Fjb7iWukW7PLmoXvfn/TEQPDCa6c1jne8pc0oL/47/
-	7sye7meK1LjfweDJuSGbngWqF4a1
-X-Google-Smtp-Source: APXvYqwWQyuYqYzNtMeIY4QD3is4cobDqyQLmphlVookjB3Av67+Jh4N+4IU789F0TLek2lWb2vPxw==
-X-Received: by 2002:a17:90a:e28e:: with SMTP id d14mr41322999pjz.56.1578266319418;
-        Sun, 05 Jan 2020 15:18:39 -0800 (PST)
-Return-Path: <akuster808@gmail.com>
-Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:24ce:b2a3:bac9:47a9])
-        by smtp.gmail.com with ESMTPSA id v4sm50705947pff.174.2020.01.05.15.18.38
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Jan 2020 15:18:39 -0800 (PST)
-From: "Armpit" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][zeus][PATCH 9/9] suricata: update to 4.1.6
-Date: Sun,  5 Jan 2020 15:18:30 -0800
-Message-Id: <20200105231830.5281-9-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200105231830.5281-1-akuster808@gmail.com>
-References: <20200105231830.5281-1-akuster808@gmail.com>
+ dkim=missing; spf=none, err=permanent DNS error (domain: linux.intel.com, ip: 140.211.169.56, mailfrom: paul.eggleton@linux.intel.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id AD0FBE013BB; Sun,  5 Jan 2020 16:44:21 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/, high
+	*      trust
+	*      [134.134.136.65 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 983FBE013BA
+	for <yocto@yoctoproject.org>; Sun,  5 Jan 2020 16:44:20 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Jan 2020 16:44:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.69,400,1571727600"; 
+   d="scan'208";a="271058331"
+Received: from zaihazle-mobl.gar.corp.intel.com (HELO shodan.fritz.box) ([10.255.167.138])
+  by FMSMGA003.fm.intel.com with ESMTP; 05 Jan 2020 16:44:17 -0800
+From: "Paul Eggleton" <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Subject: [layerindex-web][PATCH] Fix parsing after AVAILABLE_LICENSES change
+Date: Mon,  6 Jan 2020 13:44:10 +1300
+Message-Id: <20200106004410.13687-1-paul.eggleton@linux.intel.com>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
+In OE-Core commit 8c9ef587fe499c612a878a1ab42092eb79b334ef an
+AVAILABLE_LICENSES variable was added in license.bbclass where its value
+is assigned with immediate expansion ( :=3D ) with the result that it
+looks in LICENSE_PATH for licenses; in turn LICENSE_PATH refers to
+COREBASE. You might assume that COREBASE is always set, and normally it
+is (since it's set OE-Core's layer.conf) - but in the layer index
+context we do not parse layer.conf until a bit later, so it immediately
+fails. The quick way to fix this is just to set our own (correct) value
+for COREBASE and then AVAILABLE_LICENSES can be expanded successfully.
+
+You might ask why we don't instead just set BBLAYERS such that we *do*
+parse OE-Core's layer.conf - the answer is that that can have other
+effects such as BBFILE_COLLECTIONS being set, and at least at the moment
+the rest of the code isn't expecting that.
+
+Fixes [YOCTO #13723].
+
+Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- recipes-ids/suricata/suricata.inc                           | 6 +++---
- .../suricata/{suricata_4.1.5.bb => suricata_4.1.6.bb}       | 1 -
- 2 files changed, 3 insertions(+), 4 deletions(-)
- rename recipes-ids/suricata/{suricata_4.1.5.bb => suricata_4.1.6.bb} (98%)
+ layerindex/recipeparse.py | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/recipes-ids/suricata/suricata.inc b/recipes-ids/suricata/suricata.inc
-index 1f4baff..3adbcf6 100644
---- a/recipes-ids/suricata/suricata.inc
-+++ b/recipes-ids/suricata/suricata.inc
-@@ -2,8 +2,8 @@ HOMEPAGE = "http://suricata-ids.org/"
- SECTION = "security Monitor/Admin"
- LICENSE = "GPLv2"
- 
--VER = "4.1.5"
-+VER = "4.1.6"
- SRC_URI = "http://www.openinfosecfoundation.org/download/suricata-${VER}.tar.gz"
- 
--SRC_URI[md5sum] = "0dfd68f6f4314c5c2eed7128112eff3b"
--SRC_URI[sha256sum] = "cee5f6535cd7fe63fddceab62eb3bc66a63fc464466c88ec7a41b7a1331ac74b"
-+SRC_URI[md5sum] = "da5de1e8053f05cbd295793210117d34"
-+SRC_URI[sha256sum] = "8441ac89016106459ade2112fcde58b3f789e4beb2fd8bfa081ffb75eec75fe0"
-diff --git a/recipes-ids/suricata/suricata_4.1.5.bb b/recipes-ids/suricata/suricata_4.1.6.bb
-similarity index 98%
-rename from recipes-ids/suricata/suricata_4.1.5.bb
-rename to recipes-ids/suricata/suricata_4.1.6.bb
-index b2700d6..9b7122b 100644
---- a/recipes-ids/suricata/suricata_4.1.5.bb
-+++ b/recipes-ids/suricata/suricata_4.1.6.bb
-@@ -10,7 +10,6 @@ SRC_URI += " \
-     file://suricata.yaml \
-     file://suricata.service \
-     file://run-ptest \
--    file://0001-af-packet-fix-build-on-recent-Linux-kernels.patch \
-     "
- 
- inherit autotools-brokensep pkgconfig python3-dir systemd ptest
--- 
-2.17.1
+diff --git a/layerindex/recipeparse.py b/layerindex/recipeparse.py
+index 162cf62c..35867adb 100644
+--- a/layerindex/recipeparse.py
++++ b/layerindex/recipeparse.py
+@@ -74,6 +74,9 @@ def init_parser(settings, branch, bitbakepath, enable_t=
+racking=3DFalse, nocheckout
+     # (see findTopdir() in bitbake/lib/bb/cookerdata.py)
+     os.mkdir(os.path.join(tempdir, 'conf'))
+     with open(os.path.join(tempdir, 'conf', 'bblayers.conf'), 'w') as f:
++        if not classic:
++            # We need this to avoid problems with AVAILABLE_LICENSES
++            f.write('COREBASE =3D "%s"\n' % core_repodir)
+         pass
+=20
+     if logger:
+--=20
+2.20.1
 
