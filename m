@@ -1,103 +1,136 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.4601.1578398225910499768
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+ by mx.groups.io with SMTP id smtpd.web12.4779.1578399588400218126
  for <yocto@lists.yoctoproject.org>;
- Tue, 07 Jan 2020 03:57:07 -0800
+ Tue, 07 Jan 2020 04:19:49 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@skidata.com header.s=selector1 header.b=SK3R6Krv;
- spf=permerror, err=parse error for token &{10 18 servers.mcsv.net}: limit exceeded (domain: skidata.com, ip: 140.211.169.56, mailfrom: prvs=268147e20=richard.leitner@skidata.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 75217E013CC; Tue,  7 Jan 2020 03:57:05 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [91.230.2.99 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www; Tue, 07 Jan 2020 03:57:00 PST
-Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 107F3E00571
-	for <yocto@yoctoproject.org>; Tue,  7 Jan 2020 03:56:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=skidata.com; i=@skidata.com; q=dns/txt; s=selector1;
-  t=1578398220; x=1609934220;
-  h=to:from:cc:subject:message-id:date:mime-version:
-   content-transfer-encoding;
-  bh=ufyqwjsnsK+Vt2JhmP3gv0bF0vAq3aEnnw/aqJjmDHI=;
-  b=SK3R6KrvxPw9sd0hcT5WyMssVUOpimueGRXFSIGEgOVRxNJG31xmmgNr
-   Up3tvQKohmOYK7tlWSEApxUeABDoceLowrxjCmjI3dM8jdLHQ9uUJQsh+
-   HS6jW/Fz/w/x2oFjPFgbg3xAcK8XrHEA0bIrr63pdDHpWuJfpCFGG8dSg
-   ymnQjdre+BMgSbL0KdpTjkRe3t4JS9X3YRQUIrg+pd9Df6ya3Vf9hxDvc
-   hXWG8PhHL9TG0bsmrxF8vym6i+eLdOHJGGBzoEXn1OQGNzNIqNHnNyTXO
-   tXh+PYbCncdVj4Sv0HgG23V7AosXQgAjul8Zm1AMXZTt887z0Um/ZOrEu
-   Q==;
-IronPort-SDR: M8uXUCk2OCbfgpF33Kmt3Yc4Aj+Pa7wVQWF6QwQgzeIOLKpTSyDQX6/xUoVQbEFMrLrjZ5B3W7
- npb9CTiZ8AdGs0UMV3zlPRLlRTvBA8LMGTpgeGGSV3hGrsGnH9MqKHPj4rBqbDUuKfwmhb3t92
- lcD0ziwsx2oNU3It12SDV+dOt0mbEAi87qZK0XrxSYGKKC8Ifca6CaKjRRJY0zunkg6mM9yvSm
- NiidINrUfRUqvRv8GzVrkPdZXChRXmptfm+iOb/b+QCFTL8BpnK3YllfvZrg8MOPUtE5SBR9SE
- 9GU=
+ dkim=missing; spf=pass (domain: axis.com, ip: 195.60.68.17, mailfrom: peter.kjellerstedt@axis.com)
+IronPort-SDR: 3hVqJ5lfmMcan8Wi3/c0oovNhTOPtoeXVEi+Egt6gpWEvgIWR2QlVkivXbyxVUxWVtxURBls3d
+ YTBPe3G9ZRxp8k372ULokcGFK3A0iKQLylf06T0QmPqjE2aNJmk39D2sGAqeEgJyuJlUEOkaQz
+ hwOYpG6GVIOZtuadoj7Fjsm52VhylotsMGbrGIVz1HJRdIZppdewYrACC+FMyvXTrqcohds989
+ 5krWFJqwuk+0ffojE4uyjFxfRWlW0+8sNLlhYXLNMh2wZU6uIjo7erTCdplNogmrfs57vpwHZJ
+ yUI=
 X-IronPort-AV: E=Sophos;i="5.69,406,1571695200"; 
-   d="scan'208";a="21874849"
-To: Scott Rifenbark <srifenbark@gmail.com>, Richard Purdie
-	<richard.purdie@linuxfoundation.org>
-From: "Richard Leitner" <richard.leitner@skidata.com>
-CC: <yocto@yoctoproject.org>
-Subject: poky: no submodule mapping found in .gitmodules for path 'documentation/bitbake'
-Message-ID: <d6f4ea64-27ba-4884-859c-1c7c18a6774a@skidata.com>
-Date: Tue, 7 Jan 2020 12:55:48 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.1
+   d="scan'208";a="4127274"
+X-Axis-User: NO
+X-Axis-NonUser: YES
+X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
+From: "Peter Kjellerstedt" <peter.kjellerstedt@axis.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-gplv2][PATCH] gnupg: Make it build with gettext 0.20
+Date: Tue,  7 Jan 2020 13:19:32 +0100
+Message-Id: <20200107121932.6721-1-pkj@axis.com>
+X-Mailer: git-send-email 2.21.1
 MIME-Version: 1.0
-X-Originating-IP: [192.168.111.252]
-X-ClientProxiedBy: sdex6srv.skidata.net (192.168.111.84) To
- sdex5srv.skidata.net (192.168.111.83)
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+Content-Transfer-Encoding: 8bit
 
-Hi Scott, Richard,
-I'm experiencing weird git submodule behaviour on poky master since
-commit 7e7b066085 ("YP 3.1 Docs: Updated Manual revision tables.")
+Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
+---
+ ...0001-Make-it-build-with-gettext-0.20.patch | 80 +++++++++++++++++++
+ recipes-support/gnupg/gnupg_1.4.7.bb          |  3 +-
+ 2 files changed, 82 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-support/gnupg/gnupg-1.4.7/0001-Make-it-build-with-gettext-0.20.patch
 
-Was this intended?
-
-$ git submodule status
-fatal: no submodule mapping found in .gitmodules for path 'documentation/bitbake'
-
-$ git log --pretty=oneline -- documentation/bitbake/
-7e7b066085c2496a259b356c59acda32d444a261 YP 3.1 Docs: Updated Manual revision tables.
-
-$ git show 7e7b066085c2496a259b356c59acda32d444a261 -- documentation/bitbake/
-commit 7e7b066085c2496a259b356c59acda32d444a261
-Author: Scott Rifenbark <srifenbark@gmail.com>
-Date:   Wed Dec 11 13:03:04 2019 -0800
-
-    YP 3.1 Docs: Updated Manual revision tables.
-
-    Scrubbed so subsequent releases are relevant to the
-    initial release only.
-
-    (From yocto-docs rev: 7bb2c4f851aa968eb05b11c5471b81962f268eba)
-
-    Signed-off-by: Scott Rifenbark <srifenbark@gmail.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
-
-diff --git a/documentation/bitbake b/documentation/bitbake
-new file mode 160000
-index 0000000000..0fb4b51532
+diff --git a/recipes-support/gnupg/gnupg-1.4.7/0001-Make-it-build-with-gettext-0.20.patch b/recipes-support/gnupg/gnupg-1.4.7/0001-Make-it-build-with-gettext-0.20.patch
+new file mode 100644
+index 0000000..a8eddbe
 --- /dev/null
-+++ b/documentation/bitbake
-@@ -0,0 +1 @@
-+Subproject commit 0fb4b5153237af4a13b2c65711ab798b0de06c2f
++++ b/recipes-support/gnupg/gnupg-1.4.7/0001-Make-it-build-with-gettext-0.20.patch
+@@ -0,0 +1,80 @@
++From 26076b28b79f6a2f2989a301ad7474cfa1153ebd Mon Sep 17 00:00:00 2001
++From: Peter Kjellerstedt <pkj@axis.com>
++Date: Tue, 7 Jan 2020 11:08:39 +0100
++Subject: [PATCH] Make it build with gettext 0.20
++
++Upstream-Status: Inappropriate [legacy version]
++Signed-off-by: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
++---
++ Makefile.am           | 2 +-
++ configure.ac          | 2 +-
++ g10/Makefile.am       | 2 +-
++ keyserver/Makefile.am | 2 +-
++ tools/Makefile.am     | 2 +-
++ 5 files changed, 5 insertions(+), 5 deletions(-)
++
++diff --git a/Makefile.am b/Makefile.am
++index 3423e70..1eebbc2 100644
++--- a/Makefile.am
+++++ b/Makefile.am
++@@ -28,7 +28,7 @@ else
++ checks = checks
++ endif
++ 
++-SUBDIRS = m4 intl zlib util mpi cipher tools g10 keyserver po doc ${checks}
+++SUBDIRS = m4 zlib util mpi cipher tools g10 keyserver po doc ${checks}
++ EXTRA_DIST = scripts/config.rpath  PROJECTS BUGS config.h.in autogen.sh
++ DISTCLEANFILES = 
++ 
++diff --git a/configure.ac b/configure.ac
++index 9f64b75..d9e5f69 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -813,7 +813,7 @@ dnl Checks for libraries.
++ 
++ AM_GNU_GETTEXT_VERSION(0.14.1)
++ if test "$try_gettext" = yes; then
++-  AM_GNU_GETTEXT(,[need-ngettext])
+++  AM_GNU_GETTEXT([external],[need-ngettext])
++ 
++   # gettext requires some extra checks.  These really should be part of
++   # the basic AM_GNU_GETTEXT macro.  TODO: move other gettext-specific
++diff --git a/g10/Makefile.am b/g10/Makefile.am
++index 74a8db1..ff51b7f 100644
++--- a/g10/Makefile.am
+++++ b/g10/Makefile.am
++@@ -32,7 +32,7 @@ AM_CPPFLAGS += -DGNUPG_LIBDIR="\"$(libdir)/@PACKAGE@\""
++ endif
++ 
++ needed_libs = ../cipher/libcipher.a ../mpi/libmpi.a ../util/libutil.a
++-other_libs = $(LIBICONV) $(DNSLIBS) $(LIBINTL) $(CAPLIBS)
+++other_libs = $(DNSLIBS) $(LIBINTL) $(CAPLIBS)
++ 
++ bin_PROGRAMS = gpg gpgv
++ dist_pkgdata_DATA = options.skel
++diff --git a/keyserver/Makefile.am b/keyserver/Makefile.am
++index 3379910..3527c60 100644
++--- a/keyserver/Makefile.am
+++++ b/keyserver/Makefile.am
++@@ -33,7 +33,7 @@ gpgkeys_hkp_SOURCES = gpgkeys_hkp.c ksutil.c ksutil.h
++ gpgkeys_finger_SOURCES = gpgkeys_finger.c ksutil.c ksutil.h
++ gpgkeys_curl_SOURCES = gpgkeys_curl.c ksutil.c ksutil.h
++ 
++-other_libs = $(LIBICONV) $(LIBINTL) $(CAPLIBS)
+++other_libs = $(LIBINTL) $(CAPLIBS)
++ 
++ gpgkeys_ldap_CPPFLAGS = @LDAP_CPPFLAGS@
++ gpgkeys_ldap_LDADD = ../util/libcompat.a @LDAPLIBS@ @NETLIBS@ $(other_libs) @GETOPT@ @W32LIBS@
++diff --git a/tools/Makefile.am b/tools/Makefile.am
++index 8a9c035..22cdb1e 100644
++--- a/tools/Makefile.am
+++++ b/tools/Makefile.am
++@@ -28,7 +28,7 @@ AM_CPPFLAGS += -DLOCALEDIR="\"$(localedir)\""
++ endif
++ 
++ needed_libs = ../cipher/libcipher.a ../mpi/libmpi.a ../util/libutil.a 
++-other_libs = $(LIBICONV) $(LIBINTL) $(CAPLIBS)
+++other_libs = $(LIBINTL) $(CAPLIBS)
++ 
++ 
++ bin_PROGRAMS    = gpgsplit
+diff --git a/recipes-support/gnupg/gnupg_1.4.7.bb b/recipes-support/gnupg/gnupg_1.4.7.bb
+index a7fbd11..6a950fd 100644
+--- a/recipes-support/gnupg/gnupg_1.4.7.bb
++++ b/recipes-support/gnupg/gnupg_1.4.7.bb
+@@ -19,7 +19,8 @@ SRC_URI = "${GNUPG_MIRROR}/gnupg/gnupg-${PV}.tar.bz2 \
+            file://CVE-2013-4576.patch \
+            file://CVE-2013-4242.patch \
+            file://fix-ustar-check-issue.patch \
+-	  "
++           file://0001-Make-it-build-with-gettext-0.20.patch \
++          "
+ 
+ SRC_URI[md5sum] = "b06a141cca5cd1a55bbdd25ab833303c"
+ SRC_URI[sha256sum] = "69d18b7d193f62ca27ed4febcb4c9044aa0c95305d3258fe902e2fae5fc6468d"
+-- 
+2.21.1
 
-
-regards;rl
