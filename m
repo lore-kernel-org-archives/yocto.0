@@ -1,257 +1,98 @@
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
- by mx.groups.io with SMTP id smtpd.web09.9622.1578498254949509288
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web09.10090.1578500163426128804
  for <yocto@lists.yoctoproject.org>;
- Wed, 08 Jan 2020 07:44:23 -0800
+ Wed, 08 Jan 2020 08:16:03 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=10jFWAz1;
- spf=temperror, err=temporary DNS error (domain: mvista.com, ip: 209.85.210.177, mailfrom: akuster@mvista.com)
-Received: by mail-pf1-f177.google.com with SMTP id i23so1832983pfo.2
-        for <yocto@lists.yoctoproject.org>; Wed, 08 Jan 2020 07:44:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language;
-        bh=AHm8U2HIWC4QFJbfWCU3a5M3RuDyi/jeSKFa2NRLQ6g=;
-        b=10jFWAz1MEJk4eAMpZ598nARsKMymhV5zvi8knXegeH2oJZUtP3vl97YC9L6n7SWUr
-         FssZwmOJUEUh05ZZmgrhDhHoQYPbU8Y/smr38CV8nX0mqG2YessKAQccys12rXwMBkBU
-         qrO7ItogAAEVFPewd2+cJo0pBDeIt+Mu5oLrmKUBEkdfpcpf/G+Aa77HEu5tgliY7ch1
-         PaO17cH4frtdPflN7R9YC3SHFXMww5FGKFA0L6yNRRtdBSobAMij+1mUg2uuAOTBgbJB
-         wLC05gOQ91sHaW8CUcipaDHZnB03tbVbTTpYIbpDrsm6nZGDEVqY6jA/vpdJssu2aWmn
-         Fzvw==
+ dkim=missing; spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: andre.draszik@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id DBA3CE014C5; Wed,  8 Jan 2020 08:16:02 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.128.65 listed in list.dnswl.org]
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC7CCE01148
+	for <yocto@yoctoproject.org>; Wed,  8 Jan 2020 08:16:01 -0800 (PST)
+Received: by mail-wm1-f65.google.com with SMTP id d73so3119743wmd.1
+        for <yocto@yoctoproject.org>; Wed, 08 Jan 2020 08:16:01 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language;
-        bh=AHm8U2HIWC4QFJbfWCU3a5M3RuDyi/jeSKFa2NRLQ6g=;
-        b=eNjElGWbESOfjzLqMtu4+BQc/C5WZXawt7vNmm1I0YoTMWeOhUP+LVaf/8bmjJj6RD
-         OJY9UEM3bCsaf/8L9FPJwVFsqHh1pwhrLJiRTsHfLdf231AEfkZmap/7reZIyFS/zcFO
-         T1rg28xB+tHpJZxZW3O1gEVITUmi33vQvBKy4lNg87yiL1OPuOZkxQpe/VEm7oRpiF4x
-         a5UelnVl3rvUmqbHAehYMkOiInHqjRsi7/yhIm6jLdXot4e5bhiCj0u4qRpuCN3M5nsz
-         r69zNYf3NGBLF2DbFXRAoRIRGbBobJjdp5yL3d24h3ikAz/tUd46vENmfnlI+2aBNJzY
-         QKMQ==
-X-Gm-Message-State: APjAAAW0K9lMJnzfO19HjQ544F6zXIUi6dJTsEvYHqwFpuFB+fQr0gBa
-	c0sJrc4+HmUpqLHXhXfsRgDztvDi6JE=
-X-Google-Smtp-Source: APXvYqzY2rQPqORVkw3d//qCUN+fYg5evb6/3IiEllDo5+3P8GWIyQ6caNNXW9paeeaQk7zBeBtMCw==
-X-Received: by 2002:aa7:8007:: with SMTP id j7mr5687280pfi.71.1578498254124;
-        Wed, 08 Jan 2020 07:44:14 -0800 (PST)
-Return-Path: <akuster@mvista.com>
-Received: from ?IPv6:2601:202:4180:a5c0:fda8:efcd:67f0:45fb? ([2601:202:4180:a5c0:fda8:efcd:67f0:45fb])
-        by smtp.gmail.com with ESMTPSA id y21sm4157447pfm.136.2020.01.08.07.44.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Jan 2020 07:44:13 -0800 (PST)
-Subject: Re: [yocto] Maintaining patchtest
-To: Paul Barker <pbarker@konsulko.com>, yocto@lists.yoctoproject.org
-References: <CAM9ZRVsXhTJzF11xqTp11f3jFYztg7QhrsRq0DLkAnV9n5+=1g@mail.gmail.com>
-From: "Armin Kuster" <akuster@mvista.com>
-Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <db3780e1-3a18-9172-42f4-435798468c0d@mvista.com>
-Date: Wed, 8 Jan 2020 07:44:11 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=gExKa5+Z65QftMUMlxvUuKBU77VTCM+ZX6dvCSgK4T8=;
+        b=K18lJKMdTcsMKYIfJzUV5AG6EN/TJmjSfL3pKVP7lq0WCE9m/tBv0AazhXkaXwP29w
+         MtR7ED4ZOzxAFkYk6gJVMPga8v8oSA8doZl2qRkVKsv1OmxatCkEyqGCTPqotxiW3i9j
+         hQd16/9LKTJR2fPMYe7gLisAOCQUM9Qi8dGEVkGUWY0TV0F9+vTExhaMF6ZyHFKFscS4
+         sUXjvp7kb4QaiLTvilYfGyaIiEt9dtJoajPcUYPGWBeijs0xoTVBbBxzEDvoVATe256z
+         G5w1VU6TP8KAoZ2Cn9FdXh2gL4x5NfEuOFYh58NS+ZZ3I17z4skfZS9/bJROutidnIWh
+         DJhg==
+X-Gm-Message-State: APjAAAXNjOfGNnsNrEm2dz/afwVXbij1/iqi+FixGsqW8cd1vjhpZVyo
+	Ct+O896icbgOydV5MhjDz+Hvu1nj
+X-Google-Smtp-Source: APXvYqz4Da5RFaFrilxumowWTzTABlgAVUPYlF0oRoumD+HqU+VhOkn2Feo1qBMhfsnXmgbWdAwh0g==
+X-Received: by 2002:a1c:e289:: with SMTP id z131mr4527942wmg.18.1578500160676;
+        Wed, 08 Jan 2020 08:16:00 -0800 (PST)
+Received: from 1aq-andre.garage.tyco.com ([77.107.218.170])
+        by smtp.gmail.com with ESMTPSA id v17sm4557818wrt.91.2020.01.08.08.15.59
+        for <yocto@yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jan 2020 08:15:59 -0800 (PST)
+From: "Andr? Draszik" <git@andred.net>
+To: yocto@yoctoproject.org
+Subject: [yocto][meta-gplv2][PATCH 2/2 v2] diffutils: musl has working malloc() and realloc()
+Date: Wed,  8 Jan 2020 16:15:58 +0000
+Message-Id: <20200108161558.40180-1-git@andred.net>
+X-Mailer: git-send-email 2.23.0.rc1
+In-Reply-To: <15E7F1D320E9D777.2841@lists.yoctoproject.org>
+References: <15E7F1D320E9D777.2841@lists.yoctoproject.org>
 MIME-Version: 1.0
-In-Reply-To: <CAM9ZRVsXhTJzF11xqTp11f3jFYztg7QhrsRq0DLkAnV9n5+=1g@mail.gmail.com>
-Content-Type: multipart/alternative;
- boundary="------------E6E311881D955B6E40967841"
-Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---------------E6E311881D955B6E40967841
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+diffutils tries to run a test program to determine if
+malloc() and realloc() work, i.e. whether they fail if
+given 0 for size. running a test program doesn't work
+when cross-compiling, so it defaults to assuming non-
+working malloc() / realloc()
 
-Paul,
+Given they work correctly in musl, we can specify the
+test-result, and avoid having to use diffutil's
+replacement functions.
 
-Thanks for stepping up as the Maintainer.
+Signed-off-by: Andr=C3=A9 Draszik <git@andred.net>
 
-- Armin
+---
+v2:
+* switch to CACHED_CONFIGUREVARS instead of EXTRA_OECONF
+---
+ recipes-extended/diffutils/diffutils_2.8.1.bb | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-On 1/8/20 4:48 AM, Paul Barker wrote:
-> Hi all,
->
-> After discussion on the technical call yesterday I'm looking at
-> becoming the maintainer of patchtest
-> (http://git.yoctoproject.org/cgit/cgit.cgi/patchtest/) and
-> patchtest-oe (http://git.yoctoproject.org/cgit/cgit.cgi/patchtest-oe/)
-> for Yocto Project.
->
-> Aside from a few minor issues I think patchtest is working pretty well
-> at the moment so I don't want to rock the boat too much. However I do
-> want to extend patchtest in a couple of ways:
->
-> * Support testing commits on a branch as well as patches in a
-> directory. This will allow integration with merge request workflows as
-> well as patches-by-email workflows.
->
-> * Support testing patches to other layers as well as oe-core. This
-> will require splitting the test cases into a "common" set which apply
-> to all layers (e.g. "Signed-off-by" must be present in a patch) and an
-> "oe-core specific" set (e.g. bugzilla reference validation which may
-> not be relevant for third-party layers). Other layers will then be
-> able to include their own test cases.
->
-> * Make it easier to run patchtest locally before submitting patches to the list.
->
-> I also want to simplify future maintenance of patchtest in a couple of ways:
->
-> * Move existing test cases from patchtest-oe into oe-core itself.
-> Archive off the old patchtest-oe repository.
->
-> * Consider if patchtest itself can be moved into oe-core as a script.
-> This is desirable but there would be a few issues to overcome, I need
-> to look into how patchtest is actually invoked by patchwork on the
-> server side first.
->
-> * If patchtest is to remain a separate repository then I'll move
-> development to GitLab with git.yoctoproject.org becoming a mirror.
-> This will allow automation of a few things like the deployment of new
-> patchtest versions to the server after committing to the master
-> branch.
->
-> I've also still got my eye on other ways we can support merge request
-> workflows for layers that want to use this but December got busy.
->
-> I'll give this a week for people to reply with feedback and then
-> submit patches to update the maintainers files in patchtest &
-> patchtest-oe.
->
-> Thanks,
-> Paul
->
-> -=-=-=-=-=-=-=-=-=-=-=-
-> Links: You receive all messages sent to this group.
->
-> View/Reply Online (#47886): https://lists.yoctoproject.org/g/yocto/message/47886
-> Mute This Topic: https://lists.yoctoproject.org/mt/69526934/1024635
-> Group Owner: yocto+owner@lists.yoctoproject.org
-> Unsubscribe: https://lists.yoctoproject.org/g/yocto/unsub  [akuster@mvista.com]
-> -=-=-=-=-=-=-=-=-=-=-=-
+diff --git a/recipes-extended/diffutils/diffutils_2.8.1.bb b/recipes-exte=
+nded/diffutils/diffutils_2.8.1.bb
+index 4aad28f..680911b 100644
+--- a/recipes-extended/diffutils/diffutils_2.8.1.bb
++++ b/recipes-extended/diffutils/diffutils_2.8.1.bb
+@@ -16,6 +16,11 @@ SRC_URI =3D "${GNU_MIRROR}/diffutils/diffutils-${PV}.t=
+ar.gz \
+ SRC_URI[md5sum] =3D "71f9c5ae19b60608f6c7f162da86a428"
+ SRC_URI[sha256sum] =3D "c5001748b069224dd98bf1bb9ee877321c7de8b332c8aad5=
+af3e2a7372d23f5a"
+=20
++CACHED_CONFIGUREVARS_libc-musl =3D "\
++    jm_cv_func_working_malloc=3Dyes \
++    jm_cv_func_working_realloc=3Dyes \
++"
++
+ do_configure_prepend () {
+ 	chmod u+w ${S}/po/Makefile.in.in
+ }
+--=20
+2.23.0.rc1
 
-
---------------E6E311881D955B6E40967841
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    Paul,<br>
-    <br>
-    Thanks for stepping up as the Maintainer. <br>
-    <br>
-    - Armin<br>
-    <br>
-    <div class="moz-cite-prefix">On 1/8/20 4:48 AM, Paul Barker wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CAM9ZRVsXhTJzF11xqTp11f3jFYztg7QhrsRq0DLkAnV9n5+=1g@mail.gmail.com">
-      <pre class="moz-quote-pre" wrap="">Hi all,
-
-After discussion on the technical call yesterday I'm looking at
-becoming the maintainer of patchtest
-(<a class="moz-txt-link-freetext" href="http://git.yoctoproject.org/cgit/cgit.cgi/patchtest/">http://git.yoctoproject.org/cgit/cgit.cgi/patchtest/</a>) and
-patchtest-oe (<a class="moz-txt-link-freetext" href="http://git.yoctoproject.org/cgit/cgit.cgi/patchtest-oe/">http://git.yoctoproject.org/cgit/cgit.cgi/patchtest-oe/</a>)
-for Yocto Project.
-
-Aside from a few minor issues I think patchtest is working pretty well
-at the moment so I don't want to rock the boat too much. However I do
-want to extend patchtest in a couple of ways:
-
-* Support testing commits on a branch as well as patches in a
-directory. This will allow integration with merge request workflows as
-well as patches-by-email workflows.
-
-* Support testing patches to other layers as well as oe-core. This
-will require splitting the test cases into a "common" set which apply
-to all layers (e.g. "Signed-off-by" must be present in a patch) and an
-"oe-core specific" set (e.g. bugzilla reference validation which may
-not be relevant for third-party layers). Other layers will then be
-able to include their own test cases.
-
-* Make it easier to run patchtest locally before submitting patches to the list.
-
-I also want to simplify future maintenance of patchtest in a couple of ways:
-
-* Move existing test cases from patchtest-oe into oe-core itself.
-Archive off the old patchtest-oe repository.
-
-* Consider if patchtest itself can be moved into oe-core as a script.
-This is desirable but there would be a few issues to overcome, I need
-to look into how patchtest is actually invoked by patchwork on the
-server side first.
-
-* If patchtest is to remain a separate repository then I'll move
-development to GitLab with git.yoctoproject.org becoming a mirror.
-This will allow automation of a few things like the deployment of new
-patchtest versions to the server after committing to the master
-branch.
-
-I've also still got my eye on other ways we can support merge request
-workflows for layers that want to use this but December got busy.
-
-I'll give this a week for people to reply with feedback and then
-submit patches to update the maintainers files in patchtest &amp;
-patchtest-oe.
-
-Thanks,
-Paul
-</pre>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">-=-=-=-=-=-=-=-=-=-=-=-
-Links: You receive all messages sent to this group.
-
-View/Reply Online (#47886): <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/message/47886">https://lists.yoctoproject.org/g/yocto/message/47886</a>
-Mute This Topic: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/mt/69526934/1024635">https://lists.yoctoproject.org/mt/69526934/1024635</a>
-Group Owner: <a class="moz-txt-link-abbreviated" href="mailto:yocto+owner@lists.yoctoproject.org">yocto+owner@lists.yoctoproject.org</a>
-Unsubscribe: <a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/g/yocto/unsub">https://lists.yoctoproject.org/g/yocto/unsub</a>  [<a class="moz-txt-link-abbreviated" href="mailto:akuster@mvista.com">akuster@mvista.com</a>]
--=-=-=-=-=-=-=-=-=-=-=-
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------E6E311881D955B6E40967841--
