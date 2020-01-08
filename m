@@ -1,68 +1,60 @@
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
- by mx.groups.io with SMTP id smtpd.web12.8148.1578492184262762584
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+ by mx.groups.io with SMTP id smtpd.web09.8716.1578494746616458836
  for <yocto@lists.yoctoproject.org>;
- Wed, 08 Jan 2020 06:03:04 -0800
+ Wed, 08 Jan 2020 06:45:47 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=d9zcj6Xs;
- spf=pass (domain: konsulko.com, ip: 209.85.210.52, mailfrom: paul.barker@konsulko.com)
-Received: by mail-ot1-f52.google.com with SMTP id i15so3689929oto.2
-        for <yocto@lists.yoctoproject.org>; Wed, 08 Jan 2020 06:03:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=xAdz4m9SmQDPtyrqWNFCqAau84xtRhudCQV5GMwK97M=;
-        b=d9zcj6XsHgY6yrcdgcCZJyKhl3uTjhAVecUbAzBLvNfdeawoAOcqj2/twZFzBvm+ha
-         8Y89vQxCHSQlE75G9+PTr2bMxdwfMcnfuovZmYuKnpVbqJxkPN35nj1ulBmIx5IiYYlF
-         s1C1oIRTSUprGqaILv55AtHu9RjUY0+8reLa4=
+ dkim=missing; spf=pass (domain: gmail.com, ip: 209.85.221.51, mailfrom: andre.draszik@gmail.com)
+Received: by mail-wr1-f51.google.com with SMTP id j42so3594157wrj.12
+        for <yocto@lists.yoctoproject.org>; Wed, 08 Jan 2020 06:45:46 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=xAdz4m9SmQDPtyrqWNFCqAau84xtRhudCQV5GMwK97M=;
-        b=HHzie35iUJzR1SGM6BkYt59Z4nQ6nNv8hc1cFazQZgqbVYbq1lrgzuW/8gfG3CldDY
-         vWX1iKlhvMwjLX8v+v2tRV0Lih2tT9S3FdsRqFIp3/WFZkhhl3fhJFDxJaO3GxTkjE6+
-         ZYIBRK7AG/4ZzgfLB2RdIaBtgCUMLEKYQd2uIZS3YpyHpC4el2miNrXIPDZNwy6DXtQs
-         1hB/ltgDa7jdN3b+2TojzulRONxVt8vW48423ZjNAV6Xzk1C+PKsN+Vc64YqLaDZR9My
-         dxCoWCGDXps+IvvP/jAJNVViCM/gZdO5yxxZNFQZzMXKIxFidmIjuABXXQEhZ8TIO+HF
-         m6PA==
-X-Gm-Message-State: APjAAAWC03hvfHQPSr+enYB/jiHRJhoDq5t8fI5k2LJrxjaFBawKO8vJ
-	IsHtcQHDxt8OKhTzU4MN01r3CkvAfiEcJxKeOlv+UKFd3X9A9LAy
-X-Google-Smtp-Source: APXvYqw0RjOSeB+t7kXdCB0OQepdxdGYfnhKF6cdVJQKjwf2+2kHC8YFvargsye4HtygnoTvKRtuGjA/Z2wGSPt0M78=
-X-Received: by 2002:a9d:470a:: with SMTP id a10mr4373006otf.370.1578492183360;
- Wed, 08 Jan 2020 06:03:03 -0800 (PST)
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=QT0e91VSoLFnXSZreQgmOojsXPB9Dsi4tqnW0FSWumc=;
+        b=ZaDywwnWTj7AW8OmJFb06He5eSNjDM4YTRoKXjWqfVl3safgNq2nq9jPBT69o7jDdM
+         Kepowj+g/rgyVtsH7VhEnq2qpQ5pZmyLfeT6CNerFtOU0VW656IBTvSr1/F2b74+yiwo
+         a7ZhoLtTo2Ptx1s5IBwrpQrxqw1esoLbi/E6UaxKwmDP2aFk05Cv1Pwo5rjN2973uuPw
+         nxHuyeRhRo6dnwvP8ymbjvxwGueSalPdgMQi4NHbYl87LX3y23Ew4rgFRuQEjbS4uFMl
+         nk4LmYp1H0TFDmdtu2SXGCm0bLO3ZaGn3PSZqmMq2Cd9VbdhqOF2iQ9oVnp/Pp8p4+nW
+         mckw==
+X-Gm-Message-State: APjAAAXiq3TotuFrFwmu0QH2N/SYNOuMGWQ9ul+BTuz2PGgwe4Zhk4Vl
+	rMamjuRjGDEYbKyJIZkyJvLrJ77n
+X-Google-Smtp-Source: APXvYqzilQJ1fzj0fjPbZyxrm7hb80ncE68vChgd9zEymnVEpDAI9IxKGVAirPjiryjdHOzoJhcN7w==
+X-Received: by 2002:adf:ef92:: with SMTP id d18mr4839214wro.234.1578494744280;
+        Wed, 08 Jan 2020 06:45:44 -0800 (PST)
+Return-Path: <andre.draszik@gmail.com>
+Received: from tfsielt31850 ([77.107.218.170])
+        by smtp.gmail.com with ESMTPSA id q14sm4097911wmj.14.2020.01.08.06.45.42
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Jan 2020 06:45:43 -0800 (PST)
+Message-ID: <62036ece5b4308f78ce3e9b517472e32b98b29b8.camel@andred.net>
+Subject: mailing list mangling name?
+From: "Andr? Draszik" <git@andred.net>
+To: yocto@lists.yoctoproject.org
+Date: Wed, 08 Jan 2020 14:45:42 +0000
+In-Reply-To: <15E744ED02F41EEB.31817@lists.yoctoproject.org>
+References: <15E744ED02F41EEB.31817@lists.yoctoproject.org>
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-From: "Paul Barker" <pbarker@konsulko.com>
-Date: Wed, 8 Jan 2020 14:02:53 +0000
-Message-ID: <CAM9ZRVvru2LaypQk337KMmT1DsxRAuA4-9peU21PSMRf2o43Hg@mail.gmail.com>
-Subject: OpenEmbedded at FOSDEM 2020: Request for volunteers and demos
-To: yocto@lists.yoctoproject.org, openembedded-core@lists.openembedded.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hey folks,
+The mailing list started mangling my name.
 
-We've got a stand for OpenEmbedded at FOSDEM 2020
-(https://fosdem.org/2020/stands/). For anyone who hasn't been to
-FOSDEM before, it's the Free and Open Source Developers' European
-Meeting at ULB in Brussels, Belgium on Feb 1st and 2nd. FOSDEM is free
-to attend conference with dozens of stands, hundreds of talks and
-thousands of attendees. I highly recommend coming along if you're able
-to!
 
-I'll be able to look after the stand for most of the weekend but will
-need some assistance and some cover so that I can take breaks when
-needed. I'm looking for volunteers to help with the following:
-* Setup from 09:00 on Saturday morning.
-* Running the stand and discussing the project with attendees from
-10:00 to 17:00 Saturday and Sunday.
-* Tidy up from 17:00 on Sunday.
+The From is sent as:
+From: =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
 
-I'm also looking for demos that can show off the project. I'll have my
-laptop with me to show toaster, the layer index, how builds work, etc
-but I won't be bringing any hardware devices as I'm travelling on
-after FOSDEM. We'll need a couple of hardware demos to show off the
-project well. The table is 180x80 cm.
+but it comes back as:
+From: "Andr? Draszik" <git@andred.net>
 
-If anyone can print up some flyers with info about the project that
-would also be excellent.
+(and of course the patches in git look funny now)
 
-Thanks,
-Paul
+Could sombody please look into that?
+
+
+Cheers,
+Andre'
+
+
