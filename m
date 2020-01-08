@@ -1,146 +1,112 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.9158.1578496082770251326
+Received: from mail-io1-f68.google.com (mail-io1-f68.google.com [209.85.166.68])
+ by mx.groups.io with SMTP id smtpd.web11.9611.1578497965450313493
  for <yocto@lists.yoctoproject.org>;
- Wed, 08 Jan 2020 07:08:02 -0800
+ Wed, 08 Jan 2020 07:39:25 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: andre.draszik@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65F03E0140D; Wed,  8 Jan 2020 07:08:02 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.221.67 listed in list.dnswl.org]
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14688E0049C
-	for <yocto@yoctoproject.org>; Wed,  8 Jan 2020 07:08:01 -0800 (PST)
-Received: by mail-wr1-f67.google.com with SMTP id d16so3707330wre.10
-        for <yocto@yoctoproject.org>; Wed, 08 Jan 2020 07:08:00 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=hi3oIlKO;
+ spf=pass (domain: gmail.com, ip: 209.85.166.68, mailfrom: schnitzeltony@gmail.com)
+Received: by mail-io1-f68.google.com with SMTP id n11so3629417iom.9
+        for <yocto@lists.yoctoproject.org>; Wed, 08 Jan 2020 07:39:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=es/gjwV6pDw626adUuglohvarG/wck8jTbnLY0nuyAo=;
+        b=hi3oIlKOo7PoSjq1CBKCk9IVrDF5UWJULFEAH77UqSLxKnaTvgQqX5/JoVE6qKG+A1
+         JF5h45O63mrpSPCRA5OyhjTi19uEt/ujr4v9bJCz/uZm9BptKTo+pwMv6jj8qma4FgJc
+         d8sxN9jLJtbZGCK/qIdh7sAEPIC2fFJwsVCNA2hAqbTep8c9J69tYY/vj6N5HAzq2HAz
+         osWuWfnwePzwbMznAc3itG49QYNkH6gINUbw3bPGXrF4yCQYjTmjgpWuhpPj/8HZVzUF
+         3znxP/GstMF+mKDsiUQ65Artv3K5M3FC8nr08qKOIA21IdZXTkRR+5KEXeYFKSDW6gYI
+         6f8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=gUr4U2QBtkD0nq4koeo55dDi0guFlHnGO+1owHMFRmE=;
-        b=qUQB8kq8r/OUQR20kR82ZT4+mJldN5LyfbfEP91cxjKRaD2Wry23wvhAktIjQAp/qP
-         pVJn+9W31sUMfLBYCiEmiR57lC7EQlO8L+YcwvApIsp71a0TlLwR9k8hM3gLrBZlcLyj
-         sJ8By2+kocwQKin/rJCeApreYebIB4Wsp0KETgQx/MMgjKJFnullldbZ92Z6rbVVNy08
-         h/2iyVCq9t3vmb18GrbxQ66FP+Fk2/2aQip5jJ1XKg6TiNe4UYtAcXjjZ3NS5KXQM0vM
-         qUWZl621s9Cm2JkQCXyYT4psBaSxG5h6GcFC6RyKo7X5CipOBxePFBSU/dAFVzTBv8VM
-         2saA==
-X-Gm-Message-State: APjAAAX0qZ+EdTn7+dT7fSAeaIpQpmMX02D/CRJHa59hw5WrPe8WHAUA
-	XgDov5WvAoRVQCXE4IE/aJSvjhf5
-X-Google-Smtp-Source: APXvYqwhCKGgnrjiG+8QJ2VCNqfkG30CWfGGD50kOYafXO4H7CHqxecM1Cya5JecU+8mF1B30w0T/g==
-X-Received: by 2002:a5d:4d4a:: with SMTP id a10mr5184071wru.220.1578496079831;
-        Wed, 08 Jan 2020 07:07:59 -0800 (PST)
-Received: from 1aq-andre.garage.tyco.com ([77.107.218.170])
-        by smtp.gmail.com with ESMTPSA id a184sm4266907wmf.29.2020.01.08.07.07.59
-        for <yocto@yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Jan 2020 07:07:59 -0800 (PST)
-From: "Andr? Draszik" <git@andred.net>
-To: yocto@yoctoproject.org
-Subject: [yocto][meta-gplv2][PATCH 1/2] diffutils: fix build with 64bit time_t on 32bit arches
-Date: Wed,  8 Jan 2020 15:07:57 +0000
-Message-Id: <20200108150758.13856-1-git@andred.net>
-X-Mailer: git-send-email 2.23.0.rc1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=es/gjwV6pDw626adUuglohvarG/wck8jTbnLY0nuyAo=;
+        b=R3cGACv7LK5x/qrSPMp8WJ+HQLLrJyt8VW5eqpU97NhHeVAFL5KRGvsuXCvBlKmoHN
+         wMUHBV1g74SikxVmMusymmIJhJSJW0hcAo0cqkaCVEiQzyQV1WnJDE2mgfgD1mPIg7c6
+         p8h4U9UhArHbEL/ZCkFLy+sHFfSUxi84YPv8nClJT+ZDDVMG0fR0DTBTt3QxKaeyaonv
+         +lI2gLJ+Lhv4hNfV64j1TlJzoP7EWhS7zNdKf+2WG++JN1RuYvTy/LMb3MzHwDACkZAF
+         yzm+4/VbJS3XQzrfLGeIvANnLrEp4Yozehz+JClVSnkAEJKhxpWFCEOnRjPI2rUsN+1K
+         7kyQ==
+X-Gm-Message-State: APjAAAXZb0926H9q662+3ICXkUrSpvCzOshRD/6DUxHpOdIMYwjwt/zq
+	7sbK0OmuuQ3//LaBlhUAzWcPM7CQgcguoPFa/vw=
+X-Google-Smtp-Source: APXvYqzrG/vdUtvpgFmHxgrK+zJ2J12YFYZaUJu0hyBGuY2QdokN9vzAUIJ5jesjHU8LicsFIrtCobflSBXo7in/Atw=
+X-Received: by 2002:a5d:9ecc:: with SMTP id a12mr3815112ioe.267.1578497964813;
+ Wed, 08 Jan 2020 07:39:24 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+References: <CAM9ZRVsXhTJzF11xqTp11f3jFYztg7QhrsRq0DLkAnV9n5+=1g@mail.gmail.com>
+ <CANNYZj8PnbOQO6CM1tdKBuHpVFUBj9MG8o0bQb1W04HDMM9mkQ@mail.gmail.com>
+In-Reply-To: <CANNYZj8PnbOQO6CM1tdKBuHpVFUBj9MG8o0bQb1W04HDMM9mkQ@mail.gmail.com>
+From: "Andreas M?ller" <schnitzeltony@gmail.com>
+Date: Wed, 8 Jan 2020 16:39:12 +0100
+Message-ID: <CALbNGRQ9m9b3xXaNU-GDk94U1-3QA_He0Bbyr0n2=8S3j9hj6g@mail.gmail.com>
+Subject: Re: [yocto] Maintaining patchtest
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Paul Barker <pbarker@konsulko.com>, yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-See included patch.
+On Wed, Jan 8, 2020 at 1:59 PM Alexander Kanavin <alex.kanavin@gmail.com> wrote:
+>
+> Thanks Paul, maintenance work is always greatly appreciated.
+>
+> Alex
+>
+> On Wed, 8 Jan 2020 at 13:49, Paul Barker <pbarker@konsulko.com> wrote:
+>>
+>> Hi all,
+>>
+>> After discussion on the technical call yesterday I'm looking at
+>> becoming the maintainer of patchtest
+>> (http://git.yoctoproject.org/cgit/cgit.cgi/patchtest/) and
+>> patchtest-oe (http://git.yoctoproject.org/cgit/cgit.cgi/patchtest-oe/)
+>> for Yocto Project.
+>>
+>> Aside from a few minor issues I think patchtest is working pretty well
+>> at the moment so I don't want to rock the boat too much. However I do
+>> want to extend patchtest in a couple of ways:
+>>
+>> * Support testing commits on a branch as well as patches in a
+>> directory. This will allow integration with merge request workflows as
+>> well as patches-by-email workflows.
+>>
+>> * Support testing patches to other layers as well as oe-core. This
+>> will require splitting the test cases into a "common" set which apply
+>> to all layers (e.g. "Signed-off-by" must be present in a patch) and an
+>> "oe-core specific" set (e.g. bugzilla reference validation which may
+>> not be relevant for third-party layers). Other layers will then be
+>> able to include their own test cases.
+>>
+>> * Make it easier to run patchtest locally before submitting patches to the list.
+>>
+>> I also want to simplify future maintenance of patchtest in a couple of ways:
+>>
+>> * Move existing test cases from patchtest-oe into oe-core itself.
+>> Archive off the old patchtest-oe repository.
+>>
+>> * Consider if patchtest itself can be moved into oe-core as a script.
+>> This is desirable but there would be a few issues to overcome, I need
+>> to look into how patchtest is actually invoked by patchwork on the
+>> server side first.
+>>
+>> * If patchtest is to remain a separate repository then I'll move
+>> development to GitLab with git.yoctoproject.org becoming a mirror.
+>> This will allow automation of a few things like the deployment of new
+>> patchtest versions to the server after committing to the master
+>> branch.
+>>
+>> I've also still got my eye on other ways we can support merge request
+>> workflows for layers that want to use this but December got busy.
+>>
+>> I'll give this a week for people to reply with feedback and then
+>> submit patches to update the maintainers files in patchtest &
+>> patchtest-oe.
+>>
+>> Thanks,
+>> Paul
+Suggestions made sound like major enhancements to me. My favourites
+are: extend to other layers and local operation :)
 
-Signed-off-by: Andr=C3=A9 Draszik <git@andred.net>
----
- ...ilation-with-64bit-time_t-on-32bit-a.patch | 46 +++++++++++++++++++
- recipes-extended/diffutils/diffutils_2.8.1.bb |  1 +
- 2 files changed, 47 insertions(+)
- create mode 100644 recipes-extended/diffutils/diffutils-2.8.1/0003-conte=
-xt-fix-compilation-with-64bit-time_t-on-32bit-a.patch
+Thanks for taking care
 
-diff --git a/recipes-extended/diffutils/diffutils-2.8.1/0003-context-fix-=
-compilation-with-64bit-time_t-on-32bit-a.patch b/recipes-extended/diffuti=
-ls/diffutils-2.8.1/0003-context-fix-compilation-with-64bit-time_t-on-32bi=
-t-a.patch
-new file mode 100644
-index 0000000..a8fcde0
---- /dev/null
-+++ b/recipes-extended/diffutils/diffutils-2.8.1/0003-context-fix-compila=
-tion-with-64bit-time_t-on-32bit-a.patch
-@@ -0,0 +1,46 @@
-+From 07c75310fecbaec62a24a3ee98b4209e1bf9ff62 Mon Sep 17 00:00:00 2001
-+From: =3D?UTF-8?q?Andr=3DC3=3DA9=3D20Draszik?=3D <git@andred.net>
-+Date: Mon, 6 Jan 2020 13:31:50 +0000
-+Subject: [PATCH] context: fix compilation with 64bit time_t on 32bit arc=
-hes
-+MIME-Version: 1.0
-+Content-Type: text/plain; charset=3DUTF-8
-+Content-Transfer-Encoding: 8bit
-+
-+In file included from ../../diffutils-2.8.1/src/diff.h:23,
-+                 from ../../diffutils-2.8.1/src/context.c:23:
-+../../diffutils-2.8.1/src/context.c: In function 'print_context_label':
-+../../diffutils-2.8.1/src/system.h:41:52: error: size of array 'a' is ne=
-gative
-+   41 | #define verify(name, assertion) struct name { char a[(assertion)=
- ? 1 : -1]; }
-+      |                                                    ^
-+../../diffutils-2.8.1/src/context.c:65:4: note: in expansion of macro 'v=
-erify'
-+   65 |    verify (info_preserved, sizeof inf->stat.st_mtime <=3D sizeof=
- sec);
-+      |    ^~~~~~
-+
-+struct stat::st_mtime is a time_t and will not fit into a
-+long (when 64bit time_t has been requested on a 32bit machine).
-+
-+Signed-off-by: Andr=C3=A9 Draszik <git@andred.net>
-+Upstream-Status: Inappropriate [fixing an old version]
-+---
-+ src/context.c | 4 ++--
-+ 1 file changed, 2 insertions(+), 2 deletions(-)
-+
-+diff --git a/src/context.c b/src/context.c
-+index 18d7023..d41efde 100644
-+--- a/src/context.c
-++++ b/src/context.c
-+@@ -61,9 +61,9 @@ print_context_label (char const *mark,
-+       int nsec =3D TIMESPEC_NS (inf->stat.st_mtim);
-+       if (! (tm && nstrftime (buf, sizeof buf, time_format, tm, 0, nsec=
-)))
-+ 	{
-+-	  long sec =3D inf->stat.st_mtime;
-++	  time_t sec =3D inf->stat.st_mtime;
-+ 	  verify (info_preserved, sizeof inf->stat.st_mtime <=3D sizeof sec);
-+-	  sprintf (buf, "%ld.%.9d", sec, nsec);
-++	  sprintf (buf, "%lld.%.9d", (long long) sec, nsec);
-+ 	}
-+       fprintf (outfile, "%s %s\t%s\n", mark, inf->name, buf);
-+     }
-+--=20
-+2.23.0.rc1
-+
-diff --git a/recipes-extended/diffutils/diffutils_2.8.1.bb b/recipes-exte=
-nded/diffutils/diffutils_2.8.1.bb
-index 5a71c94..4aad28f 100644
---- a/recipes-extended/diffutils/diffutils_2.8.1.bb
-+++ b/recipes-extended/diffutils/diffutils_2.8.1.bb
-@@ -10,6 +10,7 @@ SRC_URI =3D "${GNU_MIRROR}/diffutils/diffutils-${PV}.ta=
-r.gz \
-            file://fix_gcc6.patch \
-            file://0001-Make-it-build-with-compile-time-hardening-enabled=
-.patch \
-            file://0002-included-libc-use-mempcpy-instead-of.patch \
-+           file://0003-context-fix-compilation-with-64bit-time_t-on-32bi=
-t-a.patch \
-            "
-=20
- SRC_URI[md5sum] =3D "71f9c5ae19b60608f6c7f162da86a428"
---=20
-2.23.0.rc1
-
+Andreas
