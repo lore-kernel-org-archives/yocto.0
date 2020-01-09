@@ -1,45 +1,46 @@
-Received: from mga17.intel.com (mga17.intel.com [])
- by mx.groups.io with SMTP id smtpd.web09.6499.1578561525285294862
- for <yocto@lists.yoctoproject.org>;
- Thu, 09 Jan 2020 01:18:48 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=fail (domain: intel.com, ip: <nil>, mailfrom: naveen.kumar.saini@intel.com)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 09 Jan 2020 01:18:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.69,413,1571727600"; 
-   d="scan'208";a="254531048"
-Received: from saininav-desk1.png.intel.com ([172.30.199.23])
-  by fmsmga002.fm.intel.com with ESMTP; 09 Jan 2020 01:18:46 -0800
-From: "Naveen Saini" <naveen.kumar.saini@intel.com>
+Subject: Re: i.MX6 screen rotation
 To: yocto@lists.yoctoproject.org
-Subject: [meta-zephyr][PATCH 4/4] zephyr-kernel-test.inc: exclude test which fails with arm
-Date: Thu,  9 Jan 2020 17:23:10 +0800
-Message-Id: <20200109092310.9730-4-naveen.kumar.saini@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200109092310.9730-1-naveen.kumar.saini@intel.com>
-References: <20200109092310.9730-1-naveen.kumar.saini@intel.com>
+From: "Bert" <bert.boehne@systec.de>
+X-Originating-Location: Leinfelden-Echterdingen, Baden-Württemberg, DE (82.100.205.122)
+X-Originating-Platform: Windows Firefox 72
+User-Agent: GROUPS.IO Web Poster
+MIME-Version: 1.0
+Date: Thu, 09 Jan 2020 01:25:54 -0800
+References: <em2f6fb73f-c8b6-4fa3-94c2-e530827f90ec@andys-imac.leeshillfarm.local>
+In-Reply-To: <em2f6fb73f-c8b6-4fa3-94c2-e530827f90ec@andys-imac.leeshillfarm.local>
+Message-ID: <11981.1578561954374527180@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="E81cLCADHtg5TDxxwl9K"
 
-Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
----
- recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+--E81cLCADHtg5TDxxwl9K
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc b/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
-index d7572ef..3b0242f 100644
---- a/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
-+++ b/recipes-kernel/zephyr-kernel/zephyr-kernel-test.inc
-@@ -11,7 +11,7 @@ ZEPHYRTESTS_remove = "gen_isr_table spinlock smp mp"
- #ZEPHYRTESTS_remove_arm += ""
- 
- # test_critical never finishes in an unpatched QEMU either
--#ZEPHYRTESTS_remove_arm += ""
-+ZEPHYRTESTS_remove_arm += " boot_page_table"
- 
- #Remove ARM specific tests
- #ZEPHYRTESTS_remove_x86 += ""
--- 
-2.17.1
+Hi Andy,
 
+this sounds like you have to check your hardware and your framebuffer driv=
+er. How is the display connected to the display controller? This is may not=
+ set correctly in your framebuffer driver.
+
+I had the same issues with a SSD1305 display conrtoller. (https://www.adaf=
+ruit.com/images/product-files/2720/2719%20data.pdf) If you look at "10.1.26=
+=
+=C2=A0 Set COM Pins Hardware Configuration (DAh)" in this datasheet you wi=
+ll understand what I mean.
+
+Kind regards,
+
+Bert
+
+--E81cLCADHtg5TDxxwl9K
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Andy,<br /><br />this sounds like you have to check your hardware and yo=
+ur framebuffer driver. How is the display connected to the display controll=
+er? This is may not set correctly in your framebuffer driver. <br /><br />I=
+ had the same issues with a SSD1305 display conrtoller. (https://www.adafru=
+it.com/images/product-files/2720/2719%20data.pdf) If you look at "10.1.26&n=
+bsp; Set COM Pins Hardware Configuration (DAh)" in this datasheet you will =
+understand what I mean. <br /><br />Kind regards,<br /><br />Bert
+
+--E81cLCADHtg5TDxxwl9K--
