@@ -1,151 +1,72 @@
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
- by mx.groups.io with SMTP id smtpd.web10.1446.1578606628537765901
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.1953.1578608931223842864
  for <yocto@lists.yoctoproject.org>;
- Thu, 09 Jan 2020 13:50:28 -0800
+ Thu, 09 Jan 2020 14:28:51 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=dzqhIVOT;
- spf=pass (domain: gmail.com, ip: 209.85.166.51, mailfrom: eripflo@gmail.com)
-Received: by mail-io1-f51.google.com with SMTP id v3so8857939ioj.5
-        for <yocto@lists.yoctoproject.org>; Thu, 09 Jan 2020 13:50:28 -0800 (PST)
+ dkim=pass header.i=@kudzu-us.20150623.gappssmtp.com header.s=20150623 header.b=zaDDvONS;
+ spf=none, err=permanent DNS error (domain: kudzu.us, ip: 140.211.169.56, mailfrom: jdmason@kudzu.us)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 9905AE0142F; Thu,  9 Jan 2020 14:28:50 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.166.49 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95C53E00BB3
+	for <yocto@yoctoproject.org>; Thu,  9 Jan 2020 14:28:49 -0800 (PST)
+Received: by mail-io1-f49.google.com with SMTP id b10so8892782iof.11
+        for <yocto@yoctoproject.org>; Thu, 09 Jan 2020 14:28:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IvqVc1DDhAKz8WpKa14aH7nhTy8NhovzeiebkliZ+0E=;
-        b=dzqhIVOTwHemwElrxncBQvdjaz9fXCUssrfkSjzPtL5GJAGv8s1AI7vUl0/2f27GcY
-         TNSBfhWJNmYNpEd06d7T2vtR/hO1CdFoTu/4Xtji3kIccfdChTgKBnb4dJkXp51i6c2x
-         nL2He46wGjByYEz5EEsTDQ2RX+wecf/kpH556cHYNw3B35XzsMEDDMsGhOJn9rBXXWZM
-         NYjbsbGwjzXpmuDaasfcO0s5vR21+JU6R9aNV9qLRR5v8ib12d8Hg4+GeelUVoqbNuta
-         tkcmffwKaXBE3N4i3Ys4b8pgeG8tl5+hgzpytXRU3AY2WRd9DvetlRgy3+mUcddJ/Dda
-         hMow==
+        d=kudzu-us.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=IGHBQhIL8ISQq/D0vbQtyYYNelysuCFxSknRUlKilyY=;
+        b=zaDDvONSgAXvJGnHhQR8/YWRQPbCaXWvscAIyITW4t9fAt2iL/CeORJIuB5QtwS2pa
+         FmefBKjS1mVONXwdrQyaMSNmH/sOqpMhTZLw/72l1fLnmak99EY5irv2QBy86tbE/qGz
+         MyMJJnhJPMo9KIz4lzFdRjZs/QxYgbdlGgEL2S1XxctXoYv7J0dnLlx3pv1cPvmLPvCZ
+         mfciGdwnorJcCa+2CG318PYVNiroh/148q9hUf2FoB+D7DzFmE048ORbnFmWKiq+MWpt
+         8kr+v2ZCUJ5eIfnogZ8xbpftKhop4lmROlw++O7a5pehpmTorAwJHbVs+1ER2R9LgT/k
+         U2ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IvqVc1DDhAKz8WpKa14aH7nhTy8NhovzeiebkliZ+0E=;
-        b=R4db02DrNihGb17bFE8+6MoS/e+CqsGSoAIl6p7m1/QDmVEe8otmuhkPd7h698Muhc
-         zqhbolzRB/yFCPsXagUxAfGNda9fGlMpO1nxgdmv5X6VoPO1oLr1LjkhapeiPbGnpmDx
-         tLUl650nwuBU8dzB320Nl9agJ8XV/xsw/uxHArkNowblK9WzO05lG8nW6N1IqDZ0HVOK
-         jPAf31jPHqoKP1U4oIb7nbZiUWcexfp0Sm0P6Ariyd8z9RzkO2LB1ZDFW/wvBzC7Y+2x
-         r7Vh+wJeTkHIMK784oQDLjvNGuCoCIxGgtJmaKctyQenqXgrGFOPo9qWF+PaU2Xh0Y1u
-         xrQw==
-X-Gm-Message-State: APjAAAWs3x1a4utzWDZOJ4/gIwH4vaIoMrlpLRtCoUJ98u2vnjYQolNl
-	VKl8Wk8n5srFd175D2ELATxK6B9j/PSth+IlxHc=
-X-Google-Smtp-Source: APXvYqz7oAI77hkqTaYULbUuAZvVmuxbBQWm8vYxJcSWZlvpZIoWzKa1tRqVh03HTKXxbIwfQJxS+YG34JV36CORByM=
-X-Received: by 2002:a5d:8602:: with SMTP id f2mr9388366iol.270.1578606627882;
- Thu, 09 Jan 2020 13:50:27 -0800 (PST)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=IGHBQhIL8ISQq/D0vbQtyYYNelysuCFxSknRUlKilyY=;
+        b=U16M08YhRdVNFpjomJs7IvJ+2nNkRC7hsARK6JEvOonEmTm8aL5vBeGCoJAAiR4oKH
+         qmabqgg4N7/nDysheBDb1ILMvz0Wx2jdv7Jl5kyIczloBsBAtOWMPW7tWyNdr4VkBU+d
+         EoFsrqA0bN+WSElOT21ivEMkBwoNdAaICA1fIGzz9QIOnP+Nt9AQgTy+6JfN9pZkkyWE
+         RYYU11nVrX3XPMFYW/Ki5e57/GC9BmyHhH7JrCHyjjqw00yePWSdJe7d29aM0RxKci/q
+         imGWVjIgMCs6HAvLzu/uxvpBlj9DYevaROu/p+Pg9BwA7ejtTfiz0DR6Sw1N6o3V2Lcc
+         eCUA==
+X-Gm-Message-State: APjAAAXzbj8zElBoIPpjgMCjZhfjQU/kOI+/mK7iSf3qD38/XICvSQYW
+	VeD+cJSM1CQE9HvtdQWtOIL049QBkCUviNrFQFr/2GEmmMsw4Q==
+X-Google-Smtp-Source: APXvYqzjPJvWuj9AcpzuHnKcsusiSHcYWG+Dmv1eKzRTbE4SRYA5zSMZsF7eNySWqOaJPc5BtojlwlTcuuCd7VEgaWw=
+X-Received: by 2002:a6b:6205:: with SMTP id f5mr10077791iog.42.1578608928975;
+ Thu, 09 Jan 2020 14:28:48 -0800 (PST)
 MIME-Version: 1.0
-References: <CAGhBkzxwg4q_E1h+x1uJK6PGY6x_j91HQq2ahWnyZZbO_SC=Zw@mail.gmail.com>
- <CAGhBkzyYq4HOqz7u-qenXMeSkKyoJtejXtHz0mscJp_Pd4GGjw@mail.gmail.com> <CADfgfoaUNu8KsN-JfspzSQpYKm+s-0nVvX-5O1MoRc+uUDcQCQ@mail.gmail.com>
-In-Reply-To: <CADfgfoaUNu8KsN-JfspzSQpYKm+s-0nVvX-5O1MoRc+uUDcQCQ@mail.gmail.com>
-From: "FLoraVLogs" <eripflo@gmail.com>
-Date: Thu, 9 Jan 2020 16:50:19 -0500
-Message-ID: <CAGhBkzwBDJZ7Dxt6CtfUfZziDstLFaA6eSnho7ngB2+5Qxkz-Q@mail.gmail.com>
-Subject: Re: [yocto] Yocto host not found
-To: Michael Halstead <mhalstead@linuxfoundation.org>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000004b8d19059bbbff87"
-
---0000000000004b8d19059bbbff87
+From: "Jon Mason" <jdmason@kudzu.us>
+Date: Thu, 9 Jan 2020 17:28:38 -0500
+Message-ID: <CAPoiz9whfiTNqdM4WVLxrFHkhZHLnapPi+56o2sByra2P6USQA@mail.gmail.com>
+Subject: OpenEmbedded Workshop at FOSDEM20 schedule
+To: OpenEmbedded Devel List <openembedded-devel@lists.openembedded.org>, 
+	Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>, 
+	Yocto discussion list <yocto@yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 
-It is working now.
+The OpenEmbedded Workshop 2020 schedule is now available
+https://pretalx.com/oe-workshop-2020/schedule/
 
-Thank you
+As you can see, there are some very compelling talks.  Buy your
+tickets now, before we sell out.
+https://pretix.eu/OpenEmbedded/oe-workshop-2020/
 
-Regards,
-
-Ripu
-
-On Thu., Jan. 9, 2020, 4:44 p.m. Michael Halstead, <
-mhalstead@linuxfoundation.org> wrote:
-
-> There was a brief outage while rebooting a storage device. The error
-> should have been resolved several minutes ago. If you are still seeing this
-> error please let me know.
->
-> Michael Halstead
->
-> On Thu, Jan 9, 2020 at 1:38 PM FLoraVLogs <eripflo@gmail.com> wrote:
->
->> Also, I do see:
->>
->> Connecting to downloads.yoctoproject.org (downloads.yoctoproject.org)|198.145.29.63|:80... failed: Connection refused.
->>
->>
->>
->> On Thu, Jan 9, 2020 at 3:37 PM FLoraVLogs <eripflo@gmail.com> wrote:
->>
->>> Hi,
->>>
->>> I tried to go into the following:
->>> http://downloads.yoctoproject.org/
->>>
->>> I get the following error:
->>>
->>> Host Not Found
->>>
->>> DNS error (the host name of the page you are looking for does not exist)
->>> or Server did not accept the connection.
->>>
->>> Please check that the host name has been spelled correctly.
->>>
->>> Regards,
->>>
->>> Ripu
->>>
->> 
->>
->
-
---0000000000004b8d19059bbbff87
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"auto">It is working now.=C2=A0<div dir=3D"auto"><br></div><div =
-dir=3D"auto">Thank you</div><div dir=3D"auto"><br></div><div dir=3D"auto">R=
-egards,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Ripu</div></div>=
-<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu=
-., Jan. 9, 2020, 4:44 p.m. Michael Halstead, &lt;<a href=3D"mailto:mhalstea=
-d@linuxfoundation.org">mhalstead@linuxfoundation.org</a>&gt; wrote:<br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:=
-1px #ccc solid;padding-left:1ex"><div dir=3D"ltr">There was a brief=C2=A0ou=
-tage while rebooting a storage device. The error should have been resolved =
-several minutes ago. If you are still seeing this error please=C2=A0let me =
-know.<div><br></div><div>Michael Halstead</div></div><br><div class=3D"gmai=
-l_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Jan 9, 2020 at 1:38 =
-PM FLoraVLogs &lt;<a href=3D"mailto:eripflo@gmail.com" target=3D"_blank" re=
-l=3D"noreferrer">eripflo@gmail.com</a>&gt; wrote:<br></div><blockquote clas=
-s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
-gb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Also, I do see:<br><pre =
-style=3D"box-sizing:border-box;white-space:pre-wrap;margin-top:0px;margin-b=
-ottom:0px;font-size:14px;background:rgb(38,50,56);color:rgb(233,237,237);pa=
-dding:10px 20px;font-family:&quot;Roboto Mono&quot;,monospace">Connecting t=
-o <a href=3D"http://downloads.yoctoproject.org" target=3D"_blank" rel=3D"no=
-referrer">downloads.yoctoproject.org</a> (<a href=3D"http://downloads.yocto=
-project.org" target=3D"_blank" rel=3D"noreferrer">downloads.yoctoproject.or=
-g</a>)|198.145.29.63|:80... failed: Connection refused.
-
-</pre></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
-_attr">On Thu, Jan 9, 2020 at 3:37 PM FLoraVLogs &lt;<a href=3D"mailto:erip=
-flo@gmail.com" target=3D"_blank" rel=3D"noreferrer">eripflo@gmail.com</a>&g=
-t; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0p=
-x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div d=
-ir=3D"ltr">Hi,<div><br></div><div>I tried to go into the following:</div><d=
-iv><a href=3D"http://downloads.yoctoproject.org/" target=3D"_blank" rel=3D"=
-noreferrer"><span>http</span>://<span>downloads</span>.<span>yoctoproject</=
-span>.<span>org</span>/</a></div><div><br></div><div>I get the following er=
-ror:</div><div>=C2=A0</div><h1 style=3D"color:rgb(0,0,0);font-family:&quot;=
-Times New Roman&quot;">Host Not Found</h1><p style=3D"color:rgb(0,0,0);font=
--family:&quot;Times New Roman&quot;;font-size:medium">DNS error (the host n=
-ame of the page you are looking for does not exist) or Server did not accep=
-t the connection.<br><br>Please check that the host name has been spelled c=
-orrectly.</p><p style=3D"color:rgb(0,0,0);font-family:&quot;Times New Roman=
-&quot;;font-size:medium">Regards,</p><p style=3D"color:rgb(0,0,0);font-fami=
-ly:&quot;Times New Roman&quot;;font-size:medium">Ripu</p></div>
-</blockquote></div>
-<br>
-</blockquote></div>
-</blockquote></div>
-
---0000000000004b8d19059bbbff87--
+Thank you,
+The OpenEmbedded Board
