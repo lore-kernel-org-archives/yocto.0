@@ -1,326 +1,89 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.8574.1578577589490399808
+Received: from smtprelay.hostedemail.com (smtprelay.hostedemail.com [216.40.44.128])
+ by mx.groups.io with SMTP id smtpd.web12.8908.1578578338961783142
  for <yocto@lists.yoctoproject.org>;
- Thu, 09 Jan 2020 05:46:30 -0800
+ Thu, 09 Jan 2020 05:58:59 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@iwavesystems.com header.s=default header.b=RwQbi510;
- spf=permerror, err=parse error for token &{10 18 _spf.mailspamprotection.com}: parse error for token &{10 18 _nb5.mailspamprotection.com}: limit exceeded (domain: iwavesystems.com, ip: 140.211.169.56, mailfrom: sheraz.ali@iwavesystems.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0A309E0138A; Thu,  9 Jan 2020 05:46:29 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from c57603.sgvps.net (c57603.sgvps.net [109.199.122.162])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 955DDE01381
-	for <yocto@yoctoproject.org>; Thu,  9 Jan 2020 05:46:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=iwavesystems.com; s=default; h=Content-Type:MIME-Version:Date:Message-ID:Cc
-	:Subject:From:To:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=gabikXjGzoxT5eD5a3Wi+ELpztY+0h86+lopy9LAFlU=; b=RwQbi510OUOz0/vAejMBCc55fz
-	8lJAldu8JpQ5c39yGfLc8sz0cwOhQwlNxfTpLbYUw4/BMfU/JQyE6fxaB/fDxAuyrPAkP23clKpNU
-	C2Fczmsa4Ig1zd4H8I40K8aH356yR4d+3t8++4Z3+JtGIJiW3QZIBO6K1d396JjtXRpFVxQ7j7e+P
-	l8+OI0fkQl44sGJuL5n68f1rumBiP3m2nswf+slEQUUARzKNNQeqquyTi9DCX0HXV6Zbt4iCwonI6
-	n8mruIAZ4z01BAxBKYF2Q5DM3VJB8Xh7igT4h8fr1HUtZ8auKRhJe6ur0++kNWWvmicaiZWqlA7x5
-	Q2zA/ODQ==;
-Received: from [210.18.180.104] (port=50787 helo=[192.168.1.131])
-	by c57603.sgvps.net with esmtpsa  tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-	(Exim 4.90devstart-1178-b07e68e5-XX)
-	(envelope-from <sheraz.ali@iwavesystems.com>)
-	id 1ipY8m-0003Yy-Ex; Thu, 09 Jan 2020 07:46:24 -0600
-To: Yocto <yocto@yoctoproject.org>
-From: "Sheraz Ali" <sheraz.ali@iwavesystems.com>
-Subject: QA Issue while building core-image-mono
-Cc: Syed Rizwan <syedrizwanb@iwavesystems.com>
-Message-ID: <30a193f7-cb24-b82f-031f-925b0ac43df9@iwavesystems.com>
-Date: Thu, 9 Jan 2020 19:16:22 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - c57603.sgvps.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - iwavesystems.com
-X-Get-Message-Sender-Via: c57603.sgvps.net: authenticated_id: sheraz.ali@iwavesystems.com
-X-Authenticated-Sender: c57603.sgvps.net: sheraz.ali@iwavesystems.com
+ dkim=missing; spf=none, err=SPF record not found (domain: sdcsystems.com, ip: 216.40.44.128, mailfrom: andy.pont@sdcsystems.com)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+	by smtprelay07.hostedemail.com (Postfix) with ESMTP id E73B4181D341E;
+	Thu,  9 Jan 2020 13:58:57 +0000 (UTC)
+X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
+X-Spam-Summary: 50,0,0,,d41d8cd98f00b204,andy.pont@sdcsystems.com,:::,RULES_HIT:41:72:152:355:379:599:857:962:966:967:973:983:988:989:1189:1208:1212:1221:1260:1261:1313:1314:1345:1359:1431:1437:1516:1517:1518:1534:1542:1575:1588:1589:1594:1711:1730:1775:1792:2068:2069:2196:2198:2199:2200:2525:2527:2553:2561:2564:2682:2685:2859:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3352:3865:3866:3867:3868:3870:3871:3872:3873:3874:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4250:4321:4385:5007:6119:6657:7652:7903:8603:8829:8957:9010:9025:10004:10400:10848:11656:11658:11914:12043:12555:12714:12737:12986:13061:13139:13161:13229:14181:14659:14721:21080:21347:21433:21451:21622:21740:21773:21811:21939:30054:30070:30090,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:2,LUA_SUMMARY:none
+X-HE-Tag: tank17_3111de8743a1f
+X-Filterd-Recvd-Size: 4693
+Received: from [192.168.10.100] (leeshill.plus.com [81.174.243.117])
+	(Authenticated sender: andy.pont@sdcsystems.com)
+	by omf10.hostedemail.com (Postfix) with ESMTPA;
+	Thu,  9 Jan 2020 13:58:57 +0000 (UTC)
+From: "Andy Pont" <andy.pont@sdcsystems.com>
+To: Bert <bert.boehne@systec.de>
+Subject: Re: [yocto] i.MX6 screen rotation
+Cc: yocto@lists.yoctoproject.org
+Date: Thu, 09 Jan 2020 13:58:55 +0000
+Message-Id: <em60232559-bd97-45ea-b714-cc36670cdc42@andys-imac.leeshillfarm.local>
+In-Reply-To: <11981.1578561954374527180@lists.yoctoproject.org>
+References: <em2f6fb73f-c8b6-4fa3-94c2-e530827f90ec@andys-imac.leeshillfarm.local>
+ <11981.1578561954374527180@lists.yoctoproject.org>
+Reply-To: "Andy Pont" <andy.pont@sdcsystems.com>
+User-Agent: eM_Client/7.2.35700.0
+Mime-Version: 1.0
 Content-Type: multipart/alternative;
- boundary="------------422C99B11DB385F7C11E3E12"
-Content-Language: en-US
+ boundary="------=_MB3C733863-B8A6-4C79-85E4-30198ED42361"
 
---------------422C99B11DB385F7C11E3E12
-Content-Type: text/plain; charset=utf-8; format=flowed
+--------=_MB3C733863-B8A6-4C79-85E4-30198ED42361
+Content-Type: text/plain; format=flowed; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Bert wrote...=0A=0A>this sounds like you have to check your hardware and yo=
+ur framebuffer =0A>driver. How is the display connected to the display cont=
+roller? This is =0A>may not set correctly in your framebuffer driver.=0AThe =
+LCD is a 640x480 pixel TFT which has the NewVision NV3052C =0Acontroller e=
+mbedded within it into which we drive the 24bits of RGB =0Acolour data alon=
+g with VSYNC, HSYNC, PIXCLK from the DISP0_DAT pins of =0Athe i.MX6.=0A=0AT=
+he framebuffer device is provided by what look like Freescale additions =0A=
+to the kernel in drivers/video/fbdev/mxc on top of which we are using =0Ath=
+e Vivante drivers to provide OpenGL/EGL support.=0A=0AThe target applicatio=
+n uses the i.MX6 Framebuffer API[1] and OpenGL ES =0Ato render on the scree=
+n.  If it isn=E2=80=99t possible to rotate the framebuffer =0Aitself but ca=
+n get the Vivante drivers and the GPU to rotate everything =0Athen I think=
+ that may work.=0A=0A-Andy.=0A=0A[1] - =0Ahttps://nxpcommunity.force.com/sfc=
+/servlet.shepherd/document/download/06957000004mGPSAA2?operationContext=3DS=
+1=0A=0A
 
- =C2=A0=C2=A0=C2=A0 I was trying to add meta-mono to yocto build, i had c=
-loned=20
-meta-mono and added the layer to bblayer.conf and when i try to build=20
-core-image-mono using the below command, i get QA issues, I have added=20
-the error log for your reference.
-
-bitbake core-image-mono
-
-*Build Configuration:*
-BB_VERSION           =3D "1.38.0"
-BUILD_SYS            =3D "x86_64-linux"
-NATIVELSBSTRING      =3D "ubuntu-16.04"
-TARGET_SYS           =3D "aarch64-poky-linux"
-MACHINE              =3D "imx8qm_iwg27m"
-DISTRO               =3D "fsl-imx-xwayland"
-DISTRO_VERSION       =3D "L4.14.98-2.0.0_GA"
-TUNE_FEATURES        =3D "aarch64"
-TARGET_FPU           =3D ""
-meta
-meta-poky            =3D "HEAD:c9bd4984f8f471ca2c43052714f4413ba99cf171"
-meta-oe
-meta-multimedia      =3D "HEAD:8760facba1bceb299b3613b8955621ddaa3d4c3f"
-meta-freescale       =3D "HEAD:27ca94f8a4336790ba117b4298566f6820e7e74c"
-meta-freescale-3rdparty =3D "HEAD:82037216280a39957fb4272581637abec734ad5=
-0"
-meta-freescale-distro =3D "HEAD:f7e2216e93aff14ac32728a13637a48df436b7f4"
-meta-ublox-modules   =3D "<unknown>:<unknown>"
-meta-bsp
-meta-sdk             =3D "HEAD:8eeb420fad668b733ab95b460895e1c337c66b25"
-meta-browser         =3D "HEAD:75640e14e325479c076b6272b646be7a239c18aa"
-meta-gnome
-meta-networking
-meta-python
-meta-filesystems     =3D "HEAD:8760facba1bceb299b3613b8955621ddaa3d4c3f"
-meta-qt5             =3D "HEAD:d4e7f73d04e8448d326b6f89908701e304e37d65"
-meta-mono            =3D "master:1a54dbe8027644e68b02f4e44ca2f631d7e80e99=
-"
-
-*LOG:*
-
-ERROR: mono-5.14.0.177-r0 do_package_qa: QA Issue:=20
-/usr/lib/mono/4.5/Microsoft.CodeAnalysis.Scripting.dll contained in=20
-package mono-libs-4.5 requires mono(System.Runtime.Loader), but no=20
-providers found in RDEPENDS_mono-libs-4.5? [file-rdeps]
-ERROR: mono-5.14.0.177-r0 do_package_qa: QA run found fatal errors.=20
-Please consider fixing them.
-ERROR: mono-5.14.0.177-r0 do_package_qa: Function failed: do_package_qa
-ERROR: Logfile of failure stored in:=20
-/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bsp/build_imx8qm/t=
-mp/work/aarch64-poky-linux/mono/5.14.0.177-r0/temp/log.do_package_qa.1683=
-6
-ERROR: Task=20
-(/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bsp/sources/meta-=
-mono/recipes-mono/mono/mono_5.14.0.177.bb:do_package_qa)=20
-failed with exit code '1'
-ERROR: core-image-mono-1.0-r0 do_rootfs: Could not invoke dnf. Command=20
-'/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bsp/build_imx8qm/=
-tmp/work/imx8qm_iwg27m-poky-linux/core-image-mono/1.0-r0/recipe-sysroot-n=
-ative/usr/bin/dnf=20
--y -c=20
-/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bsp/build_imx8qm/t=
-mp/work/imx8qm_iwg27m-poky-linux/core-image-mono/1.0-r0/rootfs/etc/dnf/dn=
-f.conf=20
---setopt=3Dreposdir=3D/home/rizwan/Projects/embedded_world_1.1/iwg27-rele=
-ase-bsp/build_imx8qm/tmp/work/imx8qm_iwg27m-poky-linux/core-image-mono/1.=
-0-r0/rootfs/etc/yum.repos.d=20
---repofrompath=3Doe-repo,/home/rizwan/Projects/embedded_world_1.1/iwg27-r=
-elease-bsp/build_imx8qm/tmp/work/imx8qm_iwg27m-poky-linux/core-image-mono=
-/1.0-r0/oe-rootfs-repo=20
---installroot=3D/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bs=
-p/build_imx8qm/tmp/work/imx8qm_iwg27m-poky-linux/core-image-mono/1.0-r0/r=
-ootfs=20
---setopt=3Dlogdir=3D/home/rizwan/Projects/embedded_world_1.1/iwg27-releas=
-e-bsp/build_imx8qm/tmp/work/imx8qm_iwg27m-poky-linux/core-image-mono/1.0-=
-r0/temp=20
---nogpgcheck install iwtest obexftp psplash mono mrvl-wireless-firmware=20
-gstreamer1.0-libav tzdata dnf rpm packagegroup-base-extended=20
-packagegroup-core-x11-sato mrvl-wireless-modules mono-helloworld=20
-run-postinsts dhcpcd packagegroup-core-boot=20
-packagegroup-core-ssh-dropbear locale-base-en-us locale-base-en-gb'=20
-returned 1:
-Added oe-repo repo from=20
-/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bsp/build_imx8qm/t=
-mp/work/imx8qm_iwg27m-poky-linux/core-image-mono/1.0-r0/oe-rootfs-repo
-Last metadata expiration check: 0:00:00 ago on Thu 09 Jan 2020 01:40:51=20
-PM UTC.
-Error:
- =C2=A0Problem 1: package mono-5.14.0.177-r0.aarch64 requires mono-libs-4=
-.5,=20
-but none of the providers can be installed
- =C2=A0 - conflicting requests
- =C2=A0 - nothing provides mono(System.Runtime.Loader) =3D 4.0.0.0 needed=
- by=20
-mono-libs-4.5-5.14.0.177-r0.aarch64
- =C2=A0Problem 2: package mono-helloworld-1.2-r0.aarch64 requires mono, b=
-ut=20
-none of the providers can be installed
- =C2=A0 - package mono-5.14.0.177-r0.aarch64 requires mono-libs-4.5, but =
-none=20
-of the providers can be installed
- =C2=A0 - conflicting requests
- =C2=A0 - nothing provides mono(System.Runtime.Loader) =3D 4.0.0.0 needed=
- by=20
-mono-libs-4.5-5.14.0.177-r0.aarch64
-
-ERROR: core-image-mono-1.0-r0 do_rootfs: Function failed: do_rootfs
-ERROR: Logfile of failure stored in:=20
-/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bsp/build_imx8qm/t=
-mp/work/imx8qm_iwg27m-poky-linux/core-image-mono/1.0-r0/temp/log.do_rootf=
-s.16847
-ERROR: Task=20
-(/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bsp/sources/meta-=
-mono/recipes-mono/images/core-image-mono.bb:do_rootfs)=20
-failed with exit code '1'
-
---=20
-Thanks and Regards
-Sheraz Ali Shah
-
-
---------------422C99B11DB385F7C11E3E12
+--------=_MB3C733863-B8A6-4C79-85E4-30198ED42361
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
+<html><head><style id=3D"css_styles">blockquote.cite { margin-left: 5px; ma=
+rgin-right: 0px; padding-left: 10px; padding-right:0px; border-left: 1px so=
+lid #cccccc }=0Ablockquote.cite2 {margin-left: 5px; margin-right: 0px; padd=
+ing-left: 10px; padding-right:0px; border-left: 1px solid #cccccc; margin-t=
+op: 3px; padding-top: 0px; }=0Aa img { border: 0px; }=0Ali[style=3D'text-al=
+ign: center;'], li[style=3D'text-align: right;'] {  list-style-position: in=
+side;}=0Abody { font-family: Verdana; font-size: 12px;   }</style></head><b=
+ody class=3D"plain"><div><div>Bert wrote...</div>=0A</div><div><br /></div>=
+=0A<div id=3D"x949b37ee91fc48c"><blockquote type=3D"cite" class=3D"cite2">t=
+his sounds like you have to check your hardware and your framebuffer driver=
+. How is the display connected to the display controller? This is may not s=
+et correctly in your framebuffer driver.</blockquote><blockquote type=3D"ci=
+te" class=3D"cite2"></blockquote>The LCD is a 640x480 pixel TFT which has t=
+he NewVision NV3052C controller embedded within it into which we drive the=
+ 24bits of RGB colour data along with VSYNC, HSYNC, PIXCLK from the DISP0_DA=
+T pins of the i.MX6.</div><div id=3D"x949b37ee91fc48c"><br /></div><div id=
+=3D"x949b37ee91fc48c">The framebuffer device is provided by what look like=
+ Freescale additions to the kernel in drivers/video/fbdev/mxc on top of whic=
+h we are using the Vivante drivers to provide OpenGL/EGL support.</div><div =
+id=3D"x949b37ee91fc48c"><br /></div><div id=3D"x949b37ee91fc48c">The targe=
+t application uses the i.MX6 Framebuffer API[1] and OpenGL ES to render on=
+ the screen. =C2=A0If it isn=E2=80=99t possible to rotate the framebuffer it=
+self but can get the Vivante drivers and the GPU to rotate everything then=
+ I think that may work.</div><div id=3D"x949b37ee91fc48c"><br /></div><div i=
+d=3D"x949b37ee91fc48c">-Andy.</div><div id=3D"x949b37ee91fc48c"><br /></div=
+><div id=3D"x949b37ee91fc48c">[1] -=C2=A0<a href=3D"https://nxpcommunity.fo=
+rce.com/sfc/servlet.shepherd/document/download/06957000004mGPSAA2?operation=
+Context=3DS1">https://nxpcommunity.force.com/sfc/servlet.shepherd/document/=
+download/06957000004mGPSAA2?operationContext=3DS1</a></div><div id=3D"x949b=
+37ee91fc48c"><br /></div><div id=3D"x949b37ee91fc48c"><br /></div>=0A</body=
+></html>
 
-    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF=
--8">
-  </head>
-  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
-    <p>Hi,</p>
-    <p>=C2=A0=C2=A0=C2=A0 I was trying to add meta-mono to yocto build, i=
- had cloned
-      meta-mono and added the layer to bblayer.conf and when i try to
-      build core-image-mono using the below command, i get QA issues, I
-      have added the error log for your reference.</p>
-    <pre>bitbake core-image-mono
-
-<b>Build Configuration:</b>
-BB_VERSION           =3D "1.38.0"
-BUILD_SYS            =3D "x86_64-linux"
-NATIVELSBSTRING      =3D "ubuntu-16.04"
-TARGET_SYS           =3D "aarch64-poky-linux"
-MACHINE              =3D "imx8qm_iwg27m"
-DISTRO               =3D "fsl-imx-xwayland"
-DISTRO_VERSION       =3D "L4.14.98-2.0.0_GA"
-TUNE_FEATURES        =3D "aarch64"
-TARGET_FPU           =3D ""
-meta                =20
-meta-poky            =3D "HEAD:c9bd4984f8f471ca2c43052714f4413ba99cf171"
-meta-oe             =20
-meta-multimedia      =3D "HEAD:8760facba1bceb299b3613b8955621ddaa3d4c3f"
-meta-freescale       =3D "HEAD:27ca94f8a4336790ba117b4298566f6820e7e74c"
-meta-freescale-3rdparty =3D "HEAD:82037216280a39957fb4272581637abec734ad5=
-0"
-meta-freescale-distro =3D "HEAD:f7e2216e93aff14ac32728a13637a48df436b7f4"
-meta-ublox-modules   =3D "&lt;unknown&gt;:&lt;unknown&gt;"
-meta-bsp            =20
-meta-sdk             =3D "HEAD:8eeb420fad668b733ab95b460895e1c337c66b25"
-meta-browser         =3D "HEAD:75640e14e325479c076b6272b646be7a239c18aa"
-meta-gnome          =20
-meta-networking     =20
-meta-python         =20
-meta-filesystems     =3D "HEAD:8760facba1bceb299b3613b8955621ddaa3d4c3f"
-meta-qt5             =3D "HEAD:d4e7f73d04e8448d326b6f89908701e304e37d65"
-meta-mono            =3D "master:1a54dbe8027644e68b02f4e44ca2f631d7e80e99=
-"
-
-</pre>
-    <p><b>LOG:</b></p>
-    <p>ERROR: mono-5.14.0.177-r0 do_package_qa: QA Issue:
-      /usr/lib/mono/4.5/Microsoft.CodeAnalysis.Scripting.dll contained
-      in package mono-libs-4.5 requires mono(System.Runtime.Loader), but
-      no providers found in RDEPENDS_mono-libs-4.5? [file-rdeps]<br>
-      ERROR: mono-5.14.0.177-r0 do_package_qa: QA run found fatal
-      errors. Please consider fixing them.<br>
-      ERROR: mono-5.14.0.177-r0 do_package_qa: Function failed:
-      do_package_qa<br>
-      ERROR: Logfile of failure stored in:
-/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bsp/build_imx8qm/t=
-mp/work/aarch64-poky-linux/mono/5.14.0.177-r0/temp/log.do_package_qa.1683=
-6<br>
-      ERROR: Task
-(/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bsp/sources/meta-=
-mono/recipes-mono/mono/mono_5.14.0.177.bb:do_package_qa)
-      failed with exit code '1'<br>
-      ERROR: core-image-mono-1.0-r0 do_rootfs: Could not invoke dnf.
-      Command
-'/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bsp/build_imx8qm/=
-tmp/work/imx8qm_iwg27m-poky-linux/core-image-mono/1.0-r0/recipe-sysroot-n=
-ative/usr/bin/dnf
-      -y -c
-/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bsp/build_imx8qm/t=
-mp/work/imx8qm_iwg27m-poky-linux/core-image-mono/1.0-r0/rootfs/etc/dnf/dn=
-f.conf
---setopt=3Dreposdir=3D/home/rizwan/Projects/embedded_world_1.1/iwg27-rele=
-ase-bsp/build_imx8qm/tmp/work/imx8qm_iwg27m-poky-linux/core-image-mono/1.=
-0-r0/rootfs/etc/yum.repos.d
---repofrompath=3Doe-repo,/home/rizwan/Projects/embedded_world_1.1/iwg27-r=
-elease-bsp/build_imx8qm/tmp/work/imx8qm_iwg27m-poky-linux/core-image-mono=
-/1.0-r0/oe-rootfs-repo
---installroot=3D/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bs=
-p/build_imx8qm/tmp/work/imx8qm_iwg27m-poky-linux/core-image-mono/1.0-r0/r=
-ootfs
---setopt=3Dlogdir=3D/home/rizwan/Projects/embedded_world_1.1/iwg27-releas=
-e-bsp/build_imx8qm/tmp/work/imx8qm_iwg27m-poky-linux/core-image-mono/1.0-=
-r0/temp
-      --nogpgcheck install iwtest obexftp psplash mono
-      mrvl-wireless-firmware gstreamer1.0-libav tzdata dnf rpm
-      packagegroup-base-extended packagegroup-core-x11-sato
-      mrvl-wireless-modules mono-helloworld run-postinsts dhcpcd
-      packagegroup-core-boot packagegroup-core-ssh-dropbear
-      locale-base-en-us locale-base-en-gb' returned 1:<br>
-      Added oe-repo repo from
-/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bsp/build_imx8qm/t=
-mp/work/imx8qm_iwg27m-poky-linux/core-image-mono/1.0-r0/oe-rootfs-repo<br=
->
-      Last metadata expiration check: 0:00:00 ago on Thu 09 Jan 2020
-      01:40:51 PM UTC.<br>
-      Error: <br>
-      =C2=A0Problem 1: package mono-5.14.0.177-r0.aarch64 requires
-      mono-libs-4.5, but none of the providers can be installed<br>
-      =C2=A0 - conflicting requests<br>
-      =C2=A0 - nothing provides mono(System.Runtime.Loader) =3D 4.0.0.0 n=
-eeded
-      by mono-libs-4.5-5.14.0.177-r0.aarch64<br>
-      =C2=A0Problem 2: package mono-helloworld-1.2-r0.aarch64 requires mo=
-no,
-      but none of the providers can be installed<br>
-      =C2=A0 - package mono-5.14.0.177-r0.aarch64 requires mono-libs-4.5,=
- but
-      none of the providers can be installed<br>
-      =C2=A0 - conflicting requests<br>
-      =C2=A0 - nothing provides mono(System.Runtime.Loader) =3D 4.0.0.0 n=
-eeded
-      by mono-libs-4.5-5.14.0.177-r0.aarch64<br>
-      <br>
-      ERROR: core-image-mono-1.0-r0 do_rootfs: Function failed:
-      do_rootfs<br>
-      ERROR: Logfile of failure stored in:
-/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bsp/build_imx8qm/t=
-mp/work/imx8qm_iwg27m-poky-linux/core-image-mono/1.0-r0/temp/log.do_rootf=
-s.16847<br>
-      ERROR: Task
-(/home/rizwan/Projects/embedded_world_1.1/iwg27-release-bsp/sources/meta-=
-mono/recipes-mono/images/core-image-mono.bb:do_rootfs)
-      failed with exit code '1'<br>
-    </p>
-    <pre class=3D"moz-signature" cols=3D"72">--=20
-Thanks and Regards
-Sheraz Ali Shah
-</pre>
-  </body>
-</html>
-
---------------422C99B11DB385F7C11E3E12--
+--------=_MB3C733863-B8A6-4C79-85E4-30198ED42361--
