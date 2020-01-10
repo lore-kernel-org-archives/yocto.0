@@ -1,119 +1,74 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.13137.1578676545955123869
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+ by mx.groups.io with SMTP id smtpd.web09.13561.1578677327837643072
  for <yocto@lists.yoctoproject.org>;
- Fri, 10 Jan 2020 09:15:46 -0800
+ Fri, 10 Jan 2020 09:28:48 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: andre.draszik@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 58EB7E01506; Fri, 10 Jan 2020 09:15:45 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.128.65 listed in list.dnswl.org]
-Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB62CE00D33
-	for <yocto@yoctoproject.org>; Fri, 10 Jan 2020 09:15:43 -0800 (PST)
-Received: by mail-wm1-f65.google.com with SMTP id p9so2824348wmc.2
-        for <yocto@yoctoproject.org>; Fri, 10 Jan 2020 09:15:43 -0800 (PST)
+ dkim=pass header.i=@linaro.org header.s=google header.b=Li5OxVT3;
+ spf=pass (domain: linaro.org, ip: 209.85.208.181, mailfrom: nicolas.dechesne@linaro.org)
+Received: by mail-lj1-f181.google.com with SMTP id w1so2939239ljh.5
+        for <yocto@lists.yoctoproject.org>; Fri, 10 Jan 2020 09:28:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=O/PtuRNrIVMlWhyBd39iWJ3yeAqVEnKIhmPeS/Sc1yY=;
+        b=Li5OxVT3u9Jd8ArqZLZdKt6B5l9S7JDwO8VVZXKQCwk6E6gWZkKAxdR5yJy5/DSvKQ
+         Yy3j3IJFrxP7ZiuVvYgzZ0BkQFhjC9ckjOGk4Esd7FFzl4o6ZuYAQdS67HaaAunTKoWy
+         XL5ApNPs2ttXXFoDm3EKaYhKME19D9JpIkWDAF1W6/v6L2isF58FLwzVpK2tr9Md0Apq
+         SgT3JxSp67n2OFwGsWsdDXwPTo45JTOvUMuHXeKNaLmRFC92nR/kTclbHsgSC1NVt9CW
+         NogmNin+eyfhkbvUKDJdSGZ6/e8EfFqFxlVTTY5TIvDVaaoBDEmGs6cc5ZXAL17BSCtm
+         zkPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=w3l6/PG4Gbi19pandsuOHNTavm7sVCi6UUp1eM2o4cc=;
-        b=U98qzuIj+Ldr5wWEERovHQe+7feF/M73yHpyc+wNfJQzwDF97hEqrFclSA97zCaISt
-         9HYGGqNSYOLGtoh1yafLhHQqilv0vv/65pxUEkqazlqmrQXyiHwxbcp5lVzthv1H+S/E
-         gDcujF6w9szEegeckLvX+6dkaZ6rJBEkcopT90Rq7mcofbzdZiH4P+EcIyn31T9uDuxu
-         rJwpKJ+DUpVE7nyLOMjVxec7XFImH4tFpXCxj+QJh/RYOLwTy2xvBQ0NGsb2L6vPk27e
-         QwuZtyIk2/Mvnh+/OUurIxTm/TD2Id8gFnCTqCzixUhCEnwgaYvP+fjt4bQfKEFtp6c7
-         U2qA==
-X-Gm-Message-State: APjAAAUnbG2FUGYTqeBBSoVJlXvhzFM5T+qVbkmH2RULUnEtJwsoK0Mz
-	hQFeULSieXMuu8tUaHWCsPz0Olqa
-X-Google-Smtp-Source: APXvYqwlAZF280tgG5r7NRMNAd28fr8uKB8HKcUzYa2Odug1AoQkdAAaPlYfhVHKZh68V4XTUSzVVQ==
-X-Received: by 2002:a1c:67c3:: with SMTP id b186mr5365039wmc.36.1578676542673;
-        Fri, 10 Jan 2020 09:15:42 -0800 (PST)
-Received: from 1aq-andre.garage.tyco.com ([77.107.218.170])
-        by smtp.gmail.com with ESMTPSA id l3sm2674451wrt.29.2020.01.10.09.15.41
-        for <yocto@yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Jan 2020 09:15:42 -0800 (PST)
-From: "Andr? Draszik" <git@andred.net>
-To: yocto@yoctoproject.org
-Subject: [yocto][meta-gplv2][PATCH 1/2] coreutils: fix build with 64bit time_t on 32bit arches
-Date: Fri, 10 Jan 2020 17:15:40 +0000
-Message-Id: <20200110171541.31341-1-git@andred.net>
-X-Mailer: git-send-email 2.23.0.rc1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=O/PtuRNrIVMlWhyBd39iWJ3yeAqVEnKIhmPeS/Sc1yY=;
+        b=qcVZvqKjema8fCkvwYITpMWd7DEGmoZtgAttOLmLdy3/u8380GLEu8H/CVEMzvdRDw
+         AxSFj9JLizSeH6CszT8IuJ/ewj07vZInUpanA7lRvijqAh6cgNj2ow5MMwm7vRTpA6Tq
+         pSjzW/LPM0hjqbcgz/EBTy7OR1diO7NjJFdHt4M0U3PIDnLOxFpPrBWPCeuPfr8VaOLH
+         uh5UvAoqh0mpjajJQCYxwsHKdKsemAqXoYG2PXHcvjXb6Vn9YcHiJo6X3rQElmkyuMSG
+         /oygnC08nSs4PuYXnSGgm/jCyXgRfLjGworPta96Vx+kRBofgRVwoEL3tuneWNUPUKOb
+         sX6Q==
+X-Gm-Message-State: APjAAAWy5rzGkW/48lZuyScxp7TMuFc8vHnh/pKhSgZQZSekm0zF0Hx5
+	9whVGpLSJzaB5uIkqL1SPM7B9SjlHw+qsZS31K2b1Q==
+X-Google-Smtp-Source: APXvYqy3EERSFYghXy+MWGctyfm5+7fnDSOarco/4477WhwrT9DGx4yvHhKngeVuWW71KQ+9rp4lQGr4DgHsvlhbjGs=
+X-Received: by 2002:a05:651c:102c:: with SMTP id w12mr3334005ljm.53.1578677325878;
+ Fri, 10 Jan 2020 09:28:45 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <15E744ED02F41EEB.31817@lists.yoctoproject.org> <62036ece5b4308f78ce3e9b517472e32b98b29b8.camel@andred.net>
+In-Reply-To: <62036ece5b4308f78ce3e9b517472e32b98b29b8.camel@andred.net>
+From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
+Date: Fri, 10 Jan 2020 18:28:34 +0100
+Message-ID: <CAP71WjxqsYGRx8cn0JeyqrhvJbNQkQH_S7N0eURmJ411C9JAew@mail.gmail.com>
+Subject: Re: [yocto] mailing list mangling name?
+To: "Andr? Draszik" <git@andred.net>, Michael Halstead <mhalstead@linuxfoundation.org>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-From: Andr=C3=A9 Draszik <git@andred.net>
+On Wed, Jan 8, 2020 at 3:45 PM Andr? Draszik <git@andred.net> wrote:
+>
+> The mailing list started mangling my name.
+>
+>
+> The From is sent as:
+> From: =3D?UTF-8?q?Andr=3DC3=3DA9=3D20Draszik?=3D <git@andred.net>
+>
+> but it comes back as:
+> From: "Andr? Draszik" <git@andred.net>
+>
+> (and of course the patches in git look funny now)
+>
+> Could sombody please look into that?
 
-| ../../coreutils-6.9/lib/mktime.c: In function 'ydhms_diff':
-| ../../coreutils-6.9/lib/mktime.c:105:52: error: size of array 'a' is ne=
-gative
-|   105 | #define verify(name, assertion) struct name { char a[(assertion=
-) ? 1 : -1]; }
-|       |                                                    ^
-| ../../coreutils-6.9/lib/mktime.c:168:3: note: in expansion of macro 've=
-rify'
-|   168 |   verify (long_int_year_and_yday_are_wide_enough,
-|       |   ^~~~~~
+Your name was mangled in the groups.io database (because of the "=C3=A9").
+I have updated it.. though I am not sure if this will fix the actual
+problem. I guess we will know with your next message..
 
-coreutils tries to determine of mktime() from the c-library
-works fine, but when cross-compiling, it unconditionally
-assumes buggy behaviour, in which case it will use its own
-replacement implementation. These basically are tests for
-(g)libc implementation bugs that have existed in ancient
-times but aren't relevant anymore.
-
-The alternative implementation makes various assumptions which
-don't hold true (and doesn't compile anymore). While more recent
-versions of coreutils have fixed those assumptions, it's quite
-hard to update the code here without potential licensing issues.
-
-Given mktime() works fine in musl and glibc these days, we can
-work-around the issues by simply relying on the c-libraries
-mktime() implementation, avoiding all problems with coreutils'
-alternative implementation.
-
-I've veryfied this by running the tests both on my musl target,
-and my glibc (v2.29) host.
-
-This also reduces code-size slightly.
-
-The ac_cv_func_working_mktime variable here corresponds to the
-gl_cv_func_working_mktime variable in more recent versions of
-coreutils (gnulib), which is being set in oe-core in meta/site.
-
-Signed-off-by: Andr=C3=A9 Draszik <git@andred.net>
----
- recipes-core/coreutils/coreutils_6.9.bb | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
-
-diff --git a/recipes-core/coreutils/coreutils_6.9.bb b/recipes-core/coreu=
-tils/coreutils_6.9.bb
-index 080100d..f6017ec 100644
---- a/recipes-core/coreutils/coreutils_6.9.bb
-+++ b/recipes-core/coreutils/coreutils_6.9.bb
-@@ -33,7 +33,9 @@ SRC_URI[md5sum] =3D "c9607d8495f16e98906e7ed2d9751a06"
- SRC_URI[sha256sum] =3D "89c2895ad157de50e53298b22d91db116ee4e1dd3fdf4019=
-260254e2e31497b0"
-=20
- EXTRA_OECONF +=3D "ac_cv_func_getgroups_works=3Dyes \
--                 ac_cv_func_strcoll_works=3Dyes"
-+                 ac_cv_func_strcoll_works=3Dyes \
-+                 ac_cv_func_working_mktime=3Dyes \
-+                 "
-=20
- # acl is not a default feature
- #
---=20
-2.23.0.rc1
-
+>
+>
+> Cheers,
+> Andre'
+>
+>
+>=20
