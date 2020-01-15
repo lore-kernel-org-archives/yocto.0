@@ -1,112 +1,73 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.1975.1579041723865176623
+ by mx.groups.io with SMTP id smtpd.web12.3582.1579071088233706935
  for <yocto@lists.yoctoproject.org>;
- Tue, 14 Jan 2020 14:42:03 -0800
+ Tue, 14 Jan 2020 22:51:28 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=RFvF5MhG;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
+ dkim=missing; spf=fail (domain: intel.com, ip: 140.211.169.56, mailfrom: anuj.mittal@intel.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 62B2BE0152F; Tue, 14 Jan 2020 14:42:03 -0800 (PST)
+	id C3F9DE008D9; Tue, 14 Jan 2020 22:51:27 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (jupiter.hce[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.166.47 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02CCEE014DB
-	for <yocto@yoctoproject.org>; Tue, 14 Jan 2020 14:41:59 -0800 (PST)
-Received: by mail-io1-f47.google.com with SMTP id b10so15672796iof.11
-        for <yocto@yoctoproject.org>; Tue, 14 Jan 2020 14:41:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-         :cc;
-        bh=0hn4D8mwO4WIoBvHZrdvr7Qhs3uabfVQLskw6vlZVro=;
-        b=RFvF5MhGnaBZ+D4aUxG3dLVEbhizenog4N2ziJa4mcYsZYZHFlNKciveLKv8NZozxE
-         6sDg+AyXaKuEi0WjuMcgDXT6h1VOqkJW/65rh9Evl6Gg9JGcv5GbtYqgQ82fVp7koUNP
-         vJvlanMZtxtwM0ixEENQ9au1QcLBsNdmobCZjd9FQw58A6K7uyQrOp7wT4s/AkX7IBp3
-         GetiY4nV42HZHNiOw1V2PHUS1SMH4XtmxnPMjeBMQ0pi6KYZIr+8HHFS1T8m5INnkRY7
-         I+UZM+PHaoIdibqK6jlG0sW1gCuIiFyerXjQlACnGA3zyrYnr6C7H3lHcAH0xAh2sBmq
-         VsfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-         :message-id:subject:to:cc;
-        bh=0hn4D8mwO4WIoBvHZrdvr7Qhs3uabfVQLskw6vlZVro=;
-        b=mbhoUPOh7iO8Z8Cpb5U5kn6FdtmZhAnfu4u8Kgc8COIwi8h173+6QpEoisza6hMWSl
-         1xtS96SbiXeb94xFPaSV2tLR3Nan1BKPGLAbxcWZaSP0EK79BBLNbufetHVGFazrqAB+
-         1OvvTIXWBfhLVU8uJKryX/dJz6vgCntEN4vHbqff0o8dgh+dXCdq1scQAFs1LV9WajTp
-         UafJ3J1OD3gFt4YhRnDcptzVlB9oeqHfIUNWG/l4nm10aihhERM82NlTmv4PxPcqyg7b
-         F58lwUxJzWcd762Z+gkr0FYAZE03XE77Fc6cuoiz383LkTXNYWjrrtaEiK1MpdrzDjzh
-         01CA==
-X-Gm-Message-State: APjAAAViuRFbZiv+dmq8k1+ZTAlqH954/UulCt+Lyzye6avcYPkYmh6W
-	GDgj3d+9iz/Tc2s2W0rOzyUvSxLYPgvV/VtfBmw=
-X-Google-Smtp-Source: APXvYqw0oyg0jhllGmxJx5XHjhZ99DBNHgbfa57uPsF73GPMxApS0k4ecGZf6UAaFwWEwpzXLNtiMVQRI4LiKYQ2yJY=
-X-Received: by 2002:a02:ce8a:: with SMTP id y10mr3595759jaq.21.1579041719278;
- Tue, 14 Jan 2020 14:41:59 -0800 (PST)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
+	*      medium trust
+	*      [134.134.136.100 listed in list.dnswl.org]
+X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www; Tue, 14 Jan 2020 22:51:26 PST
+Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97961E008D9
+	for <yocto@yoctoproject.org>; Tue, 14 Jan 2020 22:51:26 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 14 Jan 2020 22:50:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,321,1574150400"; 
+   d="scan'208";a="273558082"
+Received: from kmsmsx154.gar.corp.intel.com ([172.21.73.14])
+  by FMSMGA003.fm.intel.com with ESMTP; 14 Jan 2020 22:50:21 -0800
+Received: from pgsmsx101.gar.corp.intel.com ([169.254.1.131]) by
+ KMSMSX154.gar.corp.intel.com ([169.254.12.15]) with mapi id 14.03.0439.000;
+ Wed, 15 Jan 2020 14:50:20 +0800
+From: "Anuj Mittal" <anuj.mittal@intel.com>
+To: "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Burton, Ross"
+	<ross.burton@intel.com>
+Subject: Re: [yocto] [PATCH yocto-autobuilder-helper v2 1/3] config: don't run meta-intel in qemu yet
+Thread-Topic: [yocto] [PATCH yocto-autobuilder-helper v2 1/3] config: don't
+ run meta-intel in qemu yet
+Thread-Index: AQHVtDgsQGh7qmeDvU6QmoPRgRmHF6fq8Y2A
+Date: Wed, 15 Jan 2020 06:50:20 +0000
+Message-ID: <e9cbfad1ed3b56ff6f12a2825c4043ef4091317e.camel@intel.com>
+References: <20191216174154.13996-1-ross.burton@intel.com>
+In-Reply-To: <20191216174154.13996-1-ross.burton@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.221.21.56]
 MIME-Version: 1.0
-Received: by 2002:ac0:e345:0:0:0:0:0 with HTTP; Tue, 14 Jan 2020 14:41:58
- -0800 (PST)
-In-Reply-To: <CAGbd71TYX0bvyUfbW9jeHOw8oAan8rOXR5dQpGBv4XoFjrDqPA@mail.gmail.com>
-References: <CAA=hcWQeNV4X2cxfX0FuVCCFhM-gQULO_z1bVw2JvgeZ7rdJWA@mail.gmail.com>
- <CAM9ZRVsSmb5QrgAjFh=qJKVohseLBEajb80higHnW9vBNmB=Kg@mail.gmail.com> <CAGbd71TYX0bvyUfbW9jeHOw8oAan8rOXR5dQpGBv4XoFjrDqPA@mail.gmail.com>
-From: "JH" <jupiter.hce@gmail.com>
-Date: Wed, 15 Jan 2020 09:41:58 +1100
-Message-ID: <CAA=hcWT5Z6vGnit-yktDH=A0DUXc-nDr23FC=zSOFPV5ss6yVg@mail.gmail.com>
-Subject: Re: [yocto] zeus build errors
-To: Laurent Gauthier <laurent.gauthier@soccasys.com>
-Cc: Paul Barker <pbarker@konsulko.com>, Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <84A2C0F678784B4E8241278A2EEDD83D@intel.com>
+Content-Transfer-Encoding: base64
 
-Thanks for all your responses. Sorry it seems a very rare my local
-network glitch yesterday coincidentally happened the same time in the
-middle of I changed to build zeus, made a lots of confusion. I run it
-again today, all good now.
-
-My apology.
-
-Thank you.
-
-Kind regards,
-
-- jh
-
-On 1/14/20, Laurent Gauthier <laurent.gauthier@soccasys.com> wrote:
-> Hi there,
->
-> On Tue, 14 Jan 2020 at 09:49, JH <jupiter.hce@gmail.com> wrote:
->>
->> Hi,
->>
->> I had no problems to build thud, but after updating thud by zeus, I
->> was not able to build it, what I could be missing?
->
-> Questions based on experience:
-> * Doesn't your network require you to use a network proxy to access
-> URLs that are external to your network?
->
-> If so:
-> * Do you have the right environment variables setup to use that proxy?
-> (typically http_proxy/https_proxy or similar)
-> * Is this proxy healthy and alive?
->
-> Good luck, Laurent.
-> --
-> Laurent Gauthier
-> Phone: +33 630 483 429
-> http://soccasys.com
->
+Q2FuIHRoaXMgYmUgbWVyZ2VkIGluIHpldXMvd2FycmlvciB0b28gcGxlYXNlPw0KDQpUaGFua3Ms
+DQoNCkFudWoNCg0KT24gTW9uLCAyMDE5LTEyLTE2IGF0IDE3OjQxICswMDAwLCBSb3NzIEJ1cnRv
+biB3cm90ZToNCj4gbWV0YS1pbnRlbCBCU1BzIGFyZSBub3QgY29tcGF0aWJsZSB3aXRoIHRoZSBx
+ZW11IEJTUHMgY3VycmVudGx5LCBzbw0KPiBkb24ndA0KPiBhdHRlbXB0IHRvIGV4ZWN1dGUgdGVz
+dGltYWdlLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogUm9zcyBCdXJ0b24gPHJvc3MuYnVydG9uQGlu
+dGVsLmNvbT4NCj4gLS0tDQo+ICBjb25maWcuanNvbiB8IDIgKy0NCj4gIDEgZmlsZSBjaGFuZ2Vk
+LCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2NvbmZp
+Zy5qc29uIGIvY29uZmlnLmpzb24NCj4gaW5kZXggNTczMGY4NS4uNzk2OTVjMiAxMDA2NDQNCj4g
+LS0tIGEvY29uZmlnLmpzb24NCj4gKysrIGIvY29uZmlnLmpzb24NCj4gQEAgLTM4Nyw3ICszODcs
+NyBAQA0KPiAgICAgICAgICAgICAgIk5FRURSRVBPUyIgOiBbInBva3kiLCAibWV0YS1pbnRlbCJd
+LA0KPiAgICAgICAgICAgICAgIkFERExBWUVSIiA6IFsiJHtCVUlMRERJUn0vLi4vbWV0YS1pbnRl
+bCJdLA0KPiAgICAgICAgICAgICAgIk1BQ0hJTkUiIDogImludGVsLWNvcmVpNy02NCIsDQo+IC0g
+ICAgICAgICAgICAiVEVNUExBVEUiIDogImFyY2gtaHctcWVtdSINCj4gKyAgICAgICAgICAgICJU
+RU1QTEFURSIgOiAiYXJjaC1odyINCj4gICAgICAgICAgfSwNCj4gICAgICAgICAgImdlbmVyaWN4
+ODYtNjQtYWx0IiA6IHsNCj4gICAgICAgICAgICAgICJNQUNISU5FIiA6ICJnZW5lcmljeDg2LTY0
+IiwNCj4gDQo=
