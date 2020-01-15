@@ -1,94 +1,78 @@
-Subject: #yocto bootchooser: Cannot get state 'state'
-To: yocto@lists.yoctoproject.org
-From: hu.schlieben@codewrights.de
-X-Originating-Location: Staufenberg, Lower Saxony, DE (5.10.161.194)
-X-Originating-Platform: Windows Chrome 79
-User-Agent: GROUPS.IO Web Poster
-MIME-Version: 1.0
-Date: Wed, 15 Jan 2020 04:10:14 -0800
-Message-ID: <r276.1579090214262888471.6UJY@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="1UDmjVucA9nyHmEZ5OSp"
-
---1UDmjVucA9nyHmEZ5OSp
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [85.220.165.71])
+ by mx.groups.io with SMTP id smtpd.web09.6612.1579093365464831640
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 15 Jan 2020 05:02:46 -0800
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: pengutronix.de, ip: 85.220.165.71, mailfrom: ejo@pengutronix.de)
+Received: from mango.hi.pengutronix.de ([2001:67c:670:100:76d4:35ff:fee8:98b3] helo=mango)
+	by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <ejo@pengutronix.de>)
+	id 1iriJn-0002rE-IK; Wed, 15 Jan 2020 14:02:43 +0100
+Message-ID: <1579093362.13056.13.camel@pengutronix.de>
+Subject: Re: [yocto] #yocto bootchooser: Cannot get state 'state'
+From: "Enrico J?rns" <ejo@pengutronix.de>
+To: hu.schlieben@codewrights.de, yocto@lists.yoctoproject.org
+Cc: barebox@lists.infradead.org
+Date: Wed, 15 Jan 2020 14:02:42 +0100
+In-Reply-To: <r276.1579090214262888471.6UJY@lists.yoctoproject.org>
+References: <r276.1579090214262888471.6UJY@lists.yoctoproject.org>
+Organization: Pengutronix e.K.
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+X-SA-Exim-Connect-IP: 2001:67c:670:100:76d4:35ff:fee8:98b3
+X-SA-Exim-Mail-From: ejo@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
 Hi,
 
-booting the new yocto zeus system manually by "boot mmc" works fine but de=
-fault bootchooser fails with:
+this is mainly a barebox-related question, thus I'd suggest asking it
+on the barebox ML.
 
-bootchooser: Cannot get state 'state'
-Nothing bootable found on 'bootchooser'
-Nothing bootable found
+[cc-ing barebox mailing list]
 
-Building the "same" image in yocto thud works fine. The boot variables are=
-:
+On Wed, 2020-01-15 at 04:10 -0800, hu.schlieben@codewrights.de wrote:
+> Hi,
+> 
+> booting the new yocto zeus system manually by "boot mmc" works fine
+> but default bootchooser fails with: 
+> 
+> bootchooser: Cannot get state 'state'
+> Nothing bootable found on 'bootchooser'
+> Nothing bootable found
 
-* BOOT_system0_.default: 3
-* BOOT_system1_.default: 3
-* allow_color: 0
-* autoboot_timeout: 3
-* boot.default: bootchooser
-boot.watchdog_timeout: 0
-bootchooser.default_attempts: 3
-bootchooser.default_priority: 1
-bootchooser.disable_on_zero_attempts: 0
-bootchooser.reset_attempts:=C2=A0 (list: "power-on", "all-zero")
-bootchooser.reset_priorities:
-bootchooser.retry: 0
-* bootchooser.state_prefix: state.bootstate
-* bootchooser.system0.boot: mmc
-* bootchooser.system0.default_attempts: 3
-* bootchooser.system0.default_priority: 20
-* bootchooser.system1.boot: mmc1
-* bootchooser.system1.default_attempts: 3
-* bootchooser.system1.default_priority: 21
-* bootchooser.targets: system0 system1
-bootm.appendroot: 0
-...
+Looks like the state node is missing in your device tree.
+Which version of barebox do you use?
+And from which layer / recipe?
 
-Thank you
+> Building the "same" image in yocto thud works fine. The boot
+> variables are:
+> 
+> * BOOT_system0_.default: 3
+> * BOOT_system1_.default: 3
+> * allow_color: 0
+> * autoboot_timeout: 3
+> * boot.default: bootchooser
+>   boot.watchdog_timeout: 0
+>   bootchooser.default_attempts: 3
+>   bootchooser.default_priority: 1
+>   bootchooser.disable_on_zero_attempts: 0
+>   bootchooser.reset_attempts:  (list: "power-on", "all-zero")
+>   bootchooser.reset_priorities:
+>   bootchooser.retry: 0
+> * bootchooser.state_prefix: state.bootstate
+> * bootchooser.system0.boot: mmc
+> * bootchooser.system0.default_attempts: 3
+> * bootchooser.system0.default_priority: 20
+> * bootchooser.system1.boot: mmc1
+> * bootchooser.system1.default_attempts: 3
+> * bootchooser.system1.default_priority: 21
+> * bootchooser.targets: system0 system1
+>   bootm.appendroot: 0
+> ...
+> 
 
-hu
+Regards, Enrico
 
-Moving from thud to zeus i This happens becuas
-
---1UDmjVucA9nyHmEZ5OSp
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,<br /><br />booting the new yocto zeus system manually by "boot mmc" wor=
-ks fine but default bootchooser fails with:&nbsp;<br />
-<div><br />bootchooser: Cannot get state 'state'</div>
-<div>Nothing bootable found on 'bootchooser'</div>
-<div>Nothing bootable found</div>
-<div><br />Building the "same" image in yocto thud works fine. The boot va=
-riables are:<br /><br />
-<div>* BOOT_system0_.default: 3</div>
-<div>* BOOT_system1_.default: 3</div>
-<div>* allow_color: 0</div>
-<div>* autoboot_timeout: 3</div>
-<div>* boot.default: bootchooser</div>
-<div>&nbsp; boot.watchdog_timeout: 0</div>
-<div>&nbsp; bootchooser.default_attempts: 3</div>
-<div>&nbsp; bootchooser.default_priority: 1</div>
-<div>&nbsp; bootchooser.disable_on_zero_attempts: 0</div>
-<div>&nbsp; bootchooser.reset_attempts:&nbsp; (list: "power-on", "all-zero=
-")</div>
-<div>&nbsp; bootchooser.reset_priorities:</div>
-<div>&nbsp; bootchooser.retry: 0</div>
-<div>* bootchooser.state_prefix: state.bootstate</div>
-<div>* bootchooser.system0.boot: mmc</div>
-<div>* bootchooser.system0.default_attempts: 3</div>
-<div>* bootchooser.system0.default_priority: 20</div>
-<div>* bootchooser.system1.boot: mmc1</div>
-<div>* bootchooser.system1.default_attempts: 3</div>
-<div>* bootchooser.system1.default_priority: 21</div>
-<div>* bootchooser.targets: system0 system1</div>
-<div>&nbsp; bootm.appendroot: 0</div>
-<div>...<br /><br />Thank you<br /><br />hu</div>
-<br /><br /><br /><br />Moving from thud to zeus i This happens becuas</di=
-v>
-
---1UDmjVucA9nyHmEZ5OSp--
