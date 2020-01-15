@@ -1,153 +1,95 @@
-Subject: #apt #yocto #sdk #toolchain
-To: yocto@lists.yoctoproject.org
-From: "FooBar" <snusbaum@graphicproducts.com>
-X-Originating-Location: Beaverton, Oregon, US (50.43.9.42)
-X-Originating-Platform: Windows Chrome 79
-User-Agent: GROUPS.IO Web Poster
+Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [81.169.146.216])
+ by mx.groups.io with SMTP id smtpd.web10.8273.1579101325554926097
+ for <yocto@lists.yoctoproject.org>;
+ Wed, 15 Jan 2020 07:15:28 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@rsi-elektrotechnik.de header.s=strato-dkim-0002 header.b=EOfQIZyy;
+ spf=none, err=permanent DNS error (domain: rsi-elektrotechnik.de, ip: 81.169.146.216, mailfrom: prvs=128382ec47=holzmayr@rsi-elektrotechnik.de)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1579101324;
+	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
+	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
+	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+	bh=Qzxs+eokxDpUFmpTrgIRWBRpmuH20OFNmzuVnQb/JTs=;
+	b=EOfQIZyyvojZbd0LhMQUBBQ05kpQaUlq1NxohfzMsRnBdxdXa1/cf8sYvWOCQ+Yenr
+	nHs3gxdr3oC2v5mcuSB2JzwSKS/Gn5ph5cue+JcSyrVYTvz+EVInV8MPi0kSJZGY8OBc
+	KJzdSM33EvXtJ9ByMWwz7c6GMAy9TL/mFljbyzvI3XNQiXQTmni+zAh+Q7BMkGzOE32r
+	q4+3qXcrgYKjbsRZBY47/0cK8sSyaZcnqV4J3nt5OWpMFyY0Abgd+dNwQgiEuh/yAUrO
+	9pzavCyAnUpA33F9xNG0dKdiWvSN2Wy1zltxi4TiWzmdbYjNCoh2x1NmT/xsB/sYZZpk
+	M4Ag==
+X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/KqCOd+ZZzzoK8epFp9XQIUl6aPGQL"
+X-RZG-CLASS-ID: mo00
+Received: from mail.rsi-elektrotechnik.de
+	by smtp.strato.de (RZmta 46.1.4 AUTH)
+	with ESMTPSA id R00cfaw0FFFNPGB
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits))
+	(Client did not present a certificate);
+	Wed, 15 Jan 2020 16:15:23 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
+	d=rsi-elektrotechnik.de; s=MDaemon; t=1579101323; x=1579706123;
+	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
+	Subject:Message-ID:References:MIME-Version:Content-Type:
+	Content-Disposition:Content-Transfer-Encoding:In-Reply-To; bh=Qz
+	xs+eokxDpUFmpTrgIRWBRpmuH20OFNmzuVnQb/JTs=; b=er6TM4fY5zF3VOKkEM
+	fh+6i9JcqMk0AVS/okxACRLcUIewT47vnQryGCidNtEo89ktRsFpzqyEaRpo/Rhw
+	tsRs+cidryn+jxBp+KN2uf8mtlGilnGEhQiRcjVCCRdLRyMiTBczAW9VL914EfnA
+	Lbrb92ABvm8wvZQAuQPYiW5EU=
+Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v19.5.3) with ESMTPSA id md50000234175.msg; 
+	Wed, 15 Jan 2020 16:15:23 +0100
+X-Spam-Processed: mail.rsi-elektrotechnik.de, Wed, 15 Jan 2020 16:15:23 +0100
+	(not processed: message from trusted or authenticated source)
+X-MDArrival-Date: Wed, 15 Jan 2020 16:15:23 +0100
+X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
+X-Return-Path: prvs=128382ec47=holzmayr@rsi-elektrotechnik.de
+X-Envelope-From: holzmayr@rsi-elektrotechnik.de
+Date: Wed, 15 Jan 2020 16:15:19 +0100
+From: "Josef Holzmayr" <holzmayr@rsi-elektrotechnik.de>
+To: FooBar <snusbaum@graphicproducts.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] #apt #yocto #sdk #toolchain
+Message-ID: <20200115151519.2phgrmuvvslst6xf@jholzmayr.localdomain>
+References: <CjSc.1579100648909174558.l6tV@lists.yoctoproject.org>
 MIME-Version: 1.0
-Date: Wed, 15 Jan 2020 07:04:08 -0800
-Message-ID: <CjSc.1579100648909174558.l6tV@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="7qSPFKYPAbzGR9MDKged"
+In-Reply-To: <CjSc.1579100648909174558.l6tV@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
---7qSPFKYPAbzGR9MDKged
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Howdy!
 
-Hi,
+On Wed, Jan 15, 2020 at 07:04:08AM -0800, FooBar wrote:
+> Hi,
+> 
+> I’m having trouble adding apt to the cross-compile Qt SDK toolchain. I’m hoping someone can direct me to some resources or guide me on how to accomplish this task.
 
-I=E2=80=99m having trouble adding apt to the cross-compile Qt SDK toolchai=
-n. I=E2=80=99m hoping someone can direct me to some resources or guide me o=
-n how to accomplish this task.
+Whats the rationale behind it? I can see apt being useful on the target
+under rare/obscure cirumstances, but in the SDK, what do you want to
+archieve?
 
-I have added the following to my conf/local.conf file (I believe some of t=
-hese lines are not needed, but I followed several different tutorials that =
-told me different things, and I=E2=80=99m not sure which is not right, if a=
-ny):
+Greetz
 
-*# Additional Changes*
+> FooBar
 
-*PACKAGE_CLASSES =3D "package_deb"*
+PS: Hiding behind "FooBar" doesn't give a very good impression.
 
-*EXTRA_IMAGE_FEATURES +=3D " package-management "*
+-- 
+———————————————
+Josef Holzmayr
+Software Developer Embedded Systems
 
-*IMAGE_FEATURES +=3D " package-management "*
+Tel: +49 8444 9204-48
+Fax: +49 8444 9204-50
 
-*IMAGE_INSTALL_append +=3D " apt"*
+R-S-I Elektrotechnik GmbH & Co. KG
+Woelkestrasse 11
+D-85301 Schweitenkirchen
+www.rsi-elektrotechnik.de
+———————————————
+Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+Ust-IdNr: DE 128592548 
 
-*DISTRO_FEATURES_append =3D " apt cups"*
+_____________________________________________________________
+Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
+Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
+USt-IdNr.: DE 128592548
 
-*CORE_IMAGE_EXTRA_INSTALL +=3D " apt cups"*
-
-*TOOLCHAIN_TARGET_TASK_append =3D " apt cups"*
-
-I expected after running
-
-**
-
-*bitbake meta-toolchain-qt5
-bitbake apt =E2=80=93c populate_sdk*
-
-*bitbake package-index*
-
-And running
-
-*tmp/deploy/sdk/<qt5-toolchain>.sh*
-
-Then sourcing:
-
-*. /opt/<path>/4.14-sumo/environment-setup-aarch64-poky-linux*
-
-And using the toolchain to build=E2=80=A6 I get
-
-*apt-pkg/pkgcache.h: No such file or directory*
-
-How would I go about adding apt properly? It does not seem to be finding t=
-he headers or resources for it in the sdk toolchain.
-
-Thanks,
-
-FooBar
-
---7qSPFKYPAbzGR9MDKged
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">Hi,</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">I=E2=80=99m having tr=
-ouble adding apt to the cross-compile Qt SDK toolchain. I=E2=80=99m hoping =
-someone can direct me to some resources or guide me on how to accomplish th=
-is task.</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">I have added the foll=
-owing to my conf/local.conf file (I believe some of these lines are not nee=
-ded, but I followed several different tutorials that told me different thin=
-gs, and I=E2=80=99m not sure which is not right, if any):</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><strong><em># Additio=
-nal Changes=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0</em>=
-</strong></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><strong><em>PACKAGE_C=
-LASSES =3D &#34;package_deb&#34;</em></strong></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><strong><em>EXTRA_IMA=
-GE_FEATURES +=3D &#34; package-management &#34;</em></strong></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><strong><em>IMAGE_FEA=
-TURES +=3D &#34; package-management &#34;</em></strong></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><strong><em>IMAGE_INS=
-TALL_append +=3D &#34; apt&#34;</em></strong></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><strong><em>DISTRO_FE=
-ATURES_append =3D &#34; apt cups&#34;</em></strong></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><strong><em>CORE_IMAG=
-E_EXTRA_INSTALL +=3D &#34; apt cups&#34;</em></strong></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><strong><em>TOOLCHAIN=
-_TARGET_TASK_append =3D &#34; apt cups&#34;</em></strong></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">I expected after runn=
-ing</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><strong>=C2=A0</stron=
-g></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><strong>bitbake meta-=
-toolchain-qt5<br/>bitbake apt =E2=80=93c populate_sdk</strong></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><strong>bitbake packa=
-ge-index</strong></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">And running</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><strong>tmp/deploy/sd=
-k/&lt;qt5-toolchain&gt;.sh</strong></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">Then sourcing:</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><strong>. /opt/&lt;pa=
-th&gt;/4.14-sumo/environment-setup-aarch64-poky-linux</strong></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">And using the toolcha=
-in to build=E2=80=A6 I get</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;"><strong>apt-pkg/pkgca=
-che.h: No such file or directory</strong></p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">How would I go about =
-adding apt properly? It does not seem to be finding the headers or resource=
-s for it in the sdk toolchain.</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">Thanks,</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">=C2=A0</p>
-<p class=3D"DefangedMsoNormal" style=3D"margin:0px;">FooBar</p>
-
---7qSPFKYPAbzGR9MDKged--
