@@ -1,203 +1,194 @@
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (EUR04-HE1-obe.outbound.protection.outlook.com [40.107.7.128])
- by mx.groups.io with SMTP id smtpd.web10.7567.1579098327151179800
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [85.220.165.71])
+ by mx.groups.io with SMTP id smtpd.web10.7883.1579099669257974981
  for <yocto@lists.yoctoproject.org>;
- Wed, 15 Jan 2020 06:25:27 -0800
+ Wed, 15 Jan 2020 06:47:50 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@codewrights.onmicrosoft.com header.s=selector2-codewrights-onmicrosoft-com header.b=C4tDwjUc;
- spf=permerror, err=syntax error for token:  (domain: codewrights.de, ip: 40.107.7.128, mailfrom: hu.schlieben@codewrights.de)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OfTFUISW18s+wpuJf9SxMW2sBJYNFaVxF7fN2hIu1SK/Og7figathbz6+DLCIryj+uenp9g0caW5eOk1XULDVDarCUXS9Dlh6CfV/LNrFNXJlkP/vFZEXyptxR8LaaBhfj/RiLytSqP4tuiPV/cBId4f13h78gt/xbdq4l03sRx9XlZpIN2nkx4x6fPCm+pzkckYl/NGU5xpP9PsIxKyTsNGRVsOHksUXafKQNC9OKoBJv3bwvMt2JXMHKLj2WkGHyt0OTPnV4DSfgPcAfRKX3Y36S4acj3UwBypbT+jaMGfbuGEr2XQAQyJc5OltFN9UTxExdnWX0jTj1ugkR4CIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AeeUhedjbCNNMC958XsnVqAmSafTkTXjMglH5JNL62M=;
- b=LMS6iAWNN4vKbeUs/hWJReF7nm06KpWMf0QJxVjNesDZStkCXtx5AZKrlFhQ+PU8DiAcitOJ1fs3Tse+mmDRgtk3wh6JNZMNXkv8PezNCBNjr0GIEUWKYT+vngIWaUZwHujw7VfQR1JGAvngqJb8SBEOowhxcGR6ePaV/0dnOk2Xqt+7BW+mPcUvy1BSmTsxBRJNE6ziWXpFxmBMd1F1msdBouP4cnSmCeN3EoHj0z/HotafYQ4FyF9e3eQdVqSfwzJvFyUOn0/RzuNdZRK+PKxGW8h2OiUmxSPNqgYNQuypgwW5zDFkJhzdWLe0iLIaX/OCktfekyDtQfqBdmyopg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=codewrights.de; dmarc=pass action=none
- header.from=codewrights.de; dkim=pass header.d=codewrights.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=codewrights.onmicrosoft.com; s=selector2-codewrights-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AeeUhedjbCNNMC958XsnVqAmSafTkTXjMglH5JNL62M=;
- b=C4tDwjUceICTdY8FTBV1AvOg1vzUYdJsZ/F3VB7SVSu7LwiY5NgiilJwBYVcn+H/bz8dgL7/8+8xuoDOxQdFYzXJPzEEG7zZ3bhmXHQtOjYEgTqg1XhR8JnOHg44ZOZXPJNC9n9nXFEQrIRIUIDoRIBWsviX5aVEpTcspjqFu3g=
-Received: from DB8PR03MB5498.eurprd03.prod.outlook.com (20.179.250.218) by
- DB8PR03MB5866.eurprd03.prod.outlook.com (20.179.15.221) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2623.13; Wed, 15 Jan 2020 14:25:23 +0000
-Received: from DB8PR03MB5498.eurprd03.prod.outlook.com
- ([fe80::c08c:9e5e:7d97:9af5]) by DB8PR03MB5498.eurprd03.prod.outlook.com
- ([fe80::c08c:9e5e:7d97:9af5%3]) with mapi id 15.20.2644.015; Wed, 15 Jan 2020
- 14:25:23 +0000
-From: "Hans-Ulrich Schlieben" <hu.schlieben@codewrights.de>
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>, Enrico Joerns
-	<ejo@pengutronix.de>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-CC: "barebox@lists.infradead.org" <barebox@lists.infradead.org>
+ dkim=missing; spf=pass (domain: pengutronix.de, ip: 85.220.165.71, mailfrom: ejo@pengutronix.de)
+Received: from mango.hi.pengutronix.de ([2001:67c:670:100:76d4:35ff:fee8:98b3] helo=mango)
+	by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <ejo@pengutronix.de>)
+	id 1irjxS-0000NS-7U; Wed, 15 Jan 2020 15:47:46 +0100
+Message-ID: <1579099664.13056.29.camel@pengutronix.de>
 Subject: Re: [yocto] #yocto bootchooser: Cannot get state 'state'
-Thread-Topic: [yocto] #yocto bootchooser: Cannot get state 'state'
-Thread-Index: AQHVy5zDappxekgkwkum1XN2BadeWqfrsOsAgAABYsCAAAkFAIAACe5w
-Date: Wed, 15 Jan 2020 14:25:23 +0000
-Message-ID: 
- <DB8PR03MB549847FD100DF7192459527FFE370@DB8PR03MB5498.eurprd03.prod.outlook.com>
+From: "Enrico J?rns" <ejo@pengutronix.de>
+To: Hans-Ulrich Schlieben <hu.schlieben@codewrights.de>
+Cc: "barebox@lists.infradead.org" <barebox@lists.infradead.org>, 
+	"yocto@lists.yoctoproject.org"
+	 <yocto@lists.yoctoproject.org>, Ahmad Fatoum <a.fatoum@pengutronix.de>
+Date: Wed, 15 Jan 2020 15:47:44 +0100
+In-Reply-To: <f451a45a-a4bc-f285-0614-001cb3a57405@pengutronix.de>
 References: <r276.1579090214262888471.6UJY@lists.yoctoproject.org>
- <1579093362.13056.13.camel@pengutronix.de>
- <DB8PR03MB54983C09B221B210D29A26AAFE370@DB8PR03MB5498.eurprd03.prod.outlook.com>
- <45b34e63-a9fd-2295-311c-393bf49fdf93@pengutronix.de>
-In-Reply-To: <45b34e63-a9fd-2295-311c-393bf49fdf93@pengutronix.de>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=hu.schlieben@codewrights.de; 
-x-originating-ip: [62.154.199.77]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4b732552-8aac-4b2a-16a6-08d799c6c251
-x-ms-traffictypediagnostic: DB8PR03MB5866:
-x-microsoft-antispam-prvs: 
- <DB8PR03MB5866C6DF769350C9F7FFE6E7FE370@DB8PR03MB5866.eurprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 02830F0362
-x-forefront-antispam-report: 
- SFV:NSPM;SFS:(10001)(10019020)(4636009)(39830400003)(136003)(346002)(396003)(376002)(366004)(199004)(189003)(86362001)(81156014)(8936002)(33656002)(71200400001)(316002)(55016002)(508600001)(81166006)(8676002)(26005)(110136005)(76116006)(45080400002)(66446008)(64756008)(66556008)(52536014)(53546011)(4326008)(6506007)(966005)(7696005)(5660300002)(186003)(2906002)(66476007)(9686003)(66946007);DIR:OUT;SFP:1102;SCL:1;SRVR:DB8PR03MB5866;H:DB8PR03MB5498.eurprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: codewrights.de does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- gLH/nUV++h8xMRzakfhDCrmtJAxrf1/WvVi5+pyzV/uDcyrUCBNPUS4VVuasytFZH13j9OnRVejuU5p3fM0zhjj3OcZCjCF92kL7Siuhj3PdUKAqQQGRtK1R/MhYDwwAS//mcykhkMm3EPnalhmIdkfoBiDstUqAiPgaAWvxJe3BJ4KOdyXHdg8jQy7m+fOR7+mhIz09nnI+qYpZnmD2G18KNUuz6qI9qIal2hvw/MN8jT9wJU79ueHIR2haS/ehUzcacKa4W60yw8c9EW3p4EqTGJY2sUMqhvuldAcWF6NrBPWOTD1owoEw+dd9KCOnROAY3AaZ8zFA45Nlnyvlt5Hp+tThSVnxngIGl5CgfyGCewesQLTwZSrvbsnpXRXlETX6z7gos3oTNHoAHHPlahfiqQGYWQOocR0Rrb3TglVbYmjlejf/EQMy1dwZ0d3486sM5mGL4lltZ+n9/pt74dzhBLd16OFP8TflLSx2YbkG8QgVk6SI5Wx4qCz9ECsA6TlqNPSTH6+CpY4MYgeQQ92XxR4+iBa5EZVE06GvZsjdygUAkFvvkt2zB/sE/BPk7KQbG6bsMQsCE2rvPOb5Ow==
-x-ms-exchange-transport-forked: True
-MIME-Version: 1.0
-X-OriginatorOrg: codewrights.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4b732552-8aac-4b2a-16a6-08d799c6c251
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jan 2020 14:25:23.8053
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0974af9b-352b-437c-b606-e9f242c0c227
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: xLF+Nb0789rwVrTiixo6ah6afaCTnO4vhbkhqoFUyHuDP85CfQH/kWpkTq/zEo7D0eJtuzo2Y+gImkUz2BRfO6hoBg2CNAplWsldFtSVaWE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR03MB5866
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	 <1579093362.13056.13.camel@pengutronix.de>
+	 <DB8PR03MB54983C09B221B210D29A26AAFE370@DB8PR03MB5498.eurprd03.prod.outlook.com>
+	 <45b34e63-a9fd-2295-311c-393bf49fdf93@pengutronix.de>
+	 <DB8PR03MB549847FD100DF7192459527FFE370@DB8PR03MB5498.eurprd03.prod.outlook.com>
+	 <f451a45a-a4bc-f285-0614-001cb3a57405@pengutronix.de>
+Organization: Pengutronix e.K.
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+X-SA-Exim-Connect-IP: 2001:67c:670:100:76d4:35ff:fee8:98b3
+X-SA-Exim-Mail-From: ejo@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-SGkgQWhtYWQsDQoNCnRoYW5rIHlvdSB2ZXJ5IG11Y2ggZm9yIHlvdXIgaGVscC4NCg0KPiBBcmUg
-dGhlcmUgYW55IG90aGVyIGVycm9yIG1lc3NhZ2VzPw0KTm8sIHRoZXJlIGlzIGV2ZW4gbW9yZSB3
-b3JraW5nIHRoYW4gaW4gdGh1ZCB3aGVyZSB1YmkwIGZhaWxzIGJ1dCBib290Y2hvb3NlciB3b3Jr
-czoNCkhpdCBtIGZvciBtZW51IG9yIGFueSBvdGhlciBrZXkgdG8gc3RvcCBhdXRvYm9vdDogICAg
-MA0KdGVzdGluZyBmb3IgdXBkYXRlDQp1YmkwOiBzY2FubmluZyBpcyBmaW5pc2hlZA0KdWJpMCBl
-cnJvcjogdWJpX3JlYWRfdm9sdW1lX3RhYmxlOiB0aGUgbGF5b3V0IHZvbHVtZSB3YXMgbm90IGZv
-dW5kDQp1YmkwIGVycm9yOiB1YmlfYXR0YWNoX210ZF9kZXY6IGZhaWxlZCB0byBhdHRhY2ggbXRk
-MCwgZXJyb3IgLTIyDQpmYWlsZWQgdG8gYXR0YWNoOiBJbnZhbGlkIGFyZ3VtZW50DQp1cGRhdGlu
-ZyBrZXJuZWwNCm9wZW4gdm9sdW1lOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5DQp1cGRhdGlu
-ZyBvZnRyZWUNCm9wZW4gdm9sdW1lOiBObyBzdWNoIGZpbGUgb3IgZGlyZWN0b3J5DQpib290aW5n
-ICdib290Y2hvb3NlcicNCmJvb3RpbmcgJ21tYycNCg0KaW4gemV1cyB0aGlzIGxvb2tzIGxpa2Ug
-dGhpczoNCkhpdCBtIGZvciBtZW51IG9yIGFueSBvdGhlciBrZXkgdG8gc3RvcCBhdXRvYm9vdDog
-ICAgMQ0KdGVzdGluZyBmb3IgdXBkYXRlDQp1YmkwOiBzY2FubmluZyBpcyBmaW5pc2hlZA0KdWJp
-MDogcmVnaXN0ZXJpbmcgL2Rldi9uYW5kMC5yb290LnViaQ0KdWJpMDogYXR0YWNoZWQgbXRkMCAo
-bmFtZSAibmFuZDAucm9vdCIsIHNpemUgMTAxOSBNaUIpIHRvIHViaTANCnViaTA6IFBFQiBzaXpl
-OiAxMzEwNzIgYnl0ZXMgKDEyOCBLaUIpLCBMRUIgc2l6ZTogMTI2OTc2IGJ5dGVzDQp1YmkwOiBt
-aW4uL21heC4gSS9PIHVuaXQgc2l6ZXM6IDIwNDgvMjA0OCwgc3ViLXBhZ2Ugc2l6ZSAyMDQ4DQp1
-YmkwOiBWSUQgaGVhZGVyIG9mZnNldDogMjA0OCAoYWxpZ25lZCAyMDQ4KSwgZGF0YSBvZmZzZXQ6
-IDQwOTYNCnViaTA6IGdvb2QgUEVCczogODE0OCwgYmFkIFBFQnM6IDQsIGNvcnJ1cHRlZCBQRUJz
-OiAwDQp1YmkwOiB1c2VyIHZvbHVtZTogMCwgaW50ZXJuYWwgdm9sdW1lczogMSwgbWF4LiB2b2x1
-bWVzIGNvdW50OiAxMjgNCnViaTA6IG1heC9tZWFuIGVyYXNlIGNvdW50ZXI6IDEvMSwgV0wgdGhy
-ZXNob2xkOiA2NTUzNiwgaW1hZ2Ugc2VxdWVuY2UgbnVtYmVyOiAxNjk0ODE3MjgwDQp1YmkwOiBh
-dmFpbGFibGUgUEVCczogNzk4NiwgdG90YWwgcmVzZXJ2ZWQgUEVCczogMTYyLCBQRUJzIHJlc2Vy
-dmVkIGZvciBiYWQgUEVCIGhhbmRsaW5nOiAxNTYNCnVwZGF0aW5nIGtlcm5lbA0Kb3BlbiB2b2x1
-bWU6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkNCnVwZGF0aW5nIG9mdHJlZQ0Kb3BlbiB2b2x1
-bWU6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnkNCmJvb3RjaG9vc2VyOiBDYW5ub3QgZ2V0IHN0
-YXRlICdzdGF0ZScNCk5vdGhpbmcgYm9vdGFibGUgZm91bmQgb24gJ2Jvb3RjaG9vc2VyJw0KTm90
-aGluZyBib290YWJsZSBmb3VuZA0KDQo+IENhbiB5b3UgY29weSB0aGUgZGV2aWNlIHRyZWUgc25p
-cHBldCB5b3UgdXNlIGZvciBkZWZpbmluZyBzdGF0ZT8NCkhvdy93aGVyZSBkbyBJIGZpbmQgdGhl
-IGNvbXBsZXRlIGRldmljZXRyZWU/IFRoZSBvbmx5IHRoaW5nIHJlZmVycmluZyB0byBiYXJlYm94
-IGlzIHRoaXMgZnJvbSB0aGUgdW5jaGFuZ2VkIGtzcC0wNjYzLWxheWVyOg0KJmdwbWkgew0KICAg
-ICAgICBwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiOw0KICAgICAgICBwaW5jdHJsLTAgPSA8JnBp
-bmN0cmxfZ3BtaV9uYW5kPjsNCiAgICAgICAgbmFuZC1vbi1mbGFzaC1iYnQ7DQogICAgICAgIHN0
-YXR1cyA9ICJva2F5IjsNCg0KICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwxPjsNCiAgICAgICAg
-I3NpemUtY2VsbHMgPSA8MT47DQoNCiAgICAgICAgcGFydGl0aW9uQDAgew0KICAgICAgICAgICAg
-ICAgIGxhYmVsID0gImJhcmVib3giOw0KICAgICAgICAgICAgICAgIHJlZyA9IDwweDAgMHg0MDAw
-MDA+Ow0KICAgICAgICB9Ow0KDQogICAgICAgIHBhcnRpdGlvbkAxIHsNCiAgICAgICAgICAgICAg
-ICBsYWJlbCA9ICJiYXJlYm94LWVudmlyb25tZW50IjsNCiAgICAgICAgICAgICAgICByZWcgPSA8
-MHg0MDAwMDAgMHgxMDAwMDA+Ow0KICAgICAgICB9Ow0KDQogICAgICAgIHBhcnRpdGlvbkAyIHsN
-CiAgICAgICAgICAgICAgICBsYWJlbCA9ICJyb290IjsNCiAgICAgICAgICAgICAgICByZWcgPSA8
-MHg1MDAwMDAgMHgwPjsNCiAgICAgICAgfTsNCn07DQoNCklzIHRoZXJlIGEgcHJvYmxlbSBiZWNh
-dXNlIHViaSB3b3JrcyBub3cgYW5kIGdhcmJsZXMgdGhlIGRhdGEgaW4gdGhlIGZsYXNoPw0KDQo+
-IFdoYXQgZG9lcyBydW5uaW5nIHRoZSBzdGF0ZSBjb21tYW5kIHNheT8NCmJhcmVib3hAUGh5dGVj
-IHBoeUNPUkUtaS5NWDYgUXVhZCB3aXRoIE5BTkQ6LyBzdGF0ZQ0KcmVnaXN0ZXJlZCBzdGF0ZSBp
-bnN0YW5jZXM6DQoNCmlzIGVtcHR5IGluIHpldXMsIHdoZXJlYXMgdGh1ZCByZXR1cm5lZDogKGJh
-Y2tlbmQ6IHJhdywgcGF0aDogL2Rldi9lZXByb20wLnVwZGF0ZS1lZXByb20pDQoNClRoYW5rIHlv
-dSBhbmQgUmVnYXJkcw0KDQpodQ0KDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9t
-OiBBaG1hZCBGYXRvdW0gPGEuZmF0b3VtQHBlbmd1dHJvbml4LmRlPiANClNlbnQ6IFdlZG5lc2Rh
-eSwgMTUgSmFudWFyeSAyMDIwIDE0OjQwDQpUbzogSGFucy1VbHJpY2ggU2NobGllYmVuIDxodS5z
-Y2hsaWViZW5AY29kZXdyaWdodHMuZGU+OyBFbnJpY28gSm9lcm5zIDxlam9AcGVuZ3V0cm9uaXgu
-ZGU+OyB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnDQpDYzogYmFyZWJveEBsaXN0cy5pbmZy
-YWRlYWQub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSAjeW9jdG8gYm9vdGNob29zZXI6IENhbm5v
-dCBnZXQgc3RhdGUgJ3N0YXRlJw0KDQpPbiAxLzE1LzIwIDI6MjYgUE0sIEhhbnMtVWxyaWNoIFNj
-aGxpZWJlbiB3cm90ZToNCj4gSGkgRW5yaWNvLA0KPiANCj4gdGhhbmsgeW91IHZlcnkgbXVjaCBm
-b3IgeW91ciBoZWxwLiANCj4gSSdtIHVzaW5nIGJhcmVib3hfMjAxOS4wMS4wLXBoeTQtcjcuMCBu
-b3cuIEluIHRodWQgSSB1c2VkIA0KPiBiYXJlYm94XzIwMTcuMTIuMCBUaGUgaW1hZ2UgaXMgYnVp
-bHQgdXNpbmcgbXkgb3duIGltcyBsYXllciB3aGljaCANCj4gZGVwZW5kcyBvbiBjb3JlLWltYWdl
-LW1pbmltYWwgTEFZRVJERVBFTkRTX2ltcy1sYXllciA9ICJjb3JlLWltYWdlLW1pbmltYWwgb3Bl
-bmVtYmVkZGVkLWxheWVyIHBoeXRlYy1sYXllciINCj4gSXRzIHVzaW5nIHRoZSBtZXRhLXBoeXRl
-YyBMYXllciBhbmQgYSBjdXN0b20gbGF5ZXIgZnJvbSBwaHl0ZWMgbmFtZWQgbWV0YS1rc3AwNjYz
-Lg0KPiBGb3Jnb3QgdG8gbWVudGlvbiB0aGF0IHJhdWMgaXMgdXNlZCB0b28sIHdoaWNoIG1vdmVk
-IGZyb20gMS4xIHRvIG5vdyAxLjIuDQo+IEp1c3QgY2hhbmdlZCB0aGUgTEFZRVJTRVJJRVNfQ09N
-UEFUIHRvICJ6ZXVzIiBoZXJlIHRvIGNoZWNrIHdoZXRoZXIgeW9jdG8gemV1cyB3b3Jrcy4NCj4g
-DQo+IElzIHRoZXJlIHNvbWUgaW5mbyB3aGF0IHRvIGNoYW5nZSBpbiB0aGUgZGV2aWNldHJlZSBh
-bmQgc28gb24gd2hlbiBtb3ZpbmcgdG8gd2Fycmlvci96ZXVzPw0KPiBJbiB0aHVkIHRoaXMgd29y
-a2VkLg0KDQpBcmUgdGhlcmUgYW55IG90aGVyIGVycm9yIG1lc3NhZ2VzPw0KQ2FuIHlvdSBjb3B5
-IHRoZSBkZXZpY2UgdHJlZSBzbmlwcGV0IHlvdSB1c2UgZm9yIGRlZmluaW5nIHN0YXRlPw0KV2hh
-dCBkb2VzIHJ1bm5pbmcgdGhlIHN0YXRlIGNvbW1hbmQgc2F5Pw0KDQoobm93IGFnYWluLCBidXQg
-d2l0aCBDQy1saXN0IGludGFjdCkNCg0KPiANCj4gVGhhbmsgeW91DQo+IFJlZ2FyZHMNCj4gDQo+
-IGh1DQo+IA0KPj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4+IEZyb206IEVucmljbyBK
-b2VybnMgPGVqb0BwZW5ndXRyb25peC5kZT4NCj4+IFNlbnQ6IFdlZG5lc2RheSwgMTUgSmFudWFy
-eSAyMDIwIDE0OjAzDQo+PiBUbzogSGFucy1VbHJpY2ggU2NobGllYmVuIDxodS5zY2hsaWViZW5A
-Y29kZXdyaWdodHMuZGU+OyANCj4+IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNCj4+IENj
-OiBiYXJlYm94QGxpc3RzLmluZnJhZGVhZC5vcmcNCj4+IFN1YmplY3Q6IFJlOiBbeW9jdG9dICN5
-b2N0byBib290Y2hvb3NlcjogQ2Fubm90IGdldCBzdGF0ZSAnc3RhdGUnDQo+Pg0KPj4gSGksDQo+
-Pg0KPj4gdGhpcyBpcyBtYWlubHkgYSBiYXJlYm94LXJlbGF0ZWQgcXVlc3Rpb24sIHRodXMgSSdk
-IHN1Z2dlc3QgYXNraW5nIGl0IG9uIHRoZSBiYXJlYm94IE1MLg0KPj4NCj4+IFtjYy1pbmcgYmFy
-ZWJveCBtYWlsaW5nIGxpc3RdDQo+Pg0KPj4gT24gV2VkLCAyMDIwLTAxLTE1IGF0IDA0OjEwIC0w
-ODAwLCBodS5zY2hsaWViZW5AY29kZXdyaWdodHMuZGUgd3JvdGU6DQo+Pj4gSGksDQo+Pj4NCj4+
-PiBib290aW5nIHRoZSBuZXcgeW9jdG8gemV1cyBzeXN0ZW0gbWFudWFsbHkgYnkgImJvb3QgbW1j
-IiB3b3JrcyBmaW5lIA0KPj4+IGJ1dCBkZWZhdWx0IGJvb3RjaG9vc2VyIGZhaWxzIHdpdGg6DQo+
-Pj4NCj4+PiBib290Y2hvb3NlcjogQ2Fubm90IGdldCBzdGF0ZSAnc3RhdGUnDQo+Pj4gTm90aGlu
-ZyBib290YWJsZSBmb3VuZCBvbiAnYm9vdGNob29zZXInDQo+Pj4gTm90aGluZyBib290YWJsZSBm
-b3VuZA0KPj4NCj4+IExvb2tzIGxpa2UgdGhlIHN0YXRlIG5vZGUgaXMgbWlzc2luZyBpbiB5b3Vy
-IGRldmljZSB0cmVlLg0KPj4gV2hpY2ggdmVyc2lvbiBvZiBiYXJlYm94IGRvIHlvdSB1c2U/DQo+
-PiBBbmQgZnJvbSB3aGljaCBsYXllciAvIHJlY2lwZT8NCj4+DQo+Pj4gQnVpbGRpbmcgdGhlICJz
-YW1lIiBpbWFnZSBpbiB5b2N0byB0aHVkIHdvcmtzIGZpbmUuIFRoZSBib290IA0KPj4+IHZhcmlh
-Ymxlcw0KPj4+IGFyZToNCj4+Pg0KPj4+ICogQk9PVF9zeXN0ZW0wXy5kZWZhdWx0OiAzDQo+Pj4g
-KiBCT09UX3N5c3RlbTFfLmRlZmF1bHQ6IDMNCj4+PiAqIGFsbG93X2NvbG9yOiAwDQo+Pj4gKiBh
-dXRvYm9vdF90aW1lb3V0OiAzDQo+Pj4gKiBib290LmRlZmF1bHQ6IGJvb3RjaG9vc2VyDQo+Pj4g
-ICBib290LndhdGNoZG9nX3RpbWVvdXQ6IDANCj4+PiAgIGJvb3RjaG9vc2VyLmRlZmF1bHRfYXR0
-ZW1wdHM6IDMNCj4+PiAgIGJvb3RjaG9vc2VyLmRlZmF1bHRfcHJpb3JpdHk6IDENCj4+PiAgIGJv
-b3RjaG9vc2VyLmRpc2FibGVfb25femVyb19hdHRlbXB0czogMA0KPj4+ICAgYm9vdGNob29zZXIu
-cmVzZXRfYXR0ZW1wdHM6ICAobGlzdDogInBvd2VyLW9uIiwgImFsbC16ZXJvIikNCj4+PiAgIGJv
-b3RjaG9vc2VyLnJlc2V0X3ByaW9yaXRpZXM6DQo+Pj4gICBib290Y2hvb3Nlci5yZXRyeTogMA0K
-Pj4+ICogYm9vdGNob29zZXIuc3RhdGVfcHJlZml4OiBzdGF0ZS5ib290c3RhdGUNCj4+PiAqIGJv
-b3RjaG9vc2VyLnN5c3RlbTAuYm9vdDogbW1jDQo+Pj4gKiBib290Y2hvb3Nlci5zeXN0ZW0wLmRl
-ZmF1bHRfYXR0ZW1wdHM6IDMNCj4+PiAqIGJvb3RjaG9vc2VyLnN5c3RlbTAuZGVmYXVsdF9wcmlv
-cml0eTogMjANCj4+PiAqIGJvb3RjaG9vc2VyLnN5c3RlbTEuYm9vdDogbW1jMQ0KPj4+ICogYm9v
-dGNob29zZXIuc3lzdGVtMS5kZWZhdWx0X2F0dGVtcHRzOiAzDQo+Pj4gKiBib290Y2hvb3Nlci5z
-eXN0ZW0xLmRlZmF1bHRfcHJpb3JpdHk6IDIxDQo+Pj4gKiBib290Y2hvb3Nlci50YXJnZXRzOiBz
-eXN0ZW0wIHN5c3RlbTENCj4+PiAgIGJvb3RtLmFwcGVuZHJvb3Q6IDANCj4+PiAuLi4NCj4+Pg0K
-Pj4NCj4+IFJlZ2FyZHMsIEVucmljbw0KPiANCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX18NCj4gYmFyZWJveCBtYWlsaW5nIGxpc3QNCj4gYmFyZWJveEBs
-aXN0cy5pbmZyYWRlYWQub3JnDQo+IGh0dHBzOi8vZXVyMDQuc2FmZWxpbmtzLnByb3RlY3Rpb24u
-b3V0bG9vay5jb20vP3VybD1odHRwJTNBJTJGJTJGbGlzdHMNCj4gLmluZnJhZGVhZC5vcmclMkZt
-YWlsbWFuJTJGbGlzdGluZm8lMkZiYXJlYm94JmFtcDtkYXRhPTAxJTdDMDElN0NodS5zYw0KPiBo
-bGllYmVuJTQwY29kZXdyaWdodHMuZGUlN0NiNmIxZWRkZjYzMzg0NWI2MDA0MzA4ZDc5OWMwNmIz
-YyU3QzA5NzRhZjliDQo+IDM1MmI0MzdjYjYwNmU5ZjI0MmMwYzIyNyU3QzAmYW1wO3NkYXRhPXhZ
-Q3pGMXBkaFRRQXJGNSUyQkhmZmllRWtITm1kcVgNCj4gdyUyQlZvMkVGV2clMkZLT0hZJTNEJmFt
-cDtyZXNlcnZlZD0wDQo+IA0KDQoNCi0tIA0KUGVuZ3V0cm9uaXggZS5LLiAgICAgICAgICAgICAg
-ICAgICAgICAgICAgIHwgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwNClN0ZXVlcndhbGRl
-ciBTdHIuIDIxICAgICAgICAgICAgICAgICAgICAgICB8IGh0dHBzOi8vZXVyMDQuc2FmZWxpbmtz
-LnByb3RlY3Rpb24ub3V0bG9vay5jb20vP3VybD1odHRwcyUzQSUyRiUyRnd3dy5wZW5ndXRyb25p
-eC5kZSUyRiZhbXA7ZGF0YT0wMSU3QzAxJTdDaHUuc2NobGllYmVuJTQwY29kZXdyaWdodHMuZGUl
-N0NiNmIxZWRkZjYzMzg0NWI2MDA0MzA4ZDc5OWMwNmIzYyU3QzA5NzRhZjliMzUyYjQzN2NiNjA2
-ZTlmMjQyYzBjMjI3JTdDMCZhbXA7c2RhdGE9JTJGUlVwSkJCVnJ3SThjcExob3U0QUlvUG5iaUNq
-cWpNQnA1ZW81VlpvcndjJTNEJmFtcDtyZXNlcnZlZD0wIHwNCjMxMTM3IEhpbGRlc2hlaW0sIEdl
-cm1hbnkgICAgICAgICAgICAgICAgICB8IFBob25lOiArNDktNTEyMS0yMDY5MTctMCAgICB8DQpB
-bXRzZ2VyaWNodCBIaWxkZXNoZWltLCBIUkEgMjY4NiAgICAgICAgICAgfCBGYXg6ICAgKzQ5LTUx
-MjEtMjA2OTE3LTU1NTUgfA0K
+On Wed, 2020-01-15 at 15:36 +0100, Ahmad Fatoum wrote:
+> Hello Hans-Ulrich,
+> 
+> On 1/15/20 3:25 PM, Hans-Ulrich Schlieben wrote:
+> > > Can you copy the device tree snippet you use for defining state?
+> > 
+> > Is there a problem because ubi works now and garbles the data in the flash?
+> > 
+> > > What does running the state command say?
+> > 
+> > barebox@Phytec phyCORE-i.MX6 Quad with NAND:/ state
+> > registered state instances:
+> > 
+> > is empty in zeus, whereas thud returned: (backend: raw, path: /dev/eeprom0.update-eeprom)
+
+The difference between 'zeus' and 'thud' is mainly the barebox version that you
+get from the meta-phytec layer.
+
+We had some changes in requirements for the state node alias within the two
+year, but unsure if that hits you.
+
+Note that you can find the build dtb in your BSP's deploy dir. You could run
+
+  fdtdump tmp/deploy/images/<machine>/<name-of-dtb>.dtb
+
+to dump it.
+
+
+Regards, Enrico
+
+> According to the state command output under thud, your state is stored
+> on the EEPROM, not the NAND. Look for update-eeprom in your device tree.
+> There should also be an /dev/eeprom0.update-eeprom in barebox.
+> if not, try executing the drvinfo command and see if the driver has
+> probed the EEPROM.
+> 
+> Can you also paste the full barebox output from power-on till failure?
+> 
+> Your board should boot normally with upstream barebox, I think.
+> Can you try and see if v2020.01.0 suffers from the same problem?
+> 
+> Cheers
+> Ahmad
+> 
+> > 
+> > Thank you and Regards
+> > 
+> > hu
+> > 
+> > 
+> > -----Original Message-----
+> > From: Ahmad Fatoum <a.fatoum@pengutronix.de> 
+> > Sent: Wednesday, 15 January 2020 14:40
+> > To: Hans-Ulrich Schlieben <hu.schlieben@codewrights.de>; Enrico Joerns <ejo@pengutronix.de>; yocto@lists.yoctoproject.org
+> > Cc: barebox@lists.infradead.org
+> > Subject: Re: [yocto] #yocto bootchooser: Cannot get state 'state'
+> > 
+> > On 1/15/20 2:26 PM, Hans-Ulrich Schlieben wrote:
+> > > Hi Enrico,
+> > > 
+> > > thank you very much for your help. 
+> > > I'm using barebox_2019.01.0-phy4-r7.0 now. In thud I used 
+> > > barebox_2017.12.0 The image is built using my own ims layer which 
+> > > depends on core-image-minimal LAYERDEPENDS_ims-layer = "core-image-minimal openembedded-layer phytec-layer"
+> > > Its using the meta-phytec Layer and a custom layer from phytec named meta-ksp0663.
+> > > Forgot to mention that rauc is used too, which moved from 1.1 to now 1.2.
+> > > Just changed the LAYERSERIES_COMPAT to "zeus" here to check whether yocto zeus works.
+> > > 
+> > > Is there some info what to change in the devicetree and so on when moving to warrior/zeus?
+> > > In thud this worked.
+> > 
+> > Are there any other error messages?
+> > Can you copy the device tree snippet you use for defining state?
+> > What does running the state command say?
+> > 
+> > (now again, but with CC-list intact)
+> > 
+> > > 
+> > > Thank you
+> > > Regards
+> > > 
+> > > hu
+> > > 
+> > > > -----Original Message-----
+> > > > From: Enrico Joerns <ejo@pengutronix.de>
+> > > > Sent: Wednesday, 15 January 2020 14:03
+> > > > To: Hans-Ulrich Schlieben <hu.schlieben@codewrights.de>; 
+> > > > yocto@lists.yoctoproject.org
+> > > > Cc: barebox@lists.infradead.org
+> > > > Subject: Re: [yocto] #yocto bootchooser: Cannot get state 'state'
+> > > > 
+> > > > Hi,
+> > > > 
+> > > > this is mainly a barebox-related question, thus I'd suggest asking it on the barebox ML.
+> > > > 
+> > > > [cc-ing barebox mailing list]
+> > > > 
+> > > > On Wed, 2020-01-15 at 04:10 -0800, hu.schlieben@codewrights.de wrote:
+> > > > > Hi,
+> > > > > 
+> > > > > booting the new yocto zeus system manually by "boot mmc" works fine 
+> > > > > but default bootchooser fails with:
+> > > > > 
+> > > > > bootchooser: Cannot get state 'state'
+> > > > > Nothing bootable found on 'bootchooser'
+> > > > > Nothing bootable found
+> > > > 
+> > > > Looks like the state node is missing in your device tree.
+> > > > Which version of barebox do you use?
+> > > > And from which layer / recipe?
+> > > > 
+> > > > > Building the "same" image in yocto thud works fine. The boot 
+> > > > > variables
+> > > > > are:
+> > > > > 
+> > > > > * BOOT_system0_.default: 3
+> > > > > * BOOT_system1_.default: 3
+> > > > > * allow_color: 0
+> > > > > * autoboot_timeout: 3
+> > > > > * boot.default: bootchooser
+> > > > >   boot.watchdog_timeout: 0
+> > > > >   bootchooser.default_attempts: 3
+> > > > >   bootchooser.default_priority: 1
+> > > > >   bootchooser.disable_on_zero_attempts: 0
+> > > > >   bootchooser.reset_attempts:  (list: "power-on", "all-zero")
+> > > > >   bootchooser.reset_priorities:
+> > > > >   bootchooser.retry: 0
+> > > > > * bootchooser.state_prefix: state.bootstate
+> > > > > * bootchooser.system0.boot: mmc
+> > > > > * bootchooser.system0.default_attempts: 3
+> > > > > * bootchooser.system0.default_priority: 20
+> > > > > * bootchooser.system1.boot: mmc1
+> > > > > * bootchooser.system1.default_attempts: 3
+> > > > > * bootchooser.system1.default_priority: 21
+> > > > > * bootchooser.targets: system0 system1
+> > > > >   bootm.appendroot: 0
+> > > > > ...
+> > > > > 
+> > > > 
+> > > > Regards, Enrico
+> > > 
+> > > _______________________________________________
+> > > barebox mailing list
+> > > barebox@lists.infradead.org
+> > > https://eur04.safelinks.protection.outlook.com/?url=http%3A%2F%2Flists
+> > > .infradead.org%2Fmailman%2Flistinfo%2Fbarebox&amp;data=01%7C01%7Chu.sc
+> > > hlieben%40codewrights.de%7Cb6b1eddf633845b6004308d799c06b3c%7C0974af9b
+> > > 352b437cb606e9f242c0c227%7C0&amp;sdata=xYCzF1pdhTQArF5%2BHffieEkHNmdqX
+> > > w%2BVo2EFWg%2FKOHY%3D&amp;reserved=0
+> > > 
+> > 
+> > 
+> 
+> 
+-- 
+Pengutronix e.K.                    | Enrico Jörns                |
+Embedded Linux Consulting & Support | Team Lead Integration       |
+Steuerwalder Str. 21                | https://www.pengutronix.de  |
+31137 Hildesheim, Germany           | Phone: +49-5121-206917-5080 |
