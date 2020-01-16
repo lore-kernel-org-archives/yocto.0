@@ -1,88 +1,38 @@
-Subject: #sdk
-To: yocto@lists.yoctoproject.org
-From: m.madej@xtrack.com
-X-Originating-Location: Ledowo, Pomerania, PL (83.18.155.22)
-X-Originating-Platform: Linux Chrome 79
-User-Agent: GROUPS.IO Web Poster
+Received: from mail.tagmaster.com (mail.tagmaster.com [37.233.78.77])
+ by mx.groups.io with SMTP id smtpd.web10.9888.1579183000921935775
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 16 Jan 2020 05:56:41 -0800
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: tagmaster.com, ip: 37.233.78.77, mailfrom: pelle.windestam@tagmaster.com)
+Received: from TMEX01.tagmaster.com (10.10.55.12) by TMEX01.tagmaster.com
+ (10.10.55.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.1.845.34; Thu, 16 Jan
+ 2020 14:56:38 +0100
+Received: from TMEX01.tagmaster.com ([fe80::e438:720a:793e:d353]) by
+ TMEX01.tagmaster.com ([fe80::e438:720a:793e:d353%9]) with mapi id
+ 15.01.0845.034; Thu, 16 Jan 2020 14:56:38 +0100
+From: pelle.windestam@tagmaster.com
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Trouble building mono (when building an image)
+Thread-Topic: [yocto] Trouble building mono (when building an image)
+Thread-Index: AQHVzHKF1vmseEUlgkKxSHZXxXcseqftUFnQ
+Date: Thu, 16 Jan 2020 13:56:38 +0000
+Message-ID: <a46dc260650849b6bf126b2f81bbfc9c@tagmaster.com>
+References: <Hb46.1579180220496162285.4Eb6@lists.yoctoproject.org>
+ <CANNYZj92RnSZs4UvuKCjjhf6eJeX69YEVAMiFn4WPRyRqCin4Q@mail.gmail.com>
+In-Reply-To: <CANNYZj92RnSZs4UvuKCjjhf6eJeX69YEVAMiFn4WPRyRqCin4Q@mail.gmail.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.10.55.147]
 MIME-Version: 1.0
-Date: Thu, 16 Jan 2020 05:53:17 -0800
-Message-ID: <2zkv.1579182797318490741.rkdo@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="GJ66CYikDnyzpwsm1KRv"
-
---GJ66CYikDnyzpwsm1KRv
+Content-Language: en-US
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-Hello, I work on Yocto warrior branch. I use debian buster. I built extensi=
-ble SDK for my image and wanted to install it. Build passes without any pro=
-blem but at the end of installation process i got following messages:
-
-SDK environment now set up; additionally you may now run devtool to perfor=
-m development tasks.
-Run devtool --help for further details.
-*(SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3: line 5: (SDKROOT=
-)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real: No such file or dir=
-ectory*
-*post-relocate command "(SDKROOT)/sysroots/x86_64-pokysdk-linux/post-reloc=
-ate-setup.d/meson-setup.py (SDKROOT)" failed with status 127*
-SDK has been successfully set up and is ready to be used.
-Each time you wish to use the SDK in a new shell session, you need to sour=
-ce the environment setup script e.g.
-
-In spite of fact there is information that SDK is successfully set up it d=
-oes not work and after loading environment devtool command output is:
-
-$ devtool
-(SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3: line 5: (SDKROOT)=
-/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real
-
-To analyze the problem I also run:
-
-$ file=C2=A0(SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real
-(SDKROOT) /sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real: ELF 64-bi=
-t LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, *interp=
-reter /opt/smart-recovery/2.7.2/sysroots/x86_64-pokysdk-linux/lib/ld-linux-=
-x86-64.so.2* , BuildID[sha1]=3Dbc0bda633e50a52d06a027cc21707a0be0341f64, fo=
-r GNU/Linux 3.2.0, stripped
-
-The problem is that interpreter file does not exist and this is probably c=
-aused by problem which occured at installation process. Is the problem know=
-n to anyone?
-
---GJ66CYikDnyzpwsm1KRv
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hello, I work on Yocto warrior branch. I use debian buster. I built extensi=
-ble SDK for my image and wanted to install it. Build passes without any pro=
-blem but at the end of installation process i got following messages:<br />=
-<br />
-<div><em>SDK environment now set up; additionally you may now run devtool =
-to perform development tasks.</em></div>
-<div><em>Run devtool --help for further details.</em></div>
-<div><strong><em>(SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3: =
-line 5: (SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real: No =
-such file or directory</em></strong></div>
-<div><strong><em>post-relocate command "(SDKROOT)/sysroots/x86_64-pokysdk-=
-linux/post-relocate-setup.d/meson-setup.py (SDKROOT)" failed with status 12=
-7</em></strong></div>
-<div><em>SDK has been successfully set up and is ready to be used.</em></d=
-iv>
-<div><em>Each time you wish to use the SDK in a new shell session, you nee=
-d to source the environment setup script e.g.</em><br /><br />In spite of f=
-act there is information that SDK is successfully set up it does not work a=
-nd after loading environment devtool command output is:<br /><br /><em>$ de=
-vtool</em><br /><em>(SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3=
-: line 5: (SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real</e=
-m><br /><br />To analyze the problem I also run:<br /><br /><em>$ file&nbsp=
-;(SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real</em><br /><=
-em>(SDKROOT)</em><em>/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real:=
- ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linke=
-d, <strong>interpreter /opt/smart-recovery/2.7.2/sysroots/x86_64-pokysdk-li=
-nux/lib/ld-linux-x86-64.so.2</strong>, BuildID[sha1]=3Dbc0bda633e50a52d06a0=
-27cc21707a0be0341f64, for GNU/Linux 3.2.0, stripped<br /><br /></em>The pro=
-blem is that interpreter file does not exist and this is probably caused by=
- problem which occured at installation process. Is the problem known to any=
-one?</div>
-
---GJ66CYikDnyzpwsm1KRv--
+PiBKdXN0IGEgcXVpY2sgdGhpbmcgZm9yIHlvdSB0byB0cnk6IGNhbiB5b3UgZGVsZXRlIC91c3Iv
+YmluL21vbm9kaXMgZnJvbSB5b3VyIGhvc3QgYW5kIHJldHJ5IGJ1aWxkaW5nPyAocmVtZW1iZXIg
+dG8gDQo+IGNsZWFuIHNzdGF0ZSBmb3IgeW91ciBwYWNrYWdlKQ0KDQpJdCBzZWVtcyBsaWtlIEkg
+ZG8gbm90IGhhdmUgYSAvdXNyL2Jpbi9tb25vZGlzIG9uIG15IGhvc3QsIHVuZm9ydHVuYXRlbHku
+DQoNCg0K
