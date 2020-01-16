@@ -1,71 +1,216 @@
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
- by mx.groups.io with SMTP id smtpd.web10.1367.1579121429090396512
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web09.5583.1579159397429753140
  for <yocto@lists.yoctoproject.org>;
- Wed, 15 Jan 2020 12:50:29 -0800
+ Wed, 15 Jan 2020 23:23:18 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id 4868540BFE;
-	Wed, 15 Jan 2020 20:50:28 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id d7lWu2Lw4sXc; Wed, 15 Jan 2020 20:50:28 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 2C0594087C;
-	Wed, 15 Jan 2020 20:50:27 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 7703B174385; Wed, 15 Jan 2020 15:50:26 -0500 (EST)
-Date: Wed, 15 Jan 2020 15:50:26 -0500
-From: "Denys Dmytriyenko" <denis@denix.org>
-To: Bill.Kulp@azuresummit.com
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] How to dynamically set PKGV? #yocto #python
-Message-ID: <20200115205026.GU4735@denix.org>
-References: <YaI2.1579120699599107204.Yscm@lists.yoctoproject.org>
+ dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: changqing.li@windriver.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id E0BAEE0144D; Wed, 15 Jan 2020 23:23:16 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 819CEE0122C
+	for <yocto@yoctoproject.org>; Wed, 15 Jan 2020 23:23:13 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com [147.11.189.41])
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 00G7NC6g013221
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 15 Jan 2020 23:23:12 -0800 (PST)
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+ ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+ 14.3.468.0; Wed, 15 Jan 2020 23:23:12 -0800
+From: "Changqing Li" <changqing.li@windriver.com>
+To: <yocto@yoctoproject.org>
+Subject: [meta-gplv2][PATCH] bison: fix builds with gettext 0.20.x
+Date: Thu, 16 Jan 2020 15:23:10 +0800
+Message-ID: <1579159390-152104-1-git-send-email-changqing.li@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <YaI2.1579120699599107204.Yscm@lists.yoctoproject.org>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 
-https://www.yoctoproject.org/docs/3.0/ref-manual/ref-manual.html#var-AUTORE=
-V
-https://www.yoctoproject.org/docs/3.0/ref-manual/ref-manual.html#var-SRCPV
+From: Changqing Li <changqing.li@windriver.com>
 
---=20
-Denys
+Fix configure error like:
+error: possibly undefined macro: gl_AC_HEADER_STDINT_H
 
+Signed-off-by: Changqing Li <changqing.li@windriver.com>
+---
+ recipes-devtools/bison/bison/bison-2.3_m4.patch | 121 ++++++++++++------------
+ 1 file changed, 61 insertions(+), 60 deletions(-)
 
-On Wed, Jan 15, 2020 at 12:38:19PM -0800, Bill.Kulp@azuresummit.com wrote:
-> I have a recipe that builds an application from the master branch of a l=
-ocal=20
-> git repository.=A0 AUTOREV is working, so the recipe automatically rebui=
-lds=20
-> whenever the repository is updated.=A0 The source code has its own versi=
-on=20
-> number.=A0 I'm wondering if it is possible to grab that version number d=
-uring=20
-> the do_compile step, and set the package version based on that?
->=20
-> As a first step, I tried to change the value of PKGV from a bitbake task=
-.
->=20
-> PKGV =3D "BadBad"
-> python do_foo ()=A0{
-> d.setVar( "PKGV" , "GoodGood" )
-> print ( "PKGV=A0set=A0to=A0" +=A0d.getVar( "PKGV" ))
-> }
-> addtask=A0foo=A0after=A0do_compile=A0before=A0do_package
->=20
-> However, this did not work - the resulting RPM packages are named=20
-> "my_package-BadBad-r0.noarch.rpm".=A0 Can anyone suggest a fix, or a dif=
-ferent=20
-> method?
->=20
-> Thanks!
-
->=20
+diff --git a/recipes-devtools/bison/bison/bison-2.3_m4.patch b/recipes-devtools/bison/bison/bison-2.3_m4.patch
+index 348ce1d..626bc42 100644
+--- a/recipes-devtools/bison/bison/bison-2.3_m4.patch
++++ b/recipes-devtools/bison/bison/bison-2.3_m4.patch
+@@ -76,34 +76,35 @@ Upstream-Status: Pending
+ +])
+ --- /dev/null
+ +++ bison-1.875/m4/uintmax_t.m4
+-@@ -0,0 +1,29 @@
+-+# uintmax_t.m4 serial 6 (gettext-0.11)
+-+dnl Copyright (C) 1997-2002 Free Software Foundation, Inc.
+-+dnl This file is free software, distributed under the terms of the GNU
+-+dnl General Public License.  As a special exception to the GNU General
+-+dnl Public License, this file may be distributed as part of a program
+-+dnl that contains a configuration script generated by Autoconf, under
+-+dnl the same distribution terms as the rest of that program.
++@@ -0,0 +1,30 @@
+++# uintmax_t.m4 serial 12 (gettext-0.20.1)
+++dnl Copyright (C) 1997-2004, 2007-2019 Free Software Foundation, Inc.
+++dnl This file is free software; the Free Software Foundation
+++dnl gives unlimited permission to copy and/or distribute it,
+++dnl with or without modifications, as long as this notice is preserved.
+ +
+ +dnl From Paul Eggert.
+ +
+-+AC_PREREQ(2.13)
+++AC_PREREQ([2.13])
+ +
+-+# Define uintmax_t to `unsigned long' or `unsigned long long'
+-+# if <inttypes.h> does not exist.
+++# Define uintmax_t to 'unsigned long' or 'unsigned long long'
+++# if it is not already defined in <stdint.h> or <inttypes.h>.
+ +
+-+AC_DEFUN([jm_AC_TYPE_UINTMAX_T],
+++AC_DEFUN([gl_AC_TYPE_UINTMAX_T],
+ +[
+-+  AC_REQUIRE([jm_AC_HEADER_INTTYPES_H])
+-+  AC_REQUIRE([jm_AC_HEADER_STDINT_H])
+-+  if test $jm_ac_cv_header_inttypes_h = no && test $jm_ac_cv_header_stdint_h = no; then
+-+    AC_REQUIRE([jm_AC_TYPE_UNSIGNED_LONG_LONG])
+-+    test $ac_cv_type_unsigned_long_long = yes \
+++  AC_REQUIRE([gl_AC_HEADER_INTTYPES_H])
+++  AC_REQUIRE([gl_AC_HEADER_STDINT_H])
+++  if test $gl_cv_header_inttypes_h = no && test $gl_cv_header_stdint_h = no; then
+++    AC_REQUIRE([AC_TYPE_UNSIGNED_LONG_LONG_INT])
+++    test $ac_cv_type_unsigned_long_long_int = yes \
+ +      && ac_type='unsigned long long' \
+ +      || ac_type='unsigned long'
+-+    AC_DEFINE_UNQUOTED(uintmax_t, $ac_type,
+-+  [Define to unsigned long or unsigned long long
+-+   if <inttypes.h> and <stdint.h> don't define.])
+++    AC_DEFINE_UNQUOTED([uintmax_t], [$ac_type],
+++      [Define to unsigned long or unsigned long long
+++       if <stdint.h> and <inttypes.h> don't define.])
+++  else
+++    AC_DEFINE([HAVE_UINTMAX_T], [1],
+++      [Define if you have the 'uintmax_t' type in <stdint.h> or <inttypes.h>.])
+ +  fi
+ +])
+ --- /dev/null
+@@ -143,64 +144,64 @@ Upstream-Status: Pending
+ +)
+ --- /dev/null
+ +++ bison-1.875/m4/stdint_h.m4
+-@@ -0,0 +1,28 @@
+-+# stdint_h.m4 serial 2 (gettext-0.11.4)
+-+dnl Copyright (C) 1997-2002 Free Software Foundation, Inc.
+-+dnl This file is free software, distributed under the terms of the GNU
+-+dnl General Public License.  As a special exception to the GNU General
+-+dnl Public License, this file may be distributed as part of a program
+-+dnl that contains a configuration script generated by Autoconf, under
+-+dnl the same distribution terms as the rest of that program.
++@@ -0,0 +1,27 @@
+++# stdint_h.m4 serial 9 (gettext-0.20.1)
+++dnl Copyright (C) 1997-2004, 2006, 2008-2019 Free Software Foundation, Inc.
+++dnl This file is free software; the Free Software Foundation
+++dnl gives unlimited permission to copy and/or distribute it,
+++dnl with or without modifications, as long as this notice is preserved.
+ +
+ +dnl From Paul Eggert.
+ +
+ +# Define HAVE_STDINT_H_WITH_UINTMAX if <stdint.h> exists,
+ +# doesn't clash with <sys/types.h>, and declares uintmax_t.
+ +
+-+AC_DEFUN([jm_AC_HEADER_STDINT_H],
+++AC_DEFUN([gl_AC_HEADER_STDINT_H],
+ +[
+-+  AC_CACHE_CHECK([for stdint.h], jm_ac_cv_header_stdint_h,
+-+  [AC_TRY_COMPILE(
+-+    [#include <sys/types.h>
+-+#include <stdint.h>],
+-+    [uintmax_t i = (uintmax_t) -1;],
+-+    jm_ac_cv_header_stdint_h=yes,
+-+    jm_ac_cv_header_stdint_h=no)])
+-+  if test $jm_ac_cv_header_stdint_h = yes; then
+-+    AC_DEFINE_UNQUOTED(HAVE_STDINT_H_WITH_UINTMAX, 1,
+-+[Define if <stdint.h> exists, doesn't clash with <sys/types.h>,
+-+   and declares uintmax_t. ])
+++  AC_CACHE_CHECK([for stdint.h], [gl_cv_header_stdint_h],
+++    [AC_COMPILE_IFELSE(
+++       [AC_LANG_PROGRAM(
+++          [[#include <sys/types.h>
+++            #include <stdint.h>]],
+++          [[uintmax_t i = (uintmax_t) -1; return !i;]])],
+++       [gl_cv_header_stdint_h=yes],
+++       [gl_cv_header_stdint_h=no])])
+++  if test $gl_cv_header_stdint_h = yes; then
+++    AC_DEFINE_UNQUOTED([HAVE_STDINT_H_WITH_UINTMAX], [1],
+++      [Define if <stdint.h> exists, doesn't clash with <sys/types.h>,
+++       and declares uintmax_t. ])
+ +  fi
+ +])
+ --- /dev/null
+ +++ bison-1.875/m4/inttypes_h.m4
+-@@ -0,0 +1,28 @@
+-+# inttypes_h.m4 serial 4 (gettext-0.11.4)
+-+dnl Copyright (C) 1997-2002 Free Software Foundation, Inc.
+-+dnl This file is free software, distributed under the terms of the GNU
+-+dnl General Public License.  As a special exception to the GNU General
+-+dnl Public License, this file may be distributed as part of a program
+-+dnl that contains a configuration script generated by Autoconf, under
+-+dnl the same distribution terms as the rest of that program.
++@@ -0,0 +1,29 @@
+++# inttypes_h.m4 serial 10 (gettext-0.20.1)
+++dnl Copyright (C) 1997-2004, 2006, 2008-2019 Free Software Foundation, Inc.
+++dnl This file is free software; the Free Software Foundation
+++dnl gives unlimited permission to copy and/or distribute it,
+++dnl with or without modifications, as long as this notice is preserved.
+ +
+ +dnl From Paul Eggert.
+ +
+ +# Define HAVE_INTTYPES_H_WITH_UINTMAX if <inttypes.h> exists,
+ +# doesn't clash with <sys/types.h>, and declares uintmax_t.
+ +
+-+AC_DEFUN([jm_AC_HEADER_INTTYPES_H],
+++AC_DEFUN([gl_AC_HEADER_INTTYPES_H],
+ +[
+-+  AC_CACHE_CHECK([for inttypes.h], jm_ac_cv_header_inttypes_h,
+-+  [AC_TRY_COMPILE(
+-+    [#include <sys/types.h>
+-+#include <inttypes.h>],
+-+    [uintmax_t i = (uintmax_t) -1;],
+-+    jm_ac_cv_header_inttypes_h=yes,
+-+    jm_ac_cv_header_inttypes_h=no)])
+-+  if test $jm_ac_cv_header_inttypes_h = yes; then
+-+    AC_DEFINE_UNQUOTED(HAVE_INTTYPES_H_WITH_UINTMAX, 1,
+-+[Define if <inttypes.h> exists, doesn't clash with <sys/types.h>,
+-+   and declares uintmax_t. ])
+++  AC_CACHE_CHECK([for inttypes.h], [gl_cv_header_inttypes_h],
+++    [AC_COMPILE_IFELSE(
+++       [AC_LANG_PROGRAM(
+++          [[
+++#include <sys/types.h>
+++#include <inttypes.h>
+++          ]],
+++          [[uintmax_t i = (uintmax_t) -1; return !i;]])],
+++       [gl_cv_header_inttypes_h=yes],
+++       [gl_cv_header_inttypes_h=no])])
+++  if test $gl_cv_header_inttypes_h = yes; then
+++    AC_DEFINE_UNQUOTED([HAVE_INTTYPES_H_WITH_UINTMAX], [1],
+++      [Define if <inttypes.h> exists, doesn't clash with <sys/types.h>,
+++       and declares uintmax_t. ])
+ +  fi
+ +])
+ --- /dev/null
+-- 
+2.7.4
 
