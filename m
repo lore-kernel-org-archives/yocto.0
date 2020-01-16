@@ -1,95 +1,293 @@
-Subject: Trouble building mono (when building an image)
+Received: from mail.inango-sw.com (mail.inango-sw.com [178.238.230.57])
+ by mx.groups.io with SMTP id smtpd.web11.9597.1579181080270203017
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 16 Jan 2020 05:24:40 -0800
+Authentication-Results: mx.groups.io;
+ dkim=pass header.i=@inango-systems.com header.s=45a440e0-d841-11e8-b985-5fcc721607e0 header.b=RsO407tf;
+ spf=pass (domain: inango-systems.com, ip: 178.238.230.57, mailfrom: n.merinov@inango-systems.com)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.inango-sw.com (Postfix) with ESMTP id 2C4C110807B0
+	for <yocto@lists.yoctoproject.org>; Thu, 16 Jan 2020 15:24:38 +0200 (IST)
+Received: from mail.inango-sw.com ([127.0.0.1])
+	by localhost (mail.inango-sw.com [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id fgLv3aISu89P; Thu, 16 Jan 2020 15:24:37 +0200 (IST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.inango-sw.com (Postfix) with ESMTP id 4FE2F10807A7;
+	Thu, 16 Jan 2020 15:24:37 +0200 (IST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.inango-sw.com 4FE2F10807A7
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=inango-systems.com;
+	s=45A440E0-D841-11E8-B985-5FCC721607E0; t=1579181077;
+	bh=fkLLvjwaGop71cMWupSCaH4BsoE9Di2tzhROsbioAns=;
+	h=From:To:Date:Message-Id;
+	b=RsO407tfQHlLPEGrE+J05Y1KMEWx4YWwYfIv1CYcRRg7u03Yx14AQ5JbUdp7LBzcY
+	 FfvV/SxHv0N4OonY/4Y6Dsbmbo/aoauQQFY7Ruk+abJtYHfPx8N5ZFuJ7G7p9x420J
+	 oWWk5H/pNKRdOWsqtCajXygYj77n2lMdNYJkkQp36cbSii4QmgDoGoq/O/23ZWgzM2
+	 /Ntph2OllyFQpGd6f8T1jmAyenjLqjhGfupZyDLZ6ld2FfuiDAV8NdUDzHusJBumiP
+	 qeIzziwzQrprmVryqRgbu7tf47IYcWBBhK/dVCu5V2n9V7R+VnRdztBLmsJ4mu3Npa
+	 tVP2e7Okg1TBg==
+X-Virus-Scanned: amavisd-new at inango-sw.com
+Received: from mail.inango-sw.com ([127.0.0.1])
+	by localhost (mail.inango-sw.com [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id wNS2ebGXRwSd; Thu, 16 Jan 2020 15:24:37 +0200 (IST)
+Received: from nmerinov.inango.loc (unknown [194.60.247.123])
+	by mail.inango-sw.com (Postfix) with ESMTPSA id D9A7A1080171;
+	Thu, 16 Jan 2020 15:24:36 +0200 (IST)
+From: "Nikolay Merinov" <n.merinov@inango-systems.com>
 To: yocto@lists.yoctoproject.org
-From: pelle.windestam@tagmaster.com
-X-Originating-Location: Kungälv, Västra Götaland, SE (37.233.78.69)
-X-Originating-Platform: Windows Firefox 72
-User-Agent: GROUPS.IO Web Poster
-MIME-Version: 1.0
-Date: Thu, 16 Jan 2020 05:10:20 -0800
-Message-ID: <Hb46.1579180220496162285.4Eb6@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="nr5qSSA3hKpW67MP0i3h"
+Cc: Nikolai Merinov <n.merinov@inango-systems.com>
+Subject: [yocto-kernel-tools][PATCH] tools: Provide merge_config.py alternative to merge_config.sh
+Date: Thu, 16 Jan 2020 18:24:14 +0500
+Message-Id: <20200116132414.26057-1-n.merinov@inango-systems.com>
+X-Mailer: git-send-email 2.17.1
 
---nr5qSSA3hKpW67MP0i3h
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+The merge_config.py script is fully compatible by command line options with
+merge_config.sh script and provide better performance and solve several issues
+that present in the merge_config.sh script.
 
-I'm trying to include mono in my image. I can successfully build the mono r=
-ecipe by itself, but when I try to build my image it fails with the followi=
-ng error message:
-Error:
-Problem: package test-sw-9.1.1b3-r0.aarch64 requires mono, but none of the=
- providers can be installed
-- conflicting requests
-- nothing provides mono-gac needed by mono-5.12.0.226-r0.aarch64
+Improvements comparing with merge_config.sh:
 
-This is a bit confusing since:
-a) I can build mono by itself
-b) the mono recipe should provide the mono-gac package
+ 1. Preformance was greatly improved:
 
-If I run 'bitbake -e mono | grep PACKAGES' I get the output:
-PACKAGES=3D"mono-dbg mono-doc mono-staticdev mono-locale mono-libs mono-de=
-v=C2=A0 mono-config mono-binaries mono-libs-core=C2=A0 mono-libs-2.0 mono-l=
-ibs-3.5 mono-libs-4.0 mono-libs-4.5=C2=A0 mono-api-4.5.1 mono-api-4.5.2 mon=
-o-api-4.6 mono-api-4.6.1 mono-api-4.6.2 mono-api-4.7=C2=A0 mono-libs-compat=
--2.0 mono-gac mono-configuration-crypto=C2=A0 mono-libs-monodoc mono-xbuild=
-=
-=C2=A0 mono-lldb=C2=A0 mono=C2=A0 mono-profiler "
-PACKAGESPLITFUNCS=3D"=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 package_do_split_locales=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 populate_packages"
-PACKAGES_DYNAMIC=3D"^mono-locale-.*"
+        let start=0 end=100
+        for file in `seq 10`; do
+            for n in `seq $start $end`; do
+                echo "CONFIG_X$n=$file" >> $file.cfg
+            done
+            let start+=100 end+=100
+        done
 
-So it would seem that bitbake agrees that mono provides mono-gac. The reci=
-pe for test-sw is a binary package, and depends on mono via:
-RDEPENDS_${PN} =3D " \
-...
-mono \
-"
-I am quite new to Yocto, so it could be something very basic that I am mis=
-sing. I can actually build the image on my regular development machine, but=
- when setting up the build on a second machine I started getting this error=
-. I have verified that the new machine is using the same revisions of all l=
-ayers, and there is nothing funny in the local.conf on my dev-machine. Any =
-tips on what could be wrong would be most welcome!
+        time merge_config.sh -m *.cfg # Takes 15.3 seconds
+        time merge_config.py -m *.cfg # Takes 0.03 seconds
 
-I am using the Sumo release of Yocto.
+ 2. merge_config.sh produce false positive warnings when config name used
+    as config value:
 
-Thanks,
-Pelle
+        $ echo 'CONFIG_NAME="CONFIG_OTHER"' > 1.cfg
+        $ echo 'CONFIG_OTHER="value"' > 2.cfg
+        $ merge_config.sh -m 1.cfg 2.cfg
+        ...
+        Value of CONFIG_OTHER is redefined by fragment 2.cfg:
+        Previous value: CONFIG_NAME="CONFIG_OTHER"
+        New value: CONFIG_OTHER="value"
+        ...
 
---nr5qSSA3hKpW67MP0i3h
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+ 3. merge_config.sh can incorrectly process commentary as a configuration value:
 
-I'm trying to include mono in my image. I can successfully build the mono r=
-ecipe by itself, but when I try to build my image it fails with the followi=
-ng error message:<br />Error:<br />&nbsp;Problem: package test-sw-9.1.1b3-r=
-0.aarch64 requires mono, but none of the providers can be installed<br />&n=
-bsp; - conflicting requests<br />&nbsp; - nothing provides mono-gac needed =
-by mono-5.12.0.226-r0.aarch64<br /><br />This is a bit confusing since:<br =
-/>a) I can build mono by itself<br />b) the mono recipe should provide the =
-mono-gac package<br /><br />If I run 'bitbake -e mono | grep PACKAGES' I ge=
-t the output:<br />PACKAGES=3D"mono-dbg mono-doc mono-staticdev mono-locale=
- mono-libs mono-dev&nbsp; mono-config mono-binaries mono-libs-core&nbsp; mo=
-no-libs-2.0 mono-libs-3.5 mono-libs-4.0 mono-libs-4.5&nbsp; mono-api-4.5.1 =
-mono-api-4.5.2 mono-api-4.6 mono-api-4.6.1 mono-api-4.6.2 mono-api-4.7&nbsp=
-; mono-libs-compat-2.0 mono-gac mono-configuration-crypto&nbsp; mono-libs-m=
-onodoc mono-xbuild&nbsp; mono-lldb&nbsp; mono&nbsp; mono-profiler "<br />PA=
-CKAGESPLITFUNCS=3D"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; package_do_split_locales&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp; populate_packages"<br />PACKAGES_DYNAMIC=3D"^mono-locale-.*"<br=
- /><br />So it would seem that bitbake agrees that mono provides mono-gac. =
-The recipe for test-sw is a binary package, and depends on mono via:<br />R=
-DEPENDS_${PN} =3D " \<br />&nbsp; ...<br />&nbsp; mono \<br />"<br />I am q=
-uite new to Yocto, so it could be something very basic that I am missing. I=
- can actually build the image on my regular development machine, but when s=
-etting up the build on a second machine I started getting this error. I hav=
-e verified that the new machine is using the same revisions of all layers, =
-and there is nothing funny in the local.conf on my dev-machine. Any tips on=
- what could be wrong would be most welcome!<br /><br />I am using the Sumo =
-release of Yocto.<br /><br />Thanks,<br />Pelle<br /><br /><br /><br /><br =
-/><br />
+        $ echo "CONFIG_NAME=value" > 1.cfg
+        $ echo "# CONFIG_NAME was defined in 1.cfg" > 2.cfg
+        $ merge_config.sh -m 1.cfg 2.cfg
+        ...
+        Value of CONFIG_NAME is redefined by fragment 2.cfg:
+        Previous value: CONFIG_NAME=value
+        New value: # CONFIG_NAME was defined in 1.cfg
+        ...
+        $ cat .config
+        # CONFIG_NAME was defined in 1.cfg
 
---nr5qSSA3hKpW67MP0i3h--
+ 4. merge_config.py able to find re-definition inside of the same file:
+
+        $ echo "CONFIG_NAME=1" > 1.cfg
+        $ echo "CONFIG_NAME=2" >> 1.cfg
+	$ merge_config.py -m 1.cfg
+        ...
+        Value of CONFIG_NAME is redefined by fragment 1.cfg:
+        Previous value: CONFIG_NAME=1
+        New value: CONFIG_NAME=2
+        ...
+
+Signed-off-by: Nikolai Merinov <n.merinov@inango-systems.com>
+Signed-off-by: Oleksandr Hnatiuk <o.hnatiuk@inango-systems.com>
+---
+ Makefile              |   2 +-
+ tools/merge_config.py | 166 ++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 167 insertions(+), 1 deletion(-)
+ create mode 100755 tools/merge_config.py
+
+diff --git a/Makefile b/Makefile
+index eb3daac..df2fca7 100644
+--- a/Makefile
++++ b/Makefile
+@@ -2,7 +2,7 @@ kern_tools_LIST = kgit kgit-meta \
+ 		  kconf_check \
+ 		  get_defconfig scc \
+ 		  merge_config.sh spp kgit-s2q \
+-		  symbol_why.py
++		  symbol_why.py merge_config.py
+ 
+ cmds := $(wildcard tools/scc-cmds/*)
+ libs := Kconfiglib/kconfiglib.py
+diff --git a/tools/merge_config.py b/tools/merge_config.py
+new file mode 100755
+index 0000000..50e32eb
+--- /dev/null
++++ b/tools/merge_config.py
+@@ -0,0 +1,166 @@
++#!/usr/bin/env python3
++# SPDX-License-Identifier: GPL-2.0-only
++
++"""
++merge_config.py - Takes a list of config fragment values, and merges
++them one by one. Provides warnings on overridden values, and specified
++values that did not make it to the resulting .config file (due to missed
++dependencies or config symbol removal).
++"""
++
++#  Portions reused from merge_config.sh:
++#  http://git.yoctoproject.org/cgit/cgit.cgi/yocto-kernel-tools/tree/tools/merge_config.sh
++#
++#  Copyright (c) 2009-2010 Wind River Systems, Inc.
++#  Copyright 2011 Linaro
++#  Copyright (c) 2020 Inango Systems Ltd.
++#
++#  This program is free software; you can redistribute it and/or modify
++#  it under the terms of the GNU General Public License version 2 as
++#  published by the Free Software Foundation.
++#
++#  This program is distributed in the hope that it will be useful,
++#  but WITHOUT ANY WARRANTY; without even the implied warranty of
++#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
++#  See the GNU General Public License for more details.
++
++import sys
++import re
++import os
++import subprocess
++from collections import OrderedDict
++import argparse
++
++CONFIG_REGEX = r'^((# (?=.* is not set))?(CONFIG_[a-zA-Z0-9_]*)(=.*| is not set))$'
++
++def parse_arguments():
++    """Parse argv and return extracted options and list of the config files for merging"""
++    parser = argparse.ArgumentParser()
++    parser.add_argument('configs', metavar='CONFIG', type=str, nargs='+',
++                        help='path to the config fragment')
++    parser.add_argument('-m', dest='run_make', action='store_false',
++                        help='only merge the fragments, do not execute the make command')
++    parser.add_argument('-n', dest='alltarget', action='store_const',
++                        default='alldefconfig', const='allnoconfig',
++                        help='use allnoconfig instead of alldefconfig')
++    parser.add_argument('-r', dest='warn_redundant', action='store_true',
++                        help='list redundant entries when merging fragments')
++    parser.add_argument('-O', dest='output_dir', metavar='DIR', type=str,
++                        action='store', default='.',
++                        help='dir to put generated output files.  '
++                             'Consider setting $KCONFIG_CONFIG instead.')
++
++    args = parser.parse_args()
++
++    if not os.path.isdir(args.output_dir):
++        print("output directory {} does not exist".format(args.output_dir), file=sys.stderr)
++    else:
++        args.output_dir = args.output_dir.rstrip('/')
++
++    return args
++
++def merge_config(config_dict, file_name, warn_redundant=False):
++    """Add all configuration options from file_name to the config_dict dictionary.
++    This function warns about all configuration in config_dict that was redefined.
++    Optionally it warns about redifinition to the same value if warn_redundant is True"""
++    matches = re.findall(CONFIG_REGEX, open(file_name, "r").read(), re.MULTILINE)
++    for match in matches:
++        config_option = match[2]
++        new_value = match[0]
++        previous_value = config_dict.get(config_option)
++        if previous_value != None:
++            if previous_value != new_value:
++                print("Value of {} is redefined by fragment {}:".format(config_option, file_name))
++                print("Previous value: {}".format(previous_value))
++                print("New value: {}".format(new_value))
++                print()
++            elif warn_redundant:
++                print("Value of {} is redundant by fragment {}:".format(config_option, file_name))
++            del config_dict[config_option]
++        config_dict[config_option] = new_value
++
++def compare_configs(passed_config, resulting_config):
++    """Compare two dictionaries with config values and print warnings if
++    resulting_config changed any values presented in passed_config.
++
++    This function assumes that resulting_config is a result of processing of the
++    passed_config by make defconfig command."""
++    for config_option, requested_value in passed_config.items():
++        actual_value = resulting_config.get(config_option)
++        if actual_value is None:
++            print("Value requested for {} not in final .config".format(config_option))
++            print("Requested value: {}".format(requested_value))
++            print("There is no value for this config in .config")
++            print("")
++        elif requested_value != actual_value:
++            print("Value requested for {} not in final .config".format(config_option))
++            print("Requested value: {}".format(requested_value))
++            print("Actual value: {}".format(actual_value))
++            print("")
++
++def dump_config(dictionary, file_name):
++    """Write data stored in the dictionary to the file_name."""
++    out_file = open(file_name, "w")
++    for val in dictionary.values():
++        out_file.write("{}\n".format(val))
++    out_file.close()
++
++def exit_if_not_exists(file_name):
++    """Exit if the file_name do not point to an existed file."""
++    if not os.path.isfile(file_name):
++        print("The file '{}' does not exist.  Exit.".format(file_name), file=sys.stderr)
++        sys.exit(1)
++
++def main():
++    """Main function of this module."""
++    args = parse_arguments()
++
++    kconfig_config = os.getenv("KCONFIG_CONFIG")
++    if kconfig_config is None:
++        if args.output_dir != ".":
++            kconfig_config = os.path.realpath("{}/.config".format(args.output_dir))
++        else:
++            kconfig_config = ".config"
++    os.putenv("KCONFIG_CONFIG", kconfig_config)
++
++    final_config = OrderedDict()
++
++    base_config = args.configs[0]
++    merge_list = args.configs[1:]
++
++    exit_if_not_exists(base_config)
++    print("Using {} as base".format(base_config))
++    merge_config(final_config, base_config, args.warn_redundant)
++
++    # Merge files, printing warnings on overridden values
++    for merge_file in merge_list:
++        exit_if_not_exists(merge_file)
++        print("Merging {}".format(merge_file))
++        merge_config(final_config, merge_file)
++
++    dump_config(final_config, kconfig_config)
++
++    if not args.run_make:
++        print("#\n# merged configuration written to {} (needs make)\n#".format(kconfig_config))
++        sys.exit()
++
++    # If we have an output dir, setup the O= argument, otherwise leave
++    # it blank, since O=. will create an unnecessary ./source softlink
++    output_arg = ""
++    if args.output_dir != ".":
++        output_arg = "O={}".format(args.output_dir)
++
++
++    # Use the merged file as the starting point for:
++    # alldefconfig: Fills in any missing symbols with Kconfig default
++    # allnoconfig: Fills in any missing symbols with # CONFIG_* is not set
++    subprocess.run("make {} {}".format(output_arg, args.alltarget), shell=True)
++
++
++    # Check all specified config values took (might have missed-dependency issues)
++    kconfig_values = OrderedDict()
++    merge_config(kconfig_values, kconfig_config)
++
++    compare_configs(final_config, kconfig_values)
++
++main()
+-- 
+2.17.1
+
