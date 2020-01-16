@@ -1,216 +1,76 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.5583.1579159397429753140
+ by mx.groups.io with SMTP id smtpd.web09.6343.1579166115012388400
  for <yocto@lists.yoctoproject.org>;
- Wed, 15 Jan 2020 23:23:18 -0800
+ Thu, 16 Jan 2020 01:15:15 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: changqing.li@windriver.com)
+ dkim=missing; spf=none, err=permanent DNS error (domain: linux.intel.com, ip: 140.211.169.56, mailfrom: paul.eggleton@linux.intel.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0BAEE0144D; Wed, 15 Jan 2020 23:23:16 -0800 (PST)
+	id 7E044E01320; Thu, 16 Jan 2020 01:15:14 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
 	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 819CEE0122C
-	for <yocto@yoctoproject.org>; Wed, 15 Jan 2020 23:23:13 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com [147.11.189.41])
-	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 00G7NC6g013221
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 15 Jan 2020 23:23:12 -0800 (PST)
-Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
- ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
- 14.3.468.0; Wed, 15 Jan 2020 23:23:12 -0800
-From: "Changqing Li" <changqing.li@windriver.com>
-To: <yocto@yoctoproject.org>
-Subject: [meta-gplv2][PATCH] bison: fix builds with gettext 0.20.x
-Date: Thu, 16 Jan 2020 15:23:10 +0800
-Message-ID: <1579159390-152104-1-git-send-email-changqing.li@windriver.com>
-X-Mailer: git-send-email 2.7.4
+	*      [192.55.52.136 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 349C5E00EBC
+	for <yocto@yoctoproject.org>; Thu, 16 Jan 2020 01:15:10 -0800 (PST)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 16 Jan 2020 01:15:10 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,325,1574150400"; 
+   d="scan'208";a="248724010"
+Received: from chensiy1-mobl1.ccr.corp.intel.com (HELO shodan.localnet) ([10.255.137.144])
+  by fmsmga004.fm.intel.com with ESMTP; 16 Jan 2020 01:15:08 -0800
+From: "Paul Eggleton" <paul.eggleton@linux.intel.com>
+To: "Teemu K." <maillinglists18@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] Root login not working with Warrior
+Date: Thu, 16 Jan 2020 22:14:42 +1300
+Message-ID: <3521303.F0PmLzlIRM@shodan>
+Organization: Intel Corporation
+In-Reply-To: <CAAmVmrptcat5-BZa4f=ntcsZYgH=Rn3Xt9zK6K=1ykXZwOwcig@mail.gmail.com>
+References: <CAAmVmrptcat5-BZa4f=ntcsZYgH=Rn3Xt9zK6K=1ykXZwOwcig@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-From: Changqing Li <changqing.li@windriver.com>
+Hi Teemu
 
-Fix configure error like:
-error: possibly undefined macro: gl_AC_HEADER_STDINT_H
+On Tuesday, 14 January 2020 4:37:29 AM NZDT Teemu K. wrote:
+> I have Yocto image that was originally made with Thud - version of
+> Yocto. It was working fine and I was able to login as root via serial
+> console.
+> 
+> Then I updated Yocto to Warrior and now for some reason when I try to
+> login as root via serial console it says 'login incorrect' when I
+> enter 'root' as a user and press enter. It doesn't even ask any
+> passwords before saying that. I tried enabling debug-tweaks and still
+> the same. Can't login as a root.
+> 
+> I have another user that I can login just fine and with sudo I can
+> also use root access. I just can't login as root.
+> 
+> I looked through /etc/passwd and /etc/shadow and they looked okay. Has
+> something changed in Warrior regarding this? I tried googling, but
+> didn't find anything.
 
-Signed-off-by: Changqing Li <changqing.li@windriver.com>
----
- recipes-devtools/bison/bison/bison-2.3_m4.patch | 121 ++++++++++++------------
- 1 file changed, 61 insertions(+), 60 deletions(-)
+Is there an /etc/securetty file and if so what does it contain?
 
-diff --git a/recipes-devtools/bison/bison/bison-2.3_m4.patch b/recipes-devtools/bison/bison/bison-2.3_m4.patch
-index 348ce1d..626bc42 100644
---- a/recipes-devtools/bison/bison/bison-2.3_m4.patch
-+++ b/recipes-devtools/bison/bison/bison-2.3_m4.patch
-@@ -76,34 +76,35 @@ Upstream-Status: Pending
- +])
- --- /dev/null
- +++ bison-1.875/m4/uintmax_t.m4
--@@ -0,0 +1,29 @@
--+# uintmax_t.m4 serial 6 (gettext-0.11)
--+dnl Copyright (C) 1997-2002 Free Software Foundation, Inc.
--+dnl This file is free software, distributed under the terms of the GNU
--+dnl General Public License.  As a special exception to the GNU General
--+dnl Public License, this file may be distributed as part of a program
--+dnl that contains a configuration script generated by Autoconf, under
--+dnl the same distribution terms as the rest of that program.
-+@@ -0,0 +1,30 @@
-++# uintmax_t.m4 serial 12 (gettext-0.20.1)
-++dnl Copyright (C) 1997-2004, 2007-2019 Free Software Foundation, Inc.
-++dnl This file is free software; the Free Software Foundation
-++dnl gives unlimited permission to copy and/or distribute it,
-++dnl with or without modifications, as long as this notice is preserved.
- +
- +dnl From Paul Eggert.
- +
--+AC_PREREQ(2.13)
-++AC_PREREQ([2.13])
- +
--+# Define uintmax_t to `unsigned long' or `unsigned long long'
--+# if <inttypes.h> does not exist.
-++# Define uintmax_t to 'unsigned long' or 'unsigned long long'
-++# if it is not already defined in <stdint.h> or <inttypes.h>.
- +
--+AC_DEFUN([jm_AC_TYPE_UINTMAX_T],
-++AC_DEFUN([gl_AC_TYPE_UINTMAX_T],
- +[
--+  AC_REQUIRE([jm_AC_HEADER_INTTYPES_H])
--+  AC_REQUIRE([jm_AC_HEADER_STDINT_H])
--+  if test $jm_ac_cv_header_inttypes_h = no && test $jm_ac_cv_header_stdint_h = no; then
--+    AC_REQUIRE([jm_AC_TYPE_UNSIGNED_LONG_LONG])
--+    test $ac_cv_type_unsigned_long_long = yes \
-++  AC_REQUIRE([gl_AC_HEADER_INTTYPES_H])
-++  AC_REQUIRE([gl_AC_HEADER_STDINT_H])
-++  if test $gl_cv_header_inttypes_h = no && test $gl_cv_header_stdint_h = no; then
-++    AC_REQUIRE([AC_TYPE_UNSIGNED_LONG_LONG_INT])
-++    test $ac_cv_type_unsigned_long_long_int = yes \
- +      && ac_type='unsigned long long' \
- +      || ac_type='unsigned long'
--+    AC_DEFINE_UNQUOTED(uintmax_t, $ac_type,
--+  [Define to unsigned long or unsigned long long
--+   if <inttypes.h> and <stdint.h> don't define.])
-++    AC_DEFINE_UNQUOTED([uintmax_t], [$ac_type],
-++      [Define to unsigned long or unsigned long long
-++       if <stdint.h> and <inttypes.h> don't define.])
-++  else
-++    AC_DEFINE([HAVE_UINTMAX_T], [1],
-++      [Define if you have the 'uintmax_t' type in <stdint.h> or <inttypes.h>.])
- +  fi
- +])
- --- /dev/null
-@@ -143,64 +144,64 @@ Upstream-Status: Pending
- +)
- --- /dev/null
- +++ bison-1.875/m4/stdint_h.m4
--@@ -0,0 +1,28 @@
--+# stdint_h.m4 serial 2 (gettext-0.11.4)
--+dnl Copyright (C) 1997-2002 Free Software Foundation, Inc.
--+dnl This file is free software, distributed under the terms of the GNU
--+dnl General Public License.  As a special exception to the GNU General
--+dnl Public License, this file may be distributed as part of a program
--+dnl that contains a configuration script generated by Autoconf, under
--+dnl the same distribution terms as the rest of that program.
-+@@ -0,0 +1,27 @@
-++# stdint_h.m4 serial 9 (gettext-0.20.1)
-++dnl Copyright (C) 1997-2004, 2006, 2008-2019 Free Software Foundation, Inc.
-++dnl This file is free software; the Free Software Foundation
-++dnl gives unlimited permission to copy and/or distribute it,
-++dnl with or without modifications, as long as this notice is preserved.
- +
- +dnl From Paul Eggert.
- +
- +# Define HAVE_STDINT_H_WITH_UINTMAX if <stdint.h> exists,
- +# doesn't clash with <sys/types.h>, and declares uintmax_t.
- +
--+AC_DEFUN([jm_AC_HEADER_STDINT_H],
-++AC_DEFUN([gl_AC_HEADER_STDINT_H],
- +[
--+  AC_CACHE_CHECK([for stdint.h], jm_ac_cv_header_stdint_h,
--+  [AC_TRY_COMPILE(
--+    [#include <sys/types.h>
--+#include <stdint.h>],
--+    [uintmax_t i = (uintmax_t) -1;],
--+    jm_ac_cv_header_stdint_h=yes,
--+    jm_ac_cv_header_stdint_h=no)])
--+  if test $jm_ac_cv_header_stdint_h = yes; then
--+    AC_DEFINE_UNQUOTED(HAVE_STDINT_H_WITH_UINTMAX, 1,
--+[Define if <stdint.h> exists, doesn't clash with <sys/types.h>,
--+   and declares uintmax_t. ])
-++  AC_CACHE_CHECK([for stdint.h], [gl_cv_header_stdint_h],
-++    [AC_COMPILE_IFELSE(
-++       [AC_LANG_PROGRAM(
-++          [[#include <sys/types.h>
-++            #include <stdint.h>]],
-++          [[uintmax_t i = (uintmax_t) -1; return !i;]])],
-++       [gl_cv_header_stdint_h=yes],
-++       [gl_cv_header_stdint_h=no])])
-++  if test $gl_cv_header_stdint_h = yes; then
-++    AC_DEFINE_UNQUOTED([HAVE_STDINT_H_WITH_UINTMAX], [1],
-++      [Define if <stdint.h> exists, doesn't clash with <sys/types.h>,
-++       and declares uintmax_t. ])
- +  fi
- +])
- --- /dev/null
- +++ bison-1.875/m4/inttypes_h.m4
--@@ -0,0 +1,28 @@
--+# inttypes_h.m4 serial 4 (gettext-0.11.4)
--+dnl Copyright (C) 1997-2002 Free Software Foundation, Inc.
--+dnl This file is free software, distributed under the terms of the GNU
--+dnl General Public License.  As a special exception to the GNU General
--+dnl Public License, this file may be distributed as part of a program
--+dnl that contains a configuration script generated by Autoconf, under
--+dnl the same distribution terms as the rest of that program.
-+@@ -0,0 +1,29 @@
-++# inttypes_h.m4 serial 10 (gettext-0.20.1)
-++dnl Copyright (C) 1997-2004, 2006, 2008-2019 Free Software Foundation, Inc.
-++dnl This file is free software; the Free Software Foundation
-++dnl gives unlimited permission to copy and/or distribute it,
-++dnl with or without modifications, as long as this notice is preserved.
- +
- +dnl From Paul Eggert.
- +
- +# Define HAVE_INTTYPES_H_WITH_UINTMAX if <inttypes.h> exists,
- +# doesn't clash with <sys/types.h>, and declares uintmax_t.
- +
--+AC_DEFUN([jm_AC_HEADER_INTTYPES_H],
-++AC_DEFUN([gl_AC_HEADER_INTTYPES_H],
- +[
--+  AC_CACHE_CHECK([for inttypes.h], jm_ac_cv_header_inttypes_h,
--+  [AC_TRY_COMPILE(
--+    [#include <sys/types.h>
--+#include <inttypes.h>],
--+    [uintmax_t i = (uintmax_t) -1;],
--+    jm_ac_cv_header_inttypes_h=yes,
--+    jm_ac_cv_header_inttypes_h=no)])
--+  if test $jm_ac_cv_header_inttypes_h = yes; then
--+    AC_DEFINE_UNQUOTED(HAVE_INTTYPES_H_WITH_UINTMAX, 1,
--+[Define if <inttypes.h> exists, doesn't clash with <sys/types.h>,
--+   and declares uintmax_t. ])
-++  AC_CACHE_CHECK([for inttypes.h], [gl_cv_header_inttypes_h],
-++    [AC_COMPILE_IFELSE(
-++       [AC_LANG_PROGRAM(
-++          [[
-++#include <sys/types.h>
-++#include <inttypes.h>
-++          ]],
-++          [[uintmax_t i = (uintmax_t) -1; return !i;]])],
-++       [gl_cv_header_inttypes_h=yes],
-++       [gl_cv_header_inttypes_h=no])])
-++  if test $gl_cv_header_inttypes_h = yes; then
-++    AC_DEFINE_UNQUOTED([HAVE_INTTYPES_H_WITH_UINTMAX], [1],
-++      [Define if <inttypes.h> exists, doesn't clash with <sys/types.h>,
-++       and declares uintmax_t. ])
- +  fi
- +])
- --- /dev/null
+Cheers
+Paul
+
 -- 
-2.7.4
+
+Paul Eggleton
+Intel System Software Products
+
 
