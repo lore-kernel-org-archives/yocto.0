@@ -1,56 +1,90 @@
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
- by mx.groups.io with SMTP id smtpd.web10.7482.1579171289194800694
+Received: from 7.mo178.mail-out.ovh.net (7.mo178.mail-out.ovh.net [46.105.58.91])
+ by mx.groups.io with SMTP id smtpd.web10.7498.1579171444937823740
  for <yocto@lists.yoctoproject.org>;
- Thu, 16 Jan 2020 02:41:29 -0800
+ Thu, 16 Jan 2020 02:44:05 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@holoplot-com.20150623.gappssmtp.com header.s=20150623 header.b=c2HH3eJn;
- spf=pass (domain: holoplot.com, ip: 209.85.221.52, mailfrom: morgan.hill@holoplot.com)
-Received: by mail-wr1-f52.google.com with SMTP id w15so18638442wru.4
-        for <yocto@lists.yoctoproject.org>; Thu, 16 Jan 2020 02:41:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=holoplot-com.20150623.gappssmtp.com; s=20150623;
-        h=message-id:subject:from:to:cc:date:user-agent:mime-version
-         :content-transfer-encoding;
-        bh=ik3GgxY7vtEeAzaReFU5ce2ySlLlVL4Ohg7W+te7Cx4=;
-        b=c2HH3eJn1Q3OitEnWmcTNOUqSREmGxYr8lPJ/GZfCd/+s/XVHZg3qh09kgZdbAcxO/
-         yxXRnaZSGWX7iJ0iWBMVUOjQFy55PQEmjnUmbd5UPfYHJGJP9Qje9twJa2r9Uz30LY4f
-         Yj4ExamUF98mo6l+6eUiEqsPRzF/y/BYgSdOaF2qLiUz2I+dQiVQFB6jfcAPlmsDmxgc
-         QPliNuoFE1MTdEuyVShu/yHsd6HqW5cwR/8UcZiNaIlCLFzI9yP404E8AAfO1isolAjq
-         CxCllDheeCA+oPIY/JhsQV7XNcqdSfsdmWsEzGXgqEOXo/77AIXxnUo+X/DUUdftJ307
-         sk4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=ik3GgxY7vtEeAzaReFU5ce2ySlLlVL4Ohg7W+te7Cx4=;
-        b=RnyPyiScLkUvHlNKo37byrtKKjtpfNF+dDhrhfo8GZUvh2bc1/bITEr0HuDL29YBC9
-         kbqaEKa5UyLn23gTP7v7hoxFOj+mMGFIucrj0UXwXxaZ2fRhSZ6KtoGueMOYm3I5iEV4
-         fyZZs3XjDXJ4TRDVG4aUH/JnkSy5Ax2u5Oft//csB7zpqEKdUpnYrDPsPFGapEi52QNo
-         itTtRamrCIwyCG8Jyyqtw3i1NwoE9SiKfN+XYCWyk70/h+2hAGK+lnxcCPL26Hyw0M5C
-         hvAqzmeJ09gof7CBr+EXFLSBIyhBNf+rVWIczWDGQjX5/mJanR1IoSaQ4Li9EPptbHm5
-         pEYA==
-X-Gm-Message-State: APjAAAU+idy7/vnX2wXpMZ2B2j7/xC/7ohtSruFrw5zn6luNI18D71qR
-	D9C1aM8if3b5zbesgVclOqdFhbTa62amKA==
-X-Google-Smtp-Source: APXvYqxM2JRRP9JKcy4mu1QQDqT1KOFB9QTeozj0ZwNLKY6/RTLrL1KPXOfdqtdjyX49aXVjq1ZPKg==
-X-Received: by 2002:a5d:6ca1:: with SMTP id a1mr2525888wra.36.1579171287409;
-        Thu, 16 Jan 2020 02:41:27 -0800 (PST)
-Return-Path: <morgan.hill@holoplot.com>
-Received: from localhost.localdomain ([194.162.236.226])
-        by smtp.gmail.com with ESMTPSA id o4sm27716179wrx.25.2020.01.16.02.41.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 16 Jan 2020 02:41:26 -0800 (PST)
-Message-ID: <0eeb62cad66cfc836a47e9cbdd878fa16db90602.camel@holoplot.com>
-Subject: Building multipartition images
-From: morgan.hill@holoplot.com
+ dkim=missing; spf=softfail (domain: 3mdeb.com, ip: 46.105.58.91, mailfrom: maciej.pijanowski@3mdeb.com)
+Received: from player794.ha.ovh.net (unknown [10.109.143.24])
+	by mo178.mail-out.ovh.net (Postfix) with ESMTP id 4A0798CBBD
+	for <yocto@lists.yoctoproject.org>; Thu, 16 Jan 2020 11:44:03 +0100 (CET)
+Received: from 3mdeb.com (85-222-117-222.dynamic.chello.pl [85.222.117.222])
+	(Authenticated sender: maciej.pijanowski@3mdeb.com)
+	by player794.ha.ovh.net (Postfix) with ESMTPSA id 386E1B47684E
+	for <yocto@lists.yoctoproject.org>; Thu, 16 Jan 2020 10:44:01 +0000 (UTC)
+Subject: Re: [yocto] Building multipartition images
 To: yocto@lists.yoctoproject.org
-Cc: "pascal.huerst@gmail.com" <pascal.huerst@gmail.com>
-Date: Thu, 16 Jan 2020 11:41:25 +0100
-User-Agent: Evolution 3.34.2 (3.34.2-1.fc31) 
+References: <0eeb62cad66cfc836a47e9cbdd878fa16db90602.camel@holoplot.com>
+From: "Maciej Pijanowski" <maciej.pijanowski@3mdeb.com>
+Message-ID: <15fe80e0-597e-a62a-bc7c-99121c86f8d7@3mdeb.com>
+Date: Thu, 16 Jan 2020 11:44:00 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <0eeb62cad66cfc836a47e9cbdd878fa16db90602.camel@holoplot.com>
+X-Ovh-Tracer-Id: 4499658980478299654
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrtdehgddukecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhepuffvfhfhkffffgggjggtsegrtderredtfeejnecuhfhrohhmpeforggtihgvjhcurfhijhgrnhhofihskhhiuceomhgrtghivghjrdhpihhjrghnohifshhkihesfehmuggvsgdrtghomheqnecuffhomhgrihhnpehgihhthhhusgdrtghomhdphihotghtohhprhhojhgvtghtrdhorhhgpdefmhguvggsrdgtohhmnecukfhppedtrddtrddtrddtpdekhedrvddvvddruddujedrvddvvdenucfrrghrrghmpehmohguvgepshhmthhpqdhouhhtpdhhvghlohepphhlrgihvghrjeelgedrhhgrrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehmrggtihgvjhdrphhijhgrnhhofihskhhiseefmhguvggsrdgtohhmpdhrtghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
+Content-Type: multipart/alternative;
+ boundary="------------7B6204405397787AF6F815C9"
+Content-Language: en-US
+
+--------------7B6204405397787AF6F815C9
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hello all,
+
+On 16.01.2020 11:41, morgan.hill@holoplot.com wrote:
+> Hello all,
+>
+> I would link to have a read only / partition and a writeable /etc
+> partition. The pain point I'm running into is populating /etc from the
+> rootfs. The quick solution is to script the creation of disk images
+> from the rootfs, outside the bitbake tool chain, however this seems non
+> ideal.
+>
+> I understand that there is the possibility to create partitions using
+> wks files. The pain point with wks is that the if one specifies rootfs
+> as the source of both / and /etc partitions both will be populated with
+> the completed rootfs. The ideal scenario would be that the partitions
+> are created and mounted then the rootfs is copied on top and the fstab
+> is installed (as in the installation of other GNU/Linux distributions).
+>
+> If anyone has solved or knows how to solve this problem neatly in an
+> image recipe for example some tips would be much appreciated.
+Using wic you can exclude one directory from the partition and install
+it into another partition. Example I've used some time ago:
+https://github.com/3mdeb/meta-rte/blob/master/wic/sunxi-mmc-spl.wks#L4
+>
+> Morgan Hill
+>
+>
+> 
+
+-- 
+Maciej Pijanowski
+Embedded Systems Engineer
+GPG: F1401D2E1CCB19EF
+https://3mdeb.com | @3mdeb_com
+
+
+--------------7B6204405397787AF6F815C9
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 16.01.2020 11:41,
+      <a class="moz-txt-link-abbreviated" href="mailto:morgan.hill@holoplot.com">morgan.hill@holoplot.com</a> wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:0eeb62cad66cfc836a47e9cbdd878fa16db90602.camel@holoplot.com">
+      <pre class="moz-quote-pre" wrap="">Hello all,
 
 I would link to have a read only / partition and a writeable /etc
 partition. The pain point I'm running into is populating /etc from the
@@ -66,7 +100,30 @@ are created and mounted then the rootfs is copied on top and the fstab
 is installed (as in the installation of other GNU/Linux distributions).
 
 If anyone has solved or knows how to solve this problem neatly in an
-image recipe for example some tips would be much appreciated.
+image recipe for example some tips would be much appreciated.</pre>
+    </blockquote>
+    Using wic you can exclude one directory from the partition and
+    install<br>
+    it into another partition. Example I've used some time ago:<br>
+<a class="moz-txt-link-freetext" href="https://github.com/3mdeb/meta-rte/blob/master/wic/sunxi-mmc-spl.wks#L4">https://github.com/3mdeb/meta-rte/blob/master/wic/sunxi-mmc-spl.wks#L4</a><br>
+    <blockquote type="cite"
+      cite="mid:0eeb62cad66cfc836a47e9cbdd878fa16db90602.camel@holoplot.com">
+      <pre class="moz-quote-pre" wrap="">
 
 Morgan Hill
 
+</pre>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+    <pre class="moz-signature" cols="72">-- 
+Maciej Pijanowski
+Embedded Systems Engineer
+GPG: F1401D2E1CCB19EF
+<a class="moz-txt-link-freetext" href="https://3mdeb.com">https://3mdeb.com</a> | @3mdeb_com</pre>
+  </body>
+</html>
+
+--------------7B6204405397787AF6F815C9--
