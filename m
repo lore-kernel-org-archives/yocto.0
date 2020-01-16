@@ -1,72 +1,70 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.2437.1579205271365711510
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+ by mx.groups.io with SMTP id smtpd.web09.2964.1579207519817460945
  for <yocto@lists.yoctoproject.org>;
- Thu, 16 Jan 2020 12:07:51 -0800
+ Thu, 16 Jan 2020 12:45:20 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=a5JJPSOz;
- spf=softfail (domain: konsulko.com, ip: 140.211.169.56, mailfrom: paul.barker@konsulko.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DAFB8E01564; Thu, 16 Jan 2020 12:07:50 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.167.172 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4C29E012A0
-	for <yocto@yoctoproject.org>; Thu, 16 Jan 2020 12:07:47 -0800 (PST)
-Received: by mail-oi1-f172.google.com with SMTP id c16so20038977oic.3
-        for <yocto@yoctoproject.org>; Thu, 16 Jan 2020 12:07:47 -0800 (PST)
+ dkim=pass header.i=@konsulko.com header.s=google header.b=d9S3R/cP;
+ spf=pass (domain: konsulko.com, ip: 209.85.128.44, mailfrom: pbarker@konsulko.com)
+Received: by mail-wm1-f44.google.com with SMTP id u2so5250024wmc.3
+        for <yocto@lists.yoctoproject.org>; Thu, 16 Jan 2020 12:45:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=konsulko.com; s=google;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=jxiDyUZHjSEJNGczrm3KPVwu5yyFqtM6gAI8QtkOmXo=;
-        b=a5JJPSOzBckZ+BOf28iPV7a1gv/Xt4mNkQ1/HDd7zIDt9W8foq0p25T28sDoa3z+BX
-         jYXe48b+K8+dWcvOixseDbBY+h9JGt8+ApGDWxk3HtDdEv4h/eFgGAAHLfEZPvcCxPpF
-         CJhg4r4hfIIOYtC0R5nUPTwOKe7y+QWX5P78I=
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IyyHYlUc0Ls/ruM8meOPgfnW1WUw5SWPo5mGhMnhXIg=;
+        b=d9S3R/cPQSYQkj0e0nCpFr08LNRzO1txW2EaL2pArV5VaE6KjX27Sq5IVj6CrbRJAu
+         enIO3NO3rQxXYY85kXVt8H3zc+HZ8KrK3vXztgMO/Ci4xmTyM8ZAtWfAZVx5Orxgc5KR
+         8E27I0CRDg5F0nVrQX8D06HTmvxUpNcUe4CPo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=jxiDyUZHjSEJNGczrm3KPVwu5yyFqtM6gAI8QtkOmXo=;
-        b=fi+2L5zmIYrt+YKc26zdvTcPEGQqbHB+85yTgrVoD5/CJQJIVgu/l14x/iFbpHXJvS
-         rTazbl8BDtpzBCDk3gIGnzFMmiHuG2gjF7Zs3G18g5mRlfqDv2tWy5LgvcrQd+OYfAta
-         LKutWnHF3kZzcaJ3lY+CCIA4u11NWrduv0/jiuYlSdmus33dKfLNosRfBT6a+joW7flp
-         ayOLrvjJuhaQC4qCIhaoA8p+chDIabU9d6CAmiMYVISQy5z1eyHajeiIVXViQyhxzMNz
-         2M0FGC8kPTO/QN9eNAgP4f2EbZKj5h8I9uksDeGh1lH3YhGDLcwHTDbw74ztZN3/PWgY
-         vPMA==
-X-Gm-Message-State: APjAAAWAwvRfRQsyAu1d2qCIAAMIxCUZOPEuR63fJYEGT02dembBnKuj
-	006CF16PBXd2Rp21cbPtTCq2NNDzqa4NPP3Px4HEM13o+1ef8g==
-X-Google-Smtp-Source: APXvYqw8dUP/g7ZWQPph8uC5jIX7wo349q28baNBIJkqQvG7V8AQgiQ0Hi4vxbUiQ638QHV94C4ti4qWMeKDcscZiX8=
-X-Received: by 2002:aca:d985:: with SMTP id q127mr653929oig.132.1579205266818;
- Thu, 16 Jan 2020 12:07:46 -0800 (PST)
-MIME-Version: 1.0
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=IyyHYlUc0Ls/ruM8meOPgfnW1WUw5SWPo5mGhMnhXIg=;
+        b=cFrMCGCfOPVZnnd2xd2S81XQpzC2u8sRvZuiNzajgd2VN57P6sFuqkpVqE0uZHKR2P
+         GFkZpDIVhhTW6BCwSUeSF4lwFYenuHP1fNvo9XCTkaalYVQYxoJgii7fdAj3hlRL0bd7
+         fm195tprzjqYNXEw4uLoB9zlneu11gDED8z1cAykQCh/Gg1aOOxyV5sPGtZ37UofRdrK
+         ESx8rC77axR8zDYCgMu/W60XPap6KJZkQEhe4a21vzdYi/34QPxpC7ubhiJ5XE/hSIjs
+         OFtTb6f4JQIratAfjEpCiH5S3KURV5zWYVmRdjaH5NCevNexmiX4hBtl0wGkfSglrtQc
+         3e2A==
+X-Gm-Message-State: APjAAAVLPDP5e69P5rc2G5DZrFQC6eWy0vjQ1lkAnGqmMK9NI1uDJ4FZ
+	Xeiy6sIqb8ACE++TWmxEaNgmPjWse8Qnkxbn
+X-Google-Smtp-Source: APXvYqxwxBhrAIq2oH795swngvN1RusQU+yVZ4Mi0DX7oqrKMXkZ0B8x1Kw2ZEzd6mvFRGkKo9COoA==
+X-Received: by 2002:a1c:8086:: with SMTP id b128mr853887wmd.80.1579207517995;
+        Thu, 16 Jan 2020 12:45:17 -0800 (PST)
+Return-Path: <pbarker@konsulko.com>
+Received: from arch0.home.b5net.uk ([213.48.11.149])
+        by smtp.gmail.com with ESMTPSA id q11sm31101771wrp.24.2020.01.16.12.45.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 16 Jan 2020 12:45:17 -0800 (PST)
 From: "Paul Barker" <pbarker@konsulko.com>
-Date: Thu, 16 Jan 2020 20:07:36 +0000
-Message-ID: <CAM9ZRVv1O-vdWAtN=2GXjSz=sJ+LDGZYMKv0qiFzEa5Q3J9+Wg@mail.gmail.com>
-Subject: patchtest licensing
-To: Yocto discussion list <yocto@yoctoproject.org>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Content-Type: text/plain; charset="UTF-8"
+To: yocto@lists.yoctoproject.org
+Cc: Paul Barker <pbarker@konsulko.com>
+Subject: [patchtest][PATCH 1/2] README: Update maintainers
+Date: Thu, 16 Jan 2020 20:45:07 +0000
+Message-Id: <20200116204508.5489-1-pbarker@konsulko.com>
+X-Mailer: git-send-email 2.25.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-Hey folks,
+Signed-off-by: Paul Barker <pbarker@konsulko.com>
+---
+ README | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
-I've started looking through patchtest & patchtest-oe in detail and
-spotted that all the scripts, support code and test cases are licensed
-under GPLv2. Is that ok given that we plan to copy this into
-openembedded-core (probably under meta/lib/oeqa)? Is there any
-practical effect of this not being MIT licensed?
+diff --git a/README b/README
+index b87eeb4..0a429f8 100644
+--- a/README
++++ b/README
+@@ -40,8 +40,7 @@ Maintenance
+ -----------
+ 
+ Maintainers:
+-    Leo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+-    Paul "bluelightning" Eggleton <paul.eggleton@linux.intel.com>
++    Paul Barker <pbarker@konsulko.com>
+ 
+ Links
+ -----
+-- 
+2.25.0
 
-Thanks,
-Paul
