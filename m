@@ -1,171 +1,43 @@
-Received: from mxwn13.webd.pl (mxwn13.webd.pl [194.181.228.67])
- by mx.groups.io with SMTP id smtpd.web09.1348.1579246853441533245
+Received: from mail.tagmaster.com (mail.tagmaster.com [37.233.78.77])
+ by mx.groups.io with SMTP id smtpd.web09.1593.1579248793019399164
  for <yocto@lists.yoctoproject.org>;
- Thu, 16 Jan 2020 23:40:54 -0800
+ Fri, 17 Jan 2020 00:13:13 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=permerror, err=syntax error for token:  (domain: xtrack.com, ip: 194.181.228.67, mailfrom: m.madej@xtrack.com)
-Received: from wn13.int.webd ([192.168.101.113] helo=wn13.webd.pl)
-	by mta01.webd.pl with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-	(Exim 4.92.3)
-	(envelope-from <m.madej@xtrack.com>)
-	id 1isMFN-0003Z6-31
-	for yocto@lists.yoctoproject.org; Fri, 17 Jan 2020 08:40:49 +0100
-Received: from [192.168.101.231] (port=43743 helo=mta01.int.webd)
-	by wn13.webd.pl with esmtp (Exim 4.92)
-	(envelope-from <m.madej@xtrack.com>)
-	id 1isMFM-0004GR-VI
-	for yocto@lists.yoctoproject.org; Fri, 17 Jan 2020 08:40:48 +0100
-X-Quarantine-ID: <Mj-xZH_8OlQm>
-X-Virus-Scanned: amavisd-new at mxwn13.webd.pl
-Received: from wn13.webd.pl ([192.168.101.113])
-	by mta01.int.webd (mxwn13.webd.pl [192.168.101.200]) (amavisd-new, port 10134)
-	with ESMTP id Mj-xZH_8OlQm for <yocto@lists.yoctoproject.org>;
-	Fri, 17 Jan 2020 08:40:45 +0100 (CET)
-Received: from azz22.internetdsl.tpnet.pl ([83.18.155.22]:35446 helo=[192.168.6.108])
-	by wn13.webd.pl with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-	(Exim 4.92)
-	(envelope-from <m.madej@xtrack.com>)
-	id 1isMFJ-00063h-0Y
-	for yocto@lists.yoctoproject.org; Fri, 17 Jan 2020 08:40:45 +0100
-Subject: Re: [yocto] #sdk
-From: m.madej@xtrack.com
-To: yocto@lists.yoctoproject.org
-References: <2zkv.1579182797318490741.rkdo@lists.yoctoproject.org>
-Message-ID: <eb1cb351-8339-fcad-d36a-d5a2b83dcb8e@xtrack.com>
-Date: Fri, 17 Jan 2020 08:40:42 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.3.0
+ dkim=missing; spf=pass (domain: tagmaster.com, ip: 37.233.78.77, mailfrom: pelle.windestam@tagmaster.com)
+Received: from TMEX01.tagmaster.com (10.10.55.12) by TMEX01.tagmaster.com
+ (10.10.55.12) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.1.845.34; Fri, 17 Jan
+ 2020 09:13:10 +0100
+Received: from TMEX01.tagmaster.com ([fe80::e438:720a:793e:d353]) by
+ TMEX01.tagmaster.com ([fe80::e438:720a:793e:d353%9]) with mapi id
+ 15.01.0845.034; Fri, 17 Jan 2020 09:13:10 +0100
+From: "Pelle Windestam" <pelle.windestam@tagmaster.com>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Trouble building mono (when building an image)
+Thread-Topic: [yocto] Trouble building mono (when building an image)
+Thread-Index: AQHVzHKF1vmseEUlgkKxSHZXxXcseqftUFnQgAEyX2A=
+Date: Fri, 17 Jan 2020 08:13:09 +0000
+Message-ID: <9917d9cbdd904cd4a7b6dd8cb0ef0aa8@tagmaster.com>
+References: <Hb46.1579180220496162285.4Eb6@lists.yoctoproject.org>
+ <CANNYZj92RnSZs4UvuKCjjhf6eJeX69YEVAMiFn4WPRyRqCin4Q@mail.gmail.com>
+ <a46dc260650849b6bf126b2f81bbfc9c@tagmaster.com>
+In-Reply-To: <a46dc260650849b6bf126b2f81bbfc9c@tagmaster.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.10.55.73]
 MIME-Version: 1.0
-In-Reply-To: <2zkv.1579182797318490741.rkdo@lists.yoctoproject.org>
-Content-Type: multipart/alternative;
- boundary="------------F3988425F630EFFC28A21C70"
 Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---------------F3988425F630EFFC28A21C70
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-I investigate my problem further. I think the source of problem is 
-connected to lack of this file
-
-(SDKROOT)/tmp/sysroots/x86_64/usr/share/meson/meson.cross.template
-
-I dont have even (SDKROOT)/tmp/sysroots/x86_64/usr/share/meson 
-directory. Does anyone knows what could be a reason? Or how to add meson 
-directory to this sysroot on SDK?
-
-On 1/16/20 2:53 PM, m.madej@xtrack.com wrote:
-> Hello, I work on Yocto warrior branch. I use debian buster. I built 
-> extensible SDK for my image and wanted to install it. Build passes 
-> without any problem but at the end of installation process i got 
-> following messages:
->
-> /SDK environment now set up; additionally you may now run devtool to 
-> perform development tasks./
-> /Run devtool --help for further details./
-> */(SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3: line 5: 
-> (SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real: No 
-> such file or directory/*
-> */post-relocate command 
-> "(SDKROOT)/sysroots/x86_64-pokysdk-linux/post-relocate-setup.d/meson-setup.py 
-> (SDKROOT)" failed with status 127/*
-> /SDK has been successfully set up and is ready to be used./
-> /Each time you wish to use the SDK in a new shell session, you need to 
-> source the environment setup script e.g./
->
-> In spite of fact there is information that SDK is successfully set up 
-> it does not work and after loading environment devtool command output is:
->
-> /$ devtool/
-> /(SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3: line 5: 
-> (SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real/
->
-> To analyze the problem I also run:
->
-> /$ file (SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real/
-> /(SDKROOT)///sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real: ELF 
-> 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically 
-> linked, *interpreter 
-> /opt/smart-recovery/2.7.2/sysroots/x86_64-pokysdk-linux/lib/ld-linux-x86-64.so.2*, 
-> BuildID[sha1]=bc0bda633e50a52d06a027cc21707a0be0341f64, for GNU/Linux 
-> 3.2.0, stripped
->
-> /The problem is that interpreter file does not exist and this is 
-> probably caused by problem which occured at installation process. Is 
-> the problem known to anyone?
->
-> 
-
---------------F3988425F630EFFC28A21C70
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>I investigate my problem further. I think the source of problem
-      is connected to lack of this file</p>
-    <p>(SDKROOT)/tmp/sysroots/x86_64/usr/share/meson/meson.cross.template</p>
-    <p>I dont have even (SDKROOT)/tmp/sysroots/x86_64/usr/share/meson
-      directory. Does anyone knows what could be a reason? Or how to add
-      meson directory to this sysroot on SDK?<br>
-    </p>
-    <div class="moz-cite-prefix">On 1/16/20 2:53 PM, <a class="moz-txt-link-abbreviated" href="mailto:m.madej@xtrack.com">m.madej@xtrack.com</a>
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:2zkv.1579182797318490741.rkdo@lists.yoctoproject.org">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      Hello, I work on Yocto warrior branch. I use debian buster. I
-      built extensible SDK for my image and wanted to install it. Build
-      passes without any problem but at the end of installation process
-      i got following messages:<br>
-      <br>
-      <div><em>SDK environment now set up; additionally you may now run
-          devtool to perform development tasks.</em></div>
-      <div><em>Run devtool --help for further details.</em></div>
-      <div><strong><em>(SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3:
-            line 5:
-            (SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real:
-            No such file or directory</em></strong></div>
-      <div><strong><em>post-relocate command
-"(SDKROOT)/sysroots/x86_64-pokysdk-linux/post-relocate-setup.d/meson-setup.py
-            (SDKROOT)" failed with status 127</em></strong></div>
-      <div><em>SDK has been successfully set up and is ready to be used.</em></div>
-      <div><em>Each time you wish to use the SDK in a new shell session,
-          you need to source the environment setup script e.g.</em><br>
-        <br>
-        In spite of fact there is information that SDK is successfully
-        set up it does not work and after loading environment devtool
-        command output is:<br>
-        <br>
-        <em>$ devtool</em><br>
-        <em>(SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3:
-          line 5:
-          (SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real</em><br>
-        <br>
-        To analyze the problem I also run:<br>
-        <br>
-        <em>$
-          file (SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real</em><br>
-        <em>(SDKROOT)</em><em>/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real:
-          ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV),
-          dynamically linked, <strong>interpreter
-/opt/smart-recovery/2.7.2/sysroots/x86_64-pokysdk-linux/lib/ld-linux-x86-64.so.2</strong>,
-          BuildID[sha1]=bc0bda633e50a52d06a027cc21707a0be0341f64, for
-          GNU/Linux 3.2.0, stripped<br>
-          <br>
-        </em>The problem is that interpreter file does not exist and
-        this is probably caused by problem which occured at installation
-        process. Is the problem known to anyone?</div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------F3988425F630EFFC28A21C70--
+U3ViamVjdDogUkU6IFt5b2N0b10gVHJvdWJsZSBidWlsZGluZyBtb25vICh3aGVuIGJ1aWxkaW5n
+IGFuIGltYWdlKQ0KPiANCj4gPiBKdXN0IGEgcXVpY2sgdGhpbmcgZm9yIHlvdSB0byB0cnk6IGNh
+biB5b3UgZGVsZXRlIC91c3IvYmluL21vbm9kaXMNCj4gPiBmcm9tIHlvdXIgaG9zdCBhbmQgcmV0
+cnkgYnVpbGRpbmc/IChyZW1lbWJlciB0byBjbGVhbiBzc3RhdGUgZm9yIHlvdXINCj4gPiBwYWNr
+YWdlKQ0KPiANCj4gSXQgc2VlbXMgbGlrZSBJIGRvIG5vdCBoYXZlIGEgL3Vzci9iaW4vbW9ub2Rp
+cyBvbiBteSBob3N0LCB1bmZvcnR1bmF0ZWx5Lg0KPiANCg0KSSBtYW5hZ2VkIHRvIHJlc29sdmUg
+dGhpcyBpc3N1ZSwgbm90IHN1cmUgaWYgaXQncyB0aGUgY29ycmVjdCB3YXkgb3Igbm90LCBieSBj
+cmVhdGluZyBhIC5iYmFwcGVuZCBmaWxlIGZvciBtb25vIHdoaWNoIHNldHMgDQpQQUNLQUdFQ09O
+RklHID0gIiIuDQo=
