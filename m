@@ -1,88 +1,171 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.4119.1579212533347585351
+Received: from mxwn13.webd.pl (mxwn13.webd.pl [194.181.228.67])
+ by mx.groups.io with SMTP id smtpd.web09.1348.1579246853441533245
  for <yocto@lists.yoctoproject.org>;
- Thu, 16 Jan 2020 14:08:53 -0800
+ Thu, 16 Jan 2020 23:40:54 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=rcif5yTH;
- spf=softfail (domain: konsulko.com, ip: 140.211.169.56, mailfrom: paul.barker@konsulko.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D7FC0E01481; Thu, 16 Jan 2020 14:08:52 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.167.179 listed in list.dnswl.org]
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BCBCE00BB3
-	for <yocto@yoctoproject.org>; Thu, 16 Jan 2020 14:08:50 -0800 (PST)
-Received: by mail-oi1-f179.google.com with SMTP id l136so20370997oig.1
-        for <yocto@yoctoproject.org>; Thu, 16 Jan 2020 14:08:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=L25f+tO+4oW1t/9QDuLonwRqc8DTLs70VBLaCok48SU=;
-        b=rcif5yTHgQnEkHY7aJPcmuOWyXP0fCwHZgGP8uLThXUGCu/5XH1edkL2iwxEherWfw
-         9cjMeMGVt71RIxDFXBHJa2hnKRjvh4dSvaDAFaCoPOEp54X4EZcaioECiB4YDKPDhL0Q
-         zBYKhtB8adQlaKYh3kX1umXCku3FQaV9FcqlE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=L25f+tO+4oW1t/9QDuLonwRqc8DTLs70VBLaCok48SU=;
-        b=PPyeIcO9NdCV67pY18icDiX37iLC9ibFEDVut7lHH9tTG8DlteRj2z3pRlXEokUbZB
-         Oher7luAYxv2WHeFVuPPffS3jS/RHAB/ndBmDqdK/okzuPH+5X97+rZrv6k7s9x8Ic//
-         BdJqQxv/xUoxVBAJbDTeOuqikT1BUBoS5lbtzWoOupQflrhaONAfurFwz0/9JyXtabgY
-         Q2t/V47jXclrd4jcO0M+gYqA9udda4RSfU+a5Lb4Ov5fw1XFItmglqQyMbl5ukFwxfKq
-         j6TfzeFPY0G2lTrzRmVkuJ9vlvaQcuTmc9Va2i5MxBexyQo3dF0uW/wb8dqqH9H3sycb
-         bYvg==
-X-Gm-Message-State: APjAAAU/gptjMXm+sRAzyQk2bmOOogNiNOQxyrszX0Xv24jsOwX8vKFR
-	phvwcgHLyOg2XxCYN47LPd15ZYZ6P7Swvy2wUaMfIQ==
-X-Google-Smtp-Source: APXvYqz8eaPcUzO8aD3Q80N3XhJzFhITKgAqRme2Gdyigtmra12OEkPFxOjaCrW+I6NPHri1jaM1Rd7gPyLvqAJBeEk=
-X-Received: by 2002:a05:6808:52:: with SMTP id v18mr1048748oic.152.1579212530470;
- Thu, 16 Jan 2020 14:08:50 -0800 (PST)
+ dkim=missing; spf=permerror, err=syntax error for token:  (domain: xtrack.com, ip: 194.181.228.67, mailfrom: m.madej@xtrack.com)
+Received: from wn13.int.webd ([192.168.101.113] helo=wn13.webd.pl)
+	by mta01.webd.pl with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+	(Exim 4.92.3)
+	(envelope-from <m.madej@xtrack.com>)
+	id 1isMFN-0003Z6-31
+	for yocto@lists.yoctoproject.org; Fri, 17 Jan 2020 08:40:49 +0100
+Received: from [192.168.101.231] (port=43743 helo=mta01.int.webd)
+	by wn13.webd.pl with esmtp (Exim 4.92)
+	(envelope-from <m.madej@xtrack.com>)
+	id 1isMFM-0004GR-VI
+	for yocto@lists.yoctoproject.org; Fri, 17 Jan 2020 08:40:48 +0100
+X-Quarantine-ID: <Mj-xZH_8OlQm>
+X-Virus-Scanned: amavisd-new at mxwn13.webd.pl
+Received: from wn13.webd.pl ([192.168.101.113])
+	by mta01.int.webd (mxwn13.webd.pl [192.168.101.200]) (amavisd-new, port 10134)
+	with ESMTP id Mj-xZH_8OlQm for <yocto@lists.yoctoproject.org>;
+	Fri, 17 Jan 2020 08:40:45 +0100 (CET)
+Received: from azz22.internetdsl.tpnet.pl ([83.18.155.22]:35446 helo=[192.168.6.108])
+	by wn13.webd.pl with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+	(Exim 4.92)
+	(envelope-from <m.madej@xtrack.com>)
+	id 1isMFJ-00063h-0Y
+	for yocto@lists.yoctoproject.org; Fri, 17 Jan 2020 08:40:45 +0100
+Subject: Re: [yocto] #sdk
+From: m.madej@xtrack.com
+To: yocto@lists.yoctoproject.org
+References: <2zkv.1579182797318490741.rkdo@lists.yoctoproject.org>
+Message-ID: <eb1cb351-8339-fcad-d36a-d5a2b83dcb8e@xtrack.com>
+Date: Fri, 17 Jan 2020 08:40:42 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-References: <CAM9ZRVv1O-vdWAtN=2GXjSz=sJ+LDGZYMKv0qiFzEa5Q3J9+Wg@mail.gmail.com>
- <722e1fd016354b3ad453bc04ee8e5d2cd7a24ec6.camel@linuxfoundation.org>
-In-Reply-To: <722e1fd016354b3ad453bc04ee8e5d2cd7a24ec6.camel@linuxfoundation.org>
-From: "Paul Barker" <pbarker@konsulko.com>
-Date: Thu, 16 Jan 2020 22:08:39 +0000
-Message-ID: <CAM9ZRVsMXQrr_5qAAT6nMAoNqhv6mOT6m6CiER4XDNg-z4K0OA@mail.gmail.com>
-Subject: Re: patchtest licensing
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Yocto discussion list <yocto@yoctoproject.org>, 
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <2zkv.1579182797318490741.rkdo@lists.yoctoproject.org>
+Content-Type: multipart/alternative;
+ boundary="------------F3988425F630EFFC28A21C70"
+Content-Language: en-US
 
-On Thu, 16 Jan 2020 at 22:00, Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
+--------------F3988425F630EFFC28A21C70
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+I investigate my problem further. I think the source of problem is 
+connected to lack of this file
+
+(SDKROOT)/tmp/sysroots/x86_64/usr/share/meson/meson.cross.template
+
+I dont have even (SDKROOT)/tmp/sysroots/x86_64/usr/share/meson 
+directory. Does anyone knows what could be a reason? Or how to add meson 
+directory to this sysroot on SDK?
+
+On 1/16/20 2:53 PM, m.madej@xtrack.com wrote:
+> Hello, I work on Yocto warrior branch. I use debian buster. I built 
+> extensible SDK for my image and wanted to install it. Build passes 
+> without any problem but at the end of installation process i got 
+> following messages:
 >
-> On Thu, 2020-01-16 at 20:07 +0000, Paul Barker wrote:
-> > Hey folks,
-> >
-> > I've started looking through patchtest & patchtest-oe in detail and
-> > spotted that all the scripts, support code and test cases are
-> > licensed
-> > under GPLv2. Is that ok given that we plan to copy this into
-> > openembedded-core (probably under meta/lib/oeqa)? Is there any
-> > practical effect of this not being MIT licensed?
+> /SDK environment now set up; additionally you may now run devtool to 
+> perform development tasks./
+> /Run devtool --help for further details./
+> */(SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3: line 5: 
+> (SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real: No 
+> such file or directory/*
+> */post-relocate command 
+> "(SDKROOT)/sysroots/x86_64-pokysdk-linux/post-relocate-setup.d/meson-setup.py 
+> (SDKROOT)" failed with status 127/*
+> /SDK has been successfully set up and is ready to be used./
+> /Each time you wish to use the SDK in a new shell session, you need to 
+> source the environment setup script e.g./
 >
-> We have a mix of MIT and GPL licensing already. As long as the scripts
-> have a clear SPDX license identifier, I think we're fine. If not, we
-> should add that in the existing repo before the move.
+> In spite of fact there is information that SDK is successfully set up 
+> it does not work and after loading environment devtool command output is:
+>
+> /$ devtool/
+> /(SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3: line 5: 
+> (SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real/
+>
+> To analyze the problem I also run:
+>
+> /$ file (SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real/
+> /(SDKROOT)///sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real: ELF 
+> 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically 
+> linked, *interpreter 
+> /opt/smart-recovery/2.7.2/sysroots/x86_64-pokysdk-linux/lib/ld-linux-x86-64.so.2*, 
+> BuildID[sha1]=bc0bda633e50a52d06a027cc21707a0be0341f64, for GNU/Linux 
+> 3.2.0, stripped
+>
+> /The problem is that interpreter file does not exist and this is 
+> probably caused by problem which occured at installation process. Is 
+> the problem known to anyone?
+>
+> 
 
-Ok cool. Converting the license headers to SPDX is already on my list.
+--------------F3988425F630EFFC28A21C70
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-Thanks,
-Paul
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>I investigate my problem further. I think the source of problem
+      is connected to lack of this file</p>
+    <p>(SDKROOT)/tmp/sysroots/x86_64/usr/share/meson/meson.cross.template</p>
+    <p>I dont have even (SDKROOT)/tmp/sysroots/x86_64/usr/share/meson
+      directory. Does anyone knows what could be a reason? Or how to add
+      meson directory to this sysroot on SDK?<br>
+    </p>
+    <div class="moz-cite-prefix">On 1/16/20 2:53 PM, <a class="moz-txt-link-abbreviated" href="mailto:m.madej@xtrack.com">m.madej@xtrack.com</a>
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:2zkv.1579182797318490741.rkdo@lists.yoctoproject.org">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      Hello, I work on Yocto warrior branch. I use debian buster. I
+      built extensible SDK for my image and wanted to install it. Build
+      passes without any problem but at the end of installation process
+      i got following messages:<br>
+      <br>
+      <div><em>SDK environment now set up; additionally you may now run
+          devtool to perform development tasks.</em></div>
+      <div><em>Run devtool --help for further details.</em></div>
+      <div><strong><em>(SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3:
+            line 5:
+            (SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real:
+            No such file or directory</em></strong></div>
+      <div><strong><em>post-relocate command
+"(SDKROOT)/sysroots/x86_64-pokysdk-linux/post-relocate-setup.d/meson-setup.py
+            (SDKROOT)" failed with status 127</em></strong></div>
+      <div><em>SDK has been successfully set up and is ready to be used.</em></div>
+      <div><em>Each time you wish to use the SDK in a new shell session,
+          you need to source the environment setup script e.g.</em><br>
+        <br>
+        In spite of fact there is information that SDK is successfully
+        set up it does not work and after loading environment devtool
+        command output is:<br>
+        <br>
+        <em>$ devtool</em><br>
+        <em>(SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3:
+          line 5:
+          (SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real</em><br>
+        <br>
+        To analyze the problem I also run:<br>
+        <br>
+        <em>$
+          file (SDKROOT)/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real</em><br>
+        <em>(SDKROOT)</em><em>/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real:
+          ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV),
+          dynamically linked, <strong>interpreter
+/opt/smart-recovery/2.7.2/sysroots/x86_64-pokysdk-linux/lib/ld-linux-x86-64.so.2</strong>,
+          BuildID[sha1]=bc0bda633e50a52d06a027cc21707a0be0341f64, for
+          GNU/Linux 3.2.0, stripped<br>
+          <br>
+        </em>The problem is that interpreter file does not exist and
+        this is probably caused by problem which occured at installation
+        process. Is the problem known to anyone?</div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+  </body>
+</html>
+
+--------------F3988425F630EFFC28A21C70--
