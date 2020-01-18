@@ -1,89 +1,209 @@
-Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com [209.85.221.65])
- by mx.groups.io with SMTP id smtpd.web10.5575.1579367165029136681
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+ by mx.groups.io with SMTP id smtpd.web12.5702.1579367165645351445
  for <yocto@lists.yoctoproject.org>;
- Sat, 18 Jan 2020 09:06:05 -0800
+ Sat, 18 Jan 2020 09:06:06 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=V+Svd5Cz;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.65, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f65.google.com with SMTP id q10so25536383wrm.11
-        for <yocto@lists.yoctoproject.org>; Sat, 18 Jan 2020 09:06:04 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=NtrEkZu8;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.45, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f45.google.com with SMTP id q9so10350166wmj.5
+        for <yocto@lists.yoctoproject.org>; Sat, 18 Jan 2020 09:06:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
-        h=from:to:subject:date:message-id:mime-version
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=CArKWjM4RVFph2rX8gbr2YQckWCcV3jCkEVQ6u4MO4c=;
-        b=V+Svd5CztAytF8OGSJcZ+8Z0LfgSVCfkLUCCRF+6eKDsgJkNCG6YXl7/7SkDw4QaXs
-         3pq3x5219YWcg0xU1tkJ1NTQu9nBTVbzeNj282KI9FH1iLIW6zGDmf/2xBqz75It2YYw
-         qMzHc4+P6Pkmsc5GAlWtXIP3ZHkmoEn1OSA8o=
+        bh=NqTJoSgNNfrOCV2W2YdtF08vv1HFdbUJh+VheYT710U=;
+        b=NtrEkZu8VMk4YS6SMsfNC8KUPE6LXbMGl/grel79m/4s0oljuLycasevIOz1h+Cz5S
+         l9e7Kph4qsFntI9y26lHHxbH2t1dw4OyzCAZN8C0cdR2nMLcdLr7MG7nJvqEKt/zVDGu
+         Jy0Rh3gDKPJjMy3UcyE34mi6Hinee4TMvJbgk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=CArKWjM4RVFph2rX8gbr2YQckWCcV3jCkEVQ6u4MO4c=;
-        b=JcfONbSY1UAF4oSmgIs0hs/YHELKEvCjNvxJPRRhPALinnxCB06VgCXukc8gpL4f8q
-         S7GycMZIfOIHmhyJxqb8juo4/Gg0mAjp3EDjkRsRmpQNFyVtsHueOuP8z6g5e1vXayYZ
-         +kxD6SN/IgY6IKI6yB1sHiFcPpb1Vtl9ZjokK+NRLz8YV5XsEnTn7bsr6UxbgmNCsYpa
-         y0xLO0TW5fADXrO48bbG1O1CuXwgztpoXq1EN4iT7jN4/ImtNHK65SynRrzpUfv6RWUb
-         atzMe4uXXBdFkgSwTHd++T6UmKN/+RashAi9b569o8Kz/sLeWJk5MfQxx8udhJ2ZlPd+
-         x3YQ==
-X-Gm-Message-State: APjAAAXPyMIRpHLNRS8gCHyNXMHXAuPItLqq6akqAIcZpV1Zt0CGPs/B
-	IHxadm08pusfXwi3uVVdtn5LdfhJs9E=
-X-Google-Smtp-Source: APXvYqylPZ2tT1yh1sMS/GuwTVOGrZIBlvXZltF3lNBZ2NyNk7XOeWRjeLc5p+lv4QBTtqtHERiJBQ==
-X-Received: by 2002:adf:9144:: with SMTP id j62mr9498230wrj.168.1579367162795;
-        Sat, 18 Jan 2020 09:06:02 -0800 (PST)
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=NqTJoSgNNfrOCV2W2YdtF08vv1HFdbUJh+VheYT710U=;
+        b=GzhvlrmduOh2J1sw9OkOl0SVrld3bYMQDIlvhAmFYzF5nNzeJQYv7l/bajLhvvvHMW
+         8Ch7g37zwMJe6YKDMLD8yyNMhUpRHShyNbevRcxLnjE+MmOTBgxhZIBKuF0YWpF4acYo
+         VXsxM6qb5LCIA0yYnY4uoX/UjY4fC3wczDW3rf5SGm3FI6ihyuEK0ZpN3y4oMyuzBnU0
+         ppz7LdMN6amLPvzmGGoEsvK19R+VFRhiG1SF4cqVf4XjeHpUyNDQ6aUGBriLtBbIP7Cg
+         XOyl5ACzmcLujIJlrQsN9wo5Tpu3qLKUB/zM90uHTIEVEOMDEyrELB6hfMztdTYXbqDP
+         /n2A==
+X-Gm-Message-State: APjAAAVO2MUXjLp9cdQY2TERvrj8/jA1R+RPB9qi8Fsl4Y2vW5zExMod
+	bfNzfBNSrSmG44qYVcZgBbHuQNPqow8=
+X-Google-Smtp-Source: APXvYqxMxnpmaoEkIHGST5Gu/Z+oInltXJxqdknJOE9jVFR9bU8+WaE/wnIbB9gFutwFG5sqm69s8A==
+X-Received: by 2002:a7b:cd0a:: with SMTP id f10mr10767415wmj.56.1579367163708;
+        Sat, 18 Jan 2020 09:06:03 -0800 (PST)
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: from hex.int.rpsys.net (5751f4a1.skybroadband.com. [87.81.244.161])
-        by smtp.gmail.com with ESMTPSA id p26sm14220698wmc.24.2020.01.18.09.06.01
+        by smtp.gmail.com with ESMTPSA id p26sm14220698wmc.24.2020.01.18.09.06.02
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 18 Jan 2020 09:06:02 -0800 (PST)
+        Sat, 18 Jan 2020 09:06:03 -0800 (PST)
 From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
-Subject: [PATCH 1/2] mc: Drop python2 scripts
-Date: Sat, 18 Jan 2020 17:06:00 +0000
-Message-Id: <20200118170601.26254-1-richard.purdie@linuxfoundation.org>
+Subject: [PATCH 2/2] shared-mime-info: Add 1.10 from OE-Core
+Date: Sat, 18 Jan 2020 17:06:01 +0000
+Message-Id: <20200118170601.26254-2-richard.purdie@linuxfoundation.org>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200118170601.26254-1-richard.purdie@linuxfoundation.org>
+References: <20200118170601.26254-1-richard.purdie@linuxfoundation.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-python2 is now EOL. To keep this old version of mc going, delete the python2
-scripts to avoid the dependency.
+Later versions of shared-mime-info need itstool which is GPLv3. Add an old
+version of shared-mime-info to allow gplv3 free builds to suceed.
+
+Use python to set PREFERRED_VERSION based on INCOMPATIBLE_LICENSE to
+control this.
 
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 ---
- recipes-extended/mc/mc_4.7.5.2.bb | 10 ++++------
- 1 file changed, 4 insertions(+), 6 deletions(-)
+ conf/layer.conf                               |  3 ++
+ .../shared-mime-info/shared-mime-info.inc     | 37 +++++++++++++++++++
+ .../shared-mime-info/install-data-hook.patch  | 25 +++++++++++++
+ .../shared-mime-info/parallelmake.patch       | 33 +++++++++++++++++
+ .../shared-mime-info/shared-mime-info_1.10.bb |  7 ++++
+ 5 files changed, 105 insertions(+)
+ create mode 100644 recipes-support/shared-mime-info/shared-mime-info.inc
+ create mode 100644 recipes-support/shared-mime-info/shared-mime-info/install-data-hook.patch
+ create mode 100644 recipes-support/shared-mime-info/shared-mime-info/parallelmake.patch
+ create mode 100644 recipes-support/shared-mime-info/shared-mime-info_1.10.bb
 
-diff --git a/recipes-extended/mc/mc_4.7.5.2.bb b/recipes-extended/mc/mc_4.7.5.2.bb
-index e26bfd9..5f56641 100644
---- a/recipes-extended/mc/mc_4.7.5.2.bb
-+++ b/recipes-extended/mc/mc_4.7.5.2.bb
-@@ -23,10 +23,12 @@ EXTRA_OECONF = "--with-screen=ncurses --without-gpm-mouse --without-x --without-
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 0d46e11..fafd9af 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -17,3 +17,6 @@ LAYERDEPENDS_gplv2 = "core"
+ LAYERSERIES_COMPAT_gplv2 = "zeus"
  
- do_install_append () {
- 	sed -i -e '1s,#!.*perl,#!${bindir}/env perl,' ${D}${libexecdir}/mc/extfs.d/*
--	sed -i -e '1s,#!.*python,#!${bindir}/env python,' ${D}${libexecdir}/mc/extfs.d/*
-+	# These use python2 which is no longer supported
-+	rm ${D}${libexecdir}/mc/extfs.d/s3+
-+	rm ${D}${libexecdir}/mc/extfs.d/uc1541
- }
- 
--PACKAGES =+ "${BPN}-helpers-perl ${BPN}-helpers-python ${BPN}-helpers ${BPN}-fish"
-+PACKAGES =+ "${BPN}-helpers-perl ${BPN}-helpers ${BPN}-fish"
- 
- SUMMARY_${BPN}-helpers-perl = "Midnight Commander Perl-based helper scripts"
- FILES_${BPN}-helpers-perl = "${libexecdir}/mc/extfs.d/a+ ${libexecdir}/mc/extfs.d/apt+ \
-@@ -37,10 +39,6 @@ FILES_${BPN}-helpers-perl = "${libexecdir}/mc/extfs.d/a+ ${libexecdir}/mc/extfs.
-                              ${libexecdir}/mc/extfs.d/uzip"
- RDEPENDS_${BPN}-helpers-perl = "perl"
- 
--SUMMARY_${BPN}-helpers-python = "Midnight Commander Python-based helper scripts"
--FILES_${BPN}-helpers-python = "${libexecdir}/mc/extfs.d/s3+ ${libexecdir}/mc/extfs.d/uc1541"
--RDEPENDS_${BPN}-helpers-python = "python"
--
- SUMMARY_${BPN}-helpers = "Midnight Commander shell helper scripts"
- FILES_${BPN}-helpers = "${libexecdir}/mc/extfs.d/* ${libexecdir}/mc/ext.d/*"
- 
+ LICENSE_PATH += "${LAYERDIR}/licenses"
++
++PREFERRED_VERSION_shared-mime-info = "${@['1.10', '']['GPLV3' in d.getVar('INCOMPATIBLE_LICENSE')]}"
++PREFERRED_VERSION_shared-mime-info-native = "${@['1.10', '']['GPLV3' in d.getVar('INCOMPATIBLE_LICENSE')]}"
+diff --git a/recipes-support/shared-mime-info/shared-mime-info.inc b/recipes-support/shared-mime-info/shared-mime-info.inc
+new file mode 100644
+index 0000000..3fe1a44
+--- /dev/null
++++ b/recipes-support/shared-mime-info/shared-mime-info.inc
+@@ -0,0 +1,37 @@
++SUMMARY = "Shared MIME type database and specification"
++HOMEPAGE = "http://freedesktop.org/wiki/Software/shared-mime-info"
++SECTION = "base"
++
++LICENSE = "GPLv2"
++LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
++
++DEPENDS = "libxml2 intltool-native glib-2.0 shared-mime-info-native"
++
++SRC_URI = "http://freedesktop.org/~hadess/shared-mime-info-${PV}.tar.xz"
++
++inherit autotools pkgconfig gettext
++
++EXTRA_OECONF = "--disable-update-mimedb"
++
++FILES_${PN} += "${datadir}/mime"
++FILES_${PN}-dev += "${datadir}/pkgconfig/shared-mime-info.pc"
++
++# freedesktop.org.xml is only required when updating the mime database,
++# package it separately
++PACKAGES =+ "shared-mime-info-data"
++FILES_shared-mime-info-data = "${datadir}/mime/packages/freedesktop.org.xml"
++RDEPENDS_shared-mime-info-data = "shared-mime-info"
++
++do_install () {
++	autotools_do_install
++
++	update-mime-database ${D}${datadir}/mime
++}
++
++do_install_class-native () {
++	autotools_do_install
++
++	${B}/update-mime-database ${D}${datadir}/mime
++}
++
++BBCLASSEXTEND = "native nativesdk"
+diff --git a/recipes-support/shared-mime-info/shared-mime-info/install-data-hook.patch b/recipes-support/shared-mime-info/shared-mime-info/install-data-hook.patch
+new file mode 100644
+index 0000000..262ff75
+--- /dev/null
++++ b/recipes-support/shared-mime-info/shared-mime-info/install-data-hook.patch
+@@ -0,0 +1,25 @@
++fix shared-mime-info build race condition
++
++The definition of install-data-hook in Makefile.am leads
++to multiple, overlapping, executions of install-binPROGRAMS
++target.  We modify the definition to avoid that.
++
++Upstream-Status: Pending
++
++Signed-off-by: Joe Slater <jslater@windriver.com>
++
++Index: shared-mime-info-1.9/Makefile.am
++===================================================================
++--- shared-mime-info-1.9.orig/Makefile.am
+++++ shared-mime-info-1.9/Makefile.am
++@@ -50,7 +50,9 @@ else
++   update_mime_database="$(top_builddir)/update-mime-database$(EXEEXT)"
++ endif
++ 
++-install-data-hook: install-binPROGRAMS
+++# do NOT make this dependent on anything!
+++#
+++install-data-hook:
++ if ENABLE_UPDATE_MIMEDB
++ 	$(update_mime_database) -V "$(DESTDIR)$(datadir)/mime"
++ endif
+diff --git a/recipes-support/shared-mime-info/shared-mime-info/parallelmake.patch b/recipes-support/shared-mime-info/shared-mime-info/parallelmake.patch
+new file mode 100644
+index 0000000..fea34a5
+--- /dev/null
++++ b/recipes-support/shared-mime-info/shared-mime-info/parallelmake.patch
+@@ -0,0 +1,33 @@
++The Makefile used by shared-mime-info is one big race with the SUBDIRS 
++option and the dependency specifically calling make all combining to
++create multiple make instances all of which may try and build targets
++like update-mime-database.
++
++This patch removes those options meaning make can correctly identify
++dependencies and stop itself racing itself.
++
++RP 10/10/2011
++
++Upstream-Status: Pending
++Signed-off-by: Constantin Musca <constantinx.musca@intel.com>
++
++Index: shared-mime-info-1.9/Makefile.am
++===================================================================
++--- shared-mime-info-1.9.orig/Makefile.am
+++++ shared-mime-info-1.9/Makefile.am
++@@ -1,5 +1,3 @@
++-SUBDIRS=. po
++-
++ AM_CPPFLAGS = $(ALL_CFLAGS)
++ 
++ packagesdir = $(datadir)/mime/packages
++@@ -81,8 +79,7 @@ endif
++ 
++ all: $(defaultmakedeps)
++ 
++-create-pot:
++-	$(AM_V_GEN) $(MAKE) -C po shared-mime-info.pot
+++create-pot: po
++ 
++ local-test: create-pot freedesktop.org.xml update-mime-database$(EXEEXT)
++ if CROSS_COMPILING
+diff --git a/recipes-support/shared-mime-info/shared-mime-info_1.10.bb b/recipes-support/shared-mime-info/shared-mime-info_1.10.bb
+new file mode 100644
+index 0000000..9fc210b
+--- /dev/null
++++ b/recipes-support/shared-mime-info/shared-mime-info_1.10.bb
+@@ -0,0 +1,7 @@
++require shared-mime-info.inc
++
++SRC_URI += "file://parallelmake.patch \
++	    file://install-data-hook.patch"
++
++SRC_URI[md5sum] = "418c2ced9dc4dd5ca8b06a755e6d64e9"
++SRC_URI[sha256sum] = "c625a83b4838befc8cafcd54e3619946515d9e44d63d61c4adf7f5513ddfbebf"
 -- 
 2.17.1
 
