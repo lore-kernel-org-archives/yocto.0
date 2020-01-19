@@ -1,188 +1,119 @@
-Received: from smtpout1.mo803.mail-out.ovh.net (smtpout1.mo803.mail-out.ovh.net [79.137.123.219])
- by mx.groups.io with SMTP id smtpd.web11.1817.1579431567458961411
+Received: from mail-wr1-f66.google.com (mail-wr1-f66.google.com [209.85.221.66])
+ by mx.groups.io with SMTP id smtpd.web10.3024.1579442357186766597
  for <yocto@lists.yoctoproject.org>;
- Sun, 19 Jan 2020 02:59:28 -0800
+ Sun, 19 Jan 2020 05:59:17 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: pfontaine.fr, ip: 79.137.123.219, mailfrom: pierre.ftn@pfontaine.fr)
-Received: from DAG6EX1.emp.local (unknown [10.108.42.172])
-	by mo803.mail-out.ovh.net (Postfix) with ESMTPS id D654F3F91684
-	for <yocto@lists.yoctoproject.org>; Sun, 19 Jan 2020 11:59:25 +0100 (CET)
-Received: from [192.168.1.22] (78.230.210.129) by DAG6EX1.emp.local
- (172.16.2.11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1847.3; Sun, 19 Jan
- 2020 11:59:25 +0100
-To: <yocto@lists.yoctoproject.org>
-References: <uRzy.1579421434958356583.MIYv@lists.yoctoproject.org>
-From: pierre.ftn@pfontaine.fr
-Openpgp: preference=signencrypt
-Autocrypt: addr=pierre.ftn@pfontaine.fr; keydata=
- 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
- IGg9zps=
-Subject: Re: [yocto] cannot create a custom application in Yocto #yocto
-Message-ID: <2b53eb22-18cd-7f39-fe53-9b771c792c75@pfontaine.fr>
-Date: Sun, 19 Jan 2020 11:59:24 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.1
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=avpb0nH0;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.66, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f66.google.com with SMTP id d16so26869954wre.10
+        for <yocto@lists.yoctoproject.org>; Sun, 19 Jan 2020 05:59:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=YYQee9/wjpzhlIyWOLoCpZYW759pAn5PTN0NP4JmNRw=;
+        b=avpb0nH0uvKYd0mYnWy7JSyI1cCJ7EdGFg+A8VM0MUDtJ8z2etkHefmN+Wgl3wrCzo
+         dZ1TbVgmwAcgtVRPIeDi7gtVkLz9qH8oYoJHBqKse3odgrgD2ECB5k6RbIkqZ1dTdjaH
+         XVq0jz+lgAK2v190SX8KjAbRFigZQII2xl3Fo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=YYQee9/wjpzhlIyWOLoCpZYW759pAn5PTN0NP4JmNRw=;
+        b=a7dhM3uy3/oVlhPA96aVBy+xguB4pNG60+prEd/xYXASn9j/Uwvigl0cq98tMKq4cs
+         4rRGOqhOGv593qjLZLRP+JWkUlopga/qgvWTs8Bg4YwJ3ggLJ00kPWItTlofQrj1s3pB
+         /Jg6s6LT6kHCJfZ66I+KWTlsypVQkRjo2MdpSIPbWJl4KJeYSTNZtYhatt0l1eJ8E3ZD
+         +WE0rOvbG91SSnOnsWAY8Q+oUn5Yw2UbA2ZOUSa7ADqX7+KmTnSguwyeEkmdePzv7PcN
+         kXb9iVnSBa4z4cEsHZvE/x+oUj5y2UZzX1yabDrbDC9d1QteLdg9sbBtsf0yQ/owit/S
+         z8GA==
+X-Gm-Message-State: APjAAAUXxSZDigTRAlBlukjqhG/t1Wp+5LZa5cS70i6d/3ymu1FFXX1x
+	tYunh1kA6L5FgWvIcCeaLBxuCA==
+X-Google-Smtp-Source: APXvYqzDj8+lmtqRU6L/AszKHGb/AwDdI/8fLRovyGk7rV9+8FD+MGB9qyvTcMXhhy7QxoIyWPVpBg==
+X-Received: by 2002:a5d:4983:: with SMTP id r3mr12907286wrq.134.1579442355623;
+        Sun, 19 Jan 2020 05:59:15 -0800 (PST)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+        by smtp.gmail.com with ESMTPSA id g18sm18106496wmh.48.2020.01.19.05.59.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 19 Jan 2020 05:59:14 -0800 (PST)
+Message-ID: <5d25dc833a9d914ae319efd55930ba05088ad40b.camel@linuxfoundation.org>
+Subject: Re: [yocto] [RFC PATCH] python: remove Python 2 and all supporting classes
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Khem Raj <raj.khem@gmail.com>, Andreas =?ISO-8859-1?Q?M=FCller?=
+	 <schnitzeltony@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Date: Sun, 19 Jan 2020 13:59:13 +0000
+In-Reply-To: <CAMKF1sodwwma8WVS92UBJ9AhtTL2pzqtFuDp=qvyc+VE_YD_9Q@mail.gmail.com>
+References: <20200117141632.3809-1-ross.burton@intel.com>
+	 <fe0eae43-f005-6062-cd0b-18788aeb0e88@gmail.com>
+	 <CALbNGRTvOk6YQ_vD1VmNA+RD-1dNc2J+mdKxpq971V=D2t7-Hg@mail.gmail.com>
+	 <CAMKF1sodwwma8WVS92UBJ9AhtTL2pzqtFuDp=qvyc+VE_YD_9Q@mail.gmail.com>
+User-Agent: Evolution 3.34.1-2 
 MIME-Version: 1.0
-In-Reply-To: <uRzy.1579421434958356583.MIYv@lists.yoctoproject.org>
-X-Originating-IP: [78.230.210.129]
-X-ClientProxiedBy: CAS4.emp.local (172.16.1.4) To DAG6EX1.emp.local
- (172.16.2.11)
-X-Ovh-Tracer-Id: 3930798052437944070
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedugedrudefgddvvdcutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhepvfhfhffukffffgggjggtihesrgdtreertdefjeenucfhrhhomhepphhivghrrhgvuchfohhnthgrihhnvgcuoehpihgvrhhrvgdrfhhtnhesphhfohhnthgrihhnvgdrfhhrqeenucffohhmrghinhepvhgrrhhifihikhhirdgtohhmpdihohgtthhophhrohhjvggtthdrohhrghenucfkpheptddrtddrtddrtddpjeekrddvfedtrddvuddtrdduvdelnecurfgrrhgrmhepmhhouggvpehsmhhtphdqohhuthdphhgvlhhopefftefiiefgigdurdgvmhhprdhlohgtrghlpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehpihgvrhhrvgdrfhhtnhesphhfohhnthgrihhnvgdrfhhrpdhrtghpthhtohephihotghtoheslhhishhtshdrhihotghtohhprhhojhgvtghtrdhorhhgnecuvehluhhsthgvrhfuihiivgeptd
-Content-Type: multipart/alternative;
-	boundary="------------E5D877D2109C1FC033B77AC3"
-Content-Language: fr
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
---------------E5D877D2109C1FC033B77AC3
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Fri, 2020-01-17 at 13:28 -0800, Khem Raj wrote:
+> On Fri, Jan 17, 2020 at 12:15 PM Andreas Müller <
+> schnitzeltony@gmail.com> wrote:
+> > On Fri, Jan 17, 2020 at 7:35 PM Khem Raj <raj.khem@gmail.com>
+> > wrote:
+> > > On 1/17/20 6:16 AM, Ross Burton wrote:
+> > > > Python 2 ceased being maintained on the 1st January
+> > > > 2020.  We've already
+> > > > removed all users of it from oe-core so the final step is to
+> > > > move the
+> > > > recipe and supporting classes to meta-python2.
+> > > > 
+> > > > The following are removed in this commit:
+> > > > - python and python-native 2.7.17
+> > > > - python-setuptools
+> > > > - The classes pythonnative, pythondir, distutils, setuptools
+> > > > 
+> > > 
+> > > perhaps add them to meta-py2 first before this lands
+> > Just a question: What is the plan with all those recipes which are
+> > going to fail (most headaches I have with old waf): Will meta-oe /
+> > meta-networking..., depend on meta-py2 or kick them out or?
+> 
+> I am a bit apprehensive about creating direct dependency, since
+> that would prolong the support, so I would still like to use rest of
+> this
+> dev cycle to fix as many recipes as we can to not depend on py2
+> and I will publish the failing recipes, so far we have had no failure
+> run for all meta-openembedded layers on master. In the end perhaps
+> we will be able to blacklist the recipes which still need py2 and are
+> not
+> migrarted to py3, or if we end up with  a lot of critical ones then
+> we might want to create dep on meta-py2, hope that clarifies my
+> thoughts
+> on course of action.
+> 
+> but I am sure, if you have needs for py2 then including meta-py2 will
+> be the place to go and I hope that it will provide the existing
+> functionality that's being pushed out from the core.
 
-Hi,
+I have to admit I don't know what the best solution for meta-oe is.
 
-I've tested the given example on the branch Zeus and it works fine.
+If py2 pieces are left in meta-openembedded, it may be best to move
+them to a separate sublayer to make the issue clearer?
 
-Here the hierarchy :
+FWIW I did remove some python binding pieces in meta-gplv2 to work
+around problems, a similar strategy may work for some things too?
 
-[pfontaine@precision recipes-myhello]$ tree -L 3
-.
-=E2=94=94=E2=94=80=E2=94=80 myhello
-=C2=A0=C2=A0=C2=A0 =E2=94=9C=E2=94=80=E2=94=80 files
-=C2=A0=C2=A0=C2=A0 =E2=94=82=C2=A0=C2=A0 =E2=94=94=E2=94=80=E2=94=80 myhel=
-lo.c
-=C2=A0=C2=A0=C2=A0 =E2=94=94=E2=94=80=E2=94=80 myhello.bb
+I have however merged the patch for OE-Core. The reasons:
 
-2 directories, 2 files
+* We've known this was coming for some time
+* OE-Core is due to build M2 this week
+* The change has long been scheduled for M2
+* Its a forcing function, we are going to have to deal with this
+* This gives meta-oe time to resolve the issues before April
 
-The error that Bitbake gives you could be because you may have no
-"myhello" directory under a recipes directory.
+Sorry Khem!
 
-Also, I suggest you to not mix "hello" and "myhello" when you name files.
+Cheers,
 
-Hope it will help you to fix your issue.
+Richard
 
-Pierre Fontaine.
 
-Le 19/01/2020 =C3=A0 09:10, ran junk a =C3=A9crit=C2=A0:
-> hello. i am a newbie with yocto. i am need to create my custom app. i
-> have gone over a number of tutorials but my app stills fails to be
-> compiled.
-> i am trying to compile it with the yocto and not the toolchain. i have
-> done as is written in
-> http://variwiki.com/index.php?title=3DYocto_Hello_World
-> 1) created a hello.bb file
-> 2) added the directory files and added my hello.c code.
-> I try and run it with bitbake myhello and i get ERROR: Nothing
-> RPROVIDES 'myhello'. could you tell me what am i missing?
-> thanks
->
->=20
 
---------------E5D877D2109C1FC033B77AC3
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
-8">
-  </head>
-  <body text=3D"#000000" bgcolor=3D"#FFFFFF">
-    <p><tt>Hi,</tt></p>
-    <p><tt>I've tested the given example on the branch Zeus and it works
-        fine.</tt></p>
-    <p><tt>Here the hierarchy :<br>
-      </tt></p>
-    <p><tt>[pfontaine@precision recipes-myhello]$ tree -L 3<br>
-      </tt><tt>.</tt><br>
-      <tt>=E2=94=94=E2=94=80=E2=94=80 myhello</tt><br>
-      <tt>=C2=A0=C2=A0=C2=A0 =E2=94=9C=E2=94=80=E2=94=80 files</tt><br>
-      <tt>=C2=A0=C2=A0=C2=A0 =E2=94=82=C2=A0=C2=A0 =E2=94=94=E2=94=80=E2=
-=94=80 myhello.c</tt><br>
-      <tt>=C2=A0=C2=A0=C2=A0 =E2=94=94=E2=94=80=E2=94=80 myhello.bb</tt><b=
-r>
-      <br>
-      <tt>2 directories, 2 files</tt><br>
-      <tt><br>
-      </tt></p>
-    <p><tt>The error that Bitbake gives you could be because you may
-        have no "myhello" directory under a recipes directory.</tt></p>
-    <p><tt>Also, I suggest you to not mix "hello" and "myhello" when you
-        name files.</tt></p>
-    <p><tt>Hope it will help you to fix your issue.<br>
-      </tt></p>
-    <p><tt>Pierre Fontaine.<br>
-      </tt></p>
-    <div class=3D"moz-cite-prefix">Le 19/01/2020 =C3=A0 09:10, ran junk a
-      =C3=A9crit=C2=A0:<br>
-    </div>
-    <blockquote type=3D"cite"
-      cite=3D"mid:uRzy.1579421434958356583.MIYv@lists.yoctoproject.org">
-      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUT=
-F-8">
-      hello. i am a newbie with yocto. i am need to create my custom
-      app. i have gone over a number of tutorials but my app stills
-      fails to be compiled.<br>
-      i am trying to compile it with the yocto and not the toolchain. i
-      have done as is written in <a
-        href=3D"http://variwiki.com/index.php?title=3DYocto_Hello_World"
-        target=3D"_blank" rel=3D"noopener" moz-do-not-send=3D"true">http:/=
-/variwiki.com/index.php?title=3DYocto_Hello_World</a>
-      <br>
-      1) created a hello.bb file <br>
-      2) added the directory files and added my hello.c code. <br>
-      I try and run it with bitbake myhello and i get ERROR: Nothing
-      RPROVIDES 'myhello'. could you tell me what am i missing?<br>
-      thanks
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------E5D877D2109C1FC033B77AC3--
