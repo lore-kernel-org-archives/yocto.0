@@ -1,116 +1,130 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.6745.1579496841130553991
+Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
+ by mx.groups.io with SMTP id smtpd.web11.6923.1579498978353900789
  for <yocto@lists.yoctoproject.org>;
- Sun, 19 Jan 2020 21:07:21 -0800
+ Sun, 19 Jan 2020 21:42:59 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=YgyITEk0;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 72279E015B8; Sun, 19 Jan 2020 21:07:20 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (jupiter.hce[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.166.173 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C293E01426
-	for <yocto@yoctoproject.org>; Sun, 19 Jan 2020 21:07:19 -0800 (PST)
-Received: by mail-il1-f173.google.com with SMTP id t17so26194247ilm.13
-        for <yocto@yoctoproject.org>; Sun, 19 Jan 2020 21:07:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-         :cc;
-        bh=CE4W4uEr4O1QuLEItAJf2FAgjsHKe4Re/ECQLTSq0J4=;
-        b=YgyITEk0omotd1OdqtaPD50X/wNidWyv2yXk/+5cveLYN/tWOUb53UOQQMdW2oBgEc
-         /bU4i+qkMpaBl+RVzEOcGLw14VzaeXqzXtVewKexVOdGu13o78/HP4MtiHNe+9u8ompv
-         SYxsSQxFBpM1Le8JpzqzveEwLdwaHSjUBitoGjgES1jkzjsppqkf8kNXTBwf1uWQCtuQ
-         lvofFyaCXqqIFFjXZW8fj/jbtq/JuUsmw8I4sxablD32cmWSqom7XT8I5O50P9zcCrUV
-         CiLCgmQ3hI8WDEriNT53Sqq50oDz78VaEfNs/glC3xomaH0YE1hRIfkA+QJE8RxVg5KP
-         yJ+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-         :message-id:subject:to:cc;
-        bh=CE4W4uEr4O1QuLEItAJf2FAgjsHKe4Re/ECQLTSq0J4=;
-        b=aG3VFv3jOFAKudd6+L+0k215XBgQyDJV3bPF9u0nvAQcwsJMl+mFB34+2FMUBid8By
-         8a9kEbmjsrXa5jA+rldDMq+KbSmrDdxygyF6FrXquqNlT1HpgHXUh4biRey0DfwjxCyf
-         HYAftdzzA+4idqA6EsciD5HmZSS2Oq87oQdAAHqB5rhv4Qb/fJmERy6H6Bd1wE2Q3ozu
-         Do4jTyIMhI4wWeytFkiikxMNWflmXS50T9uo+kPtd4vBwaE+SsTGPE9nTf12EE5xTZ0v
-         al5HWgZjFtfnM6I5HXVei/86r8Hw0zUoqlgxGVE0gd2xZ5YYcw4MfJ8chD/XZSWgjmsX
-         ottg==
-X-Gm-Message-State: APjAAAX9qJ1ToeUNx5ldroZxKNl3j2NtERZah6Bg0pJWrEYUNQZsoAUV
-	YQ37U1nBKpC0WkeuuLxK3q7V0vvnfd8S6EeVdHmzEn2a
-X-Google-Smtp-Source: APXvYqz4zECEPVd94JZtGHo4prj7xl5anK0REEDCUrrNnEj25akMbqYFJfaGa1PpsMJnpY18Abt6hKWsKEMaJ6VH2hE=
-X-Received: by 2002:a92:d5cf:: with SMTP id d15mr9077681ilq.306.1579496839361;
- Sun, 19 Jan 2020 21:07:19 -0800 (PST)
+ dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: yi.zhao@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 00K5gaJU008019
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL)
+	for <yocto@lists.yoctoproject.org>; Sun, 19 Jan 2020 21:42:46 -0800
+Received: from localhost (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0; Sun, 19 Jan
+ 2020 21:42:25 -0800
+From: "Yi Zhao" <yi.zhao@windriver.com>
+To: <yocto@lists.yoctoproject.org>
+Subject: [meta-security][PATCH] samhain: fix build with new version attr
+Date: Mon, 20 Jan 2020 13:42:23 +0800
+Message-ID: <20200120054223.14911-1-yi.zhao@windriver.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Received: by 2002:ac0:e345:0:0:0:0:0 with HTTP; Sun, 19 Jan 2020 21:07:18
- -0800 (PST)
-In-Reply-To: <CAA=hcWT9A0rmV1B6-Jz0H2cOcn6Sp_eaRdAyF=8=v543+GudBw@mail.gmail.com>
-References: <CAA=hcWT9A0rmV1B6-Jz0H2cOcn6Sp_eaRdAyF=8=v543+GudBw@mail.gmail.com>
-From: "JH" <jupiter.hce@gmail.com>
-Date: Mon, 20 Jan 2020 16:07:18 +1100
-Message-ID: <CAA=hcWTiyJbOuLOW0qoQVwHHNZUR11ouS=94ihcZY8aKkXiZoA@mail.gmail.com>
-Subject: Re: WiFi network failure after updating thud to zeus
-To: Yocto discussion list <yocto@yoctoproject.org>
-Cc: OE Core mailing list <openembedded-core@lists.openembedded.org>
-Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [128.224.162.174]
+Content-Type: text/plain
 
-Hi,
+The attr/xattr.h has been removed from attr 2.4.48 with commit:
+http://git.savannah.nongnu.org/cgit/attr.git/commit/include?id=7921157890d07858d092f4003ca4c6bae9fd2c38
+The xattr syscalls are provided by sys/xattr.h from glibc now.
+Remove the checking code to adapt it otherwise it would fail to build
+with selinux support.
 
-I sent following message several days ago, the problem is that connman
-sent DHCP request messages but no DHCP response received, something is
-got wrong in network, could anyone advise what have been changed in
-zeus?
+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+---
+ .../fix-build-with-new-version-attr.patch     | 73 +++++++++++++++++++
+ recipes-ids/samhain/samhain.inc               |  1 +
+ 2 files changed, 74 insertions(+)
+ create mode 100644 recipes-ids/samhain/files/fix-build-with-new-version-attr.patch
 
-I saw another email of eth failure after updating from thud to zeus, I
-am not clear if it is the same problem of DHCP response or not, but
-seems something is going on in zeus, appreciate your kindly advice.
+diff --git a/recipes-ids/samhain/files/fix-build-with-new-version-attr.patch b/recipes-ids/samhain/files/fix-build-with-new-version-attr.patch
+new file mode 100644
+index 0000000..eaf30db
+--- /dev/null
++++ b/recipes-ids/samhain/files/fix-build-with-new-version-attr.patch
+@@ -0,0 +1,73 @@
++From e67acafa62f71f0015ed548918b98ed0b1ded128 Mon Sep 17 00:00:00 2001
++From: Yi Zhao <yi.zhao@windriver.com>
++Date: Sun, 19 Jan 2020 15:53:48 +0800
++Subject: [PATCH] fix build with new version attr
++
++The attr/xattr.h has been removed from attr 2.4.48 with commit:
++http://git.savannah.nongnu.org/cgit/attr.git/commit/include?id=7921157890d07858d092f4003ca4c6bae9fd2c38
++The xattr syscalls are provided by sys/xattr.h from glibc now.
++Remove the checking code to adapt it.
++
++Upstream-Status: Pending
++
++Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
++---
++ aclocal.m4    | 26 +++++++++++---------------
++ src/sh_unix.c |  2 +-
++ 2 files changed, 12 insertions(+), 16 deletions(-)
++
++diff --git a/aclocal.m4 b/aclocal.m4
++index ee5b204..38cef8e 100644
++--- a/aclocal.m4
+++++ b/aclocal.m4
++@@ -1453,23 +1453,19 @@ AC_DEFUN([sh_CHECK_POSIX_ACL],
++ 
++ AC_DEFUN([sh_CHECK_XATTR],
++ [
++-  AC_CHECK_HEADERS(attr/xattr.h)
++-  if test $ac_cv_header_attr_xattr_h = yes; then
++-
++-  	AC_CHECK_LIB([attr], [getxattr], sh_lattr=yes, sh_lattr=no)
++-  	if test x"$sh_lattr" = xyes; then
++-    		LIBATTR=-lattr
++-  	else
++-    		LIBATTR=
++-  	fi
++-  
++-  	OLDLIBS="$LIBS"
++-  	LIBS="$LIBS $LIBATTR"
++-  	AC_CHECK_FUNCS([getxattr lgetxattr fgetxattr],
++-                       [sh_fattr=yes],[sh_fattr=no])
++-  	LIBS="$OLDLIBS"
+++  AC_CHECK_LIB([attr], [getxattr], sh_lattr=yes, sh_lattr=no)
+++  if test x"$sh_lattr" = xyes; then
+++      LIBATTR=-lattr
+++  else
+++      LIBATTR=
++   fi
++ 
+++  OLDLIBS="$LIBS"
+++  LIBS="$LIBS $LIBATTR"
+++  AC_CHECK_FUNCS([getxattr lgetxattr fgetxattr],
+++	  [sh_fattr=yes],[sh_fattr=no])
+++  LIBS="$OLDLIBS"
+++
++   if test x"$sh_fattr" = xyes; then
++ 	  AC_DEFINE(USE_XATTR, 1, [Define if you want extended attributes support.])
++ 	  LIBS="$LIBS $LIBATTR"
++diff --git a/src/sh_unix.c b/src/sh_unix.c
++index 3ede57f..ef236e9 100644
++--- a/src/sh_unix.c
+++++ b/src/sh_unix.c
++@@ -3681,7 +3681,7 @@ static char * sh_unix_getinfo_acl (char * path, int fd, struct stat * buf)
++ 
++ #ifdef USE_XATTR
++ 
++-#include <attr/xattr.h>
+++#include <sys/xattr.h>
++ static char * sh_unix_getinfo_xattr_int (char * path, int fd, char * name)
++ {
++   char *  out   = NULL;
++-- 
++2.7.4
++
+diff --git a/recipes-ids/samhain/samhain.inc b/recipes-ids/samhain/samhain.inc
+index 16222ba..91eb697 100644
+--- a/recipes-ids/samhain/samhain.inc
++++ b/recipes-ids/samhain/samhain.inc
+@@ -14,6 +14,7 @@ SRC_URI = "http://la-samhna.de/archive/samhain_signed-${PV}.tar.gz \
+            file://samhain-configure-add-option-for-ps.patch \
+            file://samhain-avoid-searching-host-for-postgresql.patch \
+            file://samhain-add-LDFLAGS-variable-for-samhain_setpwd.patch \
++           file://fix-build-with-new-version-attr.patch \
+            file://${INITSCRIPT_NAME}.init \
+            file://${INITSCRIPT_NAME}.default \
+            file://samhain.service \
+-- 
+2.17.1
 
-Thank you.
-
-Kind regards,
-
-- jh
-
-On 1/16/20, JH <jupiter.hce@gmail.com> wrote:
-> Hi,
->
-> I was using thud version to build image to run on imx6, it was working
-> perfectly except I was told a bug in connman version 3.15, I need to
-> build connman version 3.17. I could hot use thud to build connman
-> 3.17, so I upgraded Yocto to zeus.
->
-> After installing new image built from zeus, now I have a very weird
-> WiFi network problem, it could not get IP address from WiFi router
-> DHCP initially, after a while, the WiFi got an IP address
-> 169.254.203.142 which is not my WiFi router subnet 192.168.0.x, it
-> could not connect to the Internet either.
->
-> My first suspicion was the new updated connman version 3.17, but when
-> replaced connman 3.17 to connman 3.15 in an old version system which
-> image was built from thud, it was no problem at all. Apparently
-> something got wrong in the image built from zeus. Has anyone aware of
-> that issue?
->
-> Thank you.
->
-> Kind regards,
->
-> - jh
->
