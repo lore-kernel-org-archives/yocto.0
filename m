@@ -1,104 +1,94 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.1454.1579557419829808707
+Received: from mail-il1-f193.google.com (mail-il1-f193.google.com [209.85.166.193])
+ by mx.groups.io with SMTP id smtpd.web09.1474.1579557484282719192
  for <yocto@lists.yoctoproject.org>;
- Mon, 20 Jan 2020 13:56:59 -0800
+ Mon, 20 Jan 2020 13:58:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=f87NdbNL;
- spf=softfail (domain: linuxfoundation.org, ip: 140.211.169.56, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49CEFE015C0; Mon, 20 Jan 2020 13:56:59 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.221.67 listed in list.dnswl.org]
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCC74E006EC
-	for <yocto@yoctoproject.org>; Mon, 20 Jan 2020 13:56:57 -0800 (PST)
-Received: by mail-wr1-f67.google.com with SMTP id z7so1035198wrl.13
-        for <yocto@yoctoproject.org>; Mon, 20 Jan 2020 13:56:57 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=CAQk3P5E;
+ spf=pass (domain: gmail.com, ip: 209.85.166.193, mailfrom: schnitzeltony@gmail.com)
+Received: by mail-il1-f193.google.com with SMTP id f5so719140ilq.5
+        for <yocto@lists.yoctoproject.org>; Mon, 20 Jan 2020 13:58:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=L6ENGStpM6uG5UPVzFpbEk0U9w85JauHK5gELp52dyI=;
-        b=f87NdbNLWCCKpIh5GL6LHVMWGLBpC9GFMLCzaMFfk02/v4mckUyiNJQ0hujsrEfTOT
-         zX7a/H9NAst8TAspe7MZsrcH+xv7GB6bLw9BDY2RVq0KrC5pU/KmuV8/oYKKXlR1z9OP
-         P4YSzzUxtMAEmyO6yUOqunUijVUeTQo5D8XHc=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=AoN+g0bwwbZpGkOlg/PwYViueHj2/9q1hMCZLrrJcX0=;
+        b=CAQk3P5EXRE7sjsyiBiURG4WVPFYc2Dmn92S1X8UXSRNb7/p+lynv/3yIAyfzFMD74
+         jY7UZM20A5fxvMQa4f9wE5KrQCB3MRXpHpSYlG/4s80CssvzV3tIVjkE6lQo3aRzbPoy
+         owQ8iKT+B0tWdfgkuBqbwiuv6Y84YaP4guBggSkpVjrOefCAMfJTpJ9SRXSXutLOiXPQ
+         kucKu+21gvmWL7Jx6EpGA0zRvXCqy4ni+lNXzN64diNB7noWm/uoGnaOEsIfu0/weyIA
+         htfNgj7tYaf0o8ld7bxWgqVSTC6SoLUM6ECcULaJyF+fJ+Kr91mIGt/qJjGdYwtd4yOX
+         YEug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=L6ENGStpM6uG5UPVzFpbEk0U9w85JauHK5gELp52dyI=;
-        b=IuDbXpH83acvW7r3+epcPMvsT7h7olcTA3s4Oqd9kAiXxlIt++EAXYHI6/sGIhSVVC
-         G/1KvLACv84m6kirZAPCZ6Rpeyp61aPN4wBQ2LCsZOENa6U2spZyFlTwsOZLaVUHeprG
-         7mbfWv0rovr15iJG7XbCMg7RjFTA6nD5HGfVBhZFPuj8KKQTE+P2QyERiWAw//v0IX00
-         VZ37rFdOGkEHYncrrK4feJZ+ACfbSmi49jPmz72jJ0AWScveVZLRMPq7qE8NvZElOmVz
-         aH3kzmaGBMZeyf1InC+at02LmHghJDw2+/gZrk9unjHRkTW76tyWhsb+xfUxvT9vg5rH
-         tf+g==
-X-Gm-Message-State: APjAAAVqJ/9YSNFNynjArddNkj3HKk1EuHX+WCPn0tquid7Zbc88t1V+
-	o2GdYoql+Yj1NqlV89D586fEtQ==
-X-Google-Smtp-Source: APXvYqwt/EZsGtSAy1mtkWcP4crLAzqUNVdfrp/r+/JQtX+5c9op/wELpGKxMijQ9m5x9rdNL0nU7g==
-X-Received: by 2002:adf:fac1:: with SMTP id a1mr1432608wrs.376.1579557416964;
-        Mon, 20 Jan 2020 13:56:56 -0800 (PST)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-        by smtp.gmail.com with ESMTPSA id k82sm1021215wmf.10.2020.01.20.13.56.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 20 Jan 2020 13:56:56 -0800 (PST)
-Message-ID: <d65b6fe9814bd4bb1c0e897f5824cf5a41d8db1d.camel@linuxfoundation.org>
-Subject: Re: [yocto] [psplash][PATCH 1/3] add recovered bar.png
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Stefan Agner <stefan@agner.ch>
-Cc: yocto@yoctoproject.org, ross.burton@intel.com, Stefan Agner
-	 <stefan.agner@toradex.com>
-Date: Mon, 20 Jan 2020 21:56:55 +0000
-In-Reply-To: <47271a9e22754a99399c62c83e3fdc6d@agner.ch>
-References: <20190225151619.2754-1-stefan@agner.ch>
-	 <56d5850f22c8b31a50a5b2839d1021f9@agner.ch>
-	 <578197128dbbb082b8d842fa3e46ee394501b522.camel@linuxfoundation.org>
-	 <47271a9e22754a99399c62c83e3fdc6d@agner.ch>
-User-Agent: Evolution 3.34.1-2 
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=AoN+g0bwwbZpGkOlg/PwYViueHj2/9q1hMCZLrrJcX0=;
+        b=ZHFs+i813S9PjKVmmy9WX8m1bjxeBfLgwvRo0D6+w9w3J/w6IkrGVpwwWUXXQYetZy
+         kJwRg3KLpx8nhJbuqqv3qgzLqDRnbYAKVt/8+ayEnvFpIZqMGHIV1qYe8xY8hJMOduqK
+         JfKh+VLZDJblbAhcUkyTLwsdxT+JX8e1HP2IJPyuOj5KR4kKJscCG8sYq95RWQumA1Vl
+         9Dt96pWXu8Wgxh+jw/LmXBoe7S5gkomsSr8Vqa9DfFzdlgxCjDv1k0jr0JqYdFYeCSQc
+         iTiLCEMpkK7oApQISEJ+cUApDCvoDmLAfdhAupgBqRXM+j0BE61oyZgDDf4vXftrUwj/
+         WwFg==
+X-Gm-Message-State: APjAAAUZTTseYgzYOs+pgcFUohhqg1ti6lh57TEMTthyTApLyH3inQRg
+	aM7enfdC+HMy2qsoeuil2zWMs7tXet5piUqZl74=
+X-Google-Smtp-Source: APXvYqzn5ICp2EZOhtPVrFCJthZGCcaDF9K4RUiPb4NaJR4/r0H5amNQKiuW3lRYKvD1nWr0X/N+DPh2eeSt6ADnqQo=
+X-Received: by 2002:a92:cb09:: with SMTP id s9mr1070850ilo.224.1579557483636;
+ Mon, 20 Jan 2020 13:58:03 -0800 (PST)
 MIME-Version: 1.0
+References: <20200117141632.3809-1-ross.burton@intel.com> <fe0eae43-f005-6062-cd0b-18788aeb0e88@gmail.com>
+ <CALbNGRTvOk6YQ_vD1VmNA+RD-1dNc2J+mdKxpq971V=D2t7-Hg@mail.gmail.com>
+ <20200117202126.GY4735@denix.org> <CALbNGRTv8S3V9TLE+uwX4Dei=5m1LBKowzGF5Nr1L8iPHBSQsg@mail.gmail.com>
+ <20200120181524.GA4735@denix.org>
+In-Reply-To: <20200120181524.GA4735@denix.org>
+From: "Andreas M?ller" <schnitzeltony@gmail.com>
+Date: Mon, 20 Jan 2020 22:57:52 +0100
+Message-ID: <CALbNGRShOxy9_C4=k7osOuEGBsZDVrfxKBMNR7tWc7ShCLVdnA@mail.gmail.com>
+Subject: Re: [yocto] [RFC PATCH] python: remove Python 2 and all supporting classes
+To: Denys Dmytriyenko <denis@denix.org>
+Cc: Khem Raj <raj.khem@gmail.com>, yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 2020-01-20 at 22:48 +0100, Stefan Agner wrote:
-> On 2020-01-20 17:14, Richard Purdie wrote:
-> > On Mon, 2020-01-20 at 14:31 +0100, Stefan Agner wrote:
-> > > Hi list, hi Ross,
-> > > 
-> > > We still carry this downstream, any chance to get them still
-> > > merged
-> > > in
-> > > psplash?
-> > > 
-> > > If it is really considered unmaintained, then we probably should
-> > > drop
-> > > the psplash recipe altogether?
-> > 
-> > I've just merged them, sorry about the delay.
-> 
-> No worries, thanks for looking at it!
-> 
-> I actually realized that we carry one more patch which adds systemd
-> support. Will send that patch as well.
-
-I'd love to get that in. Please cc on the patch.
-
-Cheers,
-
-Richard
-
-
-
+On Mon, Jan 20, 2020 at 7:15 PM Denys Dmytriyenko <denis@denix.org> wrote:
+>
+> On Fri, Jan 17, 2020 at 09:55:55PM +0100, Andreas M=C3=BCller wrote:
+> > On Fri, Jan 17, 2020 at 9:21 PM Denys Dmytriyenko <denis@denix.org> wro=
+te:
+> > >
+> > > On Fri, Jan 17, 2020 at 09:15:09PM +0100, Andreas M?ller wrote:
+> > > > On Fri, Jan 17, 2020 at 7:35 PM Khem Raj <raj.khem@gmail.com> wrote=
+:
+> > > > >
+> > > > > perhaps add them to meta-py2 first before this lands
+> > > > Just a question: What is the plan with all those recipes which are
+> > > > going to fail (most headaches I have with old waf): Will meta-oe /
+> > > > meta-networking..., depend on meta-py2 or kick them out or?
+> > >
+> > > What, not calling it the worst patch of the year? And the year's just
+> > > started... :)
+> > Denys
+> >
+> > 1. Would you accept an apologize for that one?
+>
+> Don't worry about that, let's file it under "overreaction due to stress"
+> category, shall we? :)
+YES :)
+>
+>
+> > 2. I did not ask for stopping this - just asked how to continue and I
+> > did that for certain reasons: For example: Few minutes ago we saw a
+> > series for npm rework on oe-core. Unfortunately npm as is requires
+> > python2 and many modules. Or the waf stuff: That means somebody has go
+> > to all the projects and ask them for waf upgrade or prepare patches
+> > there (and that means not just upgrading waf). So again: How do we
+> > handle/get rid recipes requiring python2 to build?
+>
+> Yes, all good points. I would agree with Khem - let's drop it and try to
+> fix as many issues as possible, while we still have time until the releas=
+e.
+> Distros can have own dependency on meta-python2, but meta-openembedded an=
+d
+> openembedded-core should not depend on deprecated components, IMHO.
+>
+> --
+> Denys
