@@ -1,68 +1,5215 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.13806.1579540439722980811
+ by mx.groups.io with SMTP id smtpd.web10.14023.1579540495744800357
  for <yocto@lists.yoctoproject.org>;
- Mon, 20 Jan 2020 09:14:00 -0800
+ Mon, 20 Jan 2020 09:14:56 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=fail (domain: intel.com, ip: 140.211.169.56, mailfrom: ross.burton@intel.com)
+ dkim=fail reason="body hash did not verify" header.i=@intel-com.20150623.gappssmtp.com header.s=20150623 header.b=zO1s5G1X;
+ spf=fail (domain: intel.com, ip: 140.211.169.56, mailfrom: ross.burton@intel.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4FD1CE015C0; Mon, 20 Jan 2020 09:13:59 -0800 (PST)
+	id 92700E015BD; Mon, 20 Jan 2020 09:14:55 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI,
-	WEIRD_PORT autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE,URI_NOVOWEL autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at https://www.dnswl.org/, high
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
-X-Greylist: delayed 62 seconds by postgrey-1.32 at yocto-www; Mon, 20 Jan 2020 09:13:56 PST
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C99AE01382
-	for <yocto@yoctoproject.org>; Mon, 20 Jan 2020 09:13:56 -0800 (PST)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 20 Jan 2020 09:12:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,342,1574150400"; 
-   d="scan'208";a="221492701"
-Received: from grossi-mobl.ger.corp.intel.com (HELO rburton-mac01.local) ([10.252.38.20])
-  by fmsmga008.fm.intel.com with ESMTP; 20 Jan 2020 09:12:52 -0800
-Subject: Re: [OE-core] [PATCH][meta-python2] python: add 2.7.17 from oe-core
-To: Tim Orling <ticotimo@gmail.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>,
- "openembedded-devel@lists.openembedded.org"
- <openembedded-devel@lists.openembedded.org>,
- openembedded-core <openembedded-core@lists.openembedded.org>
-References: <20200120115132.3618-1-ross.burton@intel.com>
- <CANx9H-BBqLtyL3g9KmzyUw1ZasginK7eQzWA8AM05R_8KJqM+g@mail.gmail.com>
+	*      [209.85.128.53 listed in list.dnswl.org]
+	*  0.5 URI_NOVOWEL URI: URI hostname has long non-vowel sequence
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFAFBE01382
+	for <yocto@yoctoproject.org>; Mon, 20 Jan 2020 09:14:44 -0800 (PST)
+Received: by mail-wm1-f53.google.com with SMTP id a5so120932wmb.0
+        for <yocto@yoctoproject.org>; Mon, 20 Jan 2020 09:14:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=intel-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/4D7D+jhN5z9wSVVZwrRKa77TKVdg2YGklhbr9NnVwE=;
+        b=zO1s5G1X2M3IUgEVVcwzGQwBqpuft6ujt7TthE29n4OiQFWf57FW8X6BQHcwP8FOCa
+         whfSPPm7pw6fkoMX/cr8ALcSM0hvcOqQjBkSti4lykHJnZDTuLOwy53rVydnkssVjJXy
+         bOOgYBWa7V3ifsMyFuARgUKeuK8lB46zZqUOA/sd39lWDTa8MrVjsN3y97Y1PAXTV8k/
+         eJqAcEBprb2NElvufZSdyRKPuMpaMevJieGEh/GIs6Cz1PPOKGImtI4bhsKIJRIRvtFK
+         0rPE2NIb1CxUs74hC81GeMz08bWRBEd/9kGH0vWA8wGUCUn3v5okl8gNwjmG6/VP0b/W
+         jgsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/4D7D+jhN5z9wSVVZwrRKa77TKVdg2YGklhbr9NnVwE=;
+        b=sBbRQLa7ZB0aEZEpXtJVVkUILXMeFDDk2HHtf7rAEHAzGv6o2quhAeZgscS/IHPb1Z
+         UOQ5d0t8+OuawMkzhDyer2jIwtV0ipCCOkEQYp07aZrdLPYm7N+OmMugSYQUi/f7A8PF
+         p92QVNxKmoSyyAguS/i3C4jefitTKrgxHe/aYUaBxdYXHFrvNXfXCkeVo9rY/n4/Y0oL
+         PT42WpiwXMIpOzpWJXdn8HCSG4aTieg/ZSvcDU28YbhahPaqJWlwDMO2BOaKkFKPTe14
+         vu1Qwdc5yxxGCfCRbPuwOR4qgQtH6OZgGTAGBIOU8cGeZ/Oc/x3JlBE34GpsXZKPYYoN
+         9v2g==
+X-Gm-Message-State: APjAAAVk2XMR6hzFa3Qks1UuHDsOE0LhfJ8W2Xa6SLv/OqCzOidBqmHE
+	396hT4h9Z97Vriedtca3mrtOt+9f9Vk=
+X-Google-Smtp-Source: APXvYqzZIwH3+mPWR1qZWet+J4f8/s0AUHOOqgth44v90yjCmClzwHOiwOxE94V8OSTj5EMdQIWpGw==
+X-Received: by 2002:a1c:23cf:: with SMTP id j198mr338189wmj.188.1579540481251;
+        Mon, 20 Jan 2020 09:14:41 -0800 (PST)
+Received: from flashheart.burtonini.com (35.106.2.81.in-addr.arpa. [81.2.106.35])
+        by smtp.gmail.com with ESMTPSA id f16sm48548207wrm.65.2020.01.20.09.14.34
+        for <yocto@yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 20 Jan 2020 09:14:39 -0800 (PST)
 From: "Ross Burton" <ross.burton@intel.com>
-Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
- Swindon SN3 1RJ
-Message-ID: <b832a1d9-8713-2997-5e3d-0ce022b1f588@intel.com>
-Date: Mon, 20 Jan 2020 17:12:51 +0000
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.4.1
+To: yocto@yoctoproject.org
+Subject: [meta-python2 v2] python: add 2.7.17 from oe-core
+Date: Mon, 20 Jan 2020 17:14:33 +0000
+Message-Id: <20200120171433.28109-1-ross.burton@intel.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <CANx9H-BBqLtyL3g9KmzyUw1ZasginK7eQzWA8AM05R_8KJqM+g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On 20/01/2020 17:03, Tim Orling wrote:
-> First of all, a GREAT BIG THANK YOU for doing this.
-> 
-> ERROR: ParseError at 
-> /home/ttorling/Projects/meta-python2/recipes-devtools/python/python_2.7.17.bb:1 
-> <http://python_2.7.17.bb:1>: Could not include required file python.inc
-> 
-> Seems like python.inc is 2.7 specific and should also move? I grepped 
-> for usage in poky and didn't find any.
+Python 2 ceased being maintained on the 1st January 2020.  All users of
+Python 2 in oe-core have already been ported to Python 3, so in oe-core
+390f3eda Python 2 was finally removed from oe-core itself.
 
-Huh.  I wonder how my test actually worked :)
+The following are added to meta-python2 in this commit:
+- python and python-native 2.7.17
+- python-setuptools
+- The classes pythonnative, pythondir, distutils, setuptools
 
-Ross
+Signed-off-by: Ross Burton <ross.burton@intel.com>
+---
+ classes/distutils-base.bbclass                |    4 +
+ classes/distutils.bbclass                     |   87 ++
+ classes/python-dir.bbclass                    |    5 +
+ classes/pythonnative.bbclass                  |   27 +
+ classes/setuptools.bbclass                    |    3 +
+ ...-fix-one-do_populate_sysroot-warning.patch |   40 +
+ .../10-distutils-fix-swig-parameter.patch     |   18 +
+ ...-distutils-never-modify-shebang-line.patch |   20 +
+ .../python/python-native/multilib.patch       |  235 ++++
+ .../python/python-native/nohostlibs.patch     |   54 +
+ .../revert_use_of_sysconfigdata.patch         |   86 ++
+ .../python/python-native/unixccompiler.patch  |   20 +
+ .../python/python-native_2.7.17.bb            |   90 ++
+ recipes-devtools/python/python-setuptools.inc |   50 +
+ .../python/python-setuptools_42.0.2.bb        |    9 +
+ recipes-devtools/python/python.inc            |   59 +
+ ...e-prefix-to-be-inside-staging-direct.patch |   51 +
+ ...-Resolve-intermediate-staging-issues.patch |   59 +
+ ...asename-to-replace-CC-for-checking-c.patch |  114 ++
+ .../01-use-proper-tools-for-cross-build.patch |   49 +
+ .../python/03-fix-tkinter-detection.patch     |   46 +
+ .../python/05-enable-ctypes-cross-build.patch |   27 +
+ ...void_usr_lib_termcap_path_in_linking.patch |   35 +
+ ...CROSSPYTHONPATH-for-PYTHON_FOR_BUILD.patch |   28 +
+ .../python/python/add-md5module-support.patch |   18 +
+ .../python/avoid_warning_about_tkinter.patch  |   29 +
+ ...id_warning_for_sunos_specific_module.patch |   23 +
+ recipes-devtools/python/python/cgi_py.patch   |   23 +
+ .../check-if-target-is-64b-not-host.patch     |   57 +
+ .../python/python/create_manifest2.py         |  298 +++++
+ .../fix_for_using_different_libdir.patch      |   77 ++
+ .../python/python/float-endian.patch          |  216 ++++
+ .../python/python/get_module_deps2.py         |  112 ++
+ .../python/host_include_contamination.patch   |   28 +
+ recipes-devtools/python/python/multilib.patch |  298 +++++
+ .../parallel-makeinst-create-bindir.patch     |   19 +
+ ...ssing-libraries-to-Extension-for-mul.patch |   82 ++
+ .../python-2.7.3-remove-bsdb-rpath.patch      |   28 +
+ .../python/python/python2-manifest.json       | 1138 +++++++++++++++++
+ recipes-devtools/python/python/run-ptest      |    3 +
+ ...h_db_h_in_inc_dirs_and_avoid_warning.patch |   35 +
+ .../setup_py_skip_cross_import_check.patch    |   27 +
+ .../python/python/setuptweaks.patch           |   57 +
+ .../python/python/sitecustomize.py            |   37 +
+ ..._SOURCE_DATE_EPOCH_in_py_compile_2.7.patch |   34 +
+ .../use_sysroot_ncurses_instead_of_host.patch |   21 +
+ recipes-devtools/python/python_2.7.17.bb      |  260 ++++
+ 47 files changed, 4136 insertions(+)
+ create mode 100644 classes/distutils-base.bbclass
+ create mode 100644 classes/distutils.bbclass
+ create mode 100644 classes/python-dir.bbclass
+ create mode 100644 classes/pythonnative.bbclass
+ create mode 100644 classes/setuptools.bbclass
+ create mode 100644 recipes-devtools/python/python-native/0001-python-nat=
+ive-fix-one-do_populate_sysroot-warning.patch
+ create mode 100644 recipes-devtools/python/python-native/10-distutils-fi=
+x-swig-parameter.patch
+ create mode 100644 recipes-devtools/python/python-native/11-distutils-ne=
+ver-modify-shebang-line.patch
+ create mode 100644 recipes-devtools/python/python-native/multilib.patch
+ create mode 100644 recipes-devtools/python/python-native/nohostlibs.patc=
+h
+ create mode 100644 recipes-devtools/python/python-native/revert_use_of_s=
+ysconfigdata.patch
+ create mode 100644 recipes-devtools/python/python-native/unixccompiler.p=
+atch
+ create mode 100644 recipes-devtools/python/python-native_2.7.17.bb
+ create mode 100644 recipes-devtools/python/python-setuptools.inc
+ create mode 100644 recipes-devtools/python/python-setuptools_42.0.2.bb
+ create mode 100644 recipes-devtools/python/python.inc
+ create mode 100644 recipes-devtools/python/python/0001-distutils-set-the=
+-prefix-to-be-inside-staging-direct.patch
+ create mode 100644 recipes-devtools/python/python/0001-python-Resolve-in=
+termediate-staging-issues.patch
+ create mode 100644 recipes-devtools/python/python/0001-python2-use-cc_ba=
+sename-to-replace-CC-for-checking-c.patch
+ create mode 100644 recipes-devtools/python/python/01-use-proper-tools-fo=
+r-cross-build.patch
+ create mode 100644 recipes-devtools/python/python/03-fix-tkinter-detecti=
+on.patch
+ create mode 100644 recipes-devtools/python/python/05-enable-ctypes-cross=
+-build.patch
+ create mode 100644 recipes-devtools/python/python/06-avoid_usr_lib_termc=
+ap_path_in_linking.patch
+ create mode 100644 recipes-devtools/python/python/add-CROSSPYTHONPATH-fo=
+r-PYTHON_FOR_BUILD.patch
+ create mode 100644 recipes-devtools/python/python/add-md5module-support.=
+patch
+ create mode 100644 recipes-devtools/python/python/avoid_warning_about_tk=
+inter.patch
+ create mode 100644 recipes-devtools/python/python/avoid_warning_for_suno=
+s_specific_module.patch
+ create mode 100644 recipes-devtools/python/python/cgi_py.patch
+ create mode 100644 recipes-devtools/python/python/check-if-target-is-64b=
+-not-host.patch
+ create mode 100644 recipes-devtools/python/python/create_manifest2.py
+ create mode 100644 recipes-devtools/python/python/fix_for_using_differen=
+t_libdir.patch
+ create mode 100644 recipes-devtools/python/python/float-endian.patch
+ create mode 100644 recipes-devtools/python/python/get_module_deps2.py
+ create mode 100644 recipes-devtools/python/python/host_include_contamina=
+tion.patch
+ create mode 100644 recipes-devtools/python/python/multilib.patch
+ create mode 100644 recipes-devtools/python/python/parallel-makeinst-crea=
+te-bindir.patch
+ create mode 100644 recipes-devtools/python/python/pass-missing-libraries=
+-to-Extension-for-mul.patch
+ create mode 100644 recipes-devtools/python/python/python-2.7.3-remove-bs=
+db-rpath.patch
+ create mode 100644 recipes-devtools/python/python/python2-manifest.json
+ create mode 100644 recipes-devtools/python/python/run-ptest
+ create mode 100644 recipes-devtools/python/python/search_db_h_in_inc_dir=
+s_and_avoid_warning.patch
+ create mode 100644 recipes-devtools/python/python/setup_py_skip_cross_im=
+port_check.patch
+ create mode 100644 recipes-devtools/python/python/setuptweaks.patch
+ create mode 100644 recipes-devtools/python/python/sitecustomize.py
+ create mode 100644 recipes-devtools/python/python/support_SOURCE_DATE_EP=
+OCH_in_py_compile_2.7.patch
+ create mode 100644 recipes-devtools/python/python/use_sysroot_ncurses_in=
+stead_of_host.patch
+ create mode 100644 recipes-devtools/python/python_2.7.17.bb
+
+diff --git a/classes/distutils-base.bbclass b/classes/distutils-base.bbcl=
+ass
+new file mode 100644
+index 0000000..9f398d7
+--- /dev/null
++++ b/classes/distutils-base.bbclass
+@@ -0,0 +1,4 @@
++DEPENDS  +=3D "${@["${PYTHON_PN}-native ${PYTHON_PN}", ""][(d.getVar('PA=
+CKAGES') =3D=3D '')]}"
++RDEPENDS_${PN} +=3D "${@['', '${PYTHON_PN}-core']['${CLASSOVERRIDE}' =3D=
+=3D 'class-target']}"
++
++inherit distutils-common-base pythonnative
+diff --git a/classes/distutils.bbclass b/classes/distutils.bbclass
+new file mode 100644
+index 0000000..3759b58
+--- /dev/null
++++ b/classes/distutils.bbclass
+@@ -0,0 +1,87 @@
++inherit distutils-base
++
++DISTUTILS_BUILD_ARGS ?=3D ""
++DISTUTILS_STAGE_HEADERS_ARGS ?=3D "--install-dir=3D${STAGING_INCDIR}/${P=
+YTHON_DIR}"
++DISTUTILS_STAGE_ALL_ARGS ?=3D "--prefix=3D${STAGING_DIR_HOST}${prefix} \
++    --install-data=3D${STAGING_DATADIR}"
++DISTUTILS_INSTALL_ARGS ?=3D "--root=3D${D} \
++    --prefix=3D${prefix} \
++    --install-lib=3D${PYTHON_SITEPACKAGES_DIR} \
++    --install-data=3D${datadir}"
++
++DISTUTILS_PYTHON =3D "python"
++DISTUTILS_PYTHON_class-native =3D "nativepython"
++
++distutils_do_configure() {
++        if [ "${CLEANBROKEN}" !=3D "1" ] ; then
++                NO_FETCH_BUILD=3D1 \
++                ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN=
+} setup.py clean ${DISTUTILS_BUILD_ARGS}
++        fi
++}
++
++distutils_do_compile() {
++         NO_FETCH_BUILD=3D1 \
++         STAGING_INCDIR=3D${STAGING_INCDIR} \
++         STAGING_LIBDIR=3D${STAGING_LIBDIR} \
++         ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} setup=
+.py build ${DISTUTILS_BUILD_ARGS} || \
++         bbfatal_log "'${PYTHON_PN} setup.py build ${DISTUTILS_BUILD_ARG=
+S}' execution failed."
++}
++
++distutils_stage_headers() {
++        install -d ${STAGING_DIR_HOST}${PYTHON_SITEPACKAGES_DIR}
++        ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} setup.=
+py install_headers ${DISTUTILS_STAGE_HEADERS_ARGS} || \
++        bbfatal_log "'${PYTHON_PN} setup.py install_headers ${DISTUTILS_=
+STAGE_HEADERS_ARGS}' execution for stage_headers failed."
++}
++
++distutils_stage_all() {
++        STAGING_INCDIR=3D${STAGING_INCDIR} \
++        STAGING_LIBDIR=3D${STAGING_LIBDIR} \
++        install -d ${STAGING_DIR_HOST}${PYTHON_SITEPACKAGES_DIR}
++        PYTHONPATH=3D${STAGING_DIR_HOST}${PYTHON_SITEPACKAGES_DIR} \
++        ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} setup.=
+py install ${DISTUTILS_STAGE_ALL_ARGS} || \
++        bbfatal_log "'${PYTHON_PN} setup.py install ${DISTUTILS_STAGE_AL=
+L_ARGS}' execution for stage_all failed."
++}
++
++distutils_do_install() {
++        install -d ${D}${PYTHON_SITEPACKAGES_DIR}
++        STAGING_INCDIR=3D${STAGING_INCDIR} \
++        STAGING_LIBDIR=3D${STAGING_LIBDIR} \
++        PYTHONPATH=3D${D}${PYTHON_SITEPACKAGES_DIR} \
++        ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} setup.=
+py install ${DISTUTILS_INSTALL_ARGS} || \
++        bbfatal_log "'${PYTHON_PN} setup.py install ${DISTUTILS_INSTALL_=
+ARGS}' execution failed."
++
++        # support filenames with *spaces*
++        # only modify file if it contains path  and recompile it
++        find ${D} -name "*.py" -exec grep -q ${D} {} \; \
++                               -exec sed -i -e s:${D}::g {} \; \
++                               -exec ${STAGING_BINDIR_NATIVE}/python-nat=
+ive/python -mcompileall {} \;
++
++        for i in ${D}${bindir}/* ${D}${sbindir}/*; do
++            if [ -f "$i" ]; then
++                sed -i -e s:${PYTHON}:${USRBINPATH}/env\ ${DISTUTILS_PYT=
+HON}:g $i
++                sed -i -e s:${STAGING_BINDIR_NATIVE}:${bindir}:g $i
++            fi
++        done
++
++        rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/easy-install.pth
++        rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/site.py*
++
++        #
++        # FIXME: Bandaid against wrong datadir computation
++        #
++        if [ -e ${D}${datadir}/share ]; then
++            mv -f ${D}${datadir}/share/* ${D}${datadir}/
++            rmdir ${D}${datadir}/share
++        fi
++
++	# Fix backport modules
++	if [ -e ${STAGING_LIBDIR}/${PYTHON_DIR}/site-packages/backports/__init_=
+_.py ] &&=20
++           [ -e ${D}${PYTHON_SITEPACKAGES_DIR}/backports/__init__.py ]; =
+then
++	   rm ${D}${PYTHON_SITEPACKAGES_DIR}/backports/__init__.py;
++	   rm ${D}${PYTHON_SITEPACKAGES_DIR}/backports/__init__.pyc;
++	fi
++}
++
++EXPORT_FUNCTIONS do_configure do_compile do_install
++
++export LDSHARED=3D"${CCLD} -shared"
+diff --git a/classes/python-dir.bbclass b/classes/python-dir.bbclass
+new file mode 100644
+index 0000000..a11dc35
+--- /dev/null
++++ b/classes/python-dir.bbclass
+@@ -0,0 +1,5 @@
++PYTHON_BASEVERSION =3D "2.7"
++PYTHON_ABI =3D ""
++PYTHON_DIR =3D "python${PYTHON_BASEVERSION}"
++PYTHON_PN =3D "python"
++PYTHON_SITEPACKAGES_DIR =3D "${libdir}/${PYTHON_DIR}/site-packages"
+diff --git a/classes/pythonnative.bbclass b/classes/pythonnative.bbclass
+new file mode 100644
+index 0000000..0e9019d
+--- /dev/null
++++ b/classes/pythonnative.bbclass
+@@ -0,0 +1,27 @@
++
++inherit python-dir
++
++PYTHON=3D"${STAGING_BINDIR_NATIVE}/python-native/python"
++# PYTHON_EXECUTABLE is used by cmake
++PYTHON_EXECUTABLE=3D"${PYTHON}"
++EXTRANATIVEPATH +=3D "python-native"
++DEPENDS_append =3D " python-native "
++
++# python-config and other scripts are using distutils modules
++# which we patch to access these variables
++export STAGING_INCDIR
++export STAGING_LIBDIR
++
++# Packages can use
++# find_package(PythonInterp REQUIRED)
++# find_package(PythonLibs REQUIRED)
++# which ends up using libs/includes from build host
++# Therefore pre-empt that effort
++export PYTHON_LIBRARY=3D"${STAGING_LIBDIR}/lib${PYTHON_DIR}${PYTHON_ABI}=
+.so"
++export PYTHON_INCLUDE_DIR=3D"${STAGING_INCDIR}/${PYTHON_DIR}${PYTHON_ABI=
+}"
++
++# suppress host user's site-packages dirs.
++export PYTHONNOUSERSITE =3D "1"
++
++# autoconf macros will use their internal default preference otherwise
++export PYTHON
+diff --git a/classes/setuptools.bbclass b/classes/setuptools.bbclass
+new file mode 100644
+index 0000000..a923ea3
+--- /dev/null
++++ b/classes/setuptools.bbclass
+@@ -0,0 +1,3 @@
++inherit distutils
++
++DEPENDS +=3D "python-setuptools-native"
+diff --git a/recipes-devtools/python/python-native/0001-python-native-fix=
+-one-do_populate_sysroot-warning.patch b/recipes-devtools/python/python-n=
+ative/0001-python-native-fix-one-do_populate_sysroot-warning.patch
+new file mode 100644
+index 0000000..707ee59
+--- /dev/null
++++ b/recipes-devtools/python/python-native/0001-python-native-fix-one-do=
+_populate_sysroot-warning.patch
+@@ -0,0 +1,40 @@
++From 6cbb7529cf7ff0da3ca649fb3486facd9620d625 Mon Sep 17 00:00:00 2001
++From: Changqing Li <changqing.li@windriver.com>
++Date: Thu, 25 Oct 2018 07:32:14 +0000
++Subject: [PATCH] python-native: fix one do_populate_sysroot warning
++
++Fix below warning:
++WARNING: Skipping RPATH /usr/lib64 as is a standard search path for
++work/x86_64-linux/python-native/2.7.15-r1.1/recipe-sysroot-native/
++usr/lib/python2.7/lib-dynload/_bsddb.so
++
++setup.py will check db.h under include_dirs, for native build,
++/usr/lib64 will be insert to postion 0 of include_dirs, so
++it's priority is higher then our sysroot, cause db.h sysroot
++is ignored, and rpath set to /usr/lib64. and this cause warning
++when do_populate_sysroot. use append to fix it.
++
++Upstream-Status: Inappropriate [oe-specific]
++
++Signed-off-by: Changqing Li <changqing.li@windriver.com>
++
++---
++ setup.py | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++diff --git a/setup.py b/setup.py
++index a2c8127..22f9e23 100644
++--- a/setup.py
+++++ b/setup.py
++@@ -47,7 +47,7 @@ def add_dir_to_list(dirlist, dir):
++         else:
++             dir_exists =3D os.path.isdir(dir)
++         if dir_exists:
++-            dirlist.insert(0, dir)
+++            dirlist.append(dir)
++=20
++ MACOS_SDK_ROOT =3D None
++=20
++--=20
++2.17.1
++
+diff --git a/recipes-devtools/python/python-native/10-distutils-fix-swig-=
+parameter.patch b/recipes-devtools/python/python-native/10-distutils-fix-=
+swig-parameter.patch
+new file mode 100644
+index 0000000..a39247c
+--- /dev/null
++++ b/recipes-devtools/python/python-native/10-distutils-fix-swig-paramet=
+er.patch
+@@ -0,0 +1,18 @@
++Upstream-Status: Pending
++
++# Some versions of SWIG do not use the extension parameter.
++# Make it optional.
++# Signed-Off: Michael 'Mickey' Lauer <mickey@vanille-media.de>
++Index: Python-2.6.1/Lib/distutils/command/build_ext.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.6.1.orig/Lib/distutils/command/build_ext.py
+++++ Python-2.6.1/Lib/distutils/command/build_ext.py
++@@ -566,7 +566,7 @@ class build_ext (Command):
++             target_lang=3Dlanguage)
++=20
++=20
++-    def swig_sources (self, sources, extension):
+++    def swig_sources (self, sources, extension=3DNone):
++=20
++         """Walk the list of source files in 'sources', looking for SWIG
++         interface (.i) files.  Run SWIG on all that are found, and
+diff --git a/recipes-devtools/python/python-native/11-distutils-never-mod=
+ify-shebang-line.patch b/recipes-devtools/python/python-native/11-distuti=
+ls-never-modify-shebang-line.patch
+new file mode 100644
+index 0000000..c92469b
+--- /dev/null
++++ b/recipes-devtools/python/python-native/11-distutils-never-modify-she=
+bang-line.patch
+@@ -0,0 +1,20 @@
++Upstream-Status: Pending
++
++# Don't modify the she-bang line for a cross-build.
++# Otherwise it points to our hostpython (which we do not want)
++#
++# Signed-Off: Michael 'Mickey' Lauer <mickey@vanille-media.de>
++
++Index: Python-2.6.1/Lib/distutils/command/build_scripts.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.6.1.orig/Lib/distutils/command/build_scripts.py
+++++ Python-2.6.1/Lib/distutils/command/build_scripts.py
++@@ -87,7 +87,7 @@ class build_scripts (Command):
++                     continue
++=20
++                 match =3D first_line_re.match(first_line)
++-                if match:
+++                if False: #match:
++                     adjust =3D 1
++                     post_interp =3D match.group(1) or ''
++=20
+diff --git a/recipes-devtools/python/python-native/multilib.patch b/recip=
+es-devtools/python/python-native/multilib.patch
+new file mode 100644
+index 0000000..af0f173
+--- /dev/null
++++ b/recipes-devtools/python/python-native/multilib.patch
+@@ -0,0 +1,235 @@
++Rebased for Python 2.7.9
++
++Signed-off-by: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
++
++2011/09/29
++The python recipe building was failing because python-native=20
++could not handle sys.lib var. sys.lib var is defined in the=20
++multilib patch hence added this multilib.patch for python-native=20
++recipe.
++
++Upstream-Status: Inappropriate [oe-specific]
++
++Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
++
++Index: Python-2.7.14/Include/pythonrun.h
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Include/pythonrun.h
+++++ Python-2.7.14/Include/pythonrun.h
++@@ -108,6 +108,7 @@ PyAPI_FUNC(char *) Py_GetPath(void);
++ /* In their own files */
++ PyAPI_FUNC(const char *) Py_GetVersion(void);
++ PyAPI_FUNC(const char *) Py_GetPlatform(void);
+++PyAPI_FUNC(const char *) Py_GetLib(void);
++ PyAPI_FUNC(const char *) Py_GetCopyright(void);
++ PyAPI_FUNC(const char *) Py_GetCompiler(void);
++ PyAPI_FUNC(const char *) Py_GetBuildInfo(void);
++Index: Python-2.7.14/Lib/distutils/command/install.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Lib/distutils/command/install.py
+++++ Python-2.7.14/Lib/distutils/command/install.py
++@@ -22,6 +22,8 @@ from site import USER_BASE
++ from site import USER_SITE
++=20
++=20
+++libname =3D sys.lib
+++
++ if sys.version < "2.2":
++     WINDOWS_SCHEME =3D {
++         'purelib': '$base',
++@@ -42,7 +44,7 @@ else:
++ INSTALL_SCHEMES =3D {
++     'unix_prefix': {
++         'purelib': '$base/lib/python$py_version_short/site-packages',
++-        'platlib': '$platbase/lib/python$py_version_short/site-packages=
+',
+++        'platlib': '$platbase/'+libname+'/python$py_version_short/site-=
+packages',
++         'headers': '$base/include/python$py_version_short/$dist_name',
++         'scripts': '$base/bin',
++         'data'   : '$base',
++Index: Python-2.7.14/Lib/pydoc.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Lib/pydoc.py
+++++ Python-2.7.14/Lib/pydoc.py
++@@ -375,7 +375,7 @@ class Doc:
++     docmodule =3D docclass =3D docroutine =3D docother =3D docproperty =
+=3D docdata =3D fail
++=20
++     def getdocloc(self, object,
++-                  basedir=3Dos.path.join(sys.exec_prefix, "lib",
+++                  basedir=3Dos.path.join(sys.exec_prefix, "sys.lib",
++                                        "python"+sys.version[0:3])):
++         """Return the location of module docs or None"""
++=20
++Index: Python-2.7.14/Lib/site.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Lib/site.py
+++++ Python-2.7.14/Lib/site.py
++@@ -288,13 +288,19 @@ def getsitepackages():
++         if sys.platform in ('os2emx', 'riscos'):
++             sitepackages.append(os.path.join(prefix, "Lib", "site-packa=
+ges"))
++         elif os.sep =3D=3D '/':
++-            sitepackages.append(os.path.join(prefix, "lib",
+++            sitepackages.append(os.path.join(prefix, sys.lib,
++                                         "python" + sys.version[:3],
++                                         "site-packages"))
++-            sitepackages.append(os.path.join(prefix, "lib", "site-pytho=
+n"))
+++            if sys.lib !=3D "lib":
+++                sitepackages.append(os.path.join(prefix, "lib",
+++                                        "python" + sys.version[:3],
+++                                        "site-packages"))
+++            sitepackages.append(os.path.join(prefix, sys.lib, "site-pyt=
+hon"))
+++            if sys.lib !=3D "lib":
+++                sitepackages.append(os.path.join(prefix, "lib", "site-p=
+ython"))
++         else:
++             sitepackages.append(prefix)
++-            sitepackages.append(os.path.join(prefix, "lib", "site-packa=
+ges"))
+++            sitepackages.append(os.path.join(prefix, sys.lib, "site-pac=
+kages"))
++     return sitepackages
++=20
++ def addsitepackages(known_paths):
++Index: Python-2.7.14/Lib/test/test_dl.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Lib/test/test_dl.py
+++++ Python-2.7.14/Lib/test/test_dl.py
++@@ -4,10 +4,11 @@
++ import unittest
++ from test.test_support import verbose, import_module
++ dl =3D import_module('dl', deprecated=3DTrue)
+++import sys
++=20
++ sharedlibs =3D [
++-    ('/usr/lib/libc.so', 'getpid'),
++-    ('/lib/libc.so.6', 'getpid'),
+++    ('/usr/'+sys.lib+'/libc.so', 'getpid'),
+++    ('/'+sys.lib+'/libc.so.6', 'getpid'),
++     ('/usr/bin/cygwin1.dll', 'getpid'),
++     ('/usr/lib/libc.dylib', 'getpid'),
++     ]
++Index: Python-2.7.14/Lib/trace.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Lib/trace.py
+++++ Python-2.7.14/Lib/trace.py
++@@ -754,10 +754,10 @@ def main(argv=3DNone):
++                 # should I also call expanduser? (after all, could use =
+$HOME)
++=20
++                 s =3D s.replace("$prefix",
++-                              os.path.join(sys.prefix, "lib",
+++                              os.path.join(sys.prefix, sys.lib,
++                                            "python" + sys.version[:3]))
++                 s =3D s.replace("$exec_prefix",
++-                              os.path.join(sys.exec_prefix, "lib",
+++                              os.path.join(sys.exec_prefix, sys.lib,
++                                            "python" + sys.version[:3]))
++                 s =3D os.path.normpath(s)
++                 ignore_dirs.append(s)
++Index: Python-2.7.14/Makefile.pre.in
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Makefile.pre.in
+++++ Python-2.7.14/Makefile.pre.in
++@@ -91,6 +91,7 @@ PY_CFLAGS=3D	$(CFLAGS) $(CPPFLAGS) $(CFLAG
++=20
++ # Machine-dependent subdirectories
++ MACHDEP=3D	@MACHDEP@
+++LIB=3D		@LIB@
++=20
++ # Multiarch directory (may be empty)
++ MULTIARCH=3D	@MULTIARCH@
++@@ -110,7 +111,7 @@ LIBDIR=3D		@libdir@
++ MANDIR=3D		@mandir@
++ INCLUDEDIR=3D	@includedir@
++ CONFINCLUDEDIR=3D	$(exec_prefix)/include
++-SCRIPTDIR=3D	$(prefix)/lib
+++SCRIPTDIR=3D	$(prefix)/@LIB@
++=20
++ # Detailed destination directories
++ BINLIBDEST=3D	$(LIBDIR)/python$(VERSION)
++@@ -644,6 +645,7 @@ Modules/getpath.o: $(srcdir)/Modules/get
++ 		-DEXEC_PREFIX=3D'"$(exec_prefix)"' \
++ 		-DVERSION=3D'"$(VERSION)"' \
++ 		-DVPATH=3D'"$(VPATH)"' \
+++		-DLIB=3D'"$(LIB)"' \
++ 		-o $@ $(srcdir)/Modules/getpath.c
++=20
++ Modules/python.o: $(srcdir)/Modules/python.c
++@@ -692,7 +694,7 @@ regen-ast:
++ Python/compile.o Python/symtable.o Python/ast.o: $(srcdir)/Include/gram=
+init.h $(srcdir)/Include/Python-ast.h
++=20
++ Python/getplatform.o: $(srcdir)/Python/getplatform.c
++-		$(CC) -c $(PY_CFLAGS) -DPLATFORM=3D'"$(MACHDEP)"' -o $@ $(srcdir)/Pyt=
+hon/getplatform.c
+++		$(CC) -c $(PY_CFLAGS) -DPLATFORM=3D'"$(MACHDEP)"' -DLIB=3D'"$(LIB)"' =
+-o $@ $(srcdir)/Python/getplatform.c
++=20
++ Python/importdl.o: $(srcdir)/Python/importdl.c
++ 		$(CC) -c $(PY_CFLAGS) -I$(DLINCLDIR) -o $@ $(srcdir)/Python/importdl.=
+c
++Index: Python-2.7.14/Modules/getpath.c
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Modules/getpath.c
+++++ Python-2.7.14/Modules/getpath.c
++@@ -100,6 +100,13 @@
++ #error "PREFIX, EXEC_PREFIX, VERSION, and VPATH must be constant define=
+d"
++ #endif
++=20
+++#define LIB_PYTHON LIB "/python" VERSION
+++
+++#ifndef PYTHONPATH
+++#define PYTHONPATH PREFIX "/" LIB_PYTHON ":" \
+++        EXEC_PREFIX "/" LIB_PYTHON "/lib-dynload"
+++#endif
+++
++ #ifndef LANDMARK
++ #define LANDMARK "os.py"
++ #endif
++@@ -108,7 +115,7 @@ static char prefix[MAXPATHLEN+1];
++ static char exec_prefix[MAXPATHLEN+1];
++ static char progpath[MAXPATHLEN+1];
++ static char *module_search_path =3D NULL;
++-static char lib_python[] =3D "lib/python" VERSION;
+++static char lib_python[] =3D LIB_PYTHON;
++=20
++ static void
++ reduce(char *dir)
++Index: Python-2.7.14/Python/getplatform.c
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Python/getplatform.c
+++++ Python-2.7.14/Python/getplatform.c
++@@ -10,3 +10,13 @@ Py_GetPlatform(void)
++ {
++ 	return PLATFORM;
++ }
+++
+++#ifndef LIB
+++#define LIB "lib"
+++#endif
+++
+++const char *
+++Py_GetLib(void)
+++{
+++	return LIB;
+++}
++Index: Python-2.7.14/Python/sysmodule.c
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Python/sysmodule.c
+++++ Python-2.7.14/Python/sysmodule.c
++@@ -1437,6 +1437,8 @@ _PySys_Init(void)
++                         PyString_FromString(Py_GetCopyright()));
++     SET_SYS_FROM_STRING("platform",
++                         PyString_FromString(Py_GetPlatform()));
+++    SET_SYS_FROM_STRING("lib",
+++                PyString_FromString(Py_GetLib()));
++     SET_SYS_FROM_STRING("executable",
++                         PyString_FromString(Py_GetProgramFullPath()));
++     SET_SYS_FROM_STRING("prefix",
++Index: Python-2.7.14/configure.ac
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/configure.ac
+++++ Python-2.7.14/configure.ac
++@@ -758,6 +758,11 @@ SunOS*)
++     ;;
++ esac
++=20
+++AC_SUBST(LIB)
+++AC_MSG_CHECKING(LIB)
+++LIB=3D`basename ${libdir}`
+++AC_MSG_RESULT($LIB)
+++
++=20
++ AC_SUBST(LIBRARY)
++ AC_MSG_CHECKING(LIBRARY)
+diff --git a/recipes-devtools/python/python-native/nohostlibs.patch b/rec=
+ipes-devtools/python/python-native/nohostlibs.patch
+new file mode 100644
+index 0000000..078060b
+--- /dev/null
++++ b/recipes-devtools/python/python-native/nohostlibs.patch
+@@ -0,0 +1,54 @@
++Upstream-Status: Inappropriate [embedded specific]
++
++2014/12/15
++Rebased for python-2.7.9
++Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
++Signed-off-by: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
++
++Index: Python-2.7.9/setup.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.9.orig/setup.py
+++++ Python-2.7.9/setup.py
++@@ -439,9 +439,9 @@ class PyBuildExt(build_ext):
++=20
++     def detect_modules(self):
++         # Ensure that /usr/local is always used
++-        if not cross_compiling:
++-            add_dir_to_list(self.compiler.library_dirs, '/usr/local/lib=
+')
++-            add_dir_to_list(self.compiler.include_dirs, '/usr/local/inc=
+lude')
+++        # if not cross_compiling:
+++            # add_dir_to_list(self.compiler.library_dirs, '/usr/local/l=
+ib')
+++            # add_dir_to_list(self.compiler.include_dirs, '/usr/local/i=
+nclude')
++         if cross_compiling:
++             self.add_gcc_paths()
++         self.add_multiarch_paths()
++@@ -480,15 +480,15 @@ class PyBuildExt(build_ext):
++                     for directory in reversed(options.dirs):
++                         add_dir_to_list(dir_list, directory)
++=20
++-        if os.path.normpath(sys.prefix) !=3D '/usr' \
++-                and not sysconfig.get_config_var('PYTHONFRAMEWORK'):
+++        #if os.path.normpath(sys.prefix) !=3D '/usr' \
+++                #and not sysconfig.get_config_var('PYTHONFRAMEWORK'):
++             # OSX note: Don't add LIBDIR and INCLUDEDIR to building a f=
+ramework
++             # (PYTHONFRAMEWORK is set) to avoid # linking problems when
++             # building a framework with different architectures than
++             # the one that is currently installed (issue #7473)
++-            add_dir_to_list(self.compiler.library_dirs,
+++        add_dir_to_list(self.compiler.library_dirs,
++                             sysconfig.get_config_var("LIBDIR"))
++-            add_dir_to_list(self.compiler.include_dirs,
+++        add_dir_to_list(self.compiler.include_dirs,
++                             sysconfig.get_config_var("INCLUDEDIR"))
++=20
++         try:
++@@ -761,8 +761,7 @@ class PyBuildExt(build_ext):
++                 pass # Issue 7384: Already linked against curses or tin=
+fo.
++             elif curses_library:
++                 readline_libs.append(curses_library)
++-            elif self.compiler.find_library_file(lib_dirs +
++-                                                     ['/usr/lib/termcap=
+'],
+++            elif self.compiler.find_library_file(lib_dirs,
++                                                      'termcap'):
++                 readline_libs.append('termcap')
++             exts.append( Extension('readline', ['readline.c'],
+diff --git a/recipes-devtools/python/python-native/revert_use_of_sysconfi=
+gdata.patch b/recipes-devtools/python/python-native/revert_use_of_sysconf=
+igdata.patch
+new file mode 100644
+index 0000000..202aaf1
+--- /dev/null
++++ b/recipes-devtools/python/python-native/revert_use_of_sysconfigdata.p=
+atch
+@@ -0,0 +1,86 @@
++On older versions of Python, sysconfig read the data from both the Makef=
+ile and
++the Python.h file generated at build time, created dictionaries with the=
+ir variables
++and used those when using get_config_var(), now it uses _sysconfigdata.b=
+uild_time_vars[]
++which contains information from the HOST, erroneous in our case, this pa=
+tch reverts this
++behavior and uses Python.h and Makefile to get information.
++
++Upstream-Status: Inappropriate [oe-specific]
++
++Signed-off-by: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
++
++Index: Python-2.7.9/Lib/distutils/sysconfig.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.9.orig/Lib/distutils/sysconfig.py
+++++ Python-2.7.9/Lib/distutils/sysconfig.py
++@@ -401,12 +401,66 @@ _config_vars =3D None
++=20
++ def _init_posix():
++     """Initialize the module as appropriate for POSIX systems."""
++-    # _sysconfigdata is generated at build time, see the sysconfig modu=
+le
++-    from _sysconfigdata import build_time_vars
++-    global _config_vars
++-    _config_vars =3D {}
++-    _config_vars.update(build_time_vars)
+++    g =3D {}
+++    # load the installed Makefile:
+++    try:
+++        filename =3D get_makefile_filename()
+++        parse_makefile(filename, g)
+++    except IOError, msg:
+++        my_msg =3D "invalid Python installation: unable to open %s" % f=
+ilename
+++        if hasattr(msg, "strerror"):
+++            my_msg =3D my_msg + " (%s)" % msg.strerror
+++
+++        raise DistutilsPlatformError(my_msg)
+++
+++    # load the installed pyconfig.h:
+++    try:
+++        filename =3D get_config_h_filename()
+++        parse_config_h(file(filename), g)
+++    except IOError, msg:
+++        my_msg =3D "invalid Python installation: unable to open %s" % f=
+ilename
+++        if hasattr(msg, "strerror"):
+++            my_msg =3D my_msg + " (%s)" % msg.strerror
+++
+++        raise DistutilsPlatformError(my_msg)
+++
+++    # On AIX, there are wrong paths to the linker scripts in the Makefi=
+le
+++    # -- these paths are relative to the Python source, but when instal=
+led
+++    # the scripts are in another directory.
+++    if python_build:
+++        g['LDSHARED'] =3D g['BLDSHARED']
++=20
+++    elif get_python_version() < '2.1':
+++        # The following two branches are for 1.5.2 compatibility.
+++        if sys.platform =3D=3D 'aix4':          # what about AIX 3.x ?
+++            # Linker script is in the config directory, not in Modules =
+as the
+++            # Makefile says.
+++            python_lib =3D get_python_lib(standard_lib=3D1)
+++            ld_so_aix =3D os.path.join(python_lib, 'config', 'ld_so_aix=
+')
+++            python_exp =3D os.path.join(python_lib, 'config', 'python.e=
+xp')
+++
+++            g['LDSHARED'] =3D "%s %s -bI:%s" % (ld_so_aix, g['CC'], pyt=
+hon_exp)
+++
+++        elif sys.platform =3D=3D 'beos':
+++            # Linker script is in the config directory.  In the Makefil=
+e it is
+++            # relative to the srcdir, which after installation no longe=
+r makes
+++            # sense.
+++            python_lib =3D get_python_lib(standard_lib=3D1)
+++            linkerscript_path =3D string.split(g['LDSHARED'])[0]
+++            linkerscript_name =3D os.path.basename(linkerscript_path)
+++            linkerscript =3D os.path.join(python_lib, 'config',
+++                                        linkerscript_name)
+++
+++            # XXX this isn't the right place to do this: adding the Pyt=
+hon
+++            # library to the link, if needed, should be in the "build_e=
+xt"
+++            # command.  (It's also needed for non-MS compilers on Windo=
+ws, and
+++            # it's taken care of for them by the 'build_ext.get_librari=
+es()'
+++            # method.)
+++            g['LDSHARED'] =3D ("%s -L%s/lib -lpython%s" %
+++                             (linkerscript, PREFIX, get_python_version(=
+)))
+++
+++    global _config_vars
+++    _config_vars =3D g
++=20
++ def _init_nt():
++     """Initialize the module as appropriate for NT"""
+diff --git a/recipes-devtools/python/python-native/unixccompiler.patch b/=
+recipes-devtools/python/python-native/unixccompiler.patch
+new file mode 100644
+index 0000000..4502829
+--- /dev/null
++++ b/recipes-devtools/python/python-native/unixccompiler.patch
+@@ -0,0 +1,20 @@
++Upstream-Status: Pending
++
++The CC variable,sometimes like:"x86_64-poky-linux-gcc   -m64 --sysroot=3D=
+/${TMPDIR}/sysroots/qemux86-64", contains option information.=20
++This will lead to wrong compiler name "qemux86-64" rather than "x86_64-p=
+oky-linux-gcc" when python finding the compiler name.
++
++Signed-off-by: Mei Lei <lei.mei@intel.com>
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
++Index: Python-2.7.2/Lib/distutils/unixccompiler.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.2.orig/Lib/distutils/unixccompiler.py	2011-11-24 13:51:10=
+.539998722 -0800
+++++ Python-2.7.2/Lib/distutils/unixccompiler.py	2011-11-24 15:54:36.8721=
+37766 -0800
++@@ -282,7 +282,7 @@
++         # this time, there's no way to determine this information from
++         # the configuration data stored in the Python installation, so
++         # we use this hack.
++-        compiler =3D os.path.basename(sysconfig.get_config_var("CC"))
+++        compiler =3D sysconfig.get_config_var("CC")
++         if sys.platform[:6] =3D=3D "darwin":
++             # MacOSX's linker doesn't understand the -R flag at all
++             return "-L" + dir
+diff --git a/recipes-devtools/python/python-native_2.7.17.bb b/recipes-de=
+vtools/python/python-native_2.7.17.bb
+new file mode 100644
+index 0000000..72aa34c
+--- /dev/null
++++ b/recipes-devtools/python/python-native_2.7.17.bb
+@@ -0,0 +1,90 @@
++require python.inc
++EXTRANATIVEPATH +=3D "bzip2-native"
++DEPENDS =3D "openssl-native bzip2-replacement-native zlib-native readlin=
+e-native sqlite3-native expat-native gdbm-native db-native"
++
++SRC_URI +=3D "\
++            file://05-enable-ctypes-cross-build.patch \
++            file://10-distutils-fix-swig-parameter.patch \
++            file://11-distutils-never-modify-shebang-line.patch \
++            file://0001-distutils-set-the-prefix-to-be-inside-staging-di=
+rect.patch \
++            file://unixccompiler.patch \
++            file://nohostlibs.patch \
++            file://multilib.patch \
++            file://add-md5module-support.patch \
++            file://0001-python-Resolve-intermediate-staging-issues.patch=
+ \
++            file://parallel-makeinst-create-bindir.patch \
++            file://revert_use_of_sysconfigdata.patch \
++            file://0001-python-native-fix-one-do_populate_sysroot-warnin=
+g.patch \
++           "
++
++S =3D "${WORKDIR}/Python-${PV}"
++
++FILESEXTRAPATHS =3D. "${FILE_DIRNAME}/${PN}:"
++
++inherit native
++
++EXTRA_OECONF_append =3D " --bindir=3D${bindir}/${PN} --with-system-expat=
+=3D${STAGING_DIR_HOST}"
++
++EXTRA_OEMAKE =3D '\
++  LIBC=3D"" \
++  STAGING_LIBDIR=3D${STAGING_LIBDIR_NATIVE} \
++  STAGING_INCDIR=3D${STAGING_INCDIR_NATIVE} \
++'
++
++do_configure_append() {
++	autoreconf --verbose --install --force --exclude=3Dautopoint ../Python-=
+${PV}/Modules/_ctypes/libffi
++}
++
++# Cross-compiling Python needs a native pgen, build it here for use late=
+r.
++do_compile_append() {
++	oe_runmake Parser/pgen
++}
++
++do_install() {
++	oe_runmake 'DESTDIR=3D${D}' install
++	install -d ${D}${bindir}/${PN}
++	install -m 0755 Parser/pgen ${D}${bindir}/${PN}
++
++	# Make sure we use /usr/bin/env python
++	for PYTHSCRIPT in `grep -rIl ${bindir}/${PN}/python ${D}${bindir}/${PN}=
+`; do
++		sed -i -e '1s|^#!.*|#!/usr/bin/env python|' $PYTHSCRIPT
++	done
++
++	# Add a symlink to the native Python so that scripts can just invoke
++	# "nativepython" and get the right one without needing absolute paths
++	# (these often end up too long for the #! parser in the kernel as the
++	# buffer is 128 bytes long).
++	ln -s python-native/python ${D}${bindir}/nativepython
++
++	# We don't want modules in ~/.local being used in preference to those
++	# installed in the native sysroot, so disable user site support.
++	sed -i -e 's,^\(ENABLE_USER_SITE =3D \).*,\1False,' ${D}${libdir}/pytho=
+n${PYTHON_MAJMIN}/site.py
++}
++
++python(){
++
++    # Read JSON manifest
++    import json
++    pythondir =3D d.getVar('THISDIR')
++    with open(pythondir+'/python/python2-manifest.json') as manifest_fil=
+e:
++        manifest_str =3D  manifest_file.read()
++        json_start =3D manifest_str.find('# EOC') + 6
++        manifest_file.seek(json_start)
++        manifest_str =3D manifest_file.read()
++        python_manifest =3D json.loads(manifest_str)
++
++    rprovides =3D d.getVar('RPROVIDES').split()
++
++    # Hardcoded since it cant be python-native-foo, should be python-foo=
+-native
++    pn =3D 'python'
++
++    # ${PN}-misc-native is not in the manifest
++    rprovides.append(pn + '-misc-native')
++
++    for key in python_manifest:
++        pypackage =3D pn + '-' + key + '-native'
++        if pypackage not in rprovides:
++              rprovides.append(pypackage)
++
++    d.setVar('RPROVIDES', ' '.join(rprovides))
++}
+diff --git a/recipes-devtools/python/python-setuptools.inc b/recipes-devt=
+ools/python/python-setuptools.inc
+new file mode 100644
+index 0000000..d8bce71
+--- /dev/null
++++ b/recipes-devtools/python/python-setuptools.inc
+@@ -0,0 +1,50 @@
++SUMMARY =3D "Download, build, install, upgrade, and uninstall Python pac=
+kages"
++HOMEPAGE =3D "https://pypi.python.org/pypi/setuptools"
++SECTION =3D "devel/python"
++LICENSE =3D "MIT"
++LIC_FILES_CHKSUM =3D "file://LICENSE;beginline=3D1;endline=3D19;md5=3D9a=
+33897f1bca1160d7aad3835152e158"
++
++PYPI_PACKAGE_EXT =3D "zip"
++
++inherit pypi
++
++SRC_URI_append_class-native =3D " file://0001-conditionally-do-not-fetch=
+-code-by-easy_install.patch"
++
++SRC_URI[md5sum] =3D "5ac69b66a6f7d4785517017f37df28e9"
++SRC_URI[sha256sum] =3D "c5b372090d7c8709ce79a6a66872a91e518f7d65af97fca7=
+8135e1cb10d4b940"
++
++DEPENDS +=3D "${PYTHON_PN}"
++
++RDEPENDS_${PN} =3D "\
++  ${PYTHON_PN}-compile \
++  ${PYTHON_PN}-compression \
++  ${PYTHON_PN}-ctypes \
++  ${PYTHON_PN}-distutils \
++  ${PYTHON_PN}-email \
++  ${PYTHON_PN}-html \
++  ${PYTHON_PN}-netserver \
++  ${PYTHON_PN}-numbers \
++  ${PYTHON_PN}-pkgutil \
++  ${PYTHON_PN}-plistlib \
++  ${PYTHON_PN}-shell \
++  ${PYTHON_PN}-stringold \
++  ${PYTHON_PN}-threading \
++  ${PYTHON_PN}-unittest \
++  ${PYTHON_PN}-xml \
++"
++do_install_prepend() {
++    install -d ${D}${PYTHON_SITEPACKAGES_DIR}
++}
++
++BBCLASSEXTEND =3D "native nativesdk"
++
++# The pkg-resources module can be used by itself, without the package do=
+wnloader
++# and easy_install. Ship it in a separate package so that it can be used=
+ by
++# minimal distributions.
++PACKAGES =3D+ "${PYTHON_PN}-pkg-resources "
++FILES_${PYTHON_PN}-pkg-resources =3D "${PYTHON_SITEPACKAGES_DIR}/pkg_res=
+ources/*"
++# Due to the way OE-Core implemented native recipes, the native class ca=
+nnot
++# have a dependency on something that is not a recipe name. Work around =
+that by
++# manually setting RPROVIDES.
++RDEPENDS_${PN}_append =3D " ${PYTHON_PN}-pkg-resources"
++RPROVIDES_append_class-native =3D " ${PYTHON_PN}-pkg-resources-native"
+diff --git a/recipes-devtools/python/python-setuptools_42.0.2.bb b/recipe=
+s-devtools/python/python-setuptools_42.0.2.bb
+new file mode 100644
+index 0000000..cf94404
+--- /dev/null
++++ b/recipes-devtools/python/python-setuptools_42.0.2.bb
+@@ -0,0 +1,9 @@
++require python-setuptools.inc
++
++PROVIDES =3D "python-distribute"
++
++inherit setuptools
++
++RREPLACES_${PN} =3D "python-distribute"
++RPROVIDES_${PN} =3D "python-distribute"
++RCONFLICTS_${PN} =3D "python-distribute"
+diff --git a/recipes-devtools/python/python.inc b/recipes-devtools/python=
+/python.inc
+new file mode 100644
+index 0000000..19a2f3e
+--- /dev/null
++++ b/recipes-devtools/python/python.inc
+@@ -0,0 +1,59 @@
++SUMMARY =3D "The Python Programming Language"
++HOMEPAGE =3D "http://www.python.org"
++LICENSE =3D "PSFv2"
++SECTION =3D "devel/python"
++# bump this on every change in contrib/python/generate-manifest-2.7.py
++INC_PR =3D "r1"
++
++LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3De466242989bd33c1bd2b6a526a742=
+498"
++
++SRC_URI =3D "http://www.python.org/ftp/python/${PV}/Python-${PV}.tar.xz =
+\
++           "
++
++SRC_URI[md5sum] =3D "b3b6d2c92f42a60667814358ab9f0cfd"
++SRC_URI[sha256sum] =3D "4d43f033cdbd0aa7b7023c81b0e986fd11e653b5248dac91=
+44d508f11812ba41"
++
++# python recipe is actually python 2.x
++# also, exclude pre-releases for both python 2.x and 3.x
++UPSTREAM_CHECK_REGEX =3D "[Pp]ython-(?P<pver>2(\.\d+)+).tar"
++
++CVE_PRODUCT =3D "python"
++
++# Upstream agreement is that these are not security issues:
++# https://bugs.python.org/issue32367
++CVE_CHECK_WHITELIST +=3D "CVE-2017-17522"
++# https://bugs.python.org/issue32056
++CVE_CHECK_WHITELIST +=3D "CVE-2017-18207"
++
++# Windows-only, "It was determined that this is a longtime behavior
++# of Python that cannot really be altered at this point."
++CVE_CHECK_WHITELIST +=3D "CVE-2015-5652"
++
++# This is not exploitable when glibc has CVE-2016-10739 fixed.
++CVE_CHECK_WHITELIST +=3D "CVE-2019-18348"
++
++PYTHON_MAJMIN =3D "2.7"
++
++inherit autotools pkgconfig
++
++EXTRA_OECONF =3D "\
++  --with-threads \
++  --with-pymalloc \
++  --without-cxx-main \
++  --with-signal-module \
++  --enable-shared \
++  --enable-ipv6=3D${@bb.utils.contains('DISTRO_FEATURES', 'ipv6', 'yes',=
+ 'no', d)} \
++  ac_cv_header_bluetooth_bluetooth_h=3Dno ac_cv_header_bluetooth_h=3Dno =
+\
++"
++
++do_configure_prepend() {
++	libdirleaf=3D"$(echo ${libdir} | sed -e 's:${prefix}/::')"
++	sed -i -e "s:SEDMELIBLEAF:${libdirleaf}:g" \
++		${S}/configure.ac
++}
++
++do_install_append () {
++	sed -i -e 's:${HOSTTOOLS_DIR}/install:install:g' \
++		-e 's:${HOSTTOOLS_DIR}/mkdir:mkdir:g' \
++		${D}/${libdir}/python${PYTHON_MAJMIN}/_sysconfigdata.py
++}
+diff --git a/recipes-devtools/python/python/0001-distutils-set-the-prefix=
+-to-be-inside-staging-direct.patch b/recipes-devtools/python/python/0001-=
+distutils-set-the-prefix-to-be-inside-staging-direct.patch
+new file mode 100644
+index 0000000..502f849
+--- /dev/null
++++ b/recipes-devtools/python/python/0001-distutils-set-the-prefix-to-be-=
+inside-staging-direct.patch
+@@ -0,0 +1,51 @@
++From 4cdf2e9df13c6327fcc94d53e4953005543aef3d Mon Sep 17 00:00:00 2001
++From: Alexander Kanavin <alex.kanavin@gmail.com>
++Date: Wed, 6 Apr 2016 17:43:02 +0300
++Subject: [PATCH 01/10] distutils: set the prefix to be inside staging
++ directory
++
++The proper prefix is inside our staging area.
++
++Upstream-Status: Inappropriate [embedded specific]
++Signed-off-by: Michael 'Mickey' Lauer <mickey@vanille-media.de>
++Signed-off-by: Phil Blundell <philb@gnu.org>
++Signed-off-by: Alexander Kanavin <alex.kanavin@gmail.com>
++---
++ Lib/distutils/sysconfig.py | 10 +++++++---
++ 1 file changed, 7 insertions(+), 3 deletions(-)
++
++diff --git a/Lib/distutils/sysconfig.py b/Lib/distutils/sysconfig.py
++index de7da1d..f3aacf7 100644
++--- a/Lib/distutils/sysconfig.py
+++++ b/Lib/distutils/sysconfig.py
++@@ -75,7 +75,7 @@ def get_python_inc(plat_specific=3D0, prefix=3DNone):
++     sys.exec_prefix -- i.e., ignore 'plat_specific'.
++     """
++     if prefix is None:
++-        prefix =3D plat_specific and EXEC_PREFIX or PREFIX
+++        prefix =3D os.environ['STAGING_INCDIR'].rstrip('include')
++=20
++     if os.name =3D=3D "posix":
++         if python_build:
++@@ -115,12 +115,16 @@ def get_python_lib(plat_specific=3D0, standard_lib=
+=3D0, prefix=3DNone):
++     If 'prefix' is supplied, use it instead of sys.prefix or
++     sys.exec_prefix -- i.e., ignore 'plat_specific'.
++     """
+++    lib_basename =3D os.environ['STAGING_LIBDIR'].split('/')[-1]
++     if prefix is None:
++-        prefix =3D plat_specific and EXEC_PREFIX or PREFIX
+++        if plat_specific:
+++            prefix =3D os.environ['STAGING_LIBDIR'].rstrip(lib_basename=
+)
+++        else:
+++            prefix =3D PREFIX
++=20
++     if os.name =3D=3D "posix":
++         libpython =3D os.path.join(prefix,
++-                                 "lib", "python" + get_python_version()=
+)
+++                                 lib_basename, "python" + get_python_ve=
+rsion())
++         if standard_lib:
++             return libpython
++         else:
++--=20
++2.8.0.rc3
++
+diff --git a/recipes-devtools/python/python/0001-python-Resolve-intermedi=
+ate-staging-issues.patch b/recipes-devtools/python/python/0001-python-Res=
+olve-intermediate-staging-issues.patch
+new file mode 100644
+index 0000000..2ff2ccc
+--- /dev/null
++++ b/recipes-devtools/python/python/0001-python-Resolve-intermediate-sta=
+ging-issues.patch
+@@ -0,0 +1,59 @@
++From 77bcb3238b2853d511714544e0f84a37be6c79bf Mon Sep 17 00:00:00 2001
++From: Richard Purdie <richard.purdie@linuxfoundation.org>
++Date: Wed, 14 Nov 2012 14:31:24 +0000
++Subject: [PATCH] python: Resolve intermediate staging issues
++
++When cross compiling python, we used to need to install the Makefile, py=
+config.h
++and the python library to their final location before being able to comp=
+ile the
++rest of python. This change allows us to point python at its own source =
+when
++building, avoiding a variety of sysroot staging issues and simplifying t=
+he main
++python recipe.
++
++Upstream-Status: Inappropriate
++RP 2012/11/13
++
++---
++ Lib/distutils/sysconfig.py | 3 +++
++ Lib/sysconfig.py           | 5 ++++-
++ 2 files changed, 7 insertions(+), 1 deletion(-)
++
++diff --git a/Lib/distutils/sysconfig.py b/Lib/distutils/sysconfig.py
++index 2f4b8ca..15bceb5 100644
++--- a/Lib/distutils/sysconfig.py
+++++ b/Lib/distutils/sysconfig.py
++@@ -31,6 +31,9 @@ else:
++     # sys.executable can be empty if argv[0] has been changed and Pytho=
+n is
++     # unable to retrieve the real program name
++     project_base =3D os.getcwd()
+++_PYTHONBUILDDIR =3D os.environ.get("PYTHONBUILDDIR", None)
+++if _PYTHONBUILDDIR:
+++    project_base =3D _PYTHONBUILDDIR
++ if os.name =3D=3D "nt" and "pcbuild" in project_base[-8:].lower():
++     project_base =3D os.path.abspath(os.path.join(project_base, os.path=
+.pardir))
++ # PC/VS7.1
++diff --git a/Lib/sysconfig.py b/Lib/sysconfig.py
++index 9c8350d..bddbe2e 100644
++--- a/Lib/sysconfig.py
+++++ b/Lib/sysconfig.py
++@@ -93,6 +93,7 @@ _PREFIX =3D os.path.normpath(sys.prefix)
++ _EXEC_PREFIX =3D os.path.normpath(sys.exec_prefix)
++ _CONFIG_VARS =3D None
++ _USER_BASE =3D None
+++_PYTHONBUILDDIR =3D os.environ.get("PYTHONBUILDDIR", None)
++=20
++ def _safe_realpath(path):
++     try:
++@@ -100,7 +101,9 @@ def _safe_realpath(path):
++     except OSError:
++         return path
++=20
++-if sys.executable:
+++if _PYTHONBUILDDIR:
+++    _PROJECT_BASE =3D _PYTHONBUILDDIR
+++elif sys.executable:
++     _PROJECT_BASE =3D os.path.dirname(_safe_realpath(sys.executable))
++ else:
++     # sys.executable can be empty if argv[0] has been changed and Pytho=
+n is
++--=20
++2.17.1
++
+diff --git a/recipes-devtools/python/python/0001-python2-use-cc_basename-=
+to-replace-CC-for-checking-c.patch b/recipes-devtools/python/python/0001-=
+python2-use-cc_basename-to-replace-CC-for-checking-c.patch
+new file mode 100644
+index 0000000..6e4f820
+--- /dev/null
++++ b/recipes-devtools/python/python/0001-python2-use-cc_basename-to-repl=
+ace-CC-for-checking-c.patch
+@@ -0,0 +1,114 @@
++From 3f49be81e31c164654aeb10b65ebade982ca2ed8 Mon Sep 17 00:00:00 2001
++From: Changqing Li <changqing.li@windriver.com>
++Date: Mon, 22 Oct 2018 15:24:48 +0800
++Subject: [PATCH] python2: use cc_basename to replace CC for checking com=
+piler
++
++When working path contains "clang"/"gcc"/"icc", it might be part of $CC
++because of the "--sysroot" parameter. That could cause judgement error
++about clang/gcc/icc compilers. e.g.
++When "icc" is containded in working path, below errors are reported when
++compiling python:
++x86_64-wrs-linux-gcc: error: strict: No such file or directory
++x86_64-wrs-linux-gcc: error: unrecognized command line option '-fp-model=
+'
++
++Here use cc_basename to replace CC for checking compiler to avoid such
++kind of issue.
++
++Upstream-Status: Pending
++
++Signed-off-by: Li Zhou <li.zhou@windriver.com>
++
++Patch orignally from Li Zhou, I just rework it to new version
++
++Signed-off-by: Changqing Li <changqing.li@windriver.com>
++---
++ configure.ac | 18 +++++++++---------
++ 1 file changed, 9 insertions(+), 9 deletions(-)
++
++diff --git a/configure.ac b/configure.ac
++index db1c940..dfcd89a 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -684,7 +684,7 @@ AC_MSG_RESULT($with_cxx_main)
++ preset_cxx=3D"$CXX"
++ if test -z "$CXX"
++ then
++-        case "$CC" in
+++        case "$cc_basename" in
++         gcc)    AC_PATH_TOOL(CXX, [g++], [g++], [notfound]) ;;
++         cc)     AC_PATH_TOOL(CXX, [c++], [c++], [notfound]) ;;
++         esac
++@@ -757,14 +757,14 @@ rmdir CaseSensitiveTestDir
++=20
++ case $MACHDEP in
++ bsdos*)
++-    case $CC in
+++    case $cc_basename in
++     gcc) CC=3D"$CC -D_HAVE_BSDI";;
++     esac;;
++ esac
++=20
++ case $ac_sys_system in
++ hp*|HP*)
++-    case $CC in
+++    case $cc_basename in
++     cc|*/cc) CC=3D"$CC -Ae";;
++     esac;;
++ SunOS*)
++@@ -1084,7 +1084,7 @@ then
++         fi
++=20
++         # Clang also needs -fwrapv
++-        case $CC in
+++        case $cc_basename in
++             *clang*) WRAP=3D"-fwrapv"
++             ;;
++         esac
++@@ -1304,7 +1304,7 @@ yes)
++ esac
++=20
++ # ICC needs -fp-model strict or floats behave badly
++-case "$CC" in
+++case "$cc_basename" in
++ *icc*)
++     BASECFLAGS=3D"$BASECFLAGS -fp-model strict"
++     ;;
++@@ -1443,7 +1443,7 @@ else
++ fi],
++ [AC_MSG_RESULT(no)])
++ if test "$Py_LTO" =3D 'true' ; then
++-  case $CC in
+++  case $cc_basename in
++     *clang*)
++       # Any changes made here should be reflected in the GCC+Darwin cas=
+e below
++       LTOFLAGS=3D"-flto"
++@@ -1508,7 +1508,7 @@ then
++   fi
++ fi
++ LLVM_PROF_ERR=3Dno
++-case $CC in
+++case $cc_basename in
++   *clang*)
++     # Any changes made here should be reflected in the GCC+Darwin case =
+below
++     PGO_PROF_GEN_FLAG=3D"-fprofile-instr-generate"
++@@ -2322,7 +2322,7 @@ then
++ 		then CCSHARED=3D"-fPIC"
++ 		else CCSHARED=3D"-Kpic -belf"
++ 		fi;;
++-	IRIX*/6*)  case $CC in
+++	IRIX*/6*)  case $cc_basename in
++ 		   *gcc*) CCSHARED=3D"-shared";;
++ 		   *) CCSHARED=3D"";;
++ 		   esac;;
++@@ -2366,7 +2366,7 @@ then
++ 		then
++ 			LINKFORSHARED=3D"-Wl,--export-dynamic"
++ 		fi;;
++-	SunOS/5*) case $CC in
+++	SunOS/5*) case $cc_basename in
++ 		  *gcc*)
++ 		    if $CC -Xlinker --help 2>&1 | grep export-dynamic >/dev/null
++ 		    then
++--=20
++2.7.4
++
+diff --git a/recipes-devtools/python/python/01-use-proper-tools-for-cross=
+-build.patch b/recipes-devtools/python/python/01-use-proper-tools-for-cro=
+ss-build.patch
+new file mode 100644
+index 0000000..b02c094
+--- /dev/null
++++ b/recipes-devtools/python/python/01-use-proper-tools-for-cross-build.=
+patch
+@@ -0,0 +1,49 @@
++We need to ensure our host tools get run during build, not the freshly
++built cross-tools (this will not work), so we introduce HOSTPYTHON and H=
+OSTPGEN.
++
++Upstream-Status: Inappropriate [embedded specific]
++
++Signed-off-by: Michael 'Mickey' Lauer <mickey@vanille-media.de>
++Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
++
++Rebased for python-2.7.9
++Signed-off-by: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
++
++Rebased for python-2.7.14
++Signed-off-by: Derek Straka <derek@asterius.io>
++
++Index: Python-2.7.13/Makefile.pre.in
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.13.orig/Makefile.pre.in
+++++ Python-2.7.13/Makefile.pre.in
++@@ -512,7 +513,7 @@ $(BUILDPYTHON):	Modules/python.o $(LIBRA
++ 			$(BLDLIBRARY) $(LIBS) $(MODLIBS) $(SYSLIBS) $(LDLAST)
++=20
++ platform: $(BUILDPYTHON) pybuilddir.txt
++-	$(RUNSHARED) $(PYTHON_FOR_BUILD) -c 'import sys ; from sysconfig impor=
+t get_platform ; print get_platform()+"-"+sys.version[0:3]' >platform
+++	$(RUNSHARED) $(PYTHON_FOR_BUILD) -c 'import sys ; from distutils.util =
+import get_platform ; print get_platform()+"-"+sys.version[0:3]' >platfor=
+m
++=20
++ # Create build directory and generate the sysconfig build-time data the=
+re.
++ # pybuilddir.txt contains the name of the build dir and is used for
++Index: Python-2.7.13/setup.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.13.orig/setup.py
+++++ Python-2.7.13/setup.py
++@@ -350,6 +350,7 @@ class PyBuildExt(build_ext):
++             self.failed.append(ext.name)
++             self.announce('*** WARNING: renaming "%s" since importing i=
+t'
++                           ' failed: %s' % (ext.name, why), level=3D3)
+++            return
++             assert not self.inplace
++             basename, tail =3D os.path.splitext(ext_filename)
++             newname =3D basename + "_failed" + tail
++@@ -574,6 +575,9 @@ class PyBuildExt(build_ext):
++=20
++         # XXX Omitted modules: gl, pure, dl, SGI-specific modules
++=20
+++        lib_dirs =3D [ os.getenv("STAGING_LIBDIR"),  os.getenv("STAGING=
+_BASELIBDIR") ]
+++        inc_dirs =3D [ os.getenv("STAGING_INCDIR") ]
+++
++         #
++         # The following modules are all pretty straightforward, and com=
+pile
++         # on pretty much any POSIXish platform.
+diff --git a/recipes-devtools/python/python/03-fix-tkinter-detection.patc=
+h b/recipes-devtools/python/python/03-fix-tkinter-detection.patch
+new file mode 100644
+index 0000000..650ceb5
+--- /dev/null
++++ b/recipes-devtools/python/python/03-fix-tkinter-detection.patch
+@@ -0,0 +1,46 @@
++Upstream-Status: Inappropriate [embedded specific]
++
++We need to supply STAGING_INCDIR here, otherwise the Tk headers
++will not be found.
++
++Signed-off-by: Michael 'Mickey' Lauer <mickey@vanille.de>
++Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
++
++Rebased for python-2.7.9
++
++diff --git a/setup.py b/setup.py
++index 8fe1fb8..67eda74 100644
++--- a/setup.py
+++++ b/setup.py
++@@ -1892,7 +1892,7 @@ class PyBuildExt(build_ext):
++                 dotversion =3D dotversion[:-1] + '.' + dotversion[-1]
++             tcl_include_sub =3D []
++             tk_include_sub =3D []
++-            for dir in inc_dirs:
+++            for dir in [os.getenv("STAGING_INCDIR")]:
++                 tcl_include_sub +=3D [dir + os.sep + "tcl" + dotversion=
+]
++                 tk_include_sub +=3D [dir + os.sep + "tk" + dotversion]
++             tk_include_sub +=3D tcl_include_sub
++@@ -1911,22 +1911,6 @@ class PyBuildExt(build_ext):
++             if dir not in include_dirs:
++                 include_dirs.append(dir)
++=20
++-        # Check for various platform-specific directories
++-        if host_platform =3D=3D 'sunos5':
++-            include_dirs.append('/usr/openwin/include')
++-            added_lib_dirs.append('/usr/openwin/lib')
++-        elif os.path.exists('/usr/X11R6/include'):
++-            include_dirs.append('/usr/X11R6/include')
++-            added_lib_dirs.append('/usr/X11R6/lib64')
++-            added_lib_dirs.append('/usr/X11R6/lib')
++-        elif os.path.exists('/usr/X11R5/include'):
++-            include_dirs.append('/usr/X11R5/include')
++-            added_lib_dirs.append('/usr/X11R5/lib')
++-        else:
++-            # Assume default location for X11
++-            include_dirs.append('/usr/X11/include')
++-            added_lib_dirs.append('/usr/X11/lib')
++-
++         # If Cygwin, then verify that X is installed before proceeding
++         if host_platform =3D=3D 'cygwin':
++             x11_inc =3D find_file('X11/Xlib.h', [], include_dirs)
+diff --git a/recipes-devtools/python/python/05-enable-ctypes-cross-build.=
+patch b/recipes-devtools/python/python/05-enable-ctypes-cross-build.patch
+new file mode 100644
+index 0000000..5cc8742
+--- /dev/null
++++ b/recipes-devtools/python/python/05-enable-ctypes-cross-build.patch
+@@ -0,0 +1,27 @@
++Rebased for python 2.7.9
++
++Upstream-Status: Inappropriate [embedded specific]
++
++# CTypes need to know the actual host we are building on.
++# Signed-Off: Michael Dietrich <mdt@emdete.de>
++
++Index: Python-2.7.9/setup.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.9.orig/setup.py
+++++ Python-2.7.9/setup.py
++@@ -2028,12 +2028,12 @@ class PyBuildExt(build_ext):
++=20
++                 # Pass empty CFLAGS because we'll just append the resul=
+ting
++                 # CFLAGS to Python's; -g or -O2 is to be avoided.
++-                cmd =3D "cd %s && env CFLAGS=3D'' '%s/configure' %s" \
++-                      % (ffi_builddir, ffi_srcdir, " ".join(config_args=
+))
+++                cmd =3D "(cd %s && autoconf -W cross) && (cd %s && env =
+CFLAGS=3D'' '%s/configure' %s)" \
+++                    % (ffi_srcdir, ffi_builddir, ffi_srcdir, " ".join(c=
+onfig_args))
++=20
++                 res =3D os.system(cmd)
++                 if res or not os.path.exists(ffi_configfile):
++-                    print "Failed to configure _ctypes module"
+++                    print "Failed to configure _ctypes module (res=3D%d=
+) or missing conffile=3D%s" % ( res, ffi_configfile )
++                     return False
++=20
++             fficonfig =3D {}
+diff --git a/recipes-devtools/python/python/06-avoid_usr_lib_termcap_path=
+_in_linking.patch b/recipes-devtools/python/python/06-avoid_usr_lib_termc=
+ap_path_in_linking.patch
+new file mode 100644
+index 0000000..435b319
+--- /dev/null
++++ b/recipes-devtools/python/python/06-avoid_usr_lib_termcap_path_in_lin=
+king.patch
+@@ -0,0 +1,35 @@
++Upstream-Status: Pending
++
++The poison directories patch has detected library path issue while=20
++compiling the python in cross environment, as seen bellow.
++
++warning: library search path "/usr/lib/termcap" is unsafe for cross-comp=
+ilation
++
++This Patch fixes this issue in the python build environment.
++11 Oct 2010
++Nitin A Kamble <nitin.a.kamble@intel.com>
++
++2011/09/29
++Rebased for python 2.7.2
++Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
++
++Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
++
++diff --git a/setup.py b/setup.py
++index 67eda74..59c537e 100644
++--- a/setup.py
+++++ b/setup.py
++@@ -761,12 +761,10 @@ class PyBuildExt(build_ext):
++                 pass # Issue 7384: Already linked against curses or tin=
+fo.
++             elif curses_library:
++                 readline_libs.append(curses_library)
++-            elif self.compiler.find_library_file(lib_dirs +
++-                                                     ['/usr/lib/termcap=
+'],
+++            elif self.compiler.find_library_file(lib_dirs,
++                                                      'termcap'):
++                 readline_libs.append('termcap')
++             exts.append( Extension('readline', ['readline.c'],
++-                                   library_dirs=3D['/usr/lib/termcap'],
++                                    extra_link_args=3Dreadline_extra_lin=
+k_args,
++                                    libraries=3Dreadline_libs) )
++         else:
+diff --git a/recipes-devtools/python/python/add-CROSSPYTHONPATH-for-PYTHO=
+N_FOR_BUILD.patch b/recipes-devtools/python/python/add-CROSSPYTHONPATH-fo=
+r-PYTHON_FOR_BUILD.patch
+new file mode 100644
+index 0000000..3297340
+--- /dev/null
++++ b/recipes-devtools/python/python/add-CROSSPYTHONPATH-for-PYTHON_FOR_B=
+UILD.patch
+@@ -0,0 +1,28 @@
++configure.ac: add CROSSPYTHONPATH into PYTHONPATH for PYTHON_FOR_BUILD
++
++When building x86->x86 the system will try to execute .so and related it=
+ems
++from the default PYTHONPATH.  This will fail if the target CPU contains
++instructions that the host CPU does not have, add CROSSPYTHONPATH
++into PYTHONPATH so we can prepend the list to find correct libs.
++
++Upstream-Status: Inappropriate [OE-Core integration specific]
++
++Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
++Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
++---
++ configure.ac | 2 +-
++ 1 file changed, 1 insertion(+), 1 deletion(-)
++
++Index: Python-2.7.14/configure.ac
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/configure.ac
+++++ Python-2.7.14/configure.ac
++@@ -36,7 +36,7 @@ if test "$cross_compiling" =3D yes; then
++ 	    AC_MSG_ERROR([python$PACKAGE_VERSION interpreter not found])
++ 	fi
++         AC_MSG_RESULT($interp)
++-	PYTHON_FOR_BUILD=3D'_PYTHON_PROJECT_BASE=3D$(abs_builddir) _PYTHON_HOS=
+T_PLATFORM=3D$(_PYTHON_HOST_PLATFORM) PYTHONPATH=3D$(shell test -f pybuil=
+ddir.txt && echo $(abs_builddir)/`cat pybuilddir.txt`:)$(srcdir)/Lib:$(sr=
+cdir)/Lib/$(PLATDIR) '$interp
+++	PYTHON_FOR_BUILD=3D'_PYTHON_PROJECT_BASE=3D$(abs_builddir) _PYTHON_HOS=
+T_PLATFORM=3D$(_PYTHON_HOST_PLATFORM) PYTHONPATH=3D$(CROSSPYTHONPATH):$(s=
+hell test -f pybuilddir.txt && echo $(abs_builddir)/`cat pybuilddir.txt`:=
+)$(srcdir)/Lib:$(srcdir)/Lib/plat-$(MACHDEP) '$interp
++     fi
++ elif test "$cross_compiling" =3D maybe; then
++     AC_MSG_ERROR([Cross compiling required --host=3DHOST-TUPLE and --bu=
+ild=3DARCH])
+diff --git a/recipes-devtools/python/python/add-md5module-support.patch b=
+/recipes-devtools/python/python/add-md5module-support.patch
+new file mode 100644
+index 0000000..33fea77
+--- /dev/null
++++ b/recipes-devtools/python/python/add-md5module-support.patch
+@@ -0,0 +1,18 @@
++
++Upstream-Status: Inappropriate [configuration]
++
++Signed-off-by: Saul Wold <sgw@linux.intel.com>
++
++Index: Python-2.7.2/Modules/Setup.dist
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.2.orig/Modules/Setup.dist	2011-06-11 08:46:26.000000000 -=
+0700
+++++ Python-2.7.2/Modules/Setup.dist	2011-12-27 15:51:41.244623219 -0800
++@@ -248,7 +248,7 @@
++ # Message-Digest Algorithm, described in RFC 1321.  The necessary files
++ # md5.c and md5.h are included here.
++=20
++-#_md5 md5module.c md5.c
+++_md5 md5module.c md5.c
++=20
++=20
++ # The _sha module implements the SHA checksum algorithms.
+diff --git a/recipes-devtools/python/python/avoid_warning_about_tkinter.p=
+atch b/recipes-devtools/python/python/avoid_warning_about_tkinter.patch
+new file mode 100644
+index 0000000..287095f
+--- /dev/null
++++ b/recipes-devtools/python/python/avoid_warning_about_tkinter.patch
+@@ -0,0 +1,29 @@
++_tkinter module needs tk module along with tcl. tk is not yet integrated
++in yocto so we skip the check for this module.
++Avoid a warning by not adding this module to missing variable.
++
++Upstream-Status: Inappropriate [distribution]
++
++Also simply disable the tk module since its not in DEPENDS.
++Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
++
++Index: Python-2.7.13/setup.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.13.orig/setup.py
+++++ Python-2.7.13/setup.py
++@@ -1783,10 +1783,12 @@ class PyBuildExt(build_ext):
++         self.extensions.extend(exts)
++=20
++         # Call the method for detecting whether _tkinter can be compile=
+d
++-        self.detect_tkinter(inc_dirs, lib_dirs)
+++        # self.detect_tkinter(inc_dirs, lib_dirs)
++=20
++-        if '_tkinter' not in [e.name for e in self.extensions]:
++-            missing.append('_tkinter')
+++        # tkinter module will not be avalaible as yocto
+++        # doesn't have tk integrated (yet)
+++        #if '_tkinter' not in [e.name for e in self.extensions]:
+++        #    missing.append('_tkinter')
++=20
++ ##         # Uncomment these lines if you want to play with xxmodule.c
++ ##         ext =3D Extension('xx', ['xxmodule.c'])
+diff --git a/recipes-devtools/python/python/avoid_warning_for_sunos_speci=
+fic_module.patch b/recipes-devtools/python/python/avoid_warning_for_sunos=
+_specific_module.patch
+new file mode 100644
+index 0000000..8ba5823
+--- /dev/null
++++ b/recipes-devtools/python/python/avoid_warning_for_sunos_specific_mod=
+ule.patch
+@@ -0,0 +1,23 @@
++sunaudiodev module is sunos specific so we avoid a warning by not=20
++adding this module to missing variable.
++
++Upstream-Status: Inappropriate [distribution]
++
++Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
++
++Index: Python-2.7.13/setup.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.13.orig/setup.py
+++++ Python-2.7.13/setup.py
++@@ -1671,8 +1671,9 @@ class PyBuildExt(build_ext):
++         if host_platform =3D=3D 'sunos5':
++             # SunOS specific modules
++             exts.append( Extension('sunaudiodev', ['sunaudiodev.c']) )
++-        else:
++-            missing.append('sunaudiodev')
+++        # If platform is not sunos warning is useless
+++        #else:
+++        #    missing.append('sunaudiodev')
++=20
++         if host_platform =3D=3D 'darwin':
++             # _scproxy
+diff --git a/recipes-devtools/python/python/cgi_py.patch b/recipes-devtoo=
+ls/python/python/cgi_py.patch
+new file mode 100644
+index 0000000..de504f9
+--- /dev/null
++++ b/recipes-devtools/python/python/cgi_py.patch
+@@ -0,0 +1,23 @@
++Lib/cgi.py: Update the script as mentioned in the comment
++
++Upstream-Status: Inappropriate [distribution]
++
++Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
++
++--- Python-2.6.6/Lib/cgi.py.orig	2010-08-01 22:14:27.000000000 -0500
+++++ Python-2.6.6/Lib/cgi.py	2011-09-21 15:28:40.478208631 -0500
++@@ -1,13 +1,4 @@
++-#! /usr/local/bin/python
++-
++-# NOTE: the above "/usr/local/bin/python" is NOT a mistake.  It is
++-# intentionally NOT "/usr/bin/env python".  On many systems
++-# (e.g. Solaris), /usr/local/bin is not in $PATH as passed to CGI
++-# scripts, and /usr/local/bin is the default directory where Python is
++-# installed, so /usr/bin/env would be unable to find python.  Granted,
++-# binary installations by Linux vendors often install Python in
++-# /usr/bin.  So let those vendors patch cgi.py to match their choice
++-# of installation.
+++#! /usr/bin/env python
++=20
++ """Support module for CGI (Common Gateway Interface) scripts.
++=20
+diff --git a/recipes-devtools/python/python/check-if-target-is-64b-not-ho=
+st.patch b/recipes-devtools/python/python/check-if-target-is-64b-not-host=
+.patch
+new file mode 100644
+index 0000000..e6d6c65
+--- /dev/null
++++ b/recipes-devtools/python/python/check-if-target-is-64b-not-host.patc=
+h
+@@ -0,0 +1,57 @@
++Author: Andrei Gherzan <andrei@gherzan.ro>
++Date:   Sun Mar 25 02:02:27 2012 +0200
++
++This patch was added for 64bit host machines. In the compile process pyt=
+hon
++is checking if platform is a 64bit platform using sys.maxint which is th=
+e host's
++value. The patch fixes this issue so that python would check if TARGET m=
+achine
++is 64bit not the HOST machine. In this way will have "dl" and "imageop" =
+modules
++built if HOST machine is 64bit but the target machine is 32bit.
++
++Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
++
++Upstream-Status: Pending
++
++Index: Python-2.7.11/setup.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.11.orig/setup.py
+++++ Python-2.7.11/setup.py
++@@ -35,6 +35,21 @@ COMPILED_WITH_PYDEBUG =3D ('--with-pydebug
++ # This global variable is used to hold the list of modules to be disabl=
+ed.
++ disabled_module_list =3D []
++=20
+++def target_is_64bit_platform ():
+++    """
+++    In case of cross-compile, some modules are not build as setup check=
+s if HOST
+++    is 64bit and not TARGET.
+++    As python was built for TARGET we can check this in pyconfig.h in t=
+his way:
+++	Sizeof LONG on a 32 bit platform is 4 bytes
+++	Sizeof LONG on a 64 bit platform is 8 bytes
+++    """
+++    pyconf =3D open("pyconfig.h").read()
+++    aux =3D re.search(r"#s*define\s+SIZEOF_LONG\s+8\s*", pyconf)
+++    if aux is not None:
+++	return True
+++    else:
+++	return False
+++
++ def add_dir_to_list(dirlist, dir):
++     """Add the directory 'dir' to the list 'dirlist' (at the front) if
++     1) 'dir' is not already in 'dirlist'
++@@ -716,7 +731,7 @@ class PyBuildExt(build_ext):
++         exts.append( Extension('audioop', ['audioop.c']) )
++=20
++         # Disabled on 64-bit platforms
++-        if sys.maxsize !=3D 9223372036854775807L:
+++        if not target_is_64bit_platform():
++             # Operations on images
++             exts.append( Extension('imageop', ['imageop.c']) )
++         else:
++@@ -1545,7 +1560,7 @@ class PyBuildExt(build_ext):
++                 missing.append('_codecs_%s' % loc)
++=20
++         # Dynamic loading module
++-        if sys.maxint =3D=3D 0x7fffffff:
+++        if not target_is_64bit_platform():
++             # This requires sizeof(int) =3D=3D sizeof(long) =3D=3D size=
+of(char*)
++             dl_inc =3D find_file('dlfcn.h', [], inc_dirs)
++             if (dl_inc is not None) and (host_platform not in ['atheos'=
+]):
+diff --git a/recipes-devtools/python/python/create_manifest2.py b/recipes=
+-devtools/python/python/create_manifest2.py
+new file mode 100644
+index 0000000..3465951
+--- /dev/null
++++ b/recipes-devtools/python/python/create_manifest2.py
+@@ -0,0 +1,298 @@
++# This script is used as a bitbake task to create a new python manifest
++# $ bitbake python -c create_manifest
++#
++# Our goal is to keep python-core as small as posible and add other pyth=
+on
++# packages only when the user needs them, hence why we split upstream py=
+thon
++# into several packages.
++#
++# In a very simplistic way what this does is:=20
++# Launch python and see specifically what is required for it to run at a=
+ minimum
++#
++# Go through the python-manifest file and launch a separate task for eve=
+ry single
++# one of the files on each package, this task will check what was requir=
+ed for that
++# specific module to run, these modules will be called dependencies.
++# The output of such task will be a list of the modules or dependencies =
+that were
++# found for that file.
++#
++# Such output will be parsed by this script, we will look for each depen=
+dency on the
++# manifest and if we find that another package already includes it, then=
+ we will add
++# that package as an RDEPENDS to the package we are currently checking; =
+in case we dont
++# find the current dependency on any other package we will add it to the=
+ current package
++# as part of FILES.
++#
++#
++# This way we will create a new manifest from the data structure that wa=
+s built during
++# this process, on this new manifest each package will contain specifica=
+lly only
++# what it needs to run.
++#
++# There are some caveats which we try to deal with, such as repeated fil=
+es on different
++# packages, packages that include folders, wildcards, and special packag=
+es.
++# Its also important to note that this method only works for python file=
+s, and shared
++# libraries. Static libraries, header files and binaries need to be deal=
+t with manually.
++#
++# Author: Alejandro Enedino Hernandez Samaniego "aehs29" <aehs29 at gmai=
+l dot com>
++
++
++import sys
++import subprocess
++import json
++import os
++import collections
++
++# Hack to get native python search path (for folders), not fond of it bu=
+t it works for now
++pivot=3D'recipe-sysroot-native'
++for p in sys.path:
++  if pivot in p:
++    nativelibfolder=3Dp[:p.find(pivot)+len(pivot)]
++
++# Empty dict to hold the whole manifest
++new_manifest =3D collections.OrderedDict()
++
++# Check for repeated files, folders and wildcards
++allfiles=3D[]
++repeated=3D[]
++wildcards=3D[]
++
++hasfolders=3D[]
++allfolders=3D[]
++
++def isFolder(value):
++  if os.path.isdir(value.replace('${libdir}',nativelibfolder+'/usr/lib')=
+) or os.path.isdir(value.replace('${libdir}',nativelibfolder+'/usr/lib64'=
+)) or os.path.isdir(value.replace('${libdir}',nativelibfolder+'/usr/lib32=
+')):
++    return True
++  else:
++    return False
++
++def prepend_comments(comments, json_manifest):
++    with open(json_manifest, 'r+') as manifest:
++        json_contents =3D manifest.read()
++        manifest.seek(0, 0)
++        manifest.write(comments + json_contents)
++
++# Read existing JSON manifest
++with open('python2-manifest.json') as manifest:
++    # The JSON format doesn't allow comments so we hack the call to keep=
+ the comments using a marker
++    manifest_str =3D  manifest.read()
++    json_start =3D manifest_str.find('# EOC') + 6 # EOC + \n
++    manifest.seek(0)
++    comments =3D manifest.read(json_start)
++    manifest_str =3D manifest.read()
++    old_manifest =3D json.loads(manifest_str, object_pairs_hook=3Dcollec=
+tions.OrderedDict)
++
++# First pass to get core-package functionality, because we base everythi=
+ng on the fact that core is actually working
++# Not exactly the same so it should not be a function
++print ("Getting dependencies for core package:")
++
++# Special call to check for core package
++output =3D subprocess.check_output([sys.executable, 'get_module_deps2.py=
+', 'python-core-package'])
++for item in output.split():
++    # We append it so it doesnt hurt what we currently have:
++    if item not in old_manifest['core']['files']:
++        # We use the same data structure since its the one which will be=
+ used to check
++        # dependencies for other packages
++        old_manifest['core']['files'].append(item)
++
++for value in old_manifest['core']['files']:
++  # Ignore folders, since we don't import those, difficult to handle mul=
+tilib
++  if isFolder(value):
++    # Pass it directly
++    if value not in old_manifest['core']['files']:
++      old_manifest['core']['files'].append(value)
++  # Ignore binaries, since we don't import those, assume it was added co=
+rrectly (manually)
++  if '${bindir}' in value:
++    # Pass it directly
++    if value not in old_manifest['core']['files']:
++      old_manifest['core']['files'].append(value)
++    continue
++  # Ignore empty values
++  if value =3D=3D '':
++    continue
++  if '${includedir}' in value:
++    if value not in old_manifest['core']['files']:
++      old_manifest['core']['files'].append(value)
++    continue
++  # Get module name , shouldnt be affected by libdir/bindir
++  value =3D os.path.splitext(os.path.basename(os.path.normpath(value)))[=
+0]
++
++
++  # Launch separate task for each module for deterministic behavior
++  # Each module will only import what is necessary for it to work in spe=
+cific
++  print ('Getting dependencies for module: %s' % value)
++  output =3D subprocess.check_output([sys.executable, 'get_module_deps2.=
+py', '%s' % value])
++  for item in output.split():
++    # We append it so it doesnt hurt what we currently have:
++    if item not in old_manifest['core']['files']:
++      old_manifest['core']['files'].append(item)
++
++# We check which packages include folders
++for key in old_manifest:
++    for value in old_manifest[key]['files']:
++        # Ignore folders, since we don't import those, difficult to hand=
+le multilib
++        if isFolder(value):
++            print ('%s is a folder' % value)
++            if key not in hasfolders:
++                hasfolders.append(key)
++            if value not in allfolders:
++                allfolders.append(value)
++
++for key in old_manifest:
++    # Use an empty dict as data structure to hold data for each package =
+and fill it up
++    new_manifest[key] =3D collections.OrderedDict()
++    new_manifest[key]['summary'] =3D old_manifest[key]['summary']
++    new_manifest[key]['rdepends']=3D[]
++    new_manifest[key]['files'] =3D []
++
++    # All packages should depend on core
++    if key !=3D 'core':
++        new_manifest[key]['rdepends'].append('core')
++
++    # Handle special cases, we assume that when they were manually added=
+=20
++    # to the manifest we knew what we were doing.
++    print ('Handling package %s' % key)
++    special_packages=3D['misc', 'modules', 'tests', 'dev']
++    if key in special_packages or 'staticdev' in key:
++        print('Passing %s package directly' % key)
++        new_manifest[key]=3Dold_manifest[key]
++        continue
++
++    for value in old_manifest[key]['files']:
++        # We already handled core on the first pass
++        if key =3D=3D 'core':
++            new_manifest[key]['files'].append(value)
++            continue
++        # Ignore folders, since we don't import those, difficult to hand=
+le multilib
++        if isFolder(value):
++            # Pass folders directly
++            new_manifest[key]['files'].append(value)
++        # Ignore binaries, since we don't import those
++        if '${bindir}' in value:
++            # Pass it directly to the new manifest data structure
++            if value not in new_manifest[key]['files']:
++                new_manifest[key]['files'].append(value)
++            continue
++        # Ignore empty values
++        if value =3D=3D '':
++            continue
++        if '${includedir}' in value:
++            if value not in new_manifest[key]['files']:
++                new_manifest[key]['files'].append(value)
++            continue
++        # Get module name , shouldnt be affected by libdir/bindir
++        value =3D os.path.splitext(os.path.basename(os.path.normpath(val=
+ue)))[0]
++
++        # Launch separate task for each module for deterministic behavio=
+r
++        # Each module will only import what is necessary for it to work =
+in specific
++        print ('Getting dependencies for module: %s' % value)
++        output =3D subprocess.check_output([sys.executable, 'get_module_=
+deps2.py', '%s' % value])
++
++        # We can print dependencies for debugging purposes
++        #print (output)
++        # Output will have all dependencies
++        for item in output.split():
++
++            # Warning: This first part is ugly
++            # One of the dependencies that was found, could be inside of=
+ one of the folders included by another package
++            # We need to check if this happens so we can add the package=
+ containing the folder as an RDEPENDS
++            # e.g. Folder encodings contained in codecs
++            # This would be solved if no packages included any folders
++
++            # This can be done in two ways:
++            # 1 - We assume that if we take out the filename from the pa=
+th we would get
++            #   the folder string, then we would check if folder string =
+is in the list of folders
++            #   This would not work if a package contains a folder which=
+ contains another folder
++            #   e.g. path/folder1/folder2/filename  folder_string=3D pat=
+h/folder1/folder2
++            #   folder_string would not match any value contained in the=
+ list of folders
++            #
++            # 2 - We do it the other way around, checking if the folder =
+is contained in the path
++            #   e.g. path/folder1/folder2/filename  folder_string=3D pat=
+h/folder1/folder2
++            #   is folder_string inside path/folder1/folder2/filename?,=20
++            #   Yes, it works, but we waste a couple of milliseconds.
++
++            inFolders=3DFalse
++            for folder in allfolders:
++                # The module could have a directory named after it, e.g.=
+ xml, if we take out the filename from the path
++                # we'll end up with ${libdir}, and we want ${libdir}/xml
++                if isFolder(item):
++                    check_path =3D item
++                else:
++                    check_path =3D os.path.dirname(item)
++                if folder in check_path :
++                    inFolders =3D True # Did we find a folder?
++                    folderFound =3D False # Second flag to break inner f=
+or
++                    # Loop only through packages which contain folders
++                    for keyfolder in hasfolders:
++                        if (folderFound =3D=3D False):
++                            #print("Checking folder %s on package %s" % =
+(item,keyfolder))
++                            for file_folder in old_manifest[keyfolder]['=
+files']:
++                                if file_folder=3D=3Dfolder:
++                                    print ('%s found in %s' % (folder, k=
+eyfolder))
++                                    folderFound =3D True
++                                    if keyfolder not in new_manifest[key=
+]['rdepends'] and keyfolder !=3D key:
++                                        new_manifest[key]['rdepends'].ap=
+pend(keyfolder)
++                        else:
++                            break
++
++            # A folder was found so we're done with this item, we can go=
+ on
++            if inFolders:
++                continue
++
++            # We might already have it on the dictionary since it could =
+depend on a (previously checked) module
++            if item not in new_manifest[key]['files']:
++                # Handle core as a special package, we already did it so=
+ we pass it to NEW data structure directly
++                if key=3D=3D'core':
++                  print('Adding %s to %s FILES' % (item, key))
++                  if item.endswith('*'):
++                      wildcards.append(item)
++                  new_manifest[key]['files'].append(item)
++
++                  # Check for repeated files
++                  if item not in allfiles:
++                      allfiles.append(item)
++                  else:
++                      repeated.append(item)
++
++                else:
++
++                    # Check if this dependency is already contained on a=
+nother package, so we add it
++                    # as an RDEPENDS, or if its not, it means it should =
+be contained on the current
++                    # package, so we should add it to FILES
++                    for newkey in old_manifest:
++                        # Debug
++                        #print("Checking %s " % item + " in %s" % newkey=
+)
++                        if item in old_manifest[newkey]['files']:     =20
++                                # Since were nesting, we need to check i=
+ts not the same key
++                                if(newkey!=3Dkey):
++                                    if newkey not in new_manifest[key]['=
+rdepends']:
++                                       # Add it to the new manifest data=
+ struct
++                                       # Debug
++                                       print('Adding %s to %s RDEPENDS, =
+because it contains %s' % (newkey, key, item))
++                                       new_manifest[key]['rdepends'].app=
+end(newkey)
++                                    break
++                    else:
++                        # Debug
++                        print('Adding %s to %s FILES' % (item, key))
++                        # Since it wasnt found on another package, its n=
+ot an RDEP, so add it to FILES for this package
++                        new_manifest[key]['files'].append(item)
++                        if item.endswith('*'):
++                            wildcards.append(item)
++                        if item not in allfiles:
++                            allfiles.append(item)
++                        else:
++                            repeated.append(item)
++
++print ('The following files are repeated (contained in more than one pac=
+kage), please check which package should get it:')
++print (repeated)
++print('The following files contain wildcards, please check they are nece=
+ssary')
++print(wildcards)
++print('The following files contain folders, please check they are necess=
+ary')
++print(hasfolders)
++
++# Sort it just so it looks nice=20
++for key in new_manifest:
++    new_manifest[key]['files'].sort()
++    new_manifest[key]['rdepends'].sort()
++
++# Create the manifest from the data structure that was built
++with open('python2-manifest.json.new','w') as outfile:
++    json.dump(new_manifest,outfile, indent=3D4)
++
++prepend_comments(comments,'python2-manifest.json.new')
+diff --git a/recipes-devtools/python/python/fix_for_using_different_libdi=
+r.patch b/recipes-devtools/python/python/fix_for_using_different_libdir.p=
+atch
+new file mode 100644
+index 0000000..d41b6cf
+--- /dev/null
++++ b/recipes-devtools/python/python/fix_for_using_different_libdir.patch
+@@ -0,0 +1,77 @@
++Upstream-Status: Inappropriate [Embedded specific]
++
++This patch fixes issuing with different libdir like lib64.
++This patch makes the native python binary modules findable
++in the install process of the host python.
++
++Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
++Date: 2012/03/14
++
++Updated for python 2.7.3
++Signed-off-by: Nitin A Kamble <nitin.a.kamble@intel.com>
++Date: 2012/05/01
++
++Rebased for python-2.7.9
++Signed-off-by: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
++
++
++Index: Python-2.7.9/Lib/sysconfig.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.9.orig/Lib/sysconfig.py
+++++ Python-2.7.9/Lib/sysconfig.py
++@@ -9,7 +9,7 @@ _INSTALL_SCHEMES =3D {
++     'posix_prefix': {
++         'stdlib': '{base}/'+sys.lib+'/python{py_version_short}',
++         'platstdlib': '{platbase}/'+sys.lib+'/python{py_version_short}'=
+,
++-        'purelib': '{base}/lib/python{py_version_short}/site-packages',
+++        'purelib': '{base}/'+sys.lib+'/python{py_version_short}/site-pa=
+ckages',
++         'platlib': '{platbase}/'+sys.lib+'/python{py_version_short}/sit=
+e-packages',
++         'include': '{base}/include/python{py_version_short}',
++         'platinclude': '{platbase}/include/python{py_version_short}',
++@@ -67,7 +67,7 @@ _INSTALL_SCHEMES =3D {
++     'posix_user': {
++         'stdlib': '{userbase}/'+sys.lib+'/python{py_version_short}',
++         'platstdlib': '{userbase}/'+sys.lib+'/python{py_version_short}'=
+,
++-        'purelib': '{userbase}/lib/python{py_version_short}/site-packag=
+es',
+++        'purelib': '{userbase}/'+sys.lib+'/python{py_version_short}/sit=
+e-packages',
++         'platlib': '{userbase}/'+sys.lib+'/python{py_version_short}/sit=
+e-packages',
++         'include': '{userbase}/include/python{py_version_short}',
++         'scripts': '{userbase}/bin',
++Index: Python-2.7.9/Makefile.pre.in
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.9.orig/Makefile.pre.in
+++++ Python-2.7.9/Makefile.pre.in
++@@ -1037,27 +1037,27 @@ libinstall:	build_all $(srcdir)/Lib/$(PL
++ 		$(INSTALL_DATA) $(srcdir)/Modules/xxmodule.c \
++ 			$(DESTDIR)$(LIBDEST)/distutils/tests ; \
++ 	fi
++-	PYTHONPATH=3D$(DESTDIR)$(LIBDEST)  $(RUNSHARED) \
+++	PYTHONPATH=3D$(DESTDIR)$(LIBDEST):${CROSSPYTHONPATH} $(RUNSHARED) \
++ 		$(PYTHON_FOR_BUILD) -Wi -tt $(DESTDIR)$(LIBDEST)/compileall.py \
++ 		-d $(LIBDEST) -f \
++ 		-x 'bad_coding|badsyntax|site-packages|lib2to3/tests/data' \
++ 		$(DESTDIR)$(LIBDEST)
++-	PYTHONPATH=3D$(DESTDIR)$(LIBDEST) $(RUNSHARED) \
+++	PYTHONPATH=3D$(DESTDIR)$(LIBDEST):${CROSSPYTHONPATH} $(RUNSHARED) \
++ 		$(PYTHON_FOR_BUILD) -Wi -tt -O $(DESTDIR)$(LIBDEST)/compileall.py \
++ 		-d $(LIBDEST) -f \
++ 		-x 'bad_coding|badsyntax|site-packages|lib2to3/tests/data' \
++ 		$(DESTDIR)$(LIBDEST)
++-	-PYTHONPATH=3D$(DESTDIR)$(LIBDEST)  $(RUNSHARED) \
+++	-PYTHONPATH=3D$(DESTDIR)$(LIBDEST):${CROSSPYTHONPATH} $(RUNSHARED) \
++ 		$(PYTHON_FOR_BUILD) -Wi -t $(DESTDIR)$(LIBDEST)/compileall.py \
++ 		-d $(LIBDEST)/site-packages -f \
++ 		-x badsyntax $(DESTDIR)$(LIBDEST)/site-packages
++-	-PYTHONPATH=3D$(DESTDIR)$(LIBDEST) $(RUNSHARED) \
+++	-PYTHONPATH=3D$(DESTDIR)$(LIBDEST):${CROSSPYTHONPATH} $(RUNSHARED) \
++ 		$(PYTHON_FOR_BUILD) -Wi -t -O $(DESTDIR)$(LIBDEST)/compileall.py \
++ 		-d $(LIBDEST)/site-packages -f \
++ 		-x badsyntax $(DESTDIR)$(LIBDEST)/site-packages
++-	-PYTHONPATH=3D$(DESTDIR)$(LIBDEST) $(RUNSHARED) \
+++	-PYTHONPATH=3D$(DESTDIR)$(LIBDEST):${CROSSPYTHONPATH} $(RUNSHARED) \
++ 		$(PYTHON_FOR_BUILD) -m lib2to3.pgen2.driver $(DESTDIR)$(LIBDEST)/lib2=
+to3/Grammar.txt
++-	-PYTHONPATH=3D$(DESTDIR)$(LIBDEST) $(RUNSHARED) \
+++	-PYTHONPATH=3D$(DESTDIR)$(LIBDEST):${CROSSPYTHONPATH} $(RUNSHARED) \
++ 		$(PYTHON_FOR_BUILD) -m lib2to3.pgen2.driver $(DESTDIR)$(LIBDEST)/lib2=
+to3/PatternGrammar.txt
++=20
++ # Create the PLATDIR source directory, if one wasn't distributed..
+diff --git a/recipes-devtools/python/python/float-endian.patch b/recipes-=
+devtools/python/python/float-endian.patch
+new file mode 100644
+index 0000000..8a5c90a
+--- /dev/null
++++ b/recipes-devtools/python/python/float-endian.patch
+@@ -0,0 +1,216 @@
++Python uses AC_RUN_IFELSE to determine the byte order for floats and dou=
+bles,
++and falls back onto "I don't know" if it can't run code.  This results i=
+n
++crippled floating point numbers in Python, and the regression tests fail=
+.
++
++Instead of running code, take a macro from autoconf-archive which compil=
+es C
++with a special double in which has an ASCII representation, and then gre=
+ps the
++binary to identify the format.
++
++Upstream-Status: Backport
++Signed-off-by: Ross Burton <ross.burton@intel.com>
++
++From 253f47b28120c42cfe53a4e2f5ed0ab0ed469deb Mon Sep 17 00:00:00 2001
++From: Ross Burton <ross@burtonini.com>
++Date: Wed, 19 Sep 2018 07:25:48 +0100
++Subject: [PATCH] closes bpo-34585: Don't do runtime test to get float by=
+te
++ order. (GH-9085)
++
++Currently configure.ac uses AC_RUN_IFELSE to determine the byte order of=
+ doubles, but this silently fails under cross compilation and Python does=
+n't do floats properly.
++
++Instead, steal a macro from autoconf-archive which compiles code using m=
+agic doubles (which encode to ASCII) and grep for the representation in t=
+he binary.
++
++RFC because this doesn't yet handle the weird ancient ARMv4 OABI 'mixed-=
+endian' encoding properly. This encoding is ancient and I don't believe t=
+he union of "Python 3.8 users" and "OABI users" has anything in. Should t=
+he support for this just be dropped too? Alternatively, someone will need=
+ to find an OABI toolchain to verify the encoding of the magic double.
++
++Signed-off-by: Ross Burton <ross.burton@intel.com>
++---
++ .../Build/2018-09-18-16-28-31.bpo-34585.CGMu0h.rst |  3 +
++ configure.ac                                       | 76 ++++-----------=
+-----
++ m4/ax_c_float_words_bigendian.m4                   | 83 +++++++++++++++=
++++++++
++ 3 files changed, 99 insertions(+), 63 deletions(-)
++ create mode 100644 Misc/NEWS.d/next/Build/2018-09-18-16-28-31.bpo-34585=
+.CGMu0h.rst
++ create mode 100644 m4/ax_c_float_words_bigendian.m4
++
++diff --git a/configure.ac b/configure.ac
++index 913d5469d0..7672735396 100644
++--- a/configure.ac
+++++ b/configure.ac
++@@ -3835,74 +3835,24 @@ fi],
++ # * Check for various properties of floating point *
++ # **************************************************
++=20
++-AC_MSG_CHECKING(whether C doubles are little-endian IEEE 754 binary64)
++-AC_CACHE_VAL(ac_cv_little_endian_double, [
++-AC_RUN_IFELSE([AC_LANG_SOURCE([[
++-#include <string.h>
++-int main() {
++-    double x =3D 9006104071832581.0;
++-    if (memcmp(&x, "\x05\x04\x03\x02\x01\xff\x3f\x43", 8) =3D=3D 0)
++-        return 0;
++-    else
++-        return 1;
++-}
++-]])],
++-[ac_cv_little_endian_double=3Dyes],
++-[ac_cv_little_endian_double=3Dno],
++-[ac_cv_little_endian_double=3Dno])])
++-AC_MSG_RESULT($ac_cv_little_endian_double)
++-if test "$ac_cv_little_endian_double" =3D yes
++-then
++-  AC_DEFINE(DOUBLE_IS_LITTLE_ENDIAN_IEEE754, 1,
++-  [Define if C doubles are 64-bit IEEE 754 binary format, stored
++-   with the least significant byte first])
++-fi
++-
++-AC_MSG_CHECKING(whether C doubles are big-endian IEEE 754 binary64)
++-AC_CACHE_VAL(ac_cv_big_endian_double, [
++-AC_RUN_IFELSE([AC_LANG_SOURCE([[
++-#include <string.h>
++-int main() {
++-    double x =3D 9006104071832581.0;
++-    if (memcmp(&x, "\x43\x3f\xff\x01\x02\x03\x04\x05", 8) =3D=3D 0)
++-        return 0;
++-    else
++-        return 1;
++-}
++-]])],
++-[ac_cv_big_endian_double=3Dyes],
++-[ac_cv_big_endian_double=3Dno],
++-[ac_cv_big_endian_double=3Dno])])
++-AC_MSG_RESULT($ac_cv_big_endian_double)
++-if test "$ac_cv_big_endian_double" =3D yes
+++AX_C_FLOAT_WORDS_BIGENDIAN
+++if test "$ax_cv_c_float_words_bigendian" =3D "yes"
++ then
++   AC_DEFINE(DOUBLE_IS_BIG_ENDIAN_IEEE754, 1,
++   [Define if C doubles are 64-bit IEEE 754 binary format, stored
++    with the most significant byte first])
++-fi
++-
++-# Some ARM platforms use a mixed-endian representation for doubles.
++-# While Python doesn't currently have full support for these platforms
++-# (see e.g., issue 1762561), we can at least make sure that float <-> s=
+tring
++-# conversions work.
++-AC_MSG_CHECKING(whether C doubles are ARM mixed-endian IEEE 754 binary6=
+4)
++-AC_CACHE_VAL(ac_cv_mixed_endian_double, [
++-AC_RUN_IFELSE([AC_LANG_SOURCE([[
++-#include <string.h>
++-int main() {
++-    double x =3D 9006104071832581.0;
++-    if (memcmp(&x, "\x01\xff\x3f\x43\x05\x04\x03\x02", 8) =3D=3D 0)
++-        return 0;
++-    else
++-        return 1;
++-}
++-]])],
++-[ac_cv_mixed_endian_double=3Dyes],
++-[ac_cv_mixed_endian_double=3Dno],
++-[ac_cv_mixed_endian_double=3Dno])])
++-AC_MSG_RESULT($ac_cv_mixed_endian_double)
++-if test "$ac_cv_mixed_endian_double" =3D yes
+++elif test "$ax_cv_c_float_words_bigendian" =3D "no"
++ then
+++  AC_DEFINE(DOUBLE_IS_LITTLE_ENDIAN_IEEE754, 1,
+++  [Define if C doubles are 64-bit IEEE 754 binary format, stored
+++   with the least significant byte first])
+++else
+++  # Some ARM platforms use a mixed-endian representation for doubles.
+++  # While Python doesn't currently have full support for these platform=
+s
+++  # (see e.g., issue 1762561), we can at least make sure that float <->=
+ string
+++  # conversions work.
+++  # FLOAT_WORDS_BIGENDIAN doesnt actually detect this case, but if it's=
+ not big
+++  # or little, then it must be this?
++   AC_DEFINE(DOUBLE_IS_ARM_MIXED_ENDIAN_IEEE754, 1,
++   [Define if C doubles are 64-bit IEEE 754 binary format, stored
++    in ARM mixed-endian order (byte order 45670123)])
++diff --git a/m4/ax_c_float_words_bigendian.m4 b/m4/ax_c_float_words_bige=
+ndian.m4
++new file mode 100644
++index 0000000000..216b90d803
++--- /dev/null
+++++ b/m4/ax_c_float_words_bigendian.m4
++@@ -0,0 +1,83 @@
+++# =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
+++#  https://www.gnu.org/software/autoconf-archive/ax_c_float_words_bigen=
+dian.html
+++# =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
+++#
+++# SYNOPSIS
+++#
+++#   AX_C_FLOAT_WORDS_BIGENDIAN([ACTION-IF-TRUE], [ACTION-IF-FALSE], [AC=
+TION-IF-UNKNOWN])
+++#
+++# DESCRIPTION
+++#
+++#   Checks the ordering of words within a multi-word float. This check =
+is
+++#   necessary because on some systems (e.g. certain ARM systems), the f=
+loat
+++#   word ordering can be different from the byte ordering. In a multi-w=
+ord
+++#   float context, "big-endian" implies that the word containing the si=
+gn
+++#   bit is found in the memory location with the lowest address. This
+++#   implementation was inspired by the AC_C_BIGENDIAN macro in autoconf=
+.
+++#
+++#   The endianness is detected by first compiling C code that contains =
+a
+++#   special double float value, then grepping the resulting object file=
+ for
+++#   certain strings of ASCII values. The double is specially crafted to=
+ have
+++#   a binary representation that corresponds with a simple string. In t=
+his
+++#   implementation, the string "noonsees" was selected because the
+++#   individual word values ("noon" and "sees") are palindromes, thus ma=
+king
+++#   this test byte-order agnostic. If grep finds the string "noonsees" =
+in
+++#   the object file, the target platform stores float words in big-endi=
+an
+++#   order. If grep finds "seesnoon", float words are in little-endian o=
+rder.
+++#   If neither value is found, the user is instructed to specify the
+++#   ordering.
+++#
+++# LICENSE
+++#
+++#   Copyright (c) 2008 Daniel Amelang <dan@amelang.net>
+++#
+++#   Copying and distribution of this file, with or without modification=
+, are
+++#   permitted in any medium without royalty provided the copyright noti=
+ce
+++#   and this notice are preserved. This file is offered as-is, without =
+any
+++#   warranty.
+++
+++#serial 11
+++
+++AC_DEFUN([AX_C_FLOAT_WORDS_BIGENDIAN],
+++  [AC_CACHE_CHECK(whether float word ordering is bigendian,
+++                  ax_cv_c_float_words_bigendian, [
+++
+++ax_cv_c_float_words_bigendian=3Dunknown
+++AC_COMPILE_IFELSE([AC_LANG_SOURCE([[
+++
+++double d =3D 9090423496703681033747047890550501147621169273561563201479=
+7120844053488865816695273723469097858056257517020191247487429516932130503=
+5606500023275645175707784802367245251405201213717392014965401326401099777=
+79420565776568942592.0;
+++
+++]])], [
+++
+++if grep noonsees conftest.$ac_objext >/dev/null ; then
+++  ax_cv_c_float_words_bigendian=3Dyes
+++fi
+++if grep seesnoon conftest.$ac_objext >/dev/null ; then
+++  if test "$ax_cv_c_float_words_bigendian" =3D unknown; then
+++    ax_cv_c_float_words_bigendian=3Dno
+++  else
+++    ax_cv_c_float_words_bigendian=3Dunknown
+++  fi
+++fi
+++
+++])])
+++
+++case $ax_cv_c_float_words_bigendian in
+++  yes)
+++    m4_default([$1],
+++      [AC_DEFINE([FLOAT_WORDS_BIGENDIAN], 1,
+++                 [Define to 1 if your system stores words within floats
+++                  with the most significant word first])]) ;;
+++  no)
+++    $2 ;;
+++  *)
+++    m4_default([$3],
+++      [AC_MSG_ERROR([
+++
+++Unknown float word ordering. You need to manually preset
+++ax_cv_c_float_words_bigendian=3Dno (or yes) according to your system.
+++
+++    ])]) ;;
+++esac
+++
+++])# AX_C_FLOAT_WORDS_BIGENDIAN
++--=20
++2.11.0
++
+diff --git a/recipes-devtools/python/python/get_module_deps2.py b/recipes=
+-devtools/python/python/get_module_deps2.py
+new file mode 100644
+index 0000000..73e7c6f
+--- /dev/null
++++ b/recipes-devtools/python/python/get_module_deps2.py
+@@ -0,0 +1,112 @@
++# This script is launched on separate task for each python module
++# It checks for dependencies for that specific module and prints=20
++# them out, the output of this execution will have all dependencies
++# for a specific module, which will be parsed an dealt on create_manifes=
+t.py
++#
++# Author: Alejandro Enedino Hernandez Samaniego "aehs29" <aehs29@gmail.c=
+om>
++
++
++# We can get a log per module, for all the dependencies that were found,=
+ but its messy.
++debug=3DFalse
++
++import sys
++
++# We can get a list of the modules which are currently required to run p=
+ython
++# so we run python-core and get its modules, we then import what we need
++# and check what modules are currently running, if we substract them fro=
+m the
++# modules we had initially, we get the dependencies for the module we im=
+ported.
++
++# We use importlib to achieve this, so we also need to know what modules=
+ importlib needs
++import importlib
++
++core_deps=3Dset(sys.modules)
++
++def fix_path(dep_path):
++    import os
++    # We DONT want the path on our HOST system
++    pivot=3D'recipe-sysroot-native'
++    dep_path=3Ddep_path[dep_path.find(pivot)+len(pivot):]
++
++    if '/usr/bin' in dep_path:
++        dep_path =3D dep_path.replace('/usr/bin''${bindir}')
++
++    # Handle multilib, is there a better way?
++    if '/usr/lib32' in dep_path:
++        dep_path =3D dep_path.replace('/usr/lib32','${libdir}')
++    if '/usr/lib64' in dep_path:
++        dep_path =3D dep_path.replace('/usr/lib64','${libdir}')
++    if '/usr/lib' in dep_path:
++        dep_path =3D dep_path.replace('/usr/lib','${libdir}')
++    if '/usr/include' in dep_path:
++        dep_path =3D dep_path.replace('/usr/include','${includedir}')
++    if '__init__.' in dep_path:
++        dep_path =3D  os.path.split(dep_path)[0]
++
++    # If a *.pyc file was imported, we replace it with *.py (since we de=
+al with PYCs on create_manifest)
++    if '.pyc' in dep_path:
++        dep_path =3D dep_path.replace('.pyc','.py')
++
++    return dep_path
++
++# Module to import was passed as an argument
++current_module =3D  str(sys.argv[1]).rstrip()
++if(debug=3D=3DTrue):
++	log =3D open('log_%s' % current_module,'w')
++        log.write('Module %s generated the following dependencies:\n' % =
+current_module)
++try:
++    importlib.import_module('%s' % current_module)
++except ImportError as e:
++    if (debug=3D=3DTrue):
++        log.write('Module was not found')
++    pass
++
++
++# Get current module dependencies, dif will contain a list of specific d=
+eps for this module
++module_deps=3Dset(sys.modules)
++
++# We handle the core package (1st pass on create_manifest.py) as a speci=
+al case
++if current_module =3D=3D 'python-core-package':
++    dif =3D core_deps
++else:
++    dif =3D module_deps-core_deps
++
++
++# Check where each dependency came from
++for item in dif:
++    dep_path=3D''
++    try:
++        if (debug=3D=3DTrue):
++            log.write('Calling: sys.modules[' + '%s' % item + '].__file_=
+_\n')
++        dep_path =3D sys.modules['%s' % item].__file__
++    except AttributeError as e:
++        # Deals with thread (builtin module) not having __file__ attribu=
+te
++	if debug=3D=3DTrue:
++            log.write(item + ' ')
++            log.write(str(e))
++	    log.write('\n')
++            pass
++    except NameError as e:
++        # Deals with NameError: name 'dep_path' is not defined
++        # because module is not found (wasn't compiled?), e.g. bddsm
++        if (debug=3D=3DTrue):
++            log.write(item+' ')=20
++            log.write(str(e))                                           =
+  =20
++        pass
++
++    # Site-customize is a special case since we (OpenEmbedded) put it th=
+ere manually
++    if 'sitecustomize' in dep_path:
++        dep_path =3D '${libdir}/python2.7/sitecustomize.py'
++        # Prints out result, which is what will be used by create_manife=
+st
++        print (dep_path)
++        continue
++
++    dep_path =3D fix_path(dep_path)
++
++    if (debug=3D=3DTrue):
++        log.write(dep_path+'\n')
++
++    # Prints out result, which is what will be used by create_manifest
++    print (dep_path)
++
++if debug=3D=3DTrue:
++    log.close()
+diff --git a/recipes-devtools/python/python/host_include_contamination.pa=
+tch b/recipes-devtools/python/python/host_include_contamination.patch
+new file mode 100644
+index 0000000..e0aafb2
+--- /dev/null
++++ b/recipes-devtools/python/python/host_include_contamination.patch
+@@ -0,0 +1,28 @@
++when building python for qemux86-64 on ubuntu 11.10/64bit
++it gropes into host includes and then mixes them with cross
++includes and as a result some modules fail to compile and link
++one of the modules is python-elementtree which is then not
++found during image creation
++
++Proble is that setup.py tries to add native includes that newer
++ubuntu has introduced for multiarch support. But that should
++only happen for native builds and not cross building python
++so we add a check here.
++
++Signed-off-by: Khem Raj <raj.khem@gmail.com>
++Upstream-Status: Pending
++
++
++diff --git a/setup.py b/setup.py
++index ba2d242..bf859be 100644
++--- a/setup.py
+++++ b/setup.py
++@@ -393,6 +393,8 @@ class PyBuildExt(build_ext):
++=20
++         if not find_executable('dpkg-architecture'):
++             return
+++        if os.environ.get('CROSS_COMPILE') is not None:
+++            return
++         opt =3D ''
++         if cross_compiling:
++             opt =3D '-t' + sysconfig.get_config_var('HOST_GNU_TYPE')
+diff --git a/recipes-devtools/python/python/multilib.patch b/recipes-devt=
+ools/python/python/multilib.patch
+new file mode 100644
+index 0000000..d24bc15
+--- /dev/null
++++ b/recipes-devtools/python/python/multilib.patch
+@@ -0,0 +1,298 @@
++Rebased for python-2.7.9
++Signed-off-by: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
++Upstream-Status: Pending
++Index: Python-2.7.14/configure.ac
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/configure.ac
+++++ Python-2.7.14/configure.ac
++@@ -758,6 +758,10 @@ SunOS*)
++     ;;
++ esac
++=20
+++AC_SUBST(LIB)
+++AC_MSG_CHECKING(LIB)
+++LIB=3D"SEDMELIBLEAF"
+++AC_MSG_RESULT($LIB)
++=20
++ AC_SUBST(LIBRARY)
++ AC_MSG_CHECKING(LIBRARY)
++Index: Python-2.7.14/Include/pythonrun.h
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Include/pythonrun.h
+++++ Python-2.7.14/Include/pythonrun.h
++@@ -108,6 +108,7 @@ PyAPI_FUNC(char *) Py_GetPath(void);
++ /* In their own files */
++ PyAPI_FUNC(const char *) Py_GetVersion(void);
++ PyAPI_FUNC(const char *) Py_GetPlatform(void);
+++PyAPI_FUNC(const char *) Py_GetLib(void);
++ PyAPI_FUNC(const char *) Py_GetCopyright(void);
++ PyAPI_FUNC(const char *) Py_GetCompiler(void);
++ PyAPI_FUNC(const char *) Py_GetBuildInfo(void);
++Index: Python-2.7.14/Lib/distutils/command/install.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Lib/distutils/command/install.py
+++++ Python-2.7.14/Lib/distutils/command/install.py
++@@ -22,6 +22,8 @@ from site import USER_BASE
++ from site import USER_SITE
++=20
++=20
+++libname =3D sys.lib
+++
++ if sys.version < "2.2":
++     WINDOWS_SCHEME =3D {
++         'purelib': '$base',
++@@ -41,8 +43,8 @@ else:
++=20
++ INSTALL_SCHEMES =3D {
++     'unix_prefix': {
++-        'purelib': '$base/lib/python$py_version_short/site-packages',
++-        'platlib': '$platbase/lib/python$py_version_short/site-packages=
+',
+++        'purelib': '$platbase/'+libname+'/python$py_version_short/site-=
+packages',
+++        'platlib': '$platbase/'+libname+'/python$py_version_short/site-=
+packages',
++         'headers': '$base/include/python$py_version_short/$dist_name',
++         'scripts': '$base/bin',
++         'data'   : '$base',
++Index: Python-2.7.14/Lib/distutils/sysconfig.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Lib/distutils/sysconfig.py
+++++ Python-2.7.14/Lib/distutils/sysconfig.py
++@@ -119,8 +119,11 @@ def get_python_lib(plat_specific=3D0, stan
++         prefix =3D plat_specific and EXEC_PREFIX or PREFIX
++=20
++     if os.name =3D=3D "posix":
++-        libpython =3D os.path.join(prefix,
++-                                 "lib", "python" + get_python_version()=
+)
+++        if plat_specific or standard_lib:
+++            lib =3D sys.lib
+++        else:
+++            lib =3D "lib"
+++        libpython =3D os.path.join(prefix, lib, "python" + get_python_v=
+ersion())
++         if standard_lib:
++             return libpython
++         else:
++Index: Python-2.7.14/Lib/pydoc.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Lib/pydoc.py
+++++ Python-2.7.14/Lib/pydoc.py
++@@ -375,7 +375,7 @@ class Doc:
++     docmodule =3D docclass =3D docroutine =3D docother =3D docproperty =
+=3D docdata =3D fail
++=20
++     def getdocloc(self, object,
++-                  basedir=3Dos.path.join(sys.exec_prefix, "lib",
+++                  basedir=3Dos.path.join(sys.exec_prefix, "sys.lib",
++                                        "python"+sys.version[0:3])):
++         """Return the location of module docs or None"""
++=20
++Index: Python-2.7.14/Lib/site.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Lib/site.py
+++++ Python-2.7.14/Lib/site.py
++@@ -288,13 +288,18 @@ def getsitepackages():
++         if sys.platform in ('os2emx', 'riscos'):
++             sitepackages.append(os.path.join(prefix, "Lib", "site-packa=
+ges"))
++         elif os.sep =3D=3D '/':
++-            sitepackages.append(os.path.join(prefix, "lib",
+++            sitepackages.append(os.path.join(prefix, sys.lib,
++                                         "python" + sys.version[:3],
++                                         "site-packages"))
++-            sitepackages.append(os.path.join(prefix, "lib", "site-pytho=
+n"))
+++            sitepackages.append(os.path.join(prefix, sys.lib, "site-pyt=
+hon"))
+++            if sys.lib !=3D "lib":
+++                sitepackages.append(os.path.join(prefix, "lib",
+++                                            "python" + sys.version[:3],
+++                                            "site-packages"))
+++                sitepackages.append(os.path.join(prefix, "lib", "site-p=
+ython"))
++         else:
++             sitepackages.append(prefix)
++-            sitepackages.append(os.path.join(prefix, "lib", "site-packa=
+ges"))
+++            sitepackages.append(os.path.join(prefix, sys.lib, "site-pac=
+kages"))
++     return sitepackages
++=20
++ def addsitepackages(known_paths):
++Index: Python-2.7.14/Lib/sysconfig.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Lib/sysconfig.py
+++++ Python-2.7.14/Lib/sysconfig.py
++@@ -7,10 +7,10 @@ from os.path import pardir, realpath
++=20
++ _INSTALL_SCHEMES =3D {
++     'posix_prefix': {
++-        'stdlib': '{base}/lib/python{py_version_short}',
++-        'platstdlib': '{platbase}/lib/python{py_version_short}',
+++        'stdlib': '{base}/'+sys.lib+'/python{py_version_short}',
+++        'platstdlib': '{platbase}/'+sys.lib+'/python{py_version_short}'=
+,
++         'purelib': '{base}/lib/python{py_version_short}/site-packages',
++-        'platlib': '{platbase}/lib/python{py_version_short}/site-packag=
+es',
+++        'platlib': '{platbase}/'+sys.lib+'/python{py_version_short}/sit=
+e-packages',
++         'include': '{base}/include/python{py_version_short}',
++         'platinclude': '{platbase}/include/python{py_version_short}',
++         'scripts': '{base}/bin',
++@@ -65,10 +65,10 @@ _INSTALL_SCHEMES =3D {
++         'data'   : '{userbase}',
++         },
++     'posix_user': {
++-        'stdlib': '{userbase}/lib/python{py_version_short}',
++-        'platstdlib': '{userbase}/lib/python{py_version_short}',
+++        'stdlib': '{userbase}/'+sys.lib+'/python{py_version_short}',
+++        'platstdlib': '{userbase}/'+sys.lib+'/python{py_version_short}'=
+,
++         'purelib': '{userbase}/lib/python{py_version_short}/site-packag=
+es',
++-        'platlib': '{userbase}/lib/python{py_version_short}/site-packag=
+es',
+++        'platlib': '{userbase}/'+sys.lib+'/python{py_version_short}/sit=
+e-packages',
++         'include': '{userbase}/include/python{py_version_short}',
++         'scripts': '{userbase}/bin',
++         'data'   : '{userbase}',
++Index: Python-2.7.14/Lib/test/test_dl.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Lib/test/test_dl.py
+++++ Python-2.7.14/Lib/test/test_dl.py
++@@ -4,10 +4,11 @@
++ import unittest
++ from test.test_support import verbose, import_module
++ dl =3D import_module('dl', deprecated=3DTrue)
+++import sys
++=20
++ sharedlibs =3D [
++-    ('/usr/lib/libc.so', 'getpid'),
++-    ('/lib/libc.so.6', 'getpid'),
+++    ('/usr/'+sys.lib+'/libc.so', 'getpid'),
+++    ('/'+sys.lib+'/libc.so.6', 'getpid'),
++     ('/usr/bin/cygwin1.dll', 'getpid'),
++     ('/usr/lib/libc.dylib', 'getpid'),
++     ]
++Index: Python-2.7.14/Lib/test/test_site.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Lib/test/test_site.py
+++++ Python-2.7.14/Lib/test/test_site.py
++@@ -252,12 +252,16 @@ class HelperFunctionsTests(unittest.Test
++             self.assertEqual(dirs[0], wanted)
++         elif os.sep =3D=3D '/':
++             # OS X, Linux, FreeBSD, etc
++-            self.assertEqual(len(dirs), 2)
++             wanted =3D os.path.join('xoxo', 'lib', 'python' + sys.versi=
+on[:3],
++                                   'site-packages')
++-            self.assertEqual(dirs[0], wanted)
+++            self.assertTrue(wanted in dirs)
++             wanted =3D os.path.join('xoxo', 'lib', 'site-python')
++-            self.assertEqual(dirs[1], wanted)
+++            self.assertTrue(wanted in dirs)
+++            wanted =3D os.path.join('xoxo', sys.lib, 'python' + sys.ver=
+sion[:3],
+++                                  'site-packages')
+++            self.assertTrue(wanted in dirs)
+++            wanted =3D os.path.join('xoxo', sys.lib, 'site-python')
+++            self.assertTrue(wanted in dirs)
++         else:
++             # other platforms
++             self.assertEqual(len(dirs), 2)
++Index: Python-2.7.14/Lib/trace.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Lib/trace.py
+++++ Python-2.7.14/Lib/trace.py
++@@ -754,10 +754,10 @@ def main(argv=3DNone):
++                 # should I also call expanduser? (after all, could use =
+$HOME)
++=20
++                 s =3D s.replace("$prefix",
++-                              os.path.join(sys.prefix, "lib",
+++                              os.path.join(sys.prefix, sys.lib,
++                                            "python" + sys.version[:3]))
++                 s =3D s.replace("$exec_prefix",
++-                              os.path.join(sys.exec_prefix, "lib",
+++                              os.path.join(sys.exec_prefix, sys.lib,
++                                            "python" + sys.version[:3]))
++                 s =3D os.path.normpath(s)
++                 ignore_dirs.append(s)
++Index: Python-2.7.14/Makefile.pre.in
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Makefile.pre.in
+++++ Python-2.7.14/Makefile.pre.in
++@@ -91,6 +91,7 @@ PY_CFLAGS=3D	$(CFLAGS) $(CPPFLAGS) $(CFLAG
++=20
++ # Machine-dependent subdirectories
++ MACHDEP=3D	@MACHDEP@
+++LIB=3D		@LIB@
++=20
++ # Multiarch directory (may be empty)
++ MULTIARCH=3D	@MULTIARCH@
++@@ -110,7 +111,7 @@ LIBDIR=3D		@libdir@
++ MANDIR=3D		@mandir@
++ INCLUDEDIR=3D	@includedir@
++ CONFINCLUDEDIR=3D	$(exec_prefix)/include
++-SCRIPTDIR=3D	$(prefix)/lib
+++SCRIPTDIR=3D	$(prefix)/@LIB@
++=20
++ # Detailed destination directories
++ BINLIBDEST=3D	$(LIBDIR)/python$(VERSION)
++@@ -645,6 +646,7 @@ Modules/getpath.o: $(srcdir)/Modules/get
++ 		-DEXEC_PREFIX=3D'"$(exec_prefix)"' \
++ 		-DVERSION=3D'"$(VERSION)"' \
++ 		-DVPATH=3D'"$(VPATH)"' \
+++		-DLIB=3D'"$(LIB)"' \
++ 		-o $@ $(srcdir)/Modules/getpath.c
++=20
++ Modules/python.o: $(srcdir)/Modules/python.c
++@@ -693,7 +695,7 @@ regen-ast:
++ Python/compile.o Python/symtable.o Python/ast.o: $(srcdir)/Include/gram=
+init.h $(srcdir)/Include/Python-ast.h
++=20
++ Python/getplatform.o: $(srcdir)/Python/getplatform.c
++-		$(CC) -c $(PY_CFLAGS) -DPLATFORM=3D'"$(MACHDEP)"' -o $@ $(srcdir)/Pyt=
+hon/getplatform.c
+++		$(CC) -c $(PY_CFLAGS) -DPLATFORM=3D'"$(MACHDEP)"' -DLIB=3D'"$(LIB)"' =
+-o $@ $(srcdir)/Python/getplatform.c
++=20
++ Python/importdl.o: $(srcdir)/Python/importdl.c
++ 		$(CC) -c $(PY_CFLAGS) -I$(DLINCLDIR) -o $@ $(srcdir)/Python/importdl.=
+c
++Index: Python-2.7.14/Modules/getpath.c
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Modules/getpath.c
+++++ Python-2.7.14/Modules/getpath.c
++@@ -100,6 +100,13 @@
++ #error "PREFIX, EXEC_PREFIX, VERSION, and VPATH must be constant define=
+d"
++ #endif
++=20
+++#define LIB_PYTHON LIB "/python" VERSION
+++
+++#ifndef PYTHONPATH
+++#define PYTHONPATH PREFIX "/" LIB_PYTHON ":" \
+++              EXEC_PREFIX "/" LIB_PYTHON "/lib-dynload"
+++#endif
+++
++ #ifndef LANDMARK
++ #define LANDMARK "os.py"
++ #endif
++@@ -108,7 +115,7 @@ static char prefix[MAXPATHLEN+1];
++ static char exec_prefix[MAXPATHLEN+1];
++ static char progpath[MAXPATHLEN+1];
++ static char *module_search_path =3D NULL;
++-static char lib_python[] =3D "lib/python" VERSION;
+++static char lib_python[] =3D LIB_PYTHON;
++=20
++ static void
++ reduce(char *dir)
++Index: Python-2.7.14/Python/getplatform.c
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Python/getplatform.c
+++++ Python-2.7.14/Python/getplatform.c
++@@ -10,3 +10,13 @@ Py_GetPlatform(void)
++ {
++ 	return PLATFORM;
++ }
+++
+++#ifndef LIB
+++#define LIB "lib"
+++#endif
+++
+++const char *
+++Py_GetLib(void)
+++{
+++	return LIB;
+++}
++Index: Python-2.7.14/Python/sysmodule.c
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.14.orig/Python/sysmodule.c
+++++ Python-2.7.14/Python/sysmodule.c
++@@ -1437,6 +1437,8 @@ _PySys_Init(void)
++                         PyString_FromString(Py_GetCopyright()));
++     SET_SYS_FROM_STRING("platform",
++                         PyString_FromString(Py_GetPlatform()));
+++    SET_SYS_FROM_STRING("lib",
+++                        PyString_FromString(Py_GetLib()));
++     SET_SYS_FROM_STRING("executable",
++                         PyString_FromString(Py_GetProgramFullPath()));
++     SET_SYS_FROM_STRING("prefix",
+diff --git a/recipes-devtools/python/python/parallel-makeinst-create-bind=
+ir.patch b/recipes-devtools/python/python/parallel-makeinst-create-bindir=
+.patch
+new file mode 100644
+index 0000000..abab41e
+--- /dev/null
++++ b/recipes-devtools/python/python/parallel-makeinst-create-bindir.patc=
+h
+@@ -0,0 +1,19 @@
++When using make -j with the 'install' target, it's possible for altbinin=
+stall
++(which normally creates BINDIR) and libainstall (which doesn't, though i=
+t
++installs python-config there) to race, resulting in a failure due to
++attempting to install python-config into a nonexistent BINDIR. Ensure it=
+ also
++exists in the libainstall target.
++
++Upstream-Status: Pending
++
++--- Python-2.7.3.orig/Makefile.pre.in
+++++ Python-2.7.3/Makefile.pre.in
++@@ -1187,7 +1187,7 @@
++ LIBPC=3D		$(LIBDIR)/pkgconfig
++=20
++ libainstall:	@DEF_MAKE_RULE@ python-config
++-	@for i in $(LIBDIR) $(LIBP) $(LIBPL) $(LIBPC); \
+++	@for i in $(LIBDIR) $(LIBP) $(LIBPL) $(LIBPC) $(BINDIR); \
++ 	do \
++ 		if test ! -d $(DESTDIR)$$i; then \
++ 			echo "Creating directory $$i"; \
+diff --git a/recipes-devtools/python/python/pass-missing-libraries-to-Ext=
+ension-for-mul.patch b/recipes-devtools/python/python/pass-missing-librar=
+ies-to-Extension-for-mul.patch
+new file mode 100644
+index 0000000..44fcaac
+--- /dev/null
++++ b/recipes-devtools/python/python/pass-missing-libraries-to-Extension-=
+for-mul.patch
+@@ -0,0 +1,82 @@
++From 71447f04979b267f8866573b67a4340b2719d799 Mon Sep 17 00:00:00 2001
++From: Hongxu Jia <hongxu.jia@windriver.com>
++Date: Fri, 4 Aug 2017 14:10:43 +0800
++Subject: [PATCH] setup.py: pass missing libraries to Extension for multi=
+processing module
++
++In the following commit:
++...
++commit e711cafab13efc9c1fe6c5cd75826401445eb585
++Author: Benjamin Peterson <benjamin@python.org>
++Date:   Wed Jun 11 16:44:04 2008 +0000
++
++    Merged revisions 64104,64117 via svnmerge from
++    svn+ssh://pythondev@svn.python.org/python/trunk
++...
++(see diff in setup.py)
++It assigned libraries for multiprocessing module according
++the host_platform, but not pass it to Extension.
++
++In glibc, the following commit caused two definition of
++sem_getvalue are different.
++https://sourceware.org/git/?p=3Dglibc.git;a=3Dcommit;h=3D042e1521c794a94=
+5edc43b5bfa7e69ad70420524
++(see diff in nptl/sem_getvalue.c for detail)
++`__new_sem_getvalue' is the latest sem_getvalue@@GLIBC_2.1
++and `__old_sem_getvalue' is to compat the old version
++sem_getvalue@GLIBC_2.0.
++
++To build python for embedded Linux systems:
++http://www.yoctoproject.org/docs/2.3.1/yocto-project-qs/yocto-project-qs=
+.html
++If not explicitly link to library pthread (-lpthread), it will
++load glibc's sem_getvalue randomly at runtime.
++
++Such as build python on linux x86_64 host and run the python
++on linux x86_32 target. If not link library pthread, it caused
++multiprocessing bounded semaphore could not work correctly.
++...
++>>> import multiprocessing
++>>> pool_sema =3D multiprocessing.BoundedSemaphore(value=3D1)
++>>> pool_sema.acquire()
++True
++>>> pool_sema.release()
++Traceback (most recent call last):
++  File "<stdin>", line 1, in <module>
++ValueError: semaphore or lock released too many times
++...
++
++And the semaphore issue also caused multiprocessing.Queue().put() hung.
++
++Upstream-Status: Submitted [https://github.com/python/cpython/pull/2999]
++
++Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
++---
++ setup.py | 7 +++++--
++ 1 file changed, 5 insertions(+), 2 deletions(-)
++
++diff --git a/setup.py b/setup.py
++index 54054c2..9646bfc 100644
++--- a/setup.py
+++++ b/setup.py
++@@ -1586,8 +1586,10 @@ class PyBuildExt(build_ext):
++         elif host_platform.startswith('netbsd'):
++             macros =3D dict()
++             libraries =3D []
++-
++-        else:                                   # Linux and other unice=
+s
+++        elif host_platform.startswith(('linux')):
+++            macros =3D dict()
+++            libraries =3D ['pthread']
+++        else:                                   # Other unices
++             macros =3D dict()
++             libraries =3D ['rt']
++=20
++@@ -1610,6 +1612,7 @@ class PyBuildExt(build_ext):
++         if sysconfig.get_config_var('WITH_THREAD'):
++             exts.append ( Extension('_multiprocessing', multiprocessing=
+_srcs,
++                                     define_macros=3Dmacros.items(),
+++                                    libraries=3Dlibraries,
++                                     include_dirs=3D["Modules/_multiproc=
+essing"]))
++         else:
++             missing.append('_multiprocessing')
++--=20
++2.7.4
++
+diff --git a/recipes-devtools/python/python/python-2.7.3-remove-bsdb-rpat=
+h.patch b/recipes-devtools/python/python/python-2.7.3-remove-bsdb-rpath.p=
+atch
+new file mode 100644
+index 0000000..216be0a
+--- /dev/null
++++ b/recipes-devtools/python/python/python-2.7.3-remove-bsdb-rpath.patch
+@@ -0,0 +1,28 @@
++Upstream-Status: Inappropriate [embedded specific]
++
++Remove the RPATH to avoid QA issue warning.
++
++RP: Added secondary unnecessary rpath to the list 2012/8/7
++Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
++
++
++Index: Python-2.7.3/setup.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.3.orig/setup.py	2012-08-07 10:41:58.560132529 +0000
+++++ Python-2.7.3/setup.py	2012-08-07 11:09:47.852094515 +0000
++@@ -1042,7 +1042,6 @@
++             exts.append(Extension('_bsddb', ['_bsddb.c'],
++                                   depends =3D ['bsddb.h'],
++                                   library_dirs=3Ddblib_dir,
++-                                  runtime_library_dirs=3Ddblib_dir,
++                                   include_dirs=3Ddb_incs,
++                                   libraries=3Ddblibs))
++         else:
++@@ -1252,7 +1251,6 @@
++                         print "building dbm using bdb"
++                         dbmext =3D Extension('dbm', ['dbmmodule.c'],
++                                            library_dirs=3Ddblib_dir,
++-                                           runtime_library_dirs=3Ddblib=
+_dir,
++                                            include_dirs=3Ddb_incs,
++                                            define_macros=3D[
++                                                ('HAVE_BERKDB_H', None),
+diff --git a/recipes-devtools/python/python/python2-manifest.json b/recip=
+es-devtools/python/python/python2-manifest.json
+new file mode 100644
+index 0000000..eb52e86
+--- /dev/null
++++ b/recipes-devtools/python/python/python2-manifest.json
+@@ -0,0 +1,1138 @@
++# DO NOT (entirely) modify this file manually, please read.
++#
++# IMPORTANT NOTE:
++# Please keep in mind that the create_manifest task relies on the fact t=
+he the
++# target and native Python packages are the same, and it also needs to b=
+e executed
++# with a fully working native package (with all the PACKAGECONFIGs enabl=
+ed and all
++# and all the modules should be working, check log.do_compile), otherwis=
+e the script
++# will fail to find dependencies correctly, this note is valid either if=
+ you are
++# upgrading to a new Python version or adding a new package.
++#
++#
++# If you are adding a new package please follow the next steps:
++#     How to add a new package:
++#     - If a user wants to add a new package all that has to be done is:
++#     Modify the python2-manifest.json file, and add the required file(s=
+) to the FILES list,
++#     fill up the SUMMARY section as well, the script should handle all =
+the rest.
++#
++#     Real example:
++#     We want to add a web browser package, including the file webbrowse=
+r.py
++#     which at the moment is on python-misc.
++#     "webbrowser": {
++#         "files": ["${libdir}/python2.7/lib-dynload/webbrowser.py"],
++#         "rdepends": [],
++#         "summary": "Python Web Browser support"}
++#
++#     * Note that the rdepends field was left empty
++#
++#     We run $ bitbake python -c create_manifest and the resulting manif=
+est
++#     should be completed after a few seconds, showing something like:
++#     "webbrowser": {
++#         "files": ["${libdir}/python2.7/webbrowser.py"],
++#         "rdepends": ["core","fcntl","io","pickle","shell","subprocess"=
+],
++#         "summary": "Python Web Browser support"}
++#
++#
++# If you are upgrading Python to a new version please follow the next st=
+eps:
++#     After each Python upgrade, the create_manifest task should be exec=
+uted, because we
++#     don't control what changes on upstream Python, so, some module dep=
+endency
++#     might have changed without us realizing it, a certain module can e=
+ither have
++#     more or less dependencies, or could be depending on a new file tha=
+t was just
++#     created on the new release and for obvious reasons we wouldn't hav=
+e it on our
++#     old manifest, all of these issues would cause runtime errors on ou=
+r system.
++#
++#     - Upgrade both the native and target Python packages to a new vers=
+ion
++#     - Run the create_manifest task for the target Python package as it=
+s shown below:
++#
++#     $ bitbake python -c create_manifest
++#
++#     This will automatically replace your manifest file located under t=
+he Python directory
++#     with an new one, which contains the new dependencies (if any).
++#
++#     Several things could have gone wrong here, I will try to explain a=
+ few:
++#
++#     a) A new file was introduced on this release, e.g. sha3*.so:
++#        The task will check what its needed to import every module, mor=
+e than one module would
++#        would probably depend on sha3*.so, although only one module sho=
+uld contain it.
++#
++#        After running the task, the new manifest will have the sha3*.so=
+ file on more than one
++#        module, you need to manually decide which one of them should ge=
+t it and delete it from
++#        the others, for example sha3*.so should likely be on ${PN}-cryp=
+t.
++#        Once you have deleted from the others you need to run the creat=
+e_manifest task again,
++#        this will populate the other module's rdepends fields, with ${P=
+N}-crypt and you should be
++#        good to go.
++#
++#     b) The native package wasn't built correctly and its missing a cer=
+tain module:
++#        As mentioned before, you need to make sure the native package w=
+as built with all the modules
++#        because it is used as base to build the manifest file, you need=
+ to manually check log.do_compile
++#        since it won't error out the compile function if its only missi=
+ng a couple of modules.
++#
++#        e.g. missing the _uuid module, log.do_compile would show the fo=
+llowing:
++#        Python build finished successfully!
++#        The necessary bits to build these optional modules were not fou=
+nd:
++#        _uuid
++#
++#        What will happen here is that the new manifest would not be awa=
+re that the _uuid module exists, so
++#        not only we won't know of any dependencies to it, but also, the=
+ _uuid* files will be packaged on
++#        the misc package (which is where any file that doesn't belong a=
+nywhere else ends up).
++#
++#        This will eventually cause runtime errors on our system if we d=
+on't include the misc package on
++#        on our image, because the _uuid files will be missing.
++#        If we build the _uuid module correctly and run the create_manif=
+est task the _uuid files will be
++#        detected correctly along with its dependencies, and we will get=
+ a working manifest.
++#
++#        This is the reason why it is important to make sure we have a f=
+ully working native build,
++#        so we can avoid these errors.
++#
++#
++#
++# DO NOT MODIFY THE NEXT LINE!, IT IS USED AS A MARKER FOR THE ACTUAL JS=
+ON MANIFEST
++# EOC
++{
++    "tests": {
++        "summary": "Python test suite",=20
++        "rdepends": [
++            "core",=20
++            "modules"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/*/test",=20
++            "${libdir}/python2.7/*/tests",=20
++            "${libdir}/python2.7/idlelib/idle_test/",=20
++            "${libdir}/python2.7/test"
++        ],=20
++        "cached": []
++    },=20
++    "2to3": {
++        "summary": "Python automated Python 2 to 3 code translator",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${bindir}/2to3*",
++            "${libdir}/python2.7/lib2to3"
++        ]
++    },=20
++    "argparse": {
++        "summary": "Python command line argument parser",=20
++        "rdepends": [
++            "codecs",=20
++            "core",=20
++            "lang",=20
++            "textutils"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/argparse.py"
++        ]
++    },=20
++    "audio": {
++        "summary": "Python Audio Handling",=20
++        "rdepends": [
++            "core",=20
++            "crypt",=20
++            "fcntl",=20
++            "io",=20
++            "math"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/audiodev.py",=20
++            "${libdir}/python2.7/chunk.py",=20
++            "${libdir}/python2.7/lib-dynload/audioop.so",=20
++            "${libdir}/python2.7/lib-dynload/ossaudiodev.so",=20
++            "${libdir}/python2.7/sndhdr.py",=20
++            "${libdir}/python2.7/sunau.py",=20
++            "${libdir}/python2.7/sunaudio.py",=20
++            "${libdir}/python2.7/toaiff.py",=20
++            "${libdir}/python2.7/wave.py"
++        ]
++    },=20
++    "bsddb": {
++        "summary": "Python bindings for the Berkeley Database",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/bsddb",=20
++            "${libdir}/python2.7/lib-dynload/_bsddb.so"
++        ]
++    },=20
++    "codecs": {
++        "summary": "Python codec",=20
++        "rdepends": [
++            "core",=20
++            "io",=20
++            "lang"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/gettext.py",=20
++            "${libdir}/python2.7/lib-dynload/_codecs_cn.so",=20
++            "${libdir}/python2.7/lib-dynload/_codecs_hk.so",=20
++            "${libdir}/python2.7/lib-dynload/_codecs_iso2022.so",=20
++            "${libdir}/python2.7/lib-dynload/_codecs_jp.so",=20
++            "${libdir}/python2.7/lib-dynload/_codecs_kr.so",=20
++            "${libdir}/python2.7/lib-dynload/_codecs_tw.so",=20
++            "${libdir}/python2.7/lib-dynload/_multibytecodec.so",=20
++            "${libdir}/python2.7/lib-dynload/unicodedata.so",=20
++            "${libdir}/python2.7/locale.py",=20
++            "${libdir}/python2.7/stringprep.py",=20
++            "${libdir}/python2.7/xdrlib.py"
++        ]
++    },=20
++    "compile": {
++        "summary": "Python bytecode compilation support",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/compileall.py",=20
++            "${libdir}/python2.7/py_compile.py"
++        ]
++    },=20
++    "compiler": {
++        "summary": "Python compiler support",=20
++        "rdepends": [
++            "core",=20
++            "io",=20
++            "lang"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/compiler"
++        ]
++    },=20
++    "compression": {
++        "summary": "Python high-level compression support",=20
++        "rdepends": [
++            "core",=20
++            "io",=20
++            "shell",=20
++            "unixadmin",=20
++            "zlib"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/gzip.py",=20
++            "${libdir}/python2.7/lib-dynload/bz2.so",=20
++            "${libdir}/python2.7/tarfile.py",=20
++            "${libdir}/python2.7/zipfile.py"
++        ]
++    },=20
++    "contextlib": {
++        "summary": "Python utilities for with-statementcontexts.",=20
++        "rdepends": [
++            "core",=20
++            "lang"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/contextlib.py"
++        ]
++    },=20
++    "core": {
++        "summary": "Python interpreter and core modules",=20
++        "rdepends": [],=20
++        "files": [
++            "${bindir}/python*",=20
++            "${includedir}/python2.7/pyconfig*.h",=20
++            "${libdir}/python2.7/ConfigParser.py",=20
++            "${libdir}/python2.7/UserDict.py",=20
++            "${libdir}/python2.7/UserList.py",=20
++            "${libdir}/python2.7/UserString.py",=20
++            "${libdir}/python2.7/__future__.py",=20
++            "${libdir}/python2.7/_abcoll.py",=20
++            "${libdir}/python2.7/_sysconfigdata.py",=20
++            "${libdir}/python2.7/_weakrefset.py",=20
++            "${libdir}/python2.7/abc.py",=20
++            "${libdir}/python2.7/ast.py",=20
++            "${libdir}/python2.7/atexit.py",=20
++            "${libdir}/python2.7/codecs.py",=20
++            "${libdir}/python2.7/collections.py",=20
++            "${libdir}/python2.7/copy.py",=20
++            "${libdir}/python2.7/copy_reg.py",=20
++            "${libdir}/python2.7/encodings",=20
++            "${libdir}/python2.7/encodings/aliases.py",=20
++            "${libdir}/python2.7/encodings/utf_8.py",=20
++            "${libdir}/python2.7/genericpath.py",=20
++            "${libdir}/python2.7/getopt.py",=20
++            "${libdir}/python2.7/heapq.py",=20
++            "${libdir}/python2.7/importlib",=20
++            "${libdir}/python2.7/keyword.py",=20
++            "${libdir}/python2.7/lib-dynload/_collections.so",=20
++            "${libdir}/python2.7/lib-dynload/_heapq.so",=20
++            "${libdir}/python2.7/lib-dynload/_locale.so",=20
++            "${libdir}/python2.7/lib-dynload/_struct.so",=20
++            "${libdir}/python2.7/lib-dynload/binascii.so",=20
++            "${libdir}/python2.7/lib-dynload/itertools.so",=20
++            "${libdir}/python2.7/lib-dynload/operator.so",=20
++            "${libdir}/python2.7/lib-dynload/readline.so",=20
++            "${libdir}/python2.7/lib-dynload/strop.so",=20
++            "${libdir}/python2.7/lib-dynload/time.so",=20
++            "${libdir}/python2.7/lib-dynload/xreadlines.so",=20
++            "${libdir}/python2.7/linecache.py",=20
++            "${libdir}/python2.7/new.py",=20
++            "${libdir}/python2.7/os.py",=20
++            "${libdir}/python2.7/platform.py",=20
++            "${libdir}/python2.7/posixpath.py",=20
++            "${libdir}/python2.7/re.py",=20
++            "${libdir}/python2.7/rlcompleter.py",=20
++            "${libdir}/python2.7/site.py",=20
++            "${libdir}/python2.7/sitecustomize.py",=20
++            "${libdir}/python2.7/sre_compile.py",=20
++            "${libdir}/python2.7/sre_constants.py",=20
++            "${libdir}/python2.7/sre_parse.py",=20
++            "${libdir}/python2.7/stat.py",=20
++            "${libdir}/python2.7/string.py",=20
++            "${libdir}/python2.7/struct.py",=20
++            "${libdir}/python2.7/sysconfig.py",=20
++            "${libdir}/python2.7/traceback.py",=20
++            "${libdir}/python2.7/types.py",=20
++            "${libdir}/python2.7/warnings.py",=20
++            "${libdir}/python2.7/weakref.py"
++        ]
++    },=20
++    "crypt": {
++        "summary": "Python basic cryptographic and hashing support",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/hashlib.py",=20
++            "${libdir}/python2.7/lib-dynload/_hashlib.so",=20
++            "${libdir}/python2.7/lib-dynload/crypt.so",=20
++            "${libdir}/python2.7/md5.py",=20
++            "${libdir}/python2.7/sha.py"
++        ]
++    },=20
++    "ctypes": {
++        "summary": "Python C types support",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/ctypes",=20
++            "${libdir}/python2.7/lib-dynload/_ctypes.so",=20
++            "${libdir}/python2.7/lib-dynload/_ctypes_test.so"
++        ]
++    },=20
++    "curses": {
++        "summary": "Python curses support",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/curses",=20
++            "${libdir}/python2.7/lib-dynload/_curses.so",=20
++            "${libdir}/python2.7/lib-dynload/_curses_panel.so"
++        ]
++    },=20
++    "datetime": {
++        "summary": "Python calendar and time support",=20
++        "rdepends": [
++            "codecs",=20
++            "core",=20
++            "lang"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/_strptime.py",=20
++            "${libdir}/python2.7/calendar.py",=20
++            "${libdir}/python2.7/lib-dynload/datetime.so"
++        ]
++    },=20
++    "db": {
++        "summary": "Python file-based database support",=20
++        "rdepends": [
++            "bsddb",=20
++            "core",=20
++            "gdbm"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/anydbm.py",=20
++            "${libdir}/python2.7/dbhash.py",=20
++            "${libdir}/python2.7/dumbdbm.py",=20
++            "${libdir}/python2.7/lib-dynload/dbm.so",=20
++            "${libdir}/python2.7/whichdb.py"
++        ]
++    },=20
++    "debugger": {
++        "summary": "Python debugger",=20
++        "rdepends": [
++            "core",=20
++            "io",=20
++            "lang",=20
++            "pprint",=20
++            "shell"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/bdb.py",=20
++            "${libdir}/python2.7/pdb.py"
++        ]
++    },=20
++    "dev": {
++        "files": [
++            "${base_libdir}/*.a",=20
++            "${base_libdir}/*.o",=20
++            "${datadir}/aclocal",=20
++            "${datadir}/pkgconfig",=20
++            "${includedir}",=20
++            "${libdir}/*.a",=20
++            "${libdir}/*.la",=20
++            "${libdir}/*.o",=20
++            "${libdir}/lib*${SOLIBSDEV}",=20
++            "${libdir}/pkgconfig",=20
++            "${libdir}/python2.7/config/Makefile"
++        ],=20
++        "rdepends": [
++            "core"
++        ],=20
++        "summary": "Python development package"
++    },=20
++    "difflib": {
++        "summary": "Python helpers for computing deltas between objects"=
+,=20
++        "rdepends": [
++            "core",=20
++            "lang"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/difflib.py"
++        ]
++    },=20
++    "distutils-staticdev": {
++        "files": [
++            "${libdir}/python2.7/config/lib*.a"
++        ],=20
++        "rdepends": [
++            "distutils"
++        ],=20
++        "summary": "Python distribution utilities (static libraries)"
++    },=20
++    "distutils": {
++        "summary": "Python Distribution Utilities",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/config",=20
++            "${libdir}/python2.7/distutils"
++        ]
++    },=20
++    "doctest": {
++        "summary": "Python framework for running examples in docstrings"=
+,=20
++        "rdepends": [
++            "core",=20
++            "crypt",=20
++            "debugger",=20
++            "difflib",=20
++            "fcntl",=20
++            "io",=20
++            "lang",=20
++            "math",=20
++            "pprint",=20
++            "shell",=20
++            "unittest"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/doctest.py"
++        ]
++    },=20
++    "email": {
++        "summary": "Python email support",=20
++        "rdepends": [
++            "contextlib",=20
++            "core",=20
++            "crypt",=20
++            "fcntl",=20
++            "io",=20
++            "lang",=20
++            "math",=20
++            "netclient",=20
++            "pickle",=20
++            "subprocess",=20
++            "textutils",=20
++            "threading"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/email",=20
++            "${libdir}/python2.7/imaplib.py"
++        ]
++    },=20
++    "fcntl": {
++        "summary": "Python's fcntl interface",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/lib-dynload/fcntl.so"
++        ]
++    },=20
++    "gdbm": {
++        "summary": "Python GNU database support",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/lib-dynload/gdbm.so"
++        ]
++    },=20
++    "hotshot": {
++        "summary": "Python hotshot performance profiler",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/hotshot",=20
++            "${libdir}/python2.7/lib-dynload/_hotshot.so"
++        ]
++    },=20
++    "html": {
++        "summary": "Python HTML processing support",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/HTMLParser.py",=20
++            "${libdir}/python2.7/formatter.py",=20
++            "${libdir}/python2.7/htmlentitydefs.py",=20
++            "${libdir}/python2.7/htmllib.py",=20
++            "${libdir}/python2.7/markupbase.py",=20
++            "${libdir}/python2.7/sgmllib.py"
++        ]
++    },=20
++    "idle": {
++        "summary": "Python Integrated Development Environment",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${bindir}/idle",=20
++            "${libdir}/python2.7/idlelib"
++        ]
++    },=20
++    "image": {
++        "summary": "Python graphical image handling",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/colorsys.py",=20
++            "${libdir}/python2.7/imghdr.py"
++        ]
++    },=20
++    "io": {
++        "summary": "Python low-level I/O",=20
++        "rdepends": [
++            "contextlib",=20
++            "core",=20
++            "crypt",=20
++            "fcntl",=20
++            "lang",=20
++            "math",=20
++            "netclient",=20
++            "textutils"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/StringIO.py",=20
++            "${libdir}/python2.7/_pyio.py",=20
++            "${libdir}/python2.7/io.py",=20
++            "${libdir}/python2.7/lib-dynload/_io.so",=20
++            "${libdir}/python2.7/lib-dynload/_socket.so",=20
++            "${libdir}/python2.7/lib-dynload/_ssl.so",=20
++            "${libdir}/python2.7/lib-dynload/cStringIO.so",=20
++            "${libdir}/python2.7/lib-dynload/select.so",=20
++            "${libdir}/python2.7/lib-dynload/termios.so",=20
++            "${libdir}/python2.7/pipes.py",=20
++            "${libdir}/python2.7/socket.py",=20
++            "${libdir}/python2.7/ssl.py",=20
++            "${libdir}/python2.7/tempfile.py"
++        ]
++    },=20
++    "json": {
++        "summary": "Python JSON support",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/json",=20
++            "${libdir}/python2.7/lib-dynload/_json.so"
++        ]
++    },=20
++    "lang": {
++        "summary": "Python low-level language support",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/bisect.py",=20
++            "${libdir}/python2.7/code.py",=20
++            "${libdir}/python2.7/codeop.py",=20
++            "${libdir}/python2.7/dis.py",=20
++            "${libdir}/python2.7/functools.py",=20
++            "${libdir}/python2.7/inspect.py",=20
++            "${libdir}/python2.7/lib-dynload/_bisect.so",=20
++            "${libdir}/python2.7/lib-dynload/_functools.so",=20
++            "${libdir}/python2.7/lib-dynload/array.so",=20
++            "${libdir}/python2.7/lib-dynload/parser.so",=20
++            "${libdir}/python2.7/opcode.py",=20
++            "${libdir}/python2.7/repr.py",=20
++            "${libdir}/python2.7/symbol.py",=20
++            "${libdir}/python2.7/token.py",=20
++            "${libdir}/python2.7/tokenize.py"
++        ]
++    },=20
++    "logging": {
++        "summary": "Python logging support",=20
++        "rdepends": [
++            "core",=20
++            "io",=20
++            "threading"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/logging"
++        ]
++    },=20
++    "mailbox": {
++        "summary": "Python mailbox format support",=20
++        "rdepends": [
++            "codecs",=20
++            "contextlib",=20
++            "core",=20
++            "crypt",=20
++            "datetime",=20
++            "email",=20
++            "fcntl",=20
++            "io",=20
++            "lang",=20
++            "math",=20
++            "mime",=20
++            "netclient",=20
++            "textutils"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/mailbox.py"
++        ]
++    },=20
++    "math": {
++        "summary": "Python math support",=20
++        "rdepends": [
++            "core",=20
++            "crypt"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/lib-dynload/_random.so",=20
++            "${libdir}/python2.7/lib-dynload/cmath.so",=20
++            "${libdir}/python2.7/lib-dynload/math.so",=20
++            "${libdir}/python2.7/random.py",=20
++            "${libdir}/python2.7/sets.py"
++        ]
++    },=20
++    "mime": {
++        "summary": "Python MIME handling APIs",=20
++        "rdepends": [
++            "contextlib",=20
++            "core",=20
++            "crypt",=20
++            "fcntl",=20
++            "io",=20
++            "lang",=20
++            "math",=20
++            "netclient",=20
++            "textutils"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/MimeWriter.py",=20
++            "${libdir}/python2.7/mimetools.py",=20
++            "${libdir}/python2.7/mimetypes.py",=20
++            "${libdir}/python2.7/quopri.py",=20
++            "${libdir}/python2.7/rfc822.py",=20
++            "${libdir}/python2.7/uu.py"
++        ]
++    },=20
++    "mmap": {
++        "summary": "Python memory-mapped file support",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/lib-dynload/mmap.so"
++        ]
++    },=20
++    "modules": {
++        "files": [],=20
++        "rdepends": [
++            "2to3",=20
++            "argparse",=20
++            "audio",=20
++            "bsddb",=20
++            "codecs",=20
++            "compile",=20
++            "compiler",=20
++            "compression",=20
++            "contextlib",=20
++            "core",=20
++            "crypt",=20
++            "ctypes",=20
++            "curses",=20
++            "datetime",=20
++            "db",=20
++            "debugger",=20
++            "difflib",=20
++            "distutils",=20
++            "doctest",=20
++            "email",=20
++            "fcntl",=20
++            "gdbm",=20
++            "hotshot",=20
++            "html",=20
++            "idle",=20
++            "image",=20
++            "io",=20
++            "json",=20
++            "lang",=20
++            "logging",=20
++            "mailbox",=20
++            "math",=20
++            "mime",=20
++            "mmap",=20
++            "multiprocessing",=20
++            "netclient",=20
++            "netserver",=20
++            "numbers",=20
++            "pickle",=20
++            "pkgutil",=20
++            "plistlib",=20
++            "pprint",=20
++            "profile",=20
++            "pydoc",=20
++            "re",=20
++            "resource",=20
++            "robotparser",=20
++            "runpy",=20
++            "shell",=20
++            "smtpd",=20
++            "sqlite3",=20
++            "sqlite3",=20
++            "stringold",=20
++            "subprocess",=20
++            "syslog",=20
++            "terminal",=20
++            "textutils",=20
++            "threading",=20
++            "tkinter",=20
++            "unittest",=20
++            "unixadmin",=20
++            "xml",=20
++            "xmlrpc",=20
++            "zlib"
++        ],=20
++        "summary": "All Python modules"
++    },=20
++    "multiprocessing": {
++        "summary": "Python multiprocessing support",=20
++        "rdepends": [
++            "core",=20
++            "fcntl",=20
++            "io",=20
++            "pickle",=20
++            "subprocess",=20
++            "threading"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/lib-dynload/_multiprocessing.so",=20
++            "${libdir}/python2.7/multiprocessing"
++        ]
++    },=20
++    "netclient": {
++        "summary": "Python Internet Protocol clients",=20
++        "rdepends": [
++            "codecs",=20
++            "contextlib",=20
++            "core",=20
++            "crypt",=20
++            "ctypes",=20
++            "datetime",=20
++            "email",=20
++            "fcntl",=20
++            "io",=20
++            "lang",=20
++            "math",=20
++            "mime",=20
++            "pickle",=20
++            "subprocess",=20
++            "textutils",=20
++            "threading"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/Cookie.py",=20
++            "${libdir}/python2.7/_LWPCookieJar.py",=20
++            "${libdir}/python2.7/_MozillaCookieJar.py",=20
++            "${libdir}/python2.7/base64.py",=20
++            "${libdir}/python2.7/cookielib.py",=20
++            "${libdir}/python2.7/ftplib.py",=20
++            "${libdir}/python2.7/hmac.py",=20
++            "${libdir}/python2.7/httplib.py",=20
++            "${libdir}/python2.7/nntplib.py",=20
++            "${libdir}/python2.7/poplib.py",=20
++            "${libdir}/python2.7/smtplib.py",=20
++            "${libdir}/python2.7/telnetlib.py",=20
++            "${libdir}/python2.7/urllib.py",=20
++            "${libdir}/python2.7/urllib2.py",=20
++            "${libdir}/python2.7/urlparse.py",=20
++            "${libdir}/python2.7/uuid.py"
++        ]
++    },=20
++    "netserver": {
++        "summary": "Python Internet Protocol servers",=20
++        "rdepends": [
++            "compression",=20
++            "contextlib",=20
++            "core",=20
++            "crypt",=20
++            "fcntl",=20
++            "io",=20
++            "lang",=20
++            "math",=20
++            "mime",=20
++            "netclient",=20
++            "shell",=20
++            "textutils",=20
++            "threading",=20
++            "unixadmin",=20
++            "zlib"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/BaseHTTPServer.py",=20
++            "${libdir}/python2.7/CGIHTTPServer.py",=20
++            "${libdir}/python2.7/SimpleHTTPServer.py",=20
++            "${libdir}/python2.7/SocketServer.py",=20
++            "${libdir}/python2.7/cgi.py"
++        ]
++    },=20
++    "numbers": {
++        "summary": "Python number APIs",=20
++        "rdepends": [
++            "codecs",=20
++            "core",=20
++            "lang",=20
++            "math",=20
++            "threading"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/decimal.py",=20
++            "${libdir}/python2.7/fractions.py",=20
++            "${libdir}/python2.7/numbers.py"
++        ]
++    },=20
++    "pickle": {
++        "summary": "Python serialisation/persistence support",=20
++        "rdepends": [
++            "core",=20
++            "io"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/lib-dynload/cPickle.so",=20
++            "${libdir}/python2.7/pickle.py",=20
++            "${libdir}/python2.7/pickletools.py",=20
++            "${libdir}/python2.7/shelve.py"
++        ]
++    },=20
++    "pkgutil": {
++        "summary": "Python package extension utility support",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/pkgutil.py"
++        ]
++    },=20
++    "plistlib": {
++        "summary": "Generate and parse Mac OS X .plist files",=20
++        "rdepends": [
++            "core",=20
++            "datetime",=20
++            "io"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/plistlib.py"
++        ]
++    },=20
++    "pprint": {
++        "summary": "Python pretty-print support",=20
++        "rdepends": [
++            "core",=20
++            "io"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/pprint.py"
++        ]
++    },=20
++    "profile": {
++        "summary": "Python basic performance profiling support",=20
++        "rdepends": [
++            "codecs",=20
++            "core",=20
++            "lang",=20
++            "resource",=20
++            "textutils"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/cProfile.py",=20
++            "${libdir}/python2.7/lib-dynload/_lsprof.so",=20
++            "${libdir}/python2.7/profile.py",=20
++            "${libdir}/python2.7/pstats.py"
++        ]
++    },=20
++    "pydoc": {
++        "summary": "Python interactive help support",=20
++        "rdepends": [
++            "codecs",=20
++            "core",=20
++            "lang",=20
++            "pkgutil"
++        ],=20
++        "files": [
++            "${bindir}/pydoc",=20
++            "${libdir}/python2.7/pydoc.py",=20
++            "${libdir}/python2.7/pydoc_data"
++        ]
++    },=20
++    "re": {
++        "summary": "Python Regular Expression APIs",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/sre.py"
++        ]
++    },=20
++    "resource": {
++        "summary": "Python resource control interface",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/lib-dynload/resource.so"
++        ]
++    },=20
++    "robotparser": {
++        "summary": "Python robots.txt parser",=20
++        "rdepends": [
++            "contextlib",=20
++            "core",=20
++            "io",=20
++            "lang",=20
++            "netclient",=20
++            "textutils"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/robotparser.py"
++        ]
++    },=20
++    "runpy": {
++        "summary": "Python helper for locating/executing scripts in modu=
+le namespace",=20
++        "rdepends": [
++            "core",=20
++            "pkgutil"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/runpy.py"
++        ]
++    },=20
++    "shell": {
++        "summary": "Python shell-like functionality",=20
++        "rdepends": [
++            "compression",=20
++            "core",=20
++            "io",=20
++            "unixadmin",=20
++            "zlib"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/cmd.py",=20
++            "${libdir}/python2.7/commands.py",=20
++            "${libdir}/python2.7/dircache.py",=20
++            "${libdir}/python2.7/fnmatch.py",=20
++            "${libdir}/python2.7/glob.py",=20
++            "${libdir}/python2.7/popen2.py",=20
++            "${libdir}/python2.7/shlex.py",=20
++            "${libdir}/python2.7/shutil.py"
++        ]
++    },=20
++    "smtpd": {
++        "summary": "Python Simple Mail Transport Daemon",=20
++        "rdepends": [
++            "core",=20
++            "fcntl",=20
++            "io",=20
++            "lang"
++        ],=20
++        "files": [
++            "${bindir}/smtpd.py",=20
++            "${libdir}/python2.7/asynchat.py",=20
++            "${libdir}/python2.7/asyncore.py",=20
++            "${libdir}/python2.7/smtpd.py"
++        ]
++    },=20
++    "sqlite3": {
++        "summary": "Python Sqlite3 database support",=20
++        "rdepends": [
++            "core",=20
++            "datetime"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/lib-dynload/_sqlite3.so",=20
++            "${libdir}/python2.7/sqlite3"
++        ]
++    },=20
++    "stringold": {
++        "summary": "Python string APIs [deprecated]",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/stringold.py"
++        ]
++    },=20
++    "subprocess": {
++        "summary": "Python subprocess support",=20
++        "rdepends": [
++            "core",=20
++            "fcntl",=20
++            "io",=20
++            "pickle",=20
++            "threading"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/subprocess.py"
++        ]
++    },=20
++    "syslog": {
++        "summary": "Python syslog interface",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/lib-dynload/syslog.so"
++        ]
++    },=20
++    "terminal": {
++        "summary": "Python terminal controlling support",=20
++        "rdepends": [
++            "core",=20
++            "io"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/pty.py",=20
++            "${libdir}/python2.7/tty.py"
++        ]
++    },=20
++    "textutils": {
++        "summary": "Python option parsin",=20
++        "rdepends": [
++            "codecs",=20
++            "core",=20
++            "io",=20
++            "lang"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/csv.py",=20
++            "${libdir}/python2.7/lib-dynload/_csv.so",=20
++            "${libdir}/python2.7/optparse.py",=20
++            "${libdir}/python2.7/textwrap.py"
++        ]
++    },=20
++    "threading": {
++        "summary": "Python threading & synchronization support",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/Queue.py",=20
++            "${libdir}/python2.7/_threading_local.py",=20
++            "${libdir}/python2.7/dummy_thread.py",=20
++            "${libdir}/python2.7/dummy_threading.py",=20
++            "${libdir}/python2.7/mutex.py",=20
++            "${libdir}/python2.7/threading.py"
++        ]
++    },=20
++    "tkinter": {
++        "summary": "Python Tcl/Tk bindings",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python${PYTHON_MAJMIN}/lib-dynload/_tkinter.so",
++            "${libdir}/python2.7/lib-tk"
++        ]
++    },=20
++    "unittest": {
++        "summary": "Python unit testing framework",=20
++        "rdepends": [
++            "core",=20
++            "difflib",=20
++            "io",=20
++            "lang",=20
++            "pprint",=20
++            "shell"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/unittest"
++        ]
++    },=20
++    "unixadmin": {
++        "summary": "Python Unix administration support",=20
++        "rdepends": [
++            "core",=20
++            "io"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/getpass.py",=20
++            "${libdir}/python2.7/lib-dynload/grp.so",=20
++            "${libdir}/python2.7/lib-dynload/nis.so"
++        ]
++    },=20
++    "xml": {
++        "summary": "Python basic XML support",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/lib-dynload/_elementtree.so",=20
++            "${libdir}/python2.7/lib-dynload/pyexpat.so",=20
++            "${libdir}/python2.7/xml"
++        ]
++    },=20
++    "xmlrpc": {
++        "summary": "Python XML-RPC support",=20
++        "rdepends": [
++            "codecs",=20
++            "compression",=20
++            "contextlib",=20
++            "core",=20
++            "crypt",=20
++            "datetime",=20
++            "fcntl",=20
++            "io",=20
++            "lang",=20
++            "math",=20
++            "mime",=20
++            "netclient",=20
++            "netserver",=20
++            "pkgutil",=20
++            "pydoc",=20
++            "textutils",=20
++            "threading",=20
++            "xml",=20
++            "zlib"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/DocXMLRPCServer.py",=20
++            "${libdir}/python2.7/SimpleXMLRPCServer.py",=20
++            "${libdir}/python2.7/xmlrpclib.py"
++        ]
++    },=20
++    "zlib": {
++        "summary": "Python zlib compression support",=20
++        "rdepends": [
++            "core"
++        ],=20
++        "files": [
++            "${libdir}/python2.7/lib-dynload/zlib.so"
++        ]
++    }
++}
+diff --git a/recipes-devtools/python/python/run-ptest b/recipes-devtools/=
+python/python/run-ptest
+new file mode 100644
+index 0000000..c7002a4
+--- /dev/null
++++ b/recipes-devtools/python/python/run-ptest
+@@ -0,0 +1,3 @@
++#!/bin/sh
++
++python -mtest -W | sed -u -e '/\.\.\. ok/ s/^/PASS: /g' -e '/\.\.\. [ERR=
+OR|FAIL]/ s/^/FAIL: /g' -e '/\.\.\. skipped/ s/^/SKIP: /g' -e 's/ \.\.\. =
+ok//g' -e 's/ \.\.\. ERROR//g' -e 's/ \.\.\. FAIL//g' -e 's/ \.\.\. skipp=
+ed//g'
+diff --git a/recipes-devtools/python/python/search_db_h_in_inc_dirs_and_a=
+void_warning.patch b/recipes-devtools/python/python/search_db_h_in_inc_di=
+rs_and_avoid_warning.patch
+new file mode 100644
+index 0000000..dacb552
+--- /dev/null
++++ b/recipes-devtools/python/python/search_db_h_in_inc_dirs_and_avoid_wa=
+rning.patch
+@@ -0,0 +1,35 @@
++python should search for db.h in inc_dirs and not in a hardcoded path.
++If db.h is found but HASHVERSION is not 2 we avoid a warning by not=20
++adding this module to missing variable.
++
++Upstream-Status: Inappropriate [distribution]
++
++Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
++
++
++diff --git a/setup.py b/setup.py
++index b887808..ae51607 100644
++--- a/setup.py
+++++ b/setup.py
++@@ -1237,6 +1237,8 @@ class PyBuildExt(build_ext):
++         # the more recent berkeleydb's db.h file first in the include p=
+ath
++         # when attempting to compile and it will fail.
++         f =3D "/usr/include/db.h"
+++        if len(inc_dirs) !=3D 0:
+++            f =3D os.path.join(inc_dirs[0], "db.h")
++=20
++         if host_platform =3D=3D 'darwin':
++             if is_macosx_sdk_path(f):
++@@ -1257,8 +1259,10 @@ class PyBuildExt(build_ext):
++                                           libraries=3Dlibraries))
++                 else:
++                     exts.append(Extension('bsddb185', ['bsddbmodule.c']=
+))
++-            else:
++-                missing.append('bsddb185')
+++            # If a newer version is detected don't report an useless
+++            # warning
+++            #else:
+++            #    missing.append('bsddb185')
++         else:
++             missing.append('bsddb185')
++=20
+diff --git a/recipes-devtools/python/python/setup_py_skip_cross_import_ch=
+eck.patch b/recipes-devtools/python/python/setup_py_skip_cross_import_che=
+ck.patch
+new file mode 100644
+index 0000000..6ccdb94
+--- /dev/null
++++ b/recipes-devtools/python/python/setup_py_skip_cross_import_check.pat=
+ch
+@@ -0,0 +1,27 @@
++This patch skips over the 'import check' setup.py does when building
++extensions.  This generally won't work when cross-compiling.
++
++Upstream-Status: Inappropriate [embedded-specific]
++
++Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
++
++Index: Python-2.7.2/setup.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.2.orig/setup.py	2011-11-04 16:46:34.553796410 -0500
+++++ Python-2.7.2/setup.py	2011-11-04 16:59:49.692802313 -0500
++@@ -287,6 +287,15 @@
++                           (ext.name, sys.exc_info()[1]))
++             self.failed.append(ext.name)
++             return
+++
+++        # If we're cross-compiling, we want to skip the import check
+++        # i.e. we shouldn't be dynamically loading target shared libs
+++        if os.environ.get('CROSS_COMPILE') is not None:
+++            self.announce(
+++                'WARNING: skipping import check for cross-compiled "%s"=
+' %
+++                ext.name)
+++            return
+++
++         # Workaround for Mac OS X: The Carbon-based modules cannot be
++         # reliably imported into a command-line Python
++         if 'Carbon' in ext.extra_link_args:
+diff --git a/recipes-devtools/python/python/setuptweaks.patch b/recipes-d=
+evtools/python/python/setuptweaks.patch
+new file mode 100644
+index 0000000..3a91b19
+--- /dev/null
++++ b/recipes-devtools/python/python/setuptweaks.patch
+@@ -0,0 +1,57 @@
++This patch removes various ways native system options can pass into the =
+python=20
++compilation and somehow break C modules.
++
++Upstream-Status: Inappropriate [OE Specific]
++
++RP 2012/04/23
++
++Index: Python-2.7.2/setup.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.2.orig/setup.py	2012-04-23 20:03:47.295582553 +0000
+++++ Python-2.7.2/setup.py	2012-04-23 20:03:15.000000000 +0000
++@@ -231,7 +231,13 @@
++         # compilers
++         if compiler is not None:
++             (ccshared,cflags) =3D sysconfig.get_config_vars('CCSHARED',=
+'CFLAGS')
++-            args['compiler_so'] =3D compiler + ' ' + ccshared + ' ' + c=
+flags
+++            # Need to filter out -isysroot from the flags. Ideally shou=
+ld=20
+++            # figure out target flags here.
+++            flags =3D []
+++            for f in cflags.split():
+++                if not f.startswith("-isystem"):
+++                    flags.append(f)
+++            args['compiler_so'] =3D compiler + ' ' + ccshared + ' ' + '=
+ '.join(flags)
++         self.compiler.set_executables(**args)
++=20
++         build_ext.build_extensions(self)
++@@ -393,7 +399,6 @@
++         # into configure and stored in the Makefile (issue found on OS =
+X 10.3).
++         for env_var, arg_name, dir_list in (
++                 ('LDFLAGS', '-R', self.compiler.runtime_library_dirs),
++-                ('LDFLAGS', '-L', self.compiler.library_dirs),
++                 ('CPPFLAGS', '-I', self.compiler.include_dirs)):
++             env_val =3D sysconfig.get_config_var(env_var)
++             if env_val:
++@@ -419,16 +424,16 @@
++                     for directory in reversed(options.dirs):
++                         add_dir_to_list(dir_list, directory)
++=20
++-        if os.path.normpath(sys.prefix) !=3D '/usr' \
++-                and not sysconfig.get_config_var('PYTHONFRAMEWORK'):
+++#        if os.path.normpath(sys.prefix) !=3D '/usr' \
+++#                and not sysconfig.get_config_var('PYTHONFRAMEWORK'):
++             # OSX note: Don't add LIBDIR and INCLUDEDIR to building a f=
+ramework
++             # (PYTHONFRAMEWORK is set) to avoid # linking problems when
++             # building a framework with different architectures than
++             # the one that is currently installed (issue #7473)
++-            add_dir_to_list(self.compiler.library_dirs,
++-                            sysconfig.get_config_var("LIBDIR"))
++-            add_dir_to_list(self.compiler.include_dirs,
++-                            sysconfig.get_config_var("INCLUDEDIR"))
+++#            add_dir_to_list(self.compiler.library_dirs,
+++#                            sysconfig.get_config_var("LIBDIR"))
+++#            add_dir_to_list(self.compiler.include_dirs,
+++#                            sysconfig.get_config_var("INCLUDEDIR"))
++=20
++         try:
++             have_unicode =3D unicode
+diff --git a/recipes-devtools/python/python/sitecustomize.py b/recipes-de=
+vtools/python/python/sitecustomize.py
+new file mode 100644
+index 0000000..4c8b5e2
+--- /dev/null
++++ b/recipes-devtools/python/python/sitecustomize.py
+@@ -0,0 +1,37 @@
++# OpenEmbedded sitecustomize.py (C) 2002-2008 Michael 'Mickey' Lauer <ml=
+auer@vanille-media.de>
++# GPLv2 or later
++# Version: 20081123
++# Features:
++# * set proper default encoding
++# * enable readline completion in the interactive interpreter
++# * load command line history on startup
++# * save command line history on exit=20
++
++import os
++
++def __exithandler():
++    try:
++        readline.write_history_file( "%s/.python-history" % os.getenv( "=
+HOME", "/tmp" ) )
++    except IOError:
++        pass
++
++def __registerExitHandler():
++    import atexit
++    atexit.register( __exithandler )
++
++def __enableReadlineSupport():
++    readline.set_history_length( 1000 )
++    readline.parse_and_bind( "tab: complete" )
++    try:
++        readline.read_history_file( "%s/.python-history" % os.getenv( "H=
+OME", "/tmp" ) )
++    except IOError:
++        pass
++
++import sys
++try:
++    import rlcompleter, readline
++except ImportError:
++    pass
++else:
++    __registerExitHandler()
++    __enableReadlineSupport()
+diff --git a/recipes-devtools/python/python/support_SOURCE_DATE_EPOCH_in_=
+py_compile_2.7.patch b/recipes-devtools/python/python/support_SOURCE_DATE=
+_EPOCH_in_py_compile_2.7.patch
+new file mode 100644
+index 0000000..1265179
+--- /dev/null
++++ b/recipes-devtools/python/python/support_SOURCE_DATE_EPOCH_in_py_comp=
+ile_2.7.patch
+@@ -0,0 +1,34 @@
++The compiled .pyc files contain time stamp corresponding to the compile =
+time.
++This prevents binary reproducibility. This patch allows to achieve binar=
+y
++reproducibility by overriding the build time stamp by the value=20
++exported via SOURCE_DATE_EPOCH.=20
++
++Patch by Bernhard M. Wiedemann
++
++Upstream-Status: Backport
++
++Signed-off-by: Juro Bystricky <juro.bystricky@intel.com>
++
++Fri Feb 24 17:08:25 UTC 2017 - bwiedemann@suse.com
++
++- Add reproducible.patch to allow reproducible builds of various
++  python packages like python-amqp
++  Upstream: https://github.com/python/cpython/pull/296
++
++
++@@ -0,0 +1,15 @@
++Index: Python-2.7.13/Lib/py_compile.py
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.13.orig/Lib/py_compile.py
+++++ Python-2.7.13/Lib/py_compile.py
++@@ -108,6 +108,10 @@ def compile(file, cfile=3DNone, dfile=3DNone
++             timestamp =3D long(os.fstat(f.fileno()).st_mtime)
++         except AttributeError:
++             timestamp =3D long(os.stat(file).st_mtime)
+++        sde =3D os.environ.get('SOURCE_DATE_EPOCH')
+++        if sde and timestamp > int(sde):
+++            timestamp =3D int(sde)
+++            os.utime(file, (timestamp, timestamp))
++         codestring =3D f.read()
++     try:
++         codeobject =3D __builtin__.compile(codestring, dfile or file,'e=
+xec')
+diff --git a/recipes-devtools/python/python/use_sysroot_ncurses_instead_o=
+f_host.patch b/recipes-devtools/python/python/use_sysroot_ncurses_instead=
+_of_host.patch
+new file mode 100644
+index 0000000..fb4a3bc
+--- /dev/null
++++ b/recipes-devtools/python/python/use_sysroot_ncurses_instead_of_host.=
+patch
+@@ -0,0 +1,21 @@
++Python tries to use ncursesw from the host,
++if it is not found causes an error on configure,
++we should use ncursesw from sysroot instead
++
++Upstream-Status: Pending
++
++Signed-off-by: Alejandro Hernandez <alejandro.hernandez@linux.intel.com>
++
++Index: Python-2.7.9/configure.ac
++=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
++--- Python-2.7.9.orig/configure.ac
+++++ Python-2.7.9/configure.ac
++@@ -4311,7 +4311,7 @@ fi
++=20
++ # first curses configure check
++ ac_save_cppflags=3D"$CPPFLAGS"
++-CPPFLAGS=3D"$CPPFLAGS -I/usr/include/ncursesw"
+++CPPFLAGS=3D"$CPPFLAGS -I=3D/usr/include/ncursesw"
++=20
++ AC_CHECK_HEADERS(curses.h ncurses.h)
++=20
+diff --git a/recipes-devtools/python/python_2.7.17.bb b/recipes-devtools/=
+python/python_2.7.17.bb
+new file mode 100644
+index 0000000..be7c6d2
+--- /dev/null
++++ b/recipes-devtools/python/python_2.7.17.bb
+@@ -0,0 +1,260 @@
++require python.inc
++
++DEPENDS =3D "libffi bzip2 gdbm openssl \
++           readline sqlite3 zlib virtual/crypt"
++
++DISTRO_SRC_URI ?=3D "file://sitecustomize.py"
++DISTRO_SRC_URI_linuxstdbase =3D ""
++SRC_URI +=3D " \
++           file://01-use-proper-tools-for-cross-build.patch \
++           file://03-fix-tkinter-detection.patch \
++           file://06-avoid_usr_lib_termcap_path_in_linking.patch \
++           ${DISTRO_SRC_URI} \
++           file://multilib.patch \
++           file://cgi_py.patch \
++           file://setup_py_skip_cross_import_check.patch \
++           file://add-md5module-support.patch \
++           file://host_include_contamination.patch \
++           file://fix_for_using_different_libdir.patch \
++           file://setuptweaks.patch \
++           file://check-if-target-is-64b-not-host.patch \
++           file://search_db_h_in_inc_dirs_and_avoid_warning.patch \
++           ${@bb.utils.contains('PACKAGECONFIG', 'tk', '', 'file://avoid=
+_warning_about_tkinter.patch', d)} \
++           file://avoid_warning_for_sunos_specific_module.patch \
++           file://python-2.7.3-remove-bsdb-rpath.patch \
++           file://run-ptest \
++           file://parallel-makeinst-create-bindir.patch \
++           file://use_sysroot_ncurses_instead_of_host.patch \
++           file://add-CROSSPYTHONPATH-for-PYTHON_FOR_BUILD.patch \
++           file://pass-missing-libraries-to-Extension-for-mul.patch \
++           file://support_SOURCE_DATE_EPOCH_in_py_compile_2.7.patch \
++           file://float-endian.patch \
++           file://0001-python2-use-cc_basename-to-replace-CC-for-checkin=
+g-c.patch \
++"
++
++S =3D "${WORKDIR}/Python-${PV}"
++
++inherit autotools multilib_header python-dir pythonnative ptest
++
++EXTRA_OECONF +=3D "--with-system-ffi"
++
++CACHED_CONFIGUREVARS =3D "ac_cv_file__dev_ptmx=3Dyes \
++                        ac_cv_file__dev_ptc=3Dno \
++                        ac_cv_working_tzset=3Dyes"
++
++PACKAGECONFIG ??=3D "bdb"
++PACKAGECONFIG[bdb] =3D ",,db"
++PACKAGECONFIG[tk] =3D ",,tk"
++
++# pgen isn't needed in the current build, but use the binary from python=
+-native just in case.
++EXTRA_OEMAKE =3D "PGEN=3D${STAGING_BINDIR_NATIVE}/python-native/pgen \
++                CROSSPYTHONPATH=3D${STAGING_LIBDIR_NATIVE}/python${PYTHO=
+N_MAJMIN}/lib-dynload/ \
++                STAGING_LIBDIR=3D${STAGING_LIBDIR} \
++                STAGING_INCDIR=3D${STAGING_INCDIR} \
++                STAGING_BASELIBDIR=3D${STAGING_BASELIBDIR} \
++                "
++
++do_configure_append() {
++	rm -f ${S}/Makefile.orig
++        autoreconf -Wcross --verbose --install --force --exclude=3Dautop=
+oint ../Python-${PV}/Modules/_ctypes/libffi
++}
++
++do_compile() {
++        # regenerate platform specific files, because they depend on sys=
+tem headers
++        cd ${S}/Lib/plat-linux2
++        include=3D${STAGING_INCDIR} ${STAGING_BINDIR_NATIVE}/python-nati=
+ve/python \
++                ${S}/Tools/scripts/h2py.py -i '(u_long)' \
++                ${STAGING_INCDIR}/dlfcn.h \
++                ${STAGING_INCDIR}/linux/cdrom.h \
++                ${STAGING_INCDIR}/netinet/in.h \
++                ${STAGING_INCDIR}/sys/types.h
++        sed -e 's,${STAGING_DIR_HOST},,g' -i *.py
++        cd -
++
++	# remove any bogus LD_LIBRARY_PATH
++	sed -i -e s,RUNSHARED=3D.*,RUNSHARED=3D, Makefile
++
++	if [ ! -f Makefile.orig ]; then
++		install -m 0644 Makefile Makefile.orig
++	fi
++	sed -i -e 's#^LDFLAGS=3D.*#LDFLAGS=3D${LDFLAGS} -L. -L${STAGING_LIBDIR}=
+#g' \
++		-e 's,libdir=3D${libdir},libdir=3D${STAGING_LIBDIR},g' \
++		-e 's,libexecdir=3D${libexecdir},libexecdir=3D${STAGING_DIR_HOST}${lib=
+execdir},g' \
++		-e 's,^LIBDIR=3D.*,LIBDIR=3D${STAGING_LIBDIR},g' \
++		-e 's,includedir=3D${includedir},includedir=3D${STAGING_INCDIR},g' \
++		-e 's,^INCLUDEDIR=3D.*,INCLUDE=3D${STAGING_INCDIR},g' \
++		-e 's,^CONFINCLUDEDIR=3D.*,CONFINCLUDE=3D${STAGING_INCDIR},g' \
++		Makefile
++	# save copy of it now, because if we do it in do_install and=20
++	# then call do_install twice we get Makefile.orig =3D=3D Makefile.sysro=
+ot
++	install -m 0644 Makefile Makefile.sysroot
++
++	export CROSS_COMPILE=3D"${TARGET_PREFIX}"
++	export PYTHONBUILDDIR=3D"${B}"
++
++	oe_runmake OPT=3D"${CFLAGS}"
++}
++
++do_install() {
++	# make install needs the original Makefile, or otherwise the inclues wo=
+uld
++	# go to ${D}${STAGING...}/...
++	install -m 0644 Makefile.orig Makefile
++
++	export CROSS_COMPILE=3D"${TARGET_PREFIX}"
++	export PYTHONBUILDDIR=3D"${B}"
++
++	# After swizzling the makefile, we need to run the build again.
++	# install can race with the build so we have to run this first, then in=
+stall
++	oe_runmake DESTDIR=3D${D} LIBDIR=3D${libdir}
++=09
++	oe_runmake DESTDIR=3D${D} LIBDIR=3D${libdir} install
++
++	install -m 0644 Makefile.sysroot ${D}/${libdir}/python${PYTHON_MAJMIN}/=
+config/Makefile
++
++	if [ -e ${WORKDIR}/sitecustomize.py ]; then
++		install -m 0644 ${WORKDIR}/sitecustomize.py ${D}/${libdir}/python${PYT=
+HON_MAJMIN}
++	fi
++
++	oe_multilib_header python${PYTHON_MAJMIN}/pyconfig.h
++
++    if [ -z "${@bb.utils.filter('PACKAGECONFIG', 'bdb', d)}" ]; then
++        rm -rf ${D}/${libdir}/python${PYTHON_MAJMIN}/bsddb
++    fi
++
++    # Python 3.x version of 2to3 is now the default
++    mv ${D}/${bindir}/2to3 ${D}/${bindir}/2to3-${PYTHON_MAJMIN}
++}
++
++do_install_append_class-nativesdk () {
++	create_wrapper ${D}${bindir}/python2.7 PYTHONHOME=3D'${prefix}' TERMINF=
+O_DIRS=3D'${sysconfdir}/terminfo:/etc/terminfo:/usr/share/terminfo:/usr/s=
+hare/misc/terminfo:/lib/terminfo' PYTHONNOUSERSITE=3D'1'
++}
++
++SSTATE_SCAN_FILES +=3D "Makefile"
++PACKAGE_PREPROCESS_FUNCS +=3D "py_package_preprocess"
++
++py_package_preprocess () {
++	# copy back the old Makefile to fix target package
++	install -m 0644 ${B}/Makefile.orig ${PKGD}/${libdir}/python${PYTHON_MAJ=
+MIN}/config/Makefile
++
++	# Remove references to buildmachine paths in target Makefile and _sysco=
+nfigdata
++	sed -i -e 's:--sysroot=3D${STAGING_DIR_TARGET}::g' -e s:'--with-libtool=
+-sysroot=3D${STAGING_DIR_TARGET}'::g \
++		-e 's|${DEBUG_PREFIX_MAP}||g' \
++		-e 's:${HOSTTOOLS_DIR}/::g' \
++		-e 's:${RECIPE_SYSROOT_NATIVE}::g' \
++		-e 's:${RECIPE_SYSROOT}::g' \
++		-e 's:${BASE_WORKDIR}/${MULTIMACH_TARGET_SYS}::g' \
++		${PKGD}/${libdir}/python${PYTHON_MAJMIN}/config/Makefile \
++		${PKGD}/${libdir}/python${PYTHON_MAJMIN}/_sysconfigdata.py
++	(cd ${PKGD}; python -m py_compile ./${libdir}/python${PYTHON_MAJMIN}/_s=
+ysconfigdata.py)
++}
++
++PACKAGES_remove =3D "${PN}"
++
++# manual dependency additions
++RPROVIDES_${PN}-modules =3D "${PN}"
++RRECOMMENDS_${PN}-core_append_class-nativesdk =3D " nativesdk-python-mod=
+ules"
++RRECOMMENDS_${PN}-crypt =3D "openssl"
++
++# package libpython2
++PACKAGES =3D+ "lib${BPN}2"
++FILES_lib${BPN}2 =3D "${libdir}/libpython*.so.*"
++
++# catch all the rest (unsorted)
++PACKAGES +=3D "${PN}-misc"
++FILES_${PN}-misc =3D "${libdir}/python${PYTHON_MAJMIN}"
++RDEPENDS_${PN}-modules +=3D "${PN}-misc"
++
++# ptest
++RDEPENDS_${PN}-ptest =3D "${PN}-modules ${PN}-tests unzip tzdata-europe =
+coreutils sed"
++RDEPENDS_${PN}-tkinter +=3D "${@bb.utils.contains('PACKAGECONFIG', 'tk',=
+ 'tk tk-lib', '', d)}"
++# catch manpage
++PACKAGES +=3D "${PN}-man"
++FILES_${PN}-man =3D "${datadir}/man"
++
++# Nasty but if bdb isn't enabled the package won't be generated
++RDEPENDS_${PN}-modules_remove =3D "${@bb.utils.contains('PACKAGECONFIG',=
+ 'bdb', '', '${PN}-bsddb', d)}"
++
++RDEPENDS_${PN}-dev =3D ""
++
++BBCLASSEXTEND =3D "nativesdk"
++
++# We want bytecode precompiled .py files (.pyc's) by default
++# but the user may set it on their own conf
++
++INCLUDE_PYCS ?=3D "1"
++
++python(){
++    import collections, json
++
++    filename =3D os.path.join(d.getVar('THISDIR'), 'python', 'python2-ma=
+nifest.json')
++    # This python changes the datastore based on the contents of a file,=
+ so mark
++    # that dependency.
++    bb.parse.mark_dependency(d, filename)
++
++    with open(filename) as manifest_file:
++        manifest_str =3D  manifest_file.read()
++        json_start =3D manifest_str.find('# EOC') + 6
++        manifest_file.seek(json_start)
++        manifest_str =3D manifest_file.read()
++        python_manifest =3D json.loads(manifest_str, object_pairs_hook=3D=
+collections.OrderedDict)
++
++    include_pycs =3D d.getVar('INCLUDE_PYCS')
++
++    packages =3D d.getVar('PACKAGES').split()
++    pn =3D d.getVar('PN')
++
++    newpackages=3D[]
++
++    for key in python_manifest:
++        pypackage=3D pn + '-' + key
++
++        if pypackage not in packages:
++            # We need to prepend, otherwise python-misc gets everything
++            # so we use a new variable
++            newpackages.append(pypackage)
++
++        # "Build" python's manifest FILES, RDEPENDS and SUMMARY
++        d.setVar('FILES_' + pypackage, '')
++        for value in python_manifest[key]['files']:
++            d.appendVar('FILES_' + pypackage, ' ' + value)
++            if include_pycs =3D=3D '1':
++                if value.endswith('.py'):
++                    d.appendVar('FILES_' + pypackage, ' ' + value + '?')
++
++        for value in python_manifest[key]['rdepends']:
++            # Make it work with or without $PN
++            if '${PN}' in value:
++                value=3Dvalue.split('-')[1]
++            d.appendVar('RDEPENDS_' + pypackage, ' ' + pn + '-' + value)
++        d.setVar('SUMMARY_' + pypackage, python_manifest[key]['summary']=
+)
++
++    # Prepending so to avoid python-misc getting everything
++    packages =3D newpackages + packages
++    d.setVar('PACKAGES', ' '.join(packages))
++    d.setVar('ALLOW_EMPTY_${PN}-modules', '1')
++}
++
++# Files needed to create a new manifest
++SRC_URI +=3D "file://create_manifest2.py file://get_module_deps2.py file=
+://python2-manifest.json"
++
++do_create_manifest() {
++    # This task should be run with every new release of Python.
++    # We must ensure that PACKAGECONFIG enables everything when creating
++    # a new manifest, this is to base our new manifest on a complete
++    # native python build, containing all dependencies, otherwise the ta=
+sk
++    # wont be able to find the required files.
++    # e.g. BerkeleyDB is an optional build dependency so it may or may n=
+ot
++    # be present, we must ensure it is.
++
++    cd ${WORKDIR}
++    # This needs to be executed by python-native and NOT by HOST's pytho=
+n
++    nativepython create_manifest2.py
++    cp python2-manifest.json.new ${THISDIR}/python/python2-manifest.json
++}
++
++# bitbake python -c create_manifest
++addtask do_create_manifest
++
++# Make sure we have native python ready when we create a new manifest
++do_create_manifest[depends] +=3D "python:do_prepare_recipe_sysroot"
++do_create_manifest[depends] +=3D "python:do_patch"
+--=20
+2.20.1
 
