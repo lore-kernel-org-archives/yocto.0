@@ -1,12 +1,12 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.15175.1579544876019867601
+ by mx.groups.io with SMTP id smtpd.web09.15523.1579546526684679766
  for <yocto@lists.yoctoproject.org>;
- Mon, 20 Jan 2020 10:27:56 -0800
+ Mon, 20 Jan 2020 10:55:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=NF5NJeHt;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: ticotimo@gmail.com)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=mHs9q2ur;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3CC0AE01545; Mon, 20 Jan 2020 10:27:55 -0800 (PST)
+	id 31963E01548; Mon, 20 Jan 2020 10:55:26 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -17,145 +17,278 @@ X-Spam-HAM-Report:
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (ticotimo[at]gmail.com)
+	*      (sjolley.yp.pm[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.166.176 listed in list.dnswl.org]
+	*      [209.85.215.177 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11B38E0044F
-	for <yocto@yoctoproject.org>; Mon, 20 Jan 2020 10:27:51 -0800 (PST)
-Received: by mail-il1-f176.google.com with SMTP id c4so267440ilo.7
-        for <yocto@yoctoproject.org>; Mon, 20 Jan 2020 10:27:51 -0800 (PST)
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D02CE01545
+	for <yocto@yoctoproject.org>; Mon, 20 Jan 2020 10:55:22 -0800 (PST)
+Received: by mail-pg1-f177.google.com with SMTP id r11so130319pgf.1
+        for <yocto@yoctoproject.org>; Mon, 20 Jan 2020 10:55:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=uKIYxDv49Q78WM9kVZg4wFhVdkTQPY0Suv0h3dUON9s=;
-        b=NF5NJeHtoMoSZMqZRJYhBkVn7o8oa8wvzeN+0Sf3AJTKtl74K4iVqbQ5Aie3BaveDm
-         0c8belJo7oW2i+og7xsx/mSXqBsUv7YRxHBUfq4tUNmPdDUvMCu9FSNOrpABilehCDfV
-         dx+I164OXLCOywoACyNlO3VXHO185QWQ4ss8gZPISMw3AmcBpLURZPxs3YoVLQ2sk8jg
-         pXgoBmwqntJEy7VS8pAOoDJdBdX4Qn7Mf7bvL8X98P33vSgA4/UxNUyd53YY5m9x9Qoq
-         fuaNJLJ89+2Wk/v7H5Kb59bVmq7Lh0o+eZJBUXbLNPRLbtNn8byA2FtCO5gAeB5Ho5qQ
-         seUQ==
+        h=from:to:cc:subject:date:message-id:mime-version:content-language
+         :thread-index;
+        bh=OCHlwISIqrcNuy9Me7eSoJRkMdhBYEIjMixbMTe+MU4=;
+        b=mHs9q2urNertD4qabETyJDVrrpjlo/z2i6Adakv7IRzFcGJqkyhM2BsqKYPA51U06U
+         9I1WVOQ/5i7XZM7EH3Xi6V36qvly7C1dUhsh/qT/6kOllLUrlkmdRztD5sqMc3A2FN/o
+         7npkUqeEMABfgHMmY/LYQwbsAPjYtdVfujY68EUQZHZpRtebZJey7aGuo0CPotY5Bnb2
+         zT83YgGtIlWgjHCUHfnT5MEXb7iZQT+1A525p0mF4cLLBSzvq7GxZuj1/Z0xV3w1aRzR
+         D7SsNVkYtudZA0QOMQQwK6FTchvyaQVIKqdeLx32r/Fjn29lrW1o1m60Og2afGy0JLqh
+         NoHQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uKIYxDv49Q78WM9kVZg4wFhVdkTQPY0Suv0h3dUON9s=;
-        b=X4a5pnYfuB4wfAVr7pRlUvv81yHAR0UgjT5pDDz8yOTVWkIKjVCURnCOBOprSrokkR
-         ukxVkQ+MHNNi/L5h/hZNll6hPsntuOmN5p9mcD4ElGOcjF1yslDxUPJEFokWSVjSHEKW
-         tlnOG3aImkzIQC0Kdvx4fp+SXMGvWRcYhCd9QvJ2MTLxRbAO4g6i7jlvUn3+/ihdakM4
-         BpNDm+y85nSnN7e/VXoFbpop2FmigtusGtdbSgvFPkkC7l/+GPjwjGtllQxRehRkzcPN
-         5en95+14pCYGlf1jyNTnFPkgVOKc3UJ5C8VrWKjqVillISUfplpLuiCNPOR8pPkXISlY
-         QZbA==
-X-Gm-Message-State: APjAAAWyj8Mx0ZLgporotvvWKQcs36jmo+FZAYcLWLrxuN2RN6w2HrbF
-	GhkWE6wwPBas3WQYbJD0LqlwnbKeN3LpMqiknDo=
-X-Google-Smtp-Source: APXvYqw6o+RW2WQVIrwoV3W5q/5h0BnnsuUSXYfLeVZM4IeTj7vJCWjy89QoKaJfS9vFZJI9FNX+pFyBYTVoquzlN9Y=
-X-Received: by 2002:a92:911b:: with SMTP id t27mr346971ild.142.1579544871382;
- Mon, 20 Jan 2020 10:27:51 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-language:thread-index;
+        bh=OCHlwISIqrcNuy9Me7eSoJRkMdhBYEIjMixbMTe+MU4=;
+        b=XlzjQsYCxzZ5UdiDbYI/L826Von7ba0iucC3UPuH7s7+mz+GbygYfk+L8IQUeeZWnU
+         dLP/Zxwq8M2H6CycLkr6RvdgSHgZdOal+vr3KN4t8G3o3w0JDY7i7q8pzxq9Dl+6RcqF
+         68hC8aUZeuTcZEPMN7kD8dN6+7KEuSQVIF6vVejR3lbBINSVb+cKv3PlLaqJAuK/FhiP
+         GiRPALN2UhYtqw6+pYXPd0WT8n4u2GXug9wawGGLMbgzIF1jpQGHZdWBH2C8t6tiZyEm
+         n6hnprlqQIXEfgHJ1LwT7oxR2DxK2wxJt0jlC87PDlh8/pjOG9rlwrmjIbKh3N7ei00/
+         /EYw==
+X-Gm-Message-State: APjAAAUDU1Pn4RdvxBxrGpeSUavDtapxhz9Tnf74djNZRfN4qZi3xNDO
+	R6abjNs6PXOOgoBbiy3axf4=
+X-Google-Smtp-Source: APXvYqy68CkhG1+jKWXhVUWaEkq9KNUrPAw/Q6ymadZU5uG1YmOUoi+z+T0Vs+KyGkTLVoZD+yRUxw==
+X-Received: by 2002:a63:5a64:: with SMTP id k36mr1123403pgm.323.1579546522530;
+        Mon, 20 Jan 2020 10:55:22 -0800 (PST)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id a26sm40529019pfo.27.2020.01.20.10.55.21
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 20 Jan 2020 10:55:22 -0800 (PST)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Cc: <sjolley.yp.pm@gmail.com>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 20 Jan 2020 10:55:21 -0800
+Message-ID: <08fe01d5cfc3$2ad25f20$80771d60$@gmail.com>
 MIME-Version: 1.0
-References: <20200120171433.28109-1-ross.burton@intel.com>
-In-Reply-To: <20200120171433.28109-1-ross.burton@intel.com>
-From: "Tim Orling" <ticotimo@gmail.com>
-Date: Mon, 20 Jan 2020 10:27:40 -0800
-Message-ID: <CANx9H-A+1UwheNMNM+8Mgu9Gxseg=ygGo5rFxaHSHz1xF-u1jg@mail.gmail.com>
-Subject: Re: [yocto] [meta-python2 v2] python: add 2.7.17 from oe-core
-To: Ross Burton <ross.burton@intel.com>
-Cc: Yocto-mailing-list <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000f73391059c96729e"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKG7utdaaVTKxRsyoT3xlHbz7xzdw==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_08FF_01D5CF80.1CAFE270"
+Content-Language: en-us
 
---000000000000f73391059c96729e
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_08FF_01D5CF80.1CAFE270
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-There was one additional patch for python-setuptools-native needed, but I
-have taken care of that under separate cover.
+All,
 
-Can you double check that anything remaining in oe-core is cleaned up,
-while I continue to focus on meta-python2?
+ 
 
-This is now merged (as is the other python-setuptools patch).
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
 
-THANK YOU!
+ 
 
-On Mon, Jan 20, 2020 at 9:15 AM Ross Burton <ross.burton@intel.com> wrote:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
 
-> Python 2 ceased being maintained on the 1st January 2020.  All users of
-> Python 2 in oe-core have already been ported to Python 3, so in oe-core
-> 390f3eda Python 2 was finally removed from oe-core itself.
->
-> The following are added to meta-python2 in this commit:
-> - python and python-native 2.7.17
-> - python-setuptools
-> - The classes pythonnative, pythondir, distutils, setuptools
->
-> Signed-off-by: Ross Burton <ross.burton@intel.com>
-> ---
->  classes/distutils-base.bbclass                |    4 +
->  classes/distutils.bbclass                     |   87 ++
->  classes/python-dir.bbclass                    |    5 +
->  classes/pythonnative.bbclass                  |   27 +
->  classes/setuptools.bbclass                    |    3 +
->
-> <snip>
+ 
 
-> --
-> 2.20.1
->
-> 
->
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
---000000000000f73391059c96729e
-Content-Type: text/html; charset="UTF-8"
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 294
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.1", "3.2, "3.99" and "Future", the more pressing/urgent issues
+being in "3.1" and then "3.2".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newcomer_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_08FF_01D5CF80.1CAFE270
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0619_01D5CA2A.AB736000";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>There was one additional patch for python-setuptools-=
-native needed, but I have taken care of that under separate cover.</div><di=
-v><br></div><div>Can you double check that anything remaining in oe-core is=
- cleaned up, while I continue to focus on meta-python2?</div><div><br></div=
-><div>This is now merged (as is the other python-setuptools patch).</div><d=
-iv><br></div><div>THANK YOU!<br></div><br><div class=3D"gmail_quote"><div d=
-ir=3D"ltr" class=3D"gmail_attr">On Mon, Jan 20, 2020 at 9:15 AM Ross Burton=
- &lt;<a href=3D"mailto:ross.burton@intel.com">ross.burton@intel.com</a>&gt;=
- wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Python 2=
- ceased being maintained on the 1st January 2020.=C2=A0 All users of<br>
-Python 2 in oe-core have already been ported to Python 3, so in oe-core<br=
->
-390f3eda Python 2 was finally removed from oe-core itself.<br>
-<br>
-The following are added to meta-python2 in this commit:<br>
-- python and python-native 2.7.17<br>
-- python-setuptools<br>
-- The classes pythonnative, pythondir, distutils, setuptools<br>
-<br>
-Signed-off-by: Ross Burton &lt;<a href=3D"mailto:ross.burton@intel.com" ta=
-rget=3D"_blank">ross.burton@intel.com</a>&gt;<br>
----<br>
-=C2=A0classes/distutils-base.bbclass=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=
-=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A0 4 +<br>
-=C2=A0classes/distutils.bbclass=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0|=C2=A0 =C2=A087 ++<br>
-=C2=A0classes/python-dir.bbclass=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A0 5 +<br>
-=C2=A0classes/pythonnative.bbclass=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A027 +<br>
-=C2=A0classes/setuptools.bbclass=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 |=C2=A0 =C2=A0 3 +<br><br></blockquote><div>&l=
-t;snip&gt; <br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
-0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
--- <br>
-2.20.1<br>
-<br>
-<br>
-</blockquote></div></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
+starting to try and collect up and classify bugs which a newcomer to the =
+project would be able to work on in a way which means people can find =
+them. They're being listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
+><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 294 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.1&#8221;, &#8220;3.2, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.1&quot; and then &#8220;3.2&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newco=
+mer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_New=
+comer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
---000000000000f73391059c96729e--
+------=_NextPart_000_08FF_01D5CF80.1CAFE270--
