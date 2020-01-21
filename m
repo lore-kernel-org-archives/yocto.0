@@ -1,115 +1,117 @@
-Subject: Excluding recipe u-boot-fw-utils from a target build #yocto
-To: yocto@lists.yoctoproject.org
-From: "Richard.W" <rwillis@shaw.ca>
-X-Originating-Location: Coquitlam, British Columbia, CA (96.48.241.85)
-X-Originating-Platform: Windows Firefox 72
-User-Agent: GROUPS.IO Web Poster
+Received: from mxwn13.webd.pl (mxwn13.webd.pl [194.181.228.67])
+ by mx.groups.io with SMTP id smtpd.web09.8706.1579595735982682571
+ for <yocto@lists.yoctoproject.org>;
+ Tue, 21 Jan 2020 00:35:36 -0800
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=permerror, err=syntax error for token:  (domain: xtrack.com, ip: 194.181.228.67, mailfrom: m.madej@xtrack.com)
+Received: from wn13.int.webd ([192.168.101.113] helo=wn13.webd.pl)
+	by mta01.webd.pl with esmtps (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+	(Exim 4.92.3)
+	(envelope-from <m.madej@xtrack.com>)
+	id 1itp0Y-0006vx-49
+	for yocto@lists.yoctoproject.org; Tue, 21 Jan 2020 09:35:34 +0100
+Received: from [192.168.101.231] (port=58972 helo=mta01.int.webd)
+	by wn13.webd.pl with esmtp (Exim 4.92)
+	(envelope-from <m.madej@xtrack.com>)
+	id 1itp0X-0003ud-Ve
+	for yocto@lists.yoctoproject.org; Tue, 21 Jan 2020 09:35:33 +0100
+X-Quarantine-ID: <exfhD_RlzXvT>
+X-Virus-Scanned: amavisd-new at mxwn13.webd.pl
+Received: from wn13.webd.pl ([192.168.101.113])
+	by mta01.int.webd (mxwn13.webd.pl [192.168.101.200]) (amavisd-new, port 10134)
+	with ESMTP id exfhD_RlzXvT for <yocto@lists.yoctoproject.org>;
+	Tue, 21 Jan 2020 09:35:29 +0100 (CET)
+Received: from azz22.internetdsl.tpnet.pl ([83.18.155.22]:30005 helo=[192.168.6.108])
+	by wn13.webd.pl with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+	(Exim 4.92)
+	(envelope-from <m.madej@xtrack.com>)
+	id 1itp0T-0003tg-SD
+	for yocto@lists.yoctoproject.org; Tue, 21 Jan 2020 09:35:29 +0100
+From: "Mariusz Madej" <m.madej@xtrack.com>
+Subject: [yocto] extensible sdk, devtool not working, wrong python3 binary found in PATH as first
+To: yocto-list <yocto@lists.yoctoproject.org>
+Message-ID: <f5322279-0aa2-348d-66c1-4e2b90296aee@xtrack.com>
+Date: Tue, 21 Jan 2020 09:35:28 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.3.0
 MIME-Version: 1.0
-Date: Mon, 20 Jan 2020 21:38:21 -0800
-Message-ID: <v6oe.1579585101006051714.sd14@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="D0Lo2ef4eJfcdzU6ZFyf"
+Content-Type: multipart/alternative;
+ boundary="------------AD792850B0CF0B4A60C4BADE"
+Content-Language: en-US
 
---D0Lo2ef4eJfcdzU6ZFyf
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+--------------AD792850B0CF0B4A60C4BADE
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I am using Yocto "Rocko" and an older u-boot bootloader with it (2013.10). =
-The machine target is an i.mx6 and so I am including the freescale imx laye=
-rs.
+I use Yocto(warrior) and want to create valid extensible sdk. My problem 
+is that after installation of created sdk i get:
 
-Within the freescale layer is a recipe for a u-boot-fw-utils which I under=
-stand just generates 2 methods to access u-boot env variables from the linu=
-x user space. I don;t think I need this and so I am trying to stop it from =
-being built as is is failing when trying to make the target with some *_def=
-config which I cannot determine how it is getting that.
+{SDK-INSTALL-DIR}/sysroots/x86_64-pokysdk-linux/usr/bin/python3: line 5: 
+{SDK-INSTALL-DIR}/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real: 
+No such file or directory
 
-| make -f ./scripts/Makefile.build obj=3Dscripts/basic
-| rm -f .tmp_quiet_recordmcount
-| make -f ./scripts/Makefile.build obj=3Dscripts/kconfig mx6_cubox-i_confi=
-g
-| scripts/kconfig/conf=C2=A0 --defconfig=3Darch/../configs/mx6_cubox-i_def=
-config Kconfig
-| ***
-| *** Can't find default configuration "arch/../configs/mx6_cubox-i_defcon=
-fig"!
-| ***
-| scripts/kconfig/Makefile:121: recipe for target 'mx6_cubox-i_defconfig' =
-failed
-| make[1]: *** [mx6_cubox-i_defconfig] Error 1
-| Makefile:479: recipe for target 'mx6_cubox-i_config' failed
-| make: *** [mx6_cubox-i_config] Error 2
-| ERROR: oe_runmake failed
-| WARNING: <path>/u-boot-fslc-fw-utils/v2017.11+gitAUTOINC+a07698f0bf-r0/t=
-emp/run.do_compile.23669:1 exit 1 from 'exit 1'
-| ERROR: Function failed: do_compile (log file is located at <path>/u-boot=
--fslc-fw-utils/v2017.11+gitAUTOINC+a07698f0bf-r0/temp/log.do_compile.23669)
-ERROR: Task (<path>/meta-freescale/recipes-bsp/u-boot/u-boot-fslc-fw-utils=
-_2017.11.bb:do_compile) failed with exit code '1'
+I installed also sdk-ext from core-image-minimal and there is no such 
+problem. I started to compare differences between both installations and 
+found out that my sdk has binary 
+{SDK-INSTALL-DIR}/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real 
+and this binary is not relocated(wrong interpreter path). After loading 
+sdk's environment, PATH variable has 
+{SDK-INSTALL-DIR}/sysroots/x86_64-pokysdk-linux/usr/bin as first entry - 
+and that is why devtool does not work. If i remove python3 from 
+{SDK-INSTALL-DIR}/sysroots/x86_64-pokysdk-linux/usr/bin/ then devtool is 
+working well. Working(relocated) python3 exists in 
+{SDK-INSTALL-DIR}/*buildtools*/sysroots/x86_64-pokysdk-linux/usr/bin/python3 
+- the same in sdk for core-image-minimal.
 
-Note: the u-boot-fw-utils in this case would be set to: u-boot-fslc-fw-uti=
-ls_2017.11 (for rocko)
-Note: my u-boot recipe builds fine.
+Can anybody tell me why i have not relocated python3 binary in 
+{SDK-INSTALL-DIR}/sysroots/x86_64-pokysdk-linux/usr/bin and other sdk's 
+dont have this? What kind of package it comes from? I thought it is 
+nativesdk-python3 but core-image-minimal builds it also and there is no 
+problem. Is there any detailed documentation about directory structure 
+of installed sdk?
 
-I put the following lines into my conf/layer.conf file, to no effect:
-IMAGE_INSTALL_remove +=3D " u-boot-fslc-fw-utils"
-IMAGE_INSTALL_remove +=3D " u-boot-fw-utils"
 
-Prior to this I had set the particular u-boot-fw-utils recipe in build/con=
-f/local.conf:
-PREFERRED_PROVIDER_u-boot-fw-utils =3D "u-boot-fslc-fw-utils"
-As bitbake was reporting multiple providers and I thought it would help to=
- fix the make *_defconfig error... it did not help.
 
-Thanks,
-- Richard
+--------------AD792850B0CF0B4A60C4BADE
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---D0Lo2ef4eJfcdzU6ZFyf
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+<html>
+  <head>
 
-I am using Yocto "Rocko" and an older u-boot bootloader with it (2013.10). =
-The machine target is an i.mx6 and so I am including the freescale imx laye=
-rs.<br /><br />Within the freescale layer is a recipe for a u-boot-fw-utils=
- which I understand just generates 2 methods to access u-boot env variables=
- from the linux user space. I don;t think I need this and so I am trying to=
- stop it from being built as is is failing when trying to make the target w=
-ith some *_defconfig which I cannot determine how it is getting that.<br />=
-<br /><span style=3D"font-family: courier_newregular, courier;">| make -f .=
-/scripts/Makefile.build obj=3Dscripts/basic</span><br /><span style=3D"font=
--family: courier_newregular, courier;">| rm -f .tmp_quiet_recordmcount</spa=
-n><br /><span style=3D"font-family: courier_newregular, courier;">| make -f=
- ./scripts/Makefile.build obj=3Dscripts/kconfig mx6_cubox-i_config</span><b=
-r /><span style=3D"font-family: courier_newregular, courier;">| scripts/kco=
-nfig/conf&nbsp; --defconfig=3Darch/../configs/mx6_cubox-i_defconfig Kconfig=
-</span><br /><span style=3D"font-family: courier_newregular, courier;">| **=
-*</span><br /><span style=3D"font-family: courier_newregular, courier;">| *=
-** Can't find default configuration "arch/../configs/mx6_cubox-i_defconfig"=
-!</span><br /><span style=3D"font-family: courier_newregular, courier;">| *=
-**</span><br /><span style=3D"font-family: courier_newregular, courier;">| =
-scripts/kconfig/Makefile:121: recipe for target 'mx6_cubox-i_defconfig' fai=
-led</span><br /><span style=3D"font-family: courier_newregular, courier;">|=
- make[1]: *** [mx6_cubox-i_defconfig] Error 1</span><br /><span style=3D"fo=
-nt-family: courier_newregular, courier;">| Makefile:479: recipe for target =
-'mx6_cubox-i_config' failed</span><br /><span style=3D"font-family: courier=
-_newregular, courier;">| make: *** [mx6_cubox-i_config] Error 2</span><br /=
-><span style=3D"font-family: courier_newregular, courier;">| ERROR: oe_runm=
-ake failed</span><br /><span style=3D"font-family: courier_newregular, cour=
-ier;">| WARNING: &lt;path&gt;/u-boot-fslc-fw-utils/v2017.11+gitAUTOINC+a076=
-98f0bf-r0/temp/run.do_compile.23669:1 exit 1 from 'exit 1'</span><br /><spa=
-n style=3D"font-family: courier_newregular, courier;">| ERROR: Function fai=
-led: do_compile (log file is located at &lt;path&gt;/u-boot-fslc-fw-utils/v=
-2017.11+gitAUTOINC+a07698f0bf-r0/temp/log.do_compile.23669)</span><br /><sp=
-an style=3D"font-family: courier_newregular, courier;">ERROR: Task (&lt;pat=
-h&gt;/meta-freescale/recipes-bsp/u-boot/u-boot-fslc-fw-utils_2017.11.bb:do_=
-compile) failed with exit code '1'</span><br /><br />Note: the u-boot-fw-ut=
-ils in this case would be set to: u-boot-fslc-fw-utils_2017.11 (for rocko)<=
-br />Note: my u-boot recipe builds fine.<br /><br />I put the following lin=
-es into my conf/layer.conf file, to no effect:<br />&nbsp; IMAGE_INSTALL_re=
-move +=3D " u-boot-fslc-fw-utils"<br />&nbsp; IMAGE_INSTALL_remove +=3D " u=
--boot-fw-utils"<br /><br />Prior to this I had set the particular u-boot-fw=
--utils recipe in build/conf/local.conf:<br />&nbsp; PREFERRED_PROVIDER_u-bo=
-ot-fw-utils =3D "u-boot-fslc-fw-utils"<br />As bitbake was reporting multip=
-le providers and I thought it would help to fix the make *_defconfig error.=
-.. it did not help.<br /><br />Thanks,<br />&nbsp;- Richard
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    I use Yocto(warrior) and want to create valid extensible sdk. My
+    problem is that after installation of created sdk i get:<br>
+    <br>
+    {SDK-INSTALL-DIR}/sysroots/x86_64-pokysdk-linux/usr/bin/python3:
+    line 5:
+    {SDK-INSTALL-DIR}/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real:
+    No such file or directory<br>
+    <br>
+    I installed also sdk-ext from core-image-minimal and there is no
+    such problem. I started to compare differences between both
+    installations and found out that my sdk has binary
+    {SDK-INSTALL-DIR}/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real
+    and this binary is not relocated(wrong interpreter path). After
+    loading sdk's environment, PATH variable has
+    {SDK-INSTALL-DIR}/sysroots/x86_64-pokysdk-linux/usr/bin as first
+    entry - and that is why devtool does not work. If i remove python3
+    from {SDK-INSTALL-DIR}/sysroots/x86_64-pokysdk-linux/usr/bin/ then
+    devtool is working well. Working(relocated) python3 exists in
+    {SDK-INSTALL-DIR}/<b>buildtools</b>/sysroots/x86_64-pokysdk-linux/usr/bin/python3
+    - the same in sdk for core-image-minimal.<br>
+    <br>
+    Can anybody tell me why i have not relocated python3 binary in
+    {SDK-INSTALL-DIR}/sysroots/x86_64-pokysdk-linux/usr/bin and other
+    sdk's dont have this? What kind of package it comes from? I thought
+    it is nativesdk-python3 but core-image-minimal builds it also and
+    there is no problem. Is there any detailed documentation about
+    directory structure of installed sdk?<br>
+    <p><br>
+    </p>
+  </body>
+</html>
 
---D0Lo2ef4eJfcdzU6ZFyf--
+--------------AD792850B0CF0B4A60C4BADE--
