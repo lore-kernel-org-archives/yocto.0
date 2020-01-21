@@ -1,256 +1,115 @@
-Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
- by mx.groups.io with SMTP id smtpd.web10.5419.1579572067268279431
- for <yocto@lists.yoctoproject.org>;
- Mon, 20 Jan 2020 18:01:07 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: yi.zhao@windriver.com)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 00L20TVq007580
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
-	Mon, 20 Jan 2020 18:00:40 -0800
-Received: from localhost (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0; Mon, 20 Jan
- 2020 18:00:18 -0800
-From: "Yi Zhao" <yi.zhao@windriver.com>
-To: <yocto@lists.yoctoproject.org>, <mark.hatle@kernel.crashing.org>
-Subject: [meta-openssl102-fips][PATCH 2/3] openssh: fix failure to enter FIPS mode
-Date: Tue, 21 Jan 2020 10:00:10 +0800
-Message-ID: <20200121020011.29224-2-yi.zhao@windriver.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200121020011.29224-1-yi.zhao@windriver.com>
-References: <20200121020011.29224-1-yi.zhao@windriver.com>
+Subject: Excluding recipe u-boot-fw-utils from a target build #yocto
+To: yocto@lists.yoctoproject.org
+From: "Richard.W" <rwillis@shaw.ca>
+X-Originating-Location: Coquitlam, British Columbia, CA (96.48.241.85)
+X-Originating-Platform: Windows Firefox 72
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-Originating-IP: [128.224.162.174]
-Content-Type: text/plain
+Date: Mon, 20 Jan 2020 21:38:21 -0800
+Message-ID: <v6oe.1579585101006051714.sd14@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="D0Lo2ef4eJfcdzU6ZFyf"
 
-In 0001-conditional-enable-fips-mode.patch, it inserts a function
-ssh_enable_fips_mode to ssh_malloc_init which is invoked by main
-function. But ssh_malloc_init is removed in openssh 8.1p1. Refresh the
-patch, insert ssh_enable_fips_mode function to main function for all
-applications.
+--D0Lo2ef4eJfcdzU6ZFyf
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
----
- .../0001-conditional-enable-fips-mode.patch   | 185 ++++++++++++++++--
- 1 file changed, 164 insertions(+), 21 deletions(-)
+I am using Yocto "Rocko" and an older u-boot bootloader with it (2013.10). =
+The machine target is an i.mx6 and so I am including the freescale imx laye=
+rs.
 
-diff --git a/recipes-connectivity/openssh/openssh/0001-conditional-enable-fips-mode.patch b/recipes-connectivity/openssh/openssh/0001-conditional-enable-fips-mode.patch
-index 705d4be..a0f496a 100644
---- a/recipes-connectivity/openssh/openssh/0001-conditional-enable-fips-mode.patch
-+++ b/recipes-connectivity/openssh/openssh/0001-conditional-enable-fips-mode.patch
-@@ -1,4 +1,4 @@
--From fac114e44c00382af087fec04cd4c2fbd144d759 Mon Sep 17 00:00:00 2001
-+From 60204df9d1f54f581f9ddc5443228550cadd4b4b Mon Sep 17 00:00:00 2001
- From: Hongxu Jia <hongxu.jia@windriver.com>
- Date: Sat, 21 Dec 2019 13:03:23 +0800
- Subject: [PATCH] conditional enable fips mode
-@@ -9,12 +9,162 @@ enable fips mode according to the existence of "/etc/system-fips"
- Upstream-Status: Inappropriate [oe specific]
- 
- Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
-+
-+The ssh_malloc_init function is removed in openssh 8.1p1, we need to
-+insert ssh_enable_fips_mode function to main function for all
-+applications.
-+
-+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
- ---
-- xmalloc.c | 24 ++++++++++++++++++++++++
-- 1 file changed, 24 insertions(+)
-+ sftp-server-main.c  |  1 +
-+ sftp-server.c       |  1 +
-+ sftp.c              |  1 +
-+ ssh-add.c           |  1 +
-+ ssh-agent.c         |  1 +
-+ ssh-keygen.c        |  1 +
-+ ssh-keyscan.c       |  1 +
-+ ssh-keysign.c       |  1 +
-+ ssh-pkcs11-helper.c |  1 +
-+ ssh.c               |  1 +
-+ sshd.c              |  1 +
-+ xmalloc.c           | 20 ++++++++++++++++++++
-+ xmalloc.h           |  1 +
-+ 13 files changed, 32 insertions(+)
- 
-+diff --git a/sftp-server-main.c b/sftp-server-main.c
-+index 06566d3..a10566d 100644
-+--- a/sftp-server-main.c
-++++ b/sftp-server-main.c
-+@@ -39,6 +39,7 @@ main(int argc, char **argv)
-+ {
-+ 	struct passwd *user_pw;
-+ 
-++	ssh_enable_fips_mode();
-+ 	/* Ensure that fds 0, 1 and 2 are open or directed to /dev/null */
-+ 	sanitise_stdfd();
-+ 
-+diff --git a/sftp-server.c b/sftp-server.c
-+index 359204f..346255a 100644
-+--- a/sftp-server.c
-++++ b/sftp-server.c
-+@@ -1576,6 +1576,7 @@ sftp_server_main(int argc, char **argv, struct passwd *user_pw)
-+ 	extern char *optarg;
-+ 	extern char *__progname;
-+ 
-++	ssh_enable_fips_mode();
-+ 	__progname = ssh_get_progname(argv[0]);
-+ 	log_init(__progname, log_level, log_facility, log_stderr);
-+ 
-+diff --git a/sftp.c b/sftp.c
-+index b66037f..ca263ac 100644
-+--- a/sftp.c
-++++ b/sftp.c
-+@@ -2387,6 +2387,7 @@ main(int argc, char **argv)
-+ 	size_t num_requests = DEFAULT_NUM_REQUESTS;
-+ 	long long limit_kbps = 0;
-+ 
-++	ssh_enable_fips_mode();
-+ 	/* Ensure that fds 0, 1 and 2 are open or directed to /dev/null */
-+ 	sanitise_stdfd();
-+ 	msetlocale();
-+diff --git a/ssh-add.c b/ssh-add.c
-+index ebfb8a3..b7d59bc 100644
-+--- a/ssh-add.c
-++++ b/ssh-add.c
-+@@ -577,6 +577,7 @@ main(int argc, char **argv)
-+ 	SyslogFacility log_facility = SYSLOG_FACILITY_AUTH;
-+ 	LogLevel log_level = SYSLOG_LEVEL_INFO;
-+ 
-++	ssh_enable_fips_mode();
-+ 	/* Ensure that fds 0, 1 and 2 are open or directed to /dev/null */
-+ 	sanitise_stdfd();
-+ 
-+diff --git a/ssh-agent.c b/ssh-agent.c
-+index 9c6680a..d701479 100644
-+--- a/ssh-agent.c
-++++ b/ssh-agent.c
-+@@ -1104,6 +1104,7 @@ main(int ac, char **av)
-+ 	size_t npfd = 0;
-+ 	u_int maxfds;
-+ 
-++	ssh_enable_fips_mode();
-+ 	/* Ensure that fds 0, 1 and 2 are open or directed to /dev/null */
-+ 	sanitise_stdfd();
-+ 
-+diff --git a/ssh-keygen.c b/ssh-keygen.c
-+index cb4982d..84dd269 100644
-+--- a/ssh-keygen.c
-++++ b/ssh-keygen.c
-+@@ -2800,6 +2800,7 @@ main(int argc, char **argv)
-+ 	extern int optind;
-+ 	extern char *optarg;
-+ 
-++	ssh_enable_fips_mode();
-+ 	/* Ensure that fds 0, 1 and 2 are open or directed to /dev/null */
-+ 	sanitise_stdfd();
-+ 
-+diff --git a/ssh-keyscan.c b/ssh-keyscan.c
-+index 5de0508..0644261 100644
-+--- a/ssh-keyscan.c
-++++ b/ssh-keyscan.c
-+@@ -663,6 +663,7 @@ main(int argc, char **argv)
-+ 	extern int optind;
-+ 	extern char *optarg;
-+ 
-++	ssh_enable_fips_mode();
-+ 	__progname = ssh_get_progname(argv[0]);
-+ 	seed_rng();
-+ 	TAILQ_INIT(&tq);
-+diff --git a/ssh-keysign.c b/ssh-keysign.c
-+index 6cfd5b4..23cf403 100644
-+--- a/ssh-keysign.c
-++++ b/ssh-keysign.c
-+@@ -173,6 +173,7 @@ main(int argc, char **argv)
-+ 	char *host, *fp;
-+ 	size_t slen, dlen;
-+ 
-++	ssh_enable_fips_mode();
-+ 	if (pledge("stdio rpath getpw dns id", NULL) != 0)
-+ 		fatal("%s: pledge: %s", __progname, strerror(errno));
-+ 
-+diff --git a/ssh-pkcs11-helper.c b/ssh-pkcs11-helper.c
-+index 3bcc244..6a78a1a 100644
-+--- a/ssh-pkcs11-helper.c
-++++ b/ssh-pkcs11-helper.c
-+@@ -325,6 +325,7 @@ main(int argc, char **argv)
-+ 	extern char *__progname;
-+ 	struct pollfd pfd[2];
-+ 
-++	ssh_enable_fips_mode();
-+ 	__progname = ssh_get_progname(argv[0]);
-+ 	seed_rng();
-+ 	TAILQ_INIT(&pkcs11_keylist);
-+diff --git a/ssh.c b/ssh.c
-+index 0724df4..9178673 100644
-+--- a/ssh.c
-++++ b/ssh.c
-+@@ -598,6 +598,7 @@ main(int ac, char **av)
-+ 	struct ssh_digest_ctx *md;
-+ 	u_char conn_hash[SSH_DIGEST_MAX_LENGTH];
-+ 
-++	ssh_enable_fips_mode();
-+ 	/* Ensure that fds 0, 1 and 2 are open or directed to /dev/null */
-+ 	sanitise_stdfd();
-+ 
-+diff --git a/sshd.c b/sshd.c
-+index 2bf8939..c75e34a 100644
-+--- a/sshd.c
-++++ b/sshd.c
-+@@ -1443,6 +1443,7 @@ main(int ac, char **av)
-+ 	Authctxt *authctxt;
-+ 	struct connection_info *connection_info = NULL;
-+ 
-++	ssh_enable_fips_mode();
-+ #ifdef HAVE_SECUREWARE
-+ 	(void)set_auth_parameters(ac, av);
-+ #endif
- diff --git a/xmalloc.c b/xmalloc.c
--index 9cd0127..75d5018 100644
-+index 9cd0127..e2f8145 100644
- --- a/xmalloc.c
- +++ b/xmalloc.c
- @@ -23,6 +23,10 @@
-@@ -28,23 +178,7 @@ index 9cd0127..75d5018 100644
-  #include "xmalloc.h"
-  #include "log.h"
-  
--@@ -30,11 +34,15 @@
-- char *malloc_options = "S";
-- #endif /* __OpenBSD__ */
-- 
--+void ssh_enable_fips_mode(void);
--+
-- void *
-- xmalloc(size_t size)
-- {
-- 	void *ptr;
-- 
--+	ssh_enable_fips_mode();
--+
-- 	if (size == 0)
-- 		fatal("xmalloc: zero size");
-- 	ptr = malloc(size);
--@@ -110,3 +118,19 @@ xasprintf(char **ret, const char *fmt, ...)
-+@@ -110,3 +114,19 @@ xasprintf(char **ret, const char *fmt, ...)
-  
-  	return (i);
-  }
-@@ -64,6 +198,15 @@ index 9cd0127..75d5018 100644
- +        }
- +    }
- +}
-+diff --git a/xmalloc.h b/xmalloc.h
-+index 1d5f62d..d71b8a8 100644
-+--- a/xmalloc.h
-++++ b/xmalloc.h
-+@@ -24,3 +24,4 @@ char	*xstrdup(const char *);
-+ int	 xasprintf(char **, const char *, ...)
-+                 __attribute__((__format__ (printf, 2, 3)))
-+                 __attribute__((__nonnull__ (2)));
-++void	ssh_enable_fips_mode(void);
- -- 
- 2.7.4
- 
--- 
-2.17.1
+Within the freescale layer is a recipe for a u-boot-fw-utils which I under=
+stand just generates 2 methods to access u-boot env variables from the linu=
+x user space. I don;t think I need this and so I am trying to stop it from =
+being built as is is failing when trying to make the target with some *_def=
+config which I cannot determine how it is getting that.
 
+| make -f ./scripts/Makefile.build obj=3Dscripts/basic
+| rm -f .tmp_quiet_recordmcount
+| make -f ./scripts/Makefile.build obj=3Dscripts/kconfig mx6_cubox-i_confi=
+g
+| scripts/kconfig/conf=C2=A0 --defconfig=3Darch/../configs/mx6_cubox-i_def=
+config Kconfig
+| ***
+| *** Can't find default configuration "arch/../configs/mx6_cubox-i_defcon=
+fig"!
+| ***
+| scripts/kconfig/Makefile:121: recipe for target 'mx6_cubox-i_defconfig' =
+failed
+| make[1]: *** [mx6_cubox-i_defconfig] Error 1
+| Makefile:479: recipe for target 'mx6_cubox-i_config' failed
+| make: *** [mx6_cubox-i_config] Error 2
+| ERROR: oe_runmake failed
+| WARNING: <path>/u-boot-fslc-fw-utils/v2017.11+gitAUTOINC+a07698f0bf-r0/t=
+emp/run.do_compile.23669:1 exit 1 from 'exit 1'
+| ERROR: Function failed: do_compile (log file is located at <path>/u-boot=
+-fslc-fw-utils/v2017.11+gitAUTOINC+a07698f0bf-r0/temp/log.do_compile.23669)
+ERROR: Task (<path>/meta-freescale/recipes-bsp/u-boot/u-boot-fslc-fw-utils=
+_2017.11.bb:do_compile) failed with exit code '1'
+
+Note: the u-boot-fw-utils in this case would be set to: u-boot-fslc-fw-uti=
+ls_2017.11 (for rocko)
+Note: my u-boot recipe builds fine.
+
+I put the following lines into my conf/layer.conf file, to no effect:
+IMAGE_INSTALL_remove +=3D " u-boot-fslc-fw-utils"
+IMAGE_INSTALL_remove +=3D " u-boot-fw-utils"
+
+Prior to this I had set the particular u-boot-fw-utils recipe in build/con=
+f/local.conf:
+PREFERRED_PROVIDER_u-boot-fw-utils =3D "u-boot-fslc-fw-utils"
+As bitbake was reporting multiple providers and I thought it would help to=
+ fix the make *_defconfig error... it did not help.
+
+Thanks,
+- Richard
+
+--D0Lo2ef4eJfcdzU6ZFyf
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+I am using Yocto "Rocko" and an older u-boot bootloader with it (2013.10). =
+The machine target is an i.mx6 and so I am including the freescale imx laye=
+rs.<br /><br />Within the freescale layer is a recipe for a u-boot-fw-utils=
+ which I understand just generates 2 methods to access u-boot env variables=
+ from the linux user space. I don;t think I need this and so I am trying to=
+ stop it from being built as is is failing when trying to make the target w=
+ith some *_defconfig which I cannot determine how it is getting that.<br />=
+<br /><span style=3D"font-family: courier_newregular, courier;">| make -f .=
+/scripts/Makefile.build obj=3Dscripts/basic</span><br /><span style=3D"font=
+-family: courier_newregular, courier;">| rm -f .tmp_quiet_recordmcount</spa=
+n><br /><span style=3D"font-family: courier_newregular, courier;">| make -f=
+ ./scripts/Makefile.build obj=3Dscripts/kconfig mx6_cubox-i_config</span><b=
+r /><span style=3D"font-family: courier_newregular, courier;">| scripts/kco=
+nfig/conf&nbsp; --defconfig=3Darch/../configs/mx6_cubox-i_defconfig Kconfig=
+</span><br /><span style=3D"font-family: courier_newregular, courier;">| **=
+*</span><br /><span style=3D"font-family: courier_newregular, courier;">| *=
+** Can't find default configuration "arch/../configs/mx6_cubox-i_defconfig"=
+!</span><br /><span style=3D"font-family: courier_newregular, courier;">| *=
+**</span><br /><span style=3D"font-family: courier_newregular, courier;">| =
+scripts/kconfig/Makefile:121: recipe for target 'mx6_cubox-i_defconfig' fai=
+led</span><br /><span style=3D"font-family: courier_newregular, courier;">|=
+ make[1]: *** [mx6_cubox-i_defconfig] Error 1</span><br /><span style=3D"fo=
+nt-family: courier_newregular, courier;">| Makefile:479: recipe for target =
+'mx6_cubox-i_config' failed</span><br /><span style=3D"font-family: courier=
+_newregular, courier;">| make: *** [mx6_cubox-i_config] Error 2</span><br /=
+><span style=3D"font-family: courier_newregular, courier;">| ERROR: oe_runm=
+ake failed</span><br /><span style=3D"font-family: courier_newregular, cour=
+ier;">| WARNING: &lt;path&gt;/u-boot-fslc-fw-utils/v2017.11+gitAUTOINC+a076=
+98f0bf-r0/temp/run.do_compile.23669:1 exit 1 from 'exit 1'</span><br /><spa=
+n style=3D"font-family: courier_newregular, courier;">| ERROR: Function fai=
+led: do_compile (log file is located at &lt;path&gt;/u-boot-fslc-fw-utils/v=
+2017.11+gitAUTOINC+a07698f0bf-r0/temp/log.do_compile.23669)</span><br /><sp=
+an style=3D"font-family: courier_newregular, courier;">ERROR: Task (&lt;pat=
+h&gt;/meta-freescale/recipes-bsp/u-boot/u-boot-fslc-fw-utils_2017.11.bb:do_=
+compile) failed with exit code '1'</span><br /><br />Note: the u-boot-fw-ut=
+ils in this case would be set to: u-boot-fslc-fw-utils_2017.11 (for rocko)<=
+br />Note: my u-boot recipe builds fine.<br /><br />I put the following lin=
+es into my conf/layer.conf file, to no effect:<br />&nbsp; IMAGE_INSTALL_re=
+move +=3D " u-boot-fslc-fw-utils"<br />&nbsp; IMAGE_INSTALL_remove +=3D " u=
+-boot-fw-utils"<br /><br />Prior to this I had set the particular u-boot-fw=
+-utils recipe in build/conf/local.conf:<br />&nbsp; PREFERRED_PROVIDER_u-bo=
+ot-fw-utils =3D "u-boot-fslc-fw-utils"<br />As bitbake was reporting multip=
+le providers and I thought it would help to fix the make *_defconfig error.=
+.. it did not help.<br /><br />Thanks,<br />&nbsp;- Richard
+
+--D0Lo2ef4eJfcdzU6ZFyf--
