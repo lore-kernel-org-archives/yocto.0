@@ -1,135 +1,175 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.10439.1579607990157273738
+ by mx.groups.io with SMTP id smtpd.web10.11526.1579612983865835585
  for <yocto@lists.yoctoproject.org>;
- Tue, 21 Jan 2020 03:59:50 -0800
+ Tue, 21 Jan 2020 05:23:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@aruba.it header.s=a1 header.b=j3KdmnUE;
- spf=none, err=permanent DNS error (domain: faresoftware.it, ip: 140.211.169.56, mailfrom: mauro@faresoftware.it)
+ dkim=pass header.i=@agner.ch header.s=dkim header.b=R2ORK59y;
+ spf=softfail (domain: agner.ch, ip: 140.211.169.56, mailfrom: stefan@agner.ch)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 982CFE0144D; Tue, 21 Jan 2020 03:59:49 -0800 (PST)
+	id 6BC54E01449; Tue, 21 Jan 2020 05:23:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [62.149.158.217 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [178.209.48.109 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www; Tue, 21 Jan 2020 03:59:45 PST
-Received: from smtpcmd01-g.aruba.it (smtpcmd01-g.aruba.it [62.149.158.217])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6BEBE011DB
-	for <yocto@yoctoproject.org>; Tue, 21 Jan 2020 03:59:45 -0800 (PST)
-Received: from [10.0.3.91] ([213.213.6.58])
-	by smtpcmd01.ad.aruba.it with bizsmtp
-	id szyb2101H1F741R01zycae; Tue, 21 Jan 2020 12:58:37 +0100
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-From: "Mauro Ziliani" <mauro@faresoftware.it>
-Subject: Remove buildhistory from deb package version
-Message-ID: <18da5635-d9e0-5f6d-0aac-101008ba6fb6@faresoftware.it>
-Date: Tue, 21 Jan 2020 12:58:30 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+Received: from mail.kmu-office.ch (mail.kmu-office.ch [178.209.48.109])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD2CCE011DB
+	for <yocto@yoctoproject.org>; Tue, 21 Jan 2020 05:22:59 -0800 (PST)
+Received: from webmail.kmu-office.ch (unknown [IPv6:2a02:418:6a02::a3])
+	by mail.kmu-office.ch (Postfix) with ESMTPSA id 6A1065C81AE;
+	Tue, 21 Jan 2020 14:22:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=agner.ch; s=dkim;
+	t=1579612978;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=L17Gs5IKJ7gismqtctTbWuyJqeNRtqfEF2oXL6MtXiI=;
+	b=R2ORK59y+ciVxgGQMCJVdpQfQ/7hw0SV7qyNHCXAcJhVYg0CmAq/lTbPmi8uMaloF+r5jj
+	LHLiBSrK+jDXKNy09pHffzyon4QtKzX0BpWVzg8dzSr50Q1+LMmzjyWshLMM9bcCzOvxSN
+	yeKdVvXWcInlRkKT2bAsnMdtBxTkutM=
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aruba.it; s=a1;
-	t=1579607917; bh=HSSmc8kKhJyw96wP9x4iBII1+5IrB5TgcqID7S+0KoM=;
-	h=To:From:Subject:Date:MIME-Version:Content-Type;
-	b=j3KdmnUEBDqOLzcBZ8Yf0VStKeNEvu5D88v1M4X2v9d3dL7aBxYSg0wzAPQ7NYj5v
-	 hbal3S2MCx+l1VK9JdlzbnF3CEkkhdKqqQ8UphN+iu4rzgYrQaT3ggIvppPF/x+H9R
-	 3llcSuhODCvXR1c4a9JVO+ew9aYqC5srSXnsS3G9zBikDiiT6VPAJxDP2mysHGDqRw
-	 UOWTNq/cZBIi4AGDcxqsThBx5BMZ40q7leEgVPb6/ZUtl5e1GX2A+yhRlW9KoltgZU
-	 gO+J83rXPmdWggvk+h5+b3gT2lwhUvGRK2/vK7lPblsnndYFlUrLX/18ijGLRoAN3Y
-	 xvVClsvYd6DPw==
-Content-Type: multipart/alternative;
- boundary="------------538A963652998DFA64B61F04"
-Content-Language: it
+Date: Tue, 21 Jan 2020 14:22:58 +0100
+From: "Stefan Agner" <stefan@agner.ch>
+To: Paul Barker <pbarker@konsulko.com>
+Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, Yocto discussion
+ list <yocto@yoctoproject.org>, Stefan Agner <stefan.agner@toradex.com>
+Subject: Re: [yocto] [psplash][PATCH v2] add systemd support
+In-Reply-To: <CAM9ZRVtAohLCu9NA-iP=6PdGRV_QjGERKDRQJ1ji0a2AfEtWPw@mail.gmail.com>
+References: <20200121100732.1441871-1-stefan@agner.ch>
+ <CAM9ZRVt2P=yVkg9KgnoVYDthSStyqT3oU5ZK6HRxsQ=q_M2OvQ@mail.gmail.com>
+ <7ee90ef9aaf6565d37a13290845daf00@agner.ch>
+ <CAM9ZRVtAohLCu9NA-iP=6PdGRV_QjGERKDRQJ1ji0a2AfEtWPw@mail.gmail.com>
+User-Agent: Roundcube Webmail/1.4.1
+Message-ID: <c3c328d47141aa2676aabe78b7086a46@agner.ch>
+X-Sender: stefan@agner.ch
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
---------------538A963652998DFA64B61F04
-Content-Type: text/plain; charset=iso-8859-15; format=flowed
-Content-Transfer-Encoding: quoted-printable
+On 2020-01-21 11:52, Paul Barker wrote:
+> On Tue, 21 Jan 2020 at 10:44, Stefan Agner <stefan@agner.ch> wrote:
+>>
+>> On 2020-01-21 11:24, Paul Barker wrote:
+>> > On Tue, 21 Jan 2020 at 10:07, Stefan Agner <stefan@agner.ch> wrote:
+>> >>
+>> >> From: Stefan Agner <stefan.agner@toradex.com>
+>> >>
+>> >> This adds optional systemd support. When enabled, an utility called
+>> >> psplash-systemd is built. This tool will connect to systemd using the
+>> >> system bus to obtain progress information and communicate that to
+>> >> psplash. Once full boot progress is reported by systemd psplash
+>> >> psplash is closed using the quit command.
+>> >>
+>> >> Signed-off-by: Stefan Agner <stefan.agner@toradex.com>
+>> >
+>> > Looks like your email client or mail server has made a mess of this
+>> > one - it's "Content-Type: multipart/mixed" with quoted-printable
+>> > encoding for the text.
+>>
+>> Hm, I did send it using git send-email:
+>> $ git send-email --to=richard.purdie@linuxfoundation.org
+>> --to=yocto@yoctoproject.org --cc=stefan@agner.ch
+>> v2-0001-add-systemd-support.patch
+>>
+>> When I look at the email delivered to my inbox it has no "Content-Type",
+>> not sure if that is a problem? I use my setup since quite a while
+>> successfully on mailing lists...
+> 
+> Very strange. Something has changed it, I don't see an `X-Mailer:
+> git-send-email` header.
 
-Hi all.
+That one is there in the message in my inbox:
+X-Mailer: git-send-email 2.24.1
 
-I need to remove the buildhistory number from final package version
+So maybe also groups.io is playing games here?
 
+> 
+> Looking at it on groups.io
+> (https://lists.yoctoproject.org/g/yocto/message/48061) I can see line
+> wrapping and the additional "=" sequences quoted-printable adds in.
 
-Until now I use in local.conf
+This indeed looks strange.
 
-PRSERV_HOST =3D "localhost:0"
-BUILDHISTORY_COMMIT =3D "1"
-INHERIT +=3D " buildhistory "
+So did you notice only on groups.io or also on your end?
 
-When the package is built the buildhistory number is appended to the=20
-version.
+I went a bit back and realized that my patch email used to get those two
+headers:
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-i.e.=A0 1.0.0-r0.3
+But since sometime in November those seem not to be added anymore. I use
+a fairly standard Postfix setup, but I do remember doing some
+maintenance work back in November time frame, so maybe something broke.
+Thanks for pointing out, I will have to investigate further why that is.
 
-I nee to remove .3 from version.
+--
+Stefan
 
-So I commented out
-
-#PRSERV_HOST =3D "localhost:0"
-#BUILDHISTORY_COMMIT =3D "1"
-#NHERIT +=3D " buildhistory "
-
-But now every package has always .0 has buildhistory number
-
-i.e. 1.0.0-r0.3=A0 is 1.0.0-r0.0 always.
-
-How can I get 1.0.0-r0?
-
-
-Best regards,
-
- =A0 MZ
-
-
---------------538A963652998DFA64B61F04
-Content-Type: text/html; charset=iso-8859-15
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-
-    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DISO=
--8859-15">
-  </head>
-  <body>
-    <p><font size=3D"-1">Hi all.</font></p>
-    <p><font size=3D"-1">I need to remove the buildhistory number from
-        final package version</font></p>
-    <p><font size=3D"-1"><br>
-      </font></p>
-    <p><font size=3D"-1">Until now I use in local.conf</font></p>
-    <p><font size=3D"-1">PRSERV_HOST =3D "localhost:0"<br>
-        BUILDHISTORY_COMMIT =3D "1"<br>
-        INHERIT +=3D " buildhistory "</font></p>
-    <p><font size=3D"-1">When the package is built the buildhistory numbe=
-r
-        is appended to the version.</font></p>
-    <p><font size=3D"-1">i.e.=A0 1.0.0-r0.3</font></p>
-    <p><font size=3D"-1">I nee to remove .3 from version.</font></p>
-    <p><font size=3D"-1">So I commented out=A0</font></p>
-    <p><font size=3D"-1">#PRSERV_HOST =3D "localhost:0"<br>
-        #BUILDHISTORY_COMMIT =3D "1"<br>
-        #NHERIT +=3D " buildhistory "</font></p>
-    <p><font size=3D"-1">But now every package has always .0 has
-        buildhistory number</font></p>
-    <p><font size=3D"-1">i.e. 1.0.0-r0.3=A0 is 1.0.0-r0.0 always.</font><=
-/p>
-    <p><font size=3D"-1">How can I get 1.0.0-r0?</font></p>
-    <p><font size=3D"-1"><br>
-      </font></p>
-    <p><font size=3D"-1">Best regards,</font></p>
-    <p><font size=3D"-1">=A0 MZ</font><br>
-    </p>
-  </body>
-</html>
-
---------------538A963652998DFA64B61F04--
+> 
+>>
+>> >
+>> > Could you try re-sending with `git send-email`? I'd like to test this
+>> > one out myself as I've been using psplash with systemd via a bodge
+>> > copied from AGL for a while now - that doesn't show proper progress
+>> > though it just spins the bar around.
+>>
+>> Interested to see how it works on your side. Progress works quite
+>> nicely, the only downside is that systemd's progress information is not
+>> really linear, so usually the progress bar makes progress quite quickly
+>> and starts to slow down towards the end... It is not ideal, but better
+>> than nothing IMHO :-)
+>>
+>> I will send a psplash recipe update once this gets merged, but something
+>> like this should help if you want to give it a try already:
+>>
+>> FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+>>
+>> inherit systemd
+>>
+>> SRC_URI += " \
+>>     file://0001-add-systemd-support.patch \
+>>     ${SPLASH_PATCH} \
+>> "
+>>
+>> SYSTEMD_PACKAGES =
+>> "${@bb.utils.contains('DISTRO_FEATURES','systemd','${PN}','',d)}"
+>> SYSTEMD_SERVICE_${PN} +=
+>> "${@bb.utils.contains('DISTRO_FEATURES','systemd','psplash-start.service','',d)}"
+>>
+>> PACKAGECONFIG ??= "${@bb.utils.filter('DISTRO_FEATURES', 'systemd', d)}"
+>>
+>> PACKAGECONFIG[systemd] = "--with-systemd,--without-systemd,systemd"
+>>
+>> do_install_append () {
+>>         install -d ${D}${systemd_unitdir}/system
+>> }
+>>
+>> And a unit file like this:
+>>
+>> [Unit]
+>> Description=Starts Psplash Boot screen
+>> DefaultDependencies=no
+>>
+>> [Service]
+>> ExecStart=/usr/bin/psplash-systemd
+>>
+>> [Install]
+>> WantedBy=sysinit.target
+> 
+> Thanks for that, I'll let you know when I've had chance to give it a try.
+> 
+> Thanks,
+> Paul
