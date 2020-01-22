@@ -1,187 +1,53 @@
-Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
- by mx.groups.io with SMTP id smtpd.web10.98.1579726128546469366
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.39.1579728320192487073
  for <yocto@lists.yoctoproject.org>;
- Wed, 22 Jan 2020 12:48:48 -0800
+ Wed, 22 Jan 2020 13:25:20 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ZEqZMpmw;
- spf=pass (domain: gmail.com, ip: 209.85.221.181, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vk1-f181.google.com with SMTP id p191so334828vkf.8
-        for <yocto@lists.yoctoproject.org>; Wed, 22 Jan 2020 12:48:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hrILWjnVgRWcPQEQBJUuIOttHZEdqTubcWv7ZQvJGJg=;
-        b=ZEqZMpmwEvDHzjqNHnQpw6iCz/k2CZOq0DbnjP3qC7anSpiXoS0Bbsd27TRCofMbrw
-         qyJMRVTkvLrEm2iwO25r9m6ZBzGmzIJesGWtEMIOYahGzytSfG4vMLYmvakddahPze6Z
-         pgBq0jshg6Sl+mvY7POMM5Ld/8limgtc+ZuzzAaFY8u0ARXteHzY0ImgGMQSKpMyyb6n
-         QnUubYk6dm9UKBLKYAhjZqe3fhAihfOqxP368q0y3B35oqnkZHIjIXGb7aYsCQmCfJtI
-         uECy74QE7f0ENRGTu7szK+uYclQruwui6fUs1mS6BThgpwvgYZyoi+Qr4qO7Sl9fiqU3
-         InkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hrILWjnVgRWcPQEQBJUuIOttHZEdqTubcWv7ZQvJGJg=;
-        b=qWJYIKk4K18ANab+D5Li0iSPdJmzu+szIYokfp36cgUO8pmk6n4iqGCG2g/ekh6/73
-         GUIil/cTorqeObCsBC0+kOgfXvYwYIX0EpoHcqv9SGtXNqlTLCheLF2g3yoQTrP6NojH
-         cQiNOHGjoU+coB0LR1t3tdXwAP74TyzjIdIhdj2fL0siuGkZSPhW7YGEG+QqvZWK8suE
-         N9J0DH/Osu/mwxMUmag7RRKNuX1UiWff72E+MotZK+fk5+AC91a2bJNunDNDXUUSPJuS
-         svxZiLuO0RrgnqlqygIguZSNPAp/0c611dXYIIlAVWmag/NjkcVSgRzE67AIOX/zrM3d
-         Z34g==
-X-Gm-Message-State: APjAAAXQNIHlSxk8J8FZOdsAMFsDT9J7DCI0WAeYJMSbBCnIuNAiTnrq
-	Gi0YyxYJYLUWdtAO0KVlPLtgmd6pHXO9sp7cLw8=
-X-Google-Smtp-Source: APXvYqyaYgd8i3zGH2HJG+L9K5R5OJMymF8YLZ+FtrjkP90TwDkuVm6wR43Zeb4v6UWkQ58xnk8RHWTvlnhBx5HFvuM=
-X-Received: by 2002:a05:6122:2b6:: with SMTP id 22mr7482847vkq.49.1579726127681;
- Wed, 22 Jan 2020 12:48:47 -0800 (PST)
-MIME-Version: 1.0
-References: <AM4PR05MB3380ED2DBB7FB292BA411E8FA80C0@AM4PR05MB3380.eurprd05.prod.outlook.com>
-In-Reply-To: <AM4PR05MB3380ED2DBB7FB292BA411E8FA80C0@AM4PR05MB3380.eurprd05.prod.outlook.com>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Wed, 22 Jan 2020 21:48:36 +0100
-Message-ID: <CANNYZj-azKAJky6sxQS9r=Ev36nrJzQ0uPoj0ffK_RzBM9NYzg@mail.gmail.com>
-Subject: Re: [yocto] Prevent tools from host to be used
-To: Konrad Weihmann <kweihmann@outlook.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000aed4af059cc0a6b6"
+ dkim=missing; spf=none, err=permanent DNS error (domain: debian10-ty-1.yocto.io, ip: 140.211.169.56, mailfrom: pokybuild@debian10-ty-1.yocto.io)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id E254EE015EE; Wed, 22 Jan 2020 13:25:19 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from debian10-ty-1.yocto.io (unknown [198.145.29.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBD8BE01588;
+	Wed, 22 Jan 2020 13:25:18 -0800 (PST)
+Received: by debian10-ty-1.yocto.io (Postfix, from userid 6000)
+	id 81EF92809E3; Wed, 22 Jan 2020 21:25:18 +0000 (UTC)
+To: yocto@lists.yoctoproject.org
+Cc: otavio@ossystems.com.br, yi.zhao@windriver.com, apoorv.sangal@intel.com, ee.peng.yeoh@intel.com, aaron.chun.yew.chan@intel.com, richard.purdie@linuxfoundation.org, akuster808@gmail.com, sjolley.yp.pm@gmail.com, sangeeta.jain@intel.com
+Subject: QA notification for completed autobuilder build (yocto-3.1_M2.rc1)
+Message-Id: <20200122212518.81EF92809E3@debian10-ty-1.yocto.io>
+Date: Wed, 22 Jan 2020 21:25:18 +0000 (UTC)
+From: pokybuild@debian10-ty-1.yocto.io
 
---000000000000aed4af059cc0a6b6
-Content-Type: text/plain; charset="UTF-8"
 
-If the tool is executed with a direct path in a script e.g.
-#!/usr/bin/python
+A build flagged for QA (yocto-3.1_M2.rc1) was completed on the autobuilder and is available at:
 
-or the host path is hardcoded inside a binary, there's nothing you can do
-(other than temporarily rename python to something else, and fix all
-instances of breakage to use #!/usr/bin/env python).
 
-If the execution relies on PATH, then native tool paths are always in the
-front of host paths. So you only need to DEPEND on the native tool you
-want, and it will be picked over the one from the host. Note that tools
-from hosts are additionally sanitized via a whitelist, so only a limited
-subset is available to begin with (see HOSTTOOLS variable).
+    https://autobuilder.yocto.io/pub/releases/yocto-3.1_M2.rc1
 
-Alex
 
-On Wed, 22 Jan 2020 at 21:38, Konrad Weihmann <kweihmann@outlook.com> wrote:
+Build hash information: 
 
-> Hi all,
->
-> it maybe a already solved, very trivial thing to do, but is there any
-> way in bitbake to prevent that a tool from the build host is executed
-> instead of the same tool (maybe) available via the sysroot-native?
->
-> In shell I would typically do (e.g.) something like this
->
-> python() { echo "Custom python used"; /path/to/my/custom/python $@ }
->
-> python -c ...
->
-> In bitbake this is somehow hard to catch, as tools are usually picked
-> from PATH, which is extended while executing a parsed recipe and
-> therefore involves the host way to much.
->
-> Really useful would be if one could define such a thing within a recipe
-> like
->
-> HIDETOOL_python = "nativepython"
->
-> which then will be translated into
->
-> python() { nativepython $@ }
->
-> or something similar, in the resulting run scripts, so it doesn't matter
-> if any script sourced afterwards using some fixed shebang/assumption.
->
-> This would clearly minimize the effort of making sources work within
-> yocto, so one doesn't have to rely on multiple containers and CI to
-> catch all those host->build-conterminations.
->
-> One could surely inject it into the PATH-var, but what I want is to
-> "redirect" certain calls to any reasonable binary I can think off,
-> instead of relying on the PATH order.
-> I had this multiple times with python scripts being "shebanged" onto a
-> certain python version, although not really needed, which I currently
-> can only solve by modifying the sources.
->
-> Any thoughts, suggestions?
->
-> Regards
->
-> Konrad
->
-> 
->
+bitbake: d5a4a352723258b4d499d3a51f340109c4f36f60
+meta-gplv2: 6107be140fdec204586850ea1f7e4b968be7670b
+meta-intel: 0c092dde58bb688dca787c653ee7a3282d58aeab
+meta-mingw: e3dadc9f28c24a8d182121d0246b3d9ec048846a
+oecore: 15049c610bcfd0a3e161379651b5ea117ea02715
+poky: ca3993cc4b13d4e661228cee6fb9448adfd0a4ba
 
---000000000000aed4af059cc0a6b6
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>If the tool is executed with a direct path in a scrip=
-t e.g.</div><div>#!/usr/bin/python</div><div><br></div><div>or the host pat=
-h is hardcoded inside a binary, there&#39;s nothing you can do (other than =
-temporarily rename python to something else, and fix all instances of break=
-age to use #!/usr/bin/env python).</div><div><br></div><div>If the executio=
-n relies on PATH, then native tool paths are always in the front of host pa=
-ths. So you only need to DEPEND on the native tool you want, and it will be=
- picked over the one from the host. Note that tools from hosts are addition=
-ally sanitized via a whitelist, so only a limited subset is available to be=
-gin with (see HOSTTOOLS variable).</div><div><br></div><div>Alex<br></div><=
-/div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
-n Wed, 22 Jan 2020 at 21:38, Konrad Weihmann &lt;<a href=3D"mailto:kweihman=
-n@outlook.com">kweihmann@outlook.com</a>&gt; wrote:<br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
- rgb(204,204,204);padding-left:1ex">Hi all,<br>
-<br>
-it maybe a already solved, very trivial thing to do, but is there any <br>
-way in bitbake to prevent that a tool from the build host is executed <br>
-instead of the same tool (maybe) available via the sysroot-native?<br>
-<br>
-In shell I would typically do (e.g.) something like this<br>
-<br>
-python() { echo &quot;Custom python used&quot;; /path/to/my/custom/python =
-$@ }<br>
-<br>
-python -c ...<br>
-<br>
-In bitbake this is somehow hard to catch, as tools are usually picked <br>
-from PATH, which is extended while executing a parsed recipe and <br>
-therefore involves the host way to much.<br>
-<br>
-Really useful would be if one could define such a thing within a recipe li=
-ke<br>
-<br>
-HIDETOOL_python =3D &quot;nativepython&quot;<br>
-<br>
-which then will be translated into<br>
-<br>
-python() { nativepython $@ }<br>
-<br>
-or something similar, in the resulting run scripts, so it doesn&#39;t matt=
-er <br>
-if any script sourced afterwards using some fixed shebang/assumption.<br>
-<br>
-This would clearly minimize the effort of making sources work within <br>
-yocto, so one doesn&#39;t have to rely on multiple containers and CI to <b=
-r>
-catch all those host-&gt;build-conterminations.<br>
-<br>
-One could surely inject it into the PATH-var, but what I want is to <br>
-&quot;redirect&quot; certain calls to any reasonable binary I can think of=
-f, <br>
-instead of relying on the PATH order.<br>
-I had this multiple times with python scripts being &quot;shebanged&quot; =
-onto a <br>
-certain python version, although not really needed, which I currently <br>
-can only solve by modifying the sources.<br>
-<br>
-Any thoughts, suggestions?<br>
-<br>
-Regards<br>
-<br>
-Konrad<br>
-<br>
-<br>
-</blockquote></div>
 
---000000000000aed4af059cc0a6b6--
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+ 
