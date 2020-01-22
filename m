@@ -1,108 +1,187 @@
-Received: from EUR02-AM5-obe.outbound.protection.outlook.com (EUR02-AM5-obe.outbound.protection.outlook.com [40.92.67.85])
- by mx.groups.io with SMTP id smtpd.web11.77.1579725483690176500
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
+ by mx.groups.io with SMTP id smtpd.web10.98.1579726128546469366
  for <yocto@lists.yoctoproject.org>;
- Wed, 22 Jan 2020 12:38:04 -0800
+ Wed, 22 Jan 2020 12:48:48 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@outlook.com header.s=selector1 header.b=M38Rj0JB;
- spf=pass (domain: outlook.com, ip: 40.92.67.85, mailfrom: kweihmann@outlook.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g5+PPLzVOfOGErfB8q5wzJkR+pgYBdMhlYeyNiboQEl3+kqs0eSYUBan6LaBpfVde6cItdBVxDq39IFS99StiwHAo7OfRe36zg1xq0cltUigavMw4GcDjzykB3rC1PdN335KBwNZRjIpLDdy3O/fnloMSzkxG+eS6m9F6reI4o+pQxzsD6uXqxDRnOc1+ea86rHukreIhPFvT6KhIU6ys1vH4II8jfmbDDZFnA3KfYkPlTK0sXD3ehtjtqxRISPxt5LIKVs+PTr3AhggA3stum0+XmPCNCPdKNwngsmlVyZrB+SlrayL2qHIgjO4uErMhVSwVIBjMR36xzT4FPz9lQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lhKFT0rrn0mcLMj0T2WxX1fqOE59DqdOi2ktY9ropiA=;
- b=XWXIXUkluyVy0tNf7R0bPaWk+t+JM4iKI2Ndv2DwcfhIteUnyWZU/EaMnlH9E41BdzTuvt3bbVwDFKFrEnfcOSbOaVRQV21f7CCTsSb/+xIPLLc1iBC6LE/oc7kzqOTCkq823uNoUGEeT/4F86GNmBZ1vwSkydsM2Nbxfb2gFKEt9Ri/N+V4lDisVJ0nP3dm1i8shLsJqvLAah7hqzOpPmLrzZj2C8Aqdu9j90FbxZjIrusoC9yflqW8V7M21mS4atVOVn9ySUpvpMEHIhetTwRLkutyP0gJuzFWVsqRfgm7a0pJbNp78Ki3CLY35+tSWppUvjz/AW2eHQ+qLhBT/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lhKFT0rrn0mcLMj0T2WxX1fqOE59DqdOi2ktY9ropiA=;
- b=M38Rj0JBmJkvzMmF+hOpNIjHDafPAfTdZ1vfinZDQJMdpGWOsP1mWFqsyEPUQWPFAPhZ2zS7m/NwCSXq10CYU9I33JvF9VMa+y+/bb7x01/G70H4eB4ETKbC18lQEbdXX3QbHwhDA0OykSI0RzNRIH0Ed8ixORLsp4hWCP53lRwYEL8nUvadbxct8pMQ08+4QzXsGSZbg7GPWKHQyuYdsaCfvVFuAxID9I3KH2BcJF/15Q1mE/45PYTv7i3LCptzSUqcyOnaFo4D+xs23HMTKcjVhQDljbSPzgguYz2mqAO8oo9GN9pGIE1Js/Z+sA4peFealkjV5sT4uw2J46JyXQ==
-Received: from AM5EUR02FT050.eop-EUR02.prod.protection.outlook.com
- (10.152.8.60) by AM5EUR02HT225.eop-EUR02.prod.protection.outlook.com
- (10.152.9.77) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2665.18; Wed, 22 Jan
- 2020 20:38:01 +0000
-Received: from AM4PR05MB3380.eurprd05.prod.outlook.com (10.152.8.59) by
- AM5EUR02FT050.mail.protection.outlook.com (10.152.9.252) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2665.18 via Frontend Transport; Wed, 22 Jan 2020 20:38:01 +0000
-Received: from AM4PR05MB3380.eurprd05.prod.outlook.com
- ([fe80::89e1:157a:73d3:f5f1]) by AM4PR05MB3380.eurprd05.prod.outlook.com
- ([fe80::89e1:157a:73d3:f5f1%3]) with mapi id 15.20.2644.027; Wed, 22 Jan 2020
- 20:38:01 +0000
-Received: from [192.168.188.20] (79.215.4.243) by AM5P189CA0003.EURP189.PROD.OUTLOOK.COM (2603:10a6:206:15::16) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2644.20 via Frontend Transport; Wed, 22 Jan 2020 20:38:01 +0000
-From: "Konrad Weihmann" <kweihmann@outlook.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Prevent tools from host to be used
-Thread-Topic: Prevent tools from host to be used
-Thread-Index: AQHV0WPX9LljyjchP0it7i8Gz+K3kQ==
-Date: Wed, 22 Jan 2020 20:38:01 +0000
-Message-ID: 
- <AM4PR05MB3380ED2DBB7FB292BA411E8FA80C0@AM4PR05MB3380.eurprd05.prod.outlook.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: AM5P189CA0003.EURP189.PROD.OUTLOOK.COM
- (2603:10a6:206:15::16) To AM4PR05MB3380.eurprd05.prod.outlook.com
- (2603:10a6:205:e::10)
-x-incomingtopheadermarker: 
- OriginalChecksum:9070921387D5D7A2063A023E2EF2DFAD1F5EA28F2A37E9A907AD9AD2C2802E7E;UpperCasedChecksum:A4B9D5242495FBA693EB150D3413553C8A8722D67ED6932AD6FB393BAA8F59ED;SizeAsReceived:7339;Count:47
-x-ms-exchange-messagesentrepresentingtype: 1
-x-tmn: [O+CwvXx1Kb2aKMPi9g+N+27MHCLpOd6p]
-x-microsoft-original-message-id: 
- <698e8d1e-10c9-7411-c0f4-a9bc2f5229f4@outlook.com>
-x-ms-publictraffictype: Email
-x-incomingheadercount: 47
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: d7c3a6a8-4037-48fe-0a00-08d79f7af959
-x-ms-traffictypediagnostic: AM5EUR02HT225:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- MmXMIRwKyVHac5e0pBfFIHX2VkkHuQMSo28SOWgdored1lbTxLpH/Wvz+jRgfgl1EGzw5s5BKRozCHppm/0Zrzet1TbblrnKt8hX85zC1btNo7j9RTJBV2qSc92ErGLtjqj086IOogvz9IjraQQx+p+ab1WJzjglVDjunm2p37rkc75auAFFAd/UE44ejof3
-x-ms-exchange-antispam-messagedata: 
- W3qCF+VNRi77j14uNRo559bXLPQYw0Mh/5KrDtk6mCyATZb189tsJVqBAqG6GmAyK7y7UnY/bZJ9h1XBvQkPwzhB9wpseIr1gq3fFs+B6bCpQst/XYZCGH5+1NB37RSX6FEf9K8tMhdoCExZkFAvjw==
-x-ms-exchange-transport-forked: True
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=ZEqZMpmw;
+ spf=pass (domain: gmail.com, ip: 209.85.221.181, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-vk1-f181.google.com with SMTP id p191so334828vkf.8
+        for <yocto@lists.yoctoproject.org>; Wed, 22 Jan 2020 12:48:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hrILWjnVgRWcPQEQBJUuIOttHZEdqTubcWv7ZQvJGJg=;
+        b=ZEqZMpmwEvDHzjqNHnQpw6iCz/k2CZOq0DbnjP3qC7anSpiXoS0Bbsd27TRCofMbrw
+         qyJMRVTkvLrEm2iwO25r9m6ZBzGmzIJesGWtEMIOYahGzytSfG4vMLYmvakddahPze6Z
+         pgBq0jshg6Sl+mvY7POMM5Ld/8limgtc+ZuzzAaFY8u0ARXteHzY0ImgGMQSKpMyyb6n
+         QnUubYk6dm9UKBLKYAhjZqe3fhAihfOqxP368q0y3B35oqnkZHIjIXGb7aYsCQmCfJtI
+         uECy74QE7f0ENRGTu7szK+uYclQruwui6fUs1mS6BThgpwvgYZyoi+Qr4qO7Sl9fiqU3
+         InkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hrILWjnVgRWcPQEQBJUuIOttHZEdqTubcWv7ZQvJGJg=;
+        b=qWJYIKk4K18ANab+D5Li0iSPdJmzu+szIYokfp36cgUO8pmk6n4iqGCG2g/ekh6/73
+         GUIil/cTorqeObCsBC0+kOgfXvYwYIX0EpoHcqv9SGtXNqlTLCheLF2g3yoQTrP6NojH
+         cQiNOHGjoU+coB0LR1t3tdXwAP74TyzjIdIhdj2fL0siuGkZSPhW7YGEG+QqvZWK8suE
+         N9J0DH/Osu/mwxMUmag7RRKNuX1UiWff72E+MotZK+fk5+AC91a2bJNunDNDXUUSPJuS
+         svxZiLuO0RrgnqlqygIguZSNPAp/0c611dXYIIlAVWmag/NjkcVSgRzE67AIOX/zrM3d
+         Z34g==
+X-Gm-Message-State: APjAAAXQNIHlSxk8J8FZOdsAMFsDT9J7DCI0WAeYJMSbBCnIuNAiTnrq
+	Gi0YyxYJYLUWdtAO0KVlPLtgmd6pHXO9sp7cLw8=
+X-Google-Smtp-Source: APXvYqyaYgd8i3zGH2HJG+L9K5R5OJMymF8YLZ+FtrjkP90TwDkuVm6wR43Zeb4v6UWkQ58xnk8RHWTvlnhBx5HFvuM=
+X-Received: by 2002:a05:6122:2b6:: with SMTP id 22mr7482847vkq.49.1579726127681;
+ Wed, 22 Jan 2020 12:48:47 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: d7c3a6a8-4037-48fe-0a00-08d79f7af959
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jan 2020 20:38:01.7081
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5EUR02HT225
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E59E171F4ED9EF40A5A6B5472D31DD52@eurprd05.prod.outlook.com>
-Content-Transfer-Encoding: base64
+References: <AM4PR05MB3380ED2DBB7FB292BA411E8FA80C0@AM4PR05MB3380.eurprd05.prod.outlook.com>
+In-Reply-To: <AM4PR05MB3380ED2DBB7FB292BA411E8FA80C0@AM4PR05MB3380.eurprd05.prod.outlook.com>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Wed, 22 Jan 2020 21:48:36 +0100
+Message-ID: <CANNYZj-azKAJky6sxQS9r=Ev36nrJzQ0uPoj0ffK_RzBM9NYzg@mail.gmail.com>
+Subject: Re: [yocto] Prevent tools from host to be used
+To: Konrad Weihmann <kweihmann@outlook.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="000000000000aed4af059cc0a6b6"
 
-SGkgYWxsLA0KDQppdCBtYXliZSBhIGFscmVhZHkgc29sdmVkLCB2ZXJ5IHRyaXZpYWwgdGhpbmcg
-dG8gZG8sIGJ1dCBpcyB0aGVyZSBhbnkgDQp3YXkgaW4gYml0YmFrZSB0byBwcmV2ZW50IHRoYXQg
-YSB0b29sIGZyb20gdGhlIGJ1aWxkIGhvc3QgaXMgZXhlY3V0ZWQgDQppbnN0ZWFkIG9mIHRoZSBz
-YW1lIHRvb2wgKG1heWJlKSBhdmFpbGFibGUgdmlhIHRoZSBzeXNyb290LW5hdGl2ZT8NCg0KSW4g
-c2hlbGwgSSB3b3VsZCB0eXBpY2FsbHkgZG8gKGUuZy4pIHNvbWV0aGluZyBsaWtlIHRoaXMNCg0K
-cHl0aG9uKCkgeyBlY2hvICJDdXN0b20gcHl0aG9uIHVzZWQiOyAvcGF0aC90by9teS9jdXN0b20v
-cHl0aG9uICRAIH0NCg0KcHl0aG9uIC1jIC4uLg0KDQpJbiBiaXRiYWtlIHRoaXMgaXMgc29tZWhv
-dyBoYXJkIHRvIGNhdGNoLCBhcyB0b29scyBhcmUgdXN1YWxseSBwaWNrZWQgDQpmcm9tIFBBVEgs
-IHdoaWNoIGlzIGV4dGVuZGVkIHdoaWxlIGV4ZWN1dGluZyBhIHBhcnNlZCByZWNpcGUgYW5kIA0K
-dGhlcmVmb3JlIGludm9sdmVzIHRoZSBob3N0IHdheSB0byBtdWNoLg0KDQpSZWFsbHkgdXNlZnVs
-IHdvdWxkIGJlIGlmIG9uZSBjb3VsZCBkZWZpbmUgc3VjaCBhIHRoaW5nIHdpdGhpbiBhIHJlY2lw
-ZSBsaWtlDQoNCkhJREVUT09MX3B5dGhvbiA9ICJuYXRpdmVweXRob24iDQoNCndoaWNoIHRoZW4g
-d2lsbCBiZSB0cmFuc2xhdGVkIGludG8NCg0KcHl0aG9uKCkgeyBuYXRpdmVweXRob24gJEAgfQ0K
-DQpvciBzb21ldGhpbmcgc2ltaWxhciwgaW4gdGhlIHJlc3VsdGluZyBydW4gc2NyaXB0cywgc28g
-aXQgZG9lc24ndCBtYXR0ZXIgDQppZiBhbnkgc2NyaXB0IHNvdXJjZWQgYWZ0ZXJ3YXJkcyB1c2lu
-ZyBzb21lIGZpeGVkIHNoZWJhbmcvYXNzdW1wdGlvbi4NCg0KVGhpcyB3b3VsZCBjbGVhcmx5IG1p
-bmltaXplIHRoZSBlZmZvcnQgb2YgbWFraW5nIHNvdXJjZXMgd29yayB3aXRoaW4gDQp5b2N0bywg
-c28gb25lIGRvZXNuJ3QgaGF2ZSB0byByZWx5IG9uIG11bHRpcGxlIGNvbnRhaW5lcnMgYW5kIENJ
-IHRvIA0KY2F0Y2ggYWxsIHRob3NlIGhvc3QtPmJ1aWxkLWNvbnRlcm1pbmF0aW9ucy4NCg0KT25l
-IGNvdWxkIHN1cmVseSBpbmplY3QgaXQgaW50byB0aGUgUEFUSC12YXIsIGJ1dCB3aGF0IEkgd2Fu
-dCBpcyB0byANCiJyZWRpcmVjdCIgY2VydGFpbiBjYWxscyB0byBhbnkgcmVhc29uYWJsZSBiaW5h
-cnkgSSBjYW4gdGhpbmsgb2ZmLCANCmluc3RlYWQgb2YgcmVseWluZyBvbiB0aGUgUEFUSCBvcmRl
-ci4NCkkgaGFkIHRoaXMgbXVsdGlwbGUgdGltZXMgd2l0aCBweXRob24gc2NyaXB0cyBiZWluZyAi
-c2hlYmFuZ2VkIiBvbnRvIGEgDQpjZXJ0YWluIHB5dGhvbiB2ZXJzaW9uLCBhbHRob3VnaCBub3Qg
-cmVhbGx5IG5lZWRlZCwgd2hpY2ggSSBjdXJyZW50bHkgDQpjYW4gb25seSBzb2x2ZSBieSBtb2Rp
-ZnlpbmcgdGhlIHNvdXJjZXMuDQoNCkFueSB0aG91Z2h0cywgc3VnZ2VzdGlvbnM/DQoNClJlZ2Fy
-ZHMNCg0KS29ucmFkDQoNCg==
+--000000000000aed4af059cc0a6b6
+Content-Type: text/plain; charset="UTF-8"
+
+If the tool is executed with a direct path in a script e.g.
+#!/usr/bin/python
+
+or the host path is hardcoded inside a binary, there's nothing you can do
+(other than temporarily rename python to something else, and fix all
+instances of breakage to use #!/usr/bin/env python).
+
+If the execution relies on PATH, then native tool paths are always in the
+front of host paths. So you only need to DEPEND on the native tool you
+want, and it will be picked over the one from the host. Note that tools
+from hosts are additionally sanitized via a whitelist, so only a limited
+subset is available to begin with (see HOSTTOOLS variable).
+
+Alex
+
+On Wed, 22 Jan 2020 at 21:38, Konrad Weihmann <kweihmann@outlook.com> wrote:
+
+> Hi all,
+>
+> it maybe a already solved, very trivial thing to do, but is there any
+> way in bitbake to prevent that a tool from the build host is executed
+> instead of the same tool (maybe) available via the sysroot-native?
+>
+> In shell I would typically do (e.g.) something like this
+>
+> python() { echo "Custom python used"; /path/to/my/custom/python $@ }
+>
+> python -c ...
+>
+> In bitbake this is somehow hard to catch, as tools are usually picked
+> from PATH, which is extended while executing a parsed recipe and
+> therefore involves the host way to much.
+>
+> Really useful would be if one could define such a thing within a recipe
+> like
+>
+> HIDETOOL_python = "nativepython"
+>
+> which then will be translated into
+>
+> python() { nativepython $@ }
+>
+> or something similar, in the resulting run scripts, so it doesn't matter
+> if any script sourced afterwards using some fixed shebang/assumption.
+>
+> This would clearly minimize the effort of making sources work within
+> yocto, so one doesn't have to rely on multiple containers and CI to
+> catch all those host->build-conterminations.
+>
+> One could surely inject it into the PATH-var, but what I want is to
+> "redirect" certain calls to any reasonable binary I can think off,
+> instead of relying on the PATH order.
+> I had this multiple times with python scripts being "shebanged" onto a
+> certain python version, although not really needed, which I currently
+> can only solve by modifying the sources.
+>
+> Any thoughts, suggestions?
+>
+> Regards
+>
+> Konrad
+>
+> 
+>
+
+--000000000000aed4af059cc0a6b6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>If the tool is executed with a direct path in a scrip=
+t e.g.</div><div>#!/usr/bin/python</div><div><br></div><div>or the host pat=
+h is hardcoded inside a binary, there&#39;s nothing you can do (other than =
+temporarily rename python to something else, and fix all instances of break=
+age to use #!/usr/bin/env python).</div><div><br></div><div>If the executio=
+n relies on PATH, then native tool paths are always in the front of host pa=
+ths. So you only need to DEPEND on the native tool you want, and it will be=
+ picked over the one from the host. Note that tools from hosts are addition=
+ally sanitized via a whitelist, so only a limited subset is available to be=
+gin with (see HOSTTOOLS variable).</div><div><br></div><div>Alex<br></div><=
+/div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">O=
+n Wed, 22 Jan 2020 at 21:38, Konrad Weihmann &lt;<a href=3D"mailto:kweihman=
+n@outlook.com">kweihmann@outlook.com</a>&gt; wrote:<br></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
+ rgb(204,204,204);padding-left:1ex">Hi all,<br>
+<br>
+it maybe a already solved, very trivial thing to do, but is there any <br>
+way in bitbake to prevent that a tool from the build host is executed <br>
+instead of the same tool (maybe) available via the sysroot-native?<br>
+<br>
+In shell I would typically do (e.g.) something like this<br>
+<br>
+python() { echo &quot;Custom python used&quot;; /path/to/my/custom/python =
+$@ }<br>
+<br>
+python -c ...<br>
+<br>
+In bitbake this is somehow hard to catch, as tools are usually picked <br>
+from PATH, which is extended while executing a parsed recipe and <br>
+therefore involves the host way to much.<br>
+<br>
+Really useful would be if one could define such a thing within a recipe li=
+ke<br>
+<br>
+HIDETOOL_python =3D &quot;nativepython&quot;<br>
+<br>
+which then will be translated into<br>
+<br>
+python() { nativepython $@ }<br>
+<br>
+or something similar, in the resulting run scripts, so it doesn&#39;t matt=
+er <br>
+if any script sourced afterwards using some fixed shebang/assumption.<br>
+<br>
+This would clearly minimize the effort of making sources work within <br>
+yocto, so one doesn&#39;t have to rely on multiple containers and CI to <b=
+r>
+catch all those host-&gt;build-conterminations.<br>
+<br>
+One could surely inject it into the PATH-var, but what I want is to <br>
+&quot;redirect&quot; certain calls to any reasonable binary I can think of=
+f, <br>
+instead of relying on the PATH order.<br>
+I had this multiple times with python scripts being &quot;shebanged&quot; =
+onto a <br>
+certain python version, although not really needed, which I currently <br>
+can only solve by modifying the sources.<br>
+<br>
+Any thoughts, suggestions?<br>
+<br>
+Regards<br>
+<br>
+Konrad<br>
+<br>
+<br>
+</blockquote></div>
+
+--000000000000aed4af059cc0a6b6--
