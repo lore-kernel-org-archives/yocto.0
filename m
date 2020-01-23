@@ -1,86 +1,110 @@
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
- by mx.groups.io with SMTP id smtpd.web12.9639.1579795711203830795
+Received: from mail-il1-f195.google.com (mail-il1-f195.google.com [209.85.166.195])
+ by mx.groups.io with SMTP id smtpd.web10.9703.1579795711758205328
  for <yocto@lists.yoctoproject.org>;
  Thu, 23 Jan 2020 08:08:31 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=E6UFLvYE;
- spf=pass (domain: gmail.com, ip: 209.85.166.48, mailfrom: jpewhacker@gmail.com)
-Received: by mail-io1-f48.google.com with SMTP id z8so3517432ioh.0
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=HAD/jOvN;
+ spf=pass (domain: gmail.com, ip: 209.85.166.195, mailfrom: jpewhacker@gmail.com)
+Received: by mail-il1-f195.google.com with SMTP id b15so2478217iln.3
         for <yocto@lists.yoctoproject.org>; Thu, 23 Jan 2020 08:08:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=M98/1x5vR+x8exQt3kEfgfV+AkfFbFmZztCcZRsFTG0=;
-        b=E6UFLvYE8jp5bgZilnOzfrLKEMcr/kWkeqgvN3kzHwrZ50NELz1kjMWCAXvamYxIbH
-         qNtTfJ7z6kHYtNy/E5LpQbRd5S2lzSW1n63CWxQRBsnORRRF/iVyLTm4UsMiWrlxY0q9
-         arYMXMiRQ8wackM0Q9BG6le6q3tO1VV0sTcGzJ4hWCfkl+Gie3aWgowTdsQTK8eggZRX
-         rRsx1bjobEfaGmiWTaU+tzuDJGoilBceuR5WQyJtvv93pNEgaZiZi6mTqhxgs/O60FFt
-         Mv9exxMgDTLY4tf/8xFTT8LHVoIFyI1ggq6CfNTRyKFkUqq/4KNwZdobbQNwBHgdcNpG
-         tSDQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=92MBGWELe4OiKgIpAcm+G8zJySaBXEB2D95JSngsvWg=;
+        b=HAD/jOvNuWxQ95HWQKUf7hXvSlYWJeEwgCOvd3VqYXYriV8GGgE0YPPxTu9WghaYMd
+         Ci/N7IUisFTvFCMmCv5CxGPqZvhff5CSGJnBWzrneLQgokg4qLGW1KzLhJ6tTgxJmiTY
+         8ZVB6gA7TUNHYha6CQjuqdnLmNCReY6E6HobJklYWLsKobWLoBg12X8gOCoaIiszU+Dp
+         dGgNJkP8pl1XwHo7v45lRN2gSey6ECPSg1UFaOaHRU9znTe6EuORpkU2HuxC6GfjOWhy
+         w3fxX+3OHMxjiLn0QrJlsiwkS3lFIuIJsMDpoC28oHG42ny+F7SIqeql7hbyOQ+vz4o0
+         8taQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=M98/1x5vR+x8exQt3kEfgfV+AkfFbFmZztCcZRsFTG0=;
-        b=A0/6/OhvYLjjdhGPcD5O7z6PmMKDZequAC2E+n8Cm0H20+upRuBokISs+m/35BFzba
-         qN5tT2ggMpeVj+nyK8hSdhXIZ+h21ZtJhSYX8gAqZ9tC2Wb2AUgN0sRibCvRTG92oY0s
-         HFTwae7sOWWvAgwFR8l5nEJ+K3TneJpni0K1IG+v+QHb1ov54/P05v14dNxFIN9ijjhV
-         xML1P7XCj3n0J2Q/U83M+B7Y/K0jn/tMeprcVWNdDy5C51E4FrThvTtIJBv+MmW5SszF
-         XeWGCWa6tOi8Lh2OPHjE02/b8DnxHftnhOWbtu5xANFI60u3MCgLfvoMLM41BLVCd+kx
-         yH2Q==
-X-Gm-Message-State: APjAAAWg1rnoDE9cPskq8czyqyPY9B9DHTXYzsHdGm1HZUNpIYi9PcXc
-	DCgrGYZXeX7zxeOpjkDnUiiJtChBVKE=
-X-Google-Smtp-Source: APXvYqwZdJHTiYBVYfmBiyE1Fy85+Tq35A0m3gZ8uGrLdwgbsXBqA1YW0G4tINxkR02u8nBsbDzOzw==
-X-Received: by 2002:a02:aa11:: with SMTP id r17mr11722446jam.88.1579795709524;
-        Thu, 23 Jan 2020 08:08:29 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=92MBGWELe4OiKgIpAcm+G8zJySaBXEB2D95JSngsvWg=;
+        b=CiGGBug5qHFlylsaTAVmgZNNlqHPgOSr50DXKSvkd11FYDzwaRRa5wNidbXLfQU9fz
+         Lp69YosoqCoy/BmMY34pODXf2tKfFO2x3bNmbVifltgxSnrg5pE7QB9UBys7S+vHSGyj
+         TgoxWoht+NweY2YAhaVnGCpZ1vA3au0G/tCABNqnPVlDubTEiSHC5wxl3/ZjHLx76vl6
+         RAoos214OGBDgx7uOU5MDhXbSczlFj3KAefhMD2ikqIPUuaS/LCEe6NYB8MiAGFtTVU9
+         fYU10uIJFZXvFTJb1/YiYS+8aiEMl9SapsACoibiUn6wEgsv+U27voxAUWegmpXYKV0W
+         DvDg==
+X-Gm-Message-State: APjAAAXBde4Vni2u3pDQCpIQ6nA/pjRe8sYrASQRnd18hijTxvHFqIMY
+	IdsfwcEAMibYPxZDiOzHKGmLrBc+RYc=
+X-Google-Smtp-Source: APXvYqzhfBMQZ7AsJIPlOQBvHkiKqTxnj5H9MW1t/r19F5Xhbk6bDaO9qBjmImtSnWRUCHjrLFOvyA==
+X-Received: by 2002:a92:d451:: with SMTP id r17mr13203764ilm.201.1579795710700;
+        Thu, 23 Jan 2020 08:08:30 -0800 (PST)
 Return-Path: <jpewhacker@gmail.com>
 Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
-        by smtp.gmail.com with ESMTPSA id w15sm523063iol.86.2020.01.23.08.08.28
+        by smtp.gmail.com with ESMTPSA id w15sm523063iol.86.2020.01.23.08.08.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jan 2020 08:08:28 -0800 (PST)
+        Thu, 23 Jan 2020 08:08:29 -0800 (PST)
 From: "Joshua Watt" <JPEWhacker@gmail.com>
 X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: twoerner@gmail.com,
 	Joshua Watt <JPEWhacker@gmail.com>
-Subject: [yocto][meta-rockchip][PATCH 0/4] Add RockPi 4 support
-Date: Thu, 23 Jan 2020 10:08:17 -0600
-Message-Id: <20200123160821.778821-1-JPEWhacker@gmail.com>
+Subject: [yocto][meta-rockchip][PATCH 1/4] arm-trusted-firmware: Add recipe
+Date: Thu, 23 Jan 2020 10:08:18 -0600
+Message-Id: <20200123160821.778821-2-JPEWhacker@gmail.com>
 X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200123160821.778821-1-JPEWhacker@gmail.com>
+References: <20200123160821.778821-1-JPEWhacker@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add support for building the Raxada Rock Pi 4 development board
+Adds a recipe to build Arm Trusted Firmware
 
-Joshua Watt (4):
-  arm-trusted-firmware: Add recipe
-  gcc-arm-none-eabi-native: Add recipe
-  rk3399: Add generic rk3399 support
-  rock-pi-4-rk3399: Add machine
-
- conf/machine/include/rk3066.inc               |  3 +
- conf/machine/include/rk3188.inc               |  3 +
- conf/machine/include/rk3288.inc               |  3 +
- conf/machine/include/rk3399.inc               | 27 ++++++
- conf/machine/include/rockchip-defaults.inc    |  2 -
- conf/machine/rock-pi-4-rk3399.conf            | 28 ++++++
- ...hip-Prevent-macro-expansion-in-paths.patch | 94 +++++++++++++++++++
- .../arm-trusted-firmware_2.2.bb               | 44 +++++++++
- recipes-bsp/u-boot/u-boot%.bbappend           |  8 ++
- ...cc-arm-none-eabi-native_9-2019-q4-major.bb | 37 ++++++++
- recipes-graphics/mesa/mesa_%.bbappend         |  1 +
- wic/rk3399-boot.wks                           | 24 +++++
- wic/rock-pi-4-rk3399.wks                      |  7 ++
- 13 files changed, 279 insertions(+), 2 deletions(-)
- create mode 100644 conf/machine/include/rk3399.inc
- create mode 100644 conf/machine/rock-pi-4-rk3399.conf
- create mode 100644 recipes-bsp/arm-trusted-firmware/arm-trusted-firmware/0001-rockchip-Prevent-macro-expansion-in-paths.patch
+Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
+---
+ .../arm-trusted-firmware_2.2.bb               | 38 +++++++++++++++++++
+ 1 file changed, 38 insertions(+)
  create mode 100644 recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.2.bb
- create mode 100644 recipes-devtools/gcc-arm-none-eabi/gcc-arm-none-eabi-native_9-2019-q4-major.bb
- create mode 100644 wic/rk3399-boot.wks
- create mode 100644 wic/rock-pi-4-rk3399.wks
 
+diff --git a/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.2.bb b/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.2.bb
+new file mode 100644
+index 0000000..710336a
+--- /dev/null
++++ b/recipes-bsp/arm-trusted-firmware/arm-trusted-firmware_2.2.bb
+@@ -0,0 +1,38 @@
++# Copyright (C) 2019 Garmin Ltd. or its subsidaries
++# Released under the MIT license (see COPYING.MIT for the terms)
++
++SUMMARY = "Arm Trusted Firmware"
++HOMEPAGE = "https://developer.trustedfirmware.org/"
++LICENSE = "BSD-3-Clause"
++LIC_FILES_CHKSUM = "file://docs/license.rst;md5=189505435dbcdcc8caa63c46fe93fa89"
++
++PROVIDES = "virtual/atf"
++
++BRANCH = "master"
++SRC_URI = "git://git.trustedfirmware.org/TF-A/trusted-firmware-a.git;protocol=http;branch=${BRANCH}"
++SRCREV = "a04808c16cfc126d9fe572ae7c4b5a3d39de5796"
++
++S = "${WORKDIR}/git"
++B = "${WORKDIR}/build"
++
++inherit deploy
++
++ATF_SUFFIX ??= "bin"
++
++do_compile() {
++	unset LDFLAGS
++	unset CFLAGS
++	unset CPPFLAGS
++
++    oe_runmake -C ${S} BUILD_BASE=${B} DEBUG=0 CROSS_COMPILE=${TARGET_PREFIX} \
++        PLAT=${ATF_PLATFORM} ${ATF_TARGET}
++}
++
++PACKAGE_ARCH = "${MACHINE_ARCH}"
++
++do_deploy() {
++    install -m 644 ${B}/${ATF_PLATFORM}/release/${ATF_TARGET}/${ATF_TARGET}.${ATF_SUFFIX} \
++        ${DEPLOYDIR}/${ATF_TARGET}.${ATF_SUFFIX}
++}
++addtask deploy after do_compile
++
 -- 
 2.24.1
 
