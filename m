@@ -1,184 +1,142 @@
-Received: from EUR02-AM5-obe.outbound.protection.outlook.com (EUR02-AM5-obe.outbound.protection.outlook.com [40.107.0.119])
- by mx.groups.io with SMTP id smtpd.web11.9393.1579793850082628979
+Received: from mail-io1-f68.google.com (mail-io1-f68.google.com [209.85.166.68])
+ by mx.groups.io with SMTP id smtpd.web09.9438.1579794563312954216
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Jan 2020 07:37:30 -0800
+ Thu, 23 Jan 2020 07:49:23 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@codewrights.onmicrosoft.com header.s=selector2-codewrights-onmicrosoft-com header.b=N/GTl0lM;
- spf=permerror, err=syntax error for token:  (domain: codewrights.de, ip: 40.107.0.119, mailfrom: hu.schlieben@codewrights.de)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ku/VFVr3vnto81nVL+ZjhiRwZggs5EGkdBZBA50Q6UNGZO2ox5r8c4MoyneyV07NW7PtGiHnl4pkDch3/DAch8JpdamFUu2haDhPZ6nRG4iu8U+YqLjv8p8z15Nn4uQFVGp+u2ANLE12sBD7HrGv1b+xuZect0QIDAamI72Bz7FDElN2+WzEEu2NE7W+1i/7ChOIIbUNhnfne6dSRkslHhp1Y7Y4vtb3gObt0buioJv55wXgsC+rQQDXEN35t4Yp1S2aQqWko5mFIwf60JUnFpK1BLQiHQimye05AtFcrK1+swTbuhmsBLIpDzQ7GZ6ItlzsNnzXYYIxDIiuhTWbSw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SIMOUQi0p0I1EfRn3E6l49PAnRbNzLJP4F/u4eqzPmc=;
- b=HNU+JWr1CD+hZTw2l7j9He8oJXcQatvpxH4K447dDB7WBTrfNU9R167ZhQgTIvP+KABDfIqGESGbuDN93eVq181O44raaBXUNtjyNznXdgCxJXs5MjohbDfCA58vG04gjEM6Jw7lxpwkdwzSoBY/ehWVzcPOrHj/++rt/DRsfNp9QH9XE899Bgd37bJqOOhFLszA2Aq8REyYrao/LZwbD+TGqP+DL4H1ZwHuUVMzdP5qb/lk5gwaU3fQKPqwX/U+e8mCrFRG67AlGPJFVeaekLrFqztvDvuB1c1t46VigQztym59CUYDdisfjRDpQw6k0FdfMeOv13GfDLbZUylCSQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=codewrights.de; dmarc=pass action=none
- header.from=codewrights.de; dkim=pass header.d=codewrights.de; arc=none
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=b8w0HqxF;
+ spf=pass (domain: gmail.com, ip: 209.85.166.68, mailfrom: jpewhacker@gmail.com)
+Received: by mail-io1-f68.google.com with SMTP id i7so3410711ioo.5
+        for <yocto@lists.yoctoproject.org>; Thu, 23 Jan 2020 07:49:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=codewrights.onmicrosoft.com; s=selector2-codewrights-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SIMOUQi0p0I1EfRn3E6l49PAnRbNzLJP4F/u4eqzPmc=;
- b=N/GTl0lMJmDcUytjsMrdWMrXRLsV/E+VgaBiUnn/kMrKZyZDbQQBAG7WwJ81T7GhupK67RIPgBtqUPfsZyMOeikLP5jx6Fog2RFYp7SSrZV+YRshymBC0kpMQHmbpTxMrsnGFqmlptoGW4WyZOJYKPY0JuFF91mk7j9eHJ5I0Uc=
-Received: from DB8PR03MB5498.eurprd03.prod.outlook.com (20.179.250.218) by
- DB8PR03MB5658.eurprd03.prod.outlook.com (20.179.248.145) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2644.22; Thu, 23 Jan 2020 15:37:27 +0000
-Received: from DB8PR03MB5498.eurprd03.prod.outlook.com
- ([fe80::c08c:9e5e:7d97:9af5]) by DB8PR03MB5498.eurprd03.prod.outlook.com
- ([fe80::c08c:9e5e:7d97:9af5%3]) with mapi id 15.20.2644.027; Thu, 23 Jan 2020
- 15:37:27 +0000
-From: "Hans-Ulrich Schlieben" <hu.schlieben@codewrights.de>
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>, Enrico Joerns
-	<ejo@pengutronix.de>, "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-CC: "barebox@lists.infradead.org" <barebox@lists.infradead.org>
-Subject: Re: [yocto] #yocto bootchooser: Cannot get state 'state'
-Thread-Topic: [yocto] #yocto bootchooser: Cannot get state 'state'
-Thread-Index: 
- AQHVy5zDappxekgkwkum1XN2BadeWqfrsOsAgAABYsCAAAkFAIAACe5wgAAF44CAAZt98IAGTSgAgAGw8yCAADS5gIAC04xQ
-Date: Thu, 23 Jan 2020 15:37:27 +0000
-Message-ID: 
- <DB8PR03MB54988F3BC05E2AA987775D76FE0F0@DB8PR03MB5498.eurprd03.prod.outlook.com>
-References: <r276.1579090214262888471.6UJY@lists.yoctoproject.org>
- <1579093362.13056.13.camel@pengutronix.de>
- <DB8PR03MB54983C09B221B210D29A26AAFE370@DB8PR03MB5498.eurprd03.prod.outlook.com>
- <45b34e63-a9fd-2295-311c-393bf49fdf93@pengutronix.de>
- <DB8PR03MB549847FD100DF7192459527FFE370@DB8PR03MB5498.eurprd03.prod.outlook.com>
- <f451a45a-a4bc-f285-0614-001cb3a57405@pengutronix.de>
- <AM6PR03MB54938204A7FDEB6C5E93A749FE360@AM6PR03MB5493.eurprd03.prod.outlook.com>
- <cd5008fe-b93f-92c6-8f97-6f7adce32f0e@pengutronix.de>
- <DB8PR03MB5498C89CCD516C2AF1D457C7FE0D0@DB8PR03MB5498.eurprd03.prod.outlook.com>
- <ec5a32e4-3317-9691-a286-0c7053f25f4c@pengutronix.de>
-In-Reply-To: <ec5a32e4-3317-9691-a286-0c7053f25f4c@pengutronix.de>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=hu.schlieben@codewrights.de; 
-x-originating-ip: [62.154.199.77]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 5b78c6b9-6c73-4d6e-2972-08d7a01a268c
-x-ms-traffictypediagnostic: DB8PR03MB5658:
-x-microsoft-antispam-prvs: 
- <DB8PR03MB56580A0A13CDB97AA25141C1FE0F0@DB8PR03MB5658.eurprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 029174C036
-x-forefront-antispam-report: 
- SFV:NSPM;SFS:(10001)(10019020)(4636009)(136003)(396003)(39830400003)(376002)(346002)(366004)(199004)(189003)(4326008)(8676002)(5660300002)(110136005)(52536014)(186003)(966005)(6506007)(316002)(53546011)(508600001)(86362001)(8936002)(81166006)(81156014)(26005)(7696005)(45080400002)(64756008)(66556008)(66476007)(71200400001)(9686003)(66446008)(55016002)(66946007)(76116006)(33656002)(2906002);DIR:OUT;SFP:1102;SCL:1;SRVR:DB8PR03MB5658;H:DB8PR03MB5498.eurprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: codewrights.de does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- vgyHDRgt7FvHwGFlwx3E3GMzEwgTHq51rAKlQ7BagK/1mVpQe/IM8k173EyJeGHrzy+srck3TOKoWFKWHSupciEI4r6y30L8RIeO10Ura6JrOgIdOGt/2FpRbxTcuFE2V30eMpZXW3LMPPMqc3WW/lzNQ3fzWL0reGp7BGoDX4OqlIKWGQhPAf/fiJyFsjiobnPMQunweMB7zvL6Uo3qW4dRMjkEwsJIut68WJkATexgU0TkWWcvxJDoTGjIGOnX0Y/VLztPQlvG5k8wXYFvhJyS20Isz6nnmyvxfPf7XJGfkrSSVzV9lqOUIARM4YEJoO1wWQ9Nr9N0pZgEmHF7YK1FE4OjS+QZ8FysIH5z23K2zfokTa6FoUZWKfnoeqM6dtXsWgOmcU9oyfD+CrnwgJz8+f+2iWtwZJSkODuXt4L6QGkIMgljRu1dI2nDwolhfiHz6Ldn48jNVR/mi1TX1tpZazuapOwuQlLDhZIkdJcBz8pi/X8qWJkSTJcUUXmorzTdzGf7XOnk8gr9FqE5DHWV5NeeUvOIhEcFYYsLXtITEULpWfWbXx3+hZdn8o9ERkQixlBOyEMKIm23uETuPQ==
-x-ms-exchange-transport-forked: True
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=p3oFrE865s+tBrfVlfSNrNhqA3Gzemc/NV/JmWpWmSk=;
+        b=b8w0HqxFolQ4rgPd1DWVqpVYJj1IhXR+lK1hk6CYMrvP1YcWdcKHCR+B3bleeTwMea
+         8Hii/y9iROzwGb+WamMbfnGrSvPMFvq/k5U2iUWP4m8zy8v5AOG5QmAraG8f4DqZ4fHZ
+         zwo/s4gJA1kfWgB17l7MJND6YfADUJK+ZzTQe0JS73zsUe0H4dSb8BDKGi+DpWgzlWah
+         +j1WNXlaCtcocRZMx78X9QvAyHykbO3wmytfOCA/glZJ4095UPBm/Lj1Zp2Wpv5R4+UA
+         VicTwRjU2hzjIh1r+Tf/c5Pl4fAU6f9Z4SbVUN1Djj9FSkF+Vj7X3+FPxsImnDhmB5gw
+         O34Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=p3oFrE865s+tBrfVlfSNrNhqA3Gzemc/NV/JmWpWmSk=;
+        b=J29ZF5nZ3Vt53ASUkRAHK+mU8IPy34aNytQNWzaPjtey4X7t79JP6UJLoCXJonUBx+
+         viK1TR2A9tIQ3twizM8i/kkuO6SaeLdzPiMKupXvKU/zARvbQjisPKOacjvAbC57JWaI
+         sT3HEg/ykzIaib1V9y3bjjcUYSYmcCWSixD/lqvRkpxlg39ne83DdTdOkNEOWSaS4Qhn
+         x9hrxB+JEMKpiYskwURdvuNiZlBjqRRZ/SS1QHadD53UoCyaWWltsToR6LTDNx0jjW52
+         AI21V2zYlsZPXjGhYQgmEpT1CzAMbWtmrszr/VJe1tMhAz6DnNIDrVmED/0J4/H0BnWw
+         UR2g==
+X-Gm-Message-State: APjAAAUGlFIgqcaLBUOhkH+NhRLd+NnuYjdEx/yMf5qNmsPKhK699Cr/
+	CkLzZWkO4bQ9noJCvt5Q9tsL9yqpgIo=
+X-Google-Smtp-Source: APXvYqxMXwTOob0OOpMcYBM4/zVhPWTmHw56w/fud3E1sZZWSA0hfeKTXe15eBxb6CvBJrca7H3brQ==
+X-Received: by 2002:a02:c6d5:: with SMTP id r21mr11687216jan.129.1579794562389;
+        Thu, 23 Jan 2020 07:49:22 -0800 (PST)
+Return-Path: <jpewhacker@gmail.com>
+Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
+        by smtp.gmail.com with ESMTPSA id z12sm526377ioe.0.2020.01.23.07.49.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 23 Jan 2020 07:49:21 -0800 (PST)
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+To: yocto@lists.yoctoproject.org
+Cc: Joshua Watt <JPEWhacker@gmail.com>
+Subject: [yocto][meta-rockchip][PATCH v2] Remove u-boot-rockchip
+Date: Thu, 23 Jan 2020 09:49:08 -0600
+Message-Id: <20200123154908.778009-1-JPEWhacker@gmail.com>
+X-Mailer: git-send-email 2.24.1
+In-Reply-To: <20200122004828.1461264-1-JPEWhacker@gmail.com>
+References: <20200122004828.1461264-1-JPEWhacker@gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: codewrights.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5b78c6b9-6c73-4d6e-2972-08d7a01a268c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2020 15:37:27.1458
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0974af9b-352b-437c-b606-e9f242c0c227
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +k6uszZEnCEeKiAR6VKWmwbkwOCe3G41JY/zCAg+q/kyh/MaZvX1+OXeuV+E/bGWTKiB+RHHRxrNDoQ0YbK6veLL03aubcqL8gpLQ499gvA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR03MB5658
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 
-SGkgQWhtYWQsDQoNCmkgYXNrZWQgcGh5dGVjIGFib3V0IGJhcmVib3gyMDE5IGFuZCB3YXMgdG9s
-ZCB0aGF0IGl0IHN1cHBvcnRzIGlteDZ1bCBhbmQgbm90IGlteDZxLiBJIHNob3VsZCBjb250aW51
-ZSB0byB1c2UgYmFyZWJveDIwMTcuDQpTbyBJIHVzZSBCYXJlYm94MjAxNywgd2hpY2ggd29ya3Mg
-aW4gemV1cyB3aXRoIGJvb3RjaG9vc2VyLg0KDQpUaGFuayB5b3UgdmVyeSBtdWNoIGZvciB5b3Vy
-IGdyZWF0IGhlbHAuDQoNCmh1DQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBB
-aG1hZCBGYXRvdW0gPGEuZmF0b3VtQHBlbmd1dHJvbml4LmRlPiANClNlbnQ6IFR1ZXNkYXksIDIx
-IEphbnVhcnkgMjAyMCAyMToyMQ0KVG86IEhhbnMtVWxyaWNoIFNjaGxpZWJlbiA8aHUuc2NobGll
-YmVuQGNvZGV3cmlnaHRzLmRlPjsgRW5yaWNvIEpvZXJucyA8ZWpvQHBlbmd1dHJvbml4LmRlPjsg
-eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KQ2M6IGJhcmVib3hAbGlzdHMuaW5mcmFkZWFk
-Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gI3lvY3RvIGJvb3RjaG9vc2VyOiBDYW5ub3QgZ2V0
-IHN0YXRlICdzdGF0ZScNCg0KSGksDQoNCk9uIDEvMjEvMjAgNjo1MSBQTSwgSGFucy1VbHJpY2gg
-U2NobGllYmVuIHdyb3RlOg0KPiBIaSBBaG1hZCwNCj4gDQo+IHRoYW5rIHlvdSBmb3IgdGhlIGdy
-ZWF0IGhlbHAuIFRoZXJlJ3MgYSBsb3QgdG8gbGVhcm4gZm9yIG1lIGhlcmUuDQo+PiBEb2VzIGl0
-IGNvbWUgZnJvbSB0aGUgcGh5dGVjIGdpdCBkaXJlY3RseT8gVXBzdHJlYW0gYmFyZWJveCBoYXMg
-dGhpczoNCj4gVGhlIHpldXMgaW1hZ2UgSSBidWlsZCBoZXJlIGluY2x1ZGVzIGxheWVyIG1ldGEt
-cGh5dGVjIGJyYW5jaCB6ZXVzIGFuZCBhIGN1c3RvbSBsYXllciBmcm9tIHBoeXRlYyBjYWxsZWQg
-bWV0YS1rc3AwNjYzLg0KPiBPbiB0aGUgY3VzdG9tIGxheWVyIEkgY3JlYXRlZCBhIG5ldyBicmFu
-Y2ggemV1cyBhbmQganVzdCByZW5hbWVkIHRoZSBiYXJlYm94IGFuZCBiYXJlYm94LXRhcmdldHRv
-b2xzIGJiYXBwZW5kIGZpbGVzIGZyb20gMjAxNyB0byAyMDE5Lg0KPiANCj4gWW91IGFyZSByaWdo
-dCBhYm91dCB0aGUgbWlzc2luZyBzdGF0ZSBpbiBiYXJlYm94MjAxOS4wMS4gDQo+IGZvciBiYXJl
-Ym94IDIwMTkgZHJ2aW5mbyBqdXN0IGNvbnRhaW5zOg0KPiBzdGF0ZQ0KPiANCj4gZHJ2aW5mbyBm
-b3IgYmFyZWJveCAyMDE3IHNheXM6DQo+IHN0YXRlIA0KPiAgICAgICAgIGlteDZxZGxfcGh5dGVj
-X2Jvb3Rfc3RhdGUuMTkNCj4gRG9lcyB0aGF0IG1lYW4gdGhhdCB0aGUgZHJpdmVyIGlzIG5vdCBs
-b2FkZWQ/DQoNClRoaXMgbWVhbnMgeW91IGhhdmUgYSBzdGF0ZSBkcml2ZXIsIGJ1dCB0aGVyZSB3
-YXMgbm8gZGV2aWNlIHRvIGJpbmQgdG8uDQoNCj4gQXQgdGhlIGJhcmVib3gyMDE5IHZlcnNpb24g
-b2ZfZHVtcCByZXR1cm5zOiBDYW5ub3QgZmluZCBub2RlcGF0aCBzdGF0ZSANCj4gQXQgdGhlIGJh
-cmVib3gyMDE3IHZlcnNpb24gb2ZfZHVtcCByZXR1cm5zIGEgZnVsbCBzdWJ0cmVlIGZvciBpbXg2
-cWRsX3BoeXRlY19ib290X3N0YXRlIGFuZCB0aGUgZWVwcm9tIGVudHJ5IGZvciBzdGF0ZS4NCj4g
-DQo+IExvb2tpbmcgaW50byB0aGUgMjAxNyBiYXJlYm94IHNvdXJjZXMgdXNpbmcgICAgICBmaW5k
-IC4vIC1pbmFtZSAiaW14NnFkbC1waHl0ZWMqLmR0c2kiICBpdCBmaW5kcyBpbXg2cWRsLXBoeXRl
-Yy1zdGF0ZS5kdHNpOg0KPiBUaGlzIGZpbGUgZG9lcyBub3QgZXhpc3QgaW4gdGhlIDIwMTkgYmFy
-ZWJveCBzb3VyY2VzLiBUaGVyZSBpcyBvbmx5IGlteDZ1bC1waHl0ZWMtc3RhdGUuZHRzaSBhdmFp
-bGFibGUuDQoNCkhhISBUaGF0J3MgaXQuIFRoZSBmaWxlIGlzIGluIHVwc3RyZWFtIGJhcmVib3gs
-IHNvIG5vIGlkZWEgd2h5IFBoeXRlYyBkcm9wcGVkIGl0Lg0KVGhhdCdzIHByb2JhYmx5IGEgcXVl
-c3Rpb24gZm9yIFBoeXRlYyBzdXBwb3J0Lg0KDQpDaGVlcnMNCkFobWFkDQoNCj4gDQo+IE5vdyBJ
-IHdpbGwgdHJ5IHRoZSB1cHN0cmVhbSB2ZXJzaW9uLg0KPiANCj4gVGhhbmsgeW91IHZlcnkgbXVj
-aCBmb3IgeW91ciBoZWxwLg0KPiANCj4gQmVzdCBSZWdhcmRzDQo+IA0KPiBodQ0KPiANCj4+IC0t
-LS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+PiBGcm9tOiBBaG1hZCBGYXRvdW0gPGEuZmF0b3Vt
-QHBlbmd1dHJvbml4LmRlPg0KPj4gU2VudDogTW9uZGF5LCAyMCBKYW51YXJ5IDIwMjAgMTY6MjMN
-Cj4+IFRvOiBIYW5zLVVscmljaCBTY2hsaWViZW4gPGh1LnNjaGxpZWJlbkBjb2Rld3JpZ2h0cy5k
-ZT47IEVucmljbyANCj4+IEpvZXJucyA8ZWpvQHBlbmd1dHJvbml4LmRlPjsgeW9jdG9AbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZw0KPj4gQ2M6IGJhcmVib3hAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPj4g
-U3ViamVjdDogUmU6IFt5b2N0b10gI3lvY3RvIGJvb3RjaG9vc2VyOiBDYW5ub3QgZ2V0IHN0YXRl
-ICdzdGF0ZScNCj4+DQo+PiBIZWxsbywNCj4+DQo+PiBPbiAxLzE2LzIwIDQ6MDkgUE0sIEhhbnMt
-VWxyaWNoIFNjaGxpZWJlbiB3cm90ZToNCj4+PiBIaSBBaG1hZCwNCj4+Pg0KPj4+IFRoYW5rcyB0
-byB5b3VyIE1haWwgSSB0ZXN0ZWQgd2l0aCBiYXJlYm94XzIwMTcuMTIuMC1waHk2LmJiICh0aHVk
-IHVzZWQgYmFyZWJveF8yMDE3LjEyLjAtcGh5NC5iYikgYW5kIHRoaXMgd29ya3MgaW4gemV1cyB0
-b28uIA0KPj4+DQo+Pj4+IEFjY29yZGluZyB0byB0aGUgc3RhdGUgY29tbWFuZCBvdXRwdXQgdW5k
-ZXIgdGh1ZCwgeW91ciBzdGF0ZSBpcyBzdG9yZWQgb24gdGhlIEVFUFJPTSwgbm90IHRoZSBOQU5E
-LiBMb29rIGZvciB1cGRhdGUtZWVwcm9tIGluIHlvdXIgZGV2aWNlIHRyZWUuDQo+Pj4+IFRoZXJl
-IHNob3VsZCBhbHNvIGJlIGFuIC9kZXYvZWVwcm9tMC51cGRhdGUtZWVwcm9tIGluIGJhcmVib3gu
-DQo+Pj4gVGhhdCBzZWVtcyByaWdodCwgd2hlbiB3b3JraW5nIHRoZSBlZXByb20gaXMgd3JpdHRl
-biB0byBvbiBlYWNoIGJvb3QuDQo+Pj4gQnV0IEkgY291bGQgbm90IGZpbmQgYW55IHJlZmVyZW5j
-ZXMgdG8gKmVlcCogaW5zaWRlIGJhcmVib3ggaW4gYW55IGxheWVyLg0KPj4NCj4+IERvZXMgaXQg
-Y29tZSBmcm9tIHRoZSBwaHl0ZWMgZ2l0IGRpcmVjdGx5PyBVcHN0cmVhbSBiYXJlYm94IGhhcyB0
-aGlzOg0KPj4gaHR0cHM6Ly9ldXIwNC5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNvbS8/
-dXJsPWh0dHBzJTNBJTJGJTJGZ2l0DQo+PiAucGVuZ3V0cm9uaXguZGUlMkZjZ2l0JTJGYmFyZWJv
-eCUyRnRyZWUlMkZhcmNoJTJGYXJtJTJGZHRzJTJGaW14NnFkbC0NCj4+IHBoeXRlYy1zdGF0ZS5k
-dHNpJTNGaCUzRG5leHQmYW1wO2RhdGE9MDElN0MwMSU3Q2h1LnNjaGxpZWJlbiU0MGNvZGV3cg0K
-Pj4gaWdodHMuZGUlN0NlM2ViYWQ1MmU4Njg0ZTk3NTA4NDA4ZDc5ZWFmN2JkYyU3QzA5NzRhZjli
-MzUyYjQzN2NiNjA2ZTlmDQo+PiAyNDJjMGMyMjclN0MwJmFtcDtzZGF0YT1EWnhPOUtxWGlmbGw4
-ZkpNa3BuY2FrbUxHQXpiUjF1TVhuU0t6aUJWekxZJTMNCj4+IEQmYW1wO3Jlc2VydmVkPTANCj4+
-DQo+PiBJIHdvdWxkIGltYWdpbmUsIHlvdXJzIGRvZXMgdG8uIFlvdSBjYW4gY2hlY2sgaW4gdGhl
-IHlvY3RvIGJ1aWxkIGRpcmVjdG9yeS4NCj4+IChJZiB5b3UgaGF2ZSBybV93b3JrIGVuYWJsZWQs
-IHlvdSBtaWdodCBuZWVkIFJNX1dPUktfRVhDTFVERSArPSAieW91ci1iYXJlYm94LXJlY2lwZSIN
-Cj4+IGluIHlvdXIgbG9jYWwuY29uZikNCj4+DQo+PiBBbHNvIHRyeSBvZl9kdW1wIC9zdGF0ZSBp
-bnNpZGUgb2YgYmFyZWJveCB0byBzZWUgdGhlIGRldmljZSB0cmVlIG5vZGUuDQo+Pg0KPj4gVGhl
-IHJlYXNvbiwgeW91IGhhdmVuJ3QgZm91bmQgaXQgaW4gdGhlIGRlcGxveS8gZGV2aWNlIHRyZWUg
-aXMgdGhhdCBiYXJlYm94IG1vZGlmaWVzIHRoZSBrZXJuZWwgZGV2aWNlIHRyZWUgb24gbG9hZGlu
-ZyBhbmQgYWRkcyB0aGUgc3RhdGUgbm9kZXMgdG8gaXQuDQo+Pg0KPj4+PiBpZiBub3QsIHRyeSBl
-eGVjdXRpbmcgdGhlIGRydmluZm8gY29tbWFuZCBhbmQgc2VlIGlmIHRoZSBkcml2ZXIgaGFzIHBy
-b2JlZCB0aGUgRUVQUk9NLg0KPj4+Pj4+IExvb2tzIGxpa2UgdGhlIHN0YXRlIG5vZGUgaXMgbWlz
-c2luZyBpbiB5b3VyIGRldmljZSB0cmVlLg0KPj4NCj4+IERvIHlvdSBoYXZlIHRoZSBzdGF0ZSBk
-cml2ZXIgZW5hYmxlZD8gZHJ2aW5mbyBzaG91bGQgdGVsbCB5b3UgdGhhdC4NCj4+DQo+PiBDaGVl
-cnMNCj4+IEFobWFkDQo+Pg0KPj4gLS0gDQo+PiBQZW5ndXRyb25peCBlLksuICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgfCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfA0KPj4gU3RldWVy
-d2FsZGVyIFN0ci4gMjEgICAgICAgICAgICAgICAgICAgICAgIHwgaHR0cHM6Ly9ldXIwNC5zYWZl
-bGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNvbS8/dXJsPWh0dHAlM0ElMkYlMkZ3d3cucGVuZ3V0
-cm9uaXguZGUlMkYmYW1wO2RhdGE9MDElN0MwMSU3Q2h1LnNjaGxpZWJlbiU0MGNvZGV3cmlnaHRz
-LmRlJTdDZTNlYmFkNTJlODY4NGU5NzUwODQwOGQ3OWVhZjdiZGMlN0MwOTc0YWY5YjM1MmI0Mzdj
-YjYwNmU5ZjI0MmMwYzIyNyU3QzAmYW1wO3NkYXRhPTgyb0g3TWpscUliM2tEZDBOUmZoWHlXeiUy
-RkZZUXFEOUk3UDlZaGNmS2JLYyUzRCZhbXA7cmVzZXJ2ZWQ9MCAgfA0KPj4gMzExMzcgSGlsZGVz
-aGVpbSwgR2VybWFueSAgICAgICAgICAgICAgICAgIHwgUGhvbmU6ICs0OS01MTIxLTIwNjkxNy0w
-ICAgIHwNCj4+IEFtdHNnZXJpY2h0IEhpbGRlc2hlaW0sIEhSQSAyNjg2ICAgICAgICAgICB8IEZh
-eDogICArNDktNTEyMS0yMDY5MTctNTU1NSB8DQo+IA0KDQotLSANClBlbmd1dHJvbml4IGUuSy4g
-ICAgICAgICAgICAgICAgICAgICAgICAgICB8ICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8
-DQpTdGV1ZXJ3YWxkZXIgU3RyLiAyMSAgICAgICAgICAgICAgICAgICAgICAgfCBodHRwczovL2V1
-cjA0LnNhZmVsaW5rcy5wcm90ZWN0aW9uLm91dGxvb2suY29tLz91cmw9aHR0cCUzQSUyRiUyRnd3
-dy5wZW5ndXRyb25peC5kZSUyRiZhbXA7ZGF0YT0wMSU3QzAxJTdDaHUuc2NobGllYmVuJTQwY29k
-ZXdyaWdodHMuZGUlN0NlM2ViYWQ1MmU4Njg0ZTk3NTA4NDA4ZDc5ZWFmN2JkYyU3QzA5NzRhZjli
-MzUyYjQzN2NiNjA2ZTlmMjQyYzBjMjI3JTdDMCZhbXA7c2RhdGE9ODJvSDdNamxxSWIza0RkME5S
-ZmhYeVd6JTJGRllRcUQ5STdQOVloY2ZLYktjJTNEJmFtcDtyZXNlcnZlZD0wICB8DQozMTEzNyBI
-aWxkZXNoZWltLCBHZXJtYW55ICAgICAgICAgICAgICAgICAgfCBQaG9uZTogKzQ5LTUxMjEtMjA2
-OTE3LTAgICAgfA0KQW10c2dlcmljaHQgSGlsZGVzaGVpbSwgSFJBIDI2ODYgICAgICAgICAgIHwg
-RmF4OiAgICs0OS01MTIxLTIwNjkxNy01NTU1IHwNCg==
+Removes the u-boot-rockchip recipe. Upstream oe-core has dropped support
+for Python2, which is required to build this recipe. It appears that no
+machines are actually using it anymore, so it can be removed.
+
+Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
+---
+ recipes-bsp/u-boot/u-boot-rockchip.inc        | 27 -------------------
+ .../binutils-2.28-ld-fix.patch                | 13 ---------
+ .../u-boot/u-boot-rockchip_20171218.bb        | 13 ---------
+ 3 files changed, 53 deletions(-)
+ delete mode 100644 recipes-bsp/u-boot/u-boot-rockchip.inc
+ delete mode 100644 recipes-bsp/u-boot/u-boot-rockchip/binutils-2.28-ld-fix.patch
+ delete mode 100644 recipes-bsp/u-boot/u-boot-rockchip_20171218.bb
+
+diff --git a/recipes-bsp/u-boot/u-boot-rockchip.inc b/recipes-bsp/u-boot/u-boot-rockchip.inc
+deleted file mode 100644
+index 5d89cd6..0000000
+--- a/recipes-bsp/u-boot/u-boot-rockchip.inc
++++ /dev/null
+@@ -1,27 +0,0 @@
+-# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
+-# Copyright (C) 2017 Trevor Woerner <twoerner@gmail.com>
+-# Released under the MIT license (see COPYING.MIT for the terms)
+-
+-require recipes-bsp/u-boot/u-boot.inc
+-
+-DESCRIPTION = "Rockchip next-dev U-Boot"
+-LICENSE = "GPLv2+"
+-LIC_FILES_CHKSUM = "file://Licenses/README;md5=a2c678cfd4a4d97135585cad908541c6"
+-COMPATIBLE_MACHINE = "(rk3036|rk3066|rk3188|rk3288|rk3328|rk3399)"
+-
+-DEPENDS = "dtc-native bc-native swig-native"
+-
+-# u-boot will build native python module
+-inherit pythonnative
+-
+-do_compile_prepend () {
+-	export STAGING_INCDIR=${STAGING_INCDIR_NATIVE};
+-	export STAGING_LIBDIR=${STAGING_LIBDIR_NATIVE};
+-}
+-
+-do_compile_append () {
+-	# copy to default search path
+-	if [ ${SPL_BINARY} ]; then
+-		cp ${B}/spl/${SPL_BINARY} ${B}/
+-	fi
+-}
+diff --git a/recipes-bsp/u-boot/u-boot-rockchip/binutils-2.28-ld-fix.patch b/recipes-bsp/u-boot/u-boot-rockchip/binutils-2.28-ld-fix.patch
+deleted file mode 100644
+index b3f6795..0000000
+--- a/recipes-bsp/u-boot/u-boot-rockchip/binutils-2.28-ld-fix.patch
++++ /dev/null
+@@ -1,13 +0,0 @@
+-Index: git/arch/arm/config.mk
+-===================================================================
+---- git.orig/arch/arm/config.mk
+-+++ git/arch/arm/config.mk
+-@@ -89,7 +89,7 @@ PLATFORM_LIBS := arch/arm/lib/eabi_compa
+- endif
+-
+- # needed for relocation
+--LDFLAGS_u-boot += -pie
+-+LDFLAGS_u-boot += -N -pie
+-
+- #
+- # FIXME: binutils versions < 2.22 have a bug in the assembler where
+diff --git a/recipes-bsp/u-boot/u-boot-rockchip_20171218.bb b/recipes-bsp/u-boot/u-boot-rockchip_20171218.bb
+deleted file mode 100644
+index 4545f13..0000000
+--- a/recipes-bsp/u-boot/u-boot-rockchip_20171218.bb
++++ /dev/null
+@@ -1,13 +0,0 @@
+-# Copyright (C) 2017 Fuzhou Rockchip Electronics Co., Ltd
+-# Released under the MIT license (see COPYING.MIT for the terms)
+-
+-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+-
+-include u-boot-rockchip.inc
+-
+-TAG = "release-${PV}"
+-SRC_URI = " \
+-	git://github.com/rockchip-linux/u-boot.git;tag=${TAG};nobranch=1; \
+-	file://binutils-2.28-ld-fix.patch \
+-"
+-S = "${WORKDIR}/git"
+-- 
+2.24.1
+
