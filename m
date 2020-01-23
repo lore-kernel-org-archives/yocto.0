@@ -1,116 +1,121 @@
-Received: from mail-il1-f194.google.com (mail-il1-f194.google.com [209.85.166.194])
- by mx.groups.io with SMTP id smtpd.web10.9704.1579795716163445692
+Received: from EUR03-DB5-obe.outbound.protection.outlook.com (EUR03-DB5-obe.outbound.protection.outlook.com [40.107.4.97])
+ by mx.groups.io with SMTP id smtpd.web09.9753.1579795899662964506
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Jan 2020 08:08:36 -0800
+ Thu, 23 Jan 2020 08:11:40 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=liBCA1n2;
- spf=pass (domain: gmail.com, ip: 209.85.166.194, mailfrom: jpewhacker@gmail.com)
-Received: by mail-il1-f194.google.com with SMTP id t2so2452506ilq.9
-        for <yocto@lists.yoctoproject.org>; Thu, 23 Jan 2020 08:08:36 -0800 (PST)
+ dkim=pass header.i=@codewrights.onmicrosoft.com header.s=selector2-codewrights-onmicrosoft-com header.b=MkLTrisc;
+ spf=permerror, err=syntax error for token:  (domain: codewrights.de, ip: 40.107.4.97, mailfrom: hu.schlieben@codewrights.de)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R5WoZ4aB4cKVtg+rAKO1NlFwCCfy+vE2OuDvs7z785tmA2vxqg/P2GHle2NRDhTIoj+GfuwjsFY4p7eTSwkKlECdGeomGqRd6GathRpIRgkJvU0xf9fkvSfPj3HQPYVpb6avj6z8qyiyxP4Xav/idRDz4aOqvSpb3aJxINTifaZZwO2G/e2r/CAlP3D3pvkOBAAMYM86Pd6ysn+MDDUu5TakCVtyPAZkkcWkUkmcUu5r/g7NiqyEbaer8en3EHIJcj0ejJjVEyDHiCeJTX2bFfrhNOwUOheB1uQm832T1h7+1puOUSMrxU+ayh/Xz2kndwXNArqu29AXuKOan/48gw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0gQqKZSf8XBC5Wqyl1VvORbLPBBh5QONkA7OX0gb6Ho=;
+ b=HRhsoWSQ9O05MfFcxpMfuOw6Yj0n9e6is8lDP+jOlfgGSQmuTBKShNRnTDxdWcHULunaZ2zn6PGBthH620A45ulZdcIpliMkmdb30SN70twHo0pbsU9b8yVUdntnkEIUp7O4gaVIj4q2F0sX1Nyoms6NMWce1CLupS7eA/l1NJNlgc5VqwS5DmgOv5z2+39Gh0bAXDrn1VhcWMxBNszMSUyPiLe0C96DNgNNlktHR/CRbiwAvXTPakxKyt6qbmMM+Z3RpLl2VGpRudbBSMQ9QNjs3MkbQ4lp/OKUV1Yh4WQYdLt0qZGrEdk6X8aelvXPE9P28darOPvvc3a0KacCng==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=codewrights.de; dmarc=pass action=none
+ header.from=codewrights.de; dkim=pass header.d=codewrights.de; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=TnwxJkZgAAI7LZerokD/XNtTY5JkOvM3xibuIuNmuNo=;
-        b=liBCA1n2BR3lve3b8vphZgfn9IytuVwSBGUB1b+Z2qpnVOFUoQAq26BFhjavv6AJNp
-         Xxoyq/SpkgMys571+QALrmWM07oOEoXfZxWWuTiQFh8vnq05KCM2Y7QYMaHXF+nlksYt
-         6tssGa+SMOxWLiHbZhUK85da8mz9Tz3Yrn+JZeEcAqVNqzQyFvsRxONFf5R9SmeFv3N4
-         AVYcfrynRZbEiKFd8O/jLc5ChscdvtAspId1EKab2q+2RaR4gK0y62rAkCcDYBPLZVSB
-         B0Tbo116+5GJGr5gcPezSlpzEr8cVU3IUGtDM94FAp6hxd7REn9Ov27KQC8Jy3t4cJSO
-         P6oA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=TnwxJkZgAAI7LZerokD/XNtTY5JkOvM3xibuIuNmuNo=;
-        b=hILwSDcd6/czT5hMW+0vxdt7QNwfnVwhyiOljQLD/yGLEi3cB0opH6iNXRYnQ8mODZ
-         AHBVWsG3nInlUMUAQVxNwujk81Yh+4FuuZHRzDqjRhl0OwSYUAyTK/FehsEapjcuY16M
-         yN8fmBcK1C4Pb7UWEU0HkFUNcYg1PmSsQnt3mjyx9jhGUT/JzHxP6/vDdDELwtq0FWjd
-         YxBAiaW+bn7MYxpWwDCnsEVi43F9TIVwDb1Vi6q5OTg2CP+EU40zQwuOtMzz+tj4zVv3
-         wy+uSC5behhaH/O80sGvJvxnD7E6NN2BgnPtLuP28ES1BlOOyLYiAAgRh6qdabDbEcdK
-         Mqvw==
-X-Gm-Message-State: APjAAAX5XqxXtRSiPu4lCdE5c739HVXoxi5MFdsm+dLa7gP5YyzDi1ns
-	uwYh/Y4cGWZ4UPByDyOMk/gJBjO6iYQ=
-X-Google-Smtp-Source: APXvYqyri0OY/tAIWp9ZDcMdk/f5FDu2Wme73ril7SwJSmixdM/HctymXIvLoDwHONHrA9zGN1apPw==
-X-Received: by 2002:a92:5ec8:: with SMTP id f69mr13237196ilg.8.1579795714816;
-        Thu, 23 Jan 2020 08:08:34 -0800 (PST)
-Return-Path: <jpewhacker@gmail.com>
-Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
-        by smtp.gmail.com with ESMTPSA id w15sm523063iol.86.2020.01.23.08.08.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jan 2020 08:08:33 -0800 (PST)
-From: "Joshua Watt" <JPEWhacker@gmail.com>
-X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
-To: yocto@lists.yoctoproject.org
-Cc: twoerner@gmail.com,
-	Joshua Watt <JPEWhacker@gmail.com>
-Subject: [yocto][meta-rockchip][PATCH 4/4] rock-pi-4-rk3399: Add machine
-Date: Thu, 23 Jan 2020 10:08:21 -0600
-Message-Id: <20200123160821.778821-5-JPEWhacker@gmail.com>
-X-Mailer: git-send-email 2.24.1
-In-Reply-To: <20200123160821.778821-1-JPEWhacker@gmail.com>
-References: <20200123160821.778821-1-JPEWhacker@gmail.com>
+ d=codewrights.onmicrosoft.com; s=selector2-codewrights-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0gQqKZSf8XBC5Wqyl1VvORbLPBBh5QONkA7OX0gb6Ho=;
+ b=MkLTriscNiecqDJ3kgGaZYnhOV8qj4YOZL3mTDv6r8Phd7Od8v+KyED/DGLg+bOcQM+h0CEsQmedvBVQtz4u4JBgcH00g2cm6nBv0/w2EWSPy1tqy02fFBMs/VHkaT6ughv/afmYA8BQs6Dpcz3CZHCkAvBrrD7PWx6Em8Ax1zU=
+Received: from DB8PR03MB5498.eurprd03.prod.outlook.com (20.179.250.218) by
+ DB8PR03MB6347.eurprd03.prod.outlook.com (20.179.251.203) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2644.19; Thu, 23 Jan 2020 16:11:37 +0000
+Received: from DB8PR03MB5498.eurprd03.prod.outlook.com
+ ([fe80::c08c:9e5e:7d97:9af5]) by DB8PR03MB5498.eurprd03.prod.outlook.com
+ ([fe80::c08c:9e5e:7d97:9af5%3]) with mapi id 15.20.2644.027; Thu, 23 Jan 2020
+ 16:11:37 +0000
+From: "Hans-Ulrich Schlieben" <hu.schlieben@codewrights.de>
+To: Ahmad Fatoum <a.fatoum@pengutronix.de>, "Robert Berger@yocto.user"
+	<robert.berger.yocto.user@gmail.com>, Enrico Joerns <ejo@pengutronix.de>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	"barebox@lists.infradead.org" <barebox@lists.infradead.org>
+Subject: Re: [yocto] #yocto bootchooser: Cannot get state 'state'
+Thread-Topic: [yocto] #yocto bootchooser: Cannot get state 'state'
+Thread-Index: 
+ AQHVy5zDappxekgkwkum1XN2BadeWqfrsOsAgAABYsCAAAkFAIAACe5wgAAF44CAAAMgAIABkcNAgAZWK4CAAb2oMIABkDKAgAFhQmCAAAlWgIAAAKvA
+Date: Thu, 23 Jan 2020 16:11:36 +0000
+Message-ID: 
+ <DB8PR03MB5498CAEC36BC061CA93813D2FE0F0@DB8PR03MB5498.eurprd03.prod.outlook.com>
+References: <r276.1579090214262888471.6UJY@lists.yoctoproject.org>
+ <1579093362.13056.13.camel@pengutronix.de>
+ <DB8PR03MB54983C09B221B210D29A26AAFE370@DB8PR03MB5498.eurprd03.prod.outlook.com>
+ <45b34e63-a9fd-2295-311c-393bf49fdf93@pengutronix.de>
+ <DB8PR03MB549847FD100DF7192459527FFE370@DB8PR03MB5498.eurprd03.prod.outlook.com>
+ <f451a45a-a4bc-f285-0614-001cb3a57405@pengutronix.de>
+ <1579099664.13056.29.camel@pengutronix.de>
+ <AM6PR03MB54939235100D4D6E455AF4C1FE360@AM6PR03MB5493.eurprd03.prod.outlook.com>
+ <1c275d4d-cf23-caf5-072e-2517080950c1@pengutronix.de>
+ <DB8PR03MB54985379C7F9387F160929E7FE0D0@DB8PR03MB5498.eurprd03.prod.outlook.com>
+ <0a8e32e7-7100-e834-97c8-de27959e41dd@gmail.com>
+ <DB8PR03MB549871DF5E2805242C71347AFE0F0@DB8PR03MB5498.eurprd03.prod.outlook.com>
+ <88f6a8d6-872d-62ea-9113-1c9a4983e300@pengutronix.de>
+In-Reply-To: <88f6a8d6-872d-62ea-9113-1c9a4983e300@pengutronix.de>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=hu.schlieben@codewrights.de; 
+x-originating-ip: [62.154.199.77]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 827ff92f-2bd7-44a2-7b2d-08d7a01eec5e
+x-ms-traffictypediagnostic: DB8PR03MB6347:
+x-microsoft-antispam-prvs: 
+ <DB8PR03MB63471A61F0333A79878995CFFE0F0@DB8PR03MB6347.eurprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 029174C036
+x-forefront-antispam-report: 
+ SFV:NSPM;SFS:(10019020)(4636009)(366004)(346002)(189003)(199004)(8936002)(66476007)(7696005)(66556008)(64756008)(66446008)(76116006)(71200400001)(66946007)(508600001)(55016002)(5660300002)(81156014)(9686003)(81166006)(8676002)(86362001)(110136005)(4326008)(53546011)(6506007)(52536014)(33656002)(186003)(54906003)(2906002)(26005);DIR:OUT;SFP:1102;SCL:1;SRVR:DB8PR03MB6347;H:DB8PR03MB5498.eurprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: codewrights.de does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ 1FnrBI4mDEkQRyBgm2XfqL7KQ+Zwt6lGA1yY7ZPtpjA7YB9erIsE7UDc6WAT9ejFPeTm6B8O/HcvjP00tlk/GvzZD46K2VuSUXo/o/DiA1yH/ZwKopLcGmpq/UZfz+K4J2xtIHIyneFkrYSe3nYHKxeq+ThGDgEt1/0w5SEUhBQS3ch4m5qirQpCu236UBe2fqoSKZGO1B4YMsyEUmIAvqaVGr5GM1PkgvcJqqrDI77tsZoCGyIQEn2lRiACEjZI8kGIyLWcbVwzW8n0CiYtzi4fP/Zs9gX/oVh5s0YxXgYmlkTIRY4l4M5A2CP/Ms9i5068ov11cAVd970vkq7nU0L2yQ37md3C0h/uCRehot7Ai3twLUAnuKMphQetE6xEaivEY9288tUjIseLb9xun4SXt6kIrIujwzpnXjqKRXEKyq+4KlvnF2eLZukmg0TI
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: codewrights.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 827ff92f-2bd7-44a2-7b2d-08d7a01eec5e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jan 2020 16:11:37.0213
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0974af9b-352b-437c-b606-e9f242c0c227
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: GBljo0fKLvLkcqOeCjkaC8BmYY43sBi1LpMOoK17KjIP85Tpgb7fQblCDWGiyccROW3nXc0np1upMqq0zv2zpSdjnSq59mP5C3TEg42G740=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR03MB6347
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Adds the machine definition for the Rock Pi 4 based around the RK3399
-SoC.
-
-Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
----
- conf/machine/rock-pi-4-rk3399.conf | 28 ++++++++++++++++++++++++++++
- wic/rock-pi-4-rk3399.wks           |  7 +++++++
- 2 files changed, 35 insertions(+)
- create mode 100644 conf/machine/rock-pi-4-rk3399.conf
- create mode 100644 wic/rock-pi-4-rk3399.wks
-
-diff --git a/conf/machine/rock-pi-4-rk3399.conf b/conf/machine/rock-pi-4-rk3399.conf
-new file mode 100644
-index 0000000..ca02b8e
---- /dev/null
-+++ b/conf/machine/rock-pi-4-rk3399.conf
-@@ -0,0 +1,28 @@
-+# Copyright (C) 2020 Garmin Ltd. or its subsidaries
-+# Released under the MIT license (see COPYING.MIT for the terms)
-+
-+#@TYPE: Machine
-+#@NAME: Rock Pi 4 RK3288
-+#@DESCRIPTION: Rock Pi 4 is a Raspberry Pi 4 Alternative based on Rockchip RK3399 Processor.
-+
-+require conf/machine/include/rk3399.inc
-+
-+KERNEL_DEVICETREE = "rockchip/rk3399-rock-pi-4.dtb"
-+UBOOT_MACHINE = "rock-pi-4-rk3399_defconfig"
-+
-+WKS_FILE ?= "rock-pi-4-rk3399.wks"
-+IMAGE_FSTYPES += "wic wic.bmap"
-+
-+WKS_FILE_DEPENDS ?= " \
-+    mtools-native \
-+    dosfstools-native \
-+    virtual/bootloader \
-+    virtual/kernel \
-+    "
-+IMAGE_BOOT_FILES ?= "\
-+    ${KERNEL_IMAGETYPE} \
-+    "
-+
-+SERIAL_CONSOLES = "1500000;ttyS2"
-+
-+MACHINE_EXTRA_RRECOMMENDS += "kernel-modules"
-diff --git a/wic/rock-pi-4-rk3399.wks b/wic/rock-pi-4-rk3399.wks
-new file mode 100644
-index 0000000..8e4b37c
---- /dev/null
-+++ b/wic/rock-pi-4-rk3399.wks
-@@ -0,0 +1,7 @@
-+# Copyright (C) 2020 Garmin Ltd. or its subsidiaries
-+# Released under the MIT license (see COPYING.MIT for the terms)
-+
-+include rk3399-boot.wks
-+part / --align 131072 --source rootfs --fstype=ext4 --label root
-+
-+bootloader --ptable gpt --append="console=tty1 console=ttyS2,1500000n8 rw root=/dev/mmcblk1p7 rootfstype=ext4 init=/sbin/init"
--- 
-2.24.1
-
+SGkgQWhtYWQsDQoNCj4gDQo+IEhlbGxvLA0KPiANCj4gT24gMS8yMy8yMCA0OjMwIFBNLCBIYW5z
+LVVscmljaCBTY2hsaWViZW4gd3JvdGU6DQo+ID4gSGkgUm9iZXJ0LA0KPiA+IA0KPiA+IHRoZXJl
+IHdoZXJlIG5vIFNESywgYmlzb24gYW5kIGZsZXggbWlzc2luZy4gTm93IGl0IGNvbXBpbGVkLiBU
+aGFueC4NCj4gPiBUaGVyZSBhcmUgDQo+ID4gDQo+ID4gQ29weWluZyBpdCBvbnRvIHRoZSBzeXN0
+ZW0gYW5kIHJ1bm5pbmcgaXQgZnJvbSB0aGUgY29uc29sZSBqdXN0IHJldHVybmVkIGVycm9yIGNv
+ZGUgMTMyIGFuZDogDQo+ID4gSWxsZWdhbCBpbnN0cnVjdGlvbg0KPiANCj4gUnVubmluZyB3aGF0
+Pw0KVGhlIGJhcmVib3ggZXhlY3V0YWJsZSBpbiB0aGUgYmFyZWJveCBmb2xkZXIsIG5vdCBzb21l
+IGltYWdlLiBUaGUgZXhlY3V0YWJsZSBzdGFydHMgd2l0aCBFTEYgc28gaXQgc2hvdWxkIHJ1biwg
+c2hvdWxkbid0IGl0Pw0KSW4gdGhlIGJhcmVib3ggUkVBRE1FIHN0YXRlczogIFRoZSBiYXJlYm94
+IGltYWdlIGlzIGEgbm9ybWFsIExpbnV4IGV4ZWN1dGFibGUsIHNvIGl0IGNhbiBiZSBzdGFydGVk
+ICBqdXN0IGxpa2UgZXZlcnkgb3RoZXIgcHJvZ3JhbQ0KDQo+ID4gSSBjb3BpZWQgdGhlIC5jb25m
+aWcgZmlsZSBmcm9tIHlvY3RvIGludG8gdGhlIGJhcmVib3ggZGlyZWN0b3J5LiBEbyBJIGhhdmUg
+c3RpbGwgdGhlIHdyb25nIGFyY2hpdGVjdHVyZT8NCj4gPiANCj4gPiBQZXJoYXBzIEkgaGF2ZSB0
+byBjb3B5ICAuL2ltYWdlcy9iYXJlYm94LXBoeXRlYy1waHljYXJkLWlteDZxLTFnaWIuaW1nIG9u
+dG8gdGhlIGRlc3RpbmF0aW9uIHN5c3RlbSBzdGFydGluZyBhdCBvZmZzZXQgMHgxMDAwIHVzaW5n
+IGRkLg0KPiA+IEhvdyB0byBjb3B5IGJhcmVib3ggb250byB0aGUgc2RjYXJkPyBUaGVyZSBpcyBu
+byBzZXR1cG1iciBleGVjdXRhYmxlIGluIC4vc2NyaXB0cy9zZXR1cG1iciwganVzdCBhIGMgZmls
+ZSBhbmQgbm8gd29ya2luZyBNYWtlZmlsZS4NCj4gDQo+IGJhcmVib3ggYWxyZWFkeSBoYXMgdGhl
+IGRjZCBvZmZzZXQgaW4sIGp1c3QgZGQgdGhlIGNvcnJlY3QgaW1hZ2UgdG8gdGhlIHN0YXJ0IG9m
+IHlvdXIgU0QtQ2FyZCBhbmQgaXQgc2hvdWxkIHdvcmsuDQpXYWl0LCBqdXN0IHJ1bm5pbmcgZGQg
+aWY9IGJhcmVib3hpbWFnZWZpbGUgb2Y9L2Rldi9tbWNibGswIHdvdWxkIGp1c3Qga2lsbCBteSBQ
+YXJ0aXRpb250YWJsZSBpbiBzZWN0b3IgMC4gDQpXaGVuIEkgbG9vayBpbnRvIHRoZSBiYXJlYm94
+aW1hZ2VmaWxlIEkgc2VlIHR3byBzZWN0aW9ucyBzdGFydGluZyB3aXRoIHNvbWV0aGluZyBsaWtl
+IGJhcmVib3guLi4uLi4uVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVUgYXQgb2Zmc2V0IDAgYW5k
+IG9mZnNldCAweDEwMDAuDQpUaGUgcGFydCBhdCAweDEwMDAgcmVzZW1ibGVzIG1vcmUgd2hhdCBJ
+IHNlZSBvbiBteSBzZGNhcmQgb24gb2Zmc2V0IDB4MTAwMCBzbyBteSBhcHByb2FjaCB3b3VsZCBi
+ZSB0bw0KZGQgaWY9IGJhcmVib3hpbWFnZWZpbGUgb2Y9L2Rldi9tbWNibGswIGJzPTUxMiBvZmZz
+ZXQ9OCBza2lwPTguDQpXaGF0IGRvIHlvdSB0aGluaz8NCg0KPiANCj4gQ2hlZXJzDQo+IEFobWFk
+DQo+IA0KPiANClRoYW5rIHlvdSBhbmQgQmVzdCBSZWdhcmRzDQoNCmh1DQoNCg==
