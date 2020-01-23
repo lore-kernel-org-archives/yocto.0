@@ -1,105 +1,199 @@
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
- by mx.groups.io with SMTP id smtpd.web11.9614.1579794759508424407
+Received: from mail-il1-f194.google.com (mail-il1-f194.google.com [209.85.166.194])
+ by mx.groups.io with SMTP id smtpd.web09.9492.1579794777649007700
  for <yocto@lists.yoctoproject.org>;
- Thu, 23 Jan 2020 07:52:39 -0800
+ Thu, 23 Jan 2020 07:52:57 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=f9y9X7xE;
- spf=pass (domain: gmail.com, ip: 209.85.166.41, mailfrom: jpewhacker@gmail.com)
-Received: by mail-io1-f41.google.com with SMTP id t26so3372386ioi.13
-        for <yocto@lists.yoctoproject.org>; Thu, 23 Jan 2020 07:52:39 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=oPTgRr/G;
+ spf=pass (domain: gmail.com, ip: 209.85.166.194, mailfrom: jpewhacker@gmail.com)
+Received: by mail-il1-f194.google.com with SMTP id p8so2396284iln.12
+        for <yocto@lists.yoctoproject.org>; Thu, 23 Jan 2020 07:52:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=7TTR3DNPYumyf/JW//566fR7a6ss+xI9DRjGLG+w1Co=;
-        b=f9y9X7xEZ1Qly1/mhJ4B7k7PVaxYFp2cOC5hshJRQiyqztgj1dsdk7FVFLGXwYwta4
-         7B4VG+pyx3MIQQBwWxBg2b+L8hcYlSrjNimDVUbapVQlPYAfEcRs4RQFcG2krUYN+SWI
-         wjw6dnk+tns9c6Kc2n/JVumV4EaXJzksubLAzhaTHdwOrQQjGdSui5HtwrnCOaz15olL
-         zSAbhHnF+xMs89iM1ajo/++cLD8dc/otDKbttD1CRvxLMQVHBkwscItKDo2LWIbHCrqo
-         jm+2RZgzu43TGV5Z5t+9W4yeKX/JhIktNPpotXvQ8l89dhxI94DU91TY4Xy0URvfntKk
-         zGWw==
+        bh=PHJDFsKUgEqVBPZN6MefaKcm/YRLIydcNQTPf24tnKY=;
+        b=oPTgRr/GKLkQ4jSEoL1PfMvYXpW7j2ojofwicRYXXOh6m3P6OhSgNtEMG+3LjQsNHn
+         B9dtoH+5lwHNWOgKs0M7bhtCGRImqVKQAobACN70f+t43mrWK/Yf6JAq8cQ0WRP4J6Cy
+         w6QUA1c8JI93ZRnpLx6K9pexprDm8HqcQn4c066NmRucLJ6Nn4UtgnVMtUTUoNgdjPom
+         2BjWohQ531+u69t71Qa0Zo5C7XoIYTpFbTwD0vLw3dZMa7anBaV1UvBnt3QpbNO8LcaQ
+         z/pCisvJm7G+aVeLT5mTVjjqxNc4yoUI8EQRCZK5YhqcNII3fqbjrFTINy2YQdTIpTVN
+         4ZCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=7TTR3DNPYumyf/JW//566fR7a6ss+xI9DRjGLG+w1Co=;
-        b=BWKvESxZn52j7dN56ukwXqBQ1G1t5E40ih/fBML0MWZ6Z+zT1VXQFC5l70YDAnM462
-         CqkG404ugUH+EEb3d8WUBts/bsI/pf40t6aYDJePOjok3TzJ/VBhqJ+woJ/ilO6icX5A
-         xp6jyR1AxEJrlBZz05984T3XiMhTF1zOjEQ2dD17+X1P6Wb2FUX+lYHgZT+dcuVCToms
-         7n9OIhbN5hxL9AMiQp7nwiGgcmgeUFhdI5qeQNQNZ/6t+kY/kosUZwBN/Zm7+fPcA6+K
-         g15/8A5Ra+PLFoprwPMGcNscsNwixboa5pcxOFF71bjYsyWaRl2QXoZDagUoMbjNsiur
-         buAw==
-X-Gm-Message-State: APjAAAVH/N4AK3qmfVcOGPRm94HZGmwjz9OvAmHf2UVh7UdwTY+YODEL
-	ZGOpSSWwxidIo8xtj4RBTP2nz7ifM5E=
-X-Google-Smtp-Source: APXvYqws+XeUSubek1aJdS9IX9MF5vHDlQvn3NYD3ZRdd6NgO3JYEHPCCTdxiXgB35lmsDLQxdNyOA==
-X-Received: by 2002:a6b:6f01:: with SMTP id k1mr11751811ioc.28.1579794758674;
-        Thu, 23 Jan 2020 07:52:38 -0800 (PST)
+        bh=PHJDFsKUgEqVBPZN6MefaKcm/YRLIydcNQTPf24tnKY=;
+        b=S9F77fSgFg8c11yHNLsnkN/oyx/2/kPll7ok2kuuzhDcJWWzwSESdjvnoaF6wqX+h4
+         7oSG/Vl16OWkWxhl0nSDLCdiQDHVXPMD05dG/LE1AYMGqCRtAAhl2DTqdUxDgd4UYfBz
+         dfrSRsX+RuHbN9avNAQr3RD/qypM03rgPNbfGD/Pk+w2sz70DaWPtIjGxqMPNHgOdR33
+         ZzahTMzHCGUAvlU5iZmuaM95yIcS5XdrNLqyDiytOpWqk6EkxEtt7PX2bCk5jQ246dS8
+         JwtsKGChKCC/lXQ7cgZNJzlpDx5z8t4stwabpWkDEb0jNe0rXsJVmxh2MbSuuPH4B+cx
+         j4ow==
+X-Gm-Message-State: APjAAAWKN39oNu+ZTkamFd9Ux5MyR2CGcBSB/eoRu0HJoerVRWMqloNx
+	WHmRaW3mhTVcqegshVwRC6VcHHcjHaE=
+X-Google-Smtp-Source: APXvYqwC3ed1rEYYLSexBDjf7l+WvkVtG0m6badNhSG/i5XWotPKMKniHIutT/1Xdr2BcUIV31kWMA==
+X-Received: by 2002:a92:c990:: with SMTP id y16mr13375340iln.109.1579794776809;
+        Thu, 23 Jan 2020 07:52:56 -0800 (PST)
 Return-Path: <jpewhacker@gmail.com>
 Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
-        by smtp.gmail.com with ESMTPSA id 68sm730878ilc.85.2020.01.23.07.52.37
+        by smtp.gmail.com with ESMTPSA id o6sm740445ilc.76.2020.01.23.07.52.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 23 Jan 2020 07:52:38 -0800 (PST)
+        Thu, 23 Jan 2020 07:52:56 -0800 (PST)
 From: "Joshua Watt" <JPEWhacker@gmail.com>
 X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
 To: yocto@lists.yoctoproject.org
 Cc: twoerner@gmail.com,
 	Joshua Watt <JPEWhacker@gmail.com>
-Subject: [yocto][meta-rockchip][PATCH] rk3288: Add wic.bmap images
-Date: Thu, 23 Jan 2020 09:52:34 -0600
-Message-Id: <20200123155234.778235-1-JPEWhacker@gmail.com>
+Subject: [yocto][meta-rockchip][PATCH] rk3288: Add common rk3288 boot include wic
+Date: Thu, 23 Jan 2020 09:52:50 -0600
+Message-Id: <20200123155250.778310-1-JPEWhacker@gmail.com>
 X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Adds the wic bitmap images to IMAGE_FSTYPES. bmaptool can use these
-files to efficiently copy sparse images to media
+Adds a common rk3288-boot.wks file that all machine kickstart files can
+include to get their boot partitions correctly configured.
 
 Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
 ---
- conf/machine/firefly-rk3288.conf | 2 +-
- conf/machine/tinker-rk3288.conf  | 2 +-
- conf/machine/vyasa-rk3288.conf   | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ wic/firefly-rk3288.wks | 23 ++---------------------
+ wic/rk3288-boot.wks    | 24 ++++++++++++++++++++++++
+ wic/tinker-rk3288.wks  | 23 ++---------------------
+ wic/vyasa-rk3288.wks   | 25 +++----------------------
+ 4 files changed, 31 insertions(+), 64 deletions(-)
+ create mode 100644 wic/rk3288-boot.wks
 
-diff --git a/conf/machine/firefly-rk3288.conf b/conf/machine/firefly-rk3288.conf
-index 71e0bc3..0a9eab6 100644
---- a/conf/machine/firefly-rk3288.conf
-+++ b/conf/machine/firefly-rk3288.conf
-@@ -12,7 +12,7 @@ KERNEL_DEVICETREE = "rk3288-firefly.dtb"
- UBOOT_MACHINE = "firefly-rk3288_defconfig"
+diff --git a/wic/firefly-rk3288.wks b/wic/firefly-rk3288.wks
+index 5013aea..c2027bd 100644
+--- a/wic/firefly-rk3288.wks
++++ b/wic/firefly-rk3288.wks
+@@ -1,26 +1,7 @@
+ # Copyright (C) 2019 Garmin Ltd. or its subsidiaries
+ # Released under the MIT license (see COPYING.MIT for the terms)
+-#
+-# Disk layout
+-# Note that the reference documentation refers to 512 byte disk sectors, but
+-# wic uses 1KB blocks
+-#
+-#   Partition   Start Sector    Number of Sectors
+-#   loader1     64              8000
+-#   reserved1   8064            128
+-#   reserved2   8192            8192
+-#   loader2     16384           8192
+-#   atf         24576           8192
+-#   boot        32768           229376
+-#   root        262144          -
+-#
  
- WKS_FILE = "firefly-rk3288.wks"
--IMAGE_FSTYPES += "wic"
-+IMAGE_FSTYPES += "wic wic.bmap"
+-part loader1    --ondisk mmcblk0 --align 32     --size 4000K            --source rawcopy --sourceparams="file=idbloader.img"
+-part reserved1  --ondisk mmcblk0 --align 4032   --size 64K
+-part reserved2  --ondisk mmcblk0 --align 4096   --size 4096K
+-part loader2    --ondisk mmcblk0 --align 8192   --size 4096K            --source rawcopy --sourceparams="file=u-boot.bin"
+-part atf        --ondisk mmcblk0 --align 12288  --size 4096K
+-part /boot      --ondisk mmcblk0 --align 16384  --size=114688K --active --source bootimg-partition --fstype=vfat --label boot --sourceparams="loader=u-boot"
+-part /          --ondisk mmcblk0 --align 131072                         --source rootfs            --fstype=ext4 --label root
++include rk3288-boot.wks
++part / --align 131072 --source rootfs --fstype=ext4 --label root
  
- WKS_FILE_DEPENDS ?= " \
-     mtools-native \
-diff --git a/conf/machine/tinker-rk3288.conf b/conf/machine/tinker-rk3288.conf
-index e460d43..aeee472 100644
---- a/conf/machine/tinker-rk3288.conf
-+++ b/conf/machine/tinker-rk3288.conf
-@@ -11,7 +11,7 @@ KERNEL_DEVICETREE = "rk3288-tinker.dtb"
- UBOOT_MACHINE = "tinker-rk3288_defconfig"
+ bootloader --ptable gpt --append="console=tty1 console=ttyS2,115200n8 rw root=/dev/mmcblk0p7 rootfstype=ext4 init=/sbin/init"
+diff --git a/wic/rk3288-boot.wks b/wic/rk3288-boot.wks
+new file mode 100644
+index 0000000..53c8162
+--- /dev/null
++++ b/wic/rk3288-boot.wks
+@@ -0,0 +1,24 @@
++# Copyright (C) 2020 Garmin Ltd. or its subsidiaries
++# Released under the MIT license (see COPYING.MIT for the terms)
++#
++# Disk layout
++# Note that the reference documentation refers to 512 byte disk sectors, but
++# wic uses 1KB blocks
++#
++#   Partition   Start Sector    Number of Sectors
++#   loader1     64              8000
++#   reserved1   8064            128
++#   reserved2   8192            8192
++#   loader2     16384           8192
++#   atf         24576           8192
++#   boot        32768           229376
++#   root        262144          -
++#
++
++part loader1    --align 32     --size 4000K            --source rawcopy --sourceparams="file=idbloader.img"
++part reserved1  --align 4032   --size 64K
++part reserved2  --align 4096   --size 4096K
++part loader2    --align 8192   --size 4096K            --source rawcopy --sourceparams="file=u-boot.bin"
++part atf        --align 12288  --size 4096K
++part /boot      --align 16384  --size=114688K --active --source bootimg-partition --fstype=vfat --label boot --sourceparams="loader=u-boot"
++
+diff --git a/wic/tinker-rk3288.wks b/wic/tinker-rk3288.wks
+index 5013aea..c2027bd 100644
+--- a/wic/tinker-rk3288.wks
++++ b/wic/tinker-rk3288.wks
+@@ -1,26 +1,7 @@
+ # Copyright (C) 2019 Garmin Ltd. or its subsidiaries
+ # Released under the MIT license (see COPYING.MIT for the terms)
+-#
+-# Disk layout
+-# Note that the reference documentation refers to 512 byte disk sectors, but
+-# wic uses 1KB blocks
+-#
+-#   Partition   Start Sector    Number of Sectors
+-#   loader1     64              8000
+-#   reserved1   8064            128
+-#   reserved2   8192            8192
+-#   loader2     16384           8192
+-#   atf         24576           8192
+-#   boot        32768           229376
+-#   root        262144          -
+-#
  
- WKS_FILE = "tinker-rk3288.wks"
--IMAGE_FSTYPES += "wic"
-+IMAGE_FSTYPES += "wic wic.bmap"
+-part loader1    --ondisk mmcblk0 --align 32     --size 4000K            --source rawcopy --sourceparams="file=idbloader.img"
+-part reserved1  --ondisk mmcblk0 --align 4032   --size 64K
+-part reserved2  --ondisk mmcblk0 --align 4096   --size 4096K
+-part loader2    --ondisk mmcblk0 --align 8192   --size 4096K            --source rawcopy --sourceparams="file=u-boot.bin"
+-part atf        --ondisk mmcblk0 --align 12288  --size 4096K
+-part /boot      --ondisk mmcblk0 --align 16384  --size=114688K --active --source bootimg-partition --fstype=vfat --label boot --sourceparams="loader=u-boot"
+-part /          --ondisk mmcblk0 --align 131072                         --source rootfs            --fstype=ext4 --label root
++include rk3288-boot.wks
++part / --align 131072 --source rootfs --fstype=ext4 --label root
  
- WKS_FILE_DEPENDS ?= " \
-     mtools-native \
-diff --git a/conf/machine/vyasa-rk3288.conf b/conf/machine/vyasa-rk3288.conf
-index 03a436a..d8a6af6 100644
---- a/conf/machine/vyasa-rk3288.conf
-+++ b/conf/machine/vyasa-rk3288.conf
-@@ -14,7 +14,7 @@ KERNEL_EXTRA_ARGS += "LOADADDR=0x02000000"
- UBOOT_MACHINE = "vyasa-rk3288_defconfig"
+ bootloader --ptable gpt --append="console=tty1 console=ttyS2,115200n8 rw root=/dev/mmcblk0p7 rootfstype=ext4 init=/sbin/init"
+diff --git a/wic/vyasa-rk3288.wks b/wic/vyasa-rk3288.wks
+index 3fc9a5b..f019e0d 100644
+--- a/wic/vyasa-rk3288.wks
++++ b/wic/vyasa-rk3288.wks
+@@ -1,27 +1,8 @@
+ # Copyright (C) 2019 Garmin Ltd. or its subsidiaries
+ # Released under the MIT license (see COPYING.MIT for the terms)
+-#
+-# Disk layout
+-# Note that the reference documentation refers to 512 byte disk sectors, but
+-# wic uses 1KB blocks
+-#
+-#   Partition   Start Sector    Number of Sectors
+-#   loader1     64              8000
+-#   reserved1   8064            128
+-#   reserved2   8192            8192
+-#   loader2     16384           8192
+-#   atf         24576           8192
+-#   boot        32768           229376
+-#   root        262144          -
+-#
  
- WKS_FILE = "vyasa-rk3288.wks"
--IMAGE_FSTYPES += "wic"
-+IMAGE_FSTYPES += "wic wic.bmap"
+-part loader1    --ondisk mmcblk2 --align 32     --size 4000K            --source rawcopy --sourceparams="file=idbloader.img"
+-part reserved1  --ondisk mmcblk2 --align 4032   --size 64K
+-part reserved2  --ondisk mmcblk2 --align 4096   --size 4096K
+-part loader2    --ondisk mmcblk2 --align 8192   --size 4096K            --source rawcopy --sourceparams="file=u-boot.bin"
+-part atf        --ondisk mmcblk2 --align 12288  --size 4096K
+-part /boot      --ondisk mmcblk2 --align 16384  --size=114688K --active --source bootimg-partition --fstype=vfat --label boot --sourceparams="loader=u-boot"
+-part /          --ondisk mmcblk2 --align 131072                         --source rootfs            --fstype=ext4 --label root
++include rk3288-boot.wks
++part / --align 131072 --source rootfs --fstype=ext4 --label root
  
- WKS_FILE_DEPENDS ?= " \
-     mtools-native \
+ bootloader --ptable gpt --append="console=tty1 console=ttyS2,115200n8 rw root=/dev/mmcblk2p7 rootfstype=ext4 init=/sbin/init"
+-                                  
++
 -- 
 2.24.1
 
