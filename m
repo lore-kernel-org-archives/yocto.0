@@ -1,132 +1,223 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.14912.1579882261757132456
+Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
+ by mx.groups.io with SMTP id smtpd.web09.15015.1579883154628996780
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Jan 2020 08:11:01 -0800
+ Fri, 24 Jan 2020 08:25:54 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=cYUCEAuo;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: akuster808@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2A6F8E00CA3; Fri, 24 Jan 2020 08:11:01 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (akuster808[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.216.41 listed in list.dnswl.org]
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0533AE00CA3
-	for <yocto@yoctoproject.org>; Fri, 24 Jan 2020 08:10:59 -0800 (PST)
-Received: by mail-pj1-f41.google.com with SMTP id gv17so8409pjb.1
-        for <yocto@yoctoproject.org>; Fri, 24 Jan 2020 08:10:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=to:from:subject:autocrypt:message-id:date:user-agent:mime-version
-         :content-transfer-encoding:content-language;
-        bh=Z2vkk8WTy8Z3hH+kZ9ZvDeaZrajyB1pak9kEyk6lmZQ=;
-        b=cYUCEAuod7VSUUccFXQBrlozVINo711BGrYq2OPtns28PoyYwEiEtAmHzbi4mmWSa3
-         z2gF+NmOldoaGsYRl5fqYlKdmd8cgO69fWoLqfvR7KyT2FLianeClizogZ9lRFvIgbzn
-         xWTDoMbYWAs7FBe+uP4ziuhVD8Wbn4peEWAoa0w+RTULp/tSZuO7DdWjNx089xcnAHem
-         p6lhp4AnhvcZZ9kiMC8s9qBWKgoXfxblxENMMWs58FaOhuSJB8dT29IWjm6SYKJXlhAk
-         GILfNMHWNPU6wVVFnW9q66IqhZZnBrgPWX0TK2fTXfGTw3ZEb8HhoMAL9BmaryxTq4IZ
-         Q+/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:from:subject:autocrypt:message-id:date
-         :user-agent:mime-version:content-transfer-encoding:content-language;
-        bh=Z2vkk8WTy8Z3hH+kZ9ZvDeaZrajyB1pak9kEyk6lmZQ=;
-        b=EuzMg1hY9OvhUv2uDWG78wyxPmIIDN9T4J9Hk4Kajc0Sft36+sLXbJ+iTuyHVgtg4R
-         P/MIo6sg5217xx6iLwEjw1nFMCWVUgLJ77urrykdlPUNMVtBTIRNQAaGgwIuy8NTiO/l
-         /l7Z5ogRPzMfThqU8iO2T/IWvX+T2jkfGxe/R1X1X3iIFicgVWiVpbH5wkqQEqTnhrii
-         NFldh6D2JNuzTHdXxMoOW1Zd7sD8UTrjX8Zm4S7AN4SdX+rcUoWYDkWNbTE4YQ+2Hwj1
-         kwDKkaDhMW0J5ULEAI8V1fkLPixoPGUSmtMubvRl0PQFRTnFxnXpqJt/VjnRl6H+L5lC
-         1acg==
-X-Gm-Message-State: APjAAAVJi7ECUztA0X8FraJdmYan13JD0PBTc06/8WRqwVOTrQPCN40M
-	JEMEtCMQWEgs6YWF4xhzQ0OpT3fn
-X-Google-Smtp-Source: APXvYqx3aGUyM1GF5W5foMA3Lj4AuBXZNTo41YSuB/rKWaP4W56Bea1jGz67VUSMZYAXEX3QgsSalw==
-X-Received: by 2002:a17:902:b690:: with SMTP id c16mr4325632pls.320.1579882259540;
-        Fri, 24 Jan 2020 08:10:59 -0800 (PST)
-Received: from ?IPv6:2601:202:4180:a5c0:c529:ee5d:f9be:6846? ([2601:202:4180:a5c0:c529:ee5d:f9be:6846])
-        by smtp.gmail.com with ESMTPSA id w20sm6892091pfi.86.2020.01.24.08.10.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 24 Jan 2020 08:10:59 -0800 (PST)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
- "bitbake-devel@lists.openembedded.org"
- <bitbake-devel@lists.openembedded.org>,
- Patches and discussions about the oe-core layer
- <openembedded-core@lists.openembedded.org>
-From: "akuster" <akuster808@gmail.com>
-Subject: Zeus /1.44 call for patches
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
- Jmd71vHMw+coBetWC3lk+IKjX815Ox0puYXQVRRtI+yMCgd6ib3oGxoQ8tCMwhf9c9/aKjaz
- mP97lWgGHbiEVsDpjzmMZGlJ6pDVZzxykkJExKaosE46AcA8KvfhRQg5zRyYBtinzs8Zu8AP
- aquZVHNXxPwjKPaSEEYqQjFeiNgFTavV+AhM2dmPmGUWCX9RZisrqA4slGwEB0srMdFf12Zg
- mD35Y9jZ80qpu5LPtJCFcsaAlebqR+dg36pIpiRR+olhN1wmC6LYP1vw6uMEYBjkTa2Rnb6+
- C4FDzCJD4UCrUvLMNeTW810DY0bjMMj3SfmSGSfQUssaaaTXCVlLGuGxyCr/kza1rHaXMKum
- Ek4EFj1fyn7AfkSLEHfJfY4sO1tpgigvs4eD/4ZSQEXSu/TjVvyKx4EvUbhlGMRyH2CPwD/H
- 7DFF8tcVtJvCwUUW+zKtjxjSSLrhniNMXAOQJZ6CdaqCe4OyJQT5aRdr+FWbBRjpaRCCf5nf
- dTc88NMU9PrBT3vu0QJ5WNPO6MJpnb+d8iMNLZAz8tv8JMm2l+sMcNKSJ6lhX8peoBsfMVqc
- FgiykEO0fUt7DCbUYR5tLjM/3E5tHvTjMooVJyOxoufVLYtTtQARAQABzSFha3VzdGVyODA4
- IDxha3VzdGVyODA4QGdtYWlsLmNvbT7CwX0EEwEIACcFAlnlUP4CGyMFCQlmAYAFCwkIBwIG
- FQgJCgsCBBYCAwECHgECF4AACgkQ7ou0mfRW5/kuhRAAlR2FTq5572jrX5nnPR7AqI2bvSVb
- vqGLlvv739WhghvagbC+tu05QguopAhWW1/DcHK2+QtfIoC9UZrSW4RaO0CCo5sPjqK7l1KT
- ngWX/rGjF6xTF2QN0U/btcpMyVN2CNtVLwsDF9e+GHKoUcnFkP+JP8vHGokN9k6E/c97hLaL
- IJPeKl8LZXc2Efk+MaW1NXkfDJdcp/p+voajbihSQO6OZ/o+x9d2I3ZybKfTZ71+ek5Hxzjz
- g6KkMOI7KJjlmBlrQFAtVbS+CFAKrwkYznE6ggkcmGv3N7DeUBTUR78hf+EZEAM+ajeLMtrG
- rXE00pIb+gLGYPZxba5pCdQ+qWUW38qi9UnIRPm6fq7Ypx1r6XwJvbgCOkhbxo3D4YUdyC0b
- FE9lgrg8htbc9in4j2+hVI6ALswNjLprzXdzdKrd+T3Egx36o3Z/qrYsW2o5/A5sVvvASVKi
- wRPuEKhEhfmiHUPLvuKqhMoymHaz3fg5D2Q8G0gSDkLgeEpAjiWqf4+AGLx+MSDai7DSOsmI
- t61kWxs7cFTB32UrB/TDoVNn3Fm88ZFQpA/bngikE9jgEm045mSY86fNlbFj2mcCd0Ha1i1n
- aYc97RpgfjNMWyHDVHOGrNg/hJjkGa5RsAXkfyBwltHRw0Hj4urUQ3rr8um8PLe43SezPwXA
- oRoyDxDOwU0EWeVQ/gEQALNHwj5VSPdnvXy1RXUuH+rclMx4x8zaqDyY0YqHfA7b/d8Y0VAt
- Y6YpzDeFTwD8A0Wfb7kZ2mlDIE6ODCB71uT/E3C6b+FiiN+lgzslznjUW+9l8ddDhRrC8HMG
- 37vrXF5h++PTXUKEKUlkDib1w093tu3mlJXUvIAzl8CEHkptF6Br0L9XxFwuWoNUfjT9IorQ
- 0SVIhvq5PhVAITXUD5fD7/N8B4TYegmHFRo1UaaKSnSHwlJJkzKpeWOH8QTYrP0RHxX86Obv
- IZuwbAo3F3oojcvLJt9NxWnbEmEALkleklLZnukgu7q5Wp1VDwhUbMFTLb6qmnBa/Xi30uOk
- 0l1TMHDbeQswvQDOZBAMukSRqyBetKxQ3iTfZ/3z1ubQRcVDbVlMDScSHQq0LK3F9yMOMM/6
- 0QPqJjl13xn/+Bn7WJiAIXXwzAV7uo6i0khFfjDtCDQ40aeffqOLxp1yMLkc3EKJGcQ5F6O2
- ycEf4QXCYUbMXjxB0EJB8y7z+xOi5Mmd/pPlVmZ2gQK84NAL90p7n7jRlyf3gOUY+JOl4c5e
- UFiIhOzmuqNrvPOiZ02GXh6SGUU5y7IgSoIKvXSFgHAn2OG/tcspBmkyv6IuNVpmbmEgYn4I
- Rnt40UXVQkxTh0dENFhk2cjunMYozV/OqYCgmZLFSeJd8kAo4yn+yOtNABEBAAHCwWUEGAEI
- AA8FAlnlUP4CGwwFCQlmAYAACgkQ7ou0mfRW5/nNcg//R63cbOS6zLtvdnPub3Ssp1Ft8Wmv
- mni+kccuNApuDV7d63QckYxjAfUv2zYMLpbh87gVbLyCq9ASn552EbfRhTvHdk44CgbHBVcI
- ZBEdZWgRR5ViJakQSYHpP2e5AGNFnx9gSIuRTaa5rvZM+4xeoZ2vJiq93TtaYPr7UFNfK+c4
- vv4C66lkt9l95/I10eSc3RqbOKZW47emlg4X3ygEoB9k2lPrpspyf6sUuSEi0WrlSxoLAr6p
- JG8rTUErYNeXe6JCdL31odDx1Dh5sdKIj2RicUYZNilxu9f1M7jZwf2ra1FGAlKj2ybqmgpZ
- EFteaiCinEYsvDyZyOiWHjAFI+RZIPQQL3AnVp4l7wYD3r9hnqYPww0slyMDcb9262RoFkHq
- dDwxPYarrNjWUpOzxB6bFxOgNRdCTgvQl8Ftk8a/yXB6vHeUSm1vPFCBxQPZytyfOLhEWm0J
- /mkVL0Z6iRK3p1LKnpLYCS4/esL2u7RrhPyCs2SsL58YcQF/g+PpeT9geZ+oyZ/4IQ+TWJoU
- PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
- ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
- 8CS2NxU=
-Message-ID: <95e2150e-8330-df7e-4a41-1e564d24400a@gmail.com>
-Date: Fri, 24 Jan 2020 08:10:57 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+ dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: mark.asselstine@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 00OGOu1I010798
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
+	Fri, 24 Jan 2020 08:25:06 -0800
+Received: from yow-masselst-lx1.localnet (128.224.60.80) by
+ ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+ 14.3.468.0; Fri, 24 Jan 2020 08:24:45 -0800
+From: "Mark Asselstine" <mark.asselstine@windriver.com>
+To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+        Khem Raj
+	<raj.khem@gmail.com>,
+        Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: [yocto] generate initramfs for raspberry pi
+Date: Fri, 24 Jan 2020 11:24:44 -0500
+Message-ID: <2977608.IAVaRli8pb@yow-masselst-lx1>
+Organization: Wind River
+In-Reply-To: <96d5c83f321046a5b158c8e7a4322abd@sakuraus.com>
+References: <61f1edc4d6184022a55eb1feeff1263a@sakuraus.com> <15EC9C2A5A8A010E.12201@lists.yoctoproject.org> <96d5c83f321046a5b158c8e7a4322abd@sakuraus.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
+Content-Type: text/plain; charset="UTF-8"
 
-Apologies for cross posting.
+On Thursday, January 23, 2020 5:29:14 P.M. EST Greg Wilson-Lindberg wrote:
+> > -----Original Message-----
+> > From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
+> > Behalf Of Greg Wilson-Lindberg
+> > Sent: Thursday, January 23, 2020 11:54 AM
+> > To: Mark Asselstine <mark.asselstine@windriver.com>;
+> > yocto@lists.yoctoproject.org
+> > Cc: Khem Raj <raj.khem@gmail.com>; Yocto list discussion
+> > <yocto@yoctoproject.org>
+> > Subject: Re: [yocto] generate initramfs for raspberry pi
+> >=20
+> > Hi Mark, and also Khem (sorry for the miss-spelling of your name),
+> >=20
+> > > -----Original Message-----
+> > > From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
+> > > Behalf Of Mark Asselstine
+> > > Sent: Thursday, January 23, 2020 11:37 AM
+> > > To: yocto@lists.yoctoproject.org; Greg Wilson-Lindberg
+> > > <GWilson@sakuraus.com>
+> > > Cc: Khem Raj <raj.khem@gmail.com>; Yocto list discussion
+> > > <yocto@yoctoproject.org>
+> > > Subject: Re: [yocto] generate initramfs for raspberry pi
+> > >=20
+> > > On Thursday, January 23, 2020 2:24:27 P.M. EST Khem Raj wrote:
+> > > > On Thu, Jan 23, 2020 at 11:16 AM Greg Wilson-Lindberg
+> > > >=20
+> > > > <GWilson@sakuraus.com> wrote:
+> > > > > Hi Kem,
+> > > > > I had figured out your suggestions, my problem is how do I
+> > > > > generate the "<your-image>" image in:
+> > > > >=20
+> > > > > INITRAMFS_IMAGE_rpi =3D "<your-image>"
+> > > > >=20
+> > > > > I need a recipe for the image and a way to get Yocto to build it
+> > > > > when I build the rest of my image. Maybe specifying the name will
+> > > > > build it, but I still need a recipe for the image.
+> > > >=20
+> > > > Depends what your needs are, its not clear what you want from this
+> > > > initramfs image.
+> > > > is it something you want to do some preboot stuff and pivot into
+> > > > final image during boot or do you want your full userspace to be
+> > > > running in it for second case Just use your image if you want that
+> > > > to be bundled in and build bitbake virtual/kernel it will get you
+> > > > single kernel image with everything in it.
+> > > >=20
+> > > > for first case. define a new image perhaps a derivative of
+> > > > core-image-minimal and use that
+> > >=20
+> > > There are two useful starting points,
+> > > openembedded-core/meta/recipes-core/images/core-image-minimal-
+> > > initramfs.bb
+> > > openembedded-core/meta/recipes-core/images/core-image-tiny-
+> > > initramfs.bb
+> > >=20
+> > > Both do not have
+> > > COMPATIBLE_HOST =3D "(i.86|x86_64).*-linux"
+> > >=20
+> > > In the end you will most likely want to customize your image as Khem
+> > > says, so just start by copying one of these and start making
+> > > adjustments.
+> > > Alternatively you can do something like the following in your
+> > > local.conf to overcome this:
+> > > COMPATIBLE_HOST_pn-core-image-tiny-initramfs =3D "aarch64-poky-linux"
+>=20
+> The core-image-tiny-initramfs.bb does have the COMPATIBLE_HOST =3D
+> "(i.86|x86_64).*-linux" line in it, this requires a x86 architecture. I
+> ended up copying the file and deleting the COMPATIBLE_HOST line.
+>=20
+> When I do that I get the following error:
+>  * Problem 1/1:
+>  *   - nothing provides busybox-mdev needed by
+> initramfs-live-boot-tiny-1.0-r12.raspberrypi4
+>=20
+> What do I need to do to get busybox-mdev built for this image? Can I just
+> add an IMAGE_INSTALL +=3D "busybox-mdev" for it?
+>=20
 
-The next zeus dot release is scheduled to be built on Feb 3.
+This is being pulled in via initramfs-live-boot-tiny which core-image-tiny-
+initramfs.bb pulls in using
 
-Please submit patches or backport requests to the list(s) by Jan 30th.
+PACKAGE_INSTALL =3D "initramfs-live-boot-tiny..."
 
-Regards,
-Armin
+Looking at initramfs-live-boot-tiny_1.0.bb you will see, RDEPENDS_${PN} =3D=
+=20
+"busybox-mdev"
+
+You also end up with VIRTUAL-RUNTIME_dev_manager=3D"busybox-mdev"
+
+So you have two options. If you already have your own image and you aren't=
+=20
+using core-image-tiny-initramfs you can drop the use of initramfs-live-boot-
+tiny and use your own 'init' script.
+
+Or you can configure busybox to include mdev. Create a busybox_%.bbappend a=
+nd=20
+do=20
+SRC_URI +=3D "file://mdev-fragment.cfg"
+=46ILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
+
+and then create the mdev-fragment.cfg which has
+CONFIG_MDEV =3D y
+
+MarkA
+
+
+
+
+> Regards,
+> Greg
+>=20
+> > I just need something to boot into on the way to the full image. I am
+> > doing
+> > this as a step to bringing up OStree. So maybe setting the
+> > 'COMPATIBLE_HOST' and using core-image-tiny-initramfs will work.
+> >=20
+> > Thanks for the suggestions. I had thought that there must be an initram=
+fs
+> > for the Raspberry Pi with all of the threads about using an initramfs on
+> > the Pi, but I guess that there isn't a separate one.
+> >=20
+> > Best Regards,
+> > Greg
+> >=20
+> > > You will want to determine if this initramfs is going to pivot to the
+> > > 'init' found in the main rootfs, or if you want to simply boot into t=
+he
+> > > 'init' in the initramfs and remain there.
+> > >=20
+> > > Lastly you can either keep the initramfs standalone or have the kernel
+> > > bundle the initramfs. The latter is useful if you want/need to include
+> > > software in the initramfs that is needed to get the disks up and
+> > > running to then get access to the rootfs.
+> > >=20
+> > > Take a look at
+> > > https://www.yoctoproject.org/docs/2.6/ref-manual/ref-manual.html#var-=
+> > > INITRAMFS_FSTYPES
+> > > https://www.yoctoproject.org/docs/2.6/ref-manual/ref-manual.html#var-=
+> > > INITRAMFS_IMAGE
+> > > https://www.yoctoproject.org/docs/2.6/ref-manual/ref-manual.html#var-=
+> > > INITRAMFS_IMAGE_BUNDLE
+> > >=20
+> > > MarkA
+> > >=20
+> > > > > Regards,
+> > > > > Greg
+> > > > >=20
+> > > > > -----Original Message-----
+> > > > > From: Khem Raj <raj.khem@gmail.com>
+> > > > > Sent: Thursday, January 23, 2020 10:56 AM
+> > > > > To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+> > > > > Cc: Yocto list discussion <yocto@yoctoproject.org>
+> > > > > Subject: Re: [yocto] generate initramfs for raspberry pi
+> > > > >=20
+> > > > > On Thu, Jan 23, 2020 at 10:44 AM Greg Wilson-Lindberg
+> > >=20
+> > > <gwilson@sakuraus.com> wrote:
+> > > > > > Hello List,
+> > > > > >=20
+> > > > > > I have not been able to figure out how to generate an initramfs
+> > > > > > image for a raspberry pi build of yocto. I=E2=80=99ve searched =
+it web
+> > > > > > and have not found anything that mentions generating the actual
+> > > > > > image, lots of hits on how to configure using the initramfs, but
+> > > > > > not on generating it. Is there a standard recipe for a raspberry
+> > > > > > pi initramfs and how would I enable its generation, or maybe I=
+=E2=80=99m
+> > > > > > just
+> > >=20
+> > > being clueless.
+> > >=20
+> > > > > > I=E2=80=99m running on a boot2qt build of yocto based on Qt v5.=
+14.0 that
+> > > > > > uses warrior and I=E2=80=99m targeting an RPi 4 using u-boot.
+> > > > > >=20
+> > > > > >=20
+> > > > > >=20
+> > > > > > Any help would be greatly appreciated.
+> > > > >=20
+> > > > > try something like below in local.conf
+> > > > >=20
+> > > > > INITRAMFS_IMAGE_BUNDLE_rpi =3D "1"
+> > > > > INITRAMFS_IMAGE_rpi =3D "<your-image>"
+> > > > > # Enlarge boot partition to 1GiB
+> > > > > BOOT_SPACE =3D "1073741"
+> > > > > INITRAMFS_MAXSIZE =3D "315400"
+> > > > > IMAGE_FSTYPES_pn-${INITRAMFS_IMAGE} =3D "${INITRAMFS_FSTYPES}"
+> > > > >=20
+> > > > > > Best regards,
+> > > > > >=20
+> > > > > > Greg Wilson-Lindberg
+
+
+
 
