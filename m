@@ -1,81 +1,59 @@
-Received: from esa3.bmw.c3s2.iphmx.com (esa3.bmw.c3s2.iphmx.com [68.232.133.150])
- by mx.groups.io with SMTP id smtpd.web11.10836.1579858902911827525
+Received: from mga06.intel.com (mga06.intel.com [134.134.136.31])
+ by mx.groups.io with SMTP id smtpd.web12.11301.1579863255147213429
  for <yocto@lists.yoctoproject.org>;
- Fri, 24 Jan 2020 01:41:43 -0800
+ Fri, 24 Jan 2020 02:54:15 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bmw.de header.s=mailing1 header.b=h/05RYDK;
- spf=pass (domain: bmw.de, ip: 68.232.133.150, mailfrom: prvs=285a5178a=mikko.rapeli@bmw.de)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-  t=1579858903; x=1611394903;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=Tgj4vYklPwc1DpGyDG3QrSrKMWQmlTSFiwXIaB+EAKs=;
-  b=h/05RYDKKJM/nmEx8xErC8/AjAlb5sGzJtvDRdnXIVS6Ttm+W8TeGmR3
-   qfL/V6wMhZHvnpY/ZnJN2pldSKb/2HeOoankcd6CkCbS8k+CfWRszcEG7
-   UnrFNsmNv0Kz1eGkX9OOqjbYYDZW79K8KFKQBe0QK/kODEvbS0Kfro4Co
-   Q=;
-IronPort-SDR: HuMZG+BSy20MlueFiV6chckFbvEYaIeD1lEruwiqwxK2cU2IOa+ZoiKA1i3Qie3uCDkfGQNGDD
- gYEuZO0LC0U8NDl3UNQQXynsVyIcmWAPhic19/h3kAVDTQLRvsMXpUQo/QfqO4frQD1JFDaoDu
- kWXJhkOQ/0lTIBUk6DOnkpZOb6aBlsTInhp68huY9hXOvkMJWUW3Orp5emzer4k7jkAumS07wj
- tmMbfBo1Q4JcAmAyslpLmw3YT8z8FkfKPdQ+9J4ovdsrQ9n5KQaOvwOteUUNgW1fXvouHE9gvF
- BCU=
-Received: from esagw4.bmwgroup.com (HELO esagw4.muc) ([160.46.252.39]) by
- esa3.bmw.c3s2.iphmx.com with ESMTP/TLS; 24 Jan 2020 10:41:29 +0100
-Received: from esabb3.muc ([160.50.100.30])  by esagw4.muc with ESMTP/TLS;
- 24 Jan 2020 10:41:28 +0100
-Received: from smucm10j.bmwgroup.net (HELO smucm10j.europe.bmw.corp) ([160.48.96.46])
- by esabb3.muc with ESMTP/TLS; 24 Jan 2020 10:41:28 +0100
-Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10j.europe.bmw.corp
- (160.48.96.46) with Microsoft SMTP Server (TLS;
- Fri, 24 Jan 2020 10:41:27 +0100
-Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
- smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Fri,
- 24 Jan 2020 10:41:27 +0100
-IronPort-SDR: bEmKD1OwfNpanp09T31d7C5578k4Q3baib9X+As5hx0byMcS6Ct58wr/J7wB0BO+iKRODoNi1V
- 0issY3/bgFQPSQmPztmTRVndWDgYw+Xko=
-From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
-To: <Anders.Montonen@iki.fi>
-CC: <yocto@lists.yoctoproject.org>
+ dkim=missing; spf=pass (domain: intel.com, ip: 134.134.136.31, mailfrom: ross.burton@intel.com)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 24 Jan 2020 02:54:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,357,1574150400"; 
+   d="scan'208";a="260205445"
+Received: from irsmsx108.ger.corp.intel.com ([163.33.3.3])
+  by fmsmga002.fm.intel.com with ESMTP; 24 Jan 2020 02:54:12 -0800
+Received: from irsmsx602.ger.corp.intel.com (163.33.146.8) by
+ IRSMSX108.ger.corp.intel.com (163.33.3.3) with Microsoft SMTP Server (TLS) id
+ 14.3.439.0; Fri, 24 Jan 2020 10:54:12 +0000
+Received: from rochenix-mobl.ger.corp.intel.com (163.33.253.164) by
+ irsmsx602.ger.corp.intel.com (163.33.146.8) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Fri, 24 Jan 2020 10:54:11 +0000
 Subject: Re: [yocto] cve-checker name collisions
-Thread-Topic: [yocto] cve-checker name collisions
-Thread-Index: AQHV0pUEnuBGhBMwSUOiczUy/7OYN6f5fviA
-Date: Fri, 24 Jan 2020 09:41:27 +0000
-Message-ID: <20200124094127.GS104502@korppu>
+To: Anders Montonen <Anders.Montonen@iki.fi>, <yocto@lists.yoctoproject.org>
 References: <alpine.DEB.2.21.2001241057320.4667@lakka.kapsi.fi>
-In-Reply-To: <alpine.DEB.2.21.2001241057320.4667@lakka.kapsi.fi>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
+From: "Ross Burton" <ross.burton@intel.com>
+Organization: Intel Corporation (UK) Ltd. - Co. Reg. #1134945 - Pipers Way,
+ Swindon SN3 1RJ
+Message-ID: <866d4701-b299-dcc8-4541-4da98daeb8ed@intel.com>
+Date: Fri, 24 Jan 2020 10:54:09 +0000
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
+ Gecko/20100101 Thunderbird/68.4.1
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <C5F9E839F4470545990B0AD391C8E158@bmwmail.corp>
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <alpine.DEB.2.21.2001241057320.4667@lakka.kapsi.fi>
+Return-Path: ross.burton@intel.com
+X-Originating-IP: [163.33.253.164]
+X-ClientProxiedBy: irsmsx605.ger.corp.intel.com (163.33.146.138) To
+ irsmsx602.ger.corp.intel.com (163.33.146.8)
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On Fri, Jan 24, 2020 at 11:02:02AM +0200, Anders Montonen wrote:
+On 24/01/2020 09:02, Anders Montonen wrote:
 > Hi,
->=20
-> What's the best way for handling name collisions when using the cve-chec=
-ker
-> tool? For example, there's a ton of Adobe Flex vulnerabilities that are
-> reported against the Flex lexical analyzer generator tool. Whitelisting =
-the
-> individual CVEs would be one option, but the list is pretty long.
+> 
+> What's the best way for handling name collisions when using the 
+> cve-checker tool? For example, there's a ton of Adobe Flex 
+> vulnerabilities that are reported against the Flex lexical analyzer 
+> generator tool. Whitelisting the individual CVEs would be one option, 
+> but the list is pretty long.
 
-Set CVE_PRODUCT to match real NVD product name with possibly vendor too.
+Set CVE_PRODUCT, if you use a colon then you can set the vendor too.
 
-There are a few examples in poky master.
+This specific instance is already fixed in oe-core master:
 
-Cheers,
+# Not Apache Flex, or Adobe Flex, or IBM Flex.
+CVE_PRODUCT = "flex_project:flex"
 
--Mikko
-
-> Regards,
-> Anders Montonen
-
->=20
+Ross
