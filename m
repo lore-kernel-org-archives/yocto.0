@@ -1,110 +1,76 @@
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
- by mx.groups.io with SMTP id smtpd.web10.125.1580077959969466411
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+ by mx.groups.io with SMTP id smtpd.web11.120.1580077961536516077
  for <yocto@lists.yoctoproject.org>;
- Sun, 26 Jan 2020 14:32:40 -0800
+ Sun, 26 Jan 2020 14:32:41 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=FheJykD0;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.51, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f51.google.com with SMTP id y11so8759443wrt.6
-        for <yocto@lists.yoctoproject.org>; Sun, 26 Jan 2020 14:32:39 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=CAmlRfsD;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.46, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f46.google.com with SMTP id y17so8764073wrh.5
+        for <yocto@lists.yoctoproject.org>; Sun, 26 Jan 2020 14:32:41 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
-        h=from:to:subject:date:message-id:mime-version
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
          :content-transfer-encoding;
-        bh=UkXI50b+kI+iLIaTHYn8gt2yD2Mvdp0RiFfGzwUnfyk=;
-        b=FheJykD0lVBKuBJsuQtqcib11ZqLniFLN2f3VbiY/oLBh4aIv9TDIYvOQ6+XxvALFB
-         wH6RT6Pj99fMT27Jc35FPMKjBu5IH6KKYaQ7QBJAFstl7/WmsVyiQ+tvg08DiYSKTO3r
-         gKZ6Hbw594vyLNl2ikq9Puwudq/bXd0SgaWC4=
+        bh=DcE+bcDYamiZ7EcTUJqcwCXvzODAYVHufxSuPtX1wHE=;
+        b=CAmlRfsDezr/8c+7TLrVTmV298m5ixspumvDaMKHc15BPauYEsljEqO5oeCeF/Y+DD
+         OgN45Tj1WngPGdhPEs4NvwHoYK5L3fHtMLQUpJSgg0RY2kAf7l8UDjZpvFbVVwBH6azx
+         Mp+Oi9ZRIZJhZF+quPeAWtKwhovRDGALkS9b8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=UkXI50b+kI+iLIaTHYn8gt2yD2Mvdp0RiFfGzwUnfyk=;
-        b=LnqP3fWShU5hLljVMovCONd04KyRZhZ6KFJVBVjcf+pm7fheGIt29FnqnmrmnNP579
-         94M5TNmQoCvLctZa9SpWwO6oAzWU+27gZrl41ttDxM7X+E0KNm3+ziG1sHxDQtRjx6Q8
-         0TfV3XsGxR0wvgiG9fUMsCLgOhkcRmbBS6yKI602x8og/4KnXQLLKMUYgsig5/vG6YiP
-         j4ULvJZ62mFDaQtZeBahtx1j2e4qeFDZlLyF7KG5gLq1ddiwFXMMV4yaabZs/mR0AsrH
-         bVXHzq5cp3zolaveqKliLVB0lFPAzJPTr3KOTEn7CiGEnNm8whJLR9NMba7nDmWRC+tR
-         p2yQ==
-X-Gm-Message-State: APjAAAVMSA9bIcSRfPjVZh/qf+X9F/gpgOiI9djXPTWMVjS/6MfKXWBD
-	vSehoIpsknX07Bd5MTfYTFoeKUzUsEo=
-X-Google-Smtp-Source: APXvYqw6YzQGyqsjGh5CtNj1blsaFn+3Uicitt3ACLzZLcyGYVKlJoOR+/fNsSQ++x4Va3IXmxBocw==
-X-Received: by 2002:adf:f80b:: with SMTP id s11mr18787435wrp.12.1580077958071;
-        Sun, 26 Jan 2020 14:32:38 -0800 (PST)
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=DcE+bcDYamiZ7EcTUJqcwCXvzODAYVHufxSuPtX1wHE=;
+        b=Lz9Zph5HiVv1gbnCya7NrdF0cwv5LXaFd48frJo/UcDRIii6Kl1Dv6+52kUMOTizOY
+         A44u6Ou7bsmokbt9mHER1uoJRIt6IaxU7+Kdd4SUglzXyyVSBD8YLFoysn1Rbz59QClQ
+         9OuNee9kwW8+zNDz8F7N2pZTT4z+ZOoIM1wEsVppeCT1mG75JaAFSWInVW4dj9F2SNvV
+         YjKNAmQn/mP75FJh/x5UzJYqQ2Jjch/8OLmk4RBZ0R/4asv7M6O4p953KqcB8o+f/dZZ
+         dTSzD3/GbIQ1/gXpF8+H+CK7MleSyaMy1YOlPIHOp7PCXDfxhxL81l/WKbYRzYN64Ngl
+         CbGQ==
+X-Gm-Message-State: APjAAAVivShDXgyqdVafStxbDTHJY0v46TLxK/viWewcZyxV972zHxES
+	p8PQ1MPuAU3MJWxEu7przft1RxZKji4=
+X-Google-Smtp-Source: APXvYqxwZcYBTVHPHsny+E/wWAVS8gc9ARkbFVuU0w/KJT+NcaSGrD+TV1mC9h3pz4oi2xQqWCJMUw==
+X-Received: by 2002:a05:6000:1241:: with SMTP id j1mr17229959wrx.26.1580077959936;
+        Sun, 26 Jan 2020 14:32:39 -0800 (PST)
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: from hex.int.rpsys.net (5751f4a1.skybroadband.com. [87.81.244.161])
-        by smtp.gmail.com with ESMTPSA id h8sm19910939wrx.63.2020.01.26.14.32.36
+        by smtp.gmail.com with ESMTPSA id h8sm19910939wrx.63.2020.01.26.14.32.38
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Jan 2020 14:32:37 -0800 (PST)
+        Sun, 26 Jan 2020 14:32:39 -0800 (PST)
 From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
-Subject: [PATCH 1/2] native/cross/nativesdk: Drop obsolete do_populate_sysroot[stamp-extra-info]
-Date: Sun, 26 Jan 2020 22:32:33 +0000
-Message-Id: <20200126223234.21589-1-richard.purdie@linuxfoundation.org>
+Subject: [PATCH 2/2] l3afpad: Add missing mime-xdg inherit
+Date: Sun, 26 Jan 2020 22:32:34 +0000
+Message-Id: <20200126223234.21589-2-richard.purdie@linuxfoundation.org>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200126223234.21589-1-richard.purdie@linuxfoundation.org>
+References: <20200126223234.21589-1-richard.purdie@linuxfoundation.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-With recipe specific sysroot, these settings do nothing. Drop
-the obsolete code.
+Fixes:
+WARNING: l3afpad-0.8.18.1.11+gitAUTOINC+3cdccdc950-r0 do_package_qa: QA Issue:
+package contains desktop file with key 'MimeType' but does not inhert mime-xdg:
+l3afpad path 'XXX/packages-split/l3afpad/usr/share/applications/l3afpad.desktop' [mime-xdg]
 
 Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 ---
- meta/classes/cross.bbclass     | 1 -
- meta/classes/crosssdk.bbclass  | 1 -
- meta/classes/native.bbclass    | 1 -
- meta/classes/nativesdk.bbclass | 1 -
- 4 files changed, 4 deletions(-)
+ meta/recipes-sato/l3afpad/l3afpad_git.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta/classes/cross.bbclass b/meta/classes/cross.bbclass
-index 6dcddd6f2e6..bfec91d0433 100644
---- a/meta/classes/cross.bbclass
-+++ b/meta/classes/cross.bbclass
-@@ -70,7 +70,6 @@ libdir = "${exec_prefix}/lib/${CROSS_TARGET_SYS_DIR}"
- libexecdir = "${exec_prefix}/libexec/${CROSS_TARGET_SYS_DIR}"
+diff --git a/meta/recipes-sato/l3afpad/l3afpad_git.bb b/meta/recipes-sato/l3afpad/l3afpad_git.bb
+index 8906c748eda..6fdcc3e392c 100644
+--- a/meta/recipes-sato/l3afpad/l3afpad_git.bb
++++ b/meta/recipes-sato/l3afpad/l3afpad_git.bb
+@@ -17,7 +17,7 @@ SRCREV ="3cdccdc9505643e50f8208171d9eee5de11a42ff"
  
- do_populate_sysroot[sstate-inputdirs] = "${SYSROOT_DESTDIR}/${STAGING_DIR_NATIVE}/"
--do_populate_sysroot[stamp-extra-info] = ""
- do_packagedata[stamp-extra-info] = ""
+ S = "${WORKDIR}/git"
  
- do_install () {
-diff --git a/meta/classes/crosssdk.bbclass b/meta/classes/crosssdk.bbclass
-index c0c0bfee16a..c718a09025d 100644
---- a/meta/classes/crosssdk.bbclass
-+++ b/meta/classes/crosssdk.bbclass
-@@ -37,7 +37,6 @@ target_prefix = "${SDKPATHNATIVE}${prefix_nativesdk}"
- target_exec_prefix = "${SDKPATHNATIVE}${prefix_nativesdk}"
- baselib = "lib"
+-inherit autotools pkgconfig features_check
++inherit autotools pkgconfig features_check mime-xdg
  
--do_populate_sysroot[stamp-extra-info] = ""
- do_packagedata[stamp-extra-info] = ""
+ ANY_OF_DISTRO_FEATURES = "${GTK3DISTROFEATURES}"
  
- # Need to force this to ensure consitency across architectures
-diff --git a/meta/classes/native.bbclass b/meta/classes/native.bbclass
-index 3a4f572552e..08106e345ca 100644
---- a/meta/classes/native.bbclass
-+++ b/meta/classes/native.bbclass
-@@ -191,7 +191,6 @@ do_addto_recipe_sysroot[deptask] = "do_populate_sysroot"
- inherit nopackages
- 
- do_packagedata[stamp-extra-info] = ""
--do_populate_sysroot[stamp-extra-info] = ""
- 
- USE_NLS = "no"
- 
-diff --git a/meta/classes/nativesdk.bbclass b/meta/classes/nativesdk.bbclass
-index 03135acedc0..7b757107267 100644
---- a/meta/classes/nativesdk.bbclass
-+++ b/meta/classes/nativesdk.bbclass
-@@ -107,7 +107,6 @@ python () {
- addhandler nativesdk_virtclass_handler
- nativesdk_virtclass_handler[eventmask] = "bb.event.RecipePreFinalise"
- 
--do_populate_sysroot[stamp-extra-info] = ""
- do_packagedata[stamp-extra-info] = ""
- 
- USE_NLS = "${SDKUSE_NLS}"
 -- 
 2.20.1
 
