@@ -1,76 +1,110 @@
-Received: from mail-lf1-f68.google.com (mail-lf1-f68.google.com [209.85.167.68])
- by mx.groups.io with SMTP id smtpd.web12.1186.1580071568817397669
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+ by mx.groups.io with SMTP id smtpd.web10.125.1580077959969466411
  for <yocto@lists.yoctoproject.org>;
- Sun, 26 Jan 2020 12:46:09 -0800
+ Sun, 26 Jan 2020 14:32:40 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=GIDFVPXQ;
- spf=pass (domain: gmail.com, ip: 209.85.167.68, mailfrom: jonatan.p@gmail.com)
-Received: by mail-lf1-f68.google.com with SMTP id y19so4811765lfl.9
-        for <yocto@lists.yoctoproject.org>; Sun, 26 Jan 2020 12:46:08 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=FheJykD0;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.51, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f51.google.com with SMTP id y11so8759443wrt.6
+        for <yocto@lists.yoctoproject.org>; Sun, 26 Jan 2020 14:32:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
+        d=linuxfoundation.org; s=google;
+        h=from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=i64kaUjcmgPMGtA8/ij46isMxSJCM4Ipgd3m0uIg/nI=;
-        b=GIDFVPXQ5rWxdfwb0xuVol0JRKui/oLf/V3B42xdhdZczBbapN3Z8cOlSOY+SMNou9
-         8xeXlzA2FeOBKgBnhqwsdi3EDdTrOEhpeO1S17RebGszaj9+qdBrrzrm84sRE+VxnJpm
-         lJ9wigvqLBjyPbCxFbwwG51yMf/mqV3IWiW3p0WoMMHqPdUSBxW5kUlu7J011BFyS7zw
-         VMbsxA/A8gdfzXKTQ9UOtDOjohLBf9S8mIdCq8EMY1PXH/GCq4Zp36EOBIdp4/rHi/ND
-         EQyx8tCZKMSeXLYxlDePmY+HsmqVUYTY7AGFWWQHGiHIk1I4glK71yHIsOph+Js/KTLd
-         XVHg==
+        bh=UkXI50b+kI+iLIaTHYn8gt2yD2Mvdp0RiFfGzwUnfyk=;
+        b=FheJykD0lVBKuBJsuQtqcib11ZqLniFLN2f3VbiY/oLBh4aIv9TDIYvOQ6+XxvALFB
+         wH6RT6Pj99fMT27Jc35FPMKjBu5IH6KKYaQ7QBJAFstl7/WmsVyiQ+tvg08DiYSKTO3r
+         gKZ6Hbw594vyLNl2ikq9Puwudq/bXd0SgaWC4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=i64kaUjcmgPMGtA8/ij46isMxSJCM4Ipgd3m0uIg/nI=;
-        b=nrqPm30huxCkV7MSQPLyFY9ogwhvfHkmTO6WcjjG8WA/oYA6rVI03U0UkYcFnSC7LY
-         lsQrITDtmr84yPe7cPgpXVkDMfcg2QZO5QcsNHmTOrEFmWwOO20ZVGV4JCQb/X/mWyJM
-         Aff8qIn/73RuFwybJPOkWqaW/vwjObMBqy40Z38GWpLBgrbLy6vhWAnxKmmlKjRHjM4X
-         s0w5QiGnatFNECnX6O+ZApNhO3zSDXzS+5LfuEhJr/SYjtaBQwQNrs8KDmJk6KwpDTfD
-         Vr+gMxyR5WDaZjGZnDLlYZLSHLFjLchuWawYygSxJXjyr2vOP4/9i2QG1oTM+uweKvAg
-         qz8w==
-X-Gm-Message-State: APjAAAUV3uTC/UC67OBIujMOgkIbjebbgYkXGMGThdjHJlkFKTcpwZuS
-	vj5xowI2KOsAtA0qJVgIuTk3jX8g/pY=
-X-Google-Smtp-Source: APXvYqyZXemltwpKXQBNwV2x2hOM5+eYnDlgPw0dx6lnc1Kts6sgo7lQkwYM2LJBLQobFlsqYge8cw==
-X-Received: by 2002:ac2:54b4:: with SMTP id w20mr6155031lfk.67.1580071566624;
-        Sun, 26 Jan 2020 12:46:06 -0800 (PST)
-Return-Path: <jonatan.p@gmail.com>
-Received: from desktop.lan (h-217-237.A357.priv.bahnhof.se. [81.170.217.237])
-        by smtp.gmail.com with ESMTPSA id v5sm7031332ljk.67.2020.01.26.12.46.05
+        bh=UkXI50b+kI+iLIaTHYn8gt2yD2Mvdp0RiFfGzwUnfyk=;
+        b=LnqP3fWShU5hLljVMovCONd04KyRZhZ6KFJVBVjcf+pm7fheGIt29FnqnmrmnNP579
+         94M5TNmQoCvLctZa9SpWwO6oAzWU+27gZrl41ttDxM7X+E0KNm3+ziG1sHxDQtRjx6Q8
+         0TfV3XsGxR0wvgiG9fUMsCLgOhkcRmbBS6yKI602x8og/4KnXQLLKMUYgsig5/vG6YiP
+         j4ULvJZ62mFDaQtZeBahtx1j2e4qeFDZlLyF7KG5gLq1ddiwFXMMV4yaabZs/mR0AsrH
+         bVXHzq5cp3zolaveqKliLVB0lFPAzJPTr3KOTEn7CiGEnNm8whJLR9NMba7nDmWRC+tR
+         p2yQ==
+X-Gm-Message-State: APjAAAVMSA9bIcSRfPjVZh/qf+X9F/gpgOiI9djXPTWMVjS/6MfKXWBD
+	vSehoIpsknX07Bd5MTfYTFoeKUzUsEo=
+X-Google-Smtp-Source: APXvYqw6YzQGyqsjGh5CtNj1blsaFn+3Uicitt3ACLzZLcyGYVKlJoOR+/fNsSQ++x4Va3IXmxBocw==
+X-Received: by 2002:adf:f80b:: with SMTP id s11mr18787435wrp.12.1580077958071;
+        Sun, 26 Jan 2020 14:32:38 -0800 (PST)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from hex.int.rpsys.net (5751f4a1.skybroadband.com. [87.81.244.161])
+        by smtp.gmail.com with ESMTPSA id h8sm19910939wrx.63.2020.01.26.14.32.36
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Jan 2020 12:46:05 -0800 (PST)
-From: jonatan.p@gmail.com
+        Sun, 26 Jan 2020 14:32:37 -0800 (PST)
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
 To: yocto@lists.yoctoproject.org
-Cc: srifenbark@gmail.com,
-	=?UTF-8?q?Jonatan=20P=C3=A5lsson?= <jonatan.p@gmail.com>
-Subject: [yocto-docs][PATCH] dev-manual: Fix typo in note box, in section 3.2.4
-Date: Sun, 26 Jan 2020 21:44:29 +0100
-Message-Id: <20200126204429.19655-1-jonatan.p@gmail.com>
-X-Mailer: git-send-email 2.24.1
+Subject: [PATCH 1/2] native/cross/nativesdk: Drop obsolete do_populate_sysroot[stamp-extra-info]
+Date: Sun, 26 Jan 2020 22:32:33 +0000
+Message-Id: <20200126223234.21589-1-richard.purdie@linuxfoundation.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-"inherit packages" should actually be "inherit packagegroup"
+With recipe specific sysroot, these settings do nothing. Drop
+the obsolete code.
 
-Signed-off-by: Jonatan Pålsson <jonatan.p@gmail.com>
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 ---
- documentation/dev-manual/dev-manual-common-tasks.xml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ meta/classes/cross.bbclass     | 1 -
+ meta/classes/crosssdk.bbclass  | 1 -
+ meta/classes/native.bbclass    | 1 -
+ meta/classes/nativesdk.bbclass | 1 -
+ 4 files changed, 4 deletions(-)
 
-diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
-index 1e6addde4..ff53e0c9d 100644
---- a/documentation/dev-manual/dev-manual-common-tasks.xml
-+++ b/documentation/dev-manual/dev-manual-common-tasks.xml
-@@ -1397,7 +1397,7 @@
-                 package specified in the <filename>PACKAGES</filename>
-                 statement.
-                 <note>
--                    The <filename>inherit packages</filename> should be
-+                    The <filename>inherit packagegroup</filename> should be
-                     located near the top of the recipe, certainly before
-                     the <filename>PACKAGES</filename> statement.
-                 </note>
+diff --git a/meta/classes/cross.bbclass b/meta/classes/cross.bbclass
+index 6dcddd6f2e6..bfec91d0433 100644
+--- a/meta/classes/cross.bbclass
++++ b/meta/classes/cross.bbclass
+@@ -70,7 +70,6 @@ libdir = "${exec_prefix}/lib/${CROSS_TARGET_SYS_DIR}"
+ libexecdir = "${exec_prefix}/libexec/${CROSS_TARGET_SYS_DIR}"
+ 
+ do_populate_sysroot[sstate-inputdirs] = "${SYSROOT_DESTDIR}/${STAGING_DIR_NATIVE}/"
+-do_populate_sysroot[stamp-extra-info] = ""
+ do_packagedata[stamp-extra-info] = ""
+ 
+ do_install () {
+diff --git a/meta/classes/crosssdk.bbclass b/meta/classes/crosssdk.bbclass
+index c0c0bfee16a..c718a09025d 100644
+--- a/meta/classes/crosssdk.bbclass
++++ b/meta/classes/crosssdk.bbclass
+@@ -37,7 +37,6 @@ target_prefix = "${SDKPATHNATIVE}${prefix_nativesdk}"
+ target_exec_prefix = "${SDKPATHNATIVE}${prefix_nativesdk}"
+ baselib = "lib"
+ 
+-do_populate_sysroot[stamp-extra-info] = ""
+ do_packagedata[stamp-extra-info] = ""
+ 
+ # Need to force this to ensure consitency across architectures
+diff --git a/meta/classes/native.bbclass b/meta/classes/native.bbclass
+index 3a4f572552e..08106e345ca 100644
+--- a/meta/classes/native.bbclass
++++ b/meta/classes/native.bbclass
+@@ -191,7 +191,6 @@ do_addto_recipe_sysroot[deptask] = "do_populate_sysroot"
+ inherit nopackages
+ 
+ do_packagedata[stamp-extra-info] = ""
+-do_populate_sysroot[stamp-extra-info] = ""
+ 
+ USE_NLS = "no"
+ 
+diff --git a/meta/classes/nativesdk.bbclass b/meta/classes/nativesdk.bbclass
+index 03135acedc0..7b757107267 100644
+--- a/meta/classes/nativesdk.bbclass
++++ b/meta/classes/nativesdk.bbclass
+@@ -107,7 +107,6 @@ python () {
+ addhandler nativesdk_virtclass_handler
+ nativesdk_virtclass_handler[eventmask] = "bb.event.RecipePreFinalise"
+ 
+-do_populate_sysroot[stamp-extra-info] = ""
+ do_packagedata[stamp-extra-info] = ""
+ 
+ USE_NLS = "${SDKUSE_NLS}"
 -- 
-2.24.1
+2.20.1
 
