@@ -1,12 +1,12 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.10588.1579994946138053130
+ by mx.groups.io with SMTP id smtpd.web10.15163.1580035470139394699
  for <yocto@lists.yoctoproject.org>;
- Sat, 25 Jan 2020 15:29:06 -0800
+ Sun, 26 Jan 2020 02:44:30 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=fisaWACf;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=hUt1PZBy;
  spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E0EAE01548; Sat, 25 Jan 2020 15:29:05 -0800 (PST)
+	id 62A24E015C2; Sun, 26 Jan 2020 02:44:29 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -20,104 +20,60 @@ X-Spam-HAM-Report:
 	*      (jupiter.hce[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.166.42 listed in list.dnswl.org]
+	*      [209.85.166.41 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31B1AE00CA1
-	for <yocto@yoctoproject.org>; Sat, 25 Jan 2020 15:29:02 -0800 (PST)
-Received: by mail-io1-f42.google.com with SMTP id t26so5971095ioi.13
-        for <yocto@yoctoproject.org>; Sat, 25 Jan 2020 15:29:02 -0800 (PST)
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3383FE01447
+	for <yocto@yoctoproject.org>; Sun, 26 Jan 2020 02:44:28 -0800 (PST)
+Received: by mail-io1-f41.google.com with SMTP id t26so6768158ioi.13
+        for <yocto@yoctoproject.org>; Sun, 26 Jan 2020 02:44:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-         :cc;
-        bh=fxZxzkCJU+UXR6lAkds7ANdK7ycYGb6KDoeraykO5sM=;
-        b=fisaWACfXN1i3tUPnpAvtlYruuhozQHuf2HCtlq4OLP5yeWKqz4DR10kv2G4C8q2tK
-         kPKhlIrjlDy+1nJB4N6kyc9Gzowf6AHD8gNE2FNnzQ8+7oOaeEgaxurl0gPSPU1nhnvt
-         G+uELZBEUemruNTqikfLO7ZaPIxq+dQx9elfiofL63/bou25h1d5fW0VfvBC6OQN13Wg
-         XDzd247WMSplFehkayPxaW++Hfk6gbgZsnG8bxOPPf8eVTQxZvkIYOnqbodmIalJV6LI
-         9l0Nx/OcfEDyviJYM+0r7pOos0hbsAFbQfsJmWamrR6uO/6pvpuFGGB3rOBoi7Eb38+G
-         KKBA==
+        h=mime-version:from:date:message-id:subject:to;
+        bh=OY+UF+K/G0R5+MEeNsQpq1Oys91QR03bP3RztM9n2OM=;
+        b=hUt1PZByOPJBYOuEozLha/5NXRVPCHN2I7Uzt6vVATubBMlo/gAjPl0KzYAjfbB42K
+         aN5L15azhP83G19ChE5mmOoM/BHWhsphZUbAnu+OG83NRZyKU1m8eOafEzhWrG9ZwPYc
+         nGBQASUtNr8xkAHKnN0SIcsaoxrPnlnZZ6dCoBQHV4DlkC3cSorTaoCJLFGz6Y6dv8aI
+         Q6XVvIGoy7sNLcPpFrneW691bEwgQV2nLdRxjP+OhquWA8rXciz7Ywyff8aRPsOhMNFk
+         NPoomZ3Urqds9b8zngPh2Ot8+EGqWC64f/vbqOUFKE6/MVYkJN+S+oSA9bfd/YGHYHhc
+         assw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-         :message-id:subject:to:cc;
-        bh=fxZxzkCJU+UXR6lAkds7ANdK7ycYGb6KDoeraykO5sM=;
-        b=qmbB1qLVMeqy3Q7ODbYEaNSrMlujqoAfl1GuHgP1ugVB0KwGuR1qpwZZGDCxil27H1
-         fuhnGu+QdlpUJHqy+uGVO4VdC9wSETvKmAJDfpDTGxjKBG88kHf4tjAzJ4/ZTLvaGGBy
-         vnDTLRA4keA1jdhIA4+/LEN4Klb/lSI5WmtlTVVljO/0E0RbFTNEx/FK757zzPLaH/+K
-         L7LZrrLWY4Aq1wcNEDIR46OUQs+ktauyQSNVmHdkIcpoD7LK10IMfuiPQ2nnqve0D79s
-         7zZvyNkHmahavdl7FzoI8RZeZei0i9Cat0y39FoNwmyIrZ/3sLmkZDAV0/WqWvHzrWva
-         m8CA==
-X-Gm-Message-State: APjAAAUSIOVClysVLs2B+QQKv89K9NVzQOOi/fFAJbv0lXWD97s1GN0Q
-	vWSr7LKxzXHp2XtRdRKdpXFNbOPbcojr5kSWNvKyDVGp
-X-Google-Smtp-Source: APXvYqy+im/nep9tchwKxCRh9m8S3gPTiEHY3zLBvBS3RivDgGVVfY6p2DqnlNy8QPQo0s5PqeLOrA/XaH0SmOrGoX8=
-X-Received: by 2002:a5d:8043:: with SMTP id b3mr2671524ior.192.1579994942412;
- Sat, 25 Jan 2020 15:29:02 -0800 (PST)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=OY+UF+K/G0R5+MEeNsQpq1Oys91QR03bP3RztM9n2OM=;
+        b=mPgsuWDvhmfHWelHJTz9to8mV/pFhQpk4easai2+exu/ddvW6tWWrMv3wdI95M6q1L
+         ZT1mFjDmtrDYoOrGSMSfnb1k40jVJF41k5FDxl+2N/8sumG2GHaVbHNKRhENpRu5DHBW
+         NyV6XmW+U7D41mjjF8o/4/VXzpWBpT8Y3SNup3HxnRvlVpxCFjGYv7KcaAY4iPDSk65F
+         c0HHkUnBWszB2FM4wZO0dCQzkG+2y4armC59f0G/5MBZPVxelMz9wLPflFC4evkk0+bb
+         r1c6hvOrRV5IvLcjreCS+lcptsZwFUn+WGm26gQPZjhsC2Mamu8Ok/OqWRbWirrzROTz
+         LBEA==
+X-Gm-Message-State: APjAAAWRFeCsOuCFJfGd1u/SlZSZ4dRtiUulxHOU698XvvOnXnQn+hT4
+	qp1ZP+dEWw22+zKNvb/8ExJtvDcibt93bfrNtGfCYd/R
+X-Google-Smtp-Source: APXvYqydyC+NTmNJe9ziOFKeXSZ7JTj7tnQmYQ84b+nQaFyFL+aqH0zZhGmK9sbTgdGYk4jNLBNiSU6sMoPfFDjam+M=
+X-Received: by 2002:a6b:d912:: with SMTP id r18mr8456542ioc.306.1580035467420;
+ Sun, 26 Jan 2020 02:44:27 -0800 (PST)
 MIME-Version: 1.0
-Received: by 2002:ad5:5d0d:0:0:0:0:0 with HTTP; Sat, 25 Jan 2020 15:29:01
+Received: by 2002:ad5:5d0d:0:0:0:0:0 with HTTP; Sun, 26 Jan 2020 02:44:26
  -0800 (PST)
-In-Reply-To: <CAA=hcWSXZWO8suo5+DNHYUF6yVxH3d3h+FNUfWw1-EMxakKvTw@mail.gmail.com>
-References: <CAA=hcWSXZWO8suo5+DNHYUF6yVxH3d3h+FNUfWw1-EMxakKvTw@mail.gmail.com>
 From: "JH" <jupiter.hce@gmail.com>
-Date: Sun, 26 Jan 2020 10:29:01 +1100
-Message-ID: <CAA=hcWQhv+z9Nv2Q+QeccJu4K9bWqwfz_EBC5QdhJ6zGUZLf5Q@mail.gmail.com>
-Subject: Re: Wrong date
+Date: Sun, 26 Jan 2020 21:44:26 +1100
+Message-ID: <CAA=hcWRQmXa4_hh3KzKmqeaEkGsbdTEimsPjh=tZWribMkM0dA@mail.gmail.com>
+Subject: lost busybox mysteriously
 To: Yocto discussion list <yocto@yoctoproject.org>
-Cc: connman <connman@lists.01.org>
 Content-Type: text/plain; charset="UTF-8"
 
-It failed to start systemd-timesyncd.service:
+Hi,
 
-# systemctl status systemd-timesyncd.service -l
-* systemd-timesyncd.service - Network Time Synchronization
-   Loaded: loaded
-(8;;file://solar/lib/systemd/system/systemd-timesyncd.service/lib/systemd/system/systemd-timesyncd.service8;;;
-enabled;)
-   Active: failed (Result: exit-code) since Sat 2020-01-25 23:26:12 UTC; 10s ago
-     Docs: 8;;man:systemd-timesyncd.service(8)man:systemd-timesyncd.service(8)8;;
-  Process: 11799 ExecStart=/lib/systemd/systemd-timesyncd
-(code=exited, status=238/STATE_DIRECTORY)
- Main PID: 11799 (code=exited, status=238/STATE_DIRECTORY)
+I have been building and running Yocto image on iMX6 with NAND flash
+for a year, recently, I found that busybox was certainly missing
+mysteriously, I could not check ls and other shell commands. I could
+not figure out what caused that problem, it's like the flash is
+leaking. Appreciate tips how to debug it?
 
-Jan 25 23:26:12 solar systemd[1]: systemd-timesyncd.service: Service
-has no hold-off time (RestartSec=0), scheduling restart.
-Jan 25 23:26:12 solar systemd[1]: systemd-timesyncd.service: Scheduled
-restart job, restart counter is at 5.
-Jan 25 23:26:12 solar systemd[1]: Stopped Network Time Synchronization.
-Jan 25 23:26:12 solar systemd[1]: systemd-timesyncd.service: Start
-request repeated too quickly.
-Jan 25 23:26:12 solar systemd[1]: systemd-timesyncd.service: Failed
-with result 'exit-code'.
-Jan 25 23:26:12 solar systemd[1]: Failed to start Network Time Synchronization.
-root@solar:~# [ 1825.848150] mwifiex_sdio mmc0:0001:1: CMD_RESP: cmd
-0x23f error, result=0x2
+Thank you.
 
-Manually corrected the date, but the WiFi IP address is still got
-wrong IP address
-
-On 1/26/20, JH <jupiter.hce@gmail.com> wrote:
-> Hi,
->
-> I build the image from Yocto thud and running it in imx6, usually I
-> got right the date, but today I got a weird wrong date:
->
-> # date
-> Wed Jan 15 08:13:14 UTC 2020
->
-> What could cause that problem and how to fix it? The WiFi also got a
-> wrong IP address 169.254.124.128, it was because failed DHCP response,
-> I believe that WiFi issue was also caused by the wrong date.
->
-> How does the Yocto sync the date? Does it run NTP to sync the date?
->
-> Thank you.
->
-> Kind regards,
->
-> - jh
->
+- jh
