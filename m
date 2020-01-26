@@ -1,76 +1,105 @@
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
- by mx.groups.io with SMTP id smtpd.web11.120.1580077961536516077
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.224.1580081711425695006
  for <yocto@lists.yoctoproject.org>;
- Sun, 26 Jan 2020 14:32:41 -0800
+ Sun, 26 Jan 2020 15:35:11 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=CAmlRfsD;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.46, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f46.google.com with SMTP id y17so8764073wrh.5
-        for <yocto@lists.yoctoproject.org>; Sun, 26 Jan 2020 14:32:41 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=lREmXRwO;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 4D4E2E01621; Sun, 26 Jan 2020 15:35:11 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (jupiter.hce[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.166.173 listed in list.dnswl.org]
+Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3715E01275
+	for <yocto@yoctoproject.org>; Sun, 26 Jan 2020 15:35:10 -0800 (PST)
+Received: by mail-il1-f173.google.com with SMTP id i7so2878712ilr.7
+        for <yocto@yoctoproject.org>; Sun, 26 Jan 2020 15:35:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
-         :content-transfer-encoding;
-        bh=DcE+bcDYamiZ7EcTUJqcwCXvzODAYVHufxSuPtX1wHE=;
-        b=CAmlRfsDezr/8c+7TLrVTmV298m5ixspumvDaMKHc15BPauYEsljEqO5oeCeF/Y+DD
-         OgN45Tj1WngPGdhPEs4NvwHoYK5L3fHtMLQUpJSgg0RY2kAf7l8UDjZpvFbVVwBH6azx
-         Mp+Oi9ZRIZJhZF+quPeAWtKwhovRDGALkS9b8=
+        d=gmail.com; s=20161025;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+         :cc;
+        bh=3hJ6TrHpLIOKseZwmwnKsjogzYi8iSbuwfxeia21qc4=;
+        b=lREmXRwOgKguZqLpLS6HXIjEoJbRdcmN6sdk7YEdjagrtARWGpwuHyGyFNMlB6Ot6f
+         ujXaTTs/p4GbVnq6gOVi09ctCJD/mmJ0PUlM3NR/TqfAzdTovHHWPUtjHPhKDTwyUAyf
+         xFUhN19IJwMuKWSJxZ4JTfquOaaave6xBPrHZHCFHeyrFZOcBcQpo/KZtQe4kmf9YEt6
+         FxHbn9WrtJouyhnAnypEDmMbViTxjcKLm1LHXC3v550uulrOu6kBIcRCn/Vikidq5gB4
+         WE7IqTJpItoQkGMU+L8EMxzoyrosVOt4bcOpIXAw6X719cxNIoMaM6sF9J9RZqdlKZnZ
+         M5Sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=DcE+bcDYamiZ7EcTUJqcwCXvzODAYVHufxSuPtX1wHE=;
-        b=Lz9Zph5HiVv1gbnCya7NrdF0cwv5LXaFd48frJo/UcDRIii6Kl1Dv6+52kUMOTizOY
-         A44u6Ou7bsmokbt9mHER1uoJRIt6IaxU7+Kdd4SUglzXyyVSBD8YLFoysn1Rbz59QClQ
-         9OuNee9kwW8+zNDz8F7N2pZTT4z+ZOoIM1wEsVppeCT1mG75JaAFSWInVW4dj9F2SNvV
-         YjKNAmQn/mP75FJh/x5UzJYqQ2Jjch/8OLmk4RBZ0R/4asv7M6O4p953KqcB8o+f/dZZ
-         dTSzD3/GbIQ1/gXpF8+H+CK7MleSyaMy1YOlPIHOp7PCXDfxhxL81l/WKbYRzYN64Ngl
-         CbGQ==
-X-Gm-Message-State: APjAAAVivShDXgyqdVafStxbDTHJY0v46TLxK/viWewcZyxV972zHxES
-	p8PQ1MPuAU3MJWxEu7przft1RxZKji4=
-X-Google-Smtp-Source: APXvYqxwZcYBTVHPHsny+E/wWAVS8gc9ARkbFVuU0w/KJT+NcaSGrD+TV1mC9h3pz4oi2xQqWCJMUw==
-X-Received: by 2002:a05:6000:1241:: with SMTP id j1mr17229959wrx.26.1580077959936;
-        Sun, 26 Jan 2020 14:32:39 -0800 (PST)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from hex.int.rpsys.net (5751f4a1.skybroadband.com. [87.81.244.161])
-        by smtp.gmail.com with ESMTPSA id h8sm19910939wrx.63.2020.01.26.14.32.38
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 26 Jan 2020 14:32:39 -0800 (PST)
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org
-Subject: [PATCH 2/2] l3afpad: Add missing mime-xdg inherit
-Date: Sun, 26 Jan 2020 22:32:34 +0000
-Message-Id: <20200126223234.21589-2-richard.purdie@linuxfoundation.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200126223234.21589-1-richard.purdie@linuxfoundation.org>
-References: <20200126223234.21589-1-richard.purdie@linuxfoundation.org>
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to:cc;
+        bh=3hJ6TrHpLIOKseZwmwnKsjogzYi8iSbuwfxeia21qc4=;
+        b=FByj9dNhCKCcHK25fFd5+dBVgbzZTdvKwk9XBuAv218uFzEMkNCP76H7iR2wTTjAlw
+         Augcqnb6+iTqB8oR+rO4h94GasbpUDhvY0smWW87MgdbYQ/nTzjGuVwtOKiWC4o2AgFn
+         0MIEk/PhMzMQDG34ewFgvqkY0egOshASDjw57YZBKsx0gj7PgkCKENFejy5pcpI7s/L5
+         8rovYcTRRzcKqKn95DDsYi+RESyt/mnffSXIsGDWTaTk2wISfvECVPmzvN7e1vVCqfjm
+         glUMP8bDUjsx67hCg5gx4X8h1we+GDpBwowM5andE6w1go3VZ4Yn+lVCT8NV9PNh58zU
+         hHRw==
+X-Gm-Message-State: APjAAAUvQ/hflZUkw0XZBEZvrtRyL+hk3rRtV00eHGEu1iZP88WtdE2W
+	1yk8A7vi8wrALBMwzZ8AYn/g5QOV/8jygpnA0aBPOOJQ
+X-Google-Smtp-Source: APXvYqwiePF7E3gYADQ0sLopk+/3n9pcE/cNOx8LkYUCete81OruNre9eFQwVCAZ2hUThrT+MhbulqzvegeqGf69jK8=
+X-Received: by 2002:a92:ce85:: with SMTP id r5mr13131180ilo.301.1580081710107;
+ Sun, 26 Jan 2020 15:35:10 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:ad5:5d0d:0:0:0:0:0 with HTTP; Sun, 26 Jan 2020 15:35:09
+ -0800 (PST)
+In-Reply-To: <CAA=hcWRQmXa4_hh3KzKmqeaEkGsbdTEimsPjh=tZWribMkM0dA@mail.gmail.com>
+References: <CAA=hcWRQmXa4_hh3KzKmqeaEkGsbdTEimsPjh=tZWribMkM0dA@mail.gmail.com>
+From: "JH" <jupiter.hce@gmail.com>
+Date: Mon, 27 Jan 2020 10:35:09 +1100
+Message-ID: <CAA=hcWRwi_EsMD2OBzVWtyX_SPJf05vqc09zhQzFdguKi0k=FA@mail.gmail.com>
+Subject: Re: lost busybox mysteriously
+To: Yocto discussion list <yocto@yoctoproject.org>
+Cc: linux-mtd <linux-mtd@lists.infradead.org>, connman <connman@lists.01.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Fixes:
-WARNING: l3afpad-0.8.18.1.11+gitAUTOINC+3cdccdc950-r0 do_package_qa: QA Issue:
-package contains desktop file with key 'MimeType' but does not inhert mime-xdg:
-l3afpad path 'XXX/packages-split/l3afpad/usr/share/applications/l3afpad.desktop' [mime-xdg]
+Hi,
 
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
----
- meta/recipes-sato/l3afpad/l3afpad_git.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I have further investigated the problem, here is more information:
 
-diff --git a/meta/recipes-sato/l3afpad/l3afpad_git.bb b/meta/recipes-sato/l3afpad/l3afpad_git.bb
-index 8906c748eda..6fdcc3e392c 100644
---- a/meta/recipes-sato/l3afpad/l3afpad_git.bb
-+++ b/meta/recipes-sato/l3afpad/l3afpad_git.bb
-@@ -17,7 +17,7 @@ SRCREV ="3cdccdc9505643e50f8208171d9eee5de11a42ff"
- 
- S = "${WORKDIR}/git"
- 
--inherit autotools pkgconfig features_check
-+inherit autotools pkgconfig features_check mime-xdg
- 
- ANY_OF_DISTRO_FEATURES = "${GTK3DISTROFEATURES}"
- 
--- 
-2.20.1
+That the same problem of missing busybox was not just occurred during
+the device running in the middle of operation, it was also occurred
+during booting image from NAND, I saw several times that the first and
+second cycles of booting image from NAND were working well, then some
+following booting process would be crashed by missing busybox, then
+could not run whole shell commands. I have been pondering if it could
+be caused by NAND issue or network virus / fishy? Appreciate any
+clues.
 
+Thank you.
+
+Kind regards,
+
+- jh
+
+On 1/26/20, JH <jupiter.hce@gmail.com> wrote:
+> Hi,
+>
+> I have been building and running Yocto image on iMX6 with NAND flash
+> for a year, recently, I found that busybox was certainly missing
+> mysteriously, I could not check ls and other shell commands. I could
+> not figure out what caused that problem, it's like the flash is
+> leaking. Appreciate tips how to debug it?
+>
+> Thank you.
+>
+> - jh
+>
