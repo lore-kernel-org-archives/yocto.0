@@ -1,116 +1,132 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.5129.1580117556452396689
+ by mx.groups.io with SMTP id smtpd.web09.7228.1580123620377526705
  for <yocto@lists.yoctoproject.org>;
- Mon, 27 Jan 2020 01:32:36 -0800
+ Mon, 27 Jan 2020 03:13:40 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: sdcsystems.com, ip: 140.211.169.56, mailfrom: andy.pont@sdcsystems.com)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=pRTW1asu;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F20ECE01629; Mon, 27 Jan 2020 01:32:35 -0800 (PST)
+	id E0B71E0162F; Mon, 27 Jan 2020 03:13:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	MIME_QP_LONG_LINE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (jupiter.hce[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [216.40.44.83 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
-X-Greylist: delayed 523 seconds by postgrey-1.32 at yocto-www; Mon, 27 Jan 2020 01:32:34 PST
-Received: from smtprelay.hostedemail.com (smtprelay0083.hostedemail.com [216.40.44.83])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC8FEE01509
-	for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 01:32:34 -0800 (PST)
-Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com [10.5.19.251])
-	by smtpgrave08.hostedemail.com (Postfix) with ESMTP id 8EB981801BEB3
-	for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 09:23:51 +0000 (UTC)
-Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
-	by smtprelay02.hostedemail.com (Postfix) with ESMTP id 2806C8E5C;
-	Mon, 27 Jan 2020 09:23:50 +0000 (UTC)
-X-Session-Marker: 616E64792E706F6E744073646373797374656D732E636F6D
-X-HE-Tag: smile67_43e8402da925
-X-Filterd-Recvd-Size: 5355
-Received: from [192.168.10.100] (leeshill.plus.com [81.174.243.117])
-	(Authenticated sender: andy.pont@sdcsystems.com)
-	by omf20.hostedemail.com (Postfix) with ESMTPA;
-	Mon, 27 Jan 2020 09:23:49 +0000 (UTC)
-From: "Andy Pont" <andy.pont@sdcsystems.com>
-To: JH <jupiter.hce@gmail.com>, "Yocto discussion list" <yocto@yoctoproject.org>
-Subject: Re: [yocto] lost busybox mysteriously
-Cc: linux-mtd <linux-mtd@lists.infradead.org>, connman <connman@lists.01.org>
-Date: Mon, 27 Jan 2020 09:23:47 +0000
-Message-Id: <emb3e01e23-7511-48c8-9229-85a767ab359c@andys-imac.leeshillfarm.local>
-In-Reply-To: <CAA=hcWRwi_EsMD2OBzVWtyX_SPJf05vqc09zhQzFdguKi0k=FA@mail.gmail.com>
+	*      [209.85.166.54 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D054CE01629
+	for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 03:13:38 -0800 (PST)
+Received: by mail-io1-f54.google.com with SMTP id m25so9489702ioo.8
+        for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 03:13:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=V8vcT4YutXP/sUVywb1o6Lueba1AoRIlFBsljNK2Njg=;
+        b=pRTW1asuIxRmEZ63mWYQ0ZPDEnlJvQJ9HpWNQDOlMmfz5CVodxrFlyZ+pVIxRdjlBV
+         tBBWjW4ZspC6Z/cHJ12ItGu7NsgT5A14ryUR5wjSRbZ6o0aHewOqt7dlW0HsmC90ZmSY
+         C2w2u0lVm0KGd+8iJrfemyT5qAnPCiRjsp2fcCdEDRyM7YEF3L/lttvGZx3pfSfpEj5Z
+         AFqAa69pjhOCdpqbDmX6ypWBC28gNSp8qq6Irmsecd826Y4+S/4R+AWPuN07CyIXX+hr
+         kzqJqxuvUMf/ruO93NoY8QP4cVClmgqUeVoANHK3svG3oDHhB/9RDFaCPipHScyViQ++
+         5YMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=V8vcT4YutXP/sUVywb1o6Lueba1AoRIlFBsljNK2Njg=;
+        b=mP50N45o1BhdoXdo2RwHcbuoQEZXqNPHyQRfQE0a1rpE5VZFPKUXyip6z/xSB/QGAw
+         jsKB7ki58/N8gWOW28wt86f/yZFg6bIvtO6JL130UgQTOrgpPhx5cJCgOlTiz/bBYikg
+         TDdp75yuUUqqjqK2KcXl0nJ9QLxcfGSDuseM3h6xLjg44w4VzXA/zmJd8fXEXyC6DPRH
+         y32bsmboT/a+AOSREYySz6tAvZ0zMKx2bRVwdd336Bwsb+dmDmH5dQXd3XVRVVoIaIRh
+         Z5BfCeV/qRtwksn3zWV04iTAhywhdKtTpuvOGEP8g8QSX/WZ6eODI/sd+/jYWzCC8ivW
+         ckyQ==
+X-Gm-Message-State: APjAAAVCYhv4Z/gPGPrlALiffiVtMT11Ixlx+h0bjirymA+osnl1ySev
+	O7M5iwUO+dEYq0tux1MLzOO9UP17P2l3zEKuct0iiXuAxiI=
+X-Google-Smtp-Source: APXvYqxhQhBDORo21vvjLKLPPdQ+QuNpuXzHFA0a22MbXlMEnaLFmBq4MjY0nHP/lhRg6Lnr43X9Ii91cHLINS6NrS4=
+X-Received: by 2002:a6b:6e18:: with SMTP id d24mr12342010ioh.301.1580123618152;
+ Mon, 27 Jan 2020 03:13:38 -0800 (PST)
+MIME-Version: 1.0
+Received: by 2002:ad5:5d0d:0:0:0:0:0 with HTTP; Mon, 27 Jan 2020 03:13:37
+ -0800 (PST)
+In-Reply-To: <emb3e01e23-7511-48c8-9229-85a767ab359c@andys-imac.leeshillfarm.local>
 References: <CAA=hcWRQmXa4_hh3KzKmqeaEkGsbdTEimsPjh=tZWribMkM0dA@mail.gmail.com>
- <CAA=hcWRwi_EsMD2OBzVWtyX_SPJf05vqc09zhQzFdguKi0k=FA@mail.gmail.com>
-Reply-To: "Andy Pont" <andy.pont@sdcsystems.com>
-User-Agent: eM_Client/7.2.35700.0
-Mime-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="------=_MB9C799271-6657-42C5-81A8-3FB468B099E0"
-
---------=_MB9C799271-6657-42C5-81A8-3FB468B099E0
-Content-Type: text/plain; format=flowed; charset=utf-8
+ <CAA=hcWRwi_EsMD2OBzVWtyX_SPJf05vqc09zhQzFdguKi0k=FA@mail.gmail.com> <emb3e01e23-7511-48c8-9229-85a767ab359c@andys-imac.leeshillfarm.local>
+From: "JH" <jupiter.hce@gmail.com>
+Date: Mon, 27 Jan 2020 22:13:37 +1100
+Message-ID: <CAA=hcWS2ncU4+RkeLydXOnGvswshK-0iDV3cRTdFgoQ4+Oe57w@mail.gmail.com>
+Subject: Re: [yocto] lost busybox mysteriously
+To: Andy Pont <andy.pont@sdcsystems.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>, linux-mtd <linux-mtd@lists.infradead.org>, 
+	connman <connman@lists.01.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-JH wrote...=0A=0A>That the same problem of missing busybox was not just occ=
-urred during=0A>the device running in the middle of operation, it was also=
- occurred=0A>during booting image from NAND, I saw several times that the fi=
-rst and=0A>second cycles of booting image from NAND were working well, then =
-some=0A>following booting process would be crashed by missing busybox, the=
-n=0A>could not run whole shell commands. I have been pondering if it could=
-=0A>be caused by NAND issue or network virus / fishy? Appreciate any=0A>clu=
-es.=0AThe first step is for us to understand what =E2=80=9Cmissing=E2=80=9D =
-means?  Have you =0Agot any mechanism (U-Boot, SD card boot, etc.) that wi=
-ll allow you to =0Amount and look at the contents of the NAND file system?=
-=0A=0AIf you look at the /bin directory (ls -la /bin/busy*) what do you see=
-?  =0AHave the files been deleted? Truncated? Zero length?=0A=0AWhat file s=
-ystem are you using on the NAND flash?  How are the devices =0Abeing reset=
- during the various boot cycles?  If it is a hardware reset =0Athen some fil=
-e systems are less resilient to it than others but I would =0Aexpect in tha=
-t case more fundamental boot issues.=0A=0A-Andy.=0A=0A=0A=0A
+Hi Andy,
 
---------=_MB9C799271-6657-42C5-81A8-3FB468B099E0
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Thanks for the response.
 
-<html><head><style id=3D"css_styles">blockquote.cite { margin-left: 5px; ma=
-rgin-right: 0px; padding-left: 10px; padding-right:0px; border-left: 1px so=
-lid #cccccc }=0Ablockquote.cite2 {margin-left: 5px; margin-right: 0px; padd=
-ing-left: 10px; padding-right:0px; border-left: 1px solid #cccccc; margin-t=
-op: 3px; padding-top: 0px; }=0Aa img { border: 0px; }=0Ali[style=3D'text-al=
-ign: center;'], li[style=3D'text-align: right;'] {  list-style-position: in=
-side;}=0Abody { font-family: Verdana; font-size: 12px;   }</style></head><b=
-ody class=3D"plain"><div><div>JH wrote...</div>=0A</div><div><br /></div>=
-=0A<div id=3D"x0b8a654993cb4e8"><blockquote type=3D"cite" class=3D"cite2"><=
-div class=3D"plain_line">That the same problem of missing busybox was not j=
-ust occurred during</div>=0A<div class=3D"plain_line">the device running in =
-the middle of operation, it was also occurred</div>=0A<div class=3D"plain_=
-line">during booting image from NAND, I saw several times that the first an=
-d</div>=0A<div class=3D"plain_line">second cycles of booting image from NAN=
-D were working well, then some</div>=0A<div class=3D"plain_line">following=
- booting process would be crashed by missing busybox, then</div>=0A<div clas=
-s=3D"plain_line">could not run whole shell commands. I have been pondering=
- if it could</div>=0A<div class=3D"plain_line">be caused by NAND issue or ne=
-twork virus / fishy? Appreciate any</div>=0A<div class=3D"plain_line">clues=
-.</div></blockquote>The first step is for us to understand what =E2=80=9Cmi=
-ssing=E2=80=9D=C2=A0means? =C2=A0Have you got any mechanism (U-Boot, SD car=
-d boot, etc.) that will allow you to mount and look at the contents of the=
- NAND file system?</div><div id=3D"x0b8a654993cb4e8"><br /></div><div id=3D"=
-x0b8a654993cb4e8">If you look at the /bin directory (ls -la /bin/busy*) wha=
-t do you see? =C2=A0Have the files been deleted? Truncated? Zero length?</d=
-iv><div id=3D"x0b8a654993cb4e8"><br /></div><div id=3D"x0b8a654993cb4e8">Wh=
-at file system are you using on the NAND flash? =C2=A0How are the devices b=
-eing reset during the various boot cycles? =C2=A0If it is a hardware reset=
- then some file systems are less resilient to it than others but I would exp=
-ect in that case more fundamental boot issues.</div><div id=3D"x0b8a654993c=
-b4e8"><br /></div><div id=3D"x0b8a654993cb4e8">-Andy.</div><div id=3D"x0b8a=
-654993cb4e8"><br /></div><div id=3D"x0b8a654993cb4e8"><br /></div><div id=
-=3D"x0b8a654993cb4e8"><br /></div><div id=3D"x0b8a654993cb4e8"><br /></div>=
-<div id=3D"x0b8a654993cb4e8"><blockquote type=3D"cite" class=3D"cite2"><blo=
-ckquote type=3D"cite" class=3D"cite">=0A</blockquote>=0A</blockquote></div>=
-=0A=0A=0A</body></html>
+On 1/27/20, Andy Pont <andy.pont@sdcsystems.com> wrote:
+> JH wrote...
+>
+>>That the same problem of missing busybox was not just occurred during
+>>the device running in the middle of operation, it was also occurred
+>>during booting image from NAND, I saw several times that the first and
+>>second cycles of booting image from NAND were working well, then some
+>>following booting process would be crashed by missing busybox, then
+>>could not run whole shell commands. I have been pondering if it could
+>>be caused by NAND issue or network virus / fishy? Appreciate any
+>>clues.
+> The first step is for us to understand what =E2=80=9Cmissing=E2=80=9D mea=
+ns?  Have you
+> got any mechanism (U-Boot, SD card boot, etc.) that will allow you to
+> mount and look at the contents of the NAND file system?
 
---------=_MB9C799271-6657-42C5-81A8-3FB468B099E0--
+Means that busybox was not there anymore, it mysteriously lost, all
+shell commands would no longer available. It cannot to run mount or
+any shell commands. There was two scenarios when that happened:
+
+- In the middle of running, the device all of certain could not run
+shell commands and failed mysteriously
+
+- During the u-boot booting kernel process, there were full errors of
+failing shell commands. Let me make it clear,  that booting error did
+not occur in the first or second kernel booting after the new image
+installation, it happened in the following kernel booting, but there
+was nothing to delete busybox accidentally, busybox was just
+mysteriously disappeared. Because I could not run ls, I did not know
+if there are other things missing. If you ask how I could know the
+busybox was missing, I ran the zImage-initramfs to boot the linux in
+RAM, then mount the ubi0 to find  out busybox was gone.
+
+
+> If you look at the /bin directory (ls -la /bin/busy*) what do you see?
+> Have the files been deleted? Truncated? Zero length?
+
+Could not run ls or any shell commands when the busybox was missing.
+
+> What file system are you using on the NAND flash?  How are the devices
+> being reset during the various boot cycles?  If it is a hardware reset
+> then some file systems are less resilient to it than others but I would
+> expect in that case more fundamental boot issues.
+
+UBIFS, most device reset or boot cycles were calling halt or reboot,
+but it sometime it could just use power cycle.
+
+Thank you.
+
+Kind regards,
+
+- jh
