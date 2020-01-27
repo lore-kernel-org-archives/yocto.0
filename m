@@ -1,293 +1,270 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.11409.1580144193594464627
- for <yocto@lists.yoctoproject.org>;
- Mon, 27 Jan 2020 08:56:33 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=D67mcBjr;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 34685E0163F; Mon, 27 Jan 2020 08:56:33 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (sjolley.yp.pm[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.210.174 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71B29E0163D
-	for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 08:56:31 -0800 (PST)
-Received: by mail-pf1-f174.google.com with SMTP id p14so5178490pfn.4
-        for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 08:56:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:mime-version:content-language
-         :thread-index;
-        bh=/NNbWW/bFhWSYB6ZOFSLNgqPKHVZNRGW6psoHqSWCYs=;
-        b=D67mcBjrpKmyPvQUORfFx+xm3qRmapgXY1KTEJfSfZxc544atmLzLJNHx+jGt6SoLD
-         sT0Cr1IILC2ViFPszovrIOit1gAWhxpcR/azweiRuQyqq60g8cALd6q6iuZQa8+LoTGC
-         Fj7CWq172l9cTTYRjCfWGbdcNd3C07SbNjuCbvXNr7HhrX0P2Xbi7xmvynWxmwb38y9c
-         SXmnDxf2pku/IEJRJYTZewBgxToBtJ4rmGqYi/5dEx/JinlOOY04v/uD6HFBq+s9WzMR
-         yka0qWf4gLGvttVHFM9pH3Lb+dOnI9d9askNU7LqdxIJ9eCpTakf1H3kEs6uum7w00Sa
-         fJ6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-language:thread-index;
-        bh=/NNbWW/bFhWSYB6ZOFSLNgqPKHVZNRGW6psoHqSWCYs=;
-        b=fIg3LYLbOjybtfEGDfXJ2e6ee37CFkl3wREjUNsV8Vh76HoofhGcYEQIsI92yNtgeB
-         5UYjCtBZ6SK1YLOrbJtugMQHieARvF5wrFs8qukOeNB+AcuhA1t+VhaDnlhRo/TwA83/
-         RrgGFfqykeZJIBX8BRefM1RDnlKMtxx+ubwBasn7iaxesvpzksZUus1QhhpaHV8N5MH+
-         gfuG/+gXgeinDTSW/N2krgXQ23pDGgSB32C9UELuqvdFptkYQ16+XaQfhMwRW3IRwzzq
-         +NcTLZNCMUORaL2S6dC6wNnIM23eYmCCRXDFsIhCXsAI/oBCvt0sRrB9/ZnuUnuUARgs
-         6EmQ==
-X-Gm-Message-State: APjAAAUnNtzRYOQTq5ZDx0Z+X26V41uC4xwFvLWn67wPnq6imSbAkZ0a
-	1R8sPkm7mvRH6HtdaV8fOs0=
-X-Google-Smtp-Source: APXvYqwqOWZMHOlJMX1GbXp8grXk3e0ytu8VV9xBSEFeAg2XrL4gZjtN8jc/PThBpDiV/CXibRAs3Q==
-X-Received: by 2002:a63:780d:: with SMTP id t13mr19389336pgc.82.1580144190888;
-        Mon, 27 Jan 2020 08:56:30 -0800 (PST)
-Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
-        by smtp.gmail.com with ESMTPSA id e2sm16448104pjs.25.2020.01.27.08.56.30
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 27 Jan 2020 08:56:30 -0800 (PST)
-From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>,
-	<openembedded-core@lists.openembedded.org>
-Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
-Date: Mon, 27 Jan 2020 08:56:30 -0800
-Message-ID: <067a01d5d532$b9854e20$2c8fea60$@gmail.com>
+Subject: ttyS0 timeout but not using ttyS0 #yocto #systemd
+To: yocto@lists.yoctoproject.org
+From: "William Durocher" <wdurocher@it-link.ca>
+X-Originating-Location: Montreal, Quebec, CA (173.231.104.26)
+X-Originating-Platform: Linux Firefox 72
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQK60MFY8RnT/jjBhutfacP7OksIRw==
-Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_067B_01D5D4EF.AB628350"
-Content-Language: en-us
+Date: Mon, 27 Jan 2020 12:16:23 -0800
+Message-ID: <xRXV.1580156183893357588.xV3g@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="KVn9bNqitSSWBVzNIR3U"
 
-------=_NextPart_000_067B_01D5D4EF.AB628350
-Content-Type: text/plain;
-	charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-
-All,
-
- 
-
-The triage team is starting to try and collect up and classify bugs which a
-newcomer to the project would be able to work on in a way which means people
-can find them. They're being listed on the triage page under the appropriate
-heading:
-
- 
-
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
-
- 
-
-The idea is these bugs should be straight forward for a person to help work
-on who doesn't have deep experience with the project.  If anyone can help,
-please take ownership of the bug and send patches!  If anyone needs
-help/advice there are people on irc who can likely do so, or some of the
-more experienced contributors will likely be happy to help too.
-
- 
-
-Also, the triage team meets weekly and does its best to handle the bugs
-reported into the Bugzilla. The number of people attending that meeting has
-fallen, as have the number of people available to help fix bugs. One of the
-things we hear users report is they don't know how to help. We (the triage
-team) are therefore going to start reporting out the currently 302
-unassigned or newcomer bugs.
-
- 
-
-We're hoping people may be able to spare some time now and again to help out
-with these.  Bugs are split into two types, "true bugs" where things don't
-work as they should and "enhancements" which are features we'd want to add
-to the system.  There are also roughly four different "priority" classes
-right now, "3.1", "3.2, "3.99" and "Future", the more pressing/urgent issues
-being in "3.1" and then "3.2".
-
- 
-
-Please review this link and if a bug is something you would be able to help
-with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
-like and I will assign it to you (please make sure you have a Bugzilla
-account).  The list is at:
-https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newcomer_Bugs
-
- 
-
-Thanks,
-
- 
-
-Stephen K. Jolley
-
-Yocto Project Program Manager
-
-*    Cell:                (208) 244-4460
-
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
-
- 
-
-
-------=_NextPart_000_067B_01D5D4EF.AB628350
-Content-Type: text/html;
-	boundary="----=_NextPart_000_08FF_01D5CF80.1CAFE270";
-	charset="us-ascii"
+--KVn9bNqitSSWBVzNIR3U
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
-xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
-xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
-xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
-http-equiv=3DContent-Type content=3D"text/html; =
-charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
-(filtered medium)"><style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
-link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
-starting to try and collect up and classify bugs which a newcomer to the =
-project would be able to work on in a way which means people can find =
-them. They're being listed on the triage page under the appropriate =
-heading:<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
-s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
-><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>The idea is these bugs should be straight =
-forward for a person to help work on who doesn't have deep experience =
-with the project.&nbsp; If anyone can help, please take ownership of the =
-bug and send patches!&nbsp; If anyone needs help/advice there are people =
-on irc who can likely do so, or some of the more experienced =
-contributors will likely be happy to help too.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
-meets weekly and does its best to handle the bugs reported into the =
-Bugzilla. The number of people attending that meeting has fallen, as =
-have the number of people available to help fix bugs. One of the things =
-we hear users report is they don't know how to help. We (the triage =
-team) are therefore going to start reporting out the currently 302 =
-unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>We're hoping people may be able to spare =
-some time now and again to help out with these.&nbsp; Bugs are split =
-into two types, &quot;true bugs&quot; where things don't work as they =
-should and &quot;enhancements&quot; which are features we'd want to add =
-to the system.&nbsp; There are also roughly four different =
-&quot;priority&quot; classes right now, &#8220;3.1&#8221;, &#8220;3.2, =
-&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
-being in &quot;3.1&quot; and then &#8220;3.2&#8221;.<o:p></o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
-class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
-and if a bug is something you would be able to help with either take =
-ownership of the bug, or send me (<a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
-e-mail with the bug number you would like and I will assign it to you =
-(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
-href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newco=
-mer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_New=
-comer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
-style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Times New =
-Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
-style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
-o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
-style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
-Project Program Manager<o:p></o:p></span></b></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
- style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
-style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Cell</span></b><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
-class=3DMsoNormal><span =
-style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
-lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
-MS";color:teal'>Email</span></b><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
-style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
-style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
-an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+We have a build using warrior it boots up well but has a very long boot tim=
+e of around 95 sec. Using systemd-analyze I notice that we the boot takes a=
+ long time before getting to multi-user.target. As can be seen for the crit=
+ical chain analysis below, there is a 60s gap after we get our console on t=
+tyO0.
 
-------=_NextPart_000_067B_01D5D4EF.AB628350--
+>=20
+> multi-user.target @1min 33.351s
+> =E2=94=94=E2=94=80 *getty.target @1min 33.298s*
+> *=E2=94=94=E2=94=80serial-getty@ttyO0.service @34.432s*
+> =E2=94=94=E2=94=80basic.target @31.841s
+> =E2=94=94=E2=94=80sockets.target @31.804s
+> =E2=94=94=E2=94=80sshd.socket @31.532s +238ms
+> =E2=94=94=E2=94=80sysinit.target @31.183s
+> =E2=94=94=E2=94=80sys-kernel-config.mount @59.350s +962ms
+> =E2=94=94=E2=94=80systemd-journald.socket @2.553s
+> =E2=94=94=E2=94=80system.slice @2.027s
+> =E2=94=94=E2=94=80-.slice @2.028s
+
+Looking at the logs I can see that the cause is most likely that ttyS0 is =
+trying to come up.
+>=20
+>=20
+> Jan 27 01:07:14 rc8000-5e2b systemd[1]: dev-ttyS0.device: Job
+> dev-ttyS0.device/start
+> timed out.
+> Jan 27 01:07:14 rc8000-5e2b systemd[1]: Timed out waiting for device
+> /dev/ttyS0.
+> Jan 27 01:07:14 rc8000-5e2b systemd[1]: Dependency failed for Serial Get=
+ty
+> on ttyS0.
+> Jan 27 01:07:14 rc8000-5e2b systemd[1]: serial-getty@ttyS0.service: Job
+> serial-getty
+> @ttyS0.service/start failed with result 'dependency'.
+> Jan 27 01:07:14 rc8000-5e2b systemd[1]: dev-ttyS0.device: Job
+> dev-ttyS0.device/start
+> failed with result 'timeout'.
+> Jan 27 01:07:14 rc8000-5e2b systemd[1]: dev-ttyS0.device: Job
+> dev-ttyS0.device/start
+> timed out.
+> Jan 27 01:07:14 rc8000-5e2b systemd[1]: Timed out waiting for device
+> /dev/ttyS0.
+> Jan 27 01:07:14 rc8000-5e2b systemd[1]: Dependency failed for Serial Get=
+ty
+> on ttyS0.
+> Jan 27 01:07:14 rc8000-5e2b systemd[1]: serial-getty@ttyS0.service: Job
+> serial-getty
+> @ttyS0.service/start failed with result 'dependency'.
+> Jan 27 01:07:14 rc8000-5e2b systemd[1]: dev-ttyS0.device: Job
+> dev-ttyS0.device/start
+> failed with result 'timeout'.
+> Jan 27 01:07:15 rc8000-5e2b systemd[1]: dev-ttyS0.device: Job
+> dev-ttyS0.device/start
+> timed out.
+> Jan 27 01:07:15 rc8000-5e2b systemd[1]: Timed out waiting for device
+> /dev/ttyS0.
+> Jan 27 01:07:15 rc8000-5e2b systemd[1]: Dependency failed for Serial Get=
+ty
+> on ttyS0.
+> Jan 27 01:07:15 rc8000-5e2b systemd[1]: serial-getty@ttyS0.service: Job
+> serial-getty
+> @ttyS0.service/start failed with result 'dependency'.
+> Jan 27 01:07:15 rc8000-5e2b systemd[1]: dev-ttyS0.device: Job
+> dev-ttyS0.device/start
+> failed with result 'timeout'.
+> Jan 27 01:07:15 rc8000-5e2b systemd[1]: dev-ttyS0.device: Job
+> dev-ttyS0.device/start
+> timed out.
+> Jan 27 01:07:15 rc8000-5e2b systemd[1]: Timed out waiting for device
+> /dev/ttyS0.
+> Jan 27 01:07:15 rc8000-5e2b systemd[1]: Dependency failed for Serial Get=
+ty
+> on ttyS0.
+> Jan 27 01:07:15 rc8000-5e2b systemd[1]: serial-getty@ttyS0.service: Job
+> serial-getty
+> @ttyS0.service/start failed with result 'dependency'.
+> Jan 27 01:07:15 rc8000-5e2b systemd[1]:
+
+We are not using ttyS0 for the console or anything. In our distro config a=
+nd layer we refer instead to ttyO0.
+
+Looking through the environment of the build with "bitbake -e our-image" I=
+ see that we had
+>=20
+>=20
+> # $KERNEL_CONSOLE
+> #=C2=A0=C2=A0 set?
+> /home/wdurocher/work/gammaip/warrior/sources/meta/meta/conf/distro/inclu=
+de/default-distrovars.inc:4
+>=20
+> #=C2=A0=C2=A0=C2=A0=C2=A0 "ttyS0"
+> KERNEL_CONSOLE=3D"ttyS0"
+
+I modifed our distro configuration setting KERNEL_MODULE to ttyO0
+
+>=20
+> KERNEL_CONSOLE=3D"ttyO0"
+
+and now bitbake -e gives me:
+>=20
+> # $KERNEL_CONSOLE [2 operations]
+> #=C2=A0=C2=A0 set
+> /home/wdurocher/work/gammaip/warrior/sources/meta-gammaip/conf/distro/ga=
+mmaip.conf:18
+>=20
+> #=C2=A0=C2=A0=C2=A0=C2=A0 "ttyO0"
+> #=C2=A0=C2=A0 set?
+> /home/wdurocher/work/gammaip/warrior/sources/meta/meta/conf/distro/inclu=
+de/default-distrovars.inc:4
+>=20
+> #=C2=A0=C2=A0=C2=A0=C2=A0 "ttyS0"
+> # pre-expansion value:
+> #=C2=A0=C2=A0 "ttyO0"
+> KERNEL_CONSOLE=3D"ttyO0"
+
+But loading this image, the logs still shows the timeout waiting for ttyS0=
+. What else could be making Linux try to configure ttyS0 ?
+
+Note that I saw in my search that kernel CONFIG_FHANDLE should be set and =
+it was already so.
+
+Thanking you for any help on this,
+
+William Durocher
+
+--KVn9bNqitSSWBVzNIR3U
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+We have a build using warrior it boots up well but has a very long boot tim=
+e of around 95 sec. Using systemd-analyze I notice that we the boot takes a=
+ long time before getting to multi-user.target. As can be seen for the crit=
+ical chain analysis below, there is a 60s gap after we get our console on t=
+tyO0.<br />
+<blockquote>multi-user.target @1min 33.351s<br />=E2=94=94=E2=94=80<strong=
+>getty.target @1min 33.298s</strong><br /><strong>&nbsp; =E2=94=94=E2=94=80=
+serial-getty@ttyO0.service @34.432s</strong><br />&nbsp;&nbsp;&nbsp; =E2=94=
+=
+=94=E2=94=80basic.target @31.841s<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =E2=
+=94=94=E2=94=80sockets.target @31.804s<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; =E2=94=94=E2=94=80sshd.socket @31.532s +238ms<br />&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =E2=94=94=E2=94=80sysinit.targe=
+t @31.183s<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp; =E2=94=94=E2=94=80sys-kernel-config.mount @59.350s +962ms<br />&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+=
+=E2=94=94=E2=94=80systemd-journald.socket @2.553s<br />&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =E2=
+=
+=94=94=E2=94=80system.slice @2.027s<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =E2=
+=94=94=E2=94=80-.slice @2.028s</blockquote>
+<br />Looking at the logs I can see that the cause is most likely that tty=
+S0 is trying to come up.
+<blockquote>Jan 27 01:07:14 rc8000-5e2b systemd[1]: dev-ttyS0.device: Job =
+dev-ttyS0.device/start<br />&nbsp;timed out.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; <br />Jan 27 01:07:14 rc8000-5e2b systemd[1]: Ti=
+med out waiting for device /dev/ttyS0.&nbsp;&nbsp;&nbsp; <br />Jan 27 01:07=
+:14 rc8000-5e2b systemd[1]: Dependency failed for Serial Getty on ttyS0.<br=
+ />Jan 27 01:07:14 rc8000-5e2b systemd[1]: serial-getty@ttyS0.service: Job =
+serial-getty<br />@ttyS0.service/start failed with result 'dependency'.&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; <br />Jan 27 01:07:14 rc8000-5e2b systemd[1]: de=
+v-ttyS0.device: Job dev-ttyS0.device/start<br />&nbsp;failed with result 't=
+imeout'.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; <br />Jan 27 01:07:14 rc8000-5e2b systemd[1]: de=
+v-ttyS0.device: Job dev-ttyS0.device/start<br />&nbsp;timed out.&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />Jan 27 01:07:14 rc8000=
+-5e2b systemd[1]: Timed out waiting for device /dev/ttyS0.&nbsp;&nbsp;&nbsp=
+; <br />Jan 27 01:07:14 rc8000-5e2b systemd[1]: Dependency failed for Seria=
+l Getty on ttyS0.<br />Jan 27 01:07:14 rc8000-5e2b systemd[1]: serial-getty=
+@ttyS0.service: Job serial-getty<br />@ttyS0.service/start failed with resu=
+lt 'dependency'.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />Jan 27 01:07:14 rc8000=
+-5e2b systemd[1]: dev-ttyS0.device: Job dev-ttyS0.device/start<br />&nbsp;f=
+ailed with result 'timeout'.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />Jan 27 01:07:15 rc8000=
+-5e2b systemd[1]: dev-ttyS0.device: Job dev-ttyS0.device/start<br />&nbsp;t=
+imed out.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />Ja=
+n 27 01:07:15 rc8000-5e2b systemd[1]: Timed out waiting for device /dev/tty=
+S0.&nbsp;&nbsp;&nbsp; <br />Jan 27 01:07:15 rc8000-5e2b systemd[1]: Depende=
+ncy failed for Serial Getty on ttyS0.<br />Jan 27 01:07:15 rc8000-5e2b syst=
+emd[1]: serial-getty@ttyS0.service: Job serial-getty<br />@ttyS0.service/st=
+art failed with result 'dependency'.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />Ja=
+n 27 01:07:15 rc8000-5e2b systemd[1]: dev-ttyS0.device: Job dev-ttyS0.devic=
+e/start<br />&nbsp;failed with result 'timeout'.&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br />Ja=
+n 27 01:07:15 rc8000-5e2b systemd[1]: dev-ttyS0.device: Job dev-ttyS0.devic=
+e/start<br />&nbsp;timed out.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; <br />Jan 27 01:07:15 rc8000-5e2b systemd[1]: Timed out waiting=
+ for device /dev/ttyS0.&nbsp;&nbsp;&nbsp; <br />Jan 27 01:07:15 rc8000-5e2b=
+ systemd[1]: Dependency failed for Serial Getty on ttyS0.<br />Jan 27 01:07=
+:15 rc8000-5e2b systemd[1]: serial-getty@ttyS0.service: Job serial-getty<br=
+ />@ttyS0.service/start failed with result 'dependency'.&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp; <br />Jan 27 01:07:15 rc8000-5e2b systemd[1]:</blockquote>
+<br />We are not using ttyS0 for the console or anything. In our distro co=
+nfig and layer we refer instead to ttyO0.<br /><br />Looking through the en=
+vironment of the build with "bitbake -e our-image" I see that we had
+<blockquote># $KERNEL_CONSOLE<br />#&nbsp;&nbsp; set? /home/wdurocher/work=
+/gammaip/warrior/sources/meta/meta/conf/distro/include/default-distrovars.i=
+nc:4<br />#&nbsp;&nbsp;&nbsp;&nbsp; "ttyS0"<br />KERNEL_CONSOLE=3D"ttyS0"</=
+blockquote>
+&nbsp;I modifed our distro configuration setting KERNEL_MODULE to ttyO0<br=
+ />
+<blockquote>KERNEL_CONSOLE=3D"ttyO0"</blockquote>
+and now bitbake -e gives me:
+<blockquote># $KERNEL_CONSOLE [2 operations]<br />#&nbsp;&nbsp; set /home/=
+wdurocher/work/gammaip/warrior/sources/meta-gammaip/conf/distro/gammaip.con=
+f:18<br />#&nbsp;&nbsp;&nbsp;&nbsp; "ttyO0"<br />#&nbsp;&nbsp; set? /home/w=
+durocher/work/gammaip/warrior/sources/meta/meta/conf/distro/include/default=
+-distrovars.inc:4<br />#&nbsp;&nbsp;&nbsp;&nbsp; "ttyS0"<br /># pre-expansi=
+on value:<br />#&nbsp;&nbsp; "ttyO0"<br />KERNEL_CONSOLE=3D"ttyO0"</blockqu=
+ote>
+But loading this image, the logs still shows the timeout waiting for ttyS0=
+. What else could be making Linux try to configure ttyS0 ?<br /><br />Note =
+that I saw in my search that kernel CONFIG_FHANDLE should be set and it was=
+ already so.<br /><br />Thanking you for any help on this,<br /><br />Willi=
+am Durocher<br />
+
+--KVn9bNqitSSWBVzNIR3U--
