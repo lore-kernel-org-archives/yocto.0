@@ -1,123 +1,118 @@
-Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com [209.85.221.68])
- by mx.groups.io with SMTP id smtpd.web11.7653.1580125500121091289
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.8301.1580129593833076779
  for <yocto@lists.yoctoproject.org>;
- Mon, 27 Jan 2020 03:45:00 -0800
+ Mon, 27 Jan 2020 04:53:14 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=K9zVGvZT;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.68, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f68.google.com with SMTP id z7so10837974wrl.13
-        for <yocto@lists.yoctoproject.org>; Mon, 27 Jan 2020 03:44:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7W371BgWOCx7vCixcCyTlnTdEyI9YDOydVsE46kYxCo=;
-        b=K9zVGvZTn34GLExLx/1Eu4xtjxhQnbjmzpv4rdbE+CnbdRC+aCn/+4OLv+B9by57Fi
-         Izb4nwQjTeLMhupzow9qrL3Q6QZORt4jaloQ3nD2y04+Ux0tE54Gx5xfkBQLCRmHWXsL
-         9VZn7YrCJdqwa5g0U/+GbiIIrpjVtK/fzkuy0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=7W371BgWOCx7vCixcCyTlnTdEyI9YDOydVsE46kYxCo=;
-        b=iyEvZe40cxF1ocAHV2MJdqPmyCz8RtpgekICTmNzUiVpQPUxYI94TPWUNjOYEUfGRV
-         feQikkN6DCQgbPq+qsX5n12yUZbNb2zzTBR89Dptf4nyr5wWsI9ArHpqh0SIZ4j4cmiL
-         B6sHJMb0TCYSAcBhpY5Lzr99MFNQXnS2RY9KRv1gbXh+oyl695mt+udrpqvOSa5DXDXQ
-         +a6y9NXc/tHK6uxTMhsmem9o2D2XMMwxkn9PjWpq6SXQDFq0yU/8lwF4lYON0tZpN31l
-         8usBkVS6yccH759j7MiJjFbkFPnxzY2HnVrqUv3j0sIubeVANGYdm3vO7oWuLE7UyUNO
-         xYYw==
-X-Gm-Message-State: APjAAAWTkZaYbWYXLuTAmptHsko70RUBrhEfVzm79kOurwW1HHtdW/cq
-	eBEfkYtiat4C1+kA2TYL9AMuf8BFLE4=
-X-Google-Smtp-Source: APXvYqy3MMW+l5HpnJjeRj9fIZwRdwzsk33Qfr+no9Qf2aQ9McR6YOcaQB9eELa00pYJ9oeGHGHFdA==
-X-Received: by 2002:a05:6000:11c5:: with SMTP id i5mr21287575wrx.102.1580125498253;
-        Mon, 27 Jan 2020 03:44:58 -0800 (PST)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from hex.int.rpsys.net (5751f4a1.skybroadband.com. [87.81.244.161])
-        by smtp.gmail.com with ESMTPSA id w20sm17665608wmk.34.2020.01.27.03.44.56
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jan 2020 03:44:57 -0800 (PST)
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: yocto@lists.yoctoproject.org
-Subject: [PATCH] distrodata/maintainers: Add PARSE_ALL_RECIPES flag to fix test issues
-Date: Mon, 27 Jan 2020 11:44:53 +0000
-Message-Id: <20200127114453.4847-1-richard.purdie@linuxfoundation.org>
-X-Mailer: git-send-email 2.20.1
+ dkim=missing; spf=permerror, err=parse error for token &{10 18 sendgrid.net}: limit exceeded (domain: streamunlimited.com, ip: 140.211.169.56, mailfrom: quentin.schulz@streamunlimited.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id AE50EE01630; Mon, 27 Jan 2020 04:53:13 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
+	*      trust
+	*      [213.33.87.17 listed in list.dnswl.org]
+X-Greylist: delayed 2788 seconds by postgrey-1.32 at yocto-www; Mon, 27 Jan 2020 04:53:12 PST
+Received: from bsmtp3.bon.at (bsmtp3.bon.at [213.33.87.17])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E6CDE01508
+	for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 04:53:12 -0800 (PST)
+Received: from bsmtp2.bon.at (unknown [192.168.181.104])
+	by bsmtp3.bon.at (Postfix) with ESMTPS id 485pPy0rHHz5vjK
+	for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 13:06:46 +0100 (CET)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp2.bon.at (Postfix) with ESMTPSA id 485pPr47PZz5tlF;
+	Mon, 27 Jan 2020 13:06:40 +0100 (CET)
+Date: Mon, 27 Jan 2020 13:06:39 +0100
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: JH <jupiter.hce@gmail.com>
+Cc: Andy Pont <andy.pont@sdcsystems.com>,
+	Yocto discussion list <yocto@yoctoproject.org>,
+	linux-mtd <linux-mtd@lists.infradead.org>,
+	connman <connman@lists.01.org>
+Subject: Re: [yocto] lost busybox mysteriously
+Message-ID: <20200127120638.2jpgvedxecwgwz6u@qschulz>
+References: <CAA=hcWRQmXa4_hh3KzKmqeaEkGsbdTEimsPjh=tZWribMkM0dA@mail.gmail.com>
+ <CAA=hcWRwi_EsMD2OBzVWtyX_SPJf05vqc09zhQzFdguKi0k=FA@mail.gmail.com>
+ <emb3e01e23-7511-48c8-9229-85a767ab359c@andys-imac.leeshillfarm.local>
+ <CAA=hcWS2ncU4+RkeLydXOnGvswshK-0iDV3cRTdFgoQ4+Oe57w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAA=hcWS2ncU4+RkeLydXOnGvswshK-0iDV3cRTdFgoQ4+Oe57w@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Currently the test depends on which DISTRO_FEATURES and targets are selected.
-Similar to SOURCE_MIRROR_FETCH, add PARSE_ALL_RECIPES to allow the test to see
-a much wider range of them. This avoids issues added by the new ucontext musl
-specific recipe and allows the current whitelist to be cleared out a bit (more
-cleanup can follow).
+Hi JH,
 
-Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
----
- meta/classes/base.bbclass                  | 4 ++--
- meta/classes/features_check.bbclass        | 3 +++
- meta/lib/oeqa/selftest/cases/distrodata.py | 7 +++----
- 3 files changed, 8 insertions(+), 6 deletions(-)
+On Mon, Jan 27, 2020 at 10:13:37PM +1100, JH wrote:
+> Hi Andy,
+>=20
+> Thanks for the response.
+>=20
+> On 1/27/20, Andy Pont <andy.pont@sdcsystems.com> wrote:
+> > JH wrote...
+> >
+> >>That the same problem of missing busybox was not just occurred during
+> >>the device running in the middle of operation, it was also occurred
+> >>during booting image from NAND, I saw several times that the first an=
+d
+> >>second cycles of booting image from NAND were working well, then some
+> >>following booting process would be crashed by missing busybox, then
+> >>could not run whole shell commands. I have been pondering if it could
+> >>be caused by NAND issue or network virus / fishy? Appreciate any
+> >>clues.
+> > The first step is for us to understand what =E2=80=9Cmissing=E2=80=9D=
+ means?  Have you
+> > got any mechanism (U-Boot, SD card boot, etc.) that will allow you to
+> > mount and look at the contents of the NAND file system?
+>=20
+> Means that busybox was not there anymore, it mysteriously lost, all
+> shell commands would no longer available. It cannot to run mount or
+> any shell commands. There was two scenarios when that happened:
+>=20
+> - In the middle of running, the device all of certain could not run
+> shell commands and failed mysteriously
+>=20
+> - During the u-boot booting kernel process, there were full errors of
+> failing shell commands. Let me make it clear,  that booting error did
+> not occur in the first or second kernel booting after the new image
+> installation, it happened in the following kernel booting, but there
+> was nothing to delete busybox accidentally, busybox was just
+> mysteriously disappeared. Because I could not run ls, I did not know
+> if there are other things missing. If you ask how I could know the
+> busybox was missing, I ran the zImage-initramfs to boot the linux in
+> RAM, then mount the ubi0 to find  out busybox was gone.
+>=20
+>=20
+> > If you look at the /bin directory (ls -la /bin/busy*) what do you see=
+?
+> > Have the files been deleted? Truncated? Zero length?
+>=20
+> Could not run ls or any shell commands when the busybox was missing.
+>=20
 
-diff --git a/meta/classes/base.bbclass b/meta/classes/base.bbclass
-index c243700bcdd..45f9435fd8e 100644
---- a/meta/classes/base.bbclass
-+++ b/meta/classes/base.bbclass
-@@ -510,7 +510,7 @@ python () {
-         d.appendVarFlag('do_devshell', 'depends', ' virtual/fakeroot-native:do_populate_sysroot')
- 
-     need_machine = d.getVar('COMPATIBLE_MACHINE')
--    if need_machine:
-+    if need_machine and not d.getVar('PARSE_ALL_RECIPES', False):
-         import re
-         compat_machines = (d.getVar('MACHINEOVERRIDES') or "").split(":")
-         for m in compat_machines:
-@@ -519,7 +519,7 @@ python () {
-         else:
-             raise bb.parse.SkipRecipe("incompatible with machine %s (not in COMPATIBLE_MACHINE)" % d.getVar('MACHINE'))
- 
--    source_mirror_fetch = d.getVar('SOURCE_MIRROR_FETCH', False)
-+    source_mirror_fetch = d.getVar('SOURCE_MIRROR_FETCH', False) or d.getVar('PARSE_ALL_RECIPES', False)
-     if not source_mirror_fetch:
-         need_host = d.getVar('COMPATIBLE_HOST')
-         if need_host:
-diff --git a/meta/classes/features_check.bbclass b/meta/classes/features_check.bbclass
-index 391fbe1c946..876d32e3155 100644
---- a/meta/classes/features_check.bbclass
-+++ b/meta/classes/features_check.bbclass
-@@ -23,6 +23,9 @@
- # Copyright 2013 (C) O.S. Systems Software LTDA.
- 
- python () {
-+    if d.getVar('PARSE_ALL_RECIPES', False):
-+        return
-+
-     # Assume at least one var is set.
-     distro_features = set((d.getVar('DISTRO_FEATURES') or '').split())
- 
-diff --git a/meta/lib/oeqa/selftest/cases/distrodata.py b/meta/lib/oeqa/selftest/cases/distrodata.py
-index 5f7f488349a..e1cfc3b6214 100644
---- a/meta/lib/oeqa/selftest/cases/distrodata.py
-+++ b/meta/lib/oeqa/selftest/cases/distrodata.py
-@@ -56,15 +56,14 @@ but their recipes claim otherwise by setting UPSTREAM_VERSION_UNKNOWN. Please re
-             return False
- 
-         def is_maintainer_exception(entry):
--            exceptions = ["systemd", "musl", "libpam", "newlib", "linux-yocto", "opensbi", "linux-dummy",
--                          "mesa-gl", "libgfortran", "volatile-binds", "libgloss", "bsd-headers",
--                          "cve-update-db-native", "libssp-nonshared", "argp-standalone", "fts"]
-+            exceptions = ["musl", "newlib", "linux-yocto", "linux-dummy", "mesa-gl", "libgfortran",
-+                          "cve-update-db-native"]
-             for i in exceptions:
-                  if i in entry:
-                      return True
-             return False
- 
--        feature = 'require conf/distro/include/maintainers.inc\nLICENSE_FLAGS_WHITELIST += " commercial"\n'
-+        feature = 'require conf/distro/include/maintainers.inc\nLICENSE_FLAGS_WHITELIST += " commercial"\nPARSE_ALL_RECIPES = "1"\n'
-         self.write_config(feature)
- 
-         with bb.tinfoil.Tinfoil() as tinfoil:
--- 
-2.20.1
+/bin/ls -la /bin/busy* ?
 
+Maybe something is messing with the PATH environment variable. Or
+something is removing the symlinks from some binaries to busybox.
+
+> > What file system are you using on the NAND flash?  How are the device=
+s
+> > being reset during the various boot cycles?  If it is a hardware rese=
+t
+> > then some file systems are less resilient to it than others but I wou=
+ld
+> > expect in that case more fundamental boot issues.
+>=20
+> UBIFS, most device reset or boot cycles were calling halt or reboot,
+> but it sometime it could just use power cycle.
+>=20
+
+IIRC, UBIFS is safe from power cycles.
+
+Quentin
