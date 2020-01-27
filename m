@@ -1,87 +1,123 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.7583.1580124685086783531
+Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com [209.85.221.68])
+ by mx.groups.io with SMTP id smtpd.web11.7653.1580125500121091289
  for <yocto@lists.yoctoproject.org>;
- Mon, 27 Jan 2020 03:31:25 -0800
+ Mon, 27 Jan 2020 03:45:00 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=HqNQUT5+;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jonatan.p@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B7F22E0162F; Mon, 27 Jan 2020 03:31:24 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.166.50 listed in list.dnswl.org]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (jonatan.p[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10A0BE01629
-	for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 03:31:23 -0800 (PST)
-Received: by mail-io1-f50.google.com with SMTP id h8so9557658iob.2
-        for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 03:31:23 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=K9zVGvZT;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.221.68, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wr1-f68.google.com with SMTP id z7so10837974wrl.13
+        for <yocto@lists.yoctoproject.org>; Mon, 27 Jan 2020 03:44:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=08WmJyV2lOOcwstonyshldRfOBT2P1hLqQH1X+VA8wY=;
-        b=HqNQUT5+dYwYAaDfmNnASf9OciRc9hWlbOxSeKf3g1k/FbaWg7KqpYna12DO3l2iTF
-         k0d7SbrDYCIe8fXw85OrcC+s9lbfwuJ49pLfXmlvkfDmF86deSwQitC7MBqyK8nyFcyr
-         YhpIuwuHt2tbiDBY4yc5VzBYOKb4NmouF3ZINtIZfPQm7CuRT6+W1ykhgPqTh0VzWfUN
-         BhoDVjEE7x9KL/fx4DcKrd9Lma4V5QZeOeB2DLi+nhdi9vBfobIKA1pOZHLLDRTT4E0c
-         OiPQBQzGkGWEnsTMnDesJgA2R3g57B4HQLC67VOYKGRocgYG6w7C/OVB+HO6HSsMmofc
-         FbdQ==
+        d=linuxfoundation.org; s=google;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7W371BgWOCx7vCixcCyTlnTdEyI9YDOydVsE46kYxCo=;
+        b=K9zVGvZTn34GLExLx/1Eu4xtjxhQnbjmzpv4rdbE+CnbdRC+aCn/+4OLv+B9by57Fi
+         Izb4nwQjTeLMhupzow9qrL3Q6QZORt4jaloQ3nD2y04+Ux0tE54Gx5xfkBQLCRmHWXsL
+         9VZn7YrCJdqwa5g0U/+GbiIIrpjVtK/fzkuy0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=08WmJyV2lOOcwstonyshldRfOBT2P1hLqQH1X+VA8wY=;
-        b=YTltmDW6tzOB0Q9KD6SCcdpQAA6oaoC9lZOkYqfQp1MUqDvkuz/y4UGVS+4s0nrmjT
-         LCG3Mcg7XtAkQsWxBsfIZYhBH+cC2g9CB7FInYDZSEkR0Y0c7t4zZeDqteTdlPdLGBDg
-         1txoPqROI4KBmbFlxJM/iyTvCjUvM3URGBp33Mj14Ci9pyVj8r4Ov4Dqx7aJat2WMPsE
-         FhcdhfHBw+eSU5HMQpoRhHOYb+tMOpMw3BZ401AxPD+r65LOsBAWudlS5hrrDfV6gUZC
-         nGb4Y8/HemQFx8izZa5Pkg8UhwGEH+5zql8WLEW7igP8SJWqz/FZDhFyx1MJcmDXtXi+
-         QJ2A==
-X-Gm-Message-State: APjAAAWd2yzbW+H7yO5N2YXB+NB6QzR3xRHgcZMQ9lXKObPWm5FfwXFp
-	25h69SbwVP1Lp29/7E4jbYFCpahfeTLB+qDnvbM=
-X-Google-Smtp-Source: APXvYqx89lmPB71nC7ZBYHmPf23NnGIOz49lY/7VWSeqqQWoME1x/1Yijm2P4Mk3aOEgEvKQBWyioVAgYm9NVbzxZ8s=
-X-Received: by 2002:a6b:4e13:: with SMTP id c19mr11427468iob.58.1580124683359;
- Mon, 27 Jan 2020 03:31:23 -0800 (PST)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7W371BgWOCx7vCixcCyTlnTdEyI9YDOydVsE46kYxCo=;
+        b=iyEvZe40cxF1ocAHV2MJdqPmyCz8RtpgekICTmNzUiVpQPUxYI94TPWUNjOYEUfGRV
+         feQikkN6DCQgbPq+qsX5n12yUZbNb2zzTBR89Dptf4nyr5wWsI9ArHpqh0SIZ4j4cmiL
+         B6sHJMb0TCYSAcBhpY5Lzr99MFNQXnS2RY9KRv1gbXh+oyl695mt+udrpqvOSa5DXDXQ
+         +a6y9NXc/tHK6uxTMhsmem9o2D2XMMwxkn9PjWpq6SXQDFq0yU/8lwF4lYON0tZpN31l
+         8usBkVS6yccH759j7MiJjFbkFPnxzY2HnVrqUv3j0sIubeVANGYdm3vO7oWuLE7UyUNO
+         xYYw==
+X-Gm-Message-State: APjAAAWTkZaYbWYXLuTAmptHsko70RUBrhEfVzm79kOurwW1HHtdW/cq
+	eBEfkYtiat4C1+kA2TYL9AMuf8BFLE4=
+X-Google-Smtp-Source: APXvYqy3MMW+l5HpnJjeRj9fIZwRdwzsk33Qfr+no9Qf2aQ9McR6YOcaQB9eELa00pYJ9oeGHGHFdA==
+X-Received: by 2002:a05:6000:11c5:: with SMTP id i5mr21287575wrx.102.1580125498253;
+        Mon, 27 Jan 2020 03:44:58 -0800 (PST)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from hex.int.rpsys.net (5751f4a1.skybroadband.com. [87.81.244.161])
+        by smtp.gmail.com with ESMTPSA id w20sm17665608wmk.34.2020.01.27.03.44.56
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 27 Jan 2020 03:44:57 -0800 (PST)
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: yocto@lists.yoctoproject.org
+Subject: [PATCH] distrodata/maintainers: Add PARSE_ALL_RECIPES flag to fix test issues
+Date: Mon, 27 Jan 2020 11:44:53 +0000
+Message-Id: <20200127114453.4847-1-richard.purdie@linuxfoundation.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <CAA=hcWRQmXa4_hh3KzKmqeaEkGsbdTEimsPjh=tZWribMkM0dA@mail.gmail.com>
- <CAA=hcWRwi_EsMD2OBzVWtyX_SPJf05vqc09zhQzFdguKi0k=FA@mail.gmail.com>
- <emb3e01e23-7511-48c8-9229-85a767ab359c@andys-imac.leeshillfarm.local> <CAA=hcWS2ncU4+RkeLydXOnGvswshK-0iDV3cRTdFgoQ4+Oe57w@mail.gmail.com>
-In-Reply-To: <CAA=hcWS2ncU4+RkeLydXOnGvswshK-0iDV3cRTdFgoQ4+Oe57w@mail.gmail.com>
-From: =?UTF-8?B?Sm9uYXRhbiBQw6Vsc3Nvbg==?= <jonatan.p@gmail.com>
-Date: Mon, 27 Jan 2020 12:31:11 +0100
-Message-ID: <CAKm+giMoe=USkKPCvBvv_Jz+AVLHTqHkf-_wZwyOfNyzyLSceg@mail.gmail.com>
-Subject: Re: [yocto] lost busybox mysteriously
-To: JH <jupiter.hce@gmail.com>
-Cc: Andy Pont <andy.pont@sdcsystems.com>, 
-	Yocto discussion list <yocto@yoctoproject.org>, linux-mtd <linux-mtd@lists.infradead.org>, 
-	connman <connman@lists.01.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hello JH,
+Currently the test depends on which DISTRO_FEATURES and targets are selected.
+Similar to SOURCE_MIRROR_FETCH, add PARSE_ALL_RECIPES to allow the test to see
+a much wider range of them. This avoids issues added by the new ucontext musl
+specific recipe and allows the current whitelist to be cleared out a bit (more
+cleanup can follow).
 
-On Mon, Jan 27, 2020 at 12:13 PM JH <jupiter.hce@gmail.com> wrote:
->
-> > If you look at the /bin directory (ls -la /bin/busy*) what do you see?
-> > Have the files been deleted? Truncated? Zero length?
->
-> Could not run ls or any shell commands when the busybox was missing.
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+---
+ meta/classes/base.bbclass                  | 4 ++--
+ meta/classes/features_check.bbclass        | 3 +++
+ meta/lib/oeqa/selftest/cases/distrodata.py | 7 +++----
+ 3 files changed, 8 insertions(+), 6 deletions(-)
 
-Do you have the "ubifsls" command available in your u-boot? This
-should allow you to look around in the file system from u-boot. See
-here: https://gitlab.denx.de/u-boot/u-boot/blob/master/doc/README.ubi#L177
+diff --git a/meta/classes/base.bbclass b/meta/classes/base.bbclass
+index c243700bcdd..45f9435fd8e 100644
+--- a/meta/classes/base.bbclass
++++ b/meta/classes/base.bbclass
+@@ -510,7 +510,7 @@ python () {
+         d.appendVarFlag('do_devshell', 'depends', ' virtual/fakeroot-native:do_populate_sysroot')
+ 
+     need_machine = d.getVar('COMPATIBLE_MACHINE')
+-    if need_machine:
++    if need_machine and not d.getVar('PARSE_ALL_RECIPES', False):
+         import re
+         compat_machines = (d.getVar('MACHINEOVERRIDES') or "").split(":")
+         for m in compat_machines:
+@@ -519,7 +519,7 @@ python () {
+         else:
+             raise bb.parse.SkipRecipe("incompatible with machine %s (not in COMPATIBLE_MACHINE)" % d.getVar('MACHINE'))
+ 
+-    source_mirror_fetch = d.getVar('SOURCE_MIRROR_FETCH', False)
++    source_mirror_fetch = d.getVar('SOURCE_MIRROR_FETCH', False) or d.getVar('PARSE_ALL_RECIPES', False)
+     if not source_mirror_fetch:
+         need_host = d.getVar('COMPATIBLE_HOST')
+         if need_host:
+diff --git a/meta/classes/features_check.bbclass b/meta/classes/features_check.bbclass
+index 391fbe1c946..876d32e3155 100644
+--- a/meta/classes/features_check.bbclass
++++ b/meta/classes/features_check.bbclass
+@@ -23,6 +23,9 @@
+ # Copyright 2013 (C) O.S. Systems Software LTDA.
+ 
+ python () {
++    if d.getVar('PARSE_ALL_RECIPES', False):
++        return
++
+     # Assume at least one var is set.
+     distro_features = set((d.getVar('DISTRO_FEATURES') or '').split())
+ 
+diff --git a/meta/lib/oeqa/selftest/cases/distrodata.py b/meta/lib/oeqa/selftest/cases/distrodata.py
+index 5f7f488349a..e1cfc3b6214 100644
+--- a/meta/lib/oeqa/selftest/cases/distrodata.py
++++ b/meta/lib/oeqa/selftest/cases/distrodata.py
+@@ -56,15 +56,14 @@ but their recipes claim otherwise by setting UPSTREAM_VERSION_UNKNOWN. Please re
+             return False
+ 
+         def is_maintainer_exception(entry):
+-            exceptions = ["systemd", "musl", "libpam", "newlib", "linux-yocto", "opensbi", "linux-dummy",
+-                          "mesa-gl", "libgfortran", "volatile-binds", "libgloss", "bsd-headers",
+-                          "cve-update-db-native", "libssp-nonshared", "argp-standalone", "fts"]
++            exceptions = ["musl", "newlib", "linux-yocto", "linux-dummy", "mesa-gl", "libgfortran",
++                          "cve-update-db-native"]
+             for i in exceptions:
+                  if i in entry:
+                      return True
+             return False
+ 
+-        feature = 'require conf/distro/include/maintainers.inc\nLICENSE_FLAGS_WHITELIST += " commercial"\n'
++        feature = 'require conf/distro/include/maintainers.inc\nLICENSE_FLAGS_WHITELIST += " commercial"\nPARSE_ALL_RECIPES = "1"\n'
+         self.write_config(feature)
+ 
+         with bb.tinfoil.Tinfoil() as tinfoil:
+-- 
+2.20.1
+
