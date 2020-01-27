@@ -1,218 +1,293 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.9910.1580137711386998543
+ by mx.groups.io with SMTP id smtpd.web09.11409.1580144193594464627
  for <yocto@lists.yoctoproject.org>;
- Mon, 27 Jan 2020 07:08:31 -0800
+ Mon, 27 Jan 2020 08:56:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@soccasys-com.20150623.gappssmtp.com header.s=20150623 header.b=uCO5xWWe;
- spf=softfail (domain: soccasys.com, ip: 140.211.169.56, mailfrom: laurent.gauthier@soccasys.com)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=D67mcBjr;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AAE6AE01275; Mon, 27 Jan 2020 07:08:30 -0800 (PST)
+	id 34685E0163F; Mon, 27 Jan 2020 08:56:33 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (sjolley.yp.pm[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.221.172 listed in list.dnswl.org]
+	*      [209.85.210.174 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60C53E010E6
-	for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 07:08:29 -0800 (PST)
-Received: by mail-vk1-f172.google.com with SMTP id y184so2627338vkc.11
-        for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 07:08:29 -0800 (PST)
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71B29E0163D
+	for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 08:56:31 -0800 (PST)
+Received: by mail-pf1-f174.google.com with SMTP id p14so5178490pfn.4
+        for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 08:56:31 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=soccasys-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=41ojCr9EwsXvCMEoibRpVv7YYj4pDfBtKGzHFnP+gnE=;
-        b=uCO5xWWeCVwlgCmYm9ZdbWl3SfhsbcUilQz84sGcM+eqnxCmVnv9K16B+hlG36CAfw
-         SKzh5UG/O1cTrPFFjhi7aq47gTtJeZfXt58tLJPuvztn5pDZo3rhdvK1rUooyqjHakMl
-         aK4qQrnH03ABH7hBrRAwirCxdTB3E7ANE7yEl5+5R26Xbp7wo2z+Zh19Kto+EnG5CBxv
-         5k0P4q1jMQUSHtIpd9qdhxY3VlxAliFdRfcWdKIw/b7W4hW3DkfeFIQm22kSrFpuHctl
-         WaD+hRxEcFhRB0NfP0RcuJfOhdLi5YT9aetlLd2k9Z1kU5X3H6J1pUcHR0dLm0OQYQ/2
-         YnUw==
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:content-language
+         :thread-index;
+        bh=/NNbWW/bFhWSYB6ZOFSLNgqPKHVZNRGW6psoHqSWCYs=;
+        b=D67mcBjrpKmyPvQUORfFx+xm3qRmapgXY1KTEJfSfZxc544atmLzLJNHx+jGt6SoLD
+         sT0Cr1IILC2ViFPszovrIOit1gAWhxpcR/azweiRuQyqq60g8cALd6q6iuZQa8+LoTGC
+         Fj7CWq172l9cTTYRjCfWGbdcNd3C07SbNjuCbvXNr7HhrX0P2Xbi7xmvynWxmwb38y9c
+         SXmnDxf2pku/IEJRJYTZewBgxToBtJ4rmGqYi/5dEx/JinlOOY04v/uD6HFBq+s9WzMR
+         yka0qWf4gLGvttVHFM9pH3Lb+dOnI9d9askNU7LqdxIJ9eCpTakf1H3kEs6uum7w00Sa
+         fJ6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=41ojCr9EwsXvCMEoibRpVv7YYj4pDfBtKGzHFnP+gnE=;
-        b=qpytwNtwCjN8EcKRCi71PvZjCzVwexRhzl+LWrNfbb9YWDyryhMbV4hsyEkO76pvBy
-         QqLoRtHhQ9mUAgYHGE1qhKPVusUsm6IJgWozmrst7pTQTk4asCuN86BunSVSDMintu/Q
-         STHZxw6QnWSRkq4+qtjvgj0tyzP26mRBLWAbExaNdRmxnN7DNXlYRtr3xJPmRiwJn2Vq
-         9bPDT1ZeRsaEy9ix+spoUEyalq9qmF64SEryQ0iCn6sv4iCpmhX7MgO301WfUZC5vRrP
-         AlBuLcpQXDb1j3EXBz8Yy5S9KDN/W68aCOhPgHu56SCuajooiSBX6ueq1YVx/1XXX0u/
-         vEEg==
-X-Gm-Message-State: APjAAAWrf6euWiaAtYCGqc41KUxGMcy9IhrKd/Ps8XvvnLT7qPpBrpz5
-	SXbxW+4jlb5jIabL5EgpcnTFvFHYzYCbsWHRjTOZRg==
-X-Google-Smtp-Source: APXvYqwCoL2UHIWOx2gMiic2cO/mp3BdsZaqvuFrMN5un4KaL7AplGYhsSZiAjZba7B1o1/8BbYrxcPq0qJ+Ef/4+dY=
-X-Received: by 2002:ac5:c64c:: with SMTP id j12mr10227207vkl.11.1580137708100;
- Mon, 27 Jan 2020 07:08:28 -0800 (PST)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-language:thread-index;
+        bh=/NNbWW/bFhWSYB6ZOFSLNgqPKHVZNRGW6psoHqSWCYs=;
+        b=fIg3LYLbOjybtfEGDfXJ2e6ee37CFkl3wREjUNsV8Vh76HoofhGcYEQIsI92yNtgeB
+         5UYjCtBZ6SK1YLOrbJtugMQHieARvF5wrFs8qukOeNB+AcuhA1t+VhaDnlhRo/TwA83/
+         RrgGFfqykeZJIBX8BRefM1RDnlKMtxx+ubwBasn7iaxesvpzksZUus1QhhpaHV8N5MH+
+         gfuG/+gXgeinDTSW/N2krgXQ23pDGgSB32C9UELuqvdFptkYQ16+XaQfhMwRW3IRwzzq
+         +NcTLZNCMUORaL2S6dC6wNnIM23eYmCCRXDFsIhCXsAI/oBCvt0sRrB9/ZnuUnuUARgs
+         6EmQ==
+X-Gm-Message-State: APjAAAUnNtzRYOQTq5ZDx0Z+X26V41uC4xwFvLWn67wPnq6imSbAkZ0a
+	1R8sPkm7mvRH6HtdaV8fOs0=
+X-Google-Smtp-Source: APXvYqwqOWZMHOlJMX1GbXp8grXk3e0ytu8VV9xBSEFeAg2XrL4gZjtN8jc/PThBpDiV/CXibRAs3Q==
+X-Received: by 2002:a63:780d:: with SMTP id t13mr19389336pgc.82.1580144190888;
+        Mon, 27 Jan 2020 08:56:30 -0800 (PST)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id e2sm16448104pjs.25.2020.01.27.08.56.30
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 27 Jan 2020 08:56:30 -0800 (PST)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 27 Jan 2020 08:56:30 -0800
+Message-ID: <067a01d5d532$b9854e20$2c8fea60$@gmail.com>
 MIME-Version: 1.0
-References: <CAA=hcWRQmXa4_hh3KzKmqeaEkGsbdTEimsPjh=tZWribMkM0dA@mail.gmail.com>
- <CAA=hcWRwi_EsMD2OBzVWtyX_SPJf05vqc09zhQzFdguKi0k=FA@mail.gmail.com>
- <emb3e01e23-7511-48c8-9229-85a767ab359c@andys-imac.leeshillfarm.local>
- <CAA=hcWS2ncU4+RkeLydXOnGvswshK-0iDV3cRTdFgoQ4+Oe57w@mail.gmail.com> <20200127120638.2jpgvedxecwgwz6u@qschulz>
-In-Reply-To: <20200127120638.2jpgvedxecwgwz6u@qschulz>
-From: "Laurent Gauthier" <laurent.gauthier@soccasys.com>
-Date: Mon, 27 Jan 2020 16:04:40 +0100
-Message-ID: <CAGbd71R_udrQxe4QcH0P0RR3Dg3GRHZdy6TBb2TQXtiXVLwW4g@mail.gmail.com>
-Subject: Re: [yocto] lost busybox mysteriously
-To: Quentin Schulz <quentin.schulz@streamunlimited.com>
-Cc: JH <jupiter.hce@gmail.com>, Andy Pont <andy.pont@sdcsystems.com>, 
-	Yocto discussion list <yocto@yoctoproject.org>, linux-mtd <linux-mtd@lists.infradead.org>, 
-	connman <connman@lists.01.org>
-Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQK60MFY8RnT/jjBhutfacP7OksIRw==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_067B_01D5D4EF.AB628350"
+Content-Language: en-us
+
+------=_NextPart_000_067B_01D5D4EF.AB628350
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+
+All,
+
+ 
+
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+ 
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
+
+ 
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 302
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.1", "3.2, "3.99" and "Future", the more pressing/urgent issues
+being in "3.1" and then "3.2".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newcomer_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_067B_01D5D4EF.AB628350
+Content-Type: text/html;
+	boundary="----=_NextPart_000_08FF_01D5CF80.1CAFE270";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi JH,
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
+starting to try and collect up and classify bugs which a newcomer to the =
+project would be able to work on in a way which means people can find =
+them. They're being listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
+><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 302 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.1&#8221;, &#8220;3.2, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.1&quot; and then &#8220;3.2&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_Newco=
+mer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage#Unassigned_or_New=
+comer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-As you are not providing enough details in your request we have to
-guess the nature of
-the issue you are seeing.
-
-I will just point out a few things that could help in your situation.
-
-If this is a failure that happens almost every time after you flash a
-new image it could be
-due to NAND blocks being bad.
-
-As you mentioned that you have been working with this system for a
-year it could be that repeated
-flashing of UBI images has ended up causing some NAND blocks to go bad.
-
-When using UBI it is a good idea to use a flashing procedure that will
-preserve UBI wear-levelling
-information. An example of such a procedure can be found in section
-4.4 of the following page:
-
-http://variwiki.com/index.php?title=3DU-Boot_features#Flashing_UBIFS_to_NA=
-ND
-
-These instructions (ubi part/ubi remove/ubi create/ubi write) need to
-be adjusted for your specific
-hardware layout, but this can help. In short you should update
-individual UBIFS volumes in your UBI
-partition rather then reflash the whole UBI partition.
-
-Another option is to use ubiformat from the u-boot command line. For
-this you would need to research
-the subject by yourself.
-
-Updating your UBIFS volumes this way you should be able to extend
-greatly the life of your NAND if
-you are flashing your development board multiple times a day.
-
-I would like to also comment on a remark made by someone else about
-UBIFS being safe across
-power cycles:
-
-While the assertion that "UBIFS is safe across power-cycles" is true
-in theory in practice you probably
-should avoid to rely on it too much.
-
-My recommendations to improve resistance to power-cycles would be the foll=
-owing:
-
-1. If possible mount your UBIFS root-filesystem as read-only, and will
-avoid most issues. This means
-   you should use tmpfs for temporary/volatile filesystems.
-2. If your root-filesystem cannot be read-only then remount it as
-read-only just before the final shutdown
-   (using for example "mount -o remount,ro /" followed by a "sync") as
-this will limit the possibility of a
-   corruption of the UBIFS occurring on the next reboot.
-
-I hope that you will find what your issue is.
-
-Kind Regards, Laurent.
-
-On Mon, Jan 27, 2020 at 1:53 PM Quentin Schulz
-<quentin.schulz@streamunlimited.com> wrote:
->
-> Hi JH,
->
-> On Mon, Jan 27, 2020 at 10:13:37PM +1100, JH wrote:
-> > Hi Andy,
-> >
-> > Thanks for the response.
-> >
-> > On 1/27/20, Andy Pont <andy.pont@sdcsystems.com> wrote:
-> > > JH wrote...
-> > >
-> > >>That the same problem of missing busybox was not just occurred durin=
-g
-> > >>the device running in the middle of operation, it was also occurred
-> > >>during booting image from NAND, I saw several times that the first a=
-nd
-> > >>second cycles of booting image from NAND were working well, then som=
-e
-> > >>following booting process would be crashed by missing busybox, then
-> > >>could not run whole shell commands. I have been pondering if it coul=
-d
-> > >>be caused by NAND issue or network virus / fishy? Appreciate any
-> > >>clues.
-> > > The first step is for us to understand what =E2=80=9Cmissing=E2=80=
-=9D means?  Have you
-> > > got any mechanism (U-Boot, SD card boot, etc.) that will allow you t=
-o
-> > > mount and look at the contents of the NAND file system?
-> >
-> > Means that busybox was not there anymore, it mysteriously lost, all
-> > shell commands would no longer available. It cannot to run mount or
-> > any shell commands. There was two scenarios when that happened:
-> >
-> > - In the middle of running, the device all of certain could not run
-> > shell commands and failed mysteriously
-> >
-> > - During the u-boot booting kernel process, there were full errors of
-> > failing shell commands. Let me make it clear,  that booting error did
-> > not occur in the first or second kernel booting after the new image
-> > installation, it happened in the following kernel booting, but there
-> > was nothing to delete busybox accidentally, busybox was just
-> > mysteriously disappeared. Because I could not run ls, I did not know
-> > if there are other things missing. If you ask how I could know the
-> > busybox was missing, I ran the zImage-initramfs to boot the linux in
-> > RAM, then mount the ubi0 to find  out busybox was gone.
-> >
-> >
-> > > If you look at the /bin directory (ls -la /bin/busy*) what do you se=
-e?
-> > > Have the files been deleted? Truncated? Zero length?
-> >
-> > Could not run ls or any shell commands when the busybox was missing.
-> >
->
-> /bin/ls -la /bin/busy* ?
->
-> Maybe something is messing with the PATH environment variable. Or
-> something is removing the symlinks from some binaries to busybox.
->
-> > > What file system are you using on the NAND flash?  How are the devic=
-es
-> > > being reset during the various boot cycles?  If it is a hardware res=
-et
-> > > then some file systems are less resilient to it than others but I wo=
-uld
-> > > expect in that case more fundamental boot issues.
-> >
-> > UBIFS, most device reset or boot cycles were calling halt or reboot,
-> > but it sometime it could just use power cycle.
-> >
->
-> IIRC, UBIFS is safe from power cycles.
->
-> Quentin
->=20
-
-
-
---=20
-Laurent Gauthier
-Phone: +33 630 483 429
-http://soccasys.com
+------=_NextPart_000_067B_01D5D4EF.AB628350--
