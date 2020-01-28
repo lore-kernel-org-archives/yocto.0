@@ -1,12 +1,12 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.4039.1580180867442095726
+ by mx.groups.io with SMTP id smtpd.web10.4041.1580180879872109156
  for <yocto@lists.yoctoproject.org>;
- Mon, 27 Jan 2020 19:07:47 -0800
+ Mon, 27 Jan 2020 19:07:59 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=Fu/7CRfO;
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=bPWzApdM;
  spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jpewhacker@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 99EB9E013EF; Mon, 27 Jan 2020 19:07:46 -0800 (PST)
+	id B5D08E01643; Mon, 27 Jan 2020 19:07:59 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -20,81 +20,106 @@ X-Spam-HAM-Report:
 	*      (jpewhacker[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.166.68 listed in list.dnswl.org]
+	*      [209.85.166.195 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-io1-f68.google.com (mail-io1-f68.google.com [209.85.166.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32C9AE013EF
-	for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 19:07:46 -0800 (PST)
-Received: by mail-io1-f68.google.com with SMTP id d15so12610518iog.3
-        for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 19:07:46 -0800 (PST)
+Received: from mail-il1-f195.google.com (mail-il1-f195.google.com [209.85.166.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4468E013EF
+	for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 19:07:55 -0800 (PST)
+Received: by mail-il1-f195.google.com with SMTP id g12so9417858ild.2
+        for <yocto@yoctoproject.org>; Mon, 27 Jan 2020 19:07:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=1N97bPPTahKOVaDrgBqx57bXLCTV6Ep2g99xpDsMk2g=;
-        b=Fu/7CRfO7A/u53s5jxzxkjPASFfekTzYPxUW7cXuV2O3v8UHMbEeJQkHbzUiRF8VPH
-         mOGNeana+5+LGlz15yT+XkAz4IlsSUoLrDIaIcFfqWQdhLxqW4HeY4UHugt2i2BqDjdT
-         2vY00Xgra4NNBL1FuZvJD51wjFkVjRH7WsLS/OhDuIxwPf1ODsqqlL7ZLaw4+duBbVd2
-         NKWRvtykWCREefj0/8OrQRWG+21qDWqatf1cysMWfAYDkHxYbvZ+GqoT884cuDQCSLdk
-         krsKvIoSgTmvYGI4DC2sxY3sS+2rrM+tFQzMdh+MLyqs+CH9vNrHKEgncvfEVIsslDiR
-         FP0A==
+        bh=WoxIM7BBvLGQbbwiGbkNrqdc9yssLq1lW33XgvVL3Jg=;
+        b=bPWzApdMw9ee7LteAAJeRk8MmJaNztTPe7PSrJ52a7HkFPX+T0QbwXoyic5R9czeQT
+         A7kexbMNDS4WKj28lxWt8IzYzOaDpQLufn7xQZ3kWJhDtzchJQSUHMMYPdoOOYFod3sc
+         0Bfznsuu+JGEUzivaw2fcyoO58LyEQ5ywiKniqRwEXq98DUWo1ahR7EHovsrWMzi7SCZ
+         EETbmyd4GEFUQ4ISKxHuQg/yp04UWZ+344abxafLRPf5zPh0KxUP1cf+CArLPp/MU8OL
+         +4OkJ5nNvnHFp6Jya8W0I2UGLAUDJTr3UM4G51b5BgHXT6uYDHC9hXuZkjL979Vqkgzp
+         dYqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=1N97bPPTahKOVaDrgBqx57bXLCTV6Ep2g99xpDsMk2g=;
-        b=OY8xi2FpSg0Y8GtDnPXNpY9hy1oO8hZxy7qgaG77xJ6tDMl7uTpp/Lp9rubBoKiHnW
-         Qv+shG2G1su1viVk2LF8YG7pIBqrZOGDUJMUoTWXWFxUUpyZ9B7xtqQpCGNVr1jjQFGQ
-         jZ4cUXuW4OPggkwoAo4CbLfHGFY+inslP/wVD4N9CG/SNgC9gy5+MYbqKttKHC0g9pcs
-         6cMGPY+zSkiwSK1zxwjJE48wTsizBXe/1NrcWRdJ4SZ/T4cK3Fzt6E4RoGbKG1SynMYU
-         Zk6lEurtZZ1Hly3dYHk35LwULfAY+1Yof6OLXu/uhmsXuNKdXAABc9QbZtel3rRV+7I2
-         n9mA==
-X-Gm-Message-State: APjAAAW8CQKBHVOnuvzNHgOcn2iGqaxzx9IP4/Suvp+GY5ovZSdI6nEp
-	zy+I9vZlNj19Y9X2cyR3kY/Id96ZzpY=
-X-Google-Smtp-Source: APXvYqxgUUspgY4GtwJeqFpbyd0SIAyNKTetNK0+48C3rnYYL6lqX6jRxAZpanOwFIsX2yC17ujwhw==
-X-Received: by 2002:a02:c558:: with SMTP id g24mr15923122jaj.81.1580180865389;
-        Mon, 27 Jan 2020 19:07:45 -0800 (PST)
+        bh=WoxIM7BBvLGQbbwiGbkNrqdc9yssLq1lW33XgvVL3Jg=;
+        b=Wb6d0kLCkOSpQ0mkThf06JOEyqPYCN+HlVC0h1m0XjJpOu4clLqK2fL7Cc7HChoJ7Q
+         jCz+eOcC2XwNNJc1UGcGj+ClbdC2U8SdnfEe4guU1w9reMwmrTafXS1fpesDFN4ck+wi
+         EY7sONamD5n5bNE0yECsm6uGLiBuQAFiIDogfYk5rcdKjPTTovltAgrTsK/EGdeHASyT
+         mLE7stlyisWjgxSpTp8DvV3mf8Vf6ICaKHU/4BaC4PcV1UJNels3m89IAo09ru2UlIGE
+         MrlX0iKnWe/GWGTFiOsdXqvgNMVbEGaLjc6ED4+GEnb1qt6ILNOtty/U8aMgKMI4ZDn6
+         Oj9w==
+X-Gm-Message-State: APjAAAWFaknR3UkNHWwVFh370bhNUHj1lOm1/9xqOz50b3zMMfXAdE9s
+	0XfAXZi3QKHOTg/o/V1hHjzrTycrN8c=
+X-Google-Smtp-Source: APXvYqynj3X5V/lzT4MMt9J3coOE7FKnoznetwu1T0hyz92rcuNGD92W9elTtTrr2Gz5VO+rel+u9g==
+X-Received: by 2002:a92:c04e:: with SMTP id o14mr3895902ilf.133.1580180875070;
+        Mon, 27 Jan 2020 19:07:55 -0800 (PST)
 Received: from ola-842mrw1.ad.garmin.com ([204.77.163.55])
-        by smtp.gmail.com with ESMTPSA id l24sm3923669iol.74.2020.01.27.19.07.44
+        by smtp.gmail.com with ESMTPSA id y11sm45453ilm.22.2020.01.27.19.07.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 27 Jan 2020 19:07:44 -0800 (PST)
+        Mon, 27 Jan 2020 19:07:54 -0800 (PST)
 From: "Joshua Watt" <JPEWhacker@gmail.com>
 X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
 To: yocto@yoctoproject.org
 Cc: twoerner@gmail.com,
 	Joshua Watt <JPEWhacker@gmail.com>
-Subject: [meta-rockchip][PATCH] rock-pi-4: Fix description
-Date: Mon, 27 Jan 2020 21:07:33 -0600
-Message-Id: <20200128030733.939917-1-JPEWhacker@gmail.com>
+Subject: [meta-rockchip][PATCH] tinker-rk3288: Rename to tinker-board
+Date: Mon, 27 Jan 2020 21:07:50 -0600
+Message-Id: <20200128030750.940013-1-JPEWhacker@gmail.com>
 X-Mailer: git-send-email 2.24.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 
-The Rock Pi 4 is based on a RK3399, not a RK3288
+Renames the tinker-rk3288 to match the convention of naming the machines
+with the manufacturers official board name.
 
 Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
 ---
- conf/machine/rock-pi-4.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ README                                                 | 2 +-
+ conf/machine/{tinker-rk3288.conf =3D> tinker-board.conf} | 2 +-
+ wic/{tinker-rk3288.wks =3D> tinker-board.wks}            | 0
+ 3 files changed, 2 insertions(+), 2 deletions(-)
+ rename conf/machine/{tinker-rk3288.conf =3D> tinker-board.conf} (95%)
+ rename wic/{tinker-rk3288.wks =3D> tinker-board.wks} (100%)
 
-diff --git a/conf/machine/rock-pi-4.conf b/conf/machine/rock-pi-4.conf
-index 4cbfc3f..4a0671c 100644
---- a/conf/machine/rock-pi-4.conf
-+++ b/conf/machine/rock-pi-4.conf
-@@ -2,7 +2,7 @@
- # Released under the MIT license (see COPYING.MIT for the terms)
+diff --git a/README b/README
+index 5486b29..983d946 100644
+--- a/README
++++ b/README
+@@ -15,7 +15,7 @@ Status of supported boards:
+ --------------------------
+ 	builds and boots gpt image:
+ 		rock-pi-4
+-		tinker-rk3288
++		tinker-board
+ 		vyasa-rk3288
+ 		firefly-rk3288
+ 	builds:
+diff --git a/conf/machine/tinker-rk3288.conf b/conf/machine/tinker-board.=
+conf
+similarity index 95%
+rename from conf/machine/tinker-rk3288.conf
+rename to conf/machine/tinker-board.conf
+index aeee472..c8cac7b 100644
+--- a/conf/machine/tinker-rk3288.conf
++++ b/conf/machine/tinker-board.conf
+@@ -10,7 +10,7 @@ require conf/machine/include/rk3288.inc
+ KERNEL_DEVICETREE =3D "rk3288-tinker.dtb"
+ UBOOT_MACHINE =3D "tinker-rk3288_defconfig"
 =20
- #@TYPE: Machine
--#@NAME: Rock Pi 4 RK3288
-+#@NAME: Rock Pi 4 RK3399
- #@DESCRIPTION: Rock Pi 4 is a Raspberry Pi 4 Alternative based on Rockch=
-ip RK3399 Processor.
+-WKS_FILE =3D "tinker-rk3288.wks"
++WKS_FILE =3D "tinker-board.wks"
+ IMAGE_FSTYPES +=3D "wic wic.bmap"
 =20
- require conf/machine/include/rk3399.inc
+ WKS_FILE_DEPENDS ?=3D " \
+diff --git a/wic/tinker-rk3288.wks b/wic/tinker-board.wks
+similarity index 100%
+rename from wic/tinker-rk3288.wks
+rename to wic/tinker-board.wks
 --=20
 2.24.1
 
