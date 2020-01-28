@@ -1,12 +1,12 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.11523.1580227287833344193
+ by mx.groups.io with SMTP id smtpd.web09.12035.1580228713738692651
  for <yocto@lists.yoctoproject.org>;
- Tue, 28 Jan 2020 08:01:28 -0800
+ Tue, 28 Jan 2020 08:25:13 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=hv9WQWQd;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=NMdZ+cmg;
  spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 69730E01650; Tue, 28 Jan 2020 08:01:27 -0800 (PST)
+	id 42AC6E01650; Tue, 28 Jan 2020 08:25:13 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -20,182 +20,322 @@ X-Spam-HAM-Report:
 	*      (sjolley.yp.pm[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.216.48 listed in list.dnswl.org]
+	*      [209.85.210.177 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F466E0164D
-	for <yocto@yoctoproject.org>; Tue, 28 Jan 2020 08:01:24 -0800 (PST)
-Received: by mail-pj1-f48.google.com with SMTP id 12so1207559pjb.5
-        for <yocto@yoctoproject.org>; Tue, 28 Jan 2020 08:01:24 -0800 (PST)
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B78BBE0164D
+	for <yocto@yoctoproject.org>; Tue, 28 Jan 2020 08:24:46 -0800 (PST)
+Received: by mail-pf1-f177.google.com with SMTP id x185so6870278pfc.5
+        for <yocto@yoctoproject.org>; Tue, 28 Jan 2020 08:24:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id:mime-version:content-language
          :thread-index;
-        bh=sYWeR3ezj3oL9wil8SEzplxfIicvA+XAB3wv0ShV1mY=;
-        b=hv9WQWQdhxxhBQCOU99BdHYv1TfxcJ6GuVht4LnqVZ+3I1N6E84V5FD8LbIFbrSGoo
-         2NeqDcGyc40CGRbWwIv8FWtsY8EioEpcNEeeSWsCNc9XAKLweVvMUsJalQO+oAQFhTwD
-         Es2x9OJ0j45Ym4oSJs/LK060MD8Od4iB/rWBnQm9yTDk+DSJe/QpQtL9xbnMEDeFHw5G
-         xgo8qkzbXISCO2JraDsFukLXN83lcsOSPwmT7vlTWuxdZNpamMABwT/MERpkYVx8/zJJ
-         EMbvxGDJG1nKwTD8YWMu6bbNaYURkwQJsgSO0Lykg3/ekpupSl/kiNCnZAakV9KEh6US
-         e2ww==
+        bh=VgsxI2smG9VxRB89T0nMkjOqkzwfEa6jLPDfLrasVdU=;
+        b=NMdZ+cmgIYSAVBlJXrnHXu7RUrpdns4JCl8Qg8sWNQM0gv3uaPhDZhb7MMcWzVoebs
+         3zqTU7b6aXtIK+HCnYfZmUSuz551DTC9pi7OQjsp/gZi/ap/ibdh10MLqV+0dSLDsrrV
+         edQs3DXCpQXGYj7tx0UDBw1b8Nc4EqTKJvQyWpM9YE0765ewgvNcqVdgA93YRoJ4hGjq
+         Lt9ukQK6mnfqJzEAYlsJag/6JRF+NcbeZiswoqCus1R9hIAhz0RnWS9e0hzki9AtWCYU
+         jeopT4N2HeHFWWjKzt3OLja2cBF3JIr0VB/VMg2dan/7VdHuDAGLJx3V1aG6t8hoEWXZ
+         Q+Bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-language:thread-index;
-        bh=sYWeR3ezj3oL9wil8SEzplxfIicvA+XAB3wv0ShV1mY=;
-        b=AJ4fWZBREOShoBKTF5K50NNEO9Yh0ivG+PaXTCJ8o3kdKIr0KrtpVvJjIgx1ROasRV
-         /TLBRiseRXJ6p0dXe4td3VUxKZff7QrmOMsuoiQdF6SwsQ6ffyyPv09R7fxM9cbPBEQi
-         SVhuPiH1zm2v628WtDMbea2+Xh/BibUpaRKGxJnG9W7JuJI/TA6RH+vQjNeW0+8/gyM0
-         AXohZdlGjXQtA5t+q8GbSgu++cQ9BatnjQTtOM0mQjJgbAz2kk3vUiWSmOZ/orG9k6CN
-         8P4MUVzbc8P2RWMo+qmQiIrCmo5fKOdZcxLKJW2bX1rcRmTdsfTlikZOaeq9rGQK2lio
-         G/TA==
-X-Gm-Message-State: APjAAAXx4OQKBD9ejRMvlQHN874QpD70KC2TmZNSdWFFYIl513rLmRkW
-	CqP7sudcxSPe8WWBjB7YPsg=
-X-Google-Smtp-Source: APXvYqycosbTpY1Y+mrmsGBp0Uy8YGG37/SsdNoJpA/TRN7fxfbONIOHPJylkv/78+YFirflMf0+qA==
-X-Received: by 2002:a17:902:82c3:: with SMTP id u3mr22317578plz.73.1580227284206;
-        Tue, 28 Jan 2020 08:01:24 -0800 (PST)
+        bh=VgsxI2smG9VxRB89T0nMkjOqkzwfEa6jLPDfLrasVdU=;
+        b=l49vJONCV2MRN8fGu08yLWJHEggzWYsD/w/8DfVvWGjoiW9Odhg820jxkR3GgGUHKe
+         RFwd1eiwPWjrqWQCIgGt0te8IizbXQHaFbh3BrQ2H/QsIxfTsFVMmVj/fS5ai2X6vwGN
+         gYt5sLsEK2iJAOqxMPMa9iIOLzYqbPBQyo3WfQA1jFbkHJqi3IuJgO0FWy4hhbBk3/f5
+         zDLeH4duRyFYkEzwvNxZdpbFFBIIVyIH5Ho5EY14nEMJEGtYZrianvZlr2vlj9yXO/wN
+         h1HzbmEMP1GcJGiWCOW8mOPfh8baXyRRj+lAa/JXp9oS2iKfDHJNp7WbdYG6Lv8KiFQ0
+         rMog==
+X-Gm-Message-State: APjAAAWNcPXSfQn79meiFjYB2fHEATsOrjYzd7XmvvamC30A4pkzFYvt
+	deE1DSUYHi9NsZrctMZQgBMNa38l
+X-Google-Smtp-Source: APXvYqxk2aWbG+Pn8HZf36jZimvMhzM3AAVUnLPA3lARWJeESJEIHNSV4n+AewhoW+M3FsCN41Gzig==
+X-Received: by 2002:a62:3603:: with SMTP id d3mr4467746pfa.37.1580228685922;
+        Tue, 28 Jan 2020 08:24:45 -0800 (PST)
 Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
-        by smtp.gmail.com with ESMTPSA id o11sm3325251pjs.6.2020.01.28.08.01.23
+        by smtp.gmail.com with ESMTPSA id h126sm20506462pfe.19.2020.01.28.08.24.45
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 28 Jan 2020 08:01:23 -0800 (PST)
+        Tue, 28 Jan 2020 08:24:45 -0800 (PST)
 From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
-To: <yocto@yoctoproject.org>,
-	<openembedded-core@lists.openembedded.org>
-Subject: Yocto Project Status WW04'20
-Date: Tue, 28 Jan 2020 08:01:23 -0800
-Message-ID: <086201d5d5f4$307b2150$917163f0$@gmail.com>
+To: <yocto@yoctoproject.org>
+Subject: Current Top developers on Yocto Project 3.1
+Date: Tue, 28 Jan 2020 08:24:45 -0800
+Message-ID: <088d01d5d5f7$740daf70$5c290e50$@gmail.com>
 MIME-Version: 1.0
 X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQLrhc3H6Rfbraq9lZI/TYNyHvpX+g==
+Thread-Index: AdXV9wQxYaV7mKyCSoGVoC4V1CYmig==
 Content-Type: multipart/alternative;
-	boundary="----=_NextPart_000_0863_01D5D5B1.225AC780"
+	boundary="----=_NextPart_000_088E_01D5D5B4.65EE4000"
 Content-Language: en-us
 
-------=_NextPart_000_0863_01D5D5B1.225AC780
+------=_NextPart_000_088E_01D5D5B4.65EE4000
 Content-Type: text/plain;
 	charset="us-ascii"
 Content-Transfer-Encoding: 7bit
 
-Current Dev Position: YP 3.1 M3
+All,
 
-Next Deadline: YP 3.1 M2 in QA - release 1/31/20
+Below is the list as of top 50 developers as of the end of WW04 of who have
+open medium or higher bugs and enhancements against YP 3.1.   There are 62
+possible work days left until the final release candidates for YP 3.1 needs
+to be released.
 
- 
 
-Next Team Meetings:
+Who
 
-*	Bug Triage meeting Thursday Jan. 30th  at 7:30am PDT (
-<https://zoom.us/j/454367603> https://zoom.us/j/454367603)
-*	Monthly Project Meeting Tuesday Feb. 4th  at 8am PDT (
-<https://zoom.us/j/990892712> https://zoom.us/j/990892712)
-*	Weekly Engineering Sync Tuesday Jan. 28th at 8am PDT (
-<https://zoom.us/j/990892712> https://zoom.us/j/990892712)
-*	Twitch - Next event is Tuesday Feb. 11th at 8am PDT (
-<https://www.twitch.tv/yocto_project> https://www.twitch.tv/yocto_project)
+Count
 
- 
 
-Tip of the Week:
+richard.purdie@linuxfoundation.org
 
-*	The scripts in ${WORKDIR}/temp/run.XXX for shell tasks can be
-quickly hacked and used for standalone debugging by replacing the function
-call at the end with "bash -i" which will then drop you into a shell
-environment matching the task being debugged (minus the fakeroot context). 
-*	Bonus marks for anyone sending a patch to add the fakeroot context
-as comments at the start of the scripts.
-*	(send any tips you'd like to see here to Stephen or Richard)
+39
 
- 
 
-Key Status/Updates:
+liezhi.yang@windriver.com
 
-*	YP 3.1 M2 is in QA but has issues with build reproducibility
-*	We're unlikely to rebuild M2 as master has the same issues and they
-look like they will take a while to resolve.
-*	There are now serious problems with the build reproducibility test
-failures on the autobuilder. We're not sure why there is a sudden set of
-problems but they are real issues and causing most builds to fail. The tests
-will have to be disabled unless they can be resolved quickly. There are
-fixes merged for the CONFIG_SHELL issue and kbd and patches queued as a
-potential fix for makeinfo. There are more remaining issues, some have open
-bugs, others don't have bugs yet. Help with any of these would be
-appreciated (or help filing the bugs).
-*	We're collecting a list of companies, products and projects which
-use the Yocto Project on the wiki:
-<https://wiki.yoctoproject.org/wiki/Project_Users>
-https://wiki.yoctoproject.org/wiki/Project_Users Please add any you know are
-missing (or email Richard/Stephen who can add).
-*	We have created a "documentation" list and a "licensing" list on the
-yocto project mailing list infrastructure. We believe these topics would
-benefit from dedicated discussions, the people involved usually aren't
-interested in bulk email as would be found on other lists. The new lists can
-be found at:  <https://lists.yoctoproject.org/g/licensing/join>
-https://lists.yoctoproject.org/g/licensing/join and
-<https://lists.yoctoproject.org/g/docs/join>
-https://lists.yoctoproject.org/g/docs/join 
-*	There is continued concern about the number of
-recurring/intermittent failures in the automated testing, mostly from
-selftest and testimage.
-*	We continue to struggle to get clean 'full' builds due to the
-reproducibility issues in particular.
-*	The triage team is worried about attendance at triage meetings and
-the project is finding it hard to find people to help fix bugs. If anyone is
-willing to work on bugs, assistance would be greatly appreciated.
+25
 
- 
 
-YP 3.1 Milestone Dates:
+david.reyna@windriver.com
 
-*	YP 3.1 M2 release date 1/31/2020
-*	YP 3.1 M3 build date 2/24/2020
-*	YP 3.1 M3 release date 3/6/2020
-*	YP 3.1 M4 build date  3/30/2020
-*	YP 3.1 M4 release date  4/24/2020
+24
 
- 
 
-Planned upcoming dot releases:
+ross.burton@intel.com
 
-*	YP 2.7.3 build date  2/10/2020
-*	YP 2.7.3 release date 2/21/2020
-*	YP 3.0.2 build date  2/3/2020
-*	YP 3.0.2 release date 2/14/2020
+24
 
- 
 
-Tracking Metrics:
+akuster808@gmail.com
 
-*	WDD 2765 (last week 2758) (
-<https://wiki.yoctoproject.org/charts/combo.html>
-https://wiki.yoctoproject.org/charts/combo.html)
-*	Poky Patch Metrics  
+16
 
-*	Total patches found: 1368 (last week 1357)
-*	Patches in the Pending State: 545 (40%) [last week 536 (39%)]
 
- 
+paul.eggleton@linux.intel.com
 
-The Yocto Project's technical governance is through its Technical Steering
-Committee, more information is available at:
+14
 
- <https://wiki.yoctoproject.org/wiki/TSC>
-https://wiki.yoctoproject.org/wiki/TSC
 
- 
+Qi.Chen@windriver.com
 
-The Status reports are now stored on the wiki at:
-<https://wiki.yoctoproject.org/wiki/Weekly_Status>
-https://wiki.yoctoproject.org/wiki/Weekly_Status
+12
 
- 
 
-[If anyone has suggestions for other information you'd like to see on this
-weekly status update, let us know!]
+bruce.ashfield@gmail.com
+
+10
+
+
+kai.kang@windriver.com
+
+9
+
+
+kexin.hao@windriver.com
+
+7
+
+
+hongxu.jia@windriver.com
+
+7
+
+
+michael@yoctoproject.org
+
+6
+
+
+randy.macleod@windriver.com
+
+6
+
+
+srifenbark@gmail.com
+
+6
+
+
+changqing.li@windriver.com
+
+5
+
+
+jon.mason@arm.com
+
+5
+
+
+trevor.gamblin@windriver.com
+
+4
+
+
+matthew.zeng@windriver.com
+
+4
+
+
+ycnakajsph@gmail.com
+
+4
+
+
+JPEWhacker@gmail.com
+
+4
+
+
+mark.morton@windriver.com
+
+4
+
+
+alejandro@enedino.org
+
+4
+
+
+timothy.t.orling@intel.com
+
+4
+
+
+pbarker@konsulko.com
+
+3
+
+
+jaewon@xilinx.com
+
+2
+
+
+cody.yu@windriver.com
+
+2
+
+
+seebs@seebs.net
+
+2
+
+
+alex.kanavin@gmail.com
+
+2
+
+
+mark.hatle@kernel.crashing.org
+
+2
+
+
+mingli.yu@windriver.com
+
+2
+
+
+kergoth@gmail.com
+
+2
+
+
+Martin.Jansa@gmail.com
+
+1
+
+
+kai.ruhnau@live.com
+
+1
+
+
+chee.yang.lee@intel.com
+
+1
+
+
+ankur.tyagi85@gmail.com
+
+1
+
+
+scott.branden@broadcom.com
+
+1
+
+
+yang.wang@windriver.com
+
+1
+
+
+naveen.kumar.saini@intel.com
+
+1
+
+
+mostthingsweb@gmail.com
+
+1
+
+
+m.brock@vanmierlo.com
+
+1
+
+
+gkraft4dell@gmail.com
+
+1
+
+
+peter.kjellerstedt@gmail.com
+
+1
+
+
+zhe.he@windriver.com
+
+1
+
+
+denis@denix.org
+
+1
+
+
+akuster@mvista.com
+
+1
+
+
+raj.khem@gmail.com
+
+1
+
+
+sky.captin@gmail.com
+
+1
+
+
+joe.slater@windriver.com
+
+1
+
+
+anon2313@ftml.net
+
+1
 
  
 
@@ -209,15 +349,14 @@ Yocto Project Program Manager
 
 *    Cell:                (208) 244-4460
 
-* Email:              sjolley.yp.pm@gmail.com
-<mailto:sjolley.yp.pm@gmail.com> 
+* Email:               <mailto:sjolley.yp.pm@gmail.com>
+sjolley.yp.pm@gmail.com
 
  
 
 
-------=_NextPart_000_0863_01D5D5B1.225AC780
+------=_NextPart_000_088E_01D5D5B4.65EE4000
 Content-Type: text/html;
-	boundary="----=_NextPart_000_0C39_01D5D02F.61303FD0";
 	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -248,948 +387,24 @@ charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
 	panose-1:3 15 7 2 3 3 2 2 2 4;}
 @font-face
 	{font-family:"MS Sans Serif";}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
 /* Style Definitions */
 p.MsoNormal, li.MsoNormal, div.MsoNormal
 	{margin:0in;
 	margin-bottom:.0001pt;
 	font-size:11.0pt;
 	font-family:"Calibri",sans-serif;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-span.EmailStyle18
+span.EmailStyle17
 	{mso-style-type:personal-compose;
 	font-family:"Calibri",sans-serif;
 	color:windowtext;}
 .MsoChpDefault
 	{mso-style-type:export-only;
-	font-size:10.0pt;}
+	font-family:"Calibri",sans-serif;}
 @page WordSection1
 	{size:8.5in 11.0in;
 	margin:1.0in 1.0in 1.0in 1.0in;}
 div.WordSection1
 	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:5593987;
-	mso-list-template-ids:-298521218;}
-@list l0:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l0:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l0:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l0:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1
-	{mso-list-id:98793037;
-	mso-list-template-ids:-2072630514;}
-@list l1:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l1:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l1:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l1:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2
-	{mso-list-id:212040625;
-	mso-list-template-ids:99770718;}
-@list l2:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l2:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l2:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l2:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3
-	{mso-list-id:252934806;
-	mso-list-template-ids:1416287998;}
-@list l3:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l3:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l3:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l3:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4
-	{mso-list-id:276186186;
-	mso-list-template-ids:493234028;}
-@list l4:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l4:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l4:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l4:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5
-	{mso-list-id:415052601;
-	mso-list-template-ids:-1815158208;}
-@list l5:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l5:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l5:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l5:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6
-	{mso-list-id:737481331;
-	mso-list-template-ids:-829799558;}
-@list l6:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l6:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l6:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l6:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7
-	{mso-list-id:969823821;
-	mso-list-template-ids:1123981156;}
-@list l7:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l7:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l7:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l7:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8
-	{mso-list-id:1117990555;
-	mso-list-template-ids:2118409618;}
-@list l8:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l8:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l8:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l8:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9
-	{mso-list-id:1265530001;
-	mso-list-template-ids:1843056774;}
-@list l9:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l9:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l9:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l9:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l10
-	{mso-list-id:1562984936;
-	mso-list-template-ids:1712617506;}
-@list l10:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l10:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l10:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l10:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l10:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l10:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l10:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l10:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l10:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l11
-	{mso-list-id:1828861198;
-	mso-list-template-ids:757498660;}
-@list l11:level1
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0B7;
-	mso-level-tab-stop:.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Symbol;}
-@list l11:level2
-	{mso-level-number-format:bullet;
-	mso-level-text:o;
-	mso-level-tab-stop:1.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:"Courier New";
-	mso-bidi-font-family:"Times New Roman";}
-@list l11:level3
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:1.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l11:level4
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l11:level5
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:2.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l11:level6
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l11:level7
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:3.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l11:level8
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.0in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-@list l11:level9
-	{mso-level-number-format:bullet;
-	mso-level-text:\F0A7;
-	mso-level-tab-stop:4.5in;
-	mso-level-number-position:left;
-	text-indent:-.25in;
-	mso-ansi-font-size:10.0pt;
-	font-family:Wingdings;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
 --></style><!--[if gte mso 9]><xml>
 <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
 </xml><![endif]--><!--[if gte mso 9]><xml>
@@ -1197,221 +412,562 @@ ul
 <o:idmap v:ext=3D"edit" data=3D"1" />
 </o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
 link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Current Dev =
-Position: YP 3.1 M3</span><o:p></o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Next Deadline: YP =
-3.1 M2 in QA - release 1/31/20</span><o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Next Team =
-Meetings:</span><o:p></o:p></p><ul style=3D'margin-top:0in' =
-type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l11 level1 lfo7;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Bug Triage meeting Thursday =
-Jan. 30th&nbsp; at 7:30am PDT (<a =
-href=3D"https://zoom.us/j/454367603"><span =
-style=3D'font-size:10.0pt;color:#1155CC'>https://zoom.us/j/454367603</spa=
-n></a>)<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l11 level1 lfo7;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Monthly Project Meeting Tuesday =
-Feb. 4th&nbsp; at 8am PDT (<a href=3D"https://zoom.us/j/990892712"><span =
-style=3D'color:#1155CC'>https://zoom.us/j/990892712)</span></a><o:p></o:p=
-></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l11 level1 lfo7;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Weekly Engineering Sync Tuesday =
-Jan. 28th at 8am PDT (<a href=3D"https://zoom.us/j/990892712"><span =
-style=3D'color:#1155CC'>https://zoom.us/j/990892712)</span></a><o:p></o:p=
-></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l11 level1 lfo7;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Twitch - Next event is Tuesday =
-Feb. 11th at 8am PDT (<a =
-href=3D"https://www.twitch.tv/yocto_project"><span =
-style=3D'color:#1155CC'>https://www.twitch.tv/yocto_project</span></a>)<o=
-:p></o:p></span></li></ul><p class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Tip of the =
-Week:</span><o:p></o:p></p><ul style=3D'margin-top:0in' type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l7 level1 lfo8;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>The scripts in =
-${WORKDIR}/temp/run.XXX for shell tasks can be quickly hacked and used =
-for standalone debugging by replacing the function call at the end with =
-&#8220;bash -i&#8221; which will then drop you into a shell environment =
-matching the task being debugged (minus the fakeroot =
-context).&nbsp;<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l7 level1 lfo8;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Bonus marks for anyone sending =
-a patch to add the fakeroot context as comments at the start of the =
-scripts.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l7 level1 lfo8;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>(send any tips you&#8217;d like =
-to see here to Stephen or Richard)<o:p></o:p></span></li></ul><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Key =
-Status/Updates:</span><o:p></o:p></p><ul style=3D'margin-top:0in' =
-type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l8 level1 lfo9;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.1 M2 is in QA but has =
-issues with build reproducibility<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l8 level1 lfo9;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>We&#8217;re unlikely to rebuild =
-M2 as master has the same issues and they look like they will take a =
-while to resolve.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l8 level1 lfo9;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>There are now serious problems =
-with the build reproducibility test failures on the autobuilder. =
-We&#8217;re not sure why there is a sudden set of problems but they are =
-real issues and causing most builds to fail. The tests will have to be =
-disabled unless they can be resolved quickly. There are fixes merged for =
-the CONFIG_SHELL issue and kbd and patches queued as a potential fix for =
-makeinfo. There are more remaining issues, some have open bugs, others =
-don&#8217;t have bugs yet. Help with any of these would be appreciated =
-(or help filing the bugs).<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l8 level1 lfo9;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>We&#8217;re collecting a list =
-of companies, products and projects which use the Yocto Project on the =
-wiki: <a href=3D"https://wiki.yoctoproject.org/wiki/Project_Users"><span =
-style=3D'color:#1155CC'>https://wiki.yoctoproject.org/wiki/Project_Users<=
-/span></a> Please add any you know are missing (or email Richard/Stephen =
-who can add).<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l8 level1 lfo9;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>We have created a =
-&#8220;documentation&#8221; list and a &#8220;licensing&#8221; list on =
-the yocto project mailing list infrastructure. We believe these topics =
-would benefit from dedicated discussions, the people involved usually =
-aren&#8217;t interested in bulk email as would be found on other lists. =
-The new lists can be found at: <a =
-href=3D"https://lists.yoctoproject.org/g/licensing/join"><span =
-style=3D'color:#1155CC'>https://lists.yoctoproject.org/g/licensing/join</=
-span></a> and <a =
-href=3D"https://lists.yoctoproject.org/g/docs/join"><span =
-style=3D'color:#1155CC'>https://lists.yoctoproject.org/g/docs/join</span>=
-</a>&nbsp;<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l8 level1 lfo9;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>There is continued concern =
-about the number of recurring/intermittent failures in the automated =
-testing, mostly from selftest and testimage.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l8 level1 lfo9;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>We continue to struggle to get =
-clean &#8216;full&#8217; builds due to the reproducibility issues in =
-particular.<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l8 level1 lfo9;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>The triage team is worried =
-about attendance at triage meetings and the project is finding it hard =
-to find people to help fix bugs. If anyone is willing to work on bugs, =
-assistance would be greatly appreciated.<o:p></o:p></span></li></ul><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>YP 3.1 Milestone =
-Dates:</span><o:p></o:p></p><ul style=3D'margin-top:0in' type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l0 level1 lfo10;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.1 M2 release date =
-1/31/2020<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l0 level1 lfo10;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.1 M3 build date =
-2/24/2020<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l0 level1 lfo10;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.1 M3 release date =
-3/6/2020<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l0 level1 lfo10;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.1 M4 build date&nbsp; =
-3/30/2020<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l0 level1 lfo10;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.1 M4 release date&nbsp; =
-4/24/2020<o:p></o:p></span></li></ul><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Planned upcoming =
-dot releases:</span><o:p></o:p></p><ul style=3D'margin-top:0in' =
-type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l9 level1 lfo11;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 2.7.3 build date&nbsp; =
-2/10/2020<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l9 level1 lfo11;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 2.7.3 release date =
-2/21/2020<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l9 level1 lfo11;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.0.2 build date&nbsp; =
-2/3/2020<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l9 level1 lfo11;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>YP 3.0.2 release date =
-2/14/2020<o:p></o:p></span></li></ul><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>Tracking =
-Metrics:</span><o:p></o:p></p><ul style=3D'margin-top:0in' =
-type=3Ddisc><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l5 level1 lfo12;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>WDD 2765 (last week =
-2758)</span><span style=3D'font-family:Consolas'> (</span><span =
-style=3D'font-family:"Arial",sans-serif'><a =
-href=3D"https://wiki.yoctoproject.org/charts/combo.html"><span =
-style=3D'color:#1155CC'>https://wiki.yoctoproject.org/charts/combo.html</=
-span></a></span><span style=3D'font-family:Consolas'>)</span><span =
-style=3D'font-family:"Arial",sans-serif'><o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l5 level1 lfo12;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Poky Patch =
-Metrics&nbsp;&nbsp;</span><span =
-style=3D'font-family:Consolas'><o:p></o:p></span></li><ul =
-style=3D'margin-top:0in' type=3Dcircle><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l5 level2 lfo12;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Total patches found: 1368 (last =
-week 1357)<o:p></o:p></span></li><li =
-style=3D'color:black;margin-top:0in;margin-bottom:0in;margin-bottom:.0001=
-pt;mso-list:l5 level2 lfo12;vertical-align:baseline'><span =
-style=3D'font-family:"Arial",sans-serif'>Patches in the Pending State: =
-545 (40%) [last week 536 (39%)]</span><span =
-style=3D'font-family:Consolas'><o:p></o:p></span></li></ul></ul><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>The Yocto =
-Project&#8217;s technical governance is through its Technical Steering =
-Committee, more information is available at:</span><o:p></o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><a =
-href=3D"https://wiki.yoctoproject.org/wiki/TSC"><span =
-style=3D'font-family:"Arial",sans-serif;color:#1155CC'>https://wiki.yocto=
-project.org/wiki/TSC</span></a><o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>The Status reports =
-are now stored on the wiki at: </span><a =
-href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status"><span =
-style=3D'font-family:"Arial",sans-serif;color:#1155CC'>https://wiki.yocto=
-project.org/wiki/Weekly_Status</span></a><o:p></o:p></p><p =
-class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
-style=3D'margin:0in;margin-bottom:.0001pt'><span =
-style=3D'font-family:"Arial",sans-serif;color:black'>[If anyone has =
-suggestions for other information you&#8217;d like to see on this weekly =
-status update, let us know!]</span><o:p></o:p></p><p =
+class=3DMsoNormal><span style=3D'color:black'>All,<br><br>Below is the =
+list as of top 50 developers as of the end of WW04 of who have open =
+medium or higher bugs and enhancements against YP 3.1.&nbsp;&nbsp; There =
+are 62 possible work days left until the final release candidates for YP =
+3.1 needs to be released.<o:p></o:p></span></p><table =
+class=3DMsoNormalTable border=3D0 cellspacing=3D0 cellpadding=3D0 =
+width=3D293 =
+style=3D'width:220.0pt;margin-left:-.15pt;border-collapse:collapse'><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;background:#DCE6F1;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><b><span =
+style=3D'color:black'>Who<o:p></o:p></span></b></p></td><td width=3D43 =
+nowrap valign=3Dbottom style=3D'width:32.0pt;border:solid windowtext =
+1.0pt;border-left:none;background:#DCE6F1;padding:0in 5.4pt 0in =
+5.4pt;height:15.0pt'><p class=3DMsoNormal><b><span =
+style=3D'color:black'>Count<o:p></o:p></span></b></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>richard.purdie@linuxfoundation.org<o:p></o:p></span=
+></p></td><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>39<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>liezhi.yang@windriver.com<o:p></o:p></span></p></td=
+><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>25<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>david.reyna@windriver.com<o:p></o:p></span></p></td=
+><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>24<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>ross.burton@intel.com<o:p></o:p></span></p></td><td=
+ width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>24<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>akuster808@gmail.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>16<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>paul.eggleton@linux.intel.com<o:p></o:p></span></p>=
+</td><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>14<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>Qi.Chen@windriver.com<o:p></o:p></span></p></td><td=
+ width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>12<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>bruce.ashfield@gmail.com<o:p></o:p></span></p></td>=
+<td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>10<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>kai.kang@windriver.com<o:p></o:p></span></p></td><t=
+d width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>9<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>kexin.hao@windriver.com<o:p></o:p></span></p></td><=
+td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>7<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>hongxu.jia@windriver.com<o:p></o:p></span></p></td>=
+<td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>7<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>michael@yoctoproject.org<o:p></o:p></span></p></td>=
+<td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>6<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>randy.macleod@windriver.com<o:p></o:p></span></p></=
+td><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>6<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>srifenbark@gmail.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>6<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>changqing.li@windriver.com<o:p></o:p></span></p></t=
+d><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>5<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>jon.mason@arm.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>5<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>trevor.gamblin@windriver.com<o:p></o:p></span></p><=
+/td><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>4<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>matthew.zeng@windriver.com<o:p></o:p></span></p></t=
+d><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>4<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>ycnakajsph@gmail.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>4<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>JPEWhacker@gmail.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>4<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>mark.morton@windriver.com<o:p></o:p></span></p></td=
+><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>4<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>alejandro@enedino.org<o:p></o:p></span></p></td><td=
+ width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>4<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>timothy.t.orling@intel.com<o:p></o:p></span></p></t=
+d><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>4<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>pbarker@konsulko.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>3<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>jaewon@xilinx.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>cody.yu@windriver.com<o:p></o:p></span></p></td><td=
+ width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>seebs@seebs.net<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>alex.kanavin@gmail.com<o:p></o:p></span></p></td><t=
+d width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>mark.hatle@kernel.crashing.org<o:p></o:p></span></p=
+></td><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>mingli.yu@windriver.com<o:p></o:p></span></p></td><=
+td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>kergoth@gmail.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>2<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>Martin.Jansa@gmail.com<o:p></o:p></span></p></td><t=
+d width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>kai.ruhnau@live.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>chee.yang.lee@intel.com<o:p></o:p></span></p></td><=
+td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>ankur.tyagi85@gmail.com<o:p></o:p></span></p></td><=
+td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>scott.branden@broadcom.com<o:p></o:p></span></p></t=
+d><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>yang.wang@windriver.com<o:p></o:p></span></p></td><=
+td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>naveen.kumar.saini@intel.com<o:p></o:p></span></p><=
+/td><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>mostthingsweb@gmail.com<o:p></o:p></span></p></td><=
+td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>m.brock@vanmierlo.com<o:p></o:p></span></p></td><td=
+ width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>gkraft4dell@gmail.com<o:p></o:p></span></p></td><td=
+ width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>peter.kjellerstedt@gmail.com<o:p></o:p></span></p><=
+/td><td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>zhe.he@windriver.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>denis@denix.org<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>akuster@mvista.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>raj.khem@gmail.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>sky.captin@gmail.com<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>joe.slater@windriver.com<o:p></o:p></span></p></td>=
+<td width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr><tr =
+style=3D'height:15.0pt'><td width=3D251 nowrap valign=3Dbottom =
+style=3D'width:188.0pt;border:solid windowtext =
+1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt'><p =
+class=3DMsoNormal><span =
+style=3D'color:black'>anon2313@ftml.net<o:p></o:p></span></p></td><td =
+width=3D43 nowrap valign=3Dbottom =
+style=3D'width:32.0pt;border-top:none;border-left:none;border-bottom:soli=
+d windowtext 1.0pt;border-right:solid windowtext 1.0pt;padding:0in 5.4pt =
+0in 5.4pt;height:15.0pt'><p class=3DMsoNormal align=3Dright =
+style=3D'text-align:right'><span =
+style=3D'color:black'>1<o:p></o:p></span></p></td></tr></table><p =
 class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
 class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
 class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
@@ -1425,26 +981,28 @@ Project Program Manager<o:p></o:p></span></b></p><p =
 class=3DMsoNormal><span =
 style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
  style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+Serif",serif;color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
 style=3D'font-size:8.0pt;font-family:"Comic Sans =
 MS";color:teal'>Cell</span></b><span =
 style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
-style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
-244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+Serif",serif;color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif",serif'>(208) =
+244-4460</span><span style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif",serif;color:black'><o:p></o:p></span></p><p =
 class=3DMsoNormal><span =
 style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
 lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
 MS";color:teal'>Email</span></b><span lang=3DFR =
 style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif";color:teal'>:</span><span lang=3DFR =
+Serif",serif;color:teal'>:</span><span lang=3DFR =
 style=3D'font-size:9.0pt;font-family:"MS Sans =
-Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
-href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
-></u></span><span lang=3DFR =
+Serif",serif'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com"><span =
+style=3D'color:#0563C1'>sjolley.yp.pm@gmail.com</span></a></span></u></sp=
+an><span lang=3DFR =
 style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
 an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-------=_NextPart_000_0863_01D5D5B1.225AC780--
+------=_NextPart_000_088E_01D5D5B4.65EE4000--
