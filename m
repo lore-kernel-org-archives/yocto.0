@@ -1,191 +1,271 @@
-Received: from mail-ua1-f65.google.com (mail-ua1-f65.google.com [209.85.222.65])
- by mx.groups.io with SMTP id smtpd.web12.8149.1580316750151161577
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.813.1580324053349631469
  for <yocto@lists.yoctoproject.org>;
- Wed, 29 Jan 2020 08:52:30 -0800
+ Wed, 29 Jan 2020 10:54:13 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=S7vK7lfb;
- spf=pass (domain: gmail.com, ip: 209.85.222.65, mailfrom: kent.dorfman766@gmail.com)
-Received: by mail-ua1-f65.google.com with SMTP id 59so6376281uap.12
-        for <yocto@lists.yoctoproject.org>; Wed, 29 Jan 2020 08:52:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=oEUNRPzh9SpuXmJb0kTRKl5Xo4uFteDif+eulvnj6gI=;
-        b=S7vK7lfb+dy8mgZ4+Z5EOESlaQG2kDs45gQyILcC0a4vQDi0jgxZUdxrmvDMDBdBiN
-         D7zKwHgD0i7v+ho75VKyfYWQWblQ+cBino7r8zU/1BEsW8OGP7lj8UvCYHJqdKq9FZ28
-         Vp9UjOMmxt1bgB9V5bTs58i0tTDxpR5oxNEkDAjcT0kVc1hr+a6TYsFKcr3Q6++RR1Mi
-         Y4YZTFZ1G8m4eex6II90lF0NUpfZaZ3Vna8yyHS9rT00EO4uzAIVq1VZRjJfitiDycYJ
-         l32yEySys0KyjhKqOfTMGKr1o0H62rcHkbw5iKEh9fwtr8JarPZTr3cmEmx73qCHPzhO
-         YHXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=oEUNRPzh9SpuXmJb0kTRKl5Xo4uFteDif+eulvnj6gI=;
-        b=qBYADYNOWfkxXDQSwRFCMrvfFm4m1HLpTWKPPuZuKuRWUHZxsRsWeeqpCGd+SiFlqo
-         5NUYYrzilwo/aztTU5RAezC1DEiAsfeXziknjS5rHuk3oQUUtv2oGpj7b1qe980ZyuBa
-         w+FcwLyy2I/1lg+SpnxJx+1ZiJnn0iCvXDj3BftPYCmIV3TjjAiug3QY9qZbbvspIlGZ
-         aHzjgewuQFy+EKU6ThGSsLcPn0jgP/rp/IIwvmB53NK6kUQVhOFSyEobWyDSEO3iBjzB
-         P4jImFQ1RPboKxAa+cLsTUnfON89G16ZD24DWuEQP9HzfE5pRTIN8lQ8n2vmDUJZFeYx
-         Diog==
-X-Gm-Message-State: APjAAAUU9kaeUoNZdY2DxkbxUdF+sgr3IBHpL15whyIZp+1OOcD2nVl5
-	kSDig6vdRT62QUnUdge6Zo0eJUK2e3bCtQDplwg=
-X-Google-Smtp-Source: APXvYqw1xREB4WYSnuAu3JX5RNG3eafm2H0qeSiTnng3e2LPuHpT1+xJhdBeukmlecrXo//oKgc6MbsucdsIyc7cCQk=
-X-Received: by 2002:ab0:7154:: with SMTP id k20mr16265317uao.49.1580316748939;
- Wed, 29 Jan 2020 08:52:28 -0800 (PST)
+ dkim=missing; spf=permerror, err=parse error for token &{10 18 questdiagnostics.com}: parse error for token &{10 18 spf.messagelabs.com}: parse error for token &{10 18 nets1.spf.messagelabs.com}: limit exceeded (domain: essvote.com, ip: 140.211.169.56, mailfrom: michael.davis@essvote.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id E7F77E01663; Wed, 29 Jan 2020 10:54:12 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [216.205.24.164 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 302 seconds by postgrey-1.32 at yocto-www; Wed, 29 Jan 2020 10:54:10 PST
+Received: from us-smtp-delivery-164.mimecast.com (us-smtp-delivery-164.mimecast.com [216.205.24.164])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBD0CE0165D
+	for <yocto@yoctoproject.org>; Wed, 29 Jan 2020 10:54:10 -0800 (PST)
+Received: from webmail.essvote.com (40.142.57.162 [40.142.57.162]) (Using
+ TLS) by relay.mimecast.com with ESMTP id
+ us-mta-404-i2nqaP8gPSydWl3UkzMH8Q-1; Wed, 29 Jan 2020 13:48:00 -0500
+Received: from ESS-EX02.essvote.corp.local (172.16.130.13) by
+ ESS-EX02.essvote.corp.local (172.16.130.13) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1591.10; Wed, 29 Jan 2020 12:47:59 -0600
+Received: from ESS-EX02.essvote.corp.local ([fe80::4d14:423b:3668:f6f5]) by
+ ESS-EX02.essvote.corp.local ([fe80::4d14:423b:3668:f6f5%3]) with mapi id
+ 15.01.1591.017; Wed, 29 Jan 2020 12:47:59 -0600
+From: michael.davis@essvote.com
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+CC: "Davis, Michael" <michael.davis@essvote.com>
+Subject: [meta-openssl102-fips][PATCH] openssh: Fix patch to properly apply on 7.9 version found in warrior
+Thread-Topic: [meta-openssl102-fips][PATCH] openssh: Fix patch to properly
+ apply on 7.9 version found in warrior
+Thread-Index: AQHV1tSgRdaw4OkhTkKaobIOE9ZXkQ==
+Date: Wed, 29 Jan 2020 18:47:58 +0000
+Message-ID: <20200129184751.67966-1-michael.davis@essvote.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.24.1
+x-originating-ip: [192.168.98.55]
 MIME-Version: 1.0
-Received: by 2002:ab0:4186:0:0:0:0:0 with HTTP; Wed, 29 Jan 2020 08:52:28
- -0800 (PST)
-In-Reply-To: <CAAx3WaDx71Cp+1_hyascYEzQsj3cNAjCuZQhbeHi-=ZbtYKYUw@mail.gmail.com>
-References: <CAK4PFCXXZS3ZbU8PWXUX2b_Pw661SVfj8dO0CQ-GjNM3Zo+k=A@mail.gmail.com>
- <6c10cbb5-f8df-4c8a-c8eb-e14d29b75599@ibeeto.com> <CAK4PFCXsnem2CnNsHrFJmXDE4LeyU6xt8mBRzV0HiLCqivZPOw@mail.gmail.com>
- <CAAx3WaDx71Cp+1_hyascYEzQsj3cNAjCuZQhbeHi-=ZbtYKYUw@mail.gmail.com>
-From: "Kent Dorfman" <kent.dorfman766@gmail.com>
-Date: Wed, 29 Jan 2020 11:52:28 -0500
-Message-ID: <CAK4PFCXt0PkyML1WqkOsgctCR1pYCYfSO53J1HAVadMumeBzyA@mail.gmail.com>
-Subject: Re: [yocto] permanently supercede kernel config with one of my own creation
-To: Gabriele Zampieri <gabbla.malist@gmail.com>
-Cc: Rudolf J Streif <rudolf.streif@ibeeto.com>, yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+X-MC-Unique: i2nqaP8gPSydWl3UkzMH8Q-1
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: essvote.com
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="MCBoundary=_12001291348015941"
+
+--MCBoundary=_12001291348015941
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-OK guys.  I was able to make it work with a higher priority layer and
-a bbappend file.
+Signed-off-by: Michael Davis <michael.davis@essvote.com>
+---
+ .../openssh/0001-openssh-8.0p1-fips.patch      | 18 +++++++++++-------
+ 1 file changed, 11 insertions(+), 7 deletions(-)
 
-The difference with my config file is that mine actually defines all
-the CONFIG_ options but many of them are =3Dn to override selections
-made elsewhere.  I just hope that the kernel config is smart enough in
-all cases to recognise that
-CONFIG_OPTION=3Dn
-is the same thins as
-# CONFIG_OPTION is not set
+diff --git a/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.p=
+atch b/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.patch
+index 30534c7..5ff4eff 100644
+--- a/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.patch
++++ b/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.patch
+@@ -270,10 +270,10 @@ Index: git/readconf.c
+ =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+ --- git.orig/readconf.c
+ +++ git/readconf.c
+-@@ -2077,17 +2077,18 @@ fill_default_options(Options * options)
+- =09all_mac =3D mac_alg_list(',');
++@@ -2178,18 +2178,19 @@ fill_default_options(Options * options)
+  =09all_kex =3D kex_alg_list(',');
+  =09all_key =3D sshkey_alg_list(0, 0, 1, ',');
++ =09all_sig =3D sshkey_alg_list(0, 1, 1, ',');
+ -#define ASSEMBLE(what, defaults, all) \
+ +#define ASSEMBLE(what, defaults, fips_defaults, all) \
+  =09do { \
+@@ -288,11 +288,13 @@ Index: git/readconf.c
+ -=09ASSEMBLE(kex_algorithms, KEX_SERVER_KEX, all_kex);
+ -=09ASSEMBLE(hostbased_key_types, KEX_DEFAULT_PK_ALG, all_key);
+ -=09ASSEMBLE(pubkey_key_types, KEX_DEFAULT_PK_ALG, all_key);
+-+=09ASSEMBLE(ciphers, KEX_CLIENT_ENCRYPT, KEX_FIPS_ENCRYPT, all_cipher);
+-+=09ASSEMBLE(macs, KEX_CLIENT_MAC, KEX_FIPS_MAC, all_mac);
+-+=09ASSEMBLE(kex_algorithms, KEX_CLIENT_KEX, KEX_DEFAULT_KEX_FIPS, all_kex=
+);
++-=09ASSEMBLE(ca_sign_algorithms, SSH_ALLOWED_CA_SIGALGS, all_sig);
+++=09ASSEMBLE(ciphers, KEX_SERVER_ENCRYPT, KEX_FIPS_ENCRYPT, all_cipher);
+++=09ASSEMBLE(macs, KEX_SERVER_MAC, KEX_FIPS_MAC, all_mac);
+++=09ASSEMBLE(kex_algorithms, KEX_SERVER_KEX, KEX_DEFAULT_KEX_FIPS, all_kex=
+);
+ +=09ASSEMBLE(hostbased_key_types, KEX_DEFAULT_PK_ALG, KEX_FIPS_PK_ALG, all=
+_key);
+ +=09ASSEMBLE(pubkey_key_types, KEX_DEFAULT_PK_ALG, KEX_FIPS_PK_ALG, all_ke=
+y);
+++=09ASSEMBLE(ca_sign_algorithms, SSH_ALLOWED_CA_SIGALGS, KEX_FIPS_PK_ALG, =
+all_sig);
+  #undef ASSEMBLE
+  =09free(all_cipher);
+  =09free(all_mac);
+@@ -314,10 +316,10 @@ Index: git/servconf.c
+ =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+ --- git.orig/servconf.c
+ +++ git/servconf.c
+-@@ -198,17 +198,18 @@ assemble_algorithms(ServerOptions *o)
+- =09all_mac =3D mac_alg_list(',');
++@@ -209,18 +209,19 @@ assemble_algorithms(ServerOptions *o)
+  =09all_kex =3D kex_alg_list(',');
+  =09all_key =3D sshkey_alg_list(0, 0, 1, ',');
++ =09all_sig =3D sshkey_alg_list(0, 1, 1, ',');
+ -#define ASSEMBLE(what, defaults, all) \
+ +#define ASSEMBLE(what, defaults, fips_defaults, all) \
+  =09do { \
+@@ -332,12 +334,14 @@ Index: git/servconf.c
+ -=09ASSEMBLE(hostkeyalgorithms, KEX_DEFAULT_PK_ALG, all_key);
+ -=09ASSEMBLE(hostbased_key_types, KEX_DEFAULT_PK_ALG, all_key);
+ -=09ASSEMBLE(pubkey_key_types, KEX_DEFAULT_PK_ALG, all_key);
++-=09ASSEMBLE(ca_sign_algorithms, SSH_ALLOWED_CA_SIGALGS, all_sig);
+ +=09ASSEMBLE(ciphers, KEX_SERVER_ENCRYPT, KEX_FIPS_ENCRYPT, all_cipher);
+ +=09ASSEMBLE(macs, KEX_SERVER_MAC, KEX_FIPS_MAC, all_mac);
+ +=09ASSEMBLE(kex_algorithms, KEX_SERVER_KEX, KEX_DEFAULT_KEX_FIPS, all_kex=
+);
+ +=09ASSEMBLE(hostkeyalgorithms, KEX_DEFAULT_PK_ALG, KEX_FIPS_PK_ALG, all_k=
+ey);
+ +=09ASSEMBLE(hostbased_key_types, KEX_DEFAULT_PK_ALG, KEX_FIPS_PK_ALG, all=
+_key);
+ +=09ASSEMBLE(pubkey_key_types, KEX_DEFAULT_PK_ALG, KEX_FIPS_PK_ALG, all_ke=
+y);
+++=09ASSEMBLE(ca_sign_algorithms, SSH_ALLOWED_CA_SIGALGS, KEX_FIPS_PK_ALG, =
+all_sig);
+  #undef ASSEMBLE
+  =09free(all_cipher);
+  =09free(all_mac);
+--=20
+2.24.1
 
-I reran the build and verified that only the options I want are in my
-staged kernel
+Disclaimer
 
-Next, I need to figure out how to make sure the built modules end up
-in the rootfs, which is currently an fnsroot filesystem.
+The information contained in this communication from the sender is confiden=
+tial. It is intended solely for use by the recipient and others authorized =
+to receive it. If you are not the recipient, you are hereby notified that a=
+ny disclosure, copying, distribution or taking action in relation of the co=
+ntents of this information is strictly prohibited and may be unlawful.
 
+This email has been scanned for viruses and malware, and may have been auto=
+matically archived by Mimecast Ltd, an innovator in Software as a Service (=
+SaaS) for business. Providing a safer and more useful place for your human =
+generated data. Specializing in; Security, archiving and compliance. To fin=
+d out more visit the Mimecast website.
 
-On 1/29/20, Gabriele Zampieri <gabbla.malist@gmail.com> wrote:
-> Hi Kent,
+--MCBoundary=_12001291348015941
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+
+<html><head><style type=3D"text/css">.style1 {font-family: "Times New Roman=
+";}</style></head><body>Signed-off-by: Michael Davis &lt;michael.davis@essv=
+ote.com&gt;<BR>
+---<BR>
+ .../openssh/0001-openssh-8.0p1-fips.patch      | 18 +++++++++++-------<BR>
+ 1 file changed, 11 insertions(+), 7 deletions(-)<BR>
+<BR>
+diff --git a/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.p=
+atch b/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.patch<B=
+R>
+index 30534c7..5ff4eff 100644<BR>
+--- a/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.patch<BR=
 >
-> On Wed, Jan 29, 2020 at 1:53 PM Kent Dorfman <kent.dorfman766@gmail.com>
-> wrote:
++++ b/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.patch<BR=
 >
->> I'd prefer to not go that route.    It's a modified "vendor supplied"
->> kernel from an internal tarball source, and for IA/QA reasons we're
->> NOT going to refer to any external GIT repos.
->>
->> There must be a recipe for your "vendor supplied" kernel, why not
-> extending it with an append,
-> so you will be able to ship your own defconfig?
-> Assuming your vendor kernel recipe is called linux-ti-staging_4.19.bb, i=
-n
-> your layer add the file
-> recipes-kernel/linux/linux-ti-staging_4.19.bbappend and then
->
->>>>>>>>
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files"
-> SRC_URI +=3D " file://defconfig"
-> <<<<<<<
->
-> and put your defconfig in recipes-kernel/linux/files
->
-> Can someone tell me how to just replace the config in an existing
->> recipe and make it permanent without creating/replacing the whole
->> package?
->>
->> I'ts a single file that has to be inserted/used at the correct point
->> in the build.  I'd say it's not rocket science but that's exactly what
->> it is for. LOL
->>
->> On 1/28/20, Rudolf J Streif <rudolf.streif@ibeeto.com> wrote:
->> > Hi Kent,
->> >
->> > Create your own kernel recipe and provide a defconfig for it:
->> >
->> > SRC_URI +=3D "file://defconfig"
->> >
->> > For example to build a bleeding kernel directly from Linus' repo:
->> >
->> >>>>>>
->> > DESCRIPTION =3D "Linux Kernel from kernel.org Git Repository"
->> > SECTION =3D "kernel"
->> >
->> > LICENSE =3D "GPLv2"
->> >
->> > require recipes-kernel/linux/linux-yocto.inc
->> >
->> > LIC_FILES_CHKSUM =3D
->> > "file://COPYING;md5=3Dd7810fab7487fb0aad327b76f1be7cd7"
->> >
->> > LINUX_VERSION ?=3D "5.5"
->> >
->> > LINUX_VERSION_EXTENSION ?=3D "-mykernel"
->> >
->> > PV =3D "${LINUX_VERSION}+git${SRCPV}"
->> >
->> > SRC_URI =3D
->> > =E2=80=9Cgit://
->> git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git;protocol=3Dg=
-it;nocheckout=3D1
->> "
->> >
->> > SRC_URI +=3D "file://defconfig"
->> >
->> > SRCREV =3D "d5226fa6dbae0569ee43ecfc08bdcd6770fc4755"
->> >
->> > COMPATIBLE_MACHINE =3D "qemux86|qemux86-64"
->> > <<<<<
->> >
->> > :rjs
->> >
->> > On 1/28/20 7:15 PM, Kent Dorfman wrote:
->> >> I have a yocto generated sdk that includes a customized kernel.  I d=
-o
->> >> NOT want to play with incremental config files.  What I want is to
->> >> insert a .config file of my own choosing (generated outside of yocto=
-)
->> >> into the kernel build, have it use only my .config, and then have th=
-at
->> >> .config remain as the persistent authoritative config as part of the
->> >> yocto layer.
->> >>
->> >> I have tried a variety of different approaches:
->> >> * using devtool, then loading my .config into the expanded source, b=
-ut
->> >> "devtool finish" throws out my changes!
->> >>
->> >> * doing "bitbake menuconfig", can build a kernel using my config, bu=
-t
->> >> it doesn't stay persistent in yocto
->> >>
->> >> * doing elaborate sort/merges on the yocto .config and my prefered
->> >> one...undefined behaviour
->> >>
->> >> and the build always seems to revert to either the original yocto
->> >> config, or a kludge of my options with a bunch of defaults I did not
->> >> specify.
->> >>
->> >> How can I take my existing .config and force yocto to use it, and it
->> >> only, forevermore?
->> >>
->> >>
->> >
->> > --
->> > -----
->> > Rudolf J Streif
->> > CEO/CTO ibeeto
->> > +1.855.442.3386 x700
->> >
->> >
->>
->
-> BR,
-> Gabriele
->
->>=20
->>
->
+@@ -270,10 +270,10 @@ Index: git/readconf.c<BR>
+ =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<BR>
+ --- git.orig/readconf.c<BR>
+ +++ git/readconf.c<BR>
+-@@ -2077,17 +2077,18 @@ fill_default_options(Options * options)<BR>
+- =09all_mac =3D mac_alg_list(',');<BR>
++@@ -2178,18 +2178,19 @@ fill_default_options(Options * options)<BR>
+  =09all_kex =3D kex_alg_list(',');<BR>
+  =09all_key =3D sshkey_alg_list(0, 0, 1, ',');<BR>
++ =09all_sig =3D sshkey_alg_list(0, 1, 1, ',');<BR>
+ -#define ASSEMBLE(what, defaults, all) \<BR>
+ +#define ASSEMBLE(what, defaults, fips_defaults, all) \<BR>
+  =09do { \<BR>
+@@ -288,11 +288,13 @@ Index: git/readconf.c<BR>
+ -=09ASSEMBLE(kex_algorithms, KEX_SERVER_KEX, all_kex);<BR>
+ -=09ASSEMBLE(hostbased_key_types, KEX_DEFAULT_PK_ALG, all_key);<BR>
+ -=09ASSEMBLE(pubkey_key_types, KEX_DEFAULT_PK_ALG, all_key);<BR>
+-+=09ASSEMBLE(ciphers, KEX_CLIENT_ENCRYPT, KEX_FIPS_ENCRYPT, all_cipher);<B=
+R>
+-+=09ASSEMBLE(macs, KEX_CLIENT_MAC, KEX_FIPS_MAC, all_mac);<BR>
+-+=09ASSEMBLE(kex_algorithms, KEX_CLIENT_KEX, KEX_DEFAULT_KEX_FIPS, all_kex=
+);<BR>
++-=09ASSEMBLE(ca_sign_algorithms, SSH_ALLOWED_CA_SIGALGS, all_sig);<BR>
+++=09ASSEMBLE(ciphers, KEX_SERVER_ENCRYPT, KEX_FIPS_ENCRYPT, all_cipher);<B=
+R>
+++=09ASSEMBLE(macs, KEX_SERVER_MAC, KEX_FIPS_MAC, all_mac);<BR>
+++=09ASSEMBLE(kex_algorithms, KEX_SERVER_KEX, KEX_DEFAULT_KEX_FIPS, all_kex=
+);<BR>
+ +=09ASSEMBLE(hostbased_key_types, KEX_DEFAULT_PK_ALG, KEX_FIPS_PK_ALG, all=
+_key);<BR>
+ +=09ASSEMBLE(pubkey_key_types, KEX_DEFAULT_PK_ALG, KEX_FIPS_PK_ALG, all_ke=
+y);<BR>
+++=09ASSEMBLE(ca_sign_algorithms, SSH_ALLOWED_CA_SIGALGS, KEX_FIPS_PK_ALG, =
+all_sig);<BR>
+  #undef ASSEMBLE<BR>
+  =09free(all_cipher);<BR>
+  =09free(all_mac);<BR>
+@@ -314,10 +316,10 @@ Index: git/servconf.c<BR>
+ =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<BR>
+ --- git.orig/servconf.c<BR>
+ +++ git/servconf.c<BR>
+-@@ -198,17 +198,18 @@ assemble_algorithms(ServerOptions *o)<BR>
+- =09all_mac =3D mac_alg_list(',');<BR>
++@@ -209,18 +209,19 @@ assemble_algorithms(ServerOptions *o)<BR>
+  =09all_kex =3D kex_alg_list(',');<BR>
+  =09all_key =3D sshkey_alg_list(0, 0, 1, ',');<BR>
++ =09all_sig =3D sshkey_alg_list(0, 1, 1, ',');<BR>
+ -#define ASSEMBLE(what, defaults, all) \<BR>
+ +#define ASSEMBLE(what, defaults, fips_defaults, all) \<BR>
+  =09do { \<BR>
+@@ -332,12 +334,14 @@ Index: git/servconf.c<BR>
+ -=09ASSEMBLE(hostkeyalgorithms, KEX_DEFAULT_PK_ALG, all_key);<BR>
+ -=09ASSEMBLE(hostbased_key_types, KEX_DEFAULT_PK_ALG, all_key);<BR>
+ -=09ASSEMBLE(pubkey_key_types, KEX_DEFAULT_PK_ALG, all_key);<BR>
++-=09ASSEMBLE(ca_sign_algorithms, SSH_ALLOWED_CA_SIGALGS, all_sig);<BR>
+ +=09ASSEMBLE(ciphers, KEX_SERVER_ENCRYPT, KEX_FIPS_ENCRYPT, all_cipher);<B=
+R>
+ +=09ASSEMBLE(macs, KEX_SERVER_MAC, KEX_FIPS_MAC, all_mac);<BR>
+ +=09ASSEMBLE(kex_algorithms, KEX_SERVER_KEX, KEX_DEFAULT_KEX_FIPS, all_kex=
+);<BR>
+ +=09ASSEMBLE(hostkeyalgorithms, KEX_DEFAULT_PK_ALG, KEX_FIPS_PK_ALG, all_k=
+ey);<BR>
+ +=09ASSEMBLE(hostbased_key_types, KEX_DEFAULT_PK_ALG, KEX_FIPS_PK_ALG, all=
+_key);<BR>
+ +=09ASSEMBLE(pubkey_key_types, KEX_DEFAULT_PK_ALG, KEX_FIPS_PK_ALG, all_ke=
+y);<BR>
+++=09ASSEMBLE(ca_sign_algorithms, SSH_ALLOWED_CA_SIGALGS, KEX_FIPS_PK_ALG, =
+all_sig);<BR>
+  #undef ASSEMBLE<BR>
+  =09free(all_cipher);<BR>
+  =09free(all_mac);<BR>
+-- <BR>
+2.24.1<BR>
+
+<br><br><p style=3D"font-family: Verdana; font-size:10pt; color:#666666;"><=
+b>Disclaimer</b></p><p style=3D"font-family: Verdana; font-size:8pt; color:=
+#666666;">The information contained in this communication from the sender i=
+s confidential. It is intended solely for use by the recipient and others a=
+uthorized to receive it. If you are not the recipient, you are hereby notif=
+ied that any disclosure, copying, distribution or taking action in relation=
+ of the contents of this information is strictly prohibited and may be unla=
+wful.<br><br>This email has been scanned for viruses and malware, and may h=
+ave been automatically archived by <b>Mimecast Ltd</b>, an innovator in Sof=
+tware as a Service (SaaS) for business.  Providing a <b>safer</b> and <b>mo=
+re useful</b> place for your human generated data.  Specializing in; Securi=
+ty, archiving and compliance. To find out more <a href=3D"http://www.mimeca=
+st.com/products/" target=3D"_blank">Click Here</a>.</p></body></html>
+
+--MCBoundary=_12001291348015941--
