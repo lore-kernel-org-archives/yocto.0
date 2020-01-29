@@ -1,295 +1,226 @@
-Received: from mail-pl1-f193.google.com (mail-pl1-f193.google.com [209.85.214.193])
- by mx.groups.io with SMTP id smtpd.web10.4756.1580271890332978803
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+ by mx.groups.io with SMTP id smtpd.web12.757.1580281523884251826
  for <yocto@lists.yoctoproject.org>;
- Tue, 28 Jan 2020 20:24:50 -0800
+ Tue, 28 Jan 2020 23:05:24 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@ibeeto-com.20150623.gappssmtp.com header.s=20150623 header.b=UQfLEMVX;
- spf=neutral (domain: ibeeto.com, ip: 209.85.214.193, mailfrom: rudolf.streif@ibeeto.com)
-Received: by mail-pl1-f193.google.com with SMTP id c23so5963387plz.4
-        for <yocto@lists.yoctoproject.org>; Tue, 28 Jan 2020 20:24:50 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=SIJ9uyRf;
+ spf=pass (domain: gmail.com, ip: 209.85.167.43, mailfrom: mans.zigher@gmail.com)
+Received: by mail-lf1-f43.google.com with SMTP id f24so11098674lfh.3
+        for <yocto@lists.yoctoproject.org>; Tue, 28 Jan 2020 23:05:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to;
-        bh=HQ8bxQN+gbkEzzMmh0qO6WmOXGpeeVG4KMuzzVB8fpU=;
-        b=UQfLEMVXH6gBGWtn1FZpCuDGFoB/x5DoNcfAKDAg2MYZ5d+k2t8Q+MwSTun97wfs5Q
-         ZfQeDB1HDSyy4b3h2WnYK2gaPRYYsifi7E7swNLUqaK3+uh2d1Cy0X2L5HcWXtif7uQG
-         iGUjbXy6z3iP1+cpyM6Ibfn2XgknaflFMbbI3dRA0IPgm7EculCL/vNtLGnNnzKClJAX
-         HB/fSKQQz5SzflkoQslSr/eJZvYnCONZ7196XX8GRL18x1uRLidNqrSRc81U2yhxPro2
-         NRbEaroefRbN6+9KcMKTyHj97RpOsjHSwsYtBMa+OKsNXD71gyN5VIZ21PyJd361PEzp
-         1Wng==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1BEXEPSD6+7Ll5OEKlNzz3JG/2xBN/QFFRodkk4LiC0=;
+        b=SIJ9uyRfOWwvead9bRumQAvvxaGlH6oD0qGAHDPuo/cwzoxeOZBxe6YN0S7JWLzi/B
+         PYIpwkYVG4WtE4SZqdR5JTM8JRxWwQZL/rGsUlRh1nO0mJlZ5K266RAZn9ZvgPYLx9yi
+         3A1zzzO7zzwVg3DXqFv3T1VSn0V7qaXAZSaIRSJj7E9aDD99l/bFsG8iBoDCwKMmAlyt
+         aC6OlsD0BKLBcrLxLxhsIi+W/Wou68kpziSA055I628ZBnHVxT55YtuxNau5WU5s4pe/
+         OK55x7S3uPbznl4vEOEGeES5AVxhoiejHHZvGQOUi6EAt/+58GDjy0ns8AGBMHNZmIgQ
+         89Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
-         :date:user-agent:mime-version:in-reply-to;
-        bh=HQ8bxQN+gbkEzzMmh0qO6WmOXGpeeVG4KMuzzVB8fpU=;
-        b=JUVlCcnNMiFaw6GbKg4PbQXqPbHjETTbDgH+0kG47FrHL4RzNTFyU9SKQJXwAQGNij
-         +sseCNDn/2bg0tQsF8E7cQ0HbKDaagHYmQdDXgzml7brlU/0Aqm+wIhHzRLrWZ/8TP/V
-         Uy963JsO5PgR5U4I1VcBAP96KFQAkShPZczMbjt0RMjzmIzV5R1PVpzcKEl9QiCe5g6v
-         3PhCvkeGiqwdb/cucbDCtKF4kYvHYR7eWsks2yvdO2/8Cma2/EtIsWF4WzAqCzO2bYVv
-         7L04nXADnTSfNhWcW9QedcVJKxZJtRvoBGqvc7WYeK5Jlypjes3LicuXwx/yX/RJiDGN
-         YF3g==
-X-Gm-Message-State: APjAAAWbeyLlEkZ8EuyspGP+2/XdumfpoDw2eUC8Fx9FhTTpVc8DOsvs
-	uci6XtROcY8/D0E04w/pFDAHocXgpxB8FPOA
-X-Google-Smtp-Source: APXvYqzq5YAUdpEwUpwuVuG38y4g8Lb3pv+ANpJiGdDKn3HdgC8HGrHR7haf4czye1O8HDGFzc8jmQ==
-X-Received: by 2002:a17:902:6508:: with SMTP id b8mr26105074plk.201.1580271889313;
-        Tue, 28 Jan 2020 20:24:49 -0800 (PST)
-Return-Path: <rudolf.streif@ibeeto.com>
-Received: from rjs-zotac.ibeeto.com (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
-        by smtp.gmail.com with ESMTPSA id u26sm598006pfn.46.2020.01.28.20.24.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 28 Jan 2020 20:24:48 -0800 (PST)
-Subject: Re: [yocto] permanently supercede kernel config with one of my own creation
-To: Kent Dorfman <kent.dorfman766@gmail.com>, yocto@lists.yoctoproject.org
-References: <CAK4PFCXXZS3ZbU8PWXUX2b_Pw661SVfj8dO0CQ-GjNM3Zo+k=A@mail.gmail.com>
-From: "Rudolf J Streif" <rudolf.streif@ibeeto.com>
-Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
- mQENBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
- Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
- /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
- cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
- 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
- AAG0KlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPokBNwQTAQgA
- IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
- 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
- txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
- lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
- Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
- zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvuQENBFhQFAQBCADXoLKCuF48
- 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
- RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
- w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
- svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
- tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAGJAR8EGAEIAAkFAlhQFAQC
- GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
- s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
- fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
- Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
- P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
- ROZj4g==
-Message-ID: <6c10cbb5-f8df-4c8a-c8eb-e14d29b75599@ibeeto.com>
-Date: Tue, 28 Jan 2020 20:24:46 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1BEXEPSD6+7Ll5OEKlNzz3JG/2xBN/QFFRodkk4LiC0=;
+        b=StRt4b4ww6qxKuQ0nt6tAfR3pCK99uJ8j9UJF/H6bhDhcogjeFoDPyIH8zv0X7Bwah
+         4ZRCohVbRYwcyky4JrjgLl45EWKDY0RkeK3lAUMCH7dh2J0ifiVrm0aE6MmaMdklRPLw
+         bfKxpAzpGlp/xNBWYTs39hz00ecJv+ZJ8A8pvHKwIL5jQ8E44SOc9SdC+8t6sTWa7Oo5
+         9pUov3VUd1zqfmr/08XA74roHu6ABVlSm8V9zbjJlpPZUnZDV1Y9HVIy7PM2EL4qgfQA
+         pZvIAjU30swGM/CusDnkBoS/orU02csVpcCQSsV8KZ+iXhaT6pD46LcDIVoxBYTZj7Om
+         QQ7A==
+X-Gm-Message-State: APjAAAWMI/u0f3ljLxqL9Tb/mJ5YHHiybV9Moi+n4J8IJN+xGYbnIa9f
+	qDHxmjElZ3E0iLwOIsVwX+8tSsmyfC4oTZQ9VI4=
+X-Google-Smtp-Source: APXvYqyEau70Zzmf6vKEyz+nf6YO8ebHejerihsY79m3JBTbZSxatA2JcQx59ajUvkVQUS1YS5FhWoHy3MsXmDsx6Gs=
+X-Received: by 2002:a19:8456:: with SMTP id g83mr4770819lfd.0.1580281521847;
+ Tue, 28 Jan 2020 23:05:21 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <CAK4PFCXXZS3ZbU8PWXUX2b_Pw661SVfj8dO0CQ-GjNM3Zo+k=A@mail.gmail.com>
-X-Groupsio-MsgNum: 48190
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="pLpXSd1ACIbB671zVSULJVpxrrDxlBHsX"
+References: <CAEhQi8nVontmaBzT_Grmhv32A1tbeen7JqDYV0mCD1qzBCZZQA@mail.gmail.com>
+ <2775367.ckEGUpPHnh@yow-masselst-lx1>
+In-Reply-To: <2775367.ckEGUpPHnh@yow-masselst-lx1>
+From: "Mans Zigher" <mans.zigher@gmail.com>
+Date: Wed, 29 Jan 2020 08:05:10 +0100
+Message-ID: <CAEhQi8kUu-2Vna1MBbhmX3RfRdsfM1fTSzF88JkyCPs9HcS-sg@mail.gmail.com>
+Subject: Re: [yocto] [Question]:How to build kernel as externalsrc that is missing .git?
+To: Mark Asselstine <mark.asselstine@windriver.com>
+Cc: yocto@lists.yoctoproject.org, 
+	Yocto discussion list <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
---pLpXSd1ACIbB671zVSULJVpxrrDxlBHsX
-Content-Type: multipart/mixed; boundary="u9EAaCo8hvQn88So1FMctSLT2WUAj68DQ"
+Hi,
 
---u9EAaCo8hvQn88So1FMctSLT2WUAj68DQ
-Content-Type: multipart/alternative;
- boundary="------------88AF74C9CA8C831024091106"
-Content-Language: en-US
+Thanks for your help. You are probably right regarding the subject.
+The build system that we are using have a complex setup where we are
+downloading a large tar file and then running android repo tool when
+we have all the source code we need to merge these two together. To
+prevent downloading all of this from external source we naively
+decided to put all of this up in our local gerrit server. So the use
+of ${WORKSPACE} is used by by not just the kernel. For the long term
+we will likely have to rethink this but my goal was for the short term
+to try and set something up that we can use for the kernel. To test it
+it out would it make sense to try and use a local tar file containing
+the kernel source code? I am currently facing some issues when using a
+tar file or the externalsrc for that mater. I just don't want to setup
+the git repo and waist time on that if I can do quicker workaround for
+now but based on what I can see in kernel-yocto.bbclass and the
+documentation you pointing me to it looks like git is expected?
 
---------------88AF74C9CA8C831024091106
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+ERROR: linux-msm-4.14-r0 do_compile: oe_runmake failed
+ERROR: linux-msm-4.14-r0 do_compile: Function failed: do_compile (log
+file is located at
+/home/ext/workspace/builds/board-debug/tmp-glibc/work/vt_64-oe-linux/linux-msm/4.14-r0/temp/log.do_compile.13840)
+ERROR: Logfile of failure stored in:
+/home/ext/workspace/builds/board-debug/tmp-glibc/work/vt_64-oe-linux/linux-msm/4.14-r0/temp/log.do_compile.13840
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| NOTE: make -j 8 RTIC_MPGEN=python
+/home/ext/workspace/gn/apps_proc/vendor/qcom/proprietary/qrsp/mpgen/mpgen.py
+ INSTALL_MOD_STRIP=1
+CC=/home/ext/workspace/builds/board-debug/tmp-glibc/work/vt_64-oe-linux/linux-msm/4.14-r0/recipe-sysroot-native/usr/bin/llvm-arm-toolchain/bin/clang
+-target aarch64-oe-linux  -D__extern_always_inline=inline
+-no-integrated-as -Wno-error=unused-command-line-argument
+-Qunused-arguments -fstack-protector-strong -pie -fPIE
+-D_FORTIFY_SOURCE=2 -Wa,--noexecstack -Wformat -Wformat-security
+-Werror=format-security
+--sysroot=/home/ext/workspace/builds/board-debug/tmp-glibc/work/vt_64-oe-linux/linux-msm/4.14-r0/recipe-sysroot
+-fuse-ld=bfd  --sysroot=/home/ext/workspace/builds/board-debug/tmp-glibc/work/vt_64-oe-linux/linux-msm/4.14-r0/recipe-sysroot
+LD=aarch64-oe-linux-ld.bfd
+--sysroot=/home/ext/workspace/builds/board-debug/tmp-glibc/work/vt_64-oe-linux/linux-msm/4.14-r0/recipe-sysroot
+O=/home/ext/workspace/builds/board-debug/tmp-glibc/work/vt_64-oe-linux/linux-msm/4.14-r0/build
+|   CHK     include/config/kernel.release
+| Error: kernelrelease not valid - run 'make prepare' to update it
+|   UPD     include/config/kernel.release
+|   GEN     ./Makefile
+|   CHK     include/generated/uapi/linux/version.h
+|   UPD     include/generated/uapi/linux/version.h
+|   CHK     include/generated/utsrelease.h
+|   UPD     include/generated/utsrelease.h
+|   GEN     ./Makefile
+| scripts/kconfig/conf  --silentoldconfig Kconfig
+|   Using /home/ext/workspace/builds/board-debug/tmp-glibc/work-shared/vt-64/kernel-source
+as source for kernel
+|   /home/ext/workspace/builds/board-debug/tmp-glibc/work-shared/vt-64/kernel-source
+is not clean, please run 'make mrproper'
+|   in the '/home/ext/workspace/builds/board-debug/tmp-glibc/work-shared/vt-64/kernel-source'
+directory.
+| /home/ext/workspace/builds/board-debug/tmp-glibc/work-shared/vt-64/kernel-source/Makefile:1149:
+recipe for target 'prepare3' failed
+| make[2]: *** [prepare3] Error 1
+| Makefile:146: recipe for target 'sub-make' failed
+| make[1]: *** [sub-make] Error 2
+| Makefile:24: recipe for target '__sub-make' failed
+| make: *** [__sub-make] Error 2
+| ERROR: oe_runmake failed
+| WARNING: /home/ext/workspace/builds/board-debug/tmp-glibc/work/vt_64-oe-linux/linux-msm/4.14-r0/temp/run.do_compile.13840:1
+exit 1 from 'exit 1'
+| ERROR: Function failed: do_compile (log file is located at
+/home/ext/workspace/builds/board-debug/tmp-glibc/work/vt_64-oe-linux/linux-msm/4.14-r0/temp/log.do_compile.13840)
+ERROR: Task (/home/ext/workspace/layers/meta-qti/meta-qti-bsp/recipes-kernel/linux-msm/linux-msm_4.14.bb:do_compile)
+failed with exit code '1'
+NOTE: Tasks Summary: Attempted 400 tasks of which 390 didn't need to
+be rerun and 1 failed.
+NOTE: Writing buildhistory
 
-Hi Kent,
+Summary: 1 task failed:
+  /home/ext/workspace/layers/meta-qti/meta-qti-bsp/recipes-kernel/linux-msm/linux-msm_4.14.bb:do_compile
+Summary: There were 16 WARNING messages shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
 
-Create your own kernel recipe and provide a defconfig for it:
+Here is my current bbappend file
 
-SRC_URI +=3D "file://defconfig"
+1 FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+2
+3 SRC_URI += "file://msm-${PV}.tar.gz;subdir=${WORKDIR}/${PN}"
+4
+5 S = "${WORKDIR}/${PN}/msm-${PV}"
 
-For example to build a bleeding kernel directly from Linus' repo:
+The error "Error: kernelrelease not valid - run 'make prepare' to
+update it" is coming from scripts/setlocalversion in the kernel source
 
->>>>>
-DESCRIPTION =3D "Linux Kernel from kernel.org Git Repository"
-SECTION =3D "kernel"
+if test -e include/config/auto.conf; then
+        . include/config/auto.conf
+else
+        echo "Error: kernelrelease not valid - run 'make prepare' to
+update it" >&2
+        exit 1
+fi
 
-LICENSE =3D "GPLv2"
+But when running bitbake -c devshell virtual/kernel and checking the
+source code the file is there.
 
-require recipes-kernel/linux/linux-yocto.inc
+Thanks
 
-LIC_FILES_CHKSUM =3D "file://COPYING;md5=3Dd7810fab7487fb0aad327b76f1be7cd=
-7"
-
-LINUX_VERSION ?=3D "5.5"
-
-LINUX_VERSION_EXTENSION ?=3D "-mykernel"
-
-PV =3D "${LINUX_VERSION}+git${SRCPV}"
-
-SRC_URI =3D
-=E2=80=9Cgit://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git;=
-protocol=3Dgit;nocheckout=3D1"
-
-SRC_URI +=3D "file://defconfig"
-
-SRCREV =3D "d5226fa6dbae0569ee43ecfc08bdcd6770fc4755"
-
-COMPATIBLE_MACHINE =3D "qemux86|qemux86-64"
-<<<<<
-
-:rjs
-
-On 1/28/20 7:15 PM, Kent Dorfman wrote:
-> I have a yocto generated sdk that includes a customized kernel.  I do
-> NOT want to play with incremental config files.  What I want is to
-> insert a .config file of my own choosing (generated outside of yocto)
-> into the kernel build, have it use only my .config, and then have that
-> .config remain as the persistent authoritative config as part of the
-> yocto layer.
+Den tis 28 jan. 2020 kl 15:37 skrev Mark Asselstine
+<mark.asselstine@windriver.com>:
 >
-> I have tried a variety of different approaches:
-> * using devtool, then loading my .config into the expanded source, but
-> "devtool finish" throws out my changes!
+> On Tuesday, January 28, 2020 7:37:28 A.M. EST Mans Zigher wrote:
+> > Hi,
+> >
+> > We have a build where the kernel is based on
+> > https://source.codeaurora.org/quic/le/meta-qti-bsp/tree/recipes-kernel/linux
+> > -msm/linux-msm_4.14.bb?id=cbe4d954a9a37dd15e78e3dfdc823ffc6776d746
+> >
+> > We are facing some issues with this recipe because I don't think it is
+> > correctly setup. For
+> > example they are not using the externalsrc.bbclass even though the
+> > source code is an external src. The location for the source code is
+> > just defined by
+> >
+> > SRC_DIR = "${WORKSPACE}/kernel/msm-4.14"
+> >
+> > The WORKSPACE is then defined in the bblayers.conf file. The problem
+> > is that there are a lot of source code located in the WORKSPACE
+> > directory so we decided to put all of that in it's own repo and check
+> > it out before building. Because of that we had to remove the
+> > individual .git directories in the repos that included the .git under
+> > ${WORKSPACE}/kernel/msm-4.14. Any suggestions? Is it possible to build
+> > the kernel as an externalsrc even when it is missing the .git? And can
+> > we still apply patches when having it as an externalsrc? Or should we
+> > just change it so we are using a local tar file?
 >
-> * doing "bitbake menuconfig", can build a kernel using my config, but
-> it doesn't stay persistent in yocto
+> I would be hesitant to just going along with the implied use of ${WORKSPACE}
+> for the location of things such as the kernel source.
 >
-> * doing elaborate sort/merges on the yocto .config and my prefered
-> one...undefined behaviour
+> ie. this bit from the linux-msm.inc file
+> ---
+> FILESPATH =+ "${WORKSPACE}:"
+> SRC_URI   =  "file://kernel \
+> ---
 >
-> and the build always seems to revert to either the original yocto
-> config, or a kludge of my options with a bunch of defaults I did not
-> specify.
+> You most likely already have a custom layer created where you have other
+> customizations in the form of bbappends. If not I would set one up (use
+> bitbake-layers create-layer and bitbake-layers add-layer). I would then create
+> a linux-msm_%.bbappend and use this to make things more manageable by removing
+> the need to host things like the kernel source in ${WORKSPACE}. ie. in the
+> bbappend have 'FILESEXTRAPATHS_prepend := "${THISDIR}/files:"' and  'SRC_URI
+> += "git://your.git.server/path/to/the/kernel"'. This way you can avoid having
+> to check your kernel git repo into another repo.
 >
-> How can I take my existing .config and force yocto to use it, and it
-> only, forevermore?
+> Note that the SRC_URI crime they have in linux-msm.inc will require you to
+> provide a file name 'kernel' still, you can do this by putting an empty file
+> or a file with a line like 'satisfy SRC_URI' called kernel in your layer. So
+> you will end up with
 >
->=20
-
---=20
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3386 x700
-
-
---------------88AF74C9CA8C831024091106
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-  <head>
-    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
-8">
-  </head>
-  <body>
-    <p>Hi Kent,</p>
-    <p>Create your own kernel recipe and provide a defconfig for it:</p>
-    <p>SRC_URI +=3D <a class=3D"moz-txt-link-rfc2396E" href=3D"file://defc=
-onfig">"file://defconfig"</a></p>
-    <p>For example to build a bleeding kernel directly from Linus' repo:</=
-p>
-    <p>
-      <style type=3D"text/css">p { margin-bottom: 0.1in; direction: ltr; l=
-ine-height: 115%; text-align: left; background: transparent none repeat scr=
-oll 0% 0%; }p.cjk { font-family: "Times New Roman"; }p.ctl { font-family: "=
-Times New Roman"; }a:link { color: rgb(0, 0, 255); text-decoration: underli=
-ne; }a:visited { color: rgb(128, 0, 128); text-decoration: underline; }</st=
-yle></p>
-    <div class=3D"moz-cite-prefix">&gt;&gt;&gt;&gt;&gt;<br>
-    </div>
-    <div class=3D"moz-cite-prefix">DESCRIPTION =3D "Linux Kernel from
-      kernel.org Git Repository"<br>
-      SECTION =3D "kernel"<br>
-      <br>
-      LICENSE =3D "GPLv2"<br>
-      <br>
-      require recipes-kernel/linux/linux-yocto.inc<br>
-      <br>
-      LIC_FILES_CHKSUM =3D
-      <a class=3D"moz-txt-link-rfc2396E" href=3D"file://COPYING;md5=3Dd781=
-0fab7487fb0aad327b76f1be7cd7">"file://COPYING;md5=3Dd7810fab7487fb0aad327b7=
-6f1be7cd7"</a><br>
-      <br>
-      LINUX_VERSION ?=3D "5.5"<br>
-      <br>
-      LINUX_VERSION_EXTENSION ?=3D "-mykernel"<br>
-      <br>
-      PV =3D "${LINUX_VERSION}+git${SRCPV}"<br>
-      <br>
-      SRC_URI =3D
-=E2=80=9Cgit://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git;=
-protocol=3Dgit;nocheckout=3D1"<br>
-      <br>
-      SRC_URI +=3D <a class=3D"moz-txt-link-rfc2396E" href=3D"file://defco=
-nfig">"file://defconfig"</a><br>
-      <br>
-      SRCREV =3D "d5226fa6dbae0569ee43ecfc08bdcd6770fc4755"</div>
-    <div class=3D"moz-cite-prefix"><br>
-    </div>
-    <div class=3D"moz-cite-prefix">COMPATIBLE_MACHINE =3D
-      "qemux86|qemux86-64"<br>
-    </div>
-    <div class=3D"moz-cite-prefix">&lt;&lt;&lt;&lt;&lt;<br>
-    </div>
-    <div class=3D"moz-cite-prefix"><br>
-    </div>
-    <div class=3D"moz-cite-prefix">:rjs<br>
-    </div>
-    <div class=3D"moz-cite-prefix"><br>
-    </div>
-    <div class=3D"moz-cite-prefix">On 1/28/20 7:15 PM, Kent Dorfman wrote:=
-<br>
-    </div>
-    <blockquote type=3D"cite"
-cite=3D"mid:CAK4PFCXXZS3ZbU8PWXUX2b_Pw661SVfj8dO0CQ-GjNM3Zo+k=3DA@mail.gma=
-il.com">
-      <pre class=3D"moz-quote-pre" wrap=3D"">I have a yocto generated sdk =
-that includes a customized kernel.  I do
-NOT want to play with incremental config files.  What I want is to
-insert a .config file of my own choosing (generated outside of yocto)
-into the kernel build, have it use only my .config, and then have that
-.config remain as the persistent authoritative config as part of the
-yocto layer.
-
-I have tried a variety of different approaches:
-* using devtool, then loading my .config into the expanded source, but
-"devtool finish" throws out my changes!
-
-* doing "bitbake menuconfig", can build a kernel using my config, but
-it doesn't stay persistent in yocto
-
-* doing elaborate sort/merges on the yocto .config and my prefered
-one...undefined behaviour
-
-and the build always seems to revert to either the original yocto
-config, or a kludge of my options with a bunch of defaults I did not
-specify.
-
-How can I take my existing .config and force yocto to use it, and it
-only, forevermore?
-</pre>
-      <br>
-      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
-      <pre class=3D"moz-quote-pre" wrap=3D"">
-</pre>
-    </blockquote>
-    <pre class=3D"moz-signature" cols=3D"72">--=20
------
-Rudolf J Streif
-CEO/CTO ibeeto
-+1.855.442.3386 x700</pre>
-  </body>
-</html>
-
---------------88AF74C9CA8C831024091106--
-
---u9EAaCo8hvQn88So1FMctSLT2WUAj68DQ--
-
---pLpXSd1ACIbB671zVSULJVpxrrDxlBHsX
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAl4xCQ4ACgkQjYyoKScz
-m3VwnAf/Tqu3nITMTsziDs858MpJh0AjxVdQavei0YzwI0Bzr9eS5gRuOi6R9kpm
-RzFYSMYRC0oiQGgpaje0j5LJnGkupXcMu3lNOpcGRafN+TY7k+8iwNsx5h4dOOT1
-2fV8j3MDCqNwpDlc2qLFB0LXEwAPOvkfgGTN2yCQqTR2x33CUpxNT2h2yOU/pheo
-VF6MeqRUr/2AU71rXM/Re5wa8tI1SPOX+zcjlVjPvgRrCREXTvjTX+U5FaNJzPWf
-NQ2WdQFYBdcAQJ5Zlv751t0REjESjUjD3YcLU+HgPzq61A0gKfggGUnvbrxQ6iw6
-BOJOb/Kp4duYAWQCCvTQjsyuotUTfw==
-=7OpR
------END PGP SIGNATURE-----
-
---pLpXSd1ACIbB671zVSULJVpxrrDxlBHsX--
+> <your-custom-layer>/recipes-kernel/linux-msm/linux-msm_%.bbappend
+> <your-custom-layer>/recipes-kernel/linux-msm/files/kernel
+>
+> If you need more inspiration review the kernel dev document
+> https://www.yoctoproject.org/docs/1.6/kernel-dev/kernel-dev.html#working-with-your-own-sources
+>
+> Overall I don't think the question here should be, how do you work with
+> kernels that don't have a .git. But rather how can you better configure things
+> with a bbappend in a custom layer to allow you to work better than what is
+> being proposed in the meta-qti-bsp layer.
+>
+> Good luck,
+> Mark Asselstine
+>
+> >
+> > Thanks
+> >
+> > BR
+> > Mans Zigher
+>
+>
+>
+>
