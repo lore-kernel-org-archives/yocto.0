@@ -1,237 +1,141 @@
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
- by mx.groups.io with SMTP id smtpd.web10.10312.1580400895992848081
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+ by mx.groups.io with SMTP id smtpd.web11.11827.1580406304364802873
  for <yocto@lists.yoctoproject.org>;
- Thu, 30 Jan 2020 08:14:56 -0800
+ Thu, 30 Jan 2020 09:45:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=HkuA3dR4;
- spf=pass (domain: gmail.com, ip: 209.85.167.182, mailfrom: onea.alex@gmail.com)
-Received: by mail-oi1-f182.google.com with SMTP id z2so4023492oih.6
-        for <yocto@lists.yoctoproject.org>; Thu, 30 Jan 2020 08:14:55 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=hukB07pN;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.215.175, mailfrom: mhalstead@linuxfoundation.org)
+Received: by mail-pg1-f175.google.com with SMTP id z124so1999392pgb.13
+        for <yocto@lists.yoctoproject.org>; Thu, 30 Jan 2020 09:45:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0S94OGq5UG8HU+94ypHgrluXhHHPvP3NChsVIZLhysM=;
-        b=HkuA3dR4T5+QIhDngzD58vGCydfr2Z6beqrTBf4pfR92S3VLDGSr1a+94+WiryNUXZ
-         qFBc+MiIc7hZxpuovKaR2JXsVKVGeXZ1QN+pQ0qSsolEtMH1Gw90sbiu+F500JgISXaL
-         ZpBgy0HUDSVucm8/kMoErIvCgWrHzV58mcPH7a00Jt1JhUZ9kBcF91sot5JCFM11tIjq
-         7GAwnKcrnpVnUpgKVglJow1n3HFxKutPsIoP83wiHsOXxY2YnjkR+y6qEdnW7juPKCH3
-         aN3GGdc55kn0OyeCMTc/ZsRZTRuVrtt3LWp67di6gsEMTQkeCgwr/iuZoqJuXPtM41em
-         0vIA==
+        d=linuxfoundation.org; s=google;
+        h=to:from:subject:autocrypt:organization:message-id:date:user-agent
+         :mime-version:content-language:content-transfer-encoding;
+        bh=T9Rjilqwg1US7EfPTVQUdRV4Kk24nBcSgDD5FaMJF/k=;
+        b=hukB07pN/cpZXf/dNJDZLeSmRJ1cIGwbxrJpIr1dI5NoVkAwp4vjd/dgmTBgehE3fF
+         CSItzEmdr0Py0KdhhqIcZhXI6LnZq6R/mC+XmbUtUmIdvNRMCoAmwIgYJlk1ISPfI4lO
+         h8mrn/Hfsr5dfvUnMwgXHp7nfQMQVLlT9sPBA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0S94OGq5UG8HU+94ypHgrluXhHHPvP3NChsVIZLhysM=;
-        b=rxkry97zdhO0fYz38lwel5hH0SHFPQMOYf3MrbecD8lXlaSPUYZwOX/U/5LWHNzI23
-         Z0wyuaWrvSMmwhh8hpnF24P/8Q8KMy30CIyKxymyVILI3felxmgUK9xtSdaDYHCJ8PD1
-         RhrnwuZg0RDvKMpUhpIR+s7ARUOfyW6ycDL+drKur9gGFFl2ZD01xPcHag5RXX7sz/g1
-         WVIqvFR55qSA8j1DzABPCV/iaWphZxX4qBcf+iENr5RqKqJlGqgRg3GHqr2wcJcSg6Up
-         AW6Ug6LOziVyz7VdklTFBS2Ax6g5Cui34ewKNwoP4Ip1dn8l6ODD7jgH9pYK+h7fLcm1
-         6DCQ==
-X-Gm-Message-State: APjAAAWUeOg+RNFYdoANRr7NqBDh6zS5qFWAlyFq0sn/Yv6VJgXFcMMZ
-	pAvFXxGkPkotkNtpu5k17g4cU8e8go9Y8l6LoIw=
-X-Google-Smtp-Source: APXvYqy5xDUk6ZRqV6kfbrhflwUl3Z7mn4CdQsdzGe1DVyX0JDyK1Y0QGNe/90HSoMg/E4lCgYNLu83RchpVMerH7IE=
-X-Received: by 2002:aca:b70a:: with SMTP id h10mr3528640oif.20.1580400895221;
- Thu, 30 Jan 2020 08:14:55 -0800 (PST)
+        h=x-gm-message-state:to:from:subject:autocrypt:organization
+         :message-id:date:user-agent:mime-version:content-language
+         :content-transfer-encoding;
+        bh=T9Rjilqwg1US7EfPTVQUdRV4Kk24nBcSgDD5FaMJF/k=;
+        b=XMir5Io3yxATfrVTqp9d+hS584HVtRK5CSvOq/VGa7SW22La3SiRWqTMFYsPr5yJTF
+         hCupUYjLaxQZJN6EjcvERthioZS4hJoaZECuRfdX2dAqViOsVtEqXwZ6arcj87z2HvQK
+         7D5OZU+km8BXHknJFeH5+T2Y5dUO+sv7Cyru7DiK8Lbn0N7xKrQM9mVZvACh36+5xf1N
+         Fttic0s6gqOV0lyMXvY1DaA3IMzXmE9pSW23Z3xqW6auJsuj2RJiWKQQdDSOU6eReeCA
+         EO5C8JSMfhkUoGsnnhfaFoSh4tjAUvDdPu6t4u4t9LmHXaPSh8Pd8p+ofjrVc885nsyi
+         DRoQ==
+X-Gm-Message-State: APjAAAWPkHYnPPnenaGowpoymi8wWJjx3+W86uaurPKn76yty4wYnzhE
+	YUzPKnN3tucqZHXmx/zYYdT6/A==
+X-Google-Smtp-Source: APXvYqxjTrGt9lHEkTYdyWHF1zT6TwV6y222l/zCTH3AxHJAwAYbMyanFZuaubLYJ8EHQb8bRk3khg==
+X-Received: by 2002:a63:3084:: with SMTP id w126mr5718396pgw.169.1580406303833;
+        Thu, 30 Jan 2020 09:45:03 -0800 (PST)
+Return-Path: <mhalstead@linuxfoundation.org>
+Received: from localhost.localdomain ([2601:1c0:ce00:457:a6c3:f0ff:fe97:6486])
+        by smtp.gmail.com with ESMTPSA id o184sm7104188pgo.62.2020.01.30.09.45.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Jan 2020 09:45:02 -0800 (PST)
+To: yocto@lists.yoctoproject.org, openembedded-core@lists.openembedded.org,
+ openembedded-architecture@lists.openembedded.org
+From: "Michael Halstead" <mhalstead@linuxfoundation.org>
+Subject: New Dedicated Licensing and Documentation Mailing Lists
+Autocrypt: addr=mhalstead@linuxfoundation.org; keydata=
+ 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 xog=
+Organization: Linux Foundation
+Message-ID: <2ca92bae-847b-14aa-dc26-65945658cedd@linuxfoundation.org>
+Date: Thu, 30 Jan 2020 09:45:02 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-References: <CAJgSc4xZ9Jhyqba1dufKh5h2WHidw5evus5Yo_obr2vdrxDOPQ@mail.gmail.com>
- <4911dfd590168072b2f4f8e7437c7c8d8229418f.camel@linuxfoundation.org>
-In-Reply-To: <4911dfd590168072b2f4f8e7437c7c8d8229418f.camel@linuxfoundation.org>
-From: "Alexandru N. Onea" <onea.alex@gmail.com>
-Date: Thu, 30 Jan 2020 18:12:04 +0200
-Message-ID: <CAJgSc4yQL_TfDpnVDnB_-pT+ubo-mJz3uOe8nYLDZOWHQZVcZw@mail.gmail.com>
-Subject: Re: [yocto] Bitbake immediate assignment behavior
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000f6657f059d5dc195"
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---000000000000f6657f059d5dc195
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Richard,
-
-Thank you for the clarification.
-
-I am definitely not in a position to make any suggestions regarding how
-bitbake should behave, however I would like to at least give my view:
-    * to me, the reason for having an immediate assignment seems to be
-related (among others, maybe) to the fact that at times we want / need to
-be certain about the value of a variable, and we can achieve that by
-forcing the assignment to use "known" values (i.e. values that are known at
-the moment of the parsing) instead of relying on future values. In short,
-in my opinion, the immediate assignment aims to guarantee that the value of
-a variable depends ONLY on known values at the time of the parsing, and not
-on future, uncertain values.
-    * the current behavior of the immediate assignment directly contradicts
-the above by introducing the very same "uncertainty" which we try to avoid
-by using it in the first place. That is, the immediate assignment cannot
-guarantee that the value of the assigned variable depends ONLY on values
-known at the time of the parsing.
-
-Of course, it is also possible that the use of immediate assignments in
-practical contexts is not so much driven by the need for the above
-guarantee, but instead used in ways that I don't see at the moment. I would
-like to learn more about how this assignment is used in practice.
-
-Thanks again,
-Alexandru Onea
+We are adding new lists for topics concerning subcommunities that
+will benefit from focused list traffic.
 
 
-On Thu, 30 Jan 2020 at 14:04, Richard Purdie <
-richard.purdie@linuxfoundation.org> wrote:
+The licensing list will separate licensing and legal discussion from
+general development to aid participation of specialists in this area.
 
-> Hi,
->
-> On Thu, 2020-01-30 at 13:32 +0200, Alexandru N. Onea wrote:
-> > Let's consider the following example in a bb file:
-> >
-> > X = "1"
-> > A := "X is '${X}' and Y is '${Y}'"
-> > B = "X is '${X}' and Y is '${Y}'"
-> > X = "2"
-> > Y = "3"
-> >
-> > According to the bitbake user manual, section 3.1.7 [1], the expected
-> > values for A and B after parsing is done, are
-> >
-> > A="X is '1' and Y is ''"
-> > B="X is '2' and Y is '3'"
-> >
-> > meaning that, since Y is not defined at the time of parsing the
-> > assignment to A, it is replaced with blank, while X is substituted
-> > with the value that it had at that time. On the other hand, B will
-> > substitute the last defined values for both X and Y.
-> >
-> > However, if I run the following example through bitbake, I get the
-> > following result:
-> >
-> > A="X is '1' and Y is '3'"
-> > B="X is '2' and Y is '3'"
-> >
-> > Although unexpected and a bit counter-intuitive at first, the result
-> > is easily explained by the fact that, according to section 3.1.4 [2],
-> > an undefined variable expansion results in keeping the actual literal
-> > string in place, in our case "${Y}", which probably leads, at the end
-> > of the parsing, to a re-evaluation of A and, since now Y is defined,
-> > the substitution of that literal with the last value that has been
-> > assigned to Y (i.e. 3).
-> >
-> > Question: is this behavior intentional? Or is it a bug? The
-> > documentation for the immediate assignment states that we should
-> > expect undefined variables to be substituted with blank while in
-> > practice they obey the rules of the simple assignments.
->
-> I'd say bitbake is behaving as it was written to behave. I'm not sure
-> its ideal but we probably do rely on it in places.
->
-> > Should at least the documentation be updated?
->
-> Yes, and we should add some tests for it to better "document" it.
->
-> There is a patch on the bitbake list which tweaks the docs already but
-> I'd like to fix the example too.
->
-> Cheers,
->
-> Richard
->
->
+Please join at https://lists.yoctoproject.org/g/licensing/join.
 
---000000000000f6657f059d5dc195
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Richard,<div><br></div><div>Thank you for the clarifica=
-tion.</div><div><br></div><div>I am definitely not in a=C2=A0position to ma=
-ke any suggestions regarding how bitbake should behave, however I would lik=
-e to at least give my view:</div><div>=C2=A0 =C2=A0 * to me, the reason for=
- having an immediate assignment seems to be related (among others, maybe) t=
-o the fact that at times we want / need to be certain about the value of a =
-variable, and we can achieve that by forcing the assignment to use &quot;kn=
-own&quot; values (i.e. values that are known at the moment of the parsing) =
-instead of relying on future values. In short, in my=C2=A0opinion, the imme=
-diate assignment aims to guarantee that the value of a variable depends ONL=
-Y on known values at the time of the parsing, and not on future, uncertain =
-values.</div><div>=C2=A0 =C2=A0 * the current behavior of the immediate ass=
-ignment directly contradicts the above by introducing the very same &quot;u=
-ncertainty&quot; which we try to avoid by using it in the first=C2=A0place.=
- That is, the immediate assignment cannot guarantee that the value of the a=
-ssigned variable depends ONLY on values known at the time of the parsing.</=
-div><div><br></div><div>Of course, it is also possible that the use of imme=
-diate assignments in practical contexts is not so much driven by the need f=
-or the above guarantee, but instead used in ways that I don&#39;t see at th=
-e moment. I would like to learn more about how this assignment is used in p=
-ractice.</div><div><br></div><div>Thanks again,<br clear=3D"all"><div><div =
-dir=3D"ltr" data-smartmail=3D"gmail_signature"><div dir=3D"ltr">Alexandru O=
-nea</div></div></div><br></div></div><br><div class=3D"gmail_quote"><div di=
-r=3D"ltr" class=3D"gmail_attr">On Thu, 30 Jan 2020 at 14:04, Richard Purdie=
- &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org" target=3D"_blank=
-">richard.purdie@linuxfoundation.org</a>&gt; wrote:<br></div><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
- rgb(204,204,204);padding-left:1ex">Hi,<br>
-<br>
-On Thu, 2020-01-30 at 13:32 +0200, Alexandru N. Onea wrote:<br>
-&gt; Let&#39;s consider the following example in a bb file:<br>
-&gt; <br>
-&gt; X =3D &quot;1&quot;<br>
-&gt; A :=3D &quot;X is &#39;${X}&#39; and Y is &#39;${Y}&#39;&quot;<br>
-&gt; B =3D &quot;X is &#39;${X}&#39; and Y is &#39;${Y}&#39;&quot;<br>
-&gt; X =3D &quot;2&quot;<br>
-&gt; Y =3D &quot;3&quot;<br>
-&gt; <br>
-&gt; According to the bitbake user manual, section 3.1.7 [1], the expected<=
-br>
-&gt; values for A and B after parsing is done, are <br>
-&gt; <br>
-&gt; A=3D&quot;X is &#39;1&#39; and Y is &#39;&#39;&quot;<br>
-&gt; B=3D&quot;X is &#39;2&#39; and Y is &#39;3&#39;&quot;<br>
-&gt; <br>
-&gt; meaning that, since Y is not defined at the time of parsing the<br>
-&gt; assignment to A, it is replaced with blank, while X is substituted<br>
-&gt; with the value that it had at that time. On the other hand, B will<br>
-&gt; substitute the last defined values for both X and Y.<br>
-&gt; <br>
-&gt; However, if I run the following example through bitbake, I get the<br>
-&gt; following result:<br>
-&gt; <br>
-&gt; A=3D&quot;X is &#39;1&#39; and Y is &#39;3&#39;&quot;<br>
-&gt; B=3D&quot;X is &#39;2&#39; and Y is &#39;3&#39;&quot;<br>
-&gt; <br>
-&gt; Although unexpected and a bit counter-intuitive at first, the result<b=
-r>
-&gt; is easily explained by the fact that, according to section 3.1.4 [2],<=
-br>
-&gt; an undefined variable expansion results in keeping the actual literal<=
-br>
-&gt; string in place, in our case &quot;${Y}&quot;, which probably leads, a=
-t the end<br>
-&gt; of the parsing, to a re-evaluation of A and, since now Y is defined,<b=
-r>
-&gt; the substitution of that literal with the last value that has been<br>
-&gt; assigned to Y (i.e. 3).<br>
-&gt; <br>
-&gt; Question: is this behavior intentional? Or is it a bug? The<br>
-&gt; documentation for the immediate assignment states that we should<br>
-&gt; expect undefined variables to be substituted with blank while in<br>
-&gt; practice they obey the rules of the simple assignments.<br>
-<br>
-I&#39;d say bitbake is behaving as it was written to behave. I&#39;m not su=
-re<br>
-its ideal but we probably do rely on it in places.<br>
-<br>
-&gt; Should at least the documentation be updated?<br>
-<br>
-Yes, and we should add some tests for it to better &quot;document&quot; it.=
-<br>
-<br>
-There is a patch on the bitbake list which tweaks the docs already but<br>
-I&#39;d like to fix the example too.<br>
-<br>
-Cheers,<br>
-<br>
-Richard<br>
-<br>
-</blockquote></div>
+Join the docs list to discuss all things documentation and to
+collaborate on the patches to the docs.
 
---000000000000f6657f059d5dc195--
+Please join at https://lists.yoctoproject.org/g/docs/join.
+
+-- 
+Michael Halstead
+Linux Foundation / Yocto Project
+Systems Operations Engineer
