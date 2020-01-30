@@ -1,271 +1,126 @@
-Subject: bitbake failed to compile - ld cannot find -lc
-To: yocto@lists.yoctoproject.org
-From: "Michael" <youhour@us.ibm.com>
-X-Originating-Location: Georgetown, Texas, US (47.221.167.202)
-X-Originating-Platform: Windows Chrome 79
-User-Agent: GROUPS.IO Web Poster
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.1836.1580426928579085530
+ for <yocto@lists.yoctoproject.org>;
+ Thu, 30 Jan 2020 15:28:48 -0800
+Authentication-Results: mx.groups.io;
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=qgu3UfWt;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jpuhlman@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 1DE79E01546; Thu, 30 Jan 2020 15:28:48 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.210.177 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B765DE00782
+	for <yocto@yoctoproject.org>; Thu, 30 Jan 2020 15:28:46 -0800 (PST)
+Received: by mail-pf1-f177.google.com with SMTP id 84so2292245pfy.6
+        for <yocto@yoctoproject.org>; Thu, 30 Jan 2020 15:28:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=tCg5mWj19RvdIE6VONK8J40rwJS16lkidqI14DoCjDk=;
+        b=qgu3UfWt4FJbpUzVlIEisEPVNOQ2P4aFG9ZQY/xC8aFS9MIiykxUX81sTElOPfHwzv
+         3do6FHEVleso03m4TecPogJWhOc8JtL7XgW63S0VF5QgsHAMFg20wfQNKlWuNGr0Oe8A
+         x2DnYMz4CLDNG4iWK/LRNFFCYVu0OOw2ykzUTo10WkHc3W9/RW3MoXvvoB2flPlvFcH0
+         nRC0ncJGwiYZUwGFqCWPmHaNPte3Wli8flnR5qZhBXtvdBeWxJwzRHfHAZMGnwzpenkQ
+         KKgk6NqCaYxKh5I7zVkWklsUFHgswIahQ5WZGY1JFALF9v/OLnszbZimH7up/Bv5Najl
+         kDpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=tCg5mWj19RvdIE6VONK8J40rwJS16lkidqI14DoCjDk=;
+        b=UEI6ANBQ0Ky516I7hJ1nZQvl+VlMnCSvS8DPsr7Ocr2RQO0YAHZK9g4aHhhNDJ8W86
+         cmll6dv2dqSm3cka4ZMeHkxKac/e3oqSmangDBfwVq+zxf401hnRfyr6P41d/C0ISjnr
+         Zi5b0+A9XfW+GQLTzNwgOnzaUQnaqlLZzo/q0LdOzRyE6yffXXIuuHtDUTpE/ZZ59zKK
+         Yk5hlDX5GJKM18LJ7AoOMk4W6tEd4e8l3cnCE7uAn4AmdISQ8+G3eEP7X9cTnppuW4iA
+         wWPylUftiBoneOeZDtztfBHAL1Au1l0cS21515J/ITF3WpqDaVad/wZv41XLVNCLyF1T
+         s9hw==
+X-Gm-Message-State: APjAAAUSUFQ+ntuskzmjOEZW0F8dw+EAs2XVrKI9df/v6vOx7EU7CG5a
+	JEj+xm4uQddj/3nJStXZWgc=
+X-Google-Smtp-Source: APXvYqwver5Q6ZjaQjARIc8BTHo8awEckk0QG+w7v3lJsRKO4Td7ypLXNJRVRrWb/FuRhjR9CoYVzw==
+X-Received: by 2002:aa7:92c7:: with SMTP id k7mr7557078pfa.8.1580426925890;
+        Thu, 30 Jan 2020 15:28:45 -0800 (PST)
+Received: from workhorse.localdomain ([2600:1700:4c90:60a0:56be:f7ff:fe12:d0bd])
+        by smtp.gmail.com with ESMTPSA id 13sm7524521pfi.78.2020.01.30.15.28.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 30 Jan 2020 15:28:45 -0800 (PST)
+Sender: Jeremy Puhlman <jpuhlman@gmail.com>
+Received: by workhorse.localdomain (Postfix, from userid 1000)
+	id 91EA32A042C; Thu, 30 Jan 2020 15:28:43 -0800 (PST)
+From: "Jeremy Puhlman" <jpuhlman@mvista.com>
+To: yocto@yoctoproject.org
+Cc: Jeremy Puhlman <jpuhlman@mvista.com>
+Subject: [meta-selinux][PATCH 1/2] python: move appends to a dynamic-layer
+Date: Thu, 30 Jan 2020 15:28:40 -0800
+Message-Id: <20200130232841.6706-1-jpuhlman@mvista.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Date: Thu, 30 Jan 2020 15:11:20 -0800
-Message-ID: <O8NF.1580425880516131135.psHJ@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="ROYI2euqJjajq2jmIb32"
-
---ROYI2euqJjajq2jmIb32
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello All,
+Signed-off-by: Jeremy Puhlman <jpuhlman@mvista.com>
+---
+ conf/layer.conf                                                 | 2 ++
+ .../recipes-devtools}/python/files/sitecustomize.py             | 0
+ .../python2-layer/recipes-devtools}/python/python_%.bbappend    | 0
+ .../python2-layer/recipes-devtools}/python/python_selinux.inc   | 0
+ 4 files changed, 2 insertions(+)
+ rename {recipes-devtools =3D> dynamic-layers/python2-layer/recipes-devto=
+ols}/python/files/sitecustomize.py (100%)
+ rename {recipes-devtools =3D> dynamic-layers/python2-layer/recipes-devto=
+ols}/python/python_%.bbappend (100%)
+ rename {recipes-devtools =3D> dynamic-layers/python2-layer/recipes-devto=
+ols}/python/python_selinux.inc (100%)
 
-I'm a newbie to Yocto.
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 226a75a..cdee27a 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -11,6 +11,8 @@ BBFILES_DYNAMIC +=3D "openembedded-layer:${LAYERDIR}/dy=
+namic-layers/openembedded-l
+                     networking-layer:${LAYERDIR}/dynamic-layers/networki=
+ng-layer/*/*/*.bbappend \
+                     virtualization-layer:${LAYERDIR}/dynamic-layers/virt=
+ualization-layer/recipes*/*/*.bb \
+                     virtualization-layer:${LAYERDIR}/dynamic-layers/virt=
+ualization-layer/recipes*/*/*.bbappend \
++                    meta-python2:${LAYERDIR}/dynamic-layers/python2-laye=
+r/recipes*/*/*.bb \
++                    meta-python2:${LAYERDIR}/dynamic-layers/python2-laye=
+r/recipes*/*/*.bbappend \
+                    "
+=20
+ BBFILE_COLLECTIONS +=3D "selinux"
+diff --git a/recipes-devtools/python/files/sitecustomize.py b/dynamic-lay=
+ers/python2-layer/recipes-devtools/python/files/sitecustomize.py
+similarity index 100%
+rename from recipes-devtools/python/files/sitecustomize.py
+rename to dynamic-layers/python2-layer/recipes-devtools/python/files/site=
+customize.py
+diff --git a/recipes-devtools/python/python_%.bbappend b/dynamic-layers/p=
+ython2-layer/recipes-devtools/python/python_%.bbappend
+similarity index 100%
+rename from recipes-devtools/python/python_%.bbappend
+rename to dynamic-layers/python2-layer/recipes-devtools/python/python_%.b=
+bappend
+diff --git a/recipes-devtools/python/python_selinux.inc b/dynamic-layers/=
+python2-layer/recipes-devtools/python/python_selinux.inc
+similarity index 100%
+rename from recipes-devtools/python/python_selinux.inc
+rename to dynamic-layers/python2-layer/recipes-devtools/python/python_sel=
+inux.inc
+--=20
+2.20.1
 
-I'm setting up a project using poky warrior branch.
-I set up SDKMACHINE=3D"x86_64"
-Target arch is powerpc-nf
-
-The goal is to create sdk image to be used for other development.
-
-I include the following packages in conf/local.conf=C2=A0 and many others =
-(but may not be important to discuss here)
-IMAGE_INSTALL_append +=3D " libgcc "
-IMAGE_INSTALL_append +=3D " glibc glibc-dev "
-IMAGE_INSTALL_append +=3D " glibc-staticdev "
-EXTRA_IMAGE_FEATURES +=3D "tools-sdk"
-EXTRA_IMAGE_FEATURES +=3D "dev-pkgs"
-SDKIMAGE_FEATURES_append =3D " staticdev-pkgs "
-
-I am able to "bitbake core-image-minimal"=C2=A0 and "bitbake core-image-mi=
-nimal -c populate_sdk" successfully.
-
-Then I added another code to handle root access...=C2=A0 This code was bui=
-lt fine outside of yocto environment.
-
-Here is the recipe
-**********************************************
-LICENSE =3D "Apache-2.0"
-LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/files/common-licenses/Apache=
--2.0;md5=3D89aea4e17d99a7cacdbeed46a0096b10"
-
-SRC_URI =3D "file://mdchroot-${PV}.tar.gz \
-file://mcpbug-121262-bind_mounting_resource_leak.patch \
-file://mdchroot-make-depend.patch\
-file://mdchroot.spec \
-"
-
-SRC_URI[md5sum] =3D "e84606060949ce161bae2a00ad8359fb"
-SRC_URI[sha256sum] =3D "2a9801ca9ec9d3b120c13b61c0ed778d07adb4f75fe8357bc7=
-38dda9f8aa6dae"
-
-BBCLASSEXTEND =3D "native nativesdk"
-inherit autotools
-
-do_compile () {
-# You will almost certainly need to add additional arguments here
-cd ${S}
-unset LDFLAGS CFLAGS CPPFLAGS
-make OPTIMIZE=3D-O2 DEBUG=3D-g DEFINES=3D-D_GNU_SOURCE
-}
-**********************************************
-
-I tried to build "bitbake mdchroot-native"=C2=A0 and it failed
-
-**********************************************
-Initialising tasks: 100% |################################################=
-###########################################################################=
-####| Time: 0:00:00
-Sstate summary: Wanted 1 Found 0 Missed 1 Current 8 (0% match, 88% complet=
-e)
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-ERROR: mdchroot-native-0.7.4-r0 do_compile: Function failed: do_compile (l=
-og file is located at /tmp/youhour/fips-build/fips-ppcnf/build/tmp/work/x86=
-_64-linux/mdchroot-native/0.7.4-r0/temp/log.do_compile.30014)
-ERROR: Logfile of failure stored in: /tmp/youhour/fips-build/fips-ppcnf/bu=
-ild/tmp/work/x86_64-linux/mdchroot-native/0.7.4-r0/temp/log.do_compile.3001=
-4
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| gcc -Wall -Werror -D_GNU_SOURCE -O2 -g -o src/mdchroot src/mdchroot.o sr=
-c/mount_table.o src/mount.o src/roots.o -static
-*| /tmp/youhour/fips-build/fips-ppcnf/build/tmp/hosttools/ld: cannot find =
--lc*
-*| collect2: error: ld returned 1 exit status*
-| make: *** [src/mdchroot] Error 1
-| WARNING: /tmp/youhour/fips-build/fips-ppcnf/build/tmp/work/x86_64-linux/=
-mdchroot-native/0.7.4-r0/temp/run.do_compile.30014:1 exit 2 from 'make OPTI=
-MIZE=3D-O2 DEBUG=3D-g DEFINES=3D-D_GNU_SOURCE'
-| ERROR: Function failed: do_compile (log file is located at /tmp/youhour/=
-fips-build/fips-ppcnf/build/tmp/work/x86_64-linux/mdchroot-native/0.7.4-r0/=
-temp/log.do_compile.30014)
-ERROR: Task (virtual:native:/esw/san5/youhour/yocto_mcp/b20200123a/fips-bu=
-ild/meta-fips-dependencies/recipes-phosphor/mdchroot/mdchroot_0.7.4.bb:do_c=
-ompile) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 63 tasks of which 62 didn't need to be reru=
-n and 1 failed.
-
-Summary: 1 task failed:
-virtual:native:/esw/san5/youhour/yocto_mcp/b20200123a/fips-build/meta-fips=
--dependencies/recipes-phosphor/mdchroot/mdchroot_0.7.4.bb:do_compile
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.
-**********************************************
-
-Seemed like ld was not able to find the glibc static library.
-Under the tmp/work directory=C2=A0 I found these libraries.=C2=A0 So, it s=
-eems that the glibc static library is there.
-*************************************************************
-./x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-powerpc/8.3.0-r0/recip=
-e-sysroot/usr/lib/libc.a
-./x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-powerpc/8.3.0-r0/recip=
-e-sysroot/opt/poky/2.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/libc.a
-./x86_64-nativesdk-pokysdk-linux/nativesdk-glibc/2.29-r0/build-x86_64-poky=
-sdk-linux/libc.a
-./x86_64-nativesdk-pokysdk-linux/nativesdk-glibc/2.29-r0/image/opt/poky/2.=
-7.1/sysroots/x86_64-pokysdk-linux/usr/lib/libc.a
-./x86_64-nativesdk-pokysdk-linux/nativesdk-glibc/2.29-r0/packages-split/na=
-tivesdk-glibc-staticdev/opt/poky/2.7.1/sysroots/x86_64-pokysdk-linux/usr/li=
-b/libc.a
-./x86_64-nativesdk-pokysdk-linux/nativesdk-glibc/2.29-r0/sysroot-destdir/o=
-pt/poky/2.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/libc.a
-./x86_64-nativesdk-pokysdk-linux/nativesdk-glibc/2.29-r0/package/opt/poky/=
-2.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/libc.a
-./x86_64-nativesdk-pokysdk-linux/gdb-cross-canadian-powerpc/8.2.1-r0/recip=
-e-sysroot/opt/poky/2.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/libc.a
-*************************************************************
-
-Any thought what I am missing in the conf/local.conf or in the recipe file=
-?
-
-Thank you in advance.
-
---ROYI2euqJjajq2jmIb32
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>Hello All, <br /><br />I'm a newbie to Yocto.</div>
-<div>&nbsp;</div>
-<div>I'm setting up a project using poky warrior branch.</div>
-<div>I set up SDKMACHINE=3D"x86_64"</div>
-<div>Target arch is powerpc-nf</div>
-<div>&nbsp;</div>
-<div>The goal is to create sdk image to be used for other development.</di=
-v>
-<div>&nbsp;</div>
-<div>I include the following packages in conf/local.conf&nbsp; and many ot=
-hers (but may not be important to discuss here)</div>
-<div>IMAGE_INSTALL_append +=3D " libgcc "</div>
-<div>IMAGE_INSTALL_append +=3D " glibc glibc-dev "</div>
-<div>IMAGE_INSTALL_append +=3D " glibc-staticdev "</div>
-<div>EXTRA_IMAGE_FEATURES +=3D "tools-sdk"</div>
-<div>EXTRA_IMAGE_FEATURES +=3D "dev-pkgs"</div>
-<div>SDKIMAGE_FEATURES_append =3D " staticdev-pkgs "</div>
-<div>&nbsp;</div>
-<div>I am able to "bitbake core-image-minimal"&nbsp; and "bitbake core-ima=
-ge-minimal -c populate_sdk" successfully.</div>
-<div>&nbsp;</div>
-<div>Then I added another code to handle root access...&nbsp; This code wa=
-s built fine outside of yocto environment.</div>
-<div>&nbsp;</div>
-<div>Here is the recipe</div>
-<div>**********************************************</div>
-<div>LICENSE =3D "Apache-2.0"</div>
-<div>LIC_FILES_CHKSUM =3D "file://${COREBASE}/meta/files/common-licenses/A=
-pache-2.0;md5=3D89aea4e17d99a7cacdbeed46a0096b10"</div>
-<div>&nbsp;</div>
-<div>SRC_URI =3D "file://mdchroot-${PV}.tar.gz \</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;file://mcpbug-121262-bind_mo=
-unting_resource_leak.patch \</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;file://mdchroot-make-depend.=
-patch\</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;file://mdchroot.spec \</div>
-<div>"</div>
-<div>&nbsp;</div>
-<div>SRC_URI[md5sum] =3D "e84606060949ce161bae2a00ad8359fb"</div>
-<div>SRC_URI[sha256sum] =3D "2a9801ca9ec9d3b120c13b61c0ed778d07adb4f75fe83=
-57bc738dda9f8aa6dae"</div>
-<div>&nbsp;</div>
-<div>BBCLASSEXTEND =3D "native nativesdk"</div>
-<div>inherit autotools</div>
-<div>&nbsp;</div>
-<div>do_compile () {</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; # You will almost certainly need to add a=
-dditional arguments here</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; cd ${S}</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; unset LDFLAGS CFLAGS CPPFLAGS</div>
-<div>&nbsp; &nbsp; &nbsp; &nbsp; make OPTIMIZE=3D-O2 DEBUG=3D-g DEFINES=3D=
--D_GNU_SOURCE</div>
-<div>}</div>
-<div>**********************************************</div>
-<div>&nbsp;</div>
-<div>I tried to build "bitbake mdchroot-native"&nbsp; and it failed</div>
-<div>&nbsp;</div>
-<div>**********************************************</div>
-<div>Initialising tasks: 100% |###########################################=
-###########################################################################=
-#########| Time: 0:00:00</div>
-<div>Sstate summary: Wanted 1 Found 0 Missed 1 Current 8 (0% match, 88% co=
-mplete)</div>
-<div>NOTE: Executing SetScene Tasks</div>
-<div>NOTE: Executing RunQueue Tasks</div>
-<div>ERROR: mdchroot-native-0.7.4-r0 do_compile: Function failed: do_compi=
-le (log file is located at /tmp/youhour/fips-build/fips-ppcnf/build/tmp/wor=
-k/x86_64-linux/mdchroot-native/0.7.4-r0/temp/log.do_compile.30014)</div>
-<div>ERROR: Logfile of failure stored in: /tmp/youhour/fips-build/fips-ppc=
-nf/build/tmp/work/x86_64-linux/mdchroot-native/0.7.4-r0/temp/log.do_compile=
-.30014</div>
-<div>Log data follows:</div>
-<div>| DEBUG: Executing shell function do_compile</div>
-<div>| gcc -Wall -Werror -D_GNU_SOURCE -O2 -g -o src/mdchroot src/mdchroot=
-.o src/mount_table.o src/mount.o src/roots.o -static</div>
-<div><strong>| /tmp/youhour/fips-build/fips-ppcnf/build/tmp/hosttools/ld: =
-cannot find -lc</strong></div>
-<div><strong>| collect2: error: ld returned 1 exit status</strong></div>
-<div>| make: *** [src/mdchroot] Error 1</div>
-<div>| WARNING: /tmp/youhour/fips-build/fips-ppcnf/build/tmp/work/x86_64-l=
-inux/mdchroot-native/0.7.4-r0/temp/run.do_compile.30014:1 exit 2 from 'make=
- OPTIMIZE=3D-O2 DEBUG=3D-g DEFINES=3D-D_GNU_SOURCE'</div>
-<div>| ERROR: Function failed: do_compile (log file is located at /tmp/you=
-hour/fips-build/fips-ppcnf/build/tmp/work/x86_64-linux/mdchroot-native/0.7.=
-4-r0/temp/log.do_compile.30014)</div>
-<div>ERROR: Task (virtual:native:/esw/san5/youhour/yocto_mcp/b20200123a/fi=
-ps-build/meta-fips-dependencies/recipes-phosphor/mdchroot/mdchroot_0.7.4.bb=
-:do_compile) failed with exit code '1'</div>
-<div>NOTE: Tasks Summary: Attempted 63 tasks of which 62 didn't need to be=
- rerun and 1 failed.</div>
-<div>&nbsp;</div>
-<div>Summary: 1 task failed:</div>
-<div>&nbsp; virtual:native:/esw/san5/youhour/yocto_mcp/b20200123a/fips-bui=
-ld/meta-fips-dependencies/recipes-phosphor/mdchroot/mdchroot_0.7.4.bb:do_co=
-mpile</div>
-<div>Summary: There was 1 ERROR message shown, returning a non-zero exit c=
-ode.</div>
-<div>**********************************************</div>
-<div>&nbsp;</div>
-<div>Seemed like ld was not able to find the glibc static library.</div>
-<div>Under the tmp/work directory&nbsp; I found these libraries.&nbsp; So,=
- it seems that the glibc static library is there.&nbsp;&nbsp;</div>
-<div>*************************************************************</div>
-<div>./x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-powerpc/8.3.0-r0/=
-recipe-sysroot/usr/lib/libc.a</div>
-<div>./x86_64-nativesdk-pokysdk-linux/gcc-cross-canadian-powerpc/8.3.0-r0/=
-recipe-sysroot/opt/poky/2.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/libc.a<=
-/div>
-<div>./x86_64-nativesdk-pokysdk-linux/nativesdk-glibc/2.29-r0/build-x86_64=
--pokysdk-linux/libc.a</div>
-<div>./x86_64-nativesdk-pokysdk-linux/nativesdk-glibc/2.29-r0/image/opt/po=
-ky/2.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/libc.a</div>
-<div>./x86_64-nativesdk-pokysdk-linux/nativesdk-glibc/2.29-r0/packages-spl=
-it/nativesdk-glibc-staticdev/opt/poky/2.7.1/sysroots/x86_64-pokysdk-linux/u=
-sr/lib/libc.a</div>
-<div>./x86_64-nativesdk-pokysdk-linux/nativesdk-glibc/2.29-r0/sysroot-dest=
-dir/opt/poky/2.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/libc.a</div>
-<div>./x86_64-nativesdk-pokysdk-linux/nativesdk-glibc/2.29-r0/package/opt/=
-poky/2.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/libc.a</div>
-<div>./x86_64-nativesdk-pokysdk-linux/gdb-cross-canadian-powerpc/8.2.1-r0/=
-recipe-sysroot/opt/poky/2.7.1/sysroots/x86_64-pokysdk-linux/usr/lib/libc.a<=
-/div>
-<div>*************************************************************</div>
-<div>&nbsp;</div>
-<div>Any thought what I am missing in the conf/local.conf or in the recipe=
- file?</div>
-<div>&nbsp;</div>
-<div>Thank you in advance.</div>
-
---ROYI2euqJjajq2jmIb32--
