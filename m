@@ -1,141 +1,87 @@
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
- by mx.groups.io with SMTP id smtpd.web11.11827.1580406304364802873
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+ by mx.groups.io with SMTP id smtpd.web11.1483.1580417469821721824
  for <yocto@lists.yoctoproject.org>;
- Thu, 30 Jan 2020 09:45:04 -0800
+ Thu, 30 Jan 2020 12:51:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=hukB07pN;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.215.175, mailfrom: mhalstead@linuxfoundation.org)
-Received: by mail-pg1-f175.google.com with SMTP id z124so1999392pgb.13
-        for <yocto@lists.yoctoproject.org>; Thu, 30 Jan 2020 09:45:04 -0800 (PST)
+ dkim=pass header.i=@konsulko.com header.s=google header.b=TXiuPwTY;
+ spf=pass (domain: konsulko.com, ip: 209.85.167.172, mailfrom: paul.barker@konsulko.com)
+Received: by mail-oi1-f172.google.com with SMTP id l136so5055646oig.1
+        for <yocto@lists.yoctoproject.org>; Thu, 30 Jan 2020 12:51:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=to:from:subject:autocrypt:organization:message-id:date:user-agent
-         :mime-version:content-language:content-transfer-encoding;
-        bh=T9Rjilqwg1US7EfPTVQUdRV4Kk24nBcSgDD5FaMJF/k=;
-        b=hukB07pN/cpZXf/dNJDZLeSmRJ1cIGwbxrJpIr1dI5NoVkAwp4vjd/dgmTBgehE3fF
-         CSItzEmdr0Py0KdhhqIcZhXI6LnZq6R/mC+XmbUtUmIdvNRMCoAmwIgYJlk1ISPfI4lO
-         h8mrn/Hfsr5dfvUnMwgXHp7nfQMQVLlT9sPBA=
+        d=konsulko.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=m8px4xij1P+pfYwE8ctp06RR0z5tv6FX0EoTQCOA8qc=;
+        b=TXiuPwTYEY3puQnfcbcJYZKmB2nmlvHQ/doa04jQukeSW7enzo0hBnXfqKcaUBBXsA
+         20uZN5rf6IzdiLd5pmEsYqgbzrVQv+d0aAaYAXaZQgI9EF8vYTKgDyKvBH8RoazsqTnt
+         x0/jfXZ2NRrhBvJ2AwcXVlOUpIc383/0WNbek=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:from:subject:autocrypt:organization
-         :message-id:date:user-agent:mime-version:content-language
-         :content-transfer-encoding;
-        bh=T9Rjilqwg1US7EfPTVQUdRV4Kk24nBcSgDD5FaMJF/k=;
-        b=XMir5Io3yxATfrVTqp9d+hS584HVtRK5CSvOq/VGa7SW22La3SiRWqTMFYsPr5yJTF
-         hCupUYjLaxQZJN6EjcvERthioZS4hJoaZECuRfdX2dAqViOsVtEqXwZ6arcj87z2HvQK
-         7D5OZU+km8BXHknJFeH5+T2Y5dUO+sv7Cyru7DiK8Lbn0N7xKrQM9mVZvACh36+5xf1N
-         Fttic0s6gqOV0lyMXvY1DaA3IMzXmE9pSW23Z3xqW6auJsuj2RJiWKQQdDSOU6eReeCA
-         EO5C8JSMfhkUoGsnnhfaFoSh4tjAUvDdPu6t4u4t9LmHXaPSh8Pd8p+ofjrVc885nsyi
-         DRoQ==
-X-Gm-Message-State: APjAAAWPkHYnPPnenaGowpoymi8wWJjx3+W86uaurPKn76yty4wYnzhE
-	YUzPKnN3tucqZHXmx/zYYdT6/A==
-X-Google-Smtp-Source: APXvYqxjTrGt9lHEkTYdyWHF1zT6TwV6y222l/zCTH3AxHJAwAYbMyanFZuaubLYJ8EHQb8bRk3khg==
-X-Received: by 2002:a63:3084:: with SMTP id w126mr5718396pgw.169.1580406303833;
-        Thu, 30 Jan 2020 09:45:03 -0800 (PST)
-Return-Path: <mhalstead@linuxfoundation.org>
-Received: from localhost.localdomain ([2601:1c0:ce00:457:a6c3:f0ff:fe97:6486])
-        by smtp.gmail.com with ESMTPSA id o184sm7104188pgo.62.2020.01.30.09.45.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 30 Jan 2020 09:45:02 -0800 (PST)
-To: yocto@lists.yoctoproject.org, openembedded-core@lists.openembedded.org,
- openembedded-architecture@lists.openembedded.org
-From: "Michael Halstead" <mhalstead@linuxfoundation.org>
-Subject: New Dedicated Licensing and Documentation Mailing Lists
-Autocrypt: addr=mhalstead@linuxfoundation.org; keydata=
- mQINBE8Dc30BEADBDFdUgzs/mLCh8cGWry5+FaZwBnyEZ1OMXSKFQ1Y3W3nZ2iRTCymuJyBC
- V18Jw7R6GcSc0r0FqTu7H8pH8tyb5df2PPjh7N8ex+MFhgQ0wU38VTxoJ3bWu54N3RXS7QkR
- QLZzz46AkBUMqaHhHoVwpZuSzFqY5juCRxoJtBM5aqirEzm+vDcPi3b/5OJBuqVnjH6kumGo
- I437a7JZO9ZeHpCgpEicRf1CPy6ye5s3vl63HSDs66eIABSAQNeIJaT4u1rJ8riR6ctipkOT
- QkpnapOR2/9K3Q+EpJb09Q3AyRNPiUQ+q/qgTcUOLclQSWTwoAwK1GZ+Dpif8g64+8s0y9OH
- YO2lUEeB+okvpRzhzGrpv9RJ9cWZa+YkBVPrdwySwG4MSicV3t1HOg2oJhesNl+mqo54Btcz
- CL/kOkZ4ILuCYheSsSBIN4OClI3gyijAE/bKnMk8aLZGq11Xbn6r2BQbG2X9KXZc7xVRStCS
- qCRpiZfHp0GqCQzxHAB3UCmWc/xNBPKqEsUbqFlC8jeNrJhZAQuELo0mfIcCcvWRXzQwmrbi
- HcEPAOqRS7VbDMx7nLwAO/5KC3/PDGe1nassFLT1jXy89ZXWDRYtfE+jyL8M3hEw0FQbGO73
- +z5z7YAqWEiIX97fqVMWiSEW0rTWsJWWu92vexgpR/Qd0yKQQwARAQABtDBNaWNoYWVsIEhh
- bHN0ZWFkIDxtaGFsc3RlYWRAbGludXhmb3VuZGF0aW9uLm9yZz6JAlgEEwEKAEICGwMCHgEC
- F4AHCwkIBwwLCgUVCgkICwQWAgMBAhkBFiEE0fJAcoXlce0SpAenM3MXBgGGGWkFAl3qlbAF
- CRKpiTMACgkQM3MXBgGGGWnYkw//aTc2Vwr3699a7uran7LwTk4ZBsm4kBMQ2dMMzqR4KD5H
- AwO8Naw5AfFUz79wpjsdLsbyz5zI171QFxEgMOPtOsk8jch1kjq3iFxYnIESUTRkHvN73V1O
- 3OIr+GfMaOm6B9W59X9l+aT4o+9LnFPXFxf0S4P9DOewGiD+/hkD7B7qe5KQ3KYXS+IG7g1D
- j8KXiQXGvDlGBqSYmI6Mc0eSfLcUPHg68neMFt7VUFuWcrTImSCPCzZJjEw9bHYcVp0Rn81v
- nOg1w5NdqXiVaZA9bQFP+d7qaJzWug6TFj694+s3lTKzGTmEpOJyKaV1ilV6Kx51asXcByOs
- nZnoR/CQ6jFGzc901iMxvu8sFiVxfDncjvz3P3RtXcmcz9eiRzeD5AaTKGOQXYAQd9rTUdwx
- N0wlF47qnoxJ8J5fwJWg5RrDbH2+iosYYDBCPiNKAMjlXqzB23EMEtFWBNSCUuHzxaFcIU0e
- sefLkoAemxNPkJLJL52dWWckrnCxc99hrsNP3FQxbVN9h6TT1O84wbIfENW0eYcGWXP0hr+h
- +Aid1A4O3ERMHc2GvKBdMb+EpizykJk+duCFXL8RiYQ49aiXDgyPPQlieTeiK3p+uFQZAyxT
- /fQjMQ85XNKm4Rz6k8sPrrdCajZni6ba9tQfLBMPIXC4bZNhdBDxuxAPsBO23pS5AQ0EU5JS
- fAEIALXdaQ4tSGTo7c0gu8Q/8RrRfnG5hpMvbAa1KX2AnW9i8QvBIRDpWA0sN1GyLUsxGrxs
- bnAt5kaSNQJvHJ5Qal5N0tjkKyVg+LliE+T4slRFgD8dbHRdbS2dQctDkjYvav+EZDoXwHjq
- Nrbue47K5+z0bPOhmtocuM/H+ilZlzpxGH5UF4pucmKtZVFXRZ4gIjDo92GCLmv7VBX6LD6a
- 0uL1brN7F/luz1uCjXJ6wQDHUyyaRFpcQyM/tKQu5MCCIaD1wJymPj7fLeax2nst/jYMe/lf
- kzPfY+snQkLmNj8IZJIDM310sRl4WEZBHdptjs+usStPVpoJOYBT2JVruekAEQEAAYkCPAQY
- AQoAJgIbDBYhBNHyQHKF5XHtEqQHpzNzFwYBhhlpBQJd6pX5BQkOGqp9AAoJEDNzFwYBhhlp
- fkQP/RPvAwh4HrEkNxADbLxmLfmJgKUjbXuQ/ZasgFxMguQMi511+0zHXi9e+gYDDWYSsHdP
- jPV6zFN6vlWkuxOYYXpw/nFklU9YtGMfEb3V/j4AvTp4XeQbem3iQ1uhR23rTAYls9Fl8gfy
- BlGpEa/WY53R54JmahK0uj1GjnZNTVQSP8fRytk9cZADYGBIuTRQDwXbHq7cm7E3MnS8XYIV
- iD1Efbc8/TrtKgX3PDErscXdoFVPnzY39AFedTyFNPa1rWht14X8hkCJ8ZbNvWF991aIXQ/c
- wp0x6R96B2S6uRPZve8VEuUCMn8HN3iwBbBT5gLoZ9CKLy1ZHl8/i1W7xD5b7qZnf2B5Qrdr
- jNArPj19gv37kWMcZivYJDZ+P4NwgrL2ohdo333QY72C6LFx5oY0/3AQ0L025p/UXULw3Jo5
- NUTWS7wxz16eY/ttBMfGs1sR0K2G8XIFaWjljxLzgaCZIklAxTz+CR9fyPrQzFuRTvW8ldFY
- sClElel+4EvsLwyUwS+QRvyGiBZ7mbiFgQTPgKDBMN+QKHR38Idh66oD/VzrKlrHhlZs2Pm9
- UjR0lA5S7txPJCfYzYqzjfcgbA6THB1s1n6QffY57HriuvH9YGWJPVwn/r8XDQG0k+Pmcnef
- DEUNw2bBeIEa/umMgC658/1FsU27eF7UQtoX+4t6uQINBFXZOJwBEADS+USvgSCZdftW0k4Z
- 5kThYf5CGBsla108DDh77BTzO9J6eKo4B1gmTdQzDJNvwiXbA0edSYX9FFTV27JRgQwdsydj
- KDuvDjEgN0DsHHGZDtHpvR6fQAavA2ybq7eg6cAWZaMSHJNe/T/IO8beGDYQARMokwgVTc1A
- iU1xPu+huCKyzRoSTZ6D6rrnf9xe0h91wi3ybhusZlvbcPr2WwrfsxzGV9bPPw1D1pp8Jp9e
- QYrwBc7g0j/AhSVBSIxP593W0M3SEkXyi77WxRSspr9TM0vA+k5zoOd81Q21dY7SbCjf9zwl
- 9yPEvtfcL75bdmPq29PmnzfAZBj5WOuoYMiC9IpJigwjuK24TLPqvqSEaUlt+f92AHrnMygf
- XdfYqddHCLvq9YWmMAYVeuyH1USe/nonkgi5SLHHICkdwTg40DbMqVyl/A2B6M0aP3A9Bsxo
- IEi9TXSq4ACiiB8H/bdY3Wz8vFYr8WRoHwbaXZJtEItHBfqJ5cP30jCOaOB9fN6+v4yBsdGR
- fOM9h/2xTHbY7mjdvwqKuLLEnPzHvB+yROl2nBMUv+WBA0H2cC4PPZMPij2doNKwNvMcDlza
- 92wBSxay7IMZHjSggzga/jKTIQDrhQdxi9Vz7v0oAw3Y5cYSCn64Ux9Hdlncv7IJEbSubIlJ
- gLeXwgpUzx/LNK2MUQARAQABiQRbBBgBCgAmAhsCFiEE0fJAcoXlce0SpAenM3MXBgGGGWkF
- Al3qlfkFCQvTxF0CKcFdIAQZAQgABgUCVdk4nAAKCRBqZJY1ukJalRa1D/wPMgEEq/ZNkBmU
- E2jOb9nlRba5fC3NDkettbd1Yy+a5Ae4SmGvIQVlZejEQ5FgVKLb5eSFF/CrwfE8XWB3r+Q7
- QukxHWQ4NJos8xA/eeUXN4Z85LjpIRXfeDhqiiHAehvHEuIX4n96oFx2hkid7FKymvdGwWi+
- IzrQSMfXLhQPMNTC/dy8tKK1KHY1c8cE7QhwEeK0MzPNUHBfuMn5oAYQxujmuJNMa3so9H67
- DxeFbGSZgNJRX4e8yzIUvxlvXBdIBnHSm2LjiLg7/YAN8I7LvceaMhxlxjE2mt6082Ogfa3B
- yLyUdpWtX9IRegcVW/ku1lEA4cVn5Pc1e5ylRTpBQpH2IaxLx6m/QQtaQZdfxEWMkIuU9KcY
- tgeQy8AIeyFdjHcnN7Z7+tit+Z2mjXJYvmBr8vK6GmQOdI29Ej+vHb/uDbwOzx6e2FrVM3k7
- Oduzlcm+GdAynCQf49/4hgw5Az6fOArtKR7J7ZqiYCipJ+KovPxxBZqi+HVxoaz/Q+O6aU4/
- z/66E+1WMYCQ47zaaq+iSXlQ8cNn6Odp2GMI7wpvp/3f3RoqJ+y2oAslBYlROehmpQ5/mjVy
- Zh2nknJFbzrewairrwTyNtd9KwxJvLcGM3AINNaJ/E1EdAXJHl2v0lcr/JWA/m8LU6HQX0C3
- 0FbrBFZ+CurbKjHv9TvUyAkQM3MXBgGGGWntdA/9F0Znj8h8o/6LTR2ujycqBYwVBBIjdYr8
- y+los0s4+WFJxlCwrMgC8ZYkRSsOVigvpRPGhg2b9AYROdOx3pEpNUPn8PJBplsnC7yAWlZa
- pfOweePdSvZYzHkRMAxHm5BM0vJH8yBQPefkDezTOfMyGIf0aLMSmaOpfxnKFZb3n/u5AAFA
- 5jWiUgdJb/tTQ78RX4QmCqyV6eQS5wclbDbB+D62mC3TngjEug1McsDrNm2zl2M1sY0BBogg
- u8fpWu/XziDRpeHN90nMdF27pNXcPDb+mTUbV014qrZ9pMHHDgBvXhrfB980ecnXGk53xX7a
- TXL416o/3szDI0VXpo+ZRJL2aZmD5TPp9qLgFi4lGSP5t7w0iKXVLkN/b/CFbj+DV59inVJ0
- nQqSwrLNVbQqUNFlMA/isJAiRy3PGTEpe6SNDcl2lzZqysjYAJgRBfOE0LKh/kXlq2uWnM3N
- TCfkSdfRguAkxEF+eDA1TcZ/gyV68QUtAGzmy01bHi75VsU36fiXStDOujcTnCZXoAn6u3Pl
- +ZPAT6xbvNGc+q2nWCsgZDY5ytnKKseJqrC5oMJdxOApDLSQ2L2sYzGXbKRzQyn9i07qzyX8
- tKX5gIc55I/gSCyf1KyHh0GCoCxp1Ierkr7SBkBHptBFa9d80lfxtPKv/8dwzrKtusBNYBI+ xog=
-Organization: Linux Foundation
-Message-ID: <2ca92bae-847b-14aa-dc26-65945658cedd@linuxfoundation.org>
-Date: Thu, 30 Jan 2020 09:45:02 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=m8px4xij1P+pfYwE8ctp06RR0z5tv6FX0EoTQCOA8qc=;
+        b=p+Ea5rmUdJAvG+FY+kX+UwLbYVt73f1+1ILUYLt2ywP4YDo3yp3rm9Eyx514Ao8XLo
+         Hd8qHMW4FnNXgyCApgbh/sv7i0EhETkb4POLx68/YVBVr4DpF5/gK4ck+iKPVjyd/EBJ
+         jN+59AcaYuSM7crq6Q5uVG8Em/wELZFaFfcF+ymWE2a8glYHIMBVb3QDDURbG3Tu8+L1
+         /9jakXk708N72uDsM6m3Skg2LpIcH1GkYFP/uzpVdrjeXhZs9UQePnhn0rh8f4jC0bYx
+         MGdBchxeKgVJBsjVOzi/++2Yu5AzNULrWDeaCLho/w2KtSCpkE+ywucaXrcwdo5zCZpw
+         vtFw==
+X-Gm-Message-State: APjAAAUAwi8EvUeqpSuaqngfYr7UWtPBpYhPk+3+hh0bMgJY+xuoAoTX
+	jiyULuaJPd+xfoxgVn2k4OP+dMCY8oc4fmdmJA+zXOL06sHb+g==
+X-Google-Smtp-Source: APXvYqyw+qsHxd/SZNg2HHk7FX5dQXhPa7afy0CZY1MnGqrHdjGLVkPdGrnpW1meIViFJCqkejHH7Kea/EMJCJRZHI4=
+X-Received: by 2002:aca:ec13:: with SMTP id k19mr4069552oih.22.1580417468603;
+ Thu, 30 Jan 2020 12:51:08 -0800 (PST)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <CAM9ZRVvru2LaypQk337KMmT1DsxRAuA4-9peU21PSMRf2o43Hg@mail.gmail.com>
+In-Reply-To: <CAM9ZRVvru2LaypQk337KMmT1DsxRAuA4-9peU21PSMRf2o43Hg@mail.gmail.com>
+From: "Paul Barker" <pbarker@konsulko.com>
+Date: Thu, 30 Jan 2020 20:50:57 +0000
+Message-ID: <CAM9ZRVsoGUKeCEDxiNQOBBRYf6eHb7M2zK0BLbOKVprjHUV3dQ@mail.gmail.com>
+Subject: Re: OpenEmbedded at FOSDEM 2020: Request for volunteers and demos
+To: yocto@lists.yoctoproject.org, 
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Content-Type: text/plain; charset="UTF-8"
 
-We are adding new lists for topics concerning subcommunities that
-will benefit from focused list traffic.
+Hey folks,
 
+We've now got a couple of demos planned for the OE stand at FOSDEM
+this weekend but some more volunteers to help out at the stand would
+be really good! If you're at FOSDEM and can spare even an hour or two
+please drop me an email :)
 
-The licensing list will separate licensing and legal discussion from
-general development to aid participation of specialists in this area.
+Even if you're not available to volunteer, we look forward to saying
+hello at the stand!
 
-Please join at https://lists.yoctoproject.org/g/licensing/join.
+Thanks,
+Paul
 
-
-Join the docs list to discuss all things documentation and to
-collaborate on the patches to the docs.
-
-Please join at https://lists.yoctoproject.org/g/docs/join.
-
--- 
-Michael Halstead
-Linux Foundation / Yocto Project
-Systems Operations Engineer
+On Wed, 8 Jan 2020 at 14:02, Paul Barker <pbarker@konsulko.com> wrote:
+>
+> Hey folks,
+>
+> We've got a stand for OpenEmbedded at FOSDEM 2020
+> (https://fosdem.org/2020/stands/). For anyone who hasn't been to
+> FOSDEM before, it's the Free and Open Source Developers' European
+> Meeting at ULB in Brussels, Belgium on Feb 1st and 2nd. FOSDEM is free
+> to attend conference with dozens of stands, hundreds of talks and
+> thousands of attendees. I highly recommend coming along if you're able
+> to!
+>
+> I'll be able to look after the stand for most of the weekend but will
+> need some assistance and some cover so that I can take breaks when
+> needed. I'm looking for volunteers to help with the following:
+> * Setup from 09:00 on Saturday morning.
+> * Running the stand and discussing the project with attendees from
+> 10:00 to 17:00 Saturday and Sunday.
+> * Tidy up from 17:00 on Sunday.
+>
+> I'm also looking for demos that can show off the project. I'll have my
+> laptop with me to show toaster, the layer index, how builds work, etc
+> but I won't be bringing any hardware devices as I'm travelling on
+> after FOSDEM. We'll need a couple of hardware demos to show off the
+> project well. The table is 180x80 cm.
+>
+> If anyone can print up some flyers with info about the project that
+> would also be excellent.
+>
+> Thanks,
+> Paul
