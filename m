@@ -1,172 +1,283 @@
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
- by mx.groups.io with SMTP id smtpd.web12.724.1580495587972535473
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+ by mx.groups.io with SMTP id smtpd.web11.885.1580496556577401542
  for <yocto@lists.yoctoproject.org>;
- Fri, 31 Jan 2020 10:33:08 -0800
+ Fri, 31 Jan 2020 10:49:16 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=jbIL9VA/;
- spf=pass (domain: gmail.com, ip: 209.85.166.180, mailfrom: raj.khem@gmail.com)
-Received: by mail-il1-f180.google.com with SMTP id i7so6983950ilr.7
-        for <yocto@lists.yoctoproject.org>; Fri, 31 Jan 2020 10:33:07 -0800 (PST)
+ dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=iglNTrJJ;
+ spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: parse error for token &{10 18 _netblocks.google.com}: limit exceeded (domain: mvista.com, ip: 209.85.215.176, mailfrom: akuster@mvista.com)
+Received: by mail-pg1-f176.google.com with SMTP id z124so3906346pgb.13
+        for <yocto@lists.yoctoproject.org>; Fri, 31 Jan 2020 10:49:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:organization:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=qQqnBjYFvbMuL8E6jZ9xKCSdvJ47AJt8N215Ku647kM=;
-        b=jbIL9VA/aFymraEVrxXgBCEYs5NUkTz2sB30OIX+rWpwnsAzxQrKk8UA2GRV5UTbo/
-         rt1/p+pIDZAtgOOPOiyuadryt8k0fwKay9Derwk5X5EFwW8d1HyeXI20VeqSkaPXf/OV
-         iB6NkmMyV4cX3cn7CwPMC9aT1fzKaBQdzJ7LDZZkh1Ov8FezAIufsg7LGs98wTbdedKN
-         b4bFepufob7Xe1EHMlO55cA4er0xCfZUOey8CGTbAhiLnaTJZDZ87C0QiK0cS0/0gyZD
-         dC0HSpP8frAxBJaWd9DR3cgcJ6wRGf/6wI0gn67OaYYCeFUw6w9EnGd8duSiLmshZB4F
-         bgtw==
+        d=mvista-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language;
+        bh=gSaP+jUA+toplzlpLyfJs1kIhx4V0ySFVgF9Uv/qQjo=;
+        b=iglNTrJJUekPs7hvmuboQQtXvkWABWsX9PMtoWxyxVVwhnE4aJHUWi1mJPOoQOiOFT
+         g9mG7CH3ZOi+2O/vA4t2DnkRA2wCTGKh2dfgcYN2bayrhfl1DSw/SKdOhjMjAjb/Usb0
+         8a1LZI8sQ7ko9yA4cYcAKOhf0IKlikaE6XaSYAvy+Am7ME4ZN8mZJzU7EvDG53TXSJrD
+         1+pYU8IijYiMq80CwhBmi+AYi53kKbBcjUhzyCItpiv7gFchAda43cjrpzmaqHz8wPF0
+         E5KlvAtDnT36sfbjBKtshv2ZUTJsLNFp/SbpDdx0wTym5tm+5PP7P5NBTAG0kiKw8fq/
+         rVGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:organization
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=qQqnBjYFvbMuL8E6jZ9xKCSdvJ47AJt8N215Ku647kM=;
-        b=kXyRsWUUoV9PS/hiqSwqFmgoc/sQ0cKoR/hEAQrCutEGSZC677NaWmn0xoCq0U+ydg
-         LWcHe1w9k7k/rfDcrXKMHpwmiovuRzww9pmy7/ol6er87bp0nHqnUralYVDDyqF6WlJb
-         A9KowogInTP4FARzTvEjdzzh4OV5FlgGH/f95HqK66AMSJpn65vVriTbkYV/J3Cw7tLM
-         fgZkviUsxIwcsPxNFdDCqz6+8/qatHgqWQuWVEHamkFNLLLDxjyKaTgrYCpXpcm+vmFf
-         8Y8L/01mMEUeTg1ZEBHzUrSRpFoJ/d+xJ5AxWfyzrlshfqBZbBn2O0cNFs6rCaNM3szf
-         1pJg==
-X-Gm-Message-State: APjAAAVZaxhq8/KEvBJmBVjCwrnLXF+AZIQ4pqf+SAxt7ryuRbCA48D6
-	9Fm9qKAIqAG+cY++wvCK23XUjbTe/wY=
-X-Google-Smtp-Source: APXvYqz4hPyPU1gJRdXiye4RB7PIQQiOtETOo7gFVNo9qCtKpzd5hrqAAz1CvJZFGife/gx5oRBbBw==
-X-Received: by 2002:a92:d183:: with SMTP id z3mr10529148ilz.214.1580495586983;
-        Fri, 31 Jan 2020 10:33:06 -0800 (PST)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:4e0:808d:d66e:9108:2692? ([2601:646:9200:4e0:808d:d66e:9108:2692])
-        by smtp.gmail.com with ESMTPSA id p19sm3441782ilc.69.2020.01.31.10.33.06
+         :content-language;
+        bh=gSaP+jUA+toplzlpLyfJs1kIhx4V0ySFVgF9Uv/qQjo=;
+        b=QYHRPOkS30qcDpNKk5QMMJMrIUr0iTmIK0TpxPDMbNJ02gmu9r70y5COVzxoz2dizi
+         hJpkbHVHLEOs/EwqJ2YBkkwybjqADaIL19MPXdKU+Jb8O3KHabOJqraehQ+I2awKF1ud
+         8GWUHb7e33aY2M3wyNePJcvxvWfs3luWAja4BMT/raoegZQmqwxHRP539U3zTq4bk229
+         5sP8lweoCDPh5nsasbdPVL6VatYK7tDgVAcuDp5K2aMz2HqntU/4aWkBSclq3ROGdWBd
+         JdluctMzS11HqNaNkk/InoZ1e89dRGF3HgbH32ZuN+WWov05sSnZV8xSdRy9GZiPuNcD
+         LzPw==
+X-Gm-Message-State: APjAAAVEfDDvxVKQoJw9lvvnCi9mjyFILXnrQDvNY0xvbjRerG7xNqmQ
+	JrkS1yrN4AD5+OGJe4Jc73T/5Q==
+X-Google-Smtp-Source: APXvYqwasGZBEm69SQJrmg1e4Jz4X3qS7s5kB2H43H/sE2Syxzoi1z6GHQOQrbiuEMkX4/rhU1HoPQ==
+X-Received: by 2002:a65:6216:: with SMTP id d22mr11749042pgv.437.1580496556020;
+        Fri, 31 Jan 2020 10:49:16 -0800 (PST)
+Return-Path: <akuster@mvista.com>
+Received: from ?IPv6:2601:202:4180:a5c0:e0e6:3e38:df8b:421b? ([2601:202:4180:a5c0:e0e6:3e38:df8b:421b])
+        by smtp.gmail.com with ESMTPSA id e19sm10855025pgn.86.2020.01.31.10.49.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Jan 2020 10:33:06 -0800 (PST)
-Subject: Re: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failures with offline/online svn build! #yocto #python
-To: georgi.georgiev@woodward.com, yocto@lists.yoctoproject.org
-References: <mQNu.1580472135762788821.UjeT@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <19f32730-5ebf-07a1-9a69-5ede803ff324@gmail.com>
-Date: Fri, 31 Jan 2020 10:33:05 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.4.2
+        Fri, 31 Jan 2020 10:49:15 -0800 (PST)
+Subject: Re: [yocto] QA Cycle report for build (yocto-3.1_M2.rc1)
+To: Sangeeta Jain <sangeeta.jain@intel.com>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
+ "yi.zhao@windriver.com" <yi.zhao@windriver.com>,
+ "Sangal, Apoorv" <apoorv.sangal@intel.com>,
+ "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>,
+ "Chan, Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
+ "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>,
+ "akuster808@gmail.com" <akuster808@gmail.com>,
+ "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>
+References: <CY4PR11MB187929CF849C81DA3A971950E3070@CY4PR11MB1879.namprd11.prod.outlook.com>
+From: "Armin Kuster" <akuster@mvista.com>
+Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
+ 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
+ 8CS2NxU=
+Message-ID: <a74444a9-e521-da0a-773f-575031cfd849@mvista.com>
+Date: Fri, 31 Jan 2020 10:49:13 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <mQNu.1580472135762788821.UjeT@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <CY4PR11MB187929CF849C81DA3A971950E3070@CY4PR11MB1879.namprd11.prod.outlook.com>
+Content-Type: multipart/alternative;
+ boundary="------------0D692FE8794AF108B24F2C1C"
 Content-Language: en-US
-Content-Transfer-Encoding: base64
 
-T24gMS8zMS8yMCA0OjAyIEFNLCBnZW9yZ2kuZ2VvcmdpZXYgdmlhIExpc3RzLllvY3RvcHJvamVj
-dC5Pcmcgd3JvdGU6DQo+IEhlbGxvIENvbW11bml0eSwNCj4gVGhpcyBpcyB0aGUgdGhpcmQgdGlt
-ZSBJIGFtIGFza2luZyBmb3Igc3VwcG9ydCBvbiB0aGlzIGlzc3VlLiBUaGlzIHRpbWUgDQo+IEkg
-ZGVjaWRlZCB0byB1c2UgdGhlIHdlYiBmb3JtLg0KPiBJbiBvdXIgcHJvamVjdCB3ZSBoYXZlIGEg
-cmVxdWlyZW1lbnQgdG8gYmUgYWJsZSB0byBidWlsZCB0aGUgcHJvamVjdCANCj4gb2ZmbGluZS4g
-RS5nLiBvbiB0aGUgZmllbGQgd2l0aG91dCBhbnkgbmV0d29yayBjb25uZWN0aW9uLiBXaGVuIHdl
-IGFyZSANCj4gY29ubmVjdGVkIHdpdGggdGhlIHJlY2lwZSBtZW50aW9uZWQgYmVsb3cgd2UgZG9u
-J3QgaGF2ZSBpc3N1ZXM6DQo+IA0KDQoNCnN2bjogRTE3MDAxMzogVW5hYmxlIHRvIGNvbm5lY3Qg
-dG8gYSByZXBvc2l0b3J5IGF0IFVSTCANCidodHRwOi8vY29jb3N1YnZlcnNpb24vc3ZuL0VtYmVk
-ZGVkL1ZhbHZlJkFjdHVhdG9yL0RWUElJL3RydW5rL1NPQ1BBQ01hbkVudkVuZ0tleXMvdHJ1bmsn
-DQpzdm46IEU2NzAwMDM6IFRlbXBvcmFyeSBmYWlsdXJlIGluIG5hbWUgcmVzb2x1dGlvbg0KDQpj
-YW4geW91IHRyeSBjaGVja2luZyBvdXQgdGhlIHJlcG8gb3V0IHNpZGUgb2YgZmV0Y2hlciBhbmQg
-c2VlIGlmIHRoZSANCm1hY2hpbmUgY2FuIGZldGNoIHRoZSB1cmwgeW91IGFyZSB1c2luZyBpbiBT
-UkNfVVJJID8NCg0KPiAqU1VNTUFSWSA9ICJQQUNNYW4gLSBQYXJhbWV0ZXIgQW5kIENvbmZpZ3Vy
-YXRpb24gTUFOYWdlciIqDQo+ICpMSUNFTlNFID0gIkNMT1NFRCIqDQo+ICppbmhlcml0IHN5c3Rl
-bWQgdXNlcmFkZCoNCj4gKlJFUVVJUkVEX0RJU1RST19GRUFUVVJFUyA9ICJzeXN0ZW1kIioNCj4g
-KiMgU1ZOIHJldmlzaW9uKg0KPiAqUFYgPSAiMTIxMDI2IioNCj4gKiMgTmFtZSBvZiBTVk4gcHJv
-amVjdCoNCj4gKlBBQ01BTl9QUk9KX05BTUU9IlNPQ1BBQ01hbkVudkVuZ0tleXMiKg0KPiAqU1JD
-X1VSSSA9IA0KPiAic3ZuOi8vY29jb3N1YnZlcnNpb24vc3ZuL0VtYmVkZGVkL1ZhbHZlXCZBY3R1
-YXRvci9EVlBJSS90cnVuay8ke1BBQ01BTl9QUk9KX05BTUV9O21vZHVsZT10cnVuaztwcm90b2Nv
-bD1odHRwO2V4dGVybmFscz1hbGxvd2VkO3Jldj0ke1BWfSIqDQo+ICpTUkNfVVJJICs9ICJmaWxl
-Oi8vd3ctYXV0aHBhY21hbi5zZXJ2aWNlIioNCj4gKlNSQ19VUkkgKz0gImZpbGU6Ly93dy1wYWNt
-YW4uc2VydmljZSIqDQo+ICpTID0gIiR7V09SS0RJUn0vdHJ1bmsvIioNCj4gKiMgJHtQTn0tc3lz
-OiBjb250ZW50IHJlbGF0ZWQgdG8gc3lzdGVtLCB3aGljaCBnb2VzIHRvIGJhc2Ugcm9vdGZzIChv
-bmx5IA0KPiAuc2VydmljZSBmaWxlIGFuZCBzeW1saW5rcykqDQo+ICojICR7UE59OsKgwqDCoMKg
-wqAgcmVhbCBjb250ZW50IHdoaWNoIG1heSBnbyB0byBzZXBhcmF0ZSBwYXJ0aXRpb24qDQo+ICpQ
-QUNLQUdFUyA9KyAiICR7UE59LXN5cyIqDQo+IC4uLi4uLi4uLg0KPiBXaGVuIGRpc2Nvbm5lY3Qg
-dGhlIG5ldHdvcmssIGVyYXNlIHNzdGF0ZS1jYWNoZSwgY2FjaGUgYW5kIHRtcCBJIHNlZSBsb2cg
-DQo+IGZpbGUgYXR0YWNoZWQgKGxvZy5kb19mZXRjaC4zMjc1NykgYW5kIHRoZSBmb2xsb3dpbmcg
-b3V0cHV0Og0KPiANCj4gKkVSUk9SOiB3dy1wYWNtYW4tMTIxMDI2LXIwIGRvX2ZldGNoOiBGZXRj
-aGVyIGZhaWx1cmU6IEZldGNoIGNvbW1hbmQgDQo+IGV4cG9ydCBQU0VVRE9fRElTQUJMRUQ9MTsg
-dW5zZXQgX1BZVEhPTl9TWVNDT05GSUdEQVRBX05BTUU7IGV4cG9ydCANCj4gREJVU19TRVNTSU9O
-X0JVU19BRERSRVNTPSJ1bml4OnBhdGg9L3J1bi91c2VyLzEwMDAvYnVzIjsgZXhwb3J0IA0KPiBT
-U0hfQUdFTlRfUElEPSIxMTQxMiI7IGV4cG9ydCANCj4gU1NIX0FVVEhfU09DSz0iL3J1bi91c2Vy
-LzEwMDAva2V5cmluZy9zc2giOyBleHBvcnQgDQo+IFBBVEg9Ii9ob21lL3cyMzY5OC9wcm9qZWN0
-cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi90bXAvc3lzcm9vdHMtdW5pbmF0aXZlL3g4Nl82NC1saW51
-eC91c3IvYmluOi9ob21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvc291cmNlcy9wb2t5L3Nj
-cmlwdHM6L2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyL3RtcC93b3Jr
-L2NvcnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFuLzEyMTAyNi1yMC9y
-ZWNpcGUtc3lzcm9vdC1uYXRpdmUvdXNyL2Jpbi9hcm0tcG9reS1saW51eC1nbnVlYWJpOi9ob21l
-L3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi90bXAvd29yay9jb3J0ZXhhOWhm
-LW5lb24tcG9reS1saW51eC1nbnVlYWJpL3d3LXBhY21hbi8xMjEwMjYtcjAvcmVjaXBlLXN5c3Jv
-b3QvdXNyL2Jpbi9jcm9zc3NjcmlwdHM6L2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9i
-dWlsZF9kdnAyL3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ct
-cGFjbWFuLzEyMTAyNi1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvdXNyL3NiaW46L2hvbWUvdzIz
-Njk4L3Byb2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyL3RtcC93b3JrL2NvcnRleGE5aGYtbmVv
-bi1wb2t5LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFuLzEyMTAyNi1yMC9yZWNpcGUtc3lzcm9vdC1u
-YXRpdmUvdXNyL2JpbjovaG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIv
-dG1wL3dvcmsvY29ydGV4YTloZi1uZW9uLXBva3ktbGludXgtZ251ZWFiaS93dy1wYWNtYW4vMTIx
-MDI2LXIwL3JlY2lwZS1zeXNyb290LW5hdGl2ZS9zYmluOi9ob21lL3cyMzY5OC9wcm9qZWN0cy9w
-cm9qX2R2cDIvYnVpbGRfZHZwMi90bXAvd29yay9jb3J0ZXhhOWhmLW5lb24tcG9reS1saW51eC1n
-bnVlYWJpL3d3LXBhY21hbi8xMjEwMjYtcjAvcmVjaXBlLXN5c3Jvb3QtbmF0aXZlL2JpbjovaG9t
-ZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL3NvdXJjZXMvcG9reS9iaXRiYWtlL2JpbjovaG9t
-ZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvdG1wL2hvc3R0b29scyI7IA0K
-PiBleHBvcnQgSE9NRT0iL2hvbWUvdzIzNjk4IjsgL3Vzci9iaW4vZW52IHN2biAtLW5vbi1pbnRl
-cmFjdGl2ZSANCj4gLS10cnVzdC1zZXJ2ZXItY2VydCB1cGRhdGUgLS1uby1hdXRoLWNhY2hlIC1y
-IDEyMTAyNiBmYWlsZWQgd2l0aCBleGl0IA0KPiBjb2RlIDEsIG91dHB1dDoqDQo+ICpVcGRhdGlu
-ZyAnLic6Kg0KPiAqc3ZuOiBFMTcwMDEzOiBVbmFibGUgdG8gY29ubmVjdCB0byBhIHJlcG9zaXRv
-cnkgYXQgVVJMIA0KPiAnaHR0cDovL2NvY29zdWJ2ZXJzaW9uL3N2bi9FbWJlZGRlZC9WYWx2ZSZB
-Y3R1YXRvci9EVlBJSS90cnVuay9TT0NQQUNNYW5FbnZFbmdLZXlzL3RydW5rJyoNCj4gKnN2bjog
-RTY3MDAwMzogVGVtcG9yYXJ5IGZhaWx1cmUgaW4gbmFtZSByZXNvbHV0aW9uKg0KPiAqRVJST1I6
-IHd3LXBhY21hbi0xMjEwMjYtcjAgZG9fZmV0Y2g6IEZldGNoZXIgZmFpbHVyZSBmb3IgVVJMOiAN
-Cj4gJ3N2bjovL2NvY29zdWJ2ZXJzaW9uL3N2bi9FbWJlZGRlZC9WYWx2ZVwmQWN0dWF0b3IvRFZQ
-SUkvdHJ1bmsvU09DUEFDTWFuRW52RW5nS2V5czttb2R1bGU9dHJ1bms7cHJvdG9jb2w9aHR0cDtl
-eHRlcm5hbHM9YWxsb3dlZDtyZXY9MTIxMDI2Jy4gDQo+IFVuYWJsZSB0byBmZXRjaCBVUkwgZnJv
-bSBhbnkgc291cmNlLioNCj4gKkVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAN
-Cj4gL2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyL3RtcC93b3JrL2Nv
-cnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFuLzEyMTAyNi1yMC90ZW1w
-L2xvZy5kb19mZXRjaC4zMjc1NyoNCj4gKkVSUk9SOiBUYXNrIA0KPiAoL2hvbWUvdzIzNjk4L3By
-b2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyLy4uL3NvdXJjZXMvbWV0YS13dy1kdnAyL3JlY2lw
-ZXMtd3cvd3ctcGFjbWFuL3d3LXBhY21hbi5iYjpkb19mZXRjaCkgDQo+IGZhaWxlZCB3aXRoIGV4
-aXQgY29kZSAnMScqDQo+IA0KPiBXaGVuIHJlbW92ZSB0aGUgJ1wnIGNoYXJhY3RlciBpbiBTUkNf
-VVJJLCBlLmcuIHRvIGJlY29tZToNCj4gDQo+ICpTUkNfVVJJID0gDQo+ICJzdm46Ly9jb2Nvc3Vi
-dmVyc2lvbi9zdm4vRW1iZWRkZWQvVmFsdmUmQWN0dWF0b3IvRFZQSUkvdHJ1bmsvJHtQQUNNQU5f
-UFJPSl9OQU1FfTttb2R1bGU9dHJ1bms7cHJvdG9jb2w9aHR0cDtleHRlcm5hbHM9YWxsb3dlZDty
-ZXY9JHtQVn0iKg0KPiANCj4gSW4gY29ubmVjdGVkIGFuZCBub3QgY29ubmVjdGVkIHRvIG5ldHdv
-cmsgZG9fZmV0Y2goKSBwYXNzZXMgc3VjY2Vzc2Z1bGx5IA0KPiBidXQgSSBzZWUgb25lIGFuZCBz
-YW1lIGVycm9yIChsb2cuZG9fdW5wYWNrLjI1MjI2KSBvdXRwdXQ6DQo+IA0KPiAqRVJST1I6IHd3
-LXBhY21hbi0xMjEwMjYtcjAgZG9fdW5wYWNrOiBVbnBhY2sgZmFpbHVyZSBmb3IgVVJMOiANCj4g
-J3N2bjovL2NvY29zdWJ2ZXJzaW9uL3N2bi9FbWJlZGRlZC9WYWx2ZSZBY3R1YXRvci9EVlBJSS90
-cnVuay9TT0NQQUNNYW5FbnZFbmdLZXlzO21vZHVsZT10cnVuaztwcm90b2NvbD1odHRwO2V4dGVy
-bmFscz1hbGxvd2VkO3Jldj0xMjEwMjYnLiANCj4gVW5wYWNrIGNvbW1hbmQgDQo+IFBBVEg9Ii9o
-b21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi90bXAvc3lzcm9vdHMtdW5p
-bmF0aXZlL3g4Nl82NC1saW51eC91c3IvYmluOi9ob21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2
-cDIvc291cmNlcy9wb2t5L3NjcmlwdHM6L2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9i
-dWlsZF9kdnAyL3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ct
-cGFjbWFuLzEyMTAyNi1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvdXNyL2Jpbi9hcm0tcG9reS1s
-aW51eC1nbnVlYWJpOi9ob21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi90
-bXAvd29yay9jb3J0ZXhhOWhmLW5lb24tcG9reS1saW51eC1nbnVlYWJpL3d3LXBhY21hbi8xMjEw
-MjYtcjAvcmVjaXBlLXN5c3Jvb3QvdXNyL2Jpbi9jcm9zc3NjcmlwdHM6L2hvbWUvdzIzNjk4L3By
-b2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyL3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1wb2t5
-LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFuLzEyMTAyNi1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUv
-dXNyL3NiaW46L2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyL3RtcC93
-b3JrL2NvcnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFuLzEyMTAyNi1y
-MC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvdXNyL2JpbjovaG9tZS93MjM2OTgvcHJvamVjdHMvcHJv
-al9kdnAyL2J1aWxkX2R2cDIvdG1wL3dvcmsvY29ydGV4YTloZi1uZW9uLXBva3ktbGludXgtZ251
-ZWFiaS93dy1wYWNtYW4vMTIxMDI2LXIwL3JlY2lwZS1zeXNyb290LW5hdGl2ZS9zYmluOi9ob21l
-L3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi90bXAvd29yay9jb3J0ZXhhOWhm
-LW5lb24tcG9reS1saW51eC1nbnVlYWJpL3d3LXBhY21hbi8xMjEwMjYtcjAvcmVjaXBlLXN5c3Jv
-b3QtbmF0aXZlL2JpbjovaG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL3NvdXJjZXMvcG9r
-eS9iaXRiYWtlL2JpbjovaG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIv
-dG1wL2hvc3R0b29scyIgDQo+IHRhciB4eiAtLW5vLXNhbWUtb3duZXIgLWYgDQo+IC9ob21lL3cy
-MzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi9kb3dubG9hZHMvdHJ1bmtfY29jb3N1
-YnZlcnNpb25fLnN2bi5FbWJlZGRlZC5WYWx2ZSZBY3R1YXRvci5EVlBJSS50cnVuay5TT0NQQUNN
-YW5FbnZFbmdLZXlzXzEyMTAyNl8udGFyLmd6IA0KPiBmYWlsZWQgd2l0aCByZXR1cm4gdmFsdWUg
-MTI3Kg0KPiAqRVJST1I6IExvZ2ZpbGUgb2YgZmFpbHVyZSBzdG9yZWQgaW46IA0KPiAvaG9tZS93
-MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvdG1wL3dvcmsvY29ydGV4YTloZi1u
-ZW9uLXBva3ktbGludXgtZ251ZWFiaS93dy1wYWNtYW4vMTIxMDI2LXIwL3RlbXAvbG9nLmRvX3Vu
-cGFjay4yNTIyNioNCj4gKkVSUk9SOiBUYXNrIA0KPiAoL2hvbWUvdzIzNjk4L3Byb2plY3RzL3By
-b2pfZHZwMi9idWlsZF9kdnAyLy4uL3NvdXJjZXMvbWV0YS13dy1kdnAyL3JlY2lwZXMtd3cvd3ct
-cGFjbWFuL3d3LXBhY21hbi5iYjpkb191bnBhY2spIA0KPiBmYWlsZWQgd2l0aCBleGl0IGNvZGUg
-JzEnDQo+ICoNCj4gSSBkb24ndCBpdCB0aGlzIG1hdHRlcnMgYnV0LCB0aGUgYnVpbGQgbWFjaGlu
-ZSBpcyBiYXJlbWV0YWwgVWJ1bnR1IA0KPiAxOC4wNC4zIExUUy4gSW4gYWxsIGNhc2VzIHRoZSBw
-YWNrZWQgdGFyLmd6IHJlbWFpbiBpbiBkb3dubG9hZHMgDQo+IGRpcmVjdG9yeSB3aXRoIG9uZSBu
-YW1lIQ0KPiANCj4gQ29yZGlhbGx5LA0KPiBHZW9yZ2kNCj4gDQo+IA0KPiANCj4gDQoNCg==
+--------------0D692FE8794AF108B24F2C1C
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+Sangeeta,
+
+On 1/30/20 11:46 PM, Sangeeta Jain wrote:
+> Hello All,
+>
+> This is the full report for yocto-3.1_M2.rc1:  
+> https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tre=
+e/?h=3Dintel-yocto-testresults
+>
+> =3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+> No high milestone defects.  
+> No new defects are found in this cycle.
+> starce ptest failed (BUG id:13765).=20
+>
+> Note: failure for test_ltp_help, test_stap, test_mmc_mount, test_usb_mou=
+nt is observed on Beaglebone, edgerouter and mpc8315erdb.=20
+Please bug the test_mmc and test_usb as I am the one who added those
+storage test.
+
+TIA,
+armin
+> QA team is analysing more on failures.=20
+>
+> =3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
+> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13765
+>
+> Thanks,
+> Sangeeta
+>
+>
+>
+>> -----Original Message-----
+>> From: Pokybuild User <pokybuild@debian10-ty-1.yocto.io>
+>> Sent: Thursday, 23 January, 2020 5:25 AM
+>> To: yocto@lists.yoctoproject.org
+>> Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; Sangal, Apoorv
+>> <apoorv.sangal@intel.com>; Yeoh, Ee Peng <ee.peng.yeoh@intel.com>; Chan=
+,
+>> Aaron Chun Yew <aaron.chun.yew.chan@intel.com>;
+>> richard.purdie@linuxfoundation.org; akuster808@gmail.com;
+>> sjolley.yp.pm@gmail.com; Jain, Sangeeta <sangeeta.jain@intel.com>
+>> Subject: QA notification for completed autobuilder build (yocto-3.1_M2.=
+rc1)
+>>
+>>
+>> A build flagged for QA (yocto-3.1_M2.rc1) was completed on the autobuil=
+der
+>> and is available at:
+>>
+>>
+>>     https://autobuilder.yocto.io/pub/releases/yocto-3.1_M2.rc1
+>>
+>>
+>> Build hash information:
+>>
+>> bitbake: d5a4a352723258b4d499d3a51f340109c4f36f60
+>> meta-gplv2: 6107be140fdec204586850ea1f7e4b968be7670b
+>> meta-intel: 0c092dde58bb688dca787c653ee7a3282d58aeab
+>> meta-mingw: e3dadc9f28c24a8d182121d0246b3d9ec048846a
+>> oecore: 15049c610bcfd0a3e161379651b5ea117ea02715
+>> poky: ca3993cc4b13d4e661228cee6fb9448adfd0a4ba
+>>
+>>
+>>
+>> This is an automated message from the Yocto Project Autobuilder
+>> Git: git://git.yoctoproject.org/yocto-autobuilder2
+>> Email: richard.purdie@linuxfoundation.org
+>>
+>>
+>>
+>>
+>>=20
+
+
+--------------0D692FE8794AF108B24F2C1C
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body>
+    Sangeeta,<br>
+    <br>
+    <div class="moz-cite-prefix">On 1/30/20 11:46 PM, Sangeeta Jain
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CY4PR11MB187929CF849C81DA3A971950E3070@CY4PR11MB1879.namprd11.prod.outlook.com">
+      <pre class="moz-quote-pre" wrap="">Hello All,
+
+This is the full report for yocto-3.1_M2.rc1:  
+<a class="moz-txt-link-freetext" href="https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?h=intel-yocto-testresults">https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?h=intel-yocto-testresults</a>
+
+======= Summary ========
+No high milestone defects.  
+No new defects are found in this cycle.
+starce ptest failed (BUG id:13765). 
+
+Note: failure for test_ltp_help, test_stap, test_mmc_mount, test_usb_mount is observed on Beaglebone, edgerouter and mpc8315erdb. </pre>
+    </blockquote>
+    Please bug the test_mmc and test_usb as I am the one who added those
+    storage test.<br>
+    <br>
+    TIA,<br>
+    armin<br>
+    <blockquote type="cite"
+cite="mid:CY4PR11MB187929CF849C81DA3A971950E3070@CY4PR11MB1879.namprd11.prod.outlook.com">
+      <pre class="moz-quote-pre" wrap="">
+QA team is analysing more on failures. 
+
+======= Bugs ========
+<a class="moz-txt-link-freetext" href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=13765">https://bugzilla.yoctoproject.org/show_bug.cgi?id=13765</a>
+
+Thanks,
+Sangeeta
+
+
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">-----Original Message-----
+From: Pokybuild User <a class="moz-txt-link-rfc2396E" href="mailto:pokybuild@debian10-ty-1.yocto.io">&lt;pokybuild@debian10-ty-1.yocto.io&gt;</a>
+Sent: Thursday, 23 January, 2020 5:25 AM
+To: <a class="moz-txt-link-abbreviated" href="mailto:yocto@lists.yoctoproject.org">yocto@lists.yoctoproject.org</a>
+Cc: <a class="moz-txt-link-abbreviated" href="mailto:otavio@ossystems.com.br">otavio@ossystems.com.br</a>; <a class="moz-txt-link-abbreviated" href="mailto:yi.zhao@windriver.com">yi.zhao@windriver.com</a>; Sangal, Apoorv
+<a class="moz-txt-link-rfc2396E" href="mailto:apoorv.sangal@intel.com">&lt;apoorv.sangal@intel.com&gt;</a>; Yeoh, Ee Peng <a class="moz-txt-link-rfc2396E" href="mailto:ee.peng.yeoh@intel.com">&lt;ee.peng.yeoh@intel.com&gt;</a>; Chan,
+Aaron Chun Yew <a class="moz-txt-link-rfc2396E" href="mailto:aaron.chun.yew.chan@intel.com">&lt;aaron.chun.yew.chan@intel.com&gt;</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:richard.purdie@linuxfoundation.org">richard.purdie@linuxfoundation.org</a>; <a class="moz-txt-link-abbreviated" href="mailto:akuster808@gmail.com">akuster808@gmail.com</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>; Jain, Sangeeta <a class="moz-txt-link-rfc2396E" href="mailto:sangeeta.jain@intel.com">&lt;sangeeta.jain@intel.com&gt;</a>
+Subject: QA notification for completed autobuilder build (yocto-3.1_M2.rc1)
+
+
+A build flagged for QA (yocto-3.1_M2.rc1) was completed on the autobuilder
+and is available at:
+
+
+    <a class="moz-txt-link-freetext" href="https://autobuilder.yocto.io/pub/releases/yocto-3.1_M2.rc1">https://autobuilder.yocto.io/pub/releases/yocto-3.1_M2.rc1</a>
+
+
+Build hash information:
+
+bitbake: d5a4a352723258b4d499d3a51f340109c4f36f60
+meta-gplv2: 6107be140fdec204586850ea1f7e4b968be7670b
+meta-intel: 0c092dde58bb688dca787c653ee7a3282d58aeab
+meta-mingw: e3dadc9f28c24a8d182121d0246b3d9ec048846a
+oecore: 15049c610bcfd0a3e161379651b5ea117ea02715
+poky: ca3993cc4b13d4e661228cee6fb9448adfd0a4ba
+
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: <a class="moz-txt-link-abbreviated" href="mailto:richard.purdie@linuxfoundation.org">richard.purdie@linuxfoundation.org</a>
+
+
+
+</pre>
+        <br>
+        <fieldset class="mimeAttachmentHeader"></fieldset>
+        <pre class="moz-quote-pre" wrap="">
+</pre>
+      </blockquote>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------0D692FE8794AF108B24F2C1C--
