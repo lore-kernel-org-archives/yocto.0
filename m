@@ -1,83 +1,101 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.6638.1580484676359826604
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+ by mx.groups.io with SMTP id smtpd.web11.146.1580489532831526321
  for <yocto@lists.yoctoproject.org>;
- Fri, 31 Jan 2020 07:31:16 -0800
+ Fri, 31 Jan 2020 08:52:13 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=m5PTF4HV;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CBF3BE01381; Fri, 31 Jan 2020 07:31:15 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (jupiter.hce[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.166.171 listed in list.dnswl.org]
-Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C71CE01155
-	for <yocto@yoctoproject.org>; Fri, 31 Jan 2020 07:31:13 -0800 (PST)
-Received: by mail-il1-f171.google.com with SMTP id b15so6496980iln.3
-        for <yocto@yoctoproject.org>; Fri, 31 Jan 2020 07:31:13 -0800 (PST)
+ dkim=pass header.i=@fastree3d-com.20150623.gappssmtp.com header.s=20150623 header.b=QN8P5zm+;
+ spf=none, err=SPF record not found (domain: fastree3d.com, ip: 209.85.128.52, mailfrom: adrian.fiergolski@fastree3d.com)
+Received: by mail-wm1-f52.google.com with SMTP id a9so9472650wmj.3
+        for <yocto@lists.yoctoproject.org>; Fri, 31 Jan 2020 08:52:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=Jw5Nc9xzjjvTa3OzFvIOQlntENQQ5wS6Z3wjsL7Xc+Q=;
-        b=m5PTF4HVjwdDgiATvDHIRiOmhlfOrgA8VEbzsWDrJQd5h2IR6N632vrLPJ+DdqFMGL
-         MpyHaTB3NryulHf4+0Zg0dCPJXRKvFtWXPqBgcf/WDVsLnNkT6h7qMfsnsfYYtEMBcjB
-         WJiUCPz4RrRkgbUJV7ClQ2QVQgxRodzAiIu9zt4ONRg3dt0xl9M1UQ2rmTrAMBEtQwX2
-         Sz57nC79USHjCFAHJjDm2Dyz8lmCribJTI4WjakQq8Ju6Ch8hq0dqNFFBvmZKtKSeQRn
-         51GBfisOPlbdp6HCE3M4QV/kOtg+jVZMVx6gFLmd8mX6sCOFfrW6bL4A/qvI/Iknks0J
-         hTGA==
+        d=fastree3d-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:subject:message-id:date:user-agent:mime-version
+         :content-language;
+        bh=SNneHdKL6dyvLohNz4EbFOzHg/isrwpGkZZEEmkI6V8=;
+        b=QN8P5zm+mJnQyUlZlMfec5IpDCIYzF0j9WGIivy22bqd0jJq92ErYPBRdhH80zeVH2
+         5/Z8iqLnIMb3bDK6tm2wxgzeq8C1/AIeBGAcovlNqEYHBvRs9EqJXL5ujuacUY/xO+u1
+         NFXlzw1rArJys+zVaUs/4HPdkpRb6SFwaSUx5TvNhI9a0UDCxUbZTcVy0RRfW0rFgO+K
+         j3f/fcSb/7po/fr1anItj8YyWOgBLzDFysLeTaVPheX2dS7iGqp0BwUyofpyTE+0c1PL
+         RQaDrZvl+5GmtxqQy/bEBoXXvspWHODS7D5PIuzB9A+GItWfwoS5QaSuSokj/4EClt1J
+         mCRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=Jw5Nc9xzjjvTa3OzFvIOQlntENQQ5wS6Z3wjsL7Xc+Q=;
-        b=MPyTbouiomLHEC9FTqEpjTsicQHGA38qkOG9BF7C6MrauY4TfqzTE1hkqTZdfePIjS
-         NVEQeMA5rufFjLoq7M194LRRHS9vQjcTcue9IiQiFMHa/bfUoGwoEU/PAW36PyxpQqYw
-         WP6tqAqE0U0K3oNbIWbzkeXhnNOcH/oi1CydNzxTbSR0WfGp3eHlEtxBH53ExIKu9ynP
-         VTfcSyEXbLs4P9QiFf3lxdxYk2kndinnDDWY0vLbE9w/+uAOwp6owcmmPOH3EUSBxjob
-         XCgroadfIFyePNn4tLXdf1+A3Fi6GvO7CVP81johaO9vlI+JMSgpaIb9is8gzSAv4wX3
-         lMAA==
-X-Gm-Message-State: APjAAAWYNfxj1EMNMaJG9gzOTR3Cck5Zab04R/NdnOF4/phuFN+HekJW
-	zN1odOAmlhYUBH7yxoO4pltc007Tb/WqXNiQ8b51zvm9
-X-Google-Smtp-Source: APXvYqzmXaRyGHUH2G7C9ldyAYY7jnTT/1Fjh27e3DhCojuWfZ93fJrW7rbt98wQx+47bzDOxAbgc/7ObvPNHFmQc4E=
-X-Received: by 2002:a92:390d:: with SMTP id g13mr3179729ila.53.1580484673218;
- Fri, 31 Jan 2020 07:31:13 -0800 (PST)
+        h=x-gm-message-state:from:to:subject:message-id:date:user-agent
+         :mime-version:content-language;
+        bh=SNneHdKL6dyvLohNz4EbFOzHg/isrwpGkZZEEmkI6V8=;
+        b=Xp7MCDSV9mkGIedNsiUP/09nClU5LBrKKfc0rnopW496WS7xIwWMcWOrLxzOLtPPZ3
+         fHPn+IdTx0yr7Rw6d8Wdow8B/hxuscHE+IGVvd4JtAkjhHPO/79TcSRomepvEMOvNC5r
+         ZnzJ+3iaSU0BmvytioJo1/G8r+mKLwRO1qaFY+KEzEePOaTSy8HLazPjAjXOs3CGL0f2
+         2UiNYbJf+V3ZfdiSLQjOREOhrnC29tR8jTQLVY7fCihit5AnYBlSynWv3JJ/qBhgdh+W
+         8QcQ4lH4wm3DfGwZPCSKrysYmDqUcESrzeMa8pIWJrRxpsNWxsKVqZ4Uxg6WsxMsWCIS
+         W6fg==
+X-Gm-Message-State: APjAAAV/L1bQX0OJgqByiCCz2M2KCWDTsvfk9lBQQP8yPjIE4jp3I/DK
+	K6T0S/UfmoZVzT1DsTXru1zym99f0Q==
+X-Google-Smtp-Source: APXvYqzkrWVnPH18SLUxyDGgkOlittvxXRXY5EfCevcooeqOsMrTXpFppWzTIn1sbcVdgfwZpZswpA==
+X-Received: by 2002:a1c:a796:: with SMTP id q144mr13465362wme.6.1580489530878;
+        Fri, 31 Jan 2020 08:52:10 -0800 (PST)
+Return-Path: <adrian.fiergolski@fastree3d.com>
+Received: from [192.168.33.195] (fastree1.epfl.ch. [128.179.67.81])
+        by smtp.gmail.com with ESMTPSA id w13sm12405710wru.38.2020.01.31.08.52.10
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Jan 2020 08:52:10 -0800 (PST)
+From: "Adrian" <adrian.fiergolski@fastree3d.com>
+X-Google-Original-From: Adrian Fiergolski <Adrian.Fiergolski@fastree3d.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-qt5, zeus-next, python3-pyqt5] QtChart can't be imported
+Message-ID: <8b4b1645-3f8a-ab7e-5aa6-a4b62dfb98f0@fastree3d.com>
+Date: Fri, 31 Jan 2020 17:52:09 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Firefox/68.0 Thunderbird/68.4.1
 MIME-Version: 1.0
-Received: by 2002:ad5:5d0d:0:0:0:0:0 with HTTP; Fri, 31 Jan 2020 07:31:12
- -0800 (PST)
-From: "JH" <jupiter.hce@gmail.com>
-Date: Sat, 1 Feb 2020 02:31:12 +1100
-Message-ID: <CAA=hcWTEQnjHhE4=AeFjVTaGfrYkhEzb1k6mwO6-Bk1siGmPcg@mail.gmail.com>
-Subject: Still missing ubi after added and_config,ubifs
-To: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/alternative;
+ boundary="------------F01ECEBCBE2D227340B9A7B7"
+Content-Language: en-GB
+
+--------------F01ECEBCBE2D227340B9A7B7
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
 Hi,
 
-How can I build u-boot for running on RAM? I add UBOOT_CONFIG[nand] =
-"mx6ull_14x14_evk_nand_config,ubifs", but I still got errors in
-u-boot:
+I use python3-pyqt5 from meta-qt5 (in zeus-next). I get an error in
+python3 when I try to import QtChart module (from PyQt5 import QtChart).
+Has anybody experience the same issue and knows a fix? The deployed
+image comes with qtchart packages.
 
-Unknown command 'ubi' - try 'help'
-Unknown command 'ubi' - try 'help'
-Unknown command 'ubi' - try 'help'
+I have created an issue on the layer's issue tracker (link
+<https://github.com/meta-qt5/meta-qt5/issues/276>), but so far no reply.
 
-What I could be missing ubi command in u-boot?
+Regards,
 
-Thank you.
+Adrian
 
-- jh
+
+--------------F01ECEBCBE2D227340B9A7B7
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <p>Hi,</p>
+    <p>I use python3-pyqt5 from meta-qt5 (in zeus-next). I get an error
+      in python3 when I try to import QtChart module (from PyQt5 import
+      QtChart). Has anybody experience the same issue and knows a fix?
+      The deployed image comes with qtchart packages.</p>
+    <p>I have created an issue on the layer's issue tracker (<a
+        moz-do-not-send="true"
+        href="https://github.com/meta-qt5/meta-qt5/issues/276">link</a>),
+      but so far no reply.<br>
+    </p>
+    <p>Regards,</p>
+    <p>Adrian<br>
+    </p>
+  </body>
+</html>
+
+--------------F01ECEBCBE2D227340B9A7B7--
