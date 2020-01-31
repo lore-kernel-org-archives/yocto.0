@@ -1,70 +1,83 @@
-Received: from esa3.bmw.c3s2.iphmx.com (esa3.bmw.c3s2.iphmx.com [68.232.133.150])
- by mx.groups.io with SMTP id smtpd.web11.3695.1580472831351949598
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.6638.1580484676359826604
  for <yocto@lists.yoctoproject.org>;
- Fri, 31 Jan 2020 04:13:52 -0800
+ Fri, 31 Jan 2020 07:31:16 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1 header.b=gXtWs1xl;
- spf=pass (domain: bmw.de, ip: 68.232.133.150, mailfrom: prvs=292f9c6af=mikko.rapeli@bmw.de)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=m5PTF4HV;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id CBF3BE01381; Fri, 31 Jan 2020 07:31:15 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (jupiter.hce[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.166.171 listed in list.dnswl.org]
+Received: from mail-il1-f171.google.com (mail-il1-f171.google.com [209.85.166.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C71CE01155
+	for <yocto@yoctoproject.org>; Fri, 31 Jan 2020 07:31:13 -0800 (PST)
+Received: by mail-il1-f171.google.com with SMTP id b15so6496980iln.3
+        for <yocto@yoctoproject.org>; Fri, 31 Jan 2020 07:31:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-  t=1580472831; x=1612008831;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=VhY5P/EkDU3CJ/NRytIZhkGiO9FlYXJO2sgjV4pITLk=;
-  b=gXtWs1xlnA5sn19XdHdjGiu3eJtHRYmFMSUmTUDK8w4DXKDUqqxofV+m
-   Ds6jwfpEldJ5tvaErUBzurDYvM1eJPGPeDqHcDCm4BwPxyWRA9JNiWwWX
-   jvKHupjhF773F1LbBD/8jPAikCSb+/LrtDS/rpbw3pZDTmfDP2HCIRW7+
-   M=;
-IronPort-SDR: UG9srqdiGI6bif+/w0tQmkqKjd1Q5bJf0BDMHVpwhQFyd82l00Rlkqf8R5YssQrgsCv8YgHLOv
- TcmBJpudBvh1VfDD1Z3aDVCLNyN7vpVVAhQUvJYiBR4AOC2JlpmzVVlhfVZ1eEoVxfksRAOmHG
- usIWrMAMOEDhJs6prJTVxWglE0de+eYMubKJqw+qZiAxDAmNr6fNfgPN6bdm3V1ux7i3BE8hcu
- 2x7hWhEeDtd9TlB1RJJskDb0ePwFqY8tUQzVeUZo0RhJzlOHkuR7pGs+evPeMIgBrLvbIAS1Qc
- ooo=
-Received: from esagw5.bmwgroup.com (HELO esagw5.muc) ([160.46.252.46]) by
- esa3.bmw.c3s2.iphmx.com with ESMTP/TLS; 31 Jan 2020 13:13:49 +0100
-Received: from esabb4.muc ([160.50.100.33])  by esagw5.muc with ESMTP/TLS;
- 31 Jan 2020 13:13:49 +0100
-Received: from smucm10l.bmwgroup.net (HELO smucm10l.europe.bmw.corp) ([160.48.96.48])
- by esabb4.muc with ESMTP/TLS; 31 Jan 2020 13:13:48 +0100
-Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10l.europe.bmw.corp
- (160.48.96.48) with Microsoft SMTP Server (TLS;
- Fri, 31 Jan 2020 13:13:48 +0100
-Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
- smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Fri,
- 31 Jan 2020 13:13:48 +0100
-IronPort-SDR: spRJXvyYWhDE9euM9huY0UqMjHix9xs/y7K8uMFKkzkghKY9ofPmxCQnuXE1Ou1EsQRBRnOLf2
- ZYfn/IET5zUjR1rs/bAQEOzElihcPZt+8=
-From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
-To: <georgi.georgiev@woodward.com>
-CC: <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failures with offline/online svn build! #yocto #python
-Thread-Topic: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failures
- with offline/online svn build! #yocto #python
-Thread-Index: AQHV2C7Lgm7is4sHNEaoc52jPiTqSqgEnqWA
-Date: Fri, 31 Jan 2020 12:13:48 +0000
-Message-ID: <20200131121347.GD104502@korppu>
-References: <mQNu.1580472135762788821.UjeT@lists.yoctoproject.org>
-In-Reply-To: <mQNu.1580472135762788821.UjeT@lists.yoctoproject.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=Jw5Nc9xzjjvTa3OzFvIOQlntENQQ5wS6Z3wjsL7Xc+Q=;
+        b=m5PTF4HVjwdDgiATvDHIRiOmhlfOrgA8VEbzsWDrJQd5h2IR6N632vrLPJ+DdqFMGL
+         MpyHaTB3NryulHf4+0Zg0dCPJXRKvFtWXPqBgcf/WDVsLnNkT6h7qMfsnsfYYtEMBcjB
+         WJiUCPz4RrRkgbUJV7ClQ2QVQgxRodzAiIu9zt4ONRg3dt0xl9M1UQ2rmTrAMBEtQwX2
+         Sz57nC79USHjCFAHJjDm2Dyz8lmCribJTI4WjakQq8Ju6Ch8hq0dqNFFBvmZKtKSeQRn
+         51GBfisOPlbdp6HCE3M4QV/kOtg+jVZMVx6gFLmd8mX6sCOFfrW6bL4A/qvI/Iknks0J
+         hTGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=Jw5Nc9xzjjvTa3OzFvIOQlntENQQ5wS6Z3wjsL7Xc+Q=;
+        b=MPyTbouiomLHEC9FTqEpjTsicQHGA38qkOG9BF7C6MrauY4TfqzTE1hkqTZdfePIjS
+         NVEQeMA5rufFjLoq7M194LRRHS9vQjcTcue9IiQiFMHa/bfUoGwoEU/PAW36PyxpQqYw
+         WP6tqAqE0U0K3oNbIWbzkeXhnNOcH/oi1CydNzxTbSR0WfGp3eHlEtxBH53ExIKu9ynP
+         VTfcSyEXbLs4P9QiFf3lxdxYk2kndinnDDWY0vLbE9w/+uAOwp6owcmmPOH3EUSBxjob
+         XCgroadfIFyePNn4tLXdf1+A3Fi6GvO7CVP81johaO9vlI+JMSgpaIb9is8gzSAv4wX3
+         lMAA==
+X-Gm-Message-State: APjAAAWYNfxj1EMNMaJG9gzOTR3Cck5Zab04R/NdnOF4/phuFN+HekJW
+	zN1odOAmlhYUBH7yxoO4pltc007Tb/WqXNiQ8b51zvm9
+X-Google-Smtp-Source: APXvYqzmXaRyGHUH2G7C9ldyAYY7jnTT/1Fjh27e3DhCojuWfZ93fJrW7rbt98wQx+47bzDOxAbgc/7ObvPNHFmQc4E=
+X-Received: by 2002:a92:390d:: with SMTP id g13mr3179729ila.53.1580484673218;
+ Fri, 31 Jan 2020 07:31:13 -0800 (PST)
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <AA94F72BCB30B346AF29B16AB244CA1F@bmwmail.corp>
-Content-Transfer-Encoding: quoted-printable
+Received: by 2002:ad5:5d0d:0:0:0:0:0 with HTTP; Fri, 31 Jan 2020 07:31:12
+ -0800 (PST)
+From: "JH" <jupiter.hce@gmail.com>
+Date: Sat, 1 Feb 2020 02:31:12 +1100
+Message-ID: <CAA=hcWTEQnjHhE4=AeFjVTaGfrYkhEzb1k6mwO6-Bk1siGmPcg@mail.gmail.com>
+Subject: Still missing ubi after added and_config,ubifs
+To: Yocto discussion list <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
 Hi,
 
-I can't comment on svn fetcher but I use subversion via http
-fetcher. This way the local download cache can have the exact same file
-and builds can continue off line. One major gotcha is that all files
-uploaded to svn must have unique and versioned file names. Updating the
-same file to different content will result in using the old cache file vers=
-ion.
+How can I build u-boot for running on RAM? I add UBOOT_CONFIG[nand] =
+"mx6ull_14x14_evk_nand_config,ubifs", but I still got errors in
+u-boot:
 
-Maybe this helps,
+Unknown command 'ubi' - try 'help'
+Unknown command 'ubi' - try 'help'
+Unknown command 'ubi' - try 'help'
 
--Mikko=
+What I could be missing ubi command in u-boot?
+
+Thank you.
+
+- jh
