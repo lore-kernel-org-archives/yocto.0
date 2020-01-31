@@ -1,90 +1,110 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.1838.1580426930269679968
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+ by mx.groups.io with SMTP id smtpd.web11.444.1580429797119870144
  for <yocto@lists.yoctoproject.org>;
- Thu, 30 Jan 2020 15:28:50 -0800
+ Thu, 30 Jan 2020 16:16:37 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=PZksj74q;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jpuhlman@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 253E0E01549; Thu, 30 Jan 2020 15:28:50 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE,TVD_SPACE_RATIO autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.214.176 listed in list.dnswl.org]
-	*  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5546EE013AE
-	for <yocto@yoctoproject.org>; Thu, 30 Jan 2020 15:28:48 -0800 (PST)
-Received: by mail-pl1-f176.google.com with SMTP id j7so1957193plt.1
-        for <yocto@yoctoproject.org>; Thu, 30 Jan 2020 15:28:48 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Zcdy2FRg;
+ spf=pass (domain: gmail.com, ip: 209.85.214.172, mailfrom: akuster808@gmail.com)
+Received: by mail-pl1-f172.google.com with SMTP id p9so1981966plk.9
+        for <yocto@lists.yoctoproject.org>; Thu, 30 Jan 2020 16:16:37 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=mMTPVtRCe3DyZidpBArGUlYmqOJoj4vmFV1EE8Z0tYU=;
-        b=PZksj74qfkjJCrztQtQbFWBHAo6Tg2rbeqXSSurEKkwftv2HknaXEEcWkFzWIFvcb1
-         sGmgpmYXmtH89bcGRgd+qYsokp5TGQgzh+UsR1MsIGC/0MQul3MvIPXSY1Z6/NYKcW1i
-         3qTJ5bpTzVYTLlJoPejWXSr/LYQCqGARJ+wkWX0T+Y1bvYadCpi4bIEXzwTORKPDddzx
-         UNV137lauU5bDhnuVnuY8NlainE1DhnowqymZJv8jVgSOwxlPODqZd+jThQzPlpYPQti
-         q4hNXEiacxczyONnMK6kIVPg+QXtFkkVt+P733BecMl1+QgJYZqC5cxA5h5KlSPs2y1B
-         VfWg==
+        h=from:to:subject:date:message-id;
+        bh=3BhoNGf0WviLO6+InMbASjTKWjGMy0K80s6GhctH1Rs=;
+        b=Zcdy2FRgftHtWilw50vNPwVoILNyDwjia64ftgLu1B+w+eWdVI+KF+oM5w78ASIsvL
+         EfYq3o+ONuhnsVLJBzK6jKUUYUWXnqx2sPaid97G6JMB6Cc1kqZfT8gZm4Rb9qv1f0x8
+         JUn2xsRmsweYuEJ3AQoNiwFYOrv+FUpi/eP5s/l4tCvwV/U5PrLZj6yMXwHbNoV2v8Tq
+         H+SigLnlmrt8wDAcRc4K4ApWMwd8JWdqA4xjVGnKT1d0h6LmvQU6SN4gvsvj3mjzLhYK
+         NFu01kaAxUY8Y+MmMz4XjPndTrmSXp79TmQTHlxzm51wqW4bFHAMtjRufcY3m6nhm9pV
+         2jxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :in-reply-to:references:mime-version:content-transfer-encoding;
-        bh=mMTPVtRCe3DyZidpBArGUlYmqOJoj4vmFV1EE8Z0tYU=;
-        b=ODYY4MW8dckaTBCJErR/cpO7PmmqTWfrl697eE7sEauspxMCguty+4WOv+DoQgDqL9
-         OPKZ/AIVZndIFrJCLswVF4jYjSb3xHmqXg5rHIOfMZGnc6GjHlksaUJmvgw6N1QuDClu
-         Z4lduhwZuRBve2NlBidXortI0z1tAhpPucUWie3L+gMSUV/JW++AFwwGTbFiCTTwiVZ2
-         QUAo6v9IMLkf+d3SEGfJ1MYLFI6G7fMX9C+F5BrXRL3S3HRZz5CocV3IJ5CbVBjeIZAG
-         1PGI+zegKoMH0/O/8C6GBanwBqJMIrGqdyY0oN4+Fb2TC+tk7/ZvrT4ww4L6nkWyE+Sh
-         rNzg==
-X-Gm-Message-State: APjAAAUs1CfSzZ9aA5aYVi0gV8VLcBsjNHZkP/wFk57whbgRBzM2Lxha
-	825N52XktEncEN8EF3wwnH4=
-X-Google-Smtp-Source: APXvYqymiV+kevWABWHYLg4SFga3wMk1jAH02y4bWkmT+pmNnmOOP7Hl8IsJRrxtIxOCy5lYXFt9ng==
-X-Received: by 2002:a17:90a:608:: with SMTP id j8mr2674991pjj.85.1580426927828;
-        Thu, 30 Jan 2020 15:28:47 -0800 (PST)
-Received: from workhorse.localdomain (99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
-        by smtp.gmail.com with ESMTPSA id k10sm7201014pjq.14.2020.01.30.15.28.47
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=3BhoNGf0WviLO6+InMbASjTKWjGMy0K80s6GhctH1Rs=;
+        b=X33ErJS2h5SkKdLXfVbqPWYJSjYcm+R7ATuejCR7wHKuV4EqaIjB9A/kjRXbCkxBE2
+         UFA8gIczdhFfRFxQi6jeBAfTaJU8pC67EOo/0y2YVfbc84knDymuoYvn78AsWvgglNa2
+         zkBP3AJAovd39504It1p/5WKMO3LZODPCQLMDAE/OJeTpH1Rd/5cWYhewg9jSm5wE7s4
+         91KyvB41kjUbaEVhzyCouDXuqzDpJcITfqHeXkr98kK1XJndz08BzrS0sFqKz2kblGmB
+         5AX6HDTh6dEp4wyyXowQjguX+R+Lymwn0eIiTpcnQbjbmaTSs7MdLtT6qwQnZALHtbm0
+         0Khg==
+X-Gm-Message-State: APjAAAUYs2PlpJkSwvRal5yKCpMBx8tW5hRKyMw5MXvDqloyzlwn+dCA
+	JVkUs5ntiebPL81HKhNjk/NZBvpW
+X-Google-Smtp-Source: APXvYqyYATr8QeL7osN9h8LG9oSKeyIw7tPutJXQ/AbWEY7wDR6xKTX+4t6uMrLricT3yi8Lrt42eg==
+X-Received: by 2002:a17:902:124:: with SMTP id 33mr7513680plb.128.1580429796365;
+        Thu, 30 Jan 2020 16:16:36 -0800 (PST)
+Return-Path: <akuster808@gmail.com>
+Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:9979:cdb6:7624:d076])
+        by smtp.gmail.com with ESMTPSA id u1sm7993928pfn.133.2020.01.30.16.16.35
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jan 2020 15:28:47 -0800 (PST)
-Sender: Jeremy Puhlman <jpuhlman@gmail.com>
-Received: by workhorse.localdomain (Postfix, from userid 1000)
-	id 5FC012A042C; Thu, 30 Jan 2020 15:28:46 -0800 (PST)
-From: "Jeremy Puhlman" <jpuhlman@mvista.com>
-To: yocto@yoctoproject.org
-Cc: Jeremy Puhlman <jpuhlman@mvista.com>
-Subject: [meta-selinux][PATCH 2/2] findutils: make append generic
-Date: Thu, 30 Jan 2020 15:28:41 -0800
-Message-Id: <20200130232841.6706-2-jpuhlman@mvista.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200130232841.6706-1-jpuhlman@mvista.com>
-References: <20200130232841.6706-1-jpuhlman@mvista.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        Thu, 30 Jan 2020 16:16:35 -0800 (PST)
+From: "akuster" <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [yocto-autobuilder-helper][PATCH] yocto-autobuilder-helper: remove mpc8315 from configs
+Date: Thu, 30 Jan 2020 16:16:34 -0800
+Message-Id: <20200131001634.30404-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
 
-Signed-off-by: Jeremy Puhlman <jpuhlman@mvista.com>
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../findutils/{findutils_4.6.%.bbappend =3D> findutils_%.bbappend}  | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- rename recipes-extended/findutils/{findutils_4.6.%.bbappend =3D> finduti=
-ls_%.bbappend} (100%)
+ config.json               |  8 --------
+ scripts/publish-artefacts | 12 +-----------
+ 2 files changed, 1 insertion(+), 19 deletions(-)
 
-diff --git a/recipes-extended/findutils/findutils_4.6.%.bbappend b/recipe=
-s-extended/findutils/findutils_%.bbappend
-similarity index 100%
-rename from recipes-extended/findutils/findutils_4.6.%.bbappend
-rename to recipes-extended/findutils/findutils_%.bbappend
---=20
-2.20.1
+diff --git a/config.json b/config.json
+index cf7710a..f7e2b84 100644
+--- a/config.json
++++ b/config.json
+@@ -327,14 +327,6 @@
+             "MACHINE" : "qemuppc",
+             "TEMPLATE" : "altcfg-qemu"
+         },
+-        "mpc8315e-rdb" : {
+-            "MACHINE" : "mpc8315e-rdb",
+-            "TEMPLATE" : "arch-hw"
+-        },
+-        "mpc8315e-rdb-alt" : {
+-            "MACHINE" : "mpc8315e-rdb",
+-            "TEMPLATE" : "altcfg-hw"
+-        },
+         "qemux86" : {
+             "MACHINE" : "qemux86",
+             "TEMPLATE" : "arch-qemu",
+diff --git a/scripts/publish-artefacts b/scripts/publish-artefacts
+index 75ed1b5..f642fac 100755
+--- a/scripts/publish-artefacts
++++ b/scripts/publish-artefacts
+@@ -15,7 +15,7 @@ md5sums(){
+ TMPDIR=$WORKDIR/tmp
+ 
+ case "$target" in
+-    "qemuarm"|"qemuarm64"|"qemumips64"|"qemumips"|"qemuppc"|"qemux86"|"qemux86-64"|"edgerouter"|"mpc8315e-rdb"|"genericx86"|"genericx86-64"|"beaglebone")
++    "qemuarm"|"qemuarm64"|"qemumips64"|"qemumips"|"qemuppc"|"qemux86"|"qemux86-64"|"edgerouter"|"genericx86"|"genericx86-64"|"beaglebone")
+         mkdir -p $DEST/toolchain/i686
+         mkdir -p $DEST/toolchain/x86_64
+         md5sums $TMPDIR/deploy/sdk
+@@ -107,21 +107,11 @@ case "$target" in
+         md5sums $TMPDIR/deploy/images/qemuppc
+         cp -R --no-dereference --preserve=links $TMPDIR/deploy/images/qemuppc/*qemuppc* $DEST/machines/qemu/qemuppc
+         ;;
+-    "mpc8315e-rdb")
+-        mkdir -p $DEST/machines/mpc8315e-rdb
+-        md5sums $TMPDIR/deploy/images/mpc8315e-rdb
+-        cp -R --no-dereference --preserve=links $TMPDIR/deploy/images/mpc8315e-rdb/*mpc8315* $DEST/machines/mpc8315e-rdb
+-        ;;
+     "qemuppc-alt")
+         mkdir -p $DEST/machines/qemu/qemuppc-alt
+         md5sums $TMPDIR/deploy/images/qemuppc
+         cp -R --no-dereference --preserve=links $TMPDIR/deploy/images/qemuppc/*qemuppc* $DEST/machines/qemu/qemuppc-alt
+         ;;
+-    "mpc8315e-rdb-alt")
+-        mkdir -p $DEST/machines/mpc8315e-rdb-alt
+-        md5sums $TMPDIR/deploy/images/mpc8315e-rdb
+-        cp -R --no-dereference --preserve=links $TMPDIR/deploy/images/mpc8315e-rdb/*mpc8315* $DEST/machines/mpc8315e-rdb-alt
+-        ;;
+     "wic")
+         mkdir -p $DEST/machines/qemu/qemux86
+         md5sums $TMPDIR/deploy/wic_images/qemux86
+-- 
+2.17.1
 
