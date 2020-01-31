@@ -1,84 +1,136 @@
-Received: from mail-pl1-f196.google.com (mail-pl1-f196.google.com [209.85.214.196])
- by mx.groups.io with SMTP id smtpd.web11.541.1580429976666381134
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.2572.1580438975658585480
  for <yocto@lists.yoctoproject.org>;
- Thu, 30 Jan 2020 16:19:36 -0800
+ Thu, 30 Jan 2020 18:49:35 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=tar3FUX5;
- spf=pass (domain: gmail.com, ip: 209.85.214.196, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f196.google.com with SMTP id a6so1992460plm.3
-        for <yocto@lists.yoctoproject.org>; Thu, 30 Jan 2020 16:19:36 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id;
-        bh=koqZaunsBczKd5L1IJuUmar9WIHIwC7ImhqoDXMDMAU=;
-        b=tar3FUX56LkVQrfU8n04Ika2vQe1pRHG8upJM0Tt3JW0jxr/17kuiOkKW7LOLFv3hw
-         hOpM6o2y1hZMr2bBhbgY3CFbeuvAfesmxr5fgSZh3qfmdRbK/wQjbhEmFtd77PSEpdtt
-         jedIyjQmcTjMuDoVHYObDA8f5ymr0+WOQ42lNjVrvVon+KuVFZs5nyUZ5mwEInYS5a9N
-         ZbZ3+FKnoYy6vnTASnwt/m89D7S37gQL3Ii5xiNwAR7K68IoDuQQqCUKfOHrWHzeDGcF
-         sOvaNvPzvBGpnv7er5TYF8ASokUT940a/17+8OWW0YrFYmSPWAnNjHay8TPvcfyRk6eJ
-         n7Ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=koqZaunsBczKd5L1IJuUmar9WIHIwC7ImhqoDXMDMAU=;
-        b=Lv3WmYEMb9j+Atps+K9DRw7x6CLtt8PAxkiYZyDrQtAUaoV/GGqfyg082FOovGHjdK
-         UfQWFGFKgL2yIuISi7MS527PIYrelfND553yjdZ782DTrhFy842PcQFc/XuxPV7YCQyC
-         kN4Rk+Z15I0ekkrb3XyFF7VWoGl/wZ0qs53RK8VQYUNVoIdPGdI2JmXvUwKZDIRtqPwf
-         yuPKzGHFhiIVtasEKoWCgg41cYRvgUBSjOe1L3yL+4pc7r+rCjdxEzfCiue8p3ekguCO
-         J3dTgAoeJlZUqsZgRs34IRRTvXVS+0UA8dBVB1xhS1lssxbnuwAt7dgPGcfhdNY98lZ7
-         gMMQ==
-X-Gm-Message-State: APjAAAVYjEGmLxVPdtrApuaZKz2EynTTKO0718gccT/2nxld2q+CUDe6
-	PHkylNAiewzHRuRlJ5ixxgRQfO+K
-X-Google-Smtp-Source: APXvYqy49+QqOy1fNFobovjzsu1B82KDy7jqD/VnzCxaOGvWIT9WE3B0Afzd+KVGPxHZxwekohUrtQ==
-X-Received: by 2002:a17:90a:f88:: with SMTP id 8mr9355155pjz.72.1580429975927;
-        Thu, 30 Jan 2020 16:19:35 -0800 (PST)
-Return-Path: <akuster808@gmail.com>
-Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:9979:cdb6:7624:d076])
-        by smtp.gmail.com with ESMTPSA id d69sm4766474pfd.72.2020.01.30.16.19.35
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 30 Jan 2020 16:19:35 -0800 (PST)
-From: "akuster" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [yocto-autobuilder2][PATCH] config.py: remove mpc8315-rdb
-Date: Thu, 30 Jan 2020 16:19:34 -0800
-Message-Id: <20200131001934.30590-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=missing; spf=none, err=permanent DNS error (domain: deserted.net, ip: 140.211.169.56, mailfrom: joe@deserted.net)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 1F98EE0161B; Thu, 30 Jan 2020 18:49:35 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
+	*      medium trust
+	*      [68.232.129.153 listed in list.dnswl.org]
+Received: from esa1.mentor.iphmx.com (esa1.mentor.iphmx.com [68.232.129.153])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF90DE01548
+	for <yocto@yoctoproject.org>; Thu, 30 Jan 2020 18:49:33 -0800 (PST)
+IronPort-SDR: dF0RMWjOg+ahnsqfy0DBRlT47O7TJNLBjCnspxjnfYo4V/CmFmda2WHY4KR9XSNdhXMYu1c3ZM
+ hgOjmGM0f53F7lMg7ggXrl9Hx6CTHJ5r7J0+ew/y6QzqaeSz8qsPiqa4n0yN9Hoj21rnV+7a8s
+ VQzsaUWcjQ7yaeQ0/62DA6Rg8AuLfUPXRpA2SjQ+JGNAw2OTvJPA+gdMV9jVBvtkC0Z0D3dGV8
+ Ss8gWfd6KbsU/OG/pLmJBKud+N2KhHkiYdTG5CjGTtTrTXxqqgFDsZfrO4iNWblxvsS4HzAE+g
+ y6E=
+X-IronPort-AV: E=Sophos;i="5.70,384,1574150400"; 
+   d="asc'?scan'208";a="47297518"
+Received: from orw-gwy-01-in.mentorg.com ([192.94.38.165])
+  by esa1.mentor.iphmx.com with ESMTP; 30 Jan 2020 18:49:33 -0800
+IronPort-SDR: L8h7qPafaQkEvjPcM1/76EPDiNjPpYgWFYjGc0P4U81BQo/5DQBAhBfohXbrasRwkvEsvs5mkK
+ q91NFmN6pc0g==
+Date: Thu, 30 Jan 2020 21:49:29 -0500
+From: "Joe MacDonald" <joe@deserted.net>
+To: Jeremy Puhlman <jpuhlman@mvista.com>
+CC: <yocto@yoctoproject.org>
+Subject: Re: [yocto] [meta-selinux][PATCH 1/2] python: move appends to a dynamic-layer
+Message-ID: <20200131024927.GA7827@deserted.net>
+References: <20200130232841.6706-1-jpuhlman@mvista.com>
+MIME-Version: 1.0
+In-Reply-To: <20200130232841.6706-1-jpuhlman@mvista.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Groupsio-MsgNum: 48222
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="k1lZvvs/B4yU6o8G"
+Content-Disposition: inline
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- config.py | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+--k1lZvvs/B4yU6o8G
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/config.py b/config.py
-index 7dbd5e7..b210275 100644
---- a/config.py
-+++ b/config.py
-@@ -51,7 +51,6 @@ trigger_builders_wait_shared = [
-     "qemux86-64", "qemux86-64-alt",
-     "qemux86-64-x32", "qemux86-world",
-     "edgerouter",
--    "mpc8315e-rdb",
-     "genericx86", "genericx86-alt",
-     "genericx86-64", "genericx86-64-alt",
-     "beaglebone", "beaglebone-alt",
-@@ -70,14 +69,14 @@ trigger_builders_wait_quick = trigger_builders_wait_shared + [
- ]
- 
- trigger_builders_wait_full = trigger_builders_wait_shared + [
--    "qemumips-alt", "edgerouter-alt", "mpc8315e-rdb-alt", "qemuppc-alt", "qemux86-world-alt",
-+    "qemumips-alt", "edgerouter-alt", "qemuppc-alt", "qemux86-world-alt",
-     "oe-selftest-ubuntu", "oe-selftest-debian", "oe-selftest-fedora", "oe-selftest-centos",
-     "qemux86-64-ptest", "buildperf-ubuntu1604", "buildperf-centos7", "qemux86-64-ltp",
-     "qemuarm64-ptest", "qemuarm64-ltp", "meta-intel"
- ]
- 
- trigger_builders_wait_releases = {
--    "sumo" : trigger_builders_wait_shared + ["qemumips-alt", "edgerouter-alt", "mpc8315e-rdb-alt", "qemuppc-alt", "qemux86-world-alt",
-+    "sumo" : trigger_builders_wait_shared + ["qemumips-alt", "edgerouter-alt", "qemuppc-alt", "qemux86-world-alt",
-                                              "oe-selftest-ubuntu", "oe-selftest-debian", "oe-selftest-centos"]
- }
- 
--- 
-2.17.1
+Thanks for these, Jeremy, I'd just been prepping the same patches today,
+but since yours are on-list, I'm merging them.
 
+-J.
+
+[[yocto] [meta-selinux][PATCH 1/2] python: move appends to a dynamic-layer=
+] On 20.01.30 (Thu 15:28) Jeremy Puhlman wrote:
+
+> Signed-off-by: Jeremy Puhlman <jpuhlman@mvista.com>
+> ---
+>  conf/layer.conf                                                 | 2 ++
+>  .../recipes-devtools}/python/files/sitecustomize.py             | 0
+>  .../python2-layer/recipes-devtools}/python/python_%.bbappend    | 0
+>  .../python2-layer/recipes-devtools}/python/python_selinux.inc   | 0
+>  4 files changed, 2 insertions(+)
+>  rename {recipes-devtools =3D> dynamic-layers/python2-layer/recipes-devt=
+ools}/python/files/sitecustomize.py (100%)
+>  rename {recipes-devtools =3D> dynamic-layers/python2-layer/recipes-devt=
+ools}/python/python_%.bbappend (100%)
+>  rename {recipes-devtools =3D> dynamic-layers/python2-layer/recipes-devt=
+ools}/python/python_selinux.inc (100%)
+>=20
+> diff --git a/conf/layer.conf b/conf/layer.conf
+> index 226a75a..cdee27a 100644
+> --- a/conf/layer.conf
+> +++ b/conf/layer.conf
+> @@ -11,6 +11,8 @@ BBFILES_DYNAMIC +=3D "openembedded-layer:${LAYERDIR}/d=
+ynamic-layers/openembedded-l
+>                      networking-layer:${LAYERDIR}/dynamic-layers/network=
+ing-layer/*/*/*.bbappend \
+>                      virtualization-layer:${LAYERDIR}/dynamic-layers/vir=
+tualization-layer/recipes*/*/*.bb \
+>                      virtualization-layer:${LAYERDIR}/dynamic-layers/vir=
+tualization-layer/recipes*/*/*.bbappend \
+> +                    meta-python2:${LAYERDIR}/dynamic-layers/python2-lay=
+er/recipes*/*/*.bb \
+> +                    meta-python2:${LAYERDIR}/dynamic-layers/python2-lay=
+er/recipes*/*/*.bbappend \
+>                     "
+>  
+>  BBFILE_COLLECTIONS +=3D "selinux"
+> diff --git a/recipes-devtools/python/files/sitecustomize.py b/dynamic-la=
+yers/python2-layer/recipes-devtools/python/files/sitecustomize.py
+> similarity index 100%
+> rename from recipes-devtools/python/files/sitecustomize.py
+> rename to dynamic-layers/python2-layer/recipes-devtools/python/files/sit=
+ecustomize.py
+> diff --git a/recipes-devtools/python/python_%.bbappend b/dynamic-layers/=
+python2-layer/recipes-devtools/python/python_%.bbappend
+> similarity index 100%
+> rename from recipes-devtools/python/python_%.bbappend
+> rename to dynamic-layers/python2-layer/recipes-devtools/python/python_%.=
+bbappend
+> diff --git a/recipes-devtools/python/python_selinux.inc b/dynamic-layers=
+/python2-layer/recipes-devtools/python/python_selinux.inc
+> similarity index 100%
+> rename from recipes-devtools/python/python_selinux.inc
+> rename to dynamic-layers/python2-layer/recipes-devtools/python/python_se=
+linux.inc
+> --=20
+> 2.20.1
+>=20
+
+>=20
+
+
+--=20
+-Joe MacDonald.
+:wq
+
+--k1lZvvs/B4yU6o8G
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRjqRhJknEwCqrWVXzAW9yWWiDRfAUCXjOVqwAKCRDAW9yWWiDR
+fPfBAJ4n2fxGQfnIqzZLZvvF7RGsjIg1QACeN6W5HDkzDsbynFowaPvPQ9eSBTQ=
+=tjPT
+-----END PGP SIGNATURE-----
+
+--k1lZvvs/B4yU6o8G--
