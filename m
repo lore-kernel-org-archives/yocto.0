@@ -1,101 +1,172 @@
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
- by mx.groups.io with SMTP id smtpd.web11.146.1580489532831526321
+Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
+ by mx.groups.io with SMTP id smtpd.web12.724.1580495587972535473
  for <yocto@lists.yoctoproject.org>;
- Fri, 31 Jan 2020 08:52:13 -0800
+ Fri, 31 Jan 2020 10:33:08 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@fastree3d-com.20150623.gappssmtp.com header.s=20150623 header.b=QN8P5zm+;
- spf=none, err=SPF record not found (domain: fastree3d.com, ip: 209.85.128.52, mailfrom: adrian.fiergolski@fastree3d.com)
-Received: by mail-wm1-f52.google.com with SMTP id a9so9472650wmj.3
-        for <yocto@lists.yoctoproject.org>; Fri, 31 Jan 2020 08:52:12 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=jbIL9VA/;
+ spf=pass (domain: gmail.com, ip: 209.85.166.180, mailfrom: raj.khem@gmail.com)
+Received: by mail-il1-f180.google.com with SMTP id i7so6983950ilr.7
+        for <yocto@lists.yoctoproject.org>; Fri, 31 Jan 2020 10:33:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fastree3d-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:subject:message-id:date:user-agent:mime-version
-         :content-language;
-        bh=SNneHdKL6dyvLohNz4EbFOzHg/isrwpGkZZEEmkI6V8=;
-        b=QN8P5zm+mJnQyUlZlMfec5IpDCIYzF0j9WGIivy22bqd0jJq92ErYPBRdhH80zeVH2
-         5/Z8iqLnIMb3bDK6tm2wxgzeq8C1/AIeBGAcovlNqEYHBvRs9EqJXL5ujuacUY/xO+u1
-         NFXlzw1rArJys+zVaUs/4HPdkpRb6SFwaSUx5TvNhI9a0UDCxUbZTcVy0RRfW0rFgO+K
-         j3f/fcSb/7po/fr1anItj8YyWOgBLzDFysLeTaVPheX2dS7iGqp0BwUyofpyTE+0c1PL
-         RQaDrZvl+5GmtxqQy/bEBoXXvspWHODS7D5PIuzB9A+GItWfwoS5QaSuSokj/4EClt1J
-         mCRw==
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:organization:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=qQqnBjYFvbMuL8E6jZ9xKCSdvJ47AJt8N215Ku647kM=;
+        b=jbIL9VA/aFymraEVrxXgBCEYs5NUkTz2sB30OIX+rWpwnsAzxQrKk8UA2GRV5UTbo/
+         rt1/p+pIDZAtgOOPOiyuadryt8k0fwKay9Derwk5X5EFwW8d1HyeXI20VeqSkaPXf/OV
+         iB6NkmMyV4cX3cn7CwPMC9aT1fzKaBQdzJ7LDZZkh1Ov8FezAIufsg7LGs98wTbdedKN
+         b4bFepufob7Xe1EHMlO55cA4er0xCfZUOey8CGTbAhiLnaTJZDZ87C0QiK0cS0/0gyZD
+         dC0HSpP8frAxBJaWd9DR3cgcJ6wRGf/6wI0gn67OaYYCeFUw6w9EnGd8duSiLmshZB4F
+         bgtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:message-id:date:user-agent
-         :mime-version:content-language;
-        bh=SNneHdKL6dyvLohNz4EbFOzHg/isrwpGkZZEEmkI6V8=;
-        b=Xp7MCDSV9mkGIedNsiUP/09nClU5LBrKKfc0rnopW496WS7xIwWMcWOrLxzOLtPPZ3
-         fHPn+IdTx0yr7Rw6d8Wdow8B/hxuscHE+IGVvd4JtAkjhHPO/79TcSRomepvEMOvNC5r
-         ZnzJ+3iaSU0BmvytioJo1/G8r+mKLwRO1qaFY+KEzEePOaTSy8HLazPjAjXOs3CGL0f2
-         2UiNYbJf+V3ZfdiSLQjOREOhrnC29tR8jTQLVY7fCihit5AnYBlSynWv3JJ/qBhgdh+W
-         8QcQ4lH4wm3DfGwZPCSKrysYmDqUcESrzeMa8pIWJrRxpsNWxsKVqZ4Uxg6WsxMsWCIS
-         W6fg==
-X-Gm-Message-State: APjAAAV/L1bQX0OJgqByiCCz2M2KCWDTsvfk9lBQQP8yPjIE4jp3I/DK
-	K6T0S/UfmoZVzT1DsTXru1zym99f0Q==
-X-Google-Smtp-Source: APXvYqzkrWVnPH18SLUxyDGgkOlittvxXRXY5EfCevcooeqOsMrTXpFppWzTIn1sbcVdgfwZpZswpA==
-X-Received: by 2002:a1c:a796:: with SMTP id q144mr13465362wme.6.1580489530878;
-        Fri, 31 Jan 2020 08:52:10 -0800 (PST)
-Return-Path: <adrian.fiergolski@fastree3d.com>
-Received: from [192.168.33.195] (fastree1.epfl.ch. [128.179.67.81])
-        by smtp.gmail.com with ESMTPSA id w13sm12405710wru.38.2020.01.31.08.52.10
-        for <yocto@lists.yoctoproject.org>
+        h=x-gm-message-state:subject:to:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=qQqnBjYFvbMuL8E6jZ9xKCSdvJ47AJt8N215Ku647kM=;
+        b=kXyRsWUUoV9PS/hiqSwqFmgoc/sQ0cKoR/hEAQrCutEGSZC677NaWmn0xoCq0U+ydg
+         LWcHe1w9k7k/rfDcrXKMHpwmiovuRzww9pmy7/ol6er87bp0nHqnUralYVDDyqF6WlJb
+         A9KowogInTP4FARzTvEjdzzh4OV5FlgGH/f95HqK66AMSJpn65vVriTbkYV/J3Cw7tLM
+         fgZkviUsxIwcsPxNFdDCqz6+8/qatHgqWQuWVEHamkFNLLLDxjyKaTgrYCpXpcm+vmFf
+         8Y8L/01mMEUeTg1ZEBHzUrSRpFoJ/d+xJ5AxWfyzrlshfqBZbBn2O0cNFs6rCaNM3szf
+         1pJg==
+X-Gm-Message-State: APjAAAVZaxhq8/KEvBJmBVjCwrnLXF+AZIQ4pqf+SAxt7ryuRbCA48D6
+	9Fm9qKAIqAG+cY++wvCK23XUjbTe/wY=
+X-Google-Smtp-Source: APXvYqz4hPyPU1gJRdXiye4RB7PIQQiOtETOo7gFVNo9qCtKpzd5hrqAAz1CvJZFGife/gx5oRBbBw==
+X-Received: by 2002:a92:d183:: with SMTP id z3mr10529148ilz.214.1580495586983;
+        Fri, 31 Jan 2020 10:33:06 -0800 (PST)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:4e0:808d:d66e:9108:2692? ([2601:646:9200:4e0:808d:d66e:9108:2692])
+        by smtp.gmail.com with ESMTPSA id p19sm3441782ilc.69.2020.01.31.10.33.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 31 Jan 2020 08:52:10 -0800 (PST)
-From: "Adrian" <adrian.fiergolski@fastree3d.com>
-X-Google-Original-From: Adrian Fiergolski <Adrian.Fiergolski@fastree3d.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-qt5, zeus-next, python3-pyqt5] QtChart can't be imported
-Message-ID: <8b4b1645-3f8a-ab7e-5aa6-a4b62dfb98f0@fastree3d.com>
-Date: Fri, 31 Jan 2020 17:52:09 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Firefox/68.0 Thunderbird/68.4.1
+        Fri, 31 Jan 2020 10:33:06 -0800 (PST)
+Subject: Re: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failures with offline/online svn build! #yocto #python
+To: georgi.georgiev@woodward.com, yocto@lists.yoctoproject.org
+References: <mQNu.1580472135762788821.UjeT@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <19f32730-5ebf-07a1-9a69-5ede803ff324@gmail.com>
+Date: Fri, 31 Jan 2020 10:33:05 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
+ Gecko/20100101 Thunderbird/68.4.2
 MIME-Version: 1.0
-Content-Type: multipart/alternative;
- boundary="------------F01ECEBCBE2D227340B9A7B7"
-Content-Language: en-GB
+In-Reply-To: <mQNu.1580472135762788821.UjeT@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: base64
 
---------------F01ECEBCBE2D227340B9A7B7
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-Hi,
-
-I use python3-pyqt5 from meta-qt5 (in zeus-next). I get an error in
-python3 when I try to import QtChart module (from PyQt5 import QtChart).
-Has anybody experience the same issue and knows a fix? The deployed
-image comes with qtchart packages.
-
-I have created an issue on the layer's issue tracker (link
-<https://github.com/meta-qt5/meta-qt5/issues/276>), but so far no reply.
-
-Regards,
-
-Adrian
-
-
---------------F01ECEBCBE2D227340B9A7B7
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <p>Hi,</p>
-    <p>I use python3-pyqt5 from meta-qt5 (in zeus-next). I get an error
-      in python3 when I try to import QtChart module (from PyQt5 import
-      QtChart). Has anybody experience the same issue and knows a fix?
-      The deployed image comes with qtchart packages.</p>
-    <p>I have created an issue on the layer's issue tracker (<a
-        moz-do-not-send="true"
-        href="https://github.com/meta-qt5/meta-qt5/issues/276">link</a>),
-      but so far no reply.<br>
-    </p>
-    <p>Regards,</p>
-    <p>Adrian<br>
-    </p>
-  </body>
-</html>
-
---------------F01ECEBCBE2D227340B9A7B7--
+T24gMS8zMS8yMCA0OjAyIEFNLCBnZW9yZ2kuZ2VvcmdpZXYgdmlhIExpc3RzLllvY3RvcHJvamVj
+dC5Pcmcgd3JvdGU6DQo+IEhlbGxvIENvbW11bml0eSwNCj4gVGhpcyBpcyB0aGUgdGhpcmQgdGlt
+ZSBJIGFtIGFza2luZyBmb3Igc3VwcG9ydCBvbiB0aGlzIGlzc3VlLiBUaGlzIHRpbWUgDQo+IEkg
+ZGVjaWRlZCB0byB1c2UgdGhlIHdlYiBmb3JtLg0KPiBJbiBvdXIgcHJvamVjdCB3ZSBoYXZlIGEg
+cmVxdWlyZW1lbnQgdG8gYmUgYWJsZSB0byBidWlsZCB0aGUgcHJvamVjdCANCj4gb2ZmbGluZS4g
+RS5nLiBvbiB0aGUgZmllbGQgd2l0aG91dCBhbnkgbmV0d29yayBjb25uZWN0aW9uLiBXaGVuIHdl
+IGFyZSANCj4gY29ubmVjdGVkIHdpdGggdGhlIHJlY2lwZSBtZW50aW9uZWQgYmVsb3cgd2UgZG9u
+J3QgaGF2ZSBpc3N1ZXM6DQo+IA0KDQoNCnN2bjogRTE3MDAxMzogVW5hYmxlIHRvIGNvbm5lY3Qg
+dG8gYSByZXBvc2l0b3J5IGF0IFVSTCANCidodHRwOi8vY29jb3N1YnZlcnNpb24vc3ZuL0VtYmVk
+ZGVkL1ZhbHZlJkFjdHVhdG9yL0RWUElJL3RydW5rL1NPQ1BBQ01hbkVudkVuZ0tleXMvdHJ1bmsn
+DQpzdm46IEU2NzAwMDM6IFRlbXBvcmFyeSBmYWlsdXJlIGluIG5hbWUgcmVzb2x1dGlvbg0KDQpj
+YW4geW91IHRyeSBjaGVja2luZyBvdXQgdGhlIHJlcG8gb3V0IHNpZGUgb2YgZmV0Y2hlciBhbmQg
+c2VlIGlmIHRoZSANCm1hY2hpbmUgY2FuIGZldGNoIHRoZSB1cmwgeW91IGFyZSB1c2luZyBpbiBT
+UkNfVVJJID8NCg0KPiAqU1VNTUFSWSA9ICJQQUNNYW4gLSBQYXJhbWV0ZXIgQW5kIENvbmZpZ3Vy
+YXRpb24gTUFOYWdlciIqDQo+ICpMSUNFTlNFID0gIkNMT1NFRCIqDQo+ICppbmhlcml0IHN5c3Rl
+bWQgdXNlcmFkZCoNCj4gKlJFUVVJUkVEX0RJU1RST19GRUFUVVJFUyA9ICJzeXN0ZW1kIioNCj4g
+KiMgU1ZOIHJldmlzaW9uKg0KPiAqUFYgPSAiMTIxMDI2IioNCj4gKiMgTmFtZSBvZiBTVk4gcHJv
+amVjdCoNCj4gKlBBQ01BTl9QUk9KX05BTUU9IlNPQ1BBQ01hbkVudkVuZ0tleXMiKg0KPiAqU1JD
+X1VSSSA9IA0KPiAic3ZuOi8vY29jb3N1YnZlcnNpb24vc3ZuL0VtYmVkZGVkL1ZhbHZlXCZBY3R1
+YXRvci9EVlBJSS90cnVuay8ke1BBQ01BTl9QUk9KX05BTUV9O21vZHVsZT10cnVuaztwcm90b2Nv
+bD1odHRwO2V4dGVybmFscz1hbGxvd2VkO3Jldj0ke1BWfSIqDQo+ICpTUkNfVVJJICs9ICJmaWxl
+Oi8vd3ctYXV0aHBhY21hbi5zZXJ2aWNlIioNCj4gKlNSQ19VUkkgKz0gImZpbGU6Ly93dy1wYWNt
+YW4uc2VydmljZSIqDQo+ICpTID0gIiR7V09SS0RJUn0vdHJ1bmsvIioNCj4gKiMgJHtQTn0tc3lz
+OiBjb250ZW50IHJlbGF0ZWQgdG8gc3lzdGVtLCB3aGljaCBnb2VzIHRvIGJhc2Ugcm9vdGZzIChv
+bmx5IA0KPiAuc2VydmljZSBmaWxlIGFuZCBzeW1saW5rcykqDQo+ICojICR7UE59OsKgwqDCoMKg
+wqAgcmVhbCBjb250ZW50IHdoaWNoIG1heSBnbyB0byBzZXBhcmF0ZSBwYXJ0aXRpb24qDQo+ICpQ
+QUNLQUdFUyA9KyAiICR7UE59LXN5cyIqDQo+IC4uLi4uLi4uLg0KPiBXaGVuIGRpc2Nvbm5lY3Qg
+dGhlIG5ldHdvcmssIGVyYXNlIHNzdGF0ZS1jYWNoZSwgY2FjaGUgYW5kIHRtcCBJIHNlZSBsb2cg
+DQo+IGZpbGUgYXR0YWNoZWQgKGxvZy5kb19mZXRjaC4zMjc1NykgYW5kIHRoZSBmb2xsb3dpbmcg
+b3V0cHV0Og0KPiANCj4gKkVSUk9SOiB3dy1wYWNtYW4tMTIxMDI2LXIwIGRvX2ZldGNoOiBGZXRj
+aGVyIGZhaWx1cmU6IEZldGNoIGNvbW1hbmQgDQo+IGV4cG9ydCBQU0VVRE9fRElTQUJMRUQ9MTsg
+dW5zZXQgX1BZVEhPTl9TWVNDT05GSUdEQVRBX05BTUU7IGV4cG9ydCANCj4gREJVU19TRVNTSU9O
+X0JVU19BRERSRVNTPSJ1bml4OnBhdGg9L3J1bi91c2VyLzEwMDAvYnVzIjsgZXhwb3J0IA0KPiBT
+U0hfQUdFTlRfUElEPSIxMTQxMiI7IGV4cG9ydCANCj4gU1NIX0FVVEhfU09DSz0iL3J1bi91c2Vy
+LzEwMDAva2V5cmluZy9zc2giOyBleHBvcnQgDQo+IFBBVEg9Ii9ob21lL3cyMzY5OC9wcm9qZWN0
+cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi90bXAvc3lzcm9vdHMtdW5pbmF0aXZlL3g4Nl82NC1saW51
+eC91c3IvYmluOi9ob21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvc291cmNlcy9wb2t5L3Nj
+cmlwdHM6L2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyL3RtcC93b3Jr
+L2NvcnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFuLzEyMTAyNi1yMC9y
+ZWNpcGUtc3lzcm9vdC1uYXRpdmUvdXNyL2Jpbi9hcm0tcG9reS1saW51eC1nbnVlYWJpOi9ob21l
+L3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi90bXAvd29yay9jb3J0ZXhhOWhm
+LW5lb24tcG9reS1saW51eC1nbnVlYWJpL3d3LXBhY21hbi8xMjEwMjYtcjAvcmVjaXBlLXN5c3Jv
+b3QvdXNyL2Jpbi9jcm9zc3NjcmlwdHM6L2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9i
+dWlsZF9kdnAyL3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ct
+cGFjbWFuLzEyMTAyNi1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvdXNyL3NiaW46L2hvbWUvdzIz
+Njk4L3Byb2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyL3RtcC93b3JrL2NvcnRleGE5aGYtbmVv
+bi1wb2t5LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFuLzEyMTAyNi1yMC9yZWNpcGUtc3lzcm9vdC1u
+YXRpdmUvdXNyL2JpbjovaG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIv
+dG1wL3dvcmsvY29ydGV4YTloZi1uZW9uLXBva3ktbGludXgtZ251ZWFiaS93dy1wYWNtYW4vMTIx
+MDI2LXIwL3JlY2lwZS1zeXNyb290LW5hdGl2ZS9zYmluOi9ob21lL3cyMzY5OC9wcm9qZWN0cy9w
+cm9qX2R2cDIvYnVpbGRfZHZwMi90bXAvd29yay9jb3J0ZXhhOWhmLW5lb24tcG9reS1saW51eC1n
+bnVlYWJpL3d3LXBhY21hbi8xMjEwMjYtcjAvcmVjaXBlLXN5c3Jvb3QtbmF0aXZlL2JpbjovaG9t
+ZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL3NvdXJjZXMvcG9reS9iaXRiYWtlL2JpbjovaG9t
+ZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvdG1wL2hvc3R0b29scyI7IA0K
+PiBleHBvcnQgSE9NRT0iL2hvbWUvdzIzNjk4IjsgL3Vzci9iaW4vZW52IHN2biAtLW5vbi1pbnRl
+cmFjdGl2ZSANCj4gLS10cnVzdC1zZXJ2ZXItY2VydCB1cGRhdGUgLS1uby1hdXRoLWNhY2hlIC1y
+IDEyMTAyNiBmYWlsZWQgd2l0aCBleGl0IA0KPiBjb2RlIDEsIG91dHB1dDoqDQo+ICpVcGRhdGlu
+ZyAnLic6Kg0KPiAqc3ZuOiBFMTcwMDEzOiBVbmFibGUgdG8gY29ubmVjdCB0byBhIHJlcG9zaXRv
+cnkgYXQgVVJMIA0KPiAnaHR0cDovL2NvY29zdWJ2ZXJzaW9uL3N2bi9FbWJlZGRlZC9WYWx2ZSZB
+Y3R1YXRvci9EVlBJSS90cnVuay9TT0NQQUNNYW5FbnZFbmdLZXlzL3RydW5rJyoNCj4gKnN2bjog
+RTY3MDAwMzogVGVtcG9yYXJ5IGZhaWx1cmUgaW4gbmFtZSByZXNvbHV0aW9uKg0KPiAqRVJST1I6
+IHd3LXBhY21hbi0xMjEwMjYtcjAgZG9fZmV0Y2g6IEZldGNoZXIgZmFpbHVyZSBmb3IgVVJMOiAN
+Cj4gJ3N2bjovL2NvY29zdWJ2ZXJzaW9uL3N2bi9FbWJlZGRlZC9WYWx2ZVwmQWN0dWF0b3IvRFZQ
+SUkvdHJ1bmsvU09DUEFDTWFuRW52RW5nS2V5czttb2R1bGU9dHJ1bms7cHJvdG9jb2w9aHR0cDtl
+eHRlcm5hbHM9YWxsb3dlZDtyZXY9MTIxMDI2Jy4gDQo+IFVuYWJsZSB0byBmZXRjaCBVUkwgZnJv
+bSBhbnkgc291cmNlLioNCj4gKkVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAN
+Cj4gL2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyL3RtcC93b3JrL2Nv
+cnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFuLzEyMTAyNi1yMC90ZW1w
+L2xvZy5kb19mZXRjaC4zMjc1NyoNCj4gKkVSUk9SOiBUYXNrIA0KPiAoL2hvbWUvdzIzNjk4L3By
+b2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyLy4uL3NvdXJjZXMvbWV0YS13dy1kdnAyL3JlY2lw
+ZXMtd3cvd3ctcGFjbWFuL3d3LXBhY21hbi5iYjpkb19mZXRjaCkgDQo+IGZhaWxlZCB3aXRoIGV4
+aXQgY29kZSAnMScqDQo+IA0KPiBXaGVuIHJlbW92ZSB0aGUgJ1wnIGNoYXJhY3RlciBpbiBTUkNf
+VVJJLCBlLmcuIHRvIGJlY29tZToNCj4gDQo+ICpTUkNfVVJJID0gDQo+ICJzdm46Ly9jb2Nvc3Vi
+dmVyc2lvbi9zdm4vRW1iZWRkZWQvVmFsdmUmQWN0dWF0b3IvRFZQSUkvdHJ1bmsvJHtQQUNNQU5f
+UFJPSl9OQU1FfTttb2R1bGU9dHJ1bms7cHJvdG9jb2w9aHR0cDtleHRlcm5hbHM9YWxsb3dlZDty
+ZXY9JHtQVn0iKg0KPiANCj4gSW4gY29ubmVjdGVkIGFuZCBub3QgY29ubmVjdGVkIHRvIG5ldHdv
+cmsgZG9fZmV0Y2goKSBwYXNzZXMgc3VjY2Vzc2Z1bGx5IA0KPiBidXQgSSBzZWUgb25lIGFuZCBz
+YW1lIGVycm9yIChsb2cuZG9fdW5wYWNrLjI1MjI2KSBvdXRwdXQ6DQo+IA0KPiAqRVJST1I6IHd3
+LXBhY21hbi0xMjEwMjYtcjAgZG9fdW5wYWNrOiBVbnBhY2sgZmFpbHVyZSBmb3IgVVJMOiANCj4g
+J3N2bjovL2NvY29zdWJ2ZXJzaW9uL3N2bi9FbWJlZGRlZC9WYWx2ZSZBY3R1YXRvci9EVlBJSS90
+cnVuay9TT0NQQUNNYW5FbnZFbmdLZXlzO21vZHVsZT10cnVuaztwcm90b2NvbD1odHRwO2V4dGVy
+bmFscz1hbGxvd2VkO3Jldj0xMjEwMjYnLiANCj4gVW5wYWNrIGNvbW1hbmQgDQo+IFBBVEg9Ii9o
+b21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi90bXAvc3lzcm9vdHMtdW5p
+bmF0aXZlL3g4Nl82NC1saW51eC91c3IvYmluOi9ob21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2
+cDIvc291cmNlcy9wb2t5L3NjcmlwdHM6L2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9i
+dWlsZF9kdnAyL3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ct
+cGFjbWFuLzEyMTAyNi1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvdXNyL2Jpbi9hcm0tcG9reS1s
+aW51eC1nbnVlYWJpOi9ob21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi90
+bXAvd29yay9jb3J0ZXhhOWhmLW5lb24tcG9reS1saW51eC1nbnVlYWJpL3d3LXBhY21hbi8xMjEw
+MjYtcjAvcmVjaXBlLXN5c3Jvb3QvdXNyL2Jpbi9jcm9zc3NjcmlwdHM6L2hvbWUvdzIzNjk4L3By
+b2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyL3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1wb2t5
+LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFuLzEyMTAyNi1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUv
+dXNyL3NiaW46L2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyL3RtcC93
+b3JrL2NvcnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFuLzEyMTAyNi1y
+MC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvdXNyL2JpbjovaG9tZS93MjM2OTgvcHJvamVjdHMvcHJv
+al9kdnAyL2J1aWxkX2R2cDIvdG1wL3dvcmsvY29ydGV4YTloZi1uZW9uLXBva3ktbGludXgtZ251
+ZWFiaS93dy1wYWNtYW4vMTIxMDI2LXIwL3JlY2lwZS1zeXNyb290LW5hdGl2ZS9zYmluOi9ob21l
+L3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi90bXAvd29yay9jb3J0ZXhhOWhm
+LW5lb24tcG9reS1saW51eC1nbnVlYWJpL3d3LXBhY21hbi8xMjEwMjYtcjAvcmVjaXBlLXN5c3Jv
+b3QtbmF0aXZlL2JpbjovaG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL3NvdXJjZXMvcG9r
+eS9iaXRiYWtlL2JpbjovaG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIv
+dG1wL2hvc3R0b29scyIgDQo+IHRhciB4eiAtLW5vLXNhbWUtb3duZXIgLWYgDQo+IC9ob21lL3cy
+MzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi9kb3dubG9hZHMvdHJ1bmtfY29jb3N1
+YnZlcnNpb25fLnN2bi5FbWJlZGRlZC5WYWx2ZSZBY3R1YXRvci5EVlBJSS50cnVuay5TT0NQQUNN
+YW5FbnZFbmdLZXlzXzEyMTAyNl8udGFyLmd6IA0KPiBmYWlsZWQgd2l0aCByZXR1cm4gdmFsdWUg
+MTI3Kg0KPiAqRVJST1I6IExvZ2ZpbGUgb2YgZmFpbHVyZSBzdG9yZWQgaW46IA0KPiAvaG9tZS93
+MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvdG1wL3dvcmsvY29ydGV4YTloZi1u
+ZW9uLXBva3ktbGludXgtZ251ZWFiaS93dy1wYWNtYW4vMTIxMDI2LXIwL3RlbXAvbG9nLmRvX3Vu
+cGFjay4yNTIyNioNCj4gKkVSUk9SOiBUYXNrIA0KPiAoL2hvbWUvdzIzNjk4L3Byb2plY3RzL3By
+b2pfZHZwMi9idWlsZF9kdnAyLy4uL3NvdXJjZXMvbWV0YS13dy1kdnAyL3JlY2lwZXMtd3cvd3ct
+cGFjbWFuL3d3LXBhY21hbi5iYjpkb191bnBhY2spIA0KPiBmYWlsZWQgd2l0aCBleGl0IGNvZGUg
+JzEnDQo+ICoNCj4gSSBkb24ndCBpdCB0aGlzIG1hdHRlcnMgYnV0LCB0aGUgYnVpbGQgbWFjaGlu
+ZSBpcyBiYXJlbWV0YWwgVWJ1bnR1IA0KPiAxOC4wNC4zIExUUy4gSW4gYWxsIGNhc2VzIHRoZSBw
+YWNrZWQgdGFyLmd6IHJlbWFpbiBpbiBkb3dubG9hZHMgDQo+IGRpcmVjdG9yeSB3aXRoIG9uZSBu
+YW1lIQ0KPiANCj4gQ29yZGlhbGx5LA0KPiBHZW9yZ2kNCj4gDQo+IA0KPiANCj4gDQoNCg==
