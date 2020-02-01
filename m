@@ -1,161 +1,177 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.7658.1580526200357240852
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+ by mx.groups.io with SMTP id smtpd.web12.9417.1580541816938132140
  for <yocto@lists.yoctoproject.org>;
- Fri, 31 Jan 2020 19:03:20 -0800
+ Fri, 31 Jan 2020 23:23:37 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=permerror, err=syntax error for token:  (domain: kernel.crashing.org, ip: 140.211.169.56, mailfrom: mark.hatle@kernel.crashing.org)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B272E01678; Fri, 31 Jan 2020 19:03:20 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from kernel.crashing.org (kernel.crashing.org [76.164.61.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92D6BE006EC
-	for <yocto@yoctoproject.org>; Fri, 31 Jan 2020 19:03:17 -0800 (PST)
-Received: from Marks-MacBook-Pro-16.local ([76.164.61.198])
-	(authenticated bits=0)
-	by kernel.crashing.org (8.14.7/8.14.7) with ESMTP id 011335Lw019806
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NO);
-	Fri, 31 Jan 2020 21:03:11 -0600
-Subject: Re: [yocto] [meta-openssl102-fips][PATCH] openssh: Fix patch to properly apply on 7.9 version found in warrior
-From: "Mark Hatle" <mark.hatle@kernel.crashing.org>
-To: "Davis, Michael" <michael.davis@essvote.com>,
-        "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <20200129184751.67966-1-michael.davis@essvote.com>
- <15EE8AC7B7888B94.12430@lists.yoctoproject.org>
- <15EE8B59D258FBDC.13285@lists.yoctoproject.org>
-Message-ID: <b9d467ef-3f25-8a62-b291-93cb4db88882@kernel.crashing.org>
-Date: Fri, 31 Jan 2020 21:03:05 -0600
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.4.2
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=HtQtYD7t;
+ spf=pass (domain: gmail.com, ip: 209.85.160.180, mailfrom: xerofoify@gmail.com)
+Received: by mail-qt1-f180.google.com with SMTP id j5so7314897qtq.9;
+        Fri, 31 Jan 2020 23:23:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language;
+        bh=3/3ZUhwepwFh8FTk5HEW7AcJDgx+wQ7p5Oeyg8rfzNk=;
+        b=HtQtYD7tr9ey72Ax63pP+ytm5iIjCYqh5m66go4777IqGbvOrRUvurNEpG/AwEUkII
+         ZkMsY1NN7VtjCPb9GgBJtDCtQ5Syg+LHjoXruPbVtK6g2OP9AjZnuoufX9b9SMTT/1ji
+         COOyxZRUmC9xXbiBv6ZgoGX/VbR8VD8lqzyQ7ZUSN9HLk1Cn95FPAeB26HOhK6GzT/CP
+         FJiqpBtrPSTHj8GJIIvbDrh6ZBriS//TZ0/SE3+EmT3/yPIk6QQPiV719qZVO3nWX5nO
+         gyi9FMs4WzdaybhFHBUKKrjWmJJtMMeMcrWPtnSkz4okhpvXG2S7flrY/Um3DtWEt0Rh
+         U7fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language;
+        bh=3/3ZUhwepwFh8FTk5HEW7AcJDgx+wQ7p5Oeyg8rfzNk=;
+        b=J9HqAHwBV/ZWyU5BxNSUsf0s//lnv5n09duy5Cn9HuPJQ2Nb6d6KKa15w32tskzUJE
+         inT3R9wpGuPjpnijSPsWdjNLYkBiPLQgd9a4QNGpHO+Q9StCeaf5LiB4oBmBIkxzo+UB
+         O+ug9UMmsRKvZjacDle8zpdN0lwJyKLMRGBx3RCiLLGD2rvXR3VRwPVevlTFYb08yLgV
+         x4XLD/h9W4B7Jis0JJbUzOFZI4zqmZAvf6k8pztcX9pAYFgMV1UhURLO69aY0+wkEMcX
+         Fr2td1q0SXwGy5PbDSRf4uxJzBb1uB4EUM0eLsU8x8MWPEasxSniWskiX36HOD1zyP5/
+         ERWA==
+X-Gm-Message-State: APjAAAWe9mIWalaJsErAuhU/goNqp2aH2VLIef4R2RrydIcaUzKdSFCs
+	vlJ9Xf6verDfxRSpCeb0e8VZv4R3
+X-Google-Smtp-Source: APXvYqyvGB3GvDQBHZzYajRhtq84On1UP4ge9GaDu9jT3hXWVQ7Ut8XtZwRhhUfapu3Iar5yRoeuAg==
+X-Received: by 2002:ac8:38c7:: with SMTP id g7mr14321942qtc.229.1580541815839;
+        Fri, 31 Jan 2020 23:23:35 -0800 (PST)
+Return-Path: <xerofoify@gmail.com>
+Received: from [192.168.1.103] (173-230-163-45.cable.teksavvy.com. [173.230.163.45])
+        by smtp.gmail.com with ESMTPSA id z8sm6365845qth.16.2020.01.31.23.23.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Jan 2020 23:23:35 -0800 (PST)
+Subject: Re: [yocto] Sad news about Scott Rifenbark
+To: Richard Purdie <richard.purdie@linuxfoundation.org>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+ docs@lists.yoctoproject.org
+References: <8e70536cc06e573ce63f4ac7341545118e62c113.camel@linuxfoundation.org>
+From: "Nicholas Krause" <xerofoify@gmail.com>
+Message-ID: <51d73395-afb8-9295-e7db-c76066a609ca@gmail.com>
+Date: Sat, 1 Feb 2020 02:23:34 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <15EE8B59D258FBDC.13285@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <8e70536cc06e573ce63f4ac7341545118e62c113.camel@linuxfoundation.org>
+Content-Type: multipart/alternative;
+ boundary="------------3D4F6177DF24ECF42C773631"
 Content-Language: en-US
+
+--------------3D4F6177DF24ECF42C773631
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Thanks for the pull request.. pushed.
 
---Mark
 
-On 1/29/20 9:08 PM, Mark Hatle wrote:
+On 1/31/20 4:04 PM, Richard Purdie wrote:
+> I'm sorry to have to pass on the sad news that Scott Rifenbark, our
+> tech writer for the project passed away on Wednesday after a battle
+> with cancer.
+>
+> I remember interviewing Scott over 10 years ago when forming a team at
+> Intel to work on what became the Yocto Project, he was with it from the
+> start. He warned me he wasn't an entirely traditional tech writer but I
+> warned we weren't aiming to be a traditional project either. It was a
+> great match. He stayed with the project ever since in one way or
+> another, he enjoyed working on the project and we enjoyed working with
+> him.
+>
+> The concept of having a tech writer as part of the team was a decision
+> I'm proud of and it shows in the material supporting the project today
+> but that success belongs to Scott and his approach to it. Someone else
+> put that best, "He would first try the procedure or instructions before
+> documenting it, I was really impressed". He was hands on and wanted
+> things to be understandable and correct, a huge challenge with some of
+> the complexities we deal with.
+>
+> Outside of the project he had interesting hobbies and travelled quite a
+> bit, those stories were good over beer and I have many fond memories.
+>
+> Our documentation stands in his memory and its fitting some of his
+> character will always be in those words.
+>
+> Scott will be hugely missed by us all.
+>
+>
+Richard,
+
+As someone who's been on and off with the project I've always found the documentation was
+some of the best documentation I've ever seen rivaling that of the compiler manuals and
+wikis for LLVM and GCC in terms of being complete technical documents or the ISA manuals.
+
+Sorry to hear one if not the major tech writer behind it has passed and I've been spoiled
+by the great documentation or the parts he wrote,
+Nick
+
+>
 > 
-> 
-> On 1/29/20 8:49 PM, Mark Hatle wrote:
->> Should this be applied only to the warrior branch?  I don't typically build
->> warrior branch, but I'm happy to accept patches if you can verify it's working
->> properly.
-> 
-> I tried to apply this patch, but unfortunately it's corrupt.  Likely by an
-> exchange server or outlook.
-> 
-> If you can, you can generate a pull request at:
-> 
->   https://github.com/mhatle/meta-openssl102-fips
-> 
-> I prefer mailing list, but I realize sometime employers infrastructure can make
-> email more problematic then it otherwise should be..
-> 
-> --Mark
-> 
->> --Mark
->>
->> On 1/29/20 12:47 PM, Davis, Michael wrote:
->>> Signed-off-by: Michael Davis <michael.davis@essvote.com>
->>> ---
->>> .../openssh/0001-openssh-8.0p1-fips.patch | 18 +++++++++++-------
->>> 1 file changed, 11 insertions(+), 7 deletions(-)
->>>
->>> diff --git a/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.patch
->>> b/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.patch
->>> index 30534c7..5ff4eff 100644
->>> --- a/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.patch
->>> +++ b/recipes-connectivity/openssh/openssh/0001-openssh-8.0p1-fips.patch
->>> @@ -270,10 +270,10 @@ Index: git/readconf.c
->>> ===================================================================
->>> --- git.orig/readconf.c
->>> +++ git/readconf.c
->>> -@@ -2077,17 +2077,18 @@ fill_default_options(Options * options)
->>> - all_mac = mac_alg_list(',');
->>> +@@ -2178,18 +2178,19 @@ fill_default_options(Options * options)
->>> all_kex = kex_alg_list(',');
->>> all_key = sshkey_alg_list(0, 0, 1, ',');
->>> + all_sig = sshkey_alg_list(0, 1, 1, ',');
->>> -#define ASSEMBLE(what, defaults, all) \
->>> +#define ASSEMBLE(what, defaults, fips_defaults, all) \
->>> do { \
->>> @@ -288,11 +288,13 @@ Index: git/readconf.c
->>> - ASSEMBLE(kex_algorithms, KEX_SERVER_KEX, all_kex);
->>> - ASSEMBLE(hostbased_key_types, KEX_DEFAULT_PK_ALG, all_key);
->>> - ASSEMBLE(pubkey_key_types, KEX_DEFAULT_PK_ALG, all_key);
->>> -+ ASSEMBLE(ciphers, KEX_CLIENT_ENCRYPT, KEX_FIPS_ENCRYPT, all_cipher);
->>> -+ ASSEMBLE(macs, KEX_CLIENT_MAC, KEX_FIPS_MAC, all_mac);
->>> -+ ASSEMBLE(kex_algorithms, KEX_CLIENT_KEX, KEX_DEFAULT_KEX_FIPS, all_kex);
->>> +- ASSEMBLE(ca_sign_algorithms, SSH_ALLOWED_CA_SIGALGS, all_sig);
->>> ++ ASSEMBLE(ciphers, KEX_SERVER_ENCRYPT, KEX_FIPS_ENCRYPT, all_cipher);
->>> ++ ASSEMBLE(macs, KEX_SERVER_MAC, KEX_FIPS_MAC, all_mac);
->>> ++ ASSEMBLE(kex_algorithms, KEX_SERVER_KEX, KEX_DEFAULT_KEX_FIPS, all_kex);
->>> + ASSEMBLE(hostbased_key_types, KEX_DEFAULT_PK_ALG, KEX_FIPS_PK_ALG, all_key);
->>> + ASSEMBLE(pubkey_key_types, KEX_DEFAULT_PK_ALG, KEX_FIPS_PK_ALG, all_key);
->>> ++ ASSEMBLE(ca_sign_algorithms, SSH_ALLOWED_CA_SIGALGS, KEX_FIPS_PK_ALG, all_sig);
->>> #undef ASSEMBLE
->>> free(all_cipher);
->>> free(all_mac);
->>> @@ -314,10 +316,10 @@ Index: git/servconf.c
->>> ===================================================================
->>> --- git.orig/servconf.c
->>> +++ git/servconf.c
->>> -@@ -198,17 +198,18 @@ assemble_algorithms(ServerOptions *o)
->>> - all_mac = mac_alg_list(',');
->>> +@@ -209,18 +209,19 @@ assemble_algorithms(ServerOptions *o)
->>> all_kex = kex_alg_list(',');
->>> all_key = sshkey_alg_list(0, 0, 1, ',');
->>> + all_sig = sshkey_alg_list(0, 1, 1, ',');
->>> -#define ASSEMBLE(what, defaults, all) \
->>> +#define ASSEMBLE(what, defaults, fips_defaults, all) \
->>> do { \
->>> @@ -332,12 +334,14 @@ Index: git/servconf.c
->>> - ASSEMBLE(hostkeyalgorithms, KEX_DEFAULT_PK_ALG, all_key);
->>> - ASSEMBLE(hostbased_key_types, KEX_DEFAULT_PK_ALG, all_key);
->>> - ASSEMBLE(pubkey_key_types, KEX_DEFAULT_PK_ALG, all_key);
->>> +- ASSEMBLE(ca_sign_algorithms, SSH_ALLOWED_CA_SIGALGS, all_sig);
->>> + ASSEMBLE(ciphers, KEX_SERVER_ENCRYPT, KEX_FIPS_ENCRYPT, all_cipher);
->>> + ASSEMBLE(macs, KEX_SERVER_MAC, KEX_FIPS_MAC, all_mac);
->>> + ASSEMBLE(kex_algorithms, KEX_SERVER_KEX, KEX_DEFAULT_KEX_FIPS, all_kex);
->>> + ASSEMBLE(hostkeyalgorithms, KEX_DEFAULT_PK_ALG, KEX_FIPS_PK_ALG, all_key);
->>> + ASSEMBLE(hostbased_key_types, KEX_DEFAULT_PK_ALG, KEX_FIPS_PK_ALG, all_key);
->>> + ASSEMBLE(pubkey_key_types, KEX_DEFAULT_PK_ALG, KEX_FIPS_PK_ALG, all_key);
->>> ++ ASSEMBLE(ca_sign_algorithms, SSH_ALLOWED_CA_SIGALGS, KEX_FIPS_PK_ALG, all_sig);
->>> #undef ASSEMBLE
->>> free(all_cipher);
->>> free(all_mac);
->>> -- 
->>> 2.24.1
->>>
->>>
->>> *Disclaimer*
->>>
->>> The information contained in this communication from the sender is confidential.
->>> It is intended solely for use by the recipient and others authorized to receive
->>> it. If you are not the recipient, you are hereby notified that any disclosure,
->>> copying, distribution or taking action in relation of the contents of this
->>> information is strictly prohibited and may be unlawful.
->>>
->>> This email has been scanned for viruses and malware, and may have been
->>> automatically archived by *Mimecast Ltd*, an innovator in Software as a Service
->>> (SaaS) for business. Providing a *safer* and *more useful* place for your human
->>> generated data. Specializing in; Security, archiving and compliance. To find out
->>> more Click Here <http://www.mimecast.com/products/>.
->>>
->>>
->>>
->>>
->>>
->>>
->>>
->>> 
+
+
+--------------3D4F6177DF24ECF42C773631
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <br>
+    <br>
+    <div class="moz-cite-prefix">On 1/31/20 4:04 PM, Richard Purdie
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:8e70536cc06e573ce63f4ac7341545118e62c113.camel@linuxfoundation.org">
+      <pre class="moz-quote-pre" wrap="">I'm sorry to have to pass on the sad news that Scott Rifenbark, our
+tech writer for the project passed away on Wednesday after a battle
+with cancer.
+
+I remember interviewing Scott over 10 years ago when forming a team at
+Intel to work on what became the Yocto Project, he was with it from the
+start. He warned me he wasn't an entirely traditional tech writer but I
+warned we weren't aiming to be a traditional project either. It was a
+great match. He stayed with the project ever since in one way or
+another, he enjoyed working on the project and we enjoyed working with
+him.
+
+The concept of having a tech writer as part of the team was a decision
+I'm proud of and it shows in the material supporting the project today
+but that success belongs to Scott and his approach to it. Someone else
+put that best, "He would first try the procedure or instructions before
+documenting it, I was really impressed". He was hands on and wanted
+things to be understandable and correct, a huge challenge with some of
+the complexities we deal with.
+
+Outside of the project he had interesting hobbies and travelled quite a
+bit, those stories were good over beer and I have many fond memories.
+
+Our documentation stands in his memory and its fitting some of his
+character will always be in those words.
+
+Scott will be hugely missed by us all.
+
+
+</pre>
+    </blockquote>
+    Richard,<br>
+    <pre class="moz-quote-pre" wrap="">As someone who's been on and off with the project I've always found the documentation was
+some of the best documentation I've ever seen rivaling that of the compiler manuals and 
+wikis for LLVM and GCC in terms of being complete technical documents or the ISA manuals. 
+
+Sorry to hear one if not the major tech writer behind it has passed and I've been spoiled
+by the great documentation or the parts he wrote,
+Nick
+</pre>
+    <blockquote type="cite"
+cite="mid:8e70536cc06e573ce63f4ac7341545118e62c113.camel@linuxfoundation.org">
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------3D4F6177DF24ECF42C773631--
