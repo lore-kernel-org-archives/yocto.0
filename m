@@ -1,75 +1,97 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.1744.1580667045929297041
+ by mx.groups.io with SMTP id smtpd.web12.1867.1580667516286599637
  for <yocto@lists.yoctoproject.org>;
- Sun, 02 Feb 2020 10:10:51 -0800
+ Sun, 02 Feb 2020 10:18:37 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@stusta.de header.s=default header.b=ETPnpY1/;
- spf=neutral (domain: stusta.de, ip: 140.211.169.56, mailfrom: bunk@stusta.de)
+ dkim=missing; spf=none, err=permanent DNS error (domain: balister.org, ip: 140.211.169.56, mailfrom: philip@balister.org)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8C980E0164F; Sun,  2 Feb 2020 10:10:45 -0800 (PST)
+	id B4095E01690; Sun,  2 Feb 2020 10:18:35 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [141.84.69.5 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 938CDE00726
-	for <yocto@yoctoproject.org>; Sun,  2 Feb 2020 10:10:42 -0800 (PST)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 489fC24qQ8z4R;
-	Sun,  2 Feb 2020 19:10:38 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
-	s=default; t=1580667039;
-	bh=wM8rtAJlG6So5bcEDCq5iiYg9j3pL3RsAZi2cZzXCsk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ETPnpY1/FZsNRHQz1qljF0kamJZVzuguTWUj8XCVmz7W7wqso6roQw9tSS8Rp48qZ
-	 CQ9UELsd9ZwJSrzsFmxCWtG6UlP/6B/gjNQHW34V6h/8yBSuH75YvyP2fyauFwSWHj
-	 LmSFuUi+1Df1e34hbBgHl0Hm4crxESDO0lLElPFcrDIb9W590g6lvHIyQ6rPsmq/7L
-	 GiS+ep77tw0TYnHpJvBN5jeYzhQx/grP1ft0MSXOVVsZRRb9PpjBmHjGiLRhokg9RW
-	 Fd2jnfoKh5QrxfuPmV7arvCwTTveNRwyRGoPiQweAykKGC39OmF/poTrr41yfubpfW
-	 IFHOSEA6ZFRULsi5yHKHaoxoWx5J3o1NGnhnpsWKpNEMLLTG7zBOxiBJdca2ALNQIz
-	 porXE4m3VvxteFCx2vHP4KPcSHUGiZ/BgEBHUYIrGXtMbvVArJ9K54P83q/wgIv7Qu
-	 U2ZdAPvbYG/XtaUrOyU0byKwnzU5l+kcr6A6s9D0GrchDlrtvtZ/L8df//YEiK6X/o
-	 WfsjIJPijaUVu6EWiknHuplhYopvCMp7z3FXWEPHOUPN5y/udq4SMVMCCOGmnJUt5q
-	 i6TWf+t8qxPYfAyLSze4cFoTLy/3+qcAIddZiP8ytPzMKfoF7QtVeMnTsT1D9Jd0aJ
-	 PjN6k7tDZIwvHAFRtC4KDZw0=
-Date: Sun, 2 Feb 2020 20:10:36 +0200
-From: "Adrian Bunk" <bunk@stusta.de>
-To: Ross Burton <ross@burtonini.com>
-Cc: Stephen Jolley <sjolley.yp.pm@gmail.com>, yocto@yoctoproject.org
+	*      [216.168.135.166 listed in list.dnswl.org]
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F5A2E0049C
+	for <yocto@yoctoproject.org>; Sun,  2 Feb 2020 10:18:33 -0800 (PST)
+Received: (qmail 378 invoked by uid 1003); 2 Feb 2020 18:17:04 -0000
+Received: from unknown (HELO ?192.168.0.219?) (philip@opensdr.com@85.28.110.72)
+  by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP; 2 Feb 2020 18:17:04 -0000
 Subject: Re: [yocto] Yocto Project Status WW04'20
-Message-ID: <20200202181036.GB6805@localhost>
+To: Adrian Bunk <bunk@stusta.de>, Stephen Jolley <sjolley.yp.pm@gmail.com>
+Cc: yocto@yoctoproject.org
 References: <086201d5d5f4$307b2150$917163f0$@gmail.com>
  <20200202132840.GA6805@localhost>
- <CAAnfSTvkfE-e6EqoX7gzQ5QqOHzd81xZLQOV7+8cSo9GyVAWBQ@mail.gmail.com>
+From: "Philip Balister" <philip@balister.org>
+Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
+ mQENBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+ HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+ rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+ 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+ fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+ AAG0JVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz6JAT4EEwECACgCGyMG
+ CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
+ nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
+ 3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
+ YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
+ 3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
+ yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4Yxi5AQ0ETo83gQEIAPs+ZC0R
+ gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
+ GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
+ uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
+ LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
+ gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAYkBJQQYAQIADwIbDAUC
+ WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
+ 1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
+ ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
+ icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
+ ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
+ 6eUfr0u7CwnEyqiQ
+Message-ID: <e951c71c-1fa3-faa7-80af-27c965210161@balister.org>
+Date: Sun, 2 Feb 2020 19:18:27 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-In-Reply-To: <CAAnfSTvkfE-e6EqoX7gzQ5QqOHzd81xZLQOV7+8cSo9GyVAWBQ@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200202132840.GA6805@localhost>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-On Sun, Feb 02, 2020 at 03:16:24PM +0000, Ross Burton wrote:
-> On Sun, 2 Feb 2020 at 13:35, Adrian Bunk <bunk@stusta.de> wrote:
-> > Would it be possible to also create a yocto-devel or yocto-core
-> > mailing list for discussing development of Yocto?
+On 2/2/20 2:28 PM, Adrian Bunk wrote:
+> On Tue, Jan 28, 2020 at 08:01:23AM -0800, Stephen Jolley wrote:
+>> ...
+>> *	We have created a "documentation" list and a "licensing" list on the
+>> yocto project mailing list infrastructure. We believe these topics would
+>> benefit from dedicated discussions, the people involved usually aren't
+>> interested in bulk email as would be found on other lists. The new lists can
+>> be found at:  <https://lists.yoctoproject.org/g/licensing/join>
+>> https://lists.yoctoproject.org/g/licensing/join and
+>> <https://lists.yoctoproject.org/g/docs/join>
+>> https://lists.yoctoproject.org/g/docs/join 
+>> ...
 > 
-> What would it cover that isn't already covered in other lists?
+> Would it be possible to also create a yocto-devel or yocto-core
+> mailing list for discussing development of Yocto?
+> 
+> Currently the yocto list is a mixture of core development list and forum 
+> for newbie user questions, with no easy way to have them separate.
 
-It would be easier to follow only development discussions if these 
-would move to a dedicated list.
+We have openembedded-architecture for this.
 
-> Ross
+http://lists.openembedded.org/mailman/listinfo/openembedded-architecture
 
-cu
-Adrian
+Philip
+
+> 
+> Thanks
+> Adrian
+> 
+> 
+> 
+> 
