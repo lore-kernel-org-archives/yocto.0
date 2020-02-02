@@ -1,73 +1,69 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.11211.1580656597676669321
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+ by mx.groups.io with SMTP id smtpd.web10.592.1580661636838174102
  for <yocto@lists.yoctoproject.org>;
- Sun, 02 Feb 2020 07:16:37 -0800
+ Sun, 02 Feb 2020 08:40:36 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=PGs62GA9;
- spf=none, err=permanent DNS error (domain: burtonini.com, ip: 140.211.169.56, mailfrom: ross@burtonini.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 353CDE014DA; Sun,  2 Feb 2020 07:16:37 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.208.176 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56444E00C29
-	for <yocto@yoctoproject.org>; Sun,  2 Feb 2020 07:16:36 -0800 (PST)
-Received: by mail-lj1-f176.google.com with SMTP id d10so11945917ljl.9
-        for <yocto@yoctoproject.org>; Sun, 02 Feb 2020 07:16:36 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=OWbRR313;
+ spf=pass (domain: gmail.com, ip: 209.85.210.173, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f173.google.com with SMTP id p14so6237335pfn.4
+        for <yocto@lists.yoctoproject.org>; Sun, 02 Feb 2020 08:40:36 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5Lda976lZsNsu/cceyXosaCgaGeAKHNcc3Y4ERhCAog=;
-        b=PGs62GA9wISivIj6EvVcDyaTuH12WvHZbjojUahUClboXZ/pPN+kijYHt7N1kL2Ad1
-         k0HGvwYCg+2ivGjIvSWWP0uTe+cWlt7SYTwm+h4UF4EWTxnbvL3BE9TYgPSaAmvQrg2e
-         kfHLaTSIZJkmuRutaJAoPfvVCqHw9LwvfEIrlUU1sEfiZbnAQgBcLHari1ORcrOQv5LW
-         m2Q1G9CS6App5MedfEfpou44TQozsxfAlqB5vraa0XKtG+mB5Ck4bu61WPWyNb5736rf
-         F7LypTl9PJxYBNMvQgQRl0PqRP6HWNImptI7l1kXzGruTXzmRHcCrJnSQrSndj77GuGR
-         dt7Q==
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id;
+        bh=NZulmRvFueyrJATkOqCkCYdL/2DmmKtgwwEKyqeMSkw=;
+        b=OWbRR3130BM1TTXUs8AEWZ1PosBd/uAt7APViU66y4DKzOcROWqIFWedW1kpcM3zy5
+         RTzLdrxBmdZX7zpKIrM41f+5ctnbk1lC7Oky/p3td0bwn7B+AYQfPfk4DvcbYHL+NUOg
+         saWa9z7KvXlxaJ15vZ+LHxcO3w1zzliSpVc3UhpIxj7sg1koi3yZORCTSpMDb4vU5gw+
+         2hBwBmCMcYbwwbXc9jmjk3jx4SXgpiAjMcsYNKv7SzWMghY/WJb2P8/u+BLfSp8kJm4H
+         /1lNwbsaYZaRDcmCgnT/Y0mTx8OkfAcaLCSC3ig18eUBKLx1n98OwKoEi1YXRfHgN6ij
+         lqwg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5Lda976lZsNsu/cceyXosaCgaGeAKHNcc3Y4ERhCAog=;
-        b=YKLtItFAUrofyXVJFVrK5bSTNBnFWyrcdVCX99J2+EbG9A2dE4fXXwRkqn5De1pV71
-         C42LlxrZOEPOH3sYa9fe80a0KrVk9Min26F9Cpubba67spZce/qf9JeW4XM4QpxXz4w7
-         3c8Er0zr31Ds35JBhSFP+9ttpKcgPphkwTMCMGdJrAAD+bpRIqGBHv/zbDXPpINFB1rA
-         M1jxSqtjlQC3LLOE3eKwCUocYEkeCkN9PPvFXbG7UpUSoGQxoYSFo+PH1QXx0UhTvXs+
-         ivJSssdYR5oKpeMquGRbD6MW0SeixkHJTaP1RBPy2OI0jXTCJZfYDW/OpBpfnhoxvrrG
-         dpMA==
-X-Gm-Message-State: APjAAAUNrkI620R/bT3a/WC9BNU6N8QHycRuky9th4+Sd7ka4vBF8YDK
-	1ElSCU1n42eSYvM3B+06Fq+E1hNiiUvcev9YcvsSfw==
-X-Google-Smtp-Source: APXvYqwg5SK4LLhggByx4feZJdVO36bl5eiR3EMFkUIid1MlqELDcHRos51GuiOk6Z9UqjeTKCbAp2HiAXNSBWhE3AU=
-X-Received: by 2002:a05:651c:327:: with SMTP id b7mr10482154ljp.22.1580656595182;
- Sun, 02 Feb 2020 07:16:35 -0800 (PST)
-MIME-Version: 1.0
-References: <086201d5d5f4$307b2150$917163f0$@gmail.com> <20200202132840.GA6805@localhost>
-In-Reply-To: <20200202132840.GA6805@localhost>
-From: "Ross Burton" <ross@burtonini.com>
-Date: Sun, 2 Feb 2020 15:16:24 +0000
-Message-ID: <CAAnfSTvkfE-e6EqoX7gzQ5QqOHzd81xZLQOV7+8cSo9GyVAWBQ@mail.gmail.com>
-Subject: Re: [yocto] Yocto Project Status WW04'20
-To: Adrian Bunk <bunk@stusta.de>
-Cc: Stephen Jolley <sjolley.yp.pm@gmail.com>, yocto@yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=NZulmRvFueyrJATkOqCkCYdL/2DmmKtgwwEKyqeMSkw=;
+        b=UgQBWdTM8yBqA/CTTnATwBmZvbV9camwpDssp6y/Pwo2PK5I2tTTzwP6hJYRyHim4K
+         KaoNftE2Kl4c0tewp3TSwz24o8auEGwiddGnLy0cUD/QAuhiNRQsMx46dF65hGV8SSWV
+         LN68HL+dBqFOaVaXoI8hJWeGJXEoYZc8jHWrvh9joRiBCe2FUCd4bwkP7m+23mCIgYR6
+         wj3drIJuEllw4V4zfjaFyxMVyRNtQUsShY7oAuBtKHlAZt2vNlBXT3QbKznca5ZpVuS8
+         nUW/e6782y9s0Hb5DpObpnILPODpdOwXcZ1M1YnYhfDC7mC6drjPzCwjcFderyuED4tA
+         KDVA==
+X-Gm-Message-State: APjAAAURXiv/D0BSWemjzfQVn1geY6/FQlQa4uY7C2vIWkennJ3hoe0K
+	XzlaGcnoLNHmQyVXAWR4DxZHNJQa
+X-Google-Smtp-Source: APXvYqw1Z0jL4KldLHRhU6kqzLBd+yuCioDGscHWrJbMOu/4P/j+l6rV67Hmb3leiwR4dfvhEufLLA==
+X-Received: by 2002:a62:ac03:: with SMTP id v3mr20427977pfe.17.1580661635966;
+        Sun, 02 Feb 2020 08:40:35 -0800 (PST)
+Return-Path: <akuster808@gmail.com>
+Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net ([2601:202:4180:a5c0::afc])
+        by smtp.gmail.com with ESMTPSA id v4sm18174562pgo.63.2020.02.02.08.40.34
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Feb 2020 08:40:35 -0800 (PST)
+From: "akuster" <akuster808@gmail.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-security][PATCH 1/2] swtpm: fix configure error
+Date: Sun,  2 Feb 2020 08:40:32 -0800
+Message-Id: <20200202164033.14722-1-akuster808@gmail.com>
+X-Mailer: git-send-email 2.17.1
 
-On Sun, 2 Feb 2020 at 13:35, Adrian Bunk <bunk@stusta.de> wrote:
-> Would it be possible to also create a yocto-devel or yocto-core
-> mailing list for discussing development of Yocto?
+checking for whether to build with seccomp profile... configure: error: "Is libseccomp-devel installed? -- could not get cflags for libseccomp"
 
-What would it cover that isn't already covered in other lists?
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ meta-tpm/recipes-tpm/swtpm/swtpm_0.2.0.bb | 1 +
+ 1 file changed, 1 insertion(+)
 
-Ross
+diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm_0.2.0.bb b/meta-tpm/recipes-tpm/swtpm/swtpm_0.2.0.bb
+index f3a53dd..35c77c8 100644
+--- a/meta-tpm/recipes-tpm/swtpm/swtpm_0.2.0.bb
++++ b/meta-tpm/recipes-tpm/swtpm/swtpm_0.2.0.bb
+@@ -31,6 +31,7 @@ PACKAGECONFIG[openssl] = "--with-openssl, --without-openssl, openssl"
+ PACKAGECONFIG[gnutls] = "--with-gnutls, --without-gnutls, gnutls"
+ PACKAGECONFIG[selinux] = "--with-selinux, --without-selinux, libselinux"
+ PACKAGECONFIG[cuse] = "--with-cuse, --without-cuse, fuse"
++PACKAGECONFIG[seccomp] = "--with-seccomp, --without-seccomp, libseccomp"
+ 
+ EXTRA_OECONF += "--with-tss-user=${TSS_USER} --with-tss-group=${TSS_GROUP}"
+ 
+-- 
+2.17.1
+
