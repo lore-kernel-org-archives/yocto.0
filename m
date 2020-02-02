@@ -1,71 +1,75 @@
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
- by mx.groups.io with SMTP id smtpd.web10.593.1580661638339595886
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.1744.1580667045929297041
  for <yocto@lists.yoctoproject.org>;
- Sun, 02 Feb 2020 08:40:38 -0800
+ Sun, 02 Feb 2020 10:10:51 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=nZGVDx3u;
- spf=pass (domain: gmail.com, ip: 209.85.216.43, mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f43.google.com with SMTP id gv17so5293420pjb.1
-        for <yocto@lists.yoctoproject.org>; Sun, 02 Feb 2020 08:40:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id:in-reply-to:references;
-        bh=jG00l89Iyi07jiAaFi0oLL0+/lC8LL5kPRbc9PE+S7k=;
-        b=nZGVDx3uWhKIB2zTehQGDe5Yp5GPwSq6p8pMdCo44OQt2seWQsuIPnDUV0Xcy2hBJe
-         dxx6x8fVlIMZHilgMllyiiSgyt6infFq2KUA0YqALmsLFFv74t6XjfECQoISW3iC9Veh
-         ++UT9I4pbIBa+QRAtKMzEFHp+r56Umc7QkHN5DuYdmwpcSMaG7bBdr/kLnA4vmrK6tDJ
-         Y2wkR1rg5aP7rWkVH+9bvrj1kN79DEB0LUAvQkZMaq6do1LAcWVMHshXuAMACMbO3ZXc
-         5dPSTTWmgkd4dys/yyEgEVYvU2SXBHKBpWFBCSWeIbKE25CtMpbU0zGQICoTWxsbb3tp
-         HBBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
-         :references;
-        bh=jG00l89Iyi07jiAaFi0oLL0+/lC8LL5kPRbc9PE+S7k=;
-        b=fUs9l9hfnq5M7WJa2fvdIkJBtMmDxYxNxTpnD28VuB+VkoBoUwH1bU8TZzvJqzKRGs
-         SRKsN8KED7LwuFI1p2lQclOdG/fcsK9WcoHEZjd5eDkn3qDwhDTnLG19bQyOUwcc0j49
-         XyGJ6pulpBlfPPmHWtMM1K37y1kF/Lerj4luzDVJspVtqqhc5tHLvbD+Z5k/1sqdIfdT
-         KhUtMv04/POX751hDmnre2hxOmHOMynDFGlmZ20Gjrs26m2ixmmQ3G82JLe2pxDJs7bC
-         WgBYx3KM4XKuhToUYIENJr+La7DUFu46gLPlFxInKmyCmKA5euY5LB5doEnJk3kaPZqu
-         +klQ==
-X-Gm-Message-State: APjAAAX7k9YOihiCKo/dyZSLqn/7Bb/ItkbFGW1/bAeGQQiasl084kgw
-	ji5MuKMiGGf0IuWbLxBKiN4FvJva
-X-Google-Smtp-Source: APXvYqzpmSPlevRIlYUfvmOYhPuJzxFaMdtdCjFfky4kqntdyy6kTlbhFWDhuSN1PYHZb8FrdUtvxQ==
-X-Received: by 2002:a17:90a:2486:: with SMTP id i6mr25412641pje.9.1580661636956;
-        Sun, 02 Feb 2020 08:40:36 -0800 (PST)
-Return-Path: <akuster808@gmail.com>
-Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net ([2601:202:4180:a5c0::afc])
-        by smtp.gmail.com with ESMTPSA id v4sm18174562pgo.63.2020.02.02.08.40.36
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Feb 2020 08:40:36 -0800 (PST)
-From: "akuster" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 2/2] ecryptfs-utils: search nspr header files in ${STAGING_INCDIR}/nspr directory
-Date: Sun,  2 Feb 2020 08:40:33 -0800
-Message-Id: <20200202164033.14722-2-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200202164033.14722-1-akuster808@gmail.com>
-References: <20200202164033.14722-1-akuster808@gmail.com>
+ dkim=pass header.i=@stusta.de header.s=default header.b=ETPnpY1/;
+ spf=neutral (domain: stusta.de, ip: 140.211.169.56, mailfrom: bunk@stusta.de)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 8C980E0164F; Sun,  2 Feb 2020 10:10:45 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
+	*      trust
+	*      [141.84.69.5 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 938CDE00726
+	for <yocto@yoctoproject.org>; Sun,  2 Feb 2020 10:10:42 -0800 (PST)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 489fC24qQ8z4R;
+	Sun,  2 Feb 2020 19:10:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
+	s=default; t=1580667039;
+	bh=wM8rtAJlG6So5bcEDCq5iiYg9j3pL3RsAZi2cZzXCsk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ETPnpY1/FZsNRHQz1qljF0kamJZVzuguTWUj8XCVmz7W7wqso6roQw9tSS8Rp48qZ
+	 CQ9UELsd9ZwJSrzsFmxCWtG6UlP/6B/gjNQHW34V6h/8yBSuH75YvyP2fyauFwSWHj
+	 LmSFuUi+1Df1e34hbBgHl0Hm4crxESDO0lLElPFcrDIb9W590g6lvHIyQ6rPsmq/7L
+	 GiS+ep77tw0TYnHpJvBN5jeYzhQx/grP1ft0MSXOVVsZRRb9PpjBmHjGiLRhokg9RW
+	 Fd2jnfoKh5QrxfuPmV7arvCwTTveNRwyRGoPiQweAykKGC39OmF/poTrr41yfubpfW
+	 IFHOSEA6ZFRULsi5yHKHaoxoWx5J3o1NGnhnpsWKpNEMLLTG7zBOxiBJdca2ALNQIz
+	 porXE4m3VvxteFCx2vHP4KPcSHUGiZ/BgEBHUYIrGXtMbvVArJ9K54P83q/wgIv7Qu
+	 U2ZdAPvbYG/XtaUrOyU0byKwnzU5l+kcr6A6s9D0GrchDlrtvtZ/L8df//YEiK6X/o
+	 WfsjIJPijaUVu6EWiknHuplhYopvCMp7z3FXWEPHOUPN5y/udq4SMVMCCOGmnJUt5q
+	 i6TWf+t8qxPYfAyLSze4cFoTLy/3+qcAIddZiP8ytPzMKfoF7QtVeMnTsT1D9Jd0aJ
+	 PjN6k7tDZIwvHAFRtC4KDZw0=
+Date: Sun, 2 Feb 2020 20:10:36 +0200
+From: "Adrian Bunk" <bunk@stusta.de>
+To: Ross Burton <ross@burtonini.com>
+Cc: Stephen Jolley <sjolley.yp.pm@gmail.com>, yocto@yoctoproject.org
+Subject: Re: [yocto] Yocto Project Status WW04'20
+Message-ID: <20200202181036.GB6805@localhost>
+References: <086201d5d5f4$307b2150$917163f0$@gmail.com>
+ <20200202132840.GA6805@localhost>
+ <CAAnfSTvkfE-e6EqoX7gzQ5QqOHzd81xZLQOV7+8cSo9GyVAWBQ@mail.gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <CAAnfSTvkfE-e6EqoX7gzQ5QqOHzd81xZLQOV7+8cSo9GyVAWBQ@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Sun, Feb 02, 2020 at 03:16:24PM +0000, Ross Burton wrote:
+> On Sun, 2 Feb 2020 at 13:35, Adrian Bunk <bunk@stusta.de> wrote:
+> > Would it be possible to also create a yocto-devel or yocto-core
+> > mailing list for discussing development of Yocto?
+> 
+> What would it cover that isn't already covered in other lists?
 
-diff --git a/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
-index e45ee0b..d8cd06f 100644
---- a/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
-+++ b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
-@@ -41,7 +41,7 @@ PACKAGECONFIG[nss] = "--enable-nss,--disable-nss,nss,"
- PACKAGECONFIG[pam] = "--enable-pam,--disable-pam,libpam,"
- 
- do_configure_prepend() {
--    export NSS_CFLAGS="-I${STAGING_INCDIR}/nspr4 -I${STAGING_INCDIR}/nss3"
-+    export NSS_CFLAGS="-I${STAGING_INCDIR}/nspr -I${STAGING_INCDIR}/nss3"
-     export NSS_LIBS="-L${STAGING_BASELIBDIR} -lssl3 -lsmime3 -lnss3 -lsoftokn3 -lnssutil3"
-     export KEYUTILS_CFLAGS="-I${STAGING_INCDIR}"
-     export KEYUTILS_LIBS="-L${STAGING_LIBDIR} -lkeyutils"
--- 
-2.17.1
+It would be easier to follow only development discussions if these 
+would move to a dedicated list.
 
+> Ross
+
+cu
+Adrian
