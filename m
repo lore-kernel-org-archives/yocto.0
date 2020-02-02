@@ -1,69 +1,71 @@
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
- by mx.groups.io with SMTP id smtpd.web10.592.1580661636838174102
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+ by mx.groups.io with SMTP id smtpd.web10.593.1580661638339595886
  for <yocto@lists.yoctoproject.org>;
- Sun, 02 Feb 2020 08:40:36 -0800
+ Sun, 02 Feb 2020 08:40:38 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=OWbRR313;
- spf=pass (domain: gmail.com, ip: 209.85.210.173, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f173.google.com with SMTP id p14so6237335pfn.4
-        for <yocto@lists.yoctoproject.org>; Sun, 02 Feb 2020 08:40:36 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=nZGVDx3u;
+ spf=pass (domain: gmail.com, ip: 209.85.216.43, mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f43.google.com with SMTP id gv17so5293420pjb.1
+        for <yocto@lists.yoctoproject.org>; Sun, 02 Feb 2020 08:40:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id;
-        bh=NZulmRvFueyrJATkOqCkCYdL/2DmmKtgwwEKyqeMSkw=;
-        b=OWbRR3130BM1TTXUs8AEWZ1PosBd/uAt7APViU66y4DKzOcROWqIFWedW1kpcM3zy5
-         RTzLdrxBmdZX7zpKIrM41f+5ctnbk1lC7Oky/p3td0bwn7B+AYQfPfk4DvcbYHL+NUOg
-         saWa9z7KvXlxaJ15vZ+LHxcO3w1zzliSpVc3UhpIxj7sg1koi3yZORCTSpMDb4vU5gw+
-         2hBwBmCMcYbwwbXc9jmjk3jx4SXgpiAjMcsYNKv7SzWMghY/WJb2P8/u+BLfSp8kJm4H
-         /1lNwbsaYZaRDcmCgnT/Y0mTx8OkfAcaLCSC3ig18eUBKLx1n98OwKoEi1YXRfHgN6ij
-         lqwg==
+        h=from:to:subject:date:message-id:in-reply-to:references;
+        bh=jG00l89Iyi07jiAaFi0oLL0+/lC8LL5kPRbc9PE+S7k=;
+        b=nZGVDx3uWhKIB2zTehQGDe5Yp5GPwSq6p8pMdCo44OQt2seWQsuIPnDUV0Xcy2hBJe
+         dxx6x8fVlIMZHilgMllyiiSgyt6infFq2KUA0YqALmsLFFv74t6XjfECQoISW3iC9Veh
+         ++UT9I4pbIBa+QRAtKMzEFHp+r56Umc7QkHN5DuYdmwpcSMaG7bBdr/kLnA4vmrK6tDJ
+         Y2wkR1rg5aP7rWkVH+9bvrj1kN79DEB0LUAvQkZMaq6do1LAcWVMHshXuAMACMbO3ZXc
+         5dPSTTWmgkd4dys/yyEgEVYvU2SXBHKBpWFBCSWeIbKE25CtMpbU0zGQICoTWxsbb3tp
+         HBBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=NZulmRvFueyrJATkOqCkCYdL/2DmmKtgwwEKyqeMSkw=;
-        b=UgQBWdTM8yBqA/CTTnATwBmZvbV9camwpDssp6y/Pwo2PK5I2tTTzwP6hJYRyHim4K
-         KaoNftE2Kl4c0tewp3TSwz24o8auEGwiddGnLy0cUD/QAuhiNRQsMx46dF65hGV8SSWV
-         LN68HL+dBqFOaVaXoI8hJWeGJXEoYZc8jHWrvh9joRiBCe2FUCd4bwkP7m+23mCIgYR6
-         wj3drIJuEllw4V4zfjaFyxMVyRNtQUsShY7oAuBtKHlAZt2vNlBXT3QbKznca5ZpVuS8
-         nUW/e6782y9s0Hb5DpObpnILPODpdOwXcZ1M1YnYhfDC7mC6drjPzCwjcFderyuED4tA
-         KDVA==
-X-Gm-Message-State: APjAAAURXiv/D0BSWemjzfQVn1geY6/FQlQa4uY7C2vIWkennJ3hoe0K
-	XzlaGcnoLNHmQyVXAWR4DxZHNJQa
-X-Google-Smtp-Source: APXvYqw1Z0jL4KldLHRhU6kqzLBd+yuCioDGscHWrJbMOu/4P/j+l6rV67Hmb3leiwR4dfvhEufLLA==
-X-Received: by 2002:a62:ac03:: with SMTP id v3mr20427977pfe.17.1580661635966;
-        Sun, 02 Feb 2020 08:40:35 -0800 (PST)
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references;
+        bh=jG00l89Iyi07jiAaFi0oLL0+/lC8LL5kPRbc9PE+S7k=;
+        b=fUs9l9hfnq5M7WJa2fvdIkJBtMmDxYxNxTpnD28VuB+VkoBoUwH1bU8TZzvJqzKRGs
+         SRKsN8KED7LwuFI1p2lQclOdG/fcsK9WcoHEZjd5eDkn3qDwhDTnLG19bQyOUwcc0j49
+         XyGJ6pulpBlfPPmHWtMM1K37y1kF/Lerj4luzDVJspVtqqhc5tHLvbD+Z5k/1sqdIfdT
+         KhUtMv04/POX751hDmnre2hxOmHOMynDFGlmZ20Gjrs26m2ixmmQ3G82JLe2pxDJs7bC
+         WgBYx3KM4XKuhToUYIENJr+La7DUFu46gLPlFxInKmyCmKA5euY5LB5doEnJk3kaPZqu
+         +klQ==
+X-Gm-Message-State: APjAAAX7k9YOihiCKo/dyZSLqn/7Bb/ItkbFGW1/bAeGQQiasl084kgw
+	ji5MuKMiGGf0IuWbLxBKiN4FvJva
+X-Google-Smtp-Source: APXvYqzpmSPlevRIlYUfvmOYhPuJzxFaMdtdCjFfky4kqntdyy6kTlbhFWDhuSN1PYHZb8FrdUtvxQ==
+X-Received: by 2002:a17:90a:2486:: with SMTP id i6mr25412641pje.9.1580661636956;
+        Sun, 02 Feb 2020 08:40:36 -0800 (PST)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.hsd1.ca.comcast.net ([2601:202:4180:a5c0::afc])
-        by smtp.gmail.com with ESMTPSA id v4sm18174562pgo.63.2020.02.02.08.40.34
+        by smtp.gmail.com with ESMTPSA id v4sm18174562pgo.63.2020.02.02.08.40.36
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Feb 2020 08:40:35 -0800 (PST)
+        Sun, 02 Feb 2020 08:40:36 -0800 (PST)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 1/2] swtpm: fix configure error
-Date: Sun,  2 Feb 2020 08:40:32 -0800
-Message-Id: <20200202164033.14722-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/2] ecryptfs-utils: search nspr header files in ${STAGING_INCDIR}/nspr directory
+Date: Sun,  2 Feb 2020 08:40:33 -0800
+Message-Id: <20200202164033.14722-2-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
-
-checking for whether to build with seccomp profile... configure: error: "Is libseccomp-devel installed? -- could not get cflags for libseccomp"
+In-Reply-To: <20200202164033.14722-1-akuster808@gmail.com>
+References: <20200202164033.14722-1-akuster808@gmail.com>
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- meta-tpm/recipes-tpm/swtpm/swtpm_0.2.0.bb | 1 +
- 1 file changed, 1 insertion(+)
+ recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-tpm/recipes-tpm/swtpm/swtpm_0.2.0.bb b/meta-tpm/recipes-tpm/swtpm/swtpm_0.2.0.bb
-index f3a53dd..35c77c8 100644
---- a/meta-tpm/recipes-tpm/swtpm/swtpm_0.2.0.bb
-+++ b/meta-tpm/recipes-tpm/swtpm/swtpm_0.2.0.bb
-@@ -31,6 +31,7 @@ PACKAGECONFIG[openssl] = "--with-openssl, --without-openssl, openssl"
- PACKAGECONFIG[gnutls] = "--with-gnutls, --without-gnutls, gnutls"
- PACKAGECONFIG[selinux] = "--with-selinux, --without-selinux, libselinux"
- PACKAGECONFIG[cuse] = "--with-cuse, --without-cuse, fuse"
-+PACKAGECONFIG[seccomp] = "--with-seccomp, --without-seccomp, libseccomp"
+diff --git a/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
+index e45ee0b..d8cd06f 100644
+--- a/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
++++ b/recipes-security/ecryptfs-utils/ecryptfs-utils_111.bb
+@@ -41,7 +41,7 @@ PACKAGECONFIG[nss] = "--enable-nss,--disable-nss,nss,"
+ PACKAGECONFIG[pam] = "--enable-pam,--disable-pam,libpam,"
  
- EXTRA_OECONF += "--with-tss-user=${TSS_USER} --with-tss-group=${TSS_GROUP}"
- 
+ do_configure_prepend() {
+-    export NSS_CFLAGS="-I${STAGING_INCDIR}/nspr4 -I${STAGING_INCDIR}/nss3"
++    export NSS_CFLAGS="-I${STAGING_INCDIR}/nspr -I${STAGING_INCDIR}/nss3"
+     export NSS_LIBS="-L${STAGING_BASELIBDIR} -lssl3 -lsmime3 -lnss3 -lsoftokn3 -lnssutil3"
+     export KEYUTILS_CFLAGS="-I${STAGING_INCDIR}"
+     export KEYUTILS_LIBS="-L${STAGING_LIBDIR} -lkeyutils"
 -- 
 2.17.1
 
