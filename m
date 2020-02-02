@@ -1,151 +1,354 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.2750.1580672214941065885
- for <yocto@lists.yoctoproject.org>;
- Sun, 02 Feb 2020 11:36:57 -0800
-Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@rsi-elektrotechnik.de header.s=strato-dkim-0002 header.b=Ywa7Cj0x;
- spf=none, err=permanent DNS error (domain: rsi-elektrotechnik.de, ip: 140.211.169.56, mailfrom: prvs=1301a6a17d=holzmayr@rsi-elektrotechnik.de)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B88BE01691; Sun,  2 Feb 2020 11:36:54 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [85.215.255.21 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de [85.215.255.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87CEBE0164C
-	for <yocto@yoctoproject.org>; Sun,  2 Feb 2020 11:36:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1580672210;
-	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
-	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-	bh=6SVNCjdH4am9Q+Oiq1sueCvkuwjMdpAulxawFjzEU1w=;
-	b=Ywa7Cj0xAbHdAH5CyKlfa81VFboK0Ax99RmrzqADZBASVwucAj61MCFiS2mNbErZnW
-	gPQkN7lRSHM6ELPYVQQYWuPeN+gaKkJ27WYwX900x49K2vG0Ox5kue0pLg32tg5UHqTv
-	RMp0EJ0gceenM3h2K0qcpo70jxMBW0SH5e2A/mNLeDWbbNl6Pvnv22ZnSvR+Sdf8jibd
-	alMKGOB24+XzVqZSVZi/4O+pBdnlAeA0XzdiO19XC6qGzniA15jXEVrbKX1Wco1jO/Ry
-	GjpOw+QbPqDUys73UYj79IRNMJkstpxNw/DmArNPbojUFFLCWmTt9xhH4yMEu7JpK+sG
-	X+6g==
-X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/KqCOd+ZZzzoK8epFp9XQIUl6aPGQL"
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	by smtp.strato.de (RZmta 46.1.12 AUTH)
-	with ESMTPSA id e0837bw12Jao886
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits))
-	(Client did not present a certificate);
-	Sun, 2 Feb 2020 20:36:50 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1580672209; x=1581277009;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
-	Subject:Message-ID:References:MIME-Version:Content-Type:
-	Content-Disposition:Content-Transfer-Encoding:In-Reply-To; bh=6S
-	VNCjdH4am9Q+Oiq1sueCvkuwjMdpAulxawFjzEU1w=; b=v1hjYdfX5XDaZP16qP
-	o9KsQYVgwvJvTpQPfLDzuYhH0frP9eoEDiX3SxD2o0nRfI0ysGTDHD+RhV459pdr
-	F9j7z/gD6lW3hM4H2NGg+NNxE575nl3B0x3tksouiVSDQpkgaJetvppqvOcLxy7R
-	cDNb5H43w6m9LBlqXHDJ3+nus=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v19.5.3) with ESMTPSA id md50000240235.msg; 
-	Sun, 02 Feb 2020 20:36:49 +0100
-X-MDRemoteIP: 178.27.65.232
-X-MDHelo: jholzmayr.localdomain
-X-MDArrival-Date: Sun, 02 Feb 2020 20:36:49 +0100
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=1301a6a17d=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-Date: Sun, 2 Feb 2020 20:36:34 +0100
-From: "Josef Holzmayr" <holzmayr@rsi-elektrotechnik.de>
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: Adrian Bunk <bunk@stusta.de>, Stephen Jolley <sjolley.yp.pm@gmail.com>,
-	yocto@yoctoproject.org
-Subject: Re: [yocto] Yocto Project Status WW04'20
-Message-ID: <20200202193634.herkq2qyngu2olg2@jholzmayr.localdomain>
-References: <086201d5d5f4$307b2150$917163f0$@gmail.com>
- <20200202132840.GA6805@localhost>
- <5FE54648-B93A-4C10-A41B-22593E37625D@gmail.com>
+Subject: KeyError: 'getpwuid(): uid not found: 1000' during package nativesdk-glibc-locale #yocto #raspberrypi
+To: yocto@lists.yoctoproject.org
+From: vstevenpavao@yahoo.com
+X-Originating-Location: Worcester, Massachusetts, US (66.189.114.248)
+X-Originating-Platform: Mac Safari 12.1
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <5FE54648-B93A-4C10-A41B-22593E37625D@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Date: Sun, 02 Feb 2020 15:43:57 -0800
+Message-ID: <Iw4x.1580687037399983441.B3JT@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="zMGyqVL3T8ysocR3mgRL"
+
+--zMGyqVL3T8ysocR3mgRL
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Howdy!
+error packaging nativesdk-glibc-locale when building at head in master toda=
+y:
 
-On Sun, Feb 02, 2020 at 03:09:07PM +0100, Alexander Kanavin wrote:
-> Why separate them? I=E2=80=99d rather have newbies and experts in the sa=
-me room.
+Exception: KeyError: 'getpwuid(): uid not found: 1000'
+ERROR: Logfile of failure stored in: /home/parallels/poky/build/tmp/work/x=
+86_64-nativesdk-pokysdk-linux/nativesdk-glibc-locale/2.31-r0/temp/log.do_pa=
+ckage.32088
+ERROR: Task (virtual:nativesdk:/home/parallels/poky/meta/recipes-core/glib=
+c/glibc-locale_2.31.bb:do_package) failed with exit code '1'
 
-My vote is totally on this too!
+full command result follows:
 
-Greetz.
+parallels@parallels-Parallels-Virtual-Platform:~/poky/build$ bitbake core-=
+image-base -c populate_sdk
+Loading cache: 100% |#####################################################=
+############################################| Time: 0:00:00
+Loaded 3135 entries from dependency cache.
+Parsing recipes: 100% |###################################################=
+############################################| Time: 0:00:00
+Parsing of 2134 .bb files complete (2133 cached, 1 parsed). 3136 targets, =
+140 skipped, 0 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
 
->=20
-> Alex
->=20
-> > On 2 Feb 2020, at 14.28, Adrian Bunk <bunk@stusta.de> wrote:
-> >=20
-> >> On Tue, Jan 28, 2020 at 08:01:23AM -0800, Stephen Jolley wrote:
-> >> ...
-> >> *    We have created a "documentation" list and a "licensing" list on=
- the
-> >> yocto project mailing list infrastructure. We believe these topics wo=
-uld
-> >> benefit from dedicated discussions, the people involved usually aren'=
-t
-> >> interested in bulk email as would be found on other lists. The new li=
-sts can
-> >> be found at:  <https://lists.yoctoproject.org/g/licensing/join>
-> >> https://lists.yoctoproject.org/g/licensing/join and
-> >> <https://lists.yoctoproject.org/g/docs/join>
-> >> https://lists.yoctoproject.org/g/docs/join=20
-> >> ...
-> >=20
-> > Would it be possible to also create a yocto-devel or yocto-core
-> > mailing list for discussing development of Yocto?
-> >=20
-> > Currently the yocto list is a mixture of core development list and for=
-um=20
-> > for newbie user questions, with no easy way to have them separate.
-> >=20
-> > Thanks
-> > Adrian
-> >=20
+Build Configuration:
+BB_VERSION =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "1.44.0"
+BUILD_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "x86_64-linux"
+NATIVELSBSTRING =C2=A0 =C2=A0 =C2=A0=3D "universal"
+TARGET_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "aarch64-poky-linux"
+MACHINE =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "raspberrypi3-=
+64"
+DISTRO =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D "poky"
+DISTRO_VERSION =C2=A0 =C2=A0 =C2=A0 =3D "3.0+snapshot-20200202"
+TUNE_FEATURES =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "aarch64 cortexa53 crc"
+TARGET_FPU =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D ""
+meta
+meta-poky
+meta-yocto-bsp =C2=A0 =C2=A0 =C2=A0 =3D "master:2b9781da7c6d60f8d0ddb36de2=
+666b1ba702f551"
+meta-oe
+meta-multimedia
+meta-networking
+meta-python =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D "master:463f9a3ef0935d77=
+2a0be0437a8c09df64ed2f07"
+meta-raspberrypi =C2=A0 =C2=A0 =3D "master:4801ca3f039f54e6156d761d2a250a8=
+ef9d422eb"
 
->=20
+Initialising tasks: 100% |################################################=
+############################################| Time: 0:00:01
+Sstate summary: Wanted 3 Found 0 Missed 3 Current 1304 (0% match, 99% comp=
+lete)
+NOTE: Executing Tasks
+NOTE: Setscene tasks completed
+WARNING: nativesdk-glibc-locale-2.31-r0 do_package: KeyError in .
+ERROR: nativesdk-glibc-locale-2.31-r0 do_package: Error executing a python=
+ function in exec_python_func() autogenerated:
 
+The stack trace of python calls that resulted in this exception/failure wa=
+s:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+0001:
+*** 0002:sstate_report_unihash(d)
+0003:
+File: '/home/parallels/poky/meta/classes/sstate.bbclass', lineno: 833, fun=
+ction: sstate_report_unihash
+0829: =C2=A0 =C2=A0report_unihash =3D getattr(bb.parse.siggen, 'report_uni=
+hash', None)
+0830:
+0831: =C2=A0 =C2=A0if report_unihash:
+0832: =C2=A0 =C2=A0 =C2=A0 =C2=A0ss =3D sstate_state_fromvars(d)
+*** 0833: =C2=A0 =C2=A0 =C2=A0 =C2=A0report_unihash(os.getcwd(), ss['task'=
+], d)
+0834:}
+0835:
+0836:#
+0837:# Shell function to decompress and prepare a package for installation
+File: '/home/parallels/poky/bitbake/lib/bb/siggen.py', lineno: 512, functi=
+on: report_unihash
+0508:
+0509: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if "." in self.method:
+0510: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0(module, meth=
+od) =3D self.method.rsplit('.', 1)
+0511: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0locs['method'=
+] =3D getattr(importlib.import_module(module), method)
+*** 0512: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0outhash =
+=3D bb.utils.better_eval('method(path, sigfile, task, d)', locs)
+0513: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0else:
+0514: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0outhash =3D b=
+b.utils.better_eval(self.method + '(path, sigfile, task, d)', locs)
+0515:
+0516: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0try:
+File: '/home/parallels/poky/bitbake/lib/bb/utils.py', lineno: 420, functio=
+n: better_eval
+0416: =C2=A0 =C2=A0if extraglobals:
+0417: =C2=A0 =C2=A0 =C2=A0 =C2=A0ctx =3D copy.copy(ctx)
+0418: =C2=A0 =C2=A0 =C2=A0 =C2=A0for g in extraglobals:
+0419: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ctx[g] =3D extraglobals[g]
+*** 0420: =C2=A0 =C2=A0return eval(source, ctx, locals)
+0421:
+0422:@contextmanager
+0423:def fileslocked(files):
+0424: =C2=A0 =C2=A0"""Context manager for locking and unlocking file locks=
+."""
+File: '<string>', lineno: 1, function: <module>
+File "<string>", line 1, in <module>
 
---=20
-=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
-=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
-Josef Holzmayr
-Software Developer Embedded Systems
+File: '/home/parallels/poky/meta/lib/oe/sstatesig.py', lineno: 582, functi=
+on: OEOuthashBasic
+0578:
+0579: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0update_hash("=
+\n")
+0580:
+0581: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0# Process this directory an=
+d all its child files
+*** 0582: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0process(root)
+0583: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0for f in files:
+0584: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if f =3D=3D '=
+fixmepath':
+0585: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0continue
+0586: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0process(os.pa=
+th.join(root, f))
+File: '/home/parallels/poky/meta/lib/oe/sstatesig.py', lineno: 545, functi=
+on: process
+0541: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0add_perm(stat.S_IXOTH, 'x')
+0542:
+0543: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if include_ow=
+ners:
+0544: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0try:
+*** 0545: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0update_hash(" %10s" % pwd.getpwuid(s.st_uid).pw_name)
+0546: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0update_hash(" %10s" % grp.getgrgid(s.st_gid).gr_name)
+0547: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0except KeyError:
+0548: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0bb.warn("KeyError in %s" % path)
+0549: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0raise
+Exception: KeyError: 'getpwuid(): uid not found: 1000'
 
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
+ERROR: Logfile of failure stored in: /home/parallels/poky/build/tmp/work/x=
+86_64-nativesdk-pokysdk-linux/nativesdk-glibc-locale/2.31-r0/temp/log.do_pa=
+ckage.32088
+ERROR: Task (virtual:nativesdk:/home/parallels/poky/meta/recipes-core/glib=
+c/glibc-locale_2.31.bb:do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 3799 tasks of which 3798 didn't need to be =
+rerun and 1 failed.
 
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=
-=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94=E2=80=94
-Amtsgericht Ingolstadt =E2=80=93 GmbH: HRB 191328 =E2=80=93 KG: HRA 170393
-Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548=20
+Summary: 1 task failed:
+virtual:nativesdk:/home/parallels/poky/meta/recipes-core/glibc/glibc-local=
+e_2.31.bb:do_package
+Summary: There was 1 WARNING message shown.
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
 
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Gesch=C3=A4ftsf=C3=BChrer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
+--zMGyqVL3T8ysocR3mgRL
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
+<div>error packaging nativesdk-glibc-locale when building at head in master=
+ today:<br /><br />
+<div>Exception: KeyError: 'getpwuid(): uid not found: 1000'</div>
+<div>ERROR: Logfile of failure stored in: /home/parallels/poky/build/tmp/w=
+ork/x86_64-nativesdk-pokysdk-linux/nativesdk-glibc-locale/2.31-r0/temp/log.=
+do_package.32088</div>
+<div>ERROR: Task (virtual:nativesdk:/home/parallels/poky/meta/recipes-core=
+/glibc/glibc-locale_2.31.bb:do_package) failed with exit code '1'</div>
+<br /><br />full command result follows:<br /><br />parallels@parallels-Pa=
+rallels-Virtual-Platform:~/poky/build$ bitbake core-image-base -c populate_=
+sdk</div>
+<div>Loading cache: 100% |################################################=
+#################################################| Time: 0:00:00</div>
+<div>Loaded 3135 entries from dependency cache.</div>
+<div>Parsing recipes: 100% |##############################################=
+#################################################| Time: 0:00:00</div>
+<div>Parsing of 2134 .bb files complete (2133 cached, 1 parsed). 3136 targ=
+ets, 140 skipped, 0 masked, 0 errors.</div>
+<div>NOTE: Resolving any missing task queue dependencies</div>
+<div>&nbsp;</div>
+<div>Build Configuration:</div>
+<div>BB_VERSION &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =3D "1.44.0"</div>
+<div>BUILD_SYS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D "x86_64-linux"=
+</div>
+<div>NATIVELSBSTRING &nbsp; &nbsp; &nbsp;=3D "universal"</div>
+<div>TARGET_SYS &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =3D "aarch64-poky-linux=
+"</div>
+<div>MACHINE &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D "raspberr=
+ypi3-64"</div>
+<div>DISTRO &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =3D "poky"</d=
+iv>
+<div>DISTRO_VERSION &nbsp; &nbsp; &nbsp; =3D "3.0+snapshot-20200202"</div>
+<div>TUNE_FEATURES &nbsp; &nbsp; &nbsp; &nbsp;=3D "aarch64 cortexa53 crc"<=
+/div>
+<div>TARGET_FPU &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =3D ""</div>
+<div>meta &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</d=
+iv>
+<div>meta-poky &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+<div>meta-yocto-bsp &nbsp; &nbsp; &nbsp; =3D "master:2b9781da7c6d60f8d0ddb=
+36de2666b1ba702f551"</div>
+<div>meta-oe &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+<div>meta-multimedia &nbsp; &nbsp; &nbsp;</div>
+<div>meta-networking &nbsp; &nbsp; &nbsp;</div>
+<div>meta-python &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D "master:463f9a3ef09=
+35d772a0be0437a8c09df64ed2f07"</div>
+<div>meta-raspberrypi &nbsp; &nbsp; =3D "master:4801ca3f039f54e6156d761d2a=
+250a8ef9d422eb"</div>
+<div>&nbsp;</div>
+<div>Initialising tasks: 100% |###########################################=
+#################################################| Time: 0:00:01</div>
+<div>Sstate summary: Wanted 3 Found 0 Missed 3 Current 1304 (0% match, 99%=
+ complete)</div>
+<div>NOTE: Executing Tasks</div>
+<div>NOTE: Setscene tasks completed</div>
+<div>WARNING: nativesdk-glibc-locale-2.31-r0 do_package: KeyError in .</di=
+v>
+<div>ERROR: nativesdk-glibc-locale-2.31-r0 do_package: Error executing a p=
+ython function in exec_python_func() autogenerated:</div>
+<div>&nbsp;</div>
+<div>The stack trace of python calls that resulted in this exception/failu=
+re was:</div>
+<div>File: 'exec_python_func() autogenerated', lineno: 2, function: &lt;mo=
+dule&gt;</div>
+<div>&nbsp; &nbsp; &nbsp;0001:</div>
+<div>&nbsp;*** 0002:sstate_report_unihash(d)</div>
+<div>&nbsp; &nbsp; &nbsp;0003:</div>
+<div>File: '/home/parallels/poky/meta/classes/sstate.bbclass', lineno: 833=
+, function: sstate_report_unihash</div>
+<div>&nbsp; &nbsp; &nbsp;0829: &nbsp; &nbsp;report_unihash =3D getattr(bb.=
+parse.siggen, 'report_unihash', None)</div>
+<div>&nbsp; &nbsp; &nbsp;0830:</div>
+<div>&nbsp; &nbsp; &nbsp;0831: &nbsp; &nbsp;if report_unihash:</div>
+<div>&nbsp; &nbsp; &nbsp;0832: &nbsp; &nbsp; &nbsp; &nbsp;ss =3D sstate_st=
+ate_fromvars(d)</div>
+<div>&nbsp;*** 0833: &nbsp; &nbsp; &nbsp; &nbsp;report_unihash(os.getcwd()=
+, ss['task'], d)</div>
+<div>&nbsp; &nbsp; &nbsp;0834:}</div>
+<div>&nbsp; &nbsp; &nbsp;0835:</div>
+<div>&nbsp; &nbsp; &nbsp;0836:#</div>
+<div>&nbsp; &nbsp; &nbsp;0837:# Shell function to decompress and prepare a=
+ package for installation</div>
+<div>File: '/home/parallels/poky/bitbake/lib/bb/siggen.py', lineno: 512, f=
+unction: report_unihash</div>
+<div>&nbsp; &nbsp; &nbsp;0508:</div>
+<div>&nbsp; &nbsp; &nbsp;0509: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;if=
+ "." in self.method:</div>
+<div>&nbsp; &nbsp; &nbsp;0510: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp;(module, method) =3D self.method.rsplit('.', 1)</div>
+<div>&nbsp; &nbsp; &nbsp;0511: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp;locs['method'] =3D getattr(importlib.import_module(module), met=
+hod)</div>
+<div>&nbsp;*** 0512: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p;outhash =3D bb.utils.better_eval('method(path, sigfile, task, d)', locs)<=
+/div>
+<div>&nbsp; &nbsp; &nbsp;0513: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;el=
+se:</div>
+<div>&nbsp; &nbsp; &nbsp;0514: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp;outhash =3D bb.utils.better_eval(self.method + '(path, sigfile,=
+ task, d)', locs)</div>
+<div>&nbsp; &nbsp; &nbsp;0515:</div>
+<div>&nbsp; &nbsp; &nbsp;0516: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;tr=
+y:</div>
+<div>File: '/home/parallels/poky/bitbake/lib/bb/utils.py', lineno: 420, fu=
+nction: better_eval</div>
+<div>&nbsp; &nbsp; &nbsp;0416: &nbsp; &nbsp;if extraglobals:</div>
+<div>&nbsp; &nbsp; &nbsp;0417: &nbsp; &nbsp; &nbsp; &nbsp;ctx =3D copy.cop=
+y(ctx)</div>
+<div>&nbsp; &nbsp; &nbsp;0418: &nbsp; &nbsp; &nbsp; &nbsp;for g in extragl=
+obals:</div>
+<div>&nbsp; &nbsp; &nbsp;0419: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;ct=
+x[g] =3D extraglobals[g]</div>
+<div>&nbsp;*** 0420: &nbsp; &nbsp;return eval(source, ctx, locals)</div>
+<div>&nbsp; &nbsp; &nbsp;0421:</div>
+<div>&nbsp; &nbsp; &nbsp;0422:@contextmanager</div>
+<div>&nbsp; &nbsp; &nbsp;0423:def fileslocked(files):</div>
+<div>&nbsp; &nbsp; &nbsp;0424: &nbsp; &nbsp;"""Context manager for locking=
+ and unlocking file locks."""</div>
+<div>File: '&lt;string&gt;', lineno: 1, function: &lt;module&gt;</div>
+<div>&nbsp; File "&lt;string&gt;", line 1, in &lt;module&gt;</div>
+<div>&nbsp;</div>
+<div>File: '/home/parallels/poky/meta/lib/oe/sstatesig.py', lineno: 582, f=
+unction: OEOuthashBasic</div>
+<div>&nbsp; &nbsp; &nbsp;0578:</div>
+<div>&nbsp; &nbsp; &nbsp;0579: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp;update_hash("\n")</div>
+<div>&nbsp; &nbsp; &nbsp;0580:</div>
+<div>&nbsp; &nbsp; &nbsp;0581: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;# =
+Process this directory and all its child files</div>
+<div>&nbsp;*** 0582: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;process(root=
+)</div>
+<div>&nbsp; &nbsp; &nbsp;0583: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;fo=
+r f in files:</div>
+<div>&nbsp; &nbsp; &nbsp;0584: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp;if f =3D=3D 'fixmepath':</div>
+<div>&nbsp; &nbsp; &nbsp;0585: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp;continue</div>
+<div>&nbsp; &nbsp; &nbsp;0586: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp;process(os.path.join(root, f))</div>
+<div>File: '/home/parallels/poky/meta/lib/oe/sstatesig.py', lineno: 545, f=
+unction: process</div>
+<div>&nbsp; &nbsp; &nbsp;0541: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp;add_perm(stat.S_IXOTH, 'x')</div>
+<div>&nbsp; &nbsp; &nbsp;0542:</div>
+<div>&nbsp; &nbsp; &nbsp;0543: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp;if include_owners:</div>
+<div>&nbsp; &nbsp; &nbsp;0544: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp;try:</div>
+<div>&nbsp;*** 0545: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbs=
+p; &nbsp; &nbsp; &nbsp; &nbsp;update_hash(" %10s" % pwd.getpwuid(s.st_uid).=
+pw_name)</div>
+<div>&nbsp; &nbsp; &nbsp;0546: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;update_hash(" %10s" % grp.getgrgid(=
+s.st_gid).gr_name)</div>
+<div>&nbsp; &nbsp; &nbsp;0547: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp;except KeyError:</div>
+<div>&nbsp; &nbsp; &nbsp;0548: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;bb.warn("KeyError in %s" % path)</d=
+iv>
+<div>&nbsp; &nbsp; &nbsp;0549: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &=
+nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;raise</div>
+<div>Exception: KeyError: 'getpwuid(): uid not found: 1000'</div>
+<div>&nbsp;</div>
+<div>ERROR: Logfile of failure stored in: /home/parallels/poky/build/tmp/w=
+ork/x86_64-nativesdk-pokysdk-linux/nativesdk-glibc-locale/2.31-r0/temp/log.=
+do_package.32088</div>
+<div>ERROR: Task (virtual:nativesdk:/home/parallels/poky/meta/recipes-core=
+/glibc/glibc-locale_2.31.bb:do_package) failed with exit code '1'</div>
+<div>NOTE: Tasks Summary: Attempted 3799 tasks of which 3798 didn't need t=
+o be rerun and 1 failed.</div>
+<div>&nbsp;</div>
+<div>Summary: 1 task failed:</div>
+<div>&nbsp; virtual:nativesdk:/home/parallels/poky/meta/recipes-core/glibc=
+/glibc-locale_2.31.bb:do_package</div>
+<div>Summary: There was 1 WARNING message shown.</div>
+<div>Summary: There was 1 ERROR message shown, returning a non-zero exit c=
+ode.</div>
+<div>&nbsp;</div>
+
+--zMGyqVL3T8ysocR3mgRL--
