@@ -1,11 +1,11 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.4732.1580763937493412739
+ by mx.groups.io with SMTP id smtpd.web10.3622.1580806319474947581
  for <yocto@lists.yoctoproject.org>;
- Mon, 03 Feb 2020 13:05:37 -0800
+ Tue, 04 Feb 2020 00:52:00 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 140.211.169.56, mailfrom: denis@denix.org)
+ dkim=missing; spf=permerror, err=parse error for token &{10 18 sendgrid.net}: limit exceeded (domain: streamunlimited.com, ip: 140.211.169.56, mailfrom: quentin.schulz@streamunlimited.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 01BD4E0165E; Mon,  3 Feb 2020 13:05:36 -0800 (PST)
+	id B41AAE016A7; Tue,  4 Feb 2020 00:51:58 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -16,80 +16,68 @@ X-Spam-HAM-Report:
 	*      [score: 0.0000]
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
 	*      trust
-	*      [64.68.198.64 listed in list.dnswl.org]
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0CA2E00726
-	for <yocto@yoctoproject.org>; Mon,  3 Feb 2020 13:05:35 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id B03F440B37;
-	Mon,  3 Feb 2020 21:05:34 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id uChKF5BavrGm; Mon,  3 Feb 2020 21:05:34 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id 62B7740A3F;
-	Mon,  3 Feb 2020 21:05:30 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id ADD471743D2; Mon,  3 Feb 2020 16:05:29 -0500 (EST)
-Date: Mon, 3 Feb 2020 16:05:29 -0500
-From: "Denys Dmytriyenko" <denis@denix.org>
-To: akuster <akuster808@gmail.com>
-Cc: Philip Balister <philip@balister.org>, Adrian Bunk <bunk@stusta.de>,
-	Stephen Jolley <sjolley.yp.pm@gmail.com>, yocto@yoctoproject.org
-Subject: Re: [yocto] Yocto Project Status WW04'20
-Message-ID: <20200203210529.GS4735@denix.org>
-References: <086201d5d5f4$307b2150$917163f0$@gmail.com>
- <20200202132840.GA6805@localhost>
- <e951c71c-1fa3-faa7-80af-27c965210161@balister.org>
- <5b2ce739-c2f3-acad-24c2-797a4b63e6c4@gmail.com>
+	*      [213.33.87.16 listed in list.dnswl.org]
+Received: from bsmtp2.bon.at (bsmtp2.bon.at [213.33.87.16])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 888E9E007AE
+	for <yocto@yoctoproject.org>; Tue,  4 Feb 2020 00:51:56 -0800 (PST)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp2.bon.at (Postfix) with ESMTPSA id 48BdjR2rT3z5tlL;
+	Tue,  4 Feb 2020 09:51:55 +0100 (CET)
+Date: Tue, 4 Feb 2020 09:51:54 +0100
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: Ryan Harkin <ryan.harkin@linaro.org>
+Cc: yocto@yoctoproject.org, Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Subject: Re: [yocto] Building and selecting multiple kernel versions
+Message-ID: <20200204085153.6wsex564rtrknfuq@qschulz>
+References: <CAD0U-h+q4k-EywV8XEfZ2nsoHoRQaNyRy77E2kRLuos8dAmNTA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <5b2ce739-c2f3-acad-24c2-797a4b63e6c4@gmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
+In-Reply-To: <CAD0U-h+q4k-EywV8XEfZ2nsoHoRQaNyRy77E2kRLuos8dAmNTA@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Mon, Feb 03, 2020 at 08:16:47AM -0800, akuster wrote:
-> 
-> 
-> On 2/2/20 10:18 AM, Philip Balister wrote:
-> > On 2/2/20 2:28 PM, Adrian Bunk wrote:
-> >> On Tue, Jan 28, 2020 at 08:01:23AM -0800, Stephen Jolley wrote:
-> >>> ...
-> >>> *	We have created a "documentation" list and a "licensing" list on the
-> >>> yocto project mailing list infrastructure. We believe these topics would
-> >>> benefit from dedicated discussions, the people involved usually aren't
-> >>> interested in bulk email as would be found on other lists. The new lists can
-> >>> be found at:  <https://lists.yoctoproject.org/g/licensing/join>
-> >>> https://lists.yoctoproject.org/g/licensing/join and
-> >>> <https://lists.yoctoproject.org/g/docs/join>
-> >>> https://lists.yoctoproject.org/g/docs/join 
-> >>> ...
-> >> Would it be possible to also create a yocto-devel or yocto-core
-> >> mailing list for discussing development of Yocto?
-> >>
-> >> Currently the yocto list is a mixture of core development list and forum 
-> >> for newbie user questions, with no easy way to have them separate.
-> > We have openembedded-architecture for this.
-> >
-> > http://lists.openembedded.org/mailman/listinfo/openembedded-architecture
-> 
-> Also openembedded-core
+Hi Ryan,
 
-Also openembedded-devel
-
-> > Philip
-> >
-> >> Thanks
-> >> Adrian
-> >>
-> >>
-> >>
-> >>
-> >>
-> >> 
+On Mon, Feb 03, 2020 at 05:34:23PM +0000, Ryan Harkin wrote:
+> Hello all,
+> 
+> I'm looking for advice on how to support multiple kernel versions in my
+> distro with minimal changes, and minimal disruption to my users.
+> 
+> Some background:
+> 
+> I have a legacy Sumo based distro with an image config, and a machine
+> config, with the machine using a 4.9 kernel. Last year, I upgraded
+> everything to Warrior, and moved to a 4.19 kernel.
+> 
+> Some of my users who are migrating from Sumo, wish to keep their 4.9
+> kernel. So I'm trying to work out how to handle this in the simplest way.
+> 
+> I know that I can add a 4.9 recipes to my Warrior branches, set
+> PREFERRED_VERSION in my distro.conf. But I don't want to change the default
+> preferred version globally. And I don't really want users to update the
+> distro.conf. Ideally, they should be able to take what I give them and
+> "just" build it to get a 4.9 or 4.19 variant.
 > 
 
+You can make two machine configuration files. One with
+PREFERRED_VERSION_virtual/kernel = "4.9%" and the other with 4.19.
+
+They pick the correct machine when building, they should expect the
+correct kernel in output. Only applies to images built for this machine
+so I guess that's what you're looking for?
+
+> Ideally, I don't want to *have* to build both kernels and then create two
+> images. I expect that will cause confusion and lead to people flashing the
+> wrong images. So I'd prefer it to be either/or. Of course, I have to test
+> all of this, so I want to be able to build both variants in CI, which makes
+> editing distro.conf even more  unattractive.
 > 
 
+Same image (POV of bitbake <image>) but different machines, does that
+match your requirements?
+
+FWIW, you can pass MACHINE= to the command line just before bitbake
+<image> making it rather obvious which machine they pick.
+
+Quentin
