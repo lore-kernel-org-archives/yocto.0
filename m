@@ -1,228 +1,196 @@
-Received: from Mail1.woodward.com (Mail1.woodward.com [216.17.208.201])
- by mx.groups.io with SMTP id smtpd.web09.1304.1580922071920584558
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+ by mx.groups.io with SMTP id smtpd.web12.1501.1580922525898293150
  for <yocto@lists.yoctoproject.org>;
- Wed, 05 Feb 2020 09:01:12 -0800
+ Wed, 05 Feb 2020 09:08:46 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@woodward.com header.s=20190114woodward header.b=jG+ccxhY;
- spf=pass (domain: woodward.com, ip: 216.17.208.201, mailfrom: georgi.georgiev@woodward.com)
-Received: from pps.filterd (CoCo-PMSGA1.woodward.com [127.0.0.1])
-	by CoCo-PMSGA1.woodward.com (8.16.0.42/8.16.0.42) with SMTP id 015H0V5l017606;
-	Wed, 5 Feb 2020 11:01:10 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=woodward.com; h=from : to : subject
- : date : message-id : content-transfer-encoding : mime-version :
- content-type; s=20190114Woodward;
- bh=pyncpxMd6+sT8QQElTftL1MC6CMJDXTmr8aqhrD/7m0=;
- b=jG+ccxhYr62joRm3960+mf2Chsdj8pz+Qb0T/Gdct8jbnbfPRCa+5/odOhaBwQfUzVn/
- w/MePxmN9bPqJXITKKNgsyGjpa6znGwVPSyTRbtRJI91cLhCc0p3aVD9VXXkgldJy2aK
- 3gFq7gKXV64035GRs/37Z9q/WxZAMpWODH+MqdKhXtH12HyL4JRb7rihaHnTCQvhnybV
- otVWjnzKNc+kMd9Ht9Ty2w9Tmx5tULvXkSBVCY1jORPlBUAFy8jw6t/nuibdFnbOCUrn
- v03/HjZHleak+xaABooFtfhlD1LAFRpsYEZD/VKpo8izwuCcisMNqcOtp3cz/oNuQ/Ic NQ== 
-Received: from coil-exmb2.woodward.com ([10.51.100.65])
-	by CoCo-PMSGA1.woodward.com with ESMTP id 2y01n4g0f6-8
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-	Wed, 05 Feb 2020 11:01:10 -0600
-Received: from Kemp-ExMb1.woodward.com (10.25.100.72) by
- COIL-ExMb2.woodward.com (10.51.100.65) with Microsoft SMTP Server (TLS) id
- 15.0.1473.3; Wed, 5 Feb 2020 10:57:20 -0600
-Received: from Kemp-ExMb1.woodward.com (10.25.100.72) by
- Kemp-ExMb1.woodward.com (10.25.100.72) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 5 Feb 2020 17:57:19 +0100
-Received: from Kemp-ExMb1.woodward.com ([10.25.100.72]) by
- Kemp-ExMb1.woodward.com ([10.25.100.72]) with mapi id 15.00.1395.000; Wed, 5
- Feb 2020 17:57:19 +0100
-From: "Georgi Georgiev" <georgi.georgiev@woodward.com>
-To: Georgi Georgiev <Georgi.Georgiev@woodward.com>,
-        Khem Raj
-	<raj.khem@gmail.com>,
-        "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failures with offline/online svn build! #yocto #python
-Thread-Topic: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failures
- with offline/online svn build! #yocto #python
-Thread-Index: AdXcRVMItAsS96VjQ36fsMtuKM+vJg==
-Date: Wed, 5 Feb 2020 16:57:19 +0000
-Message-ID: <cf960710cd754ec4aabd6828fa03f3a0@Kemp-ExMb1.woodward.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-version: 11.1.100.23
-dlp-reaction: no-action
-dlp-product: dlpe-windows
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.138.108.100]
+ dkim=pass header.i=@linaro.org header.s=google header.b=vbxdXOOw;
+ spf=pass (domain: linaro.org, ip: 209.85.222.170, mailfrom: ryan.harkin@linaro.org)
+Received: by mail-qk1-f170.google.com with SMTP id w25so2566143qki.3
+        for <yocto@lists.yoctoproject.org>; Wed, 05 Feb 2020 09:08:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=b3tr36j17PoqafsmFNP8sBsyx5T7pf4hREBW/7XbGFs=;
+        b=vbxdXOOw8ZzOhFLOdTCd8+4StlyLw1ODL+023Hkz4cmGawdmjVptIO3BDjNscO+2JJ
+         No3RPTQlpp1f5vpGRq5nfrlz247dNA/k8zQhs0EGw+6SLmm85MDxHxYqf5cn6DAFgivJ
+         T41TZ50E2bXwBiyZGbAc2iu/rSLOCGKk+PekRbKomuCWJ+2Nai5uaOW8qbrzgSKsvefN
+         u1mDrQv8Y2zQx8qYo9I3iUOxtcVMEFl5LclrZYC9a4VI4Xqv0nF4zPkOkmE+Jkh2r3f5
+         EMd5ONljhDZJ6pQUHs2hDguumQCInAfat8jOutlSUYuCIYIeHNyL34KRsnwIZlZTcObC
+         th1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=b3tr36j17PoqafsmFNP8sBsyx5T7pf4hREBW/7XbGFs=;
+        b=OiIo000LR/YzqbbJjQV3l5N0yL7vimoIQz0lhb1tR3OI7Wq3maMr8/lzlPDTjSIfYG
+         mzuP9dObAltd6PzOLPk1GbTLDjnLtxncBn2s1TO88xe7eJ0jTXWIDjsroTvYDQB/0Y4C
+         bvDSnja1jg2os9EMN3cbnOTpan7I7pVj1IblreazyRFFHZ9yfkCgykjxoBbSH8FMh2z5
+         sD/1eknLYTw0OMSbflmtZnacFbVjWaAwWrUKROkTnSRr6nn+wLJs/TAwgEIbA2ta+xBy
+         Lzsos+wbJK7RgsjIFKksrvE9+yzVWLZOBI+nAgt4Nol/zt6M8VA9RgN8WMP1ovmrLb0G
+         gWyQ==
+X-Gm-Message-State: APjAAAXoa6kpNOoOcmCyMCtXBHIe7AnL9DWJG/tIzvujenrNccGtVFgI
+	wBEyPC+ub/p1F7dCXeWSENMce3Ofgag+xOnOczHE2MhDqdE=
+X-Google-Smtp-Source: APXvYqwZ1LzcYGkkYGRpjjxF7tcuQQ7SdsKuVXwuzXPGHYDy4nWVyaeSyEbu3GUCfyOuLEtpbDIr6I6lw02hoS6GWmY=
+X-Received: by 2002:a37:488f:: with SMTP id v137mr33062671qka.16.1580922524935;
+ Wed, 05 Feb 2020 09:08:44 -0800 (PST)
 MIME-Version: 1.0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- mlxscore=0 clxscore=1015 malwarescore=0 bulkscore=0 adultscore=0
- mlxlogscore=999 spamscore=0 lowpriorityscore=0 impostorscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2001150001 definitions=main-2002050129
-Content-Language: en-US
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"
+References: <CAD0U-h+q4k-EywV8XEfZ2nsoHoRQaNyRy77E2kRLuos8dAmNTA@mail.gmail.com>
+ <20200204085153.6wsex564rtrknfuq@qschulz> <CAD0U-h+0L_X3mS4ttcPSiRwfM7TJtPgg-hutEg0Nfp_UENL41w@mail.gmail.com>
+ <20200204161517.hopwyv5nbb7yytsb@qschulz> <CAD0U-h+mpWJ5qQX16N9Z+M19fS4kN+LGUofnCOKFqmtmT+a2_Q@mail.gmail.com>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.fbe4d9d0-dcb7-4337-a01d-e3e508e8a194@emailsignatures365.codetwo.com>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.0d2bd5fa-15cc-4b27-b94e-83614f9e5b38.21b88c2b-79fe-440c-8064-5258041b6893@emailsignatures365.codetwo.com>
+ <20200204163932.zuzw6iuntxdy2r5s@qschulz> <43191ed2-9653-a4f8-4b2a-1bc655e80953@topicproducts.com>
+In-Reply-To: <43191ed2-9653-a4f8-4b2a-1bc655e80953@topicproducts.com>
+From: "Ryan Harkin" <ryan.harkin@linaro.org>
+Date: Wed, 5 Feb 2020 17:08:33 +0000
+Message-ID: <CAD0U-hJTSUVoG9qnOek0Fz+F9Xk91f+YaR3kuc19uvFkdZF9BQ@mail.gmail.com>
+Subject: Re: [yocto] Building and selecting multiple kernel versions
+To: Mike Looijmans <mike.looijmans@topicproducts.com>
+Cc: Quentin Schulz <quentin.schulz@streamunlimited.com>, yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000843e9e059dd7354d"
 
-U29ycnkgS2hlbSwNCldpdGggZXNjIGNoYXJhY3RlciAnXCcgYmVmb3JlICYgaXQgY2FuJ3QgdGFr
-ZSB0aGUgZnVsbCBwYXRoLiBTbyBicmllZmx5Og0KDQpZb2N0byBidWlsZCB3aXRoIGNoYXIgJ1wn
-IGJlZm9yZSAmIGluIFNSQ19VUkk6DQoJb25saW5lIC0gT0sNCglvZmZsaW5lIC0gRXJyb3IgLSBz
-dm46IEUxNzAwMTM6IFVuYWJsZSB0byBjb25uZWN0IHRvIGEgcmVwb3NpdG9yeS4uLg0KWW9jdG8g
-YnVpbGQgd2l0aG91dCAnXCcgaW4gU1JDX1VSSToNCglvbmxpbmUgYW5kIG9mZmxpbmUgc2FtZSBl
-cnJvciAtIGRvX3VucGFjazogVW5wYWNrIGZhaWx1cmUgZm9yIFVSTCAtICJwYWNrYWdlIi50YXIu
-Z3ogaXMgcHJlc2VudCBpbiBETF9ESVINCg0KVGhhbmtzDQoNCg0KDQotLS0tLU9yaWdpbmFsIE1l
-c3NhZ2UtLS0tLQ0KRnJvbTogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlv
-Y3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBHZW9yZ2kgR2VvcmdpZXYg
-dmlhIExpc3RzLllvY3RvcHJvamVjdC5PcmcNClNlbnQ6IFdlZG5lc2RheSwgRmVicnVhcnkgMDUs
-IDIwMjAgNToyNiBQTQ0KVG86IEtoZW0gUmFqIDxyYWoua2hlbUBnbWFpbC5jb20+OyB5b2N0b0Bs
-aXN0cy55b2N0b3Byb2plY3Qub3JnDQpDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0K
-U3ViamVjdDogUmU6IFtFWFRFUk5BTF0gUmU6IFt5b2N0b10gWW9jdG8gW3RodWRdLCBbemV1c10g
-ZG9fZmV0Y2ggYW5kIGRvX3VucGFjayBmYWlsdXJlcyB3aXRoIG9mZmxpbmUvb25saW5lIHN2biBi
-dWlsZCEgI3lvY3RvICNweXRob24NCg0KSGkgS2hlbSwNCg0KWWVzLCBubyBpc3N1ZXMgd2l0aCB0
-aGF0LiBXaGVuIEkgYW0gY29ubmVjdGVkIHRvIG5ldHdvcmsgaXQgZmV0Y2hlcyB0aGUgY29kZSB3
-aXRoIGFuZCB3aXRob3V0IGVzY2FwZSBjaGFyYWN0ZXIgYmVmb3JlICYgaW4gdGhlIHBhdGguDQpz
-dm4gY28gIiBodHRwczovL3VybGRlZmVuc2UucHJvb2Zwb2ludC5jb20vdjIvdXJsP3U9aHR0cC0z
-QV9fY29jb3N1YnZlcnNpb25fc3ZuX0VtYmVkZGVkX1ZhbHZlLTI2QWN0dWF0b3JfRFZQSUlfdHJ1
-bmtfU09DUEFDTWFuRW52RW5nS2V5cyZkPUR3SUdhUSZjPXk2TDdnOTUwS2ZNcDkyWW1MTTBRbE1k
-WGNSbjZiLUNxNEFBcG5TSk9lbkUmcj1rSHRKclFHemZIMVptZnNOa0pwWXVILWp0TnB2OHlNRGtx
-QW1zUlA5OW1jJm09dlhpYS14bGN4dUxyMmZTbUJvZ1pwTUlhT250WExLV3YzbWt4Y1JndFVjNCZz
-PVVZSDlsdWVESWVNR1puZE14Z2JaZ2I3NkE1RWZxTi1NUjU4REJ2MWlyaUkmZT0gIiB3b3JrcyBm
-aW5lIGFuZCBmZXRjaGVzIHRoZSBwYWNrYWdlLiANCg0KR2VvcmdpDQoNCi0tLS0tT3JpZ2luYWwg
-TWVzc2FnZS0tLS0tDQpGcm9tOiBLaGVtIFJhaiBbbWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0N
-ClNlbnQ6IEZyaWRheSwgSmFudWFyeSAzMSwgMjAyMCA4OjMzIFBNDQpUbzogR2VvcmdpIEdlb3Jn
-aWV2IDxHZW9yZ2kuR2VvcmdpZXZAd29vZHdhcmQuY29tPjsgeW9jdG9AbGlzdHMueW9jdG9wcm9q
-ZWN0Lm9yZw0KU3ViamVjdDogW0VYVEVSTkFMXSBSZTogW3lvY3RvXSBZb2N0byBbdGh1ZF0sIFt6
-ZXVzXSBkb19mZXRjaCBhbmQgZG9fdW5wYWNrIGZhaWx1cmVzIHdpdGggb2ZmbGluZS9vbmxpbmUg
-c3ZuIGJ1aWxkISAjeW9jdG8gI3B5dGhvbg0KDQpPbiAxLzMxLzIwIDQ6MDIgQU0sIGdlb3JnaS5n
-ZW9yZ2lldiB2aWEgTGlzdHMuWW9jdG9wcm9qZWN0Lk9yZyB3cm90ZToNCj4gSGVsbG8gQ29tbXVu
-aXR5LA0KPiBUaGlzIGlzIHRoZSB0aGlyZCB0aW1lIEkgYW0gYXNraW5nIGZvciBzdXBwb3J0IG9u
-IHRoaXMgaXNzdWUuIFRoaXMgDQo+IHRpbWUgSSBkZWNpZGVkIHRvIHVzZSB0aGUgd2ViIGZvcm0u
-DQo+IEluIG91ciBwcm9qZWN0IHdlIGhhdmUgYSByZXF1aXJlbWVudCB0byBiZSBhYmxlIHRvIGJ1
-aWxkIHRoZSBwcm9qZWN0IA0KPiBvZmZsaW5lLiBFLmcuIG9uIHRoZSBmaWVsZCB3aXRob3V0IGFu
-eSBuZXR3b3JrIGNvbm5lY3Rpb24uIFdoZW4gd2UgYXJlIA0KPiBjb25uZWN0ZWQgd2l0aCB0aGUg
-cmVjaXBlIG1lbnRpb25lZCBiZWxvdyB3ZSBkb24ndCBoYXZlIGlzc3VlczoNCj4gDQoNCg0Kc3Zu
-OiBFMTcwMDEzOiBVbmFibGUgdG8gY29ubmVjdCB0byBhIHJlcG9zaXRvcnkgYXQgVVJMICdodHRw
-czovL3VybGRlZmVuc2UucHJvb2Zwb2ludC5jb20vdjIvdXJsP3U9aHR0cC0zQV9fY29jb3N1YnZl
-cnNpb25fc3ZuX0VtYmVkZGVkX1ZhbHZlLTI2QWN0dWF0b3JfRFZQSUlfdHJ1bmtfU09DUEFDTWFu
-RW52RW5nS2V5c190cnVuayZkPUR3SUdhUSZjPXk2TDdnOTUwS2ZNcDkyWW1MTTBRbE1kWGNSbjZi
-LUNxNEFBcG5TSk9lbkUmcj1rSHRKclFHemZIMVptZnNOa0pwWXVILWp0TnB2OHlNRGtxQW1zUlA5
-OW1jJm09b2N4NkJvVlNyRFFHV1V2VVVWdmdLdHVKYlQ3ZUg3akZTakN5MVlzNzNWdyZzPU9UdW5u
-bXNpX3RDVXQzSnl0bVUySHM3aTdYbnFobDgtMkNNc3FteklsOTAmZT0gJw0Kc3ZuOiBFNjcwMDAz
-OiBUZW1wb3JhcnkgZmFpbHVyZSBpbiBuYW1lIHJlc29sdXRpb24NCg0KY2FuIHlvdSB0cnkgY2hl
-Y2tpbmcgb3V0IHRoZSByZXBvIG91dCBzaWRlIG9mIGZldGNoZXIgYW5kIHNlZSBpZiB0aGUgbWFj
-aGluZSBjYW4gZmV0Y2ggdGhlIHVybCB5b3UgYXJlIHVzaW5nIGluIFNSQ19VUkkgPw0KDQo+ICpT
-VU1NQVJZID0gIlBBQ01hbiAtIFBhcmFtZXRlciBBbmQgQ29uZmlndXJhdGlvbiBNQU5hZ2VyIiog
-KkxJQ0VOU0UgPQ0KPiAiQ0xPU0VEIiogKmluaGVyaXQgc3lzdGVtZCB1c2VyYWRkKiAqUkVRVUlS
-RURfRElTVFJPX0ZFQVRVUkVTID0NCj4gInN5c3RlbWQiKiAqIyBTVk4gcmV2aXNpb24qICpQViA9
-ICIxMjEwMjYiKiAqIyBOYW1lIG9mIFNWTiBwcm9qZWN0Kg0KPiAqUEFDTUFOX1BST0pfTkFNRT0i
-U09DUEFDTWFuRW52RW5nS2V5cyIqDQo+ICpTUkNfVVJJID0NCj4gInN2bjovL2NvY29zdWJ2ZXJz
-aW9uL3N2bi9FbWJlZGRlZC9WYWx2ZSU1QyZBY3R1YXRvci9EVlBJSS90cnVuay8kJTdCUA0KPiBB
-Q01BTl9QUk9KX05BTUUlN0Q7bW9kdWxlPXRydW5rO3Byb3RvY29sPWh0dHA7ZXh0ZXJuYWxzPWFs
-bG93ZWQ7cmV2PSQlDQo+IDdCUFYlN0QlMjIqICpTUkNfVVJJICs9ICJmaWxlOi8vd3ctYXV0aHBh
-Y21hbi5zZXJ2aWNlJTIyKiAqU1JDX1VSSSArPQ0KPiAiZmlsZTovL3d3LXBhY21hbi5zZXJ2aWNl
-JTIyKiAqUyA9ICIke1dPUktESVJ9L3RydW5rLyIqICojICR7UE59LXN5czogDQo+IGNvbnRlbnQg
-cmVsYXRlZCB0byBzeXN0ZW0sIHdoaWNoIGdvZXMgdG8gYmFzZSByb290ZnMgKG9ubHkgLnNlcnZp
-Y2UgDQo+IGZpbGUgYW5kIHN5bWxpbmtzKSogKiMgJHtQTn06wqDCoMKgwqDCoCByZWFsIGNvbnRl
-bnQgd2hpY2ggbWF5IGdvIHRvIA0KPiBzZXBhcmF0ZSBwYXJ0aXRpb24qICpQQUNLQUdFUyA9KyAi
-ICR7UE59LXN5cyIqIC4uLi4uLi4uLg0KPiBXaGVuIGRpc2Nvbm5lY3QgdGhlIG5ldHdvcmssIGVy
-YXNlIHNzdGF0ZS1jYWNoZSwgY2FjaGUgYW5kIHRtcCBJIHNlZSANCj4gbG9nIGZpbGUgYXR0YWNo
-ZWQgKGxvZy5kb19mZXRjaC4zMjc1NykgYW5kIHRoZSBmb2xsb3dpbmcgb3V0cHV0Og0KPiANCj4g
-KkVSUk9SOiB3dy1wYWNtYW4tMTIxMDI2LXIwIGRvX2ZldGNoOiBGZXRjaGVyIGZhaWx1cmU6IEZl
-dGNoIGNvbW1hbmQgDQo+IGV4cG9ydCBQU0VVRE9fRElTQUJMRUQ9MTsgdW5zZXQgX1BZVEhPTl9T
-WVNDT05GSUdEQVRBX05BTUU7IGV4cG9ydCANCj4gREJVU19TRVNTSU9OX0JVU19BRERSRVNTPSJ1
-bml4OnBhdGg9L3J1bi91c2VyLzEwMDAvYnVzIjsgZXhwb3J0IA0KPiBTU0hfQUdFTlRfUElEPSIx
-MTQxMiI7IGV4cG9ydCANCj4gU1NIX0FVVEhfU09DSz0iL3J1bi91c2VyLzEwMDAva2V5cmluZy9z
-c2giOyBleHBvcnQgDQo+IFBBVEg9Ii9ob21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVp
-bGRfZHZwMi90bXAvc3lzcm9vdHMtdW5pbmF0aXYNCj4gZS94ODZfNjQtbGludXgvdXNyL2Jpbjov
-aG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL3NvdXJjZXMvcG9reS9zYw0KPiByaXB0czov
-aG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvdG1wL3dvcmsvY29ydGV4
-YTloZi1uDQo+IGVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFuLzEyMTAyNi1yMC9yZWNp
-cGUtc3lzcm9vdC1uYXRpdmUvdXNyL2INCj4gaW4vYXJtLXBva3ktbGludXgtZ251ZWFiaTovaG9t
-ZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvdA0KPiBtcC93b3JrL2NvcnRl
-eGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFuLzEyMTAyNi1yMC9yZWNpcGUt
-DQo+IHN5c3Jvb3QvdXNyL2Jpbi9jcm9zc3NjcmlwdHM6L2hvbWUvdzIzNjk4L3Byb2plY3RzL3By
-b2pfZHZwMi9idWlsZF9kdnANCj4gMi90bXAvd29yay9jb3J0ZXhhOWhmLW5lb24tcG9reS1saW51
-eC1nbnVlYWJpL3d3LXBhY21hbi8xMjEwMjYtcjAvcmVjaQ0KPiBwZS1zeXNyb290LW5hdGl2ZS91
-c3Ivc2JpbjovaG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvDQo+IHRt
-cC93b3JrL2NvcnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFuLzEyMTAy
-Ni1yMC9yZWNpcGUNCj4gLXN5c3Jvb3QtbmF0aXZlL3Vzci9iaW46L2hvbWUvdzIzNjk4L3Byb2pl
-Y3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyL3RtcA0KPiAvd29yay9jb3J0ZXhhOWhmLW5lb24tcG9r
-eS1saW51eC1nbnVlYWJpL3d3LXBhY21hbi8xMjEwMjYtcjAvcmVjaXBlLXN5DQo+IHNyb290LW5h
-dGl2ZS9zYmluOi9ob21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi90bXAv
-d29yay8NCj4gY29ydGV4YTloZi1uZW9uLXBva3ktbGludXgtZ251ZWFiaS93dy1wYWNtYW4vMTIx
-MDI2LXIwL3JlY2lwZS1zeXNyb290LQ0KPiBuYXRpdmUvYmluOi9ob21lL3cyMzY5OC9wcm9qZWN0
-cy9wcm9qX2R2cDIvc291cmNlcy9wb2t5L2JpdGJha2UvYmluOi9oDQo+IG9tZS93MjM2OTgvcHJv
-amVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvdG1wL2hvc3R0b29scyI7DQo+IGV4cG9ydCBIT01F
-PSIvaG9tZS93MjM2OTgiOyAvdXNyL2Jpbi9lbnYgc3ZuIC0tbm9uLWludGVyYWN0aXZlIA0KPiAt
-LXRydXN0LXNlcnZlci1jZXJ0IHVwZGF0ZSAtLW5vLWF1dGgtY2FjaGUgLXIgMTIxMDI2IGZhaWxl
-ZCB3aXRoIGV4aXQgDQo+IGNvZGUgMSwgb3V0cHV0OiogKlVwZGF0aW5nICcuJzoqDQo+ICpzdm46
-IEUxNzAwMTM6IFVuYWJsZSB0byBjb25uZWN0IHRvIGEgcmVwb3NpdG9yeSBhdCBVUkwgDQo+ICdo
-dHRwczovL3VybGRlZmVuc2UucHJvb2Zwb2ludC5jb20vdjIvdXJsP3U9aHR0cC0zQV9fY29jb3N1
-YnZlcnNpb25fc3YNCj4gbl9FbWJlZGRlZF9WYWx2ZS0yNkFjdHVhdG9yX0RWUElJX3RydW5rX1NP
-Q1BBQ01hbkVudkVuZ0tleXNfdHJ1bmstMjctMg0KPiBBJmQ9RHdJR2FRJmM9eTZMN2c5NTBLZk1w
-OTJZbUxNMFFsTWRYY1JuNmItQ3E0QUFwblNKT2VuRSZyPWtIdEpyUUd6ZkgxDQo+IFptZnNOa0pw
-WXVILWp0TnB2OHlNRGtxQW1zUlA5OW1jJm09b2N4NkJvVlNyRFFHV1V2VVVWdmdLdHVKYlQ3ZUg3
-akZTakMNCj4geTFZczczVncmcz1GZnYxSlUxUVlCaDRnNDlmbW9MbnNEU0ZnTU1CY181TWJPcHk1
-OVFVUzE4JmU9DQo+ICpzdm46IEU2NzAwMDM6IFRlbXBvcmFyeSBmYWlsdXJlIGluIG5hbWUgcmVz
-b2x1dGlvbioNCj4gKkVSUk9SOiB3dy1wYWNtYW4tMTIxMDI2LXIwIGRvX2ZldGNoOiBGZXRjaGVy
-IGZhaWx1cmUgZm9yIFVSTDogDQo+ICdzdm46Ly9jb2Nvc3VidmVyc2lvbi9zdm4vRW1iZWRkZWQv
-VmFsdmUlNUMmQWN0dWF0b3IvRFZQSUkvdHJ1bmsvU09DUEFDTWFuRW52RW5nS2V5czttb2R1bGU9
-dHJ1bms7cHJvdG9jb2w9aHR0cDtleHRlcm5hbHM9YWxsb3dlZDtyZXY9MTIxMDI2Jy4gDQo+IFVu
-YWJsZSB0byBmZXRjaCBVUkwgZnJvbSBhbnkgc291cmNlLioNCj4gKkVSUk9SOiBMb2dmaWxlIG9m
-IGZhaWx1cmUgc3RvcmVkIGluOiANCj4gL2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9i
-dWlsZF9kdnAyL3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1wbw0KPiBreS1saW51eC1nbnVlYWJp
-L3d3LXBhY21hbi8xMjEwMjYtcjAvdGVtcC9sb2cuZG9fZmV0Y2guMzI3NTcqDQo+ICpFUlJPUjog
-VGFzaw0KPiAoL2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyLy4uL3Nv
-dXJjZXMvbWV0YS13dy1kdnAyL3JlDQo+IGNpcGVzLXd3L3d3LXBhY21hbi93dy1wYWNtYW4uYmI6
-ZG9fZmV0Y2gpDQo+IGZhaWxlZCB3aXRoIGV4aXQgY29kZSAnMScqDQo+IA0KPiBXaGVuIHJlbW92
-ZSB0aGUgJ1wnIGNoYXJhY3RlciBpbiBTUkNfVVJJLCBlLmcuIHRvIGJlY29tZToNCj4gDQo+ICpT
-UkNfVVJJID0NCj4gInN2bjovL2NvY29zdWJ2ZXJzaW9uL3N2bi9FbWJlZGRlZC9WYWx2ZSZBY3R1
-YXRvci9EVlBJSS90cnVuay8kJTdCUEFDTQ0KPiBBTl9QUk9KX05BTUUlN0Q7bW9kdWxlPXRydW5r
-O3Byb3RvY29sPWh0dHA7ZXh0ZXJuYWxzPWFsbG93ZWQ7cmV2PSQlN0JQDQo+IFYlN0QlMjIqDQo+
-IA0KPiBJbiBjb25uZWN0ZWQgYW5kIG5vdCBjb25uZWN0ZWQgdG8gbmV0d29yayBkb19mZXRjaCgp
-IHBhc3NlcyANCj4gc3VjY2Vzc2Z1bGx5IGJ1dCBJIHNlZSBvbmUgYW5kIHNhbWUgZXJyb3IgKGxv
-Zy5kb191bnBhY2suMjUyMjYpIG91dHB1dDoNCj4gDQo+ICpFUlJPUjogd3ctcGFjbWFuLTEyMTAy
-Ni1yMCBkb191bnBhY2s6IFVucGFjayBmYWlsdXJlIGZvciBVUkw6IA0KPiAnc3ZuOi8vY29jb3N1
-YnZlcnNpb24vc3ZuL0VtYmVkZGVkL1ZhbHZlJkFjdHVhdG9yL0RWUElJL3RydW5rL1NPQ1BBQ01h
-bkVudkVuZ0tleXM7bW9kdWxlPXRydW5rO3Byb3RvY29sPWh0dHA7ZXh0ZXJuYWxzPWFsbG93ZWQ7
-cmV2PTEyMTAyNicuIA0KPiBVbnBhY2sgY29tbWFuZA0KPiBQQVRIPSIvaG9tZS93MjM2OTgvcHJv
-amVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvdG1wL3N5c3Jvb3RzLXVuaW5hdGl2ZS94ODZfNjQt
-bGludXgvdXNyL2JpbjovaG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL3NvdXJjZXMvcG9r
-eS9zY3JpcHRzOi9ob21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi90bXAv
-d29yay9jb3J0ZXhhOWhmLW5lb24tcG9reS1saW51eC1nbnVlYWJpL3d3LXBhY21hbi8xMjEwMjYt
-cjAvcmVjaXBlLXN5c3Jvb3QtbmF0aXZlL3Vzci9iaW4vYXJtLXBva3ktbGludXgtZ251ZWFiaTov
-aG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvdG1wL3dvcmsvY29ydGV4
-YTloZi1uZW9uLXBva3ktbGludXgtZ251ZWFiaS93dy1wYWNtYW4vMTIxMDI2LXIwL3JlY2lwZS1z
-eXNyb290L3Vzci9iaW4vY3Jvc3NzY3JpcHRzOi9ob21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2
-cDIvYnVpbGRfZHZwMi90bXAvd29yay9jb3J0ZXhhOWhmLW5lb24tcG9reS1saW51eC1nbnVlYWJp
-L3d3LXBhY21hbi8xMjEwMjYtcjAvcmVjaXBlLXN5c3Jvb3QtbmF0aXZlL3Vzci9zYmluOi9ob21l
-L3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi90bXAvd29yay9jb3J0ZXhhOWhm
-LW5lb24tcG9reS1saW51eC1nbnVlYWJpL3d3LXBhY21hbi8xMjEwMjYtcjAvcmVjaXBlLXN5c3Jv
-b3QtbmF0aXZlL3Vzci9iaW46L2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9idWlsZF9k
-dnAyL3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFu
-LzEyMTAyNi1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvc2JpbjovaG9tZS93MjM2OTgvcHJvamVj
-dHMvcHJval9kdnAyL2J1aWxkX2R2cDIvdG1wL3dvcmsvY29ydGV4YTloZi1uZW9uLXBva3ktbGlu
-dXgtZ251ZWFiaS93dy1wYWNtYW4vMTIxMDI2LXIwL3JlY2lwZS1zeXNyb290LW5hdGl2ZS9iaW46
-L2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9zb3VyY2VzL3Bva3kvYml0YmFrZS9iaW46
-L2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyL3RtcC9ob3N0dG9vbHMi
-IA0KPiB0YXIgeHogLS1uby1zYW1lLW93bmVyIC1mDQo+IC9ob21lL3cyMzY5OC9wcm9qZWN0cy9w
-cm9qX2R2cDIvYnVpbGRfZHZwMi9kb3dubG9hZHMvdHJ1bmtfY29jb3N1YnZlcnMNCj4gaW9uXy5z
-dm4uRW1iZWRkZWQuVmFsdmUmQWN0dWF0b3IuRFZQSUkudHJ1bmsuU09DUEFDTWFuRW52RW5nS2V5
-c18xMjEwMg0KPiA2Xy50YXIuZ3oNCj4gZmFpbGVkIHdpdGggcmV0dXJuIHZhbHVlIDEyNyoNCj4g
-KkVSUk9SOiBMb2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiANCj4gL2hvbWUvdzIzNjk4L3By
-b2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyL3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1wbw0K
-PiBreS1saW51eC1nbnVlYWJpL3d3LXBhY21hbi8xMjEwMjYtcjAvdGVtcC9sb2cuZG9fdW5wYWNr
-LjI1MjI2Kg0KPiAqRVJST1I6IFRhc2sNCj4gKC9ob21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2
-cDIvYnVpbGRfZHZwMi8uLi9zb3VyY2VzL21ldGEtd3ctZHZwMi9yZQ0KPiBjaXBlcy13dy93dy1w
-YWNtYW4vd3ctcGFjbWFuLmJiOmRvX3VucGFjaykNCj4gZmFpbGVkIHdpdGggZXhpdCBjb2RlICcx
-Jw0KPiAqDQo+IEkgZG9uJ3QgaXQgdGhpcyBtYXR0ZXJzIGJ1dCwgdGhlIGJ1aWxkIG1hY2hpbmUg
-aXMgYmFyZW1ldGFsIFVidW50dQ0KPiAxOC4wNC4zIExUUy4gSW4gYWxsIGNhc2VzIHRoZSBwYWNr
-ZWQgdGFyLmd6IHJlbWFpbiBpbiBkb3dubG9hZHMgDQo+IGRpcmVjdG9yeSB3aXRoIG9uZSBuYW1l
-IQ0KPiANCj4gQ29yZGlhbGx5LA0KPiBHZW9yZ2kNCj4gDQo+IA0KPiANCj4gDQoNCg0KKioqDQpU
-aGUgaW5mb3JtYXRpb24gaW4gdGhpcyBlbWFpbCBpcyBjb25maWRlbnRpYWwgYW5kIGludGVuZGVk
-IHNvbGVseSBmb3IgdGhlIGluZGl2aWR1YWwgb3IgZW50aXR5IHRvIHdob20gaXQgaXMgYWRkcmVz
-c2VkLsKgwqBJZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIGVtYWlsIGluIGVycm9yIHBsZWFzZSBu
-b3RpZnkgdGhlIHNlbmRlciBieSByZXR1cm4gZS1tYWlsLCBkZWxldGUgdGhpcyBlbWFpbCwgYW5k
-IHJlZnJhaW4gZnJvbSBhbnkgZGlzY2xvc3VyZSBvciBhY3Rpb24gYmFzZWQgb24gdGhlIGluZm9y
-bWF0aW9uLg0KKioqDQoKKioqClRoZSBpbmZvcm1hdGlvbiBpbiB0aGlzIGVtYWlsIGlzIGNvbmZp
-ZGVudGlhbCBhbmQgaW50ZW5kZWQgc29sZWx5IGZvciB0aGUgaW5kaXZpZHVhbCBvciBlbnRpdHkg
-dG8gd2hvbSBpdCBpcyBhZGRyZXNzZWQuwqDCoElmIHlvdSBoYXZlIHJlY2VpdmVkIHRoaXMgZW1h
-aWwgaW4gZXJyb3IgcGxlYXNlIG5vdGlmeSB0aGUgc2VuZGVyIGJ5IHJldHVybiBlLW1haWwsIGRl
-bGV0ZSB0aGlzIGVtYWlsLCBhbmQgcmVmcmFpbiBmcm9tIGFueSBkaXNjbG9zdXJlIG9yIGFjdGlv
-biBiYXNlZCBvbiB0aGUgaW5mb3JtYXRpb24uCioqKgo=
+--000000000000843e9e059dd7354d
+Content-Type: text/plain; charset="UTF-8"
+
+On Wed, 5 Feb 2020 at 10:02, Mike Looijmans <
+mike.looijmans@topicproducts.com> wrote:
+
+>
+> Met vriendelijke groet / kind regards,
+>
+> Mike Looijmans
+> System Expert
+>
+>
+> TOPIC Embedded Products B.V.
+> Materiaalweg 4, 5681 RJ Best
+> The Netherlands
+>
+> T: +31 (0) 499 33 69 69
+> E: mike.looijmans@topicproducts.com
+> W: www.topicproducts.com
+>
+> Please consider the environment before printing this e-mail
+> On 04-02-2020 17:39, Quentin Schulz via Lists.Yoctoproject.Org wrote:
+> > On Tue, Feb 04, 2020 at 04:32:34PM +0000, Ryan Harkin wrote:
+> > [...]
+> >>
+> >> Actually, it does work like this:
+> >>
+> >> export MACHINE=xyz
+> >> bitbake image
+> >>
+> >> But not like this:
+> >>
+> >> MACHINE=xyz bitbake image
+> >>
+> >> No big deal, but I expected the last one to work.
+> >>
+> >
+> > I use it every day. I don't think we're doing something special (well,
+> > for that particular thing :D), so there's at least a way to make it work
+> > for sure :)
+>
+> Same here, both interactive and in scripts.
+>
+> Since the first works, you already have done this:
+> export BB_ENV_EXTRAWHITE=MACHINE
+>
+> Maybe there's something funky in your shell?
+> You could check with a command like:
+> MACHINE=x env | grep MACHINE
+>
+
+ It looks "normal":
+
+$ MACHINE=x env | grep MACHINE
+MACHINE=x
+
+
+> Of maybe somebody wrote a bitbake wrapper for you that forks python
+> instead of
+> exec'ing it?
+>
+
+No, it's the regular bitbake.
+
+I'm not too concerned about this problem anyway, I'm sure if it's a problem
+for me, I can work out who is overriding it.
+
+Thanks,
+Ryan
+
+--000000000000843e9e059dd7354d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
+<div dir=3D"ltr" class=3D"gmail_attr">On Wed, 5 Feb 2020 at 10:02, Mike Loo=
+ijmans &lt;<a href=3D"mailto:mike.looijmans@topicproducts.com">mike.looijma=
+ns@topicproducts.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
+te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
+);padding-left:1ex"><br>
+Met vriendelijke groet / kind regards,<br>
+<br>
+Mike Looijmans<br>
+System Expert<br>
+<br>
+<br>
+TOPIC Embedded Products B.V.<br>
+Materiaalweg 4, 5681 RJ Best<br>
+The Netherlands<br>
+<br>
+T: +31 (0) 499 33 69 69<br>
+E: <a href=3D"mailto:mike.looijmans@topicproducts.com" target=3D"_blank">mi=
+ke.looijmans@topicproducts.com</a><br>
+W: <a href=3D"http://www.topicproducts.com" rel=3D"noreferrer" target=3D"_b=
+lank">www.topicproducts.com</a><br>
+<br>
+Please consider the environment before printing this e-mail<br>
+On 04-02-2020 17:39, Quentin Schulz via <a href=3D"http://Lists.Yoctoprojec=
+t.Org" rel=3D"noreferrer" target=3D"_blank">Lists.Yoctoproject.Org</a> wrot=
+e:<br>
+&gt; On Tue, Feb 04, 2020 at 04:32:34PM +0000, Ryan Harkin wrote:<br>
+&gt; [...]<br>
+&gt;&gt;<br>
+&gt;&gt; Actually, it does work like this:<br>
+&gt;&gt;<br>
+&gt;&gt; export MACHINE=3Dxyz<br>
+&gt;&gt; bitbake image<br>
+&gt;&gt;<br>
+&gt;&gt; But not like this:<br>
+&gt;&gt;<br>
+&gt;&gt; MACHINE=3Dxyz bitbake image<br>
+&gt;&gt;<br>
+&gt;&gt; No big deal, but I expected the last one to work.<br>
+&gt;&gt;<br>
+&gt; <br>
+&gt; I use it every day. I don&#39;t think we&#39;re doing something specia=
+l (well,<br>
+&gt; for that particular thing :D), so there&#39;s at least a way to make i=
+t work<br>
+&gt; for sure :)<br>
+<br>
+Same here, both interactive and in scripts.<br>
+<br>
+Since the first works, you already have done this:<br>
+export BB_ENV_EXTRAWHITE=3DMACHINE<br>
+<br>
+Maybe there&#39;s something funky in your shell?<br>
+You could check with a command like:<br>
+MACHINE=3Dx env | grep MACHINE<br></blockquote><div><br></div><div>=C2=A0It=
+ looks &quot;normal&quot;:</div><div><br></div><div>$ MACHINE=3Dx env | gre=
+p MACHINE<br>MACHINE=3Dx<br></div><div><br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex">
+<br>
+Of maybe somebody wrote a bitbake wrapper for you that forks python instead=
+ of <br>
+exec&#39;ing it?<br></blockquote><div><br></div><div>No, it&#39;s the regul=
+ar bitbake.</div><div><br></div><div>I&#39;m not too concerned about this p=
+roblem anyway, I&#39;m sure if it&#39;s a problem for me, I can work out wh=
+o is overriding it.=C2=A0</div><div><br></div><div>Thanks,=C2=A0</div><div>=
+Ryan</div><div><br></div></div></div>
+
+--000000000000843e9e059dd7354d--
