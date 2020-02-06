@@ -1,196 +1,116 @@
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
- by mx.groups.io with SMTP id smtpd.web12.1501.1580922525898293150
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.8281.1580970898638201195
  for <yocto@lists.yoctoproject.org>;
- Wed, 05 Feb 2020 09:08:46 -0800
+ Wed, 05 Feb 2020 22:34:58 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=vbxdXOOw;
- spf=pass (domain: linaro.org, ip: 209.85.222.170, mailfrom: ryan.harkin@linaro.org)
-Received: by mail-qk1-f170.google.com with SMTP id w25so2566143qki.3
-        for <yocto@lists.yoctoproject.org>; Wed, 05 Feb 2020 09:08:45 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=VUcqclUk;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 2D3ABE015D3; Wed,  5 Feb 2020 22:34:58 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (jupiter.hce[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.166.52 listed in list.dnswl.org]
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71588E007DA;
+	Wed,  5 Feb 2020 22:34:56 -0800 (PST)
+Received: by mail-io1-f52.google.com with SMTP id h8so5099101iob.2;
+        Wed, 05 Feb 2020 22:34:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=b3tr36j17PoqafsmFNP8sBsyx5T7pf4hREBW/7XbGFs=;
-        b=vbxdXOOw8ZzOhFLOdTCd8+4StlyLw1ODL+023Hkz4cmGawdmjVptIO3BDjNscO+2JJ
-         No3RPTQlpp1f5vpGRq5nfrlz247dNA/k8zQhs0EGw+6SLmm85MDxHxYqf5cn6DAFgivJ
-         T41TZ50E2bXwBiyZGbAc2iu/rSLOCGKk+PekRbKomuCWJ+2Nai5uaOW8qbrzgSKsvefN
-         u1mDrQv8Y2zQx8qYo9I3iUOxtcVMEFl5LclrZYC9a4VI4Xqv0nF4zPkOkmE+Jkh2r3f5
-         EMd5ONljhDZJ6pQUHs2hDguumQCInAfat8jOutlSUYuCIYIeHNyL34KRsnwIZlZTcObC
-         th1w==
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=1eb2RXCmyTB1S8buyh/wDuPzjOjoOwR3b2p2azWf8rs=;
+        b=VUcqclUkf5oApTbSMbGTfUcLIlJLhrucVOgq//WegVNKQ60NL4+huMzvRtefPcVdYV
+         QXe2A/4LoID5iOLOX21fH9KIAJEN5+vhaBYGjj6h2DcwcysS1K9p2oKek3Cw9Uf3Lxv2
+         oPHtgDhx6Bjyhcg589Cmu5T1ikxg0S3v9S6ERAt+TB+SsxKw9Jkj5Ren/BBgkVWIdPdA
+         X7oqsJDZ3fBCriFXPrImlvW5xGxBLTPjSreqN3BIbdP6JxWC8jzgxy6QUlzkJYBlBJtv
+         NkGunayn+Mg/9xdXQBrVR5vmtzMG5roaIUDKXNBw4rZ//bXyU6O7g6fYFvChPDV0gzwh
+         EVfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=b3tr36j17PoqafsmFNP8sBsyx5T7pf4hREBW/7XbGFs=;
-        b=OiIo000LR/YzqbbJjQV3l5N0yL7vimoIQz0lhb1tR3OI7Wq3maMr8/lzlPDTjSIfYG
-         mzuP9dObAltd6PzOLPk1GbTLDjnLtxncBn2s1TO88xe7eJ0jTXWIDjsroTvYDQB/0Y4C
-         bvDSnja1jg2os9EMN3cbnOTpan7I7pVj1IblreazyRFFHZ9yfkCgykjxoBbSH8FMh2z5
-         sD/1eknLYTw0OMSbflmtZnacFbVjWaAwWrUKROkTnSRr6nn+wLJs/TAwgEIbA2ta+xBy
-         Lzsos+wbJK7RgsjIFKksrvE9+yzVWLZOBI+nAgt4Nol/zt6M8VA9RgN8WMP1ovmrLb0G
-         gWyQ==
-X-Gm-Message-State: APjAAAXoa6kpNOoOcmCyMCtXBHIe7AnL9DWJG/tIzvujenrNccGtVFgI
-	wBEyPC+ub/p1F7dCXeWSENMce3Ofgag+xOnOczHE2MhDqdE=
-X-Google-Smtp-Source: APXvYqwZ1LzcYGkkYGRpjjxF7tcuQQ7SdsKuVXwuzXPGHYDy4nWVyaeSyEbu3GUCfyOuLEtpbDIr6I6lw02hoS6GWmY=
-X-Received: by 2002:a37:488f:: with SMTP id v137mr33062671qka.16.1580922524935;
- Wed, 05 Feb 2020 09:08:44 -0800 (PST)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=1eb2RXCmyTB1S8buyh/wDuPzjOjoOwR3b2p2azWf8rs=;
+        b=kKyZZw+UkB/mI+hzvfiGSK+ly+8DDO0T3W5PcNIzTG3X4yqe8FXgK18N1VqvEd3BwP
+         GuyfmmNTSwyKhB1hveFs8DYgdChvqH0ntGhgFgovGW62M+ON/WObmM9F4jOqKMhHA0di
+         RX/0j7i6OEm9aiXrbqx0RjPrQy3iY+KnkfFR3rTw1HufAISsr8E2LxMHAPG16PuokQ48
+         sigRWvt5VmlznLTU8LBlpSk/uyEl0Bfzqtp4IG1qoylLduwASdhMguxLG2r6n3MSe86X
+         obJJYu3HHiqumHbWxZ1ujAG/KVbf6xUb053lkTMZoFeIwLbtTYaA0EIoIjhkkdLVPpyL
+         wSkg==
+X-Gm-Message-State: APjAAAXpw1qWde5Us1lD7LDJn1TwMfa3Wx2INcaflUIWSy8YO7ctzGDq
+	i5pyXRp1bNA5pkLQxi1rtM0yzTb0l9INcY9roFu99hhzukY=
+X-Google-Smtp-Source: APXvYqxqyqjFDJAEgGurujDeH26RHpn/CwweVo6OY98Mv6SCwQR6jUskKdB9DDRK9pJmg0T8vjakFrpWgrtWnysZD74=
+X-Received: by 2002:a02:6055:: with SMTP id d21mr33814202jaf.21.1580970895556;
+ Wed, 05 Feb 2020 22:34:55 -0800 (PST)
 MIME-Version: 1.0
-References: <CAD0U-h+q4k-EywV8XEfZ2nsoHoRQaNyRy77E2kRLuos8dAmNTA@mail.gmail.com>
- <20200204085153.6wsex564rtrknfuq@qschulz> <CAD0U-h+0L_X3mS4ttcPSiRwfM7TJtPgg-hutEg0Nfp_UENL41w@mail.gmail.com>
- <20200204161517.hopwyv5nbb7yytsb@qschulz> <CAD0U-h+mpWJ5qQX16N9Z+M19fS4kN+LGUofnCOKFqmtmT+a2_Q@mail.gmail.com>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.fbe4d9d0-dcb7-4337-a01d-e3e508e8a194@emailsignatures365.codetwo.com>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.0d2bd5fa-15cc-4b27-b94e-83614f9e5b38.21b88c2b-79fe-440c-8064-5258041b6893@emailsignatures365.codetwo.com>
- <20200204163932.zuzw6iuntxdy2r5s@qschulz> <43191ed2-9653-a4f8-4b2a-1bc655e80953@topicproducts.com>
-In-Reply-To: <43191ed2-9653-a4f8-4b2a-1bc655e80953@topicproducts.com>
-From: "Ryan Harkin" <ryan.harkin@linaro.org>
-Date: Wed, 5 Feb 2020 17:08:33 +0000
-Message-ID: <CAD0U-hJTSUVoG9qnOek0Fz+F9Xk91f+YaR3kuc19uvFkdZF9BQ@mail.gmail.com>
-Subject: Re: [yocto] Building and selecting multiple kernel versions
-To: Mike Looijmans <mike.looijmans@topicproducts.com>
-Cc: Quentin Schulz <quentin.schulz@streamunlimited.com>, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000843e9e059dd7354d"
-
---000000000000843e9e059dd7354d
+Received: by 2002:ad5:5d0d:0:0:0:0:0 with HTTP; Wed, 5 Feb 2020 22:34:55 -0800 (PST)
+From: "JH" <jupiter.hce@gmail.com>
+Date: Thu, 6 Feb 2020 17:34:55 +1100
+Message-ID: <CAA=hcWSCZROrpDBWV5ZAA+LV6j0cjRSKxyjonOfWS4mCZAtdHg@mail.gmail.com>
+Subject: Support UBI u-boot
+To: Meta Freescale <meta-freescale@yoctoproject.org>, 
+	Yocto discussion list <yocto@yoctoproject.org>, 
+	Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>
+Cc: U-Boot Mailing List <u-boot@lists.denx.de>
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, 5 Feb 2020 at 10:02, Mike Looijmans <
-mike.looijmans@topicproducts.com> wrote:
+Hi,
 
->
-> Met vriendelijke groet / kind regards,
->
-> Mike Looijmans
-> System Expert
->
->
-> TOPIC Embedded Products B.V.
-> Materiaalweg 4, 5681 RJ Best
-> The Netherlands
->
-> T: +31 (0) 499 33 69 69
-> E: mike.looijmans@topicproducts.com
-> W: www.topicproducts.com
->
-> Please consider the environment before printing this e-mail
-> On 04-02-2020 17:39, Quentin Schulz via Lists.Yoctoproject.Org wrote:
-> > On Tue, Feb 04, 2020 at 04:32:34PM +0000, Ryan Harkin wrote:
-> > [...]
-> >>
-> >> Actually, it does work like this:
-> >>
-> >> export MACHINE=xyz
-> >> bitbake image
-> >>
-> >> But not like this:
-> >>
-> >> MACHINE=xyz bitbake image
-> >>
-> >> No big deal, but I expected the last one to work.
-> >>
-> >
-> > I use it every day. I don't think we're doing something special (well,
-> > for that particular thing :D), so there's at least a way to make it work
-> > for sure :)
->
-> Same here, both interactive and in scripts.
->
-> Since the first works, you already have done this:
-> export BB_ENV_EXTRAWHITE=MACHINE
->
-> Maybe there's something funky in your shell?
-> You could check with a command like:
-> MACHINE=x env | grep MACHINE
->
+Sorry for cross-posting, I have been asking for helping solving the
+issue many days ago, but could not get those work.
 
- It looks "normal":
+(1) UBI support
 
-$ MACHINE=x env | grep MACHINE
-MACHINE=x
+I added NAND and UBIFS support to my Yocto layer machine config file:
+
+UBOOT_CONFIG = "nand"
+UBOOT_CONFIG[nand] += "mx6ull_14x14_evk_config"
+UBOOT_CONFIG[nand] += "mx6ull_14x14_evk_nand_config"
+UBOOT_CONFIG[nand] += "ubi"
+UBOOT_CONFIG[nand] += "ubifs"
+
+But my u-boot.imx-nand still could not support ubi:
+
+=> ubi part rootfs
+Unknown command 'ubi' - try 'help'
+
+What I could be missing here?
 
 
-> Of maybe somebody wrote a bitbake wrapper for you that forks python
-> instead of
-> exec'ing it?
->
+(2) Patch u-boot parameters
 
-No, it's the regular bitbake.
+I am not clear how you do to change u-boot parameters, it seems to me
+I have to create my own u-boot-imx_2017.03.bbappend and patch files to
+ mx6ullevk.h, to change u-boot parameters of mtdparts, NAND_ROOT_UBI,
+bootcmd, etc based on my configuration.
 
-I'm not too concerned about this problem anyway, I'm sure if it's a problem
-for me, I can work out who is overriding it.
+But Yocto won't allow the patch running unless that the patch is
+committed to the git repository in
+https://source.codeaurora.org/external/imx/uboot-imx.git.
 
-Thanks,
-Ryan
+Ideally, I thought all u-boot parameters can be changed in a bbappend
+file, could you advise if it is possible to do that way or not? If so,
+how to do it?
 
---000000000000843e9e059dd7354d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+If not, what is the policy for making parches and commit to the git
+repository https://source.codeaurora.org/external/imx/uboot-imx.git?
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Wed, 5 Feb 2020 at 10:02, Mike Loo=
-ijmans &lt;<a href=3D"mailto:mike.looijmans@topicproducts.com">mike.looijma=
-ns@topicproducts.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204=
-);padding-left:1ex"><br>
-Met vriendelijke groet / kind regards,<br>
-<br>
-Mike Looijmans<br>
-System Expert<br>
-<br>
-<br>
-TOPIC Embedded Products B.V.<br>
-Materiaalweg 4, 5681 RJ Best<br>
-The Netherlands<br>
-<br>
-T: +31 (0) 499 33 69 69<br>
-E: <a href=3D"mailto:mike.looijmans@topicproducts.com" target=3D"_blank">mi=
-ke.looijmans@topicproducts.com</a><br>
-W: <a href=3D"http://www.topicproducts.com" rel=3D"noreferrer" target=3D"_b=
-lank">www.topicproducts.com</a><br>
-<br>
-Please consider the environment before printing this e-mail<br>
-On 04-02-2020 17:39, Quentin Schulz via <a href=3D"http://Lists.Yoctoprojec=
-t.Org" rel=3D"noreferrer" target=3D"_blank">Lists.Yoctoproject.Org</a> wrot=
-e:<br>
-&gt; On Tue, Feb 04, 2020 at 04:32:34PM +0000, Ryan Harkin wrote:<br>
-&gt; [...]<br>
-&gt;&gt;<br>
-&gt;&gt; Actually, it does work like this:<br>
-&gt;&gt;<br>
-&gt;&gt; export MACHINE=3Dxyz<br>
-&gt;&gt; bitbake image<br>
-&gt;&gt;<br>
-&gt;&gt; But not like this:<br>
-&gt;&gt;<br>
-&gt;&gt; MACHINE=3Dxyz bitbake image<br>
-&gt;&gt;<br>
-&gt;&gt; No big deal, but I expected the last one to work.<br>
-&gt;&gt;<br>
-&gt; <br>
-&gt; I use it every day. I don&#39;t think we&#39;re doing something specia=
-l (well,<br>
-&gt; for that particular thing :D), so there&#39;s at least a way to make i=
-t work<br>
-&gt; for sure :)<br>
-<br>
-Same here, both interactive and in scripts.<br>
-<br>
-Since the first works, you already have done this:<br>
-export BB_ENV_EXTRAWHITE=3DMACHINE<br>
-<br>
-Maybe there&#39;s something funky in your shell?<br>
-You could check with a command like:<br>
-MACHINE=3Dx env | grep MACHINE<br></blockquote><div><br></div><div>=C2=A0It=
- looks &quot;normal&quot;:</div><div><br></div><div>$ MACHINE=3Dx env | gre=
-p MACHINE<br>MACHINE=3Dx<br></div><div><br></div><blockquote class=3D"gmail=
-_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
-,204);padding-left:1ex">
-<br>
-Of maybe somebody wrote a bitbake wrapper for you that forks python instead=
- of <br>
-exec&#39;ing it?<br></blockquote><div><br></div><div>No, it&#39;s the regul=
-ar bitbake.</div><div><br></div><div>I&#39;m not too concerned about this p=
-roblem anyway, I&#39;m sure if it&#39;s a problem for me, I can work out wh=
-o is overriding it.=C2=A0</div><div><br></div><div>Thanks,=C2=A0</div><div>=
-Ryan</div><div><br></div></div></div>
+Thank you.
 
---000000000000843e9e059dd7354d--
+Kind regards,
+
+- jh
