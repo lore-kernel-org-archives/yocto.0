@@ -1,147 +1,91 @@
-Subject: adding modules to nginx #yocto
-To: yocto@lists.yoctoproject.org
-From: rkthebest@gmail.com
-X-Originating-Location: Graz, Styria, AT (192.102.17.24)
-X-Originating-Platform: Linux Firefox 72
-User-Agent: GROUPS.IO Web Poster
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.3694.1581076534514557936
+ for <yocto@lists.yoctoproject.org>;
+ Fri, 07 Feb 2020 03:55:35 -0800
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=permerror, err=parse error for token &{10 18 sendgrid.net}: limit exceeded (domain: streamunlimited.com, ip: 140.211.169.56, mailfrom: quentin.schulz@streamunlimited.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 0822AE016DB; Fri,  7 Feb 2020 03:55:34 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
+	*      trust
+	*      [213.33.87.16 listed in list.dnswl.org]
+Received: from bsmtp2.bon.at (bsmtp2.bon.at [213.33.87.16])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00FD6E016D9
+	for <yocto@yoctoproject.org>; Fri,  7 Feb 2020 03:55:32 -0800 (PST)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp2.bon.at (Postfix) with ESMTPSA id 48DYdk3dXkz5tl9;
+	Fri,  7 Feb 2020 12:55:22 +0100 (CET)
+Date: Fri, 7 Feb 2020 12:55:21 +0100
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: JH <jupiter.hce@gmail.com>
+Cc: Pelle Windestam <Pelle.Windestam@tagmaster.com>,
+	Meta Freescale <meta-freescale@yoctoproject.org>,
+	Yocto discussion list <yocto@yoctoproject.org>,
+	linux-mtd <linux-mtd@lists.infradead.org>,
+	Andy Pont <andy.pont@sdcsystems.com>,
+	Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [yocto] Support UBI u-boot
+Message-ID: <20200207115521.i7flzwf6e24obq5r@qschulz>
+References: <CAA=hcWSCZROrpDBWV5ZAA+LV6j0cjRSKxyjonOfWS4mCZAtdHg@mail.gmail.com>
+ <em86bbcd60-f004-4acb-b508-4471dac5c7c1@andys-imac.leeshillfarm.local>
+ <CAA=hcWQsP1N58iqrxEggZBdSksgHk+gfuG7yz0+C3G7o0=DzOw@mail.gmail.com>
+ <c159fe1d7cc14f5c80878fe81a957bb4@tagmaster.com>
+ <CAA=hcWQPrfb3UrYsfyhs4as8wGDf5DsyEtF=cgCo4gJprx=b1Q@mail.gmail.com>
 MIME-Version: 1.0
-Date: Fri, 07 Feb 2020 03:18:26 -0800
-Message-ID: <6P1I.1581074306513776950.vcUM@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="wRd3COU0ryd1AoPVnfL4"
+In-Reply-To: <CAA=hcWQPrfb3UrYsfyhs4as8wGDf5DsyEtF=cgCo4gJprx=b1Q@mail.gmail.com>
+User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---wRd3COU0ryd1AoPVnfL4
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Hi JH,
 
-Hello Guys i am trying to add a lua module into my nginx by yocto recipe.
+On Fri, Feb 07, 2020 at 07:52:35PM +1100, JH wrote:
+> Hi Pelle,
+> 
+> Aplogize for cross posting.
+> 
+> On 2/7/20, Pelle Windestam <Pelle.Windestam@tagmaster.com> wrote:
+> > In my case u-boot uses a default config called imx8qxp_var_som_defconfig
+> > stored under the configs directory in u-boot (not sure if its in the
+> > official repositories, I use a vendor supplied u-boot repo, but the
+> > procedure should be the same either way), then I have created a
+> > .bbappend-file for the u-boot recipe, and added a patch that modifies the
+> > defconfig file to include the options I want to enable. Then as u-boot is
+> > built, it will use the patched defconfig with the appropriate options
+> > enabled. In the meta-freescale layer the u-boot recipes are under
+> > meta-freescale/recipes-bsp/u-boot.
+> 
+> Thanks for the tip, that is quite helpful. I created bbappend file,
+> run the make menuconfig to enable NAND and CONFIG_CMD_UBI, but then
+> failed in build, missing all MTD, NAND, UBI references, the MTD, NAND,
+> UBI are all selected, what I could be missing?
+> 
+> /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/cmd/ubi.c:448:
+> undefined reference to `mtdparts_init'
 
-for this i added one bbappend file to add module to nginx recipe
-and secondly i added a bb file fetch sources and placing=C2=A0 it to nginx=
- sysroot directory
+This function is not defined. So you look it up in the sources, find
+where it's defined.
 
-*nginx_%.bbappend*
+Is it in a file which is compiled/included somewhere?
+Is it surrounded by #ifdef? And by surrounded, I mean the #ifdef can
+be several thousands of lines above the function definition.
 
-FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+In that case, I couldn't find the sources of u-boot-imx (didn't take the
+time) but from upstream:
+https://elixir.bootlin.com/u-boot/v2017.03/source/cmd/nand.c#L35
 
-DEPENDS +=3D "ngx-lua-module"
+It's surrounded by #if defined(CONFIG_CMD_MTDPARTS) so you need
+CMD_MTDPARTS to be enabled. Do the same for all the other calls. There's
+no magic thing, you thus have to look it up yourself most of the time.
+Even though arguably, that's a mistake from upstream (there should be a
+dependency on MTDPARTS in Kconfig, anyway...).
 
-EXTRA_OECONF +=3D " --add-module=3D${STAGING_DIR_ TARGET}/ngx-lua-module "
-
-*and ngx-lua-module.bb ( http://ngx-lua-module.bb )*
-
-SUMMARY =3D "lua module for nginx"
-LICENSE =3D "GPLv2"
-LIC_FILES_CHKSUM =3D "file://${COMMON_LICENSE_DIR}/ MIT;md5=3D 0835ade698e=
-0bcf8506ecda2f7b4f3 02"
-
-SRC_URI =3D "git:// github.com/openresty/ lua-nginx-module.git;protocol=3D=
- https ( http://github.com/openresty/lua-nginx-module.git;protocol=3Dhttps =
-) "
-
-PV =3D "1.5+git${SRCPV}"
-SRCREV =3D " c06793c3e1431b24332b8b0239cc43 df43361941"
-
-S =3D "${WORKDIR}/git"
-SYSROOT_DIRS +=3D "/${PN}"
-
-DEPENDS +=3D "luajit"
-
-do_configure[noexec] =3D "1"
-do_compile[noexec] =3D "1"
-
-do_install () {
-cd ${S}
-git checkout-index -a --prefix=3D${D}/${PN}/
-cd -
-}
-FILES_${PN} =3D "${PN}/* ${S}/*.*"
-
-So when i build nginx it tries to add the module but it complains that
-
->=20
-> ./configure: error: unsupported LuaJIT version; ngx_http_lua_module
-> requires LuaJIT 2.x.
->=20
-
-i checked the configuration file of nginx and it tries to look for header =
-file for luajit and it can not find it hence complains.
-but when i checked the recipe-sysroot of nginx the the header files are pr=
-esent at location
-recipe-sysroot/usr/include/ luajit-2.0
-
-and i think recipe does not include this location automatically and only l=
-ooks in recipe-sysroot/usr/include
-
-*so my question is how can i include this directory so that recipe looks i=
-nto above mentioned folder also..*
-*and similar question is for library also*
-
-Any inputs would be highly appriciated
-
---wRd3COU0ryd1AoPVnfL4
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div>Hello Guys i am trying to add a lua module into my nginx by yocto reci=
-pe.</div>
-<div>&nbsp;</div>
-<div>for this i added one bbappend file to add module to nginx recipe</div=
->
-<div>and secondly i added a bb file fetch sources and placing&nbsp; it to =
-nginx sysroot directory</div>
-<div>&nbsp;</div>
-<div><strong>nginx_%.bbappend</strong></div>
-<div>&nbsp;</div>
-<div><em>FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"<br /><br />DEPEN=
-DS +=3D "ngx-lua-module"<br /><br />EXTRA_OECONF +=3D " --add-module=3D${ST=
-AGING_DIR_<wbr />TARGET}/ngx-lua-module "</em></div>
-<div>&nbsp;</div>
-<div><strong>and <a href=3D"http://ngx-lua-module.bb" target=3D"_blank" re=
-l=3D"noopener" data-saferedirecturl=3D"https://www.google.com/url?q=3Dhttp:=
-//ngx-lua-module.bb&amp;source=3Dgmail&amp;ust=3D1581160273604000&amp;usg=
-=3DAFQjCNHgROr_zFA2BEGbtBZWBI3nZ898iQ">ngx-lua-module.bb</a></strong></div=
->
-<div>&nbsp;</div>
-<div><em>SUMMARY =3D "lua module for nginx"<br />LICENSE =3D "GPLv2"<br />=
-LIC_FILES_CHKSUM =3D "file://${COMMON_LICENSE_DIR}/<wbr />MIT;md5=3D<wbr />=
-0835ade698e0bcf8506ecda2f7b4f3<wbr />02"<br /><br />SRC_URI =3D "git://<a h=
-ref=3D"http://github.com/openresty/lua-nginx-module.git;protocol=3Dhttps" t=
-arget=3D"_blank" rel=3D"noopener" data-saferedirecturl=3D"https://www.googl=
-e.com/url?q=3Dhttp://github.com/openresty/lua-nginx-module.git;protocol%3Dh=
-ttps&amp;source=3Dgmail&amp;ust=3D1581160273604000&amp;usg=3DAFQjCNFWfDae98=
-8JVkgNupie_GeKqkgCiA">github.com/openresty/<wbr />lua-nginx-module.git;prot=
-ocol=3D<wbr />https</a>"<br /><br />PV =3D "1.5+git${SRCPV}"<br />SRCREV =
-=3D "<wbr />c06793c3e1431b24332b8b0239cc43<wbr />df43361941"<br /><br />S =
-=
-=3D "${WORKDIR}/git"<br />SYSROOT_DIRS +=3D "/${PN}"<br /><br />DEPENDS +=
-=3D "luajit"<br /><br />do_configure[noexec] =3D "1"<br />do_compile[noexe=
-c] =3D "1"<br /><br />do_install () {<br />cd ${S}<br />git checkout-index =
--a --prefix=3D${D}/${PN}/<br />cd -<br />}<br />FILES_${PN} =3D "${PN}/* ${=
-S}/*.*"</em></div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div>So when i build nginx it tries to add the module but it complains tha=
-t </div>
-<blockquote class=3D"gmail_quote" style=3D"margin: 0px 0px 0px 0.8ex; bord=
-er-left: 1px solid #cccccc; padding-left: 1ex;">
-<div>./configure: error: unsupported LuaJIT version; ngx_http_lua_module r=
-equires LuaJIT 2.x.</div>
-</blockquote>
-<div>&nbsp;</div>
-<div>i checked the configuration file of nginx and it tries to look for he=
-ader file for luajit and it can not find it hence complains.</div>
-<div>but when i checked the <em>recipe-sysroot </em>of nginx the the heade=
-r files are present at location </div>
-<div><em>recipe-sysroot/usr/include/<wbr />luajit-2.0</em></div>
-<div><em>&nbsp;</em></div>
-<div>and i think recipe does not include this location automatically and o=
-nly looks in<em> <em>recipe-sysroot/usr/include</em></em></div>
-<div><em><em>&nbsp;</em></em></div>
-<div><strong>so my question is how can i include this directory so that re=
-cipe looks into above mentioned folder also..</strong></div>
-<div><em><em><strong>and similar question is for library also</strong><br =
-/></em></em></div>
-<div><em><em>&nbsp;</em></em></div>
-<div><em><em>Any inputs would be highly appriciated</em></em></div>
-
---wRd3COU0ryd1AoPVnfL4--
+Quentin
