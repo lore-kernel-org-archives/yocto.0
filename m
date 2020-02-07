@@ -1,163 +1,318 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.5143.1581084811742515618
- for <yocto@lists.yoctoproject.org>;
- Fri, 07 Feb 2020 06:13:32 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=sQiDTWpp;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: gabbla.malist@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 55F88E016DB; Fri,  7 Feb 2020 06:13:31 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (gabbla.malist[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.167.52 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB0DCE01589;
-	Fri,  7 Feb 2020 06:13:29 -0800 (PST)
-Received: by mail-lf1-f52.google.com with SMTP id n25so1635886lfl.0;
-        Fri, 07 Feb 2020 06:13:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6VCzsOGJr9/lSRbQbgFDW1l57Qpj7TKAVaSO+9RZpmc=;
-        b=sQiDTWppcgaFq0uSkHj8fAjcdwFkrS/+0UOtDxnwAy9ASoLLZSyLuv1FJV03PJAzmW
-         N/kmDINHF8E2ucDKkI9OQanaZcRIBmSF8stJuXvD/+QOOAszTG/xfjIDucHWRKA5BY1w
-         bXU23Sv+LMaShVR25ynpO7/GJGb7k0VLi00C7yy1GTrmv3UxN9jqz6FyLSm8rH4Lh0d7
-         /iQKIf1FuMna+ecgAC67oTzHIG3mRCFDaySt9RL5RM0pVP/0/ecLMHnsVfw4ojI5zu3T
-         /rK1TZ1ASCkPyLEnUXc2AMVANrQkRMF6/f2JTFsyUNfA56v3mjX4kq97//ZJuyXUx2Vm
-         cwgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6VCzsOGJr9/lSRbQbgFDW1l57Qpj7TKAVaSO+9RZpmc=;
-        b=Jcrb8AlMUfZPg5Ov0n9MpTc8FZEmS7QwYtI4yuamJYYZJ2tABf8EcTqobQsXD9GB3G
-         sv+btTIvizVWy+RJYfCd1hdxz0QuLCbbWPzvEOfmA1WKIFLLYIlyEDW1mq9+ku9/fyF5
-         Hrl4PnzUUd9bpxpr1W3CCT9N5Vo2DUuV6lZV/giu2nE/oRJiUzq7jiomHVi00rl68+E4
-         wZ1nxUNIaVUnDAnrV/xI89bTuBf1ltP56OpKAiVvzM6GdyEdusPf+pZRbH4kJ4vIQ5KG
-         cnox20DDlLdPPlYv99GGZNOISJYaZudpQsGnvok3unPtoLh81GJ45f1d59+12LVufXBi
-         kK6w==
-X-Gm-Message-State: APjAAAVCjiEwutTgv4r+bigXSOLGtWOKma2AWiUYl3QSI2Aj9Ywv6M58
-	0/szddBng9muA9almbLshVCIxnhHWh1TOuBn3yo=
-X-Google-Smtp-Source: APXvYqy8rHLjbUhJvyjo2596BXrd3drWaUXio8nCGBJQm47EaedTZRu+dcn1KzSbWaQMdy3kfjTDqMnxHm2hERo1r2g=
-X-Received: by 2002:a19:f006:: with SMTP id p6mr4656713lfc.94.1581084808880;
- Fri, 07 Feb 2020 06:13:28 -0800 (PST)
+Subject: Can't build poky with 'out of the box' defaults and settings
+To: yocto@lists.yoctoproject.org
+From: "OliverYSedlacek" <owy@sevensoftltd.com>
+X-Originating-Location: Haywards Heath, England, GB (81.174.247.223)
+X-Originating-Platform: Windows Firefox 72
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CAA=hcWSCZROrpDBWV5ZAA+LV6j0cjRSKxyjonOfWS4mCZAtdHg@mail.gmail.com>
- <CAAx3WaDGin=NcQk3X4=MTK8RfTrNO=LvrG+LbAyrWFUnWgU9aQ@mail.gmail.com>
- <CAA=hcWSAbcf9GchJN_+-DzMDYJQfMKBGYHmJzRNwY5P_szMvOg@mail.gmail.com>
- <CAAx3WaAhLo1wbfsUdwdoNrYyEkJ38AgyFO0H+ckLyyqSgc3bOA@mail.gmail.com> <CAA=hcWQL8se7RR9bfuBsS0xpof0Y7vwEyQ5Zg_hm+Vq0FwjTPg@mail.gmail.com>
-In-Reply-To: <CAA=hcWQL8se7RR9bfuBsS0xpof0Y7vwEyQ5Zg_hm+Vq0FwjTPg@mail.gmail.com>
-From: "Gabriele" <gabbla.malist@gmail.com>
-Date: Fri, 7 Feb 2020 15:13:17 +0100
-Message-ID: <CAAx3WaDkzFvh_g8t_WXgzc7PToXndRmnEKJr_1R+yMnfOnqPAw@mail.gmail.com>
-Subject: Re: [yocto] Support UBI u-boot
-To: JH <jupiter.hce@gmail.com>
-Cc: Meta Freescale <meta-freescale@yoctoproject.org>, 
-	Yocto discussion list <yocto@yoctoproject.org>, 
-	Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>, 
-	U-Boot Mailing List <u-boot@lists.denx.de>
-Content-Type: multipart/alternative; boundary="00000000000064a50f059dfcfe47"
+Date: Fri, 07 Feb 2020 08:28:47 -0800
+Message-ID: <v4uE.1581092927230845408.DXQ8@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="BNYVO5YEhtQy9ul9BhMo"
 
---00000000000064a50f059dfcfe47
-Content-Type: text/plain; charset="UTF-8"
-
-Hi,
-
-On Fri, Feb 7, 2020 at 2:55 AM JH <jupiter.hce@gmail.com> wrote:
-
-> Hi Gabriele,
->
-> On 2/6/20, Gabriele Zampieri <gabbla.malist@gmail.com> wrote:
-> > As far as I know uboot (usually virtual/bootloader) does not have a task
-> to
-> > run menuconfig directly from bitbake.
-> > I usually have a local clone of uboot and I simply run `make [...]
-> > menuconfig|savedefconfig` , then I create a patch
-> > to add my defconfig (custom_defconfig) to configs/ and specify
-> > UBOOT_MACHINE = "custom_defconfig"
->
-> Are there any document to use cross compiler tools to build u-boot-imx
-> on Ubuntu 18 host machine? It seems that build environment will not be
-> the same as the Yocto build environment I am currently running on
-> Ubuntu 18 host.
->
-> I compile uboot using the Yocto generated SDK. Simply
-source /opt/poky/.../env-script
-make -j4
-
-If you just want to run the menuconfig run
-make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- menuconfig
-and
-make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- savedefconfig
-In any environment.
-
-> Thank you Gabriele for great helps.
->
-
-
-> Kind regards,
->
-> - jh
->
-
-Gabriele
-
---00000000000064a50f059dfcfe47
-Content-Type: text/html; charset="UTF-8"
+--BNYVO5YEhtQy9ul9BhMo
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr">Hi,<br></div><br><div class=3D"gmail_quot=
-e"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Feb 7, 2020 at 2:55 AM JH =
-&lt;<a href=3D"mailto:jupiter.hce@gmail.com">jupiter.hce@gmail.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Gabrie=
-le,<br>
-<br>
-On 2/6/20, Gabriele Zampieri &lt;<a href=3D"mailto:gabbla.malist@gmail.com"=
- target=3D"_blank">gabbla.malist@gmail.com</a>&gt; wrote:<br>
-&gt; As far as I know uboot (usually virtual/bootloader) does not have a ta=
-sk to<br>
-&gt; run menuconfig directly from bitbake.<br>
-&gt; I usually have a local clone of uboot and I simply run `make [...]<br>
-&gt; menuconfig|savedefconfig` , then I create a patch<br>
-&gt; to add my defconfig (custom_defconfig) to configs/ and specify<br>
-&gt; UBOOT_MACHINE =3D &quot;custom_defconfig&quot;<br>
-<br>
-Are there any document to use cross compiler tools to build u-boot-imx<br>
-on Ubuntu 18 host machine? It seems that build environment will not be<br>
-the same as the Yocto build environment I am currently running on<br>
-Ubuntu 18 host.<br><br></blockquote><div>I compile uboot using the Yocto ge=
-nerated SDK. Simply</div><div>source /opt/poky/.../env-script</div><div>mak=
-e -j4</div><div><br></div><div>If you just want to run the menuconfig run</=
-div><div>make ARCH=3Darm CROSS_COMPILE=3Darm-linux-gnueabihf- menuconfig</d=
-iv><div>and <br></div><div>make ARCH=3Darm CROSS_COMPILE=3Darm-linux-gnueab=
-ihf- savedefconfig</div><div>In any environment.<br></div><blockquote class=
-=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
-b(204,204,204);padding-left:1ex">
-Thank you Gabriele for great helps.<br>
-</blockquote><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"ma=
-rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
-1ex">
-Kind regards,<br>
-<br>
-- jh<br></blockquote><div><br></div><div>Gabriele <br></div></div></div>
+I've been tasked with setting up Yocto builds and I thought I'd better star=
+t with the simplest possible build of Poky. I've tried Yocto 2.7.1 and Yoct=
+o 3.0.1 on Debian 9 and Debian 10 but they all fail on the bitbake command.=
+ The simplest failure comes from a Debian 10/Yocto 3.0.1/core-image-minimal=
+ build, so I've included the output. Where do I go from here?
+>=20
+>=20
+> olivers@isembard-deb:~/poky/build$ bitbake -k core-image-minimal
+>=20
+> WARNING: Host distribution "Debian-10" has not been validated with this
+> version of the build system; you may possibly experience unexpected
+> failures. It is recommended that you use a tested distribution.
+>=20
+> Loading cache: 100%
+> |#######################################################################=
+########################|
+> ETA:=C2=A0 00:00:00
+>=20
+> Loaded 1287 entries from dependency cache.
+>=20
+> NOTE: Resolving any missing task queue dependencies
+>=20
+>=20
+> Build Configuration:
+>=20
+> BB_VERSION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "1.26.0"
+>=20
+> BUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "x86_64-li=
+nux"
+>=20
+> NATIVELSBSTRING=C2=A0=C2=A0 =3D "Debian-10"
+>=20
+> TARGET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D "i586-poky-linu=
+x"
+>=20
+> MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D =
+"qemux86"
+>=20
+> DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+ =3D "poky"
+>=20
+> DISTRO_VERSION=C2=A0=C2=A0=C2=A0 =3D "1.8.2"
+>=20
+> TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0 =3D "m32 i586"
+>=20
+> TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D ""
+>=20
+> meta
+>=20
+> meta-yocto
+>=20
+> meta-yocto-bsp=C2=A0=C2=A0=C2=A0 =3D "fido:87631919819b6f85f23f57689cd10=
+65c64d7fb03"
+>=20
+>=20
+> NOTE: Preparing RunQueue
+>=20
+> NOTE: Executing SetScene Tasks
+>=20
+> NOTE: Executing RunQueue Tasks
+>=20
+> ERROR: Function failed: do_compile (log file is located at
+> /home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/temp/=
+log.do_compile.27321)
+>=20
+>=20
+> ERROR: Logfile of failure stored in:
+> /home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/temp/=
+log.do_compile.27321
+>=20
+>=20
+> Log data follows:
+>=20
+> | DEBUG: Executing shell function do_compile
+>=20
+> | NOTE: make -j 1
+> infodir=3D/home/olivers/poky/build/tmp/sysroots/x86_64-linux/usr/share/i=
+nfo
+>=20
+> | make=C2=A0 all-recursive
+>=20
+> | make[1]: Entering directory
+> '/home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/buil=
+d'
+>=20
+>=20
+> | Making all in .
+>=20
+> | make[2]: Entering directory
+> '/home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/buil=
+d'
+>=20
+>=20
+> | make[2]: Nothing to be done for 'all-am'.
+>=20
+> | make[2]: Leaving directory
+> '/home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/buil=
+d'
+>=20
+>=20
+> | Making all in examples
+>=20
+> | make[2]: Entering directory
+> '/home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/buil=
+d/examples'
+>=20
+>=20
+> | make[2]: Nothing to be done for 'all'.
+>=20
+> | make[2]: Leaving directory
+> '/home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/buil=
+d/examples'
+>=20
+>=20
+> | Making all in lib
+>=20
+> | make[2]: Entering directory
+> '/home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/buil=
+d/lib'
+>=20
+>=20
+> | make=C2=A0 all-am
+>=20
+> | make[3]: Entering directory
+> '/home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/buil=
+d/lib'
+>=20
+>=20
+> | gcc=C2=A0=C2=A0 -I.
+> -I/home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/m4-=
+1.4.17/lib
+> -isystem/home/olivers/poky/build/tmp/sysroots/x86_64-linux/usr/include=
+=C2=A0
+> -isystem/home/olivers/poky/build/tmp/sysroots/x86_64-linux/usr/include -=
+O2
+> -pipe -c -o freadahead.o
+> /home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/m4-1.=
+4.17/lib/freadahead.c
+>=20
+>=20
+> |
+> /home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/m4-1.=
+4.17/lib/freadahead.c:
+> In function 'freadahead':
+>=20
+> |
+> /home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/m4-1.=
+4.17/lib/freadahead.c:91:3:
+> error: #error "Please port gnulib freadahead.c to your platform! Look at
+> the definition of fflush, fread, ungetc on your system, then report this
+> to bug-gnulib."
+>=20
+> |=C2=A0=C2=A0 #error "Please port gnulib freadahead.c to your platform! =
+Look at the
+> definition of fflush, fread, ungetc on your system, then report this to
+> bug-gnulib."
+>=20
+> |=C2=A0=C2=A0=C2=A0 ^~~~~
+>=20
+> | make[3]: *** [Makefile:1842: freadahead.o] Error 1
+>=20
+> | make[3]: Leaving directory
+> '/home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/buil=
+d/lib'
+>=20
+>=20
+> | make[2]: *** [Makefile:1602: all] Error 2
+>=20
+> | make[2]: Leaving directory
+> '/home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/buil=
+d/lib'
+>=20
+>=20
+> | make[1]: *** [Makefile:1506: all-recursive] Error 1
+>=20
+> | make[1]: Leaving directory
+> '/home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/buil=
+d'
+>=20
+>=20
+> | make: *** [Makefile:1461: all] Error 2
+>=20
+> | ERROR: oe_runmake failed
+>=20
+> | WARNING: exit code 1 from a shell command.
+>=20
+> | ERROR: Function failed: do_compile (log file is located at
+> /home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/temp/=
+log.do_compile.27321)
+>=20
+>=20
+> ERROR: Task 947
+> (/home/olivers/poky/meta/recipes-devtools/m4/m4-native_1.4.17.bb,
+> do_compile) failed with exit code '1'
+>=20
+> NOTE: Tasks Summary: Attempted 725 tasks of which 724 didn't need to be
+> rerun and 1 failed.
+>=20
+> No currently running tasks (27 of 2034)
+>=20
+>=20
+> Summary: 1 task failed:
+>=20
+> /home/olivers/poky/meta/recipes-devtools/m4/m4-native_1.4.17.bb,
+> do_compile
+>=20
+> Summary: There was 1 WARNING message shown.
+>=20
+> Summary: There was 1 ERROR message shown, returning a non-zero exit code=
+.
+>=20
+>=20
+>
 
---00000000000064a50f059dfcfe47--
+--BNYVO5YEhtQy9ul9BhMo
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+I've been tasked with setting up Yocto builds and I thought I'd better star=
+t with the simplest possible build of Poky. I've tried Yocto 2.7.1 and Yoct=
+o 3.0.1 on Debian 9 and Debian 10 but they all fail on the bitbake command.=
+ The simplest failure comes from a Debian 10/Yocto 3.0.1/core-image-minimal=
+ build, so I've included the output. Where do I go from here?
+<blockquote>olivers@isembard-deb:~/poky/build$ bitbake -k core-image-minim=
+al<br /><br />WARNING: Host distribution "Debian-10" has not been validated=
+ with this version of the build system; you may possibly experience unexpec=
+ted failures. It is recommended that you use a tested distribution.<br /><b=
+r />Loading cache: 100% |##################################################=
+#############################################| ETA:&nbsp; 00:00:00<br /><br=
+ />Loaded 1287 entries from dependency cache.<br /><br />NOTE: Resolving an=
+y missing task queue dependencies<br /><br /><br />Build Configuration:<br =
+/><br />BB_VERSION&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "1.26.0"<b=
+r /><br />BUILD_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "x8=
+6_64-linux"<br /><br />NATIVELSBSTRING&nbsp;&nbsp; =3D "Debian-10"<br /><br=
+ />TARGET_SYS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "i586-poky-linu=
+x"<br /><br />MACHINE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp; =3D "qemux86"<br /><br />DISTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =3D "poky"<br /><br />DISTRO_VERSION&nbsp;&nb=
+sp;&nbsp; =3D "1.8.2"<br /><br />TUNE_FEATURES&nbsp;&nbsp;&nbsp;&nbsp; =3D =
+"m32 i586"<br /><br />TARGET_FPU&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+=
+=3D ""<br /><br />meta&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; <br /><br />meta-yocto&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp; <br /><br />meta-yocto-bsp&nbsp;&nbsp;&nbsp; =3D "fido:876=
+31919819b6f85f23f57689cd1065c64d7fb03"<br /><br /><br />NOTE: Preparing Run=
+Queue<br /><br />NOTE: Executing SetScene Tasks<br /><br />NOTE: Executing =
+RunQueue Tasks<br /><br />ERROR: Function failed: do_compile (log file is l=
+ocated at /home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r=
+0/temp/log.do_compile.27321)<br /><br />ERROR: Logfile of failure stored in=
+: /home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/temp/l=
+og.do_compile.27321<br /><br />Log data follows:<br /><br />| DEBUG: Execut=
+ing shell function do_compile<br /><br />| NOTE: make -j 1 infodir=3D/home/=
+olivers/poky/build/tmp/sysroots/x86_64-linux/usr/share/info<br /><br />| ma=
+ke&nbsp; all-recursive<br /><br />| make[1]: Entering directory '/home/oliv=
+ers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/build'<br /><br />=
+| Making all in .<br /><br />| make[2]: Entering directory '/home/olivers/p=
+oky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/build'<br /><br />| mak=
+e[2]: Nothing to be done for 'all-am'.<br /><br />| make[2]: Leaving direct=
+ory '/home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/bui=
+ld'<br /><br />| Making all in examples<br /><br />| make[2]: Entering dire=
+ctory '/home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/b=
+uild/examples'<br /><br />| make[2]: Nothing to be done for 'all'.<br /><br=
+ />| make[2]: Leaving directory '/home/olivers/poky/build/tmp/work/x86_64-l=
+inux/m4-native/1.4.17-r0/build/examples'<br /><br />| Making all in lib<br =
+/><br />| make[2]: Entering directory '/home/olivers/poky/build/tmp/work/x8=
+6_64-linux/m4-native/1.4.17-r0/build/lib'<br /><br />| make&nbsp; all-am<br=
+ /><br />| make[3]: Entering directory '/home/olivers/poky/build/tmp/work/x=
+86_64-linux/m4-native/1.4.17-r0/build/lib'<br /><br />| gcc&nbsp;&nbsp; -I.=
+ -I/home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/m4-1.=
+4.17/lib&nbsp;&nbsp; -isystem/home/olivers/poky/build/tmp/sysroots/x86_64-l=
+inux/usr/include&nbsp; -isystem/home/olivers/poky/build/tmp/sysroots/x86_64=
+-linux/usr/include -O2 -pipe -c -o freadahead.o /home/olivers/poky/build/tm=
+p/work/x86_64-linux/m4-native/1.4.17-r0/m4-1.4.17/lib/freadahead.c<br /><br=
+ />| /home/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/m4-=
+1.4.17/lib/freadahead.c: In function 'freadahead':<br /><br />| /home/olive=
+rs/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/m4-1.4.17/lib/fread=
+ahead.c:91:3: error: #error "Please port gnulib freadahead.c to your platfo=
+rm! Look at the definition of fflush, fread, ungetc on your system, then re=
+port this to bug-gnulib."<br /><br />|&nbsp;&nbsp; #error "Please port gnul=
+ib freadahead.c to your platform! Look at the definition of fflush, fread, =
+ungetc on your system, then report this to bug-gnulib."<br /><br />|&nbsp;&=
+nbsp;&nbsp; ^~~~~<br /><br />| make[3]: *** [Makefile:1842: freadahead.o] E=
+rror 1<br /><br />| make[3]: Leaving directory '/home/olivers/poky/build/tm=
+p/work/x86_64-linux/m4-native/1.4.17-r0/build/lib'<br /><br />| make[2]: **=
+* [Makefile:1602: all] Error 2<br /><br />| make[2]: Leaving directory '/ho=
+me/olivers/poky/build/tmp/work/x86_64-linux/m4-native/1.4.17-r0/build/lib'<=
+br /><br />| make[1]: *** [Makefile:1506: all-recursive] Error 1<br /><br /=
+>| make[1]: Leaving directory '/home/olivers/poky/build/tmp/work/x86_64-lin=
+ux/m4-native/1.4.17-r0/build'<br /><br />| make: *** [Makefile:1461: all] E=
+rror 2<br /><br />| ERROR: oe_runmake failed<br /><br />| WARNING: exit cod=
+e 1 from a shell command.<br /><br />| ERROR: Function failed: do_compile (=
+log file is located at /home/olivers/poky/build/tmp/work/x86_64-linux/m4-na=
+tive/1.4.17-r0/temp/log.do_compile.27321)<br /><br />ERROR: Task 947 (/home=
+/olivers/poky/meta/recipes-devtools/m4/m4-native_1.4.17.bb, do_compile) fai=
+led with exit code '1'<br /><br />NOTE: Tasks Summary: Attempted 725 tasks =
+of which 724 didn't need to be rerun and 1 failed.<br /><br />No currently =
+running tasks (27 of 2034)<br /><br /><br />Summary: 1 task failed:<br /><b=
+r />&nbsp; /home/olivers/poky/meta/recipes-devtools/m4/m4-native_1.4.17.bb,=
+ do_compile<br /><br />Summary: There was 1 WARNING message shown.<br /><br=
+ />Summary: There was 1 ERROR message shown, returning a non-zero exit code=
+.<br /><br /><br /></blockquote>
+
+--BNYVO5YEhtQy9ul9BhMo--
