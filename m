@@ -1,101 +1,1231 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.1155.1581058704084156213
+ by mx.groups.io with SMTP id smtpd.web12.1929.1581065560439290787
  for <yocto@lists.yoctoproject.org>;
- Thu, 06 Feb 2020 22:58:27 -0800
+ Fri, 07 Feb 2020 00:52:40 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=permerror, err=parse error for token &{10 18 aspmx.pardot.com}: limit exceeded (domain: tagmaster.com, ip: 140.211.169.56, mailfrom: pelle.windestam@tagmaster.com)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=dYUg56BU;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A299EE01685; Thu,  6 Feb 2020 22:58:23 -0800 (PST)
+	id DE0BBE01581; Fri,  7 Feb 2020 00:52:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 902 seconds by postgrey-1.32 at yocto-www; Thu, 06 Feb 2020 22:58:21 PST
-Received: from mail.tagmaster.com (mail.tagmaster.com [37.233.78.77])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25BE6E01589
-	for <yocto@yoctoproject.org>; Thu,  6 Feb 2020 22:58:21 -0800 (PST)
-Received: from TMEX01.tagmaster.com (10.10.55.12) by TMEX01.tagmaster.com
- (10.10.55.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.1.845.34; Fri, 7 Feb 2020
- 07:43:17 +0100
-Received: from TMEX01.tagmaster.com ([fe80::e438:720a:793e:d353]) by
- TMEX01.tagmaster.com ([fe80::e438:720a:793e:d353%9]) with mapi id
- 15.01.0845.034; Fri, 7 Feb 2020 07:43:17 +0100
-From: "Pelle Windestam" <pelle.windestam@tagmaster.com>
-To: JH <jupiter.hce@gmail.com>, Andy Pont <andy.pont@sdcsystems.com>
-CC: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [yocto] Support UBI u-boot
-Thread-Topic: [yocto] Support UBI u-boot
-Thread-Index: AQHV3LeU8swohIzFgEWMT1wWpwe1SqgPJfxGgAAgIvA=
-Date: Fri, 7 Feb 2020 06:43:17 +0000
-Message-ID: <c159fe1d7cc14f5c80878fe81a957bb4@tagmaster.com>
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (jupiter.hce[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.166.68 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-io1-f68.google.com (mail-io1-f68.google.com [209.85.166.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70E1AE0082A;
+	Fri,  7 Feb 2020 00:52:37 -0800 (PST)
+Received: by mail-io1-f68.google.com with SMTP id x1so1357247iop.7;
+        Fri, 07 Feb 2020 00:52:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+         :cc;
+        bh=VooL6Pd2mA+l+2SGbGr/TGjaZa8f/k4d5kmOHs+73b4=;
+        b=dYUg56BUnKrhz2VgoaQj7nhUg1RXG2dzUpH6N+jgj3VQTvmj2VAW81wAeXHFlHB33k
+         pNJ26g+rQZra8yYmOTjpVuNGTuiMAN8XpSUr+bD1Nx1lCVY60XagOoc9n7QKBOcEes3P
+         wWpI/Ts0rfjZ+q6ZBgPf2Iz03E84Fah4PZ754nkrF/b5bF8lklbPCxMLeAf5IMHD8cAn
+         BAsR9iMutLs3IrEHBq0AMC313fqQOglnZQpW/TfUhvsv9f7eB0qezhDbB0MIZ28ri6YC
+         hgcEAcyU5qeQPsavcEmGs8B1xnO/UNTTNmzFc8lmgpv03ziQB6TCtX074brsOQL5h4XU
+         lreQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+         :message-id:subject:to:cc;
+        bh=VooL6Pd2mA+l+2SGbGr/TGjaZa8f/k4d5kmOHs+73b4=;
+        b=hQdpdwApW6I54GpVht2qPHUyvE9w9YFu/OzQrvA3FMAE8Q4xFz/JGNCbfNNOgYkTnb
+         OUnQyFT5Qt59QBwfhsH94iWA9WdopIauR6K4xp1lIclHU6KkdglBbbef1s8p4nq2xDS/
+         Zgpn1kdyf6Lv8ED03TrYF/CiTWEkQs9su14U3bFgkZTT+AiARBiq3nA7FuRJJPPiVqPO
+         7XMNd5CvAetWIpqTHnyET2L/j9gyTF+ZhYnrGeEwPjwHTvobQXQLCW76XTe+MjW5Ycyi
+         VTf9kjJs7tDJqiuO+27UVGemVAH809/YQz+dVsSHNJbtnNzeJvv0ONwJcWPmX8WZSDgr
+         Wc9Q==
+X-Gm-Message-State: APjAAAUJOLzc9ho8B8OD3xjtqnGHCRlr9Kz2wutJxXH1xxPbe6M/uVEE
+	T3cWPzaqck94U0cTERuNCmOMdrX0HyYv2oglAj5PJOsWXWg=
+X-Google-Smtp-Source: APXvYqz28UEIEC7gjGN1cfHPLJvQc2IQVb6M7HdS+fLx6vZow6+LoGqdsU+owUskFP6p05JiPUIkAKA6KOGRwsbJJq8=
+X-Received: by 2002:a5d:8782:: with SMTP id f2mr2160422ion.53.1581065556415;
+ Fri, 07 Feb 2020 00:52:36 -0800 (PST)
+MIME-Version: 1.0
+Received: by 2002:ad5:5d0d:0:0:0:0:0 with HTTP; Fri, 7 Feb 2020 00:52:35 -0800 (PST)
+In-Reply-To: <c159fe1d7cc14f5c80878fe81a957bb4@tagmaster.com>
 References: <CAA=hcWSCZROrpDBWV5ZAA+LV6j0cjRSKxyjonOfWS4mCZAtdHg@mail.gmail.com>
  <em86bbcd60-f004-4acb-b508-4471dac5c7c1@andys-imac.leeshillfarm.local>
- <CAA=hcWQsP1N58iqrxEggZBdSksgHk+gfuG7yz0+C3G7o0=DzOw@mail.gmail.com>
-In-Reply-To: <CAA=hcWQsP1N58iqrxEggZBdSksgHk+gfuG7yz0+C3G7o0=DzOw@mail.gmail.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.10.55.73]
-MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ <CAA=hcWQsP1N58iqrxEggZBdSksgHk+gfuG7yz0+C3G7o0=DzOw@mail.gmail.com> <c159fe1d7cc14f5c80878fe81a957bb4@tagmaster.com>
+From: "JH" <jupiter.hce@gmail.com>
+Date: Fri, 7 Feb 2020 19:52:35 +1100
+Message-ID: <CAA=hcWQPrfb3UrYsfyhs4as8wGDf5DsyEtF=cgCo4gJprx=b1Q@mail.gmail.com>
+Subject: Re: [yocto] Support UBI u-boot
+To: Pelle Windestam <Pelle.Windestam@tagmaster.com>
+Cc: Andy Pont <andy.pont@sdcsystems.com>, 
+	Meta Freescale <meta-freescale@yoctoproject.org>, 
+	Yocto discussion list <yocto@yoctoproject.org>, linux-mtd <linux-mtd@lists.infradead.org>, 
+	Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>
+Content-Type: text/plain; charset="UTF-8"
 
-PiA+PkkgYWRkZWQgTkFORCBhbmQgVUJJRlMgc3VwcG9ydCB0byBteSBZb2N0byBsYXllciBtYWNo
-aW5lIGNvbmZpZyBmaWxlOg0KPiA+Pg0KPiA+PlVCT09UX0NPTkZJRyA9ICJuYW5kIg0KPiA+PlVC
-T09UX0NPTkZJR1tuYW5kXSArPSAibXg2dWxsXzE0eDE0X2V2a19jb25maWciDQo+ID4+VUJPT1Rf
-Q09ORklHW25hbmRdICs9ICJteDZ1bGxfMTR4MTRfZXZrX25hbmRfY29uZmlnIg0KPiA+PlVCT09U
-X0NPTkZJR1tuYW5kXSArPSAidWJpIg0KPiA+PlVCT09UX0NPTkZJR1tuYW5kXSArPSAidWJpZnMi
-DQo+ID4+DQo+ID4+QnV0IG15IHUtYm9vdC5pbXgtbmFuZCBzdGlsbCBjb3VsZCBub3Qgc3VwcG9y
-dCB1Ymk6DQo+ID4+DQo+ID4+PT4gdWJpIHBhcnQgcm9vdGZzDQo+ID4+VW5rbm93biBjb21tYW5k
-ICd1YmknIC0gdHJ5IOKAmGhlbHDigJkNCj4gPiBZb3UgbmVlZCB0byBzdGFydCB0byByZWFkIHRo
-cm91Z2ggdGhlIHZhcmlvdXMgc291cmNlcyB0byBmaWd1cmUgb3V0DQo+ID4gZm9yIHlvdXJzZWxm
-IHdoYXQgaXMgZ29pbmcgb24hDQo+ID4NCj4gPiBTdGFydGluZyBmcm9tIHRoZSBib3R0b20sIGlu
-IFUtQm9vdCAyMDE3LjAzIGFsbCBvZiB0aGUgY29tbWFuZCBzb3VyY2VzDQo+ID4gYXJlIGluIHRo
-ZSDigJxjbWTigJ0gZGlyZWN0b3J5LiBUaGUg4oCcdWJpIOKApuKAnSBjb21tYW5kIGFyZSBhbGwg
-aW4gdWJpLmMuDQo+ID4gUmVhZGluZyBjbWQvTWFrZWZpbGUgc2hvd3MgdGhhdCBmaWxlIGdldHMg
-YWRkZWQgaW50byB0aGUgYnVpbGQgaWYNCj4gPiBDT05GSUdfQ01EX1VCSSBpcyBlbmFibGVkLg0K
-PiANCj4gWW91IGFyZSByaWdodCwgdGhhdCBDT05GSUdfQ01EX1VCSSBpcyBub3QgZW5hYmxlZCwg
-YnV0IEkgY291bGQgbm90IGZpbmQgYW55DQo+IGNvbmYgb3IgYmIgZmlsZXMgSSBjb3VsZCBjaGFu
-Z2Ugb3IgZW5hYmxlIENPTkZJR19DTURfVUJJIGluIG1ldGEtZnJlZXNjYWxlDQo+IGxheWVyLg0K
-PiANCj4gRGVzcGVyYXRlbHksIEkgaGFja2VkIHRvIHJ1biAibWFrZSBtZW51Y29uZmlnIiBhdCBV
-LUJvb3QgMjAxNy4wMyBidWlsZA0KPiBkaXJlY3RvcnksIHNlbGVjdGVkIGFuZCBlbmFibGVkIENP
-TkZJR19DTURfVUJJIGFuZCBzYXZlZCB0byAuY29uZmlnIGZpbGUgaW4NCj4gdGhhdCBidWlsZCBk
-aXJlY3RvcnksIGJ1dCB0aGVuIHRvIHJ1biBiaXRiYWtlIHRvIGJ1aWxkIHUtYm9vdCBhZ2Fpbiwg
-dGhlDQo+IC5jb25maWcgd2FzIHJlbW92ZWQgYW5kIHJlcGxhY2VkIGJ5IGFuIG9sZCBvbmUgZGlz
-YWJsZWQgQ09ORklHX0NNRF9VQkkgYWdhaW4uDQo+IA0KPiBPdGhlciBwZW9wbGUgcmVjb21tZW5k
-ZWQgdG8gYnVpbGQgdS1ib290IGluIGEgc3RhbmRhbG9uZSBlbnZpcm9ubWVudCBvdXQgb2YNCj4g
-T0UgLyBZb2N0byBidWlsZCBzeXN0ZW0uIFNpbmNlIEkgaGF2ZSBzZXQgdXAgZXZlcnl0aGluZyBp
-biBPRSAvIFlvY3RvDQo+IGVudmlyb25tZW50LCBJIHRob3VnaHQgaXQgY291bGQgYmUgZWFzaWVy
-IGlmIEkgY291bGQgbW9kaWZ5IG9uZSBsaW5lIG9mIHUtDQo+IGJvb3QgY29uZmlnIGZpbGUgaW4g
-YSByZWNpcGUuDQo+IA0KPiBBbnkgaWRlYSB3aGVyZSBpcyB0aGUgcmVjaXBlIGluIG1ldGEtZnJl
-ZXNjYWxlIHRvIGFsbG93IG1lIHRvIGNoYW5nZSAvIGVuYWJsZQ0KPiBDT05GSUdfQ01EX1VCST8N
-Cj4gDQo+IEFtIEkgdGhlIG9ubHkgb25lIHVuYWJsZSB0byBjaGFuZ2UgdS1ib290IGNvbmZpZyBm
-aWxlIGluIE9FIC8gWW9jdHUgYnVpbGQ/DQo+IFRoYXQgbWFrZXMgbWUgdmVyeSBzYWQgOi0oLg0K
-PiANCj4gDQo+ID4gVGhlIG5leHQgcGxhY2UgdG8gbG9vayBpcyB3aGV0aGVyIG9yIG5vdCB0aGF0
-IGlzIHNldCBpbiB5b3VyIGRlZmNvbmZpZw0KPiA+IGZvciBVLUJvb3Qgb3Igb3ZlcndyaXR0ZW4g
-c29tZXdoZXJlIGluIGEgcmVjaXBlIGluIHlvdXIgWW9jdG8gYnVpbGQNCj4gPiBlbnZpcm9ubWVu
-dC4NCj4gDQo+IFllYWgsIEknbGwgYmVlbiBzZWFyY2hlZCBhbGwgZGF5LCBjb3VsZCBub3QgZmlu
-ZCBhIHJlY2lwZSBZb2N0byBidWlsZA0KPiBlbnZpcm9ubWVudCwgSSB3YXMgdG9sZCBPRSAvIFlv
-Y3RvIGRvZXMgbm90IGhhdmUgdGhhdCBzdGFjayBhbmQgbWVjaGFuaXNtIHRvDQo+IHNldCBhbmQg
-Y2hhbmdlIHUtYm9vdCBjb25maWcsIGlzIGl0IHRydWU/DQo+IA0KDQpIaSwNCg0KSW4gbXkgY2Fz
-ZSB1LWJvb3QgdXNlcyBhIGRlZmF1bHQgY29uZmlnIGNhbGxlZCBpbXg4cXhwX3Zhcl9zb21fZGVm
-Y29uZmlnIHN0b3JlZCB1bmRlciB0aGUgY29uZmlncyBkaXJlY3RvcnkgaW4gdS1ib290IChub3Qg
-c3VyZSBpZiBpdHMgaW4gdGhlIG9mZmljaWFsIHJlcG9zaXRvcmllcywgSSB1c2UgYSB2ZW5kb3Ig
-c3VwcGxpZWQgdS1ib290IHJlcG8sIGJ1dCB0aGUgcHJvY2VkdXJlIHNob3VsZCBiZSB0aGUgc2Ft
-ZSBlaXRoZXIgd2F5KSwgdGhlbiBJIGhhdmUgY3JlYXRlZCBhIC5iYmFwcGVuZC1maWxlIGZvciB0
-aGUgdS1ib290IHJlY2lwZSwgYW5kIGFkZGVkIGEgcGF0Y2ggdGhhdCBtb2RpZmllcyB0aGUgZGVm
-Y29uZmlnIGZpbGUgdG8gaW5jbHVkZSB0aGUgb3B0aW9ucyBJIHdhbnQgdG8gZW5hYmxlLiBUaGVu
-IGFzIHUtYm9vdCBpcyBidWlsdCwgaXQgd2lsbCB1c2UgdGhlIHBhdGNoZWQgZGVmY29uZmlnIHdp
-dGggdGhlIGFwcHJvcHJpYXRlIG9wdGlvbnMgZW5hYmxlZC4gSW4gdGhlIG1ldGEtZnJlZXNjYWxl
-IGxheWVyIHRoZSB1LWJvb3QgcmVjaXBlcyBhcmUgdW5kZXIgbWV0YS1mcmVlc2NhbGUvcmVjaXBl
-cy1ic3AvdS1ib290Lg0KDQpZb3Ugc2hvdWxkIGJlIGFibGUgdG8gZmlndXJlIG91dCBleGFjdGx5
-IHdoaWNoIHUtYm9vdCByZWNpcGUgeW91IGFyZSB1c2luZyBieSBydW5uaW5nOg0KYml0YmFrZSAt
-ZSA8aW1hZ2UgbmFtZT4gfCBncmVwIF5QUkVGRVJSRURfUFJPVklERVJfdmlydHVhbC9ib290bG9h
-ZGVyDQoNCk5vdCBzdXJlIGlmIHRoaXMgaXMgdGhlIHJlY29tbWVuZGVkIHdheSB0byBnbywgYnV0
-IHRoYXTigJlzIGhvdyBJIHNvbHZlZCBpdC4NCg0KLy9QZWxsZQ0KDQoNCg==
+Hi Pelle,
+
+Aplogize for cross posting.
+
+On 2/7/20, Pelle Windestam <Pelle.Windestam@tagmaster.com> wrote:
+> In my case u-boot uses a default config called imx8qxp_var_som_defconfig
+> stored under the configs directory in u-boot (not sure if its in the
+> official repositories, I use a vendor supplied u-boot repo, but the
+> procedure should be the same either way), then I have created a
+> .bbappend-file for the u-boot recipe, and added a patch that modifies the
+> defconfig file to include the options I want to enable. Then as u-boot is
+> built, it will use the patched defconfig with the appropriate options
+> enabled. In the meta-freescale layer the u-boot recipes are under
+> meta-freescale/recipes-bsp/u-boot.
+
+Thanks for the tip, that is quite helpful. I created bbappend file,
+run the make menuconfig to enable NAND and CONFIG_CMD_UBI, but then
+failed in build, missing all MTD, NAND, UBI references, the MTD, NAND,
+UBI are all selected, what I could be missing?
+
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/cmd/ubi.c:448:
+undefined reference to `mtdparts_init'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/cmd/ubi.c:468:
+undefined reference to `del_mtd_partitions'
+| arm-oe-linux-gnueabi-ld.bfd: cmd/built-in.o: in function `ubi_part':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/cmd/ubi.c:489:
+undefined reference to `find_dev_and_part'
+| arm-oe-linux-gnueabi-ld.bfd: cmd/built-in.o: in function `ubi_dev_scan':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/cmd/ubi.c:415:
+undefined reference to `find_dev_and_part'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/cmd/ubi.c:423:
+undefined reference to `add_mtd_partitions'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/cmd/ubi.c:437:
+undefined reference to `del_mtd_partitions'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`add_volume':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:294:
+undefined reference to `rb_insert_color'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`ubi_add_to_av':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:589:
+undefined reference to `rb_insert_color'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`ubi_remove_av':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:634:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:640:
+undefined reference to `rb_erase'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:636:
+undefined reference to `rb_erase'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`scan_all':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1265:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`self_check_ai':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1515:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1558:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`scan_all':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1266:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1265:
+undefined reference to `rb_next'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1266:
+undefined reference to `rb_next'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`self_check_ai':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1558:
+undefined reference to `rb_next'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1515:
+undefined reference to `rb_next'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1629:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1631:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1629:
+undefined reference to `rb_next'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1631:
+undefined reference to `rb_next'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1717:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1717:
+undefined reference to `rb_next'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1718:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/attach.c:1718:
+undefined reference to `rb_next'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`get_bad_peb_limit':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/build.c:623:
+undefined reference to `mtd_get_device_size'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`process_lvol':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/vtbl.c:407:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/vtbl.c:407:
+undefined reference to `rb_next'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`ltree_add_entry':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/eba.c:180:
+undefined reference to `rb_insert_color'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`leb_read_unlock':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/eba.c:225:
+undefined reference to `rb_erase'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`ubi_eba_init':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/eba.c:1423:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`ubi_move_aeb_to_list':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/include/../drivers/mtd/ubi/ubi.h:1013:
+undefined reference to `rb_erase'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`ubi_eba_init':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/eba.c:1423:
+undefined reference to `rb_next'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`find_wl_entry':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:314:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`wl_tree_add':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:170:
+undefined reference to `rb_insert_color'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`get_peb_for_wl':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:1777:
+undefined reference to `rb_erase'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`ensure_wear_leveling':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:992:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`wear_leveling_worker':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:721:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:736:
+undefined reference to `rb_erase'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:742:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:748:
+undefined reference to `rb_erase'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`ubi_wl_put_peb':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:1226:
+undefined reference to `rb_erase'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:1229:
+undefined reference to `rb_erase'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`ubi_wl_scrub_peb':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:1298:
+undefined reference to `rb_erase'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`ubi_wl_init':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:1569:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:1570:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:1570:
+undefined reference to `rb_next'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:1569:
+undefined reference to `rb_next'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`find_mean_wl_entry':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:355:
+undefined reference to `rb_first'
+| arm-oe-linux-gnueabi-ld.bfd:
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:356:
+undefined reference to `rb_last'
+| arm-oe-linux-gnueabi-ld.bfd: drivers/mtd/ubi/built-in.o: in function
+`wl_get_wle':
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/drivers/mtd/ubi/wl.c:395:
+undefined reference to `rb_erase'
+| /build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git/Makefile:1234:
+recipe for target 'u-boot' failed
+| make[1]: *** [u-boot] Error 1
+| make[1]: Leaving directory
+'/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/build/mx6ull_14x14_evk_config'
+| Makefile:150: recipe for target 'sub-make' failed
+| make: *** [sub-make] Error 2
+| make: Leaving directory
+'/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/git'
+| ERROR: oe_runmake failed
+| WARNING: exit code 1 from a shell command.
+| ERROR: Function failed: do_compile (log file is located at
+/build/Installer/sa_platform_build/Source/Yocto/build/tmp-glibc/work/solar-oe-linux-gnueabi/u-boot-imx/2017.03-r0/temp/log.do_compile.11257)
+
+$ cat
+
+#
+# Automatically generated file; DO NOT EDIT.
+# U-Boot 2017.03 Configuration
+#
+CONFIG_CREATE_ARCH_SYMLINK=y
+# CONFIG_ARC is not set
+CONFIG_ARM=y
+# CONFIG_AVR32 is not set
+# CONFIG_BLACKFIN is not set
+# CONFIG_M68K is not set
+# CONFIG_MICROBLAZE is not set
+# CONFIG_MIPS is not set
+# CONFIG_NDS32 is not set
+# CONFIG_NIOS2 is not set
+# CONFIG_OPENRISC is not set
+# CONFIG_PPC is not set
+# CONFIG_SANDBOX is not set
+# CONFIG_SH is not set
+# CONFIG_SPARC is not set
+# CONFIG_X86 is not set
+# CONFIG_XTENSA is not set
+CONFIG_SYS_ARCH="arm"
+CONFIG_SYS_CPU="armv7"
+CONFIG_SYS_SOC="mx6"
+CONFIG_SYS_VENDOR="freescale"
+CONFIG_SYS_BOARD="mx6ullevk"
+CONFIG_SYS_CONFIG_NAME="mx6ullevk"
+
+#
+# ARM architecture
+#
+CONFIG_HAS_VBAR=y
+CONFIG_HAS_THUMB2=y
+CONFIG_CPU_V7=y
+CONFIG_SYS_ARM_ARCH=7
+CONFIG_SYS_CACHE_SHIFT_6=y
+CONFIG_SYS_CACHELINE_SIZE=64
+# CONFIG_ARM_SMCCC is not set
+# CONFIG_SEMIHOSTING is not set
+CONFIG_SYS_L2CACHE_OFF=y
+# CONFIG_ENABLE_ARM_SOC_BOOT0_HOOK is not set
+CONFIG_USE_ARCH_MEMCPY=y
+CONFIG_SPL_USE_ARCH_MEMCPY=y
+CONFIG_USE_ARCH_MEMSET=y
+CONFIG_SPL_USE_ARCH_MEMSET=y
+# CONFIG_ARM64_SUPPORT_AARCH32 is not set
+# CONFIG_ARCH_AT91 is not set
+# CONFIG_TARGET_EDB93XX is not set
+# CONFIG_TARGET_ASPENITE is not set
+# CONFIG_TARGET_GPLUGD is not set
+# CONFIG_ARCH_DAVINCI is not set
+# CONFIG_KIRKWOOD is not set
+# CONFIG_ARCH_MVEBU is not set
+# CONFIG_TARGET_DEVKIT3250 is not set
+# CONFIG_TARGET_WORK_92105 is not set
+# CONFIG_TARGET_MX25PDK is not set
+# CONFIG_TARGET_ZMX25 is not set
+# CONFIG_TARGET_APF27 is not set
+# CONFIG_TARGET_APX4DEVKIT is not set
+# CONFIG_TARGET_XFI3 is not set
+# CONFIG_TARGET_M28EVK is not set
+# CONFIG_TARGET_MX23EVK is not set
+# CONFIG_TARGET_MX28EVK is not set
+# CONFIG_TARGET_MX23_OLINUXINO is not set
+# CONFIG_TARGET_BG0900 is not set
+# CONFIG_TARGET_SANSA_FUZE_PLUS is not set
+# CONFIG_TARGET_SC_SPS_1 is not set
+# CONFIG_ORION5X is not set
+# CONFIG_TARGET_SPEAR300 is not set
+# CONFIG_TARGET_SPEAR310 is not set
+# CONFIG_TARGET_SPEAR320 is not set
+# CONFIG_TARGET_SPEAR600 is not set
+# CONFIG_TARGET_STV0991 is not set
+# CONFIG_TARGET_X600 is not set
+# CONFIG_TARGET_IMX31_PHYCORE is not set
+# CONFIG_TARGET_IMX31_PHYCORE_EET is not set
+# CONFIG_TARGET_MX31ADS is not set
+# CONFIG_TARGET_MX31PDK is not set
+# CONFIG_TARGET_WOODBURN is not set
+# CONFIG_TARGET_WOODBURN_SD is not set
+# CONFIG_TARGET_FLEA3 is not set
+# CONFIG_TARGET_MX35PDK is not set
+# CONFIG_ARCH_BCM283X is not set
+# CONFIG_TARGET_VEXPRESS_CA15_TC2 is not set
+# CONFIG_TARGET_VEXPRESS_CA5X2 is not set
+# CONFIG_TARGET_VEXPRESS_CA9X4 is not set
+# CONFIG_TARGET_BRXRE1 is not set
+# CONFIG_TARGET_BRPPT1 is not set
+# CONFIG_TARGET_DRACO is not set
+# CONFIG_TARGET_THUBAN is not set
+# CONFIG_TARGET_RASTABAN is not set
+# CONFIG_TARGET_ETAMIN is not set
+# CONFIG_TARGET_PXM2 is not set
+# CONFIG_TARGET_RUT is not set
+# CONFIG_TARGET_TI814X_EVM is not set
+# CONFIG_TARGET_TI816X_EVM is not set
+# CONFIG_TARGET_BCM23550_W1D is not set
+# CONFIG_TARGET_BCM28155_AP is not set
+# CONFIG_TARGET_BCMCYGNUS is not set
+# CONFIG_TARGET_BCMNSP is not set
+# CONFIG_ARCH_EXYNOS is not set
+# CONFIG_ARCH_S5PC1XX is not set
+# CONFIG_ARCH_HIGHBANK is not set
+# CONFIG_ARCH_INTEGRATOR is not set
+# CONFIG_ARCH_KEYSTONE is not set
+# CONFIG_ARCH_MESON is not set
+# CONFIG_ARCH_MX7ULP is not set
+# CONFIG_ARCH_MX7 is not set
+CONFIG_ARCH_MX6=y
+# CONFIG_ARCH_MX5 is not set
+# CONFIG_TARGET_M53EVK is not set
+# CONFIG_TARGET_MX51EVK is not set
+# CONFIG_TARGET_MX53ARD is not set
+# CONFIG_TARGET_MX53EVK is not set
+# CONFIG_TARGET_MX53LOCO is not set
+# CONFIG_TARGET_MX53SMD is not set
+# CONFIG_OMAP34XX is not set
+# CONFIG_OMAP44XX is not set
+# CONFIG_OMAP54XX is not set
+# CONFIG_AM43XX is not set
+# CONFIG_AM33XX is not set
+# CONFIG_ARCH_RMOBILE is not set
+# CONFIG_TARGET_S32V234EVB is not set
+# CONFIG_ARCH_SNAPDRAGON is not set
+# CONFIG_ARCH_SOCFPGA is not set
+# CONFIG_TARGET_CM_T43 is not set
+# CONFIG_ARCH_SUNXI is not set
+# CONFIG_TARGET_TS4600 is not set
+# CONFIG_TARGET_TS4800 is not set
+# CONFIG_TARGET_VF610TWR is not set
+# CONFIG_TARGET_COLIBRI_VF is not set
+# CONFIG_TARGET_PCM052 is not set
+# CONFIG_TARGET_BK4R1 is not set
+# CONFIG_ARCH_ZYNQ is not set
+# CONFIG_ARCH_ZYNQMP is not set
+# CONFIG_ARCH_IMX8 is not set
+# CONFIG_ARCH_IMX8M is not set
+# CONFIG_TEGRA is not set
+# CONFIG_TARGET_VEXPRESS64_AEMV8A is not set
+# CONFIG_TARGET_VEXPRESS64_BASE_FVP is not set
+# CONFIG_TARGET_VEXPRESS64_BASE_FVP_DRAM is not set
+# CONFIG_TARGET_VEXPRESS64_JUNO is not set
+# CONFIG_TARGET_LS2080A_EMU is not set
+# CONFIG_TARGET_LS2080A_SIMU is not set
+# CONFIG_TARGET_LS2080AQDS is not set
+# CONFIG_TARGET_LS2080ARDB is not set
+# CONFIG_TARGET_HIKEY is not set
+# CONFIG_TARGET_LS1012AQDS is not set
+# CONFIG_TARGET_LS1012ARDB is not set
+# CONFIG_TARGET_LS1012AFRDM is not set
+# CONFIG_TARGET_LS1021AQDS is not set
+# CONFIG_TARGET_LS1021ATWR is not set
+# CONFIG_TARGET_LS1021AIOT is not set
+# CONFIG_TARGET_LS1043AQDS is not set
+# CONFIG_TARGET_LS1043ARDB is not set
+# CONFIG_TARGET_LS1046AQDS is not set
+# CONFIG_TARGET_LS1046ARDB is not set
+# CONFIG_TARGET_H2200 is not set
+# CONFIG_TARGET_ZIPITZ2 is not set
+# CONFIG_TARGET_COLIBRI_PXA270 is not set
+# CONFIG_ARCH_UNIPHIER is not set
+# CONFIG_STM32 is not set
+# CONFIG_ARCH_ROCKCHIP is not set
+# CONFIG_TARGET_THUNDERX_88XX is not set
+# CONFIG_ARCH_ASPEED is not set
+CONFIG_SYS_MALLOC_F_LEN=0x400
+# CONFIG_SECURE_BOOT is not set
+CONFIG_MX6=y
+CONFIG_MX6UL=y
+CONFIG_MX6ULL=y
+# CONFIG_LDO_BYPASS_CHECK is not set
+# CONFIG_CMD_BEE is not set
+# CONFIG_MODULE_FUSE is not set
+# CONFIG_TARGET_ADVANTECH_DMS_BA16 is not set
+# CONFIG_TARGET_APALIS_IMX6 is not set
+# CONFIG_TARGET_ARISTAINETOS is not set
+# CONFIG_TARGET_ARISTAINETOS2 is not set
+# CONFIG_TARGET_ARISTAINETOS2B is not set
+# CONFIG_TARGET_CGTQMX6EVAL is not set
+# CONFIG_TARGET_CM_FX6 is not set
+# CONFIG_TARGET_COLIBRI_IMX6 is not set
+# CONFIG_TARGET_EMBESTMX6BOARDS is not set
+# CONFIG_TARGET_GE_B450V3 is not set
+# CONFIG_TARGET_GE_B650V3 is not set
+# CONFIG_TARGET_GE_B850V3 is not set
+# CONFIG_TARGET_GW_VENTANA is not set
+# CONFIG_TARGET_KOSAGI_NOVENA is not set
+# CONFIG_TARGET_MCCMON6 is not set
+# CONFIG_TARGET_MX6CUBOXI is not set
+# CONFIG_TARGET_MX6QARM2 is not set
+# CONFIG_TARGET_MX6Q_ICORE is not set
+# CONFIG_TARGET_MX6Q_ICORE_RQS is not set
+# CONFIG_TARGET_MX6QSABREAUTO is not set
+# CONFIG_TARGET_MX6SABRESD is not set
+# CONFIG_TARGET_MX6SLEVK is not set
+# CONFIG_TARGET_MX6SLLEVK is not set
+# CONFIG_TARGET_MX6SLL_ARM2 is not set
+# CONFIG_TARGET_MX6SXSABRESD is not set
+# CONFIG_TARGET_MX6SXSABREAUTO is not set
+# CONFIG_TARGET_MX6SX_14X14_ARM2 is not set
+# CONFIG_TARGET_MX6SX_17X17_ARM2 is not set
+# CONFIG_TARGET_MX6SX_19X19_ARM2 is not set
+# CONFIG_TARGET_MX6UL_9X9_EVK is not set
+# CONFIG_TARGET_MX6UL_14X14_EVK is not set
+# CONFIG_TARGET_MX6UL_NXPU_IOPB is not set
+# CONFIG_TARGET_MX6UL_14X14_DDR3_ARM2 is not set
+# CONFIG_TARGET_MX6UL_14X14_LPDDR2_ARM2 is not set
+# CONFIG_TARGET_MX6UL_GEAM is not set
+# CONFIG_TARGET_MX6ULL_DDR3_ARM2 is not set
+CONFIG_TARGET_MX6ULL_14X14_EVK=y
+# CONFIG_TARGET_MX6ULL_9X9_EVK is not set
+# CONFIG_TARGET_PICOSOM_IMX6UL is not set
+# CONFIG_TARGET_PICO_IMX6DL is not set
+# CONFIG_TARGET_MX6UL_SPRIOT is not set
+# CONFIG_TARGET_NITROGEN6X is not set
+# CONFIG_TARGET_OT1200 is not set
+# CONFIG_TARGET_PICO_IMX6UL is not set
+# CONFIG_TARGET_LITEBOARD is not set
+# CONFIG_TARGET_PLATINUM_PICON is not set
+# CONFIG_TARGET_PLATINUM_TITANIUM is not set
+# CONFIG_TARGET_PCM058 is not set
+# CONFIG_TARGET_SECOMX6 is not set
+# CONFIG_TARGET_TBS2910 is not set
+# CONFIG_TARGET_TITANIUM is not set
+# CONFIG_TARGET_TQMA6 is not set
+# CONFIG_TARGET_UDOO is not set
+# CONFIG_TARGET_UDOO_NEO is not set
+# CONFIG_TARGET_SAMTEC_VINING_2000 is not set
+# CONFIG_TARGET_WANDBOARD is not set
+# CONFIG_TARGET_WARP is not set
+# CONFIG_TARGET_XPRESS is not set
+# CONFIG_TARGET_ZC5202 is not set
+# CONFIG_TARGET_ZC5601 is not set
+# CONFIG_TARGET_MX6DQSCM is not set
+# CONFIG_TARGET_MX6SXSCM is not set
+# CONFIG_ARMV7_LPAE is not set
+# CONFIG_IMX_OPTEE is not set
+# CONFIG_GPT_TIMER is not set
+CONFIG_ROM_UNIFIED_SECTIONS=y
+# CONFIG_IMX_RDC is not set
+# CONFIG_IMX_BOOTAUX is not set
+# CONFIG_USE_IMXIMG_PLUGIN is not set
+# CONFIG_DBG_MONITOR is not set
+# CONFIG_IMX_TRUSTY_OS is not set
+# CONFIG_SYS_ARM_CACHE_WRITEALLOC is not set
+CONFIG_IDENT_STRING=""
+# CONFIG_PRE_CONSOLE_BUFFER is not set
+CONFIG_VIDEO=y
+
+#
+# ARM debug
+#
+# CONFIG_DEBUG_LL is not set
+CONFIG_DEFAULT_DEVICE_TREE="imx6ull-14x14-evk-gpmi-weim"
+CONFIG_SMBIOS_PRODUCT_NAME="mx6ullevk"
+# CONFIG_AHCI is not set
+
+#
+# General setup
+#
+CONFIG_LOCALVERSION=""
+CONFIG_LOCALVERSION_AUTO=y
+CONFIG_CC_OPTIMIZE_FOR_SIZE=y
+# CONFIG_XEN is not set
+# CONFIG_DISTRO_DEFAULTS is not set
+CONFIG_SYS_MALLOC_F=y
+CONFIG_EXPERT=y
+CONFIG_SYS_MALLOC_CLEAR_ON_INIT=y
+# CONFIG_TOOLS_DEBUG is not set
+# CONFIG_PHYS_64BIT is not set
+
+#
+# Boot images
+#
+# CONFIG_FIT is not set
+# CONFIG_OF_BOARD_SETUP is not set
+# CONFIG_OF_SYSTEM_SETUP is not set
+# CONFIG_OF_STDOUT_VIA_ALIAS is not set
+CONFIG_SYS_EXTRA_OPTIONS="IMX_CONFIG=board/freescale/mx6ullevk/imximage.cfg"
+CONFIG_ARCH_FIXUP_FDT_MEMORY=y
+
+#
+# API
+#
+# CONFIG_API is not set
+
+#
+# Boot timing
+#
+# CONFIG_BOOTSTAGE is not set
+CONFIG_BOOTSTAGE_USER_COUNT=20
+CONFIG_BOOTSTAGE_STASH_ADDR=0
+CONFIG_BOOTSTAGE_STASH_SIZE=4096
+
+#
+# Boot media
+#
+CONFIG_NAND_BOOT=y
+# CONFIG_ONENAND_BOOT is not set
+# CONFIG_QSPI_BOOT is not set
+# CONFIG_SATA_BOOT is not set
+# CONFIG_SD_BOOT is not set
+# CONFIG_SPI_BOOT is not set
+CONFIG_BOOTDELAY=3
+
+#
+# Console
+#
+# CONFIG_CONSOLE_RECORD is not set
+# CONFIG_SILENT_CONSOLE is not set
+CONFIG_CONSOLE_MUX=y
+CONFIG_SYS_CONSOLE_IS_IN_ENV=y
+# CONFIG_SYS_CONSOLE_OVERWRITE_ROUTINE is not set
+# CONFIG_SYS_CONSOLE_ENV_OVERWRITE is not set
+# CONFIG_SYS_CONSOLE_INFO_QUIET is not set
+# CONFIG_SYS_STDIO_DEREGISTER is not set
+CONFIG_DEFAULT_FDT_FILE=""
+# CONFIG_VERSION_VARIABLE is not set
+CONFIG_BOARD_LATE_INIT=y
+CONFIG_DISPLAY_CPUINFO=y
+CONFIG_DISPLAY_BOARDINFO=y
+
+#
+# Start-up hooks
+#
+# CONFIG_ARCH_EARLY_INIT_R is not set
+# CONFIG_ARCH_MISC_INIT is not set
+CONFIG_BOARD_EARLY_INIT_F=y
+
+#
+# SPL / TPL
+#
+
+#
+# Command line interface
+#
+CONFIG_CMDLINE=y
+CONFIG_HUSH_PARSER=y
+CONFIG_SYS_PROMPT="=> "
+
+#
+# Autoboot options
+#
+CONFIG_AUTOBOOT=y
+# CONFIG_AUTOBOOT_KEYED is not set
+
+#
+# FASTBOOT
+#
+# CONFIG_FASTBOOT is not set
+
+#
+# Commands
+#
+
+#
+# Info commands
+#
+CONFIG_CMD_BDI=y
+# CONFIG_CMD_CONFIG is not set
+CONFIG_CMD_CONSOLE=y
+# CONFIG_CMD_CPU is not set
+# CONFIG_CMD_LICENSE is not set
+
+#
+# Boot commands
+#
+CONFIG_CMD_BOOTD=y
+CONFIG_CMD_BOOTM=y
+CONFIG_CMD_BOOTZ=y
+CONFIG_CMD_BOOTEFI=y
+CONFIG_CMD_BOOTEFI_HELLO_COMPILE=y
+# CONFIG_CMD_BOOTEFI_HELLO is not set
+# CONFIG_CMD_BOOTMENU is not set
+CONFIG_CMD_ELF=y
+CONFIG_CMD_FDT=y
+CONFIG_CMD_GO=y
+CONFIG_CMD_RUN=y
+CONFIG_CMD_IMI=y
+# CONFIG_CMD_IMLS is not set
+CONFIG_CMD_XIMG=y
+
+#
+# Environment commands
+#
+# CONFIG_CMD_ASKENV is not set
+CONFIG_CMD_EXPORTENV=y
+CONFIG_CMD_IMPORTENV=y
+CONFIG_CMD_EDITENV=y
+# CONFIG_CMD_GREPENV is not set
+CONFIG_CMD_SAVEENV=y
+CONFIG_CMD_ENV_EXISTS=y
+
+#
+# Memory commands
+#
+CONFIG_CMD_MEMORY=y
+CONFIG_CMD_CRC32=y
+# CONFIG_LOOPW is not set
+CONFIG_CMD_MEMTEST=y
+# CONFIG_CMD_MX_CYCLIC is not set
+# CONFIG_CMD_MEMINFO is not set
+# CONFIG_CMD_UNZIP is not set
+# CONFIG_CMD_ZIP is not set
+
+#
+# Device access commands
+#
+CONFIG_CMD_DM=y
+# CONFIG_CMD_DEMO is not set
+CONFIG_CMD_LOADB=y
+CONFIG_CMD_LOADS=y
+CONFIG_CMD_FLASH=y
+# CONFIG_CMD_GPT is not set
+# CONFIG_CMD_ARMFLASH is not set
+# CONFIG_CMD_MMC is not set
+CONFIG_CMD_NAND=y
+# CONFIG_CMD_PART is not set
+# CONFIG_CMD_SF is not set
+# CONFIG_CMD_SPI is not set
+CONFIG_CMD_I2C=y
+CONFIG_CMD_USB=y
+# CONFIG_CMD_DFU is not set
+# CONFIG_CMD_USB_SDP is not set
+# CONFIG_CMD_USB_MASS_STORAGE is not set
+CONFIG_CMD_FPGA=y
+CONFIG_CMD_GPIO=y
+
+#
+# Shell scripting commands
+#
+CONFIG_CMD_ECHO=y
+CONFIG_CMD_ITEST=y
+CONFIG_CMD_SOURCE=y
+CONFIG_CMD_SETEXPR=y
+
+#
+# Network commands
+#
+CONFIG_CMD_NET=y
+# CONFIG_CMD_TFTPPUT is not set
+# CONFIG_CMD_TFTPSRV is not set
+# CONFIG_CMD_RARP is not set
+CONFIG_CMD_DHCP=y
+# CONFIG_CMD_PXE is not set
+CONFIG_CMD_NFS=y
+# CONFIG_CMD_MII is not set
+CONFIG_CMD_PING=y
+# CONFIG_CMD_CDP is not set
+# CONFIG_CMD_SNTP is not set
+# CONFIG_CMD_DNS is not set
+# CONFIG_CMD_LINK_LOCAL is not set
+
+#
+# Misc commands
+#
+CONFIG_CMD_CACHE=y
+# CONFIG_CMD_TIME is not set
+CONFIG_CMD_MISC=y
+# CONFIG_CMD_TIMER is not set
+# CONFIG_CMD_QFW is not set
+
+#
+# Power commands
+#
+# CONFIG_CMD_REGULATOR is not set
+
+#
+# Security commands
+#
+
+#
+# Firmware commands
+#
+
+#
+# Filesystem commands
+#
+CONFIG_CMD_EXT2=y
+CONFIG_CMD_EXT4=y
+CONFIG_CMD_EXT4_WRITE=y
+CONFIG_CMD_FAT=y
+CONFIG_CMD_FS_GENERIC=y
+CONFIG_CMD_UBI=y
+
+#
+# Partition Types
+#
+CONFIG_PARTITIONS=y
+# CONFIG_MAC_PARTITION is not set
+CONFIG_DOS_PARTITION=y
+# CONFIG_ISO_PARTITION is not set
+# CONFIG_AMIGA_PARTITION is not set
+# CONFIG_EFI_PARTITION is not set
+# CONFIG_PARTITION_UUIDS is not set
+CONFIG_SUPPORT_OF_CONTROL=y
+
+#
+# Device Tree Control
+#
+CONFIG_OF_CONTROL=y
+CONFIG_OF_SEPARATE=y
+# CONFIG_OF_EMBED is not set
+CONFIG_NET=y
+# CONFIG_NET_RANDOM_ETHADDR is not set
+# CONFIG_NETCONSOLE is not set
+CONFIG_NET_TFTP_VARS=y
+CONFIG_BOOTP_PXE_CLIENTARCH=0x15
+CONFIG_BOOTP_VCI_STRING="U-Boot.armv7"
+
+#
+# Device Drivers
+#
+
+#
+# Generic Driver Options
+#
+CONFIG_DM=y
+CONFIG_DM_WARN=y
+CONFIG_DM_DEVICE_REMOVE=y
+CONFIG_DM_STDIO=y
+CONFIG_DM_SEQ_ALIAS=y
+# CONFIG_SPL_DM_SEQ_ALIAS is not set
+# CONFIG_REGMAP is not set
+# CONFIG_SPL_REGMAP is not set
+CONFIG_DEVRES=y
+# CONFIG_DEBUG_DEVRES is not set
+CONFIG_SIMPLE_BUS=y
+CONFIG_OF_TRANSLATE=y
+# CONFIG_ADC is not set
+# CONFIG_ADC_EXYNOS is not set
+# CONFIG_ADC_SANDBOX is not set
+# CONFIG_BLK is not set
+# CONFIG_BLOCK_CACHE is not set
+
+#
+# SATA/SCSI device support
+#
+
+#
+# Clock
+#
+# CONFIG_CLK is not set
+# CONFIG_CPU is not set
+
+#
+# Hardware crypto devices
+#
+# CONFIG_FSL_CAAM is not set
+CONFIG_SYS_FSL_SEC_COMPAT_4=y
+# CONFIG_SYS_FSL_SEC_BE is not set
+CONFIG_SYS_FSL_SEC_LE=y
+
+#
+# Demo for driver model
+#
+# CONFIG_DM_DEMO is not set
+# CONFIG_IMX8M_DRAM is not set
+# CONFIG_IMX8M_LPDDR4 is not set
+# CONFIG_IMX8M_DDR4 is not set
+CONFIG_SAVED_DRAM_TIMING_BASE=0x180000
+
+#
+# DFU support
+#
+
+#
+# DMA Support
+#
+# CONFIG_DMA is not set
+# CONFIG_TI_EDMA3 is not set
+
+#
+# FPGA support
+#
+# CONFIG_FPGA_ALTERA is not set
+# CONFIG_FPGA_XILINX is not set
+
+#
+# GPIO Support
+#
+CONFIG_DM_GPIO=y
+# CONFIG_ALTERA_PIO is not set
+# CONFIG_DWAPB_GPIO is not set
+# CONFIG_ATMEL_PIO4 is not set
+# CONFIG_INTEL_BROADWELL_GPIO is not set
+# CONFIG_IMX_RGPIO2P is not set
+# CONFIG_LPC32XX_GPIO is not set
+# CONFIG_MSM_GPIO is not set
+# CONFIG_PCF8575_GPIO is not set
+# CONFIG_ROCKCHIP_GPIO is not set
+# CONFIG_TEGRA_GPIO is not set
+# CONFIG_TEGRA186_GPIO is not set
+# CONFIG_VYBRID_GPIO is not set
+CONFIG_DM_74X164=y
+# CONFIG_DM_PCA953X is not set
+# CONFIG_MPC85XX_GPIO is not set
+
+#
+# I2C support
+#
+CONFIG_DM_I2C=y
+# CONFIG_DM_I2C_COMPAT is not set
+# CONFIG_DM_I2C_GPIO is not set
+# CONFIG_SYS_I2C_FSL is not set
+# CONFIG_SYS_I2C_DW is not set
+# CONFIG_SYS_I2C_INTEL is not set
+# CONFIG_SYS_I2C_MXC is not set
+# CONFIG_SYS_I2C_ROCKCHIP is not set
+# CONFIG_SYS_I2C_MVTWSI is not set
+# CONFIG_I2C_MUX is not set
+# CONFIG_DM_KEYBOARD is not set
+# CONFIG_CROS_EC_KEYB is not set
+
+#
+# LED Support
+#
+# CONFIG_LED is not set
+# CONFIG_LED_STATUS is not set
+
+#
+# Mailbox Controller Support
+#
+# CONFIG_DM_MAILBOX is not set
+
+#
+# Memory Controller drivers
+#
+
+#
+# Multifunction device drivers
+#
+# CONFIG_MISC is not set
+# CONFIG_CROS_EC is not set
+# CONFIG_FSL_SEC_MON is not set
+# CONFIG_MXC_OCOTP is not set
+# CONFIG_NUVOTON_NCT6102D is not set
+# CONFIG_PWRSEQ is not set
+# CONFIG_PCA9551_LED is not set
+# CONFIG_WINBOND_W83627 is not set
+
+#
+# MMC Host controller Support
+#
+CONFIG_MMC=y
+CONFIG_GENERIC_MMC=y
+CONFIG_DM_MMC=y
+# CONFIG_DM_MMC_OPS is not set
+# CONFIG_SPL_MMC_TINY is not set
+# CONFIG_MMC_DW is not set
+# CONFIG_MMC_MXC is not set
+# CONFIG_MMC_MXS is not set
+# CONFIG_MMC_OMAP_HS is not set
+# CONFIG_MMC_SDHCI is not set
+
+#
+# MTD Support
+#
+CONFIG_MTD=y
+# CONFIG_MTD_NOR_FLASH is not set
+# CONFIG_CFI_FLASH is not set
+# CONFIG_ALTERA_QSPI is not set
+
+#
+# NAND Device Support
+#
+# CONFIG_NAND_DENALI is not set
+# CONFIG_NAND_VF610_NFC is not set
+# CONFIG_NAND_PXA3XX is not set
+# CONFIG_NAND_ARASAN is not set
+# CONFIG_NAND_MXS is not set
+# CONFIG_NAND_ZYNQ is not set
+
+#
+# Generic NAND options
+#
+
+#
+# SPI Flash Support
+#
+# CONFIG_DM_SPI_FLASH is not set
+# CONFIG_SPI_FLASH is not set
+
+#
+# UBI support
+#
+CONFIG_MTD_UBI=y
+CONFIG_MTD_UBI_WL_THRESHOLD=4096
+CONFIG_MTD_UBI_BEB_LIMIT=20
+# CONFIG_MTD_UBI_FASTMAP is not set
+# CONFIG_BITBANGMII is not set
+# CONFIG_MV88E6352_SWITCH is not set
+# CONFIG_PHYLIB is not set
+CONFIG_DM_ETH=y
+CONFIG_NETDEVICES=y
+# CONFIG_ALTERA_TSE is not set
+# CONFIG_DWC_ETH_QOS is not set
+# CONFIG_E1000 is not set
+# CONFIG_ETH_DESIGNWARE is not set
+# CONFIG_ETHOC is not set
+# CONFIG_FEC_MXC is not set
+# CONFIG_MACB is not set
+# CONFIG_RTL8139 is not set
+# CONFIG_RTL8169 is not set
+# CONFIG_SUN8I_EMAC is not set
+# CONFIG_PCI is not set
+# CONFIG_MVEBU_COMPHY_SUPPORT is not set
+
+#
+# Pin controllers
+#
+CONFIG_PINCTRL=y
+CONFIG_PINCTRL_FULL=y
+CONFIG_PINCTRL_GENERIC=y
+CONFIG_PINMUX=y
+# CONFIG_PINCONF is not set
+# CONFIG_ROCKCHIP_RK3036_PINCTRL is not set
+# CONFIG_ROCKCHIP_RK3288_PINCTRL is not set
+# CONFIG_PINCTRL_AT91PIO4 is not set
+# CONFIG_ROCKCHIP_RK3399_PINCTRL is not set
+CONFIG_PINCTRL_IMX=y
+CONFIG_PINCTRL_IMX6=y
+
+#
+# Power
+#
+
+#
+# Power Domain Support
+#
+# CONFIG_POWER_DOMAIN is not set
+# CONFIG_DM_PMIC is not set
+# CONFIG_POWER_MC34VR500 is not set
+CONFIG_DM_REGULATOR=y
+# CONFIG_SPL_DM_REGULATOR is not set
+# CONFIG_REGULATOR_PWM is not set
+CONFIG_DM_REGULATOR_FIXED=y
+CONFIG_DM_REGULATOR_GPIO=y
+# CONFIG_DM_PWM is not set
+# CONFIG_RAM is not set
+
+#
+# Remote Processor drivers
+#
+
+#
+# Reset Controller Support
+#
+# CONFIG_DM_RESET is not set
+
+#
+# Real Time Clock
+#
+# CONFIG_DM_RTC is not set
+
+#
+# Serial drivers
+#
+# CONFIG_DM_SERIAL is not set
+# CONFIG_DEBUG_UART is not set
+# CONFIG_DEBUG_UART_SKIP_INIT is not set
+# CONFIG_ATMEL_USART is not set
+# CONFIG_FSL_LPUART is not set
+# CONFIG_MVEBU_A3700_UART is not set
+# CONFIG_MXC_UART is not set
+# CONFIG_SYS_NS16550 is not set
+# CONFIG_PXA_SERIAL is not set
+
+#
+# Sound support
+#
+# CONFIG_SOUND is not set
+
+#
+# SPI Support
+#
+CONFIG_DM_SPI=y
+# CONFIG_ALTERA_SPI is not set
+# CONFIG_CADENCE_QSPI is not set
+# CONFIG_DESIGNWARE_SPI is not set
+# CONFIG_EXYNOS_SPI is not set
+# CONFIG_FSL_DSPI is not set
+# CONFIG_ICH_SPI is not set
+# CONFIG_MVEBU_A3700_SPI is not set
+# CONFIG_ROCKCHIP_SPI is not set
+# CONFIG_TEGRA114_SPI is not set
+# CONFIG_TEGRA20_SFLASH is not set
+# CONFIG_TEGRA20_SLINK is not set
+# CONFIG_TEGRA210_QSPI is not set
+# CONFIG_XILINX_SPI is not set
+# CONFIG_OMAP3_SPI is not set
+# CONFIG_SOFT_SPI is not set
+# CONFIG_FSL_ESPI is not set
+# CONFIG_FSL_FSPI is not set
+# CONFIG_FSL_QSPI is not set
+# CONFIG_TI_QSPI is not set
+
+#
+# SPMI support
+#
+# CONFIG_SPMI is not set
+
+#
+# System reset device drivers
+#
+# CONFIG_SYSRESET is not set
+CONFIG_DM_THERMAL=y
+# CONFIG_IMX_THERMAL is not set
+
+#
+# Timer Support
+#
+# CONFIG_TIMER is not set
+
+#
+# TPM support
+#
+CONFIG_USB=y
+CONFIG_DM_USB=y
+
+#
+# USB Host Controller Drivers
+#
+CONFIG_USB_HOST=y
+# CONFIG_USB_XHCI_HCD is not set
+CONFIG_USB_EHCI_HCD=y
+CONFIG_USB_EHCI=y
+CONFIG_USB_EHCI_MX6=y
+# CONFIG_MXC_USB_OTG_HACTIVE is not set
+# CONFIG_USB_EHCI_MSM is not set
+# CONFIG_USB_EHCI_GENERIC is not set
+# CONFIG_USB_OHCI_HCD is not set
+# CONFIG_USB_UHCI_HCD is not set
+
+#
+# MUSB Controller Driver
+#
+# CONFIG_USB_MUSB_HOST is not set
+# CONFIG_USB_MUSB_GADGET is not set
+# CONFIG_USB_MUSB_TI is not set
+
+#
+# ULPI drivers
+#
+
+#
+# USB peripherals
+#
+CONFIG_USB_STORAGE=y
+# CONFIG_USB_KEYBOARD is not set
+# CONFIG_USB_GADGET is not set
+
+#
+# Graphics support
+#
+# CONFIG_DM_VIDEO is not set
+
+#
+# TrueType Fonts
+#
+# CONFIG_VIDEO_VESA is not set
+# CONFIG_VIDEO_LCD_ANX9804 is not set
+# CONFIG_VIDEO_LCD_SSD2828 is not set
+# CONFIG_VIDEO_LCD_HITACHI_TX18D42VM is not set
+# CONFIG_VIDEO_MVEBU is not set
+# CONFIG_I2C_EDID is not set
+# CONFIG_DISPLAY is not set
+# CONFIG_VIDEO_TEGRA20 is not set
+# CONFIG_VIDEO_BRIDGE is not set
+# CONFIG_VIDEO_IPUV3 is not set
+CONFIG_CFB_CONSOLE=y
+# CONFIG_CFB_CONSOLE_ANSI is not set
+CONFIG_VGA_AS_SINGLE_DEVICE=y
+CONFIG_VIDEO_SW_CURSOR=y
+# CONFIG_CONSOLE_EXTRA_INFO is not set
+CONFIG_CONSOLE_SCROLL_LINES=1
+# CONFIG_VIDEO_CT69000 is not set
+CONFIG_SYS_CONSOLE_BG_COL=0x00
+CONFIG_SYS_CONSOLE_FG_COL=0xa0
+# CONFIG_LCD is not set
+
+#
+# WATCHDOG support
+#
+# CONFIG_ULP_WATCHDOG is not set
+# CONFIG_PHYS_TO_BUS is not set
+
+#
+# File systems
+#
+
+#
+# Library routines
+#
+# CONFIG_CC_OPTIMIZE_LIBS_FOR_SPEED is not set
+CONFIG_HAVE_PRIVATE_LIBGCC=y
+CONFIG_USE_PRIVATE_LIBGCC=y
+CONFIG_SYS_HZ=1000
+# CONFIG_USE_TINY_PRINTF is not set
+CONFIG_REGEX=y
+# CONFIG_LIB_RAND is not set
+# CONFIG_AVB_ATX is not set
+# CONFIG_DUAL_BOOTLOADER is not set
+# CONFIG_CMD_DHRYSTONE is not set
+# CONFIG_RSA is not set
+# CONFIG_TPM is not set
+
+#
+# Hashing Support
+#
+# CONFIG_SHA1 is not set
+# CONFIG_SHA256 is not set
+# CONFIG_SHA_HW_ACCEL is not set
+
+#
+# Compression Support
+#
+# CONFIG_LZ4 is not set
+# CONFIG_ERRNO_STR is not set
+CONFIG_OF_LIBFDT=y
+# CONFIG_LOAD_FDT_FROM_PART is not set
+# CONFIG_OF_LIBFDT_OVERLAY is not set
+# CONFIG_SPL_OF_LIBFDT is not set
+# CONFIG_FDT_FIXUP_PARTITIONS is not set
+
+#
+# System tables
+#
+CONFIG_GENERATE_SMBIOS_TABLE=y
+CONFIG_SMBIOS_MANUFACTURER="freescale"
+CONFIG_EFI_LOADER=y
+# CONFIG_UNIT_TEST is not set
+
+Thank you.
+
+- jh
