@@ -1,64 +1,97 @@
-Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
- by mx.groups.io with SMTP id smtpd.web12.10005.1581269363673370544
+Received: from mail-pg1-f193.google.com (mail-pg1-f193.google.com [209.85.215.193])
+ by mx.groups.io with SMTP id smtpd.web11.10015.1581270059936226494
  for <yocto@lists.yoctoproject.org>;
- Sun, 09 Feb 2020 09:29:23 -0800
+ Sun, 09 Feb 2020 09:41:00 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=o7gXYEY7;
- spf=pass (domain: gmail.com, ip: 209.85.214.195, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f195.google.com with SMTP id y1so1838271plp.7
-        for <yocto@lists.yoctoproject.org>; Sun, 09 Feb 2020 09:29:23 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=FxIOHNKQ;
+ spf=pass (domain: gmail.com, ip: 209.85.215.193, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f193.google.com with SMTP id z7so2599784pgk.7
+        for <yocto@lists.yoctoproject.org>; Sun, 09 Feb 2020 09:40:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:subject:date:message-id;
-        bh=cxZmKUiyxkYEtUqDqs75VmPekQib1/T1Ic5GVUWoNRE=;
-        b=o7gXYEY7QRererBe/RHWD6XNAzshH0AxaYksRepsLz3B6tWmzpoWYqpY2b878agPKL
-         igkTUmmi+APTCQYGlHaEetpqgHrBXhRIySNKPWdF/Tff/CriQFGRxPpnzQCZ6nv+7X9L
-         OHIlW2QDr5RUuk8dPPbquhu/IsHPIXy0JMspmFJpbgwVMAab5/qhgo4uuH3prytu4jim
-         HP4ckH+JMb7gaTzkU7E3bl0bFdIq5bEV/idxgXU7dXFCpswi3dVAaWW6G/zL7aoJAogH
-         x1qtZN78obP+S4G3yGl4cT4rb62zHj0mYvx/IsxhTE2VTh15Xb7I8/zg1GppkMVChIzu
-         qOFw==
+        bh=oYqBX3ExLqRW/NKceuIpbQK12OXEKCeL8Dcz+zTDeVE=;
+        b=FxIOHNKQIqEMXEbrMVjS36GbXPtgOZAf625VRD2TeB+5nt8pUchJOiEJGhg2kjoM0Z
+         tr/d3qMKTrAn8+rpF2B3GHZkHLRa4h1omJhFOEyDKCTJ4e60KgiFrocvkNrU40Imwiyp
+         4cjKyB60NR/UMCygyMC4ImTKsGsDBM3jiURTQBHcF+Csz1pWX7c7S/93mIkzy+h2GIa7
+         HvqLH4uE+GuADSeM4HKhOfQ/N8EHdX9xdN7cp/asuIVVODrsXcWpF7+7brK8BGFBeW2i
+         C2DAIGFkOecET+qhWJ+XrMAuqLdPNGd5rqn8hPxEEn7AFRz1Q3sFRwZUrcIka/rwRNAI
+         EF/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=cxZmKUiyxkYEtUqDqs75VmPekQib1/T1Ic5GVUWoNRE=;
-        b=B0ld6oq/8MH98XHEO/uTpQ0U8dqHjoV2tJZ/boTnpfMmqAFAb2K1jLA/UKVBS46qER
-         Z0+Wj9cbOFcpMbjiM4+fMDFqp8FzVPuQ5FeZknr1t9P1HgTf8ZUvqRfn3behPcFPuzbY
-         99Kd7ENeOiPC9iJhwg07//vutrr9b4PAcn/iVOlCL4uUD+/Zd9AYS0u2j1zuubGpNXOs
-         Ioyt/NDG3QHy7vhHErISu2GHKwF3XCvspePplWDVBvAqD1jWd5MpIcCClWOqe/1Aolup
-         0cakaa80hZ69P1/4GBU9sH0kjMnjd76qdMJQogzMt63lUzTK/z9uBxXE/WLCZj8eaQNc
-         5d8A==
-X-Gm-Message-State: APjAAAXUOTEjcK5yXGc32xj0MEXNf/CiMetTKiXiUYZnG38O3nS+UZMO
-	nqPEO6DbipOy7BtzE7t8SOthaufX
-X-Google-Smtp-Source: APXvYqz8HYHgLpdJUJFw61GyEngpiDJJNez63h4q2liAZ9YMKIGS3mGF9vgMfefNovqj5IzsNqx3Ww==
-X-Received: by 2002:a17:90a:db0f:: with SMTP id g15mr15477080pjv.40.1581269362686;
-        Sun, 09 Feb 2020 09:29:22 -0800 (PST)
+        bh=oYqBX3ExLqRW/NKceuIpbQK12OXEKCeL8Dcz+zTDeVE=;
+        b=hSpCq62OqWJXfxEGtJG3Op3SQiOej08xkhRFtXM37FlgtgU51nr7jwtex6797HY7F4
+         efP03TAp9qwCQGlSv37deXEL0dfxehmdtyttOqZv0DJdZfLTaJjLaveTkY2yudvyw/SL
+         jCQr3uoV+Zy0mxXOLeJYIuLzheudHThzvhEUdIhiwWRpipOuTIKfEuvpymPesoTWE0sc
+         knIT98pCTCnScUsxgGuAsA/X9UkNNMuVOtCCeh2k9EHSblZ/thFz9IlRTnDCJfK9hzvz
+         076EGddz9ZwhAPdXPRQTcJGZrvg993VKzLx8MVZl4VJaHFOwheGSuvcxPQyNpsxggG2t
+         A+aA==
+X-Gm-Message-State: APjAAAXF0IPuOEeP/hzhnSoIsr+geocrpYZtOtosx8RA9fU8lUncpgmd
+	jM8k7H08cApiFQhNIYfY5rwyvtZS
+X-Google-Smtp-Source: APXvYqxweRIqo0wDiW5toMyz+Nmz+9MtUGXK7sHVUBUBJ6drqe9I3zWv23+xST+cmzH+f9FVgNwb3Q==
+X-Received: by 2002:a63:f70e:: with SMTP id x14mr9922687pgh.71.1581270059260;
+        Sun, 09 Feb 2020 09:40:59 -0800 (PST)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:154b:3780:5122:4aa9])
-        by smtp.gmail.com with ESMTPSA id y1sm9685994pgi.56.2020.02.09.09.29.21
+        by smtp.gmail.com with ESMTPSA id l21sm9636725pgo.33.2020.02.09.09.40.58
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Feb 2020 09:29:22 -0800 (PST)
+        Sun, 09 Feb 2020 09:40:58 -0800 (PST)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] tpm2-tools: fix compile issue with new gcc
-Date: Sun,  9 Feb 2020 09:29:20 -0800
-Message-Id: <20200209172920.1496-1-akuster808@gmail.com>
+Subject: [meta-security][v2][PATCH] ibmswtpm2: update to 1563
+Date: Sun,  9 Feb 2020 09:40:57 -0800
+Message-Id: <20200209174057.3314-1-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
 
-fixes:
+fix build issue
 
-releated to issue:
-https://github.com/tpm2-software/tpm2-tools/issues/1561
+[v2]
+Fix subject line
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
+ .../ibmswtpm2/files/remove_optimization.patch | 26 ++++++++++++++++++
  .../recipes-tpm2/ibmswtpm2/ibmswtpm2_1332.bb  | 24 -----------------
- .../recipes-tpm2/ibmswtpm2/ibmswtpm2_1563.bb  | 26 +++++++++++++++++++
- .../tpm2-tools/tpm2-tools_4.1.1.bb            |  2 ++
- 3 files changed, 28 insertions(+), 24 deletions(-)
+ .../recipes-tpm2/ibmswtpm2/ibmswtpm2_1563.bb  | 27 +++++++++++++++++++
+ 3 files changed, 53 insertions(+), 24 deletions(-)
+ create mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch
  delete mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1332.bb
  create mode 100644 meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1563.bb
 
+diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch b/meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch
+new file mode 100644
+index 0000000..2919e2e
+--- /dev/null
++++ b/meta-tpm/recipes-tpm2/ibmswtpm2/files/remove_optimization.patch
+@@ -0,0 +1,26 @@
++Allow recipe to overide optimization.
++
++fixes:
++
++397 | #  warning _FORTIFY_SOURCE requires compiling with optimization (-O)
++|       |    ^~~~~~~
++| cc1: all warnings being treated as errors
++
++
++Upstream-Status: OE specific
++
++Signed-off-by: Armin Kuster <akuster808@gmail.com>
++
++Index: src/makefile
++===================================================================
++--- src.orig/makefile
+++++ src/makefile
++@@ -43,7 +43,7 @@ CC = /usr/bin/gcc
++ CCFLAGS = -Wall  			\
++ 	-Wmissing-declarations -Wmissing-prototypes -Wnested-externs \
++ 	-Werror -Wsign-compare \
++-	 -c -ggdb -O0 			\
+++	 -c -ggdb -O 			\
++ 	-DTPM_POSIX			\
++ 	-D_POSIX_			\
++ 	-DTPM_NUVOTON
 diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1332.bb b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1332.bb
 deleted file mode 100644
 index a6068e6..0000000
@@ -91,14 +124,15 @@ index a6068e6..0000000
 -}
 diff --git a/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1563.bb b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1563.bb
 new file mode 100644
-index 0000000..0e875ec
+index 0000000..8054226
 --- /dev/null
 +++ b/meta-tpm/recipes-tpm2/ibmswtpm2/ibmswtpm2_1563.bb
-@@ -0,0 +1,26 @@
+@@ -0,0 +1,27 @@
 +SUMMARY = "IBM's Software TPM 2.0"
 +LICENSE = "BSD"
 +SECTION = "securty/tpm"
 +LIC_FILES_CHKSUM = "file://../LICENSE;md5=1e023f61454ac828b4aa1bc4293f7d5f"
++
 +DEPENDS = "openssl"
 +
 +SRC_URI = "https://sourceforge.net/projects/ibmswtpm2/files/ibmtpm${PV}.tar.gz \
@@ -110,7 +144,6 @@ index 0000000..0e875ec
 +SRC_URI[sha384sum] = "b1f278acabe2198aa79c0fe8aa0182733fe701336cbf54a88058be0b574cab768f59f9315882d0e689e634678d05b79f"
 +SRC_URI[sha512sum] = "ff0b9e5f0d0070eb572b23641f7a0e70a8bc65cbf4b59dca1778be3bb014124011221a492147d4c492584e87af23e2f842ca6307641b3919f67a3f27f09312c0"
 +
-+
 +S = "${WORKDIR}/src"
 +
 +do_compile () {
@@ -121,16 +154,7 @@ index 0000000..0e875ec
 +   install -d ${D}/${bindir}
 +   install -m 0755 tpm_server  ${D}/${bindir}
 +}
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb
-index e90dcfe..aee4d3b 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tools/tpm2-tools_4.1.1.bb
-@@ -15,3 +15,5 @@ SRC_URI[sha384sum] = "396547f400e4f5626d7741d77ec543f312d94e6697899f4c36260d15fa
- SRC_URI[sha512sum] = "25952cf947f0acd16b1a8dbd3ac8573bce85ff970a7e24c290c4f9cd29418e77a3e48ac82c932fbd250887a9303ab301ff92db594c2fffaba47b873382444d26"
- 
- inherit autotools pkgconfig bash-completion
 +
-+CFLAGS_remove = "-O2 "
 -- 
 2.17.1
 
