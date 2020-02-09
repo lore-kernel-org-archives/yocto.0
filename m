@@ -1,202 +1,100 @@
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
- by mx.groups.io with SMTP id smtpd.web10.9790.1581269217461632960
+Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+ by mx.groups.io with SMTP id smtpd.web12.9968.1581269218138179703
  for <yocto@lists.yoctoproject.org>;
- Sun, 09 Feb 2020 09:26:57 -0800
+ Sun, 09 Feb 2020 09:26:58 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=RdoQq0Q0;
- spf=pass (domain: gmail.com, ip: 209.85.216.52, mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f52.google.com with SMTP id r67so3134676pjb.0
-        for <yocto@lists.yoctoproject.org>; Sun, 09 Feb 2020 09:26:57 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=kWa1TMBo;
+ spf=pass (domain: gmail.com, ip: 209.85.210.177, mailfrom: akuster808@gmail.com)
+Received: by mail-pf1-f177.google.com with SMTP id n7so2489580pfn.0
+        for <yocto@lists.yoctoproject.org>; Sun, 09 Feb 2020 09:26:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id;
-        bh=SFMYuUucl4JBd42uUlow3buswpykAWOh15OydC+ELJk=;
-        b=RdoQq0Q0WMIC22BjcQA6o64jJL0tOkr6Ln1OZhY/Tt9vjUWl1KPJzSzL5glZU/zp/1
-         7HFQbinTzLYlA9MLnKitoy7ghbKP+OkajEnWhEY20UgpXXt3F8QIS7Q95Se2j1Z1WHOC
-         WJ58T3c43nGqqEroq2htyU+2AplSVkaRi9dcUqtGX6tvayLnwKj+Fv/udCg7WqH+E6Yh
-         VFh85PzvBehD+MnO3K7NI6ZJNH6VtRXJ89UWDJg4Zk1UR76wEETRpyNTwtb+ak66K1Is
-         oAKCy0Fcgfhg69/ToF7R+p0bJATSDGtrJxZHDiequA9FUPgDGDXSJziCATSLTjLrDDiN
-         c9SA==
+        h=from:to:subject:date:message-id:in-reply-to:references;
+        bh=XVpAVVpkSvPjEQT6QKYYq5ipAQzlvLjc3REIYXnsJkI=;
+        b=kWa1TMBo+OEfLsN0Nhqjx2/wVxxSt0TarvYtMlCrLZlDKmSRFzvHi+aogFTakLfkHv
+         czXgPYPVcuDDH+lcCCofmgfJdrw1i0RuOzGwIxbf1DrRR3h/0xjOopXWedEzuxCujgnC
+         fQ0kLvpR9Gs3S4jIb6qrbU3hhsqxZadKj5mI09y4dmS2lnw1vcYr8nczefngR16hqesX
+         T61VVBqK9C+gUhNLj3CAPTSl8k59ckdpgU7lUQtha0pNoV7c+tj52DbbZDzpOY3x2OQg
+         JuYb+09Q09+BZl8okITd+JwwD2OF04AaWBTQt/fPrfkmIqzYMf53bsiJrPkbBIedcQUO
+         Ed1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=SFMYuUucl4JBd42uUlow3buswpykAWOh15OydC+ELJk=;
-        b=DRa9/wwvgSNZuByd/sGHEssZpvC0ue0RzdrMPvp3GRrx2G1jQRqWHBPmtJbxRGOXKh
-         bzgwvhbUw2Y5fJVg2g/Zeu5xAEJQ5d+u1gAARYB1U8t4LLooqaMkDukkgwGV5mmkDgME
-         nLIjEiYstwHfDDWw5fcj8Guwc56uUcHVdpglBXLfjAfa8AJSm3S91wi0yXQCZ3XLIcQC
-         T70DxbVL+KvGp+NDy9v6iFL3elnp0QJW/8kpjBkNHZIYKUr4Xb7pCk3WL2RnDqKy1/hG
-         1HQ93SmqCsDrpnHZUb9LIh7IbxaCXf6f3+HINwCZrEAFi7KP7nvoU/AhTaoob8hrUdoS
-         MeYg==
-X-Gm-Message-State: APjAAAV/uY9VDNtC+xnKnYV70v0uanVfaEQf+d9LLr41h4klum3T48ej
-	e0Uc6mTmtwO0YSnlt6DlJZsTAMfc
-X-Google-Smtp-Source: APXvYqxgDfAcESxowC5FyA8ELsfylLdKN42f38B4ZHqd8SzJF8Jr8+ZHR6dLDryHl1hE2CE+SSSKLA==
-X-Received: by 2002:a17:90a:a587:: with SMTP id b7mr16142631pjq.18.1581269216615;
-        Sun, 09 Feb 2020 09:26:56 -0800 (PST)
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references;
+        bh=XVpAVVpkSvPjEQT6QKYYq5ipAQzlvLjc3REIYXnsJkI=;
+        b=W+OwJ3MKcK4xr6OtkB5faXQ7ZEVZScYGcrYBOuTK+W6dZNMuocIhJVGGwNLMffDq97
+         CEUVIoSRa1MUKoH7Z9lOT+2cLLi3+E0MwuYPSLLCEif1V9xphO2PQ9G7wp8in+1zAzQX
+         TpYqlp2FrUEaSA03VQQQhTlfh9qAcgFabDVRmxydEvLe+VA6ODErXnSMQw5D4u6ex8NF
+         KYZ/q2z7zQEKgiTYUzFxHC2tmCJJC5FomgHkmehjcLBaT9I+d63iEkvgnc6i533o1Jzn
+         b6ERlgeTGmAZeOfOY73BfEOOMhRPEw5WEP9NKtEesBazkkqFoQ9ZFcAKfeVGCytyOWfA
+         IzBQ==
+X-Gm-Message-State: APjAAAVoJNrZ4rTxmiroDp9eGDRzP+UOBQqNmRN+BeRb9lG0EzyjDqAb
+	6LhvE8qNp+877fi6Y+Dps0OEvZNo
+X-Google-Smtp-Source: APXvYqwl5ubhZmT7mkc7q/3Fba/jbuUocvm9rPKFy+W0Sw5OEgYCQK825Gr6QaHgw0xdW08NqMSR/A==
+X-Received: by 2002:a63:591f:: with SMTP id n31mr10027064pgb.108.1581269217300;
+        Sun, 09 Feb 2020 09:26:57 -0800 (PST)
 Return-Path: <akuster808@gmail.com>
 Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:154b:3780:5122:4aa9])
-        by smtp.gmail.com with ESMTPSA id x143sm9956609pgx.54.2020.02.09.09.26.55
+        by smtp.gmail.com with ESMTPSA id x143sm9956609pgx.54.2020.02.09.09.26.56
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Feb 2020 09:26:55 -0800 (PST)
+        Sun, 09 Feb 2020 09:26:56 -0800 (PST)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 1/3] tpm2-tcti-uefi: fix build issue for i386 machine
-Date: Sun,  9 Feb 2020 09:26:52 -0800
-Message-Id: <20200209172654.1111-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/3] tpm2-tss: update to 2.3.2
+Date: Sun,  9 Feb 2020 09:26:53 -0800
+Message-Id: <20200209172654.1111-2-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200209172654.1111-1-akuster808@gmail.com>
+References: <20200209172654.1111-1-akuster808@gmail.com>
+
+clean up reciped. drop git fetching
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- .../files/fix_header_file.patch               | 25 +++++++++++++++++
- .../files/tpm2-get-caps-fixed.patch           | 23 +++++++++++++++
- ...p-inserting-host-directories-into-co.patch | 13 ++++++++-
- .../tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb    | 28 +++++++++++--------
- 4 files changed, 77 insertions(+), 12 deletions(-)
- create mode 100644 meta-tpm/recipes-tpm2/tpm2-tcti-uefi/files/fix_header_file.patch
- create mode 100644 meta-tpm/recipes-tpm2/tpm2-tcti-uefi/files/tpm2-get-caps-fixed.patch
+ .../{tpm2-tss_2.3.1.bb => tpm2-tss_2.3.2.bb}   | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+ rename meta-tpm/recipes-tpm2/tpm2-tss/{tpm2-tss_2.3.1.bb => tpm2-tss_2.3.2.bb} (72%)
 
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/files/fix_header_file.patch b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/files/fix_header_file.patch
-new file mode 100644
-index 0000000..fc730e1
---- /dev/null
-+++ b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/files/fix_header_file.patch
-@@ -0,0 +1,25 @@
-+Error building for i386 target in cross env
-+
-+#include <efi/x86_64/efibind.h>
-+
-+ARCH is host arch, not target arch
-+
-+Upstream-Status: Submitted 
-+
-+Signed-off-by: Armin Kuster <akuster808@gmail.com>
-+Index: git/src/uefi-types.h
-+===================================================================
-+--- git.orig/src/uefi-types.h
-++++ git/src/uefi-types.h
-+@@ -3,9 +3,9 @@
-+ #define UEFI_TYPES_H
-+ 
-+ #ifndef EDK2_BUILD
-+-#if ARCH == x86_64
-++#if defined(__x86_64__)
-+ #include <efi/x86_64/efibind.h>
-+-#elif ARCH == ia32
-++#elif defined(__i386__)
-+ #include <efi/ia32/efibind.h>
-+ #else
-+ #error "Unsupported ARCH."
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/files/tpm2-get-caps-fixed.patch b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/files/tpm2-get-caps-fixed.patch
-new file mode 100644
-index 0000000..bc70913
---- /dev/null
-+++ b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/files/tpm2-get-caps-fixed.patch
-@@ -0,0 +1,23 @@
-+Fix defined to match tpm2-tools 4.1.1
-+
-+Upstream-Status: Submitted https://github.com/tpm2-software/tpm2-tcti-uefi/pull/81
-+Signed-off-by: Armin Kuster <akuster808@gmail.com>
-+
-+Index: git/example/tpm2-get-caps-fixed.c
-+===================================================================
-+--- git.orig/example/tpm2-get-caps-fixed.c
-++++ git/example/tpm2-get-caps-fixed.c
-+@@ -140,11 +140,11 @@ dump_tpm_properties_fixed (TPMS_TAGGED_P
-+             Print (L"TPM2_PT_INPUT_BUFFER:\n"
-+                     "  value: 0x%X\n", value);
-+             break;
-+-        case TPM2_PT_HR_TRANSIENT_MIN:
-++        case TPM2_PT_TPM2_HR_TRANSIENT_MIN:
-+             Print (L"TPM2_PT_TPM2_HR_TRANSIENT_MIN:\n"
-+                     "  value: 0x%X\n", value);
-+             break;
-+-        case TPM2_PT_HR_PERSISTENT_MIN:
-++        case TPM2_PT_TPM2_HR_PERSISTENT_MIN:
-+             Print (L"TPM2_PT_TPM2_HR_PERSISTENT_MIN:\n"
-+                     "  value: 0x%X\n", value);
-+             break;
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi/0001-configure.ac-stop-inserting-host-directories-into-co.patch b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi/0001-configure.ac-stop-inserting-host-directories-into-co.patch
-index 3b54ddd..b3f2287 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi/0001-configure.ac-stop-inserting-host-directories-into-co.patch
-+++ b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi/0001-configure.ac-stop-inserting-host-directories-into-co.patch
-@@ -16,7 +16,18 @@ Index: git/configure.ac
- ===================================================================
- --- git.orig/configure.ac
- +++ git/configure.ac
--@@ -81,7 +81,7 @@ AC_ARG_WITH([efi-lds],
-+@@ -70,10 +70,6 @@ EXTRA_CFLAGS+="-I${with_efi_includedir}
-+ # compiler flags / search path
-+ CFLAGS_TMP="$CFLAGS"
-+ CFLAGS="$CFLAGS $EXTRA_CFLAGS"
-+-AC_CHECK_HEADERS([efi.h efilib.h],
-+-                 [],
-+-                 [AC_MSG_ERROR([Missing gnu-efi headers.])],
-+-                 [#include <efi.h>])
-+ CFLAGS="$CFLAGS_TMP"
-+ 
-+ # path to linker script from gnu-efi
-+@@ -81,7 +77,7 @@ AC_ARG_WITH([efi-lds],
-              AS_HELP_STRING([--with-efi-lds=LDS_PATH],[Path to gnu-efi lds file.]),
-              [],
-              [with_efi_lds="/usr/lib/elf_${ARCH}_efi.lds"])
-diff --git a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
-index f4918ec..67b36b7 100644
---- a/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
-+++ b/meta-tpm/recipes-tpm2/tpm2-tcti-uefi/tpm2-tcti-uefi_0.9.9.bb
-@@ -2,13 +2,15 @@ SUMMARY = "TCTI module for use with TSS2 libraries in UEFI environment"
- SECTION = "security/tpm"
- LICENSE = "BSD-2-Clause"
- LIC_FILES_CHKSUM = "file://LICENSE;md5=500b2e742befc3da00684d8a1d5fd9da"
--DEPENDS = "libtss2-dev gnu-efi-native gnu-efi pkgconfig autoconf-archive-native"
-+DEPENDS = "libtss2-dev libtss2-mu-dev gnu-efi-native gnu-efi pkgconfig autoconf-archive-native"
+diff --git a/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.3.1.bb b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.3.2.bb
+similarity index 72%
+rename from meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.3.1.bb
+rename to meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.3.2.bb
+index dfdf734..135efed 100644
+--- a/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.3.1.bb
++++ b/meta-tpm/recipes-tpm2/tpm2-tss/tpm2-tss_2.3.2.bb
+@@ -8,22 +8,22 @@ DEPENDS = "autoconf-archive-native libgcrypt openssl"
  
- SRC_URI = "git://github.com/tpm2-software/tpm2-tcti-uefi.git \
-            file://configure_oe_fixup.patch \
-            file://0001-configure.ac-stop-inserting-host-directories-into-co.patch \
-+           file://tpm2-get-caps-fixed.patch \
-+           file://fix_header_file.patch \
-           "
--SRCREV = "431c85f45dcdca5da003ed47c6e9814282476938"
-+SRCREV = "0241b08f069f0fdb3612f5c1b938144dbe9be811"
+ SRCREV = "a99e733ba66c359502689a9c42fd5e02ed1dd7d6"
  
- S = "${WORKDIR}/git"
+-SRC_URI = "git://github.com/tpm2-software/tpm2-tss.git;branch=2.3.x"
++SRC_URI = "https://github.com/tpm2-software/${BPN}/releases/download/${PV}/${BPN}-${PV}.tar.gz"
++SRC_URI[md5sum] = "fb7e6d371959a65dc6d129af81739742"
++SRC_URI[sha256sum] = "82929a0611f39246e09202702a61b54c980ab694626c1f5823520ddf75024fa6"
++SRC_URI[sha1sum] = "c24ce8b20a8686ada775239389292f6d78020668"
++SRC_URI[sha384sum] = "a0c023c024efb6c9906df1e143d692f44433de332b616dc0584c9b4cd4fb0ad544308f291892e91c5a52ef1a4b2abf7f"
++SRC_URI[sha512sum] = "7b679b54f3478c3adee5b6c3135cbe491ffd9f4712991f465edbd6c7d2831e5f1537038ec36f288e9545c719d5d167b61116c924cf5d816220615d0b58a1d436"
  
-@@ -16,6 +18,17 @@ inherit autotools pkgconfig
- 
- EFIDIR ?= "/EFI/BOOT"
- 
-+EFI_ARCH_x86 = "ia32"
-+EFI_ARCH_x86-64 = "x86_64"
-+
-+CFLAGS_append = " -I${STAGING_INCDIR}/efi -I${STAGING_INCDIR}/efi/${EFI_ARCH}"
-+
-+EXTRA_OECONF_append = " \
-+    --with-efi-includedir=${STAGING_INCDIR} \
-+    --with-efi-crt0=${STAGING_LIBDIR}/crt0-efi-${EFI_ARCH}.o \
-+    --with-efi-lds=${STAGING_LIBDIR}/elf_${EFI_ARCH}_efi.lds \
-+"
-+
- do_compile_append() {
- 	oe_runmake example
- }
-@@ -25,15 +38,8 @@ do_install_append() {
- 	install -m 0755 "${B}"/example/*.efi "${D}${EFIDIR}"
- }
- 
--EFI_ARCH_x86 = "ia32"
--EFI_ARCH_x86-64 = "x86_64"
+-inherit autotools-brokensep pkgconfig systemd
 -
- COMPATIBLE_HOST = "(i.86|x86_64).*-linux"
--EXTRA_OECONF_append = "\
--    --with-efi-includedir=${STAGING_INCDIR}/efi \
--    --with-efi-crt0=${STAGING_LIBDIR_NATIVE}/crt0-efi-${EFI_ARCH}.o \
--    --with-efi-lds=${STAGING_LIBDIR_NATIVE}/elf_${EFI_ARCH}_efi.lds \
--"
--RDEPENDS_${PN} = "gnu-efi"
+-S = "${WORKDIR}/git"
++inherit autotools pkgconfig systemd extrausers
  
- FILES_${PN} += "${EFIDIR}"
-+
-+RDEPENDS_${PN} = "gnu-efi libtss2-mu"
+ PACKAGECONFIG ??= ""
+ PACKAGECONFIG[oxygen] = ",--disable-doxygen-doc, "
+ 
+-EXTRA_OECONF += "--with-udevrulesdir=${base_prefix}/lib/udev/rules.d/"
++EXTRA_OECONF += "--enable-static --with-udevrulesdir=${base_prefix}/lib/udev/rules.d/"
++EXTRA_OECONF_remove = " --disable-static"
+ 
+-do_configure_prepend () {
+-       ./bootstrap
+-}
+ 
+-INHERIT += "extrausers"
+ EXTRA_USERS_PARAMS = "\
+ 	useradd -p '' tss; \
+ 	groupadd tss; \
 -- 
 2.17.1
 
