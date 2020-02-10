@@ -1,106 +1,101 @@
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (NAM10-BN7-obe.outbound.protection.outlook.com [40.107.92.109])
- by mx.groups.io with SMTP id smtpd.web10.19895.1581330646996785741
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.23999.1581350016576123713
  for <yocto@lists.yoctoproject.org>;
- Mon, 10 Feb 2020 02:30:47 -0800
+ Mon, 10 Feb 2020 07:53:36 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@cognexcorporation.onmicrosoft.com header.s=selector1-cognexcorporation-onmicrosoft-com header.b=JSrsrA7/;
- spf=pass (domain: cognex.com, ip: 40.107.92.109, mailfrom: oliver.westermann@cognex.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ny04+zh9pWdalDaKX5LQq96mBNw5MjYhEppr4JkZ3O0G10I/3Lf6gSlgVdnvndXMMoLFFxfYFil4vdv8gPbhjPP9UMMRW227c0F5kuSp4ZvWlgjwbMw6JHaPstirgwcc7R2nlnwI8iVAJrJyXNGvUJoSR8YpBwYpm02P2FeEJQaK61+N1uZt77CWgBwltGuZV/GGBRJs8CuoliUDlhvvFGFigsy/uFYJg6tUNrnh/i1MgrqJk+/nVqTZotDA1rw/2hkAgsU1SjZ2MQf54BuQYm3KnGT2XjS9vLxWnXk1/RzY2frB+3Ez7mJ8xvwCXyNtKpJfiNosue8xl94vJlCr5A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vo7vxe+h+zzgdnxFjAcimu5fZYf1vVUTU0hi9V0MIZY=;
- b=GR2zA/ldvvtexYVoF57JrwlbOrvSEZiTNn3GipwjGrDrvGdYc2kIH5SIw9GGVlyYJhAdzulUvKAQvVL9AVKo0HHjUIYtR/0mPaVgruYnPdCm9GODkvWNsgKl8CrK2CKjCJeYEYWfRGxK1u4ariqtDXQ3lYs3G6n/WtvdzV8LS8I9PcC7E4L6LmaZgKm2ZZe7c+sxiAa1SjtlqCK0jz+ZzAbIYFljy+fNlvfN0Gj9bXPvHr2AVBvLCrS5IOIuqDZKHRod9AP/lDTaAISFuU9ra05D/wgYRXyKsX/YhBRng7olbbHETVq2PGjIgVwv7EMTWyS3pqmUTQ59cbHUcVJXdA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cognex.com; dmarc=pass action=none header.from=cognex.com;
- dkim=pass header.d=cognex.com; arc=none
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=QzG1pEfj;
+ spf=softfail (domain: linuxfoundation.org, ip: 140.211.169.56, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id DB9E5E01426; Mon, 10 Feb 2020 07:53:35 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.128.48 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD404E00C7C
+	for <yocto@yoctoproject.org>; Mon, 10 Feb 2020 07:53:34 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id t23so889164wmi.1
+        for <yocto@yoctoproject.org>; Mon, 10 Feb 2020 07:53:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=cognexcorporation.onmicrosoft.com;
- s=selector1-cognexcorporation-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vo7vxe+h+zzgdnxFjAcimu5fZYf1vVUTU0hi9V0MIZY=;
- b=JSrsrA7/nHPArNrSB8LVKKe/Z2G6tiJBL5irND7QlLKnzGQZ9VTvcyf3Ht917r703XYSsAgq5n7s7EYzLDvZfTF+5NyaeKBRhWHD6de75kp9v8P8obP3FMi4pWvb9fU1txfge21yqM7iU9N3tycEE1yGc3V4qdSwl5HQ2+LG8O4=
-Received: from MN2PR06MB6573.namprd06.prod.outlook.com (20.180.25.148) by
- MN2PR06MB6685.namprd06.prod.outlook.com (20.180.25.139) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2707.24; Mon, 10 Feb 2020 10:30:44 +0000
-Received: from MN2PR06MB6573.namprd06.prod.outlook.com
- ([fe80::2106:f618:fa49:1f3c]) by MN2PR06MB6573.namprd06.prod.outlook.com
- ([fe80::2106:f618:fa49:1f3c%3]) with mapi id 15.20.2707.030; Mon, 10 Feb 2020
- 10:30:44 +0000
-From: "Oliver Westermann" <oliver.westermann@cognex.com>
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Re: [EXTERNAL] Re: [yocto] Clarifying install vs deploy
-Thread-Topic: [EXTERNAL]  Re: [yocto] Clarifying install vs deploy
-Thread-Index: AdXf+HbFY8BRJWMuTLiugBgP5FbweAAA0byAAAAY5RA=
-Date: Mon, 10 Feb 2020 10:30:44 +0000
-Message-ID: 
- <MN2PR06MB6573A6545D84AC5250BCE46586190@MN2PR06MB6573.namprd06.prod.outlook.com>
-References: 
- <MN2PR06MB6573BCE29DA9E3E85FE09E6086190@MN2PR06MB6573.namprd06.prod.outlook.com>
- <CAP71Wjy5+wXkndn4iXoF39QOuQvTSC_oZqjQ3OZRL-XWTQCNnQ@mail.gmail.com>
-In-Reply-To: 
- <CAP71Wjy5+wXkndn4iXoF39QOuQvTSC_oZqjQ3OZRL-XWTQCNnQ@mail.gmail.com>
-Accept-Language: de-DE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Oliver.Westermann@cognex.com; 
-x-originating-ip: [212.117.79.11]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 64bd1980-b0b2-4341-3dbd-08d7ae1448fa
-x-ms-traffictypediagnostic: MN2PR06MB6685:
-x-microsoft-antispam-prvs: 
- <MN2PR06MB6685A7ED426790E0F60D085986190@MN2PR06MB6685.namprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-forefront-prvs: 03094A4065
-x-forefront-antispam-report: 
- SFV:NSPM;SFS:(10019020)(4636009)(376002)(136003)(39860400002)(396003)(366004)(346002)(189003)(199004)(66476007)(9686003)(86362001)(2906002)(6916009)(55016002)(52536014)(8936002)(66446008)(478600001)(53546011)(26005)(6506007)(186003)(33656002)(71200400001)(76116006)(64756008)(8676002)(81156014)(81166006)(66946007)(316002)(66556008)(5660300002)(4326008)(7696005);DIR:OUT;SFP:1102;SCL:1;SRVR:MN2PR06MB6685;H:MN2PR06MB6573.namprd06.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: cognex.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- XN1AzEoeuIEOawcFw/P1FT8bT24Cqe/Pqoo+c0K2hEdBvlSQyGrItd7e3iNBXfLb/5AamSLlfn7j2u5qNEvvePg8q41cfxbNFPYZc1Lpy60bQHutzUeT4RFtedfFShborTq4yDg9dZrcTpe7pJ6elLDpf7hZocAhPS3kNTkCZ7+1U1FVPxgCP3OvKV3IoymvsHCv6spZIg0HOsvGN4bsg/nOGA1aSZwqz+fMeDtuvJMBBsmjj89SogoQVEskfov0IhDGHI2N0EuqUAnVM+km+OnzfZXc+TIOJGOs9QrsgXQhMRdoce8i8m41OekcWPfifCYGWm1OVC8euJV2uWGM1uq5jVam88bI/qvI9bN2qQJxJAIGs6lkftKbOvKviSbMG3nbn6mZTHpea5GBq1in8yTiiLlYVLtVspfrdqLsfRlyxBeZX42h3OCOYcG4Mpjl
-x-ms-exchange-antispam-messagedata: 
- nRyGCG8Dj4DigfAAcC5Cf5baX5gBoT/9shIDg6UinOqzgYMzPxlyZueD1CLdkBE74d4mH28MVjmN4C/Z9QwDPmjbCK9yNp5tr887qWRLF9Pt5Svm/aKnBJLtr3Mm9/OmOSlmmLf8UeIysDUSjf2yZA==
-x-ms-exchange-transport-forked: True
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=pPkAeuBucuLZacA92jYb1ZyZz7NydGDCRmPmznJuk18=;
+        b=QzG1pEfj/qMBPfGxMTeu+QYclL//BidMAqQgheSPX0HlIgsUqpbrQY183Fqr0k9wAf
+         O+0rAYlpcvaq2Amz3cWxOyS2ZSmw6gqJC/ilTu6eeDEx2ReUxiJZLIKXNHuZ07iCdr2R
+         U+GTan1m7cRyAPWxcC0WvejCmzloRrwROx9fY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=pPkAeuBucuLZacA92jYb1ZyZz7NydGDCRmPmznJuk18=;
+        b=FNtBoMOJGZ1SjOZTOsDKqn1FDmzMSIAFUHEkLwj8IHehaHJ/EaT6ABPX5HUVmE1L4C
+         tGLjzFvib2oUy3a8QwM2FJ3U+zSW/KXl6hFJb7HW8Arr8q4B9m9QByqN60tI/zIpy1W8
+         LpQ6Ic64Tr/5CI5OG/+fsU7rToT0ldD4CWD1kz9lxnxdJfeYa8oq3cWIjihpi/N8ZBvD
+         xNFFLLrSL3t9FjYnUF6gsDudKTJ1X25gHPJMmxNxrGhPvAyU3kFDCXb86MDW/8mDCA4x
+         tjLVzc7SoqDGgB1mhRwcMt/x7CIy/8iEEoXUetXoQJ2CCXiXXuuyb2UqsXnkq6EnxEbm
+         NrYg==
+X-Gm-Message-State: APjAAAVi1m8ZpQy7b5f3PIrhq3YFM1utT8V7/DzdcXltOd9RRhqG3i5g
+	LmJzSYOvBr/bPeiqWR878nB58/QRHCw=
+X-Google-Smtp-Source: APXvYqww4Id4dcSwAyEF7pCL4MRA6rO0l3PlBe6JXCKLEcVX8GHsTpoQ6YJx3OxTCMrYppjDUJBGug==
+X-Received: by 2002:a05:600c:1007:: with SMTP id c7mr15818777wmc.158.1581350013739;
+        Mon, 10 Feb 2020 07:53:33 -0800 (PST)
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+        by smtp.gmail.com with ESMTPSA id i4sm1067190wmd.23.2020.02.10.07.53.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Feb 2020 07:53:33 -0800 (PST)
+Message-ID: <0cf1df98d8e32eadd7d5c574535b944222e68507.camel@linuxfoundation.org>
+Subject: Re: [yocto] more nitpicky pedantry: question about DEFAULT_PREFERENCE
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>, Yocto discussion list
+	 <yocto@yoctoproject.org>
+Date: Mon, 10 Feb 2020 15:53:31 +0000
+In-Reply-To: <alpine.LFD.2.21.2002081344270.2158836@localhost.localdomain>
+References: <15F180F049AC594A.27010@lists.yoctoproject.org>
+	 <alpine.LFD.2.21.2002081344270.2158836@localhost.localdomain>
+User-Agent: Evolution 3.34.1-2 
 MIME-Version: 1.0
-X-OriginatorOrg: cognex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 64bd1980-b0b2-4341-3dbd-08d7ae1448fa
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Feb 2020 10:30:44.1938
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: c12007a4-882b-4381-b05a-b783431570c7
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 9+H5+f2UqEAulI1qRAZQaO3inxfJRZIr/i8Mk5MoPSO5zSorzbBcNM0EQLYaxArkcfSJUyNdmSWDg4Iu/RZF2SV5tpQ4CrG1tkwk9jSSBc8=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR06MB6685
-Content-Language: de-DE
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-T24gTW9uLCBGZWIgMTAsIDIwMjAgYXQgMTE6MjIgQU0gTmljb2xhcyBEZWNoZXNuZSA8bmljb2xh
-cy5kZWNoZXNuZUBsaW5hcm8ub3JnPiB3cm90ZToNCj4geW91IHVzZSBkb19pbnN0YWxsKCkgdG8g
-aW5zdGFsbCBhbnkgY29udGVudCB0aGF0IHlvdSBuZWVkIHRvIGJlIGFkZGVkIHRvIHlvdXIgcm9v
-dGZzL2ltYWdlLCBhcyB5b3Ugc2FpZC4gdGhlIGNvbnRlbnQgb2YgJEQgd2lsbCBlbmQgdXAgaW4g
-YSBiaW5hcnkgcGFja2FnZSAocnBtLCBkZWIsIG9yIGlwayksIGFuZCB0aGF0IHBhY2thZ2UgbWln
-aHQgZXZlbnR1YWxseSBiZSBpbnN0YWxsZWQgaW50byBhbiBpbWFnZSwgd2hpY2ggbWVhbnMgdGhh
-dCB0aGUgY29udGVudCBvZiAkRCB3aWxsIGJlICdhZGRlZCcgdG8gYW4gaW1hZ2UuDQo+IA0KPiBk
-b19kZXBsb3koKSBkb2VzIG5vdCBleGlzdCBieSBkZWZhdWx0LCB5b3UgbmVlZCBpbmhlcml0IGRl
-cGxveSBjbGFzcy4NCj4gWW91IHVzZSBkb19kZXBsb3koKSB0byAnaW5zdGFsbCcgZmlsZXMvY29u
-dGVudCBpbiAkREVQTE9ZX0RJUl9JTUFHRSwgZS5nLiB0aGUgc2FtZSBmb2xkZXIgd2hlcmUgeW91
-ciBpbWFnZSBpcyBkZXBsb3llZC4gVGhlcmUgaXMgZm9yIGV4YW1wbGUgYSBkb19kZXBsb3koKSB0
-YXNrIGZvciBhbiBpbWFnZSByZWNpcGUuIFdoZW4geW91IHVzZQ0KPiBkb19kZXBsb3koKSB5b3Ug
-ZG8gbm90IGNyZWF0ZSBhIGJpbmFyeSBwYWNrYWdlLCBidXQgZGlyZWN0bHkgY29weSBjb250ZW50
-IGluICRERVBMT1lfRElSX0lNQUdFLiBZb3Ugc2hvdWxkIHVzZSAkREVQTE9ZRElSIGlzIHlvdXIg
-cmVjaXBlLCB3aGljaCBpcyBhICdsb2NhbCcgZm9sZGVyIGZvciB5b3VyIHJlY2lwZSB0byBjb3B5
-IHRoZSBjb250ZW50IHlvdSB3YW50IHRvIGRlcGxveS4gT0Ugd2lsbCB0YWtlIGNhcmUgb2YgdGhl
-IGNvcHkgZnJvbSAkREVQTE9ZRElSIHRvICRERVBMT1lfRElSX0lNQUdFIChpdCdzIG9wdGltaXpl
-ZCB0byB3b3JrIHdpdGggc3N0YXRlLWNhY2hlKS4NCg0KVGhhbmtzLCB0aGF0IGRlc3RpbmN0aW9u
-IG1ha2VzIGl0IGEgbG90IGNsZWFyZXIgYW5kIHNvdW5kcyBwcmV0dHkgY2xlYXIgdG8gbWUuIEl0
-IGFsc28gZXhwbGFpbnMgd2h5IHdlIHNhdyBkb19kZXBsb3kgYSBsb3QgbGFzdCB3ZWVrIHNpbmNl
-IHdlIHdlJ3JlIHdvcmtpbmcgd2l0aCBvdXIgYm9vdGxvYWRlcnMsIHdoaWNoIGdlbmVyYWxseSBu
-ZWVkIHRvIGVuZCB1cCBuZXh0IHRvIHRoZSBpbWFnZSAoc2FtZSB3aXRoIGUuZy4gVS1Cb290IHRv
-b2xzKS4NCg0KQmVzdCByZWdhcmRzLCBPbGxpDQo=
+On Sat, 2020-02-08 at 13:48 -0500, rpjday@crashcourse.ca wrote:
+> On Sat, 8 Feb 2020, rpjday@crashcourse.ca wrote:
+> ... snip ...
+> > which seems odd as there don't appear to be any other recipes that
+> > provide pkgconfig, and AIUI, the default provider for any recipe is
+> > the recipe with *exactly* the same name as the target -- in this
+> > case,
+> > "pkgconfig".
+> ...
+> 
+>   also wanted to clarify, while the default provider of a dependency
+> is the recipe with *exactly* that name, i'm assuming (i think i
+> remember this from somewhere) that if you have a number of recipes
+> that all provide, say, "virtual/kernel", and you have an explicit
+> dependency of "virtual/kernel", you *must* supply a
+> 
+>   PREFERRED_PROVIDER_virtual/kernel = ...
+> 
+> line, yes? as in, there's no weird processing to figure out which
+> recipe you'll be arbitrarily handed among the several that could be
+> used.
+
+The resolution code is deterministic (i.e. it might sort them) but
+there is no specific default provider, no.
+
+Cheers,
+
+Richard
+
