@@ -1,79 +1,97 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.994.1581371344055660831
+ by mx.groups.io with SMTP id smtpd.web11.3150.1581380814576139250
  for <yocto@lists.yoctoproject.org>;
- Mon, 10 Feb 2020 13:49:04 -0800
+ Mon, 10 Feb 2020 16:26:55 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 140.211.169.56, mailfrom: rpjday@crashcourse.ca)
+ dkim=missing; spf=fail (domain: mail1.xn--80adja5bqm.su, ip: 140.211.169.56, mailfrom: jin@mail1.xn--80adja5bqm.su)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96F5EE0171E; Mon, 10 Feb 2020 13:49:03 -0800 (PST)
+	id 0900BE0171F; Mon, 10 Feb 2020 16:26:54 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-0.5 required=5.0 tests=BAYES_00,FORGED_SPF_HELO,
+	KHOP_HELO_FCRDNS,SPF_HELO_PASS autolearn=no version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AA8EE0171B
-	for <yocto@yoctoproject.org>; Mon, 10 Feb 2020 13:49:01 -0800 (PST)
-Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:51502 helo=localhost.localdomain)
-	by cpanel7.indieserve.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-	(Exim 4.92)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1j1GvM-00DROb-BR; Mon, 10 Feb 2020 16:49:00 -0500
-Date: Mon, 10 Feb 2020 16:48:58 -0500 (EST)
-From: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [yocto] more nitpicky pedantry: question about DEFAULT_PREFERENCE
-In-Reply-To: <0cf1df98d8e32eadd7d5c574535b944222e68507.camel@linuxfoundation.org>
-Message-ID: <alpine.LFD.2.21.2002101647570.10568@localhost.localdomain>
-References: <15F180F049AC594A.27010@lists.yoctoproject.org>  <alpine.LFD.2.21.2002081344270.2158836@localhost.localdomain> <0cf1df98d8e32eadd7d5c574535b944222e68507.camel@linuxfoundation.org>
-MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
+	*  0.4 KHOP_HELO_FCRDNS Relay HELO differs from its IP's reverse DNS
+Received: from mail1.xn--80adja5bqm.su (xn--80adja5bqm.su [45.62.210.217])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE8A4E0171C
+	for <yocto@yoctoproject.org>; Mon, 10 Feb 2020 16:26:52 -0800 (PST)
+Received: by mail1.xn--80adja5bqm.su (Postfix, from userid 1000)
+	id B109220DBB30; Mon, 10 Feb 2020 18:25:31 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail1.xn--80adja5bqm.su B109220DBB30
+From: jin@mediatomb.cc
+To: yocto@yoctoproject.org
+Cc: twoerner@gmail.com,
+	Sergey 'Jin' Bostandzhyan <jin@mediatomb.cc>
+Subject: [meta-rockchip][PATCH 2/2] Add tinker-board-s machine configuration
+Date: Mon, 10 Feb 2020 18:25:23 +0100
+Message-Id: <1581355523-30072-2-git-send-email-jin@mediatomb.cc>
+X-Mailer: git-send-email 1.8.3.1
+In-Reply-To: <1581355523-30072-1-git-send-email-jin@mediatomb.cc>
+References: <1581355523-30072-1-git-send-email-jin@mediatomb.cc>
 
-On Mon, 10 Feb 2020, Richard Purdie wrote:
+From: Sergey 'Jin' Bostandzhyan <jin@mediatomb.cc>
 
-> On Sat, 2020-02-08 at 13:48 -0500, rpjday@crashcourse.ca wrote:
-> > On Sat, 8 Feb 2020, rpjday@crashcourse.ca wrote:
-> > ... snip ...
-> > > which seems odd as there don't appear to be any other recipes that
-> > > provide pkgconfig, and AIUI, the default provider for any recipe is
-> > > the recipe with *exactly* the same name as the target -- in this
-> > > case,
-> > > "pkgconfig".
-> > ...
-> >
-> >   also wanted to clarify, while the default provider of a dependency
-> > is the recipe with *exactly* that name, i'm assuming (i think i
-> > remember this from somewhere) that if you have a number of recipes
-> > that all provide, say, "virtual/kernel", and you have an explicit
-> > dependency of "virtual/kernel", you *must* supply a
-> >
-> >   PREFERRED_PROVIDER_virtual/kernel = ...
-> >
-> > line, yes? as in, there's no weird processing to figure out which
-> > recipe you'll be arbitrarily handed among the several that could be
-> > used.
->
-> The resolution code is deterministic (i.e. it might sort them) but
-> there is no specific default provider, no.
+Asus Tinker Board-S has emmc on mmcblk1, this is also the default
+configuration when building the image. If you need an image for booting
+from the sd card set RK_BOOT_DEVICE to mmcblk0
 
-  ah, so if you don't specify a PREFERRED_PROVIDER, then *some*
-provider will ultimately be selected, is that it? you just won't have
-any gurarantee which one it will be.
+Signed-off-by: Sergey Bostandzhyan <jin@mediatomb.cc>
+---
+ README                           |  1 +
+ conf/machine/tinker-board-s.conf | 27 +++++++++++++++++++++++++++
+ 2 files changed, 28 insertions(+)
+ create mode 100644 conf/machine/tinker-board-s.conf
 
-rday
+diff --git a/README b/README
+index 983d946..d7a42fe 100644
+--- a/README
++++ b/README
+@@ -16,6 +16,7 @@ Status of supported boards:
+ 	builds and boots gpt image:
+ 		rock-pi-4
+ 		tinker-board
++		tinker-board-s
+ 		vyasa-rk3288
+ 		firefly-rk3288
+ 	builds:
+diff --git a/conf/machine/tinker-board-s.conf b/conf/machine/tinker-board-s.conf
+new file mode 100644
+index 0000000..0f7d80f
+--- /dev/null
++++ b/conf/machine/tinker-board-s.conf
+@@ -0,0 +1,27 @@
++# Copyright (C) 2018  Trevor Woerner
++# Released under the MIT license (see COPYING.MIT for the terms)
++
++#@TYPE: Machine
++#@NAME: Tinker-S RK3288
++#@DESCRIPTION: ASUS Tinker Board is a Raspberry Pi 3 Alternative based on Rockchip RK3288 Processor.
++
++require conf/machine/include/rk3288.inc
++
++KERNEL_DEVICETREE = "rk3288-tinker-s.dtb"
++UBOOT_MACHINE = "tinker-s-rk3288_defconfig"
++
++RK_BOOT_DEVICE ?= "mmcblk1"
++
++WKS_FILE = "tinker-board.wks"
++IMAGE_FSTYPES += "wic wic.bmap"
++
++WKS_FILE_DEPENDS ?= " \
++    mtools-native \
++    dosfstools-native \
++    virtual/bootloader \
++    virtual/kernel \
++    "
++IMAGE_BOOT_FILES ?= "\
++    ${KERNEL_IMAGETYPE} \
++    ${KERNEL_DEVICETREE} \
++    "
+-- 
+2.24.1
+
