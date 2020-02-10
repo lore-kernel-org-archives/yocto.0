@@ -1,160 +1,74 @@
-Subject: Unable to run bitbake core-image-minimal -c populate_sdk in poke "Warrior" branch.
-To: yocto@lists.yoctoproject.org
-From: "Michael" <youhour@us.ibm.com>
-X-Originating-Location: Georgetown, Texas, US (47.221.167.202)
-X-Originating-Platform: Windows Chrome 79
-User-Agent: GROUPS.IO Web Poster
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.24057.1581351414635068942
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 10 Feb 2020 08:16:55 -0800
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 140.211.169.56, mailfrom: rpjday@crashcourse.ca)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 5F65BE0171D; Mon, 10 Feb 2020 08:16:54 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEC47E00C62
+	for <yocto@yoctoproject.org>; Mon, 10 Feb 2020 08:16:52 -0800 (PST)
+Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:48716 helo=localhost.localdomain)
+	by cpanel7.indieserve.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+	(Exim 4.92)
+	(envelope-from <rpjday@crashcourse.ca>)
+	id 1j1Bjv-00Cqfc-Ho; Mon, 10 Feb 2020 11:16:51 -0500
+Date: Mon, 10 Feb 2020 11:16:49 -0500 (EST)
+From: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [yocto] more nitpicky pedantry: question about DEFAULT_PREFERENCE
+In-Reply-To: <5226999e05d864ef31151472162f48942af1d4a1.camel@linuxfoundation.org>
+Message-ID: <alpine.LFD.2.21.2002101114330.86719@localhost.localdomain>
+References: <alpine.LFD.2.21.2002081322430.2157404@localhost.localdomain> <5226999e05d864ef31151472162f48942af1d4a1.camel@linuxfoundation.org>
 MIME-Version: 1.0
-Date: Mon, 10 Feb 2020 08:15:28 -0800
-Message-ID: <YfGX.1581351328052319513.OOjK@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="5SMw1BlkU15ey1IZZogL"
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Content-Type: text/plain; charset=US-ASCII
 
---5SMw1BlkU15ey1IZZogL
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+On Mon, 10 Feb 2020, Richard Purdie wrote:
 
-I created a build environment for powerpc-nf using poke "warrior" branch.
-I was able to run "bitbake core-image-minimal" successfully.
-I was also able to run "bitbake core-image-minimal -c populate_sdk" succes=
-sfully.
+> On Sat, 2020-02-08 at 13:31 -0500, rpjday@crashcourse.ca wrote:
 
-Then I added a new package from my internal team.
-After adding this package, I was still able to execute=C2=A0=C2=A0"bitbake=
- core-image-minimal" successfully.
-However, bitbake core-image-minimal -c populate_sdk"=C2=A0 failed with the=
- following error message...
+> >    consider under recipes-devtools the two directories "pkgconfig"
+> > and "pkgconf", and the respective .bb files:
+> >
+> >   - pkgconfig_git.bb
+> >   - pkgconf_1.6.3.bb
+> >
+> > the pkgconfig recipe file does *not* contain a PROVIDES setting,
+> > while pkgconfig_1.6.3.bb does:
+> >
+> >   PROVIDES += "pkgconfig"
+>
+> The above looks superfluous at a glance.
 
-**************************************************************************=
-***************************
-NOTE: Executing RunQueue Tasks
-*ERROR: core-image-minimal-1.0-r0 do_populate_sdk: Could not invoke dnf.* =
-Command '/tmp/youhour/fips-build/b20200206b/fips-ppcnf/build/tmp/work/fips_=
-ppcnf-poky-linux/core-image-minimal/1.0-r0/recipe-sysroot-native/usr/bin/dn=
-f -v --rpmverbosity=3Dinfo -y -c /tmp/youhour/fips-build/b20200206b/fips-pp=
-cnf/build/tmp/work/fips_ppcnf-poky-linux/core-image-minimal/1.0-r0/sdk/imag=
-e/etc/dnf/dnf.conf --setopt=3Dreposdir=3D/tmp/youhour/fips-build/b20200206b=
-/fips-ppcnf/build/tmp/work/fips_ppcnf-poky-linux/core-image-minimal/1.0-r0/=
-sdk/image/etc/yum.repos.d --installroot=3D/tmp/youhour/fips-build/b20200206=
-b/fips-ppcnf/build/tmp/work/fips_ppcnf-poky-linux/core-image-minimal/1.0-r0=
-/sdk/image --setopt=3Dlogdir=3D/tmp/youhour/fips-build/b20200206b/fips-ppcn=
-f/build/tmp/work/fips_ppcnf-poky-linux/core-image-minimal/1.0-r0/temp --rep=
-ofrompath=3Doe-repo,/tmp/youhour/fips-build/b20200206b/fips-ppcnf/build/tmp=
-/work/fips_ppcnf-poky-linux/core-image-minimal/1.0-r0/oe-sdk-repo --nogpgch=
-eck install nativesdk-mdchroot nativesdk-packagegroup-sdk-host packagegroup=
--cross-canadian-fips-ppcnf' returned 1:
-DNF version: 4.1.0
-cachedir: /tmp/youhour/fips-build/b20200206b/fips-ppcnf/build/tmp/work/fip=
-s_ppcnf-poky-linux/core-image-minimal/1.0-r0/sdk/image/var/cache/dnf
-Added oe-repo repo from /tmp/youhour/fips-build/b20200206b/fips-ppcnf/buil=
-d/tmp/work/fips_ppcnf-poky-linux/core-image-minimal/1.0-r0/oe-sdk-repo
-repo: using cache for: oe-repo
-not found other for:
-not found modules for:
-not found deltainfo for:
-not found updateinfo for:
-oe-repo: using metadata from Fri 07 Feb 2020 02:56:24 PM UTC.
-Last metadata expiration check: 0:00:01 ago on Fri 07 Feb 2020 02:56:25 PM=
- UTC.
-*No module defaults found*
-*No match for argument: nativesdk-mdchroot*
-*Error: Unable to find a match*
+  sorry, i mistyped the above, i should have written:
 
-ERROR: core-image-minimal-1.0-r0 do_populate_sdk:
-ERROR: core-image-minimal-1.0-r0 do_populate_sdk: Function failed: do_popu=
-late_sdk
-ERROR: Logfile of failure stored in: /tmp/youhour/fips-build/b20200206b/fi=
-ps-ppcnf/build/tmp/work/fips_ppcnf-poky-linux/core-image-minimal/1.0-r0/tem=
-p/log.do_populate_sdk.10934
-ERROR: Task (/esw/san5/youhour/yocto_mcp/b20200206b/fips-build/meta/recipe=
-s-core/images/core-image-minimal.bb:do_populate_sdk) failed with exit code =
-'1'
-NOTE: Tasks Summary: Attempted 3715 tasks of which 3714 didn't need to be =
-rerun and 1 failed.
-**************************************************************************=
-**************************
+  "the pkgconfig recipe file does *not* contain a PROVIDES setting,
+  while pkgconf_1.6.3.bb does:"
 
-I googled=C2=A0 " do_populate_sdk: Could not invoke dnf " and found many s=
-imilar problems with suggested solutions.=C2=A0 However, only find one work=
- around that resolve the issue.
-This work around is to change PACKAGE_CLASSES =3D "package_rpm" in the con=
-f/local.conf file to PACKAGE_CLASSES =3D "package_ipk package_rpm".=C2=A0 W=
-hile working, this solution use almost double the space for the build direc=
-tory.
+so that PROVIDES line *would* be necessary, yes? (just not the "+="
+part).  my apologies for reproducing incorrectly.
 
-Has any one seen this problem and have a solution other than setting the P=
-ACKAGE_CLASSES =3D "package_ipk package_rpm" ?
+rday
 
-Thank you in advance.
-
---5SMw1BlkU15ey1IZZogL
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-I created a build environment for powerpc-nf using poke "warrior" branch.<b=
-r />I was able to run "bitbake core-image-minimal" successfully.<br />I was=
- also able to run "bitbake core-image-minimal -c populate_sdk" successfully=
-.<br /><br />Then I added a new package from my internal team.<br />After a=
-dding this package, I was still able to execute&nbsp;&nbsp;"bitbake core-im=
-age-minimal" successfully.<br />However, bitbake core-image-minimal -c popu=
-late_sdk"&nbsp; failed with the following error message...<br /><br />*****=
-***************************************************************************=
-*********************<br />
-<div>NOTE: Executing RunQueue Tasks</div>
-<div><strong>ERROR: core-image-minimal-1.0-r0 do_populate_sdk: Could not i=
-nvoke dnf.</strong> Command '/tmp/youhour/fips-build/b20200206b/fips-ppcnf/=
-build/tmp/work/fips_ppcnf-poky-linux/core-image-minimal/1.0-r0/recipe-sysro=
-ot-native/usr/bin/dnf -v --rpmverbosity=3Dinfo -y -c /tmp/youhour/fips-buil=
-d/b20200206b/fips-ppcnf/build/tmp/work/fips_ppcnf-poky-linux/core-image-min=
-imal/1.0-r0/sdk/image/etc/dnf/dnf.conf --setopt=3Dreposdir=3D/tmp/youhour/f=
-ips-build/b20200206b/fips-ppcnf/build/tmp/work/fips_ppcnf-poky-linux/core-i=
-mage-minimal/1.0-r0/sdk/image/etc/yum.repos.d --installroot=3D/tmp/youhour/=
-fips-build/b20200206b/fips-ppcnf/build/tmp/work/fips_ppcnf-poky-linux/core-=
-image-minimal/1.0-r0/sdk/image --setopt=3Dlogdir=3D/tmp/youhour/fips-build/=
-b20200206b/fips-ppcnf/build/tmp/work/fips_ppcnf-poky-linux/core-image-minim=
-al/1.0-r0/temp --repofrompath=3Doe-repo,/tmp/youhour/fips-build/b20200206b/=
-fips-ppcnf/build/tmp/work/fips_ppcnf-poky-linux/core-image-minimal/1.0-r0/o=
-e-sdk-repo --nogpgcheck install nativesdk-mdchroot nativesdk-packagegroup-s=
-dk-host packagegroup-cross-canadian-fips-ppcnf' returned 1:</div>
-<div>DNF version: 4.1.0</div>
-<div>cachedir: /tmp/youhour/fips-build/b20200206b/fips-ppcnf/build/tmp/wor=
-k/fips_ppcnf-poky-linux/core-image-minimal/1.0-r0/sdk/image/var/cache/dnf</=
-div>
-<div>Added oe-repo repo from /tmp/youhour/fips-build/b20200206b/fips-ppcnf=
-/build/tmp/work/fips_ppcnf-poky-linux/core-image-minimal/1.0-r0/oe-sdk-repo=
-</div>
-<div>repo: using cache for: oe-repo</div>
-<div>not found other for:&nbsp;</div>
-<div>not found modules for:&nbsp;</div>
-<div>not found deltainfo for:&nbsp;</div>
-<div>not found updateinfo for:&nbsp;</div>
-<div>oe-repo: using metadata from Fri 07 Feb 2020 02:56:24 PM UTC.</div>
-<div>Last metadata expiration check: 0:00:01 ago on Fri 07 Feb 2020 02:56:=
-25 PM UTC.</div>
-<div><strong>No module defaults found</strong></div>
-<div><strong>No match for argument: nativesdk-mdchroot</strong></div>
-<div><strong>Error: Unable to find a match</strong></div>
-<div>&nbsp;</div>
-<div>ERROR: core-image-minimal-1.0-r0 do_populate_sdk:&nbsp;</div>
-<div>ERROR: core-image-minimal-1.0-r0 do_populate_sdk: Function failed: do=
-_populate_sdk</div>
-<div>ERROR: Logfile of failure stored in: /tmp/youhour/fips-build/b2020020=
-6b/fips-ppcnf/build/tmp/work/fips_ppcnf-poky-linux/core-image-minimal/1.0-r=
-0/temp/log.do_populate_sdk.10934</div>
-<div>ERROR: Task (/esw/san5/youhour/yocto_mcp/b20200206b/fips-build/meta/r=
-ecipes-core/images/core-image-minimal.bb:do_populate_sdk) failed with exit =
-code '1'</div>
-<div>NOTE: Tasks Summary: Attempted 3715 tasks of which 3714 didn't need t=
-o be rerun and 1 failed.<br />*********************************************=
-*******************************************************<br /><br />I google=
-d&nbsp; "<span style=3D"font-weight: bold;">do_populate_sdk: Could not invo=
-ke dnf</span>" and found many similar problems with suggested solutions.&nb=
-sp; However, only find one work around that resolve the issue.<br />This wo=
-rk around is to change&nbsp; <em>PACKAGE_CLASSES =3D "package_rpm"</em> in =
-the conf/local.conf file to&nbsp;<em>PACKAGE_CLASSES =3D "package_ipk packa=
-ge_rpm"</em>&nbsp;.&nbsp; While working, this solution use almost double th=
-e space for the build directory.<br /><br />Has any one seen this problem a=
-nd have a solution other than setting the&nbsp;<em>PACKAGE_CLASSES =3D "pac=
-kage_ipk package_rpm"</em>&nbsp;?<br /><br />Thank you in advance.<br /><br=
- /></div>
-
---5SMw1BlkU15ey1IZZogL--
