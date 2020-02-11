@@ -1,11 +1,11 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.12211.1581437112406525539
+ by mx.groups.io with SMTP id smtpd.web09.12324.1581437835809115642
  for <yocto@lists.yoctoproject.org>;
- Tue, 11 Feb 2020 08:05:13 -0800
+ Tue, 11 Feb 2020 08:17:16 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=fail (domain: mail1.xn--80adja5bqm.su, ip: 140.211.169.56, mailfrom: jin@mail1.xn--80adja5bqm.su)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0FC7DE01724; Tue, 11 Feb 2020 08:05:12 -0800 (PST)
+	id 58BBAE01724; Tue, 11 Feb 2020 08:17:15 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,19 +18,21 @@ X-Spam-HAM-Report:
 	*  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
 	*  0.3 KHOP_HELO_FCRDNS Relay HELO differs from its IP's reverse DNS
 Received: from mail1.xn--80adja5bqm.su (xn--80adja5bqm.su [45.62.210.217])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FADCE01722
-	for <yocto@yoctoproject.org>; Tue, 11 Feb 2020 08:05:11 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9026DE01722
+	for <yocto@yoctoproject.org>; Tue, 11 Feb 2020 08:17:13 -0800 (PST)
 Received: by mail1.xn--80adja5bqm.su (Postfix, from userid 1000)
-	id 3960C20F514C; Tue, 11 Feb 2020 10:11:42 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail1.xn--80adja5bqm.su 3960C20F514C
+	id 8C9EC20F514C; Tue, 11 Feb 2020 10:23:44 +0100 (CET)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail1.xn--80adja5bqm.su 8C9EC20F514C
 From: "Sergey Bostandzhyan" <jin@mediatomb.cc>
 To: yocto@yoctoproject.org
 Cc: twoerner@gmail.com,
 	Sergey 'Jin' Bostandzhyan <jin@mediatomb.cc>
-Subject: [meta-rockchip][PATCH] Allow to override WKS_FILE variable
-Date: Tue, 11 Feb 2020 10:11:25 +0100
-Message-Id: <1581412285-6453-1-git-send-email-jin@mediatomb.cc>
+Subject: [meta-rockchip][PATCH v2] Allow to override WKS_FILE variable
+Date: Tue, 11 Feb 2020 10:23:38 +0100
+Message-Id: <1581413018-6561-1-git-send-email-jin@mediatomb.cc>
 X-Mailer: git-send-email 1.8.3.1
+In-Reply-To: <1581412285-6453-1-git-send-email-jin@mediatomb.cc>
+References: <1581412285-6453-1-git-send-email-jin@mediatomb.cc>
 
 From: Sergey 'Jin' Bostandzhyan <jin@mediatomb.cc>
 
@@ -39,6 +41,8 @@ by setting the WKS_FILE variable. However, there are situations where it
 may be needed to use a different, non default layout. To simplify such
 configurations we will set WKS_FILE using ?= so that it can be easily
 overriden in local configurations.
+
+Signed-off-by: Sergey Bostandzhyan <jin@mediatomb.cc>
 ---
  conf/machine/firefly-rk3288.conf | 2 +-
  conf/machine/tinker-board-s.conf | 2 +-
