@@ -1,11 +1,11 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.8303.1581417160344699908
+ by mx.groups.io with SMTP id smtpd.web09.8381.1581417818422525919
  for <yocto@lists.yoctoproject.org>;
- Tue, 11 Feb 2020 02:32:40 -0800
+ Tue, 11 Feb 2020 02:43:38 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 140.211.169.56, mailfrom: rpjday@crashcourse.ca)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F2708E01674; Tue, 11 Feb 2020 02:32:39 -0800 (PST)
+	id E5E3DE01674; Tue, 11 Feb 2020 02:43:37 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -15,25 +15,22 @@ X-Spam-HAM-Report:
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19443E01672
-	for <yocto@yoctoproject.org>; Tue, 11 Feb 2020 02:32:38 -0800 (PST)
-Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:53778 helo=localhost.localdomain)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D3FDE01672
+	for <yocto@yoctoproject.org>; Tue, 11 Feb 2020 02:43:37 -0800 (PST)
+Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:53916 helo=localhost.localdomain)
 	by cpanel7.indieserve.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
 	(Exim 4.92)
 	(envelope-from <rpjday@crashcourse.ca>)
-	id 1j1SqK-00EpV0-VX; Tue, 11 Feb 2020 05:32:37 -0500
-Date: Tue, 11 Feb 2020 05:32:36 -0500 (EST)
+	id 1j1T0y-00EqtH-DT
+	for yocto@yoctoproject.org; Tue, 11 Feb 2020 05:43:37 -0500
+Date: Tue, 11 Feb 2020 05:43:35 -0500 (EST)
 From: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@localhost.localdomain
-To: Jonatan Palsson <jonatan.p@gmail.com>
-cc: Leon Woestenberg <leon@sidebranch.com>, 
-    Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [yocto] clarifying "PROVIDES =" versus "PROVIDES +=" (pedantic stuff)
-In-Reply-To: <CAKm+giNpqiOwQfjtAwnmqF_6kXOgb4Re11UT90A9cKmdo6w=TQ@mail.gmail.com>
-Message-ID: <alpine.LFD.2.21.2002110525540.30584@localhost.localdomain>
-References: <alpine.LFD.2.21.2002080611100.2136874@localhost.localdomain> <CAMjhiJh7Q7NNhw_LnTOr86mOEtBz2K7rGBHvCPYxCV7vm=YYBQ@mail.gmail.com> <CAKm+giNpqiOwQfjtAwnmqF_6kXOgb4Re11UT90A9cKmdo6w=TQ@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: [PATCH] ref-manual: update PROVIDES entry, "+=" -> "="
+Message-ID: <alpine.LFD.2.21.2002110540490.32823@localhost.localdomain>
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
+X-OutGoing-Spam-Status: No, score=-0.2
 X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
 X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
 X-AntiAbuse: Original Domain - yoctoproject.org
@@ -46,90 +43,43 @@ X-Source-Args:
 X-Source-Dir: 
 Content-Type: text/plain; charset=US-ASCII
 
-On Sat, 8 Feb 2020, Jonatan Palsson wrote:
 
-> Hello Robert & Leon,
->
-> > So I think it might be harmful to replace it with "=", as it would no
-> > longer provide libpcre.
->
-> I had a look at the variable expansions bitbake -e. Here are two
-> examples. The vim recipe uses "PROVIDES = xxd" (which would cause
-> weird effects if = simply overwrote any existing ${PN} value), and the
-> libpcre2 recipe uses "PROVIDES += pcre2", as already mentioned.
->
-> vim:
-> # $PROVIDES [4 operations]
-> #   set ... /poky/meta/conf/bitbake.conf:275
-> #     ""
-> #   _prepend ... /poky/meta/conf/bitbake.conf:276
-> #     "${PN} "
-> #   set ... /poky/meta/conf/documentation.conf:335
-> #     [doc] "A list of aliases that a recipe also provides. ... SNIP ...
-> #   set ... /poky/meta/recipes-support/vim/vim_8.2.bb:3
-> #     "xxd"
-> # pre-expansion value:
-> #   "${PN} xxd"
-> PROVIDES="vim xxd"
->
-> libpcre2:
-> # $PROVIDES [4 operations]
-> #   set ... /poky/meta/conf/bitbake.conf:275
-> #     ""
-> #   _prepend ... /poky/meta/conf/bitbake.conf:276
-> #     "${PN} "
-> #   set ... /poky/meta/conf/documentation.conf:335
-> #     [doc] "A list of aliases that a recipe also provides. ... SNIP ....
-> #   append ... /poky/meta/recipes-support/libpcre/libpcre2_10.33.bb:24
-> #     "pcre2"
-> # pre-expansion value:
-> #   "${PN}  pcre2"
-> PROVIDES="libpcre2  pcre2"
->
-> My understanding is that ${PN} is always _prepend'ed to PROVIDES, and
-> due to evaluation order of the different assignment operators,
-> _prepend will be executed *after* = and +=. This means both
-> assignments are "harmless". += will give you an extra space though.
+Change the use of "+=" to the more proper "="; also, use a different
+recipe example that actually exists in OE-Core at the moment.
 
-  to summarize (and one last question), first, it would be utterly
-superfluous for any recipe to "PROVIDES" its own exact name. i'm not
-saying i've seen that in any of the OE/YP recipes, but i have taught
-courses where students who have been using OE/YP have been under the
-mistaken impression that they needed to do that, and were adding a
-"PROVIDES = " line to every recipe file they wrote.
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
-  second, i think we all agree that it is rarely necessary to use
-"PROVIDES +=", although i did run across one case in
-recipes-core/glibc/glibc.inc:
+---
 
-  PROVIDES = "virtual/libc"
-  PROVIDES += "virtual/libintl virtual/libiconv"
+diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
+index 02abc590c..c9b8c6654 100644
+--- a/documentation/ref-manual/ref-variables.xml
++++ b/documentation/ref-manual/ref-variables.xml
+@@ -11511,13 +11511,13 @@
 
-where, sure, if you break it over more than one line, yes, then you
-need it.
+                 <para>
+                     Consider the following example
+-                    <filename>PROVIDES</filename> statement from a recipe
+-                    file <filename>libav_0.8.11.bb</filename>:
++                    <filename>PROVIDES</filename> statement from the recipe
++                    file <filename>eudev_3.2.9.bb</filename>:
+                     <literallayout class='monospaced'>
+-     PROVIDES += "libpostproc"
++     PROVIDES = "udev"
+                     </literallayout>
+                     The <filename>PROVIDES</filename> statement results in
+-                    the "libav" recipe also being known as "libpostproc".
++                    the "eudev" recipe also being known as "udev".
+                 </para>
 
-  and a final question ... i just noticed the line:
+                 <para>
 
-  PROVIDES = ""
+-- 
 
-in a couple files:
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                         http://crashcourse.ca
 
-$ grep -r "^PROVIDES = \"\"" *
-meta/conf/bitbake.conf:PROVIDES = ""
-meta/recipes-core/glibc/glibc-testsuite_2.31.bb:PROVIDES = ""
-meta/recipes-core/libxcrypt/libxcrypt-compat_4.4.10.bb:PROVIDES = ""
-$
-
-  in that first file is the snippet:
-
-  # strip provides
-  PROVIDES = ""
-
-i had never noticed that being done before, and the comment suggests
-that this is somehow resetting or clearing the PROVIDES value. is that
-what this is doing? am i misreading this?
-
-  thanks to all for assisting in my courseware cleanup. slowly but
-surely...
-
-rday
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
