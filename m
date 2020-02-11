@@ -1,107 +1,79 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.12324.1581437835809115642
+ by mx.groups.io with SMTP id smtpd.web12.13349.1581440742662493129
  for <yocto@lists.yoctoproject.org>;
- Tue, 11 Feb 2020 08:17:16 -0800
+ Tue, 11 Feb 2020 09:05:42 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=fail (domain: mail1.xn--80adja5bqm.su, ip: 140.211.169.56, mailfrom: jin@mail1.xn--80adja5bqm.su)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=o6ueyl30;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: kent.dorfman766@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 58BBAE01724; Tue, 11 Feb 2020 08:17:15 -0800 (PST)
+	id 01773E01722; Tue, 11 Feb 2020 09:05:42 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,FORGED_SPF_HELO,
-	KHOP_HELO_FCRDNS,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
-	*  0.3 KHOP_HELO_FCRDNS Relay HELO differs from its IP's reverse DNS
-Received: from mail1.xn--80adja5bqm.su (xn--80adja5bqm.su [45.62.210.217])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9026DE01722
-	for <yocto@yoctoproject.org>; Tue, 11 Feb 2020 08:17:13 -0800 (PST)
-Received: by mail1.xn--80adja5bqm.su (Postfix, from userid 1000)
-	id 8C9EC20F514C; Tue, 11 Feb 2020 10:23:44 +0100 (CET)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail1.xn--80adja5bqm.su 8C9EC20F514C
-From: "Sergey Bostandzhyan" <jin@mediatomb.cc>
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (kent.dorfman766[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.222.53 listed in list.dnswl.org]
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F5ACE007EE
+	for <yocto@yoctoproject.org>; Tue, 11 Feb 2020 09:05:41 -0800 (PST)
+Received: by mail-ua1-f53.google.com with SMTP id y23so4233243ual.2
+        for <yocto@yoctoproject.org>; Tue, 11 Feb 2020 09:05:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=2OF74T9Ti2bt1mK+rLdujfByftdCnQ4KdVg7g6Xc+NM=;
+        b=o6ueyl303vWA0RpHTaGAHrNgKT7LPKjkrzfLPMp/yiEXIY4g1+8pSEqEZA1wjoTgUB
+         9CkenEt4Q2Ey4ttxdDJUOLl8Il9wJqmsUFnh03o9aJZ+qB864G5W/TzOtVaRHAXZhD1U
+         hvXL80j9vPC2xe9+Hm7Sd+3REInPziKQqNSQ1Rfj2RkXeol3PdaawTSH/uWBRutDOVm9
+         Z4+3b2Tlv+J9PsJgVA1pcqkRfhKqe1IEhyRlTn1gfvlqgpVJNCnsmsI4CYPgVuakyeQ+
+         FAzfzR5pbcVXHeajm86jJaWw5jXp1CpeiTDuorkEmyB1CvnCk+vV1q0sPR2hJd4/eTve
+         FQiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=2OF74T9Ti2bt1mK+rLdujfByftdCnQ4KdVg7g6Xc+NM=;
+        b=Vf5wMgiOFKyolEYJDZhkq18N9iEeT60CjEDIN2EH39gN7Daiwss/hmqtQP0k2SuExy
+         7yvEL4AUh8HrY6KsNHHdUKmNTscGVVrRzqIhFGD+n081oeItDhoHfV32R4NqLagp3wAT
+         cqZS5JBPmbtO4Kw96OLRHByFE0Xg56jx10S9mzBAv3EydO4r3PLeOWi4ASbCsYex+O61
+         aRcs+BbbqeqR7IZwqLRrosRRkMRab3g/lWQ9W6Bw+otKjmPyFQI/N/DY1edh2SIIOAAV
+         E0B8wy5hZT3VKYtzBD7B9kJu5+NfkhrGwdfwHKRfg/wvq69Vgr3h17OolrqOdndFbsj6
+         pLUQ==
+X-Gm-Message-State: APjAAAWZ/XkVQ8lQ/NS0smfPUX91xfQG8NiL+YMW+991hLoo6iwgwaTw
+	SUaYi5QubZG3UEObUE37CZ2+/NGWUdB068sOrz75rw==
+X-Google-Smtp-Source: APXvYqzeDjs3XZm0G/eoBUjqbClSM4+4PJmtCb8L1hocaJXxIFHQ6lwntlIe3ou6c4cy+UHYnXcIvOYlE9jGBk/26es=
+X-Received: by 2002:a9f:300a:: with SMTP id h10mr2163736uab.91.1581440740373;
+ Tue, 11 Feb 2020 09:05:40 -0800 (PST)
+MIME-Version: 1.0
+Received: by 2002:ab0:4186:0:0:0:0:0 with HTTP; Tue, 11 Feb 2020 09:05:39
+ -0800 (PST)
+From: "Kent Dorfman" <kent.dorfman766@gmail.com>
+Date: Tue, 11 Feb 2020 12:05:39 -0500
+Message-ID: <CAK4PFCX2OfGLaDwMVxraim6mp35WjUbY_wVb45EZxV8YFF3QXA@mail.gmail.com>
+Subject: how to remove a package from image
 To: yocto@yoctoproject.org
-Cc: twoerner@gmail.com,
-	Sergey 'Jin' Bostandzhyan <jin@mediatomb.cc>
-Subject: [meta-rockchip][PATCH v2] Allow to override WKS_FILE variable
-Date: Tue, 11 Feb 2020 10:23:38 +0100
-Message-Id: <1581413018-6561-1-git-send-email-jin@mediatomb.cc>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1581412285-6453-1-git-send-email-jin@mediatomb.cc>
-References: <1581412285-6453-1-git-send-email-jin@mediatomb.cc>
+Content-Type: text/plain; charset="UTF-8"
 
-From: Sergey 'Jin' Bostandzhyan <jin@mediatomb.cc>
+My vendor finally realized that I needed a full yocto release and not
+the eSDK.  Anyway, I can build their image, but when I modify the
+kernel to remove CAN drivers I get the errors that
 
-Currently machine configs define the partition layout for each machine
-by setting the WKS_FILE variable. However, there are situations where it
-may be needed to use a different, non default layout. To simplify such
-configurations we will set WKS_FILE using ?= so that it can be easily
-overriden in local configurations.
+packagegroup-can-support
+packagegroup-ow-support
 
-Signed-off-by: Sergey Bostandzhyan <jin@mediatomb.cc>
----
- conf/machine/firefly-rk3288.conf | 2 +-
- conf/machine/tinker-board-s.conf | 2 +-
- conf/machine/tinker-board.conf   | 2 +-
- conf/machine/vyasa-rk3288.conf   | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+are required.
 
-diff --git a/conf/machine/firefly-rk3288.conf b/conf/machine/firefly-rk3288.conf
-index 0a9eab6..2a5f0ba 100644
---- a/conf/machine/firefly-rk3288.conf
-+++ b/conf/machine/firefly-rk3288.conf
-@@ -11,7 +11,7 @@ require conf/machine/include/rk3288.inc
- KERNEL_DEVICETREE = "rk3288-firefly.dtb"
- UBOOT_MACHINE = "firefly-rk3288_defconfig"
- 
--WKS_FILE = "firefly-rk3288.wks"
-+WKS_FILE ?= "firefly-rk3288.wks"
- IMAGE_FSTYPES += "wic wic.bmap"
- 
- WKS_FILE_DEPENDS ?= " \
-diff --git a/conf/machine/tinker-board-s.conf b/conf/machine/tinker-board-s.conf
-index a7fe2fc..f7b17e4 100644
---- a/conf/machine/tinker-board-s.conf
-+++ b/conf/machine/tinker-board-s.conf
-@@ -12,7 +12,7 @@ UBOOT_MACHINE = "tinker-s-rk3288_defconfig"
- 
- RK_BOOT_DEVICE ?= "mmcblk1"
- 
--WKS_FILE = "tinker-board.wks"
-+WKS_FILE ?= "tinker-board.wks"
- IMAGE_FSTYPES += "wic wic.bmap"
- 
- WKS_FILE_DEPENDS ?= " \
-diff --git a/conf/machine/tinker-board.conf b/conf/machine/tinker-board.conf
-index c8cac7b..1c3c08a 100644
---- a/conf/machine/tinker-board.conf
-+++ b/conf/machine/tinker-board.conf
-@@ -10,7 +10,7 @@ require conf/machine/include/rk3288.inc
- KERNEL_DEVICETREE = "rk3288-tinker.dtb"
- UBOOT_MACHINE = "tinker-rk3288_defconfig"
- 
--WKS_FILE = "tinker-board.wks"
-+WKS_FILE ?= "tinker-board.wks"
- IMAGE_FSTYPES += "wic wic.bmap"
- 
- WKS_FILE_DEPENDS ?= " \
-diff --git a/conf/machine/vyasa-rk3288.conf b/conf/machine/vyasa-rk3288.conf
-index 1e1eba4..c92c821 100644
---- a/conf/machine/vyasa-rk3288.conf
-+++ b/conf/machine/vyasa-rk3288.conf
-@@ -14,7 +14,7 @@ KERNEL_EXTRA_ARGS += "LOADADDR=0x02000000"
- UBOOT_MACHINE = "vyasa-rk3288_defconfig"
- 
- RK_BOOT_DEVICE = "mmcblk2"
--WKS_FILE = "vyasa-rk3288.wks"
-+WKS_FILE ?= "vyasa-rk3288.wks"
- IMAGE_FSTYPES += "wic wic.bmap"
- 
- WKS_FILE_DEPENDS ?= " \
--- 
-2.24.1
-
+What is the "yocto way"  to remove those packages and dependencies
+from the build?
