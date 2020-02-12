@@ -1,224 +1,177 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.972.1581490268706656116
+ by mx.groups.io with SMTP id smtpd.web12.1146.1581491761473158556
  for <yocto@lists.yoctoproject.org>;
- Tue, 11 Feb 2020 22:51:08 -0800
+ Tue, 11 Feb 2020 23:16:01 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=R9kPbwd9;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: milanshah.yocto@gmail.com)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=WVXR9mn0;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: alex.kanavin@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 91958E01680; Tue, 11 Feb 2020 22:51:08 -0800 (PST)
+	id 0F7BEE0167E; Tue, 11 Feb 2020 23:16:01 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (milanshah.yocto[at]gmail.com)
+	*      (alex.kanavin[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.216.42 listed in list.dnswl.org]
+	*      [209.85.221.170 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 158BDE00782
-	for <yocto@yoctoproject.org>; Tue, 11 Feb 2020 22:51:07 -0800 (PST)
-Received: by mail-pj1-f42.google.com with SMTP id dw13so455989pjb.4
-        for <yocto@yoctoproject.org>; Tue, 11 Feb 2020 22:51:07 -0800 (PST)
+Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4D8F6E006EC
+	for <yocto@yoctoproject.org>; Tue, 11 Feb 2020 23:16:00 -0800 (PST)
+Received: by mail-vk1-f170.google.com with SMTP id i78so238603vke.0
+        for <yocto@yoctoproject.org>; Tue, 11 Feb 2020 23:16:00 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=AxPRn6rwxxImwE2fPgGCPksdXJM1WfPrXJ60am+NjhM=;
-        b=R9kPbwd9yBhOzXpFSuQtBl7RhKSnXos/ENOzgr3qO6a7A/MQ/ILs0jR1b3wANLlLZn
-         VA4WxA9hMndPBSm0S5yDlXmj2+oxjsTHo5Z/B56kxyPFixinDGJK1lziMB70604GhmKG
-         52fNEKs9KIMIUSJ96cEY3mp+r/hA1QIoOMGMad154Rnbnc6SmzMMFtUuK14sbyuMlOKQ
-         Htt0bOBuPAnkRDWLPxMgrTxjc/8ea2MzWg+lGCTfGFM5hSfoWR4lu6CP2PnzdBCFS70l
-         YCYQBa2gC/u2mLSohD9VD/UDITQMUv0LaV6t9+Q8q9/cXlh/IgmvOWRqHb4uyvdCKRcm
-         jtuw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pLBiG5ZrauBXCEdnMZy5qLbtruW6xFu4xW4DH1zemBY=;
+        b=WVXR9mn05W6klvuVIbwoHP0yEJIcmzfjKDOaisQ9LJm4eZCktKrniRtaJKb+xSzZjF
+         x97FVbtY14WfOjDrGQxdTbVUTsKVj7oJtMJX3CzrbfS3wDKfWQrgz+xEGtQqvxXWaQ3Q
+         JOAPlVwi+JHtzmvKLdY6UroBQn8UNsE8HqfLb7aQqT0yym2uLBrOQEi+vax2s181R5qx
+         NzHo57h/nIbu88JGxNC7VfkVb2d9/21SwHxIcrnh4aeWP7utw6IPM5uIabmXj5ZD9f++
+         u3sXxZxYgz2a6Vw/xF7uaBnfRXvbkzxwTsOHR0QRzBW9h+4buXHbmj2WJkNRvR+2CVbv
+         pgcw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=AxPRn6rwxxImwE2fPgGCPksdXJM1WfPrXJ60am+NjhM=;
-        b=KWoCh1v5mUvMqmk7ZeAhJiUEKzN28JS5Ib6V2bB3jlIW/Q7bPsihQVtUaaLTkNYy0e
-         1uUdwgxpqEd5pFsd6Ua7qxCQ6Vkw3YfDPg2sRmDsEmhRmsjOoDbJNlhJ/c9cOl6eWbs/
-         J+ta37OOHjsdiGjXhZpDNVBHHZOaCRQlIdkJX6kkpWSolD4JsJeXrbknmVpKUpvmY4/9
-         G8xM/IE0eDDiWDTAS6g8IO/h1JGraCA8H6LjVepcqwb/ROy1/mAboPNLZEo1xVZsl5Bk
-         X0pyZzOlYIyyF7fz8KG2E19SXtxli8cc5WJMl1wggNQyaxKUkFihz+7X476XwX1EKzDe
-         vJxA==
-X-Gm-Message-State: APjAAAVun5Cl3pLdiOq3m1EyspZhr7+uqDIrxbLClqO0wdU5ZOdTmaIm
-	cDKogpISMhWBvmxLmsCvZe9RbnACBxc=
-X-Google-Smtp-Source: APXvYqz1YaG/zmQ2BGr1SseOY9ELroIE+x2m9EiM4tgcdMlzNnJuRI/710/6mPtG9iFbJjV+T8sUqQ==
-X-Received: by 2002:a17:902:6184:: with SMTP id u4mr7087330plj.198.1581490267473;
-        Tue, 11 Feb 2020 22:51:07 -0800 (PST)
-Received: from celsys-mv119.mvista.com ([182.72.92.62])
-        by smtp.gmail.com with ESMTPSA id p18sm4841129pjo.3.2020.02.11.22.51.06
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Tue, 11 Feb 2020 22:51:07 -0800 (PST)
-From: "Milan Shah" <milanshah.yocto@gmail.com>
-X-Google-Original-From: Milan Shah <mshah@mvista.com>
-To: yocto@yoctoproject.org
-Cc: Milan Shah <mshah@mvista.com>
-Subject: [error-report-web][PATCH] Add SPDX license headers to source files
-Date: Wed, 12 Feb 2020 12:20:58 +0530
-Message-Id: <1581490258-7552-1-git-send-email-mshah@mvista.com>
-X-Mailer: git-send-email 2.7.4
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pLBiG5ZrauBXCEdnMZy5qLbtruW6xFu4xW4DH1zemBY=;
+        b=P7HxiKu2jhyivjEDF6R8ngGFz9EWSP1w0FPLxOwowj8zQLqF4Cdn29INfOeH0xl5AX
+         slSaIWmFmLEBD4nljWqbSwEtEQOnKcgdKExDivZrG0l3WdG9Bbzsqg2WrAaS2CnC6yqO
+         oSVizeOVIPUCglTYK1L2biZ2P8By6pcA6r+SZ0rKTvPgv62I+z6DzZnPTNI8EP9OdgIX
+         0um7AAGt0E6UaPOd6OxrfNrVgr40O8hUae5sWOCjrHBM3tEMwnWFNl5B0P52XOZgTvue
+         t3bJhEbEDNjJBpRVX1J39OJniOIyKaGjtjKjbN2O4KAHn4p3SE25bgeubWT37FBCxvY6
+         Wmkg==
+X-Gm-Message-State: APjAAAX8PfpV+WoUKFIG7nLD0jM2EtqYND4EQi1Dxb+ptPr0ca925kKP
+	CKKP9Kis3EQPfYGgLM2yHSbBeeEWo7Iacmd7ipA=
+X-Google-Smtp-Source: APXvYqxho7PhwNTYc9STzNabI50TxYpxSdsgMQT0jSzDr42S8N1ccybjmzVyPHwE9885Xu5k0uIaSKocTd3Ejq6Gsi8=
+X-Received: by 2002:a1f:7cc2:: with SMTP id x185mr6799239vkc.1.1581491759621;
+ Tue, 11 Feb 2020 23:15:59 -0800 (PST)
+MIME-Version: 1.0
+References: <CAK4PFCX2OfGLaDwMVxraim6mp35WjUbY_wVb45EZxV8YFF3QXA@mail.gmail.com>
+ <CANNYZj8pMsUepCAa=+S89mpxCSf=4JPO86ek_gA01RWZ8a5hyQ@mail.gmail.com> <CAK4PFCXVMVOtHAEuxK5yexUFTKTZ+1naFJR-HYCyvAC-085KrQ@mail.gmail.com>
+In-Reply-To: <CAK4PFCXVMVOtHAEuxK5yexUFTKTZ+1naFJR-HYCyvAC-085KrQ@mail.gmail.com>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Wed, 12 Feb 2020 08:15:48 +0100
+Message-ID: <CANNYZj8939k8eFET+rgyJ_yfK8Fj-G5P4UDuYLHH2qF9NnT2eA@mail.gmail.com>
+Subject: Re: [yocto] how to remove a package from image
+To: Kent Dorfman <kent.dorfman766@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Content-Type: multipart/alternative; boundary="0000000000008c2b69059e5bbe1f"
 
-Post/* all ( except Post/migrations/* , __init__.py and templatetags/* )
-have some sort of MIT headers; adding SPDX header to make it obvious.
+--0000000000008c2b69059e5bbe1f
+Content-Type: text/plain; charset="UTF-8"
 
-project/* & test-data/* all ( except __init__.py ) have some sort of MIT headers;
-adding SPDX header to make it obvious.
+Yocto is a community project. If you think such a tool is missing, patches
+are welcome. Talk to your employer about ability to contribute under your
+real name.
 
-This address bug #13530
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=13530
+Alex
 
-Signed-off-by: Milan Shah <mshah@mvista.com>
----
- Post/admin.py                      | 2 ++
- Post/createStatistics.py           | 1 +
- Post/feed.py                       | 2 ++
- Post/management/commands/culldb.py | 2 ++
- Post/models.py                     | 2 ++
- Post/parser.py                     | 1 +
- Post/views.py                      | 2 ++
- manage.py                          | 2 ++
- project/settings.py                | 2 ++
- project/urls.py                    | 2 ++
- project/wsgi.py                    | 4 ++++
- test-data/test-send-error.py       | 3 ++-
- 12 files changed, 24 insertions(+), 1 deletion(-)
+On Wed 12. Feb 2020 at 0.50, Kent Dorfman <kent.dorfman766@gmail.com> wrote:
 
-diff --git a/Post/admin.py b/Post/admin.py
-index f11ff65..43aa9a6 100644
---- a/Post/admin.py
-+++ b/Post/admin.py
-@@ -1,3 +1,5 @@
-+# SPDX-License-Identifier: MIT
-+#
- # error reporting tool - admin interface definitions
- #
- # Copyright (C) 2013 Intel Corporation
-diff --git a/Post/createStatistics.py b/Post/createStatistics.py
-index 213927a..09d098e 100644
---- a/Post/createStatistics.py
-+++ b/Post/createStatistics.py
-@@ -1,4 +1,5 @@
- #!/usr/bin/env python
-+# SPDX-License-Identifier: MIT
- 
- # Create statistics. Update database.
- #
-diff --git a/Post/feed.py b/Post/feed.py
-index 745ee23..7e5bfdb 100644
---- a/Post/feed.py
-+++ b/Post/feed.py
-@@ -1,3 +1,5 @@
-+# SPDX-License-Identifier: MIT
-+#
- # error-reporting-tool - URL definitions
- #
- # Copyright (C) 2013 Intel Corporation
-diff --git a/Post/management/commands/culldb.py b/Post/management/commands/culldb.py
-index 698537c..bd70ffc 100644
---- a/Post/management/commands/culldb.py
-+++ b/Post/management/commands/culldb.py
-@@ -1,3 +1,5 @@
-+# SPDX-License-Identifier: MIT
-+#
- # error-reporting-tool -  culldb
- #
- # Copyright (C) 2015 Intel Corporation
-diff --git a/Post/models.py b/Post/models.py
-index ddf2fc7..cf8c1c2 100644
---- a/Post/models.py
-+++ b/Post/models.py
-@@ -1,3 +1,5 @@
-+# SPDX-License-Identifier: MIT
-+#
- # error-reporting-tool - model definitions
- #
- # Copyright (C) 2013 Intel Corporation
-diff --git a/Post/parser.py b/Post/parser.py
-index 9639308..ed65d4f 100644
---- a/Post/parser.py
-+++ b/Post/parser.py
-@@ -1,4 +1,5 @@
- #!/usr/bin/env python
-+# SPDX-License-Identifier: MIT
- 
- # Add errors to database from client
- #
-diff --git a/Post/views.py b/Post/views.py
-index 7f2cffb..cc6aed9 100644
---- a/Post/views.py
-+++ b/Post/views.py
-@@ -1,3 +1,5 @@
-+# SPDX-License-Identifier: MIT
-+#
- # error-reporting-tool - view definitions
- #
- # Copyright (C) 2013 Intel Corporation
-diff --git a/manage.py b/manage.py
-index 82cfa83..8edb2e4 100755
---- a/manage.py
-+++ b/manage.py
-@@ -1,4 +1,6 @@
- #!/usr/bin/env python
-+# SPDX-License-Identifier: MIT
-+
- import os
- import sys
- 
-diff --git a/project/settings.py b/project/settings.py
-index 3c6c87e..2d1ab92 100644
---- a/project/settings.py
-+++ b/project/settings.py
-@@ -1,3 +1,5 @@
-+# SPDX-License-Identifier: MIT
-+#
- # Django settings for error-reporting-tool project.
- # Based on settings.py from the Django project template
- # Copyright (c) Django Software Foundation and individual contributors.
-diff --git a/project/urls.py b/project/urls.py
-index 0e8f39c..1f51c7c 100644
---- a/project/urls.py
-+++ b/project/urls.py
-@@ -1,3 +1,5 @@
-+# SPDX-License-Identifier: MIT
-+#
- # error-reporting-tool - URL definitions
- #
- # Copyright (C) 2013 Intel Corporation
-diff --git a/project/wsgi.py b/project/wsgi.py
-index 7d4fc73..8d3ba66 100644
---- a/project/wsgi.py
-+++ b/project/wsgi.py
-@@ -1,3 +1,7 @@
-+#
-+# SPDX-License-Identifier: MIT
-+#
-+
- """
- WSGI config for errorsreport project.
- 
-diff --git a/test-data/test-send-error.py b/test-data/test-send-error.py
-index 7070c18..1252855 100755
---- a/test-data/test-send-error.py
-+++ b/test-data/test-send-error.py
-@@ -1,5 +1,6 @@
- #!/usr/bin/env python
--#
-+# SPDX-License-Identifier: MIT
-+
- # test/example script for sending data to error-report-web
- 
- import urllib2
--- 
-2.7.4
+> was able to modify the vendor's machine/inc file to remove the
+> offending package.
+> Since the whole tree is in git now, I suppose that's OK, but I do wish
+> yocto had better tools for managing inclusions and introspection into
+> what is in an image and at what level it's defined.
+>
+>
+> On 2/11/20, Alexander Kanavin <alex.kanavin@gmail.com> wrote:
+> > You need to modify the image recipe so that those packagegroups are not
+> > pulled in. If you cannot do that because it's in a layer controlled by
+> > someone else etc, then make a new image recipe, and build that image
+> > instead.
+> >
+> > Alex
+> >
+> > On Tue, 11 Feb 2020 at 18:05, Kent Dorfman <kent.dorfman766@gmail.com>
+> > wrote:
+> >
+> >> My vendor finally realized that I needed a full yocto release and not
+> >> the eSDK.  Anyway, I can build their image, but when I modify the
+> >> kernel to remove CAN drivers I get the errors that
+> >>
+> >> packagegroup-can-support
+> >> packagegroup-ow-support
+> >>
+> >> are required.
+> >>
+> >> What is the "yocto way"  to remove those packages and dependencies
+> >> from the build?
+> >>
+> >>
+> >
+> 
+>
 
+--0000000000008c2b69059e5bbe1f
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><div dir=3D"auto">Yocto is a community project. If you think such a to=
+ol is missing, patches are welcome. Talk to your employer about ability to =
+contribute under your real name.</div></div><div dir=3D"auto"><br></div><di=
+v dir=3D"auto">Alex</div><div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Wed 12. Feb 2020 at 0.50, Kent Dorfman &lt;<a hr=
+ef=3D"mailto:kent.dorfman766@gmail.com">kent.dorfman766@gmail.com</a>&gt; w=
+rote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
+;border-left:1px #ccc solid;padding-left:1ex">was able to modify the vendor=
+&#39;s machine/inc file to remove the<br>
+offending package.<br>
+Since the whole tree is in git now, I suppose that&#39;s OK, but I do wish=
+<br>
+yocto had better tools for managing inclusions and introspection into<br>
+what is in an image and at what level it&#39;s defined.<br>
+<br>
+<br>
+On 2/11/20, Alexander Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com=
+" target=3D"_blank">alex.kanavin@gmail.com</a>&gt; wrote:<br>
+&gt; You need to modify the image recipe so that those packagegroups are n=
+ot<br>
+&gt; pulled in. If you cannot do that because it&#39;s in a layer controll=
+ed by<br>
+&gt; someone else etc, then make a new image recipe, and build that image<=
+br>
+&gt; instead.<br>
+&gt;<br>
+&gt; Alex<br>
+&gt;<br>
+&gt; On Tue, 11 Feb 2020 at 18:05, Kent Dorfman &lt;<a href=3D"mailto:kent=
+.dorfman766@gmail.com" target=3D"_blank">kent.dorfman766@gmail.com</a>&gt;<=
+br>
+&gt; wrote:<br>
+&gt;<br>
+&gt;&gt; My vendor finally realized that I needed a full yocto release and=
+ not<br>
+&gt;&gt; the eSDK.=C2=A0 Anyway, I can build their image, but when I modif=
+y the<br>
+&gt;&gt; kernel to remove CAN drivers I get the errors that<br>
+&gt;&gt;<br>
+&gt;&gt; packagegroup-can-support<br>
+&gt;&gt; packagegroup-ow-support<br>
+&gt;&gt;<br>
+&gt;&gt; are required.<br>
+&gt;&gt;<br>
+&gt;&gt; What is the &quot;yocto way&quot;=C2=A0 to remove those packages =
+and dependencies<br>
+&gt;&gt; from the build?<br>
+&gt;&gt; <br>
+&gt;&gt;<br>
+&gt;<br>
+<br>
+</blockquote></div></div>
+
+--0000000000008c2b69059e5bbe1f--
