@@ -1,75 +1,131 @@
-Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
- by mx.groups.io with SMTP id smtpd.web09.4225.1581513199561444875
+Received: from mail-qt1-f193.google.com (mail-qt1-f193.google.com [209.85.160.193])
+ by mx.groups.io with SMTP id smtpd.web10.4228.1581513538289092878
  for <yocto@lists.yoctoproject.org>;
- Wed, 12 Feb 2020 05:13:19 -0800
+ Wed, 12 Feb 2020 05:18:58 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Q029F7BP;
- spf=pass (domain: gmail.com, ip: 209.85.167.172, mailfrom: onea.alex@gmail.com)
-Received: by mail-oi1-f172.google.com with SMTP id q84so1949802oic.4
-        for <yocto@lists.yoctoproject.org>; Wed, 12 Feb 2020 05:13:19 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=BbNvODS+;
+ spf=pass (domain: gmail.com, ip: 209.85.160.193, mailfrom: twoerner@gmail.com)
+Received: by mail-qt1-f193.google.com with SMTP id l21so1487404qtr.8
+        for <yocto@lists.yoctoproject.org>; Wed, 12 Feb 2020 05:18:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=xfMm4ymSATWzhls/mhHj7BuCMwG/ziyxIUZheOkYFjI=;
-        b=Q029F7BPag3fyIE/kGSYejmuvZaPohjkoNLq+GRf/uv1LBbOfccbW3DPBInVkjqWnu
-         rceaILut6zv+FGmomSirxbzEhvEbIJ0g9sPk4b0kk5yhYxlGjIiVrOuiTQGhCBYJu86c
-         K/SSIR41WDHNOyYtGeUM/Rc/YRRuq+Qt93vYryPByYNmcZqJbzj0DuCWsKbkau2MQlMh
-         r2jqC++Zy5qDrq3Tpg15rmQHqJdBzCYyRCqK0NjalNkEAG/OrlypidNcR9L11G8ASq9Q
-         dwfihh8U8ALk5YPYsfZyFDnlh36CbzLPnNnMIOqjoqabG26xWt4CPH6WHq9Er3KBxrbR
-         /Hrw==
+        h=from:to:subject:date:message-id:in-reply-to:references:mime-version
+         :content-transfer-encoding;
+        bh=pNFth3HNAdG13B6hGXM7A9AobNuaoSCsXy97fx8U1L8=;
+        b=BbNvODS+TE3/42lhZ0yfHU2DIWWAABYOSY7cxIJnJ7HSDwIntsl5oHm7BE3nB0jrMr
+         qq0j5PjlrdGkl899fFwuvZsP2aaGvcTQEAH+WlWITYz1KGhx9c3d87sLl53S62CMPqTv
+         Y9zFE7Xd406zs/3IpzUpe6fxcHwoZZ95eLJzHIEPqPJpT4Jtkl5lMOI+yvFpaM5em+N+
+         CeVoo1RQm3MYFo6zozPZqfXALp1LnVwciZPDIcvwb1TnEtxOdudcyIVgAj5SWkAwLZH9
+         lGWmdEZTpPrm6gaqg5zZoBRHw+fYw41Ft0Qhn9ULUam+zkiALDx8gCt0nVIaTtTNze0P
+         B7xA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=xfMm4ymSATWzhls/mhHj7BuCMwG/ziyxIUZheOkYFjI=;
-        b=ZnI48VjwGMKUko2Mj8LkZmdWKkvBlkwCvjROlAUuzJQ2+zHL8Ep0EimqcFyskA4pXT
-         WxvMbBPvpTi8pYCNNgzOGukK5woH13ChxfOk2q3MmD9OY9Pb9Z1KQe21ytVPYJtnIpAy
-         cZ6rykOw9yxpTnyDsf+pABDgUen9r7wO2gDE+YeF3kzbmyhYGKQqjGjZxigAD+LYZ124
-         CqoHbapRcjqoSkFuxj5qXEYhUwzIlX6FWdDRwCHbkFG7e06RSDTFCNGsbOU2qMGWAW6k
-         tx9jpIahKI1l1mg/X4lDC8rmb4GgrRJHdPYONG+Xv0KBBd+P7ySQ9jPRgYhLt7Hjqxy0
-         KWIQ==
-X-Gm-Message-State: APjAAAWeehb7tH342VmTQKucbOiznPYTVVmMDZQA3lX2zkJVS+PfipDP
-	804RmRt3MIZSxNzWA8WooBLm9K7ZCvCv35BR0S1k6O2x
-X-Google-Smtp-Source: APXvYqy109/ANmcV2M3AAg+yIgBk76e4fvWxMolJ8LSniWzQjJVCkpOMie1d7OtmNEIng7npedZays0vtI/5DI9bXt4=
-X-Received: by 2002:aca:e084:: with SMTP id x126mr5949803oig.97.1581513195256;
- Wed, 12 Feb 2020 05:13:15 -0800 (PST)
-MIME-Version: 1.0
-From: "Alexandru N. Onea" <onea.alex@gmail.com>
-Date: Wed, 12 Feb 2020 15:10:06 +0200
-Message-ID: <CAJgSc4x2c_Kn_e3icH-wgyJvjTVtsnQwTpqh938QkgxabbTyrA@mail.gmail.com>
-Subject: [yocto] [kernel] Why is do_kernel_metadata before do_patch?
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=pNFth3HNAdG13B6hGXM7A9AobNuaoSCsXy97fx8U1L8=;
+        b=k1P+dXdn/5rOpd7NPTyxdlawIACSriCs1nOxwRHF9sQoaUo5hv91Zs8LZgDRxJ+keu
+         5lpPmgWS4MXJsqIuuujsYWk7Us+67JGAkIXNyQoNKmKOLf0lssyZk27LZMx7JgP9Y8ju
+         yIAuXPiQ95G1vU1QvpydKieb1+PIQZ47mFCCm9fuBOvqyEE+o6wZCykdAxEzPFUhMm/b
+         lCjSQQCujNQhxFs0gxvGzPbAIgYhzWBs0wceLIbran1/mB3BQM+G73Ji0bUS/o8JOndi
+         q7lRYZW7KMhlIsYuZBrbS7qyQZnq6JflZKtmYyavzeO5h1gUF5p96jB6kJ20QoO0iFN/
+         E+9g==
+X-Gm-Message-State: APjAAAUiP9fuWEYosT+VGfM7IyMxVs1k7xXqCP8WeZp0k4wEDpsDbKXw
+	CZVrROkw0w+Abh6ulX3T9kLhIEjFc/8=
+X-Google-Smtp-Source: APXvYqxlTnb2sGgc3Oct6P7z2snPT7KNe9Fb8q26V7sqiNITOzCnnpsFLiC5PXVO0z1xM90shEzLcg==
+X-Received: by 2002:aed:3765:: with SMTP id i92mr6812955qtb.373.1581513537166;
+        Wed, 12 Feb 2020 05:18:57 -0800 (PST)
+Return-Path: <twoerner@gmail.com>
+Received: from linux-uys3.suse ([206.248.190.95])
+        by smtp.gmail.com with ESMTPSA id b35sm149634qtc.9.2020.02.12.05.18.54
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 12 Feb 2020 05:18:55 -0800 (PST)
+From: "Trevor Woerner" <twoerner@gmail.com>
 To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000036007c059e60bc40"
+Subject: [meta-rockchip][PATCH 2/2] wic cleanup
+Date: Wed, 12 Feb 2020 08:18:35 -0500
+Message-Id: <20200212131835.34100-2-twoerner@gmail.com>
+X-Mailer: git-send-email 2.25.0.114.g5b0ca878e0
+In-Reply-To: <20200212131835.34100-1-twoerner@gmail.com>
+References: <20200212131835.34100-1-twoerner@gmail.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
---00000000000036007c059e60bc40
-Content-Type: text/plain; charset="UTF-8"
+Now that we've switched to using wic for image layout, we can remove the
+unused recipes for proprietary vendor tools.
 
-Hello community,
+Signed-off-by: Trevor Woerner <twoerner@gmail.com>
+---
+ .../mkbootimg/mkbootimg-native_git.bb         | 24 ----------------
+ .../rkflashtool/rkflashtool-native_git.bb     | 28 -------------------
+ 2 files changed, 52 deletions(-)
+ delete mode 100644 recipes-support/mkbootimg/mkbootimg-native_git.bb
+ delete mode 100644 recipes-support/rkflashtool/rkflashtool-native_git.bb
 
-I have noticed that do_kernel_metadata is always executed before do_patch.
-What is the reason for this ordering?
+diff --git a/recipes-support/mkbootimg/mkbootimg-native_git.bb b/recipes-support/mkbootimg/mkbootimg-native_git.bb
+deleted file mode 100644
+index 3d3ea39..0000000
+--- a/recipes-support/mkbootimg/mkbootimg-native_git.bb
++++ /dev/null
+@@ -1,24 +0,0 @@
+-# Copyright (C) 2014 Romain Perier <romain.perier@gmail.com>
+-# Released under the MIT license (see COPYING.MIT for the terms)
+-
+-DESCRIPTION = "Tools to create firmware / boot images for Rockchip devices"
+-LICENSE = "Apache-2.0"
+-LIC_FILES_CHKSUM = "file://mkbootimg.c;beginline=3;endline=15;md5=b18126d1bbc60ae5dbc31ef949a6f1c3"
+-
+-DEPENDS += "openssl-native"
+-SRC_URI="git://github.com/neo-technologies/rockchip-mkbootimg.git"
+-SRCREV = "dcfdea23d8a223ec68f09789ebf38fc8b832e5d6"
+-PR = "r1"
+-PV = "0.1+git${SRCREV}"
+-
+-inherit base native
+-
+-S = "${WORKDIR}/git"
+-
+-do_compile() {
+-    oe_runmake LDFLAGS="$LDFLAGS -lcrypto"
+-}
+-
+-do_install() {
+-    oe_runmake PREFIX=${prefix} DESTDIR=${D} install
+-}
+diff --git a/recipes-support/rkflashtool/rkflashtool-native_git.bb b/recipes-support/rkflashtool/rkflashtool-native_git.bb
+deleted file mode 100644
+index fc3e68f..0000000
+--- a/recipes-support/rkflashtool/rkflashtool-native_git.bb
++++ /dev/null
+@@ -1,28 +0,0 @@
+-# Copyright (C) 2014 Romain Perier <romain.perier@gmail.com>
+-# Released under the MIT license (see COPYING.MIT for the terms)
+-
+-DESCRIPTION = "Tools for flashing Rockchip devices"
+-LICENSE = "ASIS"
+-LIC_FILES_CHKSUM = "file://rkcrc.c;beginline=1;endline=25;md5=5c55527c991502a9b86b768674cdcff5"
+-
+-DEPENDS += "libusb-native"
+-SRC_URI="git://github.com/linux-rockchip/rkflashtool.git"
+-SRCREV = "${AUTOREV}"
+-PR = "r1"
+-PV = "0.1+git${SRCREV}"
+-
+-inherit native
+-
+-S = "${WORKDIR}/git"
+-
+-do_compile() {
+-    oe_runmake
+-}
+-
+-do_install() {
+-    install -d ${D}/${prefix}/bin
+-
+-    for tool in rkcrc rkflashtool rkmisc rkpad rkparameters rkunpack rkunsign; do
+-        install -m 0755 ${S}/${tool} ${D}/${prefix}/bin/${tool}    
+-    done
+-}
+-- 
+2.25.0.114.g5b0ca878e0
 
-In my setup, I have a patch that changes some options in the in-tree
-defconfig that I want to use (set using KBUILD_DEFCONFIG) and, due to the
-ordering mentioned above, the changes are not taken into account. Is there
-another way to apply changes to an in-tree defconfig before the effect of
-do_kernel_metadata takes place?
-
-Best regards,
-Alexandru Onea
-
---00000000000036007c059e60bc40
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello community,<div><br></div><div>I have noticed=C2=A0th=
-at do_kernel_metadata is always executed before do_patch. What is the reaso=
-n for this ordering?</div><div><br></div><div>In my setup, I have a patch t=
-hat changes some options in the in-tree defconfig that I want to use (set u=
-sing KBUILD_DEFCONFIG) and, due to the ordering mentioned above, the change=
-s are not taken into account. Is there another way to apply changes to an i=
-n-tree defconfig before the effect of do_kernel_metadata takes place?</div>=
-<div><br></div><div>Best regards,<br clear=3D"all"><div><div dir=3D"ltr" cl=
-ass=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"=
->Alexandru Onea</div></div></div></div></div>
-
---00000000000036007c059e60bc40--
