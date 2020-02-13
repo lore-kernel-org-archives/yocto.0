@@ -1,102 +1,172 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.4626.1581589839532881318
+ by mx.groups.io with SMTP id smtpd.web11.4646.1581590557562869941
  for <yocto@lists.yoctoproject.org>;
- Thu, 13 Feb 2020 02:30:39 -0800
+ Thu, 13 Feb 2020 02:42:37 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gherzan.ro header.s=google header.b=iuOPGEKm;
- spf=none, err=SPF record not found (domain: gherzan.ro, ip: 140.211.169.56, mailfrom: andrei@gherzan.ro)
+ dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 140.211.169.56, mailfrom: rpjday@crashcourse.ca)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0ABF8E01604; Thu, 13 Feb 2020 02:30:39 -0800 (PST)
+	id E6573E01600; Thu, 13 Feb 2020 02:42:36 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.128.66 listed in list.dnswl.org]
-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B986EE015FC
-	for <yocto@yoctoproject.org>; Thu, 13 Feb 2020 02:30:37 -0800 (PST)
-Received: by mail-wm1-f66.google.com with SMTP id p17so6022406wma.1
-        for <yocto@yoctoproject.org>; Thu, 13 Feb 2020 02:30:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gherzan.ro; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=6QSK6mY/Sa+VkyDGoXJhaJqIf6BWeVK4FR+fO88iwBk=;
-        b=iuOPGEKmf7daJghsAlBn2yJ2vBE53NdgIEV9Vc7nsk/slEkf/97kQBEIwrZ+wcdcaO
-         iicC9SNBKTp13JJir6U+tNWSbJYu2FcgpTR6DhrbfpxEfWx3fIe/LmJwnFw0qAbcWDx1
-         3GnKMplymt+Da+nXy5JMr6Fke9AB9nYCuiWc6dfG/SsMozVgvoBMeI1mgGU4ksR4ZOPI
-         cLJAqOVYa+pbXPo0lUPol9MmgADAP2lWuWZh/IGjF5KjsWGaSXndpQ7ZFkC7fO+vsPxh
-         VQvOl42XfUi8qEM8s3rm+F/fRIK0dXGXjP4ltw3DbpuxpuA+UGCa+ZP5otsKA31CTVa0
-         rMxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=6QSK6mY/Sa+VkyDGoXJhaJqIf6BWeVK4FR+fO88iwBk=;
-        b=GtfE56wS48AcHkuAhb7d91oVLBDG4vRLjc1EOYvu9ro7SKXD+XsoBVBsQ2ShCP5fOK
-         GNvjwaYkobPwoVfF7lYqepX6fsNphbHnIIWGMABka13HjV1E0PUKZ69sYfJ/DEFbgKA6
-         7cWI+iRpKWHZ9caPNgodYwKpyuUyzaTNp/3x0bqKPvmEsEKxUaPzp5TF/4ZkXVKR3RPn
-         C5aFpuWrEs/APmzYJqfuPHU5JmT2zaDezG1zwmgMRHgwYNfgdrtfh7oxyjBfly1ib3Xg
-         /zwLL2mvuLueNHoK6EhtbW0/0/Q2+19Vlr3nrDk+fYhlIchO90kryAc02hfYlX+LSujl
-         5Pfw==
-X-Gm-Message-State: APjAAAXDRmELQhMgAdg7v4SmDOlfphwaVQgdcSJIgsr9su8LUncfznEm
-	YTTr7BHSbXP+L2P32sv2nvOPE3om+nw=
-X-Google-Smtp-Source: APXvYqzhMyrmzUS4Tlo2nzSQXnKSjg/Q169I1ogVgRuP794OvLQLjUx64DPCZJxzBF8KxpUChPy0YQ==
-X-Received: by 2002:a7b:c93a:: with SMTP id h26mr5325254wml.83.1581589836361;
-        Thu, 13 Feb 2020 02:30:36 -0800 (PST)
-Received: from agherzan-lnxU.hanoverdisplays.com ([81.145.148.228])
-        by smtp.gmail.com with ESMTPSA id q124sm14805852wme.2.2020.02.13.02.30.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 13 Feb 2020 02:30:35 -0800 (PST)
-From: "Andrei Gherzan" <andrei@gherzan.ro>
-To: yocto@yoctoproject.org
-Cc: Andrei Gherzan <andrei@gherzan.ro>
-Subject: [psplash][PATCH 1/1] psplash-fb: Avoid racing issues on reading fb0
-Date: Thu, 13 Feb 2020 10:30:00 +0000
-Message-Id: <20200213103000.1594-1-andrei@gherzan.ro>
-X-Mailer: git-send-email 2.17.1
+Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4460E0159B
+	for <yocto@yoctoproject.org>; Thu, 13 Feb 2020 02:42:34 -0800 (PST)
+Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:50184 helo=localhost.localdomain)
+	by cpanel7.indieserve.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+	(Exim 4.92)
+	(envelope-from <rpjday@crashcourse.ca>)
+	id 1j2Bx3-002aKz-Sh
+	for yocto@yoctoproject.org; Thu, 13 Feb 2020 05:42:34 -0500
+Date: Thu, 13 Feb 2020 05:42:31 -0500 (EST)
+From: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: [PATCH] dev-manual: chs 1,2; rewording, cleanup
+Message-ID: <alpine.LFD.2.21.2002130540450.2560558@localhost.localdomain>
+MIME-Version: 1.0
+X-OutGoing-Spam-Status: No, score=-0.2
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Content-Type: text/plain; charset=US-ASCII
 
-When starting psplash as early as possible in the boot process, the fb
-device node might not be ready. This patch adds a loop on reading the
-fb0 device with a timeout of 5 seconds.
+Also removal of way too much unnecessary capitalization.
 
-Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+
 ---
- psplash-fb.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/psplash-fb.c b/psplash-fb.c
-index 6603572..6700a3b 100644
---- a/psplash-fb.c
-+++ b/psplash-fb.c
-@@ -137,6 +137,7 @@ psplash_fb_new (int angle, int fbdev_id)
-   struct fb_fix_screeninfo fb_fix;
-   int                      off;
-   char                     fbdev[9] = "/dev/fb0";
-+  int retries = 0;
- 
-   PSplashFB *fb = NULL;
- 
-@@ -156,7 +157,9 @@ psplash_fb_new (int angle, int fbdev_id)
- 
-   fb->fd = -1;
- 
--  if ((fb->fd = open (fbdev, O_RDWR)) < 0)
-+  while ((fb->fd = open(fbdev, O_RDWR)) < 0 && retries++ <= 100)
-+	  usleep(50000);
-+  if (fb->fd < 0)
-     {
-       fprintf(stderr,
-               "Error opening %s\n",
+diff --git a/documentation/dev-manual/dev-manual-intro.xml b/documentation/dev-manual/dev-manual-intro.xml
+index 3a34094b8..5e231c6ac 100644
+--- a/documentation/dev-manual/dev-manual-intro.xml
++++ b/documentation/dev-manual/dev-manual-intro.xml
+@@ -22,22 +22,22 @@
+             This manual provides the following:
+             <itemizedlist>
+                 <listitem><para>
+-                    Procedures that help you get going with the Yocto Project.
+-                    For example, procedures that show you how to set up
++                    Procedures that help you get going with the Yocto Project;
++                    for example, procedures that show you how to set up
+                     a build host and work with the Yocto Project
+                     source repositories.
+                     </para></listitem>
+                 <listitem><para>
+                     Procedures that show you how to submit changes to the
+-                    Yocto Project.
+-                    Changes can be improvements, new features, or bug
++                    Yocto Project;
++                    such changes can be improvements, new features, or bug
+                     fixes.
+                     </para></listitem>
+                 <listitem><para>
+                     Procedures related to "everyday" tasks you perform while
+                     developing images and applications using the Yocto
+-                    Project.
+-                    For example, procedures to create a layer, customize an
++                    Project;
++                    for example, procedures to create a layer, customize an
+                     image, write a new recipe, and so forth.
+                     </para></listitem>
+             </itemizedlist>
+@@ -47,26 +47,26 @@
+             This manual does not provide the following:
+             <itemizedlist>
+                 <listitem><para>
+-                    Redundant Step-by-step Instructions:
+-                    For example, the
++                    Redundant step-by-step instructions:
++                    The
+                     <ulink url='&YOCTO_DOCS_SDK_URL;'>Yocto Project Application Development and the Extensible Software Development Kit (eSDK)</ulink>
+-                    manual contains detailed instructions on how to install an
++                    manual already contains detailed instructions on how to install an
+                     SDK, which is used to develop applications for target
+                     hardware.
+                     </para></listitem>
+                 <listitem><para>
+-                    Reference or Conceptual Material:
++                    Reference or conceptual material:
+                     This type of material resides in an appropriate reference
+                     manual.
+                     For example, system variables are documented in the
+                     <ulink url='&YOCTO_DOCS_REF_URL;'>Yocto Project Reference Manual</ulink>.
+                     </para></listitem>
+                 <listitem><para>
+-                    Detailed Public Information Not Specific to the
++                    Detailed public information not specific to the
+                     Yocto Project:
+-                    For example, exhaustive information on how to use the
++                    As an example, exhaustive information on how to use the
+                     Source Control Manager Git is better covered with Internet
+-                    searches and official Git Documentation than through the
++                    searches and official Git documentation than through the
+                     Yocto Project documentation.
+                     </para></listitem>
+             </itemizedlist>
+diff --git a/documentation/dev-manual/dev-manual-start.xml b/documentation/dev-manual/dev-manual-start.xml
+index 59ffa49bb..340cefd37 100644
+--- a/documentation/dev-manual/dev-manual-start.xml
++++ b/documentation/dev-manual/dev-manual-start.xml
+@@ -24,8 +24,8 @@
+         Project in a team development environment, or how to scale it for a
+         large team of developers.
+         You can adapt the Yocto Project to many different use cases and
+-        scenarios.
+-        However, this flexibility could cause difficulties if you are trying
++        scenarios;
++        however, this flexibility could cause difficulties if you are trying
+         to create a working setup that scales across a large team.
+     </para>
+
+@@ -117,7 +117,7 @@
+                 Of the SCMs BitBake supports, the Yocto Project team strongly
+                 recommends using
+                 <ulink url='&YOCTO_DOCS_OM_URL;#git'>Git</ulink>.
+-                Git is a distributed system that is easy to backup,
++                Git is a distributed version control system that is easy to backup,
+                 allows you to work remotely, and then connects back to the
+                 infrastructure.
+                 <note>
+@@ -168,8 +168,8 @@
+                 <itemizedlist>
+                     <listitem><para>
+                         Use a pre-built toolchain that contains the software
+-                        stack itself.
+-                        Then, develop the application code on top of the
++                        stack itself,
++                        and develop the application code on top of the
+                         stack.
+                         This method works well for small numbers of relatively
+                         isolated applications.
+@@ -302,7 +302,7 @@
+                 <para>As with any development environment, it is important
+                 to document the policy used as well as any main project
+                 guidelines so they are understood by everyone.
+-                It is also a good idea to have well structured
++                It is also a good idea to have well-structured
+                 commit messages, which are usually a part of a project's
+                 guidelines.
+                 Good commit messages are essential when looking back in time and
+
 -- 
-2.17.1
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                         http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
