@@ -1,45 +1,71 @@
-Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
- by mx.groups.io with SMTP id smtpd.web12.550.1581616705201735894
- for <yocto@lists.yoctoproject.org>;
- Thu, 13 Feb 2020 09:58:25 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: crashcourse.ca, ip: 199.212.143.8, mailfrom: rpjday@crashcourse.ca)
-Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:55760 helo=localhost.localdomain)
-	by cpanel7.indieserve.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-	(Exim 4.92)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1j2Ikq-003SMc-4P; Thu, 13 Feb 2020 12:58:24 -0500
-Date: Thu, 13 Feb 2020 12:58:22 -0500 (EST)
-From: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: "Jeremy A. Puhlman" <jpuhlman@mvista.com>
-cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] should all "IMAGE_INSTALL +=" become "IMAGE_INSTALL_append"?
-In-Reply-To: <b653f8fe-60e5-06d5-8787-a7af5dee46b9@mvista.com>
-Message-ID: <alpine.LFD.2.21.2002131258070.2836540@localhost.localdomain>
-References: <alpine.LFD.2.21.2002131230260.2835172@localhost.localdomain> <19e5bb94-18b7-2ac7-4d8d-afee04772862@mvista.com> <alpine.LFD.2.21.2002131246280.2835715@localhost.localdomain> <b653f8fe-60e5-06d5-8787-a7af5dee46b9@mvista.com>
+Subject: warrior -> zeus: /etc/issue is not displayed before each login prompt
+To: yocto@lists.yoctoproject.org
+From: lukasz.odw39@gmail.com
+X-Originating-Location: US (204.27.169.105)
+X-Originating-Platform: Windows Firefox 72
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
-X-AntiAbuse: Original Domain - lists.yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+Date: Thu, 13 Feb 2020 13:19:03 -0800
+Message-ID: <9loT.1581628743220318844.IgoX@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="KjUUdjH6PZLAzZLOEXwy"
 
-On Thu, 13 Feb 2020, Jeremy A. Puhlman wrote:
+--KjUUdjH6PZLAzZLOEXwy
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-> I was looking at th 1.6 version of the document, and the 5.2.1
-> section is 3.2.1 in the 3.0 version. The section is about modifying
-> images from the local.conf, so my comments are still the same. You
-> need it to modify an image from the local.conf, but += is more
-> appropriate in an actual image recipe.
+Hello,
 
-  yes, i see your point now.
+In warrior release /etc/issue was displayed before _every_ login prompt on=
+ serial console, for example:
 
-rday
+</etc/issue>
+hostname login: <hitting Enter>
+
+</etc/issue>
+hostname login: <hitting Enter>
+
+</etc/issue>
+hostname login: <user>
+Password: <bad password>
+
+</etc/issue>
+hostname login: <user>
+
+At Zeus /etc/issue is printed only once:
+</etc/issue>
+hostname login: <hitting Enter>
+hostname login: <hitting Enter>
+
+hostname login: <user>
+Password: <bad password>
+
+hostname login:
+
+I am not saying that it is a bug, but I would like to know what to change =
+in zeus to get the old behavior.
+Which package or configuration file should I look at?
+
+Thank you in advance.
+
+Best regards,
+Lukasz
+
+--KjUUdjH6PZLAzZLOEXwy
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hello,<br /><br />In warrior release /etc/issue was displayed before _ev=
+ery_ login prompt on serial console, for example:<br /><br />&lt;/etc/issue=
+&gt;<br />hostname login: &lt;hitting Enter&gt;<br /><br />&lt;/etc/issue&g=
+t;<br />hostname login: &lt;hitting Enter&gt;<br /><br />&lt;/etc/issue&gt;=
+<br />hostname login: &lt;user&gt;<br />Password: &lt;bad password&gt;<br /=
+><br />&lt;/etc/issue&gt;<br />hostname login: &lt;user&gt;<br /><br />At Z=
+eus /etc/issue is printed only once:<br />&lt;/etc/issue&gt;<br />hostname =
+login: &lt;hitting Enter&gt;<br />hostname login: &lt;hitting Enter&gt;<br =
+/><br />hostname login: &lt;user&gt;<br />Password: &lt;bad password&gt;<br=
+ /><br />hostname login:<br /><br />I am not saying that it is a bug, but I=
+ would like to know what to change in zeus to get the old behavior. <br />W=
+hich package or configuration file should I look at?<br /><br />Thank you i=
+n advance.<br /><br />Best regards,<br />Lukasz</p>
+
+--KjUUdjH6PZLAzZLOEXwy--
