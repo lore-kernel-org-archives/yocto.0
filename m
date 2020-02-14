@@ -1,87 +1,77 @@
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
- by mx.groups.io with SMTP id smtpd.web11.9683.1581701397216911893
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+ by mx.groups.io with SMTP id smtpd.web10.1178.1581721659470564070
  for <yocto@lists.yoctoproject.org>;
- Fri, 14 Feb 2020 09:29:57 -0800
+ Fri, 14 Feb 2020 15:07:39 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=G5PpVooW;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.67, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f67.google.com with SMTP id u6so11856164wrt.0
-        for <yocto@lists.yoctoproject.org>; Fri, 14 Feb 2020 09:29:56 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=qe/QAnMV;
+ spf=pass (domain: gmail.com, ip: 209.85.215.176, mailfrom: raj.khem@gmail.com)
+Received: by mail-pg1-f176.google.com with SMTP id w21so5664428pgl.9
+        for <yocto@lists.yoctoproject.org>; Fri, 14 Feb 2020 15:07:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=6DhrV7D/LMVAE9sHZmm02xMQy7Xe0SMuYvIg183YkQ4=;
-        b=G5PpVooWd1OR5Ot7DU/O3IstVAV+DRgNFmq09sFf8b8KdqNvZYkGPG+F5sFk0YVWKv
-         vOK/zNzleAVH8+w0FEjaecVkFuTHVYmIYWiAfYnNRMNrLAZBvM6EDPOAyP23JJaQKhsv
-         NviFUXPAU/UI7JZThTggUyyL0PQX+DLBfCVnQ=
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:organization:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=85E4/WcRx1ZnqVLR10N2SChDd1xNwowVxJaVno9LIVU=;
+        b=qe/QAnMVu4dA74759TvtFHdFfVSqIntVUGhdgCU1Du9MvDzaqAhQwpy2gtELJ8HCK6
+         Pln4p3G2MeiS043jVqLdj/HzjODr5/n3soUw8Z7x/Kc+WIaaRTdIcyBP1XP0XJyK+z03
+         NUsAZPOh0R18aXbCfF/R3cSgJNmAZPgVLknmmkWFGttK21QKZWo9dzU2WIEZ9HKxiNet
+         XTeoR+ZgN5OqSz4siAKz0ZlPpgZXUF/7pHyQUcArmJEYic0cV52vDd6/8LkJm9geOThc
+         8DfDfNWNg3nyWQQC5DnEgRdLMT102EInyISqRW6JWEPF9o3DXTVPadc7QlUpvOf9q+xz
+         A8Ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=6DhrV7D/LMVAE9sHZmm02xMQy7Xe0SMuYvIg183YkQ4=;
-        b=omMSyDQ7LpP6YI6WdAKfrEjjG7mmKmprlv5XCIjzUCt/lJ6mAOhlyetEr7PM+iZigz
-         5i757SZa8Pda5nXt9u157MH6XDnss4ja9IosQpq+KMzbV9oPAQE8DcdrqZqTyUnqbWbj
-         4iF94AqXsr4TfiMhPNGV3g7u2SRwWowQcmrKFgMqAt3GzaaK19+RT7ndxlvpTMidlQiG
-         1kPCGWFzWSYwqRr9XVR8z+AWXzAYmEhxa0TRDrts5s/Dqqokwi/7ksNbbqIcMJ6bcRHD
-         JcGgvicml27ViAFU3LhilkchORUn08CRtVwLKLx7mUQstaYxJpSjqdFu8NiEbzHFd0a7
-         zQ4A==
-X-Gm-Message-State: APjAAAVtpGecldwKHB9nffRGyZz2C8Egdt7zdKrMvgHYzej/wvYgqXT8
-	aDcmqoHJuxDjFmwKDazSyIvS2A==
-X-Google-Smtp-Source: APXvYqz9DpI+jzGjGHmb/FORpYXii9yceVZHB77EGi4dR0mw6m/yE82MJyLt7Pgyn4egLNDPc4ZuUg==
-X-Received: by 2002:a5d:4d06:: with SMTP id z6mr5127347wrt.241.1581701395598;
-        Fri, 14 Feb 2020 09:29:55 -0800 (PST)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-        by smtp.gmail.com with ESMTPSA id t13sm7785478wrw.19.2020.02.14.09.29.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 14 Feb 2020 09:29:54 -0800 (PST)
-Message-ID: <3b6664669a1aa197dd179eccf5fc9092324fd07f.camel@linuxfoundation.org>
-Subject: Re: [yocto] yocto.io: Add weekly full tests on master branch?
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Randy MacLeod <randy.macleod@windriver.com>, yocto@lists.yoctoproject.org
-Date: Fri, 14 Feb 2020 17:29:53 +0000
-In-Reply-To: <15F354349D7F4F79.15837@lists.yoctoproject.org>
-References: <aa56f737-0749-0ab5-4578-4a0189defd0e@windriver.com>
-	 <15F354349D7F4F79.15837@lists.yoctoproject.org>
-User-Agent: Evolution 3.34.1-2 
+        h=x-gm-message-state:subject:to:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=85E4/WcRx1ZnqVLR10N2SChDd1xNwowVxJaVno9LIVU=;
+        b=OQUiudecVHuqJGJ/Wzdua5PY57XfKu4+1WuVCJpIUsyRVPAK/eeMP2mtQ9o+1OCh4N
+         37wkTPDkFFzo4znHqWmxBOEOuCSCzg5djtvRGI0UWwfBncYoEcq/+3wSDauEkChBoZll
+         HdhGLcLF7Lj+BOHVhO6VNSH9oJwj+2uVbAOvifI194vHm94CXn0IdDrcytcuUSLhgqqf
+         eD2Hcgd80/ED4TndP8rwrD7gvNofD1gWOGYU+oB9F1SEl0Bze4Y2et79cxemRsZno3cS
+         CC6elasd2lBHkmycUFORFlhq/SfsRKpGy7HCnWoILhiFnNKcJZ9NXN1A5gCNZHyLNjgL
+         niJw==
+X-Gm-Message-State: APjAAAVD76sVQsLEmEydByNACI5C/7jwsNRROygbp0o1vfCAJ33hrT37
+	7/2+kmgt6Vg3B/0ZugJIiPZoduSxZvY=
+X-Google-Smtp-Source: APXvYqxFCV2RjEn0+sqLTHuOayKqpiyXu990kcjYCg5E2oNj3Oue3Xm8qfHZ7MpvH/wr1GP9Q4yswg==
+X-Received: by 2002:aa7:8e85:: with SMTP id a5mr5774434pfr.24.1581721658448;
+        Fri, 14 Feb 2020 15:07:38 -0800 (PST)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:4e0:24fa:ebe1:e23c:267a? ([2601:646:9200:4e0:24fa:ebe1:e23c:267a])
+        by smtp.gmail.com with ESMTPSA id d4sm7498863pjz.12.2020.02.14.15.07.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 14 Feb 2020 15:07:38 -0800 (PST)
+Subject: Re: [yocto] #sdk #toolchain #yocto
+To: amern2k16@att.net, yocto@lists.yoctoproject.org
+References: <Igxp.1581697611359538979.oZvW@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Organization: HIMVIS LLC
+Message-ID: <97592192-9079-304f-d0b7-a600711ddb80@gmail.com>
+Date: Fri, 14 Feb 2020 15:07:37 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
+ Gecko/20100101 Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <Igxp.1581697611359538979.oZvW@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 
-On Fri, 2020-02-14 at 17:14 +0000, Richard Purdie via
-Lists.Yoctoproject.Org wrote:
-> On Fri, 2020-02-14 at 12:08 -0500, Randy MacLeod wrote:
-> > Hi,
-> > 
-> > There are many tests run for master-next and reported here:
-> >     https://autobuilder.yocto.io/pub/non-release/
-> > such as:
-> >  
-> > https://autobuilder.yocto.io/pub/non-release/20200214-4/testresults/testresult-report.txt
-> > 
-> > It would be nice to have a weekly or more frequent full test
-> > run on the master branch. I suspect that some people know that
-> > _certain_ master-next runs end up becoming the master branch
-> > content
-> > but that's not clear in the summary page.
-> > 
-> > Is that reasonable and possible given the hardware available?
+On 2/14/20 8:26 AM, amern2k16@att.net wrote:
+> In Yocto Project Application Development and the Extensible Software 
+> Development Kit(eSDK) Manual, Appendix A.2.  6. Building an SDK 
+> Installer says the following:
+> "To build the SDK installer for a standard SDK and populate the SDK image"
+> what do they mean by "populate the SDK image" ?
+> After running 'bitbake image -c populate_sdk' command, sdk folder was 
+> created in my build/tmp/deploy/sdk.  In this folder there is .sh 
+> script.  This script
+> is SDK  installer but what do they mean by 'and populate the SDK 
+> image'?  What SDK image?
 > 
-> Yes, it just needs someone to spend the time figuring out how to
-> replace one of the regular master quick builds with a full build.
 
-FWIW I've tried to enable this and it may work this weekend on Sunday
-builds now. 
+sdk installer - The container ( .sh file)
+SDK image - Content inside the installer ( SDK files which you see upon 
+SDK installation)
 
-In the process I think other things have now broken so there goes my
-Friday evening :/.
-
-Its on the master branch of 
-http://git.yoctoproject.org/cgit.cgi/yocto-autobuilder2 and I'd give a
-link but the git web services are broken atm. I've let Michael know.
-
-Cheers,
-
-Richard
+> 
+> 
 
