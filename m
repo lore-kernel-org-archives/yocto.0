@@ -1,60 +1,97 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.4128.1581672251704981643
- for <yocto@lists.yoctoproject.org>;
- Fri, 14 Feb 2020 01:24:12 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 140.211.169.56, mailfrom: rpjday@crashcourse.ca)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 16CECE01660; Fri, 14 Feb 2020 01:24:11 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFB78E01612
-	for <yocto@yoctoproject.org>; Fri, 14 Feb 2020 01:24:09 -0800 (PST)
-Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:35492 helo=localhost.localdomain)
-	by cpanel7.indieserve.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-	(Exim 4.92)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1j2XCi-005B5N-Nz
-	for yocto@yoctoproject.org; Fri, 14 Feb 2020 04:24:09 -0500
-Date: Fri, 14 Feb 2020 04:24:06 -0500 (EST)
-From: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: followup on earlier wording -- layer priority doesn't affect .conf/.bbclass
-Message-ID: <alpine.LFD.2.21.2002140420390.2862434@localhost.localdomain>
+Subject: Re: Incrementally building constantly changing application source in a workflow-friendly way with #yocto
+To: yocto@lists.yoctoproject.org
+From: "Pieter Smith" <smipi01@gmail.com>
+X-Originating-Location: Eindhoven, North Brabant, NL (194.171.252.117)
+X-Originating-Platform: Windows Chrome 79
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+Date: Fri, 14 Feb 2020 01:52:03 -0800
+References: <CANNYZj9myYbCLMAv-4xrQUVdOWLhfwn7HZNzj4s2S511Qq4rrQ@mail.gmail.com>
+In-Reply-To: <CANNYZj9myYbCLMAv-4xrQUVdOWLhfwn7HZNzj4s2S511Qq4rrQ@mail.gmail.com>
+Message-ID: <11386.1581673923440714232@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="zcn2ktGouUQOj03gNEi7"
 
+--zcn2ktGouUQOj03gNEi7
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-  just noticed in dev tasks manual in same paragraph i was whining
-about earlier, section 3.1.6, Note:
+Thanks Alex,
 
-"Also, the layer priority does not currently affect the precedence
-order of .conf or .bbclass files. Future versions of BitBake might
-address this."
+I tried this, but still cannot get it set-up so that the sources are fetch=
+ed. I have the following directory structure in my repo:
 
-  um ... "currently"? wouldn't changing anything about this
-search/selection ordering break all sorts of stuff? i haven't been
-paying close attention, so has there been some sort of discussion
-about reworking how that ordering is done? that would seem to be a
-pretty major change.
+=E2=94=9C=E2=94=80=E2=94=80 conf
+=E2=94=82=C2=A0 =C2=A0=E2=94=94=E2=94=80=E2=94=80 layer.conf
+=E2=94=9C=E2=94=80=E2=94=80 COPYING.MIT
+=E2=94=9C=E2=94=80=E2=94=80 README
+=E2=94=9C=E2=94=80=E2=94=80 recipes-images
+=E2=94=82=C2=A0 =C2=A0=E2=94=94=E2=94=80=E2=94=80 my-image
+=E2=94=82=C2=A0 =C2=A0 =C2=A0 =C2=A0=E2=94=94=E2=94=80=E2=94=80 my-image.b=
+b
+=E2=94=9C=E2=94=80=E2=94=80 recipes-my-application
+=E2=94=82=C2=A0 =C2=A0=E2=94=94=E2=94=80=E2=94=80 my-application
+=E2=94=82=C2=A0 =C2=A0 =C2=A0 =C2=A0=E2=94=94=E2=94=80=E2=94=80 my-applica=
+tion_1.0.bb
+=E2=94=94=E2=94=80=E2=94=80 src
+=E2=94=9C=E2=94=80=E2=94=80 my-application.c
+=E2=94=9C=E2=94=80=E2=94=80 secrets.c
+=E2=94=94=E2=94=80=E2=94=80 secrets.h
 
-rday
+None of the following in my-application_1.0.bb succeeds in fetching the so=
+urce:
+
+SRC_URI =3D "file://../src/*"
+SRC_URI =3D "file://../src/"
+SRC_URI =3D "file://src/*"
+SRC_URI =3D "file://src/"
+
+What am I missing?
+
+--zcn2ktGouUQOj03gNEi7
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<p>Thanks Alex,<br /><br />I tried this, but still cannot get it set-up so =
+that the sources are fetched. I have the following directory structure in m=
+y repo:</p>
+<div><span style=3D"font-family: courier_newregular, courier; font-size: 8=
+pt;">=E2=94=9C=E2=94=80=E2=94=80 conf</span></div>
+<div><span style=3D"font-family: courier_newregular, courier; font-size: 8=
+pt;">=E2=94=82&nbsp; &nbsp;=E2=94=94=E2=94=80=E2=94=80 layer.conf</span></d=
+iv>
+<div><span style=3D"font-family: courier_newregular, courier; font-size: 8=
+pt;">=E2=94=9C=E2=94=80=E2=94=80 COPYING.MIT</span></div>
+<div><span style=3D"font-family: courier_newregular, courier; font-size: 8=
+pt;">=E2=94=9C=E2=94=80=E2=94=80 README</span></div>
+<div><span style=3D"font-family: courier_newregular, courier; font-size: 8=
+pt;">=E2=94=9C=E2=94=80=E2=94=80 recipes-images</span></div>
+<div><span style=3D"font-family: courier_newregular, courier; font-size: 8=
+pt;">=E2=94=82&nbsp; &nbsp;=E2=94=94=E2=94=80=E2=94=80 my-image</span></div=
+>
+<div><span style=3D"font-family: courier_newregular, courier; font-size: 8=
+pt;">=E2=94=82&nbsp; &nbsp; &nbsp; &nbsp;=E2=94=94=E2=94=80=E2=94=80 my-ima=
+ge.bb</span></div>
+<div><span style=3D"font-family: courier_newregular, courier; font-size: 8=
+pt;">=E2=94=9C=E2=94=80=E2=94=80 recipes-my-application</span></div>
+<div><span style=3D"font-family: courier_newregular, courier; font-size: 8=
+pt;">=E2=94=82&nbsp; &nbsp;=E2=94=94=E2=94=80=E2=94=80 my-application</span=
+></div>
+<div><span style=3D"font-family: courier_newregular, courier; font-size: 8=
+pt;">=E2=94=82&nbsp; &nbsp; &nbsp; &nbsp;=E2=94=94=E2=94=80=E2=94=80 my-app=
+lication_1.0.bb</span></div>
+<div><span style=3D"font-family: courier_newregular, courier; font-size: 8=
+pt;">=E2=94=94=E2=94=80=E2=94=80 src</span></div>
+<div><span style=3D"font-family: courier_newregular, courier; font-size: 8=
+pt;">&nbsp; &nbsp; =E2=94=9C=E2=94=80=E2=94=80 my-application.c</span></div=
+>
+<div><span style=3D"font-family: courier_newregular, courier; font-size: 8=
+pt;">&nbsp; &nbsp; =E2=94=9C=E2=94=80=E2=94=80 secrets.c</span></div>
+<div><span style=3D"font-family: courier_newregular, courier; font-size: 8=
+pt;">&nbsp; &nbsp; =E2=94=94=E2=94=80=E2=94=80 secrets.h</span></div>
+<div><br />None of the following in my-application_1.0.bb succeeds in fetc=
+hing the source:<br /><br />SRC_URI =3D "file://../src/*"<br />SRC_URI =3D =
+"file://../src/"<br />SRC_URI =3D "file://src/*"<br />SRC_URI =3D "file://s=
+rc/"<br /><br />What am I missing?</div>
+<div>&nbsp;</div>
+
+--zcn2ktGouUQOj03gNEi7--
