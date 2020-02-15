@@ -1,77 +1,80 @@
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
- by mx.groups.io with SMTP id smtpd.web10.1178.1581721659470564070
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.5322.1581748550422486911
  for <yocto@lists.yoctoproject.org>;
- Fri, 14 Feb 2020 15:07:39 -0800
+ Fri, 14 Feb 2020 22:35:50 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=qe/QAnMV;
- spf=pass (domain: gmail.com, ip: 209.85.215.176, mailfrom: raj.khem@gmail.com)
-Received: by mail-pg1-f176.google.com with SMTP id w21so5664428pgl.9
-        for <yocto@lists.yoctoproject.org>; Fri, 14 Feb 2020 15:07:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:organization:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=85E4/WcRx1ZnqVLR10N2SChDd1xNwowVxJaVno9LIVU=;
-        b=qe/QAnMVu4dA74759TvtFHdFfVSqIntVUGhdgCU1Du9MvDzaqAhQwpy2gtELJ8HCK6
-         Pln4p3G2MeiS043jVqLdj/HzjODr5/n3soUw8Z7x/Kc+WIaaRTdIcyBP1XP0XJyK+z03
-         NUsAZPOh0R18aXbCfF/R3cSgJNmAZPgVLknmmkWFGttK21QKZWo9dzU2WIEZ9HKxiNet
-         XTeoR+ZgN5OqSz4siAKz0ZlPpgZXUF/7pHyQUcArmJEYic0cV52vDd6/8LkJm9geOThc
-         8DfDfNWNg3nyWQQC5DnEgRdLMT102EInyISqRW6JWEPF9o3DXTVPadc7QlUpvOf9q+xz
-         A8Ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=85E4/WcRx1ZnqVLR10N2SChDd1xNwowVxJaVno9LIVU=;
-        b=OQUiudecVHuqJGJ/Wzdua5PY57XfKu4+1WuVCJpIUsyRVPAK/eeMP2mtQ9o+1OCh4N
-         37wkTPDkFFzo4znHqWmxBOEOuCSCzg5djtvRGI0UWwfBncYoEcq/+3wSDauEkChBoZll
-         HdhGLcLF7Lj+BOHVhO6VNSH9oJwj+2uVbAOvifI194vHm94CXn0IdDrcytcuUSLhgqqf
-         eD2Hcgd80/ED4TndP8rwrD7gvNofD1gWOGYU+oB9F1SEl0Bze4Y2et79cxemRsZno3cS
-         CC6elasd2lBHkmycUFORFlhq/SfsRKpGy7HCnWoILhiFnNKcJZ9NXN1A5gCNZHyLNjgL
-         niJw==
-X-Gm-Message-State: APjAAAVD76sVQsLEmEydByNACI5C/7jwsNRROygbp0o1vfCAJ33hrT37
-	7/2+kmgt6Vg3B/0ZugJIiPZoduSxZvY=
-X-Google-Smtp-Source: APXvYqxFCV2RjEn0+sqLTHuOayKqpiyXu990kcjYCg5E2oNj3Oue3Xm8qfHZ7MpvH/wr1GP9Q4yswg==
-X-Received: by 2002:aa7:8e85:: with SMTP id a5mr5774434pfr.24.1581721658448;
-        Fri, 14 Feb 2020 15:07:38 -0800 (PST)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:4e0:24fa:ebe1:e23c:267a? ([2601:646:9200:4e0:24fa:ebe1:e23c:267a])
-        by smtp.gmail.com with ESMTPSA id d4sm7498863pjz.12.2020.02.14.15.07.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 14 Feb 2020 15:07:38 -0800 (PST)
-Subject: Re: [yocto] #sdk #toolchain #yocto
-To: amern2k16@att.net, yocto@lists.yoctoproject.org
-References: <Igxp.1581697611359538979.oZvW@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Organization: HIMVIS LLC
-Message-ID: <97592192-9079-304f-d0b7-a600711ddb80@gmail.com>
-Date: Fri, 14 Feb 2020 15:07:37 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.5.0
+ dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 140.211.169.56, mailfrom: rpjday@crashcourse.ca)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id F3C5FE0144C; Fri, 14 Feb 2020 22:35:49 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 530ACE0078F
+	for <yocto@yoctoproject.org>; Fri, 14 Feb 2020 22:35:48 -0800 (PST)
+Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:49220 helo=localhost.localdomain)
+	by cpanel7.indieserve.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+	(Exim 4.92)
+	(envelope-from <rpjday@crashcourse.ca>)
+	id 1j2r3L-007cXh-2y
+	for yocto@yoctoproject.org; Sat, 15 Feb 2020 01:35:47 -0500
+Date: Sat, 15 Feb 2020 01:35:44 -0500 (EST)
+From: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost.localdomain
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: does git SRC_URI really *require" a SRCREV setting?
+Message-ID: <alpine.LFD.2.21.2002150129460.2926947@localhost.localdomain>
 MIME-Version: 1.0
-In-Reply-To: <Igxp.1581697611359538979.oZvW@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-OutGoing-Spam-Status: No, score=-0.2
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Content-Type: text/plain; charset=US-ASCII
 
-On 2/14/20 8:26 AM, amern2k16@att.net wrote:
-> In Yocto Project Application Development and the Extensible Software 
-> Development Kit(eSDK) Manual, Appendix A.2.  6. Building an SDK 
-> Installer says the following:
-> "To build the SDK installer for a standard SDK and populate the SDK image"
-> what do they mean by "populate the SDK image" ?
-> After running 'bitbake image -c populate_sdk' command, sdk folder was 
-> created in my build/tmp/deploy/sdk.  In this folder there is .sh 
-> script.  This script
-> is SDK  installer but what do they mean by 'and populate the SDK 
-> image'?  What SDK image?
-> 
 
-sdk installer - The container ( .sh file)
-SDK image - Content inside the installer ( SDK files which you see upon 
-SDK installation)
+  yes, yes, more obsessive-compulsive nitpickery, but YP dev tasks
+manual, section 3.3.5, reads:
 
-> 
-> 
+"Another way of specifying source is from an SCM. For Git
+repositories, you must specify SRCREV and you should specify PV to
+include the revision with SRCPV."
 
+  you *must* specify SRCREV? i don't think that's true -- a couple
+examples from meta-oe ... here's hiredis_0.13.1.bb:
+
+SRC_URI = "git://github.com/redis/hiredis;protocol=git;rev=f58dd249d6ed47a7e835463c3b04722972281dbb \
+
+  and here's sshfs-fuse_2.8.bb:
+
+SRC_URI = "git://github.com/libfuse/sshfs;tag=b2fa7593586b141298e6159f40f521d2b0f4f894 \
+
+  neither of which specify SRCREV (clearly since they don't need to
+given the SRC_URI options in use).
+
+rday
+
+p.s. bitbake's git.py fetcher code makes no mention of the "rev"
+option in its opening docstring. just an observation if anyone wants
+to tweak that.
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                         http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
