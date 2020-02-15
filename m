@@ -1,58 +1,66 @@
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
- by mx.groups.io with SMTP id smtpd.web11.6750.1581763320445561385
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+ by mx.groups.io with SMTP id smtpd.web11.6769.1581763488227682622
  for <yocto@lists.yoctoproject.org>;
- Sat, 15 Feb 2020 02:42:00 -0800
+ Sat, 15 Feb 2020 02:44:48 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=chw6sbws;
- spf=pass (domain: gmail.com, ip: 209.85.217.49, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vs1-f49.google.com with SMTP id 7so7508154vsr.10
-        for <yocto@lists.yoctoproject.org>; Sat, 15 Feb 2020 02:42:00 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Lv6jRSYv;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.51, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f51.google.com with SMTP id c84so13562727wme.4
+        for <yocto@lists.yoctoproject.org>; Sat, 15 Feb 2020 02:44:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=wo1hPY/gZ0tcIeG+HPDbMJoGMxYRDgQWFCjGBrjK2Hc=;
-        b=chw6sbwsKeKVOLqsBGnW8AyomU0j8ezMqy3C06X2Xbt+lbCd+iRluWM2MX6CXoZO+R
-         eCkpBpqNVIH1TvkEKOizRTRibsRbkIMAQ+zOqGs1LXrDP/zZe2XbuPEeqiu/+NMI0Fh0
-         eEs1EYk5dElP0sRaC7jf0ZP0PSRWrX/unavymmN88uAE8jYhlQG3Q7vpCGY80TSe7oib
-         kceLZCR5m/1cHDyzWKilyDZ1GaPK+7iUe19W8kwMjm1LSVdSceduWrxzRg+6vYWBt2FY
-         60WQVAaS58PIJPqnpMJh1wseCHM+GM2YhtbAkVJPM5TU3KLc6OjGItqN1fQyNX2aUk7M
-         j27A==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=pEyLfn3VuBKgZ3vZA415iP2mMNK4HBGA/hQGQNf5hpw=;
+        b=Lv6jRSYvRGTNcWYtzwWr6OhfarSBhqKexIMtbEWQmaM3VOnGZ/X82a0zW8NttRrubi
+         hrkbgmZgRue4xA5qdSCYLCt7TFyaIDYbz1TySe2qRmimzBDY1hY79gBT8/AwMEUC9ORJ
+         gQFMGZNCZqe8+v4oPgZ/Gd65AjAeMw4aXgcYU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=wo1hPY/gZ0tcIeG+HPDbMJoGMxYRDgQWFCjGBrjK2Hc=;
-        b=pCZURktCrfJpo6WpfhkZRarmmHNn4zs5Qv43SjA81Jv+qfbCL//yeIXVVp+Xid/8g9
-         oRRo5/hgCkbORHYxyOQ+8ZWHp0eYcYk2G2Zp9n9IvEBVy0KKFLBmJbvdJyPs4IR7nd94
-         dPbDDrM0CTzGlayE1cNJtzijpTtIUa/2tOKrtARgAJ4IrrRdH6GSDTENtDMYa/qcg1xn
-         u4I0nicew+IRZT+PFpcJr5U0MIgSZ0xnoW2WFnVlqcdMIf51xw/C1SIz3xK6iZ4b+Iww
-         NOmUCH+d7HHozxknoN02KgvpYhDq7VO6umTWp/mYTqW5BTvuYvysrl0Xj0hdrMZDF/e8
-         9ndQ==
-X-Gm-Message-State: APjAAAWG8A9o71PSqNW0qrnUixROIyCv98za8rQ/tjEnMHo9clAygDjV
-	NECfNoOueCbfJSRiAaEXDPPVt4M6m2LGJwDUzx8D6mOh
-X-Google-Smtp-Source: APXvYqysHTlSVRgu5avpYTFs2o2meYku0oV/BdfDgMBDk/jGYiBdnYXypLbx5sLv9yVqAZe58STp+T3O5GQbU+m5JXo=
-X-Received: by 2002:a67:7987:: with SMTP id u129mr3775733vsc.83.1581763319495;
- Sat, 15 Feb 2020 02:41:59 -0800 (PST)
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=pEyLfn3VuBKgZ3vZA415iP2mMNK4HBGA/hQGQNf5hpw=;
+        b=OSVhJr8fVdqxQZpbPBPNCLk9pm+fgW1NZxCL4YdcjcPkdfGGnz2OTrxhGYRudyhbPr
+         bgJoWxelxspf/cnj5Rh2bcLkYSf9lL5JpTLjYu8FtRy1NwbSEdNkODI/zS/kBv+5n9VN
+         7kxpcAkAKy7QSkvH3haoBIWCILQoiEmpm40ql8D1IgyVQO19p4kRRKpvDfwAn36JvkEI
+         X8X1+AmYqLzZxp2y4+VRVx0wxvxWQUf5IOt2DGfUSP/XjaU16LccsSZNF9xVJrutCsFm
+         wUzKtqrq7pLMcfZ/zt7d0jTH909zq7bwbcMZtmHgmtLCCrKheiEJZnpYCDEwkOiWHHNH
+         3HkQ==
+X-Gm-Message-State: APjAAAUv3hRG5y5reoDkJxJ5kMQo334PaLz9MS56YTNEpebND9Vr8S6E
+	0+75e8JpFAOa4d2HR9qubT6WWg==
+X-Google-Smtp-Source: APXvYqwkwDCo59AF+QCSsRoOA3OTnbhKkDaGfdVUribIVmwuh4O66zDPBXLMblCPfpZ7L6U4K+vfQg==
+X-Received: by 2002:a1c:8151:: with SMTP id c78mr9940310wmd.29.1581763485563;
+        Sat, 15 Feb 2020 02:44:45 -0800 (PST)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+        by smtp.gmail.com with ESMTPSA id w7sm10460512wmi.9.2020.02.15.02.44.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 15 Feb 2020 02:44:45 -0800 (PST)
+Message-ID: <18b267a0b9ca83560766ef1c3cd8d1db77744128.camel@linuxfoundation.org>
+Subject: Re: master/master-next missing from poky repo?
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Alexander Kanavin <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
+Cc: Michael Halstead <mhalstead@linuxfoundation.org>
+Date: Sat, 15 Feb 2020 10:44:43 +0000
+In-Reply-To: <CANNYZj8ux3H3-17eb1MFGFhG_vQDThxV+_gn4BEFH-PRjWUdsA@mail.gmail.com>
+References: 
+	<CANNYZj8ux3H3-17eb1MFGFhG_vQDThxV+_gn4BEFH-PRjWUdsA@mail.gmail.com>
+User-Agent: Evolution 3.34.1-2 
 MIME-Version: 1.0
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Sat, 15 Feb 2020 11:41:48 +0100
-Message-ID: <CANNYZj8ux3H3-17eb1MFGFhG_vQDThxV+_gn4BEFH-PRjWUdsA@mail.gmail.com>
-Subject: master/master-next missing from poky repo?
-To: yocto@lists.yoctoproject.org
-Cc: Michael Halstead <mhalstead@linuxfoundation.org>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>
-Content-Type: multipart/alternative; boundary="000000000000c70096059e9af849"
-
---000000000000c70096059e9af849
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Something is wrong, as master and master-next are missing here?
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/
+On Sat, 2020-02-15 at 11:41 +0100, Alexander Kanavin wrote:
+> Something is wrong, as master and master-next are missing here?
+> http://git.yoctoproject.org/cgit/cgit.cgi/poky/
 
-Alex
+There is something wrong with the http caching on the git server. The
+branches are there, they're just not appearing immediately in the web
+protocol. I know Michael is aware and has been working on it.
 
---000000000000c70096059e9af849
-Content-Type: text/html; charset="UTF-8"
+You can access them using the git protocol if that helps.
 
-<div dir="ltr"><div>Something is wrong, as master and master-next are missing here?</div><div><a href="http://git.yoctoproject.org/cgit/cgit.cgi/poky/">http://git.yoctoproject.org/cgit/cgit.cgi/poky/</a></div><div><br></div><div>Alex<br></div></div>
+Cheers,
 
---000000000000c70096059e9af849--
+Richard
+
