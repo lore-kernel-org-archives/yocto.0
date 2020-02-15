@@ -1,80 +1,58 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.5322.1581748550422486911
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49])
+ by mx.groups.io with SMTP id smtpd.web11.6750.1581763320445561385
  for <yocto@lists.yoctoproject.org>;
- Fri, 14 Feb 2020 22:35:50 -0800
+ Sat, 15 Feb 2020 02:42:00 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 140.211.169.56, mailfrom: rpjday@crashcourse.ca)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F3C5FE0144C; Fri, 14 Feb 2020 22:35:49 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 530ACE0078F
-	for <yocto@yoctoproject.org>; Fri, 14 Feb 2020 22:35:48 -0800 (PST)
-Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:49220 helo=localhost.localdomain)
-	by cpanel7.indieserve.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-	(Exim 4.92)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1j2r3L-007cXh-2y
-	for yocto@yoctoproject.org; Sat, 15 Feb 2020 01:35:47 -0500
-Date: Sat, 15 Feb 2020 01:35:44 -0500 (EST)
-From: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: does git SRC_URI really *require" a SRCREV setting?
-Message-ID: <alpine.LFD.2.21.2002150129460.2926947@localhost.localdomain>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=chw6sbws;
+ spf=pass (domain: gmail.com, ip: 209.85.217.49, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-vs1-f49.google.com with SMTP id 7so7508154vsr.10
+        for <yocto@lists.yoctoproject.org>; Sat, 15 Feb 2020 02:42:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=wo1hPY/gZ0tcIeG+HPDbMJoGMxYRDgQWFCjGBrjK2Hc=;
+        b=chw6sbwsKeKVOLqsBGnW8AyomU0j8ezMqy3C06X2Xbt+lbCd+iRluWM2MX6CXoZO+R
+         eCkpBpqNVIH1TvkEKOizRTRibsRbkIMAQ+zOqGs1LXrDP/zZe2XbuPEeqiu/+NMI0Fh0
+         eEs1EYk5dElP0sRaC7jf0ZP0PSRWrX/unavymmN88uAE8jYhlQG3Q7vpCGY80TSe7oib
+         kceLZCR5m/1cHDyzWKilyDZ1GaPK+7iUe19W8kwMjm1LSVdSceduWrxzRg+6vYWBt2FY
+         60WQVAaS58PIJPqnpMJh1wseCHM+GM2YhtbAkVJPM5TU3KLc6OjGItqN1fQyNX2aUk7M
+         j27A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=wo1hPY/gZ0tcIeG+HPDbMJoGMxYRDgQWFCjGBrjK2Hc=;
+        b=pCZURktCrfJpo6WpfhkZRarmmHNn4zs5Qv43SjA81Jv+qfbCL//yeIXVVp+Xid/8g9
+         oRRo5/hgCkbORHYxyOQ+8ZWHp0eYcYk2G2Zp9n9IvEBVy0KKFLBmJbvdJyPs4IR7nd94
+         dPbDDrM0CTzGlayE1cNJtzijpTtIUa/2tOKrtARgAJ4IrrRdH6GSDTENtDMYa/qcg1xn
+         u4I0nicew+IRZT+PFpcJr5U0MIgSZ0xnoW2WFnVlqcdMIf51xw/C1SIz3xK6iZ4b+Iww
+         NOmUCH+d7HHozxknoN02KgvpYhDq7VO6umTWp/mYTqW5BTvuYvysrl0Xj0hdrMZDF/e8
+         9ndQ==
+X-Gm-Message-State: APjAAAWG8A9o71PSqNW0qrnUixROIyCv98za8rQ/tjEnMHo9clAygDjV
+	NECfNoOueCbfJSRiAaEXDPPVt4M6m2LGJwDUzx8D6mOh
+X-Google-Smtp-Source: APXvYqysHTlSVRgu5avpYTFs2o2meYku0oV/BdfDgMBDk/jGYiBdnYXypLbx5sLv9yVqAZe58STp+T3O5GQbU+m5JXo=
+X-Received: by 2002:a67:7987:: with SMTP id u129mr3775733vsc.83.1581763319495;
+ Sat, 15 Feb 2020 02:41:59 -0800 (PST)
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-0.2
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Sat, 15 Feb 2020 11:41:48 +0100
+Message-ID: <CANNYZj8ux3H3-17eb1MFGFhG_vQDThxV+_gn4BEFH-PRjWUdsA@mail.gmail.com>
+Subject: master/master-next missing from poky repo?
+To: yocto@lists.yoctoproject.org
+Cc: Michael Halstead <mhalstead@linuxfoundation.org>, 
+	Richard Purdie <richard.purdie@linuxfoundation.org>
+Content-Type: multipart/alternative; boundary="000000000000c70096059e9af849"
 
+--000000000000c70096059e9af849
+Content-Type: text/plain; charset="UTF-8"
 
-  yes, yes, more obsessive-compulsive nitpickery, but YP dev tasks
-manual, section 3.3.5, reads:
+Something is wrong, as master and master-next are missing here?
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/
 
-"Another way of specifying source is from an SCM. For Git
-repositories, you must specify SRCREV and you should specify PV to
-include the revision with SRCPV."
+Alex
 
-  you *must* specify SRCREV? i don't think that's true -- a couple
-examples from meta-oe ... here's hiredis_0.13.1.bb:
+--000000000000c70096059e9af849
+Content-Type: text/html; charset="UTF-8"
 
-SRC_URI = "git://github.com/redis/hiredis;protocol=git;rev=f58dd249d6ed47a7e835463c3b04722972281dbb \
+<div dir="ltr"><div>Something is wrong, as master and master-next are missing here?</div><div><a href="http://git.yoctoproject.org/cgit/cgit.cgi/poky/">http://git.yoctoproject.org/cgit/cgit.cgi/poky/</a></div><div><br></div><div>Alex<br></div></div>
 
-  and here's sshfs-fuse_2.8.bb:
-
-SRC_URI = "git://github.com/libfuse/sshfs;tag=b2fa7593586b141298e6159f40f521d2b0f4f894 \
-
-  neither of which specify SRCREV (clearly since they don't need to
-given the SRC_URI options in use).
-
-rday
-
-p.s. bitbake's git.py fetcher code makes no mention of the "rev"
-option in its opening docstring. just an observation if anyone wants
-to tweak that.
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                         http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+--000000000000c70096059e9af849--
