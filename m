@@ -1,56 +1,69 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.11433.1581857018167402536
+ by mx.groups.io with SMTP id smtpd.web10.14938.1581874684101996672
  for <yocto@lists.yoctoproject.org>;
- Sun, 16 Feb 2020 04:43:38 -0800
+ Sun, 16 Feb 2020 09:38:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 140.211.169.56, mailfrom: rpjday@crashcourse.ca)
+ dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 140.211.169.56, mailfrom: denis@denix.org)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0E8C8E0085D; Sun, 16 Feb 2020 04:43:38 -0800 (PST)
+	id AF2E4E01731; Sun, 16 Feb 2020 09:38:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AAD7E007D4
-	for <yocto@yoctoproject.org>; Sun, 16 Feb 2020 04:43:37 -0800 (PST)
-Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:60064 helo=localhost.localdomain)
-	by cpanel7.indieserve.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-	(Exim 4.92)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1j3JGq-001w26-7Q; Sun, 16 Feb 2020 07:43:37 -0500
-Date: Sun, 16 Feb 2020 07:43:31 -0500 (EST)
-From: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-cc: Yocto discussion list <yocto@yoctoproject.org>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
+	*      trust
+	*      [64.68.198.64 listed in list.dnswl.org]
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3BA3E0172E
+	for <yocto@yoctoproject.org>; Sun, 16 Feb 2020 09:38:02 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id CF10940A41;
+	Sun, 16 Feb 2020 17:38:01 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id dcKVapPbWAPo; Sun, 16 Feb 2020 17:38:01 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id AB6D34006B;
+	Sun, 16 Feb 2020 17:37:59 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 1505B174407; Sun, 16 Feb 2020 12:37:59 -0500 (EST)
+Date: Sun, 16 Feb 2020 12:37:59 -0500
+From: "Denys Dmytriyenko" <denis@denix.org>
+To: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
+Cc: Peter Kjellerstedt <peter.kjellerstedt@axis.com>,
+	Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: [yocto] [PATCH] dev-manual: phrase should read "inherit packagegroup"
-In-Reply-To: <cc93a0cda6814b41b6c00792d5cdafa8@XBOX03.axis.com>
-Message-ID: <alpine.LFD.2.21.2002160743080.2279870@localhost.localdomain>
-References: <alpine.LFD.2.21.2002141003040.2882208@localhost.localdomain> <cc93a0cda6814b41b6c00792d5cdafa8@XBOX03.axis.com>
+Message-ID: <20200216173759.GZ4735@denix.org>
+References: <alpine.LFD.2.21.2002141003040.2882208@localhost.localdomain>
+ <cc93a0cda6814b41b6c00792d5cdafa8@XBOX03.axis.com>
+ <alpine.LFD.2.21.2002160743080.2279870@localhost.localdomain>
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <alpine.LFD.2.21.2002160743080.2279870@localhost.localdomain>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Sun, 16 Feb 2020, Peter Kjellerstedt wrote:
+On Sun, Feb 16, 2020 at 07:43:31AM -0500, rpjday@crashcourse.ca wrote:
+> On Sun, 16 Feb 2020, Peter Kjellerstedt wrote:
+> 
+> > Wrong mailing list. Changes to (and discussions about) the
+> > documentation should go to docs@lists.yoctoproject.org since the end
+> > of January.
+> 
+>   ah, i was unaware of that list, my apologies.
 
-> Wrong mailing list. Changes to (and discussions about) the
-> documentation should go to docs@lists.yoctoproject.org since the end
-> of January.
+https://lists.yoctoproject.org/g/yocto/message/48362
+https://lists.yoctoproject.org/g/yocto/message/48392
+https://lists.yoctoproject.org/g/yocto/message/48439
 
-  ah, i was unaware of that list, my apologies.
 
-rday
+> rday
+
+> 
+
