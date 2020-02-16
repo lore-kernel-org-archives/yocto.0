@@ -1,70 +1,116 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.11370.1581856570706475735
+ by mx.groups.io with SMTP id smtpd.web09.11310.1581856779206877429
  for <yocto@lists.yoctoproject.org>;
- Sun, 16 Feb 2020 04:36:11 -0800
+ Sun, 16 Feb 2020 04:39:39 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 140.211.169.56, mailfrom: rpjday@crashcourse.ca)
+ dkim=fail reason="signature has expired" header.i=@axis.com header.s=axis-central1 header.b=gyynhZhP;
+ spf=fail (domain: axis.com, ip: 140.211.169.56, mailfrom: peter.kjellerstedt@axis.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2A85AE0085D; Sun, 16 Feb 2020 04:36:10 -0800 (PST)
+	id 15B40E0085D; Sun, 16 Feb 2020 04:39:39 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
+	*      medium trust
+	*      [195.60.68.17 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98530E007D4
-	for <yocto@yoctoproject.org>; Sun, 16 Feb 2020 04:36:09 -0800 (PST)
-Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:60018 helo=localhost.localdomain)
-	by cpanel7.indieserve.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-	(Exim 4.92)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1j3J9Z-001vPJ-28; Sun, 16 Feb 2020 07:36:05 -0500
-Date: Sun, 16 Feb 2020 07:36:02 -0500 (EST)
-From: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Peter Kjellerstedt <peter.kjellerstedt@axis.com>
-cc: Martin Jansa <Martin.Jansa@gmail.com>, 
-    Rudolf J Streif <rudolf.streif@ibeeto.com>, 
-    Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [yocto] does git SRC_URI really *require" a SRCREV setting?
-In-Reply-To: <b0131c98d689481f9e2e4c1f312ca806@XBOX03.axis.com>
-Message-ID: <alpine.LFD.2.21.2002160734250.2279565@localhost.localdomain>
-References: <alpine.LFD.2.21.2002150129460.2926947@localhost.localdomain> <61336b69-5456-3951-4b52-a6d471049612@ibeeto.com> <CA+chaQdy2=M+HeX93X1c-Ttk-1r6KtBXEFFS62Pkj19UQC_C3g@mail.gmail.com> <b0131c98d689481f9e2e4c1f312ca806@XBOX03.axis.com>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AF6DE007D4
+	for <yocto@yoctoproject.org>; Sun, 16 Feb 2020 04:39:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; l=1825; q=dns/txt; s=axis-central1;
+  t=1581856778; x=1613392778;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-transfer-encoding:mime-version;
+  bh=nCyetRVM4MVddutvIPwie9HHaw5dqLi/6FTiUN+3s/s=;
+  b=gyynhZhPS0GA2rd4vxaKyHPlVjVyXEyZPvS4+u0kckJikakhUnqqNCtY
+   vOynGZjy5jHan+WLbdW2NQQcjfg+py0IGFXBSuWZY6IWMD9JxYlNGcKF6
+   8H1eNHykFtuh3GXeYKmqSgFlaPpS5/cIOfQOdg9a4VrkKqAM1pMDerC/b
+   LbLMKc3x1n4hXty2E8AS7zldvN5TmycRWg6zmFneWtRsVvfGrLPw0Z0ZY
+   De7sCYS/pO6QqAW4d1L3a9DRB/Ap6h8LeOsRcG8tayWNDdq1gArgSEUHj
+   qCEkj2rD82YoKPw7WQk69HAAqluyfidpSxq3rOQvkOp50iwoYNUlJO2QW
+   Q==;
+IronPort-SDR: NbPrq5cmTwFbUQ7bEfgnTAkQLlpS9YlUHuORFxZPP5xUgcqv7KltB1dCN+76l+IA3KLSHXYEOg
+ E3arU6H4V0TIGnoSs7C8AjikC9F39m8MPU2QhJtdP97Ak4CrH/8SEIxdRcz/eV+9dZ38H4uKlv
+ kTYFTl3zcj10uB10rGGUiQSfECCsbp2VhyCVmD4hrV10La6lBr3IR0vyME9xhfORb9DBlB55Lc
+ Vcc66Wt8M2O9xxePbzf5dtGnLN6QzejJ3sqD3EM19QoH+hFZ1Dp7WBiF4EtzUKfKMWI+bAdlqy
+ 9SI=
+X-IronPort-AV: E=Sophos;i="5.70,448,1574118000"; 
+   d="scan'208";a="5467845"
+From: "Peter Kjellerstedt" <peter.kjellerstedt@axis.com>
+To: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Subject: Re: [yocto] [PATCH] dev-manual: phrase should read "inherit packagegroup"
+Thread-Topic: [yocto] [PATCH] dev-manual: phrase should read "inherit
+ packagegroup"
+Thread-Index: AQHV40gL2gaW0MZKfEKaEVpc5cZ5oKgdw28w
+Date: Sun, 16 Feb 2020 12:39:35 +0000
+Message-ID: <cc93a0cda6814b41b6c00792d5cdafa8@XBOX03.axis.com>
+References: <alpine.LFD.2.21.2002141003040.2882208@localhost.localdomain>
+In-Reply-To: <alpine.LFD.2.21.2002141003040.2882208@localhost.localdomain>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.0.5.60]
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: multipart/mixed; boundary="8323328-839189902-1581856565=:2279565"
-
---8323328-839189902-1581856565=:2279565
-Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, 16 Feb 2020, Peter Kjellerstedt wrote:
+Wrong mailing list. Changes to (and discussions about) the documentation=20
+should go to docs@lists.yoctoproject.org since the end of January.
 
-> We use tags in SRCREV for our own recipes since we have control over
-> them and know that the tags won=E2=80=99t move. If one sets BB_SRCREV_P=
-OLICY
-> =3D "cache", then bitbake will not do `git ls-remote` for the tags
-> more than once. So as long as you have built once you can then build
-> again without network. (Setting BB_SRCREV_POLICY =3D "cache" currently
-> breaks ${AUTOREV}, but I sent patches for that the other day.)
+//Peter
 
-  ah, this is useful to know, and probably belongs in a YP manual
-somewhere; perhaps in a section called, "cool things that no one ever
-mentions." :-)
-
-rday
-
---8323328-839189902-1581856565=:2279565--
+> -----Original Message-----
+> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
+> Behalf Of rpjday@crashcourse.ca
+> Sent: den 14 februari 2020 16:04
+> To: Yocto discussion list <yocto@yoctoproject.org>
+> Subject: [yocto] [PATCH] dev-manual: phrase should read "inherit packageg=
+roup"
+>=20
+>=20
+> Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+>=20
+> ---
+>=20
+> diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml
+> b/documentation/dev-manual/dev-manual-common-tasks.xml
+> index 1e6addde4..d230ea90a 100644
+> --- a/documentation/dev-manual/dev-manual-common-tasks.xml
+> +++ b/documentation/dev-manual/dev-manual-common-tasks.xml
+> @@ -1397,7 +1397,7 @@
+>                  package specified in the <filename>PACKAGES</filename>
+>                  statement.
+>                  <note>
+> -                    The <filename>inherit packages</filename> should be
+> +                    The <filename>inherit packagegroup</filename> line s=
+hould be
+>                      located near the top of the recipe, certainly before
+>                      the <filename>PACKAGES</filename> statement.
+>                  </note>
+>=20
+> --
+>=20
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                          http://crashcourse.ca
+>=20
+> Twitter:                                       http://twitter.com/rpjday
+> LinkedIn:                               http://ca.linkedin.com/in/rpjday
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
