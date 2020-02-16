@@ -1,69 +1,275 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.3551.1581796617627674352
+ by mx.groups.io with SMTP id smtpd.web10.11261.1581855825114015353
  for <yocto@lists.yoctoproject.org>;
- Sat, 15 Feb 2020 11:56:57 -0800
+ Sun, 16 Feb 2020 04:23:45 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=neutral (domain: crashcourse.ca, ip: 140.211.169.56, mailfrom: rpjday@crashcourse.ca)
+ dkim=fail reason="signature has expired" header.i=@axis.com header.s=axis-central1 header.b=odpLcHhf;
+ spf=fail (domain: axis.com, ip: 140.211.169.56, mailfrom: peter.kjellerstedt@axis.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 256B8E0172B; Sat, 15 Feb 2020 11:56:57 -0800 (PST)
+	id 70F33E01562; Sun, 16 Feb 2020 04:23:44 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_MED autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from cpanel7.indieserve.net (cpanel7.indieserve.net [199.212.143.8])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F276FE00C29
-	for <yocto@yoctoproject.org>; Sat, 15 Feb 2020 11:56:55 -0800 (PST)
-Received: from cpef81d0f814063-cmf81d0f814060.cpe.net.cable.rogers.com ([174.114.57.56]:57178 helo=localhost.localdomain)
-	by cpanel7.indieserve.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-	(Exim 4.92)
-	(envelope-from <rpjday@crashcourse.ca>)
-	id 1j33Yc-000Ylg-En
-	for yocto@yoctoproject.org; Sat, 15 Feb 2020 14:56:55 -0500
-Date: Sat, 15 Feb 2020 14:56:52 -0500 (EST)
-From: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost.localdomain
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: devicetree.bbclass is not explained in YP reference manual
-Message-ID: <alpine.LFD.2.21.2002151453420.1996541@localhost.localdomain>
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
+	*      medium trust
+	*      [195.60.68.17 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www; Sun, 16 Feb 2020 04:23:42 PST
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6587AE007D4
+	for <yocto@yoctoproject.org>; Sun, 16 Feb 2020 04:23:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; l=14984; q=dns/txt; s=axis-central1;
+  t=1581855822; x=1613391822;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:mime-version;
+  bh=16eSm4OXkdmMLIl//A/0IIl7qO/B7bGI1UZpK0TcAAI=;
+  b=odpLcHhf9NLkxjAXN6scC3tq8kQB4jVl3/d/V+42wr3fZUo9WsuCcB8s
+   gsGm6tNRc3VfLpZKFYIyUN+/w6zhbLJrzjWpA2wlnAjrMjCyfuqedDQW5
+   OklRT+TosBa5SdK1Mz4XUsoAH0hZuE8n8DLifFuxtFqAsNgESOHsn/tOR
+   RZ/6pJnOa/ghckUyRVyZOnptkfeGdCtOcP0C0aU6yo/Apyi1Qy1eAGV8+
+   dpEFvt0HHISyCxRT6FrdWrmwjGlPuwkyWY42YHalpnd3WGWXadj3CQukQ
+   CWRReLxzghYx+ZHKzj+rhaJO//u8OVllug5OjVQ4Pa3UVh2m3EftW2TGX
+   Q==;
+IronPort-SDR: VUDC+/tkdDc3BX9ibulUennVRQT/6sWdxK1f/JuPgGXmoWk/DJopJqOs/uw7HeXUhfhIiNpI9t
+ WYHXZY0CrvGsdq8lf7b6nWojiV49dLvim+eCc8mBKX9cUyJoBYZTfFJ2RlkHd9qrLV576BZLzP
+ GyrntMnch1cZUyXhQAxKac/Pn1oz4opl4Fk95y5J0qjjP7nScvccPWOqMV2TElUizI1u/vYPeP
+ RsN35RszYG8MRr99Dc8R1zy0McmJOdOjS7bzrL9rqkug1Tb1H3AmGveXK0TDGOjG+MgVcyH2gJ
+ vmU=
+X-IronPort-AV: E=Sophos;i="5.70,448,1574118000"; 
+   d="scan'208,217";a="5467665"
+From: "Peter Kjellerstedt" <peter.kjellerstedt@axis.com>
+To: Martin Jansa <Martin.Jansa@gmail.com>, Rudolf J Streif
+	<rudolf.streif@ibeeto.com>
+CC: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Subject: Re: [yocto] does git SRC_URI really *require" a SRCREV setting?
+Thread-Topic: [yocto] does git SRC_URI really *require" a SRCREV setting?
+Thread-Index: AQHV48oultOTQYuC/EW0k11VHxKVTqgcc5oAgAABp4CAAUeqwA==
+Date: Sun, 16 Feb 2020 12:22:35 +0000
+Message-ID: <b0131c98d689481f9e2e4c1f312ca806@XBOX03.axis.com>
+References: <alpine.LFD.2.21.2002150129460.2926947@localhost.localdomain>
+ <61336b69-5456-3951-4b52-a6d471049612@ibeeto.com>
+ <CA+chaQdy2=M+HeX93X1c-Ttk-1r6KtBXEFFS62Pkj19UQC_C3g@mail.gmail.com>
+In-Reply-To: <CA+chaQdy2=M+HeX93X1c-Ttk-1r6KtBXEFFS62Pkj19UQC_C3g@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.0.5.60]
 MIME-Version: 1.0
-X-OutGoing-Spam-Status: No, score=-0.2
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel7.indieserve.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Get-Message-Sender-Via: cpanel7.indieserve.net: authenticated_id: rpjday+crashcourse.ca/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: cpanel7.indieserve.net: rpjday@crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Content-Type: text/plain; charset=US-ASCII
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_b0131c98d689481f9e2e4c1f312ca806XBOX03axiscom_"
 
+--_000_b0131c98d689481f9e2e4c1f312ca806XBOX03axiscom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-  for wholly-unrelated reasons, i fell across devicetree.bbclass and
-was inspired to check what inherited it, and noticed that nothing in
-oe-core or meta-openembedded inherited it ... i had to dig around
-through all the layers on my system until i found it inherited from
-meta-xilinx, and nowhere else.
+V2UgdXNlIHRhZ3MgaW4gU1JDUkVWIGZvciBvdXIgb3duIHJlY2lwZXMgc2luY2Ugd2UgaGF2ZSBj
+b250cm9sIG92ZXIgdGhlbSBhbmQga25vdyB0aGF0IHRoZSB0YWdzIHdvbuKAmXQgbW92ZS4gSWYg
+b25lIHNldHMgQkJfU1JDUkVWX1BPTElDWSA9ICJjYWNoZSIsIHRoZW4gYml0YmFrZSB3aWxsIG5v
+dCBkbyBgZ2l0IGxzLXJlbW90ZWAgZm9yIHRoZSB0YWdzIG1vcmUgdGhhbiBvbmNlLiBTbyBhcyBs
+b25nIGFzIHlvdSBoYXZlIGJ1aWx0IG9uY2UgeW91IGNhbiB0aGVuIGJ1aWxkIGFnYWluIHdpdGhv
+dXQgbmV0d29yay4gKFNldHRpbmcgQkJfU1JDUkVWX1BPTElDWSA9ICJjYWNoZSIgY3VycmVudGx5
+IGJyZWFrcyAke0FVVE9SRVZ9LCBidXQgSSBzZW50IHBhdGNoZXMgZm9yIHRoYXQgdGhlIG90aGVy
+IGRheS4pDQoNCi8vUGV0ZXINCg0KRnJvbTogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8
+eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gT24gQmVoYWxmIE9mIE1hcnRpbiBKYW5zYQ0K
+U2VudDogZGVuIDE1IGZlYnJ1YXJpIDIwMjAgMTg6MzkNClRvOiBSdWRvbGYgSiBTdHJlaWYgPHJ1
+ZG9sZi5zdHJlaWZAaWJlZXRvLmNvbT4NCkNjOiBycGpkYXlAY3Jhc2hjb3Vyc2UuY2E7IFlvY3Rv
+IGRpc2N1c3Npb24gbGlzdCA8eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZz4NClN1YmplY3Q6IFJlOiBb
+eW9jdG9dIGRvZXMgZ2l0IFNSQ19VUkkgcmVhbGx5ICpyZXF1aXJlIiBhIFNSQ1JFViBzZXR0aW5n
+Pw0KDQpCb3RoIHJlY2lwZXMgc2hvdWxkIGJlIHVwZGF0ZWQgdG8gdXNlIFNSQ1JFViBsaWtlIGFu
+eSBvdGhlciByZWNpcGUsIEknbGwgc2VuZCBwYXRjaCBmb3IgdGhhdC4NCg0KVGhlIGRvY3VtZW50
+YXRpb24gc2hvdWxkIGFsc28gbWVudGlvbiB0aGF0IHVzaW5nIHRhZyBuYW1lcyBpbiBTUkNSRVYg
+KG9yIHRhZyBwYXJhbWV0ZXIpIGlzIG5vdCByZWNvbW1lbmRlZCwgYmVjYXVzZSB0YWdzIGNhbiBi
+ZSBtb3ZlZCBhbmQgYml0YmFrZSB3aWxsIGFsd2F5cyB1c2UgImdpdCBscy1yZW1vdGUiIHRvIG1h
+cCB0aGUgdGFnIG5hbWUgdG8gYWN0dWFsIGdpdCBzaGEsIHdoaWNoIG5lZWRzIHRvIHVwc3RyZWFt
+IHJlcG8gdG8gYmUgYXZhaWxhYmxlIChicmVha2luZyB0aGUgYnVpbGRzIHdpdGhvdXQgYWNjZXNz
+IHRvIHRoZSBuZXR3b3JrKS4NCg0KT24gU2F0LCBGZWIgMTUsIDIwMjAgYXQgNjozMyBQTSBSdWRv
+bGYgSiBTdHJlaWYgPHJ1ZG9sZi5zdHJlaWZAaWJlZXRvLmNvbTxtYWlsdG86cnVkb2xmLnN0cmVp
+ZkBpYmVldG8uY29tPj4gd3JvdGU6DQoNClRoZSB3b3JkaW5nIG1pZ2h0IG5lZWQgaW1wcm92ZW1l
+bnQgYnV0IGJvdGggb2YgeW91ciBleGFtcGxlcyBhY3R1YWxseSBkbyBwcm92aWRlIFNSQ19SRVYg
+YnV0IGluIHRoZSBpbmxpbmUgZm9ybSB3aXRoIFNSQ19VUkkgKHJldi90YWcpLg0KDQpUaGUgZG9j
+dW1lbnRhdGlvbiBzaG91bGQgcHJvYmFibHkgc2F5IHNvbWV0aGluZyBsaWtlIFNSQ19SRVYgbmVl
+ZHMgdG8gYmUgcHJvdmlkZWQgYnV0IGl0IGNhbiBlaXRoZXIgYmUgZG9uZSBieSBzZXR0aW5nIHRo
+ZSB2YXJpYWJsZSBleHBsaWNpdGx5IG9yIGJ5IHVzaW5nIHRoZSByZXYvdGFnIG9wdGlvbiB3aXRo
+IFNSQ19VUkkuDQoNCjpyanMNCk9uIDIvMTQvMjAgMTA6MzUgUE0sIHJwamRheUBjcmFzaGNvdXJz
+ZS5jYTxtYWlsdG86cnBqZGF5QGNyYXNoY291cnNlLmNhPiB3cm90ZToNCg0KICB5ZXMsIHllcywg
+bW9yZSBvYnNlc3NpdmUtY29tcHVsc2l2ZSBuaXRwaWNrZXJ5LCBidXQgWVAgZGV2IHRhc2tzDQoN
+Cm1hbnVhbCwgc2VjdGlvbiAzLjMuNSwgcmVhZHM6DQoNCg0KDQoiQW5vdGhlciB3YXkgb2Ygc3Bl
+Y2lmeWluZyBzb3VyY2UgaXMgZnJvbSBhbiBTQ00uIEZvciBHaXQNCg0KcmVwb3NpdG9yaWVzLCB5
+b3UgbXVzdCBzcGVjaWZ5IFNSQ1JFViBhbmQgeW91IHNob3VsZCBzcGVjaWZ5IFBWIHRvDQoNCmlu
+Y2x1ZGUgdGhlIHJldmlzaW9uIHdpdGggU1JDUFYuIg0KDQoNCg0KICB5b3UgKm11c3QqIHNwZWNp
+ZnkgU1JDUkVWPyBpIGRvbid0IHRoaW5rIHRoYXQncyB0cnVlIC0tIGEgY291cGxlDQoNCmV4YW1w
+bGVzIGZyb20gbWV0YS1vZSAuLi4gaGVyZSdzIGhpcmVkaXNfMC4xMy4xLmJiPGh0dHA6Ly9oaXJl
+ZGlzXzAuMTMuMS5iYj46DQoNCg0KDQpTUkNfVVJJID0gImdpdDovL2dpdGh1Yi5jb20vcmVkaXMv
+aGlyZWRpcztwcm90b2NvbD1naXQ7cmV2PWY1OGRkMjQ5ZDZlZDQ3YTdlODM1NDYzYzNiMDQ3MjI5
+NzIyODFkYmI8aHR0cDovL2dpdGh1Yi5jb20vcmVkaXMvaGlyZWRpcztwcm90b2NvbD1naXQ7cmV2
+PWY1OGRkMjQ5ZDZlZDQ3YTdlODM1NDYzYzNiMDQ3MjI5NzIyODFkYmI+IFwNCg0KDQoNCiAgYW5k
+IGhlcmUncyBzc2hmcy1mdXNlXzIuOC5iYjxodHRwOi8vc3NoZnMtZnVzZV8yLjguYmI+Og0KDQoN
+Cg0KU1JDX1VSSSA9ICJnaXQ6Ly9naXRodWIuY29tL2xpYmZ1c2Uvc3NoZnM7dGFnPWIyZmE3NTkz
+NTg2YjE0MTI5OGU2MTU5ZjQwZjUyMWQyYjBmNGY4OTQ8aHR0cDovL2dpdGh1Yi5jb20vbGliZnVz
+ZS9zc2hmczt0YWc9YjJmYTc1OTM1ODZiMTQxMjk4ZTYxNTlmNDBmNTIxZDJiMGY0Zjg5ND4gXA0K
+DQoNCg0KICBuZWl0aGVyIG9mIHdoaWNoIHNwZWNpZnkgU1JDUkVWIChjbGVhcmx5IHNpbmNlIHRo
+ZXkgZG9uJ3QgbmVlZCB0bw0KDQpnaXZlbiB0aGUgU1JDX1VSSSBvcHRpb25zIGluIHVzZSkuDQoN
+Cg0KDQpyZGF5DQoNCg0KDQpwLnMuIGJpdGJha2UncyBnaXQucHkgZmV0Y2hlciBjb2RlIG1ha2Vz
+IG5vIG1lbnRpb24gb2YgdGhlICJyZXYiDQoNCm9wdGlvbiBpbiBpdHMgb3BlbmluZyBkb2NzdHJp
+bmcuIGp1c3QgYW4gb2JzZXJ2YXRpb24gaWYgYW55b25lIHdhbnRzDQoNCnRvIHR3ZWFrIHRoYXQu
+DQoNCg0KDQoNCi0tDQoNCi0tLS0tDQoNClJ1ZG9sZiBKIFN0cmVpZg0KDQpDRU8vQ1RPIGliZWV0
+bw0KDQorMS44NTUuNDQyLjMzODYgeDcwMA0KDQo=
 
-  in any event, there is no mention of that class file in the YP
-reference manual in the classes section ... should there be?
+--_000_b0131c98d689481f9e2e4c1f312ca806XBOX03axiscom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-rday
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDb25zb2xhczsNCglwYW5vc2UtMToyIDEx
+IDYgOSAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
+IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0
+b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixz
+YW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9y
+aXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZp
+c2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5
+Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnByZQ0KCXtt
+c28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxlLWxpbms6IkhUTUwgUHJlZm9ybWF0dGVk
+IENoYXIiOw0KCW1hcmdpbjowY207DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6
+ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3Ijt9DQpwLm1zb25vcm1hbDAsIGxp
+Lm1zb25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1lOm1zb25vcm1hbDsN
+Cgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGNtOw0KCW1zby1tYXJn
+aW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsNCglmb250LXNpemU6MTEuMHB0
+Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCnNwYW4uSFRNTFByZWZvcm1h
+dHRlZENoYXINCgl7bXNvLXN0eWxlLW5hbWU6IkhUTUwgUHJlZm9ybWF0dGVkIENoYXIiOw0KCW1z
+by1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiSFRNTCBQcmVmb3JtYXR0ZWQi
+Ow0KCWZvbnQtZmFtaWx5OkNvbnNvbGFzOw0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOlNWO30NCnNw
+YW4uRW1haWxTdHlsZTIxDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQt
+ZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiM5NDM2MzQ7DQoJZm9udC13ZWln
+aHQ6bm9ybWFsOw0KCWZvbnQtc3R5bGU6bm9ybWFsO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1z
+dHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlm
+Ow0KCW1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtz
+aXplOjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46NzAuODVwdCA3MC44NXB0IDcwLjg1cHQgNzAu
+ODVwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5
+bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0
+IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDld
+Pjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRp
+dCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVh
+ZD4NCjxib2R5IGxhbmc9IlNWIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xh
+c3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1V
+UyIgc3R5bGU9ImNvbG9yOiM5NDM2MzQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPldlIHVz
+ZSB0YWdzIGluIFNSQ1JFViBmb3Igb3VyIG93biByZWNpcGVzIHNpbmNlIHdlIGhhdmUgY29udHJv
+bCBvdmVyIHRoZW0gYW5kIGtub3cgdGhhdCB0aGUgdGFncyB3b27igJl0IG1vdmUuIElmIG9uZSBz
+ZXRzIEJCX1NSQ1JFVl9QT0xJQ1kgPSAmcXVvdDtjYWNoZSZxdW90OywgdGhlbiBiaXRiYWtlIHdp
+bGwgbm90DQogZG8gYGdpdCBscy1yZW1vdGVgIGZvciB0aGUgdGFncyBtb3JlIHRoYW4gb25jZS4g
+U28gYXMgbG9uZyBhcyB5b3UgaGF2ZSBidWlsdCBvbmNlIHlvdSBjYW4gdGhlbiBidWlsZCBhZ2Fp
+biB3aXRob3V0IG5ldHdvcmsuIChTZXR0aW5nIEJCX1NSQ1JFVl9QT0xJQ1kgPSAmcXVvdDtjYWNo
+ZSZxdW90OyBjdXJyZW50bHkgYnJlYWtzICR7QVVUT1JFVn0sIGJ1dCBJIHNlbnQgcGF0Y2hlcyBm
+b3IgdGhhdCB0aGUgb3RoZXIgZGF5Lik8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
+TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImNvbG9yOiM5NDM2MzQ7bXNvLWZh
+cmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29sb3I6Izk0MzYzNDtt
+c28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+Ly9QZXRlcjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29sb3I6Izk0
+MzYzNDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVw
+dDtwYWRkaW5nOjBjbSAwY20gMGNtIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6
+bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBwdCAwY20gMGNt
+IDBjbSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyI+RnJvbTo8
+L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVTIj4geW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9y
+ZyAmbHQ7eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyZndDsNCjxiPk9uIEJlaGFsZiBPZiA8
+L2I+TWFydGluIEphbnNhPGJyPg0KPGI+U2VudDo8L2I+IGRlbiAxNSBmZWJydWFyaSAyMDIwIDE4
+OjM5PGJyPg0KPGI+VG86PC9iPiBSdWRvbGYgSiBTdHJlaWYgJmx0O3J1ZG9sZi5zdHJlaWZAaWJl
+ZXRvLmNvbSZndDs8YnI+DQo8Yj5DYzo8L2I+IHJwamRheUBjcmFzaGNvdXJzZS5jYTsgWW9jdG8g
+ZGlzY3Vzc2lvbiBsaXN0ICZsdDt5b2N0b0B5b2N0b3Byb2plY3Qub3JnJmd0Ozxicj4NCjxiPlN1
+YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBkb2VzIGdpdCBTUkNfVVJJIHJlYWxseSAqcmVxdWlyZSZx
+dW90OyBhIFNSQ1JFViBzZXR0aW5nPzxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9k
+aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIj5Cb3RoIHJlY2lwZXMgc2hvdWxkIGJlIHVwZGF0ZWQgdG8gdXNl
+IFNSQ1JFViBsaWtlIGFueSBvdGhlciByZWNpcGUsIEknbGwgc2VuZCBwYXRjaCBmb3IgdGhhdC48
+bzpwPjwvbzpwPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9
+IkVOLVVTIj5UaGUgZG9jdW1lbnRhdGlvbiBzaG91bGQgYWxzbyBtZW50aW9uIHRoYXQgdXNpbmcg
+dGFnIG5hbWVzIGluIFNSQ1JFViAob3IgdGFnIHBhcmFtZXRlcikgaXMgbm90IHJlY29tbWVuZGVk
+LCBiZWNhdXNlIHRhZ3MgY2FuIGJlIG1vdmVkIGFuZCBiaXRiYWtlIHdpbGwgYWx3YXlzIHVzZSAm
+cXVvdDtnaXQgbHMtcmVtb3RlJnF1b3Q7IHRvIG1hcCB0aGUgdGFnIG5hbWUgdG8gYWN0dWFsIGdp
+dCBzaGEsDQogd2hpY2ggbmVlZHMgdG8gdXBzdHJlYW0gcmVwbyB0byBiZSBhdmFpbGFibGUgKGJy
+ZWFraW5nIHRoZSBidWlsZHMgd2l0aG91dCBhY2Nlc3MgdG8gdGhlIG5ldHdvcmspLjxvOnA+PC9v
+OnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
+biBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxkaXY+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5PbiBTYXQsIEZlYiAxNSwgMjAyMCBhdCA2OjMzIFBNIFJ1
+ZG9sZiBKIFN0cmVpZiAmbHQ7PGEgaHJlZj0ibWFpbHRvOnJ1ZG9sZi5zdHJlaWZAaWJlZXRvLmNv
+bSI+cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+
+DQo8L2Rpdj4NCjxibG9ja3F1b3RlIHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVmdDpzb2xp
+ZCAjQ0NDQ0NDIDEuMHB0O3BhZGRpbmc6MGNtIDBjbSAwY20gNi4wcHQ7bWFyZ2luLWxlZnQ6NC44
+cHQ7bWFyZ2luLXJpZ2h0OjBjbSI+DQo8ZGl2Pg0KPHA+VGhlIHdvcmRpbmcgbWlnaHQgbmVlZCBp
+bXByb3ZlbWVudCBidXQgYm90aCBvZiB5b3VyIGV4YW1wbGVzIGFjdHVhbGx5IGRvIHByb3ZpZGUg
+U1JDX1JFViBidXQgaW4gdGhlIGlubGluZSBmb3JtIHdpdGggU1JDX1VSSSAocmV2L3RhZykuPG86
+cD48L286cD48L3A+DQo8cD5UaGUgZG9jdW1lbnRhdGlvbiBzaG91bGQgcHJvYmFibHkgc2F5IHNv
+bWV0aGluZyBsaWtlIFNSQ19SRVYgbmVlZHMgdG8gYmUgcHJvdmlkZWQgYnV0IGl0IGNhbiBlaXRo
+ZXIgYmUgZG9uZSBieSBzZXR0aW5nIHRoZSB2YXJpYWJsZSBleHBsaWNpdGx5IG9yIGJ5IHVzaW5n
+IHRoZSByZXYvdGFnIG9wdGlvbiB3aXRoIFNSQ19VUkkuPG86cD48L286cD48L3A+DQo8cD46cmpz
+PG86cD48L286cD48L3A+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+T24gMi8xNC8yMCAx
+MDozNSBQTSwgPGEgaHJlZj0ibWFpbHRvOnJwamRheUBjcmFzaGNvdXJzZS5jYSIgdGFyZ2V0PSJf
+YmxhbmsiPg0KcnBqZGF5QGNyYXNoY291cnNlLmNhPC9hPiB3cm90ZTo8bzpwPjwvbzpwPjwvcD4N
+CjwvZGl2Pg0KPGJsb2NrcXVvdGUgc3R5bGU9Im1hcmdpbi10b3A6NS4wcHQ7bWFyZ2luLWJvdHRv
+bTo1LjBwdCI+DQo8cHJlPiZuYnNwOyB5ZXMsIHllcywgbW9yZSBvYnNlc3NpdmUtY29tcHVsc2l2
+ZSBuaXRwaWNrZXJ5LCBidXQgWVAgZGV2IHRhc2tzPG86cD48L286cD48L3ByZT4NCjxwcmU+bWFu
+dWFsLCBzZWN0aW9uIDMuMy41LCByZWFkczo8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT48bzpwPiZu
+YnNwOzwvbzpwPjwvcHJlPg0KPHByZT4mcXVvdDtBbm90aGVyIHdheSBvZiBzcGVjaWZ5aW5nIHNv
+dXJjZSBpcyBmcm9tIGFuIFNDTS4gRm9yIEdpdDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPnJlcG9z
+aXRvcmllcywgeW91IG11c3Qgc3BlY2lmeSBTUkNSRVYgYW5kIHlvdSBzaG91bGQgc3BlY2lmeSBQ
+ViB0bzxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPmluY2x1ZGUgdGhlIHJldmlzaW9uIHdpdGggU1JD
+UFYuJnF1b3Q7PG86cD48L286cD48L3ByZT4NCjxwcmU+PG86cD4mbmJzcDs8L286cD48L3ByZT4N
+CjxwcmU+Jm5ic3A7IHlvdSAqbXVzdCogc3BlY2lmeSBTUkNSRVY/IGkgZG9uJ3QgdGhpbmsgdGhh
+dCdzIHRydWUgLS0gYSBjb3VwbGU8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5leGFtcGxlcyBmcm9t
+IG1ldGEtb2UgLi4uIGhlcmUncyA8YSBocmVmPSJodHRwOi8vaGlyZWRpc18wLjEzLjEuYmIiIHRh
+cmdldD0iX2JsYW5rIj5oaXJlZGlzXzAuMTMuMS5iYjwvYT46PG86cD48L286cD48L3ByZT4NCjxw
+cmU+PG86cD4mbmJzcDs8L286cD48L3ByZT4NCjxwcmU+U1JDX1VSSSA9ICZxdW90O2dpdDovLzxh
+IGhyZWY9Imh0dHA6Ly9naXRodWIuY29tL3JlZGlzL2hpcmVkaXM7cHJvdG9jb2w9Z2l0O3Jldj1m
+NThkZDI0OWQ2ZWQ0N2E3ZTgzNTQ2M2MzYjA0NzIyOTcyMjgxZGJiIiB0YXJnZXQ9Il9ibGFuayI+
+Z2l0aHViLmNvbS9yZWRpcy9oaXJlZGlzO3Byb3RvY29sPWdpdDtyZXY9ZjU4ZGQyNDlkNmVkNDdh
+N2U4MzU0NjNjM2IwNDcyMjk3MjI4MWRiYjwvYT4gXDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9wcmU+DQo8cHJlPiZuYnNwOyBhbmQgaGVyZSdzIDxhIGhyZWY9Imh0
+dHA6Ly9zc2hmcy1mdXNlXzIuOC5iYiIgdGFyZ2V0PSJfYmxhbmsiPnNzaGZzLWZ1c2VfMi44LmJi
+PC9hPjo8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT48bzpwPiZuYnNwOzwvbzpwPjwvcHJlPg0KPHBy
+ZT5TUkNfVVJJID0gJnF1b3Q7Z2l0Oi8vPGEgaHJlZj0iaHR0cDovL2dpdGh1Yi5jb20vbGliZnVz
+ZS9zc2hmczt0YWc9YjJmYTc1OTM1ODZiMTQxMjk4ZTYxNTlmNDBmNTIxZDJiMGY0Zjg5NCIgdGFy
+Z2V0PSJfYmxhbmsiPmdpdGh1Yi5jb20vbGliZnVzZS9zc2hmczt0YWc9YjJmYTc1OTM1ODZiMTQx
+Mjk4ZTYxNTlmNDBmNTIxZDJiMGY0Zjg5NDwvYT4gXDxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9wcmU+DQo8cHJlPiZuYnNwOyBuZWl0aGVyIG9mIHdoaWNoIHNwZWNp
+ZnkgU1JDUkVWIChjbGVhcmx5IHNpbmNlIHRoZXkgZG9uJ3QgbmVlZCB0bzxvOnA+PC9vOnA+PC9w
+cmU+DQo8cHJlPmdpdmVuIHRoZSBTUkNfVVJJIG9wdGlvbnMgaW4gdXNlKS48bzpwPjwvbzpwPjwv
+cHJlPg0KPHByZT48bzpwPiZuYnNwOzwvbzpwPjwvcHJlPg0KPHByZT5yZGF5PG86cD48L286cD48
+L3ByZT4NCjxwcmU+PG86cD4mbmJzcDs8L286cD48L3ByZT4NCjxwcmU+cC5zLiBiaXRiYWtlJ3Mg
+Z2l0LnB5IGZldGNoZXIgY29kZSBtYWtlcyBubyBtZW50aW9uIG9mIHRoZSAmcXVvdDtyZXYmcXVv
+dDs8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT5vcHRpb24gaW4gaXRzIG9wZW5pbmcgZG9jc3RyaW5n
+LiBqdXN0IGFuIG9ic2VydmF0aW9uIGlmIGFueW9uZSB3YW50czxvOnA+PC9vOnA+PC9wcmU+DQo8
+cHJlPnRvIHR3ZWFrIHRoYXQuPG86cD48L286cD48L3ByZT4NCjxwcmU+PG86cD4mbmJzcDs8L286
+cD48L3ByZT4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9i
+bG9ja3F1b3RlPg0KPHByZT4tLSA8bzpwPjwvbzpwPjwvcHJlPg0KPHByZT4tLS0tLTxvOnA+PC9v
+OnA+PC9wcmU+DQo8cHJlPlJ1ZG9sZiBKIFN0cmVpZjxvOnA+PC9vOnA+PC9wcmU+DQo8cHJlPkNF
+Ty9DVE8gaWJlZXRvPG86cD48L286cD48L3ByZT4NCjxwcmU+JiM0MzsxLjg1NS40NDIuMzM4NiB4
+NzAwPG86cD48L286cD48L3ByZT4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4m
+bmJzcDs8L286cD48L3A+DQo8L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8
+L2JvZHk+DQo8L2h0bWw+DQo=
 
-p.s. i noticed there is also a kernel-devicetree.bbclass file -- i'm
-going through both of them now to understand what they do.
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                         http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+--_000_b0131c98d689481f9e2e4c1f312ca806XBOX03axiscom_--
