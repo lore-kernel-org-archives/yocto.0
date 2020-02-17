@@ -1,299 +1,462 @@
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
- by mx.groups.io with SMTP id smtpd.web10.10782.1581955867218064850
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+ by mx.groups.io with SMTP id smtpd.web11.11765.1581958384397901933
  for <yocto@lists.yoctoproject.org>;
- Mon, 17 Feb 2020 08:11:07 -0800
+ Mon, 17 Feb 2020 08:53:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=t4z/mGmT;
- spf=pass (domain: gmail.com, ip: 209.85.222.42, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ua1-f42.google.com with SMTP id c7so6334298uaf.5
-        for <yocto@lists.yoctoproject.org>; Mon, 17 Feb 2020 08:11:07 -0800 (PST)
+ dkim=pass header.i=@ibeeto-com.20150623.gappssmtp.com header.s=20150623 header.b=DN235z60;
+ spf=neutral (domain: ibeeto.com, ip: 209.85.215.176, mailfrom: rudolf.streif@ibeeto.com)
+Received: by mail-pg1-f176.google.com with SMTP id v23so6094919pgk.2
+        for <yocto@lists.yoctoproject.org>; Mon, 17 Feb 2020 08:53:04 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5WPWC+UXYFi64PyUPlOX35v/nxC67X67iAffbUOPQA8=;
-        b=t4z/mGmTKExzOEN74E9pefjYUhmvsMhe3YqQq7lFNZdZAAihTzNb9AULUiBjyF1TBn
-         /bORe+grb3xOQ3EIRRRDwEFw7HK9+cSLSJW0OlcmacGjNQYnc2HfmAVWoPRL9MdDFIiH
-         ZaDDL+XXNAO1g3O9uNOiB53Eyxq3NbpB1q3DkhWnPFXNmM4gL6vm7o3Xs2VAuPkjavWo
-         muD8VwSkQgN/0VgYKintAKs/5RYjcwevPA1zC8GmJ8ltYTOUSNS/CZU/4wkQZvPds5Jn
-         gZE/v+AXrLMtGKDcx4AVwNUuI4XlgvUaaFUjKZKduXxhoHkW6Sa8Yvs77VaiCZTPbBY0
-         5Ydw==
+        d=ibeeto-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to;
+        bh=ghqHfT+fa3GPaT0QpD+wDw3HPX7gryHprU/3Cm3MiE8=;
+        b=DN235z60LfFFZGRsiPDjx3nDREGZDm9CKZbvePg4Bb6IKu+cXAkuVuUjVPkFATCV5v
+         JSZ+34l/koauCqmZ/5v0H2qvBhTr0x0XgcTiuun4wePVj12ebqpoxaPtC+iw6FrSrXtb
+         CEgKiUlhG9vItnQ40Jd1U+TbHmA4PWZ8QQXeBAgzavK18B20+edpqfIhejoo7/hZfW8q
+         ZmZVPpuz7kTplt+HbXXElU8jxBatsOA/VJU1JjWZKx7JcefJc21+GKQGRML6ujv40BaL
+         yk+tHPLKpKSBR+cleIv3GuGY0JhFCV0K+vRmDfPSSyVrcSakTnmI28QZ22X8S8nGMtqO
+         9Cfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5WPWC+UXYFi64PyUPlOX35v/nxC67X67iAffbUOPQA8=;
-        b=AOsOJNhuMDBAjY1LMpjROayveN5o7L66ojzqmphsAvmpgJdodRMeLz5Ki5BQz+pvSY
-         4kg61pqSNqsRLBCPax31g8FpyC1/tniMOyHL658n4vsD8VzPa5YTSGmotwssu2nL+csj
-         dRzRSq/NwvTt0HygN5I/J6lpREZ0OSrjRBJIP9Ib0IiNhAtRfprB/eLIa29rxZdOfvw2
-         ItIVVYcJEA0KOzloXp26olxDMkmGdGyXrqJI2//1KdJ4sZqXUh1ZBCV9m2x2vA+TZHkO
-         1zRY7Ngzc5aPdyIY9klMpfMByXgCvLm3AUN87I1cQdAIqOwhWvsLtfcp0LgTFq4Alppq
-         3+yg==
-X-Gm-Message-State: APjAAAVxWswHZN03ps7POr1WWiMGLJCHToA34EQsNind76VfSb3vE3Xl
-	xzMhPJB1MHXUS7KmonjZze2M/r4LhtgiqcxKQ08=
-X-Google-Smtp-Source: APXvYqwPsUIYW9sQmT0ODPyD3kpC3vYTM9ZqMP1k1mCvxUXm99xTC0TFUfnp8+v5Y+/bxz3SWfARfyTNzwUZ/sxfDgI=
-X-Received: by 2002:ab0:7802:: with SMTP id x2mr8406071uaq.100.1581955866289;
- Mon, 17 Feb 2020 08:11:06 -0800 (PST)
+        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to;
+        bh=ghqHfT+fa3GPaT0QpD+wDw3HPX7gryHprU/3Cm3MiE8=;
+        b=DTAZMyNIGBsA4iY7sPCrm80t8myHKnBZIVJJNB72FlKkNUAexnq7QrpRQyhXRQq4gb
+         7lSHoOBGVtT9f6D0kmfCz7O1SfMsqgwMiy3mB7XE00gawYxz/8czyOJUH76ULc2LsYYz
+         ldA7w/9OPyQ4F+0QUCVH4Y4To4lV5b70rwIvq5mWju6Zm5htMbIivWTXAxyPbR5dp/n3
+         efUOHunhKSBANV5BrUPcwPnOioA53+OSIzYNIBjfIl/cORFnhUe6QT04ovISopHGZfiz
+         FW9bq8w6B6UH/i4u37Hykus61M8RbFNyllE7uOgns3lrj/YW69sM1S+LrvZqO6oa8dAr
+         JfuA==
+X-Gm-Message-State: APjAAAXJb2lYJ1TpV0acqZlr7xFldEcNvRhleTJh8u6AbOgUUAHHBgav
+	eVP4ivSqtvbiNLIHRLhYDBIrrjJMhzAJiQ==
+X-Google-Smtp-Source: APXvYqx3rDHQQ6fHN0j1yln96XSUXliouZ2hNp5URiH81kMYTaKfnjOlLGW8VLvaYle3RC5PiNvgVw==
+X-Received: by 2002:a17:90a:1951:: with SMTP id 17mr21089410pjh.101.1581958383272;
+        Mon, 17 Feb 2020 08:53:03 -0800 (PST)
+Return-Path: <rudolf.streif@ibeeto.com>
+Received: from rjs-zotac.ibeeto.com (ip68-7-84-58.sd.sd.cox.net. [68.7.84.58])
+        by smtp.gmail.com with ESMTPSA id p16sm1380327pgi.50.2020.02.17.08.53.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Feb 2020 08:53:02 -0800 (PST)
+Subject: Re: [yocto] Creating a build system which can scale. #yocto
+To: philip.lewis@domino-uk.com, yocto@lists.yoctoproject.org
+References: <5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org>
+From: "Rudolf J Streif" <rudolf.streif@ibeeto.com>
+Autocrypt: addr=rudolf.streif@ibeeto.com; keydata=
+ mQENBFhQFAQBCACa5/X8dcYC25ELsL2exFTaf9QV24fFIn64+rXFqDNKuk7xed5kafscejvD
+ Qpe+Co1EPSU4ybklzYlvbMvzxKfwLDADKh+HsqmUYrd/l43hbqrPLxfDUhg87WVEhjm0qyYQ
+ /Qymy+7Cbh+pVNNlHULUQttkXPl3D+UOMz9se0Ook/HngDIOCyQF4rTyPnGNvd8NJmAng969
+ cQD/S9LNndnK5GGrmDDOuMYwoG4qDqWvWEChncgqHfmWK/Z1AvYKdYWe9uh1N4Qb/P5AZxTM
+ 3sPiHrF+Y2HTdK7j7lWgtu8YzluBHdvzhC+4jUnAKjh8P/N/H6JlE3UC3dwHPOaRsnXBABEB
+ AAG0KlJ1ZG9sZiBKIFN0cmVpZiA8cnVkb2xmLnN0cmVpZkBpYmVldG8uY29tPokBNwQTAQgA
+ IQUCWFAUBAIbAwULCQgHAgYVCAkKCwIEFgIDAQIeAQIXgAAKCRCNjKgpJzObdabzB/4lFMf0
+ 3GsVMG6C5QOLaPx6rOgj5qexCH3rfYeI3xkbGuR0a+YByzvSiCc6Ukh7YNn4UwRs6cY0fYBk
+ txioE384/51QTIfCmW8ZG5X0cMC5d38LFvd/dj3KBA74HW4GoLt0cIyzy38CCOFmClTNE8xl
+ lpeOfKQD3wn99w5dzXYhvajXCWwAjjpWrR84ww6xromQCDj0AubLA6xyk3t8bzFNsRCCFx+w
+ Xl7keSggn6ld3f3ySIQyEK2GgZDdw+zQmgVMq4x5LZhUhGYoqbYwNy9imoBkUAZkbbViNOtX
+ zaTHX/RzRHErvq56HOVqceJZIpkDnfvB1aXvfvmBhjVLmLHvuQENBFhQFAQBCADXoLKCuF48
+ 5eCWhnty44o9IZJuOSiX+uVJTgVGNWkZOF61Hs2pieIOmTqk3fb9+Ao6C6IliC9ZRXyAVLD/
+ RSGoLiTnWLc1uaK4P/XCM3HZfsi9ueBuNufR8yMy8/8ZqbFwRIFpPBpxHRrZnDdEd5IKsy+z
+ w6QChvhpmssZy+UaKfWHILroAoS/7bKGzHo5F/dEJhxVDjgxDUDspJSHWMBh0OMKDeBik5wl
+ svtV2yw7ezwWJLRsbaa8TUXd79ZJYYc3FIi0K5aXkMySh+QaQ/bE2Y5A/mCBCZ+IKhBQR36v
+ tUAsTCuUAOREwSdPDVwfuoI5gfVxGyz/zrERfnXF4viHABEBAAGJAR8EGAEIAAkFAlhQFAQC
+ GwwACgkQjYyoKSczm3W3fgf+NSdojthWWEqfWwym3VHK8955SeOy12xQA4ird2Ca2LYUpLNj
+ s4qVFEqXSXZk4rmpGCFlMWwOjcCJOXJLR0ATfmWlvZxp1QL4res/R+SPFEyheu7TTpJ9MbyE
+ fxaMSn2xRMA1V2KVJSfDoMacImVRchFclaNU31cEu6tEnNRwVcsWdTlGdA5a1ASGl4CiP8Tz
+ Yf9m2KOWGjOmVgGFcIJ2QfIlMglU875YHE3W4u3YOWwUbPEr2Seyb176MvO74CUL/Nlouvce
+ P41tsC5daxZnrLBQ3nw4xe4RJSzdPPkY7iF0N5R9NvBJ7WX3dwjMO4EMvdlFuNCQ2ALli/AN
+ ROZj4g==
+Message-ID: <b9c96e76-a350-8eb7-a9e8-93d0a93b8cc2@ibeeto.com>
+Date: Mon, 17 Feb 2020 08:53:00 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-References: <999304F2-F116-487C-8D43-2D4C0AD026B3@charter.com>
-In-Reply-To: <999304F2-F116-487C-8D43-2D4C0AD026B3@charter.com>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Mon, 17 Feb 2020 17:11:31 +0100
-Message-ID: <CANNYZj-k5qc1Od+61HtpwE0YnyJf7ALezBv4K8JR+wYpK5gDiQ@mail.gmail.com>
-Subject: Re: [yocto] do we have a slack channel for yocto?
-To: ILJUN LEE <iljun.lee@charter.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-X-Groupsio-MsgNum: 48457
-Content-Type: multipart/related; boundary="000000000000764f12059ec7cd24"
+In-Reply-To: <5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org>
+X-Groupsio-MsgNum: 48458
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="pX8FrfV8C3No7DQiqlpIY2Uy2FwLxF9KQ"
 
---000000000000764f12059ec7cd24
-Content-Type: multipart/alternative; boundary="000000000000764f11059ec7cd23"
+--pX8FrfV8C3No7DQiqlpIY2Uy2FwLxF9KQ
+Content-Type: multipart/mixed; boundary="NMo3SvYeHlAvS7dP8a3qWcBscKe6vVyrF"
 
---000000000000764f11059ec7cd23
-Content-Type: text/plain; charset="UTF-8"
+--NMo3SvYeHlAvS7dP8a3qWcBscKe6vVyrF
+Content-Type: multipart/alternative;
+ boundary="------------8099882F1062C6CD05B5F71B"
+Content-Language: en-US
 
-There is irc. #yocto @freenode.
-
-Alex
-
-On Mon, 17 Feb 2020 at 17:07, ILJUN LEE <iljun.lee@charter.com> wrote:
-
-> Hi All,
->
->
->
-> Do we have a slack channel for yocto?
->
->
->
-> Thanks,
->
-> iljun
->
-> *[image:
-> /Users/p2774198/Library/Containers/com.microsoft.Outlook/Data/Library/Caches/Signatures/signature_190838216]*
->
-> *ILJUN LEE* | Principal S/W Engineer II | 720-492-7975 (M)
->
-> CTECII,  Suite B - 8560 Upland Drive, Englewood, CO 80112
->
-> iljun.lee@charter.com
-> The contents of this e-mail message and
-> any attachments are intended solely for the
-> addressee(s) and may contain confidential
-> and/or legally privileged information. If you
-> are not the intended recipient of this message
-> or if this message has been addressed to you
-> in error, please immediately alert the sender
-> by reply e-mail and then delete this message
-> and any attachments. If you are not the
-> intended recipient, you are notified that
-> any use, dissemination, distribution, copying,
-> or storage of this message or any attachment
-> is strictly prohibited.
-> 
->
-
---000000000000764f11059ec7cd23
-Content-Type: text/html; charset="UTF-8"
+--------------8099882F1062C6CD05B5F71B
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">There is irc. #yocto=C2=A0@freenode.<div><br></div><div>Al=
-ex</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
-l_attr">On Mon, 17 Feb 2020 at 17:07, ILJUN LEE &lt;<a href=3D"mailto:iljun=
-.lee@charter.com">iljun.lee@charter.com</a>&gt; wrote:<br></div><blockquote=
- class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:=
-1px;border-left-style:solid;border-left-color:rgb(204,204,204);padding-left=
-:1ex">
+Hi Philip,
+
+We have done this with many Yocto Project builds using AWS EC2, Docker,
+Gitlab and Artifactory.
+
+Rest inlined below.
+
+:rjs
+
+On 2/17/20 4:27 AM, philip.lewis@domino-uk.com wrote:
+> Hi,
+>
+> I'm looking for some advice about the best way to implement a build
+> environment in the cloud for multiple=C2=A0dev teams which will scale as
+> the number of dev teams grow.
+>
+> Our devs are saying:
+>
+> *What do we want?*
+>
+> To scale our server-based build infrastructure, so that engineers can
+> build branches using the same infrastructure that produces a
+> releasable artefact, before pushing it into develop. As much
+> automation of this as possible is desired..
+>
+It can be configured that any check in to branches can trigger a build.
+That is what we do with developers on their own branches as well as with
+the master branches. The master branch is the integration branch. Then
+there are release and development branches but they all use the same
+build environment.
+>
+>
+> *Blocker*: Can=E2=80=99t just scale current system=C2=A0=E2=80=93=C2=A0c=
+an=E2=80=99t keep throwing more
+> hardware at it, particularly storage. The main contributor to storage
+> requirements is using a local cache in each build workspace and there
+> will be one workspace for each branch, per Jenkins agent: 3 teams x 10
+> branches per team x 70Gb per branch/workspace x number of build agents
+> (let say 5) =3D 10Tb. As you can see this doesn=E2=80=99t scale well as =
+we add
+> branches, teams or build agents. Most of this 10Tb is the caches in
+> each workspace, where most of the contents of each individual cache is
+> identical.
+>
+> *A possible=C2=A0solution:
+> *
+>
+> Disclaimer/admission: I=E2=80=99ve not really researched/considered _/al=
+l/_
+> =C2=A0possible=C2=A0solutions to the problem above, I just started searc=
+hing and
+> reading and came up with/felt led towards =C2=A0this. I think there is s=
+ome
+> value in spending some of the meeting exploring other options to see
+> if anything=C2=A0sounds better (for a what definition of better?).
+>
+> *
+> *
+>
+We do this with Gitlab runners and working instances on EC2. Since it
+can take some time to spin up a new instance we hold a certain amount
+running during business hours. If more are needed more are spun up
+transparently. Of course this costs money in particular when large
+instances with a lot of memory and a lot of vCPUs are used. Instances
+can automatically be terminated if there is overcapacity. There are
+other cost control options. Docker images inside the instances provide
+the controlled build environment.
+>
+> Something using the built-in cache mirror in Yocto=E2=80=93there are a f=
+ew
+> ways it can do this, as it=E2=80=99s essentially a file share somewhere.
+> https://pelux.io/2017/06/19/How-to-create-a-shared-sstate-dir.html for
+> an example shows how to share it via NFS, but you can also use http or
+> ftp.
+>
+EC2 elastic storage works via NFS (pretty straight forward). Artifactory
+can be used too.
+>
+> Having a single cache largely solves the storage issue as there is
+> only one cache, so having solved that issue, it introduces a few more
+> questions and constraints:
+>
+>  1. How do we manage the size of the cache?
+>
+> There=E2=80=99s no built-in expiry mechanism I could find. This means we=
+=
+=E2=80=99d
+> probably have to create something ourselves (parse access logs from
+> the server hosting the cache and apply a garbage collector process).
+>
+You have to prune it yourself. Typically based on age and when the
+development moves to a new release of YP.
+>
+>  2. How/When do we update the cache?
+>
+> All environments contributing to the cache need to be identical (that
+> ansible playbook just grabs the latest of everything) to avoid subtle
+> differences in the build artefacts depending on which environment
+> populated the cache.
+>
+We do this with the release builds only.
+>
+>  3. How much time will fetching the cache from a remote server add to
+>     the build?
+>
+> I think this is probably something we will have to just live with, but
+> if it=E2=80=99s all in the cloud the network speed between VMs is fast.
+>
+There is no generic answer to this. It depends on the storage and of
+course the networking infrastructure.
+>
+> This shared cache solution removes the per agent cost on storage, and
+> also=C2=A0=E2=80=93=C2=A0a varying extent=C2=A0=E2=80=93=C2=A0the per br=
+anch costs (assuming that you=E2=80=99re
+> not working on something at the top/start beginning of the dependency
+> tree) =C2=A0from the equation above.
+>
+> =C2=A0
+>
+Yes, that is the idea. Since the builds are running inside a Docker
+instance there is a local cache but it will be discarded when the
+container is discarded and the VM is spun down. Cache misses require
+additional time but that's the nature of it.
+>
+> I=E2=80=99d love to see some other ideas as well as I worry I=E2=80=99m =
+missing
+> something easier or more obvious=C2=A0=E2=80=93=C2=A0better.
+>
+> Any thoughts?
+> Thanks
+> Phill
+>
+> =C2=A0
+>
+> =C2=A0
+>
+:rjs
+>
+>=20
+
+--=20
+-----
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3386 x700
 
 
+--------------8099882F1062C6CD05B5F71B
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
+8">
+  </head>
+  <body>
+    <p>Hi Philip,</p>
+    <p>We have done this with many Yocto Project builds using AWS EC2,
+      Docker, Gitlab and Artifactory.</p>
+    <p>Rest inlined below.</p>
+    <p>:rjs<br>
+    </p>
+    <div class=3D"moz-cite-prefix">On 2/17/20 4:27 AM,
+      <a class=3D"moz-txt-link-abbreviated" href=3D"mailto:philip.lewis@do=
+mino-uk.com">philip.lewis@domino-uk.com</a> wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUT=
+F-8">
+      Hi,<br>
+      <br>
+      I'm looking for some advice about the best way to implement a
+      build environment in the cloud for multiple=C2=A0dev teams which wil=
+l
+      scale as the number of dev teams grow. <br>
+      <br>
+      Our devs are saying:<br>
+      <br>
+      <p class=3D"xmsonormal"><strong>What do we want?</strong></p>
+      <p class=3D"xmsonormal">To scale our server-based build
+        infrastructure, so that engineers can build branches using the
+        same infrastructure that produces a releasable artefact, before
+        pushing it into develop. As much automation of this as possible
+        is desired..<br>
+      </p>
+    </blockquote>
+    It can be configured that any check in to branches can trigger a
+    build. That is what we do with developers on their own branches as
+    well as with the master branches. The master branch is the
+    integration branch. Then there are release and development branches
+    but they all use the same build environment.<br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org">
+      <p class=3D"xmsonormal"><br>
+      </p>
+      <p class=3D"xmsonormal"><strong>Blocker</strong>: Can=E2=80=99t just=
+ scale
+        current system=C2=A0=E2=80=93=C2=A0can=E2=80=99t keep throwing mor=
+e hardware at it,
+        particularly storage. The main contributor to storage
+        requirements is using a local cache in each build workspace and
+        there will be one workspace for each branch, per Jenkins agent:
+        3 teams x 10 branches per team x 70Gb per branch/workspace x
+        number of build agents (let say 5) =3D 10Tb. As you can see this
+        doesn=E2=80=99t scale well as we add branches, teams or build agen=
+ts.
+        Most of this 10Tb is the caches in each workspace, where most of
+        the contents of each individual cache is identical.<br>
+        <br>
+        <strong> A possible=C2=A0solution:<br>
+        </strong></p>
+      <p class=3D"xmsonormal">Disclaimer/admission: I=E2=80=99ve not reall=
+y
+        researched/considered _<em>all</em>_ =C2=A0possible=C2=A0solutions=
+ to the
+        problem above, I just started searching and reading and came up
+        with/felt led towards =C2=A0this. I think there is some value in
+        spending some of the meeting exploring other options to see if
+        anything=C2=A0sounds better (for a what definition of better?).</p=
+>
+      <p class=3D"xmsonormal"><strong><br>
+        </strong></p>
+    </blockquote>
+    We do this with Gitlab runners and working instances on EC2. Since
+    it can take some time to spin up a new instance we hold a certain
+    amount running during business hours. If more are needed more are
+    spun up transparently. Of course this costs money in particular when
+    large instances with a lot of memory and a lot of vCPUs are used.
+    Instances can automatically be terminated if there is overcapacity.
+    There are other cost control options. Docker images inside the
+    instances provide the controlled build environment.<br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org">
+      <p class=3D"xmsonormal">Something using the built-in cache mirror in
+        Yocto=E2=80=93there are a few ways it can do this, as it=E2=80=99s=
+ essentially a
+        file share somewhere. <a
+href=3D"https://pelux.io/2017/06/19/How-to-create-a-shared-sstate-dir.html=
+"
+          moz-do-not-send=3D"true">https://pelux.io/2017/06/19/How-to-crea=
+te-a-shared-sstate-dir.html</a>
+        for an example shows how to share it via NFS, but you can also
+        use http or ftp.</p>
+    </blockquote>
+    EC2 elastic storage works via NFS (pretty straight forward).
+    Artifactory can be used too.<br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org">
+      <p class=3D"xmsonormal">Having a single cache largely solves the
+        storage issue as there is only one cache, so having solved that
+        issue, it introduces a few more questions and constraints:</p>
+      <ol style=3D"margin-top: 0cm;" type=3D"1" start=3D"1">
+        <li class=3D"xmsolistparagraph" style=3D"margin-left: 0cm; mso-lis=
+t:
+          l0 level1 lfo1; tab-stops: list 36.0pt;">How do we manage the
+          size of the cache?</li>
+      </ol>
+      <p class=3D"xmsolistparagraph">There=E2=80=99s no built-in expiry me=
+chanism
+        I could find. This means we=E2=80=99d probably have to create some=
+thing
+        ourselves (parse access logs from the server hosting the cache
+        and apply a garbage collector process).</p>
+    </blockquote>
+    You have to prune it yourself. Typically based on age and when the
+    development moves to a new release of YP.<br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org">
+      <ol style=3D"margin-top: 0cm;" type=3D"1" start=3D"2">
+        <li class=3D"xmsolistparagraph" style=3D"margin-left: 0cm; mso-lis=
+t:
+          l1 level1 lfo2; tab-stops: list 36.0pt;">How/When do we update
+          the cache?</li>
+      </ol>
+      <p class=3D"xmsolistparagraph">All environments contributing to the
+        cache need to be identical (that ansible playbook just grabs the
+        latest of everything) to avoid subtle differences in the build
+        artefacts depending on which environment populated the cache.</p>
+    </blockquote>
+    We do this with the release builds only.<br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org">
+      <ol style=3D"margin-top: 0cm;" type=3D"1" start=3D"3">
+        <li class=3D"xmsolistparagraph" style=3D"margin-left: 0cm; mso-lis=
+t:
+          l2 level1 lfo3; tab-stops: list 36.0pt;">How much time will
+          fetching the cache from a remote server add to the build?</li>
+      </ol>
+      <p class=3D"xmsolistparagraph">I think this is probably something we
+        will have to just live with, but if it=E2=80=99s all in the cloud =
+the
+        network speed between VMs is fast.</p>
+    </blockquote>
+    There is no generic answer to this. It depends on the storage and of
+    course the networking infrastructure.<br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org">
+      <p class=3D"xmsonormal">This shared cache solution removes the per
+        agent cost on storage, and also=C2=A0=E2=80=93=C2=A0a varying exte=
+nt=C2=A0=E2=80=93=C2=A0the per
+        branch costs (assuming that you=E2=80=99re not working on somethin=
+g at
+        the top/start beginning of the dependency tree) =C2=A0from the
+        equation above.</p>
+      <p class=3D"xmsonormal">=C2=A0</p>
+    </blockquote>
+    Yes, that is the idea. Since the builds are running inside a Docker
+    instance there is a local cache but it will be discarded when the
+    container is discarded and the VM is spun down. Cache misses require
+    additional time but that's the nature of it.<br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org">
+      <p class=3D"xmsonormal">I=E2=80=99d love to see some other ideas as =
+well as
+        I worry I=E2=80=99m missing something easier or more obvious=C2=A0=
+=
+=E2=80=93=C2=A0better.<br>
+        <br>
+        Any thoughts?<br>
+        Thanks<br>
+        Phill</p>
+      <p class=3D"xmsonormal">=C2=A0</p>
+      <p class=3D"xmsonormal">=C2=A0</p>
+    </blockquote>
+    :rjs<br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org">
+      <span id=3D"selectionBoundary_1581942134392_400752004809644"
+        class=3D"rangySelectionBoundary" style=3D"line-height: 0; display:
+        none;"></span><span
+        id=3D"selectionBoundary_1581942110909_9007835832119429"
+        class=3D"rangySelectionBoundary" style=3D"line-height: 0; display:
+        none;"></span>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+</pre>
+    </blockquote>
+    <pre class=3D"moz-signature" cols=3D"72">--=20
+-----
+Rudolf J Streif
+CEO/CTO ibeeto
++1.855.442.3386 x700</pre>
+  </body>
+</html>
 
+--------------8099882F1062C6CD05B5F71B--
 
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_-5460702272015560140WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Hi All,<u></u><u></u=
-></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u>=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Do we have a slack c=
-hannel for yocto?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u>=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Thanks,<u></u><u></u=
-></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt">iljun<u></u><u></u><=
-/span></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;color:rgb(9,78,137=
-)"><img width=3D"227" height=3D"75" style=3D"width: 2.3645in; height: 0.781=
-2in;" id=3D"gmail-m_-5460702272015560140Picture_x0020_1" src=3D"cid:17053eb=
-032e4cff311" alt=3D"/Users/p2774198/Library/Containers/com.microsoft.Outloo=
-k/Data/Library/Caches/Signatures/signature_190838216"></span></b><span styl=
-e=3D"font-size:11pt"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;color:rgb(9,78,137=
-)">ILJUN LEE</span></b><span style=3D"font-size:11pt;color:rgb(9,78,137)"> =
-| Principal S/W Engineer II | 720-492-7975 (M)</span><span style=3D"font-si=
-ze:11pt"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"color:rgb(9,78,137)">CTECII,
-</span><span style=3D"font-size:11pt;color:rgb(37,95,166)">=C2=A0Suite B -=
- 8560 Upland Drive, Englewood, CO 80112</span><span style=3D"font-size:11pt=
-"><u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"mailto:il=
-jun.lee@charter.com" target=3D"_blank"><span style=3D"color:rgb(11,76,180)"=
->iljun.lee@charter.com</span></a></span><u></u><u></u></p>
-</div>
-The contents of this e-mail message and <br>any attachments are intended s=
-olely for the <br>addressee(s) and may contain confidential <br>and/or lega=
-lly privileged information. If you<br>are not the intended recipient of thi=
-s message<br>or if this message has been addressed to you <br>in error, ple=
-ase immediately alert the sender<br>by reply e-mail and then delete this me=
-ssage <br>and any attachments. If you are not the <br>intended recipient, y=
-ou are notified that <br>any use, dissemination, distribution, copying,<br>=
-or storage of this message or any attachment <br>is strictly prohibited.</d=
-iv>
+--NMo3SvYeHlAvS7dP8a3qWcBscKe6vVyrF--
 
-<br>
-</blockquote></div>
+--pX8FrfV8C3No7DQiqlpIY2Uy2FwLxF9KQ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
---000000000000764f11059ec7cd23--
+-----BEGIN PGP SIGNATURE-----
 
---000000000000764f12059ec7cd24
-Content-Type: image/png; name="image001.png"
-Content-Disposition: inline; filename="image001.png"
-Content-Transfer-Encoding: base64
-Content-ID: <17053eb032e4cff311>
-X-Attachment-Id: 17053eb032e4cff311
+iQEzBAEBCAAdFiEEVg4uKeQrdCNuC2kVjYyoKSczm3UFAl5KxOwACgkQjYyoKScz
+m3UKWQf/TUJWL8VmGGZkCTrC01GbDXPOB3PB/IzBI1z3EjC35ArU5YG0sc2cquJC
+pF4CkpmCRRz1L0IIJd2b5vGL028gkQQbs3LAZ7H+ixXWJvB/yHUvdq0tIYrZInM3
+4A7SQlCn+qzZy/rGQIg4tSGbZZU0KKZghuh2OY+mo7CGWnNvNOYYKHLWXy4wO3mE
+LiDSn/oQ0MY6lptDs8ckYWhwbR2kisbko5uC1O/IphJ5s0FzQK+AjJb2hMN7d7TN
+CzVEmAW8uSGEl6FWs7wsg8wAw4qfQhZjgVT/xW5TuIAGOuqTP33tRxF6Qdpx9Dcp
+0yOxQ66cIdnF3GLpjSh0zWzJ0jUUTg==
+=2Qu/
+-----END PGP SIGNATURE-----
 
-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
-AAAASUVORK5CYIIA
-
---000000000000764f12059ec7cd24--
+--pX8FrfV8C3No7DQiqlpIY2Uy2FwLxF9KQ--
