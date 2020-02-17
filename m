@@ -1,173 +1,152 @@
-Subject: Creating a build system which can scale. #yocto
-To: yocto@lists.yoctoproject.org
-From: philip.lewis@domino-uk.com
-X-Originating-Location: Huntingdon, England, GB (217.151.40.5)
-X-Originating-Platform: Windows Chrome 80
-User-Agent: GROUPS.IO Web Poster
+Received: from bsmtp2.bon.at (bsmtp2.bon.at [213.33.87.16])
+ by mx.groups.io with SMTP id smtpd.web09.8046.1581943441687180545
+ for <yocto@lists.yoctoproject.org>;
+ Mon, 17 Feb 2020 04:44:02 -0800
+Authentication-Results: mx.groups.io;
+ dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.16, mailfrom: quentin.schulz@streamunlimited.com)
+Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
+	by bsmtp2.bon.at (Postfix) with ESMTPSA id 48LkFC19LWz5tlD;
+	Mon, 17 Feb 2020 13:43:58 +0100 (CET)
+Date: Mon, 17 Feb 2020 13:43:57 +0100
+From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
+To: philip.lewis@domino-uk.com
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] Creating a build system which can scale. #yocto
+Message-ID: <20200217124357.odaw6g5qpfkt2oxm@qschulz>
+References: <5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org>
 MIME-Version: 1.0
-Date: Mon, 17 Feb 2020 04:27:17 -0800
-Message-ID: <5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="jRR3PpzW6SvMVCpMzxM5"
-
---jRR3PpzW6SvMVCpMzxM5
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org>
+User-Agent: NeoMutt/20180716
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Philip,
 
-I'm looking for some advice about the best way to implement a build enviro=
-nment in the cloud for multiple=C2=A0dev teams which will scale as the numb=
-er of dev teams grow.
+*Very* quick and vague answer as it's not something I'm doing right now.
+I can only give hints to where to look next.
 
-Our devs are saying:
+On Mon, Feb 17, 2020 at 04:27:17AM -0800, philip.lewis@domino-uk.com wrot=
+e:
+> Hi,
+>=20
+> I'm looking for some advice about the best way to implement a build env=
+ironment in the cloud for multiple=C2=A0dev teams which will scale as the=
+ number of dev teams grow.
+>=20
+> Our devs are saying:
+>=20
+> *What do we want?*
+>=20
+> To scale our server-based build infrastructure, so that engineers can b=
+uild branches using the same infrastructure that produces a releasable ar=
+tefact, before pushing it into develop. As much automation of this as pos=
+sible is desired..
+>=20
+> *Blocker* : Can=E2=80=99t just scale current system=C2=A0=E2=80=93=C2=A0=
+can=E2=80=99t keep throwing more hardware at it, particularly storage. Th=
+e main contributor to storage requirements is using a local cache in each=
+ build workspace and there will be one workspace for each branch, per Jen=
+kins agent: 3 teams x 10 branches per team x 70Gb per branch/workspace x =
+number of build agents (let say 5) =3D 10Tb. As you can see this doesn=E2=
+=80=99t scale well as we add branches, teams or build agents. Most of thi=
+s 10Tb is the caches in each workspace, where most of the contents of eac=
+h individual cache is identical.
+>=20
 
-*What do we want?*
+Have you had a look at INHERIT +=3D "rm_work"? Should get rid of most of
+the space in the work directory (we use this one, tremendous benefit in
+terms of storage space).
 
-To scale our server-based build infrastructure, so that engineers can buil=
-d branches using the same infrastructure that produces a releasable artefac=
-t, before pushing it into develop. As much automation of this as possible i=
-s desired..
+c.f. https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.ht=
+ml#ref-classes-rm-work
 
-*Blocker* : Can=E2=80=99t just scale current system=C2=A0=E2=80=93=C2=A0ca=
-n=E2=80=99t keep throwing more hardware at it, particularly storage. The ma=
-in contributor to storage requirements is using a local cache in each build=
- workspace and there will be one workspace for each branch, per Jenkins age=
-nt: 3 teams x 10 branches per team x 70Gb per branch/workspace x number of =
-build agents (let say 5) =3D 10Tb. As you can see this doesn=E2=80=99t scal=
-e well as we add branches, teams or build agents. Most of this 10Tb is the =
-caches in each workspace, where most of the contents of each individual cac=
-he is identical.
+Incidently, also highlights broken recipes (e.g. one getting files from o=
+ther
+sysroots/elsewhere in the FS).
 
-*A possible=C2=A0solution:
-*
+> *A possible=C2=A0solution:
+> *
+>=20
+> Disclaimer/admission: I=E2=80=99ve not really researched/considered _ a=
+ll _ =C2=A0possible=C2=A0solutions to the problem above, I just started s=
+earching and reading and came up with/felt led towards =C2=A0this. I thin=
+k there is some value in spending some of the meeting exploring other opt=
+ions to see if anything=C2=A0sounds better (for a what definition of bett=
+er?).
+>=20
+> **
+>=20
+> Something using the built-in cache mirror in Yocto=E2=80=93there are a =
+few ways it can do this, as it=E2=80=99s essentially a file share somewhe=
+re. https://pelux.io/2017/06/19/How-to-create-a-shared-sstate-dir.html fo=
+r an example shows how to share it via NFS, but you can also use http or =
+ftp.
+>=20
+> Having a single cache largely solves the storage issue as there is only=
+ one cache, so having solved that issue, it introduces a few more questio=
+ns and constraints:
+>=20
+> * How do we manage the size of the cache?
+>=20
+> There=E2=80=99s no built-in expiry mechanism I could find. This means w=
+e=E2=80=99d probably have to create something ourselves (parse access log=
+s from the server hosting the cache and apply a garbage collector process=
+).
+>=20
 
-Disclaimer/admission: I=E2=80=99ve not really researched/considered _ all =
-_ =C2=A0possible=C2=A0solutions to the problem above, I just started search=
-ing and reading and came up with/felt led towards =C2=A0this. I think there=
- is some value in spending some of the meeting exploring other options to s=
-ee if anything=C2=A0sounds better (for a what definition of better?).
+Provided you're not using a webserver with a cache (or a cache that is
+refreshed every now and then), cronjob with find -atime -delete and
+you're good.
 
-**
+> * How/When do we update the cache?
+>=20
+> All environments contributing to the cache need to be identical (that a=
+nsible playbook just grabs the latest of everything) to avoid subtle diff=
+erences in the build artefacts depending on which environment populated t=
+he cache.
+>=20
+> * How much time will fetching the cache from a remote server add to the=
+ build?
+>=20
+> I think this is probably something we will have to just live with, but =
+if it=E2=80=99s all in the cloud the network speed between VMs is fast.
+>=20
 
-Something using the built-in cache mirror in Yocto=E2=80=93there are a few=
- ways it can do this, as it=E2=80=99s essentially a file share somewhere. h=
-ttps://pelux.io/2017/06/19/How-to-create-a-shared-sstate-dir.html for an ex=
-ample shows how to share it via NFS, but you can also use http or ftp.
+I remember (wrongly?) reading that sharing sstate-cache over NFS isn't a =
+very
+good idea (latency outweights the benefits in terms of storage/shared
+sstate cache).
 
-Having a single cache largely solves the storage issue as there is only on=
-e cache, so having solved that issue, it introduces a few more questions an=
-d constraints:
+> This shared cache solution removes the per agent cost on storage, and a=
+lso=C2=A0=E2=80=93=C2=A0a varying extent=C2=A0=E2=80=93=C2=A0the per bran=
+ch costs (assuming that you=E2=80=99re not working on something at the to=
+p/start beginning of the dependency tree) =C2=A0from the equation above.
+>=20
+> I=E2=80=99d love to see some other ideas as well as I worry I=E2=80=99m=
+ missing something easier or more obvious=C2=A0=E2=80=93=C2=A0better.
+>=20
 
-* How do we manage the size of the cache?
+I'm not too sure to have understood the exact use case but maybe you
+would want to have a look at:
 
-There=E2=80=99s no built-in expiry mechanism I could find. This means we=
-=E2=80=99d probably have to create something ourselves (parse access logs =
-from the server hosting the cache and apply a garbage collector process).
+ - shared DL_DIR (this one can be served by an NFS, there isn't too much
+ access to it during a build).
+ - SSTATE_MIRRORS (c.f. https://www.yoctoproject.org/docs/current/mega-ma=
+nual/mega-manual.html#var-SSTATE_MIRRORS),
+ is basically a webserver serving the sstate-cache from an already-built
+ image/system. This is RO, would make sense if your Jenkins is building
+ a system and then your devs are basing their work on top of it. They
+ would get the sstate-cache from your Jenkins and AFAIK, does not
+ duplicate the sstate-cache locally =3D more free storage space.
+ - investigate docker containers for guaranteed identical build environme=
+nt,
+ Pyrex has been often suggested on IRC.
+ https://github.com/garmin/pyrex/
 
-* How/When do we update the cache?
+That's all I could think of about your issue, I unfortunately do not
+have more knowledge to share on that topic.
 
-All environments contributing to the cache need to be identical (that ansi=
-ble playbook just grabs the latest of everything) to avoid subtle differenc=
-es in the build artefacts depending on which environment populated the cach=
-e.
+Good luck, let us know what you decided to do :)
 
-* How much time will fetching the cache from a remote server add to the bu=
-ild?
-
-I think this is probably something we will have to just live with, but if =
-it=E2=80=99s all in the cloud the network speed between VMs is fast.
-
-This shared cache solution removes the per agent cost on storage, and also=
-=
-=C2=A0=E2=80=93=C2=A0a varying extent=C2=A0=E2=80=93=C2=A0the per branch c=
-osts (assuming that you=E2=80=99re not working on something at the top/star=
-t beginning of the dependency tree) =C2=A0from the equation above.
-
-I=E2=80=99d love to see some other ideas as well as I worry I=E2=80=99m mi=
-ssing something easier or more obvious=C2=A0=E2=80=93=C2=A0better.
-
-Any thoughts?
-Thanks
-Phill
-
---jRR3PpzW6SvMVCpMzxM5
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,<br /><br />I'm looking for some advice about the best way to implement =
-a build environment in the cloud for multiple&nbsp;dev teams which will sca=
-le as the number of dev teams grow. <br /><br />Our devs are saying:<br /><=
-br />
-<p class=3D"xmsonormal"><strong>What do we want?</strong></p>
-<p class=3D"xmsonormal">To scale our server-based build infrastructure, so=
- that engineers can build branches using the same infrastructure that produ=
-ces a releasable artefact, before pushing it into develop. As much automati=
-on of this as possible is desired..<br /><br /></p>
-<p class=3D"xmsonormal"><strong>Blocker</strong>: Can&rsquo;t just scale c=
-urrent system&nbsp;&ndash;&nbsp;can&rsquo;t keep throwing more hardware at =
-it, particularly storage. The main contributor to storage requirements is u=
-sing a local cache in each build workspace and there will be one workspace =
-for each branch, per Jenkins agent: 3 teams x 10 branches per team x 70Gb p=
-er branch/workspace x number of build agents (let say 5) =3D 10Tb. As you c=
-an see this doesn&rsquo;t scale well as we add branches, teams or build age=
-nts. Most of this 10Tb is the caches in each workspace, where most of the c=
-ontents of each individual cache is identical.<br /><br /><strong> A possib=
-le&nbsp;solution:<br /></strong></p>
-<p class=3D"xmsonormal">Disclaimer/admission: I&rsquo;ve not really resear=
-ched/considered _<em>all</em>_ &nbsp;possible&nbsp;solutions to the problem=
- above, I just started searching and reading and came up with/felt led towa=
-rds &nbsp;this. I think there is some value in spending some of the meeting=
- exploring other options to see if anything&nbsp;sounds better (for a what =
-definition of better?).</p>
-<p class=3D"xmsonormal"><strong>&nbsp;</strong></p>
-<p class=3D"xmsonormal">Something using the built-in cache mirror in Yocto=
-&ndash;there are a few ways it can do this, as it&rsquo;s essentially a fil=
-e share somewhere. <a href=3D"https://pelux.io/2017/06/19/How-to-create-a-s=
-hared-sstate-dir.html">https://pelux.io/2017/06/19/How-to-create-a-shared-s=
-state-dir.html</a> for an example shows how to share it via NFS, but you ca=
-n also use http or ftp.</p>
-<p class=3D"xmsonormal">Having a single cache largely solves the storage i=
-ssue as there is only one cache, so having solved that issue, it introduces=
- a few more questions and constraints:</p>
-<ol style=3D"margin-top: 0cm;" start=3D"1" type=3D"1">
-<li class=3D"xmsolistparagraph" style=3D"margin-left: 0cm; mso-list: l0 le=
-vel1 lfo1; tab-stops: list 36.0pt;">How do we manage the size of the cache?=
-</li>
-</ol>
-<p class=3D"xmsolistparagraph">There&rsquo;s no built-in expiry mechanism =
-I could find. This means we&rsquo;d probably have to create something ourse=
-lves (parse access logs from the server hosting the cache and apply a garba=
-ge collector process).</p>
-<ol style=3D"margin-top: 0cm;" start=3D"2" type=3D"1">
-<li class=3D"xmsolistparagraph" style=3D"margin-left: 0cm; mso-list: l1 le=
-vel1 lfo2; tab-stops: list 36.0pt;">How/When do we update the cache?</li>
-</ol>
-<p class=3D"xmsolistparagraph">All environments contributing to the cache =
-need to be identical (that ansible playbook just grabs the latest of everyt=
-hing) to avoid subtle differences in the build artefacts depending on which=
- environment populated the cache.</p>
-<ol style=3D"margin-top: 0cm;" start=3D"3" type=3D"1">
-<li class=3D"xmsolistparagraph" style=3D"margin-left: 0cm; mso-list: l2 le=
-vel1 lfo3; tab-stops: list 36.0pt;">How much time will fetching the cache f=
-rom a remote server add to the build?</li>
-</ol>
-<p class=3D"xmsolistparagraph">I think this is probably something we will =
-have to just live with, but if it&rsquo;s all in the cloud the network spee=
-d between VMs is fast.</p>
-<p class=3D"xmsonormal">This shared cache solution removes the per agent c=
-ost on storage, and also&nbsp;&ndash;&nbsp;a varying extent&nbsp;&ndash;&nb=
-sp;the per branch costs (assuming that you&rsquo;re not working on somethin=
-g at the top/start beginning of the dependency tree) &nbsp;from the equatio=
-n above.</p>
-<p class=3D"xmsonormal">&nbsp;</p>
-<p class=3D"xmsonormal">I&rsquo;d love to see some other ideas as well as =
-I worry I&rsquo;m missing something easier or more obvious&nbsp;&ndash;&nbs=
-p;better.<br /><br />Any thoughts?<br />Thanks<br />Phill</p>
-<p class=3D"xmsonormal">&nbsp;</p>
-<p class=3D"xmsonormal">&nbsp;</p>
-<span id=3D"selectionBoundary_1581942134392_400752004809644" class=3D"rang=
-ySelectionBoundary" style=3D"line-height: 0; display: none;"></span><span i=
-d=3D"selectionBoundary_1581942110909_9007835832119429" class=3D"rangySelect=
-ionBoundary" style=3D"line-height: 0; display: none;"></span>
-
---jRR3PpzW6SvMVCpMzxM5--
+Quentin
