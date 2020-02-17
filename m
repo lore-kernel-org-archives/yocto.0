@@ -1,154 +1,168 @@
-Received: from ncwiprtp05.chartercom.com (ncwiprtp05.chartercom.com [142.136.235.138])
- by mx.groups.io with SMTP id smtpd.web09.10965.1581955638544451497
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com [209.85.222.42])
+ by mx.groups.io with SMTP id smtpd.web10.10782.1581955867218064850
  for <yocto@lists.yoctoproject.org>;
- Mon, 17 Feb 2020 08:07:18 -0800
+ Mon, 17 Feb 2020 08:11:07 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: charter.com, ip: 142.136.235.138, mailfrom: iljun.lee@charter.com)
-IronPort-SDR: q+cGdFd7v48q3E1a3ImJF/FN6gWtqmyf1p7lzDlanPi23orV26hWb5xfSIt0L3caL8IfFYj1vd
- rmBOPuryzZsg==
-X-IronPort-AV: E=Sophos;i="5.70,453,1574143200"; 
-   d="png'150?scan'150,208,217,150";a="367427"
-Received: from unknown (HELO ncwmexgp006.CORP.CHARTERCOM.com) ([142.136.235.156])
-  by ncwiprtp05.chartercom.com with ESMTP; 17 Feb 2020 10:07:06 -0600
-Received: from ncwmexgp002.CORP.CHARTERCOM.COM (2002:8e88:eb07::8e88:eb07) by
- ncwmexgp006.CORP.CHARTERCOM.com (2002:8e88:eb0b::8e88:eb0b) with Microsoft
- SMTP Server (TLS) id 15.0.1365.1; Mon, 17 Feb 2020 10:07:05 -0600
-Received: from ncwmexgp002.CORP.CHARTERCOM.COM ([142.136.235.7]) by
- ncwmexgp002.CORP.CHARTERCOM.com ([142.136.235.7]) with mapi id
- 15.00.1365.000; Mon, 17 Feb 2020 10:07:05 -0600
-From: "ILJUN LEE" <iljun.lee@charter.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: do we have a slack channel for yocto?
-Thread-Topic: do we have a slack channel for yocto?
-Thread-Index: AQHV5axMMZpNzTy9h0ynkw7iZw1L2A==
-Date: Mon, 17 Feb 2020 16:07:05 +0000
-Message-ID: <999304F2-F116-487C-8D43-2D4C0AD026B3@charter.com>
-Accept-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [142.136.235.123]
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=t4z/mGmT;
+ spf=pass (domain: gmail.com, ip: 209.85.222.42, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-ua1-f42.google.com with SMTP id c7so6334298uaf.5
+        for <yocto@lists.yoctoproject.org>; Mon, 17 Feb 2020 08:11:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5WPWC+UXYFi64PyUPlOX35v/nxC67X67iAffbUOPQA8=;
+        b=t4z/mGmTKExzOEN74E9pefjYUhmvsMhe3YqQq7lFNZdZAAihTzNb9AULUiBjyF1TBn
+         /bORe+grb3xOQ3EIRRRDwEFw7HK9+cSLSJW0OlcmacGjNQYnc2HfmAVWoPRL9MdDFIiH
+         ZaDDL+XXNAO1g3O9uNOiB53Eyxq3NbpB1q3DkhWnPFXNmM4gL6vm7o3Xs2VAuPkjavWo
+         muD8VwSkQgN/0VgYKintAKs/5RYjcwevPA1zC8GmJ8ltYTOUSNS/CZU/4wkQZvPds5Jn
+         gZE/v+AXrLMtGKDcx4AVwNUuI4XlgvUaaFUjKZKduXxhoHkW6Sa8Yvs77VaiCZTPbBY0
+         5Ydw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5WPWC+UXYFi64PyUPlOX35v/nxC67X67iAffbUOPQA8=;
+        b=AOsOJNhuMDBAjY1LMpjROayveN5o7L66ojzqmphsAvmpgJdodRMeLz5Ki5BQz+pvSY
+         4kg61pqSNqsRLBCPax31g8FpyC1/tniMOyHL658n4vsD8VzPa5YTSGmotwssu2nL+csj
+         dRzRSq/NwvTt0HygN5I/J6lpREZ0OSrjRBJIP9Ib0IiNhAtRfprB/eLIa29rxZdOfvw2
+         ItIVVYcJEA0KOzloXp26olxDMkmGdGyXrqJI2//1KdJ4sZqXUh1ZBCV9m2x2vA+TZHkO
+         1zRY7Ngzc5aPdyIY9klMpfMByXgCvLm3AUN87I1cQdAIqOwhWvsLtfcp0LgTFq4Alppq
+         3+yg==
+X-Gm-Message-State: APjAAAVxWswHZN03ps7POr1WWiMGLJCHToA34EQsNind76VfSb3vE3Xl
+	xzMhPJB1MHXUS7KmonjZze2M/r4LhtgiqcxKQ08=
+X-Google-Smtp-Source: APXvYqwPsUIYW9sQmT0ODPyD3kpC3vYTM9ZqMP1k1mCvxUXm99xTC0TFUfnp8+v5Y+/bxz3SWfARfyTNzwUZ/sxfDgI=
+X-Received: by 2002:ab0:7802:: with SMTP id x2mr8406071uaq.100.1581955866289;
+ Mon, 17 Feb 2020 08:11:06 -0800 (PST)
 MIME-Version: 1.0
-X-Groupsio-MsgNum: 48456
-Content-Language: en-US
-Content-Type: multipart/related;
-	boundary="_004_999304F2F116487C8D432D4C0AD026B3chartercom_";
-	type="multipart/alternative"
+References: <999304F2-F116-487C-8D43-2D4C0AD026B3@charter.com>
+In-Reply-To: <999304F2-F116-487C-8D43-2D4C0AD026B3@charter.com>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Mon, 17 Feb 2020 17:11:31 +0100
+Message-ID: <CANNYZj-k5qc1Od+61HtpwE0YnyJf7ALezBv4K8JR+wYpK5gDiQ@mail.gmail.com>
+Subject: Re: [yocto] do we have a slack channel for yocto?
+To: ILJUN LEE <iljun.lee@charter.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+X-Groupsio-MsgNum: 48457
+Content-Type: multipart/related; boundary="000000000000764f12059ec7cd24"
 
---_004_999304F2F116487C8D432D4C0AD026B3chartercom_
-Content-Type: multipart/alternative;
-	boundary="_000_999304F2F116487C8D432D4C0AD026B3chartercom_"
+--000000000000764f12059ec7cd24
+Content-Type: multipart/alternative; boundary="000000000000764f11059ec7cd23"
 
---_000_999304F2F116487C8D432D4C0AD026B3chartercom_
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
+--000000000000764f11059ec7cd23
+Content-Type: text/plain; charset="UTF-8"
 
-SGkgQWxsLA0KDQpEbyB3ZSBoYXZlIGEgc2xhY2sgY2hhbm5lbCBmb3IgeW9jdG8/DQoNClRoYW5r
-cywNCmlsanVuDQpbL1VzZXJzL3AyNzc0MTk4L0xpYnJhcnkvQ29udGFpbmVycy9jb20ubWljcm9z
-b2Z0Lk91dGxvb2svRGF0YS9MaWJyYXJ5L0NhY2hlcy9TaWduYXR1cmVzL3NpZ25hdHVyZV8xOTA4
-MzgyMTZdDQpJTEpVTiBMRUUgfCBQcmluY2lwYWwgUy9XIEVuZ2luZWVyIElJIHwgNzIwLTQ5Mi03
-OTc1IChNKQ0KQ1RFQ0lJLCAgU3VpdGUgQiAtIDg1NjAgVXBsYW5kIERyaXZlLCBFbmdsZXdvb2Qs
-IENPIDgwMTEyDQppbGp1bi5sZWVAY2hhcnRlci5jb208bWFpbHRvOmlsanVuLmxlZUBjaGFydGVy
-LmNvbT4NCkUtTUFJTCBDT05GSURFTlRJQUxJVFkgTk9USUNFOiANClRoZSBjb250ZW50cyBvZiB0
-aGlzIGUtbWFpbCBtZXNzYWdlIGFuZCBhbnkgYXR0YWNobWVudHMgYXJlIGludGVuZGVkIHNvbGVs
-eSBmb3IgdGhlIGFkZHJlc3NlZShzKSBhbmQgbWF5IGNvbnRhaW4gY29uZmlkZW50aWFsIGFuZC9v
-ciBsZWdhbGx5IHByaXZpbGVnZWQgaW5mb3JtYXRpb24uIElmIHlvdSBhcmUgbm90IHRoZSBpbnRl
-bmRlZCByZWNpcGllbnQgb2YgdGhpcyBtZXNzYWdlIG9yIGlmIHRoaXMgbWVzc2FnZSBoYXMgYmVl
-biBhZGRyZXNzZWQgdG8geW91IGluIGVycm9yLCBwbGVhc2UgaW1tZWRpYXRlbHkgYWxlcnQgdGhl
-IHNlbmRlciBieSByZXBseSBlLW1haWwgYW5kIHRoZW4gZGVsZXRlIHRoaXMgbWVzc2FnZSBhbmQg
-YW55IGF0dGFjaG1lbnRzLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCB5
-b3UgYXJlIG5vdGlmaWVkIHRoYXQgYW55IHVzZSwgZGlzc2VtaW5hdGlvbiwgZGlzdHJpYnV0aW9u
-LCBjb3B5aW5nLCBvciBzdG9yYWdlIG9mIHRoaXMgbWVzc2FnZSBvciBhbnkgYXR0YWNobWVudCBp
-cyBzdHJpY3RseSBwcm9oaWJpdGVkLgo=
+There is irc. #yocto @freenode.
 
---_000_999304F2F116487C8D432D4C0AD026B3chartercom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <904F6AF7DCE0EA43ACBD27812C53DFF2@charter.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: base64
+Alex
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPCEtLVtp
-ZiAhbXNvXT48c3R5bGU+dlw6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kb1w6KiB7
-YmVoYXZpb3I6dXJsKCNkZWZhdWx0I1ZNTCk7fQ0Kd1w6KiB7YmVoYXZpb3I6dXJsKCNkZWZhdWx0
-I1ZNTCk7fQ0KLnNoYXBlIHtiZWhhdmlvcjp1cmwoI2RlZmF1bHQjVk1MKTt9DQo8L3N0eWxlPjwh
-W2VuZGlmXS0tPjxzdHlsZT48IS0tDQovKiBGb250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNl
-DQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYg
-MyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIg
-MTUgNSAyIDIgMiA0IDMgMiA0O30NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6Ik1hbGd1biBH
-b3RoaWMiOw0KCXBhbm9zZS0xOjIgMTEgNSAzIDIgMCAwIDIgMCA0O30NCkBmb250LWZhY2UNCgl7
-Zm9udC1mYW1pbHk6IlxATWFsZ3VuIEdvdGhpYyI7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8N
-CnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsN
-CgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWls
-eToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21z
-by1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1
-bmRlcmxpbmU7fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1z
-dHlsZS1wcmlvcml0eTo5OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRl
-cmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtY29t
-cG9zZTsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjsNCgljb2xvcjp3aW5kb3d0
-ZXh0O30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZv
-bnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtz
-aXplOjguNWluIDExLjBpbjsNCgltYXJnaW46MS4waW4gMS4waW4gMS4waW4gMS4waW47fQ0KZGl2
-LldvcmRTZWN0aW9uMQ0KCXtwYWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPg0KPC9oZWFk
-Pg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxk
-aXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdCI+SGkgQWxsLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNw
-OzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjExLjBwdCI+RG8gd2UgaGF2ZSBhIHNsYWNrIGNoYW5uZWwgZm9yIHlvY3RvPzxvOnA+
-PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTEuMHB0Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+VGhhbmtzLDxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0Ij5pbGp1bjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-IHN0eWxlPSJ0ZXh0LWF1dG9zcGFjZTpub25lIj48Yj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdDtjb2xvcjojMDk0RTg5Ij48aW1nIHdpZHRoPSIyMjciIGhlaWdodD0iNzUiIHN0eWxlPSJ3
-aWR0aDoyLjM2NDVpbjtoZWlnaHQ6Ljc4MTJpbiIgaWQ9IlBpY3R1cmVfeDAwMjBfMSIgc3JjPSJj
-aWQ6aW1hZ2UwMDEucG5nQDAxRDVFNTcxLjlGRTRFMTIwIiBhbHQ9Ii9Vc2Vycy9wMjc3NDE5OC9M
-aWJyYXJ5L0NvbnRhaW5lcnMvY29tLm1pY3Jvc29mdC5PdXRsb29rL0RhdGEvTGlicmFyeS9DYWNo
-ZXMvU2lnbmF0dXJlcy9zaWduYXR1cmVfMTkwODM4MjE2Ij48L3NwYW4+PC9iPjxzcGFuIHN0eWxl
-PSJmb250LXNpemU6MTEuMHB0Ij48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIiBzdHlsZT0idGV4dC1hdXRvc3BhY2U6bm9uZSI+PGI+PHNwYW4gc3R5bGU9ImZvbnQt
-c2l6ZToxMS4wcHQ7Y29sb3I6IzA5NEU4OSI+SUxKVU4gTEVFPC9zcGFuPjwvYj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdDtjb2xvcjojMDk0RTg5Ij4gfCBQcmluY2lwYWwgUy9XIEVuZ2lu
-ZWVyIElJIHwgNzIwLTQ5Mi03OTc1IChNKTwvc3Bhbj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdCI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
-InRleHQtYXV0b3NwYWNlOm5vbmUiPjxzcGFuIHN0eWxlPSJjb2xvcjojMDk0RTg5Ij5DVEVDSUks
-DQo8L3NwYW4+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Y29sb3I6IzI1NUZBNiI+Jm5i
-c3A7U3VpdGUgQiAtIDg1NjAgVXBsYW5kIERyaXZlLCBFbmdsZXdvb2QsIENPIDgwMTEyPC9zcGFu
-PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0Ij48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdCI+PGEgaHJl
-Zj0ibWFpbHRvOmlsanVuLmxlZUBjaGFydGVyLmNvbSI+PHNwYW4gc3R5bGU9ImNvbG9yOiMwQjRD
-QjQiPmlsanVuLmxlZUBjaGFydGVyLmNvbTwvc3Bhbj48L2E+PC9zcGFuPjxvOnA+PC9vOnA+PC9w
-Pg0KPC9kaXY+DQpUaGUgY29udGVudHMgb2YgdGhpcyBlLW1haWwgbWVzc2FnZSBhbmQgPGJyPmFu
-eSBhdHRhY2htZW50cyBhcmUgaW50ZW5kZWQgc29sZWx5IGZvciB0aGUgPGJyPmFkZHJlc3NlZShz
-KSBhbmQgbWF5IGNvbnRhaW4gY29uZmlkZW50aWFsIDxicj5hbmQvb3IgbGVnYWxseSBwcml2aWxl
-Z2VkIGluZm9ybWF0aW9uLiBJZiB5b3U8YnI+YXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50
-IG9mIHRoaXMgbWVzc2FnZTxicj5vciBpZiB0aGlzIG1lc3NhZ2UgaGFzIGJlZW4gYWRkcmVzc2Vk
-IHRvIHlvdSA8YnI+aW4gZXJyb3IsIHBsZWFzZSBpbW1lZGlhdGVseSBhbGVydCB0aGUgc2VuZGVy
-PGJyPmJ5IHJlcGx5IGUtbWFpbCBhbmQgdGhlbiBkZWxldGUgdGhpcyBtZXNzYWdlIDxicj5hbmQg
-YW55IGF0dGFjaG1lbnRzLiBJZiB5b3UgYXJlIG5vdCB0aGUgPGJyPmludGVuZGVkIHJlY2lwaWVu
-dCwgeW91IGFyZSBub3RpZmllZCB0aGF0IDxicj5hbnkgdXNlLCBkaXNzZW1pbmF0aW9uLCBkaXN0
-cmlidXRpb24sIGNvcHlpbmcsPGJyPm9yIHN0b3JhZ2Ugb2YgdGhpcyBtZXNzYWdlIG9yIGFueSBh
-dHRhY2htZW50IDxicj5pcyBzdHJpY3RseSBwcm9oaWJpdGVkLjwvYm9keT4NCjwvaHRtbD4NCg==
+On Mon, 17 Feb 2020 at 17:07, ILJUN LEE <iljun.lee@charter.com> wrote:
 
---_000_999304F2F116487C8D432D4C0AD026B3chartercom_--
+> Hi All,
+>
+>
+>
+> Do we have a slack channel for yocto?
+>
+>
+>
+> Thanks,
+>
+> iljun
+>
+> *[image:
+> /Users/p2774198/Library/Containers/com.microsoft.Outlook/Data/Library/Caches/Signatures/signature_190838216]*
+>
+> *ILJUN LEE* | Principal S/W Engineer II | 720-492-7975 (M)
+>
+> CTECII,  Suite B - 8560 Upland Drive, Englewood, CO 80112
+>
+> iljun.lee@charter.com
+> The contents of this e-mail message and
+> any attachments are intended solely for the
+> addressee(s) and may contain confidential
+> and/or legally privileged information. If you
+> are not the intended recipient of this message
+> or if this message has been addressed to you
+> in error, please immediately alert the sender
+> by reply e-mail and then delete this message
+> and any attachments. If you are not the
+> intended recipient, you are notified that
+> any use, dissemination, distribution, copying,
+> or storage of this message or any attachment
+> is strictly prohibited.
+> 
+>
 
---_004_999304F2F116487C8D432D4C0AD026B3chartercom_
+--000000000000764f11059ec7cd23
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">There is irc. #yocto=C2=A0@freenode.<div><br></div><div>Al=
+ex</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Mon, 17 Feb 2020 at 17:07, ILJUN LEE &lt;<a href=3D"mailto:iljun=
+.lee@charter.com">iljun.lee@charter.com</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:=
+1px;border-left-style:solid;border-left-color:rgb(204,204,204);padding-left=
+:1ex">
+
+
+
+
+
+<div lang=3D"EN-US">
+<div class=3D"gmail-m_-5460702272015560140WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Hi All,<u></u><u></u=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Do we have a slack c=
+hannel for yocto?<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><u></u>=C2=A0<u></u>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">Thanks,<u></u><u></u=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt">iljun<u></u><u></u><=
+/span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;color:rgb(9,78,137=
+)"><img width=3D"227" height=3D"75" style=3D"width: 2.3645in; height: 0.781=
+2in;" id=3D"gmail-m_-5460702272015560140Picture_x0020_1" src=3D"cid:17053eb=
+032e4cff311" alt=3D"/Users/p2774198/Library/Containers/com.microsoft.Outloo=
+k/Data/Library/Caches/Signatures/signature_190838216"></span></b><span styl=
+e=3D"font-size:11pt"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11pt;color:rgb(9,78,137=
+)">ILJUN LEE</span></b><span style=3D"font-size:11pt;color:rgb(9,78,137)"> =
+| Principal S/W Engineer II | 720-492-7975 (M)</span><span style=3D"font-si=
+ze:11pt"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:rgb(9,78,137)">CTECII,
+</span><span style=3D"font-size:11pt;color:rgb(37,95,166)">=C2=A0Suite B -=
+ 8560 Upland Drive, Englewood, CO 80112</span><span style=3D"font-size:11pt=
+"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11pt"><a href=3D"mailto:il=
+jun.lee@charter.com" target=3D"_blank"><span style=3D"color:rgb(11,76,180)"=
+>iljun.lee@charter.com</span></a></span><u></u><u></u></p>
+</div>
+The contents of this e-mail message and <br>any attachments are intended s=
+olely for the <br>addressee(s) and may contain confidential <br>and/or lega=
+lly privileged information. If you<br>are not the intended recipient of thi=
+s message<br>or if this message has been addressed to you <br>in error, ple=
+ase immediately alert the sender<br>by reply e-mail and then delete this me=
+ssage <br>and any attachments. If you are not the <br>intended recipient, y=
+ou are notified that <br>any use, dissemination, distribution, copying,<br>=
+or storage of this message or any attachment <br>is strictly prohibited.</d=
+iv>
+
+<br>
+</blockquote></div>
+
+--000000000000764f11059ec7cd23--
+
+--000000000000764f12059ec7cd24
 Content-Type: image/png; name="image001.png"
-Content-Description: image001.png
-Content-Disposition: inline; filename="image001.png"; size=7422;
-	creation-date="Mon, 17 Feb 2020 16:07:05 GMT";
-	modification-date="Mon, 17 Feb 2020 16:07:05 GMT"
-Content-ID: <image001.png@01D5E571.9FE4E120>
+Content-Disposition: inline; filename="image001.png"
 Content-Transfer-Encoding: base64
+Content-ID: <17053eb032e4cff311>
+X-Attachment-Id: 17053eb032e4cff311
 
 iVBORw0KGgoAAAANSUhEUgAAAKoAAAA4CAYAAABt2GPKAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAO
 xAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAABx9SURBVHhe
@@ -282,4 +296,4 @@ fZ9JYNiAiiLWL3L5/NtU8UDReafnhI8ApO9mOul9porKdgeTwLABlUf+r3zb/1WxQPKuqjIVjVUk
 0qzQGjYJVIA6bKKtEB5KCVSAOpTSrNAaNglUgDpsoq0QHkoJVIA6lNKs0Bo2Cfw/RFOQ2QNy120A
 AAAASUVORK5CYIIA
 
---_004_999304F2F116487C8D432D4C0AD026B3chartercom_--
+--000000000000764f12059ec7cd24--
