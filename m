@@ -1,95 +1,108 @@
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
- by mx.groups.io with SMTP id smtpd.web10.12418.1581961646354685244
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
+ by mx.groups.io with SMTP id smtpd.web11.750.1581979764661978403
  for <yocto@lists.yoctoproject.org>;
- Mon, 17 Feb 2020 09:47:26 -0800
+ Mon, 17 Feb 2020 14:49:24 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=PrEo0Oxi;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.42, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f42.google.com with SMTP id t14so174366wmi.5
-        for <yocto@lists.yoctoproject.org>; Mon, 17 Feb 2020 09:47:26 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=a+a115AG;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.210.48, mailfrom: mhalstead@linuxfoundation.org)
+Received: by mail-ot1-f48.google.com with SMTP id j20so17701531otq.3
+        for <yocto@lists.yoctoproject.org>; Mon, 17 Feb 2020 14:49:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=P8B5MqFyi9zOdwvKOH9ZUmRUifPewxVSk5RbKF9nAd8=;
-        b=PrEo0OxiGVFE3rgbNRjgyF/ZUVEIz6CUr0hX6StdaYYQXnGkShozbJFj45DvSuyojm
-         Fg6wZUka/GywGfnoqrBy1Z+6rsNj7UVWiO+2m+jDXagF3sk9bHON21vQAJ8Cul8vNEg/
-         iCIbX122L/f2NyRqz1rMz+zgi91VtGUTbaiZE=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=N2f9ztK/TmSfUxPUoRd1G2DZoCODh5zSumDXh2M92uM=;
+        b=a+a115AG6uSjZZPf+CK3Lp34vTxXUfUeTQPXdNHv7cLdEipymtLeC4zG2XeTSXuZxP
+         MZszApv8C8tgoiB9f4QmWfpJ8t4wpxYvAvI5EGRMVvswXkBm/ORAanG+O1kBpxLGKtOw
+         Rl20VFnax6tD/CRXSQEU9bXXQQCjyz9KR51Qo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=P8B5MqFyi9zOdwvKOH9ZUmRUifPewxVSk5RbKF9nAd8=;
-        b=OoTY6FIlEvirUlTtughf5GFKBNYMyxtB8NuQlLk8MGm727FuOwjcoNwS2xSv4PwQlr
-         NR42BId26XDs6qW9YXBEwEUYNN3Ruvr6XaYFonQbcz+OX8Pjs/uArhB972yowdwFKZlu
-         r+juJ5nYUfALVkw62Sy5JJ4EKrXiYco5hI7V4PWAHcFIgOv36HD4a2vftQK3euHM9UbY
-         6e0A7+JNQBLxVBkBafRYIOfTdYyUzBrVVAFQyDae13iFIDtaBWQVBw4VGH0PgW3N8q6+
-         NU6x8l8fFSNqLKgjOirXgOYuZAHEF2RwNrmCnEJKUfIAeL2RwLetlerijF8hEScGirwL
-         S5Cw==
-X-Gm-Message-State: APjAAAVODD17WzTxWJLmRxhWKXf71B7fpqgqvSFG+oU68Qrd92BgrhVV
-	0/suvyJRVmxUQET13qmWAUSzKw==
-X-Google-Smtp-Source: APXvYqxS9TaNHAG8D1/oSsRPmNw9cSJ3EUvdddZCnXn+uZvsLdJVYM6uYKfcjpC1jQCtpKbFn6FS4g==
-X-Received: by 2002:a7b:ce8b:: with SMTP id q11mr186716wmj.100.1581961644539;
-        Mon, 17 Feb 2020 09:47:24 -0800 (PST)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-        by smtp.gmail.com with ESMTPSA id d16sm2233569wrg.27.2020.02.17.09.47.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 17 Feb 2020 09:47:23 -0800 (PST)
-Message-ID: <ea92a8a308253301273f97ad910281638d350b69.camel@linuxfoundation.org>
-Subject: Re: [yocto] Creating a build system which can scale. #yocto
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: philip.lewis@domino-uk.com, yocto@lists.yoctoproject.org
-Date: Mon, 17 Feb 2020 17:47:22 +0000
-In-Reply-To: <5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org>
-References: <5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org>
-User-Agent: Evolution 3.34.1-4 
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=N2f9ztK/TmSfUxPUoRd1G2DZoCODh5zSumDXh2M92uM=;
+        b=Sx6MMv05coPUPh6Z5iKH+UFKfjj7SyG/JMuYrhXZxqsk2TWH1AG421iczRUDEefhQR
+         XOU2X7s3Z5/9M7qH2NnYQtnoFwukIKaovt4xzv/eRAgF91vTQRqpTcsMqVnDnSh3dTBL
+         ZyiZVLywy5LBxPRnVm7HqfzOfvvWixnSiTtl3Am43CENYNOJ5d+FfxTIJlkwYyLHZIAN
+         29B1iIrq2MNXobkL5/Qadjwp9VkeHS2auaejaGd2/xtAYVsh13yPAn+wGuAUreE3cDgE
+         e/ldRxmrvsJnt+dqn/tTfyte/GCEXMU1Q8MtZ3os/hVsadaKuxGSa6viTt5iK4xRrzyq
+         UKbA==
+X-Gm-Message-State: APjAAAXCeGwWJ9E5iCfPtISOP2Oh+eL6iFharOLkt2KwDnYW3WulhewN
+	XofEzhEq6HxM42KNl/+UEHEssdDr9linNdwB1PpcmA==
+X-Google-Smtp-Source: APXvYqwzutsfuVLPz8aCf8a8TvJE2QJsEC0HII1gmwnKzbHqfTZ+Yggng4momthlhiq99mk6dz7NykW/o+vXLuTJJ4s=
+X-Received: by 2002:a9d:7cd0:: with SMTP id r16mr14323992otn.50.1581979763799;
+ Mon, 17 Feb 2020 14:49:23 -0800 (PST)
 MIME-Version: 1.0
+References: <CANNYZj8ux3H3-17eb1MFGFhG_vQDThxV+_gn4BEFH-PRjWUdsA@mail.gmail.com>
+ <18b267a0b9ca83560766ef1c3cd8d1db77744128.camel@linuxfoundation.org>
+In-Reply-To: <18b267a0b9ca83560766ef1c3cd8d1db77744128.camel@linuxfoundation.org>
+From: "Michael Halstead" <mhalstead@linuxfoundation.org>
+Date: Mon, 17 Feb 2020 14:49:12 -0800
+Message-ID: <CADfgfobQUSu3xSqCmimLgD+DBB598GJsnC4w+tzbn9djWWRmaw@mail.gmail.com>
+Subject: Re: master/master-next missing from poky repo?
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Cc: Alexander Kanavin <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000dd0d42059ecd5dfd"
+
+--000000000000dd0d42059ecd5dfd
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
 
-On Mon, 2020-02-17 at 04:27 -0800, philip.lewis@domino-uk.com wrote:
-> Something using the built-in cache mirror in Yocto–there are a few
-> ways it can do this, as it’s essentially a file share somewhere. 
-> https://pelux.io/2017/06/19/How-to-create-a-shared-sstate-dir.html
-> for an example shows how to share it via NFS, but you can also use http or ftp.
+The caching issues are resolved as well as a tricky permissions issue.
+These repositories are operating correctly again.
 
-Sharing sstate between the workers is the obvious win, as is rm_work to
-reduce individual build sizes.
+Please let me know if issues persist.
 
-> Having a single cache largely solves the storage issue as there is
-> only one cache, so having solved that issue, it introduces a few more
-> questions and constraints:
-> 
-> How do we manage the size of the cache?
-> There’s no built-in expiry mechanism I could find. This means we’d
-> probably have to create something ourselves (parse access logs from
-> the server hosting the cache and apply a garbage collector process).
+-- 
+Michael Halstead
 
-The system is setup to "touch" files it uses if it has write access so
-you can tell which artefacts are being used.
+On Sat, Feb 15, 2020 at 2:44 AM Richard Purdie <
+richard.purdie@linuxfoundation.org> wrote:
 
-> How/When do we update the cache?
-> All environments contributing to the cache need to be identical (that
-> ansible playbook just grabs the latest of everything) to avoid subtle
-> differences in the build artefacts depending on which environment
-> populated the cache.
+> On Sat, 2020-02-15 at 11:41 +0100, Alexander Kanavin wrote:
+> > Something is wrong, as master and master-next are missing here?
+> > http://git.yoctoproject.org/cgit/cgit.cgi/poky/
+>
+> There is something wrong with the http caching on the git server. The
+> branches are there, they're just not appearing immediately in the web
+> protocol. I know Michael is aware and has been working on it.
+>
+> You can access them using the git protocol if that helps.
+>
+> Cheers,
+>
+> Richard
+>
+>
 
-All environments contributing to the cache don't have to identical, we
-aim to build reproducible binaries regardless of the host OS.
+--000000000000dd0d42059ecd5dfd
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Obviously you reduce risk by doing so but I just wanted to be clear
-that we have protection in place for this and sstate does support it.
+<div dir=3D"ltr">The caching issues are resolved as well as a tricky permis=
+sions issue. These repositories are operating correctly again.<div><br></di=
+v><div>Please let me know if issues persist.</div><div><br></div><div>--=C2=
+=A0</div><div>Michael Halstead</div></div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Sat, Feb 15, 2020 at 2:44 AM Richard=
+ Purdie &lt;<a href=3D"mailto:richard.purdie@linuxfoundation.org">richard.p=
+urdie@linuxfoundation.org</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex">On Sat, 2020-02-15 at 11:41 +0100, Alexander Kanav=
+in wrote:<br>
+&gt; Something is wrong, as master and master-next are missing here?<br>
+&gt; <a href=3D"http://git.yoctoproject.org/cgit/cgit.cgi/poky/" rel=3D"nor=
+eferrer" target=3D"_blank">http://git.yoctoproject.org/cgit/cgit.cgi/poky/<=
+/a><br>
+<br>
+There is something wrong with the http caching on the git server. The<br>
+branches are there, they&#39;re just not appearing immediately in the web<b=
+r>
+protocol. I know Michael is aware and has been working on it.<br>
+<br>
+You can access them using the git protocol if that helps.<br>
+<br>
+Cheers,<br>
+<br>
+Richard<br>
+<br>
+</blockquote></div>
 
-> How much time will fetching the cache from a remote server add to the
-> build?
-
-Mostly depends on your interconnecting network speed.
-
-Some mentioned NFS, we do support NFS for sstate, our autobuilders make
-extensive use of that.
-
-Cheers,
-
-Richard
-
+--000000000000dd0d42059ecd5dfd--
