@@ -1,284 +1,388 @@
-Received: from Mail1.woodward.com (Mail1.woodward.com [216.17.208.201])
- by mx.groups.io with SMTP id smtpd.web10.8033.1581944183727458497
+Received: from esa10.bmw.c3s2.iphmx.com (esa10.bmw.c3s2.iphmx.com [68.232.139.98])
+ by mx.groups.io with SMTP id smtpd.web09.8283.1581944621634547895
  for <yocto@lists.yoctoproject.org>;
- Mon, 17 Feb 2020 04:56:24 -0800
+ Mon, 17 Feb 2020 05:03:44 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@woodward.com header.s=20190114woodward header.b=ZpqZ15FI;
- spf=pass (domain: woodward.com, ip: 216.17.208.201, mailfrom: georgi.georgiev@woodward.com)
-Received: from pps.filterd (CoCo-PMSGA1.woodward.com [127.0.0.1])
-	by CoCo-PMSGA1.woodward.com (8.16.0.42/8.16.0.42) with SMTP id 01HCswt7016218;
-	Mon, 17 Feb 2020 06:56:17 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=woodward.com; h=from : to : subject
- : date : message-id : content-transfer-encoding : mime-version :
- content-type; s=20190114Woodward;
- bh=H+TeJA/4FZ8X0t0z5F1JESDFiCckfX0jHJ0twNWDuwE=;
- b=ZpqZ15FIzAQAt7vbW9BS/MAtHUTVwpM4P8bEeOnFVN+RunoWD/cmqULkmTPMy8NtyQ3B
- zVYw9DiaOo63EA9/rCO0VxZMbT0xpNL7JfiVQrQF+G0PtaG1Gq5bxKQZndYtqVyA0306
- 0PY8cAtjWGHYUqAbkYxwzLSDsNdQdlBPSK3bERH3t27swLY2pvx2Fzy5e5qgMtLYRfge
- a3ossdfeSZ/Cuo8ujWwdoRB9p0wyfpsNnR0QLdi8LMXpdrLsMRcj6KDAlKd5yr4am3ND
- JC8efyvArr9sBMjYz7nqM6kjyvA4PCUt/gqdQDhNBpjumxfo6yhaQPa1wbD24ppJKlzz JQ== 
-Received: from coil-exmb3.woodward.com ([10.51.100.66])
-	by CoCo-PMSGA1.woodward.com with ESMTP id 2y7u89002t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-	Mon, 17 Feb 2020 06:56:16 -0600
-Received: from Kemp-ExMb1.woodward.com (10.25.100.72) by
- COIL-ExMb3.woodward.com (10.51.100.66) with Microsoft SMTP Server (TLS) id
- 15.0.1473.3; Mon, 17 Feb 2020 06:56:15 -0600
-Received: from Kemp-ExMb1.woodward.com (10.25.100.72) by
- Kemp-ExMb1.woodward.com (10.25.100.72) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 17 Feb 2020 13:56:13 +0100
-Received: from Kemp-ExMb1.woodward.com ([10.25.100.72]) by
- Kemp-ExMb1.woodward.com ([10.25.100.72]) with mapi id 15.00.1395.000; Mon, 17
- Feb 2020 13:56:13 +0100
-From: "Georgi Georgiev" <georgi.georgiev@woodward.com>
-To: Khem Raj <raj.khem@gmail.com>,
-        "yocto@lists.yoctoproject.org"
-	<yocto@lists.yoctoproject.org>
+ dkim=pass header.i=@bmw.de header.s=mailing1 header.b=Eu/5jjUG;
+ spf=pass (domain: bmw.de, ip: 68.232.139.98, mailfrom: prvs=3094f87a1=mikko.rapeli@bmw.de)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1581944623; x=1613480623;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=SdkWIR+NwefLZ+HwMXzewVE9ExCMhxaV6L+S4Q8viUU=;
+  b=Eu/5jjUG8TRFnjJKFHi+WEVyWkSbnGCHarrFjTee2XSWtcopcvQlDR/M
+   CgmjB9v7Yz0G8k0s0Vy/hx6gRrELWFZ7M8UwMMqZW1JlkpJ+t9gfPrWbH
+   TJY0t6qeugnK3GV8HK2dB5/vIGIRlsI59oxuCIl5enbB5UjeK8xss8Z9J
+   U=;
+IronPort-SDR: 756pM6OD2xrVJ8Q0dV7X+qaBDJS9vI1+rNboqAGJHAwzMOlg+fHg4tYfBliAMZKTMGTEhp7rN2
+ AMUVYitzgdwRps4FT4tldez8LYMCm5TEjjkHReIUEwC1Hs0fYxfgV0MPbV53mwIg0Z9ttVdtLg
+ XU6ZbGqI4Jp4zWf01uACZ5kH68rEPE9ZEWla8H7l20/g5HpPBLR4U35UzUz5MlOGWXHgvcUHmj
+ h/GWlFUv/OYS+NtIQVc3qqVBBvHag6Besi6DiIdR1zy2YvembgzV74V834Bomi5hw16+swudBt
+ gSY=
+Received: from esagw6.bmwgroup.com (HELO esagw6.muc) ([160.46.252.49]) by
+ esa10.bmw.c3s2.iphmx.com with ESMTP/TLS; 17 Feb 2020 14:03:39 +0100
+Received: from esabb1.muc ([160.50.100.31])  by esagw6.muc with ESMTP/TLS;
+ 17 Feb 2020 14:03:38 +0100
+Received: from smucm10m.bmwgroup.net (HELO smucm10m.europe.bmw.corp) ([160.48.96.49])
+ by esabb1.muc with ESMTP/TLS; 17 Feb 2020 14:03:38 +0100
+Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10m.europe.bmw.corp
+ (160.48.96.49) with Microsoft SMTP Server (TLS;
+ Mon, 17 Feb 2020 14:03:38 +0100
+Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
+ smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Mon,
+ 17 Feb 2020 14:03:37 +0100
+From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
+To: <georgi.georgiev@woodward.com>
+CC: <raj.khem@gmail.com>, <yocto@lists.yoctoproject.org>
 Subject: Re: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failures with offline/online svn build! #yocto #python
 Thread-Topic: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failures
  with offline/online svn build! #yocto #python
-Thread-Index: AdXcRVMItAsS96VjQ36fsMtuKM+vJgJSsmTA
-Date: Mon, 17 Feb 2020 12:56:13 +0000
-Message-ID: <bfb7604a4f7f481aad771a3472031e1b@Kemp-ExMb1.woodward.com>
+Thread-Index: AdXcRVMItAsS96VjQ36fsMtuKM+vJgJSsmTA///0WIA=
+Date: Mon, 17 Feb 2020 13:03:37 +0000
+Message-ID: <20200217130337.GS104502@korppu>
+References: <bfb7604a4f7f481aad771a3472031e1b@Kemp-ExMb1.woodward.com>
+In-Reply-To: <bfb7604a4f7f481aad771a3472031e1b@Kemp-ExMb1.woodward.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-dlp-version: 11.1.100.23
-dlp-reaction: no-action
-dlp-product: dlpe-windows
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.138.108.100]
+x-ms-exchange-messagesentrepresentingtype: 1
 MIME-Version: 1.0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- lowpriorityscore=0 mlxscore=0 impostorscore=0 adultscore=0 bulkscore=0
- priorityscore=1501 spamscore=0 suspectscore=0 malwarescore=0 phishscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2001150001 definitions=main-2002170109
 Content-Language: en-US
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <4BC64DEAD6B3DA4097A7A061A4E6174C@bmwmail.corp>
+Content-Transfer-Encoding: quoted-printable
 
-QW5vdGhlciBzZXJpb3VzIGlzc3VlIHdpdGggc3ZuIGZldGNoZXIsIGFsd2F5cyBvY2N1cnJpbmcg
-d2hlbiBkb2luZyBpbmNyZW1lbnRhbCBidWlsZHMuIEkgYW0gcHV0dGluZyBpdCBoZXJlIGJlY2F1
-c2UgSSB0aGluayBib3RoIGlzc3VlcyBhcmUgcmVsYXRlZC4gUGxlYXNlIHN1Z2dlc3Qgd2hhdCB0
-byBkby4gVGhlIGVycm9yIHdlIGdldCBpcyBzaG93biBiZWxvdy4gVGhpcyB0aW1lIGl0IGhhcHBl
-bnMgYWx3YXlzLiBUaGUgb25seSB3b3JrYXJvdW5kIGlzIHRvIGNsZWFuIGFuZCBidWlsZC4gQXMg
-c29vbiBhcyB3ZSBtYWtlIG1vZGlmaWNhdGlvbiBvZiB0aGUgcmVjaXBlIChQViBjaGFuZ2Ugb25s
-eSkgaXQgZmFpbHM6DQoNCkVSUk9SOiB3dy1wYWNtYW4tMTIxMjA0LXIwIGRvX2ZldGNoOiBFcnJv
-ciBleGVjdXRpbmcgYSBweXRob24gZnVuY3Rpb24gaW4gZXhlY19weXRob25fZnVuYygpIGF1dG9n
-ZW5lcmF0ZWQ6DQoNClRoZSBzdGFjayB0cmFjZSBvZiBweXRob24gY2FsbHMgdGhhdCByZXN1bHRl
-ZCBpbiB0aGlzIGV4Y2VwdGlvbi9mYWlsdXJlIHdhczoNCkZpbGU6ICdleGVjX3B5dGhvbl9mdW5j
-KCkgYXV0b2dlbmVyYXRlZCcsIGxpbmVubzogMiwgZnVuY3Rpb246IDxtb2R1bGU+DQogICAgIDAw
-MDE6DQogKioqIDAwMDI6YmFzZV9kb19mZXRjaChkKQ0KICAgICAwMDAzOg0KRmlsZTogJy9kYXRh
-L2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2ovYnVpbGQvLi4vc291cmNlcy9wb2t5L21ldGEvY2xh
-c3Nlcy9iYXNlLmJiY2xhc3MnLCBsaW5lbm86IDE2MywgZnVuY3Rpb246IGJhc2VfZG9fZmV0Y2gN
-CiAgICAgMDE1OTogICAgICAgIHJldHVybg0KICAgICAwMTYwOg0KICAgICAwMTYxOiAgICB0cnk6
-DQogICAgIDAxNjI6ICAgICAgICBmZXRjaGVyID0gYmIuZmV0Y2gyLkZldGNoKHNyY191cmksIGQp
-DQogKioqIDAxNjM6ICAgICAgICBmZXRjaGVyLmRvd25sb2FkKCkNCiAgICAgMDE2NDogICAgZXhj
-ZXB0IGJiLmZldGNoMi5CQkZldGNoRXhjZXB0aW9uIGFzIGU6DQogICAgIDAxNjU6ICAgICAgICBi
-Yi5mYXRhbChzdHIoZSkpDQogICAgIDAxNjY6fQ0KICAgICAwMTY3Og0KRmlsZTogJy9kYXRhL2hv
-bWUvdzIzNjk4L3Byb2plY3RzL3Byb2ovc291cmNlcy9wb2t5L2JpdGJha2UvbGliL2JiL2ZldGNo
-Mi9fX2luaXRfXy5weScsIGxpbmVubzogMTY3OCwgZnVuY3Rpb246IGRvd25sb2FkDQogICAgIDE2
-NzQ6ICAgICAgICAgICAgICAgICAgICB0cnk6DQogICAgIDE2NzU6ICAgICAgICAgICAgICAgICAg
-ICAgICAgaWYgbm90IHRydXN0ZWRfbmV0d29yayhzZWxmLmQsIHVkLnVybCk6DQogICAgIDE2NzY6
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHJhaXNlIFVudHJ1c3RlZFVybCh1ZC51cmwpDQog
-ICAgIDE2Nzc6ICAgICAgICAgICAgICAgICAgICAgICAgbG9nZ2VyLmRlYnVnKDEsICJUcnlpbmcg
-VXBzdHJlYW0iKQ0KICoqKiAxNjc4OiAgICAgICAgICAgICAgICAgICAgICAgIG0uZG93bmxvYWQo
-dWQsIHNlbGYuZCkNCiAgICAgMTY3OTogICAgICAgICAgICAgICAgICAgICAgICBpZiBoYXNhdHRy
-KG0sICJidWlsZF9taXJyb3JfZGF0YSIpOg0KICAgICAxNjgwOiAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICBtLmJ1aWxkX21pcnJvcl9kYXRhKHVkLCBzZWxmLmQpDQogICAgIDE2ODE6ICAgICAg
-ICAgICAgICAgICAgICAgICAgbG9jYWxwYXRoID0gdWQubG9jYWxwYXRoDQogICAgIDE2ODI6ICAg
-ICAgICAgICAgICAgICAgICAgICAgIyBlYXJseSBjaGVja3N1bSB2ZXJpZnksIHNvIHRoYXQgaWYg
-Y2hlY2tzdW0gbWlzbWF0Y2hlZCwNCkZpbGU6ICcvZGF0YS9ob21lL3cyMzY5OC9wcm9qZWN0cy9w
-cm9qL3NvdXJjZXMvcG9reS9iaXRiYWtlL2xpYi9iYi9mZXRjaDIvc3ZuLnB5JywgbGluZW5vOiAx
-NTAsIGZ1bmN0aW9uOiBkb3dubG9hZA0KICAgICAwMTQ2OiAgICAgICAgICAgIGlmIG5vdCAoImV4
-dGVybmFscyIgaW4gdWQucGFybSBhbmQgdWQucGFybVsiZXh0ZXJuYWxzIl0gPT0gIm5vd2FybiIp
-Og0KICAgICAwMTQ3OiAgICAgICAgICAgICAgICAjIFdhcm4gdGhlIHVzZXIgaWYgdGhpcyBoYWQg
-ZXh0ZXJuYWxzICh3b24ndCBjYXRjaCB0aGVtIGFsbCkNCiAgICAgMDE0ODogICAgICAgICAgICAg
-ICAgb3V0cHV0ID0gcnVuZmV0Y2hjbWQoInN2biBwcm9wZ2V0IHN2bjpleHRlcm5hbHMgfHwgdHJ1
-ZSIsIGQsIHdvcmtkaXI9dWQubW9kZGlyKQ0KICAgICAwMTQ5OiAgICAgICAgICAgICAgICBpZiBv
-dXRwdXQ6DQogKioqIDAxNTA6ICAgICAgICAgICAgICAgICAgICBpZiAiLS1pZ25vcmUtZXh0ZXJu
-YWxzIiBpbiBzdm5mZXRjaGNtZC5zcGxpdCgpOg0KICAgICAwMTUxOiAgICAgICAgICAgICAgICAg
-ICAgICAgIGJiLndhcm4oIiVzIGNvbnRhaW5zIHN2bjpleHRlcm5hbHMuIiAlIHVkLnVybCkNCiAg
-ICAgMDE1MjogICAgICAgICAgICAgICAgICAgICAgICBiYi53YXJuKCJUaGVzZSBzaG91bGQgYmUg
-YWRkZWQgdG8gdGhlIHJlY2lwZSBTUkNfVVJJIGFzIG5lY2Vzc2FyeS4iKQ0KICAgICAwMTUzOiAg
-ICAgICAgICAgICAgICAgICAgICAgIGJiLndhcm4oInN2biBmZXRjaCBoYXMgaWdub3JlZCBleHRl
-cm5hbHM6XG4lcyIgJSBvdXRwdXQpDQogICAgIDAxNTQ6ICAgICAgICAgICAgICAgICAgICAgICAg
-YmIud2FybigiVG8gZGlzYWJsZSB0aGlzIHdhcm5pbmcgYWRkICc7ZXh0ZXJuYWxzPW5vd2Fybicg
-dG8gdGhlIHVybC4iKQ0KRXhjZXB0aW9uOiBVbmJvdW5kTG9jYWxFcnJvcjogbG9jYWwgdmFyaWFi
-bGUgJ3N2bmZldGNoY21kJyByZWZlcmVuY2VkIGJlZm9yZSBhc3NpZ25tZW50DQoNCkVSUk9SOiBM
-b2dmaWxlIG9mIGZhaWx1cmUgc3RvcmVkIGluOiAvZGF0YS9ob21lL3cyMzY5OC9wcm9qZWN0cy9w
-cm9qL2J1aWxkL3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ct
-cGFjbWFuLzEyMTIwNC1yMC90ZW1wL2xvZy5kb19mZXRjaC4xODg1Mw0KDQotLS0tLU9yaWdpbmFs
-IE1lc3NhZ2UtLS0tLQ0KRnJvbTogR2VvcmdpIEdlb3JnaWV2IA0KU2VudDogV2VkbmVzZGF5LCBG
-ZWJydWFyeSAwNSwgMjAyMCA2OjU3IFBNDQpUbzogR2VvcmdpIEdlb3JnaWV2IDxHZW9yZ2kuR2Vv
-cmdpZXZAd29vZHdhcmQuY29tPjsgS2hlbSBSYWogPHJhai5raGVtQGdtYWlsLmNvbT47IHlvY3Rv
-QGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIFlvY3RvIFt0aHVk
-XSwgW3pldXNdIGRvX2ZldGNoIGFuZCBkb191bnBhY2sgZmFpbHVyZXMgd2l0aCBvZmZsaW5lL29u
-bGluZSBzdm4gYnVpbGQhICN5b2N0byAjcHl0aG9uDQoNClNvcnJ5IEtoZW0sDQpXaXRoIGVzYyBj
-aGFyYWN0ZXIgJ1wnIGJlZm9yZSAmIGl0IGNhbid0IHRha2UgdGhlIGZ1bGwgcGF0aC4gU28gYnJp
-ZWZseToNCg0KWW9jdG8gYnVpbGQgd2l0aCBjaGFyICdcJyBiZWZvcmUgJiBpbiBTUkNfVVJJOg0K
-CW9ubGluZSAtIE9LDQoJb2ZmbGluZSAtIEVycm9yIC0gc3ZuOiBFMTcwMDEzOiBVbmFibGUgdG8g
-Y29ubmVjdCB0byBhIHJlcG9zaXRvcnkuLi4NCllvY3RvIGJ1aWxkIHdpdGhvdXQgJ1wnIGluIFNS
-Q19VUkk6DQoJb25saW5lIGFuZCBvZmZsaW5lIHNhbWUgZXJyb3IgLSBkb191bnBhY2s6IFVucGFj
-ayBmYWlsdXJlIGZvciBVUkwgLSAicGFja2FnZSIudGFyLmd6IGlzIHByZXNlbnQgaW4gRExfRElS
-DQoNClRoYW5rcw0KDQoNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IHlvY3Rv
-QGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qu
-b3JnXSBPbiBCZWhhbGYgT2YgR2VvcmdpIEdlb3JnaWV2IHZpYSBMaXN0cy5Zb2N0b3Byb2plY3Qu
-T3JnDQpTZW50OiBXZWRuZXNkYXksIEZlYnJ1YXJ5IDA1LCAyMDIwIDU6MjYgUE0NClRvOiBLaGVt
-IFJhaiA8cmFqLmtoZW1AZ21haWwuY29tPjsgeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0K
-Q2M6IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbRVhURVJOQUxd
-IFJlOiBbeW9jdG9dIFlvY3RvIFt0aHVkXSwgW3pldXNdIGRvX2ZldGNoIGFuZCBkb191bnBhY2sg
-ZmFpbHVyZXMgd2l0aCBvZmZsaW5lL29ubGluZSBzdm4gYnVpbGQhICN5b2N0byAjcHl0aG9uDQoN
-CkhpIEtoZW0sDQoNClllcywgbm8gaXNzdWVzIHdpdGggdGhhdC4gV2hlbiBJIGFtIGNvbm5lY3Rl
-ZCB0byBuZXR3b3JrIGl0IGZldGNoZXMgdGhlIGNvZGUgd2l0aCBhbmQgd2l0aG91dCBlc2NhcGUg
-Y2hhcmFjdGVyIGJlZm9yZSAmIGluIHRoZSBwYXRoLg0Kc3ZuIGNvICIgaHR0cHM6Ly91cmxkZWZl
-bnNlLnByb29mcG9pbnQuY29tL3YyL3VybD91PWh0dHAtM0FfX2NvY29zdWJ2ZXJzaW9uX3N2bl9F
-bWJlZGRlZF9WYWx2ZS0yNkFjdHVhdG9yX0RWUElJX3RydW5rX1NPQ1BBQ01hbkVudkVuZ0tleXMm
-ZD1Ed0lHYVEmYz15Nkw3Zzk1MEtmTXA5MlltTE0wUWxNZFhjUm42Yi1DcTRBQXBuU0pPZW5FJnI9
-a0h0SnJRR3pmSDFabWZzTmtKcFl1SC1qdE5wdjh5TURrcUFtc1JQOTltYyZtPXZYaWEteGxjeHVM
-cjJmU21Cb2dacE1JYU9udFhMS1d2M21reGNSZ3RVYzQmcz1VWUg5bHVlREllTUdabmRNeGdiWmdi
-NzZBNUVmcU4tTVI1OERCdjFpcmlJJmU9ICIgd29ya3MgZmluZSBhbmQgZmV0Y2hlcyB0aGUgcGFj
-a2FnZS4gDQoNCkdlb3JnaQ0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogS2hl
-bSBSYWogW21haWx0bzpyYWoua2hlbUBnbWFpbC5jb21dDQpTZW50OiBGcmlkYXksIEphbnVhcnkg
-MzEsIDIwMjAgODozMyBQTQ0KVG86IEdlb3JnaSBHZW9yZ2lldiA8R2VvcmdpLkdlb3JnaWV2QHdv
-b2R3YXJkLmNvbT47IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFtFWFRF
-Uk5BTF0gUmU6IFt5b2N0b10gWW9jdG8gW3RodWRdLCBbemV1c10gZG9fZmV0Y2ggYW5kIGRvX3Vu
-cGFjayBmYWlsdXJlcyB3aXRoIG9mZmxpbmUvb25saW5lIHN2biBidWlsZCEgI3lvY3RvICNweXRo
-b24NCg0KT24gMS8zMS8yMCA0OjAyIEFNLCBnZW9yZ2kuZ2VvcmdpZXYgdmlhIExpc3RzLllvY3Rv
-cHJvamVjdC5Pcmcgd3JvdGU6DQo+IEhlbGxvIENvbW11bml0eSwNCj4gVGhpcyBpcyB0aGUgdGhp
-cmQgdGltZSBJIGFtIGFza2luZyBmb3Igc3VwcG9ydCBvbiB0aGlzIGlzc3VlLiBUaGlzIA0KPiB0
-aW1lIEkgZGVjaWRlZCB0byB1c2UgdGhlIHdlYiBmb3JtLg0KPiBJbiBvdXIgcHJvamVjdCB3ZSBo
-YXZlIGEgcmVxdWlyZW1lbnQgdG8gYmUgYWJsZSB0byBidWlsZCB0aGUgcHJvamVjdCANCj4gb2Zm
-bGluZS4gRS5nLiBvbiB0aGUgZmllbGQgd2l0aG91dCBhbnkgbmV0d29yayBjb25uZWN0aW9uLiBX
-aGVuIHdlIGFyZSANCj4gY29ubmVjdGVkIHdpdGggdGhlIHJlY2lwZSBtZW50aW9uZWQgYmVsb3cg
-d2UgZG9uJ3QgaGF2ZSBpc3N1ZXM6DQo+IA0KDQoNCnN2bjogRTE3MDAxMzogVW5hYmxlIHRvIGNv
-bm5lY3QgdG8gYSByZXBvc2l0b3J5IGF0IFVSTCAnaHR0cHM6Ly91cmxkZWZlbnNlLnByb29mcG9p
-bnQuY29tL3YyL3VybD91PWh0dHAtM0FfX2NvY29zdWJ2ZXJzaW9uX3N2bl9FbWJlZGRlZF9WYWx2
-ZS0yNkFjdHVhdG9yX0RWUElJX3RydW5rX1NPQ1BBQ01hbkVudkVuZ0tleXNfdHJ1bmsmZD1Ed0lH
-YVEmYz15Nkw3Zzk1MEtmTXA5MlltTE0wUWxNZFhjUm42Yi1DcTRBQXBuU0pPZW5FJnI9a0h0SnJR
-R3pmSDFabWZzTmtKcFl1SC1qdE5wdjh5TURrcUFtc1JQOTltYyZtPW9jeDZCb1ZTckRRR1dVdlVV
-VnZnS3R1SmJUN2VIN2pGU2pDeTFZczczVncmcz1PVHVubm1zaV90Q1V0M0p5dG1VMkhzN2k3WG5x
-aGw4LTJDTXNxbXpJbDkwJmU9ICcNCnN2bjogRTY3MDAwMzogVGVtcG9yYXJ5IGZhaWx1cmUgaW4g
-bmFtZSByZXNvbHV0aW9uDQoNCmNhbiB5b3UgdHJ5IGNoZWNraW5nIG91dCB0aGUgcmVwbyBvdXQg
-c2lkZSBvZiBmZXRjaGVyIGFuZCBzZWUgaWYgdGhlIG1hY2hpbmUgY2FuIGZldGNoIHRoZSB1cmwg
-eW91IGFyZSB1c2luZyBpbiBTUkNfVVJJID8NCg0KPiAqU1VNTUFSWSA9ICJQQUNNYW4gLSBQYXJh
-bWV0ZXIgQW5kIENvbmZpZ3VyYXRpb24gTUFOYWdlciIqICpMSUNFTlNFID0NCj4gIkNMT1NFRCIq
-ICppbmhlcml0IHN5c3RlbWQgdXNlcmFkZCogKlJFUVVJUkVEX0RJU1RST19GRUFUVVJFUyA9DQo+
-ICJzeXN0ZW1kIiogKiMgU1ZOIHJldmlzaW9uKiAqUFYgPSAiMTIxMDI2IiogKiMgTmFtZSBvZiBT
-Vk4gcHJvamVjdCoNCj4gKlBBQ01BTl9QUk9KX05BTUU9IlNPQ1BBQ01hbkVudkVuZ0tleXMiKg0K
-PiAqU1JDX1VSSSA9DQo+ICJzdm46Ly9jb2Nvc3VidmVyc2lvbi9zdm4vRW1iZWRkZWQvVmFsdmUl
-NUMmQWN0dWF0b3IvRFZQSUkvdHJ1bmsvJCU3QlANCj4gQUNNQU5fUFJPSl9OQU1FJTdEO21vZHVs
-ZT10cnVuaztwcm90b2NvbD1odHRwO2V4dGVybmFscz1hbGxvd2VkO3Jldj0kJQ0KPiA3QlBWJTdE
-JTIyKiAqU1JDX1VSSSArPSAiZmlsZTovL3d3LWF1dGhwYWNtYW4uc2VydmljZSUyMiogKlNSQ19V
-UkkgKz0NCj4gImZpbGU6Ly93dy1wYWNtYW4uc2VydmljZSUyMiogKlMgPSAiJHtXT1JLRElSfS90
-cnVuay8iKiAqIyAke1BOfS1zeXM6IA0KPiBjb250ZW50IHJlbGF0ZWQgdG8gc3lzdGVtLCB3aGlj
-aCBnb2VzIHRvIGJhc2Ugcm9vdGZzIChvbmx5IC5zZXJ2aWNlIA0KPiBmaWxlIGFuZCBzeW1saW5r
-cykqICojICR7UE59OsKgwqDCoMKgwqAgcmVhbCBjb250ZW50IHdoaWNoIG1heSBnbyB0byANCj4g
-c2VwYXJhdGUgcGFydGl0aW9uKiAqUEFDS0FHRVMgPSsgIiAke1BOfS1zeXMiKiAuLi4uLi4uLi4N
-Cj4gV2hlbiBkaXNjb25uZWN0IHRoZSBuZXR3b3JrLCBlcmFzZSBzc3RhdGUtY2FjaGUsIGNhY2hl
-IGFuZCB0bXAgSSBzZWUgDQo+IGxvZyBmaWxlIGF0dGFjaGVkIChsb2cuZG9fZmV0Y2guMzI3NTcp
-IGFuZCB0aGUgZm9sbG93aW5nIG91dHB1dDoNCj4gDQo+ICpFUlJPUjogd3ctcGFjbWFuLTEyMTAy
-Ni1yMCBkb19mZXRjaDogRmV0Y2hlciBmYWlsdXJlOiBGZXRjaCBjb21tYW5kIA0KPiBleHBvcnQg
-UFNFVURPX0RJU0FCTEVEPTE7IHVuc2V0IF9QWVRIT05fU1lTQ09ORklHREFUQV9OQU1FOyBleHBv
-cnQgDQo+IERCVVNfU0VTU0lPTl9CVVNfQUREUkVTUz0idW5peDpwYXRoPS9ydW4vdXNlci8xMDAw
-L2J1cyI7IGV4cG9ydCANCj4gU1NIX0FHRU5UX1BJRD0iMTE0MTIiOyBleHBvcnQgDQo+IFNTSF9B
-VVRIX1NPQ0s9Ii9ydW4vdXNlci8xMDAwL2tleXJpbmcvc3NoIjsgZXhwb3J0IA0KPiBQQVRIPSIv
-aG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvdG1wL3N5c3Jvb3RzLXVu
-aW5hdGl2DQo+IGUveDg2XzY0LWxpbnV4L3Vzci9iaW46L2hvbWUvdzIzNjk4L3Byb2plY3RzL3By
-b2pfZHZwMi9zb3VyY2VzL3Bva3kvc2MNCj4gcmlwdHM6L2hvbWUvdzIzNjk4L3Byb2plY3RzL3By
-b2pfZHZwMi9idWlsZF9kdnAyL3RtcC93b3JrL2NvcnRleGE5aGYtbg0KPiBlb24tcG9reS1saW51
-eC1nbnVlYWJpL3d3LXBhY21hbi8xMjEwMjYtcjAvcmVjaXBlLXN5c3Jvb3QtbmF0aXZlL3Vzci9i
-DQo+IGluL2FybS1wb2t5LWxpbnV4LWdudWVhYmk6L2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pf
-ZHZwMi9idWlsZF9kdnAyL3QNCj4gbXAvd29yay9jb3J0ZXhhOWhmLW5lb24tcG9reS1saW51eC1n
-bnVlYWJpL3d3LXBhY21hbi8xMjEwMjYtcjAvcmVjaXBlLQ0KPiBzeXNyb290L3Vzci9iaW4vY3Jv
-c3NzY3JpcHRzOi9ob21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwDQo+IDIv
-dG1wL3dvcmsvY29ydGV4YTloZi1uZW9uLXBva3ktbGludXgtZ251ZWFiaS93dy1wYWNtYW4vMTIx
-MDI2LXIwL3JlY2kNCj4gcGUtc3lzcm9vdC1uYXRpdmUvdXNyL3NiaW46L2hvbWUvdzIzNjk4L3By
-b2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAyLw0KPiB0bXAvd29yay9jb3J0ZXhhOWhmLW5lb24t
-cG9reS1saW51eC1nbnVlYWJpL3d3LXBhY21hbi8xMjEwMjYtcjAvcmVjaXBlDQo+IC1zeXNyb290
-LW5hdGl2ZS91c3IvYmluOi9ob21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZw
-Mi90bXANCj4gL3dvcmsvY29ydGV4YTloZi1uZW9uLXBva3ktbGludXgtZ251ZWFiaS93dy1wYWNt
-YW4vMTIxMDI2LXIwL3JlY2lwZS1zeQ0KPiBzcm9vdC1uYXRpdmUvc2JpbjovaG9tZS93MjM2OTgv
-cHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvdG1wL3dvcmsvDQo+IGNvcnRleGE5aGYtbmVv
-bi1wb2t5LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFuLzEyMTAyNi1yMC9yZWNpcGUtc3lzcm9vdC0N
-Cj4gbmF0aXZlL2JpbjovaG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL3NvdXJjZXMvcG9r
-eS9iaXRiYWtlL2JpbjovaA0KPiBvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9idWlsZF9k
-dnAyL3RtcC9ob3N0dG9vbHMiOw0KPiBleHBvcnQgSE9NRT0iL2hvbWUvdzIzNjk4IjsgL3Vzci9i
-aW4vZW52IHN2biAtLW5vbi1pbnRlcmFjdGl2ZSANCj4gLS10cnVzdC1zZXJ2ZXItY2VydCB1cGRh
-dGUgLS1uby1hdXRoLWNhY2hlIC1yIDEyMTAyNiBmYWlsZWQgd2l0aCBleGl0IA0KPiBjb2RlIDEs
-IG91dHB1dDoqICpVcGRhdGluZyAnLic6Kg0KPiAqc3ZuOiBFMTcwMDEzOiBVbmFibGUgdG8gY29u
-bmVjdCB0byBhIHJlcG9zaXRvcnkgYXQgVVJMIA0KPiAnaHR0cHM6Ly91cmxkZWZlbnNlLnByb29m
-cG9pbnQuY29tL3YyL3VybD91PWh0dHAtM0FfX2NvY29zdWJ2ZXJzaW9uX3N2DQo+IG5fRW1iZWRk
-ZWRfVmFsdmUtMjZBY3R1YXRvcl9EVlBJSV90cnVua19TT0NQQUNNYW5FbnZFbmdLZXlzX3RydW5r
-LTI3LTINCj4gQSZkPUR3SUdhUSZjPXk2TDdnOTUwS2ZNcDkyWW1MTTBRbE1kWGNSbjZiLUNxNEFB
-cG5TSk9lbkUmcj1rSHRKclFHemZIMQ0KPiBabWZzTmtKcFl1SC1qdE5wdjh5TURrcUFtc1JQOTlt
-YyZtPW9jeDZCb1ZTckRRR1dVdlVVVnZnS3R1SmJUN2VIN2pGU2pDDQo+IHkxWXM3M1Z3JnM9RmZ2
-MUpVMVFZQmg0ZzQ5Zm1vTG5zRFNGZ01NQmNfNU1iT3B5NTlRVVMxOCZlPQ0KPiAqc3ZuOiBFNjcw
-MDAzOiBUZW1wb3JhcnkgZmFpbHVyZSBpbiBuYW1lIHJlc29sdXRpb24qDQo+ICpFUlJPUjogd3ct
-cGFjbWFuLTEyMTAyNi1yMCBkb19mZXRjaDogRmV0Y2hlciBmYWlsdXJlIGZvciBVUkw6IA0KPiAn
-c3ZuOi8vY29jb3N1YnZlcnNpb24vc3ZuL0VtYmVkZGVkL1ZhbHZlJTVDJkFjdHVhdG9yL0RWUElJ
-L3RydW5rL1NPQ1BBQ01hbkVudkVuZ0tleXM7bW9kdWxlPXRydW5rO3Byb3RvY29sPWh0dHA7ZXh0
-ZXJuYWxzPWFsbG93ZWQ7cmV2PTEyMTAyNicuIA0KPiBVbmFibGUgdG8gZmV0Y2ggVVJMIGZyb20g
-YW55IHNvdXJjZS4qDQo+ICpFUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjogDQo+
-IC9ob21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi90bXAvd29yay9jb3J0
-ZXhhOWhmLW5lb24tcG8NCj4ga3ktbGludXgtZ251ZWFiaS93dy1wYWNtYW4vMTIxMDI2LXIwL3Rl
-bXAvbG9nLmRvX2ZldGNoLjMyNzU3Kg0KPiAqRVJST1I6IFRhc2sNCj4gKC9ob21lL3cyMzY5OC9w
-cm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi8uLi9zb3VyY2VzL21ldGEtd3ctZHZwMi9yZQ0K
-PiBjaXBlcy13dy93dy1wYWNtYW4vd3ctcGFjbWFuLmJiOmRvX2ZldGNoKQ0KPiBmYWlsZWQgd2l0
-aCBleGl0IGNvZGUgJzEnKg0KPiANCj4gV2hlbiByZW1vdmUgdGhlICdcJyBjaGFyYWN0ZXIgaW4g
-U1JDX1VSSSwgZS5nLiB0byBiZWNvbWU6DQo+IA0KPiAqU1JDX1VSSSA9DQo+ICJzdm46Ly9jb2Nv
-c3VidmVyc2lvbi9zdm4vRW1iZWRkZWQvVmFsdmUmQWN0dWF0b3IvRFZQSUkvdHJ1bmsvJCU3QlBB
-Q00NCj4gQU5fUFJPSl9OQU1FJTdEO21vZHVsZT10cnVuaztwcm90b2NvbD1odHRwO2V4dGVybmFs
-cz1hbGxvd2VkO3Jldj0kJTdCUA0KPiBWJTdEJTIyKg0KPiANCj4gSW4gY29ubmVjdGVkIGFuZCBu
-b3QgY29ubmVjdGVkIHRvIG5ldHdvcmsgZG9fZmV0Y2goKSBwYXNzZXMgDQo+IHN1Y2Nlc3NmdWxs
-eSBidXQgSSBzZWUgb25lIGFuZCBzYW1lIGVycm9yIChsb2cuZG9fdW5wYWNrLjI1MjI2KSBvdXRw
-dXQ6DQo+IA0KPiAqRVJST1I6IHd3LXBhY21hbi0xMjEwMjYtcjAgZG9fdW5wYWNrOiBVbnBhY2sg
-ZmFpbHVyZSBmb3IgVVJMOiANCj4gJ3N2bjovL2NvY29zdWJ2ZXJzaW9uL3N2bi9FbWJlZGRlZC9W
-YWx2ZSZBY3R1YXRvci9EVlBJSS90cnVuay9TT0NQQUNNYW5FbnZFbmdLZXlzO21vZHVsZT10cnVu
-aztwcm90b2NvbD1odHRwO2V4dGVybmFscz1hbGxvd2VkO3Jldj0xMjEwMjYnLiANCj4gVW5wYWNr
-IGNvbW1hbmQNCj4gUEFUSD0iL2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9idWlsZF9k
-dnAyL3RtcC9zeXNyb290cy11bmluYXRpdmUveDg2XzY0LWxpbnV4L3Vzci9iaW46L2hvbWUvdzIz
-Njk4L3Byb2plY3RzL3Byb2pfZHZwMi9zb3VyY2VzL3Bva3kvc2NyaXB0czovaG9tZS93MjM2OTgv
-cHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvdG1wL3dvcmsvY29ydGV4YTloZi1uZW9uLXBv
-a3ktbGludXgtZ251ZWFiaS93dy1wYWNtYW4vMTIxMDI2LXIwL3JlY2lwZS1zeXNyb290LW5hdGl2
-ZS91c3IvYmluL2FybS1wb2t5LWxpbnV4LWdudWVhYmk6L2hvbWUvdzIzNjk4L3Byb2plY3RzL3By
-b2pfZHZwMi9idWlsZF9kdnAyL3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdu
-dWVhYmkvd3ctcGFjbWFuLzEyMTAyNi1yMC9yZWNpcGUtc3lzcm9vdC91c3IvYmluL2Nyb3Nzc2Ny
-aXB0czovaG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvdG1wL3dvcmsv
-Y29ydGV4YTloZi1uZW9uLXBva3ktbGludXgtZ251ZWFiaS93dy1wYWNtYW4vMTIxMDI2LXIwL3Jl
-Y2lwZS1zeXNyb290LW5hdGl2ZS91c3Ivc2JpbjovaG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9k
-dnAyL2J1aWxkX2R2cDIvdG1wL3dvcmsvY29ydGV4YTloZi1uZW9uLXBva3ktbGludXgtZ251ZWFi
-aS93dy1wYWNtYW4vMTIxMDI2LXIwL3JlY2lwZS1zeXNyb290LW5hdGl2ZS91c3IvYmluOi9ob21l
-L3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRfZHZwMi90bXAvd29yay9jb3J0ZXhhOWhm
-LW5lb24tcG9reS1saW51eC1nbnVlYWJpL3d3LXBhY21hbi8xMjEwMjYtcjAvcmVjaXBlLXN5c3Jv
-b3QtbmF0aXZlL3NiaW46L2hvbWUvdzIzNjk4L3Byb2plY3RzL3Byb2pfZHZwMi9idWlsZF9kdnAy
-L3RtcC93b3JrL2NvcnRleGE5aGYtbmVvbi1wb2t5LWxpbnV4LWdudWVhYmkvd3ctcGFjbWFuLzEy
-MTAyNi1yMC9yZWNpcGUtc3lzcm9vdC1uYXRpdmUvYmluOi9ob21lL3cyMzY5OC9wcm9qZWN0cy9w
-cm9qX2R2cDIvc291cmNlcy9wb2t5L2JpdGJha2UvYmluOi9ob21lL3cyMzY5OC9wcm9qZWN0cy9w
-cm9qX2R2cDIvYnVpbGRfZHZwMi90bXAvaG9zdHRvb2xzIiANCj4gdGFyIHh6IC0tbm8tc2FtZS1v
-d25lciAtZg0KPiAvaG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvZG93
-bmxvYWRzL3RydW5rX2NvY29zdWJ2ZXJzDQo+IGlvbl8uc3ZuLkVtYmVkZGVkLlZhbHZlJkFjdHVh
-dG9yLkRWUElJLnRydW5rLlNPQ1BBQ01hbkVudkVuZ0tleXNfMTIxMDINCj4gNl8udGFyLmd6DQo+
-IGZhaWxlZCB3aXRoIHJldHVybiB2YWx1ZSAxMjcqDQo+ICpFUlJPUjogTG9nZmlsZSBvZiBmYWls
-dXJlIHN0b3JlZCBpbjogDQo+IC9ob21lL3cyMzY5OC9wcm9qZWN0cy9wcm9qX2R2cDIvYnVpbGRf
-ZHZwMi90bXAvd29yay9jb3J0ZXhhOWhmLW5lb24tcG8NCj4ga3ktbGludXgtZ251ZWFiaS93dy1w
-YWNtYW4vMTIxMDI2LXIwL3RlbXAvbG9nLmRvX3VucGFjay4yNTIyNioNCj4gKkVSUk9SOiBUYXNr
-DQo+ICgvaG9tZS93MjM2OTgvcHJvamVjdHMvcHJval9kdnAyL2J1aWxkX2R2cDIvLi4vc291cmNl
-cy9tZXRhLXd3LWR2cDIvcmUNCj4gY2lwZXMtd3cvd3ctcGFjbWFuL3d3LXBhY21hbi5iYjpkb191
-bnBhY2spDQo+IGZhaWxlZCB3aXRoIGV4aXQgY29kZSAnMScNCj4gKg0KPiBJIGRvbid0IGl0IHRo
-aXMgbWF0dGVycyBidXQsIHRoZSBidWlsZCBtYWNoaW5lIGlzIGJhcmVtZXRhbCBVYnVudHUNCj4g
-MTguMDQuMyBMVFMuIEluIGFsbCBjYXNlcyB0aGUgcGFja2VkIHRhci5neiByZW1haW4gaW4gZG93
-bmxvYWRzIA0KPiBkaXJlY3Rvcnkgd2l0aCBvbmUgbmFtZSENCj4gDQo+IENvcmRpYWxseSwNCj4g
-R2VvcmdpDQo+IA0KPiANCj4gDQo+IA0KDQoNCioqKg0KVGhlIGluZm9ybWF0aW9uIGluIHRoaXMg
-ZW1haWwgaXMgY29uZmlkZW50aWFsIGFuZCBpbnRlbmRlZCBzb2xlbHkgZm9yIHRoZSBpbmRpdmlk
-dWFsIG9yIGVudGl0eSB0byB3aG9tIGl0IGlzIGFkZHJlc3NlZC7CoMKgSWYgeW91IGhhdmUgcmVj
-ZWl2ZWQgdGhpcyBlbWFpbCBpbiBlcnJvciBwbGVhc2Ugbm90aWZ5IHRoZSBzZW5kZXIgYnkgcmV0
-dXJuIGUtbWFpbCwgZGVsZXRlIHRoaXMgZW1haWwsIGFuZCByZWZyYWluIGZyb20gYW55IGRpc2Ns
-b3N1cmUgb3IgYWN0aW9uIGJhc2VkIG9uIHRoZSBpbmZvcm1hdGlvbi4NCioqKg0KCioqKgpUaGUg
-aW5mb3JtYXRpb24gaW4gdGhpcyBlbWFpbCBpcyBjb25maWRlbnRpYWwgYW5kIGludGVuZGVkIHNv
-bGVseSBmb3IgdGhlIGluZGl2aWR1YWwgb3IgZW50aXR5IHRvIHdob20gaXQgaXMgYWRkcmVzc2Vk
-LsKgwqBJZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIGVtYWlsIGluIGVycm9yIHBsZWFzZSBub3Rp
-ZnkgdGhlIHNlbmRlciBieSByZXR1cm4gZS1tYWlsLCBkZWxldGUgdGhpcyBlbWFpbCwgYW5kIHJl
-ZnJhaW4gZnJvbSBhbnkgZGlzY2xvc3VyZSBvciBhY3Rpb24gYmFzZWQgb24gdGhlIGluZm9ybWF0
-aW9uLgoqKioK
+On Mon, Feb 17, 2020 at 12:56:13PM +0000, Georgi Georgiev via Lists.Yoctopr=
+oject.Org wrote:
+> Another serious issue with svn fetcher, always occurring when doing incr=
+emental builds. I am putting it here because I think both issues are relate=
+d. Please suggest what to do. The error we get is shown below. This time it=
+ happens always. The only workaround is to clean and build. As soon as we m=
+ake modification of the recipe (PV change only) it fails:
+>=20
+> ERROR: ww-pacman-121204-r0 do_fetch: Error executing a python function i=
+n exec_python_func() autogenerated:
+>=20
+> The stack trace of python calls that resulted in this exception/failure =
+was:
+> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+>      0001:
+>  *** 0002:base_do_fetch(d)
+>      0003:
+> File: '/data/home/w23698/projects/proj/build/../sources/poky/meta/classe=
+s/base.bbclass', lineno: 163, function: base_do_fetch
+>      0159:        return
+>      0160:
+>      0161:    try:
+>      0162:        fetcher =3D bb.fetch2.Fetch(src_uri, d)
+>  *** 0163:        fetcher.download()
+>      0164:    except bb.fetch2.BBFetchException as e:
+>      0165:        bb.fatal(str(e))
+>      0166:}
+>      0167:
+> File: '/data/home/w23698/projects/proj/sources/poky/bitbake/lib/bb/fetch=
+2/__init__.py', lineno: 1678, function: download
+>      1674:                    try:
+>      1675:                        if not trusted_network(self.d, ud.url)=
+:
+>      1676:                            raise UntrustedUrl(ud.url)
+>      1677:                        logger.debug(1, "Trying Upstream")
+>  *** 1678:                        m.download(ud, self.d)
+>      1679:                        if hasattr(m, "build_mirror_data"):
+>      1680:                            m.build_mirror_data(ud, self.d)
+>      1681:                        localpath =3D ud.localpath
+>      1682:                        # early checksum verify, so that if ch=
+ecksum mismatched,
+> File: '/data/home/w23698/projects/proj/sources/poky/bitbake/lib/bb/fetch=
+2/svn.py', lineno: 150, function: download
+>      0146:            if not ("externals" in ud.parm and ud.parm["extern=
+als"] =3D=3D "nowarn"):
+>      0147:                # Warn the user if this had externals (won't c=
+atch them all)
+>      0148:                output =3D runfetchcmd("svn propget svn:extern=
+als || true", d, workdir=3Dud.moddir)
+>      0149:                if output:
+>  *** 0150:                    if "--ignore-externals" in svnfetchcmd.spl=
+it():
+>      0151:                        bb.warn("%s contains svn:externals." %=
+ ud.url)
+>      0152:                        bb.warn("These should be added to the =
+recipe SRC_URI as necessary.")
+>      0153:                        bb.warn("svn fetch has ignored externa=
+ls:\n%s" % output)
+>      0154:                        bb.warn("To disable this warning add '=
+;externals=3Dnowarn' to the url.")
+> Exception: UnboundLocalError: local variable 'svnfetchcmd' referenced be=
+fore assignment
+>=20
+> ERROR: Logfile of failure stored in: /data/home/w23698/projects/proj/bui=
+ld/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121204-r0/temp/log=
+.do_fetch.18853
+
+Hmm. Rings a bell. I run builds with a local non-upstreamed patch:
+
+Author:     Mikko Rapeli <mikko.rapeli@bmw.de>
+AuthorDate: Fri Sep 6 14:15:20 2019 +0200
+Commit:     Mikko Rapeli <mikko.rapeli@bmw.de>
+CommitDate: Fri Sep 6 14:25:15 2019 +0200
+
+    svn fetcher: allow "svn propget svn:externals" to fail
+    
+    Not all servers and repositories have this property set
+    which results in failures like this when actual svn checkout
+    command succeeded:
+    
+    svn: warning: W200017: Property 'svn:externals' not found on ''
+    svn: E200000: A problem occurred; see other errors for details
+    
+Signed-off-by: Mikko Rapeli <mikko.rapeli@bmw.de>
+
+--- a/bitbake/lib/bb/fetch2/svn.py
++++ b/bitbake/lib/bb/fetch2/svn.py
+@@ -145,7 +145,7 @@ class Svn(FetchMethod):
+=20
+                 if not ("externals" in ud.parm and ud.parm["externals"] =
+=3D=3D "nowarn"):
+                     # Warn the user if this had externals (won't catch th=
+em all)
+-                    output =3D runfetchcmd("svn propget svn:externals", d=
+, workdir=3Dud.moddir)
++                    output =3D runfetchcmd("svn propget svn:externals || =
+true", d, workdir=3Dud.moddir)
+                     if output:
+                         if "--ignore-externals" in svnfetchcmd.split():
+                             bb.warn("%s contains svn:externals." % ud.url=
+)
+
+I think this would help.
+
+Cheers,
+
+-Mikko
+
+
+> -----Original Message-----
+> From: Georgi Georgiev=20
+> Sent: Wednesday, February 05, 2020 6:57 PM
+> To: Georgi Georgiev <Georgi.Georgiev@woodward.com>; Khem Raj <raj.khem@g=
+mail.com>; yocto@lists.yoctoproject.org
+> Subject: Re: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failure=
+s with offline/online svn build! #yocto #python
+>=20
+> Sorry Khem,
+> With esc character '\' before & it can't take the full path. So briefly:
+>=20
+> Yocto build with char '\' before & in SRC_URI:
+> =09online - OK
+> =09offline - Error - svn: E170013: Unable to connect to a repository...
+> Yocto build without '\' in SRC_URI:
+> =09online and offline same error - do_unpack: Unpack failure for URL - "=
+package".tar.gz is present in DL_DIR
+>=20
+> Thanks
+>=20
+>=20
+>=20
+> -----Original Message-----
+> From: yocto@lists.yoctoproject.org [mailto:yocto@lists.yoctoproject.org]=
+ On Behalf Of Georgi Georgiev via Lists.Yoctoproject.Org
+> Sent: Wednesday, February 05, 2020 5:26 PM
+> To: Khem Raj <raj.khem@gmail.com>; yocto@lists.yoctoproject.org
+> Cc: yocto@lists.yoctoproject.org
+> Subject: Re: [EXTERNAL] Re: [yocto] Yocto [thud], [zeus] do_fetch and do=
+_unpack failures with offline/online svn build! #yocto #python
+>=20
+> Hi Khem,
+>=20
+> Yes, no issues with that. When I am connected to network it fetches the =
+code with and without escape character before & in the path.
+> svn co " https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__cocosubve=
+rsion_svn_Embedded_Valve-26Actuator_DVPII_trunk_SOCPACManEnvEngKeys&d=3DDwI=
+GaQ&c=3Dy6L7g950KfMp92YmLM0QlMdXcRn6b-Cq4AApnSJOenE&r=3DkHtJrQGzfH1ZmfsNkJp=
+YuH-jtNpv8yMDkqAmsRP99mc&m=3DvXia-xlcxuLr2fSmBogZpMIaOntXLKWv3mkxcRgtUc4&s=
+=3DUYH9lueDIeMGZndMxgbZgb76A5EfqN-MR58DBv1iriI&e=3D " works fine and fetch=
+es the package.=20
+>=20
+> Georgi
+>=20
+> -----Original Message-----
+> From: Khem Raj [mailto:raj.khem@gmail.com]
+> Sent: Friday, January 31, 2020 8:33 PM
+> To: Georgi Georgiev <Georgi.Georgiev@woodward.com>; yocto@lists.yoctopro=
+ject.org
+> Subject: [EXTERNAL] Re: [yocto] Yocto [thud], [zeus] do_fetch and do_unp=
+ack failures with offline/online svn build! #yocto #python
+>=20
+> On 1/31/20 4:02 AM, georgi.georgiev via Lists.Yoctoproject.Org wrote:
+> > Hello Community,
+> > This is the third time I am asking for support on this issue. This=20
+> > time I decided to use the web form.
+> > In our project we have a requirement to be able to build the project=
+=20
+> > offline. E.g. on the field without any network connection. When we are=
+=
+=20
+> > connected with the recipe mentioned below we don't have issues:
+> >=20
+>=20
+>=20
+> svn: E170013: Unable to connect to a repository at URL 'https://urldefen=
+se.proofpoint.com/v2/url?u=3Dhttp-3A__cocosubversion_svn_Embedded_Valve-26A=
+ctuator_DVPII_trunk_SOCPACManEnvEngKeys_trunk&d=3DDwIGaQ&c=3Dy6L7g950KfMp92=
+YmLM0QlMdXcRn6b-Cq4AApnSJOenE&r=3DkHtJrQGzfH1ZmfsNkJpYuH-jtNpv8yMDkqAmsRP99=
+mc&m=3Docx6BoVSrDQGWUvUUVvgKtuJbT7eH7jFSjCy1Ys73Vw&s=3DOTunnmsi_tCUt3JytmU2=
+Hs7i7Xnqhl8-2CMsqmzIl90&e=3D '
+> svn: E670003: Temporary failure in name resolution
+>=20
+> can you try checking out the repo out side of fetcher and see if the mac=
+hine can fetch the url you are using in SRC_URI ?
+>=20
+> > *SUMMARY =3D "PACMan - Parameter And Configuration MANager"* *LICENSE =
+=
+=3D
+> > "CLOSED"* *inherit systemd useradd* *REQUIRED_DISTRO_FEATURES =3D
+> > "systemd"* *# SVN revision* *PV =3D "121026"* *# Name of SVN project*
+> > *PACMAN_PROJ_NAME=3D"SOCPACManEnvEngKeys"*
+> > *SRC_URI =3D
+> > "svn://cocosubversion/svn/Embedded/Valve%5C&Actuator/DVPII/trunk/$%7BP
+> > ACMAN_PROJ_NAME%7D;module=3Dtrunk;protocol=3Dhttp;externals=3Dallowed;=
+rev=3D$%
+> > 7BPV%7D%22* *SRC_URI +=3D "file://ww-authpacman.service%22* *SRC_URI +=
+=
+=3D
+> > "file://ww-pacman.service%22* *S =3D "${WORKDIR}/trunk/"* *# ${PN}-sys=
+:=20
+> > content related to system, which goes to base rootfs (only .service=20
+> > file and symlinks)* *# ${PN}:=A0=A0=A0=A0=A0 real content which may go=
+ to=20
+> > separate partition* *PACKAGES =3D+ " ${PN}-sys"* .........
+> > When disconnect the network, erase sstate-cache, cache and tmp I see=
+=20
+> > log file attached (log.do_fetch.32757) and the following output:
+> >=20
+> > *ERROR: ww-pacman-121026-r0 do_fetch: Fetcher failure: Fetch command=
+=20
+> > export PSEUDO_DISABLED=3D1; unset _PYTHON_SYSCONFIGDATA_NAME; export=
+=20
+> > DBUS_SESSION_BUS_ADDRESS=3D"unix:path=3D/run/user/1000/bus"; export=20
+> > SSH_AGENT_PID=3D"11412"; export=20
+> > SSH_AUTH_SOCK=3D"/run/user/1000/keyring/ssh"; export=20
+> > PATH=3D"/home/w23698/projects/proj_dvp2/build_dvp2/tmp/sysroots-uninat=
+iv
+> > e/x86_64-linux/usr/bin:/home/w23698/projects/proj_dvp2/sources/poky/sc
+> > ripts:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-n
+> > eon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe-sysroot-native/usr/b
+> > in/arm-poky-linux-gnueabi:/home/w23698/projects/proj_dvp2/build_dvp2/t
+> > mp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe-
+> > sysroot/usr/bin/crossscripts:/home/w23698/projects/proj_dvp2/build_dvp
+> > 2/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/reci
+> > pe-sysroot-native/usr/sbin:/home/w23698/projects/proj_dvp2/build_dvp2/
+> > tmp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe
+> > -sysroot-native/usr/bin:/home/w23698/projects/proj_dvp2/build_dvp2/tmp
+> > /work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe-sy
+> > sroot-native/sbin:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/
+> > cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe-sysroot-
+> > native/bin:/home/w23698/projects/proj_dvp2/sources/poky/bitbake/bin:/h
+> > ome/w23698/projects/proj_dvp2/build_dvp2/tmp/hosttools";
+> > export HOME=3D"/home/w23698"; /usr/bin/env svn --non-interactive=20
+> > --trust-server-cert update --no-auth-cache -r 121026 failed with exit=
+=20
+> > code 1, output:* *Updating '.':*
+> > *svn: E170013: Unable to connect to a repository at URL=20
+> > 'https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__cocosubversion_=
+sv
+> > n_Embedded_Valve-26Actuator_DVPII_trunk_SOCPACManEnvEngKeys_trunk-27-2
+> > A&d=3DDwIGaQ&c=3Dy6L7g950KfMp92YmLM0QlMdXcRn6b-Cq4AApnSJOenE&r=3DkHtJr=
+QGzfH1
+> > ZmfsNkJpYuH-jtNpv8yMDkqAmsRP99mc&m=3Docx6BoVSrDQGWUvUUVvgKtuJbT7eH7jFS=
+jC
+> > y1Ys73Vw&s=3DFfv1JU1QYBh4g49fmoLnsDSFgMMBc_5MbOpy59QUS18&e=3D
+> > *svn: E670003: Temporary failure in name resolution*
+> > *ERROR: ww-pacman-121026-r0 do_fetch: Fetcher failure for URL:=20
+> > 'svn://cocosubversion/svn/Embedded/Valve%5C&Actuator/DVPII/trunk/SOCPA=
+CManEnvEngKeys;module=3Dtrunk;protocol=3Dhttp;externals=3Dallowed;rev=3D121=
+026'.=20
+> > Unable to fetch URL from any source.*
+> > *ERROR: Logfile of failure stored in:=20
+> > /home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-po
+> > ky-linux-gnueabi/ww-pacman/121026-r0/temp/log.do_fetch.32757*
+> > *ERROR: Task
+> > (/home/w23698/projects/proj_dvp2/build_dvp2/../sources/meta-ww-dvp2/re
+> > cipes-ww/ww-pacman/ww-pacman.bb:do_fetch)
+> > failed with exit code '1'*
+> >=20
+> > When remove the '\' character in SRC_URI, e.g. to become:
+> >=20
+> > *SRC_URI =3D
+> > "svn://cocosubversion/svn/Embedded/Valve&Actuator/DVPII/trunk/$%7BPACM
+> > AN_PROJ_NAME%7D;module=3Dtrunk;protocol=3Dhttp;externals=3Dallowed;rev=
+=
+=3D$%7BP
+> > V%7D%22*
+> >=20
+> > In connected and not connected to network do_fetch() passes=20
+> > successfully but I see one and same error (log.do_unpack.25226) output=
+:
+> >=20
+> > *ERROR: ww-pacman-121026-r0 do_unpack: Unpack failure for URL:=20
+> > 'svn://cocosubversion/svn/Embedded/Valve&Actuator/DVPII/trunk/SOCPACMa=
+nEnvEngKeys;module=3Dtrunk;protocol=3Dhttp;externals=3Dallowed;rev=3D121026=
+'.=20
+> > Unpack command
+> > PATH=3D"/home/w23698/projects/proj_dvp2/build_dvp2/tmp/sysroots-uninat=
+ive/x86_64-linux/usr/bin:/home/w23698/projects/proj_dvp2/sources/poky/scrip=
+ts:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-poky=
+-linux-gnueabi/ww-pacman/121026-r0/recipe-sysroot-native/usr/bin/arm-poky-l=
+inux-gnueabi:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf=
+-neon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe-sysroot/usr/bin/crosssc=
+ripts:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-p=
+oky-linux-gnueabi/ww-pacman/121026-r0/recipe-sysroot-native/usr/sbin:/home/=
+w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-poky-linux-gn=
+ueabi/ww-pacman/121026-r0/recipe-sysroot-native/usr/bin:/home/w23698/projec=
+ts/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacm=
+an/121026-r0/recipe-sysroot-native/sbin:/home/w23698/projects/proj_dvp2/bui=
+ld_dvp2/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/rec=
+ipe-sysroot-native/bin:/home/w23698/projects/proj_dvp2/sources/poky/bitbake=
+/bin:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/hosttools"=20
+> > tar xz --no-same-owner -f
+> > /home/w23698/projects/proj_dvp2/build_dvp2/downloads/trunk_cocosubvers
+> > ion_.svn.Embedded.Valve&Actuator.DVPII.trunk.SOCPACManEnvEngKeys_12102
+> > 6_.tar.gz
+> > failed with return value 127*
+> > *ERROR: Logfile of failure stored in:=20
+> > /home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-po
+> > ky-linux-gnueabi/ww-pacman/121026-r0/temp/log.do_unpack.25226*
+> > *ERROR: Task
+> > (/home/w23698/projects/proj_dvp2/build_dvp2/../sources/meta-ww-dvp2/re
+> > cipes-ww/ww-pacman/ww-pacman.bb:do_unpack)
+> > failed with exit code '1'
+> > *
+> > I don't it this matters but, the build machine is baremetal Ubuntu
+> > 18.04.3 LTS. In all cases the packed tar.gz remain in downloads=20
+> > directory with one name!
+> >=20
+> > Cordially,
+> > Georgi
+> >=20
+> >=20
+> >=20
+> >=20
+>=20
+>=20
+> ***
+> The information in this email is confidential and intended solely for th=
+e individual or entity to whom it is addressed.=A0=A0If you have received t=
+his email in error please notify the sender by return e-mail, delete this e=
+mail, and refrain from any disclosure or action based on the information.
+> ***
+>=20
+> ***
+> The information in this email is confidential and intended solely for th=
+e individual or entity to whom it is addressed.=A0=A0If you have received t=
+his email in error please notify the sender by return e-mail, delete this e=
+mail, and refrain from any disclosure or action based on the information.
+> ***
+
+>=20
