@@ -1,213 +1,150 @@
-Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
- by mx.groups.io with SMTP id smtpd.web11.2318.1581986232749615116
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web09.2503.1581986832940134221
  for <yocto@lists.yoctoproject.org>;
- Mon, 17 Feb 2020 16:37:13 -0800
+ Mon, 17 Feb 2020 16:47:13 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=WGNt1+qh;
- spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: parse error for token &{10 18 _netblocks.google.com}: limit exceeded (domain: mvista.com, ip: 209.85.215.182, mailfrom: akuster@mvista.com)
-Received: by mail-pg1-f182.google.com with SMTP id u12so9695480pgb.10
-        for <yocto@lists.yoctoproject.org>; Mon, 17 Feb 2020 16:37:12 -0800 (PST)
+ dkim=fail reason="body hash did not verify" header.i=@nio365.onmicrosoft.com header.s=selector2-nio365-onmicrosoft-com header.b=HWQMLlIs;
+ spf=softfail (domain: ni.com, ip: 140.211.169.56, mailfrom: prvs=5316563c24=alex.stewart@ni.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 8B72AE01486; Mon, 17 Feb 2020 16:47:12 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,MSGID_FROM_MTA_HEADER,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
+	*      trust
+	*      [148.163.156.75 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	*  0.0 MSGID_FROM_MTA_HEADER Message-Id was added by a relay
+X-Greylist: delayed 2938 seconds by postgrey-1.32 at yocto-www; Mon, 17 Feb 2020 16:47:11 PST
+Received: from mx0b-00010702.pphosted.com (mx0a-00010702.pphosted.com [148.163.156.75])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA7FEE00C82
+	for <yocto@yoctoproject.org>; Mon, 17 Feb 2020 16:47:11 -0800 (PST)
+Received: from pps.filterd (m0098781.ppops.net [127.0.0.1])
+	by mx0a-00010702.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 01HNt0wQ015104;
+	Mon, 17 Feb 2020 17:58:11 -0600
+Received: from nam12-bn8-obe.outbound.protection.outlook.com (mail-bn8nam12lp2168.outbound.protection.outlook.com [104.47.55.168])
+	by mx0a-00010702.pphosted.com with ESMTP id 2y6dj7p625-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 17 Feb 2020 17:58:11 -0600
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=k90n9EMSxcJDzH4g01AIfreJGxGGHk/r9M3BrsSPmcdHmtwGgeZT32ezwAFls1cdszwx+KBaP+vmLEs3M+dG80nJw/Y7gywDLkdRwKlEACihgQzKPov2Rh6q7yx0hYe9eJ1Z1V2+EFsjNgs/tyO7zQ+GN4BQ+qrU01Z9vwt0cBIvNsggvzKEMF4aNhClxj3iPTT7i+x9Ruf8lmrYMWJ80rvVCEtQGAvn70l4vBX+Rd/QnUflH0uIiJgEqnO9Yt1A85/2znpSv4YhV80sL8CIuznWXoGkFa28jvQgT05YI+0zdFOBOF99pKKXWVNVEI+9I3lyi1bSRLw8XCYJB/Ul/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zbmtE18HA+TCoXWIHJknPmRTjdB1CKNVt7ZcHY44/j8=;
+ b=f5Dhh06Eyvbm5BPHKWm4QLPa2Oxo5Q/xt1Oj9am341UQIlpSGbRD8A6udSj2hvSDtXegynerpxuHmuL5uQrdEV79iKvriXgHUBR/ht3mpWXJ+1D4lgmD2HQ4qI72OEeIuc5f6Vlk5B+GSBwz3akqkv8ueIKAo0Sv2QOjsRJtT+MlW74kcgdapHGCZdERxLQFkoXzNh2bvMK+ET7jFby2pfB0/4OigLpU/yN29CGQZfEi0yAmDSONyd7gcH2rM1jjhT8WOzTL6ydXCpdS3ToP4fmb4siT5yqz/g5xQLLZYuiFimDIzm0Q6CilLtOGS8h/S0MT1b+zGUh8Iqw8Vn+8gw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
+ header.d=ni.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language;
-        bh=BmTHPal9CT5eumikEEFNUerUxilb4XdHzXsLjCcw+aA=;
-        b=WGNt1+qhuk1NnNpB929IpIeaQns1xBeNyPsXcZzycHHg9rXBv+AAV4O3vV1KszAsOF
-         sOqPBpSxGvt7brNPXMHLlCaSelJUvLhIJWNL00Hzlx/NV0zD8I43E5FnTuDqFeFWZ1C0
-         LP9WkQ51tbdzIaF7PTde/NKKoYphjvilGpVs0EfLuLx5d6fs4Ys0bA+mNCit3gA9LSO8
-         kgvcKi99dU7iFKQWQhFdZVIwminLqJSBMrrU6Jky9C45+AmOr+8E1tqrDvqwrOZ0iV8D
-         iqMs1hBO9LpJYdagdswoIxypg6mr8LhjGEq3w81Bh/LzVwKCp+RPItQ4moUWcbvPD6ir
-         6cXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language;
-        bh=BmTHPal9CT5eumikEEFNUerUxilb4XdHzXsLjCcw+aA=;
-        b=VMnNE+B77njoEszzS61uMg4uDhq782qWa+QguRFJ87jqC/U8Dag6hkpTZlhZ0n5vvP
-         SJgwdyDhWGlA4olcsO0paiB0fhtDj1jvRKAvJBs/HcE2RtqX82XbA8VxX7MAfqGcLpu5
-         QL6ft83xbfS0kXxK6r6lbCPBgV1WpBuPceFucJlVr/mFvWBPlsEsOAmAZZCRUvBRyCK3
-         +4qmVNtYYvb8rCh79bK0KX8h2ke0axNlEA93jes0ZtPZXlYnBZUsCGTzBOyKpGhEuQpP
-         mKxEbQ6cSJUZqrP5wF4a464mEsEr2quKp7kxrQTOglw8WnIsjG9ksb/0DCjWRWQccmua
-         WJBw==
-X-Gm-Message-State: APjAAAWMltJKy9viBe5VbYZRxqBsTEbIhEBZdyfk4qd46YVNs/bqCi26
-	WYby9aO11uB6H42WXkeMp1vmGspeGOU=
-X-Google-Smtp-Source: APXvYqzcF7362SYcb2xixx9dHYMcxXp+9Nu2H5WpcOQDfnukQidy2SyCf9WSbY73mkgU/NHVkuFV1Q==
-X-Received: by 2002:a63:1a21:: with SMTP id a33mr20806028pga.421.1581986231566;
-        Mon, 17 Feb 2020 16:37:11 -0800 (PST)
-Return-Path: <akuster@mvista.com>
-Received: from ?IPv6:2601:202:4180:a5c0:103:47a6:6829:8136? ([2601:202:4180:a5c0:103:47a6:6829:8136])
-        by smtp.gmail.com with ESMTPSA id l29sm1978569pgb.86.2020.02.17.16.37.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 17 Feb 2020 16:37:10 -0800 (PST)
-Subject: Re: [yocto] master/master-next missing from poky repo?
-To: Michael Halstead <mhalstead@linuxfoundation.org>,
- Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Alexander Kanavin <alex.kanavin@gmail.com>, yocto@lists.yoctoproject.org
-References: <CANNYZj8ux3H3-17eb1MFGFhG_vQDThxV+_gn4BEFH-PRjWUdsA@mail.gmail.com>
- <18b267a0b9ca83560766ef1c3cd8d1db77744128.camel@linuxfoundation.org>
- <CADfgfobQUSu3xSqCmimLgD+DBB598GJsnC4w+tzbn9djWWRmaw@mail.gmail.com>
-From: "Armin Kuster" <akuster@mvista.com>
-Autocrypt: addr=akuster@mvista.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <450b5173-ff5a-f8ca-1601-9a76343c5b3c@mvista.com>
-Date: Mon, 17 Feb 2020 16:37:08 -0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zbmtE18HA+TCoXWIHJknPmRTjdB1CKNVt7ZcHY44/j8=;
+ b=HWQMLlIskLPROPTMwqt1//j1lyETdbgC1gpBRRLBn1buNoO2qjvXydJdHhzcXdjmAhQaIuIw3/CTiPLplozuDe6Brm1dCHLTAs1t3rQni+XnpUpi9DT97P49sRGLo+5nDUEUbv8i7J42L6sOnrFlmMPBhnq89nt1NjjgQxfeNHg=
+Received: from DM5PR04MB1068.namprd04.prod.outlook.com (10.174.242.30) by
+ DM5PR04MB0893.namprd04.prod.outlook.com (10.174.240.34) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2729.31; Mon, 17 Feb 2020 23:58:09 +0000
+Received: from DM5PR04MB1068.namprd04.prod.outlook.com
+ ([fe80::74b1:8067:305b:993]) by DM5PR04MB1068.namprd04.prod.outlook.com
+ ([fe80::74b1:8067:305b:993%2]) with mapi id 15.20.2729.032; Mon, 17 Feb 2020
+ 23:58:09 +0000
+From: "Alex Stewart" <alex.stewart@ni.com>
+To: opkg-devel@googlegroups.com, yocto@yoctoproject.org
+Cc: Alex Stewart <alex.stewart@ni.com>
+Subject: [opkg-utils PATCH] Makefile: add opkg-feed to UTILS
+Date: Mon, 17 Feb 2020 17:57:34 -0600
+Message-Id: <20200217235734.1012734-1-alex.stewart@ni.com>
+X-Mailer: git-send-email 2.25.0
+X-ClientProxiedBy: SN6PR05CA0031.namprd05.prod.outlook.com
+ (2603:10b6:805:de::44) To DM5PR04MB1068.namprd04.prod.outlook.com
+ (2603:10b6:4:44::30)
 MIME-Version: 1.0
-In-Reply-To: <CADfgfobQUSu3xSqCmimLgD+DBB598GJsnC4w+tzbn9djWWRmaw@mail.gmail.com>
-Content-Type: multipart/alternative;
- boundary="------------8CBFEF109171C7A0715F2B90"
-Content-Language: en-US
+Received: from rtosams.amer.corp.natinst.com (130.164.62.193) by SN6PR05CA0031.namprd05.prod.outlook.com (2603:10b6:805:de::44) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.6 via Frontend Transport; Mon, 17 Feb 2020 23:58:08 +0000
+X-Mailer: git-send-email 2.25.0
+X-Originating-IP: [130.164.62.193]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: d290fe47-82c9-45ef-26bb-08d7b4053d18
+X-MS-TrafficTypeDiagnostic: DM5PR04MB0893:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: 
+	<DM5PR04MB0893A6AAA93BABD41CAF2649FE160@DM5PR04MB0893.namprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2089;
+X-Forefront-PRVS: 0316567485
+X-Forefront-Antispam-Report: 
+	SFV:NSPM;SFS:(10019020)(376002)(39860400002)(396003)(136003)(346002)(366004)(189003)(199004)(316002)(66946007)(1076003)(66556008)(52116002)(4744005)(4326008)(6666004)(6506007)(26005)(66476007)(16526019)(186003)(36756003)(44832011)(5660300002)(6512007)(86362001)(81156014)(81166006)(8676002)(2906002)(478600001)(956004)(6486002)(8936002)(2616005);DIR:OUT;SFP:1102;SCL:1;SRVR:DM5PR04MB0893;H:DM5PR04MB1068.namprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+Received-SPF: None (protection.outlook.com: ni.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	ZM373cpAIlTv5xiccTTH7SLY5sqoDfb0ajaQCZGotVJ28QAACmlR6aNE1auTxfsNuNg49hEX4h29SgGi1/rNTWmUj4BCsZjkIfVoi+t24k/8BH+Wc6ELeBIyaoUj2zmHY1QDxY3QcXfhIt/79TwYui+sJnGGiYl+GkZWKXlinaqTvfR6ErVKwWSh1vqqnhalRiE4PiMfLbvHNYpWzC+U3BKbfvF9Q3bNL8uO1iroEUXxOpthxMB8vcqM2YArTUAXvHnO+oQMYF04vtepWdQsloyV+9IBlHeqMPXF6jBxYMR4mV8YNc+6hlpLOZW8ixJYsYAi2u2IxHYjE+pap7X2oO/3/4Y4IBN60PWMF7ikQmYEaukzM6A7kdkMxz0BbrCpVI25OA81GA2gMIX8rWAnYQRGpNXw/IeOwzX3TMvgKr3dZeTJaXuMdEndvi6/N7CH
+X-MS-Exchange-AntiSpam-MessageData: 
+	hODBrYO5gqgrcyUA0QoRttP9WO8tZJxrwwShwB01plsMDsAGqTxBsZXuEDnL08bZNpTu4g+CBLunfpghmWkJW/6EglTU6agwJ+ieM+lcKNWMCDweyJcWE9SfS5Ufi7zi9W0XQwmp4CccDidByXtQOQ==
+X-OriginatorOrg: ni.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d290fe47-82c9-45ef-26bb-08d7b4053d18
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Feb 2020 23:58:09.0942
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lprIhyT/r14YvU9NxuHM/NXw0CB3quM7w05PmcSnr5d1Te5J5HJbVb2//6z+vmfxrUsCHmND0/DRZbHWZTUX2Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR04MB0893
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
+ definitions=2020-02-17_14:2020-02-17,2020-02-17 signatures=0
+X-Proofpoint-Spam-Details: rule=inbound_policy_notspam policy=inbound_policy score=30
+ lowpriorityscore=0 mlxlogscore=999 mlxscore=0 clxscore=1011
+ priorityscore=1501 phishscore=0 malwarescore=0 suspectscore=0 adultscore=0
+ bulkscore=0 impostorscore=0 spamscore=0 classifier=spam adjust=30
+ reason=mlx scancount=1 engine=8.12.0-2001150001
+ definitions=main-2002170197
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
---------------8CBFEF109171C7A0715F2B90
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
+* Add the opkg-feed script to UTILS so that it is installed with a `make
+  install`.
 
-Thanks for working on a holiday Micheal.
+* Clean up the UTILS variable declaration to be a little more diffable.
 
-- armin
+Signed-off-by: Alex Stewart <alex.stewart@ni.com>
+---
+ Makefile | 17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
 
-On 2/17/20 2:49 PM, Michael Halstead wrote:
-> The caching issues are resolved as well as a tricky permissions issue.
-> These repositories are operating correctly again.
->
-> Please let me know if issues persist.
->
-> -- 
-> Michael Halstead
->
-> On Sat, Feb 15, 2020 at 2:44 AM Richard Purdie
-> <richard.purdie@linuxfoundation.org
-> <mailto:richard.purdie@linuxfoundation.org>> wrote:
->
->     On Sat, 2020-02-15 at 11:41 +0100, Alexander Kanavin wrote:
->     > Something is wrong, as master and master-next are missing here?
->     > http://git.yoctoproject.org/cgit/cgit.cgi/poky/
->
->     There is something wrong with the http caching on the git server. The
->     branches are there, they're just not appearing immediately in the web
->     protocol. I know Michael is aware and has been working on it.
->
->     You can access them using the git protocol if that helps.
->
->     Cheers,
->
->     Richard
->
->
-> 
+diff --git a/Makefile b/Makefile
+index 817a8c1..4049654 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,6 +1,17 @@
+-UTILS =3D opkg-build opkg-unbuild opkg-make-index opkg.py opkg-list-fiel=
+ds \
+-	arfile.py opkg-buildpackage opkg-diff opkg-extract-file opkg-show-deps =
+\
+-	opkg-compare-indexes update-alternatives
++UTILS =3D \
++	arfile.py \
++	opkg-build \
++	opkg-buildpackage \
++	opkg-compare-indexes \
++	opkg-diff \
++	opkg-extract-file \
++	opkg-feed \
++	opkg-list-fields \
++	opkg-make-index \
++	opkg-show-deps \
++	opkg-unbuild \
++	opkg.py \
++	update-alternatives
+=20
+ MANPAGES =3D opkg-build.1
+=20
+--=20
+2.25.0
 
-
---------------8CBFEF109171C7A0715F2B90
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    Thanks for working on a holiday Micheal.<br>
-    <br>
-    - armin<br>
-    <br>
-    <div class="moz-cite-prefix">On 2/17/20 2:49 PM, Michael Halstead
-      wrote:<br>
-    </div>
-    <blockquote type="cite"
-cite="mid:CADfgfobQUSu3xSqCmimLgD+DBB598GJsnC4w+tzbn9djWWRmaw@mail.gmail.com">
-      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <div dir="ltr">The caching issues are resolved as well as a tricky
-        permissions issue. These repositories are operating correctly
-        again.
-        <div><br>
-        </div>
-        <div>Please let me know if issues persist.</div>
-        <div><br>
-        </div>
-        <div>-- </div>
-        <div>Michael Halstead</div>
-      </div>
-      <br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Sat, Feb 15, 2020 at 2:44
-          AM Richard Purdie &lt;<a
-            href="mailto:richard.purdie@linuxfoundation.org"
-            moz-do-not-send="true">richard.purdie@linuxfoundation.org</a>&gt;
-          wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On
-          Sat, 2020-02-15 at 11:41 +0100, Alexander Kanavin wrote:<br>
-          &gt; Something is wrong, as master and master-next are missing
-          here?<br>
-          &gt; <a
-            href="http://git.yoctoproject.org/cgit/cgit.cgi/poky/"
-            rel="noreferrer" target="_blank" moz-do-not-send="true">http://git.yoctoproject.org/cgit/cgit.cgi/poky/</a><br>
-          <br>
-          There is something wrong with the http caching on the git
-          server. The<br>
-          branches are there, they're just not appearing immediately in
-          the web<br>
-          protocol. I know Michael is aware and has been working on it.<br>
-          <br>
-          You can access them using the git protocol if that helps.<br>
-          <br>
-          Cheers,<br>
-          <br>
-          Richard<br>
-          <br>
-        </blockquote>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
-</pre>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------8CBFEF109171C7A0715F2B90--
