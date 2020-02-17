@@ -1,388 +1,245 @@
-Received: from esa10.bmw.c3s2.iphmx.com (esa10.bmw.c3s2.iphmx.com [68.232.139.98])
- by mx.groups.io with SMTP id smtpd.web09.8283.1581944621634547895
+Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
+ by mx.groups.io with SMTP id smtpd.web10.8444.1581946217992966941
  for <yocto@lists.yoctoproject.org>;
- Mon, 17 Feb 2020 05:03:44 -0800
+ Mon, 17 Feb 2020 05:30:18 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bmw.de header.s=mailing1 header.b=Eu/5jjUG;
- spf=pass (domain: bmw.de, ip: 68.232.139.98, mailfrom: prvs=3094f87a1=mikko.rapeli@bmw.de)
+ dkim=pass header.i=@geontech-com.20150623.gappssmtp.com header.s=20150623 header.b=qVeVNVfl;
+ spf=pass (domain: geontech.com, ip: 209.85.219.54, mailfrom: btgoodwin@geontech.com)
+Received: by mail-qv1-f54.google.com with SMTP id dc14so7551628qvb.9
+        for <yocto@lists.yoctoproject.org>; Mon, 17 Feb 2020 05:30:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-  t=1581944623; x=1613480623;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=SdkWIR+NwefLZ+HwMXzewVE9ExCMhxaV6L+S4Q8viUU=;
-  b=Eu/5jjUG8TRFnjJKFHi+WEVyWkSbnGCHarrFjTee2XSWtcopcvQlDR/M
-   CgmjB9v7Yz0G8k0s0Vy/hx6gRrELWFZ7M8UwMMqZW1JlkpJ+t9gfPrWbH
-   TJY0t6qeugnK3GV8HK2dB5/vIGIRlsI59oxuCIl5enbB5UjeK8xss8Z9J
-   U=;
-IronPort-SDR: 756pM6OD2xrVJ8Q0dV7X+qaBDJS9vI1+rNboqAGJHAwzMOlg+fHg4tYfBliAMZKTMGTEhp7rN2
- AMUVYitzgdwRps4FT4tldez8LYMCm5TEjjkHReIUEwC1Hs0fYxfgV0MPbV53mwIg0Z9ttVdtLg
- XU6ZbGqI4Jp4zWf01uACZ5kH68rEPE9ZEWla8H7l20/g5HpPBLR4U35UzUz5MlOGWXHgvcUHmj
- h/GWlFUv/OYS+NtIQVc3qqVBBvHag6Besi6DiIdR1zy2YvembgzV74V834Bomi5hw16+swudBt
- gSY=
-Received: from esagw6.bmwgroup.com (HELO esagw6.muc) ([160.46.252.49]) by
- esa10.bmw.c3s2.iphmx.com with ESMTP/TLS; 17 Feb 2020 14:03:39 +0100
-Received: from esabb1.muc ([160.50.100.31])  by esagw6.muc with ESMTP/TLS;
- 17 Feb 2020 14:03:38 +0100
-Received: from smucm10m.bmwgroup.net (HELO smucm10m.europe.bmw.corp) ([160.48.96.49])
- by esabb1.muc with ESMTP/TLS; 17 Feb 2020 14:03:38 +0100
-Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10m.europe.bmw.corp
- (160.48.96.49) with Microsoft SMTP Server (TLS;
- Mon, 17 Feb 2020 14:03:38 +0100
-Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
- smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Mon,
- 17 Feb 2020 14:03:37 +0100
-From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
-To: <georgi.georgiev@woodward.com>
-CC: <raj.khem@gmail.com>, <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failures with offline/online svn build! #yocto #python
-Thread-Topic: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failures
- with offline/online svn build! #yocto #python
-Thread-Index: AdXcRVMItAsS96VjQ36fsMtuKM+vJgJSsmTA///0WIA=
-Date: Mon, 17 Feb 2020 13:03:37 +0000
-Message-ID: <20200217130337.GS104502@korppu>
-References: <bfb7604a4f7f481aad771a3472031e1b@Kemp-ExMb1.woodward.com>
-In-Reply-To: <bfb7604a4f7f481aad771a3472031e1b@Kemp-ExMb1.woodward.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
+        d=geontech-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1GD9Bsq8/FVM302S5t03ceu1/r/Li2VVH7CwqQwq/Mc=;
+        b=qVeVNVflV1XmV3CXcSllAJj1jUM95pWkjX+VLWFGyB8+WSIQ2+6yQPyG4mCE2bHZu9
+         3W3TZCcIYzU+g/bqSQgaJX2JthXvOAXZObEphstaIVTEuBtPmQ+8/4S+VzuhJsqq4dma
+         duHHPOhX5GJn393W7cEzpbSVIZ6+F29M92LuxXpS2itKSOy7mnKF50dra6yFgKLYejYp
+         gkm6iZAlvqjThb7Kr/i3qJJD2K0mVwN1f+DSqMuUUPWQ7jjJtRf8+mR5xftTDZhQY4/C
+         mbonShdOHLybVxZr4ZqcOeH7x8MQoLM8PEdRmkN1Gzl3kQmw8W7v7zSe2B51EhS9ojvA
+         KtGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1GD9Bsq8/FVM302S5t03ceu1/r/Li2VVH7CwqQwq/Mc=;
+        b=ce39rjNLVTz8VfVmuZQT39hTp63B2gTD3fahlONBMYeKPPWto0D+lotKt5AxWTSJai
+         3Z34aqvyP8Xb1THXcqh5gFAE1wT2gCGR2Wg3aFPMDWARsEkx2jWzpBlPTvawxIeG1L8m
+         fXyH2qZtvWLkEBL8igZVWzpWMabNK/61leOsNg9lzlT1lGcs0wPCPs6ZzUvK1GJaWBWg
+         vqjyfRZ+Q5G0z4P8C6YuPoCr/tQ7KB/5S+yL5EXsOSq0BwOSh2tiwNIO19OLSyaqz7vn
+         pU9SkEZ8dgvG258PNAxnh3IHFk6voJeLSLT+Bp3++dCjaDx9eKbKSezuLIQDHaP58AFm
+         IneQ==
+X-Gm-Message-State: APjAAAWdfsyNhwGMrMU4BI3+d21opNDW7BoUVSRe5AyvUnEfhWqvi35q
+	ZeaEPaJkO3Hz89h9tdTLCchWy18OgIOJfZva4JSmyzR1pTk=
+X-Google-Smtp-Source: APXvYqxbW0GENwU/FmDWPtK8SADGUwBQ7izWd7hhJ8GvAhdndZNrHGjaC4pz84nSUCTGBSKDfL5Fj571plPAfCGt13o=
+X-Received: by 2002:ad4:4c08:: with SMTP id bz8mr12617858qvb.241.1581946216957;
+ Mon, 17 Feb 2020 05:30:16 -0800 (PST)
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <4BC64DEAD6B3DA4097A7A061A4E6174C@bmwmail.corp>
+References: <5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org>
+ <20200217124357.odaw6g5qpfkt2oxm@qschulz> <alpine.LFD.2.21.2002170745390.2321912@localhost.localdomain>
+In-Reply-To: <alpine.LFD.2.21.2002170745390.2321912@localhost.localdomain>
+From: "Thomas Goodwin" <btgoodwin@geontech.com>
+Date: Mon, 17 Feb 2020 08:30:05 -0500
+Message-ID: <CABudRdxozDUKayr23Zg4z4W0JLjN_j_rqy5t2z_j55WwpLaz6Q@mail.gmail.com>
+Subject: Re: [yocto] Creating a build system which can scale. #yocto
+To: "rpjday@crashcourse.ca" <rpjday@crashcourse.ca>
+Cc: Quentin Schulz <quentin.schulz@streamunlimited.com>, philip.lewis@domino-uk.com, 
+	yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000050eee9059ec58e8a"
+
+--00000000000050eee9059ec58e8a
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 17, 2020 at 12:56:13PM +0000, Georgi Georgiev via Lists.Yoctopr=
-oject.Org wrote:
-> Another serious issue with svn fetcher, always occurring when doing incr=
-emental builds. I am putting it here because I think both issues are relate=
-d. Please suggest what to do. The error we get is shown below. This time it=
- happens always. The only workaround is to clean and build. As soon as we m=
-ake modification of the recipe (PV change only) it fails:
->=20
-> ERROR: ww-pacman-121204-r0 do_fetch: Error executing a python function i=
-n exec_python_func() autogenerated:
->=20
-> The stack trace of python calls that resulted in this exception/failure =
-was:
-> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->      0001:
->  *** 0002:base_do_fetch(d)
->      0003:
-> File: '/data/home/w23698/projects/proj/build/../sources/poky/meta/classe=
-s/base.bbclass', lineno: 163, function: base_do_fetch
->      0159:        return
->      0160:
->      0161:    try:
->      0162:        fetcher =3D bb.fetch2.Fetch(src_uri, d)
->  *** 0163:        fetcher.download()
->      0164:    except bb.fetch2.BBFetchException as e:
->      0165:        bb.fatal(str(e))
->      0166:}
->      0167:
-> File: '/data/home/w23698/projects/proj/sources/poky/bitbake/lib/bb/fetch=
-2/__init__.py', lineno: 1678, function: download
->      1674:                    try:
->      1675:                        if not trusted_network(self.d, ud.url)=
-:
->      1676:                            raise UntrustedUrl(ud.url)
->      1677:                        logger.debug(1, "Trying Upstream")
->  *** 1678:                        m.download(ud, self.d)
->      1679:                        if hasattr(m, "build_mirror_data"):
->      1680:                            m.build_mirror_data(ud, self.d)
->      1681:                        localpath =3D ud.localpath
->      1682:                        # early checksum verify, so that if ch=
-ecksum mismatched,
-> File: '/data/home/w23698/projects/proj/sources/poky/bitbake/lib/bb/fetch=
-2/svn.py', lineno: 150, function: download
->      0146:            if not ("externals" in ud.parm and ud.parm["extern=
-als"] =3D=3D "nowarn"):
->      0147:                # Warn the user if this had externals (won't c=
-atch them all)
->      0148:                output =3D runfetchcmd("svn propget svn:extern=
-als || true", d, workdir=3Dud.moddir)
->      0149:                if output:
->  *** 0150:                    if "--ignore-externals" in svnfetchcmd.spl=
-it():
->      0151:                        bb.warn("%s contains svn:externals." %=
- ud.url)
->      0152:                        bb.warn("These should be added to the =
-recipe SRC_URI as necessary.")
->      0153:                        bb.warn("svn fetch has ignored externa=
-ls:\n%s" % output)
->      0154:                        bb.warn("To disable this warning add '=
-;externals=3Dnowarn' to the url.")
-> Exception: UnboundLocalError: local variable 'svnfetchcmd' referenced be=
-fore assignment
->=20
-> ERROR: Logfile of failure stored in: /data/home/w23698/projects/proj/bui=
-ld/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121204-r0/temp/log=
-.do_fetch.18853
+Since Docker was mentioned, I use the community's CROPS containers via
+Docker in GitLab CI on a shared build server, providing the builders'
+downloads and sstate caches to the team to accelerate their own builds
+(these paths are volume-mounted to the runners).  One of the caveats to
+this approach is that if you use the containers in a shared build host, yo=
+u
+should limit the individual builder's bitbake environment in terms of
+parallelization (PARALLEL_MAKE and the like).  This will prevent a single
+containers from causing one another to fail by not sharing effectively
+(yes, you can set GitLab docker runner limits but those limits are
+invisible to the container).  The good news is that these variables are in
+the white list, so you do not have to set them in a conf file; exporting
+them in the build environment is enough, meaning your build runner can be
+tuned according to that build host executing the runner.
 
-Hmm. Rings a bell. I run builds with a local non-upstreamed patch:
-
-Author:     Mikko Rapeli <mikko.rapeli@bmw.de>
-AuthorDate: Fri Sep 6 14:15:20 2019 +0200
-Commit:     Mikko Rapeli <mikko.rapeli@bmw.de>
-CommitDate: Fri Sep 6 14:25:15 2019 +0200
-
-    svn fetcher: allow "svn propget svn:externals" to fail
-    
-    Not all servers and repositories have this property set
-    which results in failures like this when actual svn checkout
-    command succeeded:
-    
-    svn: warning: W200017: Property 'svn:externals' not found on ''
-    svn: E200000: A problem occurred; see other errors for details
-    
-Signed-off-by: Mikko Rapeli <mikko.rapeli@bmw.de>
-
---- a/bitbake/lib/bb/fetch2/svn.py
-+++ b/bitbake/lib/bb/fetch2/svn.py
-@@ -145,7 +145,7 @@ class Svn(FetchMethod):
-=20
-                 if not ("externals" in ud.parm and ud.parm["externals"] =
-=3D=3D "nowarn"):
-                     # Warn the user if this had externals (won't catch th=
-em all)
--                    output =3D runfetchcmd("svn propget svn:externals", d=
-, workdir=3Dud.moddir)
-+                    output =3D runfetchcmd("svn propget svn:externals || =
-true", d, workdir=3Dud.moddir)
-                     if output:
-                         if "--ignore-externals" in svnfetchcmd.split():
-                             bb.warn("%s contains svn:externals." % ud.url=
-)
-
-I think this would help.
+I based my tuning on this person work,
+https://elinux.org/images/d/d4/Goulart.pdf, a presentation from a few year=
+s
+back at an ELC event.  It contains a significant amount of information
+about project flow and other things that you might also find interesting.
 
 Cheers,
 
--Mikko
+Thomas
 
+On Mon, Feb 17, 2020 at 7:52 AM rpjday@crashcourse.ca <rpjday@crashcourse.=
+ca>
+wrote:
 
-> -----Original Message-----
-> From: Georgi Georgiev=20
-> Sent: Wednesday, February 05, 2020 6:57 PM
-> To: Georgi Georgiev <Georgi.Georgiev@woodward.com>; Khem Raj <raj.khem@g=
-mail.com>; yocto@lists.yoctoproject.org
-> Subject: Re: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failure=
-s with offline/online svn build! #yocto #python
->=20
-> Sorry Khem,
-> With esc character '\' before & it can't take the full path. So briefly:
->=20
-> Yocto build with char '\' before & in SRC_URI:
-> =09online - OK
-> =09offline - Error - svn: E170013: Unable to connect to a repository...
-> Yocto build without '\' in SRC_URI:
-> =09online and offline same error - do_unpack: Unpack failure for URL - "=
-package".tar.gz is present in DL_DIR
->=20
-> Thanks
->=20
->=20
->=20
-> -----Original Message-----
-> From: yocto@lists.yoctoproject.org [mailto:yocto@lists.yoctoproject.org]=
- On Behalf Of Georgi Georgiev via Lists.Yoctoproject.Org
-> Sent: Wednesday, February 05, 2020 5:26 PM
-> To: Khem Raj <raj.khem@gmail.com>; yocto@lists.yoctoproject.org
-> Cc: yocto@lists.yoctoproject.org
-> Subject: Re: [EXTERNAL] Re: [yocto] Yocto [thud], [zeus] do_fetch and do=
-_unpack failures with offline/online svn build! #yocto #python
->=20
-> Hi Khem,
->=20
-> Yes, no issues with that. When I am connected to network it fetches the =
-code with and without escape character before & in the path.
-> svn co " https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__cocosubve=
-rsion_svn_Embedded_Valve-26Actuator_DVPII_trunk_SOCPACManEnvEngKeys&d=3DDwI=
-GaQ&c=3Dy6L7g950KfMp92YmLM0QlMdXcRn6b-Cq4AApnSJOenE&r=3DkHtJrQGzfH1ZmfsNkJp=
-YuH-jtNpv8yMDkqAmsRP99mc&m=3DvXia-xlcxuLr2fSmBogZpMIaOntXLKWv3mkxcRgtUc4&s=
-=3DUYH9lueDIeMGZndMxgbZgb76A5EfqN-MR58DBv1iriI&e=3D " works fine and fetch=
-es the package.=20
->=20
-> Georgi
->=20
-> -----Original Message-----
-> From: Khem Raj [mailto:raj.khem@gmail.com]
-> Sent: Friday, January 31, 2020 8:33 PM
-> To: Georgi Georgiev <Georgi.Georgiev@woodward.com>; yocto@lists.yoctopro=
-ject.org
-> Subject: [EXTERNAL] Re: [yocto] Yocto [thud], [zeus] do_fetch and do_unp=
-ack failures with offline/online svn build! #yocto #python
->=20
-> On 1/31/20 4:02 AM, georgi.georgiev via Lists.Yoctoproject.Org wrote:
-> > Hello Community,
-> > This is the third time I am asking for support on this issue. This=20
-> > time I decided to use the web form.
-> > In our project we have a requirement to be able to build the project=
-=20
-> > offline. E.g. on the field without any network connection. When we are=
+> On Mon, 17 Feb 2020, Quentin Schulz wrote:
+>
+> > Hi Philip,
+> >
+> > *Very* quick and vague answer as it's not something I'm doing right no=
+w.
+> > I can only give hints to where to look next.
+> >
+> > On Mon, Feb 17, 2020 at 04:27:17AM -0800, philip.lewis@domino-uk.com
+> wrote:
+> > > Hi,
+> > >
+> > > I'm looking for some advice about the best way to implement a
+> > > build environment in the cloud for multiple dev teams which will
+> > > scale as the number of dev teams grow.
+> > >
+> > > Our devs are saying:
+> > >
+> > > *What do we want?*
+> > >
+> > > To scale our server-based build infrastructure, so that engineers
+> > > can build branches using the same infrastructure that produces a
+> > > releasable artefact, before pushing it into develop. As much
+> > > automation of this as possible is desired..
+> > >
+> > > *Blocker* : Can=E2=80=99t just scale current system =E2=80=93 can=E2=
 =
-=20
-> > connected with the recipe mentioned below we don't have issues:
-> >=20
+=80=99t keep throwing
+> > > more hardware at it, particularly storage. The main contributor to
+> > > storage requirements is using a local cache in each build
+> > > workspace and there will be one workspace for each branch, per
+> > > Jenkins agent: 3 teams x 10 branches per team x 70Gb per
+> > > branch/workspace x number of build agents (let say 5) =3D 10Tb. As
+> > > you can see this doesn=E2=80=99t scale well as we add branches, team=
+s or
+> > > build agents. Most of this 10Tb is the caches in each workspace,
+> > > where most of the contents of each individual cache is identical.
+> > >
+> >
+> > Have you had a look at INHERIT +=3D "rm_work"? Should get rid of most =
+of
+> > the space in the work directory (we use this one, tremendous benefit i=
+n
+> > terms of storage space).
+> >
+> > c.f.
+> >
+> https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#r=
+ef-classes-rm-work
+>
+>   in addition, you can always override that build-wide setting with
+> RM_WORK_EXCLUDE if you want to keep generated work from a small set of
+> recipes for debugging.
+>
+> rday
 >=20
->=20
-> svn: E170013: Unable to connect to a repository at URL 'https://urldefen=
-se.proofpoint.com/v2/url?u=3Dhttp-3A__cocosubversion_svn_Embedded_Valve-26A=
-ctuator_DVPII_trunk_SOCPACManEnvEngKeys_trunk&d=3DDwIGaQ&c=3Dy6L7g950KfMp92=
-YmLM0QlMdXcRn6b-Cq4AApnSJOenE&r=3DkHtJrQGzfH1ZmfsNkJpYuH-jtNpv8yMDkqAmsRP99=
-mc&m=3Docx6BoVSrDQGWUvUUVvgKtuJbT7eH7jFSjCy1Ys73Vw&s=3DOTunnmsi_tCUt3JytmU2=
-Hs7i7Xnqhl8-2CMsqmzIl90&e=3D '
-> svn: E670003: Temporary failure in name resolution
->=20
-> can you try checking out the repo out side of fetcher and see if the mac=
-hine can fetch the url you are using in SRC_URI ?
->=20
-> > *SUMMARY =3D "PACMan - Parameter And Configuration MANager"* *LICENSE =
-=
-=3D
-> > "CLOSED"* *inherit systemd useradd* *REQUIRED_DISTRO_FEATURES =3D
-> > "systemd"* *# SVN revision* *PV =3D "121026"* *# Name of SVN project*
-> > *PACMAN_PROJ_NAME=3D"SOCPACManEnvEngKeys"*
-> > *SRC_URI =3D
-> > "svn://cocosubversion/svn/Embedded/Valve%5C&Actuator/DVPII/trunk/$%7BP
-> > ACMAN_PROJ_NAME%7D;module=3Dtrunk;protocol=3Dhttp;externals=3Dallowed;=
-rev=3D$%
-> > 7BPV%7D%22* *SRC_URI +=3D "file://ww-authpacman.service%22* *SRC_URI +=
-=
-=3D
-> > "file://ww-pacman.service%22* *S =3D "${WORKDIR}/trunk/"* *# ${PN}-sys=
-:=20
-> > content related to system, which goes to base rootfs (only .service=20
-> > file and symlinks)* *# ${PN}:=A0=A0=A0=A0=A0 real content which may go=
- to=20
-> > separate partition* *PACKAGES =3D+ " ${PN}-sys"* .........
-> > When disconnect the network, erase sstate-cache, cache and tmp I see=
-=20
-> > log file attached (log.do_fetch.32757) and the following output:
-> >=20
-> > *ERROR: ww-pacman-121026-r0 do_fetch: Fetcher failure: Fetch command=
-=20
-> > export PSEUDO_DISABLED=3D1; unset _PYTHON_SYSCONFIGDATA_NAME; export=
-=20
-> > DBUS_SESSION_BUS_ADDRESS=3D"unix:path=3D/run/user/1000/bus"; export=20
-> > SSH_AGENT_PID=3D"11412"; export=20
-> > SSH_AUTH_SOCK=3D"/run/user/1000/keyring/ssh"; export=20
-> > PATH=3D"/home/w23698/projects/proj_dvp2/build_dvp2/tmp/sysroots-uninat=
-iv
-> > e/x86_64-linux/usr/bin:/home/w23698/projects/proj_dvp2/sources/poky/sc
-> > ripts:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-n
-> > eon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe-sysroot-native/usr/b
-> > in/arm-poky-linux-gnueabi:/home/w23698/projects/proj_dvp2/build_dvp2/t
-> > mp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe-
-> > sysroot/usr/bin/crossscripts:/home/w23698/projects/proj_dvp2/build_dvp
-> > 2/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/reci
-> > pe-sysroot-native/usr/sbin:/home/w23698/projects/proj_dvp2/build_dvp2/
-> > tmp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe
-> > -sysroot-native/usr/bin:/home/w23698/projects/proj_dvp2/build_dvp2/tmp
-> > /work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe-sy
-> > sroot-native/sbin:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/
-> > cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe-sysroot-
-> > native/bin:/home/w23698/projects/proj_dvp2/sources/poky/bitbake/bin:/h
-> > ome/w23698/projects/proj_dvp2/build_dvp2/tmp/hosttools";
-> > export HOME=3D"/home/w23698"; /usr/bin/env svn --non-interactive=20
-> > --trust-server-cert update --no-auth-cache -r 121026 failed with exit=
-=20
-> > code 1, output:* *Updating '.':*
-> > *svn: E170013: Unable to connect to a repository at URL=20
-> > 'https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__cocosubversion_=
-sv
-> > n_Embedded_Valve-26Actuator_DVPII_trunk_SOCPACManEnvEngKeys_trunk-27-2
-> > A&d=3DDwIGaQ&c=3Dy6L7g950KfMp92YmLM0QlMdXcRn6b-Cq4AApnSJOenE&r=3DkHtJr=
-QGzfH1
-> > ZmfsNkJpYuH-jtNpv8yMDkqAmsRP99mc&m=3Docx6BoVSrDQGWUvUUVvgKtuJbT7eH7jFS=
-jC
-> > y1Ys73Vw&s=3DFfv1JU1QYBh4g49fmoLnsDSFgMMBc_5MbOpy59QUS18&e=3D
-> > *svn: E670003: Temporary failure in name resolution*
-> > *ERROR: ww-pacman-121026-r0 do_fetch: Fetcher failure for URL:=20
-> > 'svn://cocosubversion/svn/Embedded/Valve%5C&Actuator/DVPII/trunk/SOCPA=
-CManEnvEngKeys;module=3Dtrunk;protocol=3Dhttp;externals=3Dallowed;rev=3D121=
-026'.=20
-> > Unable to fetch URL from any source.*
-> > *ERROR: Logfile of failure stored in:=20
-> > /home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-po
-> > ky-linux-gnueabi/ww-pacman/121026-r0/temp/log.do_fetch.32757*
-> > *ERROR: Task
-> > (/home/w23698/projects/proj_dvp2/build_dvp2/../sources/meta-ww-dvp2/re
-> > cipes-ww/ww-pacman/ww-pacman.bb:do_fetch)
-> > failed with exit code '1'*
-> >=20
-> > When remove the '\' character in SRC_URI, e.g. to become:
-> >=20
-> > *SRC_URI =3D
-> > "svn://cocosubversion/svn/Embedded/Valve&Actuator/DVPII/trunk/$%7BPACM
-> > AN_PROJ_NAME%7D;module=3Dtrunk;protocol=3Dhttp;externals=3Dallowed;rev=
-=
-=3D$%7BP
-> > V%7D%22*
-> >=20
-> > In connected and not connected to network do_fetch() passes=20
-> > successfully but I see one and same error (log.do_unpack.25226) output=
-:
-> >=20
-> > *ERROR: ww-pacman-121026-r0 do_unpack: Unpack failure for URL:=20
-> > 'svn://cocosubversion/svn/Embedded/Valve&Actuator/DVPII/trunk/SOCPACMa=
-nEnvEngKeys;module=3Dtrunk;protocol=3Dhttp;externals=3Dallowed;rev=3D121026=
-'.=20
-> > Unpack command
-> > PATH=3D"/home/w23698/projects/proj_dvp2/build_dvp2/tmp/sysroots-uninat=
-ive/x86_64-linux/usr/bin:/home/w23698/projects/proj_dvp2/sources/poky/scrip=
-ts:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-poky=
--linux-gnueabi/ww-pacman/121026-r0/recipe-sysroot-native/usr/bin/arm-poky-l=
-inux-gnueabi:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf=
--neon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe-sysroot/usr/bin/crosssc=
-ripts:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-p=
-oky-linux-gnueabi/ww-pacman/121026-r0/recipe-sysroot-native/usr/sbin:/home/=
-w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-poky-linux-gn=
-ueabi/ww-pacman/121026-r0/recipe-sysroot-native/usr/bin:/home/w23698/projec=
-ts/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacm=
-an/121026-r0/recipe-sysroot-native/sbin:/home/w23698/projects/proj_dvp2/bui=
-ld_dvp2/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/rec=
-ipe-sysroot-native/bin:/home/w23698/projects/proj_dvp2/sources/poky/bitbake=
-/bin:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/hosttools"=20
-> > tar xz --no-same-owner -f
-> > /home/w23698/projects/proj_dvp2/build_dvp2/downloads/trunk_cocosubvers
-> > ion_.svn.Embedded.Valve&Actuator.DVPII.trunk.SOCPACManEnvEngKeys_12102
-> > 6_.tar.gz
-> > failed with return value 127*
-> > *ERROR: Logfile of failure stored in:=20
-> > /home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-po
-> > ky-linux-gnueabi/ww-pacman/121026-r0/temp/log.do_unpack.25226*
-> > *ERROR: Task
-> > (/home/w23698/projects/proj_dvp2/build_dvp2/../sources/meta-ww-dvp2/re
-> > cipes-ww/ww-pacman/ww-pacman.bb:do_unpack)
-> > failed with exit code '1'
-> > *
-> > I don't it this matters but, the build machine is baremetal Ubuntu
-> > 18.04.3 LTS. In all cases the packed tar.gz remain in downloads=20
-> > directory with one name!
-> >=20
-> > Cordially,
-> > Georgi
-> >=20
-> >=20
-> >=20
-> >=20
->=20
->=20
-> ***
-> The information in this email is confidential and intended solely for th=
-e individual or entity to whom it is addressed.=A0=A0If you have received t=
-his email in error please notify the sender by return e-mail, delete this e=
-mail, and refrain from any disclosure or action based on the information.
-> ***
->=20
-> ***
-> The information in this email is confidential and intended solely for th=
-e individual or entity to whom it is addressed.=A0=A0If you have received t=
-his email in error please notify the sender by return e-mail, delete this e=
-mail, and refrain from any disclosure or action based on the information.
-> ***
+>
 
->=20
+--00000000000050eee9059ec58e8a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Since Docker was mentioned, I use the com=
+munity&#39;s CROPS containers via Docker in GitLab CI on a shared build ser=
+ver, providing the builders&#39; downloads and sstate caches to the team to=
+ accelerate their own builds (these paths are volume-mounted to the runners=
+).=C2=A0 One of the caveats to this approach is that if you use the contain=
+ers in a shared build host, you should limit the individual builder&#39;s b=
+itbake environment in terms of parallelization (PARALLEL_MAKE and the like)=
+.=C2=A0 This will prevent a single containers from causing one another to f=
+ail by not sharing effectively (yes, you can set GitLab docker runner limit=
+s but those limits are invisible to the container).=C2=A0 The good news is =
+that these variables are in the white list, so you do not have to set them =
+in a conf file; exporting them in the build environment is enough, meaning =
+your build runner can be tuned according to that build host executing the r=
+unner.<input name=3D"virtru-metadata" type=3D"hidden" value=3D"{&quot;email=
+-policy&quot;:{&quot;state&quot;:&quot;closed&quot;,&quot;expirationUnit&qu=
+ot;:&quot;days&quot;,&quot;disableCopyPaste&quot;:false,&quot;disablePrint&=
+quot;:false,&quot;disableForwarding&quot;:false,&quot;enableNoauth&quot;:fa=
+lse,&quot;persistentProtection&quot;:false,&quot;expandedWatermarking&quot;=
+:false,&quot;expires&quot;:false,&quot;isManaged&quot;:false},&quot;attachm=
+ents&quot;:{},&quot;compose-id&quot;:&quot;1&quot;,&quot;compose-window&quo=
+t;:{&quot;secure&quot;:false}}"><div><br></div><div>I based my tuning on th=
+is person work,=C2=A0<a href=3D"https://elinux.org/images/d/d4/Goulart.pdf"=
+>https://elinux.org/images/d/d4/Goulart.pdf</a>, a presentation from a few =
+years back at an ELC event.=C2=A0 It contains a significant amount of infor=
+mation about project flow and other things that you might also find interes=
+ting.</div><div><br></div><div>Cheers,</div><div><br></div><div>Thomas</div=
+></div><br><div class=3D"gmail_quote" style=3D""><div dir=3D"ltr" class=3D"=
+gmail_attr">On Mon, Feb 17, 2020 at 7:52 AM <a href=3D"mailto:rpjday@crashc=
+ourse.ca">rpjday@crashcourse.ca</a> &lt;<a href=3D"mailto:rpjday@crashcours=
+e.ca">rpjday@crashcourse.ca</a>&gt; wrote:<br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex">On Mon, 17 Feb 2020, Quentin Schulz wrote:<br>
+<br>
+&gt; Hi Philip,<br>
+&gt;<br>
+&gt; *Very* quick and vague answer as it&#39;s not something I&#39;m doing=
+ right now.<br>
+&gt; I can only give hints to where to look next.<br>
+&gt;<br>
+&gt; On Mon, Feb 17, 2020 at 04:27:17AM -0800, <a href=3D"mailto:philip.le=
+wis@domino-uk.com" target=3D"_blank">philip.lewis@domino-uk.com</a> wrote:<=
+br>
+&gt; &gt; Hi,<br>
+&gt; &gt;<br>
+&gt; &gt; I&#39;m looking for some advice about the best way to implement =
+a<br>
+&gt; &gt; build environment in the cloud for multiple dev teams which will=
+<br>
+&gt; &gt; scale as the number of dev teams grow.<br>
+&gt; &gt;<br>
+&gt; &gt; Our devs are saying:<br>
+&gt; &gt;<br>
+&gt; &gt; *What do we want?*<br>
+&gt; &gt;<br>
+&gt; &gt; To scale our server-based build infrastructure, so that engineer=
+s<br>
+&gt; &gt; can build branches using the same infrastructure that produces a=
+<br>
+&gt; &gt; releasable artefact, before pushing it into develop. As much<br>
+&gt; &gt; automation of this as possible is desired..<br>
+&gt; &gt;<br>
+&gt; &gt; *Blocker* : Can=E2=80=99t just scale current system =E2=80=93 ca=
+n=E2=80=99t keep throwing<br>
+&gt; &gt; more hardware at it, particularly storage. The main contributor =
+to<br>
+&gt; &gt; storage requirements is using a local cache in each build<br>
+&gt; &gt; workspace and there will be one workspace for each branch, per<b=
+r>
+&gt; &gt; Jenkins agent: 3 teams x 10 branches per team x 70Gb per<br>
+&gt; &gt; branch/workspace x number of build agents (let say 5) =3D 10Tb. =
+As<br>
+&gt; &gt; you can see this doesn=E2=80=99t scale well as we add branches, =
+teams or<br>
+&gt; &gt; build agents. Most of this 10Tb is the caches in each workspace,=
+<br>
+&gt; &gt; where most of the contents of each individual cache is identical=
+.<br>
+&gt; &gt;<br>
+&gt;<br>
+&gt; Have you had a look at INHERIT +=3D &quot;rm_work&quot;? Should get r=
+id of most of<br>
+&gt; the space in the work directory (we use this one, tremendous benefit =
+in<br>
+&gt; terms of storage space).<br>
+&gt;<br>
+&gt; c.f.<br>
+&gt; <a href=3D"https://www.yoctoproject.org/docs/current/mega-manual/mega=
+-manual.html#ref-classes-rm-work" rel=3D"noreferrer" target=3D"_blank">http=
+s://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#ref-clas=
+ses-rm-work</a><br>
+<br>
+=C2=A0 in addition, you can always override that build-wide setting with<b=
+r>
+RM_WORK_EXCLUDE if you want to keep generated work from a small set of<br>
+recipes for debugging.<br>
+<br>
+rday<br>
+<br>
+</blockquote></div></div>
+
+--00000000000050eee9059ec58e8a--
