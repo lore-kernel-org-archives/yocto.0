@@ -1,431 +1,78 @@
-Received: from Mail4.woodward.com (Mail4.woodward.com [204.27.169.35])
- by mx.groups.io with SMTP id smtpd.web10.8555.1581946755772765704
+Received: from esa10.bmw.c3s2.iphmx.com (esa10.bmw.c3s2.iphmx.com [68.232.139.98])
+ by mx.groups.io with SMTP id smtpd.web12.8960.1581947242383417202
  for <yocto@lists.yoctoproject.org>;
- Mon, 17 Feb 2020 05:39:16 -0800
+ Mon, 17 Feb 2020 05:47:23 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@woodward.com header.s=20190114woodward header.b=h/P+wc1X;
- spf=pass (domain: woodward.com, ip: 204.27.169.35, mailfrom: georgi.georgiev@woodward.com)
-Received: from pps.filterd (COIL-PMSGA1.woodward.com [127.0.0.1])
-	by COIL-PMSGA1.woodward.com (8.16.0.42/8.16.0.42) with SMTP id 01HDc6TN016146
-	for <yocto@lists.yoctoproject.org>; Mon, 17 Feb 2020 07:39:14 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=woodward.com; h=from : to : subject
- : date : message-id : references : in-reply-to : content-transfer-encoding
- : mime-version : content-type; s=20190114Woodward;
- bh=mH9Z585WqGfWbVlvqx2xJ7orBDQvpMzbpIUdb+ajOaQ=;
- b=h/P+wc1XYYDRy1wsZeQp3YSUC0YA/Vsz/IiRdzKJUE/6AcloMHvDsskNi2/ntzMbB0+q
- 2PgZ65GV93P29pjK0M7cSTjnrCFErOK/1ki4fm/pZlnmGIoFSgUMCYzQV1NDuPs4YwS1
- IRPhf45TUk71yh35/Y13rzanQ1IxAkn6UzkUXCN4w3x+dzcoIexu6pQvkrxb7H8vS89A
- hr+BXa5qv7pk00kobF5mkQ1r07SJQPiP8u9nVMr8c4anvCG4QEW8PwarcIOtUFYdN1BD
- OcB2VhYGFmU2PgS+mgzc0btFeXuZHq7c+HnZKr8C1CdWMeFuIJ8ZF+BnbSxv0rbfvWe5 xg== 
-Received: from coil-exmb1.woodward.com ([10.51.100.64])
-	by COIL-PMSGA1.woodward.com with ESMTP id 2y7utd00aj-7
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Mon, 17 Feb 2020 07:39:14 -0600
-Received: from Kemp-ExMb1.woodward.com (10.25.100.72) by
- COIL-ExMb1.woodward.com (10.51.100.155) with Microsoft SMTP Server (TLS) id
- 15.0.1473.3; Mon, 17 Feb 2020 07:35:03 -0600
-Received: from Kemp-ExMb1.woodward.com (10.25.100.72) by
- Kemp-ExMb1.woodward.com (10.25.100.72) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 17 Feb 2020 14:35:02 +0100
-Received: from Kemp-ExMb1.woodward.com ([10.25.100.72]) by
- Kemp-ExMb1.woodward.com ([10.25.100.72]) with mapi id 15.00.1395.000; Mon, 17
- Feb 2020 14:35:02 +0100
-From: "Georgi Georgiev" <georgi.georgiev@woodward.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+ dkim=pass header.i=@bmw.de header.s=mailing1 header.b=LGV4rg6+;
+ spf=pass (domain: bmw.de, ip: 68.232.139.98, mailfrom: prvs=3094f87a1=mikko.rapeli@bmw.de)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1581947243; x=1613483243;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=v0S0Amk/x9PrV3H7T3BaJ3UgKFeYryMVz/Kxz3CCeEo=;
+  b=LGV4rg6+WDVcF6F2nnwuAZwmJoBquNY5FHFIcKrIINGOTwIRBhoUFDFA
+   Zgns4X/Im7Wek75vijD8UZ33aim5Bz+d2aSPDfsASKV1MrdYKvjUYRozo
+   rX/IFSjpAX1JSVa4OyRfKoZ9NfQ1r0rGBStr6R7N6TXI8kq3gAeh2DqSg
+   k=;
+IronPort-SDR: Jmcdx5EW9nSP88t8SKADWTt/4ZtVkeVFZbc0ZkcgLd1nLBJ1IRrMZHN8EwSmrI6lEpqkWmb3O1
+ UNxQk/gYND0bmlzqgFUXhVYweYZ9DYT+Yh7BvF9wINjyLL84+aZvrTgzgLrlLWFntW99mhNvws
+ H2qRMs3K19e1NbdqnZxPp3xmVQH88SZl9QHiPJOniJ2SjiUkzNofR2SX5B18oknFhWQJu+huXQ
+ v3nZGSHNdDgwNUfFRwxFJuOup8YSoZ4DYO4Pyt5casumShp5AJBmd4hp8ICkPGwQYTSnwSssS1
+ jU0=
+Received: from esagw6.bmwgroup.com (HELO esagw6.muc) ([160.46.252.49]) by
+ esa10.bmw.c3s2.iphmx.com with ESMTP/TLS; 17 Feb 2020 14:47:21 +0100
+Received: from esabb6.muc ([160.50.100.50])  by esagw6.muc with ESMTP/TLS;
+ 17 Feb 2020 14:47:19 +0100
+Received: from smucm10m.bmwgroup.net (HELO smucm10m.europe.bmw.corp) ([160.48.96.49])
+ by esabb6.muc with ESMTP/TLS; 17 Feb 2020 14:47:19 +0100
+Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10m.europe.bmw.corp
+ (160.48.96.49) with Microsoft SMTP Server (TLS;
+ Mon, 17 Feb 2020 14:47:19 +0100
+Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
+ smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Mon,
+ 17 Feb 2020 14:47:19 +0100
+From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
+To: <georgi.georgiev@woodward.com>
+CC: <yocto@lists.yoctoproject.org>
 Subject: Re: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failures with offline/online svn build! #yocto #python
 Thread-Topic: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failures
  with offline/online svn build! #yocto #python
-Thread-Index: AdXcRVMItAsS96VjQ36fsMtuKM+vJgJSsmTA///0WID//+ksIA==
-Date: Mon, 17 Feb 2020 13:35:02 +0000
-Message-ID: <0704a68acba44839865cb31e22e584db@Kemp-ExMb1.woodward.com>
+Thread-Index: AdXcRVMItAsS96VjQ36fsMtuKM+vJgJSsmTA///0WID//+ksIIAAIwqA
+Date: Mon, 17 Feb 2020 13:47:18 +0000
+Message-ID: <20200217134718.GT104502@korppu>
 References: <bfb7604a4f7f481aad771a3472031e1b@Kemp-ExMb1.woodward.com>
  <20200217130337.GS104502@korppu>
-In-Reply-To: <20200217130337.GS104502@korppu>
+ <0704a68acba44839865cb31e22e584db@Kemp-ExMb1.woodward.com>
+In-Reply-To: <0704a68acba44839865cb31e22e584db@Kemp-ExMb1.woodward.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-dlp-version: 11.1.100.23
-dlp-reaction: no-action
-dlp-product: dlpe-windows
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.138.108.100]
+x-ms-exchange-messagesentrepresentingtype: 1
 MIME-Version: 1.0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 phishscore=0
- impostorscore=0 malwarescore=0 lowpriorityscore=0 bulkscore=0 mlxscore=0
- clxscore=1015 adultscore=0 suspectscore=0 priorityscore=1501 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2001150001
- definitions=main-2002170112
 Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <52175AC59EE4854FB4B21910E7727AC1@bmwmail.corp>
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
 
-Hi Mikko,
-Your patch is upstreamed and...It is actually released. If you see the erro=
-r output you will see your codeline.  I decided to try with your old versio=
-n but the result is the same. Can you say something for the previous issue =
-I have about offline build.
-It seem svn is not very well supported by yocto.
-
-Cordially
-Georgi
-
------Original Message-----
-From: yocto@lists.yoctoproject.org [mailto:yocto@lists.yoctoproject.org] On=
- Behalf Of Mikko Rapeli
-Sent: Monday, February 17, 2020 3:04 PM
-To: Georgi Georgiev <Georgi.Georgiev@woodward.com>
-Cc: raj.khem@gmail.com; yocto@lists.yoctoproject.org
-Subject: [EXTERNAL] Re: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack=
- failures with offline/online svn build! #yocto #python
-
-On Mon, Feb 17, 2020 at 12:56:13PM +0000, Georgi Georgiev via Lists.Yoctopr=
+On Mon, Feb 17, 2020 at 01:35:02PM +0000, Georgi Georgiev via Lists.Yoctopr=
 oject.Org wrote:
-> Another serious issue with svn fetcher, always occurring when doing incre=
-mental builds. I am putting it here because I think both issues are related=
-. Please suggest what to do. The error we get is shown below. This time it =
-happens always. The only workaround is to clean and build. As soon as we ma=
-ke modification of the recipe (PV change only) it fails:
->=20
-> ERROR: ww-pacman-121204-r0 do_fetch: Error executing a python function in=
- exec_python_func() autogenerated:
->=20
-> The stack trace of python calls that resulted in this exception/failure w=
-as:
-> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
->      0001:
->  *** 0002:base_do_fetch(d)
->      0003:
-> File: '/data/home/w23698/projects/proj/build/../sources/poky/meta/classes=
-/base.bbclass', lineno: 163, function: base_do_fetch
->      0159:        return
->      0160:
->      0161:    try:
->      0162:        fetcher =3D bb.fetch2.Fetch(src_uri, d)
->  *** 0163:        fetcher.download()
->      0164:    except bb.fetch2.BBFetchException as e:
->      0165:        bb.fatal(str(e))
->      0166:}
->      0167:
-> File: '/data/home/w23698/projects/proj/sources/poky/bitbake/lib/bb/fetch2=
-/__init__.py', lineno: 1678, function: download
->      1674:                    try:
->      1675:                        if not trusted_network(self.d, ud.url):
->      1676:                            raise UntrustedUrl(ud.url)
->      1677:                        logger.debug(1, "Trying Upstream")
->  *** 1678:                        m.download(ud, self.d)
->      1679:                        if hasattr(m, "build_mirror_data"):
->      1680:                            m.build_mirror_data(ud, self.d)
->      1681:                        localpath =3D ud.localpath
->      1682:                        # early checksum verify, so that if che=
-cksum mismatched,
-> File: '/data/home/w23698/projects/proj/sources/poky/bitbake/lib/bb/fetch2=
-/svn.py', lineno: 150, function: download
->      0146:            if not ("externals" in ud.parm and ud.parm["externa=
-ls"] =3D=3D "nowarn"):
->      0147:                # Warn the user if this had externals (won't ca=
-tch them all)
->      0148:                output =3D runfetchcmd("svn propget svn:externa=
-ls || true", d, workdir=3Dud.moddir)
->      0149:                if output:
->  *** 0150:                    if "--ignore-externals" in svnfetchcmd.spli=
-t():
->      0151:                        bb.warn("%s contains svn:externals." % =
-ud.url)
->      0152:                        bb.warn("These should be added to the r=
-ecipe SRC_URI as necessary.")
->      0153:                        bb.warn("svn fetch has ignored external=
-s:\n%s" % output)
->      0154:                        bb.warn("To disable this warning add ';=
-externals=3Dnowarn' to the url.")
-> Exception: UnboundLocalError: local variable 'svnfetchcmd' referenced=20
-> before assignment
->=20
-> ERROR: Logfile of failure stored in:=20
-> /data/home/w23698/projects/proj/build/tmp/work/cortexa9hf-neon-poky-li
-> nux-gnueabi/ww-pacman/121204-r0/temp/log.do_fetch.18853
+> Hi Mikko,
+> Your patch is upstreamed and...It is actually released. If you see the er=
+ror output you will see your codeline.  I decided to try with your old vers=
+ion but the result is the same. Can you say something for the previous issu=
+e I have about offline build.
+> It seem svn is not very well supported by yocto.
 
-Hmm. Rings a bell. I run builds with a local non-upstreamed patch:
+Ah, indeed.
 
-Author:     Mikko Rapeli <mikko.rapeli@bmw.de>
-AuthorDate: Fri Sep 6 14:15:20 2019 +0200
-Commit:     Mikko Rapeli <mikko.rapeli@bmw.de>
-CommitDate: Fri Sep 6 14:25:15 2019 +0200
+svn is supported and for me it's working quite well. It has some issues
+like download cache locking when multiple recipes include the same URLs.
 
-    svn fetcher: allow "svn propget svn:externals" to fail
-=20=20=20=20
-    Not all servers and repositories have this property set
-    which results in failures like this when actual svn checkout
-    command succeeded:
-=20=20=20=20
-    svn: warning: W200017: Property 'svn:externals' not found on ''
-    svn: E200000: A problem occurred; see other errors for details
-=20=20=20=20
-Signed-off-by: Mikko Rapeli <mikko.rapeli@bmw.de>
+Where possible, I've switched to using http fetcher with tar balls and larg=
+e
+binary blobs in svn, but there one needs to remember to include version
+details into file names...
 
---- a/bitbake/lib/bb/fetch2/svn.py
-+++ b/bitbake/lib/bb/fetch2/svn.py
-@@ -145,7 +145,7 @@ class Svn(FetchMethod):
-=20
-                 if not ("externals" in ud.parm and ud.parm["externals"] =
-=3D=3D "nowarn"):
-                     # Warn the user if this had externals (won't catch the=
-m all)
--                    output =3D runfetchcmd("svn propget svn:externals", d,=
- workdir=3Dud.moddir)
-+                    output =3D runfetchcmd("svn propget svn:externals ||=20
-+ true", d, workdir=3Dud.moddir)
-                     if output:
-                         if "--ignore-externals" in svnfetchcmd.split():
-                             bb.warn("%s contains svn:externals." % ud.url)
-
-I think this would help.
-
-Cheers,
-
--Mikko
-
-
-> -----Original Message-----
-> From: Georgi Georgiev
-> Sent: Wednesday, February 05, 2020 6:57 PM
-> To: Georgi Georgiev <Georgi.Georgiev@woodward.com>; Khem Raj=20
-> <raj.khem@gmail.com>; yocto@lists.yoctoproject.org
-> Subject: Re: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack=20
-> failures with offline/online svn build! #yocto #python
->=20
-> Sorry Khem,
-> With esc character '\' before & it can't take the full path. So briefly:
->=20
-> Yocto build with char '\' before & in SRC_URI:
-> 	online - OK
-> 	offline - Error - svn: E170013: Unable to connect to a repository...
-> Yocto build without '\' in SRC_URI:
-> 	online and offline same error - do_unpack: Unpack failure for URL -=20
-> "package".tar.gz is present in DL_DIR
->=20
-> Thanks
->=20
->=20
->=20
-> -----Original Message-----
-> From: yocto@lists.yoctoproject.org=20
-> [mailto:yocto@lists.yoctoproject.org] On Behalf Of Georgi Georgiev via=20
-> Lists.Yoctoproject.Org
-> Sent: Wednesday, February 05, 2020 5:26 PM
-> To: Khem Raj <raj.khem@gmail.com>; yocto@lists.yoctoproject.org
-> Cc: yocto@lists.yoctoproject.org
-> Subject: Re: [EXTERNAL] Re: [yocto] Yocto [thud], [zeus] do_fetch and=20
-> do_unpack failures with offline/online svn build! #yocto #python
->=20
-> Hi Khem,
->=20
-> Yes, no issues with that. When I am connected to network it fetches the c=
-ode with and without escape character before & in the path.
-> svn co " https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__cocosubver=
-sion_svn_Embedded_Valve-26Actuator_DVPII_trunk_SOCPACManEnvEngKeys&d=3DDwIG=
-aQ&c=3Dy6L7g950KfMp92YmLM0QlMdXcRn6b-Cq4AApnSJOenE&r=3DkHtJrQGzfH1ZmfsNkJpY=
-uH-jtNpv8yMDkqAmsRP99mc&m=3DvXia-xlcxuLr2fSmBogZpMIaOntXLKWv3mkxcRgtUc4&s=
-=3DUYH9lueDIeMGZndMxgbZgb76A5EfqN-MR58DBv1iriI&e=3D " works fine and fetche=
-s the package.=20
->=20
-> Georgi
->=20
-> -----Original Message-----
-> From: Khem Raj [mailto:raj.khem@gmail.com]
-> Sent: Friday, January 31, 2020 8:33 PM
-> To: Georgi Georgiev <Georgi.Georgiev@woodward.com>;=20
-> yocto@lists.yoctoproject.org
-> Subject: [EXTERNAL] Re: [yocto] Yocto [thud], [zeus] do_fetch and=20
-> do_unpack failures with offline/online svn build! #yocto #python
->=20
-> On 1/31/20 4:02 AM, georgi.georgiev via Lists.Yoctoproject.Org wrote:
-> > Hello Community,
-> > This is the third time I am asking for support on this issue. This=20
-> > time I decided to use the web form.
-> > In our project we have a requirement to be able to build the project=20
-> > offline. E.g. on the field without any network connection. When we=20
-> > are connected with the recipe mentioned below we don't have issues:
-> >=20
->=20
->=20
-> svn: E170013: Unable to connect to a repository at URL 'https://urldefens=
-e.proofpoint.com/v2/url?u=3Dhttp-3A__cocosubversion_svn_Embedded_Valve-26Ac=
-tuator_DVPII_trunk_SOCPACManEnvEngKeys_trunk&d=3DDwIGaQ&c=3Dy6L7g950KfMp92Y=
-mLM0QlMdXcRn6b-Cq4AApnSJOenE&r=3DkHtJrQGzfH1ZmfsNkJpYuH-jtNpv8yMDkqAmsRP99m=
-c&m=3Docx6BoVSrDQGWUvUUVvgKtuJbT7eH7jFSjCy1Ys73Vw&s=3DOTunnmsi_tCUt3JytmU2H=
-s7i7Xnqhl8-2CMsqmzIl90&e=3D '
-> svn: E670003: Temporary failure in name resolution
->=20
-> can you try checking out the repo out side of fetcher and see if the mach=
-ine can fetch the url you are using in SRC_URI ?
->=20
-> > *SUMMARY =3D "PACMan - Parameter And Configuration MANager"* *LICENSE=20
-> > =3D
-> > "CLOSED"* *inherit systemd useradd* *REQUIRED_DISTRO_FEATURES =3D
-> > "systemd"* *# SVN revision* *PV =3D "121026"* *# Name of SVN project*
-> > *PACMAN_PROJ_NAME=3D"SOCPACManEnvEngKeys"*
-> > *SRC_URI =3D
-> > "svn://cocosubversion/svn/Embedded/Valve%5C&Actuator/DVPII/trunk/$%7
-> > BP=20
-> > ACMAN_PROJ_NAME%7D;module=3Dtrunk;protocol=3Dhttp;externals=3Dallowed;r=
-ev=3D
-> > $%
-> > 7BPV%7D%22* *SRC_URI +=3D "file://ww-authpacman.service%22* *SRC_URI=20
-> > +=3D
-> > "file://ww-pacman.service%22* *S =3D "${WORKDIR}/trunk/"* *# ${PN}-sys:=
-=20
-> > content related to system, which goes to base rootfs (only .service=20
-> > file and symlinks)* *# ${PN}:=A0=A0=A0=A0=A0 real content which may go =
-to=20
-> > separate partition* *PACKAGES =3D+ " ${PN}-sys"* .........
-> > When disconnect the network, erase sstate-cache, cache and tmp I see=20
-> > log file attached (log.do_fetch.32757) and the following output:
-> >=20
-> > *ERROR: ww-pacman-121026-r0 do_fetch: Fetcher failure: Fetch command=20
-> > export PSEUDO_DISABLED=3D1; unset _PYTHON_SYSCONFIGDATA_NAME; export=20
-> > DBUS_SESSION_BUS_ADDRESS=3D"unix:path=3D/run/user/1000/bus"; export=20
-> > SSH_AGENT_PID=3D"11412"; export=20
-> > SSH_AUTH_SOCK=3D"/run/user/1000/keyring/ssh"; export=20
-> > PATH=3D"/home/w23698/projects/proj_dvp2/build_dvp2/tmp/sysroots-uninat
-> > iv=20
-> > e/x86_64-linux/usr/bin:/home/w23698/projects/proj_dvp2/sources/poky/
-> > sc=20
-> > ripts:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf
-> > -n=20
-> > eon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe-sysroot-native/usr
-> > /b=20
-> > in/arm-poky-linux-gnueabi:/home/w23698/projects/proj_dvp2/build_dvp2
-> > /t
-> > mp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/recip
-> > e-=20
-> > sysroot/usr/bin/crossscripts:/home/w23698/projects/proj_dvp2/build_d
-> > vp=20
-> > 2/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/re
-> > ci=20
-> > pe-sysroot-native/usr/sbin:/home/w23698/projects/proj_dvp2/build_dvp
-> > 2/=20
-> > tmp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/reci
-> > pe=20
-> > -sysroot-native/usr/bin:/home/w23698/projects/proj_dvp2/build_dvp2/t
-> > mp=20
-> > /work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe-
-> > sy=20
-> > sroot-native/sbin:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/wor
-> > k/
-> > cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe-sysroo
-> > t-=20
-> > native/bin:/home/w23698/projects/proj_dvp2/sources/poky/bitbake/bin:
-> > /h ome/w23698/projects/proj_dvp2/build_dvp2/tmp/hosttools";
-> > export HOME=3D"/home/w23698"; /usr/bin/env svn --non-interactive=20
-> > --trust-server-cert update --no-auth-cache -r 121026 failed with=20
-> > exit code 1, output:* *Updating '.':*
-> > *svn: E170013: Unable to connect to a repository at URL=20
-> > 'https://urldefense.proofpoint.com/v2/url?u=3Dhttp-3A__cocosubversion_
-> > sv
-> > n_Embedded_Valve-26Actuator_DVPII_trunk_SOCPACManEnvEngKeys_trunk-27
-> > -2
-> > A&d=3DDwIGaQ&c=3Dy6L7g950KfMp92YmLM0QlMdXcRn6b-Cq4AApnSJOenE&r=3DkHtJrQ=
-Gzf
-> > H1=20
-> > ZmfsNkJpYuH-jtNpv8yMDkqAmsRP99mc&m=3Docx6BoVSrDQGWUvUUVvgKtuJbT7eH7jFS
-> > jC y1Ys73Vw&s=3DFfv1JU1QYBh4g49fmoLnsDSFgMMBc_5MbOpy59QUS18&e=3D
-> > *svn: E670003: Temporary failure in name resolution*
-> > *ERROR: ww-pacman-121026-r0 do_fetch: Fetcher failure for URL:=20
-> > 'svn://cocosubversion/svn/Embedded/Valve%5C&Actuator/DVPII/trunk/SOCPAC=
-ManEnvEngKeys;module=3Dtrunk;protocol=3Dhttp;externals=3Dallowed;rev=3D1210=
-26'.=20
-> > Unable to fetch URL from any source.*
-> > *ERROR: Logfile of failure stored in:=20
-> > /home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-
-> > po
-> > ky-linux-gnueabi/ww-pacman/121026-r0/temp/log.do_fetch.32757*
-> > *ERROR: Task
-> > (/home/w23698/projects/proj_dvp2/build_dvp2/../sources/meta-ww-dvp2/
-> > re
-> > cipes-ww/ww-pacman/ww-pacman.bb:do_fetch)
-> > failed with exit code '1'*
-> >=20
-> > When remove the '\' character in SRC_URI, e.g. to become:
-> >=20
-> > *SRC_URI =3D
-> > "svn://cocosubversion/svn/Embedded/Valve&Actuator/DVPII/trunk/$%7BPA
-> > CM=20
-> > AN_PROJ_NAME%7D;module=3Dtrunk;protocol=3Dhttp;externals=3Dallowed;rev=
-=3D$%7
-> > BP
-> > V%7D%22*
-> >=20
-> > In connected and not connected to network do_fetch() passes=20
-> > successfully but I see one and same error (log.do_unpack.25226) output:
-> >=20
-> > *ERROR: ww-pacman-121026-r0 do_unpack: Unpack failure for URL:=20
-> > 'svn://cocosubversion/svn/Embedded/Valve&Actuator/DVPII/trunk/SOCPACMan=
-EnvEngKeys;module=3Dtrunk;protocol=3Dhttp;externals=3Dallowed;rev=3D121026'=
-.=20
-> > Unpack command
-> > PATH=3D"/home/w23698/projects/proj_dvp2/build_dvp2/tmp/sysroots-uninati=
-ve/x86_64-linux/usr/bin:/home/w23698/projects/proj_dvp2/sources/poky/script=
-s:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-poky-=
-linux-gnueabi/ww-pacman/121026-r0/recipe-sysroot-native/usr/bin/arm-poky-li=
-nux-gnueabi:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-=
-neon-poky-linux-gnueabi/ww-pacman/121026-r0/recipe-sysroot/usr/bin/crossscr=
-ipts:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-po=
-ky-linux-gnueabi/ww-pacman/121026-r0/recipe-sysroot-native/usr/sbin:/home/w=
-23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-poky-linux-gnu=
-eabi/ww-pacman/121026-r0/recipe-sysroot-native/usr/bin:/home/w23698/project=
-s/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacma=
-n/121026-r0/recipe-sysroot-native/sbin:/home/w23698/projects/proj_dvp2/buil=
-d_dvp2/tmp/work/cortexa9hf-neon-poky-linux-gnueabi/ww-pacman/121026-r0/reci=
-pe-sysroot-native/bin:/home/w23698/projects/proj_dvp2/sources/poky/bitbake/=
-bin:/home/w23698/projects/proj_dvp2/build_dvp2/tmp/hosttools"=20
-> > tar xz --no-same-owner -f
-> > /home/w23698/projects/proj_dvp2/build_dvp2/downloads/trunk_cocosubve
-> > rs
-> > ion_.svn.Embedded.Valve&Actuator.DVPII.trunk.SOCPACManEnvEngKeys_121
-> > 02
-> > 6_.tar.gz
-> > failed with return value 127*
-> > *ERROR: Logfile of failure stored in:=20
-> > /home/w23698/projects/proj_dvp2/build_dvp2/tmp/work/cortexa9hf-neon-
-> > po
-> > ky-linux-gnueabi/ww-pacman/121026-r0/temp/log.do_unpack.25226*
-> > *ERROR: Task
-> > (/home/w23698/projects/proj_dvp2/build_dvp2/../sources/meta-ww-dvp2/
-> > re
-> > cipes-ww/ww-pacman/ww-pacman.bb:do_unpack)
-> > failed with exit code '1'
-> > *
-> > I don't it this matters but, the build machine is baremetal Ubuntu
-> > 18.04.3 LTS. In all cases the packed tar.gz remain in downloads=20
-> > directory with one name!
-> >=20
-> > Cordially,
-> > Georgi
-> >=20
-> >=20
-> >=20
-> >=20
->=20
->=20
-> ***
-> The information in this email is confidential and intended solely for the=
- individual or entity to whom it is addressed.=A0=A0If you have received th=
-is email in error please notify the sender by return e-mail, delete this em=
-ail, and refrain from any disclosure or action based on the information.
-> ***
->=20
-> ***
-> The information in this email is confidential and intended solely for the=
- individual or entity to whom it is addressed.=A0=A0If you have received th=
-is email in error please notify the sender by return e-mail, delete this em=
-ail, and refrain from any disclosure or action based on the information.
-> ***
-
->=20
-
-***
-The information in this email is confidential and intended solely for the i=
-ndividual or entity to whom it is addressed.=A0=A0If you have received this=
- email in error please notify the sender by return e-mail, delete this emai=
-l, and refrain from any disclosure or action based on the information.
-***
+-Mikko=
