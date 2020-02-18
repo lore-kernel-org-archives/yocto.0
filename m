@@ -1,140 +1,120 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.325.1582149951971748821
+Received: from esa2.bmw.c3s2.iphmx.com (esa2.bmw.c3s2.iphmx.com [68.232.133.169])
+ by mx.groups.io with SMTP id smtpd.web10.442.1582150196307944474
  for <yocto@lists.yoctoproject.org>;
- Wed, 19 Feb 2020 14:05:52 -0800
+ Wed, 19 Feb 2020 14:09:57 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=aByRyR6d;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: raj.khem@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6AC42E01564; Wed, 19 Feb 2020 14:05:51 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.214.179 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3CC2E01432
-	for <yocto@yoctoproject.org>; Wed, 19 Feb 2020 14:05:50 -0800 (PST)
-Received: by mail-pl1-f179.google.com with SMTP id y1so646999plp.7
-        for <yocto@yoctoproject.org>; Wed, 19 Feb 2020 14:05:50 -0800 (PST)
+ dkim=pass header.i=@bmw.de header.s=mailing1 header.b=P+4uGxdT;
+ spf=pass (domain: bmw.de, ip: 68.232.133.169, mailfrom: prvs=311c70376=mikko.rapeli@bmw.de)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=37yv2hCiSmlG0BdM+IHQO2/73yy5yOqcq+hqkN9W58c=;
-        b=aByRyR6du/LPRaR6hllktn+Rz2M18Y8wurD4/+4II5eDTpO/WKPMjEw5wLBrNjs8jA
-         frBA9TOYVF3dJOJW2UVqB+MzPH0x+L8l9YCsjRXWDoOz9vDKnE++oMuXG8U8WmjQ5qNt
-         srgmKdFqgOZ5zR5M1jkYSihPCRcm7i7jEacFP7ImjYCqjmAXT6khSul1LrBuy1eV4sVt
-         aPeHH8oE0472AVLnFFNvfDK4MbOogDSeDxfJFGbn3C6tRtAINPgdosH5SgM201S42YVa
-         4TLeEL3fIGjzYKf2e1eWdGLEo/GjFAg2YL3qKAt6rZcDZbpAbAAKaXJIYc+Gzw25IgXD
-         4ajg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=37yv2hCiSmlG0BdM+IHQO2/73yy5yOqcq+hqkN9W58c=;
-        b=fvoGF7s3QsD7WCqY+KT6KGDy76/TEywsRLyA/VjPsdyedhQ3PwMysr7hIOizYRSc1b
-         75LW6a9GXZHPSNKr/4fs179cai1NLcccK2Rd30dxL2hGH5ToeIVbUNYUUnUm4XgGzcxG
-         pDXyKz3SpRVzYd5Xfy2Z5BGKbUTYJ5X6vGOMFmg3lm3CHoqLhTF9mh876+oRt8c4nRCM
-         zTkmBiSRjXQyayQ4JfhJJWWp2Tw43pMPI7F+s3hRza+YLqE1ZwMZwOvhzcMt9V6UKLI5
-         pyzF/EWH9XgGDeiV6EeHvcNgFGIxDjhGVYMGyExlZiHkQOxeLpIeGxwYSnpnh4wbqWSd
-         6k3Q==
-X-Gm-Message-State: APjAAAWzEQa1TW5VbI02ikDgz/HNgijrBiTHBkC+hbxUzvpQja1mkyMp
-	9vcPKl+1ArLPszbRa5U3bYSAWAC01Ns=
-X-Google-Smtp-Source: APXvYqyj+UdSZkp4AuhD5lKaUjuMZEDsrzQnhT/HpWlG9hwWuu1jVijO5J8BgJM8nZXvZglSrD50EQ==
-X-Received: by 2002:a17:90a:8c8a:: with SMTP id b10mr11472232pjo.51.1582149949730;
-        Wed, 19 Feb 2020 14:05:49 -0800 (PST)
-Received: from ?IPv6:2601:646:9200:4e0:cca7:f312:1961:a4b9? ([2601:646:9200:4e0:cca7:f312:1961:a4b9])
-        by smtp.gmail.com with ESMTPSA id 23sm615360pfh.28.2020.02.19.14.05.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Feb 2020 14:05:49 -0800 (PST)
-Subject: Re: [yocto] Debugging gdb built by Yocto
-To: Patrick Doyle <wpdster@gmail.com>,
- Yocto discussion list <yocto@yoctoproject.org>
-References: <CAF_dkJAyS20skTujCh_SCQXq+muJjCmn5=mnUG+A8qWitzNzqQ@mail.gmail.com>
-From: "Khem Raj" <raj.khem@gmail.com>
-Message-ID: <4de716f2-7f2c-3ded-f0b7-ac7e36e0e79c@gmail.com>
-Date: Wed, 19 Feb 2020 14:05:48 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.5.0
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1582150196; x=1613686196;
+  h=from:to:subject:date:message-id:references:in-reply-to:
+   content-id:content-transfer-encoding:mime-version;
+  bh=s7dNfnDQkvJdup6uSRFui7R2OyD1rvqDos3qeUsoRGI=;
+  b=P+4uGxdTYQbnBE3qZCA59dIc26attrVpo4cFJULfKq8rBqxj2cpUs0YZ
+   47Sg+mvcHkxGVsDzrRZaIVu7B247nMFmqVKmqyIZlOqXSutRys7niQ1FK
+   i2/gU7tc7v8pHZORknNKp4LHmqN5OvywZ2+jK/CoHgBoS9SFhkfTDCnAc
+   c=;
+IronPort-SDR: NgUEVgkj2Vv2XKvFB3RG/HOpWEguxbP/MSr/Ie1Izuk57aFuJVd3aEq+Y84fVvML6yi491oImr
+ iA/dR9ABT9jGzHFmZlbH8LUH7BXvt/h5PDTluAnrIK/H0z4cNa0FvUeNs8O1MAIYjZczr3RwDJ
+ 7LXTGR4XGOj0kr3IKyPj7ocqWudSRDFxf0XVbJihXvVSN+9EJz+58VgJWcaGUvtjvY1bQLU7yz
+ nEiSwuBzBuwjLTDgnymWRQ2Sh/0tXtmzERYep0HnmqclRxAmjGC8dTsSyxtANaT9GaQsgXTO1+
+ 9LQ=
+Received: from esagw5.bmwgroup.com (HELO esagw5.muc) ([160.46.252.46]) by
+ esa2.bmw.c3s2.iphmx.com with ESMTP/TLS; 18 Feb 2020 09:41:14 +0100
+Received: from esabb2.muc ([160.50.100.34])  by esagw5.muc with ESMTP/TLS;
+ 18 Feb 2020 09:41:10 +0100
+Received: from smucm10j.bmwgroup.net (HELO smucm10j.europe.bmw.corp) ([160.48.96.46])
+ by esabb2.muc with ESMTP/TLS; 18 Feb 2020 09:41:09 +0100
+Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10j.europe.bmw.corp
+ (160.48.96.46) with Microsoft SMTP Server (TLS;
+ Tue, 18 Feb 2020 09:41:09 +0100
+Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
+ smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Tue,
+ 18 Feb 2020 09:41:08 +0100
+From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
+To: <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Creating a build system which can scale. #yocto
+Thread-Topic: [yocto] Creating a build system which can scale. #yocto
+Thread-Index: AQHV5Y2csebBRFcpkEqTpKLABW/Y7KgfmL4AgAD5twA=
+Date: Tue, 18 Feb 2020 08:41:08 +0000
+Message-ID: <20200218084108.GZ104502@korppu>
+References: <5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org>
+ <ea92a8a308253301273f97ad910281638d350b69.camel@linuxfoundation.org>
+In-Reply-To: <ea92a8a308253301273f97ad910281638d350b69.camel@linuxfoundation.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
 MIME-Version: 1.0
-In-Reply-To: <CAF_dkJAyS20skTujCh_SCQXq+muJjCmn5=mnUG+A8qWitzNzqQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <A21B95EAAB71F2469024E4FB32FB0DE0@bmwmail.corp>
+Content-Transfer-Encoding: quoted-printable
 
+Hi,
 
+Good pointers in this thread already. Here are mine:
 
-On 2/18/20 8:26 AM, Patrick Doyle wrote:
-> Does anybody have any tips or tricks for how I might debug the
-> (cross-canadian) gdb built by Yocto's SDK?
-> 
-> I need to add some printf's to the gdb code to help track down why
-> something isn't working, but none of my traditional
-> get-ready-to-debug-this-code techniques are working.
-> 
-> How can I run the gdb that I just built?  Note that I am presuming that I can
-> 
-> $ bitbake gdb-cross-canadian-mipsel -ccompile -f
-> 
-> to rebuild gdb after I add a printf or two to it... but I can't figure
-> out how to run gdb without going through the sdk installation step.
-> 
-> $ bitbake gdb-cross-canadian-mipsel -cdevshell
-> # ../build-mipsel-poky-linux/gdb/gdb
-> bash: ../build-mipsel-poky-linux/gdb/gdb: No such file or directory
-> # file ../build-mipsel-poky-linux/gdb/gdb
-> ../build-mipsel-poky-linux/gdb/gdb: ELF 64-bit LSB shared object,
-> x86-64, version 1 (GNU/Linux), dynamically linked, interpreter
-> /opt/iro, BuildID[sha1]=7f985bbe4cb6c97558b159860b2498f6389b254e, for
-> GNU/Linux 3.2.0, not stripped
-> # ldd ../build-mipsel-poky-linux/gdb/gdb
-> ../build-mipsel-poky-linux/gdb/gdb: /lib/x86_64-linux-gnu/libm.so.6:
-> version `GLIBC_2.29' not found (required by
-> ../build-mipsel-poky-linux/gdb/gdb)
->      linux-vdso.so.1 =>  (0x00007fff8a0c2000)
->   ...
-> 
-> # LD_LIBRARY_PATH=../recipe-sysroot-native/usr/libexec:../recipe-sysroot-native/usr/lib
-> ../build-mipsel-poky-linux/gdb/gdb
-> bash: ../build-mipsel-poky-linux/gdb/gdb: No such file or directory
-> 
-> None of the techniques from my bag-of-tricks works.
-> 
-> I guess I could go grab the source myself, manually apply the patches
-> myself, build it, and see if that works.
-> 
-> Or I could sit down real hard and think about why I am trying to debug
-> the canadian-cross built tool on my development host... perhaps I
-> should try debugging the native (cross)-gdb on my native host.  I'll
-> go try that now, but, in the mean time, I thought it was about time
-> for me to ask others for some clues.
-> 
-> Any clues or pointers?
+ * Share sstate mirror and download cache from release builds to
+   developer topic builds. NFS, web server or rsync before calling bitbake
+   will work.
 
-its perhaps due to the fact that host where this will run is sdkhost and 
-not your normal buildhost, so perhaps you can use uninative tarball 
-provided glibc to run it if your sdkhost is similar to buildhost and 
-that might work.
+ * I've added buildhistory and prserv database as extra files to sstate mir=
+ror
+   and use that to initiate new developer topic and release builds. This wa=
+y
+   we don't add prserv or buildhistory git trees to critical path in builds
+   but get the benefits of QA checks, binary package versions, full history=
+ etc.
 
-> 
-> --wpd
-> 
-> 
-> 
-> 
+ * Don't use virtual machines or clouds to build. Bare metal throw away mac=
+hines
+   are much faster and more reliable. We've broken all clouds.
+
+ * Use rm_work to reduce disk space usage during builds.
+
+ * Tune build machines to bind things into memory and to not flush things t=
+o disk
+   all the time since bitbake tmp, images etc are anyways going to be tar'e=
+d
+   as build output. If they fit to page cache in RAM, you can avoid a lot o=
+f IO and
+   save disks/ssd. Linux kernel vm tuning does this:
+
+$ cat /etc/sysctl.d/99-build_server_fs_ops_to_memory.conf=20
+# fs cache can use 90% of memory before system starts io to disk,
+# keep as much as possible in RAM
+vm.dirty_background_bytes =3D 0
+vm.dirty_background_ratio =3D 90
+# keep stuff for 12h in memory before writing to disk,
+# allows reusing data as much as possible between builds
+vm.dirty_expire_centisecs =3D 4320000
+vm.dirtytime_expire_seconds =3D 432000
+# allow single process to use 60% of system RAM for file caches, e.g. image=
+ build
+vm.dirty_bytes =3D 0
+vm.dirty_ratio =3D 60
+# disable periodic background writes, only write when running out of RAM
+vm.dirty_writeback_centisecs =3D 0
+
+ * Finding optimal cost and power combination for build slaves is tricky.
+   Track CPU, memory, IO and network usage for your project and find out wh=
+ich
+   one is the bottle neck. For us it was RAM. CPUs are not effectly used by=
+ bitbake
+   builds except when all hell breaks loose with C++ projects and their tem=
+plates.
+   Lots of CPU time is wasted when running single threaded bitbake tasks an=
+d
+   creating images. Avoiding IO to disk and caching to RAM helps. I've not =
+seen benefits
+   of having more than 64 gigs of RAM or more than 32 CPUs (with hyper thre=
+ading).
+   Also project evolve over time and suddenly may start eating more RAM and=
+ triggering
+   the kernel OOM killer, shivers..
+
+Hope this helps,
+
+-Mikko=
