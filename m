@@ -1,23 +1,24 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.16.1582148693945733465
+ by mx.groups.io with SMTP id smtpd.web11.17.1582148694004274000
  for <yocto@lists.yoctoproject.org>;
  Wed, 19 Feb 2020 13:44:54 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=TTbrjQ+y;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=b7Jvginp;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: alex.kanavin@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4F1DDE0173E; Tue, 18 Feb 2020 03:30:43 -0800 (PST)
+	id 6E806E0174F; Tue, 18 Feb 2020 08:44:04 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (jupiter.hce[at]gmail.com)
+	*      (alex.kanavin[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
@@ -25,71 +26,77 @@ X-Spam-HAM-Report:
 	*      valid
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.166.51 listed in list.dnswl.org]
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 289EDE00782
-	for <yocto@yoctoproject.org>; Tue, 18 Feb 2020 03:30:41 -0800 (PST)
-Received: by mail-io1-f51.google.com with SMTP id i11so8898130ioi.12
-        for <yocto@yoctoproject.org>; Tue, 18 Feb 2020 03:30:41 -0800 (PST)
+	*      [209.85.222.45 listed in list.dnswl.org]
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65EADE0174B
+	for <yocto@yoctoproject.org>; Tue, 18 Feb 2020 08:44:01 -0800 (PST)
+Received: by mail-ua1-f45.google.com with SMTP id c7so7690466uaf.5
+        for <yocto@yoctoproject.org>; Tue, 18 Feb 2020 08:44:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-         :cc;
-        bh=/RBi8SoKNDspD7E9lgdHgVr2AFtLsqWbw/Bb8plyQGw=;
-        b=TTbrjQ+yq6XmICDySdrkLt5tF2+ipqzg568h4wpVGlngQKOrcms1WBL8U3Hvp8Pf7Y
-         WXzaMyoLFMcim8YAhOpAvUQhz/Ygg0AqJtDqiR8agHAKVOee/LBSUacCcwSy/OnEYx4b
-         ZCZYIDZJJLVCaTVrfutxnGPjIyibiz1TM61ovtVy9b4uWuO4txrtFF7IEYl/syJaOjwZ
-         N3bVQ+BE8/z6kwN2FRN3Tk9Nfflau6QdnUEDrkkrL17Q1y9OqvPzATIEbp65d1mLxkL6
-         xTS5QxjxtfHhw06Tln0QFuDFC9bqULm0dFLiI1tPtwKb1v8HN4wl6ME8BePMtcfgVSjm
-         MYrw==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
+        bh=/cu/W1XGJfkd2PnVSt5Wj9ms+pFkqZKvHZCJEWk79zA=;
+        b=b7Jvginpyfp4FbKiFI9TB1t/eE4BprsrrO1Aa0Ekqz79+oal+e0a7lDhTP76g2T5/w
+         vxR6bXLgjr9yLOit5TDD6NLSnMuoLaIdSjc9B/5PwCDr1btMghpSWHurjgU4hAohnAJ8
+         Fvi3OZBZG8aUSGkT6lDABRbj2WC4mG89jps2FRir8swSB1Hn3dLmg7oSQg7MPAJj2g23
+         K4Z4tPtAYKcJPJSVFDMzThS43731jjkT1eYcVABs8dO0cZ39a8sYZJdVRsCQ+yMhT0OH
+         QqD4z547qfbWhyoPLScJgIChSqZFt06fQsEp7xJPlfZ7j80lSYbQ5TAlWvTmWo/ycTnZ
+         Ulmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-         :message-id:subject:to:cc;
-        bh=/RBi8SoKNDspD7E9lgdHgVr2AFtLsqWbw/Bb8plyQGw=;
-        b=HRytXPdM4RWV5kY6SeGazTHCPGH4fp8SSZLXaQ8UT6YejoMGcC/yp4xh5fox08co2T
-         /qBoNji1foRnT4bRMYt+l/ypMe2dTc3WcOezecaRzyQ5vWZ4wNWwaH4JdyBNwKrguBvx
-         ErMdFw6vMCUkJrctmrdicYinnvifa9+GZaFT+MjOFYdJ2cwDtt2mI8Y0XYZS7eBHYN4o
-         ZHRQyTfHQXtRD3sh0+QV1/8nBZ830DzNiCVp6Ff1NdNW4IRYRtZCvEuB0rAfcWOGBTKj
-         fjkYo1KSgOOMoRepCUFqzW8W2JXxuYDZisbij+b9rD6o/QC/TYwb8p07vIm7fMo2k4jJ
-         zkCg==
-X-Gm-Message-State: APjAAAXjg9FBuRren+B9/Dm4cYoiPcA/oWR0bhCKgugXImNLFWHq81IF
-	C+XAPyGoghVQGwPI5apBwqJe4z6vgTgwF6AYL3I=
-X-Google-Smtp-Source: APXvYqxgwI3J339KH2qrTwbM/cpAHugZLBLcJXu0ryitnCPbREgA2d7l8pmjfZo09tqPgERCe5fN2k6KQ+3FKtDtFp0=
-X-Received: by 2002:a5d:87ca:: with SMTP id q10mr15999273ios.192.1582025441431;
- Tue, 18 Feb 2020 03:30:41 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to;
+        bh=/cu/W1XGJfkd2PnVSt5Wj9ms+pFkqZKvHZCJEWk79zA=;
+        b=F64c61FIhG5C8+8bJrxLsly7KNuTBayGMlM6SXp3AZ5knPuwQeggnmiyBRE6nyieFW
+         Cp9pMcQzBm6a5VwOjPv1swJfshHDCBkxqF1Fknw+a5FJMy0XQtEV29kvCqgPh0UxasTB
+         sgyuoQy9qkFO3jiqlZ0Xizt+YEHg/AI1OKWJJfXpJhmSM8CyI/PkLXyPLeNZf5ggH6O0
+         WMwAON8MhFfKI1vcsBqMQQjI7Cl1na9tQxawrw/kHVqbO0A56Q1muLEhP4Oad4WREVUB
+         RT9/V4WPks1JpsGoF2Ukbpp8n70/h1T0CQLHBfFUPrcOlcLp3NoIWX7Sgx4+2m3/AmEV
+         yXzw==
+X-Gm-Message-State: APjAAAX4ZrSWYFawMDvIYQUgBo0foQZ9KMbT2/o7zcA/gttHTZ8UNtlN
+	c4xH2Dun8ARgYC8dETnTZ29QLEG/H2XXdkhraCFdQQ==
+X-Google-Smtp-Source: APXvYqxVYFBK7dPWhRcfrH6T1+am885R+yegAS7jhEecjMCdBfzgBNypPX17wkrOg8dA5dWTweGZXil9RTACh+Clf0U=
+X-Received: by 2002:ab0:7802:: with SMTP id x2mr11221066uaq.100.1582044240463;
+ Tue, 18 Feb 2020 08:44:00 -0800 (PST)
 MIME-Version: 1.0
-Received: by 2002:ad5:5d0d:0:0:0:0:0 with HTTP; Tue, 18 Feb 2020 03:30:40
- -0800 (PST)
-In-Reply-To: <20200218101122.GE104502@korppu>
-References: <CAA=hcWTDqhJEE7MXFY9rvN93nf8=nWvshLoXKF3EMXYGLmZGbA@mail.gmail.com>
- <CAAfyv34yO7bSR9GBod1bXpD0sFnsSETsJQAzcmSgyY0orGtfcg@mail.gmail.com>
- <CAA=hcWQFcdUJKGTOitOAx1URD7r=9PPxsdd=hQO-Yb77=QHTDg@mail.gmail.com>
- <20200218085848.GA104502@korppu> <CAA=hcWREdVeYqnOs-3aSFOhobaQWvLoaEU8Rdku_RM=Q5q2Ruw@mail.gmail.com>
- <20200218101122.GE104502@korppu>
-From: "JH" <jupiter.hce@gmail.com>
-Date: Tue, 18 Feb 2020 22:30:40 +1100
-Message-ID: <CAA=hcWTwmnCWuT73xqgiQQjwHXxSX0ww2g3g1YY6RLw5XS2_vg@mail.gmail.com>
-Subject: Re: [OE-core] [yocto] Change RO rootfs failed RF Kill Switch Status and Failed to start Run pending postinsts
-To: Mikko.Rapeli@bmw.de
-Cc: marek.belisko@gmail.com, yocto@yoctoproject.org, 
-	openembedded-core@lists.openembedded.org
+References: <0b8a01d5e675$d2363e30$76a2ba90$@gmail.com>
+In-Reply-To: <0b8a01d5e675$d2363e30$76a2ba90$@gmail.com>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Tue, 18 Feb 2020 17:44:24 +0100
+Message-ID: <CANNYZj8GBXxLdM-TQ6TukuLMGPu167ZqL9f-nNmG21rrkMNJ_Q@mail.gmail.com>
+Subject: Re: [OE-core] Yocto Project Status WW07'20
+To: Yocto discussion list <yocto@yoctoproject.org>, 
+	OE-core <openembedded-core@lists.openembedded.org>
+Content-Type: multipart/alternative; boundary="000000000000f8cb95059edc6003"
+
+--000000000000f8cb95059edc6003
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Mikko,
+On Tue, 18 Feb 2020 at 17:10, <sjolley.yp.pm@gmail.com> wrote:
 
-On 2/18/20, Mikko.Rapeli@bmw.de <Mikko.Rapeli@bmw.de> wrote:
-> Well I have zeus and am using read-only rootfs with volatile binds and
-> I did not need anything extra. I would dig into this /var/log thing
-> and patch it away. I use systemd journal so no need for syslogs.
+>
+>    - With the git infrastructure issue updated, we now have centos8
+>    workers added to the autobuilder.
+>
+> What are the current plans for centos 7?
 
-I actually not too worry about the rfkill error but more worried about
-why the rfkill failed? Was it caused by some system problem? At the
-moment, I could not get WiFi or LTE connected, which used to be
-working in RW partition.
+Alex
 
-Thank you.
+--000000000000f8cb95059edc6003
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Kind regards,
+<div dir=3D"ltr"><div dir=3D"ltr">On Tue, 18 Feb 2020 at 17:10, &lt;<a href=
+=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>&gt; wrote:<=
+br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;=
+border-left-color:rgb(204,204,204);padding-left:1ex"><div lang=3D"EN-US"><d=
+iv class=3D"gmail-m_-3817875072500115690WordSection1"><ul style=3D"margin-t=
+op:0in" type=3D"disc"><li style=3D"color:black;margin-top:0in;margin-bottom=
+:0.0001pt;vertical-align:baseline"><span style=3D"font-family:Arial,sans-se=
+rif">With the git infrastructure issue updated, we now have centos8 workers=
+ added to the autobuilder.</span></li></ul></div></div></blockquote><div>Wh=
+at are the current plans for centos 7?=C2=A0<br></div><div><br></div><div>A=
+lex</div></div></div>
 
-- jh
+--000000000000f8cb95059edc6003--
