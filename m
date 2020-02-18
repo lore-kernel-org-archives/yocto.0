@@ -1,51 +1,53 @@
-Received: from esa4.bmw.c3s2.iphmx.com (esa4.bmw.c3s2.iphmx.com [68.232.139.62])
- by mx.groups.io with SMTP id smtpd.web10.802.1582151559382037935
+Received: from esa8.bmw.c3s2.iphmx.com (esa8.bmw.c3s2.iphmx.com [68.232.139.97])
+ by mx.groups.io with SMTP id smtpd.web10.896.1582151958126570154
  for <yocto@lists.yoctoproject.org>;
- Wed, 19 Feb 2020 14:32:40 -0800
+ Wed, 19 Feb 2020 14:39:18 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bmw.de header.s=mailing1 header.b=aePT1SRt;
- spf=pass (domain: bmw.de, ip: 68.232.139.62, mailfrom: prvs=311c70376=mikko.rapeli@bmw.de)
+ dkim=pass header.i=@bmw.de header.s=mailing1 header.b=Qbq++yk4;
+ spf=pass (domain: bmw.de, ip: 68.232.139.97, mailfrom: prvs=311c70376=mikko.rapeli@bmw.de)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
   d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-  t=1582151559; x=1613687559;
+  t=1582151958; x=1613687958;
   h=from:to:cc:subject:date:message-id:references:
    in-reply-to:content-id:content-transfer-encoding:
    mime-version;
-  bh=M7LEJiXXXUdFRQIetE26ljTn/GxacqQYS5MHSWU2w2U=;
-  b=aePT1SRtDjFyh+JmQbwXtmmDBkGxM2xWAFDaPD2mpemf65XoFywyE7h7
-   KPBLs3XNgtUYCeuPZP+Q+mOCLrOit3eFUtg6/fTENTFXwf1lmaMmSgMIp
-   y2425OFtsiFm29HnHJSs2GaTN8QcH/8vNi9ZfPcopjroPIQL4P3/2fvmE
-   g=;
-IronPort-SDR: UIoczILD7OqIZP/PBDiWZTyz2Uor99wFg81dHDjx0sBJIBzsC2OuMb9muqeoWfiU+rkYEePy+X
- TR8K3S61Ih7P4C1dkKoG1+w2GaVfmuLFvEsjuzywJRW4N2hAqTB3SZIbwC2pfmN9/xPVNXfNFp
- z2NBkl+A7juhe8X2cFddPWsLkwfLVG2wtxWCN+WE6DiyIXB/WU40v6DhKo6d9q7wAcfEaKpmg1
- rh3kQOkdi273j4yJ1+kiA1ArxTA+ZajmFmvTzNG4AwISsISk2SGJ5wZX05WnJpNxyw7lMBkU0Y
- In4=
-Received: from esagw6.bmwgroup.com (HELO esagw6.muc) ([160.46.252.49]) by
- esa4.bmw.c3s2.iphmx.com with ESMTP/TLS; 18 Feb 2020 10:06:30 +0100
-Received: from esabb5.muc ([160.50.100.47])  by esagw6.muc with ESMTP/TLS;
- 18 Feb 2020 10:06:29 +0100
+  bh=UmugPzx8sIqFPvA1Ai1V2OJDkYJTavoLVLQHpfg0Me0=;
+  b=Qbq++yk4JS+jOGTHlIRtewuszm0Dw9Jnkin6DcpUZWFgaZlX/Llzf5ns
+   oKqKt4gtIOpn3515aqww0J0BspfiTvTXv95S0v/+fGhauXYB9Omr0PW5f
+   1c+jn6Y4u/zPxQl+BI1T/qeq9xYNlluYBSj+s4sQxoquJm8xOAOsp09yx
+   o=;
+IronPort-SDR: etVSivhee+PlrGcN6nEXjZcf6dweMrJ6QneIvZNl8Xtkqz18ga90BOnTG4g40fqvuwuOhKMxAv
+ 6AV7IfXPZzzwCtmO/gUIfojK7cMTt0Mxhh/J2vBjxryqrFmwI+6FljgyhHnZT+foU1ZJRFdIie
+ vo1BWOXEi9p5jbqG06Kem/Aw2D6I6hLdkZ+zVGl+9nxdFicJhDC1DWcRClLbU8/tNQRgYt+esI
+ mCiS7UYfLT0W8DRCHiyFmu/CQb6xNJ14+3ZxiSCBCwDE222L5Nk4OSBOw/fEWiYHC6yBa3M8eE
+ qoM=
+Received: from esagw1.bmwgroup.com (HELO esagw1.muc) ([160.46.252.34]) by
+ esa8.bmw.c3s2.iphmx.com with ESMTP/TLS; 18 Feb 2020 10:00:35 +0100
+Received: from esabb2.muc ([160.50.100.34])  by esagw1.muc with ESMTP/TLS;
+ 18 Feb 2020 10:00:34 +0100
 Received: from smucm10l.bmwgroup.net (HELO smucm10l.europe.bmw.corp) ([160.48.96.48])
- by esabb5.muc with ESMTP/TLS; 18 Feb 2020 10:06:29 +0100
+ by esabb2.muc with ESMTP/TLS; 18 Feb 2020 10:00:27 +0100
 Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10l.europe.bmw.corp
  (160.48.96.48) with Microsoft SMTP Server (TLS;
- Tue, 18 Feb 2020 10:06:29 +0100
+ Tue, 18 Feb 2020 10:00:26 +0100
 Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
  smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Tue,
- 18 Feb 2020 10:06:28 +0100
+ 18 Feb 2020 10:00:26 +0100
 From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
-To: <amayajindal786@gmail.com>
-CC: <alex.kanavin@gmail.com>, <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Issue while adding the support for TLS1.3 in existing krogoth yocto #yocto #yocto #yocto #yocto #apt #raspberrypi #yocto
-Thread-Topic: [yocto] Issue while adding the support for TLS1.3 in existing
- krogoth yocto #yocto #yocto #yocto #yocto #apt #raspberrypi #yocto
-Thread-Index: AQHV5iy16BcR4YLsPEuDT4ipRDmM9qgggQ2AgAATfPKAAAPCAA==
-Date: Tue, 18 Feb 2020 09:06:28 +0000
-Message-ID: <20200218090628.GC104502@korppu>
-References: <d73Z.1582010752108711892.tD7g@lists.yoctoproject.org>
- <CANNYZj-3urA5rw8fzcAY9ch5Z-zOEt4tRjNNBsquZuvVD6+BJQ@mail.gmail.com>
- <-rwstc27cdt90-auuyo41rs8jtvzm6syoph8qyesn3ii-mwuzy2-dgobygumtd4d-75yhts2n0qmc-f0uc4f-r9fqcx4aa7a041vjua4rn8a56jf43y-as3l4g-2l39almml2bd3opuod-lges1-2ywa6z.1582012225122@email.android.com>
-In-Reply-To: <-rwstc27cdt90-auuyo41rs8jtvzm6syoph8qyesn3ii-mwuzy2-dgobygumtd4d-75yhts2n0qmc-f0uc4f-r9fqcx4aa7a041vjua4rn8a56jf43y-as3l4g-2l39almml2bd3opuod-lges1-2ywa6z.1582012225122@email.android.com>
+To: <georgi.georgiev@woodward.com>
+CC: <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failures with offline/online svn build! #yocto #python
+Thread-Topic: [yocto] Yocto [thud], [zeus] do_fetch and do_unpack failures
+ with offline/online svn build! #yocto #python
+Thread-Index: AdXcRVMItAsS96VjQ36fsMtuKM+vJgJSsmTA///0WID//+ksIIAAIwqA//7H4DCAAnpNAA==
+Date: Tue, 18 Feb 2020 09:00:26 +0000
+Message-ID: <20200218090026.GB104502@korppu>
+References: <bfb7604a4f7f481aad771a3472031e1b@Kemp-ExMb1.woodward.com>
+ <20200217130337.GS104502@korppu>
+ <0704a68acba44839865cb31e22e584db@Kemp-ExMb1.woodward.com>
+ <20200217134718.GT104502@korppu>
+ <e81237bb0cab436681a5c60e01d87a65@Kemp-ExMb1.woodward.com>
+In-Reply-To: <e81237bb0cab436681a5c60e01d87a65@Kemp-ExMb1.woodward.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -53,26 +55,36 @@ x-ms-exchange-messagesentrepresentingtype: 1
 MIME-Version: 1.0
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-ID: <6B28A6B8699E044E854FB4C824AB2A12@bmwmail.corp>
+Content-ID: <0F3344356C4E124787F0B82861DC35E1@bmwmail.corp>
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+On Tue, Feb 18, 2020 at 07:25:15AM +0000, Georgi Georgiev via Lists.Yoctopr=
+oject.Org wrote:
+> OK,
+> I read some code and I added the next line:
+>=20
+> --- a/bitbake/lib/bb/fetch2/svn.py
+> +++ b/bitbake/lib/bb/fetch2/svn.py
+> @@ -145,6 +145,7 @@ class Svn(FetchMethod):
+>=20
+>              if not ("externals" in ud.parm and ud.parm["externals"] =3D=
+=3D "nowarn"):
+>                  # Warn the user if this had externals (won't catch them =
+all)
+> +                svnfetchcmd =3D self._buildsvncommand(ud, d, "fetch")
+>                  output =3D runfetchcmd("svn propget svn:externals || tru=
+e", d, workdir=3Dud.moddir)
+>                  if output:
+>                      if "--ignore-externals" in svnfetchcmd.split():
+>=20
+> This works for me perfectly. I may look little redundant but...
+> Any comments?=20
+> @Mikko,=20
 
-On Tue, Feb 18, 2020 at 01:20:25PM +0530, amaya jindal wrote:
->    Thanks for your prompt reply. But is not there any way similar to add
->    support for TLS1.3 instead of moving to new yocto releases
+Looks good to me.
 
-openssl is tricky to update and requires backporting fixes for many, many r=
-ecipes
-to get builds passing etc. Depending on project size, it may be possible
-to update only those components which you use, e.g. backport commits from
-poky master or release branches like warrior. The number of backported chan=
-ges
-will be large. I've ported openssl 1.1.1d patches to yocto 2.5 sumo but it =
-wasn't
-pretty. A strategy with regular yocto updates is much better and forces you
-to think of your dependencies and patches much harder.
+> We have only one svn repo in the whole project :-)
 
-Hope this helps,
+Lucky you :)
 
 -Mikko=
