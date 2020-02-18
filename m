@@ -1,336 +1,142 @@
-Received: from mail.inango-sw.com (mail.inango-sw.com [178.238.230.57])
- by mx.groups.io with SMTP id smtpd.web12.3844.1582032128233785398
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (EUR05-DB8-obe.outbound.protection.outlook.com [40.107.20.137])
+ by mx.groups.io with SMTP id smtpd.web12.4378.1582034813700724197
  for <yocto@lists.yoctoproject.org>;
- Tue, 18 Feb 2020 05:22:08 -0800
+ Tue, 18 Feb 2020 06:06:54 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@inango-systems.com header.s=45a440e0-d841-11e8-b985-5fcc721607e0 header.b=CHG9pgQU;
- spf=pass (domain: inango-systems.com, ip: 178.238.230.57, mailfrom: n.merinov@inango-systems.com)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.inango-sw.com (Postfix) with ESMTP id E356D108016E
-	for <yocto@lists.yoctoproject.org>; Tue, 18 Feb 2020 15:22:05 +0200 (IST)
-Received: from mail.inango-sw.com ([127.0.0.1])
-	by localhost (mail.inango-sw.com [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id g5lYL8fYJhIn for <yocto@lists.yoctoproject.org>;
-	Tue, 18 Feb 2020 15:22:04 +0200 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.inango-sw.com (Postfix) with ESMTP id B74D010807C7
-	for <yocto@lists.yoctoproject.org>; Tue, 18 Feb 2020 15:22:04 +0200 (IST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.inango-sw.com B74D010807C7
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=inango-systems.com;
-	s=45A440E0-D841-11E8-B985-5FCC721607E0; t=1582032124;
-	bh=nBVE79FFNXdkaAxzTVVcl0RYxgxm944faUc0tzJ8dA8=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=CHG9pgQUrq130VFWCfuPBq8MfS/wwFz4nRBKCSznKvKSR3pgW6NQ6mg9lxHrZzjVs
-	 5wenMfOr/74ltgmAoyT3XxlGWY0crJwptd6in5sqXfucLCHCJo2jIdHYamWgk5+X0T
-	 DLzkH5A2CYxi9ZUFDpaMDYPcHO0cG6s/IkkJdSg+ZveOjI0dVNqmj2buHFB4wUrQWx
-	 gIVyiglhJwzQTdrU1oHA0Fm08qPwZkyrsSR0/CSCmWIFURQslA4ruIwFKcp+LYv4yA
-	 PqVa5Ue9kW6zN4jbnUkKlnQTiWubNMaAxOT6ql6k6nYrveOQXipzboChCM0Bsg7xsy
-	 LWfM3s1WQWd0w==
-X-Virus-Scanned: amavisd-new at inango-sw.com
-Received: from mail.inango-sw.com ([127.0.0.1])
-	by localhost (mail.inango-sw.com [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id rc5n96MFjTGu for <yocto@lists.yoctoproject.org>;
-	Tue, 18 Feb 2020 15:22:04 +0200 (IST)
-Received: from mail.inango-sw.com (mail.inango-sw.com [172.17.220.3])
-	by mail.inango-sw.com (Postfix) with ESMTP id 9C42F10807B0
-	for <yocto@lists.yoctoproject.org>; Tue, 18 Feb 2020 15:22:04 +0200 (IST)
-Date: Tue, 18 Feb 2020 15:22:04 +0200 (IST)
-From: "Nikolay Merinov" <n.merinov@inango-systems.com>
-To: yocto <yocto@lists.yoctoproject.org>
-Message-ID: <1667118643.1181978.1582032124378.JavaMail.zimbra@inango-systems.com>
-In-Reply-To: <20200116132414.26057-1-n.merinov@inango-systems.com>
-References: <20200116132414.26057-1-n.merinov@inango-systems.com>
-Subject: Re: [yocto-kernel-tools][PATCH] tools: Provide merge_config.py alternative to merge_config.sh
+ dkim=pass header.i=@codewrights.onmicrosoft.com header.s=selector2-codewrights-onmicrosoft-com header.b=kzDCXZFJ;
+ spf=permerror, err=syntax error for token:  (domain: codewrights.de, ip: 40.107.20.137, mailfrom: hu.schlieben@codewrights.de)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ijTqCDVz1p+yRNIm1djhJ169QPXa6vsW1Nqjp5SQkuhSmz7Lu3Wxvdcwd6se3yQLssXKVFsDGoe29cVWQfmn90/TqDSpFFYy8t+YIR4E9tkbiO20xySjWge3/kHnZUGgF5NCROAyINSc1O03lz8K6+qs7pH5lnEiBFtQSiSbMKR3SaXWYpJmm4EUOpQs9SW8a7vvH1UpJ3x4k2/acutS0rheB/xw8erLg3piX5gmZLe9HhFOKyfS2H+k4gTnqUTzLSVZ0dnkXcKvxpvGqH4q/W0gM7el8w4lOHqA0oAvUi9GPjpqSUhr076P+I8wprg84EtuBxUGMqnlaO0hlsholg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8+bzeHyTz8rS51UXB1egemT2+craWdbCOo9cNj8WEKs=;
+ b=bD1BAA7niKoaZwK3uaUqgRCzkM70cHraDds/YqBhYGZf+j7F56ZA3/VQ5PD0Z0vbI4ZLFrEUmoQ3Z3WB1RBo395TuVelACIRRuYpaSuh5eRlz8WhHEn7zJADsck4ziI1hIJp10F4XXjv1o6gDeEPs9oEE/IDkeo/j5glh0r6Kd9yHZBHq5Oo/Dr87mHCC1jd4z9BXi8uXuPJVjjgB2qqE2SNlL5ONAQbqWibafWM+MNXNbUNeB6cXRQNXEVvD8Ppmy6Dq7nNad6YNGx5IReJEFOSaT6B4iyptSFUczucm7Y5EUUGelFO0IEd5glplkfLjbgeUq2asZjnZeD2eJhi/A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=codewrights.de; dmarc=pass action=none
+ header.from=codewrights.de; dkim=pass header.d=codewrights.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=codewrights.onmicrosoft.com; s=selector2-codewrights-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8+bzeHyTz8rS51UXB1egemT2+craWdbCOo9cNj8WEKs=;
+ b=kzDCXZFJzBv/4h7sF8pPfssyidszbFkU/QnWw5Zi4hDY/+qyinMHUuHs9CEhmbV4XcBvOAdcaEcOr6dShB+CcNA9lzivOXEiqFdQENF1iYgmYvX2K/eHxVwvSPM+roqRm1O5ZsirGi0BC02/8LEcLk/K1MNP3Az7kEXOB3PrLe8=
+Received: from AM0PR03MB3714.eurprd03.prod.outlook.com (52.134.81.153) by
+ AM0PR03MB5921.eurprd03.prod.outlook.com (10.255.28.148) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2729.22; Tue, 18 Feb 2020 14:06:51 +0000
+Received: from AM0PR03MB3714.eurprd03.prod.outlook.com
+ ([fe80::7cac:cd3b:c3f6:25f8]) by AM0PR03MB3714.eurprd03.prod.outlook.com
+ ([fe80::7cac:cd3b:c3f6:25f8%6]) with mapi id 15.20.2729.032; Tue, 18 Feb 2020
+ 14:06:51 +0000
+From: "Hans-Ulrich Schlieben" <hu.schlieben@codewrights.de>
+To: =?utf-8?B?RW5yaWNvIErDtnJucw==?= <ejo@pengutronix.de>
+CC: "barebox@lists.infradead.org" <barebox@lists.infradead.org>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
+	"rauc@pengutronix.de" <rauc@pengutronix.de>
+Subject: Re: Private: Re: [yocto] #yocto update the kernel with a rauc bundle
+Thread-Topic: Private: Re: [yocto] #yocto update the kernel with a rauc bundle
+Thread-Index: AQHV4c19cLI7xr3bDUG1EIRtnr+ID6gYEoaAgAgJ6uWAAOLqcA==
+Date: Tue, 18 Feb 2020 14:06:50 +0000
+Message-ID: 
+ <AM0PR03MB3714AE8A8592D7A0E7853B83FE110@AM0PR03MB3714.eurprd03.prod.outlook.com>
+References: <f52c462f-8f88-f953-7383-18633de010ff@pengutronix.de>
+ <21810.1581944282288454644@lists.yoctoproject.org>
+ <8178103e-c35d-461d-c485-d6b64753641b@pengutronix.de>
+In-Reply-To: <8178103e-c35d-461d-c485-d6b64753641b@pengutronix.de>
+Accept-Language: de-DE, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=hu.schlieben@codewrights.de; 
+x-originating-ip: [193.158.100.19]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 66798480-2a4b-4378-b5d3-08d7b47bcd0c
+x-ms-traffictypediagnostic: AM0PR03MB5921:
+x-microsoft-antispam-prvs: 
+ <AM0PR03MB592193802DCACEDE2ED8211AFE110@AM0PR03MB5921.eurprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 031763BCAF
+x-forefront-antispam-report: 
+ SFV:NSPM;SFS:(10019020)(4636009)(346002)(366004)(199004)(189003)(6916009)(81156014)(8676002)(86362001)(7696005)(8936002)(71200400001)(4326008)(81166006)(6506007)(2906002)(76116006)(54906003)(508600001)(55016002)(5660300002)(186003)(33656002)(26005)(66476007)(66556008)(66446008)(64756008)(9686003)(52536014)(66946007)(966005)(45080400002)(15650500001)(53546011)(66574012);DIR:OUT;SFP:1102;SCL:1;SRVR:AM0PR03MB5921;H:AM0PR03MB3714.eurprd03.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: codewrights.de does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ +fDtj3wRhWQeoEE+yoVxf+cCZJBeI/Ni8cUgQd2opyE8yP+Q9ykCJSJqxSEKpUhfXF62F6/ZLjcffwqpeI5TSAEKMw1G1uLaTM8AkSUYSYKS2FFdIdPerJiOawfeGpNhuJVCMjfgsJR63bvmKofXu3hKW2OUDd9et/UIYG7XTFVJb+0Bj+yBYyn16QQZscXRY3ZQPsvRMdMNW/oVJilOqsqpELy7Y0ie2an/D8kI042Sp5P/Exfih26n2Nqmqq2gilF2wGw8HISRdjh68hEPpQYcZL/PJkVmJIYxxxBVSaySnS91pn0M8VdqJP1//t6mSjnJvppV2dINt+KQQkkd+N2GeZzxN9Ry7PsQj8OGZBD7qS4cJrUsqYEOhcNomYJksk02SfRAWTKiBCuALSCpJ0D+U33eNjE8b4Aa4hBN2tPxL7Up7IclrEgbPWXVniABcKjchBuG0/3U/KG2JB1Wpivfin0hIY0GcHdEfFQpCEeCWECxantkf8neNIjT5BGN9DhBNKtph3f+qNUJy+CMcw==
+x-ms-exchange-antispam-messagedata: 
+ aZ36K0SR5T22PLrtfrpAXYR8K1Yb8TcUt0o3DF7/QH2DFny5dQEyXe8NnUo58dbOcU5txIYdvaYwEty1BoqLSNbPEdmhC8Y1s0CiEwZuJLj9OS2qwAYp5wOQ0zs8IB/Q5MGgeWrRHTU6CRgPl/g0kw==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-X-Originating-IP: [172.17.220.3]
-X-Mailer: Zimbra 8.8.15_GA_3888 (ZimbraWebClient - GC79 (Linux)/8.8.15_GA_3890)
-Thread-Topic: tools: Provide merge_config.py alternative to merge_config.sh
-Thread-Index: n7nJ9Li+7ajafDOprdqsrBec7QkyDA==
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: codewrights.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66798480-2a4b-4378-b5d3-08d7b47bcd0c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Feb 2020 14:06:51.0094
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 0974af9b-352b-437c-b606-e9f242c0c227
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: j85DcvubpIFksZQ/vW3+k2hvR7UdoOm5jNjoZgFgNJyygrOWjOXWDo77tGzLVQBwYj9kP4mr9beKFyB5WF8TslbSV+T5vFaAfc7uzFkGer4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR03MB5921
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi,
-
-Is "yocto" is correct mail list for such patch?
-
-During the work I already faced issues related to 1, 3, and 4 improvements from the commit message.
-This is why I want to change OE-Core code to use "merge_config.py" instead of "merge_config.sh". Unfortunately I can't find a way to send several patches to different repositories at once and this is why I want to upstream "merge_config.py" utility before I'll prepare changes to OE-Core code.
-
-Regards,
-Nikolai
-
------ Original Message -----
-> From: "n merinov" <n.merinov@inango-systems.com>
-> To: "yocto" <yocto@lists.yoctoproject.org>
-> Cc: "n merinov" <n.merinov@inango-systems.com>
-> Sent: Thursday, January 16, 2020 6:24:14 PM
-> Subject: [yocto-kernel-tools][PATCH] tools: Provide merge_config.py alternative to merge_config.sh
-
-> The merge_config.py script is fully compatible by command line options with
-> merge_config.sh script and provide better performance and solve several issues
-> that present in the merge_config.sh script.
-> 
-> Improvements comparing with merge_config.sh:
-> 
-> 1. Preformance was greatly improved:
-> 
->        let start=0 end=100
->        for file in `seq 10`; do
->            for n in `seq $start $end`; do
->                echo "CONFIG_X$n=$file" >> $file.cfg
->            done
->            let start+=100 end+=100
->        done
-> 
->        time merge_config.sh -m *.cfg # Takes 15.3 seconds
->        time merge_config.py -m *.cfg # Takes 0.03 seconds
-> 
-> 2. merge_config.sh produce false positive warnings when config name used
->    as config value:
-> 
->        $ echo 'CONFIG_NAME="CONFIG_OTHER"' > 1.cfg
->        $ echo 'CONFIG_OTHER="value"' > 2.cfg
->        $ merge_config.sh -m 1.cfg 2.cfg
->        ...
->        Value of CONFIG_OTHER is redefined by fragment 2.cfg:
->        Previous value: CONFIG_NAME="CONFIG_OTHER"
->        New value: CONFIG_OTHER="value"
->        ...
-> 
-> 3. merge_config.sh can incorrectly process commentary as a configuration value:
-> 
->        $ echo "CONFIG_NAME=value" > 1.cfg
->        $ echo "# CONFIG_NAME was defined in 1.cfg" > 2.cfg
->        $ merge_config.sh -m 1.cfg 2.cfg
->        ...
->        Value of CONFIG_NAME is redefined by fragment 2.cfg:
->        Previous value: CONFIG_NAME=value
->        New value: # CONFIG_NAME was defined in 1.cfg
->        ...
->        $ cat .config
->        # CONFIG_NAME was defined in 1.cfg
-> 
-> 4. merge_config.py able to find re-definition inside of the same file:
-> 
->        $ echo "CONFIG_NAME=1" > 1.cfg
->        $ echo "CONFIG_NAME=2" >> 1.cfg
->	$ merge_config.py -m 1.cfg
->        ...
->        Value of CONFIG_NAME is redefined by fragment 1.cfg:
->        Previous value: CONFIG_NAME=1
->        New value: CONFIG_NAME=2
->        ...
-> 
-> Signed-off-by: Nikolai Merinov <n.merinov@inango-systems.com>
-> Signed-off-by: Oleksandr Hnatiuk <o.hnatiuk@inango-systems.com>
-> ---
-> Makefile              |   2 +-
-> tools/merge_config.py | 166 ++++++++++++++++++++++++++++++++++++++++++
-> 2 files changed, 167 insertions(+), 1 deletion(-)
-> create mode 100755 tools/merge_config.py
-> 
-> diff --git a/Makefile b/Makefile
-> index eb3daac..df2fca7 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -2,7 +2,7 @@ kern_tools_LIST = kgit kgit-meta \
-> 		  kconf_check \
-> 		  get_defconfig scc \
-> 		  merge_config.sh spp kgit-s2q \
-> -		  symbol_why.py
-> +		  symbol_why.py merge_config.py
-> 
-> cmds := $(wildcard tools/scc-cmds/*)
-> libs := Kconfiglib/kconfiglib.py
-> diff --git a/tools/merge_config.py b/tools/merge_config.py
-> new file mode 100755
-> index 0000000..50e32eb
-> --- /dev/null
-> +++ b/tools/merge_config.py
-> @@ -0,0 +1,166 @@
-> +#!/usr/bin/env python3
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +
-> +"""
-> +merge_config.py - Takes a list of config fragment values, and merges
-> +them one by one. Provides warnings on overridden values, and specified
-> +values that did not make it to the resulting .config file (due to missed
-> +dependencies or config symbol removal).
-> +"""
-> +
-> +#  Portions reused from merge_config.sh:
-> +#
-> http://git.yoctoproject.org/cgit/cgit.cgi/yocto-kernel-tools/tree/tools/merge_config.sh
-> +#
-> +#  Copyright (c) 2009-2010 Wind River Systems, Inc.
-> +#  Copyright 2011 Linaro
-> +#  Copyright (c) 2020 Inango Systems Ltd.
-> +#
-> +#  This program is free software; you can redistribute it and/or modify
-> +#  it under the terms of the GNU General Public License version 2 as
-> +#  published by the Free Software Foundation.
-> +#
-> +#  This program is distributed in the hope that it will be useful,
-> +#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-> +#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-> +#  See the GNU General Public License for more details.
-> +
-> +import sys
-> +import re
-> +import os
-> +import subprocess
-> +from collections import OrderedDict
-> +import argparse
-> +
-> +CONFIG_REGEX = r'^((# (?=.* is not set))?(CONFIG_[a-zA-Z0-9_]*)(=.*| is not
-> set))$'
-> +
-> +def parse_arguments():
-> +    """Parse argv and return extracted options and list of the config files for
-> merging"""
-> +    parser = argparse.ArgumentParser()
-> +    parser.add_argument('configs', metavar='CONFIG', type=str, nargs='+',
-> +                        help='path to the config fragment')
-> +    parser.add_argument('-m', dest='run_make', action='store_false',
-> +                        help='only merge the fragments, do not execute the make
-> command')
-> +    parser.add_argument('-n', dest='alltarget', action='store_const',
-> +                        default='alldefconfig', const='allnoconfig',
-> +                        help='use allnoconfig instead of alldefconfig')
-> +    parser.add_argument('-r', dest='warn_redundant', action='store_true',
-> +                        help='list redundant entries when merging fragments')
-> +    parser.add_argument('-O', dest='output_dir', metavar='DIR', type=str,
-> +                        action='store', default='.',
-> +                        help='dir to put generated output files.  '
-> +                             'Consider setting $KCONFIG_CONFIG instead.')
-> +
-> +    args = parser.parse_args()
-> +
-> +    if not os.path.isdir(args.output_dir):
-> +        print("output directory {} does not exist".format(args.output_dir),
-> file=sys.stderr)
-> +    else:
-> +        args.output_dir = args.output_dir.rstrip('/')
-> +
-> +    return args
-> +
-> +def merge_config(config_dict, file_name, warn_redundant=False):
-> +    """Add all configuration options from file_name to the config_dict
-> dictionary.
-> +    This function warns about all configuration in config_dict that was
-> redefined.
-> +    Optionally it warns about redifinition to the same value if warn_redundant
-> is True"""
-> +    matches = re.findall(CONFIG_REGEX, open(file_name, "r").read(),
-> re.MULTILINE)
-> +    for match in matches:
-> +        config_option = match[2]
-> +        new_value = match[0]
-> +        previous_value = config_dict.get(config_option)
-> +        if previous_value != None:
-> +            if previous_value != new_value:
-> +                print("Value of {} is redefined by fragment
-> {}:".format(config_option, file_name))
-> +                print("Previous value: {}".format(previous_value))
-> +                print("New value: {}".format(new_value))
-> +                print()
-> +            elif warn_redundant:
-> +                print("Value of {} is redundant by fragment
-> {}:".format(config_option, file_name))
-> +            del config_dict[config_option]
-> +        config_dict[config_option] = new_value
-> +
-> +def compare_configs(passed_config, resulting_config):
-> +    """Compare two dictionaries with config values and print warnings if
-> +    resulting_config changed any values presented in passed_config.
-> +
-> +    This function assumes that resulting_config is a result of processing of
-> the
-> +    passed_config by make defconfig command."""
-> +    for config_option, requested_value in passed_config.items():
-> +        actual_value = resulting_config.get(config_option)
-> +        if actual_value is None:
-> +            print("Value requested for {} not in final
-> .config".format(config_option))
-> +            print("Requested value: {}".format(requested_value))
-> +            print("There is no value for this config in .config")
-> +            print("")
-> +        elif requested_value != actual_value:
-> +            print("Value requested for {} not in final
-> .config".format(config_option))
-> +            print("Requested value: {}".format(requested_value))
-> +            print("Actual value: {}".format(actual_value))
-> +            print("")
-> +
-> +def dump_config(dictionary, file_name):
-> +    """Write data stored in the dictionary to the file_name."""
-> +    out_file = open(file_name, "w")
-> +    for val in dictionary.values():
-> +        out_file.write("{}\n".format(val))
-> +    out_file.close()
-> +
-> +def exit_if_not_exists(file_name):
-> +    """Exit if the file_name do not point to an existed file."""
-> +    if not os.path.isfile(file_name):
-> +        print("The file '{}' does not exist.  Exit.".format(file_name),
-> file=sys.stderr)
-> +        sys.exit(1)
-> +
-> +def main():
-> +    """Main function of this module."""
-> +    args = parse_arguments()
-> +
-> +    kconfig_config = os.getenv("KCONFIG_CONFIG")
-> +    if kconfig_config is None:
-> +        if args.output_dir != ".":
-> +            kconfig_config =
-> os.path.realpath("{}/.config".format(args.output_dir))
-> +        else:
-> +            kconfig_config = ".config"
-> +    os.putenv("KCONFIG_CONFIG", kconfig_config)
-> +
-> +    final_config = OrderedDict()
-> +
-> +    base_config = args.configs[0]
-> +    merge_list = args.configs[1:]
-> +
-> +    exit_if_not_exists(base_config)
-> +    print("Using {} as base".format(base_config))
-> +    merge_config(final_config, base_config, args.warn_redundant)
-> +
-> +    # Merge files, printing warnings on overridden values
-> +    for merge_file in merge_list:
-> +        exit_if_not_exists(merge_file)
-> +        print("Merging {}".format(merge_file))
-> +        merge_config(final_config, merge_file)
-> +
-> +    dump_config(final_config, kconfig_config)
-> +
-> +    if not args.run_make:
-> +        print("#\n# merged configuration written to {} (needs
-> make)\n#".format(kconfig_config))
-> +        sys.exit()
-> +
-> +    # If we have an output dir, setup the O= argument, otherwise leave
-> +    # it blank, since O=. will create an unnecessary ./source softlink
-> +    output_arg = ""
-> +    if args.output_dir != ".":
-> +        output_arg = "O={}".format(args.output_dir)
-> +
-> +
-> +    # Use the merged file as the starting point for:
-> +    # alldefconfig: Fills in any missing symbols with Kconfig default
-> +    # allnoconfig: Fills in any missing symbols with # CONFIG_* is not set
-> +    subprocess.run("make {} {}".format(output_arg, args.alltarget), shell=True)
-> +
-> +
-> +    # Check all specified config values took (might have missed-dependency
-> issues)
-> +    kconfig_values = OrderedDict()
-> +    merge_config(kconfig_values, kconfig_config)
-> +
-> +    compare_configs(final_config, kconfig_values)
-> +
-> +main()
-> --
-> 2.17.1
+SGkgRW5yaWNvLA0KDQpJIGp1c3QgYW5zd2VyZWQgeW91ciBmaXJzdCBtYWlsIG9uIHRoZSB3ZWJz
+aXRlIGFuZCB0aG91Z2h0IHRoYXQgd2lsbCBhdXRvbWF0aWNhbGx5IHJlcGx5IHRvIGFsbC4gQWRk
+ZWQgYWxsIGxpc3RzIG5vdywgaG9wZSB0aGVzZSBhcmUgY29ycmVjdC4NCg0KVGhhbmtzIHRvIHlv
+dSBJIGZvdW5kIHRoZSBjdXN0b20gYXV0b21vdW50IGluIHRoZSBwcm92aWRlcnMgcmVjaXBlcy4g
+VGhpcyBtb3VudHMgL2Rldi9tbWMwLjAgdG8gL21udC9tbWMuDQpBZnRlciB0aGUgbW91bnQgaXQg
+c2VlbXMgdGhhdCBvbmx5IHdoZW4gSSBpbnN0YWxsIGEgbmV3IGltYWdlIHRoZSBiYXJlYm94IG1v
+dW50IC9kZXYvbW1jMC4wIHRvIC9tbnQvbW1jMC4wIHdvcmtzLiANClJhdWMgLyBiYXJlYm94IHNl
+ZW1zIHNvbWV0aGluZyB0byBjaGFuZ2UgYWZ0ZXIgYSBidW5kbGUgdXBkYXRlIHdoZXJlYXMgbW91
+bnQgL2Rldi9tbWMwLjAgdG8gL21udC9tbWMwLjAgZmFpbHMgYW5kIHRoZSBmaWxlcyBhcmUgb25s
+eSB2aXNpYmxlIGluIC9tbnQvbW1jLg0KDQovbW50L21tYyB3b3JrcyBpbiBib3RoIGNhc2VzIHNv
+IEkgaGF2ZSBub3cgDQovbW50L21tYy9ib290Li4uIGZvciBzeXN0ZW0wIGFuZA0KL21udC9tbWMw
+LjEvYm9vdC4uLiBmb3Igc3lzdGVtMQ0KDQpCZXN0IHJlZ2FyZHMNCg0KaHUNCg0KLS0tLS1Pcmln
+aW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IEVucmljbyBKw7ZybnMgPGVqb0BwZW5ndXRyb25peC5k
+ZT4gDQpTZW50OiBUdWVzZGF5LCAxOCBGZWJydWFyeSAyMDIwIDAxOjEyDQpUbzogSGFucy1VbHJp
+Y2ggU2NobGllYmVuIDxodS5zY2hsaWViZW5AY29kZXdyaWdodHMuZGU+DQpTdWJqZWN0OiBSZTog
+UHJpdmF0ZTogUmU6IFt5b2N0b10gI3lvY3RvIHVwZGF0ZSB0aGUga2VybmVsIHdpdGggYSByYXVj
+IGJ1bmRsZQ0KDQpIaSBodSwNCg0KcGxlYXNlIGtlZXAgYXQgbGVhc3QgYW55IGxpc3QgaW4gQ0Mg
+c28gdGhhdCBvdGhlcnMgY2FuIGJlbmVmaXQgZnJvbSB0aGlzIGRpc2N1c3Npb24sIHRvbyAoQm90
+aCBSQVVDIGFuZCBiYXJlYm94IE1MIHdvdWxkIGZpdCBoZXJlKS4gSXQgYWxzbyBpbmNyZWFzZXMg
+dGhlIHJhbmdlIGFuZCB0aHVzIHBvdGVudGlhbCBwZW9wbGUgdGhhdCBtYXkgaGVscCBoZXJlLg0K
+DQpBbSAxNy4wMi4yMCB1bSAxMzo1OCBzY2hyaWViIEhhbnMtVWxyaWNoIFNjaGxpZWJlbjoNCj4g
+SGkgRW5yaWNvLA0KPiANCj4gdGhhbmsgeW91IHZlcnkgbXVjaCBmb3IgeW91ciBoZWxwIHdpdGgg
+SU1BR0VfSU5TVEFMTF9hcHBlbmQgPSAiIA0KPiBrZXJuZWwtaW1hZ2Uga2VybmVsLWRldmljZXRy
+ZWUiDQo+IHRoYXQgZGlkIHRoZSB0cmljay4NCj4gDQo+IFdoYXQgaSBkbyBub3QgdW5kZXJzdGFu
+ZCBpcyBob3cgYmFyZWJveCBoYW5kbGVzIHRoZSBtb3VudCBuYW1lcyBmb3IgbXkgDQo+IHR3byBh
+bHRlcm5hdGUgYm9vdCBwYXJ0aXRpb25zLg0KPiBUaGUgYm9vdCBvbiB0aGUgZmlyc3QgcGFydGl0
+aW9uIHdvcmtzIG9ubHkgdW5kZXIgL21udC9tbWMvOg0KPiANCj4gZ2xvYmFsLmJvb3RtLmltYWdl
+PSIvbW50L21tYy9ib290L3pJbWFnZSINCj4gZ2xvYmFsLmJvb3RtLm9mdHJlZT0iL21udC9tbWMv
+Ym9vdC9pbXg2cS1waHl0ZWMta3NwMDY2My5kdGIiDQo+IGdsb2JhbC5saW51eC5ib290YXJncy5k
+eW4ucm9vdD0icm9vdD0vZGV2L21tY2JsazBwMQ0KPiByb290ZmxhZ3M9J2RhdGE9am91cm5hbCcg
+d2Q9NjAgaXB2Ni5kaXNhYmxlPTEiDQo+IA0KPiB3aGVyZWFzIHRoZSBzZWNvbmQgd29ya3Mgd2l0
+aCAvbW50L21tYzEvOg0KPiBnbG9iYWwuYm9vdG0uaW1hZ2U9Ii9tbnQvbW1jMC4xL2Jvb3Qveklt
+YWdlIg0KPiBnbG9iYWwuYm9vdG0ub2Z0cmVlPSIvbW50L21tYzAuMS9ib290L2lteDZxLXBoeXRl
+Yy1rc3AwNjYzLmR0YiINCj4gZ2xvYmFsLmxpbnV4LmJvb3RhcmdzLmR5bi5yb290PSJyb290PS9k
+ZXYvbW1jYmxrMHAyDQo+IHJvb3RmbGFncz0nZGF0YT1qb3VybmFsJyB3ZD02MCBpcHY2LmRpc2Fi
+bGU9MSINCj4gDQo+IEluIGJhcmVib3ggaSBzZWUgYm90aCByb290IGZpbGVzeXN0ZW1zIHVuZGVy
+IC9tbnQvbW1jMC4wIGFuZCANCj4gL21udC9tbWMwLjEvLg0KPiANCj4gV2hlbiBpIHRyeSB0byBo
+YXZlIGEgc3ltbWV0cmljYWwgY29uZmlndXJhdGlvbiBhbmQgcmVuYW1lIC9tbWMvIGludG8gDQo+
+IC9tbWMwLjAvIGJvb3Qgb24gbW1jMC4wIGRvZXMgbm90IHdvcmsgYmVjYXVzZSBpdCBzdGlsbCBt
+b3VudHMgdGhlIA0KPiBmaXJzdCBwYXJ0aXRpb24gYXIgL21udC9tbWMvLg0KDQpXaGljaCB2ZXJz
+aW9uIG9mIGJhcmVib3g/DQoNCkl0IHNob3VsZCBiZSBzdWZmaWNpZW50IHRvIGVpdGhlciBzYXkN
+Cg0KICBib290IG1tYzAuMA0KDQpvcg0KDQogIGJvb3QgbW1jMC4xDQoNCmFuZCBiYXJlYm94IHdp
+bGwgYXV0b21hdGljYWxseSBtb3VudCB0aGUgcGFydGl0aW9uLCBsb29rIGZvciBhIGJvb3RzcGVj
+IGZpbGUgdW5kZXIgL2xvYWRlci9lbnRyaWVzIGFuZCBhc3NlbWJsZSB0aGUgcmVxdWlyZWQgYm9v
+dCBvcHRpb25zIGFuZCBrZXJuZWwgY29tbWFuZCBsaW5lIGF1dG9tYXRpY2FsbHkuDQoNCj4gV2hh
+dCB0ZWxscyBiYXJlYm94IHRvIG1vdW50IGR1cmluZyBib290IG1tYyBhbmQgbW1jMC4xIGluc3Rl
+YWQgb2YgDQo+IG1tYzAuMCBhbmQgbW1jMC4xPw0KDQpJcyB0aGVyZSBhbnkgY3VzdG9tIGF1dG9t
+b3VudCB1bml0IGxvY2F0ZWQgaW4geW91IGJ1aWx0LWluIGVudiBwcm9iYWJseT8NCg0KDQpCZXN0
+IHJlZ2FyZHMsIEVucmljbw0KDQotLSANClBlbmd1dHJvbml4IGUuSy4gICAgICAgICAgICAgICAg
+ICAgICAgICAgICB8IEVucmljbyBKw7ZybnMgICAgICAgICAgICAgICAgfA0KSW5kdXN0cmlhbCBM
+aW51eCBTb2x1dGlvbnMgICAgICAgICAgICAgICAgIHwgaHR0cHM6Ly9ldXIwNC5zYWZlbGlua3Mu
+cHJvdGVjdGlvbi5vdXRsb29rLmNvbS8/dXJsPWh0dHAlM0ElMkYlMkZ3d3cucGVuZ3V0cm9uaXgu
+ZGUlMkYmYW1wO2RhdGE9MDElN0MwMSU3Q2h1LnNjaGxpZWJlbiU0MGNvZGV3cmlnaHRzLmRlJTdD
+NjAyMGJjMDFlMDA0NDFkNjM0OTMwOGQ3YjQwNzI2ZDclN0MwOTc0YWY5YjM1MmI0MzdjYjYwNmU5
+ZjI0MmMwYzIyNyU3QzAmYW1wO3NkYXRhPWRjVHlkTDZkODlYM3RCRWVCYUZsek1xSjYlMkZwRmtH
+cnpOUlE2YXRrcExSayUzRCZhbXA7cmVzZXJ2ZWQ9MCAgfA0KUGVpbmVyIFN0ci4gNi04LCAzMTEz
+NyBIaWxkZXNoZWltLCBHZXJtYW55IHwgUGhvbmU6ICs0OS01MTIxLTIwNjkxNy01MDgwIHwNCkFt
+dHNnZXJpY2h0IEhpbGRlc2hlaW0sIEhSQSAyNjg2ICAgICAgICAgICB8IEZheDogICArNDktNTEy
+MS0yMDY5MTctNTU1NSB8DQo=
