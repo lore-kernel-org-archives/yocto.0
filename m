@@ -1,135 +1,162 @@
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (NAM12-DM6-obe.outbound.protection.outlook.com [40.107.243.58])
- by mx.groups.io with SMTP id smtpd.web11.3432.1582066108257990390
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by mx.groups.io with SMTP id smtpd.web12.9153.1582097610533731212
  for <yocto@lists.yoctoproject.org>;
- Tue, 18 Feb 2020 14:48:28 -0800
+ Tue, 18 Feb 2020 23:33:30 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=FU6zWgvP;
- spf=pass (domain: windriver.com, ip: 40.107.243.58, mailfrom: andreea.volosincu@windriver.com)
+ dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=brtUvtkJ;
+ spf=pass (domain: intel.com, ip: 134.134.136.65, mailfrom: sangeeta.jain@intel.com)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 18 Feb 2020 23:33:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,459,1574150400"; 
+   d="scan'208";a="436143548"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+  by fmsmga006.fm.intel.com with ESMTP; 18 Feb 2020 23:33:29 -0800
+Received: from orsmsx161.amr.corp.intel.com (10.22.240.84) by
+ ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 18 Feb 2020 23:33:29 -0800
+Received: from ORSEDG001.ED.cps.intel.com (10.7.248.4) by
+ ORSMSX161.amr.corp.intel.com (10.22.240.84) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 18 Feb 2020 23:33:29 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.174)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Tue, 18 Feb 2020 23:33:28 -0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kf2lO7Mfr1PgNkfGPkIiBJmW8ojI1WUjB5l/0PMdgfLVHt1y7EO0YA+HkfFmnhkIFKaQjKX/9eDdANr81wOJFPvzu0NPk3ZV/f+DOYrCkBMVFJxwntSOPOJYz3kIV6BOZeWFlLGOl+bF2oVrX09+/mA9M15gagpDY2bfUpE6f7yCzK++TuRmrgpPG2Y17ZZPUolLZzD810WrM0AQws0lXQ5hIcDAidLsshT6miH4raBge2bibTLXxDDp+ezW4s2oB3pqrLYVaWP6KMsQNOxTuY2JAcQvZC6rt1hIYTz2d0sDoLAse9576zhgxfH4qkB7ZIeGlTNmmHHLY8AKagT7/Q==
+ b=OX+YLXV3nQtjaDZQJtMCdxqHt7WvMsijN/3gIfXC0n6Ow3E3VC/dFkS1W2+WmJE0YBMAVxYnqDz4z7Ft+aHpew3OxmQ+mXSVslMiwN/jQAocLTdSp0ihQUZ0vInIMzSf2r9VIQg9OYCf38zfUHFjC+w7Fhf0y0Da98dxuzONcn6Ab09GFvQRN6YzzQfpZQ85HHuD3ark4eoTqrgsaIpEs/+gAw99SVln5m1UoMDn+gEkdQHNJwCClKJzoJklgIXFQD7PhnPqrmiGnuGDkc0YmX2JJ9gkemfkFUDuUgoiajPG1lbvRzXz39UOZCjEHJ739ypAM3HCaa0M85sRsc0IQQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0l0KEnjsHAUlgDnjZvi5l6l8bxRh9G1tbEFi/oO8QQk=;
- b=Gqv+ixC6Ii5wwtq9hSwFt65Rl6Ax1RCR0Tb8480OVRDvMDGkA7QKb3UEJthdaaXtIhhPHd79VfJXC9eyKDT+/1N7W6+t1XHGnTedXYA/P1awvCj/pD0Czw9+UP3YBcjxpBTQyeZZ17/xK8bEV7nObr7ey6pz/ddvbpex1hvqy8iVzW+zzoru3T3cmumjpjVTrez2CLVrkcXRc8QD9gfana11FQD5uTtuteBO/RSWbwjcQ2oe6MD0QzY3X9/BKYiC8g1a0dCImQVX/sKI22eZW9ECnGMIw3rVoMT5vDWNnor/smfjhkvprRx8HeUJKjKQr8B7uYCE9AppRsZosu3f/A==
+ bh=LHOctWNTZh6ysKrGlM5j8kfcA3703RIEFG5n/toAkI4=;
+ b=mfKFHkAkI1/0c4hqmoxya4sUDcfHxajdAhw1rriPj1acqxJntaC/1IL+BOK+9aCZOLCJTGZ1ou+0shkFx8JKZXLjmZskU61lbfGoxaVymbOM8AnWZUMqWqdWD+Nu8u6CgEm4h2QD6n/fnvCiae3S1zLa9VXaxPpwmdgOuiyLWaPcfdoWT2o+rLMZ3cpOmiQFlm5jszrDOg3pQWBnPt0B68kLUgt0UNNsaO4jXdPItOQB1vwIspj5gEQb62vjwQ7CfAt6bSeYziyDuVzCC3rfb+l+zzIsxSxVFxbiOGPn76QLcacB64A29gN1LcyFFjw1DeOoRNAmP6ChanaLUrOdiA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=windriver.com; dmarc=pass action=none
- header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=windriversystems.onmicrosoft.com;
- s=selector2-windriversystems-onmicrosoft-com;
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0l0KEnjsHAUlgDnjZvi5l6l8bxRh9G1tbEFi/oO8QQk=;
- b=FU6zWgvPySPIMT+rHAw3OphL6IubKLrOdyadaj3C/qu8VP7nyBi3s+w6/e6K24XKVWzL+p2JO16cWlam0pWyhpvybN6BLU6+SBvey2PgX1AMC7C2H0d3KxLMsNAfrC5S2AA9tWBOO4vsylW0V1/1v6Lrv5l/hfDUdVFju7qYQ5o=
-Received: from BYAPR11MB3287.namprd11.prod.outlook.com (20.177.186.156) by
- BYAPR11MB2855.namprd11.prod.outlook.com (52.135.229.26) with Microsoft SMTP
+ bh=LHOctWNTZh6ysKrGlM5j8kfcA3703RIEFG5n/toAkI4=;
+ b=brtUvtkJXCV4CcikvCHBHjCy9snMO6B3R+01vN0m/g/hToWXh79SukV2WKdggn8eWO30XozZOzX4IlcZBPPnvZxIgzQT0anUGdugknPDxSacl5uXAjGRFaJw+sgo8fx1XrGK/rC/qn63IQIhQPfXg+UZC/1x1sTR65CqGTPluQk=
+Received: from CY4PR11MB1879.namprd11.prod.outlook.com (10.175.60.137) by
+ CY4PR11MB1512.namprd11.prod.outlook.com (10.172.69.19) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2729.25; Tue, 18 Feb 2020 22:48:26 +0000
-Received: from BYAPR11MB3287.namprd11.prod.outlook.com
- ([fe80::f081:fe2c:b141:c58d]) by BYAPR11MB3287.namprd11.prod.outlook.com
- ([fe80::f081:fe2c:b141:c58d%6]) with mapi id 15.20.2729.032; Tue, 18 Feb 2020
- 22:48:26 +0000
-From: "Volosincu, Andreea S" <Andreea.volosincu@windriver.com>
+ 15.20.2729.22; Wed, 19 Feb 2020 07:33:27 +0000
+Received: from CY4PR11MB1879.namprd11.prod.outlook.com
+ ([fe80::69a4:ad54:33d6:41b]) by CY4PR11MB1879.namprd11.prod.outlook.com
+ ([fe80::69a4:ad54:33d6:41b%9]) with mapi id 15.20.2729.032; Wed, 19 Feb 2020
+ 07:33:27 +0000
+From: "Sangeeta Jain" <sangeeta.jain@intel.com>
 To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: This Week - New Sessions - Live Coding with Yocto Project
-Thread-Topic: This Week - New Sessions - Live Coding with Yocto Project
-Thread-Index: AdXmrOdWYOMbHJUzStyJ/1CRomyTKg==
-Date: Tue, 18 Feb 2020 22:48:26 +0000
-Message-ID: 
- <BYAPR11MB3287DD7722F457AFA67F7053F5110@BYAPR11MB3287.namprd11.prod.outlook.com>
+CC: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
+	"yi.zhao@windriver.com" <yi.zhao@windriver.com>, "Sangal, Apoorv"
+	<apoorv.sangal@intel.com>, "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "Chan,
+ Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
+	"richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>,
+	"akuster808@gmail.com" <akuster808@gmail.com>, "sjolley.yp.pm@gmail.com"
+	<sjolley.yp.pm@gmail.com>, "Tummalapalli, Vineela"
+	<vineela.tummalapalli@intel.com>
+Subject: QA Cycle report for build (yocto-3.0.2.rc2)
+Thread-Topic: QA Cycle report for build (yocto-3.0.2.rc2)
+Thread-Index: AdXm9tQL7AlvpbmGSCSL3Ar4BNZE0Q==
+Date: Wed, 19 Feb 2020 07:33:27 +0000
+Message-ID: <CY4PR11MB1879657C3887087DEC4B7573E3100@CY4PR11MB1879.namprd11.prod.outlook.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiNWIyN2E1YzUtNjU4Mi00ZTFlLWIzNTktZmZlY2FhMTdhYzc0IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiZjcrS1YxaG9OOFZCVmxxbGlFblVWTjRNQmx4cGs4aGUrdEIwTmdwTFZCM085aG1uN2tVdHRScEQ5RlZiK0NmcyJ9
+dlp-reaction: no-action
+dlp-version: 11.2.0.6
+dlp-product: dlpe-windows
+x-ctpclassification: CTP_NT
 authentication-results: spf=none (sender IP is )
- smtp.mailfrom=andreea.volosincu@windriver.com; 
-x-originating-ip: [147.11.252.42]
+ smtp.mailfrom=sangeeta.jain@intel.com; 
+x-originating-ip: [192.198.147.217]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 6c80ca26-54db-464b-b076-08d7b4c4aa7f
-x-ms-traffictypediagnostic: BYAPR11MB2855:
-x-microsoft-antispam-prvs: 
- <BYAPR11MB2855233B2C85C08043E3AA93F5110@BYAPR11MB2855.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1148;
-x-forefront-prvs: 031763BCAF
-x-forefront-antispam-report: 
- SFV:NSPM;SFS:(10009020)(376002)(396003)(346002)(136003)(366004)(39850400004)(199004)(189003)(9686003)(6506007)(71200400001)(66556008)(558084003)(478600001)(316002)(55016002)(64756008)(66476007)(76116006)(66946007)(66446008)(52536014)(5660300002)(8676002)(81156014)(86362001)(81166006)(26005)(33656002)(2906002)(6916009)(8936002)(186003)(7696005);DIR:OUT;SFP:1101;SCL:1;SRVR:BYAPR11MB2855;H:BYAPR11MB3287.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: windriver.com does not designate
- permitted sender hosts)
+x-ms-office365-filtering-correlation-id: e9be9c35-b7c7-4d33-2563-08d7b50e02b7
+x-ms-traffictypediagnostic: CY4PR11MB1512:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CY4PR11MB151269F8B8688DF5E06B6908E3100@CY4PR11MB1512.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 0318501FAE
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(376002)(136003)(346002)(366004)(39860400002)(189003)(199004)(81166006)(8676002)(81156014)(66446008)(107886003)(71200400001)(8936002)(66476007)(66556008)(64756008)(4326008)(2906002)(186003)(52536014)(33656002)(5660300002)(26005)(6916009)(966005)(478600001)(7696005)(66946007)(76116006)(9686003)(55016002)(86362001)(316002)(54906003)(53546011)(6506007);DIR:OUT;SFP:1102;SCL:1;SRVR:CY4PR11MB1512;H:CY4PR11MB1879.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- AXNQ73jXNOhgXVAwozZlCeBsy88gRguXxNN/b0z0c2FXmbuydnvOujh5fX2s/8pCewlgg4snF+ujv2fLeWVnTHD3jcyywTF8tkHgUT4H89kdkCG6veE37orjEPoED+GH4d/F89bVMlAx5dfkZee75XkXdjza0ZyLV98l7lvVKF6O4oaffvB7vlazO6wAW+eGzz6LUJ7fwxeJHrmV0uY1NhkYqJoaj03fxfl5ycOR+pceeSZSNOewszIHYKChY0KED6v+0pkjP9vES5EBC2GOPizuv1/oBbtgl5Pw7HUpBDfW7c+j6ln/TWdtuHjN14s5Ra57Ecn5T1lLNUxz9yKmI+qNVOuDLaScRMnTaWqcyG0v00h6IE/tNwIuYwuNRz6W3QbhyuYBfIuUpxqVSQMrfurCwSUCW+GeRBI3NQwC4b9QfSDH6Nm/XRvkyBOtyVOp
-x-ms-exchange-antispam-messagedata: 
- mnRmnRZUR7J6h6vIyAO/n8RAbApnWVGTyMNphypgusf1fW0oBW99MHUuqA1jj3SvWAG/44Ds/bJdFNVpEpHrGVQx7vCJC1EAIfaBTPkVcy9k2dEmyECAJvdmaBJ2TFYYSwqwxSlcAnoFlbzx34B9lQ==
-x-ms-exchange-transport-forked: True
+x-microsoft-antispam-message-info: m1tiy7weUL/H4vUDY/dBoLleMeYg3SH9i+vaTxgdsxyKqGvr8df8xw81+YCgnEK0dkHPz8IXKP5WTOSxt/yyeaYski0SpodQ5V6g3Ydzfmb1YDVGOk8tgq9OWpTXUR9IGJbKxkGvNsaAxF24DcIlOPkzSdiyvrRig4zpu9TYDYpbcRcsiJtsn+dNCsoy+undXRdWh2RGjtAO3UIWZEytlJCKoEGMnjZSLsbl+yza/PChy2M7JwV7FXLjbbCxcBZoVI1sMNaqCGVQm3Q3EpXq1IT3zEpq1lDNqS/cND5YZJ3g73Hub4kKfSNdiV2qLPylthu9D0PXHSmMv/Zy9AKljgwIidh5LCl52BCjPqcFkm6PSdu2BH4hjw6ccdZJMtkLLTNeIZs8pkVxZQ+xP05rL6uyHPRcm+p+AwebB1oT9eRThRTCYVd6e6D/lgeM9oIlTMT3SSFqijMwuRKlCPFwdw6FFlk0j+xq82MZYUApdY6KgDWpVSGTRRdhBrsUDwVo7+GF9DwiGY5IGVZWuZ2iaw==
+x-ms-exchange-antispam-messagedata: tq1U/8fXcsBrEuwGlbs6qcsZxaOsFw76tb1cijvCP1NgJTxyPho3/kwIHCuSdWW3jlarGxiBL5sPIaiS1bMeYP4T61g85GDtT0CpqQUBJaPOeUgYpG4bDjKU9bQ9sNsswT//tUe2r9eNhjawh3SPjA==
 MIME-Version: 1.0
-X-OriginatorOrg: windriver.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6c80ca26-54db-464b-b076-08d7b4c4aa7f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Feb 2020 22:48:26.2191
+X-MS-Exchange-CrossTenant-Network-Message-Id: e9be9c35-b7c7-4d33-2563-08d7b50e02b7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Feb 2020 07:33:27.5031
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yIHuRjOs+bPlNK0vP7lPawCwGoZUzcW1LnqI6IGJih7GhdTmwURfQpkYw8NMiNdn2gGhAHnaQ/s9zvzDwiYqhJwK5Sy9Z2b9DCAm/zv0Lmg=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB2855
+X-MS-Exchange-CrossTenant-userprincipalname: Sj0k+o+ImLaKVXFlj1P275AMFz4nXvOGIZT1P87dcW2/ZaLJLMS4nok4b24XcTG4ALkwOoHkj3hyJ+ozvw4CtA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1512
+Return-Path: sangeeta.jain@intel.com
+X-OriginatorOrg: intel.com
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_BYAPR11MB3287DD7722F457AFA67F7053F5110BYAPR11MB3287namp_"
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---_000_BYAPR11MB3287DD7722F457AFA67F7053F5110BYAPR11MB3287namp_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hi All,
 
-8J+Rh1RoZSBZb2N0byBQcm9qZWN0IGxpdmUgY29kaW5nIHNlc3Npb25zIGNvbnRpbnVlLg0KV2hl
-bjogV2VkLCBGZWIgMTl0aCwgNTowMCBQTSBFdXJvcGUvQmVybGluIHRpbWUNCldoZXJlOiBZb2N0
-byBQcm9qZWN0IFR3aXRjaCBjaGFubmVsIOKAkyB0d2l0Y2gudHYveW9jdG9fcHJvamVjdA0KV2hh
-dDogSm9zZWYgd2lsbCBzaG93IHlvdSBob3cgdG8gZ2V0IHN0YXJ0ZWQgd2l0aCBDL0MrKyBhcHBs
-aWNhdGlvbiBkZXZlbG9wbWVudA0KDQoNCg==
+This is the full report for yocto-3.0.2.rc2: =20
+https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
+h=3Dintel-yocto-testresults
 
---_000_BYAPR11MB3287DD7722F457AFA67F7053F5110BYAPR11MB3287namp_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
+No high milestone defects. =20
+one new defects are found in this cycle - oeqa/runtime test 'test_dnf_exclu=
+de' failed (Bugid:13797)
+openssh ptest failed (BUG id:13796)
+bash ptest failed (BUG id:13795)
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OiJNYWxndW4gR290aGljIjsNCglwYW5vc2UtMToyIDExIDUgMyAy
-IDAgMCAyIDAgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3Nl
-LTE6MiAxNSA1IDIgMiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiXEBN
-YWxndW4gR290aGljIjsNCglwYW5vc2UtMToyIDExIDUgMyAyIDAgMCAyIDAgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OiJTZWdvZSBVSSBTeW1ib2wiOw0KCXBhbm9zZS0xOjIgMTEgNSAy
-IDQgMiA0IDIgMiAzO30NCi8qIFN0eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwgbGku
-TXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRvbTou
-MDAwMXB0Ow0KCWZvbnQtc2l6ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMt
-c2VyaWY7fQ0KYTpsaW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6
-OTk7DQoJY29sb3I6IzA1NjNDMTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlz
-aXRlZCwgc3Bhbi5Nc29IeXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7
-DQoJY29sb3I6Izk1NEY3MjsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uRW1h
-aWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLWNvbXBvc2U7DQoJZm9udC1mYW1p
-bHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hwRGVm
-YXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTt9DQpAcGFnZSBXb3JkU2VjdGlvbjEN
-Cgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30N
-CmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0t
-W2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRt
-YXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4N
-CjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRh
-PSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJv
-ZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYzQzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xh
-c3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
-dC1mYW1pbHk6JnF1b3Q7U2Vnb2UgVUkgU3ltYm9sJnF1b3Q7LHNhbnMtc2VyaWYiPiYjMTI4MDcx
-Ozwvc3Bhbj5UaGUgWW9jdG8gUHJvamVjdCBsaXZlIGNvZGluZyBzZXNzaW9ucyBjb250aW51ZS4N
-CjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+V2hlbjogV2VkLCBGZWIgMTl0
-aCwgNTowMCBQTSBFdXJvcGUvQmVybGluIHRpbWU8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPldoZXJlOiBZb2N0byBQcm9qZWN0IFR3aXRjaCBjaGFubmVsIOKAkyB0d2l0Y2gu
-dHYveW9jdG9fcHJvamVjdDxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+V2hh
-dDogSm9zZWYgd2lsbCBzaG93IHlvdSBob3cgdG8gZ2V0IHN0YXJ0ZWQgd2l0aCBDL0MmIzQzOyYj
-NDM7IGFwcGxpY2F0aW9uIGRldmVsb3BtZW50PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13797
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13796
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13795
 
---_000_BYAPR11MB3287DD7722F457AFA67F7053F5110BYAPR11MB3287namp_--
+Thanks,
+Sangeeta
+
+> -----Original Message-----
+> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Beha=
+lf
+> Of pokybuild@centos7-ty-3.yocto.io
+> Sent: Wednesday, 12 February, 2020 3:56 PM
+> To: yocto@lists.yoctoproject.org
+> Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; Sangal, Apoorv
+> <apoorv.sangal@intel.com>; Yeoh, Ee Peng <ee.peng.yeoh@intel.com>; Chan,
+> Aaron Chun Yew <aaron.chun.yew.chan@intel.com>;
+> richard.purdie@linuxfoundation.org; akuster808@gmail.com;
+> sjolley.yp.pm@gmail.com; Jain, Sangeeta <sangeeta.jain@intel.com>
+> Subject: [yocto] QA notification for completed autobuilder build (yocto-
+> 3.0.2.rc2)
+>=20
+>=20
+> A build flagged for QA (yocto-3.0.2.rc2) was completed on the autobuilder=
+ and is
+> available at:
+>=20
+>=20
+>     https://autobuilder.yocto.io/pub/releases/yocto-3.0.2.rc2
+>=20
+>=20
+> Build hash information:
+>=20
+> bitbake: 95687be83e716220eb3893b67428f97fd59fc2c5
+> meta-gplv2: 0f4eecc000f66d114ad258fa31aed66afa292166
+> meta-intel: b04e1edb9300a57e200a187a3255f67b50519202
+> meta-mingw: 756963cc28ebc163df7d7f4b4ee004c18d3d3260
+> oecore: 799b3cd1016bd765f4452a5e81ea5613c9089bce
+> poky: fe857e4179355bcfb79303c16baf3ad87fca59a4
+>=20
+>=20
+>=20
+> This is an automated message from the Yocto Project Autobuilder
+> Git: git://git.yoctoproject.org/yocto-autobuilder2
+> Email: richard.purdie@linuxfoundation.org
+>=20
+>=20
+>=20
