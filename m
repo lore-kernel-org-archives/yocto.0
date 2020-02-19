@@ -1,74 +1,90 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.68.1582148877005951647
+Received: from esa2.bmw.c3s2.iphmx.com (esa2.bmw.c3s2.iphmx.com [68.232.133.169])
+ by mx.groups.io with SMTP id smtpd.web10.87.1582148933982967563
  for <yocto@lists.yoctoproject.org>;
- Wed, 19 Feb 2020 13:47:57 -0800
+ Wed, 19 Feb 2020 13:48:54 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=QFrx1IZS;
- spf=softfail (domain: burtonini.com, ip: 140.211.169.56, mailfrom: ross@burtonini.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D9CA2E01564; Wed, 19 Feb 2020 13:47:56 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.208.182 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C016E01432
-	for <yocto@yoctoproject.org>; Wed, 19 Feb 2020 13:47:56 -0800 (PST)
-Received: by mail-lj1-f182.google.com with SMTP id y6so2024364lji.0
-        for <yocto@yoctoproject.org>; Wed, 19 Feb 2020 13:47:55 -0800 (PST)
+ dkim=pass header.i=@bmw.de header.s=mailing1 header.b=bc8CX1O7;
+ spf=pass (domain: bmw.de, ip: 68.232.133.169, mailfrom: prvs=311c70376=mikko.rapeli@bmw.de)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KmLU40H4If4CfKhwl3EzD+kjaPfdojZNmd1Dnc8uKVE=;
-        b=QFrx1IZSc6lK3x8Lopl0ObbvubeOemmKaAx5TMwjFCMyGsUOkW4EbhH72sXW1hfiAZ
-         KjYelf9WHDJFD/mEAcTfIETdGntztq4Tx6te5o1iJBQBQI9mUacaaPXGGjFkmJmVJ09a
-         X0bB9x7HuRIHNXMtdazUHUWfo77vyHefg++lRK54LaMvTDmwK+YkWU+OBhtVvgDoC7BT
-         ff61bc3+2oq4PXYxc2JfaZF/5qSEi1s+3A1d8aqp8GzdMt1+m0ELpvs3kjMuiaUmZwaD
-         RUsc6Z+HWTI40N9eiYGoJYsFSrlEhfd17wMt3hDtpL3RRjvLwshsXpE8F5Wzlu0I0T2B
-         FUfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KmLU40H4If4CfKhwl3EzD+kjaPfdojZNmd1Dnc8uKVE=;
-        b=gWqcqHqKNqU5OqzGp9FfhAqOPqos7qORBFaphJH+5QQzL0/wv8ifxlJXNVwpPUB7Be
-         h54n43txn0caKmnQxqu1t/6HawOvwclDRacct9rRU1GRYSEhOf7spSuuwNqePuSLQXqP
-         VUpZuifHEnFiBBeW9MoFYHTuijIHfQyqx2jHIgMnfLwhxFtBEh5zY/0HbFfTIpDsyZpI
-         BADM8RHs9iMGbCM59MBRdJth9wqS7tCcbVnAA4zovz5dB2/KsWia3A+6bZAgEn4LKOb3
-         VPuYlo1ixh8JESJI/PS0uNVIHbUGq3MYYMoONL6X3SRYHI/IJLuYFuMk72/nPIm8J53y
-         sEHw==
-X-Gm-Message-State: APjAAAWb1FBx8AGcX0Y9czAsBHWRrZm5FucHtok+lZ7u8kKmj6A3gh9G
-	LGcj6N923murr2hCDRWv+4fo3XZP70KgejX3KO10GLFlYhz1OzI5
-X-Google-Smtp-Source: APXvYqwBNwn/tDLOOz6PiSa+Cwf/bpWn9ZqwUifGKtLUMmvrOhdyVqCTuBvYXHvp8dhlFdXyy2e2kaNWkA8/LhBIxm0=
-X-Received: by 2002:a2e:5854:: with SMTP id x20mr15925239ljd.287.1582148874987;
- Wed, 19 Feb 2020 13:47:54 -0800 (PST)
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1582148935; x=1613684935;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=L5+3XIlwBT2p4odMM8ducojY+OcJrXyocp4v1xvz0Gg=;
+  b=bc8CX1O7w5cG77z+9qFnQukru7GZplWf0xuK3UvBgOuBvjEF87687tqO
+   g59+9fQRpCt+wAsrQ9SMZsJ49gNCSbHhdTkeSyNBipqnEG7SN0CpZfMEO
+   tgl6b3tLilNqKhGf9Q7qDM1jY4m/Q5C3FZdXfSjwqa+1l2csvve5Fmhz+
+   I=;
+IronPort-SDR: 8OxpLaSzYHNJ6iQU81fnhZjt3rUUq1UJ9OhFK18i5UCVFwM1jJ2QyQcj6Qa3a84gYcqw2po1re
+ HF3e540yb3jAVtU01QdYFhPMatkkJTur9EysApZYu9InlU5gU1ZrsoH5WIoZh/z/IXJopHzOnm
+ /4DF0cxXXapkCccRiAslS7q64p7Z+Y6nrm4VFWD/82/oYvixMIEEVIHHFnKt0LBH8fpmIz3ObY
+ 4zcxdmib9TBG7dNq2KUXwGy0eX8i9GHCGw73qiflNxlYmG+2WFsrl5SA9r8zESx8/VHlRVrAwc
+ sIQ=
+Received: from esagw5.bmwgroup.com (HELO esagw5.muc) ([160.46.252.46]) by
+ esa2.bmw.c3s2.iphmx.com with ESMTP/TLS; 19 Feb 2020 10:44:45 +0100
+Received: from esabb2.muc ([160.50.100.34])  by esagw5.muc with ESMTP/TLS;
+ 19 Feb 2020 10:44:22 +0100
+Received: from smucm10m.bmwgroup.net (HELO smucm10m.europe.bmw.corp) ([160.48.96.49])
+ by esabb2.muc with ESMTP/TLS; 19 Feb 2020 10:44:23 +0100
+Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10m.europe.bmw.corp
+ (160.48.96.49) with Microsoft SMTP Server (TLS;
+ Wed, 19 Feb 2020 10:44:22 +0100
+Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
+ smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Wed,
+ 19 Feb 2020 10:44:22 +0100
+From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
+To: <j.armandohernandez.j@gmail.com>
+CC: <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] how to reuse generated library in a nativesdk recipe #sdk #systemd
+Thread-Topic: [yocto] how to reuse generated library in a nativesdk recipe
+ #sdk #systemd
+Thread-Index: AQHV5wg0rpjF7EdG7kGTb2Q0RzuE0KgiM38A
+Date: Wed, 19 Feb 2020 09:44:22 +0000
+Message-ID: <20200219094422.GV104502@korppu>
+References: <m6OI.1582105039365385215.XDJN@lists.yoctoproject.org>
+In-Reply-To: <m6OI.1582105039365385215.XDJN@lists.yoctoproject.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
 MIME-Version: 1.0
-References: <9aac3a48-d611-4e0f-81fa-c7951f54662f@email.android.com>
-In-Reply-To: <9aac3a48-d611-4e0f-81fa-c7951f54662f@email.android.com>
-From: "Ross Burton" <ross@burtonini.com>
-Date: Wed, 19 Feb 2020 21:47:43 +0000
-Message-ID: <CAAnfSTts+XSXkfgLNdR5+rGzyb_sJVdw-RfarTOsAQLRkU9WQQ@mail.gmail.com>
-Subject: Re: [yocto] Opentk Support
-To: Sheraz Ali <sheraz.ali@iwavesystems.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <7157626C99F5BF44995A2BDA864E4A99@bmwmail.corp>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 19 Feb 2020 at 21:45, Sheraz Ali <sheraz.ali@iwavesystems.com> wrote:
-> Does anyone know how to enable opentk in yocto ( i.e is it available )
+Hi,
 
-https://layers.openembedded.org/layerindex/branch/master/recipes/?q=opentk
-says that there are not any known recipes, so you'll have to write one
-yourself.
+On Wed, Feb 19, 2020 at 01:37:19AM -0800, Armando Hernandez wrote:
+> Hello,
+>=20
+> I have a recipe that builds a library. The recipe specifies an additional=
+ package "${PN}-systemd" along with other systemd related variables and fin=
+ally it instructs that the package should be built with "-DWITH_SYSTEMD=3DO=
+N" being passed to cmake. So far so good. But, I extended this recipe to na=
+tivesdk because I need this library on it. When trying=A0to build the corre=
+sponding=A0nativesdk package, the build fails at the configuration step (i.=
+e. "do_configure") claiming it cannot find the package systemd.
+>=20
+> Is there a way I can install the -already-generated libraries into my SDK=
+ (potentially via the corresponding nativesdk recipe) without having to reb=
+uild the package? Or do I need to somehow include such systemd package in m=
+y sdk (which I don't think I need at all)?
+>=20
+> Any hints and pointers as to were to look at are very well appreciated.
+> Thanks.
 
-Ross
+Make the systemd dependency for target only, e.g. DEPENDS_class-target +=3D=
+ "systemd"
+etc.
+
+There may be relevant use cases to build some of systemd components or tool=
+s
+to native or nativesdk targets too. In that case add BBCLASSEXTEND +=3D "na=
+tivesdk" etc
+in a bbappend to systemd.
+
+Hope this helps,
+
+-Mikko=
