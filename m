@@ -1,120 +1,93 @@
-Received: from esa2.bmw.c3s2.iphmx.com (esa2.bmw.c3s2.iphmx.com [68.232.133.169])
- by mx.groups.io with SMTP id smtpd.web10.442.1582150196307944474
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.619.1582150776204408636
  for <yocto@lists.yoctoproject.org>;
- Wed, 19 Feb 2020 14:09:57 -0800
+ Wed, 19 Feb 2020 14:19:36 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bmw.de header.s=mailing1 header.b=P+4uGxdT;
- spf=pass (domain: bmw.de, ip: 68.232.133.169, mailfrom: prvs=311c70376=mikko.rapeli@bmw.de)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=T5D7uDHo;
+ spf=softfail (domain: linuxfoundation.org, ip: 140.211.169.56, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id BF700E01564; Wed, 19 Feb 2020 14:19:35 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.128.50 listed in list.dnswl.org]
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21B6CE01432
+	for <yocto@yoctoproject.org>; Wed, 19 Feb 2020 14:19:34 -0800 (PST)
+Received: by mail-wm1-f50.google.com with SMTP id n3so2379552wmk.4
+        for <yocto@yoctoproject.org>; Wed, 19 Feb 2020 14:19:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-  t=1582150196; x=1613686196;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-id:content-transfer-encoding:mime-version;
-  bh=s7dNfnDQkvJdup6uSRFui7R2OyD1rvqDos3qeUsoRGI=;
-  b=P+4uGxdTYQbnBE3qZCA59dIc26attrVpo4cFJULfKq8rBqxj2cpUs0YZ
-   47Sg+mvcHkxGVsDzrRZaIVu7B247nMFmqVKmqyIZlOqXSutRys7niQ1FK
-   i2/gU7tc7v8pHZORknNKp4LHmqN5OvywZ2+jK/CoHgBoS9SFhkfTDCnAc
-   c=;
-IronPort-SDR: NgUEVgkj2Vv2XKvFB3RG/HOpWEguxbP/MSr/Ie1Izuk57aFuJVd3aEq+Y84fVvML6yi491oImr
- iA/dR9ABT9jGzHFmZlbH8LUH7BXvt/h5PDTluAnrIK/H0z4cNa0FvUeNs8O1MAIYjZczr3RwDJ
- 7LXTGR4XGOj0kr3IKyPj7ocqWudSRDFxf0XVbJihXvVSN+9EJz+58VgJWcaGUvtjvY1bQLU7yz
- nEiSwuBzBuwjLTDgnymWRQ2Sh/0tXtmzERYep0HnmqclRxAmjGC8dTsSyxtANaT9GaQsgXTO1+
- 9LQ=
-Received: from esagw5.bmwgroup.com (HELO esagw5.muc) ([160.46.252.46]) by
- esa2.bmw.c3s2.iphmx.com with ESMTP/TLS; 18 Feb 2020 09:41:14 +0100
-Received: from esabb2.muc ([160.50.100.34])  by esagw5.muc with ESMTP/TLS;
- 18 Feb 2020 09:41:10 +0100
-Received: from smucm10j.bmwgroup.net (HELO smucm10j.europe.bmw.corp) ([160.48.96.46])
- by esabb2.muc with ESMTP/TLS; 18 Feb 2020 09:41:09 +0100
-Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10j.europe.bmw.corp
- (160.48.96.46) with Microsoft SMTP Server (TLS;
- Tue, 18 Feb 2020 09:41:09 +0100
-Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
- smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Tue,
- 18 Feb 2020 09:41:08 +0100
-From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
-To: <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Creating a build system which can scale. #yocto
-Thread-Topic: [yocto] Creating a build system which can scale. #yocto
-Thread-Index: AQHV5Y2csebBRFcpkEqTpKLABW/Y7KgfmL4AgAD5twA=
-Date: Tue, 18 Feb 2020 08:41:08 +0000
-Message-ID: <20200218084108.GZ104502@korppu>
-References: <5HUZ.1581942437691543674.aeQI@lists.yoctoproject.org>
- <ea92a8a308253301273f97ad910281638d350b69.camel@linuxfoundation.org>
-In-Reply-To: <ea92a8a308253301273f97ad910281638d350b69.camel@linuxfoundation.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=JBnWe5TZlgr3Bee/jFcuNtyGX6V2xLx6iZUfsTa+DJI=;
+        b=T5D7uDHoQUJse6DlJqPud6KtKOofqHaHAlZtYoIRV/2dllXHDwWqVW5yqJ36T2nJs0
+         SEIWI0spPtCgJP+dRIv1RIWLU1b2T1Ecq0EcZ0GKqq/c6zwVq8GP+/bkVKCeDCjn7MhG
+         uq91D6eEcYuHO5qq3btVAuBLjYq4I8ohc7mM4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=JBnWe5TZlgr3Bee/jFcuNtyGX6V2xLx6iZUfsTa+DJI=;
+        b=fNQluhON70Z3XI3+6exJDrGmhvcf1Ynf/692TkFCQP2detrhZA5PNgvmC8YIbEtXp1
+         64jmPUkB9fwRQBQYUsKg5JFfyexk3GNLa5UtE1Hh2P16jSpnaUTtxA4/srenatuICwb8
+         6w4Osz1+7u+Se6PuXGnQXQCPw72Kn8thwIEcg2af6+uXxRF3wPIRwagy19lVHwsAMPbx
+         V01Yit9OrkyD54ORogYUvr2AJaJtDJpeyHlGwbEGvxXLI03LgllE6AV+9Pmt/4ZQA0oo
+         t6fJ2dgkd/Dq2ak/wPhzKfJvbhJq3qKJPjBtzpm5SmLx5Dc4kPuGnmWW6rnQvy/R+FXm
+         Hb2g==
+X-Gm-Message-State: APjAAAVYT4XSOcaxMa5xsLCOcX0Z2slUBjc5SdusPGCb8CLw7YGUus5c
+	Wv68azmnbF3yWA6q4qt03OOPtA==
+X-Google-Smtp-Source: APXvYqzF647y+uBExZN2VDANkllTAuon9nb9XFN5/9p81C4DXfXl9wP3n3GUBT2IDZ6+LbcmE2P35g==
+X-Received: by 2002:a1c:7c18:: with SMTP id x24mr12988559wmc.185.1582150773221;
+        Wed, 19 Feb 2020 14:19:33 -0800 (PST)
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+        by smtp.gmail.com with ESMTPSA id l6sm1735565wrn.26.2020.02.19.14.19.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 19 Feb 2020 14:19:32 -0800 (PST)
+Message-ID: <2c0fedf92f8a5cf805cc9908b438dab40ffd72ec.camel@linuxfoundation.org>
+Subject: Re: [yocto] Debugging gdb built by Yocto
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Patrick Doyle <wpdster@gmail.com>, Yocto discussion list
+	 <yocto@yoctoproject.org>
+Date: Wed, 19 Feb 2020 22:19:31 +0000
+In-Reply-To: <CAF_dkJAyS20skTujCh_SCQXq+muJjCmn5=mnUG+A8qWitzNzqQ@mail.gmail.com>
+References: 
+	<CAF_dkJAyS20skTujCh_SCQXq+muJjCmn5=mnUG+A8qWitzNzqQ@mail.gmail.com>
+User-Agent: Evolution 3.34.1-4 
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <A21B95EAAB71F2469024E4FB32FB0DE0@bmwmail.corp>
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On Tue, 2020-02-18 at 11:26 -0500, Patrick Doyle wrote:
+> Does anybody have any tips or tricks for how I might debug the
+> (cross-canadian) gdb built by Yocto's SDK?
+> 
+> I need to add some printf's to the gdb code to help track down why
+> something isn't working, but none of my traditional
+> get-ready-to-debug-this-code techniques are working.
+> 
+> How can I run the gdb that I just built?  Note that I am presuming
+> that I can
+> 
+> $ bitbake gdb-cross-canadian-mipsel -ccompile -f
 
-Good pointers in this thread already. Here are mine:
+Do you perhaps want gdb-cross-mipsel ?
 
- * Share sstate mirror and download cache from release builds to
-   developer topic builds. NFS, web server or rsync before calling bitbake
-   will work.
+cross-canadian is designed to be run as part of the SDK.
 
- * I've added buildhistory and prserv database as extra files to sstate mir=
-ror
-   and use that to initiate new developer topic and release builds. This wa=
-y
-   we don't add prserv or buildhistory git trees to critical path in builds
-   but get the benefits of QA checks, binary package versions, full history=
- etc.
+Cheers,
 
- * Don't use virtual machines or clouds to build. Bare metal throw away mac=
-hines
-   are much faster and more reliable. We've broken all clouds.
+Richard
 
- * Use rm_work to reduce disk space usage during builds.
-
- * Tune build machines to bind things into memory and to not flush things t=
-o disk
-   all the time since bitbake tmp, images etc are anyways going to be tar'e=
-d
-   as build output. If they fit to page cache in RAM, you can avoid a lot o=
-f IO and
-   save disks/ssd. Linux kernel vm tuning does this:
-
-$ cat /etc/sysctl.d/99-build_server_fs_ops_to_memory.conf=20
-# fs cache can use 90% of memory before system starts io to disk,
-# keep as much as possible in RAM
-vm.dirty_background_bytes =3D 0
-vm.dirty_background_ratio =3D 90
-# keep stuff for 12h in memory before writing to disk,
-# allows reusing data as much as possible between builds
-vm.dirty_expire_centisecs =3D 4320000
-vm.dirtytime_expire_seconds =3D 432000
-# allow single process to use 60% of system RAM for file caches, e.g. image=
- build
-vm.dirty_bytes =3D 0
-vm.dirty_ratio =3D 60
-# disable periodic background writes, only write when running out of RAM
-vm.dirty_writeback_centisecs =3D 0
-
- * Finding optimal cost and power combination for build slaves is tricky.
-   Track CPU, memory, IO and network usage for your project and find out wh=
-ich
-   one is the bottle neck. For us it was RAM. CPUs are not effectly used by=
- bitbake
-   builds except when all hell breaks loose with C++ projects and their tem=
-plates.
-   Lots of CPU time is wasted when running single threaded bitbake tasks an=
-d
-   creating images. Avoiding IO to disk and caching to RAM helps. I've not =
-seen benefits
-   of having more than 64 gigs of RAM or more than 32 CPUs (with hyper thre=
-ading).
-   Also project evolve over time and suddenly may start eating more RAM and=
- triggering
-   the kernel OOM killer, shivers..
-
-Hope this helps,
-
--Mikko=
