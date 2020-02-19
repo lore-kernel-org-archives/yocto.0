@@ -1,83 +1,112 @@
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
- by mx.groups.io with SMTP id smtpd.web10.9074.1582097962682168047
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+ by mx.groups.io with SMTP id smtpd.web10.9214.1582099176297247273
  for <yocto@lists.yoctoproject.org>;
- Tue, 18 Feb 2020 23:39:22 -0800
+ Tue, 18 Feb 2020 23:59:36 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=q5Cu7KD7;
- spf=pass (domain: gmail.com, ip: 209.85.215.176, mailfrom: amayajindal786@gmail.com)
-Received: by mail-pg1-f176.google.com with SMTP id u12so11926399pgb.10
-        for <yocto@lists.yoctoproject.org>; Tue, 18 Feb 2020 23:39:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:subject:message-id:references:from:to:cc:mime-version
-         :content-transfer-encoding;
-        bh=A91TNxEN9BehgEc8G+5xuKCDURg9msOQklOCD1KyaUM=;
-        b=q5Cu7KD7gn5Rlji9swM4HimZpZZjmYAM3Wt0uzEoFeiviolpir4VdusbLn6ZFaKQki
-         O5m/bCk0WM35AAnEPfENmUofTN7WzpPa1CDMJ5nolg1/I+Lzjw4jxPMeH4EEHXr31wuV
-         3fFhJ897qnzegGV6OCwn+qUkOg2jhHna991qiFPuLIFsZ1MZTBacvwgLpDpAImFjfs9E
-         PuZK3Nj22+ranKRiQk0cLS9fdsBp4GEYmM2mP8u3dcKUbyMsB26bZF5HVcMSwCXlX/Vx
-         4Lhismp15M4PxAibdmWkYdopHsuC4aNX6mRPCGq8iMBXJ+hfmeteDr3wGJjBFRlxA+iA
-         clxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:message-id:references:from:to:cc
-         :mime-version:content-transfer-encoding;
-        bh=A91TNxEN9BehgEc8G+5xuKCDURg9msOQklOCD1KyaUM=;
-        b=EO+4DA/TtbjO451EAxbkmHgShfgd849sS2VkyxRpHWXgT5u4s2ESKsskuGAsY0C11f
-         MDloMRbc5fWblRUHIcewZMFQrfApLxSd50Ad5fW47K2pmMiHxN110EC7nH6aI37Mhvkg
-         RSZQTQGzSFW0it9efLKdLqHuO5j5IW1LUKeo5ZcQeguM9P74VxhIAyEwf4VANDdyZO90
-         UYO9jpXUUEH5F13uKytib+vLh6CiaccjEMNxkltpF1mjB3NgRSP9IkPOGD0ke/sD0h4g
-         iwwru7Arp3LM6pw5SuM8vtiQ8l7lCQIOKEUxaHIAysSGlI8ABmFOV+Xov5HAULZd7jia
-         vuyQ==
-X-Gm-Message-State: APjAAAVg23v2WsAeaVYDolt8JlYmQM6JAXfulOnKG4J3bbu8BrWyqVMM
-	RuNtqUyvnlygTyMCAThVaig=
-X-Google-Smtp-Source: APXvYqyUKaOhLa139zAuyfI2JpJFGLk+YxYAP2be3pFzVs7HTyh+jWIKcStlXaYA8pwr8RWxBJlEvg==
-X-Received: by 2002:a63:d710:: with SMTP id d16mr26468243pgg.393.1582097962069;
-        Tue, 18 Feb 2020 23:39:22 -0800 (PST)
-Return-Path: <amayajindal786@gmail.com>
-Received: from [100.69.21.35] ([49.14.108.128])
-        by smtp.gmail.com with ESMTPSA id g16sm1495528pgb.54.2020.02.18.23.39.19
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 18 Feb 2020 23:39:21 -0800 (PST)
-Date: Wed, 19 Feb 2020 13:09:00 +0530
-Subject: Re: [yocto] Issue while adding the support for TLS1.3 in existing krogoth yocto #yocto #yocto #yocto #yocto #apt #raspberrypi #yocto
-X-Priority: 3
-Message-ID: <-hhdqq849gh00fpec09-k43vkev29eapwgdmfmrg31wzpc79dq-3ob9vu4ljzio-kfzmy5-k9d9xp-fje67s6nyz1o5020z4-gvie0werwo8p-or1nts-ut4yas-3vp530t7t1ig-wdisaynth1prjt71uh.1582097826706@email.android.com>
-References: <d73Z.1582010752108711892.tD7g@lists.yoctoproject.org>
- <CANNYZj-3urA5rw8fzcAY9ch5Z-zOEt4tRjNNBsquZuvVD6+BJQ@mail.gmail.com>
- <-rwstc27cdt90-auuyo41rs8jtvzm6syoph8qyesn3ii-mwuzy2-dgobygumtd4d-75yhts2n0qmc-f0uc4f-r9fqcx4aa7a041vjua4rn8a56jf43y-as3l4g-2l39almml2bd3opuod-lges1-2ywa6z.1582012225122@email.android.com> <20200218090628.GC104502@korppu>
-From: "amaya jindal" <amayajindal786@gmail.com>
-To: "Mikko.Rapeli@bmw.de" <Mikko.Rapeli@bmw.de>
-Cc: "alex.kanavin@gmail.com" <alex.kanavin@gmail.com>,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+ dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: mingli.yu@windriver.com)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com [147.11.189.41])
+	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 01J7xZDO016716
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL)
+	for <yocto@lists.yoctoproject.org>; Tue, 18 Feb 2020 23:59:35 -0800 (PST)
+Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
+ ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+ 14.3.468.0; Tue, 18 Feb 2020 23:59:23 -0800
+From: "Yu, Mingli" <mingli.yu@windriver.com>
+To: <yocto@lists.yoctoproject.org>
+Subject: [meta-selinux][PATCH] audit: add clock_settime64 syscall
+Date: Wed, 19 Feb 2020 15:59:22 +0800
+Message-ID: <1582099162-449933-1-git-send-email-mingli.yu@windriver.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+Content-Type: text/plain
 
-PGRpdiBkaXI9ImF1dG8iPkFueSBraW5kIG9mIHBhdGNoIGlmIGF2YWlsYWJsZSB0byBkaXJlY3Rs
-eSBhcHBseT8gSSBhbSBnZXR0aW5nIGVycm9yIGluIGdvYmplY3QtaW50cm9zcGVjdGlvbiBuYXRp
-dmUgdGhhdCBzaGExIHNoYTI1NiBldGMgbm90IGZvdW5kIGluIHVzci9saWIvcHl0aG9uMiA3L2hh
-c2hsaWIucHk8YnI+PGJyPlNlbnQgZnJvbSBteSBIdWF3ZWkgcGhvbmU8L2Rpdj48ZGl2IHN0eWxl
-PSJsaW5lLWhlaWdodDoxLjUiPjxicj48YnI+LS0tLS0tLS0gT3JpZ2luYWwgbWVzc2FnZSAtLS0t
-LS0tLTxicj5Gcm9tOiBNaWtrby5SYXBlbGlAYm13LmRlPGJyPkRhdGU6IFR1ZSwgMTggRmViIDIw
-MjAsIDI6MzYgcG08YnI+VG86IGFtYXlhamluZGFsNzg2QGdtYWlsLmNvbTxicj5DYzogYWxleC5r
-YW5hdmluQGdtYWlsLmNvbSwgeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxicj5TdWJqZWN0
-OiBSZTogW3lvY3RvXSBJc3N1ZSB3aGlsZSBhZGRpbmcgdGhlIHN1cHBvcnQgZm9yIFRMUzEuMyBp
-biBleGlzdGluZyBrcm9nb3RoIHlvY3RvICN5b2N0byAjeW9jdG8gI3lvY3RvICN5b2N0byAjYXB0
-ICNyYXNwYmVycnlwaSAjeW9jdG88YnI+PGJsb2NrcXVvdGU+SGksPGJyPjxicj5PbiBUdWUsIEZl
-YiAxOCwgMjAyMCBhdCAwMToyMDoyNVBNICswNTMwLCBhbWF5YSBqaW5kYWwgd3JvdGU6PGJyPiZn
-dDsmbmJzcDsmbmJzcDsmbmJzcDsgVGhhbmtzIGZvciB5b3VyIHByb21wdCByZXBseS4gQnV0IGlz
-IG5vdCB0aGVyZSBhbnkgd2F5IHNpbWlsYXIgdG8gYWRkPGJyPiZndDsmbmJzcDsmbmJzcDsmbmJz
-cDsgc3VwcG9ydCBmb3IgVExTMS4zIGluc3RlYWQgb2YgbW92aW5nIHRvIG5ldyB5b2N0byByZWxl
-YXNlczxicj48YnI+b3BlbnNzbCBpcyB0cmlja3kgdG8gdXBkYXRlIGFuZCByZXF1aXJlcyBiYWNr
-cG9ydGluZyBmaXhlcyBmb3IgbWFueSwgbWFueSByZWNpcGVzPGJyPnRvIGdldCBidWlsZHMgcGFz
-c2luZyBldGMuIERlcGVuZGluZyBvbiBwcm9qZWN0IHNpemUsIGl0IG1heSBiZSBwb3NzaWJsZTxi
-cj50byB1cGRhdGUgb25seSB0aG9zZSBjb21wb25lbnRzIHdoaWNoIHlvdSB1c2UsIGUuZy4gYmFj
-a3BvcnQgY29tbWl0cyBmcm9tPGJyPnBva3kgbWFzdGVyIG9yIHJlbGVhc2UgYnJhbmNoZXMgbGlr
-ZSB3YXJyaW9yLiBUaGUgbnVtYmVyIG9mIGJhY2twb3J0ZWQgY2hhbmdlczxicj53aWxsIGJlIGxh
-cmdlLiBJJ3ZlIHBvcnRlZCBvcGVuc3NsIDEuMS4xZCBwYXRjaGVzIHRvIHlvY3RvIDIuNSBzdW1v
-IGJ1dCBpdCB3YXNuJ3Q8YnI+cHJldHR5LiBBIHN0cmF0ZWd5IHdpdGggcmVndWxhciB5b2N0byB1
-cGRhdGVzIGlzIG11Y2ggYmV0dGVyIGFuZCBmb3JjZXMgeW91PGJyPnRvIHRoaW5rIG9mIHlvdXIg
-ZGVwZW5kZW5jaWVzIGFuZCBwYXRjaGVzIG11Y2ggaGFyZGVyLjxicj48YnI+SG9wZSB0aGlzIGhl
-bHBzLDxicj48YnI+LU1pa2tvPC9ibG9ja3F1b3RlPjwvZGl2Pg==
+From: Mingli Yu <mingli.yu@windriver.com>
+
+On 32bit system,
+After upgrade glibc to 2.31
+ # strace -o /tmp/test.log date -s 09:16:45
+ # tail -f /tmp/test.log
+ close(3)                                = 0
+ stat64("/etc/localtime", {st_mode=S_IFREG|0644, st_size=114, ...}) = 0
+ clock_settime64(CLOCK_REALTIME, {tv_sec=1582103805, tv_nsec=0}) = 0
+ fstat64(1, {st_mode=S_IFCHR|0600, st_rdev=makedev(0x4, 0x40), ...}) = 0
+ ioctl(1, TCGETS, {B115200 opost isig icanon echo ...}) = 0
+ write(1, "Wed Feb 19 09:16:45 UTC 2020\n", 29) = 29
+ close(1)                                = 0
+ close(2)                                = 0
+ exit_group(0)                           = ?
+ +++ exited with 0 +++
+
+It means the clock_settime64 syscall is used, so
+add the syscall.
+
+Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
+---
+ .../0001-lib-i386_table.h-add-new-syscall.patch    | 42 ++++++++++++++++++++++
+ recipes-security/audit/audit_2.8.5.bb              |  1 +
+ 2 files changed, 43 insertions(+)
+ create mode 100644 recipes-security/audit/audit/0001-lib-i386_table.h-add-new-syscall.patch
+
+diff --git a/recipes-security/audit/audit/0001-lib-i386_table.h-add-new-syscall.patch b/recipes-security/audit/audit/0001-lib-i386_table.h-add-new-syscall.patch
+new file mode 100644
+index 0000000..6e1827c
+--- /dev/null
++++ b/recipes-security/audit/audit/0001-lib-i386_table.h-add-new-syscall.patch
+@@ -0,0 +1,42 @@
++From df878b92e01f4d1c3de7f7d8229cea6a431509eb Mon Sep 17 00:00:00 2001
++From: Mingli Yu <mingli.yu@windriver.com>
++Date: Wed, 19 Feb 2020 15:23:40 +0800
++Subject: [PATCH] lib/i386_table.h: add new syscall
++
++On 32bit system,
++After upgrade glibc to 2.31
++ # strace -o /tmp/test.log date -s 09:16:45
++ # tail -f /tmp/test.log
++ close(3)                                = 0
++ stat64("/etc/localtime", {st_mode=S_IFREG|0644, st_size=114, ...}) = 0
++ clock_settime64(CLOCK_REALTIME, {tv_sec=1582103805, tv_nsec=0}) = 0
++ fstat64(1, {st_mode=S_IFCHR|0600, st_rdev=makedev(0x4, 0x40), ...}) = 0
++ ioctl(1, TCGETS, {B115200 opost isig icanon echo ...}) = 0
++ write(1, "Wed Feb 19 09:16:45 UTC 2020\n", 29) = 29
++ close(1)                                = 0
++ close(2)                                = 0
++ exit_group(0)                           = ?
++ +++ exited with 0 +++
++
++It means the clock_settime64 syscall is used, so
++add the syscall.
++
++Upstream-Status: Submitted [https://github.com/linux-audit/audit-userspace/pull/116]
++
++Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
++---
++ lib/i386_table.h | 1 +
++ 1 file changed, 1 insertion(+)
++
++diff --git a/lib/i386_table.h b/lib/i386_table.h
++index 1a64c88..65fd4d9 100644
++--- a/lib/i386_table.h
+++++ b/lib/i386_table.h
++@@ -405,3 +405,4 @@ _S(383, "statx")
++ _S(384, "arch_prctl")
++ _S(385, "io_pgetevents")
++ _S(386, "rseq")
+++_S(404, "clock_settime64")
++-- 
++2.7.4
++
+diff --git a/recipes-security/audit/audit_2.8.5.bb b/recipes-security/audit/audit_2.8.5.bb
+index ee3b3b5..af36ed5 100644
+--- a/recipes-security/audit/audit_2.8.5.bb
++++ b/recipes-security/audit/audit_2.8.5.bb
+@@ -10,6 +10,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
+ SRC_URI = "git://github.com/linux-audit/${BPN}-userspace.git;branch=2.8_maintenance \
+            file://Add-substitue-functions-for-strndupa-rawmemchr.patch \
+            file://Fixed-swig-host-contamination-issue.patch \
++           file://0001-lib-i386_table.h-add-new-syscall.patch \
+            file://auditd \
+            file://auditd.service \
+            file://audit-volatile.conf \
+-- 
+2.7.4
 
