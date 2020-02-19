@@ -1,151 +1,78 @@
-Received: from esa10.bmw.c3s2.iphmx.com (esa10.bmw.c3s2.iphmx.com [68.232.139.98])
- by mx.groups.io with SMTP id smtpd.web11.305.1582149678340419444
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+ by mx.groups.io with SMTP id smtpd.web11.312.1582149699696090753
  for <yocto@lists.yoctoproject.org>;
- Wed, 19 Feb 2020 14:01:19 -0800
+ Wed, 19 Feb 2020 14:01:39 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bmw.de header.s=mailing1 header.b=CwGA0ejC;
- spf=pass (domain: bmw.de, ip: 68.232.139.98, mailfrom: prvs=311c70376=mikko.rapeli@bmw.de)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=nufhGekI;
+ spf=pass (domain: gmail.com, ip: 209.85.214.180, mailfrom: raj.khem@gmail.com)
+Received: by mail-pl1-f180.google.com with SMTP id y1so642705plp.7
+        for <yocto@lists.yoctoproject.org>; Wed, 19 Feb 2020 14:01:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-  t=1582149678; x=1613685678;
-  h=from:to:subject:date:message-id:references:in-reply-to:
-   content-id:content-transfer-encoding:mime-version;
-  bh=0S7D+MdVSv5qjK5eo7bqgUGSHhpr+Ie7ajbl25Mwuco=;
-  b=CwGA0ejCuZFweOW/6TBi/RhXf35SeLKaVBVCnMpdfMYSfLt/U4EQw06C
-   KXblwPqT+OLtv7VemzWCUrPo6uT3M/mXKJtxk5sWhBmdnc/v5cF3bceZf
-   54JE/V0U6dzr5liLBSBQWtSHIXzxQglotvuSvgGel9KaNJ5a/vA35pSMF
-   I=;
-IronPort-SDR: 7SYcqkliOoqWrleuDYOWZE9GLzr/BUob0DZdaj9ncj/ibQ/TmSzphbdm/Ydvcb49vB8mjOtOUj
- a2KchZYpPya8/NIKl2qFB1Yr78odqJA6oNHhJyEQsN9q47zYoNjM1CpvGibKA21KTdMGw2cDna
- u6TzyGsg/0LKWGTsnSvGvCvZY5+nGOrwin+xb9nMYr1hNnlyxco2LO7j+gazMtc7T9gWRbS2F4
- M8mEOBFn8AaGVmdxxkMsXvYrPf+rzPLfvcnRSCaWTJGdc9Qw7KG72mqTwvuck2FyvddzAMpuSZ
- MHI=
-Received: from esagw6.bmwgroup.com (HELO esagw6.muc) ([160.46.252.49]) by
- esa10.bmw.c3s2.iphmx.com with ESMTP/TLS; 19 Feb 2020 16:57:22 +0100
-Received: from esabb6.muc ([160.50.100.50])  by esagw6.muc with ESMTP/TLS;
- 19 Feb 2020 16:57:22 +0100
-Received: from smucm10m.bmwgroup.net (HELO smucm10m.europe.bmw.corp) ([160.48.96.49])
- by esabb6.muc with ESMTP/TLS; 19 Feb 2020 16:57:22 +0100
-Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10m.europe.bmw.corp
- (160.48.96.49) with Microsoft SMTP Server (TLS;
- Wed, 19 Feb 2020 16:57:22 +0100
-Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
- smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Wed,
- 19 Feb 2020 16:57:21 +0100
-From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
-To: <j.armandohernandez.j@gmail.com>, <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] how to reuse generated library in a nativesdk recipe #sdk #systemd
-Thread-Topic: [yocto] how to reuse generated library in a nativesdk recipe
- #sdk #systemd
-Thread-Index: AQHV5wg0rpjF7EdG7kGTb2Q0RzuE0KgiM38AgABmhQCAAAGxgA==
-Date: Wed, 19 Feb 2020 15:57:21 +0000
-Message-ID: <20200219155721.GD104502@korppu>
-References: <m6OI.1582105039365385215.XDJN@lists.yoctoproject.org>
- <20200219094422.GV104502@korppu>
- <CAGpycA+PGsbqnJL1FD8pPNzWK3203RoBTPPD08Vwjn5J9aGMJA@mail.gmail.com>
-In-Reply-To: <CAGpycA+PGsbqnJL1FD8pPNzWK3203RoBTPPD08Vwjn5J9aGMJA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=v5zShKuP6r0mXJ82KhDCw9jVJphsfIpdbJkjTuyqd2g=;
+        b=nufhGekIYGv4QcUl0+uVksu5SiRbmm6M08+nA+6EPykFv8nyF3Lqik4Jb229tzc2oU
+         Vz4U14fhJh4mxAHJZ2gin3YCpclNqWZ4Mi0g2sY3NkILe0pzh8iG2NwRChVoPY8pFHvT
+         bQY5Iz2vJoDuktUZvDSxVQ48z0r+AZ3gRz2v2FJEyBOdgL30yUaFyQuAJP9nAa1YdWUW
+         XMCXK2vdTP7biIlovQ9FlPjT8CYABo+1EHgU1bYoiTiMCPdJGmzQh8LtxDfXCpdyeS42
+         h6MnfsZQbi8/4lY8sBjZshv7MVNP6mRX+ZvejngXvRMaF3uivGW1FJWspY7eqRgSupad
+         gkwQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=v5zShKuP6r0mXJ82KhDCw9jVJphsfIpdbJkjTuyqd2g=;
+        b=AP30DldiI1FxPYUmHpT8cIw4dQ93YGKg2HT4apvb6IKd9yQFjJWLA8KZs+myI1gbfa
+         RTABuWP3/sUiowXd7lAtL4Mdd+LaLVvfcd1jhwGmxMdZ30TN+Iv73AgV4ViW6Oe1uuu7
+         70pycvl0FRtl026lAA0/IE6MfjMoZlcX9hZbX02vAnM54+jBRwnrL5F9rFKqaBu9Xidy
+         NofJ7ge+o1GBdz3kMmn7bTkopxr0ZSdfT/aJoqjUu/mb5ma6miTzd3QAzBRkrzMi4B1c
+         2lws9Wp929/B986VzjZ0e5Wics8g8LNzXcJxwoD0pT1DBmQ260uOBAfdXIhnikefBcsy
+         YZzg==
+X-Gm-Message-State: APjAAAWr/NWPgtm0WcCyy6+nkogW95AXHfUuN5vevmVsSaLYll3EiErD
+	kl9bMBFYwZpJ1UcAjqFFeYiz28Xvp58=
+X-Google-Smtp-Source: APXvYqx1Wso/OUVLqbimZa+F/cDftwaVu+/JAPWC1j/5p5GQwMaz7bReNHwZp7aWSl1xSh0+JYGYUg==
+X-Received: by 2002:a17:902:a715:: with SMTP id w21mr20508129plq.244.1582149698586;
+        Wed, 19 Feb 2020 14:01:38 -0800 (PST)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:4e0:cca7:f312:1961:a4b9? ([2601:646:9200:4e0:cca7:f312:1961:a4b9])
+        by smtp.gmail.com with ESMTPSA id e1sm594759pfl.98.2020.02.19.14.01.38
+        for <yocto@lists.yoctoproject.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 19 Feb 2020 14:01:38 -0800 (PST)
+Subject: Re: [yocto] do_rootfs task took long time to finish
+To: yocto@lists.yoctoproject.org
+References: <CAAfyv37jKciEwgCZ362VgHK5r7poixgu3tqONxopJ8rWsJYvyA@mail.gmail.com>
+From: "Khem Raj" <raj.khem@gmail.com>
+Message-ID: <53405c57-f54e-f625-08b6-87e9b5d190d3@gmail.com>
+Date: Wed, 19 Feb 2020 14:01:37 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
+ Gecko/20100101 Thunderbird/68.5.0
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <0A415A6710096748A1E57941B46C3A8F@bmwmail.corp>
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAAfyv37jKciEwgCZ362VgHK5r7poixgu3tqONxopJ8rWsJYvyA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
 
-Hi,
 
-(lets keep this on the list too)
 
-On Wed, Feb 19, 2020 at 04:51:18PM +0100, Armando Hernandez wrote:
-> Hi Mikko,
->=20
-> Thanks for your reply. I checked your suggestion but does not work for me=
-.
-> I did included a .bbappend file in which I:
->=20
->    - re-set EXTRA_OECMAKE to an empty string (i.e. ""). - my intention wa=
-s
->    to pass no arguments when building the nativesdk. Now I know that this
->    accion overwrites the value of EXTRA_OECMAKE in the original .bb file
->    - added the line BBCLASSEXTEND =3D "nativesdk" to this new .bbappend f=
-ile
->    - added the line DEPENDS_class-target +=3D "systemd" to the original .=
-bb
->    file
->=20
-> I found out that this configures both the target and the nativesdk
-> libraries without systemd - which later on causes a failure when bitbake
-> attempts to pull up everything to create the final image.
->=20
-> Basically, I'd like to find a way to unset or overwrite the following
-> variables when building the nativesdk package:
->=20
->    - SYSTEMD_PACKAGES
->    - SYSTEMD_SERVICE_${PN}
->    - SYSTEMD_AUTO_ENABLE_${PN}
->    - SYSTEMD_SERVICE_${PN}-systemd
->    - SYSTEMD_AUTO_ENABLE_${PN}-systemd
->    - EXTRA_OECMAKE
+On 2/17/20 11:55 PM, Marek Belisko wrote:
+> Hi,
+> 
+> I'm debugging strange issue that do_rootfs task took ~50 minutes. I
+> enabled buildstats and from that I learned it's quite long. Any ideas
+> how to debug this issue? My idea was to add timestamp to do_rootfs
+> tasks but I'm not sure if it's even possible. Thanks.
+> 
 
-You can add _class-[target|native|nativesdk] to all variables
-to override defaults.
+how big is the image its creating, might affect the time. Secondly
+use some system perf monitor to see which tool is taking so long.
 
-Verify with "bitbake -e".
-
-Hope this helps,
-
--Mikko
-
-> Is it possible to do so? Or do I come up with another recipe of the sama
-> package exclusively for the nativesdk?
->=20
-> Thanks again.
->=20
-> Armando Hernandez
->=20
-> On Wed, Feb 19, 2020 at 10:44 AM <Mikko.Rapeli@bmw.de> wrote:
->=20
-> > Hi,
-> >
-> > On Wed, Feb 19, 2020 at 01:37:19AM -0800, Armando Hernandez wrote:
-> > > Hello,
-> > >
-> > > I have a recipe that builds a library. The recipe specifies an
-> > additional package "${PN}-systemd" along with other systemd related
-> > variables and finally it instructs that the package should be built wit=
-h
-> > "-DWITH_SYSTEMD=3DON" being passed to cmake. So far so good. But, I ext=
-ended
-> > this recipe to nativesdk because I need this library on it. When trying=
- to
-> > build the corresponding nativesdk package, the build fails at the
-> > configuration step (i.e. "do_configure") claiming it cannot find the
-> > package systemd.
-> > >
-> > > Is there a way I can install the -already-generated libraries into my
-> > SDK (potentially via the corresponding nativesdk recipe) without having=
- to
-> > rebuild the package? Or do I need to somehow include such systemd packa=
-ge
-> > in my sdk (which I don't think I need at all)?
-> > >
-> > > Any hints and pointers as to were to look at are very well appreciate=
-d.
-> > > Thanks.
-> >
-> > Make the systemd dependency for target only, e.g. DEPENDS_class-target =
-+=3D
-> > "systemd"
-> > etc.
-> >
-> > There may be relevant use cases to build some of systemd components or
-> > tools
-> > to native or nativesdk targets too. In that case add BBCLASSEXTEND +=3D
-> > "nativesdk" etc
-> > in a bbappend to systemd.
-> >
-> > Hope this helps,
-> >
-> > -Mikko=
+> BR,
+> 
+> marek
+> 
+> 
+> 
+> 
