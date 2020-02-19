@@ -1,72 +1,70 @@
-Subject: Re: Incrementally building constantly changing application source in a workflow-friendly way with #yocto
+Subject: how to reuse generated library in a nativesdk recipe #sdk #systemd
 To: yocto@lists.yoctoproject.org
-From: "Pieter Smith" <smipi01@gmail.com>
-X-Originating-Location: Eindhoven, North Brabant, NL (194.171.252.117)
-X-Originating-Platform: Windows Chrome 79
+From: "Armando Hernandez" <j.armandohernandez.j@gmail.com>
+X-Originating-Location: (62.4.90.5)
+X-Originating-Platform: Linux Chrome 79
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Wed, 19 Feb 2020 01:35:18 -0800
-References: <CANNYZj8Muj3Rnf9VXfiRJqhdpOsJdFQKQdP2GscBNnmX4cUu9Q@mail.gmail.com>
-In-Reply-To: <CANNYZj8Muj3Rnf9VXfiRJqhdpOsJdFQKQdP2GscBNnmX4cUu9Q@mail.gmail.com>
-Message-ID: <23572.1582104918179404001@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="oT73EKxsAYv2HMdQUBgK"
+Date: Wed, 19 Feb 2020 01:37:19 -0800
+Message-ID: <m6OI.1582105039365385215.XDJN@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="Udz3FJUFKtoj628Z25nj"
 
---oT73EKxsAYv2HMdQUBgK
+--Udz3FJUFKtoj628Z25nj
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Alexander,
+Hello,
 
-Based on your and=C2=A0Oliver Westermann's help, I came up with something =
-that works for our project requirements:
+I have a recipe that builds a library. The recipe specifies an additional =
+package "${PN}-systemd" along with other systemd related variables and fina=
+lly it instructs that the package should be built with "-DWITH_SYSTEMD=3DON=
+" being passed to cmake. So far so good. But, I extended this recipe to nat=
+ivesdk because I need this library on it. When trying=C2=A0to build the cor=
+responding=C2=A0nativesdk package, the build fails at the configuration ste=
+p (i.e. "do_configure") claiming it cannot find the package systemd.
 
-My application bitbake file looks like this:
+Is there a way I can install the -already-generated libraries into my SDK =
+(potentially via the corresponding nativesdk recipe) without having to rebu=
+ild the package? Or do I need to somehow include such systemd package in my=
+ sdk (which I don't think I need at all)?
 
-EXTERNALSRC =3D "${@os.path.abspath(os.path.join(os.path.dirname(d.getVar(=
-'FILE')), '..', '..', 'src'))}"
-inherit externalsrc
+Any hints and pointers as to were to look at are very well appreciated.
+Thanks.
 
-S =3D "${EXTERNALSRC}"
-inherit cmake
+Armando Hernandez
 
-externalsrc.bb expects EXTERNALSRC to contain an absolute path. We have a =
-relocatable workspace based on a git tree with submodules, so I calculate t=
-he absolute path of the source based on the bb file location. Our src direc=
-tory is a cmake project, so I only have to convince cmake to use the EXTERN=
-ALSRC location for an out-of-tree build in WORKDIR by setting S.
-
-The workflow for our project developers then becomes:
-
-bitbake -c cleansstate <application-name> && bitbake ...
-
-I can hide this in a wrapper Makefile.
-
-Am I missing anything?
-
-Regards,
-Pieter Smith
-
---oT73EKxsAYv2HMdQUBgK
+--Udz3FJUFKtoj628Z25nj
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Alexander,<br /><br />Based on your and&nbsp;Oliver Westermann's help, I=
- came up with something that works for our project requirements:<br /><br /=
->My application bitbake file looks like this:<br /><br />
-<div>&nbsp; &nbsp; EXTERNALSRC =3D "${@os.path.abspath(os.path.join(os.pat=
-h.dirname(d.getVar('FILE')), '..', '..', 'src'))}"</div>
-<div>&nbsp; &nbsp; inherit externalsrc</div>
-<div>&nbsp;</div>
-<div>&nbsp; &nbsp; S =3D "${EXTERNALSRC}"</div>
-<div>&nbsp; &nbsp; inherit cmake<br /><br />externalsrc.bb expects EXTERNA=
-LSRC to contain an absolute path. We have a relocatable workspace based on =
-a git tree with submodules, so I calculate the absolute path of the source =
-based on the bb file location. Our src directory is a cmake project, so I o=
-nly have to convince cmake to use the EXTERNALSRC location for an out-of-tr=
-ee build in WORKDIR by setting S.<br /><br />The workflow for our project d=
-evelopers then becomes:<br /><br />&nbsp; &nbsp; bitbake -c cleansstate &lt=
-;application-name&gt; &amp;&amp; bitbake ...<br /><br />I can hide this in =
-a wrapper Makefile.<br /><br />Am I missing anything?<br /><br />Regards,<b=
-r />Pieter Smith</div>
+<div class=3D"gmail_default" style=3D"color: #222222; font-size: small; fon=
+t-family: arial, helvetica, sans-serif;">Hello,</div>
+<div class=3D"gmail_default" style=3D"color: #222222; font-size: small; fo=
+nt-family: arial, helvetica, sans-serif;">&nbsp;</div>
+<div class=3D"gmail_default" style=3D"color: #222222; font-size: small; fo=
+nt-family: arial, helvetica, sans-serif;">I have a recipe that builds a lib=
+rary. The recipe specifies an additional package "${PN}-systemd" along with=
+ other systemd related variables and finally it instructs that the package =
+should be built with "-DWITH_SYSTEMD=3DON" being passed to cmake. So far so=
+ good. But, I extended this recipe to nativesdk because I need this library=
+ on it. When trying&nbsp;to build the corresponding&nbsp;nativesdk package,=
+ the build fails at the configuration step (i.e. "do_configure") claiming i=
+t cannot find the package systemd.</div>
+<div class=3D"gmail_default" style=3D"color: #222222; font-size: small; fo=
+nt-family: arial, helvetica, sans-serif;">&nbsp;</div>
+<div class=3D"gmail_default" style=3D"color: #222222; font-size: small; fo=
+nt-family: arial, helvetica, sans-serif;">Is there a way I can install the =
+-already-generated libraries into my SDK (potentially via the corresponding=
+ nativesdk recipe) without having to rebuild the package? Or do I need to s=
+omehow include such systemd package in my sdk (which I don't think I need a=
+t all)?</div>
+<div class=3D"gmail_default" style=3D"color: #222222; font-size: small; fo=
+nt-family: arial, helvetica, sans-serif;">&nbsp;</div>
+<div class=3D"gmail_default" style=3D"color: #222222; font-size: small; fo=
+nt-family: arial, helvetica, sans-serif;">Any hints and pointers as to were=
+ to look at are very well appreciated.</div>
+<div class=3D"gmail_default" style=3D"color: #222222; font-size: small; fo=
+nt-family: arial, helvetica, sans-serif;">Thanks.<br /><br />Armando Hernan=
+dez</div>
 
---oT73EKxsAYv2HMdQUBgK--
+--Udz3FJUFKtoj628Z25nj--
