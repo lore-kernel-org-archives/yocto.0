@@ -1,112 +1,72 @@
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
- by mx.groups.io with SMTP id smtpd.web10.9214.1582099176297247273
- for <yocto@lists.yoctoproject.org>;
- Tue, 18 Feb 2020 23:59:36 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: mingli.yu@windriver.com)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com [147.11.189.41])
-	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 01J7xZDO016716
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@lists.yoctoproject.org>; Tue, 18 Feb 2020 23:59:35 -0800 (PST)
-Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
- ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
- 14.3.468.0; Tue, 18 Feb 2020 23:59:23 -0800
-From: "Yu, Mingli" <mingli.yu@windriver.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: [meta-selinux][PATCH] audit: add clock_settime64 syscall
-Date: Wed, 19 Feb 2020 15:59:22 +0800
-Message-ID: <1582099162-449933-1-git-send-email-mingli.yu@windriver.com>
-X-Mailer: git-send-email 2.7.4
+Subject: Re: Incrementally building constantly changing application source in a workflow-friendly way with #yocto
+To: yocto@lists.yoctoproject.org
+From: "Pieter Smith" <smipi01@gmail.com>
+X-Originating-Location: Eindhoven, North Brabant, NL (194.171.252.117)
+X-Originating-Platform: Windows Chrome 79
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: text/plain
+Date: Wed, 19 Feb 2020 01:35:18 -0800
+References: <CANNYZj8Muj3Rnf9VXfiRJqhdpOsJdFQKQdP2GscBNnmX4cUu9Q@mail.gmail.com>
+In-Reply-To: <CANNYZj8Muj3Rnf9VXfiRJqhdpOsJdFQKQdP2GscBNnmX4cUu9Q@mail.gmail.com>
+Message-ID: <23572.1582104918179404001@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="oT73EKxsAYv2HMdQUBgK"
 
-From: Mingli Yu <mingli.yu@windriver.com>
+--oT73EKxsAYv2HMdQUBgK
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 32bit system,
-After upgrade glibc to 2.31
- # strace -o /tmp/test.log date -s 09:16:45
- # tail -f /tmp/test.log
- close(3)                                = 0
- stat64("/etc/localtime", {st_mode=S_IFREG|0644, st_size=114, ...}) = 0
- clock_settime64(CLOCK_REALTIME, {tv_sec=1582103805, tv_nsec=0}) = 0
- fstat64(1, {st_mode=S_IFCHR|0600, st_rdev=makedev(0x4, 0x40), ...}) = 0
- ioctl(1, TCGETS, {B115200 opost isig icanon echo ...}) = 0
- write(1, "Wed Feb 19 09:16:45 UTC 2020\n", 29) = 29
- close(1)                                = 0
- close(2)                                = 0
- exit_group(0)                           = ?
- +++ exited with 0 +++
+Hi Alexander,
 
-It means the clock_settime64 syscall is used, so
-add the syscall.
+Based on your and=C2=A0Oliver Westermann's help, I came up with something =
+that works for our project requirements:
 
-Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
----
- .../0001-lib-i386_table.h-add-new-syscall.patch    | 42 ++++++++++++++++++++++
- recipes-security/audit/audit_2.8.5.bb              |  1 +
- 2 files changed, 43 insertions(+)
- create mode 100644 recipes-security/audit/audit/0001-lib-i386_table.h-add-new-syscall.patch
+My application bitbake file looks like this:
 
-diff --git a/recipes-security/audit/audit/0001-lib-i386_table.h-add-new-syscall.patch b/recipes-security/audit/audit/0001-lib-i386_table.h-add-new-syscall.patch
-new file mode 100644
-index 0000000..6e1827c
---- /dev/null
-+++ b/recipes-security/audit/audit/0001-lib-i386_table.h-add-new-syscall.patch
-@@ -0,0 +1,42 @@
-+From df878b92e01f4d1c3de7f7d8229cea6a431509eb Mon Sep 17 00:00:00 2001
-+From: Mingli Yu <mingli.yu@windriver.com>
-+Date: Wed, 19 Feb 2020 15:23:40 +0800
-+Subject: [PATCH] lib/i386_table.h: add new syscall
-+
-+On 32bit system,
-+After upgrade glibc to 2.31
-+ # strace -o /tmp/test.log date -s 09:16:45
-+ # tail -f /tmp/test.log
-+ close(3)                                = 0
-+ stat64("/etc/localtime", {st_mode=S_IFREG|0644, st_size=114, ...}) = 0
-+ clock_settime64(CLOCK_REALTIME, {tv_sec=1582103805, tv_nsec=0}) = 0
-+ fstat64(1, {st_mode=S_IFCHR|0600, st_rdev=makedev(0x4, 0x40), ...}) = 0
-+ ioctl(1, TCGETS, {B115200 opost isig icanon echo ...}) = 0
-+ write(1, "Wed Feb 19 09:16:45 UTC 2020\n", 29) = 29
-+ close(1)                                = 0
-+ close(2)                                = 0
-+ exit_group(0)                           = ?
-+ +++ exited with 0 +++
-+
-+It means the clock_settime64 syscall is used, so
-+add the syscall.
-+
-+Upstream-Status: Submitted [https://github.com/linux-audit/audit-userspace/pull/116]
-+
-+Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
-+---
-+ lib/i386_table.h | 1 +
-+ 1 file changed, 1 insertion(+)
-+
-+diff --git a/lib/i386_table.h b/lib/i386_table.h
-+index 1a64c88..65fd4d9 100644
-+--- a/lib/i386_table.h
-++++ b/lib/i386_table.h
-+@@ -405,3 +405,4 @@ _S(383, "statx")
-+ _S(384, "arch_prctl")
-+ _S(385, "io_pgetevents")
-+ _S(386, "rseq")
-++_S(404, "clock_settime64")
-+-- 
-+2.7.4
-+
-diff --git a/recipes-security/audit/audit_2.8.5.bb b/recipes-security/audit/audit_2.8.5.bb
-index ee3b3b5..af36ed5 100644
---- a/recipes-security/audit/audit_2.8.5.bb
-+++ b/recipes-security/audit/audit_2.8.5.bb
-@@ -10,6 +10,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
- SRC_URI = "git://github.com/linux-audit/${BPN}-userspace.git;branch=2.8_maintenance \
-            file://Add-substitue-functions-for-strndupa-rawmemchr.patch \
-            file://Fixed-swig-host-contamination-issue.patch \
-+           file://0001-lib-i386_table.h-add-new-syscall.patch \
-            file://auditd \
-            file://auditd.service \
-            file://audit-volatile.conf \
--- 
-2.7.4
+EXTERNALSRC =3D "${@os.path.abspath(os.path.join(os.path.dirname(d.getVar(=
+'FILE')), '..', '..', 'src'))}"
+inherit externalsrc
 
+S =3D "${EXTERNALSRC}"
+inherit cmake
+
+externalsrc.bb expects EXTERNALSRC to contain an absolute path. We have a =
+relocatable workspace based on a git tree with submodules, so I calculate t=
+he absolute path of the source based on the bb file location. Our src direc=
+tory is a cmake project, so I only have to convince cmake to use the EXTERN=
+ALSRC location for an out-of-tree build in WORKDIR by setting S.
+
+The workflow for our project developers then becomes:
+
+bitbake -c cleansstate <application-name> && bitbake ...
+
+I can hide this in a wrapper Makefile.
+
+Am I missing anything?
+
+Regards,
+Pieter Smith
+
+--oT73EKxsAYv2HMdQUBgK
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Alexander,<br /><br />Based on your and&nbsp;Oliver Westermann's help, I=
+ came up with something that works for our project requirements:<br /><br /=
+>My application bitbake file looks like this:<br /><br />
+<div>&nbsp; &nbsp; EXTERNALSRC =3D "${@os.path.abspath(os.path.join(os.pat=
+h.dirname(d.getVar('FILE')), '..', '..', 'src'))}"</div>
+<div>&nbsp; &nbsp; inherit externalsrc</div>
+<div>&nbsp;</div>
+<div>&nbsp; &nbsp; S =3D "${EXTERNALSRC}"</div>
+<div>&nbsp; &nbsp; inherit cmake<br /><br />externalsrc.bb expects EXTERNA=
+LSRC to contain an absolute path. We have a relocatable workspace based on =
+a git tree with submodules, so I calculate the absolute path of the source =
+based on the bb file location. Our src directory is a cmake project, so I o=
+nly have to convince cmake to use the EXTERNALSRC location for an out-of-tr=
+ee build in WORKDIR by setting S.<br /><br />The workflow for our project d=
+evelopers then becomes:<br /><br />&nbsp; &nbsp; bitbake -c cleansstate &lt=
+;application-name&gt; &amp;&amp; bitbake ...<br /><br />I can hide this in =
+a wrapper Makefile.<br /><br />Am I missing anything?<br /><br />Regards,<b=
+r />Pieter Smith</div>
+
+--oT73EKxsAYv2HMdQUBgK--
