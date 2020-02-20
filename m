@@ -1,12 +1,12 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.392.1582221807231288299
+ by mx.groups.io with SMTP id smtpd.web12.2436.1582233501302298456
  for <yocto@lists.yoctoproject.org>;
- Thu, 20 Feb 2020 10:03:27 -0800
+ Thu, 20 Feb 2020 13:18:21 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=PLpSWRI+;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=NaGKINKs;
  spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: raj.khem@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1A125E016B7; Thu, 20 Feb 2020 10:03:27 -0800 (PST)
+	id D6FD3E016E8; Thu, 20 Feb 2020 13:18:20 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -20,125 +20,113 @@ X-Spam-HAM-Report:
 	*      (raj.khem[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.216.67 listed in list.dnswl.org]
+	*      [209.85.210.196 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pj1-f67.google.com (mail-pj1-f67.google.com [209.85.216.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2860E016B5
-	for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 10:03:24 -0800 (PST)
-Received: by mail-pj1-f67.google.com with SMTP id gv17so1217319pjb.1
-        for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 10:03:24 -0800 (PST)
+Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com [209.85.210.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2ABAAE016B7
+	for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 13:18:20 -0800 (PST)
+Received: by mail-pf1-f196.google.com with SMTP id k29so2517924pfp.13
+        for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 13:18:20 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=LwmpqQVDkxHOxFBhdgCxjG1nl5+z2CaqtMAxBUZwzSM=;
-        b=PLpSWRI+IAE2vLkkTgqDpyHIyK0Nd6sWL4xSz7ELW1sWdjTyHA/Emu19kHhAmJlMEz
-         H+qASA+AEGxYgiBdYJEt/66P1jM6L1XupHAqqJG3zZqgyioQjoi4VLqPmWpw5IkhpeG7
-         Ko/NGetVzC0H9JlOMRE9ZnjvY/83L8GgiWApv+kcYcyIAun4Jn4edCFfCUAbcmdtSmvX
-         +tYNak4J9BASnopljIgwKqkQK+k6/Sv1ZuFsELMx26AYqH7hbTA+15roMyu3N0WxeycB
-         I3DCnuYtP76MuV1M7egqnbtKPvBm6JQAEr3V1HuxnKbsiTXxXTGqQZCPv/whjgIHtYqu
-         D5gA==
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :organization:user-agent:mime-version:content-transfer-encoding;
+        bh=3cDd2UntlKv2B8A9OVPxoW9IqdB3cJSB/2Spfwof5gM=;
+        b=NaGKINKsc1spzYPGOoeb0erfZerMP7Zp+OWI/mWuhBsNP8kMkB0TstcRaLy7oY6EvU
+         JyhlqQmbvyP4CTGd4ZzEnwzY2439X5AXn44qRUCMRsqTHtB0ymsVgPhrC73QZ67caOU7
+         64MLzVcLz/kWifYMoCLkRUjVmnxkVusR0D9S7tr/95/RtRoRoVXx6wyrFjJ6kNL8ViV1
+         lZbyo1cKuQekil83JTilI2cgTZ9Nvt9Y7ZlGBymUhle2HhvLFrvZdo8tsjQh5cAEdojV
+         RNHtbXENZhLZtSSVuJQAwuu3ltLyoHNFTR5QdF+J6RMGSZJW3BryA1z4aS+PKWcqSOII
+         RHIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:organization:user-agent:mime-version
          :content-transfer-encoding;
-        bh=LwmpqQVDkxHOxFBhdgCxjG1nl5+z2CaqtMAxBUZwzSM=;
-        b=fw4GBXxX2qSFcP2JpL1wwibvhF4qOo5Z5Y88vm2vZizyuDR4aAb8jbnJhbX0RYuhUv
-         sDF+QOGUGBtyRfSpMJDIkjg8/x7OgSKX1M1SNowANvmYfEHA7txyQIzB3NLJW13/sCmm
-         UZCX/IF43kpSdQIAaYKPrnVSdoVVyPQ5Rn7WMabPvEnH1HHdqsUQaSKxWPzbIYYk/gcQ
-         vNaRi9TalGb61xY4/83irhdryvgxpe9rjUNbF03ZlNbctsjDlQtcrnwNmYbAbdrIhdxf
-         DjjXUNi+BVQpCQjC6D4t6QPAC3O1lyqjZT2zU8m5fEtG3QkQFZw07QZZMbrFyFeuHjA+
-         J7DA==
-X-Gm-Message-State: APjAAAWQnsjDghrCYIb8Q/dDFZJrQ9EGQWI8SEyqxI0A7ndGCDFQ/zkz
-	ja45L3tiun2powCrU02dxJ0sr7R5V28=
-X-Google-Smtp-Source: APXvYqxMJNT4kvqkgDmG4ck3ezzlhxF2tL1IcqlG8x3eBokVHW5y8tIpSyzevgHvvDTLkxxJAxMl2g==
-X-Received: by 2002:a17:902:bc8a:: with SMTP id bb10mr31403526plb.102.1582221803281;
-        Thu, 20 Feb 2020 10:03:23 -0800 (PST)
-Received: from ?IPv6:2601:646:9200:4e0:94fc:1e40:9cc4:7d04? ([2601:646:9200:4e0:94fc:1e40:9cc4:7d04])
-        by smtp.gmail.com with ESMTPSA id q4sm231614pfl.175.2020.02.20.10.03.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 20 Feb 2020 10:03:22 -0800 (PST)
-Subject: Re: [yocto] [psplash][PATCH 1/1] psplash-fb: Avoid racing issues on reading fb0
-To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: yocto@yoctoproject.org
-References: <20200213103000.1594-1-andrei@gherzan.ro>
- <6f979b87-756e-207f-0500-a83c6afa07f6@gmail.com>
- <CAK18fxGX5O-yKSJPfFhsAahpowJVMbNmY_9waMxVjOKTFLeGoA@mail.gmail.com>
+        bh=3cDd2UntlKv2B8A9OVPxoW9IqdB3cJSB/2Spfwof5gM=;
+        b=OuL/zGh75Ut8oQwwErtVMMP+PrIkxf4UG5H12ie2RdXcamt1n+bGtXzgayS/c3cXLj
+         Nbv7ZvHEeC51xa+AN3H7021Ozbxc1HnCuyXYSyVQU90y1NifkaH/UUk1G5vb9doC0a01
+         XWtaluBlpQ27TwnhkZTLg0pdngmLmBCkShmBw8XiN2VgoYWjWFDgCPqiIQ/QYW3G/QxD
+         2qA1jLJnPhS/TA/Qq9FxpTPT37XVBR433uhPFXmcIM3oKzMgLcgV5c1+0YQh/hWdq6qb
+         aQqY4ZY/3ZxVvKWKHG117RexRqBG2v9mnPQ5DdJLcGDq1FQpbehI4JgzYNzhF0I/VLpT
+         /KcA==
+X-Gm-Message-State: APjAAAWW0BU5htDRN+x0C2b0/YUi7WbDcd6OWo7Bj1paMsXFV/PCWHh5
+	6Kk5YRqdhMZMhJgoZCvUWOI=
+X-Google-Smtp-Source: APXvYqyjvkRaWQ6wIYpCwRlk/lMOEyfmTUJ8lZOtmq7HR8SYB6nDXA4uMh2dBwmyXMt0ZuyxA8apSQ==
+X-Received: by 2002:a63:3001:: with SMTP id w1mr6864207pgw.382.1582233499412;
+        Thu, 20 Feb 2020 13:18:19 -0800 (PST)
+Received: from tyche ([2601:646:9200:4e0::ebc])
+        by smtp.gmail.com with ESMTPSA id z19sm503023pfn.49.2020.02.20.13.18.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 20 Feb 2020 13:18:18 -0800 (PST)
+Message-ID: <0a93546525e6afdd05ee7320a7f0972951d96856.camel@gmail.com>
+Subject: Re: [yocto] Debugging gdb built by Yocto
 From: "Khem Raj" <raj.khem@gmail.com>
-Message-ID: <4bc7a420-001a-dd3e-c89a-45821727f9c7@gmail.com>
-Date: Thu, 20 Feb 2020 10:03:21 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.5.0
+To: Patrick Doyle <wpdster@gmail.com>, Richard Purdie
+	 <richard.purdie@linuxfoundation.org>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Date: Thu, 20 Feb 2020 13:18:17 -0800
+In-Reply-To: <CAF_dkJAHqGUHi-W-bW6+69=89SCfxNB6yP7Ws+JjhOwRTjPxMw@mail.gmail.com>
+References: 
+	<CAF_dkJAyS20skTujCh_SCQXq+muJjCmn5=mnUG+A8qWitzNzqQ@mail.gmail.com>
+	 <2c0fedf92f8a5cf805cc9908b438dab40ffd72ec.camel@linuxfoundation.org>
+	 <CAF_dkJAHqGUHi-W-bW6+69=89SCfxNB6yP7Ws+JjhOwRTjPxMw@mail.gmail.com>
+Organization: HIMVIS LLC
+User-Agent: Evolution 3.34.4 
 MIME-Version: 1.0
-In-Reply-To: <CAK18fxGX5O-yKSJPfFhsAahpowJVMbNmY_9waMxVjOKTFLeGoA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
+On Thu, 2020-02-20 at 08:52 -0500, Patrick Doyle wrote:
+> On Wed, Feb 19, 2020 at 5:19 PM Richard Purdie
+> <richard.purdie@linuxfoundation.org> wrote:
+> > On Tue, 2020-02-18 at 11:26 -0500, Patrick Doyle wrote:
+> > > Does anybody have any tips or tricks for how I might debug the
+> > > (cross-canadian) gdb built by Yocto's SDK?
+> > Do you perhaps want gdb-cross-mipsel ?
+> > 
+> > cross-canadian is designed to be run as part of the SDK.
+> Thank you.  That is, indeed, what I want.  It demonstrates the same
+> problem, and I can debug it.
+> 
+> Aside... it's quite a mind bending experience to debug gdb with gdb
+> :-)
+> 
+> Just imagine...
+> 
+> $ gdb gdb-cross-mipsel
+> (gdb) break main
+> (gdb) run
+> (gdb)
+> 
+> That last "(gdb)" prompt is from the gdb I'm debugging :-)
+> 
+> Also aside... and totally off topic, except that I'm sure some might
+> be wondering why I feel the need to debug gdb...
+> 
+> I am trying to understand why I can't get stack traces from cores
+> file
+> on a mipsel system.  At the moment (after strategic additions of
+> breakpoints, printf statements, and more breakpoints, and lots of
+> internet combing), I am chasing down a rabbit hole related to the
+> facts that the MIPS build uses/produces PIE code (Position
+> Independent
+> Executables, which is somehow different than Position Independent
+> Code), a new ELF tag (MIPS_RLD_MAP_REL) was added 5 years ago to
+> binutils, gdb looks for that tag, but the musl dynamic loader is not
+> aware of it.  I don't know if this is the root cause of my problem or
+> just (another) rabbit hole.  If anybody has any suggestions, I'm all
+> ears.
 
+You must be on to something here, since musl does not do anything with
+MIPS_RLD_MAP*, does this all work well with glibc/mips in same settings
+?
 
-On 2/20/20 9:58 AM, Andrei Gherzan wrote:
-> Hi,
->=20
-> On Fri, Feb 14, 2020 at 7:32 AM Khem Raj <raj.khem@gmail.com=20
-> <mailto:raj.khem@gmail.com>> wrote:
->=20
->     On 2/13/20 2:30 AM, Andrei Gherzan wrote:
->      > When starting psplash as early as possible in the boot process,
->     the fb
->      > device node might not be ready. This patch adds a loop on readin=
-g the
->      > fb0 device with a timeout of 5 seconds.
->      >
->      > Signed-off-by: Andrei Gherzan <andrei@gherzan.ro
->     <mailto:andrei@gherzan.ro>>
->      > ---
->      >=C2=A0 =C2=A0psplash-fb.c | 5 ++++-
->      >=C2=A0 =C2=A01 file changed, 4 insertions(+), 1 deletion(-)
->      >
->      > diff --git a/psplash-fb.c b/psplash-fb.c
->      > index 6603572..6700a3b 100644
->      > --- a/psplash-fb.c
->      > +++ b/psplash-fb.c
->      > @@ -137,6 +137,7 @@ psplash_fb_new (int angle, int fbdev_id)
->      >=C2=A0 =C2=A0 =C2=A0struct fb_fix_screeninfo fb_fix;
->      >=C2=A0 =C2=A0 =C2=A0int=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 off;
->      >=C2=A0 =C2=A0 =C2=A0char=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0fbdev[9] =3D "/dev/fb0";
->      > +=C2=A0 int retries =3D 0;
->      >
->      >=C2=A0 =C2=A0 =C2=A0PSplashFB *fb =3D NULL;
->      >
->      > @@ -156,7 +157,9 @@ psplash_fb_new (int angle, int fbdev_id)
->      >
->      >=C2=A0 =C2=A0 =C2=A0fb->fd =3D -1;
->      >
->      > -=C2=A0 if ((fb->fd =3D open (fbdev, O_RDWR)) < 0)
->      > +=C2=A0 while ((fb->fd =3D open(fbdev, O_RDWR)) < 0 && retries++=
- <=3D 100)
->      > +=C2=A0 =C2=A0 =C2=A0 =C2=A0usleep(50000);
->      > +=C2=A0 if (fb->fd < 0)
->=20
->     i wonder if there should be a different way to ensure this dependen=
-cy
->     perhaps sd_notify for systemd or udev notification maybe ..
->=20
->=20
-> That makes sense. The only issue is that in my use-case, initramfs=20
-> doesn't have systemd. And usually, you will be wanting to run a splash=20
-> way before any init system. What is your proposal with udev=20
-> notifications? Can you expand that?
->=20
+> 
+> --wpd
+> 
 
-something like=20
-https://www.tecmint.com/udev-for-device-detection-management-in-linux/
-
-
-> Regards,
-> Andrei
