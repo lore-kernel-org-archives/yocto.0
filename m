@@ -1,128 +1,140 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.6719.1582212139498688051
- for <yocto@lists.yoctoproject.org>;
- Thu, 20 Feb 2020 07:22:19 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=Qmj4yzxU;
- spf=softfail (domain: konsulko.com, ip: 140.211.169.56, mailfrom: paul.barker@konsulko.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 21060E006B4; Thu, 20 Feb 2020 07:22:19 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.210.66 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ot1-f66.google.com (mail-ot1-f66.google.com [209.85.210.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70DB0E003DB
-	for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 07:22:18 -0800 (PST)
-Received: by mail-ot1-f66.google.com with SMTP id b3so2792532otp.4
-        for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 07:22:18 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wMfK4xI8+uu3jjmq7EjwO+COQrr6KL0ZCMBvuWXZ3R4=;
-        b=Qmj4yzxUDGNX0FcwYsxp5otavJ0mMrRDe+GQGUwsU4AF9Ed/3028hn+p7pcqdDXgxS
-         glN2yJu2TYV9/gey0NUDw93OTa9CG3nlmtGOl1zZSdb4k/6k1ZjnlM9GTqRHa9Jka3cw
-         x8DP2FWqgNmGJz+YPdR8n2oVkE1Y15Bb1VW5M=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wMfK4xI8+uu3jjmq7EjwO+COQrr6KL0ZCMBvuWXZ3R4=;
-        b=h//TqtnEwmPZMRym79ly5rjxsGt92cBwmmqB9wnKN949j37ZNb+lphTCvFIZYNq+VL
-         f4baaMBYwy/SaeyamvEu6xtqCaqkx5MFt9cjyydaxr37h2kQnjd5xAmc/IPiYBcHxFZF
-         fy9axIAjP1kIoPoskgYEtGMcvO0yyuw77ZOFEyTfgkQY4u+TPp69M618O2miIuxZtQ5N
-         Dw1zlYSbiEBxVZ8x+m03GBuIyfqDboY+EspGSfPGhsCCyd+rERpDu2Okhjl0wLYtoEvt
-         vXivo3K/d6rSd9dRyPlJKlKpgnwXkdBaV3h9XYdr2337ghya2YVDUstfHzLDNuycDaSD
-         C5+A==
-X-Gm-Message-State: APjAAAWVCEGsTKdjjfUjeXCddeL1mRzZ5EE0ftIxtjRSFdsbE55yE9Ys
-	EBrkWtBIbvmy/0hsCelfZcAgKGwB8g1W64w6pAibbIMm3yU=
-X-Google-Smtp-Source: APXvYqyjtMW1zQpbAsHVGTDTBk1cRvFmpq7qRFeAFnbBYvF8S3yjrWWCJxaueIVHyKJthXs1XIKm+ScJuiOyAFbravw=
-X-Received: by 2002:a9d:6a06:: with SMTP id g6mr22140439otn.305.1582212137750;
- Thu, 20 Feb 2020 07:22:17 -0800 (PST)
+Subject: [yocto] Lots of basehash related errors
+To: yocto@lists.yoctoproject.org
+From: "Dmitri Toubelis" <dmitri.toubelis@litmusautomation.com>
+X-Originating-Location: Toronto, Ontario, CA (72.15.50.26)
+X-Originating-Platform: Windows Chrome 80
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CAM9ZRVvDHTvvKr1Tdc+C1ZdTv2DSX8JJ9bYhHc0c-wre4qg5LA@mail.gmail.com>
- <bfe6eb79ff352439c3ed5d53757421dce5e0b17d.camel@linuxfoundation.org>
- <CAM9ZRVv2Xoq=GBjQOXT+VBunhYG3n_dCw7Bv6XECTdRhdvzg9w@mail.gmail.com> <b5158d1f6ef3cebc4bff046b28c8851ba7db29ac.camel@linuxfoundation.org>
-In-Reply-To: <b5158d1f6ef3cebc4bff046b28c8851ba7db29ac.camel@linuxfoundation.org>
-From: "Paul Barker" <pbarker@konsulko.com>
-Date: Thu, 20 Feb 2020 15:22:06 +0000
-Message-ID: <CAM9ZRVu-yX0M41SBY5kDzEVL-+EaTfCZiX4dascQQtvuhichdg@mail.gmail.com>
-Subject: Re: [yocto] Bitbake returning non-zero due to sstate errors
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Date: Thu, 20 Feb 2020 08:02:57 -0800
+Message-ID: <RlLC.1582214577544571845.5egw@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="cmqIn3nzmilUmXijhqKB"
 
-On Thu, 20 Feb 2020 at 12:04, Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
->
-> On Thu, 2020-02-20 at 11:59 +0000, Paul Barker wrote:
-> > I'm now looking into this...
-> >
-> > In sstate_checkhashes() we mark sstate as available if
-> > fetcher.checkstatus() succeeds. Then at a later point
-> > sstate_setscene() calls sstate_installpkg() calls pstaging_fetch()
-> > calls fetcher.download() to actually get the sstate artifact. If the
-> > artifact is removed from the mirror between these two accesses (due
-> > to an sstate mirror clean up running in parallel to a build), or if
-> > there is an intermittent download failure we could see checkstatus()
-> > succeed then download() fail.
-> >
-> > I don't think we should ignore all setscene errors but in the
-> > specific case where it's the download step that fails I think that
-> > should be a warning. Or it could be an error by default with a
-> > variable we can set to turn it into a warning. Does that sound
-> > reasonable? If so I'll work up a patch.
->
-> Thinking about the code, I'm not sure how you're generically going to
-> tell the difference between a setscene task that fails as the file
-> disappeared compared to a setscene failure with another real error? :/
->
-> We could make all failed setscene tasks warnings but I think that
-> buries actual real errors.
->
-> This is probably why I've not changed the code before now.
->
-> Special exit code values? :/
->
-> I'm open to proposals.
->
-> I know we could put in some configuration option but in general I hate
-> these as it just means more test matrix combinations and more ways for
-> people to see different behaviours. They have a time/place but I'm not
-> sure its here.
+--cmqIn3nzmilUmXijhqKB
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-I agree - I really don't want to have to add additional complexity
-here. But I do think we need to fix this in some way, others are
-affected by this as can be seen from previous discussions. And in the
-case of a public sstate mirror we can't control when users decide to
-run builds, there will always be the chance of a user running a build
-on an old commit while old sstate artifacts are cleaned or starting a
-build just as the mirror is taken offline for some maintenance.
+Hi,
 
-I think we might be able to make this work if we can avoid adding any
-new conditional logic to the fetcher itself. I can see that almost
-every call to logger.error() is followed by raising an error - perhaps
-we could rework the code to include all the relevant info in the
-raised error object and allow higher level code to catch the exception
-and decide what to do with it. Because once logger.error() is called,
-knotty counts an error and bitbake will exit non-zero even if the
-error is safely handled. Once the fetcher simply raises exceptions in
-the case of failed downloads we could handle this neatly in
-sstate.bbclass. Would that be a viable way forward? Or would that
-break the other fetcher use cases?
+I'm migrating from yocto morty to zeus and I'm receiving a whole lot of er=
+rors like this:
 
-Thanks,
-Paul
+>=20
+> ERROR: When reparsing
+> /srv/yocto/poky/meta-loopedge/meta-loopedge-dist/recipes-core/images/loo=
+pedge-std.bb:do_image_wic,
+> the basehash value changed from
+> 8dd96e09d0b7defa552e586e626933ca37ace5180918ea65addbfcb6c1247b1c to
+> e38fae3f400b3e3de114fcd668d46a1f7c3eec436ec72962e78df906714a6fb0. The
+> metadata is not deterministic and this needs to be fixed.
+> ERROR: The following commands may help:
+> ERROR: $ bitbake loopedge-std -cdo_image_wic -Snone
+> ERROR: Then:
+> ERROR: $ bitbake loopedge-std -cdo_image_wic -Sprintdiff
+>=20
+> ERROR: When reparsing
+> /srv/yocto/poky/meta-loopedge/meta-loopedge-dist/recipes-core/images/loo=
+pedge-std.bb:do_image_ext4,
+> the basehash value changed from
+> a8209ab35324ce59bb193b80871c12c492f69f42fd97b03801165bd4a12670f6 to
+> 1ab2d25ef217fe87b4cce1106d122acd4286043b04dcd74d98df30a01aa6a0b9. The
+> metadata is not deterministic and this needs to be fixed.
+> ERROR: The following commands may help:
+> ERROR: $ bitbake loopedge-std -cdo_image_ext4 -Snone
+> ERROR: Then:
+> ERROR: $ bitbake loopedge-std -cdo_image_ext4 -Sprintdiff
+>=20
+> ERROR: When reparsing
+> /srv/yocto/poky/meta-loopedge/meta-loopedge-dist/recipes-core/images/loo=
+pedge-std.bb:do_image_tar,
+> the basehash value changed from
+> c5ab62cac832e502a338d59124efc690e66560a4e877bc4ba3487c3a734c2497 to
+> bb7ca72863614cb5c9915eb502259b1ffa8b98992f7ad3280d1e049a1824b930. The
+> metadata is not deterministic and this needs to be fixed.
+> ERROR: The following commands may help:
+> ERROR: $ bitbake loopedge-std -cdo_image_tar -Snone
+> ERROR: Then:
+> ERROR: $ bitbake loopedge-std -cdo_image_tar -Sprintdiff
+>=20
+
+I search around for answers and there are here are reasons and solutions f=
+or this that I found:
+- to make sure any date related variables are excluded from basehash via `=
+do_task_name[vardepsexclude] =3D "DATE DATETIME"`
+- clears state cache with `bitbake image -c cleansstate`
+- delete tmp directory and build from scratch
+
+Here is my observation and interpretation:
+- this messages occur when running with pristine build directory, i.e. it =
+only contains 2 files in `conf` dir - `local.conf` and `bblatyers.conf`, so=
+ I can rule out contamination from a previous run.
+- same messages reapeat over and over totalling ~900 errors at the end of =
+the run
+- I have few custom classes and I removed them from the image to rule out =
+contamination from my own code.
+- Tasks that give this error are coming from image.bbclass from poky and n=
+one of them have been altered in any way.
+- The image build runs through the end but because bitbake exits with non-=
+zero exit code it breaks lots of our tools, so just ignoring them is a bad =
+option.
+
+So, am I doing something obviously wrong? It is a known issue in zeus? And=
+ if so is there a known workaround?
+
+Thanks in advance.
+
+--cmqIn3nzmilUmXijhqKB
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,<br /><br />I'm migrating from yocto morty to zeus and I'm receiving a w=
+hole lot of errors like this:<br /><br />
+<blockquote>
+<div>ERROR: When reparsing /srv/yocto/poky/meta-loopedge/meta-loopedge-dis=
+t/recipes-core/images/loopedge-std.bb:do_image_wic, the basehash value chan=
+ged from 8dd96e09d0b7defa552e586e626933ca37ace5180918ea65addbfcb6c1247b1c t=
+o e38fae3f400b3e3de114fcd668d46a1f7c3eec436ec72962e78df906714a6fb0. The met=
+adata is not deterministic and this needs to be fixed.</div>
+<div>ERROR: The following commands may help:</div>
+<div>ERROR: $ bitbake loopedge-std -cdo_image_wic -Snone</div>
+<div>ERROR: Then:</div>
+<div>ERROR: $ bitbake loopedge-std -cdo_image_wic -Sprintdiff</div>
+<div>&nbsp;</div>
+<div>ERROR: When reparsing /srv/yocto/poky/meta-loopedge/meta-loopedge-dis=
+t/recipes-core/images/loopedge-std.bb:do_image_ext4, the basehash value cha=
+nged from a8209ab35324ce59bb193b80871c12c492f69f42fd97b03801165bd4a12670f6 =
+to 1ab2d25ef217fe87b4cce1106d122acd4286043b04dcd74d98df30a01aa6a0b9. The me=
+tadata is not deterministic and this needs to be fixed.</div>
+<div>ERROR: The following commands may help:</div>
+<div>ERROR: $ bitbake loopedge-std -cdo_image_ext4 -Snone</div>
+<div>ERROR: Then:</div>
+<div>ERROR: $ bitbake loopedge-std -cdo_image_ext4 -Sprintdiff</div>
+<div>&nbsp;</div>
+<div>ERROR: When reparsing /srv/yocto/poky/meta-loopedge/meta-loopedge-dis=
+t/recipes-core/images/loopedge-std.bb:do_image_tar, the basehash value chan=
+ged from c5ab62cac832e502a338d59124efc690e66560a4e877bc4ba3487c3a734c2497 t=
+o bb7ca72863614cb5c9915eb502259b1ffa8b98992f7ad3280d1e049a1824b930. The met=
+adata is not deterministic and this needs to be fixed.</div>
+<div>ERROR: The following commands may help:</div>
+<div>ERROR: $ bitbake loopedge-std -cdo_image_tar -Snone</div>
+<div>ERROR: Then:</div>
+<div>ERROR: $ bitbake loopedge-std -cdo_image_tar -Sprintdiff</div>
+</blockquote>
+<div>I search around for answers and there are here are reasons and soluti=
+ons for this that I found:<br />- to make sure any date related variables a=
+re excluded from basehash via `do_task_name[vardepsexclude] =3D "DATE DATET=
+IME"`<br />- clears state cache with `bitbake image -c cleansstate`<br />- =
+delete tmp directory and build from scratch<br /><br />Here is my observati=
+on and interpretation:<br />- this messages occur when running with pristin=
+e build directory, i.e. it only contains 2 files in `conf` dir - `local.con=
+f` and `bblatyers.conf`, so I can rule out contamination from a previous ru=
+n.<br />- same messages reapeat over and over totalling ~900 errors at the =
+end of the run<br />- I have few custom classes and I removed them from the=
+ image to rule out contamination from my own code.<br />- Tasks that give t=
+his error are coming from image.bbclass from poky and none of them have bee=
+n altered in any way.<br />- The image build runs through the end but becau=
+se bitbake exits with non-zero exit code it breaks lots of our tools, so ju=
+st ignoring them is a bad option.<br /><br />So, am I doing something obvio=
+usly wrong? It is a known issue in zeus? And if so is there a known workaro=
+und?<br /><br />Thanks in advance.<br /><br /></div>
+
+--cmqIn3nzmilUmXijhqKB--
