@@ -1,90 +1,82 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.3160.1582161393153439726
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by mx.groups.io with SMTP id smtpd.web09.842.1582169704203735738
  for <yocto@lists.yoctoproject.org>;
- Wed, 19 Feb 2020 17:16:33 -0800
+ Wed, 19 Feb 2020 19:35:04 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=HYiSZgrE;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 88204E015FC; Wed, 19 Feb 2020 17:16:32 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (jupiter.hce[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.166.41 listed in list.dnswl.org]
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 137E3E01432
-	for <yocto@yoctoproject.org>; Wed, 19 Feb 2020 17:16:31 -0800 (PST)
-Received: by mail-io1-f41.google.com with SMTP id s24so2807589iog.5
-        for <yocto@yoctoproject.org>; Wed, 19 Feb 2020 17:16:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-         :cc;
-        bh=u1n0EYdmy9eKwfDtcFQLU6evbJmQlM6zbI8Xf966vC0=;
-        b=HYiSZgrE5MgYtUXG9sDEzoqCXvht7t1JrkFu1Fgc3TWRUEmkpFxK3Irs8HECRIodw/
-         SeNxi6yd+dVktjRMKoErbQ4QtuW0OrbAbcXE1G288KGS0K+xAayGWJFllNRnoVLJXPNU
-         KskTPR7DuhuKGkJkybbGSPQl+nsVbamqi6SDZQ0jgF4OTyflywZ0x9ecqI/w1PA9CUnY
-         TtOCEEIGMMWWpbfnwFy4PxV3kaU5p3Gy0aXBl6S2+fjz90pmj19xex3xLMgvSEa19Rno
-         PHIery9ZRDS+a7xffkc+U1K9ULGVEURap1UptcqVJfJ1HsEFwIQ3W7cM8xa2nnuFoK9U
-         jRVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-         :message-id:subject:to:cc;
-        bh=u1n0EYdmy9eKwfDtcFQLU6evbJmQlM6zbI8Xf966vC0=;
-        b=dERYe7ADSYUaBpjdX4gE4vOorLJ3cwSzv4i7qJFpenegpHpdC8NrdGDNd7hWuotYfn
-         3sOaVemScVpEL+BwoIP8ReZNJ8oP0sY2VHIvoZFQmNnFMoLT2Utfs6QbTd2padhNb4Ps
-         wyXLO6v79gGjY55PWHBbZpLsmR9K7ahyW97QmVjjsb1Hj2PLvYF9YMZ470gqIaz5aVTZ
-         rdzali1kU7jBpE7zsW+PK/XHi6203rE8sQu3WtwP1fsio/u0tQxr911178SVjNQLoKjA
-         /UU7toYb2YGmifaQlfS8DHQ76Mq9GTfJh7/1FFfZFqyGzHX1OgVovzcD5Q50NDqghYXk
-         oFNQ==
-X-Gm-Message-State: APjAAAW5y7ZUE235r+j5DnJR7CVfGTvnX0dfrHs3L8zo4HuCkHIv9ja2
-	DTUL8wV23o7kp8MbNAOU1NqU1GBOoHwmJUpwxnc=
-X-Google-Smtp-Source: APXvYqyxc/YPX0M/jb4lscOxQIZPFQECpsoQKRlNMkLhHQvhe4qIc0F2v7b2oIlBAj/4brlo2RmC668RNIp92scZk1k=
-X-Received: by 2002:a5d:87ca:: with SMTP id q10mr22893180ios.192.1582161391240;
- Wed, 19 Feb 2020 17:16:31 -0800 (PST)
+ dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.43, mailfrom: anuj.mittal@intel.com)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 19 Feb 2020 19:34:58 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,462,1574150400"; 
+   d="scan'208";a="315600742"
+Received: from kmsmsx151.gar.corp.intel.com ([172.21.73.86])
+  by orsmga001.jf.intel.com with ESMTP; 19 Feb 2020 19:34:57 -0800
+Received: from pgsmsx101.gar.corp.intel.com ([169.254.1.77]) by
+ KMSMSX151.gar.corp.intel.com ([169.254.10.233]) with mapi id 14.03.0439.000;
+ Thu, 20 Feb 2020 11:34:56 +0800
+From: "Anuj Mittal" <anuj.mittal@intel.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>, akuster808
+	<akuster808@gmail.com>, "Jain, Sangeeta" <sangeeta.jain@intel.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+CC: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
+	"yi.zhao@windriver.com" <yi.zhao@windriver.com>, "Sangal, Apoorv"
+	<apoorv.sangal@intel.com>, "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "Chan,
+ Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>, "sjolley.yp.pm@gmail.com"
+	<sjolley.yp.pm@gmail.com>, "Tummalapalli, Vineela"
+	<vineela.tummalapalli@intel.com>
+Subject: Re: [yocto] QA Cycle report for build (yocto-3.0.2.rc2)
+Thread-Topic: [yocto] QA Cycle report for build (yocto-3.0.2.rc2)
+Thread-Index: AdXm9tQL7AlvpbmGSCSL3Ar4BNZE0QAO8k2AAAAOm4AAGmHqEA==
+Date: Thu, 20 Feb 2020 03:34:54 +0000
+Message-ID: <C0207330DF60C5409302EC78C3FE68F3034491FD@PGSMSX101.gar.corp.intel.com>
+References: <CY4PR11MB1879657C3887087DEC4B7573E3100@CY4PR11MB1879.namprd11.prod.outlook.com>
+	 <c5548ebb-b027-40da-5c93-d944aed949d0@gmail.com>
+ <c49287d5cf34bb5318b34e60028eda8ab3efe088.camel@linuxfoundation.org>
+In-Reply-To: <c49287d5cf34bb5318b34e60028eda8ab3efe088.camel@linuxfoundation.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+dlp-product: dlpe-windows
+dlp-version: 11.2.0.6
+dlp-reaction: no-action
+x-ctpclassification: CTP_NT
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMjg3OWQ0YzAtNjkyNy00MmE4LWFiYmYtZjYxMzY1OThiZGY1IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoic0tNdjJCbVVtZnFvSFFucVZESzZTUGFBNmFmNFlxZXdqa0tTZlFoNk1vVWpMcnRTUlhpcXplb3ZvdUtOWHQ0byJ9
+x-originating-ip: [172.30.20.206]
 MIME-Version: 1.0
-Received: by 2002:ad5:5d0d:0:0:0:0:0 with HTTP; Wed, 19 Feb 2020 17:16:30
- -0800 (PST)
-In-Reply-To: <CAA=hcWS60Jr0aQ+qVqMoxyU90VPvC_cUyWKjsujqkWxPXLL8NQ@mail.gmail.com>
-References: <CAA=hcWS60Jr0aQ+qVqMoxyU90VPvC_cUyWKjsujqkWxPXLL8NQ@mail.gmail.com>
-From: "JH" <jupiter.hce@gmail.com>
-Date: Thu, 20 Feb 2020 12:16:30 +1100
-Message-ID: <CAA=hcWS=gMW0giYSqks=gMKE_b=xQuufj5=yRd=zFYe1tWA=Ew@mail.gmail.com>
-Subject: Re: You advice to append environment set up to local root shell profile
-To: Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-May be I should append to shells script.
-
-On 2/20/20, JH <jupiter.hce@gmail.com> wrote:
-> Hi,
->
-> I want to setup export LD_LIBRARY_PATH and export PATH to the
-> /home/root shell profile, the oe-core base-files has a profile file,
-> is it a right way to copy that file to my application layer, to extend
-> it and to add new path to export LD_LIBRARY_PATH and export PATH? I'll
-> handle it by a base-files_%.bbappend in my application layer.
->
-> Thank you.
->
-> Kind regards,
->
-> - jh
->
+PiBPbiBXZWQsIDIwMjAtMDItMTkgYXQgMTQ6NDEgLTA4MDAsIGFrdXN0ZXI4MDggd3JvdGU6DQo+
+ID4NCj4gPiBPbiAyLzE4LzIwIDExOjMzIFBNLCBKYWluLCBTYW5nZWV0YSB3cm90ZToNCj4gPiA+
+IEhpIEFsbCwNCj4gPiA+DQo+ID4gPiBUaGlzIGlzIHRoZSBmdWxsIHJlcG9ydCBmb3IgeW9jdG8t
+My4wLjIucmMyOg0KPiA+ID4gaHR0cHM6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9jZ2l0L2NnaXQu
+Y2dpL3lvY3RvLXRlc3RyZXN1bHRzLWNvbnRyaWINCj4gPiA+IC90cmVlLz9oPWludGVsLXlvY3Rv
+LXRlc3RyZXN1bHRzDQo+ID4gPg0KPiA+ID4gPT09PT09PSBTdW1tYXJ5ID09PT09PT09DQo+ID4g
+PiBObyBoaWdoIG1pbGVzdG9uZSBkZWZlY3RzLg0KPiA+ID4gb25lIG5ldyBkZWZlY3RzIGFyZSBm
+b3VuZCBpbiB0aGlzIGN5Y2xlIC0gb2VxYS9ydW50aW1lIHRlc3QNCj4gPiA+ICd0ZXN0X2RuZl9l
+eGNsdWRlJyBmYWlsZWQgKEJ1Z2lkOjEzNzk3KSBvcGVuc3NoIHB0ZXN0IGZhaWxlZCAoQlVHDQo+
+ID4gPiBpZDoxMzc5NikgYmFzaCBwdGVzdCBmYWlsZWQgKEJVRyBpZDoxMzc5NSkNCj4gPiA+DQo+
+ID4gPiA9PT09PT09IEJ1Z3MgPT09PT09PT0NCj4gPiA+IGh0dHBzOi8vYnVnemlsbGEueW9jdG9w
+cm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTM3OTcNCg0KRnJvbSB0aGUgZXJyb3IgbG9nLCBp
+dCBsb29rcyBsaWtlIHdlIGFyZSB0cnlpbmcgdG8gaW5zdGFsbCA3LjY3IHdoaWxlIHpldXMgaGFz
+IDcuNjYgc28gaXQgZXJyb3JzIG91dC4gSSBhbSBndWVzc2luZyB0aGF0IGN1cmwgd2Fzbid0IGJ1
+aWx0IGluIGEgY2xlYW4gYnVpbGQgZGlyZWN0b3J5IHNvIHRoZSBjb3JyZWN0IHZlcnNpb24gb2Yg
+Y3VybCBpcyBkZXBsb3llZC4gQ2FuIHRoaXMgdGVzdCBiZSByZS1ydW4gcGxlYXNlPw0KDQo+ID4g
+PiBodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJvamVjdC5vcmcvc2hvd19idWcuY2dpP2lkPTEzNzk2
+DQoNClRoaXMgbmVlZHM6DQoNCmh0dHBzOi8vZ2l0aHViLmNvbS9vcGVuc3NoL29wZW5zc2gtcG9y
+dGFibGUvY29tbWl0L2ZmMzFmMTU3NzNlZTE3MzUwMmVlYzRkNzg2MWVjNTZmMjZiYmEzODENCg0K
+PiA+ID4gaHR0cHM6Ly9idWd6aWxsYS55b2N0b3Byb2plY3Qub3JnL3Nob3dfYnVnLmNnaT9pZD0x
+Mzc5NQ0KDQpXYXMgYmVjYXVzZSBvZiB0aGUgYmFzaCBDVkUgcGF0Y2guDQoNCj4gPg0KPiA+IFRo
+YW5rIHlvdSBmb3IgbG9nZ2luZyB0aGUgZGVmZWN0cy4NCj4gPg0KPiA+IEkgc3VzcGVjdCB0aGlz
+IGluIG5vdyBpbiB0aGUgaGFuZHMgb2YgdGhlIFlQIFRTQy4NCj4gDQo+IFdoYXQgaXMgdGhlIHN0
+YWJsZSBtYWludGFpbmVyJ3MgdGhvdWdodHMgb24gdGhpcz8NCj4gDQo+IEluIHBhcnRpY3VsYXIg
+SSdtIHdvcnJpZWQgYWJvdXQgdGhlIGJhc2ggcGF0Y2ggYW5kIHdoZXRoZXIgdGhlIHB0ZXN0IHJl
+Z3Jlc3Npb24gYWJvdmUNCj4gaXMgcmVsYXRlZCB0byB0aGF0IG9yIG5vdD8gQW55IHJlY29tbWVu
+ZGF0aW9uPw0KDQpMb29rcyBsaWtlIGl0J3MgcmVsYXRlZCBidXQgSSBkb24ndCB0aGluayB0aGUg
+aW1wYWN0IGlzIG11Y2guIFRoZSB0ZXN0IGlzIGZhaWxpbmcgYmVjYXVzZSB0aGUgbGluZSBudW1i
+ZXIgdGhhdCBpcyBleHBlY3RlZCB0byBmYWlsIGNoYW5nZWQgKGJlY2F1c2Ugb2YgdGhlIGxpbmVz
+IGJlaW5nIGFkZGVkIGluIHRoZSB0ZXN0KS4gU28gd2Ugc2hvdWxkIGJlIG9rYXkgaW4gbXkgb3Bp
+bmlvbi4NCg0KVGhhbmtzLA0KDQpBbnVqDQo=
