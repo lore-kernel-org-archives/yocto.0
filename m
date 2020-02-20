@@ -1,111 +1,82 @@
-Received: from mail-pg1-f194.google.com (mail-pg1-f194.google.com [209.85.215.194])
- by mx.groups.io with SMTP id smtpd.web10.1320.1582153128944106625
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.2916.1582159119238077222
  for <yocto@lists.yoctoproject.org>;
- Wed, 19 Feb 2020 14:58:49 -0800
+ Wed, 19 Feb 2020 16:38:39 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ry4zZXKR;
- spf=pass (domain: gmail.com, ip: 209.85.215.194, mailfrom: raj.khem@gmail.com)
-Received: by mail-pg1-f194.google.com with SMTP id b9so848812pgk.12
-        for <yocto@lists.yoctoproject.org>; Wed, 19 Feb 2020 14:58:48 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=vAC5kucz;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id AAE81E015FC; Wed, 19 Feb 2020 16:38:38 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (jupiter.hce[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.166.54 listed in list.dnswl.org]
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29367E01432
+	for <yocto@yoctoproject.org>; Wed, 19 Feb 2020 16:38:38 -0800 (PST)
+Received: by mail-io1-f54.google.com with SMTP id h8so2747206iob.2
+        for <yocto@yoctoproject.org>; Wed, 19 Feb 2020 16:38:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=kdxwm166sdrB2G0jExxmzkoWlqWBCo8aIm5fYVR6R2E=;
-        b=ry4zZXKRHMUgvcLBPoZOrG74kZ3x2rdUsM3/ohClffK1+/OeGJc52KdGcTzS0lhTBK
-         YKPYMGmgogFYXsCzN7oZv7fjhqUDvW1h4tVkWfNBjuzePi+BoLTHDo1guWX3+ADFBuKm
-         JCsBaFiS0nQS6B4beNd3syBZjaolrOqVje9ZPfzzRjfqSb+AfK3W+4ERecqWOa1HaK6U
-         kZZvNSlTAK5xoC9RrQUR6xnAADDQB8YPGJB33itcpkT8YsmTIY22xwjagyP7+IQYKNRX
-         xNBC1/VpuDDeafeBcYF8CwUYxXY1hp91NV9NQt7HRrvf/f/S17aBRYqzDMqS6crf2dVP
-         dRng==
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=6VByQVCjO0V7eKDeoOIeABNS36ayIVTFjhSJ5ZAMHCs=;
+        b=vAC5kuczPUSvYBEKVvkPs7kxfqCTz0QEDSBev89l2r5BbWyFiclJhTp5BKhUyoD6+D
+         Zc+U2i8NdzQyGcDYixgup3aa0sCOLV7Rwmg0441RgmnUxkh5j9wiE6EosZY5Role0Cat
+         7th1sHXtfDnmNfDXih8r6xEibl86aPhTQve91vSpDY21wyTSlt0MGTB7ovqDNofFXWe9
+         Ic6iNCI6DWZ3UkiI0X9xdHGWVZFL0XYw5ON+Gwy/dD+IKSANmR+gz9pjDNRKKSXkyiw8
+         uZdw0/lRO02aoAC6nnM0AbFw7rzE9Gp0rofl1VZ4ubS/Bzh9mPPiVSWhx00WowBubDWI
+         gLuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=kdxwm166sdrB2G0jExxmzkoWlqWBCo8aIm5fYVR6R2E=;
-        b=FGol1Ho3CCuynuNKkVQmBfhgPIqZcmqI6w0zfZNvXbBGQrllTKUkO93zQs2au53Tbv
-         rip3w/g5SlVP7TDTSHP3ZjKnlWFW2Za+/4gO+P9R+B1j8MRHEe1sJHnagWQkCJVT44sD
-         3kf3h1aVE2iY8AlMjCYkB5XvO7M71mPdbeVlopPwGH1n+qWOdqsX4EkzxxQUVLi/ZF3m
-         hzc0pWg2W5744epHtpFxHBRx0r4o18aRlkycJBsMhAek5usw0+F4CyJ9vPRTpHBBrk4w
-         AsuB26Lfjc1BLq12SptpPHRZcblHpI680v81m81jqp4PPT1d6/KLHLpyaEo2DC7VCaTU
-         NgSQ==
-X-Gm-Message-State: APjAAAX/GK3lwm6zsOspn2XTR8JpruBV+kUpyuWQ4ocYiLUvFYvJoj9J
-	bRb7UT1ha2zh+sKvGD1h5Wg=
-X-Google-Smtp-Source: APXvYqyXZ84QFbgREn7LMTdhpK6FHnReyWQylqO5zYO/gjk0KakLDymAv6tUNRHgqKNaXYGf8OdABQ==
-X-Received: by 2002:a62:36c2:: with SMTP id d185mr30206091pfa.203.1582153128189;
-        Wed, 19 Feb 2020 14:58:48 -0800 (PST)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:4e0:cca7:f312:1961:a4b9? ([2601:646:9200:4e0:cca7:f312:1961:a4b9])
-        by smtp.gmail.com with ESMTPSA id n2sm680436pfq.50.2020.02.19.14.58.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 19 Feb 2020 14:58:47 -0800 (PST)
-Subject: Re: [yocto] QA Cycle report for build (yocto-3.0.2.rc2)
-To: Richard Purdie <richard.purdie@linuxfoundation.org>,
- akuster808 <akuster808@gmail.com>, "Jain, Sangeeta"
- <sangeeta.jain@intel.com>,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
- "yi.zhao@windriver.com" <yi.zhao@windriver.com>,
- "Sangal, Apoorv" <apoorv.sangal@intel.com>,
- "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>,
- "Chan, Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
- "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>,
- "Tummalapalli, Vineela" <vineela.tummalapalli@intel.com>
-References: <CY4PR11MB1879657C3887087DEC4B7573E3100@CY4PR11MB1879.namprd11.prod.outlook.com>
- <c5548ebb-b027-40da-5c93-d944aed949d0@gmail.com>
- <c49287d5cf34bb5318b34e60028eda8ab3efe088.camel@linuxfoundation.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Message-ID: <3f6918ff-4f8e-faa3-aede-a08fc983c4c7@gmail.com>
-Date: Wed, 19 Feb 2020 14:58:46 -0800
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.5.0
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=6VByQVCjO0V7eKDeoOIeABNS36ayIVTFjhSJ5ZAMHCs=;
+        b=S53PWS4yMG6aEopaDjXMuryR4gmNQ6msV/ANim3jiI3jPPOpQOmjArfR19W1xuW0z1
+         XiNVa5JVHOq5iWo7WVBDOVSgXUHk9HCpVQer5Ql/UMYq/uUKUA56mi3UGesn9H7QGdtq
+         CnD/48UyKVTfhF5t1Bf8yXsMkrYYonkWWNBzp4iG2ik4/55YVkSCxLs0OevmnYlgFAfL
+         oSKRmNZKd+aTQ8bkyEtVbrkzc7SWTw5bQsqXn2nn7k5o6CysM4NdxtTWAUC4pWdPoaZI
+         2S+DA6NpPxDgDh04vQG9yHxStzDYQiFWcpU29/LbJHlmkH4SCmmQCJDEaD8/ym1hAe5J
+         wNtA==
+X-Gm-Message-State: APjAAAU6nFeqwgMtiUDlB6jQHO9z6RKGbzp3ja1ik8rbB8/h2VNwQFHT
+	OCZKyyvTG2bUP3wwlX3cQdm95bHZR+oPFGbqOj/tMA==
+X-Google-Smtp-Source: APXvYqy1WYou8oN6fXfmwaX15Id4RToOqfZscPleDYTkWdD+RjGPvNcvqvrTV8Gx4W3/0SmzgyxiI0urzSPY7g5w5qM=
+X-Received: by 2002:a6b:d912:: with SMTP id r18mr21016548ioc.306.1582159117617;
+ Wed, 19 Feb 2020 16:38:37 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <c49287d5cf34bb5318b34e60028eda8ab3efe088.camel@linuxfoundation.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Received: by 2002:ad5:5d0d:0:0:0:0:0 with HTTP; Wed, 19 Feb 2020 16:38:37
+ -0800 (PST)
+From: "JH" <jupiter.hce@gmail.com>
+Date: Thu, 20 Feb 2020 11:38:37 +1100
+Message-ID: <CAA=hcWS60Jr0aQ+qVqMoxyU90VPvC_cUyWKjsujqkWxPXLL8NQ@mail.gmail.com>
+Subject: You advice to append environment set up to local root shell profile
+To: Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
+Hi,
 
+I want to setup export LD_LIBRARY_PATH and export PATH to the
+/home/root shell profile, the oe-core base-files has a profile file,
+is it a right way to copy that file to my application layer, to extend
+it and to add new path to export LD_LIBRARY_PATH and export PATH? I'll
+handle it by a base-files_%.bbappend in my application layer.
 
-On 2/19/20 2:42 PM, Richard Purdie wrote:
-> On Wed, 2020-02-19 at 14:41 -0800, akuster808 wrote:
->>
->> On 2/18/20 11:33 PM, Jain, Sangeeta wrote:
->>> Hi All,
->>>
->>> This is the full report for yocto-3.0.2.rc2:
->>> https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?h=intel-yocto-testresults
->>>
->>> ======= Summary ========
->>> No high milestone defects.
->>> one new defects are found in this cycle - oeqa/runtime test
->>> 'test_dnf_exclude' failed (Bugid:13797)
->>> openssh ptest failed (BUG id:13796)
->>> bash ptest failed (BUG id:13795)
->>>
->>> ======= Bugs ========
->>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=13797
->>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=13796
->>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=13795
->>
->> Thank you for logging the defects.
->>
->> I suspect this in now in the hands of the YP TSC.
-> 
-> What is the stable maintainer's thoughts on this?
-> 
-> In particular I'm worried about the bash patch and whether the ptest
-> regression above is related to that or not? Any recommendation?
-> 
+Thank you.
 
-I agree, two failures are openssh related and I think they should be 
-root caused.
+Kind regards,
 
-> Cheers,
-> 
-> Richard
-> 
-> 
-> 
-> 
+- jh
