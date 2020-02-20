@@ -1,132 +1,90 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.2436.1582233501302298456
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+ by mx.groups.io with SMTP id smtpd.web11.660.1582238668233730441
  for <yocto@lists.yoctoproject.org>;
- Thu, 20 Feb 2020 13:18:21 -0800
+ Thu, 20 Feb 2020 14:44:28 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=NaGKINKs;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: raj.khem@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D6FD3E016E8; Thu, 20 Feb 2020 13:18:20 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (raj.khem[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.210.196 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-pf1-f196.google.com (mail-pf1-f196.google.com [209.85.210.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2ABAAE016B7
-	for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 13:18:20 -0800 (PST)
-Received: by mail-pf1-f196.google.com with SMTP id k29so2517924pfp.13
-        for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 13:18:20 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=cgTTenEw;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.44, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f44.google.com with SMTP id p17so276279wma.1
+        for <yocto@lists.yoctoproject.org>; Thu, 20 Feb 2020 14:44:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linuxfoundation.org; s=google;
         h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :organization:user-agent:mime-version:content-transfer-encoding;
-        bh=3cDd2UntlKv2B8A9OVPxoW9IqdB3cJSB/2Spfwof5gM=;
-        b=NaGKINKsc1spzYPGOoeb0erfZerMP7Zp+OWI/mWuhBsNP8kMkB0TstcRaLy7oY6EvU
-         JyhlqQmbvyP4CTGd4ZzEnwzY2439X5AXn44qRUCMRsqTHtB0ymsVgPhrC73QZ67caOU7
-         64MLzVcLz/kWifYMoCLkRUjVmnxkVusR0D9S7tr/95/RtRoRoVXx6wyrFjJ6kNL8ViV1
-         lZbyo1cKuQekil83JTilI2cgTZ9Nvt9Y7ZlGBymUhle2HhvLFrvZdo8tsjQh5cAEdojV
-         RNHtbXENZhLZtSSVuJQAwuu3ltLyoHNFTR5QdF+J6RMGSZJW3BryA1z4aS+PKWcqSOII
-         RHIg==
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=HZKqVJ9p59DsjSyU1n8kj5hxsImK/JHufNhF07gbLyo=;
+        b=cgTTenEwP9YRZO6c6lXkGUgP583n451HXVPSEjujgg3HPl3kc8TgZU5YQSzmAhU3RQ
+         v6bS+rpVxN+y+WKsHP756xT9qzpVacDBgmoAIALMShdQgPCTQhgTRMsgclxelkCALNFm
+         P5yTcH1hWjG0q+slYvDGR84BdBNQ//8TJGNTw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:organization:user-agent:mime-version
-         :content-transfer-encoding;
-        bh=3cDd2UntlKv2B8A9OVPxoW9IqdB3cJSB/2Spfwof5gM=;
-        b=OuL/zGh75Ut8oQwwErtVMMP+PrIkxf4UG5H12ie2RdXcamt1n+bGtXzgayS/c3cXLj
-         Nbv7ZvHEeC51xa+AN3H7021Ozbxc1HnCuyXYSyVQU90y1NifkaH/UUk1G5vb9doC0a01
-         XWtaluBlpQ27TwnhkZTLg0pdngmLmBCkShmBw8XiN2VgoYWjWFDgCPqiIQ/QYW3G/QxD
-         2qA1jLJnPhS/TA/Qq9FxpTPT37XVBR433uhPFXmcIM3oKzMgLcgV5c1+0YQh/hWdq6qb
-         aQqY4ZY/3ZxVvKWKHG117RexRqBG2v9mnPQ5DdJLcGDq1FQpbehI4JgzYNzhF0I/VLpT
-         /KcA==
-X-Gm-Message-State: APjAAAWW0BU5htDRN+x0C2b0/YUi7WbDcd6OWo7Bj1paMsXFV/PCWHh5
-	6Kk5YRqdhMZMhJgoZCvUWOI=
-X-Google-Smtp-Source: APXvYqyjvkRaWQ6wIYpCwRlk/lMOEyfmTUJ8lZOtmq7HR8SYB6nDXA4uMh2dBwmyXMt0ZuyxA8apSQ==
-X-Received: by 2002:a63:3001:: with SMTP id w1mr6864207pgw.382.1582233499412;
-        Thu, 20 Feb 2020 13:18:19 -0800 (PST)
-Received: from tyche ([2601:646:9200:4e0::ebc])
-        by smtp.gmail.com with ESMTPSA id z19sm503023pfn.49.2020.02.20.13.18.18
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=HZKqVJ9p59DsjSyU1n8kj5hxsImK/JHufNhF07gbLyo=;
+        b=BRfEbQSbrkg1xcbkwFyPwVg1qGouaINcibMlzqjPa0xZta1FazBQcub8ioK3ptzwxL
+         qkcj0ZH8Kr6t6dGnc3+HCTVJcVFX/bHSX8ovN5eXpNqrOYukRrIeUXLFoMRSwOTl4kGv
+         KdcS6bk3zkSNwPiec1X7YLqnvSgJeDTwZBMSJTeUFCzhUUKfcxVm9hH3wzPweOhnHv4x
+         oq901hQgcEvBECwhysevJ56TN4xe9r2VLqdkU+aKYxjyLw5JPnBFvDvbSsu90sPd0EHb
+         txM+x8yJM3itw5ADDegwBhqctmB+VmUAShzHAiuyyOISn+cRINQSOuMjTypBAG8Hoad5
+         Er2Q==
+X-Gm-Message-State: APjAAAVCbt9sD7P+yH7XxtNajyLw3FjejQt/MI7DhMs1IZQN4YZVTDC0
+	JngeTd6ioeNkHaIFShVr5qvGGg==
+X-Google-Smtp-Source: APXvYqwPJ2W0KZTXF1Hjn4hZLXa6zgWttXwH+lFmUPb4fo2sWDUvz7PvvjX/jH/KczHCYSut81ZmTw==
+X-Received: by 2002:a1c:6308:: with SMTP id x8mr6804607wmb.80.1582238666641;
+        Thu, 20 Feb 2020 14:44:26 -0800 (PST)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+        by smtp.gmail.com with ESMTPSA id p15sm941827wma.40.2020.02.20.14.44.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Feb 2020 13:18:18 -0800 (PST)
-Message-ID: <0a93546525e6afdd05ee7320a7f0972951d96856.camel@gmail.com>
-Subject: Re: [yocto] Debugging gdb built by Yocto
-From: "Khem Raj" <raj.khem@gmail.com>
-To: Patrick Doyle <wpdster@gmail.com>, Richard Purdie
-	 <richard.purdie@linuxfoundation.org>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Date: Thu, 20 Feb 2020 13:18:17 -0800
-In-Reply-To: <CAF_dkJAHqGUHi-W-bW6+69=89SCfxNB6yP7Ws+JjhOwRTjPxMw@mail.gmail.com>
+        Thu, 20 Feb 2020 14:44:25 -0800 (PST)
+Message-ID: <004690a057a50b8554de69a4259b0045de0a7d99.camel@linuxfoundation.org>
+Subject: Re: [yocto] QA Cycle report for build (yocto-3.0.2.rc2)
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: "Jain, Sangeeta" <sangeeta.jain@intel.com>, "Mittal, Anuj"
+	 <anuj.mittal@intel.com>, akuster808 <akuster808@gmail.com>, 
+	"yocto@lists.yoctoproject.org"
+	 <yocto@lists.yoctoproject.org>
+Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>, 
+ "yi.zhao@windriver.com" <yi.zhao@windriver.com>, "Sangal, Apoorv"
+ <apoorv.sangal@intel.com>, "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "Chan,
+ Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,  "sjolley.yp.pm@gmail.com"
+ <sjolley.yp.pm@gmail.com>, "Tummalapalli, Vineela"
+ <vineela.tummalapalli@intel.com>
+Date: Thu, 20 Feb 2020 22:44:24 +0000
+In-Reply-To: <CY4PR11MB1879F1750C572C67229F7824E3130@CY4PR11MB1879.namprd11.prod.outlook.com>
 References: 
-	<CAF_dkJAyS20skTujCh_SCQXq+muJjCmn5=mnUG+A8qWitzNzqQ@mail.gmail.com>
-	 <2c0fedf92f8a5cf805cc9908b438dab40ffd72ec.camel@linuxfoundation.org>
-	 <CAF_dkJAHqGUHi-W-bW6+69=89SCfxNB6yP7Ws+JjhOwRTjPxMw@mail.gmail.com>
-Organization: HIMVIS LLC
-User-Agent: Evolution 3.34.4 
+	<CY4PR11MB1879657C3887087DEC4B7573E3100@CY4PR11MB1879.namprd11.prod.outlook.com>
+	 <c5548ebb-b027-40da-5c93-d944aed949d0@gmail.com>
+	 <c49287d5cf34bb5318b34e60028eda8ab3efe088.camel@linuxfoundation.org>
+	 <C0207330DF60C5409302EC78C3FE68F3034491FD@PGSMSX101.gar.corp.intel.com>
+	 <CY4PR11MB1879F1750C572C67229F7824E3130@CY4PR11MB1879.namprd11.prod.outlook.com>
+User-Agent: Evolution 3.34.1-4 
 MIME-Version: 1.0
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-On Thu, 2020-02-20 at 08:52 -0500, Patrick Doyle wrote:
-> On Wed, Feb 19, 2020 at 5:19 PM Richard Purdie
-> <richard.purdie@linuxfoundation.org> wrote:
-> > On Tue, 2020-02-18 at 11:26 -0500, Patrick Doyle wrote:
-> > > Does anybody have any tips or tricks for how I might debug the
-> > > (cross-canadian) gdb built by Yocto's SDK?
-> > Do you perhaps want gdb-cross-mipsel ?
-> > 
-> > cross-canadian is designed to be run as part of the SDK.
-> Thank you.  That is, indeed, what I want.  It demonstrates the same
-> problem, and I can debug it.
-> 
-> Aside... it's quite a mind bending experience to debug gdb with gdb
-> :-)
-> 
-> Just imagine...
-> 
-> $ gdb gdb-cross-mipsel
-> (gdb) break main
-> (gdb) run
-> (gdb)
-> 
-> That last "(gdb)" prompt is from the gdb I'm debugging :-)
-> 
-> Also aside... and totally off topic, except that I'm sure some might
-> be wondering why I feel the need to debug gdb...
-> 
-> I am trying to understand why I can't get stack traces from cores
-> file
-> on a mipsel system.  At the moment (after strategic additions of
-> breakpoints, printf statements, and more breakpoints, and lots of
-> internet combing), I am chasing down a rabbit hole related to the
-> facts that the MIPS build uses/produces PIE code (Position
-> Independent
-> Executables, which is somehow different than Position Independent
-> Code), a new ELF tag (MIPS_RLD_MAP_REL) was added 5 years ago to
-> binutils, gdb looks for that tag, but the musl dynamic loader is not
-> aware of it.  I don't know if this is the root cause of my problem or
-> just (another) rabbit hole.  If anybody has any suggestions, I'm all
-> ears.
+I discussed this quickly in bug triage today with Armin. We agreed
+that:
 
-You must be on to something here, since musl does not do anything with
-MIPS_RLD_MAP*, does this all work well with glibc/mips in same settings
-?
+* The openssh bug is minor and doesn't affect release
+* Anuj resolved one of the bugs as being execution error so again it
+doesn't affect release
+* The bash issue does affect release
 
-> 
-> --wpd
-> 
+We're proposing we build and release an rc3 with the bash CVE reverted.
+This would also include the bitbake memory optimisation during parsing
+which merged.
+
+We wouldn't rerun the manual QA for rc3, just check the automated test
+results.
+
+Does anyone have any objection to that? If not, QA should see an rc3
+email but we're just expecting to check the test results if that works
+for everyone?
+
+Vineela: Not sure how this affects release process, we'll just have to
+figure that out.
+
+Cheers,
+
+Richard
 
