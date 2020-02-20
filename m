@@ -1,12 +1,12 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.3686.1582194832711832945
+ by mx.groups.io with SMTP id smtpd.web09.4178.1582198028968364067
  for <yocto@lists.yoctoproject.org>;
- Thu, 20 Feb 2020 02:33:52 -0800
+ Thu, 20 Feb 2020 03:27:09 -0800
 Authentication-Results: mx.groups.io;
- dkim=fail reason="body hash did not verify" header.i=@linuxfoundation.org header.s=google header.b=hNodSMiq;
- spf=softfail (domain: linuxfoundation.org, ip: 140.211.169.56, mailfrom: richard.purdie@linuxfoundation.org)
+ dkim=pass header.i=@konsulko.com header.s=google header.b=EKyOSYGp;
+ spf=softfail (domain: konsulko.com, ip: 140.211.169.56, mailfrom: paul.barker@konsulko.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2AFECE01611; Thu, 20 Feb 2020 02:33:52 -0800 (PST)
+	id 89278E015FF; Thu, 20 Feb 2020 03:27:08 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -17,73 +17,98 @@ X-Spam-HAM-Report:
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.128.47 listed in list.dnswl.org]
+	*      [209.85.210.52 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBAAFE0144C
-	for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 02:33:50 -0800 (PST)
-Received: by mail-wm1-f47.google.com with SMTP id t14so1435591wmi.5
-        for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 02:33:50 -0800 (PST)
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DA37E00C5B
+	for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 03:27:06 -0800 (PST)
+Received: by mail-ot1-f52.google.com with SMTP id h9so3279848otj.11
+        for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 03:27:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=ENda3+DnZBD0ZKF9EONxg3CgRZAcWtjO7SABlAT/R8M=;
-        b=hNodSMiqy+SzP6RgS1wg2xfjtsR3F8rfVtvNQDaACVobiNakzrZ+fK8vVkFHjExPgF
-         lR0rGbLUpu4KEtnoQ1dWvxAzEgOPdMTvFA9vvKN91w/KN+zFYxCy2Akw42VdEGLyf6mL
-         iZ2S3YFTdJUDOWawo7gzkIo7TjoctyH5FxYYk=
+        d=konsulko.com; s=google;
+        h=mime-version:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=j8mGdnP5LcbUmwr38MYmb5gGBg7sI+0OYYyXRmld988=;
+        b=EKyOSYGpkASH+PhX0XNzDu2MfZ+ln9Lk7uXIe+sKp+yIeAAG55J2xX/8ME+hmDG81n
+         ifguMB+Io7UX3jNKV8wB6mo5W/NQSCC43kyjdaDhNjlUI1KxzlZTpdQTXvIo8ZZvhZhx
+         Hxsb5tLCq4lRhs1qC87x3Zxsd3dEqZH/GV6sc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=ENda3+DnZBD0ZKF9EONxg3CgRZAcWtjO7SABlAT/R8M=;
-        b=rgn6Sn2WbepCr4mSGMSB1lZKlzyLHy+0cNaiNb2J2ns78Rc1So65fNm6sh1yALnZwl
-         JkCxdlHwLRwXMubCf8XoIDbkUgNYzy9vwd7uzEsFnzoVGfFp5kyWmK7zj1d2ie2MkFRY
-         ki8/kkDR8Vm2Gx48F1dbfLLoYSxJVW8fzBGG6ixx6D3LoIe2xpOtGCIWB3hP4zy0UT1k
-         zPqQ5vl1lQoNRlC/NzWHoJDhzg+trbdMOJMKovAEpYI9IP9rBb9NfenX+dYAuGBVpx+F
-         z2yt3IEFjpI9Moa9lxQ8BmBJrq9d+30MmqAwQyVZDEombz7/Yb8qKYc3fMdUw8Bfu+YV
-         pg7A==
-X-Gm-Message-State: APjAAAWX+Fq+vAmebDMl6aux8JJw11LmaJUrHGF7oXzpbTXMAbc7gkki
-	zB3G9TGAXE85PjHHlm09kCz3OA==
-X-Google-Smtp-Source: APXvYqwNMsQUJ8FfJ34FbeOlyqkzaJ2qvDC77HuScc3sVquu0OMDLOHBOsJb4sFMne2oXWxuIAWeqA==
-X-Received: by 2002:a7b:c4c5:: with SMTP id g5mr3781551wmk.85.1582194830102;
-        Thu, 20 Feb 2020 02:33:50 -0800 (PST)
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-        by smtp.gmail.com with ESMTPSA id t128sm4192321wmf.28.2020.02.20.02.33.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 20 Feb 2020 02:33:49 -0800 (PST)
-Message-ID: <77217fc86fe8451eae53e3b6e93cd9cefab8b022.camel@linuxfoundation.org>
-Subject: Re: [OE-core] Yocto Project Status WW07'20
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: "Jain, Sangeeta" <sangeeta.jain@intel.com>, "sjolley.yp.pm@gmail.com"
- <sjolley.yp.pm@gmail.com>, "yocto@yoctoproject.org"
- <yocto@yoctoproject.org>,  "openembedded-core@lists.openembedded.org"
- <openembedded-core@lists.openembedded.org>
-Date: Thu, 20 Feb 2020 10:33:47 +0000
-In-Reply-To: <CY4PR11MB18792EA8DAE6F08AD3CED448E3130@CY4PR11MB1879.namprd11.prod.outlook.com>
-References: <0b8a01d5e675$d2363e30$76a2ba90$@gmail.com>
-	 <CY4PR11MB18792EA8DAE6F08AD3CED448E3130@CY4PR11MB1879.namprd11.prod.outlook.com>
-User-Agent: Evolution 3.34.1-4 
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=j8mGdnP5LcbUmwr38MYmb5gGBg7sI+0OYYyXRmld988=;
+        b=df7pRI4A4Mt3NbkY6EEpOStSvB3hE85wAc/MpWGu3/ubEc8IWxdm2Z+sjvH8NEu1C/
+         D6RYv9u+Q06cxhu+WqnCWa2AiVb+0xX7zfUu09hbeXoX3/8DjlPyJwZH2TOTy0z/97J8
+         vLT+RtkVQkv9poliNIMp17L0xWv76CgT7Omvvjt+6xGMZooXiHzAODCMl/4fp+fxXwcR
+         q+w+diuNmTsVYmfu9Aj2AlcQiUdfDJArUlIGd4vJitpq0EZ5z4z1ndMm1IDKSCCUmNU6
+         KruOnt/VVlbOwmjt+vBUEZgSfAVgRTSKyS7mLiaP8PiwTVarxwWhQ3RZ2ia0qhjQVBoi
+         YQoQ==
+X-Gm-Message-State: APjAAAXrO6eQ670lNmXts/Mxbve7fA126eqw201BGDVvCxYkWK0eDTTM
+	I5mGKlMSEQFMZyv9ul5YbNZNBxk6DBZCGsTlCCGA9gjVeZwJVw==
+X-Google-Smtp-Source: APXvYqzQPXR+ANnt3XDsQ04KuJRZdzQzd3GAdNgJXqQN/lG6vHQtMBaQNi4sBX7tVLd4BUhNP94HXHKaAaujs5Yyh+4=
+X-Received: by 2002:a9d:470a:: with SMTP id a10mr23784576otf.370.1582198026093;
+ Thu, 20 Feb 2020 03:27:06 -0800 (PST)
 MIME-Version: 1.0
+From: "Paul Barker" <pbarker@konsulko.com>
+Date: Thu, 20 Feb 2020 11:26:54 +0000
+Message-ID: <CAM9ZRVvDHTvvKr1Tdc+C1ZdTv2DSX8JJ9bYhHc0c-wre4qg5LA@mail.gmail.com>
+Subject: Bitbake returning non-zero due to sstate errors
+To: Yocto discussion list <yocto@yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2020-02-20 at 07:46 +0000, Jain, Sangeeta wrote:
-> Planned upcoming dot releases:
->  YP 2.7.3 built and in QA
-> =20
-> I didn=E2=80=99t see any notification for this build. Am I missing some=
-thing?
+In my new CI setup I'm using an sstate mirror which seems to have some
+occasional download issues. This results in the setscene task failing.
+For example:
 
-No, its due to be built but isn't built yet!
+ERROR: qt3d-5.13.2+gitAUTOINC+93361f1a59-r0
+do_package_write_ipk_setscene: Fetcher failure: Unable to find file
+file://fd/sstate:qt3d:armv7at2hf-neon-linux-gnueabi:5.13.2+gitAUTOINC+93361=
+f1a59:r0:armv7at2hf-neon:3:fda6c3edff0205b07ff176cf16771247117fa310bc65a6a1=
+df6befc4230e0a74_package_write_ipk.tgz;downloadfilename=3Dfd/sstate:qt3d:ar=
+mv7at2hf-neon-linux-gnueabi:5.13.2+gitAUTOINC+93361f1a59:r0:armv7at2hf-neon=
+:3:fda6c3edff0205b07ff176cf16771247117fa310bc65a6a1df6befc4230e0a74_package=
+_write_ipk.tgz
+anywhere. The paths that were searched were:
+    /builds/SanCloudLtd/sancloud-arago/build/sstate-cache
+    /builds/SanCloudLtd/sancloud-arago/build/sstate-cache
+ERROR: qt3d-5.13.2+gitAUTOINC+93361f1a59-r0
+do_package_write_ipk_setscene: No suitable staging package found
+ERROR: Logfile of failure stored in:
+/builds/SanCloudLtd/sancloud-arago/build/tmp/work/armv7at2hf-neon-linux-gnu=
+eabi/qt3d/5.13.2+gitAUTOINC+93361f1a59-r0/temp/log.do_package_write_ipk_set=
+scene.10524
+NOTE: recipe qt3d-5.13.2+gitAUTOINC+93361f1a59-r0: task
+do_package_write_ipk_setscene: Failed
+WARNING: Setscene task
+(/builds/SanCloudLtd/sancloud-arago/sources/meta-qt5/recipes-qt/qt5/qt3d_gi=
+t.bb:do_package_write_ipk_setscene)
+failed with exit code '1' - real task will be run instead
 
-I think that was meant to say 3.0.2, sorry about any confusion.
+As indicated in the final warning message there the real tasks run
+since no sstate artifact is available. These tasks succeed:
 
-Cheers,
+NOTE: recipe qt3d-5.13.2+gitAUTOINC+93361f1a59-r0: task
+do_package_write_ipk: Succeeded
 
-Richard
+The result is a successful build of the desired images. However, the
+build is marked as a failure due to those sstate errors:
 
+Summary: There were 11 ERROR messages shown, returning a non-zero exit code=
+.
+
+Is this the expected behaviour? The final images are built correctly.
+I can't see any simple way to mask those setscene errors but I might
+be missing something.
+
+The full log can be seen at
+https://gitlab.com/SanCloudLtd/sancloud-arago/-/jobs/443901140/raw.
+I'm on the zeus branch here, I'll try to re-test on master later if I
+can.
+
+Thanks,
+Paul
