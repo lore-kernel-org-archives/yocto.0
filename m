@@ -1,363 +1,158 @@
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
- by mx.groups.io with SMTP id smtpd.web10.1661.1582176651759333944
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+ by mx.groups.io with SMTP id smtpd.web11.2020.1582180088347715200
  for <yocto@lists.yoctoproject.org>;
- Wed, 19 Feb 2020 21:30:52 -0800
+ Wed, 19 Feb 2020 22:28:08 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=mlpiTmp7;
- spf=pass (domain: gmail.com, ip: 209.85.160.180, mailfrom: zoran.stojsavljevic@gmail.com)
-Received: by mail-qt1-f180.google.com with SMTP id n17so2077960qtv.2
-        for <yocto@lists.yoctoproject.org>; Wed, 19 Feb 2020 21:30:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=8NfsG3jog9Z6VOXSajfoAN9HUf2tduG05wLKzEqpNm0=;
-        b=mlpiTmp787OIDuI2Y2eRw+Z+3ak6cmF56OEhH58mgASNOtGcZ0ONcZwnk7bUXx+fQj
-         AF02mZDPPYQjC9gCO2uvMkCkAfp/5MH3jvIGnJ5VSYP9zE248FketHCMZaKE5Bp0cjeW
-         SuVm+OUe6yahu11Gzw22mOj/jnoKsS9i+Lq5tSsil1PMJtgikdqRw5avmuJG8YZzaLaT
-         gYQDgWQaydkADPAgtnraZf9LXDL4ddV4XOxbYEvcN3UoqSJVWEY6hN+ithTVsaEkvkuW
-         jIIdDOAE0/jfUnJkuAoqsWMMhq43V3ekIYPC6cZroe1AhWvqrUMD+pvx0Jx7NQiBQLcw
-         ZU1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=8NfsG3jog9Z6VOXSajfoAN9HUf2tduG05wLKzEqpNm0=;
-        b=YPwfIJmGXVoXeFytAbWZP9wet57AT9W4+EusncfG++dx/RLHy4yD0gDL3i71Ws66sS
-         +QUbCKyMLMdrkOhYOLfu6EPQOGvJ1scGBPwe3JqSHhgSsi7PGf6pvtnoKpqU829vVpEd
-         osxGML4lVtivyDLe2IwDiX8C7luae3ywpRhNzA+C5INh0hdZsIl0GhqHuaqk5h5W3GLF
-         bpsWavgOsxYr0phRAXXmSAjG0lzMeLj7r/7maCTquaoUB1a1LAYKrRj8EYvVJyFSZSss
-         +gvPmDchc+M4RPgfEDLna/T46wkS/j6nZQmlOWOoPtgTMwpglf5VmLyII5KzUbCt5sXt
-         1ZkQ==
-X-Gm-Message-State: APjAAAVV7wj1rayhD0kQX7aeXJYz4BSILmStALJr28SWYLw7pSHszgj6
-	EtH+z/JZvFMACPaRHN+lQIPDFhePA380eAY0FQ0=
-X-Google-Smtp-Source: APXvYqxAFkPelYU0e55NumwVQbgMlBec/M4jqKE7SvsEwf/m+qokNrfrg2Hs/1avp+iLLTfCoctIt6TfHmR4t5lK5Z0=
-X-Received: by 2002:ac8:7b29:: with SMTP id l9mr24425261qtu.141.1582176650325;
- Wed, 19 Feb 2020 21:30:50 -0800 (PST)
+ dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=DmYN6k3k;
+ spf=pass (domain: intel.com, ip: 134.134.136.20, mailfrom: sangeeta.jain@intel.com)
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 19 Feb 2020 22:28:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,463,1574150400"; 
+   d="scan'208";a="283323722"
+Received: from orsmsx110.amr.corp.intel.com ([10.22.240.8])
+  by FMSMGA003.fm.intel.com with ESMTP; 19 Feb 2020 22:28:07 -0800
+Received: from orsmsx601.amr.corp.intel.com (10.22.229.14) by
+ ORSMSX110.amr.corp.intel.com (10.22.240.8) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 19 Feb 2020 22:28:06 -0800
+Received: from orsmsx608.amr.corp.intel.com (10.22.229.21) by
+ ORSMSX601.amr.corp.intel.com (10.22.229.14) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 19 Feb 2020 22:28:06 -0800
+Received: from ORSEDG001.ED.cps.intel.com (10.7.248.4) by
+ orsmsx608.amr.corp.intel.com (10.22.229.21) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
+ via Frontend Transport; Wed, 19 Feb 2020 22:28:06 -0800
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.170)
+ by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server (TLS)
+ id 14.3.439.0; Wed, 19 Feb 2020 22:28:06 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Lc14ghXGikxOp4AxuIBOcDePa7kq3yM4h1oIanT/y8w6ThyzZTBjieTlCTuG4gjjFGBUp2BOyS9rwVkcnYtpDiEIpYejAdbZikvgIZTutgYq9Fn/JUUQlu0BmTBzOdN6NZGqzutLQEgrwo18p8BUFPKjscglwfdbw6InQChTWsFkyOWe9CDwxYpues/13v35L3kZd4E2of9OwbQMS8Z3pg8rVLjb5KsRk29y0h8ZLpDMG09PNy36FRZl/Y3bdR1UqHYb9Kp1wuucjRa6X0K4jKJvKoIGhPQo8sSsSgQK0PMWVb7wrSd+S9NKg6JOu65DFX+O76c50gp0Yfk/nncxEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eP1UpuMzlKlwpFeiGCtIemzYSgZFx3b3bfjCLqJumv4=;
+ b=AdaZHAYpBeaZL2Vq2aWuUamdrb6NMkvOAWwO3NSsACOb8ilQXZ7guwTl+LmwZ4nCK7ZVPQ2Mobi2m7sxxCXeVMjRmykRPfX0AUbXKxH54tf4Lu6SI94Oyni42T9Ezx4h2HWW3K9iJLS7MGxThbqB3Achdy8Ydz7MBKlBAFYUy01aoQTNjtHK4rmot1fJIv/4hz3Fl6Yptv8fFDZ3kcjMBcseTQV31J7K/na+aj9fhjXq7Gu/zEzSv3f3EOspaLpWuoViu9hBo60Nr5slsvV6SvGWa4/1pJoHynm7cQC7FZeBvL5fy70HaI/iQePuVvWD/RoQ3t9/8ZKx4iSkDBIKCA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
+ s=selector2-intel-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eP1UpuMzlKlwpFeiGCtIemzYSgZFx3b3bfjCLqJumv4=;
+ b=DmYN6k3kAkTnIb5ucmV36fmfsYKk24mqUkM+zzPwPIxa0Gmmyy8epdWpy/7M+Fb4X0yHtil4hIvbI8t3HDrtLJJ6u9ka4+aDH+JzaZZqcQHeBwEQxc31zMLXZSF1yoEiUJzsL1cPsvgt6SV+P9HFufUbFPYC/Nz/eL+AgAi5U0I=
+Received: from CY4PR11MB1879.namprd11.prod.outlook.com (10.175.60.137) by
+ CY4PR11MB1766.namprd11.prod.outlook.com (10.175.59.23) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2729.25; Thu, 20 Feb 2020 06:28:04 +0000
+Received: from CY4PR11MB1879.namprd11.prod.outlook.com
+ ([fe80::69a4:ad54:33d6:41b]) by CY4PR11MB1879.namprd11.prod.outlook.com
+ ([fe80::69a4:ad54:33d6:41b%9]) with mapi id 15.20.2729.033; Thu, 20 Feb 2020
+ 06:28:04 +0000
+From: "Sangeeta Jain" <sangeeta.jain@intel.com>
+To: "Mittal, Anuj" <anuj.mittal@intel.com>, Richard Purdie
+	<richard.purdie@linuxfoundation.org>, akuster808 <akuster808@gmail.com>,
+	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+CC: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
+	"yi.zhao@windriver.com" <yi.zhao@windriver.com>, "Sangal, Apoorv"
+	<apoorv.sangal@intel.com>, "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "Chan,
+ Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>, "sjolley.yp.pm@gmail.com"
+	<sjolley.yp.pm@gmail.com>, "Tummalapalli, Vineela"
+	<vineela.tummalapalli@intel.com>
+Subject: Re: [yocto] QA Cycle report for build (yocto-3.0.2.rc2)
+Thread-Topic: [yocto] QA Cycle report for build (yocto-3.0.2.rc2)
+Thread-Index: AdXm9tQL7AlvpbmGSCSL3Ar4BNZE0QAftdaAAAAOmoAACjRTAAAF+YoA
+Date: Thu, 20 Feb 2020 06:28:03 +0000
+Message-ID: <CY4PR11MB1879F1750C572C67229F7824E3130@CY4PR11MB1879.namprd11.prod.outlook.com>
+References: <CY4PR11MB1879657C3887087DEC4B7573E3100@CY4PR11MB1879.namprd11.prod.outlook.com>
+	 <c5548ebb-b027-40da-5c93-d944aed949d0@gmail.com>
+ <c49287d5cf34bb5318b34e60028eda8ab3efe088.camel@linuxfoundation.org>
+ <C0207330DF60C5409302EC78C3FE68F3034491FD@PGSMSX101.gar.corp.intel.com>
+In-Reply-To: <C0207330DF60C5409302EC78C3FE68F3034491FD@PGSMSX101.gar.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiMjg3OWQ0YzAtNjkyNy00MmE4LWFiYmYtZjYxMzY1OThiZGY1IiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoic0tNdjJCbVVtZnFvSFFucVZESzZTUGFBNmFmNFlxZXdqa0tTZlFoNk1vVWpMcnRTUlhpcXplb3ZvdUtOWHQ0byJ9
+dlp-reaction: no-action
+dlp-version: 11.2.0.6
+dlp-product: dlpe-windows
+x-ctpclassification: CTP_NT
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=sangeeta.jain@intel.com; 
+x-originating-ip: [192.198.147.217]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: dccfbad1-6530-4cac-4b6c-08d7b5ce0a8d
+x-ms-traffictypediagnostic: CY4PR11MB1766:
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <CY4PR11MB17661467FEA7C80EBCA6E389E3130@CY4PR11MB1766.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 031996B7EF
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(136003)(346002)(376002)(39860400002)(366004)(396003)(189003)(199004)(76116006)(966005)(8936002)(107886003)(55016002)(66476007)(66446008)(86362001)(66556008)(64756008)(33656002)(316002)(9686003)(110136005)(54906003)(478600001)(66946007)(4326008)(186003)(26005)(52536014)(5660300002)(6506007)(53546011)(81156014)(7696005)(71200400001)(2906002)(8676002)(81166006);DIR:OUT;SFP:1102;SCL:1;SRVR:CY4PR11MB1766;H:CY4PR11MB1879.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: LMKSEW6MnqSomeaK9hUoykA4kmzWjcxq8Np9jyJUhp5dkhgWJQloslgBStZoI9o2/IaJFvgqQxPRrc87VsewVmRByPa8iwhm+SiQrPkTMb5UOogoLCZgXQZG5tCFbvP4f30y55by4N/xtcmqtzEhsTcoVbV10U3BqsPS1y6w4zEHsPvyMqBgjgB09nNKXAVWs8KmAKpp4ZjIBV8mrKuke0S9UyfmSSyoF6eDds402x5wKCFk5mX6uM9R4ajkNUqmibo4BWql0lqL+NhI9cWBu3nmLPTtm4qadJ9eApQOLCvyejedDr5bnGN/eaHFSWnoAY98fu09rLrE+tNluv2kyKol+69zxkNh1FhNBKHu1x2CiFKrJSPosvmBM8nmERfBoxdkasskZrQJzBPIHCxvCIExrfUWbeQUJQa7JJYCTnb6ywFd0S3XvlLafShNb/s4zrY8ibrle3eEHWkEZY3dlp6/VHW7Tfy+ie2/8EeZePi4cHklLiXeFy+pzaFeMMllo9d2VSUmxrBPUTx2XB9qwA==
+x-ms-exchange-antispam-messagedata: 2nB7I0Yzt73w3sQjLp3wfNy66kSdrUrcCzO3SLlGU0okeIkbST734sglLN2XN9Kq0oTHMObZ9JdGhlqIs7EaElWj5g/lVloWTZNXkR+3r6dFYSrTt+cilhcJVaeHpuGZImcaCRBZGQICVABUiyLbuA==
 MIME-Version: 1.0
-References: <CAGAf8LxrzqhEorp=xSRVKCMNsqfo+bwNsyHfnhMjmpf42rtY5w@mail.gmail.com>
- <CAGbd71SQXi29MVpQcbme2CxWbyWNgHMGZW1LOJDYfeoOYfJOVg@mail.gmail.com>
- <CAGAf8LyCBGw-vNipFK5Y8L+W=jNeyMJ95S=r=+r4vXZiB3roDA@mail.gmail.com>
- <CAGbd71QL_kbrjatOp19PhyT_qnTOyqHzA79Yfr=C=P6DmE=pUQ@mail.gmail.com>
- <CAGAf8LzpBOvL0AJiTn_ae5ukreqrDLzriUvUQu8vgxF4wkXxZg@mail.gmail.com> <CAGbd71RYdp8-SZzoV_1G4aCKq=LRmLoUeQ2=cY3R4ODY8a1DGw@mail.gmail.com>
-In-Reply-To: <CAGbd71RYdp8-SZzoV_1G4aCKq=LRmLoUeQ2=cY3R4ODY8a1DGw@mail.gmail.com>
-From: "Zoran" <zoran.stojsavljevic@gmail.com>
-Date: Thu, 20 Feb 2020 06:30:38 +0100
-Message-ID: <CAGAf8LwiRo9-qAf2x8JZ2KM-E2Q26TgnkPVctF4nDw-JXBYMkw@mail.gmail.com>
-Subject: Re: [yocto] Modified GENIVI Cannelloni recipe with strange side effects
-To: Laurent Gauthier <laurent.gauthier@soccasys.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-Exchange-CrossTenant-Network-Message-Id: dccfbad1-6530-4cac-4b6c-08d7b5ce0a8d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Feb 2020 06:28:03.6669
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 5xL1TcZ29K5LRAvUyEqtKzlGvrlCeYmFFkezIKAHAmSjKCktrf3ayB8SCXfXeL+dFVlE2EUSQ764/7kUa7r6uQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1766
+Return-Path: sangeeta.jain@intel.com
+X-OriginatorOrg: intel.com
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hello Laurent,
-
-U R correct (and why I am not surprised?!). :-)
-
-The correct recipe is here (it becomes very simplistic, seems):
-https://github.com/ZoranStojsavljevic/meta-socketcan/blob/master/recipes-c=
-an/cannelloni/cannelloni.bb
-
-I have (out of my ignorance) one question, which confuses me: Why this
-functionality does not reside in do_install_append () (I would expect
-this to be correct one, but it seems that inheritance in bitbake has
-changed)?
-
-Many thanks (what we, ignorant YOCTO guys, will do without the experts),
-Zoran
-_______
-
-On Wed, Feb 19, 2020 at 7:05 PM Laurent Gauthier
-<laurent.gauthier@soccasys.com> wrote:
->
-> Hi Zoran,
->
-> I just saw your reply now.
->
-> I think that you might want to remove the INHIBIT_SYSROOT_STRIP and
-> other INHIBIT_* options from your recipe.
->
-> For reference a message from Khem warning that this option should be
-> used sparingly:
->
-> * https://www.yoctoproject.org/pipermail/yocto/2019-March/044415.html
->
-> My best guess is that the use of this option is directly linked to
-> chrpath being needed.
->
-> As this recipe is being built with a rather clean looking
-> CMakeLists.txt none of these weird options are needed.
->
-> Kind regards, Laurent.
->
-> On Mon, Feb 17, 2020 at 8:01 AM Zoran Stojsavljevic
-> <zoran.stojsavljevic@gmail.com> wrote:
-> >
-> > > The issue I see is that the following files have been build but NOT =
-installed:
-> > >
-> > > * libcannelloni-common.so.0
-> > > * libcannelloni-common.so.0.0.1
-> >
-> > Not quite... The solution is outlined here (in function do_install):
-> > +       ## ERROR: QA Issue: package cannelloni contains bad RPATH
-> > +       ## quick fix is in a do_install or do_install_append do
-> > +       chrpath -d ${D}${bindir}/cannelloni
-> >
-> > https://github.com/ZoranStojsavljevic/meta-socketcan/blob/master/recip=
-es-can/cannelloni/cannelloni.bb
-> > https://github.com/ZoranStojsavljevic/meta-socketcan/blob/master/recip=
-es-can/cannelloni/cannelloni.bb_GENIVI
-> >
-> > I admit, your first email has shaken my head, so I can see things much
-> > more clear. :-)
-> >
-> > My best guess, this solution is just a workaround (not the final one),
-> > since I have in ${D} the following:
-> >
-> > cannelloni-1.0: package cannelloni contains bad RPATH
-> > /home/user/projects2/beaglebone-black/bbb-yocto/build/tmp/work/cortexa=
-8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/build:
-> > in file /home/user/projects2/beaglebone-black/bbb-yocto/build/tmp/work=
-/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/packages-split/cannel=
-loni/usr/bin/cannelloni
-> > [rpaths]
-> >
-> > So, since my limited knowledge about bitbake build systems ends here,
-> > somebody from YOCTO primes (potentially Khem Raj, Ross Burton, maybe
-> > even Richard Purdie) should look more closely into this issue
-> > (apologies for my unsolicited suggestions).
-> >
-> > Laurent,
-> >
-> > Once again, thank you for unselfish help,
-> > Zoran
-> > _______
-> >
-> >
-> > On Fri, Feb 14, 2020 at 2:20 PM Laurent Gauthier
-> > <laurent.gauthier@soccasys.com> wrote:
-> > >
-> > > Hi Zoran,
-> > >
-> > > You are almost there! I can feel it... :-)
-> > >
-> > > The issue I see is that the following files have been build but NOTi=
-nstalled:
-> > >
-> > > * libcannelloni-common.so.0
-> > > * libcannelloni-common.so.0.0.1
-> > >
-> > > If you make sure that they are installed that should fix your issue.
-> > >
-> > > Based on the info you provided no RDEPENDS seems to be required as i=
-t
-> > > all appears that everything is in one package named "cannelloni",
-> > > rather than a package for the main executable and then packages for
-> > > libraries.
-> > >
-> > > Kind regards, Laurent.
-> > >
-> > > On Fri, Feb 14, 2020 at 12:43 PM Zoran Stojsavljevic
-> > > <zoran.stojsavljevic@gmail.com> wrote:
-> > > >
-> > > > Hello Laurent,
-> > > >
-> > > > Many thanks to you for the help. :-)
-> > > >
-> > > > I did some modifications, and now I have all the elements in there=
-/in place:
-> > > >
-> > > > [user@fedora31-ssd cannelloni]$ cd ../../../build/tmp
-> > > > [user@fedora31-ssd tmp]$ find . -name libcannelloni*
-> > > > ./work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/image/=
-usr/lib/libcannelloni-common.so
-> > > > ./work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/sysroo=
-t-destdir/usr/lib/libcannelloni-common.so
-> > > > ./work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/packag=
-e/usr/lib/.debug/libcannelloni-common.so
-> > > > ./work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/packag=
-e/usr/lib/libcannelloni-common.so
-> > > > ./work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/packag=
-es-split/cannelloni/usr/lib/libcannelloni-common.so
-> > > > ./work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/packag=
-es-split/cannelloni-dbg/usr/lib/.debug/libcannelloni-common.so
-> > > > ./work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/build/=
-libcannelloni-common.so.0
-> > > > ./work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/build/=
-libcannelloni-common.so.0.0.1
-> > > > ./work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/build/=
-libcannelloni-common.so
-> > > > ./sysroots-components/cortexa8hf-neon/cannelloni/usr/lib/libcannel=
-loni-common.so
-> > > >
-> > > > I miss the very end of your thoughts. Namely:
-> > > >
-> > > > > The name of the package containing the shared library is name of=
- the
-> > > > > xxx first-level directory "packages-split/xxx".
-> > > >
-> > > > So, how should I write the RDEPENDS command?
-> > > >
-> > > > Something as: RDEPENDS_${PN} =3D "???"
-> > > >
-> > > > What should I put on the right side of the equation (according to =
-the above traces)?
-> > > >
-> > > > Thank you,
-> > > > Zoran
-> > > > _______
-> > > >
-> > > > On Fri, Feb 14, 2020 at 11:49 AM Laurent Gauthier <laurent.gauthie=
-r@soccasys.com> wrote:
-> > > >>
-> > > >> Hi Zoran,
-> > > >>
-> > > >> The issue seems to be that the executable /usr/bin/cannelloni has=
- a
-> > > >> reference to a shared library (libcannelloni-common.so.0) for whi=
-ch
-> > > >> the Yocto build system is not able to determine automatically whi=
-ch
-> > > >> package provides it.
-> > > >>
-> > > >> Based on the name I would assume that this package should be crea=
-ted
-> > > >> by the same recipe that produces this executable (one recipe prod=
-uces
-> > > >> multiple packages).
-> > > >>
-> > > >> The most probable reason for this is that the new version of the
-> > > >> package you are trying to build does not install the "missing" sh=
-ared
-> > > >> library properly. But here are some steps you could follow to try=
- to
-> > > >> determine the stage of build/install/package where the shared lib=
-rary
-> > > >> goes missing.
-> > > >>
-> > > >> To debug this I would suggest that you check that this
-> > > >> "libcannelloni-common.so.0" shared library is present in several
-> > > >> directories.
-> > > >>
-> > > >> First in the build directory:
-> > > >>
-> > > >> * /home/user/projects2/beaglebone-black/bbb-yocto/build/tmp/work/=
-cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/build
-> > > >>
-> > > >> If it is not there that would be very surprising. I will assume t=
-hat
-> > > >> it is present. Let us know if it is not.
-> > > >>
-> > > >> Then the next location to check for this shared library is the fo=
-llowing:
-> > > >>
-> > > >> * /home/user/projects2/beaglebone-black/bbb-yocto/build/tmp/work/=
-cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/package
-> > > >>
-> > > >> If the file is not there, then it means that the recipe did not
-> > > >> "install" it (as this directory is populated by do_install).
-> > > >>
-> > > >> If the file is there then you can check if it is correctly assign=
-ed in
-> > > >> a package by determining if it is also found in:
-> > > >>
-> > > >> * /home/user/projects2/beaglebone-black/bbb-yocto/build/tmp/work/=
-cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/packages-split
-> > > >>
-> > > >> If the file is not there, then it means that the recipe did not
-> > > >> "package" it properly (as this directory is populated by do_packa=
-ge).
-> > > >> You should review the recipe for any anomaly in assigning install=
-ed
-> > > >> files to individual packages.
-> > > >>
-> > > >> If the file is there then you probably should add the package tha=
-t
-> > > >> contains the shared library in the RDEPENDS for the "cannelloni"
-> > > >> package.
-> > > >>
-> > > >> The name of the package containing the shared library is name of =
-the
-> > > >> xxx first-level directory "packages-split/xxx".
-> > > >>
-> > > >> Not sure if that will solve your issue, but hopefully that will h=
-elp.
-> > > >>
-> > > >> Kind Regards, Laurent.
-> > > >>
-> > > >> On Fri, Feb 14, 2020 at 11:27 AM Zoran <zoran.stojsavljevic@gmail=
-.com> wrote:
-> > > >> >
-> > > >> > Hello List,
-> > > >> >
-> > > >> > I am trying to solve very interesting ERROR I am getting with s=
-lightly modified GENIVI Canneloni recipe:
-> > > >> > https://github.com/ZoranStojsavljevic/meta-socketcan/blob/maste=
-r/recipes-can/cannelloni/cannelloni.bb
-> > > >> >
-> > > >> > If I take the recipe as is, everything works fine, with:
-> > > >> > ## SRCREV =3D "${AUTOREV}"
-> > > >> > SRCREV =3D "0fb6880b719b8acf2b4210b264b7140135e4be8a"
-> > > >> >
-> > > >> > Everything works fine, but if I swap the static hash with auto =
-latest hash (SRCREV =3D "${AUTOREV}":
-> > > >> > SRCREV =3D "${AUTOREV}"
-> > > >> > ## SRCREV =3D "0fb6880b719b8acf2b4210b264b7140135e4be8a"
-> > > >> >
-> > > >> > I am getting these ERRORS, which seems to me very strange?!
-> > > >> > _______
-> > > >> >
-> > > >> > Sstate summary: Wanted 11 Found 6 Missed 5 Current 1398 (54% ma=
-tch, 99% complete)
-> > > >> > NOTE: Executing Tasks
-> > > >> > NOTE: Setscene tasks completed
-> > > >> > ERROR: cannelloni-1.0-r0 do_package_qa: QA Issue: package canne=
-lloni contains bad RPATH /home/user/projects2/beaglebone-black/bbb-yocto/bu=
-ild/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/build: in=
- file /home/user/projects2/beaglebone-black/bbb-yocto/build/tmp/work/cortex=
-a8hf-neon-poky-linux-gnueabi/cannelloni/1.0-r0/packages-split/cannelloni/us=
-r/bin/cannelloni [rpaths]
-> > > >> > ERROR: cannelloni-1.0-r0 do_package_qa: QA Issue: /usr/bin/cann=
-elloni contained in package cannelloni requires libcannelloni-common.so.0, =
-but no providers found in RDEPENDS_cannelloni? [file-rdeps]
-> > > >> > ERROR: cannelloni-1.0-r0 do_package_qa: QA run found fatal erro=
-rs. Please consider fixing them.
-> > > >> > ERROR: Logfile of failure stored in: /home/user/projects2/beagl=
-ebone-black/bbb-yocto/build/tmp/work/cortexa8hf-neon-poky-linux-gnueabi/can=
-nelloni/1.0-r0/temp/log.do_package_qa.255490
-> > > >> > ERROR: Task (/home/user/projects2/beaglebone-black/bbb-yocto/me=
-ta-socketcan/recipes-can/cannelloni/cannelloni.bb:do_package_qa) failed wit=
-h exit code '1'
-> > > >> > NOTE: Tasks Summary: Attempted 3791 tasks of which 3788 didn't =
-need to be rerun and 1 failed.
-> > > >> > _______
-> > > >> >
-> > > >> > Any advise how to make GENIVI Cannelloni recipe to work with: S=
-RCREV =3D "${AUTOREV}" ???
-> > > >> >
-> > > >> > Thank you,
-> > > >> > Zoran
-> > > >> >
-> > > >> >=20
-> > > >>
-> > > >>
-> > > >>
-> > > >> --
-> > > >> Laurent Gauthier
-> > > >> Phone: +33 630 483 429
-> > > >> http://soccasys.com
-> > >
-> > >
-> > >
-> > > --
-> > > Laurent Gauthier
-> > > Phone: +33 630 483 429
-> > > http://soccasys.com
->
->
->
-> --
-> Laurent Gauthier
-> Phone: +33 630 483 429
-> http://soccasys.com
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogTWl0dGFsLCBBbnVqIDxh
+bnVqLm1pdHRhbEBpbnRlbC5jb20+DQo+IFNlbnQ6IFRodXJzZGF5LCAyMCBGZWJydWFyeSwgMjAy
+MCAxMTozNSBBTQ0KPiBUbzogUmljaGFyZCBQdXJkaWUgPHJpY2hhcmQucHVyZGllQGxpbnV4Zm91
+bmRhdGlvbi5vcmc+OyBha3VzdGVyODA4DQo+IDxha3VzdGVyODA4QGdtYWlsLmNvbT47IEphaW4s
+IFNhbmdlZXRhIDxzYW5nZWV0YS5qYWluQGludGVsLmNvbT47DQo+IHlvY3RvQGxpc3RzLnlvY3Rv
+cHJvamVjdC5vcmcNCj4gQ2M6IG90YXZpb0Bvc3N5c3RlbXMuY29tLmJyOyB5aS56aGFvQHdpbmRy
+aXZlci5jb207IFNhbmdhbCwgQXBvb3J2DQo+IDxhcG9vcnYuc2FuZ2FsQGludGVsLmNvbT47IFll
+b2gsIEVlIFBlbmcgPGVlLnBlbmcueWVvaEBpbnRlbC5jb20+OyBDaGFuLA0KPiBBYXJvbiBDaHVu
+IFlldyA8YWFyb24uY2h1bi55ZXcuY2hhbkBpbnRlbC5jb20+OyBzam9sbGV5LnlwLnBtQGdtYWls
+LmNvbTsNCj4gVHVtbWFsYXBhbGxpLCBWaW5lZWxhIDx2aW5lZWxhLnR1bW1hbGFwYWxsaUBpbnRl
+bC5jb20+DQo+IFN1YmplY3Q6IFJFOiBbeW9jdG9dIFFBIEN5Y2xlIHJlcG9ydCBmb3IgYnVpbGQg
+KHlvY3RvLTMuMC4yLnJjMikNCj4gDQo+ID4gT24gV2VkLCAyMDIwLTAyLTE5IGF0IDE0OjQxIC0w
+ODAwLCBha3VzdGVyODA4IHdyb3RlOg0KPiA+ID4NCj4gPiA+IE9uIDIvMTgvMjAgMTE6MzMgUE0s
+IEphaW4sIFNhbmdlZXRhIHdyb3RlOg0KPiA+ID4gPiBIaSBBbGwsDQo+ID4gPiA+DQo+ID4gPiA+
+IFRoaXMgaXMgdGhlIGZ1bGwgcmVwb3J0IGZvciB5b2N0by0zLjAuMi5yYzI6DQo+ID4gPiA+IGh0
+dHBzOi8vZ2l0LnlvY3RvcHJvamVjdC5vcmcvY2dpdC9jZ2l0LmNnaS95b2N0by10ZXN0cmVzdWx0
+cy1jb250cg0KPiA+ID4gPiBpYg0KPiA+ID4gPiAvdHJlZS8/aD1pbnRlbC15b2N0by10ZXN0cmVz
+dWx0cw0KPiA+ID4gPg0KPiA+ID4gPiA9PT09PT09IFN1bW1hcnkgPT09PT09PT0NCj4gPiA+ID4g
+Tm8gaGlnaCBtaWxlc3RvbmUgZGVmZWN0cy4NCj4gPiA+ID4gb25lIG5ldyBkZWZlY3RzIGFyZSBm
+b3VuZCBpbiB0aGlzIGN5Y2xlIC0gb2VxYS9ydW50aW1lIHRlc3QNCj4gPiA+ID4gJ3Rlc3RfZG5m
+X2V4Y2x1ZGUnIGZhaWxlZCAoQnVnaWQ6MTM3OTcpIG9wZW5zc2ggcHRlc3QgZmFpbGVkIChCVUcN
+Cj4gPiA+ID4gaWQ6MTM3OTYpIGJhc2ggcHRlc3QgZmFpbGVkIChCVUcgaWQ6MTM3OTUpDQo+ID4g
+PiA+DQo+ID4gPiA+ID09PT09PT0gQnVncyA9PT09PT09PQ0KPiA+ID4gPiBodHRwczovL2J1Z3pp
+bGxhLnlvY3RvcHJvamVjdC5vcmcvc2hvd19idWcuY2dpP2lkPTEzNzk3DQo+IA0KPiBGcm9tIHRo
+ZSBlcnJvciBsb2csIGl0IGxvb2tzIGxpa2Ugd2UgYXJlIHRyeWluZyB0byBpbnN0YWxsIDcuNjcg
+d2hpbGUgemV1cyBoYXMgNy42Ng0KPiBzbyBpdCBlcnJvcnMgb3V0LiBJIGFtIGd1ZXNzaW5nIHRo
+YXQgY3VybCB3YXNuJ3QgYnVpbHQgaW4gYSBjbGVhbiBidWlsZCBkaXJlY3Rvcnkgc28NCj4gdGhl
+IGNvcnJlY3QgdmVyc2lvbiBvZiBjdXJsIGlzIGRlcGxveWVkLiBDYW4gdGhpcyB0ZXN0IGJlIHJl
+LXJ1biBwbGVhc2U/DQpSZS1ydW4gdGhlIHRlc3QgaW4gbmV3IGJ1aWxkIGRpcmVjdG9yeSBhbmQg
+YWZ0ZXIgaGF2aW5nICdiaXRiYWtlIGN1cmwnLg0KSXQgaXMgcGFzc2luZyBub3cuIFVwZGF0aW5n
+IGJ1ZyBpbiBCdWd6aWxhLg0KDQo+IA0KPiA+ID4gPiBodHRwczovL2J1Z3ppbGxhLnlvY3RvcHJv
+amVjdC5vcmcvc2hvd19idWcuY2dpP2lkPTEzNzk2DQo+IA0KPiBUaGlzIG5lZWRzOg0KPiANCj4g
+aHR0cHM6Ly9naXRodWIuY29tL29wZW5zc2gvb3BlbnNzaC0NCj4gcG9ydGFibGUvY29tbWl0L2Zm
+MzFmMTU3NzNlZTE3MzUwMmVlYzRkNzg2MWVjNTZmMjZiYmEzODENCj4gDQo+ID4gPiA+IGh0dHBz
+Oi8vYnVnemlsbGEueW9jdG9wcm9qZWN0Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9MTM3OTUNCj4gDQo+
+IFdhcyBiZWNhdXNlIG9mIHRoZSBiYXNoIENWRSBwYXRjaC4NCj4gDQo+ID4gPg0KPiA+ID4gVGhh
+bmsgeW91IGZvciBsb2dnaW5nIHRoZSBkZWZlY3RzLg0KPiA+ID4NCj4gPiA+IEkgc3VzcGVjdCB0
+aGlzIGluIG5vdyBpbiB0aGUgaGFuZHMgb2YgdGhlIFlQIFRTQy4NCj4gPg0KPiA+IFdoYXQgaXMg
+dGhlIHN0YWJsZSBtYWludGFpbmVyJ3MgdGhvdWdodHMgb24gdGhpcz8NCj4gPg0KPiA+IEluIHBh
+cnRpY3VsYXIgSSdtIHdvcnJpZWQgYWJvdXQgdGhlIGJhc2ggcGF0Y2ggYW5kIHdoZXRoZXIgdGhl
+IHB0ZXN0DQo+ID4gcmVncmVzc2lvbiBhYm92ZSBpcyByZWxhdGVkIHRvIHRoYXQgb3Igbm90PyBB
+bnkgcmVjb21tZW5kYXRpb24/DQo+IA0KPiBMb29rcyBsaWtlIGl0J3MgcmVsYXRlZCBidXQgSSBk
+b24ndCB0aGluayB0aGUgaW1wYWN0IGlzIG11Y2guIFRoZSB0ZXN0IGlzIGZhaWxpbmcNCj4gYmVj
+YXVzZSB0aGUgbGluZSBudW1iZXIgdGhhdCBpcyBleHBlY3RlZCB0byBmYWlsIGNoYW5nZWQgKGJl
+Y2F1c2Ugb2YgdGhlIGxpbmVzDQo+IGJlaW5nIGFkZGVkIGluIHRoZSB0ZXN0KS4gU28gd2Ugc2hv
+dWxkIGJlIG9rYXkgaW4gbXkgb3Bpbmlvbi4NCj4gDQo+IFRoYW5rcywNCj4gDQo+IEFudWoNCg0K
