@@ -1,34 +1,30 @@
-Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
- by mx.groups.io with SMTP id smtpd.web12.3289.1582190418009830709
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+ by mx.groups.io with SMTP id smtpd.web11.3159.1582190667724671732
  for <yocto@lists.yoctoproject.org>;
- Thu, 20 Feb 2020 01:20:18 -0800
+ Thu, 20 Feb 2020 01:24:27 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: yi.zhao@windriver.com)
+ dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: yi.zhao@windriver.com)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 01K9JcFv002507
+	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 01K9OORQ005442
 	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
-	Thu, 20 Feb 2020 01:19:49 -0800
+	Thu, 20 Feb 2020 01:24:24 -0800 (PST)
 Received: from localhost (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
  (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.468.0; Thu, 20 Feb
- 2020 01:19:27 -0800
+ 2020 01:24:23 -0800
 From: "Yi Zhao" <yi.zhao@windriver.com>
 To: <yocto@lists.yoctoproject.org>, <mark.hatle@kernel.crashing.org>
-Subject: [meta-openssl102-fips][PATCH] openssh: refresh patches to 8.2p1
-Date: Thu, 20 Feb 2020 17:19:25 +0800
-Message-ID: <20200220091925.11715-1-yi.zhao@windriver.com>
+Subject: [meta-openssl102-fips][PATCH V2] openssh: refresh patches to 8.2p1
+Date: Thu, 20 Feb 2020 17:24:21 +0800
+Message-ID: <20200220092421.12095-1-yi.zhao@windriver.com>
 X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
 X-Originating-IP: [128.224.162.174]
 Content-Type: text/plain
 
-Issue: LINCD-1151
-
 Refresh patches to openssh-8.2p1.
 Reference:
 http://pkgs.fedoraproject.org/cgit/rpms/openssh.git/plain/openssh-7.7p1-fips.patch
 (commit 51f5c1c99f1d20e48328edde666061d0ce0da83b)
-
-(LOCAL REV: NOT UPSTREAM) -- send to meta-openssl102-fips on 20200220
 
 Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 ---
