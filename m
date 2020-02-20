@@ -1,110 +1,128 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.5639.1582206768806457101
+ by mx.groups.io with SMTP id smtpd.web11.6719.1582212139498688051
  for <yocto@lists.yoctoproject.org>;
- Thu, 20 Feb 2020 05:52:48 -0800
+ Thu, 20 Feb 2020 07:22:19 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=XBiL6lnu;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: wpdster@gmail.com)
+ dkim=pass header.i=@konsulko.com header.s=google header.b=Qmj4yzxU;
+ spf=softfail (domain: konsulko.com, ip: 140.211.169.56, mailfrom: paul.barker@konsulko.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5C59CE015FF; Thu, 20 Feb 2020 05:52:48 -0800 (PST)
+	id 21060E006B4; Thu, 20 Feb 2020 07:22:19 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (wpdster[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.160.195 listed in list.dnswl.org]
+	*      [209.85.210.66 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-qt1-f195.google.com (mail-qt1-f195.google.com [209.85.160.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B998FE01564
-	for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 05:52:47 -0800 (PST)
-Received: by mail-qt1-f195.google.com with SMTP id d9so2858184qte.12
-        for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 05:52:47 -0800 (PST)
+Received: from mail-ot1-f66.google.com (mail-ot1-f66.google.com [209.85.210.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70DB0E003DB
+	for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 07:22:18 -0800 (PST)
+Received: by mail-ot1-f66.google.com with SMTP id b3so2792532otp.4
+        for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 07:22:18 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=konsulko.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=AD6wTBSfZdhUENIfjChtRmErlZP6Asv3J3CdkFXe3hs=;
-        b=XBiL6lnuF+agorAxX6NvXKSMx9/0qSCLJ+hbk+oj5zJ2ams32QWOprMxZo05dKhnBw
-         YJwmFmlQTluK0qC0NAkSkWEv1mbytD51I2dXxr2M3Pjf3JV6bGlaXr9CahB7cPaGIHGK
-         Mu2yQ2MpTp3lG+ayxtAL9doNiYCyu27V8S7GhxogN+7cf+uMdapHXA3jF/dmb6XK1IKs
-         XJzq34S5Zy5bwHwmCiDpsGZJsNNimk+kJIESD/+9o3TLzsIKYL5+y9PC+KQw+Aqx5iTk
-         1VHL+5+Gkqk4BCVgF0CUaVYhNDAMbJfSbEKkJf5Ok8Jv6ZdSfQh2sCKK6trBt+Skefj2
-         xPtg==
+        bh=wMfK4xI8+uu3jjmq7EjwO+COQrr6KL0ZCMBvuWXZ3R4=;
+        b=Qmj4yzxUDGNX0FcwYsxp5otavJ0mMrRDe+GQGUwsU4AF9Ed/3028hn+p7pcqdDXgxS
+         glN2yJu2TYV9/gey0NUDw93OTa9CG3nlmtGOl1zZSdb4k/6k1ZjnlM9GTqRHa9Jka3cw
+         x8DP2FWqgNmGJz+YPdR8n2oVkE1Y15Bb1VW5M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=AD6wTBSfZdhUENIfjChtRmErlZP6Asv3J3CdkFXe3hs=;
-        b=guT9pX9tXUb19BR5Sgm2VWvudPYFfxNmW5sVoRRkRLD5347ph6+QuydMrlaPgIG8Pw
-         EQa+Dgs4zv6NeFnnKVZIiVLEJ6uqAS6bNA88swJ0TV07NENtkQfPoqjb4HUemEqleONf
-         dCMK/hK7rsIMar0BD/TxRF95orPGRYjGS830vLnO2xh9flUE5JOHUzr1Lm4HmqMO+NBl
-         BGQINeBG0qrwK8k0Kb3aNxZ1SaU2IKMjOFNh5JfBmuUpJIIhDU1+nNaWsDp759OYzC74
-         PCB7x+RnH5UXmHvQ2fpRVml6G3UUGSGkgcrOy+bbmPGjeu5PJV8gf0MBLE/7c+7KeN3e
-         BvPg==
-X-Gm-Message-State: APjAAAXk2w+rn9FbcYCXaH0psJyKj+fHcKy4QidWYQa7Ggv8m4UGlh+s
-	jHo94kS53/4zpe41puIMgD0bvfrxiF9pfYVf5OA=
-X-Google-Smtp-Source: APXvYqyfXwZdDTkDTRyJLdK9MdoZ8o/BKoPJkRwwowb1u/TY0C/fRVxJBtFB4YsZEe+h8HVRooouggPx+BhQb9+zm5I=
-X-Received: by 2002:ac8:37e6:: with SMTP id e35mr26317235qtc.302.1582206766958;
- Thu, 20 Feb 2020 05:52:46 -0800 (PST)
+        bh=wMfK4xI8+uu3jjmq7EjwO+COQrr6KL0ZCMBvuWXZ3R4=;
+        b=h//TqtnEwmPZMRym79ly5rjxsGt92cBwmmqB9wnKN949j37ZNb+lphTCvFIZYNq+VL
+         f4baaMBYwy/SaeyamvEu6xtqCaqkx5MFt9cjyydaxr37h2kQnjd5xAmc/IPiYBcHxFZF
+         fy9axIAjP1kIoPoskgYEtGMcvO0yyuw77ZOFEyTfgkQY4u+TPp69M618O2miIuxZtQ5N
+         Dw1zlYSbiEBxVZ8x+m03GBuIyfqDboY+EspGSfPGhsCCyd+rERpDu2Okhjl0wLYtoEvt
+         vXivo3K/d6rSd9dRyPlJKlKpgnwXkdBaV3h9XYdr2337ghya2YVDUstfHzLDNuycDaSD
+         C5+A==
+X-Gm-Message-State: APjAAAWVCEGsTKdjjfUjeXCddeL1mRzZ5EE0ftIxtjRSFdsbE55yE9Ys
+	EBrkWtBIbvmy/0hsCelfZcAgKGwB8g1W64w6pAibbIMm3yU=
+X-Google-Smtp-Source: APXvYqyjtMW1zQpbAsHVGTDTBk1cRvFmpq7qRFeAFnbBYvF8S3yjrWWCJxaueIVHyKJthXs1XIKm+ScJuiOyAFbravw=
+X-Received: by 2002:a9d:6a06:: with SMTP id g6mr22140439otn.305.1582212137750;
+ Thu, 20 Feb 2020 07:22:17 -0800 (PST)
 MIME-Version: 1.0
-References: <CAF_dkJAyS20skTujCh_SCQXq+muJjCmn5=mnUG+A8qWitzNzqQ@mail.gmail.com>
- <2c0fedf92f8a5cf805cc9908b438dab40ffd72ec.camel@linuxfoundation.org>
-In-Reply-To: <2c0fedf92f8a5cf805cc9908b438dab40ffd72ec.camel@linuxfoundation.org>
-From: "Patrick Doyle" <wpdster@gmail.com>
-Date: Thu, 20 Feb 2020 08:52:20 -0500
-Message-ID: <CAF_dkJAHqGUHi-W-bW6+69=89SCfxNB6yP7Ws+JjhOwRTjPxMw@mail.gmail.com>
-Subject: Re: [yocto] Debugging gdb built by Yocto
+References: <CAM9ZRVvDHTvvKr1Tdc+C1ZdTv2DSX8JJ9bYhHc0c-wre4qg5LA@mail.gmail.com>
+ <bfe6eb79ff352439c3ed5d53757421dce5e0b17d.camel@linuxfoundation.org>
+ <CAM9ZRVv2Xoq=GBjQOXT+VBunhYG3n_dCw7Bv6XECTdRhdvzg9w@mail.gmail.com> <b5158d1f6ef3cebc4bff046b28c8851ba7db29ac.camel@linuxfoundation.org>
+In-Reply-To: <b5158d1f6ef3cebc4bff046b28c8851ba7db29ac.camel@linuxfoundation.org>
+From: "Paul Barker" <pbarker@konsulko.com>
+Date: Thu, 20 Feb 2020 15:22:06 +0000
+Message-ID: <CAM9ZRVu-yX0M41SBY5kDzEVL-+EaTfCZiX4dascQQtvuhichdg@mail.gmail.com>
+Subject: Re: [yocto] Bitbake returning non-zero due to sstate errors
 To: Richard Purdie <richard.purdie@linuxfoundation.org>
 Cc: Yocto discussion list <yocto@yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Feb 19, 2020 at 5:19 PM Richard Purdie
+On Thu, 20 Feb 2020 at 12:04, Richard Purdie
 <richard.purdie@linuxfoundation.org> wrote:
-> On Tue, 2020-02-18 at 11:26 -0500, Patrick Doyle wrote:
-> > Does anybody have any tips or tricks for how I might debug the
-> > (cross-canadian) gdb built by Yocto's SDK?
-> Do you perhaps want gdb-cross-mipsel ?
 >
-> cross-canadian is designed to be run as part of the SDK.
-Thank you.  That is, indeed, what I want.  It demonstrates the same
-problem, and I can debug it.
+> On Thu, 2020-02-20 at 11:59 +0000, Paul Barker wrote:
+> > I'm now looking into this...
+> >
+> > In sstate_checkhashes() we mark sstate as available if
+> > fetcher.checkstatus() succeeds. Then at a later point
+> > sstate_setscene() calls sstate_installpkg() calls pstaging_fetch()
+> > calls fetcher.download() to actually get the sstate artifact. If the
+> > artifact is removed from the mirror between these two accesses (due
+> > to an sstate mirror clean up running in parallel to a build), or if
+> > there is an intermittent download failure we could see checkstatus()
+> > succeed then download() fail.
+> >
+> > I don't think we should ignore all setscene errors but in the
+> > specific case where it's the download step that fails I think that
+> > should be a warning. Or it could be an error by default with a
+> > variable we can set to turn it into a warning. Does that sound
+> > reasonable? If so I'll work up a patch.
+>
+> Thinking about the code, I'm not sure how you're generically going to
+> tell the difference between a setscene task that fails as the file
+> disappeared compared to a setscene failure with another real error? :/
+>
+> We could make all failed setscene tasks warnings but I think that
+> buries actual real errors.
+>
+> This is probably why I've not changed the code before now.
+>
+> Special exit code values? :/
+>
+> I'm open to proposals.
+>
+> I know we could put in some configuration option but in general I hate
+> these as it just means more test matrix combinations and more ways for
+> people to see different behaviours. They have a time/place but I'm not
+> sure its here.
 
-Aside... it's quite a mind bending experience to debug gdb with gdb :-)
+I agree - I really don't want to have to add additional complexity
+here. But I do think we need to fix this in some way, others are
+affected by this as can be seen from previous discussions. And in the
+case of a public sstate mirror we can't control when users decide to
+run builds, there will always be the chance of a user running a build
+on an old commit while old sstate artifacts are cleaned or starting a
+build just as the mirror is taken offline for some maintenance.
 
-Just imagine...
+I think we might be able to make this work if we can avoid adding any
+new conditional logic to the fetcher itself. I can see that almost
+every call to logger.error() is followed by raising an error - perhaps
+we could rework the code to include all the relevant info in the
+raised error object and allow higher level code to catch the exception
+and decide what to do with it. Because once logger.error() is called,
+knotty counts an error and bitbake will exit non-zero even if the
+error is safely handled. Once the fetcher simply raises exceptions in
+the case of failed downloads we could handle this neatly in
+sstate.bbclass. Would that be a viable way forward? Or would that
+break the other fetcher use cases?
 
-$ gdb gdb-cross-mipsel
-(gdb) break main
-(gdb) run
-(gdb)
-
-That last "(gdb)" prompt is from the gdb I'm debugging :-)
-
-Also aside... and totally off topic, except that I'm sure some might
-be wondering why I feel the need to debug gdb...
-
-I am trying to understand why I can't get stack traces from cores file
-on a mipsel system.  At the moment (after strategic additions of
-breakpoints, printf statements, and more breakpoints, and lots of
-internet combing), I am chasing down a rabbit hole related to the
-facts that the MIPS build uses/produces PIE code (Position Independent
-Executables, which is somehow different than Position Independent
-Code), a new ELF tag (MIPS_RLD_MAP_REL) was added 5 years ago to
-binutils, gdb looks for that tag, but the musl dynamic loader is not
-aware of it.  I don't know if this is the root cause of my problem or
-just (another) rabbit hole.  If anybody has any suggestions, I'm all
-ears.
-
---wpd
+Thanks,
+Paul
