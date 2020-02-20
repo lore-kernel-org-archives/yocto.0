@@ -1,91 +1,48 @@
-Received: from bsmtp2.bon.at (bsmtp2.bon.at [213.33.87.16])
- by mx.groups.io with SMTP id smtpd.web10.7918.1582215410589067090
- for <yocto@lists.yoctoproject.org>;
- Thu, 20 Feb 2020 08:16:51 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.16, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp2.bon.at (Postfix) with ESMTPSA id 48NfqM58wtz5tlH;
-	Thu, 20 Feb 2020 17:16:47 +0100 (CET)
-Date: Thu, 20 Feb 2020 17:16:46 +0100
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: Dmitri Toubelis <dmitri.toubelis@litmusautomation.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Lots of basehash related errors
-Message-ID: <20200220161646.b72k2h4ssqce645q@qschulz>
-References: <RlLC.1582214577544571845.5egw@lists.yoctoproject.org>
+Subject: How to setup debug environment for image running in target board? #toolchain #yocto
+To: yocto@lists.yoctoproject.org
+From: amern2k16@att.net
+X-Originating-Location: Wixom, Michigan, US (12.139.188.82)
+X-Originating-Platform: Windows IE 18.18363
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <RlLC.1582214577544571845.5egw@lists.yoctoproject.org>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Date: Thu, 20 Feb 2020 09:11:26 -0800
+Message-ID: <qoKg.1582218686738488593.ScqY@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="xGsWPEoiA4lxmglbHsWn"
 
-Hi Dmitri,
+--xGsWPEoiA4lxmglbHsWn
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 20, 2020 at 08:02:57AM -0800, Dmitri Toubelis wrote:
-> Hi,
-> 
-> I'm migrating from yocto morty to zeus and I'm receiving a whole lot of errors like this:
-> 
-> > 
-> > ERROR: When reparsing
-> > /srv/yocto/poky/meta-loopedge/meta-loopedge-dist/recipes-core/images/loopedge-std.bb:do_image_wic,
-> > the basehash value changed from
-> > 8dd96e09d0b7defa552e586e626933ca37ace5180918ea65addbfcb6c1247b1c to
-> > e38fae3f400b3e3de114fcd668d46a1f7c3eec436ec72962e78df906714a6fb0. The
-> > metadata is not deterministic and this needs to be fixed.
-> > ERROR: The following commands may help:
-> > ERROR: $ bitbake loopedge-std -cdo_image_wic -Snone
-> > ERROR: Then:
-> > ERROR: $ bitbake loopedge-std -cdo_image_wic -Sprintdiff
-> > 
-> > ERROR: When reparsing
-> > /srv/yocto/poky/meta-loopedge/meta-loopedge-dist/recipes-core/images/loopedge-std.bb:do_image_ext4,
-> > the basehash value changed from
-> > a8209ab35324ce59bb193b80871c12c492f69f42fd97b03801165bd4a12670f6 to
-> > 1ab2d25ef217fe87b4cce1106d122acd4286043b04dcd74d98df30a01aa6a0b9. The
-> > metadata is not deterministic and this needs to be fixed.
-> > ERROR: The following commands may help:
-> > ERROR: $ bitbake loopedge-std -cdo_image_ext4 -Snone
-> > ERROR: Then:
-> > ERROR: $ bitbake loopedge-std -cdo_image_ext4 -Sprintdiff
-> > 
-> > ERROR: When reparsing
-> > /srv/yocto/poky/meta-loopedge/meta-loopedge-dist/recipes-core/images/loopedge-std.bb:do_image_tar,
-> > the basehash value changed from
-> > c5ab62cac832e502a338d59124efc690e66560a4e877bc4ba3487c3a734c2497 to
-> > bb7ca72863614cb5c9915eb502259b1ffa8b98992f7ad3280d1e049a1824b930. The
-> > metadata is not deterministic and this needs to be fixed.
-> > ERROR: The following commands may help:
-> > ERROR: $ bitbake loopedge-std -cdo_image_tar -Snone
-> > ERROR: Then:
-> > ERROR: $ bitbake loopedge-std -cdo_image_tar -Sprintdiff
-> > 
-> 
-> I search around for answers and there are here are reasons and solutions for this that I found:
-> - to make sure any date related variables are excluded from basehash via `do_task_name[vardepsexclude] = "DATE DATETIME"`
-> - clears state cache with `bitbake image -c cleansstate`
-> - delete tmp directory and build from scratch
-> 
-> Here is my observation and interpretation:
-> - this messages occur when running with pristine build directory, i.e. it only contains 2 files in `conf` dir - `local.conf` and `bblatyers.conf`, so I can rule out contamination from a previous run.
-> - same messages reapeat over and over totalling ~900 errors at the end of the run
-> - I have few custom classes and I removed them from the image to rule out contamination from my own code.
-> - Tasks that give this error are coming from image.bbclass from poky and none of them have been altered in any way.
-> - The image build runs through the end but because bitbake exits with non-zero exit code it breaks lots of our tools, so just ignoring them is a bad option.
-> 
+I'm working with NXP iMX8QXPMEK evaluation board.=C2=A0 I downloaded bsp re=
+lease L4.19.35_1.1.0_MX8QXP from following site:
+https://www.nxp.com/design/software/embedded-software/linux-software-and-d=
+evelopment-tools/embedded-linux-for-i.mx-applications-processors:IMXLINUX?t=
+ab=3DDesign_Tools_Tab
+This bsp release is for Yocto Project 2.7 (Warrior)
+I built yocto project for this bsp release.=C2=A0 I copied built image int=
+o sd card and then booted NXP board from sd card.=C2=A0 I need to step thro=
+ugh USB Host Subsystem source code running in embedded linux kernel?
+There is a serial connection between my NXP evaluation board and my PC.=C2=
+=
+=A0 Micro-USB Debug port in NXP board is connected to USB port in my PC.=
+=C2=A0 How do I setup debugging environment so I can see source code and s=
+ymbols running in my NXP board?
 
-I've had this before with a vendor layer. The culprit was the distro
-having some weird USERADDEXTENSION messing up with everything.
+--xGsWPEoiA4lxmglbHsWn
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-How we found out what it was was by uncommenting:
-https://git.yoctoproject.org/cgit.cgi/poky/tree/bitbake/lib/bb/siggen.py#n187
-187 to 189.
+I'm working with NXP iMX8QXPMEK evaluation board.&nbsp; I downloaded bsp re=
+lease L4.19.35_1.1.0_MX8QXP from following site:<br />https://www.nxp.com/d=
+esign/software/embedded-software/linux-software-and-development-tools/embed=
+ded-linux-for-i.mx-applications-processors:IMXLINUX?tab=3DDesign_Tools_Tab<=
+br />This bsp release is for Yocto Project 2.7 (Warrior)<br />I built yocto=
+ project for this bsp release.&nbsp; I copied built image into sd card and =
+then booted NXP board from sd card.&nbsp; I need to step through USB Host S=
+ubsystem source code running in embedded linux kernel?&nbsp; <br />There is=
+ a serial connection between my NXP evaluation board and my PC.&nbsp; Micro=
+-USB Debug port in NXP board is connected to USB port in my PC.&nbsp; How d=
+o I setup debugging environment so I can see source code and symbols runnin=
+g in my NXP board? &nbsp;
 
-Then you go to tmp/stamps/...your-recipe.../ and you'll have more
-sigdata in there. Use bitbake-diffsigs between the both and you'll find
-which variable messes up with your build.
-
-Hope this helps, good luck!
-
-Quentin
+--xGsWPEoiA4lxmglbHsWn--
