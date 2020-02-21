@@ -1,11 +1,11 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.3265.1582251537586269053
+ by mx.groups.io with SMTP id smtpd.web12.3313.1582251543706175668
  for <yocto@lists.yoctoproject.org>;
- Thu, 20 Feb 2020 18:18:57 -0800
+ Thu, 20 Feb 2020 18:19:03 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: qi.chen@windriver.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 28AE8E016B9; Thu, 20 Feb 2020 18:18:57 -0800 (PST)
+	id 8E359E016B7; Thu, 20 Feb 2020 18:19:03 -0800 (PST)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -16,64 +16,47 @@ X-Spam-HAM-Report:
 	*      [score: 0.0000]
 	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
 	*      medium trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2393BE00C29
-	for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 18:18:55 -0800 (PST)
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77374E016B9
+	for <yocto@yoctoproject.org>; Thu, 20 Feb 2020 18:19:02 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 01L2IATq018652
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 01L2I7vK025222
 	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
-	Thu, 20 Feb 2020 18:18:10 -0800 (PST)
+	Thu, 20 Feb 2020 18:18:08 -0800 (PST)
 Received: from pek-lpg-core3.wrs.com (128.224.153.232) by
  ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
- 14.3.468.0; Thu, 20 Feb 2020 18:18:09 -0800
+ 14.3.468.0; Thu, 20 Feb 2020 18:18:07 -0800
 From: "Chen Qi" <Qi.Chen@windriver.com>
 To: <yocto@yoctoproject.org>, <jiahongxujia@163.com>
-Subject: [meta-tensorflow][PATCH 2/2] layer.conf: depend on meta-python2
-Date: Fri, 21 Feb 2020 10:18:06 +0800
-Message-ID: <20200221021806.33303-2-Qi.Chen@windriver.com>
+Subject: [meta-tensorflow][PATCH 1/2] bazel-native: inherit pythonnative to fix do_compile error
+Date: Fri, 21 Feb 2020 10:18:05 +0800
+Message-ID: <20200221021806.33303-1-Qi.Chen@windriver.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200221021806.33303-1-Qi.Chen@windriver.com>
-References: <20200221021806.33303-1-Qi.Chen@windriver.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 
-bazel-native needs python2-native, so depend on meta-python2.
-Also update the README file.
+The compilation process needs python (python2) to be there, so
+fix it by making bazel-native inherit pythonnative.
 
 Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
 ---
- README.md       | 4 ++++
- conf/layer.conf | 1 +
- 2 files changed, 5 insertions(+)
+ recipes-devtools/bazel/bazel-native_0.21.0.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/README.md b/README.md
-index dbd349e..a04946a 100644
---- a/README.md
-+++ b/README.md
-@@ -33,6 +33,10 @@ URI: git://github.com/openembedded/meta-openembedded.git
- layers: meta-python, meta-oe
- branch: master
- revision: HEAD
-+
-+URI: git://git.openembedded.org/meta-python2
-+branch: master
-+revision: HEAD
- ```
- ### 2. Based on Wind River Linux
- Wind River Linux (CI/CD branch)
-diff --git a/conf/layer.conf b/conf/layer.conf
-index a1ad84d..0da7b2e 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -17,6 +17,7 @@ LAYERDEPENDS_meta-tensorflow = " \
-     core \
-     meta-python \
-     openembedded-layer \
-+    meta-python2 \
+diff --git a/recipes-devtools/bazel/bazel-native_0.21.0.bb b/recipes-devtools/bazel/bazel-native_0.21.0.bb
+index 3395c2f..03c3e8d 100644
+--- a/recipes-devtools/bazel/bazel-native_0.21.0.bb
++++ b/recipes-devtools/bazel/bazel-native_0.21.0.bb
+@@ -9,7 +9,7 @@ SRC_URI = "https://github.com/bazelbuild/bazel/releases/download/${PV}/bazel-${P
+            file://0001-HttpDownloader-save-download-tarball-to-distdir.patch \
  "
  
- LAYER_PATH_meta-tensorflow = "${LAYERDIR}"
+-inherit native
++inherit native pythonnative
+ 
+ INHIBIT_SYSROOT_STRIP = "1"
+ 
 -- 
 2.17.1
 
