@@ -1,50 +1,50 @@
 Received: from mail-qk1-f194.google.com (mail-qk1-f194.google.com [209.85.222.194])
- by mx.groups.io with SMTP id smtpd.web10.12211.1582307681982859722
+ by mx.groups.io with SMTP id smtpd.web10.12212.1582307682916301526
  for <yocto@lists.yoctoproject.org>;
- Fri, 21 Feb 2020 09:54:42 -0800
+ Fri, 21 Feb 2020 09:54:43 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=WjjaHaca;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=BLwIALrn;
  spf=pass (domain: gmail.com, ip: 209.85.222.194, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-qk1-f194.google.com with SMTP id t83so2620144qke.3
-        for <yocto@lists.yoctoproject.org>; Fri, 21 Feb 2020 09:54:41 -0800 (PST)
+Received: by mail-qk1-f194.google.com with SMTP id 134so503476qkl.6
+        for <yocto@lists.yoctoproject.org>; Fri, 21 Feb 2020 09:54:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=59o5oW9jBMSwRAiKor4OPZD5km18UQwxj05Fy2WFWVE=;
-        b=WjjaHacaSP+oYIreOj7KCHP9RSGaIdUWXiv6f3LB2zbr35WpEJMEbceQ/oVDcirltY
-         4AW53PgVHnI56uKTkjbgobpy6PPJ2kkqkd6zX6pcVaTrU4Tw1PQ2BKsT5DktXi+pJBiX
-         yggq6ywVZHtEHFaDoKkOewYVGNVZCZISeRCbMr9k30hkImv1+kSIilAJA53XBi4Lpf5R
-         YZ5vk4Y/VsAtmU46iAI2m96D8YUaOFnHrVd0BPnFnzs38j1iAJX7i8KZuCrR/mYuvGJw
-         Gcugy5OA7ljjxxad670yZgca8bh0OI3UVK1hsXeSdkcipt2iSpLkkOcxeOkqH1ACudm2
-         fHXg==
+        bh=8yn0WgQdFvKiyC0QLR7cXQBWdtxYv9KP24W02oJfeE0=;
+        b=BLwIALrnDUc+WA9224t665odSCiv9bmx4iVWKefDJIfIxKF/8wJ+YNFEQP/iGW2jl0
+         O0pH3RwMQoD6m/IEIxLRx/axWtR2K0QwaobpSHxI3WmNslseub+MEy2f3rCalO18qZEc
+         k9DlsaMql9GBfQIZW03vfH0uKr9pPlq59rJUFHEw8D6/3Ced5KFnbHO3IvfC15+rTnrp
+         NTTCtiJ0rau8NiGWTCc5k7oai25pppXYr2h8YuS/RJqOGhPxeWcPiBDVGthp+UwTzpaJ
+         MGp1kPwtNeI1aghguMIiJSZWZ3ccvuc5Yzo+aNdb7gdQnhzITIDFQGQ3gO6EnIwTtK5p
+         0wew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=59o5oW9jBMSwRAiKor4OPZD5km18UQwxj05Fy2WFWVE=;
-        b=XqD8+m46DnHjUBbhYI4HTAdqzKmFL3p7DdTTjdcb7TAj3sRAXYJaCKc0mgOk/nkFvb
-         jv9klj9TjsZDo0v/mHUdW7EZauTh5oc6jcOKk7IgzqwlftUqLGGgcHMdwj5zaTzdNTq4
-         zEDevcjwSBwo9AN/oHWoUIGn0IRW/E+WPn1OguuAvq79PRSxBJxhkQ/bEyM4iGbEqzEb
-         Sf3ELlL35m3jCiRs42rgurxKD7+1QStJ9CHjJz8oluId894tz641GcKAFINpJWehEYW5
-         uddmMUL8rgY09cF30i5JAJSEcPgQmKf1kzpP1kdYnvaDoD+Utf+SK4Rgu92IzpV/9qcv
-         ykBQ==
-X-Gm-Message-State: APjAAAWcOkk0NvFxNX8q6Bu6DgVqp+saLTcvzgABNsmBaohHsi0WZhNg
-	Hr+g0aqW5VG8HThiYBTQFxot9ndD6ibuEg==
-X-Google-Smtp-Source: APXvYqyUm5L8lo+zJAsREdIdGGNaU4DSUvh72FZ3sOABMmpX1yKWKFcYqrvcBwXc0sSRpbY/lLPPMA==
-X-Received: by 2002:a05:620a:15cf:: with SMTP id o15mr35083688qkm.140.1582307681139;
-        Fri, 21 Feb 2020 09:54:41 -0800 (PST)
+        bh=8yn0WgQdFvKiyC0QLR7cXQBWdtxYv9KP24W02oJfeE0=;
+        b=V7K9UPHN2yxJeoD52bmzhlryzov37c79CmkOT3mlWTw3h91YuEsOgsLnKPQDyLK0gd
+         GcZnox4KlXSkoFdXnWDNsg05+A97JzIB++aeSE24j/ycvhODyVbUSRpxDlsBOnWyxWrr
+         vJ7u13JvMiazx79bHgDwOBiO8n1arMB2NABnAmLp9t88LbH321ualEOE/sA0O4+F7yVM
+         XoV++21BzVpmG4OvL3IgAgbVEGOqYCe15mtZvFvMo8VpgOUITNxop6udkSYwAWJYJ8JC
+         DFlexgYCJjIqpnz2fxQToCe0Vc6aqQTN+8G96Yw5VLruqLWVn56OKbfyhnC9VBgm8/Dg
+         3YKw==
+X-Gm-Message-State: APjAAAUxfcEEiDXbanQHLDMwU4T0JUFJwAQN3TXfS2o16XpgwdSDBF2j
+	/Lj2NjYuv3rR3RjbnW96mj8=
+X-Google-Smtp-Source: APXvYqwNG5oxbfXKmZFzwJ31MHfqigkG80j1T+HdIDGlUbkj9i3d8ZzUlkK3vYf8LwxUHUS6aXrXtw==
+X-Received: by 2002:a05:620a:1435:: with SMTP id k21mr176358qkj.299.1582307682073;
+        Fri, 21 Feb 2020 09:54:42 -0800 (PST)
 Return-Path: <bruce.ashfield@gmail.com>
 Received: from localhost.localdomain (CPEe8de27b71faa-CM64777d5e8820.cpe.net.cable.rogers.com. [174.113.11.95])
-        by smtp.gmail.com with ESMTPSA id c17sm1769770qko.134.2020.02.21.09.54.40
+        by smtp.gmail.com with ESMTPSA id c17sm1769770qko.134.2020.02.21.09.54.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Feb 2020 09:54:40 -0800 (PST)
+        Fri, 21 Feb 2020 09:54:41 -0800 (PST)
 From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
 To: richard.purdie@linuxfoundation.org
 Cc: yocto@lists.yoctoproject.org
-Subject: [PATCH 2/3] poky-alt: bump LTS kernel to v5.4
-Date: Fri, 21 Feb 2020 12:54:36 -0500
-Message-Id: <ab50681b4771464047eccda504d43e93932fba80.1582307331.git.bruce.ashfield@gmail.com>
+Subject: [PATCH 3/3] yocto-bsp: drop 4.19 bbappend
+Date: Fri, 21 Feb 2020 12:54:37 -0500
+Message-Id: <3a2f74758e3c60b3816b4e0bf3130565e1ea9dbd.1582307331.git.bruce.ashfield@gmail.com>
 X-Mailer: git-send-email 2.19.1
 In-Reply-To: <cover.1582307331.git.bruce.ashfield@gmail.com>
 References: <cover.1582307331.git.bruce.ashfield@gmail.com>
@@ -53,26 +53,44 @@ Content-Transfer-Encoding: 8bit
 
 From: Bruce Ashfield <bruce.ashfield@gmail.com>
 
-We move from 4.19 to 5.4 as the LTS kernel.
+5.4 is the new LTS kernel, so we drop the 4.19 bbappens as the 4.19
+kernel will be removed.
 
 Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
 ---
- meta-poky/conf/distro/include/poky-distro-alt-test-config.inc | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../linux/linux-yocto_4.19.bbappend           | 23 -------------------
+ 1 file changed, 23 deletions(-)
+ delete mode 100644 meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bbappend
 
-diff --git a/meta-poky/conf/distro/include/poky-distro-alt-test-config.inc b/meta-poky/conf/distro/include/poky-distro-alt-test-config.inc
-index 9926c1bb02..0b0412e60c 100644
---- a/meta-poky/conf/distro/include/poky-distro-alt-test-config.inc
-+++ b/meta-poky/conf/distro/include/poky-distro-alt-test-config.inc
-@@ -2,7 +2,7 @@
- DISTRO_FEATURES_append = " pam"
- 
- # Use the LTSI Kernel
--PREFERRED_VERSION_linux-yocto ?= "4.19%"
-+PREFERRED_VERSION_linux-yocto ?= "5.4%"
- 
- # Ensure the kernel nfs server is enabled
- KERNEL_FEATURES_append_pn-linux-yocto = " features/nfsd/nfsd-enable.scc"
+diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bbappend
+deleted file mode 100644
+index 7b4bd2c4ee..0000000000
+--- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_4.19.bbappend
++++ /dev/null
+@@ -1,23 +0,0 @@
+-KBRANCH_genericx86  = "v4.19/standard/base"
+-KBRANCH_genericx86-64  = "v4.19/standard/base"
+-KBRANCH_edgerouter = "v4.19/standard/edgerouter"
+-KBRANCH_beaglebone-yocto = "v4.19/standard/beaglebone"
+-
+-KMACHINE_genericx86 ?= "common-pc"
+-KMACHINE_genericx86-64 ?= "common-pc-64"
+-KMACHINE_beaglebone-yocto ?= "beaglebone"
+-
+-SRCREV_machine_genericx86    ?= "5664dc14399edcaad210bbeb6343d84561fb3ea8"
+-SRCREV_machine_genericx86-64 ?= "5664dc14399edcaad210bbeb6343d84561fb3ea8"
+-SRCREV_machine_edgerouter ?= "5664dc14399edcaad210bbeb6343d84561fb3ea8"
+-SRCREV_machine_beaglebone-yocto ?= "5664dc14399edcaad210bbeb6343d84561fb3ea8"
+-
+-COMPATIBLE_MACHINE_genericx86 = "genericx86"
+-COMPATIBLE_MACHINE_genericx86-64 = "genericx86-64"
+-COMPATIBLE_MACHINE_edgerouter = "edgerouter"
+-COMPATIBLE_MACHINE_beaglebone-yocto = "beaglebone-yocto"
+-
+-LINUX_VERSION_genericx86 = "4.19.34"
+-LINUX_VERSION_genericx86-64 = "4.19.34"
+-LINUX_VERSION_edgerouter = "4.19.34"
+-LINUX_VERSION_beaglebone-yocto = "4.19.34"
 -- 
 2.19.1
 
