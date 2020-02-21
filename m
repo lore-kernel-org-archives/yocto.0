@@ -1,81 +1,53 @@
-Received: from mail-qt1-f193.google.com (mail-qt1-f193.google.com [209.85.160.193])
- by mx.groups.io with SMTP id smtpd.web11.349.1582315050047648223
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.143.1582324346378746201
  for <yocto@lists.yoctoproject.org>;
- Fri, 21 Feb 2020 11:57:30 -0800
+ Fri, 21 Feb 2020 14:32:26 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=lWpra9Eb;
- spf=pass (domain: gmail.com, ip: 209.85.160.193, mailfrom: raj.khem@gmail.com)
-Received: by mail-qt1-f193.google.com with SMTP id d9so2140930qte.12
-        for <yocto@lists.yoctoproject.org>; Fri, 21 Feb 2020 11:57:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9STNJdPHSLZGVCdl5r/tM4TpnZRbd/OW6p1h2ACX/Cs=;
-        b=lWpra9Eby6JQdMLCZFWDUzoHY/mGju0e17Kj92GXSHwOnjdpMvqN/NV4kY7odMu0aT
-         Yi6iEQFZO47YuElHfFyPzZyGeiBYtvKv6HvyQXgbc25GG1puZnl/Ffky9FuzkE744r9n
-         NWxmGtQiiQPYD37/l7zijvaxasIJTg3S4qSrCYYWChVM/+SriFVzu/Y0lwYBh0dyeQyu
-         VSxfVZrntSfGRZgvjs9LZ9U/8kaE81NoE2nelXYEAM2i86YxEhbYzkhFpa6geVmIjAN4
-         +6XrynKxj09Qz8dhA7c/Fgq6KYnd7UZ5VKOyDFqRQiNiBPC2MMyUfSOGrg3vniYgleBY
-         Q2Hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9STNJdPHSLZGVCdl5r/tM4TpnZRbd/OW6p1h2ACX/Cs=;
-        b=GNsnF5MsMk8jevCRO2tDduR8RdwZ6aZ1CiXxggMqKvXdYZMx5H1XKHDxrppsQuUfkd
-         D4NeQG0RcruQb9FW4XnBT57jHfmRWbyyBOkq1+ChPAMqgnxQwuV/mWjLmhMs2HMMIJU1
-         0LdHSYjAyhQ9g83sQsbAfOTUcG6C/CPjXUCKCuaUBchhcTQQL5asQ8NKJUb+K6WMDE1E
-         vsTKUWok7xPCbtnXjcGCNsQZ4dhcDF2V46wJkWrgwh0W3oHQo9+yfqfdI4XiL3wXeEgc
-         s17ishTFboR9Np3fT8c4G902FmxByCRgqjzBXLSh7K55Qs5wAMIrb7BVCms13w9VrlAG
-         NYDA==
-X-Gm-Message-State: APjAAAUAYcAh3Iw39K/FahkAwQZ7M1Obkbg1yRQJ9EZPXEs3oNdLSqhQ
-	+z4vY3szUXbaydqT45vMH+Plk2cpst1bNgSCh1c=
-X-Google-Smtp-Source: APXvYqyXBt5Mxeo4rZ5vJVijjURzM8HmSK7ScHf7vsKyaX5wkeGffAtDtij7IXf2N8gOQd5ZCWM2bUvEhlaeFViBM84=
-X-Received: by 2002:ac8:36dd:: with SMTP id b29mr33193024qtc.285.1582315049006;
- Fri, 21 Feb 2020 11:57:29 -0800 (PST)
-MIME-Version: 1.0
-References: <NKHr.1582292647502040528.ikPU@lists.yoctoproject.org>
-In-Reply-To: <NKHr.1582292647502040528.ikPU@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Fri, 21 Feb 2020 11:56:59 -0800
-Message-ID: <CAMKF1sqgsxZBOP15Ft-b0W=4KQc=dQJvJ12H+riCaordNF4S8w@mail.gmail.com>
-Subject: Re: [yocto] nativesdk recipe fails to find cmake config file from another recipe/dependency #sdk
-To: Armando Hernandez <j.armandohernandez.j@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+ dkim=missing; spf=none, err=permanent DNS error (domain: centos7-ty-2.yocto.io, ip: 140.211.169.56, mailfrom: pokybuild@centos7-ty-2.yocto.io)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 1F384E0170D; Fri, 21 Feb 2020 14:32:26 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from centos7-ty-2.yocto.io (unknown [198.145.29.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19C0AE0170D;
+	Fri, 21 Feb 2020 14:32:23 -0800 (PST)
+Received: by centos7-ty-2.yocto.io (Postfix, from userid 6000)
+	id D7B986126DBA; Fri, 21 Feb 2020 22:32:22 +0000 (UTC)
+To: yocto@lists.yoctoproject.org
+Cc: otavio@ossystems.com.br, yi.zhao@windriver.com, apoorv.sangal@intel.com, ee.peng.yeoh@intel.com, aaron.chun.yew.chan@intel.com, richard.purdie@linuxfoundation.org, akuster808@gmail.com, sjolley.yp.pm@gmail.com, sangeeta.jain@intel.com
+Subject: QA notification for completed autobuilder build (yocto-2.7.3.rc1)
+Message-Id: <20200221223222.D7B986126DBA@centos7-ty-2.yocto.io>
+Date: Fri, 21 Feb 2020 22:32:22 +0000 (UTC)
+From: pokybuild@centos7-ty-2.yocto.io
 
-On Fri, Feb 21, 2020 at 5:44 AM Armando Hernandez
-<j.armandohernandez.j@gmail.com> wrote:
->
-> Hello,
->
-> I have two recipes (let's call them "recipe-A" and "recipe-B").
-> Both recipes extend the nativesdk class.
-> recipe-B depends on recipe-A
-> When building both recipes for target, everything goes well without any issues.
-> When building the nativesdk corresponding recipes, recipe-B fails during the task do_configure due to the fact that cmake cannot find the package configuration that corresponds to recipe-A.
->
-> On recipe-A.bbappend I have the following lines (recipe-A cmake config file "CommonAPIConfig.cmake" is located under /usr/lib/cmake/CommonAPI):
-> FILES_${PN}-dev_append_class-nativesdk = " ${includedir_native} ${libdir_native}"
-> BBCLASSEXTEND = "nativesdk"
->
-> Since suche cmake config files was not found, I created a recipe-B.bbappend file with the following content:
-> EXTRA_OECMAKE_append_class-nativesdk += "-DCMAKE_PREFIX_PATH:PATH=${libdir_native}/cmake/CommonAPI"
->
->
-> But I keep getting the same error.
->
-> Any hints?
 
-check DEPENDS how are they specified in recipes, it might get
-overwritten in some cases for extended
-recipes if overrides are in use on depends. Secondly, check the build
-tree for failing recipe and see if
-it has staged the content from other recipe which it depends on.
+A build flagged for QA (yocto-2.7.3.rc1) was completed on the autobuilder and is available at:
 
->
-> Thank you in advance!
->
-> Armando Hernandez.
-> 
+
+    https://autobuilder.yocto.io/pub/releases/yocto-2.7.3.rc1
+
+
+Build hash information: 
+
+bitbake: d411b097d810c386d35dc561f8812bb3f35c9a36
+meta-gplv2: d5d9fc9a4bbd365d6cd6fe4d6a8558f7115c17da
+meta-intel: fbd06132e6cb2b5fd43f7671aea0d431d0927a91
+meta-mingw: 10695afe8cd406844e0d0dd868c11677e07557d4
+oecore: ca019eec1304ca2a400ea744c0eaafe0a766d5d1
+poky: f475afc5df0837532dcd0f3a831ddc3aec8941f1
+
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: richard.purdie@linuxfoundation.org
+
+
+ 
