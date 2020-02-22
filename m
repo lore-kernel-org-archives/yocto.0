@@ -1,83 +1,112 @@
-Received: from mail-qt1-f196.google.com (mail-qt1-f196.google.com [209.85.160.196])
- by mx.groups.io with SMTP id smtpd.web12.62.1582326642759460338
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web09.5721.1582373491561946812
  for <yocto@lists.yoctoproject.org>;
- Fri, 21 Feb 2020 15:10:42 -0800
+ Sat, 22 Feb 2020 04:11:31 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=crwjkDvw;
- spf=pass (domain: gmail.com, ip: 209.85.160.196, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-qt1-f196.google.com with SMTP id w47so2529893qtk.4
-        for <yocto@lists.yoctoproject.org>; Fri, 21 Feb 2020 15:10:42 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=B9B1Gc3Q;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id DA8D9E0172C; Sat, 22 Feb 2020 04:11:30 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (jupiter.hce[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.166.174 listed in list.dnswl.org]
+Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00A23E007AE
+	for <yocto@yoctoproject.org>; Sat, 22 Feb 2020 04:11:29 -0800 (PST)
+Received: by mail-il1-f174.google.com with SMTP id f10so3910997ils.8
+        for <yocto@yoctoproject.org>; Sat, 22 Feb 2020 04:11:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=FFFxQRvm4ZrIcvWOwXqAzDtVx+7hTPFLdFCtprqIggE=;
-        b=crwjkDvwpgAE2sa4eO6Kpese4MTV5Hh0AJrL1drC9XB14IPhw/AYqLFdo8zSJBbkNb
-         PR1yreyjp/rfZaIH4QaTSIpkR7sMwcZdqRG7qLceurc3miqA31QLH5TRWMnxonyZR/fe
-         lgP2mUTqiApXguVSQhmQTw3Rq0+QrHPWx+0P0BE7UGxaJR0WVv0euxcAD6B5S45sIZ6n
-         4N7GUE2OopW+kSndjODoLq9UzIvQT2qSOJ++ZisfRKl9zeYF0tT83B6MsmdBKvzCyo6g
-         lKBYAEGOnK9RtpA4hD2msYTVeumLomL0FUifuBOGI68FDDLxrt07VnKJ8HZkucE6clSr
-         aHnQ==
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=5aHbHYqNG5JIvkc2gceulLrS6ucvhrco8+DdKXMlYU4=;
+        b=B9B1Gc3Ql4CBMsoAUny2LqcW7GMvYhbFqNnWSVsJIVAk0fHXXSUXrLKnGT0xa9XEFK
+         xMLRyHABWJ7pgTsCAX+b9gfanoJ6RhWyThdRany2+nDQeQzf9RqJICavCXdgSBDP5f3a
+         yPnK8ObEaD+gaQoUtJopwruwszkrJW8WLdKICGvLJVl3qDbqyiYwZKSnGX/b/2NAkJ2K
+         YU67dE1qH1oN8F+oLQ/y4xOQi3clpI8LQwTwZHuUtW9kiBWapKxjVmmHVDH5jPlSCoRL
+         7OOcU/H6xCvAKo/TE8oUSgKEeEdo+Qe+CIs/27HbFJWxZ9bm9VxjdOYlXCBl1upZu07F
+         JwZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=FFFxQRvm4ZrIcvWOwXqAzDtVx+7hTPFLdFCtprqIggE=;
-        b=WEAx+D2vFCgTeeiUFBbu3ppppPPG58NrcXg19Y9H1Bm5JfzPDhikAz8HByu44nFCeX
-         +RMABn/URgRPoeU8lZ6LoNRXJNVkDo2TTFpbfYv/2zn+D8qF8EyhfaQjlAlQ408NHazK
-         JKvjZLMc2S9M2DOqu8foZDdg93zMaGjym1XCTJtyjsZAjgx8BQ61ECuqg19Zf2eQTdZV
-         9yvKImdsdSDLmDCLW/AM6kWwJ6z2zS8daMROONqIpAbN8QkP0c6k+cWNJj7L3//iiuJU
-         vxAsj4rjfj80WetvC5/O74/rnpIZlvHTWnjTnWIh5V82GXjhLaPUbA++DWi1FYpmovtv
-         kQog==
-X-Gm-Message-State: APjAAAUie6Tx3LTSdZXzE1XRpY89fwSDT7YGsEXpoDLLtQDHG7OSG6dr
-	ixeCLXhq6q9+GprlFuhZzkA=
-X-Google-Smtp-Source: APXvYqw7qcSB2Q3vmYobj3dteLTTpVZ5Mc25v0w5QLIEUflarcE+tGDgpHc+vRfgtm3GHPhE1vyEwQ==
-X-Received: by 2002:ac8:1ac1:: with SMTP id h1mr34134402qtk.255.1582326641571;
-        Fri, 21 Feb 2020 15:10:41 -0800 (PST)
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from localhost.localdomain (CPEe8de27b71faa-CM64777d5e8820.cpe.net.cable.rogers.com. [174.113.11.95])
-        by smtp.gmail.com with ESMTPSA id f59sm2238506qtb.75.2020.02.21.15.10.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 21 Feb 2020 15:10:41 -0800 (PST)
-From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
-To: richard.purdie@linuxfoundation.org
-Cc: yocto@lists.yoctoproject.org
-Subject: [PATCH] yocto-bsps: update to v5.4.20
-Date: Fri, 21 Feb 2020 18:10:39 -0500
-Message-Id: <20200221231039.32818-1-bruce.ashfield@gmail.com>
-X-Mailer: git-send-email 2.19.1
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=5aHbHYqNG5JIvkc2gceulLrS6ucvhrco8+DdKXMlYU4=;
+        b=e0oIGvs+nNM6lWp313jeb6tek+vCH3RvsTlrQh2nMkWcQl9td3PQj+tskNQu+kDbwo
+         oESleGldyY/6KpCO1El3RvtT1ls1dS/MkZaReti5VJPk6+U7afSn2CtKnTLXpjpABcqm
+         trKkBH+AYfFo6k27Ri9oNZK7T5I6jEW9mtvaaDmMeF7kMbNfoeAh3poMZ1EXsYVNC3zv
+         2KJTO/wlR8ZombfoAOj/yVzHQsHA/S7XL9ntZWbygDRUJ5ia/5gbB8o70R+yD/kn4Q79
+         RbQsfIM1oobNko7cuHHcDkhbiFLDeFXlnEic4ZeeISG2d5OJVsljx6mXo4x4A4OFPcH2
+         hEEg==
+X-Gm-Message-State: APjAAAXkUZsYH6XmfxoDcvUrT0p+Pck8aNDjOLpIfo9DMeX4s+7i3JIQ
+	5WIcUDehVAFmm2hFLFXKxSldM7jSudP+fC8v2Aymow==
+X-Google-Smtp-Source: APXvYqy9+ri+ort8iUOcJf3BgxA2PzWSlg3viICmiuwFwAUJ+NPRKMO3mYk71GKaN3okka6xNxd4UGWk5RYCZ4mlgTg=
+X-Received: by 2002:a92:216:: with SMTP id 22mr42581404ilc.53.1582373489265;
+ Sat, 22 Feb 2020 04:11:29 -0800 (PST)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: by 2002:ad5:5d0d:0:0:0:0:0 with HTTP; Sat, 22 Feb 2020 04:11:28
+ -0800 (PST)
+From: "JH" <jupiter.hce@gmail.com>
+Date: Sat, 22 Feb 2020 23:11:28 +1100
+Message-ID: <CAA=hcWRdUPJ3W5VsQVpckNk8WmVGAh7vVUzMOHVm1mPiLX+y4w@mail.gmail.com>
+Subject: Yocto systemd service have different enviornment than the root
+To: Yocto discussion list <yocto@yoctoproject.org>
+Cc: Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>
+Content-Type: text/plain; charset="UTF-8"
 
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
+Hi,
 
-Updating the SRCREVs for the h/w references to v5.4.20, which includes
-the binutils fix for perf.
+Where is the systemd service environment set from?
 
-Signed-off-by: Bruce Ashfield <bruce.ashfield@gmail.com>
----
- .../recipes-kernel/linux/linux-yocto_5.4.bbappend         | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Here is the systemd service env:
 
-diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.4.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.4.bbappend
-index 49bf9efa98..956c4602aa 100644
---- a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.4.bbappend
-+++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto_5.4.bbappend
-@@ -7,10 +7,10 @@ KMACHINE_genericx86 ?= "common-pc"
- KMACHINE_genericx86-64 ?= "common-pc-64"
- KMACHINE_beaglebone-yocto ?= "beaglebone"
- 
--SRCREV_machine_genericx86    ?= "cdda35317561d2741b396efa623ace0bd2212c16"
--SRCREV_machine_genericx86-64 ?= "cdda35317561d2741b396efa623ace0bd2212c16"
--SRCREV_machine_edgerouter ?= "cdda35317561d2741b396efa623ace0bd2212c16"
--SRCREV_machine_beaglebone-yocto ?= "cdda35317561d2741b396efa623ace0bd2212c16"
-+SRCREV_machine_genericx86 ?= "f4d7dbafb103e4f782323017c239c548871c1567"
-+SRCREV_machine_genericx86-64 ?= "f4d7dbafb103e4f782323017c239c548871c1567"
-+SRCREV_machine_edgerouter ?= "f4d7dbafb103e4f782323017c239c548871c1567"
-+SRCREV_machine_beaglebone-yocto ?= "f4d7dbafb103e4f782323017c239c548871c1567"
- 
- COMPATIBLE_MACHINE_genericx86 = "genericx86"
- COMPATIBLE_MACHINE_genericx86-64 = "genericx86-64"
--- 
-2.19.1
+SHLVL=1
+JOURNAL_STREAM=8:30355
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+INVOCATION_ID=fbd7ba8782544a828902301423a98196
+LANG=C
+PWD=/
 
+How can I set up systemd service to use the root environment set up by
+/etc/profile? It is not neccesary to set up in my.service file, it can
+set up in a shell script my.sh called by service file:
+
+ExecStart=/usr/bin/my.sh
+
+
+Here is the root environment I login to it, set up in /etc/profile:
+
+# env
+USER=root
+SYSTEMD_PAGER=cat
+SHLVL=1
+LD_LIBRARY_PATH=/data/lib
+HOME=/home/root
+OLDPWD=/data
+HUSHLOGIN=FALSE
+PS1=\u@\h:\w\$
+LOGNAME=root
+TERM=xterm
+PATH=/usr/local/bin:/usr/bin:/bin:/data/bin:/data/sbin:/usr/local/sbin:/usr/sbin:/sbin
+LANG=C
+HZ=100
+SHELL=/bin/sh
+PWD=/data/log
+EDITOR=vi
+
+Thank  you.
+
+- jh
