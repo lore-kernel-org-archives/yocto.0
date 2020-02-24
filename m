@@ -1,211 +1,284 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.21867.1582556247482216526
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+ by mx.groups.io with SMTP id smtpd.web10.22329.1582557847513439075
  for <yocto@lists.yoctoproject.org>;
- Mon, 24 Feb 2020 06:57:27 -0800
+ Mon, 24 Feb 2020 07:24:07 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=KshAIrz7;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: wpdster@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C6B2E00C77; Mon, 24 Feb 2020 06:57:27 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (wpdster[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.160.195 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qt1-f195.google.com (mail-qt1-f195.google.com [209.85.160.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1909E0073D
-	for <yocto@yoctoproject.org>; Mon, 24 Feb 2020 06:57:23 -0800 (PST)
-Received: by mail-qt1-f195.google.com with SMTP id v25so6705010qto.7
-        for <yocto@yoctoproject.org>; Mon, 24 Feb 2020 06:57:23 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=IS2y8vFc;
+ spf=pass (domain: gmail.com, ip: 209.85.216.43, mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f43.google.com with SMTP id ep11so4353617pjb.2
+        for <yocto@lists.yoctoproject.org>; Mon, 24 Feb 2020 07:24:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=pEKGWFSOAK/u199QIUuuEzlRLGGapLzaGZl017Zrnkg=;
-        b=KshAIrz7sL3aB13+efTGbtPauqcc0/7P3pSH6RKuGyrb4yX5asPmLThw+q5KHt+ncb
-         +rSlzLKN5NllT1aDaku/oiWDLCt9OeH6u5zNxDMIF7Cnix7M9ClEjj0pYuPjtLonLlKP
-         OFpWbKJNvGkzV6vhxkS7alyE8CcSWyXPvyHqyxAQpF40zt0Yc0e6/rSoli+MJ/oQ30MX
-         9sCgYpE7fB/wYgMQc9mB2FpZvGvl7W4ivPIzoHC02KQOU5ki8LfJR685bVfTay2lnHnr
-         0pR2+daYS6Nhd5pz9aGGt2etjeG6AdlfRtnnfPmjXoB9dY5t6h3hB5u2vAOU5qxYGrsd
-         9qlg==
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language;
+        bh=6bw7cQ40lQ5S3eqnmrN0G9JRAqTlUeZXVb9qV1RQdSY=;
+        b=IS2y8vFc5t5vPN2XGnthm2rSP2vKL88QrH5sn/+8da+aL8MNxSyUk+1fw1qNlcwxdg
+         IQT++QiebJXneoZga79rc+y1c2BsVmgT8tPMbR5WW4Mgy4rcg/iLDCvBKaBvVuVg+mqM
+         HGFUkZNy53cKeXjSGOUo14btRiFa9R5yBbnlwIt6PPPd6yn2EgfYLD4EHXmydb7cHIR6
+         JAq5Q7HBoIxDICZiKdSRb400mvAqP/2N00poed3ZZ1w5XCeRk9ad33RwAqrdkXdEWacZ
+         9L1SsPYzkS5wMLSx2isOfK7QVQs34aY2XdOXxqseeFJmGSKfzrxvkNTxKG9x9zsp2MKP
+         xb6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pEKGWFSOAK/u199QIUuuEzlRLGGapLzaGZl017Zrnkg=;
-        b=HdBtKWRxfny7ce/KtPRXaGDA7XVYyL+salQkHBP5BkVjBWzjydMX+AWJV8dN00jN64
-         bfhxjE+SVyrtQAP6/MX7oe2ljnA+fp95bW2lHNESlVk1pzYf+IoNw6Km06zLtJEX0d/q
-         McVJKTEpkyWpoqxPtrDsr1AIWh/HZJRN/H0c4q6kpZ0U4oHQxSH5zkuY5+Scna27hN93
-         0tPRzTnAGdmxNzFRjCtFqhrBP/Uj8JK56JhHCdljuC5Vx6Kkk7eqJKvIQW8uEhPG2una
-         HWF0eanHcAQIWwWDGsufPfo/VYq4j9DCA8pWRwxHX9uhWhzpAap7T5c1elVltC3wJ4/R
-         Qjhg==
-X-Gm-Message-State: APjAAAXJ3Yeg0wtvIxR3jaGkkKv0hS4cc2x/TU63MoOwt+ALQKCwYpJ+
-	yw1QeDtoP86qe4eXeuc60LZLSlJInrUMfraLnBw=
-X-Google-Smtp-Source: APXvYqz5ulgwNoYiWNs1ltitMmPI6s5sMYVpaGWJ/IgR3pA5yz3yKKLiHlbwVdRDSfFTc2+i5KMTub2lFuX8jLjicmQ=
-X-Received: by 2002:ac8:4c89:: with SMTP id j9mr49700509qtv.29.1582556242874;
- Mon, 24 Feb 2020 06:57:22 -0800 (PST)
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language;
+        bh=6bw7cQ40lQ5S3eqnmrN0G9JRAqTlUeZXVb9qV1RQdSY=;
+        b=NxYXNVCp63jQFvF5z64uY1aRm/8KqkUhWsxytB2wokfM4JZgQ7MqfW4XXg4nMGTNrF
+         F3H2eiyQ7fiHKxwI6MSFjmRj9wfELLla1gZqRu9CLnWqwNzgkXCDJ8CjQzpb+fY/k+cd
+         8Lo7Q4PS9OXqvnFSGMJe8NnMi/daHarPvO6E25fYjUAlh+r18M3ey/3iFI119NdnYDTY
+         BBTSWmQ6sZIq4xu6ZwVmeD6CkS+nnV3aosC0BHLDdQCbP/Ys2mNjL8Eze6tvNNvkP8ux
+         5G5DIGZeKq9Iiuqjme464ZD2uJ4dEDdf/5exlrMiyK5tjO7q04WwlR0qz9q8S3hT9LmV
+         QZ9A==
+X-Gm-Message-State: APjAAAUYBE3+rYqJG5WtLlI9pYkzsAkNuV3RD/JXO4VTnuvIWMe3wh+W
+	SyeKzrHdKWevQaSHnXK1FKE=
+X-Google-Smtp-Source: APXvYqyNFktGNacSXHRSSUu1IKs4IYZpRw3tnkmvfbhWKQzNe/m8ZSA4n+u1GjwDBKUbvYglSEJ8jw==
+X-Received: by 2002:a17:902:502:: with SMTP id 2mr49752478plf.151.1582557846884;
+        Mon, 24 Feb 2020 07:24:06 -0800 (PST)
+Return-Path: <akuster808@gmail.com>
+Received: from ?IPv6:2601:202:4180:a5c0:7dff:acc3:c23d:7c90? ([2601:202:4180:a5c0:7dff:acc3:c23d:7c90])
+        by smtp.gmail.com with ESMTPSA id o73sm13037428pje.7.2020.02.24.07.24.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Feb 2020 07:24:06 -0800 (PST)
+Subject: Re: [yocto] QA notification for completed autobuilder build (yocto-2.7.3.rc1)
+To: Sangeeta Jain <sangeeta.jain@intel.com>,
+ "pokybuild@centos7-ty-2.yocto.io" <pokybuild@centos7-ty-2.yocto.io>,
+ "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
+ "yi.zhao@windriver.com" <yi.zhao@windriver.com>,
+ "Sangal, Apoorv" <apoorv.sangal@intel.com>,
+ "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>,
+ "Chan, Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
+ "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>,
+ "akuster808@gmail.com" <akuster808@gmail.com>,
+ "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>
+References: <20200221223222.D7B986126DBA@centos7-ty-2.yocto.io>
+ <CY4PR11MB187930DC7FD12DB37CF2AC5FE3EC0@CY4PR11MB1879.namprd11.prod.outlook.com>
+From: "akuster" <akuster808@gmail.com>
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ 8CS2NxU=
+Message-ID: <0a061bac-4579-4efd-bd52-c7234de8864d@gmail.com>
+Date: Mon, 24 Feb 2020 07:24:04 -0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-References: <CAF_dkJAyS20skTujCh_SCQXq+muJjCmn5=mnUG+A8qWitzNzqQ@mail.gmail.com>
- <2c0fedf92f8a5cf805cc9908b438dab40ffd72ec.camel@linuxfoundation.org>
- <CAF_dkJAHqGUHi-W-bW6+69=89SCfxNB6yP7Ws+JjhOwRTjPxMw@mail.gmail.com> <0a93546525e6afdd05ee7320a7f0972951d96856.camel@gmail.com>
-In-Reply-To: <0a93546525e6afdd05ee7320a7f0972951d96856.camel@gmail.com>
-From: "Patrick Doyle" <wpdster@gmail.com>
-Date: Mon, 24 Feb 2020 09:56:56 -0500
-Message-ID: <CAF_dkJBtKuVr+X5Gs5N_LPg3e_cpUw7J1AgArqcqD=g=pOoqGg@mail.gmail.com>
-Subject: Re: [yocto] Debugging gdb built by Yocto
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	Yocto discussion list <yocto@yoctoproject.org>
-X-Groupsio-MsgNum: 48584
-Content-Type: multipart/mixed; boundary="000000000000b1aed1059f5396c1"
+In-Reply-To: <CY4PR11MB187930DC7FD12DB37CF2AC5FE3EC0@CY4PR11MB1879.namprd11.prod.outlook.com>
+Content-Type: multipart/alternative;
+ boundary="------------498614E4ABEA28845D5FBC87"
+Content-Language: en-US
 
---000000000000b1aed1059f5396c1
-Content-Type: text/plain; charset="UTF-8"
+--------------498614E4ABEA28845D5FBC87
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 20, 2020 at 4:18 PM Khem Raj <raj.khem@gmail.com> wrote:
-> On Thu, 2020-02-20 at 08:52 -0500, Patrick Doyle wrote:
-> > I am trying to understand why I can't get stack traces from cores
-> > file
-> > on a mipsel system.  At the moment (after strategic additions of
-> > breakpoints, printf statements, and more breakpoints, and lots of
-> > internet combing), I am chasing down a rabbit hole related to the
-> > facts that the MIPS build uses/produces PIE code (Position
-> > Independent
-> > Executables, which is somehow different than Position Independent
-> > Code), a new ELF tag (MIPS_RLD_MAP_REL) was added 5 years ago to
-> > binutils, gdb looks for that tag, but the musl dynamic loader is not
-> > aware of it.  I don't know if this is the root cause of my problem or
-> > just (another) rabbit hole.  If anybody has any suggestions, I'm all
-> > ears.
+
+
+On 2/23/20 7:23 PM, Sangeeta Jain wrote:
+> Hello All,
 >
-> You must be on to something here, since musl does not do anything with
-> MIPS_RLD_MAP*, does this all work well with glibc/mips in same settings
-> ?
-I haven't tried this with glibc/mips with the same settings, but I
-expect it would work in that scenario, as I see support for
-MIPS_RLD_MAP_REL in the glibc sources.
+> Intel and WR YP QA is planning for QA execution for YP build yocto-2.7.3.rc1. We are planning to execute following tests for this cycle:
+>
+> OEQA-manual tests for following module:
+> 1. OE-Core
+> 2. BSP-hw
+>
+> Runtime auto test for following platforms:
+> 1. MinnowTurbot 32-bit
+> 2. Coffee Lake
+> 3. NUC 7
+> 4. NUC 6
+> 5. Edgerouter
+> 6. MPC8315e-rdb
+> 7. Beaglebone
+>
+>
+> ETA for completion is next Thursday, February 27.
 
-If anybody is interested, I have attached the two patches we applied
-to get core dumps to work.  I am planning to clean them up a bit and
-submit them upstream and/or to Yocto/OE's repo, but, in case I don't
-(or I forget), and since you expressed an interest in this, I am
-including them here.
+Sounds great.
 
-I'm not sure if my email will make it to the list with attachments or
-not.  We'll see.
+thanks,
+armin
+>
+> Thanks,
+> Sangeeta
+>
+>> -----Original Message-----
+>> From: pokybuild@centos7-ty-2.yocto.io <pokybuild@centos7-ty-2.yocto.io>
+>> Sent: Saturday, 22 February, 2020 6:32 AM
+>> To: yocto@lists.yoctoproject.org
+>> Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; Sangal, Apoorv
+>> <apoorv.sangal@intel.com>; Yeoh, Ee Peng <ee.peng.yeoh@intel.com>; Chan,
+>> Aaron Chun Yew <aaron.chun.yew.chan@intel.com>;
+>> richard.purdie@linuxfoundation.org; akuster808@gmail.com;
+>> sjolley.yp.pm@gmail.com; Jain, Sangeeta <sangeeta.jain@intel.com>
+>> Subject: QA notification for completed autobuilder build (yocto-2.7.3.rc1)
+>>
+>>
+>> A build flagged for QA (yocto-2.7.3.rc1) was completed on the autobuilder and is
+>> available at:
+>>
+>>
+>>     https://autobuilder.yocto.io/pub/releases/yocto-2.7.3.rc1
+>>
+>>
+>> Build hash information:
+>>
+>> bitbake: d411b097d810c386d35dc561f8812bb3f35c9a36
+>> meta-gplv2: d5d9fc9a4bbd365d6cd6fe4d6a8558f7115c17da
+>> meta-intel: fbd06132e6cb2b5fd43f7671aea0d431d0927a91
+>> meta-mingw: 10695afe8cd406844e0d0dd868c11677e07557d4
+>> oecore: ca019eec1304ca2a400ea744c0eaafe0a766d5d1
+>> poky: f475afc5df0837532dcd0f3a831ddc3aec8941f1
+>>
+>>
+>>
+>> This is an automated message from the Yocto Project Autobuilder
+>> Git: git://git.yoctoproject.org/yocto-autobuilder2
+>> Email: richard.purdie@linuxfoundation.org
+>>
+>>
+>>
+>>
+>> 
 
---wpd
 
---000000000000b1aed1059f5396c1
-Content-Type: text/x-patch; charset="US-ASCII"; 
-	name="0007-Teach-dynlink.c-about-DT_MIPS_RLD_MAP_REL.patch"
-Content-Disposition: attachment; 
-	filename="0007-Teach-dynlink.c-about-DT_MIPS_RLD_MAP_REL.patch"
-Content-Transfer-Encoding: base64
-Content-ID: <f_k70l0fq20>
-X-Attachment-Id: f_k70l0fq20
+--------------498614E4ABEA28845D5FBC87
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 7bit
 
-RnJvbSAyNjE3MmEyNWFlYzY0MzRmNzhhMWFjMjFkNTU4N2RjODE5MmU2YmE2IE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiBQYXRyaWNrIERveWxlIDxwZG95bGVAaXJvYm90LmNvbT4KRGF0
-ZTogVGh1LCAyMCBGZWIgMjAyMCAxNzowMzozMCAtMDUwMApTdWJqZWN0OiBbUEFUQ0hdIFRlYWNo
-IGR5bmxpbmsuYyBhYm91dCBEVF9NSVBTX1JMRF9NQVBfUkVMCgpSZWNvcmQgdGhlIGFkZHJlc3Mg
-b2YgdGhlIGRlYnVnIHN0cnVjdHVyZSBpbiBhIGxvY2F0aW9uIGluZGljYXRlZCBieQpEVF9NSVBT
-X1JMRF9NQVBfUkVMIHNvIHRoYXQgZGVidWdnZXJzIGNhbiBwcm9wZXJseSBkZWJ1ZyBjb3JlIGZp
-bGVzIHdpdGgKZHluYW1pYyBsaWJyYXJpZXMuCgpTZWUgaHR0cHM6Ly9iaW51dGlscy5zb3VyY2V3
-YXJlLm5hcmtpdmUuY29tL2FUYjFvZlhOL3BhdGNoLW1pcHMtc3VwcG9ydC1zaGFyZWQtbGlicmFy
-eS1kZWJ1Zy13aXRoLW1pcHMtcGllCmZvciB0aGUgZGVmaW5pdGlvbiBvZiBEVF9NSVBTX1JMRF9N
-QVBfUkVMLgotLS0KIGxkc28vZHlubGluay5jIHwgMTcgKysrKysrKysrKysrKysrKysKIDEgZmls
-ZSBjaGFuZ2VkLCAxNyBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvbGRzby9keW5saW5rLmMg
-Yi9sZHNvL2R5bmxpbmsuYwppbmRleCA2MzI1ZDhlYi4uODQyZTdiMzQgMTAwNjQ0Ci0tLSBhL2xk
-c28vZHlubGluay5jCisrKyBiL2xkc28vZHlubGluay5jCkBAIC0xODY2LDYgKzE4NjYsMjMgQEAg
-X05vcmV0dXJuIHZvaWQgX19kbHMzKHNpemVfdCAqc3ApCiAJCQlzaXplX3QgKnB0ciA9IChzaXpl
-X3QgKikgYXBwLmR5bnZbaSsxXTsKIAkJCSpwdHIgPSAoc2l6ZV90KSZkZWJ1ZzsKIAkJfQorCQkv
-KiBBY2NvcmRpbmcgdG8KKwkJICogaHR0cHM6Ly9iaW51dGlscy5zb3VyY2V3YXJlLm5hcmtpdmUu
-Y29tL2FUYjFvZlhOL3BhdGNoLW1pcHMtc3VwcG9ydC1zaGFyZWQtbGlicmFyeS1kZWJ1Zy13aXRo
-LW1pcHMtcGllCisJCSAqIFRoZSBkZWZpbml0aW9uIG9mIERUX01JUFNfUkxEX01BUF9SRUwgaXM6
-CisJCSAqCisJCSAqIFRoaXMgbWVtYmVyIGlzIHVzZWQgYnkgZGVidWdnaW5nLiBJdCBjb250YWlu
-cyBhIHJlbGF0aXZlIG9mZnNldCBmcm9tIHRoZSB0YWcncyBydW50aW1lCisJCSAqIGxvY2F0aW9u
-IG9mIGEgMzItYml0IHdvcmQgaW4gdGhlIC5kYXRhIHNlY3Rpb24gd2hpY2ggaXMgc3VwcGxpZWQg
-YnkgdGhlIGNvbXBpbGF0aW9uCisJCSAqIGVudmlyb25tZW50LiBUaGUgd29yZCdzIGNvbnRlbnRz
-IGFyZSBub3Qgc3BlY2lmaWVkIGFuZCBwcm9ncmFtcyB1c2luZyB0aGlzIHZhbHVlIGFyZSBub3QK
-KwkJICogQUJJIC0gY29tcGxpYW50LgorCQkgKgorCQkgKiBXZSBuZWVkIHRvIHN1cHBseSB0aGUg
-YWRkcmVzcyBvZiB0aGUgYGRlYnVnYCBzdHJ1Y3R1cmUsIHJlbGF0aXZlIHRvIHRoZSBhZGRyZXNz
-IG9mIHRoZQorCQkgKiBEVF9NSVBTX1JMRF9NQVBfUkVMIHRhZywgaW4gb3JkZXIgZm9yIGdkYiB0
-byBzdWNjZXNzZnVsbHkgbG9hZCB0aGUgc2hhcmUgbGlicmFyaWVzCisJCSAqIHJlZmVyZW5jZWQg
-YnkgYSBjb3JlIGZpbGUuCisJCSAqLworCQlpZiAoYXBwLmR5bnZbaV09PURUX01JUFNfUkxEX01B
-UF9SRUwpIHsKKwkJCXZvaWQgKipwdHIgPSAodm9pZCAqKikoKGNoYXIgKikmYXBwLmR5bnZbaV0g
-KyAodW5zaWduZWQpYXBwLmR5bnZbaSsxXSk7CisJCQkqcHRyID0gJmRlYnVnOworCQl9CiAJfQog
-CiAJLyogVGhpcyBtdXN0IGJlIGRvbmUgYmVmb3JlIGZpbmFsIHJlbG9jYXRpb25zLCBzaW5jZSBp
-dCBjYWxscwotLSAKMi4yNC4xCgo=
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=windows-1252">
+  </head>
+  <body>
+    <br>
+    <br>
+    <div class="moz-cite-prefix">On 2/23/20 7:23 PM, Sangeeta Jain
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CY4PR11MB187930DC7FD12DB37CF2AC5FE3EC0@CY4PR11MB1879.namprd11.prod.outlook.com">
+      <pre class="moz-quote-pre" wrap="">Hello All,
 
---000000000000b1aed1059f5396c1
-Content-Type: text/x-patch; charset="US-ASCII"; 
-	name="0006-Add-some-CFI-directives-to-MIPS-asm-sources.patch"
-Content-Disposition: attachment; 
-	filename="0006-Add-some-CFI-directives-to-MIPS-asm-sources.patch"
-Content-Transfer-Encoding: base64
-Content-ID: <f_k70l0fqb1>
-X-Attachment-Id: f_k70l0fqb1
+Intel and WR YP QA is planning for QA execution for YP build yocto-2.7.3.rc1. We are planning to execute following tests for this cycle:
 
-RnJvbSA4NGNmZGQ2M2NhYzc5MTc2ODljYjMwODA1NzU3MDcwYjUwYjliZjE5IE1vbiBTZXAgMTcg
-MDA6MDA6MDAgMjAwMQpGcm9tOiBEYW5pZWxlIFRhbWlubyA8ZHRhbWlub0Bpcm9ib3QuY29tPgpE
-YXRlOiBXZWQsIDI5IEphbiAyMDIwIDE4OjQzOjIyIC0wODAwClN1YmplY3Q6IFtQQVRDSF0gQWRk
-IHNvbWUgQ0ZJIGRpcmVjdGl2ZXMgdG8gTUlQUyBhc20gc291cmNlcwoKLS0tCiBzcmMvaW50ZXJu
-YWwvbWlwcy9zeXNjYWxsLnMgIHwgNCArKysrCiBzcmMvbGRzby9taXBzL2Rsc3ltLnMgICAgICAg
-IHwgNiArKysrKysKIHNyYy90aHJlYWQvbWlwcy9zeXNjYWxsX2NwLnMgfCA5ICsrKysrKysrKwog
-MyBmaWxlcyBjaGFuZ2VkLCAxOSBpbnNlcnRpb25zKCspCgpkaWZmIC0tZ2l0IGEvc3JjL2ludGVy
-bmFsL21pcHMvc3lzY2FsbC5zIGIvc3JjL2ludGVybmFsL21pcHMvc3lzY2FsbC5zCmluZGV4IDVk
-MGRlZjUyLi5mOWJjNTk5ZCAxMDA2NDQKLS0tIGEvc3JjL2ludGVybmFsL21pcHMvc3lzY2FsbC5z
-CisrKyBiL3NyYy9pbnRlcm5hbC9taXBzL3N5c2NhbGwucwpAQCAtNCw2ICs0LDcgQEAKIC5oaWRk
-ZW4gX19zeXNjYWxsCiAudHlwZSAgIF9fc3lzY2FsbCxAZnVuY3Rpb24KIF9fc3lzY2FsbDoKKyAg
-ICAuY2ZpX3N0YXJ0cHJvYwogCW1vdmUgICAgJDIsICQ0CiAJbW92ZSAgICAkNCwgJDUKIAltb3Zl
-ICAgICQ1LCAkNgpAQCAtMTMsNiArMTQsNyBAQCBfX3N5c2NhbGw6CiAJbHcgICAgICAkOSwgMjQo
-JHNwKQogCWx3ICAgICAgJDEwLDI4KCRzcCkKIAlzdWJ1ICAgICRzcCwgJHNwLCAzMgorCS5jZmlf
-YWRqdXN0X2NmYV9vZmZzZXQgMzIKIAlzdyAgICAgICQ4LCAxNigkc3ApCiAJc3cgICAgICAkOSwg
-MjAoJHNwKQogCXN3ICAgICAgJDEwLDI0KCRzcCkKQEAgLTIxLDYgKzIzLDggQEAgX19zeXNjYWxs
-OgogCXN5c2NhbGwKIAliZXEgICAgICQ3LCAkMCwgMWYKIAlhZGR1ICAgICRzcCwgJHNwLCAzMgor
-ICAgIC5jZmlfYWRqdXN0X2NmYV9vZmZzZXQgLTMyCiAJc3VidSAgICAkMiwgJDAsICQyCiAxOglq
-ciAgICAgICRyYQogCW5vcAorCS5jZmlfZW5kcHJvYwpkaWZmIC0tZ2l0IGEvc3JjL2xkc28vbWlw
-cy9kbHN5bS5zIGIvc3JjL2xkc28vbWlwcy9kbHN5bS5zCmluZGV4IDE1NzNlNTE5Li5mMTAzNjYy
-MSAxMDA2NDQKLS0tIGEvc3JjL2xkc28vbWlwcy9kbHN5bS5zCisrKyBiL3NyYy9sZHNvL21pcHMv
-ZGxzeW0ucwpAQCAtMywxNSArMywyMSBAQAogLmhpZGRlbiBfX2Rsc3ltCiAudHlwZSBkbHN5bSxA
-ZnVuY3Rpb24KIGRsc3ltOgorICAgIC5jZmlfc3RhcnRwcm9jCiAJbHVpICRncCwgJWhpKF9ncF9k
-aXNwKQogCWFkZGl1ICRncCwgJWxvKF9ncF9kaXNwKQogCWFkZHUgJGdwLCAkZ3AsICQyNQogCW1v
-dmUgJDYsICRyYQogCWx3ICQyNSwgJWNhbGwxNihfX2Rsc3ltKSgkZ3ApCiAJYWRkaXUgJHNwLCAk
-c3AsIC0xNgorCS5jZmlfYWRqdXN0X2NmYV9vZmZzZXQgMTYKIAlzdyAkcmEsIDEyKCRzcCkKKyAg
-ICAuY2ZpX3JlbF9vZmZzZXQgJHJhLCAxMgogCWphbHIgJDI1CiAJbm9wCiAJbHcgJHJhLCAxMigk
-c3ApCisgICAgLmNmaV9yZXN0b3JlICRyYQogCWpyICRyYQogCWFkZGl1ICRzcCwgJHNwLCAxNgor
-CS5jZmlfYWRqdXN0X2NmYV9vZmZzZXQgLTE2CisJLmNmaV9lbmRwcm9jCmRpZmYgLS1naXQgYS9z
-cmMvdGhyZWFkL21pcHMvc3lzY2FsbF9jcC5zIGIvc3JjL3RocmVhZC9taXBzL3N5c2NhbGxfY3Au
-cwppbmRleCBkMjg0NjI2NC4uYWIxNzM0OTYgMTAwNjQ0Ci0tLSBhL3NyYy90aHJlYWQvbWlwcy9z
-eXNjYWxsX2NwLnMKKysrIGIvc3JjL3RocmVhZC9taXBzL3N5c2NhbGxfY3AucwpAQCAtMTQsOSAr
-MTQsMTIgQEAKIC5oaWRkZW4gX19zeXNjYWxsX2NwX2FzbQogLnR5cGUgICBfX3N5c2NhbGxfY3Bf
-YXNtLEBmdW5jdGlvbgogX19zeXNjYWxsX2NwX2FzbToKKyAgICAuY2ZpX3N0YXJ0cHJvYwogCXN1
-YnUgICAgJHNwLCAkc3AsIDMyCisJLmNmaV9hZGp1c3RfY2ZhX29mZnNldCAzMgogX19jcF9iZWdp
-bjoKIAlsdyAgICAgICQ0LCAwKCQ0KQorCS5jZmlfcmVtZW1iZXJfc3RhdGUKIAlibmUgICAgICQ0
-LCAkMCwgX19jcF9jYW5jZWwKIAltb3ZlICAgICQyLCAkNQogCW1vdmUgICAgJDQsICQ2CkBAIC0z
-NSwxNCArMzgsMTggQEAgX19jcF9iZWdpbjoKIF9fY3BfZW5kOgogCWJlcSAgICAgJDcsICQwLCAx
-ZgogCWFkZHUgICAgJHNwLCAkc3AsIDMyCisJLmNmaV9hZGp1c3RfY2ZhX29mZnNldCAtMzIKIAlz
-dWJ1ICAgICQyLCAkMCwgJDIKIDE6CWpyICAgICAgJHJhCiAJbm9wCiAKIF9fY3BfY2FuY2VsOgor
-ICAgIC5jZmlfcmVzdG9yZV9zdGF0ZQogCW1vdmUgICAgJDIsICRyYQorCS5jZmlfcmVnaXN0ZXIg
-JHJhLCAkMgogCWJhbCAgICAgMWYKIAlhZGR1ICAgICRzcCwgJHNwLCAzMgorCS5jZmlfYWRqdXN0
-X2NmYV9vZmZzZXQgLTMyCiAJLmdwd29yZCAuCiAJLmdwd29yZCBfX2NhbmNlbAogMToJbHcgICAg
-ICAkMywgKCRyYSkKQEAgLTUxLDMgKzU4LDUgQEAgX19jcF9jYW5jZWw6CiAJYWRkdSAgICAkMjUs
-ICQyNSwgJDMKIAlqciAgICAgICQyNQogCW1vdmUgICAgJHJhLCAkMgorCS5jZmlfcmVzdG9yZSAk
-cmEKKwkuY2ZpX2VuZHByb2MKLS0gCjIuMjQuMAoK
+OEQA-manual tests for following module:
+1. OE-Core
+2. BSP-hw
 
---000000000000b1aed1059f5396c1--
+Runtime auto test for following platforms:
+1. MinnowTurbot 32-bit
+2. Coffee Lake
+3. NUC 7
+4. NUC 6
+5. Edgerouter
+6. MPC8315e-rdb
+7. Beaglebone
+
+
+ETA for completion is next Thursday, February 27.</pre>
+    </blockquote>
+    <br>
+    Sounds great.<br>
+    <br>
+    thanks,<br>
+    armin<br>
+    <blockquote type="cite"
+cite="mid:CY4PR11MB187930DC7FD12DB37CF2AC5FE3EC0@CY4PR11MB1879.namprd11.prod.outlook.com">
+      <pre class="moz-quote-pre" wrap="">
+
+Thanks,
+Sangeeta
+
+</pre>
+      <blockquote type="cite">
+        <pre class="moz-quote-pre" wrap="">-----Original Message-----
+From: <a class="moz-txt-link-abbreviated" href="mailto:pokybuild@centos7-ty-2.yocto.io">pokybuild@centos7-ty-2.yocto.io</a> <a class="moz-txt-link-rfc2396E" href="mailto:pokybuild@centos7-ty-2.yocto.io">&lt;pokybuild@centos7-ty-2.yocto.io&gt;</a>
+Sent: Saturday, 22 February, 2020 6:32 AM
+To: <a class="moz-txt-link-abbreviated" href="mailto:yocto@lists.yoctoproject.org">yocto@lists.yoctoproject.org</a>
+Cc: <a class="moz-txt-link-abbreviated" href="mailto:otavio@ossystems.com.br">otavio@ossystems.com.br</a>; <a class="moz-txt-link-abbreviated" href="mailto:yi.zhao@windriver.com">yi.zhao@windriver.com</a>; Sangal, Apoorv
+<a class="moz-txt-link-rfc2396E" href="mailto:apoorv.sangal@intel.com">&lt;apoorv.sangal@intel.com&gt;</a>; Yeoh, Ee Peng <a class="moz-txt-link-rfc2396E" href="mailto:ee.peng.yeoh@intel.com">&lt;ee.peng.yeoh@intel.com&gt;</a>; Chan,
+Aaron Chun Yew <a class="moz-txt-link-rfc2396E" href="mailto:aaron.chun.yew.chan@intel.com">&lt;aaron.chun.yew.chan@intel.com&gt;</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:richard.purdie@linuxfoundation.org">richard.purdie@linuxfoundation.org</a>; <a class="moz-txt-link-abbreviated" href="mailto:akuster808@gmail.com">akuster808@gmail.com</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>; Jain, Sangeeta <a class="moz-txt-link-rfc2396E" href="mailto:sangeeta.jain@intel.com">&lt;sangeeta.jain@intel.com&gt;</a>
+Subject: QA notification for completed autobuilder build (yocto-2.7.3.rc1)
+
+
+A build flagged for QA (yocto-2.7.3.rc1) was completed on the autobuilder and is
+available at:
+
+
+    <a class="moz-txt-link-freetext" href="https://autobuilder.yocto.io/pub/releases/yocto-2.7.3.rc1">https://autobuilder.yocto.io/pub/releases/yocto-2.7.3.rc1</a>
+
+
+Build hash information:
+
+bitbake: d411b097d810c386d35dc561f8812bb3f35c9a36
+meta-gplv2: d5d9fc9a4bbd365d6cd6fe4d6a8558f7115c17da
+meta-intel: fbd06132e6cb2b5fd43f7671aea0d431d0927a91
+meta-mingw: 10695afe8cd406844e0d0dd868c11677e07557d4
+oecore: ca019eec1304ca2a400ea744c0eaafe0a766d5d1
+poky: f475afc5df0837532dcd0f3a831ddc3aec8941f1
+
+
+
+This is an automated message from the Yocto Project Autobuilder
+Git: git://git.yoctoproject.org/yocto-autobuilder2
+Email: <a class="moz-txt-link-abbreviated" href="mailto:richard.purdie@linuxfoundation.org">richard.purdie@linuxfoundation.org</a>
+
+
+
+</pre>
+        <br>
+        <fieldset class="mimeAttachmentHeader"></fieldset>
+        <pre class="moz-quote-pre" wrap="">
+</pre>
+      </blockquote>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------498614E4ABEA28845D5FBC87--
