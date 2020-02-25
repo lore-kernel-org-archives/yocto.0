@@ -1,115 +1,60 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.249.1582655431284894962
+Received: from mail.stusta.mhn.de (mail.stusta.mhn.de [141.84.69.5])
+ by mx.groups.io with SMTP id smtpd.web09.338.1582655786299560666
  for <yocto@lists.yoctoproject.org>;
- Tue, 25 Feb 2020 10:30:31 -0800
+ Tue, 25 Feb 2020 10:36:30 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 140.211.169.56, mailfrom: denis@denix.org)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B8707E0175E; Tue, 25 Feb 2020 10:30:30 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
-	*      trust
-	*      [64.68.198.64 listed in list.dnswl.org]
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 731CFE003DB
-	for <yocto@yoctoproject.org>; Tue, 25 Feb 2020 10:30:27 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id C184740C2E;
-	Tue, 25 Feb 2020 18:30:26 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 6jF5vPsGxtYn; Tue, 25 Feb 2020 18:30:26 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A294840C27;
-	Tue, 25 Feb 2020 18:30:25 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id E65A01738D4; Tue, 25 Feb 2020 13:30:24 -0500 (EST)
-Date: Tue, 25 Feb 2020 13:30:24 -0500
-From: "Denys Dmytriyenko" <denis@denix.org>
-To: Joel A Cohen <aaron@assonance.org>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: [yocto] Using "latest git" versions of recipes
-Message-ID: <20200225183024.GA1578@denix.org>
-References: <CAFSZm+g8iFD3XgDK9XbcQmzDJdH70=URXXqZdMPcEjT2wU286Q@mail.gmail.com>
+ dkim=pass header.i=@stusta.de header.s=default header.b=mloaYkt5;
+ spf=pass (domain: stusta.de, ip: 141.84.69.5, mailfrom: bunk@stusta.de)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+	by mail.stusta.mhn.de (Postfix) with ESMTPSA id 48Rnh53M1jz4M;
+	Tue, 25 Feb 2020 19:36:19 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=stusta.de;
+	s=default; t=1582655782;
+	bh=OltEKKx+Rk6bVqHFXwYAolWJajfZUWSl1MnjkkIvoHw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mloaYkt5Y+2CaBvbvq+AyUpWEf9cVSqy0a77FdTLnYEzC4bAhbEOUxgQHVMp59URy
+	 PT+qtaLizWn2FyvDDhDtwBaVg0BU+Pwzs8RVN8xjOOEBa1Ptayls1FnfpKKqyQZzpH
+	 PgiF397MGmKJOfFVwxdAflGXfe+U+KRe3JkrzIf/qglTf1Bxf3Eu5upfNX100+PW/5
+	 OSuvD9dEBr7KOlgUN737oL8tQ0Pb9TwG7mbupNbrlmR/GCpraR+GuHaVjze0d8wwiA
+	 C13XbzvIHjKUvPnt7precTtccyAiNJ0hcbgAuFtUgDQUuXwx6mQ0pcZ1Tq14gM7gqJ
+	 1LwOAJ9On3+UlqQazl/8CnDl4xgnLohhqisDafv0tNQQ59BBEKqwkmUH6UXCyF6jgB
+	 2QaICUli0s1ocKki5MElZt5H+ZEDGXKCojbn1Povls9mr7zuge4tSpAHv9/WQze0Sf
+	 xguti6CdZS+HTk6bVPgX2YyAIPEUvzC/rYL4uXFemEzggxYGsAXo3YuQzBI9Nu2J72
+	 992M2CySZMZqTzmX1uB3vLD/rmyBjq94s6U4N8PDOJHIiwkjk/ZfdBGGmKXQBvO90e
+	 CdcjlcL2TLd2Gp+eI0M097yup3DKxek8xuyui1+veUlXRPakVi9yiT5V3d5MWwaF3p
+	 c9kgFNoTJvFcMwJ28w6wpA/s=
+Date: Tue, 25 Feb 2020 20:36:16 +0200
+From: "Adrian Bunk" <bunk@stusta.de>
+To: Mark Hatle <mark.hatle@kernel.crashing.org>
+Cc: yocto@lists.yoctoproject.org, jpewhacker@gmail.com
+Subject: Re: [yocto] [[meta-mingw][PATCH] libgcrypt: disable amd64 optimization
+Message-ID: <20200225183616.GA9058@localhost>
+References: <20200225180214.114643-1-mark.hatle@kernel.crashing.org>
 MIME-Version: 1.0
-In-Reply-To: <CAFSZm+g8iFD3XgDK9XbcQmzDJdH70=URXXqZdMPcEjT2wU286Q@mail.gmail.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Content-Type: text/plain; charset=us-ascii
+In-Reply-To: <20200225180214.114643-1-mark.hatle@kernel.crashing.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 
-On Tue, Feb 25, 2020 at 01:21:53PM -0500, Joel A Cohen wrote:
-> Hi all,
+On Tue, Feb 25, 2020 at 12:02:14PM -0600, Mark Hatle wrote:
+> amd64 optimization when using with mingw32 sometimes results in:
 > 
-> What I've done for quite a while when creating recipes for code that is
-> under heavy development is create 2 version of the recipe.
-> 
-> 1) recipe_1.0.0.bb (a known-stable recipe)
-> 
-> 2) recipe_git.bb (which contains something like:
-> SRCREV="${AUTOREV}"
-> SRCPV="1.0.1+git${SRCPV}"
-> DEFAULT_PREFERENCE = "-1"
-> 
-> 
-> The major problem I have with this, is that it defeats BB_NO_NETWORK, even
-> if I'm not using the git version of the recipe (because bitbake wants to go
-> check what the latest version is of the recipe during parsing).
-> 
-> I'm currently experimenting with a different approapch, which seems to have
-> several advantages. I wanted to share it and get commentary.
-> 
-> 1) Add a new class, "use-git.bbclass":
-> # This allows using the latest version of the source without requiring a
-> separate
-> # "recipe_git.bb". To use:
-> # 1) Add: INHERIT += "use-git"
-> # 2) Add: GIT_PNS = "recipe1 recipe2 etc"
-> 
-> GIT_PNS ?= ""
-> GIT_PNS[type] = "list"
-> 
-> python () {
->     pn = d.getVar('PN')
->     git_pns = d.getVar('GIT_PNS', [])
-> 
->     if pn in git_pns:
->         d.setVar('SRCREV', d.getVar('AUTOREV'))
->         srcpv = d.getVar('SRCPV')
->         d.appendVar('PV', '+git' + srcpv)
->         bb.note('Using latest git source code for %s, as recipe %s' % (pn,
-> d.getVar('BP')))
-> }
-> 
-> 
-> 
-> 2) In local.conf:
-> INHERIT += "use-git"
-> GIT_PNS = "recipe1 recipe2 etc"
-> 
-> 
-> 
-> This is nice, because I no longer have to create those recipe_git.bb
-> recipes, and it's a central place to go configure a "use latest source
-> code" setting.
-> 
-> Is this interesting to anyone else?
-> 
-> --Aaron
+> | ../../libgcrypt-1.8.4/cipher/rijndael-tables.h:103:24: error: expected
+> ']' before '.' token
+> |  103 | #define encT enc_tables.T
+>...
 
-You know that you can poke SRCREV and other vars from a config file, 
-such as local.conf?
+Please send a complete build log, this looks like a parallel build 
+failure where some .c is compiled before some header it uses is
+fully generated (or something similar).
 
-SRCREV_pn-recipe1 = "${AUTOREV}"
-SRCREV_pn-recipe2 = "${AUTOREV}"
+> --- a/recipes-support/libgcrypt/libgcrypt_%.bbappend
+> +++ b/recipes-support/libgcrypt/libgcrypt_%.bbappend
+> @@ -1,3 +1,4 @@
+> +EXTRA_OECONF_append_mingw32 = " --disable-amd64-as-feature-detection"
+>...
 
--- 
-Denys
+I assume PARALLEL_MAKE = "" would also work instead?
+
+cu
+Adrian
