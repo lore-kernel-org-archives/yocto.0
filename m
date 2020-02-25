@@ -1,18 +1,18 @@
 Received: from kernel.crashing.org (kernel.crashing.org [76.164.61.194])
- by mx.groups.io with SMTP id smtpd.web10.8392.1582653699889280173
+ by mx.groups.io with SMTP id smtpd.web10.8405.1582653739614415273
  for <yocto@lists.yoctoproject.org>;
- Tue, 25 Feb 2020 10:01:40 -0800
+ Tue, 25 Feb 2020 10:02:20 -0800
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=permerror, err=syntax error for token:  (domain: kernel.crashing.org, ip: 76.164.61.194, mailfrom: mark.hatle@kernel.crashing.org)
 Received: from lons-builder.int.hatle.net ([192.40.192.88])
-	by kernel.crashing.org (8.14.7/8.14.7) with ESMTP id 01PI1Y8s005283;
-	Tue, 25 Feb 2020 12:01:35 -0600
+	by kernel.crashing.org (8.14.7/8.14.7) with ESMTP id 01PI2EvH005286;
+	Tue, 25 Feb 2020 12:02:16 -0600
 From: "Mark Hatle" <mark.hatle@kernel.crashing.org>
 To: yocto@lists.yoctoproject.org
 Cc: jpewhacker@gmail.com
-Subject: [PATCH] libgcrypt: disable amd64 optimization
-Date: Tue, 25 Feb 2020 12:01:34 -0600
-Message-Id: <20200225180134.114469-1-mark.hatle@kernel.crashing.org>
+Subject: [[meta-mingw][PATCH] libgcrypt: disable amd64 optimization
+Date: Tue, 25 Feb 2020 12:02:14 -0600
+Message-Id: <20200225180214.114643-1-mark.hatle@kernel.crashing.org>
 X-Mailer: git-send-email 2.17.1
 
 amd64 optimization when using with mingw32 sometimes results in:
