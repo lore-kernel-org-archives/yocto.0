@@ -1,65 +1,104 @@
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
- by mx.groups.io with SMTP id smtpd.web09.7893.1582723266242142551
- for <yocto@lists.yoctoproject.org>;
- Wed, 26 Feb 2020 05:21:06 -0800
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=ZYK+RbZ0;
- spf=pass (domain: konsulko.com, ip: 209.85.167.177, mailfrom: paul.barker@konsulko.com)
-Received: by mail-oi1-f177.google.com with SMTP id d62so2947742oia.11
-        for <yocto@lists.yoctoproject.org>; Wed, 26 Feb 2020 05:21:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=aK6XYe8q1AohsQBOqfrNk/f+5+L0YZ11KN6i03Y6Nfk=;
-        b=ZYK+RbZ0PIddatsFV3EOaNEccc8go6CnW0nt32NceNhgi45jGGyDIr24I03mFToNMi
-         inlDotQK2MFsPmHZZzmGW9RO1Vi2ZZS3lyQpaqUeLsWLtHQ/MQ9NRpszhscT0TqWBgzT
-         RnBCauMSPDggSy/ziR4iipLeRCyqashuIsHAE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=aK6XYe8q1AohsQBOqfrNk/f+5+L0YZ11KN6i03Y6Nfk=;
-        b=n+Z1SE6kUOq1aE3aO3YRZEZK+JvM8ixVWSxk5iJLtYKVqGb0Z743ztvEkY8eHpGlfv
-         2KPv1t2acuzqO88iuOpgohohp4AfiK6Q4BHvyGyugn3VAhhBKGwVzAiLsqcj+hI+TalA
-         yuMxtvC7EORSBmR4yUbHAymYRwDlbzalXCfivkHvSUcrkHCr4KlY5Bo4WHerA9LwRF8e
-         3XxL7jO6u5FZCL6ws/Mo1PJGQnFD1hGMaGXyv8PbdypuK/DH/ti4kQ/QKmelW3BxhqzQ
-         AH6qK6V9M7lec99+pSVT3v72v0AN5fnlXUiKnsH0R/fihyqFs672Nsyb3P+4nTLk102v
-         1fGQ==
-X-Gm-Message-State: APjAAAVzAuvcYSse0OaM9NUCoQa/NF57WZGgtzyH1XTxT/EqJAdv2ijO
-	GemmGzMYSosXGsLmxF4ksksx8zmHvCo50URkgxX/hA==
-X-Google-Smtp-Source: APXvYqxaC8S3CuzOX1l/L4FHkX86idDfyD6OI4SC3k9wctqCSKtZNOitOG4JjOC9uZn78o1ETZR7EckFVN4kEpCBH7c=
-X-Received: by 2002:aca:d985:: with SMTP id q127mr2921130oig.132.1582723265575;
- Wed, 26 Feb 2020 05:21:05 -0800 (PST)
+Subject: setxkbmap equivalent in a Yocto Project based Distro #raspberrypi #rdk #yocto
+To: yocto@lists.yoctoproject.org
+From: riky.8@outlook.it
+X-Originating-Location: Cuceglio, Piedmont, IT (93.63.187.38)
+X-Originating-Platform: Linux Chrome 80
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CAER1B8K5Y9CFjJny8Z-ip+o1=5a3qfUTiFoHBL6zZTx0_sGeUQ@mail.gmail.com>
- <CAM9ZRVtf0=CWs6TXYtiwG4XY7jYL5Bza_euJOgyAgpjT_TP6Ng@mail.gmail.com>
- <CAER1B8K56hz4dxTjbeC1a3KpAg9TYQ4PL=L5tAqtA30eWnkeyw@mail.gmail.com> <CAER1B8LY_oYXv=97y=jnuqByXNuckv01iBHgGrys7A7gzLE+MA@mail.gmail.com>
-In-Reply-To: <CAER1B8LY_oYXv=97y=jnuqByXNuckv01iBHgGrys7A7gzLE+MA@mail.gmail.com>
-From: "Paul Barker" <pbarker@konsulko.com>
-Date: Wed, 26 Feb 2020 13:20:53 +0000
-Message-ID: <CAM9ZRVud7sNEUnj22BtjNBVb1bgNb-dScCxm1bYcPzLHPP07FQ@mail.gmail.com>
-Subject: Re: [yocto] Yocto Top Level Files
-To: Mehran Memarnejad <memarnejadm74@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Date: Wed, 26 Feb 2020 07:17:45 -0800
+Message-ID: <8tBF.1582730265405660808.aY1I@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="FMIOi3mfmwZxqFnJDcW4"
+
+--FMIOi3mfmwZxqFnJDcW4
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, 26 Feb 2020 at 13:17, Mehran Memarnejad <memarnejadm74@gmail.com> w=
-rote:
->
-> Hi Paul,
-> As I know, bitbake parses all recipes to make its database so that it kno=
-ws each recipe PROVIDEs what... base on top level files (I guess they are m=
-yImage.bb, myMahchine.conf and myDistro.conf), other files are pulled in if=
- they are necessary... For the machine.conf and distro.conf, the files name=
-d in MACHINE and DISTRO variables in local.conf are pulled in and the myIma=
-ge.bb is pulled in by the user when entering a command like $bitbake myImag=
-e
->
-> Am I right?
+setxkbmap it
 
-What do you mean by "top level files"?
+doesn't work.
+How i configure the keyboard layout in RDK Video IP (A Yocto Project based=
+ Distro)?
 
-I'd recommend you look at bitbake.conf so you can see how MACHINE,
-DISTRO, etc are handled.
+____________________________________________________________________
+
+Reply:
+
+The answer is simply:
+
+loadkeys it
+
+Equivalent at:
+
+loadkeys /usr/share/keymaps/i386/qwerty/it.map.gz
+
+--FMIOi3mfmwZxqFnJDcW4
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<pre style=3D"margin-bottom: 1em; padding: 12px 8px; font-variant-numeric: =
+inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-heig=
+ht: inherit; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liber=
+ation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New',=
+ monospace, sans-serif; vertical-align: baseline; box-sizing: inherit; widt=
+h: auto; max-height: 600px; background-color: var(--black-050); border-radi=
+us: 3px; overflow-wrap: normal; color: #242729; border: 0px initial initial=
+;"><code style=3D"margin: 0px; border: 0px; font-style: inherit; font-varia=
+nt: inherit; font-weight: inherit; font-stretch: inherit; line-height: inhe=
+rit; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mo=
+no', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospa=
+ce, sans-serif; font-size: 13px; vertical-align: baseline; box-sizing: inhe=
+rit; white-space: inherit;">setxkbmap it
+</code></pre>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;">doesn't work.<br style=3D"box-sizing: inherit;" />=
+How i configure the keyboard layout in RDK Video IP (A Yocto Project based =
+Distro)?<br /><br />_______________________________________________________=
+_____________<br /><br />Reply:</p>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;">The answer is simply:</p>
+<pre style=3D"margin-bottom: 1em; padding: 12px 8px; font-variant-numeric:=
+ inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-hei=
+ght: inherit; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Libe=
+ration Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New'=
+, monospace, sans-serif; vertical-align: baseline; box-sizing: inherit; wid=
+th: auto; max-height: 600px; background-color: var(--black-050); border-rad=
+ius: 3px; overflow-wrap: normal; color: #242729; border: 0px initial initia=
+l;"><code style=3D"margin: 0px; border: 0px; font-style: inherit; font-vari=
+ant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inh=
+erit; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation M=
+ono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monosp=
+ace, sans-serif; font-size: 13px; vertical-align: baseline; box-sizing: inh=
+erit; white-space: inherit;">loadkeys it
+</code></pre>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;">Equivalent at:</p>
+<p style=3D"margin-bottom: 1em; padding: 0px; border: 0px; font-variant-nu=
+meric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; li=
+ne-height: inherit; font-family: Arial, 'Helvetica Neue', Helvetica, sans-s=
+erif; font-size: 15px; vertical-align: baseline; box-sizing: inherit; clear=
+: both; color: #242729;">&nbsp;</p>
+<pre style=3D"margin-bottom: 1em; padding: 12px 8px; font-variant-numeric:=
+ inherit; font-variant-east-asian: inherit; font-stretch: inherit; line-hei=
+ght: inherit; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Libe=
+ration Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New'=
+, monospace, sans-serif; vertical-align: baseline; box-sizing: inherit; wid=
+th: auto; max-height: 600px; background-color: var(--black-050); border-rad=
+ius: 3px; overflow-wrap: normal; color: #242729; border: 0px initial initia=
+l;"><code style=3D"margin: 0px; border: 0px; font-style: inherit; font-vari=
+ant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inh=
+erit; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation M=
+ono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monosp=
+ace, sans-serif; font-size: 13px; vertical-align: baseline; box-sizing: inh=
+erit; white-space: inherit;">loadkeys /usr/share/keymaps/i386/qwerty/it.map=
+.gz</code></pre>
+
+--FMIOi3mfmwZxqFnJDcW4--
