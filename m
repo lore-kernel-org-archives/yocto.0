@@ -1,120 +1,171 @@
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by mx.groups.io with SMTP id smtpd.web12.137.1582676099730475465
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+ by mx.groups.io with SMTP id smtpd.web10.3551.1582691776667248286
  for <yocto@lists.yoctoproject.org>;
- Tue, 25 Feb 2020 16:15:00 -0800
+ Tue, 25 Feb 2020 20:36:16 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=OvzuJ95g;
- spf=pass (domain: intel.com, ip: 192.55.52.115, mailfrom: vineela.tummalapalli@intel.com)
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 25 Feb 2020 16:14:59 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,486,1574150400"; 
-   d="scan'208";a="436441247"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-  by fmsmga005.fm.intel.com with ESMTP; 25 Feb 2020 16:14:58 -0800
-Received: from orsmsx155.amr.corp.intel.com (10.22.240.21) by
- ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 25 Feb 2020 16:14:58 -0800
-Received: from ORSEDG001.ED.cps.intel.com (10.7.248.4) by
- ORSMSX155.amr.corp.intel.com (10.22.240.21) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 25 Feb 2020 16:14:57 -0800
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (104.47.55.177)
- by edgegateway.intel.com (134.134.137.100) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Tue, 25 Feb 2020 16:11:48 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Iw4kZ3+ESFOYItEhynK6yaFhauHGyoHFrWM3usTM7lJDX+jMe3jWgAUpPEQ6WUocJj+UkJiRLemLnrKYAtdtyJEMOc3V0uzamOWMi1y1cIumZDlPM76kuG6GDkkS7AwHGSsQUMIjWZC1X3QPvmKmo69EWeEeT8Qm4HsX3DjLtzd/bG0+WlfE2mSGDppMcEIuJoH2iesOUJ72VyToWlaH6B30OnU6ls58jw0niVpeqmKk4jGrMGb0KkcltwZ4lXcYhX4Ztgi7+BZjPLQAPRIDdme6Dghyo2zPp1nZi3UJytSdlIuFH5+3G/D0fFQpE0+kViLRpvkVD2/UnEobacTlvw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dyCR68+nvVFi4ttFm3ErGxoOrDShn1jma5XpCmAUWyU=;
- b=WDpJ7/hs/DPGg/CoXW3OHddFd35KFa7zf9l+/UrHf48R0p4p4AbpVY8tNi2aKfxh5KCHB7Mu8NlyQdbd86buSsiejNnLZwij+lFiEyT5L5wzoeFW3WWqNs3SBFsiFKewXZP62Qy3mzw0JMbJ31DPhoSQ2OQBUX6HXyM9SqOr7nhhWfOhwEvjixO9+W4TnF/EYihnSQyWpHjqvmHo9qdVdX4ZKOwYKGDc9SodUG7CUg+mohZhANNfFPnr9cigGBHY/Gv+QfN/h5vaNaIBzwA41vxebV9MvGk2hK2czm4U6dEsmQJQo0gO9mG5Nq0McgasXC9/q3lrCEwHn7yShFz/lg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dyCR68+nvVFi4ttFm3ErGxoOrDShn1jma5XpCmAUWyU=;
- b=OvzuJ95gO00FKImc1IHOaqh9ApVOQybm+4pjNZwjRFfvS+320P7u+6i6nEPG7vXpMjhhsFl3jbppruxUNBVpAvkAnZqYe1kNtr+wOKtYlt3C+97UvIdTJW3KJ99hbINi3p3Cz5gtIz5no5j06lMbvelYlF1mmYzKSakgOGn7prI=
-Received: from BYAPR11MB2790.namprd11.prod.outlook.com (2603:10b6:a02:c4::29)
- by BYAPR11MB3781.namprd11.prod.outlook.com (2603:10b6:a03:b1::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2750.21; Wed, 26 Feb
- 2020 00:11:47 +0000
-Received: from BYAPR11MB2790.namprd11.prod.outlook.com
- ([fe80::8d22:742:fe90:7da0]) by BYAPR11MB2790.namprd11.prod.outlook.com
- ([fe80::8d22:742:fe90:7da0%5]) with mapi id 15.20.2750.021; Wed, 26 Feb 2020
- 00:11:47 +0000
-From: "Vineela" <vineela.tummalapalli@intel.com>
-To: "'yocto-announce@lists.yoctoproject.org'"
-	<yocto-announce@lists.yoctoproject.org>, "'yocto@lists.yoctoproject.org'"
-	<yocto@lists.yoctoproject.org>, "'yocto-request@eclists.intel.com'"
-	<yocto-request@eclists.intel.com>
-Subject: [ANNOUNCEMENT] Yocto Project 3.0.2 (zeus 22.0.2) Released
-Thread-Topic: [ANNOUNCEMENT] Yocto Project 3.0.2 (zeus 22.0.2) Released
-Thread-Index: AdXsOO0RkRCNY8kaTE+/7OPsN6xXUQ==
-Date: Wed, 26 Feb 2020 00:11:46 +0000
-Message-ID: <BYAPR11MB279083C2CF16130FB8B83A5188EA0@BYAPR11MB2790.namprd11.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0ludGVsMyIsImlkIjoiZjk0N2M1MWYtNTYwZi00NWZiLWExZTctNmY4ZTE4NTlhNzliIiwicHJvcHMiOlt7Im4iOiJDVFBDbGFzc2lmaWNhdGlvbiIsInZhbHMiOlt7InZhbHVlIjoiQ1RQX05UIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE3LjEwLjE4MDQuNDkiLCJUcnVzdGVkTGFiZWxIYXNoIjoiU0liZzFRVzNRY0szTGd0S08rQWgxNzljWjc5YU1IbU1zRlpqdHB1M1NIWlNybGo1elZidHQ2M0Y2N0hIR3J4RSJ9
-x-ctpclassification: CTP_NT
-dlp-version: 11.2.0.6
-dlp-reaction: no-action
-dlp-product: dlpe-windows
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=vineela.tummalapalli@intel.com; 
-x-originating-ip: [192.55.52.193]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 439ead9d-056e-40c2-79cd-08d7ba507812
-x-ms-traffictypediagnostic: BYAPR11MB3781:
-x-microsoft-antispam-prvs: <BYAPR11MB3781E1BA1B23D4153A7EC43688EA0@BYAPR11MB3781.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 0325F6C77B
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(366004)(136003)(346002)(376002)(39860400002)(189003)(199004)(52536014)(7696005)(86362001)(8676002)(81156014)(33656002)(81166006)(6506007)(186003)(26005)(8936002)(66446008)(66556008)(478600001)(4744005)(5660300002)(55016002)(2906002)(9686003)(71200400001)(110136005)(66476007)(64756008)(966005)(66946007)(76116006)(316002)(491001);DIR:OUT;SFP:1102;SCL:1;SRVR:BYAPR11MB3781;H:BYAPR11MB2790.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: xSufbI2ZpiNnOvTcYxudFbu661cxQ3fCKykWLQGbHCtpD3fjh1lRjyD/PKUyz9xtyoKhVsY0DugH6vPUXX0o+2GKjuYmDtraVDl9Xx1644a/el6spXL/mc7tnwn4wsvEOasCIN97rqChjq9bOYeAGQpGIEkSo+KNAqAkh/I4u8Tok5B/44eTRY6+YpUdx32/l64vlNqW1a8QybyXwG5nk1CJgre+JXGXPGTrpT31g8XIZdMiJVdu0D4U9tgIysbxnhDXXX0DjB9J7VxF5AM+h0aa0TirL68BYV/RdZ6GODLashDklJg5iAfSLZitSVsiB45q5VgcAY1BG8sxYZVAr5T+m+lic0YAux7DXQHy1ZM+OnAZRbuEGbKblKXfs0hH42a/YebF7FlRf4h8wZuekrUTYyDNu1jammQ6hzcFhgCGjz+12xjOQjwc7z70SrfpZMqPRYQx17BoCZFqCtLJe7dMVX9S+uYRiKBEP/6FPJioF672juYYkvyiF1YI2GUZEOV6dTKO0d7WlWJED+wRWDeImNtYuAaN6UH3Re1FWpyqHM6Y3NJSQpebxk8wnz6s
-x-ms-exchange-antispam-messagedata: pNlhVcyocM63Ad8lR7zK7QDzyOHydc86qUqORIae8KFR/3Z35601r+jvjy/lOXuJzFNNS7d1zc6Ne0ybs6L4ZqmCpAOuu/DFp2oD1B4Sa+WVuprHMIN6XrYg7mKIGo8y8pFTUxZu8iBq8jqIQttAHg==
-x-ms-exchange-transport-forked: True
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Z0oR8a5f;
+ spf=pass (domain: gmail.com, ip: 209.85.160.169, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-qt1-f169.google.com with SMTP id d9so1332668qte.12
+        for <yocto@lists.yoctoproject.org>; Tue, 25 Feb 2020 20:36:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ydY6VUbw0F5OKC6Mf7EMHYrCII53Cxay/gZnEecMJuA=;
+        b=Z0oR8a5fGGn4TaT2IISG6IEEGg4AfXI+K8mw7yPyFVnhY/W05p9IvQRQGNou/5tprH
+         Caahu32b+PLHrWx8BV7z6YQ7kcZUoIexrfkj4m9VSw6nb5DOrUcsmnRv5qT8aYxQBvqP
+         CeEtsbWev5AOGz4vm30F0d0dZp0H232VRXAjNId2wYLFCHzbvrcqVGVqTTxv42DPy7Nd
+         JI9GydBFeFO495MvcxWEnIab34JDS+4LLNTB9ghQC38D8BvUkGCYsl+qntqfOfQ3bate
+         UjQVjyaVcN1EDmnYAJtEZzzHOiJH5pd3O0APLxFRE+gu/TpMXn6JArbmYyltHq9a1MjU
+         dlGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ydY6VUbw0F5OKC6Mf7EMHYrCII53Cxay/gZnEecMJuA=;
+        b=GObhCPnDdvLQV4ICXqhQhRLaUjLut+V6/82FX3YGX/yut4g4QDcsd6Mi13WTMQSAHi
+         Up8qfrfmP8hQub+T0dGfbWoqN/YpsROvH3uUQGFmW9BL0zrqsrSOhwby20+9EkPNSOwp
+         ADIIybr/0Aqh0ix3Frcwpk55U3tS6xdrx6viGaw1EPe/r7SE7lO0zYHWcDHedyfrN/7Y
+         wpSlEX8npGS/ZR+/cn6v12jqqljC/lvjGyIE61RfNXn6Leg/dbZJDKGcMf0cboeiEXwZ
+         tEPvK+rPxbrjfGjiul7nn/kNZI3rxCPc50+v2P3I8un6l7tVdTwHfWlztSHL4wHygm20
+         eN2A==
+X-Gm-Message-State: APjAAAWlXxGH9Vr3MPv86TajQVx6dtAJD7hnMlGDnoidngtvJBWBUDPT
+	W7ESurW1Dn5O31V5bUOu2Ysh2ZtLUK2FMYXCzh4=
+X-Google-Smtp-Source: APXvYqwK8A+n1uGj8M0y754jKkXFct2vziIwJgzoXrK/B1mGTlSfUBkoQB5pqW2RUuIMimMsULC9NFa4dxVrcjsCF+Q=
+X-Received: by 2002:ac8:7b29:: with SMTP id l9mr2590138qtu.141.1582691775545;
+ Tue, 25 Feb 2020 20:36:15 -0800 (PST)
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 439ead9d-056e-40c2-79cd-08d7ba507812
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Feb 2020 00:11:46.9482
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: TSJv1gTh9aAtxQoCny/omhcpqw9rFBpNhUD1Br7Y2OcEvBm+I36F5EjCg3P5gx+QFLpiQ/VqM5LKxlc4jriXM02CTc9X5GeQQrr37wOv6Xc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR11MB3781
-Return-Path: vineela.tummalapalli@intel.com
-X-OriginatorOrg: intel.com
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+References: <CA+ABUwitOho6JLm+u4Rb+mxsMvqhH32Xr3yHHW=p4yo5Rbr1Lw@mail.gmail.com>
+ <CAGAf8LwaJtR1OH6EKL0x=0q5KZZWwDxEb0VxSd_EucJ+S=MPMA@mail.gmail.com> <CA+ABUwgivxKteOcfqDs62qPPRM6kwSdBoMXECR3BGhvRgcF3oQ@mail.gmail.com>
+In-Reply-To: <CA+ABUwgivxKteOcfqDs62qPPRM6kwSdBoMXECR3BGhvRgcF3oQ@mail.gmail.com>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Wed, 26 Feb 2020 05:36:04 +0100
+Message-ID: <CAGAf8LxwML4ZqTCRQXtzPUQUqu8oxDxTvDYimLqOuwOKU036aA@mail.gmail.com>
+Subject: Re: [yocto] Bitbake error
+To: =?UTF-8?Q?I=C3=B1igo_Vicente_Wali=C3=B1o?= <inigovicentewalino@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000001205ae059f732556"
+
+--0000000000001205ae059f732556
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+U R not the only one experiencing this problem.
+https://stackoverflow.com/questions/60336978/yocto-error-perf-1-0-r9-do-co=
+mpile-oe-runmake-failed-from-bitbake-image
 
-We are pleased to announce the Yocto Project 3.0.2 (zeus-22.0.2) Release is=
- now available for download.
+Does this setup you have compile with core-image-minimal?
 
-http://downloads.yoctoproject.org/releases/yocto/yocto-3.0.2/poky-zeus-22.0=
-.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-3.0.2/poky-zeus-22.0.2.tar.bz2
+Zoran
 
-A gpg signed version of these release notes is available at:
+On Mon, Feb 24, 2020 at 11:58 AM I=C3=B1igo Vicente Wali=C3=B1o <
+inigovicentewalino@gmail.com> wrote:
 
-http://downloads.yoctoproject.org/releases/yocto/yocto-3.0.2/RELEASENOTES
+> That patch is already applied and the error remains the same.
+> Any other idea? Can the error be due to python?
+>
+> Thanks,
+> I=C3=B1igo
+>
+> El vie., 21 feb. 2020 a las 15:04, Zoran (<zoran.stojsavljevic@gmail.com=
+>)
+> escribi=C3=B3:
+>
+>> Hope this can fix the issue:
+>>
+>> http://lists.openembedded.org/pipermail/openembedded-core/2016-October/=
+127246.html
+>>
+>> Best Regards,
+>> Zoran
+>>
+>> On Fri, Feb 21, 2020 at 10:16 AM I=C3=B1igo Vicente Wali=C3=B1o
+>> <inigovicentewalino@gmail.com> wrote:
+>> >
+>> > Hi,
+>> >
+>> > I'm trying to build yocto project ZEUS for imx8m mini.
+>> >
+>> > I have this configuration EXTRA_IMAGE_FEATURES=3D =E2=80=9C ssh-serve=
+r-openssh
+>> tools-sdk tools-debug dbg-pkgs dev-pkgs doc-pkgs package-management
+>> tools-profile=E2=80=9D in my build/conf/local.con file.
+>> >
+>> > But it reports error when executing bitbake core-image-base.
+>> > Host environment: Ubuntu 18.04.3 LTS
+>> >
+>> > Can any one explain how to resolve this?
+>> >
+>> > The error log is below.
+>> >
+>> >
+>> > Thanks, best regards
+>> >
+>> > I=C3=B1igo.
+>> >
+>> >
+>>=20
+>>
+>
 
-Full Test Report:
+--0000000000001205ae059f732556
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-http://downloads.yoctoproject.org/releases/yocto/yocto-3.0.2/testreport.txt
+<div dir=3D"ltr"><div>U R not the only one experiencing this problem.<br></=
+div><div><a href=3D"https://stackoverflow.com/questions/60336978/yocto-erro=
+r-perf-1-0-r9-do-compile-oe-runmake-failed-from-bitbake-image">https://stac=
+koverflow.com/questions/60336978/yocto-error-perf-1-0-r9-do-compile-oe-runm=
+ake-failed-from-bitbake-image</a></div><div><br></div><div>Does this setup =
+you have compile with core-image-minimal?</div><div><br></div><div>Zoran<br=
+></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail=
+_attr">On Mon, Feb 24, 2020 at 11:58 AM I=C3=B1igo Vicente Wali=C3=B1o &lt;=
+<a href=3D"mailto:inigovicentewalino@gmail.com">inigovicentewalino@gmail.co=
+m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+><div dir=3D"ltr">That patch is already applied and the error remains the s=
+ame.<br><div>Any other idea?=C2=A0Can the error be due to python?</div><div=
+><br></div><div>Thanks,</div><div>I=C3=B1igo</div></div><br><div class=3D"g=
+mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">El vie., 21 feb. 2020 a l=
+as 15:04, Zoran (&lt;<a href=3D"mailto:zoran.stojsavljevic@gmail.com" targe=
+t=3D"_blank">zoran.stojsavljevic@gmail.com</a>&gt;) escribi=C3=B3:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex">Hope this can fix the is=
+sue:<br>
+<a href=3D"http://lists.openembedded.org/pipermail/openembedded-core/2016-=
+October/127246.html" rel=3D"noreferrer" target=3D"_blank">http://lists.open=
+embedded.org/pipermail/openembedded-core/2016-October/127246.html</a><br>
+<br>
+Best Regards,<br>
+Zoran<br>
+<br>
+On Fri, Feb 21, 2020 at 10:16 AM I=C3=B1igo Vicente Wali=C3=B1o<br>
+&lt;<a href=3D"mailto:inigovicentewalino@gmail.com" target=3D"_blank">inig=
+ovicentewalino@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; I&#39;m trying to build yocto project ZEUS for imx8m mini.<br>
+&gt;<br>
+&gt; I have this configuration EXTRA_IMAGE_FEATURES=3D =E2=80=9C ssh-serve=
+r-openssh tools-sdk tools-debug dbg-pkgs dev-pkgs doc-pkgs package-manageme=
+nt tools-profile=E2=80=9D in my build/conf/local.con file.<br>
+&gt;<br>
+&gt; But it reports error when executing bitbake core-image-base.<br>
+&gt; Host environment: Ubuntu 18.04.3 LTS<br>
+&gt;<br>
+&gt; Can any one explain how to resolve this?<br>
+&gt;<br>
+&gt; The error log is below.<br>
+&gt;<br>
+&gt;<br>
+&gt; Thanks, best regards<br>
+&gt;<br>
+&gt; I=C3=B1igo.<br>
+&gt;<br>
+&gt; <br>
+<br>
+</blockquote></div>
+</blockquote></div>
 
-Thank you for everyone's contributions to this release.
-
-Sincerely,
-Vineela Tummalapalli=20
-Yocto Project Build and Release
-<vineela.tummalapalli@intel.com>
+--0000000000001205ae059f732556--
