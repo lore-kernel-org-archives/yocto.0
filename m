@@ -1,57 +1,52 @@
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
- by mx.groups.io with SMTP id smtpd.web12.324.1582784773579989284
- for <yocto@lists.yoctoproject.org>;
- Wed, 26 Feb 2020 22:26:14 -0800
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: mingli.yu@windriver.com)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 01R6QCJu024290
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@lists.yoctoproject.org>; Wed, 26 Feb 2020 22:26:12 -0800 (PST)
-Received: from pek-lpg-core2.corp.ad.wrs.com (128.224.153.41) by
- ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
- 14.3.468.0; Wed, 26 Feb 2020 22:26:11 -0800
-From: "Yu, Mingli" <mingli.yu@windriver.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: [meta-security][PATCH] linux-yocto: update the bbappend to 5.x
-Date: Thu, 27 Feb 2020 14:26:10 +0800
-Message-ID: <1582784770-249823-1-git-send-email-mingli.yu@windriver.com>
-X-Mailer: git-send-email 2.7.4
+Subject: matchbox systemd/logind IdleAction taken despite not being idle #systemd
+To: yocto@lists.yoctoproject.org
+From: cwseys@physics.wisc.edu
+X-Originating-Location: US (144.92.31.233)
+X-Originating-Platform: Linux Firefox 68
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: text/plain
+Date: Thu, 27 Feb 2020 07:00:06 -0800
+Message-ID: <cwSL.1582815606041394767.LEm2@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="N5FVE3CHLwcWJMbfIoYR"
 
-From: Mingli Yu <mingli.yu@windriver.com>
+--N5FVE3CHLwcWJMbfIoYR
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-As linux-yocto upgraded to 5.x in oe-core, update
-the bbappend to 5.x to remove the warning:
+Hello all,
+I've set up a kiosk using matchbox window manager running Chromium (Debian=
+ Buster). It works great!
+Next I try to set up power savings by setting IdleAction=3Dsuspend in /etc=
+/systemd/logind.conf .=C2=A0=C2=A0 Sadly, the computer suspends even with m=
+ouse or keyboard activity.
+I found that swaywm has encountered the same problem
+https://github.com/swaywm/swayidle/issues/4
+and that they have opened a systemd bug report where it looks like a new c=
+all to systemd is being implemented to address the problem.
+https://github.com/systemd/systemd/issues/14489
+I'm not sure if matchbox is in the same condition. Possibly I haven't inst=
+alled some package that interfaces matchbox to systemd?=C2=A0 Or maybe matc=
+hbox needs to be updated once systemd feature has been added?
 
-WARNING: No recipes available for:
-  /buildarea/layers/meta-security/recipes-kernel/linux/linux-yocto_4.%.bbappend
+Thanks for your work! Chad.
 
-Signed-off-by: Mingli Yu <mingli.yu@windriver.com>
----
- recipes-kernel/linux/linux-yocto_4.%.bbappend | 2 --
- recipes-kernel/linux/linux-yocto_5.%.bbappend | 2 ++
- 2 files changed, 2 insertions(+), 2 deletions(-)
- delete mode 100644 recipes-kernel/linux/linux-yocto_4.%.bbappend
- create mode 100644 recipes-kernel/linux/linux-yocto_5.%.bbappend
+--N5FVE3CHLwcWJMbfIoYR
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/recipes-kernel/linux/linux-yocto_4.%.bbappend b/recipes-kernel/linux/linux-yocto_4.%.bbappend
-deleted file mode 100644
-index 39d4e6f..0000000
---- a/recipes-kernel/linux/linux-yocto_4.%.bbappend
-+++ /dev/null
-@@ -1,2 +0,0 @@
--KERNEL_FEATURES_append = " ${@bb.utils.contains("DISTRO_FEATURES", "apparmor", " features/apparmor/apparmor.scc", "" ,d)}"
--KERNEL_FEATURES_append = " ${@bb.utils.contains("DISTRO_FEATURES", "smack", " features/smack/smack.scc", "" ,d)}"
-diff --git a/recipes-kernel/linux/linux-yocto_5.%.bbappend b/recipes-kernel/linux/linux-yocto_5.%.bbappend
-new file mode 100644
-index 0000000..39d4e6f
---- /dev/null
-+++ b/recipes-kernel/linux/linux-yocto_5.%.bbappend
-@@ -0,0 +1,2 @@
-+KERNEL_FEATURES_append = " ${@bb.utils.contains("DISTRO_FEATURES", "apparmor", " features/apparmor/apparmor.scc", "" ,d)}"
-+KERNEL_FEATURES_append = " ${@bb.utils.contains("DISTRO_FEATURES", "smack", " features/smack/smack.scc", "" ,d)}"
--- 
-2.7.4
+Hello all,<br />&nbsp; I've set up a kiosk using matchbox window manager ru=
+nning Chromium (Debian Buster). It works great!<br />&nbsp; Next I try to s=
+et up power savings by setting IdleAction=3Dsuspend in /etc/systemd/logind.=
+conf .&nbsp;&nbsp; Sadly, the computer suspends even with mouse or keyboard=
+ activity.<br />&nbsp; I found that swaywm has encountered the same problem=
+ <br /><a href=3D"https://github.com/swaywm/swayidle/issues/4">https://gith=
+ub.com/swaywm/swayidle/issues/4</a> <br />&nbsp;and that they have opened a=
+ systemd bug report where it looks like a new call to systemd is being impl=
+emented to address the problem.<br /><a href=3D"https://github.com/systemd/=
+systemd/issues/14489">https://github.com/systemd/systemd/issues/14489</a> <=
+br />&nbsp;I'm not sure if matchbox is in the same condition. Possibly I ha=
+ven't installed some package that interfaces matchbox to systemd?&nbsp; Or =
+maybe matchbox needs to be updated once systemd feature has been added?<br =
+/><br />Thanks for your work! Chad.
 
+--N5FVE3CHLwcWJMbfIoYR--
