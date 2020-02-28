@@ -1,188 +1,72 @@
-Received: from mx0b-002e3701.pphosted.com (mx0b-002e3701.pphosted.com [148.163.143.35])
- by mx.groups.io with SMTP id smtpd.web10.2155.1582930310540749719
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+ by mx.groups.io with SMTP id smtpd.web12.2812.1582932362848225447
  for <yocto@lists.yoctoproject.org>;
- Fri, 28 Feb 2020 14:51:50 -0800
+ Fri, 28 Feb 2020 15:26:03 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: hpe.com, ip: 148.163.143.35, mailfrom: prvs=032750bdbe=sean.mckay@hpe.com)
-Received: from pps.filterd (m0134423.ppops.net [127.0.0.1])
-	by mx0b-002e3701.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 01SMmSDI003741
-	for <yocto@lists.yoctoproject.org>; Fri, 28 Feb 2020 22:51:49 GMT
-Received: from g9t5009.houston.hpe.com (g9t5009.houston.hpe.com [15.241.48.73])
-	by mx0b-002e3701.pphosted.com with ESMTP id 2yfbn1r4k8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-	for <yocto@lists.yoctoproject.org>; Fri, 28 Feb 2020 22:51:49 +0000
-Received: from G1W8108.americas.hpqcorp.net (g1w8108.austin.hp.com [16.193.72.60])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by g9t5009.houston.hpe.com (Postfix) with ESMTPS id 2B48670
-	for <yocto@lists.yoctoproject.org>; Fri, 28 Feb 2020 22:51:49 +0000 (UTC)
-Received: from G9W8453.americas.hpqcorp.net (2002:10d8:a0d3::10d8:a0d3) by
- G1W8108.americas.hpqcorp.net (2002:10c1:483c::10c1:483c) with Microsoft SMTP
- Server (TLS) id 15.0.1367.3; Fri, 28 Feb 2020 22:51:48 +0000
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (15.241.52.12) by
- G9W8453.americas.hpqcorp.net (16.216.160.211) with Microsoft SMTP Server
- (TLS) id 15.0.1367.3 via Frontend Transport; Fri, 28 Feb 2020 22:51:48 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FJ1Kw1Fi4Op7erEhoD+cdGFzwrAuXwnRXkV1JgRKOp9t/F5u7hmrhJKmTzMYak8WNvJA6Mmxb3M677P6OTnLnjy2XGPpdL2uTiYk+Vw7iOswtpvmyJalCfxt+nei5FCXIbqFn7Y9/RpAarUwNIoy4PP2tqA7ztiVLjl1mmyV9tbJHLP1pkoUEhN76nguEBWeiYkAmLEiHM3hcIaCS4JTR3IVzbYqcZ6MleUocHp3KTfGJSnjMLtucJyXctU9T3UvfS7irRNS51frbXQbyg02jO7MdkqYbGF5Pb+n4Yf1bs1dC0RM4M2HKc5pXLshbDFsyAWa/Mk1aFiG7jI8wqMg2w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BKoVaQj7K2RS76vz2HGwZvdtjVEKNNl13TQHl5/VY08=;
- b=epoVF9zHNiDp3KB38NEpVm8HXIILwrnxX+0twp2LbLGknNQMdkZCzQa8ySYvr+wFuYSmF3ETnj61Bn3wknHyrCG4sN+OUg700UgmU0YJh/5ikhmIFpeyK/MLmiiN+leVs9fbETCOpw9mgVdL2sx6lBy2BGL8haYp6Ri9ttDnm2/TsMadal5vT/8f1QvJuf3gDEfkWZZ4v2QAH28CLHIC20C6Jr9jl19Gr9suvVbSP6esQ1YvfB+1fkAsJzGJBXqGR0JRnZ2jlAQI6FejV1yySSeJGPzUn6QcYiajGIHoF6r9KkqFFBzST9QN7sOGd6GtMOFmh74pjSvIWQuUA23B6w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
- header.d=hpe.com; arc=none
-Received: from TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM
- (2a01:111:e400:7712::19) by TU4PR8401MB0733.NAMPRD84.PROD.OUTLOOK.COM
- (2a01:111:e400:7712::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2772.14; Fri, 28 Feb
- 2020 22:51:47 +0000
-Received: from TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::d52b:149f:c4d3:a17b]) by TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::d52b:149f:c4d3:a17b%5]) with mapi id 15.20.2772.012; Fri, 28 Feb 2020
- 22:51:47 +0000
-From: "Sean McKay" <sean.mckay@hpe.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Should changing a task in the .bb file cause the task to be rerun?
-Thread-Topic: Should changing a task in the .bb file cause the task to be
- rerun?
-Thread-Index: AdXuiL6uK0y0gl2pQLikRTwB+tl67g==
-Date: Fri, 28 Feb 2020 22:51:47 +0000
-Message-ID: <TU4PR8401MB115177E1CDF301758DE3E72A82E80@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [15.211.195.13]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 80dc788e-c2c0-4d44-4b71-08d7bca0ca6a
-x-ms-traffictypediagnostic: TU4PR8401MB0733:
-x-microsoft-antispam-prvs: <TU4PR8401MB0733C56D66DA04F3CAF1C16F82E80@TU4PR8401MB0733.NAMPRD84.PROD.OUTLOOK.COM>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-forefront-prvs: 0327618309
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(39860400002)(136003)(376002)(346002)(366004)(189003)(199004)(8676002)(55016002)(8936002)(6506007)(81156014)(316002)(7696005)(9686003)(33656002)(6916009)(86362001)(76116006)(478600001)(5660300002)(66946007)(4744005)(2906002)(81166006)(64756008)(52536014)(26005)(66476007)(71200400001)(66556008)(66446008)(186003)(142923001);DIR:OUT;SFP:1102;SCL:1;SRVR:TU4PR8401MB0733;H:TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: hpe.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 2MQf9LOMN7sC0c11tvUww4QXTNjiS1begUYvWT0/Aw4aItZmwd+eDP7RWGjFaM5+lLCxmsJom2Wd+uIGFqdJZTI3JlzqcMDP8NPNBQN6tjO1PLObkQqvRJZmq2ReaN46HjGuc5hdCdOfNKrSIssrqLSKsN/MohA3GV5jUYZjdcF1390N6HWQRbYLe9OAwuutoHyBRoTELWiP0zP302nvNn0IG3JLI8zU9syp5ZcjP37VDEOFyCYVx3rfYIL/K7zYHYuLTVlPW20TodmVVpqaKk16/QvOGGkQIiQ0xrNxQ6UCDx0AggHdPYGHFT81GMoC8S3lppjdfw1Z1w/b869gw5fLGJ6Z5mr0Fq3FQ464AOS/WfrjmQRFllYRL5sQ+r4ftSi4eV1UvqxTj0G2aNHm7Ibo1cQDnaPZ+1ll7aMY+sqq16e2/+MSjWq9zZxFVP151gH8vw+Z3bAEyFqwcCPLOMm4EoQhTHrUnyItjo8XjZHB3C7NhPkNwkJce8jlCYCD
-x-ms-exchange-antispam-messagedata: LPCm+ADmdUVoVWTD+4EFbzviwxkTbNQyE1SPe8l9j3CDlcpmrIqDx8YdDTBuWR/ev66L2t4R0fyrTIiHPzFSus6mq13OJj9JeV5m2FcppnAmSE6V6f8PiI65Lqgtho20iJ1VOe7Sk9iycFwv4RsR4Q==
-x-ms-exchange-transport-forked: True
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=fQTtOcZS;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.54, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f54.google.com with SMTP id n64so3810654wme.3
+        for <yocto@lists.yoctoproject.org>; Fri, 28 Feb 2020 15:26:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:date:in-reply-to:references:user-agent
+         :mime-version:content-transfer-encoding;
+        bh=7SUd89ZYUST9zf/ST/G4eqcEdd9f3a3wBh1ELdn4KSs=;
+        b=fQTtOcZSOKUdo6eVc22JpODnBASohPZxFDs50s3/NwibCAOPpPLy7Fq1chVO1caBtj
+         ys2dh2a+iBapb/Q5ncd365v78kwvXNZmC30XkT4X2atOtPyQ5FFaZNUn293nSQy2ik4z
+         d2FzFcglwe4LBnaWa2ecO7fl8WmHOOEePpaJI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=7SUd89ZYUST9zf/ST/G4eqcEdd9f3a3wBh1ELdn4KSs=;
+        b=YVlBhi4b+Gsx/GzRlVtVSCUgluoH+nVXhjsYdLDU6ZML1WuJoFGmfP5moc8SGXhK1e
+         mMS8rUlJ5wc+4gu1Z5g/fWaFrGSUFu0Yn7kzEFd0lEyq/c2p7ioxkXO/O28lBU0KBCGz
+         oldAa5VzFxFYW8gPhzVSb53zDMbSOuLWf7dKmYUPZZcK/Dfhor04+v7ZIZFB4YgWHXnP
+         lw0PdUuMnmOgGbi0aBvVo6d+uf1/zC6D9/DHq4cd0suq0CBYgdD23EU9+U1iO3BVCX8O
+         BYCEmub+hieAsjEClnXbnFkih8W8+VJSF5Yloj9fBAmAsczvruBI0KIcMxSmUC/KEKO6
+         s/Zw==
+X-Gm-Message-State: APjAAAV2AMaaJP/J+Z2qGWryl/Aj+b/q7QMzcgyXyIF2gI+1xtZwjF6O
+	6mWGkegg4oNz7P17W4f/uTnhZA==
+X-Google-Smtp-Source: APXvYqx6mZvOnGGtVctHJy0eC2lyWT48Kj9W32EPzliLakbj01EH6+GlOZ1OEU/2qi0RbwRyIl1VeA==
+X-Received: by 2002:a7b:c183:: with SMTP id y3mr6476800wmi.45.1582932361212;
+        Fri, 28 Feb 2020 15:26:01 -0800 (PST)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+        by smtp.gmail.com with ESMTPSA id y3sm4193905wmi.14.2020.02.28.15.26.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 28 Feb 2020 15:26:00 -0800 (PST)
+Message-ID: <18c5d510bec23fbb83c7d82e9ea7e2594b58d44f.camel@linuxfoundation.org>
+Subject: Re: [yocto] Should changing a task in the .bb file cause the task to be rerun?
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Sean McKay <sean.mckay@hpe.com>, "yocto@lists.yoctoproject.org"
+	 <yocto@lists.yoctoproject.org>
+Date: Fri, 28 Feb 2020 23:25:59 +0000
+In-Reply-To: <TU4PR8401MB115177E1CDF301758DE3E72A82E80@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
+References: 
+	<TU4PR8401MB115177E1CDF301758DE3E72A82E80@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
+User-Agent: Evolution 3.34.1-4 
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 80dc788e-c2c0-4d44-4b71-08d7bca0ca6a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Feb 2020 22:51:47.1508
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: PUpSPZS25eHD+ROucZAPoiDGNBXmyVeCnHyrLqPqlnEoYkgWP5YyxKtcepClZUdilOHDiLNa00xUvSd5rt7T2Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TU4PR8401MB0733
-X-OriginatorOrg: hpe.com
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.572
- definitions=2020-02-28_08:2020-02-28,2020-02-28 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=988
- suspectscore=0 mlxscore=0 phishscore=0 bulkscore=0 clxscore=1011
- spamscore=0 adultscore=0 malwarescore=0 impostorscore=0 lowpriorityscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2001150001 definitions=main-2002280164
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_TU4PR8401MB115177E1CDF301758DE3E72A82E80TU4PR8401MB1151_"
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
---_000_TU4PR8401MB115177E1CDF301758DE3E72A82E80TU4PR8401MB1151_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+On Fri, 2020-02-28 at 22:51 +0000, Sean McKay wrote:
+> This is probably a fairly short question (I hope):
+> I’m working on a branch based on zeus. I found a bug in the way that
+> one of our recipes was handling something during do_configure (which
+> caused an error to pop up in a do_compile task). When I modified the
+> do_configure task (do_configure_append, actually) to behave properly
+> (which involved changing the actual commands run in that function)
+> and reran bitbake -c compile <recipe>, the do_configure task wasn’t
+> rerun despite the change to the function’s code.
+>  
+> Is it safe to assume this means we’ve done something to mess up the
+> way our system is processing things? Or is that expected behavior
 
-Hi all,
+Its not expected behaviour and yes, it sounds like something is messed
+up...
 
-This is probably a fairly short question (I hope):
-I'm working on a branch based on zeus. I found a bug in the way that one of=
- our recipes was handling something during do_configure (which caused an er=
-ror to pop up in a do_compile task). When I modified the do_configure task =
-(do_configure_append, actually) to behave properly (which involved changing=
- the actual commands run in that function) and reran bitbake -c compile <re=
-cipe>, the do_configure task wasn't rerun despite the change to the functio=
-n's code.
+Cheers,
 
-Is it safe to assume this means we've done something to mess up the way our=
- system is processing things? Or is that expected behavior? If the latter (=
-which I don't really expect), is there an explanation somewhere for why cha=
-nging the commands in a task doesn't prompt bitbake to rerun the task?
+Richard
 
-Cheers!
--Sean McKay
-
---_000_TU4PR8401MB115177E1CDF301758DE3E72A82E80TU4PR8401MB1151_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri",sans-serif;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri",sans-serif;
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri",sans-serif;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi all,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">This is probably a fairly short question (I hope):<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">I&#8217;m working on a branch based on zeus. I found=
- a bug in the way that one of our recipes was handling something during do_=
-configure (which caused an error to pop up in a do_compile task). When I mo=
-dified the do_configure task (do_configure_append,
- actually) to behave properly (which involved changing the actual commands =
-run in that function) and reran bitbake -c compile &lt;recipe&gt;, the do_c=
-onfigure task wasn&#8217;t rerun despite the change to the function&#8217;s=
- code.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is it safe to assume this means we&#8217;ve done som=
-ething to mess up the way our system is processing things? Or is that expec=
-ted behavior? If the latter (which I don&#8217;t really expect), is there a=
-n explanation somewhere for why changing the commands
- in a task doesn&#8217;t prompt bitbake to rerun the task?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Cheers!<o:p></o:p></p>
-<p class=3D"MsoNormal">-Sean McKay<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_TU4PR8401MB115177E1CDF301758DE3E72A82E80TU4PR8401MB1151_--
