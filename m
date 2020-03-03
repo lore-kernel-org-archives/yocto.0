@@ -1,121 +1,130 @@
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
- by mx.groups.io with SMTP id smtpd.web11.2006.1583276257840916910
+Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+ by mx.groups.io with SMTP id smtpd.web11.2645.1583278712416443500
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 Mar 2020 14:57:38 -0800
+ Tue, 03 Mar 2020 15:38:33 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Ul5KRTlX;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.50, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f50.google.com with SMTP id v4so15781wrs.8
-        for <yocto@lists.yoctoproject.org>; Tue, 03 Mar 2020 14:57:37 -0800 (PST)
+ dkim=pass header.i=@assonance-org.20150623.gappssmtp.com header.s=20150623 header.b=GJLbRJKR;
+ spf=pass (domain: assonance.org, ip: 209.85.210.50, mailfrom: aaron@assonance.org)
+Received: by mail-ot1-f50.google.com with SMTP id i14so211366otp.5
+        for <yocto@lists.yoctoproject.org>; Tue, 03 Mar 2020 15:38:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:date:user-agent:mime-version
-         :content-transfer-encoding;
-        bh=sKkLa1b7fha1Nxkm0cz4tILlfW4g0Z882KZHNmMtO0A=;
-        b=Ul5KRTlXr3gFbs6tuzV+p/UbFGSfWaH3J5Z73wz9zvzIm4IMBrfF6m3I8aVNvDWUgf
-         TbaiKUIPKr9K1ZgFHQTGN2iN3bpvC5LMVJDwJTZxwTEwUyP6+nNR4+dwjsnaWcIbD/90
-         u/h/6G4GxOCZxQCZPTGRAIaAlSbIl2AKZd3ww=
+        d=assonance-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=MoZzn8anv1HdnsUpSKbylxb1qI2TJGUKkUi1fbEeqs8=;
+        b=GJLbRJKRxedRwwz53hOwsFLnEzBqaCkdgXsBnuriraYEWRijDFU/zExIOzLL09R5o0
+         UwfG8fNYNXg17UcNtg5kuX5FlJU1QDkz1dPhNLCjUEL+gISaMrAX0hJwGAb9scnXgNID
+         EiSa3vcSKcsSq7U6Uy1Ryjpg44hvZF2qvNAwf10MDR2H7zI5l3APS+WD9ax/hyNlKrEI
+         aVMnOBjQc8niVdhjc5asJfC3D3zHSAnaMcU6adZSuXacdm2Y8dkJeVZAEf0nyZ1Isr8l
+         tT3Kwci7+CUoYzv2WiuZdvBZJmoSuWQsq//vywBq290s3EZXW/RUaSh81yflg2fNBPCV
+         rFBQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:date:user-agent
-         :mime-version:content-transfer-encoding;
-        bh=sKkLa1b7fha1Nxkm0cz4tILlfW4g0Z882KZHNmMtO0A=;
-        b=rLxi02tnF1yK1PmUosHafFc2SexlcS06OJw7Y/GPcFGKXYRub+Rqi9EswY5MHWyucF
-         Z7TGoI091w/cGkF1UocwY/LTSBga9Cs4TbvHaGnxozM/I8IZ+oRVWVwNrcxOBHn6WbCp
-         Qh2tpsWyGhr83iTyufDwBdprdAC2i2EIpQjS7qbl3Tr//O+T33vfiFt3g13M9cXvCkim
-         LowXVhelfA6N0cGRu/RNvXGMg0AricSN1Q0Gnry0HF2bM8h4waVdzuzeFj4pxCzXEomC
-         OwUmDbFK4WKA0T9paoth5qw98SWnTVDcyKHZ4Lc9IfOhTJDAtTv76e/Ds5noeDasTig4
-         Um9Q==
-X-Gm-Message-State: ANhLgQ2LVJwGn6DBXfgaSrY7N9KeteR/SmksKEiN0g1ZqwyudHgY4r1R
-	LKnaLr87rkZSIOk4o2IRvN+PQdEKtIE=
-X-Google-Smtp-Source: ADFU+vuGZuihiwetPkhjWJ/wBD+PPY4Frht0O42ceRaHWQlW8fJsUOfVx/7QKXXJgnT4ULh/qMHjOg==
-X-Received: by 2002:adf:f343:: with SMTP id e3mr271192wrp.402.1583276255803;
-        Tue, 03 Mar 2020 14:57:35 -0800 (PST)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-        by smtp.gmail.com with ESMTPSA id e22sm909300wme.45.2020.03.03.14.57.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 03 Mar 2020 14:57:35 -0800 (PST)
-Message-ID: <0587ded5e0871e7b92052cbe6e5d72fc31968669.camel@linuxfoundation.org>
-Subject: Yocto Project Long Term Support (LTS) Announced
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>, 
- openembedded-architecture
- <openembedded-architecture@lists.openembedded.org>, Patches and discussions
- about the oe-core layer <openembedded-core@lists.openembedded.org>
-Date: Tue, 03 Mar 2020 22:57:34 +0000
-User-Agent: Evolution 3.35.91-1 
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=MoZzn8anv1HdnsUpSKbylxb1qI2TJGUKkUi1fbEeqs8=;
+        b=Bb01XxAp0js/9IJJtkEjt+S0/BfCCeUDOwSoz4oGDbssqubgxJSS6QV4FcESrQEPB0
+         5rDBPSGBGIcQ9SEZERxsqIOXhFm1mkl1uuy2ZRatwuoQXHeGxucuUTA3Sf6fF6miqkMn
+         hLKoZepqtywUlsHIYR2EUFrvaZ1YtxuVT1tv/5BmnIVUQkv5j2aWSn4yZOUnr029GElw
+         KmPLSx5OQvzf/42cwBXclbqLExlQu+cUzvM+TWD5CTVXdnbhhUCN4QhGtTHuYxwCg/j0
+         cJbeF+Nuy9kHvEIUiDD+sklnJ26kM00/oQzeTiXKL5kdGYPLTaxtd9RmxtMfzROWcn5N
+         U56g==
+X-Gm-Message-State: ANhLgQ1l8VRvBMVYhpwcOPFl4yRJC1kLk2sYV9PZRVXk7+fPB+TnjN7x
+	5Iam9TthgD/XkEfhnIvAjuWVdjWpQXUBx9B9qQPg9w==
+X-Google-Smtp-Source: ADFU+vsdUu0iLI1xJnXPfLjWA+0oczp5ordPvYQbUNS5U3bcCEpepBlBM9y12zmzNlq+AiYROrXhfHHtzmJnWs7Edq4=
+X-Received: by 2002:a9d:76c9:: with SMTP id p9mr254392otl.135.1583278711532;
+ Tue, 03 Mar 2020 15:38:31 -0800 (PST)
 MIME-Version: 1.0
+References: <CAK4PFCU2vdL52FmU3pG3gARHGA0tLhdgGRr=7uH+FbP3_T9kyA@mail.gmail.com>
+In-Reply-To: <CAK4PFCU2vdL52FmU3pG3gARHGA0tLhdgGRr=7uH+FbP3_T9kyA@mail.gmail.com>
+From: "Joel A Cohen" <aaron@assonance.org>
+Date: Tue, 3 Mar 2020 18:38:20 -0500
+Message-ID: <CAFSZm+iYmsh4GA1_CqDAw13EK2L7H0z-DxokgOZtrRfYP9S7PQ@mail.gmail.com>
+Subject: Re: [yocto] way to make do_devshell changes permanent?
+To: Kent Dorfman <kent.dorfman766@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="0000000000002e8435059ffbcd2b"
+
+--0000000000002e8435059ffbcd2b
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
 
-Its posted at:
-https://www.yoctoproject.org/yocto-project-long-term-support-announced/
-but I'll copy it below since this is an important announcement
+devshell is good for playing around, but I don't know of any blessed way to
+just have it somehow modify recipes and create patches magically. I'd be
+interested to hear if there is something like that.
 
-"""
-To fulfill the evolving requirements of its members and users, the
-Yocto Project announced a new plan to extend support for selected
-releases. The new support plan covers an initial two-year period and
-the first candidate to benefit from this change will be the Yocto
-Project 3.1 release.
-
-A very important criterion for evaluating and adopting a software
-platform is support. This holds true when it comes to development tools
-as well. Yocto Project releases are usually maintained for one year.
-Beyond this period, releases move to community support, which means
-they only receive occasional patches for critical defects and updates,
-and no regular defect fixes and security updates. Although this follows
-the open source culture, where development is particularly known for
-speed and bleeding-edge innovation, there has been a rising interest
-among project members and end users for extending this period. As a
-result, the Yocto Project technical leadership put together a proposal
-to address this need as well as arranging the tools and processes to
-allow it to best benefit the project and its users.
-
-The project aims to choose an LTS release every two years. The project
-components covered under the new plan will match the core subset of
-those included in the standard release process: Bitbake, OE-Core, meta-
-yocto, and yocto-docs. These components will now receive the usual
-defect fixes and updates for the extended period of two years.
-Additional layers, such as meta-mingw, meta-gplv2 or general OSV vendor
-layers will not be covered and will follow their usual standard support
-models.
-
-The LTS release will support the original kernel it has been shipped
-with. Yocto Project technical leadership will continuously evaluate
-other similar older LTS kernels on a case by case basis depending on
-the status of upstream support. The version of linux-libc-headers would
-not change to avoid user-space problems.
-
-This change will also benefit other downstream projects relying on
-Yocto Project releases that have longer life cycles such as AGL, RDK
-etc. The decisions that the technical leadership makes will take into
-account the community feedback, people committing resources and input
-from the member organizations.
-
-The LTS maintainer will be responsible for queuing and reviewing
-suitable changes and starting and monitoring builds. The maintainer may
-have assistance from the community in resolving new issues identified
-during build or the QA run. Reviews will use the usual community review
-mailing list processes. For example, where applicable, a merge request
-will be sent to the appropriate repo owner once all issues found during
-the review have been addressed.
-
-The Yocto Project LTS maintainer role hasn’t been appointed yet. At the
-moment, the project technical leadership is focused on finding the
-dedicated resources. For more information, and to discuss the LTS
-maintainer role, contact lts-maintainer@yoctoproject.org.
-"""
-
-I think there will be some questions and the TSC has been working on
-documenting the processes around this which are on the wiki. I believe
-Armin will follow up with some details about what this means for the
-existing stable series.
-
-Cheers,
-
-Richard
+The closest to what I think you want is the "devtool" workflow
+<https://www.yoctoproject.org/docs/2.3/dev-manual/dev-manual.html#using-devtool-in-your-workflow>
 
 
+Basically:
+1) devtool modify <recipe>
+2) hack source in $BUILDDIR/workspace/sources/<recipe>, test as desired by
+using "bitbake <recipe>" or "bitbake <image containing recipe>"
+# Once satisfied with changes:
+3) git add $BUILDDIR/workspace/sources/<recipe> && git commit -m "Added
+cool changes to recipe"
+4) devtool finish <recipe> <your_layer_name>
 
+--Aaron
+
+On Tue, Mar 3, 2020 at 3:59 PM Kent Dorfman <kent.dorfman766@gmail.com>
+wrote:
+
+> I am dealing with a vendor supplied yocto release where they have
+> setup the repos as local gitshallow or tar.xz files.  I asked them to
+> do this in accordance with our strict air-gapped build policies.
+>
+> They provide a driver and supplement utilities as a gitshallow copy of
+> their own repo and I can do_devshell on the recipe to extract the code
+> and play with it.
+>
+> What is the "yocto way" of making my changes permanent so that they
+> survive a do_fetch in the future and are integrated into the target
+> image?  I've noted that changes made during a devshell session do not
+> make it into the target image at all at this point, but that
+> do_devshell is simply a subshell sandbox to play with expanded repo.
+> 
+>
+
+--0000000000002e8435059ffbcd2b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">devshell is good for playing around, but I don&#39;t know =
+of any blessed way to just have it somehow modify recipes and create patche=
+s magically. I&#39;d be interested to hear if there is something like that.=
+<div><br></div><div>The closest to what I think you want is the=C2=A0<a hre=
+f=3D"https://www.yoctoproject.org/docs/2.3/dev-manual/dev-manual.html#using=
+-devtool-in-your-workflow">&quot;devtool&quot; workflow</a>=C2=A0</div><div=
+><br></div><div>Basically:</div><div>1) devtool modify &lt;recipe&gt;</div>=
+<div>2) hack source in $BUILDDIR/workspace/sources/&lt;recipe&gt;, test as =
+desired by using &quot;bitbake &lt;recipe&gt;&quot; or &quot;bitbake &lt;im=
+age containing recipe&gt;&quot;</div><div># Once satisfied with changes:</d=
+iv><div>3) git add $BUILDDIR/workspace/sources/&lt;recipe&gt; &amp;&amp; gi=
+t commit -m &quot;Added cool changes to recipe&quot;</div><div>4) devtool f=
+inish &lt;recipe&gt; &lt;your_layer_name&gt;</div><div><br></div><div>--Aar=
+on</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmai=
+l_attr">On Tue, Mar 3, 2020 at 3:59 PM Kent Dorfman &lt;<a href=3D"mailto:k=
+ent.dorfman766@gmail.com">kent.dorfman766@gmail.com</a>&gt; wrote:<br></div=
+><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex">I am dealing with a vend=
+or supplied yocto release where they have<br>
+setup the repos as local gitshallow or tar.xz files.=C2=A0 I asked them to=
+<br>
+do this in accordance with our strict air-gapped build policies.<br>
+<br>
+They provide a driver and supplement utilities as a gitshallow copy of<br>
+their own repo and I can do_devshell on the recipe to extract the code<br>
+and play with it.<br>
+<br>
+What is the &quot;yocto way&quot; of making my changes permanent so that t=
+hey<br>
+survive a do_fetch in the future and are integrated into the target<br>
+image?=C2=A0 I&#39;ve noted that changes made during a devshell session do=
+ not<br>
+make it into the target image at all at this point, but that<br>
+do_devshell is simply a subshell sandbox to play with expanded repo.<br>
+<br>
+</blockquote></div>
+
+--0000000000002e8435059ffbcd2b--
