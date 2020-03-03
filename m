@@ -1,64 +1,64 @@
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
- by mx.groups.io with SMTP id smtpd.web12.3222.1583240165387536291
+Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
+ by mx.groups.io with SMTP id smtpd.web10.4132.1583244024210872571
  for <yocto@lists.yoctoproject.org>;
- Tue, 03 Mar 2020 04:56:05 -0800
+ Tue, 03 Mar 2020 06:00:24 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=Ay93ptVC;
- spf=pass (domain: gmail.com, ip: 209.85.208.47, mailfrom: inigovicentewalino@gmail.com)
-Received: by mail-ed1-f47.google.com with SMTP id g19so4154366eds.11
-        for <yocto@lists.yoctoproject.org>; Tue, 03 Mar 2020 04:56:05 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=JDvsWv41;
+ spf=pass (domain: gmail.com, ip: 209.85.219.43, mailfrom: zoran.stojsavljevic@gmail.com)
+Received: by mail-qv1-f43.google.com with SMTP id eb12so1664432qvb.10
+        for <yocto@lists.yoctoproject.org>; Tue, 03 Mar 2020 06:00:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=6BEDvqg68QfUNCEMSCwjxbUxpTS9QQ2duEnM2SHyoqc=;
-        b=Ay93ptVCNw8ScWoDhtlzyxE5ALKDCF0ZDKRUsspON9Xp9JILiQf9WySUmhipcADYcy
-         NvnRlRb2ODcKPYsV05p/ZxyBl+Y5CLUnI3oOl1u2acxpjPh2KxnkI+UJjlidKzMRTBuT
-         rNxYSvliPfoXSNrzXr6ptqAkUgmv9NSL4kWNh8DuWwDuJ0iGxbbrREEUSxA0TdGXqEap
-         AqV3drILkKGQOqoNQjEPNzPyIf7sB72y8VvrDpT5aFqXHByR8mmbL17w/tmZaosg9SKi
-         fAd5UbuTboZmoOrtaHyez1qkNbjnzXm4GkiZei/dnYvKGL230qBduOHQHg/2AASK4ODK
-         yeBg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=ht4kVmYs46OGaea5cHhY1SamqjiLTRc+5hxUeM6VMKQ=;
+        b=JDvsWv41SM+nn6nrqk7NdobmdQYLaqCG987FLo0iFmcmN+D5eAb15oF1RMUQYF7DR0
+         nCj1N2LtvMB0hzoH5FKPytZuW7AZMPqWEGRzq9/ycPb0PX6+lXkU1Alu36k5bTNIeecS
+         ZDi7r9aSr6YPMDNiOBEDwek+Jyx6VKRtnSvhtQiDnmYqGzrYmoD8amfhkeuZpM2DGzKa
+         dR6HXft3/3t6PSlumDzQaOks7EARn/Sgzc19wEMTJzbdTrvjjE2LBrzSrmNtHBZQ0qFG
+         vouiFTKMh7iziKhvSeg+RuBiyd1K3c4jzFFmRnveMNnZmdLnjYG0eAN07vYiqzWvuiju
+         gBww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=6BEDvqg68QfUNCEMSCwjxbUxpTS9QQ2duEnM2SHyoqc=;
-        b=oscjhcheEA86D3EPAze64/6+aV2asxHX4PXX/fKVZvHIUySA/Y/fbAqfwG/YDepAR6
-         kMThzEqaCnXljeKE+E/68bCw29+J3Kt1ez2dIMXC5TTNN5PCZWaYlCsqAWEtBLBDOeV+
-         vaLyGS9rGHm+cb8pHpuuDlXxT2dMOp15nyxziamFxGZaQYQS/gWyfyfKJmYaodKbjriZ
-         beixEbUx+Ekk2CGFca4u8U+48qY9b//UZWHYQduAvSbbpwQ6XITAGG+m88IjXLt1el8s
-         WEid0voi+kd29phsrWI2ZAJlqJIjdlvnsLISrmcKvxEgxnDEvsEYuwu1vQxhjbJoWPOR
-         Y5vg==
-X-Gm-Message-State: ANhLgQ23vAdo6VfY8rDeuA18G8eHZRGeo3f+cNjWiQVHB0qY032r39tt
-	Ug9mz8SuKNwMwfnUpKsNWBNSd0uUXAGrRsW8rBX9GYM5
-X-Google-Smtp-Source: ADFU+vvIR0mEzFQdIJBVBOldzHIrxFGMu7jRhEO/+667MX8mxZgxEIiLcyryXpbnyyX9xo8/vwh7razbn2kkmtdQ1GM=
-X-Received: by 2002:a17:906:c7d5:: with SMTP id dc21mr3904107ejb.316.1583240163553;
- Tue, 03 Mar 2020 04:56:03 -0800 (PST)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=ht4kVmYs46OGaea5cHhY1SamqjiLTRc+5hxUeM6VMKQ=;
+        b=HQdCbsGYq9WBItyWjapPqxLP30pGVV5ySxY1IaxnP1O986TE6H0AbPQNXbNqccNush
+         +HCBAXMInTApWgxKtQaH8UzYMGqKYhXaWq4/7vgvt9xsueFOLV3IfcGoGjTeEcAkz7bb
+         JWRBbGXu/aEEJ1vxbx1R57KXe9Cn0UngnwwrlJEwxLTT1HD42M0/SK/jzXPANN9opVx1
+         Qg5E09egBwzxO5WIJ7lUylZ+MAbFh8MGzmLKF2M8U1YFmYTqXZT0T4uHrOlSOS7a56Uz
+         hBz4uV/v4yt/569k2qXw/3yN6X/E310KAoMrTm2xsQKv1YJwascm8bFZsIyAfohGFVw+
+         48Wg==
+X-Gm-Message-State: ANhLgQ2wkb1rF0kHTyqR4OHtMySp7htzsDm2Khcr6A4ZG70uOGSCDvLe
+	9gx9yafXaBpHLAOcF1aY5nONtruBxW7XpUm71lg=
+X-Google-Smtp-Source: ADFU+vu5+AInr6fpSOgyE2YTjvyxQVX/noGBBVQkdtVtY9GQOCOVKrZK9Fkn/8SQXLr68jer9/tARNQzaWQ8Vv+qtcE=
+X-Received: by 2002:ad4:5349:: with SMTP id v9mr4120771qvs.177.1583244023050;
+ Tue, 03 Mar 2020 06:00:23 -0800 (PST)
 MIME-Version: 1.0
-From: =?UTF-8?B?ScOxaWdvIFZpY2VudGUgV2FsacOxbw==?= <inigovicentewalino@gmail.com>
-Date: Tue, 3 Mar 2020 13:56:01 +0100
-Message-ID: <CA+ABUwhXdEgn01xtYi9FK1ysp71CjF-_LqDXc-2GoEXm88gZVA@mail.gmail.com>
-Subject: Imx8m mini boot
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="0000000000008af48c059ff2d376"
-
---0000000000008af48c059ff2d376
+References: <CA+ABUwhXdEgn01xtYi9FK1ysp71CjF-_LqDXc-2GoEXm88gZVA@mail.gmail.com>
+In-Reply-To: <CA+ABUwhXdEgn01xtYi9FK1ysp71CjF-_LqDXc-2GoEXm88gZVA@mail.gmail.com>
+From: "Zoran" <zoran.stojsavljevic@gmail.com>
+Date: Tue, 3 Mar 2020 15:00:11 +0100
+Message-ID: <CAGAf8Lw5i=jZJzupWacMT_wtEt+UCLRqGxp4NDK1mMduwPaPig@mail.gmail.com>
+Subject: Re: [yocto] Imx8m mini boot
+To: =?UTF-8?Q?I=C3=B1igo_Vicente_Wali=C3=B1o?= <inigovicentewalino@gmail.com>
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+What about issuing dmesg command after the boot?!
 
-Is there any way to see the traceability or registers by the command line
-of the secure boot on my imx8m mini board with u-boot?
+Zoran
+_______
 
-Thanks
-I=C3=B1igo
-
---0000000000008af48c059ff2d376
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>Is there any way to see the traceab=
-ility or registers=C2=A0by the command line of the secure boot on my imx8m =
-mini board with u-boot?<br></div><div><br></div><div>Thanks</div><div>I=C3=
-=B1igo</div></div>
-
---0000000000008af48c059ff2d376--
+On Tue, Mar 3, 2020 at 1:56 PM I=C3=B1igo Vicente Wali=C3=B1o
+<inigovicentewalino@gmail.com> wrote:
+>
+> Hi,
+>
+> Is there any way to see the traceability or registers by the command lin=
+e of the secure boot on my imx8m mini board with u-boot?
+>
+> Thanks
+> I=C3=B1igo
+>=20
