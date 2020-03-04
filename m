@@ -1,101 +1,102 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.10775.1583326867996193235
+Received: from mail-qt1-f196.google.com (mail-qt1-f196.google.com [209.85.160.196])
+ by mx.groups.io with SMTP id smtpd.web12.12386.1583333805174551589
  for <yocto@lists.yoctoproject.org>;
- Wed, 04 Mar 2020 05:01:08 -0800
+ Wed, 04 Mar 2020 06:56:45 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=KVtftRzd;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: alex.kanavin@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 89D54E017B8; Wed,  4 Mar 2020 05:01:07 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (alex.kanavin[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.222.51 listed in list.dnswl.org]
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1064AE01773
-	for <yocto@yoctoproject.org>; Wed,  4 Mar 2020 05:01:06 -0800 (PST)
-Received: by mail-ua1-f51.google.com with SMTP id a33so610894uad.11
-        for <yocto@yoctoproject.org>; Wed, 04 Mar 2020 05:01:06 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=gl0WLDpi;
+ spf=pass (domain: gmail.com, ip: 209.85.160.196, mailfrom: bruce.ashfield@gmail.com)
+Received: by mail-qt1-f196.google.com with SMTP id o10so1527107qtr.7
+        for <yocto@lists.yoctoproject.org>; Wed, 04 Mar 2020 06:56:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=+pcP+rBKtcuVBpUJLxqXCGskARAMIWV8I9vejmviIqs=;
-        b=KVtftRzdObkUqY0jPmqH/sukrAPm9KIyOXCm1PaJLCysuYVBw/Wrd4t1N38YYF+wPb
-         VsLNaIpLocxmvBq1ano9x/xBm4LSi1sVeNOFYuKm8wEoGCIWRQWpQ8jPR3bNxwL2jMak
-         5J7frZJTPsCzmr9RVAnQKakRgkHkK9fn7s4QYAfzUlZU0rmVRV/VBOTLxno9Zu8EPehS
-         TwEnUTVASBYOXm06e5S/mx7RkwZsVKU6WZBzyWS5xkF+Ftc3wLLtbINe207VEcBGfzxo
-         t7dQCbsaUP7rUERB7XZSrupJqz/EItRrLE3e1PSfhB+Cl6YOL6ZqtI+8PGPdaTrTPChi
-         /f4Q==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x0ut99HHB6n4m+Z+IxuMs6PVLAwMkk7QeEqMiUN9BkI=;
+        b=gl0WLDpi2KPdjn+TTXoRQk+rkQfJO7MUgt/7ynjw2gjs/HiGjVOWgKmWP7LMX3pGu7
+         QyKfdkSk6yQs/CfbaCIOxZrDOBko7BKdzhK1nGrWhx/0kwNJ3ZJBLEMB9B2sbbfOLWpy
+         arMkfJ8NkYnnHQH4Z1F8jCw8IxJDtO1YBPNDw+P++0CTGVqy6P2r7qtMLgML47lp4vGO
+         ++hRLwGCLxjCPsOMh0QL0Xz0EhhcCMB8IcvV93owLxe93Zb4mFw/5//41OoJ8wazYYGs
+         DoM0Aj5pCNrV/bb7MQ+lu9XH0yirNDcfe4dQMO3nPoSwPBOMn4uwU879NnvXu3mG7NsL
+         QHvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=+pcP+rBKtcuVBpUJLxqXCGskARAMIWV8I9vejmviIqs=;
-        b=FvB3Vrzer1ufVfduqopiomWh5OZfMpRCqRmnTmZvJxprXDYIl18hDDVFrxk12zuEZX
-         JuNBYV2Ibv4xWNTDmjYN+X4bA1EJ9g//dzajY36ZjlLT3v11NWvpHpEFqmDXdSD+2Z5q
-         liRHDTYkfTzrHehtXqLHFJePKFNeiYqBDstGKcDNHcY34BKw6DlV36hZOMzWJt66/jsI
-         thNIODdOMfCcfEVWxOT7K8Ej7fEMthWwQOn0qh5IX33UNVUYiCDiiQz+siB0y3znRzVj
-         iCO0OyjDS5E3OXv4UlTzuj1RsDZGaMz6kADFyF6XG0jNii7S9MAMIBR+ZjrMtRJOmtBp
-         QxkA==
-X-Gm-Message-State: ANhLgQ3bKafhtVLnZnH2INSdHkBOEIyAR3u/U38usZwdLEHClx1QNq/T
-	SQEOlDnNM1f2pl8t1d7cfgJ11RqzFeCXGepS7xQ=
-X-Google-Smtp-Source: ADFU+vtmlnl5rbWVfIGMKtwtU6LaNOgK7DEZUGIoIKa7eswFUc/2709lk5zjVPxD9A8JDyxnGaObNO1S/J6zLcDJCiY=
-X-Received: by 2002:ab0:7802:: with SMTP id x2mr1371602uaq.100.1583326866213;
- Wed, 04 Mar 2020 05:01:06 -0800 (PST)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x0ut99HHB6n4m+Z+IxuMs6PVLAwMkk7QeEqMiUN9BkI=;
+        b=h5oaTIeN8SYPS+CN76xqWEkiIwawou0h8vByZ4PRNCuCmeZqh54rCSJc2MuRhyFH0z
+         a1qffKGcEzgd+53mR3VnLPqvNab7oYwUbw/FMyFLkAPE2rKhY2Lo5RdYQsNMCQE+ariA
+         KIdMP6WuoW/TMhMnTM10EgYeQ1qcxs2db6oMb1zPeSS0VJnyQcc6TbnggBpghHkoKOMi
+         XOrPWUjFW7i2b1XLmrGCMBbyFNdyaiUTVSJBlL94vAW5DhjtQGhLKHZA/tECz8xdGcXa
+         X2TmkHsJbwHTbGmLqMFjG1deFLSvieT3juFALHXvqr9rfJZg6+piw2G69x7ZjxkU6pyB
+         yN+g==
+X-Gm-Message-State: ANhLgQ29XPEsOynk/b7sa9WqxjbtIUYKhvlIAbrbucm3FYCatgSDDsmv
+	0z5j2ElgLXvcsG9x8hOZyeE=
+X-Google-Smtp-Source: ADFU+vutA9iTuUS+xtoAMeV5WmfMSfvqgSq/s3CMb7gpVv7pgnUORWO7YvwoxCRXji7UFftO3aYCyQ==
+X-Received: by 2002:aed:2433:: with SMTP id r48mr2859702qtc.188.1583333804138;
+        Wed, 04 Mar 2020 06:56:44 -0800 (PST)
+Return-Path: <bruce.ashfield@gmail.com>
+Received: from localhost.localdomain (CPE04d4c4975b80-CM64777d5e8820.cpe.net.cable.rogers.com. [174.112.240.214])
+        by smtp.gmail.com with ESMTPSA id a141sm14350102qkb.50.2020.03.04.06.56.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Mar 2020 06:56:43 -0800 (PST)
+From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
+To: richard.purdie@linuxfoundation.org
+Cc: yocto@lists.yoctoproject.org
+Subject: [PATCH 0/4] kernel-yocto: consolidated pull request
+Date: Wed,  4 Mar 2020 09:56:38 -0500
+Message-Id: <cover.1583333447.git.bruce.ashfield@gmail.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-References: <107c01d5f174$bbf566a0$33e033e0$@gmail.com>
-In-Reply-To: <107c01d5f174$bbf566a0$33e033e0$@gmail.com>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Wed, 4 Mar 2020 14:00:54 +0100
-Message-ID: <CANNYZj83rytWFgGPj6BS6R874eqa6_KCoeoMA5afgnx-_YBunw@mail.gmail.com>
-Subject: Re: [OE-core] Yocto Project Status WW09'20
-To: Stephen K Jolley <sjolley.yp.pm@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>, 
-	OE-core <openembedded-core@lists.openembedded.org>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>
-Content-Type: multipart/alternative; boundary="0000000000006c8d7305a0070368"
+Content-Transfer-Encoding: 8bit
 
---0000000000006c8d7305a0070368
-Content-Type: text/plain; charset="UTF-8"
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
 
-On Tue, 3 Mar 2020 at 16:59, <sjolley.yp.pm@gmail.com> wrote:
+Hi all,
 
-> coreutils ptest blocked on libmodule-build-perl reproducibility issue
->
+As mentioned on the technical call yesterday, here's my latest set of
+5.2 updates, 5.4 updates and more importantly, the removal of 5.2 from
+master.
 
-I sent a patch for this.
+As usual, I'll continue to support and update 5.2, just without sending
+SRCREV updates to master. The last set of updates to v5.2 put it in
+good shape, and they are ready for backport to any stable branches.
 
-Alex
+I ran this through the AB and didn't see any issues or old references
+to v5.2.
 
---0000000000006c8d7305a0070368
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+I'll follow up to other lists to drop a few of the old bbappends.
 
-<div dir=3D"ltr"><div dir=3D"ltr">On Tue, 3 Mar 2020 at 16:59, &lt;<a href=
-=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>&gt; wrote:<=
-br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex"><div lang=3D"EN-US"><div><span style=3D"font-family:&quot;Arial&=
-quot;,sans-serif">coreutils ptest blocked on libmodule-build-perl reproduci=
-bility issue</span><br>
-</div></div></blockquote><div><br></div><div>I sent a patch for this.</div>=
-<div><br></div><div>Alex<br></div></div></div>
+Cheers,
 
---0000000000006c8d7305a0070368--
+Bruce
+
+
+The following changes since commit 92e172b5b4de8927d36409386dfce0fc2718f5d1:
+
+  systemd: Fix service file for race issues (2020-03-03 13:06:29 +0000)
+
+are available in the Git repository at:
+
+  git://git.yoctoproject.org/poky-contrib zedd/kernel
+  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=zedd/kernel
+
+Bruce Ashfield (4):
+  linux-yocto/5.2: backport perf build fix for latest binutils
+  linux-yocto: common-pc-drivers.cfg: add CONFIG_INPUT_UINPUT
+  linux-yocto/5.4: update to v5.4.23
+  linux-yocto: drop 5.2 recipes
+
+ .../linux/linux-yocto-rt_5.2.bb               | 44 ---------------
+ .../linux/linux-yocto-rt_5.4.bb               |  6 +--
+ .../linux/linux-yocto-tiny_5.2.bb             | 32 -----------
+ .../linux/linux-yocto-tiny_5.4.bb             |  8 +--
+ meta/recipes-kernel/linux/linux-yocto_5.2.bb  | 54 -------------------
+ meta/recipes-kernel/linux/linux-yocto_5.4.bb  | 22 ++++----
+ 6 files changed, 18 insertions(+), 148 deletions(-)
+ delete mode 100644 meta/recipes-kernel/linux/linux-yocto-rt_5.2.bb
+ delete mode 100644 meta/recipes-kernel/linux/linux-yocto-tiny_5.2.bb
+ delete mode 100644 meta/recipes-kernel/linux/linux-yocto_5.2.bb
+
+-- 
+2.19.1
+
