@@ -1,70 +1,92 @@
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43])
- by mx.groups.io with SMTP id smtpd.web09.190.1583361639879519175
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web09.210.1583361728221416550
  for <yocto@lists.yoctoproject.org>;
- Wed, 04 Mar 2020 14:40:40 -0800
+ Wed, 04 Mar 2020 14:42:08 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=l6JhAu/n;
- spf=pass (domain: gmail.com, ip: 209.85.217.43, mailfrom: aljoscha.lautenbach@gmail.com)
-Received: by mail-vs1-f43.google.com with SMTP id n27so2331260vsa.0
-        for <yocto@lists.yoctoproject.org>; Wed, 04 Mar 2020 14:40:39 -0800 (PST)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=MQrat6CC;
+ spf=softfail (domain: linuxfoundation.org, ip: 140.211.169.56, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id CCA3FE01782; Wed,  4 Mar 2020 14:42:07 -0800 (PST)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.221.68 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com [209.85.221.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4572BE0177F
+	for <yocto@yoctoproject.org>; Wed,  4 Mar 2020 14:42:07 -0800 (PST)
+Received: by mail-wr1-f68.google.com with SMTP id z15so4588532wrl.1
+        for <yocto@yoctoproject.org>; Wed, 04 Mar 2020 14:42:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :content-transfer-encoding;
-        bh=fhMLZPmnRikinyBQPWEkOhVDd3I2XwxQG02t3ZcvrHo=;
-        b=l6JhAu/nRtfZVib9pNEbND/o9Osp4kfF2J6TdIKU0qZFqumlSEPnZAYgp6lS858ujU
-         6m8IdUdxGn5BJ1qZw44hBBTmi0dLLp4jGuyEuEtGndMiSoslZfu4zbtltq+FKQGM/BkU
-         3lNKBOWEQdgSr0n4tKBDK/cO9jErofRt+gfoO/s2duzMS1m86x8x3CC+UxjXL39Iie1i
-         7v9q2l6UfrBz/9NM3GBp6RJrNjGeH0+4T1u2KG9s/jCqVELQ2luAvUk2jxVSTOd+YIbH
-         zhhRdLysRgK2LfevAOZgFBwSWST5XYml7dVPwiQa72hrV4h9vBW991hvOaPg/HkGXRd8
-         qfJg==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=RSZhiCz5yJ8BfeuIaSE6uiuJfuaXmkeWy8KRHeoGaR8=;
+        b=MQrat6CCBhtHPaX4K6EK/lTc0BW7sMbY7OhyQNQ/8ShWal9KzixwwlJc5feeerbVf8
+         R+sd1tHEpTV89Z4eFyEOzeeGHjA79HpkSrrTh9ZqiWs93FkJmNd2JA+R4s5nHov5rDnw
+         C8NdJeN7cNLRWytAXfo2t6yMpDbXOIr3y2u0Q=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:content-transfer-encoding;
-        bh=fhMLZPmnRikinyBQPWEkOhVDd3I2XwxQG02t3ZcvrHo=;
-        b=OGosFCok9ED8E2oXzRGonAILRez1iWt7Un0xuOucrGTBDrOQRppxSvPJaa8fi3zRYd
-         BXxQVrKM0b5vXI/xwmBeWDl6uHCxviq29TLMvXl1n+oYlJ2B78y6BHiiYzIaXzKVjxD0
-         hGQYgzvsckOB7/XW8dyl9DRXa7uX1MgnBOsT4Yxbq0ZI9+PbIIS/vH1x8FrU6XF0eHOd
-         LDWXyvG+q+EbxsjGXuAYs/rvHtD1f04PfOmzXdrZrevu6ZHxlCXHrumC/ffu4Xm0ha6k
-         GtBIdtcRJb9mLRGd3Go4LkKe/rRwgRDWtR8222992vTa3KaLayQFeYV7i9tRivarYrDt
-         +l+w==
-X-Gm-Message-State: ANhLgQ2al5t+Om87xRlKtXMrOAoYZ8RJnv77KETW0NsTBw9pxMaKTRJ2
-	R54h7Vwy3Rmyk2DibO6BaUfrzczfuemAFBqbabGBxTeJNAFbWg==
-X-Google-Smtp-Source: ADFU+vsZ2eJ4A7tRez6ij3jgL1psNlwf1q2VSxGY0x8hOAwAT7cuAe3VbpzosLdQTyJqztG/adha3vvN5QLQUVNNd8k=
-X-Received: by 2002:a05:6102:322a:: with SMTP id x10mr3216139vsf.30.1583361638685;
- Wed, 04 Mar 2020 14:40:38 -0800 (PST)
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=RSZhiCz5yJ8BfeuIaSE6uiuJfuaXmkeWy8KRHeoGaR8=;
+        b=U6n4C8B6Ho/BjgLdoJRFOWwxUtY8HtlbbHNQieVp/OrgcBanEFFwHJijtSUx64JL5E
+         0pvtSNy86Uajscmj9GHj4jl/bsMFHpSfoNGemP6S6FvzuOBBpM1GTAFKK8Js/xA3M9h/
+         DLHMJUrGHZ5nJNfhXgKHhJgsZquoEZJe7KC6iTxHQhvI+l6iQ96atbVeW3+VBWCHnx3V
+         C3riWGlwL9pT2ip2OMft0/yA+zMR5dggymiyHdBya51bP9NcRP1irJJxFyiYJIsdx/Q9
+         K0dDqpHuFmBwGax98GSREDlVj+lrgnkLGyFkLCF5hHNUVipHnBbhYU8jd4Z1MK/6pgwc
+         in9w==
+X-Gm-Message-State: ANhLgQ0nD+/N/LWAv+LeLcCais8qVpQSAFJSBb28QKkxVIpBILndGdP3
+	q8cv8FPYJy/fQ19fqcRVCIfy/g==
+X-Google-Smtp-Source: ADFU+vuf34WNCAMoQOxlSvcFOFJ5IFuRriN7W/byXh7m6Yjlm0lPHqsLOFDvsyCgoludSSHR8mSgOw==
+X-Received: by 2002:adf:9521:: with SMTP id 30mr6048368wrs.349.1583361726321;
+        Wed, 04 Mar 2020 14:42:06 -0800 (PST)
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+        by smtp.gmail.com with ESMTPSA id o27sm43530272wro.27.2020.03.04.14.42.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 04 Mar 2020 14:42:05 -0800 (PST)
+Message-ID: <efd0caee261782a0b8d752c728c25be23f69cbae.camel@linuxfoundation.org>
+Subject: Re: [OE-core] Yocto Project Status WW09'20
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Alexander Kanavin <alex.kanavin@gmail.com>, Stephen K Jolley
+	 <sjolley.yp.pm@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>, OE-core
+	 <openembedded-core@lists.openembedded.org>
+Date: Wed, 04 Mar 2020 22:42:04 +0000
+In-Reply-To: <CANNYZj83rytWFgGPj6BS6R874eqa6_KCoeoMA5afgnx-_YBunw@mail.gmail.com>
+References: <107c01d5f174$bbf566a0$33e033e0$@gmail.com>
+	 <CANNYZj83rytWFgGPj6BS6R874eqa6_KCoeoMA5afgnx-_YBunw@mail.gmail.com>
+User-Agent: Evolution 3.35.91-1 
 MIME-Version: 1.0
-References: <15F8A029CD47E18B.3851@lists.yoctoproject.org>
-In-Reply-To: <15F8A029CD47E18B.3851@lists.yoctoproject.org>
-From: "Aljoscha Lautenbach" <aljoscha.lautenbach@gmail.com>
-Date: Wed, 4 Mar 2020 23:40:27 +0100
-Message-ID: <CA+yZB6ZiLuxr2AybgM_sJRrhvWiOGJQ62hHvdRbkh0jnvdesPw@mail.gmail.com>
-Subject: Re: [yocto] Building xen-image-minmal for raspberrypi3-64: kernel-module-xen-* not being built
-To: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On Wed, 2020-03-04 at 14:00 +0100, Alexander Kanavin wrote:
+> On Tue, 3 Mar 2020 at 16:59, <sjolley.yp.pm@gmail.com> wrote:
+> > coreutils ptest blocked on libmodule-build-perl reproducibility
+> > issue
+> > 
+> 
+> I sent a patch for this.
 
-I made some progress on this today. After running =E2=80=9Cbitbake -c
-menuconfig virtual/kernel=E2=80=9C and searching for the config parameters
-that xen.cfg was supposed to set, it was obvious that they were in
-fact not set, as the mailing list reply I mentioned earlier suggested.
-By manually setting them, I managed to build the kernel modules and
-boot.
+Thanks!
 
-I don=E2=80=99t know if this is a bug in meta-virtualization or in
-meta-raspberrypi, or if this is expected behavior? If it is expected,
-it is not documented.
+Just FYI I think there may also be a couple of other packages coreutils
+pulls in and they may also have reproducibility issues (gettext-ptest,
+glibc-locale-* and procps*).
 
-It also turns out that the =E2=80=9Cunbootable image=E2=80=9D I mentioned p=
-reviously
-was probably a console or display problem instead, because I have the
-same problem with the now succeeding xen-image-minimal build, but I
-figured out that I can ssh into it.
-Unfortunately /proc/xen still does not exist, and xl still complains
-=E2=80=9Ccannot init xl context=E2=80=9D, but that is a separate issue.
+Cheers,
 
-Best regards,
-Aljoscha
+Richard
+
