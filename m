@@ -1,53 +1,100 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web09.6636.1583466598632469315
+Received: from mail-il1-f196.google.com (mail-il1-f196.google.com [209.85.166.196])
+ by mx.groups.io with SMTP id smtpd.web10.8849.1583478265790871220
  for <yocto@lists.yoctoproject.org>;
- Thu, 05 Mar 2020 19:49:59 -0800
+ Thu, 05 Mar 2020 23:04:25 -0800
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: zhe@windriver.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EA4C0E017D0; Thu,  5 Mar 2020 19:49:57 -0800 (PST)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6D8FE017CE
-	for <yocto@yoctoproject.org>; Thu,  5 Mar 2020 19:49:56 -0800 (PST)
-Received: from ala-lpggp4.wrs.com (ala-lpggp4.wrs.com [147.11.103.217])
-	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 0263ngJU013374
-	(version=TLSv1 cipher=DHE-RSA-AES256-SHA bits=256 verify=NO);
-	Thu, 5 Mar 2020 19:49:42 -0800 (PST)
-Received: (from zhe@localhost)
-	by ala-lpggp4.wrs.com (8.13.8/8.13.8/Submit) id 0263nfQL006437;
-	Thu, 5 Mar 2020 19:49:41 -0800
-From: "He Zhe" <zhe.he@windriver.com>
-To: yocto@yoctoproject.org, Adrian.Dudau@enea.com, alexandru.vaduva@linux.com,
-        joe_macdonald@mentor.com
-Subject: [meta-cgl][PATCH] kernel: Rename linux-yocto bbappend without major version
-Date: Thu,  5 Mar 2020 19:49:41 -0800
-Message-Id: <1583466581-6396-1-git-send-email-zhe.he@windriver.com>
-X-Mailer: git-send-email 2.7.4
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=W1rcKwus;
+ spf=pass (domain: gmail.com, ip: 209.85.166.196, mailfrom: jonatan.p@gmail.com)
+Received: by mail-il1-f196.google.com with SMTP id j69so1101889ila.11
+        for <yocto@lists.yoctoproject.org>; Thu, 05 Mar 2020 23:04:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Q7HftMAZsquS3rH89gtKRW867gj05/jgUodNkZt77qs=;
+        b=W1rcKwushKmxBj7/JZGWxyj36Su9TLvyaicwoegZ4TqETXC7l5A7exYopM2Y2TYe/V
+         h9Tg0V4zKUEyZ7P2PDF62gaAXpKucf2kMl60kzziDpeUUEa2oRzS6p4BY2LIcN75dCA0
+         f3SK/xiBMzqXD+qcYbKfXyJLhaOoVRxtkX3upaLdrnw2WcLh2qP3QBugj0BllMPF1Q1f
+         X+mQSB7W3rIfl9/tB6F6Sh//l6yV275X871fBADidR5IUQQsGEdDD0R8C++bteSXw+dw
+         SbUBwKQ1o236T8gwSkyPV57fCSNYDLPj8qpvnhL/Hj70NKJL2XU6bf/D0Kj/32tIWyRY
+         tMzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Q7HftMAZsquS3rH89gtKRW867gj05/jgUodNkZt77qs=;
+        b=rL6FkrK6e/PFhA+VaWl21uQzmol04hDeC3mhqvFCh49vTzVwg3hjB1geROjylWAFIO
+         0SD6DhvHTUBJf9PcPKADRpFXwhT5JUE0BbJgZvHSLJqKILexYCdlu4pSuAfVVDSahvRn
+         2PY+cOSV/r5So7nx9E4XPQvNb7mNsedZfe3U26peUvwOarzjbqxHCye+IWec5jdBE1eH
+         fkiLTkK55mer3K7EhAxZ7AOMi69JFq7KkM6ECrq480J7Nk9CuJDHpWd+2GsMQUoGOZM3
+         G/z8D+Cth7dXf/A4fgsLcZ7Fiw7xKgObPe3w7t1EBhENMRvyO9FV1G62I6Ay87LVbTFm
+         lJUg==
+X-Gm-Message-State: ANhLgQ0Ve0jLUZ6uNtUU4wJpHRFPadEhVVh0/GNUGwRy+0vi5uOkk/nM
+	Ggq5CXguNmcF7s6UWwwrVYH31GB+w+f3fuY9Elo=
+X-Google-Smtp-Source: ADFU+vst1Pro1yLRrx/X2/OcaXLf/b4f+nLFtswQ2QFaUqvYALNgi68tZRPCXLrcfAHDZ2wVAjc6WGf1+hJ+mAeowP8=
+X-Received: by 2002:a92:7ed7:: with SMTP id q84mr1831571ill.307.1583478265259;
+ Thu, 05 Mar 2020 23:04:25 -0800 (PST)
+MIME-Version: 1.0
+References: <20200305124740.2582832-1-jonatan.p@gmail.com> <296ae9eb-acb9-b823-b931-398a8cb4ae50@gmail.com>
+In-Reply-To: <296ae9eb-acb9-b823-b931-398a8cb4ae50@gmail.com>
+From: =?UTF-8?B?Sm9uYXRhbiBQw6Vsc3Nvbg==?= <jonatan.p@gmail.com>
+Date: Fri, 6 Mar 2020 08:04:14 +0100
+Message-ID: <CAKm+giPxnLXTcXPoCBPVGk11TWvj3J5xpm3Z3sF=G1X29yWMMg@mail.gmail.com>
+Subject: Re: [yocto] [meta-security][PATCH 1/3] sssd: Add PACKAGECONFIG for python2
+To: akuster808 <akuster808@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-We do not necessarily match the major version of kernel recipe and update
-it every time oe-core upgrades kernel.
+Hello Armin,
 
-Signed-off-by: He Zhe <zhe.he@windriver.com>
----
- .../linux/{linux-yocto_4.%.bbappend => linux-yocto_%.bbappend}            | 0
- 1 file changed, 0 insertions(+), 0 deletions(-)
- rename meta-cgl-common/recipes-kernel/linux/{linux-yocto_4.%.bbappend => linux-yocto_%.bbappend} (100%)
+On Thu, Mar 5, 2020 at 4:18 PM akuster808 <akuster808@gmail.com> wrote:
+>
+> On 3/5/20 4:47 AM, Jonatan P=C3=A5lsson wrote:
+>
+> Fixes the following build error:
+>
+>     .. snip ..
+>     | checking for python2... no
+>     | checking for python3... (cached) python3.8
+>     | configure: error:
+>     | The program python2 was not found in search path.
+>     | Please ensure that it is installed and its directory is included in=
+ the search
+>     | path. It is required for building python2 bindings. If you do not w=
+ant to build
+>     | them please use argument --without-python2-bindings when running co=
+nfigure.
+>     | WARNING: exit code 1 from a shell command.
+>
+> Signed-off-by: Jonatan P=C3=A5lsson <jonatan.p@gmail.com>
+> ---
+>  recipes-security/sssd/sssd_1.16.4.bb | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/recipes-security/sssd/sssd_1.16.4.bb b/recipes-security/sssd=
+/sssd_1.16.4.bb
+> index c381c32..9feba14 100644
+> --- a/recipes-security/sssd/sssd_1.16.4.bb
+> +++ b/recipes-security/sssd/sssd_1.16.4.bb
+> @@ -33,6 +33,7 @@ PACKAGECONFIG[ssh] =3D "--with-ssh, --with-ssh=3Dno, "
+>  PACKAGECONFIG[samba] =3D "--with-samba, --with-samba=3Dno, samba"
+>  PACKAGECONFIG[selinux] =3D "--with-selinux, --with-selinux=3Dno --with-s=
+emanage=3Dno, libselinux"
+>  PACKAGECONFIG[manpages] =3D "--with-manpages, --with-manpages=3Dno"
+> +PACKAGECONFIG[python2] =3D "--with-python2-bindings, --without-python2-b=
+indings, python, python"
+>
+> Python2 is not supported in Master so maybe append EXTRA_OECONF  with --w=
+ithout-python2-binding.
 
-diff --git a/meta-cgl-common/recipes-kernel/linux/linux-yocto_4.%.bbappend b/meta-cgl-common/recipes-kernel/linux/linux-yocto_%.bbappend
-similarity index 100%
-rename from meta-cgl-common/recipes-kernel/linux/linux-yocto_4.%.bbappend
-rename to meta-cgl-common/recipes-kernel/linux/linux-yocto_%.bbappend
--- 
-2.7.4
+Ah, I see. I'll prepare a new patch with this.
 
+> I can take this for zeus thou.
+
+For zeus, a PACKAGECONFIG entry for python2 is available, but the
+RDEPENDS and DEPENDS entries are missing. I'll prepare a patch to add
+those entries.
+
+Thanks,
+Jonatan
