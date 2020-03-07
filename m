@@ -1,75 +1,69 @@
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
- by mx.groups.io with SMTP id smtpd.web11.20301.1583616368254469859
+Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
+ by mx.groups.io with SMTP id smtpd.web11.21034.1583619490039983015
  for <yocto@lists.yoctoproject.org>;
- Sat, 07 Mar 2020 13:26:08 -0800
+ Sat, 07 Mar 2020 14:18:10 -0800
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=VyF65m4r;
- spf=pass (domain: gmail.com, ip: 209.85.214.174, mailfrom: akuster808@gmail.com)
-Received: by mail-pl1-f174.google.com with SMTP id w12so2359366pll.13
-        for <yocto@lists.yoctoproject.org>; Sat, 07 Mar 2020 13:26:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id;
-        bh=YdjZQg15Wuy565V+Tk9nmXRU4/JOVqA8PyX20MBB+Gk=;
-        b=VyF65m4rZ2U7uZQFVVRLOJIb1wNUnKhf/KnOfz0lxrjBsygjh9PVHK7GIJeLeLUPTR
-         mBBNyTWJJoSRtcMtAEkTOTwAc8suo37/8aXKZvlH2kQ2jsTJ89YTa3zwaK+i+JsLjCFS
-         khmdlVX0qwTyfYgYFmHkn/Y7iEP1XqbzFqVhSUhHAZGxzGS2FnZMFWCYRfLX6fqURoff
-         d41xXaXfVJ/kxyD1Yv6b80eGh3cRCBFpmU7n78NPgGfsFkZ7ebu2PIZr47rKOyQu53P9
-         DVt5jSbq4H+S8UG9bj4wlmh0bNjyQB67F04kAr1I26SKWeqcqQ9ApLlorzWBgwYlb5kv
-         Wlig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=YdjZQg15Wuy565V+Tk9nmXRU4/JOVqA8PyX20MBB+Gk=;
-        b=gx29eWPd1Ij1wbx8fD2FYsCTvrR25s9n5TBCzu9hh7kMBtCv9yD9mvLlyEHc/DipD4
-         AObNlbulUN93i1ZV39Tt3DMyjjH1Sa0qwlWC1YA1jOfl5ZNzpvZoJqSdoqo/BUs72fuE
-         O2blkqT9DjJ0o40QiusnaSkWfLGJlxtk4Fs+SHheGKksLgQgzM8BrunSU8EtHDNDfNE1
-         Jzw4mSZtwYAMSGnYJJcp2DxfqAA8bDcTRbaz9UNagFuB/AUtPiXyOltnT6K08jYybdVZ
-         /fiEgsWGjxs/GM5nd/EmO3rMWewC4uJ2TcnpYaXhI2hw65qN0gOGQEd6FJWwfzcyoPCb
-         Hyrg==
-X-Gm-Message-State: ANhLgQ0uiEiJehxn+hjZ3BeF0qOigsatbeT+6LXlrlHxulSWISzWQSu8
-	vModzdeOmyaSrSM84NMmBXerlNp3
-X-Google-Smtp-Source: ADFU+vs0K1e6/85ypXBlxtUpk6MIhQ+5H/8+kz955xwCMH6c0Ps8wiyqyLB4FDijJorr0RJKsaohkQ==
-X-Received: by 2002:a17:902:b590:: with SMTP id a16mr9023480pls.176.1583616367211;
-        Sat, 07 Mar 2020 13:26:07 -0800 (PST)
-Return-Path: <akuster808@gmail.com>
-Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:6c62:7a1c:e667:70])
-        by smtp.gmail.com with ESMTPSA id s21sm31637242pfm.186.2020.03.07.13.26.06
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Mar 2020 13:26:06 -0800 (PST)
-From: "akuster" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH] sssd: python2 not supported
-Date: Sat,  7 Mar 2020 13:26:05 -0800
-Message-Id: <20200307212605.29093-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 64.68.198.64, mailfrom: denis@denix.org)
+Received: from localhost (localhost [127.0.0.1])
+	by mailout4.zoneedit.com (Postfix) with ESMTP id 2602040C2E;
+	Sat,  7 Mar 2020 22:18:09 +0000 (UTC)
+Received: from mailout4.zoneedit.com ([127.0.0.1])
+	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id lLAJpWwRO596; Sat,  7 Mar 2020 22:18:09 +0000 (UTC)
+Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by mailout4.zoneedit.com (Postfix) with ESMTPSA id E8C5E40AB5;
+	Sat,  7 Mar 2020 22:18:07 +0000 (UTC)
+Received: by mail.denix.org (Postfix, from userid 1000)
+	id 52492174455; Sat,  7 Mar 2020 17:18:07 -0500 (EST)
+Date: Sat, 7 Mar 2020 17:18:07 -0500
+From: "Denys Dmytriyenko" <denis@denix.org>
+To: akuster <akuster808@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] [meta-security][PATCH] libseccomp: update to 2.4.3
+Message-ID: <20200307221807.GG1578@denix.org>
+References: <20200307203849.3117-1-akuster808@gmail.com>
+MIME-Version: 1.0
+In-Reply-To: <20200307203849.3117-1-akuster808@gmail.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/sssd/sssd_1.16.4.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Sat, Mar 07, 2020 at 08:38:49PM +0000, akuster wrote:
+> dropped patch now included in update
 
-diff --git a/recipes-security/sssd/sssd_1.16.4.bb b/recipes-security/sssd/sssd_1.16.4.bb
-index d42a455..c5ddd5c 100644
---- a/recipes-security/sssd/sssd_1.16.4.bb
-+++ b/recipes-security/sssd/sssd_1.16.4.bb
-@@ -41,7 +41,6 @@ PACKAGECONFIG[ssh] = "--with-ssh, --with-ssh=no, "
- PACKAGECONFIG[samba] = "--with-samba, --with-samba=no, samba"
- PACKAGECONFIG[selinux] = "--with-selinux, --with-selinux=no --with-semanage=no, libselinux"
- PACKAGECONFIG[manpages] = "--with-manpages, --with-manpages=no"
--PACKAGECONFIG[python2] = "--with-python2-bindings, --without-python2-bindings, python, python"
- PACKAGECONFIG[python3] = "--with-python3-bindings, --without-python3-bindings"
- PACKAGECONFIG[nss] = "--with-crypto=nss, ,nss,"
- PACKAGECONFIG[crypto] = "--with-crypto=libcrypto, , libcrypto"
-@@ -57,6 +56,7 @@ EXTRA_OECONF += " \
-     --without-ipa-getkeytab \
-     --without-python2-bindings \
-     --enable-pammoddir=${base_libdir}/security \
-+    --without-python2-bindings \
- "
- 
- do_configure_prepend() {
--- 
-2.17.1
+Do you want to remove the patch?
+
+
+> Signed-off-by: Armin Kuster <akuster808@gmail.com>
+> ---
+>  .../libseccomp/{libseccomp_2.4.2.bb => libseccomp_2.4.3.bb}    | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+>  rename recipes-security/libseccomp/{libseccomp_2.4.2.bb => libseccomp_2.4.3.bb} (90%)
+> 
+> diff --git a/recipes-security/libseccomp/libseccomp_2.4.2.bb b/recipes-security/libseccomp/libseccomp_2.4.3.bb
+> similarity index 90%
+> rename from recipes-security/libseccomp/libseccomp_2.4.2.bb
+> rename to recipes-security/libseccomp/libseccomp_2.4.3.bb
+> index 07db82a..9ca41e6 100644
+> --- a/recipes-security/libseccomp/libseccomp_2.4.2.bb
+> +++ b/recipes-security/libseccomp/libseccomp_2.4.3.bb
+> @@ -4,10 +4,9 @@ SECTION = "security"
+>  LICENSE = "LGPL-2.1"
+>  LIC_FILES_CHKSUM = "file://LICENSE;beginline=0;endline=1;md5=8eac08d22113880357ceb8e7c37f989f"
+>  
+> -SRCREV = "1b6cfd1fc0b7499a28c24299a93a80bd18619563"
+> +SRCREV = "1dde9d94e0848e12da20602ca38032b91d521427"
+>  
+>  SRC_URI = "git://github.com/seccomp/libseccomp.git;branch=release-2.4 \
+> -           file://0001-tests-rely-on-__SNR_xxx-instead-of-__NR_xxx-for-sysc.patch \
+>             file://run-ptest \
+>  "
+>  
+> -- 
+> 2.17.1
+> 
+
+> 
 
