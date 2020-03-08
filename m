@@ -1,130 +1,135 @@
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
- by mx.groups.io with SMTP id smtpd.web11.28705.1583642345486541718
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.38055.1583691197468347833
  for <yocto@lists.yoctoproject.org>;
- Sat, 07 Mar 2020 20:39:05 -0800
+ Sun, 08 Mar 2020 11:13:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=WpL169UX;
- spf=pass (domain: gmail.com, ip: 209.85.210.179, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f179.google.com with SMTP id p14so3255244pfn.4
-        for <yocto@lists.yoctoproject.org>; Sat, 07 Mar 2020 20:39:05 -0800 (PST)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=XWR9Xgoi;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: akuster808@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id ED558E017FD; Sun,  8 Mar 2020 11:13:16 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (akuster808[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.210.178 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D84ADE017FB;
+	Sun,  8 Mar 2020 11:13:15 -0700 (PDT)
+Received: by mail-pf1-f178.google.com with SMTP id b72so201642pfb.11;
+        Sun, 08 Mar 2020 11:13:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id;
-        bh=84Xnr8zNODi60hLAc3soxP5HOIdx4aAh9PdSb+T1aRU=;
-        b=WpL169UXgijVS7Yc/Fj/TBzlZjHf6/oTYXE90BKssbfJ1X1V+nvH7n2pC/S/wgqmUI
-         nD9pEKkY0Gk70yQTxqnf0/rDwuc9px0JRYg45aVtlnCFNzTR/y2ToHH5PSJSKUgW8YTv
-         /OIgpE2h9yRMdLI/u0YwdBi6jI9wOk50BHnuDfdYdJ4VhWCBhdwSCJPosJHjzQ6wFTqH
-         kofn3R2pYzYu0MUy4uYMgoFZ0oOBSHIZygx6nJ/XmywcmNLf661yixsCN9onmFpn1pUQ
-         iieUrRn8TotWS+8VKC/JK9BSxtQ1HqPGgGB60JNVBp2Adh9LnPkOkO+pUUzMmDE3cbec
-         c6bQ==
+        h=to:from:subject:autocrypt:message-id:date:user-agent:mime-version
+         :content-transfer-encoding:content-language;
+        bh=XEkKq0T5LY6lgE2WKhgEsOYv4DE5i1HuFkZC3HIwHE4=;
+        b=XWR9Xgoi3y6ynQ1Wbqr/2hMMvbpC7xOxCrhGtp7gVIfn6lUuOL8PzKbtw42jSzqGvA
+         SdF4refh2xbXljrzSjoKlA7i6FbeKPXFSDwLJiW7RPIAI048o1KYnInkM5G68v8cvOD+
+         orEJ3CFLNjiMoO23zB3VeoBUdRvLr4srcVrfcEDyq4NvgzkDx2Wdxhly9RcGppTR2bXj
+         xMZQwAxNSj5skbbyBY0u0DMFUmHwLRmlhXcAA4p2Ja8NnDCWjPqZGMtlaSyKbcVN/sod
+         wkHuu2BwHAFXz1oK83UkZTpOvZ+h3G/h7C2kuKsUgXIG3mh5UT9E0Xk+N7YfT0koqSN0
+         g1+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=84Xnr8zNODi60hLAc3soxP5HOIdx4aAh9PdSb+T1aRU=;
-        b=oP02FZ8jJIKdBOPFGU6nMV0/U9mSXki17BtigKXnaBT4GUxFTwWZSSUnG+pXJZJYCo
-         jHhyWJgqQ0mMu27uZd0W123aEswVbbv8W8dQKxKLtHAweno+jnxYE8VfyumUycJDFTj7
-         3mgdf2qvJlHh9bNngzfRYWe9ULBbPbJ/EnYtQigbnlE39s/p/fUgFgpGJVoaAxA41TY8
-         ko1FGxM9jKz21iFnd6nIsXOiyYfnDsPDlWFzRIhDDKM22sQPdETULDoJjOS4FCaHKECQ
-         ZcO/utHlCy9eMO2+oPxqfUOycI+irqeFvc2lJnLov7pysoJ8gmf4Imo2KmxTAXyGCL6o
-         r4pg==
-X-Gm-Message-State: ANhLgQ0tdXwowxUvPY/+E+b4/kQlLTLK5No080xD/Sem6e0JVcB2E1D0
-	cTueNa+im1RgmJaCKP2XS+bUCUPk
-X-Google-Smtp-Source: ADFU+vvi6YD+COVE1ETq1SrTNQ01jSNf0UeqErqQEQr5S8rPle7/JcQFnhdIOnl5ALV3t+lwcbfW6Q==
-X-Received: by 2002:a62:ae17:: with SMTP id q23mr11338132pff.239.1583642344591;
-        Sat, 07 Mar 2020 20:39:04 -0800 (PST)
-Return-Path: <akuster808@gmail.com>
-Received: from akuster-ThinkPad-T460s.mvista.com ([2601:202:4180:a5c0:6c62:7a1c:e667:70])
-        by smtp.gmail.com with ESMTPSA id d24sm42543567pfq.75.2020.03.07.20.39.03
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 07 Mar 2020 20:39:04 -0800 (PST)
+        h=x-gm-message-state:to:from:subject:autocrypt:message-id:date
+         :user-agent:mime-version:content-transfer-encoding:content-language;
+        bh=XEkKq0T5LY6lgE2WKhgEsOYv4DE5i1HuFkZC3HIwHE4=;
+        b=MbNkny4nB0LtylQhkssvvx7IBMLELDE0barhDidY3YLgVdkdLs6VY9bmZ9T7ODjaer
+         L6KTR8KmX+ZfMHhyisDKKqf4ka66MWfBJSQ3JbGKoeLnSipyQEnYKHU/S+0RYNYcoN2v
+         BXoA40ljuCKzLT+kRcChVKxrG+h6ystsLK2S11MqZbsg3FjBJsfSbjd+2KbulrJAWhir
+         h2hqmGr3odbP1dU3dTSqT53CXTOYh044/rTiLrzW/DIqvQU6YzdNUXEnq+BE8IPk+Uyx
+         muY1rhUG3U0NOqYkZHWD4ZhZccgbaa9Pq6CMXJZ9wQFvVkj00gb4Mg1wdGRz3cAEQyMn
+         jMpA==
+X-Gm-Message-State: ANhLgQ2OvjpAzM4ZfZwLhUAKEHhSqyFLW0qtu4hNeNiEpK4mKILKHFOW
+	jixdEp+jO7DqHj/PndPKTjsTVH0y
+X-Google-Smtp-Source: ADFU+vuTcFwHIUksoEFDfc+outSz816phigeyeUwaY2/X39Ae/+BEcPrbYwMSFnpyPYHR6ZutYhy7A==
+X-Received: by 2002:aa7:947d:: with SMTP id t29mr894625pfq.184.1583691195388;
+        Sun, 08 Mar 2020 11:13:15 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:a5c0:6c62:7a1c:e667:70? ([2601:202:4180:a5c0:6c62:7a1c:e667:70])
+        by smtp.gmail.com with ESMTPSA id c20sm26923337pfc.140.2020.03.08.11.13.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 08 Mar 2020 11:13:14 -0700 (PDT)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+ "poky@yoctoproject.org" <poky@yoctoproject.org>,
+ "bitbake-devel@lists.openembedded.org"
+ <bitbake-devel@lists.openembedded.org>,
+ Patches and discussions about the oe-core layer
+ <openembedded-core@lists.openembedded.org>
 From: "akuster" <akuster808@gmail.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-security][v2][PATCH] libseccomp: update to 2.4.3
-Date: Sat,  7 Mar 2020 20:39:02 -0800
-Message-Id: <20200308043902.32513-1-akuster808@gmail.com>
-X-Mailer: git-send-email 2.17.1
+Subject: Stable life cycle status
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ 8CS2NxU=
+Message-ID: <ca05c738-c6ff-afa1-8b7b-a84ef6a31261@gmail.com>
+Date: Sun, 8 Mar 2020 11:13:13 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
-dropped patch now included in update
+Hello,
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- ...SNR_xxx-instead-of-__NR_xxx-for-sysc.patch | 45 -------------------
- ...ibseccomp_2.4.2.bb => libseccomp_2.4.3.bb} |  3 +-
- 2 files changed, 1 insertion(+), 47 deletions(-)
- delete mode 100644 recipes-security/libseccomp/files/0001-tests-rely-on-__SNR_xxx-instead-of-__NR_xxx-for-sysc.patch
- rename recipes-security/libseccomp/{libseccomp_2.4.2.bb => libseccomp_2.4.3.bb} (90%)
+Thud has moved to "Community supported" today.
 
-diff --git a/recipes-security/libseccomp/files/0001-tests-rely-on-__SNR_xxx-instead-of-__NR_xxx-for-sysc.patch b/recipes-security/libseccomp/files/0001-tests-rely-on-__SNR_xxx-instead-of-__NR_xxx-for-sysc.patch
-deleted file mode 100644
-index a53433f..0000000
---- a/recipes-security/libseccomp/files/0001-tests-rely-on-__SNR_xxx-instead-of-__NR_xxx-for-sysc.patch
-+++ /dev/null
-@@ -1,45 +0,0 @@
--From 1ecdddb2a5b61cf527d1f238f88a9d129239f87a Mon Sep 17 00:00:00 2001
--From: Paul Moore <paul@paul-moore.com>
--Date: Tue, 5 Nov 2019 15:11:11 -0500
--Subject: [PATCH] tests: rely on __SNR_xxx instead of __NR_xxx for syscalls
--
--We recently changed how libseccomp handles syscall numbers that are
--not defined natively, but we missed test #15.
--
--Acked-by: Tom Hromatka <tom.hromatka@oracle.com>
--Signed-off-by: Paul Moore <paul@paul-moore.com>
--
--Upstream-Status: Backport
--[https://github.com/seccomp/libseccomp/commit/1ecdddb2a5b61cf527d1f238f88a9d129239f87a]
--
--Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-----
-- tests/15-basic-resolver.c | 6 +++---
-- 1 file changed, 3 insertions(+), 3 deletions(-)
--
--diff --git a/tests/15-basic-resolver.c b/tests/15-basic-resolver.c
--index 6badef1..0c1eefe 100644
----- a/tests/15-basic-resolver.c
--+++ b/tests/15-basic-resolver.c
--@@ -55,15 +55,15 @@ int main(int argc, char *argv[])
-- 	unsigned int arch;
-- 	char *name = NULL;
-- 
---	if (seccomp_syscall_resolve_name("open") != __NR_open)
--+	if (seccomp_syscall_resolve_name("open") != __SNR_open)
-- 		goto fail;
---	if (seccomp_syscall_resolve_name("read") != __NR_read)
--+	if (seccomp_syscall_resolve_name("read") != __SNR_read)
-- 		goto fail;
-- 	if (seccomp_syscall_resolve_name("INVALID") != __NR_SCMP_ERROR)
-- 		goto fail;
-- 
-- 	rc = seccomp_syscall_resolve_name_rewrite(SCMP_ARCH_NATIVE, "openat");
---	if (rc != __NR_openat)
--+	if (rc != __SNR_openat)
-- 		goto fail;
-- 
-- 	while ((arch = arch_list[iter++]) != -1) {
---- 
--2.17.1
--
-diff --git a/recipes-security/libseccomp/libseccomp_2.4.2.bb b/recipes-security/libseccomp/libseccomp_2.4.3.bb
-similarity index 90%
-rename from recipes-security/libseccomp/libseccomp_2.4.2.bb
-rename to recipes-security/libseccomp/libseccomp_2.4.3.bb
-index 07db82a..9ca41e6 100644
---- a/recipes-security/libseccomp/libseccomp_2.4.2.bb
-+++ b/recipes-security/libseccomp/libseccomp_2.4.3.bb
-@@ -4,10 +4,9 @@ SECTION = "security"
- LICENSE = "LGPL-2.1"
- LIC_FILES_CHKSUM = "file://LICENSE;beginline=0;endline=1;md5=8eac08d22113880357ceb8e7c37f989f"
- 
--SRCREV = "1b6cfd1fc0b7499a28c24299a93a80bd18619563"
-+SRCREV = "1dde9d94e0848e12da20602ca38032b91d521427"
- 
- SRC_URI = "git://github.com/seccomp/libseccomp.git;branch=release-2.4 \
--           file://0001-tests-rely-on-__SNR_xxx-instead-of-__NR_xxx-for-sysc.patch \
-            file://run-ptest \
- "
- 
--- 
-2.17.1
+The older releases have moved to EOL as no one has stepped up to take on
+the maintenance of those older branches.
+
+
+regards,
+Armin
 
