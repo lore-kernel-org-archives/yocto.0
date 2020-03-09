@@ -1,135 +1,193 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.38055.1583691197468347833
+ by mx.groups.io with SMTP id smtpd.web10.52978.1583746554394971718
  for <yocto@lists.yoctoproject.org>;
- Sun, 08 Mar 2020 11:13:17 -0700
+ Mon, 09 Mar 2020 02:35:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=XWR9Xgoi;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: akuster808@gmail.com)
+ dkim=pass header.i=@windriversystems.onmicrosoft.com header.s=selector2-windriversystems-onmicrosoft-com header.b=dw3akVGy;
+ spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: changqing.li@windriver.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ED558E017FD; Sun,  8 Mar 2020 11:13:16 -0700 (PDT)
+	id 10AB0E01801; Mon,  9 Mar 2020 02:35:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,FORGED_SPF_HELO,MSGID_FROM_MTA_HEADER,RCVD_IN_DNSWL_NONE,
+	SPF_HELO_PASS autolearn=no version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.210.178 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
+	*      [40.107.243.85 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D84ADE017FB;
-	Sun,  8 Mar 2020 11:13:15 -0700 (PDT)
-Received: by mail-pf1-f178.google.com with SMTP id b72so201642pfb.11;
-        Sun, 08 Mar 2020 11:13:15 -0700 (PDT)
+	*  0.9 FORGED_SPF_HELO FORGED_SPF_HELO
+	*  0.0 MSGID_FROM_MTA_HEADER Message-Id was added by a relay
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2085.outbound.protection.outlook.com [40.107.243.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5C65E007EE
+	for <yocto@yoctoproject.org>; Mon,  9 Mar 2020 02:35:51 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DSzxT5pxWqPd68R8jWIlOlJK54SJC3fJRSOJe3M3X1618ktyGKKcrsAVSSGzyF9TJuzaoQHoFeuLTobEZsh4Lmylz3fNn06lubq9f0k8woZ4IQB/bt6jaadIyoXYjkfO0v+aFMVw6z/UsJAt0ILUWuhjsIDPtL6d4QMwll4qtwd5wSqwsZPK52vrH3lmHQYhiLr7WAPWs7P7cdW1egQtVXxuAF+h+WJ/xgKyAKCrU7SMTo9d7DLi51bnf6q4TeF9tzVTAwDJ57PTGwHG9uttQbk77b0/Xk71OHFKs2XOGBI9r7Y1N7lU9+VPfzaGaZb0yw2HRWShvBmPBFD35R8IOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TSrcEfJfER3WOZtdihSIhgNC1haisWfy28EXvjf6sfY=;
+ b=kCNPGxdAnr6x+alsGcd9v9d8QciB5dQcIXmo8iLFyI8xym6OZm51+4NQYr31lHqIzgL75hcxNr/i1NlR8cWoUQBk6PFktG5YW3AN8in44vpTWcnpnNzSi5+RrNXv90lA2ExdOjKPpofpXIo2B7PL6gGzQECp1p31LF+3a9Kk3/cEih4bGOcbyThpUXLvOkU94v8Kj6mSkoZYOxPqZh50r5Iu7Uiuf3k9AgBsJL2LzrotbkP7hpiaef4qCM8EfOh9dEBPus1oHYNJx+iXnWLA0xzjtSD+aZ/QH2LXyheS3noS577enK6bVzjNkj27rnfPOwQR0fRWUnh9SyuCiDR69Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=windriver.com; dmarc=pass action=none
+ header.from=windriver.com; dkim=pass header.d=windriver.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=to:from:subject:autocrypt:message-id:date:user-agent:mime-version
-         :content-transfer-encoding:content-language;
-        bh=XEkKq0T5LY6lgE2WKhgEsOYv4DE5i1HuFkZC3HIwHE4=;
-        b=XWR9Xgoi3y6ynQ1Wbqr/2hMMvbpC7xOxCrhGtp7gVIfn6lUuOL8PzKbtw42jSzqGvA
-         SdF4refh2xbXljrzSjoKlA7i6FbeKPXFSDwLJiW7RPIAI048o1KYnInkM5G68v8cvOD+
-         orEJ3CFLNjiMoO23zB3VeoBUdRvLr4srcVrfcEDyq4NvgzkDx2Wdxhly9RcGppTR2bXj
-         xMZQwAxNSj5skbbyBY0u0DMFUmHwLRmlhXcAA4p2Ja8NnDCWjPqZGMtlaSyKbcVN/sod
-         wkHuu2BwHAFXz1oK83UkZTpOvZ+h3G/h7C2kuKsUgXIG3mh5UT9E0Xk+N7YfT0koqSN0
-         g1+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:to:from:subject:autocrypt:message-id:date
-         :user-agent:mime-version:content-transfer-encoding:content-language;
-        bh=XEkKq0T5LY6lgE2WKhgEsOYv4DE5i1HuFkZC3HIwHE4=;
-        b=MbNkny4nB0LtylQhkssvvx7IBMLELDE0barhDidY3YLgVdkdLs6VY9bmZ9T7ODjaer
-         L6KTR8KmX+ZfMHhyisDKKqf4ka66MWfBJSQ3JbGKoeLnSipyQEnYKHU/S+0RYNYcoN2v
-         BXoA40ljuCKzLT+kRcChVKxrG+h6ystsLK2S11MqZbsg3FjBJsfSbjd+2KbulrJAWhir
-         h2hqmGr3odbP1dU3dTSqT53CXTOYh044/rTiLrzW/DIqvQU6YzdNUXEnq+BE8IPk+Uyx
-         muY1rhUG3U0NOqYkZHWD4ZhZccgbaa9Pq6CMXJZ9wQFvVkj00gb4Mg1wdGRz3cAEQyMn
-         jMpA==
-X-Gm-Message-State: ANhLgQ2OvjpAzM4ZfZwLhUAKEHhSqyFLW0qtu4hNeNiEpK4mKILKHFOW
-	jixdEp+jO7DqHj/PndPKTjsTVH0y
-X-Google-Smtp-Source: ADFU+vuTcFwHIUksoEFDfc+outSz816phigeyeUwaY2/X39Ae/+BEcPrbYwMSFnpyPYHR6ZutYhy7A==
-X-Received: by 2002:aa7:947d:: with SMTP id t29mr894625pfq.184.1583691195388;
-        Sun, 08 Mar 2020 11:13:15 -0700 (PDT)
-Received: from ?IPv6:2601:202:4180:a5c0:6c62:7a1c:e667:70? ([2601:202:4180:a5c0:6c62:7a1c:e667:70])
-        by smtp.gmail.com with ESMTPSA id c20sm26923337pfc.140.2020.03.08.11.13.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 08 Mar 2020 11:13:14 -0700 (PDT)
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
- "poky@yoctoproject.org" <poky@yoctoproject.org>,
- "bitbake-devel@lists.openembedded.org"
- <bitbake-devel@lists.openembedded.org>,
- Patches and discussions about the oe-core layer
- <openembedded-core@lists.openembedded.org>
-From: "akuster" <akuster808@gmail.com>
-Subject: Stable life cycle status
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <ca05c738-c6ff-afa1-8b7b-a84ef6a31261@gmail.com>
-Date: Sun, 8 Mar 2020 11:13:13 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+ d=windriversystems.onmicrosoft.com;
+ s=selector2-windriversystems-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TSrcEfJfER3WOZtdihSIhgNC1haisWfy28EXvjf6sfY=;
+ b=dw3akVGynfcGit4xd2eZTaXT+c3c5L2PiHJOdAvQH8X1Pi68WtHwiudqfuhulGLIORsc8+XpBEElHKcbA9j3H2689J3s2sh1U65uxf6N2X0jFAnpqp18jW3wtyjN8MFtfQSA7Iy53WGUBrlS9NsTfI8O/RRjKKbQJI9fN9QAx6Q=
+Authentication-Results: spf=none (sender IP is )
+ smtp.mailfrom=Changqing.Li@windriver.com; 
+Received: from SN6PR11MB2557.namprd11.prod.outlook.com (2603:10b6:805:56::33)
+ by SN6PR11MB2813.namprd11.prod.outlook.com (2603:10b6:805:61::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2793.17; Mon, 9 Mar
+ 2020 09:35:48 +0000
+Received: from SN6PR11MB2557.namprd11.prod.outlook.com
+ ([fe80::ecac:629d:9a5a:4d10]) by SN6PR11MB2557.namprd11.prod.outlook.com
+ ([fe80::ecac:629d:9a5a:4d10%7]) with mapi id 15.20.2793.013; Mon, 9 Mar 2020
+ 09:35:48 +0000
+Subject: Re: [yocto] [meta-cgl][PATCH 1/2] core-image-cgl/core-image-cgl-initramfs: remove them
+To: yocto@yoctoproject.org
+References: <1568707486-382596-1-git-send-email-changqing.li@windriver.com>
+From: "Changqing Li" <changqing.li@windriver.com>
+Message-ID: <42c29413-19bd-f653-6c79-37b29ddefd17@windriver.com>
+Date: Mon, 9 Mar 2020 17:35:36 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+In-Reply-To: <1568707486-382596-1-git-send-email-changqing.li@windriver.com>
+X-ClientProxiedBy: HK2PR06CA0021.apcprd06.prod.outlook.com
+ (2603:1096:202:2e::33) To SN6PR11MB2557.namprd11.prod.outlook.com
+ (2603:10b6:805:56::33)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [128.224.162.189] (60.247.85.82) by HK2PR06CA0021.apcprd06.prod.outlook.com (2603:1096:202:2e::33) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2793.14 via Frontend Transport; Mon, 9 Mar 2020 09:35:47 +0000
+X-Originating-IP: [60.247.85.82]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e470f61f-06e5-4fd8-08f3-08d7c40d3fc3
+X-MS-TrafficTypeDiagnostic: SN6PR11MB2813:
+X-Microsoft-Antispam-PRVS: 
+	<SN6PR11MB2813734DD6F62DE832C0BED582FE0@SN6PR11MB2813.namprd11.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7219;
+X-Forefront-PRVS: 0337AFFE9A
+X-Forefront-Antispam-Report: 
+	SFV:NSPM;SFS:(10009020)(366004)(199004)(189003)(31686004)(86362001)(498600001)(956004)(66556008)(66476007)(66946007)(31696002)(2616005)(2906002)(44832011)(6916009)(6706004)(6666004)(36756003)(16576012)(6486002)(53546011)(5660300002)(16526019)(52116002)(8936002)(81156014)(186003)(81166006)(8676002)(26005)(78286006);DIR:OUT;SFP:1101;SCL:1;SRVR:SN6PR11MB2813;H:SN6PR11MB2557.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+Received-SPF: None (protection.outlook.com: windriver.com does not designate
+ permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	dbYROK11GobAogaWwNR7mZsHAmAQxeEOFbT2g1fFSW+61wlcG46qgnc68ybH7Vn6GqCfqj6wlCa4aeuJqcUWXfIl6p6447Z0waEWq5cWWuf4ohgU2JS88c/uHRRw9Vj6qDMIh2Hz7KldHat17m8CkncQ11oNBC1gxavp9EWSCMx7jdsJ2Ka/Mu2/TrsUf/svKqmPk63iUmP9Qu0jGpaUrTRraw0PyN5CHGY40vPYdM5L9vU4JcM6D1YGrvrMcZ987H0J5/L25997VFrP3CnM9kHIwmT71pVfsVOdNEYqKxDMmEuAdcr3t0+lCO0TC2L9aRDUhEVSOvOPooWvUSBddiLUnEDDj+dW7A8x+0GrOlnJeL87ZDCQkTP7kIXFBgW94OiYIp5chHigNxCZNlElrIPjGT6Vx/3ful1LFekWRXoO3IpRLhZP/WJBpLGQclcuFAPZckLI+be4ABjojjHxJhBuYG10o//tv6b4DYnrIR/SmthuLLY2j4nuFoodFp9KErzoj3DbLMUTDY97iRF5oAC9QOZoxw+rJq1d+fv654c=
+X-MS-Exchange-AntiSpam-MessageData: 
+	RBbv9vk/77xk/GZUeIjJ77I3c1+K+z6XhjF6S5VhvjPoc8ADkoR93SvzLSAPWlFT+YWm6skV1kS7F6Z7saVW8UbueoZc+Kx8rYOfjVe7co5t33hcsNCnId6jUvMpqs1kBzO2g2t2URkU7Hc4PLdP8Q==
+X-OriginatorOrg: windriver.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e470f61f-06e5-4fd8-08f3-08d7c40d3fc3
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2020 09:35:48.7865
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8ddb2873-a1ad-4a18-ae4e-4644631433be
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jv55Mpulo3i+5iGc9+Ln7eM7FWuDZ3bxPsz8flo8y0OgoZUq86i76IofPw+MTejpgCDeQnPXkMwsLizF0B1f0BQK0RY0mWnwnioT+XKnYSM=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR11MB2813
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 Content-Language: en-US
 
-Hello,
+ping
 
-Thud has moved to "Community supported" today.
-
-The older releases have moved to EOL as no one has stepped up to take on
-the maintenance of those older branches.
-
-
-regards,
-Armin
-
+On 9/17/19 4:04 PM, changqing.li@windriver.com wrote:
+> From: Changqing Li <changqing.li@windriver.com>
+>
+> remove core-image-cgl.bb and core-image-cgl-initramfs.bb
+>
+> * They require core-image-lsb.bb which has been removed by oe-core
+>
+> * Even before LSB support is dropped by oe-core, core-image-cgl
+>    and core-image-cgl-initramfs cannot build success, failed during
+>    do_rootfs with below error, so I suppose that no one use these
+>    2 recipes, so remove it
+>
+> Error:
+>   Problem: package logcheck-1.3.20-r0.core2_64 requires rsyslog, but none of the providers can be installed
+>    - package rsyslog-8.1907.0-r0.core2_64 conflicts with sysklogd provided by sysklogd-1.5.1-r0.core2_64
+>    - package sysklogd-1.5.1-r0.core2_64 conflicts with rsyslog provided by rsyslog-8.1907.0-r0.core2_64
+>    - package packagegroup-cgl-applications-1.0-r0.noarch requires logcheck, but none of the providers can be installed
+>    - package packagegroup-core-full-cmdline-initscripts-1.0-r6.noarch requires sysklogd, but none of the providers can be installed
+>    - package packagegroup-cgl-1.0-r0.noarch requires packagegroup-cgl-applications, but none of the providers can be installed
+>    - package packagegroup-core-full-cmdline-1.0-r6.noarch requires packagegroup-core-full-cmdline-initscripts, but none of the providers can be installed
+>
+> Signed-off-by: Changqing Li <changqing.li@windriver.com>
+> ---
+>   meta-cgl-common/images/core-image-cgl-initramfs.bb | 19 ---------------
+>   meta-cgl-common/images/core-image-cgl.bb           | 28 ----------------------
+>   2 files changed, 47 deletions(-)
+>   delete mode 100644 meta-cgl-common/images/core-image-cgl-initramfs.bb
+>   delete mode 100644 meta-cgl-common/images/core-image-cgl.bb
+>
+> diff --git a/meta-cgl-common/images/core-image-cgl-initramfs.bb b/meta-cgl-common/images/core-image-cgl-initramfs.bb
+> deleted file mode 100644
+> index 67cb4c1..0000000
+> --- a/meta-cgl-common/images/core-image-cgl-initramfs.bb
+> +++ /dev/null
+> @@ -1,19 +0,0 @@
+> -require core-image-cgl.bb
+> -
+> -# Recipe is based on core-image-minimal.bb
+> -DESCRIPTION = "Initramfs used to mount multipath device as root file system"
+> -
+> -PACKAGE_INSTALL = "initramfs-cgl-boot busybox base-passwd udev"
+> -
+> -# Do not pollute the initrd image with rootfs features
+> -IMAGE_FEATURES = ""
+> -
+> -export IMAGE_BASENAME = "core-image-cgl-initramfs"
+> -IMAGE_LINGUAS = ""
+> -
+> -LICENSE = "MIT"
+> -IMAGE_FSTYPES ??= "cpio.gz.u-boot"
+> -
+> -IMAGE_ROOTFS_SIZE = "8192"
+> -
+> -BAD_RECOMMENDATIONS += "busybox-syslog"
+> diff --git a/meta-cgl-common/images/core-image-cgl.bb b/meta-cgl-common/images/core-image-cgl.bb
+> deleted file mode 100644
+> index 86bf7d4..0000000
+> --- a/meta-cgl-common/images/core-image-cgl.bb
+> +++ /dev/null
+> @@ -1,28 +0,0 @@
+> -require recipes-extended/images/core-image-lsb.bb
+> -
+> -
+> -VALGRIND ?= ""
+> -VALGRIND_powerpc ?= "valgrind"
+> -VALGRIND_e500v2 ?= ""
+> -VALGRIND_x86 ?= "valgrind"
+> -VALGRIND_x86_64 ?= "valgrind"
+> -VALGRIND_armv7a ?= "valgrind"
+> -
+> -# Include modules in rootfs
+> -IMAGE_INSTALL += "\
+> -    packagegroup-core-buildessential \
+> -    packagegroup-core-selinux \
+> -    packagegroup-cgl \
+> -    kexec-tools \
+> -    lttng-tools \
+> -    lttng-modules \
+> -    ${VALGRIND} \
+> -    "
+> -
+> -IMAGE_FSTYPES += " ext3.gz"
+> -
+> -# kexec-tools doesn't work on Mips
+> -KEXECTOOLS_mips ?= ""
+> -KEXECTOOLS_mipsel ?= ""
+> -
+> -IMAGE_FEATURES += "tools-debug tools-profile"
