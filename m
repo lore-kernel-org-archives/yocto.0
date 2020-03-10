@@ -1,75 +1,93 @@
-Received: from esa1.bmw.c3s2.iphmx.com (esa1.bmw.c3s2.iphmx.com [68.232.133.201])
- by mx.groups.io with SMTP id smtpd.web11.3340.1583840032302190678
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
+ by mx.groups.io with SMTP id smtpd.web11.3385.1583840278472462646
  for <yocto@lists.yoctoproject.org>;
- Tue, 10 Mar 2020 04:33:53 -0700
+ Tue, 10 Mar 2020 04:37:58 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1 header.b=gjp3aJpc;
- spf=pass (domain: bmw.de, ip: 68.232.133.201, mailfrom: prvs=3311916b7=mikko.rapeli@bmw.de)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=J1r8N37u;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.65, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f65.google.com with SMTP id n2so967377wmc.3
+        for <yocto@lists.yoctoproject.org>; Tue, 10 Mar 2020 04:37:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
-  t=1583840032; x=1615376032;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=iqGDkhqGUNtjTNVI+KuPcf3vXKx6QZDYQpieIaosvrk=;
-  b=gjp3aJpcuHV4241hESiPWdbw+pR1FWqvud0PXHgvWwYc+cJbxSmRT5iK
-   b02Zv9mhA0kpX60yA6HO/YQXVFfWhCRLHQSP11TR+jnFj2p08VoSoC8tP
-   nu7wieL04q5f586Gm42RjrfK6Do6J6pdtaf+nbgqWoiHJSNpvvWS0QMzR
-   g=;
-Received: from esagw2.bmwgroup.com (HELO esagw2.muc) ([160.46.252.38]) by
- esa1.bmw.c3s2.iphmx.com with ESMTP/TLS; 10 Mar 2020 12:33:50 +0100
-Received: from esabb2.muc ([160.50.100.34])  by esagw2.muc with ESMTP/TLS;
- 10 Mar 2020 12:33:50 +0100
-Received: from smucm10m.bmwgroup.net (HELO smucm10m.europe.bmw.corp) ([160.48.96.49])
- by esabb2.muc with ESMTP/TLS; 10 Mar 2020 12:33:49 +0100
-Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10m.europe.bmw.corp
- (160.48.96.49) with Microsoft SMTP Server (TLS;
- Tue, 10 Mar 2020 12:33:49 +0100
-Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
- smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Tue,
- 10 Mar 2020 12:33:49 +0100
-From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
-To: <richard.purdie@linuxfoundation.org>
-CC: <sean.mckay@hpe.com>, <yocto@lists.yoctoproject.org>
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=aoRjuRzgButkA2zWI/kI3Y64Limrd5Otmp5/ccH+dMI=;
+        b=J1r8N37uBAhlXeTKl6eQAdVrZ6+/6xD8oHFFPbwe5zaT5Aui8kOAl9vMtfY7ORcXrF
+         U2aFjRrGVsG315hE1CEPVoZQ/A5dFwfoX66va0a+SFIwluGS55AinmZWlwFrhLY7GkNu
+         0u7ua+ZRKoWLdFZhiKopApW1xS4gQpzuumGm4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=aoRjuRzgButkA2zWI/kI3Y64Limrd5Otmp5/ccH+dMI=;
+        b=MtX4AuHK7TF7R+LS/iBkJBXy982vSML6R8SSdJtsc/WPo1Eb6TGfwoIgOlaS2DU8IB
+         ekp3PQyX/z5qhp/x+5fbRjBYhC7qx4L5kjc0EXN9wlS5/yayk7Di9pBvibJ9w+6XIL0y
+         5CDomJSx+VSOXqRXG123N4rBgSv41IyRbhJicYJe4prqWHXDCeOVOB+EGYrgKOxUkyE3
+         egys3rRbMGq1Iw5Wjzv++Q1zdGew5/53iUEnOBohReJQD3CIi8tH5DY4lcFG3HwtWHGT
+         3gakPcjmjOcgzJa2y0fX7TDg35j2NXoKhH2ruvRKfNqyxZrS5aHc1cYuuFL8ybZ2L8j9
+         Hjkw==
+X-Gm-Message-State: ANhLgQ0Hum4WqTGb3tGfz8e/keuBedbbYiRQXzsqt53/g9FRpomNgGBT
+	FuK8lHwKrvv2wgu74s6u5Hj7vA==
+X-Google-Smtp-Source: ADFU+vuBwuRcz7vBCnJO0xkjo0FtIC6JrFNtGA/wzHN+OTympUfugmldP70TxztX0LnSJIz8R6032Q==
+X-Received: by 2002:a05:600c:1007:: with SMTP id c7mr1766399wmc.158.1583840276942;
+        Tue, 10 Mar 2020 04:37:56 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+        by smtp.gmail.com with ESMTPSA id i21sm3887886wmb.23.2020.03.10.04.37.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 10 Mar 2020 04:37:56 -0700 (PDT)
+Message-ID: <da7cd1ba55525b1f63884bd83286555d1dd72218.camel@linuxfoundation.org>
 Subject: Re: [yocto] Should changing a task in the .bb file cause the task to be rerun?
-Thread-Topic: [yocto] Should changing a task in the .bb file cause the task to
- be rerun?
-Thread-Index: AdXuiL6uK0y0gl2pQLikRTwB+tl67v//+pyAgBCCqgA=
-Date: Tue, 10 Mar 2020 11:33:49 +0000
-Message-ID: <20200310113348.GT104502@korppu>
-References: <TU4PR8401MB115177E1CDF301758DE3E72A82E80@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
- <18c5d510bec23fbb83c7d82e9ea7e2594b58d44f.camel@linuxfoundation.org>
-In-Reply-To: <18c5d510bec23fbb83c7d82e9ea7e2594b58d44f.camel@linuxfoundation.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Mikko.Rapeli@bmw.de
+Cc: sean.mckay@hpe.com, yocto@lists.yoctoproject.org
+Date: Tue, 10 Mar 2020 11:37:55 +0000
+In-Reply-To: <20200310113348.GT104502@korppu>
+References: 
+	<TU4PR8401MB115177E1CDF301758DE3E72A82E80@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
+	 <18c5d510bec23fbb83c7d82e9ea7e2594b58d44f.camel@linuxfoundation.org>
+	 <20200310113348.GT104502@korppu>
+User-Agent: Evolution 3.35.91-1 
 MIME-Version: 1.0
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <EC8BD711EEFBBF4FB65473C82267FB27@bmwmail.corp>
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-T24gRnJpLCBGZWIgMjgsIDIwMjAgYXQgMTE6MjU6NTlQTSArMDAwMCwgUmljaGFyZCBQdXJkaWUg
-d3JvdGU6DQo+IE9uIEZyaSwgMjAyMC0wMi0yOCBhdCAyMjo1MSArMDAwMCwgU2VhbiBNY0theSB3
-cm90ZToNCj4gPiBUaGlzIGlzIHByb2JhYmx5IGEgZmFpcmx5IHNob3J0IHF1ZXN0aW9uIChJIGhv
-cGUpOg0KPiA+IEnigJltIHdvcmtpbmcgb24gYSBicmFuY2ggYmFzZWQgb24gemV1cy4gSSBmb3Vu
-ZCBhIGJ1ZyBpbiB0aGUgd2F5IHRoYXQNCj4gPiBvbmUgb2Ygb3VyIHJlY2lwZXMgd2FzIGhhbmRs
-aW5nIHNvbWV0aGluZyBkdXJpbmcgZG9fY29uZmlndXJlICh3aGljaA0KPiA+IGNhdXNlZCBhbiBl
-cnJvciB0byBwb3AgdXAgaW4gYSBkb19jb21waWxlIHRhc2spLiBXaGVuIEkgbW9kaWZpZWQgdGhl
-DQo+ID4gZG9fY29uZmlndXJlIHRhc2sgKGRvX2NvbmZpZ3VyZV9hcHBlbmQsIGFjdHVhbGx5KSB0
-byBiZWhhdmUgcHJvcGVybHkNCj4gPiAod2hpY2ggaW52b2x2ZWQgY2hhbmdpbmcgdGhlIGFjdHVh
-bCBjb21tYW5kcyBydW4gaW4gdGhhdCBmdW5jdGlvbikNCj4gPiBhbmQgcmVyYW4gYml0YmFrZSAt
-YyBjb21waWxlIDxyZWNpcGU+LCB0aGUgZG9fY29uZmlndXJlIHRhc2sgd2FzbuKAmXQNCj4gPiBy
-ZXJ1biBkZXNwaXRlIHRoZSBjaGFuZ2UgdG8gdGhlIGZ1bmN0aW9u4oCZcyBjb2RlLg0KPiA+ICAN
-Cj4gPiBJcyBpdCBzYWZlIHRvIGFzc3VtZSB0aGlzIG1lYW5zIHdl4oCZdmUgZG9uZSBzb21ldGhp
-bmcgdG8gbWVzcyB1cCB0aGUNCj4gPiB3YXkgb3VyIHN5c3RlbSBpcyBwcm9jZXNzaW5nIHRoaW5n
-cz8gT3IgaXMgdGhhdCBleHBlY3RlZCBiZWhhdmlvcg0KPiANCj4gSXRzIG5vdCBleHBlY3RlZCBi
-ZWhhdmlvdXIgYW5kIHllcywgaXQgc291bmRzIGxpa2Ugc29tZXRoaW5nIGlzIG1lc3NlZA0KPiB1
-cC4uLg0KDQpUaGlzIGlzIHdoYXQgSSd2ZSBjb21lIHRvIGV4cGVjdCB3aXRoIHlvY3RvIDIuMCBq
-ZXRocm8sIDIuNSBzdW1vIGFuZA0KMy4wIHpldXMuDQoNClRoYXQncyB3aHkgSSBhbHdheXMgd3Jp
-dGU6DQoNCiQgYml0YmFrZSAtYyBjbGVhbiByZWNpcGUgJiYgYml0YmFrZSAtYyBjbGVhbnNzdGF0
-ZSAmJiBiaXRiYWtlIC1jIGNvbXBpbGUgcmVjaXBlDQoNCndoZW4gZGVidWdnaW5nIGNoYW5nZXMg
-aW4gcmVjaXBlcyB0b19jb21waWxlIGFuZCBvdGhlciBkZXBlbmRlbnQgdGFza3MuDQpJJ20gYWxz
-byBjbGVhbmluZyB1cCBzc3RhdGUgdG8gYmUgc3VyZSBpdCdzIG5vdCBjb3JydXB0IG9yIGZpbGxl
-ZCB3aXRoDQpzb21laG93IGJhZCBkYXRhLg0KDQotTWlra28=
+On Tue, 2020-03-10 at 11:33 +0000, Mikko.Rapeli@bmw.de wrote:
+> On Fri, Feb 28, 2020 at 11:25:59PM +0000, Richard Purdie wrote:
+> > On Fri, 2020-02-28 at 22:51 +0000, Sean McKay wrote:
+> > > This is probably a fairly short question (I hope):
+> > > I’m working on a branch based on zeus. I found a bug in the way that
+> > > one of our recipes was handling something during do_configure (which
+> > > caused an error to pop up in a do_compile task). When I modified the
+> > > do_configure task (do_configure_append, actually) to behave properly
+> > > (which involved changing the actual commands run in that function)
+> > > and reran bitbake -c compile <recipe>, the do_configure task wasn’t
+> > > rerun despite the change to the function’s code.
+> > >  
+> > > Is it safe to assume this means we’ve done something to mess up the
+> > > way our system is processing things? Or is that expected behavior
+> > 
+> > Its not expected behaviour and yes, it sounds like something is messed
+> > up...
+> 
+> This is what I've come to expect with yocto 2.0 jethro, 2.5 sumo and
+> 3.0 zeus.
+> 
+> That's why I always write:
+> 
+> $ bitbake -c clean recipe && bitbake -c cleansstate && bitbake -c compile recipe
+> 
+> when debugging changes in recipes to_compile and other dependent tasks.
+> I'm also cleaning up sstate to be sure it's not corrupt or filled with
+> somehow bad data.
+
+This is bad and shouldn't be happening. Can anyone provide some
+examples I can look at?
+
+You shouldn't ever need to run cleansstate in particular. If you have
+to, there is another underlying bug that should get fixed.
+
+Cheers,
+
+Richard
+
