@@ -1,75 +1,91 @@
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
- by mx.groups.io with SMTP id smtpd.web11.5764.1583792907532845801
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+ by mx.groups.io with SMTP id smtpd.web11.1843.1583831587814727820
  for <yocto@lists.yoctoproject.org>;
- Mon, 09 Mar 2020 15:28:27 -0700
+ Tue, 10 Mar 2020 02:13:08 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=OZL6qG11;
- spf=pass (domain: gmail.com, ip: 209.85.222.44, mailfrom: aljoscha.lautenbach@gmail.com)
-Received: by mail-ua1-f44.google.com with SMTP id q17so3937048uao.12
-        for <yocto@lists.yoctoproject.org>; Mon, 09 Mar 2020 15:28:27 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=uFfB39c3;
+ spf=pass (domain: gmail.com, ip: 209.85.208.47, mailfrom: marek.belisko@gmail.com)
+Received: by mail-ed1-f47.google.com with SMTP id g19so15343281eds.11
+        for <yocto@lists.yoctoproject.org>; Tue, 10 Mar 2020 02:13:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=I5tqOO5jvKpR9ZNV37Ucr20M/w+JvlQGOclQ3eePnTA=;
-        b=OZL6qG11OMEc9mpFVbQ3LF9AH1OzkJqr9F90a094XWZ5bMUrq+ncBRe98b7JAHJWwv
-         QNWH2ptUwu7lgHbo5O5iLIPgCM40zLkV2i3NjyOUzDvFNudbZsuZMwhtT3yf42oj44F6
-         K6VM3OwOwpeJFxVd2lwiQYpaiRAcA/6bEA+eVxLnckiY7YS86mfzbNacG5hj9W/BzQ/A
-         FlC6QJXnlfVmaMFFYCaQi1Shmd2L3FffheH9i7IjwM4SMXElZ3cG4c/kBPTUzXkY9B1B
-         NLZirNXjjUIsTNcitCj9e/1uortgzWxxzF21CtZ4JcOxozk3NeboLhU2YuKv95nOsigg
-         NrGw==
+        bh=etYT9aV+80ZbPq0Rhxhx3FQ2UmsrIbqvWImjl2UngE4=;
+        b=uFfB39c3sxeSHVJZiidJV1Hb7mJ0dyOmIn8ibsuRqFcrf6ZYBeq02CRSs35+ceghL6
+         0K4KZBS+trnwU+hC2h1g7AvVBViyyYg+BEhbrOKOVW4LhbxdvdE2W5tLeXSGD8MpAIq7
+         vpLJgmX9v0DMiRrJGIuamXHQl4lQyPBQpKui52RfALytT4bzm8Kh5XDQAkn0tJDp/uQ+
+         UFEKj5vMDxQcPHg1PDbIG5Gg3SQZ/zZEZkIaCqtEhPAhNdYe3e+9+YO4ZRnOj3ZvpTnJ
+         rgu59OC/6c0XPKd9pvsqEo0KiJifaf0xaJMYMxe7yGItJCoFVB37HMqQWkgMbLHDIiGK
+         vRIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=I5tqOO5jvKpR9ZNV37Ucr20M/w+JvlQGOclQ3eePnTA=;
-        b=eX/f07SaLg4iwwFrRv1nSLGLdlbgZsgl/+hE9RB5dLAbcC1gVFtnJZTFYMb2tj2Ois
-         Mm8AEpLGB4+mXLKSjFN0Dl6NvEsfVCgthuJXbIfR/x2zoahGby/rDQVpvFudr2hkCYb2
-         fB6DCnsd9+gn/q6ZuR0VoFc6toRvbx2hKJn7nzrqRa2nc1gN+cxlrio++l31q40oJS5y
-         DNztnrva3vvH8zXaSPT3fAQDqtZge8ri2MFGstkan/tOk8FkOePT8Vh0w3Yem29LHZvP
-         sfma6h4A8mmIf7Ag1LY7vn2oOdt2dI3BV+YrL9w39e9CbLE5y9MylXbWHaJBaFIxDjvu
-         bEhQ==
-X-Gm-Message-State: ANhLgQ0z88xRP7YX1uCiGsjzbjRZlrFOYTGB/XS6jQ5GoOYmxYnHcrkV
-	KONOQY8QBtKyxHSRt6EZj2+Her//D7tV+06HBy8=
-X-Google-Smtp-Source: ADFU+vvDxVZSVzRWVe1efPvvvP17gSR2dNG9r5+h1eQvDK1h+faKrce6pFO3guakNOt1glWY5U7UBzP4EC7sdQ1aPoo=
-X-Received: by 2002:ab0:2a1:: with SMTP id 30mr1139333uah.16.1583792906519;
- Mon, 09 Mar 2020 15:28:26 -0700 (PDT)
+        bh=etYT9aV+80ZbPq0Rhxhx3FQ2UmsrIbqvWImjl2UngE4=;
+        b=DPP/7noX72LjWAo9Twa+CTh824KSOw8axNSmHF35V/TWt7akGZ9ove2xdXAvcglPNe
+         VIljwrFPSs/u+8ctwZfk3s2ikXgtq37wRXwDmfbVtFC5ngsar57CxybuGPddWX/sQI17
+         HvLcJX1fcfCbU4w6nsR8hePsdcbb4YBBnjWm6B2lVSgNh9VRh4b0g40JE6g1OgX6payZ
+         IpIKmWLdqoHm3Eay7Qjz84cCfbcTaHBSLhG1W4RZNBQ5DzkGKZziTyCuQioxmXl7/ix5
+         ToiGA85kAOCBCuepWVhZ9X/y8k/OUS99x3VmqCTleJOOm4QaIzTLcVYL42CpaSPtC2d6
+         6eMA==
+X-Gm-Message-State: ANhLgQ15DYgavH/MD8G7GTtptT5Zj4cGQ293rSTA+oLQO0L8MjRsWKxr
+	ZN/DCmGfXM7f9azCglt0RBcrhZWXB9FWt7yDy2o=
+X-Google-Smtp-Source: ADFU+vvkfvAlWXFb+d836HUaxp3AQjuZaHH7Ji2mKhVRN/dLFh7J9NzY6BMTh4N2++0HF1CNFM9HewX9qqwE+SIg6Bs=
+X-Received: by 2002:a50:e69a:: with SMTP id z26mr6729470edm.9.1583831586153;
+ Tue, 10 Mar 2020 02:13:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <15F8A029CD47E18B.3851@lists.yoctoproject.org> <CA+yZB6ZiLuxr2AybgM_sJRrhvWiOGJQ62hHvdRbkh0jnvdesPw@mail.gmail.com>
- <CADkTA4OVEzHQRFC=26iJef-POKZjAd0L51c_1M61kB-1Rs3FRA@mail.gmail.com>
-In-Reply-To: <CADkTA4OVEzHQRFC=26iJef-POKZjAd0L51c_1M61kB-1Rs3FRA@mail.gmail.com>
-From: "Aljoscha Lautenbach" <aljoscha.lautenbach@gmail.com>
-Date: Mon, 9 Mar 2020 23:28:15 +0100
-Message-ID: <CA+yZB6Zdk_ohZHAO+RM3=vvkP2GW3aOu8QkKctDARmRkHiHDdg@mail.gmail.com>
-Subject: Re: [yocto] Building xen-image-minmal for raspberrypi3-64: kernel-module-xen-* not being built
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-Cc: yocto <yocto@lists.yoctoproject.org>
+References: <CAAfyv37jKciEwgCZ362VgHK5r7poixgu3tqONxopJ8rWsJYvyA@mail.gmail.com>
+ <53405c57-f54e-f625-08b6-87e9b5d190d3@gmail.com>
+In-Reply-To: <53405c57-f54e-f625-08b6-87e9b5d190d3@gmail.com>
+From: "Marek Belisko" <marek.belisko@gmail.com>
+Date: Tue, 10 Mar 2020 10:12:55 +0100
+Message-ID: <CAAfyv36qDWiCijkR9K2yDZKmH=+h7G7TitMT_X+7pRH1J4JKvg@mail.gmail.com>
+Subject: Re: [yocto] do_rootfs task took long time to finish
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+On Wed, Feb 19, 2020 at 11:01 PM Khem Raj <raj.khem@gmail.com> wrote:
+>
+>
+>
+> On 2/17/20 11:55 PM, Marek Belisko wrote:
+> > Hi,
+> >
+> > I'm debugging strange issue that do_rootfs task took ~50 minutes. I
+> > enabled buildstats and from that I learned it's quite long. Any ideas
+> > how to debug this issue? My idea was to add timestamp to do_rootfs
+> > tasks but I'm not sure if it's even possible. Thanks.
+> >
+>
+> how big is the image its creating, might affect the time. Secondly
+> use some system perf monitor to see which tool is taking so long.
+Image is ~1GB so I would say quite
+I can see that python3 took ~75-100% cpu when doing do_rootfs. We
+tested on 16.04 + 18.04 Ubuntu server it's same.
+Which perf monitor you had in mind? Thanks.
+>
+> > BR,
+> >
+> > marek
+> >
+> >
+> >
+> >
+> 
+BR,
 
-> You'd be better off asking these questions on the meta-virtualization
-> mailing list. That's where you'll find the Xen folks.
+marek
 
-Thanks, I'll direct any follow-up questions regarding Xen there.
+--
+as simple and primitive as possible
+-------------------------------------------------
+Marek Belisko - OPEN-NANDRA
+Freelance Developer
 
-> But as for the kernel options, it depends on what kernel you are
-> using, release, etc.  Last I checked, the raspberrypi wouldn't
-> directly use the fragments from meta-virt, so yes, you'd need to
-> ensure they are set in your own layer/defconfig.
-
-Ahh, thank you, you managed to switch on the light bulb! :)
-Checking the kernel recipes I see now that meta-virt has a
-linux-yocto_4.19.bbappend file, whereas meta-raspberrypi uses
-linux-raspberrypi_4.19.bb; so as you said, the meta-virt configuration
-is never applied due to different versions. Being new to yocto I did
-not make that connection immediately, I guess I did miss the obvious.
-;)
-
-If I understand you correctly, I need to add a
-linux-raspberrypi_4.19.bbappend file in my own layer that applies the
-Xen configuration fragments.
-That makes sense, thanks again!
-
-Best regards,
-Aljoscha
+Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
+Tel: +421 915 052 184
+skype: marekwhite
+twitter: #opennandra
+web: http://open-nandra.com
