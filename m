@@ -1,65 +1,75 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.2010.1583832566985972425
+Received: from esa1.bmw.c3s2.iphmx.com (esa1.bmw.c3s2.iphmx.com [68.232.133.201])
+ by mx.groups.io with SMTP id smtpd.web11.3340.1583840032302190678
  for <yocto@lists.yoctoproject.org>;
- Tue, 10 Mar 2020 02:29:27 -0700
+ Tue, 10 Mar 2020 04:33:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=permerror, err=parse error for token &{10 18 sendgrid.net}: limit exceeded (domain: streamunlimited.com, ip: 140.211.169.56, mailfrom: quentin.schulz@streamunlimited.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7AD5EE0180F; Tue, 10 Mar 2020 02:29:26 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
-	*      trust
-	*      [213.33.87.16 listed in list.dnswl.org]
-Received: from bsmtp2.bon.at (bsmtp2.bon.at [213.33.87.16])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1CE1E0180A
-	for <yocto@yoctoproject.org>; Tue, 10 Mar 2020 02:29:25 -0700 (PDT)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp2.bon.at (Postfix) with ESMTPSA id 48c8tW3rxLz5tlH;
-	Tue, 10 Mar 2020 10:29:23 +0100 (CET)
-Date: Tue, 10 Mar 2020 10:29:21 +0100
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: JH <jupiter.hce@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>
-Subject: Re: [yocto] What is the Yocto / OE recipe for u-boot-fw-utils how can append it?
-Message-ID: <20200310092921.ezmnfiwemhcyno6a@qschulz>
-References: <CAA=hcWTpbcM=_WCD6eRfD8jbq520R4jo++b=wC0m12d0cEJtQw@mail.gmail.com>
+ dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1 header.b=gjp3aJpc;
+ spf=pass (domain: bmw.de, ip: 68.232.133.201, mailfrom: prvs=3311916b7=mikko.rapeli@bmw.de)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1583840032; x=1615376032;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=iqGDkhqGUNtjTNVI+KuPcf3vXKx6QZDYQpieIaosvrk=;
+  b=gjp3aJpcuHV4241hESiPWdbw+pR1FWqvud0PXHgvWwYc+cJbxSmRT5iK
+   b02Zv9mhA0kpX60yA6HO/YQXVFfWhCRLHQSP11TR+jnFj2p08VoSoC8tP
+   nu7wieL04q5f586Gm42RjrfK6Do6J6pdtaf+nbgqWoiHJSNpvvWS0QMzR
+   g=;
+Received: from esagw2.bmwgroup.com (HELO esagw2.muc) ([160.46.252.38]) by
+ esa1.bmw.c3s2.iphmx.com with ESMTP/TLS; 10 Mar 2020 12:33:50 +0100
+Received: from esabb2.muc ([160.50.100.34])  by esagw2.muc with ESMTP/TLS;
+ 10 Mar 2020 12:33:50 +0100
+Received: from smucm10m.bmwgroup.net (HELO smucm10m.europe.bmw.corp) ([160.48.96.49])
+ by esabb2.muc with ESMTP/TLS; 10 Mar 2020 12:33:49 +0100
+Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10m.europe.bmw.corp
+ (160.48.96.49) with Microsoft SMTP Server (TLS;
+ Tue, 10 Mar 2020 12:33:49 +0100
+Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
+ smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Tue,
+ 10 Mar 2020 12:33:49 +0100
+From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
+To: <richard.purdie@linuxfoundation.org>
+CC: <sean.mckay@hpe.com>, <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Should changing a task in the .bb file cause the task to be rerun?
+Thread-Topic: [yocto] Should changing a task in the .bb file cause the task to
+ be rerun?
+Thread-Index: AdXuiL6uK0y0gl2pQLikRTwB+tl67v//+pyAgBCCqgA=
+Date: Tue, 10 Mar 2020 11:33:49 +0000
+Message-ID: <20200310113348.GT104502@korppu>
+References: <TU4PR8401MB115177E1CDF301758DE3E72A82E80@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
+ <18c5d510bec23fbb83c7d82e9ea7e2594b58d44f.camel@linuxfoundation.org>
+In-Reply-To: <18c5d510bec23fbb83c7d82e9ea7e2594b58d44f.camel@linuxfoundation.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
 MIME-Version: 1.0
-In-Reply-To: <CAA=hcWTpbcM=_WCD6eRfD8jbq520R4jo++b=wC0m12d0cEJtQw@mail.gmail.com>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <EC8BD711EEFBBF4FB65473C82267FB27@bmwmail.corp>
+Content-Transfer-Encoding: base64
 
-Hi JH,
-
-On Tue, Mar 10, 2020 at 08:23:37PM +1100, JH wrote:
-> Hi,
-> 
-> I could not find u-boot-fw-utils recipe from OE git repository, when I
-> added it to build package, it did build u-boot-fw-utils/1_2019.07-r0
-> from git://git.denx.de/u-boot.git, but I could not make a bbapend to
-> it as I don't know what is the bb name.
-> 
-
-It was recently changed to libubootenv IIRC. Are you sure it was taken
-from u-boot git repo?
-
-In zeus you have both available if you have meta-swupdate layer but
-u-boot-fw-utils is still present in openembedded-core.
-
-In master, only libubootenv exists in openembedded-core.
-
-Are you using master for poky/openembedded?
-
-FWIW, what a recipe provides either at runtime or at buildtime is
-(R)PROVIDES, c.f.:
-http://cgit.openembedded.org/openembedded-core/tree/meta/recipes-bsp/u-boot/libubootenv_0.2.bb?h=master
-
-Quentin
+T24gRnJpLCBGZWIgMjgsIDIwMjAgYXQgMTE6MjU6NTlQTSArMDAwMCwgUmljaGFyZCBQdXJkaWUg
+d3JvdGU6DQo+IE9uIEZyaSwgMjAyMC0wMi0yOCBhdCAyMjo1MSArMDAwMCwgU2VhbiBNY0theSB3
+cm90ZToNCj4gPiBUaGlzIGlzIHByb2JhYmx5IGEgZmFpcmx5IHNob3J0IHF1ZXN0aW9uIChJIGhv
+cGUpOg0KPiA+IEnigJltIHdvcmtpbmcgb24gYSBicmFuY2ggYmFzZWQgb24gemV1cy4gSSBmb3Vu
+ZCBhIGJ1ZyBpbiB0aGUgd2F5IHRoYXQNCj4gPiBvbmUgb2Ygb3VyIHJlY2lwZXMgd2FzIGhhbmRs
+aW5nIHNvbWV0aGluZyBkdXJpbmcgZG9fY29uZmlndXJlICh3aGljaA0KPiA+IGNhdXNlZCBhbiBl
+cnJvciB0byBwb3AgdXAgaW4gYSBkb19jb21waWxlIHRhc2spLiBXaGVuIEkgbW9kaWZpZWQgdGhl
+DQo+ID4gZG9fY29uZmlndXJlIHRhc2sgKGRvX2NvbmZpZ3VyZV9hcHBlbmQsIGFjdHVhbGx5KSB0
+byBiZWhhdmUgcHJvcGVybHkNCj4gPiAod2hpY2ggaW52b2x2ZWQgY2hhbmdpbmcgdGhlIGFjdHVh
+bCBjb21tYW5kcyBydW4gaW4gdGhhdCBmdW5jdGlvbikNCj4gPiBhbmQgcmVyYW4gYml0YmFrZSAt
+YyBjb21waWxlIDxyZWNpcGU+LCB0aGUgZG9fY29uZmlndXJlIHRhc2sgd2FzbuKAmXQNCj4gPiBy
+ZXJ1biBkZXNwaXRlIHRoZSBjaGFuZ2UgdG8gdGhlIGZ1bmN0aW9u4oCZcyBjb2RlLg0KPiA+ICAN
+Cj4gPiBJcyBpdCBzYWZlIHRvIGFzc3VtZSB0aGlzIG1lYW5zIHdl4oCZdmUgZG9uZSBzb21ldGhp
+bmcgdG8gbWVzcyB1cCB0aGUNCj4gPiB3YXkgb3VyIHN5c3RlbSBpcyBwcm9jZXNzaW5nIHRoaW5n
+cz8gT3IgaXMgdGhhdCBleHBlY3RlZCBiZWhhdmlvcg0KPiANCj4gSXRzIG5vdCBleHBlY3RlZCBi
+ZWhhdmlvdXIgYW5kIHllcywgaXQgc291bmRzIGxpa2Ugc29tZXRoaW5nIGlzIG1lc3NlZA0KPiB1
+cC4uLg0KDQpUaGlzIGlzIHdoYXQgSSd2ZSBjb21lIHRvIGV4cGVjdCB3aXRoIHlvY3RvIDIuMCBq
+ZXRocm8sIDIuNSBzdW1vIGFuZA0KMy4wIHpldXMuDQoNClRoYXQncyB3aHkgSSBhbHdheXMgd3Jp
+dGU6DQoNCiQgYml0YmFrZSAtYyBjbGVhbiByZWNpcGUgJiYgYml0YmFrZSAtYyBjbGVhbnNzdGF0
+ZSAmJiBiaXRiYWtlIC1jIGNvbXBpbGUgcmVjaXBlDQoNCndoZW4gZGVidWdnaW5nIGNoYW5nZXMg
+aW4gcmVjaXBlcyB0b19jb21waWxlIGFuZCBvdGhlciBkZXBlbmRlbnQgdGFza3MuDQpJJ20gYWxz
+byBjbGVhbmluZyB1cCBzc3RhdGUgdG8gYmUgc3VyZSBpdCdzIG5vdCBjb3JydXB0IG9yIGZpbGxl
+ZCB3aXRoDQpzb21laG93IGJhZCBkYXRhLg0KDQotTWlra28=
