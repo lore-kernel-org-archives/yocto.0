@@ -1,85 +1,61 @@
-Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
- by mx.groups.io with SMTP id smtpd.web10.14347.1583951202273691839
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+ by mx.groups.io with SMTP id smtpd.web12.15768.1583955413722518021
  for <yocto@lists.yoctoproject.org>;
- Wed, 11 Mar 2020 11:26:42 -0700
+ Wed, 11 Mar 2020 12:36:53 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=n2MbtMuk;
- spf=pass (domain: gmail.com, ip: 209.85.214.195, mailfrom: raj.khem@gmail.com)
-Received: by mail-pl1-f195.google.com with SMTP id w12so1461427pll.13
-        for <yocto@lists.yoctoproject.org>; Wed, 11 Mar 2020 11:26:42 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=j3vkjTfu;
+ spf=pass (domain: gmail.com, ip: 209.85.160.175, mailfrom: wpdster@gmail.com)
+Received: by mail-qt1-f175.google.com with SMTP id l21so2493041qtr.8
+        for <yocto@lists.yoctoproject.org>; Wed, 11 Mar 2020 12:36:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=xz1nZAkr5SNFYHtlFQpy4U4ditmwu1sQuk7i0U4wx8M=;
-        b=n2MbtMuktSwjbdueTXqEYHlVVdCNFIbuvy8MTK170isTPFzRLfw9SPtjn5Y++UtF8K
-         XOyzxOMWvuFb4BQFdauBGGqkgezoZz4MCwf7LKS2TOg/18nQB6aqO1oi0/K+6HOYq+8O
-         SlFDOJiqeDa7JviVWlzwVtOUTX8Swp+zA71/hYTXz2+43MQvXLcb6xsyLo2bUlY5RKE7
-         0L+pjV6qEQXsz/KdVyIwy5lbAOeWX92v1I6Ge9eslT8hFe9JT4iDgF7aCq9JMz1Uiiqf
-         ifwb711lpz/plzIWY9JJRvjtmp0Z1egJnX2kp9/5svf/EHD7rvCsetvzGNeaLrzo+Ict
-         2omA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=IU7MOQmqpfQbuGEvsUn2/1zYG6kuG9yImpyS2HZXolE=;
+        b=j3vkjTfubWbq9E07jgn1BtdmSf+2epAUBhqES6q7hYkdb6quUmcuTRWE6qDOX9Sl9X
+         wxGiN15oMrPGR87STGdkS+YFok1YnCMmt+8tJBszOYUrZesP6SY08qrwacXzD/F/4F4t
+         vKNWmjSzQdD6v+C+RSP4/uX5hIbgrjyKvG19g9u9jgR4EBOdmKEixfeJAUtJpeksZ+xz
+         xvh1QFPMlZNPn/qZvniZZhjMWwD+m7TE40Sor7u5jqD2wBuZtJ3Zun9ydx21bNDcrLWd
+         uR/9cumaNURRdbmODKkojm8+OKz9TKf1rzwR4G1m00CqIx6x1YdOmIUwq9GsVghVNgN7
+         MYow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=xz1nZAkr5SNFYHtlFQpy4U4ditmwu1sQuk7i0U4wx8M=;
-        b=tgVWlBkZOmGnHTfG1RV9xwkk31UmAKLzC2CeOLVzDJqg32H9z3q2+t190ltp2xcUqj
-         /t2Sd2E0Cw7BJyDGXH3s6plwAxBHMcTqRtWM0TzLG6Bim2oeAH/km9GAZJAdMKxwm84G
-         mI+FZdHMLT7njBYPbpVcgD2t2P22OskrOfCmRFJ9sEZZERB2a4DlVuwxwDR+lnPxGK8p
-         iFhrPPYCNBGLuvUkiHe4SDeIBxevkOotVnE4GcS5csWr17FgzLUrgMMQMmFXQN/9QIim
-         x4ilu95oWDwgg7lkS2XgKEbqxVNAOw8ByXT18VZFcp2W44jEZRpwcf+pGkd9VZMFd/fr
-         QLnQ==
-X-Gm-Message-State: ANhLgQ3Q5i0GwhjI7MbYLkCe5FoqnD2btYtf1mfNyiBceImVUzFAVLjI
-	Jj7F7/9czlkIcPmIEjKZVq6lC08BOeE=
-X-Google-Smtp-Source: ADFU+vsXwuEFwl+c04ahYA4G6p6eT5uVCubzQu6L9YIQd3JCkZqoNnckbFmxpSyV7tztaHZE62BMUg==
-X-Received: by 2002:a17:902:e788:: with SMTP id cp8mr3532084plb.343.1583951201184;
-        Wed, 11 Mar 2020 11:26:41 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:4e0:e8b9:f87c:18f3:1405? ([2601:646:9200:4e0:e8b9:f87c:18f3:1405])
-        by smtp.gmail.com with ESMTPSA id q9sm50187732pgs.89.2020.03.11.11.26.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 11 Mar 2020 11:26:40 -0700 (PDT)
-Subject: Re: [yocto] EXTRA_OECMAKE options are ignored #sdk #yocto
-To: Armando Hernandez <j.armandohernandez.j@gmail.com>,
- yocto@lists.yoctoproject.org
-References: <j1dc.1583923078236353137.AMYz@lists.yoctoproject.org>
-From: "Khem Raj" <raj.khem@gmail.com>
-Message-ID: <830287a5-9dde-feea-89b5-55930cf56864@gmail.com>
-Date: Wed, 11 Mar 2020 11:26:39 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.5.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=IU7MOQmqpfQbuGEvsUn2/1zYG6kuG9yImpyS2HZXolE=;
+        b=E9FKez+bnC+EpooYrbghqYVsSmglcdfnntWk3AdltnucyjsL/fNu7bzGr6CVz4+PTs
+         Yoi9tAm8NLVma/QWTZyfebqzn+L3oXCEr6ytMlEZcLQIvybw8Bd0w1jMS17s3GAyR2EB
+         5S8mfR3X44dlaztq+kI8OfK3uPn2ap5VMG03a0vEfRsQbIRmKm98a3K+krrT1XdsANMt
+         0zpm+U/kpMKeQ4GrqSIS1UHcjY9Ck6sKo31wal7zTCreCnYkw8TUhlrh6mFvVfO5Hx9Y
+         bVURE96WrXVc9jxiQE6V2J7Cw1ybekk5UzMmrODbDmNeKE8MAdk4eJ60dAAGmgczPNUP
+         pWQg==
+X-Gm-Message-State: ANhLgQ1iZSc9FgXuH67ssH++yEujiXU4lIBEXP882KOyC/YTpV7jRbAm
+	dsGo7e6tMOOyS/mRIHsJMszip9pqUmR2DOEm8FY=
+X-Google-Smtp-Source: ADFU+vvQpf3HeJpyRubhH5bK/+xef8s2AuNWPktyB157BQIvYPTKSmAzjuDv3PqVLftnaiULF5pSTI8fbqAty2zXWZw=
+X-Received: by 2002:ac8:2fc1:: with SMTP id m1mr3680629qta.48.1583955412909;
+ Wed, 11 Mar 2020 12:36:52 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <j1dc.1583923078236353137.AMYz@lists.yoctoproject.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+References: <15FB4FF4056D067E.12500@lists.yoctoproject.org>
+In-Reply-To: <15FB4FF4056D067E.12500@lists.yoctoproject.org>
+From: "Patrick Doyle" <wpdster@gmail.com>
+Date: Wed, 11 Mar 2020 15:38:29 -0400
+Message-ID: <CAF_dkJCWs+Nut5_i9nqHe0XSauf0-h4_OgZ5GdUTyRkyNMpdRQ@mail.gmail.com>
+Subject: Re: [yocto] Splitting a recipe into multiple packages and inherit extrausers
+To: Patrick Doyle <wpdster@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>, yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
+On Wed, Mar 11, 2020 at 1:26 PM Patrick Doyle via
+Lists.Yoctoproject.Org <wpdster=gmail.com@lists.yoctoproject.org>
+wrote:
+> I want the daemon to run as a non-root user, so I have "inherit
+> extrausers" in my recipe.
+>
+> Suppose I only wanted to create that extra user iff the package
+> containing the daemon was included in the image.  Is this possible?
+> How?
+Apparently, the answer is that I should use "inherit adduser" instead
+of "inherit extrausers".  See
+https://www.yoctoproject.org/docs/2.7/mega-manual/mega-manual.html#ref-classes-useradd.
 
-
-On 3/11/20 3:37 AM, Armando Hernandez wrote:
-> Hi,
-> 
-> I built an eSDK.
-> Now I'm using devtool add to create a hello world recipe.
-> Once the recipe was in place, I added some cmake optoins via 
-> EXTRA_OECMAKE in htis way:
-> EXTRA_OECMAKE += "-DCMAKE_FIND_ROOT_PATH_MODE=BOTH \
->                    
->   -CMAKE_FIND_ROOT_PATH=/home/user/SDK/sysroots/x86_64-pokysdk-linux \
->                     "
-> 
-> Now, the problem is that after running devtool  build test-hello (where 
-> test-hello is my recipe as you might have assumed), these variables are 
-> overwritten with other values.
-> 
-> How can I successfully pass the correct cmake options via EXTRA_OECMAKE 
-> on the recipe?
-
-
-please post your recipe
-
-
-> 
-> 
-> 
+--wpd
