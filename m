@@ -1,82 +1,85 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.12998.1583947603206493589
+Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
+ by mx.groups.io with SMTP id smtpd.web10.14347.1583951202273691839
  for <yocto@lists.yoctoproject.org>;
- Wed, 11 Mar 2020 10:26:43 -0700
+ Wed, 11 Mar 2020 11:26:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=JfVBnlSZ;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: wpdster@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C2E20E01825; Wed, 11 Mar 2020 10:26:42 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (wpdster[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.219.43 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qv1-f43.google.com (mail-qv1-f43.google.com [209.85.219.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0661E01823
-	for <yocto@yoctoproject.org>; Wed, 11 Mar 2020 10:26:41 -0700 (PDT)
-Received: by mail-qv1-f43.google.com with SMTP id r15so1248051qve.3
-        for <yocto@yoctoproject.org>; Wed, 11 Mar 2020 10:26:41 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=n2MbtMuk;
+ spf=pass (domain: gmail.com, ip: 209.85.214.195, mailfrom: raj.khem@gmail.com)
+Received: by mail-pl1-f195.google.com with SMTP id w12so1461427pll.13
+        for <yocto@lists.yoctoproject.org>; Wed, 11 Mar 2020 11:26:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=ZVLzuAJwUIGXoEPUDLMLNeGIR/Qkk4xRQstiajG6QN0=;
-        b=JfVBnlSZKeAgJX+ORs/3dmXUSutifbFP/VarfHWYlFgOGwlu8dJTnkzT8FKainckia
-         gqwaPM0/04KWSQQkv+pmeS4Fzi9VcP214yXnjpJcZzaavJUJaj47EUcYxTrOoBccNisa
-         eXlx8UsW/1VAifQA+xrQkdvzO08Sww7Gdx2ElZGCTN/Y6RE6aSTTdH/8Aqv+R/A1Sgm5
-         +c2q5i5kkpM8EbhfP4iEkIPLB9ZUWM+gHl34eCIQo3RzGlatNxKMvt6A4Qsae7lqeaA7
-         Ez1mZhstnuSAxCOywYOMWxIp2u9WK7WEfJj3AV9iIMTMJ6di3eAGY6PDrUPqX10KTw3C
-         LQBg==
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=xz1nZAkr5SNFYHtlFQpy4U4ditmwu1sQuk7i0U4wx8M=;
+        b=n2MbtMuktSwjbdueTXqEYHlVVdCNFIbuvy8MTK170isTPFzRLfw9SPtjn5Y++UtF8K
+         XOyzxOMWvuFb4BQFdauBGGqkgezoZz4MCwf7LKS2TOg/18nQB6aqO1oi0/K+6HOYq+8O
+         SlFDOJiqeDa7JviVWlzwVtOUTX8Swp+zA71/hYTXz2+43MQvXLcb6xsyLo2bUlY5RKE7
+         0L+pjV6qEQXsz/KdVyIwy5lbAOeWX92v1I6Ge9eslT8hFe9JT4iDgF7aCq9JMz1Uiiqf
+         ifwb711lpz/plzIWY9JJRvjtmp0Z1egJnX2kp9/5svf/EHD7rvCsetvzGNeaLrzo+Ict
+         2omA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=ZVLzuAJwUIGXoEPUDLMLNeGIR/Qkk4xRQstiajG6QN0=;
-        b=tt+ukxoAOmNZLXsDebXnN/9gGL1HtZfnODKIHGE+Wk6UifuIE8NCwMcUI3fyYN7VAf
-         xLwAU2Hd6gZm37cS60BjYTfEUhoTmqkxzkVsajFc2xSAJJRJddSVNyPNvmO67IfGFZXh
-         3/rJysgHvv/MQvIl23u0Qp6TyrczZ/2P5RWtVOd30s7OAio7W1VhWjH+v8C2erg1Myn9
-         wWrf7JUlTUBqKMbGo2tnaMO+MaT4nC3p31Jrg6cJGXoRF5i8OwQnQGrmxjmCa7BDbL4A
-         MEoqLSH3aFlg20SC0d+o+I++mk9d9PMK6uutk+f1OzqNR+q3g1txmabw2xf5ZY8J6jeN
-         RBag==
-X-Gm-Message-State: ANhLgQ1/O07s/Tr6B0lg+Gc31QMCTObzikCCOiiid+EzKqT1Pc9ZWS6N
-	L0lpa5ckIS3aYTHSA/phKl9jhYK3nkqkC+5XWHyqxg==
-X-Google-Smtp-Source: ADFU+vsrYDCmV77I8mVcjVrzS3y1IGrAF4OJ6/dtaeJGSxg6s5qiv5osP2lRdr5G+IeFv6/nvwX/LW0RU7A7zBOSjn0=
-X-Received: by 2002:ad4:4829:: with SMTP id h9mr2139840qvy.135.1583947600499;
- Wed, 11 Mar 2020 10:26:40 -0700 (PDT)
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=xz1nZAkr5SNFYHtlFQpy4U4ditmwu1sQuk7i0U4wx8M=;
+        b=tgVWlBkZOmGnHTfG1RV9xwkk31UmAKLzC2CeOLVzDJqg32H9z3q2+t190ltp2xcUqj
+         /t2Sd2E0Cw7BJyDGXH3s6plwAxBHMcTqRtWM0TzLG6Bim2oeAH/km9GAZJAdMKxwm84G
+         mI+FZdHMLT7njBYPbpVcgD2t2P22OskrOfCmRFJ9sEZZERB2a4DlVuwxwDR+lnPxGK8p
+         iFhrPPYCNBGLuvUkiHe4SDeIBxevkOotVnE4GcS5csWr17FgzLUrgMMQMmFXQN/9QIim
+         x4ilu95oWDwgg7lkS2XgKEbqxVNAOw8ByXT18VZFcp2W44jEZRpwcf+pGkd9VZMFd/fr
+         QLnQ==
+X-Gm-Message-State: ANhLgQ3Q5i0GwhjI7MbYLkCe5FoqnD2btYtf1mfNyiBceImVUzFAVLjI
+	Jj7F7/9czlkIcPmIEjKZVq6lC08BOeE=
+X-Google-Smtp-Source: ADFU+vsXwuEFwl+c04ahYA4G6p6eT5uVCubzQu6L9YIQd3JCkZqoNnckbFmxpSyV7tztaHZE62BMUg==
+X-Received: by 2002:a17:902:e788:: with SMTP id cp8mr3532084plb.343.1583951201184;
+        Wed, 11 Mar 2020 11:26:41 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:4e0:e8b9:f87c:18f3:1405? ([2601:646:9200:4e0:e8b9:f87c:18f3:1405])
+        by smtp.gmail.com with ESMTPSA id q9sm50187732pgs.89.2020.03.11.11.26.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 11 Mar 2020 11:26:40 -0700 (PDT)
+Subject: Re: [yocto] EXTRA_OECMAKE options are ignored #sdk #yocto
+To: Armando Hernandez <j.armandohernandez.j@gmail.com>,
+ yocto@lists.yoctoproject.org
+References: <j1dc.1583923078236353137.AMYz@lists.yoctoproject.org>
+From: "Khem Raj" <raj.khem@gmail.com>
+Message-ID: <830287a5-9dde-feea-89b5-55930cf56864@gmail.com>
+Date: Wed, 11 Mar 2020 11:26:39 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
+ Gecko/20100101 Thunderbird/68.5.0
 MIME-Version: 1.0
-From: "Patrick Doyle" <wpdster@gmail.com>
-Date: Wed, 11 Mar 2020 13:28:16 -0400
-Message-ID: <CAF_dkJBpN2A5C5vCfWsv=07QBtswLpqLo94yKt+ifEF-Cza-Rw@mail.gmail.com>
-Subject: Splitting a recipe into multiple packages and inherit extrausers
-To: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <j1dc.1583923078236353137.AMYz@lists.yoctoproject.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 
-I may be overthinking/overtweaking this but...
 
-I have a recipe with that creates a number of executables, one of
-which is a daemon.
 
-I have split that daemon off into its own separate package using the
-PACKAGES =+ "${PN]-blah-blah-blah" construct.
+On 3/11/20 3:37 AM, Armando Hernandez wrote:
+> Hi,
+> 
+> I built an eSDK.
+> Now I'm using devtool add to create a hello world recipe.
+> Once the recipe was in place, I added some cmake optoins via 
+> EXTRA_OECMAKE in htis way:
+> EXTRA_OECMAKE += "-DCMAKE_FIND_ROOT_PATH_MODE=BOTH \
+>                    
+>   -CMAKE_FIND_ROOT_PATH=/home/user/SDK/sysroots/x86_64-pokysdk-linux \
+>                     "
+> 
+> Now, the problem is that after running devtool  build test-hello (where 
+> test-hello is my recipe as you might have assumed), these variables are 
+> overwritten with other values.
+> 
+> How can I successfully pass the correct cmake options via EXTRA_OECMAKE 
+> on the recipe?
 
-I want the daemon to run as a non-root user, so I have "inherit
-extrausers" in my recipe.
 
-Suppose I only wanted to create that extra user iff the package
-containing the daemon was included in the image.  Is this possible?
-How?
+please post your recipe
 
---wpd
+
+> 
+> 
+> 
