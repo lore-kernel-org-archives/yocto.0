@@ -1,99 +1,103 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.58.1583970933316091049
+ by mx.groups.io with SMTP id smtpd.web12.9669.1584021362956148504
  for <yocto@lists.yoctoproject.org>;
- Wed, 11 Mar 2020 16:55:33 -0700
+ Thu, 12 Mar 2020 06:56:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: denix.org, ip: 140.211.169.56, mailfrom: denis@denix.org)
+ dkim=fail reason="body hash did not verify" header.i=@googlemail.com header.s=20161025 header.b=nSU1cxn2;
+ spf=softfail (domain: googlemail.com, ip: 140.211.169.56, mailfrom: matthias.schoepfer@googlemail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C9FF0E01823; Wed, 11 Mar 2020 16:55:32 -0700 (PDT)
+	id 72CC0E0179B; Thu, 12 Mar 2020 06:56:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (matthias.schoepfer[at]googlemail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [64.68.198.64 listed in list.dnswl.org]
-Received: from mailout4.zoneedit.com (mailout4.zoneedit.com [64.68.198.64])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1C1DE017DC
-	for <yocto@yoctoproject.org>; Wed, 11 Mar 2020 16:55:31 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mailout4.zoneedit.com (Postfix) with ESMTP id C573640C1C;
-	Wed, 11 Mar 2020 23:55:30 +0000 (UTC)
-Received: from mailout4.zoneedit.com ([127.0.0.1])
-	by localhost (zmo14-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id jS8lmS-3w1TX; Wed, 11 Mar 2020 23:55:30 +0000 (UTC)
-Received: from mail.denix.org (pool-100-15-86-127.washdc.fios.verizon.net [100.15.86.127])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by mailout4.zoneedit.com (Postfix) with ESMTPSA id A130240BA3;
-	Wed, 11 Mar 2020 23:55:28 +0000 (UTC)
-Received: by mail.denix.org (Postfix, from userid 1000)
-	id 556F4174456; Wed, 11 Mar 2020 19:55:28 -0400 (EDT)
-Date: Wed, 11 Mar 2020 19:55:28 -0400
-From: "Denys Dmytriyenko" <denis@denix.org>
-To: Greg Wilson-Lindberg <gwilson@sakuraus.com>
-Cc: Anders Montonen <Anders.Montonen@iki.fi>,
-	Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: [yocto] Getting kernel patch to work
-Message-ID: <20200311235528.GK1578@denix.org>
-References: <7f0a414e985c4b86bfefff5eab8c6108@sakuraus.com>
- <1FE10608-8C76-4307-B921-5B3C2DCC4CEE@iki.fi>
- <7983bbc0f42b4b419b32632fcf28f983@sakuraus.com>
+	*      [209.85.128.42 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 91F4FE01757
+	for <yocto@yoctoproject.org>; Thu, 12 Mar 2020 06:56:01 -0700 (PDT)
+Received: by mail-wm1-f42.google.com with SMTP id f7so6421652wml.4
+        for <yocto@yoctoproject.org>; Thu, 12 Mar 2020 06:56:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=to:from:subject:message-id:date:user-agent:mime-version
+         :content-language:content-transfer-encoding;
+        bh=jT4QuUqqsxyFXuxz1HInwXAXtW6MZywdZWSWJWy7ogs=;
+        b=nSU1cxn2TMUiWeGU7HrhkVV/m8yseh8sXPhpv+OGm9CmAW4J+TelOBzfenIuorBTNM
+         nh9rUA12mNlUGNBvdn084DITKNpLZyYhyESpC8Y1FrQu/PBApnwsmBzy3rCjHLVHz9Yz
+         X9LfEezumiH7wppP2Myh4CRQFbZTj60UOxujnhtBE5TJ4rxP3sxavGDYlA9RLLrjbXzL
+         DE+l/Scki/NXMIUl2IRNZEfoGivOgj03BMzejxGRi3Bw3lo5WwRSTUiicc5fFeG40/Y9
+         zUyewDBwGfRp7p1BhUauuJ1hLV+w2U3f7VvGf4+FNnZN9mgDoIf5pWmJk5uo9/OWjXnN
+         PaPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:to:from:subject:message-id:date:user-agent
+         :mime-version:content-language:content-transfer-encoding;
+        bh=jT4QuUqqsxyFXuxz1HInwXAXtW6MZywdZWSWJWy7ogs=;
+        b=qmK1tRT8ND7JA7SK02D6Ug4zqeC4NGKB2A1etguLBekMum9N5AtxGeMLjHoHQYEwFE
+         O6yCUv1TWOFQCR22nHSHcr0COwPR8i6dXt5W+rBtC0AIlnxDxa96dEVzHiJq7qPR4q4m
+         pWaeE8i1ONGY9OpZmWhn/3CC5CMcjo7X5B/hmCEFoByYxscQB1imIzUFXEZH3wE1LSXC
+         gdf7aaIIuqhZ2qsmiaDt+DTFcTGfM6nJ3/j3S3RSHdS9lX0PN8E57MuXOvAjvrbERXma
+         wcW/EzfFPYTaN2X0qU494LOS2tjHJxF1WgdRybr0eub+RIjN4JUFhC42VkChu7HK4dzR
+         fEVA==
+X-Gm-Message-State: ANhLgQ2kpynWgH1MNbtUsivQ6qIcQDOazIYQaJ9MO7PEme2sFfKfveTd
+	22nG7bavEbh2vVN2YBLQGHk=
+X-Google-Smtp-Source: ADFU+vuDafpF8E6VEalsUaUso21p3hB6DmTmpeyQlZ82r+uQqlivykvgCtiCK4aMal58tYyOE7yPnQ==
+X-Received: by 2002:a1c:3d6:: with SMTP id 205mr5292015wmd.155.1584021360447;
+        Thu, 12 Mar 2020 06:56:00 -0700 (PDT)
+Received: from [172.16.100.14] ([213.168.66.146])
+        by smtp.gmail.com with ESMTPSA id a5sm12204174wmb.37.2020.03.12.06.55.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 12 Mar 2020 06:55:59 -0700 (PDT)
+To: Yocto-mailing-list <yocto@yoctoproject.org>
+From: "Matthias Schoepfer" <matthias.schoepfer@googlemail.com>
+Subject: git fetcher: does not execute git fetch --tags or similar when HEAD has not changed
+Message-ID: <cb73c40e-6eed-d626-513d-c1012a0f9f32@googlemail.com>
+Date: Thu, 12 Mar 2020 14:55:59 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 MIME-Version: 1.0
-In-Reply-To: <7983bbc0f42b4b419b32632fcf28f983@sakuraus.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-${} and not $()
+Hi!
 
-On Wed, Mar 11, 2020 at 11:43:36PM +0000, Greg Wilson-Lindberg wrote:
-> Hi Anders,
-> 
-> Good catch, thanks for seeing that.
-> 
-> 
-> I also realized that I was missing a FILESEXTRAPATHS_prepend. I have tried both:
-> 
-> FILESEXTRAPATHS_prepend := "$(FILE_DIRNAME)/files:"
-> and
-> FILESEXTRAPATHS_prepend := "$(THISDIR)/files:"
-> 
-> In both cases I don't see the expansion (i.e. I see '$(FILE_DIRNAME)/files:' or '$(THISDIR)/files:') in the list of searched directories. I would think that I should see the expanded directory path.
-> 
-> Here is the net beginning of my .bbappend file:
-> 
-> # additions to Kernel configuration
-> 
-> FILESEXTRAPATHS_prepend := "$(FILE_DIRNAME)/files:"
-> #FILESEXTRAPATHS_prepend := "$(THISDIR)/files:"
-> SRC_URI+= "file://0001-drm-vc4-Keep-the-binner-BO-through-suspend.patch"
-> 
-> 
-> Regards,
-> Greg
-> 
-> 
-> ________________________________
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> on behalf of Anders Montonen <Anders.Montonen@iki.fi>
-> Sent: Tuesday, March 10, 2020 11:07:33 PM
-> To: Yocto list discussion
-> Subject: Re: [yocto] Getting kernel patch to work
-> 
-> Hi,
-> 
-> > On 11 Mar 2020, at 1:57, Greg Wilson-Lindberg <GWilson@sakuraus.com> wrote:
-> >
-> > SRC_URi += "file://0001-drm-vc4-Keep-the-binner-BO-through-suspend-GWL.patch"
-> 
-> It looks like you have a typo here, the last letter of SRC_URI isn't capitalized.
-> 
-> -a
-> 
+We have noticed the following issue: We keep the versions of out=20
+software by means of tags on the git repositories, i.e. during the=20
+build, somethings like git describe --tags gets called. In yocto, our=20
+recipe of SomeLibrary might look then similar to this:
 
-> 
+SRC_URI =3D "git://our.private.gitserver.org/git/SomeLibrary.git;tags=3Dv=
+${PV}"
 
+When we build the image, and *then* apply a tag to HEAD, that was=20
+already built before, it seems like the tags are not fetched (my guess=20
+is git fetcher sees that origins HEAD and local HEAD have the same hash=20
+and is fine with it).
+
+The error is, that while the correct version is built, it will report=20
+itself with a wrong version.
+
+Is this a bug?
+
+Regards,
+
+   Matthias
+
+--=20
+Dr.-Ing. Matthias Sch=C3=B6pfer
+matthias.schoepfer@googlemail.com
