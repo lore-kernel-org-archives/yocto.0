@@ -1,187 +1,139 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.10661.1584024173699736831
+ by mx.groups.io with SMTP id smtpd.web12.4144.1584035501027592676
  for <yocto@lists.yoctoproject.org>;
- Thu, 12 Mar 2020 07:42:53 -0700
+ Thu, 12 Mar 2020 10:51:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=GIfMSnEb;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: gabbla.malist@gmail.com)
+ dkim=missing; spf=none, err=SPF record not found (domain: sakuraus.com, ip: 140.211.169.56, mailfrom: gwilson@sakuraus.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E8456E0179B; Thu, 12 Mar 2020 07:42:52 -0700 (PDT)
+	id 49BB1E01831; Thu, 12 Mar 2020 10:51:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (gabbla.malist[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
 	*      trust
-	*      [209.85.167.49 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32660E01757
-	for <yocto@yoctoproject.org>; Thu, 12 Mar 2020 07:42:50 -0700 (PDT)
-Received: by mail-lf1-f49.google.com with SMTP id c20so5081980lfb.0
-        for <yocto@yoctoproject.org>; Thu, 12 Mar 2020 07:42:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wIov/1jWNuk5mwqT6q29FEcmCUM8uS9cfqpVFrKk2Fc=;
-        b=GIfMSnEb+d2USYWQaIlVgMN8yHVzXqA0fz/lzm86EPC/2N4/rkElsXaERsNnAbmLZS
-         Rs0+xiR1JDZmRD724InZl5u7XSJZYvdHd/xawiwX5GiVFqhF8kfcW59ifsDKDZa8358H
-         Gtc1UMIipdRTcwnTBss2kbajaX+5z6gaswEFJ8Hk4ER27QlTub7lxcNPn1HVUvuSxZMO
-         p5iShQyhpRNLWGyGwLMVD95gDyAC7cio/y7H26jZmDJMokHxDV98TcpZpCgE6V7XZ6Bg
-         BIrM2/qjd4TqZzsqsyOaO4MBezhPbvYNCWGXU87haKnisEGMk6nhfV717wHAvUMvGmKW
-         nZ3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wIov/1jWNuk5mwqT6q29FEcmCUM8uS9cfqpVFrKk2Fc=;
-        b=kqaQopPIHmXKLAjD3Z/OL7DJYoNBorOF+Fe7FtWlAB/9VmgL8+lWR6nVsazrEPozNV
-         eqKkrgGNxgTRZxxvLV3kBeaInFG/2qeTmmjsZnAVd78kTydLuNjVG+nNmNHwEJY6HVwo
-         o36PorNxaw414aI03q4IurVmHr/7vvO+zd/+fXJ9b83ou7j2KZNDZEMJjDKJulfjpY2b
-         wf4j8Q9tzT97dnjUcoMPdVvVXSDndx9p/tIzz1hotUhUXaBF71a1wvyYwGlcOqKvNb98
-         mBxt3S70r7sO/4VR8crFuyXnHO9XrPzf3crUUYPPXtwAS1+jI4DtqSAQYjlpj6w7GAmo
-         WdbA==
-X-Gm-Message-State: ANhLgQ3KKkTUyNFj6YZ4VG3WRsT9rUMbdSeGbPJUR2esauaayN17BOJB
-	ZGW9bnbnxyTKghCWbq73AyhyaSh5oxyypV9iGjM=
-X-Google-Smtp-Source: ADFU+vsAwuiYR30jjmxD7ofqr9k7/M4KC+71xibODQFrM/QoOTyevL4UKAmieEslj2eDpA+CMbsBq697O9QfCjUBur8=
-X-Received: by 2002:a19:4cc4:: with SMTP id z187mr5408756lfa.49.1584024169965;
- Thu, 12 Mar 2020 07:42:49 -0700 (PDT)
+	*      [209.222.82.218 listed in list.dnswl.org]
+Received: from outbound-ip21b.ess.barracuda.com (outbound-ip21b.ess.barracuda.com [209.222.82.218])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41019E0179B
+	for <yocto@yoctoproject.org>; Thu, 12 Mar 2020 10:51:27 -0700 (PDT)
+Received: from SFAMAIL.SAKURAUS.LOCAL (mail.sakuraus.com [12.26.104.5]) by mx7.us-east-2b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=NO); Thu, 12 Mar 2020 17:51:22 +0000
+Received: from SFAMAIL.SAKURAUS.LOCAL (10.16.3.8) by SFAMAIL.SAKURAUS.LOCAL
+ (10.16.3.8) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Thu, 12
+ Mar 2020 10:51:18 -0700
+Received: from SFAMAIL.SAKURAUS.LOCAL ([::1]) by SFAMAIL.SAKURAUS.LOCAL
+ ([::1]) with mapi id 15.01.0669.032; Thu, 12 Mar 2020 10:51:18 -0700
+From: "Greg Wilson-Lindberg" <gwilson@sakuraus.com>
+To: Denys Dmytriyenko <denis@denix.org>
+CC: Anders Montonen <Anders.Montonen@iki.fi>, Yocto list discussion
+	<yocto@yoctoproject.org>
+Subject: Re: [yocto] Getting kernel patch to work
+Thread-Topic: [yocto] Getting kernel patch to work
+Thread-Index: AdX3NRByz9FZgcwoQi+wPDGVBY4CfwAcPZ6AABXrDWsAD2DeAAAW2u0A
+Date: Thu, 12 Mar 2020 17:51:18 +0000
+Message-ID: <c97dce79dd0f43bda19d450d0a670a7b@sakuraus.com>
+References: <7f0a414e985c4b86bfefff5eab8c6108@sakuraus.com>
+ <1FE10608-8C76-4307-B921-5B3C2DCC4CEE@iki.fi>
+ <7983bbc0f42b4b419b32632fcf28f983@sakuraus.com>
+ <20200311235528.GK1578@denix.org>
+In-Reply-To: <20200311235528.GK1578@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.16.5.142]
 MIME-Version: 1.0
-References: <890f4aad-1d52-ced1-2a0f-f2a482530aa7@faresoftware.it>
-In-Reply-To: <890f4aad-1d52-ced1-2a0f-f2a482530aa7@faresoftware.it>
-From: "Gabriele" <gabbla.malist@gmail.com>
-Date: Thu, 12 Mar 2020 15:42:38 +0100
-Message-ID: <CAAx3WaDMFr3-WF5QDrxorV7g4uDbQLub6ZC7K=SXxH+cf_wPnw@mail.gmail.com>
-Subject: Re: [yocto] SDKPATH: how to change?
-To: Mauro Ziliani <mauro@faresoftware.it>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000f76edf05a0a95dbd"
-
---000000000000f76edf05a0a95dbd
-Content-Type: text/plain; charset="UTF-8"
-
-Ciao Mauro,
-
-you can change the directory during installation
-
-./poky-glibc-x86_64-your-image-armv7at2hf-neon-toolchain-2.6.2.sh -d
-/install/path
-
-More info with
-
-./poky-glibc-x86_64-your-image-armv7at2hf-neon-toolchain-2.6.2.sh --help
-
-Gabriele
-
-On Thu, Mar 12, 2020 at 3:06 PM Mauro Ziliani <mauro@faresoftware.it> wrote:
-
-> Hi all
->
-> I work woth imx6dl-sabresd and Krogoth.
->
-> When I build the sdk ( -c populate_sdk) the final .sh file get the
-> installation path as
->
-> /opt/fsl-imx-x11 ...
->
-> So I think the path is build from ${DISTRO} var as
->
-> /opt/${DISTRO}
->
->
-> I need to produce 3 sdk with it own final path
-> /opt/fsl-imx-x11-dev1
->
-> /opt/fsl-imx-x11-dev2
->
-> /opt/fsl-imx-x11-dev3
->
->
-> The form should be
->
-> /opt/${DISTRO}-${MYDEVICE}
->
-> So I'd like to use a common .inc and change the MYDEVICE
->
->
-> But I don't find where the final sdk path is combined
->
->
-> Any idea?
->
->
-> MZ
->
-> 
->
-
---000000000000f76edf05a0a95dbd
-Content-Type: text/html; charset="UTF-8"
+X-BESS-ID: 1584035478-893013-26443-31250-4
+X-BESS-VER: 2019.1_20200311.2054
+X-BESS-Apparent-Source-IP: 12.26.104.5
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.222867 [from 
+	cloudscan10-235.us-east-2a.ess.aws.cudaops.com]
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS29408 scores of KILL_LEVEL=7.0 tests=BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status: 1
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Ciao Mauro,</div><div><br></div><div>you can change t=
-he directory during installation</div><div><br></div><div>./<a href=3D"http=
-://poky-glibc-x86_64-your-image-armv7at2hf-neon-toolchain-2.6.2.sh">poky-gl=
-ibc-x86_64-your-image-armv7at2hf-neon-toolchain-2.6.2.sh</a> -d /install/pa=
-th <br></div><div><br></div><div>More info with <br></div><div><br></div><d=
-iv>./<a href=3D"http://poky-glibc-x86_64-your-image-armv7at2hf-neon-toolcha=
-in-2.6.2.sh">poky-glibc-x86_64-your-image-armv7at2hf-neon-toolchain-2.6.2.s=
-h</a> --help</div><div><br></div><div>Gabriele<br></div></div><br><div clas=
-s=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Mar 12, 202=
-0 at 3:06 PM Mauro Ziliani &lt;<a href=3D"mailto:mauro@faresoftware.it">mau=
-ro@faresoftware.it</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote=
-" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
-padding-left:1ex">Hi all<br>
-<br>
-I work woth imx6dl-sabresd and Krogoth.<br>
-<br>
-When I build the sdk ( -c populate_sdk) the final .sh file get the <br>
-installation path as<br>
-<br>
-/opt/fsl-imx-x11 ...<br>
-<br>
-So I think the path is build from ${DISTRO} var as<br>
-<br>
-/opt/${DISTRO}<br>
-<br>
-<br>
-I need to produce 3 sdk with it own final path<br>
-/opt/fsl-imx-x11-dev1<br>
-<br>
-/opt/fsl-imx-x11-dev2<br>
-<br>
-/opt/fsl-imx-x11-dev3<br>
-<br>
-<br>
-The form should be<br>
-<br>
-/opt/${DISTRO}-${MYDEVICE}<br>
-<br>
-So I&#39;d like to use a common .inc and change the MYDEVICE<br>
-<br>
-<br>
-But I don&#39;t find where the final sdk path is combined<br>
-<br>
-<br>
-Any idea?<br>
-<br>
-<br>
-MZ<br>
-<br>
-<br>
-</blockquote></div>
+Hi Denys,
+I guess I have been rather blind when putting this together. That's what I=
+ get for not copying and pasting.
 
---000000000000f76edf05a0a95dbd--
+Thanks,
+Greg
+
+> -----Original Message-----
+> From: Denys Dmytriyenko <denis@denix.org>
+> Sent: Wednesday, March 11, 2020 4:55 PM
+> To: Greg Wilson-Lindberg <GWilson@sakuraus.com>
+> Cc: Anders Montonen <Anders.Montonen@iki.fi>; Yocto list discussion
+> <yocto@yoctoproject.org>
+> Subject: Re: [yocto] Getting kernel patch to work
+>=20
+> ${} and not $()
+>=20
+> On Wed, Mar 11, 2020 at 11:43:36PM +0000, Greg Wilson-Lindberg wrote:
+> > Hi Anders,
+> >
+> > Good catch, thanks for seeing that.
+> >
+> >
+> > I also realized that I was missing a FILESEXTRAPATHS_prepend. I have t=
+ried
+> both:
+> >
+> > FILESEXTRAPATHS_prepend :=3D "$(FILE_DIRNAME)/files:"
+> > and
+> > FILESEXTRAPATHS_prepend :=3D "$(THISDIR)/files:"
+> >
+> > In both cases I don't see the expansion (i.e. I see '$(FILE_DIRNAME)/f=
+iles:'
+> or '$(THISDIR)/files:') in the list of searched directories. I would thi=
+nk that I
+> should see the expanded directory path.
+> >
+> > Here is the net beginning of my .bbappend file:
+> >
+> > # additions to Kernel configuration
+> >
+> > FILESEXTRAPATHS_prepend :=3D "$(FILE_DIRNAME)/files:"
+> > #FILESEXTRAPATHS_prepend :=3D "$(THISDIR)/files:"
+> > SRC_URI+=3D "file://0001-drm-vc4-Keep-the-binner-BO-through-
+> suspend.patch"
+> >
+> >
+> > Regards,
+> > Greg
+> >
+> >
+> > ________________________________
+> > From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> on
+> behalf of Anders Montonen <Anders.Montonen@iki.fi>
+> > Sent: Tuesday, March 10, 2020 11:07:33 PM
+> > To: Yocto list discussion
+> > Subject: Re: [yocto] Getting kernel patch to work
+> >
+> > Hi,
+> >
+> > > On 11 Mar 2020, at 1:57, Greg Wilson-Lindberg <GWilson@sakuraus.com>
+> wrote:
+> > >
+> > > SRC_URi +=3D "file://0001-drm-vc4-Keep-the-binner-BO-through-suspend=
+-
+> GWL.patch"
+> >
+> > It looks like you have a typo here, the last letter of SRC_URI isn't
+> capitalized.
+> >
+> > -a
+> >
+>=20
+> >=20
+
