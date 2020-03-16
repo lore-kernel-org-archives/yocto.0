@@ -1,28 +1,28 @@
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by mx.groups.io with SMTP id smtpd.web11.65130.1584357085415348380
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+ by mx.groups.io with SMTP id smtpd.web10.65613.1584358025719947718
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Mar 2020 04:11:27 -0700
+ Mon, 16 Mar 2020 04:27:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: intel.com, ip: 134.134.136.65, mailfrom: aaron.chun.yew.chan@intel.com)
-IronPort-SDR: CxIjnrsgXQWPPD8sXDTp3Nd84+8rC+fzdG3aAYnVGDf9qp9G2BDARPPvrQvVzdO18Bt2xaQBOL
- 4s8iDejxC3lg==
+ dkim=missing; spf=pass (domain: intel.com, ip: 192.55.52.115, mailfrom: aaron.chun.yew.chan@intel.com)
+IronPort-SDR: Ot47MO18immDUER44QFey4dtuhSTQz3Z9umoL+YWdwpZwl9tRSlOLa3e+1GMsaeEEKO7uET+31
+ NA2cjnMG0p7w==
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2020 04:11:24 -0700
-IronPort-SDR: ykR/Z4L7lKipQkOaXPTXHKTuHfwev44fG1lP5LOus2qKaTlaf+LYva5VfPySHVAFV+DgPEwnx4
- BCIcXDg/V9uA==
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2020 04:27:05 -0700
+IronPort-SDR: 5Dc0IZWJa8SuAA38azWRfIsZOZNTVKX6F3MOGcqrTLPVDAnUz5g9+rvEXBlVo0SuwW97JxLyox
+ 2sZO5e/sYK7Q==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.70,560,1574150400"; 
-   d="scan'208";a="244106874"
+   d="scan'208";a="443300014"
 Received: from aaronchu-mobl2.gar.corp.intel.com ([10.254.46.175])
-  by orsmga003.jf.intel.com with ESMTP; 16 Mar 2020 04:11:23 -0700
+  by fmsmga005.fm.intel.com with ESMTP; 16 Mar 2020 04:27:05 -0700
 From: "Aaron Chan" <aaron.chun.yew.chan@intel.com>
 To: yocto@lists.yoctoproject.org
 Cc: Aaron Chan <aaron.chun.yew.chan@intel.com>
-Subject: [PATCH] config: Fix giturl for meta-virtualization Layer
-Date: Mon, 16 Mar 2020 19:11:20 +0800
-Message-Id: <20200316111120.3692-1-aaron.chun.yew.chan@intel.com>
+Subject: [yocto-autobuilder2][PATCH] config: Fix giturl for meta-virtualization Layer
+Date: Mon, 16 Mar 2020 19:27:02 +0800
+Message-Id: <20200316112702.14576-1-aaron.chun.yew.chan@intel.com>
 X-Mailer: git-send-email 2.21.0.windows.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
