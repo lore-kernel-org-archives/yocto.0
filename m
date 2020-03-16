@@ -1,53 +1,52 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.64177.1584351589468710370
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+ by mx.groups.io with SMTP id smtpd.web11.65130.1584357085415348380
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Mar 2020 02:39:49 -0700
+ Mon, 16 Mar 2020 04:11:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: ubuntu1804-ty-2.yocto.io, ip: 140.211.169.56, mailfrom: pokybuild@ubuntu1804-ty-2.yocto.io)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2D615E01861; Mon, 16 Mar 2020 02:39:49 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.6 required=5.0 tests=BAYES_00,MISSING_MID,
-	RDNS_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.5 MISSING_MID Missing Message-Id: header
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from ubuntu1804-ty-2.yocto.io (unknown [198.145.29.2])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 62939E0185D;
-	Mon, 16 Mar 2020 02:39:44 -0700 (PDT)
-Received: by ubuntu1804-ty-2.yocto.io (sSMTP sendmail emulation); Mon, 16 Mar 2020 09:39:44 +0000
-From: pokybuild@ubuntu1804-ty-2.yocto.io
-Date: Mon, 16 Mar 2020 09:39:44 +0000
+ dkim=missing; spf=pass (domain: intel.com, ip: 134.134.136.65, mailfrom: aaron.chun.yew.chan@intel.com)
+IronPort-SDR: CxIjnrsgXQWPPD8sXDTp3Nd84+8rC+fzdG3aAYnVGDf9qp9G2BDARPPvrQvVzdO18Bt2xaQBOL
+ 4s8iDejxC3lg==
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2020 04:11:24 -0700
+IronPort-SDR: ykR/Z4L7lKipQkOaXPTXHKTuHfwev44fG1lP5LOus2qKaTlaf+LYva5VfPySHVAFV+DgPEwnx4
+ BCIcXDg/V9uA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.70,560,1574150400"; 
+   d="scan'208";a="244106874"
+Received: from aaronchu-mobl2.gar.corp.intel.com ([10.254.46.175])
+  by orsmga003.jf.intel.com with ESMTP; 16 Mar 2020 04:11:23 -0700
+From: "Aaron Chan" <aaron.chun.yew.chan@intel.com>
 To: yocto@lists.yoctoproject.org
-Cc: otavio@ossystems.com.br, yi.zhao@windriver.com, apoorv.sangal@intel.com, ee.peng.yeoh@intel.com, aaron.chun.yew.chan@intel.com, richard.purdie@linuxfoundation.org, akuster808@gmail.com, sjolley.yp.pm@gmail.com, sangeeta.jain@intel.com
-Subject: QA notification for completed autobuilder build (yocto-3.1_M3.rc1)
-Message-Id: <20200316093949.2D615E01861@yocto-www.yoctoproject.org>
+Cc: Aaron Chan <aaron.chun.yew.chan@intel.com>
+Subject: [PATCH] config: Fix giturl for meta-virtualization Layer
+Date: Mon, 16 Mar 2020 19:11:20 +0800
+Message-Id: <20200316111120.3692-1-aaron.chun.yew.chan@intel.com>
+X-Mailer: git-send-email 2.21.0.windows.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
+From: Aaron Chan <aaron.chun.yew.chan@intel.com>
 
-A build flagged for QA (yocto-3.1_M3.rc1) was completed on the autobuilder and is available at:
+Signed-off-by: Aaron Chan <aaron.chun.yew.chan@intel.com>
+---
+ config.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-
-    https://autobuilder.yocto.io/pub/releases/yocto-3.1_M3.rc1
-
-
-Build hash information: 
-
-bitbake: e67dfa4a4d0d63e4752655f25367582e5a95f1da
-meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-meta-intel: 60773e8496370d821309e00f2c312128a130c22b
-meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
-oecore: 61d80b07bcfa4adf5f1feb2904fec0a8d09c89f6
-poky: 6f02caa39985fb89d9ad49e1f788a9a8dd6e12d7
-
-
-
-This is an automated message from the Yocto Project Autobuilder
-Git: git://git.yoctoproject.org/yocto-autobuilder2
-Email: richard.purdie@linuxfoundation.org
-
-
+diff --git a/config.py b/config.py
+index 6d629f1..b1e2c05 100644
+--- a/config.py
++++ b/config.py
+@@ -39,7 +39,7 @@ repos = {
+     "meta-mingw": ["git://git.yoctoproject.org/meta-mingw", "master"],
+     "meta-gplv2": ["git://git.yoctoproject.org/meta-gplv2", "master"],
+     "meta-openembedded": ["git://git.openembedded.org/meta-openembedded", "master"],
+-    "meta-virtualization": ["git://git.openembedded.org/meta-openembedded", "master"]
++    "meta-virtualization": ["git://git.yoctoproject.org/meta-virtualization", "master"]
+ }
  
+ trigger_builders_wait_shared = [
+-- 
+2.21.0.windows.1
+
