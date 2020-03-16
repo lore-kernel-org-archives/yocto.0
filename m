@@ -1,163 +1,180 @@
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
- by mx.groups.io with SMTP id smtpd.web12.65834.1584359111672628546
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+ by mx.groups.io with SMTP id smtpd.web11.65909.1584359550620592027
  for <yocto@lists.yoctoproject.org>;
- Mon, 16 Mar 2020 04:45:11 -0700
+ Mon, 16 Mar 2020 04:52:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=loHJEqA9;
- spf=pass (domain: intel.com, ip: 192.55.52.88, mailfrom: sangeeta.jain@intel.com)
-IronPort-SDR: ziGslN1q06QrccLE6LgDe3bS43UaMqvkPObt10tThaS7lpmx1v0qj2UP/nD2U7flM3tyD72HkV
- c05m8Wc9Yqvw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Mar 2020 04:45:11 -0700
-IronPort-SDR: uiGA0Tg/0BgxAoAIoNx87vanyW4Rf/wxItPZ1K4zLsJv13MaBbohqtiBrYFIjJuZ8KrySQcVjD
- gDbAmnlEGGDw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,560,1574150400"; 
-   d="scan'208";a="445096446"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-  by fmsmga006.fm.intel.com with ESMTP; 16 Mar 2020 04:45:11 -0700
-Received: from orsmsx115.amr.corp.intel.com (10.22.240.11) by
- ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 16 Mar 2020 04:45:11 -0700
-Received: from ORSEDG002.ED.cps.intel.com (10.7.248.5) by
- ORSMSX115.amr.corp.intel.com (10.22.240.11) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 16 Mar 2020 04:45:11 -0700
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (104.47.55.100)
- by edgegateway.intel.com (134.134.137.101) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Mon, 16 Mar 2020 04:45:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FHTqM9wxeh2YVx3PUlWX5W4VU0cpOQR8yb1wKGaUzhA2E0cDeIym9rLbGt88AcJWw+IkIKroV32a0fH6toakl/eyJz+oNoqXpBZekUfG+vqh6Jdq3Npw++df/Bfuvg4dNdXMk4bL2hgSJ1oL4b6H1Mvug3MAEzHgGBaC3Vmd4cWAZ9ucUkO6a9Ui4FwD5p0PKGDpzTvlhR4czVEGFZIRQWiQFo2feEoXGxhgGGGFSwoKVL4Ov48WGF0i//HT8NcLtw4J7Hjf2uFHkfDODXRStiyZHUGKXMU5SICavoVya6E+XKUQPr1E2zZrg3Dej/LowMmabpwePyVx4fAVE88ltA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QgYSGC3pc3EsUJjc2PbjTEE+8wNLXcpndeirNqKeUwQ=;
- b=YgT/LVZCLsExk1oUwQ0Nf4PyewvvL3s03YCem/TJN7lE8nswcGICyowzKvjyB+qWbOAKhV9mr+iLS2C5Ve/7gusdK1YOma1TWzu6++vZWGVwMAeAJ6OlUYgIUFu702LWYwdbb6oRIl2Cm57k7DVY15kQVRGxOkWRlZiK5XeP34utFU1TOBie//q3UMXg5bfqhxVk4H2B+Df9xdqKOBo3hb4mdfNIHKREsreAf8/aEADqM5+5DEvNIpsqM2wIcURDgHDEXS+4bUUSAaZUnP3BwD+zDcp658tC6AwDtb2NOW/30MWKN6DIginUij2j1leWi+Ik0uuXcPVdOo1NexFS3w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QgYSGC3pc3EsUJjc2PbjTEE+8wNLXcpndeirNqKeUwQ=;
- b=loHJEqA9wt4sxoUWyBMErVs4mosgB/8L63NQVrq/zQeRz0ePOCLfmPOw80faB/QppWM4/bWHBTfjWMTxm0Z2BDlJv3DXN96u18hPVsdDcauqK1vzB8NfaofhvrowRM3XeP0qoT0VHCD74vfG+vBK+xMjuF1NXLe4TdTDg/DmahU=
-Received: from MWHPR11MB1885.namprd11.prod.outlook.com (2603:10b6:300:111::8)
- by MWHPR11MB1422.namprd11.prod.outlook.com (2603:10b6:300:25::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.21; Mon, 16 Mar
- 2020 11:45:09 +0000
-Received: from MWHPR11MB1885.namprd11.prod.outlook.com
- ([fe80::a841:1e1c:9ad5:f095]) by MWHPR11MB1885.namprd11.prod.outlook.com
- ([fe80::a841:1e1c:9ad5:f095%5]) with mapi id 15.20.2814.021; Mon, 16 Mar 2020
- 11:45:09 +0000
-From: "Sangeeta Jain" <sangeeta.jain@intel.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: [yocto] QA notification for completed autobuilder build (yocto-3.1_M3.rc1)
-Thread-Topic: [yocto] QA notification for completed autobuilder build
- (yocto-3.1_M3.rc1)
-Thread-Index: AQHV+3btrZncKwmncECtaZHainEurahLGFdAgAABSMA=
-Date: Mon, 16 Mar 2020 11:45:09 +0000
-Message-ID: <MWHPR11MB1885FAEF405DE4413032F91EE3F90@MWHPR11MB1885.namprd11.prod.outlook.com>
-References: <20200316093949.2D615E01861@yocto-www.yoctoproject.org>
- <MWHPR11MB1885A54E561C1063624148A1E3F90@MWHPR11MB1885.namprd11.prod.outlook.com>
-In-Reply-To: <MWHPR11MB1885A54E561C1063624148A1E3F90@MWHPR11MB1885.namprd11.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.2.0.6
-dlp-product: dlpe-windows
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=sangeeta.jain@intel.com; 
-x-originating-ip: [42.189.136.148]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 2521bc33-0c52-448f-7ed3-08d7c99f7ae4
-x-ms-traffictypediagnostic: MWHPR11MB1422:
-x-microsoft-antispam-prvs: <MWHPR11MB1422E4451B0E83CBBB73D8A8E3F90@MWHPR11MB1422.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 03449D5DD1
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(39860400002)(346002)(396003)(366004)(136003)(376002)(199004)(76116006)(81156014)(81166006)(15650500001)(8936002)(8676002)(71200400001)(5660300002)(33656002)(86362001)(7696005)(6916009)(316002)(2906002)(186003)(26005)(2940100002)(66476007)(55016002)(64756008)(66446008)(53546011)(66556008)(6506007)(66946007)(9686003)(966005)(478600001)(52536014);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR11MB1422;H:MWHPR11MB1885.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: hpinGN4RO5pKmwUV71fldS7WjTaw/n3V/LGCK1izv/8ZY5KZVhALd8QwEo8RecRqRr31NLUdMFdwfAKWkVOkisVyOv9f0qauqbB4c1gQhqBdrqrlRJKA1UoQtE/5d6PoP3kmEIW3pBHK6DKbGUfmbfxrT8NBIYHYu3MNhKxgV0+FeRRlVc9zKwGUxZGBCjjIPqO9PLQZgy2FhOPNoL/0LLR2iKiX/JiGfJBv/mdwBxEnp7oVlJ6Hh2vpWS86+qcRw2YDb41ZWZNDF2BB6n7b8ng3qKheS2H5xPZxKEY233qj3i9oSzoKPU36jTSc/Cj61QMg/PrO6if/MzGyxIbi44dmsQ+cXebVH8qvIn+tUT9sLL7BjAdqXH7OALrqLQRNutPneF0Mi18ENRHONgFoUaYNhfn94gELtTAWRDBp/T3TU0yNYw2Mq+Kpu4gzyR1DXrvL8S3xpPWeTr1y3A7l8WOHDs4/BY0YZodzmNLYNF+SO/f5DIgz4JJ2w8Uqhe0F9KXqqGcl7dCph6OFxLI9Lw==
-x-ms-exchange-antispam-messagedata: vdVjV9GKfJ6SjuRVpbx5W9EJRSpr9nlgkJjjXlezZmiqnfWkkBu7XBzpahZR/Ku1a8/4YhkNek95zvU/jVCZqfnqSvUSgisEIij7RXDqNq1GiUmXHDDHN+SDgqbCiC8YcawptRrTdwc+gpotJ00Z9g==
-x-ms-exchange-transport-forked: True
+ dkim=pass header.i=@googlemail.com header.s=20161025 header.b=F34Pf5BG;
+ spf=pass (domain: googlemail.com, ip: 209.85.221.52, mailfrom: matthias.schoepfer@googlemail.com)
+Received: by mail-wr1-f52.google.com with SMTP id h4so197391wru.2
+        for <yocto@lists.yoctoproject.org>; Mon, 16 Mar 2020 04:52:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=s3Io8azKcSgO7H8THbcB3dDUbr0QRiAdSn3epybETts=;
+        b=F34Pf5BGVfew6H1In15j1LJBVEx7jecHXWNdHyr6gHFfzer6j2pUhsMDdZrSascPBw
+         xYKl6xD9XfGSciTw5l+JHXbcxpMWj0gJvEXtSFwKzBPnV7U4p+tzLzkxZhlFgF29TZX9
+         kCVFvYK62hbmX2QVVS8mtfFf7srDDKiz0mVFI/bOguSZvT/ogFQ64axHXlhUPhpCIM9+
+         2NHoztXxPWuado/7M9FcAV4HC3vLvhyZXIlU3kD/eLNucpnEATkEcJcJAhzqcuAG2USq
+         c6DZaEbeZ0Vp/g24NMgnP5HRa+jPOSkR8l6QtNFg3+raUBknAAfF0p1Xjgnfo8xqZl4g
+         /EIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=s3Io8azKcSgO7H8THbcB3dDUbr0QRiAdSn3epybETts=;
+        b=jKjS/jnCwDKRKFq/yKnAGv7bLp/xTqq0M3r1DOIH++daJ8ROdNMKP12B6nNmtnZsW6
+         uXmcpI/GGZhauDmkpkDiCBY47I7jyd7hbqgvj66cpdXuz8L0nQ7dZI8V7C71E9pnW6Gm
+         V/GmPZjejaRWPrwgXt0b2Jy3C5PNbmTBbSddEhneDLMmFucat7bFGS18G03NCam0+7a2
+         TwoLj0hJPI5a2IGGQgdZVp+/DIupNi/fyRBFJ0bJs/sgki4gHYlIh1Gem4+3KTYfV8ZW
+         wu/+n6wt/3oEKd8KXiRNVpejR9txjFK/sH3KHk2rO341GYbejQs99BVwMJ/ZW1lWEdyP
+         8Cuw==
+X-Gm-Message-State: ANhLgQ2hi1ezugYXwVeeBSIycZRwlbv+Gek4IJVXhJJS2tmxBXeCyfAV
+	Yzm7riko7SeDF8PuHFdyuIFZU3vO
+X-Google-Smtp-Source: ADFU+vu4u1iQtYSf8GUIhPNHd5AVNI3nh/VX4Jq7IG7a0iMnus0rRPau6loiVrIOAsNHzNC56sKMUw==
+X-Received: by 2002:a5d:6282:: with SMTP id k2mr31519342wru.401.1584359548663;
+        Mon, 16 Mar 2020 04:52:28 -0700 (PDT)
+Return-Path: <matthias.schoepfer@googlemail.com>
+Received: from ?IPv6:2003:e5:1719:5600:7d4d:3d78:3409:ca00? (p200300E5171956007D4D3D783409CA00.dip0.t-ipconnect.de. [2003:e5:1719:5600:7d4d:3d78:3409:ca00])
+        by smtp.googlemail.com with ESMTPSA id i21sm30937371wmb.23.2020.03.16.04.52.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 16 Mar 2020 04:52:27 -0700 (PDT)
+Subject: Re: [yocto] git fetcher: does not execute git fetch --tags or similar when HEAD has not changed
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+Cc: Denys Dmytriyenko <denis@denix.org>, yocto@lists.yoctoproject.org
+References: <cb73c40e-6eed-d626-513d-c1012a0f9f32@googlemail.com>
+ <20200313162915.GM1578@denix.org>
+ <ec9fb315-af0f-8d9b-18aa-43640e6a7df7@googlemail.com>
+ <CANNYZj_==0Xsvp+_6YnkPDUSGOFKJE7orEQNubaTr_giG+qv4Q@mail.gmail.com>
+ <1ff9ea04-a995-606c-45c6-d51bc4839b57@googlemail.com>
+ <CANNYZj8VnfmmEU_VHVu+Tq_NoiyzUGEmFpisxeg4bJ8Vr_00fw@mail.gmail.com>
+From: "Matthias Schoepfer" <matthias.schoepfer@googlemail.com>
+Message-ID: <17c9ee3f-5c7c-9515-f9fb-bfff0cb1fa0e@googlemail.com>
+Date: Mon, 16 Mar 2020 12:52:27 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.2
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2521bc33-0c52-448f-7ed3-08d7c99f7ae4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2020 11:45:09.4003
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: AeZwtq9sX6e5NzxDxsu1+LRjD/3HiqrOmEWzjNxPN3suh17oHTYJUTV/qOOX6xJyRTkI86amXQFsCMlRgpCADA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR11MB1422
-Return-Path: sangeeta.jain@intel.com
-X-OriginatorOrg: intel.com
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CANNYZj8VnfmmEU_VHVu+Tq_NoiyzUGEmFpisxeg4bJ8Vr_00fw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 
-Hi all,
+Hi Alexander,
 
-Intel and WR YP QA is planning for QA execution for YP build yocto-3.1_M3.r=
-c1.
-We are planning to execute following tests for this cycle:
+thanks for your message. I will try to explain my issue once again, 
+since it still seems not clearly formulated. We build our images on CI 
+(Jenkins). There, we have a shared download dir, so that we do not have 
+to fetch all sources on every build. This gets shared for our 
+"experimental" builds, that use latest git master HEAD (yes, evil 
+AUTOREV) and our "stable" builds, where only tagged (i.e. no AUTOREV 
+versions) are used. Our software uses the git tag to create a version. 
+So, when on experimental, you might get something like:
 
-OEQA-manual tests for following module:
-1. OE-Core
-2. BSP-hw
+# ourCoolSoftware --version
+This is ourCoolSoftware version 1.2.3-3 (gabcdef1)
 
-Runtime auto test for following platforms:
-1. MinnowTurbot 32-bit
-2. Coffee Lake
-3. NUC 7
-4. NUC 6
-5. Edgerouter
-6. MPC8315e-rdb
-7. Beaglebone
+What happens is, that people check their changes on the experimental 
+build. After testing, it is considered for the next release, so they 
+attach a version tag to the git repository and update the _<version>.bb 
+accordingly. Now they build the image with the "stable" profile. But the 
+hash "abcdef1" has not changed. Hence, although we pushed a new tag, 
+yocto git fetcher does not update the cached download git, since git 
+hashes match (same with SRCREV). Which means, even tough we have a 
+recipe ourcoolsoftware_1.2.4.bb with SRCREV="abcdef1..." which will 
+build the correct hash, our software checks the local repository, which 
+is missing the last tag and will still be reporting a wrong version 
+1.2.3-3 for example.
 
-ETA for completion is next Thursday, March 19.
+If we were to do a
+bitbake -c cleanall ourcoolsoftware && bitbake ourcoolimage
 
-Thanks,
-Sangeeta
+then we get
+# ourCoolSoftware --version
+This is ourCoolSoftware version 1.2.4 (gabcdef1)
 
-> -----Original Message-----
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On=20
-> Behalf Of pokybuild@ubuntu1804-ty-2.yocto.io
-> Sent: Monday, 16 March, 2020 5:40 PM
-> To: yocto@lists.yoctoproject.org
-> Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; Sangal, Apoorv=20
-> <apoorv.sangal@intel.com>; Yeoh, Ee Peng <ee.peng.yeoh@intel.com>;=20
-> Chan, Aaron Chun Yew <aaron.chun.yew.chan@intel.com>;=20
-> richard.purdie@linuxfoundation.org; akuster808@gmail.com;=20
-> sjolley.yp.pm@gmail.com; Jain, Sangeeta <sangeeta.jain@intel.com>
-> Subject: [yocto] QA notification for completed autobuilder build=20
-> (yocto-
-> 3.1_M3.rc1)
->=20
->=20
-> A build flagged for QA (yocto-3.1_M3.rc1) was completed on the=20
-> autobuilder and is available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-3.1_M3.rc1
->=20
->=20
-> Build hash information:
->=20
-> bitbake: e67dfa4a4d0d63e4752655f25367582e5a95f1da
-> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-> meta-intel: 60773e8496370d821309e00f2c312128a130c22b
-> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
-> oecore: 61d80b07bcfa4adf5f1feb2904fec0a8d09c89f6
-> poky: 6f02caa39985fb89d9ad49e1f788a9a8dd6e12d7
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
+because we artificially force a complete fetch of the repository.
+
+We usually do a clean build (no sstate / tmp / etc.) but we use the 
+download dir, because we do not see why we would need to download gcc 
+etc. every time. A workaround would be to bitbake -c cleanall our 
+packages, but it seems hacky and prone to error (need to keep lists of 
+our used software in at least two places). My question is therefore, if 
+this is a "bug" and if we were to investigate this and propose a patch, 
+if this could this be considered for merge, or if this behaviour is 
+intentional and adding a fetch --tags would be considered harmful in any 
+way.
+
+Hope, I could bring my point across now.
+
+Thanks and Regards,
+
+  Matthias
+
+On 3/16/20 9:43 AM, Alexander Kanavin wrote:
+> 'devtool upgrade' updates SRCREV to match the version tag that you specify:
+> 
+> devtool upgrade -V <tag>
+> 
+> If you omit -V, it will upgrade to the latest tag. It updates PV as 
+> well. Why is it unsuitable for you?
+> 
+> Alex
+> 
+> On Mon, 16 Mar 2020 at 09:35, Matthias Schöpfer 
+> <matthias.schoepfer@googlemail.com 
+> <mailto:matthias.schoepfer@googlemail.com>> wrote:
+> 
+>     Hi Alexander,
+> 
+>     does it solve the Problem of a SRCREV, that has been fetched (for
+>     example for a _git testbuild) and now gets a tag applied and build with
+>     the _<version> build. The problem is *not* that the yocto PV package is
+>     wrong *nor* that the wrong version of the software gets build! The
+>     problem is, that the tag does not get fetched and our software gets its
+>     version from the git tags. Since this is very convenient to have the
+>     version information in one place only, we will not change this.
+> 
+>     Thanks and Regards,
+> 
+>         Matthias
+> 
+>     On 3/15/20 5:02 PM, Alexander Kanavin wrote:
+>      > On Sun, 15 Mar 2020 at 15:04, Matthias Schoepfer via
+>      > Lists.Yoctoproject.Org <http://Lists.Yoctoproject.Org>
+>     <http://Lists.Yoctoproject.Org>
+>      > <matthias.schoepfer=googlemail.com@lists.yoctoproject.org
+>     <mailto:googlemail.com@lists.yoctoproject.org>
+>      > <mailto:googlemail.com@lists.yoctoproject.org
+>     <mailto:googlemail.com@lists.yoctoproject.org>>> wrote:
+>      >
+>      >     2) It allows for very convenient bump of versions. We develop a
+>      >     product,
+>      >     so, version bumps are on daily or weekly basis. All that is
+>     needed
+>      >     is to
+>      >     rename the .bb file. No need to edit SRCREV.
+>      >
+>      >
+>      > You can trivially script SRCREV updates ('devtool upgrade'/'devtool
+>      > finish'). The disadvantage of using tags is that you lose
+>      > reproducibility, as tags can be moved or deleted, and so I wouldn't
+>      > encourage this practice.
+>      >
+>      > Alex
+> 
+> 
+>     -- 
+> 
+>     Dr.-Ing. Matthias Schoepfer
+>     Mobile: +49 175 2062739
+>     email: matthias.schoepfer@googlemail.com
+>     <mailto:matthias.schoepfer@googlemail.com>
+> 
+
+
+-- 
+
+Dr.-Ing. Matthias Schoepfer
+Mobile: +49 175 2062739
+email: matthias.schoepfer@googlemail.com
