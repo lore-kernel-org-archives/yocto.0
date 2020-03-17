@@ -1,204 +1,240 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.821.1584479027624338591
+ by mx.groups.io with SMTP id smtpd.web10.1012.1584479590629591603
  for <yocto@lists.yoctoproject.org>;
- Tue, 17 Mar 2020 14:03:47 -0700
+ Tue, 17 Mar 2020 14:13:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@hotmail.com header.s=selector1 header.b=gUbyvgBP;
- spf=softfail (domain: hotmail.com, ip: 140.211.169.56, mailfrom: tom.kellogg@hotmail.com)
+ dkim=fail reason="body hash did not verify" header.i=@gmail.com header.s=20161025 header.b=Q8DnguBn;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: akuster808@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 090DCE0187D; Tue, 17 Mar 2020 14:03:27 -0700 (PDT)
+	id 403C8E0187D; Tue, 17 Mar 2020 14:13:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FORGED_HOTMAIL_RCVD2,FORGED_SPF_HELO,FREEMAIL_FROM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: 
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (tom.kellogg[at]hotmail.com)
+	*      (akuster808[at]gmail.com)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [40.92.41.50 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.9 FORGED_HOTMAIL_RCVD2 hotmail.com 'From' address, but no 'Received:'
+	*      [209.85.215.177 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
 	*       domain
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-	*  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10olkn2050.outbound.protection.outlook.com [40.92.41.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3C56E0187B
-	for <yocto@yoctoproject.org>; Tue, 17 Mar 2020 14:03:25 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gxR6WEvt6lMpb+K6j0go3Xa242+qWkdMRSGjVuuPLKswVfteggmdWG/zRtasz3ptGwqycKuLt8NG61RBGv47SveRuUHlF3UhiQ7xBiz6zY0tfxasDevpqa5/+TunhzoYbx6r1kpRB3PZQTh0175MNb7nlYHtNWg7ND/4cMmDBhFxTjzvKF2rnTYEKw45mCOmh1WS8wRLp3FAAbe/QlY9Zr+CdL2n1Lf6k9YCe0S8jY+N5tPUSQI3ZTyt2INN2YQb6xMMTDi1FEMVrvknonaQKHWaFvnYttNPEIQV2GwE5v86kUgZK2Oac2Vs6NdF66WCzUtw0ttM5lkwR4HeB8RQLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bAdAR4IyG7WcrnpmyDmupRekxMH3JnE0GP3ShQfCJkM=;
- b=EIV0PFgkcp1z0/rIyXzYs8FUd7SCwJ8C4zL8vsNh5GE7tYLl3h2q2xBuFdtgtuN/9Qkf4eUvNfJ7+Ct4e7NmC/LB7lAutU1okpCREm1vtdbK78KptF0NSnMIROUjr0C3CkoTzDHlCdQLQgJevS0N5up11xAsuzt2Rss4te4UUoaxi+9Zec+2n8wL1uDlSWutQCs6G9U8BdYzKV9pbLbWElLIQc0HHYhH5Aktl6e/LjPl6ghaa3c+N8OAq7kqQLbS63A+D+Neu7+t+S1m0G6fX6Ht7zGnCd0Ra15o76KAy9zV9OX9KhdYFfL0ZSzLlE0FHSc+BDJOGMoyc2rDchrjRQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bAdAR4IyG7WcrnpmyDmupRekxMH3JnE0GP3ShQfCJkM=;
- b=gUbyvgBPhtp24HMcqyrs3x56M6LjNwzzrG3l3lHjUuzbSrqGRn8bl48JmwAI1O+zB7BxXMgthMYlC9W3mW9J1pHIwQlK+xaUuS1l3XKPMNYkdMNakvG9MBqvJTQrbYzqzXtVbwulW4DlZOjdUUkE6asWWZthKZUuWou8SAbmWlWKibSxGQl5jmspEYEuZdtMsmRbWGxndry5tyghcH6HurMCrauuZaoB9L9qCIZvsrIpPPxB9Qcf5N4Y9gPNjY/H9PVkIBP5DG6hIW0KtylBaMylFV2pHijTe2LzCq6Bh7KzfZGWc2U4/RNmpBPd0XjENL8Tjvn4v28BsgZkZujEvw==
-Received: from MW2NAM10FT007.eop-nam10.prod.protection.outlook.com
- (2a01:111:e400:7e87::3c) by
- MW2NAM10HT047.eop-nam10.prod.protection.outlook.com (2a01:111:e400:7e87::348)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.13; Tue, 17 Mar
- 2020 21:03:24 +0000
-Received: from MWHPR04MB0815.namprd04.prod.outlook.com (10.13.154.52) by
- MW2NAM10FT007.mail.protection.outlook.com (10.13.154.62) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2814.13 via Frontend Transport; Tue, 17 Mar 2020 21:03:24 +0000
-Received: from MWHPR04MB0815.namprd04.prod.outlook.com
- ([fe80::8582:2fe4:134f:1801]) by MWHPR04MB0815.namprd04.prod.outlook.com
- ([fe80::8582:2fe4:134f:1801%11]) with mapi id 15.20.2835.013; Tue, 17 Mar
- 2020 21:03:24 +0000
-From: "Tom Kellogg" <tom.kellogg@hotmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: [meta-raspberrypi] How Build Image Supports X11 and 7" Touch Display
-Thread-Topic: [meta-raspberrypi] How Build Image Supports X11 and 7" Touch
- Display
-Thread-Index: AQHV/J9IjUoV76reQ0msf66IHRD3vA==
-Date: Tue, 17 Mar 2020 21:03:24 +0000
-Message-ID: 
- <MWHPR04MB0815213A727EBB3A7BCABB2FF6F60@MWHPR04MB0815.namprd04.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-incomingtopheadermarker: 
- OriginalChecksum:97DC2CED30C2A798305EFDCBD799F66C95C71A8CC69E1C7096E0C17DBE57E6C7;UpperCasedChecksum:423FE1E56FA4D6FFD366C8141766546D1EDE0C4B64465929F5EA219E61384D7E;SizeAsReceived:6743;Count:42
-x-tmn: [dz2C7Q2TC8vLSk1PUOwo6YEaZGwZ8Ood]
-x-ms-publictraffictype: Email
-x-incomingheadercount: 42
-x-eopattributedmessage: 0
-x-ms-office365-filtering-correlation-id: 1aa83353-c290-4db8-2de4-08d7cab6a1e8
-x-ms-traffictypediagnostic: MW2NAM10HT047:
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 
- cdJ6oGTPMWYSb8/Fbodq/McP7+nO/zBvjASCs1RNJ7r03pN9gustNPDMFE2ObSC5nSWCf5m3nweJgOMA5uSMa7Zp1Vz2dLFcQtWKl2C7Zlv2Ka5U+oWtVlswH9h3LczJareovtNhW6YRoje/uWQl+PcdNkyLXoMojj5Hg2gmd2sngranJAXBBh1UXReRTA/x
-x-ms-exchange-antispam-messagedata: 
- vYuRPE6Dq6livw8rOo39XowKczMSnk3p+kmkw+rrZHP37gR5hCv4SryCYHSS8z3+OuKWR5VZVU1TpPibsF3C1jG4tedJDj2Z8OBjHGOFz4NsM38dkqyAm+0pJhmNF9+FE0T5SIQevqnC1lNrb5Arbw==
-x-ms-exchange-transport-forked: True
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8949E0187B;
+	Tue, 17 Mar 2020 14:13:08 -0700 (PDT)
+Received: by mail-pg1-f177.google.com with SMTP id b22so6409806pgb.6;
+        Tue, 17 Mar 2020 14:13:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language;
+        bh=gEzqbPMZYlaXOIEd44OYPIAmGMCpDp+KgWtldYzBw/c=;
+        b=Q8DnguBnIoQASDcKSNJgcv+vFqv9xgpI7Q2Iigo0t5LU2X8RP7KnqgpF4t6o8Mhwff
+         t+Cx4MkkuFsL297JfzHUy9SLT5XBON0qnCmfcw8QRnsN8e+EnLLz5GpGwTAGZLHzGGOg
+         +mnn9cO6VNPqXEHubO7ye/dz9nNF8a9CfVqS8KdHz8k0Ui7062TgTy4zoyBE2lgPAoHm
+         EQIiJE4asCBJHfyFhERDZWYeZjM6ewvt04nPhNScVFQlYcpCRA4P8qZspUfWgn6jp6BK
+         tcetey5oxccQnhPhe1S5XrxJf83K3ocW7W7EXXW31GgShJYv1OaPsUiFHA3iea0xa68b
+         EIZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language;
+        bh=gEzqbPMZYlaXOIEd44OYPIAmGMCpDp+KgWtldYzBw/c=;
+        b=PyCZM5PkTPZQ6otk7p91Tu1MVAKpevWbMmBqL+Yxx8GeQIAVYnwqxyLWF35/x+Qp30
+         gux8mjxWARHucFCAM7u18nW/m60edZ66nEJQ/fmRS64uxjubwwudIP6K4YBD4BbWJ81R
+         ecBWHpzmSLZBFmzlvyGBa8Ty4l1nIygZ8NdcvThgH2RM65bKgFdk9fXSU9EmeegTwH7/
+         dZm5pa4zJYwGsJMuI+WnCu8dv8V2/jbJwvhE1P7go+NjJb9eXrOJ7ggffrS+j7mQokLr
+         XRzTZ7Endt9yxV9pslqv0uWgZya2KoFax6Zn6EmF5vzYH1D29OeBv6ABJ0Gg7G472Qb4
+         1tKw==
+X-Gm-Message-State: ANhLgQ0twrB7f0Q1dzoILyHZn5Ja/Pg82zTKRx7mkwB2/4xibMzmjppw
+	/AnChGpwwCLav24BRyhbarg=
+X-Google-Smtp-Source: ADFU+vsQCo6jZ1mavi6V8VWed7mif2mxeBpRfihsjQD4E/gUES3emPXR+dxK6p9MC4D98tkQD9EaYg==
+X-Received: by 2002:a62:1894:: with SMTP id 142mr757511pfy.27.1584479587851;
+        Tue, 17 Mar 2020 14:13:07 -0700 (PDT)
+Received: from ?IPv6:2601:202:4180:a5c0:8879:dca4:8dd7:7b83? ([2601:202:4180:a5c0:8879:dca4:8dd7:7b83])
+        by smtp.gmail.com with ESMTPSA id r13sm3579171pgf.1.2020.03.17.14.12.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 17 Mar 2020 14:13:01 -0700 (PDT)
+Subject: Re: [poky] Thud community support
+To: Patches and discussions about the oe-core layer
+ <openembedded-core@lists.openembedded.org>,
+ "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+ "poky@yoctoproject.org" <poky@yoctoproject.org>,
+ "bitbake-devel@lists.openembedded.org" <bitbake-devel@lists.openembedded.org>
+Cc: poky@lists.yoctoproject.org
+References: <15FBEF1FC40D189D.8114@lists.yoctoproject.org>
+From: "akuster" <akuster808@gmail.com>
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ 8CS2NxU=
+Message-ID: <81fb73b4-f683-5356-ff07-1ac909afb97d@gmail.com>
+Date: Tue, 17 Mar 2020 14:12:54 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-X-OriginatorOrg: hotmail.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1aa83353-c290-4db8-2de4-08d7cab6a1e8
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Mar 2020 21:03:24.5021
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW2NAM10HT047
-Content-Language: en-US
+In-Reply-To: <15FBEF1FC40D189D.8114@lists.yoctoproject.org>
 Content-Type: multipart/alternative;
-	boundary="_000_MWHPR04MB0815213A727EBB3A7BCABB2FF6F60MWHPR04MB0815namp_"
+ boundary="------------19E5ED9D72DA0BCF347BA809"
+Content-Language: en-US
 
---_000_MWHPR04MB0815213A727EBB3A7BCABB2FF6F60MWHPR04MB0815namp_
-Content-Type: text/plain; charset="iso-8859-1"
+--------------19E5ED9D72DA0BCF347BA809
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
-I'm trying to build am image that supports X11 and will use the official 7"=
- touch screen from the Raspberry Pi organization for the raspberrypi2.  To =
-test I've built both core-image-x11 and core-image sato with no changes to =
-either recipe and am getting the same behavior from both.  What happens is =
-when I plug in the unit the splash screen is shown on the 7" display then t=
-he output from the kernel booting is shown.  At some point during the kerne=
-l boot process the screen goes black but it doesn't look like the display h=
-as turned off.  I am hooked up to the debug pins on the header and am able =
-to log into the pi so the device has booted properly.  Also if I attach a m=
-onitor via HDMI to the pi the core-image-x11 shows a terminal on the monito=
-r and the core-image-sato shows the desktop.  If you touch the touch screen=
- the cursor will move around on the monitor so the touch screen is working =
-properly.
-
-I can't find anything in the meta-raspberry pi documentation for how to ena=
-ble to the 7" touch screen but I did find from an old mailing archive that =
-adding
-
-RASPBERRYPI_DISPLAY =3D "1"
-
-to the local.conf is all that is needed.  I have added that to the end of m=
-y local.conf but that didn't fix the issue.  That was from ~3years ago thou=
-gh so I'm wondering if things have changed.
 
 
-Thanks
+On 3/13/20 11:03 AM, akuster via Lists.Yoctoproject.Org wrote:
+> The Poky thud branch is now under 'Community support' and is seeking a
+> maintainer to continue supporting the following repos for the thud relea=
+se:
+>
+> bitbake, core, meta-yocto and yocto-docs.
+>
+>
+> There will be no more point releases.
+>
+> see
+> https://wiki.yoctoproject.org/wiki/Stable_Release_and_LTS#Maintainer_Pro=
+cedures=C2=A0
+> to get an idea on what is expected.
+>
+> The one thing we (YP) don't know is if there will be AutoBuilder
+> resources available.=C2=A0 Please contact me or Richard regarding that s=
+tatement.
+>
+> If no one steps up by April 24th (six weeks -ish from now), Thud will be
+> moved to EOL status.
+
+It was pointed out to me that there is no Maintainer selection process
+or criteria defined.=C2=A0 This=C2=A0 will have to be sorted out before we=
+ move
+forward on this transition.
 
 
---_000_MWHPR04MB0815213A727EBB3A7BCABB2FF6F60MWHPR04MB0815namp_
-Content-Type: text/html; charset="iso-8859-1"
+- armin
+
+> - Armin
+>
+>
+>
+>
+>=20
+
+
+--------------19E5ED9D72DA0BCF347BA809
+Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
 
 <html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 12pt;=
- color: rgb(0, 0, 0);">
-<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Helvetica=
-, sans-serif; background-color: rgb(255, 255, 255)">
-<span style=3D"font-family: Calibri, Helvetica, sans-serif; background-colo=
-r: rgb(255, 255, 255); display: inline !important">I'm trying to build am i=
-mage that supports X11 and will use the official 7&quot; touch screen from =
-the Raspberry Pi organization</span>&nbsp;for
- the raspberrypi2.&nbsp; To test I've built both core-image-x11 and core-im=
-age sato with no changes to either recipe and am getting the same behavior =
-from both.&nbsp; What happens is when I plug in the unit the splash screen =
-is shown on the 7&quot; display then the output
- from the kernel booting is shown.&nbsp; At some point during the kernel bo=
-ot process the screen goes black but it doesn't look like the display has t=
-urned off.&nbsp; I am hooked up to the debug pins on the header and am able=
- to log into the pi so the device has booted
- properly.&nbsp; Also if I attach a monitor via HDMI to the pi the core-ima=
-ge-x11 shows a terminal on the monitor and the core-image-sato shows the de=
-sktop.&nbsp; If you touch the touch screen the cursor will move around on t=
-he monitor so the touch screen is working
- properly.</div>
-<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Helvetica=
-, sans-serif; background-color: rgb(255, 255, 255)">
-<br>
-</div>
-<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Helvetica=
-, sans-serif; background-color: rgb(255, 255, 255)">
-I can't find anything in the meta-raspberry pi documentation for how to ena=
-ble to the 7&quot; touch screen but I did find from an old mailing archive =
-that adding&nbsp;
-<pre style=3D"font-family: courier, &quot;courier new&quot;, monospace; fon=
-t-size: 14px; margin: 0px; background-color: rgb(255, 255, 255)">RASPBERRYP=
-I_DISPLAY =3D &quot;1&quot;</pre>
-<pre style=3D"font-family: courier, &quot;courier new&quot;, monospace; fon=
-t-size: 14px; margin: 0px; background-color: rgb(255, 255, 255)"><span styl=
-e=3D"margin: 0px; font-size: 16px; font-family: Calibri, Helvetica, sans-se=
-rif; background-color: rgb(255, 255, 255); display: inline !important">to t=
-he local.conf is all that is needed.  I have added that to the end of my lo=
-cal.conf but that didn't fix the issue.  That was from ~3years ago though s=
-o I'm wondering if things have changed.</span><br></pre>
-<pre style=3D"font-family: courier, &quot;courier new&quot;, monospace; fon=
-t-size: 14px; margin: 0px; background-color: rgb(255, 255, 255)"><span styl=
-e=3D"margin: 0px; font-size: 16px; font-family: Calibri, Helvetica, sans-se=
-rif; background-color: rgb(255, 255, 255); display: inline !important"><br>=
-</span></pre>
-<pre style=3D"font-family: courier, &quot;courier new&quot;, monospace; fon=
-t-size: 14px; margin: 0px; background-color: rgb(255, 255, 255)"><span styl=
-e=3D"margin: 0px; font-size: 16px; font-family: Calibri, Helvetica, sans-se=
-rif; background-color: rgb(255, 255, 255); display: inline !important">Than=
-ks</span></pre>
-</div>
-<br>
-</div>
-</body>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
+8">
+  </head>
+  <body>
+    <br>
+    <br>
+    <div class=3D"moz-cite-prefix">On 3/13/20 11:03 AM, akuster via
+      Lists.Yoctoproject.Org wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+      cite=3D"mid:15FBEF1FC40D189D.8114@lists.yoctoproject.org">
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+The Poky thud branch is now under 'Community support' and is seeking a
+maintainer to continue supporting the following repos for the thud release=
+:
+
+bitbake, core, meta-yocto and yocto-docs.
+
+
+There will be no more point releases.
+
+see
+<a class=3D"moz-txt-link-freetext" href=3D"https://wiki.yoctoproject.org/w=
+iki/Stable_Release_and_LTS#Maintainer_Procedures">https://wiki.yoctoproject=
+.org/wiki/Stable_Release_and_LTS#Maintainer_Procedures</a>=C2=A0
+to get an idea on what is expected.
+
+The one thing we (YP) don't know is if there will be AutoBuilder
+resources available.=C2=A0 Please contact me or Richard regarding that sta=
+tement.
+
+If no one steps up by April 24th (six weeks -ish from now), Thud will be
+moved to EOL status.
+</pre>
+    </blockquote>
+    <br>
+    It was pointed out to me that there is no Maintainer selection
+    process or criteria defined.=C2=A0 This=C2=A0 will have to be sorted o=
+ut
+    before we move forward on this transition.<br>
+    <br>
+    <br>
+    - armin<br>
+    <br>
+    <blockquote type=3D"cite"
+      cite=3D"mid:15FBEF1FC40D189D.8114@lists.yoctoproject.org">
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+- Armin
+
+
+
+</pre>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+</pre>
+    </blockquote>
+    <br>
+  </body>
 </html>
 
---_000_MWHPR04MB0815213A727EBB3A7BCABB2FF6F60MWHPR04MB0815namp_--
+--------------19E5ED9D72DA0BCF347BA809--
