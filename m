@@ -1,67 +1,71 @@
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
- by mx.groups.io with SMTP id smtpd.web12.7454.1584498617089751717
+Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+ by mx.groups.io with SMTP id smtpd.web10.7497.1584498617646204631
  for <yocto@lists.yoctoproject.org>;
  Tue, 17 Mar 2020 19:30:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=HPAiRBpf;
- spf=pass (domain: gmail.com, ip: 209.85.215.178, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f178.google.com with SMTP id m5so12822744pgg.0
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=fPe9EUyV;
+ spf=pass (domain: gmail.com, ip: 209.85.216.41, mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f41.google.com with SMTP id q16so555607pje.1
         for <yocto@lists.yoctoproject.org>; Tue, 17 Mar 2020 19:30:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id;
-        bh=yiVhQkVjTlvZMVwnLqxj51+waJgkzelq8pkCVUnWmBM=;
-        b=HPAiRBpff9fCRI9Nwme8125A0Xp6fZBPD24SEpeThi+rv5DwKQAp0GTfXSR3bBEs9w
-         4JQZ+nsezMcfuoDYmCDITLWv2fs54Z0bvQZ0TclXaQVUUt7NN7RjkHJoKhMA254q7cBR
-         A0HCiGjd8afhGIi289C7WYss6Y9x6UnX3CrRkmdyKXGBWLoalgqDtRRjEAufA+CQhyN3
-         IXZtnAo4j3Tun6T8XNF4lyoklE4M9VFZ+eloA3VFcOtX1oCMTNUkCan6XmYSowFaLEXZ
-         GD6CxV9vX5/V4ANn2GMyzVyXMdmb8r5/u/FJ1PbSiLdrJghOsE/MplO9LPVHPFv4wAyk
-         kPYw==
+        h=from:to:subject:date:message-id:in-reply-to:references;
+        bh=ZjKcE9PuHXO6N3CNJKAEH9TdU+7VCVql6Gq0G3KoY+M=;
+        b=fPe9EUyV60k2x//2UwpcIVM6tVx//0CkTmvHK9En3iDv2h84B6UPV36+4D5Fdb8HBx
+         h4YzjQ36H7iBfPYMHBZxEI8Wr7aJumIaUShEh200Q1WnR+LndoayL32Im8RC6KljhCkG
+         WY93uSYBWhJpZKmZULrRrjknMQF86PUpzsQD79Rzxkb85FdEAh2ie1eRlx49/E4gFFVR
+         Lz3QvE5RbzUqTli26EkYhLfJAlrPrlLSFYDtTzso9GUT6LCwhHcgVmYNKdVqXcWsamP0
+         XuU4bExQJF+UAf0VCKooiAa5XCAKl1EsLLbM3PiYIQs1hKTnqHQVxkoYPfUL+FZVPTUF
+         m+0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=yiVhQkVjTlvZMVwnLqxj51+waJgkzelq8pkCVUnWmBM=;
-        b=bB+guTZZTZ6Rj2NK2rM/nStEXnWLljfWnNSAD3DTN2ITD2VPmsbQMM2bLXextQwM9Z
-         /mWR8TtQ+fOFWDmyv43AHcxiFW2F81LGFQAYNTajOwcKZCRgXNrq3l37iH0N5IF02UZj
-         MvWL96hsjn5YhWLRHRfPilXab+JehnjZiNCyiW0X+QfTa3Iu5BtOshWaOTVI4OwuR2CQ
-         uEPQ8UILxcQdNRscT9HlWlFZV9H3q7c3nv7+gbSLAPPOE20eHWUNhcj4Rqx1ekiB8U6e
-         TI8dqX9jxfUUiaNbxaTAxazHaVsb45t6SlxyavYhLeWsNWd2YlwfSeXMZjUymWQbgfYf
-         CR0A==
-X-Gm-Message-State: ANhLgQ3Tr9iPFZiVuNJER4bfPgko81kM6uxkU32uTp0Vp4Mca116GNtR
-	zFnzZW75ZMnoLeNZH1s9TocDrhxs
-X-Google-Smtp-Source: ADFU+vvaUmav2VZeoRBtXsyNKXuYwdm9tUq8G0ObIjGwiGBLnyPIPSXbgka0He19LNE3+ES9RRr8gQ==
-X-Received: by 2002:aa7:8dcc:: with SMTP id j12mr1904443pfr.57.1584498616100;
+        h=x-gm-message-state:from:to:subject:date:message-id:in-reply-to
+         :references;
+        bh=ZjKcE9PuHXO6N3CNJKAEH9TdU+7VCVql6Gq0G3KoY+M=;
+        b=Z/AvyWjmqxr3RWNiHm9aSWvpQ5iAyszJS16hiB6TWqBhYUwh1iWByBxXLfkUemlYrX
+         3RTtdtHV8CdmGTuuiC9eRhYWRhPFPVl7FuwZ81NEqJSScCNBe/4U0rc4N830bYmn84vy
+         qeaLlhKQBouKq6OtRe8jqjdCrWRV9B8o3XsYWj8K/6t6XmYnJ6JkKilzIhetJBj/jYbd
+         aGO5EmyJhfYQGcNEEIO7pBom5YQDXAgRyPwqjQUyk+ascYmfrwnI+GPk6AYHb3wexoYk
+         DlrUsfRC3cdWsBVJwiKeF0iSc11EVEQumDKw48U3Iail+xJDipSYfp6Tz2EoZxfAjETE
+         LWhQ==
+X-Gm-Message-State: ANhLgQ14DFlLMLRR8Fpq1e4cIJ3g5lXeKw9bTnltUiZfzT/LGfMjfOSj
+	yh3OWhaGDiSxKIu3LcfFhcvqWI8J
+X-Google-Smtp-Source: ADFU+vs8j9RwYSyrEsa6JSIZeSlJUSuJEUp9yHgsnpIztIyBi4e7aF8/1LRtWliTxP+5oaMmmJdlpw==
+X-Received: by 2002:a17:902:7615:: with SMTP id k21mr1631674pll.160.1584498616898;
         Tue, 17 Mar 2020 19:30:16 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from hilo.hsdl.ca.comcast.net (c-67-181-203-136.hsd1.ca.comcast.net. [67.181.203.136])
-        by smtp.gmail.com with ESMTPSA id z3sm4340083pfz.155.2020.03.17.19.30.15
+        by smtp.gmail.com with ESMTPSA id z3sm4340083pfz.155.2020.03.17.19.30.16
         for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 17 Mar 2020 19:30:15 -0700 (PDT)
+        Tue, 17 Mar 2020 19:30:16 -0700 (PDT)
 From: "akuster" <akuster808@gmail.com>
 To: yocto@lists.yoctoproject.org
-Subject: [meta-security][PATCH 1/7] lynis: add missing rdepends
-Date: Wed, 18 Mar 2020 02:30:08 +0000
-Message-Id: <20200318023014.31723-1-akuster808@gmail.com>
+Subject: [meta-security][PATCH 2/7] fail2ban: change hardcoded sysklogd to VIRTUAL-RUNTIME_base-utils-syslog
+Date: Wed, 18 Mar 2020 02:30:09 +0000
+Message-Id: <20200318023014.31723-2-akuster808@gmail.com>
 X-Mailer: git-send-email 2.17.1
-
-add findutils
+In-Reply-To: <20200318023014.31723-1-akuster808@gmail.com>
+References: <20200318023014.31723-1-akuster808@gmail.com>
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- meta-security-compliance/recipes-auditors/lynis/lynis_2.7.5.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipes-security/fail2ban/python3-fail2ban_0.10.4.0.bb | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/meta-security-compliance/recipes-auditors/lynis/lynis_2.7.5.bb b/meta-security-compliance/recipes-auditors/lynis/lynis_2.7.5.bb
-index 21e4517..245761c 100644
---- a/meta-security-compliance/recipes-auditors/lynis/lynis_2.7.5.bb
-+++ b/meta-security-compliance/recipes-auditors/lynis/lynis_2.7.5.bb
-@@ -38,4 +38,4 @@ do_install () {
- FILES_${PN} += "${sysconfdir}/developer.prf ${sysconfdir}/default.prf"
- FILES_${PN}-doc += "lynis.8 FAQ README CHANGELOG.md CONTRIBUTIONS.md CONTRIBUTORS.md" 
+diff --git a/recipes-security/fail2ban/python3-fail2ban_0.10.4.0.bb b/recipes-security/fail2ban/python3-fail2ban_0.10.4.0.bb
+index 8673c10..e737f50 100644
+--- a/recipes-security/fail2ban/python3-fail2ban_0.10.4.0.bb
++++ b/recipes-security/fail2ban/python3-fail2ban_0.10.4.0.bb
+@@ -46,6 +46,6 @@ INITSCRIPT_PARAMS = "defaults 25"
  
--RDEPENDS_${PN} += "procps"
-+RDEPENDS_${PN} += "procps findutils"
+ INSANE_SKIP_${PN}_append = "already-stripped"
+ 
+-RDEPENDS_${PN} = "sysklogd iptables sqlite3 python3-core python3-pyinotify python3-logging python3-fcntl"
+-RDEPENDS_${PN} += " python3-json "
++RDEPENDS_${PN} = "${VIRTUAL-RUNTIME_base-utils-syslog} iptables sqlite3 python3-core python3-pyinotify"
++RDEPENDS_${PN} += " python3-logging python3-fcntl python3-json"
+ RDEPENDS_${PN}-ptest = "python3-core python3-io python3-modules python3-fail2ban"
 -- 
 2.17.1
 
