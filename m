@@ -1,263 +1,130 @@
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com [209.85.222.49])
- by mx.groups.io with SMTP id smtpd.web10.16551.1584541869356355565
+Received: from EUR02-AM5-obe.outbound.protection.outlook.com (EUR02-AM5-obe.outbound.protection.outlook.com [40.107.0.80])
+ by mx.groups.io with SMTP id smtpd.web11.16383.1584542217751847031
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 Mar 2020 07:31:09 -0700
+ Wed, 18 Mar 2020 07:36:59 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=l1EsFoWb;
- spf=pass (domain: gmail.com, ip: 209.85.222.49, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-ua1-f49.google.com with SMTP id 9so9015244uav.12
-        for <yocto@lists.yoctoproject.org>; Wed, 18 Mar 2020 07:31:09 -0700 (PDT)
+ dkim=pass header.i=@topicbv.onmicrosoft.com header.s=selector2-topicbv-onmicrosoft-com header.b=EHLDSFrc;
+ spf=pass (domain: topicproducts.com, ip: 40.107.0.80, mailfrom: mike.looijmans@topicproducts.com)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hsy8ZGVM/h6584dZmY8OHDOKIk2OsQHT3uXykLmSAD0=;
-        b=l1EsFoWbr54SruauwazXcxym+JdnBdBTPHy85uYl8YjLBR+hmYZlRF+abMyXCO6Pc5
-         sjbRLA48OFIRdG3p+4VRtUU3MHOQhqUMf9QnNhdCiJ9zOcAugG9sfXmf1dj6j3vOu+Qm
-         UrealcsFoBk0XLicm0hHMpvHWkm6HO+nLvDlmC860BcNTD7ll1dF1vESuYgh6wdZIcbn
-         xs7w/1F+FVd7iLU2bF5EJsjZKOfJae/wMQ34tooOKOnH3drDhxhh+Eh4gZuj+ITJVMWr
-         8QmTopeDrfZMVO8lW9gbh6Cb7tKLIELtpBugQ7Zq3LYho2qZnVnYMdWfiailDv0N5+nO
-         guMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hsy8ZGVM/h6584dZmY8OHDOKIk2OsQHT3uXykLmSAD0=;
-        b=oe9BrSBKlwdhc7h6N5vJkpEMhk1/Vr3n0i9laFLgc3FBgmKkfVTJP0kptPJJHHBwCj
-         SDIpbhm/9ul0DdKeQXHmmdVkuOj/sLn0dYxK8bOxvQacTt5YUG/HXGi87R50+/QxWe21
-         ZptQXM2LnQutXjwFGYlyTl+eDKWQHSNR6fWK4kNsu87yLldoVZ26GIsAPz0YCIWDuM7Z
-         6cG38IO+eazUksaZ7dRS8AQE66FavxrrbCV0kSVO5Qw5XwA4fcZaiqfh8nuD2CDWxkaf
-         amn/6UO9ejGDsLvpHn1+0MXjtx7hqYcCZwrfVQp3KBLcW6MWBUneH1I64Iu5sPuDJ0Lh
-         8fXA==
-X-Gm-Message-State: ANhLgQ07/LFDwBCQA0o1vRlAq4m4NrbcYdWgKSTs7+ubdlppn6//1sRK
-	eNf5JFzizkKodp0RZr6yA9IlJZvNpgT75yHYP1s=
-X-Google-Smtp-Source: ADFU+vsg9K+MY8PcYUJ6IPtD0dd1rYOm775RSw9lPt29VFegbA+NkVvTmvbP4xqikszba+uIheCu9uSxUC12CfH1bd4=
-X-Received: by 2002:ab0:1158:: with SMTP id g24mr3016239uac.71.1584541868331;
- Wed, 18 Mar 2020 07:31:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <rCbr.1584535957803213201.lfzw@lists.yoctoproject.org>
- <20200318130126.GK104502@korppu> <CAM9ZRVuQyj7X0YFqkpSFWM2=kQHnu8ZGpMsD34ntHYny4x7XJg@mail.gmail.com>
- <251912923.167286.1584540746314.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <251912923.167286.1584540746314.JavaMail.zimbra@savoirfairelinux.com>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Wed, 18 Mar 2020 15:30:57 +0100
-Message-ID: <CANNYZj-gOE8PBFy_BZAiaVc7M30oKOBT80GkQ8Q=FfnrqzBB=A@mail.gmail.com>
+ d=topicbv.onmicrosoft.com; s=selector2-topicbv-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RP3QLb2/NpHGvX8Vm1If3jTBqVSmk97/xAnUvWo765w=;
+ b=EHLDSFrc9O8+qSUcdPQS676+JCr1e9bhJzPucPAkX/JpJX3kiUS6cUX42BxeSySOccqAoSR3Iki1wDz2tHBcMkNcyXUPory+h8a+wrBMO0zv0hSRM7sBIl0jT5diwF6dyaLk5QZeESfzz8YogVJzIKLTA+YDKVe34K2SMX0PYcw=
+Received: from DB6PR0301CA0038.eurprd03.prod.outlook.com (2603:10a6:4:3e::48)
+ by AM6PR04MB4102.eurprd04.prod.outlook.com (2603:10a6:209:47::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.14; Wed, 18 Mar
+ 2020 14:36:55 +0000
+Received: from DB5EUR01FT017.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:4:3e:cafe::68) by DB6PR0301CA0038.outlook.office365.com
+ (2603:10a6:4:3e::48) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.21 via Frontend
+ Transport; Wed, 18 Mar 2020 14:36:55 +0000
+Authentication-Results: spf=pass (sender IP is 13.81.10.179)
+ smtp.mailfrom=topicproducts.com; lists.yoctoproject.org; dkim=fail (signature
+ did not verify) header.d=topicbv.onmicrosoft.com;lists.yoctoproject.org;
+ dmarc=none action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
+ designates 13.81.10.179 as permitted sender) receiver=protection.outlook.com;
+ client-ip=13.81.10.179; helo=westeu13-emailsignatures-cloud.codetwo.com;
+Received: from westeu13-emailsignatures-cloud.codetwo.com (13.81.10.179) by
+ DB5EUR01FT017.mail.protection.outlook.com (10.152.4.252) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2814.14 via Frontend Transport; Wed, 18 Mar 2020 14:36:54 +0000
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (104.47.18.108) by westeu13-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Wed, 18 Mar 2020 14:36:52 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=g07J5ejOnhVPSuBguFdaCOGB9pZhpOBysj5CNZRnY9GFBNSyd9NUuiwPe74C8T2GbcideqYfDczxhwQ533Zq3e4EcfrcMsTGly9FiCMvPleiKf6tZ+XKrcHihSF4wZs6BruWfYQxBawOUc3YKdBfdhHfdtLM4ERsV3yXROUJvxZ17DWbe31/pe7dulDv+R32UV41kaX47yrP5zKhh1wixVJzuy7sSMVsWY3B8wA3hh16FNweapTjiT6iVT8pD3O+I6P57k/A48hv28H0iWXUjTyLw/NFHT/3jnKYxsXSj04450SRaRChU1pJtSnElm2iWlI8UacvWTe/jOuXviZrhg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RP3QLb2/NpHGvX8Vm1If3jTBqVSmk97/xAnUvWo765w=;
+ b=E870FrCSmPDyk8Dkx2qjcPjYCggzYf0PkQNDk+kIYjUTV8TtQOxVf9kjCadEfUdKu3aR09N4Dot1BwvfZnaZrQL/x+AL8f2z6QzBDymPpriJSnzM/u9Z8a+EjHkITjm5SmlTikiCPtSb73wtYm69rneE+uMxY+TewoCI32kzHSlnEvJfNcnWWNOxHKqjr1CEjwvtoebh+XI2PKQHcDgNJvdo9/fwtUOOvPjpNH/eVVDONFXYMbDgfJ74g6JH2Cl6Phm/PV+tMo1Ujohp/4/1k/k6RrEQflp6QnCBmp7CpOViG1qoGt/4fNSCOAHv4BoQA4Q8FF8aeyHYpHvAdl80uA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=topicproducts.com; dmarc=pass action=none header.from=topic.nl;
+ dkim=pass header.d=topic.nl; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=topicbv.onmicrosoft.com; s=selector2-topicbv-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RP3QLb2/NpHGvX8Vm1If3jTBqVSmk97/xAnUvWo765w=;
+ b=xnG9muoSYmHB2Hed0w77Nn6xtvlnCN6ksi9rhF6kY/dOQ1EleZIKHmEXdUCPpa9IVWZhDCkfylmSfGCwE+WSrD1THQTu9c2pgZUZpRqYhs1jbt5w+MCIsz2YFRr6k9jildydgaEwr+qHMwN9Jnu8Rze3ufSP7+T14AtlvGVP7BM=
+Authentication-Results-Original: spf=none (sender IP is )
+ smtp.mailfrom=mike.looijmans@topicproducts.com; 
+Received: from DB3PR0402MB3947.eurprd04.prod.outlook.com (52.134.67.147) by
+ DB3PR0402MB3785.eurprd04.prod.outlook.com (52.134.71.145) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2814.21; Wed, 18 Mar 2020 14:36:51 +0000
+Received: from DB3PR0402MB3947.eurprd04.prod.outlook.com
+ ([fe80::380e:f722:2d0d:9c71]) by DB3PR0402MB3947.eurprd04.prod.outlook.com
+ ([fe80::380e:f722:2d0d:9c71%6]) with mapi id 15.20.2814.025; Wed, 18 Mar 2020
+ 14:36:51 +0000
 Subject: Re: [yocto] What are the key factors for yocto build speed?
-To: Jean-Marie Lemetayer <jean-marie.lemetayer@savoirfairelinux.com>
-Cc: Paul Barker <pbarker@konsulko.com>, Mikko Rapeli <mikko.rapeli@bmw.de>, 
-	oliver westermann <oliver.westermann@cognex.com>, yocto@lists.yoctoproject.org, 
-	embedded-discuss <embedded-discuss@lists.savoirfairelinux.net>
-Content-Type: multipart/alternative; boundary="0000000000003197e205a121e74d"
+To: yocto@lists.yoctoproject.org
+References: <rCbr.1584535957803213201.lfzw@lists.yoctoproject.org>
+ <15FD6B43E957AFDB.13190@lists.yoctoproject.org>
+From: "Mike Looijmans" <mike.looijmans@topic.nl>
+Organization: Topic
+Message-ID: <5bf4cb3f-cb68-7f26-37dc-b027df0c1aad@topic.nl>
+Date: Wed, 18 Mar 2020 15:36:50 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+In-Reply-To: <15FD6B43E957AFDB.13190@lists.yoctoproject.org>
+X-ClientProxiedBy: AM4PR07CA0031.eurprd07.prod.outlook.com
+ (2603:10a6:205:1::44) To DB3PR0402MB3947.eurprd04.prod.outlook.com
+ (2603:10a6:8:7::19)
+Return-Path: mike.looijmans@topicproducts.com
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.1.130] (83.128.90.119) by AM4PR07CA0031.eurprd07.prod.outlook.com (2603:10a6:205:1::44) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.12 via Frontend Transport; Wed, 18 Mar 2020 14:36:50 +0000
+X-Originating-IP: [83.128.90.119]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 9dde1a85-1061-4c52-85ec-08d7cb49ce3c
+X-MS-TrafficTypeDiagnostic: DB3PR0402MB3785:|AM6PR04MB4102:
+X-Microsoft-Antispam-PRVS: 
+	<AM6PR04MB4102810DA681CF5665F2313396F70@AM6PR04MB4102.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:4714;OLM:4714;
+X-Forefront-PRVS: 03468CBA43
+X-Forefront-Antispam-Report-Untrusted: 
+ SFV:NSPM;SFS:(10009020)(136003)(376002)(39840400004)(396003)(346002)(366004)(199004)(52116002)(42882007)(66946007)(2906002)(2616005)(956004)(36916002)(26005)(5660300002)(53546011)(16576012)(31686004)(66556008)(6486002)(66476007)(16526019)(6916009)(81156014)(186003)(81166006)(508600001)(36756003)(31696002)(8676002)(8936002)(44832011)(316002)(4744005);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3785;H:DB3PR0402MB3947.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;
+Received-SPF: None (protection.outlook.com: topicproducts.com does not
+ designate permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: 
+ yHpJa56jHawjFzsPXElyCPcBmEbbgBfHt5ntMKJJPDHEGe3LXZasYacZQqtki4wlLJy9mdkg4O877Rknq2USCMuM4VbsH2cJdZrRqgqIaG/IuMvTHLXW9CYoaDibbMB1fZ2L766vVULHlSOm9BDfdlvTV+TXVEOJucRxTBWsakBTdoU6dD8A363vZitKtyhCKyJJWI9Pb3fuH/R2s57klSbzn2Fxk5MmFpuGtoCXzsn+PV46ffo/D1P5/CoghT9LXb3wPPusT8VmXaDbftCzjKDFPcQnRaYuWSr3Fs06FpUSBDjboBcGFHXCbrNICIAzjJ6/4ahrugFmwlZp/+CPq1B29dsTDGTfwUseRuHaPUUHqt3MkJV/9S2sd6hBRu/0D8vFBMuTZORrz35bOOpiXzUyu4dCcJu7MaKPrqCWG8hE6d2Fk0B860gFa4pjMQ3e
+X-MS-Exchange-AntiSpam-MessageData: CH8LqFb6aITTn/9+JdUEAzTjd3ck5oJ8rzcFu4sQ++AzYdKlKvqNCdUI4SrPw67X1mbhjEWxnAOrrJGUsP67T4w68ev3l60r5v1eHSxUdCeR5O4SvceigVYsqIB+uP43NgapBJoudIgTHdgmMaE5Gw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3785
+X-CodeTwo-MessageID: 7ef15ff6-82c4-4c98-bba2-5bd10c344a44.20200318143652@westeu13-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
+ DB5EUR01FT017.eop-EUR01.prod.protection.outlook.com
+X-Forefront-Antispam-Report: 
+	CIP:13.81.10.179;IPV:;CTRY:NL;EFV:NLI;SFV:NSPM;SFS:(10009020)(396003)(346002)(376002)(136003)(39840400004)(199004)(46966005)(356004)(4744005)(42882007)(336012)(8676002)(82310400001)(246002)(7636002)(31686004)(16526019)(26005)(186003)(47076004)(36916002)(6916009)(2616005)(956004)(2906002)(53546011)(44832011)(316002)(8936002)(5660300002)(36756003)(16576012)(6486002)(70586007)(7596002)(31696002)(70206006)(508600001);DIR:OUT;SFP:1101;SCL:1;SRVR:AM6PR04MB4102;H:westeu13-emailsignatures-cloud.codetwo.com;FPR:;SPF:Pass;LANG:en;PTR:westeu13-emailsignatures-cloud.codetwo.com;A:1;
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 
+	2c80def5-e513-49e5-c6a4-08d7cb49cbe6
+X-Forefront-PRVS: 03468CBA43
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	27MIc03BiJsBH5LB9Q/IYWLrrv1vfSu/ykk6Ex+bibix8Gc390VyfSMeaDdibvs+IOHURZkM2YAxpOosvYH/CLr73k1/Pj6Ib6sn85GbexN3uIcclYazYnBZNDnjaJmyNuuabgGhFS/dLSKuHlt8P6AcPWr7mjL+GkX3dyWB2q6mdw9MfBPUQrTrGTRWuF0HS6eHdjP9Ogj54qOCowfZPfOMw103KoX+yjeRcy8+AQB5dwBKe908i9gepy5yP50b6QCrqYc+Kya3H4v/rm55hLTZXxeeUXoowcF4r5GdegX3Xnv9kj4y/L6PNjTfFt13k7GB+1ssQZrcV2EWDUyeTqgvpwTAkHnyofqFNU9bCE7mS13AW5d1qW+RXgFfmbQhyDrEotI38ch1ACA0b5PHqiP+X5e3n0qkwcSCBB07q5kwLIgJA7i6CE0Cq01a1phBZiRMgi6LlnCyicFMNJCADwWilSE5QL281JSl7asGTotnsmFFnYxBy1qglkN/Pdyz
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Mar 2020 14:36:54.8879
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9dde1a85-1061-4c52-85ec-08d7cb49ce3c
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[13.81.10.179];Helo=[westeu13-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB4102
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
---0000000000003197e205a121e74d
-Content-Type: text/plain; charset="UTF-8"
-
-I have to say that AMD aggressively pursuing core count increase on
-consumer level CPUs is awesome news for the YP. Previously, you had to buy
-some hugely overpriced Xeons or similar to be able to work efficiently, or
-rely on CI doing builds for you which makes interactive development
-complicated.
-
-Alex
-
-On Wed, 18 Mar 2020 at 15:12, Jean-Marie Lemetayer <
-jean-marie.lemetayer@savoirfairelinux.com> wrote:
-
-> Hi,
->
-> In my company we have tested some "big Ryzen" configurations to speed up
-> Yocto builds.
->
-> The conclusion of these tests is that the build time is almost only
-> related to the CPU score: https://www.cpubenchmark.net/high_end_cpus.html
->
-> The speed (overclock) and size of the RAM does not influence the build
-> time, neither the the use of a SATA SSD or a NVME.
->
-> For example one of our build servers is using:
-> - AMD Ryzen 9 3900X
-> - ASUS PRIME X570-P
-> - 32Go DDR4 3200 MHZ CL14
-> - 500Go SSD
->
-> It is a really good price / build time ratio configuration.
->
-> Best regards,
-> Jean-Marie
->
-> On Mar 18, 2020, at 2:29 PM, Paul Barker pbarker@konsulko.com wrote:
-> > On Wed, 18 Mar 2020 at 13:01, Mikko Rapeli <mikko.rapeli@bmw.de> wrote:
-> >>
-> >> On Wed, Mar 18, 2020 at 05:52:37AM -0700, Oliver Westermann wrote:
-> >> > Hey,
-> >> >
-> >> > We're currently using a VM on Windows and it's a lot slower than the
-> native
-> >> > linux build (which is expected).
-> >> > We're looking into getting a dedicated build server for our team
-> (basically a
-> >> > self-build tower PC). Any suggestions what to put in that build to
-> get the most
-> >> > out of it?
-> >> >
-> >> > Currently we're looking at a big Ryzen, 64G of RAM and one or
-> multiple SSDs on a
-> >> > "consumer grade" board like the X570.
-> >>
-> >> Drop all virtualization and go for Linux on bare metal. Then make sure
-> there
-> >> is enough(tm) physical RAM for each CPU thread. For a "big Ryzen" the
-> 64G of RAM
-> >> sounds
-> >> too little. I'd go higher there, but it all depends what kind of project
-> >> is being compiled.
-> >>
-> >> I would also setup CPU, RAM, disk IO and network IO monitoring on the
-> build
-> >> machines
-> >> and review and monitor the build times and results when the project
-> evolves.
-> >> There are
-> >> times when most CPUs will be idling and there will be times when IO to
-> disk is
-> >> happening even when RAM is available. Linux kernel can be tuned to
-> avoid disk IO
-> >> if
-> >> RAM is still available for example.
-> >
-> > What Mikko said is excellent advice.
-> >
-> > I'd recommend NVMe drives if you can. My build machine has two large
-> > M.2 NVMe drives, one is used for the working directory and the other
-> > for sstate, downloads and source checkouts to make the best use of the
-> > available bandwidth. I find that XFS is a better fit than ext4 when
-> > you've got fast drives and highly parallel I/O workloads.
-> >
-> > Make sure you spread your RAM across the different memory channels on
-> > your motherboard as this increases memory bandwidth - this usually
-> > means either filling your RAM slots or half-filling them with RAM in
-> > every 2nd slot but you'll need to check the motherboard manual to
-> > confirm the channel layout.
-> >
-> > Let me know if you need a detailed review of your proposed setup.
-> >
-> > Thanks,
-> > Paul
-> >
-> >
+On 18-03-2020 15:09, Mike Looijmans via Lists.Yoctoproject.Org wrote:
+> Big ryzen is a good choice.
 > 
->
+> My home rig is a Ryzen 1900, with only 8GB RAM. It's way faster at OE 
+> yocto builds than the i7 at work that has 32GB RAM installed.
 
---0000000000003197e205a121e74d
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>I have to say that AMD aggressively pursuing core cou=
-nt increase on consumer level CPUs is awesome news for the YP. Previously, =
-you had to buy some hugely overpriced Xeons or similar to be able to work e=
-fficiently, or rely on CI doing builds for you which makes interactive deve=
-lopment complicated.</div><div><br></div><div>Alex<br></div></div><br><div =
-class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, 18 Mar =
-2020 at 15:12, Jean-Marie Lemetayer &lt;<a href=3D"mailto:jean-marie.lemeta=
-yer@savoirfairelinux.com">jean-marie.lemetayer@savoirfairelinux.com</a>&gt;=
- wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi,<br>
-<br>
-In my company we have tested some &quot;big Ryzen&quot; configurations to =
-speed up Yocto builds.<br>
-<br>
-The conclusion of these tests is that the build time is almost only relate=
-d to the CPU score: <a href=3D"https://www.cpubenchmark.net/high_end_cpus.h=
-tml" rel=3D"noreferrer" target=3D"_blank">https://www.cpubenchmark.net/high=
-_end_cpus.html</a><br>
-<br>
-The speed (overclock) and size of the RAM does not influence the build tim=
-e, neither the the use of a SATA SSD or a NVME.<br>
-<br>
-For example one of our build servers is using:<br>
-- AMD Ryzen 9 3900X<br>
-- ASUS PRIME X570-P<br>
-- 32Go DDR4 3200 MHZ CL14<br>
-- 500Go SSD<br>
-<br>
-It is a really good price / build time ratio configuration.<br>
-<br>
-Best regards,<br>
-Jean-Marie<br>
-<br>
-On Mar 18, 2020, at 2:29 PM, Paul Barker <a href=3D"mailto:pbarker@konsulk=
-o.com" target=3D"_blank">pbarker@konsulko.com</a> wrote:<br>
-&gt; On Wed, 18 Mar 2020 at 13:01, Mikko Rapeli &lt;<a href=3D"mailto:mikk=
-o.rapeli@bmw.de" target=3D"_blank">mikko.rapeli@bmw.de</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; On Wed, Mar 18, 2020 at 05:52:37AM -0700, Oliver Westermann wrote=
-:<br>
-&gt;&gt; &gt; Hey,<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; We&#39;re currently using a VM on Windows and it&#39;s a lot=
- slower than the native<br>
-&gt;&gt; &gt; linux build (which is expected).<br>
-&gt;&gt; &gt; We&#39;re looking into getting a dedicated build server for =
-our team (basically a<br>
-&gt;&gt; &gt; self-build tower PC). Any suggestions what to put in that bu=
-ild to get the most<br>
-&gt;&gt; &gt; out of it?<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; Currently we&#39;re looking at a big Ryzen, 64G of RAM and o=
-ne or multiple SSDs on a<br>
-&gt;&gt; &gt; &quot;consumer grade&quot; board like the X570.<br>
-&gt;&gt;<br>
-&gt;&gt; Drop all virtualization and go for Linux on bare metal. Then make=
- sure there<br>
-&gt;&gt; is enough(tm) physical RAM for each CPU thread. For a &quot;big R=
-yzen&quot; the 64G of RAM<br>
-&gt;&gt; sounds<br>
-&gt;&gt; too little. I&#39;d go higher there, but it all depends what kind=
- of project<br>
-&gt;&gt; is being compiled.<br>
-&gt;&gt;<br>
-&gt;&gt; I would also setup CPU, RAM, disk IO and network IO monitoring on=
- the build<br>
-&gt;&gt; machines<br>
-&gt;&gt; and review and monitor the build times and results when the proje=
-ct evolves.<br>
-&gt;&gt; There are<br>
-&gt;&gt; times when most CPUs will be idling and there will be times when =
-IO to disk is<br>
-&gt;&gt; happening even when RAM is available. Linux kernel can be tuned t=
-o avoid disk IO<br>
-&gt;&gt; if<br>
-&gt;&gt; RAM is still available for example.<br>
-&gt; <br>
-&gt; What Mikko said is excellent advice.<br>
-&gt; <br>
-&gt; I&#39;d recommend NVMe drives if you can. My build machine has two la=
-rge<br>
-&gt; M.2 NVMe drives, one is used for the working directory and the other<=
-br>
-&gt; for sstate, downloads and source checkouts to make the best use of th=
-e<br>
-&gt; available bandwidth. I find that XFS is a better fit than ext4 when<b=
-r>
-&gt; you&#39;ve got fast drives and highly parallel I/O workloads.<br>
-&gt; <br>
-&gt; Make sure you spread your RAM across the different memory channels on=
-<br>
-&gt; your motherboard as this increases memory bandwidth - this usually<br=
->
-&gt; means either filling your RAM slots or half-filling them with RAM in<=
-br>
-&gt; every 2nd slot but you&#39;ll need to check the motherboard manual to=
-<br>
-&gt; confirm the channel layout.<br>
-&gt; <br>
-&gt; Let me know if you need a detailed review of your proposed setup.<br>
-&gt; <br>
-&gt; Thanks,<br>
-&gt; Paul<br>
-&gt; <br>
-&gt; <br>
-<br>
-</blockquote></div>
+Sorry - wrong number. My rig does not have a 1900, but an "AMD Ryzen 7 
+1700".
 
---0000000000003197e205a121e74d--
