@@ -1,324 +1,306 @@
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
- by mx.groups.io with SMTP id smtpd.web11.899.1584555162940211751
+Received: from us-smtp-delivery-188.mimecast.com (us-smtp-delivery-188.mimecast.com [216.205.24.188])
+ by mx.groups.io with SMTP id smtpd.web12.880.1584555309818028644
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 Mar 2020 11:12:43 -0700
+ Wed, 18 Mar 2020 11:15:10 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=IT2wk+RE;
- spf=pass (domain: blade-group.com, ip: 209.85.210.50, mailfrom: yann.dirson@blade-group.com)
-Received: by mail-ot1-f50.google.com with SMTP id e19so5477842otj.7
-        for <yocto@lists.yoctoproject.org>; Wed, 18 Mar 2020 11:12:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=blade-group.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8q+krTWc6YTmNwd0HR6hM94k9dOv0/5L4jfFpjCFAa0=;
-        b=IT2wk+REONsVEMzaCI0PubMSR9K+vevWc0wa1I8Svr7IimO/wTx+ggr0B0e0JXA9xR
-         8lc2Dsvgz9emA+YDOpFtwaexQ1D0RnIl6Xp/8iJ5VFXAMm8YIHgtoDb49UcUVQ0H0ubJ
-         wegF+wvNo4TB6xIs3JvCzIbRcKgP3jfYVYLGvN5dpp+0I0L7hC/bmj04mcwBMjizrQE9
-         nAxqhV3WLyBqazBHtP60cXrEzv/DKbuix5Z2Pv8/VDo/yVaiq1d3Bq8BYwEufwDLs2kb
-         nslABZRdrlG39Fw+ARp4TjoXIeuSJOuYdRSN7lrCu8hDNKTOSA5j0y7OsmsjTny8cPDy
-         4ioQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8q+krTWc6YTmNwd0HR6hM94k9dOv0/5L4jfFpjCFAa0=;
-        b=F9cOjLpwqKVLRNm9bq19DB6c1bAduBLXgPlyTzTU2bN0GjphHDV0zgJ2o4OQdwt5mR
-         SkyJPCPvkJq44ObLlwxK8IT/d+SRH0Tr1pfnADrtD8velVkvngUPd0b1VVgdseX0zkaQ
-         lFqEZXNmyVtMs+sACoK/NUCrN3t/iyiGsZSFALAIe3kPGWb107dtBD5d4dAC0YxBTVCR
-         EXPX+ta1L/VMcS/ydSK7GVE1DXwWL4dZB8VTJaTP4/xzCbuaTml4E8RU93WIoT7jwIg8
-         tX8c6PV1yJ5DX+IqAqHXcb35clbtFgVdty9mULFhzbuLto+0lu+30CH7+UiAbX5oaVOx
-         qYVA==
-X-Gm-Message-State: ANhLgQ2opJUeSgwjf0fK4SjAqtcR2Sfpk/6W3v2YjMa2zZJBie+s/SCe
-	1Ol5hF6jzW+aCmbL7xGs6vBWdKuOuN9QlOw4RfXGAw==
-X-Google-Smtp-Source: ADFU+vvAn2/HbxTRPebsD/nUr8CGStpXF4eYMU/lxytqQPM0Pu6WTZG1oxsHBF61Nt5gZ4XGFxaj4JeA+XqLgfmGh6c=
-X-Received: by 2002:a9d:4f0:: with SMTP id 103mr4840772otm.336.1584555162227;
- Wed, 18 Mar 2020 11:12:42 -0700 (PDT)
-MIME-Version: 1.0
+ dkim=missing; spf=pass (domain: abiomed.com, ip: 216.205.24.188, mailfrom: rsrinivasan@abiomed.com)
+Received: from mail.abiomed.com (autodiscover.abiomed.com [4.53.60.36])
+ (Using TLS) by relay.mimecast.com with ESMTP id
+ us-mta-409-t4gIUfdkOU2cI4H-hqsm3g-1; Wed, 18 Mar 2020 14:15:07 -0400
+X-MC-Unique: t4gIUfdkOU2cI4H-hqsm3g-1
+Received: from USDVREX02.abiomed.com (172.16.1.94) by USDVREX01.abiomed.com
+ (172.16.1.91) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 18 Mar
+ 2020 14:15:06 -0400
+Received: from USDVREX02.abiomed.com (172.16.1.94) by USDVREX02.abiomed.com
+ (172.16.1.94) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 18 Mar
+ 2020 14:15:06 -0400
+Received: from USDVREX02.abiomed.com ([::1]) by USDVREX02.abiomed.com ([::1])
+ with mapi id 15.00.1395.000; Wed, 18 Mar 2020 14:15:06 -0400
+From: "Srini" <rsrinivasan@abiomed.com>
+To: "Stewart, David C" <david.c.stewart@intel.com>, "mikko.rapeli@bmw.de"
+	<mikko.rapeli@bmw.de>, "mike.looijmans@topic.nl" <mike.looijmans@topic.nl>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: <EXT> Re: [yocto] What are the key factors for yocto build speed?
+Thread-Topic: <EXT> Re: [yocto] What are the key factors for yocto build
+ speed?
+Thread-Index: AQHV/SQvHMEDglrWJECufLQaId00LqhOP5+AgAAH1gCAAAv/AIAACj8AgAAFvYCAAAu0AIAAJk9QgABN6QD//8ER0A==
+Date: Wed, 18 Mar 2020 18:15:06 +0000
+Message-ID: <4be9e6dcdc7c47808a0e970dbf4bdd39@USDVREX02.abiomed.com>
 References: <rCbr.1584535957803213201.lfzw@lists.yoctoproject.org>
- <20200318130126.GK104502@korppu> <CAM9ZRVuQyj7X0YFqkpSFWM2=kQHnu8ZGpMsD34ntHYny4x7XJg@mail.gmail.com>
+ <20200318130126.GK104502@korppu>
+ <CAM9ZRVuQyj7X0YFqkpSFWM2=kQHnu8ZGpMsD34ntHYny4x7XJg@mail.gmail.com>
  <251912923.167286.1584540746314.JavaMail.zimbra@savoirfairelinux.com>
- <20200318144906.GC23112@localhost> <080227a9-b5f2-8e3e-201f-5285a1f80e2d@topic.nl>
- <20200318155132.GO104502@korppu> <06037dcfe9e74e4e80cd1e8b41593542@USDVREX02.abiomed.com>
+ <20200318144906.GC23112@localhost>
+ <080227a9-b5f2-8e3e-201f-5285a1f80e2d@topic.nl>
+ <20200318155132.GO104502@korppu>
+ <06037dcfe9e74e4e80cd1e8b41593542@USDVREX02.abiomed.com>
  <D90B4E9C-DD70-4489-803D-079524AF20A7@intel.com>
 In-Reply-To: <D90B4E9C-DD70-4489-803D-079524AF20A7@intel.com>
-From: "Yann Dirson" <yann.dirson@blade-group.com>
-Date: Wed, 18 Mar 2020 19:12:31 +0100
-Message-ID: <CA+4=imar1T_sd+JviRKYG-dL=eKJt_0QeGz3+mX9m0DdfvFFuw@mail.gmail.com>
-Subject: Re: <EXT> Re: [yocto] What are the key factors for yocto build speed?
-To: David Stewart <david.c.stewart@intel.com>
-Cc: Srini <rsrinivasan@abiomed.com>, "mikko.rapeli@bmw.de" <mikko.rapeli@bmw.de>, 
-	"mike.looijmans@topic.nl" <mike.looijmans@topic.nl>, 
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000009268b505a124ff1e"
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [172.16.112.142]
+MIME-Version: 1.0
+Return-Path: rsrinivasan@abiomed.com
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: abiomed.com
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_4be9e6dcdc7c47808a0e970dbf4bdd39USDVREX02abiomedcom_"
 
---0000000000009268b505a124ff1e
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_4be9e6dcdc7c47808a0e970dbf4bdd39USDVREX02abiomedcom_
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-anyway this sounds like a complete rebuild not taking advantage of
-shard-state cache
+U29tZSBvZiB0aGVzZSBzdGFydGVkIDIgeWVhcnMgYWdvLiBQcm9iYWJseSBLcm9nb3RoIHRpbWVm
+cmFtZSB0aHJ1IHJvY2tvLiAoRGlkIEkgZ2V0IHRoZSBuYW1lcyByaWdodCEpDQoNCk5vdCBkb3du
+bG9hZGluZyBmcm9tIHRoZSBuZXQuIEJ1dCB3ZSBoYWQgYW4gaW5ob3VzZSBnaXQgbWlycm9yIG9m
+IHlvY3RvLg0KDQpXZSB0cmllZCBiZWluZyBhIGJpdCBtb3JlIGFkdmVudHVyb3VzIGJ1dCBiaXRi
+YWtlIGRpZCBub3QgYWx3YXlzIHNlZW0gdG8gcGljayB1cCB0aGUgZmFjdCB0aGF0IHNvbWUgc291
+cmNlcyBvciBvcHRpb25zIGNoYW5nZWQuIERvIG5vdCByZW1lbWJlciB0aGUgZGV0YWlscyBidXQg
+d2UgZGlkbuKAmXQgaGF2ZSB0aW1lIHRvIGludmVzdGlnYXRlLg0KDQpUaGUgc2FtZSBzeXN0ZW0g
+bm93IGJ1aWxkcyBpbiBhYm91dCAyLjUgaG91cnMgdGhlIGxhc3QgdGltZSBJIGxvb2tlZC4gRGlm
+ZmVyZW50IHNlcnZlciBmYXJtIHdpdGggYSBtdWNoIGJldHRlciBzdG9yYWdlIGFyY2hpdGVjdHVy
+ZSENCg0KVGhlIGtleSBsZWFybmluZyBmb3IgbWUg4oCTIHdoaWNoIEkgcmVjb21tZW5kIGhpZ2hs
+eSBpcyB0byBpbnZlc3QgdGhlIHRpbWUgaW4gdGhlIHNkayEgQW5kIHRvb2xzIHRvIHVwZGF0ZSB5
+b3VyIGZpbmFsIGltYWdlIHdpdGhvdXQgaGF2aW5nIHRvIHJlYnVpbGQuIFRoZXNlIGZhY3RvcnMg
+YWxvbmUgaW1wcm92ZWQgb3VyIHRlYW0gcHJvZHVjdGl2aXR5IG1hbnlmb2xkLg0KDQpBZ2FpbiBZ
+TU1WLiBzcmluaQ0KDQpGcm9tOiBTdGV3YXJ0LCBEYXZpZCBDIDxkYXZpZC5jLnN0ZXdhcnRAaW50
+ZWwuY29tPg0KU2VudDogV2VkbmVzZGF5LCBNYXJjaCAxOCwgMjAyMCAxOjQ4IFBNDQpUbzogU3Jp
+bml2YXNhbiwgUmFqYSA8cnNyaW5pdmFzYW5AYWJpb21lZC5jb20+OyBtaWtrby5yYXBlbGlAYm13
+LmRlOyBtaWtlLmxvb2lqbWFuc0B0b3BpYy5ubA0KQ2M6IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVj
+dC5vcmcNClN1YmplY3Q6IFJlOiA8RVhUPiBSZTogW3lvY3RvXSBXaGF0IGFyZSB0aGUga2V5IGZh
+Y3RvcnMgZm9yIHlvY3RvIGJ1aWxkIHNwZWVkPw0KDQo0IGhvdXJzIHNlZW1zIGV4dHJlbWVseSBs
+b25nIHRvIG1lIGZvciBhIDggY29yZSBzeXN0ZW0sIGJ1dCBJIGhhdmUgbm90IHRyaWVkIHRoaXMg
+aW4gYSB3aGlsZS4gV2VyZSB5b3UgcmVtb3ZpbmcgYWxsIHRoZSBzb3VyY2VzIGFuZCByZS1kb3du
+bG9hZGluZyB0aGVtIGZvciBldmVyeSBidWlsZD8NCg0KRnJvbTogPHlvY3RvQGxpc3RzLnlvY3Rv
+cHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+PiBvbiBiZWhh
+bGYgb2YgU3JpbmkgPHJzcmluaXZhc2FuQGFiaW9tZWQuY29tPG1haWx0bzpyc3Jpbml2YXNhbkBh
+YmlvbWVkLmNvbT4+DQpEYXRlOiBXZWRuZXNkYXksIE1hcmNoIDE4LCAyMDIwIGF0IDEwOjEzIEFN
+DQpUbzogIm1pa2tvLnJhcGVsaUBibXcuZGU8bWFpbHRvOm1pa2tvLnJhcGVsaUBibXcuZGU+IiA8
+bWlra28ucmFwZWxpQGJtdy5kZTxtYWlsdG86bWlra28ucmFwZWxpQGJtdy5kZT4+LCAibWlrZS5s
+b29pam1hbnNAdG9waWMubmw8bWFpbHRvOm1pa2UubG9vaWptYW5zQHRvcGljLm5sPiIgPG1pa2Uu
+bG9vaWptYW5zQHRvcGljLm5sPG1haWx0bzptaWtlLmxvb2lqbWFuc0B0b3BpYy5ubD4+DQpDYzog
+InlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQGxpc3RzLnlvY3RvcHJv
+amVjdC5vcmc+IiA8eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG9AbGlz
+dHMueW9jdG9wcm9qZWN0Lm9yZz4+DQpTdWJqZWN0OiBSZTogPEVYVD4gUmU6IFt5b2N0b10gV2hh
+dCBhcmUgdGhlIGtleSBmYWN0b3JzIGZvciB5b2N0byBidWlsZCBzcGVlZD8NCg0KTXkgb3duIGV4
+cGVyaWVuY2UgKHBhcmRvbiBtZSBpZiBhbHJlYWR5IGRpc2N1c3NlZCkNCg0KRm91Z2h0IHRoZSBi
+dWlsZCB0aW1lcyBmb3Igc2V2ZXJhbCBtb250aHMgLSBlbmRpbmcgdXAgZXZlbnR1YWxseSBhdCA4
+IGNvcmVzIChidXQgc3BlY2lmeWluZyAxNiB0aHJlYWRzIGluIHBva3kgYnVpbGRzKS4gQmVzdCB0
+aW1lcyBmb3IgbXkgYnVpbGQgYWJvdXQgNCBob3Vycy4gQ2xlYXJseSBpbXByYWN0aWNhbCBkdXJp
+bmcgZW5naW5lZXJpbmcuDQoNCkdlbmVyYXRlZCBhbiBzZGsgYW5kIHVzZWQgaXQgZm9yIGFwcCBk
+ZXZlbG9wbWVudC4gRWFjaCBidWlsZCBpcyBub3cgYSBtaW51dGUgb3IgMi4NCg0KVXNpbmcgYSBo
+b21lZ3Jvd24gdXRpbGl0eSwgdXBkYXRlZCB0aGUgaW1hZ2UgZmlsZSB3aXRoIGFwcGxpY2F0aW9u
+cyBpbiBhIGppZmZ5IC0gdG8gcHJvZHVjZSBidXJuYWJsZSBzZGNhcmQgaW1hZ2UuDQoNCkNvbXBs
+ZXRlIGJ1aWxkIHJlcXVpcmVkIG9ubHkgZm9yIHRoZSBmaW5hbCByZWxlYXNlIC0tIG9yIG1hZGUg
+bWFqb3IgY2hhbmdlcyBsaWtlIHB5dGhvbjIgdG8gcHl0aG9uMyENCg0KWU1NVi4NCg0Kc3JpbmkN
+Cg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IHlvY3RvQGxpc3RzLnlvY3RvcHJv
+amVjdC5vcmc8bWFpbHRvOnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc+IDx5b2N0b0BsaXN0
+cy55b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPj4g
+T24gQmVoYWxmIE9mIE1pa2tvIFJhcGVsaSB2aWEgTGlzdHMuWW9jdG9wcm9qZWN0Lk9yZw0KU2Vu
+dDogV2VkbmVzZGF5LCBNYXJjaCAxOCwgMjAyMCAxMTo1MiBBTQ0KVG86IG1pa2UubG9vaWptYW5z
+QHRvcGljLm5sPG1haWx0bzptaWtlLmxvb2lqbWFuc0B0b3BpYy5ubD4NCkNjOiB5b2N0b0BsaXN0
+cy55b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPg0K
+U3ViamVjdDogPEVYVD4gUmU6IFt5b2N0b10gV2hhdCBhcmUgdGhlIGtleSBmYWN0b3JzIGZvciB5
+b2N0byBidWlsZCBzcGVlZD8NCg0KT24gV2VkLCBNYXIgMTgsIDIwMjAgYXQgMDQ6MDk6MzlQTSAr
+MDEwMCwgTWlrZSBMb29pam1hbnMgd3JvdGU6DQo+IE9uIDE4LTAzLTIwMjAgMTU6NDksIEFkcmlh
+biBCdW5rIHZpYSBMaXN0cy5Zb2N0b3Byb2plY3QuT3JnIHdyb3RlOg0KPiA+IE9uIFdlZCwgTWFy
+IDE4LCAyMDIwIGF0IDEwOjEyOjI2QU0gLTA0MDAsIEplYW4tTWFyaWUgTGVtZXRheWVyIHdyb3Rl
+Og0KPiA+ID4gLi4uDQo+ID4gPiBGb3IgZXhhbXBsZSBvbmUgb2Ygb3VyIGJ1aWxkIHNlcnZlcnMg
+aXMgdXNpbmc6DQo+ID4gPiAtIEFNRCBSeXplbiA5IDM5MDBYDQo+ID4gPiAuLi4NCj4gPiA+IC0g
+MzJHbyBERFI0IDMyMDAgTUhaIENMMTQNCj4gPiA+IC4uLg0KPiA+ID4gSXQgaXMgYSByZWFsbHkg
+Z29vZCBwcmljZSAvIGJ1aWxkIHRpbWUgcmF0aW8gY29uZmlndXJhdGlvbi4NCj4gPg0KPiA+IERl
+cGVuZHMgb24gd2hhdCB5b3UgYXJlIGJ1aWxkaW5nLg0KPiA+DQo+ID4gQnVpbGRpbmcgbm9uLXRy
+aXZpYWwgQysrIGNvZGUgKGUuZy4gd2Via2l0Z3RrKSB3aXRoIDI0IGNvcmVzIGJ1dA0KPiA+IG9u
+bHkgMzIgR0IgUkFNIHdpbGwgbm90IHdvcmssIGZvciBzdWNoIGNvZGUgeW91IG5lZWQgbW9yZSB0
+aGFuIDINCj4gPiBHQi9jb3JlLg0KPg0KPiBTZWVtcyBhIGJpdCBleGNlc3NpdmUgdG8gYnV5IGhh
+cmR3YXJlIGp1c3QgdG8gaGFuZGxlIGEgcGFydGljdWxhcg0KPiBjb3JuZXIgY2FzZS4gTW9zdCBv
+ZiBPRS9Zb2N0byBjb2RlIGlzIHBsYWluIEMsIG5vdCBldmVuIEMrKy4NCj4NCj4gTXkgcmlnIG9u
+bHkgaGFzIDhHQiBidXQgZG9lc24ndCBydW4gaW50byBtZW1vcnkgaXNzdWVzIGR1cmluZyBiaWcg
+R1VJDQo+IGJ1aWxkcy4gVGhlIG9ubHkgdGhpbmcgdGhhdCBtYWRlIGl0IHN3YXAgd2FzIHRoZSBw
+b3B1bGF0ZV9zZGsgdGFzaw0KPiB0aGF0IGNyZWF0ZWQgYSAxLjFHQiBmaWVsIGFuZCBuZWVkZWQg
+MjBHQiBvZiBSQU0gdG8gY29tcHJlc3MgdGhhdC4NCj4gVG9vayBhIGZldyBtaW51dGVzIG1vcmUg
+ZHVlIHRvIHN3YXBwaW5nLg0KPiBJIHN1Ym1pdHRlZCBhIHBhdGNoIHRvZGF5IHRvIGZpeCB0aGF0
+IGluIE9FLg0KPg0KPiBZb3VyIG1pbGVhZ2UgbWF5IHZhcnkuIEJ1dCBSQU0gaXMgZWFzeSB0byBh
+ZGQuDQoNCldlbGwsIEkgY2FuJ3QgYnVpbGQgd2l0aCB1bmRlciAyIGdpZ3MgcGVyIGNvcmUgb3Ig
+SSBydW4gb3V0IG9mIHBoeXNpY2FsIG1lbW9yeSBhbmQga2VybmVsIG9vbS1raWxsZXIga2lja3Mg
+aW4gdG8ga2lsbCB0aGUgYnVpbGQuIEFsc28gY2FuJ3QgcnVuIHdpdGggeW9jdG8gZGVmYXVsdCBw
+YXJhbGxlbCBzZXR0aW5ncyB3aGljaCBvbmx5IHRha2UgaW50byBhY2NvdW50IHRoZSBudW1iZXIg
+b2YgY29yZXMgYW5kIHRodXMgaGF2ZSBhIGN1c3RvbSBzY3JpcHQgd2hpY2ggZG9lcyBjYXBzIHRo
+ZSB0aHJlYWRzIHNvIHRoYXQgMiBnaWdzIG9mIFJBTSBmb3IgZWFjaCBhcmUgYXZhaWxhYmxlLg0K
+DQpUaG91Z2ggSSdtIHN1cmUgcGxhaW4gQyBhbmQgcGxhaW4gcG9reSBwcm9qZWN0cyBoYXZlIGxl
+c3MgcmVxdWlyZW1lbnRzIGZvciBSQU0uDQoNCi1NaWtrbw0KDQpfX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXw0KDQpDT05GSURFTlRJQUxJVFkgTk9USUNFOiBUaGlzIGVtYWlsIG1lc3Nh
+Z2UgYW5kIGFueSBhdHRhY2htZW50cyBhcmUgY29uZmlkZW50aWFsIGFuZCBtYXkgYmUgcHJpdmls
+ZWdlZCBhbmQgYXJlIG1lYW50IHRvIGJlIHJlYWQgYnkgdGhlIGludGVuZGVkIHJlY2lwaWVudCBv
+bmx5LiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCBwbGVhc2Ugbm90aWZ5
+IHNlbmRlciBpbW1lZGlhdGVseSBhbmQgZGVzdHJveSBhbGwgY29waWVzIG9mIHRoaXMgbWVzc2Fn
+ZSBhbmQgYW55IGF0dGFjaG1lbnRzIHdpdGhvdXQgcmVhZGluZyBvciBkaXNjbG9zaW5nIHRoZWly
+IGNvbnRlbnRzLiBUaGFuayB5b3UNCg0KX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18N
+Cg0KQ09ORklERU5USUFMSVRZIE5PVElDRTogVGhpcyBlbWFpbCBtZXNzYWdlIGFuZCBhbnkgYXR0
+YWNobWVudHMgYXJlIGNvbmZpZGVudGlhbCBhbmQgbWF5IGJlIHByaXZpbGVnZWQgYW5kIGFyZSBt
+ZWFudCB0byBiZSByZWFkIGJ5IHRoZSBpbnRlbmRlZCByZWNpcGllbnQgb25seS4gSWYgeW91IGFy
+ZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVudCwgcGxlYXNlIG5vdGlmeSBzZW5kZXIgaW1tZWRp
+YXRlbHkgYW5kIGRlc3Ryb3kgYWxsIGNvcGllcyBvZiB0aGlzIG1lc3NhZ2UgYW5kIGFueSBhdHRh
+Y2htZW50cyB3aXRob3V0IHJlYWRpbmcgb3IgZGlzY2xvc2luZyB0aGVpciBjb250ZW50cy4gVGhh
+bmsgeW91DQo=
 
-Le mer. 18 mars 2020 =C3=A0 18:47, David Stewart <david.c.stewart@intel.co=
-m> a
-=C3=A9crit :
+--_000_4be9e6dcdc7c47808a0e970dbf4bdd39USDVREX02abiomedcom_
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: base64
 
-> 4 hours seems extremely long to me for a 8 core system, but I have not
-> tried this in a while. Were you removing all the sources and re-download=
-ing
-> them for every build?
->
->
->
-> *From: *<yocto@lists.yoctoproject.org> on behalf of Srini <
-> rsrinivasan@abiomed.com>
-> *Date: *Wednesday, March 18, 2020 at 10:13 AM
-> *To: *"mikko.rapeli@bmw.de" <mikko.rapeli@bmw.de>, "
-> mike.looijmans@topic.nl" <mike.looijmans@topic.nl>
-> *Cc: *"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-> *Subject: *Re: <EXT> Re: [yocto] What are the key factors for yocto buil=
-d
-> speed?
->
->
->
-> My own experience (pardon me if already discussed)
->
-> Fought the build times for several months - ending up eventually at 8
-> cores (but specifying 16 threads in poky builds). Best times for my buil=
-d
-> about 4 hours. Clearly impractical during engineering.
->
-> Generated an sdk and used it for app development. Each build is now a
-> minute or 2.
->
-> Using a homegrown utility, updated the image file with applications in a
-> jiffy - to produce burnable sdcard image.
->
-> Complete build required only for the final release -- or made major
-> changes like python2 to python3!
->
-> YMMV.
->
-> srini
->
-> -----Original Message-----
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On
-> Behalf Of Mikko Rapeli via Lists.Yoctoproject.Org
-> Sent: Wednesday, March 18, 2020 11:52 AM
-> To: mike.looijmans@topic.nl
-> Cc: yocto@lists.yoctoproject.org
-> Subject: <EXT> Re: [yocto] What are the key factors for yocto build spee=
-d?
->
-> On Wed, Mar 18, 2020 at 04:09:39PM +0100, Mike Looijmans wrote:
-> > On 18-03-2020 15:49, Adrian Bunk via Lists.Yoctoproject.Org wrote:
-> > > On Wed, Mar 18, 2020 at 10:12:26AM -0400, Jean-Marie Lemetayer wrote=
-:
-> > > > ...
-> > > > For example one of our build servers is using:
-> > > > - AMD Ryzen 9 3900X
-> > > > ...
-> > > > - 32Go DDR4 3200 MHZ CL14
-> > > > ...
-> > > > It is a really good price / build time ratio configuration.
-> > >
-> > > Depends on what you are building.
-> > >
-> > > Building non-trivial C++ code (e.g. webkitgtk) with 24 cores but
-> > > only 32 GB RAM will not work, for such code you need more than 2
-> > > GB/core.
-> >
-> > Seems a bit excessive to buy hardware just to handle a particular
-> > corner case. Most of OE/Yocto code is plain C, not even C++.
-> >
-> > My rig only has 8GB but doesn't run into memory issues during big GUI
-> > builds. The only thing that made it swap was the populate_sdk task
-> > that created a 1.1GB fiel and needed 20GB of RAM to compress that.
-> > Took a few minutes more due to swapping.
-> > I submitted a patch today to fix that in OE.
-> >
-> > Your mileage may vary. But RAM is easy to add.
->
-> Well, I can't build with under 2 gigs per core or I run out of physical
-> memory and kernel oom-killer kicks in to kill the build. Also can't run
-> with yocto default parallel settings which only take into account the
-> number of cores and thus have a custom script which does caps the thread=
-s
-> so that 2 gigs of RAM for each are available.
->
-> Though I'm sure plain C and plain poky projects have less requirements f=
-or
-> RAM.
->
-> -Mikko
->
-> ________________________________
->
-> CONFIDENTIALITY NOTICE: This email message and any attachments are
-> confidential and may be privileged and are meant to be read by the inten=
-ded
-> recipient only. If you are not the intended recipient, please notify sen=
-der
-> immediately and destroy all copies of this message and any attachments
-> without reading or disclosing their contents. Thank you
->
->=20
->
+PGh0bWw+PGhlYWQ+DQo8bWV0YSBodHRwLWVxdWl2PSJDb250ZW50LVR5cGUiIGNvbnRlbnQ9InRl
+eHQvaHRtbDsgY2hhcnNldD11dGYtOCI+DQo8bWV0YSBuYW1lPSJHZW5lcmF0b3IiIGNvbnRlbnQ9
+Ik1pY3Jvc29mdCBXb3JkIDE1IChmaWx0ZXJlZCBtZWRpdW0pIj4NCjxzdHlsZT48IS0tDQovKiBG
+b250IERlZmluaXRpb25zICovDQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1h
+dGgiOw0KCXBhbm9zZS0xOjIgNCA1IDMgNSA0IDYgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250
+LWZhbWlseTpDYWxpYnJpOw0KCXBhbm9zZS0xOjIgMTUgNSAyIDIgMiA0IDMgMiA0O30NCi8qIFN0
+eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwgbGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9y
+bWFsDQoJe21hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZTox
+MS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0KYTpsaW5rLCBzcGFu
+Lk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6Ymx1ZTsNCgl0
+ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4uRW1haWxTdHlsZTIwDQoJe21zby1zdHls
+ZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlm
+Ow0KCWNvbG9yOndpbmRvd3RleHQ7fQ0KLk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6
+ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXplOjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7
+c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRp
+di5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lm
+IGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9
+IjEwMjYiIC8+DQo8L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxv
+OnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIx
+IiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPHN0eWxlIHR5cGU9InRl
+eHQvY3NzIj4uc3R5bGUxIHtmb250LWZhbWlseTogIlRpbWVzIE5ldyBSb21hbiI7fTwvc3R5bGU+
+PC9oZWFkPjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxk
+aXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5Tb21lIG9mIHRo
+ZXNlIHN0YXJ0ZWQgMiB5ZWFycyBhZ28uIFByb2JhYmx5IEtyb2dvdGggdGltZWZyYW1lIHRocnUg
+cm9ja28uIChEaWQgSSBnZXQgdGhlIG5hbWVzIHJpZ2h0ISk8bzpwPjwvbzpwPjwvcD4NCjxwIGNs
+YXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+Tm90IGRvd25sb2FkaW5nIGZyb20gdGhlIG5ldC4gQnV0IHdlIGhhZCBhbiBpbmhvdXNlIGdp
+dCBtaXJyb3Igb2YgeW9jdG8uPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPldlIHRyaWVkIGJlaW5n
+IGEgYml0IG1vcmUgYWR2ZW50dXJvdXMgYnV0IGJpdGJha2UgZGlkIG5vdCBhbHdheXMgc2VlbSB0
+byBwaWNrIHVwIHRoZSBmYWN0IHRoYXQgc29tZSBzb3VyY2VzIG9yIG9wdGlvbnMgY2hhbmdlZC4g
+RG8gbm90IHJlbWVtYmVyIHRoZSBkZXRhaWxzIGJ1dCB3ZSBkaWRu4oCZdCBoYXZlIHRpbWUgdG8g
+aW52ZXN0aWdhdGUuDQo8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+
+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhlIHNhbWUgc3lzdGVtIG5v
+dyBidWlsZHMgaW4gYWJvdXQgMi41IGhvdXJzIHRoZSBsYXN0IHRpbWUgSSBsb29rZWQuIERpZmZl
+cmVudCBzZXJ2ZXIgZmFybSB3aXRoIGEgbXVjaCBiZXR0ZXIgc3RvcmFnZSBhcmNoaXRlY3R1cmUh
+PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
+cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPlRoZSBrZXkgbGVhcm5pbmcgZm9yIG1lIOKAkyB3aGlj
+aCBJIHJlY29tbWVuZCBoaWdobHkgaXMgdG8gaW52ZXN0IHRoZSB0aW1lIGluIHRoZSBzZGshIEFu
+ZCB0b29scyB0byB1cGRhdGUgeW91ciBmaW5hbCBpbWFnZSB3aXRob3V0IGhhdmluZyB0byByZWJ1
+aWxkLiBUaGVzZSBmYWN0b3JzIGFsb25lIGltcHJvdmVkIG91ciB0ZWFtIHByb2R1Y3Rpdml0eSBt
+YW55Zm9sZC48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+QWdhaW4gWU1NVi4gc3Jpbmk8bzpwPjwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPGRp
+dj4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBw
+dDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPkZy
+b206PC9iPiBTdGV3YXJ0LCBEYXZpZCBDICZsdDtkYXZpZC5jLnN0ZXdhcnRAaW50ZWwuY29tJmd0
+OyA8YnI+DQo8Yj5TZW50OjwvYj4gV2VkbmVzZGF5LCBNYXJjaCAxOCwgMjAyMCAxOjQ4IFBNPGJy
+Pg0KPGI+VG86PC9iPiBTcmluaXZhc2FuLCBSYWphICZsdDtyc3Jpbml2YXNhbkBhYmlvbWVkLmNv
+bSZndDs7IG1pa2tvLnJhcGVsaUBibXcuZGU7IG1pa2UubG9vaWptYW5zQHRvcGljLm5sPGJyPg0K
+PGI+Q2M6PC9iPiB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPGJyPg0KPGI+U3ViamVjdDo8
+L2I+IFJlOiAmbHQ7RVhUJmd0OyBSZTogW3lvY3RvXSBXaGF0IGFyZSB0aGUga2V5IGZhY3RvcnMg
+Zm9yIHlvY3RvIGJ1aWxkIHNwZWVkPzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxw
+IGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+NCBob3VycyBzZWVtcyBleHRyZW1lbHkgbG9uZyB0byBtZSBmb3IgYSA4IGNvcmUgc3lz
+dGVtLCBidXQgSSBoYXZlIG5vdCB0cmllZCB0aGlzIGluIGEgd2hpbGUuIFdlcmUgeW91IHJlbW92
+aW5nIGFsbCB0aGUgc291cmNlcyBhbmQgcmUtZG93bmxvYWRpbmcgdGhlbSBmb3IgZXZlcnkgYnVp
+bGQ/PG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
+PjwvcD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0I1QzRERiAx
+LjBwdDtwYWRkaW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxi
+PjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJsYWNrIj5Gcm9tOiA8L3NwYW4+
+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTIuMHB0O2NvbG9yOmJsYWNrIj4mbHQ7PGEgaHJl
+Zj0ibWFpbHRvOnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmciPnlvY3RvQGxpc3RzLnlvY3Rv
+cHJvamVjdC5vcmc8L2E+Jmd0OyBvbiBiZWhhbGYgb2YgU3JpbmkgJmx0OzxhIGhyZWY9Im1haWx0
+bzpyc3Jpbml2YXNhbkBhYmlvbWVkLmNvbSI+cnNyaW5pdmFzYW5AYWJpb21lZC5jb208L2E+Jmd0
+Ozxicj4NCjxiPkRhdGU6IDwvYj5XZWRuZXNkYXksIE1hcmNoIDE4LCAyMDIwIGF0IDEwOjEzIEFN
+PGJyPg0KPGI+VG86IDwvYj4mcXVvdDs8YSBocmVmPSJtYWlsdG86bWlra28ucmFwZWxpQGJtdy5k
+ZSI+bWlra28ucmFwZWxpQGJtdy5kZTwvYT4mcXVvdDsgJmx0OzxhIGhyZWY9Im1haWx0bzptaWtr
+by5yYXBlbGlAYm13LmRlIj5taWtrby5yYXBlbGlAYm13LmRlPC9hPiZndDssICZxdW90OzxhIGhy
+ZWY9Im1haWx0bzptaWtlLmxvb2lqbWFuc0B0b3BpYy5ubCI+bWlrZS5sb29pam1hbnNAdG9waWMu
+bmw8L2E+JnF1b3Q7ICZsdDs8YSBocmVmPSJtYWlsdG86bWlrZS5sb29pam1hbnNAdG9waWMubmwi
+Pm1pa2UubG9vaWptYW5zQHRvcGljLm5sPC9hPiZndDs8YnI+DQo8Yj5DYzogPC9iPiZxdW90Ozxh
+IGhyZWY9Im1haWx0bzp5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIj55b2N0b0BsaXN0cy55
+b2N0b3Byb2plY3Qub3JnPC9hPiZxdW90OyAmbHQ7PGEgaHJlZj0ibWFpbHRvOnlvY3RvQGxpc3Rz
+LnlvY3RvcHJvamVjdC5vcmciPnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8L2E+Jmd0Ozxi
+cj4NCjxiPlN1YmplY3Q6IDwvYj5SZTogJmx0O0VYVCZndDsgUmU6IFt5b2N0b10gV2hhdCBhcmUg
+dGhlIGtleSBmYWN0b3JzIGZvciB5b2N0byBidWlsZCBzcGVlZD88bzpwPjwvbzpwPjwvc3Bhbj48
+L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
+PjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1ib3R0b206
+MTIuMHB0Ij5NeSBvd24gZXhwZXJpZW5jZSAocGFyZG9uIG1lIGlmIGFscmVhZHkgZGlzY3Vzc2Vk
+KTxicj4NCjxicj4NCkZvdWdodCB0aGUgYnVpbGQgdGltZXMgZm9yIHNldmVyYWwgbW9udGhzIC0g
+ZW5kaW5nIHVwIGV2ZW50dWFsbHkgYXQgOCBjb3JlcyAoYnV0IHNwZWNpZnlpbmcgMTYgdGhyZWFk
+cyBpbiBwb2t5IGJ1aWxkcykuIEJlc3QgdGltZXMgZm9yIG15IGJ1aWxkIGFib3V0IDQgaG91cnMu
+IENsZWFybHkgaW1wcmFjdGljYWwgZHVyaW5nIGVuZ2luZWVyaW5nLjxicj4NCjxicj4NCkdlbmVy
+YXRlZCBhbiBzZGsgYW5kIHVzZWQgaXQgZm9yIGFwcCBkZXZlbG9wbWVudC4gRWFjaCBidWlsZCBp
+cyBub3cgYSBtaW51dGUgb3IgMi48YnI+DQo8YnI+DQpVc2luZyBhIGhvbWVncm93biB1dGlsaXR5
+LCB1cGRhdGVkIHRoZSBpbWFnZSBmaWxlIHdpdGggYXBwbGljYXRpb25zIGluIGEgamlmZnkgLSB0
+byBwcm9kdWNlIGJ1cm5hYmxlIHNkY2FyZCBpbWFnZS48YnI+DQo8YnI+DQpDb21wbGV0ZSBidWls
+ZCByZXF1aXJlZCBvbmx5IGZvciB0aGUgZmluYWwgcmVsZWFzZSAtLSBvciBtYWRlIG1ham9yIGNo
+YW5nZXMgbGlrZSBweXRob24yIHRvIHB5dGhvbjMhPGJyPg0KPGJyPg0KWU1NVi48YnI+DQo8YnI+
+DQpzcmluaTxicj4NCjxicj4NCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tPGJyPg0KRnJvbTog
+PGEgaHJlZj0ibWFpbHRvOnlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmciPnlvY3RvQGxpc3Rz
+LnlvY3RvcHJvamVjdC5vcmc8L2E+ICZsdDs8YSBocmVmPSJtYWlsdG86eW9jdG9AbGlzdHMueW9j
+dG9wcm9qZWN0Lm9yZyI+eW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzwvYT4mZ3Q7IE9uIEJl
+aGFsZiBPZiBNaWtrbyBSYXBlbGkgdmlhIExpc3RzLllvY3RvcHJvamVjdC5Pcmc8YnI+DQpTZW50
+OiBXZWRuZXNkYXksIE1hcmNoIDE4LCAyMDIwIDExOjUyIEFNPGJyPg0KVG86IDxhIGhyZWY9Im1h
+aWx0bzptaWtlLmxvb2lqbWFuc0B0b3BpYy5ubCI+bWlrZS5sb29pam1hbnNAdG9waWMubmw8L2E+
+PGJyPg0KQ2M6IDxhIGhyZWY9Im1haWx0bzp5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnIj55
+b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPC9hPjxicj4NClN1YmplY3Q6ICZsdDtFWFQmZ3Q7
+IFJlOiBbeW9jdG9dIFdoYXQgYXJlIHRoZSBrZXkgZmFjdG9ycyBmb3IgeW9jdG8gYnVpbGQgc3Bl
+ZWQ/PGJyPg0KPGJyPg0KT24gV2VkLCBNYXIgMTgsIDIwMjAgYXQgMDQ6MDk6MzlQTSAmIzQzOzAx
+MDAsIE1pa2UgTG9vaWptYW5zIHdyb3RlOjxicj4NCiZndDsgT24gMTgtMDMtMjAyMCAxNTo0OSwg
+QWRyaWFuIEJ1bmsgdmlhIExpc3RzLllvY3RvcHJvamVjdC5Pcmcgd3JvdGU6PGJyPg0KJmd0OyAm
+Z3Q7IE9uIFdlZCwgTWFyIDE4LCAyMDIwIGF0IDEwOjEyOjI2QU0gLTA0MDAsIEplYW4tTWFyaWUg
+TGVtZXRheWVyIHdyb3RlOjxicj4NCiZndDsgJmd0OyAmZ3Q7IC4uLjxicj4NCiZndDsgJmd0OyAm
+Z3Q7IEZvciBleGFtcGxlIG9uZSBvZiBvdXIgYnVpbGQgc2VydmVycyBpcyB1c2luZzo8YnI+DQom
+Z3Q7ICZndDsgJmd0OyAtIEFNRCBSeXplbiA5IDM5MDBYPGJyPg0KJmd0OyAmZ3Q7ICZndDsgLi4u
+PGJyPg0KJmd0OyAmZ3Q7ICZndDsgLSAzMkdvIEREUjQgMzIwMCBNSFogQ0wxNDxicj4NCiZndDsg
+Jmd0OyAmZ3Q7IC4uLjxicj4NCiZndDsgJmd0OyAmZ3Q7IEl0IGlzIGEgcmVhbGx5IGdvb2QgcHJp
+Y2UgLyBidWlsZCB0aW1lIHJhdGlvIGNvbmZpZ3VyYXRpb24uPGJyPg0KJmd0OyAmZ3Q7PGJyPg0K
+Jmd0OyAmZ3Q7IERlcGVuZHMgb24gd2hhdCB5b3UgYXJlIGJ1aWxkaW5nLjxicj4NCiZndDsgJmd0
+Ozxicj4NCiZndDsgJmd0OyBCdWlsZGluZyBub24tdHJpdmlhbCBDJiM0MzsmIzQzOyBjb2RlIChl
+LmcuIHdlYmtpdGd0aykgd2l0aCAyNCBjb3JlcyBidXQ8YnI+DQomZ3Q7ICZndDsgb25seSAzMiBH
+QiBSQU0gd2lsbCBub3Qgd29yaywgZm9yIHN1Y2ggY29kZSB5b3UgbmVlZCBtb3JlIHRoYW4gMjxi
+cj4NCiZndDsgJmd0OyBHQi9jb3JlLjxicj4NCiZndDs8YnI+DQomZ3Q7IFNlZW1zIGEgYml0IGV4
+Y2Vzc2l2ZSB0byBidXkgaGFyZHdhcmUganVzdCB0byBoYW5kbGUgYSBwYXJ0aWN1bGFyPGJyPg0K
+Jmd0OyBjb3JuZXIgY2FzZS4gTW9zdCBvZiBPRS9Zb2N0byBjb2RlIGlzIHBsYWluIEMsIG5vdCBl
+dmVuIEMmIzQzOyYjNDM7Ljxicj4NCiZndDs8YnI+DQomZ3Q7IE15IHJpZyBvbmx5IGhhcyA4R0Ig
+YnV0IGRvZXNuJ3QgcnVuIGludG8gbWVtb3J5IGlzc3VlcyBkdXJpbmcgYmlnIEdVSTxicj4NCiZn
+dDsgYnVpbGRzLiBUaGUgb25seSB0aGluZyB0aGF0IG1hZGUgaXQgc3dhcCB3YXMgdGhlIHBvcHVs
+YXRlX3NkayB0YXNrPGJyPg0KJmd0OyB0aGF0IGNyZWF0ZWQgYSAxLjFHQiBmaWVsIGFuZCBuZWVk
+ZWQgMjBHQiBvZiBSQU0gdG8gY29tcHJlc3MgdGhhdC48YnI+DQomZ3Q7IFRvb2sgYSBmZXcgbWlu
+dXRlcyBtb3JlIGR1ZSB0byBzd2FwcGluZy48YnI+DQomZ3Q7IEkgc3VibWl0dGVkIGEgcGF0Y2gg
+dG9kYXkgdG8gZml4IHRoYXQgaW4gT0UuPGJyPg0KJmd0Ozxicj4NCiZndDsgWW91ciBtaWxlYWdl
+IG1heSB2YXJ5LiBCdXQgUkFNIGlzIGVhc3kgdG8gYWRkLjxicj4NCjxicj4NCldlbGwsIEkgY2Fu
+J3QgYnVpbGQgd2l0aCB1bmRlciAyIGdpZ3MgcGVyIGNvcmUgb3IgSSBydW4gb3V0IG9mIHBoeXNp
+Y2FsIG1lbW9yeSBhbmQga2VybmVsIG9vbS1raWxsZXIga2lja3MgaW4gdG8ga2lsbCB0aGUgYnVp
+bGQuIEFsc28gY2FuJ3QgcnVuIHdpdGggeW9jdG8gZGVmYXVsdCBwYXJhbGxlbCBzZXR0aW5ncyB3
+aGljaCBvbmx5IHRha2UgaW50byBhY2NvdW50IHRoZSBudW1iZXIgb2YgY29yZXMgYW5kIHRodXMg
+aGF2ZSBhIGN1c3RvbSBzY3JpcHQNCiB3aGljaCBkb2VzIGNhcHMgdGhlIHRocmVhZHMgc28gdGhh
+dCAyIGdpZ3Mgb2YgUkFNIGZvciBlYWNoIGFyZSBhdmFpbGFibGUuPGJyPg0KPGJyPg0KVGhvdWdo
+IEknbSBzdXJlIHBsYWluIEMgYW5kIHBsYWluIHBva3kgcHJvamVjdHMgaGF2ZSBsZXNzIHJlcXVp
+cmVtZW50cyBmb3IgUkFNLjxicj4NCjxicj4NCi1NaWtrbzxicj4NCjxicj4NCl9fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fPGJyPg0KPGJyPg0KQ09ORklERU5USUFMSVRZIE5PVElDRTog
+VGhpcyBlbWFpbCBtZXNzYWdlIGFuZCBhbnkgYXR0YWNobWVudHMgYXJlIGNvbmZpZGVudGlhbCBh
+bmQgbWF5IGJlIHByaXZpbGVnZWQgYW5kIGFyZSBtZWFudCB0byBiZSByZWFkIGJ5IHRoZSBpbnRl
+bmRlZCByZWNpcGllbnQgb25seS4gSWYgeW91IGFyZSBub3QgdGhlIGludGVuZGVkIHJlY2lwaWVu
+dCwgcGxlYXNlIG5vdGlmeSBzZW5kZXIgaW1tZWRpYXRlbHkgYW5kIGRlc3Ryb3kgYWxsIGNvcGll
+cyBvZg0KIHRoaXMgbWVzc2FnZSBhbmQgYW55IGF0dGFjaG1lbnRzIHdpdGhvdXQgcmVhZGluZyBv
+ciBkaXNjbG9zaW5nIHRoZWlyIGNvbnRlbnRzLiBUaGFuayB5b3U8bzpwPjwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPGJyPg0KPGhyPg0KPGZvbnQgZmFjZT0iQXJpYWwiIGNvbG9yPSJHcmF5IiBzaXplPSIx
+Ij48YnI+DQpDT05GSURFTlRJQUxJVFkgTk9USUNFOiBUaGlzIGVtYWlsIG1lc3NhZ2UgYW5kIGFu
+eSBhdHRhY2htZW50cyBhcmUgY29uZmlkZW50aWFsIGFuZCBtYXkgYmUgcHJpdmlsZWdlZCBhbmQg
+YXJlIG1lYW50IHRvIGJlIHJlYWQgYnkgdGhlIGludGVuZGVkIHJlY2lwaWVudCBvbmx5LiBJZiB5
+b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50LCBwbGVhc2Ugbm90aWZ5IHNlbmRlciBp
+bW1lZGlhdGVseSBhbmQgZGVzdHJveSBhbGwgY29waWVzIG9mDQogdGhpcyBtZXNzYWdlIGFuZCBh
+bnkgYXR0YWNobWVudHMgd2l0aG91dCByZWFkaW5nIG9yIGRpc2Nsb3NpbmcgdGhlaXIgY29udGVu
+dHMuIFRoYW5rIHlvdTxicj4NCjwvZm9udD4NCg0KDQo8YnI+PGJyPjxwIHN0eWxlPSJmb250LWZh
+bWlseTogVmVyZGFuYTsgZm9udC1zaXplOjEwcHQ7IGNvbG9yOiM2NjY2NjY7Ij48L3A+PHAgc3R5
+bGU9ImZvbnQtZmFtaWx5OiBWZXJkYW5hOyBmb250LXNpemU6OHB0OyBjb2xvcjojNjY2NjY2OyI+
+PC9wPjwvYm9keT48L2h0bWw+DQo=
 
-
---=20
-Yann Dirson <yann@blade-group.com>
-Blade / Shadow -- http://shadow.tech
-
---0000000000009268b505a124ff1e
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">anyway this sounds like a complete rebuild not taking adva=
-ntage of shard-state cache<br></div><br><div class=3D"gmail_quote"><div dir=
-=
-=3D"ltr" class=3D"gmail_attr">Le=C2=A0mer. 18 mars 2020 =C3=A0=C2=A018:47,=
- David Stewart &lt;<a href=3D"mailto:david.c.stewart@intel.com">david.c.ste=
-wart@intel.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
-204,204);padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US">
-<div class=3D"gmail-m_6618007326145212200WordSection1">
-<p class=3D"MsoNormal">4 hours seems extremely long to me for a 8 core sys=
-tem, but I have not tried this in a while. Were you removing all the source=
-s and re-downloading them for every build?<u></u><u></u></p>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-<div style=3D"border-color:rgb(181,196,223) currentcolor currentcolor;bord=
-er-style:solid none none;border-width:1pt medium medium;padding:3pt 0in 0in=
-">
-<p class=3D"MsoNormal"><b><span style=3D"font-size:12pt;color:black">From:=
- </span></b><span style=3D"font-size:12pt;color:black">&lt;<a href=3D"mailt=
-o:yocto@lists.yoctoproject.org" target=3D"_blank">yocto@lists.yoctoproject.=
-org</a>&gt; on behalf of Srini &lt;<a href=3D"mailto:rsrinivasan@abiomed.co=
-m" target=3D"_blank">rsrinivasan@abiomed.com</a>&gt;<br>
-<b>Date: </b>Wednesday, March 18, 2020 at 10:13 AM<br>
-<b>To: </b>&quot;<a href=3D"mailto:mikko.rapeli@bmw.de" target=3D"_blank">=
-mikko.rapeli@bmw.de</a>&quot; &lt;<a href=3D"mailto:mikko.rapeli@bmw.de" ta=
-rget=3D"_blank">mikko.rapeli@bmw.de</a>&gt;, &quot;<a href=3D"mailto:mike.l=
-ooijmans@topic.nl" target=3D"_blank">mike.looijmans@topic.nl</a>&quot; &lt;=
-<a href=3D"mailto:mike.looijmans@topic.nl" target=3D"_blank">mike.looijmans=
-@topic.nl</a>&gt;<br>
-<b>Cc: </b>&quot;<a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D=
-"_blank">yocto@lists.yoctoproject.org</a>&quot; &lt;<a href=3D"mailto:yocto=
-@lists.yoctoproject.org" target=3D"_blank">yocto@lists.yoctoproject.org</a>=
-&gt;<br>
-<b>Subject: </b>Re: &lt;EXT&gt; Re: [yocto] What are the key factors for y=
-octo build speed?<u></u><u></u></span></p>
-</div>
-<div>
-<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
-</div>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12pt">My own experience (par=
-don me if already discussed)<br>
-<br>
-Fought the build times for several months - ending up eventually at 8 core=
-s (but specifying 16 threads in poky builds). Best times for my build about=
- 4 hours. Clearly impractical during engineering.<br>
-<br>
-Generated an sdk and used it for app development. Each build is now a minu=
-te or 2.<br>
-<br>
-Using a homegrown utility, updated the image file with applications in a j=
-iffy - to produce burnable sdcard image.<br>
-<br>
-Complete build required only for the final release -- or made major change=
-s like python2 to python3!<br>
-<br>
-YMMV.<br>
-<br>
-srini<br>
-<br>
------Original Message-----<br>
-From: <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank">yo=
-cto@lists.yoctoproject.org</a> &lt;<a href=3D"mailto:yocto@lists.yoctoproje=
-ct.org" target=3D"_blank">yocto@lists.yoctoproject.org</a>&gt; On Behalf Of=
- Mikko Rapeli via <a href=3D"http://Lists.Yoctoproject.Org" target=3D"_blan=
-k">Lists.Yoctoproject.Org</a><br>
-Sent: Wednesday, March 18, 2020 11:52 AM<br>
-To: <a href=3D"mailto:mike.looijmans@topic.nl" target=3D"_blank">mike.looi=
-jmans@topic.nl</a><br>
-Cc: <a href=3D"mailto:yocto@lists.yoctoproject.org" target=3D"_blank">yoct=
-o@lists.yoctoproject.org</a><br>
-Subject: &lt;EXT&gt; Re: [yocto] What are the key factors for yocto build =
-speed?<br>
-<br>
-On Wed, Mar 18, 2020 at 04:09:39PM +0100, Mike Looijmans wrote:<br>
-&gt; On 18-03-2020 15:49, Adrian Bunk via <a href=3D"http://Lists.Yoctopro=
-ject.Org" target=3D"_blank">Lists.Yoctoproject.Org</a> wrote:<br>
-&gt; &gt; On Wed, Mar 18, 2020 at 10:12:26AM -0400, Jean-Marie Lemetayer w=
-rote:<br>
-&gt; &gt; &gt; ...<br>
-&gt; &gt; &gt; For example one of our build servers is using:<br>
-&gt; &gt; &gt; - AMD Ryzen 9 3900X<br>
-&gt; &gt; &gt; ...<br>
-&gt; &gt; &gt; - 32Go DDR4 3200 MHZ CL14<br>
-&gt; &gt; &gt; ...<br>
-&gt; &gt; &gt; It is a really good price / build time ratio configuration.=
-<br>
-&gt; &gt;<br>
-&gt; &gt; Depends on what you are building.<br>
-&gt; &gt;<br>
-&gt; &gt; Building non-trivial C++ code (e.g. webkitgtk) with 24 cores but=
-<br>
-&gt; &gt; only 32 GB RAM will not work, for such code you need more than 2=
-<br>
-&gt; &gt; GB/core.<br>
-&gt;<br>
-&gt; Seems a bit excessive to buy hardware just to handle a particular<br>
-&gt; corner case. Most of OE/Yocto code is plain C, not even C++.<br>
-&gt;<br>
-&gt; My rig only has 8GB but doesn&#39;t run into memory issues during big=
- GUI<br>
-&gt; builds. The only thing that made it swap was the populate_sdk task<br=
->
-&gt; that created a 1.1GB fiel and needed 20GB of RAM to compress that.<br=
->
-&gt; Took a few minutes more due to swapping.<br>
-&gt; I submitted a patch today to fix that in OE.<br>
-&gt;<br>
-&gt; Your mileage may vary. But RAM is easy to add.<br>
-<br>
-Well, I can&#39;t build with under 2 gigs per core or I run out of physica=
-l memory and kernel oom-killer kicks in to kill the build. Also can&#39;t r=
-un with yocto default parallel settings which only take into account the nu=
-mber of cores and thus have a custom script
- which does caps the threads so that 2 gigs of RAM for each are available.=
-<br>
-<br>
-Though I&#39;m sure plain C and plain poky projects have less requirements=
- for RAM.<br>
-<br>
--Mikko<br>
-<br>
-________________________________<br>
-<br>
-CONFIDENTIALITY NOTICE: This email message and any attachments are confide=
-ntial and may be privileged and are meant to be read by the intended recipi=
-ent only. If you are not the intended recipient, please notify sender immed=
-iately and destroy all copies of
- this message and any attachments without reading or disclosing their cont=
-ents. Thank you<br>
-<br>
-<u></u><u></u></p>
-</div>
-</div>
-
-<br>
-</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr" class=3D"=
-gmail_signature">Yann Dirson &lt;<a href=3D"mailto:yann@blade-group.com" ta=
-rget=3D"_blank">yann@blade-group.com</a>&gt;<br>Blade / Shadow -- <a href=
-=3D"http://shadow.tech" target=3D"_blank">http://shadow.tech</a><br><br></=
-div>
-
---0000000000009268b505a124ff1e--
+--_000_4be9e6dcdc7c47808a0e970dbf4bdd39USDVREX02abiomedcom_--
