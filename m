@@ -1,81 +1,123 @@
-Received: from bsmtp2.bon.at (bsmtp2.bon.at [213.33.87.16])
- by mx.groups.io with SMTP id smtpd.web12.18246.1584545846709212678
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+ by mx.groups.io with SMTP id smtpd.web10.18324.1584545887308450040
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 Mar 2020 08:37:27 -0700
+ Wed, 18 Mar 2020 08:38:07 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.16, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp2.bon.at (Postfix) with ESMTPSA id 48jDgR6Kbfz5tlT;
-	Wed, 18 Mar 2020 16:37:23 +0100 (CET)
-Date: Wed, 18 Mar 2020 16:37:22 +0100
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: Emily <easmith5555@gmail.com>
-Cc: Laurent Gauthier <laurent.gauthier@soccasys.com>,
-	yocto@lists.yoctoproject.org
-Subject: Re: [yocto] How to PROVIDE boost-python
-Message-ID: <20200318153722.p7n5ppx62savb75n@qschulz>
-References: <CAAV2bM0B6pWK3ypKip+NJ4XzJbgqFNNXRrfHtiKMuAORUt+PCg@mail.gmail.com>
- <20200317160443.6pyp7zuonargxrux@qschulz>
- <CAAV2bM2PT0YTq8+Q9vf5aLMeoRnw72NauTuiF8myGroAu1DC=A@mail.gmail.com>
- <CAGbd71QqDTLU0nAz1aV0FuXQtArCeV2Z65RaTQ3Q7wE2daNE9w@mail.gmail.com>
- <CAAV2bM0ExWhQx8hmnxbCc9jvpM5UHUY0pdqCbsyZQTt3w2KEAA@mail.gmail.com>
- <15FD3752830F21C1.15339@lists.yoctoproject.org>
- <CAGbd71QQievdwbETfKH7JbeRGHALHhukQkPY4oND36YUen3-Qw@mail.gmail.com>
- <CAAV2bM080EARso6YiaoT55h1v_xfwMG3T-ha8DndQu_Wpkn_zw@mail.gmail.com>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=sfUhNvSS;
+ spf=pass (domain: gmail.com, ip: 209.85.221.49, mailfrom: martin.jansa@gmail.com)
+Received: by mail-wr1-f49.google.com with SMTP id w16so14586458wrv.13
+        for <yocto@lists.yoctoproject.org>; Wed, 18 Mar 2020 08:38:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:date:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=vvob0LSPfS7HGOpkxVhmvywjmpP0CqoeVGPjOG8M0Mk=;
+        b=sfUhNvSS0yREmss45LTgz1oj7Hg4+LBI4bL01x24/iMY9aGTuiDhRbyOc86nh6TZs9
+         eeZcKEjjA0fj7aUnKeYXhLLBzfbZYLCVusMau50bP2lF/HPBFjFAN+ZBzm7pdrvEj/nL
+         Wv2KSFFaT4urha+8TV0QLCAMrc7Sl9B6CEgNaVjbN0egi0G/Qck080AcaDifeHCIowDb
+         ps6W3Z6XvknImMSSGBC3rClIQOLPwTNbdSptn/V2Z+c5qGwdtg7fLk+fvat0Qu+fce2s
+         L1NkNvKE5XJAZlLoxmLbQvJqRhuNrKwW+8VfmeJLaYPN4QC9MKCFilBG/AuHUNr/GtBN
+         wY/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:date:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=vvob0LSPfS7HGOpkxVhmvywjmpP0CqoeVGPjOG8M0Mk=;
+        b=JO4I8XizxJYf0lkt9rxEDApqt6pVfNwtk7qyFTLwooybt155apBG6uXFyxcL6ORptb
+         wXJTcwBe+0mTFIEkHxvYbrOdAps830RH9Al2Tyx46raM17S//4RSuZJdCE0IHOq1zUJe
+         p/MxJYScC1wxKGiK+2/F1XOREQ8xwslRSDq4Xm9zB/oaUCzthmL+VEyzZdXgeZM2SlJv
+         USlWXHTGb4KSNjwQy6zHO/LSlLmAO7M0OegCFYnRB3hrON2ykno2nmAG6g82SmWY1bxn
+         AIK9Nc00ZYN+zppanAumL07ncJbhSku2Jhv+Yhlyz27VYsWysD0EKIrpHa8A2PSrsMfX
+         NWGQ==
+X-Gm-Message-State: ANhLgQ2MR/wdLKkBqDEtEzf8YbBHXKB+NWt734V0Y+JqxMhkJIDDF3Gj
+	iOJRucaZWwBBEsYxoh1ftUI=
+X-Google-Smtp-Source: ADFU+vu0ZtTVIbyQ+Z1tigcBp01NykjIL1B8w6S2LbI2KVQs7Jy1c52ttin84QRnd/1jBGHCFP3wjQ==
+X-Received: by 2002:a5d:428a:: with SMTP id k10mr6515087wrq.150.1584545885761;
+        Wed, 18 Mar 2020 08:38:05 -0700 (PDT)
+Return-Path: <martin.jansa@gmail.com>
+Received: from localhost ([109.238.218.228])
+        by smtp.gmail.com with ESMTPSA id f187sm4740999wme.31.2020.03.18.08.38.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 18 Mar 2020 08:38:04 -0700 (PDT)
+From: "Martin Jansa" <Martin.Jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Wed, 18 Mar 2020 16:38:03 +0100
+To: Oliver Westermann <oliver.westermann@cognex.com>
+Cc: yocto@lists.yoctoproject.org
+Subject: Re: [yocto] What are the key factors for yocto build speed?
+Message-ID: <20200318153803.spyb4vci4ixgf5dc@jama>
+References: <rCbr.1584535957803213201.lfzw@lists.yoctoproject.org>
 MIME-Version: 1.0
-In-Reply-To: <CAAV2bM080EARso6YiaoT55h1v_xfwMG3T-ha8DndQu_Wpkn_zw@mail.gmail.com>
+In-Reply-To: <rCbr.1584535957803213201.lfzw@lists.yoctoproject.org>
 User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
+X-Groupsio-MsgNum: 48819
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="lktyh2f7zpuefoq3"
 Content-Disposition: inline
 
-Hi Emily,
+--lktyh2f7zpuefoq3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 18, 2020 at 10:16:23AM -0500, Emily wrote:
-> Hi Laurent -
-> 
-> Unfortunately I don't have full control over the repo that's using
-> boost_python-mt so I'm not sure I can switch it right now.
-> 
+On Wed, Mar 18, 2020 at 05:52:37AM -0700, Oliver Westermann wrote:
+> Hey,
+>=20
+> We're currently using a VM on Windows and it's a lot slower than the nat=
+ive linux build (which is expected).
+> We're looking into getting a dedicated build server for our team (basica=
+lly a self-build tower PC). Any suggestions what to put in that build to ge=
+t the most out of it?
+>=20
+> Currently we're looking at a big Ryzen, 64G of RAM and one or multiple S=
+SDs on a "consumer grade" board like the X570.
+>=20
+> Suggestions, hints and links welcome :)
 
-You can create a patch for it. You can use devtool modify <your-recipe>
-and create the patch from there, you have access to the sources with
-that. devtool build <your-recipe> to check it builds okay.
+Other replies look good to me, here are few additions:
 
-> I realize this is not a long-term solution, as I'll need to update that
-> code (and my OS) to python3 soon, but for now I've just copied the boost
-> recipe from this commit
-> <https://github.com/openembedded/openembedded-core/commit/ef603f41b5df4772bb598ec9d389dd5f858592af#diff-9c24742c4bfe7eb2853f86cce86b91c6>
-> to
-> my own layer, and added a BBMASK to the openembedded-core's boost recipe.
-> This seems to work, except I get a QA error from the commit I'm using for
-> the boost recipe now:
-> 
+If you want to compare how terrible your current VM compares with some
+other builders, you can use:
+https://github.com/shr-project/test-oe-build-time
+I wouldn't be surprised if your VM performs even worse than +- 200USD
+ryzen 1600 system.
 
-I don't think there is a need for BBMASK, you should be able to set
-PREFERRED_VERSION_boost = "1.63.0" in local.conf or your machine
-configuration file.
+I would be happy to apply pull requests from other people in this
+thread with their suggestions.
 
-> ERROR: boost-1.63.0-r1 do_package: QA Issue: boost: Files/directories were
-> installed but not shipped in any package:
->   /usr/lib/libboost_numpy.so.1.63.0
-> Please set FILES such that these items are packaged. Alternatively if they
-> are unneeded, avoid installing them or delete them within do_install.
-> boost: 1 installed and not shipped files. [installed-vs-shipped]
-> ERROR: boost-1.63.0-r1 do_package: Fatal QA errors found, failing task.
-> ERROR: boost-1.63.0-r1 do_package: Function failed: do_package
-> 
-> I found a log
-> <https://www.yoctoproject.org/irc/%23yocto.2017-03-09.log.html> that
-> mentions this exact error, and also mentions a patch that fixes it - I've
-> tried and thus far failed to find that patch. I'm not sure if this will
-> actually work, but I thought I'd check and see if anyone had any ideas.
-> 
+You didn't mention the budget, but big Ryzen is definitely good choice.
 
-If all of this is really temporary you can install it in some package,
-or even create a new package for it. (PACKAGES =+ "boost-numpy",
-FILES_${PN}-numpy = "/usr/lib/libboost_numpy.so.1.63.0").
+You also didn't mention how "big" your typical builds are, if you're
+building something as big as the webengines used in test-oe-build-time,
+then it might be worth to spend a bit extra on 3970X Threadripper if
+budget allows.
 
-No more ideas tbh. I would try to patch "your" SW first and see if it
-brings you somewhere, but that's what I would do, each their own way.
+I'm still looking for someone with access to Epyc (ideally 7702P or
+7502P), because it's only a bit more expensive than corresponding
+Threadripper, but without the unfortunate limitation to 8 DIMM slots
+with difficult to buy 256GB sets:
+https://www.gskill.com/community/1502239313/1574739775/G.SKILL-Announces-N=
+ew-High-Performance,-Ultra-Capacity-DDR4-Memory-Kits-for-HEDT-Platforms
+will be nice when it gets finally available. On Epyc on the other hand
+you'll get 8 channels instead of 4 and much less issues to find
+compatible kit (even with ECC support). If the performance is
+significantly better than 3990X, then 7702P might be much better option
+for "professional" builder - as long as you can cool server
+mother board in tower PC efficiently enough.
 
-Quentin
+Cheers,
+
+>=20
+
+
+--lktyh2f7zpuefoq3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EARECAB0WIQRU+ejDffEzV2Je2oc3VSO3ZXaAHAUCXnJAWwAKCRA3VSO3ZXaA
+HJS3AKCtQmKhb0Pd8bOpTtKy7j+qi91nugCgo8cNV0w2EbI4w42pPwOgw/c7my4=
+=tXUn
+-----END PGP SIGNATURE-----
+
+--lktyh2f7zpuefoq3--
