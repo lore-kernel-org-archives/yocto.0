@@ -1,123 +1,96 @@
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
- by mx.groups.io with SMTP id smtpd.web10.18324.1584545887308450040
+Received: from esa7.bmw.c3s2.iphmx.com (esa7.bmw.c3s2.iphmx.com [68.232.133.109])
+ by mx.groups.io with SMTP id smtpd.web10.18667.1584546695995725364
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 Mar 2020 08:38:07 -0700
+ Wed, 18 Mar 2020 08:51:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=sfUhNvSS;
- spf=pass (domain: gmail.com, ip: 209.85.221.49, mailfrom: martin.jansa@gmail.com)
-Received: by mail-wr1-f49.google.com with SMTP id w16so14586458wrv.13
-        for <yocto@lists.yoctoproject.org>; Wed, 18 Mar 2020 08:38:07 -0700 (PDT)
+ dkim=pass header.i=@bmw.de header.s=mailing1 header.b=gB++YvQb;
+ spf=pass (domain: bmw.de, ip: 68.232.133.109, mailfrom: prvs=339894f69=mikko.rapeli@bmw.de)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:date:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=vvob0LSPfS7HGOpkxVhmvywjmpP0CqoeVGPjOG8M0Mk=;
-        b=sfUhNvSS0yREmss45LTgz1oj7Hg4+LBI4bL01x24/iMY9aGTuiDhRbyOc86nh6TZs9
-         eeZcKEjjA0fj7aUnKeYXhLLBzfbZYLCVusMau50bP2lF/HPBFjFAN+ZBzm7pdrvEj/nL
-         Wv2KSFFaT4urha+8TV0QLCAMrc7Sl9B6CEgNaVjbN0egi0G/Qck080AcaDifeHCIowDb
-         ps6W3Z6XvknImMSSGBC3rClIQOLPwTNbdSptn/V2Z+c5qGwdtg7fLk+fvat0Qu+fce2s
-         L1NkNvKE5XJAZlLoxmLbQvJqRhuNrKwW+8VfmeJLaYPN4QC9MKCFilBG/AuHUNr/GtBN
-         wY/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:date:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=vvob0LSPfS7HGOpkxVhmvywjmpP0CqoeVGPjOG8M0Mk=;
-        b=JO4I8XizxJYf0lkt9rxEDApqt6pVfNwtk7qyFTLwooybt155apBG6uXFyxcL6ORptb
-         wXJTcwBe+0mTFIEkHxvYbrOdAps830RH9Al2Tyx46raM17S//4RSuZJdCE0IHOq1zUJe
-         p/MxJYScC1wxKGiK+2/F1XOREQ8xwslRSDq4Xm9zB/oaUCzthmL+VEyzZdXgeZM2SlJv
-         USlWXHTGb4KSNjwQy6zHO/LSlLmAO7M0OegCFYnRB3hrON2ykno2nmAG6g82SmWY1bxn
-         AIK9Nc00ZYN+zppanAumL07ncJbhSku2Jhv+Yhlyz27VYsWysD0EKIrpHa8A2PSrsMfX
-         NWGQ==
-X-Gm-Message-State: ANhLgQ2MR/wdLKkBqDEtEzf8YbBHXKB+NWt734V0Y+JqxMhkJIDDF3Gj
-	iOJRucaZWwBBEsYxoh1ftUI=
-X-Google-Smtp-Source: ADFU+vu0ZtTVIbyQ+Z1tigcBp01NykjIL1B8w6S2LbI2KVQs7Jy1c52ttin84QRnd/1jBGHCFP3wjQ==
-X-Received: by 2002:a5d:428a:: with SMTP id k10mr6515087wrq.150.1584545885761;
-        Wed, 18 Mar 2020 08:38:05 -0700 (PDT)
-Return-Path: <martin.jansa@gmail.com>
-Received: from localhost ([109.238.218.228])
-        by smtp.gmail.com with ESMTPSA id f187sm4740999wme.31.2020.03.18.08.38.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2020 08:38:04 -0700 (PDT)
-From: "Martin Jansa" <Martin.Jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-Date: Wed, 18 Mar 2020 16:38:03 +0100
-To: Oliver Westermann <oliver.westermann@cognex.com>
-Cc: yocto@lists.yoctoproject.org
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1584546696; x=1616082696;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=FPNBwPHgI3dY4ipfVeKVnsX0E9uQ00AZl1yaEb4g3rE=;
+  b=gB++YvQblooRmTLw9042YnEcwZB3QJrYAyoFXyszjeZinFd7+t4C5+r4
+   YMSXA0OSsnXPigE+Sp0hYbTxVgP8wYKYOeQcN+V/atJTtmki/xHvIE3L6
+   yPYrqb+e0IrCWMrVcDvITexzTR0kKmluTPDQM1HBHclN9g5lFM9nksTzF
+   s=;
+Received: from esagw3.bmwgroup.com (HELO esagw3.muc) ([160.46.252.35]) by
+ esa7.bmw.c3s2.iphmx.com with ESMTP/TLS; 18 Mar 2020 16:51:34 +0100
+Received: from esabb3.muc ([160.50.100.30])  by esagw3.muc with ESMTP/TLS;
+ 18 Mar 2020 16:51:33 +0100
+Received: from smucm10l.bmwgroup.net (HELO smucm10l.europe.bmw.corp) ([160.48.96.48])
+ by esabb3.muc with ESMTP/TLS; 18 Mar 2020 16:51:33 +0100
+Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10l.europe.bmw.corp
+ (160.48.96.48) with Microsoft SMTP Server (TLS;
+ Wed, 18 Mar 2020 16:51:33 +0100
+Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
+ smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Wed,
+ 18 Mar 2020 16:51:33 +0100
+From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
+To: <mike.looijmans@topic.nl>
+CC: <bunk@stusta.de>, <jean-marie.lemetayer@savoirfairelinux.com>,
+	<pbarker@konsulko.com>, <oliver.westermann@cognex.com>,
+	<yocto@lists.yoctoproject.org>, <embedded-discuss@lists.savoirfairelinux.net>
 Subject: Re: [yocto] What are the key factors for yocto build speed?
-Message-ID: <20200318153803.spyb4vci4ixgf5dc@jama>
+Thread-Topic: [yocto] What are the key factors for yocto build speed?
+Thread-Index: AQHV/SQvHMEDglrWJECufLQaId00LqhOP5+AgAAH1gCAAAv/AIAACj8AgAAFvYCAAAu0AA==
+Date: Wed, 18 Mar 2020 15:51:33 +0000
+Message-ID: <20200318155132.GO104502@korppu>
 References: <rCbr.1584535957803213201.lfzw@lists.yoctoproject.org>
+ <20200318130126.GK104502@korppu>
+ <CAM9ZRVuQyj7X0YFqkpSFWM2=kQHnu8ZGpMsD34ntHYny4x7XJg@mail.gmail.com>
+ <251912923.167286.1584540746314.JavaMail.zimbra@savoirfairelinux.com>
+ <20200318144906.GC23112@localhost>
+ <080227a9-b5f2-8e3e-201f-5285a1f80e2d@topic.nl>
+In-Reply-To: <080227a9-b5f2-8e3e-201f-5285a1f80e2d@topic.nl>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
 MIME-Version: 1.0
-In-Reply-To: <rCbr.1584535957803213201.lfzw@lists.yoctoproject.org>
-User-Agent: NeoMutt/20180716
-X-Groupsio-MsgNum: 48819
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="lktyh2f7zpuefoq3"
-Content-Disposition: inline
-
---lktyh2f7zpuefoq3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <8EAC9195ECA29942B59277E7EB14719D@bmwmail.corp>
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 18, 2020 at 05:52:37AM -0700, Oliver Westermann wrote:
-> Hey,
+On Wed, Mar 18, 2020 at 04:09:39PM +0100, Mike Looijmans wrote:
+> On 18-03-2020 15:49, Adrian Bunk via Lists.Yoctoproject.Org wrote:
+> > On Wed, Mar 18, 2020 at 10:12:26AM -0400, Jean-Marie Lemetayer wrote:
+> > > ...
+> > > For example one of our build servers is using:
+> > > - AMD Ryzen 9 3900X
+> > > ...
+> > > - 32Go DDR4 3200 MHZ CL14
+> > > ...
+> > > It is a really good price / build time ratio configuration.
+> >=20
+> > Depends on what you are building.
+> >=20
+> > Building non-trivial C++ code (e.g. webkitgtk) with 24 cores
+> > but only 32 GB RAM will not work, for such code you need
+> > more than 2 GB/core.
 >=20
-> We're currently using a VM on Windows and it's a lot slower than the nat=
-ive linux build (which is expected).
-> We're looking into getting a dedicated build server for our team (basica=
-lly a self-build tower PC). Any suggestions what to put in that build to ge=
-t the most out of it?
+> Seems a bit excessive to buy hardware just to handle a particular corner
+> case. Most of OE/Yocto code is plain C, not even C++.
 >=20
-> Currently we're looking at a big Ryzen, 64G of RAM and one or multiple S=
-SDs on a "consumer grade" board like the X570.
+> My rig only has 8GB but doesn't run into memory issues during big GUI
+> builds. The only thing that made it swap was the populate_sdk task that
+> created a 1.1GB fiel and needed 20GB of RAM to compress that. Took a few
+> minutes more due to swapping.
+> I submitted a patch today to fix that in OE.
 >=20
-> Suggestions, hints and links welcome :)
+> Your mileage may vary. But RAM is easy to add.
 
-Other replies look good to me, here are few additions:
+Well, I can't build with under 2 gigs per core or I run out of physical mem=
+ory
+and kernel oom-killer kicks in to kill the build. Also can't run
+with yocto default parallel settings which only take into account the
+number of cores and thus have a custom script which does caps the threads
+so that 2 gigs of RAM for each are available.
 
-If you want to compare how terrible your current VM compares with some
-other builders, you can use:
-https://github.com/shr-project/test-oe-build-time
-I wouldn't be surprised if your VM performs even worse than +- 200USD
-ryzen 1600 system.
+Though I'm sure plain C and plain poky projects have less requirements for =
+RAM.
 
-I would be happy to apply pull requests from other people in this
-thread with their suggestions.
-
-You didn't mention the budget, but big Ryzen is definitely good choice.
-
-You also didn't mention how "big" your typical builds are, if you're
-building something as big as the webengines used in test-oe-build-time,
-then it might be worth to spend a bit extra on 3970X Threadripper if
-budget allows.
-
-I'm still looking for someone with access to Epyc (ideally 7702P or
-7502P), because it's only a bit more expensive than corresponding
-Threadripper, but without the unfortunate limitation to 8 DIMM slots
-with difficult to buy 256GB sets:
-https://www.gskill.com/community/1502239313/1574739775/G.SKILL-Announces-N=
-ew-High-Performance,-Ultra-Capacity-DDR4-Memory-Kits-for-HEDT-Platforms
-will be nice when it gets finally available. On Epyc on the other hand
-you'll get 8 channels instead of 4 and much less issues to find
-compatible kit (even with ECC support). If the performance is
-significantly better than 3990X, then 7702P might be much better option
-for "professional" builder - as long as you can cool server
-mother board in tower PC efficiently enough.
-
-Cheers,
-
->=20
-
-
---lktyh2f7zpuefoq3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EARECAB0WIQRU+ejDffEzV2Je2oc3VSO3ZXaAHAUCXnJAWwAKCRA3VSO3ZXaA
-HJS3AKCtQmKhb0Pd8bOpTtKy7j+qi91nugCgo8cNV0w2EbI4w42pPwOgw/c7my4=
-=tXUn
------END PGP SIGNATURE-----
-
---lktyh2f7zpuefoq3--
+-Mikko=
