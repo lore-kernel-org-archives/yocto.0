@@ -1,12 +1,12 @@
 Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.3975.1584582815682047807
+ by mx.groups.io with SMTP id smtpd.web12.3977.1584582816619724277
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 Mar 2020 18:53:35 -0700
+ Wed, 18 Mar 2020 18:53:36 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=rZ3G1gWG;
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=FHFfmNVZ;
  spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jpuhlman@gmail.com)
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 87864E01888; Wed, 18 Mar 2020 18:53:35 -0700 (PDT)
+	id 7A38CE01886; Wed, 18 Mar 2020 18:53:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -17,54 +17,54 @@ X-Spam-HAM-Report:
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
 	*      trust
-	*      [209.85.215.180 listed in list.dnswl.org]
+	*      [209.85.210.170 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD5D0E017FC
-	for <yocto@yoctoproject.org>; Wed, 18 Mar 2020 18:53:33 -0700 (PDT)
-Received: by mail-pg1-f180.google.com with SMTP id x7so308642pgh.5
-        for <yocto@yoctoproject.org>; Wed, 18 Mar 2020 18:53:33 -0700 (PDT)
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2565E01845
+	for <yocto@yoctoproject.org>; Wed, 18 Mar 2020 18:53:34 -0700 (PDT)
+Received: by mail-pf1-f170.google.com with SMTP id i13so508896pfe.3
+        for <yocto@yoctoproject.org>; Wed, 18 Mar 2020 18:53:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=sender:from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=lYSZpKWc6Vl6fQ3oGXfPjcC7iKYgZDJt30iwBk6OoJ0=;
-        b=rZ3G1gWGftg9z/GcYih1uY9LDTANpc1VETo5i/dxsW3a9msJ7m4Gd5z617+iPPgPcX
-         j8XXJ7g1rzTHsCZB60Rka3JvYYrFjvJOCJB7vtKjUKmVyGxZ9b1nXeDgb/pvQJPu05fX
-         uo2BpIyqPJu/6MYSNZfNVWlx13Brandncv9Zle9N7O+AEVVm81yeOtfY4c08XBIn+RgE
-         693k6LIrm5PaS3uZnek6jQrHTBay3yuTsk6yUIEiUJptkahU/T3WXt5jdNJymY0W57Li
-         efcSitdwsnFMXJjSfDYGARQ1Xm9Rwh2Ao7hk6YJwezCR8TH8Z+aG/3OKXW2SqaiP9XfG
-         s4dw==
+        bh=Wm3JAizaEm1cPTJ8/YHK2S9mxkMBcX0degqQ5FQLLU4=;
+        b=FHFfmNVZA4Ml+pdMlK4HYg6wYXgP/PHgpsldIdcYZKtbJ5j319/Uuj/UiXOUwNOn0+
+         3cLJgCGYu8qfnZAH9oeeF9a90a/9gIbuTV0bJb/demIV/lbGJseyjL8TNZjVo4q92/Pj
+         jeMDxYHxAGcUqP5HrSxWY8kTi2zF966//GUqh6UYk+N58qTeqyyb7w+6qj4bT5BrSCku
+         qvVxwIvYvWSOlfAlItOLpMWKu7/K67cErH8wjFFu9MFLv+p6NoMMcWnmZd46sasCBog5
+         jxtEZnru1MuvqkFZRR+HsABxhi+azXB2eRI5IPUv5HsVIPgm8Fk8r/NBfYhHtefmWqwB
+         lFig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
          :in-reply-to:references;
-        bh=lYSZpKWc6Vl6fQ3oGXfPjcC7iKYgZDJt30iwBk6OoJ0=;
-        b=qOhSabiumOFNSWzg/RT8f/CigOCIzjbJZJAWDlaKxBnTBPbspykrt2scy8mCkeHROq
-         shtWGt1fRdyeXfuKQTSAYcoBn8Ls+i7d3YY3mNg2CVMrmD6FM4A5XKv5BBzEjr0SAx+K
-         dLgZ1TLizf12GT9eI+yo5pQvwAnq3+OUz8+CW3tFrZ8Zdq/c2G5qv3ALSjr0GOGqBNLh
-         lQ85jW/Om5WXhh6nFYi/3TAQ4inH5W9PyE5QfuqNX1YOcPnpM4kxRf8dc3uwftVhipMP
-         10TgOR96i7sJkAunFycSbF8PA5qZt2Dw+/sWbE4YNtBDDbZo9rqjd1Jg193lRaqVqCwm
-         KvTQ==
-X-Gm-Message-State: ANhLgQ3PbPqXgKwmBNENsS9gKUh9+SIG8uXcUlFbjo+Saom9b3Snib/V
-	/DPd7ToRHeFrexQCOUubvbc=
-X-Google-Smtp-Source: ADFU+vtXUeovzVUG+ucl4jypi9yqCxriOCc9Qh/48SOJEkHNcRI5oksZ95MiCFCqg3YU9M0H8gEvsw==
-X-Received: by 2002:a63:455:: with SMTP id 82mr686165pge.197.1584582813529;
-        Wed, 18 Mar 2020 18:53:33 -0700 (PDT)
-Received: from workhorse.localdomain (99-14-97-149.lightspeed.frokca.sbcglobal.net. [99.14.97.149])
-        by smtp.gmail.com with ESMTPSA id x17sm280606pfn.16.2020.03.18.18.53.32
+        bh=Wm3JAizaEm1cPTJ8/YHK2S9mxkMBcX0degqQ5FQLLU4=;
+        b=qtswIrtukDAni5ImeT7gL8PXC8i9vObj7rTE3PhFb3rRMTZfxWsdTHKwe1qXUIOUh+
+         Ds/rAvqE8GLG2YFcNutOU/tysrSUsCTtHnjMxuwV2/hLps2G7guh2OBQH9+GNl9o5dvj
+         813emgjHWbczjKlTm4FAdjvkx+0wQYfjkMvN1lSFWF4tsjNn8ha8KSLYPE8N3nSbpNS5
+         bap/5boJy6kwHJz70YVnhNknexGT+xKpOBNzx2NFRCCqJzPPIl05yTOxy6hFAJuOco07
+         FG6uyCtXVdk9msm9/AKR2dMQ5e8a7VzPmcPkoirvEKwQV59dB8aiQkUCiAml8QiAXiEM
+         7s/w==
+X-Gm-Message-State: ANhLgQ2n1UQu7O9UO5xgcLFx0IFWAHu97A/o9BEkmPQ6NECJ4xh31pb0
+	qC2+/GzMozIdO2fxH59I13mQZgxsQ/k=
+X-Google-Smtp-Source: ADFU+vsLms/PXhAEPCb3m+gBqWLGnKmAWz6C7BAy09z4w3EIQ7VM+4i9ZReJzLB4RvaM/orLw7fv0Q==
+X-Received: by 2002:a65:6244:: with SMTP id q4mr741446pgv.84.1584582814516;
+        Wed, 18 Mar 2020 18:53:34 -0700 (PDT)
+Received: from workhorse.localdomain ([2600:1700:4c90:60a0:56be:f7ff:fe12:d0bd])
+        by smtp.gmail.com with ESMTPSA id k3sm298568pgh.34.2020.03.18.18.53.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 18 Mar 2020 18:53:32 -0700 (PDT)
+        Wed, 18 Mar 2020 18:53:34 -0700 (PDT)
 Sender: Jeremy Puhlman <jpuhlman@gmail.com>
 Received: by workhorse.localdomain (Postfix, from userid 1000)
-	id DBE832A09AF; Wed, 18 Mar 2020 18:53:31 -0700 (PDT)
+	id 170452A0404; Wed, 18 Mar 2020 18:53:33 -0700 (PDT)
 From: "Jeremy Puhlman" <jpuhlman@mvista.com>
 To: yocto@yoctoproject.org
 Cc: Jeremy Puhlman <jpuhlman@mvista.com>
-Subject: [meta-cgl][PATCH 12/20] libwww-perl: update to 6.43
-Date: Wed, 18 Mar 2020 18:53:13 -0700
-Message-Id: <20200319015321.15525-12-jpuhlman@mvista.com>
+Subject: [meta-cgl][PATCH 14/20] libmailtools-perl: update 2.21
+Date: Wed, 18 Mar 2020 18:53:15 -0700
+Message-Id: <20200319015321.15525-14-jpuhlman@mvista.com>
 X-Mailer: git-send-email 2.13.3
 In-Reply-To: <20200319015321.15525-1-jpuhlman@mvista.com>
 References: <20200319015321.15525-1-jpuhlman@mvista.com>
@@ -73,28 +73,35 @@ From: Jeremy Puhlman <jpuhlman@mvista.com>
 
 Signed-off-by: Jeremy A. Puhlman <jpuhlman@mvista.com>
 ---
- .../recipes-perl/perl/{libwww-perl_6.36.bb => libwww-perl_6.43.bb}   | 5 ++---
+ .../perl/{libmailtools-perl_2.20.bb => libmailtools-perl_2.21.bb}    | 5 ++---
  1 file changed, 2 insertions(+), 3 deletions(-)
- rename meta-cgl-common/recipes-perl/perl/{libwww-perl_6.36.bb => libwww-perl_6.43.bb} (66%)
+ rename meta-cgl-common/recipes-perl/perl/{libmailtools-perl_2.20.bb => libmailtools-perl_2.21.bb} (74%)
 
-diff --git a/meta-cgl-common/recipes-perl/perl/libwww-perl_6.36.bb b/meta-cgl-common/recipes-perl/perl/libwww-perl_6.43.bb
-similarity index 66%
-rename from meta-cgl-common/recipes-perl/perl/libwww-perl_6.36.bb
-rename to meta-cgl-common/recipes-perl/perl/libwww-perl_6.43.bb
-index 816f4f8..07fadb7 100644
---- a/meta-cgl-common/recipes-perl/perl/libwww-perl_6.36.bb
-+++ b/meta-cgl-common/recipes-perl/perl/libwww-perl_6.43.bb
-@@ -15,9 +15,8 @@ BBCLASSEXTEND = "native"
- 
+diff --git a/meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.20.bb b/meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.21.bb
+similarity index 74%
+rename from meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.20.bb
+rename to meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.21.bb
+index dec7979..8bbbde5 100644
+--- a/meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.20.bb
++++ b/meta-cgl-common/recipes-perl/perl/libmailtools-perl_2.21.bb
+@@ -2,7 +2,7 @@ DESCRIPTION = "MailTools is a set of Perl modules related to mail applications"
+ HOMEPAGE = "http://search.cpan.org/dist/MailTools/"
+ SECTION = "libs"
+ LICENSE = "Artistic-1.0 | GPL-1.0+"
+-LIC_FILES_CHKSUM = "file://lib/Mail/Mailer.pod;beginline=144;md5=641bd171b1aaabba1fc83ac0a98a2d30"
++LIC_FILES_CHKSUM = "file://lib/Mail/Mailer.pod;beginline=150;md5=641bd171b1aaabba1fc83ac0a98a2d30"
+ DEPENDS = " \
+ 	libtest-pod-perl-native \
+ 	libtimedate-perl-native \
+@@ -18,8 +18,7 @@ BBCLASSEXTEND = "native"
  PR = "r2"
  
--SRC_URI = "https://cpan.metacpan.org/authors/id/E/ET/ETHER/libwww-perl-${PV}.tar.gz;name=libwww-perl-${PV}"
--SRC_URI[libwww-perl-6.36.md5sum] = "20062717e4084d2f56d84c7ab4c91ec1"
--SRC_URI[libwww-perl-6.36.sha256sum] = "75c034ab4b37f4b9506dc644300697505582cf9545bcf2e2079e7263f675290a"
-+SRC_URI = "https://cpan.metacpan.org/authors/id/O/OA/OALDERS/libwww-perl-${PV}.tar.gz;name=libwww-perl-${PV}"
-+SRC_URI[libwww-perl-6.43.sha256sum] = "e9849d7ee6fd0e89cc999e63d7612c951afd6aeea6bc721b767870d9df4ac40d"
+ SRC_URI = "http://search.cpan.org/CPAN/authors/id/M/MA/MARKOV/MailTools-${PV}.tar.gz"
+-SRC_URI[md5sum] = "53e9d35256c3fd7cef0e4a24b15e9512"
+-SRC_URI[sha256sum] = "f55606f7a9cc342ee9d5f996e2b6a4c0047e2ee47cd88c3250ecf0d0c5fb3196"
++SRC_URI[sha256sum] = "4ad9bd6826b6f03a2727332466b1b7d29890c8d99a32b4b3b0a8d926ee1a44cb"
  
- S = "${WORKDIR}/libwww-perl-${PV}"
+ S = "${WORKDIR}/MailTools-${PV}"
  
 -- 
 2.13.3
