@@ -1,196 +1,222 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.4103.1584582871546986017
+Received: from EUR03-DB5-obe.outbound.protection.outlook.com (EUR03-DB5-obe.outbound.protection.outlook.com [40.107.4.78])
+ by mx.groups.io with SMTP id smtpd.web10.6941.1584599258395322749
  for <yocto@lists.yoctoproject.org>;
- Wed, 18 Mar 2020 18:54:31 -0700
+ Wed, 18 Mar 2020 23:27:40 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@mvista-com.20150623.gappssmtp.com header.s=20150623 header.b=kXrOMvX9;
- spf=permerror, err=parse error for token &{10 18 websitewelcome.com}: parse error for token &{10 18 _spf.google.com}: parse error for token &{10 18 _netblocks.google.com}: limit exceeded (domain: mvista.com, ip: 140.211.169.56, mailfrom: jpuhlman@mvista.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6874AE01844; Wed, 18 Mar 2020 18:54:31 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.167.176 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com [209.85.167.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AFEFE017FC
-	for <yocto@yoctoproject.org>; Wed, 18 Mar 2020 18:54:30 -0700 (PDT)
-Received: by mail-oi1-f176.google.com with SMTP id w13so1055710oih.4
-        for <yocto@yoctoproject.org>; Wed, 18 Mar 2020 18:54:30 -0700 (PDT)
+ dkim=pass header.i=@topicbv.onmicrosoft.com header.s=selector2-topicbv-onmicrosoft-com header.b=JxzIjeVc;
+ spf=pass (domain: topicproducts.com, ip: 40.107.4.78, mailfrom: mike.looijmans@topicproducts.com)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=mvista-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:references:to:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language;
-        bh=yKXqX2rFrnB3+oQQXWD+RgdjGfMaGjSa8P6Tzw1Q4J4=;
-        b=kXrOMvX9cvMQ9LdHkPH1tkG2IaD4uvDu/gIxHUsXcHY17TJQQGp43i2EGCjO7THPta
-         3bcDDhhE1x1B7o3Ax5SHMQwJ8um3t08yWTOHgrvvCQn72p7NqIiO5zZprmIKfUuvIqLQ
-         pCP9V48jdqTAOl0lKAlZnA9sFCPUcuZPtI9pcS0NyVpTmMDZpOMfLFdwFhBRA/08/mCF
-         CeFLCJRLxCDLAA9hvRife/ZLH559SfcphPEQk5hqU3dh4lckQwpS6hdxzZlNgbMAJi06
-         +8tAnsEKxfs0PcxNfWMqU/O/04oeYcFkphf01vf1gyjrqns54kqNu3ijx/Nyp0Q3yn+6
-         SLaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:references:to:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language;
-        bh=yKXqX2rFrnB3+oQQXWD+RgdjGfMaGjSa8P6Tzw1Q4J4=;
-        b=f7AavlqXXDkv0UuA98mMpaJqIAq8jj15VtGqV+IQ9e8OYcz1MKn7amBWjE+T258bSP
-         1eon6CVGKZDdQ44PayyPaeMfh3McI+PShIGlceXsCqrcZsiqdEyF2Ps8gXz4qpnL7IzL
-         UB4dqxVs74Rhh5T8/EnuYKdkHknPnoeHWHAgoCmd8BtYp6SwKMN+juMdM3VumvMWsGU8
-         y9hfIpQtmnL/tEeRE2Kdv/UE3XKTZnLNjZJXiy1Grv21mVjAMrnSjCkWIGitwr4oMxis
-         M33pYu4juPhF8qtLzas0m/0KsCjrk6WX76gBI/MdMtkAk/t6R79rw9D2bNAJ0Gt+D/yI
-         NNPg==
-X-Gm-Message-State: ANhLgQ3ShzYVb4UcnAIEPK+pslDvPmnOMI2yUpbn+l4wDY7UfcRW4+rT
-	xsxuoW8pv1Bz0QnnLGb+8DzlQXahiU8=
-X-Google-Smtp-Source: ADFU+vtQApS15dcZ2FKZTYEmK36C63ch+gY6W5K49ckjots4D43+jt2/85wkED1N88Fl5pF6MshZrQ==
-X-Received: by 2002:a05:6808:b2d:: with SMTP id t13mr705610oij.107.1584582869453;
-        Wed, 18 Mar 2020 18:54:29 -0700 (PDT)
-Received: from ?IPv6:2600:1700:4c90:60a0:5566:b07f:3f47:4a0e? ([2600:1700:4c90:60a0:5566:b07f:3f47:4a0e])
-        by smtp.gmail.com with ESMTPSA id r20sm315554oic.56.2020.03.18.18.54.28
-        for <yocto@yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 18 Mar 2020 18:54:28 -0700 (PDT)
-Subject: Re: [yocto] [meta-cgl][PATCH 01/20] monit: upgrade 5.25.2 -> 5.26.0
-References: <15FD91AB7E42E2A2.29573@lists.yoctoproject.org>
-To: yocto@yoctoproject.org
-From: "Jeremy Puhlman" <jpuhlman@mvista.com>
-Message-ID: <61e995a3-238a-af51-87b5-308c25548729@mvista.com>
-Date: Wed, 18 Mar 2020 18:54:26 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+ d=topicbv.onmicrosoft.com; s=selector2-topicbv-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OAM8BGYnx0/ESA16F5EazvfoX0pIyYX6j1M4Gv72XEs=;
+ b=JxzIjeVcE5FBhKsg/ZJGv0yQcfCiSia/eiuYrZuPtTOtw51jZAyJxKpDqolMDZV9Jn2fMnniYp2lPnrMH54unWmjYTSQm3Vip6Wjd9LlChb1m26cgTq9YKLXPm+lG0UP4S6fy1rJJbd4Za474icqWkpaU8lkodvlKM1DDGgMec4=
+Received: from AM5PR0202CA0018.eurprd02.prod.outlook.com
+ (2603:10a6:203:69::28) by DB7PR04MB5211.eurprd04.prod.outlook.com
+ (2603:10a6:10:1a::24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.22; Thu, 19 Mar
+ 2020 06:27:36 +0000
+Received: from VE1EUR01FT028.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:203:69:cafe::30) by AM5PR0202CA0018.outlook.office365.com
+ (2603:10a6:203:69::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.18 via Frontend
+ Transport; Thu, 19 Mar 2020 06:27:36 +0000
+Authentication-Results: spf=pass (sender IP is 13.81.10.179)
+ smtp.mailfrom=topicproducts.com; lists.yoctoproject.org; dkim=fail (signature
+ did not verify) header.d=topicbv.onmicrosoft.com;lists.yoctoproject.org;
+ dmarc=none action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
+ designates 13.81.10.179 as permitted sender) receiver=protection.outlook.com;
+ client-ip=13.81.10.179; helo=westeu13-emailsignatures-cloud.codetwo.com;
+Received: from westeu13-emailsignatures-cloud.codetwo.com (13.81.10.179) by
+ VE1EUR01FT028.mail.protection.outlook.com (10.152.2.220) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2814.14 via Frontend Transport; Thu, 19 Mar 2020 06:27:35 +0000
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (104.47.1.56) by westeu13-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Thu, 19 Mar 2020 06:27:34 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YvS9jMRR3BWTY30uLX+RGNdDHlh7tnLB+154W+q8rYBLEWWFLP6lvHawrnEXE9ieO6rMb0UrtLP7J4GER2NLv36esw9P0Ivt55bUAFPgPBFdjlItuYeWX2vtLfmyXm5+OoLHYANfjGknwuPLUkZaogoDMTshs4qnySfI6htZZ0I68FbS/05R6vg/fsp16U+dcdvZA7+61OyaWC59NygovpEu5eKiAXBfHlFORUm7/49FXa1AWnGKpi8EgcHClH9cNM/+eLu+jq35nuisYgs8H4O4+Vslka4oomF+eDtGz1m0CyJ1Bn9Rq39eJUisPxx2aqhlcN82uLJOQ4x7/IQznQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OAM8BGYnx0/ESA16F5EazvfoX0pIyYX6j1M4Gv72XEs=;
+ b=HOkR+D8mxZA/O/QX2zU6gDUpRuLjNhygiFWfPr4OjiqnkE1+OpUaGy9C9c+zbGd1+I4pMd8CB5LojcIj8DlbIxE1Yh74CfU1AROm9JljOf7079K0bCwskaWN5W5hT9QLJZMdC026kh/NwKF93zeAJ1WUZtoBzz+VxtIB4S5eXwUO3mGdFyPB9Z7cE6XzhbIGS9jOTRE35enxCtQIWPn1SMXxZBxq7tpw7810GR/I5FD1FZJOU5Fok0+wFjME0oQQSAfho9WXu1pWEtHLAur+05amLPCPyBuzsXJDtR/Cp07bje1Bfnr1fywzAUmXELau8Q0xeyg1ytB5j7FkC5gnnA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=topicproducts.com; dmarc=pass action=none header.from=topic.nl;
+ dkim=pass header.d=topic.nl; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=topicbv.onmicrosoft.com; s=selector2-topicbv-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OAM8BGYnx0/ESA16F5EazvfoX0pIyYX6j1M4Gv72XEs=;
+ b=jtgmsqpRqY1LJRRoo9+u+BHSFSkAFMnkrN7xSDt5AZbKC3a6Q1lybO68G+0pjLswDTAzbMoh5WKJ2/hq0PTHN2P4W2DiS58rakRx2d1Sb59PzQXGLxxqhEZcbubYQUunrPEBjit0qwwWs6405c73evtQ7ilTVT1ZGD3PIJSQVvk=
+Authentication-Results-Original: spf=none (sender IP is )
+ smtp.mailfrom=mike.looijmans@topicproducts.com; 
+Received: from DB3PR0402MB3947.eurprd04.prod.outlook.com (52.134.67.147) by
+ DB3PR0402MB3675.eurprd04.prod.outlook.com (52.134.69.146) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2814.19; Thu, 19 Mar 2020 06:27:32 +0000
+Received: from DB3PR0402MB3947.eurprd04.prod.outlook.com
+ ([fe80::380e:f722:2d0d:9c71]) by DB3PR0402MB3947.eurprd04.prod.outlook.com
+ ([fe80::380e:f722:2d0d:9c71%6]) with mapi id 15.20.2814.025; Thu, 19 Mar 2020
+ 06:27:32 +0000
+Subject: Re: <EXT> Re: [yocto] What are the key factors for yocto build speed?
+To: "Srinivasan, Raja" <rsrinivasan@abiomed.com>,
+ "mikko.rapeli@bmw.de" <mikko.rapeli@bmw.de>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <rCbr.1584535957803213201.lfzw@lists.yoctoproject.org>
+ <20200318130126.GK104502@korppu>
+ <CAM9ZRVuQyj7X0YFqkpSFWM2=kQHnu8ZGpMsD34ntHYny4x7XJg@mail.gmail.com>
+ <251912923.167286.1584540746314.JavaMail.zimbra@savoirfairelinux.com>
+ <20200318144906.GC23112@localhost>
+ <080227a9-b5f2-8e3e-201f-5285a1f80e2d@topic.nl>
+ <20200318155132.GO104502@korppu>
+ <06037dcfe9e74e4e80cd1e8b41593542@USDVREX02.abiomed.com>
+From: "Mike Looijmans" <mike.looijmans@topic.nl>
+Organization: Topic
+Message-ID: <c15d66d7-d056-df06-3560-c78289c43d07@topic.nl>
+Date: Thu, 19 Mar 2020 07:27:30 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+In-Reply-To: <06037dcfe9e74e4e80cd1e8b41593542@USDVREX02.abiomed.com>
+X-ClientProxiedBy: AM4PR0101CA0070.eurprd01.prod.exchangelabs.com
+ (2603:10a6:200:41::38) To DB3PR0402MB3947.eurprd04.prod.outlook.com
+ (2603:10a6:8:7::19)
+Return-Path: mike.looijmans@topicproducts.com
 MIME-Version: 1.0
-In-Reply-To: <15FD91AB7E42E2A2.29573@lists.yoctoproject.org>
-Content-Type: multipart/alternative;
- boundary="------------C6AB598CA8E5EE90B162EB8D"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.1.130] (83.128.90.119) by AM4PR0101CA0070.eurprd01.prod.exchangelabs.com (2603:10a6:200:41::38) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.20 via Frontend Transport; Thu, 19 Mar 2020 06:27:31 +0000
+X-Originating-IP: [83.128.90.119]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: ec0659f1-d6b8-4bcc-6dab-08d7cbce9d25
+X-MS-TrafficTypeDiagnostic: DB3PR0402MB3675:|DB7PR04MB5211:
+X-Microsoft-Antispam-PRVS: 
+	<DB7PR04MB52114D462DB148C9F478F3C896F40@DB7PR04MB5211.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;OLM:9508;
+X-Forefront-PRVS: 0347410860
+X-Forefront-Antispam-Report-Untrusted: 
+ SFV:NSPM;SFS:(10009020)(376002)(346002)(136003)(396003)(366004)(39840400004)(199004)(2616005)(956004)(31686004)(110136005)(8676002)(16576012)(44832011)(36756003)(2906002)(316002)(42882007)(508600001)(186003)(16526019)(81156014)(36916002)(31696002)(81166006)(26005)(8936002)(6486002)(52116002)(4326008)(5660300002)(66556008)(66946007)(53546011)(66476007);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3675;H:DB3PR0402MB3947.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;
+Received-SPF: None (protection.outlook.com: topicproducts.com does not
+ designate permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: 
+ Z+weJcFVxWpwo2tJ7b/Kz45f2l5wQs1N0rTI5lam359sYL6ZgqbxoZUOMOQtDWAY0rre+M3mbr7CG8H768r12qFjevH9nq2UMy2lnlNalMwkuFwVccyh+0/2GuRj9wTHxLsdcnNZsjx9H9RRh5iPDQiWKEwuAklyZ8HkcvzlcMVypwpKHp3AccAg6SB+4HF29gl1inFna/yrQ2/UMEcP6qxzTOEeewC3dP5Rj8Z99RTszgpnGeS5n5pdjt4SpPaRgmg4K1BQCFodD+n1gq7PppmFlTRhuQSDscD2NHD+P7ZnDN1+Qm3cYVryXedHfSLYk5MPsdXlLIsixF+I2n5awJLJ2PAf0YQuFFozhweyAug7q9GqE4Kg6JEX5rnkaM9qFx7t4Vx6civFDraqxtrgmkM5lSOsHXw971TPHgQQh8p54Sgfi2kxCO81MabZ7Z4B
+X-MS-Exchange-AntiSpam-MessageData: rvvqNaZI9S11Fx09YZxLgDgeZLQsmmP4ZSU2ZGcSb9Wi5jn9Jf2QMvAroHjG1ptNkD+UydEbd+9QFrHqf0PdVcnIR0fCtlQf7bD+FhAG3djmzTcd/sekokI+3NDhc2yUocRTiboxh+4AqfXyXP/bSA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3675
+X-CodeTwo-MessageID: 50c9e87c-2f24-4865-b44f-4d121ecd5bc4.20200319062734@westeu13-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
+ VE1EUR01FT028.eop-EUR01.prod.protection.outlook.com
+X-Forefront-Antispam-Report: 
+	CIP:13.81.10.179;IPV:;CTRY:NL;EFV:NLI;SFV:NSPM;SFS:(10009020)(136003)(376002)(396003)(346002)(39840400004)(199004)(46966005)(4326008)(36916002)(6486002)(53546011)(246002)(7596002)(8676002)(31696002)(5660300002)(8936002)(356004)(316002)(7636002)(70586007)(36756003)(70206006)(110136005)(82310400001)(44832011)(2906002)(186003)(47076004)(26005)(16526019)(31686004)(16576012)(2616005)(42882007)(956004)(336012)(508600001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB7PR04MB5211;H:westeu13-emailsignatures-cloud.codetwo.com;FPR:;SPF:Pass;LANG:en;PTR:westeu13-emailsignatures-cloud.codetwo.com;A:1;
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 
+	470eca3c-f26d-451e-65d7-08d7cbce9ad4
+X-Forefront-PRVS: 0347410860
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	hTe0/IHqqxaeiudSWTpsue3BbhRjyzgugWKV6vb+7XwddsqPaBZxbrVLYPGuxsMK6JiVbbc15HtiVwIJCGiEQIwApUzvAB6KARjJ76KXNS6eWkVUDvbihb1hJlliwoLWaAMtCS+KdspJruxjBaIWCUVSio5u9wfBdAK4XAJzqXgnMksgS/blv3TDUiEjL6OigzepR2466zVe8e29WznClhExb6wpkaboCdiDWC+EB2nzme9JwXmG2EYrOi9nDSjRmRMOT7cbBRUG2e3AxD5jiD5R54LypPqo14RA6/7v16cUYv0oMjiAVX82y/EbI1jPM2EAqN1nqLUPBnQ6FMnmfOioqMOs1yWRWS19pGFiv852I1o8M00d4CdXvD6q3WHt6d6WYZlaIpZRzWIxNW4+ohfmo44EWC9kVFnU55mSyXR6tMe5cbThJuQc9OcHjHvk8OMxuhWwSzPcMqfKKreyHd7dthqVxt0wqqUWBH+s4jnC7pUDaZovZA6IgGhPqEacHBRx2GXo0jzzbXviZtw3Aw==
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2020 06:27:35.5252
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ec0659f1-d6b8-4bcc-6dab-08d7cbce9d25
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[13.81.10.179];Helo=[westeu13-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB5211
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-
---------------C6AB598CA8E5EE90B162EB8D
-Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Opps I went one to far, please disregard this one.
+You should really investigate the sstate-cache. Oh, and don't delete 
+everything after every build...
 
-On 3/18/2020 6:53 PM, Jeremy Puhlman via Lists.Yoctoproject.Org wrote:
-> From: Changqing Li <changqing.li@windriver.com>
->
-> Signed-off-by: Changqing Li <changqing.li@windriver.com>
-> Signed-off-by: Adrian Dudau <adrian.dudau@enea.com>
-> ---
->   .../recipes-cgl/monit/{monit_5.25.2.bb => monit_5.26.0.bb}          | 6 +++---
->   1 file changed, 3 insertions(+), 3 deletions(-)
->   rename meta-cgl-common/recipes-cgl/monit/{monit_5.25.2.bb => monit_5.26.0.bb} (90%)
->
-> diff --git a/meta-cgl-common/recipes-cgl/monit/monit_5.25.2.bb b/meta-cgl-common/recipes-cgl/monit/monit_5.26.0.bb
-> similarity index 90%
-> rename from meta-cgl-common/recipes-cgl/monit/monit_5.25.2.bb
-> rename to meta-cgl-common/recipes-cgl/monit/monit_5.26.0.bb
-> index ab9e922..6ec1a21 100644
-> --- a/meta-cgl-common/recipes-cgl/monit/monit_5.25.2.bb
-> +++ b/meta-cgl-common/recipes-cgl/monit/monit_5.26.0.bb
-> @@ -9,7 +9,7 @@ HOMEPAGE = "http://mmonit.com/monit/"
->   LICENSE = "AGPLv3"
->   LIC_FILES_CHKSUM = "file://COPYING;md5=ea116a7defaf0e93b3bb73b2a34a3f51"
->   
-> -DEPENDS = "openssl zlib"
-> +DEPENDS = "openssl zlib virtual/crypt"
->   
->   SRC_URI = "\
->   	http://mmonit.com/monit/dist/${BP}.tar.gz \
-> @@ -17,8 +17,8 @@ SRC_URI = "\
->   	file://init \
->   	"
->   
-> -SRC_URI[md5sum] = "890df599d6c1e9cfbbdd3edbacb7db81"
-> -SRC_URI[sha256sum] = "aa0ce6361d1155e43e30a86dcff00b2003d434f221c360981ced830275abc64a"
-> +SRC_URI[md5sum] = "9f7dc65e902c103e4c5891354994c3df"
-> +SRC_URI[sha256sum] = "87fc4568a3af9a2be89040efb169e3a2e47b262f99e78d5ddde99dd89f02f3c2"
->   
->   INITSCRIPT_NAME = "monit"
->   INITSCRIPT_PARAMS = "defaults 99"
->
+If you take a brand new Ubuntu machine to our network, clone the repo 
+and run a build, the XFCE desktop image will be built in about 5 minutes.
+
+2 minutes is for recompiling the kernel or something akin to that.
+
+Update and compile an application is usually less than that.
+
+Another hint: devtool.
+
+
+On 18-03-2020 18:13, Srinivasan, Raja wrote:
+> My own experience (pardon me if already discussed)
 > 
->
->
+> Fought the build times for several months - ending up eventually at 8 
+> cores (but specifying 16 threads in poky builds). Best times for my 
+> build about 4 hours. Clearly impractical during engineering.
+> 
+> Generated an sdk and used it for app development. Each build is now a 
+> minute or 2.
+> 
+> Using a homegrown utility, updated the image file with applications in a 
+> jiffy - to produce burnable sdcard image.
+> 
+> Complete build required only for the final release -- or made major 
+> changes like python2 to python3!
+> 
+> YMMV.
+> 
+> srini
+> 
+> -----Original Message-----
+> From: yocto@lists.yoctoproject.org <mailto:yocto@lists.yoctoproject.org> 
+> <yocto@lists.yoctoproject.org> On Behalf Of Mikko Rapeli via 
+> Lists.Yoctoproject.Org
+> Sent: Wednesday, March 18, 2020 11:52 AM
+> To: mike.looijmans@topic.nl <mailto:mike.looijmans@topic.nl>
+> Cc: yocto@lists.yoctoproject.org <mailto:yocto@lists.yoctoproject.org>
+> Subject: <EXT> Re: [yocto] What are the key factors for yocto build speed?
+> 
+> On Wed, Mar 18, 2020 at 04:09:39PM +0100, Mike Looijmans wrote:
+>  > On 18-03-2020 15:49, Adrian Bunk via Lists.Yoctoproject.Org wrote:
+>  > > On Wed, Mar 18, 2020 at 10:12:26AM -0400, Jean-Marie Lemetayer wrote:
+>  > > > ...
+>  > > > For example one of our build servers is using:
+>  > > > - AMD Ryzen 9 3900X
+>  > > > ...
+>  > > > - 32Go DDR4 3200 MHZ CL14
+>  > > > ...
+>  > > > It is a really good price / build time ratio configuration.
+>  > >
+>  > > Depends on what you are building.
+>  > >
+>  > > Building non-trivial C++ code (e.g. webkitgtk) with 24 cores but
+>  > > only 32 GB RAM will not work, for such code you need more than 2
+>  > > GB/core.
+>  >
+>  > Seems a bit excessive to buy hardware just to handle a particular
+>  > corner case. Most of OE/Yocto code is plain C, not even C++.
+>  >
+>  > My rig only has 8GB but doesn't run into memory issues during big GUI
+>  > builds. The only thing that made it swap was the populate_sdk task
+>  > that created a 1.1GB fiel and needed 20GB of RAM to compress that.
+>  > Took a few minutes more due to swapping.
+>  > I submitted a patch today to fix that in OE.
+>  >
+>  > Your mileage may vary. But RAM is easy to add.
+> 
+> Well, I can't build with under 2 gigs per core or I run out of physical 
+> memory and kernel oom-killer kicks in to kill the build. Also can't run 
+> with yocto default parallel settings which only take into account the 
+> number of cores and thus have a custom script which does caps the 
+> threads so that 2 gigs of RAM for each are available.
+> 
+> Though I'm sure plain C and plain poky projects have less requirements 
+> for RAM.
+> 
+> -Mikko
+> 
+> ________________________________
+> 
+> CONFIDENTIALITY NOTICE: This email message and any attachments are 
+> confidential and may be privileged and are meant to be read by the 
+> intended recipient only. If you are not the intended recipient, please 
+> notify sender immediately and destroy all copies of this message and any 
+> attachments without reading or disclosing their contents. Thank you
+> 
+> 
+
 
 -- 
-Jeremy A. Puhlman
-jpuhlman@mvista.com
-
-
---------------C6AB598CA8E5EE90B162EB8D
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    Opps I went one to far, please disregard this one.<br>
-    <br>
-    <div class="moz-cite-prefix">On 3/18/2020 6:53 PM, Jeremy Puhlman
-      via Lists.Yoctoproject.Org wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:15FD91AB7E42E2A2.29573@lists.yoctoproject.org">
-      <pre class="moz-quote-pre" wrap="">From: Changqing Li <a class="moz-txt-link-rfc2396E" href="mailto:changqing.li@windriver.com">&lt;changqing.li@windriver.com&gt;</a>
-
-Signed-off-by: Changqing Li <a class="moz-txt-link-rfc2396E" href="mailto:changqing.li@windriver.com">&lt;changqing.li@windriver.com&gt;</a>
-Signed-off-by: Adrian Dudau <a class="moz-txt-link-rfc2396E" href="mailto:adrian.dudau@enea.com">&lt;adrian.dudau@enea.com&gt;</a>
----
- .../recipes-cgl/monit/{monit_5.25.2.bb =&gt; monit_5.26.0.bb}          | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
- rename meta-cgl-common/recipes-cgl/monit/{monit_5.25.2.bb =&gt; monit_5.26.0.bb} (90%)
-
-diff --git a/meta-cgl-common/recipes-cgl/monit/monit_5.25.2.bb b/meta-cgl-common/recipes-cgl/monit/monit_5.26.0.bb
-similarity index 90%
-rename from meta-cgl-common/recipes-cgl/monit/monit_5.25.2.bb
-rename to meta-cgl-common/recipes-cgl/monit/monit_5.26.0.bb
-index ab9e922..6ec1a21 100644
---- a/meta-cgl-common/recipes-cgl/monit/monit_5.25.2.bb
-+++ b/meta-cgl-common/recipes-cgl/monit/monit_5.26.0.bb
-@@ -9,7 +9,7 @@ HOMEPAGE = <a class="moz-txt-link-rfc2396E" href="http://mmonit.com/monit/">"http://mmonit.com/monit/"</a>
- LICENSE = "AGPLv3"
- LIC_FILES_CHKSUM = <a class="moz-txt-link-rfc2396E" href="file://COPYING;md5=ea116a7defaf0e93b3bb73b2a34a3f51">"file://COPYING;md5=ea116a7defaf0e93b3bb73b2a34a3f51"</a>
- 
--DEPENDS = "openssl zlib"
-+DEPENDS = "openssl zlib virtual/crypt"
- 
- SRC_URI = "\
- 	<a class="moz-txt-link-freetext" href="http://mmonit.com/monit/dist/$">http://mmonit.com/monit/dist/$</a>{BP}.tar.gz \
-@@ -17,8 +17,8 @@ SRC_URI = "\
- 	<a class="moz-txt-link-freetext" href="file://init">file://init</a> \
- 	"
- 
--SRC_URI[md5sum] = "890df599d6c1e9cfbbdd3edbacb7db81"
--SRC_URI[sha256sum] = "aa0ce6361d1155e43e30a86dcff00b2003d434f221c360981ced830275abc64a"
-+SRC_URI[md5sum] = "9f7dc65e902c103e4c5891354994c3df"
-+SRC_URI[sha256sum] = "87fc4568a3af9a2be89040efb169e3a2e47b262f99e78d5ddde99dd89f02f3c2"
- 
- INITSCRIPT_NAME = "monit"
- INITSCRIPT_PARAMS = "defaults 99"
-</pre>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
-
-
-</pre>
-    </blockquote>
-    <br>
-    <pre class="moz-signature" cols="72">-- 
-Jeremy A. Puhlman
-<a class="moz-txt-link-abbreviated" href="mailto:jpuhlman@mvista.com">jpuhlman@mvista.com</a></pre>
-  </body>
-</html>
-
---------------C6AB598CA8E5EE90B162EB8D--
+Mike Looijmans
