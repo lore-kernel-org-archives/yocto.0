@@ -1,101 +1,116 @@
-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
- by mx.groups.io with SMTP id smtpd.web10.9561.1584615870689419128
+Received: from esa4.bmw.c3s2.iphmx.com (esa4.bmw.c3s2.iphmx.com [68.232.139.62])
+ by mx.groups.io with SMTP id smtpd.web10.10169.1584618206738030694
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Mar 2020 04:04:31 -0700
+ Thu, 19 Mar 2020 04:43:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=b6GaemK7;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.128.66, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wm1-f66.google.com with SMTP id f130so485423wmf.4
-        for <yocto@lists.yoctoproject.org>; Thu, 19 Mar 2020 04:04:30 -0700 (PDT)
+ dkim=fail reason="signature has expired" header.i=@bmw.de header.s=mailing1 header.b=U6vIs4RE;
+ spf=pass (domain: bmw.de, ip: 68.232.139.62, mailfrom: prvs=340a7fc1c=mikko.rapeli@bmw.de)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=0ttXRtINeTM0dPHbl56JLOzEatYuY6NPGdcRbJYJAZc=;
-        b=b6GaemK7cNsZh3q4NFV0jT+mnuPWy0SsjB0/UwoYq0xmcnuAzsbFWrQ/LtbuhjEJFd
-         7h2r/rnmTCQbPgZh7QTTK83+rlQu7jEmTwsJvvzPiuBvExen9xwIS1HlfFBcbTZ2S1X+
-         MzDh/tL5YD+o+gAiDmSNbv5cG7kHUrFWKrRgs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=0ttXRtINeTM0dPHbl56JLOzEatYuY6NPGdcRbJYJAZc=;
-        b=PnvT1DHats9/2ShDu/tJ5F4Vu+pBtpXWOGo0NTIgmv/poK9BBfuTZUlVJpq72IGXFQ
-         0gmIH5/qWuQqVQsp2JcMGng/pYFfjuQpgzJHooVMTqZdCouF2j0dfibaT1tVzdbtqN/r
-         eieKnIOXsL+nO4Vfw0yIUM4ApFewHo0SG9CC+W4nxN42PCJaencJeFurocx133F6x5SZ
-         vjqBKG3n7AOWD9xFLlEqF0UC0NICr1i9eY0IWZYc2zRzEQMMUAaX7WcRUUDFC1gGoOzP
-         xQRKcaCvR+T/6FukOvL9LQkJHjcfajfe5eIa8b1nhIZvEgSdoCwe+BujScYpOVkJKtB0
-         QtiA==
-X-Gm-Message-State: ANhLgQ2MiZxPzNxlIwy9W4n7D9McVHdln5LtZ9AmBuDvdPPcbv6ZQR3i
-	04jkaOcwc6T8w6zJCY81pZdxqw==
-X-Google-Smtp-Source: ADFU+vsm0yYMV07r9jipe421KYNRIkm7wgjpwMwdlRrOBc5s1OpNPpNqmLIng6wYMinzgPD8XsIldw==
-X-Received: by 2002:a7b:c456:: with SMTP id l22mr2913851wmi.184.1584615869138;
-        Thu, 19 Mar 2020 04:04:29 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-        by smtp.gmail.com with ESMTPSA id h12sm1655500wml.12.2020.03.19.04.04.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 19 Mar 2020 04:04:28 -0700 (PDT)
-Message-ID: <bcab55b919af5da30e9b8fe3db0cc6537ac3f785.camel@linuxfoundation.org>
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1584618206; x=1616154206;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=phofJdyXhuWMTmHnZKlwx7EL0pzgTNfwPyv0IyYmSTQ=;
+  b=U6vIs4REaxWDrt0TG7PsiK9iRFEITP2fUt1J0/RWCEOvWK7kMPPEt3aI
+   8z2aJdha3MlTjTVBI/2X7VQ18jKSkm+pRBKbA0EqEPMiarMY4Flm3uu2b
+   ESWyVttCwNRPCOViAad78y9IvLcJzIB497Bs2XbRHFot+w1y4UofEUS2j
+   U=;
+Received: from esagw3.bmwgroup.com (HELO esagw3.muc) ([160.46.252.35]) by
+ esa4.bmw.c3s2.iphmx.com with ESMTP/TLS; 19 Mar 2020 12:43:23 +0100
+Received: from esabb3.muc ([160.50.100.30])  by esagw3.muc with ESMTP/TLS;
+ 19 Mar 2020 12:43:22 +0100
+Received: from smucm10k.bmwgroup.net (HELO smucm10k.europe.bmw.corp) ([160.48.96.47])
+ by esabb3.muc with ESMTP/TLS; 19 Mar 2020 12:43:23 +0100
+Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10k.europe.bmw.corp
+ (160.48.96.47) with Microsoft SMTP Server (TLS;
+ Thu, 19 Mar 2020 12:43:23 +0100
+Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
+ smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Thu,
+ 19 Mar 2020 12:43:23 +0100
+From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
+To: <richard.purdie@linuxfoundation.org>
+CC: <ross@burtonini.com>, <yocto@lists.yoctoproject.org>
 Subject: Re: [yocto] What are the key factors for yocto build speed?
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: Mikko Rapeli <mikko.rapeli@bmw.de>, ross@burtonini.com
-Cc: yocto@lists.yoctoproject.org
-Date: Thu, 19 Mar 2020 11:04:26 +0000
-In-Reply-To: <20200319080514.GR104502@korppu>
+Thread-Topic: [yocto] What are the key factors for yocto build speed?
+Thread-Index: AQHV/SQvHMEDglrWJECufLQaId00LqhOUpqAgACTXgCAAJk5AIAAMhEAgAAK4QA=
+Date: Thu, 19 Mar 2020 11:43:23 +0000
+Message-ID: <20200319114322.GX104502@korppu>
 References: <rCbr.1584535957803213201.lfzw@lists.yoctoproject.org>
-	 <f53ec55d-5f43-4ea3-f9a7-827f0f29154f@topic.nl>
-	 <8032ed75-802c-9dd3-2d76-f468159b90af@burtonini.com>
-	 <20200319080514.GR104502@korppu>
-User-Agent: Evolution 3.35.91-1 
+ <f53ec55d-5f43-4ea3-f9a7-827f0f29154f@topic.nl>
+ <8032ed75-802c-9dd3-2d76-f468159b90af@burtonini.com>
+ <20200319080514.GR104502@korppu>
+ <bcab55b919af5da30e9b8fe3db0cc6537ac3f785.camel@linuxfoundation.org>
+In-Reply-To: <bcab55b919af5da30e9b8fe3db0cc6537ac3f785.camel@linuxfoundation.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <D48DBDD9D091564590D8075948D1D090@bmwmail.corp>
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2020-03-19 at 08:05 +0000, Mikko Rapeli wrote:
-> Once this is done, IO still happens when anything calls sync() and
-> fsync() and worst offenders are package management tools. In yocto
-> builds, package manager actions to flush to disk are always useless
-> since rootfs images are going to be compressed and original ones
-> wiped by rm_work anyway.
-> I've tried to hook eatmydata library into the build which makes
-> sync() and fsync() calls no-ops but I've still failed to fix all the
-> tools and processes called during build from python code. For shell
-> based tasks this does it:
-> 
-> $ export LD_LIBRARY_PATH=/usr/lib/libeatmydata
-> $ export LD_PRELOAD=libeatmydata.so
-> $ grep -rn LD_PRELOAD conf/local.conf
-> conf/local.conf:305:BB_HASHBASE_WHITELIST_append = " LD_PRELOAD"
-> conf/local.conf:306:BB_HASHCONFIG_WHITELIST_append = " LD_PRELOAD"
+On Thu, Mar 19, 2020 at 11:04:26AM +0000, Richard Purdie wrote:
+> On Thu, 2020-03-19 at 08:05 +0000, Mikko Rapeli wrote:
+> > Once this is done, IO still happens when anything calls sync() and
+> > fsync() and worst offenders are package management tools. In yocto
+> > builds, package manager actions to flush to disk are always useless
+> > since rootfs images are going to be compressed and original ones
+> > wiped by rm_work anyway.
+> > I've tried to hook eatmydata library into the build which makes
+> > sync() and fsync() calls no-ops but I've still failed to fix all the
+> > tools and processes called during build from python code. For shell
+> > based tasks this does it:
+> >=20
+> > $ export LD_LIBRARY_PATH=3D/usr/lib/libeatmydata
+> > $ export LD_PRELOAD=3Dlibeatmydata.so
+> > $ grep -rn LD_PRELOAD conf/local.conf
+> > conf/local.conf:305:BB_HASHBASE_WHITELIST_append =3D " LD_PRELOAD"
+> > conf/local.conf:306:BB_HASHCONFIG_WHITELIST_append =3D " LD_PRELOAD"
+>=20
+> Doesn't pseudo intercept and stop these sync calls already? Its
+> supposed to so if its not, we should fix that.
 
-Doesn't pseudo intercept and stop these sync calls already? Its
-supposed to so if its not, we should fix that.
+I will double check, but I'm sure I see IO going to disk when plenty of RAM
+is still available in page cache.
 
-> The effect is clearly visible during build time using Performance Co-
-> Pilot (pcp) or similar tools to monitor CPU, memory, IO and network
-> IO. The usage of RAM as page cache grows until limits are hit and
-> only then writes to disk start, except for the python image
-> classes... Hints to fix this are welcome!
-> 
-> To my knowledge of monitoring our builds, there is a lot of
-> optimization
-> potential to better build times. CPU are under utilized during
-> bitbake recipe parsing
+> > The effect is clearly visible during build time using Performance Co-
+> > Pilot (pcp) or similar tools to monitor CPU, memory, IO and network
+> > IO. The usage of RAM as page cache grows until limits are hit and
+> > only then writes to disk start, except for the python image
+> > classes... Hints to fix this are welcome!
+> >=20
+> > To my knowledge of monitoring our builds, there is a lot of
+> > optimization
+> > potential to better build times. CPU are under utilized during
+> > bitbake recipe parsing
+>=20
+> Recipe parsing should hit 100% CPU, its one of the few places we can do
+> that.
 
-Recipe parsing should hit 100% CPU, its one of the few places we can do
-that.
+I'm not fully aware what bitbake does before starting task execution.
+With sumo, there is an initial spike in CPU use and then a long single
+thread wait where log shows "Initialising tasks..." and Cooker process
+is using a single core. For me this takes at least one minutes for
+every build. Same is visible with zeus too.
 
-> , fetch, configure, package and rootfs tasks. 
+Example graph from pmchart:
 
-Sadly these tasks are much harder.
+https://mcfrisk.kapsi.fi/temp/bitbake_start_to_task_execution.png
 
-> Memory is not fully utilized either since IO through sync()/fsync()
-> happens everywhere
+> > , fetch, configure, package and rootfs tasks.=20
+>=20
+> Sadly these tasks are much harder.
 
-non-pseudo tasks?
+Yep.
 
-Cheers,
+> > Memory is not fully utilized either since IO through sync()/fsync()
+> > happens everywhere
+>=20
+> non-pseudo tasks?
 
-Richard
+I'll try to check this case once more.
 
+-Mikko=
