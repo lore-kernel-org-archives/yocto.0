@@ -1,171 +1,157 @@
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
- by mx.groups.io with SMTP id smtpd.web10.12829.1584626272994736624
+Received: from EUR02-HE1-obe.outbound.protection.outlook.com (EUR02-HE1-obe.outbound.protection.outlook.com [40.107.1.76])
+ by mx.groups.io with SMTP id smtpd.web12.1639.1584634047167468371
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Mar 2020 06:57:53 -0700
+ Thu, 19 Mar 2020 09:07:28 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@intel.onmicrosoft.com header.s=selector2-intel-onmicrosoft-com header.b=GCRjh3pd;
- spf=pass (domain: intel.com, ip: 134.134.136.65, mailfrom: sangeeta.jain@intel.com)
-IronPort-SDR: i2sEx04dtmUO6ZlnGraS0NaaJYaz0c4BAal05BGEjVFch7rGROZCF/y7KdKU5E23ni1Krwt8uu
- owID2M7P2qSw==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Mar 2020 06:57:52 -0700
-IronPort-SDR: ezyw8IiOoFYfMd7ai3PpIHIlTnmTbXwrU+M4pcqYj6RSC5EuQwJ5W0bU1XFYbQ/pCVAVl6AUMQ
- pu5AaYVPe/kQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.70,571,1574150400"; 
-   d="scan'208";a="268738288"
-Received: from fmsmsx105.amr.corp.intel.com ([10.18.124.203])
-  by fmsmga004.fm.intel.com with ESMTP; 19 Mar 2020 06:57:50 -0700
-Received: from fmsmsx605.amr.corp.intel.com (10.18.126.85) by
- FMSMSX105.amr.corp.intel.com (10.18.124.203) with Microsoft SMTP Server (TLS)
- id 14.3.439.0; Thu, 19 Mar 2020 06:57:50 -0700
-Received: from fmsmsx605.amr.corp.intel.com (10.18.126.85) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 19 Mar 2020 06:57:50 -0700
-Received: from FMSEDG001.ED.cps.intel.com (10.1.192.133) by
- fmsmsx605.amr.corp.intel.com (10.18.126.85) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
- via Frontend Transport; Thu, 19 Mar 2020 06:57:50 -0700
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (104.47.59.176)
- by edgegateway.intel.com (192.55.55.68) with Microsoft SMTP Server (TLS) id
- 14.3.439.0; Thu, 19 Mar 2020 06:57:50 -0700
+ dkim=pass header.i=@topicbv.onmicrosoft.com header.s=selector2-topicbv-onmicrosoft-com header.b=nb5uXIpr;
+ spf=pass (domain: topicproducts.com, ip: 40.107.1.76, mailfrom: mike.looijmans@topicproducts.com)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=topicbv.onmicrosoft.com; s=selector2-topicbv-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jTKknGvFFc/pAbZp6H/XHsiIeWEJonT+QDR6l56LqG8=;
+ b=nb5uXIprt27qN9/B357qjDXYQx8tGmfOsiuh7vHYXaYTAkj2ULcIgUuS+pKheEY8Nd6OKPPWNMcpQV3Xw2ux3qBi6dyrgF+6pENDeVdPwDwTo2VliOvYM0cZJEfVBPKH7G51RXmlii3l+zDNa83xxjgMx9q004Sx34G/wP0Ht4c=
+Received: from VI1PR08CA0132.eurprd08.prod.outlook.com (2603:10a6:800:d4::34)
+ by AM0PR04MB5075.eurprd04.prod.outlook.com (2603:10a6:208:bf::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2814.14; Thu, 19 Mar
+ 2020 16:07:24 +0000
+Received: from VE1EUR01FT061.eop-EUR01.prod.protection.outlook.com
+ (2603:10a6:800:d4:cafe::4) by VI1PR08CA0132.outlook.office365.com
+ (2603:10a6:800:d4::34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.20 via Frontend
+ Transport; Thu, 19 Mar 2020 16:07:24 +0000
+Authentication-Results: spf=pass (sender IP is 13.81.10.179)
+ smtp.mailfrom=topicproducts.com; lists.yoctoproject.org; dkim=fail (signature
+ did not verify) header.d=topicbv.onmicrosoft.com;lists.yoctoproject.org;
+ dmarc=none action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
+ designates 13.81.10.179 as permitted sender) receiver=protection.outlook.com;
+ client-ip=13.81.10.179; helo=westeu13-emailsignatures-cloud.codetwo.com;
+Received: from westeu13-emailsignatures-cloud.codetwo.com (13.81.10.179) by
+ VE1EUR01FT061.mail.protection.outlook.com (10.152.3.81) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2814.14 via Frontend Transport; Thu, 19 Mar 2020 16:07:23 +0000
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (104.47.12.50) by westeu13-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Thu, 19 Mar 2020 16:07:21 +0000
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XpHcqwKydskZ3M7LBy4Doo+GoxLxzIkdzYblhxVbAs+F9SixBBkQleJji3hMn84FvGoJG6vAIYfxvj8D9tbsjAsNBY+WgUq+jupppy8aQsX0fsdQGzkHTTBhXgaODM10PU0SLtmjZiXpy+blP7BmTzUWReZ2rGhmQhZFTrPrhu9U9MeGRw5VJa4LP4ReS1lmU0Nkgx36R3gOes/VO5ze9yv6+QpS2J5Lc9R0sBprdJdRu1k4Em7xmUNgqO6S51hgrSFcoTm6TZaxIanbaNaQK7mO828faY58yqcUiQidOL3fCi0L1vzYWuEUsp7K/EUHP4B6rH4mdf21dOY1gI0c1g==
+ b=OhJ/3CevnH/P8e5FlvpUsnfec2UHUdzjx6NVjWbkYJmnlHvHvsivt2xc8PXwU2a/ne6+qrp3tl+pncR0gWXqzY7cZe8tgF5QUNySf4/l/YVD95neJllgjKVNd3C+c+XnoqQVyqXUVTJnjwq2/pjocRoAK81Mll447TecYKqk3wSoT7hyDYGrgw20PcXiGVPVCAuaPQTSY9yNqyOSUF0pYl6/fW11xoQribRkgfAZw+2J9oaxnqqrF7Y5vt6fj+BMJ+fMOTig28zD1kym1qpRIfFwkxW9zlBQIJnuhSjt521KOPEOZ8EbkMT9o8nrlCAhv8h52LpDYRU0ag3Ey8WiIg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RzXUs5bOMndKYKOTxahzyLpbm6vSFx+kCKGLML5ZjGs=;
- b=Dp3VY33yMEkD3LxBWRgUkBAxE5NbYZ0ZFEzLkmhNKMNZ3iZvB2+0/uKFrXzXaaZwA1Oel+vG5AWelzwJrzQcrfAJq2XD+tckwxqW8ArPwKGxkbyjg8RGj00xRaAJ7iV5BTQ8YkIPy5/xMdSdBeDfKe/n1utfl+4AFkSlx3oZ1TJisnoIqXsQUjFmQYlo8YPhiEMv/pOWn/sJmDx5NzWg1dW59Nqw4ni/l9I/A9aiTG0kCeAWw8nzymREd3rD0NLbXrLEZi6s1TLej/a0zn9yK608oEy61CWKi4ddgksiab7H9zphv4hsTaMyhEZylpcaP3HgoF03ZbypwR9Zvf2TjQ==
+ bh=jTKknGvFFc/pAbZp6H/XHsiIeWEJonT+QDR6l56LqG8=;
+ b=Gu0uvs0YjPvQ3S3E61XwhtXS74kTr9XQ2wDNDhBHtHEB1bDQp4pP50RGbbBJ49oXG/lljOLodGrssPkRc9D8KGN5xmQHco1gP7x4t88btRJcevuEJ672JmpISb3mIVgaI1JXRSvk8LlcGiboSR5uTgJsS9ZjK0PhdoRfgum4o6epasH2gkygm+IGTlVcrkgx/vZ2vBwbRUW64CFxnT4rsMDsfem+dvlUXMhgISVK2OSZqV0CzgpL7I02/pfww4/NB9u4ZZ7fEMr0t5mE7rhonX/TZZsyyRcN2DXpPocS4OTE+CoNzY+3/kW5g3ULoLJD9wvsFtRkswY/xB+DCriYMw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
+ smtp.mailfrom=topicproducts.com; dmarc=pass action=none header.from=topic.nl;
+ dkim=pass header.d=topic.nl; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=topicbv.onmicrosoft.com; s=selector2-topicbv-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RzXUs5bOMndKYKOTxahzyLpbm6vSFx+kCKGLML5ZjGs=;
- b=GCRjh3pdkWA0ntDGPX35y/iAAl7F+FuufV5dCtfJ39Y4rUVXZLly++FDUvWzxr9cfVLoGfl89+QerDecO/YRJjK2gWu5CcFo/JSJ3WE/HVWEU981qScW3+V3XSrlNsuVLkpwwHsr3j2/ir0dz3H9+ktP5sC24Q81pAH42ZMN+9U=
-Received: from CY4PR11MB1879.namprd11.prod.outlook.com (2603:10b6:903:11d::9)
- by CY4PR11MB1510.namprd11.prod.outlook.com (2603:10b6:910:c::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.20; Thu, 19 Mar
- 2020 13:57:48 +0000
-Received: from CY4PR11MB1879.namprd11.prod.outlook.com
- ([fe80::24b1:9a36:440b:18bb]) by CY4PR11MB1879.namprd11.prod.outlook.com
- ([fe80::24b1:9a36:440b:18bb%9]) with mapi id 15.20.2835.017; Thu, 19 Mar 2020
- 13:57:48 +0000
-From: "Sangeeta Jain" <sangeeta.jain@intel.com>
-To: "pokybuild@ubuntu1804-ty-2.yocto.io" <pokybuild@ubuntu1804-ty-2.yocto.io>,
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-CC: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
-	"yi.zhao@windriver.com" <yi.zhao@windriver.com>, "Sangal, Apoorv"
-	<apoorv.sangal@intel.com>, "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "Chan,
- Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
-	"richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>,
-	"akuster808@gmail.com" <akuster808@gmail.com>, "sjolley.yp.pm@gmail.com"
-	<sjolley.yp.pm@gmail.com>
-Subject: Re: [yocto] QA notification for completed autobuilder build (yocto-3.1_M3.rc1)
-Thread-Topic: [yocto] QA notification for completed autobuilder build
- (yocto-3.1_M3.rc1)
-Thread-Index: AQHV+3btrZncKwmncECtaZHainEurahP9YMA
-Date: Thu, 19 Mar 2020 13:57:48 +0000
-Message-ID: <CY4PR11MB1879A561546B4A1182FDBBA0E3F40@CY4PR11MB1879.namprd11.prod.outlook.com>
-References: <20200316093949.2D615E01861@yocto-www.yoctoproject.org>
-In-Reply-To: <20200316093949.2D615E01861@yocto-www.yoctoproject.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-reaction: no-action
-dlp-version: 11.2.0.6
-dlp-product: dlpe-windows
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=sangeeta.jain@intel.com; 
-x-originating-ip: [192.198.147.207]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ebb57ddd-ebc6-4755-aa36-08d7cc0d8223
-x-ms-traffictypediagnostic: CY4PR11MB1510:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <CY4PR11MB1510BA84BFFC908A32F204EEE3F40@CY4PR11MB1510.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 0347410860
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(376002)(136003)(366004)(346002)(39860400002)(396003)(199004)(6506007)(110136005)(53546011)(5660300002)(316002)(15650500001)(55016002)(8936002)(66446008)(64756008)(66556008)(66476007)(66946007)(478600001)(966005)(54906003)(52536014)(4326008)(71200400001)(33656002)(81166006)(81156014)(76116006)(7696005)(9686003)(2906002)(86362001)(8676002)(186003)(26005);DIR:OUT;SFP:1102;SCL:1;SRVR:CY4PR11MB1510;H:CY4PR11MB1879.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Usc7fbhIer5lPP8y+rdRYzjQVdlYGJnLuh9ifqs+QdJz4FeJfJ6Zl1dqxyjBx8g4OPih7Oayv5i9rMtzDMYUbC1W7KIZFRTdjhBiOp3Bpt45yxz8U2FVsqGElglw5qN/msYD1R7gJDH9IdHGg+G7bNsFd5mDFXmaaZxa6/mhM8AK6+7Jclq/qsHOFw4RD0SfX4kzJuVWijp1pnwbpC8UHv95dNkNZZq6Ej8+o3UhADKXGdoWdzVLeRCR4nBY2EfPqYMcPsTRpaE4jrd/0A/n3WAP814+H72zWzblNgG+Co6xUo5h7PvvpC52WnlIo+CvC778HkCvaZKoAEt6g4N8fvUOst8o0YYY566ctQh2k/iETI6PcDf/TsrwUDobhM+QRyCRsXRi95rOJgOWuC/ydT/OihH0qCC9j3BnHdqoKL4heQ18dVoUEmvDcbTmRr7NDM3D/coYf+di1ve0Xk7gEypCnAObZqjZn6lX14bQUdMxqZ0dQrSGBTyGCqLuJ5GItON9JnQY7+2MNZliDYCDEA==
-x-ms-exchange-antispam-messagedata: WDCYn+h801pVvSSroYH2S4CZNJj1UuNE016Y5Z/lbXi1iHQhZr68LY/jS1QoZFrqC+my9AgXiZMDItsfRXZkUIGt1QWYgj7etdQ7/KcScn1+Obs6yTmNk68Ow0mt6O8CUuGJgA1hqiCLnnwUsmrBbw==
+ bh=jTKknGvFFc/pAbZp6H/XHsiIeWEJonT+QDR6l56LqG8=;
+ b=M75S1CsPc3rxGNxWs6E4UADWJ3PLa7Ca6pfkOxuI+XQxPKsxtuYOADQkcvzrvVeRruyPWqucaEqTykKAX42RTSy60xF0kN3xnxHBTkuUoXrt06squesowQfS6DpuxSEkCO3I4i/HrfgoJQmCm2VLwZMQv59FzHKI8Kg1ZK1lhd0=
+Authentication-Results-Original: spf=none (sender IP is )
+ smtp.mailfrom=mike.looijmans@topicproducts.com; 
+Received: from DB3PR0402MB3947.eurprd04.prod.outlook.com (52.134.67.147) by
+ DB3PR0402MB3705.eurprd04.prod.outlook.com (52.134.70.30) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2814.22; Thu, 19 Mar 2020 16:07:18 +0000
+Received: from DB3PR0402MB3947.eurprd04.prod.outlook.com
+ ([fe80::380e:f722:2d0d:9c71]) by DB3PR0402MB3947.eurprd04.prod.outlook.com
+ ([fe80::380e:f722:2d0d:9c71%6]) with mapi id 15.20.2814.025; Thu, 19 Mar 2020
+ 16:07:18 +0000
+Subject: Re: [yocto] What are the key factors for yocto build speed?
+To: richard.purdie@linuxfoundation.org, Mikko Rapeli <mikko.rapeli@bmw.de>,
+ ross@burtonini.com
+CC: yocto@lists.yoctoproject.org
+References: <rCbr.1584535957803213201.lfzw@lists.yoctoproject.org>
+ <f53ec55d-5f43-4ea3-f9a7-827f0f29154f@topic.nl>
+ <8032ed75-802c-9dd3-2d76-f468159b90af@burtonini.com>
+ <20200319080514.GR104502@korppu>
+ <bcab55b919af5da30e9b8fe3db0cc6537ac3f785.camel@linuxfoundation.org>
+From: "Mike Looijmans" <mike.looijmans@topic.nl>
+Organization: Topic
+Message-ID: <8d295b32-e2f9-9d95-f866-1f9061617450@topic.nl>
+Date: Thu, 19 Mar 2020 17:07:17 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+In-Reply-To: <bcab55b919af5da30e9b8fe3db0cc6537ac3f785.camel@linuxfoundation.org>
+X-ClientProxiedBy: AM0PR0102CA0024.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:14::37) To DB3PR0402MB3947.eurprd04.prod.outlook.com
+ (2603:10a6:8:7::19)
+Return-Path: mike.looijmans@topicproducts.com
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-Network-Message-Id: ebb57ddd-ebc6-4755-aa36-08d7cc0d8223
-X-MS-Exchange-CrossTenant-originalarrivaltime: 19 Mar 2020 13:57:48.2282
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.1.130] (83.128.90.119) by AM0PR0102CA0024.eurprd01.prod.exchangelabs.com (2603:10a6:208:14::37) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.20 via Frontend Transport; Thu, 19 Mar 2020 16:07:18 +0000
+X-Originating-IP: [83.128.90.119]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 01ece47e-5d92-40d9-c01b-08d7cc1f9c84
+X-MS-TrafficTypeDiagnostic: DB3PR0402MB3705:|AM0PR04MB5075:
+X-Microsoft-Antispam-PRVS: 
+	<AM0PR04MB5075CC67BDF81FCAEBF0F66E96F40@AM0PR04MB5075.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;OLM:9508;
+X-Forefront-PRVS: 0347410860
+X-Forefront-Antispam-Report-Untrusted: 
+ SFV:NSPM;SFS:(10009020)(136003)(346002)(366004)(376002)(39840400004)(396003)(199004)(6486002)(956004)(81166006)(2616005)(81156014)(66946007)(66476007)(4326008)(52116002)(36756003)(66556008)(44832011)(53546011)(8936002)(42882007)(36916002)(8676002)(16526019)(31686004)(186003)(2906002)(508600001)(16576012)(31696002)(26005)(5660300002)(316002);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3705;H:DB3PR0402MB3947.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;
+Received-SPF: None (protection.outlook.com: topicproducts.com does not
+ designate permitted sender hosts)
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: 
+ G8OHGFJTgMCYyDtwsjjWoRvBRzalzIjoDpf9SCBovrJKjS8p1qslM3/W0gly/lU+n6Kw8G0TwzyHe9VJ2A/6VRlY6ObR3fz4pbUpAN8UguTxcLvY/UqaNf70YvYIMuMmnnQs1wmgjA5otILpRK50P5wrWsFLcvW2CI7pHd9AH0G+lpyLrgDw67ca4vA0vGsRb2GGJIIfSa4HNt6AfB8ijywebQputcuxsAwBKM4KPVN06pa0f1B2BGDheqbDY3b1KbDhljEpvdg7WQ9yu7/upOW+NSoroP0xlgK7hC3jYJSs9xTnXnp6g+MH83PNxb8XUHyEVs5/dYHhlvp4vctKeLwLyVoW4RK4XFFu4d4qDxd1CNzl6aHJSR3u0g1CYNNtIzMXGiFBfmAQmS/iD+uUc1i0OZ9H07etY6J0AtAgvDrqFt8XpFEMrZessC76z1zI
+X-MS-Exchange-AntiSpam-MessageData: dHwwtXbS64w7E5GEehlBhT67nhem/rlf4KlRPryo/n8GV4ZaWT+jGgoZ5pq7e9vH/be9s4hIQImWR7hZ8Ta4nzDQZ3gp4i0sCc4Xf386gW0L+TH2Uaomig3ezwmnxEWwYQADZVurvnN7Gw43KLL4kg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3705
+X-CodeTwo-MessageID: 806029f9-79d3-42d9-b488-4061cb80c7a9.20200319160721@westeu13-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
+ VE1EUR01FT061.eop-EUR01.prod.protection.outlook.com
+X-Forefront-Antispam-Report: 
+	CIP:13.81.10.179;IPV:;CTRY:NL;EFV:NLI;SFV:NSPM;SFS:(10009020)(376002)(396003)(136003)(346002)(39840400004)(199004)(46966005)(6486002)(2906002)(36756003)(4326008)(26005)(336012)(246002)(31696002)(186003)(8676002)(42882007)(8936002)(7636002)(47076004)(16526019)(956004)(2616005)(7596002)(5660300002)(70586007)(508600001)(70206006)(36916002)(44832011)(356004)(16576012)(31686004)(53546011)(82310400001)(316002);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB5075;H:westeu13-emailsignatures-cloud.codetwo.com;FPR:;SPF:Pass;LANG:en;PTR:westeu13-emailsignatures-cloud.codetwo.com;A:1;
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 
+	b183dbf9-0948-42d6-7864-08d7cc1f9930
+X-Forefront-PRVS: 0347410860
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	AvYqTXyjzT1+jlpVG10jUo2AmkRtJz4nD0Wav5+Dr7VK8euvyLikQ10S023PJjphgmvh5jFAYmr3M6ejrGve/qUmFwmbgLshTY2c0GRy4gN0DSgixdcgNaegtCgpdajC8wYb6Lphx5C9S618QGle2j3IIGIg9znrEKwHpN+rwMCdl9rt/kdNwp4Bjag44F5f3/iEsxlKYyfWGJ8MOFFEmsete7kNemn0yLmgYEv9WM7pxWEh7XzTQXJNCDOHQ1wMij1Fh7Op5HJT4rZxBZmgea9NULqMoAx2xXcXlQfy0wqWxMDwiHKwYVXIoM5A7vNR21Jvdgaxzyss3ZFNun1VL0taijYLhbEGeh5NWwY35HKhmQoR2ESUywI9Ksgqrj9utdHPj0EgRwTpiU0JZ+NiH890rkQ+x6lvYGLXvDHcdIvD2H/AJlWifZtKJtKIK86EVEa5+GI532lKaGII46bXQnjOhshezxG56yqCzYcBExMkejV3H+bsZ9IoCLnLDCPzgUZU6ZTKgo4IPXckP/c/wQ==
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Mar 2020 16:07:23.6793
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Uoc0blJp6WjSaw29S0GNx36vsYHc6D3NyNtlNS/xCtQGdinsGbLmRO+pYoydJSkP/PQIWQ1DrfsKRdiOunq59w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR11MB1510
-Return-Path: sangeeta.jain@intel.com
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 01ece47e-5d92-40d9-c01b-08d7cc1f9c84
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[13.81.10.179];Helo=[westeu13-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5075
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-Hello all,
+On 19-03-2020 12:04, Richard Purdie via Lists.Yoctoproject.Org wrote:
+>> , fetch, configure, package and rootfs tasks.
+> 
+> Sadly these tasks are much harder.
 
-This is the full report for yocto-3.1_M3.rc1: =20
-https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tree/?=
-h=3Dintel-yocto-testresults
+It would be really great if some sort of "weight" could be attached to a 
+task. This relates to memory usage.
 
-=3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-No high milestone defects. =20
-No new defects are found in this cycle.
-Valgrind ptest failed (BUG id:13838).=20
+My system has 16 cores but only 8GB RAM. With both parallelization 
+options to "16", I might end up with 16 compile tasks running 16 compile 
+threads each, i.e. 256 running processes. In practice this doesn't 
+actually happen, but the memory load gets high sometimes, so I reduce 
+the TASKS to 8 at most. That has kept my system out of swap trouble for 
+the time being.
 
-Note: Few failures are observed. These are setup issue since running tests =
-remotely, not real yocto issue.
-=3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13838
+The idea was that tasks get a "weight" in terms of cores they'll use, 
+and the scheduler takes that into account. So it would run 16 
+do_configure tasks (weight=1) in parallel, but it would not start a new 
+task that would push the weight over some number (say 40 for my case). 
+So it would start a third compile, but not a fourth, but it would start 
+a do_configure task.
 
-Thanks,
-Sangeeta
+Does that make sense?
 
-> -----Original Message-----
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Beha=
-lf
-> Of pokybuild@ubuntu1804-ty-2.yocto.io
-> Sent: Monday, 16 March, 2020 5:40 PM
-> To: yocto@lists.yoctoproject.org
-> Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; Sangal, Apoorv
-> <apoorv.sangal@intel.com>; Yeoh, Ee Peng <ee.peng.yeoh@intel.com>; Chan,
-> Aaron Chun Yew <aaron.chun.yew.chan@intel.com>;
-> richard.purdie@linuxfoundation.org; akuster808@gmail.com;
-> sjolley.yp.pm@gmail.com; Jain, Sangeeta <sangeeta.jain@intel.com>
-> Subject: [yocto] QA notification for completed autobuilder build (yocto-
-> 3.1_M3.rc1)
->=20
->=20
-> A build flagged for QA (yocto-3.1_M3.rc1) was completed on the autobuilde=
-r
-> and is available at:
->=20
->=20
->     https://autobuilder.yocto.io/pub/releases/yocto-3.1_M3.rc1
->=20
->=20
-> Build hash information:
->=20
-> bitbake: e67dfa4a4d0d63e4752655f25367582e5a95f1da
-> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-> meta-intel: 60773e8496370d821309e00f2c312128a130c22b
-> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
-> oecore: 61d80b07bcfa4adf5f1feb2904fec0a8d09c89f6
-> poky: 6f02caa39985fb89d9ad49e1f788a9a8dd6e12d7
->=20
->=20
->=20
-> This is an automated message from the Yocto Project Autobuilder
-> Git: git://git.yoctoproject.org/yocto-autobuilder2
-> Email: richard.purdie@linuxfoundation.org
->=20
->=20
->=20
+In builds involving FPGA's I have tasks that take up about 48GB of RAM 
+(my machine cannot run them) but only a single CPU core. Attempting to 
+run multiple of these in parallel (happened to me when I changed some 
+shared recipe content) will bring most machines to their knees. 
+Currently my only way of handling that is manual interference...
+
+-- 
+Mike Looijmans
