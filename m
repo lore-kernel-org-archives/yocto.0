@@ -1,179 +1,98 @@
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
- by mx.groups.io with SMTP id smtpd.web12.2384.1584635539888219269
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+ by mx.groups.io with SMTP id smtpd.web12.3357.1584637485254128533
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Mar 2020 09:32:20 -0700
+ Thu, 19 Mar 2020 10:04:45 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=VQ7wDjNz;
- spf=pass (domain: gmail.com, ip: 209.85.210.179, mailfrom: akuster808@gmail.com)
-Received: by mail-pf1-f179.google.com with SMTP id d25so1695193pfn.6
-        for <yocto@lists.yoctoproject.org>; Thu, 19 Mar 2020 09:32:19 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Dvz2NZAl;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.52, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f52.google.com with SMTP id d1so3217443wmb.2
+        for <yocto@lists.yoctoproject.org>; Thu, 19 Mar 2020 10:04:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=VF/RCiWbtHxteIpNy/1cLu0V/bU4RhkhW0ZSlsGYL1c=;
-        b=VQ7wDjNzDtSzQEPutL3HQ2w8feRGDqX65baJ1SH0c6vOiCW/rG1Zhnei2XgHHoXFzk
-         usRkepIThzhprTRw+dfBUPdK6+ZIOe8+Ja47iuvQkmDLlRVcUB/fxcmG2JNOJ5RUZMUQ
-         Zy/Cnz6Evkgu49Xkdfm6ddF6aOHhrLLCknBb+x48H4EtjLMNIFku5Dv8FxGIJoLuhGgd
-         cuhQWArV2ox0NAAMPuot+Ghx8gn1CeAP5AcF6Hx4co5Hkld1ciRbhK49b8ChNibV+2HR
-         ENX1nLe9+tA81GYO3rKNRxtrl1788V4rR0pdheeFYtr7XrgISck8qrhuTElv3w/8CziA
-         u9jg==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=HMfgtNmdcYmuTCPoJ2mAgWL02glq56Y8nl5MxpnIdcs=;
+        b=Dvz2NZAl7cDNs+so7nmUHoj+xyDDW1KJofWOkMI8R0+RtHY95qzi27LTI8PW/ONgwo
+         pzs0pM9w9rW9NV+sLCSKgsRErnkaX9NQxzGBHXXlxZkLv3NkhOaLDQYVRlGwkmFkD/Cq
+         d19UDf5muZ0I/BxUJNZ7/pvsaaFNKCik0inqo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-transfer-encoding:content-language;
-        bh=VF/RCiWbtHxteIpNy/1cLu0V/bU4RhkhW0ZSlsGYL1c=;
-        b=SLb9v0t+6SJkTXT+xzlGTwzhKFVyv27ZH/ETG2L+JVxZo7akgQD8fNE4R0J83Zoo+w
-         NxAzKwU1aCyFOMezcwdmXtRNgcM5W1M2t1YfBWWnjltNwfCJqhAnrmctwkIla3VMQyXL
-         3JC+9zUjqAMDW3Niay8DchqD4HE1KSe0R5duFO+15xZcCRTODnpjTw4yUQxZPUo4Rtge
-         EWwDflc9Sz201sX4++mpW+kxrq6ii6w4glvnwNEQXEpt6O1h9/UYnVKXvWGrkqZ3sN0/
-         EVrE0ZRXQmvmJ5M2DQ8mBdceP3HA99dxRTsg1TRaCxjAufJzSgAeTFOCX0/YRe3XQHkz
-         VH0g==
-X-Gm-Message-State: ANhLgQ0FVn07xsZKY1fSGZ9ael2viCa/dx6AkY0j6rXR4RTCC5kIgm/a
-	xHQYECEtBNznbUaWuA1Ktus=
-X-Google-Smtp-Source: ADFU+vuHBTpSHPsr9npS0ozJOJAwDv+EhKwUM6V/aW9et72JAK7rW/j+xdj7+Yx6THXs8Yr36WzthA==
-X-Received: by 2002:a63:2bd1:: with SMTP id r200mr4011074pgr.351.1584635539174;
-        Thu, 19 Mar 2020 09:32:19 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from ?IPv6:2601:202:4180:a5c0:152a:39f6:f4c:9605? ([2601:202:4180:a5c0:152a:39f6:f4c:9605])
-        by smtp.gmail.com with ESMTPSA id y3sm2990895pfy.158.2020.03.19.09.31.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 19 Mar 2020 09:31:52 -0700 (PDT)
-Subject: Re: [yocto] QA notification for completed autobuilder build (yocto-3.1_M3.rc1)
-To: "Jain, Sangeeta" <sangeeta.jain@intel.com>,
- "pokybuild@ubuntu1804-ty-2.yocto.io" <pokybuild@ubuntu1804-ty-2.yocto.io>,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>,
- "yi.zhao@windriver.com" <yi.zhao@windriver.com>,
- "Sangal, Apoorv" <apoorv.sangal@intel.com>,
- "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>,
- "Chan, Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,
- "richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>,
- "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>
-References: <20200316093949.2D615E01861@yocto-www.yoctoproject.org>
- <CY4PR11MB1879A561546B4A1182FDBBA0E3F40@CY4PR11MB1879.namprd11.prod.outlook.com>
-From: "akuster" <akuster808@gmail.com>
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <9eac0173-7497-5994-7ce3-136cfd2806e9@gmail.com>
-Date: Thu, 19 Mar 2020 09:31:26 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=HMfgtNmdcYmuTCPoJ2mAgWL02glq56Y8nl5MxpnIdcs=;
+        b=Z+tN6+aJgCGzA1HCASuQngRAGUGaIvK9/NUMGN6C1CrTweAc749dReFmTMQ63N5cVN
+         tXhJmxPZieLEj1hjmalKxUoG5wRlBUsaoFwTHcCgNLh0dcCGN86eVvcJeuDbjRnM9270
+         pYJl0XfcN3EHo3aRyJ+c4d/NJbNC3wseJxtYKZrxsVD1wBLUwNsz6PYhJtEqHmfzq0cp
+         YIpwXrQ91qGHSiDyktcgNdcKu/BVsRyvNYlxHr+wQogRMR+stPHqQ+hT0S4uWO/QQC7k
+         6d+P+JnAtg1F86kCkR/3kPHyXI2v2CFTTSj42pZWj4CCauM7d9UZO6AhDuYYYjOv5kFi
+         GV7A==
+X-Gm-Message-State: ANhLgQ0lkhpq7H7LLADTzfJ5sVWYdWsVIWKxhN/AEJ/AcIrCrl00/poG
+	WecwiBJoLsYMbbpyy8H4Q8wyVw==
+X-Google-Smtp-Source: ADFU+vuq31LMbrRzzzvsjZtxrZmquyUbE5HNzxVZjx5u9r02djtLpTvuW0Oov1w/HUaLtgtFj9StEw==
+X-Received: by 2002:a1c:196:: with SMTP id 144mr4984034wmb.100.1584637483734;
+        Thu, 19 Mar 2020 10:04:43 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+        by smtp.gmail.com with ESMTPSA id h15sm4288260wrw.97.2020.03.19.10.04.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 19 Mar 2020 10:04:42 -0700 (PDT)
+Message-ID: <a206421cae44e76e8bfdabf66affb95103b03e71.camel@linuxfoundation.org>
+Subject: Re: [yocto] What are the key factors for yocto build speed?
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: Yann Dirson <yann.dirson@blade-group.com>, Mike Looijmans
+	 <mike.looijmans@topic.nl>
+Cc: Mikko Rapeli <mikko.rapeli@bmw.de>, ross@burtonini.com, 
+	yocto@lists.yoctoproject.org
+Date: Thu, 19 Mar 2020 17:04:41 +0000
+In-Reply-To: <CA+4=imbpXksEiCtmadKaqdLR-QU4pst=Wf1_SHKtLqeZhVTpWQ@mail.gmail.com>
+References: <rCbr.1584535957803213201.lfzw@lists.yoctoproject.org>
+	 <f53ec55d-5f43-4ea3-f9a7-827f0f29154f@topic.nl>
+	 <8032ed75-802c-9dd3-2d76-f468159b90af@burtonini.com>
+	 <20200319080514.GR104502@korppu>
+	 <bcab55b919af5da30e9b8fe3db0cc6537ac3f785.camel@linuxfoundation.org>
+	 <8d295b32-e2f9-9d95-f866-1f9061617450@topic.nl>
+	 <CA+4=imbpXksEiCtmadKaqdLR-QU4pst=Wf1_SHKtLqeZhVTpWQ@mail.gmail.com>
+User-Agent: Evolution 3.35.91-1 
 MIME-Version: 1.0
-In-Reply-To: <CY4PR11MB1879A561546B4A1182FDBBA0E3F40@CY4PR11MB1879.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
+On Thu, 2020-03-19 at 17:29 +0100, Yann Dirson wrote:
+> 
+> 
+> Le jeu. 19 mars 2020 à 17:07, Mike Looijmans <mike.looijmans@topic.nl> a écrit :
+> > On 19-03-2020 12:04, Richard Purdie via Lists.Yoctoproject.Org wrote:
+> > >> , fetch, configure, package and rootfs tasks.
+> > > 
+> > > Sadly these tasks are much harder.
+> > 
+> > It would be really great if some sort of "weight" could be attached to a 
+> > task. This relates to memory usage.
+> > 
+> > My system has 16 cores but only 8GB RAM. With both parallelization 
+> > options to "16", I might end up with 16 compile tasks running 16 compile 
+> > threads each, i.e. 256 running processes. In practice this doesn't 
+> > actually happen, but the memory load gets high sometimes, so I reduce 
+> > the TASKS to 8 at most. That has kept my system out of swap trouble for 
+> > the time being.
+> 
+> This could be neatly handled by using the GNU-make job-server mechanism.
+> If bitbake itself would provide a jub-server, all make-based recipes would
+> automatically get their jobs properly limited.  There is a (sadly not merged yet)
+> MR [1] for ninja tu gain job-server support as well, through which we should have
+> a pretty good coverage of the recipes set (as a backend for cmake, meson, and more).
+> 
+> [1] https://github.com/ninja-build/ninja/issues/1139
 
+You mean like:
 
-On 3/19/20 6:57 AM, Jain, Sangeeta wrote:
-> Hello all,
->
-> This is the full report for yocto-3.1_M3.rc1: =20
-> https://git.yoctoproject.org/cgit/cgit.cgi/yocto-testresults-contrib/tr=
-ee/?h=3Dintel-yocto-testresults
->
-> =3D=3D=3D=3D=3D=3D=3D Summary =3D=3D=3D=3D=3D=3D=3D=3D
-> No high milestone defects. =20
-> No new defects are found in this cycle.
-> Valgrind ptest failed (BUG id:13838).=20
->
-> Note: Few failures are observed. These are setup issue since running te=
-sts remotely, not real yocto issue.
-Where any tests skipped do to lack of physical access to h/w? A quick
-look at some of the manual tests do imply physical access.
+http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=rpurdie/wipqueue4&id=d66a327fb6189db5de8bc489859235dcba306237
 
-- armin
-> =3D=3D=3D=3D=3D=3D=3D Bugs =3D=3D=3D=3D=3D=3D=3D=3D
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D13838
->
-> Thanks,
-> Sangeeta
->
->> -----Original Message-----
->> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On B=
-ehalf
->> Of pokybuild@ubuntu1804-ty-2.yocto.io
->> Sent: Monday, 16 March, 2020 5:40 PM
->> To: yocto@lists.yoctoproject.org
->> Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; Sangal, Apoorv
->> <apoorv.sangal@intel.com>; Yeoh, Ee Peng <ee.peng.yeoh@intel.com>; Cha=
-n,
->> Aaron Chun Yew <aaron.chun.yew.chan@intel.com>;
->> richard.purdie@linuxfoundation.org; akuster808@gmail.com;
->> sjolley.yp.pm@gmail.com; Jain, Sangeeta <sangeeta.jain@intel.com>
->> Subject: [yocto] QA notification for completed autobuilder build (yoct=
-o-
->> 3.1_M3.rc1)
->>
->>
->> A build flagged for QA (yocto-3.1_M3.rc1) was completed on the autobui=
-lder
->> and is available at:
->>
->>
->>     https://autobuilder.yocto.io/pub/releases/yocto-3.1_M3.rc1
->>
->>
->> Build hash information:
->>
->> bitbake: e67dfa4a4d0d63e4752655f25367582e5a95f1da
->> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
->> meta-intel: 60773e8496370d821309e00f2c312128a130c22b
->> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
->> oecore: 61d80b07bcfa4adf5f1feb2904fec0a8d09c89f6
->> poky: 6f02caa39985fb89d9ad49e1f788a9a8dd6e12d7
->>
->>
->>
->> This is an automated message from the Yocto Project Autobuilder
->> Git: git://git.yoctoproject.org/yocto-autobuilder2
->> Email: richard.purdie@linuxfoundation.org
->>
->>
->>
+? :)
 
+Sadly we never fixed all the issues to let that merge.
+
+Cheers,
+
+Richard
 
