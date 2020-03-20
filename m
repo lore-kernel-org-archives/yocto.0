@@ -1,131 +1,136 @@
-Received: from mail-qk1-f196.google.com (mail-qk1-f196.google.com [209.85.222.196])
- by mx.groups.io with SMTP id smtpd.web11.1037.1584718166113026565
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+ by mx.groups.io with SMTP id smtpd.web12.3252.1584721938134164101
  for <yocto@lists.yoctoproject.org>;
- Fri, 20 Mar 2020 08:29:26 -0700
+ Fri, 20 Mar 2020 09:32:18 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=kiyncIXT;
- spf=pass (domain: gmail.com, ip: 209.85.222.196, mailfrom: easmith5555@gmail.com)
-Received: by mail-qk1-f196.google.com with SMTP id j4so7169529qkc.11
-        for <yocto@lists.yoctoproject.org>; Fri, 20 Mar 2020 08:29:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=content-transfer-encoding:from:mime-version:subject:date:message-id
-         :references:cc:in-reply-to:to;
-        bh=yrEsUUNTiydjBRbo+chTv4GBhvYue/PBD7MUVZV3UsA=;
-        b=kiyncIXT4TOKZeeIThnb6ut0xpnLEW/Kh4cfrSUoMV/GD1iSQkPxDmsU7OnpMfsPlp
-         9X33WhW+tYpbYYia5lBdJISmnRddaV8gcR70znij3ajzE1QZi3id13sJofizhYmj9NlL
-         qmzCu3KcEQVvFjhtADF9kKkku0XWeSQPXlhhHYwnzHeJCutUApeS9UdZbXs0qDzwyjeJ
-         UysfZa5HRxVPT6PocS3zX04jhh5jJJuGwJYIfw5n0u2h0MAwVnBz1T4JcBr/AfUXOciW
-         mU6dw9OGShCTWPGL/QTXibqSlsXv8Qtb8L+oQA1cTbfjCJOHSRJ1t/ZkcnvkSLqJSJ50
-         1ZnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:content-transfer-encoding:from:mime-version
-         :subject:date:message-id:references:cc:in-reply-to:to;
-        bh=yrEsUUNTiydjBRbo+chTv4GBhvYue/PBD7MUVZV3UsA=;
-        b=tQxzAd1tNiYCralAl8ydrMdqYr4+DjS2Mt8PUzrrDLaXeJR5UlDq7dsm47erScCEJj
-         u4QMyIyr/3m9xeCCa6J8DgvnDSEEQm7m7gp+FwhQReASM6poCacgjM1UT7TAbrwU1UI0
-         Ght+T+fEM7ldyq///iHI3wKT3uR5HhhjYrXgknLbNsFjtl6kY1anDstXszTpiPbIogXo
-         JknAaGs2ZukrKXnYjw7p/mTcB+GOIUjfnwrJXvWXZ2zplsyEi+WeoXCCeYUsdYoqJw8+
-         AHPvZOJfdK+IuFiS3EKMV4lZplBP7gxg/EO80MQisGRsIRkGdRq37N6512BUN0EY1bON
-         PUhA==
-X-Gm-Message-State: ANhLgQ09/J+o4CeyAElVKt/KRcyUPJJmCSvKEnDjXQKnok44sKarEI/r
-	sR/FoBiSUFhJ9tI2+Lqd5+zp3sHievk=
-X-Google-Smtp-Source: ADFU+vu0MoJ4qkQIDgwiblt4kXj0R9S5y/IS8gEGBHqN7orZea0VPySsrrWUMc3HsaaX5R/rzPKxFg==
-X-Received: by 2002:a37:58f:: with SMTP id 137mr8276760qkf.245.1584718165048;
-        Fri, 20 Mar 2020 08:29:25 -0700 (PDT)
-Return-Path: <easmith5555@gmail.com>
-Received: from [10.150.33.185] ([128.135.98.187])
-        by smtp.gmail.com with ESMTPSA id u49sm5028667qtb.52.2020.03.20.08.29.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 20 Mar 2020 08:29:24 -0700 (PDT)
-From: "Emily" <easmith5555@gmail.com>
-Mime-Version: 1.0 (1.0)
-Subject: Re: [yocto] Patching submodules
-Date: Fri, 20 Mar 2020 10:29:23 -0500
-Message-Id: <27EBB6D7-C22F-410E-B5E6-59A0BF47554F@gmail.com>
-References: <7c93329edf06e5f9501357012151b4a76142dfc5.camel@delisys.ch>
-Cc: yocto@lists.yoctoproject.org
-In-Reply-To: <7c93329edf06e5f9501357012151b4a76142dfc5.camel@delisys.ch>
-To: Nicolas Jeker <n.jeker@delisys.ch>
-X-Mailer: iPhone Mail (17C54)
+ dkim=missing; spf=none, err=permanent DNS error (domain: balister.org, ip: 216.168.135.166, mailfrom: philip@balister.org)
+Received: (qmail 24623 invoked by uid 1003); 20 Mar 2020 16:30:05 -0000
+Received: from unknown (HELO ?192.168.11.144?) (philip@opensdr.com@73.152.143.112)
+  by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP; 20 Mar 2020 16:30:05 -0000
+Subject: Re: <EXT> Re: [yocto] What are the key factors for yocto build speed?
+To: David Stewart <david.c.stewart@intel.com>, Srini
+ <rsrinivasan@abiomed.com>, "mikko.rapeli@bmw.de" <mikko.rapeli@bmw.de>,
+ "mike.looijmans@topic.nl" <mike.looijmans@topic.nl>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <rCbr.1584535957803213201.lfzw@lists.yoctoproject.org>
+ <20200318130126.GK104502@korppu>
+ <CAM9ZRVuQyj7X0YFqkpSFWM2=kQHnu8ZGpMsD34ntHYny4x7XJg@mail.gmail.com>
+ <251912923.167286.1584540746314.JavaMail.zimbra@savoirfairelinux.com>
+ <20200318144906.GC23112@localhost>
+ <080227a9-b5f2-8e3e-201f-5285a1f80e2d@topic.nl>
+ <20200318155132.GO104502@korppu>
+ <06037dcfe9e74e4e80cd1e8b41593542@USDVREX02.abiomed.com>
+ <D90B4E9C-DD70-4489-803D-079524AF20A7@intel.com>
+From: "Philip Balister" <philip@balister.org>
+Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
+ mQENBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
+ HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
+ rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
+ 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
+ fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
+ AAG0JVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz6JAT4EEwECACgCGyMG
+ CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
+ nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
+ 3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
+ YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
+ 3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
+ yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4Yxi5AQ0ETo83gQEIAPs+ZC0R
+ gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
+ GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
+ uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
+ LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
+ gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAYkBJQQYAQIADwIbDAUC
+ WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
+ 1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
+ ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
+ icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
+ ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
+ 6eUfr0u7CwnEyqiQ
+Message-ID: <b7ee53a4-622d-876e-2f0f-7c8a02d46dfd@balister.org>
+Date: Fri, 20 Mar 2020 10:32:14 -0600
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
+MIME-Version: 1.0
+In-Reply-To: <D90B4E9C-DD70-4489-803D-079524AF20A7@intel.com>
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 
-Hi Nicolas -=20
+On 3/18/20 11:47 AM, David Stewart wrote:
+> 4 hours seems extremely long to me for a 8 core system, but I have not tried this in a while. Were you removing all the sources and re-downloading them for every build?
 
-The recipe is already in a custom layer entirely, I just don=E2=80=99t hav=
-e full control over the source. So I don=E2=80=99t think I need a .bbappend=
- as I can just put it in the main recipe file.=20
+Depends on the image Dave, I build images with QT5 and gnuradio and they
+take a while :) core-image-minimal is much faster.
 
-Thanks,
-Emily=20
+Philip
 
-> On Mar 20, 2020, at 10:06 AM, Nicolas Jeker <n.jeker@delisys.ch> wrote:
->=20
-> =EF=BB=BFOn Thu, 2020-03-19 at 23:10 -0500, Emily wrote:
->> Hi all -=20
->>=20
->> I have a recipe that I'd like to patch - the source is in a repo
->> which has a submodule, and the patch occurs in the submodule. Is
->> there a way I can apply this patch without getting an error? I do
->> kind of understand why it's a problem - the patch is changing the
->> pointer of the submodule to a commit which doesn't actually exist. Do
->> I need to build the submodule as a separate recipe and patch it
->> separately maybe?=20
->=20
-> Is there a reason why you don't use a bbappend file with your patch in
-> it in a custom layer?
->=20
-> Something like this:
->=20
-> package_ver.bbappend
-> --------------------
-> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
-> SRC_URI +=3D "file://abc.patch"
->=20
->=20
-> With this directory structure:
->=20
-> meta-custom-layer
-> =E2=94=9C=E2=94=80=E2=94=80 package_ver.bbappend
-> =E2=94=94=E2=94=80=E2=94=80 package
->    =E2=94=94=E2=94=80=E2=94=80 abc.patch
->=20
-> Replace "package" and "ver" with the correct values (if you don't want
-> to set the version you can use "%" as a wildcard).
->=20
-> Maybe I missed something about your submodule situation and my advice
-> is completely wrong, if so, just disregard it.
->=20
->> I used devtool for the patch and if I don't run the devtool reset
->> command, then everything builds, but I think this is just because the
->> workspace created by devtool was added as a layer, which probably
->> isn't a good long term solution.=20
->=20
-> You should be able to get the above structure by using 'devtool finish
-> recipe meta-custom-layer'. If that doesn't work you can do it manually
-> as described above.
->=20
->> The error I get (pasted below) says I can "enforce with -f" but I'm
->> not sure where that option goes exactly. Thanks for the help!=20
->>=20
->> Emily
->>=20
->> Error on build:=20
->> ERROR: opc-ua-server-gfex-1.0+gitAUTOINC+921c563309-r0 do_patch:
->> Command Error: 'quilt --quiltrc
->> /local/d6/easmith5/rocko_bitbake/poky/build/tmp/work/aarch64-poky-
->> linux/opc-ua-server-gfex/1.0+gitAUTOINC+921c563309-r0/recipe-sysroot-
->> native/etc/quiltrc push' exited with 0  Output:
->> Applying patch 0001-Update-Poverty-to-point-to-boost-python3.patch
->> File Poverty is not a regular file -- refusing to patch
->> 1 out of 1 hunk ignored -- rejects in file
->> Patch 0001-Update-Poverty-to-point-to-boost-python3.patch does not
->> apply (enforce with -f)
->> ERROR: opc-ua-server-gfex-1.0+gitAUTOINC+921c563309-r0 do_patch:
->> Function failed: patch_do_patch
->=20
-> I don't know why this error occurs, maybe someone else knows more.
->=20
->=20
+
+> 
+> From: <yocto@lists.yoctoproject.org> on behalf of Srini <rsrinivasan@abiomed.com>
+> Date: Wednesday, March 18, 2020 at 10:13 AM
+> To: "mikko.rapeli@bmw.de" <mikko.rapeli@bmw.de>, "mike.looijmans@topic.nl" <mike.looijmans@topic.nl>
+> Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+> Subject: Re: <EXT> Re: [yocto] What are the key factors for yocto build speed?
+> 
+> My own experience (pardon me if already discussed)
+> 
+> Fought the build times for several months - ending up eventually at 8 cores (but specifying 16 threads in poky builds). Best times for my build about 4 hours. Clearly impractical during engineering.
+> 
+> Generated an sdk and used it for app development. Each build is now a minute or 2.
+> 
+> Using a homegrown utility, updated the image file with applications in a jiffy - to produce burnable sdcard image.
+> 
+> Complete build required only for the final release -- or made major changes like python2 to python3!
+> 
+> YMMV.
+> 
+> srini
+> 
+> -----Original Message-----
+> From: yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org> <yocto@lists.yoctoproject.org> On Behalf Of Mikko Rapeli via Lists.Yoctoproject.Org
+> Sent: Wednesday, March 18, 2020 11:52 AM
+> To: mike.looijmans@topic.nl<mailto:mike.looijmans@topic.nl>
+> Cc: yocto@lists.yoctoproject.org<mailto:yocto@lists.yoctoproject.org>
+> Subject: <EXT> Re: [yocto] What are the key factors for yocto build speed?
+> 
+> On Wed, Mar 18, 2020 at 04:09:39PM +0100, Mike Looijmans wrote:
+>> On 18-03-2020 15:49, Adrian Bunk via Lists.Yoctoproject.Org wrote:
+>>> On Wed, Mar 18, 2020 at 10:12:26AM -0400, Jean-Marie Lemetayer wrote:
+>>>> ...
+>>>> For example one of our build servers is using:
+>>>> - AMD Ryzen 9 3900X
+>>>> ...
+>>>> - 32Go DDR4 3200 MHZ CL14
+>>>> ...
+>>>> It is a really good price / build time ratio configuration.
+>>>
+>>> Depends on what you are building.
+>>>
+>>> Building non-trivial C++ code (e.g. webkitgtk) with 24 cores but
+>>> only 32 GB RAM will not work, for such code you need more than 2
+>>> GB/core.
+>>
+>> Seems a bit excessive to buy hardware just to handle a particular
+>> corner case. Most of OE/Yocto code is plain C, not even C++.
+>>
+>> My rig only has 8GB but doesn't run into memory issues during big GUI
+>> builds. The only thing that made it swap was the populate_sdk task
+>> that created a 1.1GB fiel and needed 20GB of RAM to compress that.
+>> Took a few minutes more due to swapping.
+>> I submitted a patch today to fix that in OE.
+>>
+>> Your mileage may vary. But RAM is easy to add.
+> 
+> Well, I can't build with under 2 gigs per core or I run out of physical memory and kernel oom-killer kicks in to kill the build. Also can't run with yocto default parallel settings which only take into account the number of cores and thus have a custom script which does caps the threads so that 2 gigs of RAM for each are available.
+> 
+> Though I'm sure plain C and plain poky projects have less requirements for RAM.
+> 
+> -Mikko
+> 
+> ________________________________
+> 
+> CONFIDENTIALITY NOTICE: This email message and any attachments are confidential and may be privileged and are meant to be read by the intended recipient only. If you are not the intended recipient, please notify sender immediately and destroy all copies of this message and any attachments without reading or disclosing their contents. Thank you
+> 
+> 
+> 
+> 
