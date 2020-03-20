@@ -1,89 +1,103 @@
-Received: from mail-qv1-f65.google.com (mail-qv1-f65.google.com [209.85.219.65])
- by mx.groups.io with SMTP id smtpd.web10.1961.1584642240570847253
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.4032.1584669531679209060
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Mar 2020 11:24:00 -0700
+ Thu, 19 Mar 2020 18:58:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=iVkjSyt0;
- spf=pass (domain: gmail.com, ip: 209.85.219.65, mailfrom: raj.khem@gmail.com)
-Received: by mail-qv1-f65.google.com with SMTP id n1so1567480qvz.4
-        for <yocto@lists.yoctoproject.org>; Thu, 19 Mar 2020 11:24:00 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=CwTnh3up;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: twoerner@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id E1443E01891; Thu, 19 Mar 2020 18:58:50 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (twoerner[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.208.45 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EAD8E0188F
+	for <yocto@yoctoproject.org>; Thu, 19 Mar 2020 18:58:49 -0700 (PDT)
+Received: by mail-ed1-f45.google.com with SMTP id z3so5280954edq.11
+        for <yocto@yoctoproject.org>; Thu, 19 Mar 2020 18:58:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=EhuQ/PKujn8DVEEjlugdLmH39pFem5++VH+cdM1Y2tc=;
-        b=iVkjSyt0Ue/5i+1puLXH7UmkXhGvdVcXWK7Rj+6DtX/uydoarQkceqb3jwk4WQscDZ
-         fml2cdnxVDAPEdHDUJ4v8C09QGTmTPW0qW9JSClYmig+jSzMJ1fwq+HTJ8nSHMPDGnma
-         pH3Wo/RdvW3kGJ5066wNDPd2FdMY0Gl6IXQtYxcRHLwf8qhrSm4FOelEy8ZDk0pjl+t9
-         d41IruzVEP/Y6JtSp+bD6EWGh0rIbZBM2UNXvdLittw0DVrvlUuYRziDxcbR5PlcTkTn
-         OfRrbq7YqWwvaEzGkSkIuKauCT3a8PxL7Fae8hmsZ+F1JvKWjvhkBnZuSKTdycjtq33w
-         hQiA==
+        bh=ql+F/bu39B9jMzlR1jQB51d06quuvyjv4lpENnyyuTs=;
+        b=CwTnh3upaXwGDbi4OJfOG1w6xpH1RUFg3maKtCzA3jc67MjskcjeA20E0VyAPsAaUm
+         kdnLOENeaea3m/htdSPjhf2WA8jUI0eUZvd0Aqm9Q9vuePw0hTL7jUejHdxi0MwsH9QB
+         CiJzYklc+j7N5SqYEIoyoZoLk7J/F79axz79MLXD5NaNp53UsHrSOjHv7CmOsoLqwc3R
+         3zNScch5whxNbsAewTo3smD0CLd50zeuUfuk+p1e91e4ijy6fUlN+e40wUq+iZds/Gon
+         haVRYmCvsdHmG28WM49lrydMdoD9T05O+H+jgKzO+l4EDuasHC08ntr9RlylrKfaMOOj
+         pM2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=EhuQ/PKujn8DVEEjlugdLmH39pFem5++VH+cdM1Y2tc=;
-        b=d3awbPI0EnivqU+wPfzProHHV4V67D1eNXZp26LSQdkNOU/WRYfwQAmAUVzvvX8kx0
-         N70hTRntX7bvWUaFbRjT2ce3q/Gd3SIP3a2S108rAPou5rAbCICZQHCoPfLAEjw80Ozz
-         sjI4yNKHDclcgxKyvlJhNWvlqn/hoj1KHvEGXScvA6DgUJ1xPi8Ak8STmmv6ujhdiGON
-         39b0LQVm/pB0F/kJxUVZR97nU8fF0f8aCqKTBcOB7o29RrJ396wVt7bxSvt9pK//Ch6f
-         UPC3iZ1sRwCtwLhAmH3nztpCmCqKuS8nlvzB+FUaG1p69CFtEwLUC+Rl6WrwvGsIIGKA
-         stZw==
-X-Gm-Message-State: ANhLgQ3VL/MOy6HMCe0xECYT8GLeKAYl59vDah7ASZntbEg7o+AIYVKx
-	wEmlHFfsHiRifuOC1tqKChypVVSHr+GWuoHbFCE=
-X-Google-Smtp-Source: ADFU+vuZPu1f/vVtedK34eHpBHehKd1pLJ4W2AwkZB29oznIxn5cO+RBRfDUb3mtslh2eebzM6vODtKVclObPWjuOpQ=
-X-Received: by 2002:ad4:45a7:: with SMTP id y7mr4422408qvu.146.1584642239340;
- Thu, 19 Mar 2020 11:23:59 -0700 (PDT)
+        bh=ql+F/bu39B9jMzlR1jQB51d06quuvyjv4lpENnyyuTs=;
+        b=cJwRvhRqFhu7l8Wy+pYatgCgshaesszWkVhh/K4Vln1gAvJNvfObrTBwhVidAMLuhM
+         +FWYOlltL708Y+bizP5jM5bqo0ZlNUqRVYSIy7V0q0d+EJfVXiyVyyqqpGu86bWMWYsq
+         C17NZubMwtxpjMyf/fDQnSe9CGZVsC5+DpwxIqXY/BSCaLU6+m9Oh406J4hc4VyB8aAb
+         YXYtTO9k6000jvpg5qJNCLQA+Y4eZdUQG253cJJZPs0i+YXtoc/xtyjJKGTirwStksnk
+         oQaoOgp2npDDCkpY/+XMJZUtQ+UdC3q/QTDwfXpq2iY0RjXmSZ1svGD2tzG+wJqMkvzY
+         exyg==
+X-Gm-Message-State: ANhLgQ2f0hwKJZQsiZFF6eLYJ07S5pnFm7I8lI7V39bKwzIGp6y2Gee9
+	kb2i5ma3aZbLiVPl/ZhPC/nIwoHnjZVxGyvWSvY=
+X-Google-Smtp-Source: ADFU+vuRZXBkDlUPVG59SK8/26wc9rRnnNoX2sPPWunejfGcK1dnRJwCe939LpaW1ylt2bU3wU5raM34bMf62SpvbSg=
+X-Received: by 2002:a50:c05c:: with SMTP id u28mr5528592edd.193.1584669528635;
+ Thu, 19 Mar 2020 18:58:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <rCbr.1584535957803213201.lfzw@lists.yoctoproject.org>
- <f53ec55d-5f43-4ea3-f9a7-827f0f29154f@topic.nl> <8032ed75-802c-9dd3-2d76-f468159b90af@burtonini.com>
- <20200319080514.GR104502@korppu> <bcab55b919af5da30e9b8fe3db0cc6537ac3f785.camel@linuxfoundation.org>
- <8d295b32-e2f9-9d95-f866-1f9061617450@topic.nl>
-In-Reply-To: <8d295b32-e2f9-9d95-f866-1f9061617450@topic.nl>
-From: "Khem Raj" <raj.khem@gmail.com>
-Date: Thu, 19 Mar 2020 11:23:33 -0700
-Message-ID: <CAMKF1srxf-ocmvsNG9-LJG4geS7opKhE=WXR0sLh_5+ZNHO_yA@mail.gmail.com>
-Subject: Re: [yocto] What are the key factors for yocto build speed?
-To: Mike Looijmans <mike.looijmans@topic.nl>
-Cc: Richard Purdie <richard.purdie@linuxfoundation.org>, Mikko Rapeli <mikko.rapeli@bmw.de>, 
-	Ross Burton <ross@burtonini.com>, yocto@lists.yoctoproject.org
+References: <CAFP0Ok8cBje8vofUwqo2ac5moA7Yj3OiJNO9DDbJJXxCJUsEtA@mail.gmail.com>
+In-Reply-To: <CAFP0Ok8cBje8vofUwqo2ac5moA7Yj3OiJNO9DDbJJXxCJUsEtA@mail.gmail.com>
+From: "Trevor Woerner" <twoerner@gmail.com>
+Date: Thu, 19 Mar 2020 21:58:37 -0400
+Message-ID: <CAHUNapQTnMDphOyxhZ08KzN=venDyXcwaAtsRHz+6sDTO6UhQg@mail.gmail.com>
+Subject: Re: yocto on tinkerbaord using meta-rockchip
+To: karthik poduval <karthik.poduval@gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Mar 19, 2020 at 9:07 AM Mike Looijmans <mike.looijmans@topic.nl> wrote:
->
-> On 19-03-2020 12:04, Richard Purdie via Lists.Yoctoproject.Org wrote:
-> >> , fetch, configure, package and rootfs tasks.
-> >
-> > Sadly these tasks are much harder.
->
-> It would be really great if some sort of "weight" could be attached to a
-> task. This relates to memory usage.
->
-> My system has 16 cores but only 8GB RAM. With both parallelization
-> options to "16", I might end up with 16 compile tasks running 16 compile
-> threads each, i.e. 256 running processes. In practice this doesn't
-> actually happen, but the memory load gets high sometimes, so I reduce
-> the TASKS to 8 at most. That has kept my system out of swap trouble for
-> the time being.
->
-> The idea was that tasks get a "weight" in terms of cores they'll use,
-> and the scheduler takes that into account. So it would run 16
-> do_configure tasks (weight=1) in parallel, but it would not start a new
-> task that would push the weight over some number (say 40 for my case).
-> So it would start a third compile, but not a fourth, but it would start
-> a do_configure task.
->
-> Does that make sense?
->
+Hi Karthik,
 
-is it something like make -l ? that you are looking for here.
-
-> In builds involving FPGA's I have tasks that take up about 48GB of RAM
-> (my machine cannot run them) but only a single CPU core. Attempting to
-> run multiple of these in parallel (happened to me when I changed some
-> shared recipe content) will bring most machines to their knees.
-> Currently my only way of handling that is manual interference...
+On Thu, Mar 19, 2020 at 9:36 PM karthik poduval
+<karthik.poduval@gmail.com> wrote:
+> Thank you for you work on meta-rockchip layer. You were listed as the
+> maintainer for meta-rockchip so I though I will send you a mail with
+> an issue I was facing.
 >
-> --
-> Mike Looijmans
-> 
+> I was trying to flash an image on a Asus tinker board using
+> meta-rockchip. Here are the steps I followed.
+>
+> git clone git://git.yoctoproject.org/poky
+> git clone  git://git.yoctoproject.org/meta-rockchip
+> source poky/oe-init-build-env
+> bitbake-layers add-layer ../../meta-rockchip/
+> MACHINE=tinker-board bitbake core-image-minimal
+>
+> #flahsed it using the following command to sdcard (my sdcard was dev/sde)
+> sudo dd if=tmp/deploy/images/tinker-board/core-image-minimal-tinker-board.wic
+> of=/dev/sde
+>
+> after inserting sdcard and booting up I can see on the serial console
+> it attempts to boot, crosses bootloader and proceeds to linux boot but
+> then gets hing around dwmmc_rockchip loading.
+>
+> Attached the complete serial log. Your help is greatly appreciated.
+
+According to the log, your board is a "tinker-board-s", please try
+using that for your MACHINE instead of "tinker-board".
+
+Thanks and best regards,
+    Trevor
