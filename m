@@ -1,106 +1,199 @@
-Received: from mail-io1-f65.google.com (mail-io1-f65.google.com [209.85.166.65])
- by mx.groups.io with SMTP id smtpd.web10.5629.1584677422920680761
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.7435.1584695426895156817
  for <yocto@lists.yoctoproject.org>;
- Thu, 19 Mar 2020 21:10:23 -0700
+ Fri, 20 Mar 2020 02:10:27 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=S8AaoVWk;
- spf=pass (domain: gmail.com, ip: 209.85.166.65, mailfrom: easmith5555@gmail.com)
-Received: by mail-io1-f65.google.com with SMTP id v3so4625864iot.11
-        for <yocto@lists.yoctoproject.org>; Thu, 19 Mar 2020 21:10:22 -0700 (PDT)
+ dkim=fail reason="unable to parse pub key" header.i=@blade-group.com header.s=google header.b=qbl/OW+N;
+ spf=softfail (domain: blade-group.com, ip: 140.211.169.56, mailfrom: yann.dirson@blade-group.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 6F654E01893; Fri, 20 Mar 2020 02:10:26 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+	DKIM_SIGNED,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.210.43 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5B9B8E01890
+	for <yocto@yoctoproject.org>; Fri, 20 Mar 2020 02:10:24 -0700 (PDT)
+Received: by mail-ot1-f43.google.com with SMTP id k26so5315116otr.2
+        for <yocto@yoctoproject.org>; Fri, 20 Mar 2020 02:10:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=oLjXYdp7sURBgtMSgOAKH9evadlmpJMTEIQ0WW5HRVE=;
-        b=S8AaoVWkenykOetqjqMgQ6PvfkTlSK0rznP7pBJla+eVcMkg7EJljnslKWambffvRZ
-         a117EXAA1cwJDJULjKHkgKPYxDiR40suTqCMNDCP/RxNHxlwpBJ3otgQhdaQl0otVwET
-         zE9l3aOMmdCP7fRs/uRLFB5J+jfG2ZSEVEaF0bZHu4OGFMRwWUgwpUNgpjv3UiHMa8gP
-         51oU9aWX7eLxVPJ0DHB7KHfOa8b1CESjzOt2ICmx+cVKvNq4hXyNzP3sZDk4nwZmyqzm
-         5qrE8nyozSv4wsP9Y95Zx99SDRD03nKtjyOUupMOEGQEkgjncxa5mmoC6Qc7IpdPpFa6
-         VbCA==
+        d=blade-group.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5huaJA0KiLm8zmKxhsfS1vXB7waiw1+5t86tTaRYQCc=;
+        b=qbl/OW+NvuI9xq+sjop4tlfaBcuR1h2WMcEKQq/mt0PIoMJ8WMJ5Sb4h6PbqX2Mu64
+         2DhuH6jQWavfhSbXTpAytLfQBtI04RGtAIZNCk32FdS1C/gVk16Ap64BXp4M9Aq4wlhQ
+         rwfCKpXtT+6IIYjGxBU94IHKWtXAU0qjOti1uqwrPue6r5IGkiJUpBscfZv4ezxLStEp
+         UO/ZHxbtOylB1pFONPT4GyzpmoFAjvlcbR7kLUerBsSm7bS7NIjupfO/z2QNQEa+bxGX
+         Gtp89bxBzehlsb9QEEmh3ANHPC3QnwFG2EQreNCysp4trlg/3UHHfO7rirNMeDfFbaa3
+         IC9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=oLjXYdp7sURBgtMSgOAKH9evadlmpJMTEIQ0WW5HRVE=;
-        b=f7CzSX33lC+i+ttkMa6WcLKulCWFztA7QffJLKxvd+SBALqh3bJDAzna/8ZcL8VWHt
-         wlnWx3DIcNptQz8mFr23L8uwFBLdwdzQbbBJvGP3WaKIFJk2BPNKgJgefu4HdNCLK1kY
-         infh1Og98ERDHPkUHnGly4Y5emqmR8v4wZrzfNIVa2wob+unAdFcEEm36mOQy40qQi1H
-         aojj+RS3WDbnKMvC2cio71ltrRzoRYRYtuZ9JyPEfu+/40Wx5PFw+Djvb0pqcslmMAbS
-         DoRiWn72zxL3bPDVE7Jh0PM8+/c4b8UOSGe7i6YIxY4NeY+7wh2lVXxdBAoLQeqYivUM
-         skvQ==
-X-Gm-Message-State: ANhLgQ184hKZAj0XsGCJRvAT5e46j5ZikdDao+aSX6l6Fu5VtSqLr8JK
-	AuuKrpChZe22AjgSYdenjMxPBALKuVGuOwFsDOu2rK3+x1U=
-X-Google-Smtp-Source: ADFU+vu7QEpVvCL/YUIeKPwz5sVa/oSWOpM5Ox/Os6VmIp/0h47NphTcjNFm5JFb98ftEhemKZoI+37uQSzs5/lMDLs=
-X-Received: by 2002:a02:c792:: with SMTP id n18mr2319391jao.5.1584677421854;
- Thu, 19 Mar 2020 21:10:21 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5huaJA0KiLm8zmKxhsfS1vXB7waiw1+5t86tTaRYQCc=;
+        b=AWMMsepXi9IpI9TFoROcuNcCwruC0XQZqNBWIf/OCos7FD7YgnrmOxpdDqvskm2Pjv
+         U5uVkEqz6gkd3njfK5Rqltq8mbvAg2Qn096bwHT72LbymqUmATst2MpQ3NBzewnVV1wf
+         kTXnp4IpuJzef8hhghe6IQAR210eNteh6G6tf4Mc3s5nCs2Mvhsd9eL/JXzEtAmZe6hu
+         w6pG3tZX7oHroYWNLYQiCuWzttAMO4uIGtm/r5s1yQbTCqode3gYSq/erwS3+CDuMy60
+         JQ728XBQqX/DoxyXsyhdvx6gjS+e4oNOBOpWkwaUYTu329raDT5WNcQe4y7zvIT4VmDh
+         uRrg==
+X-Gm-Message-State: ANhLgQ26nVE8BYrg9mVscLXUNViNztsHTJ7dvCzxtRPcYjbzdiHxat3c
+	lbsIEaUYVMKzNrivbrOdWZGVPvvBNtElB+p+KH71/35fB3rvTQ==
+X-Google-Smtp-Source: ADFU+vucHqDed8z+Rke2YDKD6ffKuu/y2PLxV5pMW/lMJ3GcfmepJI16Qp5657RoG/f81VKxJlpieuXFz76laCYvl7o=
+X-Received: by 2002:a9d:7857:: with SMTP id c23mr6018046otm.288.1584695424140;
+ Fri, 20 Mar 2020 02:10:24 -0700 (PDT)
 MIME-Version: 1.0
-From: "Emily" <easmith5555@gmail.com>
-Date: Thu, 19 Mar 2020 23:10:11 -0500
-Message-ID: <CAAV2bM0jA_0QbKaRPmWMXss+Kt5kv_KbLvLHaCRKpY9PeVxM4w@mail.gmail.com>
-Subject: Patching submodules
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000d0317505a14176b3"
+References: <CAFP0Ok8cBje8vofUwqo2ac5moA7Yj3OiJNO9DDbJJXxCJUsEtA@mail.gmail.com>
+ <CAHUNapQTnMDphOyxhZ08KzN=venDyXcwaAtsRHz+6sDTO6UhQg@mail.gmail.com>
+In-Reply-To: <CAHUNapQTnMDphOyxhZ08KzN=venDyXcwaAtsRHz+6sDTO6UhQg@mail.gmail.com>
+From: "Yann Dirson" <yann.dirson@blade-group.com>
+Date: Fri, 20 Mar 2020 10:10:13 +0100
+Message-ID: <CA+4=imYWxva2+Qy=e7xJf0zHFhXu-k0RgQa8udNUDmDC3d9Q2Q@mail.gmail.com>
+Subject: Re: [yocto] yocto on tinkerbaord using meta-rockchip
+To: Yocto discussion list <yocto@yoctoproject.org>
+Cc: karthik poduval <karthik.poduval@gmail.com>, Jeffy Chen <jeffy.chen@rock-chips.com>, 
+	Trevor Woerner <twoerner@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000d55a5205a145a713"
 
---000000000000d0317505a14176b3
+--000000000000d55a5205a145a713
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi all -
+Wow, I'm suprised to discover this meta-rockchip :)
 
-I have a recipe that I'd like to patch - the source is in a repo which has
-a submodule, and the patch occurs in the submodule. Is there a way I can
-apply this patch without getting an error? I do kind of understand why it's
-a problem - the patch is changing the pointer of the submodule to a
-commit which doesn't actually exist. Do I need to build the submodule as a
-separate recipe and patch it separately maybe?
+Rockchip engineers also publish a meta-rockchip on Github (
+https://github.com/rockchip-linux/meta-rockchip), although
+nowadays it's mainly Jeffy Chen publishing on
+https://github.com/JeffyCN/meta-rockchip/
 
-I used devtool for the patch and if I don't run the devtool reset command,
-then everything builds, but I think this is just because the workspace
-created by devtool was added as a layer, which probably isn't a good
-long term solution.
+Those two repos seem quite complementary, Jeffy being focussed on kernel
+4.4, and Trevor on mainline.
+Wouldn't it make sense to merge all this work in a single place ?
 
-The error I get (pasted below) says I can "enforce with -f" but I'm not
-sure where that option goes exactly. Thanks for the help!
 
-Emily
+Le ven. 20 mars 2020 =C3=A0 02:59, Trevor Woerner <twoerner@gmail.com> a =
+=C3=A9crit :
 
-Error on build:
-ERROR: opc-ua-server-gfex-1.0+gitAUTOINC+921c563309-r0 do_patch: Command
-Error: 'quilt --quiltrc
-/local/d6/easmith5/rocko_bitbake/poky/build/tmp/work/aarch64-poky-linux/opc-ua-server-gfex/1.0+gitAUTOINC+921c563309-r0/recipe-sysroot-native/etc/quiltrc
-push' exited with 0  Output:
-Applying patch 0001-Update-Poverty-to-point-to-boost-python3.patch
-File Poverty is not a regular file -- refusing to patch
-1 out of 1 hunk ignored -- rejects in file
-Patch 0001-Update-Poverty-to-point-to-boost-python3.patch does not apply
-(enforce with -f)
-ERROR: opc-ua-server-gfex-1.0+gitAUTOINC+921c563309-r0 do_patch: Function
-failed: patch_do_patch
+> Hi Karthik,
+>
+> On Thu, Mar 19, 2020 at 9:36 PM karthik poduval
+> <karthik.poduval@gmail.com> wrote:
+> > Thank you for you work on meta-rockchip layer. You were listed as the
+> > maintainer for meta-rockchip so I though I will send you a mail with
+> > an issue I was facing.
+> >
+> > I was trying to flash an image on a Asus tinker board using
+> > meta-rockchip. Here are the steps I followed.
+> >
+> > git clone git://git.yoctoproject.org/poky
+> > git clone  git://git.yoctoproject.org/meta-rockchip
+> > source poky/oe-init-build-env
+> > bitbake-layers add-layer ../../meta-rockchip/
+> > MACHINE=3Dtinker-board bitbake core-image-minimal
+> >
+> > #flahsed it using the following command to sdcard (my sdcard was dev/s=
+de)
+> > sudo dd
+> if=3Dtmp/deploy/images/tinker-board/core-image-minimal-tinker-board.wic
+> > of=3D/dev/sde
+> >
+> > after inserting sdcard and booting up I can see on the serial console
+> > it attempts to boot, crosses bootloader and proceeds to linux boot but
+> > then gets hing around dwmmc_rockchip loading.
+> >
+> > Attached the complete serial log. Your help is greatly appreciated.
+>
+> According to the log, your board is a "tinker-board-s", please try
+> using that for your MACHINE instead of "tinker-board".
+>
+> Thanks and best regards,
+>     Trevor
+>=20
+>
 
---000000000000d0317505a14176b3
+
+--=20
+Yann Dirson <yann@blade-group.com>
+Blade / Shadow -- http://shadow.tech
+
+--000000000000d55a5205a145a713
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi all -=C2=A0<div><br></div><div>I have a recipe that I&#=
-39;d like to patch - the source is in a repo which has a submodule, and the=
- patch occurs in the submodule. Is there a way I can apply this patch witho=
-ut getting an error? I do kind of understand why it&#39;s a problem - the p=
-atch is changing the pointer of the submodule to a commit=C2=A0which doesn&=
-#39;t actually exist. Do I need to build the submodule as a separate recipe=
- and patch it separately maybe?=C2=A0</div><div><br></div><div>I used devto=
-ol for the patch and if I don&#39;t run the devtool reset command, then eve=
-rything builds, but I think this is just because the workspace created by d=
-evtool was added as a layer, which probably isn&#39;t a good long=C2=A0term=
- solution.=C2=A0</div><div><br></div><div>The error I get (pasted below) sa=
-ys I can &quot;enforce with -f&quot; but I&#39;m not sure where that option=
- goes exactly. Thanks for the help!=C2=A0<br></div><div><br></div><div>Emil=
-y</div><div><br></div><div>Error on build:=C2=A0</div><div>ERROR: opc-ua-se=
-rver-gfex-1.0+gitAUTOINC+921c563309-r0 do_patch: Command Error: &#39;quilt =
---quiltrc /local/d6/easmith5/rocko_bitbake/poky/build/tmp/work/aarch64-poky=
--linux/opc-ua-server-gfex/1.0+gitAUTOINC+921c563309-r0/recipe-sysroot-nativ=
-e/etc/quiltrc push&#39; exited with 0 =C2=A0Output:<br>Applying patch 0001-=
-Update-Poverty-to-point-to-boost-python3.patch<br>File Poverty is not a reg=
-ular file -- refusing to patch<br>1 out of 1 hunk ignored -- rejects in fil=
-e<br>Patch 0001-Update-Poverty-to-point-to-boost-python3.patch does not app=
-ly (enforce with -f)<br>ERROR: opc-ua-server-gfex-1.0+gitAUTOINC+921c563309=
--r0 do_patch: Function failed: patch_do_patch<br></div></div>
+<div dir=3D"ltr"><div>Wow, I&#39;m suprised to discover this meta-rockchip =
+:)</div><div><br></div><div>Rockchip engineers also publish a meta-rockchip=
+ on Github (<a href=3D"https://github.com/rockchip-linux/meta-rockchip" tar=
+get=3D"_blank">https://github.com/rockchip-linux/meta-rockchip</a>), althou=
+gh</div><div>nowadays it&#39;s mainly Jeffy Chen publishing on <a href=3D"h=
+ttps://github.com/JeffyCN/meta-rockchip/">https://github.com/JeffyCN/meta-r=
+ockchip/</a></div><div><br></div><div>Those two repos seem quite complement=
+ary, Jeffy being focussed on kernel 4.4, and Trevor on mainline.</div><div>=
+Wouldn&#39;t it make sense to merge all this work in a single place ?</div>=
+<div><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">Le=C2=A0ven. 20 mars 2020 =C3=A0=C2=A002:59, Trevor Woerne=
+r &lt;<a href=3D"mailto:twoerner@gmail.com" target=3D"_blank">twoerner@gmai=
+l.com</a>&gt; a =C3=A9crit=C2=A0:<br></div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);=
+padding-left:1ex">Hi Karthik,<br>
+<br>
+On Thu, Mar 19, 2020 at 9:36 PM karthik poduval<br>
+&lt;<a href=3D"mailto:karthik.poduval@gmail.com" target=3D"_blank">karthik=
+.poduval@gmail.com</a>&gt; wrote:<br>
+&gt; Thank you for you work on meta-rockchip layer. You were listed as the=
+<br>
+&gt; maintainer for meta-rockchip so I though I will send you a mail with<=
+br>
+&gt; an issue I was facing.<br>
+&gt;<br>
+&gt; I was trying to flash an image on a Asus tinker board using<br>
+&gt; meta-rockchip. Here are the steps I followed.<br>
+&gt;<br>
+&gt; git clone git://<a href=3D"http://git.yoctoproject.org/poky" rel=3D"n=
+oreferrer" target=3D"_blank">git.yoctoproject.org/poky</a><br>
+&gt; git clone=C2=A0 git://<a href=3D"http://git.yoctoproject.org/meta-roc=
+kchip" rel=3D"noreferrer" target=3D"_blank">git.yoctoproject.org/meta-rockc=
+hip</a><br>
+&gt; source poky/oe-init-build-env<br>
+&gt; bitbake-layers add-layer ../../meta-rockchip/<br>
+&gt; MACHINE=3Dtinker-board bitbake core-image-minimal<br>
+&gt;<br>
+&gt; #flahsed it using the following command to sdcard (my sdcard was dev/=
+sde)<br>
+&gt; sudo dd if=3Dtmp/deploy/images/tinker-board/core-image-minimal-tinker=
+-board.wic<br>
+&gt; of=3D/dev/sde<br>
+&gt;<br>
+&gt; after inserting sdcard and booting up I can see on the serial console=
+<br>
+&gt; it attempts to boot, crosses bootloader and proceeds to linux boot bu=
+t<br>
+&gt; then gets hing around dwmmc_rockchip loading.<br>
+&gt;<br>
+&gt; Attached the complete serial log. Your help is greatly appreciated.<b=
+r>
+<br>
+According to the log, your board is a &quot;tinker-board-s&quot;, please t=
+ry<br>
+using that for your MACHINE instead of &quot;tinker-board&quot;.<br>
+<br>
+Thanks and best regards,<br>
+=C2=A0 =C2=A0 Trevor<br>
+<br>
+</blockquote></div><br clear=3D"all"><br>-- <br><div dir=3D"ltr">Yann Dirs=
+on &lt;<a href=3D"mailto:yann@blade-group.com" target=3D"_blank">yann@blade=
+-group.com</a>&gt;<br>Blade / Shadow -- <a href=3D"http://shadow.tech" targ=
+et=3D"_blank">http://shadow.tech</a><br><br></div>
 
---000000000000d0317505a14176b3--
+--000000000000d55a5205a145a713--
