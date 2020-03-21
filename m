@@ -1,76 +1,176 @@
-Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
- by mx.groups.io with SMTP id smtpd.web11.4465.1584779851732010458
+Received: from smtp1.axis.com (smtp1.axis.com [195.60.68.17])
+ by mx.groups.io with SMTP id smtpd.web11.8533.1584800716745887078
  for <yocto@lists.yoctoproject.org>;
- Sat, 21 Mar 2020 01:37:31 -0700
+ Sat, 21 Mar 2020 07:25:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=os6UWBS9;
- spf=pass (domain: linaro.org, ip: 209.85.219.179, mailfrom: nicolas.dechesne@linaro.org)
-Received: by mail-yb1-f179.google.com with SMTP id f17so3869209ybp.4
-        for <yocto@lists.yoctoproject.org>; Sat, 21 Mar 2020 01:37:31 -0700 (PDT)
+ dkim=pass header.i=@axis.com header.s=axis-central1 header.b=CMYBj1rq;
+ spf=pass (domain: axis.com, ip: 195.60.68.17, mailfrom: peter.kjellerstedt@axis.com)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=BCs7adKhXwH7PEFq1QH+VGDyyfXPNC+CB6dURDuMuds=;
-        b=os6UWBS9INIX9q7yXscgjsZtXvAHfWXBmxgddYjvjfB7/8c2JYzmemAaKO2dynI8RH
-         oQg/46rFmt8VlSmG7nwFT83YJzW9UPjNoKFBAnci/ZGr5lxtdheGv8ZQ+7kt2bqdLJ/Y
-         QhxDOj7VLaUzVZgszwv3Jf2Dpzv71VczO2i9GWEqpOVDu4gWpASvsbX2EnLxJ8lH7ZxU
-         Ozw4UukCKYizVCkGDRJQtXvf+MIHWMRx3SSGrHerTChg0QAft/RckvieQT/TNxz5iSa+
-         KzXIITkrKHs+Sj/oZkLlJl9fxbbGI4dOPcTGDqBsqFistbJe13geM3LDUUGuBRq2sJxG
-         m7sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=BCs7adKhXwH7PEFq1QH+VGDyyfXPNC+CB6dURDuMuds=;
-        b=O37+b/JzYXoAhdN9++dS9cofGHuf37iwEnvuSPOPW7o+s7nf7cOZ6aUKkqh1F5XVAv
-         JUTrYf6jrbmx3hgYJy5oxJV1aiF+hHyWj9OmDzhpRQkcyUvdFKDyZTM+Vlw8vUjZO/9u
-         UChiDKlKbgZmscJbihaosXdUZ3fcTb3XaMfnLnnfEVKNaZdOhAgsSzCcg114w1ika/tX
-         J1FjF/RUPVxy4CxMEbftnZ9rNec5WwoT6vLxSjw/MshPv2twZnGD2VjhJOrFh/89DyYC
-         BWPk/N6YNQx2zRbbQZxv02bb/ZZrooAWOxrEsaX1XQAoJRhitHOQqa+UWTpd/foEHK1j
-         lugg==
-X-Gm-Message-State: ANhLgQ0T/CDEPoL3dXHYKJcQBb6o1LVStXlIV7UQgl4sipXx13ck/4Gd
-	u0nE76NNt4uLHdG9/GtAI58yUFcxy7wcrUax7K3OoKMJ
-X-Google-Smtp-Source: ADFU+vtaE1mGQx/D2Nx9a0+ktdvcAJJM9wLYH2oKsAO3zbKCCBrH4ul3xnSrN5MLWAKRhKMcUy0gkdKVykgqMpwh8NQ=
-X-Received: by 2002:a25:99c9:: with SMTP id q9mr20471792ybo.475.1584779850489;
- Sat, 21 Mar 2020 01:37:30 -0700 (PDT)
+  d=axis.com; l=9394; q=dns/txt; s=axis-central1;
+  t=1584800717; x=1616336717;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:mime-version;
+  bh=WyNq5Rm6wpNIplCY9gdsvOITMiqJOXPPahjK6nupLvU=;
+  b=CMYBj1rq8RFssBMUNH8S4D79x6J3mRZQeywh4WktzmoRJO0AwbnA4oqu
+   hmBjHmoiS2PKCOYUWbtxQ4Wx4OA2po871doDLtfRu45qIE9uADeiYjuRE
+   ciN1HtXxRn5Dmyme/ZEZFPJ5juILYGNzv5xINRra/84G73yl3Pl4grfdz
+   ZkFEotMxn1nRwzq7MkoiUsJ92q5kowdVQSxk/rE3E+rrGVFZsqoDcxQGv
+   ZTD3N0RpGTezg1VIlESfJymyiZrVvONeU7Xw0k9lfIvzMbchpkzTfn9U4
+   wsxz3JsxT1BwYwCpKATR/CLUPp4NyF/JqZcreQ4vlXSUF4e25KENLiBCm
+   g==;
+IronPort-SDR: iabl2hluAI97gdojF9qvqAqMz9rRVk5XK6DnlvDmtK8qjwfnR14NpaHNjBZm1hESYmsNFqq4rs
+ QQvCq+4jf9lzxBLFNV3gCEEk2nQGacqES8yAbJqr3ogSlYObVmG67HAC8PLi9j+NDyPFDiiTkT
+ CA+ukmoRAlrYWlNbftdgirZ1jsKHzqH5xNvtH+2NoIr8nlqBa9U7g0fjBmeeQbolVUeQW/mKUf
+ keudZww5pr6QGi4CsrmP14N3qr5sM+/neV9lHCKvt80amqN9lzbXd14QzMfrFdJYZL/ZNDG6DT
+ mhs=
+X-IronPort-AV: E=Sophos;i="5.72,288,1580770800"; 
+   d="scan'208,217";a="6778440"
+From: "Peter Kjellerstedt" <peter.kjellerstedt@axis.com>
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Include B in image only if A is used
+Thread-Topic: [yocto] Include B in image only if A is used
+Thread-Index: AQHV/1v6TVX1uwhVxUCsXNceZzD8mahTGLDQ
+Date: Sat, 21 Mar 2020 14:25:14 +0000
+Message-ID: <58358401884f4394975643a7997b19e6@XBOX03.axis.com>
+References: <CAP71WjzPm6--XfFbK-BjDgf0nRKwnD-oDi+EqTFYUb=vA5ez=A@mail.gmail.com>
+In-Reply-To: <CAP71WjzPm6--XfFbK-BjDgf0nRKwnD-oDi+EqTFYUb=vA5ez=A@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.0.5.60]
 MIME-Version: 1.0
-From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
-Date: Sat, 21 Mar 2020 09:37:19 +0100
-Message-ID: <CAP71WjzPm6--XfFbK-BjDgf0nRKwnD-oDi+EqTFYUb=vA5ez=A@mail.gmail.com>
-Subject: Include B in image only if A is used
-To: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000009387705a15950a7"
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_58358401884f4394975643a7997b19e6XBOX03axiscom_"
 
---00000000000009387705a15950a7
-Content-Type: text/plain; charset="UTF-8"
+--_000_58358401884f4394975643a7997b19e6XBOX03axiscom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-hi,
+WW91IGNvdWxkIGRvOg0KDQpSUkVDT01NRU5EU18ke1BOfSArPSAibmV0d29ya21hbmFnZXItY3Vz
+dG9tLWNvbmZpZ+KAnQ0KDQppbiBuZXR3b3JrbWFuYWdlcl8lLmJiYXBwZW5kLCBhbmQgdGhlbjoN
+Cg0KQ09NUEFUSUJMRV9NQUNISU5FID0gIjx5b3VyIG1hY2hpbmU+Ig0KDQpJbiB0aGUgbmV0d29y
+a21hbmFnZXItY3VzdG9tLWNvbmZpZyByZWNpcGUuIFRoYXQgc2hvdWxkIG5vdCBjYXVzZSB0aGUg
+bmV0d29ya21hbmFnZXIgcmVjaXBlIHRvIGJlY29tZSBtYWNoaW5lIHNwZWNpZmljLCBidXQgaXQg
+d2lsbCBzdGlsbCBwdWxsIGluIHlvdXIgY29uZmlndXJhdGlvbiBmb3IgeW91ciBtYWNoaW5lLg0K
+DQovL1BldGVyDQoNCkZyb206IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgPHlvY3RvQGxp
+c3RzLnlvY3RvcHJvamVjdC5vcmc+IE9uIEJlaGFsZiBPZiBOaWNvbGFzIERlY2hlc25lDQpTZW50
+OiBkZW4gMjEgbWFycyAyMDIwIDA5OjM3DQpUbzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9y
+Zw0KU3ViamVjdDogW3lvY3RvXSBJbmNsdWRlIEIgaW4gaW1hZ2Ugb25seSBpZiBBIGlzIHVzZWQN
+Cg0KaGksDQoNCndoYXQgd291bGQgYmUgdGhlIHByb3Blci9iZXN0IG1lY2hhbmlzbSB0byBlbmZv
+cmNlIHRoYXQgcGFja2FnZV9CIGlzIGluY2x1ZGVkIGluIGFuIGltYWdlIG9ubHkgaWYgcGFja2Fn
+ZV9BIGlzIGFsc28gaW5jbHVkZWQ/IFRoaXMgaXMgbW9zdGx5IGEgJ0JTUCcgZml4dXAuIE15IGN1
+cnJlbnQgbmVlZCBpcyB0aGF0IGZvciBhIGdpdmVuIG1hY2hpbmUsIHdlIG5lZWQgYSBjdXN0b20v
+c3BlY2lmaWMgbmV0d29ya21hbmFnZXIgY29uZmlndXJhdGlvbiBmaWxlLiBTbyBJIHdvdWxkIGxp
+a2UgZnJvbSB0aGUgQlNQIGxheWVyIHRvIGVuc3VyZSB0aGF0IGlmIGFueW9uZSBidWlsZHMgYW4g
+aW1hZ2Ugd2l0aCBuZXR3b3JrbWFuYWdlciwgdGhlbiBteSBuZXR3b3JrbWFuYWdlci1jdXN0b20t
+Y29uZmlnIHBhY2thZ2UgaXMgYWxzbyBhZGRlZC4NCg0Kb2YgY291cnNlLCBJIGNhbiBkbyBhIGJi
+YXBwZW5kLCBidXQgdGhhdCBtYWtlIG5ldHdvcmttYW5hZ2VyICdtYWNoaW5lJyBzcGVjaWZpYy4u
+IGlzIHRoZXJlIGFueXRoaW5nIGVsc2UgdGhhdCBjb3VsZCBiZSBkb25lIGZyb20gdGhlIEJTUCBs
+YXllcj8gQW55IGV4aXN0aW5nIGhvb2sgb3IgZXZlbnQgSSBjb3VsZCB1c2U/DQoNCnRoYW5rcyEN
+Cg==
 
-what would be the proper/best mechanism to enforce that package_B is
-included in an image only if package_A is also included? This is mostly a
-'BSP' fixup. My current need is that for a given machine, we need a
-custom/specific networkmanager configuration file. So I would like from the
-BSP layer to ensure that if anyone builds an image with networkmanager,
-then my networkmanager-custom-config package is also added.
+--_000_58358401884f4394975643a7997b19e6XBOX03axiscom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-of course, I can do a bbappend, but that make networkmanager 'machine'
-specific.. is there anything else that could be done from the BSP layer?
-Any existing hook or event I could use?
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpDb25zb2xhczsNCglwYW5vc2UtMToyIDEx
+IDYgOSAyIDIgNCAzIDIgNDt9DQovKiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWws
+IGxpLk1zb05vcm1hbCwgZGl2Lk1zb05vcm1hbA0KCXttYXJnaW46MGNtOw0KCW1hcmdpbi1ib3R0
+b206LjAwMDFwdDsNCglmb250LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixz
+YW5zLXNlcmlmO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9y
+aXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQph
+OnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5
+Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpwLm1z
+b25vcm1hbDAsIGxpLm1zb25vcm1hbDAsIGRpdi5tc29ub3JtYWwwDQoJe21zby1zdHlsZS1uYW1l
+Om1zb25vcm1hbDsNCgltc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzsNCgltYXJnaW4tcmlnaHQ6MGNt
+Ow0KCW1zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvOw0KCW1hcmdpbi1sZWZ0OjBjbTsNCglmb250
+LXNpemU6MTEuMHB0Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmO30NCnNwYW4u
+RW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFt
+aWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0KCWNvbG9yOiM5NDM2MzQ7DQoJZm9udC13ZWlnaHQ6
+bm9ybWFsOw0KCWZvbnQtc3R5bGU6bm9ybWFsO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHls
+ZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIixzYW5zLXNlcmlmOw0K
+CW1zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXpl
+OjYxMi4wcHQgNzkyLjBwdDsNCgltYXJnaW46NzAuODVwdCA3MC44NXB0IDcwLjg1cHQgNzAuODVw
+dDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+
+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBz
+cGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4
+bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIg
+ZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4N
+Cjxib2R5IGxhbmc9IlNWIiBsaW5rPSIjMDU2M0MxIiB2bGluaz0iIzk1NEY3MiI+DQo8ZGl2IGNs
+YXNzPSJXb3JkU2VjdGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
+VVMiIHN0eWxlPSJjb2xvcjojOTQzNjM0O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5Zb3Ug
+Y291bGQgZG86PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
+YW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjojOTQzNjM0O21zby1mYXJlYXN0LWxhbmd1YWdl
+OkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
+Ij48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtZmFtaWx5OkNvbnNvbGFzO2NvbG9yOiM5
+NDM2MzQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPlJSRUNPTU1FTkRTXyR7UE59ICYjNDM7
+PSAmcXVvdDtuZXR3b3JrbWFuYWdlci1jdXN0b20tY29uZmln4oCdPG86cD48L286cD48L3NwYW4+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xv
+cjojOTQzNjM0O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwv
+c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
+ImNvbG9yOiM5NDM2MzQ7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPmluIG5ldHdvcmttYW5h
+Z2VyXyUuYmJhcHBlbmQsIGFuZCB0aGVuOjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iY29sb3I6Izk0MzYzNDttc28t
+ZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAg
+Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LWZhbWlseTpD
+b25zb2xhcztjb2xvcjojOTQzNjM0O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5DT01QQVRJ
+QkxFX01BQ0hJTkUgPSAmcXVvdDsmbHQ7eW91ciBtYWNoaW5lJmd0OyZxdW90OzxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHls
+ZT0iY29sb3I6Izk0MzYzNDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8
+L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
+IHN0eWxlPSJjb2xvcjojOTQzNjM0O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5JbiB0aGUg
+bmV0d29ya21hbmFnZXItY3VzdG9tLWNvbmZpZyByZWNpcGUuIFRoYXQgc2hvdWxkIG5vdCBjYXVz
+ZSB0aGUgbmV0d29ya21hbmFnZXIgcmVjaXBlIHRvIGJlY29tZSBtYWNoaW5lIHNwZWNpZmljLCBi
+dXQgaXQgd2lsbCBzdGlsbCBwdWxsIGluIHlvdXIgY29uZmlndXJhdGlvbiBmb3INCiB5b3VyIG1h
+Y2hpbmUuPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+bGFuZz0iRU4tVVMiIHN0eWxlPSJjb2xvcjojOTQzNjM0O21zby1mYXJlYXN0LWxhbmd1YWdlOkVO
+LVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImNvbG9yOiM5NDM2MzQ7bXNvLWZhcmVhc3QtbGFuZ3Vh
+Z2U6RU4tVVMiPi8vUGV0ZXI8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
+bWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImNvbG9yOiM5NDM2MzQ7bXNvLWZhcmVhc3Qt
+bGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXYgc3R5bGU9
+ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkIGJsdWUgMS41cHQ7cGFkZGluZzowY20gMGNt
+IDBjbSA0LjBwdCI+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpz
+b2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGNtIDBjbSAwY20iPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0iRU4tVVMiPkZyb206PC9zcGFuPjwvYj48c3BhbiBs
+YW5nPSJFTi1VUyI+IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgJmx0O3lvY3RvQGxpc3Rz
+LnlvY3RvcHJvamVjdC5vcmcmZ3Q7DQo8Yj5PbiBCZWhhbGYgT2YgPC9iPk5pY29sYXMgRGVjaGVz
+bmU8YnI+DQo8Yj5TZW50OjwvYj4gZGVuIDIxIG1hcnMgMjAyMCAwOTozNzxicj4NCjxiPlRvOjwv
+Yj4geW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBbeW9j
+dG9dIEluY2x1ZGUgQiBpbiBpbWFnZSBvbmx5IGlmIEEgaXMgdXNlZDxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJF
+Ti1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj5oaSw8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+d2hhdCB3b3VsZCBiZSB0aGUgcHJvcGVyL2Jlc3QgbWVjaGFuaXNtIHRv
+IGVuZm9yY2UgdGhhdCBwYWNrYWdlX0IgaXMgaW5jbHVkZWQgaW4gYW4gaW1hZ2Ugb25seSBpZiBw
+YWNrYWdlX0EgaXMgYWxzbyBpbmNsdWRlZD8gVGhpcyBpcyBtb3N0bHkgYSAnQlNQJyBmaXh1cC4g
+TXkgY3VycmVudCBuZWVkIGlzIHRoYXQgZm9yIGEgZ2l2ZW4gbWFjaGluZSwgd2UgbmVlZCBhIGN1
+c3RvbS9zcGVjaWZpYyBuZXR3b3JrbWFuYWdlcg0KIGNvbmZpZ3VyYXRpb24gZmlsZS4gU28gSSB3
+b3VsZCBsaWtlIGZyb20gdGhlIEJTUCBsYXllciB0byBlbnN1cmUgdGhhdCBpZiBhbnlvbmUgYnVp
+bGRzIGFuIGltYWdlIHdpdGggbmV0d29ya21hbmFnZXIsIHRoZW4gbXkgbmV0d29ya21hbmFnZXIt
+Y3VzdG9tLWNvbmZpZyBwYWNrYWdlIGlzIGFsc28gYWRkZWQuPG86cD48L286cD48L3A+DQo8L2Rp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPm9mIGNvdXJzZSwgSSBjYW4gZG8gYSBi
+YmFwcGVuZCwgYnV0IHRoYXQgbWFrZSBuZXR3b3JrbWFuYWdlciAnbWFjaGluZScgc3BlY2lmaWMu
+LiBpcyB0aGVyZSBhbnl0aGluZyBlbHNlIHRoYXQgY291bGQgYmUgZG9uZSBmcm9tIHRoZSBCU1Ag
+bGF5ZXI/IEFueSBleGlzdGluZyBob29rIG9yIGV2ZW50IEkgY291bGQgdXNlPzxvOnA+PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286
+cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj50aGFua3MhPG86cD48
+L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRt
+bD4NCg==
 
-thanks!
-
---00000000000009387705a15950a7
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>hi,</div><div><br></div><div>what would be the proper=
-/best mechanism to enforce that package_B is included in an image only if p=
-ackage_A is also included? This is mostly a &#39;BSP&#39; fixup. My current=
- need is that for a given machine, we need a custom/specific networkmanager=
- configuration file. So I would like from the BSP layer to ensure that if a=
-nyone builds an image with networkmanager, then my networkmanager-custom-co=
-nfig package is also added.</div><div><br></div><div>of course, I can do a =
-bbappend, but that make networkmanager &#39;machine&#39; specific.. is ther=
-e anything else that could be done from the BSP layer? Any existing hook or=
- event I could use?<br></div><div><br></div><div>thanks!<br></div></div>
-
---00000000000009387705a15950a7--
+--_000_58358401884f4394975643a7997b19e6XBOX03axiscom_--
