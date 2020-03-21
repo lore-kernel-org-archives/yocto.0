@@ -5,42 +5,44 @@ X-Originating-Location: Odenthal, North Rhine-Westphalia, DE (46.183.98.122)
 X-Originating-Platform: Windows Chrome 80
 User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Date: Sat, 21 Mar 2020 11:39:51 -0700
-References: <20200318153803.spyb4vci4ixgf5dc@jama>
-In-Reply-To: <20200318153803.spyb4vci4ixgf5dc@jama>
-Message-ID: <4287.1584815991022205427@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="exa93007QJGSXdF65dCi"
+Date: Sat, 21 Mar 2020 11:43:47 -0700
+References: <080227a9-b5f2-8e3e-201f-5285a1f80e2d@topic.nl>
+In-Reply-To: <080227a9-b5f2-8e3e-201f-5285a1f80e2d@topic.nl>
+Message-ID: <4287.1584816227744264614@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="SDaAzJFPrIeZzcPa8tDT"
 
---exa93007QJGSXdF65dCi
+--SDaAzJFPrIeZzcPa8tDT
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 18, 2020 at 08:38 AM, Martin Jansa wrote:
+On Wed, Mar 18, 2020 at 08:09 AM, Mike Looijmans wrote:
 
 >=20
->=20
-> If you want to compare how terrible your current VM compares with some
-> other builders, you can use:
-> https://github.com/shr-project/test-oe-build-time
+> Of course he's on a tight budget. He wouldn't need to ask for advice
+> otherwise...
 
-Thanks for all the replies here, had some long days so no earlier answers.
-I did test this on my home rig (2600X, 16G RAM) and it took ~ 24h until I =
-aborted. Is this expected? I did not yet try on the VM ;D
+When has a company ever given you a card blanche for equipment? :D
 
-- Olli
+There is a budget and I just need to write down a good argument to spend i=
+t on something like this, the amount depends heavily on the arguments and t=
+his thread already provides a lot of arguments ;-)
 
---exa93007QJGSXdF65dCi
+Has anyone ever ran multiple bitbake instances (but with different users!)=
+ on a system?
+If so: Any precautions needed there?
+
+--SDaAzJFPrIeZzcPa8tDT
 Content-Type: text/html; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 18, 2020 at 08:38 AM, Martin Jansa wrote:<br />
-<blockquote><br />If you want to compare how terrible your current VM comp=
-ares with some<br />other builders, you can use:<br /><a href=3D"https://gi=
-thub.com/shr-project/test-oe-build-time" target=3D"_blank" rel=3D"noopener"=
->https://github.com/shr-project/test-oe-build-time</a></blockquote>
-Thanks for all the replies here, had some long days so no earlier answers.=
-<br />I did test this on my home rig (2600X, 16G RAM) and it took ~ 24h unt=
-il I aborted. Is this expected? I did not yet try on the VM ;D<br /><br />-=
- Olli
+On Wed, Mar 18, 2020 at 08:09 AM, Mike Looijmans wrote:<br />
+<blockquote>Of course he's on a tight budget. He wouldn't need to ask for =
+advice otherwise...</blockquote>
+When has a company ever given you a card blanche for equipment? :D<br /><b=
+r />There is a budget and I just need to write down a good argument to spen=
+d it on something like this, the amount depends heavily on the arguments an=
+d this thread already provides a lot of arguments ;-)<br /><br />Has anyone=
+ ever ran multiple bitbake instances (but with different users!) on a syste=
+m?<br />If so: Any precautions needed there?
 
---exa93007QJGSXdF65dCi--
+--SDaAzJFPrIeZzcPa8tDT--
