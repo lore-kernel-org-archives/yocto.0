@@ -1,183 +1,76 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.4026.1584774578544064926
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+ by mx.groups.io with SMTP id smtpd.web11.4465.1584779851732010458
  for <yocto@lists.yoctoproject.org>;
- Sat, 21 Mar 2020 00:09:38 -0700
+ Sat, 21 Mar 2020 01:37:31 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=UVVbqRIN;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: karthik.poduval@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1EAC3E018A2; Sat, 21 Mar 2020 00:09:38 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (karthik.poduval[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.217.42 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C755BE018A0
-	for <yocto@yoctoproject.org>; Sat, 21 Mar 2020 00:09:35 -0700 (PDT)
-Received: by mail-vs1-f42.google.com with SMTP id n6so5476252vsc.3
-        for <yocto@yoctoproject.org>; Sat, 21 Mar 2020 00:09:35 -0700 (PDT)
+ dkim=pass header.i=@linaro.org header.s=google header.b=os6UWBS9;
+ spf=pass (domain: linaro.org, ip: 209.85.219.179, mailfrom: nicolas.dechesne@linaro.org)
+Received: by mail-yb1-f179.google.com with SMTP id f17so3869209ybp.4
+        for <yocto@lists.yoctoproject.org>; Sat, 21 Mar 2020 01:37:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9o53V3W8TH5WFDINepHkNFlokaJoBDkxHUoV7eGNaEk=;
-        b=UVVbqRIN8OJBdnkVdnCAiPFXQ63+YY6dxYi7bj7ir1d4GhBOY2A8v16WsdCZZpAqUc
-         i7yZrxNuSdTTXlMPopYZtWJNl+7xvEuulZ4Wwurz9NuN+CWOd25i3QlVRcvj30FGQbgZ
-         pmmLGjGKPX/z9pd2RX04YrswImXC94+jpBWomxHgujTni0YkgFmhARGzeW80j43B/5dY
-         n75SlphKhA1nYuEUNFBWGCpo//i3yDmDdt5+sghFsYyYV5d4wtsBqPDNPT6YYS5ZGsfF
-         7MWOItb9lboSP2RuX/XUkqU8Nwps9cjSOSIO2QZfSuK3g4O8kKowfG70CmHjv42ASC8H
-         HCsQ==
+        d=linaro.org; s=google;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=BCs7adKhXwH7PEFq1QH+VGDyyfXPNC+CB6dURDuMuds=;
+        b=os6UWBS9INIX9q7yXscgjsZtXvAHfWXBmxgddYjvjfB7/8c2JYzmemAaKO2dynI8RH
+         oQg/46rFmt8VlSmG7nwFT83YJzW9UPjNoKFBAnci/ZGr5lxtdheGv8ZQ+7kt2bqdLJ/Y
+         QhxDOj7VLaUzVZgszwv3Jf2Dpzv71VczO2i9GWEqpOVDu4gWpASvsbX2EnLxJ8lH7ZxU
+         Ozw4UukCKYizVCkGDRJQtXvf+MIHWMRx3SSGrHerTChg0QAft/RckvieQT/TNxz5iSa+
+         KzXIITkrKHs+Sj/oZkLlJl9fxbbGI4dOPcTGDqBsqFistbJe13geM3LDUUGuBRq2sJxG
+         m7sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9o53V3W8TH5WFDINepHkNFlokaJoBDkxHUoV7eGNaEk=;
-        b=b5hGrmY6Vz65gH6GQfCB6dfyB6BxoH2bBAeHN1GTIMttDZad/rw+oC1iQuEWoALG26
-         7B0AfBZmgsANLbwolcuuHkwapVRskJUF+mVv/OIpvAbMUSZDD/0s2Gt7PlRpFCsCOkLm
-         MNjMDly0XU6O1oGFWzS93vIHCi+he0t2BSMCuF2grSHp1V+gxKvFPAE3D0HCpth91JIz
-         VMBFqC7K1ir7wVmwRRkp6Tv6/CIPdikmaZYJNVGC9la3eHZFvTJOcckkRCunzwfrMWQ7
-         YfpkgcoyS8HNPYi17s7t2FpeGxsaSvMhDjsgEbOIy2gEnkszms2s/jQiYRknyQDXUpiM
-         zP6Q==
-X-Gm-Message-State: ANhLgQ34012zbQ2KfYngpVXIBcMLvp7g47+gtLLX/mLd59YmupDamjFa
-	w9Q5m+bSPm8u/aSLKr2vVGYf71CBCh5nxVY/yhA=
-X-Google-Smtp-Source: ADFU+vsoTKFGzSOI4yg3+2+iMLXDHO3UEQrd2AUmSMZpSyp6+6zOK+MV8y1GAjoDo+Mg2XONDp5naYmgqw0wHqYE5xU=
-X-Received: by 2002:a67:cc16:: with SMTP id q22mr9155583vsl.81.1584774574863;
- Sat, 21 Mar 2020 00:09:34 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=BCs7adKhXwH7PEFq1QH+VGDyyfXPNC+CB6dURDuMuds=;
+        b=O37+b/JzYXoAhdN9++dS9cofGHuf37iwEnvuSPOPW7o+s7nf7cOZ6aUKkqh1F5XVAv
+         JUTrYf6jrbmx3hgYJy5oxJV1aiF+hHyWj9OmDzhpRQkcyUvdFKDyZTM+Vlw8vUjZO/9u
+         UChiDKlKbgZmscJbihaosXdUZ3fcTb3XaMfnLnnfEVKNaZdOhAgsSzCcg114w1ika/tX
+         J1FjF/RUPVxy4CxMEbftnZ9rNec5WwoT6vLxSjw/MshPv2twZnGD2VjhJOrFh/89DyYC
+         BWPk/N6YNQx2zRbbQZxv02bb/ZZrooAWOxrEsaX1XQAoJRhitHOQqa+UWTpd/foEHK1j
+         lugg==
+X-Gm-Message-State: ANhLgQ0T/CDEPoL3dXHYKJcQBb6o1LVStXlIV7UQgl4sipXx13ck/4Gd
+	u0nE76NNt4uLHdG9/GtAI58yUFcxy7wcrUax7K3OoKMJ
+X-Google-Smtp-Source: ADFU+vtaE1mGQx/D2Nx9a0+ktdvcAJJM9wLYH2oKsAO3zbKCCBrH4ul3xnSrN5MLWAKRhKMcUy0gkdKVykgqMpwh8NQ=
+X-Received: by 2002:a25:99c9:: with SMTP id q9mr20471792ybo.475.1584779850489;
+ Sat, 21 Mar 2020 01:37:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAFP0Ok8cBje8vofUwqo2ac5moA7Yj3OiJNO9DDbJJXxCJUsEtA@mail.gmail.com>
- <CAHUNapQTnMDphOyxhZ08KzN=venDyXcwaAtsRHz+6sDTO6UhQg@mail.gmail.com>
-In-Reply-To: <CAHUNapQTnMDphOyxhZ08KzN=venDyXcwaAtsRHz+6sDTO6UhQg@mail.gmail.com>
-From: "Karthik Poduval" <karthik.poduval@gmail.com>
-Date: Sat, 21 Mar 2020 00:09:23 -0700
-Message-ID: <CAFP0Ok9cSbcFzYELJ+D65aw4hMGXegfK=qr4Ay79wsJO2TPLHA@mail.gmail.com>
-Subject: Re: yocto on tinkerbaord using meta-rockchip
-To: Trevor Woerner <twoerner@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000957a2805a1581573"
+From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
+Date: Sat, 21 Mar 2020 09:37:19 +0100
+Message-ID: <CAP71WjzPm6--XfFbK-BjDgf0nRKwnD-oDi+EqTFYUb=vA5ez=A@mail.gmail.com>
+Subject: Include B in image only if A is used
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000009387705a15950a7"
 
---000000000000957a2805a1581573
+--00000000000009387705a15950a7
 Content-Type: text/plain; charset="UTF-8"
 
-Hi Trevor,
+hi,
 
-Thanks for getting back, I tried with tinker-board-s machine type but same
-result. I also tried flashing Asus Debian image on sdcard but that too
-didn't work (no console logs with this image). I am suspecting it's a
-hardware issue at this point. Any other suggestions or insights would be
-appreciated.
+what would be the proper/best mechanism to enforce that package_B is
+included in an image only if package_A is also included? This is mostly a
+'BSP' fixup. My current need is that for a given machine, we need a
+custom/specific networkmanager configuration file. So I would like from the
+BSP layer to ensure that if anyone builds an image with networkmanager,
+then my networkmanager-custom-config package is also added.
 
-On Thu, Mar 19, 2020, 6:58 PM Trevor Woerner <twoerner@gmail.com> wrote:
+of course, I can do a bbappend, but that make networkmanager 'machine'
+specific.. is there anything else that could be done from the BSP layer?
+Any existing hook or event I could use?
 
-> Hi Karthik,
->
-> On Thu, Mar 19, 2020 at 9:36 PM karthik poduval
-> <karthik.poduval@gmail.com> wrote:
-> > Thank you for you work on meta-rockchip layer. You were listed as the
-> > maintainer for meta-rockchip so I though I will send you a mail with
-> > an issue I was facing.
-> >
-> > I was trying to flash an image on a Asus tinker board using
-> > meta-rockchip. Here are the steps I followed.
-> >
-> > git clone git://git.yoctoproject.org/poky
-> > git clone  git://git.yoctoproject.org/meta-rockchip
-> > source poky/oe-init-build-env
-> > bitbake-layers add-layer ../../meta-rockchip/
-> > MACHINE=tinker-board bitbake core-image-minimal
-> >
-> > #flahsed it using the following command to sdcard (my sdcard was dev/sde)
-> > sudo dd
-> if=tmp/deploy/images/tinker-board/core-image-minimal-tinker-board.wic
-> > of=/dev/sde
-> >
-> > after inserting sdcard and booting up I can see on the serial console
-> > it attempts to boot, crosses bootloader and proceeds to linux boot but
-> > then gets hing around dwmmc_rockchip loading.
-> >
-> > Attached the complete serial log. Your help is greatly appreciated.
->
-> According to the log, your board is a "tinker-board-s", please try
-> using that for your MACHINE instead of "tinker-board".
->
-> Thanks and best regards,
->     Trevor
->
+thanks!
 
---000000000000957a2805a1581573
+--00000000000009387705a15950a7
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"auto">Hi Trevor,<div dir=3D"auto"><br></div><div dir=3D"auto">T=
-hanks for getting back, I tried with tinker-board-s machine type but same r=
-esult. I also tried flashing Asus Debian image on sdcard but that too didn&=
-#39;t=C2=A0work (no console logs with this image). I am suspecting it&#39;s=
- a hardware issue at this point. Any other suggestions or insights would=C2=
-=A0be appreciated.</div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
-r" class=3D"gmail_attr">On Thu, Mar 19, 2020, 6:58 PM Trevor Woerner &lt;<a=
- href=3D"mailto:twoerner@gmail.com" target=3D"_blank" rel=3D"noreferrer">tw=
-oerner@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
-style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi =
-Karthik,<br>
-<br>
-On Thu, Mar 19, 2020 at 9:36 PM karthik poduval<br>
-&lt;<a href=3D"mailto:karthik.poduval@gmail.com" rel=3D"noreferrer noreferr=
-er" target=3D"_blank">karthik.poduval@gmail.com</a>&gt; wrote:<br>
-&gt; Thank you for you work on meta-rockchip layer. You were listed as the<=
-br>
-&gt; maintainer for meta-rockchip so I though I will send you a mail with<b=
-r>
-&gt; an issue I was facing.<br>
-&gt;<br>
-&gt; I was trying to flash an image on a Asus tinker board using<br>
-&gt; meta-rockchip. Here are the steps I followed.<br>
-&gt;<br>
-&gt; git clone git://<a href=3D"http://git.yoctoproject.org/poky" rel=3D"no=
-referrer noreferrer noreferrer" target=3D"_blank">git.yoctoproject.org/poky=
-</a><br>
-&gt; git clone=C2=A0 git://<a href=3D"http://git.yoctoproject.org/meta-rock=
-chip" rel=3D"noreferrer noreferrer noreferrer" target=3D"_blank">git.yoctop=
-roject.org/meta-rockchip</a><br>
-&gt; source poky/oe-init-build-env<br>
-&gt; bitbake-layers add-layer ../../meta-rockchip/<br>
-&gt; MACHINE=3Dtinker-board bitbake core-image-minimal<br>
-&gt;<br>
-&gt; #flahsed it using the following command to sdcard (my sdcard was dev/s=
-de)<br>
-&gt; sudo dd if=3Dtmp/deploy/images/tinker-board/core-image-minimal-tinker-=
-board.wic<br>
-&gt; of=3D/dev/sde<br>
-&gt;<br>
-&gt; after inserting sdcard and booting up I can see on the serial console<=
-br>
-&gt; it attempts to boot, crosses bootloader and proceeds to linux boot but=
-<br>
-&gt; then gets hing around dwmmc_rockchip loading.<br>
-&gt;<br>
-&gt; Attached the complete serial log. Your help is greatly appreciated.<br=
->
-<br>
-According to the log, your board is a &quot;tinker-board-s&quot;, please tr=
-y<br>
-using that for your MACHINE instead of &quot;tinker-board&quot;.<br>
-<br>
-Thanks and best regards,<br>
-=C2=A0 =C2=A0 Trevor<br>
-</blockquote></div>
+<div dir=3D"ltr"><div>hi,</div><div><br></div><div>what would be the proper=
+/best mechanism to enforce that package_B is included in an image only if p=
+ackage_A is also included? This is mostly a &#39;BSP&#39; fixup. My current=
+ need is that for a given machine, we need a custom/specific networkmanager=
+ configuration file. So I would like from the BSP layer to ensure that if a=
+nyone builds an image with networkmanager, then my networkmanager-custom-co=
+nfig package is also added.</div><div><br></div><div>of course, I can do a =
+bbappend, but that make networkmanager &#39;machine&#39; specific.. is ther=
+e anything else that could be done from the BSP layer? Any existing hook or=
+ event I could use?<br></div><div><br></div><div>thanks!<br></div></div>
 
---000000000000957a2805a1581573--
+--00000000000009387705a15950a7--
