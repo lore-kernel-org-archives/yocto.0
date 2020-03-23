@@ -1,124 +1,100 @@
-Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
- by mx.groups.io with SMTP id smtpd.web11.50599.1584964532091320042
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+ by mx.groups.io with SMTP id smtpd.web11.50657.1584964721030240248
  for <yocto@lists.yoctoproject.org>;
- Mon, 23 Mar 2020 04:55:32 -0700
+ Mon, 23 Mar 2020 04:58:41 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=iPrCoPRk;
- spf=pass (domain: gmail.com, ip: 209.85.215.177, mailfrom: amayajindal786@gmail.com)
-Received: by mail-pg1-f177.google.com with SMTP id j29so200757pgl.3;
-        Mon, 23 Mar 2020 04:55:32 -0700 (PDT)
+ dkim=pass header.i=@linaro.org header.s=google header.b=WhTlg21E;
+ spf=pass (domain: linaro.org, ip: 209.85.219.175, mailfrom: nicolas.dechesne@linaro.org)
+Received: by mail-yb1-f175.google.com with SMTP id f17so6908792ybp.4
+        for <yocto@lists.yoctoproject.org>; Mon, 23 Mar 2020 04:58:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:subject:message-id:references:from:to:cc:mime-version
-         :content-transfer-encoding;
-        bh=dhyqTC9Fdn5vUMAieJoHyrHWRM48wabbV8t7kK0Gwz8=;
-        b=iPrCoPRkPV8YD5tGWDIV8pkW8GzlOsbDsWQMhBIaQkvrK9bcK0sOD3nQpaERMpoeBP
-         6zcUWxfOADgt6np37XvL8KL3pIyGOnUUTUaPhL3lz6hyAYQnFPXKssVcS4xFe0Rqg79X
-         7dfxLF2b4D1ziX4nJhtP73BNPDGq6WPVgK7zWqKR1f+kYdNvxAaz1DKHPnCK2A4F7YH/
-         IIh0nHG91fP+e7eSq0K3Ehk+P896uB3biX+/o0IHhIhzR8QPa4OPC0hpfSMGIuJ9CwJT
-         qOkFCRwjdKRohplW36JsuNsYDHl099tFtbh2hR/ziMGuPaKS5RS94TRkXRjCpRTLrNF/
-         bdrQ==
+        d=linaro.org; s=google;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=1jFEcE5IrdkFCUEAN4hBvQnwwTh3aNn7cX6HwuubK3o=;
+        b=WhTlg21E1q/zemMpZqs1CxyC4Z5h1FAX/yaiocyU84osZV6UAS+FjilwmhGl/d5bd+
+         /NUtBfs4ADM8Z8C0o03thpDDZOtMZ8JZUnRsIMtODyg9gE44caQWEjPC0pX246t9Iqoc
+         1XE0dRPE5YY4nktEkDRH2skuSoqZflJ0mWrQGDlMYOyEQpVSDiT2X1Nu7QLPvSCWkfuH
+         YQAi1IEpxI7G0RmkwyQBNMwQIntMDESWEBcN3RqvG2y4tIB3D1nQ/sd39xCeInmBKwxx
+         XhUOn3lUL/AbKOewgLYAqwrWKJxQDiNNLwxg21+TjeY4/3otRVSEIEmeTp5PdYY+Nwps
+         acDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:message-id:references:from:to:cc
-         :mime-version:content-transfer-encoding;
-        bh=dhyqTC9Fdn5vUMAieJoHyrHWRM48wabbV8t7kK0Gwz8=;
-        b=izVZV4xFDychYrPLW4eFcJ+vtHk7XMX88oWY9DLUQTGVOQcKP6pM7S4wouluEQhMwe
-         BMsTGSS388AQ6+ctW69CAh3t1W8jSJ2pkl/2eOxFeOkkjgrPT+WRlkpcAHfLM/PK3D05
-         c6ehbQIZbfHgXviLYn3YVyURsHLFUZUkWnhx2Zi0S2o5lbQHPPsiOpy6yRzip8a8S1C2
-         xDFZbRfyGMuHeyAY+x91euoIK0E+TdMeTuBqqmR/WAVyY5Uq/kotsupI5fLoCsNr1bDQ
-         O2/fKzOwwcQS1PDtTBOMMcvJwvzJiC0rVaiWUFW4DWjK8GBZDC28zB5tqqFf039ISmO5
-         WiGg==
-X-Gm-Message-State: ANhLgQ3ccUJdjCqgYu3CeYETj8pNPgeBudaXJxA5KtgO8PKgiFNnBYJW
-	tAjMrue3h2D3J8HS5+jjv8BlowNh
-X-Google-Smtp-Source: ADFU+vs1Vb/7cnUgvAXLbavrITOtRWj1adqY1vAXPxAesHfptANtXMt1Q2GKK1VyO7+1dkovSu54Ow==
-X-Received: by 2002:a62:92:: with SMTP id 140mr22842048pfa.186.1584964531323;
-        Mon, 23 Mar 2020 04:55:31 -0700 (PDT)
-Return-Path: <amayajindal786@gmail.com>
-Received: from [192.168.1.4] ([122.173.142.186])
-        by smtp.gmail.com with ESMTPSA id 189sm3498249pgh.58.2020.03.23.04.55.29
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 23 Mar 2020 04:55:30 -0700 (PDT)
-Date: Mon, 23 Mar 2020 14:02:07 +0530
-Subject: Re: [yocto] Issue while adding the support for TLS1.3 in existing krogoth yocto #yocto #yocto #yocto #yocto #apt #raspberrypi #yocto
-X-Priority: 3
-Message-ID: <-h9f4rg-ntxj6vcoqai6hcfmov-yocrfn-7sbd94gjcchw-xppk6o1b91vuj87x5vl88ixy-j8o97whmlt4ghpje6m53lewpft02e5-ua47jjm3vuaf-e1h7sk-ksk379wy0tl8e10r5idf1g2v-mqdaud.1584952327968@email.android.com>
-References: <d73Z.1582010752108711892.tD7g@lists.yoctoproject.org>
- <CANNYZj-3urA5rw8fzcAY9ch5Z-zOEt4tRjNNBsquZuvVD6+BJQ@mail.gmail.com>
- <-rwstc27cdt90-auuyo41rs8jtvzm6syoph8qyesn3ii-mwuzy2-dgobygumtd4d-75yhts2n0qmc-f0uc4f-r9fqcx4aa7a041vjua4rn8a56jf43y-as3l4g-2l39almml2bd3opuod-lges1-2ywa6z.1582012225122@email.android.com> <20200218090628.GC104502@korppu> <-hhdqq849gh00fpec09-k43vkev29eapwgdmfmrg31wzpc79dq-3ob9vu4ljzio-kfzmy5-k9d9xp-fje67s6nyz1o5020z4-gvie0werwo8p-or1nts-ut4yas-3vp530t7t1ig-wdisaynth1prjt71uh.1582097826706@email.android.com> <15FD60EEC90B82B0.21252@lists.yoctoproject.org> <15FDB5F5FFA2CF3D.29573@lists.yoctoproject.org>
-From: "amaya jindal" <amayajindal786@gmail.com>
-To: "Khem Raj via Lists.Yoctoproject.Org"
- <raj.khem=gmail.com@lists.yoctoproject.org>, "yocto@lists.yoctoproject.org"
- <yocto@lists.yoctoproject.org>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=1jFEcE5IrdkFCUEAN4hBvQnwwTh3aNn7cX6HwuubK3o=;
+        b=mCKZvppSxRfPzxgH5ZaVw7GJ1vARUgnIO2KFV+Y9VZp4ASvcLy5VI56aH9qwe0uuZq
+         BKK9NhKK64zI+KvgbcMceCLtZkXtu2Y08lbVnzDG2XPz/ZSWFZ3YhQlPzsWKbf/XhHEw
+         oEhJnI5818MioiNmvN+Sgkyg4WAu3jBVsorTgs408GxgAO29yBf8+hfOAv9ReqXygc76
+         utBd0t6ronDPZhMblSDkmVvyT/owHdGff8hwctH6ST5Pb/WvIcNfKU2ZdDGegNF/bfDi
+         +k1AOBfi1HSx00v4HWp+Z4jFXCi9Q7Wx3EgEcAoBRb9eHwdVB/PN1aYlHs9SNsAxY9wD
+         jLuA==
+X-Gm-Message-State: ANhLgQ262TRQQ8/oYC3WscDPgSxXtg/pcpYAW43KWw5rSDRD1aG14NVA
+	3ISBZpjwzbTkNOZZNEbQrnY/gTE5IX2MNUsprnzToNUH
+X-Google-Smtp-Source: ADFU+vuYDJqkHov9bPciG/OixiW6kXZ+wxeuFR9ujyN+cbPzg0rXkC4LBFoX2wsYRGLNnhia2kU5pybITywWwXgxJHU=
+X-Received: by 2002:a5b:9d1:: with SMTP id y17mr34240175ybq.133.1584964719763;
+ Mon, 23 Mar 2020 04:58:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
+Date: Mon, 23 Mar 2020 12:58:28 +0100
+Message-ID: <CAP71WjxA6Z=OFBF_Dhp=jjjqXseGvHyzJURdZ8k0H4=2=a2omQ@mail.gmail.com>
+Subject: Community stats dashboard
+To: yocto@lists.yoctoproject.org, 
+	Patches and discussions about the oe-core layer <openembedded-core@lists.openembedded.org>, 
+	openembedded-devel <openembedded-devel@lists.openembedded.org>
+Content-Type: multipart/alternative; boundary="0000000000001a797f05a1845bc6"
 
-PGRpdiBkaXI9ImF1dG8iPkhpIGFsbCwmbmJzcDs8ZGl2Pjxicj48L2Rpdj48ZGl2PlBscyBndWlk
-ZSB3aGljaCB5b2N0byBwb2t5IHJlZmVyZW5jZSBzdXBwb3J0IE1vbmdvIDQuMi4yLiZuYnNwOzxi
-cj48ZGl2Pjxicj5TZW50IGZyb20gbXkgSHVhd2VpIHBob25lPC9kaXY+PC9kaXY+PC9kaXY+PGRp
-diBzdHlsZT0ibGluZS1oZWlnaHQ6MS41Ij48YnI+PGJyPi0tLS0tLS0tIE9yaWdpbmFsIG1lc3Nh
-Z2UgLS0tLS0tLS08YnI+RnJvbTogImFtYXlhIGppbmRhbCB2aWEgTGlzdHMuWW9jdG9wcm9qZWN0
-Lk9yZyIgJmx0O2FtYXlhamluZGFsNzg2PWdtYWlsLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qub3Jn
-Jmd0Ozxicj5EYXRlOiBUaHUsIDE5IE1hciAyMDIwLCA2OjI4IHBtPGJyPlRvOiAiS2hlbSBSYWog
-dmlhIExpc3RzLllvY3RvcHJvamVjdC5PcmciICZsdDtyYWoua2hlbT1nbWFpbC5jb21AbGlzdHMu
-eW9jdG9wcm9qZWN0Lm9yZyZndDssIHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8YnI+Q2M6
-IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8YnI+U3ViamVjdDogUmU6IFt5b2N0b10gSXNz
-dWUgd2hpbGUgYWRkaW5nIHRoZSBzdXBwb3J0IGZvciBUTFMxLjMgaW4gZXhpc3Rpbmcga3JvZ290
-aCB5b2N0byAjeW9jdG8gI3lvY3RvICN5b2N0byAjeW9jdG8gI2FwdCAjcmFzcGJlcnJ5cGkgI3lv
-Y3RvPGJyPjxibG9ja3F1b3RlPjxkaXYgZGlyPSJhdXRvIj5QbHMgY2FuIGFueSBib2R5IGd1aWRl
-IGFuZCBzdWdnZXN0IHRoZSByZWFzb24gb2YgaXNzdWU8YnIgLz48YnIgLz5TZW50IGZyb20gbXkg
-SHVhd2VpIHBob25lPC9kaXY+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS41Ij48YnIgLz48YnIg
-Lz4tLS0tLS0tLSBPcmlnaW5hbCBtZXNzYWdlIC0tLS0tLS0tPGJyIC8+RnJvbTogJiMzNDthbWF5
-YSBqaW5kYWwgdmlhIExpc3RzLllvY3RvcHJvamVjdC5PcmcmIzM0OyAmbHQ7YW1heWFqaW5kYWw3
-ODYmIzYxO2dtYWlsLmNvbUBsaXN0cy55b2N0b3Byb2plY3Qub3JnJmd0OzxiciAvPkRhdGU6IFdl
-ZCwgMTggTWFyIDIwMjAsIDQ6MzAgcG08YnIgLz5UbzogJiMzNDtLaGVtIFJhaiB2aWEgTGlzdHMu
-WW9jdG9wcm9qZWN0Lk9yZyYjMzQ7ICZsdDtyYWoua2hlbSYjNjE7Z21haWwuY29tQGxpc3RzLnlv
-Y3RvcHJvamVjdC5vcmcmZ3Q7LCB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnPGJyIC8+Q2M6
-IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8YnIgLz5TdWJqZWN0OiBSZTogW3lvY3RvXSBJ
-c3N1ZSB3aGlsZSBhZGRpbmcgdGhlIHN1cHBvcnQgZm9yIFRMUzEuMyBpbiBleGlzdGluZyBrcm9n
-b3RoIHlvY3RvICN5b2N0byAjeW9jdG8gI3lvY3RvICN5b2N0byAjYXB0ICNyYXNwYmVycnlwaSAj
-eW9jdG88YnIgLz48YmxvY2txdW90ZT48ZGl2IGRpcj0iYXV0byI+SGkgQWxswqA8ZGl2PjxiciAv
-PjwvZGl2PjxkaXY+wqB3aGlsZSBJIHRyaWVkIHRvIGFkZCBPcGVuc3NoIDcuOHAxIHJlY2lwZSBp
-biBrcm9nb3RoIHlvY3RvLCB0byBhZGQgc3VwcG9ydCBmb3Igb3BlbnNzbCAxLjEuMWIuIEV2ZXJ5
-IHRoaW5nIGNvbXBpbGVkIHN1Y2Nlc3NmdWxseSBidXQgbm93IEkgYW0gZ2V0dGluZyBpc3N1ZSB3
-aGVuIEkgdHJpZWQgdG8uIHRlc3QgdGhhdCBvbiBib2FyZCwgaXRzIGdldHRpbmcgcmVzdGFydGVk
-IGV2ZXJ5IHRpbWUuIFBsZWFzZSBzdWdnZXN0wqA8YnIgLz48YnIgLz5TZW50IGZyb20gbXkgSHVh
-d2VpIHBob25lPC9kaXY+PC9kaXY+PGRpdiBzdHlsZT0ibGluZS1oZWlnaHQ6MS41Ij48YnIgLz48
-YnIgLz4tLS0tLS0tLSBPcmlnaW5hbCBtZXNzYWdlIC0tLS0tLS0tPGJyIC8+RnJvbTogYW1heWEg
-amluZGFsICZsdDthbWF5YWppbmRhbDc4NkBnbWFpbC5jb20mZ3Q7PGJyIC8+RGF0ZTogV2VkLCAx
-OSBGZWIgMjAyMCwgMTowOSBwbTxiciAvPlRvOiBNaWtrby5SYXBlbGlAYm13LmRlPGJyIC8+Q2M6
-IGFsZXgua2FuYXZpbkBnbWFpbC5jb20sIHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmc8YnIg
-Lz5TdWJqZWN0OiBSZTogW3lvY3RvXSBJc3N1ZSB3aGlsZSBhZGRpbmcgdGhlIHN1cHBvcnQgZm9y
-IFRMUzEuMyBpbiBleGlzdGluZyBrcm9nb3RoIHlvY3RvICN5b2N0byAjeW9jdG8gI3lvY3RvICN5
-b2N0byAjYXB0ICNyYXNwYmVycnlwaSAjeW9jdG88YnIgLz48YmxvY2txdW90ZT48ZGl2IGRpcj0i
-YXV0byI+QW55IGtpbmQgb2YgcGF0Y2ggaWYgYXZhaWxhYmxlIHRvIGRpcmVjdGx5IGFwcGx5PyBJ
-IGFtIGdldHRpbmcgZXJyb3IgaW4gZ29iamVjdC1pbnRyb3NwZWN0aW9uIG5hdGl2ZSB0aGF0IHNo
-YTEgc2hhMjU2IGV0YyBub3QgZm91bmQgaW4gdXNyL2xpYi9weXRob24yIDcvaGFzaGxpYi5weTxi
-ciAvPjxiciAvPlNlbnQgZnJvbSBteSBIdWF3ZWkgcGhvbmU8L2Rpdj48ZGl2IHN0eWxlPSJsaW5l
-LWhlaWdodDoxLjUiPjxiciAvPjxiciAvPi0tLS0tLS0tIE9yaWdpbmFsIG1lc3NhZ2UgLS0tLS0t
-LS08YnIgLz5Gcm9tOiBNaWtrby5SYXBlbGlAYm13LmRlPGJyIC8+RGF0ZTogVHVlLCAxOCBGZWIg
-MjAyMCwgMjozNiBwbTxiciAvPlRvOiBhbWF5YWppbmRhbDc4NkBnbWFpbC5jb208YnIgLz5DYzog
-YWxleC5rYW5hdmluQGdtYWlsLmNvbSwgeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZzxiciAv
-PlN1YmplY3Q6IFJlOiBbeW9jdG9dIElzc3VlIHdoaWxlIGFkZGluZyB0aGUgc3VwcG9ydCBmb3Ig
-VExTMS4zIGluIGV4aXN0aW5nIGtyb2dvdGggeW9jdG8gI3lvY3RvICN5b2N0byAjeW9jdG8gI3lv
-Y3RvICNhcHQgI3Jhc3BiZXJyeXBpICN5b2N0bzxiciAvPjxibG9ja3F1b3RlPkhpLDxiciAvPjxi
-ciAvPk9uIFR1ZSwgRmViIDE4LCAyMDIwIGF0IDAxOjIwOjI1UE0gJiM0MzswNTMwLCBhbWF5YSBq
-aW5kYWwgd3JvdGU6PGJyIC8+Jmd0O8KgwqDCoCBUaGFua3MgZm9yIHlvdXIgcHJvbXB0IHJlcGx5
-LiBCdXQgaXMgbm90IHRoZXJlIGFueSB3YXkgc2ltaWxhciB0byBhZGQ8YnIgLz4mZ3Q7wqDCoMKg
-IHN1cHBvcnQgZm9yIFRMUzEuMyBpbnN0ZWFkIG9mIG1vdmluZyB0byBuZXcgeW9jdG8gcmVsZWFz
-ZXM8YnIgLz48YnIgLz5vcGVuc3NsIGlzIHRyaWNreSB0byB1cGRhdGUgYW5kIHJlcXVpcmVzIGJh
-Y2twb3J0aW5nIGZpeGVzIGZvciBtYW55LCBtYW55IHJlY2lwZXM8YnIgLz50byBnZXQgYnVpbGRz
-IHBhc3NpbmcgZXRjLiBEZXBlbmRpbmcgb24gcHJvamVjdCBzaXplLCBpdCBtYXkgYmUgcG9zc2li
-bGU8YnIgLz50byB1cGRhdGUgb25seSB0aG9zZSBjb21wb25lbnRzIHdoaWNoIHlvdSB1c2UsIGUu
-Zy4gYmFja3BvcnQgY29tbWl0cyBmcm9tPGJyIC8+cG9reSBtYXN0ZXIgb3IgcmVsZWFzZSBicmFu
-Y2hlcyBsaWtlIHdhcnJpb3IuIFRoZSBudW1iZXIgb2YgYmFja3BvcnRlZCBjaGFuZ2VzPGJyIC8+
-d2lsbCBiZSBsYXJnZS4gSSYjMzk7dmUgcG9ydGVkIG9wZW5zc2wgMS4xLjFkIHBhdGNoZXMgdG8g
-eW9jdG8gMi41IHN1bW8gYnV0IGl0IHdhc24mIzM5O3Q8YnIgLz5wcmV0dHkuIEEgc3RyYXRlZ3kg
-d2l0aCByZWd1bGFyIHlvY3RvIHVwZGF0ZXMgaXMgbXVjaCBiZXR0ZXIgYW5kIGZvcmNlcyB5b3U8
-YnIgLz50byB0aGluayBvZiB5b3VyIGRlcGVuZGVuY2llcyBhbmQgcGF0Y2hlcyBtdWNoIGhhcmRl
-ci48YnIgLz48YnIgLz5Ib3BlIHRoaXMgaGVscHMsPGJyIC8+PGJyIC8+LU1pa2tvPC9ibG9ja3F1
-b3RlPjwvZGl2PjwvYmxvY2txdW90ZT48L2Rpdj48L2Jsb2NrcXVvdGU+PC9kaXY+PC9ibG9ja3F1
-b3RlPjwvZGl2Pg==
+--0000000000001a797f05a1845bc6
+Content-Type: text/plain; charset="UTF-8"
 
+hi there,
+
+we have put in place a dashboard that shows our community engagement and
+stats. We are using a service from Bitergia for that, and they are using
+open source tools from the LF CHAOSS project [1].
+
+The dashboard is publicly available at [2]. Feel free to have a look at the
+data, the tool is doing its best to map users' identities (email, git,
+bugzilla, ...). It also tries to map when possible users with their
+respective company/employer, so that gives everyone a map of who
+contributes and participate to the project.
+
+If you have any questions or issues with the tool, please let me know.  If
+any mailing list or git tree is missing and you would like it to be added,
+let me know and I will do it.
+
+If you want to update your data on the dashboard such as typo, or if you
+want to show (or update, or hide) your employer affiliation, or if you want
+to anonymise your data on the public dashboard, please reach out to me as
+well.
+
+cheers
+nicolas
+
+
+[1] https://chaoss.community/
+[2] https://yoctoproject.biterg.io
+
+--0000000000001a797f05a1845bc6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>hi there,</div><div><br></div><div>we have put in pla=
+ce a dashboard that shows our community engagement and stats. We are using =
+a service from Bitergia for that, and they are using open source tools from=
+ the LF CHAOSS project [1].</div><div><br></div><div>The dashboard is publi=
+cly available at [2]. Feel free to have a look at the data, the tool is doi=
+ng its best to map users&#39; identities (email, git, bugzilla, ...). It al=
+so tries to map when possible users with their respective company/employer,=
+ so that gives everyone a map of who contributes and participate to the pro=
+ject.</div><div><br></div><div>If you have any questions or issues with the=
+ tool, please let me know.=C2=A0 If any mailing list or git tree is missing=
+ and you would like it to be added, let me know and I will do it.</div><div=
+><br></div><div>If you want to update your data on the dashboard such as ty=
+po, or if you want to show (or update, or hide) your employer affiliation, =
+or if you want to anonymise your data on the public dashboard, please reach=
+ out to me as well.</div><div><br></div><div>cheers</div><div>nicolas<br></=
+div><div><br></div><div><br></div><div>[1] <a href=3D"https://chaoss.commun=
+ity/" target=3D"_blank">https://chaoss.community/</a></div><div>[2] <a href=
+=3D"https://yoctoproject.biterg.io" target=3D"_blank">https://yoctoproject.=
+biterg.io</a></div></div>
+
+--0000000000001a797f05a1845bc6--
