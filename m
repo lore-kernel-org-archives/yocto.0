@@ -1,437 +1,294 @@
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
- by mx.groups.io with SMTP id smtpd.web12.55960.1584978818200578064
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.57656.1584982358807402202
  for <yocto@lists.yoctoproject.org>;
- Mon, 23 Mar 2020 08:53:38 -0700
+ Mon, 23 Mar 2020 09:52:38 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: matthew.zeng@windriver.com)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 02NFrYSe000692
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@lists.yoctoproject.org>; Mon, 23 Mar 2020 08:53:34 -0700 (PDT)
-Received: from mt-manjaro (128.224.21.30) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Mon, 23 Mar
- 2020 08:53:33 -0700
-User-agent: mu4e 1.2.0; emacs 28.0.50
-From: "Matthew" <matthew.zeng@windriver.com>
-To: <yocto@lists.yoctoproject.org>
-Subject: [matchbox-desktop-2][PATCH] Add SPDX-License-Identifier: GPL-2.0-or-later
-Date: Mon, 23 Mar 2020 11:53:26 -0400
-Message-ID: <87h7yfqd8p.fsf@windriver.com>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=jI0TR0tB;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 52213E018C2; Mon, 23 Mar 2020 09:52:38 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (sjolley.yp.pm[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.216.46 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03680E018BF
+	for <yocto@yoctoproject.org>; Mon, 23 Mar 2020 09:52:35 -0700 (PDT)
+Received: by mail-pj1-f46.google.com with SMTP id np9so87849pjb.4
+        for <yocto@yoctoproject.org>; Mon, 23 Mar 2020 09:52:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:content-language
+         :thread-index;
+        bh=o0h+nP49qh72GneTP8c+HX4A25wpc6dlubX4U5YS+O8=;
+        b=jI0TR0tBqrWefCGF9iiLlKH43s9ujKaqL4Et45ijD6LW45uHshnR6g89dlL98Xik3C
+         LyzP/XXfDPahNChzLY3YidHSzfTZGpqRjAfmIWylkf3dexu5t66Rhcl4ivnXx0+pGuQh
+         7xcp0JXTH446K4qjhOQWiCCiUhxlDmfumLRvJSlSoJFNnaUxazZyx1XHcd1ed6DWL124
+         996olczzJAaLMnsp3Cf4ADGWN+5aRuH88Q6Xsmy3lCLec2/AN4+yo9gwlQW8eGWaaNGl
+         DE4d3q92rbAV+wpxNrSgne/bilWGVN7EajpDVpBZUZaceEpxz0AxBHAbLR47P0/PiqZo
+         zmZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-language:thread-index;
+        bh=o0h+nP49qh72GneTP8c+HX4A25wpc6dlubX4U5YS+O8=;
+        b=Ddw4YZU4T4dJQT+5InUci6jME3ILdJY4OaZ9npFa1M4dmNrXy8Rzxu86JXbxzmBVSE
+         GB4GK2eNSqLfTfMX03ZFyn6siEX/kJviGPLpj8cSyjG0sHNFBEEIxCN8XK0QET+Jq2zE
+         DPPZi9723raXWJLwrfThHRgar7PL28E/H4oypCKu8DOZdnkOrmgafqFpiIn6NXcqzNIO
+         eEw4AOmMtGZMhIBt2hHwTzVVvhSKb7JznVePH0snUUBRhlnT+Nhy0gTLhCVX5MClRGrT
+         BaICzy+AMoOyt2NKqMjb6BjYFJpF8exwy6S938YW992d+B7li7zi47+uEmzfoupJRHI7
+         pW6g==
+X-Gm-Message-State: ANhLgQ3rE+NM/FWspBPvvbmWtj5cWxtpWEnBYFfqaNnBwlwsNRkgUu9n
+	dB7YOgELnTn035FFh0E6Nqc=
+X-Google-Smtp-Source: ADFU+vtyevBW+FRiRWBAlDoQVjNfWS3d4LxGbhcJ7jIEzcIE22lAo+PDk2RUw6+kb9ZTp3y+R2D+mA==
+X-Received: by 2002:a17:902:22e:: with SMTP id 43mr21582158plc.119.1584982355375;
+        Mon, 23 Mar 2020 09:52:35 -0700 (PDT)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id d188sm13470634pfa.7.2020.03.23.09.52.34
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 23 Mar 2020 09:52:34 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 23 Mar 2020 09:52:35 -0700
+Message-ID: <0e9301d60133$742f8700$5c8e9500$@gmail.com>
 MIME-Version: 1.0
-X-Originating-IP: [128.224.21.30]
-Content-Type: text/plain
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJGJV7K9Lnex/mfhWzsM8ameFI4JQ==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0E94_01D600F8.C7D235A0"
+Content-Language: en-us
 
-Fixes [YOCTO #13319]
+------=_NextPart_000_0E94_01D600F8.C7D235A0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Mingde (Matthew) Zeng <matthew.zeng@windriver.com>
----
- libtaku/inotify/inotify-diag.c    | 2 ++
- libtaku/inotify/inotify-diag.h    | 2 ++
- libtaku/inotify/inotify-kernel.c  | 2 ++
- libtaku/inotify/inotify-kernel.h  | 2 ++
- libtaku/inotify/inotify-missing.c | 2 ++
- libtaku/inotify/inotify-missing.h | 2 ++
- libtaku/inotify/inotify-path.c    | 2 ++
- libtaku/inotify/inotify-path.h    | 2 ++
- libtaku/inotify/inotify-sub.c     | 2 ++
- libtaku/inotify/inotify-sub.h     | 2 ++
- libtaku/launcher-util.c           | 2 ++
- libtaku/launcher-util.h           | 2 ++
- libtaku/taku-icon-tile.c          | 2 ++
- libtaku/taku-icon-tile.h          | 2 ++
- libtaku/taku-launcher-tile.c      | 2 ++
- libtaku/taku-launcher-tile.h      | 2 ++
- libtaku/taku-menu-desktop.c       | 2 ++
- libtaku/taku-menu.h               | 2 ++
- libtaku/taku-queue-source.c       | 2 ++
- libtaku/taku-queue-source.h       | 2 ++
- libtaku/taku-tile.c               | 2 ++
- libtaku/taku-tile.h               | 2 ++
- libtaku/xutil.c                   | 2 ++
- libtaku/xutil.h                   | 2 ++
- src/desktop.c                     | 2 ++
- src/desktop.h                     | 2 ++
- src/main.c                        | 2 ++
- src/taku-category-bar.c           | 2 ++
- src/taku-category-bar.h           | 2 ++
- 29 files changed, 58 insertions(+)
+All,
 
-diff --git a/libtaku/inotify/inotify-diag.c b/libtaku/inotify/inotify-diag.c
-index 937ebd7..95aa725 100644
---- a/libtaku/inotify/inotify-diag.c
-+++ b/libtaku/inotify/inotify-diag.c
-@@ -4,6 +4,8 @@
+ 
 
-    Copyright (C) 2005 John McCutchan
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
 
-+   SPDX-License-Identifier: GPL-2.0-or-later
-+
-    The Gnome Library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Library General Public License as
-    published by the Free Software Foundation; either version 2 of the
-diff --git a/libtaku/inotify/inotify-diag.h b/libtaku/inotify/inotify-diag.h
-index f818f16..f74fca6 100644
---- a/libtaku/inotify/inotify-diag.h
-+++ b/libtaku/inotify/inotify-diag.h
-@@ -2,6 +2,8 @@
+ 
 
-    Copyright (C) 2006 John McCutchan <john@johnmccutchan.com>
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
 
-+   SPDX-License-Identifier: GPL-2.0-or-later
-+
-    The Gnome Library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Library General Public License as
-    published by the Free Software Foundation; either version 2 of the
-diff --git a/libtaku/inotify/inotify-kernel.c b/libtaku/inotify/inotify-kernel.c
-index 9cce03d..4969f53 100644
---- a/libtaku/inotify/inotify-kernel.c
-+++ b/libtaku/inotify/inotify-kernel.c
-@@ -1,6 +1,8 @@
- /*
-    Copyright (C) 2005 John McCutchan
+ 
 
-+   SPDX-License-Identifier: GPL-2.0-or-later
-+
-    The Gnome Library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Library General Public License as
-    published by the Free Software Foundation; either version 2 of the
-diff --git a/libtaku/inotify/inotify-kernel.h b/libtaku/inotify/inotify-kernel.h
-index b406d71..490fca3 100644
---- a/libtaku/inotify/inotify-kernel.h
-+++ b/libtaku/inotify/inotify-kernel.h
-@@ -1,6 +1,8 @@
- /*
-    Copyright (C) 2005 John McCutchan
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-+   SPDX-License-Identifier: GPL-2.0-or-later
-+
-    The Gnome Library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Library General Public License as
-    published by the Free Software Foundation; either version 2 of the
-diff --git a/libtaku/inotify/inotify-missing.c b/libtaku/inotify/inotify-missing.c
-index 96126b3..40d81b0 100644
---- a/libtaku/inotify/inotify-missing.c
-+++ b/libtaku/inotify/inotify-missing.c
-@@ -4,6 +4,8 @@
+ 
 
-    Copyright (C) 2005 John McCutchan
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 299
+unassigned or newcomer bugs.
 
-+   SPDX-License-Identifier: GPL-2.0-or-later
-+
-    The Gnome Library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Library General Public License as
-    published by the Free Software Foundation; either version 2 of the
-diff --git a/libtaku/inotify/inotify-missing.h b/libtaku/inotify/inotify-missing.h
-index b67b595..af4a4bb 100644
---- a/libtaku/inotify/inotify-missing.h
-+++ b/libtaku/inotify/inotify-missing.h
-@@ -2,6 +2,8 @@
+ 
 
-    Copyright (C) 2006 John McCutchan <john@johnmccutchan.com>
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.1", "3.2, "3.99" and "Future", the more pressing/urgent issues
+being in "3.1" and then "3.2".
 
-+   SPDX-License-Identifier: GPL-2.0-or-later
-+
-    The Gnome Library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Library General Public License as
-    published by the Free Software Foundation; either version 2 of the
-diff --git a/libtaku/inotify/inotify-path.c b/libtaku/inotify/inotify-path.c
-index c5cfbb8..4a57609 100644
---- a/libtaku/inotify/inotify-path.c
-+++ b/libtaku/inotify/inotify-path.c
-@@ -4,6 +4,8 @@
+ 
 
-    Copyright (C) 2006 John McCutchan
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
 
-+   SPDX-License-Identifier: GPL-2.0-or-later
-+
-    The Gnome Library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Library General Public License as
-    published by the Free Software Foundation; either version 2 of the
-diff --git a/libtaku/inotify/inotify-path.h b/libtaku/inotify/inotify-path.h
-index c613b9f..9645935 100644
---- a/libtaku/inotify/inotify-path.h
-+++ b/libtaku/inotify/inotify-path.h
-@@ -1,6 +1,8 @@
- /*
-    Copyright (C) 2005 John McCutchan
+ 
 
-+   SPDX-License-Identifier: GPL-2.0-or-later
-+
-    The Gnome Library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Library General Public License as
-    published by the Free Software Foundation; either version 2 of the
-diff --git a/libtaku/inotify/inotify-sub.c b/libtaku/inotify/inotify-sub.c
-index 404dc20..04be968 100644
---- a/libtaku/inotify/inotify-sub.c
-+++ b/libtaku/inotify/inotify-sub.c
-@@ -4,6 +4,8 @@
+Thanks,
 
-    Copyright (C) 2006 John McCutchan
+ 
 
-+   SPDX-License-Identifier: GPL-2.0-or-later
-+
-    The Gnome Library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Library General Public License as
-    published by the Free Software Foundation; either version 2 of the
-diff --git a/libtaku/inotify/inotify-sub.h b/libtaku/inotify/inotify-sub.h
-index 36561e7..697c633 100644
---- a/libtaku/inotify/inotify-sub.h
-+++ b/libtaku/inotify/inotify-sub.h
-@@ -2,6 +2,8 @@
+Stephen K. Jolley
 
-    Copyright (C) 2006 John McCutchan
+Yocto Project Program Manager
 
-+   SPDX-License-Identifier: GPL-2.0-or-later
-+
-    The Gnome Library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Library General Public License as
-    published by the Free Software Foundation; either version 2 of the
-diff --git a/libtaku/launcher-util.c b/libtaku/launcher-util.c
-index 89333f9..8a36838 100644
---- a/libtaku/launcher-util.c
-+++ b/libtaku/launcher-util.c
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/libtaku/launcher-util.h b/libtaku/launcher-util.h
-index d059d84..d6cb256 100644
---- a/libtaku/launcher-util.h
-+++ b/libtaku/launcher-util.h
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/libtaku/taku-icon-tile.c b/libtaku/taku-icon-tile.c
-index 110db6b..d62636d 100644
---- a/libtaku/taku-icon-tile.c
-+++ b/libtaku/taku-icon-tile.c
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/libtaku/taku-icon-tile.h b/libtaku/taku-icon-tile.h
-index 4475ca4..ad98e20 100644
---- a/libtaku/taku-icon-tile.h
-+++ b/libtaku/taku-icon-tile.h
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/libtaku/taku-launcher-tile.c b/libtaku/taku-launcher-tile.c
-index e7f58f3..0025983 100644
---- a/libtaku/taku-launcher-tile.c
-+++ b/libtaku/taku-launcher-tile.c
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/libtaku/taku-launcher-tile.h b/libtaku/taku-launcher-tile.h
-index c1b8cf9..9b13107 100644
---- a/libtaku/taku-launcher-tile.h
-+++ b/libtaku/taku-launcher-tile.h
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/libtaku/taku-menu-desktop.c b/libtaku/taku-menu-desktop.c
-index 93c8a56..8ca8d00 100644
---- a/libtaku/taku-menu-desktop.c
-+++ b/libtaku/taku-menu-desktop.c
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/libtaku/taku-menu.h b/libtaku/taku-menu.h
-index 9f78064..6d4d5c4 100644
---- a/libtaku/taku-menu.h
-+++ b/libtaku/taku-menu.h
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/libtaku/taku-queue-source.c b/libtaku/taku-queue-source.c
-index d17be14..1d743ab 100644
---- a/libtaku/taku-queue-source.c
-+++ b/libtaku/taku-queue-source.c
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/libtaku/taku-queue-source.h b/libtaku/taku-queue-source.h
-index 00ad959..26b14c4 100644
---- a/libtaku/taku-queue-source.h
-+++ b/libtaku/taku-queue-source.h
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/libtaku/taku-tile.c b/libtaku/taku-tile.c
-index 64dd3d7..3d43bda 100644
---- a/libtaku/taku-tile.c
-+++ b/libtaku/taku-tile.c
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/libtaku/taku-tile.h b/libtaku/taku-tile.h
-index 5c03089..1299e61 100644
---- a/libtaku/taku-tile.h
-+++ b/libtaku/taku-tile.h
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/libtaku/xutil.c b/libtaku/xutil.c
-index 3cd36bb..184d06d 100644
---- a/libtaku/xutil.c
-+++ b/libtaku/xutil.c
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/libtaku/xutil.h b/libtaku/xutil.h
-index 9ecb805..0b0685d 100644
---- a/libtaku/xutil.h
-+++ b/libtaku/xutil.h
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/src/desktop.c b/src/desktop.c
-index a1943eb..e37c8c1 100644
---- a/src/desktop.c
-+++ b/src/desktop.c
-@@ -2,6 +2,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/src/desktop.h b/src/desktop.h
-index 5c6900b..d938870 100644
---- a/src/desktop.h
-+++ b/src/desktop.h
-@@ -2,6 +2,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/src/main.c b/src/main.c
-index b2794c4..53a3b0d 100644
---- a/src/main.c
-+++ b/src/main.c
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/src/taku-category-bar.c b/src/taku-category-bar.c
-index 5900d54..9b77f8b 100644
---- a/src/taku-category-bar.c
-+++ b/src/taku-category-bar.c
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
-diff --git a/src/taku-category-bar.h b/src/taku-category-bar.h
-index ff93e86..1885abe 100644
---- a/src/taku-category-bar.h
-+++ b/src/taku-category-bar.h
-@@ -1,6 +1,8 @@
- /*
-  * Copyright (C) 2007 OpenedHand Ltd
-  *
-+ * SPDX-License-Identifier: GPL-2.0-or-later
-+ *
-  * This program is free software; you can redistribute it and/or modify it under
-  * the terms of the GNU General Public License as published by the Free Software
-  * Foundation; either version 2 of the License, or (at your option) any later
---
-Mingde (Matthew) Zeng
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_0E94_01D600F8.C7D235A0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0391_01D5FB77.2B6BC220";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
+starting to try and collect up and classify bugs which a newcomer to the =
+project would be able to work on in a way which means people can find =
+them. They're being listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
+><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 299 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.1&#8221;, &#8220;3.2, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.1&quot; and then &#8220;3.2&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_0E94_01D600F8.C7D235A0--
