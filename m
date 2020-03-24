@@ -1,127 +1,161 @@
-Received: from smtp-190a.mail.infomaniak.ch (smtp-190a.mail.infomaniak.ch [185.125.25.10])
- by mx.groups.io with SMTP id smtpd.web12.10939.1585067861069747512
+Received: from mail-vs1-f68.google.com (mail-vs1-f68.google.com [209.85.217.68])
+ by mx.groups.io with SMTP id smtpd.web12.160.1585082704822648647
  for <yocto@lists.yoctoproject.org>;
- Tue, 24 Mar 2020 09:37:42 -0700
+ Tue, 24 Mar 2020 13:45:05 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@guy-morand.ch header.s=20191114 header.b=m6VVRdbM;
- spf=pass (domain: guy-morand.ch, ip: 185.125.25.10, mailfrom: guy@guy-morand.ch)
-Received: from smtp-3-0001.mail.infomaniak.ch (unknown [10.4.36.108])
-	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 48mxkB708bzlj35y
-	for <yocto@lists.yoctoproject.org>; Tue, 24 Mar 2020 17:37:38 +0100 (CET)
-Received: from [10.10.255.211] (unknown [109.202.196.62])
-	by smtp-3-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 48mxkB4L97zlj21Z
-	for <yocto@lists.yoctoproject.org>; Tue, 24 Mar 2020 17:37:38 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=guy-morand.ch;
-	s=20191114; t=1585067858;
-	bh=VHdl0gqhwFEmrdcz6sjbEZTjghUxwkzUaNVRK2cHMyg=;
-	h=Subject:References:To:From:Date:In-Reply-To:From;
-	b=m6VVRdbMuooGKQGB1MGXxtcM0eVNZWtbgX+UhGXqGgZhREVxS6AhLnADaMPe2pqCj
-	 xNk3PxlCR1AnocpBTPyz5WHHPiC1SFZ7e1hIwpEdW75vqWSXA2fNvOL9AHGKPyKhzE
-	 5r3jQUBAkX5B7IrUd4GtGX2Udapnwz356qqF8POA=
-Subject: Re: [yocto] What .c/.h etc files were used to compile?
-References: <8a1a6914-5776-c585-ab42-94fa9fa28b28@guy-morand.ch>
-To: yocto@lists.yoctoproject.org
-From: "Guy Morand" <guy@guy-morand.ch>
-X-Forwarded-Message-Id: <8a1a6914-5776-c585-ab42-94fa9fa28b28@guy-morand.ch>
-Message-ID: <0d800653-4457-dbd6-e7b6-553de756caed@guy-morand.ch>
-Date: Tue, 24 Mar 2020 17:37:37 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=lICrI5bd;
+ spf=pass (domain: gmail.com, ip: 209.85.217.68, mailfrom: karthik.poduval@gmail.com)
+Received: by mail-vs1-f68.google.com with SMTP id x206so167453vsx.5
+        for <yocto@lists.yoctoproject.org>; Tue, 24 Mar 2020 13:45:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4FfAC840QBWpJyfZrEp/EAqL4sm5C1e4NxVhFO1qiCs=;
+        b=lICrI5bd5X0FtUpS+geEJ2SC8N8Y/r1JaLTnzC1La7zC6tn1Ei+UwVuWNhaFumVHYC
+         TQAcHmu7xAV+28YofJ9+AOT0LgSr3kRPr/FfXAafbPKhDTsWjAL4T/uVg4nx9zIIpx0p
+         4OYQHZ9u/ImfJFheIaR/Jl9A1wEqIXPl4AA7/927Dk6YbkZ49jDWb/KxnkLHAkpwApwU
+         /lnS/U/5VBWexEvdy+4xrfVH5GsJynrMZFIseLomz6f3EBJgU/uBIJiI6LX71LxL+9mV
+         hxLOjSDtK1bC+HUPttj+uneXV57dHya0StlJgJd8weZmJ/oe8Xx24mWrZRTN2GCCEjhf
+         ++Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4FfAC840QBWpJyfZrEp/EAqL4sm5C1e4NxVhFO1qiCs=;
+        b=sxsIxsKfjvRBA330hYLx7JhUpfg5jsBGT7xaNMFb/lMT4QKDTl/2i89ukGCKvwO+fU
+         LsoxqUToWLnEb7rguG1OR39+HE/fcyf2B45GNtf+oaokhPgeuvytDxV+Pz2SGDDqbqgl
+         tx1oV+PU2XS2ZiGONvCcSNFMLopq2Q0AyTj1zBubE7waKNu8/+zGy/83mTfhI5rjPRXu
+         4tAhqX0Bja7TKij9mlfsmhXg0QJp1lD+S3UD5E9cJxNFXD5lOWVlnqAawKkHZ2ckXFsS
+         4nJqMuzAYem5Fm84xkw4MhGuv8WkUhrq+joxpRmzOyaBeAXE4gf16CDP4bzexcOd/0F8
+         Fgcw==
+X-Gm-Message-State: ANhLgQ0Jh2f46qght8R6tZcgJLLvNbHCT5574TKIEI5HAPQ83wY5fx4w
+	//QJJ4aUOiPfFxtiSJuU2OD/KmNXD2CS4lWg3tM=
+X-Google-Smtp-Source: ADFU+vu2la59DKYxtHbIgASBPBDESw+1dDel+rgFLLmupKicNJd0tev5fhqrR0yui9PH3gsqHkP8OdYo4XFtltppRlE=
+X-Received: by 2002:a67:e881:: with SMTP id x1mr94644vsn.221.1585082703662;
+ Tue, 24 Mar 2020 13:45:03 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <8a1a6914-5776-c585-ab42-94fa9fa28b28@guy-morand.ch>
-X-Antivirus: Dr.Web (R) for Unix mail servers drweb plugin ver.6.0.2.8
-X-Antivirus-Code: 0x100000
-Content-Type: multipart/alternative;
- boundary="------------FFE3188B0D624C8CA2B9C32D"
-Content-Language: en-US
+References: <CAFP0Ok8cBje8vofUwqo2ac5moA7Yj3OiJNO9DDbJJXxCJUsEtA@mail.gmail.com>
+ <CAHUNapQTnMDphOyxhZ08KzN=venDyXcwaAtsRHz+6sDTO6UhQg@mail.gmail.com>
+ <CAFP0Ok9cSbcFzYELJ+D65aw4hMGXegfK=qr4Ay79wsJO2TPLHA@mail.gmail.com>
+ <CAHUNapRTV8SgnDfhPGY5G8kaFyK9g=qK2GG7vOPkmmuj-Ugv7Q@mail.gmail.com>
+ <20200323111421.GA20231@xn--80adja5bqm.su> <CAOf5uwmWFFZr5QvWp6kQazzU1YkmcmdxNEBZp_9WXwm0dOvJyg@mail.gmail.com>
+ <20200323214537.GA24482@linux-uys3> <CAOf5uw=4XW=7rm5WdGUYbGoiv7M24NdwSOMYW65BqkFvvQSx6w@mail.gmail.com>
+ <15FF12CB62D1AFA0.10617@lists.yoctoproject.org>
+In-Reply-To: <15FF12CB62D1AFA0.10617@lists.yoctoproject.org>
+From: "Karthik Poduval" <karthik.poduval@gmail.com>
+Date: Tue, 24 Mar 2020 13:44:51 -0700
+Message-ID: <CAFP0Ok8SKi-3LM-txVG8XuQuyvtHHwNaVOmP+XZzCMtVi+0_Kw@mail.gmail.com>
+Subject: Re: [yocto] yocto on tinkerbaord using meta-rockchip
+To: Trevor Woerner <twoerner@gmail.com>
+Cc: Michael Nazzareno Trimarchi <michael@amarulasolutions.com>, yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
---------------FFE3188B0D624C8CA2B9C32D
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Hi Trevor,
 
-Hi,
+I was trying to enable the WiFi on tinker-board which is RTL8723BS
+chipset. Although the driver for the chip is in the mainline
+kernel(staging). Its isn't enabled in the defconfig which appears to
+be multi_v7_defconfig for rk3288.
+So I tried adding it via kernel config fragment as.
+rtl8723bs-wlan.cfg:
+CONFIG_WIRELESS_EXT=y
+CONFIG_WEXT_CORE=y
+CONFIG_WEXT_PROC=y
+CONFIG_WEXT_PRIV=y
+CONFIG_RTL8723BS=m
 
-I'm not sure what you are trying to achieve but in the build directory, 
-you should find the logs of compilation process of a given package in 
-<build_dir>/temp/log_do_compile.
+I tried adding this fragment to linux-mutual.inc as
+SRC_URI_append-tinker-board = "file://rtl8723bs-wlan.cfg"
 
- From there you can also start the compilation manually by running the 
-<build_dir>/tmp/run_do_compile script, useful for debugging. Replace 
-"compile" for the same operation with other build steps.
+However it didn't apply the kernel config fragment. I suspect its
+because of the following lines in linux-mutual.inc.
+KCONF_BSP_AUDIT_LEVEL = "0"
+deltask kernel_configme
 
-Best regards,
+removing those lines causes a build failure. Are those lines causing
+the fragment to not apply. How to resolve this issue ?
 
-Guy
+I could do a patch on defconfig but that may not work for the long
+term as def configs change.
+Other option is to provide a config file with wireless enabled for
+tiner-board but don't want to go there until I know why fragments
+can't be applied.
 
-On 3/24/20 5:06 PM, FLoraVLogs wrote:
-> Hi,
+
+--
+Regards,
+Karthik Poduval
+
+On Mon, Mar 23, 2020 at 4:31 PM Karthik Poduval via
+Lists.Yoctoproject.Org
+<karthik.poduval=gmail.com@lists.yoctoproject.org> wrote:
 >
-> Is there a way to find out what .c/.h files were used to compile?
+> Thanks for the tip Joshua,
 >
-> I am baking and tried using -D --no-setscene options and piped data 
-> into the file but don't see the .c/.h that were used to compile.
+> Like you suggested it was power supply related, I am able to boot the
+> board now with a 3A power supply.
 >
+> Hi Tever,
+>
+> Yes I have my console connected to UART2 and it seems to work fine for
+> the yocto build. For the tinkerOS image neither UART1 or UART2 had a
+> console output but the board booted successfully over HDMI (I didn't
+> test it any further).
+>
+> Appreciate all the help everyone.
+>
+> --
 > Regards,
+> Karthik Poduval
 >
-> Ripu
+> On Mon, Mar 23, 2020 at 2:48 PM Michael Nazzareno Trimarchi
+> <michael@amarulasolutions.com> wrote:
+> >
+> > Hi
+> >
+> > On Mon, Mar 23, 2020 at 10:45 PM Trevor Woerner <twoerner@gmail.com> wrote:
+> > >
+> > > On Mon 2020-03-23 @ 10:31:05 PM, Michael Nazzareno Trimarchi wrote:
+> > > > What about the status of qt layer using panfrost? and mainline
+> > >
+> > > Thanks to JPEW, mesa with panfrost is enabled/working with relevant boards.
+> > > I've tested it, running, on both the rock-pi-4 and tinkerboard (so it *should*
+> > > be working with your vyasa-rk3288 board too, although I haven't run-tested it
+> > > lately). Therefore most anything sitting on top of mesa *should* work.
+> > >
+> > > Of course... the panfrost project is a "work-in-progress", so there are
+> > > probably some cases that might not work.
+> >
+> > Technically I can include meta-qt and build on top of mesa using
+> > wayland and some
+> > mainline kernel. I'm working right now on tinker-s board and figure
+> > out to move legacy
+> > project on mainline solution.  I will try to compile it and give a try
+> >
+> > Michael
+> >
+> > >
+> > > Best regards,
+> > >         Trevor
+> >
+> >
+> >
+> > --
+> > | Michael Nazzareno Trimarchi                     Amarula Solutions BV |
+> > | COO  -  Founder                                      Cruquiuskade 47 |
+> > | +31(0)851119172                                 Amsterdam 1018 AM NL |
+> > |                  [`as] http://www.amarulasolutions.com               |
 >
 >
+>
+> --
+> Regards,
+> Karthik Poduval
 > 
 
---------------FFE3188B0D624C8CA2B9C32D
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
 
-<html>
-  <head>
 
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    Hi,
-    <div class="moz-forward-container">
-      <p>I'm not sure what you are trying to achieve but in the build
-        directory, you should find the logs of compilation process of a
-        given package in &lt;build_dir&gt;/temp/log_do_compile.</p>
-      <p>From there you can also start the compilation manually by
-        running the &lt;build_dir&gt;/tmp/run_do_compile script, useful
-        for debugging. Replace "compile" for the same operation with
-        other build steps.</p>
-      Best regards,
-      <p>Guy<br>
-      </p>
-      <div class="moz-cite-prefix">On 3/24/20 5:06 PM, FLoraVLogs wrote:<br>
-      </div>
-      <blockquote type="cite"
-cite="mid:CAGhBkzwEZYNxLmAdD6PbO_P0_QGLE=FpGOhbtOrDZi5EXtsC2w@mail.gmail.com">
-        <meta http-equiv="content-type" content="text/html;
-          charset=UTF-8">
-        <div dir="ltr"><font face="verdana, sans-serif">Hi,</font>
-          <div><font face="verdana, sans-serif"><br>
-            </font></div>
-          <div><font face="verdana, sans-serif">Is there a way to find
-              out what .c/.h files were used to compile?</font></div>
-          <div><font face="verdana, sans-serif"><br>
-            </font></div>
-          <div><font face="verdana, sans-serif">I am baking and tried
-              using -D --no-setscene options and piped data into the
-              file but don't see the .c/.h that were used to compile.</font></div>
-          <div><font face="verdana, sans-serif"><br>
-            </font></div>
-          <div><font face="verdana, sans-serif">Regards,</font></div>
-          <div><font face="verdana, sans-serif"><br>
-            </font></div>
-          <div><font face="verdana, sans-serif">Ripu</font></div>
-          <div><font face="verdana, sans-serif"><br>
-            </font></div>
-        </div>
-        <br>
-        <fieldset class="mimeAttachmentHeader"></fieldset>
-        <pre class="moz-quote-pre" wrap="">
-</pre>
-      </blockquote>
-    </div>
-  </body>
-</html>
-
---------------FFE3188B0D624C8CA2B9C32D--
+-- 
+Regards,
+Karthik Poduval
