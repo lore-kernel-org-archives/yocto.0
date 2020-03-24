@@ -1,73 +1,127 @@
-Received: from mail-il1-f173.google.com (mail-il1-f173.google.com [209.85.166.173])
- by mx.groups.io with SMTP id smtpd.web11.9981.1585066004881087560
+Received: from smtp-190a.mail.infomaniak.ch (smtp-190a.mail.infomaniak.ch [185.125.25.10])
+ by mx.groups.io with SMTP id smtpd.web12.10939.1585067861069747512
  for <yocto@lists.yoctoproject.org>;
- Tue, 24 Mar 2020 09:06:45 -0700
+ Tue, 24 Mar 2020 09:37:42 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=QxlaJvMR;
- spf=pass (domain: gmail.com, ip: 209.85.166.173, mailfrom: eripflo@gmail.com)
-Received: by mail-il1-f173.google.com with SMTP id e8so17208471ilc.13
-        for <yocto@lists.yoctoproject.org>; Tue, 24 Mar 2020 09:06:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=ILm0AjGCikLRN93ycv9DVfXEHKbM8Qh2fPW/b/pEFVo=;
-        b=QxlaJvMRf1P3ct+V1Ff/Qaacp8bvSJ97n9LmdVaqSEqCpaa4dm/D1FJa0tqirGut9/
-         TWS3d43qinb4XyowIv2knDM61hqZqkRyIt+ljUX56nltdghd/j6IP0j3SrHCojwrybIj
-         MtgxFQ5V3Av3wB5/i4KIIY54XemnwEUkWuMHg2L8HVqR6T5IWLh1nqHjvK891WVaYaNE
-         FBvVri6/Sa5iNBjlMW04IuCrt+gRK2lf11y+Ds3n/Wmx6bYrI4bfmu3Ohx6b3iFeqM3f
-         gnoeUSK/uFLsu51nn++mBSH1h63FSh7xtQrCCuqwIFv++dIGv4f9bKlFGte/hpxvk1g5
-         iBog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=ILm0AjGCikLRN93ycv9DVfXEHKbM8Qh2fPW/b/pEFVo=;
-        b=D5fUPEHsetD2WVUa4PY1YFTcE9yRzUEvZ+RRxPyM+Cu49Mhb5Am/Ful4F2QYCmOHyb
-         fAwcZxeElZeNRjVeN3YmdK9xI6S9rX90Qoyvap16fYP1A/YmrjhCHt7MWV+xxdCjBsUR
-         KCZZq2kBhN6gEURtn6GmYWcEInmCV+lTSm52buMCFHte59GZaF2KW0b2rp/+R8FwwXK8
-         L5CiP3JzCcpGgnuBfn9Na36tdAuy+cen1DIxHfVTmIiWCN4G+r8nyziUb3UfO3bn37Mn
-         CvKQ+bmMEFWOPaYuhWhFFfNRPrWpREV0m5qzAaA7TXCB5MifnmeIZ9YqaQEilHlq6374
-         mpkg==
-X-Gm-Message-State: ANhLgQ2MelkaCVXtkTjcjIEbGkvPPh/FDpzJiQqF3SCFl+BHf8nn2daZ
-	APjbs9KAYNhlzCz33mdIYXH7RWQEXeZYmA5RyyLEerp3lKo=
-X-Google-Smtp-Source: ADFU+vsSfM3sl7QNBSWXkr2PXiz+s6ETE8WVgUhA3HzqDBeJYCSbJYoQCAuuXolR0yGpMYvOWa6ula8Onn6IkJYOqXg=
-X-Received: by 2002:a92:3b86:: with SMTP id n6mr26530631ilh.270.1585066004192;
- Tue, 24 Mar 2020 09:06:44 -0700 (PDT)
+ dkim=pass header.i=@guy-morand.ch header.s=20191114 header.b=m6VVRdbM;
+ spf=pass (domain: guy-morand.ch, ip: 185.125.25.10, mailfrom: guy@guy-morand.ch)
+Received: from smtp-3-0001.mail.infomaniak.ch (unknown [10.4.36.108])
+	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 48mxkB708bzlj35y
+	for <yocto@lists.yoctoproject.org>; Tue, 24 Mar 2020 17:37:38 +0100 (CET)
+Received: from [10.10.255.211] (unknown [109.202.196.62])
+	by smtp-3-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 48mxkB4L97zlj21Z
+	for <yocto@lists.yoctoproject.org>; Tue, 24 Mar 2020 17:37:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=guy-morand.ch;
+	s=20191114; t=1585067858;
+	bh=VHdl0gqhwFEmrdcz6sjbEZTjghUxwkzUaNVRK2cHMyg=;
+	h=Subject:References:To:From:Date:In-Reply-To:From;
+	b=m6VVRdbMuooGKQGB1MGXxtcM0eVNZWtbgX+UhGXqGgZhREVxS6AhLnADaMPe2pqCj
+	 xNk3PxlCR1AnocpBTPyz5WHHPiC1SFZ7e1hIwpEdW75vqWSXA2fNvOL9AHGKPyKhzE
+	 5r3jQUBAkX5B7IrUd4GtGX2Udapnwz356qqF8POA=
+Subject: Re: [yocto] What .c/.h etc files were used to compile?
+References: <8a1a6914-5776-c585-ab42-94fa9fa28b28@guy-morand.ch>
+To: yocto@lists.yoctoproject.org
+From: "Guy Morand" <guy@guy-morand.ch>
+X-Forwarded-Message-Id: <8a1a6914-5776-c585-ab42-94fa9fa28b28@guy-morand.ch>
+Message-ID: <0d800653-4457-dbd6-e7b6-553de756caed@guy-morand.ch>
+Date: Tue, 24 Mar 2020 17:37:37 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
-From: "FLoraVLogs" <eripflo@gmail.com>
-Date: Tue, 24 Mar 2020 12:06:33 -0400
-Message-ID: <CAGhBkzwEZYNxLmAdD6PbO_P0_QGLE=FpGOhbtOrDZi5EXtsC2w@mail.gmail.com>
-Subject: What .c/.h etc files were used to compile?
-To: yocto@lists.yoctoproject.org, yocto-infrastructure@yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000020268f05a19bf01f"
+In-Reply-To: <8a1a6914-5776-c585-ab42-94fa9fa28b28@guy-morand.ch>
+X-Antivirus: Dr.Web (R) for Unix mail servers drweb plugin ver.6.0.2.8
+X-Antivirus-Code: 0x100000
+Content-Type: multipart/alternative;
+ boundary="------------FFE3188B0D624C8CA2B9C32D"
+Content-Language: en-US
 
---00000000000020268f05a19bf01f
-Content-Type: text/plain; charset="UTF-8"
+--------------FFE3188B0D624C8CA2B9C32D
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 Hi,
 
-Is there a way to find out what .c/.h files were used to compile?
+I'm not sure what you are trying to achieve but in the build directory, 
+you should find the logs of compilation process of a given package in 
+<build_dir>/temp/log_do_compile.
 
-I am baking and tried using -D --no-setscene options and piped data into
-the file but don't see the .c/.h that were used to compile.
+ From there you can also start the compilation manually by running the 
+<build_dir>/tmp/run_do_compile script, useful for debugging. Replace 
+"compile" for the same operation with other build steps.
 
-Regards,
+Best regards,
 
-Ripu
+Guy
 
---00000000000020268f05a19bf01f
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On 3/24/20 5:06 PM, FLoraVLogs wrote:
+> Hi,
+>
+> Is there a way to find out what .c/.h files were used to compile?
+>
+> I am baking and tried using -D --no-setscene options and piped data 
+> into the file but don't see the .c/.h that were used to compile.
+>
+> Regards,
+>
+> Ripu
+>
+>
+> 
 
-<div dir=3D"ltr"><font face=3D"verdana, sans-serif">Hi,</font><div><font fa=
-ce=3D"verdana, sans-serif"><br></font></div><div><font face=3D"verdana, san=
-s-serif">Is there a way to find out what .c/.h files were used to compile?<=
-/font></div><div><font face=3D"verdana, sans-serif"><br></font></div><div><=
-font face=3D"verdana, sans-serif">I am baking and tried using -D --no-setsc=
-ene options and piped data into the file but don&#39;t see the .c/.h that w=
-ere used to compile.</font></div><div><font face=3D"verdana, sans-serif"><b=
-r></font></div><div><font face=3D"verdana, sans-serif">Regards,</font></div=
-><div><font face=3D"verdana, sans-serif"><br></font></div><div><font face=
-=3D"verdana, sans-serif">Ripu</font></div><div><font face=3D"verdana, sans-=
-serif"><br></font></div></div>
+--------------FFE3188B0D624C8CA2B9C32D
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
 
---00000000000020268f05a19bf01f--
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    Hi,
+    <div class="moz-forward-container">
+      <p>I'm not sure what you are trying to achieve but in the build
+        directory, you should find the logs of compilation process of a
+        given package in &lt;build_dir&gt;/temp/log_do_compile.</p>
+      <p>From there you can also start the compilation manually by
+        running the &lt;build_dir&gt;/tmp/run_do_compile script, useful
+        for debugging. Replace "compile" for the same operation with
+        other build steps.</p>
+      Best regards,
+      <p>Guy<br>
+      </p>
+      <div class="moz-cite-prefix">On 3/24/20 5:06 PM, FLoraVLogs wrote:<br>
+      </div>
+      <blockquote type="cite"
+cite="mid:CAGhBkzwEZYNxLmAdD6PbO_P0_QGLE=FpGOhbtOrDZi5EXtsC2w@mail.gmail.com">
+        <meta http-equiv="content-type" content="text/html;
+          charset=UTF-8">
+        <div dir="ltr"><font face="verdana, sans-serif">Hi,</font>
+          <div><font face="verdana, sans-serif"><br>
+            </font></div>
+          <div><font face="verdana, sans-serif">Is there a way to find
+              out what .c/.h files were used to compile?</font></div>
+          <div><font face="verdana, sans-serif"><br>
+            </font></div>
+          <div><font face="verdana, sans-serif">I am baking and tried
+              using -D --no-setscene options and piped data into the
+              file but don't see the .c/.h that were used to compile.</font></div>
+          <div><font face="verdana, sans-serif"><br>
+            </font></div>
+          <div><font face="verdana, sans-serif">Regards,</font></div>
+          <div><font face="verdana, sans-serif"><br>
+            </font></div>
+          <div><font face="verdana, sans-serif">Ripu</font></div>
+          <div><font face="verdana, sans-serif"><br>
+            </font></div>
+        </div>
+        <br>
+        <fieldset class="mimeAttachmentHeader"></fieldset>
+        <pre class="moz-quote-pre" wrap="">
+</pre>
+      </blockquote>
+    </div>
+  </body>
+</html>
+
+--------------FFE3188B0D624C8CA2B9C32D--
