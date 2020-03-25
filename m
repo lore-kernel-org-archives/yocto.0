@@ -1,100 +1,125 @@
-Received: from mail-lf1-f68.google.com (mail-lf1-f68.google.com [209.85.167.68])
- by mx.groups.io with SMTP id smtpd.web11.9360.1585136665770205676
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+ by mx.groups.io with SMTP id smtpd.web10.10609.1585141323511962605
  for <yocto@lists.yoctoproject.org>;
- Wed, 25 Mar 2020 04:44:28 -0700
+ Wed, 25 Mar 2020 06:02:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=vAV6KVU1;
- spf=pass (domain: gmail.com, ip: 209.85.167.68, mailfrom: jonatan.p@gmail.com)
-Received: by mail-lf1-f68.google.com with SMTP id t21so1473452lfe.9
-        for <yocto@lists.yoctoproject.org>; Wed, 25 Mar 2020 04:43:55 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=rSrau6DE;
+ spf=pass (domain: gmail.com, ip: 209.85.128.47, mailfrom: martin.jansa@gmail.com)
+Received: by mail-wm1-f47.google.com with SMTP id z5so2353377wml.5
+        for <yocto@lists.yoctoproject.org>; Wed, 25 Mar 2020 06:02:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=psPwlFdK6Dc9WeYeOm7uTqnFJd3AWVjS0QpFjemsnGA=;
-        b=vAV6KVU1QV30NO8nS2lyA5k0HfaAuw7ZfNKmy2L2iZT+YZK2hp+Oqf8omW9JXGa3kx
-         FuN7xqcch6X7vdZWK8DVThMhCYmyfaeMltS7f8dvL4s//QGBUG3DPOC3OeHA4kBgDgSP
-         gMLyvARO4MGlmFuiYSVmp2Coq5eCo76/uUYi16RUpoLfoRg8RDVNUlLHlPKypi7y3rel
-         qhC3gOcCrCLXM6psz/qSMQExqFz4va/IJR1n1UGzOi3mpqtzz9HGMRsgzSy40YkaK3qj
-         dbQlmFkAUCYkS+G1OIWKe4Sn3OfaewGHAejnPdzJ4oZgh7BgK5XHEnhqUbJZcBt60ued
-         /p2Q==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OTnEIS3DIVkOUtypgP7iUwEjlBY0VBQ12sdkkoKhnAk=;
+        b=rSrau6DEszg1POpEyJz3VK0tJehuUIv/CCd6xpCMMmoi57EPSC7ES7565G9UGVu2Pl
+         LetiT/PTlyqatNqzDofyED+hg29rTS5Y8Z+kHOooOCxg5Z/BFI2sVISrkCtXk/xQdBI6
+         SLbqVVnxM3MOj8uP6M7N8hbqFIPDiq1rY6Q4SuilEFUkGBmyCAJPUZQrlXx2jzg2RcMY
+         sO1FfuFriXJCqz8rodxi+kF9EdnC5vVjc4iSfQzvUxIiCFXOZ1ciDOnYp7JBVXNaMbz9
+         mkJs3hmlzfMIb9CTHxkOveHiLrobbgrC+cmvCwweabZGunI67ZO0zQvj/qyTWveuMKhL
+         N42Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=psPwlFdK6Dc9WeYeOm7uTqnFJd3AWVjS0QpFjemsnGA=;
-        b=XrjYl1/QpLy2cnVU8f6yK4oD0Ykw3v8WrFRu2z5QqnJUI9pc1vQJp8Jh5JExv07XH9
-         IqdwRaZm2kzdiPArjZSEb5un7MTm89aQtezQDDAezjNjiT2lSqcTc5gHMOanX19nFzxT
-         qAgUWjEzooY3c6mcVaIx050JacgAvteSDrCGIU+uQrpQdjVdEwAJgY/RE71OfCIU6zF9
-         UrZ50AGAMy2bF19DskyiC/LZfs4cQdIio/XGnkFgc8VBWF9OUglbL7ds0/ILBBECVT6x
-         b6ZD6QgrfcYgO+uqIxPLnTwhq6ubmmWjGmB01x6uhjHH2Pwa8lbEEmT6elAgCgIorewx
-         NRMw==
-X-Gm-Message-State: ANhLgQ2/dJT5xDVdbp/TB+ASDpEjZbIWv+I5WX8ezmaH4S1todFKU1cd
-	CFgIYDqv2quX8U29X07u6Tw2u1VobuU=
-X-Google-Smtp-Source: ADFU+vteI0IplrxI1vDk9Sd68a5zffHltgVF6fmvkdRv1oo/63iQxzRNI1frnjUSV2jdaLT10V7bBw==
-X-Received: by 2002:a19:ee18:: with SMTP id g24mr2107868lfb.29.1585136633669;
-        Wed, 25 Mar 2020 04:43:53 -0700 (PDT)
-Return-Path: <jonatan.p@gmail.com>
-Received: from localhost.localdomain (h-217-237.A357.priv.bahnhof.se. [81.170.217.237])
-        by smtp.gmail.com with ESMTPSA id c22sm7182729lja.86.2020.03.25.04.43.52
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=OTnEIS3DIVkOUtypgP7iUwEjlBY0VBQ12sdkkoKhnAk=;
+        b=RjG6ZPxhF2dkkc6x+k7YnHiRP9Ux6mGQsXEtonuj/68tt3hRzozfWABknO6OYLtYbk
+         9voImYrXaE7ZIrg4r3H5NJ0byqRNJBt0qtR7oTFaewxpNS1LEXhA+kCBJWwIe4lfJJb8
+         UCwccU+nDhUJ6MuFwShgfF7kkDONAcupksL2D7yu3pr4X3AyRvPkDjqdra2jBsIem2sq
+         9FG9lE8uSxFAjT/E/Z50dVhOCmI95dHy2+nUQT+bM5kN0EVIZpDoeYhIheYC/oKpxGQc
+         mmjM1/Nw2K+XQegEiuX781OX+3NNIgMZ+hNGhpBqt0NrcM6GTyrA6pi7XuGEy4+8mYdH
+         TRqQ==
+X-Gm-Message-State: ANhLgQ3I++3oHeEkaXf9RnQK4RtumBDDx+co03JEGn6svuMW+vhAUumc
+	ug+f2DNAG/sMFyAb2SXGav3jensO
+X-Google-Smtp-Source: ADFU+vvBeyNjQsNYv7CO3ZLdo2uub76sPORAV8VYeowX2cb8TmaLWNMMkDjY70+O2UIl0yqGNviTuQ==
+X-Received: by 2002:a1c:e442:: with SMTP id b63mr3499617wmh.174.1585141321288;
+        Wed, 25 Mar 2020 06:02:01 -0700 (PDT)
+Return-Path: <martin.jansa@gmail.com>
+Received: from localhost ([109.238.218.228])
+        by smtp.gmail.com with ESMTPSA id r9sm9449975wma.47.2020.03.25.06.01.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Mar 2020 04:43:53 -0700 (PDT)
-From: =?UTF-8?B?Sm9uYXRhbiBQw6Vsc3Nvbg==?= <jonatan.p@gmail.com>
+        Wed, 25 Mar 2020 06:02:00 -0700 (PDT)
+From: "Martin Jansa" <Martin.Jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
 To: yocto@lists.yoctoproject.org
-Cc: =?UTF-8?q?Jonatan=20P=C3=A5lsson?= <jonatan.p@gmail.com>
-Subject: [meta-security][PATCH 6/6] sssd: Add infopipe PACKAGECONFIG
-Date: Wed, 25 Mar 2020 12:43:19 +0100
-Message-Id: <20200325114319.2115155-6-jonatan.p@gmail.com>
-X-Mailer: git-send-email 2.26.0
-In-Reply-To: <20200325114319.2115155-1-jonatan.p@gmail.com>
-References: <20200325114319.2115155-1-jonatan.p@gmail.com>
+Cc: Martin Jansa <Martin.Jansa@gmail.com>
+Subject: [meta-security][PATCH] layer.conf: update LAYERSERIES_COMPAT for dunfell
+Date: Wed, 25 Mar 2020 14:01:58 +0100
+Message-Id: <20200325130158.23467-1-Martin.Jansa@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-infopipe was previously on by default, so add it to the default
-PACKAGECONFIG.
-
-The systemd files are only installed when --with-infopipe is passed to
-configure, so conditionally add them to SYSTEMD_SERVICE.
-
-Signed-off-by: Jonatan Pålsson <jonatan.p@gmail.com>
+Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
 ---
- recipes-security/sssd/sssd_1.16.4.bb | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ conf/layer.conf                          | 2 +-
+ meta-integrity/conf/layer.conf           | 2 +-
+ meta-security-compliance/conf/layer.conf | 2 +-
+ meta-security-isafw/conf/layer.conf      | 2 +-
+ meta-tpm/conf/layer.conf                 | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/recipes-security/sssd/sssd_1.16.4.bb b/recipes-security/sssd/sssd_1.16.4.bb
-index ff0b580..7ea1586 100644
---- a/recipes-security/sssd/sssd_1.16.4.bb
-+++ b/recipes-security/sssd/sssd_1.16.4.bb
-@@ -33,7 +33,7 @@ CACHED_CONFIGUREVARS = "ac_cv_member_struct_ldap_conncb_lc_arg=no \
-     ac_cv_path_NSUPDATE=${bindir} ac_cv_prog_HAVE_PYTHON3=${PYTHON_DIR} \
-     "
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 3e890e1..2c3bd96 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -9,6 +9,6 @@ BBFILE_COLLECTIONS += "security"
+ BBFILE_PATTERN_security = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_security = "8"
  
--PACKAGECONFIG ?="nss nscd autofs sudo"
-+PACKAGECONFIG ?="nss nscd autofs sudo infopipe"
- PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux', '', d)}"
- PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
+-LAYERSERIES_COMPAT_security = "zeus"
++LAYERSERIES_COMPAT_security = "dunfell"
  
-@@ -41,6 +41,7 @@ PACKAGECONFIG[autofs] = "--with-autofs, --with-autofs=no"
- PACKAGECONFIG[crypto] = "--with-crypto=libcrypto, , libcrypto"
- PACKAGECONFIG[curl] = "--with-secrets --with-kcm, --without-secrets --without-kcm, curl jansson"
- PACKAGECONFIG[http] = "--with-secrets, --without-secrets, apache2"
-+PACKAGECONFIG[infopipe] = "--with-infopipe, --with-infopipe=no, "
- PACKAGECONFIG[manpages] = "--with-manpages, --with-manpages=no"
- PACKAGECONFIG[nl] = "--with-libnl, --with-libnl=no, libnl"
- PACKAGECONFIG[nscd] = "--with-nscd=${sbindir}, --with-nscd=no "
-@@ -100,9 +101,9 @@ INITSCRIPT_PARAMS = "start 02 5 3 2 . stop 20 0 1 6 ."
- SYSTEMD_SERVICE_${PN} = " \
-     ${@bb.utils.contains('PACKAGECONFIG', 'autofs', 'sssd-autofs.service sssd-autofs.socket', '', d)} \
-     ${@bb.utils.contains('PACKAGECONFIG', 'curl', 'sssd-kcm.service sssd-kcm.socket', '', d)} \
-+    ${@bb.utils.contains('PACKAGECONFIG', 'infopipe', 'sssd-ifp.service ', '', d)} \
-     ${@bb.utils.contains('PACKAGECONFIG', 'ssh', 'sssd-ssh.service sssd-ssh.socket', '', d)} \
-     ${@bb.utils.contains('PACKAGECONFIG', 'sudo', 'sssd-sudo.service sssd-sudo.socket', '', d)} \
--    sssd-ifp.service \
-     sssd-nss.service \
-     sssd-nss.socket \
-     sssd-pam-priv.socket \
+ LAYERDEPENDS_security = "core openembedded-layer perl-layer networking-layer meta-python"
+diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
+index bfc9c6f..b4edac3 100644
+--- a/meta-integrity/conf/layer.conf
++++ b/meta-integrity/conf/layer.conf
+@@ -21,7 +21,7 @@ INTEGRITY_BASE := '${LAYERDIR}'
+ # interactive shell is enough.
+ OE_TERMINAL_EXPORTS += "INTEGRITY_BASE"
+ 
+-LAYERSERIES_COMPAT_integrity = "zeus"
++LAYERSERIES_COMPAT_integrity = "dunfell"
+ # ima-evm-utils depends on keyutils from meta-oe
+ LAYERDEPENDS_integrity = "core openembedded-layer"
+ 
+diff --git a/meta-security-compliance/conf/layer.conf b/meta-security-compliance/conf/layer.conf
+index 8572a1f..965c837 100644
+--- a/meta-security-compliance/conf/layer.conf
++++ b/meta-security-compliance/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "scanners-layer"
+ BBFILE_PATTERN_scanners-layer = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_scanners-layer = "10"
+ 
+-LAYERSERIES_COMPAT_scanners-layer = "zeus"
++LAYERSERIES_COMPAT_scanners-layer = "dunfell"
+ 
+ LAYERDEPENDS_scanners-layer = "core openembedded-layer meta-python"
+ 
+diff --git a/meta-security-isafw/conf/layer.conf b/meta-security-isafw/conf/layer.conf
+index 241c461..63f990a 100644
+--- a/meta-security-isafw/conf/layer.conf
++++ b/meta-security-isafw/conf/layer.conf
+@@ -14,4 +14,4 @@ LAYERVERSION_security-isafw = "1"
+ 
+ LAYERDEPENDS_security-isafw = "core"
+ 
+-LAYERSERIES_COMPAT_security-isafw = "zeus"
++LAYERSERIES_COMPAT_security-isafw = "dunfell"
+diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
+index 175eba8..c3372c7 100644
+--- a/meta-tpm/conf/layer.conf
++++ b/meta-tpm/conf/layer.conf
+@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "tpm-layer"
+ BBFILE_PATTERN_tpm-layer = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_tpm-layer = "10"
+ 
+-LAYERSERIES_COMPAT_tpm-layer = "zeus"
++LAYERSERIES_COMPAT_tpm-layer = "dunfell"
+ 
+ LAYERDEPENDS_tpm-layer = " \
+     core \
 -- 
-2.26.0
+2.20.1
 
