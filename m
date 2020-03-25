@@ -1,125 +1,88 @@
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
- by mx.groups.io with SMTP id smtpd.web10.10609.1585141323511962605
+Received: from out4-smtp.messagingengine.com (out4-smtp.messagingengine.com [66.111.4.28])
+ by mx.groups.io with SMTP id smtpd.web12.14731.1585151486077150223
  for <yocto@lists.yoctoproject.org>;
- Wed, 25 Mar 2020 06:02:03 -0700
+ Wed, 25 Mar 2020 08:51:26 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=rSrau6DE;
- spf=pass (domain: gmail.com, ip: 209.85.128.47, mailfrom: martin.jansa@gmail.com)
-Received: by mail-wm1-f47.google.com with SMTP id z5so2353377wml.5
-        for <yocto@lists.yoctoproject.org>; Wed, 25 Mar 2020 06:02:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OTnEIS3DIVkOUtypgP7iUwEjlBY0VBQ12sdkkoKhnAk=;
-        b=rSrau6DEszg1POpEyJz3VK0tJehuUIv/CCd6xpCMMmoi57EPSC7ES7565G9UGVu2Pl
-         LetiT/PTlyqatNqzDofyED+hg29rTS5Y8Z+kHOooOCxg5Z/BFI2sVISrkCtXk/xQdBI6
-         SLbqVVnxM3MOj8uP6M7N8hbqFIPDiq1rY6Q4SuilEFUkGBmyCAJPUZQrlXx2jzg2RcMY
-         sO1FfuFriXJCqz8rodxi+kF9EdnC5vVjc4iSfQzvUxIiCFXOZ1ciDOnYp7JBVXNaMbz9
-         mkJs3hmlzfMIb9CTHxkOveHiLrobbgrC+cmvCwweabZGunI67ZO0zQvj/qyTWveuMKhL
-         N42Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=OTnEIS3DIVkOUtypgP7iUwEjlBY0VBQ12sdkkoKhnAk=;
-        b=RjG6ZPxhF2dkkc6x+k7YnHiRP9Ux6mGQsXEtonuj/68tt3hRzozfWABknO6OYLtYbk
-         9voImYrXaE7ZIrg4r3H5NJ0byqRNJBt0qtR7oTFaewxpNS1LEXhA+kCBJWwIe4lfJJb8
-         UCwccU+nDhUJ6MuFwShgfF7kkDONAcupksL2D7yu3pr4X3AyRvPkDjqdra2jBsIem2sq
-         9FG9lE8uSxFAjT/E/Z50dVhOCmI95dHy2+nUQT+bM5kN0EVIZpDoeYhIheYC/oKpxGQc
-         mmjM1/Nw2K+XQegEiuX781OX+3NNIgMZ+hNGhpBqt0NrcM6GTyrA6pi7XuGEy4+8mYdH
-         TRqQ==
-X-Gm-Message-State: ANhLgQ3I++3oHeEkaXf9RnQK4RtumBDDx+co03JEGn6svuMW+vhAUumc
-	ug+f2DNAG/sMFyAb2SXGav3jensO
-X-Google-Smtp-Source: ADFU+vvBeyNjQsNYv7CO3ZLdo2uub76sPORAV8VYeowX2cb8TmaLWNMMkDjY70+O2UIl0yqGNviTuQ==
-X-Received: by 2002:a1c:e442:: with SMTP id b63mr3499617wmh.174.1585141321288;
-        Wed, 25 Mar 2020 06:02:01 -0700 (PDT)
-Return-Path: <martin.jansa@gmail.com>
-Received: from localhost ([109.238.218.228])
-        by smtp.gmail.com with ESMTPSA id r9sm9449975wma.47.2020.03.25.06.01.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 25 Mar 2020 06:02:00 -0700 (PDT)
-From: "Martin Jansa" <Martin.Jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+ dkim=pass header.i=@taydin.org header.s=fm2 header.b=L7spl8qv;
+ spf=pass (domain: taydin.org, ip: 66.111.4.28, mailfrom: ta@taydin.org)
+Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailout.nyi.internal (Postfix) with ESMTP id 660975C0260;
+	Wed, 25 Mar 2020 11:51:25 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute1.internal (MEProxy); Wed, 25 Mar 2020 11:51:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=taydin.org; h=to
+	:from:subject:message-id:date:mime-version:content-type
+	:content-transfer-encoding; s=fm2; bh=wYGV3fPb5YHZWjTtwwOyYeyBzm
+	6gzysK9z/QJsmZdr8=; b=L7spl8qvaIOQHqc1PI0epWG3Syj5hMxy60afjWygNh
+	s0twAq0FMiv0tldRJvGHT5yZSbgptLNrUtQhK3gvSkIhgQw1VbVgXPXj8bhy5idX
+	EAi3fmquXkDSdq8PI772/KN9yO/vRnmxMclvzMGfQoSdXEfUaV/3eRq8m1I/M31g
+	mD6ieNM4XbccZFrygmm0gec/bla7ioI757pvqmC5Mc2Sdb1QSToKGy4r61B4mGZz
+	ArUhyp3d/OGi3y3Iy2uqILYwIfItK9unxZOwPPIp36gJHsWntOW9kSKoqc2nh1vy
+	eE7h9WQS668OA8oqhlb5swcKHaLUiglHGer8ELG67LgA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=content-transfer-encoding:content-type
+	:date:from:message-id:mime-version:subject:to:x-me-proxy
+	:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; bh=wYGV3f
+	Pb5YHZWjTtwwOyYeyBzm6gzysK9z/QJsmZdr8=; b=VgJDgaxRUGKgfUGSYAgiqv
+	g7HzVryVqVNQTWZPEZrAxW6lAePB/8qAZeR2rpxWieY1cNLYSNe3c0RunSJSYL0i
+	POhahZHPtuEKXeS9xV+4C1VKNjxQH6F4pI93sdG7MdwQHQyROSTCnjzIgMVltDM+
+	RyDUR2XysN8AfZPCXlooIhRb6baJR432RGhmbFV/Q8lYglqze8qATA4H22Kd1MTK
+	fbhOlrNvS16KxF3l0lhD3sLIlHuJu9pVHM34+/LFgpKVv1kC0/PGeT/+CvjGbIml
+	4goO5rMU7VFbgMsOWrM1zzW0rUTUigcsKiAkmbUxMcvqa7XyiM2EGtg3Z7yO+dAw
+	==
+X-ME-Sender: <xms:_X17Xn8Uo9qPfL0i-sDg1mA4dwWdJ3bRWSxKnelCYXpSOo9nZuaKeg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedugedrudehgedgheeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefvhffukffffgggtgfgsehtkeertd
+    dtfeejnecuhfhrohhmpefvihhmuhhrucethiguihhnuceothgrsehtrgihughinhdrohhr
+    gheqnecukfhppeehuddrfeekrdduudegrddvvddunecuvehluhhsthgvrhfuihiivgeptd
+    enucfrrghrrghmpehmrghilhhfrhhomhepthgrsehtrgihughinhdrohhrgh
+X-ME-Proxy: <xmx:_X17XlAtNj-W0UEW08wGa8PtQNMypZUAgK1YGPLwAJeg2NKMvMUfjw>
+    <xmx:_X17XndysYqvk9A8tXGaiHe3obL3e87rU_akuwUTJC0DrjvX4GKB6A>
+    <xmx:_X17XpHm1XplHNyKj7Gjl7LQiG6MMz9n1Iq8n1ENKBO0CHTu_VpiCA>
+    <xmx:_X17XqAZ0hFwnpV7O1QzbKNbBxLQADQJzRvjkjKknf_Dl8OaQJf9zQ>
+Received: from [10.8.0.6] (221.ip-51-38-114.eu [51.38.114.221])
+	by mail.messagingengine.com (Postfix) with ESMTPA id ABC9B3066147
+	for <yocto@lists.yoctoproject.org>; Wed, 25 Mar 2020 11:51:24 -0400 (EDT)
 To: yocto@lists.yoctoproject.org
-Cc: Martin Jansa <Martin.Jansa@gmail.com>
-Subject: [meta-security][PATCH] layer.conf: update LAYERSERIES_COMPAT for dunfell
-Date: Wed, 25 Mar 2020 14:01:58 +0100
-Message-Id: <20200325130158.23467-1-Martin.Jansa@gmail.com>
-X-Mailer: git-send-email 2.20.1
+From: "Timur" <ta@taydin.org>
+Subject: populate_sdk_ext getting stuck
+Message-ID: <e3a7034b-c0b5-69fa-ae6f-d5b42a6e44c3@taydin.org>
+Date: Wed, 25 Mar 2020 18:51:22 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 
-Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
----
- conf/layer.conf                          | 2 +-
- meta-integrity/conf/layer.conf           | 2 +-
- meta-security-compliance/conf/layer.conf | 2 +-
- meta-security-isafw/conf/layer.conf      | 2 +-
- meta-tpm/conf/layer.conf                 | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
+Hello folks,
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 3e890e1..2c3bd96 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -9,6 +9,6 @@ BBFILE_COLLECTIONS += "security"
- BBFILE_PATTERN_security = "^${LAYERDIR}/"
- BBFILE_PRIORITY_security = "8"
- 
--LAYERSERIES_COMPAT_security = "zeus"
-+LAYERSERIES_COMPAT_security = "dunfell"
- 
- LAYERDEPENDS_security = "core openembedded-layer perl-layer networking-layer meta-python"
-diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
-index bfc9c6f..b4edac3 100644
---- a/meta-integrity/conf/layer.conf
-+++ b/meta-integrity/conf/layer.conf
-@@ -21,7 +21,7 @@ INTEGRITY_BASE := '${LAYERDIR}'
- # interactive shell is enough.
- OE_TERMINAL_EXPORTS += "INTEGRITY_BASE"
- 
--LAYERSERIES_COMPAT_integrity = "zeus"
-+LAYERSERIES_COMPAT_integrity = "dunfell"
- # ima-evm-utils depends on keyutils from meta-oe
- LAYERDEPENDS_integrity = "core openembedded-layer"
- 
-diff --git a/meta-security-compliance/conf/layer.conf b/meta-security-compliance/conf/layer.conf
-index 8572a1f..965c837 100644
---- a/meta-security-compliance/conf/layer.conf
-+++ b/meta-security-compliance/conf/layer.conf
-@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "scanners-layer"
- BBFILE_PATTERN_scanners-layer = "^${LAYERDIR}/"
- BBFILE_PRIORITY_scanners-layer = "10"
- 
--LAYERSERIES_COMPAT_scanners-layer = "zeus"
-+LAYERSERIES_COMPAT_scanners-layer = "dunfell"
- 
- LAYERDEPENDS_scanners-layer = "core openembedded-layer meta-python"
- 
-diff --git a/meta-security-isafw/conf/layer.conf b/meta-security-isafw/conf/layer.conf
-index 241c461..63f990a 100644
---- a/meta-security-isafw/conf/layer.conf
-+++ b/meta-security-isafw/conf/layer.conf
-@@ -14,4 +14,4 @@ LAYERVERSION_security-isafw = "1"
- 
- LAYERDEPENDS_security-isafw = "core"
- 
--LAYERSERIES_COMPAT_security-isafw = "zeus"
-+LAYERSERIES_COMPAT_security-isafw = "dunfell"
-diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
-index 175eba8..c3372c7 100644
---- a/meta-tpm/conf/layer.conf
-+++ b/meta-tpm/conf/layer.conf
-@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "tpm-layer"
- BBFILE_PATTERN_tpm-layer = "^${LAYERDIR}/"
- BBFILE_PRIORITY_tpm-layer = "10"
- 
--LAYERSERIES_COMPAT_tpm-layer = "zeus"
-+LAYERSERIES_COMPAT_tpm-layer = "dunfell"
- 
- LAYERDEPENDS_tpm-layer = " \
-     core \
+I have built a new linux release with yocto 2.6, no errors. After that, 
+I did a populate_sdk and that worked fine. But when I did 
+populate_sdk_ext, it is getting stuck for a long time (it didn't finish 
+overnight).
+
+Here is the output when I run bitbake with -v
+This is a repeat run, so the elapsed time is not high. But when I looked 
+this morning it was around 60,000
+
+NOTE: test1-image-base-1.0-r0 do_populate_sdk_ext: Running 
+/home/ta/discovery_connect_pro/build/tmp/work/imx6ul_var_dart-fslc-linux-gnueabi/test1-image-base/1.0-r0/recipe-sysroot-native/usr/bin/dnf 
+-v --rpmverbosity=debug -y -c 
+/home/ta/discovery_connect_pro/build/tmp/work/imx6ul_var_dart-fslc-linux-gnueabi/test1-image-base/1.0-r0/sdk-ext/image/etc/dnf/dnf.conf 
+--setopt=reposdir=/home/ta/discovery_connect_pro/build/tmp/work/imx6ul_var_dart-fslc-linux-gnueabi/test1-image-base/1.0-r0/sdk-ext/image/etc/yum.repos.d 
+--repofrompath=oe-repo,/home/ta/discovery_connect_pro/build/tmp/work/imx6ul_var_dart-fslc-linux-gnueabi/test1-image-base/1.0-r0/oe-sdk-ext-repo 
+--installroot=/home/ta/discovery_connect_pro/build/tmp/work/imx6ul_var_dart-fslc-linux-gnueabi/test1-image-base/1.0-r0/sdk-ext/image 
+--setopt=logdir=/home/ta/discovery_connect_pro/build/tmp/work/imx6ul_var_dart-fslc-linux-gnueabi/test1-image-base/1.0-r0/temp 
+clean all
+NOTE: test1-image-base-1.0-r0 do_populate_sdk_ext: Executing 
+copy_buildsystem ...
+Currently  1 running tasks (4085 of 4085)  99% 
+|######################################################################################################################################################### 
+|
+0: test1-image-base-1.0-r0 do_populate_sdk_ext - 711s (pid 11638)
+
 -- 
-2.20.1
+Timur Aydın
 
