@@ -1,313 +1,260 @@
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (EUR05-DB8-obe.outbound.protection.outlook.com [40.92.89.71])
- by mx.groups.io with SMTP id smtpd.web12.4832.1585253359625665485
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web10.470.1585256077854722042
  for <yocto@lists.yoctoproject.org>;
- Thu, 26 Mar 2020 13:09:20 -0700
+ Thu, 26 Mar 2020 13:54:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@outlook.com header.s=selector1 header.b=XBvoVE7m;
- spf=pass (domain: outlook.com, ip: 40.92.89.71, mailfrom: kweihmann@outlook.com)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=TK+YxdBhnkwlaI115nehZL7GRXcU7G31A3FrB+SrYF1q8hdEqyQvx8wslKH3TdNbXC9xXKe+E5lB/lC4psu0pSwoSifZdk/CATZnGpKqMlYTmn6weHHlSx6+50QaJYTCAAz5Syapx9gbtouimKLesGfFISWGIS7ZO2hj+Z4v+a5l0rDASjrPaIZIvDQ2SuVq+OlUzOMip7b6vyigPALFwINDuD3sJ+agH5C3ezvKu5Dkup/SkMMFgTIwCzVeLPZjavvlrFGW2UkEXLFPlv93dVlAPcuJjQNnvAr37KoJ+jw8cE3sm22JLBXcMMsmLKp+aRDlfkMfMEYBDajzQNCw7A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nc7dd7xVoxtAQw5XHvGIJvl0luuq1KjpIQa6LK/nkiw=;
- b=Jghg47sjbYprnPA8AvHn5CuAIELXlXrnUa5MHxDZM0FBetm9ddjFMmF3lj85Virk/LnLnWN4En1eQhmDwKozRZ9to5mHBd6/QJB3rS2mUbA9wjWABHGxDnnFdlt5eCgGEysVsDvzR+y5NdhN68zRqI2HPJ57rX7x3IQEyFOnBungOS6fNnr/qrNh6L62ABkGS8IlCGcQp4k3rzbO9oH5OVcp/nWnm3mfcuemcS3w4HILvAH9N9qFmRXa+XuESCC8qOJYwNlwKwnRGcZB268AeXqEn8Kfl1riiIRFt2O3m86ya3sWRO5ONSebm8kCO0fhOH4AESSfwAP01nx+71k0dQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=outlook.com; dmarc=pass action=none header.from=outlook.com;
- dkim=pass header.d=outlook.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nc7dd7xVoxtAQw5XHvGIJvl0luuq1KjpIQa6LK/nkiw=;
- b=XBvoVE7mLj0IkUVPR88JvOZwHQ88DiN5nNuekLmpUaNNufktuBEpUnOB1ZsOyYehPGGcJuVBqE7sxB4bSd3c61CGlb2u527JbhmJfEh0JAskAAWP+1tSwYMm/AHEHMlHztD38kBqqJL3cE3DEHvornbo23ZHvJx7oL/T8RcbII2F35zcWgZuQMJFq2DuUSI/15sxeFQTUVNSwHcJeGPw5BktuFyWb0tv+T2IoHen0uPzVduwLNlFVwk5KCwImrFf6RM11ZLWEbS2qPqHLhiwVwopxyBjZ9Th5IhWGT/O4bk9FSM5mQp+ay1cHmhPeA9nNlYgInHAv2A/nHYdsvbt1Q==
-Received: from AM6EUR05FT038.eop-eur05.prod.protection.outlook.com
- (2a01:111:e400:fc11::45) by
- AM6EUR05HT191.eop-eur05.prod.protection.outlook.com (2a01:111:e400:fc11::113)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.17; Thu, 26 Mar
- 2020 20:09:17 +0000
-Received: from VI1PR05MB4286.eurprd05.prod.outlook.com (10.233.240.55) by
- AM6EUR05FT038.mail.protection.outlook.com (10.233.241.187) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2856.17 via Frontend Transport; Thu, 26 Mar 2020 20:09:17 +0000
-X-IncomingTopHeaderMarker: 
- OriginalChecksum:EBCBAF963112126DB0E753FB653ABF5542CBED51CBCBB845CDF1B3C1AE2DCFB2;UpperCasedChecksum:CD604303417A9F83372A9B97774A90D19E84DE664D3C2460672084242DFF213A;SizeAsReceived:9056;Count:48
-Received: from VI1PR05MB4286.eurprd05.prod.outlook.com
- ([fe80::e1b1:4a5f:7dd7:4131]) by VI1PR05MB4286.eurprd05.prod.outlook.com
- ([fe80::e1b1:4a5f:7dd7:4131%4]) with mapi id 15.20.2856.019; Thu, 26 Mar 2020
- 20:09:17 +0000
-Subject: Re: [yocto] Best way to mask bbappends based on Poky version to have a layer support multiple versions of Poky?
-To: Matt Campbell <Mcampbell@izotope.com>,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-References: <CAMDowVVL9L=ScNR49vG3fnHCTiYHsp2OHLi2xTZWE-gvetDWmw@mail.gmail.com>
- <alpine.LFD.2.21.2003260954290.12282@localhost.localdomain>
- <CAMDowVUVBc8Lm_TwRDBgYgQ1gf3tbNFjKnNvCBtLfJ3FRXXFQQ@mail.gmail.com>
-From: "Konrad Weihmann" <kweihmann@outlook.com>
-Message-ID: 
- <VI1PR05MB428674CF3EB37F1577ADFBA0A8CF0@VI1PR05MB4286.eurprd05.prod.outlook.com>
-Date: Thu, 26 Mar 2020 21:09:15 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
-In-Reply-To: <CAMDowVUVBc8Lm_TwRDBgYgQ1gf3tbNFjKnNvCBtLfJ3FRXXFQQ@mail.gmail.com>
-X-ClientProxiedBy: AM6P193CA0142.EURP193.PROD.OUTLOOK.COM
- (2603:10a6:209:85::47) To VI1PR05MB4286.eurprd05.prod.outlook.com
- (2603:10a6:803:4d::27)
-Return-Path: kweihmann@outlook.com
-X-Microsoft-Original-Message-ID: 
- <46e3832d-9174-a8f0-fe75-703c7262dd23@outlook.com>
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.188.20] (87.141.86.172) by AM6P193CA0142.EURP193.PROD.OUTLOOK.COM (2603:10a6:209:85::47) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2835.19 via Frontend Transport; Thu, 26 Mar 2020 20:09:16 +0000
-X-Microsoft-Original-Message-ID: 
- <46e3832d-9174-a8f0-fe75-703c7262dd23@outlook.com>
-X-TMN: [Rn9X8bAXUIoNh9ONGH1dLSLstADrixra]
-X-MS-PublicTrafficType: Email
-X-IncomingHeaderCount: 48
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-Correlation-Id: fc721ec0-2cae-4eef-d91b-08d7d1c18fc4
-X-MS-TrafficTypeDiagnostic: AM6EUR05HT191:
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	GuVRXCsfLSrLYSRw+xrvjoOSMX8aWmmY+8UruUbuobudksYkxggvvC9nzw6NyCHJSE6eHEVeYsLbtldUYQT6ilNI6wC9TJ0dRnFsuxHOEWv+3iXqpZ1QN6cpFjjBYndlSR8eM5gqziXfOlCNgXovAQlm2mlsKKVamcF4YApxZ6pAoqJqQzp5eurKsIkdiMK1I+RwgIdGSGjWlhycRB2c4g1ScMp09CSE7gL8VLBvOco=
-X-MS-Exchange-AntiSpam-MessageData: 
-	2GCfJ9tpateUXRMNcPDW+zO0yRz7c6l4tJ6GrdsVIry64xuwsJia7RLVEMcDc2gqSdfrgucHtBg3QLg+8bksleArb3yg67xDDLdHIzUB6TlOTK03nrkrgvhL0AcwR/r+9Uw3rQyTQ1MJHz3oCnoxSA==
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc721ec0-2cae-4eef-d91b-08d7d1c18fc4
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2020 20:09:17.4496
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6EUR05HT191
-Content-Type: multipart/alternative;
- boundary="------------365E3F6FE67A1090981D635E"
-Content-Language: en-US
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=okQyBAyR;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jpuhlman@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 793D7E018E2; Thu, 26 Mar 2020 13:54:37 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.167.194 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-oi1-f194.google.com (mail-oi1-f194.google.com [209.85.167.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BAD5E018AB
+	for <yocto@yoctoproject.org>; Thu, 26 Mar 2020 13:54:35 -0700 (PDT)
+Received: by mail-oi1-f194.google.com with SMTP id k18so6888992oib.3
+        for <yocto@yoctoproject.org>; Thu, 26 Mar 2020 13:54:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id;
+        bh=9ytV5fvASPDXK1z61FZZIBqmhVe6zzPHDyhwzy+MV8M=;
+        b=okQyBAyRJmQ2cVmPV6SPktR3TKqjdNsDqSjgrFDzUovb9ENXkaYwWQX71sSGqOLI1s
+         Bcc+EO2RlBEQ6WhvIKa27L4egVPph5l3XFC+y535TTutFTS0WvSgCcEAXQJfS9fp+S/d
+         Cjq7vbE65hI/BmjkpO8YNpFRTPZGZFK8at3gy2iHTrv/xwPoenXOZr3iQhMEH90JpmZT
+         gv+yZusrstVvz17gMOf+55iVgl0qQlon/KHrvT4VDY+jdlo4LDfcjOEWahe7w5mCRWAE
+         1r8EXWyVQevbG+Bz6kkEBTXfBfUM9PtwMRSAQODOL2V/JpeTzyvMXuAUWZDJlneBWCLJ
+         H8vQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
+        bh=9ytV5fvASPDXK1z61FZZIBqmhVe6zzPHDyhwzy+MV8M=;
+        b=LIS4jf+LgoeCSc61DFuvYhH5GhptjvgvSrJTLIZJrp1GXSdkELrkqoCxBzRq67aRZY
+         Rv2ddKmQZwfb7F57zRaxlnYGs3dYkCeMgXyutI1CYsAYzHy72zPzqNRV14AkvqtzqlVG
+         gwvrx//ufT9D2t0C2qLKOkeXEhHIqFfA+iGBx3NWHV5m0ElnFKy3JGVY3JTYz+vYv4JT
+         HwqgVUsNKeYn6vqu6v0NLNiWnu60Ff6nRkYcHhUEf4Wd3RsqYCWZCsK3pF4d5DilqatD
+         eoYKylyYiLYWOb/c90nJl4EHC09y/5hz3CpkiTwdqHQTwXoVPkCL3bYCjYdPU1bp+sIr
+         Tf1A==
+X-Gm-Message-State: ANhLgQ3k5E4Ck63QSh/5KqSmFqHGV6zYjdm01mNigYvR6xnhTF1pwvt8
+	QbHA9MRB3TrsTax8gThcKus=
+X-Google-Smtp-Source: ADFU+vumgQirIJLd9eb/wIAH17HZmrC3G+Fxy9ppg5+eUMwwITCSfJDF6r/CFHmUh2EXhqM24Q7sLw==
+X-Received: by 2002:aca:3b41:: with SMTP id i62mr1624918oia.55.1585256074827;
+        Thu, 26 Mar 2020 13:54:34 -0700 (PDT)
+Received: from workhorse.localdomain ([2600:1700:4c90:60a0:56be:f7ff:fe12:d0bd])
+        by smtp.gmail.com with ESMTPSA id e21sm832353ooh.31.2020.03.26.13.54.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 26 Mar 2020 13:54:34 -0700 (PDT)
+Sender: Jeremy Puhlman <jpuhlman@gmail.com>
+Received: by workhorse.localdomain (Postfix, from userid 1000)
+	id 2CC7B2A0690; Tue, 24 Mar 2020 22:06:17 -0700 (PDT)
+From: "Jeremy Puhlman" <jpuhlman@mvista.com>
+To: yocto@yoctoproject.org
+Cc: Jeremy Puhlman <jpuhlman@mvista.com>
+Subject: [meta-cgl][PATCH] pacemaker: add missing patch for python3 usage
+Date: Tue, 24 Mar 2020 22:06:14 -0700
+Message-Id: <20200325050614.14342-1-jpuhlman@mvista.com>
+X-Mailer: git-send-email 2.13.3
 
---------------365E3F6FE67A1090981D635E
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Jeremy Puhlman <jpuhlman@mvista.com>
 
-Hi,
+---
+ .../pacemaker/0001-Fix-python3-usage.patch         | 176 +++++++++++++++++++++
+ 1 file changed, 176 insertions(+)
+ create mode 100644 meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-Fix-python3-usage.patch
 
-I'll get your point.
-Maybe this could be a solution to your problem 
-https://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#var-BBVERSIONS.
-Instead of having different bbappends have one and pick the right steps 
-inside of the append.
+diff --git a/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-Fix-python3-usage.patch b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-Fix-python3-usage.patch
+new file mode 100644
+index 0000000..05d7a76
+--- /dev/null
++++ b/meta-cgl-common/recipes-cgl/pacemaker/pacemaker/0001-Fix-python3-usage.patch
+@@ -0,0 +1,176 @@
++From fdefa9efc726fe704238d462a3dc207e0282fb9e Mon Sep 17 00:00:00 2001
++From: Jeremy Puhlman <jpuhlman@mvista.com>
++Date: Sun, 15 Mar 2020 21:09:33 +0000
++Subject: [PATCH] Fix python3 usage
++
++Signed-off-by: Jeremy Puhlman <jpuhlman@mvista.com>
++Upstream-Status: Pending
++---
++ cts/CTSlab.py.in                              | 2 +-
++ cts/OCFIPraTest.py.in                         | 2 +-
++ cts/cluster_test.in                           | 2 +-
++ cts/cts-exec.in                               | 2 +-
++ cts/cts-fencing.in                            | 2 +-
++ cts/cts-log-watcher.in                        | 2 +-
++ cts/cts-scheduler.in                          | 2 +-
++ cts/environment.py                            | 2 +-
++ cts/fence_dummy.in                            | 2 +-
++ cts/pacemaker-cts-dummyd.in                   | 2 +-
++ daemons/fenced/fence_legacy.in                | 2 +-
++ doc/Pacemaker_Development/en-US/Ch-Python.txt | 2 +-
++ doc/Pacemaker_Development/pot/Ch-Python.pot   | 2 +-
++ tools/pcmk_simtimes.in                        | 2 +-
++ 14 files changed, 14 insertions(+), 14 deletions(-)
++
++diff --git a/cts/CTSlab.py.in b/cts/CTSlab.py.in
++index f4ae60dc1..55a0d4ecf 100644
++--- a/cts/CTSlab.py.in
+++++ b/cts/CTSlab.py.in
++@@ -1,4 +1,4 @@
++-#!@PYTHON@
+++#!/usr/bin/env python3
++ """ Command-line interface to Pacemaker's Cluster Test Suite (CTS)
++ """
++ 
++diff --git a/cts/OCFIPraTest.py.in b/cts/OCFIPraTest.py.in
++index 81a5da8c0..bbadf938a 100644
++--- a/cts/OCFIPraTest.py.in
+++++ b/cts/OCFIPraTest.py.in
++@@ -1,4 +1,4 @@
++-#!@PYTHON@
+++#!/usr/bin/env python3
++ 
++ '''OCF IPaddr/IPaddr2 Resource Agent Test'''
++ 
++diff --git a/cts/cluster_test.in b/cts/cluster_test.in
++index e0d28509d..f982be05a 100755
++--- a/cts/cluster_test.in
+++++ b/cts/cluster_test.in
++@@ -171,4 +171,4 @@ printf "\nAll set to go for %d iterations!\n" "$CTS_numtests"
++     || echo "+ To use a different configuration, remove ~/.cts and re-run cts (or edit it manually)."
++ 
++ echo Now paste the following command into this shell:
++-echo "@PYTHON@ `dirname "$0"`/CTSlab.py -L \"$CTS_logfile\" --syslog-facility \"$CTS_logfacility\" --no-unsafe-tests --stack \"$CTS_stack\" $CTS_adv --at-boot \"$CTS_boot\" $cts_extra \"$CTS_numtests\" --nodes \"$CTS_node_list\""
+++echo "/usr/bin/env python3 `dirname "$0"`/CTSlab.py -L \"$CTS_logfile\" --syslog-facility \"$CTS_logfacility\" --no-unsafe-tests --stack \"$CTS_stack\" $CTS_adv --at-boot \"$CTS_boot\" $cts_extra \"$CTS_numtests\" --nodes \"$CTS_node_list\""
++diff --git a/cts/cts-exec.in b/cts/cts-exec.in
++index 592d850b4..9a653a442 100644
++--- a/cts/cts-exec.in
+++++ b/cts/cts-exec.in
++@@ -1,4 +1,4 @@
++-#!@PYTHON@
+++#!/usr/bin/env python3
++ """ Regression tests for Pacemaker's pacemaker-execd
++ """
++ 
++diff --git a/cts/cts-fencing.in b/cts/cts-fencing.in
++index 2d9999ca0..8e3fb7203 100644
++--- a/cts/cts-fencing.in
+++++ b/cts/cts-fencing.in
++@@ -1,4 +1,4 @@
++-#!@PYTHON@
+++#!/usr/bin/env python3
++ """ Regression tests for Pacemaker's fencer
++ """
++ 
++diff --git a/cts/cts-log-watcher.in b/cts/cts-log-watcher.in
++index 28f4efe7f..b4ed5024f 100644
++--- a/cts/cts-log-watcher.in
+++++ b/cts/cts-log-watcher.in
++@@ -1,4 +1,4 @@
++-#!@PYTHON@
+++#!/usr/bin/env python3
++ """ Remote log reader for Pacemaker's Cluster Test Suite (CTS)
++ 
++ Reads a specified number of lines from the supplied offset
++diff --git a/cts/cts-scheduler.in b/cts/cts-scheduler.in
++index 8fa16fb69..d4306b02b 100644
++--- a/cts/cts-scheduler.in
+++++ b/cts/cts-scheduler.in
++@@ -1,4 +1,4 @@
++-#!@PYTHON@
+++#!/usr/bin/env python3
++ """ Regression tests for Pacemaker's scheduler
++ """
++ 
++diff --git a/cts/environment.py b/cts/environment.py
++index db9d3db16..9d103fda9 100644
++--- a/cts/environment.py
+++++ b/cts/environment.py
++@@ -639,7 +639,7 @@ class Environment(object):
++         print("\t [--yes | -y]                 continue to run cts when there is an interaction whether to continue running pacemaker-cts")
++         print("\t ")
++         print("\t Example: ")
++-        # @PYTHON@ would be better here but not worth making file this a .in
+++        # /usr/bin/env python3 would be better here but not worth making file this a .in
++         print("\t    python sys.argv[0] -g virt1 -r --stonith ssh --schema pacemaker-2.0 500")
++ 
++         sys.exit(status)
++diff --git a/cts/fence_dummy.in b/cts/fence_dummy.in
++index a2692b1e0..f1d111205 100644
++--- a/cts/fence_dummy.in
+++++ b/cts/fence_dummy.in
++@@ -1,4 +1,4 @@
++-#!@PYTHON@
+++#!/usr/bin/env python3
++ """Dummy fence agent for testing
++ """
++ 
++diff --git a/cts/pacemaker-cts-dummyd.in b/cts/pacemaker-cts-dummyd.in
++index bde98c5c9..c2e6d89f4 100644
++--- a/cts/pacemaker-cts-dummyd.in
+++++ b/cts/pacemaker-cts-dummyd.in
++@@ -1,4 +1,4 @@
++-#!@PYTHON@
+++#!/usr/bin/env python3
++ """ Slow-starting idle daemon that notifies systemd when it starts
++ """
++ 
++diff --git a/daemons/fenced/fence_legacy.in b/daemons/fenced/fence_legacy.in
++index 7324757e3..136125322 100755
++--- a/daemons/fenced/fence_legacy.in
+++++ b/daemons/fenced/fence_legacy.in
++@@ -1,4 +1,4 @@
++-#!@PYTHON@
+++#!/usr/bin/env python3
++ 
++ # Pacemaker targets compatibility with Python 2.7 and 3.2+
++ from __future__ import print_function, unicode_literals, absolute_import, division
++diff --git a/doc/Pacemaker_Development/en-US/Ch-Python.txt b/doc/Pacemaker_Development/en-US/Ch-Python.txt
++index 42d35b649..467e1c524 100644
++--- a/doc/Pacemaker_Development/en-US/Ch-Python.txt
+++++ b/doc/Pacemaker_Development/en-US/Ch-Python.txt
++@@ -17,7 +17,7 @@ If a Python file is meant to be executed (as opposed to imported), it should
++ have a +.in+ extension, and its first line should be:
++ ====
++ ----
++-#!@PYTHON@
+++#!/usr/bin/env python3
++ ----
++ ====
++ which will be replaced with the appropriate python executable when Pacemaker is
++diff --git a/doc/Pacemaker_Development/pot/Ch-Python.pot b/doc/Pacemaker_Development/pot/Ch-Python.pot
++index ed71331ce..27c7e22e5 100644
++--- a/doc/Pacemaker_Development/pot/Ch-Python.pot
+++++ b/doc/Pacemaker_Development/pot/Ch-Python.pot
++@@ -39,7 +39,7 @@ msgstr ""
++ 
++ #. Tag: screen
++ #, no-c-format
++-msgid "#!@PYTHON@"
+++msgid "#!/usr/bin/env python3"
++ msgstr ""
++ 
++ #. Tag: para
++diff --git a/tools/pcmk_simtimes.in b/tools/pcmk_simtimes.in
++index 6e362243b..28009f499 100644
++--- a/tools/pcmk_simtimes.in
+++++ b/tools/pcmk_simtimes.in
++@@ -1,4 +1,4 @@
++-#!@PYTHON@
+++#!/usr/bin/env python3
++ """ Timing comparisons for crm_simulate profiling output
++ """
++ 
++-- 
++2.23.0
++
+-- 
+2.13.3
 
-If that is not working for you, you could also fake the behavior of 
-BBFILES_DYNAMIC with putting the bbappend into separate subfolder, which 
-than are
-referenced by something like this
-
-BBFILES += "${LAYERDIR}/dynamic-recipes/${BB_VERSION}/*.bbappend"
-
-Regards
-Konrad
-
-On 26.03.20 20:56, Matt Campbell wrote:
-> I didn't know about BB_DANGLINGAPPENDS_WARNONLY. That would mask the 
-> problem, but doesn't feel like a great solution. Either way I do 
-> appreciate you sharing that.
->
-> Further implementation and discussion with our team brought up another 
-> possible solution. We could wildcard all bbappends (_%.bbappend) and 
-> use some anonymous python inside our bbappend files that will error 
-> out if the package version isn't in a supported list. We could also 
-> easily roll this up into a bbclass to prevent the need to duplicate 
-> this everywhere.
->
-> python () {
->     package_version = d.getVar("PV")
->     if  package_version is not in ['3.14", "3.15"]:
->         bb.error("This bbappend file isn't compatible with the version 
-> {}. You will need to add support to this bbappend for that 
-> version.".format(package_version))
-> }
->
-> This still seems more like we are fighting bitbake rather than working 
-> with it. Does anyone have any thoughts or suggestions on this?
->
-> Other upstreams seem to maintain different branches for different Poky 
-> releases. That is a road we would rather avoid if possible. Our goal 
-> is to be able to have an extra CI build against the version of Poky 
-> under development so we can continuously fix the upgrade issues as 
-> they come up rather than as a landslide when we upgrade. Making a 
-> separate branch for this would mean we would need to merge all active 
-> development into each branch to get the benefits of a poky next canary 
-> build plan. That said, I'd love to hear about a solution that lets us 
-> have our cake and eat it too.
->
-> ~Matt
->
-> On Thu, Mar 26, 2020 at 9:55 AM Robert P. J. Day 
-> <rpjday@crashcourse.ca <mailto:rpjday@crashcourse.ca>> wrote:
->
->     On Thu, 26 Mar 2020, Matt Campbell wrote:
->
->     > HI All,
->
->     > We have a layer where we want to concurrently support two releases
->     > of Poky. There is an issue when we have bbappnds against recipes
->     > that have different versions in the two poky releases. for instance,
->     > imagine recipe foo that is version 1.0 in Zeus and 1.2 in Dunfell.
->     > If we had a bbappend in our layer `foo_1.0.bbappend` and tried to
->     > use our layer with Dunfell, bitbake will error out saying that
->     > `foo_1.0.bbappend` has no base recipe.
->
->       not sure if this really solves the underlying issue, but you can
->     always turn those errors into warnings with:
->
->       BB_DANGLINGAPPENDS_WARNONLY = "1"
->
->     in your local.conf, although i'm still skeptical as to whether that's
->     really the problem you're trying to solve.
->
->     rday
->
->
->
-> -- 
-> Matthew Campbell
-> Senior Embedded Systems Engineer
-> mcampbell@izotope.com <mailto:mcampbell@izotope.com>
->
-> iZotope, Inc.
-> www.izotope.com <http://www.izotope.com>
->
-> 
-
---------------365E3F6FE67A1090981D635E
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  </head>
-  <body>
-    <p>Hi,</p>
-    <p>I'll get your point.<br>
-      Maybe this could be a solution to your problem
-<a class="moz-txt-link-freetext" href="https://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#var-BBVERSIONS">https://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#var-BBVERSIONS</a>.<br>
-      Instead of having different bbappends have one and pick the right
-      steps inside of the append.</p>
-    <p>If that is not working for you, you could also fake the behavior
-      of BBFILES_DYNAMIC with putting the bbappend into separate
-      subfolder, which than are<br>
-      referenced by something like this<br>
-      <br>
-      BBFILES &#43;= &quot;${LAYERDIR}/dynamic-recipes/${BB_VERSION}/*.bbappend&quot;</p>
-    <p>Regards<br>
-      Konrad<br>
-    </p>
-    <div class="moz-cite-prefix">On 26.03.20 20:56, Matt Campbell wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:CAMDowVUVBc8Lm_TwRDBgYgQ1gf3tbNFjKnNvCBtLfJ3FRXXFQQ@mail.gmail.com">
-      
-      <div dir="ltr">I didn't know about&nbsp;
-        BB_DANGLINGAPPENDS_WARNONLY. That would mask the problem, but
-        doesn't feel like a great solution. Either way I do
-        appreciate&nbsp;you sharing that.
-        <div><br>
-        </div>
-        <div>Further implementation&nbsp;and discussion with our team brought
-          up another possible solution. We could wildcard all bbappends
-          (_%.bbappend) and use some anonymous&nbsp;python inside our
-          bbappend files that will error out if the package version
-          isn't in a supported list. We could also easily&nbsp;roll this up
-          into a bbclass to prevent the need to duplicate this
-          everywhere.</div>
-        <div><br>
-        </div>
-        <div>python () {<br>
-          &nbsp; &nbsp; package_version = d.getVar(&quot;PV&quot;) </div>
-        <div>&nbsp; &nbsp; if&nbsp; package_version is not in ['3.14&quot;, &quot;3.15&quot;]:</div>
-        <div>&nbsp; &nbsp; &nbsp; &nbsp; bb.error(&quot;This bbappend file isn't compatible with
-          the version {}. You will need to add support to this bbappend
-          for that version.&quot;.format(package_version))<br>
-          }<br>
-        </div>
-        <div><br>
-        </div>
-        <div>This still seems more like we are fighting bitbake rather
-          than working with it. Does anyone have any thoughts or
-          suggestions on this?</div>
-        <div><br>
-        </div>
-        <div>Other upstreams seem to maintain&nbsp;different branches for
-          different Poky releases. That is a road we would rather avoid
-          if possible. Our goal is to be able to have an extra CI build
-          against the version of Poky under development so we can
-          continuously&nbsp;fix the upgrade issues as they come up rather
-          than as a landslide when we upgrade. Making a separate branch
-          for this would mean we would need to merge all active
-          development into each branch to get the benefits of a poky
-          next canary build plan. That said, I'd love to hear about a
-          solution that lets us have our cake and eat it too.</div>
-        <div><br>
-        </div>
-        <div>~Matt</div>
-      </div>
-      <br>
-      <div class="gmail_quote">
-        <div dir="ltr" class="gmail_attr">On Thu, Mar 26, 2020 at 9:55
-          AM Robert P. J. Day &lt;<a href="mailto:rpjday@crashcourse.ca" moz-do-not-send="true">rpjday@crashcourse.ca</a>&gt; wrote:<br>
-        </div>
-        <blockquote class="gmail_quote" style="margin:0px 0px 0px
-          0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On
-          Thu, 26 Mar 2020, Matt Campbell wrote:<br>
-          <br>
-          &gt; HI All,<br>
-          <br>
-          &gt; We have a layer where we want to concurrently support two
-          releases<br>
-          &gt; of Poky. There is an issue when we have bbappnds against
-          recipes<br>
-          &gt; that have different versions in the two poky releases.
-          for instance,<br>
-          &gt; imagine recipe foo that is version 1.0 in Zeus and 1.2 in
-          Dunfell.<br>
-          &gt; If we had a bbappend in our layer `foo_1.0.bbappend` and
-          tried to<br>
-          &gt; use our layer with Dunfell, bitbake will error out saying
-          that<br>
-          &gt; `foo_1.0.bbappend` has no base recipe.<br>
-          <br>
-          &nbsp; not sure if this really solves the underlying issue, but you
-          can<br>
-          always turn those errors into warnings with:<br>
-          <br>
-          &nbsp; BB_DANGLINGAPPENDS_WARNONLY = &quot;1&quot;<br>
-          <br>
-          in your local.conf, although i'm still skeptical as to whether
-          that's<br>
-          really the problem you're trying to solve.<br>
-          <br>
-          rday<br>
-        </blockquote>
-      </div>
-      <br clear="all">
-      <div><br>
-      </div>
-      -- <br>
-      <div dir="ltr" class="gmail_signature">
-        <div dir="ltr">Matthew Campbell
-          <div>Senior Embedded Systems Engineer</div>
-          <div><a href="mailto:mcampbell@izotope.com" target="_blank" moz-do-not-send="true">mcampbell@izotope.com</a></div>
-          <div><br>
-          </div>
-          <div>iZotope, Inc.</div>
-          <div><a href="http://www.izotope.com" target="_blank" moz-do-not-send="true">www.izotope.com</a></div>
-        </div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
-</pre>
-    </blockquote>
-  </body>
-</html>
-
---------------365E3F6FE67A1090981D635E--
