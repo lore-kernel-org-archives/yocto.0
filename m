@@ -1,101 +1,128 @@
-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by mx.groups.io with SMTP id smtpd.web11.35670.1585226003848494380
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+ by mx.groups.io with SMTP id smtpd.web12.37252.1585230525588775840
  for <yocto@lists.yoctoproject.org>;
- Thu, 26 Mar 2020 05:33:23 -0700
+ Thu, 26 Mar 2020 06:48:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@kernel.org header.s=default header.b=QY0p3stX;
- spf=pass (domain: kernel.org, ip: 198.145.29.99, mailfrom: krzk@kernel.org)
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPSA id 07D9820409
-	for <yocto@lists.yoctoproject.org>; Thu, 26 Mar 2020 12:33:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=default; t=1585226003;
-	bh=KXDu9Yle0r01kjcve/NiwyZdLnsB0MU/GUDIJ5nOCps=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=QY0p3stXNbJy78V1Iv13Y9dRh7j09ssfjWIw6Pr+T5vQJcwmKNgOpMwWkiBBRMLO1
-	 MNiCwVCh+Hzu2blNAehO+Xb9/xc9x2zX7Rj4Sq+nQ0G/GTMVce/9LJZSitgF/UR1rc
-	 5V3aB7dmtyoDQRqOLBEuDolbiveR1RMcIUQ3mrAk=
-Received: by mail-lj1-f180.google.com with SMTP id r24so6216130ljd.4
-        for <yocto@lists.yoctoproject.org>; Thu, 26 Mar 2020 05:33:22 -0700 (PDT)
-X-Gm-Message-State: ANhLgQ230tAxRQBSHF66VSq2PFIOaCtv9a7gjTAFVSCfd+Ku/5nwP7K4
-	iJc0en5ulHycceT1pR4RPGOyXZ7bqWo5CifRW7w=
-X-Google-Smtp-Source: APiQypL+7b9GxCYwwl+0aRSC7XaUh2h1PqdbLPmNE0RZz0ozK0Hie5ZmabRQXr0nQF5ZvHGXR6P9hnmD2QrnU6z0A/U=
-X-Received: by 2002:a2e:b4cb:: with SMTP id r11mr5288809ljm.201.1585226001148;
- Thu, 26 Mar 2020 05:33:21 -0700 (PDT)
+ dkim=pass header.i=@izotope.com header.s=google header.b=PjnnCZRO;
+ spf=pass (domain: izotope.com, ip: 209.85.221.42, mailfrom: mcampbell@izotope.com)
+Received: by mail-wr1-f42.google.com with SMTP id h15so7848132wrx.9
+        for <yocto@lists.yoctoproject.org>; Thu, 26 Mar 2020 06:48:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=izotope.com; s=google;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=Sq2Htcc3QX2FR4Vg+S0pXocxtX3LtEGa7JxOCb/WJgQ=;
+        b=PjnnCZROQ+WxjAT3uB1Lw5zBLGV/HYRJoh9ZUos6inMJwmnp/xCZl6CfSsB3PEd2JH
+         BxRntdFaXzsqFTHb0ENnf2ufxW0ToCyZ7W/ly/mEovTcI8Wm1oH3OeBhJNLnpYN4pXVn
+         CJO4pAVtRXB7BBKptYEFR6SziE0F+oLr/+rOc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=Sq2Htcc3QX2FR4Vg+S0pXocxtX3LtEGa7JxOCb/WJgQ=;
+        b=Z2e2wVxr+tELuDDfoq4qeA8tEHEnrFHjj9rQjj88vMtihGXi/rfXE2BEvextY3K2I3
+         3ET8p4od6GKyROZqU2pNx+mJ05D+YI+oisJj7NZgkiXNQU1L2AmmVShTrYon44tQUmK/
+         IwjyCmxlhkI8klTuTOwWICtmc9+nKD1XMizofWTYwdU4WNOTiGj5j7ksv7Qfmrd/okez
+         aPtPjGP/qCRR9DTIfwA7I2B7BVbdnTsqy7/Xnhh+VmNA3Idjk57nuRhxxktl87jZ9M+X
+         TEmwgRD1miq9YgLD8DPS4fdNTtX760Dvmz3XFB7UgjYUfAdx0BtWj5hdfObJzKnHuhov
+         1UCQ==
+X-Gm-Message-State: ANhLgQ0qJGRgKfc8tZ6NR+CTTb0pVZCx7Ok/0EQM0SlSpIkkPLv6BIS/
+	twuJw3DD+26mieku26VlYxuLnC08KiT6HJzgVYeVHszwZM5EzA==
+X-Google-Smtp-Source: ADFU+vsKFldTy6Kf/53zdXjT1/+0iOj9KSE1Ui1bxZ0MX7D6SNIjQ0xOQqAdDCKvRtaQEZg4C64QENs0aYhMgXTXqaU=
+X-Received: by 2002:adf:fd44:: with SMTP id h4mr7127157wrs.177.1585230523610;
+ Thu, 26 Mar 2020 06:48:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <f5322279-0aa2-348d-66c1-4e2b90296aee@xtrack.com>
-In-Reply-To: <f5322279-0aa2-348d-66c1-4e2b90296aee@xtrack.com>
-From: "Krzysztof Kozlowski" <krzk@kernel.org>
-Date: Thu, 26 Mar 2020 13:33:10 +0100
-X-Gmail-Original-Message-ID: <CAJKOXPeTH-YAGfOeeNMmM=tgCbfurVDWxg4JJpEiZ8L+CDsBsA@mail.gmail.com>
-Message-ID: <CAJKOXPeTH-YAGfOeeNMmM=tgCbfurVDWxg4JJpEiZ8L+CDsBsA@mail.gmail.com>
-Subject: Re: [yocto] extensible sdk, devtool not working, wrong python3 binary found in PATH as first
-To: Mariusz Madej <m.madej@xtrack.com>
-Cc: yocto-list <yocto@lists.yoctoproject.org>
+From: "Matt Campbell" <Mcampbell@izotope.com>
+Date: Thu, 26 Mar 2020 09:48:32 -0400
+Message-ID: <CAMDowVVL9L=ScNR49vG3fnHCTiYHsp2OHLi2xTZWE-gvetDWmw@mail.gmail.com>
+Subject: Best way to mask bbappends based on Poky version to have a layer support multiple versions of Poky?
+To: yocto@lists.yoctoproject.org
+Cc: Huzefa Mandviwala <hmandviwala@izotope.com>
+Content-Type: multipart/alternative; boundary="0000000000003f4b9a05a1c23e9b"
+
+--0000000000003f4b9a05a1c23e9b
 Content-Type: text/plain; charset="UTF-8"
+
+HI All,
+
+We have a layer where we want to concurrently support two releases of Poky.
+There is an issue when we have bbappnds against recipes that have
+different versions in the two poky releases. for instance, imagine recipe
+foo that is version 1.0 in Zeus and 1.2 in Dunfell. If we had a bbappend in
+our layer `foo_1.0.bbappend` and tried to use our layer with Dunfell,
+bitbake will error out saying that `foo_1.0.bbappend` has no base recipe.
+
+The question is: how do we dynamically hide that bbappend only from
+Dunfell? Or, why is what we are trying to do not really the right
+
+I found BBFILES_DYNAMIC which is _alomst_ what we want, but only allows
+filtering based on the presence of another layer, not the version of Poky.
+
+Right now we've got a solution using Python inline variable substitution to
+set BBMASK conditionally based on the poky version. (Side note: it looks
+like you can't do anonymous Python in the layer.conf file which I couldn't
+find any documentation about).
+
+# Things to mask from zeus
+BBMASK += "${@ ' '.join([ \
+
+'meta-izo-modus/recipes-devtools/libedit/libedit_20180525-3.1.bbappend', \
+        'meta-izo-modus/recipes-devtools/lua/lua_5.3.4.bbappend', \
+
+'meta-izo-modus/recipes-extended/logrotate/logrotate_3.14.0.bbappend', \
+        'meta-izo-modus/recipes-kernel/linux/linux-yocto_4.18.bbappend', \
+    ]) if d.getVar('LAYERSERIES_CORENAMES') == 'zeus' else ''}"
+
+This isn't the cleanest, but it does work.
+
+I'm really curious if there Is there a more canonical and clean way of
+achieving what we are going for here.
+
+Thanks in advance,
+~Matt
+-- 
+Matthew Campbell
+Senior Embedded Systems Engineer
+mcampbell@izotope.com
+
+iZotope, Inc.
+www.izotope.com
+
+--0000000000003f4b9a05a1c23e9b
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, 21 Jan 2020 at 09:35, Mariusz Madej <m.madej@xtrack.com> wrote:
->
-> I use Yocto(warrior) and want to create valid extensible sdk. My problem =
-is that after installation of created sdk i get:
->
-> {SDK-INSTALL-DIR}/sysroots/x86_64-pokysdk-linux/usr/bin/python3: line 5: =
-{SDK-INSTALL-DIR}/sysroots/x86_64-pokysdk-linux/usr/bin/python3.7.real: No =
-such file or directory
->
-> I installed also sdk-ext from core-image-minimal and there is no such pro=
-blem. I started to compare differences between both installations and found=
- out that my sdk has binary {SDK-INSTALL-DIR}/sysroots/x86_64-pokysdk-linux=
-/usr/bin/python3.7.real and this binary is not relocated(wrong interpreter =
-path). After loading sdk's environment, PATH variable has {SDK-INSTALL-DIR}=
-/sysroots/x86_64-pokysdk-linux/usr/bin as first entry - and that is why dev=
-tool does not work. If i remove python3 from {SDK-INSTALL-DIR}/sysroots/x86=
-_64-pokysdk-linux/usr/bin/ then devtool is working well. Working(relocated)=
- python3 exists in {SDK-INSTALL-DIR}/buildtools/sysroots/x86_64-pokysdk-lin=
-ux/usr/bin/python3 - the same in sdk for core-image-minimal.
->
-> Can anybody tell me why i have not relocated python3 binary in {SDK-INSTA=
-LL-DIR}/sysroots/x86_64-pokysdk-linux/usr/bin and other sdk's dont have thi=
-s? What kind of package it comes from? I thought it is nativesdk-python3 bu=
-t core-image-minimal builds it also and there is no problem. Is there any d=
-etailed documentation about directory structure of installed sdk?
+<div dir=3D"ltr">HI All,<div><br></div><div>We have a layer where we want t=
+o concurrently support two releases of Poky. There is an issue when we have=
+=C2=A0bbappnds=C2=A0against recipes that have different=C2=A0versions in th=
+e two poky releases. for instance, imagine recipe foo that is version 1.0 i=
+n Zeus and 1.2 in Dunfell. If we had a bbappend in our layer `foo_1.0.bbapp=
+end` and tried to use our layer with Dunfell, bitbake will error out saying=
+ that `foo_1.0.bbappend` has no base recipe.</div><div><br></div><div>The q=
+uestion is: how do we dynamically=C2=A0hide that bbappend only from Dunfell=
+? Or, why is what we are trying to do not really the right=C2=A0</div><div>=
+<br></div><div>I found=C2=A0BBFILES_DYNAMIC which is _alomst_ what we want,=
+ but only allows filtering based on the presence=C2=A0of another=C2=A0layer=
+, not the version of Poky.</div><div><br></div><div>Right now we&#39;ve got=
+ a solution using Python inline variable substitution to set BBMASK conditi=
+onally=C2=A0based on the poky version. (Side note: it looks like you can&#3=
+9;t do anonymous=C2=A0Python in the layer.conf file which I couldn&#39;t fi=
+nd any documentation about).</div><div><br></div><div># Things to mask from=
+ zeus<br>BBMASK +=3D &quot;${@ &#39; &#39;.join([ \<br>=C2=A0 =C2=A0 =C2=A0=
+ =C2=A0 &#39;meta-izo-modus/recipes-devtools/libedit/libedit_20180525-3.1.b=
+bappend&#39;, \<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;meta-izo-modus/recipes-=
+devtools/lua/lua_5.3.4.bbappend&#39;, \<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39=
+;meta-izo-modus/recipes-extended/logrotate/logrotate_3.14.0.bbappend&#39;, =
+\<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 &#39;meta-izo-modus/recipes-kernel/linux/l=
+inux-yocto_4.18.bbappend&#39;, \<br>=C2=A0 =C2=A0 ]) if d.getVar(&#39;LAYER=
+SERIES_CORENAMES&#39;) =3D=3D &#39;zeus&#39; else &#39;&#39;}&quot;<br clea=
+r=3D"all"><div><br></div><div>This isn&#39;t the cleanest, but it does work=
+.</div><div><br></div><div>I&#39;m really curious if there Is there a more=
+=C2=A0canonical and clean way of achieving what we are going for here.</div=
+><div><br></div><div>Thanks in advance,</div><div>~Matt</div>-- <br><div di=
+r=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div=
+ dir=3D"ltr">Matthew Campbell<div>Senior Embedded Systems Engineer</div><di=
+v><a href=3D"mailto:mcampbell@izotope.com" target=3D"_blank">mcampbell@izot=
+ope.com</a></div><div><br></div><div>iZotope, Inc.</div><div><a href=3D"htt=
+p://www.izotope.com" target=3D"_blank">www.izotope.com</a></div></div></div=
+></div></div>
 
-Hi,
-
-I don't have the answers for your case but it looks I hit something
-similar with extensible SDK on Yocto v3.0 (Zeus).
-1. My distro has:
-DISTRO =3D "eagle"
-TOOLCHAIN_HOST_TASK_append =3D " nativesdk-u-boot-tools"
-TOOLCHAIN_HOST_TASK_append +=3D "nativesdk-cmake
-2. machine:
-SDKEXTPATH =3D "~/${@d.getVar('DISTRO')}_vf50_sdk"
-
-3. After installing extensible SDK for my image, when I run "cmake":
-$ /home/krzk/eagle_vf50_sdk/sysroots/x86_64-pokysdk-linux/usr/bin/cmake:
-No such file or directory
-$ file /home/krzk/eagle_vf50_sdk/sysroots/x86_64-pokysdk-linux/usr/bin/cmak=
-e
-ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux),
-dynamically linked, interpreter /opt/eag, ....
-
-4. The /opt/eag comes probably from:
-$ bitbake -e
-SDKPATH=3D"/opt/eagle/3.0.2"
-SDKPATHNATIVE=3D"/opt/eagle/3.0.2/sysroots/x86_64-pokysdk-linux"
-
-... but I do not set SDKPATH directly. It comes from poky defaults. I
-also do not install the regular SDK.
-
-Anyone has ideas why eSDK/sysroots/x86_64-pokysdk-linux has
-non-relocated binaries with interpreter pointing to SDK (which is not
-installed)?
-
-Best regards,
-Krzysztof
-
-Best regards,
-Krzysztof
+--0000000000003f4b9a05a1c23e9b--
