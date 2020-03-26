@@ -1,72 +1,81 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.31181.1585198304969393701
+Received: from heian.cn.fujitsu.com (heian.cn.fujitsu.com [183.91.158.132])
+ by mx.groups.io with SMTP id smtpd.web11.32882.1585211617536868157
  for <yocto@lists.yoctoproject.org>;
- Wed, 25 Mar 2020 21:51:45 -0700
+ Thu, 26 Mar 2020 01:33:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=softfail (domain: windriver.com, ip: 140.211.169.56, mailfrom: qi.chen@windriver.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1975E018D7; Wed, 25 Mar 2020 21:51:44 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at https://www.dnswl.org/,
-	*      medium trust
-	*      [192.103.53.11 listed in list.dnswl.org]
-Received: from mail5.wrs.com (mail5.windriver.com [192.103.53.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABFFAE0189F
-	for <yocto@yoctoproject.org>; Wed, 25 Mar 2020 21:51:43 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 02Q4pM0v022252
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 25 Mar 2020 21:51:32 -0700
-Received: from ala-lpggp7.wrs.com (147.11.105.171) by ALA-HCA.corp.ad.wrs.com
- (147.11.189.40) with Microsoft SMTP Server id 14.3.487.0; Wed, 25 Mar 2020
- 21:51:11 -0700
-From: "Chen Qi" <Qi.Chen@windriver.com>
-To: <yocto@yoctoproject.org>
-Subject: [yocto][meta-cgl][PATCH] resource-agents: fix QA issue
-Date: Wed, 25 Mar 2020 21:51:11 -0700
-Message-ID: <20200326045111.97722-1-Qi.Chen@windriver.com>
-X-Mailer: git-send-email 2.21.0
+ dkim=missing; spf=none, err=SPF record not found (domain: cn.fujitsu.com, ip: 183.91.158.132, mailfrom: lixm.fnst@cn.fujitsu.com)
+X-IronPort-AV: E=Sophos;i="5.72,307,1580745600"; 
+   d="scan'208";a="87363725"
+Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
+  by heian.cn.fujitsu.com with ESMTP; 26 Mar 2020 16:33:32 +0800
+Received: from G08CNEXMBPEKD06.g08.fujitsu.local (unknown [10.167.33.206])
+	by cn.fujitsu.com (Postfix) with ESMTP id 7733C49DF12A
+	for <yocto@lists.yoctoproject.org>; Thu, 26 Mar 2020 16:23:17 +0800 (CST)
+Received: from G08CNEXCHPEKD05.g08.fujitsu.local (10.167.33.203) by
+ G08CNEXMBPEKD06.g08.fujitsu.local (10.167.33.206) with Microsoft SMTP Server
+ (TLS) id 15.0.1497.2; Thu, 26 Mar 2020 16:33:27 +0800
+Received: from g08.fujitsu.local (10.167.218.89) by
+ G08CNEXCHPEKD05.g08.fujitsu.local (10.167.33.209) with Microsoft SMTP Server
+ id 15.0.1497.2 via Frontend Transport; Thu, 26 Mar 2020 16:33:28 +0800
+From: "Li, Xiaoming" <lixm.fnst@cn.fujitsu.com>
+To: <yocto@lists.yoctoproject.org>
+CC: <leimaohui@cn.fujitsu.com>
+Subject: [PATCH] Fix the wrongly placed description.
+Date: Thu, 26 Mar 2020 09:27:42 -0700
+Message-ID: <20200326162742.9258-1-lixm.fnst@cn.fujitsu.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
+X-yoursite-MailScanner-ID: 7733C49DF12A.AE9C5
+X-yoursite-MailScanner: Found to be clean
+X-yoursite-MailScanner-From: lixm.fnst@cn.fujitsu.com
+X-Spam-Status: No
 Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
 
-Fix the following QA issue.
-
-ERROR: resource-agents-4.5.0-r0 do_package: QA Issue: resource-agents: Fi=
-les/directories were installed but not shipped in any package:
-  /usr/lib/tmpfiles.d
-  /usr/lib/tmpfiles.d/resource-agents.conf
-  /lib/systemd/system/resource-agents-deps.target
-
-Signed-off-by: Chen Qi <Qi.Chen@windriver.com>
+Signed-off-by: Li Xiaoming <lixm.fnst@cn.fujitsu.com>
 ---
- .../cluster-resource-agents/resource-agents_4.5.0.bb            | 2 ++
- 1 file changed, 2 insertions(+)
+ classes/fossdriver-host.bbclass | 6 ++----
+ classes/fossology-rest.bbclass  | 9 ++++++---
+ 2 files changed, 8 insertions(+), 7 deletions(-)
 
-diff --git a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource=
--agents_4.5.0.bb b/meta-cgl-common/recipes-cgl/cluster-resource-agents/re=
-source-agents_4.5.0.bb
-index 83ef913..d34d706 100644
---- a/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents=
-_4.5.0.bb
-+++ b/meta-cgl-common/recipes-cgl/cluster-resource-agents/resource-agents=
-_4.5.0.bb
-@@ -106,6 +106,8 @@ FILES_${PN} +=3D "${datadir}/cluster/* \
-                 ${libdir}/ocf/resource.d/heartbeat/ \
-                 ${libdir}/ocf/lib/heartbeat/* \
-                 ${libdir}/ocf/resource.d/redhat \
-+                ${nonarch_libdir}/tmpfiles.d \
-+                ${systemd_unitdir}/system \
-                 "
-=20
- FILES_${PN}-dbg +=3D "${libdir}/ocf/resource.d/heartbeat/.debug \
---=20
-2.21.0
+diff --git a/classes/fossdriver-host.bbclass b/classes/fossdriver-host.bbclass
+index 840d3d3..bbf84e5 100644
+--- a/classes/fossdriver-host.bbclass
++++ b/classes/fossdriver-host.bbclass
+@@ -9,10 +9,8 @@
+ #   http://www.spdx.org
+ #
+ # Note:
+-# 1) Make sure fossology (after 3.5.0)(https://hub.docker.com/r/fossology/fossology/) has beed started on your host
+-# 2) spdx files will be output to the path which is defined as[SPDX_DEPLOY_DIR].
+-#    By default, SPDX_DEPLOY_DIR is tmp/deploy/
+-# 3) Added TOKEN has been set in conf/local.conf
++# 1) Make sure fossdriver has beed installed in your host;
++# 2) By default,spdx files will be output to the path which is defined as [SPDX_DEPLOY_DIR] in conf/local.conf.
+ #
+ 
+ inherit spdx-common
+diff --git a/classes/fossology-rest.bbclass b/classes/fossology-rest.bbclass
+index 87e348a..48e16f3 100644
+--- a/classes/fossology-rest.bbclass
++++ b/classes/fossology-rest.bbclass
+@@ -9,9 +9,12 @@
+ #   http://www.spdx.org
+ #
+ # Note:
+-# 1) Make sure fossdriver has beed installed in your host
+-# 2) By default,spdx files will be output to the path which is defined as[SPDX_DEPLOY_DIR] 
+-#    in ./meta/conf/spdx-dosocs.conf.
++# 1) Make sure FOSSology (>= 3.5.0)(https://hub.docker.com/r/fossology/fossology/) has beed started on your host;
++# 2) spdx files will be output to the path which is defined as [SPDX_DEPLOY_DIR] in conf/local.conf;
++#    By default, SPDX_DEPLOY_DIR is tmp/deploy/sdpx;
++# 3) Added TOKEN has been set in conf/local.conf.
++#
++
+ inherit spdx-common
+ FOSSOLOGY_SERVER ?= "http://127.0.0.1:8081/repo"
+ 
+-- 
+2.17.1
+
+
 
