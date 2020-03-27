@@ -1,55 +1,66 @@
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [85.220.165.71])
- by mx.groups.io with SMTP id smtpd.web11.9871.1585311187703812358
- for <yocto@lists.yoctoproject.org>;
- Fri, 27 Mar 2020 05:13:08 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: pengutronix.de, ip: 85.220.165.71, mailfrom: jlu@pengutronix.de)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-	by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <jlu@pengutronix.de>)
-	id 1jHnrG-0002pU-5W; Fri, 27 Mar 2020 13:13:06 +0100
-Received: from jlu by dude.hi.pengutronix.de with local (Exim 4.92)
-	(envelope-from <jlu@pengutronix.de>)
-	id 1jHnrF-0003R6-Po; Fri, 27 Mar 2020 13:13:05 +0100
-From: "Jan Luebbe" <jlu@pengutronix.de>
+Subject: Re: Mechanism behind pkg_postinst_ontarget_${PN} #yocto
 To: yocto@lists.yoctoproject.org
-Cc: Jan Luebbe <jlu@pengutronix.de>
-Subject: [meta-security][PATCH 2/2] apparmor: update to 2.13.4
-Date: Fri, 27 Mar 2020 13:12:53 +0100
-Message-Id: <20200327121253.13149-2-jlu@pengutronix.de>
-X-Mailer: git-send-email 2.26.0.rc2
-In-Reply-To: <20200327121253.13149-1-jlu@pengutronix.de>
-References: <20200327121253.13149-1-jlu@pengutronix.de>
+From: stefan.wenninger@evopro-ag.de
+X-Originating-Location: Regensburg, Bavaria, DE (88.133.236.129)
+X-Originating-Platform: Windows Chrome 80
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: jlu@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: yocto@lists.yoctoproject.org
-Content-Transfer-Encoding: 8bit
+Date: Fri, 27 Mar 2020 05:26:23 -0700
+References: <CANNYZj943hZyGefTNaAvjtcL=wK38N4pWB=RVQE89Aa_skJGWg@mail.gmail.com>
+In-Reply-To: <CANNYZj943hZyGefTNaAvjtcL=wK38N4pWB=RVQE89Aa_skJGWg@mail.gmail.com>
+Message-ID: <15437.1585311983365540635@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="bGTrvqQpJgdQpF2FhMWa"
 
-Signed-off-by: Jan Luebbe <jlu@pengutronix.de>
----
- recipes-mac/AppArmor/{apparmor_2.13.3.bb => apparmor_2.13.4.bb} | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
- rename recipes-mac/AppArmor/{apparmor_2.13.3.bb => apparmor_2.13.4.bb} (99%)
+--bGTrvqQpJgdQpF2FhMWa
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/recipes-mac/AppArmor/apparmor_2.13.3.bb b/recipes-mac/AppArmor/apparmor_2.13.4.bb
-similarity index 99%
-rename from recipes-mac/AppArmor/apparmor_2.13.3.bb
-rename to recipes-mac/AppArmor/apparmor_2.13.4.bb
-index 3398a3a75baa..f8fd19eb9e00 100644
---- a/recipes-mac/AppArmor/apparmor_2.13.3.bb
-+++ b/recipes-mac/AppArmor/apparmor_2.13.4.bb
-@@ -25,7 +25,7 @@ SRC_URI = " \
- 	file://run-ptest \
- 	"
- 
--SRCREV = "2f9d9ea7e01a115b29858455d3b1b5c6a0bab75c"
-+SRCREV = "df0ac742f7a1146181d8734d03334494f2015134"
- S = "${WORKDIR}/git"
- 
- PARALLEL_MAKE = ""
--- 
-2.26.0.rc2
+I think the relevant part for me in that script is the func exec_postinst_s=
+criplets(). It looks to me as if this function iterates through all scripts=
+ in the /etc/deb-postinsts directory in my case and executes them with "sh"=
+.
+My problem seems to have stemmed from confusion on my part about what pack=
+age the postinst attaches to.
+The postinst belongs to the package with the same name as my recipe becaus=
+e of the _${PN}. However I specified that my recipe produces another packag=
+e with the PROVIDES =3D"" variable.
+In my IMAGE_INSTALL I only added the package I specifically provide. There=
+fore the recipe package with the postinst did not end up in my rootfs.
 
+When changing the IMAGE_INSTALL I get my commands to be executed on the sy=
+stem on first boot.
+I realize now that my current method of having every recipe create an extr=
+a package with PROVIDES is not really necessary.
+
+Your hint about the run-postinsts directory was what lead me to understand=
+ the mechanism further.
+And on the way I recognized a bad or at least confusing practice on my beh=
+alf.
+
+I consider this question/problem solved, thank you very much.
+
+Stefan
+
+--bGTrvqQpJgdQpF2FhMWa
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+I think the relevant part for me in that script is the func <em>exec_postin=
+st_scriplets().</em> It looks to me as if this function iterates through al=
+l scripts in the /etc/deb-postinsts directory in my case and executes them =
+with "sh".<br />My problem seems to have stemmed from confusion on my part =
+about what package the postinst attaches to.<br />The postinst belongs to t=
+he package with the same name as my recipe because of the _${PN}. However I=
+ specified that my recipe produces another package with the PROVIDES =3D"" =
+variable.<br />In my IMAGE_INSTALL I only added the package I specifically =
+provide. Therefore the recipe package with the postinst did not end up in m=
+y rootfs.<br /><br />When changing the IMAGE_INSTALL I get my commands to b=
+e executed on the system on first boot.<br />I realize now that my current =
+method of having every recipe create an extra package with PROVIDES is not =
+really necessary.<br /><br />Your hint about the run-postinsts directory wa=
+s what lead me to understand the mechanism further.<br />And on the way I r=
+ecognized a bad or at least confusing practice on my behalf.<br /><br />I c=
+onsider this question/problem solved, thank you very much.<br /><br />Stefa=
+n
+
+--bGTrvqQpJgdQpF2FhMWa--
