@@ -1,37 +1,102 @@
-Received: from bsmtp2.bon.at (bsmtp2.bon.at [213.33.87.16])
- by mx.groups.io with SMTP id smtpd.web10.10991.1585314571313010236
- for <yocto@lists.yoctoproject.org>;
- Fri, 27 Mar 2020 06:09:31 -0700
-Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: streamunlimited.com, ip: 213.33.87.16, mailfrom: quentin.schulz@streamunlimited.com)
-Received: from qschulz (vpn.streamunlimited.com [91.114.0.140])
-	by bsmtp2.bon.at (Postfix) with ESMTPSA id 48phyc5gKSz5tlC;
-	Fri, 27 Mar 2020 14:09:28 +0100 (CET)
-Date: Fri, 27 Mar 2020 14:09:27 +0100
-From: "Quentin Schulz" <quentin.schulz@streamunlimited.com>
-To: stefan.wenninger@evopro-ag.de
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Mechanism behind pkg_postinst_ontarget_${PN} #yocto
-Message-ID: <20200327130927.dwe5tooql4p4s2d4@qschulz>
-References: <CANNYZj943hZyGefTNaAvjtcL=wK38N4pWB=RVQE89Aa_skJGWg@mail.gmail.com>
- <15437.1585311983365540635@lists.yoctoproject.org>
+Subject: Re: Mechanism behind pkg_postinst_ontarget_${PN} #yocto
+To: yocto@lists.yoctoproject.org
+From: stefan.wenninger@evopro-ag.de
+X-Originating-Location: Regensburg, Bavaria, DE (88.133.236.129)
+X-Originating-Platform: Windows Chrome 80
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <15437.1585311983365540635@lists.yoctoproject.org>
-User-Agent: NeoMutt/20180716
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Date: Fri, 27 Mar 2020 06:41:57 -0700
+References: <20200327130927.dwe5tooql4p4s2d4@qschulz>
+In-Reply-To: <20200327130927.dwe5tooql4p4s2d4@qschulz>
+Message-ID: <17939.1585316517056146913@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="T4YuAChr7xPleHzV85fi"
 
-Hi Stefan,
+--T4YuAChr7xPleHzV85fi
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 27, 2020 at 05:26:23AM -0700, stefan.wenninger@evopro-ag.de wrote:
-> I think the relevant part for me in that script is the func exec_postinst_scriplets(). It looks to me as if this function iterates through all scripts in the /etc/deb-postinsts directory in my case and executes them with "sh".
-> My problem seems to have stemmed from confusion on my part about what package the postinst attaches to.
-> The postinst belongs to the package with the same name as my recipe because of the _${PN}. However I specified that my recipe produces another package with the PROVIDES ="" variable.
+Hi Quentin,
+I have now read up on the exact meaning of PROVIDES and PACKAGES and I do =
+understand your response.
+It does sound like I am talking about PACKAGES since I did suspect PROVIDE=
+S to work like that.
+Well at least if PROVIDES would work like that, it would explain why my po=
+stinstall did not work previously.
 
-I think you meant PACKAGES and not PROVIDES here. If that is the case,
-then yes, congrats, you found the root cause :)
+But I did use PROVIDES, which I now know is basically just a alias.
 
-Otherwise, I think there might be something worth debugging and maybe
-reporting.
+Here is the situation I had before and how I solved it:
 
-Quentin
+Previous attempt:
+*my_recipe.bb:*
+...
+PROVIDES +=3D "my_recipes_package"
+RPROVIDES_${PN} +=3D "my_recipes_package"
+
+pkg_postinst_ontarget_${PN} () {
+#!/bin/sh
+file=3D$D/home/root/test/test.txt
+printf "hello world\n" > $file
+}
+
+*my_image.bb:*
+IMAGE_INSTALL +=3D " my_recipes_package "
+
+current solution:
+*my_recipe.bb:*
+...
+pkg_postinst_ontarget_${PN} () {
+#!/bin/sh
+file=3D$D/home/root/test/test.txt
+printf "hello world\n" > $file
+}
+
+*my_image.bb:*
+IMAGE_INSTALL +=3D " my_recipe "
+
+I can only guess that the postinst was only attached to the package called=
+ "my_recipe" and not to its alias "my_recipes_package"?
+
+Stefan
+
+--T4YuAChr7xPleHzV85fi
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Quentin,<br />I have now read up on the exact meaning of PROVIDES and PA=
+CKAGES and I do understand your response.<br />It does sound like I am talk=
+ing about PACKAGES since I did suspect PROVIDES to work like that.<br />Wel=
+l at least if PROVIDES would work like that, it would explain why my postin=
+stall did not work previously.<br /><br />But I did use PROVIDES, which I n=
+ow know is basically just a alias.<br /><br />Here is the situation I had b=
+efore and how I solved it:<br /><br />Previous attempt:<br />
+<div style=3D"padding-left: 30px;"><strong>my_recipe.bb:</strong></div>
+<div style=3D"padding-left: 60px;">...</div>
+<div style=3D"padding-left: 60px;">PROVIDES +=3D "my_recipes_package"</div=
+>
+<div style=3D"padding-left: 60px;">RPROVIDES_${PN} +=3D "my_recipes_packag=
+e"<br /><br /></div>
+<div style=3D"padding-left: 60px;">pkg_postinst_ontarget_${PN} () {</div>
+<div style=3D"padding-left: 90px;">#!/bin/sh</div>
+<div style=3D"padding-left: 90px;">file=3D$D/home/root/test/test.txt</div>
+<div style=3D"padding-left: 90px;">printf "hello world\n" &gt; $file</div>
+<div style=3D"padding-left: 60px;">}</div>
+<br />
+<div style=3D"padding-left: 30px;"><strong>my_image.bb:</strong></div>
+<div style=3D"padding-left: 60px;">IMAGE_INSTALL +=3D " my_recipes_package=
+ "</div>
+<br />current solution:<br />
+<div style=3D"padding-left: 30px;"><strong>my_recipe.bb:</strong></div>
+<div style=3D"padding-left: 60px;">...</div>
+<div style=3D"padding-left: 60px;">pkg_postinst_ontarget_${PN} () {</div>
+<div style=3D"padding-left: 90px;">#!/bin/sh</div>
+<div style=3D"padding-left: 90px;">file=3D$D/home/root/test/test.txt</div>
+<div style=3D"padding-left: 90px;">printf "hello world\n" &gt; $file</div>
+<div style=3D"padding-left: 60px;">}<br /><br /></div>
+<div style=3D"padding-left: 30px;"><strong>my_image.bb:</strong></div>
+<div style=3D"padding-left: 60px;">IMAGE_INSTALL +=3D " my_recipe "</div>
+<br />I can only guess that the postinst was only attached to the package =
+called "my_recipe" and not to its alias "my_recipes_package"?<br /><br />St=
+efan
+
+--T4YuAChr7xPleHzV85fi--
