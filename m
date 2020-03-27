@@ -1,89 +1,50 @@
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
- by mx.groups.io with SMTP id smtpd.web12.7765.1585300191294359022
- for <yocto@lists.yoctoproject.org>;
- Fri, 27 Mar 2020 02:09:51 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=lQZ7PnFe;
- spf=pass (domain: gmail.com, ip: 209.85.221.182, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vk1-f182.google.com with SMTP id p123so2492846vkg.1
-        for <yocto@lists.yoctoproject.org>; Fri, 27 Mar 2020 02:09:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bQBvVH1FMGvjhzc0RjnWFJkxDwJbuDotxC4Uz57MB6E=;
-        b=lQZ7PnFeofs/UmWvgmHEU/UZ2ApPa5klzSZRXShHa3CgVKWF+jU8O3qoVsImha28dB
-         6Tt+/VEMQvX5xjA2C4cK6cL7GjePDgn4iVQ5nk416PKL6vfhIlrntzRHHWuIDbNcNj54
-         SehfuyjlgCfEvIE1WUcwfUSsag1hmWNiTeQVgLFIy6DuWpdJOCyxycldX6R3zy0/JjX0
-         0Yj/J9nqbn9Q0VkAKtrbEQ93S/15fVB+OiW/+mvNLQucwjeV94ZdT9bdE28X3i0gLcVR
-         Wmr2ZLrkO1fFDxp5NBqfDejl9dMF4Kg7bCKvV+Z2ggf8xTqcmIO4Dyo97Fik1lcKFTvG
-         fENQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bQBvVH1FMGvjhzc0RjnWFJkxDwJbuDotxC4Uz57MB6E=;
-        b=bEgP0V02eXY8eedGsedVr1lBlH5RULTKsdJSQluh+7nXk1nFGQvO/iyItR8fqeCfxx
-         EsZH8gzGdRmri5JROTH7uWA/rntFW3uZMLFYneCv6ucU98pSyi8fWDfzIHSZnO/VNchF
-         VC+4cANkpXB3PvJQcbQdN44/A5xlUCpW3tS+is25olbCdRGuJiEPysZvPjoFeXxfCRjn
-         geZqKCSMYmpKANbmyaF6JUGG/CRU31b1w93WPLHRGArwyPxnzbomWr8EW7L+GD0QshVR
-         MV8G0XBRmkxEp2vTaGtMNyZ2EqaNh2xIFpXycjKHjIahoQ7AsBcQCy+yut5lMspCnWtK
-         LNww==
-X-Gm-Message-State: ANhLgQ16fFdBTrjYpqAtnd5oZI60RSVV+jgiGmBEZp1Fy7eTtpToHcoS
-	UnYEe1ysRHhhC3WkU4T2+yfiJPTQ5ucVx0fjys4=
-X-Google-Smtp-Source: ADFU+vv8wjEELUdZUdA/ErvWV0TKSSYhrVD1V3P6YJy8W3sOWNPDctB+j57RFJV6fiaxlZzlCGHmkmMHeKLpiVuc4DY=
-X-Received: by 2002:a1f:ee05:: with SMTP id m5mr10607199vkh.9.1585300190436;
- Fri, 27 Mar 2020 02:09:50 -0700 (PDT)
+Subject: Re: Mechanism behind pkg_postinst_ontarget_${PN} #yocto
+To: yocto@lists.yoctoproject.org
+From: stefan.wenninger@evopro-ag.de
+X-Originating-Location: Regensburg, Bavaria, DE (88.133.236.129)
+X-Originating-Platform: Windows Chrome 80
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CANNYZj9DCZ4+dNHP9Sy4gSNURHYdbUJ6BUGwEN1GkjKD9AgDKw@mail.gmail.com>
- <15437.1585300012396240460@lists.yoctoproject.org>
-In-Reply-To: <15437.1585300012396240460@lists.yoctoproject.org>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Fri, 27 Mar 2020 10:09:39 +0100
-Message-ID: <CANNYZj9JKutRV2p93WD2p6i31M-jeUJubAaVc7ggms8e_jDpeA@mail.gmail.com>
-Subject: Re: [yocto] Mechanism behind pkg_postinst_ontarget_${PN} #yocto
-To: stefan.wenninger@evopro-ag.de
-Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000b6a2d505a1d2764a"
+Date: Fri, 27 Mar 2020 02:26:56 -0700
+References: <CANNYZj9JKutRV2p93WD2p6i31M-jeUJubAaVc7ggms8e_jDpeA@mail.gmail.com>
+In-Reply-To: <CANNYZj9JKutRV2p93WD2p6i31M-jeUJubAaVc7ggms8e_jDpeA@mail.gmail.com>
+Message-ID: <17939.1585301216508919705@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="N536TZewn1aE7E8V4fgm"
 
---000000000000b6a2d505a1d2764a
-Content-Type: text/plain; charset="UTF-8"
-
-Actually, that depends on which package format you use. The script that
-executes the postinsts on target can be found in
-meta/recipes-devtools/run-postinsts/run-postinsts/run-postinsts.
-
-Alex
-
-On Fri, 27 Mar 2020 at 10:06, <stefan.wenninger@evopro-ag.de> wrote:
-
-> Hi Alex,
-> Im not sure if my previous reply got sent/reached you. I apologise in case
-> you receive this message twice.
->
-> Should there be a script in /etc created from my
-> *pkg_postinst_ontarget_${PN}* function? If yes, what would its name be?
->
-> Stefan 
->
-
---000000000000b6a2d505a1d2764a
-Content-Type: text/html; charset="UTF-8"
+--N536TZewn1aE7E8V4fgm
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Actually, that depends on which package format you us=
-e. The script that executes the postinsts on target can be found in meta/re=
-cipes-devtools/run-postinsts/run-postinsts/run-postinsts.</div><div><br></d=
-iv><div>Alex<br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr"=
- class=3D"gmail_attr">On Fri, 27 Mar 2020 at 10:06, &lt;<a href=3D"mailto:s=
-tefan.wenninger@evopro-ag.de">stefan.wenninger@evopro-ag.de</a>&gt; wrote:<=
-br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex">Hi Alex,<br>Im n=
-ot sure if my previous reply got sent/reached you. I apologise in case you =
-receive this message twice.<br><br>Should there be a script in /etc created=
- from my <em>pkg_postinst_ontarget_${PN}</em> function? If yes, what would =
-its name be?<br><br>Stefan
-<br>
-</blockquote></div>
+I am using deb as my package class. What I am gathering from that run-posti=
+nsts directory is that there is a systemd service that starts and executes =
+the run-postinsts script.
+That script looks for a directory /etc/deb-postinsts and executes all scri=
+pts in there. Does that mean, that the mechanism used in the end is the pos=
+t-install scripts of deb packages?
+So basically the pkg_postinst_ontarget_${PN} function adds a postinstall s=
+cript to the .deb package of the recipe it is in, correct?
+That should mean that I can expect to see a script in /etc/deb-postinsts t=
+hat contains my commands. I will verify that right away.
 
---000000000000b6a2d505a1d2764a--
+If these assumptions are correct, you have already greatly improved my und=
+erstanding of this process. Thank you for that.
+
+Stefan
+
+--N536TZewn1aE7E8V4fgm
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+I am using deb as my package class. What I am gathering from that run-posti=
+nsts directory is that there is a systemd service that starts and executes =
+the run-postinsts script.<br />That script looks for a directory /etc/deb-p=
+ostinsts and executes all scripts in there. Does that mean, that the mechan=
+ism used in the end is the post-install scripts of deb packages?<br />So ba=
+sically the <em>pkg_postinst_ontarget_${PN}</em> function adds a postinstal=
+l script to the .deb package of the recipe it is in, correct?<br />That sho=
+uld mean that I can expect to see a script in /etc/deb-postinsts that conta=
+ins my commands. I will verify that right away.<br /><br />If these assumpt=
+ions are correct, you have already greatly improved my understanding of thi=
+s process. Thank you for that.<br /><br />Stefan
+
+--N536TZewn1aE7E8V4fgm--
