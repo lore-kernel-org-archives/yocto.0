@@ -1,41 +1,45 @@
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (NAM11-DM6-obe.outbound.protection.outlook.com [40.107.223.117])
- by mx.groups.io with SMTP id smtpd.web12.8040.1585409430262123980
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (NAM11-DM6-obe.outbound.protection.outlook.com [40.107.223.90])
+ by mx.groups.io with SMTP id smtpd.web12.8215.1585409917341179122
  for <yocto@lists.yoctoproject.org>;
- Sat, 28 Mar 2020 08:30:30 -0700
+ Sat, 28 Mar 2020 08:38:37 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@zpesystems.onmicrosoft.com header.s=selector2-zpesystems-onmicrosoft-com header.b=BEb+ZODq;
- spf=pass (domain: zpesystems.com, ip: 40.107.223.117, mailfrom: edson.seabra@zpesystems.com)
+ dkim=pass header.i=@zpesystems.onmicrosoft.com header.s=selector2-zpesystems-onmicrosoft-com header.b=KtKpoMo6;
+ spf=pass (domain: zpesystems.com, ip: 40.107.223.90, mailfrom: edson.seabra@zpesystems.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=DD+On3DXzRkPG3iyRmT/D9w2NPNgYojjeOBgcbKeYNNzn2NnccNSuPq4hJAeASNGJCVbhXUrrBi6Haf5rmCTqB63s15oPQssiKCby6iYQT50roAVTgXrCQLv+kZta0fPMM+jJ8NFRxdHwCTIEIT8twHjgVKYKQRoY8EW25n7D/BgwN69rI0Z9qe042YV0N6pWWYgTN/Lu+RGbQwrLiSq88Nd7BZNrPzIPQtCtVQ+B0hq6fbW1nx4ntrh/9tDqWj2Q5l8hzujNxGeItxF7GeKQyibN892Zugacu56OkHD+JMnQBQcvD9zrV6eKHc0J1JkEf3PIGhZgRB1ojzFtZU/sA==
+ b=B2KTQcmk2WZ73nBRD4O9PLsGQvMmEVNINEhu2x3us4eWAn6Au/Ogvyna/livo3LNhQBA6FV0GBdMxAApYuWM9JWar62LVe1e9WBNZ/UKJlT75kUkOVZWpnNKigNWJU2R97rtKz8vdmkBXBAZVfqqxJgokAxM9cnRL+9T4fL09UHX+4QUFmMLLq9eukNfZnjVEkNXIGI5w6UuJ0tK/PLM3Ia0Lye/Qld8VNfmZXDNJacCIR64g5Q5KQEEPwojKm8rrUGceZRZwMBnKWtNGhOPnu0jubaaCt3fPXF2JkUgt52ZTg37BqhppU8n/0PlgVkmDrCqTR7Yd4OJpcV0fidLvg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zrNahau5fnGiOHJnMcU9qOo1PLXG+y4YBQP4NUT7cYk=;
- b=gTup3jIJ7BW97hwSud7ksSBQ7ZNYXabNjMevQdfv48XvWQaGQADSeZY0KNIB+n+WVSdBK+jyuBfSYc9bhXJcjpIK/1XF8ogLfz/kzRANRypqYDUU3OnkLFRckb5dvj0Q7CLpxPAM0+sSKBQX6zecp4JhulisyJTZRKUvvZXnUY7PEC3OnDskTg+8jmO8pw3ZZrH5xnyewaCPIJtXSw8BAcq5XcV+MXp60ult9+EbUg4LvblEpGdBt/loFGyOOCNxb+JMfEWU1HZUoSXFpJ/FScqEJh24W6r00RzUBTfFgP4PWqtrC4JMrDvwSFnXJo4euV5eHIi+qyJ+qH1Vs6iwAA==
+ bh=IQjg3FFbulMybA70pYgSqwkTT/s8GQZ2P1eJuE/1ChY=;
+ b=HhTLclp9b572+Eaogp0hZPBfU+3dVOERxomIyIXAL7Au+VytmJbIcIdjoIEAjHOxZpbr5297yLnMh4RdzVO9nh+zPA+FtuZUFTYaS3Hnl6sol0iuaUwVW9GUUizVs4bbARUgO5ZyODPjmhaCAJdTS//3lKqywT35zD5gp+Qa/Zk7uh6grruPdVpuggmHdziWEhqlz3MMUt5q9aaATf56p6KiyDNwrYWQuBe6d1x2S+9tXyxAXVYGeqLAU5iRHY5oZymiFRNfuy7NnOfOnjHW3kJdPWqmRGg/iLDX4yrVk8d0UB2rSOE4N8O9JTPzcPR+0jY5BmU6FoT3Tc1diaoXJA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=zpesystems.com; dmarc=pass action=none
  header.from=zpesystems.com; dkim=pass header.d=zpesystems.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
  d=ZPESystems.onmicrosoft.com; s=selector2-ZPESystems-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zrNahau5fnGiOHJnMcU9qOo1PLXG+y4YBQP4NUT7cYk=;
- b=BEb+ZODqWl1T3QGtyNqyLs0IUF/ZRLINqJOrPexhhUHX0rADtSz/YqPwyztc79UhfDHAF61fO9XanV6eOvFOKa0JXoYBc6kGMO0LOa7+MzTVkccvh7vgW+K6RY0Ess5VjDS31zxNY59Wz63GS/e7v6g6M4ziz3QLke4JGeLKm7A=
+ bh=IQjg3FFbulMybA70pYgSqwkTT/s8GQZ2P1eJuE/1ChY=;
+ b=KtKpoMo6JRgSOaCBVZaKQ73ggQr9wfZy3fEfOTL6btlwyxckKI4/3ZaK5eBzDYVVyNve790b2bZqm/5E+iAaLaC5rRlVlY/pFYv8746iXbNNrakhVStqJD1f6WaQTlp96caFYv//7LdLpA7G9S9/diJvtOy1QxLCHqCg+2SH+fM=
 Received: from BN6PR19MB3249.namprd19.prod.outlook.com (2603:10b6:405:7b::25)
  by BN6PR19MB0066.namprd19.prod.outlook.com (2603:10b6:405:62::13) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.20; Sat, 28 Mar
- 2020 15:30:28 +0000
+ 2020 15:38:35 +0000
 Received: from BN6PR19MB3249.namprd19.prod.outlook.com
  ([fe80::ecd6:b454:48cd:da3a]) by BN6PR19MB3249.namprd19.prod.outlook.com
  ([fe80::ecd6:b454:48cd:da3a%3]) with mapi id 15.20.2856.019; Sat, 28 Mar 2020
- 15:30:28 +0000
+ 15:38:35 +0000
 From: "Edson Seabra" <edson.seabra@zpesystems.com>
 To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Compressing btrfs image
+Subject: Re: Compressing btrfs image
 Thread-Topic: Compressing btrfs image 
-Thread-Index: AQHWBRGhLgjqnm44F0OQQSZpHRJSag==
-Date: Sat, 28 Mar 2020 15:30:27 +0000
+Thread-Index: AQHWBRGhLgjqnm44F0OQQSZpHRJSaqheI395
+Date: Sat, 28 Mar 2020 15:38:35 +0000
 Message-ID: 
+ <BN6PR19MB3249C4816DAEC312FF6BAE53F7CD0@BN6PR19MB3249.namprd19.prod.outlook.com>
+References: 
+ <BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0@BN6PR19MB3249.namprd19.prod.outlook.com>
+In-Reply-To: 
  <BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0@BN6PR19MB3249.namprd19.prod.outlook.com>
 Accept-Language: en-US
 X-MS-Has-Attach: yes
@@ -44,46 +48,54 @@ authentication-results: spf=none (sender IP is )
  smtp.mailfrom=Edson.Seabra@zpesystems.com; 
 x-originating-ip: [2804:14d:7e81:88ba:c536:4eea:9213:3ea3]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 98948940-b9ed-4c41-93fa-08d7d32cf18d
+x-ms-office365-filtering-correlation-id: a0d458d1-431a-43f9-4e81-08d7d32e142b
 x-ms-traffictypediagnostic: BN6PR19MB0066:
 x-microsoft-antispam-prvs: 
- <BN6PR19MB0066C2B585DDF84B8194A9D0F7CD0@BN6PR19MB0066.namprd19.prod.outlook.com>
+ <BN6PR19MB006655854775AF1CAA675AB7F7CD0@BN6PR19MB0066.namprd19.prod.outlook.com>
 x-ms-oob-tlc-oobclassifiers: OLM:8882;
 x-forefront-prvs: 03569407CC
 x-forefront-antispam-report: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR19MB3249.namprd19.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(10019020)(376002)(136003)(396003)(366004)(39840400004)(346002)(71200400001)(86362001)(81156014)(81166006)(186003)(19627405001)(8936002)(6916009)(66946007)(91956017)(66556008)(66446008)(64756008)(7696005)(316002)(76116006)(99936003)(7116003)(66476007)(66616009)(6506007)(55016002)(861006)(5660300002)(3480700007)(508600001)(4743002)(9686003)(2906002)(52536014)(33656002)(8676002);DIR:OUT;SFP:1102;
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR19MB3249.namprd19.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(10019020)(396003)(346002)(39840400004)(366004)(376002)(136003)(53546011)(3480700007)(508600001)(55016002)(6506007)(5660300002)(33656002)(8676002)(52536014)(9686003)(4743002)(2906002)(186003)(2940100002)(6916009)(19627405001)(8936002)(81156014)(81166006)(86362001)(71200400001)(66476007)(66946007)(7116003)(66616009)(99936003)(64756008)(91956017)(66556008)(66446008)(76116006)(7696005)(316002);DIR:OUT;SFP:1102;
 received-spf: None (protection.outlook.com: zpesystems.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
 x-microsoft-antispam-message-info: 
- qB1wtK4djLL3mKEYM28vw0G0h2KVuJGJg4TDDMD+WN2JFwp+RDJM+Mrg2Wz8VD9kryJLv9k4+tbQg6yWYqXgVJQYXYkP+uJaAiSrcvv1DHMZxPve+1y/0FVrYrPuOfLr53h7dq2hGPH6F+66E2FnhJRgF3CLNDnxAYfXpnee0ZcPy+rF0fhfoGGuH8AVc1/7WbVDp72U1uyEqlseOeR9fgJ4ghAy/W1it26gD/tYc9XtvoqLfcAkyokNPMunNDj9ijp5b3qK7bRudePQE8yH5hF0Jx9hQVjP0M9r8jbyKaVM7hX4Girf6fBUvLS3+xBoC1vRW84IxQLwzUoDm806OcWCOzY2VPJtE5bk80mPE0cHgB56E3GYCd5Clx3etGBYjnkOeQ+vinUeeqs1lEnqsYzG7oV+lOAUc9elyE7q2orlJv+MRk98Pb+aHJHiCW/myMqFR94oP/ZiBzvuy80EJpKmo7zyFLs1bBg2/zaAnh5RAWRBQM6mqt2VyMx5lLgUuVoX4wdE3pJWwbzcRrs6dA==
+ CcD57aNLV5EF2y9oHNpeoFH6mkXhY+olmLNomhJL86BkXCY7Aj21wR5qZVJzLAu6vPSzXSQj83aTjJgQaDSOrdQYws5RG87ITiiiYbFiKI7rxSyN4UK7yCBk3hH0J2QDGyb8I9tPiF4ysQhsq/uFKz0S5sW364cJMpPt5FbM0BMwQiwu2y4+zbaDgn+U1I0RageZPxCY0TZCuYPP5mx8SwFerE5Hw+wU+SJl2NIsKEjNgdmiOvfnhFhb6alBMWPV/fPuabPEqmPnLU58I8aS/oNPojv0pQmUBrmxU3HNHMV1/Fj+wh9HfEDfbO96u5MLkTqVUzBttMp2Xe/l8ra+pI+nlhN2sHtQUZR1hN36L4ywup+naaoxk5NmGKP+6ty4bFgrUtSLP/2ryjoQW44DFE5KKenxhM8PWPyBfyckt6oipLUFeGUbP9QhIMelF1+2r8elAGq8955z9HF0MPWPsddRtbnetvZjr8BHNic3EahQYXGHMjHcK9pgxjHf+geG977MLNfoOljZvUjs9BpnAg==
 x-ms-exchange-antispam-messagedata: 
- 1oO0yNrPWHpzQXCFHxxeT551dnEy2u5AyfiE7jwNcVwUWm3ZZWCPTJTfFKcWYQMQRvJN2KcVMnE7iluN9BIEemcnCGU+GDP0J5XIBYD4IAFYbWs7TVORWmzUZe7EjfXfeVY103MAgu79i8HGW82Mw88zcSa6wN7DL2eEBGDVG72wK/3iOVczk0/pKUrK7MtmPsyrHoCFm8KyrSXdYUX0rA==
+ N7IYU1He/eZl/uQ1sovz9Z5KEBd0f+0zdgqvEm20WKKOJIbJT0w0AcuzqGVFWWtkBTa/fNvCR3pZGm1ev3H01YEJz++QQ2Osh41Qnt3PIi3j2gLcmcnza0G7ytuHcCfCjkd9Aw61E+3hNFst+ztzplqF2HdvyTHLbDqRLyItY00YxUzoPm42RPDU8UDGoC8K8TC1jD3m356hAxpm0IMyCA==
 x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
 X-OriginatorOrg: zpesystems.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 98948940-b9ed-4c41-93fa-08d7d32cf18d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Mar 2020 15:30:27.5986
+X-MS-Exchange-CrossTenant-Network-Message-Id: a0d458d1-431a-43f9-4e81-08d7d32e142b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Mar 2020 15:38:35.4844
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 09cd24a9-c206-4d0b-8a25-3e9a321f0e90
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: OSLnpqMyfx6fb7VHNfKK70g0aVL2lhqW15jMaq4ulrHByoyrqpX28vGuQ0DhW1oZZXnMGYN7jkAQXsNTsMqDNdt6zAlnzpl7/WHDsZU75XY=
+X-MS-Exchange-CrossTenant-userprincipalname: W3AIl48jpkwzGcQE42loRCq87SdgUzkMDjiOUaj/w8tYgxSaq+9m5lj4G9AL0wi2HFmQH0nHjU9VmOO8QWHiu6/t31gqRmU76cTd80BOdMo=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR19MB0066
-X-Groupsio-MsgNum: 48964
+X-Groupsio-MsgNum: 48965
 Content-Language: en-US
 Content-Type: multipart/related;
-	boundary="_004_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_";
+	boundary="_004_BN6PR19MB3249C4816DAEC312FF6BAE53F7CD0BN6PR19MB3249namp_";
 	type="multipart/alternative"
 
---_004_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_
+--_004_BN6PR19MB3249C4816DAEC312FF6BAE53F7CD0BN6PR19MB3249namp_
 Content-Type: multipart/alternative;
-	boundary="_000_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_"
+	boundary="_000_BN6PR19MB3249C4816DAEC312FF6BAE53F7CD0BN6PR19MB3249namp_"
 
---_000_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_
+--_000_BN6PR19MB3249C4816DAEC312FF6BAE53F7CD0BN6PR19MB3249namp_
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+I forget to say I'm using zeus...
+
+________________________________
+From: Edson Seabra
+Sent: Saturday, March 28, 2020 12:30 PM
+To: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
+Subject: Compressing btrfs image
 
 Hi all.
 
@@ -139,7 +151,7 @@ E   edson.seabra@zpesystems.com<mailto:alvin.chan@zpesystems.com>
 zpesystems.com<https://www.zpesystems.com/> | Request a Nodegrid Demo<https=
 ://www.zpesystems.com/demo/>
 
---_000_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_
+--_000_BN6PR19MB3249C4816DAEC312FF6BAE53F7CD0BN6PR19MB3249namp_
 Content-Type: text/html; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
@@ -153,149 +165,168 @@ ttom:0;} </style>
 <body dir=3D"ltr">
 <div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
 : 12pt; color: rgb(0, 0, 0);">
+I forget to say I'm using zeus...</div>
+<div>
+<div id=3D"appendonsend"></div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<br>
+</div>
+<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" co=
+lor=3D"#000000" style=3D"font-size:11pt"><b>From:</b> Edson Seabra<br>
+<b>Sent:</b> Saturday, March 28, 2020 12:30 PM<br>
+<b>To:</b> yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&gt=
+;<br>
+<b>Subject:</b> Compressing btrfs image </font>
+<div>&nbsp;</div>
+</div>
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 Hi all.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 I'm trying to compress a btrfs rootfs</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-I added&nbsp; in &quot;<span style=3D"font-family: Calibri, Arial, Helvetic=
-a, sans-serif; background-color: rgb(255, 255, 255); display: inline !impor=
-tant">image_types.bbclass:</span>IMAGE_CMD_btrfs ()&quot;&nbsp; two command=
-s:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+I added&nbsp; in &quot;<span style=3D"font-family:Calibri,Arial,Helvetica,s=
+ans-serif; background-color:rgb(255,255,255); display:inline!important">ima=
+ge_types.bbclass:</span>IMAGE_CMD_btrfs ()&quot;&nbsp; two commands:</div>
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 1) mount the btrfs image after mkfs.btrfs</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 2) btrfs filesystem defrag &#43; compress option</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 But the command mount fails:</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 mount: /home/edson/ng-trunk/nodegrid/tmp/work/genericx86_64-poky-linux/node=
 grid/1.0-r0/deploy-nodegrid-image-complete/temp_btrfs: failed to setup loop=
  device for /home/edson/ng-trunk/nodegrid/tmp/work/genericx86_64-poky-linux=
 /nodegrid/1.0-r0/deploy-nodegrid-image-complete/nodegrid-genericx86-64-2020=
 0328134151.rootfs.btrfs.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 I saw in image.bbclass the creation of do_image_btrfs task with flag 'faker=
 oot'.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
-lvetica, sans-serif">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
+<div style=3D"margin:0px; font-size:12pt; font-family:Calibri,Arial,Helveti=
+ca,sans-serif">
 <br>
 =3D=3D=3D=3D=3D=3D image.bbclass =3D=3D=3D=3D</div>
-<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
-lvetica, sans-serif">
-<span style=3D"margin: 0px">&nbsp; &nbsp; &nbsp; &nbsp; task =3D &quot;do_i=
-mage_%s&quot; % t.replace(&quot;-&quot;, &quot;_&quot;).replace(&quot;.&quo=
-t;, &quot;_&quot;)<br>
+<div style=3D"margin:0px; font-size:12pt; font-family:Calibri,Arial,Helveti=
+ca,sans-serif">
+<span style=3D"margin:0px">&nbsp; &nbsp; &nbsp; &nbsp; task =3D &quot;do_im=
+age_%s&quot; % t.replace(&quot;-&quot;, &quot;_&quot;).replace(&quot;.&quot=
+;, &quot;_&quot;)<br>
 </span>
-<div style=3D"margin: 0px"><br>
+<div style=3D"margin:0px"><br>
 </div>
-<div style=3D"margin: 0px">&nbsp; &nbsp; &nbsp; &nbsp; d.setVar(task, '\n'.=
-join(cmds))<br>
+<div style=3D"margin:0px">&nbsp; &nbsp; &nbsp; &nbsp; d.setVar(task, '\n'.j=
+oin(cmds))<br>
 </div>
-<div style=3D"margin: 0px">&nbsp; &nbsp; &nbsp; &nbsp; d.setVarFlag(task, '=
-func', '1')<br>
+<div style=3D"margin:0px">&nbsp; &nbsp; &nbsp; &nbsp; d.setVarFlag(task, 'f=
+unc', '1')<br>
 </div>
-<div style=3D"margin: 0px">&nbsp; &nbsp; &nbsp; &nbsp; d.setVarFlag(task, '=
-<span style=3D"margin: 0px; color: rgb(12, 136, 42)">fakeroot</span>', '1')=
-<br>
+<div style=3D"margin:0px">&nbsp; &nbsp; &nbsp; &nbsp; d.setVarFlag(task, '<=
+span style=3D"margin:0px; color:rgb(12,136,42)">fakeroot</span>', '1')<br>
 </div>
-<span style=3D"margin: 0px"></span>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+<span style=3D"margin:0px"></span>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div>
-<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
-lvetica, sans-serif">
+<div style=3D"margin:0px; font-size:12pt; font-family:Calibri,Arial,Helveti=
+ca,sans-serif">
 <br>
 </div>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 would the fakeroot flag allow do_image_btrfs execute commands that requires=
  root privilege ?</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 If not what would be the way to execute the mount command ?</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 I tried &quot;pseudo mount&quot; but it failed same way...</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 Thanks in advance.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
 <div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 Edson.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12p=
+t; color:rgb(0,0,0)">
 <br>
 </div>
-<div id=3D"Signature">
+<div id=3D"x_Signature">
 <div></div>
-<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; color=
-:#000000; background-color:#FFFFFF; font-family:Calibri,Arial,Helvetica,san=
-s-serif">
-<p style=3D"margin-top:0px; margin-bottom:0px"></p>
-<div class=3D"x_MsoNormal" style=3D"margin:0px 0in 0.000133333px; font-size=
-:11pt; font-family:Calibri,sans-serif; color:rgb(33,33,33)">
+<div id=3D"x_divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; col=
+or:#000000; background-color:#FFFFFF; font-family:Calibri,Arial,Helvetica,s=
+ans-serif">
+<p style=3D"margin-top: 0px; margin-bottom: 0px;margin-top:0px; margin-bott=
+om:0px">
+</p>
+<div class=3D"x_x_MsoNormal" style=3D"margin:0px 0in 0.000133333px; font-si=
+ze:11pt; font-family:Calibri,sans-serif; color:rgb(33,33,33)">
 <a style=3D"margin:0px; font-size:11pt; font-family:Calibri,sans-serif; tex=
 t-align:start; background-color:rgb(255,255,255)"><font face=3D"Source Sans=
  Pro" size=3D"2" color=3D"#0BABC6"><span style=3D"margin:0px; font-size:10p=
 t"><b>Edson Seabra</b></span></font></a><br>
 </div>
-<p class=3D"x_MsoNormal" style=3D"margin-top:0px; margin-bottom:0px; margin=
-:0in 0in 0.0001pt; font-size:11pt; font-family:Calibri,sans-serif; color:rg=
-b(33,33,33)">
+<p class=3D"x_x_MsoNormal" style=3D"margin-top: 0px; margin-bottom: 0px;mar=
+gin-top:0px; margin-bottom:0px; margin:0in 0in 0.0001pt; font-size:11pt; fo=
+nt-family:Calibri,sans-serif; color:rgb(33,33,33)">
 <span style=3D"font-size:10pt; color:rgb(31,73,125)">Principal Engineer</sp=
 an></p>
-<p class=3D"x_MsoNormal" style=3D"margin-top:0px; margin-bottom:0px; margin=
-:0in 0in 0.0001pt; font-size:11pt; font-family:Calibri,sans-serif; color:rg=
-b(33,33,33)">
+<p class=3D"x_x_MsoNormal" style=3D"margin-top: 0px; margin-bottom: 0px;mar=
+gin-top:0px; margin-bottom:0px; margin:0in 0in 0.0001pt; font-size:11pt; fo=
+nt-family:Calibri,sans-serif; color:rgb(33,33,33)">
 <span style=3D"font-size:10pt; color:rgb(31,73,125)">M &#43;1 510 579 0843<=
 /span></p>
 <div><span style=3D"font-size:10pt; font-family:&quot;Source Sans Pro&quot;=
@@ -307,20 +338,20 @@ f,EmojiFont; color:rgb(5,99,193)">edson.seabra@zpesystems.com</span></a><br=
 >
 </div>
 <div>
-<p style=3D"margin-top:0px; margin-bottom:0px; margin:0in 0in 0.0001pt; fon=
-t-size:12pt; font-family:Calibri">
+<p style=3D"margin-top: 0px; margin-bottom: 0px;margin-top:0px; margin-bott=
+om:0px; margin:0in 0in 0.0001pt; font-size:12pt; font-family:Calibri">
 <span style=3D"font-size:10pt; font-family:&quot;Source Sans Pro&quot;,seri=
 f,EmojiFont; color:rgb(96,109,117)"></span></p>
-<p style=3D"margin-top:0px; margin-bottom:0px; margin:0in 0in 0.0001pt; fon=
-t-size:12pt; font-family:Calibri">
+<p style=3D"margin-top: 0px; margin-bottom: 0px;margin-top:0px; margin-bott=
+om:0px; margin:0in 0in 0.0001pt; font-size:12pt; font-family:Calibri">
 <span style=3D"font-size:10pt; font-family:&quot;Source Sans Pro&quot;,seri=
-f,EmojiFont; color:rgb(96,109,117)"><img class=3D"EmojiInsert" alt=3D"15061=
-69147061_OutlookEmoji-1505330244060_ZPELogo_Email.png1e6c5898-d340-4c90-8c2=
-8-e559c26bc7d1.png" style=3D"" data-outlook-trace=3D"F:1|T:1" src=3D"cid:8e=
-42854f-86dd-4d55-9798-3cd55a6f2ef4"><br>
-<span class=3D"contextualExtensionHighlight ms-font-color-themePrimary ms-b=
-order-color-themePrimary ident_378_416" tabindex=3D"0">46757 Fremont Blvd.,=
- Fremont, CA 94538</span><br>
+f,EmojiFont; color:rgb(96,109,117)"><img class=3D"x_EmojiInsert" alt=3D"150=
+6169147061_OutlookEmoji-1505330244060_ZPELogo_Email.png1e6c5898-d340-4c90-8=
+c28-e559c26bc7d1.png" style=3D"max-width: 100%; height: auto;" data-outlook=
+-trace=3D"F:2|T:2" src=3D"cid:8e42854f-86dd-4d55-9798-3cd55a6f2ef4"><br>
+<span class=3D"x_contextualExtensionHighlight x_ms-font-color-themePrimary =
+x_ms-border-color-themePrimary x_ident_378_416" tabindex=3D"0">46757 Fremon=
+t Blvd., Fremont, CA 94538</span><br>
 </span><a href=3D"https://www.zpesystems.com/" target=3D"_blank" rel=3D"noo=
 pener noreferrer" id=3D"LPNoLP"><b><span style=3D"font-size:10pt; font-fami=
 ly:&quot;Source Sans Pro&quot;,serif,EmojiFont; color:rgb(96,109,117)">zpes=
@@ -332,21 +363,25 @@ zpesystems.com/demo/" target=3D"_blank" rel=3D"noopener noreferrer" id=3D"L=
 PNoLP">Request
  a Nodegrid Demo</a></span></b></p>
 </div>
-<p style=3D"margin-top:0px; margin-bottom:0px"></p>
+<p style=3D"margin-top: 0px; margin-bottom: 0px;margin-top:0px; margin-bott=
+om:0px">
+</p>
+</div>
+</div>
 </div>
 </div>
 </div>
 </body>
 </html>
 
---_000_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_--
+--_000_BN6PR19MB3249C4816DAEC312FF6BAE53F7CD0BN6PR19MB3249namp_--
 
---_004_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_
+--_004_BN6PR19MB3249C4816DAEC312FF6BAE53F7CD0BN6PR19MB3249namp_
 Content-Type: image/png; name="Outlook-1506169147.png"
 Content-Description: Outlook-1506169147.png
 Content-Disposition: inline; filename="Outlook-1506169147.png"; size=2497;
 	creation-date="Sat, 28 Mar 2020 15:30:27 GMT";
-	modification-date="Sat, 28 Mar 2020 15:30:27 GMT"
+	modification-date="Sat, 28 Mar 2020 15:30:28 GMT"
 Content-ID: <8e42854f-86dd-4d55-9798-3cd55a6f2ef4>
 Content-Transfer-Encoding: base64
 
@@ -395,4 +430,4 @@ wEJEvFbfZj5XodAa2wKvu2K2Uz0f66GrCUlE3ym4Hg98BtiuQuaHwIbA3eNViZxARSQe1wewzAEt
 RNiL0ElNIJrqpa/qJ3JLVeDs6yIB16Uco+G4TUTEKaQuFH/FTKKtWIXGUbcqeRWG/yxiVCrUl6GP
 1Z0AOVoQgVckEolEIpFIJBKJRKJY+l+AAQBmPASO0bwXpAAAAABJRU5ErkJggg==
 
---_004_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_--
+--_004_BN6PR19MB3249C4816DAEC312FF6BAE53F7CD0BN6PR19MB3249namp_--
