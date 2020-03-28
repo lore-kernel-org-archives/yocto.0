@@ -1,438 +1,500 @@
-Received: from APC01-HK2-obe.outbound.protection.outlook.com (APC01-HK2-obe.outbound.protection.outlook.com [40.107.130.90])
- by mx.groups.io with SMTP id smtpd.web10.12338.1585420579781171275
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (EUR04-HE1-obe.outbound.protection.outlook.com [40.92.73.79])
+ by mx.groups.io with SMTP id smtpd.web10.13865.1585424762731782751
  for <yocto@lists.yoctoproject.org>;
- Sat, 28 Mar 2020 11:36:22 -0700
+ Sat, 28 Mar 2020 12:46:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@hcl.com header.s=selector2 header.b=o8297R56;
- spf=pass (domain: hcl.com, ip: 40.107.130.90, mailfrom: ajama@hcl.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=HCL.COM; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UgbXEgHqtXh5PZengL70uBS9WgguDA25KYfNzCC2vUI=;
- b=o8297R56F5wKShEdlkyeAoLo02KMFkdKXHxvTNh9/krIwxFsAfjvlsimbW4oZTQNa5ZUIk5XyAusx6vXoUipMKMIwCH0PyrGrMcVMh3fqq4P69YmeJB0m5+Py9wg5jeDzQkTPReGZmrxc+SqxWs7UeJmOVTb7l6YkaDVKN8zJ4M=
-Received: from SG2PR04CA0188.apcprd04.prod.outlook.com (2603:1096:4:14::26) by
- TY2PR04MB3934.apcprd04.prod.outlook.com (2603:1096:404:8005::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.20; Sat, 28 Mar
- 2020 18:36:15 +0000
-Received: from HK2APC01FT005.eop-APC01.prod.protection.outlook.com
- (2603:1096:4:14:cafe::5b) by SG2PR04CA0188.outlook.office365.com
- (2603:1096:4:14::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.20 via Frontend
- Transport; Sat, 28 Mar 2020 18:36:15 +0000
-Authentication-Results: spf=pass (sender IP is 192.8.245.52)
- smtp.mailfrom=hcl.com; outlook.com; dkim=pass (signature was verified)
- header.d=HCL.COM;outlook.com; dmarc=pass action=none header.from=hcl.com;
-Received-SPF: Pass (protection.outlook.com: domain of hcl.com designates
- 192.8.245.52 as permitted sender) receiver=protection.outlook.com;
- client-ip=192.8.245.52; helo=APC01-SG2-obe.outbound.protection.outlook.com;
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (192.8.245.52) by
- HK2APC01FT005.mail.protection.outlook.com (10.152.248.148) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2856.17 via Frontend Transport; Sat, 28 Mar 2020 18:36:15 +0000
+ dkim=fail reason="body hash did not verify" header.i=@outlook.com header.s=selector1 header.b=JG4kfgXO;
+ spf=pass (domain: outlook.com, ip: 40.92.73.79, mailfrom: kweihmann@outlook.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=g690/W341s/xseeBF7beNLrzCXmeSmR871MOA6r5ohNhaIuEhAaaPP8dleJ7yqZxtjpefDTZFEVmjQPHGBNDh3gXYzxBNxmSuQYgL6PXfqQaBeo1uO4uSbymH1VqhVDLMHTYYgVZV1iO/lO3JX2haK3itSbHjOM0jVraznYVuHciGXAFW6BIqs0wLgrK/EsqTQq4gn9igB7DZSAMmME4XN6LN/FXnaXs53W06cPGyLd0np0KxI91C3Gk8zUeJSjolJXSAKeN0HFYUThwFLBz1R5yHZZEnmnGuiWH/GwcoUmZv2IgwtwAeivEza/Ywrzexxp2q4yxVqsYhQ4t5z7vOQ==
+ b=eSK77trjPExErTsJqA5M3+AYyClKpMhRFEGJv614jQVUEKP5EyW9hhzclbRPtbR2AY83Mq/v5NQvgFnF6JlsbtYD4FaQ2MNN+yUTdGhdQZdlxNWSZsmvW91FzWoRmKK/FkLl7fqsUtHE7uSqt0tv+zItc3U7oK3QQVTcoUMvrdzxEjxYI8Jsdly9Iqx3IP7KmOsHu+KMXNamlPvNqNHsgHXO3dYGfXbM1LXBaQdNhEhxuPVD9ccNmkFRalYwmt8uOnqZlzQVRO0NTeza1dxks1fllZOpJcbW1V5zQOEgwcMwCJtlc/hrFwx21RVb2LiurwoLIscLWNbbt0BWd8LFHw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UgbXEgHqtXh5PZengL70uBS9WgguDA25KYfNzCC2vUI=;
- b=blo05KNpNoeoDnRTV6mHwDbN4HRuV+yykEnGmGE4Jcc4hqhSZTWzcVZEVjW5ovMh+FqXvVz0XKJ/bEphuLELbVe7Z5z5xFaXSKA5uP/Eg077txGPD9BNIapA7wTBvVsvVwdPl08pwHmk1FBT7L6fic7StckOtgTwPxJhf/QwPxOeecc2xcpXQSfqxEK6SA9pWhDffg+WTp2M/exp9Zx1dgOGsoRKlrYlAz3bR3Qmyz2Nd/XVLfuffujk57PDvsSQvjj+TGfog5lATvHxCvgnnlJtC7s81e8Sda4U7hX5fG62fsTrNdXqXU3PmhgVirwoAltP8ojc30QTqnRIrbF7Jw==
+ bh=nMz+1FrRWwBqYZ9iJMheHTDexV7yvINCabu6W+L+Rac=;
+ b=T8E5oeF+N7pJR0cUt1AIp7HhNRlcCa6YDrB6DLkzS1sLp3weW2BDCT9Ct4Me+LYZ5lhCielH131s5mjMiB6DemjxRXik83l6rHTFivS9LfUokGSmXWCS5pK/LkYB3C/yUPRqfaX3MHJpf72ftjQJVvHdttM8iOGeqX75v+wyhump+X4qH5PorJ/fjSFhshlU0Pvh1tOFOvJgH4tSF1phgszqtoEtjzkaMlrNdogqDsrH4k5GcrF39Gcwq1/V16yZRdP8+nj8DWfx+8b1AQF9pQ2qVWGTpbCenvFnDx3jMk/lApb3dA/FfQ/GpyNBD/mpejTu5Pwlh6/D4Rcj3NuAxA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hcl.com; dmarc=pass action=none header.from=hcl.com; dkim=pass
- header.d=hcl.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=HCL.COM; s=selector2;
+ smtp.mailfrom=outlook.com; dmarc=pass action=none header.from=outlook.com;
+ dkim=pass header.d=outlook.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UgbXEgHqtXh5PZengL70uBS9WgguDA25KYfNzCC2vUI=;
- b=o8297R56F5wKShEdlkyeAoLo02KMFkdKXHxvTNh9/krIwxFsAfjvlsimbW4oZTQNa5ZUIk5XyAusx6vXoUipMKMIwCH0PyrGrMcVMh3fqq4P69YmeJB0m5+Py9wg5jeDzQkTPReGZmrxc+SqxWs7UeJmOVTb7l6YkaDVKN8zJ4M=
-Received: from HK0PR04MB2914.apcprd04.prod.outlook.com (20.177.25.76) by
- HK0PR04MB2659.apcprd04.prod.outlook.com (20.177.29.148) with Microsoft SMTP
+ bh=nMz+1FrRWwBqYZ9iJMheHTDexV7yvINCabu6W+L+Rac=;
+ b=JG4kfgXO9nnLl5wpDFXuuRUvAVG5LBLrNf6RTz+IkP8b3adR1U04a7A5u0gMHEE09f00f0oU6apcbtz2mMpfOtRlGJT8PzPCrSIxQE5lbzVANE71GmhfSpVM+JpQ6FmAaK7mpqMUOcc78K024M+r5LdlzuQ3672D7reMacHX/QGg5Qvc/9dOM5meNH1wAbc1sXJ2PAhg0jmhci0fa9ltcu7IA0R2x9L/9LwV8uDpsqBJun01W5JOVaPihkpkBi2lTKAlOwIX8zk1RDSPTr8sUAZg18F4GTYew2l0H25aoVyyi1vE2DNKk6qo39mgW2KLtlb3SGBpPEwllP3o6HEosQ==
+Received: from VI1EUR04FT041.eop-eur04.prod.protection.outlook.com
+ (2a01:111:e400:7e0e::47) by
+ VI1EUR04HT155.eop-eur04.prod.protection.outlook.com (2a01:111:e400:7e0e::451)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.17; Sat, 28 Mar
+ 2020 19:46:00 +0000
+Received: from VI1PR05MB4286.eurprd05.prod.outlook.com (10.152.28.60) by
+ VI1EUR04FT041.mail.protection.outlook.com (10.152.29.90) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2856.20; Sat, 28 Mar 2020 18:36:12 +0000
-Received: from HK0PR04MB2914.apcprd04.prod.outlook.com
- ([fe80::d30:6434:8250:2d44]) by HK0PR04MB2914.apcprd04.prod.outlook.com
- ([fe80::d30:6434:8250:2d44%5]) with mapi id 15.20.2856.019; Sat, 28 Mar 2020
- 18:36:11 +0000
-From: "Ajam Ali" <ajama@hcl.com>
-To: Konrad Weihmann <kweihmann@outlook.com>
-CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+ 15.20.2856.17 via Frontend Transport; Sat, 28 Mar 2020 19:46:00 +0000
+X-IncomingTopHeaderMarker: 
+ OriginalChecksum:56369BFAEE17AC7ABCD3B189096162DBA1988C6034971A98F85AE44CA744F5A6;UpperCasedChecksum:9B9C768CEE4563275E2FD3D348DBAA85BA04F2A14776F804C8E39B5AA5BEBF88;SizeAsReceived:8262;Count:49
+Received: from VI1PR05MB4286.eurprd05.prod.outlook.com
+ ([fe80::e1b1:4a5f:7dd7:4131]) by VI1PR05MB4286.eurprd05.prod.outlook.com
+ ([fe80::e1b1:4a5f:7dd7:4131%4]) with mapi id 15.20.2856.019; Sat, 28 Mar 2020
+ 19:46:00 +0000
 Subject: Re: [yocto] Fw: Reducing rootfs size in yocto
-Thread-Topic: [yocto] Fw: Reducing rootfs size in yocto
-Thread-Index: AQHWBQOpsr5y8icioEWpKGlX+EE4S6hd/pa9gAAMD4CAAEjOCg==
-Date: Sat, 28 Mar 2020 18:36:11 +0000
-Message-ID: 
- <HK0PR04MB2914C357A6A0A484356ED66BB4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
-References: 
- <HK0PR04MB29144DAFD598E96154278145B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
- <HK0PR04MB291491325C57709CD3461BB9B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>,<VI1PR05MB4286DCEF29A234000881D0F9A8CD0@VI1PR05MB4286.eurprd05.prod.outlook.com>
-In-Reply-To: 
+To: Ajam Ali <AjamA@hcl.com>
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+References: <HK0PR04MB29144DAFD598E96154278145B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
+ <HK0PR04MB291491325C57709CD3461BB9B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
  <VI1PR05MB4286DCEF29A234000881D0F9A8CD0@VI1PR05MB4286.eurprd05.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Authentication-Results-Original: spf=none (sender IP is )
- smtp.mailfrom=AjamA@hcl.com; 
-x-originating-ip: [106.206.57.232]
-x-ms-publictraffictype: Email
-X-MS-Office365-Filtering-Correlation-Id: 312bc07d-a742-4b19-9d3e-08d7d346e5f8
-x-ms-traffictypediagnostic: HK0PR04MB2659:|TY2PR04MB3934:
-X-Microsoft-Antispam-PRVS: 
-	<TY2PR04MB39343C454F22DA4F9F9BA0B0B4CD0@TY2PR04MB3934.apcprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:5797;OLM:5797;
-x-forefront-prvs: 03569407CC
-X-Forefront-Antispam-Report-Untrusted: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR04MB2914.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(10019020)(4636009)(136003)(366004)(346002)(376002)(396003)(39860400002)(9686003)(45080400002)(86362001)(4326008)(33656002)(81166006)(81156014)(52536014)(8676002)(55016002)(19627405001)(6506007)(478600001)(2906002)(7696005)(53546011)(966005)(6916009)(316002)(71200400001)(76116006)(91956017)(66946007)(5660300002)(186003)(8936002)(66556008)(66446008)(64756008)(66476007)(26005);DIR:OUT;SFP:1102;
-received-spf: None (protection.outlook.com: hcl.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 
- PjEGVpxBLO6NeMuYtLmCJ7nOS8sP15J7fnt3VaWf95mogFQGhBzDM3GLcici1wmFYzyKBdxKU4tBkqgRYu13laSH3wmW9r8FFf+G/FGxDx/NcKsBB4BWJkVYxXnktNsAcFrXiSgJQy+xX2+JNzJ2iE7mny1GEqwxNANgAfiV4X0UQhgLAZjJkonYLTnhUlpAenzcPIE14nPtN1iRQafkmehSCpKRoQQfECCKv273gx2rOw+6RnhDZK3Ovate85SvbCVNPRnrZwXLdZvobJcsypFXM3D0OunRWSuhde3vnvEP7YNMkZB5y86gPeh8S8iY7BrZEbe1HTk0zRSSaf/4u8e4XzxOPqG04fE77ZMH7d0y1ytzfi37LtSM8UMR19XqEVjd8QARPA444O2Z3JShe5R/Uuo+S8TTvqHFEk4ABiOcZVTB6x+T15C8PgZeXG2bdLcpnXPN5VIsL3jf6lCqULIuxioh2djrYCjPF462liVigBOpUmSvVdae7ynyynfACk60Aqf1OZ3iit2Eu3FYJQ==
-x-ms-exchange-antispam-messagedata: 
- tKKGAt7bDSR18GYECnyKdSieD1iTDioNxjcmNGbw18ixnXIdbcWceHq1iyEWj6mKtaFiPUaVnUiY4rmnAT/SFDtJSD1EhjDcsyZSLUUTdQfx4AEam71sLF3RwTYPOx6nqFhbNRAVfnQr9mA57vTmIA==
-x-ms-exchange-transport-forked: True
+ <HK0PR04MB2914C357A6A0A484356ED66BB4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
+From: "Konrad Weihmann" <kweihmann@outlook.com>
+Message-ID: 
+ <VI1PR05MB42862BE1A8635037E743881CA8CD0@VI1PR05MB4286.eurprd05.prod.outlook.com>
+Date: Sat, 28 Mar 2020 20:45:58 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+In-Reply-To: <HK0PR04MB2914C357A6A0A484356ED66BB4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
+X-ClientProxiedBy: AM6P195CA0002.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:209:81::15) To VI1PR05MB4286.eurprd05.prod.outlook.com
+ (2603:10a6:803:4d::27)
+Return-Path: kweihmann@outlook.com
+X-Microsoft-Original-Message-ID: 
+ <b69eb049-c0d0-dbd5-6da4-d423daeff52c@outlook.com>
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR04MB2659
-X-DLP: MSGProcess
-Return-Path: AjamA@hcl.com
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.188.20] (87.141.87.90) by AM6P195CA0002.EURP195.PROD.OUTLOOK.COM (2603:10a6:209:81::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.20 via Frontend Transport; Sat, 28 Mar 2020 19:45:59 +0000
+X-Microsoft-Original-Message-ID: 
+ <b69eb049-c0d0-dbd5-6da4-d423daeff52c@outlook.com>
+X-TMN: [Cii+Gi6TFtZzEk78SpGSj2LEaf9nhnjO]
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 49
 X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- HK2APC01FT005.eop-APC01.prod.protection.outlook.com
-X-Forefront-Antispam-Report: 
-	CIP:192.8.245.52;CTRY:IN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:APC01-SG2-obe.outbound.protection.outlook.com;PTR:InfoDomainNonexistent;CAT:NONE;SFTY:;SFS:(10019020)(4636009)(346002)(39860400002)(396003)(376002)(136003)(81156014)(26005)(45080400002)(316002)(336012)(8676002)(7696005)(2906002)(53546011)(19627405001)(82740400003)(86362001)(55016002)(9686003)(6916009)(8936002)(32650700001)(81166006)(356004)(6506007)(70586007)(70206006)(966005)(36906005)(33656002)(5660300002)(4326008)(478600001)(186003)(52536014);DIR:OUT;SFP:1102;
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 
-	777d78a4-215a-407f-93d2-08d7d346e3ad
-X-Forefront-PRVS: 03569407CC
+X-MS-Office365-Filtering-Correlation-Id: 2f99fc75-4b89-49b2-2386-08d7d350a3da
+X-MS-TrafficTypeDiagnostic: VI1EUR04HT155:
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	lRkRQSHuVmMH2lRTrz7ctki/d2A8kZdmoN+Iw4BBxNd8ENTtHGk8c6PQ2oPtGBYcDYJN1JKW7o5bdRuOc/p11YiB2BIsFLryzecouDVVLSIQea+sL/0gqDhQi9TN+HTkN3F938t6V/vSkOyV/+4D8KpV8tWPP+sBUROSLbmBcx7uJ5i49F7JJb7wBdYtQ9KkLX1urzemwnUvnTJyHMZgENcW5P4voLFuJQ5Iw4oowFQAokJu7jbT73x/+WT3D3dXrl7uJtyuFTLiEtRiNIf0nKZUQ9rnt9pFs8zC1gNUQi5xnHyEnc0uABrD0zBgwpM+J3SBjybxX3FTQwcclN++bB/6dAnPgujXVEtBJwEgO3ja+998jr5/Mqhj1NiIoaWMW1jMwSGeqfO5c92ht1zn1wq9B888Svpw73FxhMKZI+/MbBTzmxu1RXPxDmCHHuZmXloK8KLbeArtjmkBRYNgcQQ7arOR8U7P+nnPmoqGGthnNzklhchNFnjbljYI6fGLohVlRoJjPfK0RsC6b5TmljvOrFyJZxvnxQ2+/1zTnPfREDSs7GJZ+SDMDIHBfKwTgyyxwEAza1y4y83Dl5L9cA==
-X-OriginatorOrg: HCL.COM
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2020 18:36:15.0534
+	RkjaXxMT2QCPGqztruXZYUGbEeT8RSJpfwPpd6bTAD2h8VIU6iIg/Cd/gPBlWWOQJ9q2vOH2xhJzxA4QiuhCvZZEnNtxt7DE/j7qL0cerL8O9jWX85m6E5LOjgxf0tkDPPOoWczrkqwE9Z+pVCcTV+fxf9RB3NqKQIKeweE/7oAW9Zpakrb3MrrgaoNoF2Fsz+owz0csMWi9fX8KuNswaxeJVKXTRqsvLAKrdanUtgs=
+X-MS-Exchange-AntiSpam-MessageData: 
+	QAYKFocyLN3ZR5YTXhlodXU6TQxq6XSSE9wuldgQ4vg43Vl/4mb9sQZha/QJj2GAN4ctrMJAcxIs8uhg6LF817Wv01dcH//z/wr1uQ5lRav1EWXwpOfBiJvtE306lH3mN4qxEn06cPiEUcObDwtOOA==
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2f99fc75-4b89-49b2-2386-08d7d350a3da
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2020 19:45:59.9209
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 312bc07d-a742-4b19-9d3e-08d7d346e5f8
-X-MS-Exchange-CrossTenant-Id: 189de737-c93a-4f5a-8b68-6f4ca9941912
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=189de737-c93a-4f5a-8b68-6f4ca9941912;Ip=[192.8.245.52];Helo=[APC01-SG2-obe.outbound.protection.outlook.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR04MB3934
-Content-Language: en-US
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1EUR04HT155
 Content-Type: multipart/alternative;
-	boundary="_000_HK0PR04MB2914C357A6A0A484356ED66BB4CD0HK0PR04MB2914apcp_"
+ boundary="------------DD227868B22BA728EA05B155"
+Content-Language: en-US
 
---_000_HK0PR04MB2914C357A6A0A484356ED66BB4CD0HK0PR04MB2914apcp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--------------DD227868B22BA728EA05B155
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Konrad,
-
-Actually my current image size is 3.9GB because of heavy size packages req=
-uired by my project and without project required packages my image size in =
-Yocto is 800MB.
-
-I want to reduce the image size as maximum as possible.
+HI,
 
 
-Thanks a lot in advance,
-Ajam Ali
-________________________________
-From: Konrad Weihmann <kweihmann@outlook.com>
-Sent: Saturday, March 28, 2020 7:38 PM
-To: Ajam Ali <AjamA@hcl.com>
-Cc: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
-Subject: Re: [yocto] Fw: Reducing rootfs size in yocto
+800MB sounds fairly much for just the base system - maybe there is some 
+potential for you to slim it down.
+If your project requires all these packages, I' afraid there isn't an 
+easy magical switch to reduce the size.
+
+What you could do is take the image manifest 
+(https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#var-IMAGE_MANIFEST) 
+and browse manually though it, if there
+
+is any obvious package that shouldn't be installed, which could be 
+removed - but to be honest 3.9GB for all that stuff required according 
+to your list sounds like a reasonable size for the rootfs.
+
+If you already know what the real "big ones" are in your image you could 
+try to configure them to include only things really needed - if not you 
+could also take the
+
+image manifest feed the information into "oe-pkgdata-util package-info 
+<pkgname>" to get the size of the package.
+
+I guess from here on you can take it.
 
 
-[CAUTION: This Email is from outside the Organization. Do not click links =
-or open attachments unless you trust the sender.]
-
-Pretty general questions, but I try to answer your question.
-
-
-I don't know what the purpose of your image is, but installing development=
- tools like boost-dev or gcc (I guess that is what you mean with cpp) makes=
- your image automatically a lot bigger, I would suggest to put devtools int=
-o a SDK, which could be shipped separately.
+In the end 3.9GB for a fully fledged development environment doesn't 
+sounds too much - just remember a vanilla ubuntu for example takes at 
+least 15GB.
 
 
-Next thing you can do is to analyze the what is actually so big in your im=
-age, e.g. by creating a tar.gz of the image, unpacking it and browsing by '=
-du -sh *'.
-You can get the package/recipe to a file by using 'oe-pkgdata-util find-pa=
-th <path>'.
+BR
+
+Konrad
 
 
-In the identified recipe you can look for PACKAGECONFIG or OE_EXTRACONF sw=
-itches that you don't need and disable them.
+On 28.03.20 19:36, Ajam Ali wrote:
+> Hi Konrad,
+>
+> Actually my current image size is 3.9GB because of heavy size packages 
+> required by my project and without project required packages my image 
+> size in Yocto is 800MB.
+>
+> I want to reduce the image size as maximum as possible.
+>
+>
+> Thanks a lot in advance,
+> Ajam Ali
+> ------------------------------------------------------------------------
+> *From:* Konrad Weihmann <kweihmann@outlook.com>
+> *Sent:* Saturday, March 28, 2020 7:38 PM
+> *To:* Ajam Ali <AjamA@hcl.com>
+> *Cc:* yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
+> *Subject:* Re: [yocto] Fw: Reducing rootfs size in yocto
+>
+> **[CAUTION: This Email is from outside the Organization. Do not click 
+> links or open attachments unless you trust the sender.]
+>
+> Pretty general questions, but I try to answer your question.
+>
+>
+> I don't know what the purpose of your image is, but installing 
+> development tools like boost-dev or gcc (I guess that is what you mean 
+> with cpp) makes your image automatically a lot bigger, I would suggest 
+> to put devtools into a SDK, which could be shipped separately.
+>
+>
+> Next thing you can do is to analyze the what is actually so big in 
+> your image, e.g. by creating a tar.gz of the image, unpacking it and 
+> browsing by 'du -sh *'.
+> You can get the package/recipe to a file by using 'oe-pkgdata-util 
+> find-path <path>'.
+>
+>
+> In the identified recipe you can look for PACKAGECONFIG or 
+> OE_EXTRACONF switches that you don't need and disable them.
+>
+>
+> As said, I don't know what the purpose/environment of your image will 
+> be like, but you could also consider to use a different fs-format like 
+> squash.
+>
+>
+> In general if you want small images preferring musl over glibc and 
+> systemV over systemd is something that you could consider as well.
+>
+>
+> TL;DR
+>
+>
+> 1) move to SDK
+>
+> 2) check PACKAGECONFIG switches
+>
+> 3) same as 2 or consider something "smaller" like lxc
+>
+> 4) same as 2
+>
+> 5) same as 2
+>
+> 6) same as 2
+>
+> 7) move to SDK
+>
+> 8) same as 2
+>
+>
+> On 28.03.20 14:25, Ajam Ali wrote:
+>>
+>>
+>> ------------------------------------------------------------------------
+>> Hi All,
+>>
+>> I am trying to reduce the image size.
+>>
+>> how can i  reduce the size of following packages so that i could get 
+>> a small image size after integrating these packages in yocto?
+>>
+>>
+>> 1) boost-dev 2) docker 3) containerd-opencontainers 4) nodejs 5) 
+>> nodejs-npm 6) python3-numpy 7) cpp 8) postgresql
+>>
+>>
+>>
+>> Thanks in advance,
+>>
+>> Ajam Ali
+>>
+>>
+>> ::DISCLAIMER::
+>> ------------------------------------------------------------------------
+>> The contents of this e-mail and any attachment(s) are confidential 
+>> and intended for the named recipient(s) only. E-mail transmission is 
+>> not guaranteed to be secure or error-free as information could be 
+>> intercepted, corrupted, lost, destroyed, arrive late or incomplete, 
+>> or may contain viruses in transmission. The e mail and its contents 
+>> (with or without referred errors) shall therefore not attach any 
+>> liability on the originator or HCL or its affiliates. Views or 
+>> opinions, if any, presented in this email are solely those of the 
+>> author and may not necessarily reflect the views or opinions of HCL 
+>> or its affiliates. Any form of reproduction, dissemination, copying, 
+>> disclosure, modification, distribution and / or publication of this 
+>> message without the prior written consent of authorized 
+>> representative of HCL is strictly prohibited. If you have received 
+>> this email in error please delete it and notify the sender 
+>> immediately. Before opening any email and/or attachments, please 
+>> check them for viruses and other defects.
+>> ------------------------------------------------------------------------
+>>
+>> 
 
+--------------DD227868B22BA728EA05B155
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-As said, I don't know what the purpose/environment of your image will be l=
-ike, but you could also consider to use a different fs-format like squash.
-
-
-In general if you want small images preferring musl over glibc and systemV=
- over systemd is something that you could consider as well.
-
-
-TL;DR
-
-
-1) move to SDK
-
-2) check PACKAGECONFIG switches
-
-3) same as 2 or consider something "smaller" like lxc
-
-4) same as 2
-
-5) same as 2
-
-6) same as 2
-
-7) move to SDK
-
-8) same as 2
-
-
-On 28.03.20 14:25, Ajam Ali wrote:
-
-
-________________________________
-
-Hi All,
-
-I am trying to reduce the image size.
-
-
-how can i  reduce the size of following packages so that i could get a sma=
-ll image size after integrating these packages in yocto?
-
-
-1) boost-dev 2) docker 3) containerd-opencontainers 4) nodejs 5) nodejs-np=
-m 6) python3-numpy 7) cpp 8) postgresql
-
-
-
-Thanks in advance,
-
-Ajam Ali
-
-::DISCLAIMER::
-________________________________
-The contents of this e-mail and any attachment(s) are confidential and int=
-ended for the named recipient(s) only. E-mail transmission is not guarantee=
-d to be secure or error-free as information could be intercepted, corrupted=
-, lost, destroyed, arrive late or incomplete, or may contain viruses in tra=
-nsmission. The e mail and its contents (with or without referred errors) sh=
-all therefore not attach any liability on the originator or HCL or its affi=
-liates. Views or opinions, if any, presented in this email are solely those=
- of the author and may not necessarily reflect the views or opinions of HCL=
- or its affiliates. Any form of reproduction, dissemination, copying, discl=
-osure, modification, distribution and / or publication of this message with=
-out the prior written consent of authorized representative of HCL is strict=
-ly prohibited. If you have received this email in error please delete it an=
-d notify the sender immediately. Before opening any email and/or attachment=
-s, please check them for viruses and other defects.
-________________________________
-
-
-
-
-
-
---_000_HK0PR04MB2914C357A6A0A484356ED66BB4CD0HK0PR04MB2914apcp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii=
-">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-b=
-ottom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-Hi Konrad,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-Actually my current image size is 3.9GB because of heavy size packages req=
-uired by my project and without project required packages my image size in =
-Yocto is 800MB.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-I want to reduce the image size as maximum as possible.</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-Thanks a lot in advance,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-siz=
-e: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-Ajam Ali<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" s=
-tyle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Konrad Weihmann &lt;=
-kweihmann@outlook.com&gt;<br>
-<b>Sent:</b> Saturday, March 28, 2020 7:38 PM<br>
-<b>To:</b> Ajam Ali &lt;AjamA@hcl.com&gt;<br>
-<b>Cc:</b> yocto@lists.yoctoproject.org &lt;yocto@lists.yoctoproject.org&g=
-t;<br>
-<b>Subject:</b> Re: [yocto] Fw: Reducing rootfs size in yocto</font>
-<div>&nbsp;</div>
-</div>
-<div>
-<p></p>
-<p class=3D"x_MsoNormal" style=3D"line-height:12.0pt; background:#FFEB9C">=
-<b><span style=3D"font-size:10.0pt; color:#9C6501"></span></b><span style=
-=3D"font-size:10.0pt; color:red">[CAUTION: This Email is from outside the =
-Organization. Do not click links or open attachments
- unless you trust the sender.]</span></p>
-<div>
-<p>Pretty general questions, but I try to answer your question.</p>
-<p><br>
-</p>
-<p>I don't know what the purpose of your image is, but installing developm=
-ent tools like boost-dev or gcc (I guess that is what you mean with cpp) ma=
-kes your image automatically a lot bigger, I would suggest to put devtools =
-into a SDK, which could be shipped
- separately.</p>
-<p><br>
-</p>
-<p>Next thing you can do is to analyze the what is actually so big in your=
- image, e.g. by creating a tar.gz of the image, unpacking it and browsing b=
-y 'du -sh *'.<br>
-You can get the package/recipe to a file by using 'oe-pkgdata-util find-pa=
-th &lt;path&gt;'.</p>
-<p><br>
-</p>
-<p>In the identified recipe you can look for PACKAGECONFIG or OE_EXTRACONF=
- switches that you don't need and disable them.</p>
-<p><br>
-</p>
-<p>As said, I don't know what the purpose/environment of your image will b=
-e like, but you could also consider to use a different fs-format like squas=
-h.</p>
-<p><br>
-</p>
-<p>In general if you want small images preferring musl over glibc and syst=
-emV over systemd is something that you could consider as well.</p>
-<p><br>
-</p>
-<p>TL;DR</p>
-<p><br>
-</p>
-<p>1) move to SDK</p>
-<p>2) check PACKAGECONFIG switches</p>
-<p>3) same as 2 or consider something &quot;smaller&quot; like lxc<br>
-</p>
-<p>4) same as 2</p>
-<p>5) same as 2</p>
-<p>6) same as 2</p>
-<p>7) move to SDK</p>
-<p>8) same as 2<br>
-</p>
-<p><br>
-</p>
-<div class=3D"x_moz-cite-prefix">On 28.03.20 14:25, Ajam Ali wrote:<br>
-</div>
-<blockquote type=3D"cite"><style type=3D"text/css" style=3D"display:none">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+  </head>
+  <body>
+    <p>HI,</p>
+    <p><br>
+    </p>
+    <p>800MB sounds fairly much for just the base system - maybe there
+      is some potential for you to slim it down.<br>
+      If your project requires all these packages, I' afraid there isn't
+      an easy magical switch to reduce the size.</p>
+    <p>What you could do is take the image manifest
+(<a class="moz-txt-link-freetext" href="https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#var-IMAGE_MANIFEST">https://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#var-IMAGE_MANIFEST</a>)
+      and browse manually though it, if there</p>
+    <p>is any obvious package that shouldn't be installed, which could
+      be removed - but to be honest 3.9GB for all that stuff required
+      according to your list sounds like a reasonable size for the
+      rootfs.</p>
+    <p>If you already know what the real &quot;big ones&quot; are in your image
+      you could try to configure them to include only things really
+      needed - if not you could also take the <br>
+    </p>
+    <p>image manifest feed the information into &quot;oe-pkgdata-util
+      package-info &lt;pkgname&gt;&quot; to get the size of the package.</p>
+    <p>I guess from here on you can take it.</p>
+    <p><br>
+    </p>
+    <p>In the end 3.9GB for a fully fledged development environment
+      doesn't sounds too much - just remember a vanilla ubuntu for
+      example takes at least 15GB.</p>
+    <p><br>
+    </p>
+    <p>BR</p>
+    <p>Konrad</p>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 28.03.20 19:36, Ajam Ali wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:HK0PR04MB2914C357A6A0A484356ED66BB4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com">
+      
+      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);">
+        Hi Konrad,</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);">
+        <br>
+      </div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);">
+        Actually my current image size is 3.9GB because of heavy size
+        packages required by my project and without project required
+        packages my image size in Yocto is 800MB.</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);">
+        <br>
+      </div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);">
+        I want to reduce the image size as maximum as possible.</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);">
+        <br>
+      </div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);">
+        <br>
+      </div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);">
+        Thanks a lot in advance,</div>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);">
+        Ajam Ali<br>
+      </div>
+      <hr style="display:inline-block;width:98%" tabindex="-1">
+      <div id="divRplyFwdMsg" dir="ltr"><font style="font-size:11pt" face="Calibri, sans-serif" color="#000000"><b>From:</b> Konrad
+          Weihmann <a class="moz-txt-link-rfc2396E" href="mailto:kweihmann@outlook.com">&lt;kweihmann@outlook.com&gt;</a><br>
+          <b>Sent:</b> Saturday, March 28, 2020 7:38 PM<br>
+          <b>To:</b> Ajam Ali <a class="moz-txt-link-rfc2396E" href="mailto:AjamA@hcl.com">&lt;AjamA@hcl.com&gt;</a><br>
+          <b>Cc:</b> <a class="moz-txt-link-abbreviated" href="mailto:yocto@lists.yoctoproject.org">yocto@lists.yoctoproject.org</a>
+          <a class="moz-txt-link-rfc2396E" href="mailto:yocto@lists.yoctoproject.org">&lt;yocto@lists.yoctoproject.org&gt;</a><br>
+          <b>Subject:</b> Re: [yocto] Fw: Reducing rootfs size in yocto</font>
+        <div>&nbsp;</div>
+      </div>
+      <div>
+        <p class="x_MsoNormal" style="line-height:12.0pt;
+          background:#FFEB9C"><b><span style="font-size:10.0pt;
+              color:#9C6501"></span></b><span style="font-size:10.0pt;
+            color:red">[CAUTION: This Email is from outside the
+            Organization. Do not click links or open attachments unless
+            you trust the sender.]</span></p>
+        <div>
+          <p>Pretty general questions, but I try to answer your
+            question.</p>
+          <p><br>
+          </p>
+          <p>I don't know what the purpose of your image is, but
+            installing development tools like boost-dev or gcc (I guess
+            that is what you mean with cpp) makes your image
+            automatically a lot bigger, I would suggest to put devtools
+            into a SDK, which could be shipped separately.</p>
+          <p><br>
+          </p>
+          <p>Next thing you can do is to analyze the what is actually so
+            big in your image, e.g. by creating a tar.gz of the image,
+            unpacking it and browsing by 'du -sh *'.<br>
+            You can get the package/recipe to a file by using
+            'oe-pkgdata-util find-path &lt;path&gt;'.</p>
+          <p><br>
+          </p>
+          <p>In the identified recipe you can look for PACKAGECONFIG or
+            OE_EXTRACONF switches that you don't need and disable them.</p>
+          <p><br>
+          </p>
+          <p>As said, I don't know what the purpose/environment of your
+            image will be like, but you could also consider to use a
+            different fs-format like squash.</p>
+          <p><br>
+          </p>
+          <p>In general if you want small images preferring musl over
+            glibc and systemV over systemd is something that you could
+            consider as well.</p>
+          <p><br>
+          </p>
+          <p>TL;DR</p>
+          <p><br>
+          </p>
+          <p>1) move to SDK</p>
+          <p>2) check PACKAGECONFIG switches</p>
+          <p>3) same as 2 or consider something &quot;smaller&quot; like lxc<br>
+          </p>
+          <p>4) same as 2</p>
+          <p>5) same as 2</p>
+          <p>6) same as 2</p>
+          <p>7) move to SDK</p>
+          <p>8) same as 2<br>
+          </p>
+          <p><br>
+          </p>
+          <div class="x_moz-cite-prefix">On 28.03.20 14:25, Ajam Ali
+            wrote:<br>
+          </div>
+          <blockquote type="cite">
+            <style type="text/css" style="display:none">
 <!--
 p
 	{margin-top:0;
 	margin-bottom:0}
 -->
 </style>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-<br>
-</div>
-<div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0)">
-<br>
-</div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"x_divRplyFwdMsg" dir=3D"ltr">
-<div>&nbsp;</div>
-</div>
-<div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-Hi All,</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-I am trying to reduce the image size.<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-<br>
-</div>
-<div style=3D"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12=
-pt; color:rgb(0,0,0); background-color:rgb(255,255,255)">
-<p style=3D"margin-top:0px; margin-bottom:0px">how can i&nbsp; reduce the =
-size of following packages so that i could get a small image size after int=
-egrating these packages in yocto?</p>
-<p style=3D"margin-top:0px; margin-bottom:0px"><br>
-</p>
-<p style=3D"margin-top:0px; margin-bottom:0px">1) boost-dev 2) docker 3) c=
-ontainerd-opencontainers 4) nodejs 5) nodejs-npm 6) python3-numpy 7) cpp 8)=
- postgresql</p>
-<p style=3D"margin-top:0px; margin-bottom:0px"><br>
-</p>
-<p style=3D"margin-top:0px; margin-bottom:0px"><br>
-</p>
-<p style=3D"margin-top:0px; margin-bottom:0px">Thanks in advance,</p>
-<p style=3D"margin-top:0px; margin-bottom:0px">Ajam Ali<br>
-</p>
-<br>
-</div>
-</div>
-</div>
-<font size=3D"1" face=3D"Arial" color=3D"Gray">::DISCLAIMER::<br>
-<hr>
-The contents of this e-mail and any attachment(s) are confidential and int=
-ended for the named recipient(s) only. E-mail transmission is not guarantee=
-d to be secure or error-free as information could be intercepted, corrupted=
-, lost, destroyed, arrive late or
- incomplete, or may contain viruses in transmission. The e mail and its co=
-ntents (with or without referred errors) shall therefore not attach any lia=
-bility on the originator or HCL or its affiliates. Views or opinions, if an=
-y, presented in this email are solely
- those of the author and may not necessarily reflect the views or opinions=
- of HCL or its affiliates. Any form of reproduction, dissemination, copying=
-, disclosure, modification, distribution and / or publication of this messa=
-ge without the prior written consent
- of authorized representative of HCL is strictly prohibited. If you have r=
-eceived this email in error please delete it and notify the sender immediat=
-ely. Before opening any email and/or attachments, please check them for vir=
-uses and other defects.<br>
-<hr>
-</font><br>
-<fieldset class=3D"x_mimeAttachmentHeader"></fieldset>
-<pre class=3D"x_moz-quote-pre">
+            <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+              font-size:12pt; color:rgb(0,0,0);
+              background-color:rgb(255,255,255)">
+              <br>
+            </div>
+            <div>
+              <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+                font-size:12pt; color:rgb(0,0,0)">
+                <br>
+              </div>
+              <hr tabindex="-1" style="display:inline-block; width:98%">
+              <div id="x_divRplyFwdMsg" dir="ltr">
+                <div>&nbsp;</div>
+              </div>
+              <div>
+                <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+                  font-size:12pt; color:rgb(0,0,0);
+                  background-color:rgb(255,255,255)">
+                  Hi All,</div>
+                <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+                  font-size:12pt; color:rgb(0,0,0);
+                  background-color:rgb(255,255,255)">
+                  <br>
+                </div>
+                <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+                  font-size:12pt; color:rgb(0,0,0);
+                  background-color:rgb(255,255,255)">
+                  I am trying to reduce the image size.<br>
+                </div>
+                <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+                  font-size:12pt; color:rgb(0,0,0);
+                  background-color:rgb(255,255,255)">
+                  <br>
+                </div>
+                <div style="font-family:Calibri,Arial,Helvetica,sans-serif;
+                  font-size:12pt; color:rgb(0,0,0);
+                  background-color:rgb(255,255,255)">
+                  <p style="margin-top:0px; margin-bottom:0px">how can
+                    i&nbsp; reduce the size of following packages so that i
+                    could get a small image size after integrating these
+                    packages in yocto?</p>
+                  <p style="margin-top:0px; margin-bottom:0px"><br>
+                  </p>
+                  <p style="margin-top:0px; margin-bottom:0px">1)
+                    boost-dev 2) docker 3) containerd-opencontainers 4)
+                    nodejs 5) nodejs-npm 6) python3-numpy 7) cpp 8)
+                    postgresql</p>
+                  <p style="margin-top:0px; margin-bottom:0px"><br>
+                  </p>
+                  <p style="margin-top:0px; margin-bottom:0px"><br>
+                  </p>
+                  <p style="margin-top:0px; margin-bottom:0px">Thanks in
+                    advance,</p>
+                  <p style="margin-top:0px; margin-bottom:0px">Ajam Ali<br>
+                  </p>
+                  <br>
+                </div>
+              </div>
+            </div>
+            <font size="1" face="Arial" color="Gray">::DISCLAIMER::<br>
+              <hr>
+              The contents of this e-mail and any attachment(s) are
+              confidential and intended for the named recipient(s) only.
+              E-mail transmission is not guaranteed to be secure or
+              error-free as information could be intercepted, corrupted,
+              lost, destroyed, arrive late or incomplete, or may contain
+              viruses in transmission. The e mail and its contents (with
+              or without referred errors) shall therefore not attach any
+              liability on the originator or HCL or its affiliates.
+              Views or opinions, if any, presented in this email are
+              solely those of the author and may not necessarily reflect
+              the views or opinions of HCL or its affiliates. Any form
+              of reproduction, dissemination, copying, disclosure,
+              modification, distribution and / or publication of this
+              message without the prior written consent of authorized
+              representative of HCL is strictly prohibited. If you have
+              received this email in error please delete it and notify
+              the sender immediately. Before opening any email and/or
+              attachments, please check them for viruses and other
+              defects.<br>
+              <hr>
+            </font><br>
+            <fieldset class="x_mimeAttachmentHeader"></fieldset>
+            <pre class="x_moz-quote-pre">
 </pre>
-</blockquote>
-</div>
-</div>
-</body>
+          </blockquote>
+        </div>
+      </div>
+    </blockquote>
+  </body>
 </html>
 
---_000_HK0PR04MB2914C357A6A0A484356ED66BB4CD0HK0PR04MB2914apcp_--
+--------------DD227868B22BA728EA05B155--
