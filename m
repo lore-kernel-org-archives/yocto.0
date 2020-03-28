@@ -1,328 +1,398 @@
-Received: from EUR04-HE1-obe.outbound.protection.outlook.com (EUR04-HE1-obe.outbound.protection.outlook.com [40.92.73.25])
- by mx.groups.io with SMTP id smtpd.web12.6353.1585404514281770869
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (NAM11-DM6-obe.outbound.protection.outlook.com [40.107.223.117])
+ by mx.groups.io with SMTP id smtpd.web12.8040.1585409430262123980
  for <yocto@lists.yoctoproject.org>;
- Sat, 28 Mar 2020 07:08:58 -0700
+ Sat, 28 Mar 2020 08:30:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@outlook.com header.s=selector1 header.b=O8PiAtq8;
- spf=pass (domain: outlook.com, ip: 40.92.73.25, mailfrom: kweihmann@outlook.com)
+ dkim=pass header.i=@zpesystems.onmicrosoft.com header.s=selector2-zpesystems-onmicrosoft-com header.b=BEb+ZODq;
+ spf=pass (domain: zpesystems.com, ip: 40.107.223.117, mailfrom: edson.seabra@zpesystems.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LDe2FkJcgl1Nuc4bAfHH3f/op4wGzBG+MfcuQaeNrGjnMFCuIuB2xuryWxnKoLBkbuQkL7RX640Ja5gUbd9GtljoxaioKrkg7r1bGzOP+jkI/p47Ju8cStcDRlB1rsmotZ6l4uEqmTN/a5Q4YvP8mOlTmFjkvFBz25qZrpUzqtcIb659eP93w3gh5ay4saP7KYzYyDr47p8lVeallKdoVUVZXGcyfGOW0rxoZahv0mH7sMDep8vhzZSUSYqS2AJp4fed6kUggyklMIHoY2D1HEv6WV4SYtrl5IHmobqEWFJASkvBgUEkRIssAs1r7fNZWDY6rqLeaP41TAC+Xd8K3w==
+ b=DD+On3DXzRkPG3iyRmT/D9w2NPNgYojjeOBgcbKeYNNzn2NnccNSuPq4hJAeASNGJCVbhXUrrBi6Haf5rmCTqB63s15oPQssiKCby6iYQT50roAVTgXrCQLv+kZta0fPMM+jJ8NFRxdHwCTIEIT8twHjgVKYKQRoY8EW25n7D/BgwN69rI0Z9qe042YV0N6pWWYgTN/Lu+RGbQwrLiSq88Nd7BZNrPzIPQtCtVQ+B0hq6fbW1nx4ntrh/9tDqWj2Q5l8hzujNxGeItxF7GeKQyibN892Zugacu56OkHD+JMnQBQcvD9zrV6eKHc0J1JkEf3PIGhZgRB1ojzFtZU/sA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ww8BpUYOwYFUoaIdCpMnziPPg8vnbirsULHGTqDdSGk=;
- b=EBG0mF3HEbbk0PCcbTM6remsxDqVc0wijQRtrfDMbpzTg/pRqmcxQ940Ky0MzyKIdCSQS20C9i0vHepN81KF/RDD+ddQLQSi7m0KjtQGxGVzvjmHNgHj5KFC3A5fXMYeMlc6050fsFKOMO2yYc26zdBXIrmltfzfIOT1e956one2nYHt1xsRmJDgnXX7A052dj8/iKIIHt2kH//EnNvabPV13xrxKo8fPeUPl00DbzJOwYPrktNJOS3T3vyG9aTyTEQf8+5oKCg7fiYPKBjB6pLcPGHdGnnovp8G+sik32BGnuMU4uYuJEJOSFY0YF1n6sL/NnMBizPBw46eEIwRIQ==
+ bh=zrNahau5fnGiOHJnMcU9qOo1PLXG+y4YBQP4NUT7cYk=;
+ b=gTup3jIJ7BW97hwSud7ksSBQ7ZNYXabNjMevQdfv48XvWQaGQADSeZY0KNIB+n+WVSdBK+jyuBfSYc9bhXJcjpIK/1XF8ogLfz/kzRANRypqYDUU3OnkLFRckb5dvj0Q7CLpxPAM0+sSKBQX6zecp4JhulisyJTZRKUvvZXnUY7PEC3OnDskTg+8jmO8pw3ZZrH5xnyewaCPIJtXSw8BAcq5XcV+MXp60ult9+EbUg4LvblEpGdBt/loFGyOOCNxb+JMfEWU1HZUoSXFpJ/FScqEJh24W6r00RzUBTfFgP4PWqtrC4JMrDvwSFnXJo4euV5eHIi+qyJ+qH1Vs6iwAA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=outlook.com; dmarc=pass action=none header.from=outlook.com;
- dkim=pass header.d=outlook.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
+ smtp.mailfrom=zpesystems.com; dmarc=pass action=none
+ header.from=zpesystems.com; dkim=pass header.d=zpesystems.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ZPESystems.onmicrosoft.com; s=selector2-ZPESystems-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Ww8BpUYOwYFUoaIdCpMnziPPg8vnbirsULHGTqDdSGk=;
- b=O8PiAtq8v9Rtd8OL5OOnZpEx0jr4ygNGA/TA3RvEC6RWpxJQOzkeCJ6e/wpcT6V66FISnc3O4hqZZU3njPCJFzz3RyiVP5qg9pVP175FBVgUMHdBdnzNJ7VsmnTAdvFXC0r6MXpDTFnUiDgiEgETUkwvc0JVWYnUdE93e0QAMj/dbcI9CZsUtjDYvhLOJcjSuZlrNJJj3UJt9FZ1l2fwdS/jOxe9U5x4bpYhAWKpgagOf4WJWiZN0/OUO/izPB9VxUGBWv5K5h0/DohE9CAJfaN6FnKIQKeG+daT4YAOWcHG2hGDYtmwJPVmdMUimzKMyQfHw2oseeKz/kkhyluUYg==
-Received: from HE1EUR04FT056.eop-eur04.prod.protection.outlook.com
- (2a01:111:e400:7e0d::47) by
- HE1EUR04HT165.eop-eur04.prod.protection.outlook.com (2a01:111:e400:7e0d::106)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.17; Sat, 28 Mar
- 2020 14:08:23 +0000
-Received: from VI1PR05MB4286.eurprd05.prod.outlook.com (10.152.26.52) by
- HE1EUR04FT056.mail.protection.outlook.com (10.152.27.45) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2856.17 via Frontend Transport; Sat, 28 Mar 2020 14:08:23 +0000
-X-IncomingTopHeaderMarker: 
- OriginalChecksum:941CFD0AFD8A17EDE0E4D2BC8303AFF3724DEDAF5CF7CB49C5BAA8B7E233FEDA;UpperCasedChecksum:A48A2BB7FE23DE0020525A3D619870BC7504AB92099D497544E3557F0D8A19E3;SizeAsReceived:8101;Count:49
-Received: from VI1PR05MB4286.eurprd05.prod.outlook.com
- ([fe80::e1b1:4a5f:7dd7:4131]) by VI1PR05MB4286.eurprd05.prod.outlook.com
- ([fe80::e1b1:4a5f:7dd7:4131%4]) with mapi id 15.20.2856.019; Sat, 28 Mar 2020
- 14:08:23 +0000
-Subject: Re: [yocto] Fw: Reducing rootfs size in yocto
-To: Ajam Ali <ajama@hcl.com>
-References: <HK0PR04MB29144DAFD598E96154278145B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
- <HK0PR04MB291491325C57709CD3461BB9B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-From: "Konrad Weihmann" <kweihmann@outlook.com>
+ bh=zrNahau5fnGiOHJnMcU9qOo1PLXG+y4YBQP4NUT7cYk=;
+ b=BEb+ZODqWl1T3QGtyNqyLs0IUF/ZRLINqJOrPexhhUHX0rADtSz/YqPwyztc79UhfDHAF61fO9XanV6eOvFOKa0JXoYBc6kGMO0LOa7+MzTVkccvh7vgW+K6RY0Ess5VjDS31zxNY59Wz63GS/e7v6g6M4ziz3QLke4JGeLKm7A=
+Received: from BN6PR19MB3249.namprd19.prod.outlook.com (2603:10b6:405:7b::25)
+ by BN6PR19MB0066.namprd19.prod.outlook.com (2603:10b6:405:62::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.20; Sat, 28 Mar
+ 2020 15:30:28 +0000
+Received: from BN6PR19MB3249.namprd19.prod.outlook.com
+ ([fe80::ecd6:b454:48cd:da3a]) by BN6PR19MB3249.namprd19.prod.outlook.com
+ ([fe80::ecd6:b454:48cd:da3a%3]) with mapi id 15.20.2856.019; Sat, 28 Mar 2020
+ 15:30:28 +0000
+From: "Edson Seabra" <edson.seabra@zpesystems.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Subject: Compressing btrfs image
+Thread-Topic: Compressing btrfs image 
+Thread-Index: AQHWBRGhLgjqnm44F0OQQSZpHRJSag==
+Date: Sat, 28 Mar 2020 15:30:27 +0000
 Message-ID: 
- <VI1PR05MB4286DCEF29A234000881D0F9A8CD0@VI1PR05MB4286.eurprd05.prod.outlook.com>
-Date: Sat, 28 Mar 2020 15:08:21 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.4.1
-In-Reply-To: <HK0PR04MB291491325C57709CD3461BB9B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
-X-ClientProxiedBy: AM5PR0502CA0002.eurprd05.prod.outlook.com
- (2603:10a6:203:91::12) To VI1PR05MB4286.eurprd05.prod.outlook.com
- (2603:10a6:803:4d::27)
-Return-Path: kweihmann@outlook.com
-X-Microsoft-Original-Message-ID: 
- <111bedbf-a549-1d21-cc22-59748446382b@outlook.com>
+ <BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0@BN6PR19MB3249.namprd19.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Edson.Seabra@zpesystems.com; 
+x-originating-ip: [2804:14d:7e81:88ba:c536:4eea:9213:3ea3]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 98948940-b9ed-4c41-93fa-08d7d32cf18d
+x-ms-traffictypediagnostic: BN6PR19MB0066:
+x-microsoft-antispam-prvs: 
+ <BN6PR19MB0066C2B585DDF84B8194A9D0F7CD0@BN6PR19MB0066.namprd19.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 03569407CC
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BN6PR19MB3249.namprd19.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(10019020)(376002)(136003)(396003)(366004)(39840400004)(346002)(71200400001)(86362001)(81156014)(81166006)(186003)(19627405001)(8936002)(6916009)(66946007)(91956017)(66556008)(66446008)(64756008)(7696005)(316002)(76116006)(99936003)(7116003)(66476007)(66616009)(6506007)(55016002)(861006)(5660300002)(3480700007)(508600001)(4743002)(9686003)(2906002)(52536014)(33656002)(8676002);DIR:OUT;SFP:1102;
+received-spf: None (protection.outlook.com: zpesystems.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ qB1wtK4djLL3mKEYM28vw0G0h2KVuJGJg4TDDMD+WN2JFwp+RDJM+Mrg2Wz8VD9kryJLv9k4+tbQg6yWYqXgVJQYXYkP+uJaAiSrcvv1DHMZxPve+1y/0FVrYrPuOfLr53h7dq2hGPH6F+66E2FnhJRgF3CLNDnxAYfXpnee0ZcPy+rF0fhfoGGuH8AVc1/7WbVDp72U1uyEqlseOeR9fgJ4ghAy/W1it26gD/tYc9XtvoqLfcAkyokNPMunNDj9ijp5b3qK7bRudePQE8yH5hF0Jx9hQVjP0M9r8jbyKaVM7hX4Girf6fBUvLS3+xBoC1vRW84IxQLwzUoDm806OcWCOzY2VPJtE5bk80mPE0cHgB56E3GYCd5Clx3etGBYjnkOeQ+vinUeeqs1lEnqsYzG7oV+lOAUc9elyE7q2orlJv+MRk98Pb+aHJHiCW/myMqFR94oP/ZiBzvuy80EJpKmo7zyFLs1bBg2/zaAnh5RAWRBQM6mqt2VyMx5lLgUuVoX4wdE3pJWwbzcRrs6dA==
+x-ms-exchange-antispam-messagedata: 
+ 1oO0yNrPWHpzQXCFHxxeT551dnEy2u5AyfiE7jwNcVwUWm3ZZWCPTJTfFKcWYQMQRvJN2KcVMnE7iluN9BIEemcnCGU+GDP0J5XIBYD4IAFYbWs7TVORWmzUZe7EjfXfeVY103MAgu79i8HGW82Mw88zcSa6wN7DL2eEBGDVG72wK/3iOVczk0/pKUrK7MtmPsyrHoCFm8KyrSXdYUX0rA==
+x-ms-exchange-transport-forked: True
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.188.20] (87.141.87.90) by AM5PR0502CA0002.eurprd05.prod.outlook.com (2603:10a6:203:91::12) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.20 via Frontend Transport; Sat, 28 Mar 2020 14:08:23 +0000
-X-Microsoft-Original-Message-ID: 
- <111bedbf-a549-1d21-cc22-59748446382b@outlook.com>
-X-TMN: [CxfFR7J3lt7VOi/cEubD1UjXOrUH4XTa]
-X-MS-PublicTrafficType: Email
-X-IncomingHeaderCount: 49
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-Correlation-Id: cd0118a1-77e9-40b5-6d26-08d7d3217a1a
-X-MS-TrafficTypeDiagnostic: HE1EUR04HT165:
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	P7XNM3RXhQbt5Pexrp9rAaeXQF53SBg4xM4z7Aekb+FyIalvHFuEhoqb8f/oa+A8lBwdkDMZq6qA89FS8iVocrayzWvhSqw8Dv5exItE0/FXaOk9VjDhUIEJxVgL43UmCiAWpcxEPNx4ph3OPDwhTOZ8V9BpKVc0uRefMLtavwmQyycRKUez8Q5pl61QBWbc3pzmvCWRvrdcZSkb/NNU8UgRqPbicrCfpHK3hwBVqBU=
-X-MS-Exchange-AntiSpam-MessageData: 
-	jQp5KfQ0kOyXc50MIRvDstDdPcZj4jBjcoGmuUeFVqe7u8ZHA4wzoVGP9gw3AQwKKqpm0wX7j3hwUo9tAVHt6Vfp7I1pRr87ZzD3VKYrQCYfG0P150v7LvfVREitIDxdCAcHs9urZMSfY9N9BZBn0g==
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cd0118a1-77e9-40b5-6d26-08d7d3217a1a
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2020 14:08:23.4077
+X-OriginatorOrg: zpesystems.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 98948940-b9ed-4c41-93fa-08d7d32cf18d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Mar 2020 15:30:27.5986
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1EUR04HT165
-Content-Type: multipart/alternative;
- boundary="------------CFFDDF0F266BAE8B1E638B89"
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 09cd24a9-c206-4d0b-8a25-3e9a321f0e90
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: OSLnpqMyfx6fb7VHNfKK70g0aVL2lhqW15jMaq4ulrHByoyrqpX28vGuQ0DhW1oZZXnMGYN7jkAQXsNTsMqDNdt6zAlnzpl7/WHDsZU75XY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR19MB0066
+X-Groupsio-MsgNum: 48964
 Content-Language: en-US
+Content-Type: multipart/related;
+	boundary="_004_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_";
+	type="multipart/alternative"
 
---------------CFFDDF0F266BAE8B1E638B89
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 7bit
+--_004_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_
+Content-Type: multipart/alternative;
+	boundary="_000_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_"
 
-Pretty general questions, but I try to answer your question.
+--_000_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
+Hi all.
 
-I don't know what the purpose of your image is, but installing 
-development tools like boost-dev or gcc (I guess that is what you mean 
-with cpp) makes your image automatically a lot bigger, I would suggest 
-to put devtools into a SDK, which could be shipped separately.
+I'm trying to compress a btrfs rootfs
 
+I added  in "image_types.bbclass:IMAGE_CMD_btrfs ()"  two commands:
 
-Next thing you can do is to analyze the what is actually so big in your 
-image, e.g. by creating a tar.gz of the image, unpacking it and browsing 
-by 'du -sh *'.
-You can get the package/recipe to a file by using 'oe-pkgdata-util 
-find-path <path>'.
+1) mount the btrfs image after mkfs.btrfs
+2) btrfs filesystem defrag + compress option
 
+But the command mount fails:
 
-In the identified recipe you can look for PACKAGECONFIG or OE_EXTRACONF 
-switches that you don't need and disable them.
+mount: /home/edson/ng-trunk/nodegrid/tmp/work/genericx86_64-poky-linux/node=
+grid/1.0-r0/deploy-nodegrid-image-complete/temp_btrfs: failed to setup loop=
+ device for /home/edson/ng-trunk/nodegrid/tmp/work/genericx86_64-poky-linux=
+/nodegrid/1.0-r0/deploy-nodegrid-image-complete/nodegrid-genericx86-64-2020=
+0328134151.rootfs.btrfs.
 
+I saw in image.bbclass the creation of do_image_btrfs task with flag 'faker=
+oot'.
 
-As said, I don't know what the purpose/environment of your image will be 
-like, but you could also consider to use a different fs-format like squash.
+=3D=3D=3D=3D=3D=3D image.bbclass =3D=3D=3D=3D
+        task =3D "do_image_%s" % t.replace("-", "_").replace(".", "_")
 
+        d.setVar(task, '\n'.join(cmds))
+        d.setVarFlag(task, 'func', '1')
+        d.setVarFlag(task, 'fakeroot', '1')
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
-In general if you want small images preferring musl over glibc and 
-systemV over systemd is something that you could consider as well.
+would the fakeroot flag allow do_image_btrfs execute commands that requires=
+ root privilege ?
 
+If not what would be the way to execute the mount command ?
 
-TL;DR
+I tried "pseudo mount" but it failed same way...
 
+Thanks in advance.
 
-1) move to SDK
-
-2) check PACKAGECONFIG switches
-
-3) same as 2 or consider something "smaller" like lxc
-
-4) same as 2
-
-5) same as 2
-
-6) same as 2
-
-7) move to SDK
-
-8) same as 2
+Edson.
 
 
-On 28.03.20 14:25, Ajam Ali wrote:
+Edson Seabra
+
+Principal Engineer
+
+M +1 510 579 0843
+
+E   edson.seabra@zpesystems.com<mailto:alvin.chan@zpesystems.com>
+
+[1506169147061_OutlookEmoji-1505330244060_ZPELogo_Email.png1e6c5898-d340-4c=
+90-8c28-e559c26bc7d1.png]
+46757 Fremont Blvd., Fremont, CA 94538
+zpesystems.com<https://www.zpesystems.com/> | Request a Nodegrid Demo<https=
+://www.zpesystems.com/demo/>
+
+--_000_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Hi all.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+I'm trying to compress a btrfs rootfs</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+I added&nbsp; in &quot;<span style=3D"font-family: Calibri, Arial, Helvetic=
+a, sans-serif; background-color: rgb(255, 255, 255); display: inline !impor=
+tant">image_types.bbclass:</span>IMAGE_CMD_btrfs ()&quot;&nbsp; two command=
+s:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+1) mount the btrfs image after mkfs.btrfs</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+2) btrfs filesystem defrag &#43; compress option</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+But the command mount fails:</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+mount: /home/edson/ng-trunk/nodegrid/tmp/work/genericx86_64-poky-linux/node=
+grid/1.0-r0/deploy-nodegrid-image-complete/temp_btrfs: failed to setup loop=
+ device for /home/edson/ng-trunk/nodegrid/tmp/work/genericx86_64-poky-linux=
+/nodegrid/1.0-r0/deploy-nodegrid-image-complete/nodegrid-genericx86-64-2020=
+0328134151.rootfs.btrfs.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+I saw in image.bbclass the creation of do_image_btrfs task with flag 'faker=
+oot'.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif">
+<br>
+=3D=3D=3D=3D=3D=3D image.bbclass =3D=3D=3D=3D</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif">
+<span style=3D"margin: 0px">&nbsp; &nbsp; &nbsp; &nbsp; task =3D &quot;do_i=
+mage_%s&quot; % t.replace(&quot;-&quot;, &quot;_&quot;).replace(&quot;.&quo=
+t;, &quot;_&quot;)<br>
+</span>
+<div style=3D"margin: 0px"><br>
+</div>
+<div style=3D"margin: 0px">&nbsp; &nbsp; &nbsp; &nbsp; d.setVar(task, '\n'.=
+join(cmds))<br>
+</div>
+<div style=3D"margin: 0px">&nbsp; &nbsp; &nbsp; &nbsp; d.setVarFlag(task, '=
+func', '1')<br>
+</div>
+<div style=3D"margin: 0px">&nbsp; &nbsp; &nbsp; &nbsp; d.setVarFlag(task, '=
+<span style=3D"margin: 0px; color: rgb(12, 136, 42)">fakeroot</span>', '1')=
+<br>
+</div>
+<span style=3D"margin: 0px"></span>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div>
+<div style=3D"margin: 0px; font-size: 12pt; font-family: Calibri, Arial, He=
+lvetica, sans-serif">
+<br>
+</div>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+would the fakeroot flag allow do_image_btrfs execute commands that requires=
+ root privilege ?</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+If not what would be the way to execute the mount command ?</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+I tried &quot;pseudo mount&quot; but it failed same way...</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Thanks in advance.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+Edson.</div>
+<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
+: 12pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"Signature">
+<div></div>
+<div id=3D"divtagdefaultwrapper" dir=3D"ltr" style=3D"font-size:12pt; color=
+:#000000; background-color:#FFFFFF; font-family:Calibri,Arial,Helvetica,san=
+s-serif">
+<p style=3D"margin-top:0px; margin-bottom:0px"></p>
+<div class=3D"x_MsoNormal" style=3D"margin:0px 0in 0.000133333px; font-size=
+:11pt; font-family:Calibri,sans-serif; color:rgb(33,33,33)">
+<a style=3D"margin:0px; font-size:11pt; font-family:Calibri,sans-serif; tex=
+t-align:start; background-color:rgb(255,255,255)"><font face=3D"Source Sans=
+ Pro" size=3D"2" color=3D"#0BABC6"><span style=3D"margin:0px; font-size:10p=
+t"><b>Edson Seabra</b></span></font></a><br>
+</div>
+<p class=3D"x_MsoNormal" style=3D"margin-top:0px; margin-bottom:0px; margin=
+:0in 0in 0.0001pt; font-size:11pt; font-family:Calibri,sans-serif; color:rg=
+b(33,33,33)">
+<span style=3D"font-size:10pt; color:rgb(31,73,125)">Principal Engineer</sp=
+an></p>
+<p class=3D"x_MsoNormal" style=3D"margin-top:0px; margin-bottom:0px; margin=
+:0in 0in 0.0001pt; font-size:11pt; font-family:Calibri,sans-serif; color:rg=
+b(33,33,33)">
+<span style=3D"font-size:10pt; color:rgb(31,73,125)">M &#43;1 510 579 0843<=
+/span></p>
+<div><span style=3D"font-size:10pt; font-family:&quot;Source Sans Pro&quot;=
+,serif,EmojiFont; color:rgb(96,109,117)"><b>E&nbsp;&nbsp;&nbsp;</b></span><=
+a href=3D"mailto:alvin.chan@zpesystems.com" target=3D"_blank" rel=3D"noopen=
+er noreferrer" id=3D"LPNoLP" style=3D"font-size:12pt; font-family:Calibri">=
+<span style=3D"font-size:10pt; font-family:&quot;Source Sans Pro&quot;,seri=
+f,EmojiFont; color:rgb(5,99,193)">edson.seabra@zpesystems.com</span></a><br=
 >
->
-> ------------------------------------------------------------------------
-> Hi All,
->
-> I am trying to reduce the image size.
->
-> how can i reduce the size of following packages so that i could get a 
-> small image size after integrating these packages in yocto?
->
->
-> 1) boost-dev 2) docker 3) containerd-opencontainers 4) nodejs 5) 
-> nodejs-npm 6) python3-numpy 7) cpp 8) postgresql
->
->
->
-> Thanks in advance,
->
-> Ajam Ali
->
->
-> ::DISCLAIMER::
-> ------------------------------------------------------------------------
-> The contents of this e-mail and any attachment(s) are confidential and 
-> intended for the named recipient(s) only. E-mail transmission is not 
-> guaranteed to be secure or error-free as information could be 
-> intercepted, corrupted, lost, destroyed, arrive late or incomplete, or 
-> may contain viruses in transmission. The e mail and its contents (with 
-> or without referred errors) shall therefore not attach any liability 
-> on the originator or HCL or its affiliates. Views or opinions, if any, 
-> presented in this email are solely those of the author and may not 
-> necessarily reflect the views or opinions of HCL or its affiliates. 
-> Any form of reproduction, dissemination, copying, disclosure, 
-> modification, distribution and / or publication of this message 
-> without the prior written consent of authorized representative of HCL 
-> is strictly prohibited. If you have received this email in error 
-> please delete it and notify the sender immediately. Before opening any 
-> email and/or attachments, please check them for viruses and other defects.
-> ------------------------------------------------------------------------
->
-> 
-
---------------CFFDDF0F266BAE8B1E638B89
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: 8bit
-
-<html><head>
-<meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
-  </head>
-  <body>
-    <p>Pretty general questions, but I try to answer your question.</p>
-    <p><br>
-    </p>
-    <p>I don't know what the purpose of your image is, but installing
-      development tools like boost-dev or gcc (I guess that is what you
-      mean with cpp) makes your image automatically a lot bigger, I
-      would suggest to put devtools into a SDK, which could be shipped
-      separately.</p>
-    <p><br>
-    </p>
-    <p>Next thing you can do is to analyze the what is actually so big
-      in your image, e.g. by creating a tar.gz of the image, unpacking
-      it and browsing by 'du -sh *'.<br>
-      You can get the package/recipe to a file by using 'oe-pkgdata-util
-      find-path &lt;path&gt;'.</p>
-    <p><br>
-    </p>
-    <p>In the identified recipe you can look for PACKAGECONFIG or
-      OE_EXTRACONF switches that you don't need and disable them.</p>
-    <p><br>
-    </p>
-    <p>As said, I don't know what the purpose/environment of your image
-      will be like, but you could also consider to use a different
-      fs-format like squash.</p>
-    <p><br>
-    </p>
-    <p>In general if you want small images preferring musl over glibc
-      and systemV over systemd is something that you could consider as
-      well.</p>
-    <p><br>
-    </p>
-    <p>TL;DR</p>
-    <p><br>
-    </p>
-    <p>1) move to SDK</p>
-    <p>2) check PACKAGECONFIG switches</p>
-    <p>3) same as 2 or consider something &quot;smaller&quot; like lxc<br>
-    </p>
-    <p>4) same as 2</p>
-    <p>5) same as 2</p>
-    <p>6) same as 2</p>
-    <p>7) move to SDK</p>
-    <p>8) same as 2<br>
-    </p>
-    <p><br>
-    </p>
-    <div class="moz-cite-prefix">On 28.03.20 14:25, Ajam Ali wrote:<br>
-    </div>
-    <blockquote type="cite" cite="mid:HK0PR04MB291491325C57709CD3461BB9B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com">
-      
-      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
-      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
-        255, 255);">
-        <br>
-      </div>
-      <div>
-        <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
-          font-size: 12pt; color: rgb(0, 0, 0);">
-          <br>
-        </div>
-        <hr tabindex="-1" style="display:inline-block; width:98%">
-        <div id="divRplyFwdMsg" dir="ltr">
-          <div>&nbsp;</div>
-        </div>
-        <div>
-          <div style="font-family: Calibri, Arial, Helvetica,
-            sans-serif; font-size: 12pt; color: rgb(0, 0, 0);
-            background-color: rgb(255, 255, 255);">
-            Hi All,</div>
-          <div style="font-family: Calibri, Arial, Helvetica,
-            sans-serif; font-size: 12pt; color: rgb(0, 0, 0);
-            background-color: rgb(255, 255, 255);">
-            <br>
-          </div>
-          <div style="font-family: Calibri, Arial, Helvetica,
-            sans-serif; font-size: 12pt; color: rgb(0, 0, 0);
-            background-color: rgb(255, 255, 255);">
-            I am trying to reduce the image size.<br>
-          </div>
-          <div style="font-family: Calibri, Arial, Helvetica,
-            sans-serif; font-size: 12pt; color: rgb(0, 0, 0);
-            background-color: rgb(255, 255, 255);">
-            <br>
-          </div>
-          <div style="font-family: Calibri, Arial, Helvetica,
-            sans-serif; font-size: 12pt; color: rgb(0, 0, 0);
-            background-color: rgb(255, 255, 255);">
-            <p style="margin-top: 0px; margin-bottom: 0px;">how can i&nbsp;
-              reduce the size of following packages so that i could get
-              a small image size after integrating these packages in
-              yocto?</p>
-            <p style="margin-top: 0px; margin-bottom: 0px;"><br>
-            </p>
-            <p style="margin-top: 0px; margin-bottom: 0px;">1) boost-dev
-              2) docker 3) containerd-opencontainers 4) nodejs 5)
-              nodejs-npm 6) python3-numpy 7) cpp 8) postgresql</p>
-            <p style="margin-top: 0px; margin-bottom: 0px;"><br>
-            </p>
-            <p style="margin-top: 0px; margin-bottom: 0px;"><br>
-            </p>
-            <p style="margin-top: 0px; margin-bottom: 0px;">Thanks in
-              advance,</p>
-            <p style="margin-top: 0px; margin-bottom: 0px;">Ajam Ali<br>
-            </p>
-            <br>
-          </div>
-        </div>
-      </div>
-      <font size="1" face="Arial" color="Gray">::DISCLAIMER::<br>
-        <hr>
-        The contents of this e-mail and any attachment(s) are
-        confidential and intended for the named recipient(s) only.
-        E-mail transmission is not guaranteed to be secure or error-free
-        as information could be intercepted, corrupted, lost, destroyed,
-        arrive late or incomplete, or may contain viruses in
-        transmission. The e mail and its contents (with or without
-        referred errors) shall therefore not attach any liability on the
-        originator or HCL or its affiliates. Views or opinions, if any,
-        presented in this email are solely those of the author and may
-        not necessarily reflect the views or opinions of HCL or its
-        affiliates. Any form of reproduction, dissemination, copying,
-        disclosure, modification, distribution and / or publication of
-        this message without the prior written consent of authorized
-        representative of HCL is strictly prohibited. If you have
-        received this email in error please delete it and notify the
-        sender immediately. Before opening any email and/or attachments,
-        please check them for viruses and other defects.<br>
-        <hr>
-      </font>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
-</pre>
-    </blockquote>
-  </body>
+</div>
+<div>
+<p style=3D"margin-top:0px; margin-bottom:0px; margin:0in 0in 0.0001pt; fon=
+t-size:12pt; font-family:Calibri">
+<span style=3D"font-size:10pt; font-family:&quot;Source Sans Pro&quot;,seri=
+f,EmojiFont; color:rgb(96,109,117)"></span></p>
+<p style=3D"margin-top:0px; margin-bottom:0px; margin:0in 0in 0.0001pt; fon=
+t-size:12pt; font-family:Calibri">
+<span style=3D"font-size:10pt; font-family:&quot;Source Sans Pro&quot;,seri=
+f,EmojiFont; color:rgb(96,109,117)"><img class=3D"EmojiInsert" alt=3D"15061=
+69147061_OutlookEmoji-1505330244060_ZPELogo_Email.png1e6c5898-d340-4c90-8c2=
+8-e559c26bc7d1.png" style=3D"" data-outlook-trace=3D"F:1|T:1" src=3D"cid:8e=
+42854f-86dd-4d55-9798-3cd55a6f2ef4"><br>
+<span class=3D"contextualExtensionHighlight ms-font-color-themePrimary ms-b=
+order-color-themePrimary ident_378_416" tabindex=3D"0">46757 Fremont Blvd.,=
+ Fremont, CA 94538</span><br>
+</span><a href=3D"https://www.zpesystems.com/" target=3D"_blank" rel=3D"noo=
+pener noreferrer" id=3D"LPNoLP"><b><span style=3D"font-size:10pt; font-fami=
+ly:&quot;Source Sans Pro&quot;,serif,EmojiFont; color:rgb(96,109,117)">zpes=
+ystems.com</span></b></a><b><span style=3D"font-size:10pt; font-family:&quo=
+t;Source Sans Pro&quot;,serif,EmojiFont; color:rgb(96,109,117)">&nbsp;|&nbs=
+p;</span></b><b><span style=3D"font-size:10pt; font-family:&quot;Source San=
+s Pro&quot;,serif,EmojiFont; color:rgb(96,109,117)"><a href=3D"https://www.=
+zpesystems.com/demo/" target=3D"_blank" rel=3D"noopener noreferrer" id=3D"L=
+PNoLP">Request
+ a Nodegrid Demo</a></span></b></p>
+</div>
+<p style=3D"margin-top:0px; margin-bottom:0px"></p>
+</div>
+</div>
+</div>
+</body>
 </html>
 
---------------CFFDDF0F266BAE8B1E638B89--
+--_000_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_--
+
+--_004_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_
+Content-Type: image/png; name="Outlook-1506169147.png"
+Content-Description: Outlook-1506169147.png
+Content-Disposition: inline; filename="Outlook-1506169147.png"; size=2497;
+	creation-date="Sat, 28 Mar 2020 15:30:27 GMT";
+	modification-date="Sat, 28 Mar 2020 15:30:27 GMT"
+Content-ID: <8e42854f-86dd-4d55-9798-3cd55a6f2ef4>
+Content-Transfer-Encoding: base64
+
+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
+
+--_004_BN6PR19MB3249AD0F7FD9FD9CEFD2BEA8F7CD0BN6PR19MB3249namp_--
