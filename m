@@ -1,383 +1,233 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.22770.1585342740952064029
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+ by mx.groups.io with SMTP id smtpd.web11.1569.1585353903336745974
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Mar 2020 13:59:01 -0700
+ Fri, 27 Mar 2020 17:05:03 -0700
 Authentication-Results: mx.groups.io;
- dkim=fail reason="crypto/rsa: verification error" header.i=@nio365.onmicrosoft.com header.s=selector2-nio365-onmicrosoft-com header.b=ZyEyhVTq;
- spf=softfail (domain: ni.com, ip: 140.211.169.56, mailfrom: prvs=6355c7973e=alejandro.delcastillo@ni.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 85CD6E018F3; Fri, 27 Mar 2020 13:59:00 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.4 required=5.0 tests=BAYES_00,DKIM_INVALID,
-	DKIM_SIGNED,MSGID_FROM_MTA_HEADER,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at https://www.dnswl.org/, low
-	*      trust
-	*      [148.163.156.75 listed in list.dnswl.org]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	*  0.0 MSGID_FROM_MTA_HEADER Message-Id was added by a relay
-	*  0.1 DKIM_INVALID DKIM or DK signature exists, but is not valid
-X-Greylist: delayed 1481 seconds by postgrey-1.32 at yocto-www; Fri, 27 Mar 2020 13:58:58 PDT
-Received: from mx0b-00010702.pphosted.com (mx0a-00010702.pphosted.com [148.163.156.75])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06414E018EF
-	for <yocto@yoctoproject.org>; Fri, 27 Mar 2020 13:58:58 -0700 (PDT)
-Received: from pps.filterd (m0098780.ppops.net [127.0.0.1])
-	by mx0a-00010702.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 02RKW2LH008041;
-	Fri, 27 Mar 2020 15:34:13 -0500
-Received: from nam10-mw2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2102.outbound.protection.outlook.com [104.47.55.102])
-	by mx0a-00010702.pphosted.com with ESMTP id 2ywqag4esw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 27 Mar 2020 15:34:12 -0500
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Z5rlptRKrPrh8POa1BxMtuEvIGkACKnXBeDZrEVIhS47LH/SVkXG/mFB0zHq7ikojy+3Q4r80+mbGVyzzhaynfK6I0TMSTWIJpMYCWBIkMLLOsK/sDfXnCitJCTG4HEpVMNB1niMLXghlLo6ViTDDoPl9Dk6EmEL7Trk7O00NwtbOu2GmOLYWYIuQN4IWpHAdWkITx7jBn4OiL/CEjF3h0IXF897uyXkzqc+KDpImufgEeA9iQc79mcrfSBSovjEeZ8NrxowyTcYh1pM/00JxtXrgl2Y3LY4rSDk/7TZe/y7R08FZGOE6lpLz6zffGsTH+mm2ptk0PxlA2lvfCGioA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ANVnnytw0zb/O5L6tRMEFCwUncUb7QwuJd7MLp9rbAQ=;
- b=XfQChSyyAGXV6XYr/D5kY3auZc/yIWLnLk7VXAE7lcrnnvvHAutgmY8in2ZH8TGqv66f0JFA60ymvaozrpxiAixj57jYUrpnuUzM9c7cwqxBaWErFtst2/KQpUZWQnJcJ0EyRtPquPqmOunUYkFl6V18dA0/fbF3eBQDVI2w3yf6GZdIhZiFq8wio97TNkG1TQ4sVh3aSYBHY2gG6zcqFEKVKQApvbOoFfUzdgeZzdasrssuqUFBTzHQS6Zk+cVPjYPrJ7PENjHUC2RTwcMvNHapGi3eoySy+VTMu3XoygCtPwSnOvjezrGDX7cmjPQg7cmO1wOS+rv+IISm5Tsylg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=ni.com; dmarc=pass action=none header.from=ni.com; dkim=pass
- header.d=ni.com; arc=none
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Fnz71yEx;
+ spf=pass (domain: gmail.com, ip: 209.85.216.43, mailfrom: akuster808@gmail.com)
+Received: by mail-pj1-f43.google.com with SMTP id v13so4548152pjb.0
+        for <yocto@lists.yoctoproject.org>; Fri, 27 Mar 2020 17:05:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=nio365.onmicrosoft.com; s=selector2-nio365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ANVnnytw0zb/O5L6tRMEFCwUncUb7QwuJd7MLp9rbAQ=;
- b=ZyEyhVTqT6iThxiDyqsCHRxkOdV5Ny7CqgyDBw4l41r1y1cSmRHwZPmgIM2/05P2U6unHnnlFYgHrWeW6ODzdIOoiHavoQykuRd8YK7ZZPS60twVCL5ku735bx2v3R4OVw1hpZjS3OI+2MAT7hbfuNpHFQeGMZ1lrUGNAPTvSeo=
-Received: from DM5PR04MB1069.namprd04.prod.outlook.com (2603:10b6:4:40::26) by
- DM5PR04MB0234.namprd04.prod.outlook.com (2603:10b6:3:70::19) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2856.19; Fri, 27 Mar 2020 20:34:10 +0000
-Received: from DM5PR04MB1069.namprd04.prod.outlook.com
- ([fe80::9532:7a75:536a:58fb]) by DM5PR04MB1069.namprd04.prod.outlook.com
- ([fe80::9532:7a75:536a:58fb%5]) with mapi id 15.20.2835.021; Fri, 27 Mar 2020
- 20:34:10 +0000
-To: opkg-devel@googlegroups.com, Maarten <maarten.vanmegen@nedap.com>,
-        yocto@yoctoproject.org
-References: <20200319112625.13804-1-maarten.vanmegen@nedap.com>
-From: "Alejandro del Castillo" <alejandro.delcastillo@ni.com>
-Message-ID: <3869e6d2-8298-80da-ee0a-e15088cb1d1b@ni.com>
-Date: Fri, 27 Mar 2020 15:34:09 -0500
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language;
+        bh=j0KuDet6SlY9rIhDuS4nYX5vysCsuCM6KNQ+CEy7o7A=;
+        b=Fnz71yExV0AbKFsge72ci0BeM4is6PQhm7TYxMjaKCX2sMO4ZOkhSnPBZ0GDGMHFUt
+         OzHxqC6Q+MHUnOdfo+V/Goap8iQDZdjn2JgJ23tAbtAsEZbSaCEX7O1d1EZno+VylhCz
+         h6T4q71JgptqBSuSRWI/ZZSeu20dm3rwORDMnX4boSc0RSqykf68lIrcOYo78apMSQ17
+         ukaBsq+MsKKkt1xmDjn72aEc1+xQNR+KBNyudxFUYLaVg7oT4WKhZ/JmI+lVqxWKOi1/
+         sb7tKpCKyalVZzdBpxEInY71S30l4/wLK9UzYP9Xa8ebrbLYbSIUa7qnKC2swg2HTcY0
+         m+lw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language;
+        bh=j0KuDet6SlY9rIhDuS4nYX5vysCsuCM6KNQ+CEy7o7A=;
+        b=FpHeu3INqrWwZ/b9gK0VfIp2NY05HpaOTztdu8GVQPt0mZF3TRTn3MnM3W0QBHrYuh
+         fNT7m35l4zH6Crm6IYyR65vixCWEXl0zysdgv8HE1KtUFm1kD+/4geM09WZnA/6Iz70D
+         3703h75ukb3lulN2J4DLp4SfZr51hF7+nagxexejv708jsHzn58CXNqJ3gGzKyMg029s
+         0qAaDsnIqwYcIdko82QORzjO8h/3uckPDg6DTJ+7Fmk3EvIayLL31Abb5DjgRBKDhQeT
+         weRIXM+8+mw/Cd+C2NDznIXnyKv/tMw1/wMxBKcYsMflq0fiQ4Gnp5TMX5vY/BDN89PD
+         lCOA==
+X-Gm-Message-State: ANhLgQ2JrjV/q6FoafUW4uMflv6QJcBuNT/St7li6IHPMfJnDP8WUisB
+	5USwQBfZJ0Pf0KwZiYcZ88ymV9mPjxY=
+X-Google-Smtp-Source: ADFU+vtAzMpczxvf4g2VqxeE4vXUog0WjzJ+tdKKZIM0xVTNh5Nnu+4Sn2Ncf6vNUHMuZqz4zkfmvg==
+X-Received: by 2002:a17:902:aa4c:: with SMTP id c12mr1618577plr.168.1585353902520;
+        Fri, 27 Mar 2020 17:05:02 -0700 (PDT)
+Return-Path: <akuster808@gmail.com>
+Received: from ?IPv6:2601:202:4180:a5c0:84d1:5d33:be2f:3f17? ([2601:202:4180:a5c0:84d1:5d33:be2f:3f17])
+        by smtp.gmail.com with ESMTPSA id i197sm4994376pfe.137.2020.03.27.17.05.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 27 Mar 2020 17:05:02 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH 1/6] sssd: Sort PACKAGECONFIG entries
+To: =?UTF-8?Q?Jonatan_P=c3=a5lsson?= <jonatan.p@gmail.com>,
+ yocto@lists.yoctoproject.org
+References: <20200325114319.2115155-1-jonatan.p@gmail.com>
+From: "akuster" <akuster808@gmail.com>
+Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ 8CS2NxU=
+Message-ID: <d40a8d01-72b0-d64a-77d9-1b42f70444de@gmail.com>
+Date: Fri, 27 Mar 2020 17:05:00 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
-In-Reply-To: <20200319112625.13804-1-maarten.vanmegen@nedap.com>
-X-ClientProxiedBy: DM6PR08CA0002.namprd08.prod.outlook.com
- (2603:10b6:5:80::15) To DM5PR04MB1069.namprd04.prod.outlook.com
- (2603:10b6:4:40::26)
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [IPv6:2605:6000:101c:3b5:3ec9:911d:327f:d8b7] (2605:6000:101c:3b5:3ec9:911d:327f:d8b7) by DM6PR08CA0002.namprd08.prod.outlook.com (2603:10b6:5:80::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.18 via Frontend Transport; Fri, 27 Mar 2020 20:34:10 +0000
-X-Originating-IP: [2605:6000:101c:3b5:3ec9:911d:327f:d8b7]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 4c30de82-0196-4c9d-8a59-08d7d28e34a0
-X-MS-TrafficTypeDiagnostic: DM5PR04MB0234:
-X-Microsoft-Antispam-PRVS: 
-	<DM5PR04MB0234D0D2FBF55E01AA77B1A286CC0@DM5PR04MB0234.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:159;
-X-Forefront-PRVS: 0355F3A3AE
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM5PR04MB1069.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(10019020)(4636009)(39860400002)(396003)(366004)(376002)(346002)(136003)(31686004)(52116002)(478600001)(53546011)(66476007)(966005)(66946007)(66556008)(2906002)(5660300002)(36756003)(316002)(6486002)(8936002)(81156014)(31696002)(2616005)(8676002)(86362001)(81166006)(16526019)(186003)(21314003);DIR:OUT;SFP:1102;
-Received-SPF: None (protection.outlook.com: ni.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 
-	c+qkIWXSQ8+X6661YLJVhTvFRHC6Taq21dqLcc8UWHJcF9LhCK3NazTmeL6CXt9xYw8xKo4eRn88fTFkDs3nuG+kE/T3JhAw7FEymqEigWktCF2ZpxNJHOt+g9fN//OjEHjqr59k3l+HLjYbwgOIY+QmTg0QuIwUWwLxAqhVlYk67qUHT3QslSAdM5MO1a2pYlLoJBzd0rrk+04P6ofvgLFR7yAMkJenGydXwbfLtxWttGTm4DxUXyuMVWEeiFEGIXrvtQtBhvfdkjidwIFwRcKLmbdd/xpcXPuwg/1SOIMkfGXu/FLh4RgPbvjK8AG7/2v9JEmzbdxYBS63wXMRnoG+qyvHPIRfPMpv1Xu0FIb4W0mfkLU9Le5NViqwS5B+edSdbv9i9C1SQQgPF8XFSnW9aipik5JtsgllKl7H8xopAnWQY4tIZ+qvBLTp/NCY0dEJqr3QCVlrKxBDEtOxttvzbiYOV04kY2hKl6L0nd8/1oSiYzvSS0lYHYxnsGlPhkP36ndiHNyjjkTFDOWhJnEGMJJuP1TR7s58NqDRu/BobHAdZqLAv8NXnpa7K/fk
-X-MS-Exchange-AntiSpam-MessageData: 
-	eXyrVSDTRUtPFnXVClJLwcHmhaQF/nBf7Dh5PVtjZv5MwHLj0kQ0bK7g6O4we/fNYaZGQfxOSqG9R6be4e+y4xg133g32peMScHAvyDtd3oSu3EmdUtrfw20DaWTvZ/mYlG5+QrDaA10II2gIhBJrDiUfLv8AjfeAeBBRsTtxn+gmkRPj8RD5oQEBHXLUVOBtIoUylA6Cs6/1orr8hOMkA==
-X-OriginatorOrg: ni.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4c30de82-0196-4c9d-8a59-08d7d28e34a0
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Mar 2020 20:34:10.7529
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 87ba1f9a-44cd-43a6-b008-6fdb45a5204e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lZUlD7I1+sNF7Uu+5V482JkzNy32bgL1NsyVjbjqZpajN3Hyx1Us61M2s5DcSCYocSpmC/3JuzVDuSzNFu9ZtXCtDcO/+1tiK+9aTma3CNQ=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR04MB0234
-Subject: Re: [opkg-devel] [opkg-utils PATCH] Opkg.py : Support for tilde in version compare
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.645
- definitions=2020-03-27_07:2020-03-27,2020-03-27 signatures=0
-X-Proofpoint-Spam-Details: rule=inbound_policy_notspam policy=inbound_policy score=30 bulkscore=0
- priorityscore=1501 suspectscore=0 lowpriorityscore=0 clxscore=1011
- adultscore=0 impostorscore=0 malwarescore=0 phishscore=0 spamscore=0
- mlxlogscore=999 mlxscore=0 classifier=spam adjust=30 reason=mlx
- scancount=1 engine=8.12.0-2003020000 definitions=main-2003270168
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US-large
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20200325114319.2115155-1-jonatan.p@gmail.com>
+Content-Type: multipart/alternative;
+ boundary="------------FD97C5A0F15244782A39002A"
+Content-Language: en-US
 
-Hi Marteen,
+--------------FD97C5A0F15244782A39002A
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
 
-thanks for working on this, a couple of comments
 
-On 3/19/20 6:26 AM, Maarten wrote:
-> Add support for the special tilde character. The current opkg version
-> allows specifying a version appended with a tilde e.g.
-> 1.2.2~releasecandidate which is lower in version than 1.2.2 itself. With
-> this commit, this is now also supported by the opkg.py script.
-> 
-> Signed-off-by: Maarten <maarten.vanmegen@nedap.com>
+
+On 3/25/20 4:43 AM, Jonatan Pålsson wrote:
+> Signed-off-by: Jonatan Pålsson <jonatan.p@gmail.com>
+
+series merged.
+
+thanks
+Armin
 > ---
->   opkg.py | 132 ++++++++++++++++++++++++++++----------------------------
->   1 file changed, 66 insertions(+), 66 deletions(-)
-> 
-> diff --git a/opkg.py b/opkg.py
-> index ba947c2..34af483 100644
-> --- a/opkg.py
-> +++ b/opkg.py
-> @@ -1,5 +1,4 @@
-> -#!/usr/bin/env python3
-> -# SPDX-License-Identifier: GPL-2.0-or-later
+>  recipes-security/sssd/sssd_1.16.4.bb | 18 +++++++++---------
+>  1 file changed, 9 insertions(+), 9 deletions(-)
+>
+> diff --git a/recipes-security/sssd/sssd_1.16.4.bb b/recipes-security/sssd/sssd_1.16.4.bb
+> index c5ddd5c..b0b7038 100644
+> --- a/recipes-security/sssd/sssd_1.16.4.bb
+> +++ b/recipes-security/sssd/sssd_1.16.4.bb
+> @@ -37,18 +37,18 @@ PACKAGECONFIG ?="nss nscd"
+>  PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux', '', d)}"
+>  PACKAGECONFIG += "${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"
+>  
+> -PACKAGECONFIG[ssh] = "--with-ssh, --with-ssh=no, "
+> -PACKAGECONFIG[samba] = "--with-samba, --with-samba=no, samba"
+> -PACKAGECONFIG[selinux] = "--with-selinux, --with-selinux=no --with-semanage=no, libselinux"
+> -PACKAGECONFIG[manpages] = "--with-manpages, --with-manpages=no"
+> -PACKAGECONFIG[python3] = "--with-python3-bindings, --without-python3-bindings"
+> -PACKAGECONFIG[nss] = "--with-crypto=nss, ,nss,"
+>  PACKAGECONFIG[crypto] = "--with-crypto=libcrypto, , libcrypto"
+> -PACKAGECONFIG[nscd] = "--with-nscd=${sbindir}, --with-nscd=no "
+> +PACKAGECONFIG[curl] = "--with-secrets --with-kcm, --without-secrets --without-kcm, curl"
+> +PACKAGECONFIG[http] = "--with-secrets, --without-secrets, apache2"
+> +PACKAGECONFIG[manpages] = "--with-manpages, --with-manpages=no"
+>  PACKAGECONFIG[nl] = "--with-libnl, --with-libnl=no, libnl"
+> +PACKAGECONFIG[nscd] = "--with-nscd=${sbindir}, --with-nscd=no "
+> +PACKAGECONFIG[nss] = "--with-crypto=nss, ,nss,"
+> +PACKAGECONFIG[python3] = "--with-python3-bindings, --without-python3-bindings"
+> +PACKAGECONFIG[samba] = "--with-samba, --with-samba=no, samba"
+> +PACKAGECONFIG[selinux] = "--with-selinux, --with-selinux=no --with-semanage=no, libselinux"
+> +PACKAGECONFIG[ssh] = "--with-ssh, --with-ssh=no, "
+>  PACKAGECONFIG[systemd] = "--with-initscript=systemd,--with-initscript=sysv"
+> -PACKAGECONFIG[http] = "--with-secrets, --without-secrets, apache2"
+> -PACKAGECONFIG[curl] = "--with-secrets --with-kcm, --without-secrets --without-kcm, curl"
+>  
+>  EXTRA_OECONF += " \
+>      --disable-cifs-idmap-plugin \
 
-did you intentionally modified the shebang & removed the SPDX identifier?
 
-> +#!/usr/bin/env python
->   #   Copyright (C) 2001 Alexander S. Guy <a7r@andern.org>
->   #                      Andern Research Labs
->   #
-> @@ -38,58 +37,86 @@ from __future__ import print_function
->   import tempfile
->   import os
->   import sys
-> -import glob
->   import hashlib
->   import re
->   import subprocess
->   from stat import ST_SIZE
->   import arfile
->   import tarfile
-> -import textwrap
->   import collections
->   
-> +
-> +def order(x):
-> +    if not x:
-> +        return 0
-> +    if x == "~":
-> +        return -1
-> +    if str.isdigit(x):
-> +        return 0
-> +    if str.isalpha(x):
-> +        return ord(x)
-> +
-> +    return 256 + ord(x)
-> +
-> +
->   class Version(object):
->       """A class for holding parsed package version information."""
-> +
->       def __init__(self, epoch, version):
->           self.epoch = epoch
->           self.version = version
->   
->       def _versioncompare(self, selfversion, refversion):
-> +        """
-> +        Implementation below is a copy of the opkg version comparison algorithm
-> +        https://urldefense.com/v3/__http://git.yoctoproject.org/cgit/cgit.cgi/opkg/tree/libopkg/pkg.c*n933__;Iw!!FbZ0ZwI3Qg!5LDeOr__t_Ow1oYBFtvf1sVRXNIPxT_bNylibWik21KDrv8His3FsfSxBbFI88ZZzzTfeg$
-> +        it alternates between number and non number comparisons until a difference is found
-> +        digits are compared by value. other characters are sorted lexically using the above method orderOfChar
-> +
-> +        One slight modification, the original version can return any value, whereas this one is limited to -1, 0, +1
-> +        """
->           if not selfversion: selfversion = ""
->           if not refversion: refversion = ""
-> -        while 1:
-> -            ## first look for non-numeric version component
-> -            selfm = re.match('([^0-9]*)(.*)', selfversion)
-> -            #print(('selfm', selfm.groups()))
-> -            (selfalpha, selfversion) = selfm.groups()
-> -            refm = re.match('([^0-9]*)(.*)', refversion)
-> -            #print(('refm', refm.groups())
-> -            (refalpha, refversion) = refm.groups()
-> -            if (selfalpha > refalpha):
-> -                return 1
-> -            elif (selfalpha < refalpha):
-> -                return -1
-> -            ## now look for numeric version component
-> -            (selfnum, selfversion) = re.match('([0-9]*)(.*)', selfversion).groups()
-> -            (refnum, refversion) = re.match('([0-9]*)(.*)', refversion).groups()
-> -            #print(('selfnum', selfnum, selfversion)
-> -            #print(('refnum', refnum, refversion)
-> -            if (selfnum != ''):
-> -                selfnum = int(selfnum)
-> -            else:
-> -                selfnum = -1
-> -            if (refnum != ''):
-> -                refnum = int(refnum)
-> -            else:
-> -                refnum = -1
-> -            if (selfnum > refnum):
-> +
-> +        value = list(selfversion)
-> +        ref = list(refversion)
-> +
-> +        while value or ref:
-> +            first_diff = 0
-> +            # alphanumeric comparison
-> +            while (value and not str.isdigit(value[0])) or (ref and not str.isdigit(ref[0])):
-> +                vc = order(value.pop(0) if value else None)
-> +                rc = order(ref.pop(0) if ref else None)
-> +                if vc != rc:
-> +                    return -1 if vc < rc else 1
-> +
-> +            # comparing numbers
-> +            # start by skipping 0
-> +            while value and value[0] == "0":
-> +                value.pop(0)
-> +            while ref and ref[0] == "0":
-> +                ref.pop(0)
-> +
-> +            # actual number comparison
-> +            while value and str.isdigit(value[0]) and ref and str.isdigit(ref[0]):
-> +                if not first_diff:
-> +                    first_diff = int(value.pop(0)) - int(ref.pop(0))
-> +                else:
-> +                    value.pop(0)
-> +                    ref.pop(0)
-> +
-> +            # the one that has a value remaining was the highest number
-> +            if value and str.isdigit(value[0]):
->                   return 1
-> -            elif (selfnum < refnum):
-> +            if ref and str.isdigit(ref[0]):
->                   return -1
-> -            if selfversion == '' and refversion == '':
-> -                return 0
-> +            # in case of equal length numbers look at the first diff
-> +            if first_diff:
-> +                return 1 if first_diff > 0 else -1
-> +        return 0
->   
->       def compare(self, ref):
-> +
->           if (self.epoch > ref.epoch):
->               return 1
->           elif (self.epoch < ref.epoch):
-> @@ -191,9 +218,6 @@ class Package(object):
->           if name == "md5":
->               self._computeFileMD5()
->               return self.md5
-> -        elif name == "sha256":
-> -            self._computeFileSHA256()
-> -            return self.sha256
-
-this seems unrelated to your patch, was it intentional to remove sha256 
-support?
-
->           elif name == 'size':
->               return self._get_file_size()
->           else:
-> @@ -213,20 +237,6 @@ class Package(object):
->               f.close()
->               self.md5 = sum.hexdigest()
->   
-> -    def _computeFileSHA256(self):
-> -        # compute the SHA256.
-> -        if not self.fn:
-> -            self.sha256 = 'Unknown'
-> -        else:
-> -            f = open(self.fn, "rb")
-> -            sum = hashlib.sha256()
-> -            while True:
-> -               data = f.read(1024)
-> -               if not data: break
-> -               sum.update(data)
-> -            f.close()
-> -            self.sha256 = sum.hexdigest()
-> -
-
-same here
-
->       def _get_file_size(self):
->           if not self.fn:
->               self.size = 0;
-> @@ -259,8 +269,6 @@ class Package(object):
->                       self.size = int(value)
->                   elif name_lowercase == 'md5sum':
->                       self.md5 = value
-> -                elif name_lowercase == 'sha256sum':
-> -                    self.sha256 = value
-
-and here
-
->                   elif name_lowercase in self.__dict__:
->                       self.__dict__[name_lowercase] = value
->                   elif all_fields:
-> @@ -384,7 +392,6 @@ class Package(object):
->                   error = subprocess.CalledProcessError(retcode, cmd)
->                   error.output = output
->                   raise error
-> -            output = output.decode("utf-8")
->               return output
->   
->           if not self.fn:
-> @@ -408,12 +415,8 @@ class Package(object):
->               return []
->           f = open(self.fn, "rb")
->           ar = arfile.ArFile(f, self.fn)
-> -        try:
-> -            tarStream = ar.open("data.tar.gz")
-> -            tarf = tarfile.open("data.tar.gz", "r", tarStream)
-> -        except IOError:
-> -            tarStream = ar.open("data.tar.xz")
-> -            tarf = tarfile.open("data.tar.xz", "r:xz", tarStream)
-> +        tarStream = ar.open("data.tar.gz")
-> +        tarf = tarfile.open("data.tar.gz", "r", tarStream)
-
-this also seem to revert a newer commit (add xz support)
-
->           self.file_list = tarf.getnames()
->           self.file_list = [["./", ""][a.startswith("./")] + a for a in self.file_list]
->   
-> @@ -488,7 +491,7 @@ class Package(object):
->               ref.parsed_version = parse_version(ref.version)
->           return self.parsed_version.compare(ref.parsed_version)
->   
-> -    def print(self, checksum):
-> +    def __str__(self):
-
-this change also looks unrelated
-
->           out = ""
->   
->           # XXX - Some checks need to be made, and some exceptions
-> @@ -505,10 +508,7 @@ class Package(object):
->           if self.section: out = out + "Section: %s\n" % (self.section)
->           if self.architecture: out = out + "Architecture: %s\n" % (self.architecture)
->           if self.maintainer: out = out + "Maintainer: %s\n" % (self.maintainer)
-> -        if 'md5' in checksum:
-> -            if self.md5: out = out + "MD5Sum: %s\n" % (self.md5)
-> -        if 'sha256' in checksum:
-> -            if self.sha256: out = out + "SHA256sum: %s\n" % (self.sha256)
-> +        if self.md5: out = out + "MD5Sum: %s\n" % (self.md5)
->           if self.size: out = out + "Size: %d\n" % int(self.size)
->           if self.installed_size: out = out + "InstalledSize: %d\n" % int(self.installed_size)
->           if self.filename: out = out + "Filename: %s\n" % (self.filename)
-> @@ -585,14 +585,14 @@ class Packages(object):
->       def __getitem__(self, key):
->           return self.packages[key]
->   
-> -if __name__ == "__main__":
->   
-> +if __name__ == "__main__":
->       assert Version(0, "1.2.2-r1").compare(Version(0, "1.2.3-r0")) == -1
->       assert Version(0, "1.2.2-r0").compare(Version(0, "1.2.2+cvs20070308-r0")) == -1
->       assert Version(0, "1.2.2+cvs20070308").compare(Version(0, "1.2.2-r0")) == 1
->       assert Version(0, "1.2.2-r0").compare(Version(0, "1.2.2-r0")) == 0
->       assert Version(0, "1.2.2-r5").compare(Version(0, "1.2.2-r0")) == 1
-> -
-> +    assert Version(0, "1.1.2~r1").compare(Version(0, "1.1.2")) == -1
->       package = Package()
->   
->       package.set_package("FooBar")
+>
 > 
 
--- 
-Cheers,
 
-Alejandro
+--------------FD97C5A0F15244782A39002A
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <br>
+    <br>
+    <div class="moz-cite-prefix">On 3/25/20 4:43 AM, Jonatan Pålsson
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:20200325114319.2115155-1-jonatan.p@gmail.com">
+      <pre class="moz-quote-pre" wrap="">Signed-off-by: Jonatan Pålsson <a class="moz-txt-link-rfc2396E" href="mailto:jonatan.p@gmail.com">&lt;jonatan.p@gmail.com&gt;</a></pre>
+    </blockquote>
+    <br>
+    series merged.<br>
+    <br>
+    thanks<br>
+    Armin<br>
+    <blockquote type="cite"
+      cite="mid:20200325114319.2115155-1-jonatan.p@gmail.com">
+      <pre class="moz-quote-pre" wrap="">
+---
+ recipes-security/sssd/sssd_1.16.4.bb | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/recipes-security/sssd/sssd_1.16.4.bb b/recipes-security/sssd/sssd_1.16.4.bb
+index c5ddd5c..b0b7038 100644
+--- a/recipes-security/sssd/sssd_1.16.4.bb
++++ b/recipes-security/sssd/sssd_1.16.4.bb
+@@ -37,18 +37,18 @@ PACKAGECONFIG ?="nss nscd"
+ PACKAGECONFIG += <a class="moz-txt-link-rfc2396E" href="mailto:${@bb.utils.contains('DISTRO_FEATURES','selinux','selinux','',d)}">"${@bb.utils.contains('DISTRO_FEATURES', 'selinux', 'selinux', '', d)}"</a>
+ PACKAGECONFIG += <a class="moz-txt-link-rfc2396E" href="mailto:${@bb.utils.contains('DISTRO_FEATURES','systemd','systemd','',d)}">"${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'systemd', '', d)}"</a>
+ 
+-PACKAGECONFIG[ssh] = "--with-ssh, --with-ssh=no, "
+-PACKAGECONFIG[samba] = "--with-samba, --with-samba=no, samba"
+-PACKAGECONFIG[selinux] = "--with-selinux, --with-selinux=no --with-semanage=no, libselinux"
+-PACKAGECONFIG[manpages] = "--with-manpages, --with-manpages=no"
+-PACKAGECONFIG[python3] = "--with-python3-bindings, --without-python3-bindings"
+-PACKAGECONFIG[nss] = "--with-crypto=nss, ,nss,"
+ PACKAGECONFIG[crypto] = "--with-crypto=libcrypto, , libcrypto"
+-PACKAGECONFIG[nscd] = "--with-nscd=${sbindir}, --with-nscd=no "
++PACKAGECONFIG[curl] = "--with-secrets --with-kcm, --without-secrets --without-kcm, curl"
++PACKAGECONFIG[http] = "--with-secrets, --without-secrets, apache2"
++PACKAGECONFIG[manpages] = "--with-manpages, --with-manpages=no"
+ PACKAGECONFIG[nl] = "--with-libnl, --with-libnl=no, libnl"
++PACKAGECONFIG[nscd] = "--with-nscd=${sbindir}, --with-nscd=no "
++PACKAGECONFIG[nss] = "--with-crypto=nss, ,nss,"
++PACKAGECONFIG[python3] = "--with-python3-bindings, --without-python3-bindings"
++PACKAGECONFIG[samba] = "--with-samba, --with-samba=no, samba"
++PACKAGECONFIG[selinux] = "--with-selinux, --with-selinux=no --with-semanage=no, libselinux"
++PACKAGECONFIG[ssh] = "--with-ssh, --with-ssh=no, "
+ PACKAGECONFIG[systemd] = "--with-initscript=systemd,--with-initscript=sysv"
+-PACKAGECONFIG[http] = "--with-secrets, --without-secrets, apache2"
+-PACKAGECONFIG[curl] = "--with-secrets --with-kcm, --without-secrets --without-kcm, curl"
+ 
+ EXTRA_OECONF += " \
+     --disable-cifs-idmap-plugin \</pre>
+    </blockquote>
+    <br>
+    <br>
+    <blockquote type="cite"
+      cite="mid:20200325114319.2115155-1-jonatan.p@gmail.com">
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------FD97C5A0F15244782A39002A--
