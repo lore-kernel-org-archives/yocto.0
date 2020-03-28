@@ -1,247 +1,328 @@
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (APC01-SG2-obe.outbound.protection.outlook.com [40.107.131.107])
- by mx.groups.io with SMTP id smtpd.web10.5613.1585401936732279137
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (EUR04-HE1-obe.outbound.protection.outlook.com [40.92.73.25])
+ by mx.groups.io with SMTP id smtpd.web12.6353.1585404514281770869
  for <yocto@lists.yoctoproject.org>;
- Sat, 28 Mar 2020 06:25:39 -0700
+ Sat, 28 Mar 2020 07:08:58 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@hcl.com header.s=selector2 header.b=JW557SYD;
- spf=pass (domain: hcl.com, ip: 40.107.131.107, mailfrom: ajama@hcl.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=HCL.COM; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P5o7NHnrBOGlmi53BKdwpGWqdQHNn/uyw9HJg5Y6Uuw=;
- b=JW557SYDsN3C/INYW5QqSHrcvn9nVY+1RMYzgjVo3is2u77FKXuYw5XDMzxgsjLkvA/Q6VSXENx7jWoRMjjrGslIX7pWcB2q0MWrWCgZoEM1CEtf9elxBwejh6RjBL9rRXmvOdao9UIfbPqZK/6n9358dUnC9sIdNumX+djVrOs=
-Received: from SG2PR02CA0085.apcprd02.prod.outlook.com (2603:1096:4:90::25) by
- PS1PR04MB2774.apcprd04.prod.outlook.com (2603:1096:803:47::18) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2835.15; Sat, 28 Mar 2020 13:25:33 +0000
-Received: from HK2APC01FT015.eop-APC01.prod.protection.outlook.com
- (2603:1096:4:90:cafe::18) by SG2PR02CA0085.outlook.office365.com
- (2603:1096:4:90::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.20 via Frontend
- Transport; Sat, 28 Mar 2020 13:25:32 +0000
-Authentication-Results: spf=pass (sender IP is 192.8.195.57)
- smtp.mailfrom=hcl.com; lists.yoctoproject.org; dkim=pass (signature was
- verified) header.d=HCL.COM;lists.yoctoproject.org; dmarc=pass action=none
- header.from=hcl.com;
-Received-SPF: Pass (protection.outlook.com: domain of hcl.com designates
- 192.8.195.57 as permitted sender) receiver=protection.outlook.com;
- client-ip=192.8.195.57; helo=APC01-PU1-obe.outbound.protection.outlook.com;
-Received: from APC01-PU1-obe.outbound.protection.outlook.com (192.8.195.57) by
- HK2APC01FT015.mail.protection.outlook.com (10.152.248.167) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2856.17 via Frontend Transport; Sat, 28 Mar 2020 13:25:30 +0000
+ dkim=pass header.i=@outlook.com header.s=selector1 header.b=O8PiAtq8;
+ spf=pass (domain: outlook.com, ip: 40.92.73.25, mailfrom: kweihmann@outlook.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Wz3gr+ad+Sw9bRJq8OE2zsZzypoJKKwBrbGqP/ZwnlsguQSkpcb7rMt+jWT/n0DUtmnSxC0Fx59BrmYOX9Z//AaM4vICAmwAmXdmkFQTa3cJlziRaqZDUR9qszjJujLZ+IJrzugHSwB7fMlZlo9g3GAXyUAaucGSBFRJllZxdWqBcjkU99PoydozJF26qLt1KIDWF6bw5bZXmKp96snhcZ8e6BiaJK7pAPIdgSd/oBh9tlYzpERMsOnPzF42wkFKtMWwavo25uFMj5FrIjYoql61itxZwhaMi/QOQBURlQOoQk3IlIm02x1x1h8i7IcCUFPxD5Q0N9/yRWkXrKvZOg==
+ b=LDe2FkJcgl1Nuc4bAfHH3f/op4wGzBG+MfcuQaeNrGjnMFCuIuB2xuryWxnKoLBkbuQkL7RX640Ja5gUbd9GtljoxaioKrkg7r1bGzOP+jkI/p47Ju8cStcDRlB1rsmotZ6l4uEqmTN/a5Q4YvP8mOlTmFjkvFBz25qZrpUzqtcIb659eP93w3gh5ay4saP7KYzYyDr47p8lVeallKdoVUVZXGcyfGOW0rxoZahv0mH7sMDep8vhzZSUSYqS2AJp4fed6kUggyklMIHoY2D1HEv6WV4SYtrl5IHmobqEWFJASkvBgUEkRIssAs1r7fNZWDY6rqLeaP41TAC+Xd8K3w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P5o7NHnrBOGlmi53BKdwpGWqdQHNn/uyw9HJg5Y6Uuw=;
- b=hQxDfKDmVuTcAjN6ZIoKxo6MUd0dHPTrKDMoVt1SbQ4ejulpMMwnieuypt/zCZwMMisQhDiEwEWOVVMkQ/u6jENzy+O3KMqNO/BBDBXFajrFdM6X2a2sS/ZXFhAleS16hKuUBBNwkL9rTz4iaaqG/FteGGqRJKJlgy3Er2/ydeiex32AdjsjORf0qZVSDkQ1qMvh1TMJ15iYViodFsS78eR/Tq7KX/oMM9yO3HsvGl1/1+E7GEegUtTK3A4zXuubJZLdJL9Ty5sAm5dWCExevCg5JxnIK21ytNQdMu+/evr8VShkpXYAJqvgPgAg070+f7zsmWtsZVdExt/t7OARyg==
+ bh=Ww8BpUYOwYFUoaIdCpMnziPPg8vnbirsULHGTqDdSGk=;
+ b=EBG0mF3HEbbk0PCcbTM6remsxDqVc0wijQRtrfDMbpzTg/pRqmcxQ940Ky0MzyKIdCSQS20C9i0vHepN81KF/RDD+ddQLQSi7m0KjtQGxGVzvjmHNgHj5KFC3A5fXMYeMlc6050fsFKOMO2yYc26zdBXIrmltfzfIOT1e956one2nYHt1xsRmJDgnXX7A052dj8/iKIIHt2kH//EnNvabPV13xrxKo8fPeUPl00DbzJOwYPrktNJOS3T3vyG9aTyTEQf8+5oKCg7fiYPKBjB6pLcPGHdGnnovp8G+sik32BGnuMU4uYuJEJOSFY0YF1n6sL/NnMBizPBw46eEIwRIQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hcl.com; dmarc=pass action=none header.from=hcl.com; dkim=pass
- header.d=hcl.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=HCL.COM; s=selector2;
+ smtp.mailfrom=outlook.com; dmarc=pass action=none header.from=outlook.com;
+ dkim=pass header.d=outlook.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=P5o7NHnrBOGlmi53BKdwpGWqdQHNn/uyw9HJg5Y6Uuw=;
- b=JW557SYDsN3C/INYW5QqSHrcvn9nVY+1RMYzgjVo3is2u77FKXuYw5XDMzxgsjLkvA/Q6VSXENx7jWoRMjjrGslIX7pWcB2q0MWrWCgZoEM1CEtf9elxBwejh6RjBL9rRXmvOdao9UIfbPqZK/6n9358dUnC9sIdNumX+djVrOs=
-Received: from HK0PR04MB2914.apcprd04.prod.outlook.com (20.177.25.76) by
- HK0PR04MB2979.apcprd04.prod.outlook.com (20.177.24.86) with Microsoft SMTP
+ bh=Ww8BpUYOwYFUoaIdCpMnziPPg8vnbirsULHGTqDdSGk=;
+ b=O8PiAtq8v9Rtd8OL5OOnZpEx0jr4ygNGA/TA3RvEC6RWpxJQOzkeCJ6e/wpcT6V66FISnc3O4hqZZU3njPCJFzz3RyiVP5qg9pVP175FBVgUMHdBdnzNJ7VsmnTAdvFXC0r6MXpDTFnUiDgiEgETUkwvc0JVWYnUdE93e0QAMj/dbcI9CZsUtjDYvhLOJcjSuZlrNJJj3UJt9FZ1l2fwdS/jOxe9U5x4bpYhAWKpgagOf4WJWiZN0/OUO/izPB9VxUGBWv5K5h0/DohE9CAJfaN6FnKIQKeG+daT4YAOWcHG2hGDYtmwJPVmdMUimzKMyQfHw2oseeKz/kkhyluUYg==
+Received: from HE1EUR04FT056.eop-eur04.prod.protection.outlook.com
+ (2a01:111:e400:7e0d::47) by
+ HE1EUR04HT165.eop-eur04.prod.protection.outlook.com (2a01:111:e400:7e0d::106)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.17; Sat, 28 Mar
+ 2020 14:08:23 +0000
+Received: from VI1PR05MB4286.eurprd05.prod.outlook.com (10.152.26.52) by
+ HE1EUR04FT056.mail.protection.outlook.com (10.152.27.45) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2856.20; Sat, 28 Mar 2020 13:25:27 +0000
-Received: from HK0PR04MB2914.apcprd04.prod.outlook.com
- ([fe80::d30:6434:8250:2d44]) by HK0PR04MB2914.apcprd04.prod.outlook.com
- ([fe80::d30:6434:8250:2d44%5]) with mapi id 15.20.2856.019; Sat, 28 Mar 2020
- 13:25:27 +0000
-From: ajama@hcl.com
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Fw: Reducing rootfs size in yocto
-Thread-Topic: Reducing rootfs size in yocto
-Thread-Index: AQHWBQOpsr5y8icioEWpKGlX+EE4S6hd/pa9
-Date: Sat, 28 Mar 2020 13:25:26 +0000
-Message-ID: 
+ 15.20.2856.17 via Frontend Transport; Sat, 28 Mar 2020 14:08:23 +0000
+X-IncomingTopHeaderMarker: 
+ OriginalChecksum:941CFD0AFD8A17EDE0E4D2BC8303AFF3724DEDAF5CF7CB49C5BAA8B7E233FEDA;UpperCasedChecksum:A48A2BB7FE23DE0020525A3D619870BC7504AB92099D497544E3557F0D8A19E3;SizeAsReceived:8101;Count:49
+Received: from VI1PR05MB4286.eurprd05.prod.outlook.com
+ ([fe80::e1b1:4a5f:7dd7:4131]) by VI1PR05MB4286.eurprd05.prod.outlook.com
+ ([fe80::e1b1:4a5f:7dd7:4131%4]) with mapi id 15.20.2856.019; Sat, 28 Mar 2020
+ 14:08:23 +0000
+Subject: Re: [yocto] Fw: Reducing rootfs size in yocto
+To: Ajam Ali <ajama@hcl.com>
+References: <HK0PR04MB29144DAFD598E96154278145B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
  <HK0PR04MB291491325C57709CD3461BB9B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
-References: 
- <HK0PR04MB29144DAFD598E96154278145B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
-In-Reply-To: 
- <HK0PR04MB29144DAFD598E96154278145B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Authentication-Results-Original: spf=none (sender IP is )
- smtp.mailfrom=AjamA@hcl.com; 
-x-originating-ip: [106.206.57.232]
-x-ms-publictraffictype: Email
-X-MS-Office365-Filtering-Correlation-Id: 08f3e827-acd4-4dc8-8239-08d7d31b7d65
-x-ms-traffictypediagnostic: HK0PR04MB2979:|PS1PR04MB2774:
-X-Microsoft-Antispam-PRVS: 
-	<PS1PR04MB2774DA9B2882E5A92789A490B4CD0@PS1PR04MB2774.apcprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;OLM:5516;
-x-forefront-prvs: 03569407CC
-X-Forefront-Antispam-Report-Untrusted: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR04MB2914.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(10019020)(4636009)(136003)(346002)(396003)(376002)(366004)(39860400002)(2906002)(26005)(71200400001)(81156014)(33656002)(2940100002)(186003)(81166006)(9686003)(66476007)(66446008)(66556008)(64756008)(55016002)(66946007)(316002)(8676002)(86362001)(52536014)(8936002)(19627405001)(7696005)(478600001)(91956017)(76116006)(6506007)(6916009)(5660300002);DIR:OUT;SFP:1102;
-received-spf: None (protection.outlook.com: hcl.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 
- 4ACo0x8OAmM4cr6i90IlzMro5kX9YXwigmu9x7wgULkvaGeFI4jfaQ84fWQ0//oOJHBUHqGqidbXuXnJ/j6PKLkxcD9o4KqbwXak3zt0+I2wanF7opft+sReYPbnadw07KQgRyaLFqCrfn5LVB5Wx4mzpMtkiWS9bS2+o9x0ZENkqL9xRdpIAwwY+RolWRti+bnEeukalRybnE/d8B3JbWBE97Uhx7Aa9wrlXa5zOJ2iyG7Ec8FjXOfAa/Nz2TwDIMZyrTSBkVWt0ugzocYZojnPeH3+iEoPEIHu6qfaj6PwdT0WwvvhdoTdIR6HJPmeit7MLySrydUTlad9R9AXVwfKb8ivL+FDQqA2pmyN4l7XSeORHWT6lSxDKtLXhuARBSCd2g2V4Vw6+moa1Hr7H3yU9vT6/RqTe9a0k8itvRbJkF0E78BNMC2aE1GucmNh
-x-ms-exchange-antispam-messagedata: 
- NsrIRorEXQN9PnjNrdrOpShP/C12Divk5nS5MlHABDqiEG9VNl3lQh74Zl5cCDA2y7EB8FrSU1kfNjvN5Ob2vUtdGWp2N5ul5NB92soUiHkRcAzpKdJYICbYM6Cr/PAN9esosaakcALq8gCD7gABqg==
-x-ms-exchange-transport-forked: True
+Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+From: "Konrad Weihmann" <kweihmann@outlook.com>
+Message-ID: 
+ <VI1PR05MB4286DCEF29A234000881D0F9A8CD0@VI1PR05MB4286.eurprd05.prod.outlook.com>
+Date: Sat, 28 Mar 2020 15:08:21 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+In-Reply-To: <HK0PR04MB291491325C57709CD3461BB9B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
+X-ClientProxiedBy: AM5PR0502CA0002.eurprd05.prod.outlook.com
+ (2603:10a6:203:91::12) To VI1PR05MB4286.eurprd05.prod.outlook.com
+ (2603:10a6:803:4d::27)
+Return-Path: kweihmann@outlook.com
+X-Microsoft-Original-Message-ID: 
+ <111bedbf-a549-1d21-cc22-59748446382b@outlook.com>
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR04MB2979
-X-DLP: MSGProcess
-Return-Path: AjamA@hcl.com
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.188.20] (87.141.87.90) by AM5PR0502CA0002.eurprd05.prod.outlook.com (2603:10a6:203:91::12) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.20 via Frontend Transport; Sat, 28 Mar 2020 14:08:23 +0000
+X-Microsoft-Original-Message-ID: 
+ <111bedbf-a549-1d21-cc22-59748446382b@outlook.com>
+X-TMN: [CxfFR7J3lt7VOi/cEubD1UjXOrUH4XTa]
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 49
 X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- HK2APC01FT015.eop-APC01.prod.protection.outlook.com
-X-Forefront-Antispam-Report: 
-	CIP:192.8.195.57;CTRY:IN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:APC01-PU1-obe.outbound.protection.outlook.com;PTR:InfoDomainNonexistent;CAT:NONE;SFTY:;SFS:(10019020)(4636009)(39860400002)(346002)(376002)(396003)(136003)(46966005)(8936002)(6916009)(2906002)(86362001)(19627405001)(47076004)(356004)(33656002)(336012)(478600001)(36906005)(186003)(55016002)(2940100002)(52536014)(81156014)(81166006)(70206006)(8676002)(9686003)(82740400003)(5660300002)(6506007)(26005)(316002)(7696005)(70586007);DIR:OUT;SFP:1102;
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 
-	d83681ee-d8a3-4f21-4630-08d7d31b7a9f
-X-Forefront-PRVS: 03569407CC
+X-MS-Office365-Filtering-Correlation-Id: cd0118a1-77e9-40b5-6d26-08d7d3217a1a
+X-MS-TrafficTypeDiagnostic: HE1EUR04HT165:
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	WOV30B8stTCFVGnUmGf0lapJO+phyoYlFWuW/KUgaCdWDCXdpeqCqJ9Smo70PevF7BOaae+KPKONRrSMHVPlLKMRJNYnzGSw3KIBuct9wnRCvGn2e7p2AGZgAbqzZHtAezN/4A5aG0a4Kx4svr8MMLTHoBqPkJ08yX9ly6R+glOA2v1rhs0Qx0sIWKr4E9WLht1eLgHMDPJsonDzKZC/YRzI2wWWBA6MCh8k7Yi4e8SwWy1dVVQsIV2pWLTvALS4MhxS/I4/UhmNUsv+ddVFkFjMIFbQmHowsCTNKcHY+uH086GPOJrPFzSKdhFtsxjbuKtaQt14/YeWgMN1/zBAyye9eJ9Lymi6vbKWLl8z1JXEp6Ytfdl5eb/tefHbO6GnoRNtHeMjB5KcmdfbnLxymmlyl+E5bkTz3qoLCv3/mGnQN+80mpB63feVNkjHnHEgmdPdEh/Vhl4gfugcFrbNpegOAjEvcud0uxFR/tN6TZ1xNl3QBTbpPWaWFBXfCv0/wDAXZrB7EnMFaVoVBDto8w==
-X-OriginatorOrg: HCL.COM
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2020 13:25:30.8975
+	P7XNM3RXhQbt5Pexrp9rAaeXQF53SBg4xM4z7Aekb+FyIalvHFuEhoqb8f/oa+A8lBwdkDMZq6qA89FS8iVocrayzWvhSqw8Dv5exItE0/FXaOk9VjDhUIEJxVgL43UmCiAWpcxEPNx4ph3OPDwhTOZ8V9BpKVc0uRefMLtavwmQyycRKUez8Q5pl61QBWbc3pzmvCWRvrdcZSkb/NNU8UgRqPbicrCfpHK3hwBVqBU=
+X-MS-Exchange-AntiSpam-MessageData: 
+	jQp5KfQ0kOyXc50MIRvDstDdPcZj4jBjcoGmuUeFVqe7u8ZHA4wzoVGP9gw3AQwKKqpm0wX7j3hwUo9tAVHt6Vfp7I1pRr87ZzD3VKYrQCYfG0P150v7LvfVREitIDxdCAcHs9urZMSfY9N9BZBn0g==
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cd0118a1-77e9-40b5-6d26-08d7d3217a1a
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2020 14:08:23.4077
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08f3e827-acd4-4dc8-8239-08d7d31b7d65
-X-MS-Exchange-CrossTenant-Id: 189de737-c93a-4f5a-8b68-6f4ca9941912
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=189de737-c93a-4f5a-8b68-6f4ca9941912;Ip=[192.8.195.57];Helo=[APC01-PU1-obe.outbound.protection.outlook.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PS1PR04MB2774
-Content-Language: en-US
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1EUR04HT165
 Content-Type: multipart/alternative;
-	boundary="_000_HK0PR04MB291491325C57709CD3461BB9B4CD0HK0PR04MB2914apcp_"
+ boundary="------------CFFDDF0F266BAE8B1E638B89"
+Content-Language: en-US
 
---_000_HK0PR04MB291491325C57709CD3461BB9B4CD0HK0PR04MB2914apcp_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--------------CFFDDF0F266BAE8B1E638B89
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-
-________________________________
-
-Hi All,
-
-I am trying to reduce the image size.
+Pretty general questions, but I try to answer your question.
 
 
-how can i  reduce the size of following packages so that i could get a smal=
-l image size after integrating these packages in yocto?
+I don't know what the purpose of your image is, but installing 
+development tools like boost-dev or gcc (I guess that is what you mean 
+with cpp) makes your image automatically a lot bigger, I would suggest 
+to put devtools into a SDK, which could be shipped separately.
 
 
-1) boost-dev 2) docker 3) containerd-opencontainers 4) nodejs 5) nodejs-npm=
- 6) python3-numpy 7) cpp 8) postgresql
+Next thing you can do is to analyze the what is actually so big in your 
+image, e.g. by creating a tar.gz of the image, unpacking it and browsing 
+by 'du -sh *'.
+You can get the package/recipe to a file by using 'oe-pkgdata-util 
+find-path <path>'.
 
 
+In the identified recipe you can look for PACKAGECONFIG or OE_EXTRACONF 
+switches that you don't need and disable them.
 
-Thanks in advance,
 
-Ajam Ali
+As said, I don't know what the purpose/environment of your image will be 
+like, but you could also consider to use a different fs-format like squash.
 
-::DISCLAIMER::
-________________________________
-The contents of this e-mail and any attachment(s) are confidential and inte=
-nded for the named recipient(s) only. E-mail transmission is not guaranteed=
- to be secure or error-free as information could be intercepted, corrupted,=
- lost, destroyed, arrive late or incomplete, or may contain viruses in tran=
-smission. The e mail and its contents (with or without referred errors) sha=
-ll therefore not attach any liability on the originator or HCL or its affil=
-iates. Views or opinions, if any, presented in this email are solely those =
-of the author and may not necessarily reflect the views or opinions of HCL =
-or its affiliates. Any form of reproduction, dissemination, copying, disclo=
-sure, modification, distribution and / or publication of this message witho=
-ut the prior written consent of authorized representative of HCL is strictl=
-y prohibited. If you have received this email in error please delete it and=
- notify the sender immediately. Before opening any email and/or attachments=
-, please check them for viruses and other defects.
-________________________________
 
---_000_HK0PR04MB291491325C57709CD3461BB9B4CD0HK0PR04MB2914apcp_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+In general if you want small images preferring musl over glibc and 
+systemV over systemd is something that you could consider as well.
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
-ttom:0;} </style>
-</head>
-<body dir=3D"ltr">
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-<br>
-</div>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0);">
-<br>
-</div>
-<div id=3D"appendonsend"></div>
-<hr tabindex=3D"-1" style=3D"display:inline-block; width:98%">
-<div id=3D"divRplyFwdMsg" dir=3D"ltr">
-<div>&nbsp;</div>
-</div>
-<div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-Hi All,</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-I am trying to reduce the image size.<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-<br>
-</div>
-<div style=3D"font-family: Calibri, Arial, Helvetica, sans-serif; font-size=
-: 12pt; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">
-<p style=3D"margin-top: 0px; margin-bottom: 0px;">how can i&nbsp; reduce th=
-e size of following packages so that i could get a small image size after i=
-ntegrating these packages in yocto?</p>
-<p style=3D"margin-top: 0px; margin-bottom: 0px;"><br>
-</p>
-<p style=3D"margin-top: 0px; margin-bottom: 0px;">1) boost-dev 2) docker 3)=
- containerd-opencontainers 4) nodejs 5) nodejs-npm 6) python3-numpy 7) cpp =
-8) postgresql</p>
-<p style=3D"margin-top: 0px; margin-bottom: 0px;"><br>
-</p>
-<p style=3D"margin-top: 0px; margin-bottom: 0px;"><br>
-</p>
-<p style=3D"margin-top: 0px; margin-bottom: 0px;">Thanks in advance,</p>
-<p style=3D"margin-top: 0px; margin-bottom: 0px;">Ajam Ali<br>
-</p>
-<br>
-</div>
-</div>
-</div>
-<font face=3D"Arial" color=3D"Gray" size=3D"1">::DISCLAIMER::<br>
-<hr>
-The contents of this e-mail and any attachment(s) are confidential and inte=
-nded for the named recipient(s) only. E-mail transmission is not guaranteed=
- to be secure or error-free as information could be intercepted, corrupted,=
- lost, destroyed, arrive late or
- incomplete, or may contain viruses in transmission. The e mail and its con=
-tents (with or without referred errors) shall therefore not attach any liab=
-ility on the originator or HCL or its affiliates. Views or opinions, if any=
-, presented in this email are solely
- those of the author and may not necessarily reflect the views or opinions =
-of HCL or its affiliates. Any form of reproduction, dissemination, copying,=
- disclosure, modification, distribution and / or publication of this messag=
-e without the prior written consent
- of authorized representative of HCL is strictly prohibited. If you have re=
-ceived this email in error please delete it and notify the sender immediate=
-ly. Before opening any email and/or attachments, please check them for viru=
-ses and other defects.<br>
-<hr>
-</font>
-</body>
+
+TL;DR
+
+
+1) move to SDK
+
+2) check PACKAGECONFIG switches
+
+3) same as 2 or consider something "smaller" like lxc
+
+4) same as 2
+
+5) same as 2
+
+6) same as 2
+
+7) move to SDK
+
+8) same as 2
+
+
+On 28.03.20 14:25, Ajam Ali wrote:
+>
+>
+> ------------------------------------------------------------------------
+> Hi All,
+>
+> I am trying to reduce the image size.
+>
+> how can i reduce the size of following packages so that i could get a 
+> small image size after integrating these packages in yocto?
+>
+>
+> 1) boost-dev 2) docker 3) containerd-opencontainers 4) nodejs 5) 
+> nodejs-npm 6) python3-numpy 7) cpp 8) postgresql
+>
+>
+>
+> Thanks in advance,
+>
+> Ajam Ali
+>
+>
+> ::DISCLAIMER::
+> ------------------------------------------------------------------------
+> The contents of this e-mail and any attachment(s) are confidential and 
+> intended for the named recipient(s) only. E-mail transmission is not 
+> guaranteed to be secure or error-free as information could be 
+> intercepted, corrupted, lost, destroyed, arrive late or incomplete, or 
+> may contain viruses in transmission. The e mail and its contents (with 
+> or without referred errors) shall therefore not attach any liability 
+> on the originator or HCL or its affiliates. Views or opinions, if any, 
+> presented in this email are solely those of the author and may not 
+> necessarily reflect the views or opinions of HCL or its affiliates. 
+> Any form of reproduction, dissemination, copying, disclosure, 
+> modification, distribution and / or publication of this message 
+> without the prior written consent of authorized representative of HCL 
+> is strictly prohibited. If you have received this email in error 
+> please delete it and notify the sender immediately. Before opening any 
+> email and/or attachments, please check them for viruses and other defects.
+> ------------------------------------------------------------------------
+>
+> 
+
+--------------CFFDDF0F266BAE8B1E638B89
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=Windows-1252">
+  </head>
+  <body>
+    <p>Pretty general questions, but I try to answer your question.</p>
+    <p><br>
+    </p>
+    <p>I don't know what the purpose of your image is, but installing
+      development tools like boost-dev or gcc (I guess that is what you
+      mean with cpp) makes your image automatically a lot bigger, I
+      would suggest to put devtools into a SDK, which could be shipped
+      separately.</p>
+    <p><br>
+    </p>
+    <p>Next thing you can do is to analyze the what is actually so big
+      in your image, e.g. by creating a tar.gz of the image, unpacking
+      it and browsing by 'du -sh *'.<br>
+      You can get the package/recipe to a file by using 'oe-pkgdata-util
+      find-path &lt;path&gt;'.</p>
+    <p><br>
+    </p>
+    <p>In the identified recipe you can look for PACKAGECONFIG or
+      OE_EXTRACONF switches that you don't need and disable them.</p>
+    <p><br>
+    </p>
+    <p>As said, I don't know what the purpose/environment of your image
+      will be like, but you could also consider to use a different
+      fs-format like squash.</p>
+    <p><br>
+    </p>
+    <p>In general if you want small images preferring musl over glibc
+      and systemV over systemd is something that you could consider as
+      well.</p>
+    <p><br>
+    </p>
+    <p>TL;DR</p>
+    <p><br>
+    </p>
+    <p>1) move to SDK</p>
+    <p>2) check PACKAGECONFIG switches</p>
+    <p>3) same as 2 or consider something &quot;smaller&quot; like lxc<br>
+    </p>
+    <p>4) same as 2</p>
+    <p>5) same as 2</p>
+    <p>6) same as 2</p>
+    <p>7) move to SDK</p>
+    <p>8) same as 2<br>
+    </p>
+    <p><br>
+    </p>
+    <div class="moz-cite-prefix">On 28.03.20 14:25, Ajam Ali wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:HK0PR04MB291491325C57709CD3461BB9B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com">
+      
+      <style type="text/css" style="display:none;"> P {margin-top:0;margin-bottom:0;} </style>
+      <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+        font-size: 12pt; color: rgb(0, 0, 0); background-color: rgb(255,
+        255, 255);">
+        <br>
+      </div>
+      <div>
+        <div style="font-family: Calibri, Arial, Helvetica, sans-serif;
+          font-size: 12pt; color: rgb(0, 0, 0);">
+          <br>
+        </div>
+        <hr tabindex="-1" style="display:inline-block; width:98%">
+        <div id="divRplyFwdMsg" dir="ltr">
+          <div>&nbsp;</div>
+        </div>
+        <div>
+          <div style="font-family: Calibri, Arial, Helvetica,
+            sans-serif; font-size: 12pt; color: rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);">
+            Hi All,</div>
+          <div style="font-family: Calibri, Arial, Helvetica,
+            sans-serif; font-size: 12pt; color: rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);">
+            <br>
+          </div>
+          <div style="font-family: Calibri, Arial, Helvetica,
+            sans-serif; font-size: 12pt; color: rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);">
+            I am trying to reduce the image size.<br>
+          </div>
+          <div style="font-family: Calibri, Arial, Helvetica,
+            sans-serif; font-size: 12pt; color: rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);">
+            <br>
+          </div>
+          <div style="font-family: Calibri, Arial, Helvetica,
+            sans-serif; font-size: 12pt; color: rgb(0, 0, 0);
+            background-color: rgb(255, 255, 255);">
+            <p style="margin-top: 0px; margin-bottom: 0px;">how can i&nbsp;
+              reduce the size of following packages so that i could get
+              a small image size after integrating these packages in
+              yocto?</p>
+            <p style="margin-top: 0px; margin-bottom: 0px;"><br>
+            </p>
+            <p style="margin-top: 0px; margin-bottom: 0px;">1) boost-dev
+              2) docker 3) containerd-opencontainers 4) nodejs 5)
+              nodejs-npm 6) python3-numpy 7) cpp 8) postgresql</p>
+            <p style="margin-top: 0px; margin-bottom: 0px;"><br>
+            </p>
+            <p style="margin-top: 0px; margin-bottom: 0px;"><br>
+            </p>
+            <p style="margin-top: 0px; margin-bottom: 0px;">Thanks in
+              advance,</p>
+            <p style="margin-top: 0px; margin-bottom: 0px;">Ajam Ali<br>
+            </p>
+            <br>
+          </div>
+        </div>
+      </div>
+      <font size="1" face="Arial" color="Gray">::DISCLAIMER::<br>
+        <hr>
+        The contents of this e-mail and any attachment(s) are
+        confidential and intended for the named recipient(s) only.
+        E-mail transmission is not guaranteed to be secure or error-free
+        as information could be intercepted, corrupted, lost, destroyed,
+        arrive late or incomplete, or may contain viruses in
+        transmission. The e mail and its contents (with or without
+        referred errors) shall therefore not attach any liability on the
+        originator or HCL or its affiliates. Views or opinions, if any,
+        presented in this email are solely those of the author and may
+        not necessarily reflect the views or opinions of HCL or its
+        affiliates. Any form of reproduction, dissemination, copying,
+        disclosure, modification, distribution and / or publication of
+        this message without the prior written consent of authorized
+        representative of HCL is strictly prohibited. If you have
+        received this email in error please delete it and notify the
+        sender immediately. Before opening any email and/or attachments,
+        please check them for viruses and other defects.<br>
+        <hr>
+      </font>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+  </body>
 </html>
 
---_000_HK0PR04MB291491325C57709CD3461BB9B4CD0HK0PR04MB2914apcp_--
+--------------CFFDDF0F266BAE8B1E638B89--
