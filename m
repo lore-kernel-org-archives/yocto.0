@@ -1,189 +1,335 @@
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
- by mx.groups.io with SMTP id smtpd.web10.1554.1585353964430020256
+Received: from EUR04-VI1-obe.outbound.protection.outlook.com (EUR04-VI1-obe.outbound.protection.outlook.com [40.92.75.15])
+ by mx.groups.io with SMTP id smtpd.web10.4565.1585398420213581992
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Mar 2020 17:06:04 -0700
+ Sat, 28 Mar 2020 05:27:00 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=umvNxyqI;
- spf=pass (domain: gmail.com, ip: 209.85.215.173, mailfrom: akuster808@gmail.com)
-Received: by mail-pg1-f173.google.com with SMTP id b1so5373118pgm.8
-        for <yocto@lists.yoctoproject.org>; Fri, 27 Mar 2020 17:06:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:autocrypt:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language;
-        bh=cdeknVegTilQM7hSr8HfIdpBC99JzgHppam8JtR2RL0=;
-        b=umvNxyqI8GX0b1FypPdUJiuejTRw+Zt2XmCb4JNS9KX+pu6yN8VfE+kuMHzzfNKdmG
-         0rNoxqP4GM8ChRgF0Nl/GBhRthE58rA4OKZxl/ZH/Ufm6i3S5bVccSQQwUUa5+mL4Gam
-         /JCZEDeBxOTb5XyoRKlG4YLwRnbHKh+FuhyKVDSDHFx6xiFrQrbbJ/9Yc/RIKBddcV8t
-         THPNLHoErt/8qtLwL20f9s9Qq9X09kDhB3QIEZ4KE7sOBWpi1t1/hiH1vKqF/qBWbiWz
-         Dn21uct/I74u6RnMmKdDs6Dp6ZXzWUW8IK+Zh6E6/noSFtMBAaJm9X5jYAfodc8rLLDd
-         v5eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language;
-        bh=cdeknVegTilQM7hSr8HfIdpBC99JzgHppam8JtR2RL0=;
-        b=QWKbgcN3yad71SxNuv6XSFYRena4g/5BIbwKrAY+klGQ6UJELF9rwHOAF26s3j0dpw
-         Kc8GF40mvAteg2d4TKXP1tCH+KjaRu99CKWNj3Ravw2NtFSdR/0W50BCHhdtYxbbmRI6
-         jnO/5dtfBhLLmtwbakyEMwtx/gl+lH04XGI2QDrPhjKXpqie0tFt6KfnwEfRr5cSIqda
-         f5g6UdLoAbnA12Nsv+mCjJGRtV0T9yDP0/59gJAqrNMZ6n3m+G5cT0GvEoIsfLWvU2eu
-         OI5OB5QgUpZelHvs0U+OqrWaardkk+8vyRc91Ya65agWr+21WbIbA2N8ZUiszsAUbxrm
-         3nPg==
-X-Gm-Message-State: ANhLgQ3pZPylje72HLxBy2h8GgGSSzw3rZEqQjHYG6bzoBAnlmyfetsv
-	/kkRzCMlDzgeMqwjojgwzlV02jzRpW8=
-X-Google-Smtp-Source: ADFU+vsv6r4a7Ns0ALSHSmhrpH46OsGX2obKpm7vI4mp2gAzvUOZKln88C29E8bHFQ4c4GkuF14GKg==
-X-Received: by 2002:aa7:85c4:: with SMTP id z4mr1805979pfn.121.1585353963695;
-        Fri, 27 Mar 2020 17:06:03 -0700 (PDT)
-Return-Path: <akuster808@gmail.com>
-Received: from ?IPv6:2601:202:4180:a5c0:84d1:5d33:be2f:3f17? ([2601:202:4180:a5c0:84d1:5d33:be2f:3f17])
-        by smtp.gmail.com with ESMTPSA id m7sm457906pjb.7.2020.03.27.17.06.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Mar 2020 17:06:03 -0700 (PDT)
-Subject: Re: [yocto] [meta-security][PATCH] openscap-daemon: add missing runtime dependencies
-To: Yi Zhao <yi.zhao@windriver.com>, yocto@lists.yoctoproject.org
-References: <20200309124516.25548-1-yi.zhao@windriver.com>
-From: "akuster" <akuster808@gmail.com>
-Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- 8CS2NxU=
-Message-ID: <557ed8a5-be1f-da4b-8c61-9cb69ec042db@gmail.com>
-Date: Fri, 27 Mar 2020 17:06:02 -0700
+ dkim=pass header.i=@outlook.com header.s=selector1 header.b=qttCzvAj;
+ spf=pass (domain: outlook.com, ip: 40.92.75.15, mailfrom: kweihmann@outlook.com)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=U/o8W92qj67i7de7crhKP9rZsvzHq+lP8IUf2p/hPQJG0IcjXi/g44QMc/I3bT8iuV9pHG5F+D7bWpk6bFKyD8uoo4l1rR6HUTmoBKoj8U8ecea0e5cFHiKKwkCCGUyh9mdpbz9T+QFRt8MerWSkvgeDLZfQM1FceoPYdXkz6eo+MGYD1NpKsdOL7mCIgBQUGXreWa3hSLpKFPJIMMi7v5GPnJRaRb4LwohnZJDoqP/R890h1tHrWHXdA4V9NvYUg1v3h+VSOZ+q4IhLXFGtM7/t16tQgMzsdy1b/0t6YzgzT6HU/yrivwLKOFwroVO0JqqlMUCFz5s4wQbEqxUSWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZxMg5rZjEZnVg/GrwFL9MIISOume/52ahete7xsXf9c=;
+ b=Z7pevaMQHOvgaZ8FROkeMEcvv3oXnz7x7nJelHhinaSgqYm97TTyMuzfUwUHCPOzJEqKmHmhEmmYM7LUrgfkeUy+ddpP+CcvIiVEIeIi8vdvq6M323Z1HGrb5X+zoi00gUSw/Xb4mE+8L6iBkMWiLl3yb0C6S1Tdm5CceZj2cqm+DFM9kD8X3nIw9cWchwpqk2RTfU6sbGvT+1s9c/SfNN24ixpaxfS2tbcqo6SBVoGxQLNbtzw4iNvUrmC/mintwGwQeyV7jrJqrCyPdnVI38rDTIG4PAv+vLutvCNgH83OhcOStEIMZ0jTUmNBRG8E8O7Kwkm0+3b/lrOx5Yxb2A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=outlook.com; dmarc=pass action=none header.from=outlook.com;
+ dkim=pass header.d=outlook.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZxMg5rZjEZnVg/GrwFL9MIISOume/52ahete7xsXf9c=;
+ b=qttCzvAj17F8TroClxB4JjxTR6ncWvfGCqA6ij+188OH1GkfeuI3y87R4dLGnVuFsPu9rRcHuahLAp1p+UHNykl6z1Oi+VJOB+iUNhgNregur5yeI7MHQeO7qSW50a83qnLlqaOvGG6dPep3wY14J58E1JxV5ATng9BjfDfPcO/qiAJb9sOw+LTC/DeA1uiT/k3V6JbYDxdfdL1KEJrvZ5gAs+44FrkTXFtEnLfoY19zbU7dkdDEN0Nfsjjcs2+ql90FgNh6cT0C7xwwaKh237ivUuUPIotAlFYpgEhaN1C1e87EAztn5hpbvoKUlRoVMv5MgGDDOLCxpz6ksz+C+Q==
+Received: from DB3EUR04FT056.eop-eur04.prod.protection.outlook.com
+ (2a01:111:e400:7e0c::40) by
+ DB3EUR04HT020.eop-eur04.prod.protection.outlook.com (2a01:111:e400:7e0c::311)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.17; Sat, 28 Mar
+ 2020 12:26:58 +0000
+Received: from VI1PR05MB4286.eurprd05.prod.outlook.com (10.152.24.59) by
+ DB3EUR04FT056.mail.protection.outlook.com (10.152.24.69) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2856.17 via Frontend Transport; Sat, 28 Mar 2020 12:26:58 +0000
+X-IncomingTopHeaderMarker: 
+ OriginalChecksum:313E8F2DBCF49C815EF26B87633EA6C1E727A6D6E2CA3D961B0FCA124CF965CF;UpperCasedChecksum:49FE751E72585C430ADFBFAC83CAACC3FB74B9EE3BF2B23F8E10A594E9F3F1C6;SizeAsReceived:8651;Count:46
+Received: from VI1PR05MB4286.eurprd05.prod.outlook.com
+ ([fe80::e1b1:4a5f:7dd7:4131]) by VI1PR05MB4286.eurprd05.prod.outlook.com
+ ([fe80::e1b1:4a5f:7dd7:4131%4]) with mapi id 15.20.2856.019; Sat, 28 Mar 2020
+ 12:26:58 +0000
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+From: "Konrad Weihmann" <kweihmann@outlook.com>
+Subject: Files get sporadically lost for native packages
+Message-ID: 
+ <VI1PR05MB428643D97A9A175005473BDEA8CD0@VI1PR05MB4286.eurprd05.prod.outlook.com>
+Date: Sat, 28 Mar 2020 13:26:56 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
+X-ClientProxiedBy: AM6PR02CA0036.eurprd02.prod.outlook.com
+ (2603:10a6:20b:6e::49) To VI1PR05MB4286.eurprd05.prod.outlook.com
+ (2603:10a6:803:4d::27)
+Return-Path: kweihmann@outlook.com
+X-Microsoft-Original-Message-ID: 
+ <f7743986-0f44-0313-dacc-e18cb78ddae9@outlook.com>
 MIME-Version: 1.0
-In-Reply-To: <20200309124516.25548-1-yi.zhao@windriver.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.188.20] (87.141.87.90) by AM6PR02CA0036.eurprd02.prod.outlook.com (2603:10a6:20b:6e::49) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.19 via Frontend Transport; Sat, 28 Mar 2020 12:26:57 +0000
+X-Microsoft-Original-Message-ID: 
+ <f7743986-0f44-0313-dacc-e18cb78ddae9@outlook.com>
+X-TMN: [lTfZE4FdFrqmldPLVkxQFMIqHHC3RuvO]
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 46
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-Correlation-Id: 85ef1402-8953-4711-3198-08d7d3134eb1
+X-MS-TrafficTypeDiagnostic: DB3EUR04HT020:
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 
+	ZM5sdN8IM6Vzx5zqYE5ys5vOdm0t375HnhWN58sBIlJWW3PI4lD8zE0zXQEByuBhNJb98X1LECI46qHofNqJ8aSu++2t32hQ6BSjPNql+8W5zLKhauBm9/LXnxuU+jwdZ0Sdkoop7UqamJnwcDHyf+6w5wa8exgwXJkWx35u0HGqv6d5KEzt1MxZDpqX6+iU
+X-MS-Exchange-AntiSpam-MessageData: 
+	yo52/QnhLhnKNePfwySMbpTbBsKMH81SXTPFMJYTkLfmTqzMbw00VHSUl2BrgzAL9CHZIPhj32UkXhUxAo6jSxjnpGfBHecnA20OKENyv4IbygRnivFo1HiyD1F0v830Cp6SDIaONH/ufe4TREdK1A==
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85ef1402-8953-4711-3198-08d7d3134eb1
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Mar 2020 12:26:58.0275
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3EUR04HT020
 Content-Type: multipart/alternative;
- boundary="------------71CC8FA86D46090FDD8FB11A"
+ boundary="------------21A1215E1607ABF4FD2D7DBC"
 Content-Language: en-US
 
---------------71CC8FA86D46090FDD8FB11A
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
+--------------21A1215E1607ABF4FD2D7DBC
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Hi,
+
+I'm facing the following error message sporadically on all branches I 
+tried so far (master, zeus, warrior and thud)
+
+The stack trace of python calls that resulted in this exception/failure was:
+File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+      0001:
+  *** 0002:extend_recipe_sysroot(d)
+      0003:
+File: '/build/poky/meta/classes/staging.bbclass', lineno: 551, function: 
+extend_recipe_sysroot
+      0547:                    dest = newmanifest[l]
+      0548:                    if l.endswith("/"):
+      0549:                        staging_copydir(l, targetdir, dest, 
+seendirs)
+      0550:                        continue
+  *** 0551:                    staging_copyfile(l, targetdir, dest, 
+postinsts, seendirs)
+      0552:
+      0553:    bb.note("Installed into sysroot: %s" % str(msg_adding))
+      0554:    bb.note("Skipping as already exists in sysroot: %s" % 
+str(msg_exists))
+      0555:
+File: '/build/poky/meta/classes/staging.bbclass', lineno: 152, function: 
+staging_copyfile
+      0148:        os.symlink(linkto, dest)
+      0149:        #bb.warn(c)
+      0150:    else:
+      0151:        try:
+  *** 0152:            os.link(c, dest)
+      0153:        except OSError as err:
+      0154:            if err.errno == errno.EXDEV:
+      0155:                bb.utils.copyfile(c, dest)
+      0156:            else:
+Exception: FileNotFoundError: [Errno 2] No such file or directory: 
+'/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc' 
+-> 
+'/build/poky/build/tmp/work/qemux86_64-mine-linux/core-image-minimal-mine/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc'
+
+I already had a look at the manifest
+
+cat manifest-x86_64-python3-msgcheck-native.populate_sysroot
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37.pyc
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_links.txt
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.txt
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points.txt
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/msgcheck
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/sysroot-providers/python3-msgcheck-native
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/sysroot-providers/
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/share/
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/
+
+which states the file should be there, but when doing
+
+find 
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37.pyc
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_links.txt
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.txt
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points.txt
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/msgcheck
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/share
+
+the file isn't there.
+
+This happens to random python packages compiled as native (sometimes 
+even for python-native itself), but (afaik) not for cross or target 
+packages (I'm pretty sure because of the different packaging applied).
+So I digged a little into the code 
+classes/sstate.bbclass:sstate_install, which seems to create the 
+sysroot-component dir and the manifest.
+There is a gap between the manifest creation (line 285) and the 
+hardlinking (line till 311).
+
+Now my question is there any place where a file potentially could get 
+lost? - at first glance there shouldn't be one - I have to admit that I 
+don't fully understand all this subprocess magic in 
+lib/oe/path.py:copyhardlinktree.
+What I do to fix the issue is reopening the manifest and double check 
+for missing files and remove them from the manifest, but this
+feels wrong - so any advise is welcome...
+
+Hope that someone more familiar with the topic could have a look.
+
+Thanks
+
+Konrad
 
 
-
-On 3/9/20 5:45 AM, Yi Zhao wrote:
-> Add missing runtime dependencies otherwise /usr/bin/oscapd can not
-> startup.
->
-> Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-merged.
-
-thanks,
-Armin
-> ---
->  .../openscap-daemon/openscap-daemon_0.1.10.bb                | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
-> diff --git a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-> index ca6e030..a775021 100644
-> --- a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-> +++ b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-> @@ -17,4 +17,7 @@ inherit setuptools3
->  
->  S = "${WORKDIR}/git"
->  
-> -RDEPENDS_${PN} = "python"
-> +RDEPENDS_${PN} = "openscap scap-security-guide \
-> +                  python3-core python3-dbus \
-> +                  python3-pygobject \
-> +                 "
->
-> 
-
-
---------------71CC8FA86D46090FDD8FB11A
+--------------21A1215E1607ABF4FD2D7DBC
 Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 3/9/20 5:45 AM, Yi Zhao wrote:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:20200309124516.25548-1-yi.zhao@windriver.com">
-      <pre class="moz-quote-pre" wrap="">Add missing runtime dependencies otherwise /usr/bin/oscapd can not
-startup.
-
-Signed-off-by: Yi Zhao <a class="moz-txt-link-rfc2396E" href="mailto:yi.zhao@windriver.com">&lt;yi.zhao@windriver.com&gt;</a></pre>
-    </blockquote>
-    merged.<br>
-    <br>
-    thanks,<br>
-    Armin<br>
-    <blockquote type="cite"
-      cite="mid:20200309124516.25548-1-yi.zhao@windriver.com">
-      <pre class="moz-quote-pre" wrap="">
----
- .../openscap-daemon/openscap-daemon_0.1.10.bb                | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-index ca6e030..a775021 100644
---- a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-+++ b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
-@@ -17,4 +17,7 @@ inherit setuptools3
- 
- S = "${WORKDIR}/git"
- 
--RDEPENDS_${PN} = "python"
-+RDEPENDS_${PN} = "openscap scap-security-guide \
-+                  python3-core python3-dbus \
-+                  python3-pygobject \
-+                 "
-</pre>
+    <p>Hi,</p>
+    <p>I'm facing the following error message sporadically on all
+      branches I tried so far (master, zeus, warrior and thud)<br>
+    </p>
+    <p>The stack trace of python calls that resulted in this
+      exception/failure was:<br>
+      File: 'exec_python_func() autogenerated', lineno: 2, function:
+      &lt;module&gt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0001:<br>
+      &nbsp;*** 0002:extend_recipe_sysroot(d)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0003:<br>
+      File: '/build/poky/meta/classes/staging.bbclass', lineno: 551,
+      function: extend_recipe_sysroot<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0547:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dest = newmanifest[l]<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0548:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if l.endswith(&quot;/&quot;):<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0549:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; staging_copydir(l, targetdir,
+      dest, seendirs)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0550:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; continue<br>
+      &nbsp;*** 0551:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; staging_copyfile(l, targetdir, dest,
+      postinsts, seendirs)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0552:<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0553:&nbsp;&nbsp;&nbsp; bb.note(&quot;Installed into sysroot: %s&quot; %
+      str(msg_adding))<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0554:&nbsp;&nbsp;&nbsp; bb.note(&quot;Skipping as already exists in sysroot: %s&quot;
+      % str(msg_exists))<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0555:<br>
+      File: '/build/poky/meta/classes/staging.bbclass', lineno: 152,
+      function: staging_copyfile<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0148:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; os.symlink(linkto, dest)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0149:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #bb.warn(c)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0150:&nbsp;&nbsp;&nbsp; else:<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0151:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try:<br>
+      &nbsp;*** 0152:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; os.link(c, dest)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0153:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; except OSError as err:<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0154:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if err.errno == errno.EXDEV:<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0155:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bb.utils.copyfile(c, dest)<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; 0156:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else:<br>
+      Exception: FileNotFoundError: [Errno 2] No such file or directory:
+'/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc'
+      -&gt;
+'/build/poky/build/tmp/work/qemux86_64-mine-linux/core-image-minimal-mine/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc'</p>
+    <p>I already had a look at the manifest</p>
+    <p>cat manifest-x86_64-python3-msgcheck-native.populate_sysroot <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37.pyc<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_links.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/msgcheck<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/sysroot-providers/python3-msgcheck-native<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/sysroot-providers/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/share/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/<br>
+    </p>
+    <p>which states the file should be there, but when doing <br>
+    </p>
+    <p>find
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37.pyc<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_links.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/msgcheck<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/share<br>
+    </p>
+    <p>the file isn't there.</p>
+    <p>This happens to random python packages compiled as native
+      (sometimes even for python-native itself), but (afaik) not for
+      cross or target packages (I'm pretty sure because of the different
+      packaging applied).<br>
+      So I digged a little into the code
+      classes/sstate.bbclass:sstate_install, which seems to create the
+      sysroot-component dir and the manifest.<br>
+      There is a gap between the manifest creation (line 285) and the
+      hardlinking (line till 311).<br>
       <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <pre class="moz-quote-pre" wrap="">
-</pre>
-    </blockquote>
-    <br>
+      Now my question is there any place where a file potentially could
+      get lost? - at first glance there shouldn't be one - I have to
+      admit that I don't fully understand all this subprocess magic in
+      lib/oe/path.py:<span class="pl-en"><span class="pl-token" data-hydro-click="{&quot;event_type&quot;:&quot;code_navigation.click_on_symbol&quot;,&quot;payload&quot;:{&quot;action&quot;:&quot;click_on_symbol&quot;,&quot;repository_id&quot;:15777788,&quot;ref&quot;:&quot;master&quot;,&quot;language&quot;:&quot;Python&quot;,&quot;originating_url&quot;:&quot;https://github.com/openembedded/openembedded-core/blob/master/meta/lib/oe/path.py&quot;,&quot;user_id&quot;:46938494}}" data-hydro-click-hmac="8f0eb98e55388169d88549187b51753127312f5dcaa9fb63de0646ce6de15190">copyhardlinktree</span></span>.<br>
+      What I do to fix the issue is reopening the manifest and double
+      check for missing files and remove them from the manifest, but
+      this<br>
+      feels wrong - so any advise is welcome...</p>
+    <p>Hope that someone more familiar with the topic could have a look.</p>
+    <p>Thanks</p>
+    <p>Konrad<br>
+    </p>
   </body>
 </html>
 
---------------71CC8FA86D46090FDD8FB11A--
+--------------21A1215E1607ABF4FD2D7DBC--
