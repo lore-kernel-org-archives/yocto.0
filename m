@@ -1,47 +1,47 @@
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
- by mx.groups.io with SMTP id smtpd.web10.1541.1585353924419495171
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+ by mx.groups.io with SMTP id smtpd.web10.1554.1585353964430020256
  for <yocto@lists.yoctoproject.org>;
- Fri, 27 Mar 2020 17:05:24 -0700
+ Fri, 27 Mar 2020 17:06:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=KS131Qu3;
- spf=pass (domain: gmail.com, ip: 209.85.216.46, mailfrom: akuster808@gmail.com)
-Received: by mail-pj1-f46.google.com with SMTP id kx8so4420973pjb.5
-        for <yocto@lists.yoctoproject.org>; Fri, 27 Mar 2020 17:05:24 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=umvNxyqI;
+ spf=pass (domain: gmail.com, ip: 209.85.215.173, mailfrom: akuster808@gmail.com)
+Received: by mail-pg1-f173.google.com with SMTP id b1so5373118pgm.8
+        for <yocto@lists.yoctoproject.org>; Fri, 27 Mar 2020 17:06:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:references:from:autocrypt:message-id:date:user-agent
          :mime-version:in-reply-to:content-language;
-        bh=qV9mqJx0kjPd/qqvJswqXOl595817DxnO/meEHX8vZI=;
-        b=KS131Qu3wZcm4UbMsU9D8N7urXpoMqqTiv1LJEE4bbPLRf/05FP888ZMyvJ5WcnI3i
-         RrGvVXTvBN7Hthp/Mx/e/A6QDvU4ui7Ww83+JPl+yTubtalgakP4DjrbygnE+0+dM7j3
-         e3b6/pMIVXj4hyWAh+SzA/FEHCe/jC2MnVRujqNiprPXXZggQjPE78b743eeMeEiT0Zi
-         /8bLiyRmQyZsWmYx4sU1jmIyOoy8Q3SqQc5HJXTC8unXRGrBgHuN2cOolMAZCEznClgz
-         oGt2Pd1QsWKNAThngQ9ZGVoVctwEi+rDkBiBPYuA5WIFdQR4GyKpBBn+tfCHv+lX3oDL
-         pLBA==
+        bh=cdeknVegTilQM7hSr8HfIdpBC99JzgHppam8JtR2RL0=;
+        b=umvNxyqI8GX0b1FypPdUJiuejTRw+Zt2XmCb4JNS9KX+pu6yN8VfE+kuMHzzfNKdmG
+         0rNoxqP4GM8ChRgF0Nl/GBhRthE58rA4OKZxl/ZH/Ufm6i3S5bVccSQQwUUa5+mL4Gam
+         /JCZEDeBxOTb5XyoRKlG4YLwRnbHKh+FuhyKVDSDHFx6xiFrQrbbJ/9Yc/RIKBddcV8t
+         THPNLHoErt/8qtLwL20f9s9Qq9X09kDhB3QIEZ4KE7sOBWpi1t1/hiH1vKqF/qBWbiWz
+         Dn21uct/I74u6RnMmKdDs6Dp6ZXzWUW8IK+Zh6E6/noSFtMBAaJm9X5jYAfodc8rLLDd
+         v5eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:references:from:autocrypt:message-id
          :date:user-agent:mime-version:in-reply-to:content-language;
-        bh=qV9mqJx0kjPd/qqvJswqXOl595817DxnO/meEHX8vZI=;
-        b=UDqOE6g84RBWgrUmVhq3ziyoO2Scji55QAdS2QVuPP40Ea23Tg/Yjv9D5OhZYa3hzA
-         ZyFQePJwBh4ZrtKBHVhTDWuftctIzk208cRH3w5o1O8DtaGdblGU6AeJg4MYUOYOIjRO
-         bJpLWlQCHVys6hHF+VBMQCb77c6fPOPefqbzUivW10bE94UM6Wsq5c8MihuM1vE8vYJ1
-         GCCLrWd4RfqH0tvtbIt4yO/pThFBMdwohOW/jiUGmpfb/BWnESJhE21rInG6m0Q7YL47
-         1RtCntkb/fzGxL2882XLPYZBQmgn1IC7D4h7vbAqHDftcpX+UxDnZsotrf93hNWqIVsg
-         dU5w==
-X-Gm-Message-State: ANhLgQ1RxxLP/TByj3GxfHHAfIq0lPEULw22JIRrpF77DsiGPcn7RZmW
-	chfov0/QWtrOG/aQQr9ljLCq4I6FgYw=
-X-Google-Smtp-Source: ADFU+vuiO+xu0pH/aBMJHxthgW/a9KnkQsdzzmJlPvJZXtXHNr/VR/zuPWGmDK4Uxj7rfoLBFoJiZQ==
-X-Received: by 2002:a17:902:d712:: with SMTP id w18mr1595788ply.238.1585353923744;
-        Fri, 27 Mar 2020 17:05:23 -0700 (PDT)
+        bh=cdeknVegTilQM7hSr8HfIdpBC99JzgHppam8JtR2RL0=;
+        b=QWKbgcN3yad71SxNuv6XSFYRena4g/5BIbwKrAY+klGQ6UJELF9rwHOAF26s3j0dpw
+         Kc8GF40mvAteg2d4TKXP1tCH+KjaRu99CKWNj3Ravw2NtFSdR/0W50BCHhdtYxbbmRI6
+         jnO/5dtfBhLLmtwbakyEMwtx/gl+lH04XGI2QDrPhjKXpqie0tFt6KfnwEfRr5cSIqda
+         f5g6UdLoAbnA12Nsv+mCjJGRtV0T9yDP0/59gJAqrNMZ6n3m+G5cT0GvEoIsfLWvU2eu
+         OI5OB5QgUpZelHvs0U+OqrWaardkk+8vyRc91Ya65agWr+21WbIbA2N8ZUiszsAUbxrm
+         3nPg==
+X-Gm-Message-State: ANhLgQ3pZPylje72HLxBy2h8GgGSSzw3rZEqQjHYG6bzoBAnlmyfetsv
+	/kkRzCMlDzgeMqwjojgwzlV02jzRpW8=
+X-Google-Smtp-Source: ADFU+vsv6r4a7Ns0ALSHSmhrpH46OsGX2obKpm7vI4mp2gAzvUOZKln88C29E8bHFQ4c4GkuF14GKg==
+X-Received: by 2002:aa7:85c4:: with SMTP id z4mr1805979pfn.121.1585353963695;
+        Fri, 27 Mar 2020 17:06:03 -0700 (PDT)
 Return-Path: <akuster808@gmail.com>
 Received: from ?IPv6:2601:202:4180:a5c0:84d1:5d33:be2f:3f17? ([2601:202:4180:a5c0:84d1:5d33:be2f:3f17])
-        by smtp.gmail.com with ESMTPSA id w16sm4984178pfj.79.2020.03.27.17.05.22
+        by smtp.gmail.com with ESMTPSA id m7sm457906pjb.7.2020.03.27.17.06.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Mar 2020 17:05:23 -0700 (PDT)
-Subject: Re: [yocto] [meta-security][PATCH] layer.conf: update LAYERSERIES_COMPAT for dunfell
-To: Martin Jansa <Martin.Jansa@gmail.com>, yocto@lists.yoctoproject.org
-References: <20200325130158.23467-1-Martin.Jansa@gmail.com>
+        Fri, 27 Mar 2020 17:06:03 -0700 (PDT)
+Subject: Re: [yocto] [meta-security][PATCH] openscap-daemon: add missing runtime dependencies
+To: Yi Zhao <yi.zhao@windriver.com>, yocto@lists.yoctoproject.org
+References: <20200309124516.25548-1-yi.zhao@windriver.com>
 From: "akuster" <akuster808@gmail.com>
 Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  xsFNBFnlUP4BEADpKf+FQdLykenQXKk8i6xJNxDow+ypFeVAy8iFJp7Dsev+BtwUFo8VG7hx
@@ -86,102 +86,53 @@ Autocrypt: addr=akuster808@gmail.com; prefer-encrypt=mutual; keydata=
  PNHndk8VBTpzrmOaJxrebNL/W6C8JCmbLM11TAUMmHYi9JDytN8Au78hWpDbIdKwg1LeSxpw
  ZZD/OqOc0DBvHOpQhzkSrtR1lVlDV/+9E8J1T4uDhrGmZwYV+4xQetypHax8aAHisYbjXdVa
  8CS2NxU=
-Message-ID: <46054fcf-497f-37b8-f4af-f22500f6511b@gmail.com>
-Date: Fri, 27 Mar 2020 17:05:21 -0700
+Message-ID: <557ed8a5-be1f-da4b-8c61-9cb69ec042db@gmail.com>
+Date: Fri, 27 Mar 2020 17:06:02 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <20200325130158.23467-1-Martin.Jansa@gmail.com>
+In-Reply-To: <20200309124516.25548-1-yi.zhao@windriver.com>
 Content-Type: multipart/alternative;
- boundary="------------B30118D999BAEFFEA8F5A5D6"
+ boundary="------------71CC8FA86D46090FDD8FB11A"
 Content-Language: en-US
 
---------------B30118D999BAEFFEA8F5A5D6
+--------------71CC8FA86D46090FDD8FB11A
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
 
 
-On 3/25/20 6:01 AM, Martin Jansa wrote:
-> Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
-Merged.
+On 3/9/20 5:45 AM, Yi Zhao wrote:
+> Add missing runtime dependencies otherwise /usr/bin/oscapd can not
+> startup.
+>
+> Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
+merged.
 
 thanks,
 Armin
 > ---
->  conf/layer.conf                          | 2 +-
->  meta-integrity/conf/layer.conf           | 2 +-
->  meta-security-compliance/conf/layer.conf | 2 +-
->  meta-security-isafw/conf/layer.conf      | 2 +-
->  meta-tpm/conf/layer.conf                 | 2 +-
->  5 files changed, 5 insertions(+), 5 deletions(-)
+>  .../openscap-daemon/openscap-daemon_0.1.10.bb                | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 >
-> diff --git a/conf/layer.conf b/conf/layer.conf
-> index 3e890e1..2c3bd96 100644
-> --- a/conf/layer.conf
-> +++ b/conf/layer.conf
-> @@ -9,6 +9,6 @@ BBFILE_COLLECTIONS += "security"
->  BBFILE_PATTERN_security = "^${LAYERDIR}/"
->  BBFILE_PRIORITY_security = "8"
+> diff --git a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
+> index ca6e030..a775021 100644
+> --- a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
+> +++ b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
+> @@ -17,4 +17,7 @@ inherit setuptools3
 >  
-> -LAYERSERIES_COMPAT_security = "zeus"
-> +LAYERSERIES_COMPAT_security = "dunfell"
+>  S = "${WORKDIR}/git"
 >  
->  LAYERDEPENDS_security = "core openembedded-layer perl-layer networking-layer meta-python"
-> diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
-> index bfc9c6f..b4edac3 100644
-> --- a/meta-integrity/conf/layer.conf
-> +++ b/meta-integrity/conf/layer.conf
-> @@ -21,7 +21,7 @@ INTEGRITY_BASE := '${LAYERDIR}'
->  # interactive shell is enough.
->  OE_TERMINAL_EXPORTS += "INTEGRITY_BASE"
->  
-> -LAYERSERIES_COMPAT_integrity = "zeus"
-> +LAYERSERIES_COMPAT_integrity = "dunfell"
->  # ima-evm-utils depends on keyutils from meta-oe
->  LAYERDEPENDS_integrity = "core openembedded-layer"
->  
-> diff --git a/meta-security-compliance/conf/layer.conf b/meta-security-compliance/conf/layer.conf
-> index 8572a1f..965c837 100644
-> --- a/meta-security-compliance/conf/layer.conf
-> +++ b/meta-security-compliance/conf/layer.conf
-> @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "scanners-layer"
->  BBFILE_PATTERN_scanners-layer = "^${LAYERDIR}/"
->  BBFILE_PRIORITY_scanners-layer = "10"
->  
-> -LAYERSERIES_COMPAT_scanners-layer = "zeus"
-> +LAYERSERIES_COMPAT_scanners-layer = "dunfell"
->  
->  LAYERDEPENDS_scanners-layer = "core openembedded-layer meta-python"
->  
-> diff --git a/meta-security-isafw/conf/layer.conf b/meta-security-isafw/conf/layer.conf
-> index 241c461..63f990a 100644
-> --- a/meta-security-isafw/conf/layer.conf
-> +++ b/meta-security-isafw/conf/layer.conf
-> @@ -14,4 +14,4 @@ LAYERVERSION_security-isafw = "1"
->  
->  LAYERDEPENDS_security-isafw = "core"
->  
-> -LAYERSERIES_COMPAT_security-isafw = "zeus"
-> +LAYERSERIES_COMPAT_security-isafw = "dunfell"
-> diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
-> index 175eba8..c3372c7 100644
-> --- a/meta-tpm/conf/layer.conf
-> +++ b/meta-tpm/conf/layer.conf
-> @@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "tpm-layer"
->  BBFILE_PATTERN_tpm-layer = "^${LAYERDIR}/"
->  BBFILE_PRIORITY_tpm-layer = "10"
->  
-> -LAYERSERIES_COMPAT_tpm-layer = "zeus"
-> +LAYERSERIES_COMPAT_tpm-layer = "dunfell"
->  
->  LAYERDEPENDS_tpm-layer = " \
->      core \
+> -RDEPENDS_${PN} = "python"
+> +RDEPENDS_${PN} = "openscap scap-security-guide \
+> +                  python3-core python3-dbus \
+> +                  python3-pygobject \
+> +                 "
 >
 > 
 
 
---------------B30118D999BAEFFEA8F5A5D6
+--------------71CC8FA86D46090FDD8FB11A
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 7bit
 
@@ -192,88 +143,39 @@ Content-Transfer-Encoding: 7bit
   <body>
     <br>
     <br>
-    <div class="moz-cite-prefix">On 3/25/20 6:01 AM, Martin Jansa wrote:<br>
+    <div class="moz-cite-prefix">On 3/9/20 5:45 AM, Yi Zhao wrote:<br>
     </div>
     <blockquote type="cite"
-      cite="mid:20200325130158.23467-1-Martin.Jansa@gmail.com">
-      <pre class="moz-quote-pre" wrap="">Signed-off-by: Martin Jansa <a class="moz-txt-link-rfc2396E" href="mailto:Martin.Jansa@gmail.com">&lt;Martin.Jansa@gmail.com&gt;</a></pre>
+      cite="mid:20200309124516.25548-1-yi.zhao@windriver.com">
+      <pre class="moz-quote-pre" wrap="">Add missing runtime dependencies otherwise /usr/bin/oscapd can not
+startup.
+
+Signed-off-by: Yi Zhao <a class="moz-txt-link-rfc2396E" href="mailto:yi.zhao@windriver.com">&lt;yi.zhao@windriver.com&gt;</a></pre>
     </blockquote>
-    Merged.<br>
+    merged.<br>
     <br>
     thanks,<br>
     Armin<br>
     <blockquote type="cite"
-      cite="mid:20200325130158.23467-1-Martin.Jansa@gmail.com">
+      cite="mid:20200309124516.25548-1-yi.zhao@windriver.com">
       <pre class="moz-quote-pre" wrap="">
 ---
- conf/layer.conf                          | 2 +-
- meta-integrity/conf/layer.conf           | 2 +-
- meta-security-compliance/conf/layer.conf | 2 +-
- meta-security-isafw/conf/layer.conf      | 2 +-
- meta-tpm/conf/layer.conf                 | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
+ .../openscap-daemon/openscap-daemon_0.1.10.bb                | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 3e890e1..2c3bd96 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -9,6 +9,6 @@ BBFILE_COLLECTIONS += "security"
- BBFILE_PATTERN_security = "^${LAYERDIR}/"
- BBFILE_PRIORITY_security = "8"
+diff --git a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
+index ca6e030..a775021 100644
+--- a/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
++++ b/meta-security-compliance/recipes-openscap/openscap-daemon/openscap-daemon_0.1.10.bb
+@@ -17,4 +17,7 @@ inherit setuptools3
  
--LAYERSERIES_COMPAT_security = "zeus"
-+LAYERSERIES_COMPAT_security = "dunfell"
+ S = "${WORKDIR}/git"
  
- LAYERDEPENDS_security = "core openembedded-layer perl-layer networking-layer meta-python<a class="moz-txt-link-rfc2396E" href="mailto:diff--gita/meta-integrity/conf/layer.confb/meta-integrity/conf/layer.confindexbfc9c6f..b4edac3100644---a/meta-integrity/conf/layer.conf+++b/meta-integrity/conf/layer.conf@@-21,7+21,7@@INTEGRITY_BASE:='${LAYERDIR}'#interactiveshellisenough.OE_TERMINAL_EXPORTS+=">"
-diff --git a/meta-integrity/conf/layer.conf b/meta-integrity/conf/layer.conf
-index bfc9c6f..b4edac3 100644
---- a/meta-integrity/conf/layer.conf
-+++ b/meta-integrity/conf/layer.conf
-@@ -21,7 +21,7 @@ INTEGRITY_BASE := '${LAYERDIR}'
- # interactive shell is enough.
- OE_TERMINAL_EXPORTS += "</a>INTEGRITY_BASE"
- 
--LAYERSERIES_COMPAT_integrity = "zeus"
-+LAYERSERIES_COMPAT_integrity = "dunfell"
- # ima-evm-utils depends on keyutils from meta-oe
- LAYERDEPENDS_integrity = "core openembedded-layer"
- 
-diff --git a/meta-security-compliance/conf/layer.conf b/meta-security-compliance/conf/layer.conf
-index 8572a1f..965c837 100644
---- a/meta-security-compliance/conf/layer.conf
-+++ b/meta-security-compliance/conf/layer.conf
-@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "scanners-layer"
- BBFILE_PATTERN_scanners-layer = "^${LAYERDIR}/"
- BBFILE_PRIORITY_scanners-layer = "10"
- 
--LAYERSERIES_COMPAT_scanners-layer = "zeus"
-+LAYERSERIES_COMPAT_scanners-layer = "dunfell"
- 
- LAYERDEPENDS_scanners-layer = "core openembedded-layer meta-python"
- 
-diff --git a/meta-security-isafw/conf/layer.conf b/meta-security-isafw/conf/layer.conf
-index 241c461..63f990a 100644
---- a/meta-security-isafw/conf/layer.conf
-+++ b/meta-security-isafw/conf/layer.conf
-@@ -14,4 +14,4 @@ LAYERVERSION_security-isafw = "1"
- 
- LAYERDEPENDS_security-isafw = "core"
- 
--LAYERSERIES_COMPAT_security-isafw = "zeus"
-+LAYERSERIES_COMPAT_security-isafw = "dunfell"
-diff --git a/meta-tpm/conf/layer.conf b/meta-tpm/conf/layer.conf
-index 175eba8..c3372c7 100644
---- a/meta-tpm/conf/layer.conf
-+++ b/meta-tpm/conf/layer.conf
-@@ -8,7 +8,7 @@ BBFILE_COLLECTIONS += "tpm-layer"
- BBFILE_PATTERN_tpm-layer = "^${LAYERDIR}/"
- BBFILE_PRIORITY_tpm-layer = "10"
- 
--LAYERSERIES_COMPAT_tpm-layer = "zeus"
-+LAYERSERIES_COMPAT_tpm-layer = "dunfell"
- 
- LAYERDEPENDS_tpm-layer = " \
-     core \
+-RDEPENDS_${PN} = "python"
++RDEPENDS_${PN} = "openscap scap-security-guide \
++                  python3-core python3-dbus \
++                  python3-pygobject \
++                 "
 </pre>
       <br>
       <fieldset class="mimeAttachmentHeader"></fieldset>
@@ -284,4 +186,4 @@ index 175eba8..c3372c7 100644
   </body>
 </html>
 
---------------B30118D999BAEFFEA8F5A5D6--
+--------------71CC8FA86D46090FDD8FB11A--
