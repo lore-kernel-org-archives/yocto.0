@@ -1,240 +1,522 @@
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (APC01-SG2-obe.outbound.protection.outlook.com [40.107.131.111])
- by mx.groups.io with SMTP id smtpd.web10.30765.1585499334757969939
+Received: from EUR04-DB3-obe.outbound.protection.outlook.com (EUR04-DB3-obe.outbound.protection.outlook.com [40.92.74.45])
+ by mx.groups.io with SMTP id smtpd.web11.32545.1585504229511623852
  for <yocto@lists.yoctoproject.org>;
- Sun, 29 Mar 2020 09:28:56 -0700
+ Sun, 29 Mar 2020 10:50:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@hcl.com header.s=selector2 header.b=MR9DD9h1;
- spf=pass (domain: hcl.com, ip: 40.107.131.111, mailfrom: ajama@hcl.com)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=HCL.COM; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WUS6EinDwL6UrLIY9rsRAAUX1DSIXMBu7TnO4H1HLaA=;
- b=MR9DD9h1UIwPOieo2/8VEy4hL2diN35/Hn+CyJeWs9I2Ao7WJud3ypPqphBcRT917W15HDFiDhtZswgXjkvQmnZ0VrRE0Dq+KBJHtKxtNe0Uns9quBYs9UxUZxfJFdtZm+QA5nNoVuoRm19nzeB3i6mHQYvp2PyGaxBAL9nHvlk=
-Received: from HK2P15301CA0003.APCP153.PROD.OUTLOOK.COM (2603:1096:202:1::13)
- by HK0PR04MB3123.apcprd04.prod.outlook.com (2603:1096:203:3f::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.19; Sun, 29 Mar
- 2020 16:28:52 +0000
-Received: from HK2APC01FT009.eop-APC01.prod.protection.outlook.com
- (2603:1096:202:1:cafe::68) by HK2P15301CA0003.outlook.office365.com
- (2603:1096:202:1::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2900.2 via Frontend
- Transport; Sun, 29 Mar 2020 16:28:51 +0000
-Authentication-Results: spf=pass (sender IP is 192.8.195.57)
- smtp.mailfrom=hcl.com; lists.yoctoproject.org; dkim=pass (signature was
- verified) header.d=HCL.COM;lists.yoctoproject.org; dmarc=pass action=none
- header.from=hcl.com;
-Received-SPF: Pass (protection.outlook.com: domain of hcl.com designates
- 192.8.195.57 as permitted sender) receiver=protection.outlook.com;
- client-ip=192.8.195.57; helo=APC01-PU1-obe.outbound.protection.outlook.com;
-Received: from APC01-PU1-obe.outbound.protection.outlook.com (192.8.195.57) by
- HK2APC01FT009.mail.protection.outlook.com (10.152.248.93) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2856.17 via Frontend Transport; Sun, 29 Mar 2020 16:28:49 +0000
+ dkim=pass header.i=@outlook.com header.s=selector1 header.b=EeGI/BLP;
+ spf=pass (domain: outlook.com, ip: 40.92.74.45, mailfrom: kweihmann@outlook.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KQO6GxMNocBc+JOxbEwpRWqdBCxMcExkVn5M9VE4LyStIAhinGEXsoKQSPb8R54eMFnnpT+kAimvqfEXmBvHI7QdbxCLTuzdE1KInRjVZ2KV9Hz3QwstedMb+ecPLQIg7MwyINnDzpmdjOeLnZoNL8EzKGp7aeAYPrYzzykJDM93ve0Di4zJBwcyJPX9J9B6rcWaxTWW6orMX4fGQgQWh58Q12arVEMT/wNCqK2eJhglhXa9V+PePjAg+tFicMtrxKb9Fb1LnAFeI9qfmHxj5149nYhaRrWLk1tr7wcpdU0tCIWk6scT0XEQjQqh21dhnvF/0xhgpHjfxfnzJ7h4gQ==
+ b=OnmjlQ3syvWRk7jxrqKzgpcDlBIyKYUpC7UdHWut9HxfN3h5eHJf9b+eq4EiAR9eHn+GmmIBNJ6WMe9UleAacvWe7iUKsh6TDig78EpcBPy/SdtTxycgKhTFDbIPdx+BC0fxvsX9rDe7H6BJfdIn0NulyUitENq5FQVO1Z/dV6Wu5MU229TdSMGrYVNTxIS7ZqWLZ9cRZ9PnY0kjNgncx5DrqfoDrpGFdWfuV3jaYdnLx1QPHYKKLC9Y44RmEsnP/p4whh4nabnTOT6JjKGF6TeWvuuhbS6fntL0BSTNw+TMsopGl3ZMPg641p+FkBkDpw8q0rkqpqO4OkVAvSqwVQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WUS6EinDwL6UrLIY9rsRAAUX1DSIXMBu7TnO4H1HLaA=;
- b=fjOipEx5i6lRkL+0jxOqFOEp1MZPyPs7vsaCi9y7CH4yy9P7Hhvwee/86d8KyQiQ6ltGtspFqpshDVkMDf/uodC0ig1EibNBisPOuIRU5KnBhhBLsnNKWJ4G0uQee4O9nQPHjbmMGmT9sX/Xc/QS/mu5eevACk7lEkzfZQ3eWyfiQRBzcfsQKJv1h1TE6wU/cCkqo3fVifXjShvP6v4gSJosHhRF4dU6FOSzG8dTXy/8EgPDbe1c7eIMn4lqMsaLu3e2Xx701T4kyRVlw60hNlw82UfcqwDkCzCd6LNIwzBT51a8hSFaraOy3hBCKecJfl+TCkCmVOfa5fomp1Ix8A==
+ bh=sszR/k7Aim/jwwyUaDIczDBRhIEVpZWJVmUZFC6Fz04=;
+ b=dFIJxKaGfJPTMPoTqWKpEGuQP/oXa6SrmcmA9efTGOglFNBFR8mdz0ZPuqz5DsbbPJXy6SYVLfbsNTysUzefguS3emslBDSLJV7a1o08ea9T7bfUIlfKBuDhJWTu7cWSspBr3NLb6fiJH1R8soCcwifEGdZ7zQrXizZ9BV7oixc/ts8hNTKOy9nJyhe+4SvznIYlPHR5yazNiytRp0ETmi9cXSar17Nlj0BTUzJ4dnc2fmNyXB7AyeT7mWi7OyIO5RglNKhUrBL6f5qpZw6NVBRDEgAmFPcvCEoD1L8CCutyL37zbazMcMZIlII6NOT+VdDoTyvpYdZjQD/a76zt+w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hcl.com; dmarc=pass action=none header.from=hcl.com; dkim=pass
- header.d=hcl.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=HCL.COM; s=selector2;
+ smtp.mailfrom=outlook.com; dmarc=pass action=none header.from=outlook.com;
+ dkim=pass header.d=outlook.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WUS6EinDwL6UrLIY9rsRAAUX1DSIXMBu7TnO4H1HLaA=;
- b=MR9DD9h1UIwPOieo2/8VEy4hL2diN35/Hn+CyJeWs9I2Ao7WJud3ypPqphBcRT917W15HDFiDhtZswgXjkvQmnZ0VrRE0Dq+KBJHtKxtNe0Uns9quBYs9UxUZxfJFdtZm+QA5nNoVuoRm19nzeB3i6mHQYvp2PyGaxBAL9nHvlk=
-Received: from HK0PR04MB2914.apcprd04.prod.outlook.com (20.177.25.76) by
- HK0PR04MB2484.apcprd04.prod.outlook.com (52.133.147.22) with Microsoft SMTP
+ bh=sszR/k7Aim/jwwyUaDIczDBRhIEVpZWJVmUZFC6Fz04=;
+ b=EeGI/BLPFSv1b0VcgenE6jEeHOCjowHGVYRpr47X+g9rI1pAz+c3WH1Vu6ljShqvg0C1xQO+ax7BJCyGJBldZpWyKMdhW2O+v2uLOKO47vx8rm6aUC1WlFQeLd1ByCbRNyyRiPrLQvZs3LgkocQf7kf+nMdEUA8kVxtnFtd7zudjVDHuQ8a3igCaADy4nS4c7LGVfhZgBlVKfT68r1cGNmrH21gG8Y+NBNMXb1JBrn9hECfI5EQt+p5VXStfovdJTuv2B33BIqXE2KiFkzctGou7ZFIwRUeVZWnXVuucK+CZn2xc2kPwcO6wSCSa50ESwXPtoFzz4Mrf0DdLt9Qghg==
+Received: from HE1EUR04FT019.eop-eur04.prod.protection.outlook.com
+ (2a01:111:e400:7e0d::4b) by
+ HE1EUR04HT043.eop-eur04.prod.protection.outlook.com (2a01:111:e400:7e0d::198)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.17; Sun, 29 Mar
+ 2020 17:50:27 +0000
+Received: from VI1PR05MB4286.eurprd05.prod.outlook.com (10.152.26.55) by
+ HE1EUR04FT019.mail.protection.outlook.com (10.152.26.117) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2856.20; Sun, 29 Mar 2020 16:28:44 +0000
-Received: from HK0PR04MB2914.apcprd04.prod.outlook.com
- ([fe80::d30:6434:8250:2d44]) by HK0PR04MB2914.apcprd04.prod.outlook.com
- ([fe80::d30:6434:8250:2d44%5]) with mapi id 15.20.2856.019; Sun, 29 Mar 2020
- 16:28:44 +0000
-From: "Ajam Ali" <ajama@hcl.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Subject: Image size reduction
-Thread-Topic: Image size reduction 
-Thread-Index: AQHWBeZcNGow7JB2ME2ZHxK+8kxKvw==
-Date: Sun, 29 Mar 2020 16:28:43 +0000
+ 15.20.2856.17 via Frontend Transport; Sun, 29 Mar 2020 17:50:27 +0000
+X-IncomingTopHeaderMarker: 
+ OriginalChecksum:AFC2096FC36E059E3DEBC1721251BFBDB40417508EB5AA3D4B87A306EB487164;UpperCasedChecksum:9EF481A008039FBB29D3ABAF7C3E12B0758E65FFD36622837F1607256986BB13;SizeAsReceived:8748;Count:48
+Received: from VI1PR05MB4286.eurprd05.prod.outlook.com
+ ([fe80::e1b1:4a5f:7dd7:4131]) by VI1PR05MB4286.eurprd05.prod.outlook.com
+ ([fe80::e1b1:4a5f:7dd7:4131%4]) with mapi id 15.20.2856.019; Sun, 29 Mar 2020
+ 17:50:27 +0000
+From: "Konrad Weihmann" <kweihmann@outlook.com>
+Subject: Re: [yocto] Files get sporadically lost for native packages
+To: yocto@lists.yoctoproject.org
+References: <16007776CC746550.27565@lists.yoctoproject.org>
 Message-ID: 
- <HK0PR04MB2914D21E1391217F6E47708DB4CA0@HK0PR04MB2914.apcprd04.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Authentication-Results-Original: spf=none (sender IP is )
- smtp.mailfrom=AjamA@hcl.com; 
-x-originating-ip: [106.206.48.73]
-x-ms-publictraffictype: Email
-X-MS-Office365-Filtering-Correlation-Id: e6016038-5ea8-4942-4092-08d7d3fe43b3
-x-ms-traffictypediagnostic: HK0PR04MB2484:|HK0PR04MB3123:
-X-Microsoft-Antispam-PRVS: 
-	<HK0PR04MB312324728DC9DDDBCD54B847B4CA0@HK0PR04MB3123.apcprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;OLM:6790;
-x-forefront-prvs: 035748864E
-X-Forefront-Antispam-Report-Untrusted: 
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR04MB2914.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:(10019020)(4636009)(366004)(39860400002)(396003)(346002)(376002)(136003)(2906002)(55016002)(45080400002)(478600001)(9686003)(4743002)(81166006)(6506007)(81156014)(86362001)(8676002)(316002)(3480700007)(7696005)(8936002)(52536014)(26005)(7116003)(186003)(71200400001)(6916009)(91956017)(76116006)(66946007)(5660300002)(33656002)(66476007)(66446008)(64756008)(66556008);DIR:OUT;SFP:1102;
-received-spf: None (protection.outlook.com: hcl.com does not designate
- permitted sender hosts)
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: 
- 6YkM0KV1vm2C2dng78q3wdYOXxkGP7W5AxYD0KdW9a3cKtDPWqPLzEPoCYV4OK6dVUZouZhoXORQFMKTFiE6TKGQnoQ7LWi7RwapFX7iacl03uXzXxtipwJS+mBDdgVbCrkQ/TpE9Yj3qF2ZRviqJBhQIaASzZruDAY7Ha26N8PTxzh38BwRVTMYOhVNu7EgUIoaxKEVCYUnMXgNi3ssC+TJQ7GMijNhmSl+VQWQt0GRVwF3upU4prqJwiDIVVAL7gakirFb9ZyembkFIX0BDl4gROMniy/JZk0PgJ2MwiB+iE5WFyGqVMTF8maABu0U2gk3ODGfByShNIu5l8/WZMKtvXiNIoD+Q/f4dW6wlC9pUMQmivsFu3uPfY8lgBSHbcuSMVHQvkDeV9nnRlSesWXqtIb8vx7LtzPdlKgZgYxhiXUTz8fUSW+oO9Wx4/iJWdNOu2AEFdK6A8R0xhlHB57f9f9i+UDkkUc74CqHtt2eRQUgY1B1Esvkb2+Tdugd4hqWrOUVs92pyURbYkr4mA==
-x-ms-exchange-antispam-messagedata: 
- lGB2qWHeTdfd0D0h5yYwtOjOShsLKWMJsAiKEblmIZOoar56dKlQhE5UovV6nHc89OKgDQreIo4j4u6W93tT0L3caCC3MogayOj2YFMi/PBK+CPJeXP8r4p8QyugQkzDl1qwqpPZmrmZjJh706uOgw==
-x-ms-exchange-transport-forked: True
+ <VI1PR05MB428665CED0FAEFDD87D05AD3A8CA0@VI1PR05MB4286.eurprd05.prod.outlook.com>
+Date: Sun, 29 Mar 2020 19:50:25 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
+In-Reply-To: <16007776CC746550.27565@lists.yoctoproject.org>
+X-ClientProxiedBy: AM5PR0701CA0003.eurprd07.prod.outlook.com
+ (2603:10a6:203:51::13) To VI1PR05MB4286.eurprd05.prod.outlook.com
+ (2603:10a6:803:4d::27)
+Return-Path: kweihmann@outlook.com
+X-Microsoft-Original-Message-ID: 
+ <b429f525-4a96-b5ba-3613-a7e11477c94f@outlook.com>
 MIME-Version: 1.0
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR04MB2484
-X-DLP: MSGProcess
-Return-Path: AjamA@hcl.com
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.188.20] (79.215.5.195) by AM5PR0701CA0003.eurprd07.prod.outlook.com (2603:10a6:203:51::13) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.11 via Frontend Transport; Sun, 29 Mar 2020 17:50:26 +0000
+X-Microsoft-Original-Message-ID: 
+ <b429f525-4a96-b5ba-3613-a7e11477c94f@outlook.com>
+X-TMN: [FXIesJ2K/syjmt/03LrSh0N5ufcxLZzm]
+X-MS-PublicTrafficType: Email
+X-IncomingHeaderCount: 48
 X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: 
- HK2APC01FT009.eop-APC01.prod.protection.outlook.com
-X-Forefront-Antispam-Report: 
-	CIP:192.8.195.57;CTRY:IN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:APC01-PU1-obe.outbound.protection.outlook.com;PTR:InfoDomainNonexistent;CAT:NONE;SFTY:;SFS:(10019020)(4636009)(136003)(376002)(39860400002)(346002)(396003)(46966005)(8676002)(47076004)(9686003)(8936002)(81166006)(55016002)(81156014)(33656002)(336012)(2906002)(4743002)(356004)(70206006)(70586007)(45080400002)(316002)(478600001)(36906005)(82740400003)(5660300002)(3480700007)(7696005)(26005)(186003)(6506007)(7116003)(52536014)(6916009)(86362001);DIR:OUT;SFP:1102;
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 
-	70062836-d9d1-42ae-14fb-08d7d3fe3ff4
-X-Forefront-PRVS: 035748864E
+X-MS-Office365-Filtering-Correlation-Id: 4a90f4e1-47c1-4a06-7547-08d7d409aa1f
+X-MS-TrafficTypeDiagnostic: HE1EUR04HT043:
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	1lTRTiEqFWYtnlj2UDIBgcDbBTN7qixZUDF/tGYIIjdiKTR6jSZjJQN4zWQyvUZ20l9uwzCLYXm+4D5/xgBZfe0CSUGhVwpYiII+KazQUN/LulMJC6XBjwzpn/QRxwFfbL9cv+dB5K69Azrq45ILSgidq/hSrWFaOJJQSztfxalgx5bvOlaasyne0+zMCYvPGORFw8aejDq3X5yCZgd2KlZjy0SNHCrqsbYFsCczr+Sn7UqiEOHsn647mzUvr+DjFsupoXKvAOwGuIKry/wKMo+58DHVmi9V1GiRJXZs0o2ofJwWN3o0eU9+KQU6VfnV4zVrc9iZ4366qdgwu77l/vPno0hOS6HBFXTnVmGfELjUyRg6Kqn/2deiP1a6DsR4xVmOccRz16LYaZbusK9/KuuItNlcuAUueB8hvChwl2rEFwAOLCV09VGzRNvPv9Bl2y9JhoJVFSWbvzzURGnmc4Y5ooJjNuNnpYfn5WVuGjyCYA85VNzOexvq90PExbxtPGxAtHqLqoYI7dP1dl9mxnmMO0qfN/x8S28Pt1mo/hZ/nWzLKo7U/L4roRQAat1He0aoQAUqhURdGfQJEg1leAdCXHgcll3TTtSUkk16vqo=
-X-OriginatorOrg: HCL.COM
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2020 16:28:49.6743
+	YaIfEN4HkI4EkUQo5Fy6fjj1uzip4jla6Rq4XmsoyLkUu+G7tacG6ihDVQtYQq4Ecw8tcnxT/qcNVx31BACyqUKs+ZmsGF30AW4hbPECdGBsltgbG5y5w/wj5bRy7xrChr1oJE6/aFFgt4qOSbxTZ8lsNKoNmYM6AxvKFsvrU47ZmiSxbXe2NJ9BBd+dGfMTgHzd/Jh9PzjMmoE9TS9amg73aMgfZmTkD9erKIXfRYI=
+X-MS-Exchange-AntiSpam-MessageData: 
+	dhIE+UJYqu0/T8JuVYRf2DMdpbBT4YJLzfGFSV932OWAuZQd/zKsfee6rKBfEUk5MIPt1AERGZWtRlsZHNfbb7gdtgDab2JyYRebYuRh9Q5ZKAv7ZiBmg7tVWHQ6YjUTJZmZgxkmV3M8EUir9yEEBA==
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a90f4e1-47c1-4a06-7547-08d7d409aa1f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Mar 2020 17:50:27.3944
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e6016038-5ea8-4942-4092-08d7d3fe43b3
-X-MS-Exchange-CrossTenant-Id: 189de737-c93a-4f5a-8b68-6f4ca9941912
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=189de737-c93a-4f5a-8b68-6f4ca9941912;Ip=[192.8.195.57];Helo=[APC01-PU1-obe.outbound.protection.outlook.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK0PR04MB3123
-Content-Language: en-US
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1EUR04HT043
 Content-Type: multipart/alternative;
-	boundary="_000_HK0PR04MB2914D21E1391217F6E47708DB4CA0HK0PR04MB2914apcp_"
+ boundary="------------525489F7BD34F0757E0C54CA"
+Content-Language: en-US
 
---_000_HK0PR04MB2914D21E1391217F6E47708DB4CA0HK0PR04MB2914apcp_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--------------525489F7BD34F0757E0C54CA
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi All,
+some updates on the issue.
+I did some further investigation and it turns out that only python cache 
+files are affected - not only when the manifest is created but also when 
+files are being staged.
 
-Actually my current image size is 3.9GB because of heavy size packages requ=
-ired by my project and without project required packages my image size in Y=
-octo is 800MB.
+Here is a dump from one of my runs
 
-I want to reduce the image size as maximum as possible.
-Please suggest the best possible way so that I could reduce the maximum pos=
-sible size(desirable below 1.5 GB).
+2020-03-29T03:09:17.3893569Z ERROR: simple-c-1.0-r0 
+do_prepare_recipe_sysroot: Error executing a python function in 
+exec_python_func() autogenerated:
+2020-03-29T03:09:17.3893931Z
+2020-03-29T03:09:17.3894095Z The stack trace of python calls that 
+resulted in this exception/failure was:
+2020-03-29T03:09:17.3894483Z File: 'exec_python_func() autogenerated', 
+lineno: 2, function: <module>
+2020-03-29T03:09:17.3894608Z      0001:
+2020-03-29T03:09:17.3894727Z  *** 0002:extend_recipe_sysroot(d)
+2020-03-29T03:09:17.3894837Z      0003:
+2020-03-29T03:09:17.3895143Z File: 
+'/opt/build/poky/meta/classes/staging.bbclass', lineno: 570, function: 
+extend_recipe_sysroot
+2020-03-29T03:09:17.3895282Z      0566:                    if "/bin/" in 
+l or "/sbin/" in l:
+2020-03-29T03:09:17.3895415Z      0567:                        # defer 
+/*bin/* files until last in case they need libs
+2020-03-29T03:09:17.3895535Z      0568: binfiles[l] = (targetdir, dest)
+2020-03-29T03:09:17.3895652Z      0569:                    else:
+2020-03-29T03:09:17.3895780Z  *** 0570: staging_copyfile(l, targetdir, 
+dest, postinsts, seendirs)
+2020-03-29T03:09:17.3895901Z      0571:
+2020-03-29T03:09:17.3896183Z      0572:    # Handle deferred binfiles
+2020-03-29T03:09:17.3896313Z      0573:    for l in binfiles:
+2020-03-29T03:09:17.3896429Z      0574:        (targetdir, dest) = 
+binfiles[l]
+2020-03-29T03:09:17.3896763Z File: 
+'/opt/build/poky/meta/classes/staging.bbclass', lineno: 152, function: 
+staging_copyfile
+2020-03-29T03:09:17.3896904Z      0148:        os.symlink(linkto, dest)
+2020-03-29T03:09:17.3897018Z      0149:        #bb.warn(c)
+2020-03-29T03:09:17.3897129Z      0150:    else:
+2020-03-29T03:09:17.3897233Z      0151:        try:
+2020-03-29T03:09:17.3897341Z  *** 0152:            os.link(c, dest)
+2020-03-29T03:09:17.3897455Z      0153:        except OSError as err:
+2020-03-29T03:09:17.3897571Z      0154:            if err.errno == 
+errno.EXDEV:
+2020-03-29T03:09:17.3897691Z      0155: bb.utils.copyfile(c, dest)
+2020-03-29T03:09:17.3897807Z      0156:            else:
+2020-03-29T03:09:17.3898436Z Exception: FileNotFoundError: [Errno 2] No 
+such file or directory: 
+'/opt/build/build/tmp/sysroots-components/x86_64/python3-vulture-native/usr/lib/python3.8/site-packages/vulture/whitelists/__pycache__/unittest_whitelist.cpython-38.pyc' 
+-> 
+'/opt/build/build/tmp/work/core2-32-scatest-linux/simple-c/1.0-r0/recipe-sysroot-native/usr/lib/python3.8/site-packages/vulture/whitelists/__pycache__/unittest_whitelist.cpython-38.pyc'
+2020-03-29T03:09:17.3898588Z
+2020-03-29T03:09:17.3898936Z ERROR: Logfile of failure stored in: 
+/opt/build/build/tmp/work/core2-32-scatest-linux/simple-c/1.0-r0/temp/log.do_prepare_recipe_sysroot.122175
+2020-03-29T03:09:17.3899233Z NOTE: recipe simple-c-1.0-r0: task 
+do_prepare_recipe_sysroot: Failed
+2020-03-29T03:09:17.3936565Z ERROR: Task 
+(/opt/build/meta-sca/recipes-sca-test/code-from-elsewhere/simple-c.bb:do_prepare_recipe_sysroot) 
+failed with exit code '1'
+2020-03-29T03:09:17.3956520Z NOTE: Running task 3920 of 5451 
+(/opt/build/poky/meta/recipes-devtools/python/python3-git_3.0.5.bb:do_fetch)
 
+After reading a bit about 
+pyc-files(https://docs.python.org/3/library/py_compile.html#py_compile.PycInvalidationMode),
+I suspect some of the files being invalidated, although I still haven't 
+figured out how that is done.
+After forcefully removing all cache files from all native packages, it 
+seems to work - but still I think it just hides the general issue 
+causing this.
 
-Thanks in advance,
-Ajam Ali
+Current summary:
 
+- a lot of native python packages are required by multiple recipes (via 
+DEPENDS)
+- this effect is only visible under heavy load (on a 16+ core machine: 
+never happened so far, 8 core: happens occasionally, 2 core: happens 
+nearly every time)
+- only python cache files (.pyc) are affected
+- error occurs at random packages in do_prepare_recipe_sysroot
+- some pyc files set in the package manifest are not present in the 
+filesystem
 
-Sent from Outlook Mobile<https://aka.ms/blhgte>
-::DISCLAIMER::
-________________________________
-The contents of this e-mail and any attachment(s) are confidential and inte=
-nded for the named recipient(s) only. E-mail transmission is not guaranteed=
- to be secure or error-free as information could be intercepted, corrupted,=
- lost, destroyed, arrive late or incomplete, or may contain viruses in tran=
-smission. The e mail and its contents (with or without referred errors) sha=
-ll therefore not attach any liability on the originator or HCL or its affil=
-iates. Views or opinions, if any, presented in this email are solely those =
-of the author and may not necessarily reflect the views or opinions of HCL =
-or its affiliates. Any form of reproduction, dissemination, copying, disclo=
-sure, modification, distribution and / or publication of this message witho=
-ut the prior written consent of authorized representative of HCL is strictl=
-y prohibited. If you have received this email in error please delete it and=
- notify the sender immediately. Before opening any email and/or attachments=
-, please check them for viruses and other defects.
-________________________________
-
---_000_HK0PR04MB2914D21E1391217F6E47708DB4CA0HK0PR04MB2914apcp_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 28.03.20 13:26, Konrad Weihmann wrote:
 >
-</head>
-<body>
-<div style=3D"color: rgb(33, 33, 33); background-color: rgb(255, 255, 255);=
- text-align: left;" dir=3D"auto">
-<div style=3D"color: black; font-size: 12pt; text-align: start; font-family=
-: Calibri, Arial, Helvetica, sans-serif; background-color: white; line-heig=
-ht: 20.4px">
-Hi All,&nbsp;</div>
-<div style=3D"color: black; font-size: 12pt; text-align: start; font-family=
-: Calibri, Arial, Helvetica, sans-serif; background-color: white; line-heig=
-ht: 20.4px">
-<br>
-</div>
-<div style=3D"color: black; font-size: 12pt; text-align: start; font-family=
-: Calibri, Arial, Helvetica, sans-serif; background-color: white; line-heig=
-ht: 20.4px">
-Actually my current image size is 3.9GB because of heavy size packages requ=
-ired by my project and without project required packages my image size in Y=
-octo is 800MB.</div>
-<div style=3D"color: black; font-size: 12pt; text-align: start; font-family=
-: Calibri, Arial, Helvetica, sans-serif; background-color: white; line-heig=
-ht: 20.4px">
-<br>
-</div>
-<div style=3D"color: black; font-size: 12pt; text-align: start; font-family=
-: Calibri, Arial, Helvetica, sans-serif; background-color: white; line-heig=
-ht: 20.4px">
-I want to reduce the image size as maximum as possible.</div>
-<div style=3D"color: black; font-size: 12pt; text-align: left; font-family:=
- Calibri, Arial, Helvetica, sans-serif; background-color: white; line-heigh=
-t: 20.4px;" dir=3D"auto">
-Please suggest the best possible way so that I could reduce the maximum pos=
-sible size(desirable below 1.5 GB).&nbsp;</div>
-<div style=3D"color: black; font-size: 12pt; text-align: start; font-family=
-: Calibri, Arial, Helvetica, sans-serif; background-color: white; line-heig=
-ht: 20.4px">
-<br>
-</div>
-<div style=3D"color: black; font-size: 12pt; text-align: start; font-family=
-: Calibri, Arial, Helvetica, sans-serif; background-color: white; line-heig=
-ht: 20.4px">
-<br>
-</div>
-<div style=3D"color: black; font-size: 12pt; text-align: start; font-family=
-: Calibri, Arial, Helvetica, sans-serif; background-color: white; line-heig=
-ht: 20.4px">
-Thanks in advance,</div>
-<div style=3D"color: black; font-size: 12pt; text-align: start; font-family=
-: Calibri, Arial, Helvetica, sans-serif; background-color: white; line-heig=
-ht: 20.4px">
-Ajam Ali</div>
-<br>
-</div>
-<div id=3D"ms-outlook-mobile-signature">
-<div><br>
-</div>
-Sent from <a href=3D"https://aka.ms/blhgte">Outlook Mobile</a></div>
-<font face=3D"Arial" color=3D"Gray" size=3D"1">::DISCLAIMER::<br>
-<hr>
-The contents of this e-mail and any attachment(s) are confidential and inte=
-nded for the named recipient(s) only. E-mail transmission is not guaranteed=
- to be secure or error-free as information could be intercepted, corrupted,=
- lost, destroyed, arrive late or
- incomplete, or may contain viruses in transmission. The e mail and its con=
-tents (with or without referred errors) shall therefore not attach any liab=
-ility on the originator or HCL or its affiliates. Views or opinions, if any=
-, presented in this email are solely
- those of the author and may not necessarily reflect the views or opinions =
-of HCL or its affiliates. Any form of reproduction, dissemination, copying,=
- disclosure, modification, distribution and / or publication of this messag=
-e without the prior written consent
- of authorized representative of HCL is strictly prohibited. If you have re=
-ceived this email in error please delete it and notify the sender immediate=
-ly. Before opening any email and/or attachments, please check them for viru=
-ses and other defects.<br>
-<hr>
-</font>
-</body>
+> Hi,
+>
+> I'm facing the following error message sporadically on all branches I 
+> tried so far (master, zeus, warrior and thud)
+>
+> The stack trace of python calls that resulted in this 
+> exception/failure was:
+> File: 'exec_python_func() autogenerated', lineno: 2, function: <module>
+>      0001:
+>  *** 0002:extend_recipe_sysroot(d)
+>      0003:
+> File: '/build/poky/meta/classes/staging.bbclass', lineno: 551, 
+> function: extend_recipe_sysroot
+>      0547:                    dest = newmanifest[l]
+>      0548:                    if l.endswith("/"):
+>      0549:                        staging_copydir(l, targetdir, dest, 
+> seendirs)
+>      0550:                        continue
+>  *** 0551:                    staging_copyfile(l, targetdir, dest, 
+> postinsts, seendirs)
+>      0552:
+>      0553:    bb.note("Installed into sysroot: %s" % str(msg_adding))
+>      0554:    bb.note("Skipping as already exists in sysroot: %s" % 
+> str(msg_exists))
+>      0555:
+> File: '/build/poky/meta/classes/staging.bbclass', lineno: 152, 
+> function: staging_copyfile
+>      0148:        os.symlink(linkto, dest)
+>      0149:        #bb.warn(c)
+>      0150:    else:
+>      0151:        try:
+>  *** 0152:            os.link(c, dest)
+>      0153:        except OSError as err:
+>      0154:            if err.errno == errno.EXDEV:
+>      0155:                bb.utils.copyfile(c, dest)
+>      0156:            else:
+> Exception: FileNotFoundError: [Errno 2] No such file or directory: 
+> '/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc' 
+> -> 
+> '/build/poky/build/tmp/work/qemux86_64-mine-linux/core-image-minimal-mine/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc'
+>
+> I already had a look at the manifest
+>
+> cat manifest-x86_64-python3-msgcheck-native.populate_sysroot
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37.pyc
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_links.txt
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.txt
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points.txt
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/msgcheck
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/sysroot-providers/python3-msgcheck-native
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/sysroot-providers/
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/share/
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/
+>
+> which states the file should be there, but when doing
+>
+> find 
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37.pyc
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_links.txt
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.txt
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points.txt
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/msgcheck
+> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/share
+>
+> the file isn't there.
+>
+> This happens to random python packages compiled as native (sometimes 
+> even for python-native itself), but (afaik) not for cross or target 
+> packages (I'm pretty sure because of the different packaging applied).
+> So I digged a little into the code 
+> classes/sstate.bbclass:sstate_install, which seems to create the 
+> sysroot-component dir and the manifest.
+> There is a gap between the manifest creation (line 285) and the 
+> hardlinking (line till 311).
+>
+> Now my question is there any place where a file potentially could get 
+> lost? - at first glance there shouldn't be one - I have to admit that 
+> I don't fully understand all this subprocess magic in 
+> lib/oe/path.py:copyhardlinktree.
+> What I do to fix the issue is reopening the manifest and double check 
+> for missing files and remove them from the manifest, but this
+> feels wrong - so any advise is welcome...
+>
+> Hope that someone more familiar with the topic could have a look.
+>
+> Thanks
+>
+> Konrad
+>
+>
+> 
+
+--------------525489F7BD34F0757E0C54CA
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <p>some updates on the issue.<br>
+      I did some further investigation and it turns out that only python
+      cache files are affected - not only when the manifest is created
+      but also when files are being staged.</p>
+    <p>Here is a dump from one of my runs<br>
+      <br>
+      2020-03-29T03:09:17.3893569Z ERROR: simple-c-1.0-r0
+      do_prepare_recipe_sysroot: Error executing a python function in
+      exec_python_func() autogenerated:<br>
+      2020-03-29T03:09:17.3893931Z <br>
+      2020-03-29T03:09:17.3894095Z The stack trace of python calls that
+      resulted in this exception/failure was:<br>
+      2020-03-29T03:09:17.3894483Z File: 'exec_python_func()
+      autogenerated', lineno: 2, function: &lt;module&gt;<br>
+      2020-03-29T03:09:17.3894608Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0001:<br>
+      2020-03-29T03:09:17.3894727Z&nbsp; *** 0002:extend_recipe_sysroot(d)<br>
+      2020-03-29T03:09:17.3894837Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0003:<br>
+      2020-03-29T03:09:17.3895143Z File:
+      '/opt/build/poky/meta/classes/staging.bbclass', lineno: 570,
+      function: extend_recipe_sysroot<br>
+      2020-03-29T03:09:17.3895282Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0566:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if
+      &quot;/bin/&quot; in l or &quot;/sbin/&quot; in l:<br>
+      2020-03-29T03:09:17.3895415Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0567:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #
+      defer /*bin/* files until last in case they need libs<br>
+      2020-03-29T03:09:17.3895535Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0568:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      binfiles[l] = (targetdir, dest)<br>
+      2020-03-29T03:09:17.3895652Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0569:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else:<br>
+      2020-03-29T03:09:17.3895780Z&nbsp; *** 0570:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      staging_copyfile(l, targetdir, dest, postinsts, seendirs)<br>
+      2020-03-29T03:09:17.3895901Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0571:<br>
+      2020-03-29T03:09:17.3896183Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0572:&nbsp;&nbsp;&nbsp; # Handle deferred
+      binfiles<br>
+      2020-03-29T03:09:17.3896313Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0573:&nbsp;&nbsp;&nbsp; for l in binfiles:<br>
+      2020-03-29T03:09:17.3896429Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0574:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (targetdir, dest) =
+      binfiles[l]<br>
+      2020-03-29T03:09:17.3896763Z File:
+      '/opt/build/poky/meta/classes/staging.bbclass', lineno: 152,
+      function: staging_copyfile<br>
+      2020-03-29T03:09:17.3896904Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0148:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; os.symlink(linkto,
+      dest)<br>
+      2020-03-29T03:09:17.3897018Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0149:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #bb.warn(c)<br>
+      2020-03-29T03:09:17.3897129Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0150:&nbsp;&nbsp;&nbsp; else:<br>
+      2020-03-29T03:09:17.3897233Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0151:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try:<br>
+      2020-03-29T03:09:17.3897341Z&nbsp; *** 0152:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; os.link(c,
+      dest)<br>
+      2020-03-29T03:09:17.3897455Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0153:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; except OSError as
+      err:<br>
+      2020-03-29T03:09:17.3897571Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0154:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if err.errno ==
+      errno.EXDEV:<br>
+      2020-03-29T03:09:17.3897691Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0155:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      bb.utils.copyfile(c, dest)<br>
+      2020-03-29T03:09:17.3897807Z&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0156:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else:<br>
+      2020-03-29T03:09:17.3898436Z Exception: FileNotFoundError: [Errno
+      2] No such file or directory:
+'/opt/build/build/tmp/sysroots-components/x86_64/python3-vulture-native/usr/lib/python3.8/site-packages/vulture/whitelists/__pycache__/unittest_whitelist.cpython-38.pyc'
+      -&gt;
+'/opt/build/build/tmp/work/core2-32-scatest-linux/simple-c/1.0-r0/recipe-sysroot-native/usr/lib/python3.8/site-packages/vulture/whitelists/__pycache__/unittest_whitelist.cpython-38.pyc'<br>
+      2020-03-29T03:09:17.3898588Z <br>
+      2020-03-29T03:09:17.3898936Z ERROR: Logfile of failure stored in:
+/opt/build/build/tmp/work/core2-32-scatest-linux/simple-c/1.0-r0/temp/log.do_prepare_recipe_sysroot.122175<br>
+      2020-03-29T03:09:17.3899233Z NOTE: recipe simple-c-1.0-r0: task
+      do_prepare_recipe_sysroot: Failed<br>
+      2020-03-29T03:09:17.3936565Z ERROR: Task
+(/opt/build/meta-sca/recipes-sca-test/code-from-elsewhere/simple-c.bb:do_prepare_recipe_sysroot)
+      failed with exit code '1'<br>
+      2020-03-29T03:09:17.3956520Z NOTE: Running task 3920 of 5451
+(/opt/build/poky/meta/recipes-devtools/python/python3-git_3.0.5.bb:do_fetch)</p>
+    <p>After reading a bit about pyc-files(<a class="moz-txt-link-freetext" href="https://docs.python.org/3/library/py_compile.html#py_compile.PycInvalidationMode">https://docs.python.org/3/library/py_compile.html#py_compile.PycInvalidationMode</a>),<br>
+      I suspect some of the files being invalidated, although I still
+      haven't figured out how that is done.<br>
+      After forcefully removing all cache files from all native
+      packages, it seems to work - but still I think it just hides the
+      general issue causing this.<br>
+    </p>
+    <p>Current summary:</p>
+    <p>- a lot of native python packages are required by multiple
+      recipes (via DEPENDS)<br>
+      - this effect is only visible under heavy load (on a 16&#43; core
+      machine: never happened so far, 8 core: happens occasionally, 2
+      core: happens nearly every time)<br>
+      - only python cache files (.pyc) are affected<br>
+      - error occurs at random packages in do_prepare_recipe_sysroot<br>
+      - some pyc files set in the package manifest are not present in
+      the filesystem<br>
+    </p>
+    <div class="moz-cite-prefix">On 28.03.20 13:26, Konrad Weihmann
+      wrote:<br>
+    </div>
+    <blockquote type="cite" cite="mid:16007776CC746550.27565@lists.yoctoproject.org">
+      
+      <p>Hi,</p>
+      <p>I'm facing the following error message sporadically on all
+        branches I tried so far (master, zeus, warrior and thud)<br>
+      </p>
+      <p>The stack trace of python calls that resulted in this
+        exception/failure was:<br>
+        File: 'exec_python_func() autogenerated', lineno: 2, function:
+        &lt;module&gt;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0001:<br>
+        &nbsp;*** 0002:extend_recipe_sysroot(d)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0003:<br>
+        File: '/build/poky/meta/classes/staging.bbclass', lineno: 551,
+        function: extend_recipe_sysroot<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0547:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dest = newmanifest[l]<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0548:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if l.endswith(&quot;/&quot;):<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0549:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; staging_copydir(l, targetdir,
+        dest, seendirs)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0550:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; continue<br>
+        &nbsp;*** 0551:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; staging_copyfile(l, targetdir,
+        dest, postinsts, seendirs)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0552:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0553:&nbsp;&nbsp;&nbsp; bb.note(&quot;Installed into sysroot: %s&quot; %
+        str(msg_adding))<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0554:&nbsp;&nbsp;&nbsp; bb.note(&quot;Skipping as already exists in sysroot:
+        %s&quot; % str(msg_exists))<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0555:<br>
+        File: '/build/poky/meta/classes/staging.bbclass', lineno: 152,
+        function: staging_copyfile<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0148:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; os.symlink(linkto, dest)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0149:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; #bb.warn(c)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0150:&nbsp;&nbsp;&nbsp; else:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0151:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; try:<br>
+        &nbsp;*** 0152:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; os.link(c, dest)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0153:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; except OSError as err:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0154:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if err.errno == errno.EXDEV:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0155:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bb.utils.copyfile(c, dest)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp; 0156:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else:<br>
+        Exception: FileNotFoundError: [Errno 2] No such file or
+        directory:
+'/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc'
+        -&gt;
+'/build/poky/build/tmp/work/qemux86_64-mine-linux/core-image-minimal-mine/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc'</p>
+      <p>I already had a look at the manifest</p>
+      <p>cat manifest-x86_64-python3-msgcheck-native.populate_sysroot <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37.pyc<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_links.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/msgcheck<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/sysroot-providers/python3-msgcheck-native<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/sysroot-providers/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/share/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/<br>
+      </p>
+      <p>which states the file should be there, but when doing <br>
+      </p>
+      <p>find
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37.pyc<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_links.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points.txt<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/msgcheck<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/share<br>
+      </p>
+      <p>the file isn't there.</p>
+      <p>This happens to random python packages compiled as native
+        (sometimes even for python-native itself), but (afaik) not for
+        cross or target packages (I'm pretty sure because of the
+        different packaging applied).<br>
+        So I digged a little into the code
+        classes/sstate.bbclass:sstate_install, which seems to create the
+        sysroot-component dir and the manifest.<br>
+        There is a gap between the manifest creation (line 285) and the
+        hardlinking (line till 311).<br>
+        <br>
+        Now my question is there any place where a file potentially
+        could get lost? - at first glance there shouldn't be one - I
+        have to admit that I don't fully understand all this subprocess
+        magic in lib/oe/path.py:<span class="pl-en"><span class="pl-token" data-hydro-click="{&quot;event_type&quot;:&quot;code_navigation.click_on_symbol&quot;,&quot;payload&quot;:{&quot;action&quot;:&quot;click_on_symbol&quot;,&quot;repository_id&quot;:15777788,&quot;ref&quot;:&quot;master&quot;,&quot;language&quot;:&quot;Python&quot;,&quot;originating_url&quot;:&quot;https://github.com/openembedded/openembedded-core/blob/master/meta/lib/oe/path.py&quot;,&quot;user_id&quot;:46938494}}" data-hydro-click-hmac="8f0eb98e55388169d88549187b51753127312f5dcaa9fb63de0646ce6de15190">copyhardlinktree</span></span>.<br>
+        What I do to fix the issue is reopening the manifest and double
+        check for missing files and remove them from the manifest, but
+        this<br>
+        feels wrong - so any advise is welcome...</p>
+      <p>Hope that someone more familiar with the topic could have a
+        look.</p>
+      <p>Thanks</p>
+      <p>Konrad<br>
+      </p>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <pre class="moz-quote-pre" wrap="">
+</pre>
+    </blockquote>
+  </body>
 </html>
 
---_000_HK0PR04MB2914D21E1391217F6E47708DB4CA0HK0PR04MB2914apcp_--
+--------------525489F7BD34F0757E0C54CA--
