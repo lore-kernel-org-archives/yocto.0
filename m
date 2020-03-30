@@ -1,374 +1,294 @@
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
- by mx.groups.io with SMTP id smtpd.web12.49724.1585574265394545483
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.682.1585589543895134946
  for <yocto@lists.yoctoproject.org>;
- Mon, 30 Mar 2020 06:17:46 -0700
+ Mon, 30 Mar 2020 10:32:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@izotope.com header.s=google header.b=iQ/Jb20q;
- spf=permerror, err=parse error for token &{10 18 _spf.google.com}: parse error for token &{10 18 _netblocks.google.com}: limit exceeded (domain: izotope.com, ip: 209.85.221.47, mailfrom: mcampbell@izotope.com)
-Received: by mail-wr1-f47.google.com with SMTP id 31so21566506wrs.3
-        for <yocto@lists.yoctoproject.org>; Mon, 30 Mar 2020 06:17:45 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=twq79KKF;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 8548AE0191D; Mon, 30 Mar 2020 10:32:23 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (sjolley.yp.pm[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.210.173 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4FDDE0191B
+	for <yocto@yoctoproject.org>; Mon, 30 Mar 2020 10:32:21 -0700 (PDT)
+Received: by mail-pf1-f173.google.com with SMTP id b72so8909231pfb.11
+        for <yocto@yoctoproject.org>; Mon, 30 Mar 2020 10:32:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=izotope.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dI1dcUW3FlO11ryn3/CzNEKvjJDkB+5Wmfrg48mEZdU=;
-        b=iQ/Jb20qTE+qaZ93yHM6oivLeNXCYMCiaAWcPnBsd96ak5GY/ZLNDPADL+KlvnStat
-         8SwcesJUgavjkdZaQDEwlZlPdTUUFHJTdghvrN9/Z/ChtuyeLW6bYgQoSQ1ceP/GfZvq
-         hJx3FfNOR5v2SSHEIqu/fHPgkgxy85PDvS5pE=
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=43719xhbRongZCnVumqGaT7HsFRu7tH+Q5GLOsqAy0k=;
+        b=twq79KKFsU3TMqb0oRg7htAP6ybbaCBoqJwwoVuXmNU5reeMw4jAaA8lNF45aGX1+s
+         CgoVV5XxpAyvyBV4tLfTIYAVth6CgnTTFE9aED29Q7x4fmFgwg5wyj9VYP5dQLdv0vsa
+         BoiY+1thfkqfaiKmlsG7N8cCQQ4GHY1naYTY2M+uQi0gnCske9BUDURP//z7091cEVan
+         zhiZxmDBNFgRK8AIkkN/wBWRzlCNY7PwU0vaWYPLYPPaW7dZVnuVtud9BBndPz2b4H9M
+         r70coGQaUKmr6ifDfkRyx1L3mtZDzv164hg40EGBGnyP8f3bQlBhpF29/loEEg4CO/Cy
+         UJRg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dI1dcUW3FlO11ryn3/CzNEKvjJDkB+5Wmfrg48mEZdU=;
-        b=qgkYdhZT0wvMQ5XRse3v8rdgTc6Eu8YybFqNXjbXbCwbdmyBqpUSPJyxslINSIEXng
-         reGxmkvQi7G47HEGYRcfEB4q1fwkRJHHUraaUQcO0oLujt1L6gbTwhmFrSgI5oAXc2GW
-         nmm3Kys1XKi1iR01vOpCkHW/h++Falk6vIX5pIOEdy7tyM9mboqEkFIr7876Vrhp6i6F
-         51BQb8WQ2tAffauawPu4DcHelMqQKRlSafwCV00dY+s48VMy4xEJpGuxaiWSTEJfvcME
-         iZbOYg1Gl9tEZrYjc0mZG8VGZHe6amRrbLLtds2fkF1Yz5Qji3Si4xnhqO3avc5rewu1
-         w4bA==
-X-Gm-Message-State: ANhLgQ0cdQhdwWDQZ2HwYSF5U7oKXPvrfU6H8wLSW99NY/RIL/64GpPo
-	yIexNfCiXk4gE9EP+zYG4FcVc2bDxyEtvdUpNmwGeA==
-X-Google-Smtp-Source: ADFU+vuKD0wNUHAURO+lw7YK6akbUdapxh+WCU+pFKL9vi533cgNSRxSqP23TsBedGwb0tuPwPNsiWtrwF3D62Ws+W0=
-X-Received: by 2002:a5d:46ca:: with SMTP id g10mr14459721wrs.290.1585574263351;
- Mon, 30 Mar 2020 06:17:43 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=43719xhbRongZCnVumqGaT7HsFRu7tH+Q5GLOsqAy0k=;
+        b=Z/+DcbdfOzOnZeMzEcSQp7inWicYegRbBMqAWOi8Tg6hTSmpYXHWx+3bCYQ/ZJ/CWb
+         JR87SZNP1CNjLgD1df6bIaCougSzB6oPeYYAzO9A85YYggh0K5H3MjZeeTNPKEvh7Fb0
+         6gJzYIAQT8AQQsAK8bg401/EtT4uxYlNf2gKdn4eRtfQcjGezb5bHiZ5I+SahkAbdDZE
+         +3vsEsxbo7pxd4Pi8S+GLE0Ajn9bHGX8oI6nVzJS3W1BEDyyurEggFa+gERakp6vft01
+         qkoSgu5Lk5fj/kNFknHM7JD0yLzh3sfIM/uyKFpHKrIOU2yCKDPg/l0OJQxbcqvR0aBV
+         58EQ==
+X-Gm-Message-State: ANhLgQ38uxbN8ttFnXhUFF3Rh/iQIt4cT+yFAUyd+w379bFdqVn+JoMq
+	nfU2cpgH1zpyabKXft7PoSg=
+X-Google-Smtp-Source: ADFU+vvVOpqL3JTuhZKHQDCv5TG+TM/h67b+XHnkNKzwVEBDbx7NdicqTNELf0mUAFunkDEWu7Dy1Q==
+X-Received: by 2002:a63:b557:: with SMTP id u23mr13715635pgo.160.1585589541236;
+        Mon, 30 Mar 2020 10:32:21 -0700 (PDT)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id 1sm132612pjo.10.2020.03.30.10.32.20
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 30 Mar 2020 10:32:20 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 30 Mar 2020 10:32:19 -0700
+Message-ID: <009201d606b9$2a80f860$7f82e920$@gmail.com>
 MIME-Version: 1.0
-References: <CAMDowVVL9L=ScNR49vG3fnHCTiYHsp2OHLi2xTZWE-gvetDWmw@mail.gmail.com>
- <alpine.LFD.2.21.2003260954290.12282@localhost.localdomain>
- <CAMDowVUVBc8Lm_TwRDBgYgQ1gf3tbNFjKnNvCBtLfJ3FRXXFQQ@mail.gmail.com> <VI1PR05MB428674CF3EB37F1577ADFBA0A8CF0@VI1PR05MB4286.eurprd05.prod.outlook.com>
-In-Reply-To: <VI1PR05MB428674CF3EB37F1577ADFBA0A8CF0@VI1PR05MB4286.eurprd05.prod.outlook.com>
-From: "Matt Campbell" <Mcampbell@izotope.com>
-Date: Mon, 30 Mar 2020 09:17:32 -0400
-Message-ID: <CAMDowVVpWGjYpFco3quYDDOgfqdTQhEbmaz0JPNx+5Q0h54EwA@mail.gmail.com>
-Subject: Re: [yocto] Best way to mask bbappends based on Poky version to have a layer support multiple versions of Poky?
-To: Konrad Weihmann <kweihmann@outlook.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000bb817805a21246bc"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQH8ZSzlRet92wJeVMPNOrTv33ECcg==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_0093_01D6067E.7E22BCA0"
+Content-Language: en-us
 
---000000000000bb817805a21246bc
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_0093_01D6067E.7E22BCA0
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-Thanks for the info. I think both of those will run into issues where the
-bbappend won't apply to the original recipe as that is fully done by path
-and file name and both of these methods mangle those. Please correct me if
-I'm wrong as there might be some cheese down that tunnel for me.
+All,
 
-I've been thinking more about this over the weekend and have rethought the
-problem a bit. I think what I really want is to be able to conditionally
-skip a bbappend in recipe using python rather than having to do this
-centralized in the layer.conf with BBMASK. There are two reasons for this:
+ 
 
-1) This puts the logic that skips the bbappend in the file itself which
-makes it more obvious what is going on when browsing/maintaining meta-data.
-The BBMASK method is centralized, but is hidden when you are just working
-with the metadata.
-2) This allows for arbitrary and more complex logic for skipping bbappends.
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
 
-I'm not super familiar with the internals of bitbake, but I think what I
-want is something similar to the bb.parse.SkipRecipe() exception. For
-example
+ 
 
-file: test_%.bbappend
-python() {
-    # Skip based on poky version
-    if d.getVar("DISTRO_CODENAME") != 'zeus':
-        raise bb.parse.SkipBbappend("This bbappend only supports Zeus.
-Skipping this bbappend")
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
 
-    # Skip based on package version
-    if d.getVar("PV") != '1.0':
-        raise bb.parse.SkipBbappend("This bbappend only supports version
-1.0 of test. Skipping bbappend")
-}
+ 
 
-1) Does this seem like a good solution to the problem of dangling appends
-in layers that want to support two versions of Poky?
-2) Any thoughts on how to go about implementing this?
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
 
-~Matt
+ 
 
-On Thu, Mar 26, 2020 at 4:09 PM Konrad Weihmann <kweihmann@outlook.com>
-wrote:
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 309
+unassigned or newcomer bugs.
 
-> Hi,
->
-> I'll get your point.
-> Maybe this could be a solution to your problem
-> https://www.yoctoproject.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#var-BBVERSIONS
-> .
-> Instead of having different bbappends have one and pick the right steps
-> inside of the append.
->
-> If that is not working for you, you could also fake the behavior of
-> BBFILES_DYNAMIC with putting the bbappend into separate subfolder, which
-> than are
-> referenced by something like this
->
-> BBFILES += "${LAYERDIR}/dynamic-recipes/${BB_VERSION}/*.bbappend"
->
-> Regards
-> Konrad
-> On 26.03.20 20:56, Matt Campbell wrote:
->
-> I didn't know about  BB_DANGLINGAPPENDS_WARNONLY. That would mask the
-> problem, but doesn't feel like a great solution. Either way I do
-> appreciate you sharing that.
->
-> Further implementation and discussion with our team brought up another
-> possible solution. We could wildcard all bbappends (_%.bbappend) and use
-> some anonymous python inside our bbappend files that will error out if the
-> package version isn't in a supported list. We could also easily roll this
-> up into a bbclass to prevent the need to duplicate this everywhere.
->
-> python () {
->     package_version = d.getVar("PV")
->     if  package_version is not in ['3.14", "3.15"]:
->         bb.error("This bbappend file isn't compatible with the version {}.
-> You will need to add support to this bbappend for that
-> version.".format(package_version))
-> }
->
-> This still seems more like we are fighting bitbake rather than working
-> with it. Does anyone have any thoughts or suggestions on this?
->
-> Other upstreams seem to maintain different branches for different Poky
-> releases. That is a road we would rather avoid if possible. Our goal is to
-> be able to have an extra CI build against the version of Poky under
-> development so we can continuously fix the upgrade issues as they come up
-> rather than as a landslide when we upgrade. Making a separate branch for
-> this would mean we would need to merge all active development into each
-> branch to get the benefits of a poky next canary build plan. That said, I'd
-> love to hear about a solution that lets us have our cake and eat it too.
->
-> ~Matt
->
-> On Thu, Mar 26, 2020 at 9:55 AM Robert P. J. Day <rpjday@crashcourse.ca>
-> wrote:
->
->> On Thu, 26 Mar 2020, Matt Campbell wrote:
->>
->> > HI All,
->>
->> > We have a layer where we want to concurrently support two releases
->> > of Poky. There is an issue when we have bbappnds against recipes
->> > that have different versions in the two poky releases. for instance,
->> > imagine recipe foo that is version 1.0 in Zeus and 1.2 in Dunfell.
->> > If we had a bbappend in our layer `foo_1.0.bbappend` and tried to
->> > use our layer with Dunfell, bitbake will error out saying that
->> > `foo_1.0.bbappend` has no base recipe.
->>
->>   not sure if this really solves the underlying issue, but you can
->> always turn those errors into warnings with:
->>
->>   BB_DANGLINGAPPENDS_WARNONLY = "1"
->>
->> in your local.conf, although i'm still skeptical as to whether that's
->> really the problem you're trying to solve.
->>
->> rday
->>
->
->
-> --
-> Matthew Campbell
-> Senior Embedded Systems Engineer
-> mcampbell@izotope.com
->
-> iZotope, Inc.
-> www.izotope.com
->
-> 
->
->
+ 
 
--- 
-Matthew Campbell
-Senior Embedded Systems Engineer
-mcampbell@izotope.com
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.1", "3.2, "3.99" and "Future", the more pressing/urgent issues
+being in "3.1" and then "3.2".
 
-iZotope, Inc.
-www.izotope.com
+ 
 
---000000000000bb817805a21246bc
-Content-Type: text/html; charset="UTF-8"
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_0093_01D6067E.7E22BCA0
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0E94_01D600F8.C7D235A0";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Thanks for the info. I think both of those will run into i=
-ssues where the bbappend won&#39;t apply to the original recipe as that is =
-fully done by path and file name and both of these methods mangle those. Pl=
-ease correct me if I&#39;m wrong as there might be some cheese down that tu=
-nnel for me.<div><br></div><div>I&#39;ve been thinking more about this over=
- the weekend and have rethought the problem a bit. I think what I really wa=
-nt is to be able to conditionally skip a bbappend in recipe using python ra=
-ther than having to do this centralized in the layer.conf with BBMASK. Ther=
-e are two reasons for this:</div><div><br></div><div>1) This puts the logic=
- that skips the bbappend in the file itself which makes it more obvious wha=
-t is going on when browsing/maintaining meta-data. The BBMASK method=C2=A0i=
-s centralized, but is hidden when you are just working with the metadata.</=
-div><div>2) This allows for arbitrary=C2=A0and more complex logic for skipp=
-ing bbappends.</div><div><br></div><div>I&#39;m not super familiar=C2=A0wit=
-h the internals of bitbake, but I think what I want is something similar to=
- the bb.parse.SkipRecipe() exception. For example</div><div><br></div><div>=
-file: test_%.bbappend</div><div>python() {</div><div>=C2=A0 =C2=A0 # Skip b=
-ased on poky version</div><div>=C2=A0 =C2=A0 if d.getVar(&quot;DISTRO_CODEN=
-AME&quot;) !=3D &#39;zeus&#39;:</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 raise=
- bb.parse.SkipBbappend(&quot;This bbappend only supports Zeus. Skipping thi=
-s bbappend&quot;)</div><div><br></div><div>=C2=A0 =C2=A0 # Skip based on pa=
-ckage version</div><div><div>=C2=A0 =C2=A0 if d.getVar(&quot;PV&quot;) !=3D=
- &#39;1.0&#39;:</div><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 raise bb.parse.SkipBb=
-append(&quot;This bbappend only supports version 1.0 of test. Skipping bbap=
-pend&quot;)</div><div></div></div><div>}</div><div><br></div><div>1) Does t=
-his seem like a good solution to the problem of dangling appends in layers =
-that want to support two versions of Poky?<br></div><div>2) Any thoughts on=
- how to go about implementing this?</div><div><br></div><div>~Matt</div></d=
-iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
-Thu, Mar 26, 2020 at 4:09 PM Konrad Weihmann &lt;<a href=3D"mailto:kweihman=
-n@outlook.com" target=3D"_blank">kweihmann@outlook.com</a>&gt; wrote:<br></=
-div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
-der-left:1px solid rgb(204,204,204);padding-left:1ex">
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
+starting to try and collect up and classify bugs which a newcomer to the =
+project would be able to work on in a way which means people can find =
+them. They're being listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
+><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 309 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.1&#8221;, &#8220;3.2, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.1&quot; and then &#8220;3.2&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
-  
-  <div>
-    <p>Hi,</p>
-    <p>I&#39;ll get your point.<br>
-      Maybe this could be a solution to your problem
-<a href=3D"https://www.yoctoproject.org/docs/current/bitbake-user-manual/b=
-itbake-user-manual.html#var-BBVERSIONS" target=3D"_blank">https://www.yocto=
-project.org/docs/current/bitbake-user-manual/bitbake-user-manual.html#var-B=
-BVERSIONS</a>.<br>
-      Instead of having different bbappends have one and pick the right
-      steps inside of the append.</p>
-    <p>If that is not working for you, you could also fake the behavior
-      of BBFILES_DYNAMIC with putting the bbappend into separate
-      subfolder, which than are<br>
-      referenced by something like this<br>
-      <br>
-      BBFILES +=3D &quot;${LAYERDIR}/dynamic-recipes/${BB_VERSION}/*.bbapp=
-end&quot;</p>
-    <p>Regards<br>
-      Konrad<br>
-    </p>
-    <div>On 26.03.20 20:56, Matt Campbell wrote:<br>
-    </div>
-    <blockquote type=3D"cite">
-      
-      <div dir=3D"ltr">I didn&#39;t know about=C2=A0
-        BB_DANGLINGAPPENDS_WARNONLY. That would mask the problem, but
-        doesn&#39;t feel like a great solution. Either way I do
-        appreciate=C2=A0you sharing that.
-        <div><br>
-        </div>
-        <div>Further implementation=C2=A0and discussion with our team brou=
-ght
-          up another possible solution. We could wildcard all bbappends
-          (_%.bbappend) and use some anonymous=C2=A0python inside our
-          bbappend files that will error out if the package version
-          isn&#39;t in a supported list. We could also easily=C2=A0roll th=
-is up
-          into a bbclass to prevent the need to duplicate this
-          everywhere.</div>
-        <div><br>
-        </div>
-        <div>python () {<br>
-          =C2=A0 =C2=A0 package_version =3D d.getVar(&quot;PV&quot;) </div=
->
-        <div>=C2=A0 =C2=A0 if=C2=A0 package_version is not in [&#39;3.14&q=
-uot;, &quot;3.15&quot;]:</div>
-        <div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 bb.error(&quot;This bbappend file=
- isn&#39;t compatible with
-          the version {}. You will need to add support to this bbappend
-          for that version.&quot;.format(package_version))<br>
-          }<br>
-        </div>
-        <div><br>
-        </div>
-        <div>This still seems more like we are fighting bitbake rather
-          than working with it. Does anyone have any thoughts or
-          suggestions on this?</div>
-        <div><br>
-        </div>
-        <div>Other upstreams seem to maintain=C2=A0different branches for
-          different Poky releases. That is a road we would rather avoid
-          if possible. Our goal is to be able to have an extra CI build
-          against the version of Poky under development so we can
-          continuously=C2=A0fix the upgrade issues as they come up rather
-          than as a landslide when we upgrade. Making a separate branch
-          for this would mean we would need to merge all active
-          development into each branch to get the benefits of a poky
-          next canary build plan. That said, I&#39;d love to hear about a
-          solution that lets us have our cake and eat it too.</div>
-        <div><br>
-        </div>
-        <div>~Matt</div>
-      </div>
-      <br>
-      <div class=3D"gmail_quote">
-        <div dir=3D"ltr" class=3D"gmail_attr">On Thu, Mar 26, 2020 at 9:55
-          AM Robert P. J. Day &lt;<a href=3D"mailto:rpjday@crashcourse.ca"=
- target=3D"_blank">rpjday@crashcourse.ca</a>&gt; wrote:<br>
-        </div>
-        <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
-x;border-left:1px solid rgb(204,204,204);padding-left:1ex">On
-          Thu, 26 Mar 2020, Matt Campbell wrote:<br>
-          <br>
-          &gt; HI All,<br>
-          <br>
-          &gt; We have a layer where we want to concurrently support two
-          releases<br>
-          &gt; of Poky. There is an issue when we have bbappnds against
-          recipes<br>
-          &gt; that have different versions in the two poky releases.
-          for instance,<br>
-          &gt; imagine recipe foo that is version 1.0 in Zeus and 1.2 in
-          Dunfell.<br>
-          &gt; If we had a bbappend in our layer `foo_1.0.bbappend` and
-          tried to<br>
-          &gt; use our layer with Dunfell, bitbake will error out saying
-          that<br>
-          &gt; `foo_1.0.bbappend` has no base recipe.<br>
-          <br>
-          =C2=A0 not sure if this really solves the underlying issue, but =
-you
-          can<br>
-          always turn those errors into warnings with:<br>
-          <br>
-          =C2=A0 BB_DANGLINGAPPENDS_WARNONLY =3D &quot;1&quot;<br>
-          <br>
-          in your local.conf, although i&#39;m still skeptical as to wheth=
-er
-          that&#39;s<br>
-          really the problem you&#39;re trying to solve.<br>
-          <br>
-          rday<br>
-        </blockquote>
-      </div>
-      <br clear=3D"all">
-      <div><br>
-      </div>
-      -- <br>
-      <div dir=3D"ltr">
-        <div dir=3D"ltr">Matthew Campbell
-          <div>Senior Embedded Systems Engineer</div>
-          <div><a href=3D"mailto:mcampbell@izotope.com" target=3D"_blank">=
-mcampbell@izotope.com</a></div>
-          <div><br>
-          </div>
-          <div>iZotope, Inc.</div>
-          <div><a href=3D"http://www.izotope.com" target=3D"_blank">www.iz=
-otope.com</a></div>
-        </div>
-      </div>
-      <br>
-      <fieldset></fieldset>
-      <pre>
-</pre>
-    </blockquote>
-  </div>
-
-</blockquote></div><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr=
-"><div dir=3D"ltr">Matthew Campbell<div>Senior Embedded Systems Engineer</d=
-iv><div><a href=3D"mailto:mcampbell@izotope.com" target=3D"_blank">mcampbel=
-l@izotope.com</a></div><div><br></div><div>iZotope, Inc.</div><div><a href=
-=3D"http://www.izotope.com" target=3D"_blank">www.izotope.com</a></div></d=
-iv></div>
-
---000000000000bb817805a21246bc--
+------=_NextPart_000_0093_01D6067E.7E22BCA0--
