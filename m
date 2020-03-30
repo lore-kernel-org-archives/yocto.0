@@ -1,119 +1,115 @@
-Received: from heian.cn.fujitsu.com (heian.cn.fujitsu.com [183.91.158.132])
- by mx.groups.io with SMTP id smtpd.web12.44376.1585546999907578454
+Received: from esa3.bmw.c3s2.iphmx.com (esa3.bmw.c3s2.iphmx.com [68.232.133.150])
+ by mx.groups.io with SMTP id smtpd.web10.45068.1585551494741026419
  for <yocto@lists.yoctoproject.org>;
- Sun, 29 Mar 2020 22:43:20 -0700
+ Sun, 29 Mar 2020 23:58:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=SPF record not found (domain: cn.fujitsu.com, ip: 183.91.158.132, mailfrom: lixm.fnst@cn.fujitsu.com)
-X-IronPort-AV: E=Sophos;i="5.72,323,1580745600"; 
-   d="scan'208";a="87871698"
-Received: from unknown (HELO cn.fujitsu.com) ([10.167.33.5])
-  by heian.cn.fujitsu.com with ESMTP; 30 Mar 2020 13:43:06 +0800
-Received: from G08CNEXMBPEKD06.g08.fujitsu.local (unknown [10.167.33.206])
-	by cn.fujitsu.com (Postfix) with ESMTP id EA94450A999E
-	for <yocto@lists.yoctoproject.org>; Mon, 30 Mar 2020 13:32:50 +0800 (CST)
-Received: from G08CNEXCHPEKD05.g08.fujitsu.local (10.167.33.203) by
- G08CNEXMBPEKD06.g08.fujitsu.local (10.167.33.206) with Microsoft SMTP Server
- (TLS) id 15.0.1497.2; Mon, 30 Mar 2020 13:43:05 +0800
-Received: from g08.fujitsu.local (10.167.218.89) by
- G08CNEXCHPEKD05.g08.fujitsu.local (10.167.33.209) with Microsoft SMTP Server
- id 15.0.1497.2 via Frontend Transport; Mon, 30 Mar 2020 13:43:07 +0800
-From: "Li, Xiaoming" <lixm.fnst@cn.fujitsu.com>
-To: <yocto@lists.yoctoproject.org>
-CC: <leimaohui@cn.fujitsu.com>
-Subject: [PATCH] Add localhost to noproxy list.
-Date: Mon, 30 Mar 2020 06:37:19 -0700
-Message-ID: <20200330133719.63516-1-lixm.fnst@cn.fujitsu.com>
-X-Mailer: git-send-email 2.17.1
+ dkim=pass header.i=@bmw.de header.s=mailing1 header.b=SjWdgNqo;
+ spf=pass (domain: bmw.de, ip: 68.232.133.150, mailfrom: prvs=3511a2862=mikko.rapeli@bmw.de)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=bmw.de; i=@bmw.de; q=dns/txt; s=mailing1;
+  t=1585551495; x=1617087495;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=mboAfVmdXAAaJDbV/oTapECVYDGOmUMY6zpBAc16IKQ=;
+  b=SjWdgNqohI9QFkQMFMp1CT4jR/WoQ42AergxtDXcMdCgt9OEc7BOg2cZ
+   8RTOd9JQQbC6/ktYugK14RrFlrfPgbs4hMLowBVvcN1ihZ/kcuAPnP3hc
+   xh9m+ou7WePhFdk7VJziCNaEhr6PHn3LFHzsbGdiJN66cOkEPRb0sOoz5
+   U=;
+Received: from esagw4.bmwgroup.com (HELO esagw4.muc) ([160.46.252.39]) by
+ esa3.bmw.c3s2.iphmx.com with ESMTP/TLS; 30 Mar 2020 08:58:13 +0200
+Received: from esabb3.muc ([160.50.100.30])  by esagw4.muc with ESMTP/TLS;
+ 30 Mar 2020 08:58:10 +0200
+Received: from smucm10l.bmwgroup.net (HELO smucm10l.europe.bmw.corp) ([160.48.96.48])
+ by esabb3.muc with ESMTP/TLS; 30 Mar 2020 08:57:50 +0200
+Received: from smucm10k.europe.bmw.corp (160.48.96.47) by smucm10l.europe.bmw.corp
+ (160.48.96.48) with Microsoft SMTP Server (TLS;
+ Mon, 30 Mar 2020 08:57:50 +0200
+Received: from smucm10k.europe.bmw.corp ([160.48.96.47]) by
+ smucm10k.europe.bmw.corp ([160.48.96.47]) with mapi id 15.00.1473.005; Mon,
+ 30 Mar 2020 08:57:50 +0200
+From: "Mikko Rapeli" <mikko.rapeli@bmw.de>
+To: <ajama@hcl.com>
+CC: <yocto@lists.yoctoproject.org>
+Subject: Re: [yocto] Fw: Reducing rootfs size in yocto
+Thread-Topic: [yocto] Fw: Reducing rootfs size in yocto
+Thread-Index: AQHWBQOpsr5y8icioEWpKGlX+EE4S6hd/pa9gAKW5gA=
+Date: Mon, 30 Mar 2020 06:57:50 +0000
+Message-ID: <20200330065748.GS104502@korppu>
+References: <HK0PR04MB29144DAFD598E96154278145B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
+ <HK0PR04MB291491325C57709CD3461BB9B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
+In-Reply-To: <HK0PR04MB291491325C57709CD3461BB9B4CD0@HK0PR04MB2914.apcprd04.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-messagesentrepresentingtype: 1
 MIME-Version: 1.0
-X-yoursite-MailScanner-ID: EA94450A999E.ACFA7
-X-yoursite-MailScanner: Found to be clean
-X-yoursite-MailScanner-From: lixm.fnst@cn.fujitsu.com
-X-Spam-Status: No
-Content-Type: text/plain
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <661131961C22AD4E92AEB566614F228F@bmwmail.corp>
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Li Xiaoming <lixm.fnst@cn.fujitsu.com>
----
- classes/fossology-rest.bbclass | 16 +++++++++-------
- 1 file changed, 9 insertions(+), 7 deletions(-)
+Hi,
 
-diff --git a/classes/fossology-rest.bbclass b/classes/fossology-rest.bbclass
-index 48e16f3..000eefe 100644
---- a/classes/fossology-rest.bbclass
-+++ b/classes/fossology-rest.bbclass
-@@ -25,6 +25,8 @@ HOSTTOOLS_NONFATAL += "curl"
- 
- CREATOR_TOOL = "fossology-rest.bbclass in meta-spdxscanner"
- 
-+NO_PROXY = "localhost, 127.0.0.1"
-+
- # If ${S} isn't actually the top-level source directory, set SPDX_S to point at
- # the real top-level directory.
- SPDX_S ?= "${S}"
-@@ -159,7 +161,7 @@ def get_folder_id_by_name(d, folder_name):
- 
-     rest_api_cmd = "curl -k -s -S -X GET " + server_url + "/api/v1/folders" \
-                    + " -H \"Authorization: Bearer " + token + "\"" \
--                   + " --noproxy 127.0.0.1"
-+                   + " --noproxy " + NO_PROXY
-     bb.note("Invoke rest_api_cmd = " + rest_api_cmd )
-     try:
-         all_folder = subprocess.check_output(rest_api_cmd, stderr=subprocess.STDOUT, shell=True)
-@@ -200,7 +202,7 @@ def create_folder(d, folder_name):
-                    + " -H \'parentFolder: 1\'" \
-                    + " -H \'folderName: " + folder_name + "\'" \
-                    + " -H \"Authorization: Bearer " + token + "\"" \
--                   + " --noproxy 127.0.0.1"
-+                   + " --noproxy " + NO_PROXY
-     bb.note("Invoke rest_api_cmd = " + rest_api_cmd)
-     try:
-         add_folder = subprocess.check_output(rest_api_cmd, stderr=subprocess.STDOUT, shell=True)
-@@ -251,7 +253,7 @@ def has_upload(d, tar_file, folder_id):
- 
-     rest_api_cmd = "curl -k -s -S -X GET " + server_url + "/api/v1/uploads" \
-                    + " -H \"Authorization: Bearer " + token + "\"" \
--                   + " --noproxy 127.0.0.1"
-+                   + " --noproxy " + NO_PROXY
-     bb.note("Invoke rest_api_cmd = " + rest_api_cmd )
-         
-     try:
-@@ -302,7 +304,7 @@ def upload(d, tar_file, folder):
-                     + " -H \'public: public\'"  \
-                     + " -H \'Content-Type: multipart/form-data\'"  \
-                     + " -F \'fileInput=@\"" + tar_file + "\";type=application/octet-stream\'" \
--                    + " --noproxy 127.0.0.1"
-+                    + " --noproxy " + NO_PROXY
-     bb.note("Upload : Invoke rest_api_cmd = " + rest_api_cmd )
-     while i < 10:
-         time.sleep(delaytime)
-@@ -343,7 +345,7 @@ def analysis(d, folder_id, upload_id):
-                     + " -H \"Authorization: Bearer " + token + "\"" \
-                     + " -H \'Content-Type: application/json\'" \
-                     + " --data \'{\"analysis\": {\"bucket\": true,\"copyright_email_author\": true,\"ecc\": true, \"keyword\": true,\"mime\": true,\"monk\": true,\"nomos\": true,\"package\": true},\"decider\": {\"nomos_monk\": true,\"bulk_reused\": true,\"new_scanner\": true}}\'" \
--                    + " --noproxy 127.0.0.1"
-+                    + " --noproxy " + NO_PROXY
-     bb.note("Analysis : Invoke rest_api_cmd = " + rest_api_cmd )
-     while i < 10:
-         try:
-@@ -389,7 +391,7 @@ def trigger(d, folder_id, upload_id):
-                     + " -H \"Authorization: Bearer " + token + "\"" \
-                     + " -H \"uploadId: " + str(upload_id) + "\"" \
-                     + " -H \'reportFormat: spdx2tv\'" \
--                    + " --noproxy 127.0.0.1"
-+                    + " --noproxy " + NO_PROXY
-     bb.note("trigger : Invoke rest_api_cmd = " + rest_api_cmd )
-     while i < 10:
-         time.sleep(delaytime)
-@@ -431,7 +433,7 @@ def get_spdx(d, report_id, spdx_file):
-     rest_api_cmd = "curl -k -s -S -X GET " + server_url + "/api/v1/report/" + report_id \
-                     + " -H \'accept: text/plain\'" \
-                     + " -H \"Authorization: Bearer " + token + "\"" \
--                    + " --noproxy 127.0.0.1"
-+                    + " --noproxy " + NO_PROXY
-     bb.note("get_spdx : Invoke rest_api_cmd = " + rest_api_cmd )
-     while i < 10:
-         time.sleep(delaytime)
--- 
-2.17.1
+Generic approaches for reducing yocto target image size where buildhistory
+is an important source of information:
 
+ * review and minimize distro features, enable only what you need
+   https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#re=
+f-features-distro
 
+ * review and minimize image recipe, install only those image features and =
+packages
+   which you need
+   https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#re=
+f-features-image
 
+ * review the needed binary packages: traverse the tree of dependencies wha=
+t you need,
+   review every single recipe and change PACKAGECONFIG or build flags to re=
+move
+   features which you do not need. This it may be possible to remove large =
+set
+   of dependencies from images, e.g. language bindings, debug tools. In som=
+e cases
+   one just needs a single binary executable or shared library but it is bu=
+ndled
+   in a larger binary package with more complex dependencies. For these cas=
+es
+   add a bbappend to custom layers to change the packaging to only include =
+what
+   you need.
+   https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#va=
+r-PACKAGECONFIG
+
+ * change compiler flags from default O2 to Os optimization. This can work =
+for
+   some recipes which are not prerformance critical or to the whole build. =
+Note
+   that many SW components break this in their own build scripts by adding
+   O2 or even O3 by default. Check from buildhistory that binary sizes go s=
+maller
+   after switch from O2 to Os and review every important recipe which did n=
+ot.
+   You may be able to save up to 15% in rootfs size this way, but all depen=
+ds
+   on the details of SW components and image contents.
+   see poky/meta/conf/bitbake.conf
+
+I've followed this for multiple products and found out that poky is nice to=
+ work with
+but BSP layers add or depend on all kinds of extra things that products do =
+not need.
+Thus I have ended by BBMASK'ing away large parts of BSP layer recipes in di=
+stro
+configs. This with multiple x86 and ARM BSP layers from various SoC vendors=
+.
+
+Also, RTFM :)
+
+https://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#build=
+ing-a-tiny-system
+
+Hope this helps,
+
+-Mikko=
