@@ -1,79 +1,64 @@
-Received: from m157-178.yeah.net (m157-178.yeah.net [123.58.178.157])
- by mx.groups.io with SMTP id smtpd.web11.5331.1585646086656052284
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+ by mx.groups.io with SMTP id smtpd.web12.6317.1585651644445658579
  for <yocto@lists.yoctoproject.org>;
- Tue, 31 Mar 2020 02:14:47 -0700
+ Tue, 31 Mar 2020 03:47:24 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@yeah.net header.s=s110527 header.b=adSlgRjt;
- spf=pass (domain: yeah.net, ip: 123.58.178.157, mailfrom: nus1998@yeah.net)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:MIME-Version:Message-ID; bh=UuL2h
-	WTArdJRoAwmM7qYcex45ldbkpvEUhxOFW1Pnis=; b=adSlgRjtq3godC5iVvyO5
-	/93GytDT8Ytbwv6e/17hj33x0cXPG/oXGGfG0uw90peGNuvk1M8zc0LIyRQptwjA
-	h/mfLd2HXCXi2csJkFCuhjpap/f4rYXGkcPKE63zllnxR0DFoll1g2D9SCqCkv4Q
-	NPAkcRNCDv1nYEtDYuLKDc=
-Received: from nus1998$yeah.net ( [121.35.184.240] ) by ajax-webmail-app8
- (Coremail) ; Tue, 31 Mar 2020 17:14:38 +0800 (CST)
-X-Originating-IP: [121.35.184.240]
-Date: Tue, 31 Mar 2020 17:14:38 +0800 (CST)
-X-CM-HeaderCharset: UTF-8
-From: "nus1998" <nus1998@yeah.net>
-To: "Ross Burton" <ross@burtonini.com>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] duplicate files in tmp
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version XT5.0.10 build 20190724(ac680a23)
- Copyright (c) 2002-2020 www.mailtech.cn yeah
-In-Reply-To: <CAAnfSTsvHjbhXMORbTJX0=WLDT2O0GB1HExU2=bua655Skcddw@mail.gmail.com>
-References: <5f89ccfc.1f85d2.1712e3f6b72.Coremail.nus1998@yeah.net>
- <CAAnfSTsvHjbhXMORbTJX0=WLDT2O0GB1HExU2=bua655Skcddw@mail.gmail.com>
+ dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=aAIOezOv;
+ spf=pass (domain: burtonini.com, ip: 209.85.208.174, mailfrom: ross@burtonini.com)
+Received: by mail-lj1-f174.google.com with SMTP id w1so21429235ljh.5
+        for <yocto@lists.yoctoproject.org>; Tue, 31 Mar 2020 03:47:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PqPYAaKFPXnngYXQNPXh/9DEs/d5vfFyvQkNi/w6uqE=;
+        b=aAIOezOvJJjLAC0q1qOI1/uGVlhbTDIwCQpGr03OjxHgzumKTqrbm3PnjdsDVgcrn9
+         56hCDA0B2Cy5gp1hbP1OtBKp1fPbBb/fDS7vzKRYLVDpcIzxm6YYRNMIH9lQRmZqLthq
+         +U1/4NDw05pau33PGe10Ot3uuvoekVkoSJq5PiXNXa5AyMfxhlNutax6uixXCqUxfQv6
+         LzQCaS2VbLtx2UGrROvC+DlSXej/CS235XuxiVlFezBOYILCrEROHmsRn5SqugW8Xb32
+         ZCUqpZ3Wm88HNf10QDQHKZsAJ2f9Xk3H2nF0QaLykXaRrFTAmyP9jIEVhanN9yUm4zla
+         6hFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PqPYAaKFPXnngYXQNPXh/9DEs/d5vfFyvQkNi/w6uqE=;
+        b=D8zTfzOg8r0kKqYJ71sGrAHu86i0qzvlYSrCe5wYJgWrmeoW3v+1PLfchb/S216KzF
+         WccEQs1etj4XHryccYnqW/ypOvSG3CBPTyI9aAAVGaniJ92GycBknzuldKi7bUVixOZR
+         DYUfMboq5b9uBAA516IY9o6qql7vOtH6cErTOuVAXwNZajyQ2cOuPCTAphhA2fOvA+X/
+         PvWfwI/qBC7uwZgx5nRp8B5XkekuceTgq7gVeVMPX4LscUDvNvQAerFTbA6VXKEG2yMm
+         tam0zUuOu8Z01daDZC5zXNZR2bqyp3gROnuZ5FxecshbsZs3R04z8bau/kT+QSiN1DZR
+         lFeg==
+X-Gm-Message-State: AGi0PubbX0Zt3GmgpM8D4Qo0+iK6FPr463drS/lErLKtWkRyVSJk2YvU
+	3nJPOXEajJ8Qeg36iCz9WHgTfdTo7JxVOeCvMIEL7g==
+X-Google-Smtp-Source: APiQypKzSOUVGR6o/ZQMOjA1Ld0YkoxletT54NvTf3FxldYQkGkWWHsuCyvINSbwoRicIWTm2PJCkt2WVmb6pjWw8QU=
+X-Received: by 2002:a2e:8246:: with SMTP id j6mr9614837ljh.162.1585651642481;
+ Tue, 31 Mar 2020 03:47:22 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <77e62f97.1f90e3.1712fdf0bc5.Coremail.nus1998@yeah.net>
-X-Coremail-Locale: zh_CN
-X-CM-TRANSID: OVUQrADH3Or_CYNen4ADAA--.41630W
-X-CM-SenderInfo: 5qxvimyzy65vtdko0vbw/1tbiDgX3MFszTRLJbQABse
-X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
-Content-Type: multipart/alternative; 
-	boundary="----=_Part_7976854_2078811932.1585646078917"
+References: <5f89ccfc.1f85d2.1712e3f6b72.Coremail.nus1998@yeah.net>
+ <CAAnfSTsvHjbhXMORbTJX0=WLDT2O0GB1HExU2=bua655Skcddw@mail.gmail.com> <77e62f97.1f90e3.1712fdf0bc5.Coremail.nus1998@yeah.net>
+In-Reply-To: <77e62f97.1f90e3.1712fdf0bc5.Coremail.nus1998@yeah.net>
+From: "Ross Burton" <ross@burtonini.com>
+Date: Tue, 31 Mar 2020 11:47:11 +0100
+Message-ID: <CAAnfSTuantnLZmnvHJHiRVAX1ri5ivzriqddX7+zJtvaOKE7eA@mail.gmail.com>
+Subject: Re: [yocto] duplicate files in tmp
+To: nus1998 <nus1998@yeah.net>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: text/plain; charset="UTF-8"
 
-------=_Part_7976854_2078811932.1585646078917
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
+On Tue, 31 Mar 2020 at 10:14, nus1998 <nus1998@yeah.net> wrote:
+> Well, Ubuntu doesn't tell any difference between a normal file and a hard link file on gui file explore, verified by "ls -i". thanks<br/><br/>B.R.<br/>Nus
 
-V2VsbCwgVWJ1bnR1IGRvZXNuJ3QgdGVsbCBhbnkgZGlmZmVyZW5jZSBiZXR3ZWVuIGEgbm9ybWFs
-IGZpbGUgYW5kIGEgaGFyZCBsaW5rIGZpbGUgb24gZ3VpIGZpbGUgZXhwbG9yZSwgdmVyaWZpZWQg
-YnkgImxzIC1pIi4gdGhhbmtzPGJyLz48YnIvPkIuUi48YnIvPk51cwpBdCAyMDIwLTAzLTMxIDE2
-OjU4OjI2LCAiUm9zcyBCdXJ0b24iIDxyb3NzQGJ1cnRvbmluaS5jb20+IHdyb3RlOgo+T24gVHVl
-LCAzMSBNYXIgMjAyMCBhdCAwOTo1NywgbnVzMTk5OCA8bnVzMTk5OEB5ZWFoLm5ldD4gd3JvdGU6
-DQo+PiBXaGVuIEkgYml0YmFrZWQgdGhlIHN5c3RlbSwgSSBmb3VuZCB0aGVyZSBhcmUgYSBsb3Qg
-b2YgZHVwbGljYXRlIGZpbGVzIGluIDxidWlsZD4vdG1wLCBmb3IgZXhhbXBsZSwgdGhlcmUgaXMg
-YSBkaXJlY3RvcnkgbmFtZWQgInJlY2lwZS1zeXNyb290LW5hdGl2ZSIgaW4gZXZlcnkgcGFja2Fn
-ZSwgd2hpY2ggZGlyZWN0b3J5IGlzIHNlcnZlcmFsIGh1bmRyZWRzIG9mIE1CIGluIHNpemUuIEkn
-bSBjb25mdXNlZCB0aGF0IHdoeSBkb24ndCB1c2UgbGluayBmaWxlIHR5cGUgdG8gaW5zdGVhZCBv
-ZiBkdXBsaWNhdGUgY29waWVzLCB3aGljaCBjYW4gc2F2ZSB0ZW5zIG9mIEdCIHNpemUuIEkga25v
-dyB0aGF0IGRpc2sgY2FwYWNpdHkgc2hvdWxkIG5vdCBiZSBhIGNvbmNlcm4gYnV0IGl0J3MgYWx3
-YXlzIHdlbGNvbWUgdG8gaGF2ZSBhIHNtYWxsIHNpemUgcHJvamVjdC4NCj4NCj5UaGV5IGFyZSBs
-aW5rcywgYnV0IGhhcmRsaW5rcyBub3Qgc29mdGxpbmtzIGZvciBlZmZpY2llbmN5IGFuZCBldmVu
-DQo+bGVzcyBkaXNrIHVzYWdlLg0KPg0KPlJvc3MNCg==
+Right.  You'll need to use 'ls -l':
 
-------=_Part_7976854_2078811932.1585646078917
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: base64
+$ touch foo
+$ ls -l foo
+-rw-r--r-- 1 ross staff 0 Mar 31 11:46 foo
+$ ln foo bar
+$ ls -l foo bar
+-rw-r--r-- 2 ross staff 0 Mar 31 11:46 bar
+-rw-r--r-- 2 ross staff 0 Mar 31 11:46 foo
 
-V2VsbCwgVWJ1bnR1IGRvZXNuJ3QgdGVsbCBhbnkgZGlmZmVyZW5jZSBiZXR3ZWVuIGEgbm9ybWFs
-IGZpbGUgYW5kIGEgaGFyZCBsaW5rIGZpbGUgb24gZ3VpIGZpbGUgZXhwbG9yZSwgdmVyaWZpZWQg
-YnkgImxzIC1pIi4gdGhhbmtzJmx0O2JyLyZndDsmbHQ7YnIvJmd0O0IuUi4mbHQ7YnIvJmd0O051
-czxicj5BdCAyMDIwLTAzLTMxIDE2OjU4OjI2LCAiUm9zcyBCdXJ0b24iICZsdDtyb3NzQGJ1cnRv
-bmluaS5jb20mZ3Q7IHdyb3RlOjxicj4mZ3Q7T24gVHVlLCAzMSBNYXIgMjAyMCBhdCAwOTo1Nywg
-bnVzMTk5OCAmbHQ7bnVzMTk5OEB5ZWFoLm5ldCZndDsgd3JvdGU6PGJyPiZndDsmZ3Q7IFdoZW4g
-SSBiaXRiYWtlZCB0aGUgc3lzdGVtLCBJIGZvdW5kIHRoZXJlIGFyZSBhIGxvdCBvZiBkdXBsaWNh
-dGUgZmlsZXMgaW4gJmx0O2J1aWxkJmd0Oy90bXAsIGZvciBleGFtcGxlLCB0aGVyZSBpcyBhIGRp
-cmVjdG9yeSBuYW1lZCAicmVjaXBlLXN5c3Jvb3QtbmF0aXZlIiBpbiBldmVyeSBwYWNrYWdlLCB3
-aGljaCBkaXJlY3RvcnkgaXMgc2VydmVyYWwgaHVuZHJlZHMgb2YgTUIgaW4gc2l6ZS4gSSdtIGNv
-bmZ1c2VkIHRoYXQgd2h5IGRvbid0IHVzZSBsaW5rIGZpbGUgdHlwZSB0byBpbnN0ZWFkIG9mIGR1
-cGxpY2F0ZSBjb3BpZXMsIHdoaWNoIGNhbiBzYXZlIHRlbnMgb2YgR0Igc2l6ZS4gSSBrbm93IHRo
-YXQgZGlzayBjYXBhY2l0eSBzaG91bGQgbm90IGJlIGEgY29uY2VybiBidXQgaXQncyBhbHdheXMg
-d2VsY29tZSB0byBoYXZlIGEgc21hbGwgc2l6ZSBwcm9qZWN0Ljxicj4mZ3Q7PGJyPiZndDtUaGV5
-IGFyZSBsaW5rcywgYnV0IGhhcmRsaW5rcyBub3Qgc29mdGxpbmtzIGZvciBlZmZpY2llbmN5IGFu
-ZCBldmVuPGJyPiZndDtsZXNzIGRpc2sgdXNhZ2UuPGJyPiZndDs8YnI+Jmd0O1Jvc3M8YnI+
-
-------=_Part_7976854_2078811932.1585646078917--
+The second column is 'link count'.  If you've never encountered hard
+links before, look them up.
+Ross
