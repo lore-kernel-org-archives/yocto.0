@@ -1,627 +1,1182 @@
-Received: from mga09.intel.com (mga09.intel.com [])
- by mx.groups.io with SMTP id smtpd.web10.6500.1585651694403689486
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.10364.1585665679646088555
  for <yocto@lists.yoctoproject.org>;
- Tue, 31 Mar 2020 03:48:20 -0700
+ Tue, 31 Mar 2020 07:41:19 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=fail (domain: intel.com, ip: <nil>, mailfrom: naveen.kumar.saini@intel.com)
-IronPort-SDR: OuqbJuuYVKrRpemNXJZO87hs6l3yHK+x2owjujeCWhgJQcC4WtEo3Aem/6S0nA0sCFowuEojZs
- tJP9p7xRuf5A==
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Mar 2020 03:48:18 -0700
-IronPort-SDR: H05ko5nuCROJY1bsX4aPszy4gvJhOgviOfjzshnKGAZdCA8q8nclMHvMOR2mzPUPv4QLaQiUiL
- 7ERYjHvyNPVQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.72,327,1580803200"; 
-   d="scan'208";a="252195539"
-Received: from saininav-desk1.png.intel.com ([172.30.199.23])
-  by orsmga006.jf.intel.com with ESMTP; 31 Mar 2020 03:48:17 -0700
-From: "Naveen Saini" <naveen.kumar.saini@intel.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-zephyr][PATCH 5/5] newlib: instead of carry locally use from oe-core
-Date: Tue, 31 Mar 2020 18:54:01 +0800
-Message-Id: <20200331105401.23726-5-naveen.kumar.saini@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200331105401.23726-1-naveen.kumar.saini@intel.com>
-References: <20200331105401.23726-1-naveen.kumar.saini@intel.com>
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=MB7yIX92;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 45E26E018A0; Tue, 31 Mar 2020 07:41:19 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (sjolley.yp.pm[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.215.174 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E764E01892
+	for <yocto@yoctoproject.org>; Tue, 31 Mar 2020 07:41:16 -0700 (PDT)
+Received: by mail-pg1-f174.google.com with SMTP id l14so3301054pgb.1
+        for <yocto@yoctoproject.org>; Tue, 31 Mar 2020 07:41:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:thread-index
+         :content-language;
+        bh=SIhTpOVgIqSNQL0jidyX2Kn3W5aIyrNHNo/+zvUyNCM=;
+        b=MB7yIX92J9cyCaujUpqv/UfGy1AidR9oXUPjzLgy54i3RdnJ+23dDC1Pe7ttD0gFH6
+         AYVKcgLQciGFouHjM408Ux3ZfVf0OiGeon8k9lPjtPIASsFghAtHIiTIZYFXWiLMh7hJ
+         lxp7r6Y/ONiIszwo6Yy9thBC9P0XMJzenG3PIeMJ1hfLEv0BwBy3omM4pN5jUnnsA2X6
+         l4L/WRJ63y0MJjiuYtE0FSIShGY3XjnBOxMzV3ZDEMli/eooD7dQdVrHKU2Py48rm+7T
+         CXFKdhpf3kohqE3kzS76W6xJ7KeYwdKs53N6mQO/vPp0PwoOJL9KrKDVlHxxhUT4+KdQ
+         eUrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :thread-index:content-language;
+        bh=SIhTpOVgIqSNQL0jidyX2Kn3W5aIyrNHNo/+zvUyNCM=;
+        b=A31WpZfBQ4LODtHFkF17T/oq2BymW7iLdo2wReSrzi+0/kuvVgAjiq1rTAJU2xFTYi
+         HkEowOAiSnpmWfz7X8Dl6+/t+Uh9GKLQ4HeuMT5coUSgiePn2PIxPqZ7/YQbGT4ys5lY
+         i4Lf3LgX0UrQYCv6AHxy7GaPzdNLhUYx75xWPzHE3jlQcjJJ1yLIq3YMkxK98Vwyfg9G
+         SZKgDvSQTkp38fs40RomstOBJndzTDlyjOanquCnwmQAlB5JTpLlP8CMyL2De464Hgoh
+         2W6Xbxo1WwtSSHRYZvHt+ernkvU8Fmjxq9Zw1ZZRP9x4nGVxJnssa7dIUQPP2MsaE6GD
+         qLVQ==
+X-Gm-Message-State: ANhLgQ0C5Qq1yCwTaDFI7y6wqbDeNSCQ1fPkG1UtNOk7V50g1IDuUU9o
+	S/Y3RtalKwUnmmPjOUrIK3M=
+X-Google-Smtp-Source: ADFU+vuHWuppgh16WUePBlAVv8sVBsxi6Hs246Cls5Gr5NJ88T0SW8qxhGRZiNvtMG/U2Nsg0KPVBA==
+X-Received: by 2002:aa7:959a:: with SMTP id z26mr18865620pfj.211.1585665676593;
+        Tue, 31 Mar 2020 07:41:16 -0700 (PDT)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id g18sm11870655pgh.42.2020.03.31.07.41.15
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 31 Mar 2020 07:41:16 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Status WW13'20
+Date: Tue, 31 Mar 2020 07:41:15 -0700
+Message-ID: <03b501d6076a$6f2853d0$4d78fb70$@gmail.com>
+MIME-Version: 1.0
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AdYHalXYEr7BTT6TRL6vnD+dRuz56w==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_03B6_01D6072F.C2CD9A80"
+Content-Language: en-us
 
-Drop local newlib recipe and use it from oe-core
+------=_NextPart_000_03B6_01D6072F.C2CD9A80
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-TODO: enable arc support
-Signed-off-by: Naveen Saini <naveen.kumar.saini@intel.com>
----
- conf/distro/zephyr.conf                       |   3 +
- .../newlib/newlib/assert-fiprintf.patch       |  23 -
- .../newlib/gettimeofday-header-fix.patch      |  20 -
- .../newlib/newlib/iamcu-commit-5d3ad3b.patch  | 399 ------------------
- ...{newlib_2.%.bbappend => newlib_%.bbappend} |   1 -
- recipes-core/newlib/newlib_2.%.bb             |  83 ----
- 6 files changed, 3 insertions(+), 526 deletions(-)
- delete mode 100644 recipes-core/newlib/newlib/assert-fiprintf.patch
- delete mode 100644 recipes-core/newlib/newlib/gettimeofday-header-fix.patch
- delete mode 100644 recipes-core/newlib/newlib/iamcu-commit-5d3ad3b.patch
- rename recipes-core/newlib/{newlib_2.%.bbappend => newlib_%.bbappend} (95%)
- delete mode 100644 recipes-core/newlib/newlib_2.%.bb
+Current Dev Position: YP 3.1 M4 - Stabilization - Final RC builds
 
-diff --git a/conf/distro/zephyr.conf b/conf/distro/zephyr.conf
-index 673152f..44448af 100644
---- a/conf/distro/zephyr.conf
-+++ b/conf/distro/zephyr.conf
-@@ -11,6 +11,9 @@ TCLIBCAPPEND = ""
- TEST_TARGET = "QemuTargetZephyr"
- TEST_SUITES = "zephyr"
+Next Deadline: YP 3.1 M4 build date  3/30/2020
+
  
-+PREFERRED_PROVIDER_virtual/libc = "newlib"
-+PREFERRED_PROVIDER_virtual/libiconv = "newlib"
-+
- TOOLCHAIN_TARGET_TASK += " newlib"
- INHERIT += "siteinfo-zephyr"
- 
-diff --git a/recipes-core/newlib/newlib/assert-fiprintf.patch b/recipes-core/newlib/newlib/assert-fiprintf.patch
-deleted file mode 100644
-index dd83c1a..0000000
---- a/recipes-core/newlib/newlib/assert-fiprintf.patch
-+++ /dev/null
-@@ -1,23 +0,0 @@
--
--Fix unresolved external "fiprintf".
--When newlib is configured with:
--
--  --enable-newlib-nano-formatted-io
--
--"fiprintf" should be an alias of "fprintf". However the alias does 
--not seem to work properly, as we encounter unresolved external
--error if we uses "assert" in code. So we patch the code directly.
--
--Signed-off-by: Juro Bystricky <juro.bystricky@intel.com>
--
----- a/newlib/libc/stdlib/assert.c	2016-11-08 08:04:45.669248139 -0800
--+++ b/newlib/libc/stdlib/assert.c	2016-11-08 08:05:47.357554034 -0800
--@@ -56,7 +56,7 @@
-- 	const char *func _AND
-- 	const char *failedexpr)
-- {
---  fiprintf(stderr,
--+  fprintf(stderr,
-- 	   "assertion \"%s\" failed: file \"%s\", line %d%s%s\n",
-- 	   failedexpr, file, line,
-- 	   func ? ", function: " : "", func ? func : "");
-diff --git a/recipes-core/newlib/newlib/gettimeofday-header-fix.patch b/recipes-core/newlib/newlib/gettimeofday-header-fix.patch
-deleted file mode 100644
-index d1f9bf4..0000000
---- a/recipes-core/newlib/newlib/gettimeofday-header-fix.patch
-+++ /dev/null
-@@ -1,20 +0,0 @@
--
--newlib-2.4.0 regression.
--Export the prototype of gettimeofday
--
--Signed-off-by: Juro Bystricky <juro.bystricky@intel.com>
--
----- a/newlib/libc/include/sys/time.h	2016-03-29 14:33:42.000000000 -0700
--+++ b/newlib/libc/include/sys/time.h	2016-10-12 09:48:03.873642589 -0700
--@@ -429,9 +429,10 @@
-- int _EXFUN(getitimer, (int __which, struct itimerval *__value));
-- int _EXFUN(setitimer, (int __which, const struct itimerval *__restrict __value,
-- 					struct itimerval *__restrict __ovalue));
--+#endif
--+
-- int _EXFUN(gettimeofday, (struct timeval *__restrict __p,
-- 			  void *__restrict __tz));
---#endif
-- 
-- #if __GNU_VISIBLE
-- int _EXFUN(futimesat, (int, const char *, const struct timeval [2]));
-diff --git a/recipes-core/newlib/newlib/iamcu-commit-5d3ad3b.patch b/recipes-core/newlib/newlib/iamcu-commit-5d3ad3b.patch
-deleted file mode 100644
-index f44aa07..0000000
---- a/recipes-core/newlib/newlib/iamcu-commit-5d3ad3b.patch
-+++ /dev/null
-@@ -1,399 +0,0 @@
--From 5d3ad3b123b7c121d7a6eac27fb13016171e27bc Mon Sep 17 00:00:00 2001
--From: Igor Venevtsev <igor.venevtsev@gmail.com>
--Date: Thu, 31 Mar 2016 12:12:00 +0300
--Subject: Add Intel MCU target
--
--Intel MCU System V ABI are incompartible with i386 System V ABI:
--    o Minimum instruction set is Intel Pentium ISA minus x87 instructions
--    o No x87 or vector registers
--    o First three args are passed in %eax, %edx and %ecx
--    o Full specification available here:
--      https://github.com/hjl-tools/x86-psABI/wiki/iamcu-psABI-0.7.pdf
--
--newlib/
--    * configure.host: Add new ix86-*-elfiamcu target
--
--newlib/libc/include/
--    * setjmp.h: Change _JBLEN for Intel MCU target
--
--newlib/libc/machine/i386/
--    * memchr.S:  (memchr)  Target-specific size-optimized version
--    * memcmp.S:  (memcmp)  Likewise
--    * memcpy.S:  (memcpy)  Likewise
--    * memmove.S: (memmove) Likewise
--    * memset.S:  (memset)  Likewise
--    * setjmp.S:  (setjmp)  Likewise
--    * strchr.S:  (strchr)  Likewise
--    * strlen.S:  (strlen)  Likewise
--
--newlib/libc/stdlib/
--    * srtold.c:  (__flt_rounds) Disable for Intel MCU
--
--diff --git a/newlib/configure.host b/newlib/configure.host
--index 8b0846e..bb163ec 100644
----- a/newlib/configure.host
--+++ b/newlib/configure.host
--@@ -696,6 +696,15 @@ case "${host}" in
--   i[34567]86-*-netware*)
-- 	newlib_cflags="${newlib_cflags} -DMISSING_SYSCALL_NAMES -DNO_EXEC -DABORT_PROVIDED -DCLOCK_PROVIDED -DMALLOC_PROVIDED -DHAVE_FCNTL"
-- 	;;
--+  i[3-7]86-*-elfiamcu)
--+	newlib_cflags="${newlib_cflags} -Os -DPREFER_SIZE_OVER_SPEED -ffunction-sections -fomit-frame-pointer -DREENTRANT_SYSCALL_PROVIDED"
--+	if [ "${newlib_multithread}" = "no" ] ; then
--+		newlib_cflags="${newlib_cflags} -DMISSING_SYSCALL_NAMES"
--+	else
--+		syscall_dir=syscalls
--+		newlib_cflags="${newlib_cflags} -D__DYNAMIC_REENT__"
--+	fi
--+	;;
--   iq2000*)
-- 	syscall_dir=syscalls
-- 	default_newlib_io_long_long="yes"
--diff --git a/newlib/libc/include/machine/setjmp.h b/newlib/libc/include/machine/setjmp.h
--index c08e682..2b4dd8b 100644
----- a/newlib/libc/include/machine/setjmp.h
--+++ b/newlib/libc/include/machine/setjmp.h
--@@ -92,6 +92,9 @@ _BEGIN_STD_C
-- #  define _JBLEN (13 * 4)
-- # elif defined(__unix__) || defined(__rtems__)
-- #  define _JBLEN	9
--+# elif defined(__iamcu__)
--+/* Intel MCU jmp_buf only covers callee-saved registers. */
--+#  define _JBLEN	6
-- # else
-- #  include "setjmp-dj.h"
-- # endif
--diff --git a/newlib/libc/machine/i386/memchr.S b/newlib/libc/machine/i386/memchr.S
--index 7639685..d9b0bf2 100644
----- a/newlib/libc/machine/i386/memchr.S
--+++ b/newlib/libc/machine/i386/memchr.S
--@@ -14,13 +14,33 @@
--        SOTYPE_FUNCTION(memchr)
-- 
-- SYM (memchr):
--+#ifdef __iamcu__
--+	pushl	edi
--+	movl	eax,edi
--+	movl	edx,eax
--+	xorl	edx,edx
--+	testl	ecx,ecx
--+	jz	L20
--+
--+	repnz
--+	scasb
--+
--+	setnz	dl
--+	decl	edi
--+
--+	decl	edx
--+	andl	edi,edx
--+L20:
--+	movl	edx,eax
--+
--+	popl	edi
--+#else
-- 	pushl	ebp
-- 	movl	esp,ebp
-- 	pushl	edi
-- 	movzbl	12(ebp),eax
-- 	movl	16(ebp),ecx
-- 	movl	8(ebp),edi
---
-- 	xorl	edx,edx
-- 	testl	ecx,ecx
-- 	jz	L20
--@@ -111,4 +131,5 @@ L20:
-- 	leal	-4(ebp),esp
-- 	popl	edi
-- 	leave
--+#endif
-- 	ret
--diff --git a/newlib/libc/machine/i386/memcmp.S b/newlib/libc/machine/i386/memcmp.S
--index 26b8ef1..4a01b82 100644
----- a/newlib/libc/machine/i386/memcmp.S
--+++ b/newlib/libc/machine/i386/memcmp.S
--@@ -15,6 +15,33 @@
-- 
-- SYM (memcmp):
-- 
--+#ifdef __iamcu__
--+	pushl edi
--+	pushl esi
--+	movl eax,edi
--+	movl edx,esi
--+	cld
--+
--+/* check if length is zero in which case just return 0 */
--+
--+	xorl eax,eax
--+	testl ecx,ecx
--+	jz L4
--+
--+/* compare any unaligned bytes or remainder bytes */
--+	repz
--+	cmpsb
--+
--+/* set output to be < 0 if less than, 0 if equal, or > 0 if greater than */
--+	xorl edx,edx
--+	movb -1(esi),dl
--+	movb -1(edi),al
--+	subl edx,eax
--+
--+L4:
--+	popl esi
--+	popl edi
--+#else
-- 	pushl ebp
-- 	movl esp,ebp
-- 	subl $16,esp
--@@ -73,4 +100,5 @@ L4:
-- 	popl edi
-- 	popl ebx
-- 	leave
--+#endif
-- 	ret
--diff --git a/newlib/libc/machine/i386/memcpy.S b/newlib/libc/machine/i386/memcpy.S
--index b53e2a1..a14aa2a 100644
----- a/newlib/libc/machine/i386/memcpy.S
--+++ b/newlib/libc/machine/i386/memcpy.S
--@@ -15,6 +15,17 @@
-- 
-- SYM (memcpy):
-- 
--+#ifdef __iamcu__
--+	pushl esi
--+	pushl edi
--+	movl eax,edi
--+	movl edx,esi
--+
--+	rep movsb
--+
--+	popl edi
--+	popl esi
--+#else
-- 	pushl ebp
-- 	movl esp,ebp
-- 	pushl esi
--@@ -71,4 +82,5 @@ SYM (memcpy):
-- 	popl edi
-- 	popl esi
-- 	leave
--+#endif
-- 	ret
--diff --git a/newlib/libc/machine/i386/memmove.S b/newlib/libc/machine/i386/memmove.S
--index 1ea2f6d..1026582 100644
----- a/newlib/libc/machine/i386/memmove.S
--+++ b/newlib/libc/machine/i386/memmove.S
--@@ -15,6 +15,32 @@
-- 
-- SYM (memmove):
-- 
--+#ifdef __iamcu__
--+	pushl esi
--+	pushl edi
--+	movl eax,edi
--+	movl edx,esi
--+	cmp esi,edi
--+	ja .Lcopy_backward
--+	je .Lbwd_write_0bytes
--+
--+	rep movsb
--+
--+	popl edi
--+	popl esi
--+	ret
--+
--+.Lcopy_backward:
--+	lea -1(edi,ecx),edi
--+	lea -1(esi,ecx),esi
--+	std
--+	rep movsb
--+	cld
--+
--+.Lbwd_write_0bytes:
--+	popl edi
--+	popl esi
--+#else
-- 	pushl ebp
-- 	movl esp,ebp
-- 	pushl esi
--@@ -143,4 +169,5 @@ SYM (memmove):
-- 	popl edi
-- 	popl esi
-- 	leave
--+#endif
-- 	ret
--diff --git a/newlib/libc/machine/i386/memset.S b/newlib/libc/machine/i386/memset.S
--index 6eb2cd6..83b2556 100644
----- a/newlib/libc/machine/i386/memset.S
--+++ b/newlib/libc/machine/i386/memset.S
--@@ -15,6 +15,15 @@
-- 
-- SYM (memset):
-- 
--+#ifdef __iamcu__
--+	pushl edi
--+	movl eax,edi
--+	movzbl dl,eax
--+	mov edi,edx
--+	rep stosb
--+	mov edx,eax
--+	popl edi
--+#else
-- 	pushl ebp
-- 	movl esp,ebp
-- 	pushl edi
--@@ -96,4 +105,5 @@ SYM (memset):
-- 	leal -4(ebp),esp
-- 	popl edi
-- 	leave
--+#endif
-- 	ret
--diff --git a/newlib/libc/machine/i386/setjmp.S b/newlib/libc/machine/i386/setjmp.S
--index fd746e4..45c689f 100644
----- a/newlib/libc/machine/i386/setjmp.S
--+++ b/newlib/libc/machine/i386/setjmp.S
--@@ -20,6 +20,10 @@
--  **	jmp_buf:
--  **	 eax ebx ecx edx esi edi ebp esp eip
--  **	 0   4   8   12  16  20  24  28  32
--+ **
--+ **	Intel MCU jmp_buf:
--+ **	 ebx esi edi ebp esp eip
--+ **	 0   4   8   12  16  20
--  */
-- 
--        #include "i386mach.h"
--@@ -31,6 +35,23 @@
--  
-- SYM (setjmp):
-- 
--+#ifdef __iamcu__
--+	/* Store EIP.  */
--+	movl	0(esp),ecx
--+	movl	ecx,20(eax)
--+
--+	movl	ebx,0 (eax)
--+	movl	esi,4 (eax)
--+	movl	edi,8 (eax)
--+	movl	ebp,12(eax)
--+
--+	/* Skip return address, which will be pushed onto stack in
--+	   longjmp, and store SP.  */
--+	leal	4(esp),ecx
--+	movl	ecx,16(eax)
--+
--+	xorl	eax,eax
--+#else
-- 	pushl	ebp
-- 	movl	esp,ebp
-- 
--@@ -59,9 +80,28 @@ SYM (setjmp):
-- 	popl	edi
-- 	movl	$0,eax
-- 	leave
--+#endif
-- 	ret
-- 
-- SYM (longjmp):
--+#ifdef __iamcu__
--+	/* Check retval.  */
--+	testl	edx,edx
--+	jne	0f
--+	incl	edx
--+0:
--+	/* Restore stack first.  */
--+	movl	16(eax),esp
--+
--+	/* Put return address on stack.  */
--+	pushl	20(eax)
--+
--+	movl	0(eax),ebx
--+	movl	4(eax),esi
--+	movl	8(eax),edi
--+	movl	12(eax),ebp
--+	movl	edx,eax
--+#else
-- 	pushl	ebp
-- 	movl	esp,ebp
-- 
--@@ -87,5 +127,6 @@ SYM (longjmp):
-- 	movl	16(edi),esi
-- 	movl	20(edi),edi
--        __STI
--+#endif
-- 
-- 	ret
--diff --git a/newlib/libc/machine/i386/strchr.S b/newlib/libc/machine/i386/strchr.S
--index 1d98b81..43ee0fb 100644
----- a/newlib/libc/machine/i386/strchr.S
--+++ b/newlib/libc/machine/i386/strchr.S
--@@ -15,6 +15,29 @@
-- 
-- SYM (strchr):
-- 
--+#ifdef __iamcu__
--+	xorl ecx,ecx
--+	movb dl,cl
--+
--+/* loop while (*s && *s++ != c) */
--+	leal -1(eax),eax
--+L15:
--+	incl eax
--+	movb (eax),dl
--+	testb dl,dl
--+	je L14
--+	cmpb cl,dl
--+	jne L15
--+
--+L14:
--+/*  if (*s == c) return address otherwise return NULL */
--+	cmpb cl,(eax)
--+	je L19
--+	xorl eax,eax
--+
--+L19:
--+	ret
--+#else
-- 	pushl ebp
-- 	movl esp,ebp
-- 	pushl edi
--@@ -170,3 +193,5 @@ L27:
-- 	jmp L9
-- 
-- #endif /* !__OPTIMIZE_SIZE__ */
--+
--+#endif /* __iamcu__ */
--diff --git a/newlib/libc/machine/i386/strlen.S b/newlib/libc/machine/i386/strlen.S
--index 0e3cb64..373ea0f 100644
----- a/newlib/libc/machine/i386/strlen.S
--+++ b/newlib/libc/machine/i386/strlen.S
--@@ -18,9 +18,13 @@ SYM (strlen):
-- 	pushl ebp
-- 	movl esp,ebp
-- 	pushl edi
--+#ifdef __iamcu__
--+	movl eax,edx
--+#else
-- 	movl 8(ebp),edx
--+#endif
-- 
---#ifdef __OPTIMIZE_SIZE__
--+#if defined __OPTIMIZE_SIZE__ || defined __iamcu__
-- 	cld
-- 	movl edx,edi
-- 	movl $4294967295,ecx
--diff --git a/newlib/libc/stdlib/strtold.c b/newlib/libc/stdlib/strtold.c
--index a6d415d..1128b74 100644
----- a/newlib/libc/stdlib/strtold.c
--+++ b/newlib/libc/stdlib/strtold.c
--@@ -35,7 +35,8 @@ POSSIBILITY OF SUCH DAMAGE.
-- 
-- #ifdef _HAVE_LONG_DOUBLE
-- 
---#if defined (__x86_64__) || defined (__i386__)
--+/* Intel MCU has no x87 floating point unit */
--+#if (defined (__x86_64__) || defined (__i386__)) && !defined (__iamcu__)
-- static const int map[] = {
--         1,      /* round to nearest */
--         3,      /* round to zero */
-diff --git a/recipes-core/newlib/newlib_2.%.bbappend b/recipes-core/newlib/newlib_%.bbappend
-similarity index 95%
-rename from recipes-core/newlib/newlib_2.%.bbappend
-rename to recipes-core/newlib/newlib_%.bbappend
-index b4edea1..37ff961 100644
---- a/recipes-core/newlib/newlib_2.%.bbappend
-+++ b/recipes-core/newlib/newlib_%.bbappend
-@@ -14,7 +14,6 @@ LIC_FILES_CHKSUM_arc = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552 \
- #Tag arc-2016.03
- SRCREV_arc = "e4da0f88abe8dd2a0b947bcf7cb8b3736ab94f33"
- SRC_URI_arc = "git://github.com/foss-for-synopsys-dwc-arc-processors/newlib.git;branch=arc-2.3"
--SRC_URI_arc += "file://assert-fiprintf.patch"
- S_arc  = "${WORKDIR}/git"
- 
- # ERROR: QA Issue: Architecture did not match (195 to 93)
-diff --git a/recipes-core/newlib/newlib_2.%.bb b/recipes-core/newlib/newlib_2.%.bb
-deleted file mode 100644
-index 77b5184..0000000
---- a/recipes-core/newlib/newlib_2.%.bb
-+++ /dev/null
-@@ -1,83 +0,0 @@
--HOMEPAGE = "https://sourceware.org/newlib/"
--SUMMARY = "C library for embedded systems"
--DESCRIPTION = "Newlib is a conglomeration of several library parts, all under free software licenses that make them easily usable on embedded products."
--
--PV = "2.4.0"
--
--LICENSE = "GPLv2 & LGPLv3 & GPLv3 & LGPLv2"
--LIC_FILES_CHKSUM = "file://COPYING;md5=59530bdf33659b29e73d4adb9f9f6552 \
--                    file://COPYING3.LIB;md5=6a6a8e020838b23406c81b19c1d46df6 \
--                    file://COPYING3;md5=d32239bcb673463ab874e80d47fae504 \
--                    file://COPYING.LIBGLOSS;md5=73f5c98779aea7dba4a6c94a74ab0ae2 \
--                    file://COPYING.LIB;md5=2d5025d4aa3495befef8f17206a5b0a1 \
--                    file://COPYING.NEWLIB;md5=fced02ba02d66f274d4847d27e80af74 \
--                    file://newlib/libc/posix/COPYRIGHT;md5=103468ff1982be840fdf4ee9f8b51bbf \
--                    file://newlib/libc/sys/linux/linuxthreads/LICENSE;md5=73640207fbc79b198c7ffd4ad4d97aa0"
--
--SRC_URI = "ftp://sourceware.org/pub/newlib/newlib-${PV}.tar.gz"
--SRC_URI[md5sum] = "37c07a65c6effdb4822fb6f83067f37e"
--SRC_URI[sha256sum] = "545b3d235e350d2c61491df8b9f775b1b972f191380db8f52ec0b1c829c52706"
--SRC_URI += "file://gettimeofday-header-fix.patch"
--SRC_URI += "file://assert-fiprintf.patch"
--SRC_URI += "file://iamcu-commit-5d3ad3b.patch"
--
--S = "${WORKDIR}/newlib-${PV}"
--
--DEPENDS = "flex-native bison-native m4-native"
--DEPENDS_remove = "virtual/libc virtual/${TARGET_PREFIX}compilerlibs"
--PACKAGES = "${PN}"
--
--# This will determine the name of the folder with libc as well.
--NEWLIB_HOST = "${TARGET_SYS}"
--
--TUNE_CCARGS += " -nostdlib "
--
--CFLAGS += " -DMISSING_SYSCALL_NAMES "
--
--# Specify any options you want to pass to the configure script using EXTRA_OECONF:
--EXTRA_OECONF = " --enable-languages=c \
--    --host=${NEWLIB_HOST} \
--    --with-newlib --with-gnu-as --with-gnu-ld -v \
--    --disable-newlib-supplied-syscalls \
--    --disable-newlib-wide-orient \
--    --disable-newlib-fseek-optimization \
--    --enable-newlib-nano-formatted-io \
--    --enable-newlib-nano-malloc \
--    --disable-newlib-fvwrite-in-streamio \
--    --disable-newlib-unbuf-stream-opt --enable-lite-exit \
--    --enable-newlib-global-atexit \
--    --disable-multilib \
--"
--
--do_configure () {
--    # If we're being rebuilt due to a dependency change, we need to make sure
--    # everything is clean before we configure and build -- if we haven't previously
--    # built this will fail and be ignored.
--    make distclean || :
--    export CC_FOR_TARGET="${CC}"
--    ${S}/configure ${EXTRA_OECONF}
--}
--
--do_install () {
--    oe_runmake 'DESTDIR=${D}' install
--
--    # Delete standards.info, configure.info
--    rm -rf ${D}/usr/share/
--    # Place the libraries where gcc can find them
--    # usr/${NEWLIB_HOST}/lib -> usr/lib
--    # usr/${NEWLIB_HOST}/include ->usr/include
--
--    mv -v ${D}/usr/local/${NEWLIB_HOST}/lib* ${D}/usr/lib
--    mv -v ${D}/usr/local/${NEWLIB_HOST}/include* ${D}/usr/include
--    rm -rf ${D}/usr/local/${NEWLIB_HOST}
--    rm -rf ${D}/usr/local
--}
--
--INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
--INHIBIT_PACKAGE_STRIP = "1"
--
--FILES_${PN} = "/usr/lib /usr/include"
--
--INSANE_SKIP_${PN} += " staticdev"
--INSANE_SKIP_${PN}-dev += " staticdev"
--
--- 
-2.17.1
 
+Next Team Meetings:
+
+*	Bug Triage meeting Thursday Apr. 2nd at 7:30am PDT (
+<https://zoom.us/j/454367603> https://zoom.us/j/454367603)
+*	Monthly Project Meeting Tuesday Apr. 7th  at 8am PDT (
+<https://zoom.us/j/990892712> https://zoom.us/j/990892712)
+*	Weekly Engineering Sync Tuesday Mar. 31st  at 8am PDT (
+<https://zoom.us/j/990892712> https://zoom.us/j/990892712)
+*	Twitch -  See http://www.twitch.tv/letoatreidesthe2nd
+
+ 
+
+Key Status/Updates:
+
+*	3.1 M3 was released
+*	The 3.1 rc1 build has not happened yet, the final remaining patches
+are being worked upon and will be built when the remaining high issues are
+resolved.
+*	YP 3.1 has been announced as an LTS release:
+<https://www.yoctoproject.org/yocto-project-long-term-support-announced/>
+https://www.yoctoproject.org/yocto-project-long-term-support-announced/
+*	The focus is now on stabilizing and bug fixing for the final release
+*	We continue to have concerns about the number of autobuilder
+intermittent failures, particularly with this being an LTS release however
+the remaining issues are proving hard to reproduce and track down.
+
+ 
+
+YP 3.1 Milestone Dates:
+
+*	YP 3.1 M4 build date  3/30/2020
+*	YP 3.1 M4 release date  4/24/2020
+
+ 
+
+Planned upcoming dot releases:
+
+*	YP 3.0.3 build date  5/4/2020
+*	YP 3.0.3 release date 5/15/2020
+*	YP 2.7.4 build date  5/18/2020
+*	YP 2.7.4 release date 5/29/2020
+
+ 
+
+Tracking Metrics:
+
+*	WDD 2663 (last week 2681) (
+<https://wiki.yoctoproject.org/charts/combo.html>
+https://wiki.yoctoproject.org/charts/combo.html)
+*	Poky Patch Metrics  
+
+*	Total patches found: 1354 (last week 1350)
+*	Patches in the Pending State: 536 (40%) [last week 535 (40%)]
+
+ 
+
+The Yocto Project's technical governance is through its Technical Steering
+Committee, more information is available at:
+
+ <https://wiki.yoctoproject.org/wiki/TSC>
+https://wiki.yoctoproject.org/wiki/TSC
+
+ 
+
+The Status reports are now stored on the wiki at:
+<https://wiki.yoctoproject.org/wiki/Weekly_Status>
+https://wiki.yoctoproject.org/wiki/Weekly_Status
+
+ 
+
+[If anyone has suggestions for other information you'd like to see on this
+weekly status update, let us know!]
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
+
+
+------=_NextPart_000_03B6_01D6072F.C2CD9A80
+Content-Type: text/html;
+	boundary="----=_NextPart_000_0EC4_01D601B1.5DC180D0";
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:186411761;
+	mso-list-template-ids:-770295522;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1
+	{mso-list-id:194581084;
+	mso-list-template-ids:-9131702;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2
+	{mso-list-id:382559195;
+	mso-list-template-ids:1017577262;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l2:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l2:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3
+	{mso-list-id:509762914;
+	mso-list-template-ids:2012658652;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l3:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l3:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4
+	{mso-list-id:515391987;
+	mso-list-template-ids:-1607326142;}
+@list l4:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l4:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l4:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l4:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5
+	{mso-list-id:1273977190;
+	mso-list-template-ids:-648656502;}
+@list l5:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l5:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l5:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l5:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6
+	{mso-list-id:1497526795;
+	mso-list-template-ids:-441057182;}
+@list l6:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l6:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l6:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l6:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7
+	{mso-list-id:1566334633;
+	mso-list-template-ids:1704374122;}
+@list l7:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l7:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l7:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l7:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8
+	{mso-list-id:1905487272;
+	mso-list-template-ids:538477070;}
+@list l8:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l8:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l8:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l8:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9
+	{mso-list-id:2032367405;
+	mso-list-template-ids:-2047674178;}
+@list l9:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0B7;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Symbol;}
+@list l9:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l9:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+@list l9:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:\F0A7;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:Wingdings;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Current Dev =
+Position: YP 3.1 M4 - Stabilization - Final RC =
+builds</span><o:p></o:p></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Next Deadline: YP =
+3.1 M4 build date&nbsp; 3/30/2020</span><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Next Team =
+Meetings:</span><o:p></o:p></p><ul style=3D'margin-top:0in' =
+type=3Ddisc><li class=3DMsoNormal style=3D'color:black;mso-list:l9 =
+level1 lfo6;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Bug Triage meeting Thursday =
+Apr. 2nd at 7:30am PDT (<a href=3D"https://zoom.us/j/454367603"><span =
+style=3D'font-size:10.0pt;color:#1155CC'>https://zoom.us/j/454367603</spa=
+n></a>)<o:p></o:p></span></li><li class=3DMsoNormal =
+style=3D'color:black;mso-list:l9 level1 =
+lfo6;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Monthly Project Meeting Tuesday =
+Apr. 7th&nbsp; at 8am PDT (<a href=3D"https://zoom.us/j/990892712"><span =
+style=3D'color:#1155CC'>https://zoom.us/j/990892712)</span></a><o:p></o:p=
+></span></li><li class=3DMsoNormal style=3D'color:black;mso-list:l9 =
+level1 lfo6;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Weekly Engineering Sync Tuesday =
+Mar. 31st&nbsp; at 8am PDT (<a =
+href=3D"https://zoom.us/j/990892712"><span =
+style=3D'color:#1155CC'>https://zoom.us/j/990892712)</span></a><o:p></o:p=
+></span></li><li class=3DMsoNormal style=3D'color:black;mso-list:l9 =
+level1 lfo6;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Twitch -&nbsp; See =
+http://www.twitch.tv/letoatreidesthe2nd<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Key =
+Status/Updates:</span><o:p></o:p></p><ul style=3D'margin-top:0in' =
+type=3Ddisc><li class=3DMsoNormal style=3D'color:black;mso-list:l4 =
+level1 lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>3.1 M3 was =
+released<o:p></o:p></span></li><li class=3DMsoNormal =
+style=3D'color:black;mso-list:l4 level1 =
+lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>The 3.1 rc1 build has not =
+happened yet, the final remaining patches are being worked upon and will =
+be built when the remaining high issues are =
+resolved.<o:p></o:p></span></li><li class=3DMsoNormal =
+style=3D'color:black;mso-list:l4 level1 =
+lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1 has been announced as an =
+LTS release: <a =
+href=3D"https://www.yoctoproject.org/yocto-project-long-term-support-anno=
+unced/"><span =
+style=3D'color:#1155CC'>https://www.yoctoproject.org/yocto-project-long-t=
+erm-support-announced/</span></a><o:p></o:p></span></li><li =
+class=3DMsoNormal style=3D'color:black;mso-list:l4 level1 =
+lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>The focus is now on stabilizing =
+and bug fixing for the final release<o:p></o:p></span></li><li =
+class=3DMsoNormal style=3D'color:black;mso-list:l4 level1 =
+lfo7;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>We continue to have concerns =
+about the number of autobuilder intermittent failures, particularly with =
+this being an LTS release however the remaining issues are proving hard =
+to reproduce and track down.<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>YP 3.1 Milestone =
+Dates:</span><o:p></o:p></p><ul style=3D'margin-top:0in' type=3Ddisc><li =
+class=3DMsoNormal style=3D'color:black;mso-list:l2 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1 M4 build date&nbsp; =
+3/30/2020<o:p></o:p></span></li><li class=3DMsoNormal =
+style=3D'color:black;mso-list:l2 level1 =
+lfo8;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.1 M4 release date&nbsp; =
+4/24/2020<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Planned upcoming =
+dot releases:</span><o:p></o:p></p><ul style=3D'margin-top:0in' =
+type=3Ddisc><li class=3DMsoNormal style=3D'color:black;mso-list:l3 =
+level1 lfo9;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.0.3 build date&nbsp; =
+5/4/2020<o:p></o:p></span></li><li class=3DMsoNormal =
+style=3D'color:black;mso-list:l3 level1 =
+lfo9;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 3.0.3 release date =
+5/15/2020<o:p></o:p></span></li><li class=3DMsoNormal =
+style=3D'color:black;mso-list:l3 level1 =
+lfo9;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 2.7.4 build date&nbsp; =
+5/18/2020<o:p></o:p></span></li><li class=3DMsoNormal =
+style=3D'color:black;mso-list:l3 level1 =
+lfo9;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>YP 2.7.4 release date =
+5/29/2020<o:p></o:p></span></li></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>Tracking =
+Metrics:</span><o:p></o:p></p><ul style=3D'margin-top:0in' =
+type=3Ddisc><li class=3DMsoNormal style=3D'color:black;mso-list:l5 =
+level1 lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>WDD 2663 (last week =
+2681)</span><span style=3D'font-family:Consolas'> (</span><span =
+style=3D'font-family:"Arial",sans-serif'><a =
+href=3D"https://wiki.yoctoproject.org/charts/combo.html"><span =
+style=3D'color:#1155CC'>https://wiki.yoctoproject.org/charts/combo.html</=
+span></a></span><span style=3D'font-family:Consolas'>)</span><span =
+style=3D'font-family:"Arial",sans-serif'><o:p></o:p></span></li><li =
+class=3DMsoNormal style=3D'color:black;mso-list:l5 level1 =
+lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Poky Patch =
+Metrics&nbsp;&nbsp;</span><span =
+style=3D'font-family:Consolas'><o:p></o:p></span></li><ul =
+style=3D'margin-top:0in' type=3Dcircle><li class=3DMsoNormal =
+style=3D'color:black;mso-list:l5 level2 =
+lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Total patches found: 1354 (last =
+week 1350)<o:p></o:p></span></li><li class=3DMsoNormal =
+style=3D'color:black;mso-list:l5 level2 =
+lfo10;vertical-align:baseline'><span =
+style=3D'font-family:"Arial",sans-serif'>Patches in the Pending State: =
+536 (40%) [last week 535 (40%)]</span><span =
+style=3D'font-family:Consolas'><o:p></o:p></span></li></ul></ul><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>The Yocto =
+Project&#8217;s technical governance is through its Technical Steering =
+Committee, more information is available at:</span><o:p></o:p></p><p =
+class=3DMsoNormal><a =
+href=3D"https://wiki.yoctoproject.org/wiki/TSC"><span =
+style=3D'font-family:"Arial",sans-serif;color:#1155CC'>https://wiki.yocto=
+project.org/wiki/TSC</span></a><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>The Status reports =
+are now stored on the wiki at: </span><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Weekly_Status"><span =
+style=3D'font-family:"Arial",sans-serif;color:#1155CC'>https://wiki.yocto=
+project.org/wiki/Weekly_Status</span></a><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+style=3D'font-family:"Arial",sans-serif;color:black'>[If anyone has =
+suggestions for other information you&#8217;d like to see on this weekly =
+status update, let us know!]</span><o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------=_NextPart_000_03B6_01D6072F.C2CD9A80--
