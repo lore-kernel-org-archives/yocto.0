@@ -1,87 +1,148 @@
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
- by mx.groups.io with SMTP id smtpd.web10.2504.1585679168707347495
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
+ by mx.groups.io with SMTP id smtpd.web12.4125.1585683294569073906
  for <yocto@lists.yoctoproject.org>;
- Tue, 31 Mar 2020 11:26:08 -0700
+ Tue, 31 Mar 2020 12:34:54 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=oYw2wQtF;
- spf=pass (domain: gmail.com, ip: 209.85.210.50, mailfrom: geissonator@gmail.com)
-Received: by mail-ot1-f50.google.com with SMTP id m2so8364603otr.1
-        for <yocto@lists.yoctoproject.org>; Tue, 31 Mar 2020 11:26:08 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=dOGCryqB;
+ spf=pass (domain: gmail.com, ip: 209.85.217.52, mailfrom: alex.kanavin@gmail.com)
+Received: by mail-vs1-f52.google.com with SMTP id u11so14317002vsg.2
+        for <yocto@lists.yoctoproject.org>; Tue, 31 Mar 2020 12:34:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:content-transfer-encoding:mime-version:subject:message-id:date
-         :to;
-        bh=/UYWNJb+dBuYwk28gHErfJHS5B/8wneHeUxXE4FFu84=;
-        b=oYw2wQtFdG9EBuJfT9aRL+Bq/ORumvmExz8QufKa3BQiPnJjSROw1asWQeFhl0lXh7
-         TeT4vYo4IIiJfkHNV45k4oyM5KudX6+Nyu1wsznrLPgtWnq0714YPQaY0JrHRLPX7dbG
-         NmQCBNPY2weXABzmDtKslcoBK+hK5fl+17SerPGassX4hHRzLrMD4BIISFqBCCB7pJH0
-         8pDacYEsbInjdWd6rBoBnvVBSaTzj0ZtVIGAsq5j+I+x/llacMd4NKCQtQj8Vmx6eTDK
-         somQwK6YJAMYqHsH+RFRgOnXQMOFwmetWxWCYgfgdYwl1axPlmpYyAnZZvN+qlkqkp8E
-         iOpA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QuDu3bWIH5f/lGtwz/g/v6yp88HWCJ/PbFh2jdFkHBc=;
+        b=dOGCryqBgmPh6N5RepGN/JJJ2RquCPZm4K2m80ozG51IzQVZWoeb8O9ayk1z9CIBGU
+         Mjm2KBIzMgwG4PbvB8dE9GmEb7t5MX7IZVFpfUXGh0rmCkUhkI4Sf3wuYaUOCZ8nbuxj
+         xRNW11DIFA7GsusQXoam/OqMQJNGXxRFkBts+omC0VkzKQvLT/8V26OB/kb8BzRWXO6s
+         3W9sgDgRRFjxDJiObjFlvloWZcjRHrTQ6VmbK6g/5qdw6LvPsXgQ4O0eqyPo5eDoSLTV
+         T8+ON6LKwEBnHRiz55PbB8Rw+Auo1txbumPwG4E0rf873mJ0V+aaUiA8fUQVLXtT9Ntd
+         0CTw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:content-transfer-encoding:mime-version
-         :subject:message-id:date:to;
-        bh=/UYWNJb+dBuYwk28gHErfJHS5B/8wneHeUxXE4FFu84=;
-        b=FYeyswPlEx/9i5HYnz7AFs0ZvuQIndrYhj8EJ2voM9AhWxKJ7bi7S/mVDmbQYXhKva
-         RUasPFAT2FaOd16xa18/LxK6/9EbTHOzNT9hWATcUpEZsKs1TabP+ACIFwHwEOCkJRur
-         /PGvkAR51tSHXPkSn+pMayhGcg52T86uDoG6+wbNsxqzs1q3TP7wY54kSEhpwzYZJcPC
-         zyOuFU3ZY41gitv/K1f9AHfKYUMKW9nQiZjYSkx/BD5IRWijhV4qJncplZZxf7Prh3OZ
-         CYVGcSDA67pAwEWMpvzWpGG8YldBa51X4B4/TSd0hQWICKl69KCTZouGClD13l+SjshC
-         pD5A==
-X-Gm-Message-State: ANhLgQ3GmS2n9ji/RK+GPqV0HHAfah7qbMzH94Y/o3pho4p0b5r/h9qo
-	GRT7URVtoU9V6yvIM3bi5IGJnffrs70=
-X-Google-Smtp-Source: ADFU+vuEugOpIvOiVUTy6+VCZCwY+xxHdU+uHcQ1vT/73jsdsHoCtUn20LtbAsd1lJbnYNLzjeQN5A==
-X-Received: by 2002:a05:6830:231b:: with SMTP id u27mr14567599ote.111.1585679167783;
-        Tue, 31 Mar 2020 11:26:07 -0700 (PDT)
-Return-Path: <geissonator@gmail.com>
-Received: from andrews-mbp-2.attlocal.net ([2600:1700:19e0:3310:298f:5627:e1a2:6a29])
-        by smtp.gmail.com with ESMTPSA id v15sm2593509ook.37.2020.03.31.11.26.07
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 31 Mar 2020 11:26:07 -0700 (PDT)
-From: geissonator@gmail.com
-Mime-Version: 1.0 (Mac OS X Mail 13.4 \(3608.80.23.2.2\))
-Subject: boost monthly download limits
-Message-Id: <76CA873A-5C59-4578-BCFB-61E21B116DE2@gmail.com>
-Date: Tue, 31 Mar 2020 13:26:06 -0500
-To: yocto@lists.yoctoproject.org
-X-Mailer: Apple Mail (2.3608.80.23.2.2)
-Content-Type: text/plain;
-	charset=us-ascii
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QuDu3bWIH5f/lGtwz/g/v6yp88HWCJ/PbFh2jdFkHBc=;
+        b=UQyFL+0XK1XeD8NlAiqyTrilVFWfLpPm55B2YZp1urbNF5zCOTA19N2ZiKVP7e6epK
+         n5S09o5V1gYIJ+NDV7TGZXoiaByBFzrfsa8SZcKuF8ZoYD7jRG0G9+YXsFkAGSw/1Hjd
+         Gr8wK/WjpolYmIpQXmI/H0vau4NILIAKF0LiWB3w9JmUzZNNZN+fzXenkl1CK7iHO15B
+         +7QzPRrMrlsknD0fZ5XzgOg8W1qwavfjY2tlb0qPkZekbo1wBI4cfpOiYcHZIGv2iR66
+         q8ZJomZdeZjLM3cttYh6njZUoZCelHJokuSCi/4vNl/n6iqtXx4Zj0OXEVPwdSE6ShwJ
+         2QQA==
+X-Gm-Message-State: AGi0PuZfr7OlpgIc06J1cWi6SxcHejAxLk4BeMj1Ymk1txXS6IDQGW48
+	V3z+fdauez55bAUTDsQEQxCvcL7sZ9Sq2lWvgl8=
+X-Google-Smtp-Source: APiQypJV+nORFSmAwzr2T5n7/6OpfoBTXcuyG/eaKpplCk+pVo6MJ/+U4HSbpjOgC9EqACQtg/ZOy4rDzG8dDu6O9AI=
+X-Received: by 2002:a05:6102:31b7:: with SMTP id d23mr13803132vsh.25.1585683292804;
+ Tue, 31 Mar 2020 12:34:52 -0700 (PDT)
+MIME-Version: 1.0
+References: <76CA873A-5C59-4578-BCFB-61E21B116DE2@gmail.com>
+In-Reply-To: <76CA873A-5C59-4578-BCFB-61E21B116DE2@gmail.com>
+From: "Alexander Kanavin" <alex.kanavin@gmail.com>
+Date: Tue, 31 Mar 2020 21:34:41 +0200
+Message-ID: <CANNYZj9=Sm_sG-jqen_A0TeKzkKS-fNgR0b1h2eN6MocGSyypw@mail.gmail.com>
+Subject: Re: [yocto] boost monthly download limits
+To: Andrew Geissler <geissonator@gmail.com>
+Cc: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="00000000000064d7f805a22ba97a"
+
+--00000000000064d7f805a22ba97a
+Content-Type: text/plain; charset="UTF-8"
+
+I wouldn't be super concerned about that, as Yocto servers carry copies of
+oe-core tarballs, and there is a fallback for that scenario. If it does
+occur, we should explore alternatives, but there's no need to panic.
+
+Alex
+
+On Tue, 31 Mar 2020 at 21:07, Andrew Geissler <geissonator@gmail.com> wrote:
+
+> Greetings,
+>
+> Recently, the OpenBMC project started to hit
+> https://github.com/boostorg/boost/issues/299#issuecomment-593064251.
+> Basically
+> the site that hosts the boost packages has a monthly download limit and
+> once
+> hit, starts to fail.
+>
+> There was a commit last year,
+>
+> https://github.com/openembedded/openembedded-core/commit/810aded01fc2ae2c27c2573135c20947453e50c6
+> which moved from using sourceforge to dl.bintray.com. I don't see a
+> reason in
+> the commit message but I suspect it was because sourceforge for some
+> reason did
+> not mirror 1.71.0. They have 1.70.0 and 1.72.0 but not 1.71.0. I opened
+>
+> https://sourceforge.net/p/boost/discussion/23622/thread/4fe1cce13b/?limit=25#7d3e
+> to try and understand why this was.
+>
+> Given the download limitations of dl.bintray.com, does it make sense to
+> try
+> and move back to sourceforge? Someone also had recommended we just grab
+> from github (i.e.
+> https://github.com/boostorg/boost/archive/boost-1.71.0.tar.gz)
+>
+> This issue will reset on the first of the month but could come back and
+> bite
+> us again in the future. Anyone else hit this or looking into it?
+>
+> Andrew
+>
+
+--00000000000064d7f805a22ba97a
+Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Greetings,
+<div dir=3D"ltr"><div>I wouldn&#39;t be super concerned about that, as Yoct=
+o servers carry copies of oe-core tarballs, and there is a fallback for tha=
+t scenario. If it does occur, we should explore alternatives, but there&#39=
+;s no need to panic.</div><div><br></div><div>Alex<br></div></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 31 Mar =
+2020 at 21:07, Andrew Geissler &lt;<a href=3D"mailto:geissonator@gmail.com"=
+>geissonator@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,2=
+04);padding-left:1ex">Greetings,<br>
+<br>
+Recently, the OpenBMC project started to hit<br>
+<a href=3D"https://github.com/boostorg/boost/issues/299#issuecomment-59306=
+4251" rel=3D"noreferrer" target=3D"_blank">https://github.com/boostorg/boos=
+t/issues/299#issuecomment-593064251</a>. Basically<br>
+the site that hosts the boost packages has a monthly download limit and on=
+ce<br>
+hit, starts to fail.<br>
+<br>
+There was a commit last year,<br>
+<a href=3D"https://github.com/openembedded/openembedded-core/commit/810ade=
+d01fc2ae2c27c2573135c20947453e50c6" rel=3D"noreferrer" target=3D"_blank">ht=
+tps://github.com/openembedded/openembedded-core/commit/810aded01fc2ae2c27c2=
+573135c20947453e50c6</a><br>
+which moved from using sourceforge to <a href=3D"http://dl.bintray.com" re=
+l=3D"noreferrer" target=3D"_blank">dl.bintray.com</a>. I don&#39;t see a re=
+ason in<br>
+the commit message but I suspect it was because sourceforge for some reaso=
+n did<br>
+not mirror 1.71.0. They have 1.70.0 and 1.72.0 but not 1.71.0. I opened<br=
+>
+<a href=3D"https://sourceforge.net/p/boost/discussion/23622/thread/4fe1cce=
+13b/?limit=3D25#7d3e" rel=3D"noreferrer" target=3D"_blank">https://sourcefo=
+rge.net/p/boost/discussion/23622/thread/4fe1cce13b/?limit=3D25#7d3e</a><br>
+to try and understand why this was.<br>
+<br>
+Given the download limitations of <a href=3D"http://dl.bintray.com" rel=3D=
+"noreferrer" target=3D"_blank">dl.bintray.com</a>, does it make sense to tr=
+y<br>
+and move back to sourceforge? Someone also had recommended we just grab<br=
+>
+from github (i.e. <a href=3D"https://github.com/boostorg/boost/archive/boo=
+st-1.71.0.tar.gz" rel=3D"noreferrer" target=3D"_blank">https://github.com/b=
+oostorg/boost/archive/boost-1.71.0.tar.gz</a>)<br>
+<br>
+This issue will reset on the first of the month but could come back and bi=
+te<br>
+us again in the future. Anyone else hit this or looking into it?<br>
+<br>
+Andrew<br>
+</blockquote></div>
 
-Recently, the OpenBMC project started to hit
-https://github.com/boostorg/boost/issues/299#issuecomment-593064251. =
-Basically
-the site that hosts the boost packages has a monthly download limit and =
-once
-hit, starts to fail.
-
-There was a commit last year,
-=
-https://github.com/openembedded/openembedded-core/commit/810aded01fc2ae2c2=
-7c2573135c20947453e50c6
-which moved from using sourceforge to dl.bintray.com. I don't see a =
-reason in
-the commit message but I suspect it was because sourceforge for some =
-reason did
-not mirror 1.71.0. They have 1.70.0 and 1.72.0 but not 1.71.0. I opened
-=
-https://sourceforge.net/p/boost/discussion/23622/thread/4fe1cce13b/?limit=3D=
-25#7d3e
-to try and understand why this was.
-
-Given the download limitations of dl.bintray.com, does it make sense to =
-try
-and move back to sourceforge? Someone also had recommended we just grab
-from github (i.e. =
-https://github.com/boostorg/boost/archive/boost-1.71.0.tar.gz)
-
-This issue will reset on the first of the month but could come back and =
-bite
-us again in the future. Anyone else hit this or looking into it?
-
-Andrew=
+--00000000000064d7f805a22ba97a--
