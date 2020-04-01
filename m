@@ -1,54 +1,76 @@
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
- by mx.groups.io with SMTP id smtpd.web10.253.1585773559221253757
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+ by mx.groups.io with SMTP id smtpd.web11.315.1585776051992511438
  for <yocto@lists.yoctoproject.org>;
- Wed, 01 Apr 2020 13:39:19 -0700
+ Wed, 01 Apr 2020 14:20:52 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=IjBvuFt7;
- spf=pass (domain: gmail.com, ip: 209.85.166.175, mailfrom: ticotimo@gmail.com)
-Received: by mail-il1-f175.google.com with SMTP id x16so1335647ilp.12
-        for <yocto@lists.yoctoproject.org>; Wed, 01 Apr 2020 13:39:19 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=u8Pjg6Za;
+ spf=pass (domain: gmail.com, ip: 209.85.216.43, mailfrom: joel.winarske@gmail.com)
+Received: by mail-pj1-f43.google.com with SMTP id ng8so632868pjb.2
+        for <yocto@lists.yoctoproject.org>; Wed, 01 Apr 2020 14:20:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=BIfdzQmpN+nUTr0jiQ2pa61Y3odPQ/rSavW6U/KXAa0=;
-        b=IjBvuFt7mVg5DbkW3wsjenE2/1oYjvR6mQNON2Z0vlcQ7wulcIQ5xd0Geyk+jdOUd+
-         hD0yKQpvNZ5BH/87bk6Vo1wOV5d4eViOqj2kLKJlK+lsf+DOQopm0V2UyJdGSjsf7gZi
-         CTHMIXYTDJCgLX7ZNsv+gTKVE4g2KIUAQWGpVkEFbzpn9eIt6cYxXmFdRetFvUVXgOzm
-         z2dxjWU7hRDp1KjITS+iYen+SqQs+elu5FnebLYkN8Ex4HfN3A5RZfOjOJBkTDK9DeZ6
-         yz4UokTjrSlOE3R8rIDjlyN846b5jyye4Bfg1R+jZ3VERRO9/vfX/W3HRyDDRdvGf/bD
-         uw3g==
+        bh=KOYZgeskcRHQgrmetZlYE/LV4hPyxkRb+sQ8DOlDt/U=;
+        b=u8Pjg6ZaaHZU8S7tezw6vpy/6aE6U/FAh+bCv/D+nk9oaREYKEWoxEy/O5Tqe5fzTN
+         kKkTEIUggg7MuhuXU/W7fDsIlLlCETmQqUauEhKOCL1skIxlRonpahiRwCeiyt8sy4wu
+         +YHRce84EVNHcY5EX86vNYpN/PynBPrAXDGTyJnQkdweF1IjG0uSk+LE4DVnxjHJShC2
+         ELJStQx4Q/2RRujRX2az1B5fC6g7hyWpuJhAflgP17406wp5yeRoJtcYgrmQnqoURO+i
+         4CxoBTl3f0LghzgSmalGshrHtjHNQgStMNGYT0oquavo9rOU6ntqMH4M81PCyG2cFOc9
+         s8yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=BIfdzQmpN+nUTr0jiQ2pa61Y3odPQ/rSavW6U/KXAa0=;
-        b=ETQy6Nd5OjlaewgYrpVU5aigsNFjWZee+JRn2y9HOdQw5IxHcxLSMiQGu21GoBcT9U
-         t8vu64u9GTjKOS03V7xssni8sI4mcF/R1rMqTdTOZHSRf6vZ571M9vYKK1WGiFU3sDOY
-         5OZvAC7QGOGC3lFxNDXUW286tJGb3fSnieeG16K1ZzJn7K7DOUHMb8+NRfe9bmGFwdzT
-         +n09oVPxJI3A6iYqAOmInT47/D2Mg+xboehHtcupvtt51LCu83hpAwDbEA13tkn0Ohni
-         h7G23A8aeTMFDJFjJ9URWMfKSHfdOvGWHFxVeCLyeG5v1wSa7B5i/vM9lttVbwBrlgZN
-         vGCw==
-X-Gm-Message-State: ANhLgQ1S4ehNWY924LOZBQCq135KWCf3Y9sffNBU2zFYAxzvrcGE38nh
-	qJbXmljbnVuk8OSZmout/6wetAB/S5YOb/+7MiY=
-X-Google-Smtp-Source: ADFU+vtfeqJhDab/C2rBt150oBzuZ/hN/3bDdFxOWuogAJpbYoz3fmqBA4mI+L6C/I0i/B+aCF9bOg9tpP4PP/YlAAg=
-X-Received: by 2002:a92:d105:: with SMTP id a5mr23180305ilb.142.1585773558565;
- Wed, 01 Apr 2020 13:39:18 -0700 (PDT)
+        bh=KOYZgeskcRHQgrmetZlYE/LV4hPyxkRb+sQ8DOlDt/U=;
+        b=rUjeBLOKfne5Zf/qEF4NZU+5ykmD0WQHv8awVFEQ2pJBI+PApSAQXQTybtYt+6R94x
+         jHzhM4VHgA/f4JAmQNGUQ5McFmoquuJmLLBK4+dSFPXLWxB9GCIa4a+rL1StRGzD+sKG
+         wmpyYkwzfXJpF19tpRIJTobbHtF91dFpZ/VOYol2FQc6JVtO+o9lSyxercNl27LR6sTk
+         7DQJ2fx/Tf6HkBc+YAoXdy/Y/cnM9rK/XzlcTDCwM77dySmosWXA1Bn3ySMbpck5gHlG
+         ne1BldH4FqojnlBnB5gne2hovMcUU1fjy3Cn2Z4QLYx5SQbe29VONGJHoRQJ8n6DALzB
+         GR3A==
+X-Gm-Message-State: ANhLgQ2xcBgaKk0e+o1NCmkjdKM3fVB1DEDks2lCmshuBzK0bSeFdMI1
+	6x7UPLnvDZjwygJ1eL+Ao0ssMo+or4sddOzsfPA=
+X-Google-Smtp-Source: ADFU+vttSCiFGxS8mKY6Vn3XyhQeiRerU1HFcFuAtMjL21PAn7unc5QvqsV7vWxOSZzHzHfliwx1CHhP8dXk3bu+lZA=
+X-Received: by 2002:a17:902:a9cc:: with SMTP id b12mr24058871plr.177.1585776051246;
+ Wed, 01 Apr 2020 14:20:51 -0700 (PDT)
 MIME-Version: 1.0
 References: <kdtC.1585760118725241485.ETNE@lists.yoctoproject.org>
  <1601C2BF1E7C8C87.18583@lists.yoctoproject.org> <VI1PR05MB4286E300219B89A7EE37D170A8C90@VI1PR05MB4286.eurprd05.prod.outlook.com>
  <CABKMkPLuhj+4zbi8pCfxf_Evv6h51-QMRwTY8pY-FOzvXA0xrg@mail.gmail.com> <VI1PR05MB42861FD368535D839B1289FBA8C90@VI1PR05MB4286.eurprd05.prod.outlook.com>
 In-Reply-To: <VI1PR05MB42861FD368535D839B1289FBA8C90@VI1PR05MB4286.eurprd05.prod.outlook.com>
-From: "Tim Orling" <ticotimo@gmail.com>
-Date: Wed, 1 Apr 2020 13:39:07 -0700
-Message-ID: <CANx9H-Dz5NumXNkoTND=_QWxStGawYbnNddQPJBijh3wib+pXg@mail.gmail.com>
+From: "Joel Winarske" <joel.winarske@gmail.com>
+Date: Wed, 1 Apr 2020 14:20:40 -0700
+Message-ID: <CABKMkPKSHo91AqatLSwOn5x8+qQ2cikWEyn8+C2nBUp3YKEFOA@mail.gmail.com>
 Subject: Re: [yocto] python argparse or alternate method
-To: Joel Winarske <joel.winarske@gmail.com>
+To: Konrad Weihmann <kweihmann@outlook.com>
 Cc: yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000a711c205a240ad8d"
+Content-Type: multipart/alternative; boundary="0000000000003a5aaa05a24142f9"
 
---000000000000a711c205a240ad8d
+--0000000000003a5aaa05a24142f9
 Content-Type: text/plain; charset="UTF-8"
+
+Hi Konrad,
+
+Thanks, that helps a lot.  It works!  I used straight split() which
+prevented the first value from being null.
+
+Yes, I agree less pythonic :)  The only recipe I've seen building gn based
+projects is OSSystem's meta-browser/chromium.  I followed it's pattern, as
+the Flutter Engine is a derivative of Chrome.
+
+The issue with these large gn based projects is that they're self contained
+builds.  A build system within a build system.  I must admit though the
+gclient DEPS download scheme is efficient.  I initially looked at parsing
+out the DEPs file into a large SRC_URI list, but quickly hit Yocto
+serializing them.  Perhaps OE could benefit from tighter integration with
+gn.
+
+I'm open to any other alternative approaches.
+
+
+Cheers,
+Joel
 
 On Wed, Apr 1, 2020 at 1:09 PM Konrad Weihmann <kweihmann@outlook.com>
 wrote:
@@ -66,15 +88,6 @@ wrote:
 > But from a bitbake perspective you should really think about choosing a
 > less pythonic version
 >
->
-You might also want to review the documentation on how PACKAGECONFIG is
-intended to be used:
-
-https://www.yoctoproject.org/docs/3.0/ref-manual/ref-manual.html#var-PACKAGECONFIG
-
-In your recipe, each is a single command line flag, without the remaining
-fields. Looks odd from a Yocto Project perspective.
-
 > Best
 >
 > Konrad
@@ -149,20 +162,33 @@ fields. Looks odd from a Yocto Project perspective.
 >> Joel
 >>
 >>
->>
 >> 
+>>
 >
 
---000000000000a711c205a240ad8d
+--0000000000003a5aaa05a24142f9
 Content-Type: text/html; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
-=3D"gmail_attr">On Wed, Apr 1, 2020 at 1:09 PM Konrad Weihmann &lt;<a href=
-=
-=3D"mailto:kweihmann@outlook.com">kweihmann@outlook.com</a>&gt; wrote:<br>=
-</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
-eft:1px #ccc solid;padding-left:1ex">
+<div dir=3D"ltr"><div>Hi Konrad,</div><div><br></div><div>Thanks, that help=
+s a lot.=C2=A0 It works!=C2=A0 I used straight split() which prevented the =
+first value from being null.<br></div><div><br></div><div>Yes, I agree less=
+ pythonic :)=C2=A0 The only recipe I&#39;ve seen building gn based projects=
+ is OSSystem&#39;s meta-browser/chromium.=C2=A0 I followed it&#39;s pattern=
+, as the Flutter Engine is a derivative of Chrome.<br></div><div><br></div>=
+<div>The issue with these large gn based projects is that they&#39;re self =
+contained builds.=C2=A0 A build system within a build system.=C2=A0 I must =
+admit though the gclient DEPS download scheme is efficient.=C2=A0 I initial=
+ly looked at parsing out the DEPs file into a large SRC_URI list, but quick=
+ly hit Yocto serializing them.=C2=A0 Perhaps OE could benefit from tighter =
+integration with gn.<br></div><div></div><div></div><div><br></div><div>I&#=
+39;m open to any other alternative approaches.</div><div><br></div><div><br=
+></div><div>Cheers,</div><div>Joel<br></div></div><br><div class=3D"gmail_q=
+uote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Apr 1, 2020 at 1:09 PM =
+Konrad Weihmann &lt;<a href=3D"mailto:kweihmann@outlook.com">kweihmann@outl=
+ook.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
+margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
+t:1ex">
 
   
   <div>
@@ -181,18 +207,9 @@ ould fix the
       issue.<br>
       But from a bitbake perspective you should really think about
       choosing a less pythonic version</p>
-    <p></p></div></blockquote><div dir=3D"auto"><br></div><div dir=3D"auto=
-">You might also want to review the documentation on how PACKAGECONFIG is i=
-ntended to be used:</div><div dir=3D"auto"><br></div><div dir=3D"auto"><div=
-><a href=3D"https://www.yoctoproject.org/docs/3.0/ref-manual/ref-manual.htm=
-l#var-PACKAGECONFIG">https://www.yoctoproject.org/docs/3.0/ref-manual/ref-m=
-anual.html#var-PACKAGECONFIG</a></div></div><div dir=3D"auto"><br></div><di=
-v dir=3D"auto">In your recipe, each is a single command line flag, without =
-the remaining fields. Looks odd from a Yocto Project perspective.</div><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #c=
-cc solid;padding-left:1ex"><div><p>Best</p>
+    <p>Best</p>
     <p>Konrad<br>
-    </p></div><div>
+    </p>
     <div>On 01.04.20 22:00, Joel Winarske wrote:<br>
     </div>
     <blockquote type=3D"cite">
@@ -307,9 +324,8 @@ ms
         </blockquote>
       </div>
     </blockquote>
-  </div><div></div>
+  </div>
 
-<br>
-</blockquote></div></div>
+</blockquote></div>
 
---000000000000a711c205a240ad8d--
+--0000000000003a5aaa05a24142f9--
