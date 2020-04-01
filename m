@@ -1,144 +1,150 @@
-Received: from EUR03-VE1-obe.outbound.protection.outlook.com (EUR03-VE1-obe.outbound.protection.outlook.com [40.92.72.21])
- by mx.groups.io with SMTP id smtpd.web12.1891.1585762669284300721
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (EUR05-VI1-obe.outbound.protection.outlook.com [40.92.90.36])
+ by mx.groups.io with SMTP id smtpd.web10.2030.1585763166429259311
  for <yocto@lists.yoctoproject.org>;
- Wed, 01 Apr 2020 10:37:49 -0700
+ Wed, 01 Apr 2020 10:46:06 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@outlook.com header.s=selector1 header.b=th8DpK5A;
- spf=pass (domain: outlook.com, ip: 40.92.72.21, mailfrom: kweihmann@outlook.com)
+ dkim=pass header.i=@outlook.com header.s=selector1 header.b=sCAV3/T6;
+ spf=pass (domain: outlook.com, ip: 40.92.90.36, mailfrom: kweihmann@outlook.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ExhnNS9/0taMKpI8HpwiyjyFmMNrrzD5BCoiBn3S0r0CTNlrwgiLYMpZOaZMRr9CPARq1I38g8UCViC1FbVJTiDAoas2+ItSq113f4+fhHJ4KVW3nz0wLbLOQB9WrtqX1Tay2xsd+oWm5o0GZlsZmoDdoK6mpf81fVfW95Z5VkdAcR38DKCwwdT0huypPvJWPrsIb+1FVBNCXH0zvAflECOEFZE01CdwuhWb4DYETAQyaiYviGX07L8xfTykDTUQ5BqWufiG4L5r2yi21k5sszSbWbW61bSW+rgACdh7xrf4I/AtZbm9j3GhoG8MEs9XELcfjLTnLjYzvkVgS/Q79w==
+ b=lLyBD+JZQ/YReGGooHTKEeIPmWVsNK3fvfGqDw+Gml+ridIvyxcAiROflKPIt9/cmHtqdn9zPIk/k/pOXT+JaQzsBcP/SIBLqks13w3AM5r4K07ct+W0PoCz8lpD9/Jg8YezDFJIjWbso49spjXFZtzlP2yQ3ousPFUoxAvmpvOkHqh5cYdA7NqY20ZKjM7xGTGMl9dQIVY2FHo3YoLjajgPy6t2R8vNuu0BFeOHuCU++shq3yXzgfc+ksr1Sazh+LWkKbZqLsVF8YaXmt3OpnlVUneOaxzl08mc5Fy/fofkEYwgcPlKAsY5saMtPBjiIMKDXl+DZJomWV2mVYJrqw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GIMTpPQVLuY/WrB+E92YUmQTDvXPphns5+NGsodlWRg=;
- b=nTglIHmizvQtrVQEVh3N/itRc6fbhU1z5Qo6NZp821QGRVhCLHyIr/Rr7a2IExa+z4PcUI+ZIgRi+Me4phrOk+WQN8+RKNde1yIvl3/vQuuefCRMoP9bm7f/P60aWIGD4+9JtFrMefzQ6GHfxZkDrTw5zQ+C8sQAf28mip4ooyl285UtSpmU57fN8+cEP1MVO140LgZ48Ld0qBxg4uiyZjYPO0Rid758QDoMc7lAylzAtevCo5n7uzdAVdoSt7ZnnKQFLjM4VOfSFCJ0ahPbeMCeQJ35WDPAdOGJwHt+VuRu3A2LrxBTcMxz2YPLTAasnER+f3aujQzgeWcIEuokEg==
+ bh=TIHAb/zANM1vjWFATmbiojQ5/Dwsms9uns66HRi4xfs=;
+ b=fTzBLJ+RC5exsGkEpKj7D6pGNHYdTchiNLCtkAByO22urjexWUoMnuTfpJcAZfGbRJpiyT5A6ti7mAY+3t3Ow2aN5xUH2FYIB4rlYQTpFrf7IIQ73IeagdE6wkSHB63a6zaqY0yATQgSZundBqxKkB01RGCu5UJsVdVB9qYKHQUr9beM2QhsCG1PonEiMozbzf1TOa0YatzVzLCoxFgz6YQ5j8isjLgtpH03CiZeupIVBVMjW8Vj1Dqq2VukVHjKT4YxIKN4Xwn04VPGvIPOGnk5hvYg5Nh4qUrpd+tfCdNA0M9t0rR3e/+7rMz136rTxGjVJ6qR379Em1NTd/xNRA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=outlook.com; dmarc=pass action=none header.from=outlook.com;
  dkim=pass header.d=outlook.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GIMTpPQVLuY/WrB+E92YUmQTDvXPphns5+NGsodlWRg=;
- b=th8DpK5A+sZCt+zFmtEbDBREBTTi1buGhL1Rrw/rGyI3QXFlUySeqnW2GuUAlJP029mM24etTNTIhtsvKVFlP8xPj0ur202IpF1IZAc/U4uHnmqIOrQcCVLzPJ7cbX7ujVuyuvLqf1Oq/LgdsVC+1bx6VqYjEBu7oFZsZIwapd/0W8ZJbdQxOAt//ZpC7iHrAIiGOkrAPM451lqczFOsO1fjGF9Sk/hrlWPbfoACFbv2gQVuHYjH2YGsF1KshuAG8DM+cxviQXuTMnr+WqtQ9LghSDSKEXGJIVvHXgM2Xmd6yScvAwqChV9fMta3U3By9Uq8KZiI8wYFxRdvmwHZaQ==
-Received: from DB5EUR03FT010.eop-EUR03.prod.protection.outlook.com
- (2a01:111:e400:7e0a::52) by
- DB5EUR03HT223.eop-EUR03.prod.protection.outlook.com (2a01:111:e400:7e0a::139)
+ bh=TIHAb/zANM1vjWFATmbiojQ5/Dwsms9uns66HRi4xfs=;
+ b=sCAV3/T6VIBp3FbQoSaorZJYxIuKrFBlM3MZNdfrbAx5WgTc0c1s1yz0SOc3OzoawFqCPT8eZrhAG1CM54fS7p46XuC4cR5jRyJC+jUVaSZsPqL2hMn4rJAa1nKnFJTSkSYWwF3P9KjyAvXBit924GtTFe0ENUh87iBrYZrKblsYd6nMMKKaYVnVQAyp4C5+KUi0AwzqHILv3er0k72amtrYhVWNu636ggo44WIKns7umlojY5fgan6cwD/P7Tg1ZC/0RehIxUKUlEPRP2Gd1PKb2oh982APT+4LAKKtwGh7bnwqgE2RQ6yOhWZr0251/xbYti58HsMwMaztAISYjQ==
+Received: from VI1EUR05FT062.eop-eur05.prod.protection.outlook.com
+ (2a01:111:e400:fc12::4d) by
+ VI1EUR05HT145.eop-eur05.prod.protection.outlook.com (2a01:111:e400:fc12::113)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.17; Wed, 1 Apr
- 2020 17:37:47 +0000
-Received: from VI1PR05MB4286.eurprd05.prod.outlook.com (10.152.20.59) by
- DB5EUR03FT010.mail.protection.outlook.com (10.152.20.96) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2856.17 via Frontend Transport; Wed, 1 Apr 2020 17:37:47 +0000
+ 2020 17:46:04 +0000
+Received: from VI1PR05MB4286.eurprd05.prod.outlook.com (10.233.242.59) by
+ VI1EUR05FT062.mail.protection.outlook.com (10.233.243.189) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2878.15 via Frontend Transport; Wed, 1 Apr 2020 17:46:04 +0000
 X-IncomingTopHeaderMarker: 
- OriginalChecksum:49A0D581E4B8B959B3FCE8A2526E9D5E0C1A3065EC9B1B8AC2C71E1619064A59;UpperCasedChecksum:E9E172AAC2194D630DD8492267B9E7E039F4F0F4E91FFBB0E1913E97A376A55A;SizeAsReceived:8755;Count:48
+ OriginalChecksum:81F2F8E1C92A3FE82DEFDC70A2882C4D6083B47CA62299411F636DAAB15D5F33;UpperCasedChecksum:6D5BFE97600C09B8719354AE2EA35383022F61F68EC2DB06406787F836DCF45B;SizeAsReceived:8798;Count:48
 Received: from VI1PR05MB4286.eurprd05.prod.outlook.com
  ([fe80::e1b1:4a5f:7dd7:4131]) by VI1PR05MB4286.eurprd05.prod.outlook.com
  ([fe80::e1b1:4a5f:7dd7:4131%4]) with mapi id 15.20.2856.019; Wed, 1 Apr 2020
- 17:37:47 +0000
+ 17:46:04 +0000
 Subject: Re: [yocto] python argparse or alternate method
 To: yocto@lists.yoctoproject.org
 References: <kdtC.1585760118725241485.ETNE@lists.yoctoproject.org>
+ <1601C2BF1E7C8C87.18583@lists.yoctoproject.org>
 From: "Konrad Weihmann" <kweihmann@outlook.com>
 Message-ID: 
- <VI1PR05MB4286B3AA927ADBCC5CAACD84A8C90@VI1PR05MB4286.eurprd05.prod.outlook.com>
-Date: Wed, 1 Apr 2020 19:37:45 +0200
+ <VI1PR05MB4286E300219B89A7EE37D170A8C90@VI1PR05MB4286.eurprd05.prod.outlook.com>
+Date: Wed, 1 Apr 2020 19:46:02 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
-In-Reply-To: <kdtC.1585760118725241485.ETNE@lists.yoctoproject.org>
-X-ClientProxiedBy: AM7PR03CA0020.eurprd03.prod.outlook.com
- (2603:10a6:20b:130::30) To VI1PR05MB4286.eurprd05.prod.outlook.com
+In-Reply-To: <1601C2BF1E7C8C87.18583@lists.yoctoproject.org>
+X-ClientProxiedBy: AM5PR0202CA0005.eurprd02.prod.outlook.com
+ (2603:10a6:203:69::15) To VI1PR05MB4286.eurprd05.prod.outlook.com
  (2603:10a6:803:4d::27)
 Return-Path: kweihmann@outlook.com
 X-Microsoft-Original-Message-ID: 
- <41f25814-aa0d-06e9-5a14-f849658c3021@outlook.com>
+ <2e5092e8-147f-16d3-77ea-8142807f2faf@outlook.com>
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.188.20] (87.141.94.21) by AM7PR03CA0020.eurprd03.prod.outlook.com (2603:10a6:20b:130::30) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15 via Frontend Transport; Wed, 1 Apr 2020 17:37:46 +0000
+Received: from [192.168.188.20] (87.141.94.21) by AM5PR0202CA0005.eurprd02.prod.outlook.com (2603:10a6:203:69::15) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.20 via Frontend Transport; Wed, 1 Apr 2020 17:46:03 +0000
 X-Microsoft-Original-Message-ID: 
- <41f25814-aa0d-06e9-5a14-f849658c3021@outlook.com>
-X-TMN: [9XZXQw5Qkz/OQohP8cLawqSS9i6n8dUG]
+ <2e5092e8-147f-16d3-77ea-8142807f2faf@outlook.com>
+X-TMN: [1HOAMcpnQO6Pin3Bf8/PspTNgcNmYO/v]
 X-MS-PublicTrafficType: Email
 X-IncomingHeaderCount: 48
 X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-Correlation-Id: f08f5651-6ea6-413f-e612-08d7d663643a
-X-MS-TrafficTypeDiagnostic: DB5EUR03HT223:
+X-MS-Office365-Filtering-Correlation-Id: 8014103b-1176-4fd7-a176-08d7d6648c6f
+X-MS-TrafficTypeDiagnostic: VI1EUR05HT145:
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	26oKr/i0t4f69RlPfhWhPr3RQAvIMR3Z4WeRY3MqaQVQ5hYzEnH0wodthd53/PgNaNa6BY5o2ixb57EQ71w3KYXIpbuEIZEtHHjrQQdYhnc4HFzHm4tJU+KaazpKI5KHvjoYqAkmnpmYUjTPdSz2+k/uKKqZhEu8O4uE4KmmpibDTO9E0S20qTRsrVN3+hUCFqmBzEtFYnHSpWpERuPfzMmnMV5sin51OaSQoyeJ4fc=
+	kwdDw+WENJUvYXfvLV/TtX/4ZwPhssnVVsMjJRP2RDtdILWGeACuoL70yk14y93IAQuTq7yv/851+T4AyuAw8Gata8k6X38O46iGyJclSq2lfvYm7TNDkYzC1p+TETqJRty/xorMXo0dCf4t9zJ43IOmwnQRYsP8u1jtBDgF2H/lUzjnUOpi9TZ+N1zqONb/4HqHbYsci7ZXuqZHCHae1+KC+y6ulDmTrJ0J2T0/Sa0=
 X-MS-Exchange-AntiSpam-MessageData: 
-	hkjr6lnQYAAshcO++y+Bw46G4eUCVFwcI5ZapoQL7U7WBSnMLBmCewH3qKIVmUBE1Wnztcyz0UgRvDUTwQz07YpLwLPhHppy3rJsbsQ0xm9zWgU4UfY0p7WdWOqShT3BR8X1x2Do9cs0qyQ6HGPeUg==
+	8rT+UKYBnxswyemU3RHEs2rwRRVhqSqYcdkuY30g84XqYZyZlT/Ix4HsHfyNVPVmAZyGY7JZAnfzBN7Y3ATL4f/YE/xCp3ERLlRlKfrlFrdU8pqruCYZqUhFpjFZPnm3VloNBZ6wQ62hfjRkYgAoFw==
 X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f08f5651-6ea6-413f-e612-08d7d663643a
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2020 17:37:46.9891
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8014103b-1176-4fd7-a176-08d7d6648c6f
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Apr 2020 17:46:03.9473
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
 X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
 X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
 	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB5EUR03HT223
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1EUR05HT145
 Content-Type: multipart/alternative;
- boundary="------------FFF39B9EF1093509C27E4DBE"
+ boundary="------------698B84A0AE7CF605770B7E55"
 Content-Language: en-US
 
---------------FFF39B9EF1093509C27E4DBE
+--------------698B84A0AE7CF605770B7E55
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-What about
+There is a single tick missing, but I'm sure you get the point
 
-do_configure() {
-
-    cd ${@bb.utils.contains('PACKAGECONFIG_CONFARGS', '--verbose', 
-out/verbose', 'out', d)}
-
-}
-
-On 01.04.20 18:55, Joel Winarske wrote:
-> Hello,
+On 01.04.20 19:37, Konrad Weihmann wrote:
 >
-> I'm trying the below in a recipe.  Bitbake gives me: ERROR: Unable to 
-> parse ...: Exited with "2"
->
-> inherit python3native
->
-> require utils.inc
+> What about
 >
 > do_configure() {
 >
->     cd ${@get_out_dir(d)}
+>    cd ${@bb.utils.contains('PACKAGECONFIG_CONFARGS', '--verbose', 
+> out/verbose', 'out', d)}
+>
 > }
 >
-> (in utils.inc)
-> def get_out_dir(d):
->     import os
->     import argparse
->     pkgconfig_args = d.getVar("PACKAGECONFIG_CONFARGS")
->
->     parser = argparse.ArgumentParser()
->     parser.add_argument("--verbose", help="increase output verbosity",
->                         action="store_true")
->     args = parser.parse_args(pkgconfig_args)
->     if args.verbose:
->         return os.path.join('out', 'verbose')
->
->     return 'out'
->
->
->
-> What am I doing wrong, or is there a better way?  Seems like it 
-> doesn't like "args = parser.parse_args(pkgconfig_args)"
->
-> The output directory is a combination of the arguments.
->
->
-> Thanks!
-> Joel
+> On 01.04.20 18:55, Joel Winarske wrote:
+>> Hello,
+>>
+>> I'm trying the below in a recipe.  Bitbake gives me: ERROR: Unable to 
+>> parse ...: Exited with "2"
+>>
+>> inherit python3native
+>>
+>> require utils.inc
+>>
+>> do_configure() {
+>>
+>>     cd ${@get_out_dir(d)}
+>> }
+>>
+>> (in utils.inc)
+>> def get_out_dir(d):
+>>     import os
+>>     import argparse
+>>     pkgconfig_args = d.getVar("PACKAGECONFIG_CONFARGS")
+>>
+>>     parser = argparse.ArgumentParser()
+>>     parser.add_argument("--verbose", help="increase output verbosity",
+>>                         action="store_true")
+>>     args = parser.parse_args(pkgconfig_args)
+>>     if args.verbose:
+>>         return os.path.join('out', 'verbose')
+>>
+>>     return 'out'
+>>
+>>
+>>
+>> What am I doing wrong, or is there a better way?  Seems like it 
+>> doesn't like "args = parser.parse_args(pkgconfig_args)"
+>>
+>> The output directory is a combination of the arguments.
+>>
+>>
+>> Thanks!
+>> Joel
+>>
 >
 > 
 
---------------FFF39B9EF1093509C27E4DBE
+--------------698B84A0AE7CF605770B7E55
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
@@ -146,57 +152,67 @@ Content-Transfer-Encoding: 8bit
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body>
-    <p>What about</p>
-    <p>do_configure() {</p>
-    <p>&nbsp;&nbsp; cd ${@bb.utils.contains('PACKAGECONFIG_CONFARGS', '--verbose',
-      out/verbose', 'out', d)}<br>
+    <p>There is a single tick missing, but I'm sure you get the point<br>
     </p>
-    <p>}<br>
-    </p>
-    <div class="moz-cite-prefix">On 01.04.20 18:55, Joel Winarske wrote:<br>
+    <div class="moz-cite-prefix">On 01.04.20 19:37, Konrad Weihmann
+      wrote:<br>
     </div>
-    <blockquote type="cite" cite="mid:kdtC.1585760118725241485.ETNE@lists.yoctoproject.org">
+    <blockquote type="cite" cite="mid:1601C2BF1E7C8C87.18583@lists.yoctoproject.org">
       
-      Hello,<br>
-      <br>
-      I'm trying the below in a recipe.&nbsp; Bitbake gives me: ERROR: Unable
-      to parse ...: Exited with &quot;2&quot;<br>
-      <br>
-      inherit python3native<br>
-      <br>
-      require utils.inc<br>
-      <br>
-      do_configure() {<br>
-      <br>
-      &nbsp;&nbsp;&nbsp; cd ${@get_out_dir(d)}<br>
-      }<br>
-      <br>
-      (in utils.inc)<br>
-      def get_out_dir(d):<br>
-      &nbsp;&nbsp;&nbsp; import os<br>
-      &nbsp;&nbsp;&nbsp; import argparse<br>
-      &nbsp;&nbsp;&nbsp; pkgconfig_args = d.getVar(&quot;PACKAGECONFIG_CONFARGS&quot;)<br>
-      <br>
-      &nbsp;&nbsp;&nbsp; parser = argparse.ArgumentParser()<br>
-      &nbsp;&nbsp;&nbsp; parser.add_argument(&quot;--verbose&quot;, help=&quot;increase output
-      verbosity&quot;,<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; action=&quot;store_true&quot;)<br>
-      &nbsp;&nbsp;&nbsp; args = parser.parse_args(pkgconfig_args)<br>
-      &nbsp;&nbsp;&nbsp; if args.verbose:<br>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return os.path.join('out', 'verbose')<br>
-      <br>
-      &nbsp;&nbsp;&nbsp; return 'out'<br>
-      <br>
-      <br>
-      <br>
-      What am I doing wrong, or is there a better way?&nbsp; Seems like it
-      doesn't like &quot;args = parser.parse_args(pkgconfig_args)&quot;<br>
-      <br>
-      The output directory is a combination of the arguments.<br>
-      <br>
-      <br>
-      Thanks!<br>
-      Joel<br>
+      <p>What about</p>
+      <p>do_configure() {</p>
+      <p>&nbsp;&nbsp; cd ${@bb.utils.contains('PACKAGECONFIG_CONFARGS',
+        '--verbose', out/verbose', 'out', d)}<br>
+      </p>
+      <p>}<br>
+      </p>
+      <div class="moz-cite-prefix">On 01.04.20 18:55, Joel Winarske
+        wrote:<br>
+      </div>
+      <blockquote type="cite" cite="mid:kdtC.1585760118725241485.ETNE@lists.yoctoproject.org">
+        Hello,<br>
+        <br>
+        I'm trying the below in a recipe.&nbsp; Bitbake gives me: ERROR:
+        Unable to parse ...: Exited with &quot;2&quot;<br>
+        <br>
+        inherit python3native<br>
+        <br>
+        require utils.inc<br>
+        <br>
+        do_configure() {<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; cd ${@get_out_dir(d)}<br>
+        }<br>
+        <br>
+        (in utils.inc)<br>
+        def get_out_dir(d):<br>
+        &nbsp;&nbsp;&nbsp; import os<br>
+        &nbsp;&nbsp;&nbsp; import argparse<br>
+        &nbsp;&nbsp;&nbsp; pkgconfig_args = d.getVar(&quot;PACKAGECONFIG_CONFARGS&quot;)<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; parser = argparse.ArgumentParser()<br>
+        &nbsp;&nbsp;&nbsp; parser.add_argument(&quot;--verbose&quot;, help=&quot;increase output
+        verbosity&quot;,<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; action=&quot;store_true&quot;)<br>
+        &nbsp;&nbsp;&nbsp; args = parser.parse_args(pkgconfig_args)<br>
+        &nbsp;&nbsp;&nbsp; if args.verbose:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return os.path.join('out', 'verbose')<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; return 'out'<br>
+        <br>
+        <br>
+        <br>
+        What am I doing wrong, or is there a better way?&nbsp; Seems like it
+        doesn't like &quot;args = parser.parse_args(pkgconfig_args)&quot;<br>
+        <br>
+        The output directory is a combination of the arguments.<br>
+        <br>
+        <br>
+        Thanks!<br>
+        Joel<br>
+        <br>
+        <fieldset class="mimeAttachmentHeader"></fieldset>
+      </blockquote>
       <br>
       <fieldset class="mimeAttachmentHeader"></fieldset>
       <pre class="moz-quote-pre" wrap="">
@@ -205,4 +221,4 @@ Content-Transfer-Encoding: 8bit
   </body>
 </html>
 
---------------FFF39B9EF1093509C27E4DBE--
+--------------698B84A0AE7CF605770B7E55--
