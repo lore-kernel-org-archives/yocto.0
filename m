@@ -1,108 +1,207 @@
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.51])
- by mx.groups.io with SMTP id smtpd.web10.2880.1585820625288284052
- for <yocto@lists.yoctoproject.org>;
- Thu, 02 Apr 2020 02:43:48 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@rsi-elektrotechnik.de header.s=strato-dkim-0002 header.b=QyLD46Zq;
- spf=none, err=permanent DNS error (domain: rsi-elektrotechnik.de, ip: 85.215.255.51, mailfrom: prvs=13610dc484=holzmayr@rsi-elektrotechnik.de)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1585820623;
-	s=strato-dkim-0002; d=rsi-elektrotechnik.de;
-	h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-	X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-	bh=+sJ6B7CfTrzuzAJCCYnvBByJbNocXuxEf65g9BhwCAw=;
-	b=QyLD46Zq9aYTGwkBDNmYjNmMFnv1Ie5lqyleBDCG2SlUuVAu43ldfqidgpJynorRx7
-	Qt8BUHaEY5Dg76QPEpITDlKuxmQRfnnIh90wviE0qqVboXECqD3hwa6mRawd6NAm7qym
-	SWNDQDwdvBWAUEiAurtxOk+aAZ5RsCqm9yOJQuiwec4weDP2G+71udI14iVfQsZNrKse
-	n3Ufgl2gfVb6cEIQr5T1yLHOQcA7Sb3QKOffte493qijOKYVFZymmttB32pu75VftF84
-	CfuiAusC7tkJ3beBlsXZZUg3UlmxY2kCwXUrep5tJOaDc3AeV12jR/o+gxmLFgUiEJ7Q
-	Ad1g==
-X-RZG-AUTH: ":fz5RJhWIaexwuXGosGLfiBc0xYyi1Y5bd+wRKqrzPXw4V1/KqCOd+ZZzzoK8epFp9XQIUl6aPGQL"
-X-RZG-CLASS-ID: mo00
-Received: from mail.rsi-elektrotechnik.de
-	by smtp.strato.de (RZmta 46.2.1 AUTH)
-	with ESMTPSA id e03460w329hhOoC
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256 bits))
-	(Client did not present a certificate);
-	Thu, 2 Apr 2020 11:43:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/relaxed;
-	d=rsi-elektrotechnik.de; s=MDaemon; t=1585820623; x=1586425423;
-	i=holzmayr@rsi-elektrotechnik.de; q=dns/txt; h=Date:From:To:Cc:
-	Subject:Message-ID:References:MIME-Version:Content-Type:
-	Content-Disposition:Content-Transfer-Encoding:In-Reply-To:
-	User-Agent; bh=+sJ6B7CfTrzuzAJCCYnvBByJbNocXuxEf65g9BhwCAw=; b=I
-	eNCkiFB0GRPYLEtKkQnyzH20ks5sDUqGGlXN/6HqZALSLQOnjcgozHKWAqUTamt8
-	Lb1elOtcp3RqjMQ7At2qz0MjPRcQM0aFVjxotN1NjgNZhdwYmPAM+KaSkrPGbLHk
-	9eLkJaz6Yown30c5Ed/Zw5Pd/R05ualuyABuxfmBCo=
-Received: by mail.rsi-elektrotechnik.de (MDaemon PRO v19.5.5) with ESMTPSA id md50000259283.msg; 
-	Thu, 02 Apr 2020 11:43:41 +0200
-X-Spam-Processed: mail.rsi-elektrotechnik.de, Thu, 02 Apr 2020 11:43:41 +0200
-	(not processed: message from trusted or authenticated source)
-X-MDArrival-Date: Thu, 02 Apr 2020 11:43:41 +0200
-X-Authenticated-Sender: holzmayr@rsi-elektrotechnik.de
-X-Return-Path: prvs=13610dc484=holzmayr@rsi-elektrotechnik.de
-X-Envelope-From: holzmayr@rsi-elektrotechnik.de
-Date: Thu, 2 Apr 2020 09:43:11 +0000
-From: "Josef Holzmayr" <holzmayr@rsi-elektrotechnik.de>
-To: stefan.wenninger@evopro-ag.de
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] apt-get destroying itself when trying to install package #apt #yocto
-Message-ID: <20200402094311.ebog6fn7djuwlfpx@jh-mailer>
-References: <20200402091802.2obao5jf5ncgrxvu@jh-mailer>
- <18536.1585819904613880645@lists.yoctoproject.org>
+Subject: initramfs with mdev: No match for argument: busybox-mdev
+To: yocto@lists.yoctoproject.org
+From: y1dekel@gmail.com
+X-Originating-Location: Herzliya, Tel Aviv, IL (93.172.59.81)
+X-Originating-Platform: Linux Chrome 80
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-In-Reply-To: <18536.1585819904613880645@lists.yoctoproject.org>
-User-Agent: NeoMutt/20171215
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+Date: Thu, 02 Apr 2020 03:08:50 -0700
+Message-ID: <cMI8.1585822130572319291.TJnH@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="xmSFqbCVBNzU8hchakrr"
 
-Howdy!
+--xmSFqbCVBNzU8hchakrr
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Apr 02, 2020 at 02:31:44AM -0700, stefan.wenninger@evopro-ag.de wrote:
-> So basically our problem is trying to install .deb packages meant for debian-apt with yocto-apt?
-> I take it we can only install the .deb packages built by bitbake (deploy/deb/*)?
+I am new to yocto. I have read some messages on this forum which suggest wa=
+ys to build an image with initramfs and mdev.
+So far I have implemented all advises but I am getting this message:
 
-Exactly.
+>=20
+>=20
+>=20
+> ERROR: image-argus-tiny-initramfs-1.0-r0 do_rootfs: Could not invoke dnf=
+.
+> Command
+> '/home/ubuntu/yocto_warrior/argus-build/tmp/work/raspberrypi3-poky-linux=
+-gnueabi/image-argus-tiny-initramfs/1.0-r0/recipe-sysroot-native/usr/bin/dn=
+f
+> -v --rpmverbosity=3Dinfo -y -c
+> /home/ubuntu/yocto_warrior/argus-build/tmp/work/raspberrypi3-poky-linux-=
+gnueabi/image-argus-tiny-initramfs/1.0-r0/rootfs/etc/dnf/dnf.conf
+> --setopt=3Dreposdir=3D/home/ubuntu/yocto_warrior/argus-build/tmp/work/ra=
+spberrypi3-poky-linux-gnueabi/image-argus-tiny-initramfs/1.0-r0/rootfs/etc/=
+yum.repos.d
+> --installroot=3D/home/ubuntu/yocto_warrior/argus-build/tmp/work/raspberr=
+ypi3-poky-linux-gnueabi/image-argus-tiny-initramfs/1.0-r0/rootfs
+> --setopt=3Dlogdir=3D/home/ubuntu/yocto_warrior/argus-build/tmp/work/rasp=
+berrypi3-poky-linux-gnueabi/image-argus-tiny-initramfs/1.0-r0/temp
+> --repofrompath=3Doe-repo,/home/ubuntu/yocto_warrior/argus-build/tmp/work=
+/raspberrypi3-poky-linux-gnueabi/image-argus-tiny-initramfs/1.0-r0/oe-rootf=
+s-repo
+> --nogpgcheck install base-passwd busybox busybox-mdev dropbear
+> initramfs-live-boot-tiny packagegroup-core-boot run-postinsts' returned =
+1:
+>=20
+>=20
+>=20
+>=20
+> DNF version: 4.1.0
+>=20
+>=20
+>=20
+> cachedir:
+> /home/ubuntu/yocto_warrior/argus-build/tmp/work/raspberrypi3-poky-linux-=
+gnueabi/image-argus-tiny-initramfs/1.0-r0/rootfs/var/cache/dnf
+>=20
+>=20
+>=20
+>=20
+> Added oe-repo repo from
+> /home/ubuntu/yocto_warrior/argus-build/tmp/work/raspberrypi3-poky-linux-=
+gnueabi/image-argus-tiny-initramfs/1.0-r0/oe-rootfs-repo
+>=20
+>=20
+>=20
+>=20
+> repo: using cache for: oe-repo
+>=20
+>=20
+>=20
+> not found other for:
+>=20
+>=20
+>=20
+> not found modules for:
+>=20
+>=20
+>=20
+> not found deltainfo for:
+>=20
+>=20
+>=20
+> not found updateinfo for:
+>=20
+>=20
+>=20
+> oe-repo: using metadata from Thu 02 Apr 2020 09:20:31 AM UTC.
+>=20
+>=20
+>=20
+> Last metadata expiration check: 0:00:01 ago on Thu 02 Apr 2020 09:20:36 =
+AM
+> UTC.
+>=20
+>=20
+>=20
+> No module defaults found
+>=20
+>=20
+>=20
+> No match for argument: busybox-mdev
+>=20
+>=20
 
-> Would it be possible to install the debian-apt on our system (outside of yocto) and then use the debian.org packages?
+I have added an mdev include fragment as follows:
 
-Nope. Whats the reason of using Yocto anyways if you are then jumping
-through all kinds of hoops to just make it behave like a Debian? If you
-want a Debian, you should probably be using a Debian :)
+>=20
+>=20
+> CONFIG_MDEV=3Dy
+> CONFIG_FEATURE_MDEV_LOAD_FIRMWARE=3Dy
+> PACKAGES =3D+ "${PN}-mdev"
+> INITSCRIPT_PACKAGES =3D "${PN}-httpd ${PN}-syslog ${PN}-udhcpd ${PN}-mde=
+v
+> ${PN}-hwclock"
+> INITSCRIPT_NAME_${PN}-mdev =3D "mdev"
+> INITSCRIPT_PARAMS_${PN}-mdev =3D "start 04 S ."
+> CONFFILES_${PN}-mdev =3D "${sysconfdir}/mdev.conf"
+>=20
 
-Having said that, there are buliding tools for ingesting the debian
-repositories and spitting out an image, like Linutronix' ELBE or the
-ISAR project. Maybe thats what fits your needs?
+I also implemented a receipt for our image as follows:
 
-Greetz
+>=20
+> VIRTUAL-RUNTIME_dev_manager =3D " busybox-mdev "
+> PACKAGE_INSTALL =3D "initramfs-live-boot-tiny packagegroup-core-boot
+> dropbear ${VIRTUAL-RUNTIME_base-utils} ${VIRTUAL-RUNTIME_dev_manager}
+> base-passwd ${ROOTFS_BOOTSTRAP_INSTALL}"
+> ...
+>=20
 
-> 
-> Thanks for pointing us towards that package management whitepaper, I am sure it will help us properly setup packet management of our yocto-built .deb packages.
-> 
-> Stefan
+Any idea what I might be missing here?
 
-> 
+>=20
+>=20
+>
 
+--xmSFqbCVBNzU8hchakrr
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
--- 
-———————————————
-Josef Holzmayr
-Software Developer Embedded Systems
+<p>I am new to yocto. I have read some messages on this forum which suggest=
+ ways to build an image with initramfs and mdev.&nbsp;<br />So far I have i=
+mplemented all advises but I am getting this message:</p>
+<br />
+<blockquote>
+<p>ERROR: image-argus-tiny-initramfs-1.0-r0 do_rootfs: Could not invoke dn=
+f. Command '/home/ubuntu/yocto_warrior/argus-build/tmp/work/raspberrypi3-po=
+ky-linux-gnueabi/image-argus-tiny-initramfs/1.0-r0/recipe-sysroot-native/us=
+r/bin/dnf -v --rpmverbosity=3Dinfo -y -c /home/ubuntu/yocto_warrior/argus-b=
+uild/tmp/work/raspberrypi3-poky-linux-gnueabi/image-argus-tiny-initramfs/1.=
+0-r0/rootfs/etc/dnf/dnf.conf --setopt=3Dreposdir=3D/home/ubuntu/yocto_warri=
+or/argus-build/tmp/work/raspberrypi3-poky-linux-gnueabi/image-argus-tiny-in=
+itramfs/1.0-r0/rootfs/etc/yum.repos.d --installroot=3D/home/ubuntu/yocto_wa=
+rrior/argus-build/tmp/work/raspberrypi3-poky-linux-gnueabi/image-argus-tiny=
+-initramfs/1.0-r0/rootfs --setopt=3Dlogdir=3D/home/ubuntu/yocto_warrior/arg=
+us-build/tmp/work/raspberrypi3-poky-linux-gnueabi/image-argus-tiny-initramf=
+s/1.0-r0/temp --repofrompath=3Doe-repo,/home/ubuntu/yocto_warrior/argus-bui=
+ld/tmp/work/raspberrypi3-poky-linux-gnueabi/image-argus-tiny-initramfs/1.0-=
+r0/oe-rootfs-repo --nogpgcheck install base-passwd busybox busybox-mdev dro=
+pbear initramfs-live-boot-tiny packagegroup-core-boot run-postinsts' return=
+ed 1:</p>
+<p>DNF version: 4.1.0</p>
+<p>cachedir: /home/ubuntu/yocto_warrior/argus-build/tmp/work/raspberrypi3-=
+poky-linux-gnueabi/image-argus-tiny-initramfs/1.0-r0/rootfs/var/cache/dnf</=
+p>
+<p>Added oe-repo repo from /home/ubuntu/yocto_warrior/argus-build/tmp/work=
+/raspberrypi3-poky-linux-gnueabi/image-argus-tiny-initramfs/1.0-r0/oe-rootf=
+s-repo</p>
+<p>repo: using cache for: oe-repo</p>
+<p>not found other for:&nbsp;</p>
+<p>not found modules for:&nbsp;</p>
+<p>not found deltainfo for:&nbsp;</p>
+<p>not found updateinfo for:&nbsp;</p>
+<p>oe-repo: using metadata from Thu 02 Apr 2020 09:20:31 AM UTC.</p>
+<p>Last metadata expiration check: 0:00:01 ago on Thu 02 Apr 2020 09:20:36=
+ AM UTC.</p>
+<p>No module defaults found</p>
+<p><span style=3D"font-weight: bold;">No match for argument: busybox-mdev<=
+/span></p>
+</blockquote>
+<br />I have added an mdev include fragment as follows:<br />
+<div>
+<blockquote>
+<div><br />CONFIG_MDEV=3Dy</div>
+<div>CONFIG_FEATURE_MDEV_LOAD_FIRMWARE=3Dy</div>
+<div>PACKAGES =3D+ "${PN}-mdev"</div>
+<div>INITSCRIPT_PACKAGES =3D "${PN}-httpd ${PN}-syslog ${PN}-udhcpd ${PN}-=
+mdev ${PN}-hwclock"</div>
+<div>INITSCRIPT_NAME_${PN}-mdev =3D "mdev"</div>
+<div>INITSCRIPT_PARAMS_${PN}-mdev =3D "start 04 S ."</div>
+<div>CONFFILES_${PN}-mdev =3D "${sysconfdir}/mdev.conf"</div>
+</blockquote>
+I also implemented a receipt for our image as follows:<br />
+<blockquote>
+<div>VIRTUAL-RUNTIME_dev_manager =3D "<span style=3D"font-weight: bold;">b=
+usybox-mdev</span>"</div>
+<div>PACKAGE_INSTALL =3D "initramfs-live-boot-tiny packagegroup-core-boot =
+dropbear ${VIRTUAL-RUNTIME_base-utils} ${VIRTUAL-RUNTIME_dev_manager} base-=
+passwd ${ROOTFS_BOOTSTRAP_INSTALL}"</div>
+<div>...</div>
+</blockquote>
+Any idea what I might be missing here?<br />
+<blockquote>
+<div>&nbsp;</div>
+</blockquote>
+</div>
 
-Tel: +49 8444 9204-48
-Fax: +49 8444 9204-50
-
-R-S-I Elektrotechnik GmbH & Co. KG
-Woelkestrasse 11
-D-85301 Schweitenkirchen
-www.rsi-elektrotechnik.de
-———————————————
-Amtsgericht Ingolstadt – GmbH: HRB 191328 – KG: HRA 170393
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-Ust-IdNr: DE 128592548 
-
-_____________________________________________________________
-Amtsgericht Ingolstadt - GmbH: HRB 191328 - KG: HRA 170363
-Geschäftsführer: Dr.-Ing. Michael Sorg, Dipl.-Ing. Franz Sorg
-USt-IdNr.: DE 128592548
-
+--xmSFqbCVBNzU8hchakrr--
