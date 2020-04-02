@@ -1,144 +1,93 @@
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (EUR05-VI1-obe.outbound.protection.outlook.com [40.92.90.21])
- by mx.groups.io with SMTP id smtpd.web11.2176.1585816578779111787
+Received: from EUR03-DB5-obe.outbound.protection.outlook.com (EUR03-DB5-obe.outbound.protection.outlook.com [40.92.71.86])
+ by mx.groups.io with SMTP id smtpd.web10.2304.1585817062242732690
  for <yocto@lists.yoctoproject.org>;
- Thu, 02 Apr 2020 01:36:19 -0700
+ Thu, 02 Apr 2020 01:44:23 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@outlook.com header.s=selector1 header.b=QprXTubp;
- spf=pass (domain: outlook.com, ip: 40.92.90.21, mailfrom: kweihmann@outlook.com)
+ dkim=pass header.i=@outlook.com header.s=selector1 header.b=uNxmJZxK;
+ spf=pass (domain: outlook.com, ip: 40.92.71.86, mailfrom: kweihmann@outlook.com)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Yi4chiyS5uuKOBgaoNSM9HKit+pnPyaxZwy3W0oyvMgL28+kB6jWo3SSIZ8GwMkPRAkSgOlywloHXEHBa5MBjdKoDz6LW+OIrWGyhfSwUZTgZwgCuHZzj196Qiy5bB49N8Ba63Fj+ZZ6GAOT208SAn5IPVK9XaJwXKYHPuue3iZHTQ07UdC+IbRu9bg5KEDVpvLZZXpax29k+AzzKlxAAct9uPI5tKyinPn5mwCmUv2GcHK8b4fBdNFRKHiLirK1VtZ+SBPjMDqP8DPAYYdFhx2i6WzTUVkXCvh3yAXHpOGh03WHr93TKpobbn2zf+XXstXULTd0ul9BDhdsq7VlEQ==
+ b=M/ejiT1WOZ3Pn5QLPTpB7Yns2X3OxxTxM3mw7yvowTWLf3qEIIs2M0CtsldnnRomXYx4xOH9LzAbVPcpJ+TlOAVu1pZtU8zfDTN2ISMEahDZnSKZHQHv95l+VeMbw9WjnOgcNd54AupKKvwpuDKaMLzHSM6d4uKwUtFzOVQNcCdUxTJg02o5i0WkZE5bplhms1DURJEfP+m8omf8cVKVHxrl2KigmS8JXBcfnVJsgVlfLqz9yl20ckL1xzyGW54YOaBjESGRl41hU54S5IXQi1VG8EeieuCxr140//OmOn9kLdJukR3pBDUuHQZ0ESPFQIwKinqSA1lCgKPDq2iOvQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zpcsgaaSyDXDgTV6f4aRVqLJSjXhOtCArRovYNXw5VE=;
- b=VA2FJ5mHniQuZgyAJtYOO+YlnY3nATP8hPk0woMuIShkziaM6U4c2ZrpcNTzPaRZEVjS92m1GzJMkHHJ97Y1dBinrkmTc5Ub1/p7GMhvcoi73GpeJk/J5cJXoOhM702imZmEYeGugmJKVipJdwf64IUBJift/t/mQRZjmR4kGPiiY3/0akkbGRNlcZbZYS9nU1TylqcTLUyXvwQexIpSMLRPd/ZZMClkubQ2pgqB1LfxeifFwQbBQ955aoAjEqO/iz8G8B/m1pw3CP8r5MzSfbZK0AKe9hd9QfLfIgcA+uZUOApgVk/Q7L/1MrikUYe8VLyZXGGc6rMCQ6ep6O508Q==
+ bh=bOv3iXuk1fh2OAf4btieQ0BQCt27XQhNqIUdjA29nHg=;
+ b=Fv49/SOeeSlolmt2ijNCKCYPECovM2S0dhinJX+Z99+d9w+pEvmUe37Wd+TgMOP2sZx4TQkiwdeEQnMidi4L/uo/GRK2lm2lUaBB1Gaq1RMftXCYartHknIerqPIX8CL7sdgjlec9hVe0Qy876uqX6lplJufOaEgC7/KWAVbcheE8v7QZAxibFaQV2hZduEC4ovCGVIsfyeyXQLEKypq6OT/ZU/uK3mkmfsiENWCeqJlg7DYm2fQ9bKSev1e05nMhERjlfF+oigGmhTfCQV8RB98MNTY0G2mkRs8bdnHrVwktfVrhsGDASRtyR5rrySmtDZsPhXYnhd9H6CD5IeWSA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=outlook.com; dmarc=pass action=none header.from=outlook.com;
  dkim=pass header.d=outlook.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zpcsgaaSyDXDgTV6f4aRVqLJSjXhOtCArRovYNXw5VE=;
- b=QprXTubpMmD6nkDak/IRVIZKYYnpiKyOQm7GfaUFqAoiJHkQHnwdzROUAoUJnN7db9D0QXXOUYPVxwoj/ZKk59bwNcbso3hGuU1fBX8rJ/gPGe/pKOXI3oYiQjcZfqBZGe4w1sL8wD7L5BM4bQBcxeBH5gEpu+EBOG4+GFW2mpGQP4hmMEA2DP/g4J+Xmg2cUBtJgKfVBrmdx8CI4rlCEzjpUq+tNJt036JkTXWBkqsAceSxMsgoigy+U8EzzCmru92IqNbCUosJHIS5akuoiKbB0dP1wfG2hAbqjgE2a+l4LpB8VXV/IqDg67gfR3i0o/czEiG5va4dQdPYgE4eDw==
-Received: from DB8EUR05FT023.eop-eur05.prod.protection.outlook.com
- (2a01:111:e400:fc0f::42) by
- DB8EUR05HT027.eop-eur05.prod.protection.outlook.com (2a01:111:e400:fc0f::95)
+ bh=bOv3iXuk1fh2OAf4btieQ0BQCt27XQhNqIUdjA29nHg=;
+ b=uNxmJZxKcQWjSHRnWDiRd1AmRUL/gpXlzAQJgmwBYFdTGGLMD+/UNjQJuGMacYcYCjFq3Bd5WyXCC7ydKtK/KqbGxhOUMuFmtoYhzZwx3HxQVc2MlH14sN1flpsK0l3qGKMtdRnicq0YuwHmcyRIFfWll7jCmLatFDYeJI84lNrYNIaBsUaXqI09kTAntIVKQu7Q3lZeL6aV5DtvHQmtoVy9MttJMyKarerGeuBopQ0U43IibL25nskW6GpyE1udtg5Z288RV4IUA2iOiS6lMaFrXFJ9qZhnkxafwHVMJFY4YxMy0mzu3ZibEFK3Pnc67HdR2YDuFm3CyHtib5O2CA==
+Received: from VE1EUR03FT033.eop-EUR03.prod.protection.outlook.com
+ (2a01:111:e400:7e09::43) by
+ VE1EUR03HT231.eop-EUR03.prod.protection.outlook.com (2a01:111:e400:7e09::313)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15; Thu, 2 Apr
- 2020 08:36:16 +0000
-Received: from VI1PR05MB4286.eurprd05.prod.outlook.com (10.233.238.53) by
- DB8EUR05FT023.mail.protection.outlook.com (10.233.239.43) with Microsoft SMTP
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2856.17; Thu, 2 Apr
+ 2020 08:44:19 +0000
+Received: from VI1PR05MB4286.eurprd05.prod.outlook.com (10.152.18.60) by
+ VE1EUR03FT033.mail.protection.outlook.com (10.152.18.147) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2878.15 via Frontend Transport; Thu, 2 Apr 2020 08:36:16 +0000
+ 15.20.2856.17 via Frontend Transport; Thu, 2 Apr 2020 08:44:19 +0000
 X-IncomingTopHeaderMarker: 
- OriginalChecksum:C5276D81B1813160CA95A13922675879E83C3A30199441BED46992BABE389854;UpperCasedChecksum:8A75EA9C61F9CB3598E675F3094B961D207ADCE771723C37CEBCFE1C0FB54C04;SizeAsReceived:8842;Count:48
+ OriginalChecksum:22586BFF38648436A2FF90B9C159F34E8A830185C47D808A5E9CE54DFF87F822;UpperCasedChecksum:02780BA8B20BDAFDDD87D065C5AA428752AA62BCFA663578C3C57E15E53246CA;SizeAsReceived:8843;Count:48
 Received: from VI1PR05MB4286.eurprd05.prod.outlook.com
  ([fe80::e1b1:4a5f:7dd7:4131]) by VI1PR05MB4286.eurprd05.prod.outlook.com
  ([fe80::e1b1:4a5f:7dd7:4131%4]) with mapi id 15.20.2856.019; Thu, 2 Apr 2020
- 08:36:16 +0000
+ 08:44:19 +0000
 Subject: Re: [yocto] Files get sporadically lost for native packages
 To: yocto@lists.yoctoproject.org
 References: <VI1PR05MB428643D97A9A175005473BDEA8CD0@VI1PR05MB4286.eurprd05.prod.outlook.com>
  <3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com>
 From: "Konrad Weihmann" <kweihmann@outlook.com>
 Message-ID: 
- <VI1PR05MB4286F1D0AD5FBCEC177ED19EA8C60@VI1PR05MB4286.eurprd05.prod.outlook.com>
-Date: Thu, 2 Apr 2020 10:36:14 +0200
+ <VI1PR05MB428668BF04B6CC7F617C1FA2A8C60@VI1PR05MB4286.eurprd05.prod.outlook.com>
+Date: Thu, 2 Apr 2020 10:44:18 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 In-Reply-To: <3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com>
-X-ClientProxiedBy: AM6P195CA0095.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:209:86::36) To VI1PR05MB4286.eurprd05.prod.outlook.com
+X-ClientProxiedBy: AM6PR08CA0001.eurprd08.prod.outlook.com
+ (2603:10a6:20b:b2::13) To VI1PR05MB4286.eurprd05.prod.outlook.com
  (2603:10a6:803:4d::27)
 Return-Path: kweihmann@outlook.com
 X-Microsoft-Original-Message-ID: 
- <4eb91a3c-a5f0-3d15-f0f3-61718a43a479@outlook.com>
+ <b55f6948-417e-2d61-f69c-c82dbd4fd39c@outlook.com>
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.188.20] (87.150.34.83) by AM6P195CA0095.EURP195.PROD.OUTLOOK.COM (2603:10a6:209:86::36) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.16 via Frontend Transport; Thu, 2 Apr 2020 08:36:15 +0000
+Received: from [192.168.188.20] (87.150.34.83) by AM6PR08CA0001.eurprd08.prod.outlook.com (2603:10a6:20b:b2::13) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.15 via Frontend Transport; Thu, 2 Apr 2020 08:44:19 +0000
 X-Microsoft-Original-Message-ID: 
- <4eb91a3c-a5f0-3d15-f0f3-61718a43a479@outlook.com>
-X-TMN: [sQO//Ftzs+jFlQwyJ0rRIKgsIcj6Qatp]
+ <b55f6948-417e-2d61-f69c-c82dbd4fd39c@outlook.com>
+X-TMN: [pKKXaghJhGcTtVg2heIVldUM5R02BmvE]
 X-MS-PublicTrafficType: Email
 X-IncomingHeaderCount: 48
 X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-Correlation-Id: 9a151d14-6591-4197-31b2-08d7d6e0e897
-X-MS-TrafficTypeDiagnostic: DB8EUR05HT027:
+X-MS-Office365-Filtering-Correlation-Id: 88fdc8d6-caed-4186-d6cf-08d7d6e208d4
+X-MS-TrafficTypeDiagnostic: VE1EUR03HT231:
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info: 
-	DqHJK+qAKNkY+vXFLmdmf84qYHYHf+RWozovCEL49cabMNfyaMJ5Y3yFrC9UeMih3/cvjZ8nf4HmOurGHDnQGu+16rgZoEVbE72KOwEEolUq59ygPuClsTQ1L/6D8MyvlYVbSi7z5V87zuZFFqPjOrUBa1+tOTMwWTnVcI05jXdvXXC8y8XuM0LW9Ity28D0fkYNYTZmU9DQvTftZA57plbgwB4JMovLNCWgh2Tf3OE=
-X-Forefront-Antispam-Report: 
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:0;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR05MB4286.eurprd05.prod.outlook.com;PTR:;CAT:NONE;SFTY:;SFS:;DIR:OUT;SFP:1901;
+	t9YXkXQcZGqMKt3ztUpaEEiOL0OEkyW9fOT5CfT2cqLbnL0ZMAwv2Gw9BrgblCD+4oMx6nANDf2Nb/7UBG1+hutp8y/K85eqv5OUyQdfw3WJe2h35eI55EzG0gHAiB2NmZafU7fjd7h9ErRgEO4lndjeBUgpdjkZpsFBQ/Z+QudVsxGcm6fAYUcd4RAEQlU7HtTdGQuKD5HzpkbDREiAB8hhH08fvmJTBtXoLPidD+Y=
 X-MS-Exchange-AntiSpam-MessageData: 
-	2aGXlQ8Br18o2Qhba+HpENoWUr+JLgXgFMYTCJ1PQyOWCWmt7UYONmGSDhk6FwifVZ/OjwfleznoU0z0WQFactRrGyUbItK57Gj4npUND2c8ez90SvvTG9roJzIEdKg2CDqVJLloIF424vqn2MiynA==
+	JU69I+kLH02Gc/tv3HG2bW+2yvlybH5Ol5l7JgnwEjAdlcfJ5iHsUl/MLIzCm7+J7wwzlQeAptyPJ5G+LXXzqxLaBBqTcR4CSCgJR4s20uA8ixs3ImoQsWRsyme4+NLxfUtNHLYPyPhGC+3Lz5w/3g==
 X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9a151d14-6591-4197-31b2-08d7d6e0e897
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2020 08:36:16.2053
+X-MS-Exchange-CrossTenant-Network-Message-Id: 88fdc8d6-caed-4186-d6cf-08d7d6e208d4
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2020 08:44:19.7732
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
 X-MS-Exchange-CrossTenant-FromEntityHeader: Internet
 X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 
 	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8EUR05HT027
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1EUR03HT231
 Content-Type: multipart/alternative;
- boundary="------------7272BBCB60F20B29AE826928"
+ boundary="------------2BDBE54343E9E87FB24E4B1B"
 Content-Language: en-US
 
---------------7272BBCB60F20B29AE826928
+--------------2BDBE54343E9E87FB24E4B1B
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-HI,
-
-sorry I didn't specify it further.
-To me it seems to be a corner case scenario.
-
-This happens when doing a from scratch build with a lot on native python 
-libraries (as it is setup in a test distribution I'm working on).
-Roughly it pulls in ~100 native python site packages.
-
-The setup where I almost every time can reproduce the issue
-
-- Ubuntu 16.04 or 18.04 container
-- 2 VCPUs (can't say what it actually is)
-- 14GB of hard disk (I guess it's some virtual storage)
-- 12GB of RAM
-
--> as offered by GitHub's Actions Azure interface
-
-The setup where it occasionally happens
-
-- Ubuntu 19.04/19.10
-- 8 cores i7-6th gen
-- 16GB Ram
-- some Samsung-SSD with more than enough space
-
-The setup where it never happened so far
-
-- Ubuntu 18.04
-- 48 core threadripper
-- lots of RAM and SSD
-
-and
-
-- Debian 9
-- 24 core XEN guest
-- >80GB of RAM
-- HDD doesn't matter as it was a ramdisk only build
-
-This doesn't happen (afaik) on differential builds when the initial one 
-is good (same for sstate cache backed builds).
-
-I just wanted to know if somebody ever encountered the same issue.
-As the nature of this issue is hard to catch, I'm open to ideas...
-What currently works for me is to remove all python cache files before 
-they are packaged - at least none of my recent build failed so far.
-
-Any ideas how to tackle this problem, any suggestions?
-
-Best
-Konrad
+To answer your others questions... see below
 
 On 02.04.20 05:42, Randy MacLeod wrote:
 > On 2020-03-28 8:26 a.m., Konrad Weihmann wrote:
@@ -309,17 +258,30 @@ On 02.04.20 05:42, Randy MacLeod wrote:
 > builder around the world so let's try to eliminate a few possibilities.
 >
 > When did you start having this problem?
+Since the start of the test distribution I'm working on. But also for 
+plain poky builds if I forcefully inject all of the python-native 
+site-packages via local.conf (DEPENDS_class-native += "..."), without 
+actually using them in the recipe scope
 > How often do you think it's happening: 1 in 3 builds, 1 in 10?
+See the other mail - looks like it heavily depends on the host
 > Tell us about your machine: OS,version, disk, CPUs, ram
+See the other mail
 > Do you do anything special in your conf dir? Send local.conf perhaps.
+No custom modification (just for testing the DEPENDS-injection)
 > Do you have any local bbappends or commits on top of poky or
 > in other layers?
+No
 > Have you tried to simplify the build to eliminate problems
 > potentially caused by other layers?
+I did - see above
 > Are you able to reproduce the problem on more than one build machine?
+See the other mail
 > Are you able to reproduce the problem on a different Linux distro?
+Not really - Debian 9 was fine all other Hosts are Ubuntu based
 > Are there other builds or users on the machine that may be causing
 > extra load?
+No the hosts are just being poorly equipped - at least the ones that 
+produce this issue
 >
 >
 > ../Randy
@@ -337,7 +299,7 @@ On 02.04.20 05:42, Randy MacLeod wrote:
 >
 > 
 
---------------7272BBCB60F20B29AE826928
+--------------2BDBE54343E9E87FB24E4B1B
 Content-Type: text/html; charset=utf-8
 Content-Transfer-Encoding: 8bit
 
@@ -345,46 +307,7 @@ Content-Transfer-Encoding: 8bit
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   </head>
   <body>
-    <p>HI,</p>
-    <p>sorry I didn't specify it further.<br>
-      To me it seems to be a corner case scenario.</p>
-    <p>This happens when doing a from scratch build with a lot on native
-      python libraries (as it is setup in a test distribution I'm
-      working on).<br>
-      Roughly it pulls in ~100 native python site packages.</p>
-    <p>The setup where I almost every time can reproduce the issue</p>
-    <p>- Ubuntu 16.04 or 18.04 container<br>
-      - 2 VCPUs (can't say what it actually is)<br>
-      - 14GB of hard disk (I guess it's some virtual storage)<br>
-      - 12GB of RAM<br>
-      <br>
-      -&gt; as offered by GitHub's Actions Azure interface</p>
-    <p>The setup where it occasionally happens</p>
-    <p>- Ubuntu 19.04/19.10<br>
-      - 8 cores i7-6th gen<br>
-      - 16GB Ram<br>
-      - some Samsung-SSD with more than enough space</p>
-    <p>The setup where it never happened so far</p>
-    <p>- Ubuntu 18.04<br>
-      - 48 core threadripper<br>
-      - lots of RAM and SSD</p>
-    <p>and</p>
-    <p>- Debian 9<br>
-      - 24 core XEN guest<br>
-      - &gt;80GB of RAM<br>
-      - HDD doesn't matter as it was a ramdisk only build</p>
-    <p>This doesn't happen (afaik) on differential builds when the
-      initial one is good (same for sstate cache backed builds).</p>
-    <p>I just wanted to know if somebody ever encountered the same
-      issue.<br>
-      As the nature of this issue is hard to catch, I'm open to ideas...<br>
-      What currently works for me is to remove all python cache files
-      before they are packaged - at least none of my recent build failed
-      so far.</p>
-    <p>Any ideas how to tackle this problem, any suggestions?<br>
-      <br>
-      Best<br>
-      Konrad<br>
+    <p>To answer your others questions... see below<br>
     </p>
     <div class="moz-cite-prefix">On 02.04.20 05:42, Randy MacLeod wrote:<br>
     </div>
@@ -609,30 +532,59 @@ Content-Transfer-Encoding: 8bit
       <br>
       When did you start having this problem?
       <br>
-      How often do you think it's happening: 1 in 3 builds, 1 in 10?
+    </blockquote>
+    Since the start of the test distribution I'm working on. But also
+    for plain poky builds if I forcefully inject all of the
+    python-native site-packages via local.conf (DEPENDS_class-native &#43;=
+    &quot;...&quot;), without actually using them in the recipe scope<br>
+    <blockquote type="cite" cite="mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">How
+      often do you think it's happening: 1 in 3 builds, 1 in 10?
       <br>
-      Tell us about your machine: OS,version, disk, CPUs, ram
+    </blockquote>
+    See the other mail - looks like it heavily depends on the host<br>
+    <blockquote type="cite" cite="mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">Tell
+      us about your machine: OS,version, disk, CPUs, ram
       <br>
-      Do you do anything special in your conf dir? Send local.conf
-      perhaps.
+    </blockquote>
+    See the other mail<br>
+    <blockquote type="cite" cite="mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">Do
+      you do anything special in your conf dir? Send local.conf perhaps.
       <br>
-      Do you have any local bbappends or commits on top of poky or
+    </blockquote>
+    No custom modification (just for testing the DEPENDS-injection)<br>
+    <blockquote type="cite" cite="mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">Do
+      you have any local bbappends or commits on top of poky or
       <br>
       in other layers?
       <br>
-      Have you tried to simplify the build to eliminate problems
+    </blockquote>
+    No<br>
+    <blockquote type="cite" cite="mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">Have
+      you tried to simplify the build to eliminate problems
       <br>
       potentially caused by other layers?
       <br>
-      Are you able to reproduce the problem on more than one build
-      machine?
+    </blockquote>
+    I did - see above<br>
+    <blockquote type="cite" cite="mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">Are
+      you able to reproduce the problem on more than one build machine?
       <br>
-      Are you able to reproduce the problem on a different Linux distro?
+    </blockquote>
+    See the other mail<br>
+    <blockquote type="cite" cite="mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">Are
+      you able to reproduce the problem on a different Linux distro?
       <br>
-      Are there other builds or users on the machine that may be causing
+    </blockquote>
+    Not really - Debian 9 was fine all other Hosts are Ubuntu based<br>
+    <blockquote type="cite" cite="mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">Are
+      there other builds or users on the machine that may be causing
       <br>
       extra load?
       <br>
+    </blockquote>
+    No the hosts are just being poorly equipped - at least the ones that
+    produce this issue<br>
+    <blockquote type="cite" cite="mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">
       <br>
       <br>
       ../Randy
@@ -660,4 +612,4 @@ Content-Transfer-Encoding: 8bit
   </body>
 </html>
 
---------------7272BBCB60F20B29AE826928--
+--------------2BDBE54343E9E87FB24E4B1B--
