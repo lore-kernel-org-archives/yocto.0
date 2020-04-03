@@ -1,113 +1,135 @@
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
- by mx.groups.io with SMTP id smtpd.web12.7815.1585909323737988993
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
+ by mx.groups.io with SMTP id smtpd.web10.9952.1585918376521209642
  for <yocto@lists.yoctoproject.org>;
- Fri, 03 Apr 2020 03:22:04 -0700
+ Fri, 03 Apr 2020 05:52:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@konsulko.com header.s=google header.b=Gid8XdLa;
- spf=pass (domain: konsulko.com, ip: 209.85.221.50, mailfrom: pbarker@konsulko.com)
-Received: by mail-wr1-f50.google.com with SMTP id g3so5565673wrx.2
-        for <yocto@lists.yoctoproject.org>; Fri, 03 Apr 2020 03:22:03 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=TkAilzuh;
+ spf=pass (domain: gmail.com, ip: 209.85.215.173, mailfrom: joe.macdonald@gmail.com)
+Received: by mail-pg1-f173.google.com with SMTP id c23so3476487pgj.3
+        for <yocto@lists.yoctoproject.org>; Fri, 03 Apr 2020 05:52:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=date:from:to:cc:subject:message-id:in-reply-to:references
-         :organization:mime-version:content-transfer-encoding;
-        bh=q0Y1ghnQi9H0v/Veq60s4wIahxDx7VYwqHRLkf81THY=;
-        b=Gid8XdLa4rV11kHlwCdYYk6qcYOpwjE0DbmIb8azlkzJnURTYsxJsxYcf3oEllGP3B
-         zzkfryAElpLXwAzJmXCdXhm4L3STFYDu45Ez+/MXjBww/OvybFLIo3ljVDCO2/+uL8SQ
-         dSxcavNr4IKkLJULVXcIP45KIk/iUPa+Pxr64=
+        d=gmail.com; s=20161025;
+        h=sender:from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=p+nwrSjhOxWIsIk0cWW/frgM7vnA+/eM3v06IX+qqkM=;
+        b=TkAilzuhzH1YzsG7T7H85bRNnfn18x1NbephYEbSX5TNPektU9CBCvjTE4hox3OA0G
+         xFI8kEq/NO4XImF288DLapvmS3h3mF5D7M0mSAMFP5WFf9KZB4R+Gyjfyw6oe8TBj2A+
+         5P/v4xXrqCKCdlI8IbvB4oTZX+3BZLDpJ4dZ9AWQKiSM2+B7T4nl6bM6g490PrDkCFpe
+         Dp9JVR+O2LOCO2MuF5HErZXGaEiv/7e/cxjv7jwjWwz+LTVUOyIarCkL3sm/jti1B3Bg
+         HsIO0zbKZhgnzBe+jWMh6d+IIFzYuFc0nqh1Zz9gg8PXKRJOBft3rhbKaRwXtURimFo7
+         ebLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
-         :references:organization:mime-version:content-transfer-encoding;
-        bh=q0Y1ghnQi9H0v/Veq60s4wIahxDx7VYwqHRLkf81THY=;
-        b=ZXP3T6MaUy8bQUNkbDTEznjhvL1tbiGtMSqae6ItRr8WZ3QrTySnqCQjHq/sAh/pK2
-         LghY1DFswwRClbPMfyFu31l+K+OQ0hqOmuEKP5sGCNkZY6Kqn696se5Lv5q4CAd7mBwe
-         g6DMNAGLHRNc7N6kvMSvh6Mq1rVYAVXWg8Jqs7+pzQbQqEGnhDCEKAVT5wq5XJcN7Czi
-         1NaNgsGghuRN3ioozWb3U/yzI4isYZn/Vdvjxxgysg1KSTQFKCnPblh7/U5YOUzf5SGh
-         oA3TvWEXZdGMQMf9SYvHa2oUDToZtB7/ckEKnODF2zy4+Aq3bF8Ay6I8e4+GlrhYPIWP
-         QNpw==
-X-Gm-Message-State: AGi0PuZ2uAMGmCbKgQeSlCJ0Z9HHZqCleM2yZfzRfnHyXJ7RgtaAxcrf
-	LjhX0JjW+thQQHXEAfPfzFo/3w==
-X-Google-Smtp-Source: APiQypIfFkIIvjT2NCJI58mfon/26MyNvKpYUoIGiz1uuN5P3qWyqSKgpnYf6ESNo6QP8tARJMaZEQ==
-X-Received: by 2002:a5d:4401:: with SMTP id z1mr7169088wrq.412.1585909322337;
-        Fri, 03 Apr 2020 03:22:02 -0700 (PDT)
-Return-Path: <pbarker@konsulko.com>
-Received: from ub1910 ([213.48.11.149])
-        by smtp.gmail.com with ESMTPSA id w4sm10789729wmc.18.2020.04.03.03.22.01
+        h=x-gm-message-state:sender:from:to:subject:date:message-id
+         :mime-version:content-transfer-encoding;
+        bh=p+nwrSjhOxWIsIk0cWW/frgM7vnA+/eM3v06IX+qqkM=;
+        b=FtnqEkUJf3ezB9oOxWnOYOBygWu41YmKrIbdBw3wB4tMcTK5QsXNcMd+vDAn9rz1r7
+         084ZhPlAwTota5IlkEdS84n/8JjvNsGU7GUUNpCuwMtQM1PsFvOuak6JEgwjZHzdkZOP
+         Adm4buzrbK1KmU/mchkydJYNCIJll5iyxLDZ2YbZtIIVfpPEdNR8pYZ+2MHxaTC6bAtj
+         PX3T4K/W44XxeQ8TIo4dnzTBlOOG6qHmytK1aoGqCTLyMAaLWifapGtblRYIp89ZNGBG
+         t7oZ4r6fMkBQI+pJdb6xckm6koiAicppxd+EqEsrqNtpgP/LUwuI/9YCnmIq7Y6ZpUoB
+         uiBQ==
+X-Gm-Message-State: AGi0PuZ0KAB5eUgzR1VCoJgC0evqRZq58ier78UZX7rBYGAMTRo83J65
+	DIPKILxwpBzNYrkofaEMKjNSNeK+Sxo=
+X-Google-Smtp-Source: APiQypKE/07EFewdJNrn0Pd8XiXU6fUL6LQwj2XqeBOMLOdVRSUDIe8YKg/w7QyYjloDE1idUQdHkg==
+X-Received: by 2002:a63:6f88:: with SMTP id k130mr7769271pgc.194.1585918375381;
+        Fri, 03 Apr 2020 05:52:55 -0700 (PDT)
+Return-Path: <joe.macdonald@gmail.com>
+Received: from nightwinge.world.mentorg.com (nat-wv.mentorg.com. [192.94.38.34])
+        by smtp.gmail.com with ESMTPSA id s61sm6007724pjd.33.2020.04.03.05.52.53
+        for <yocto@lists.yoctoproject.org>
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Apr 2020 03:22:01 -0700 (PDT)
-Date: Fri, 3 Apr 2020 11:21:59 +0100
-From: "Paul Barker" <pbarker@konsulko.com>
-To: Thomas =?UTF-8?B?S8O2bGxlcg==?= <thomas@koeller.dyndns.org>
-Cc: yocto@lists.yoctoproject.org
-Subject: Re: [yocto] Inappropriate error handling
-Message-ID: <20200403112159.5c1ba1b2@ub1910>
-In-Reply-To: <Dj2j.1585907456892659579.aMsW@lists.yoctoproject.org>
-References: <Dj2j.1585907456892659579.aMsW@lists.yoctoproject.org>
-Organization: Konsulko Group
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        Fri, 03 Apr 2020 05:52:54 -0700 (PDT)
+Sender: Joe MacDonald <joe.macdonald@gmail.com>
+From: "Joe MacDonald" <joe_macdonald@mentor.com>
+To: yocto@lists.yoctoproject.org
+Subject: [meta-selinux][PATCH] clean up getVar() usage
+Date: Fri,  3 Apr 2020 08:52:51 -0400
+Message-Id: <20200403125251.35877-1-joe_macdonald@mentor.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Fri, 03 Apr 2020 02:50:56 -0700
-Thomas K=C3=B6ller <thomas@koeller.dyndns.org> wrote:
+83eac4de updated the usage of getVar() in classes/selinux.bbclass to
+leave out the default expand parameter. This is consistent with the
+usage in the core layers.
 
-> Hi,
->=20
-> here is an excerpt from a log of a failed build:
->=20
-> WARNING: icu-60.2-r0 do_populate_sysroot_setscene: Failed to fetch URL fi=
-le://bd/sstate:icu:aarch64-poky-linux:60.2:r0:aarch64:3:bd6b12b7f20a46d35ce=
-4d9382c306075_populate_sysroot.tgz;downloadfilename=3Dbd/sstate:icu:aarch64=
--poky-linux:60.2:r0:aarch64:3:bd6b12b7f20a46d35ce4d9382c306075_populate_sys=
-root.tgz, attempting MIRRORS if available
-> ERROR: icu-60.2-r0 do_populate_sysroot_setscene: Fetcher failure: Unable =
-to find file file://bd/sstate:icu:aarch64-poky-linux:60.2:r0:aarch64:3:bd6b=
-12b7f20a46d35ce4d9382c306075_populate_sysroot.tgz;downloadfilename=3Dbd/sst=
-ate:icu:aarch64-poky-linux:60.2:r0:aarch64:3:bd6b12b7f20a46d35ce4d9382c3060=
-75_populate_sysroot.tgz anywhere. The paths that were searched were:
->     /mnt/data/jenkins/workspace/imx-manifest_warrior/sstate
->     /mnt/data/jenkins/workspace/imx-manifest_warrior/sstate
-> ERROR: icu-60.2-r0 do_populate_sysroot_setscene: No suitable staging pack=
-age found
-> WARNING: Logfile for failed setscene task is /mnt/data/jenkins/workspace/=
-imx-manifest_warrior/buildroot/imx8mqevk-basler/imx-4.14.98-2.0.0_ga_basler=
-/basler-dart-bcon-mipi-dev/build/tmp/work/aarch64-poky-linux/icu/60.2-r0/te=
-mp/log.do_populate_sysroot_setscene.44028
-> WARNING: Setscene task (/mnt/data/jenkins/workspace/imx-manifest_warrior/=
-buildroot/imx8mqevk-basler/imx-4.14.98-2.0.0_ga_basler/basler-dart-bcon-mip=
-i-dev/sources/poky/meta/recipes-support/icu/icu_60.2.bb:do_populate_sysroot=
-_setscene) failed with exit code '1' - real task will be run instead
->=20
-> As can be seen, a setscene task failed. I do not (yet) know why this happ=
-ened, but that is not what this message is about. What matters is that the =
-real task will be executed later, which works just fine, and the entire bui=
-ld runs to completion without any further errors. However, at the very end =
-I get the following output:
->=20
-> Summary: There were 2 WARNING messages shown.
-> Summary: There were 2 ERROR messages shown, returning a non-zero exit cod=
-e.
->=20
-> And then the non-zero exit code that is returned causes my script to take=
- the error exit, even though the build products are all fine and perfectly =
-usable. This really should not happen.
+Bring all other calls to getVar() in the layer into alignment with this
+approach.
 
-This has been discussed last month:
-https://lists.yoctoproject.org/g/yocto/topic/71426351.
+Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
+---
+ recipes-core/busybox/busybox_selinux.inc        | 8 ++++----
+ recipes-security/refpolicy/refpolicy_common.inc | 2 +-
+ recipes-security/selinux/libselinux-python.inc  | 2 +-
+ recipes-security/selinux/libselinux.inc         | 2 +-
+ 4 files changed, 7 insertions(+), 7 deletions(-)
 
-I ended up using Joshua Watt's suggestion to run the setscene tasks in a
-separate bitbake process and ignore failure:
+diff --git a/recipes-core/busybox/busybox_selinux.inc b/recipes-core/busybox/busybox_selinux.inc
+index cc83b01..6e491ce 100644
+--- a/recipes-core/busybox/busybox_selinux.inc
++++ b/recipes-core/busybox/busybox_selinux.inc
+@@ -8,9 +8,9 @@ python create_sh_wrapper_reset_alternative_vars () {
+     # We need to load the full set of busybox provides from the /etc/busybox.links
+     # Use this to see the update-alternatives with the right information
+ 
+-    dvar = d.getVar('D', True)
+-    pn = d.getVar('PN', True)
+-    base_bindir = d.getVar('base_bindir', True)
++    dvar = d.getVar('D')
++    pn = d.getVar('PN')
++    base_bindir = d.getVar('base_bindir')
+ 
+     def create_sh_alternative_vars(links, target, mode):
+         import shutil
+@@ -20,7 +20,7 @@ python create_sh_wrapper_reset_alternative_vars () {
+         os.fchmod(fwp.fileno(), mode)
+         fwp.close()
+         # Install the sh wrappers and alternatives reset to link to them
+-        wpdir = os.path.join(d.getVar('libdir', True), pn)
++        wpdir = os.path.join(d.getVar('libdir'), pn)
+         wpdir_dest = '%s%s' % (dvar, wpdir)
+         if not os.path.exists(wpdir_dest):
+             os.makedirs(wpdir_dest)
+diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
+index 2083a37..1d9ca93 100644
+--- a/recipes-security/refpolicy/refpolicy_common.inc
++++ b/recipes-security/refpolicy/refpolicy_common.inc
+@@ -117,7 +117,7 @@ python __anonymous () {
+ 
+     # make sure DEFAULT_ENFORCING is something sane
+     if not re.match('^(enforcing|permissive|disabled)$',
+-                    d.getVar('DEFAULT_ENFORCING', True),
++                    d.getVar('DEFAULT_ENFORCING'),
+                     flags=0):
+         d.setVar('DEFAULT_ENFORCING', 'permissive')
+ }
+diff --git a/recipes-security/selinux/libselinux-python.inc b/recipes-security/selinux/libselinux-python.inc
+index 24407e8..6a64473 100644
+--- a/recipes-security/selinux/libselinux-python.inc
++++ b/recipes-security/selinux/libselinux-python.inc
+@@ -14,7 +14,7 @@ RDEPENDS_${PN} += "libselinux python3-core python3-shell"
+ 
+ def get_policyconfigarch(d):
+     import re
+-    target = d.getVar('TARGET_ARCH', True)
++    target = d.getVar('TARGET_ARCH')
+     p = re.compile('i.86')
+     target = p.sub('i386',target)
+     return "ARCH=%s" % (target)
+diff --git a/recipes-security/selinux/libselinux.inc b/recipes-security/selinux/libselinux.inc
+index 8d381de..fe8c087 100644
+--- a/recipes-security/selinux/libselinux.inc
++++ b/recipes-security/selinux/libselinux.inc
+@@ -12,7 +12,7 @@ DEPENDS_append_libc-musl = " fts"
+ 
+ def get_policyconfigarch(d):
+     import re
+-    target = d.getVar('TARGET_ARCH', True)
++    target = d.getVar('TARGET_ARCH')
+     p = re.compile('i.86')
+     target = p.sub('i386',target)
+     return "ARCH=%s" % (target)
+-- 
+2.20.1
 
-    bitbake --setscene-only <target> || true
-    bitbake --skip-setscene <target>
-
-I'd like to come up with something better but I don't have the bandwidth to
-look into it further right now.
-
-Thanks,
-
---=20
-Paul Barker
-Konsulko Group
