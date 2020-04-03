@@ -1,21 +1,38 @@
-Received: from bugfree.ch (bugfree.ch [5.35.246.185])
- by mx.groups.io with SMTP id smtpd.web12.6851.1585903526663329258
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.6874.1585903683252582357
  for <yocto@lists.yoctoproject.org>;
- Fri, 03 Apr 2020 01:45:27 -0700
+ Fri, 03 Apr 2020 01:48:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: bugfree.ch, ip: 5.35.246.185, mailfrom: yocto@bugfree.ch)
+ dkim=missing; spf=fail (domain: bugfree.ch, ip: 140.211.169.56, mailfrom: yocto@bugfree.ch)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id E70D2E0193F; Fri,  3 Apr 2020 01:48:02 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=0.1 required=5.0 tests=BAYES_00,FORGED_SPF_HELO,
+	MISSING_HEADERS,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  1.0 MISSING_HEADERS Missing To: header
+	*  1.0 FORGED_SPF_HELO FORGED_SPF_HELO
+X-Greylist: delayed 302 seconds by postgrey-1.32 at yocto-www; Fri, 03 Apr 2020 01:48:00 PDT
+Received: from bugfree.ch (ssl.bugfree.ch [5.35.246.185])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12615E01902
+	for <yocto@yoctoproject.org>; Fri,  3 Apr 2020 01:48:00 -0700 (PDT)
 Received: from anticat.ch ([::ffff:46.126.167.17])
   (AUTH: PLAIN outbox, TLS: TLSv1.3,256bits,TLS_AES_256_GCM_SHA384)
   by bugfree.ch with ESMTPSA
-  id 00000000004A02FC.000000005E86F7A4.00002929; Fri, 03 Apr 2020 10:45:24 +0200
+  id 00000000004A0062.000000005E86F711.00002904; Fri, 03 Apr 2020 10:42:57 +0200
 Received: from MacBook.local (unknown [192.168.1.88])
-	by anticat.ch (Postfix) with ESMTP id 6DB5A627A5
-	for <yocto@lists.yoctoproject.org>; Fri,  3 Apr 2020 10:45:24 +0200 (CEST)
-From: yocto@bugfree.ch
+	by anticat.ch (Postfix) with ESMTP id B7342627A5
+	for <yocto@yoctoproject.org>; Fri,  3 Apr 2020 10:42:56 +0200 (CEST)
+From: =?UTF-8?B?QW5kcmVhcyBEcsO2c2NoZXI=?= <yocto@bugfree.ch>
 Subject: JFFS2 no udef, all char/block devices hardlinked to /dev/console
-To: yocto@lists.yoctoproject.org
-Message-ID: <4aa6bbbd-0a48-f08f-1ef3-30f52041c33e@droescher.ch>
-Date: Fri, 3 Apr 2020 10:45:24 +0200
+Cc: yocto@yoctoproject.org
+Message-ID: <b2e24776-2ae8-e324-b0d8-e6547e4f97cb@droescher.ch>
+Date: Fri, 3 Apr 2020 10:42:56 +0200
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
  Gecko/20100101 Thunderbird/68.6.0
 MIME-Version: 1.0
