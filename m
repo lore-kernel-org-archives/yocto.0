@@ -1,152 +1,787 @@
-Received: from mail-il1-f194.google.com (mail-il1-f194.google.com [209.85.166.194])
- by mx.groups.io with SMTP id smtpd.web11.1024.1585934776256855769
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+ by mx.groups.io with SMTP id smtpd.web10.4045.1585942101989103275
  for <yocto@lists.yoctoproject.org>;
- Fri, 03 Apr 2020 10:26:16 -0700
+ Fri, 03 Apr 2020 12:28:22 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=tQ37EtdT;
- spf=pass (domain: gmail.com, ip: 209.85.166.194, mailfrom: raj.khem@gmail.com)
-Received: by mail-il1-f194.google.com with SMTP id x16so8006825ilp.12
-        for <yocto@lists.yoctoproject.org>; Fri, 03 Apr 2020 10:26:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:references:from:message-id:date:user-agent:mime-version
-         :in-reply-to:content-language:content-transfer-encoding;
-        bh=eidsvz+XNQKQUaTGnbVJWfioOZaKiMNu+01wXpe8zWQ=;
-        b=tQ37EtdToQ/oSBVy8mF+hJYre/pYMCYU44fy873cGYaqMUFt1VWI8Fu+OxaWyAirYK
-         TLZEMOGQwJVT9TKMfxWsjpIouW+0gkvDsmjYJOEjBe9xzgm8elb6DpYUDXj9eWTS7Ru6
-         hk9I2jR7Bgl8un0hgOZqqNj7DkZQPNxET/jR+aRXrqLt/PWccg4X1A5b+iuYgzLmJ7Ul
-         0x4q5ZPd+cHRIsA/5EBX9AFhC3rEVY9GRJOrzDN6tlmiXb2JDIrWgrUMnzvDMX6co3Wt
-         xOnIipSXGAm3He5KGJzZoZfwEDW/B2XTbPbkFCYN91AXRXJnmloN1VoD9l09ZWyBsDsZ
-         8kCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=eidsvz+XNQKQUaTGnbVJWfioOZaKiMNu+01wXpe8zWQ=;
-        b=uN0TeUovNCyfqaoK2vN4YOKyG2/zl4B9T3rsEI+UkS9SG6CG9o99SepsHazbcZ6LfN
-         yhWQQoL0u4G7LQ1JE2hL2ZgFZVk/6zVRcPoseNG47OnoTr2u2V08Mc3dHC98g06oOzyd
-         5llpG+DGQXwbXmlsdge2Te1BS3OLT3D5JMW5FYvYV0Jop384f5OsiHjV/1ceg8WMh+52
-         1RgDFPK2WzNue4vlKkoslapmAGV/c/2U9ZZxGHREvDA7DrVeY1eLoK1tLUPpUXGCyH7h
-         rVDTJ85Ca/BQlX6Xd8nW2AShfcjjS7Q7tpxarxPd3rBCBZ5tXfvx3EvK+nzQlbvQuQnr
-         3/tA==
-X-Gm-Message-State: AGi0Pub92idWaHOCWBClfz42YlmEsTPcFbGjym/sEiV3FWKUcUbE1WF4
-	gui41PCD533zfoUlwkNRRlI7upBaIRE=
-X-Google-Smtp-Source: APiQypKbUAKcv/uttvVlcGvUV9VLVudLR6+cHtJsaxSk/yOuzHYp2SmXcaX+gLUftTENuLzyfuaKLg==
-X-Received: by 2002:a92:bbd8:: with SMTP id x85mr10013118ilk.40.1585934775092;
-        Fri, 03 Apr 2020 10:26:15 -0700 (PDT)
-Return-Path: <raj.khem@gmail.com>
-Received: from ?IPv6:2601:646:9200:4e0:5d80:f4ba:ee3c:9546? ([2601:646:9200:4e0:5d80:f4ba:ee3c:9546])
-        by smtp.gmail.com with ESMTPSA id c28sm2995205ilf.26.2020.04.03.10.26.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Apr 2020 10:26:14 -0700 (PDT)
-Subject: Re: [yocto] JFFS2 no udef, all char/block devices hardlinked to /dev/console
-To: =?UTF-8?Q?Andreas_Dr=c3=b6scher?= <yocto@bugfree.ch>,
- yocto@lists.yoctoproject.org
-References: <4aa6bbbd-0a48-f08f-1ef3-30f52041c33e@droescher.ch>
-From: "Khem Raj" <raj.khem@gmail.com>
-Message-ID: <cd629181-8433-ac54-ec35-9922ad6d155e@gmail.com>
-Date: Fri, 3 Apr 2020 10:26:13 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.6.0
+ dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: randy.macleod@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 033JSKXr014877
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
+	Fri, 3 Apr 2020 12:28:20 -0700 (PDT)
+Received: from [172.25.44.3] (172.25.44.3) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Fri, 3 Apr
+ 2020 12:28:19 -0700
+Subject: Re: [yocto] Files get sporadically lost for native packages
+To: Konrad Weihmann <kweihmann@outlook.com>, <yocto@lists.yoctoproject.org>
+References: <VI1PR05MB428643D97A9A175005473BDEA8CD0@VI1PR05MB4286.eurprd05.prod.outlook.com>
+ <3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com>
+ <VI1PR05MB428668BF04B6CC7F617C1FA2A8C60@VI1PR05MB4286.eurprd05.prod.outlook.com>
+From: "Randy MacLeod" <randy.macleod@windriver.com>
+Message-ID: <3ae41ad3-3188-a5a1-5e2e-a3a572cc5e91@windriver.com>
+Date: Fri, 3 Apr 2020 15:28:17 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <4aa6bbbd-0a48-f08f-1ef3-30f52041c33e@droescher.ch>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <VI1PR05MB428668BF04B6CC7F617C1FA2A8C60@VI1PR05MB4286.eurprd05.prod.outlook.com>
+X-Originating-IP: [172.25.44.3]
+Content-Type: multipart/alternative;
+	boundary="------------45C87578AF9633567D36ED72"
+Content-Language: en-CA
+
+--------------45C87578AF9633567D36ED72
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail1.windriver.com id 033JSKXr014877
+
+On 2020-04-02 4:44 a.m., Konrad Weihmann wrote:
+>
+> To answer your others questions... see below
+>
+> On 02.04.20 05:42, Randy MacLeod wrote:
+>> On 2020-03-28 8:26 a.m., Konrad Weihmann wrote:
+>>> Hi,
+>>>
+>>> I'm facing the following error message sporadically on all branches=20
+>>> I tried so far (master, zeus, warrior and thud)
+>>>
+>>> The stack trace of python calls that resulted in this=20
+>>> exception/failure was:
+>>> File: 'exec_python_func() autogenerated', lineno: 2, function: <module=
+>
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0001:
+>>> =C2=A0=C2=A0*** 0002:extend_recipe_sysroot(d)
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0003:
+>>> File: '/build/poky/meta/classes/staging.bbclass', lineno: 551,=20
+>>> function: extend_recipe_sysroot
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0547:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 dest =3D newmanifest[l]
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0548:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 if l.endswith("/"):
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0549:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 staging_copydir(l, targetdir,=20
+>>> dest, seendirs)
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0550:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 continue
+>>> =C2=A0=C2=A0*** 0551:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 staging=
+_copyfile(l, targetdir, dest,=20
+>>> postinsts, seendirs)
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0552:
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0553:=C2=A0=C2=A0=C2=A0 bb.note("Instal=
+led into sysroot: %s" % str(msg_adding))
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0554:=C2=A0=C2=A0=C2=A0 bb.note("Skippi=
+ng as already exists in sysroot: %s" %=20
+>>> str(msg_exists))
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0555:
+>>> File: '/build/poky/meta/classes/staging.bbclass', lineno: 152,=20
+>>> function: staging_copyfile
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0148:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 os.symlink(linkto, dest)
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0149:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 #bb.warn(c)
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0150:=C2=A0=C2=A0=C2=A0 else:
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0151:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 try:
+>>> =C2=A0=C2=A0*** 0152:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 os.link(c, dest)
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0153:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 except OSError as err:
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0154:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if err.errno =3D=3D errno.EXDEV:
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0155:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bb.utils.copyfil=
+e(c, dest)
+>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0156:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 else:
+>>> Exception: FileNotFoundError: [Errno 2] No such file or directory:=20
+>>> '/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nat=
+ive/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-3=
+7.pyc'=20
+>>> ->=20
+>>> '/build/poky/build/tmp/work/qemux86_64-mine-linux/core-image-minimal-m=
+ine/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-packages/msgcheck/_=
+_pycache__/__init__.cpython-37.pyc'
+>>>
+>>> I already had a look at the manifest
+>>>
+>>> cat manifest-x86_64-python3-msgcheck-native.populate_sysroot
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck/__init__.py=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck/po.py=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37=
+.pyc=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc=
+=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37=
+.pyc=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_l=
+inks.txt=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt=
+=
+=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.tx=
+t=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt=
+=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points=
+.txt=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/bin/msgcheck=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/sysroot-providers/python3-msgcheck-native=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck/__pycache__/=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck/=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/sysroot-providers/=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/share/=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/bin/=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/=20
+>>>
+>>>
+>>> which states the file should be there, but when doing
+>>>
+>>> find=20
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck/__init__.py=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck/__pycache__=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc=
+=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37=
+.pyc=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck/po.py=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_l=
+inks.txt=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt=
+=
+=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.tx=
+t=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt=
+=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points=
+.txt=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/bin=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/bin/msgcheck=20
+>>>
+>>> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-nati=
+ve/usr/share=20
+>>>
+>>>
+>>> the file isn't there.
+>>>
+>>> This happens to random python packages compiled as native (sometimes=
+=20
+>>> even for python-native itself), but (afaik) not for cross or target=20
+>>> packages (I'm pretty sure because of the different packaging applied).
+>>> So I digged a little into the code=20
+>>> classes/sstate.bbclass:sstate_install, which seems to create the=20
+>>> sysroot-component dir and the manifest.
+>>> There is a gap between the manifest creation (line 285) and the=20
+>>> hardlinking (line till 311).
+>>>
+>>> Now my question is there any place where a file potentially could=20
+>>> get lost? - at first glance there shouldn't be one - I have to admit=
+=20
+>>> that I don't fully understand all this subprocess magic in=20
+>>> lib/oe/path.py:copyhardlinktree.
+>>> What I do to fix the issue is reopening the manifest and double=20
+>>> check for missing files and remove them from the manifest, but this
+>>> feels wrong - so any advise is welcome...
+>>>
+>>> Hope that someone more familiar with the topic could have a look.
+>>
+>> Hi Konrad,
+>>
+>> I'm not really familiar with that code but it's being run buy 1000s of
+>> builder around the world so let's try to eliminate a few possibilities.
+>>
+>> When did you start having this problem?
+> Since the start of the test distribution I'm working on. But also for=20
+> plain poky builds if I forcefully inject all of the python-native=20
+> site-packages via local.conf (DEPENDS_class-native +=3D "..."), without=
+=20
+> actually using them in the recipe scope
+>> How often do you think it's happening: 1 in 3 builds, 1 in 10?
+> See the other mail - looks like it heavily depends on the host
+>> Tell us about your machine: OS,version, disk, CPUs, ram
+> See the other mail
+>> Do you do anything special in your conf dir? Send local.conf perhaps.
+> No custom modification (just for testing the DEPENDS-injection)
+>> Do you have any local bbappends or commits on top of poky or
+>> in other layers?
+> No
+>> Have you tried to simplify the build to eliminate problems
+>> potentially caused by other layers?
+> I did - see above
+>> Are you able to reproduce the problem on more than one build machine?
+> See the other mail
+>> Are you able to reproduce the problem on a different Linux distro?
+> Not really - Debian 9 was fine all other Hosts are Ubuntu based
+>> Are there other builds or users on the machine that may be causing
+>> extra load?
+> No the hosts are just being poorly equipped - at least the ones that=20
+> produce this issue
 
 
+Hi Konrad,
 
-On 4/3/20 1:45 AM, Andreas Dröscher wrote:
-> Hi
-> 
-> I'm doing a Yocto Zeus build for a very old Linux Kernel (The Kernel is 
-> built
-> outside of Yocto). Since my target CPU, based on mips32 little endian, was
-> removed from Linux mainline I've opted to use musl to keep at least the
-> user space up to date.
-> 
-> I'm building a JFFS2 root fs using --devtable= since my kernel does not 
-> have
-> devfs/udev. The file looks like:
-> /dev/console    c   640      0       0        5      1       -       
-> -       -
-> /dev/full       c   640      0       0        1      7       -       
-> -       -
-> /dev/mtd        c   640      0       0       90      0       0       
-> 2       8
-> /dev/mtdblock   b   640      0       0       31      0       0       
-> 1       8
-> /dev/null       c   666      0       0        1      3       -       
-> -       -
-> ...
-> 
-> Running mkfs.jffs2 outside Yocto works. Running mkfs.jffs2 as part of the
-> default image build step breaks my char/block devices. All device files are
-> hard linked to the first one. Moreover the permissions are also reset.
-> 
+Thanks for the detailed and complete replies.
 
-are you running same mkfs.jffs2 utility in and outside yocto experiment 
-? if not then lets fix that first, it could be a problem in the native 
-package that yocto build system produces.
+I don't think I've seen this error and we do 100s of builds
+per day using local many-core systems running Ubuntu-18.04
+but with the builds in docker containers using a variety of
+OS distributions.
 
-> Example Output of ls /dev/*:
-> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/console
-> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/full
-> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/mtd0
-> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/mtd1
-> ...
-> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/mtdblock0
-> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/mtdblock1
-> ..
-> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/mtdchar
-> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/null
-> 
-> It looks like add_host_filesystem_entry calls lstat for all files added 
-> to the
-> JFFS2 including files that do not exist. For some reason I do not yet 
-> understand
-> lstat returns garbage instead of just failing on my system (Ubuntu 
-> 18.04). This
-> in turn leads to the hard linking and permisson issues described above. I
-> suggest to disable lstat for device files to counter this issue:
+My first *wild* guess is that the problem might go away on the Azure
+systems if you allocate more memory. That might be an easy
+test to do so that we can confirm that it happens more frequently
+when there is a memory constraint. Can you do that test?
 
-the fact that it works outside yocto, I think it might be premature to 
-disable it, we should see if we can find the real cause for the issue, 
-it could be fixed rightly then
+I've also BCCed someone who might know someone who
+would be interested in fixing Azure + Yocto bugs. Let's see
+if they can help. :)
+
+It would also be helpful if you created a defect in:
+
+ =C2=A0=C2=A0 https://bugzilla.yoctoproject.org/
+
+and hopefully add a patch in that defect including the -native recipes tha=
+t
+are required to make the problem happen.
+
+Thanks,
+
+../Randy
 
 
-> 
-> ---
->   jffsX-utils/mkfs.jffs2.c | 8 ++++++--
->   1 file changed, 6 insertions(+), 2 deletions(-)
-> 
-> diff --git a/jffsX-utils/mkfs.jffs2.c b/jffsX-utils/mkfs.jffs2.c
-> index 9afd920..2779706 100644
-> --- a/jffsX-utils/mkfs.jffs2.c
-> +++ b/jffsX-utils/mkfs.jffs2.c
-> @@ -219,14 +219,18 @@ static struct filesystem_entry 
-> *add_host_filesystem_entry(const char *name,
->           const char *path, unsigned long uid, unsigned long gid,
->           unsigned long mode, dev_t rdev, struct filesystem_entry *parent)
->   {
-> -    int status;
-> +    int status = -1;
->       char *tmp;
->       struct stat sb;
->       time_t timestamp = time(NULL);
->       struct filesystem_entry *entry;
-> 
->       memset(&sb, 0, sizeof(struct stat));
-> -    status = lstat(path, &sb);
-> +
-> +    //Do not call lstat for char- and  block-devices
-> +    if (major(rdev) == 0) {
-> +        status = lstat(path, &sb);
-> +    }
-> 
->       if (status >= 0) {
->           /* It is ok for some types of files to not exit on disk (such as
-> 
-> 
-> 
+>>
+>>
+>> ../Randy
+>>
+>>>
+>>> Thanks
+>>>
+>>> Konrad
+>>>
+>>>
+>>>
+>>>
+>>
+>>
+>>
+>
+>=20
+
+
+--=20
+# Randy MacLeod
+# Wind River Linux
+
+
+--------------45C87578AF9633567D36ED72
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail1.windriver.com id 033JSKXr014877
+
+<html>
+  <head>
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-=
+8">
+  </head>
+  <body>
+    <div class=3D"moz-cite-prefix">On 2020-04-02 4:44 a.m., Konrad
+      Weihmann wrote:<br>
+    </div>
+    <blockquote type=3D"cite"
+cite=3D"mid:VI1PR05MB428668BF04B6CC7F617C1FA2A8C60@VI1PR05MB4286.eurprd05.=
+prod.outlook.com">
+      <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUT=
+F-8">
+      <p>To answer your others questions... see below<br>
+      </p>
+      <div class=3D"moz-cite-prefix">On 02.04.20 05:42, Randy MacLeod
+        wrote:<br>
+      </div>
+      <blockquote type=3D"cite"
+        cite=3D"mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">On
+        2020-03-28 8:26 a.m., Konrad Weihmann wrote: <br>
+        <blockquote type=3D"cite">Hi, <br>
+          <br>
+          I'm facing the following error message sporadically on all
+          branches I tried so far (master, zeus, warrior and thud) <br>
+          <br>
+          The stack trace of python calls that resulted in this
+          exception/failure was: <br>
+          File: 'exec_python_func() autogenerated', lineno: 2, function:
+          &lt;module&gt; <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0001: <br>
+          =C2=A0=C2=A0*** 0002:extend_recipe_sysroot(d) <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0003: <br>
+          File: '/build/poky/meta/classes/staging.bbclass', lineno: 551,
+          function: extend_recipe_sysroot <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0547:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 dest =3D newmanifest[l] <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0548:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 if l.endswith("/"): <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0549:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 staging_copydir(l,
+          targetdir, dest, seendirs) <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0550:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 continue <br>
+          =C2=A0=C2=A0*** 0551:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 s=
+taging_copyfile(l, targetdir,
+          dest, postinsts, seendirs) <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0552: <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0553:=C2=A0=C2=A0=C2=A0 bb.note("=
+Installed into sysroot: %s" %
+          str(msg_adding)) <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0554:=C2=A0=C2=A0=C2=A0 bb.note("=
+Skipping as already exists in sysroot:
+          %s" % str(msg_exists)) <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0555: <br>
+          File: '/build/poky/meta/classes/staging.bbclass', lineno: 152,
+          function: staging_copyfile <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0148:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 os.symlink(linkto, dest) <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0149:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 #bb.warn(c) <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0150:=C2=A0=C2=A0=C2=A0 else: <br=
+>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0151:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 try: <br>
+          =C2=A0=C2=A0*** 0152:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 os.link(c, dest) <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0153:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 except OSError as err: <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0154:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if err.errno =3D=3D errno.EXDEV: <=
+br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0155:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bb.utils.c=
+opyfile(c, dest) <br>
+          =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0156:=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 else: <br>
+          Exception: FileNotFoundError: [Errno 2] No such file or
+          directory:
+'/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/=
+usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.py=
+c'
+          -&gt;
+'/build/poky/build/tmp/work/qemux86_64-mine-linux/core-image-minimal-mine/=
+1.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-packages/msgcheck/__pyc=
+ache__/__init__.cpython-37.pyc'<br>
+          <br>
+          I already had a look at the manifest <br>
+          <br>
+          cat manifest-x86_64-python3-msgcheck-native.populate_sysroot <br=
+>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck/__init__.py
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck/po.py
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck/msgcheck.py
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37.pyc
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_links=
+.txt
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.txt
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points.txt
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/bin/msgcheck
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/s=
+ysroot-providers/python3-msgcheck-native
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck/__pycache__/
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck/
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/s=
+ysroot-providers/
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/share/
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/bin/
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/
+          <br>
+          <br>
+          which states the file should be there, but when doing <br>
+          <br>
+          find
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/<br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck/__init__.py
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck/__pycache__
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37.pyc
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck/po.py
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck/msgcheck.py
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_links=
+.txt
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.txt
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points.txt
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/bin
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/bin/msgcheck
+          <br>
+/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/u=
+sr/share
+          <br>
+          <br>
+          the file isn't there. <br>
+          <br>
+          This happens to random python packages compiled as native
+          (sometimes even for python-native itself), but (afaik) not for
+          cross or target packages (I'm pretty sure because of the
+          different packaging applied). <br>
+          So I digged a little into the code
+          classes/sstate.bbclass:sstate_install, which seems to create
+          the sysroot-component dir and the manifest. <br>
+          There is a gap between the manifest creation (line 285) and
+          the hardlinking (line till 311). <br>
+          <br>
+          Now my question is there any place where a file potentially
+          could get lost? - at first glance there shouldn't be one - I
+          have to admit that I don't fully understand all this
+          subprocess magic in lib/oe/path.py:copyhardlinktree. <br>
+          What I do to fix the issue is reopening the manifest and
+          double check for missing files and remove them from the
+          manifest, but this <br>
+          feels wrong - so any advise is welcome... <br>
+          <br>
+          Hope that someone more familiar with the topic could have a
+          look. <br>
+        </blockquote>
+        <br>
+        Hi Konrad, <br>
+        <br>
+        I'm not really familiar with that code but it's being run buy
+        1000s of <br>
+        builder around the world so let's try to eliminate a few
+        possibilities. <br>
+        <br>
+        When did you start having this problem? <br>
+      </blockquote>
+      Since the start of the test distribution I'm working on. But also
+      for plain poky builds if I forcefully inject all of the
+      python-native site-packages via local.conf (DEPENDS_class-native
+      +=3D "..."), without actually using them in the recipe scope<br>
+      <blockquote type=3D"cite"
+        cite=3D"mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">Ho=
+w
+        often do you think it's happening: 1 in 3 builds, 1 in 10? <br>
+      </blockquote>
+      See the other mail - looks like it heavily depends on the host<br>
+      <blockquote type=3D"cite"
+        cite=3D"mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">Te=
+ll
+        us about your machine: OS,version, disk, CPUs, ram <br>
+      </blockquote>
+      See the other mail<br>
+      <blockquote type=3D"cite"
+        cite=3D"mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">Do
+        you do anything special in your conf dir? Send local.conf
+        perhaps. <br>
+      </blockquote>
+      No custom modification (just for testing the DEPENDS-injection)<br>
+      <blockquote type=3D"cite"
+        cite=3D"mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">Do
+        you have any local bbappends or commits on top of poky or <br>
+        in other layers? <br>
+      </blockquote>
+      No<br>
+      <blockquote type=3D"cite"
+        cite=3D"mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">Ha=
+ve
+        you tried to simplify the build to eliminate problems <br>
+        potentially caused by other layers? <br>
+      </blockquote>
+      I did - see above<br>
+      <blockquote type=3D"cite"
+        cite=3D"mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">Ar=
+e
+        you able to reproduce the problem on more than one build
+        machine? <br>
+      </blockquote>
+      See the other mail<br>
+      <blockquote type=3D"cite"
+        cite=3D"mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">Ar=
+e
+        you able to reproduce the problem on a different Linux distro? <br=
+>
+      </blockquote>
+      Not really - Debian 9 was fine all other Hosts are Ubuntu based<br>
+      <blockquote type=3D"cite"
+        cite=3D"mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com">Ar=
+e
+        there other builds or users on the machine that may be causing <br=
+>
+        extra load? <br>
+      </blockquote>
+      No the hosts are just being poorly equipped - at least the ones
+      that produce this issue<br>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>Hi Konrad,</p>
+    <p>Thanks for the detailed and complete replies.</p>
+    <p>I don't think I've seen this error and we do 100s of builds<br>
+      per day using local many-core systems running Ubuntu-18.04<br>
+      but with the builds in docker containers using a variety of<br>
+      OS distributions. <br>
+    </p>
+    <p>My first *wild* guess is that the problem might go away on the
+      Azure<br>
+      systems if you allocate more memory. That might be an easy <br>
+      test to do so that we can confirm that it happens more frequently
+      <br>
+      when there is a memory constraint. Can you do that test?</p>
+    <p>I've also BCCed someone who might know someone who<br>
+      would be interested in fixing Azure + Yocto bugs. Let's see<br>
+      if they can help. :)</p>
+    <p>It would also be helpful if you created a defect in:</p>
+    <p>=C2=A0=C2=A0 <a class=3D"moz-txt-link-freetext" href=3D"https://bug=
+zilla.yoctoproject.org/">https://bugzilla.yoctoproject.org/</a></p>
+    <p>and hopefully add a patch in that defect including the -native
+      recipes that <br>
+      are required to make the problem happen. <br>
+    </p>
+    <p>Thanks,</p>
+    <p>../Randy<br>
+    </p>
+    <p><br>
+    </p>
+    <blockquote type=3D"cite"
+cite=3D"mid:VI1PR05MB428668BF04B6CC7F617C1FA2A8C60@VI1PR05MB4286.eurprd05.=
+prod.outlook.com">
+      <blockquote type=3D"cite"
+        cite=3D"mid:3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com"> <=
+br>
+        <br>
+        ../Randy <br>
+        <br>
+        <blockquote type=3D"cite"> <br>
+          Thanks <br>
+          <br>
+          Konrad <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </blockquote>
+        <br>
+        <br>
+        <br>
+        <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      </blockquote>
+      <br>
+      <fieldset class=3D"mimeAttachmentHeader"></fieldset>
+      <pre class=3D"moz-quote-pre" wrap=3D"">
+</pre>
+    </blockquote>
+    <p><br>
+    </p>
+    <pre class=3D"moz-signature" cols=3D"72">--=20
+# Randy MacLeod
+# Wind River Linux</pre>
+  </body>
+</html>
+
+--------------45C87578AF9633567D36ED72--
