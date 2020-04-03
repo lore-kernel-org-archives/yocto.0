@@ -1,135 +1,152 @@
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
- by mx.groups.io with SMTP id smtpd.web10.9952.1585918376521209642
+Received: from mail-il1-f194.google.com (mail-il1-f194.google.com [209.85.166.194])
+ by mx.groups.io with SMTP id smtpd.web11.1024.1585934776256855769
  for <yocto@lists.yoctoproject.org>;
- Fri, 03 Apr 2020 05:52:56 -0700
+ Fri, 03 Apr 2020 10:26:16 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=TkAilzuh;
- spf=pass (domain: gmail.com, ip: 209.85.215.173, mailfrom: joe.macdonald@gmail.com)
-Received: by mail-pg1-f173.google.com with SMTP id c23so3476487pgj.3
-        for <yocto@lists.yoctoproject.org>; Fri, 03 Apr 2020 05:52:56 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=tQ37EtdT;
+ spf=pass (domain: gmail.com, ip: 209.85.166.194, mailfrom: raj.khem@gmail.com)
+Received: by mail-il1-f194.google.com with SMTP id x16so8006825ilp.12
+        for <yocto@lists.yoctoproject.org>; Fri, 03 Apr 2020 10:26:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=p+nwrSjhOxWIsIk0cWW/frgM7vnA+/eM3v06IX+qqkM=;
-        b=TkAilzuhzH1YzsG7T7H85bRNnfn18x1NbephYEbSX5TNPektU9CBCvjTE4hox3OA0G
-         xFI8kEq/NO4XImF288DLapvmS3h3mF5D7M0mSAMFP5WFf9KZB4R+Gyjfyw6oe8TBj2A+
-         5P/v4xXrqCKCdlI8IbvB4oTZX+3BZLDpJ4dZ9AWQKiSM2+B7T4nl6bM6g490PrDkCFpe
-         Dp9JVR+O2LOCO2MuF5HErZXGaEiv/7e/cxjv7jwjWwz+LTVUOyIarCkL3sm/jti1B3Bg
-         HsIO0zbKZhgnzBe+jWMh6d+IIFzYuFc0nqh1Zz9gg8PXKRJOBft3rhbKaRwXtURimFo7
-         ebLw==
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=eidsvz+XNQKQUaTGnbVJWfioOZaKiMNu+01wXpe8zWQ=;
+        b=tQ37EtdToQ/oSBVy8mF+hJYre/pYMCYU44fy873cGYaqMUFt1VWI8Fu+OxaWyAirYK
+         TLZEMOGQwJVT9TKMfxWsjpIouW+0gkvDsmjYJOEjBe9xzgm8elb6DpYUDXj9eWTS7Ru6
+         hk9I2jR7Bgl8un0hgOZqqNj7DkZQPNxET/jR+aRXrqLt/PWccg4X1A5b+iuYgzLmJ7Ul
+         0x4q5ZPd+cHRIsA/5EBX9AFhC3rEVY9GRJOrzDN6tlmiXb2JDIrWgrUMnzvDMX6co3Wt
+         xOnIipSXGAm3He5KGJzZoZfwEDW/B2XTbPbkFCYN91AXRXJnmloN1VoD9l09ZWyBsDsZ
+         8kCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=p+nwrSjhOxWIsIk0cWW/frgM7vnA+/eM3v06IX+qqkM=;
-        b=FtnqEkUJf3ezB9oOxWnOYOBygWu41YmKrIbdBw3wB4tMcTK5QsXNcMd+vDAn9rz1r7
-         084ZhPlAwTota5IlkEdS84n/8JjvNsGU7GUUNpCuwMtQM1PsFvOuak6JEgwjZHzdkZOP
-         Adm4buzrbK1KmU/mchkydJYNCIJll5iyxLDZ2YbZtIIVfpPEdNR8pYZ+2MHxaTC6bAtj
-         PX3T4K/W44XxeQ8TIo4dnzTBlOOG6qHmytK1aoGqCTLyMAaLWifapGtblRYIp89ZNGBG
-         t7oZ4r6fMkBQI+pJdb6xckm6koiAicppxd+EqEsrqNtpgP/LUwuI/9YCnmIq7Y6ZpUoB
-         uiBQ==
-X-Gm-Message-State: AGi0PuZ0KAB5eUgzR1VCoJgC0evqRZq58ier78UZX7rBYGAMTRo83J65
-	DIPKILxwpBzNYrkofaEMKjNSNeK+Sxo=
-X-Google-Smtp-Source: APiQypKE/07EFewdJNrn0Pd8XiXU6fUL6LQwj2XqeBOMLOdVRSUDIe8YKg/w7QyYjloDE1idUQdHkg==
-X-Received: by 2002:a63:6f88:: with SMTP id k130mr7769271pgc.194.1585918375381;
-        Fri, 03 Apr 2020 05:52:55 -0700 (PDT)
-Return-Path: <joe.macdonald@gmail.com>
-Received: from nightwinge.world.mentorg.com (nat-wv.mentorg.com. [192.94.38.34])
-        by smtp.gmail.com with ESMTPSA id s61sm6007724pjd.33.2020.04.03.05.52.53
-        for <yocto@lists.yoctoproject.org>
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Apr 2020 05:52:54 -0700 (PDT)
-Sender: Joe MacDonald <joe.macdonald@gmail.com>
-From: "Joe MacDonald" <joe_macdonald@mentor.com>
-To: yocto@lists.yoctoproject.org
-Subject: [meta-selinux][PATCH] clean up getVar() usage
-Date: Fri,  3 Apr 2020 08:52:51 -0400
-Message-Id: <20200403125251.35877-1-joe_macdonald@mentor.com>
-X-Mailer: git-send-email 2.20.1
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=eidsvz+XNQKQUaTGnbVJWfioOZaKiMNu+01wXpe8zWQ=;
+        b=uN0TeUovNCyfqaoK2vN4YOKyG2/zl4B9T3rsEI+UkS9SG6CG9o99SepsHazbcZ6LfN
+         yhWQQoL0u4G7LQ1JE2hL2ZgFZVk/6zVRcPoseNG47OnoTr2u2V08Mc3dHC98g06oOzyd
+         5llpG+DGQXwbXmlsdge2Te1BS3OLT3D5JMW5FYvYV0Jop384f5OsiHjV/1ceg8WMh+52
+         1RgDFPK2WzNue4vlKkoslapmAGV/c/2U9ZZxGHREvDA7DrVeY1eLoK1tLUPpUXGCyH7h
+         rVDTJ85Ca/BQlX6Xd8nW2AShfcjjS7Q7tpxarxPd3rBCBZ5tXfvx3EvK+nzQlbvQuQnr
+         3/tA==
+X-Gm-Message-State: AGi0Pub92idWaHOCWBClfz42YlmEsTPcFbGjym/sEiV3FWKUcUbE1WF4
+	gui41PCD533zfoUlwkNRRlI7upBaIRE=
+X-Google-Smtp-Source: APiQypKbUAKcv/uttvVlcGvUV9VLVudLR6+cHtJsaxSk/yOuzHYp2SmXcaX+gLUftTENuLzyfuaKLg==
+X-Received: by 2002:a92:bbd8:: with SMTP id x85mr10013118ilk.40.1585934775092;
+        Fri, 03 Apr 2020 10:26:15 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from ?IPv6:2601:646:9200:4e0:5d80:f4ba:ee3c:9546? ([2601:646:9200:4e0:5d80:f4ba:ee3c:9546])
+        by smtp.gmail.com with ESMTPSA id c28sm2995205ilf.26.2020.04.03.10.26.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Apr 2020 10:26:14 -0700 (PDT)
+Subject: Re: [yocto] JFFS2 no udef, all char/block devices hardlinked to /dev/console
+To: =?UTF-8?Q?Andreas_Dr=c3=b6scher?= <yocto@bugfree.ch>,
+ yocto@lists.yoctoproject.org
+References: <4aa6bbbd-0a48-f08f-1ef3-30f52041c33e@droescher.ch>
+From: "Khem Raj" <raj.khem@gmail.com>
+Message-ID: <cd629181-8433-ac54-ec35-9922ad6d155e@gmail.com>
+Date: Fri, 3 Apr 2020 10:26:13 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
+ Gecko/20100101 Thunderbird/68.6.0
 MIME-Version: 1.0
+In-Reply-To: <4aa6bbbd-0a48-f08f-1ef3-30f52041c33e@droescher.ch>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
 Content-Transfer-Encoding: 8bit
 
-83eac4de updated the usage of getVar() in classes/selinux.bbclass to
-leave out the default expand parameter. This is consistent with the
-usage in the core layers.
 
-Bring all other calls to getVar() in the layer into alignment with this
-approach.
 
-Signed-off-by: Joe MacDonald <joe_macdonald@mentor.com>
----
- recipes-core/busybox/busybox_selinux.inc        | 8 ++++----
- recipes-security/refpolicy/refpolicy_common.inc | 2 +-
- recipes-security/selinux/libselinux-python.inc  | 2 +-
- recipes-security/selinux/libselinux.inc         | 2 +-
- 4 files changed, 7 insertions(+), 7 deletions(-)
+On 4/3/20 1:45 AM, Andreas Dröscher wrote:
+> Hi
+> 
+> I'm doing a Yocto Zeus build for a very old Linux Kernel (The Kernel is 
+> built
+> outside of Yocto). Since my target CPU, based on mips32 little endian, was
+> removed from Linux mainline I've opted to use musl to keep at least the
+> user space up to date.
+> 
+> I'm building a JFFS2 root fs using --devtable= since my kernel does not 
+> have
+> devfs/udev. The file looks like:
+> /dev/console    c   640      0       0        5      1       -       
+> -       -
+> /dev/full       c   640      0       0        1      7       -       
+> -       -
+> /dev/mtd        c   640      0       0       90      0       0       
+> 2       8
+> /dev/mtdblock   b   640      0       0       31      0       0       
+> 1       8
+> /dev/null       c   666      0       0        1      3       -       
+> -       -
+> ...
+> 
+> Running mkfs.jffs2 outside Yocto works. Running mkfs.jffs2 as part of the
+> default image build step breaks my char/block devices. All device files are
+> hard linked to the first one. Moreover the permissions are also reset.
+> 
 
-diff --git a/recipes-core/busybox/busybox_selinux.inc b/recipes-core/busybox/busybox_selinux.inc
-index cc83b01..6e491ce 100644
---- a/recipes-core/busybox/busybox_selinux.inc
-+++ b/recipes-core/busybox/busybox_selinux.inc
-@@ -8,9 +8,9 @@ python create_sh_wrapper_reset_alternative_vars () {
-     # We need to load the full set of busybox provides from the /etc/busybox.links
-     # Use this to see the update-alternatives with the right information
- 
--    dvar = d.getVar('D', True)
--    pn = d.getVar('PN', True)
--    base_bindir = d.getVar('base_bindir', True)
-+    dvar = d.getVar('D')
-+    pn = d.getVar('PN')
-+    base_bindir = d.getVar('base_bindir')
- 
-     def create_sh_alternative_vars(links, target, mode):
-         import shutil
-@@ -20,7 +20,7 @@ python create_sh_wrapper_reset_alternative_vars () {
-         os.fchmod(fwp.fileno(), mode)
-         fwp.close()
-         # Install the sh wrappers and alternatives reset to link to them
--        wpdir = os.path.join(d.getVar('libdir', True), pn)
-+        wpdir = os.path.join(d.getVar('libdir'), pn)
-         wpdir_dest = '%s%s' % (dvar, wpdir)
-         if not os.path.exists(wpdir_dest):
-             os.makedirs(wpdir_dest)
-diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
-index 2083a37..1d9ca93 100644
---- a/recipes-security/refpolicy/refpolicy_common.inc
-+++ b/recipes-security/refpolicy/refpolicy_common.inc
-@@ -117,7 +117,7 @@ python __anonymous () {
- 
-     # make sure DEFAULT_ENFORCING is something sane
-     if not re.match('^(enforcing|permissive|disabled)$',
--                    d.getVar('DEFAULT_ENFORCING', True),
-+                    d.getVar('DEFAULT_ENFORCING'),
-                     flags=0):
-         d.setVar('DEFAULT_ENFORCING', 'permissive')
- }
-diff --git a/recipes-security/selinux/libselinux-python.inc b/recipes-security/selinux/libselinux-python.inc
-index 24407e8..6a64473 100644
---- a/recipes-security/selinux/libselinux-python.inc
-+++ b/recipes-security/selinux/libselinux-python.inc
-@@ -14,7 +14,7 @@ RDEPENDS_${PN} += "libselinux python3-core python3-shell"
- 
- def get_policyconfigarch(d):
-     import re
--    target = d.getVar('TARGET_ARCH', True)
-+    target = d.getVar('TARGET_ARCH')
-     p = re.compile('i.86')
-     target = p.sub('i386',target)
-     return "ARCH=%s" % (target)
-diff --git a/recipes-security/selinux/libselinux.inc b/recipes-security/selinux/libselinux.inc
-index 8d381de..fe8c087 100644
---- a/recipes-security/selinux/libselinux.inc
-+++ b/recipes-security/selinux/libselinux.inc
-@@ -12,7 +12,7 @@ DEPENDS_append_libc-musl = " fts"
- 
- def get_policyconfigarch(d):
-     import re
--    target = d.getVar('TARGET_ARCH', True)
-+    target = d.getVar('TARGET_ARCH')
-     p = re.compile('i.86')
-     target = p.sub('i386',target)
-     return "ARCH=%s" % (target)
--- 
-2.20.1
+are you running same mkfs.jffs2 utility in and outside yocto experiment 
+? if not then lets fix that first, it could be a problem in the native 
+package that yocto build system produces.
 
+> Example Output of ls /dev/*:
+> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/console
+> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/full
+> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/mtd0
+> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/mtd1
+> ...
+> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/mtdblock0
+> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/mtdblock1
+> ..
+> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/mtdchar
+> crw-r----- 16 root root 5, 1, Jan 1 1970 /dev/null
+> 
+> It looks like add_host_filesystem_entry calls lstat for all files added 
+> to the
+> JFFS2 including files that do not exist. For some reason I do not yet 
+> understand
+> lstat returns garbage instead of just failing on my system (Ubuntu 
+> 18.04). This
+> in turn leads to the hard linking and permisson issues described above. I
+> suggest to disable lstat for device files to counter this issue:
+
+the fact that it works outside yocto, I think it might be premature to 
+disable it, we should see if we can find the real cause for the issue, 
+it could be fixed rightly then
+
+
+> 
+> ---
+>   jffsX-utils/mkfs.jffs2.c | 8 ++++++--
+>   1 file changed, 6 insertions(+), 2 deletions(-)
+> 
+> diff --git a/jffsX-utils/mkfs.jffs2.c b/jffsX-utils/mkfs.jffs2.c
+> index 9afd920..2779706 100644
+> --- a/jffsX-utils/mkfs.jffs2.c
+> +++ b/jffsX-utils/mkfs.jffs2.c
+> @@ -219,14 +219,18 @@ static struct filesystem_entry 
+> *add_host_filesystem_entry(const char *name,
+>           const char *path, unsigned long uid, unsigned long gid,
+>           unsigned long mode, dev_t rdev, struct filesystem_entry *parent)
+>   {
+> -    int status;
+> +    int status = -1;
+>       char *tmp;
+>       struct stat sb;
+>       time_t timestamp = time(NULL);
+>       struct filesystem_entry *entry;
+> 
+>       memset(&sb, 0, sizeof(struct stat));
+> -    status = lstat(path, &sb);
+> +
+> +    //Do not call lstat for char- and  block-devices
+> +    if (major(rdev) == 0) {
+> +        status = lstat(path, &sb);
+> +    }
+> 
+>       if (status >= 0) {
+>           /* It is ok for some types of files to not exit on disk (such as
+> 
+> 
+> 
