@@ -1,69 +1,59 @@
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
- by mx.groups.io with SMTP id smtpd.web11.3764.1586026605359477270
- for <yocto@lists.yoctoproject.org>;
- Sat, 04 Apr 2020 11:56:46 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=KW3ZQq6H;
- spf=pass (domain: burtonini.com, ip: 209.85.167.52, mailfrom: ross@burtonini.com)
-Received: by mail-lf1-f52.google.com with SMTP id l11so1089698lfc.5
-        for <yocto@lists.yoctoproject.org>; Sat, 04 Apr 2020 11:56:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FP4MhsQ5czwANOLq8olRIJerHSXvUaDqAt2d8JTFs2Y=;
-        b=KW3ZQq6HqMsyPONpRZMSbcxIVLSLGXLUVpxPJ9CQR8xp1s74dWfsL9CvAC3X+nJwes
-         fjaY/+KLGkeK+tZOBEkTbWce82quyszqYsTxC6Jo79BtXi/5QGWDdommu6ROxZcSGxLW
-         gkKTg/avqvXNSrRfVvVqAsZetx2Z9zYqcV/0fEjzoe71AXy5TMcLJwsN/rQOKN0M2T0/
-         etTN6jVowKKqyrJZoewG6gA4PMipxqzQB0sOz7Eb2HJgiXyLVKeKvJoDRdyNOOy5fAOf
-         oh9UTQOd47UQTorZ+750HV7q/cgzSN+W38Xr4yfsvo+8GebqLV9nyQRqD/IiYn53ZciZ
-         Y7dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FP4MhsQ5czwANOLq8olRIJerHSXvUaDqAt2d8JTFs2Y=;
-        b=lx7SVIBN2/xheQQB8Dv5iwB5ZD4fWAJK2jt14Q+6UWOfdF0vMgjr30dAXlKF6NdnYG
-         fKJc8nqNiWQxWtmDc13LQg+Q2SKxQEsUJdEiEkfrfEILT5OCIgZIOuKyeuxnodLbdtrW
-         x7kBGgovGGn+OytIZbxWPtqDc18ZFVGJfLXrmeg8fy3bq0OrqcQflkaJj7LzAp37oxNG
-         PIX7KooaG2ZOWQWAEZklGfxsTfgabuvmacIssTScFtxzrxjLGp7afuh0J4R6Wt2zgyAw
-         T4hmaz9irm468jO3CibDz+1MYGRbwcA1s2m53yArmxd6uil6HX9sMCMIvbwHRdXmKJ3X
-         S60w==
-X-Gm-Message-State: AGi0PuaNAw5md0Iw67BLxkdZhSlUoU3Rf7kEc+NMhP7tHgooQ99rl1VJ
-	8nsD9uk5PSC7zW9AvW8I1u9wd5EFeGP650Xx8V+POA==
-X-Google-Smtp-Source: APiQypIIf2qzCoPQG/5JxaI4YrWF16VWRPJGz5SYZ6w+P2GPKzQy7VwdAn89sL4Kr+niW9ruVUl1b2I8NxUfQfOgGa0=
-X-Received: by 2002:a19:c515:: with SMTP id w21mr8616558lfe.72.1586026603495;
- Sat, 04 Apr 2020 11:56:43 -0700 (PDT)
+Subject: weston systemd and getty@tty1.service
+To: yocto@lists.yoctoproject.org
+From: timemaster@trillinis.com
+X-Originating-Location: Cambridge, England, GB (80.5.215.14)
+X-Originating-Platform: Mac Safari 13.1
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <9WRZ.1585975244346687298.cmsV@lists.yoctoproject.org>
-In-Reply-To: <9WRZ.1585975244346687298.cmsV@lists.yoctoproject.org>
-From: "Ross Burton" <ross@burtonini.com>
-Date: Sat, 4 Apr 2020 18:56:32 +0000
-Message-ID: <CAAnfSTv+RNVFkydtmd6y5Go2OkOFz7Mq7KBUvRN7Xj1XfyomYA@mail.gmail.com>
-Subject: Re: [yocto] Zeus - Post Build folder corruption #yocto
-To: Joel Winarske <joel.winarske@gmail.com>
-Cc: yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Date: Sat, 04 Apr 2020 12:23:16 -0700
+Message-ID: <Id6f.1586028196651762031.OW6M@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="DVUEVCLbzp48sxY16dfY"
 
-That's not random, that's pieces of Py that presumably were not expanded.
+--DVUEVCLbzp48sxY16dfY
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Can you replicate this with just plain oe-core, or what layers/classes
-do you have?  I'm guessing something failed to do Python-expansion
-correctly so the Py passed through to the shell.
+Hi all, I spent the whole day today fixing this strange problem.
 
-Ross
+I was trying to get weston working with systemd under root (no other user =
+installed).
+Corresponding systemd service for weston is already in master, so this par=
+t was easy. But=C2=A0after booting the system up, weston desktop appeared a=
+nd was replaced in a few seconds with the tty1 console. What was even more =
+strange, after a few minutes the desktop reappeared again.
 
-On Sat, 4 Apr 2020 at 05:40, Joel Winarske <joel.winarske@gmail.com> wrote:
->
-> Has anyone seen this post build?  Where there are folders created of random items?  Some folders have a path deep of 5+.
->
->
-> joel@hammer:/media/joel/SolidState/rpi/rpi4-64$ ls
-> '!='                       'os.path.join('\'''
->  bitbake-cookerdaemon.log  'os.path.normpath(d.getVar('\''S'\''))'
->  cache                     'os.path.normpath(d.getVar('\''WORKDIR'\''))'
->  conf                      ''\''patches'\'')}'
-> '${@d.getVar('\''S'\'')'    sstate-cache
->  else                       tmp
->  if
-> 
+Later on today I found out that the problem is in getty@tty1.service, ( ge=
+tty@tty1.service, ) which hasn't be installed /etc/systemd/system/getty.tar=
+get.wants/, it seems to me that this service is not needed at all because s=
+ystemd will spin up agetty for each chvt=C2=A0anyway.
+
+I was able to track the origin of this file down to the function systemd_p=
+reset_all and was able to remove the file using a custom function (simple r=
+m) linked in=C2=A0IMAGE_PREPROCESS_COMMAND variable, but would rather do it=
+ somewhere else.
+
+Thanks
+
+TM
+
+--DVUEVCLbzp48sxY16dfY
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi all, I spent the whole day today fixing this strange problem.<br /><br /=
+>I was trying to get weston working with systemd under root (no other user =
+installed).<br />Corresponding systemd service for weston is already in mas=
+ter, so this part was easy. But&nbsp;after booting the system up, weston de=
+sktop appeared and was replaced in a few seconds with the tty1 console. Wha=
+t was even more strange, after a few minutes the desktop reappeared again.&=
+nbsp;<br /><br />Later on today I found out that the problem is in <a href=
+=3D"mailto:getty@tty1.service,">getty@tty1.service, </a>which hasn't be in=
+stalled /etc/systemd/system/getty.target.wants/, it seems to me that this s=
+ervice is not needed at all because systemd will spin up agetty for each ch=
+vt&nbsp;anyway.<br /><br />I was able to track the origin of this file down=
+ to the function systemd_preset_all and was able to remove the file using a=
+ custom function (simple rm) linked in&nbsp;IMAGE_PREPROCESS_COMMAND variab=
+le, but would rather do it somewhere else.&nbsp;<br /><br />Thanks&nbsp;<br=
+ /><br />TM
+
+--DVUEVCLbzp48sxY16dfY--
