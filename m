@@ -1,138 +1,107 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web10.12386.1586060320826032839
+Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com [209.85.221.65])
+ by mx.groups.io with SMTP id smtpd.web10.13299.1586068681741052245
  for <yocto@lists.yoctoproject.org>;
- Sat, 04 Apr 2020 21:18:41 -0700
+ Sat, 04 Apr 2020 23:38:02 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@assonance-org.20150623.gappssmtp.com header.s=20150623 header.b=hkqB7ttL;
- spf=softfail (domain: assonance.org, ip: 140.211.169.56, mailfrom: aaron@assonance.org)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 55209E0195A; Sat,  4 Apr 2020 21:18:40 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.210.52 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0E53E01958
-	for <yocto@yoctoproject.org>; Sat,  4 Apr 2020 21:18:38 -0700 (PDT)
-Received: by mail-ot1-f52.google.com with SMTP id a49so11763748otc.11
-        for <yocto@yoctoproject.org>; Sat, 04 Apr 2020 21:18:38 -0700 (PDT)
+ dkim=pass header.i=@amarulasolutions.com header.s=google header.b=PSwEsyU0;
+ spf=pass (domain: amarulasolutions.com, ip: 209.85.221.65, mailfrom: michael@amarulasolutions.com)
+Received: by mail-wr1-f65.google.com with SMTP id h9so13477294wrc.8
+        for <yocto@lists.yoctoproject.org>; Sat, 04 Apr 2020 23:38:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=assonance-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=JZE0jDfaOxxGP/nLlg208DLRgFZDczgTHH18mikLOFQ=;
-        b=hkqB7ttLwTcofdBRrUH0y7OArMgAOKrW/EsQVkk8OcB/jTcdY3IGS/yAjK9/K+RR0E
-         g6ECyB+BEhRsvCGSotaNibVpENVGig3G66jDvEPtH3KBM7BME+i0LHFvpatnGGnnFuBh
-         qRAcGnJKBu/hsWNyOLXXjlOFX5O7Fmfqaz7W+fundP8rqj6uZEeE20lpQHs/JuzShGun
-         L7FxN5c2RYh57KBafQ4Zzr+yjYcSvTyPktRIaD0g1LG4DDUnFWx/xp6CaWsiFyANFqwZ
-         ULdx5CNTRghqWNqrwbmvxyCvfTmxtO1sbKlq7b9NYDSTMTUMLRSGPKjJj6gzibaq/Ohx
-         4EfQ==
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=dtd9g7pClapeh6/AY1CuyPOF8XTud0nY9GIdKy574DM=;
+        b=PSwEsyU05z10eVR1+zwC/0qbr1pz/YxfboLOgulkeya/75Yd3d1SjVKZg1ITWyxApk
+         P4/5gvqN0sIkp4yk2iZxCDkH1qiR9yDcIXCqRigaRlKUA3Y5O5naZJeifSoTcA2PB3+c
+         KIlZNw53l3LLCllKCG/VlbM9DjkdlZSSSIGxQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=JZE0jDfaOxxGP/nLlg208DLRgFZDczgTHH18mikLOFQ=;
-        b=l4K/DGjWsOVckGf+020QDKuaNyspmCldL+7wYxpREg3ZY9Rz9cQbJCo/wtwGYgkG+8
-         6/xRGoLgX2bdLk7Wo9Tq4P8qE9CKt5EMzkxh9/bMBo2FZtxhcTC0ddO8uxk0bmDWIfxq
-         ZoYmqzRhZWb3+1d8Bu/0jBQuBV5dxxlJXYQ4BHXF4x0jERmtG5ERSDBRTa0i3JxAYD1M
-         7GLYYL3Vc1c9WalucI93u5I61AKwTBVx8Vv72X/poUTipr+wTh4Qy9600wjHGAhYNdBb
-         Olecfz/JCLCHWPdXyUfHpCknkcemHDOBwuS1inhInWhCZfZkIPGvQ/pNhnc9iA2fy7M9
-         j6Aw==
-X-Gm-Message-State: AGi0PuZWJBpAIY4EgkFY8CLOJMGKs2ZwdED3p1colRH+TbcGGbPHKQiB
-	1GoKLG60v/M/lDhHmMftCZndL2+1VyctrZb4zd1u5ZoG/eHYww==
-X-Google-Smtp-Source: APiQypIXQ83Q4QwtOIzqW6r1MMF7UYyQvGqoKPg7wDtED9WOEh1ZJiko1s7IBvKg1Vi7oQazTkf8RTUY55qqEgex44o=
-X-Received: by 2002:a05:6830:1f39:: with SMTP id e25mr12925784oth.135.1586060317840;
- Sat, 04 Apr 2020 21:18:37 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=dtd9g7pClapeh6/AY1CuyPOF8XTud0nY9GIdKy574DM=;
+        b=t6doqO2Cc3R9R2Bg8+jBu0y29VBMGW0l+xGngkPLsOEExLz/3LPh2BGPoQg5nZIGxo
+         HkWd6Z4f1E/oYjzrQ9dnJpfqOKhfxjTlAFJoaG+B38M+JzJtJrPlkLWBWyCN28Y+Y1Fj
+         vokpMeVWOosfhd6TPAv5kOSFxAQcmoaJAkkoDBFW3k4ouL/AVKFZusg+aHFaARrtlg3H
+         ClGwPYPTIw2Tclv/di7ceJ31XeEPrQ7zmvECO/+Qwg0/3RahDbxhNf9oEwzvcwmvPD7e
+         TYw8knOpemX607Uh86EOdsdnRId7kdD7TXbsnqmFsRjtiz0XuHqVXTdt+xH3e4fc5yEr
+         +9Gg==
+X-Gm-Message-State: AGi0Puax+4I5sZ8HW09CbqA4a1rldIYYQ+AKbAq3Vu+SDPSTIMEhHfJV
+	ycm9aotB8MQWfTcoBZM6509iHQn2suTaUkY2kJx+hg==
+X-Google-Smtp-Source: APiQypKKi5adVKvQpRt0njMa8T9DFn8R5yg2BSibDyzx3EynqnoSfOefmdZengeIA7RXHp39amswBcHAKCsVlgaxVCg=
+X-Received: by 2002:adf:e6c5:: with SMTP id y5mr3580133wrm.140.1586068680098;
+ Sat, 04 Apr 2020 23:38:00 -0700 (PDT)
 MIME-Version: 1.0
-From: "Joel A Cohen" <aaron@assonance.org>
-Date: Sun, 5 Apr 2020 00:18:27 -0400
-Message-ID: <CAFSZm+iY_fr9FufiS+TwaDs-CKnvwKtfVm7KjxCMJ6d2UsyGPA@mail.gmail.com>
-Subject: wic files with multiple rootfs source plugins and rm_work enabled
-To: Yocto list discussion <yocto@yoctoproject.org>
-Content-Type: multipart/alternative; boundary="000000000000d668c605a2837136"
-
---000000000000d668c605a2837136
+References: <CAFP0Ok8cBje8vofUwqo2ac5moA7Yj3OiJNO9DDbJJXxCJUsEtA@mail.gmail.com>
+ <CAHUNapQTnMDphOyxhZ08KzN=venDyXcwaAtsRHz+6sDTO6UhQg@mail.gmail.com>
+ <CAFP0Ok9cSbcFzYELJ+D65aw4hMGXegfK=qr4Ay79wsJO2TPLHA@mail.gmail.com>
+ <CAHUNapRTV8SgnDfhPGY5G8kaFyK9g=qK2GG7vOPkmmuj-Ugv7Q@mail.gmail.com>
+ <20200323111421.GA20231@xn--80adja5bqm.su> <CAOf5uwmWFFZr5QvWp6kQazzU1YkmcmdxNEBZp_9WXwm0dOvJyg@mail.gmail.com>
+ <20200323214537.GA24482@linux-uys3> <15FF0D3ABE30F2B0.31066@lists.yoctoproject.org>
+In-Reply-To: <15FF0D3ABE30F2B0.31066@lists.yoctoproject.org>
+From: "Michael Nazzareno Trimarchi" <michael@amarulasolutions.com>
+Date: Sun, 5 Apr 2020 08:37:48 +0200
+Message-ID: <CAOf5uwk74fN45hEtiLAWO4LiLW4=xi92FfxP_mTAmcFh9d8NQA@mail.gmail.com>
+Subject: Re: [yocto] yocto on tinkerbaord using meta-rockchip
+To: Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Cc: Trevor Woerner <twoerner@gmail.com>, yocto@lists.yoctoproject.org
 Content-Type: text/plain; charset="UTF-8"
 
-I'm trying to create a multi-partition image, and just ran across a
-difficult to track-down issue that I'm a little curious about.
+Hi
 
-It's the intersection of rm_work, and needing to get to the sysroot of
-another image recipe. RM_WORK_EXCLUDE_ITEMS is respected insomuch as I have
-an empty directory named "rootfs" that remains in
-tmp/work/.../secondary-image/rootfs
+On Mon, Mar 23, 2020 at 10:49 PM Michael Nazzareno Trimarchi via
+Lists.Yoctoproject.Org
+<michael=amarulasolutions.com@lists.yoctoproject.org> wrote:
+>
+> Hi
+>
+> On Mon, Mar 23, 2020 at 10:45 PM Trevor Woerner <twoerner@gmail.com> wrote:
+> >
+> > On Mon 2020-03-23 @ 10:31:05 PM, Michael Nazzareno Trimarchi wrote:
+> > > What about the status of qt layer using panfrost? and mainline
+> >
+> > Thanks to JPEW, mesa with panfrost is enabled/working with relevant boards.
+> > I've tested it, running, on both the rock-pi-4 and tinkerboard (so it *should*
+> > be working with your vyasa-rk3288 board too, although I haven't run-tested it
+> > lately). Therefore most anything sitting on top of mesa *should* work.
+> >
+> > Of course... the panfrost project is a "work-in-progress", so there are
+> > probably some cases that might not work.
+>
+> Technically I can include meta-qt and build on top of mesa using
+> wayland and some
+> mainline kernel. I'm working right now on tinker-s board and figure
+> out to move legacy
+> project on mainline solution.  I will try to compile it and give a try
+>
 
-However, a task in rm_work named "rm_work_rootfs" has a "cleandirs" flag
-set on the rootfs directory. This seems redundant and confusing to me. Why
-does the rootfs directory need special handling?
+I get some experience and get working the tinker board on meta-rockchip layer.
 
-It took me quite a bit to track down how this works. Is this the correct
-way to do this?
+I should start to play with maniline soon and test vyasa board to have
+the same level
+of support
 
-It actually seems to be that the source plugin should be smart enough to
-populate the sysroot of images as needed, rather than needing to prevent
-cleaning them.
+Michael
 
-Thanks,
-Aaron
-
-My recipes contain:
-
-primary-image.bb:
-WKS_FILE = "dev.wks"
-DEPENDS += "secondary-image"
-
-
-secondary-image.bb:
-# The following doesn't work, the rootfs directory will be empty
-RM_WORK_EXCLUDE_ITEMS += "rootfs"
-# The following is needed...
-rm_work_rootfs[cleandirs] = ""
+> Michael
+>
+> >
+> > Best regards,
+> >         Trevor
+>
+>
+>
+> --
+> | Michael Nazzareno Trimarchi                     Amarula Solutions BV |
+> | COO  -  Founder                                      Cruquiuskade 47 |
+> | +31(0)851119172                                 Amsterdam 1018 AM NL |
+> |                  [`as] http://www.amarulasolutions.com               |
+> 
 
 
-dev.wks:
-part / --source rootfs --fstype=ext4 --label platform --align 1024
---use-uuid
-part /usr/local --source rootfs --rootfs-dir=secondary-image --size 4096
---fstype=ext4 --use-uuid
 
---000000000000d668c605a2837136
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I&#39;m trying to create a multi-partition image, and just=
- ran across a difficult to track-down issue that I&#39;m a little curious a=
-bout.<div><br></div><div>It&#39;s the intersection of rm_work, and needing =
-to get to the sysroot of another image recipe. RM_WORK_EXCLUDE_ITEMS is res=
-pected insomuch as I have an empty directory named &quot;rootfs&quot; that =
-remains in tmp/work/.../secondary-image/rootfs</div><div><br></div><div>How=
-ever, a task in rm_work named &quot;rm_work_rootfs&quot; has a &quot;cleand=
-irs&quot; flag set on the rootfs directory. This seems redundant and confus=
-ing to me. Why does the rootfs directory need special handling?</div><div><=
-br></div><div>It took me quite a bit to track down how this works. Is this =
-the correct way to do this?</div><div><br></div><div>It actually seems to b=
-e that the source plugin should be smart enough to populate the sysroot of =
-images as needed, rather than needing to prevent cleaning them.</div><div><=
-br></div><div>Thanks,</div><div>Aaron</div><div><br></div><div>My recipes c=
-ontain:</div><div><br></div><div><a href=3D"http://primary-image.bb">primar=
-y-image.bb</a>:</div><div>WKS_FILE =3D &quot;dev.wks&quot;<br>DEPENDS +=3D =
-&quot;secondary-image&quot;</div><div><br></div><div><br></div><div><a href=
-=3D"http://secondary-image.bb">secondary-image.bb</a>:</div><div># The foll=
-owing doesn&#39;t work, the rootfs directory will be empty</div><div>RM_WOR=
-K_EXCLUDE_ITEMS +=3D &quot;rootfs&quot;<br></div><div># The following is ne=
-eded...</div><div>rm_work_rootfs[cleandirs] =3D &quot;&quot;</div><div><br>=
-</div><div><br></div><div>dev.wks:</div><div>part / --source rootfs --fstyp=
-e=3Dext4 --label platform --align 1024 --use-uuid<br></div><div>part /usr/l=
-ocal --source rootfs --rootfs-dir=3Dsecondary-image --size 4096 --fstype=3D=
-ext4 --use-uuid<br><br></div></div>
-
---000000000000d668c605a2837136--
+-- 
+| Michael Nazzareno Trimarchi                     Amarula Solutions BV |
+| COO  -  Founder                                      Cruquiuskade 47 |
+| +31(0)851119172                                 Amsterdam 1018 AM NL |
+|                  [`as] http://www.amarulasolutions.com               |
