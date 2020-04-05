@@ -1,107 +1,73 @@
-Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com [209.85.221.65])
- by mx.groups.io with SMTP id smtpd.web10.13299.1586068681741052245
- for <yocto@lists.yoctoproject.org>;
- Sat, 04 Apr 2020 23:38:02 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@amarulasolutions.com header.s=google header.b=PSwEsyU0;
- spf=pass (domain: amarulasolutions.com, ip: 209.85.221.65, mailfrom: michael@amarulasolutions.com)
-Received: by mail-wr1-f65.google.com with SMTP id h9so13477294wrc.8
-        for <yocto@lists.yoctoproject.org>; Sat, 04 Apr 2020 23:38:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dtd9g7pClapeh6/AY1CuyPOF8XTud0nY9GIdKy574DM=;
-        b=PSwEsyU05z10eVR1+zwC/0qbr1pz/YxfboLOgulkeya/75Yd3d1SjVKZg1ITWyxApk
-         P4/5gvqN0sIkp4yk2iZxCDkH1qiR9yDcIXCqRigaRlKUA3Y5O5naZJeifSoTcA2PB3+c
-         KIlZNw53l3LLCllKCG/VlbM9DjkdlZSSSIGxQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dtd9g7pClapeh6/AY1CuyPOF8XTud0nY9GIdKy574DM=;
-        b=t6doqO2Cc3R9R2Bg8+jBu0y29VBMGW0l+xGngkPLsOEExLz/3LPh2BGPoQg5nZIGxo
-         HkWd6Z4f1E/oYjzrQ9dnJpfqOKhfxjTlAFJoaG+B38M+JzJtJrPlkLWBWyCN28Y+Y1Fj
-         vokpMeVWOosfhd6TPAv5kOSFxAQcmoaJAkkoDBFW3k4ouL/AVKFZusg+aHFaARrtlg3H
-         ClGwPYPTIw2Tclv/di7ceJ31XeEPrQ7zmvECO/+Qwg0/3RahDbxhNf9oEwzvcwmvPD7e
-         TYw8knOpemX607Uh86EOdsdnRId7kdD7TXbsnqmFsRjtiz0XuHqVXTdt+xH3e4fc5yEr
-         +9Gg==
-X-Gm-Message-State: AGi0Puax+4I5sZ8HW09CbqA4a1rldIYYQ+AKbAq3Vu+SDPSTIMEhHfJV
-	ycm9aotB8MQWfTcoBZM6509iHQn2suTaUkY2kJx+hg==
-X-Google-Smtp-Source: APiQypKKi5adVKvQpRt0njMa8T9DFn8R5yg2BSibDyzx3EynqnoSfOefmdZengeIA7RXHp39amswBcHAKCsVlgaxVCg=
-X-Received: by 2002:adf:e6c5:: with SMTP id y5mr3580133wrm.140.1586068680098;
- Sat, 04 Apr 2020 23:38:00 -0700 (PDT)
+Subject: Error running GO-lang executable on target device
+To: yocto@lists.yoctoproject.org
+From: salman.isd@gmail.com
+X-Originating-Location: Bielefeld, North Rhine-Westphalia, DE (37.201.144.70)
+X-Originating-Platform: Windows Chrome 80
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-References: <CAFP0Ok8cBje8vofUwqo2ac5moA7Yj3OiJNO9DDbJJXxCJUsEtA@mail.gmail.com>
- <CAHUNapQTnMDphOyxhZ08KzN=venDyXcwaAtsRHz+6sDTO6UhQg@mail.gmail.com>
- <CAFP0Ok9cSbcFzYELJ+D65aw4hMGXegfK=qr4Ay79wsJO2TPLHA@mail.gmail.com>
- <CAHUNapRTV8SgnDfhPGY5G8kaFyK9g=qK2GG7vOPkmmuj-Ugv7Q@mail.gmail.com>
- <20200323111421.GA20231@xn--80adja5bqm.su> <CAOf5uwmWFFZr5QvWp6kQazzU1YkmcmdxNEBZp_9WXwm0dOvJyg@mail.gmail.com>
- <20200323214537.GA24482@linux-uys3> <15FF0D3ABE30F2B0.31066@lists.yoctoproject.org>
-In-Reply-To: <15FF0D3ABE30F2B0.31066@lists.yoctoproject.org>
-From: "Michael Nazzareno Trimarchi" <michael@amarulasolutions.com>
-Date: Sun, 5 Apr 2020 08:37:48 +0200
-Message-ID: <CAOf5uwk74fN45hEtiLAWO4LiLW4=xi92FfxP_mTAmcFh9d8NQA@mail.gmail.com>
-Subject: Re: [yocto] yocto on tinkerbaord using meta-rockchip
-To: Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
-Cc: Trevor Woerner <twoerner@gmail.com>, yocto@lists.yoctoproject.org
-Content-Type: text/plain; charset="UTF-8"
+Date: Sun, 05 Apr 2020 04:52:38 -0700
+Message-ID: <lm60.1586087558819286041.pozG@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="Ke9HmQBhykF1GzvrmjYQ"
 
-Hi
+--Ke9HmQBhykF1GzvrmjYQ
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 23, 2020 at 10:49 PM Michael Nazzareno Trimarchi via
-Lists.Yoctoproject.Org
-<michael=amarulasolutions.com@lists.yoctoproject.org> wrote:
->
-> Hi
->
-> On Mon, Mar 23, 2020 at 10:45 PM Trevor Woerner <twoerner@gmail.com> wrote:
-> >
-> > On Mon 2020-03-23 @ 10:31:05 PM, Michael Nazzareno Trimarchi wrote:
-> > > What about the status of qt layer using panfrost? and mainline
-> >
-> > Thanks to JPEW, mesa with panfrost is enabled/working with relevant boards.
-> > I've tested it, running, on both the rock-pi-4 and tinkerboard (so it *should*
-> > be working with your vyasa-rk3288 board too, although I haven't run-tested it
-> > lately). Therefore most anything sitting on top of mesa *should* work.
-> >
-> > Of course... the panfrost project is a "work-in-progress", so there are
-> > probably some cases that might not work.
->
-> Technically I can include meta-qt and build on top of mesa using
-> wayland and some
-> mainline kernel. I'm working right now on tinker-s board and figure
-> out to move legacy
-> project on mainline solution.  I will try to compile it and give a try
->
+I am trying to run the yocto go example on my arm target device. This is th=
+e receipe I am using https://git.yoctoproject.org/cgit.cgi/poky/plain/meta/=
+recipes-extended/go-examples/go-helloworld_0.1.bb
+I made one change to the recipe. I added GO_LINKSHARED=3D"" which removes =
+the runtime dependecy of the package on "go-runtime".
+I have used both go 1.12 and go 1.14
 
-I get some experience and get working the tinker board on meta-rockchip layer.
+The package is built correctly. I transfer and try to run on the device bu=
+t this error.
+*./go-helloworld*
+-sh: ./go-helloworld: No such file or directory
 
-I should start to play with maniline soon and test vyasa board to have
-the same level
-of support
+Running *file* on the binary shows
+*file go-helloworld*
+go-helloworld: ELF 32-bit LSB pie executable, ARM, EABI5 version 1 (SYSV),=
+ dynamically linked, interpreter /lib/ld-linux.so.3, BuildID[sha1]=3Db5d8fa=
+526402b35c3233f7ce3e578eb9596d9de8, for GNU/Linux 3.2.0, stripped
 
-Michael
+There is no ld-linux.so.3 on my device, only ld-linux-armhf.so.3. So I cre=
+ade a symlink like shown
+ld-linux.so.3 ->=C2=A0ld-linux-armhf.so.3
 
-> Michael
->
-> >
-> > Best regards,
-> >         Trevor
->
->
->
-> --
-> | Michael Nazzareno Trimarchi                     Amarula Solutions BV |
-> | COO  -  Founder                                      Cruquiuskade 47 |
-> | +31(0)851119172                                 Amsterdam 1018 AM NL |
-> |                  [`as] http://www.amarulasolutions.com               |
-> 
+Tried to run my binary again and this time it segfaults.
 
+Does anyone have an idea what might be going on? All my C programs built w=
+ith yocto refer to the correct ld-linux-armhf.so.3 and run fine.Do I need t=
+o install some other go-related stuff before running my program?
 
+--Ke9HmQBhykF1GzvrmjYQ
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
--- 
-| Michael Nazzareno Trimarchi                     Amarula Solutions BV |
-| COO  -  Founder                                      Cruquiuskade 47 |
-| +31(0)851119172                                 Amsterdam 1018 AM NL |
-|                  [`as] http://www.amarulasolutions.com               |
+I am trying to run the yocto go example on my arm target device. This is th=
+e receipe I am using&nbsp;<a href=3D"https://git.yoctoproject.org/cgit.cgi/=
+poky/plain/meta/recipes-extended/go-examples/go-helloworld_0.1.bb">https://=
+git.yoctoproject.org/cgit.cgi/poky/plain/meta/recipes-extended/go-examples/=
+go-helloworld_0.1.bb</a><br />I made one change to the recipe. I added GO_L=
+INKSHARED=3D"" which removes the runtime dependecy of the package on "go-ru=
+ntime".<br />I have used both go 1.12 and go 1.14<br /><br />The package is=
+ built correctly. I transfer and try to run on the device but this error.<b=
+r />
+<div><strong>./go-helloworld&nbsp;</strong></div>
+<div>-sh: ./go-helloworld: No such file or directory</div>
+<div><br />Running <strong>file</strong> on the binary shows<br />
+<div><strong>file go-helloworld&nbsp;</strong></div>
+<div>go-helloworld: ELF 32-bit LSB pie executable, ARM, EABI5 version 1 (S=
+YSV), dynamically linked, interpreter /lib/ld-linux.so.3, BuildID[sha1]=3Db=
+5d8fa526402b35c3233f7ce3e578eb9596d9de8, for GNU/Linux 3.2.0, stripped<br /=
+><br />There is no ld-linux.so.3 on my device, only ld-linux-armhf.so.3. So=
+ I creade a symlink like shown<br />ld-linux.so.3 -&gt;&nbsp;ld-linux-armhf=
+.so.3<br /><br />Tried to run my binary again and this time it segfaults.<b=
+r /><br />Does anyone have an idea what might be going on? All my C program=
+s built with yocto refer to the correct ld-linux-armhf.so.3 and run fine.Do=
+ I need to install some other go-related stuff before running my program?</=
+div>
+</div>
+
+--Ke9HmQBhykF1GzvrmjYQ--
