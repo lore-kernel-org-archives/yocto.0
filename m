@@ -1,82 +1,110 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.7589.1586166636872462767
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+ by mx.groups.io with SMTP id smtpd.web10.8404.1586171516134819221
  for <yocto@lists.yoctoproject.org>;
- Mon, 06 Apr 2020 02:50:37 -0700
+ Mon, 06 Apr 2020 04:11:56 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@burtonini-com.20150623.gappssmtp.com header.s=20150623 header.b=nPU+w0Na;
- spf=softfail (domain: burtonini.com, ip: 140.211.169.56, mailfrom: ross@burtonini.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8D188E01966; Mon,  6 Apr 2020 02:50:36 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.208.174 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22224E01927
-	for <yocto@yoctoproject.org>; Mon,  6 Apr 2020 02:50:33 -0700 (PDT)
-Received: by mail-lj1-f174.google.com with SMTP id p14so13926432lji.11
-        for <yocto@yoctoproject.org>; Mon, 06 Apr 2020 02:50:33 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=NIcjINz7;
+ spf=pass (domain: gmail.com, ip: 209.85.222.181, mailfrom: lefevre.da@gmail.com)
+Received: by mail-qk1-f181.google.com with SMTP id h14so15654176qke.5
+        for <yocto@lists.yoctoproject.org>; Mon, 06 Apr 2020 04:11:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=burtonini-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=oXpt8Zbzwy2T4RLY2029xk3vWqCE/hS2/+Yw9G54aM8=;
-        b=nPU+w0NaC4HSsEyph9lXSTi4lSp4af7HqWNxRUfameDVSWIPp7QIJJSsECXFCBKwtB
-         PlZBDRnyR3ZFNi0KHk/14HT07HJRjEylmt3KrjH3/6aTHqaOQtHadaPUSbqqDBHkA4PU
-         mTFCQ4GHivM5rEUOsq6TImbSRMyF3wmzALTr+AYfCYu+CoWyOae1UwQWBb0WlkJgpKnD
-         ZKapgco3Gd85VWKMMrSk7Guo52xUT/ErD6yHtAZ0j5GZp2nPiQ/PBlgUv0a/vj/dHfZ2
-         xDrtNuflkslXolDBQRt6C/wZaPKVDBxtaSLkLacxTZ/8d6vT5QPsAsG8u9G8hb13zytG
-         3q7Q==
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to;
+        bh=3bmu2l4bd7z1vnmT3T+OPmaV43ECNwlDoKAT54KMiNI=;
+        b=NIcjINz7LkdAIQ5d5dW4nnt1VuIDL7Lg3XbPrbfCIbSfvVHZkdUqeE/djwmQ5zDtnc
+         5abtDK8XX7K5ir7Nqlcmt3Uo9aoOnI1O6kUYyTAwu3nS6nbF5G15Qc3xzdMtLieEcbgU
+         1j1OI3fFsriG8xYCmEXEQlO/EhIRxd+GpUFpFurwYbSzjUAgS54N/mZKF3omWN3g5rR6
+         ROM7ZJLAzqkJPktfEITsb2AxDCd5k3QBvrZpFEnrJzvwyZTeqdoMXbVNxWVi9cjLNY0X
+         YABNtbcWuAVggY32mdlzSv7r+R7rWO3sMYLdoZBp+nATbhCYzyPXFuT4y5N4YNiqEDVZ
+         S+ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oXpt8Zbzwy2T4RLY2029xk3vWqCE/hS2/+Yw9G54aM8=;
-        b=r53sPX7fCPnlmMVG6uGZH1GnYW78XN0+XQzA4iYkD/xu7DBt8A0Rw29sp1cB344KLE
-         sJg7okbnNTSakjReK6//Mz5vt4dfQ9KtdvlYIoeuwEV/zE3FDudnulD0uaCde5BbweMi
-         5oHAbG31VQUQmc96X3NEFgP1ZG9zUG+1ZUvw01e8vnCiwSReoZZ6Hp0DZ8K3AmXIGztl
-         Jn6+5uTG9sZPHnMFLf3xEZvUQC/rxmY5Fk+9gHwN2pzw77sbtmbVbVl+yWV+QnBbC9Jo
-         6JDghWSildPBHhANZuE8YcDGcyf2bkJoWOWulvn8qBWUsgNsbK0WYdwAwk/353DG48rZ
-         DEhQ==
-X-Gm-Message-State: AGi0Puapgv/kGV5sdEEQcKn3yvctneF5J42Wu+UYa/+s6PwfoKibCMVw
-	GCmlreUv8sE74cvOJwzaUB2s/J+XEzlF8iXW9SsiqULLToJeqQ6T
-X-Google-Smtp-Source: APiQypJs9QxCGyA6N0maYBMSVx8IOaLfEZVFsHuCj7qZA00F+IWr9HuVFdqrKN7T8dcIoW2L8W0rNsy8nn2Nu7Hkng8=
-X-Received: by 2002:a2e:9789:: with SMTP id y9mr11197094lji.207.1586166632821;
- Mon, 06 Apr 2020 02:50:32 -0700 (PDT)
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
+        bh=3bmu2l4bd7z1vnmT3T+OPmaV43ECNwlDoKAT54KMiNI=;
+        b=MntQYpOOnM+ZY6b4rLZ7hpd2h2/w6GM3KI+G1Ay2gTsw7awE+eBAwaW6uPgVSXQGDm
+         igqx/XCGptbfSifOhtAfvpGfx3jX2j5j1MRSsu91AuRvX/gwwvH+p3zi41Kzj04Ydcde
+         8lYoo3432BOZzPnVAkSyPsaGnqYBvReqimxWBV5CZ3liVgPaAwo/S0uOWxOxbDVdr584
+         /Gl8Nl22ynAiop+Qqf9G1rlKFSm4Ed9r6KRKsx5NdUangvPa3BKgm220pKyJ8BaI1dOn
+         VpsmjJUS8qbRcbjDXTEcra0ujuO445Ua9IBDdUP+Wihfr1CPgWF1+DetQ+w8l+n44LpT
+         IMiQ==
+X-Gm-Message-State: AGi0PuYUwbZP5+DNtlCRX5amGga1/ZXiHF+s9XRTuafJJrR6Vux6o9zs
+	SfgWY159WjWxQ/Goz2Cw+xDuHX71u+sfy/FEK1OGAen2OA==
+X-Google-Smtp-Source: APiQypJK4OpqPsQ2NYsGzOIBow7vxPPjVx2FQFfpvK7hPkwNLqrMwiacy+fyMBj0QGPAf4Aj1ZxNX71j/rgtPE8unZs=
+X-Received: by 2002:a37:68d2:: with SMTP id d201mr16581491qkc.468.1586171515088;
+ Mon, 06 Apr 2020 04:11:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAFSZm+gPARCC4ki+7XtYCSYgVsO87EzB=x60p8rXX+QXGh6YHA@mail.gmail.com>
-In-Reply-To: <CAFSZm+gPARCC4ki+7XtYCSYgVsO87EzB=x60p8rXX+QXGh6YHA@mail.gmail.com>
-From: "Ross Burton" <ross@burtonini.com>
-Date: Mon, 6 Apr 2020 10:50:22 +0100
-Message-ID: <CAAnfSTv58typ3h7ebGYhPGO718KTNgkQESmKYdwCaYmB6AVRmQ@mail.gmail.com>
-Subject: Re: [yocto] Any way to enable automatic package-index if rpms are changed?
-To: Joel A Cohen <aaron@assonance.org>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
+From: "Damien LEFEVRE" <lefevre.da@gmail.com>
+Date: Mon, 6 Apr 2020 14:11:44 +0300
+Message-ID: <CA+FhBv8UfdzwGOE=HqGPGdmWzfPEM2QcO2ERCCOh_ed30fU4QA@mail.gmail.com>
+Subject: u-boot factory reset
+To: yocto@lists.yoctoproject.org
+Content-Type: multipart/alternative; boundary="000000000000b5b4e205a29d5528"
+
+--000000000000b5b4e205a29d5528
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 6 Apr 2020 at 04:09, Joel A Cohen <aaron@assonance.org> wrote:
-> One of my most frequent annoying mistakes is to forget to run package index.
->
-> It would be nice if I could INHERIT += "auto-package-index" or something like that.
->
-> Is there a hook that such a class would easily be able to hook into?
+Hi,
 
-I did start implementing this:
+First time customizing u-boot, forgive my basic question.
 
-http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=ross/index
+To implement a factory reset, my initramfs expects a =E2=80=98factoryreset=
+=E2=80=99 kernel
+parameter to format an overlay FS partition before mounting it.
 
-I think it mostly worked but wasn't quite finished.  If you're
-interested please do grab those top three patches and give it a go
-(INHERIT += "package-index").
+The target machine is a Tegra TX2.
 
-Ross
+I=E2=80=99m able to use the Volume Up button for factory reset, which is gp=
+io-313 .
+When starting the board if I press the button say 5s, I=E2=80=99d like to a=
+dd the
+=E2=80=98factoryreset=E2=80=99 parameter to the boot parameters
+
+I think I could use this syntax @uboot_var('factoryreset') in the
+KERNEL_ROOTSPEC variable and have the variable set either to '' or
+'factoryreset'
+
+Maybe, I should append distro_bootcmd to add the gpio pin reading to
+set factoryreset variable before proceeding with the boot sequence.
+
+But how can I add the variable and have it set if the if the gpio pin is at
+a certain state?
+
+Thanks,
+
+-Damien
+
+--000000000000b5b4e205a29d5528
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">
+=09
+=09
+
+
+<p style=3D"margin-bottom:0in;line-height:100%">Hi,</p>
+<p style=3D"margin-bottom:0in;line-height:100%">First time
+customizing u-boot, forgive my basic question.<br></p>
+<p style=3D"margin-bottom:0in;line-height:100%">To implement a
+factory reset, my initramfs expects a =E2=80=98factoryreset=E2=80=99 kernel
+parameter to format an overlay FS partition before mounting it.<br></p>
+<p style=3D"margin-bottom:0in;line-height:100%">The target machine
+is a Tegra TX2.<br></p>
+<p style=3D"margin-bottom:0in;line-height:100%">I=E2=80=99m able to use
+the Volume Up button for factory reset, which is gpio-313 . When
+starting the board if I press the button say 5s, I=E2=80=99d like to add
+the =E2=80=98factoryreset=E2=80=99 parameter to the boot parameters<br></p>
+<p style=3D"margin-bottom:0in;line-height:100%">I think I could use
+this syntax @uboot_var(&#39;factoryreset&#39;) in the KERNEL_ROOTSPEC
+variable and have the variable set either to &#39;&#39; or &#39;factoryrese=
+t&#39;<br></p><p style=3D"margin-bottom:0in;line-height:100%">Maybe, I shou=
+ld append=C2=A0distro_bootcmd to add the gpio pin reading to set=C2=A0facto=
+ryreset=C2=A0variable before proceeding with the boot sequence.</p>
+<p style=3D"margin-bottom:0in;line-height:100%">But how can I add
+the variable and have it set if the if the gpio pin is at a certain
+state?<br></p>
+<p style=3D"margin-bottom:0in;line-height:100%">Thanks,<br></p>
+<p style=3D"margin-bottom:0in;line-height:100%">-Damien</p></div>
+
+--000000000000b5b4e205a29d5528--
