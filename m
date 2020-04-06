@@ -1,96 +1,68 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.1940.1586203129775511512
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+ by mx.groups.io with SMTP id smtpd.web12.2364.1586204408601420260
  for <yocto@lists.yoctoproject.org>;
- Mon, 06 Apr 2020 12:58:49 -0700
+ Mon, 06 Apr 2020 13:20:09 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=mrtrNMjX;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: wpdster@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4DA07E01976; Mon,  6 Apr 2020 12:58:49 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (wpdster[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.219.51 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F410E01972
-	for <yocto@yoctoproject.org>; Mon,  6 Apr 2020 12:58:47 -0700 (PDT)
-Received: by mail-qv1-f51.google.com with SMTP id c28so638460qvb.10
-        for <yocto@yoctoproject.org>; Mon, 06 Apr 2020 12:58:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=c170JtqC9BGabJDdWdpJeEoT25jW5SB0OYJH3tvK4c8=;
-        b=mrtrNMjXqCWQayekydxmtfasCf/CdClRLibdju/jbBGe1UGX4xkI3tSSHyc/PcixQp
-         vobcd9eECr7/chLBfHB40CvF/u9C8UoFm02+fdRoiywY35bgHzxqdXfgrVtxRzxyGeRl
-         SomLHtPyH+0YqmbVrOUuIxFjOuS6GOKBsChWeuGbXNTdrWMxMmumz8ioa6ixKAK/RDVu
-         ZM8MTOenN9rXMR7MSWQiaBLDdV/3F2MYalOq+lNwzSa8EzWcHKr+ZVv7wuUFc9EMN/Qu
-         dYmS5/69W5CTM4ybUbdlCiPuaXPaUrDC2DqpH/aPZIGdL7ZpQjm4K4988h/KHqxEuYVJ
-         Z80g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to;
-        bh=c170JtqC9BGabJDdWdpJeEoT25jW5SB0OYJH3tvK4c8=;
-        b=H0JD/SgYg386EXz61CrpI7liAInoRT5SDp7EBYhNfete0n99TvnEYAV74HTC3hbiXe
-         6MDB4bGw+Y37sE/rK8nqzYcvBZ1Z+sNwuZySKtZq+d7EVZiiFw6MWC1YehydypNng8my
-         rbbsLVOC3gRyBHlW/5WY+fuuPPuv2WUbUMiv1Y/u871x1ExzuN0wYya3ZoOT4zV7QjjL
-         LzFOINwILq4he+c+17bD3E4nvJPoSRegDDFi7dFr2XP+DwMo8uCMgJ13pXSEQtzdGKKB
-         6J1C8gMFY4aiXnX92E2GYMfCpc3MiFEgbKrkjg0eIusi77HGPe6somPwzvtBZKkMLWX+
-         FlcQ==
-X-Gm-Message-State: AGi0PuZSzZUyoPZ6EOmgB+byi34sECSzWDLwPpr8NkoqOQTEpUrEfMyj
-	ZJ8YmcgysXpwFAWFIzKo0tOttNfkmt+QpWcIRMOEWxR5
-X-Google-Smtp-Source: APiQypIhQt2Szugeu+NAVAWB8e7VSyebj4bymgOR5P3jmt/hHAxWvMRxOoO4nE6SqlAqo+OOtn+x7hUqatAuoTIFYGI=
-X-Received: by 2002:a0c:b78e:: with SMTP id l14mr1585271qve.4.1586203127036;
- Mon, 06 Apr 2020 12:58:47 -0700 (PDT)
+ dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.1.11, mailfrom: randy.macleod@windriver.com)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
+	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 036KK5gU021397
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
+	Mon, 6 Apr 2020 13:20:05 -0700 (PDT)
+Received: from [172.25.44.3] (172.25.44.3) by ALA-HCA.corp.ad.wrs.com
+ (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Mon, 6 Apr
+ 2020 13:20:04 -0700
+Subject: Re: [yocto] Novice question on makefile in yocto environment
+To: Raghu Icecraft Software Trainings <raghu.icecraft@gmail.com>,
+        <yocto@lists.yoctoproject.org>
+References: <CAKRDAG--FgfkAkYiLodkNzQxKo66pKN+Q=s30OhhrBaptRyVhg@mail.gmail.com>
+From: "Randy MacLeod" <randy.macleod@windriver.com>
+Message-ID: <0fad62f4-5268-d877-2d1f-b9d29a3f8037@windriver.com>
+Date: Mon, 6 Apr 2020 16:20:02 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-References: <CAF_dkJAyFxfDD-QLwRmnMO6-DUvyyDffjEeXBu=cZ5HVej30vA@mail.gmail.com>
-In-Reply-To: <CAF_dkJAyFxfDD-QLwRmnMO6-DUvyyDffjEeXBu=cZ5HVej30vA@mail.gmail.com>
-From: "Patrick Doyle" <wpdster@gmail.com>
-Date: Mon, 6 Apr 2020 15:58:20 -0400
-Message-ID: <CAF_dkJDUdord4i1A3=-C-E46C1-HtBFXAAGsuFYbdCguZLi+Lg@mail.gmail.com>
-Subject: Re: Removing URL escapes from a Bitbake variable
-To: Yocto discussion list <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAKRDAG--FgfkAkYiLodkNzQxKo66pKN+Q=s30OhhrBaptRyVhg@mail.gmail.com>
+X-Originating-IP: [172.25.44.3]
+X-MIME-Autoconverted: from 8bit to quoted-printable by mail.windriver.com id 036KK5gU021397
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-CA
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Apr 6, 2020 at 3:34 PM Patrick Doyle <wpdster@gmail.com> wrote:
->
-> I have a recipe that looks something like this (I'm simplifying a bit here):
->
-> SRC_URI += "${EXTERNAL_URL}"
->
-> do_compile() {
->   do -something -with $(basename ${EXTERNAL_URL} .ext)
-> }
->
-> where EXTERNAL_URL is supplied in the environment when invoking
-> Bitbake (and is whitelisted in the environment).
->
-> The problem is, if that URL has HTTP escapes in it, they get decoded
-> by the fetcher, and the file in ${WORKDIR} no longer looks like
-> $(basename ${EXTERNAL_URL}).
+On 2020-03-29 11:08 p.m., Raghu Icecraft Software Trainings wrote:
+> Hi,
+>=20
+>  =C2=A0 I have some general idea on makefile in C, C++ environment.
+> Related to my Yocto project having a very tough time in getting my=20
+> makefile ready on shape after almost every development change.
+>=20
+> Is there any specific Troubleshooting based guidance available some wher=
+e ?
+> I have also tried looking for old posts in this group.
+> Please suggest if I have to post this question, somewhere else.
 
-Never mind.  I found it.  I did something like:
+Did anyone reply off list?
 
-EXTERNAL_FILE="${@bb.fetch.decodeurl(d.getVar('EXTERNAL_URL',True))[2]}"
-do_compile() {
-  do -something-with $(basename ${EXTERNAL_URL})
-}
+Did you have a look at using the SDK and tips in:
+=20
+https://www.yoctoproject.org/docs/current/sdk-manual/sdk-manual.html#sdk-a=
+dding-makefile-only-software
 
-I would still be happy to learn of a better way to have done this.
 
---wpd
+Also, here's a simple recipe example from the Wind River docs:
+https://docs.windriver.com/bundle/Wind_River_Linux_Platform_Developers_Gui=
+de_CD/page/mmo1403548803429.html
+you should be able to make that work with just oe-core/poky.
+
+If you're still having trouble, post a example Makefile
+for 'hello-world' and perhaps someone will help you out.
+
+../Randy
+
+>=20
+>=20
+>=20
+
+
+--=20
+# Randy MacLeod
+# Wind River Linux
