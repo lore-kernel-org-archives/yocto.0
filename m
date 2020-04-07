@@ -1,129 +1,291 @@
-Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
- by mx.groups.io with SMTP id smtpd.web10.2391.1586286680590867990
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
+ by mx.groups.io with SMTP id smtpd.web10.3955.1586291090382444673
  for <yocto@lists.yoctoproject.org>;
- Tue, 07 Apr 2020 12:11:20 -0700
+ Tue, 07 Apr 2020 13:24:50 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=ApOJKdyI;
- spf=pass (domain: gmail.com, ip: 209.85.221.177, mailfrom: alex.kanavin@gmail.com)
-Received: by mail-vk1-f177.google.com with SMTP id f17so1175077vkk.2
-        for <yocto@lists.yoctoproject.org>; Tue, 07 Apr 2020 12:11:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=uB3phOktsf0wMf2Gfcm1yIh4CnoE7HBRzS6maGr2PuI=;
-        b=ApOJKdyIDDdfHmu1NDP/xZwBPDkWC6n9V4/jexlodgI1o7JZLb9vcpr4B/+z+QwxQs
-         lGcig6IlDVeTQGApnZ87JlYb3hDnkPTku3JDHmJQo7Gh0BYFVT+nCRHYKYUhaLsFONJd
-         WsRqLEapfsfdx5nsOdZNKqN0P5Ah/NuFD8T6yTBQa4U7Ad7rC/6zqVZaZ6zD0CI6kHZ6
-         451hLXW5P6+VZuBQngUO4Uhpgh8iTTmbVdp67wYZG81lsVyoClStSiIK/TIHpiDCqK59
-         8j2Ded/9wUUbmqiFJVaJ8SXSfzjyez/syvm0SDftggmSwV+B51NRRCZxcQBlMHB5PwWI
-         B+9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uB3phOktsf0wMf2Gfcm1yIh4CnoE7HBRzS6maGr2PuI=;
-        b=JvtMeSU0zN8jkZUsUa4acwOmUNwMB46eBehANDMDeun0dhVuMrxXiBbQTW3NKTcogg
-         mO5s7UBbhjj+oFcq4lc/u1AyxrcBl3Jp7V6Am2zwEA0gJDZvRPqWNa1BKyz/CCfkKxIF
-         /sIyIAVOrjteHwJdIULrR5X6bRZ6L1KAyNpXI50LXbRNSQnn5v4IWqYC7up4mXMaCccr
-         0XDfjEMBy+/3G9nWS7CAZ9f6tGjsObawPhOm3WPZ8PkLGPa+zw9ANq9l4i2O/HF+LKFl
-         od6z9qHHFidq1NqGvHdJuXwodT8fzaLnYcL5HK1DGRYacWgvkclv1jvM5ZAjxiaSMf4q
-         +IRA==
-X-Gm-Message-State: AGi0Pubuqedp31shp4GQ6g62ZgfxfGHMJnzxyNNhHVNn7dSoFlvxJ2U0
-	dy35wSvtMQrotMD7Q1SzAHKA4bKjqQZQpaMTk1Q=
-X-Google-Smtp-Source: APiQypIwzUwN8gIAy8H8NpfCuS6g8+xE3q4nAmcj/iNf57tqJxdYJWTF4sTbVrszxLGt3alSYZygxj/XGCQHDjrtDkU=
-X-Received: by 2002:a1f:e182:: with SMTP id y124mr2861133vkg.0.1586286679771;
- Tue, 07 Apr 2020 12:11:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <TU4PR8401MB11515FC6348D7E24918F9BA482C30@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
-In-Reply-To: <TU4PR8401MB11515FC6348D7E24918F9BA482C30@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
-From: "Alexander Kanavin" <alex.kanavin@gmail.com>
-Date: Tue, 7 Apr 2020 21:11:08 +0200
-Message-ID: <CANNYZj9XrHcierPY4LS80_+eC5v4Uj5xZPCn1=EtE0cS8Xcrmg@mail.gmail.com>
+ dkim=missing; spf=pass (domain: hpe.com, ip: 148.163.147.86, mailfrom: prvs=03668feaba=sean.mckay@hpe.com)
+Received: from pps.filterd (m0134421.ppops.net [127.0.0.1])
+	by mx0b-002e3701.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 037KLJBZ010854;
+	Tue, 7 Apr 2020 20:24:49 GMT
+Received: from g4t3426.houston.hpe.com (g4t3426.houston.hpe.com [15.241.140.75])
+	by mx0b-002e3701.pphosted.com with ESMTP id 307ws0y1a2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 07 Apr 2020 20:24:48 +0000
+Received: from G4W9120.americas.hpqcorp.net (exchangepmrr1.us.hpecorp.net [16.210.21.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by g4t3426.houston.hpe.com (Postfix) with ESMTPS id 1967562;
+	Tue,  7 Apr 2020 20:24:48 +0000 (UTC)
+Received: from G9W8455.americas.hpqcorp.net (2002:10d8:a15e::10d8:a15e) by
+ G4W9120.americas.hpqcorp.net (2002:10d2:150f::10d2:150f) with Microsoft SMTP
+ Server (TLS) id 15.0.1497.2; Tue, 7 Apr 2020 20:24:47 +0000
+Received: from NAM04-SN1-obe.outbound.protection.outlook.com (15.241.52.11) by
+ G9W8455.americas.hpqcorp.net (16.216.161.94) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.2 via Frontend Transport; Tue, 7 Apr 2020 20:24:47 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=aXnx0HOgp8PL7suVViTnXpd1ArwI+n6kAxIWp+OT98JvAZWFfVtNKJk9RbswSH90tlE4vTiMROaWt/++4fO94TrE5DtTRdtuiHES9J6j4BykKfFIrIy91mipU/2YORtf9osfwijLrQG96KbYM83UMD05ryEG5CZzyaoUXj5F/6pYiJ5o+I8KWzx9hO6jFhYkhYfrLY4uI1sJSKG0Ki9i9CCOk/VSIFQaDQYzG8DXItMR9aF9t1/rYICVuw+YHfI/u3e/Bk8HL86T0j59pzd/FvvyA1TIjh2IXqKUBjVKdPJQRpcvr2YWH4+uowftciMk34qOJWwGd7LgAHfZYbYFpQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Md3/+FllSYk29P8yvxZO6SDtmq91ZvFXhNUDhrJbYgk=;
+ b=GA8tllU9mymaGvd0qIeXusQf8sxvUYaeGN+XOGWw8DIcs8mLsYmJojwXlEbo9e5DFKDAqefvSWOawaEgOn9Rpgp2EbhAhbYDXDxsPx9SpH1RoiLERfrkQgDrHgWpbgsHu5Z18GH1cPlCOaQfQKyoYVOjKLHI4ULOYYuVppgmDaH2O59Ci7wLdMwvGz5eliQtGcfBzTTXkvi0ayKGt7RleH5JE+mVFebQJxQtRsjEQqKRqmimoOD2Ac4jUlulnmZG/c9fFk8pUgTd6cFLwQpaxFu8BlXcLo9XdKHm5Nq5u0Y3OB7T1GRBI3dTGZkpQqBS1b3Gf7bk3NWoBDkTm79/JQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
+ header.d=hpe.com; arc=none
+Received: from TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM
+ (2a01:111:e400:7712::19) by TU4PR8401MB1087.NAMPRD84.PROD.OUTLOOK.COM
+ (2a01:111:e400:7715::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2878.20; Tue, 7 Apr
+ 2020 20:24:46 +0000
+Received: from TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::d52b:149f:c4d3:a17b]) by TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::d52b:149f:c4d3:a17b%5]) with mapi id 15.20.2878.021; Tue, 7 Apr 2020
+ 20:24:46 +0000
+From: "Sean McKay" <sean.mckay@hpe.com>
+To: Alexander Kanavin <alex.kanavin@gmail.com>
+CC: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
 Subject: Re: [yocto] sstate causing stripped kernel vs symbols mismatch
-To: Sean McKay <sean.mckay@hpe.com>
-Cc: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: multipart/alternative; boundary="0000000000000f519f05a2b82635"
+Thread-Topic: [yocto] sstate causing stripped kernel vs symbols mismatch
+Thread-Index: AdYM/Bywfuw62hpBQNahLbh35mSTBQAFC4gAAAKPJLA=
+Date: Tue, 7 Apr 2020 20:24:46 +0000
+Message-ID: <TU4PR8401MB11514520BA0981B1F299741382C30@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
+References: <TU4PR8401MB11515FC6348D7E24918F9BA482C30@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
+ <CANNYZj9XrHcierPY4LS80_+eC5v4Uj5xZPCn1=EtE0cS8Xcrmg@mail.gmail.com>
+In-Reply-To: <CANNYZj9XrHcierPY4LS80_+eC5v4Uj5xZPCn1=EtE0cS8Xcrmg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [2601:204:cb03:2202:5c3e:42dd:b631:1835]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: aa59f255-c40b-4f9e-6b57-08d7db31b716
+x-ms-traffictypediagnostic: TU4PR8401MB1087:
+x-microsoft-antispam-prvs: <TU4PR8401MB1087DD297E287111D45CECB482C30@TU4PR8401MB1087.NAMPRD84.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-forefront-prvs: 036614DD9C
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFTY:;SFS:(10019020)(39860400002)(366004)(396003)(376002)(136003)(346002)(2906002)(8676002)(966005)(186003)(478600001)(86362001)(21615005)(6916009)(55016002)(8936002)(33656002)(81156014)(9686003)(81166006)(66946007)(64756008)(52536014)(5660300002)(66556008)(71200400001)(66446008)(316002)(7696005)(53546011)(4326008)(6506007)(76116006)(66476007);DIR:OUT;SFP:1102;
+received-spf: None (protection.outlook.com: hpe.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: oU46PjneCeTbusKq9qDOU7/aD+aCRYOFn+lrnTJnn/mXaI6bI4XrtNgfsflsb2UXC0JSuffkJ/rc8nYCmyXf25FV8ZpTsfuqOU8ea2lztGevAjfoFmW47hTeJeYUhVuN39RvB7gYwJ1AemPIjk9NC7NadqK6el3K5EFEs5kKDjIhcObZDWI16u9nilPr/9XeDWzrgHBpU1q0klv9NOGJIjlvSkBwqSDKJFVVLeWjA3pn9B3587c6rzV58+HZQYbiPAMbq0dPnX2Had3tYGJSFv6OxdhPsxvFxX8JibMSyMA0r3zH8tWm9wI7cZj7zzT1Pt2WBDkO58ocIpAPrlWVEjC/vZU5gK31jZbUU37f0SYnXE3JhCFTIm+XK9CUda8QZKUaas8Lkn1w7r4l+qtecEQ3tm+gMkSwYUjMBOZDzTGFXunXkZbmXFZonDWPyAQPkIcKqN22Icn5cX9Vy8aglazd8rnhAqaLp5CH5xpY4yyRZhgiSaaETplcFCnjQAtuCoegwdvgpHjQqC+N+DgIig==
+x-ms-exchange-antispam-messagedata: MS/JP+G34Gg5I6MVcjB7ppS6VR3vp9w7G1WqIvbEwIhDDUrpwNZoiR0VIL0+hB1p6FR+YDhiVvLyI463Np6AL7aAOlK+U32PV3EKhYiROMZkUWmt67t4KhiKrN4XY2//AS3XgbTX4ceBOBPLH/BhSqliJ2i6Yq56dpAv+GFztAdB7+NpRobq2vHQ+b/2pjWJsN2LB4buA69QhxlZUiiUZQ==
+x-ms-exchange-transport-forked: True
+X-MS-Exchange-CrossTenant-Network-Message-Id: aa59f255-c40b-4f9e-6b57-08d7db31b716
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Apr 2020 20:24:46.6945
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: jEn0DwSBA0NiblBQED8dgvNAphVbCu1FXEqiGnQaAQLBx/fn+p0Z0gJ3B4r6ZN3izkQNPiFLQ7GgBSDGDoTLCQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TU4PR8401MB1087
+X-OriginatorOrg: hpe.com
+X-Proofpoint-UnRewURL: 0 URL was un-rewritten
+MIME-Version: 1.0
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
+ definitions=2020-04-07_08:2020-04-07,2020-04-07 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 adultscore=0
+ mlxlogscore=999 impostorscore=0 phishscore=0 malwarescore=0 clxscore=1011
+ spamscore=0 lowpriorityscore=0 priorityscore=1501 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2003020000 definitions=main-2004070160
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_TU4PR8401MB11514520BA0981B1F299741382C30TU4PR8401MB1151_"
 
---0000000000000f519f05a2b82635
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+--_000_TU4PR8401MB11514520BA0981B1F299741382C30TU4PR8401MB1151_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Tue, 7 Apr 2020 at 21:03, Sean McKay <sean.mckay@hpe.com> wrote:
+VGhlIGtlcm5lbCBkb2VzbuKAmXQgaGF2ZSByZXByb2R1Y2libGUgYnVpbGRzIGJ5IGRlZmF1bHQg
+YmVjYXVzZSBvZiBhIGhhbmRmdWwgb2YgdmFyaWFibGVzIChpbmNsdWRpbmcgdGltZXN0YW1wcyku
+IElmIHlvdSByZWJ1aWxkLCB5b3UgZ2V0IGEgZGlmZmVyZW50IGJpbmFyeSBldmVyeSB0aW1lLg0K
+VGhvc2UgY2FuIGJlIGNoYW5nZWQgYW5kIG92ZXJyaWRkZW4gc28gdGhhdCB5b3UgZ2V0IGNvbnNp
+c3RlbnQgYmluYXJ5IG91dHB1dCAoc2VlIGhlcmU6IGh0dHBzOi8vd3d3Lmtlcm5lbC5vcmcvZG9j
+L2h0bWwvbGF0ZXN0L2tidWlsZC9yZXByb2R1Y2libGUtYnVpbGRzLmh0bWwpIGJ1dCB0aGF0IGhh
+c27igJl0IGJlZW4gZG9uZSBvbiB0aGUgbGludXgteW9jdG8gcmVjaXBlIHlldC4NCg0KSSBhc3N1
+bWUgdGhhdCBpdOKAmXMgcGxhbm5lZCBiZWNhdXNlIHRoZXJlIGFyZSBlZmZvcnRzIGdvaW5nIGlu
+IHRvIG1ha2luZyB0aGluZ3MgMTAwJSByZXByb2R1Y2libGUgZm9yIHBva3ksIGJ1dCBJIGRvbuKA
+mXQga25vdyB3aGF0IHRoZSBzdGF0dXMgb2YgZXZlcnl0aGluZyBpcyAoYWx0aG91Z2ggSSBrbm93
+IHRoYXQgdGhlIGtlcm5lbCBhdCBsZWFzdCBpc27igJl0IHJlcHJvZHVjaWJsZSBhcyBvZiAyMi4w
+LjIpDQoNClNpbmNlIHRoaXMgY2FuIHRoZW9yZXRpY2FsbHkgaGFwcGVuIHRvIGFueSBwYWNrYWdl
+IHRoYXQgZG9lc27igJl0IGhhdmUgYSByZXByb2R1Y2libGUgYnVpbGQgcHJvY2VzcywgaXQgc2Vl
+bWVkIHdvcnRoIGFza2luZyB0aGUgcXVlc3Rpb24gZ2xvYmFsbHkgdG9vLg0KDQotU2Vhbg0KDQoN
+CkZyb206IHlvY3RvQGxpc3RzLnlvY3RvcHJvamVjdC5vcmcgPHlvY3RvQGxpc3RzLnlvY3RvcHJv
+amVjdC5vcmc+IE9uIEJlaGFsZiBPZiBBbGV4YW5kZXIgS2FuYXZpbg0KU2VudDogVHVlc2RheSwg
+QXByaWwgNywgMjAyMCAxMjoxMSBQTQ0KVG86IE1jS2F5LCBTZWFuIDxzZWFuLm1ja2F5QGhwZS5j
+b20+DQpDYzogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0
+b10gc3N0YXRlIGNhdXNpbmcgc3RyaXBwZWQga2VybmVsIHZzIHN5bWJvbHMgbWlzbWF0Y2gNCg0K
+T24gVHVlLCA3IEFwciAyMDIwIGF0IDIxOjAzLCBTZWFuIE1jS2F5IDxzZWFuLm1ja2F5QGhwZS5j
+b208bWFpbHRvOnNlYW4ubWNrYXlAaHBlLmNvbT4+IHdyb3RlOg0KICBJZiB5b3XigJlyZSBpbnRl
+cmVzdGVkLCB0aGlzIGlzIHF1aXRlIGVhc3kgdG8gcmVwcm9kdWNlIOKAkyB0aGVzZSBhcmUgbXkg
+cmVwcm8gc3RlcHMNCg0KICAqICAgQ2hlY2sgb3V0IGEgY2xlYW4gY29weSBvZiB6ZXVzICgyMi4w
+LjIpDQogICogICBBZGQga2VybmVsLWltYWdlIHRvIGNvcmUtaW1hZ2UtbWluaW1hbCBpbiB3aGF0
+ZXZlciBmYXNoaW9uIHlvdSBjaG9vc2UgKEkganVzdCBkdW1wZWQgaXQgaW4gdGhlIFJERVBFTkRT
+IGZvciBwYWNrYWdlZ3JvdXAtY29yZS1ib290IGZvciB0ZXN0aW5nKQ0KICAqICAgYml0YmFrZSBj
+b3JlLWltYWdlLW1pbmltYWwNCiAgKiAgIGJpdGJha2UgLWMgY2xlYW4gY29yZS1pbWFnZS1taW5p
+bWFsIGxpbnV4LXlvY3RvIChvciBqdXN0IHdpcGUgeW91ciB3aG9sZSBidWlsZCBkaXIsIHNpbmNl
+IGV2ZXJ5dGhpbmcgc2hvdWxkIGNvbWUgZnJvbSBzc3RhdGUgbm93KQ0KICAqICAgRGVsZXRlIHRo
+ZSBzc3RhdGUgb2JqZWN0KHMpIGZvciBsaW51eC15b2N0b+KAmXMgZGVwbG95IHRhc2suDQogICog
+ICBiaXRiYWtlIGNvcmUtaW1hZ2UtbWluaW1hbA0KICAqICAgQ29tcGFyZSB0aGUgQnVpbGRJRCBo
+YXNoZXMgZm9yIHRoZSBrZXJuZWwgaW4gdGhlIHR3byBsb2NhdGlvbnMgdXNpbmcgZmlsZSAoeW91
+4oCZbGwgbmVlZCB0byB1c2UgdGhlIGtlcm5lbOKAmXMgZXh0cmFjdC12bWxpbnV4IHNjcmlwdCB0
+byBnZXQgaXQgb3V0IG9mIHRoZSBiekltYWdlKQ0KDQogICAgICogICBmaWxlIHRtcC93b3JrL3Fl
+bXV4ODZfNjQtcG9reS1saW51eC9jb3JlLWltYWdlLW1pbmltYWwvMS4wLXIwL3Jvb3Rmcy9ib290
+L3ZtbGludXgtNS4yLjI4LXlvY3RvLXN0YW5kYXJkDQogICAgICogICAuL3RtcC93b3JrLXNoYXJl
+ZC9xZW11eDg2LTY0L2tlcm5lbC1zb3VyY2Uvc2NyaXB0cy9leHRyYWN0LXZtbGludXggdG1wL2Rl
+cGxveS9pbWFnZXMvcWVtdXg4Ni02NC9iekltYWdlID4gdm1saW51eC1kZXBsb3kgJiYgZmlsZSB2
+bWxpbnV4LWRlcGxveQ0KVGhlIGtlcm5lbCBpcyBzdGlsbCByZS1idWlsdCBmcm9tIHRoZSBzYW1l
+IHNvdXJjZSwgc28gd2h5IGlzIHRoaXMgY2F1c2luZyBpc3N1ZXM/DQoNCkFsZXgNCg==
 
->   If you=E2=80=99re interested, this is quite easy to reproduce =E2=80=93=
- these are my
-> repro steps
->
->    - Check out a clean copy of zeus (22.0.2)
->    - Add kernel-image to core-image-minimal in whatever fashion you
->    choose (I just dumped it in the RDEPENDS for packagegroup-core-boot fo=
-r
->    testing)
->    - bitbake core-image-minimal
->    - bitbake -c clean core-image-minimal linux-yocto (or just wipe your
->    whole build dir, since everything should come from sstate now)
->    - Delete the sstate object(s) for linux-yocto=E2=80=99s deploy task.
->    - bitbake core-image-minimal
->    - Compare the BuildID hashes for the kernel in the two locations using
->    file (you=E2=80=99ll need to use the kernel=E2=80=99s extract-vmlinux =
-script to get it out
->    of the bzImage)
->       - file
->       tmp/work/qemux86_64-poky-linux/core-image-minimal/1.0-r0/rootfs/boo=
-t/vmlinux-5.2.28-yocto-standard
->       - ./tmp/work-shared/qemux86-64/kernel-source/scripts/extract-vmlinu=
-x
->       tmp/deploy/images/qemux86-64/bzImage > vmlinux-deploy && file vmlin=
-ux-deploy
->
-> The kernel is still re-built from the same source, so why is this causing
-issues?
+--_000_TU4PR8401MB11514520BA0981B1F299741382C30TU4PR8401MB1151_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Alex
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjExLjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsc2Fucy1zZXJpZjt9DQph
+OmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1wcmlvcml0eTo5OTsNCgljb2xv
+cjpibHVlOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcC5nbWFpbC1tMTExMjE1MTE4
+OTI2ODY3Mzk4M21zb2xpc3RwYXJhZ3JhcGgsIGxpLmdtYWlsLW0xMTEyMTUxMTg5MjY4NjczOTgz
+bXNvbGlzdHBhcmFncmFwaCwgZGl2LmdtYWlsLW0xMTEyMTUxMTg5MjY4NjczOTgzbXNvbGlzdHBh
+cmFncmFwaA0KCXttc28tc3R5bGUtbmFtZTpnbWFpbC1tXzExMTIxNTExODkyNjg2NzM5ODNtc29s
+aXN0cGFyYWdyYXBoOw0KCW1zby1tYXJnaW4tdG9wLWFsdDphdXRvOw0KCW1hcmdpbi1yaWdodDow
+aW47DQoJbXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG87DQoJbWFyZ2luLWxlZnQ6MGluOw0KCWZv
+bnQtc2l6ZToxMS4wcHQ7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7fQ0Kc3Bh
+bi5FbWFpbFN0eWxlMTkNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1m
+YW1pbHk6IkNhbGlicmkiLHNhbnMtc2VyaWY7DQoJY29sb3I6d2luZG93dGV4dDt9DQouTXNvQ2hw
+RGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsNCglmb250LWZhbWlseToiQ2Fs
+aWJyaSIsc2Fucy1zZXJpZjt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4w
+aW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjEN
+Cgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLyogTGlzdCBEZWZpbml0aW9ucyAqLw0KQGxpc3QgbDAN
+Cgl7bXNvLWxpc3QtaWQ6NzUwNTYyNTY7DQoJbXNvLWxpc3QtdGVtcGxhdGUtaWRzOjEyNDM5MjQ4
+MzA7fQ0KQGxpc3QgbDA6bGV2ZWwxDQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsN
+Cgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOi41aW47DQoJbXNvLWxl
+dmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCXRleHQtaW5kZW50Oi0uMjVpbjsNCgltc28tYW5z
+aS1mb250LXNpemU6MTAuMHB0Ow0KCWZvbnQtZmFtaWx5OlN5bWJvbDt9DQpAbGlzdCBsMDpsZXZl
+bDINCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Om87
+DQoJbXNvLWxldmVsLXRhYi1zdG9wOjEuMGluOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246
+bGVmdDsNCgl0ZXh0LWluZGVudDotLjI1aW47DQoJbXNvLWFuc2ktZm9udC1zaXplOjEwLjBwdDsN
+Cglmb250LWZhbWlseToiQ291cmllciBOZXciOw0KCW1zby1iaWRpLWZvbnQtZmFtaWx5OiJUaW1l
+cyBOZXcgUm9tYW4iO30NCkBsaXN0IGwwOmxldmVsMw0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1h
+dDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDoxLjVp
+bjsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWlu
+Ow0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBs
+aXN0IGwwOmxldmVsNA0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxl
+dmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDoyLjBpbjsNCgltc28tbGV2ZWwtbnVt
+YmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCW1zby1hbnNpLWZvbnQt
+c2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsNQ0KCXtt
+c28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1z
+by1sZXZlbC10YWItc3RvcDoyLjVpbjsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7
+DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9u
+dC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsNg0KCXttc28tbGV2ZWwtbnVtYmVyLWZv
+cm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDoz
+LjBpbjsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4y
+NWluOw0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30N
+CkBsaXN0IGwwOmxldmVsNw0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNv
+LWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3RvcDozLjVpbjsNCgltc28tbGV2ZWwt
+bnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCW1zby1hbnNpLWZv
+bnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsOA0K
+CXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0K
+CW1zby1sZXZlbC10YWItc3RvcDo0LjBpbjsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxl
+ZnQ7DQoJdGV4dC1pbmRlbnQ6LS4yNWluOw0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4wcHQ7DQoJ
+Zm9udC1mYW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsOQ0KCXttc28tbGV2ZWwtbnVtYmVy
+LWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ674K3Ow0KCW1zby1sZXZlbC10YWItc3Rv
+cDo0LjVpbjsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJdGV4dC1pbmRlbnQ6
+LS4yNWluOw0KCW1zby1hbnNpLWZvbnQtc2l6ZToxMC4wcHQ7DQoJZm9udC1mYW1pbHk6U3ltYm9s
+O30NCm9sDQoJe21hcmdpbi1ib3R0b206MGluO30NCnVsDQoJe21hcmdpbi1ib3R0b206MGluO30N
+Ci0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6
+ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBn
+dGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2
+OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0t
+LT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxl
+Ij4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5UaGUg
+a2VybmVsIGRvZXNu4oCZdCBoYXZlIHJlcHJvZHVjaWJsZSBidWlsZHMgYnkgZGVmYXVsdCBiZWNh
+dXNlIG9mIGEgaGFuZGZ1bCBvZiB2YXJpYWJsZXMgKGluY2x1ZGluZyB0aW1lc3RhbXBzKS4gSWYg
+eW91IHJlYnVpbGQsIHlvdSBnZXQgYSBkaWZmZXJlbnQgYmluYXJ5IGV2ZXJ5IHRpbWUuPGJyPg0K
+VGhvc2UgY2FuIGJlIGNoYW5nZWQgYW5kIG92ZXJyaWRkZW4gc28gdGhhdCB5b3UgZ2V0IGNvbnNp
+c3RlbnQgYmluYXJ5IG91dHB1dCAoc2VlIGhlcmU6DQo8YSBocmVmPSJodHRwczovL3d3dy5rZXJu
+ZWwub3JnL2RvYy9odG1sL2xhdGVzdC9rYnVpbGQvcmVwcm9kdWNpYmxlLWJ1aWxkcy5odG1sIj4N
+Cmh0dHBzOi8vd3d3Lmtlcm5lbC5vcmcvZG9jL2h0bWwvbGF0ZXN0L2tidWlsZC9yZXByb2R1Y2li
+bGUtYnVpbGRzLmh0bWw8L2E+KSBidXQgdGhhdCBoYXNu4oCZdCBiZWVuIGRvbmUgb24gdGhlIGxp
+bnV4LXlvY3RvIHJlY2lwZSB5ZXQuPGJyPg0KPGJyPg0KSSBhc3N1bWUgdGhhdCBpdOKAmXMgcGxh
+bm5lZCBiZWNhdXNlIHRoZXJlIGFyZSBlZmZvcnRzIGdvaW5nIGluIHRvIG1ha2luZyB0aGluZ3Mg
+MTAwJSByZXByb2R1Y2libGUgZm9yIHBva3ksIGJ1dCBJIGRvbuKAmXQga25vdyB3aGF0IHRoZSBz
+dGF0dXMgb2YgZXZlcnl0aGluZyBpcyAoYWx0aG91Z2ggSSBrbm93IHRoYXQgdGhlIGtlcm5lbCBh
+dCBsZWFzdCBpc27igJl0IHJlcHJvZHVjaWJsZSBhcyBvZiAyMi4wLjIpPG86cD48L286cD48L3A+
+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPlNpbmNlIHRoaXMgY2FuIHRoZW9yZXRpY2FsbHkgaGFwcGVuIHRvIGFueSBwYWNr
+YWdlIHRoYXQgZG9lc27igJl0IGhhdmUgYSByZXByb2R1Y2libGUgYnVpbGQgcHJvY2VzcywgaXQg
+c2VlbWVkIHdvcnRoIGFza2luZyB0aGUgcXVlc3Rpb24gZ2xvYmFsbHkgdG9vLjxvOnA+PC9vOnA+
+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj4tU2VhbjxvOnA+PC9vOnA+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+
+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
+bzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPkZyb206PC9iPiB5b2N0b0BsaXN0cy55
+b2N0b3Byb2plY3Qub3JnICZsdDt5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3JnJmd0Ow0KPGI+
+T24gQmVoYWxmIE9mIDwvYj5BbGV4YW5kZXIgS2FuYXZpbjxicj4NCjxiPlNlbnQ6PC9iPiBUdWVz
+ZGF5LCBBcHJpbCA3LCAyMDIwIDEyOjExIFBNPGJyPg0KPGI+VG86PC9iPiBNY0theSwgU2VhbiAm
+bHQ7c2Vhbi5tY2theUBocGUuY29tJmd0Ozxicj4NCjxiPkNjOjwvYj4geW9jdG9AbGlzdHMueW9j
+dG9wcm9qZWN0Lm9yZzxicj4NCjxiPlN1YmplY3Q6PC9iPiBSZTogW3lvY3RvXSBzc3RhdGUgY2F1
+c2luZyBzdHJpcHBlZCBrZXJuZWwgdnMgc3ltYm9scyBtaXNtYXRjaDxvOnA+PC9vOnA+PC9wPg0K
+PHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8ZGl2Pg0KPGRpdj4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIFR1ZSwgNyBBcHIgMjAyMCBhdCAyMTowMywgU2VhbiBN
+Y0theSAmbHQ7PGEgaHJlZj0ibWFpbHRvOnNlYW4ubWNrYXlAaHBlLmNvbSI+c2Vhbi5tY2theUBo
+cGUuY29tPC9hPiZndDsgd3JvdGU6PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8Ymxv
+Y2txdW90ZSBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgI0NDQ0NDQyAxLjBw
+dDtwYWRkaW5nOjBpbiAwaW4gMGluIDYuMHB0O21hcmdpbi1sZWZ0OjQuOHB0O21hcmdpbi1yaWdo
+dDowaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7IElmIHlvdeKAmXJlIGludGVyZXN0
+ZWQsIHRoaXMgaXMgcXVpdGUgZWFzeSB0byByZXByb2R1Y2Ug4oCTIHRoZXNlIGFyZSBteSByZXBy
+byBzdGVwczxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8dWwgdHlwZT0iZGlzYyI+DQo8
+bGkgY2xhc3M9ImdtYWlsLW0xMTEyMTUxMTg5MjY4NjczOTgzbXNvbGlzdHBhcmFncmFwaCIgc3R5
+bGU9Im1zby1saXN0OmwwIGxldmVsMSBsZm8xIj4NCkNoZWNrIG91dCBhIGNsZWFuIGNvcHkgb2Yg
+emV1cyAoMjIuMC4yKTxvOnA+PC9vOnA+PC9saT48bGkgY2xhc3M9ImdtYWlsLW0xMTEyMTUxMTg5
+MjY4NjczOTgzbXNvbGlzdHBhcmFncmFwaCIgc3R5bGU9Im1zby1saXN0OmwwIGxldmVsMSBsZm8x
+Ij4NCkFkZCBrZXJuZWwtaW1hZ2UgdG8gY29yZS1pbWFnZS1taW5pbWFsIGluIHdoYXRldmVyIGZh
+c2hpb24geW91IGNob29zZSAoSSBqdXN0IGR1bXBlZCBpdCBpbiB0aGUgUkRFUEVORFMgZm9yIHBh
+Y2thZ2Vncm91cC1jb3JlLWJvb3QgZm9yIHRlc3RpbmcpPG86cD48L286cD48L2xpPjxsaSBjbGFz
+cz0iZ21haWwtbTExMTIxNTExODkyNjg2NzM5ODNtc29saXN0cGFyYWdyYXBoIiBzdHlsZT0ibXNv
+LWxpc3Q6bDAgbGV2ZWwxIGxmbzEiPg0KYml0YmFrZSBjb3JlLWltYWdlLW1pbmltYWw8bzpwPjwv
+bzpwPjwvbGk+PGxpIGNsYXNzPSJnbWFpbC1tMTExMjE1MTE4OTI2ODY3Mzk4M21zb2xpc3RwYXJh
+Z3JhcGgiIHN0eWxlPSJtc28tbGlzdDpsMCBsZXZlbDEgbGZvMSI+DQpiaXRiYWtlIC1jIGNsZWFu
+IGNvcmUtaW1hZ2UtbWluaW1hbCBsaW51eC15b2N0byAob3IganVzdCB3aXBlIHlvdXIgd2hvbGUg
+YnVpbGQgZGlyLCBzaW5jZSBldmVyeXRoaW5nIHNob3VsZCBjb21lIGZyb20gc3N0YXRlIG5vdyk8
+bzpwPjwvbzpwPjwvbGk+PGxpIGNsYXNzPSJnbWFpbC1tMTExMjE1MTE4OTI2ODY3Mzk4M21zb2xp
+c3RwYXJhZ3JhcGgiIHN0eWxlPSJtc28tbGlzdDpsMCBsZXZlbDEgbGZvMSI+DQpEZWxldGUgdGhl
+IHNzdGF0ZSBvYmplY3QocykgZm9yIGxpbnV4LXlvY3Rv4oCZcyBkZXBsb3kgdGFzay48bzpwPjwv
+bzpwPjwvbGk+PGxpIGNsYXNzPSJnbWFpbC1tMTExMjE1MTE4OTI2ODY3Mzk4M21zb2xpc3RwYXJh
+Z3JhcGgiIHN0eWxlPSJtc28tbGlzdDpsMCBsZXZlbDEgbGZvMSI+DQpiaXRiYWtlIGNvcmUtaW1h
+Z2UtbWluaW1hbDxvOnA+PC9vOnA+PC9saT48bGkgY2xhc3M9ImdtYWlsLW0xMTEyMTUxMTg5MjY4
+NjczOTgzbXNvbGlzdHBhcmFncmFwaCIgc3R5bGU9Im1zby1saXN0OmwwIGxldmVsMSBsZm8xIj4N
+CkNvbXBhcmUgdGhlIEJ1aWxkSUQgaGFzaGVzIGZvciB0aGUga2VybmVsIGluIHRoZSB0d28gbG9j
+YXRpb25zIHVzaW5nIGZpbGUgKHlvdeKAmWxsIG5lZWQgdG8gdXNlIHRoZSBrZXJuZWzigJlzIGV4
+dHJhY3Qtdm1saW51eCBzY3JpcHQgdG8gZ2V0IGl0IG91dCBvZiB0aGUgYnpJbWFnZSk8bzpwPjwv
+bzpwPjwvbGk+PC91bD4NCjx1bCB0eXBlPSJkaXNjIj4NCjx1bCB0eXBlPSJjaXJjbGUiPg0KPGxp
+IGNsYXNzPSJnbWFpbC1tMTExMjE1MTE4OTI2ODY3Mzk4M21zb2xpc3RwYXJhZ3JhcGgiIHN0eWxl
+PSJtc28tbGlzdDpsMCBsZXZlbDIgbGZvMSI+DQpmaWxlIHRtcC93b3JrL3FlbXV4ODZfNjQtcG9r
+eS1saW51eC9jb3JlLWltYWdlLW1pbmltYWwvMS4wLXIwL3Jvb3Rmcy9ib290L3ZtbGludXgtNS4y
+LjI4LXlvY3RvLXN0YW5kYXJkPG86cD48L286cD48L2xpPjxsaSBjbGFzcz0iZ21haWwtbTExMTIx
+NTExODkyNjg2NzM5ODNtc29saXN0cGFyYWdyYXBoIiBzdHlsZT0ibXNvLWxpc3Q6bDAgbGV2ZWwy
+IGxmbzEiPg0KLi90bXAvd29yay1zaGFyZWQvcWVtdXg4Ni02NC9rZXJuZWwtc291cmNlL3Njcmlw
+dHMvZXh0cmFjdC12bWxpbnV4IHRtcC9kZXBsb3kvaW1hZ2VzL3FlbXV4ODYtNjQvYnpJbWFnZSAm
+Z3Q7IHZtbGludXgtZGVwbG95ICZhbXA7JmFtcDsgZmlsZSB2bWxpbnV4LWRlcGxveTxvOnA+PC9v
+OnA+PC9saT48L3VsPg0KPC91bD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Jsb2NrcXVvdGU+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+VGhlIGtlcm5lbCBpcyBzdGlsbCByZS1idWlsdCBmcm9t
+IHRoZSBzYW1lIHNvdXJjZSwgc28gd2h5IGlzIHRoaXMgY2F1c2luZyBpc3N1ZXM/PG86cD48L286
+cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkFsZXg8bzpwPjwv
+bzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1s
+Pg0K
 
---0000000000000f519f05a2b82635
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div dir=3D"ltr">On Tue, 7 Apr 2020 at 21:03, Sean McKay &=
-lt;<a href=3D"mailto:sean.mckay@hpe.com">sean.mckay@hpe.com</a>&gt; wrote:<=
-br></div><div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
--left:1ex">=C2=A0
-If you=E2=80=99re interested, this is quite easy to reproduce =E2=80=93 the=
-se are my repro steps<div lang=3D"EN-US"><div class=3D"gmail-m_111215118926=
-8673983WordSection1">
-<ul style=3D"margin-top:0in" type=3D"disc">
-<li class=3D"gmail-m_1112151189268673983MsoListParagraph" style=3D"margin-l=
-eft:0in">Check out a clean copy of zeus (22.0.2)<u></u><u></u></li><li clas=
-s=3D"gmail-m_1112151189268673983MsoListParagraph" style=3D"margin-left:0in"=
->Add kernel-image to core-image-minimal in whatever fashion you choose (I j=
-ust dumped it in the RDEPENDS for packagegroup-core-boot for testing)<u></u=
-><u></u></li><li class=3D"gmail-m_1112151189268673983MsoListParagraph" styl=
-e=3D"margin-left:0in">bitbake core-image-minimal<u></u><u></u></li><li clas=
-s=3D"gmail-m_1112151189268673983MsoListParagraph" style=3D"margin-left:0in"=
->bitbake -c clean core-image-minimal linux-yocto (or just wipe your whole b=
-uild dir, since everything should come from sstate now)<u></u><u></u></li><=
-li class=3D"gmail-m_1112151189268673983MsoListParagraph" style=3D"margin-le=
-ft:0in">Delete the sstate object(s) for linux-yocto=E2=80=99s deploy task.<=
-u></u><u></u></li><li class=3D"gmail-m_1112151189268673983MsoListParagraph"=
- style=3D"margin-left:0in">bitbake core-image-minimal<u></u><u></u></li><li=
- class=3D"gmail-m_1112151189268673983MsoListParagraph" style=3D"margin-left=
-:0in">Compare the BuildID hashes for the kernel in the two locations using =
-file (you=E2=80=99ll need to use the kernel=E2=80=99s extract-vmlinux scrip=
-t to get it out of the bzImage)<u></u><u></u></li><ul style=3D"margin-top:0=
-in" type=3D"circle">
-<li class=3D"gmail-m_1112151189268673983MsoListParagraph" style=3D"margin-l=
-eft:0in">file tmp/work/qemux86_64-poky-linux/core-image-minimal/1.0-r0/root=
-fs/boot/vmlinux-5.2.28-yocto-standard<u></u><u></u></li><li class=3D"gmail-=
-m_1112151189268673983MsoListParagraph" style=3D"margin-left:0in">./tmp/work=
--shared/qemux86-64/kernel-source/scripts/extract-vmlinux tmp/deploy/images/=
-qemux86-64/bzImage &gt; vmlinux-deploy &amp;&amp; file vmlinux-deploy<u></u=
-><u></u></li></ul>
-</ul>
-</div></div></blockquote><div>The kernel is still re-built from the same so=
-urce, so why is this causing issues?</div><div><br></div><div>Alex<br></div=
-></div></div>
-
---0000000000000f519f05a2b82635--
+--_000_TU4PR8401MB11514520BA0981B1F299741382C30TU4PR8401MB1151_--
