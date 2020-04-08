@@ -1,79 +1,103 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web11.9761.1586347163672863883
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+ by mx.groups.io with SMTP id smtpd.web10.10241.1586348490585109489
  for <yocto@lists.yoctoproject.org>;
- Wed, 08 Apr 2020 04:59:23 -0700
+ Wed, 08 Apr 2020 05:21:30 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=D8ZdIbR8;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: jupiter.hce@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3D88EE01987; Wed,  8 Apr 2020 04:59:23 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (jupiter.hce[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.166.43 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D91EE0197F
-	for <yocto@yoctoproject.org>; Wed,  8 Apr 2020 04:59:21 -0700 (PDT)
-Received: by mail-io1-f43.google.com with SMTP id w1so1234303iot.7
-        for <yocto@yoctoproject.org>; Wed, 08 Apr 2020 04:59:21 -0700 (PDT)
+ dkim=pass header.i=@linuxfoundation.org header.s=google header.b=PINpE0a3;
+ spf=pass (domain: linuxfoundation.org, ip: 209.85.128.47, mailfrom: richard.purdie@linuxfoundation.org)
+Received: by mail-wm1-f47.google.com with SMTP id t203so4916963wmt.2
+        for <yocto@lists.yoctoproject.org>; Wed, 08 Apr 2020 05:21:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=eeTChEF0EuxjKWSa9mExvHoOLtzQqlioIaefeGav+4Y=;
-        b=D8ZdIbR8MYyr+L+Lx6zPDFuePHOkh8sxAXUHmTRThRtzC2GG9ECwjko9XPpDrIvyaW
-         BBP9TsDlp8tXfmPo7I4zATSOl0GDzlNukbbw66fG9ZLP11ftDxMo8iN4obOMjbpWLnxt
-         5ou6xV6kfHxkb4NmHeGxR0tbHsMj/uI9YVVM+oKCl5pu1FJzrKcbrKCmCjOwkPym3L+9
-         GWFKVYvg6+IcZM3bH7pkURLGqzpI7xFzfDPsl3by1lo/QzWlij+IY1AFmzrct8HXqXjF
-         TbwkUE0u8F1gLaHbQNGxfB6FKnEEEPQ/UNQ6fshQ1AbSBqgN5ybiQ6W7klULcu9QK0TS
-         rTCw==
+        d=linuxfoundation.org; s=google;
+        h=message-id:subject:from:to:cc:date:in-reply-to:references
+         :user-agent:mime-version:content-transfer-encoding;
+        bh=9EEHl2oCm2FijoioxfNb2xxeTr0+Qkv8HDct1O2YJWQ=;
+        b=PINpE0a3hD5yxNq5qo6HIIghT+mehvvOaPABAspKykH1LB0H3cBeVkHpooW4u1d8zz
+         xXxKRfDT43Ybjx/C1Hmb5E1xPOAYmC2+Y6OkoW8gig789dsL7QUG42K59X7UHATb333T
+         B9LX78w4D+WYKRQH4hO/b3Tr9cmJKAVegBdww=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=eeTChEF0EuxjKWSa9mExvHoOLtzQqlioIaefeGav+4Y=;
-        b=rTyQCaAoZz0Dq6uXMhprTw7yn0UXWUzEtuFKSar7c0vFEcspV4gQvojrF1YcwmqZCn
-         rqhlaulAtMUGvuIQAp/6PupEJ5/1iBPOmONYZEbLZGKj1B64b/mvxChbVCgBUhgzVp1p
-         8YXrgGIfznvCle9Am4G1wKhFOhHmE8XcrCqrzaV7FwjCj3lOJnXT4cS3QHkZpfD1at5a
-         SXKAVo/ieiDYFjnjyLufz5+qg3tV8iSjPTngihK2iPu+H9mdMuD1X6H6wz9QHXWeJLE4
-         qBBsfvfE1idpaD3t2f2JDV3BXASJOm23A/SpQsVvKV8K6M2C03NBIYpCVg1iJtCPXZfP
-         nsYg==
-X-Gm-Message-State: AGi0PubW87rxw7/kQh7yqLdhd2ukN9D7k71gfkLneIcm8+Rc/QmzRY2M
-	ScfLdpgiDlOZIZZS/edz+l0EShVmkdUeLwhSLugcEoeG
-X-Google-Smtp-Source: APiQypKn/MHmSOYHjC9NP+prbMSQoZ2wPu9GAh/BrNBG8Fn5dWGvr0GDurE16aZGw7tpdgAsuEJgsyDxYtk4p6hQIi4=
-X-Received: by 2002:a6b:c9d2:: with SMTP id z201mr6691841iof.169.1586347161293;
- Wed, 08 Apr 2020 04:59:21 -0700 (PDT)
+        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
+         :references:user-agent:mime-version:content-transfer-encoding;
+        bh=9EEHl2oCm2FijoioxfNb2xxeTr0+Qkv8HDct1O2YJWQ=;
+        b=mvJoLwT+509p5+k6LF8pK8Vn1rUhLS/4bVxXU9hSCr1197vKEQuY8wIivj0BQDIU57
+         8GyEdogn+psg4HZlsWQCpj9o97nT2bv7Tx80aqCrdCz7foJClf7pXn8dCbHUJkf9A2Mf
+         NpWTWVcA5BEJSnoSrGJoonS7LUoaXCS5w7X4tZC6Ta/GHBWPjNvs7Fd1Tx3F4JD0SvD2
+         J8yxJ5hWlBaKaNgJJukmnH/rhnYz2nKSBiIjJAMLXvzULX38GYQUKaNAmV1+Hdww+lHa
+         uCkY/YvLPiF0cUyl7fbi1xhOzt9xdKX+I4PJbMlltkVm8Zw5JFY4c+xMtRvwDruZWHJy
+         /oFw==
+X-Gm-Message-State: AGi0Pua/C6H45fMXL5apf5yOpR78T0G56iMGjx/MUB6ZddtoFROzTad5
+	U+EJqC0qi27HWlsM114x1D95pg==
+X-Google-Smtp-Source: APiQypKxF32x48ExrYL8sQvdUqHmCNXQKFNRbDao+fiXlLwyzF+dzljcpGxR2vKhAsUgNz2DsDF2MA==
+X-Received: by 2002:a7b:ce81:: with SMTP id q1mr4708307wmj.156.1586348489088;
+        Wed, 08 Apr 2020 05:21:29 -0700 (PDT)
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
+        by smtp.gmail.com with ESMTPSA id y22sm7670653wma.0.2020.04.08.05.21.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Apr 2020 05:21:28 -0700 (PDT)
+Message-ID: <a6ebe6ce72619b412c3f67520e02ae2883b93d85.camel@linuxfoundation.org>
+Subject: Re: [yocto] QA notification for completed autobuilder build (yocto-3.1.rc1)
+From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
+To: "Jain, Sangeeta" <sangeeta.jain@intel.com>, Poky Build User
+ <pokybuild@debian8.yocto.io>, "yocto@lists.yoctoproject.org"
+ <yocto@lists.yoctoproject.org>, Michael Halstead
+ <mhalstead@linuxfoundation.org>
+Cc: "otavio@ossystems.com.br" <otavio@ossystems.com.br>, 
+ "yi.zhao@windriver.com" <yi.zhao@windriver.com>, "Sangal, Apoorv"
+ <apoorv.sangal@intel.com>, "Yeoh, Ee Peng" <ee.peng.yeoh@intel.com>, "Chan,
+ Aaron Chun Yew" <aaron.chun.yew.chan@intel.com>,  "akuster808@gmail.com"
+ <akuster808@gmail.com>, "sjolley.yp.pm@gmail.com" <sjolley.yp.pm@gmail.com>
+Date: Wed, 08 Apr 2020 13:21:26 +0100
+In-Reply-To: <CY4PR11MB187933FF55C303A42F2E96D0E3C00@CY4PR11MB1879.namprd11.prod.outlook.com>
+References: <20200406225303.32E2A1A00A2@debian8-ty-1.yocto.io>
+	 <078e777465fcb1bcbcaba9f3290edeb0160b6e6e.camel@linuxfoundation.org>
+	 <CY4PR11MB187933FF55C303A42F2E96D0E3C00@CY4PR11MB1879.namprd11.prod.outlook.com>
+User-Agent: Evolution 3.36.1-1 
 MIME-Version: 1.0
-Received: by 2002:ac0:e252:0:0:0:0:0 with HTTP; Wed, 8 Apr 2020 04:59:20 -0700 (PDT)
-From: "JH" <jupiter.hce@gmail.com>
-Date: Wed, 8 Apr 2020 21:59:20 +1000
-Message-ID: <CAA=hcWSfHfn3uZNVsYMCRj0wgGEhpO+TS0-mQgz3X8WtLaWV9g@mail.gmail.com>
-Subject: Shorten booting time
-To: Yocto discussion list <yocto@yoctoproject.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On Wed, 2020-04-08 at 01:14 +0000, Jain, Sangeeta wrote:
+> Hi Richard,
+> 
+> Thanks for update on 
+> https://autobuilder.yocto.io/pub/releases/yocto-3.1.rc1
+> Unfortunately, I didn't received any mail for 3.1.rc1 or rc2 build
+> notification.
+> Looks like automated mail has some issues.
+> 
+> I will now start the QA on 
+> https://autobuilder.yocto.io/pub/releases/yocto-3.1.rc2/
+> 
+> Thanks,
+> Sangeeta
+> 
+> 
+> > -----Original Message-----
+> > From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org>
+> > On Behalf
+> > Of Richard Purdie
+> > Sent: Wednesday, 8 April, 2020 5:05 AM
+> > To: Poky Build User <pokybuild@debian8.yocto.io>;
+> > yocto@lists.yoctoproject.org
+> > Cc: otavio@ossystems.com.br; yi.zhao@windriver.com; Sangal, Apoorv
+> > <apoorv.sangal@intel.com>; Yeoh, Ee Peng <ee.peng.yeoh@intel.com>;
+> > Chan,
+> > Aaron Chun Yew <aaron.chun.yew.chan@intel.com>; 
+> > akuster808@gmail.com;
+> > sjolley.yp.pm@gmail.com; Jain, Sangeeta <sangeeta.jain@intel.com>
+> > Subject: Re: [yocto] QA notification for completed autobuilder
+> > build (yocto-
+> > 3.1.rc1)
 
-I am running Yocto built Linux on an ARM device, it takes about more
-than 1 minutes to boot from NAND and kernel, any good strategy to
-reduce the ARM device booting time? I can think of cutting down
-unnecessary configures in kernel.
+Thanks.
 
-Thank you.
+For reference you can see you're included in the Cc: list above so I'm
+not sure why you aren't getting email. I'll ask Michael to look into
+that.
 
-Kind regards,
+Cheers,
 
-- jh
+Richard
+
