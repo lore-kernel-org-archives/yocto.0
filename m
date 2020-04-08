@@ -1,82 +1,184 @@
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
- by mx.groups.io with SMTP id smtpd.web12.11189.1586352049091639250
- for <yocto@lists.yoctoproject.org>;
- Wed, 08 Apr 2020 06:20:49 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=K/KjvIkG;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.49, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f49.google.com with SMTP id i10so1488715wrv.10
-        for <yocto@lists.yoctoproject.org>; Wed, 08 Apr 2020 06:20:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=l3r7/DN/GReH637kQu+ad/Fj6dv1L7DSNsiKfWbCdZ8=;
-        b=K/KjvIkG3OC67QpaY8Q1mbMmJsjqOhzzPRT4vyoFXwzAJAWJ+WGim62YgCLYxgzpso
-         ix+KUl3NrwjJLNI6THVo/PPsQTlqNxzIA2WcJaIHnMHVqOwRwRqUq6JMqZZTvY3d62NK
-         S8OeDNAmVrKUV+V650TXyrA/qkJpDAdRvGxi8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=l3r7/DN/GReH637kQu+ad/Fj6dv1L7DSNsiKfWbCdZ8=;
-        b=F/OpFbk4gYHC/Q4/wnPpldTM97MfV2mdtneEB0SRMb745d7EmOQEji6Ia8aAHafGDJ
-         Ow/wp4lvEJiSOz03G7yYDfJvGYP/a9EbVyoaljMeTj0RqdcXVI12e2azU8yWmR1H8LOM
-         4wTTxbkvFg/OrHK4ibnVizfQjvDWJ3ogulL+WdHhiEaAdscJWEXg3DEH472Q1zJfxipp
-         coXqgfEMfCQnlFMrASXe3qfP0EUg1VgVDQn7D2WLKf/HI/uJE0NoiLoEXNmU19fBJ0EF
-         owAYGfdgfvlp8+erMH+o6mgyQCNV2blRCaWeVHWLXQ0vAca+pbmpoX8gGa2dokM+so18
-         95VA==
-X-Gm-Message-State: AGi0PuZbpbcaOu4no+yyCdhhs7oG4iyGyU65XfbXM7fD/92xgajoxLLT
-	/eU3d6RgqjM3rdWHWyxjzDAVWA==
-X-Google-Smtp-Source: APiQypKsqfy9/uwRdy1OqCUAWv57mRWnfZSJRhJE9PYDGrMZCQWIkCBspgBSZPAWjJV/yk4AL0C9Rw==
-X-Received: by 2002:a5d:4111:: with SMTP id l17mr9056403wrp.271.1586352047584;
-        Wed, 08 Apr 2020 06:20:47 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-        by smtp.gmail.com with ESMTPSA id m19sm6593440wml.21.2020.04.08.06.20.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Apr 2020 06:20:46 -0700 (PDT)
-Message-ID: <4d89830f1cdc32700b6aa62cb1d92e7f460f2f16.camel@linuxfoundation.org>
-Subject: Re: QA notification for completed autobuilder build (yocto-3.1.rc2)
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: pokybuild@localhost.yoctoproject.org, yocto@lists.yoctoproject.org
-Cc: otavio@ossystems.com.br, yi.zhao@windriver.com, apoorv.sangal@intel.com,
-  ee.peng.yeoh@intel.com, aaron.chun.yew.chan@intel.com,
- akuster808@gmail.com,  sjolley.yp.pm@gmail.com, sangeeta.jain@intel.com
-Date: Wed, 08 Apr 2020 14:20:45 +0100
-In-Reply-To: <20200408040108.BA881414AB8@localhost>
-References: <20200408040108.BA881414AB8@localhost>
-User-Agent: Evolution 3.36.1-1 
+Subject: imx-boot do_compile failing with custom distro #yocto
+To: yocto@lists.yoctoproject.org
+From: stefan.wenninger@evopro-ag.de
+X-Originating-Location: Regensburg, Bavaria, DE (88.133.236.129)
+X-Originating-Platform: Windows Chrome 80
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Date: Wed, 08 Apr 2020 07:41:27 -0700
+Message-ID: <r2h6.1586356887188852470.W0sx@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="cDJ8HuojJa7pzZKYVIds"
 
-On Wed, 2020-04-08 at 04:01 +0000, pokybuild@localhost.yoctoproject.org
-wrote:
-> A build flagged for QA (yocto-3.1.rc2) was completed on the
-> autobuilder and is available at:
-> 
-> 
->     https://autobuilder.yocto.io/pub/releases/yocto-3.1.rc2
-> 
-> 
-> Build hash information: 
-> 
-> bitbake: 4618da2094189e4d814b7d65672cb65c86c0626a
-> meta-gplv2: 60b251c25ba87e946a0ca4cdc8d17b1cb09292ac
-> meta-intel: bd539ea962ee285eb71053583e3c17fa166fc610
-> meta-mingw: 524de686205b5d6736661d4532f5f98fee8589b7
-> oecore: 1795f30d8ab73d35710ca99064c51190dc84853e
-> poky: 5d47cdf448b6cff5bb7cc5b0ba0426b8235ec478
-> 
-> 
+--cDJ8HuojJa7pzZKYVIds
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-There were two failures in this build due to collect-results failing. I
-fixed the missing dependency on that autobuilder worker (there was
-already an open bug but it wasn't fixed yet) and reran the collections
-scripts so the results were added and handled.
+Hi,
+I have encountered a curious problem when trying to create my own poky-bas=
+ed distribution.
+My distribution poky-mydist.conf in conf/distro/ of my own layer:
 
-Cheers,
+>=20
+> require conf/distro/poky.conf
+> DISTRO =3D "poky-mydist"
+> DISTRO_NAME =3D "Poky my dist (Custom Project Distro)"
+> DISTROOVERRIDES =3D "poky:poky-mydist"
+>=20
+> DISTRO_FEATURES +=3D "ppp"
+>=20
 
-Richard
+This distro is basically identical to the base poky from poky.conf. I just=
+ added a feature to be able to verify that my distro is being used.
 
+When I build core-image-base however, I get the following error:
+
+>=20
+> ERROR: imx-boot-0.2-r0 do_compile: Function failed: do_compile (log file
+> is located at
+> /opt/yocto-dev/build_poky/tmp/work/imx8mq_var_dart-poky-linux/imx-boot/0=
+.2-r0/temp/log.do_compile.14295)
+>=20
+> ERROR: Logfile of failure stored in:
+> /opt/yocto-dev/build_poky/tmp/work/imx8mq_var_dart-poky-linux/imx-boot/0=
+.2-r0/temp/log.do_compile.14295
+>=20
+> Log data follows:
+> | DEBUG: Executing shell function do_compile
+> | Copying DTB
+> | 8MQ/8MM boot binary build
+> | Copy ddr_firmware: lpddr4_pmu_train_1d_imem.bin from
+> /opt/yocto-dev/build_poky/tmp/deploy/images/imx8mq-var-dart ->
+> /opt/yocto-dev/build_poky/tmp/work/imx8mq_var_dart-poky-linux/imx-boot/0=
+.2-r0/git/iMX8M
+>=20
+> | Copy ddr_firmware: lpddr4_pmu_train_1d_dmem.bin from
+> /opt/yocto-dev/build_poky/tmp/deploy/images/imx8mq-var-dart ->
+> /opt/yocto-dev/build_poky/tmp/work/imx8mq_var_dart-poky-linux/imx-boot/0=
+.2-r0/git/iMX8M
+>=20
+> | Copy ddr_firmware: lpddr4_pmu_train_2d_imem.bin from
+> /opt/yocto-dev/build_poky/tmp/deploy/images/imx8mq-var-dart ->
+> /opt/yocto-dev/build_poky/tmp/work/imx8mq_var_dart-poky-linux/imx-boot/0=
+.2-r0/git/iMX8M
+>=20
+> | Copy ddr_firmware: lpddr4_pmu_train_2d_dmem.bin from
+> /opt/yocto-dev/build_poky/tmp/deploy/images/imx8mq-var-dart ->
+> /opt/yocto-dev/build_poky/tmp/work/imx8mq_var_dart-poky-linux/imx-boot/0=
+.2-r0/git/iMX8M
+>=20
+> | cp: cannot stat
+> '/opt/yocto-dev/build_poky/tmp/deploy/images/imx8mq-var-dart/imx-boot-to=
+ols/bl31-imx8mq.bin':
+> No such file or directory
+> | WARNING: exit code 1 from a shell command.
+> | ERROR: Function failed: do_compile (log file is located at
+> /opt/yocto-dev/build_poky/tmp/work/imx8mq_var_dart-poky-linux/imx-boot/0=
+.2-r0/temp/log.do_compile.14295)
+>=20
+> ERROR: Task
+> (/opt/yocto-dev/sources/meta-fsl-bsp-release/imx/meta-bsp/recipes-bsp/im=
+x-mkimage/imx-boot_0.2.bb:do_compile)
+> failed with exit code '1'
+>=20
+
+By just switching my DISTRO to 'poky' in local.conf, it builds without err=
+or.
+
+There are several things that surprise me about this error:
+1. I find it quite strange that these ddr_firmwares are copied from the de=
+ploy directory to the working directory of imx-boot. I would expect that to=
+ be the other way around.
+2. The file bl31-imx8mq.bin is not in the imx-boot-tools folder, even afte=
+r a successful build with DISTRO=3D'poky'. (Maybe it was there during build=
+ and was just removed afterwards?)
+
+From my point of view it looks like the set of files that get put into imx=
+-boot-tools/ is dependant on the DISTRO value? When using DISTRO=3D'poky' t=
+he correct set is placed and copied. When using DISTRO=3D'poky-mydist' the =
+files that are placed into the folder are not the files that are supposed t=
+o be copied from there, hence the error.
+
+Am I interpreting this situation correctly?
+Is there an error in my poky-mydist distribution?
+Is that something that needs to be fixed in the recipe for imx-boot? Or ca=
+n I somehow configure poky-mydist.conf to be treated exactly like poky.conf=
+ ?
+
+Thanks in advance
+Stefan
+
+--cDJ8HuojJa7pzZKYVIds
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,<br />I have encountered a curious problem when trying to create my own =
+poky-based distribution.<br />My distribution <em>poky-mydist.conf</em>&nbs=
+p;in conf/distro/ of my own layer:<br />
+<blockquote>
+<div>require conf/distro/poky.conf</div>
+<div>DISTRO =3D "poky-mydist"</div>
+<div>DISTRO_NAME =3D "Poky my dist (Custom Project Distro)"</div>
+<div>DISTROOVERRIDES =3D "poky:poky-mydist"</div>
+<div>&nbsp;</div>
+<div>DISTRO_FEATURES +=3D "ppp"</div>
+</blockquote>
+<div>This distro is basically identical to the base poky from <em>poky.con=
+f</em>. I just added a feature to be able to verify that my distro is being=
+ used.<br /><br />When I build core-image-base however, I get the following=
+ error:<br />
+<blockquote>
+<div>ERROR: imx-boot-0.2-r0 do_compile: Function failed: do_compile (log f=
+ile is located at /opt/yocto-dev/build_poky/tmp/work/imx8mq_var_dart-poky-l=
+inux/imx-boot/0.2-r0/temp/log.do_compile.14295)</div>
+<div>ERROR: Logfile of failure stored in: /opt/yocto-dev/build_poky/tmp/wo=
+rk/imx8mq_var_dart-poky-linux/imx-boot/0.2-r0/temp/log.do_compile.14295</di=
+v>
+<div>Log data follows:</div>
+<div>| DEBUG: Executing shell function do_compile</div>
+<div>| Copying DTB</div>
+<div>| 8MQ/8MM boot binary build</div>
+<div>| Copy ddr_firmware: lpddr4_pmu_train_1d_imem.bin from /opt/yocto-dev=
+/build_poky/tmp/deploy/images/imx8mq-var-dart -&gt; /opt/yocto-dev/build_po=
+ky/tmp/work/imx8mq_var_dart-poky-linux/imx-boot/0.2-r0/git/iMX8M</div>
+<div>| Copy ddr_firmware: lpddr4_pmu_train_1d_dmem.bin from /opt/yocto-dev=
+/build_poky/tmp/deploy/images/imx8mq-var-dart -&gt; /opt/yocto-dev/build_po=
+ky/tmp/work/imx8mq_var_dart-poky-linux/imx-boot/0.2-r0/git/iMX8M</div>
+<div>| Copy ddr_firmware: lpddr4_pmu_train_2d_imem.bin from /opt/yocto-dev=
+/build_poky/tmp/deploy/images/imx8mq-var-dart -&gt; /opt/yocto-dev/build_po=
+ky/tmp/work/imx8mq_var_dart-poky-linux/imx-boot/0.2-r0/git/iMX8M</div>
+<div>| Copy ddr_firmware: lpddr4_pmu_train_2d_dmem.bin from /opt/yocto-dev=
+/build_poky/tmp/deploy/images/imx8mq-var-dart -&gt; /opt/yocto-dev/build_po=
+ky/tmp/work/imx8mq_var_dart-poky-linux/imx-boot/0.2-r0/git/iMX8M</div>
+<div>| cp: cannot stat '/opt/yocto-dev/build_poky/tmp/deploy/images/imx8mq=
+-var-dart/imx-boot-tools/bl31-imx8mq.bin': No such file or directory</div>
+<div>| WARNING: exit code 1 from a shell command.</div>
+<div>| ERROR: Function failed: do_compile (log file is located at /opt/yoc=
+to-dev/build_poky/tmp/work/imx8mq_var_dart-poky-linux/imx-boot/0.2-r0/temp/=
+log.do_compile.14295)</div>
+<div>ERROR: Task (/opt/yocto-dev/sources/meta-fsl-bsp-release/imx/meta-bsp=
+/recipes-bsp/imx-mkimage/imx-boot_0.2.bb:do_compile) failed with exit code =
+'1'</div>
+</blockquote>
+<div>By just switching my DISTRO to 'poky' in local.conf, it builds withou=
+t error.<br /><br />There are several things that surprise me about this er=
+ror:<br />1. I find it quite strange that these ddr_firmwares are copied fr=
+om the deploy directory to the working directory of imx-boot. I would expec=
+t that to be the other way around.<br />2. The file <em>bl31-imx8mq.bin</em=
+>&nbsp;is not in the imx-boot-tools folder, even after a successful build w=
+ith DISTRO=3D'poky'. (Maybe it was there during build and was just removed =
+afterwards?)<br /><br />From my point of view it looks like the set of file=
+s that get put into imx-boot-tools/ is dependant on the DISTRO value? When =
+using DISTRO=3D'poky' the correct set is placed and copied. When using DIST=
+RO=3D'poky-mydist' the files that are placed into the folder are not the fi=
+les that are supposed to be copied from there, hence the error.<br /><br />=
+Am I interpreting this situation correctly?<br />Is there an error in my <e=
+m>poky-mydist</em> distribution?<br />Is that something that needs to be fi=
+xed in the recipe for imx-boot? Or can I somehow configure <em>poky-mydist.=
+conf</em> to be treated exactly like <em>poky.conf</em>?<br /><br /><span s=
+tyle=3D"font-size: 11.0pt; font-family: 'Calibri',sans-serif; mso-fareast-f=
+ont-family: Calibri; mso-fareast-theme-font: minor-latin; mso-ansi-language=
+: DE; mso-fareast-language: DE; mso-bidi-language: AR-SA;">Thanks in advanc=
+e<br />Stefan&nbsp;</span></div>
+</div>
+
+--cDJ8HuojJa7pzZKYVIds--
