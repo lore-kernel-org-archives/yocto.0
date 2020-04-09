@@ -1,98 +1,105 @@
-Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com [209.85.221.65])
- by mx.groups.io with SMTP id smtpd.web11.6047.1586427125668518292
- for <yocto@lists.yoctoproject.org>;
- Thu, 09 Apr 2020 03:12:06 -0700
-Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=I4nwUr95;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.221.65, mailfrom: richard.purdie@linuxfoundation.org)
-Received: by mail-wr1-f65.google.com with SMTP id h9so11253155wrc.8
-        for <yocto@lists.yoctoproject.org>; Thu, 09 Apr 2020 03:12:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=message-id:subject:from:to:cc:date:in-reply-to:references
-         :user-agent:mime-version:content-transfer-encoding;
-        bh=NgoVm7mYbk/EHmhTgy96aF4Gz6FqA8VYe50VrsKqO2w=;
-        b=I4nwUr95Alm6z5hpUld8GKfg4g8uVTUThVN6+sKohXuTKM7/AZEucDa1NChW49Ofwp
-         9dROknmbqfZ6yYNziaCR1sUk453HIHJHMvH21wUTMP4VKRaKKgM655I+DDnr6CDhTz4/
-         aitejvjfsecc9oqbUF9J6rQFTQswaR9+AmORU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:subject:from:to:cc:date:in-reply-to
-         :references:user-agent:mime-version:content-transfer-encoding;
-        bh=NgoVm7mYbk/EHmhTgy96aF4Gz6FqA8VYe50VrsKqO2w=;
-        b=RlOOjFvUNr6+rBMC0Lqt+TOG7ualI7UQYp6nqC/VPOdNgMWI/xa7kA9bH/tlluP1mO
-         lGs7jmCLbzzSAASlOE9ifcpd2NtoV7qtNWeqWNRT5XYIwJrCjjS43KdmJ0kzmDTEEjNG
-         aS3toIHYw1nrR3IYb9Jk5n+M7YGYO59p/MyqQjyvG0jEqTcuy0wxGbx74/3CaiVIflp2
-         MtrEQwU4Net0irhYtICE/nRUORG+W6utxBNVd64rcHnPCrCwhc6Tnz/QqpYFcJ/4bF5P
-         52DbIkKmiKEGdljvuTrxXJZmPCjVflLafnqPYxV9SH8N0n8hPmDKG+3CmXn84kEX2ZSq
-         RKow==
-X-Gm-Message-State: AGi0PubhCoP7Vyrs92CqviV/OnpHVgVWPH3a14Z7REyt+xvKUOWLt1wP
-	A7bd3dUwE21fnh6BuzFTHtiLOg==
-X-Google-Smtp-Source: APiQypKeY+bhvmbO+4uxXmYHRGVb62IWGE5wKPdOcpX+OtnbCZxDKAzn7UjqKyKuldb78R16ma/0Gw==
-X-Received: by 2002:adf:e942:: with SMTP id m2mr13266206wrn.364.1586427124174;
-        Thu, 09 Apr 2020 03:12:04 -0700 (PDT)
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from hex (5751f4a1.skybroadband.com. [87.81.244.161])
-        by smtp.gmail.com with ESMTPSA id a10sm39852525wrm.87.2020.04.09.03.12.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Apr 2020 03:12:03 -0700 (PDT)
-Message-ID: <b9eb458a497e0f8fda758a6ec61ec6e475a37eac.camel@linuxfoundation.org>
-Subject: Re: [yocto-autobuilder-helper][zeus][PATCH] config.json: Override BBTARGETS for meta-intel
-From: "Richard Purdie" <richard.purdie@linuxfoundation.org>
-To: mohamad.noor.alim.hussin@intel.com, "Mittal, Anuj"
- <anuj.mittal@intel.com>,  "Orling, Timothy T" <timothy.t.orling@intel.com>
-Cc: yocto@lists.yoctoproject.org, Ross Burton <ross.burton@intel.com>
-Date: Thu, 09 Apr 2020 11:12:01 +0100
-In-Reply-To: <20200409015454.32736-1-mohamad.noor.alim.hussin@intel.com>
-References: <20200409015454.32736-1-mohamad.noor.alim.hussin@intel.com>
-User-Agent: Evolution 3.36.1-1 
+Subject: Re: imx-boot do_compile failing with custom distro #yocto
+To: yocto@lists.yoctoproject.org
+From: stefan.wenninger@evopro-ag.de
+X-Originating-Location: Regensburg, Bavaria, DE (88.133.236.129)
+X-Originating-Platform: Windows Chrome 80
+User-Agent: GROUPS.IO Web Poster
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Date: Thu, 09 Apr 2020 03:58:10 -0700
+References: <e184439e-230a-fa2e-27bb-c2e9c4c8ac4f@ibeeto.com>
+In-Reply-To: <e184439e-230a-fa2e-27bb-c2e9c4c8ac4f@ibeeto.com>
+Message-ID: <5897.1586429890891243132@lists.yoctoproject.org>
+Content-Type: multipart/alternative; boundary="ajvw8pg4teaYwL3tCl3H"
 
-On Thu, 2020-04-09 at 09:54 +0800, mohamad.noor.alim.hussin@intel.com wrote:
-> From: Mohamad Noor Alim Hussin <mohamad.noor.alim.hussin@intel.com>
-> 
-> Using meta-intel with core-image-sato-(sdk)-ptest
-> results in a hddimg size of more than 4 GB. Remove
-> that image type from testing.
-> 
-> hddimg is not built by default in dunfell so this
-> is applicable only to zeus.
-> 
-> Signed-off-by: Mohamad Noor Alim Hussin <mohamad.noor.alim.hussin@intel.com>
-> ---
->  config.json | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> diff --git a/config.json b/config.json
-> index 7a88e6e..2989b8a 100644
-> --- a/config.json
-> +++ b/config.json
-> @@ -384,7 +384,10 @@
->              "NEEDREPOS" : ["poky", "meta-intel"],
->              "ADDLAYER" : ["${BUILDDIR}/../meta-intel"],
->              "MACHINE" : "intel-corei7-64",
-> -            "TEMPLATE" : "arch-hw"
-> +            "TEMPLATE" : "arch-hw",
-> +	     "step1": {
-> +		 "BBTARGETS": "core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev core-image-sato:do_populate_sdk"
-> +	    }
->          },
->          "genericx86-64-alt" : {
->              "MACHINE" : "genericx86-64",
+--ajvw8pg4teaYwL3tCl3H
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-Whilst this will "fix" the problem, it is just by hiding it. Any user
-using meta-intel will run into a failure if they try and build this
-image and it may as well be disabled and it won't work for anyone.
+Hi Rudolf,
+I did some digging in imx-atf_1.0.bb and saw that it copies bl31-imx8mq.bi=
+n to the imx-boot-tools folder in do_deploy().
+In imx-boot_0.2.bb I can see that its do_compile is setup to run after imx=
+-atf's do_deploy:
 
-A better fix would be to disable hddimg for this image, then a user can
-actually build it without failures.
+>=20
+> do_compile[depends] +=3D " \
+> virtual/bootloader:do_deploy \
+> ${@' '.join('%s:do_deploy' % r for r in '${IMX_FIRMWARE}'.split() )} \
+> imx-atf:do_deploy \
+> ${IMX_M4_DEMOS} \
+> ${@bb.utils.contains('COMBINED_FEATURES', 'optee',
+> 'optee-os-imx:do_deploy', '', d)} \
+> "
+>=20
 
-Its Intel's layer so its your call but I'd want to fix this properly.
+As I have learned that is exactly the mechanism used to instruct one recip=
+e to only be executed *after* a specific step in another recipe.
+I think that if that piece of code was not there, my problem would be exac=
+tly what you described: imx-boot:do_compile executing after imx-atf:do_inst=
+all but before imx-atf:do_deploy.
 
-Cheers,
+I followed your advice to build imx-atf on its own (which worked) and I th=
+ink I know why my build failed:
+I was not aware of imx-boot depending on imx-atf. While I was trying to ge=
+t my new distro to work I at one point deleted the imx-boot-tools folder ma=
+nually. I now realise that that is not a smart move.
+Additionally I ran bitbake -c clean imx-boot. But not bitbake -c clean imx=
+-atf , because I was not aware of it existing.
+That likely led to imx-boot being rebuilt at next build, but imx-atf being=
+ considered up-to-date by bitbake. So it didn't bother building it again.
+But because I manually removed some of the files imx-atf would produce, an=
+d upon which imx-boot depends, the build failed.
 
-Richard
+So in the end your explanations, hints and advice helped me understand mor=
+e about how bitbake recipes interact with each other.
+It would have probably been very difficult for you (or anyone) to spot my =
+real problem since you could never have anticipated me just taking a shotgu=
+n to the files in my deploy directory :D
+Nevertheless I want to thank you for your help.
 
+I consider this issue solved.
 
+Stefan
+
+--ajvw8pg4teaYwL3tCl3H
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Rudolf,<br />I did some digging in <em>imx-atf_1.0.bb</em> and saw that =
+it copies <em>bl31-imx8mq.bin</em> to the <em>imx-boot-tools</em> folder in=
+ do_deploy().<br />In <em>imx-boot_0.2.bb</em> I can see that its do_compil=
+e is setup to run after imx-atf's do_deploy:<br />
+<blockquote>
+<div>do_compile[depends] +=3D " \</div>
+<div>&nbsp; &nbsp; virtual/bootloader:do_deploy \</div>
+<div>&nbsp; &nbsp; ${@' '.join('%s:do_deploy' % r for r in '${IMX_FIRMWARE=
+}'.split() )} \</div>
+<div>&nbsp; &nbsp; imx-atf:do_deploy \</div>
+<div>&nbsp; &nbsp; ${IMX_M4_DEMOS} \</div>
+<div>&nbsp; &nbsp; ${@bb.utils.contains('COMBINED_FEATURES', 'optee', 'opt=
+ee-os-imx:do_deploy', '', d)} \</div>
+<div>"</div>
+</blockquote>
+<div>As I have learned that is exactly the mechanism used to instruct one =
+recipe to only be executed <strong>after</strong> a specific step in anothe=
+r recipe.<br />I think that if that piece of code was not there, my problem=
+ would be exactly what you described: <em>imx-boot:do_compile</em> executin=
+g after <em>imx-atf:do_install</em> but before <em>imx-atf:do_deploy</em>.<=
+br /><br />I followed your advice to build imx-atf on its own (which worked=
+) and I think I know why my build failed:<br />I was not aware of imx-boot =
+depending on imx-atf. While I was trying to get my new distro to work I at =
+one point deleted the imx-boot-tools folder manually. I now realise that th=
+at is not a smart move.<br />Additionally I ran <em>bitbake -c clean imx-bo=
+ot</em>. But not <em>bitbake -c clean imx-atf</em>, because I was not aware=
+ of it existing.<br />That likely led to imx-boot being rebuilt at next bui=
+ld, but imx-atf being considered up-to-date by bitbake. So it didn't bother=
+ building it again.<br />But because I manually removed some of the files i=
+mx-atf would produce, and upon which imx-boot depends, the build failed.<br=
+ /><br />So in the end your explanations, hints and advice helped me unders=
+tand more about how bitbake recipes interact with each other.<br />It would=
+ have probably been very difficult for you (or anyone) to spot my real prob=
+lem since you could never have anticipated me just taking a shotgun to the =
+files in my deploy directory :D<br />Nevertheless I want to thank you for y=
+our help.<br /><br />I consider this issue solved.<br /><br />Stefan</div>
+
+--ajvw8pg4teaYwL3tCl3H--
