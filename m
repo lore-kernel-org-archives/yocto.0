@@ -1,262 +1,245 @@
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
- by mx.groups.io with SMTP id smtpd.web10.14991.1586454756319630391
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
+ by mx.groups.io with SMTP id smtpd.web10.15528.1586455915568543471
  for <yocto@lists.yoctoproject.org>;
- Thu, 09 Apr 2020 10:52:36 -0700
+ Thu, 09 Apr 2020 11:11:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=rJfo7tsN;
- spf=pass (domain: gmail.com, ip: 209.85.208.51, mailfrom: bruce.ashfield@gmail.com)
-Received: by mail-ed1-f51.google.com with SMTP id bd14so887232edb.10
-        for <yocto@lists.yoctoproject.org>; Thu, 09 Apr 2020 10:52:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=5Henvj6FvXru6X9SwtVX+oVg1NNJ4HnUZp3sLZP2xIk=;
-        b=rJfo7tsNlJBg0hu4Oi7nLssTxUqrNObMROWLGIRxhUXBIZgxRW1PZSDXOBQE0OrA+J
-         IzYFV16P+LnJ/EIeBkXHRNt2bS2MS2UPaB4wQBTKZo14OIg95Sk005HmB8P+rYG7aRWI
-         HCDaEi/l4QRDRKQeLBA/hY1GjYsiwPDVSHLurUty00uWbxMqpcRfaCB5/IyzP0sFa0qa
-         QZaCu1UFLQ59CYmqpCLh6xBmLIVfymTasheFAwysLa3QiTYj4FX6RMnmcSdUArU39sV/
-         GAJya4RX6D/hAC/f8/s2KI0Z/Z0K1jiRVLvRKiMROvUMRj1aRB+Dxh9Ncv4XTTuI7TlY
-         xUww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=5Henvj6FvXru6X9SwtVX+oVg1NNJ4HnUZp3sLZP2xIk=;
-        b=Ksy0JNYSaNCFAevaezVdP/eZbDzm7baR3pchklvz/k+9phuPFjQ5mdoL6ZKRtsLgne
-         b5udwHhprZ8Rxvc6B82+x+liPiJ9qUe9/nL4GvOWrBakhR8yX5WEn/ZbwlaTV5qSrZBv
-         mysSsRQ2slRzIHtKGM1q7yhf5aIIY9ZZ0m//T9HtYoYNQl/fC8gCvgFGCOpqDC4aEiis
-         CNwDIGKAYgVkaWBmtYe4+m0CNqHzZ2XXqVuYNJ5HjzkfdNclLlahjGNG5k3k320JnFvR
-         jmpgoyaYPOiknVpHA3kEZwY7rluxBFNwJQcw5GtFMOmNE7iy0wWo7+ozs/GovoaBaJbB
-         n6yQ==
-X-Gm-Message-State: AGi0PubQf9n77fC0vaberSu3+ZlZFayfYNqkgGpxsEieDakyHQyLP4Yq
-	hWC9y9I446usfw+QJkN9P128TWTSEYSZi/VLM48=
-X-Google-Smtp-Source: APiQypIw6JleorwOmNFQShQ7Wp2O119xM0UoDKK3m4APnGOOvS58yFMOFgyOSg9dt3w16PqN7ZxntBFLirq2DTmKpIY=
-X-Received: by 2002:a17:906:7486:: with SMTP id e6mr190909ejl.181.1586454754717;
- Thu, 09 Apr 2020 10:52:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <16039EE1565C42EA.9427@lists.yoctoproject.org> <TU4PR8401MB11518EBC3EB5C53C1A3DE46082C10@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
- <c0573df2-dbcd-592e-ba2e-d54424e320b3@gmail.com> <TU4PR8401MB115164EF01BE99951B1C721782C10@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
-In-Reply-To: <TU4PR8401MB115164EF01BE99951B1C721782C10@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
-From: "Bruce Ashfield" <bruce.ashfield@gmail.com>
-Date: Thu, 9 Apr 2020 13:52:23 -0400
-Message-ID: <CADkTA4N2orLtACov958hAps2PtJxOODF8rFYHF_96XY9UwFjpg@mail.gmail.com>
+ dkim=missing; spf=pass (domain: hpe.com, ip: 148.163.147.86, mailfrom: prvs=036884efd1=sean.mckay@hpe.com)
+Received: from pps.filterd (m0134421.ppops.net [127.0.0.1])
+	by mx0b-002e3701.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 039I5GGa026206;
+	Thu, 9 Apr 2020 18:11:54 GMT
+Received: from g9t5008.houston.hpe.com (g9t5008.houston.hpe.com [15.241.48.72])
+	by mx0b-002e3701.pphosted.com with ESMTP id 3091nt01p7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Apr 2020 18:11:54 +0000
+Received: from G2W6309.americas.hpqcorp.net (g2w6309.austin.hp.com [16.197.64.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by g9t5008.houston.hpe.com (Postfix) with ESMTPS id EAC1859;
+	Thu,  9 Apr 2020 18:11:53 +0000 (UTC)
+Received: from G1W8108.americas.hpqcorp.net (2002:10c1:483c::10c1:483c) by
+ G2W6309.americas.hpqcorp.net (2002:10c5:4033::10c5:4033) with Microsoft SMTP
+ Server (TLS) id 15.0.1497.2; Thu, 9 Apr 2020 18:11:53 +0000
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (15.241.52.11) by
+ G1W8108.americas.hpqcorp.net (16.193.72.60) with Microsoft SMTP Server (TLS)
+ id 15.0.1497.2 via Frontend Transport; Thu, 9 Apr 2020 18:11:53 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=BuAgD+2/l9uYMMEuUTshJF0CFfc/sxOL+5Kh7S3VdPOd+L0HXHyhVxYACRG01xpBFY7tI0gFXpyA2aFEiFDNToQBbudyeEwsSpzO/p54sL9Y3hAgx1yYwgPAIRC726G1eSJn0hyDdnsT1i5xsdXN5la4Wwfe0fh+F9EdEKK+7MMhrqz6/rTMz2Y3pCS9y+3dNUIIYxW3Uxvd0mxjn0pmWaWS8y2jM0Zi+pWnNtD3yZTDodfHCuZP29dse0syUbzQTF8GLlEw/LBISbkOn5EEVKFdzBAfHEYKn51+R2lhzly5E+A7/GCHdlMI0nM1Hn/oFApy8/J9hBdRLChvSWnBvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=p7YgwSepzsLjzsURaTED/Sno44pg1kHB44liOOWvQws=;
+ b=bT/VZWm+3QuYfgCoLZr62Ys5ha2psaj6oywEcUIESw802ld0TLwwXGAoTL6UUc0TBNoC50KwJeFOgDFbIPyzhhlgSDeNDJjFOasDkpQHo4D5Bc4tPGE2bY8K5xCNNufULwyCQlXuf/4+BlNxmo3o/jGUVxQ6VQXaMy/2SsP2TsCmIDjukjfsrj1bE9xbx0+NcaysMGSSFBIHKDPL9goi2gN+vBVg4COT9+U71+Xjmzv/sAm9vCarLHCKe4EPNh6kfx5HgVxmmg792P4MHUwi/HEQP0eKStkz2hTNg2lNJKZ8TehaHrRsnhg0mQY5+JGok+QGnGC3X6fSZbTcLq2v6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
+ header.d=hpe.com; arc=none
+Received: from TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM
+ (2a01:111:e400:7712::19) by TU4PR8401MB1197.NAMPRD84.PROD.OUTLOOK.COM
+ (2a01:111:e400:7714::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2900.17; Thu, 9 Apr
+ 2020 18:11:52 +0000
+Received: from TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::619e:7aed:3043:d9a3]) by TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM
+ ([fe80::619e:7aed:3043:d9a3%6]) with mapi id 15.20.2900.015; Thu, 9 Apr 2020
+ 18:11:51 +0000
+From: "Sean McKay" <sean.mckay@hpe.com>
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
+CC: Joshua Watt <jpewhacker@gmail.com>,
+        "yocto@lists.yoctoproject.org"
+	<yocto@lists.yoctoproject.org>
 Subject: Re: [yocto] sstate causing stripped kernel vs symbols mismatch
-To: Sean McKay <sean.mckay@hpe.com>
-Cc: Joshua Watt <jpewhacker@gmail.com>, 
-	"yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Thread-Topic: [yocto] sstate causing stripped kernel vs symbols mismatch
+Thread-Index: AdYM/Bywfuw62hpBQNahLbh35mSTBQBkWi8AAACybgAAAAmrIAABymGAAAAf09A=
+Date: Thu, 9 Apr 2020 18:11:51 +0000
+Message-ID: <TU4PR8401MB115100DFDA21335EC8631C3C82C10@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
+References: <16039EE1565C42EA.9427@lists.yoctoproject.org>
+ <TU4PR8401MB11518EBC3EB5C53C1A3DE46082C10@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
+ <c0573df2-dbcd-592e-ba2e-d54424e320b3@gmail.com>
+ <TU4PR8401MB115164EF01BE99951B1C721782C10@TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM>
+ <CADkTA4N2orLtACov958hAps2PtJxOODF8rFYHF_96XY9UwFjpg@mail.gmail.com>
+In-Reply-To: <CADkTA4N2orLtACov958hAps2PtJxOODF8rFYHF_96XY9UwFjpg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [73.220.75.128]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: ed9d1627-59c5-4a99-c3e9-08d7dcb17a91
+x-ms-traffictypediagnostic: TU4PR8401MB1197:
+x-microsoft-antispam-prvs: <TU4PR8401MB11973A9D6DBE607C7BBA247882C10@TU4PR8401MB1197.NAMPRD84.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:2582;
+x-forefront-prvs: 0368E78B5B
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TU4PR8401MB1151.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFTY:;SFS:(10019020)(366004)(39860400002)(376002)(396003)(346002)(136003)(316002)(6916009)(52536014)(966005)(7696005)(55016002)(186003)(9686003)(54906003)(53546011)(6506007)(26005)(478600001)(33656002)(81156014)(8676002)(76116006)(4326008)(64756008)(66946007)(66476007)(66556008)(2906002)(66446008)(71200400001)(81166007)(5660300002)(86362001)(8936002);DIR:OUT;SFP:1102;
+received-spf: None (protection.outlook.com: hpe.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: AMzW1gxfeJP7BvKiar0CaHeh0roOuW4Hmtng/VwxdxH71dMcQoN59sky2YyOe3keBN54LUylIF8R6gNteR7zxkSm2T7M2ipZxuLHrA8m6xiEtJFsdeSo5/boKIpBggrACpAsQFG+Jpd+H1rXGm0yRJqg1c2SPjs2IYUmuvXpsXd1MQb+5UD+RxU/Xi1JrzFJcu+n2Od0/y1O6Ervx7V5iUts7ViSyaDrwxvMlHy1lRwWa6DghD8DCYcMIWz3lZ7zfstpGItm8mmzpaRFqUbv1Uz0Wc+ptIB80IVX0z8T4RhXiijKxr3vti3Zd9uAI501SLIcpKXN5TnJTgf42uyuOLhbjLGiVgVE0ebmyMFM/qMOlNrcNYIRwcz8KvIQLgCTZBF4mf6cOo8ZOL7cRX9AWMQpYSIKV1xP1OGb43nMJk26/E94VqSTv1TardPFJpKuLFo8Zyw/loDWIpcGH/wam2tU8mHuSOA2N19tQbDyzSASm9EYIdbwfpjl6YdrE/gnRRXTtZRLWE2egYEdwZLkxw==
+x-ms-exchange-antispam-messagedata: MYadR5Z+FWWSi1UtvDLBxkie21rAQPsIJKJO6zs5IXr8iztKqvsPTVr7roIgy7LmDXCuhhXaNT80T83RjGDuuJ2JUs+an+/7u9j/n34Yy6rAmYit1QnPcmal62cGm8Jn6wlJXJ9vzisTH0ZHqQ2k2A==
+x-ms-exchange-transport-forked: True
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed9d1627-59c5-4a99-c3e9-08d7dcb17a91
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Apr 2020 18:11:51.8810
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Qvc7yFNZEzhTkSmZAI33VfNvd+n8/Z8C92EBUQOPTunfmRmk8lFnaP6CXP7VMVhajshCmxWgubg+DtDvY0anTg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TU4PR8401MB1197
+X-OriginatorOrg: hpe.com
+X-Proofpoint-UnRewURL: 1 URL was un-rewritten
+MIME-Version: 1.0
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.138,18.0.676
+ definitions=2020-04-09_06:2020-04-07,2020-04-09 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 malwarescore=0 clxscore=1011 suspectscore=0 bulkscore=0
+ mlxlogscore=999 spamscore=0 priorityscore=1501 mlxscore=0 adultscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2003020000 definitions=main-2004090131
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Thu, Apr 9, 2020 at 1:21 PM Sean McKay <sean.mckay@hpe.com> wrote:
->
-> I don=E2=80=99t know offhand, but the kernel documentation seems relativ=
-ely straightforward.
->
-> I can start investigating in that direction and see how complex it looks=
- like it=E2=80=99s going to be.
->
-
-I can tweak linux-yocto in the direction of reproducibility without
-much trouble (for the build part). But I'm a bit out of my normal flow
-for testing that it really is reproducible. So if anyone can point me
-at what they are running to currently test that .. I can do the build
-part.
-
-Bruce
-
->
->
-> When you say that reproducible builds are turned on by default, is there=
- a flag somewhere that can be used to turn that off that I need to gate the=
-se changes behind? Or can they be made globally so that the reproducibility=
- can=E2=80=99t be turned off (easily)?
->
->
->
->
->
-> Do we expect to generally be okay with letting this sort of race conditi=
-on remain in sstate? I concede that it=E2=80=99s probably okay, since I thi=
-nk the kernel is the only thing with this kind of forking task tree behavio=
-r after do_compile, and if we get 100% reproducible builds working, it=E2=
-=80=99s not overly relevant=E2=80=A6 but it seems like it probably deserve=
-s a warning somewhere in the documentation.
->
->
->
-> I can also bring this question to the next technical meeting (I know I j=
-ust missed one) if it seems the sort of thing we need to get consensus.
->
->
->
-> Cheers!
->
-> -Sean
->
->
->
->
->
->
->
-> From: Joshua Watt <jpewhacker@gmail.com>
-> Sent: Thursday, April 9, 2020 10:00 AM
-> To: McKay, Sean <sean.mckay@hpe.com>; yocto@lists.yoctoproject.org
-> Subject: Re: [yocto] sstate causing stripped kernel vs symbols mismatch
->
->
->
->
->
-> On 4/9/20 11:42 AM, Sean McKay wrote:
->
-> Anyone have any thoughts or guidance on this?
->
-> It seems like a pretty major bug to me.
->
->
->
-> We=E2=80=99re willing to put the work in to fix it, and if it=E2=80=99s =
-not something the upstream community is interested in, I=E2=80=99ll just pi=
-ck a solution for us and go with it.
->
-> But if it=E2=80=99s something that we=E2=80=99d like me to upstream, I=
-=E2=80=99d like some feedback on which path I should start walking down be=
-fore I start taking things apart.
->
->
->
-> We have had a recent push for reproducible builds (and they are now enab=
-led by default). Do you have any idea how much effort it would take to make=
- the kernel build reproducibly? It's something we probably want anyway, and=
- can add to the automated testing infrastructure to ensure it doesn't regre=
-ss.
->
->
->
->
->
->
->
->
->
-> Cheers!
->
-> -Sean
->
->
->
-> From: yocto@lists.yoctoproject.org <yocto@lists.yoctoproject.org> On Beh=
-alf Of Sean McKay
-> Sent: Tuesday, April 7, 2020 12:03 PM
-> To: yocto@lists.yoctoproject.org
-> Subject: [yocto] sstate causing stripped kernel vs symbols mismatch
->
->
->
-> Hi all,
->
->
->
-> We=E2=80=99ve discovered that (quite frequently) the kernel that we depl=
-oy doesn=E2=80=99t match the unstripped one that we=E2=80=99re saving for d=
-ebug symbols. I=E2=80=99ve traced the issue to a combination of an sstate m=
-iss for the kernel do_deploy step combined with an sstate hit for do_packag=
-e_write_rpm. (side note: we know we have issues with sstate reuse/stamps in=
-cluding things they shouldn=E2=80=99t which is why we hit this so much. We=
-=E2=80=99re working on that too)
->
->
->
-> The result is that when our debug rootfs is created (where we added the =
-kernel symbols), it=E2=80=99s got the version of the kernel from the sstate=
- cached rpm files, but since do_deploy had an sstate miss, the entire kerne=
-l gets rebuilt to satisfy that dependency chain. Since the kernel doesn=E2=
-=80=99t have reproducible builds working, the resulting pair of kernels do=
-n=E2=80=99t match each other for debug purposes.
->
->
->
-> So, I have two questions to start:
->
-> What is the recommended way to be getting debug symbols for the kernel, =
-since do_deploy doesn=E2=80=99t seem to have a debug counterpart (which is =
-why we originally just set things up to add the rpm to the generated debug =
-rootfs)
-> Does this seem like a bug that should be fixed? If so, what would be the=
- recommended solution (more thoughts below)?
->
->
->
-> Even if there=E2=80=99s a task somewhere that does what I=E2=80=99m look=
-ing for, this seems like a bit of a bug. I generally feel like we want to b=
-e able to trust sstate, so the fact that forking dependencies that each gen=
-erate their own sstate objects can be out of sync is a bit scary.
->
-> I=E2=80=99ve thought of several ways around this, but I can=E2=80=99t sa=
-y I like any of them.
->
-> (extremely gross hack) Create a new task to use instead of do_deploy tha=
-t depends on do_packagegroup_write_rpm. Unpack the restored (or built) RPMs=
- and use those blobs to deploy the kernel and symbols to the image director=
-y.
-> (gross hack with painful effects on build time) Disable sstate for do_pa=
-ckage_write_rpm and do_deploy. Possibly replace with sstate logic for the k=
-ernel=E2=80=99s do_install step (side question =E2=80=93 why doesn=E2=80=99=
-t do_install generate sstate? It seems like it should be able to, since the=
- point is to drop everything into the image directory)
-> (possibly better, but sounds hard) Change the sstate logic so that if an=
-ything downstream of a do_compile task needs to be rerun, everything downst=
-ream of it needs to be rerun and sstate reuse for that recipe is not allowe=
-d (basically all or nothing sstate). Maybe with a flag that=E2=80=99s allow=
-ed in the bitbake file to indicate that a recipe does have reproducible bui=
-lds and that different pieces are allowed to come from sstate in that case.
-> (fix the symptoms but not the problem) Figure out how to get linux-yocto=
- building in a reproducible fashion and pretend the problem doesn=E2=80=99t=
- exist.
->
->
->
->
->
-> If you=E2=80=99re interested, this is quite easy to reproduce =E2=80=93 =
-these are my repro steps
->
-> Check out a clean copy of zeus (22.0.2)
-> Add kernel-image to core-image-minimal in whatever fashion you choose (I=
- just dumped it in the RDEPENDS for packagegroup-core-boot for testing)
-> bitbake core-image-minimal
-> bitbake -c clean core-image-minimal linux-yocto (or just wipe your whole=
- build dir, since everything should come from sstate now)
-> Delete the sstate object(s) for linux-yocto=E2=80=99s deploy task.
-> bitbake core-image-minimal
-> Compare the BuildID hashes for the kernel in the two locations using fil=
-e (you=E2=80=99ll need to use the kernel=E2=80=99s extract-vmlinux script t=
-o get it out of the bzImage)
->
-> file tmp/work/qemux86_64-poky-linux/core-image-minimal/1.0-r0/rootfs/boo=
-t/vmlinux-5.2.28-yocto-standard
-> ./tmp/work-shared/qemux86-64/kernel-source/scripts/extract-vmlinux tmp/d=
-eploy/images/qemux86-64/bzImage > vmlinux-deploy && file vmlinux-deploy
->
->
->
-> Anyone have thoughts or suggestions?
->
->
->
-> Cheers!
->
-> -Sean McKay
->
->
->
->=20
-
-
-
---=20
-- Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end
-- "Use the force Harry" - Gandalf, Star Trek II
+VGhlIHNpbXBsZXN0IHRoaW5nIEkndmUgZm91bmQgaXMgY2hlY2tpbmcvY29tcGFyaW5nIHRoZSBC
+dWlsZElEIHRoYXQgR0NDIGVtYmVkcyBpbiB0aGUgRUxGIGZpbGUgYWZ0ZXIgSSBmb3JjZSBpdCB0
+byByZWNvbXBpbGUuIEVnOg0KJCBmaWxlIHRtcC93b3JrL3FlbXV4ODZfNjQtcG9reS1saW51eC9s
+aW51eC15b2N0by81LjIuMjgrZ2l0QVVUT0lOQytkZDYwMTkwMjVjXzk5MjI4MDg1NWUtcjAvbGlu
+dXgtcWVtdXg4Nl82NC1zdGFuZGFyZC1idWlsZC92bWxpbnV4IHwgZWdyZXAgLW8gIkJ1aWxkSURc
+W3NoYTFcXT1bMC05YS1mXSoiDQpCdWlsZElEW3NoYTFdPTliMTk3MWZiMjg2ZTc4MzY0MjQ2NTQz
+NTgzZWQxMzYwMGE3ZjgxMTENCg0KSXMgdGhhdCB3aGF0IHlvdSB3ZXJlIGFza2luZyBmb3I/DQpQ
+cmVzdW1hYmx5IHdlIGNvdWxkIGFsc28gYWN0dWFsbHkgaGFzaCB0aGUgYWN0dWFsIHZtbGludXgg
+ZmlsZSBmb3IgY29tcGFyaXNvbnMgYXQgdGhlIGRvX2NvbXBpbGUgc3RhZ2UsIGJ1dCBJIHdhcyBv
+cmlnaW5hbGx5IGNvbXBhcmluZyBzdHJpcHBlZCB2cyB1bnN0cmlwcGVkLCBzbyBJIGhhZCB0byBn
+byBieSB0aGUgQnVpbGRJRC4NCg0KU2lkZSBub3RlOiBmcm9tIHRoZSBrZXJuZWwgZG9jdW1lbnRh
+dGlvbiwgaXQgbG9va3MgbGlrZSB0aGVyZSBhcmUgNCBtYWluIHRoaW5ncyB0aGF0IGNvdWxkIGFm
+ZmVjdCByZXByb2R1Y2liaWxpdHk6DQpUaW1lc3RhbXBzLCBidWlsZCBkaXJlY3RvcnksIHVzZXIg
+YWNjb3VudCBuYW1lLCBhbmQgaG9zdG5hbWUuDQpJIGFzc3VtZSB0aGV5J2QgYmUgZWFzaWVzdCB0
+byB0YWNrbGUgc2VxdWVudGlhbGx5IGluIHRoYXQgb3JkZXIuDQoNClRoaXMgaXMgdGhlIGRvY3Vt
+ZW50YXRpb24gSSd2ZSBiZWVuIHJlZmVyZW5jaW5nOg0KaHR0cHM6Ly93d3cua2VybmVsLm9yZy9k
+b2MvaHRtbC9sYXRlc3Qva2J1aWxkL3JlcHJvZHVjaWJsZS1idWlsZHMuaHRtbA0KDQotU2Vhbg0K
+DQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBCcnVjZSBBc2hmaWVsZCA8YnJ1
+Y2UuYXNoZmllbGRAZ21haWwuY29tPiANClNlbnQ6IFRodXJzZGF5LCBBcHJpbCA5LCAyMDIwIDEw
+OjUyIEFNDQpUbzogTWNLYXksIFNlYW4gPHNlYW4ubWNrYXlAaHBlLmNvbT4NCkNjOiBKb3NodWEg
+V2F0dCA8anBld2hhY2tlckBnbWFpbC5jb20+OyB5b2N0b0BsaXN0cy55b2N0b3Byb2plY3Qub3Jn
+DQpTdWJqZWN0OiBSZTogW3lvY3RvXSBzc3RhdGUgY2F1c2luZyBzdHJpcHBlZCBrZXJuZWwgdnMg
+c3ltYm9scyBtaXNtYXRjaA0KDQpPbiBUaHUsIEFwciA5LCAyMDIwIGF0IDE6MjEgUE0gU2VhbiBN
+Y0theSA8c2Vhbi5tY2theUBocGUuY29tPiB3cm90ZToNCj4NCj4gSSBkb27igJl0IGtub3cgb2Zm
+aGFuZCwgYnV0IHRoZSBrZXJuZWwgZG9jdW1lbnRhdGlvbiBzZWVtcyByZWxhdGl2ZWx5IHN0cmFp
+Z2h0Zm9yd2FyZC4NCj4NCj4gSSBjYW4gc3RhcnQgaW52ZXN0aWdhdGluZyBpbiB0aGF0IGRpcmVj
+dGlvbiBhbmQgc2VlIGhvdyBjb21wbGV4IGl0IGxvb2tzIGxpa2UgaXTigJlzIGdvaW5nIHRvIGJl
+Lg0KPg0KDQpJIGNhbiB0d2VhayBsaW51eC15b2N0byBpbiB0aGUgZGlyZWN0aW9uIG9mIHJlcHJv
+ZHVjaWJpbGl0eSB3aXRob3V0IG11Y2ggdHJvdWJsZSAoZm9yIHRoZSBidWlsZCBwYXJ0KS4gQnV0
+IEknbSBhIGJpdCBvdXQgb2YgbXkgbm9ybWFsIGZsb3cgZm9yIHRlc3RpbmcgdGhhdCBpdCByZWFs
+bHkgaXMgcmVwcm9kdWNpYmxlLiBTbyBpZiBhbnlvbmUgY2FuIHBvaW50IG1lIGF0IHdoYXQgdGhl
+eSBhcmUgcnVubmluZyB0byBjdXJyZW50bHkgdGVzdCB0aGF0IC4uIEkgY2FuIGRvIHRoZSBidWls
+ZCBwYXJ0Lg0KDQpCcnVjZQ0KDQo+DQo+DQo+IFdoZW4geW91IHNheSB0aGF0IHJlcHJvZHVjaWJs
+ZSBidWlsZHMgYXJlIHR1cm5lZCBvbiBieSBkZWZhdWx0LCBpcyB0aGVyZSBhIGZsYWcgc29tZXdo
+ZXJlIHRoYXQgY2FuIGJlIHVzZWQgdG8gdHVybiB0aGF0IG9mZiB0aGF0IEkgbmVlZCB0byBnYXRl
+IHRoZXNlIGNoYW5nZXMgYmVoaW5kPyBPciBjYW4gdGhleSBiZSBtYWRlIGdsb2JhbGx5IHNvIHRo
+YXQgdGhlIHJlcHJvZHVjaWJpbGl0eSBjYW7igJl0IGJlIHR1cm5lZCBvZmYgKGVhc2lseSk/DQo+
+DQo+DQo+DQo+DQo+DQo+IERvIHdlIGV4cGVjdCB0byBnZW5lcmFsbHkgYmUgb2theSB3aXRoIGxl
+dHRpbmcgdGhpcyBzb3J0IG9mIHJhY2UgY29uZGl0aW9uIHJlbWFpbiBpbiBzc3RhdGU/IEkgY29u
+Y2VkZSB0aGF0IGl04oCZcyBwcm9iYWJseSBva2F5LCBzaW5jZSBJIHRoaW5rIHRoZSBrZXJuZWwg
+aXMgdGhlIG9ubHkgdGhpbmcgd2l0aCB0aGlzIGtpbmQgb2YgZm9ya2luZyB0YXNrIHRyZWUgYmVo
+YXZpb3IgYWZ0ZXIgZG9fY29tcGlsZSwgYW5kIGlmIHdlIGdldCAxMDAlIHJlcHJvZHVjaWJsZSBi
+dWlsZHMgd29ya2luZywgaXTigJlzIG5vdCBvdmVybHkgcmVsZXZhbnTigKYgYnV0IGl0IHNlZW1z
+IGxpa2UgaXQgcHJvYmFibHkgZGVzZXJ2ZXMgYSB3YXJuaW5nIHNvbWV3aGVyZSBpbiB0aGUgZG9j
+dW1lbnRhdGlvbi4NCj4NCj4NCj4NCj4gSSBjYW4gYWxzbyBicmluZyB0aGlzIHF1ZXN0aW9uIHRv
+IHRoZSBuZXh0IHRlY2huaWNhbCBtZWV0aW5nIChJIGtub3cgSSBqdXN0IG1pc3NlZCBvbmUpIGlm
+IGl0IHNlZW1zIHRoZSBzb3J0IG9mIHRoaW5nIHdlIG5lZWQgdG8gZ2V0IGNvbnNlbnN1cy4NCj4N
+Cj4NCj4NCj4gQ2hlZXJzIQ0KPg0KPiAtU2Vhbg0KPg0KPg0KPg0KPg0KPg0KPg0KPg0KPiBGcm9t
+OiBKb3NodWEgV2F0dCA8anBld2hhY2tlckBnbWFpbC5jb20+DQo+IFNlbnQ6IFRodXJzZGF5LCBB
+cHJpbCA5LCAyMDIwIDEwOjAwIEFNDQo+IFRvOiBNY0theSwgU2VhbiA8c2Vhbi5tY2theUBocGUu
+Y29tPjsgeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZw0KPiBTdWJqZWN0OiBSZTogW3lvY3Rv
+XSBzc3RhdGUgY2F1c2luZyBzdHJpcHBlZCBrZXJuZWwgdnMgc3ltYm9scyANCj4gbWlzbWF0Y2gN
+Cj4NCj4NCj4NCj4NCj4NCj4gT24gNC85LzIwIDExOjQyIEFNLCBTZWFuIE1jS2F5IHdyb3RlOg0K
+Pg0KPiBBbnlvbmUgaGF2ZSBhbnkgdGhvdWdodHMgb3IgZ3VpZGFuY2Ugb24gdGhpcz8NCj4NCj4g
+SXQgc2VlbXMgbGlrZSBhIHByZXR0eSBtYWpvciBidWcgdG8gbWUuDQo+DQo+DQo+DQo+IFdl4oCZ
+cmUgd2lsbGluZyB0byBwdXQgdGhlIHdvcmsgaW4gdG8gZml4IGl0LCBhbmQgaWYgaXTigJlzIG5v
+dCBzb21ldGhpbmcgdGhlIHVwc3RyZWFtIGNvbW11bml0eSBpcyBpbnRlcmVzdGVkIGluLCBJ4oCZ
+bGwganVzdCBwaWNrIGEgc29sdXRpb24gZm9yIHVzIGFuZCBnbyB3aXRoIGl0Lg0KPg0KPiBCdXQg
+aWYgaXTigJlzIHNvbWV0aGluZyB0aGF0IHdl4oCZZCBsaWtlIG1lIHRvIHVwc3RyZWFtLCBJ4oCZ
+ZCBsaWtlIHNvbWUgZmVlZGJhY2sgb24gd2hpY2ggcGF0aCBJIHNob3VsZCBzdGFydCB3YWxraW5n
+IGRvd24gYmVmb3JlIEkgc3RhcnQgdGFraW5nIHRoaW5ncyBhcGFydC4NCj4NCj4NCj4NCj4gV2Ug
+aGF2ZSBoYWQgYSByZWNlbnQgcHVzaCBmb3IgcmVwcm9kdWNpYmxlIGJ1aWxkcyAoYW5kIHRoZXkg
+YXJlIG5vdyBlbmFibGVkIGJ5IGRlZmF1bHQpLiBEbyB5b3UgaGF2ZSBhbnkgaWRlYSBob3cgbXVj
+aCBlZmZvcnQgaXQgd291bGQgdGFrZSB0byBtYWtlIHRoZSBrZXJuZWwgYnVpbGQgcmVwcm9kdWNp
+Ymx5PyBJdCdzIHNvbWV0aGluZyB3ZSBwcm9iYWJseSB3YW50IGFueXdheSwgYW5kIGNhbiBhZGQg
+dG8gdGhlIGF1dG9tYXRlZCB0ZXN0aW5nIGluZnJhc3RydWN0dXJlIHRvIGVuc3VyZSBpdCBkb2Vz
+bid0IHJlZ3Jlc3MuDQo+DQo+DQo+DQo+DQo+DQo+DQo+DQo+DQo+DQo+IENoZWVycyENCj4NCj4g
+LVNlYW4NCj4NCj4NCj4NCj4gRnJvbTogeW9jdG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZyA8eW9j
+dG9AbGlzdHMueW9jdG9wcm9qZWN0Lm9yZz4gT24gDQo+IEJlaGFsZiBPZiBTZWFuIE1jS2F5DQo+
+IFNlbnQ6IFR1ZXNkYXksIEFwcmlsIDcsIDIwMjAgMTI6MDMgUE0NCj4gVG86IHlvY3RvQGxpc3Rz
+LnlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogW3lvY3RvXSBzc3RhdGUgY2F1c2luZyBzdHJp
+cHBlZCBrZXJuZWwgdnMgc3ltYm9scyBtaXNtYXRjaA0KPg0KPg0KPg0KPiBIaSBhbGwsDQo+DQo+
+DQo+DQo+IFdl4oCZdmUgZGlzY292ZXJlZCB0aGF0IChxdWl0ZSBmcmVxdWVudGx5KSB0aGUga2Vy
+bmVsIHRoYXQgd2UgZGVwbG95IA0KPiBkb2VzbuKAmXQgbWF0Y2ggdGhlIHVuc3RyaXBwZWQgb25l
+IHRoYXQgd2XigJlyZSBzYXZpbmcgZm9yIGRlYnVnIHN5bWJvbHMuIA0KPiBJ4oCZdmUgdHJhY2Vk
+IHRoZSBpc3N1ZSB0byBhIGNvbWJpbmF0aW9uIG9mIGFuIHNzdGF0ZSBtaXNzIGZvciB0aGUgDQo+
+IGtlcm5lbCBkb19kZXBsb3kgc3RlcCBjb21iaW5lZCB3aXRoIGFuIHNzdGF0ZSBoaXQgZm9yIA0K
+PiBkb19wYWNrYWdlX3dyaXRlX3JwbS4gKHNpZGUgbm90ZTogd2Uga25vdyB3ZSBoYXZlIGlzc3Vl
+cyB3aXRoIHNzdGF0ZSANCj4gcmV1c2Uvc3RhbXBzIGluY2x1ZGluZyB0aGluZ3MgdGhleSBzaG91
+bGRu4oCZdCB3aGljaCBpcyB3aHkgd2UgaGl0IHRoaXMgDQo+IHNvIG11Y2guIFdl4oCZcmUgd29y
+a2luZyBvbiB0aGF0IHRvbykNCj4NCj4NCj4NCj4gVGhlIHJlc3VsdCBpcyB0aGF0IHdoZW4gb3Vy
+IGRlYnVnIHJvb3RmcyBpcyBjcmVhdGVkICh3aGVyZSB3ZSBhZGRlZCB0aGUga2VybmVsIHN5bWJv
+bHMpLCBpdOKAmXMgZ290IHRoZSB2ZXJzaW9uIG9mIHRoZSBrZXJuZWwgZnJvbSB0aGUgc3N0YXRl
+IGNhY2hlZCBycG0gZmlsZXMsIGJ1dCBzaW5jZSBkb19kZXBsb3kgaGFkIGFuIHNzdGF0ZSBtaXNz
+LCB0aGUgZW50aXJlIGtlcm5lbCBnZXRzIHJlYnVpbHQgdG8gc2F0aXNmeSB0aGF0IGRlcGVuZGVu
+Y3kgY2hhaW4uIFNpbmNlIHRoZSBrZXJuZWwgZG9lc27igJl0IGhhdmUgcmVwcm9kdWNpYmxlIGJ1
+aWxkcyB3b3JraW5nLCB0aGUgcmVzdWx0aW5nIHBhaXIgb2Yga2VybmVscyBkb27igJl0IG1hdGNo
+IGVhY2ggb3RoZXIgZm9yIGRlYnVnIHB1cnBvc2VzLg0KPg0KPg0KPg0KPiBTbywgSSBoYXZlIHR3
+byBxdWVzdGlvbnMgdG8gc3RhcnQ6DQo+DQo+IFdoYXQgaXMgdGhlIHJlY29tbWVuZGVkIHdheSB0
+byBiZSBnZXR0aW5nIGRlYnVnIHN5bWJvbHMgZm9yIHRoZSANCj4ga2VybmVsLCBzaW5jZSBkb19k
+ZXBsb3kgZG9lc27igJl0IHNlZW0gdG8gaGF2ZSBhIGRlYnVnIGNvdW50ZXJwYXJ0ICh3aGljaCBp
+cyB3aHkgd2Ugb3JpZ2luYWxseSBqdXN0IHNldCB0aGluZ3MgdXAgdG8gYWRkIHRoZSBycG0gdG8g
+dGhlIGdlbmVyYXRlZCBkZWJ1ZyByb290ZnMpIERvZXMgdGhpcyBzZWVtIGxpa2UgYSBidWcgdGhh
+dCBzaG91bGQgYmUgZml4ZWQ/IElmIHNvLCB3aGF0IHdvdWxkIGJlIHRoZSByZWNvbW1lbmRlZCBz
+b2x1dGlvbiAobW9yZSB0aG91Z2h0cyBiZWxvdyk/DQo+DQo+DQo+DQo+IEV2ZW4gaWYgdGhlcmXi
+gJlzIGEgdGFzayBzb21ld2hlcmUgdGhhdCBkb2VzIHdoYXQgSeKAmW0gbG9va2luZyBmb3IsIHRo
+aXMgc2VlbXMgbGlrZSBhIGJpdCBvZiBhIGJ1Zy4gSSBnZW5lcmFsbHkgZmVlbCBsaWtlIHdlIHdh
+bnQgdG8gYmUgYWJsZSB0byB0cnVzdCBzc3RhdGUsIHNvIHRoZSBmYWN0IHRoYXQgZm9ya2luZyBk
+ZXBlbmRlbmNpZXMgdGhhdCBlYWNoIGdlbmVyYXRlIHRoZWlyIG93biBzc3RhdGUgb2JqZWN0cyBj
+YW4gYmUgb3V0IG9mIHN5bmMgaXMgYSBiaXQgc2NhcnkuDQo+DQo+IEnigJl2ZSB0aG91Z2h0IG9m
+IHNldmVyYWwgd2F5cyBhcm91bmQgdGhpcywgYnV0IEkgY2Fu4oCZdCBzYXkgSSBsaWtlIGFueSBv
+ZiB0aGVtLg0KPg0KPiAoZXh0cmVtZWx5IGdyb3NzIGhhY2spIENyZWF0ZSBhIG5ldyB0YXNrIHRv
+IHVzZSBpbnN0ZWFkIG9mIGRvX2RlcGxveSB0aGF0IGRlcGVuZHMgb24gZG9fcGFja2FnZWdyb3Vw
+X3dyaXRlX3JwbS4gVW5wYWNrIHRoZSByZXN0b3JlZCAob3IgYnVpbHQpIFJQTXMgYW5kIHVzZSB0
+aG9zZSBibG9icyB0byBkZXBsb3kgdGhlIGtlcm5lbCBhbmQgc3ltYm9scyB0byB0aGUgaW1hZ2Ug
+ZGlyZWN0b3J5Lg0KPiAoZ3Jvc3MgaGFjayB3aXRoIHBhaW5mdWwgZWZmZWN0cyBvbiBidWlsZCB0
+aW1lKSBEaXNhYmxlIHNzdGF0ZSBmb3IgDQo+IGRvX3BhY2thZ2Vfd3JpdGVfcnBtIGFuZCBkb19k
+ZXBsb3kuIFBvc3NpYmx5IHJlcGxhY2Ugd2l0aCBzc3RhdGUgbG9naWMgZm9yIHRoZSBrZXJuZWzi
+gJlzIGRvX2luc3RhbGwgc3RlcCAoc2lkZSBxdWVzdGlvbiDigJMgd2h5IGRvZXNu4oCZdCBkb19p
+bnN0YWxsIGdlbmVyYXRlIHNzdGF0ZT8gSXQgc2VlbXMgbGlrZSBpdCBzaG91bGQgYmUgYWJsZSB0
+bywgc2luY2UgdGhlIHBvaW50IGlzIHRvIGRyb3AgZXZlcnl0aGluZyBpbnRvIHRoZSBpbWFnZSBk
+aXJlY3RvcnkpIChwb3NzaWJseSBiZXR0ZXIsIGJ1dCBzb3VuZHMgaGFyZCkgQ2hhbmdlIHRoZSBz
+c3RhdGUgbG9naWMgc28gdGhhdCBpZiBhbnl0aGluZyBkb3duc3RyZWFtIG9mIGEgZG9fY29tcGls
+ZSB0YXNrIG5lZWRzIHRvIGJlIHJlcnVuLCBldmVyeXRoaW5nIGRvd25zdHJlYW0gb2YgaXQgbmVl
+ZHMgdG8gYmUgcmVydW4gYW5kIHNzdGF0ZSByZXVzZSBmb3IgdGhhdCByZWNpcGUgaXMgbm90IGFs
+bG93ZWQgKGJhc2ljYWxseSBhbGwgb3Igbm90aGluZyBzc3RhdGUpLiBNYXliZSB3aXRoIGEgZmxh
+ZyB0aGF04oCZcyBhbGxvd2VkIGluIHRoZSBiaXRiYWtlIGZpbGUgdG8gaW5kaWNhdGUgdGhhdCBh
+IHJlY2lwZSBkb2VzIGhhdmUgcmVwcm9kdWNpYmxlIGJ1aWxkcyBhbmQgdGhhdCBkaWZmZXJlbnQg
+cGllY2VzIGFyZSBhbGxvd2VkIHRvIGNvbWUgZnJvbSBzc3RhdGUgaW4gdGhhdCBjYXNlLg0KPiAo
+Zml4IHRoZSBzeW1wdG9tcyBidXQgbm90IHRoZSBwcm9ibGVtKSBGaWd1cmUgb3V0IGhvdyB0byBn
+ZXQgbGludXgteW9jdG8gYnVpbGRpbmcgaW4gYSByZXByb2R1Y2libGUgZmFzaGlvbiBhbmQgcHJl
+dGVuZCB0aGUgcHJvYmxlbSBkb2VzbuKAmXQgZXhpc3QuDQo+DQo+DQo+DQo+DQo+DQo+IElmIHlv
+deKAmXJlIGludGVyZXN0ZWQsIHRoaXMgaXMgcXVpdGUgZWFzeSB0byByZXByb2R1Y2Ug4oCTIHRo
+ZXNlIGFyZSBteSANCj4gcmVwcm8gc3RlcHMNCj4NCj4gQ2hlY2sgb3V0IGEgY2xlYW4gY29weSBv
+ZiB6ZXVzICgyMi4wLjIpIEFkZCBrZXJuZWwtaW1hZ2UgdG8gDQo+IGNvcmUtaW1hZ2UtbWluaW1h
+bCBpbiB3aGF0ZXZlciBmYXNoaW9uIHlvdSBjaG9vc2UgKEkganVzdCBkdW1wZWQgaXQgaW4gDQo+
+IHRoZSBSREVQRU5EUyBmb3IgcGFja2FnZWdyb3VwLWNvcmUtYm9vdCBmb3IgdGVzdGluZykgYml0
+YmFrZSANCj4gY29yZS1pbWFnZS1taW5pbWFsIGJpdGJha2UgLWMgY2xlYW4gY29yZS1pbWFnZS1t
+aW5pbWFsIGxpbnV4LXlvY3RvIChvciANCj4ganVzdCB3aXBlIHlvdXIgd2hvbGUgYnVpbGQgZGly
+LCBzaW5jZSBldmVyeXRoaW5nIHNob3VsZCBjb21lIGZyb20gc3N0YXRlIG5vdykgRGVsZXRlIHRo
+ZSBzc3RhdGUgb2JqZWN0KHMpIGZvciBsaW51eC15b2N0b+KAmXMgZGVwbG95IHRhc2suDQo+IGJp
+dGJha2UgY29yZS1pbWFnZS1taW5pbWFsDQo+IENvbXBhcmUgdGhlIEJ1aWxkSUQgaGFzaGVzIGZv
+ciB0aGUga2VybmVsIGluIHRoZSB0d28gbG9jYXRpb25zIHVzaW5nIA0KPiBmaWxlICh5b3XigJls
+bCBuZWVkIHRvIHVzZSB0aGUga2VybmVs4oCZcyBleHRyYWN0LXZtbGludXggc2NyaXB0IHRvIGdl
+dCBpdCANCj4gb3V0IG9mIHRoZSBiekltYWdlKQ0KPg0KPiBmaWxlIA0KPiB0bXAvd29yay9xZW11
+eDg2XzY0LXBva3ktbGludXgvY29yZS1pbWFnZS1taW5pbWFsLzEuMC1yMC9yb290ZnMvYm9vdC92
+DQo+IG1saW51eC01LjIuMjgteW9jdG8tc3RhbmRhcmQgDQo+IC4vdG1wL3dvcmstc2hhcmVkL3Fl
+bXV4ODYtNjQva2VybmVsLXNvdXJjZS9zY3JpcHRzL2V4dHJhY3Qtdm1saW51eCANCj4gdG1wL2Rl
+cGxveS9pbWFnZXMvcWVtdXg4Ni02NC9iekltYWdlID4gdm1saW51eC1kZXBsb3kgJiYgZmlsZSAN
+Cj4gdm1saW51eC1kZXBsb3kNCj4NCj4NCj4NCj4gQW55b25lIGhhdmUgdGhvdWdodHMgb3Igc3Vn
+Z2VzdGlvbnM/DQo+DQo+DQo+DQo+IENoZWVycyENCj4NCj4gLVNlYW4gTWNLYXkNCj4NCj4NCj4N
+Cj4gDQoNCg0KDQotLQ0KLSBUaG91IHNoYWx0IG5vdCBmb2xsb3cgdGhlIE5VTEwgcG9pbnRlciwg
+Zm9yIGNoYW9zIGFuZCBtYWRuZXNzIGF3YWl0IHRoZWUgYXQgaXRzIGVuZA0KLSAiVXNlIHRoZSBm
+b3JjZSBIYXJyeSIgLSBHYW5kYWxmLCBTdGFyIFRyZWsgSUkNCg==
