@@ -1,115 +1,98 @@
-Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
- by mx.groups.io with SMTP id smtpd.web12.4634.1586501776787239625
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+ by mx.groups.io with SMTP id smtpd.web11.7825.1586522101374452088
  for <yocto@lists.yoctoproject.org>;
- Thu, 09 Apr 2020 23:56:16 -0700
+ Fri, 10 Apr 2020 05:35:01 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@gmail.com header.s=20161025 header.b=nyZ55rH2;
- spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: marek.belisko@gmail.com)
-Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B7036E0199E; Thu,  9 Apr 2020 23:56:15 -0700 (PDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
-	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_NONE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
-	*      (marek.belisko[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
-	*      trust
-	*      [209.85.208.47 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
-	*       domain
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9D0AE01959
-	for <yocto@yoctoproject.org>; Thu,  9 Apr 2020 23:56:14 -0700 (PDT)
-Received: by mail-ed1-f47.google.com with SMTP id e5so1307916edq.5
-        for <yocto@yoctoproject.org>; Thu, 09 Apr 2020 23:56:14 -0700 (PDT)
+ dkim=pass header.i=@bgdev-pl.20150623.gappssmtp.com header.s=20150623 header.b=MywwA73F;
+ spf=none, err=SPF record not found (domain: bgdev.pl, ip: 209.85.128.51, mailfrom: brgl@bgdev.pl)
+Received: by mail-wm1-f51.google.com with SMTP id e26so2350909wmk.5
+        for <yocto@lists.yoctoproject.org>; Fri, 10 Apr 2020 05:35:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to;
-        bh=yP/+jDPuPpm2+BnKJXWP29C84kw2w70TSUK6Hx/Gw5A=;
-        b=nyZ55rH2pppHF64O4grinZQ8SpJ1RdyrRqRr6Y7RuayoGrGKDtVPe8QxEnM5cVFeZB
-         xDndzYckAbVLtYra2eTp+8s0VvpkSKXbKrg223YR8i87wKmX860ZjR9o05Z/pRhqbUoU
-         X6nkLOIwr+94JXW3Y5ybaEeiiLZfibdavUvKS2zJprZsgXQQtwirJzDLd/ZntTWuzPZf
-         2BxSD8HvDZ9w/I24B0NJiqlRaYAQhQRgbpzeVKibGqpwOvKj3f4HT8Ohdms6qVPNoNOj
-         UWpU4BS76D0R9v22GlxeHGL3f7g6nnPamz4Cecd+jzcb4Sv9qJV5h+oNua8EiYcm+jKM
-         LphA==
+        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Mv2R9l/1G1rAYPae7b3wJ3yL/+anlS5ydjZiYIBT3uU=;
+        b=MywwA73FzU+rXjhzENuzgi2ZjXjL857O7B45etpO+DmDESH5cns5zWELjCSig0LTNm
+         u2X++xG1U7W7gMX8g0jXNuvKOICoc8KB89tP2e+bn1xFTdRIaNxTnYydgg2DZLShlvwW
+         8Lw90VlhM7sYucMl3jo53ebBHoesQtMhXtZsk/zhHpHv0gTvmOM+4oniOvHfCC1MHLtF
+         FsRHxeoECmj37uDYWDjQV/fbirTwPF6xqUdp0yEP98rck+uAl/elr4rI2A33V0sVMu2A
+         EBbzjnZcjCcmPcueg/M8eQEXuBp6y0uLeLTG1PLTldgFRYxYpYtV/d62XprwcK/S61IH
+         Xa+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to;
-        bh=yP/+jDPuPpm2+BnKJXWP29C84kw2w70TSUK6Hx/Gw5A=;
-        b=jU1tqlvCSJ7DfH9ShR3ZUdhQAJliyEggElq0ILpLzDL3IuEzWPJVLgf4ggQc2RhXvQ
-         8u0ULfPh5fH/3kzTIXCC9UygdJkiGIsITvETNGz1+qB0194aRyJlvaDXqyAAyp3hUuGB
-         yp+JQBP/HNKUbNO6vVqbmS97uxRJDGOzroP7egnnbrU0ix3BBOTaVqdEb1TF697JJVSb
-         2FAWfdFg9PfIJs+nmNQbkWY8xXXISOhIPgtbzL9dX71Ksoa1KLepydYMxxerdxRhysjv
-         DV+arxQZMn4mdSgWnowrUtDB+Pr25kF2RGORsP2ncIFznzC2gomJY4yWUHfFwf/n3fLo
-         cLyw==
-X-Gm-Message-State: AGi0PuZdoEX89H0cqySeRO9fMlBZIdmJ+CvWlw9cAHMYajsa9MSQNe8i
-	sQ+PuYRTmQzNaWyfQNEUgx/uPV/p9wUXAmCByaudgxood07Mow==
-X-Google-Smtp-Source: APiQypLA/0HWODjQTQ6QipDd6SBhQ9VJwLMFPZ4tieYskrWqYksul6OreBDlWcYLuzVNOh0B/mvniZWN8cLQYCe1nSk=
-X-Received: by 2002:a17:906:951:: with SMTP id j17mr2669246ejd.33.1586501773066;
- Thu, 09 Apr 2020 23:56:13 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Mv2R9l/1G1rAYPae7b3wJ3yL/+anlS5ydjZiYIBT3uU=;
+        b=KMNb7dYGK2pe20bHGYIsSsN/Bl9WMLf0hRDHU9NhU4L90E3Y6RPzfyxV+szghLBkKi
+         1lOPdyzW8y5nv7JyGtxWLvlKDtglrLjdI5YLI6FgQ9pta3X1XibWIW+guAjamz+856+R
+         ufxE20d03Sx2hFmj2dIfGppktXN7oN+ZYbConq47FzQ/sFRN+qB3QjuVFjB2DSAz1VkQ
+         Rm+/WSYiwKKLmhWBAIwc9UOxQp5j8Lezthta2TIuBKj7pvy09f/NqT/Uhkf9ux3FkvhA
+         5nT2dJJG5xJ4WjUumMdtMOcabvGhWj+vxT3cF/kglNRndlMGRdsJ+oL7ad3Fnzm41g1Z
+         35oA==
+X-Gm-Message-State: AGi0PuZYvlZffXyIggorEtIM2iJIMxn01kB9vjVifXd0LXhyBp6JE3wk
+	OlPnncu4EJQbglTXFn32j63HGA==
+X-Google-Smtp-Source: APiQypICzCOmucU5lH21dy7WyHqEfeD5Zn/Qa7vPTI/DxV/f4xAxdkm2gJ76hz1GtHAto3x9ngqC/w==
+X-Received: by 2002:a1c:9891:: with SMTP id a139mr5326507wme.129.1586522099785;
+        Fri, 10 Apr 2020 05:34:59 -0700 (PDT)
+Return-Path: <brgl@bgdev.pl>
+Received: from localhost.localdomain (lfbn-nic-1-65-232.w2-15.abo.wanadoo.fr. [2.15.156.232])
+        by smtp.gmail.com with ESMTPSA id d7sm2685062wrr.77.2020.04.10.05.34.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Apr 2020 05:34:59 -0700 (PDT)
+From: "Bartosz Golaszewski" <brgl@bgdev.pl>
+To: Khem Raj <raj.khem@gmail.com>,
+	Richard Purdie <richard.purdie@linuxfoundation.org>,
+	Armin Kuster <akuster808@gmail.com>,
+	Jerome Neanne <jneanne@baylibre.com>,
+	Quentin Schulz <quentin.schulz@streamunlimited.com>
+Cc: openembedded-devel@lists.openembedded.org,
+	yocto@lists.yoctoproject.org,
+	Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Subject: [OE-core][PATCH v2 0/2] generic dm-verity support + BBB example
+Date: Fri, 10 Apr 2020 14:34:47 +0200
+Message-Id: <20200410123449.9624-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.25.0
 MIME-Version: 1.0
-From: "Marek Belisko" <marek.belisko@gmail.com>
-Date: Fri, 10 Apr 2020 08:56:02 +0200
-Message-ID: <CAAfyv35mccyzb9fqtjpvmExtz-zZQ6a5Xk5mcn7k1pUJx+T7WQ@mail.gmail.com>
-Subject: meta-intel: Override SERIAL_CONSOLES variable
-To: yocto <yocto@yoctoproject.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-Hi,
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-in meta-intel in machine configuration SERIAL_CONSOLES are defined as
-: SERIAL_CONSOLES = "115200;ttyS0 115200;ttyS1 115200;ttyS2"
+This series attempts to introduce support for dm-verity in meta-security.
+It depends on a series[1] I submitted for OE-core that introduces multi-stage
+image deployment that's currently pending review (although the general idea
+was accepted by Richard). This new way of deploying image artifacts is aimed
+at solving a circular dependency problem[2] which turned out to be impossible
+to resolve if all artifacts are deployed at once by the do_image_complete task.
 
-I would like to remove content of this variable (as on my target
-system I get always this in journalctl):
+The first patch in this series introduces a generic bbclass that allows to
+generate and append dm-verity hash data at the end of the partition image.
 
-Apr 06 11:12:54 intel-corei7-64 systemd[1]:
-serial-getty@ttyS2.service: Succeeded. Apr 06 11:12:54 intel-corei7-64
-systemd[1]: serial-getty@ttyS1.service: Succeeded. Apr 06 11:12:54
-intel-corei7-64 systemd[1]: serial-getty@ttyS2.service: Service has no
-hold-off time (RestartSec=0), scheduling restart. Apr 06 11:12:54
-intel-corei7-64 systemd[1]: serial-getty@ttyS2.service: Scheduled
-restart job, restart counter is at 62. Apr 06 11:12:54 intel-corei7-64
-systemd[1]: serial-getty@ttyS1.service: Service has no hold-off time
-(RestartSec=0), scheduling restart. Apr 06 11:12:54 intel-corei7-64
-systemd[1]: serial-getty@ttyS1.service: Scheduled restart job, restart
-counter is at 62. Apr 06 11:12:54 intel-corei7-64 systemd[1]: Stopped
-Serial Getty on ttyS1. Apr 06 11:12:54 intel-corei7-64 systemd[1]:
-Started Serial Getty on ttyS1. Apr 06 11:12:54 intel-corei7-64
-systemd[1]: Stopped Serial Getty on ttyS2. Apr 06 11:12:54
-intel-corei7-64 systemd[1]: Started Serial Getty on ttyS2.
+The second patch adds support for an example verified boot image for Beagle
+Bone Black where the root dm-verity hash is stored inside the signed fitImage
+in an initramfs which takes care of mouting the protected rootfs.
 
-so I do in local.conf:
-SERIAL_CONSOLES_remove = "115200;ttyS0 115200;ttyS1 115200;ttyS2"
+Patch 2/2 - while made sure to work on BBB - should be generic enough to be
+reusable across many platforms.
 
-but then I get issue when building systemd-serialgetty:
- sed: -e expression #1, char 13: unterminated `s' command
+[1] https://www.mail-archive.com/openembedded-core@lists.openembedded.org/msg135694.html
+[2] https://www.mail-archive.com/openembedded-core@lists.openembedded.org/msg134825.html
 
-because variable looks like this:
-SERIAL_CONSOLES="  " when check with bitbake -e
+Bartosz Golaszewski (2):
+  classes: provide a class for generating dm-verity meta-data images
+  dm-verity: add a working example for BeagleBone Black
 
-Is there some other way how to achieve this? Thanks.
+ classes/dm-verity-img.bbclass                 | 88 +++++++++++++++++++
+ .../images/dm-verity-image-initramfs.bb       | 26 ++++++
+ .../initrdscripts/initramfs-dm-verity.bb      | 13 +++
+ .../initramfs-dm-verity/init-dm-verity.sh     | 46 ++++++++++
+ wic/beaglebone-yocto-verity.wks.in            | 15 ++++
+ 5 files changed, 188 insertions(+)
+ create mode 100644 classes/dm-verity-img.bbclass
+ create mode 100644 recipes-core/images/dm-verity-image-initramfs.bb
+ create mode 100644 recipes-core/initrdscripts/initramfs-dm-verity.bb
+ create mode 100644 recipes-core/initrdscripts/initramfs-dm-verity/init-dm-verity.sh
+ create mode 100644 wic/beaglebone-yocto-verity.wks.in
 
-BR,
-
-marek
 -- 
-as simple and primitive as possible
--------------------------------------------------
-Marek Belisko - OPEN-NANDRA
-Freelance Developer
+2.25.0
 
-Ruska Nova Ves 219 | Presov, 08005 Slovak Republic
-Tel: +421 915 052 184
-skype: marekwhite
-twitter: #opennandra
-web: http://open-nandra.com
