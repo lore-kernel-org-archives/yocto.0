@@ -1,113 +1,104 @@
-Received: from mail-io1-f65.google.com (mail-io1-f65.google.com [209.85.166.65])
- by mx.groups.io with SMTP id smtpd.web10.8053.1586522275128395174
+Received: from mail-wr1-f65.google.com (mail-wr1-f65.google.com [209.85.221.65])
+ by mx.groups.io with SMTP id smtpd.web11.7940.1586522502707157691
  for <yocto@lists.yoctoproject.org>;
- Fri, 10 Apr 2020 05:37:55 -0700
+ Fri, 10 Apr 2020 05:41:43 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bgdev-pl.20150623.gappssmtp.com header.s=20150623 header.b=L7JWA4WV;
- spf=none, err=SPF record not found (domain: bgdev.pl, ip: 209.85.166.65, mailfrom: brgl@bgdev.pl)
-Received: by mail-io1-f65.google.com with SMTP id o127so1642571iof.0
-        for <yocto@lists.yoctoproject.org>; Fri, 10 Apr 2020 05:37:55 -0700 (PDT)
+ dkim=pass header.i=@bgdev-pl.20150623.gappssmtp.com header.s=20150623 header.b=zp6hjDfz;
+ spf=none, err=SPF record not found (domain: bgdev.pl, ip: 209.85.221.65, mailfrom: brgl@bgdev.pl)
+Received: by mail-wr1-f65.google.com with SMTP id c15so2145305wro.11
+        for <yocto@lists.yoctoproject.org>; Fri, 10 Apr 2020 05:41:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=uwI5VFIyB1oaUQu6Hj5w4hKOqZTwM0UB2FE7smBtiXM=;
-        b=L7JWA4WV2v6qfsJ+KGPtHH4+4k724pwTpKfR/vfBFL0jQaCGgxpQlRbLjCL2/vkgWM
-         WASL8EtK3bXknu/BkxFaF6NH0rF7oHNPw5yiq/MBl4VRmP/ExrpKRqNJujiEnjgqwLZQ
-         4hyqWg6835iCeax/+fd+YBSSalQYYVxh4LweAnDSLKVv7Aw5nF+8tCcXbgmEukzfxy7v
-         5L/6nnsOJsFoRoMDTMR/bOEE4KMXzZg3hzn8PHPTUzOypdz5aS47EDbg9e2d3fKEeqhH
-         Hktfh2xg5pO7lLeIGZk55xR4P0WWvCeJ7O+py+p6ETMYIu7rAIwja6XVNURLxb9noJtD
-         16ig==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GnjiosE8k9+SjfCC659z+xw09yFMhIFV7oPLZdv5g6A=;
+        b=zp6hjDfzkU7gKzZiGOw6o32Tbu4Y/eOE9W78GhZ5S7oqdA2TfLrqHE/EZLufNlxVih
+         dA+JYm/eRS8+Sa9FYzn4jEoJPmDfD+HJfJ7CVPiI8yg+LnU4XII8yvrJ9TDEeb/1AxeI
+         6msdetN04QqDHgMeA8QpyslQ9Enlrg1/vmIWq0EODtYHydAwnXqLCg5wMPH8W0cNBS5Y
+         uiZlhcHxL1kz8pv6LQUEBJKDUz33BcIKpQcseN9nJ9b9M10pLsvl794inK3T278sD3Vn
+         CV52Wd+RI0kjOyyO0otrHj7b3ME5WfmvI5diKCKy1dobKsCi0ma7lzhyCoOX5qRFS8Uv
+         3UrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=uwI5VFIyB1oaUQu6Hj5w4hKOqZTwM0UB2FE7smBtiXM=;
-        b=mP4KRSZbDGFSAq/G4EihcOYqIFz0zsrohGknMU4Qz9fIHzaHQ6pkKlUdcHmtIrYNwb
-         YoaYpmXeNrTbvmES7T6BPBlbtSz+68ERGHQrYUtcYW70WjdK1sL21bEmTgM1nb3OE854
-         b3stGBs147G02mMyfgp4XsyS/OkKEPHtDDAPf2RE4TxiUzJVN2dfw0rHdmTfo7BgFa+z
-         zxbB84XT3WjYNNzpq4MQGc4fl5MFHpw5SzkEa/pbnsk3Vmo+woVpSewi/t/ptjzV7mL/
-         KHXK/XjY09S11DAS5qATc69GQv5bLQpNnQnsTyJaR8tOLJJRHi0bTxF8LBncmY9FbeeB
-         adHA==
-X-Gm-Message-State: AGi0PuaNz6hopYzd7tkqjrzwwif4fe7cdR7YrpQfTZLJEm5hNcD3V2Sr
-	rqWuVAzN18s/Yu1z8z20KytJwYFfvyWTYvDRln0zVA==
-X-Google-Smtp-Source: APiQypLTfutHJn2sEHD9uVPzu7D/kq2XpBqVJzXpxjSbBGLj0lUbm6T3GU8LQr9VOZO1j344FHlWiaw/EPvSikCFiGk=
-X-Received: by 2002:a5e:890c:: with SMTP id k12mr4158075ioj.131.1586522274543;
- Fri, 10 Apr 2020 05:37:54 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200410123449.9624-1-brgl@bgdev.pl>
-In-Reply-To: <20200410123449.9624-1-brgl@bgdev.pl>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GnjiosE8k9+SjfCC659z+xw09yFMhIFV7oPLZdv5g6A=;
+        b=IIzaKRbV+HfEMF3+8Q4uncX8ByuJVQzXRRso0yeqtK5rTYE7zax/++oKmgM+HJZw+t
+         F2Lcy3DQG8Y4gBHbif4njFHT1hjQt8hmo8w8LNgxua2tG1idx0b068/zw97vVN6u19N5
+         zd7g+lKBORa0gMytXtFjQyojR0ejcBW7+I1dzpesRFjRa712wXrCABTWSfBDfzOCs9Y7
+         uz9ltXJNqCEhMtQx61GQCuCrP8mZLJRbWyaqXNcRmCnCcMebcgDvkps1Yg0npi4OUiWH
+         J8YgTFqi2rVN3PgJYSJOcDyDCLMmdDAcPkK4Hb+I3nFlZa33K5LwY9etQ0OfstqcuKXE
+         2bow==
+X-Gm-Message-State: AGi0PuZoO16kYgkFf3Q9hm7EcyfJx+iSq2isYeSb2LqZ10lVxwGsMwj5
+	4Ispv9jhntPzDG2OQjQp4uuOlg==
+X-Google-Smtp-Source: APiQypLnPZg5J1FGfsiFzpRtPhlpqXoEx2pL890COxTuQLcx+yKx5s0t8JehiCBE523gja/q8Dd8eg==
+X-Received: by 2002:a5d:4ac1:: with SMTP id y1mr4409186wrs.174.1586522501264;
+        Fri, 10 Apr 2020 05:41:41 -0700 (PDT)
+Return-Path: <brgl@bgdev.pl>
+Received: from localhost.localdomain (lfbn-nic-1-65-232.w2-15.abo.wanadoo.fr. [2.15.156.232])
+        by smtp.gmail.com with ESMTPSA id d10sm2663747wrp.9.2020.04.10.05.41.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Apr 2020 05:41:40 -0700 (PDT)
 From: "Bartosz Golaszewski" <brgl@bgdev.pl>
-Date: Fri, 10 Apr 2020 14:37:43 +0200
-Message-ID: <CAMRc=MenjNvshDicMscKmhaOJRc-q2F9t0bJFN_Gr93OksY_OA@mail.gmail.com>
-Subject: Re: [OE-core][PATCH v2 0/2] generic dm-verity support + BBB example
-To: Khem Raj <raj.khem@gmail.com>, Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	Armin Kuster <akuster808@gmail.com>, Jerome Neanne <jneanne@baylibre.com>, 
+To: Khem Raj <raj.khem@gmail.com>,
+	Richard Purdie <richard.purdie@linuxfoundation.org>,
+	Armin Kuster <akuster808@gmail.com>,
+	Jerome Neanne <jneanne@baylibre.com>,
 	Quentin Schulz <quentin.schulz@streamunlimited.com>
-Cc: openembedded-devel <openembedded-devel@lists.openembedded.org>, yocto@lists.yoctoproject.org, 
+Cc: openembedded-devel@lists.openembedded.org,
+	yocto@lists.yoctoproject.org,
 	Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: [meta-security][RFC 0/2] generic dm-verity support + BBB example
+Date: Fri, 10 Apr 2020 14:41:33 +0200
+Message-Id: <20200410124135.24217-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.25.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-pt., 10 kwi 2020 o 14:34 Bartosz Golaszewski <brgl@bgdev.pl> napisa=C5=82(a=
-):
->
-> From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
->
-> This series attempts to introduce support for dm-verity in meta-security.
-> It depends on a series[1] I submitted for OE-core that introduces multi-s=
-tage
-> image deployment that's currently pending review (although the general id=
-ea
-> was accepted by Richard). This new way of deploying image artifacts is ai=
-med
-> at solving a circular dependency problem[2] which turned out to be imposs=
-ible
-> to resolve if all artifacts are deployed at once by the do_image_complete=
- task.
->
-> The first patch in this series introduces a generic bbclass that allows t=
-o
-> generate and append dm-verity hash data at the end of the partition image=
-.
->
-> The second patch adds support for an example verified boot image for Beag=
-le
-> Bone Black where the root dm-verity hash is stored inside the signed fitI=
-mage
-> in an initramfs which takes care of mouting the protected rootfs.
->
-> Patch 2/2 - while made sure to work on BBB - should be generic enough to =
-be
-> reusable across many platforms.
->
-> [1] https://www.mail-archive.com/openembedded-core@lists.openembedded.org=
-/msg135694.html
-> [2] https://www.mail-archive.com/openembedded-core@lists.openembedded.org=
-/msg134825.html
->
-> Bartosz Golaszewski (2):
->   classes: provide a class for generating dm-verity meta-data images
->   dm-verity: add a working example for BeagleBone Black
->
->  classes/dm-verity-img.bbclass                 | 88 +++++++++++++++++++
->  .../images/dm-verity-image-initramfs.bb       | 26 ++++++
->  .../initrdscripts/initramfs-dm-verity.bb      | 13 +++
->  .../initramfs-dm-verity/init-dm-verity.sh     | 46 ++++++++++
->  wic/beaglebone-yocto-verity.wks.in            | 15 ++++
->  5 files changed, 188 insertions(+)
->  create mode 100644 classes/dm-verity-img.bbclass
->  create mode 100644 recipes-core/images/dm-verity-image-initramfs.bb
->  create mode 100644 recipes-core/initrdscripts/initramfs-dm-verity.bb
->  create mode 100644 recipes-core/initrdscripts/initramfs-dm-verity/init-d=
-m-verity.sh
->  create mode 100644 wic/beaglebone-yocto-verity.wks.in
->
-> --
-> 2.25.0
->
+From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 
-Eek, this was supposed to be tagged [meta-security]. But since I'm
-posting it as an RFC I won't be resending for now.
+I'm terribly sorry for spamming, but I eventually decided to resend it: not
+only the tags were messed up but I also added a v2 on top. This time it
+should be good.
 
-Bart
+===
+
+This series attempts to introduce support for dm-verity in meta-security.
+It depends on a series[1] I submitted for OE-core that introduces multi-stage
+image deployment that's currently pending review (although the general idea
+was accepted by Richard). This new way of deploying image artifacts is aimed
+at solving a circular dependency problem[2] which turned out to be impossible
+to resolve if all artifacts are deployed at once by the do_image_complete task.
+
+The first patch in this series introduces a generic bbclass that allows to
+generate and append dm-verity hash data at the end of the partition image.
+
+The second patch adds support for an example verified boot image for Beagle
+Bone Black where the root dm-verity hash is stored inside the signed fitImage
+in an initramfs which takes care of mouting the protected rootfs.
+
+Patch 2/2 - while made sure to work on BBB - should be generic enough to be
+reusable across many platforms.
+
+[1] https://www.mail-archive.com/openembedded-core@lists.openembedded.org/msg135694.html
+[2] https://www.mail-archive.com/openembedded-core@lists.openembedded.org/msg134825.html
+
+Bartosz Golaszewski (2):
+  classes: provide a class for generating dm-verity meta-data images
+  dm-verity: add a working example for BeagleBone Black
+
+ classes/dm-verity-img.bbclass                 | 88 +++++++++++++++++++
+ .../images/dm-verity-image-initramfs.bb       | 26 ++++++
+ .../initrdscripts/initramfs-dm-verity.bb      | 13 +++
+ .../initramfs-dm-verity/init-dm-verity.sh     | 46 ++++++++++
+ wic/beaglebone-yocto-verity.wks.in            | 15 ++++
+ 5 files changed, 188 insertions(+)
+ create mode 100644 classes/dm-verity-img.bbclass
+ create mode 100644 recipes-core/images/dm-verity-image-initramfs.bb
+ create mode 100644 recipes-core/initrdscripts/initramfs-dm-verity.bb
+ create mode 100644 recipes-core/initrdscripts/initramfs-dm-verity/init-dm-verity.sh
+ create mode 100644 wic/beaglebone-yocto-verity.wks.in
+
+-- 
+2.25.0
+
