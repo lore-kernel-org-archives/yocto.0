@@ -1,245 +1,83 @@
-Received: from mail-wr1-f68.google.com (mail-wr1-f68.google.com [209.85.221.68])
- by mx.groups.io with SMTP id smtpd.web12.8047.1586522504935947784
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.280.1586551665831754278
  for <yocto@lists.yoctoproject.org>;
- Fri, 10 Apr 2020 05:41:45 -0700
+ Fri, 10 Apr 2020 13:47:46 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@bgdev-pl.20150623.gappssmtp.com header.s=20150623 header.b=ZkY8/33N;
- spf=none, err=SPF record not found (domain: bgdev.pl, ip: 209.85.221.68, mailfrom: brgl@bgdev.pl)
-Received: by mail-wr1-f68.google.com with SMTP id c15so2145396wro.11
-        for <yocto@lists.yoctoproject.org>; Fri, 10 Apr 2020 05:41:44 -0700 (PDT)
+ dkim=pass header.i=@sidebranch-com.20150623.gappssmtp.com header.s=20150623 header.b=afMqy+BJ;
+ spf=softfail (domain: sidebranch.com, ip: 140.211.169.56, mailfrom: leon@sidebranch.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 3BDE6E019B4; Fri, 10 Apr 2020 13:47:45 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.160.175 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9571E019AE
+	for <yocto@yoctoproject.org>; Fri, 10 Apr 2020 13:47:42 -0700 (PDT)
+Received: by mail-qt1-f175.google.com with SMTP id b10so2441174qtt.9
+        for <yocto@yoctoproject.org>; Fri, 10 Apr 2020 13:47:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jPO5/g8q2AHA1wEUgwHzigOYSaYmdWfwY3J/VYgSSsg=;
-        b=ZkY8/33N0dME3SWtUNXAgK01fz0UXWSxWEw1hgH4KWPYC0qtIOunAgwYWGjwe2F86Q
-         kd2r/PhmF+vtZQgf2hKQMhNdmmPMBuOO8pp9Ji89/qVnRJulfwikMMCXjNQ9ScbXMxT/
-         s5Vb09gAPv80LtICOlvGBhW7vfi6SY1oaYIxMH38tl5EM+T2kBlWItITmHXolFmORxkV
-         I4s2Bk1pI4jvoJHw4KHy1bH+zXGWywnZo2chEjIyf0ctaAYoQJqr9ts7CdOIg4b6MhVF
-         wn6AWToJQ6Vz3gAowostjFpQxRxEHg5QmqWu5ve6MtoebFSSexu44rCygVnW6a6vBDOa
-         1tkQ==
+        d=sidebranch-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2W0Tijpspf4PgaTQArtYfTnCdyjnnsw9ewSIDKwkfcg=;
+        b=afMqy+BJq6ehzNqcck9rQpTnp2VYhI1o+S7JPBC5Y+oWqAuyvAFzbPyUPhYyJHsvuq
+         aun4e/1qZhgqAXhX6lEnK9Nu7fJ6FQe8NIrKSrFdQB8CD02G0YT0unqDrAcvC3J2OLkz
+         W/rRnVyybC/QEFQto2+idWUKSK4wg6yYEmXWXNQViNH11r4GsIKkaArvPLtYt9SGhvD1
+         nx8he5wyB0xRckkSn46o9G4n9B1az4VLR44aozXCbEWM4RYTuvdyiPAEac8MzvWziv6g
+         PIjwebeLr3zsJmRXYjGvxNTK1vUO2rU3nRRqH2+far9Il77lGM1dkXc8Y2frzJi+GNs6
+         IikA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jPO5/g8q2AHA1wEUgwHzigOYSaYmdWfwY3J/VYgSSsg=;
-        b=FXlsRjdLZOuqyG3qthcfZfyRlDnnjdCTzL5tNtwf5mBSpCV4V/pdKOgOAcIoPFVDDU
-         FrlX5y7feYRE1+pFA6gTncfG5WAyUv/ktEge3rkbmGtvbgsjxFanO0mLFy5158EY04I7
-         B8rBgKNHt6XNvc8LDWcWgO+SFVtwC0Bc5nTwilrnoyUuJAt4dX+NcaKhAS02kzEMOkqQ
-         79w2fj026hyvFNrYL40414uT0YkdsUDpKFoEMT9oUurCaoUGsoyOI2B0ZE+xrwHLcUh0
-         Xs0n4yUTzswanvFpUul3G73askgvSWSW3XxXLPCEiQhpsQQPtLE9rHwUKto14LJ6r9pi
-         xxSA==
-X-Gm-Message-State: AGi0PuZQmKI7Hfh7f0DYCotiwS7Ihtx+rCCIQKjm+H2TkfH9VsFs/ipR
-	78enlrnJHduZXSWENf/QP9nXhg==
-X-Google-Smtp-Source: APiQypKHTQt14TinSH4KRBcAIbNP5zw9OkWiw9Giv+6/gSJJuDH/Y8bTvg9UsrfAUqhZAtNoaIo5dg==
-X-Received: by 2002:adf:ee12:: with SMTP id y18mr4238410wrn.289.1586522503524;
-        Fri, 10 Apr 2020 05:41:43 -0700 (PDT)
-Return-Path: <brgl@bgdev.pl>
-Received: from localhost.localdomain (lfbn-nic-1-65-232.w2-15.abo.wanadoo.fr. [2.15.156.232])
-        by smtp.gmail.com with ESMTPSA id d10sm2663747wrp.9.2020.04.10.05.41.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Apr 2020 05:41:42 -0700 (PDT)
-From: "Bartosz Golaszewski" <brgl@bgdev.pl>
-To: Khem Raj <raj.khem@gmail.com>,
-	Richard Purdie <richard.purdie@linuxfoundation.org>,
-	Armin Kuster <akuster808@gmail.com>,
-	Jerome Neanne <jneanne@baylibre.com>,
-	Quentin Schulz <quentin.schulz@streamunlimited.com>
-Cc: openembedded-devel@lists.openembedded.org,
-	yocto@lists.yoctoproject.org,
-	Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Subject: [meta-security][RFC 2/2] dm-verity: add a working example for BeagleBone Black
-Date: Fri, 10 Apr 2020 14:41:35 +0200
-Message-Id: <20200410124135.24217-3-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.25.0
-In-Reply-To: <20200410124135.24217-1-brgl@bgdev.pl>
-References: <20200410124135.24217-1-brgl@bgdev.pl>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2W0Tijpspf4PgaTQArtYfTnCdyjnnsw9ewSIDKwkfcg=;
+        b=SRH5FSZvVaDAxwNR4bUO2P7oPjFZEsvvIzlQ8r0XLDOiHQhxboed7TQg1UqbK5TyV/
+         UmfpzS2nxwIBAdIntPOr1r3VhUwsclzNuWPm6RNT2zI1hR3PgWbDV50DjXUGTYTUGltz
+         ws6ujJvmVhwxLGH9cWrAaEQ3smEBxob2oFqDJP1ky4SsD5gSKiCAOnBREwc2Zymw1Zn6
+         BhXY9RG+idpYo3rSpQTungKrWJAvxiyNf9EYfCjphffM+jwEJPoivmLIqiLUQNherL4J
+         sAyXkXcAFu6vuOzKLD+qR1r+g6ZNrH5mIaYJIBqSrehJTVrvOWlOkWN1WpAk6Hw26TU8
+         L8uw==
+X-Gm-Message-State: AGi0Pubz/8Mc/lnjwnZV7lEdMMV9KNSUQdCogpA+DuBTtPHQx0AypLcZ
+	EO0DXQ02J3ifYEVOvhmw6cOGo0dwuMh0WjlEC+stew==
+X-Google-Smtp-Source: APiQypLEcUkioV0W1R0yybF4YcY7JQgHCT5YKP3uG9G5EJa9roAblZMZI1DYqmOvyvNuq7zrE12QaN/O3ktu5C+U/2k=
+X-Received: by 2002:ac8:4790:: with SMTP id k16mr1059280qtq.276.1586551662148;
+ Fri, 10 Apr 2020 13:47:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <CAAfyv35mccyzb9fqtjpvmExtz-zZQ6a5Xk5mcn7k1pUJx+T7WQ@mail.gmail.com>
+In-Reply-To: <CAAfyv35mccyzb9fqtjpvmExtz-zZQ6a5Xk5mcn7k1pUJx+T7WQ@mail.gmail.com>
+From: "Leon Woestenberg" <leon@sidebranch.com>
+Date: Fri, 10 Apr 2020 22:47:30 +0200
+Message-ID: <CAMjhiJisHc1+jooqtqm7v51-ONDVQTPXCZ1RvAmuCCsa0A7p6A@mail.gmail.com>
+Subject: Re: [yocto] meta-intel: Override SERIAL_CONSOLES variable
+To: Marek Belisko <marek.belisko@gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Content-Type: text/plain; charset="UTF-8"
 
-From: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Hi all,
 
-This adds various bits and pieces to enable generating a working example
-of a full chain of trust up to dm-verity-protected rootfs level on Beagle
-Bone Black.
+On Fri, Apr 10, 2020 at 8:56 AM Marek Belisko <marek.belisko@gmail.com> wrote:
+>
+> Hi,
+>
+> in meta-intel in machine configuration SERIAL_CONSOLES are defined as
+> : SERIAL_CONSOLES = "115200;ttyS0 115200;ttyS1 115200;ttyS2"
+>
+For a more generic solution, could this be made  a weak assignment?
 
-The new initramfs is quite generic and should work for other SoCs as well
-when using fitImage.
+I am on a SMARC x86-64 module which only one serial is useful, so I
+would like to downtune this variable as well.
 
-The following config can be used with current master poky,
-meta-openembedded & meta-security to generate a BBB image using verified
-boot and dm-verity.
+Regards,
 
-  UBOOT_SIGN_KEYDIR = "/tmp/test-keys/"
-  UBOOT_SIGN_KEYNAME = "dev"
-  UBOOT_SIGN_ENABLE = "1"
-  UBOOT_MKIMAGE_DTCOPTS = "-I dts -O dtb -p 2000"
-  UBOOT_MACHINE_beaglebone-yocto = "am335x_boneblack_vboot_config"
-
-  IMAGE_CLASSES += "dm-verity-img"
-  IMAGE_FSTYPES += "wic.xz ext4"
-
-  DM_VERITY_IMAGE = "core-image-full-cmdline"
-  DM_VERITY_IMAGE_TYPE = "ext4"
-
-  KERNEL_CLASSES += "kernel-fitimage"
-  KERNEL_IMAGETYPE_beaglebone-yocto = "fitImage"
-
-  IMAGE_INSTALL_remove = " kernel-image-zimage"
-  IMAGE_BOOT_FILES_remove = " zImage"
-  IMAGE_BOOT_FILES_append = " fitImage-${INITRAMFS_IMAGE}-${MACHINE}-${MACHINE};fitImage"
-
-  # Using systemd is not strictly needed but deals nicely with read-only
-  # filesystem by default.
-  DISTRO_FEATURES_append = " systemd"
-  DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
-  VIRTUAL-RUNTIME_init_manager = "systemd"
-  VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
-
-  INITRAMFS_IMAGE = "dm-verity-image-initramfs"
-  INITRAMFS_FSTYPES = "cpio.gz"
-  INITRAMFS_IMAGE_BUNDLE = "1"
-
-  WKS_FILE = "beaglebone-yocto-verity.wks.in"
-
-  KERNEL_FEATURES_append = " features/device-mapper/dm-verity.scc"
-
-Signed-off-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
----
- .../images/dm-verity-image-initramfs.bb       | 26 +++++++++++
- .../initrdscripts/initramfs-dm-verity.bb      | 13 ++++++
- .../initramfs-dm-verity/init-dm-verity.sh     | 46 +++++++++++++++++++
- wic/beaglebone-yocto-verity.wks.in            | 15 ++++++
- 4 files changed, 100 insertions(+)
- create mode 100644 recipes-core/images/dm-verity-image-initramfs.bb
- create mode 100644 recipes-core/initrdscripts/initramfs-dm-verity.bb
- create mode 100644 recipes-core/initrdscripts/initramfs-dm-verity/init-dm-verity.sh
- create mode 100644 wic/beaglebone-yocto-verity.wks.in
-
-diff --git a/recipes-core/images/dm-verity-image-initramfs.bb b/recipes-core/images/dm-verity-image-initramfs.bb
-new file mode 100644
-index 0000000..f9ea376
---- /dev/null
-+++ b/recipes-core/images/dm-verity-image-initramfs.bb
-@@ -0,0 +1,26 @@
-+DESCRIPTION = "Simple initramfs image for mounting the rootfs over the verity device mapper."
-+
-+# We want a clean, minimal image.
-+IMAGE_FEATURES = ""
-+
-+PACKAGE_INSTALL = " \
-+    initramfs-dm-verity \
-+    base-files \
-+    busybox \
-+    util-linux-mount \
-+    udev \
-+    cryptsetup \
-+    lvm2-udevrules \
-+"
-+
-+# Can we somehow inspect reverse dependencies to avoid these variables?
-+do_rootfs[depends] += "${DM_VERITY_IMAGE}:do_image_${DM_VERITY_IMAGE_TYPE}"
-+
-+IMAGE_FSTYPES = "${INITRAMFS_FSTYPES}"
-+
-+inherit core-image
-+
-+deploy_verity_hash() {
-+    install -D -m 0644 ${DEPLOY_DIR_IMAGE}/${DM_VERITY_IMAGE}-${MACHINE}.${DM_VERITY_IMAGE_TYPE}.verity.env ${IMAGE_ROOTFS}/${datadir}/dm-verity.env
-+}
-+ROOTFS_POSTPROCESS_COMMAND += "deploy_verity_hash;"
-diff --git a/recipes-core/initrdscripts/initramfs-dm-verity.bb b/recipes-core/initrdscripts/initramfs-dm-verity.bb
-new file mode 100644
-index 0000000..b614956
---- /dev/null
-+++ b/recipes-core/initrdscripts/initramfs-dm-verity.bb
-@@ -0,0 +1,13 @@
-+SUMMARY = "Simple init script that uses devmapper to mount the rootfs in read-only mode protected by dm-verity"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+
-+SRC_URI = "file://init-dm-verity.sh"
-+
-+do_install() {
-+    install -m 0755 ${WORKDIR}/init-dm-verity.sh ${D}/init
-+    install -d ${D}/dev
-+    mknod -m 622 ${D}/dev/console c 5 1
-+}
-+
-+FILES_${PN} = "/init /dev/console"
-diff --git a/recipes-core/initrdscripts/initramfs-dm-verity/init-dm-verity.sh b/recipes-core/initrdscripts/initramfs-dm-verity/init-dm-verity.sh
-new file mode 100644
-index 0000000..307d2c7
---- /dev/null
-+++ b/recipes-core/initrdscripts/initramfs-dm-verity/init-dm-verity.sh
-@@ -0,0 +1,46 @@
-+#!/bin/sh
-+
-+PATH=/sbin:/bin:/usr/sbin:/usr/bin
-+RDEV=""
-+ROOT_DIR="/new_root"
-+
-+mkdir -p /proc
-+mkdir -p /sys
-+mkdir -p /run
-+mkdir -p /tmp
-+mount -t proc proc /proc
-+mount -t sysfs sysfs /sys
-+mount -t devtmpfs none /dev
-+
-+udevd --daemon
-+udevadm trigger --type=subsystems --action=add
-+udevadm trigger --type=devices --action=add
-+udevadm settle --timeout=10
-+
-+for PARAM in $(cat /proc/cmdline); do
-+	case $PARAM in
-+		root=*)
-+			RDEV=${PARAM#root=}
-+			;;
-+	esac
-+done
-+
-+if ! [ -b $RDEV ]; then
-+	echo "Missing root command line argument!"
-+	exit 1
-+fi
-+
-+case $RDEV in
-+	UUID=*)
-+		RDEV=$(realpath /dev/disk/by-uuid/${RDEV#UUID=})
-+		;;
-+esac
-+
-+. /usr/share/dm-verity.env
-+
-+echo "Mounting $RDEV over dm-verity as the root filesystem"
-+
-+veritysetup --data-block-size=1024 --hash-offset=$DATA_SIZE create rootfs $RDEV $RDEV $ROOT_HASH
-+mkdir -p $ROOT_DIR
-+mount -o ro /dev/mapper/rootfs $ROOT_DIR
-+exec switch_root $ROOT_DIR /sbin/init
-diff --git a/wic/beaglebone-yocto-verity.wks.in b/wic/beaglebone-yocto-verity.wks.in
-new file mode 100644
-index 0000000..cd1702e
---- /dev/null
-+++ b/wic/beaglebone-yocto-verity.wks.in
-@@ -0,0 +1,15 @@
-+# SPDX-License-Identifier: MIT
-+#
-+# Copyright (C) 2020 BayLibre SAS
-+# Author: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-+#
-+# A dm-verity variant of the regular wks for beaglebone black. We need to fetch
-+# the partition images from the DEPLOY_DIR_IMAGE as the rootfs source plugin will
-+# not recreate the exact block device corresponding with the hash tree. We must
-+# not alter the label or any other setting on the image.
-+#
-+# This .wks only works with the dm-verity-img class.
-+
-+part /boot --source bootimg-partition --ondisk mmcblk0 --fstype=vfat --label boot --active --align 4 --size 16 --sourceparams="loader=u-boot" --use-uuid
-+part / --source rawcopy --ondisk mmcblk0 --sourceparams="file=${DEPLOY_DIR_IMAGE}/${DM_VERITY_IMAGE}-${MACHINE}.${DM_VERITY_IMAGE_TYPE}.verity"
-+bootloader --append="console=ttyS0,115200"
--- 
-2.25.0
-
+Leon.
