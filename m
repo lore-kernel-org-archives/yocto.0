@@ -1,163 +1,294 @@
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
- by mx.groups.io with SMTP id smtpd.web10.16263.1586788326008982194
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web11.19973.1586797577519471850
  for <yocto@lists.yoctoproject.org>;
- Mon, 13 Apr 2020 07:32:06 -0700
+ Mon, 13 Apr 2020 10:06:17 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linaro.org header.s=google header.b=GPz8Ismv;
- spf=pass (domain: linaro.org, ip: 209.85.219.170, mailfrom: nicolas.dechesne@linaro.org)
-Received: by mail-yb1-f170.google.com with SMTP id 11so5308743ybj.11
-        for <yocto@lists.yoctoproject.org>; Mon, 13 Apr 2020 07:32:05 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=Wqd8dnzC;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: sjolley.yp.pm@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 2C492E019D9; Mon, 13 Apr 2020 10:06:17 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail provider
+	*      (sjolley.yp.pm[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.216.48 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from author's
+	*       domain
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11681E018F2
+	for <yocto@yoctoproject.org>; Mon, 13 Apr 2020 10:06:14 -0700 (PDT)
+Received: by mail-pj1-f48.google.com with SMTP id nu11so4037510pjb.1
+        for <yocto@yoctoproject.org>; Mon, 13 Apr 2020 10:06:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Eve+cIM98wErl/bmxFE+glk7temMsnLb26KwpFxXbyI=;
-        b=GPz8IsmvdnsKxg8VudqBCjnqGWvL5adxqcENn9AYyQ32d0rmfJep1Bh2GGnRL21SPl
-         B2PCz8ZsVHaAsRB2Jx3dgsr99GRoR7y5YfTuNiJmB3aDBI/98fN0TKFSQgSleKB/dhQV
-         bQe5BD74dQEqtvIjCTaJqhh5Z2vPS56Pu/BHu2ZQkaRa9x4o0fxgEr/tg/Ez7qyYhVSE
-         YdHJu9d7OH1rYYzf68En6yl98HdNy+dOfQSYFIRsqJ4tfbqp9QZbE3Iatq4JXKKtCPyy
-         mYB7Ybk015gaORik2sEJIr+wF63xhvegBUxeoRvH3Sqqpt9CyUTncGJCE6zHiNxK0EGC
-         pyTw==
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id:mime-version:content-language
+         :thread-index;
+        bh=tnJptRY3epZdjk4k6UeYgl25Wz9WtbnDsGFpjZPawYM=;
+        b=Wqd8dnzCwNJmcae45PrILsQWTLo0E1N1Akv7Ro9wTFi7/HfheRYJagyujWaTc/MjkX
+         8+TE3Dbn+afK6ZsXpiPJouEeo6TXnVAUaUYvVdioSDn9jFIzMzN16E8wOH3m90baFduK
+         qAxsPcN0z0SvHelpSG7DUz33aCyRHsv/O+pzDiNOc6wzXhhtREYSJSGFAAZiGS3LDwup
+         IrTZg7Pj1pauED5wXyyB1xDwfAN+mRgfq2rgoslNzX4wCFFW3gffq9BXtZJakqR3c7eh
+         9V0fTwGUWLT2PaToCVbM5xbWh7/Ao/tRpBOY4fK/3YltX7T1CwuflgKfisYSk9zHcPrw
+         A1Ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Eve+cIM98wErl/bmxFE+glk7temMsnLb26KwpFxXbyI=;
-        b=HhDszXE+9CoD/Bm4lJJX2aZ8yKoV9sFgkFymKQE2pGEHgY9bGO8eAG8Ked1JaHvQkB
-         WY/63spEXfWDspsOzNhZ5w8mfrMpBlIsRbua1aKo9xrowVZ1/zKE4L3JDp6VDPPH0djI
-         /5jhe0AgXkSWsd1Cc5pKrNWRzPYWT5b/6VGa+7ETYe+MSlKHBInugsQn/AgEMyPLrNGk
-         jZEmAZYoP284BopRMSkMH9d4B7+dY/GtBk25taIT1NObe/I/zARRA8CRy87X6mKMDAjQ
-         F/99yN2x500TFDrBwVV0YgmTS4k4WbKYYrutvwThdYydEMT9ZroWHyIl+F2LOsh15igP
-         tBoA==
-X-Gm-Message-State: AGi0Pubpsb9AE3mx4ziWDNUJsSd4ySqQbUWg6v5yX/GyqRXWZloSm48A
-	bVV6UhFp9yybFBtTceml16QjdJ+4byKRFW+0YQvQWA==
-X-Google-Smtp-Source: APiQypKDJMLmsxO/hgHakIbUK0mWcGMz/o87s06hQCOXdvsLClbnRHQV4JuIOYSgydRZ9LUffWTiahcAdeCGFLZXOUc=
-X-Received: by 2002:a25:ccc3:: with SMTP id l186mr26235643ybf.454.1586788325133;
- Mon, 13 Apr 2020 07:32:05 -0700 (PDT)
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
+         :content-language:thread-index;
+        bh=tnJptRY3epZdjk4k6UeYgl25Wz9WtbnDsGFpjZPawYM=;
+        b=FN7QeQFPVn7tAZOfWLBPSpL28Gh1aR6uWtGVbwATD7wJtqHLLqitXX311fUWop4BmO
+         H277bPGzeLMeGIklY6r6EtdTb3Sk+y383xBhDmGq5If3Y5mzEUNl/ao3OohupDUTbabU
+         oSYeHsR6zfVMIsMLZOvTe3g5r4uPNYCJDE/OBSzcftc3+AEha9Z5CanRVgxxHV0or4+S
+         iwu/m19nYA+xI0lL4+2dc5j6jiAcJeAl6M0Cq5lYsBvTVE6QgzjjOzzgUKiMrjPOpFY/
+         YNQMgsj5kp8lSEpW5eQMqw+8f9nHNVCX4iK3rc9V8vxgaiESM2r1K2Fa/hDBvwts/acL
+         Tbmg==
+X-Gm-Message-State: AGi0Pub1KcpTKAR3abbkJ/+7QFoT3TwBo6E/WCdfn5nK79hdmR+l0DMn
+	584LDO+HuXiDwCSSF7YKNt4=
+X-Google-Smtp-Source: APiQypLfpTq1caUZ9PsTiDJghWbQOfIBzDocMRJooNk302KBo4X+fB0lW3TTnGEyC4Lj4XRHUPfQ5A==
+X-Received: by 2002:a17:90a:8909:: with SMTP id u9mr23059247pjn.149.1586797573886;
+        Mon, 13 Apr 2020 10:06:13 -0700 (PDT)
+Received: from skjolley (c-71-59-136-149.hsd1.or.comcast.net. [71.59.136.149])
+        by smtp.gmail.com with ESMTPSA id o40sm8214334pjb.18.2020.04.13.10.06.12
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 13 Apr 2020 10:06:13 -0700 (PDT)
+From: "Stephen Jolley" <sjolley.yp.pm@gmail.com>
+To: <yocto@yoctoproject.org>,
+	<openembedded-core@lists.openembedded.org>
+Subject: Yocto Project Newcomer & Unassigned Bugs - Help Needed
+Date: Mon, 13 Apr 2020 10:06:13 -0700
+Message-ID: <309201d611b5$d6840f60$838c2e20$@gmail.com>
 MIME-Version: 1.0
-References: <1bc0fffb.3be7.17171a9737f.Coremail.nus1998@yeah.net>
- <CAP71WjwiHBSZaGkGrPJmdgKeTQK+5TgckVF86S50yEmWObR1LA@mail.gmail.com> <CANNYZj8xE7yS8Y4R9UimWyQsqyr=x91OuPCyxvcCKZf+Cqtb=g@mail.gmail.com>
-In-Reply-To: <CANNYZj8xE7yS8Y4R9UimWyQsqyr=x91OuPCyxvcCKZf+Cqtb=g@mail.gmail.com>
-From: "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
-Date: Mon, 13 Apr 2020 16:31:53 +0200
-Message-ID: <CAP71WjxyT43FjNaSdjqFf6EOrOE7sAH-AnL6uV323Drm6AWJmQ@mail.gmail.com>
-Subject: Re: [yocto] What is the recommended method to patch a recipe?
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: nus1998 <nus1998@yeah.net>, yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="000000000000742a7305a32cf26b"
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJtf/CA7RrF6A0dsq2kFyIs1wWWoQ==
+Content-Type: multipart/alternative;
+	boundary="----=_NextPart_000_3093_01D6117B.2A27CF70"
+Content-Language: en-us
 
---000000000000742a7305a32cf26b
-Content-Type: text/plain; charset="UTF-8"
+------=_NextPart_000_3093_01D6117B.2A27CF70
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 
-On Mon, Apr 13, 2020 at 12:55 PM Alexander Kanavin <alex.kanavin@gmail.com>
-wrote:
+All,
 
-> On Mon, 13 Apr 2020 at 12:46, Nicolas Dechesne <
-> nicolas.dechesne@linaro.org> wrote:
->
->> A good rule of thumb is to never modify a metadata that is not yours.
->> That applies to everything:
->> * if you need to modify a bb file from a 3rd party library, create a
->> bbappend file in your layer
->> * if you need to modify a bbappend from a 3rd party, then create another
->> bbappend in your layer
->>
->> And by 3rd party i mean any layer/tree which is not yours (OE-core, or
->> any other layer your are using).
->>
->
-> I beg to differ! Bbappends are making it difficult to reason about what
-> the recipe with all its appends is doing (because they destroy spatial
-> locality and aren't easily visible), and I would actually discourage using
-> them if the modification can go to the original recipe.
->
+ 
 
-Ok.. you're right. Well at least my answer is not complete ;)
+The triage team is starting to try and collect up and classify bugs which a
+newcomer to the project would be able to work on in a way which means people
+can find them. They're being listed on the triage page under the appropriate
+heading:
+
+ 
+
+https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs
+
+ 
+
+The idea is these bugs should be straight forward for a person to help work
+on who doesn't have deep experience with the project.  If anyone can help,
+please take ownership of the bug and send patches!  If anyone needs
+help/advice there are people on irc who can likely do so, or some of the
+more experienced contributors will likely be happy to help too.
+
+ 
+
+Also, the triage team meets weekly and does its best to handle the bugs
+reported into the Bugzilla. The number of people attending that meeting has
+fallen, as have the number of people available to help fix bugs. One of the
+things we hear users report is they don't know how to help. We (the triage
+team) are therefore going to start reporting out the currently 309
+unassigned or newcomer bugs.
+
+ 
+
+We're hoping people may be able to spare some time now and again to help out
+with these.  Bugs are split into two types, "true bugs" where things don't
+work as they should and "enhancements" which are features we'd want to add
+to the system.  There are also roughly four different "priority" classes
+right now, "3.1", "3.2, "3.99" and "Future", the more pressing/urgent issues
+being in "3.1" and then "3.2".
+
+ 
+
+Please review this link and if a bug is something you would be able to help
+with either take ownership of the bug, or send me (sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> ) an e-mail with the bug number you would
+like and I will assign it to you (please make sure you have a Bugzilla
+account).  The list is at:
+https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_or_Newcomer
+_Bugs
+
+ 
+
+Thanks,
+
+ 
+
+Stephen K. Jolley
+
+Yocto Project Program Manager
+
+*    Cell:                (208) 244-4460
+
+* Email:              sjolley.yp.pm@gmail.com
+<mailto:sjolley.yp.pm@gmail.com> 
+
+ 
 
 
-> Is it fixing a problem? Is it adding a build option absent from the
-> original recipe? Then please take the trouble to submit the change to the
-> owners of the recipe.
->
-
-This is correct. We should encourage everyone to report, and even better
-propose a fix, to the relevant layer, when the 'problem' is applicable. I
-didn't want to discourage that, for sure!
-When developing against master, it's a no brainer. When developing against
-a stable branch (like probably many users), it's not as obvious. In that
-case I think trying to avoid 'touching' somebody else layer remains a good
-advice, since it makes upgrades and maintenance trickier.
-
-
-
->
-> Similarly, if a bbappend is re-setting the component version to something
-> else (yes, people do that despite my best efforts to prohibit the
-> practice), then a much cleaner approach is to actually make a fully copy of
-> the recipe, or go and fix the original.
->
-
-Recipes version upgrades (or downgrade) should be done in a dedicated layer
-owned by the 'developer', and in that case, I agree that bbappend should be
-prohibited, and the entire recipe should be copied.
-
-
-> Alex
->
-
---000000000000742a7305a32cf26b
-Content-Type: text/html; charset="UTF-8"
+------=_NextPart_000_3093_01D6117B.2A27CF70
+Content-Type: text/html;
+	boundary="----=_NextPart_000_1BF2_01D60C03.F7E91090";
+	charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div dir=3D"ltr"><br></div><br><div class=3D"gmail_quote">=
-<div dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 13, 2020 at 12:55 PM Alex=
-ander Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kanavin@gm=
-ail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-lef=
-t:1ex"><div dir=3D"ltr"><div dir=3D"ltr">On Mon, 13 Apr 2020 at 12:46, Nico=
-las Dechesne &lt;<a href=3D"mailto:nicolas.dechesne@linaro.org" target=3D"_=
-blank">nicolas.dechesne@linaro.org</a>&gt; wrote:<br></div><div class=3D"gm=
-ail_quote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.=
-8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"lt=
-r">A good rule of thumb is to never modify a metadata that is not yours. Th=
-at applies to everything:<div class=3D"gmail_quote"><div>* if you need to m=
-odify a bb file from a 3rd party library, create a bbappend file in your la=
-yer</div><div>* if you need to modify a bbappend from a 3rd party, then cre=
-ate another bbappend in your layer</div><div><br></div><div>And by 3rd part=
-y i mean any layer/tree which is not yours (OE-core, or any other layer you=
-r are using).</div></div></div></blockquote><div><br></div><div>I beg to di=
-ffer! Bbappends are making it difficult to reason about what the recipe wit=
-h all its appends is doing (because they destroy spatial locality and aren&=
-#39;t easily visible), and I would actually discourage using them if the mo=
-dification can go to the original recipe. <br></div></div></div></blockquot=
-e><div><br></div><div>Ok.. you&#39;re right. Well at least my answer is not=
- complete ;)</div><div><br></div><blockquote class=3D"gmail_quote" style=3D=
-"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-le=
-ft:1ex"><div dir=3D"ltr"><div class=3D"gmail_quote"><div></div><div><br></d=
-iv><div>Is it fixing a problem? Is it adding a build option absent from the=
- original recipe? Then please take the trouble to submit the change to the =
-owners of the recipe.</div></div></div></blockquote><div><br></div><div>Thi=
-s is correct. We should encourage everyone to report, and even better propo=
-se a fix, to the relevant layer, when the &#39;problem&#39; is applicable. =
-I didn&#39;t want to discourage that, for sure!</div><div>When developing a=
-gainst master, it&#39;s a no brainer. When developing against a stable bran=
-ch (like probably many users), it&#39;s not as obvious. In that case I thin=
-k trying to avoid &#39;touching&#39; somebody else layer remains a good adv=
-ice, since it makes upgrades and maintenance trickier.</div><div><br></div>=
-<div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=
-=3D"ltr"><div class=3D"gmail_quote"><div><br></div><div>Similarly, if a bba=
-ppend is re-setting the component version to something else (yes, people do=
- that despite my best efforts to prohibit the practice), then a much cleane=
-r approach is to actually make a fully copy of the recipe, or go and fix th=
-e original.<br></div></div></div></blockquote><div><br></div><div>Recipes v=
-ersion upgrades (or downgrade) should be done in a dedicated layer owned by=
- the &#39;developer&#39;, and in that case, I agree that bbappend should be=
- prohibited, and the entire recipe should be copied.<br></div><div><br></di=
-v><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;borde=
-r-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div c=
-lass=3D"gmail_quote"><div></div><div><br></div><div>Alex<br></div></div></d=
-iv>
-</blockquote></div></div>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 15 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+span.EmailStyle18
+	{mso-style-type:personal-compose;
+	font-family:"Calibri",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-US =
+link=3D"#0563C1" vlink=3D"#954F72"><div class=3DWordSection1><p =
+class=3DMsoNormal style=3D'text-autospace:none'>All,<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>The triage team is =
+starting to try and collect up and classify bugs which a newcomer to the =
+project would be able to work on in a way which means people can find =
+them. They're being listed on the triage page under the appropriate =
+heading:<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs">http=
+s://wiki.yoctoproject.org/wiki/Bug_Triage#Newcomer_Bugs</a><o:p></o:p></p=
+><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>The idea is these bugs should be straight =
+forward for a person to help work on who doesn't have deep experience =
+with the project.&nbsp; If anyone can help, please take ownership of the =
+bug and send patches!&nbsp; If anyone needs help/advice there are people =
+on irc who can likely do so, or some of the more experienced =
+contributors will likely be happy to help too.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Also, the triage team =
+meets weekly and does its best to handle the bugs reported into the =
+Bugzilla. The number of people attending that meeting has fallen, as =
+have the number of people available to help fix bugs. One of the things =
+we hear users report is they don't know how to help. We (the triage =
+team) are therefore going to start reporting out the currently 309 =
+unassigned or newcomer bugs.<o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>We're hoping people may be able to spare =
+some time now and again to help out with these.&nbsp; Bugs are split =
+into two types, &quot;true bugs&quot; where things don't work as they =
+should and &quot;enhancements&quot; which are features we'd want to add =
+to the system.&nbsp; There are also roughly four different =
+&quot;priority&quot; classes right now, &#8220;3.1&#8221;, &#8220;3.2, =
+&quot;3.99&quot; and &quot;Future&quot;, the more pressing/urgent issues =
+being in &quot;3.1&quot; and then &#8220;3.2&#8221;.<o:p></o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal style=3D'text-autospace:none'>Please review this link =
+and if a bug is something you would be able to help with either take =
+ownership of the bug, or send me (<a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a>) an =
+e-mail with the bug number you would like and I will assign it to you =
+(please make sure you have a Bugzilla account).&nbsp; The list is at: <a =
+href=3D"https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#Unassigned_=
+or_Newcomer_Bugs">https://wiki.yoctoproject.org/wiki/Bug_Triage_Archive#U=
+nassigned_or_Newcomer_Bugs</a><o:p></o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'text-autospace:none'>Thanks,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal =
+style=3D'page-break-after:avoid;text-autospace:none'><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Times New =
+Roman",serif;color:purple'>Stephen K. Jolley</span></i></b><b><i><span =
+style=3D'font-size:16.0pt;font-family:"Tahoma",sans-serif;color:purple'><=
+o:p></o:p></span></i></b></p><p class=3DMsoNormal><b><span =
+style=3D'font-size:8.0pt;font-family:"Courier New";color:blue'>Yocto =
+Project Program Manager<o:p></o:p></span></b></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings;color:black'>(</span><span=
+ style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>&nbsp;&nbsp;&nbsp; </span><b><span =
+style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Cell</span></b><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span =
+style=3D'font-size:9.0pt;font-family:"MS Sans Serif"'>(208) =
+244-4460<span style=3D'color:black'><o:p></o:p></span></span></p><p =
+class=3DMsoNormal><span =
+style=3D'font-size:9.0pt;font-family:Wingdings'>* </span><b><span =
+lang=3DFR style=3D'font-size:8.0pt;font-family:"Comic Sans =
+MS";color:teal'>Email</span></b><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif";color:teal'>:</span><span lang=3DFR =
+style=3D'font-size:9.0pt;font-family:"MS Sans =
+Serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;<u><span style=3D'color:blue'><a =
+href=3D"mailto:sjolley.yp.pm@gmail.com">sjolley.yp.pm@gmail.com</a></span=
+></u></span><span lang=3DFR =
+style=3D'font-size:12.0pt;font-family:"Arial",sans-serif'><o:p></o:p></sp=
+an></p><p class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
 
---000000000000742a7305a32cf26b--
+------=_NextPart_000_3093_01D6117B.2A27CF70--
