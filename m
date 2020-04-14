@@ -1,62 +1,88 @@
 Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
- by mx.groups.io with SMTP id smtpd.web11.6905.1586850343329338261
+ by mx.groups.io with SMTP id smtpd.web11.8366.1586860182587076811
  for <yocto@lists.yoctoproject.org>;
- Tue, 14 Apr 2020 00:45:43 -0700
+ Tue, 14 Apr 2020 03:29:42 -0700
 Authentication-Results: mx.groups.io;
  dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: yi.zhao@windriver.com)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 03E7j2vx001057
-	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
-	Tue, 14 Apr 2020 00:45:12 -0700
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 03EATALY005047
+	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL)
+	for <yocto@lists.yoctoproject.org>; Tue, 14 Apr 2020 03:29:31 -0700
 Received: from localhost (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
  (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Tue, 14 Apr
- 2020 00:44:51 -0700
+ 2020 03:29:04 -0700
 From: "Yi Zhao" <yi.zhao@windriver.com>
-To: <joe@deserted.net>, <yocto@lists.yoctoproject.org>
-Subject: [meta-selinux][PATCH 14/16] selinux-sandbox: upgrade to 3.0 (20191204)
-Date: Tue, 14 Apr 2020 15:41:56 +0800
-Message-ID: <20200414074158.32058-14-yi.zhao@windriver.com>
+To: <yocto@lists.yoctoproject.org>
+Subject: [meta-security][PATCH] samhain-server: add volatile file for systemd
+Date: Tue, 14 Apr 2020 18:29:01 +0800
+Message-ID: <20200414102901.5213-1-yi.zhao@windriver.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200414074158.32058-1-yi.zhao@windriver.com>
-References: <20200414074158.32058-1-yi.zhao@windriver.com>
 MIME-Version: 1.0
 X-Originating-IP: [128.224.162.174]
 Content-Type: text/plain
 
+Add volatile file to create /var/log/yule when using systemd. Also
+remove unused /var/log directory in do_install.
+
 Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 ---
- recipes-security/selinux/selinux-sandbox_2.9.bb | 7 -------
- recipes-security/selinux/selinux-sandbox_3.0.bb | 7 +++++++
- 2 files changed, 7 insertions(+), 7 deletions(-)
- delete mode 100644 recipes-security/selinux/selinux-sandbox_2.9.bb
- create mode 100644 recipes-security/selinux/selinux-sandbox_3.0.bb
+ .../samhain/files/samhain-server-volatiles.conf  |  1 +
+ recipes-ids/samhain/samhain-server.bb            | 16 ++++++++++++----
+ recipes-ids/samhain/samhain.inc                  |  2 ++
+ 3 files changed, 15 insertions(+), 4 deletions(-)
+ create mode 100644 recipes-ids/samhain/files/samhain-server-volatiles.conf
 
-diff --git a/recipes-security/selinux/selinux-sandbox_2.9.bb b/recipes-security/selinux/selinux-sandbox_2.9.bb
-deleted file mode 100644
-index b1dd462..0000000
---- a/recipes-security/selinux/selinux-sandbox_2.9.bb
-+++ /dev/null
-@@ -1,7 +0,0 @@
--require selinux_20190315.inc
--require ${BPN}.inc
--
--LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
--
--SRC_URI[md5sum] = "3482b8fa6648160e97ba48ad26f84e7d"
--SRC_URI[sha256sum] = "01915f57f08642751dea550a87f82a6f2fcec754be48dcfa28266c14bd044262"
-diff --git a/recipes-security/selinux/selinux-sandbox_3.0.bb b/recipes-security/selinux/selinux-sandbox_3.0.bb
+diff --git a/recipes-ids/samhain/files/samhain-server-volatiles.conf b/recipes-ids/samhain/files/samhain-server-volatiles.conf
 new file mode 100644
-index 0000000..a60f52c
+index 0000000..f2ea390
 --- /dev/null
-+++ b/recipes-security/selinux/selinux-sandbox_3.0.bb
-@@ -0,0 +1,7 @@
-+require selinux_20191204.inc
-+require ${BPN}.inc
++++ b/recipes-ids/samhain/files/samhain-server-volatiles.conf
+@@ -0,0 +1 @@
++d /var/log/yule 0775 daemon daemon -
+diff --git a/recipes-ids/samhain/samhain-server.bb b/recipes-ids/samhain/samhain-server.bb
+index d304912..e7a3aa6 100644
+--- a/recipes-ids/samhain/samhain-server.bb
++++ b/recipes-ids/samhain/samhain-server.bb
+@@ -4,14 +4,22 @@ require samhain.inc
+ 
+ DEPENDS = "gmp"
+ 
+-SRC_URI += "file://samhain-server-volatiles"
++SRC_URI += "file://samhain-server-volatiles \
++            file://samhain-server-volatiles.conf \
++           "
+ 
+ TARGET_CC_ARCH += "${LDFLAGS}"
+ 
+ do_install_append() {
+-    install -d ${D}${sysconfdir}/default/volatiles
+-    install -m 0644 ${WORKDIR}/samhain-server-volatiles \
+-        ${D}${sysconfdir}/default/volatiles/samhain-server
++    if ${@bb.utils.contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}; then
++        install -d ${D}${sysconfdir}/tmpfiles.d
++        install -m 0644 ${WORKDIR}/samhain-server-volatiles.conf \
++            ${D}${sysconfdir}/tmpfiles.d/samhain-server.conf
++    else
++        install -d ${D}${sysconfdir}/default/volatiles
++        install -m 0644 ${WORKDIR}/samhain-server-volatiles \
++            ${D}${sysconfdir}/default/volatiles/samhain-server
++    fi
+ 
+     install -m 700 samhain-install.sh init/samhain.startLinux \
+         init/samhain.startLSB ${D}/var/lib/samhain
+diff --git a/recipes-ids/samhain/samhain.inc b/recipes-ids/samhain/samhain.inc
+index 91eb697..0a5e432 100644
+--- a/recipes-ids/samhain/samhain.inc
++++ b/recipes-ids/samhain/samhain.inc
+@@ -159,6 +159,8 @@ do_install_append () {
+ 	if [ -d ${D}${localstatedir}/run ]; then
+ 		rmdir ${D}${localstatedir}/run
+ 	fi
 +
-+LIC_FILES_CHKSUM = "file://COPYING;md5=393a5ca445f6965873eca0259a17f833"
-+
-+SRC_URI[md5sum] = "81447c46bf4cae9a5fa38c5fb8dc923e"
-+SRC_URI[sha256sum] = "66fb4ea3a9e3d1e6004f13666b8390be751dd226a8496b995ed0332788758d0a"
++	rm -rf ${D}${localstatedir}/log
+ }
+ 
+ FILES_${PN} += "${systemd_system_unitdir}"
 -- 
 2.17.1
 
