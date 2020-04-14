@@ -1,21 +1,21 @@
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
- by mx.groups.io with SMTP id smtpd.web10.6800.1586850198387792898
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+ by mx.groups.io with SMTP id smtpd.web10.6801.1586850201441743688
  for <yocto@lists.yoctoproject.org>;
- Tue, 14 Apr 2020 00:43:18 -0700
+ Tue, 14 Apr 2020 00:43:21 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.1.11, mailfrom: yi.zhao@windriver.com)
+ dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: yi.zhao@windriver.com)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail.windriver.com (8.15.2/8.15.2) with ESMTPS id 03E7hH4L007725
+	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 03E7hKOE025980
 	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
-	Tue, 14 Apr 2020 00:43:17 -0700 (PDT)
+	Tue, 14 Apr 2020 00:43:20 -0700 (PDT)
 Received: from localhost (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
  (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Tue, 14 Apr
- 2020 00:43:16 -0700
+ 2020 00:43:20 -0700
 From: "Yi Zhao" <yi.zhao@windriver.com>
 To: <joe@deserted.net>, <yocto@lists.yoctoproject.org>
-Subject: [meta-selinux][PATCH 05/16] libselinux-python: upgrade to 3.0 (20191204)
-Date: Tue, 14 Apr 2020 15:41:47 +0800
-Message-ID: <20200414074158.32058-5-yi.zhao@windriver.com>
+Subject: [meta-selinux][PATCH 06/16] libsemanage: upgrade to 3.0 (20191204)
+Date: Tue, 14 Apr 2020 15:41:48 +0800
+Message-ID: <20200414074158.32058-6-yi.zhao@windriver.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200414074158.32058-1-yi.zhao@windriver.com>
 References: <20200414074158.32058-1-yi.zhao@windriver.com>
@@ -23,118 +23,131 @@ MIME-Version: 1.0
 X-Originating-IP: [128.224.162.174]
 Content-Type: text/plain
 
-* Inherit python3native as the libselinux uses python distutils to install
-  selinux python bindings now.
-* Add a patch to fix python modules install path for multilib.
+* Refresh libsemanage-allow-to-disable-audit-support.patch
+* Fix typos in patches.
 
 Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 ---
- .../selinux/libselinux-python.inc             |  9 +++---
- ...python_2.9.bb => libselinux-python_3.0.bb} |  8 ++++--
- ...hon-modules-install-path-for-multili.patch | 28 +++++++++++++++++++
- 3 files changed, 38 insertions(+), 7 deletions(-)
- rename recipes-security/selinux/{libselinux-python_2.9.bb => libselinux-python_3.0.bb} (61%)
- create mode 100644 recipes-security/selinux/libselinux/0001-Makefile-fix-python-modules-install-path-for-multili.patch
+ recipes-security/selinux/libsemanage.inc           |  2 +-
+ ...ibsemanage-allow-to-disable-audit-support.patch | 14 +++++++-------
+ ...ibsemanage-define-FD_CLOEXEC-as-necessary.patch |  2 +-
+ ...semanage-drop-Wno-unused-but-set-variable.patch |  2 +-
+ .../{libsemanage_2.9.bb => libsemanage_3.0.bb}     |  6 +++---
+ 5 files changed, 13 insertions(+), 13 deletions(-)
+ rename recipes-security/selinux/{libsemanage_2.9.bb => libsemanage_3.0.bb} (70%)
 
-diff --git a/recipes-security/selinux/libselinux-python.inc b/recipes-security/selinux/libselinux-python.inc
-index 6a64473..3760fd8 100644
---- a/recipes-security/selinux/libselinux-python.inc
-+++ b/recipes-security/selinux/libselinux-python.inc
-@@ -7,9 +7,9 @@ LICENSE = "PD"
+diff --git a/recipes-security/selinux/libsemanage.inc b/recipes-security/selinux/libsemanage.inc
+index 81a3eda..0139511 100644
+--- a/recipes-security/selinux/libsemanage.inc
++++ b/recipes-security/selinux/libsemanage.inc
+@@ -6,7 +6,7 @@ on binary policies such as customizing policy boolean settings."
+ SECTION = "base"
+ LICENSE = "LGPLv2.1+"
  
- FILESEXTRAPATHS_prepend := "${THISDIR}/libselinux:"
+-inherit lib_package python3-dir
++inherit lib_package python3native
  
--inherit python3-dir
-+inherit python3native
- 
--DEPENDS += "python3 swig-native"
-+DEPENDS += "python3 swig-native libpcre libsepol"
- RDEPENDS_${PN} += "libselinux python3-core python3-shell"
- 
- def get_policyconfigarch(d):
-@@ -24,6 +24,7 @@ EXTRA_OEMAKE += "LDFLAGS='${LDFLAGS} -lpcre' LIBSEPOLA='${STAGING_LIBDIR}/libsep
- EXTRA_OEMAKE_append_libc-musl = " FTS_LDLIBS=-lfts"
- 
- FILES_${PN} = "${libdir}/python${PYTHON_BASEVERSION}/site-packages/*"
-+INSANE_SKIP_${PN} = "dev-so"
- 
- do_compile() {
-     oe_runmake pywrap -j1 \
-@@ -34,7 +35,7 @@ do_compile() {
- 
- do_install() {
-     oe_runmake install-pywrap \
--            PYCEXT='.so' \
-+            DESTDIR=${D} \
-             PYLIBVER='python${PYTHON_BASEVERSION}${PYTHON_ABI}' \
--            PYTHONLIBDIR='${D}${libdir}/python${PYTHON_BASEVERSION}/site-packages'
-+            PYTHONLIBDIR='${libdir}/python${PYTHON_BASEVERSION}/site-packages'
- }
-diff --git a/recipes-security/selinux/libselinux-python_2.9.bb b/recipes-security/selinux/libselinux-python_3.0.bb
-similarity index 61%
-rename from recipes-security/selinux/libselinux-python_2.9.bb
-rename to recipes-security/selinux/libselinux-python_3.0.bb
-index 8e3aae1..e024a22 100644
---- a/recipes-security/selinux/libselinux-python_2.9.bb
-+++ b/recipes-security/selinux/libselinux-python_3.0.bb
+ DEPENDS += "libsepol libselinux bzip2 python3 bison-native flex-native swig-native"
+ DEPENDS_append_class-target = " audit"
+diff --git a/recipes-security/selinux/libsemanage/libsemanage-allow-to-disable-audit-support.patch b/recipes-security/selinux/libsemanage/libsemanage-allow-to-disable-audit-support.patch
+index 6ea9c29..c588b61 100644
+--- a/recipes-security/selinux/libsemanage/libsemanage-allow-to-disable-audit-support.patch
++++ b/recipes-security/selinux/libsemanage/libsemanage-allow-to-disable-audit-support.patch
 @@ -1,4 +1,4 @@
--SELINUX_RELEASE = "20190315"
-+SELINUX_RELEASE = "20191204"
+-From 50f8f9f090425d23ecab2bedc949bc65bc4d58dc Mon Sep 17 00:00:00 2001
++From 1633f72579e3b79d055759256b71e4169627889b Mon Sep 17 00:00:00 2001
+ From: Wenzong Fan <wenzong.fan@windriver.com>
+ Date: Mon, 20 Jan 2014 03:53:48 -0500
+ Subject: [PATCH] libsemanage: allow to disable audit support
+@@ -13,7 +13,7 @@ Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+  3 files changed, 31 insertions(+), 2 deletions(-)
  
- SRC_URI = "https://github.com/SELinuxProject/selinux/releases/download/${SELINUX_RELEASE}/libselinux-${PV}.tar.gz"
+ diff --git a/src/Makefile b/src/Makefile
+-index 8240c3a..1485d23 100644
++index 3bd1e20..483e818 100644
+ --- a/src/Makefile
+ +++ b/src/Makefile
+ @@ -26,6 +26,14 @@ ifeq ($(DEBUG),1)
+@@ -41,7 +41,7 @@ index 8240c3a..1485d23 100644
+  
+  $(LIBPC): $(LIBPC).in ../VERSION
+ diff --git a/src/seusers_local.c b/src/seusers_local.c
+-index a79e2d3..ce76dee 100644
++index 3e2761c..8bc6b83 100644
+ --- a/src/seusers_local.c
+ +++ b/src/seusers_local.c
+ @@ -8,7 +8,11 @@ typedef struct semanage_seuser record_t;
+@@ -98,10 +98,10 @@ index a79e2d3..ce76dee 100644
+  		semanage_seuser_free(seuser);
+  	return rc;
+ diff --git a/tests/Makefile b/tests/Makefile
+-index 324766a..5732ec7 100644
++index 69f49a3..f914492 100644
+ --- a/tests/Makefile
+ +++ b/tests/Makefile
+-@@ -3,10 +3,18 @@ SOURCES = $(sort $(wildcard *.c))
++@@ -4,10 +4,18 @@ CILS = $(sort $(wildcard *.cil))
+  
+  ###########################################################################
+  
+@@ -119,8 +119,8 @@ index 324766a..5732ec7 100644
+ -override LDLIBS += -lcunit -lbz2 -laudit -lselinux -lsepol
+ +override LDLIBS += -lcunit -lbz2 $(LIBAUDIT) -lselinux -lsepol
+  
+- OBJECTS = $(SOURCES:.c=.o) 
+- 
++ OBJECTS = $(SOURCES:.c=.o)
++ POLICIES = $(CILS:.cil=.policy)
+ -- 
+ 2.7.4
  
-@@ -6,13 +6,15 @@ require ${BPN}.inc
+diff --git a/recipes-security/selinux/libsemanage/libsemanage-define-FD_CLOEXEC-as-necessary.patch b/recipes-security/selinux/libsemanage/libsemanage-define-FD_CLOEXEC-as-necessary.patch
+index 0c77c7a..45bcbe6 100644
+--- a/recipes-security/selinux/libsemanage/libsemanage-define-FD_CLOEXEC-as-necessary.patch
++++ b/recipes-security/selinux/libsemanage/libsemanage-define-FD_CLOEXEC-as-necessary.patch
+@@ -7,7 +7,7 @@ In truly old systems, even FD_CLOEXEC may not be defined.  Produce a
+ warning and duplicate the #define for FD_CLOEXEC found in
+ asm-generic/fcntl.h on more modern platforms.
  
- LIC_FILES_CHKSUM = "file://LICENSE;md5=84b4d2c6ef954a2d4081e775a270d0d0"
+-Uptream-Status: Inappropriate
++Upstream-Status: Inappropriate
  
--SRC_URI[md5sum] = "bb449431b6ed55a0a0496dbc366d6e31"
--SRC_URI[sha256sum] = "1bccc8873e449587d9a2b2cf253de9b89a8291b9fbc7c59393ca9e5f5f4d2693"
-+SRC_URI[md5sum] = "b387a66f087b6d97713570e85ec89d89"
-+SRC_URI[sha256sum] = "2ea2b30f671dae9d6b1391cbe8fb2ce5d36a3ee4fb1cd3c32f0d933c31b82433"
+ Signed-off-by: Joe MacDonald <joe.macdonald@windriver.com>
+ ---
+diff --git a/recipes-security/selinux/libsemanage/libsemanage-drop-Wno-unused-but-set-variable.patch b/recipes-security/selinux/libsemanage/libsemanage-drop-Wno-unused-but-set-variable.patch
+index de71e27..c9b052c 100644
+--- a/recipes-security/selinux/libsemanage/libsemanage-drop-Wno-unused-but-set-variable.patch
++++ b/recipes-security/selinux/libsemanage/libsemanage-drop-Wno-unused-but-set-variable.patch
+@@ -3,7 +3,7 @@ From: Randy MacLeod <Randy.MacLeod@windriver.com>
+ Date: Tue, 30 Apr 2013 23:15:57 -0400
+ Subject: [PATCH] libselinux: drop flag: -Wno-unused-but-set-variable
+ 
+-Upstream-Status: Inappropriate (older compilers only).
++Upstream-Status: Inappropriate [older compilers only]
+ 
+ Signed-off-by: Randy MacLeod <Randy.MacLeod@windriver.com>
+ ---
+diff --git a/recipes-security/selinux/libsemanage_2.9.bb b/recipes-security/selinux/libsemanage_3.0.bb
+similarity index 70%
+rename from recipes-security/selinux/libsemanage_2.9.bb
+rename to recipes-security/selinux/libsemanage_3.0.bb
+index 83320a1..450675b 100644
+--- a/recipes-security/selinux/libsemanage_2.9.bb
++++ b/recipes-security/selinux/libsemanage_3.0.bb
+@@ -1,10 +1,10 @@
+-require selinux_20190315.inc
++require selinux_20191204.inc
+ require ${BPN}.inc
+ 
+ LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
+ 
+-SRC_URI[md5sum] = "25f086ff66175a0ca0e7b34dbe8586b7"
+-SRC_URI[sha256sum] = "2576349d344492e73b468059767268dec1dabd8c35f3c7222c3ec2448737bc1c"
++SRC_URI[md5sum] = "17a2fc780af0a36f2cf27ab7c4e85946"
++SRC_URI[sha256sum] = "a497b0720d54eac427f1f3f618eed417e50ed8f4e47ed0f7a1d391bd416e84cf"
  
  SRC_URI += "\
-         file://libselinux-drop-Wno-unused-but-set-variable.patch \
-         file://libselinux-make-O_CLOEXEC-optional.patch \
-         file://libselinux-make-SOCK_CLOEXEC-optional.patch \
-         file://libselinux-define-FD_CLOEXEC-as-necessary.patch \
-+        file://0001-Fix-building-against-musl-and-uClibc-libc-libraries.patch \
-+        file://0001-Makefile-fix-python-modules-install-path-for-multili.patch \
-         "
- S = "${WORKDIR}/libselinux-${PV}"
-diff --git a/recipes-security/selinux/libselinux/0001-Makefile-fix-python-modules-install-path-for-multili.patch b/recipes-security/selinux/libselinux/0001-Makefile-fix-python-modules-install-path-for-multili.patch
-new file mode 100644
-index 0000000..f0fee23
---- /dev/null
-+++ b/recipes-security/selinux/libselinux/0001-Makefile-fix-python-modules-install-path-for-multili.patch
-@@ -0,0 +1,28 @@
-+From 930514c1b93335ccf6d70adf46ca7e3f8183603d Mon Sep 17 00:00:00 2001
-+From: Yi Zhao <yi.zhao@windriver.com>
-+Date: Mon, 13 Apr 2020 12:44:23 +0800
-+Subject: [PATCH] Makefile: fix python modules install path for multilib
-+
-+Upstream-Status: Inappropriate [embedded specific]
-+
-+Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
-+---
-+ src/Makefile | 2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/src/Makefile b/src/Makefile
-+index b0ce2c8..a384a10 100644
-+--- a/src/Makefile
-++++ b/src/Makefile
-+@@ -173,7 +173,7 @@ install: all
-+ 	ln -sf --relative $(DESTDIR)$(SHLIBDIR)/$(LIBSO) $(DESTDIR)$(LIBDIR)/$(TARGET)
-+ 
-+ install-pywrap: pywrap
-+-	$(PYTHON) setup.py install --prefix=$(PREFIX) `test -n "$(DESTDIR)" && echo --root $(DESTDIR)`
-++	$(PYTHON) setup.py install --prefix=$(PREFIX) --root=$(DESTDIR) --install-lib=$(PYTHONLIBDIR)
-+ 	install -m 644 $(SWIGPYOUT) $(DESTDIR)$(PYTHONLIBDIR)/selinux/__init__.py
-+ 	ln -sf --relative $(DESTDIR)$(PYTHONLIBDIR)/selinux/_selinux$(PYCEXT) $(DESTDIR)$(PYTHONLIBDIR)/_selinux$(PYCEXT)
-+ 
-+-- 
-+2.7.4
-+
+ 	file://libsemanage-Fix-execve-segfaults-on-Ubuntu.patch \
 -- 
 2.17.1
 
