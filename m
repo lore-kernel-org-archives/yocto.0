@@ -1,119 +1,117 @@
-Received: from sanddollar.geekisp.com (sanddollar.geekisp.com [216.168.135.167])
- by mx.groups.io with SMTP id smtpd.web10.2557.1586808062788430176
+Received: from yocto-www.yoctoproject.org (yocto-www.yoctoproject.org [140.211.169.56])
+ by mx.groups.io with SMTP id smtpd.web12.6371.1586845539704749425
  for <yocto@lists.yoctoproject.org>;
- Mon, 13 Apr 2020 13:01:03 -0700
+ Mon, 13 Apr 2020 23:25:39 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=none, err=permanent DNS error (domain: balister.org, ip: 216.168.135.167, mailfrom: philip@balister.org)
-Received: (qmail 10801 invoked by uid 1003); 13 Apr 2020 20:01:05 -0000
-Received: from unknown (HELO ?192.168.11.144?) (philip@opensdr.com@73.152.143.112)
-  by mail.geekisp.com with (ECDHE-RSA-AES128-GCM-SHA256 encrypted) SMTP; 13 Apr 2020 20:01:05 -0000
-Subject: Re: [yocto] What is the recommended method to patch a recipe?
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>,
- Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: nus1998 <nus1998@yeah.net>, yocto@lists.yoctoproject.org
-References: <1bc0fffb.3be7.17171a9737f.Coremail.nus1998@yeah.net>
- <CAP71WjwiHBSZaGkGrPJmdgKeTQK+5TgckVF86S50yEmWObR1LA@mail.gmail.com>
- <CANNYZj8xE7yS8Y4R9UimWyQsqyr=x91OuPCyxvcCKZf+Cqtb=g@mail.gmail.com>
- <CAP71WjxyT43FjNaSdjqFf6EOrOE7sAH-AnL6uV323Drm6AWJmQ@mail.gmail.com>
-From: "Philip Balister" <philip@balister.org>
-Autocrypt: addr=philip@balister.org; prefer-encrypt=mutual; keydata=
- mQENBE6PN4EBCADXwOSVOvTrJ370tH2RmiR22OuCBcKfnKTLztyV5zA0veDB1kmrIajh+sJe
- HWNqsib0v19S3wdrvqzKrztSfNAgUctvkAuTOloU81dmbAjDSge6nFxjzIIz6XjNvmP5xl9J
- rstPm4i4dhAs5436xf4Bh0vn3C/Bp4fKwXBSW/Xto7vuiuSK03ojon3F8O2WNEmKxHyubFP1
- 2tNvXOp/PeAR4LTnYq6fdAAofvbpbPDBg8qICe6j1UXaIyU93IbW+bJp1RFbeakWxiTw+eQ2
- fVjG5XnubNX0YBlmjHDJhjeqV1uwkImNHlZknecLjT7g37vIMwz+PTfPIhmIGffzqtHlABEB
- AAG0JVBoaWxpcCBCYWxpc3RlciA8cGhpbGlwQGJhbGlzdGVyLm9yZz6JAT4EEwECACgCGyMG
- CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJYM1D9BQkRKOdqAAoJEMDJd4rr0merDX4H/3Pr
- nYKDnml7LRiikoOTFJb4r7ub04skrkGI2DAYvRUPH110KXaan84Qo2Yl4r/ma15Lpqx+cdPR
- 3KbFlSWyjgY6CMN/BclutsK4mFkoxnmhdYJvc5M2TDfZLxBPMTeQiHo0MwxUB5v81mv812bx
- YKfEOg3ndk7C/TE0Q8ZER7p6fU3ol/e0ilLyaCpd85nkEcOEI7BdBBGhKWii+Cwvv8g2ofQZ
- 3wAsqQFp7PFxlEjo5Xc1QGqo7L+UlDG23QjUn33n+wZMZm9EUZFu1c1MAGZsvXiqKw8P07Mj
- yyf6h6EMVP8wME7gnkxsZkpKv04mSvKpDLIInmRW9ZlHXaJ4Yxi5AQ0ETo83gQEIAPs+ZC0R
- gF4blrRIiVHdkARncAxUwSUbti5Ku23dQ0iBizozh4YGucgW48gxsvJCkCc9s/4C9e3vYiCZ
- GVGC8x6Ll3vE7xwRQ/euVqJ0mXG7tNK1zAPpSgI6aooPSZCW7PBvwY8uMvzzCzP+EBd0+oA5
- uXQSEcyOJUYy4beferoHUiBjBkyNd+v2iaJf7KjAYYxJOcPvtnq/VL09hlmtCD5zghOn80rt
- LqF66BJkHmATopSWyor1qz7gmowdCkFkUJDNW7yJT1wVANqDd9P5A8vYhngwJTHsvXVftmvB
- gLiJjYuKst36G2AOHgm4ls5jRMa/k7jWue1RKM5LxzgBtLUAEQEAAYkBJQQYAQIADwIbDAUC
- WDNRbAUJESjn5AAKCRDAyXeK69Jnq1qYB/93aiBdenAuu0H/zGWEFFB14cdhDR4S4q0EbfXl
- 1z9o3Irazw6WMtLe12zJ4/Xl41Mh/IH8/+AgDnigisrkKRN1TkiOGDUVnS0akkhML3ONbeFd
- ocYEwBAPDTxAaWNoyjDe/bORokSJn31cFoG6QYyzUct79npHorbaXW0zW+KC77Do53yUKQ8+
- icWpfiCMk1YzSHCr0y5NZNVxac9a0+IDzH/YBbNdJLNaMvXcuege1Qqz85pdR0P4XuCVRD2j
- ZAbcGJzZXlu9ZzpIHjtZoyF8paJRMQwzWEO3/Txksmm7K8eu8Tz2JVpjiOIj44MOTKoRGKjO
- 6eUfr0u7CwnEyqiQ
-Message-ID: <3c92ae7c-7576-a717-a34b-b9c51e9b6663@balister.org>
-Date: Mon, 13 Apr 2020 16:00:57 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.5.0
-MIME-Version: 1.0
-In-Reply-To: <CAP71WjxyT43FjNaSdjqFf6EOrOE7sAH-AnL6uV323Drm6AWJmQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=qdQ0cJrb;
+ spf=softfail (domain: gmail.com, ip: 140.211.169.56, mailfrom: marek.belisko@gmail.com)
+Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
+	id 8F41AE019DA; Mon, 13 Apr 2020 23:25:39 -0700 (PDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
+	yocto-www.yoctoproject.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: 
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at https://www.dnswl.org/, no
+	*      trust
+	*      [209.85.128.48 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69041E019D8
+	for <yocto@yoctoproject.org>; Mon, 13 Apr 2020 23:25:37 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id d77so11705010wmd.3
+        for <yocto@yoctoproject.org>; Mon, 13 Apr 2020 23:25:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:from:to:cc:subject:date:message-id;
+        bh=Fq8dhESLBBCo3oYyQkrdwHpfrQQ4teGoWClBruOBE7g=;
+        b=qdQ0cJrb7eO8p+U7ymLMYxUyBUpxM2epzkYJRRP3e9erbwZBX66SW/qm604Ly2wV2L
+         v3vwm4VhEN6RhMDNOe6uiZrbuz/R7kdtAr/+5s0ypwW1pPgsaVB1HYLeiI5Imh90IsB3
+         1zdkQNxWe3nX9o4/xG1WmHeaRolDFb8ZJONNdZm0M3LCGc/lCiRc/joI9iicnHXLM3FA
+         pKoFGpjaYFZnPm9Ufv6eyweRsORE55xX1NpCI/FdreKs6GHL7wpll5YVHdIO3wEx4Nki
+         fqxJqAcVnKmEnou/Gij/Cy1ad1VFlRU/QVSuUc7nPJ2yNwOy5aVMh0TgAnqVixLJoKp4
+         LBTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id;
+        bh=Fq8dhESLBBCo3oYyQkrdwHpfrQQ4teGoWClBruOBE7g=;
+        b=fRoURkDNCLdFwmV/9PlRmdRt+ScWyCoencLjSQCQ/yaegRyeuuzC6y711GqkeCkjeM
+         DHYNi4JCuyqrP9jk37B6fCQ6C/BjHVTfGGNyMTBYo/jabLuqM9AOhDjnzhI+p+pP6zeW
+         KJ6kdhNpEbinrsIn4zak/ssWCVi4FmUKMW6onlcTRntiSV5TYJ6UfgrI7fy/7rSrrhGk
+         PQIET2i3a5mfXJyhczqHF8R/lAz02dzzHvgiS2KDTP5I/+Cmo7imvQrHNl2EnYuvwtDg
+         zAUPXCO0XkZGr6zXsfDrDnNZn7eTV7y7htNIB5msy0RqnCMRJFFpxunKUYhF6cp5DIgg
+         Thsw==
+X-Gm-Message-State: AGi0PuZMnipNjFtiZBn9in1xHdVv5qshQvx/cKCqqwtMBnCDB3WkE7lm
+	iHr0rauHJChL7A5Uk9NKcCyTT+7vb7k=
+X-Google-Smtp-Source: APiQypInZebm6XUxCHqiFUW58289O/55FBsZoJsdAWDagpmAFGZ68ahTsaiq/XMD1lobGW5R86yBSg==
+X-Received: by 2002:a1c:3d83:: with SMTP id k125mr23849976wma.177.1586845536658;
+        Mon, 13 Apr 2020 23:25:36 -0700 (PDT)
+Received: from dnb.domain (90-64-89-8.dynamic.orange.sk. [90.64.89.8])
+        by smtp.gmail.com with ESMTPSA id u7sm18968255wmg.41.2020.04.13.23.25.35
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 13 Apr 2020 23:25:35 -0700 (PDT)
+Sender: Belisko Marek <marek.belisko@gmail.com>
+From: "Marek Belisko" <marek.belisko@gmail.com>
+To: yocto@yoctoproject.org
+Cc: Marek Belisko <marek.belisko@open-nandra.com>
+Subject: [meta-intel][PATCH] conf:machine: Use weak reference for SERIAL_CONSOLES variable
+Date: Tue, 14 Apr 2020 08:25:26 +0200
+Message-Id: <1586845526-19650-1-git-send-email-marek.belisko@open-nandra.com>
+X-Mailer: git-send-email 2.7.4
 
-On 4/13/20 10:31 AM, Nicolas Dechesne wrote:
-> On Mon, Apr 13, 2020 at 12:55 PM Alexander Kanavin <alex.kanavin@gmail.com>
-> wrote:
-> 
->> On Mon, 13 Apr 2020 at 12:46, Nicolas Dechesne <
->> nicolas.dechesne@linaro.org> wrote:
->>
->>> A good rule of thumb is to never modify a metadata that is not yours.
->>> That applies to everything:
->>> * if you need to modify a bb file from a 3rd party library, create a
->>> bbappend file in your layer
->>> * if you need to modify a bbappend from a 3rd party, then create another
->>> bbappend in your layer
->>>
->>> And by 3rd party i mean any layer/tree which is not yours (OE-core, or
->>> any other layer your are using).
->>>
->>
->> I beg to differ! Bbappends are making it difficult to reason about what
->> the recipe with all its appends is doing (because they destroy spatial
->> locality and aren't easily visible), and I would actually discourage using
->> them if the modification can go to the original recipe.
->>
-> 
-> Ok.. you're right. Well at least my answer is not complete ;)
-> 
-> 
->> Is it fixing a problem? Is it adding a build option absent from the
->> original recipe? Then please take the trouble to submit the change to the
->> owners of the recipe.
->>
-> 
-> This is correct. We should encourage everyone to report, and even better
-> propose a fix, to the relevant layer, when the 'problem' is applicable. I
-> didn't want to discourage that, for sure!
-> When developing against master, it's a no brainer. When developing against
-> a stable branch (like probably many users), it's not as obvious. In that
-> case I think trying to avoid 'touching' somebody else layer remains a good
-> advice, since it makes upgrades and maintenance trickier.
-> 
-> 
-> 
->>
->> Similarly, if a bbappend is re-setting the component version to something
->> else (yes, people do that despite my best efforts to prohibit the
->> practice), then a much cleaner approach is to actually make a fully copy of
->> the recipe, or go and fix the original.
+This add possibility to override in custom layer.
 
-I just ran across a bbappend that change configure options, but looking
-at the original recipe, there is a PACKAGECONFIG option to do the same
-thing. So they could have used that mechanism instram of the bbappend.
+Signed-off-by: Marek Belisko <marek.belisko@open-nandra.com>
+---
+ conf/machine/intel-core2-32.conf   | 2 +-
+ conf/machine/intel-corei7-64.conf  | 2 +-
+ conf/machine/intel-skylake-64.conf | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
 
-Philip
+diff --git a/conf/machine/intel-core2-32.conf b/conf/machine/intel-core2-32.conf
+index 20c9872..384ad1e 100644
+--- a/conf/machine/intel-core2-32.conf
++++ b/conf/machine/intel-core2-32.conf
+@@ -27,7 +27,7 @@ XSERVER ?= "${XSERVER_X86_BASE} \
+            "
+ 
+ SYSLINUX_OPTS = "serial 0 115200"
+-SERIAL_CONSOLES = "115200;ttyS0 115200;ttyS1 115200;ttyPCH0"
++SERIAL_CONSOLES ?= "115200;ttyS0 115200;ttyS1 115200;ttyPCH0"
+ APPEND += "rootwait console=ttyS0,115200 console=ttyPCH0,115200 console=tty0"
+ 
+ IMAGE_FSTYPES += "wic"
+diff --git a/conf/machine/intel-corei7-64.conf b/conf/machine/intel-corei7-64.conf
+index 6164bf3..2009537 100644
+--- a/conf/machine/intel-corei7-64.conf
++++ b/conf/machine/intel-corei7-64.conf
+@@ -32,7 +32,7 @@ XSERVER ?= "${XSERVER_X86_BASE} \
+            "
+ 
+ SYSLINUX_OPTS = "serial 0 115200"
+-SERIAL_CONSOLES = "115200;ttyS0 115200;ttyS1 115200;ttyS2"
++SERIAL_CONSOLES ?= "115200;ttyS0 115200;ttyS1 115200;ttyS2"
+ APPEND += "rootwait console=ttyS0,115200 console=tty0"
+ 
+ IMAGE_FSTYPES += "wic"
+diff --git a/conf/machine/intel-skylake-64.conf b/conf/machine/intel-skylake-64.conf
+index e367951..503a982 100644
+--- a/conf/machine/intel-skylake-64.conf
++++ b/conf/machine/intel-skylake-64.conf
+@@ -25,7 +25,7 @@ XSERVER ?= "${XSERVER_X86_BASE} \
+            "
+ 
+ SYSLINUX_OPTS = "serial 0 115200"
+-SERIAL_CONSOLES = "115200;ttyS0 115200;ttyS1 115200;ttyS2"
++SERIAL_CONSOLES ?= "115200;ttyS0 115200;ttyS1 115200;ttyS2"
+ APPEND += "rootwait console=ttyS0,115200 console=tty0"
+ 
+ IMAGE_FSTYPES += "wic"
+-- 
+2.7.4
 
->>
-> 
-> Recipes version upgrades (or downgrade) should be done in a dedicated layer
-> owned by the 'developer', and in that case, I agree that bbappend should be
-> prohibited, and the entire recipe should be copied.
-> 
-> 
->> Alex
->>
-> 
-> 
-> 
-> 
