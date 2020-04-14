@@ -1,874 +1,337 @@
-Received: from mail-oi1-f169.google.com (mail-oi1-f169.google.com [209.85.167.169])
- by mx.groups.io with SMTP id smtpd.web12.14435.1586879995750467836
+Received: from mail-il1-f196.google.com (mail-il1-f196.google.com [209.85.166.196])
+ by mx.groups.io with SMTP id smtpd.web11.14346.1586880124579167916
  for <yocto@lists.yoctoproject.org>;
- Tue, 14 Apr 2020 08:59:56 -0700
+ Tue, 14 Apr 2020 09:02:04 -0700
 Authentication-Results: mx.groups.io;
- dkim=pass header.i=@linuxfoundation.org header.s=google header.b=Jjy7FnZv;
- spf=pass (domain: linuxfoundation.org, ip: 209.85.167.169, mailfrom: mhalstead@linuxfoundation.org)
-Received: by mail-oi1-f169.google.com with SMTP id x21so4613210oic.5
-        for <yocto@lists.yoctoproject.org>; Tue, 14 Apr 2020 08:59:55 -0700 (PDT)
+ dkim=pass header.i=@gmail.com header.s=20161025 header.b=MU1cvu6u;
+ spf=pass (domain: gmail.com, ip: 209.85.166.196, mailfrom: jpewhacker@gmail.com)
+Received: by mail-il1-f196.google.com with SMTP id u5so214642ilb.5
+        for <yocto@lists.yoctoproject.org>; Tue, 14 Apr 2020 09:02:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=37D16NVt0PJFx/hOfYcyHbPF0B2zud+24s73fJzks5A=;
-        b=Jjy7FnZvKfQRjmz8u0h+e6fEdAOlwMUVB+OCRv00MU5//ofDDWCjIyAJ0/gprw1S4g
-         3nx/UUlJEXugKq+qf5mdawBaYT9ts9vKya+2+rVJsY/lMePNG4V+gVXZ8SS2/YMm3igc
-         wv9+tJe8FWisHSAFtjGuBa61dqwcOCvW7ys/I=
+        d=gmail.com; s=20161025;
+        h=from:subject:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=aVGikU3kYACbAmCR/JoR+k+akWIOprI3f0qMSXupU9U=;
+        b=MU1cvu6uKHKCTba6sogBPz6op9EAQ/tm0rMDifz5IPVXSNP0gpRwkMuIn/kJapLXiL
+         K0nWR/NQGbZYwtSGh6/cADapBU+uKQOqAoyxS6+EhOLHCHhrqPMd/G/eSDZKL008wlSL
+         A8Xi3o75sVCHzToV1qHdzpZYlrCf4fIlcVqGksToiOh69dVe4LqtwUn/jDmqjmxgvwcM
+         zfdB7st1FeDd9jH016ZS8luho576+yG1hBxvZwibRxwB1/gpfw5750FIK22/nzsSyD24
+         dQVO9xhXAJg7apT70niLZ+Gb71/Ea1vGAPlgzld+VYCghCLc+U8VWvXyul7c6HAGpjVe
+         SStw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=37D16NVt0PJFx/hOfYcyHbPF0B2zud+24s73fJzks5A=;
-        b=k7iBothGFAhKRwjN+JIVK3udx25yRsP0IIAHXSZ5ztykSekB7s4bw0COlxr0GS6tK4
-         1MYSuQjsrv5zqr7tjCplQD3BdHXgGYBxH7fhZzsUyb5cg5/lIEeq0FFPGXa8xYuN42UM
-         2IcKsVb+H/mVyz0g0yVRN8Xkm0Y1tUzj/8mIcAh/EdCMkMqcCHnveFM9Kxh0EDco0ub7
-         irU1ebiGtixEa1yN6Rl0PGvQFeMti6s6P6gG4yIxH9dCjbvYubaUmAMhdmpoJd1ZWZ4C
-         zbQ5Cm+7B9Vyj+TqW90qen52StEmmEw4niVLCGavzlD1ChtxRLZCRi7notugSK520+TM
-         RCUg==
-X-Gm-Message-State: AGi0PuZcM9BWyMLE3hapRVJr4Bp5Dzmh92aJkT8by0n/BKxZcFrJCYy5
-	Bvtsg43d6Fj6MDuzPMOQUKUtTLONb2YdBARh7+hwjg==
-X-Google-Smtp-Source: APiQypKdQNxnTotOmz5grKfRlRH+j3wFXLuNRXx6rkTNXcFX14tUJ+L872s7tUY5IUUePHh3tTTzSmW+oAsWky/EtJg=
-X-Received: by 2002:a05:6808:a8e:: with SMTP id q14mr13733713oij.63.1586879994882;
- Tue, 14 Apr 2020 08:59:54 -0700 (PDT)
+        h=x-gm-message-state:from:subject:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=aVGikU3kYACbAmCR/JoR+k+akWIOprI3f0qMSXupU9U=;
+        b=NRJbPcDzXtBNqEwhTarVFJvz9bZIRfQ5+RlZdVovjdr7jD1XtPaPUPZnvi0DFRjc4s
+         wMDhZZgJdQah91VrkXdBc6KjFScV4y79Asb28G+B+S4z6q+H9uZjDbyy8sQRGRCAIgAU
+         qRkNlSOSVpK9XGJgwngxDpw+CNlR0tFe//gJaRrwH1xO8qprycYWOuhFw64ejXM6O3MD
+         x+xzOyWtgkd79lOPOQ7o16O7JJiNyn55qIEfRQlbDhVeWzvOUF3bVpR2uT2XwNFOZU0N
+         xkclXhj5kHvnUm1dt7NyhA6FTNOIEWFQoS5bN1kAYze1EPL9rM4zj0W+wQtBERiznlJx
+         DcOA==
+X-Gm-Message-State: AGi0PubL02eUD10msLTCRnpb9Dv4C2L6DMKKnhMXrkZ2sargJat4RMaj
+	xU8tE/RJOJVZeBVZTNfFN7U=
+X-Google-Smtp-Source: APiQypI72vXhQm42V9F0UvpVrj5ShVVdlvTlQKw86S+kvKZsCKAwuJvhLTWK1QbKLeeoBv80TYfaKg==
+X-Received: by 2002:a05:6e02:66b:: with SMTP id l11mr858936ilt.284.1586880123777;
+        Tue, 14 Apr 2020 09:02:03 -0700 (PDT)
+Return-Path: <jpewhacker@gmail.com>
+Received: from ?IPv6:2605:a601:ac3d:c100:587b:faea:1fb:be1d? ([2605:a601:ac3d:c100:587b:faea:1fb:be1d])
+        by smtp.gmail.com with ESMTPSA id p5sm2035040ilk.20.2020.04.14.09.02.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 14 Apr 2020 09:02:02 -0700 (PDT)
+From: "Joshua Watt" <JPEWhacker@gmail.com>
+X-Google-Original-From: Joshua Watt <JPEWhacker@gmail.com>
+Subject: Re: [yocto] [meta-rockchip][PATCH] Use linux-yocto kernel from OE-core
+To: Khem Raj <raj.khem@gmail.com>
+Cc: yocto@lists.yoctoproject.org, Trevor Woerner <twoerner@gmail.com>,
+ jin@mediatomb.cc
+References: <20200414133215.8055-1-JPEWhacker@gmail.com>
+ <CAMKF1sohxdUaR5z-pV3SuqHF4jKjqh9Ly7UhCqSxm8RyLznVpw@mail.gmail.com>
+Message-ID: <c7cb54b5-4525-05b6-0ad4-05ce79782069@gmail.com>
+Date: Tue, 14 Apr 2020 11:02:01 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.4.1
 MIME-Version: 1.0
-References: <VI1PR05MB428643D97A9A175005473BDEA8CD0@VI1PR05MB4286.eurprd05.prod.outlook.com>
- <3d12b857-51ef-7266-23d1-805fa1d256f8@windriver.com> <VI1PR05MB428668BF04B6CC7F617C1FA2A8C60@VI1PR05MB4286.eurprd05.prod.outlook.com>
- <3ae41ad3-3188-a5a1-5e2e-a3a572cc5e91@windriver.com> <VI1PR05MB42866CEC9BB5364AE0840CF2A8DD0@VI1PR05MB4286.eurprd05.prod.outlook.com>
- <CANNYZj8QJ261cDW1LvK+1mdOAcWEKPtnjR8yavP_VYqkh787+A@mail.gmail.com>
-In-Reply-To: <CANNYZj8QJ261cDW1LvK+1mdOAcWEKPtnjR8yavP_VYqkh787+A@mail.gmail.com>
-From: "Michael Halstead" <mhalstead@linuxfoundation.org>
-Date: Tue, 14 Apr 2020 08:59:43 -0700
-Message-ID: <CADfgfoafOFaoUmQjr9s7aLjH0mZpvf17iEqB5q=08zyT-=6sEA@mail.gmail.com>
-Subject: Re: [yocto] Files get sporadically lost for native packages
-To: Alexander Kanavin <alex.kanavin@gmail.com>
-Cc: Konrad Weihmann <kweihmann@outlook.com>, Randy MacLeod <randy.macleod@windriver.com>, 
-	yocto@lists.yoctoproject.org
-Content-Type: multipart/alternative; boundary="00000000000065904a05a3424a98"
+In-Reply-To: <CAMKF1sohxdUaR5z-pV3SuqHF4jKjqh9Ly7UhCqSxm8RyLznVpw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 
---00000000000065904a05a3424a98
-Content-Type: text/plain; charset="UTF-8"
 
-During a recent data center move mail permissions were not carried over
-correctly. I've sorted this now and bugzilla e-mail should start arriving
-shortly. If you don't receive e-mail as expected please make another
-attempt. If problems persist reach out to me directly for support.
-
-Thank you,
-Michael Halstead
-SysAdmin / Yocto Project
-
-On Mon, Apr 13, 2020 at 11:17 AM Alexander Kanavin <alex.kanavin@gmail.com>
-wrote:
-
-> Adding Michael (lack of confirmtation email from bugzilla).
+On 4/14/20 10:48 AM, Khem Raj wrote:
+> On Tue, Apr 14, 2020 at 6:32 AM Joshua Watt <JPEWhacker@gmail.com> wrote:
+>> Updates all machines to use the linux-yocto kernel from OE-core instead
+>> of maintaining distinct kernels in this repository.
+>>
+>> Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
+>> ---
+>>   conf/machine/include/rk3288.inc               |  2 +-
+>>   conf/machine/include/rockchip-defaults.inc    |  3 +-
+>>   ...-cfg-Allow-specification-of-ncurses-.patch | 51 -------------------
+>>   recipes-kernel/linux/linux-longterm_4.19.bb   |  9 ----
+>>   recipes-kernel/linux/linux-longterm_5.4.bb    |  7 ---
+>>   recipes-kernel/linux/linux-mainline_5.6.bb    |  9 ----
+>>   recipes-kernel/linux/linux-mutual.inc         | 18 -------
+>>   recipes-kernel/linux/linux-stable_5.5.bb      |  7 ---
+>>   ...-Keep-rk3288-tinker-SD-card-IO-power.patch | 31 +++++++++++
+>>   recipes-kernel/linux/linux-yocto_%.bbappend   |  2 +
+>>   recipes-kernel/linux/linux-yocto_5.4.bbappend |  5 ++
+>>   11 files changed, 41 insertions(+), 103 deletions(-)
+>>   delete mode 100644 recipes-kernel/linux/files/0001-menuconfig-mconf-cfg-Allow-specification-of-ncurses-.patch
+>>   delete mode 100644 recipes-kernel/linux/linux-longterm_4.19.bb
+>>   delete mode 100644 recipes-kernel/linux/linux-longterm_5.4.bb
+>>   delete mode 100644 recipes-kernel/linux/linux-mainline_5.6.bb
+>>   delete mode 100644 recipes-kernel/linux/linux-mutual.inc
+>>   delete mode 100644 recipes-kernel/linux/linux-stable_5.5.bb
+>>   create mode 100644 recipes-kernel/linux/linux-yocto/0001-ARM-dts-rockchip-Keep-rk3288-tinker-SD-card-IO-power.patch
+>>   create mode 100644 recipes-kernel/linux/linux-yocto_%.bbappend
+>>   create mode 100644 recipes-kernel/linux/linux-yocto_5.4.bbappend
+>>
+> I think another solution could be to use yocto kernel tooling but
+> point to mainline kernels much like what meta-meson [1] is doing
+> this will let you keep bumping to latest releases from mainline, this
+> approach is used by many other BSPs
 >
-> Alex
->
-> On Mon, 13 Apr 2020 at 19:59, Konrad Weihmann <kweihmann@outlook.com>
-> wrote:
->
->> Hi Randy,
+> [1] https://github.com/superna9999/meta-meson/blob/master/recipes-kernel/linux/linux-yocto-meson64_5.4.bb
+
+My goal here was to minimize the maintenance required for this BSP layer 
+to get newer kernels. Using the linux-yocto kernel in OE-core is quite 
+simple (as this patch shows) and allows us to piggyback off of Bruce's 
+work to keep everything up to date. While it is possible that OE-core 
+accidentally breaks something in this layer with a kernel update, it 
+seems likely this would be pretty rare and would probably require less 
+overall work than maintaining our own kernel recipes, particularly for 
+the set of boards in this BSP which have really good and stable support 
+in the kernel.
+
+
+I think it should be possible to easily track the upstream vanilla 
+kernel branches in the linux-yocto recipe, and Bruce has done some work 
+to make this easier, but I think there might need to be little more work 
+in that area before it's completely ready to go.
+
+>> diff --git a/conf/machine/include/rk3288.inc b/conf/machine/include/rk3288.inc
+>> index a7edac5..480e250 100644
+>> --- a/conf/machine/include/rk3288.inc
+>> +++ b/conf/machine/include/rk3288.inc
+>> @@ -7,7 +7,7 @@ require conf/machine/include/tune-cortexa17.inc
+>>   require conf/machine/include/soc-family.inc
+>>   require conf/machine/include/rockchip-defaults.inc
 >>
->> I'm trying all day to create an account at bugzilla to file the issue,
->> but somehow I don't get any confirmation mail  (although I tried several
->> mail accounts today, and no it didn't got stuck in spam;-)) - guess
->> that's not how it is supposed to be, right :-)? - I don't know where to
->> address such a problem, so take this reply as FYI.
+>> -KBUILD_DEFCONFIG = "multi_v7_defconfig"
+>> +KBUILD_DEFCONFIG ?= "multi_v7_defconfig"
+>>   KERNEL_IMAGETYPE = "zImage"
 >>
->> Best
->> Konrad
+>>   SERIAL_CONSOLES = "115200;ttyS2"
+>> diff --git a/conf/machine/include/rockchip-defaults.inc b/conf/machine/include/rockchip-defaults.inc
+>> index 82fd590..a4e2a2c 100644
+>> --- a/conf/machine/include/rockchip-defaults.inc
+>> +++ b/conf/machine/include/rockchip-defaults.inc
+>> @@ -1,7 +1,8 @@
+>>   # meta-rockchip default settings
 >>
->> On 03.04.20 21:28, Randy MacLeod wrote:
->> > On 2020-04-02 4:44 a.m., Konrad Weihmann wrote:
->> >>
->> >> To answer your others questions... see below
->> >>
->> >> On 02.04.20 05:42, Randy MacLeod wrote:
->> >>> On 2020-03-28 8:26 a.m., Konrad Weihmann wrote:
->> >>>> Hi,
->> >>>>
->> >>>> I'm facing the following error message sporadically on all branches
->> >>>> I tried so far (master, zeus, warrior and thud)
->> >>>>
->> >>>> The stack trace of python calls that resulted in this
->> >>>> exception/failure was:
->> >>>> File: 'exec_python_func() autogenerated', lineno: 2, function:
->> <module>
->> >>>>       0001:
->> >>>>   *** 0002:extend_recipe_sysroot(d)
->> >>>>       0003:
->> >>>> File: '/build/poky/meta/classes/staging.bbclass', lineno: 551,
->> >>>> function: extend_recipe_sysroot
->> >>>>       0547:                    dest = newmanifest[l]
->> >>>>       0548:                    if l.endswith("/"):
->> >>>>       0549:                        staging_copydir(l, targetdir,
->> >>>> dest, seendirs)
->> >>>>       0550:                        continue
->> >>>>   *** 0551:                    staging_copyfile(l, targetdir, dest,
->> >>>> postinsts, seendirs)
->> >>>>       0552:
->> >>>>       0553:    bb.note("Installed into sysroot: %s" %
->> str(msg_adding))
->> >>>>       0554:    bb.note("Skipping as already exists in sysroot: %s" %
->> >>>> str(msg_exists))
->> >>>>       0555:
->> >>>> File: '/build/poky/meta/classes/staging.bbclass', lineno: 152,
->> >>>> function: staging_copyfile
->> >>>>       0148:        os.symlink(linkto, dest)
->> >>>>       0149:        #bb.warn(c)
->> >>>>       0150:    else:
->> >>>>       0151:        try:
->> >>>>   *** 0152:            os.link(c, dest)
->> >>>>       0153:        except OSError as err:
->> >>>>       0154:            if err.errno == errno.EXDEV:
->> >>>>       0155:                bb.utils.copyfile(c, dest)
->> >>>>       0156:            else:
->> >>>> Exception: FileNotFoundError: [Errno 2] No such file or directory:
->> >>>>
->> '/build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc'
+>>   # kernel
+>> -PREFERRED_PROVIDER_virtual/kernel ?= "linux-stable"
+>> +PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
+>> +KCONFIG_MODE ?= "alldefconfig"
+>>   LINUX_VERSION_EXTENSION ?= "-rockchip"
 >>
->> >>>> ->
->> >>>>
->> '/build/poky/build/tmp/work/qemux86_64-mine-linux/core-image-minimal-mine/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc'
->> >>>>
->> >>>> I already had a look at the manifest
->> >>>>
->> >>>> cat manifest-x86_64-python3-msgcheck-native.populate_sysroot
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py
+>>   # xserver
+>> diff --git a/recipes-kernel/linux/files/0001-menuconfig-mconf-cfg-Allow-specification-of-ncurses-.patch b/recipes-kernel/linux/files/0001-menuconfig-mconf-cfg-Allow-specification-of-ncurses-.patch
+>> deleted file mode 100644
+>> index 0b2d077..0000000
+>> --- a/recipes-kernel/linux/files/0001-menuconfig-mconf-cfg-Allow-specification-of-ncurses-.patch
+>> +++ /dev/null
+>> @@ -1,51 +0,0 @@
+>> -From 846b11d8c834af4fa62393dadb490ea8246b332c Mon Sep 17 00:00:00 2001
+>> -From: Bruce Ashfield <bruce.ashfield@windriver.com>
+>> -Date: Mon, 2 Jul 2018 23:10:28 -0400
+>> -Subject: [PATCH] menuconfig,mconf-cfg: Allow specification of ncurses location
+>> -
+>> -In some cross build environments such as the Yocto Project build
+>> -environment it provides an ncurses library that is compiled
+>> -differently than the host's version.  This causes display corruption
+>> -problems when the host's curses includes are used instead of the
+>> -includes from the provided compiler are overridden.  There is a second
+>> -case where there is no curses libraries at all on the host system and
+>> -menuconfig will just fail entirely.
+>> -
+>> -The solution is simply to allow an override variable in
+>> -check-lxdialog.sh for environments such as the Yocto Project.  Adding
+>> -a CROSS_CURSES_LIB and CROSS_CURSES_INC solves the issue and allowing
+>> -compiling and linking against the right headers and libraries.
+>> -
+>> -Signed-off-by: Jason Wessel <jason.wessel@windriver.com>
+>> -cc: Michal Marek <mmarek@suse.cz>
+>> -cc: linux-kbuild@vger.kernel.org
+>> -Signed-off-by: Bruce Ashfield <bruce.ashfield@windriver.com>
+>> ----
+>> - scripts/kconfig/mconf-cfg.sh | 8 ++++++++
+>> - 1 file changed, 8 insertions(+)
+>> - mode change 100755 => 100644 scripts/kconfig/mconf-cfg.sh
+>> -
+>> -diff --git a/scripts/kconfig/mconf-cfg.sh b/scripts/kconfig/mconf-cfg.sh
+>> -old mode 100755
+>> -new mode 100644
+>> -index c812872d7f9d..65a9b9e5b8a6
+>> ---- a/scripts/kconfig/mconf-cfg.sh
+>> -+++ b/scripts/kconfig/mconf-cfg.sh
+>> -@@ -4,6 +4,14 @@
+>> - PKG="ncursesw"
+>> - PKG2="ncurses"
+>> -
+>> -+if [ "$CROSS_CURSES_LIB" != "" ]; then
+>> -+    echo libs=\'$CROSS_CURSES_LIB\'
+>> -+    if [ x"$CROSS_CURSES_INC" != x ]; then
+>> -+      echo cflags=\'$CROSS_CURSES_INC\'
+>> -+    fi
+>> -+    exit 0
+>> -+fi
+>> -+
+>> - if [ -n "$(command -v pkg-config)" ]; then
+>> -       if pkg-config --exists $PKG; then
+>> -               echo cflags=\"$(pkg-config --cflags $PKG)\"
+>> ---
+>> -2.20.1
+>> -
+>> diff --git a/recipes-kernel/linux/linux-longterm_4.19.bb b/recipes-kernel/linux/linux-longterm_4.19.bb
+>> deleted file mode 100644
+>> index 11c18e3..0000000
+>> --- a/recipes-kernel/linux/linux-longterm_4.19.bb
+>> +++ /dev/null
+>> @@ -1,9 +0,0 @@
+>> -FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+>> -
+>> -LINUX_VERSION ?= "4.19.113"
+>> -KBRANCH ?= "linux-4.19.y"
+>> -SRCREV ?= "54b4fa6d39551639cb10664f6ac78b01993a1d7e"
+>> -
+>> -require linux-mutual.inc
+>> -
+>> -COMPATIBLE_MACHINE = "(firefly-rk3288|marsboard-rk3066|radxarock|rock2-square|^tinker-board$|vyasa-rk3288)"
+>> diff --git a/recipes-kernel/linux/linux-longterm_5.4.bb b/recipes-kernel/linux/linux-longterm_5.4.bb
+>> deleted file mode 100644
+>> index 60be6fe..0000000
+>> --- a/recipes-kernel/linux/linux-longterm_5.4.bb
+>> +++ /dev/null
+>> @@ -1,7 +0,0 @@
+>> -FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+>> -
+>> -LINUX_VERSION ?= "5.4.28"
+>> -KBRANCH ?= "linux-5.4.y"
+>> -SRCREV ?= "462afcd6e7ea94a7027a96a3bb12d0140b0b4216"
+>> -
+>> -require linux-mutual.inc
+>> diff --git a/recipes-kernel/linux/linux-mainline_5.6.bb b/recipes-kernel/linux/linux-mainline_5.6.bb
+>> deleted file mode 100644
+>> index 8d33590..0000000
+>> --- a/recipes-kernel/linux/linux-mainline_5.6.bb
+>> +++ /dev/null
+>> @@ -1,9 +0,0 @@
+>> -FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+>> -
+>> -LINUX_VERSION ?= "5.6-rc7"
+>> -KBRANCH ?= "master"
+>> -SRCREV ?= "16fbf79b0f83bc752cee8589279f1ebfe57b3b6e"
+>> -
+>> -require linux-mutual.inc
+>> -
+>> -LIC_FILES_CHKSUM = "file://COPYING;md5=6bc538ed5bd9a7fc9398086aedcd7e46"
+>> diff --git a/recipes-kernel/linux/linux-mutual.inc b/recipes-kernel/linux/linux-mutual.inc
+>> deleted file mode 100644
+>> index ba3ab6e..0000000
+>> --- a/recipes-kernel/linux/linux-mutual.inc
+>> +++ /dev/null
+>> @@ -1,18 +0,0 @@
+>> -DESCRIPTION = "Linux Kernel"
+>> -SECTION = "kernel"
+>> -LICENSE = "GPLv2"
+>> -
+>> -LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
+>> -
+>> -SRC_URI = " \
+>> -    git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;branch=${KBRANCH} \
+>> -    file://0001-menuconfig-mconf-cfg-Allow-specification-of-ncurses-.patch \
+>> -    "
+>> -
+>> -inherit kernel
+>> -require recipes-kernel/linux/linux-yocto.inc
+>> -
+>> -PV = "${LINUX_VERSION}+git${SRCPV}"
+>> -
+>> -KCONF_BSP_AUDIT_LEVEL = "0"
+>> -deltask kernel_configme
+>> diff --git a/recipes-kernel/linux/linux-stable_5.5.bb b/recipes-kernel/linux/linux-stable_5.5.bb
+>> deleted file mode 100644
+>> index b5c7cdc..0000000
+>> --- a/recipes-kernel/linux/linux-stable_5.5.bb
+>> +++ /dev/null
+>> @@ -1,7 +0,0 @@
+>> -FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+>> -
+>> -LINUX_VERSION ?= "5.5.13"
+>> -KBRANCH ?= "linux-5.5.y"
+>> -SRCREV ?= "fe5ae687d01e74854ed33666c932a9c11e22139c"
+>> -
+>> -require linux-mutual.inc
+>> diff --git a/recipes-kernel/linux/linux-yocto/0001-ARM-dts-rockchip-Keep-rk3288-tinker-SD-card-IO-power.patch b/recipes-kernel/linux/linux-yocto/0001-ARM-dts-rockchip-Keep-rk3288-tinker-SD-card-IO-power.patch
+>> new file mode 100644
+>> index 0000000..751f1ad
+>> --- /dev/null
+>> +++ b/recipes-kernel/linux/linux-yocto/0001-ARM-dts-rockchip-Keep-rk3288-tinker-SD-card-IO-power.patch
+>> @@ -0,0 +1,31 @@
+>> +From 04ab2a1f052f363985b373f07ea71840918378d2 Mon Sep 17 00:00:00 2001
+>> +From: Joshua Watt <JPEWhacker@gmail.com>
+>> +Date: Wed, 19 Feb 2020 13:10:32 -0600
+>> +Subject: [PATCH] ARM: dts: rockchip: Keep rk3288-tinker SD card IO powered
+>> + during reboot
+>> +
+>> +IO voltage regulator for the SD card must be kept on all the time,
+>> +otherwise when the board reboots the SD card can't be read by the
+>> +bootloader.
+>> +
+>> +Signed-off-by: Joshua Watt <JPEWhacker@gmail.com>
+>> +Upstream-Status: Accepted in 5.7
+>> +---
+>> + arch/arm/boot/dts/rk3288-tinker.dtsi | 1 +
+>> + 1 file changed, 1 insertion(+)
+>> +
+>> +diff --git a/arch/arm/boot/dts/rk3288-tinker.dtsi b/arch/arm/boot/dts/rk3288-tinker.dtsi
+>> +index 312582c1bd37..acfaa12ec239 100644
+>> +--- a/arch/arm/boot/dts/rk3288-tinker.dtsi
+>> ++++ b/arch/arm/boot/dts/rk3288-tinker.dtsi
+>> +@@ -276,6 +276,7 @@
+>> +                       };
+>> +
+>> +                       vccio_sd: LDO_REG5 {
+>> ++                              regulator-always-on;
+>> +                               regulator-boot-on;
+>> +                               regulator-min-microvolt = <1800000>;
+>> +                               regulator-max-microvolt = <3300000>;
+>> +--
+>> +2.17.1
+>> +
+>> diff --git a/recipes-kernel/linux/linux-yocto_%.bbappend b/recipes-kernel/linux/linux-yocto_%.bbappend
+>> new file mode 100644
+>> index 0000000..97b8cda
+>> --- /dev/null
+>> +++ b/recipes-kernel/linux/linux-yocto_%.bbappend
+>> @@ -0,0 +1,2 @@
+>> +COMPATIBLE_MACHINE .= "|firefly-rk3288|marsboard-rk3066|radxarock|rock-pi-4|rock2-square|tinker-board-s|tinker-board|vyasa-rk3288"
+>> +
+>> diff --git a/recipes-kernel/linux/linux-yocto_5.4.bbappend b/recipes-kernel/linux/linux-yocto_5.4.bbappend
+>> new file mode 100644
+>> index 0000000..e832529
+>> --- /dev/null
+>> +++ b/recipes-kernel/linux/linux-yocto_5.4.bbappend
+>> @@ -0,0 +1,5 @@
+>> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>> +
+>> +# tinker-board and tinker-board-s. rk3288 covers both
+>> +SRC_URI_append_rk3288 = " file://0001-ARM-dts-rockchip-Keep-rk3288-tinker-SD-card-IO-power.patch"
+>> +
+>> --
+>> 2.17.1
 >>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init__.cpython-37.pyc
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37.pyc
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_links.txt
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.txt
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points.txt
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/msgcheck
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/sysroot-providers/python3-msgcheck-native
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/sysroot-providers/
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/share/
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/
->>
->> >>>>
->> >>>>
->> >>>> which states the file should be there, but when doing
->> >>>>
->> >>>> find
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpython-37.pyc
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgcheck.cpython-37.pyc
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/dependency_links.txt
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/requires.txt
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/top_level.txt
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/SOURCES.txt
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/PKG-INFO
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info/entry_points.txt
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/bin/msgcheck
->>
->> >>>>
->> >>>>
->> /build/poky/build/tmp/sysroots-components/x86_64/python3-msgcheck-native/usr/share
->>
->> >>>>
->> >>>>
->> >>>> the file isn't there.
->> >>>>
->> >>>> This happens to random python packages compiled as native (sometimes
->> >>>> even for python-native itself), but (afaik) not for cross or target
->> >>>> packages (I'm pretty sure because of the different packaging
->> applied).
->> >>>> So I digged a little into the code
->> >>>> classes/sstate.bbclass:sstate_install, which seems to create the
->> >>>> sysroot-component dir and the manifest.
->> >>>> There is a gap between the manifest creation (line 285) and the
->> >>>> hardlinking (line till 311).
->> >>>>
->> >>>> Now my question is there any place where a file potentially could
->> >>>> get lost? - at first glance there shouldn't be one - I have to admit
->> >>>> that I don't fully understand all this subprocess magic in
->> >>>> lib/oe/path.py:copyhardlinktree.
->> >>>> What I do to fix the issue is reopening the manifest and double
->> >>>> check for missing files and remove them from the manifest, but this
->> >>>> feels wrong - so any advise is welcome...
->> >>>>
->> >>>> Hope that someone more familiar with the topic could have a look.
->> >>>
->> >>> Hi Konrad,
->> >>>
->> >>> I'm not really familiar with that code but it's being run buy 1000s of
->> >>> builder around the world so let's try to eliminate a few
->> possibilities.
->> >>>
->> >>> When did you start having this problem?
->> >> Since the start of the test distribution I'm working on. But also for
->> >> plain poky builds if I forcefully inject all of the python-native
->> >> site-packages via local.conf (DEPENDS_class-native += "..."), without
->> >> actually using them in the recipe scope
->> >>> How often do you think it's happening: 1 in 3 builds, 1 in 10?
->> >> See the other mail - looks like it heavily depends on the host
->> >>> Tell us about your machine: OS,version, disk, CPUs, ram
->> >> See the other mail
->> >>> Do you do anything special in your conf dir? Send local.conf perhaps.
->> >> No custom modification (just for testing the DEPENDS-injection)
->> >>> Do you have any local bbappends or commits on top of poky or
->> >>> in other layers?
->> >> No
->> >>> Have you tried to simplify the build to eliminate problems
->> >>> potentially caused by other layers?
->> >> I did - see above
->> >>> Are you able to reproduce the problem on more than one build machine?
->> >> See the other mail
->> >>> Are you able to reproduce the problem on a different Linux distro?
->> >> Not really - Debian 9 was fine all other Hosts are Ubuntu based
->> >>> Are there other builds or users on the machine that may be causing
->> >>> extra load?
->> >> No the hosts are just being poorly equipped - at least the ones that
->> >> produce this issue
->> >
->> >
->> > Hi Konrad,
->> >
->> > Thanks for the detailed and complete replies.
->> >
->> > I don't think I've seen this error and we do 100s of builds
->> > per day using local many-core systems running Ubuntu-18.04
->> > but with the builds in docker containers using a variety of
->> > OS distributions.
->> >
->> > My first *wild* guess is that the problem might go away on the Azure
->> > systems if you allocate more memory. That might be an easy
->> > test to do so that we can confirm that it happens more frequently
->> > when there is a memory constraint. Can you do that test?
->> >
->> > I've also BCCed someone who might know someone who
->> > would be interested in fixing Azure + Yocto bugs. Let's see
->> > if they can help. :)
->> >
->> > It would also be helpful if you created a defect in:
->> >
->> > https://bugzilla.yoctoproject.org/
->> >
->> > and hopefully add a patch in that defect including the -native recipes
->> that
->> > are required to make the problem happen.
->> >
->> > Thanks,
->> >
->> > ../Randy
->> >
->> >
->> >>>
->> >>>
->> >>> ../Randy
->> >>>
->> >>>>
->> >>>> Thanks
->> >>>>
->> >>>> Konrad
->> >>>>
->> >>>>
->> >>>>
->> >>>>
->> >>>
->> >>>
->> >>>
->> >>
->> >>
->> >
->> >
->> > --
->> > # Randy MacLeod
->> > # Wind River Linux
->> >
 >> 
->>
->
-
---00000000000065904a05a3424a98
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">During a recent data center move mail permissions were not=
- carried over correctly. I&#39;ve sorted this now and bugzilla e-mail shoul=
-d start arriving shortly. If you don&#39;t receive e-mail=C2=A0as expected =
-please make another attempt. If problems persist reach out to me directly f=
-or support.<div><br></div><div>Thank you,</div><div>Michael Halstead</div><=
-div>SysAdmin / Yocto Project</div></div><br><div class=3D"gmail_quote"><div=
- dir=3D"ltr" class=3D"gmail_attr">On Mon, Apr 13, 2020 at 11:17 AM Alexande=
-r Kanavin &lt;<a href=3D"mailto:alex.kanavin@gmail.com">alex.kanavin@gmail.=
-com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
-in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
-x"><div dir=3D"ltr"><div>Adding Michael (lack of confirmtation email from b=
-ugzilla).</div><div><br></div><div>Alex<br></div></div><br><div class=3D"gm=
-ail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Mon, 13 Apr 2020 at 19:=
-59, Konrad Weihmann &lt;<a href=3D"mailto:kweihmann@outlook.com" target=3D"=
-_blank">kweihmann@outlook.com</a>&gt; wrote:<br></div><blockquote class=3D"=
-gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
-4,204,204);padding-left:1ex">Hi Randy,<br>
-<br>
-I&#39;m trying all day to create an account at bugzilla to file the issue,=
- <br>
-but somehow I don&#39;t get any confirmation mail=C2=A0 (although I tried =
-several <br>
-mail accounts today, and no it didn&#39;t got stuck in spam;-)) - guess <b=
-r>
-that&#39;s not how it is supposed to be, right :-)? - I don&#39;t know whe=
-re to <br>
-address such a problem, so take this reply as FYI.<br>
-<br>
-Best<br>
-Konrad<br>
-<br>
-On 03.04.20 21:28, Randy MacLeod wrote:<br>
-&gt; On 2020-04-02 4:44 a.m., Konrad Weihmann wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; To answer your others questions... see below<br>
-&gt;&gt;<br>
-&gt;&gt; On 02.04.20 05:42, Randy MacLeod wrote:<br>
-&gt;&gt;&gt; On 2020-03-28 8:26 a.m., Konrad Weihmann wrote:<br>
-&gt;&gt;&gt;&gt; Hi,<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; I&#39;m facing the following error message sporadically o=
-n all branches <br>
-&gt;&gt;&gt;&gt; I tried so far (master, zeus, warrior and thud)<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; The stack trace of python calls that resulted in this <br=
->
-&gt;&gt;&gt;&gt; exception/failure was:<br>
-&gt;&gt;&gt;&gt; File: &#39;exec_python_func() autogenerated&#39;, lineno:=
- 2, function: &lt;module&gt;<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0001:<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0*** 0002:extend_recipe_sysroot(d)<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0003:<br>
-&gt;&gt;&gt;&gt; File: &#39;/build/poky/meta/classes/staging.bbclass&#39;,=
- lineno: 551, <br>
-&gt;&gt;&gt;&gt; function: extend_recipe_sysroot<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0547:=C2=A0=C2=A0=C2=A0=C2=
-=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 dest =3D newmanifest[l]<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0548:=C2=A0=C2=A0=C2=A0=C2=
-=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0 if l.endswith(&quot;/&quot;):<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0549:=C2=A0=C2=A0=C2=A0=C2=
-=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 staging_copydir(l, targetdir=
-, <br>
-&gt;&gt;&gt;&gt; dest, seendirs)<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0550:=C2=A0=C2=A0=C2=A0=C2=
-=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 continue<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0*** 0551:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 staging_copyfile(l, targetdir, dest, <br>
-&gt;&gt;&gt;&gt; postinsts, seendirs)<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0552:<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0553:=C2=A0=C2=A0=C2=A0 bb=
-.note(&quot;Installed into sysroot: %s&quot; % str(msg_adding))<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0554:=C2=A0=C2=A0=C2=A0 bb=
-.note(&quot;Skipping as already exists in sysroot: %s&quot; % <br>
-&gt;&gt;&gt;&gt; str(msg_exists))<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0555:<br>
-&gt;&gt;&gt;&gt; File: &#39;/build/poky/meta/classes/staging.bbclass&#39;,=
- lineno: 152, <br>
-&gt;&gt;&gt;&gt; function: staging_copyfile<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0148:=C2=A0=C2=A0=C2=A0=C2=
-=
-=A0=C2=A0=C2=A0=C2=A0 os.symlink(linkto, dest)<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0149:=C2=A0=C2=A0=C2=A0=C2=
-=
-=A0=C2=A0=C2=A0=C2=A0 #bb.warn(c)<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0150:=C2=A0=C2=A0=C2=A0 el=
-se:<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0151:=C2=A0=C2=A0=C2=A0=C2=
-=
-=A0=C2=A0=C2=A0=C2=A0 try:<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0*** 0152:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 os.link(c, dest)<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0153:=C2=A0=C2=A0=C2=A0=C2=
-=
-=A0=C2=A0=C2=A0=C2=A0 except OSError as err:<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0154:=C2=A0=C2=A0=C2=A0=C2=
-=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if err.errno =3D=3D errno.EX=
-DEV:<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0155:=C2=A0=C2=A0=C2=A0=C2=
-=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bb.u=
-tils.copyfile(c, dest)<br>
-&gt;&gt;&gt;&gt; =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 0156:=C2=A0=C2=A0=C2=A0=C2=
-=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 else:<br>
-&gt;&gt;&gt;&gt; Exception: FileNotFoundError: [Errno 2] No such file or d=
-irectory: <br>
-&gt;&gt;&gt;&gt; &#39;/build/poky/build/tmp/sysroots-components/x86_64/pyt=
-hon3-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/_=
-_init__.cpython-37.pyc&#39; <br>
-&gt;&gt;&gt;&gt; -&gt; <br>
-&gt;&gt;&gt;&gt; &#39;/build/poky/build/tmp/work/qemux86_64-mine-linux/cor=
-e-image-minimal-mine/1.0-r0/recipe-sysroot-native/usr/lib/python3.7/site-pa=
-ckages/msgcheck/__pycache__/__init__.cpython-37.pyc&#39;<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; I already had a look at the manifest<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; cat manifest-x86_64-python3-msgcheck-native.populate_sysr=
-oot<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/__init=
-__.cpython-37.pyc <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpy=
-thon-37.pyc <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgche=
-ck.cpython-37.pyc <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
-/dependency_links.txt <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
-/requires.txt <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
-/top_level.txt <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
-/SOURCES.txt <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
-/PKG-INFO <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
-/entry_points.txt <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/bin/msgcheck <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/sysroot-providers/python3-msgcheck-native <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
-/ <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/ <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/ <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/ <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/ <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/sysroot-providers/ <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/share/ <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/bin/ <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/ <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/ <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; which states the file should be there, but when doing<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; find <br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/ <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7 <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__init__.py <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__ <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/po.cpy=
-thon-37.pyc <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/__pycache__/msgche=
-ck.cpython-37.pyc <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/po.py <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck/msgcheck.py <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
- <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
-/dependency_links.txt <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
-/requires.txt <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
-/top_level.txt <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
-/SOURCES.txt <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
-/PKG-INFO <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/lib/python3.7/site-packages/msgcheck-2.8-py3.7.egg-info=
-/entry_points.txt <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/bin <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/bin/msgcheck <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; /build/poky/build/tmp/sysroots-components/x86_64/python3-=
-msgcheck-native/usr/share <br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; the file isn&#39;t there.<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; This happens to random python packages compiled as native=
- (sometimes <br>
-&gt;&gt;&gt;&gt; even for python-native itself), but (afaik) not for cross=
- or target <br>
-&gt;&gt;&gt;&gt; packages (I&#39;m pretty sure because of the different pa=
-ckaging applied).<br>
-&gt;&gt;&gt;&gt; So I digged a little into the code <br>
-&gt;&gt;&gt;&gt; classes/sstate.bbclass:sstate_install, which seems to cre=
-ate the <br>
-&gt;&gt;&gt;&gt; sysroot-component dir and the manifest.<br>
-&gt;&gt;&gt;&gt; There is a gap between the manifest creation (line 285) a=
-nd the <br>
-&gt;&gt;&gt;&gt; hardlinking (line till 311).<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Now my question is there any place where a file potential=
-ly could <br>
-&gt;&gt;&gt;&gt; get lost? - at first glance there shouldn&#39;t be one - =
-I have to admit <br>
-&gt;&gt;&gt;&gt; that I don&#39;t fully understand all this subprocess mag=
-ic in <br>
-&gt;&gt;&gt;&gt; lib/oe/path.py:copyhardlinktree.<br>
-&gt;&gt;&gt;&gt; What I do to fix the issue is reopening the manifest and =
-double <br>
-&gt;&gt;&gt;&gt; check for missing files and remove them from the manifest=
-, but this<br>
-&gt;&gt;&gt;&gt; feels wrong - so any advise is welcome...<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Hope that someone more familiar with the topic could have=
- a look.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; Hi Konrad,<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; I&#39;m not really familiar with that code but it&#39;s being=
- run buy 1000s of<br>
-&gt;&gt;&gt; builder around the world so let&#39;s try to eliminate a few =
-possibilities.<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; When did you start having this problem?<br>
-&gt;&gt; Since the start of the test distribution I&#39;m working on. But =
-also for <br>
-&gt;&gt; plain poky builds if I forcefully inject all of the python-native=
- <br>
-&gt;&gt; site-packages via local.conf (DEPENDS_class-native +=3D &quot;...=
-&quot;), without <br>
-&gt;&gt; actually using them in the recipe scope<br>
-&gt;&gt;&gt; How often do you think it&#39;s happening: 1 in 3 builds, 1 i=
-n 10?<br>
-&gt;&gt; See the other mail - looks like it heavily depends on the host<br=
->
-&gt;&gt;&gt; Tell us about your machine: OS,version, disk, CPUs, ram<br>
-&gt;&gt; See the other mail<br>
-&gt;&gt;&gt; Do you do anything special in your conf dir? Send local.conf =
-perhaps.<br>
-&gt;&gt; No custom modification (just for testing the DEPENDS-injection)<b=
-r>
-&gt;&gt;&gt; Do you have any local bbappends or commits on top of poky or<=
-br>
-&gt;&gt;&gt; in other layers?<br>
-&gt;&gt; No<br>
-&gt;&gt;&gt; Have you tried to simplify the build to eliminate problems<br=
->
-&gt;&gt;&gt; potentially caused by other layers?<br>
-&gt;&gt; I did - see above<br>
-&gt;&gt;&gt; Are you able to reproduce the problem on more than one build =
-machine?<br>
-&gt;&gt; See the other mail<br>
-&gt;&gt;&gt; Are you able to reproduce the problem on a different Linux di=
-stro?<br>
-&gt;&gt; Not really - Debian 9 was fine all other Hosts are Ubuntu based<b=
-r>
-&gt;&gt;&gt; Are there other builds or users on the machine that may be ca=
-using<br>
-&gt;&gt;&gt; extra load?<br>
-&gt;&gt; No the hosts are just being poorly equipped - at least the ones t=
-hat <br>
-&gt;&gt; produce this issue<br>
-&gt; <br>
-&gt; <br>
-&gt; Hi Konrad,<br>
-&gt; <br>
-&gt; Thanks for the detailed and complete replies.<br>
-&gt; <br>
-&gt; I don&#39;t think I&#39;ve seen this error and we do 100s of builds<b=
-r>
-&gt; per day using local many-core systems running Ubuntu-18.04<br>
-&gt; but with the builds in docker containers using a variety of<br>
-&gt; OS distributions.<br>
-&gt; <br>
-&gt; My first *wild* guess is that the problem might go away on the Azure<=
-br>
-&gt; systems if you allocate more memory. That might be an easy<br>
-&gt; test to do so that we can confirm that it happens more frequently<br>
-&gt; when there is a memory constraint. Can you do that test?<br>
-&gt; <br>
-&gt; I&#39;ve also BCCed someone who might know someone who<br>
-&gt; would be interested in fixing Azure + Yocto bugs. Let&#39;s see<br>
-&gt; if they can help. :)<br>
-&gt; <br>
-&gt; It would also be helpful if you created a defect in:<br>
-&gt; <br>
-&gt; <a href=3D"https://bugzilla.yoctoproject.org/" rel=3D"noreferrer" tar=
-get=3D"_blank">https://bugzilla.yoctoproject.org/</a><br>
-&gt; <br>
-&gt; and hopefully add a patch in that defect including the -native recipe=
-s that<br>
-&gt; are required to make the problem happen.<br>
-&gt; <br>
-&gt; Thanks,<br>
-&gt; <br>
-&gt; ../Randy<br>
-&gt; <br>
-&gt; <br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; ../Randy<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Thanks<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt; Konrad<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; <br>
-&gt; <br>
-&gt; <br>
-&gt; -- <br>
-&gt; # Randy MacLeod<br>
-&gt; # Wind River Linux<br>
-&gt; <br>
-<br>
-</blockquote></div>
-</blockquote></div>
-
---00000000000065904a05a3424a98--
