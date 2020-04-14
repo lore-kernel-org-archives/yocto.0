@@ -1,62 +1,69 @@
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
- by mx.groups.io with SMTP id smtpd.web12.6922.1586850163496805045
+Received: from mail5.wrs.com (mail5.wrs.com [192.103.53.11])
+ by mx.groups.io with SMTP id smtpd.web10.6789.1586850175729755543
  for <yocto@lists.yoctoproject.org>;
- Tue, 14 Apr 2020 00:42:43 -0700
+ Tue, 14 Apr 2020 00:42:55 -0700
 Authentication-Results: mx.groups.io;
- dkim=missing; spf=pass (domain: windriver.com, ip: 147.11.146.13, mailfrom: yi.zhao@windriver.com)
+ dkim=missing; spf=pass (domain: windriver.com, ip: 192.103.53.11, mailfrom: yi.zhao@windriver.com)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com [147.11.189.40])
-	by mail1.windriver.com (8.15.2/8.15.2) with ESMTPS id 03E7gdfs025977
+	by mail5.wrs.com (8.15.2/8.15.2) with ESMTPS id 03E7gCOJ001025
 	(version=TLSv1 cipher=AES256-SHA bits=256 verify=FAIL);
-	Tue, 14 Apr 2020 00:42:39 -0700 (PDT)
+	Tue, 14 Apr 2020 00:42:22 -0700
 Received: from localhost (128.224.162.174) by ALA-HCA.corp.ad.wrs.com
  (147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.487.0; Tue, 14 Apr
- 2020 00:42:38 -0700
+ 2020 00:42:01 -0700
 From: "Yi Zhao" <yi.zhao@windriver.com>
 To: <joe@deserted.net>, <yocto@lists.yoctoproject.org>
-Subject: [meta-selinux][PATCH 03/16] libsepol: upgrade to 3.0 (20191204)
-Date: Tue, 14 Apr 2020 15:41:45 +0800
-Message-ID: <20200414074158.32058-3-yi.zhao@windriver.com>
+Subject: [meta-selinux][PATCH 01/16] setools: upgrade 4.2.2 -> 4.3.0
+Date: Tue, 14 Apr 2020 15:41:43 +0800
+Message-ID: <20200414074158.32058-1-yi.zhao@windriver.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200414074158.32058-1-yi.zhao@windriver.com>
-References: <20200414074158.32058-1-yi.zhao@windriver.com>
 MIME-Version: 1.0
 X-Originating-IP: [128.224.162.174]
 Content-Type: text/plain
 
+Remove __pycache__ directories when do_install.
+
 Signed-off-by: Yi Zhao <yi.zhao@windriver.com>
 ---
- recipes-security/selinux/libsepol_2.9.bb | 7 -------
- recipes-security/selinux/libsepol_3.0.bb | 7 +++++++
- 2 files changed, 7 insertions(+), 7 deletions(-)
- delete mode 100644 recipes-security/selinux/libsepol_2.9.bb
- create mode 100644 recipes-security/selinux/libsepol_3.0.bb
+ .../setools/{setools_4.2.2.bb => setools_4.3.0.bb}        | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+ rename recipes-security/setools/{setools_4.2.2.bb => setools_4.3.0.bb} (78%)
 
-diff --git a/recipes-security/selinux/libsepol_2.9.bb b/recipes-security/selinux/libsepol_2.9.bb
-deleted file mode 100644
-index cd55be6..0000000
---- a/recipes-security/selinux/libsepol_2.9.bb
-+++ /dev/null
-@@ -1,7 +0,0 @@
--require selinux_20190315.inc
--require ${BPN}.inc
--
--LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
--
--SRC_URI[md5sum] = "2fdefe870a61424d8f2d5d37551c6259"
--SRC_URI[sha256sum] = "a34b12b038d121e3e459b1cbaca3c9202e983137819c16baf63658390e3f1d5d"
-diff --git a/recipes-security/selinux/libsepol_3.0.bb b/recipes-security/selinux/libsepol_3.0.bb
-new file mode 100644
-index 0000000..6c85256
---- /dev/null
-+++ b/recipes-security/selinux/libsepol_3.0.bb
-@@ -0,0 +1,7 @@
-+require selinux_20191204.inc
-+require ${BPN}.inc
-+
-+LIC_FILES_CHKSUM = "file://COPYING;md5=a6f89e2100d9b6cdffcea4f398e37343"
-+
-+SRC_URI[md5sum] = "22ddb9994910cb9cfff5cb9663cb7ae7"
-+SRC_URI[sha256sum] = "5b7ae1881909f1048b06f7a0c364c5c8a86ec12e0ec76e740fe9595a6033eb79"
+diff --git a/recipes-security/setools/setools_4.2.2.bb b/recipes-security/setools/setools_4.3.0.bb
+similarity index 78%
+rename from recipes-security/setools/setools_4.2.2.bb
+rename to recipes-security/setools/setools_4.3.0.bb
+index 6e5a950..ec73f7c 100644
+--- a/recipes-security/setools/setools_4.2.2.bb
++++ b/recipes-security/setools/setools_4.3.0.bb
+@@ -9,17 +9,17 @@ SECTION = "base"
+ LICENSE = "GPLv2 & LGPLv2.1"
+ 
+ S = "${WORKDIR}/git"
+-SRC_URI = "git://github.com/SELinuxProject/${BPN}.git;branch=4.2 \
++SRC_URI = "git://github.com/SELinuxProject/${BPN}.git;branch=4.3 \
+            file://setools4-fixes-for-cross-compiling.patch \
+ "
+ 
+-SRCREV = "15bffa7823b9a999f9d51533785ade18fe44df08"
++SRCREV = "a57ad3cdb669a39f785c4e85d63416a469c8d445"
+ 
+ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=83a5eb6974c11f30785e90d0eeccf40c \
+                     file://${S}/COPYING.GPL;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
+                     file://${S}/COPYING.LGPL;md5=4fbd65380cdd255951079008b364516c"
+ 
+-DEPENDS += "bison-native flex-native swig-native python3 python3-cython-native libsepol"
++DEPENDS += "bison-native flex-native swig-native python3 python3-cython-native libsepol libselinux"
+ 
+ RDEPENDS_${PN} += "python3-networkx python3-decorator python3-setuptools \
+                    python3-logging python3-json libselinux-python"
+@@ -32,4 +32,6 @@ do_install_append() {
+ 	# Need PyQt5 support, disable gui tools
+ 	rm -f ${D}${bindir}/apol
+ 	rm -rf ${D}${libdir}/${PYTHON_DIR}/site-packages/setoolsgui
++	rm -rf ${D}${libdir}/${PYTHON_DIR}/site-packages/setools/__pycache__
++	rm -rf ${D}${libdir}/${PYTHON_DIR}/site-packages/setools/*/__pycache__
+ }
 -- 
 2.17.1
 
